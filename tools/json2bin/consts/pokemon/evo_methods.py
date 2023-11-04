@@ -1,7 +1,7 @@
-from enum import Enum, Flag, auto
+from enum import Enum, auto
 
 
-class EvoMethod(Flag):
+class EvoMethod(Enum):
     EVO_NONE                = 0
     EVO_HAPPINESS           = auto()
     EVO_HAPPINESS_DAY       = auto()

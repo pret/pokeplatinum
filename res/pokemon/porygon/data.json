@@ -104,7 +104,7 @@
     },
     "evolutions": [
         [
-            "TRADE_WITH_ITEM",
+            "EVO_TRADE_WITH_ITEM",
             "ITEM_UPGRADE",
             "SPECIES_PORYGON2"
         ]

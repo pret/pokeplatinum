@@ -94,7 +94,7 @@
     },
     "evolutions": [
         [
-            "HAPPINESS_NIGHT",
+            "EVO_HAPPINESS_NIGHT",
             "SPECIES_CHIMECHO"
         ]
     ]

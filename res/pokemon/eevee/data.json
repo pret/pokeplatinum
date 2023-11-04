@@ -85,34 +85,34 @@
     },
     "evolutions": [
         [
-            "MOSSY_STONE",
+            "EVO_MOSSY_STONE",
             "SPECIES_LEAFEON"
         ],
         [
-            "ICY_STONE",
+            "EVO_ICY_STONE",
             "SPECIES_GLACEON"
         ],
         [
-            "USE_ITEM",
+            "EVO_USE_ITEM",
             "ITEM_THUNDERSTONE",
             "SPECIES_JOLTEON"
         ],
         [
-            "USE_ITEM",
+            "EVO_USE_ITEM",
             "ITEM_WATER_STONE",
             "SPECIES_VAPOREON"
         ],
         [
-            "USE_ITEM",
+            "EVO_USE_ITEM",
             "ITEM_FIRE_STONE",
             "SPECIES_FLAREON"
         ],
         [
-            "HAPPINESS_DAY",
+            "EVO_HAPPINESS_DAY",
             "SPECIES_ESPEON"
         ],
         [
-            "HAPPINESS_NIGHT",
+            "EVO_HAPPINESS_NIGHT",
             "SPECIES_UMBREON"
         ]
     ]

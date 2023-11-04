@@ -100,12 +100,12 @@
     },
     "evolutions": [
         [
-            "USE_ITEM",
+            "EVO_USE_ITEM",
             "ITEM_WATER_STONE",
             "SPECIES_POLIWRATH"
         ],
         [
-            "TRADE_WITH_ITEM",
+            "EVO_TRADE_WITH_ITEM",
             "ITEM_KINGS_ROCK",
             "SPECIES_POLITOED"
         ]

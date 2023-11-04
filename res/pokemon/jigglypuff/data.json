@@ -112,7 +112,7 @@
     },
     "evolutions": [
         [
-            "USE_ITEM",
+            "EVO_USE_ITEM",
             "ITEM_MOON_STONE",
             "SPECIES_WIGGLYTUFF"
         ]

@@ -111,7 +111,7 @@
     },
     "evolutions": [
         [
-            "TRADE",
+            "EVO_TRADE",
             "SPECIES_ALAKAZAM"
         ]
     ]

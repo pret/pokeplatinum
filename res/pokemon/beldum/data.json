@@ -51,7 +51,7 @@
     },
     "evolutions": [
         [
-            "LEVEL_UP",
+            "EVO_LEVEL_UP",
             20,
             "SPECIES_METANG"
         ]

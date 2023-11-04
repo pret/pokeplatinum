@@ -55,7 +55,7 @@ def get_evo_params(method: evo_methods.EvoMethod, evo: list):
         evo_methods.EvoMethod.EVO_USE_ITEM_NIGHT]):
         final_param = item.Item[maybe_param].value
     elif method == evo_methods.EvoMethod.EVO_KNOW_MOVE:
-        final_param = moves.Move['MOVE_' + maybe_param].value
+        final_param = moves.Move[maybe_param].value
     elif method == evo_methods.EvoMethod.EVO_MON_IN_PARTY:
         final_param = species.PokemonSpecies[maybe_param].value
 
@@ -64,24 +64,22 @@ def get_evo_params(method: evo_methods.EvoMethod, evo: list):
 
 def table_line(evo_method: int, evo_params: int, species: int) -> bytes:
     binary = bytearray([])
-    binary.extend((evo_method & 0x7F).to_bytes(2, 'little'))
-    binary.extend((evo_params & 0x7F).to_bytes(2, 'little'))
-    binary.extend((species & 0x7F).to_bytes(2, 'little'))
+    binary.extend(evo_method.to_bytes(2, 'little'))
+    binary.extend(evo_params.to_bytes(2, 'little'))
+    binary.extend(species.to_bytes(2, 'little'))
     return bytes(binary)
     
 
-def parse_evolutions(table: list, _size: int, _enum: None):
-    out = []
+def parse_evolutions(table: list, _size: int, _enum: None) -> bytes:
+    out = bytearray([])
     for j in range(min(len(table), 7)):
         evo = table[j]
-        method = evo_methods.EvoMethod['EVO_' + evo[0]]
+        method = evo_methods.EvoMethod[evo[0]]
         params = get_evo_params(method, evo)
         target = species.PokemonSpecies[evo[-1]]
         out.extend(table_line(method.value, params, target.value))
         
-    if len(out) < 42:
-        out.extend((0).to_bytes(42 - len(out), 'little'))
-    out.extend((0).to_bytes(2, 'little'))
+    out.extend((0).to_bytes(44 - len(out), 'little'))
 
     return out
         
@@ -114,6 +112,7 @@ FORM_INDICES = {
         'MOW': 507,
     },
 }
+
 def indexer(file_path: pathlib.Path) -> int:
     name = file_path.parent.stem.upper()
     if name == '000': return 0

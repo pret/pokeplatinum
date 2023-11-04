@@ -98,7 +98,7 @@
     },
     "evolutions": [
         [
-            "LEVEL_UP",
+            "EVO_LEVEL_UP",
             32,
             "SPECIES_SEALEO"
         ]

@@ -113,8 +113,8 @@
     },
     "evolutions": [
         [
-            "KNOW_MOVE",
-            "ROLLOUT",
+            "EVO_KNOW_MOVE",
+            "MOVE_ROLLOUT",
             "SPECIES_LICKILICKY"
         ]
     ]

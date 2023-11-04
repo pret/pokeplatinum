@@ -111,7 +111,7 @@
     },
     "evolutions": [
         [
-            "USE_ITEM_NIGHT",
+            "EVO_USE_ITEM_NIGHT",
             "ITEM_RAZOR_FANG",
             "SPECIES_GLISCOR"
         ]

@@ -106,7 +106,7 @@
     },
     "evolutions": [
         [
-            "USE_ITEM",
+            "EVO_USE_ITEM",
             "ITEM_DUSK_STONE",
             "SPECIES_MISMAGIUS"
         ]
