@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/struct_02007C10.h"
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/cell_actor_data.h"
@@ -546,10 +546,10 @@ u8 Pokemon_IsPersonalityShiny(u32 monOTID, u32 monPersonality);
  * @return The computed personality value
  */
 u32 Pokemon_FindShinyPersonality(u32 monOTID);
-void sub_02075EF4(UnkStruct_02008A90 *param0, Pokemon *mon, u8 param2);
-void sub_02075F00(UnkStruct_02008A90 *param0, Pokemon *mon, u8 param2);
-void sub_02075F0C(UnkStruct_02008A90 *param0, BoxPokemon *boxMon, u8 param2, BOOL param3);
-void sub_02075FB4(UnkStruct_02008A90 *param0, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
+void sub_02075EF4(ArchivedSprite *param0, Pokemon *mon, u8 param2);
+void sub_02075F00(ArchivedSprite *param0, Pokemon *mon, u8 param2);
+void sub_02075F0C(ArchivedSprite *param0, BoxPokemon *boxMon, u8 param2, BOOL param3);
+void sub_02075FB4(ArchivedSprite *param0, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
 
 /**
  * @brief Sanitizes a pokemon form. If the given form is greater than the max for the given species, returns zero, else returns the form unchanged
@@ -564,7 +564,7 @@ u8 sub_020765AC(Pokemon *mon, u8 param1);
 u8 sub_020765B8(Pokemon *mon, u8 param1);
 u8 sub_020765C4(BoxPokemon *boxMon, u8 param1, BOOL param2);
 u8 sub_02076648(u16 monSpecies, u8 monGender, u8 param2, u8 monForm, u32 monPersonality);
-void sub_0207697C(UnkStruct_02008A90 *param0, u16 param1);
+void sub_0207697C(ArchivedSprite *param0, u16 param1);
 CellActorData *sub_02076994(UnkStruct_0200C6E4 *param0, UnkStruct_0200C704 *param1, PaletteSys *param2, int param3, int param4, int param5, int param6, int param7, int heapID);
 void sub_02076AAC(int param0, int param1, UnkStruct_ov5_021DE5D0 *param2);
 

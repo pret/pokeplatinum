@@ -8,7 +8,7 @@
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
 
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "overlay017/struct_ov17_022476F8.h"
 #include "overlay017/struct_ov17_0224792C.h"
@@ -167,7 +167,7 @@ static void ov17_02247840 (SysTask * param0, void * param1)
 
 void ov17_022478D0 (UnkStruct_ov17_02247A48 * param0, int param1)
 {
-    UnkStruct_02008A90 v0;
+    ArchivedSprite v0;
 
     GF_ASSERT(param0->unk_0C.unk_18 == NULL);
 

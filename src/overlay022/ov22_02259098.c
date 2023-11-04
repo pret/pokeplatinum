@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02007768_decl.h"
 #include "pokemon.h"
 
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_defs/union_02022594_020225E0.h"
 #include "struct_defs/struct_020298D8.h"
 #include "overlay022/struct_ov22_022596B0.h"
@@ -24,23 +24,23 @@ static int ov22_0225936C(char * param0, int param1);
 static void ov22_02259448(UnkUnion_02022594 * param0, int param1, int param2, int param3, int param4);
 static void ov22_022593B8(char * param0, int param1, int param2, UnkStruct_ov22_022596B0 * param3);
 
-void ov22_02259098 (UnkStruct_ov22_0225A0E4 * param0, UnkStruct_02008A90 * param1)
+void ov22_02259098 (UnkStruct_ov22_0225A0E4 * param0, ArchivedSprite * param1)
 {
     void * v0;
     NNSG2dCharacterData * v1;
 
-    v0 = sub_02006FE8(param1->unk_00, param1->unk_02, 0, 14, 0);
+    v0 = sub_02006FE8(param1->archive, param1->character, 0, 14, 0);
     v1 = ov22_02255340(param0, v0, ((100 + 18)));
 
-    sub_020093A0((u8 *)v1->pRawData, param1->unk_00);
+    sub_020093A0((u8 *)v1->pRawData, param1->archive);
 }
 
-void ov22_022590C0 (UnkStruct_020298D8 * param0, UnkStruct_02007768 * param1, Pokemon * param2, UnkStruct_02008A90 * param3, int param4)
+void ov22_022590C0 (UnkStruct_020298D8 * param0, UnkStruct_02007768 * param1, Pokemon * param2, ArchivedSprite * param3, int param4)
 {
     ov22_022590D4(param0, param1, param2, param3, param4, 0);
 }
 
-void ov22_022590D4 (UnkStruct_020298D8 * param0, UnkStruct_02007768 * param1, Pokemon * param2, UnkStruct_02008A90 * param3, int param4, BOOL param5)
+void ov22_022590D4 (UnkStruct_020298D8 * param0, UnkStruct_02007768 * param1, Pokemon * param2, ArchivedSprite * param3, int param4, BOOL param5)
 {
     int v0 = Pokemon_GetValue(param2, MON_DATA_SPECIES, NULL);
 
@@ -68,10 +68,10 @@ void ov22_022590D4 (UnkStruct_020298D8 * param0, UnkStruct_02007768 * param1, Po
         void * v4;
         NNSG2dCharacterData * v5;
 
-        v4 = sub_02006FE8(param3->unk_00, param3->unk_02, 0, param4, 0);
+        v4 = sub_02006FE8(param3->archive, param3->character, 0, param4, 0);
 
         NNS_G2dGetUnpackedCharacterData(v4, &v5);
-        sub_020093A0((u8 *)v5->pRawData, param3->unk_00);
+        sub_020093A0((u8 *)v5->pRawData, param3->archive);
 
         if (param5 == 0) {
             ov22_022593B8(v5->pRawData, v5->W * 8, v5->H * 8, &param0->unk_08);

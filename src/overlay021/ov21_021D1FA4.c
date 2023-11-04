@@ -11,7 +11,7 @@
 #include "struct_decls/struct_02022550_decl.h"
 #include "overlay021/struct_ov21_021D4EE4_decl.h"
 
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D1FA4.h"
@@ -167,7 +167,7 @@ void ov21_021D217C (const UnkStruct_ov21_021D13FC * param0, BOOL param1)
 
 void ov21_021D2188 (UnkStruct_ov21_021D13FC * param0, int param1, int param2, int param3, int param4, u8 param5, u32 param6, int param7, int param8, int param9)
 {
-    UnkStruct_02008A90 v0;
+    ArchivedSprite v0;
     s16 v1;
 
     if (param0->unk_154[param9]) {

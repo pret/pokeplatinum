@@ -7,7 +7,7 @@
 #include "overlay012/const_ov12_0223B0A0.h"
 #include "overlay012/const_ov12_0223B0DC.h"
 
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "overlay012/struct_ov12_022380DC.h"
 
 #include "narc.h"
@@ -57,8 +57,8 @@ void ov12_022380CC (UnkStruct_ov12_022380DC * param0, int param1)
 
 static void ov12_022380DC (UnkStruct_ov12_022380DC * param0, int param1, int param2, int param3)
 {
-    UnkStruct_02008A90 v0;
-    UnkStruct_02008A90 * v1;
+    ArchivedSprite v0;
+    ArchivedSprite * v1;
     int v2;
     int v3;
     int v4;
@@ -99,10 +99,10 @@ static void ov12_022380DC (UnkStruct_ov12_022380DC * param0, int param1, int par
     *v1 = v0;
 
     sub_020089A0(param0->unk_18[param0->unk_00]);
-    sub_02013750(v1->unk_00, v1->unk_02, param3, param0->unk_08[param0->unk_00]->unk_00, v7, 0, v4, v1->unk_06);
+    sub_02013750(v1->archive, v1->character, param3, param0->unk_08[param0->unk_00]->unk_00, v7, 0, v4, v1->spindaSpots);
 
-    param0->unk_08[param0->unk_00]->unk_04 = v1->unk_00;
-    param0->unk_08[param0->unk_00]->unk_08 = v1->unk_04;
+    param0->unk_08[param0->unk_00]->unk_04 = v1->archive;
+    param0->unk_08[param0->unk_00]->unk_08 = v1->palette;
 
     v11 = param0->unk_08[param0->unk_00]->unk_0C = sub_02076648(v2, v3, v4, v6, v7);
     v8 = ov12_022384CC(param0->unk_4C[param0->unk_00], 1);
@@ -127,7 +127,7 @@ static void ov12_022380DC (UnkStruct_ov12_022380DC * param0, int param1, int par
 
 void ov12_022382BC (UnkStruct_ov12_022380DC * param0, int param1)
 {
-    UnkStruct_02008A90 * v0;
+    ArchivedSprite * v0;
     int v1;
     int v2;
     int v3;
@@ -149,10 +149,10 @@ void ov12_022382BC (UnkStruct_ov12_022380DC * param0, int param1)
         v3 = 0;
     }
 
-    sub_02013750(v0->unk_00, v0->unk_02, param1, param0->unk_08[param0->unk_00]->unk_00, v5, 0, v3, v0->unk_06);
+    sub_02013750(v0->archive, v0->character, param1, param0->unk_08[param0->unk_00]->unk_00, v5, 0, v3, v0->spindaSpots);
 
-    param0->unk_08[param0->unk_00]->unk_04 = v0->unk_00;
-    param0->unk_08[param0->unk_00]->unk_08 = v0->unk_04;
+    param0->unk_08[param0->unk_00]->unk_04 = v0->archive;
+    param0->unk_08[param0->unk_00]->unk_08 = v0->palette;
     param0->unk_08[param0->unk_00]->unk_0C = sub_02076648(v1, v2, v3, v4, v5);
 
     v6 = ov12_022384CC(param0->unk_4C[param0->unk_00], 1) + param0->unk_08[param0->unk_00]->unk_0C;
@@ -162,25 +162,25 @@ void ov12_022382BC (UnkStruct_ov12_022380DC * param0, int param1)
 
 void ov12_02238390 (UnkStruct_ov12_022380DC * param0, int param1)
 {
-    UnkStruct_02008A90 v0;
-    UnkStruct_02008A90 * v1;
+    ArchivedSprite v0;
+    ArchivedSprite * v1;
     int v2;
     int v3;
     u8 v4;
 
     sub_020089B0(param0->unk_18[param0->unk_00]);
 
-    v0.unk_00 = 117;
-    v0.unk_04 = 250;
-    v0.unk_06 = 0;
-    v0.unk_08 = 0;
-    v0.unk_0C = 0;
+    v0.archive = 117;
+    v0.palette = 250;
+    v0.spindaSpots = 0;
+    v0.dummy = 0;
+    v0.personality = 0;
 
     if (param0->unk_4C[param0->unk_00] & 0x1) {
-        v0.unk_02 = 249;
+        v0.character = 249;
         v3 = 135;
     } else {
-        v0.unk_02 = 248;
+        v0.character = 248;
         v3 = 134;
     }
 
@@ -188,10 +188,10 @@ void ov12_02238390 (UnkStruct_ov12_022380DC * param0, int param1)
     *v1 = v0;
 
     sub_020089A0(param0->unk_18[param0->unk_00]);
-    sub_02013610(v1->unk_00, v1->unk_02, param1, param0->unk_08[param0->unk_00]->unk_00);
+    sub_02013610(v1->archive, v1->character, param1, param0->unk_08[param0->unk_00]->unk_00);
 
-    param0->unk_08[param0->unk_00]->unk_04 = v0.unk_00;
-    param0->unk_08[param0->unk_00]->unk_08 = v0.unk_04;
+    param0->unk_08[param0->unk_00]->unk_04 = v0.archive;
+    param0->unk_08[param0->unk_00]->unk_08 = v0.palette;
 
     NARC_ReadWholeMemberByIndexPair(&v4, NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O, v3);
     param0->unk_08[param0->unk_00]->unk_0C = v4;

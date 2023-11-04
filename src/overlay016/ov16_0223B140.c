@@ -15,7 +15,7 @@
 #include "battle/battle_context.h"
 #include "overlay016/struct_ov16_0225BFFC_decl.h"
 
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "pokemon.h"
 #include "struct_defs/struct_0207A778.h"
 #include "struct_defs/battle_system.h"
@@ -530,7 +530,7 @@ static void ov16_0223B790 (UnkStruct_020067E8 * param0)
 {
     BattleSystem * v0 = sub_0200682C(param0);
     BattleParams * v1 = sub_02006840(param0);
-    UnkStruct_02008A90 v2;
+    ArchivedSprite v2;
     int v3;
     RTCDate v4;
     RTCTime v5;

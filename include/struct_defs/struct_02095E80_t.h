@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "message.h"
@@ -104,7 +104,7 @@ struct UnkStruct_02095E80_t {
     void * unk_7E8[12];
     NNSG2dCharacterData * unk_818[12];
     u8 unk_848[2][3200];
-    UnkStruct_02008A90 unk_2148[2];
+    ArchivedSprite unk_2148[2];
     int unk_2168;
     u8 unk_216C[256];
     int (* unk_226C)(UnkStruct_02095E80 *);

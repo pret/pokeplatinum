@@ -14,7 +14,7 @@
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_02007C10.h"
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0202818C.h"
 #include "struct_defs/struct_0202CA28.h"
@@ -115,7 +115,7 @@ static u32 Pokemon_GetExpRateBaseExpAt(int monExpRate, int monLevel);
 static u16 Pokemon_GetNatureStatValue(u8 monNature, u16 monStatValue, u8 statType);
 static u8 BoxPokemon_IsShiny(BoxPokemon *boxMon);
 static inline BOOL Pokemon_InlineIsPersonalityShiny(u32 monOTID, u32 monPersonality);
-static void sub_02076300(UnkStruct_02008A90 *param0, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
+static void sub_02076300(ArchivedSprite *param0, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
 static u8 sub_020767BC(u16 monSpecies, u8 monGender, u8 param2, u8 monForm, u32 monPersonality);
 static void BoxPokemon_SetDefaultMoves(BoxPokemon *boxMon);
 static u16 BoxPokemon_AddMove(BoxPokemon *boxMon, u16 moveID);
@@ -2353,17 +2353,17 @@ u32 Pokemon_FindShinyPersonality(u32 monOTID)
     return rndLow | (rndHigh << 16);
 }
 
-void sub_02075EF4(UnkStruct_02008A90 *param0, Pokemon *mon, u8 param2)
+void sub_02075EF4(ArchivedSprite *param0, Pokemon *mon, u8 param2)
 {
     sub_02075F0C(param0, &mon->box, param2, FALSE);
 }
 
-void sub_02075F00(UnkStruct_02008A90 *param0, Pokemon *mon, u8 param2)
+void sub_02075F00(ArchivedSprite *param0, Pokemon *mon, u8 param2)
 {
     sub_02075F0C(param0, &mon->box, param2, TRUE);
 }
 
-void sub_02075F0C(UnkStruct_02008A90 *param0, BoxPokemon *boxMon, u8 param2, BOOL param3)
+void sub_02075F0C(ArchivedSprite *param0, BoxPokemon *boxMon, u8 param2, BOOL param3)
 {
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
@@ -2392,94 +2392,94 @@ void sub_02075F0C(UnkStruct_02008A90 *param0, BoxPokemon *boxMon, u8 param2, BOO
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
 }
 
-void sub_02075FB4(UnkStruct_02008A90 *param0, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality)
+void sub_02075FB4(ArchivedSprite *param0, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality)
 {
     // TODO enum values?
-    param0->unk_06 = 0;
-    param0->unk_08 = 0;
-    param0->unk_0C = 0;
+    param0->spindaSpots = 0;
+    param0->dummy = 0;
+    param0->personality = 0;
     monForm = Pokemon_SanitizeFormId(monSpecies, monForm);
 
     switch (monSpecies) {
     case SPECIES_BURMY:
-        param0->unk_00 = 117;
-        param0->unk_02 = 72 + (param3 / 2) + monForm * 2;
-        param0->unk_04 = 166 + monShininess + monForm * 2;
+        param0->archive = 117;
+        param0->character = 72 + (param3 / 2) + monForm * 2;
+        param0->palette = 166 + monShininess + monForm * 2;
         break;
     case SPECIES_WORMADAM:
-        param0->unk_00 = 117;
-        param0->unk_02 = 78 + (param3 / 2) + monForm * 2;
-        param0->unk_04 = 172 + monShininess + monForm * 2;
+        param0->archive = 117;
+        param0->character = 78 + (param3 / 2) + monForm * 2;
+        param0->palette = 172 + monShininess + monForm * 2;
         break;
     case SPECIES_SHELLOS:
-        param0->unk_00 = 117;
-        param0->unk_02 = 84 + param3 + monForm;
-        param0->unk_04 = 178 + monShininess + monForm * 2;
+        param0->archive = 117;
+        param0->character = 84 + param3 + monForm;
+        param0->palette = 178 + monShininess + monForm * 2;
         break;
     case SPECIES_GASTRODON:
-        param0->unk_00 = 117;
-        param0->unk_02 = 88 + param3 + monForm;
-        param0->unk_04 = 182 + monShininess + monForm * 2;
+        param0->archive = 117;
+        param0->character = 88 + param3 + monForm;
+        param0->palette = 182 + monShininess + monForm * 2;
         break;
     case SPECIES_CHERRIM:
-        param0->unk_00 = 117;
-        param0->unk_02 = 92 + param3 + monForm;
-        param0->unk_04 = 186 + (monShininess * 2) + monForm;
+        param0->archive = 117;
+        param0->character = 92 + param3 + monForm;
+        param0->palette = 186 + (monShininess * 2) + monForm;
         break;
     case SPECIES_ARCEUS:
-        param0->unk_00 = 117;
-        param0->unk_02 = 96 + (param3 / 2) + monForm * 2;
-        param0->unk_04 = 190 + monShininess + monForm * 2;
+        param0->archive = 117;
+        param0->character = 96 + (param3 / 2) + monForm * 2;
+        param0->palette = 190 + monShininess + monForm * 2;
         break;
     case SPECIES_CASTFORM:
-        param0->unk_00 = 117;
-        param0->unk_02 = 64 + (param3 * 2) + monForm;
-        param0->unk_04 = 158 + (monShininess * 4) + monForm;
+        param0->archive = 117;
+        param0->character = 64 + (param3 * 2) + monForm;
+        param0->palette = 158 + (monShininess * 4) + monForm;
         break;
     case SPECIES_DEOXYS:
-        param0->unk_00 = 117;
-        param0->unk_02 = 0 + (param3 / 2) + monForm * 2;
-        param0->unk_04 = 154 + monShininess;
+        param0->archive = 117;
+        param0->character = 0 + (param3 / 2) + monForm * 2;
+        param0->palette = 154 + monShininess;
         break;
     case SPECIES_UNOWN:
-        param0->unk_00 = 117;
-        param0->unk_02 = 8 + (param3 / 2) + monForm * 2;
-        param0->unk_04 = 156 + monShininess;
+        param0->archive = 117;
+        param0->character = 8 + (param3 / 2) + monForm * 2;
+        param0->palette = 156 + monShininess;
         break;
     case SPECIES_EGG:
-        param0->unk_00 = 117;
-        param0->unk_02 = 132 + monForm;
-        param0->unk_04 = 226 + monForm;
+        param0->archive = 117;
+        param0->character = 132 + monForm;
+        param0->palette = 226 + monForm;
         break;
     case SPECIES_BAD_EGG:
-        param0->unk_00 = 117;
-        param0->unk_02 = 132;
-        param0->unk_04 = 226;
+        param0->archive = 117;
+        param0->character = 132;
+        param0->palette = 226;
         break;
     case SPECIES_SHAYMIN:
-        param0->unk_00 = 117;
-        param0->unk_02 = 134 + (param3 / 2) + monForm * 2;
-        param0->unk_04 = 228 + monShininess + monForm * 2;
+        param0->archive = 117;
+        param0->character = 134 + (param3 / 2) + monForm * 2;
+        param0->palette = 228 + monShininess + monForm * 2;
         break;
     case SPECIES_ROTOM:
-        param0->unk_00 = 117;
-        param0->unk_02 = 138 + (param3 / 2) + monForm * 2;
-        param0->unk_04 = 232 + monShininess + monForm * 2;
+        param0->archive = 117;
+        param0->character = 138 + (param3 / 2) + monForm * 2;
+        param0->palette = 232 + monShininess + monForm * 2;
         break;
     case SPECIES_GIRATINA:
-        param0->unk_00 = 117;
-        param0->unk_02 = 150 + (param3 / 2) + monForm * 2;
-        param0->unk_04 = 244 + monShininess + monForm * 2;
+        param0->archive = 117;
+        param0->character = 150 + (param3 / 2) + monForm * 2;
+        param0->palette = 244 + monShininess + monForm * 2;
         break;
     default:
-        param0->unk_00 = 4;
-        param0->unk_02 = monSpecies * 6 + param3 + (monGender != 1 ? 1 : 0);
-        param0->unk_04 = monSpecies * 6 + 4 + monShininess;
+        param0->archive = 4;
+        param0->character = monSpecies * 6 + param3 + (monGender != 1 ? 1 : 0);
+        param0->palette = monSpecies * 6 + 4 + monShininess;
 
         if (monSpecies == SPECIES_SPINDA && param3 == 2) {
-            param0->unk_06 = 327;
-            param0->unk_08 = 0;
-            param0->unk_0C = monPersonality;
+            param0->spindaSpots = 327;
+            param0->dummy = 0;
+            param0->personality = monPersonality;
         }
 
         break;
@@ -2561,113 +2561,113 @@ u8 Pokemon_SanitizeFormId(u16 monSpecies, u8 monForm)
     return monForm;
 }
 
-static void sub_02076300(UnkStruct_02008A90 *param0, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality)
+static void sub_02076300(ArchivedSprite *param0, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality)
 {
     // TODO enum values?
-    param0->unk_06 = 0;
-    param0->unk_08 = 0;
-    param0->unk_0C = 0;
+    param0->spindaSpots = 0;
+    param0->dummy = 0;
+    param0->personality = 0;
 
     monForm = Pokemon_SanitizeFormId(monSpecies, monForm);
 
     switch (monSpecies) {
     case SPECIES_BURMY:
-        param0->unk_00 = 166;
-        param0->unk_02 = 72 + (param3 / 2) + monForm * 2;
-        param0->unk_04 = 146 + monShininess + monForm * 2;
+        param0->archive = 166;
+        param0->character = 72 + (param3 / 2) + monForm * 2;
+        param0->palette = 146 + monShininess + monForm * 2;
         break;
     case SPECIES_WORMADAM:
-        param0->unk_00 = 166;
-        param0->unk_02 = 78 + (param3 / 2) + monForm * 2;
-        param0->unk_04 = 152 + monShininess + monForm * 2;
+        param0->archive = 166;
+        param0->character = 78 + (param3 / 2) + monForm * 2;
+        param0->palette = 152 + monShininess + monForm * 2;
         break;
     case SPECIES_SHELLOS:
-        param0->unk_00 = 166;
-        param0->unk_02 = 84 + param3 + monForm;
-        param0->unk_04 = 158 + monShininess + monForm * 2;
+        param0->archive = 166;
+        param0->character = 84 + param3 + monForm;
+        param0->palette = 158 + monShininess + monForm * 2;
         break;
     case SPECIES_GASTRODON:
-        param0->unk_00 = 166;
-        param0->unk_02 = 88 + param3 + monForm;
-        param0->unk_04 = 162 + monShininess + monForm * 2;
+        param0->archive = 166;
+        param0->character = 88 + param3 + monForm;
+        param0->palette = 162 + monShininess + monForm * 2;
         break;
     case SPECIES_CHERRIM:
-        param0->unk_00 = 166;
-        param0->unk_02 = 92 + param3 + monForm;
-        param0->unk_04 = 166 + (monShininess * 2) + monForm;
+        param0->archive = 166;
+        param0->character = 92 + param3 + monForm;
+        param0->palette = 166 + (monShininess * 2) + monForm;
         break;
     case SPECIES_ARCEUS:
-        param0->unk_00 = 166;
-        param0->unk_02 = 96 + (param3 / 2) + monForm * 2;
-        param0->unk_04 = 170 + monShininess + monForm * 2;
+        param0->archive = 166;
+        param0->character = 96 + (param3 / 2) + monForm * 2;
+        param0->palette = 170 + monShininess + monForm * 2;
         break;
     case SPECIES_CASTFORM:
-        param0->unk_00 = 166;
-        param0->unk_02 = 64 + (param3 * 2) + monForm;
-        param0->unk_04 = 138 + (monShininess * 4) + monForm;
+        param0->archive = 166;
+        param0->character = 64 + (param3 * 2) + monForm;
+        param0->palette = 138 + (monShininess * 4) + monForm;
         break;
     case SPECIES_DEOXYS:
-        param0->unk_00 = 166;
-        param0->unk_02 = 0 + (param3 / 2) + monForm * 2;
-        param0->unk_04 = 134 + monShininess;
+        param0->archive = 166;
+        param0->character = 0 + (param3 / 2) + monForm * 2;
+        param0->palette = 134 + monShininess;
         break;
     case SPECIES_UNOWN:
-        param0->unk_00 = 166;
-        param0->unk_02 = 8 + (param3 / 2) + monForm * 2;
-        param0->unk_04 = 136 + monShininess;
+        param0->archive = 166;
+        param0->character = 8 + (param3 / 2) + monForm * 2;
+        param0->palette = 136 + monShininess;
         break;
     case SPECIES_EGG:
-        param0->unk_00 = 166;
-        param0->unk_02 = 132 + monForm;
-        param0->unk_04 = 206 + monForm;
+        param0->archive = 166;
+        param0->character = 132 + monForm;
+        param0->palette = 206 + monForm;
         break;
     case SPECIES_BAD_EGG:
-        param0->unk_00 = 166;
-        param0->unk_02 = 132;
-        param0->unk_04 = 206;
+        param0->archive = 166;
+        param0->character = 132;
+        param0->palette = 206;
         break;
     case SPECIES_SHAYMIN:
         if (monForm > 0) {
-            param0->unk_00 = 117;
-            param0->unk_02 = 134 + (param3 / 2) + monForm * 2;
-            param0->unk_04 = 230 + monShininess;
+            param0->archive = 117;
+            param0->character = 134 + (param3 / 2) + monForm * 2;
+            param0->palette = 230 + monShininess;
         } else {
-            param0->unk_00 = 165;
-            param0->unk_02 = monSpecies * 6 + param3 + (monGender != 1 ? 1 : 0);
-            param0->unk_04 = monSpecies * 6 + 4 + monShininess;
+            param0->archive = 165;
+            param0->character = monSpecies * 6 + param3 + (monGender != 1 ? 1 : 0);
+            param0->palette = monSpecies * 6 + 4 + monShininess;
         }
         break;
     case SPECIES_ROTOM:
         if (monForm > 0) {
-            param0->unk_00 = 117;
-            param0->unk_02 = 138 + (param3 / 2) + monForm * 2;
-            param0->unk_04 = 232 + monShininess + monForm * 2;
+            param0->archive = 117;
+            param0->character = 138 + (param3 / 2) + monForm * 2;
+            param0->palette = 232 + monShininess + monForm * 2;
         } else {
-            param0->unk_00 = 165;
-            param0->unk_02 = monSpecies * 6 + param3 + (monGender != 1 ? 1 : 0);
-            param0->unk_04 = monSpecies * 6 + 4 + monShininess;
+            param0->archive = 165;
+            param0->character = monSpecies * 6 + param3 + (monGender != 1 ? 1 : 0);
+            param0->palette = monSpecies * 6 + 4 + monShininess;
         }
         break;
     case SPECIES_GIRATINA:
         if (monForm > 0) {
-            param0->unk_00 = 117;
-            param0->unk_02 = 150 + (param3 / 2) + monForm * 2;
-            param0->unk_04 = 244 + monShininess + monForm * 2;
+            param0->archive = 117;
+            param0->character = 150 + (param3 / 2) + monForm * 2;
+            param0->palette = 244 + monShininess + monForm * 2;
         } else {
-            param0->unk_00 = 165;
-            param0->unk_02 = monSpecies * 6 + param3 + (monGender != 1 ? 1 : 0);
-            param0->unk_04 = monSpecies * 6 + 4 + monShininess;
+            param0->archive = 165;
+            param0->character = monSpecies * 6 + param3 + (monGender != 1 ? 1 : 0);
+            param0->palette = monSpecies * 6 + 4 + monShininess;
         }
         break;
     default:
-        param0->unk_00 = 165;
-        param0->unk_02 = monSpecies * 6 + param3 + (monGender != 1 ? 1 : 0);
-        param0->unk_04 = monSpecies * 6 + 4 + monShininess;
+        param0->archive = 165;
+        param0->character = monSpecies * 6 + param3 + (monGender != 1 ? 1 : 0);
+        param0->palette = monSpecies * 6 + 4 + monShininess;
 
         if (monSpecies == SPECIES_SPINDA && param3 == 2) {
-            param0->unk_06 = 327;
-            param0->unk_08 = 0;
-            param0->unk_0C = monPersonality;
+            param0->spindaSpots = 327;
+            param0->dummy = 0;
+            param0->personality = monPersonality;
         }
 
         break;
@@ -2874,14 +2874,14 @@ static u8 sub_020767BC(u16 monSpecies, u8 monGender, u8 param2, u8 monForm, u32 
     return result;
 }
 
-void sub_0207697C(UnkStruct_02008A90 *param0, u16 param1)
+void sub_0207697C(ArchivedSprite *param0, u16 param1)
 {
-    param0->unk_00 = 60;
-    param0->unk_02 = param1 * 2;
-    param0->unk_04 = param1 * 2 + 1;
-    param0->unk_06 = 0;
-    param0->unk_08 = 0;
-    param0->unk_0C = 0;
+    param0->archive = 60;
+    param0->character = param1 * 2;
+    param0->palette = param1 * 2 + 1;
+    param0->spindaSpots = 0;
+    param0->dummy = 0;
+    param0->personality = 0;
 }
 
 static const UnkStruct_ov104_0223F9E0 Unk_020F05E4 = {

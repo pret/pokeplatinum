@@ -13,7 +13,7 @@
 #include "overlay076/const_ov76_0223EF3C.h"
 
 #include "struct_defs/struct_02007C10.h"
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/union_02022594_020225E0.h"
@@ -711,7 +711,7 @@ void ov76_0223DCC0 (UnkStruct_ov76_0223DE00 * param0)
 
 void ov76_0223DD88 (UnkStruct_ov76_0223DE00 * param0)
 {
-    UnkStruct_02008A90 v0;
+    ArchivedSprite v0;
     UnkStruct_02007C10 v1[10];
     int v2;
     int v3;

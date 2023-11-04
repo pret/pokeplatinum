@@ -23,7 +23,7 @@
 
 #include "constdata/const_020F410C.h"
 
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_defs/union_02022594_020225E0.h"
 #include "struct_defs/struct_02027F8C.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -120,7 +120,7 @@ static void ov88_0223CEF0(u16 * param0);
 static int ov88_0223CF30(int param0, int param1, UnkStruct_ov88_0223C8AC * param2);
 static void ov88_0223CF68(int param0, UnkStruct_02022550 * param1, int param2);
 static int ov88_0223CFF4(u32 * param0, int * param1, UnkStruct_02022550 * param2, UnkStruct_ov88_0223C8AC * param3, int param4);
-static int ov88_0223C800(int param0, Pokemon * param1, u8 * param2, UnkStruct_02008A90 * param3);
+static int ov88_0223C800(int param0, Pokemon * param1, u8 * param2, ArchivedSprite * param3);
 static void ov88_0223E7F0(UnkStruct_0202B628 * param0, Pokemon * param1);
 static void ov88_0223D140(UnkStruct_0202CC84 * param0);
 static void ov88_0223E894(UnkStruct_02095E80 * param0);
@@ -922,7 +922,7 @@ static void ov88_0223C0E0 (void * param0)
         int v1 = v0->unk_2168 - 1;
 
         GXS_LoadOBJ(v0->unk_848[v1], 0 + v1 * (0x20 * 10 * 10), (0x20 * 10 * 10));
-        sub_02006E84(v0->unk_2148[v1].unk_00, v0->unk_2148[v1].unk_04, 5, 0x20 * (2 + v1), 32, 26);
+        sub_02006E84(v0->unk_2148[v1].archive, v0->unk_2148[v1].palette, 5, 0x20 * (2 + v1), 32, 26);
 
         v0->unk_2168 = 0;
     }
@@ -1280,7 +1280,7 @@ static void ov88_0223C66C (UnkStruct_02095E80 * param0, NARC * param1)
     sub_02006E84(19, sub_02079FD0(), 1, 10 * 0x20, 0x20 * 4, 26);
 }
 
-static int ov88_0223C800 (int param0, Pokemon * param1, u8 * param2, UnkStruct_02008A90 * param3)
+static int ov88_0223C800 (int param0, Pokemon * param1, u8 * param2, ArchivedSprite * param3)
 {
     sub_02075EF4(param3, param1, 2);
 
@@ -1288,7 +1288,7 @@ static int ov88_0223C800 (int param0, Pokemon * param1, u8 * param2, UnkStruct_0
         int v0 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
         int v1 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
 
-        sub_020136A4(param3->unk_00, param3->unk_02, 26, 0, 0, 10, 10, param2, v0, 0, 2, v1);
+        sub_020136A4(param3->archive, param3->character, 26, 0, 0, 10, 10, param2, v0, 0, 2, v1);
     }
 
     DC_FlushRange(param2, 0x20 * 10 * 10);

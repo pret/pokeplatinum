@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02007C7C_decl.h"
 
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "overlay079/struct_ov79_021D3820.h"
 #include "overlay079/struct_ov79_021D38D0.h"
 #include "overlay115/struct_ov115_0226527C.h"
@@ -82,7 +82,7 @@ static void ov79_021D3870 (UnkStruct_ov79_021D3820 * param0, int param1)
 
 static void ov79_021D38D0 (UnkStruct_ov79_021D3820 * param0, UnkStruct_ov79_021D38D0 * param1, int param2)
 {
-    UnkStruct_02008A90 v0;
+    ArchivedSprite v0;
     UnkStruct_02007C7C * v1;
 
     param0->unk_04 = sub_0200762C(param2);

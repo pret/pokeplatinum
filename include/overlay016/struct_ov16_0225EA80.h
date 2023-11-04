@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV16_0225EA80_H
 #define POKEPLATINUM_STRUCT_OV16_0225EA80_H
 
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_decls/battle_system.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "overlay012/struct_ov12_02223764.h"
@@ -16,7 +16,7 @@ typedef struct {
     UnkStruct_ov12_02235FE0 * unk_08;
     BallRotation * unk_0C;
     UnkStruct_ov12_02223764 * unk_10;
-    UnkStruct_02008A90 unk_14;
+    ArchivedSprite unk_14;
     UnkStruct_ov12_0221FCDC * unk_24;
     UnkStruct_ov16_02265BBC unk_28;
     u8 unk_80;

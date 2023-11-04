@@ -22,7 +22,7 @@
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_020425E0.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -660,7 +660,7 @@ static void ov78_021D13B8 (UnkStruct_ov78_021D107C * param0, int param1)
 
 static void ov78_021D1468 (UnkStruct_02007C7C ** param0, UnkStruct_ov78_021D107C * param1, int param2)
 {
-    UnkStruct_02008A90 v0;
+    ArchivedSprite v0;
     int v1;
 
     v1 = Pokemon_GetGenderOf(param2, 0);

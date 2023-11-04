@@ -11,7 +11,7 @@
 #include "overlay016/struct_ov16_0225BFFC_decl.h"
 #include "overlay016/struct_ov16_02268A14_decl.h"
 
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay012/struct_ov12_02237728.h"
 #include "overlay016/struct_ov16_0223C2C0.h"
@@ -712,8 +712,8 @@ static void ov16_0225C670 (BattleSystem * param0, BattlerData * param1)
 static void ov16_0225C684 (BattleSystem * param0, BattlerData * param1)
 {
     UnkStruct_ov16_0225C684 * v0 = (UnkStruct_ov16_0225C684 *)&param1->unk_90[0];
-    UnkStruct_02008A90 v1;
-    UnkStruct_02008A90 * v2;
+    ArchivedSprite v1;
+    ArchivedSprite * v2;
     int v3;
     int v4;
 
@@ -729,10 +729,10 @@ static void ov16_0225C684 (BattleSystem * param0, BattlerData * param1)
     *v2 = v1;
 
     sub_020089A0(param1->unk_20);
-    sub_02013750(v2->unk_00, v2->unk_02, 5, ov16_0223F2B8(ov16_0223E0C8(param0), param1->unk_190), v0->unk_08, 0, v4, v2->unk_06);
+    sub_02013750(v2->archive, v2->character, 5, ov16_0223F2B8(ov16_0223E0C8(param0), param1->unk_190), v0->unk_08, 0, v4, v2->spindaSpots);
 
-    ov16_0223F2CC(ov16_0223E0C8(param0), param1->unk_190, v2->unk_00);
-    ov16_0223F2E4(ov16_0223E0C8(param0), param1->unk_190, v2->unk_04);
+    ov16_0223F2CC(ov16_0223E0C8(param0), param1->unk_190, v2->archive);
+    ov16_0223F2E4(ov16_0223E0C8(param0), param1->unk_190, v2->palette);
 
     v3 = sub_02076648(v0->unk_02, v0->unk_04, v4, v0->unk_01, v0->unk_08);
     ov16_0223F2FC(ov16_0223E0C8(param0), param1->unk_190, v3);

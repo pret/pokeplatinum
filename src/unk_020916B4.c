@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0208D7BC.h"
 #include "struct_defs/struct_02091850.h"
 #include "overlay115/struct_ov115_0226527C.h"
@@ -334,7 +334,7 @@ void sub_02091D50 (UnkStruct_0208D7BC * param0)
 
 void sub_02091F8C (UnkStruct_0208D7BC * param0)
 {
-    UnkStruct_02008A90 v0;
+    ArchivedSprite v0;
     void * v1;
 
     param0->unk_2B4.unk_04 = sub_0200762C(19);

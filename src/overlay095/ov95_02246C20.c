@@ -14,7 +14,7 @@
 #include "overlay095/struct_ov95_022472C4_decl.h"
 #include "overlay095/struct_ov95_02247628_decl.h"
 
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02013610.h"
 #include "overlay006/struct_ov6_02246254.h"
@@ -556,7 +556,7 @@ static void ov95_022473A0 (UnkStruct_ov95_022472C4 * param0)
 
 void ov95_022473E8 (UnkStruct_ov95_02247628 * param0, int param1, u32 param2, u32 param3, BOOL param4)
 {
-    UnkStruct_02008A90 v0;
+    ArchivedSprite v0;
     u32 v1;
     u32 v2;
     void * v3;
@@ -585,7 +585,7 @@ void ov95_022473E8 (UnkStruct_ov95_02247628 * param0, int param1, u32 param2, u3
             v4.unk_08 *= 2;
         }
 
-        sub_02013720(v0.unk_00, v0.unk_02, 57, &v4, v3, v7, param4, 2, v8);
+        sub_02013720(v0.archive, v0.character, 57, &v4, v3, v7, param4, 2, v8);
         DC_FlushRange(v3, v2);
         sub_0201958C(param0->unk_08, param2, v3, v2, 0);
 
@@ -594,7 +594,7 @@ void ov95_022473E8 (UnkStruct_ov95_02247628 * param0, int param1, u32 param2, u3
     }
 
     v1 = (param2 >= 4) ? 4 : 0;
-    sub_02006E84(v0.unk_00, v0.unk_04, v1, param3 * 0x20, 0x20, 57);
+    sub_02006E84(v0.archive, v0.palette, v1, param3 * 0x20, 0x20, 57);
 }
 
 void ov95_022474D4 (UnkStruct_ov95_02247628 * param0, int param1, u32 param2, u32 param3, u32 param4, u32 param5)

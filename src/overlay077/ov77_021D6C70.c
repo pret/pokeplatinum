@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
 
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 
 #include "spl.h"
 
@@ -112,7 +112,7 @@ UnkSPLStruct6 * ov77_021D6CD0 (UnkStruct_ov77_021D6CFC * param0, int param1)
 void ov77_021D6CFC (UnkStruct_ov77_021D6CFC * param0)
 {
     u8 v0;
-    UnkStruct_02008A90 v1;
+    ArchivedSprite v1;
     UnkStruct_020203AC * v2;
     void * v3;
     int v4[3] = {389, 392, 395};

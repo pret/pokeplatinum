@@ -34,7 +34,7 @@
 
 #include "constdata/const_020F2DAC.h"
 
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/sprite_manager_allocation.h"
@@ -10835,7 +10835,7 @@ static void BattleScript_CatchMonTask (SysTask * param0, void * param1)
     case 16:
         if (sub_0200384C(v4) == 0) {
             {
-                UnkStruct_02008A90 v14;
+                ArchivedSprite v14;
 
                 v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
 
