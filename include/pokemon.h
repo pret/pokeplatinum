@@ -22,6 +22,9 @@
 #define OTID_SET        1
 #define OTID_NOT_SHINY  2
 
+#define FACE_BACK       0
+#define FACE_FRONT      2
+
 /**
  * @brief Pokemon Personal data structure. This contains data that is the same across all pokemon of the same species/form
  */
@@ -546,10 +549,49 @@ u8 Pokemon_IsPersonalityShiny(u32 monOTID, u32 monPersonality);
  * @return The computed personality value
  */
 u32 Pokemon_FindShinyPersonality(u32 monOTID);
-void Pokemon_BuildArchivedSprite(ArchivedSprite *param0, Pokemon *mon, u8 param2);
-void Pokemon_BuildArchivedDPSprite(ArchivedSprite *param0, Pokemon *mon, u8 param2);
-void BoxPokemon_BuildArchivedSprite(ArchivedSprite *param0, BoxPokemon *boxMon, u8 param2, BOOL param3);
-void BuildArchivedPokemonSprite(ArchivedSprite *param0, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
+
+/**
+ * @brief Build an ArchivedSprite for a Pokemon.
+ * 
+ * @param sprite    Pointer to the sprite structure to be populated
+ * @param mon       The Pokemon whose data will be used to build the sprite
+ * @param face      Which face of the Pokemon the player sees
+ */
+void Pokemon_BuildArchivedSprite(ArchivedSprite *sprite, Pokemon *mon, u8 face);
+
+/**
+ * @brief Build an ArchivedSprite for a Pokemon, preferring sprites from
+ * Diamond/Pearl where possible.
+ * 
+ * @param sprite    Pointer to the sprite structure to be populated
+ * @param mon       The Pokemon whose data will be used to build the sprite
+ * @param face      Which face of the Pokemon the player sees
+ */
+void Pokemon_BuildArchivedDPSprite(ArchivedSprite *sprite, Pokemon *mon, u8 face);
+
+/**
+ * @brief Build an ArchivedSprite for a BoxPokemon.
+ * 
+ * @param sprite    Pointer to the sprite structure to be populated
+ * @param mon       The Pokemon whose data will be used to build the sprite
+ * @param face      Which face of the Pokemon the player sees
+ * @param preferDP  If TRUE, prefer sprites from Diamond/Pearl over Platinum
+ */
+void BoxPokemon_BuildArchivedSprite(ArchivedSprite *sprite, BoxPokemon *boxMon, u8 face, BOOL preferDP);
+
+/**
+ * @brief Build an ArchivedSprite for a Pokemon sprite according to the input
+ * species, form, and gender.
+ * 
+ * @param sprite        Pointer to the sprite structure to be populated
+ * @param species       The Pokemon's species
+ * @param gender        The Pokemon's gender
+ * @param face          Which face of the Pokemon the player sees
+ * @param shiny         1 if the Pokemon is shiny, 0 if not
+ * @param form          The Pokemon's form
+ * @param personality   The Pokemon's personality value
+ */
+void BuildArchivedPokemonSprite(ArchivedSprite *sprite, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
 
 /**
  * @brief Sanitizes a pokemon form. If the given form is greater than the max for the given species, returns zero, else returns the form unchanged
