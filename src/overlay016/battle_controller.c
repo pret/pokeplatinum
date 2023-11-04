@@ -1685,7 +1685,7 @@ static void BattleController_CheckMonConditions(BattleSystem *battleSys, BattleC
 
                 if ((battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_YAWN) == FALSE) {
                     battleCtx->sideEffectMon = battler;
-                    battleCtx->sideEffectType = 4;
+                    battleCtx->sideEffectType = SIDE_EFFECT_TYPE_MOVE_EFFECT;
 
                     PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_FALL_ASLEEP);
                     state = STATE_BREAK_OUT;
@@ -3299,7 +3299,7 @@ static void BattleController_TryMove(BattleSystem *battleSys, BattleContext *bat
 static void BattleController_PrimaryEffect(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int nextSeq;
-    if (BattleSystem_CheckPrimaryEffect(battleSys, battleCtx, &nextSeq) == TRUE) {
+    if (BattleSystem_TriggerPrimaryEffect(battleSys, battleCtx, &nextSeq) == TRUE) {
         LOAD_SUBSEQ(nextSeq);
         battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
         battleCtx->commandNext = BATTLE_CONTROL_MOVE_FAILED;
@@ -4647,7 +4647,7 @@ static BOOL BattleController_CheckExtraFlinch(BattleSystem *battleSys, BattleCon
             && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_TRIGGERS_KINGS_ROCK)
             && DEFENDING_MON.curHP) {
         battleCtx->sideEffectMon = battleCtx->defender;
-        battleCtx->sideEffectType = 2;
+        battleCtx->sideEffectType = SIDE_EFFECT_TYPE_INDIRECT;
 
         LOAD_SUBSEQ(BATTLE_SUBSEQ_FLINCH_MON);
         battleCtx->commandNext = battleCtx->command;

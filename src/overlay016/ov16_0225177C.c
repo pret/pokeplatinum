@@ -45,7 +45,7 @@
 #include "overlay016/ov16_0226485C.h"
 
 static BOOL ov16_02254EF4(BattleContext * param0, int param1, int param2, int param3);
-static int BattleContext_SideEffect(BattleContext * param0, int param1, u32 param2);
+static int MapSideEffectToSubscript(BattleContext *battleCtx, enum SideEffectType type, u32 effect);
 static int ov16_0225B63C(BattleContext * param0, int param1, int param2, int param3, int param4, u32 * param5);
 static BOOL ov16_022553F8(BattleContext * param0, int param1, int param2);
 static void ov16_02255448(int param0, u32 * param1);
@@ -1481,19 +1481,19 @@ void BattleSystem_FlagBattlerExpGain(BattleSystem *battleSys, BattleContext *bat
     }
 }
 
-BOOL BattleSystem_CheckPrimaryEffect (BattleSystem *battleSys, BattleContext * battleCtx, int * nextSeq)
+BOOL BattleSystem_TriggerPrimaryEffect(BattleSystem *battleSys, BattleContext *battleCtx, int *effect)
 {
     BOOL result = FALSE;
 
     if (battleCtx->sideEffectDirectFlags & MOVE_SIDE_EFFECT_ON_HIT) {
-        *nextSeq = BattleContext_SideEffect(battleCtx, 1, battleCtx->sideEffectDirectFlags);
+        *effect = MapSideEffectToSubscript(battleCtx, 1, battleCtx->sideEffectDirectFlags);
         battleCtx->sideEffectDirectFlags = 0;
 
         if ((battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE) {
             result = TRUE;
         }
     } else if (battleCtx->sideEffectDirectFlags) {
-        *nextSeq = BattleContext_SideEffect(battleCtx, 1, battleCtx->sideEffectDirectFlags);
+        *effect = MapSideEffectToSubscript(battleCtx, 1, battleCtx->sideEffectDirectFlags);
 
         if (battleCtx->battleMons[battleCtx->sideEffectMon].curHP
                 && ((battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
@@ -1513,32 +1513,32 @@ BOOL BattleSystem_CheckPrimaryEffect (BattleSystem *battleSys, BattleContext * b
     return result;
 }
 
-static inline void SetupSideEffect(BattleContext *battleCtx, int *nextSeq, int source)
+static inline void SetupSideEffect(BattleContext *battleCtx, int *effect, int source)
 {
-    *nextSeq = BattleContext_SideEffect(battleCtx, source, battleCtx->sideEffectIndirectFlags);
+    *effect = MapSideEffectToSubscript(battleCtx, source, battleCtx->sideEffectIndirectFlags);
     battleCtx->sideEffectIndirectFlags = 0;
 }
 
-BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq)
+BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem *battleSys, BattleContext *battleCtx, int *effect)
 {
     BOOL result = FALSE;
     u16 effectChance;
 
     if (battleCtx->sideEffectIndirectFlags & MOVE_SIDE_EFFECT_ON_HIT) {
-        SetupSideEffect(battleCtx, nextSeq, SIDE_EFFECT_SOURCE_INDIRECT);
+        SetupSideEffect(battleCtx, effect, SIDE_EFFECT_TYPE_INDIRECT);
 
         if ((battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE) {
             result = TRUE;
         }
     } else if (battleCtx->sideEffectIndirectFlags & MOVE_SIDE_EFFECT_CHECK_SUBSTITUTE) {
-        SetupSideEffect(battleCtx, nextSeq, SIDE_EFFECT_SOURCE_INDIRECT);
+        SetupSideEffect(battleCtx, effect, SIDE_EFFECT_TYPE_INDIRECT);
 
         if (Battler_SubstituteWasHit(battleCtx, battleCtx->sideEffectMon) == FALSE
                 && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE) {
             result = TRUE;
         }
     } else if (battleCtx->sideEffectIndirectFlags & MOVE_SIDE_EFFECT_CHECK_HP_AND_SUBSTITUTE) {
-        SetupSideEffect(battleCtx, nextSeq, SIDE_EFFECT_SOURCE_INDIRECT);
+        SetupSideEffect(battleCtx, effect, SIDE_EFFECT_TYPE_INDIRECT);
 
         if (battleCtx->battleMons[battleCtx->sideEffectMon].curHP
                 && Battler_SubstituteWasHit(battleCtx, battleCtx->sideEffectMon) == FALSE
@@ -1546,7 +1546,7 @@ BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem *battleSys, BattleContext 
             result = TRUE;
         }
     } else if (battleCtx->sideEffectIndirectFlags & MOVE_SIDE_EFFECT_CHECK_HP) {
-        SetupSideEffect(battleCtx, nextSeq, SIDE_EFFECT_SOURCE_INDIRECT);
+        SetupSideEffect(battleCtx, effect, SIDE_EFFECT_TYPE_INDIRECT);
 
         if (battleCtx->battleMons[battleCtx->sideEffectMon].curHP) {
             result = TRUE;
@@ -1564,7 +1564,7 @@ BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem *battleSys, BattleContext 
             battleCtx->battleStatusMask |= SYSCTL_APPLY_SECONDARY_EFFECT;
         }
 
-        SetupSideEffect(battleCtx, nextSeq, SIDE_EFFECT_SOURCE_INDIRECT);
+        SetupSideEffect(battleCtx, effect, SIDE_EFFECT_TYPE_INDIRECT);
         if (battleCtx->battleMons[battleCtx->sideEffectMon].curHP == 0) {
             battleCtx->battleStatusMask &= ~SYSCTL_APPLY_SECONDARY_EFFECT;
         }
@@ -1580,7 +1580,7 @@ BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem *battleSys, BattleContext 
         GF_ASSERT(effectChance != 0);
 
         if (BattleSystem_RandNext(battleSys) % 100 < effectChance) {
-            SetupSideEffect(battleCtx, nextSeq, SIDE_EFFECT_SOURCE_INDIRECT);
+            SetupSideEffect(battleCtx, effect, SIDE_EFFECT_TYPE_INDIRECT);
 
             if (battleCtx->battleMons[battleCtx->sideEffectMon].curHP
                     && Battler_SubstituteWasHit(battleCtx, battleCtx->sideEffectMon) == FALSE
@@ -1589,7 +1589,7 @@ BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem *battleSys, BattleContext 
             }
         }
     } else if (battleCtx->sideEffectAbilityFlags) {
-        *nextSeq = BattleContext_SideEffect(battleCtx, SIDE_EFFECT_SOURCE_ABILITY, battleCtx->sideEffectAbilityFlags);
+        *effect = MapSideEffectToSubscript(battleCtx, SIDE_EFFECT_TYPE_ABILITY, battleCtx->sideEffectAbilityFlags);
         battleCtx->sideEffectAbilityFlags = 0;
 
         if (battleCtx->battleMons[battleCtx->sideEffectMon].curHP) {
@@ -4124,7 +4124,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
                 && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
                 && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)
                 && BattleSystem_RandNext(battleSys) % 10 < 3) {
-            battleCtx->sideEffectType = SIDE_EFFECT_SOURCE_ABILITY;
+            battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
             battleCtx->sideEffectMon = battleCtx->attacker;
             battleCtx->msgBattlerTemp = battleCtx->defender;
 
@@ -4196,7 +4196,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
                 break;
             }
 
-            battleCtx->sideEffectType = SIDE_EFFECT_SOURCE_ABILITY;
+            battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
             battleCtx->sideEffectMon = battleCtx->attacker;
             battleCtx->msgBattlerTemp = battleCtx->defender;
 
@@ -4213,7 +4213,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
                 && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
                 && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)
                 && BattleSystem_RandNext(battleSys) % 10 < 3) {
-            battleCtx->sideEffectType = SIDE_EFFECT_SOURCE_ABILITY;
+            battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
             battleCtx->sideEffectMon = battleCtx->attacker;
             battleCtx->msgBattlerTemp = battleCtx->defender;
 
@@ -4231,7 +4231,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
                 && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
                 && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)
                 && BattleSystem_RandNext(battleSys) % 10 < 3) {
-            battleCtx->sideEffectType = SIDE_EFFECT_SOURCE_ABILITY;
+            battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
             battleCtx->sideEffectMon = battleCtx->attacker;
             battleCtx->msgBattlerTemp = battleCtx->defender;
 
@@ -4250,7 +4250,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
                 && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)
                 && DEFENDING_MON.curHP
                 && BattleSystem_RandNext(battleSys) % 10 < 3) {
-            battleCtx->sideEffectType = SIDE_EFFECT_SOURCE_ABILITY;
+            battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
             battleCtx->sideEffectMon = battleCtx->attacker;
             battleCtx->msgBattlerTemp = battleCtx->defender;
 
@@ -4425,7 +4425,7 @@ BOOL BattleSystem_SynchronizeStatus(BattleSystem * battleSys, BattleContext * ba
         }
 
         if (nextSeq) {
-            battleCtx->sideEffectType = SIDE_EFFECT_SOURCE_ABILITY;
+            battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
 
             LOAD_SUBSEQ(nextSeq);
             battleCtx->commandNext = controllerCommand;
@@ -4462,7 +4462,7 @@ BOOL BattleSystem_SynchronizeStatus(BattleSystem * battleSys, BattleContext * ba
 
     if (result == TRUE) {
         nextSeq = BATTLE_SUBSEQ_INFATUATE;
-        battleCtx->sideEffectType = SIDE_EFFECT_SOURCE_HELD_ITEM;
+        battleCtx->sideEffectType = SIDE_EFFECT_TYPE_HELD_ITEM;
 
         LOAD_SUBSEQ(nextSeq);
         battleCtx->commandNext = controllerCommand;
@@ -5718,7 +5718,7 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
 
     battleCtx->movePower = Battler_ItemFlingPower(battleCtx, battler);
     battleCtx->flingScript = 0;
-    battleCtx->sideEffectType = SIDE_EFFECT_SOURCE_NONE;
+    battleCtx->sideEffectType = SIDE_EFFECT_TYPE_NONE;
 
     if (battleCtx->movePower == 0) {
         return FALSE;
@@ -5904,31 +5904,31 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
 
     case FLING_EFFECT_FLINCH:
         battleCtx->sideEffectMon = battler;
-        battleCtx->sideEffectType = SIDE_EFFECT_SOURCE_INDIRECT;
+        battleCtx->sideEffectType = SIDE_EFFECT_TYPE_INDIRECT;
         battleCtx->flingScript = BATTLE_SUBSEQ_FLINCH_MON;
         break;
 
     case FLING_EFFECT_PARALYZE:
         battleCtx->sideEffectMon = battler;
-        battleCtx->sideEffectType = SIDE_EFFECT_SOURCE_INDIRECT;
+        battleCtx->sideEffectType = SIDE_EFFECT_TYPE_INDIRECT;
         battleCtx->flingScript = BATTLE_SUBSEQ_PARALYZE;
         break;
 
     case FLING_EFFECT_POISON:
         battleCtx->sideEffectMon = battler;
-        battleCtx->sideEffectType = SIDE_EFFECT_SOURCE_INDIRECT;
+        battleCtx->sideEffectType = SIDE_EFFECT_TYPE_INDIRECT;
         battleCtx->flingScript = BATTLE_SUBSEQ_POISON;
         break;
 
     case FLING_EFFECT_BADLY_POISON:
         battleCtx->sideEffectMon = battler;
-        battleCtx->sideEffectType = SIDE_EFFECT_SOURCE_INDIRECT;
+        battleCtx->sideEffectType = SIDE_EFFECT_TYPE_INDIRECT;
         battleCtx->flingScript = BATTLE_SUBSEQ_BADLY_POISON;
         break;
 
     case FLING_EFFECT_BURN:
         battleCtx->sideEffectMon = battler;
-        battleCtx->sideEffectType = SIDE_EFFECT_SOURCE_INDIRECT;
+        battleCtx->sideEffectType = SIDE_EFFECT_TYPE_INDIRECT;
         battleCtx->flingScript = BATTLE_SUBSEQ_BURN;
         break;
 
@@ -6007,7 +6007,7 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
     } else {
         battleCtx->msgItemTemp = battleCtx->battleMons[battler].heldItem;
 
-        if (battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_NONE && battleCtx->flingScript) {
+        if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_NONE && battleCtx->flingScript) {
             ATTACKER_SELF_TURN_FLAGS.statusFlags |= SELF_TURN_FLAG_PLUCK_BERRY;
         }
 
@@ -7348,173 +7348,33 @@ void BattleContext_Set(BattleSystem *battleSys, BattleContext *battleCtx, enum B
     }
 }
 
-static const int Unk_ov16_0226EE24[] = {
-    NULL,
-    0x12,
-    0x16,
-    0x19,
-    0x1B,
-    0x1F,
-    0x2F,
-    0x25,
-    0xE,
-    0x37,
-    0x38,
-    0x30,
-    0xD,
-    0x3A,
-    0x3F,
-    0xC,
-    0xC,
-    0xC,
-    0xC,
-    0xC,
-    0xC,
-    0xC,
-    0xC,
-    0xC,
-    0xC,
-    0xC,
-    0xC,
-    0xC,
-    0xC,
-    0x40,
-    0x42,
-    0x55,
-    0x56,
-    0x5D,
-    0x77,
-    0x73,
-    0x82,
-    0x8A,
-    0x93,
-    0xC,
-    0xC,
-    0xC,
-    0xC,
-    0xC,
-    0xC,
-    0xC,
-    0xC,
-    0xC,
-    0xC,
-    0xC,
-    0xC,
-    0xC,
-    0xC,
-    0x2C,
-    0x8E,
-    0x95,
-    0x96,
-    0x94,
-    0x97,
-    0x98,
-    0x18,
-    0x21,
-    0x22,
-    0x23,
-    0x2B,
-    0x2D,
-    0x2E,
-    0x31,
-    0x34,
-    0x36,
-    0x3E,
-    0x43,
-    0x44,
-    0x46,
-    0x49,
-    0x4D,
-    0x4E,
-    0x4F,
-    0x50,
-    0x51,
-    0x52,
-    0x54,
-    0x57,
-    0x58,
-    0x59,
-    0x5B,
-    0x5C,
-    0x5F,
-    0x60,
-    0x61,
-    0x7E,
-    0x64,
-    0x65,
-    0x67,
-    0x69,
-    0x6A,
-    0x6D,
-    0x70,
-    0x71,
-    0x72,
-    0x78,
-    0x7A,
-    0x7B,
-    0x7C,
-    0x7D,
-    0x7F,
-    0x80,
-    0x81,
-    0x83,
-    0x84,
-    0x86,
-    0x87,
-    0x8C,
-    0x8D,
-    0x8F,
-    0x91,
-    0x9A,
-    0x9B,
-    0x9C,
-    0x9E,
-    0x9F,
-    0xA0,
-    0xA1,
-    0xA2,
-    0xA3,
-    0xA4,
-    0xA5,
-    0xA6,
-    0xA7,
-    0xA8,
-    0xAA,
-    0xAB,
-    0xAD,
-    0xAF,
-    0xDA,
-    0xDB,
-    0xDC,
-    0xE2,
-    0xF6,
-    0xF7,
-    0xF8,
-    0xF9,
-    0x104,
-    0x105,
-    0x76
-};
+#include "data/move_side_effect_subscripts.h"
 
-static int BattleContext_SideEffect (BattleContext * param0, int param1, u32 param2)
+/**
+ * @brief Map the given side effect to an appropriate subscript.
+ * 
+ * @param battleCtx 
+ * @param type      Type of side effect; see enum SideEffectType
+ * @param effect    Effect which should be mapped to a corresponding subscript
+ * @return int 
+ */
+static int MapSideEffectToSubscript(BattleContext *battleCtx, enum SideEffectType type, u32 effect)
 {
-    param0->sideEffectType = param1;
-    param0->sideEffectParam = param2 & 0x7fffff;
-    param0->sideEffectFlags = param2 & (0x7fffff ^ 0xffffffff);
+    battleCtx->sideEffectType = type;
+    battleCtx->sideEffectParam = effect & MOVE_SIDE_EFFECT_SUBSCRIPT_POINTER;
+    battleCtx->sideEffectFlags = effect & MOVE_SIDE_EFFECT_FLAGS;
 
-    if (param2 & 0x40000000) {
-        param0->sideEffectMon = param0->attacker;
-    } else if (param2 & 0x80000000) {
-        param0->sideEffectMon = param0->defender;
-    } else if ((param2 & 0x20000000) || (param2 & 0x10000000)) {
-        param0->sideEffectMon = 0;
-    } else {
-        (void)0;
+    if (effect & MOVE_SIDE_EFFECT_TO_ATTACKER) {
+        battleCtx->sideEffectMon = battleCtx->attacker;
+    } else if (effect & MOVE_SIDE_EFFECT_TO_DEFENDER) {
+        battleCtx->sideEffectMon = battleCtx->defender;
+    } else if ((effect & MOVE_SIDE_EFFECT_ON_HIT) || (effect & MOVE_SIDE_EFFECT_CHECK_HP)) {
+        battleCtx->sideEffectMon = 0;
     }
 
-    GF_ASSERT(NELEMS(Unk_ov16_0226EE24) > (param2 & 0x7fffff));
+    GF_ASSERT(NELEMS(sSideEffectSubscripts) > (effect & MOVE_SIDE_EFFECT_SUBSCRIPT_POINTER));
 
-    return Unk_ov16_0226EE24[param2 & 0x7fffff];
+    return sSideEffectSubscripts[effect & MOVE_SIDE_EFFECT_SUBSCRIPT_POINTER];
 }
 
 static int ov16_0225B63C (BattleContext * param0, int param1, int param2, int param3, int param4, u32 * param5)

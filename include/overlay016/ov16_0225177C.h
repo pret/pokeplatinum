@@ -314,8 +314,28 @@ void BattleSystem_ClearSideExpGain(BattleContext *battleCtx, int battler);
  * @param battler   The battler who should gain experience.
  */
 void BattleSystem_FlagBattlerExpGain(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
-BOOL BattleSystem_CheckPrimaryEffect(BattleSystem * param0, BattleContext * param1, int * param2);
-BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq);
+
+/**
+ * @brief Trigger a primary effect on the current move.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param[out] effect   Output parameter for the effect to be loaded.
+ * @return TRUE if an effect should be loaded, FALSE if the result should be
+ * ignored.
+ */
+BOOL BattleSystem_TriggerPrimaryEffect(BattleSystem *battleSys, BattleContext *battleCtx, int *effect);
+
+/**
+ * @brief Trigger a secondary effect on the current move.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param[out] effect   Output parameter for the effect to be loaded.
+ * @return TRUE if an effect should be loaded, FALSE if the result should be
+ * ignored.
+ */
+BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem *battleSys, BattleContext *battleCtx, int *effect);
 
 /**
  * @brief Find the defender for the move.
