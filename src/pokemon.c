@@ -2311,7 +2311,7 @@ static u8 BoxPokemon_IsShiny(BoxPokemon *boxMon)
 }
 
 static inline BOOL Pokemon_InlineIsPersonalityShiny(u32 monOTID, u32 monPersonality) {
-    return (((monOTID & 0xffff0000) >> 16) ^ (monOTID & 0xffff) ^ ((monPersonality & 0xffff0000) >> 16) ^ (monPersonality & 0xffff)) < 8;
+    return (((monOTID & 0xFFFF0000) >> 16) ^ (monOTID & 0xFFFF) ^ ((monPersonality & 0xFFFF0000) >> 16) ^ (monPersonality & 0xFFFF)) < 8;
 }
 
 u8 Pokemon_IsPersonalityShiny(u32 monOTID, u32 monPersonality)
@@ -2319,32 +2319,38 @@ u8 Pokemon_IsPersonalityShiny(u32 monOTID, u32 monPersonality)
     return Pokemon_InlineIsPersonalityShiny(monOTID, monPersonality);
 }
 
-u32 sub_02075E64(u32 param0)
+u32 Pokemon_FindShinyPersonality(u32 monOTID)
 {
-    param0 = (((param0 & 0xffff0000) >> 16) ^ (param0 & 0xffff)) >> 3;
+    // 1. Pre-compute the XOR of the two halves of the trainer ID. We only
+    // care about the most-significant 13 bits, so truncate the last 3.
+    monOTID = (((monOTID & 0xFFFF0000) >> 16) ^ (monOTID & 0xFFFF)) >> 3;
 
     int i;
-    u16 v2 = LCRNG_Next() & 0x7;
-    u16 v3 = LCRNG_Next() & 0x7;
 
+    // 2. Randomize the least-significant 3-bits of each half of the
+    // generated personality.
+    u16 rndLow = LCRNG_Next() & 0x7;
+    u16 rndHigh = LCRNG_Next() & 0x7;
+
+    // 3. For each of the remaining 13 bits, pick some permutation of them
+    // across both halves to be set to 1 such that the XOR of their bits
+    // will XOR with the monOTID to 0.
     for (i = 0; i < 13; i++) {
-        if (param0 & FlagIndex(i)) {
+        if (monOTID & FlagIndex(i)) {
+            // Trainer ID XORs to 1; set one of the two personality bits to 1
             if (LCRNG_Next() & 1) {
-                v2 |= FlagIndex(i + 3);
+                rndLow |= FlagIndex(i + 3);
             } else {
-                v3 |= FlagIndex(i + 3);
+                rndHigh |= FlagIndex(i + 3);
             }
-        } else {
-            if (LCRNG_Next() & 1) {
-                v2 |= FlagIndex(i + 3);
-                v3 |= FlagIndex(i + 3);
-            }
+        } else if (LCRNG_Next() & 1) {
+            // Trainer ID XORs to 0; set both of the two bits to either 0 or 1
+            rndLow |= FlagIndex(i + 3);
+            rndHigh |= FlagIndex(i + 3);
         }
     }
 
-    u32 result = v2 | (v3 << 16);
-
-    return result;
+    return rndLow | (rndHigh << 16);
 }
 
 void sub_02075EF4(UnkStruct_02008A90 *param0, Pokemon *mon, u8 param2)

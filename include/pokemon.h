@@ -538,7 +538,14 @@ u8 Pokemon_IsShiny(Pokemon *mon);
  */
 u8 Pokemon_IsPersonalityShiny(u32 monOTID, u32 monPersonality);
 
-u32 sub_02075E64(u32 param0);
+/**
+ * @brief Computes a personality value which, when applied to the given trainer ID, will result
+ * in a shiny Pokemon.
+ * 
+ * @param monOTID
+ * @return The computed personality value
+ */
+u32 Pokemon_FindShinyPersonality(u32 monOTID);
 void sub_02075EF4(UnkStruct_02008A90 *param0, Pokemon *mon, u8 param2);
 void sub_02075F00(UnkStruct_02008A90 *param0, Pokemon *mon, u8 param2);
 void sub_02075F0C(UnkStruct_02008A90 *param0, BoxPokemon *boxMon, u8 param2, BOOL param3);
