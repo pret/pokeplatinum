@@ -10844,7 +10844,7 @@ static void BattleScript_CatchMonTask (SysTask * param0, void * param1)
                 ov16_02263B20(BattleSystem_BattlerData(v2->battleSys, 0), 0);
                 ov16_0223B53C(v2->battleSys);
                 ov16_0223B578(v2->battleSys);
-                sub_02075EF4(&v14, v3, 2);
+                Pokemon_BuildArchivedSprite(&v14, v3, 2);
                 sub_02007C34(v5, &v14, 128, 72, 0, 0, NULL, NULL);
                 sub_02003178(v4, (0x1 | 0x4), 0xffff, 1, 16, 0, 0x0);
                 sub_0200872C(v5, 16, 0, 0, 0x0);

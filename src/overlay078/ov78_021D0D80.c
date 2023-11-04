@@ -665,7 +665,7 @@ static void ov78_021D1468 (UnkStruct_02007C7C ** param0, UnkStruct_ov78_021D107C
 
     v1 = Pokemon_GetGenderOf(param2, 0);
 
-    sub_02075FB4(&v0, param2, v1, 2, 0, NULL, NULL);
+    BuildArchivedPokemonSprite(&v0, param2, v1, 2, 0, NULL, NULL);
 
     *param0 = sub_02007C34(param1->unk_264, &v0, 128, 96, 1023, 0, NULL, NULL);
 }

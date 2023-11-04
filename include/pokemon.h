@@ -546,10 +546,10 @@ u8 Pokemon_IsPersonalityShiny(u32 monOTID, u32 monPersonality);
  * @return The computed personality value
  */
 u32 Pokemon_FindShinyPersonality(u32 monOTID);
-void sub_02075EF4(ArchivedSprite *param0, Pokemon *mon, u8 param2);
-void sub_02075F00(ArchivedSprite *param0, Pokemon *mon, u8 param2);
-void sub_02075F0C(ArchivedSprite *param0, BoxPokemon *boxMon, u8 param2, BOOL param3);
-void sub_02075FB4(ArchivedSprite *param0, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
+void Pokemon_BuildArchivedSprite(ArchivedSprite *param0, Pokemon *mon, u8 param2);
+void Pokemon_BuildArchivedDPSprite(ArchivedSprite *param0, Pokemon *mon, u8 param2);
+void BoxPokemon_BuildArchivedSprite(ArchivedSprite *param0, BoxPokemon *boxMon, u8 param2, BOOL param3);
+void BuildArchivedPokemonSprite(ArchivedSprite *param0, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
 
 /**
  * @brief Sanitizes a pokemon form. If the given form is greater than the max for the given species, returns zero, else returns the form unchanged

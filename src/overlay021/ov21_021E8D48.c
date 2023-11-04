@@ -774,7 +774,7 @@ static UnkStruct_02007C7C * ov21_021E99E0 (UnkStruct_02007768 * param0, Pokemon 
 {
     ArchivedSprite v0;
 
-    sub_02075EF4(&v0, param1, 2);
+    Pokemon_BuildArchivedSprite(&v0, param1, 2);
     return sub_02007C34(param0, &v0, param2, param3, 0, 0, NULL, NULL);
 }
 

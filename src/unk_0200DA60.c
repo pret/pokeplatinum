@@ -649,7 +649,7 @@ static void sub_0200EE24 (UnkStruct_ov5_021D30A8 * param0, u16 param1, u8 param2
 
     v0 = sub_0200762C(param0->unk_1C6);
 
-    sub_02075FB4(&v1, param1, param2, 2, 0, NULL, NULL);
+    BuildArchivedPokemonSprite(&v1, param1, param2, 2, 0, NULL, NULL);
     sub_0200EE98(param0, &v1);
     sub_02007B6C(v0);
 }
@@ -661,7 +661,7 @@ static void sub_0200EE64 (UnkStruct_ov5_021D30A8 * param0, Pokemon * param1)
 
     v0 = sub_0200762C(param0->unk_1C6);
 
-    sub_02075EF4(&v1, param1, 2);
+    Pokemon_BuildArchivedSprite(&v1, param1, 2);
     sub_0200EE98(param0, &v1);
     sub_02007B6C(v0);
 }

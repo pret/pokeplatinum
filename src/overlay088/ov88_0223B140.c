@@ -1282,7 +1282,7 @@ static void ov88_0223C66C (UnkStruct_02095E80 * param0, NARC * param1)
 
 static int ov88_0223C800 (int param0, Pokemon * param1, u8 * param2, ArchivedSprite * param3)
 {
-    sub_02075EF4(param3, param1, 2);
+    Pokemon_BuildArchivedSprite(param3, param1, 2);
 
     {
         int v0 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);

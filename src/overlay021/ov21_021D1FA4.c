@@ -178,7 +178,7 @@ void ov21_021D2188 (UnkStruct_ov21_021D13FC * param0, int param1, int param2, in
         param2 = Pokemon_GetGenderOf(param1, 0);
     }
 
-    sub_02075FB4(&v0, param1, param2, param3, param4, param5, param6);
+    BuildArchivedPokemonSprite(&v0, param1, param2, param3, param4, param5, param6);
 
     if (param3 == 0) {
         v1 = sub_02076648(param1, param2, param3, param5, param6);

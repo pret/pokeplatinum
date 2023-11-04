@@ -582,7 +582,7 @@ static void ov97_02237EF8 (UnkStruct_02022550 * param0, Pokemon * param1, int pa
     v0 = Pokemon_GetGender(param1);
     v1 = Pokemon_IsShiny(param1);
 
-    sub_02075FB4(param5, param2, v0, 2, v1, param3, 0);
+    BuildArchivedPokemonSprite(param5, param2, v0, 2, v1, param3, 0);
 
     v2 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
     sub_020136A4(param5->archive, param5->character, v3->unk_08, 0, 0, 10, 10, param4, v2, 0, 2, param2);

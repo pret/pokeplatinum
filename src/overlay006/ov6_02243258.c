@@ -2059,7 +2059,7 @@ static void ov6_02244FE4 (SysTask * param0, void * param1)
 
 static void ov6_0224508C (UnkStruct_ov6_02243FFC * param0, ArchivedSprite * param1)
 {
-    sub_02075EF4(param1, param0->unk_5C, 2);
+    Pokemon_BuildArchivedSprite(param1, param0->unk_5C, 2);
 }
 
 static void * ov6_0224509C (Pokemon * param0, ArchivedSprite * param1, u32 param2)

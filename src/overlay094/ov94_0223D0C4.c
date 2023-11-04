@@ -598,7 +598,7 @@ void ov94_0223DB2C (Pokemon * param0)
     ArchivedSprite v0;
     u8 * v1 = Heap_AllocFromHeap(62, (0x20 * 10 * 10));
 
-    sub_02075EF4(&v0, param0, 2);
+    Pokemon_BuildArchivedSprite(&v0, param0, 2);
 
     {
         int v2 = Pokemon_GetValue(param0, MON_DATA_PERSONALITY, NULL);

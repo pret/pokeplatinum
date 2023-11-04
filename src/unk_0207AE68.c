@@ -949,7 +949,7 @@ static void sub_0207C498 (UnkStruct_0207AE68 * param0)
     ArchivedSprite v0;
     Pokemon * v1;
 
-    sub_02075EF4(&v0, param0->unk_28, 2);
+    Pokemon_BuildArchivedSprite(&v0, param0->unk_28, 2);
 
     param0->unk_1C[0] = sub_02007C34(param0->unk_18, &v0, 128, 80, 0, 0, NULL, NULL);
     v1 = Pokemon_New(param0->unk_5C);
@@ -957,7 +957,7 @@ static void sub_0207C498 (UnkStruct_0207AE68 * param0)
     Pokemon_Copy(param0->unk_28, v1);
     Pokemon_SetValue(v1, 5, (u8 *)&param0->unk_62);
     Pokemon_CalcLevelAndStats(v1);
-    sub_02075EF4(&v0, v1, 2);
+    Pokemon_BuildArchivedSprite(&v0, v1, 2);
     Heap_FreeToHeap(v1);
 
     param0->unk_1C[1] = sub_02007C34(param0->unk_18, &v0, 128, 80, 0, 0, NULL, NULL);

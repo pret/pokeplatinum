@@ -672,7 +672,7 @@ UnkStruct_02007C7C * sub_02095484 (UnkStruct_02007768 * param0, int param1, Poke
     UnkStruct_02007C7C * v1;
     int v2, v3, v4;
 
-    sub_02075EF4(&v0, param2, param3);
+    Pokemon_BuildArchivedSprite(&v0, param2, param3);
 
     v2 = sub_020765AC(param2, param3);
 

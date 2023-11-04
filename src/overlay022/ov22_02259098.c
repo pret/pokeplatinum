@@ -44,7 +44,7 @@ void ov22_022590D4 (UnkStruct_020298D8 * param0, UnkStruct_02007768 * param1, Po
 {
     int v0 = Pokemon_GetValue(param2, MON_DATA_SPECIES, NULL);
 
-    sub_02075F00(param3, param2, 2);
+    Pokemon_BuildArchivedDPSprite(param3, param2, 2);
     param0->unk_00 = sub_02007C34(param1, param3, 192, 56, 0, 0, NULL, NULL);
 
     {

@@ -342,9 +342,9 @@ void sub_02091F8C (UnkStruct_0208D7BC * param0)
     v1 = sub_0208DD48(param0);
 
     if (param0->unk_24C->unk_11 == 2) {
-        sub_02075F0C(&v0, v1, 2, 0);
+        BoxPokemon_BuildArchivedSprite(&v0, v1, 2, 0);
     } else {
-        sub_02075EF4(&v0, v1, 2);
+        Pokemon_BuildArchivedSprite(&v0, v1, 2);
     }
 
     sub_020789BC(param0->unk_6A0, param0->unk_2B4.unk_08, param0->unk_250.unk_0C, 1);

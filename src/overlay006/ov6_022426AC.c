@@ -93,7 +93,7 @@ void ov6_022426C0 (UnkStruct_ov6_022426B8 * param0, const int param1)
             }
         }
 
-        sub_02075FB4(&param0->unk_28, param1, v2, 2, 0, NULL, NULL);
+        BuildArchivedPokemonSprite(&param0->unk_28, param1, v2, 2, 0, NULL, NULL);
     }
 
     param0->unk_38 = sub_020095C4(1, &param0->unk_3C, 4);

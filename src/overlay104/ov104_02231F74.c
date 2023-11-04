@@ -1123,7 +1123,7 @@ void ov104_02232CE0 (UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int pa
         v9 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
         v10 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
 
-        sub_02075EF4(&v3, param1, 2);
+        Pokemon_BuildArchivedSprite(&v3, param1, 2);
         sub_020136A4(v3.archive, v3.character, param2, 0, 0, 10, 10, v4, v9, 0, 2, v10);
     }
 

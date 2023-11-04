@@ -115,7 +115,7 @@ static u32 Pokemon_GetExpRateBaseExpAt(int monExpRate, int monLevel);
 static u16 Pokemon_GetNatureStatValue(u8 monNature, u16 monStatValue, u8 statType);
 static u8 BoxPokemon_IsShiny(BoxPokemon *boxMon);
 static inline BOOL Pokemon_InlineIsPersonalityShiny(u32 monOTID, u32 monPersonality);
-static void sub_02076300(ArchivedSprite *param0, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
+static void BuildArchivedDPPokemonSprite(ArchivedSprite *param0, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
 static u8 sub_020767BC(u16 monSpecies, u8 monGender, u8 param2, u8 monForm, u32 monPersonality);
 static void BoxPokemon_SetDefaultMoves(BoxPokemon *boxMon);
 static u16 BoxPokemon_AddMove(BoxPokemon *boxMon, u16 moveID);
@@ -2353,17 +2353,17 @@ u32 Pokemon_FindShinyPersonality(u32 monOTID)
     return rndLow | (rndHigh << 16);
 }
 
-void sub_02075EF4(ArchivedSprite *param0, Pokemon *mon, u8 param2)
+void Pokemon_BuildArchivedSprite(ArchivedSprite *param0, Pokemon *mon, u8 param2)
 {
-    sub_02075F0C(param0, &mon->box, param2, FALSE);
+    BoxPokemon_BuildArchivedSprite(param0, &mon->box, param2, FALSE);
 }
 
-void sub_02075F00(ArchivedSprite *param0, Pokemon *mon, u8 param2)
+void Pokemon_BuildArchivedDPSprite(ArchivedSprite *param0, Pokemon *mon, u8 param2)
 {
-    sub_02075F0C(param0, &mon->box, param2, TRUE);
+    BoxPokemon_BuildArchivedSprite(param0, &mon->box, param2, TRUE);
 }
 
-void sub_02075F0C(ArchivedSprite *param0, BoxPokemon *boxMon, u8 param2, BOOL param3)
+void BoxPokemon_BuildArchivedSprite(ArchivedSprite *param0, BoxPokemon *boxMon, u8 param2, BOOL param3)
 {
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
@@ -2384,15 +2384,15 @@ void sub_02075F0C(ArchivedSprite *param0, BoxPokemon *boxMon, u8 param2, BOOL pa
     }
 
     if (param3 == TRUE) {
-        sub_02076300(param0, monSpeciesEgg, monGender, param2, monShininess, monForm, monPersonality);
+        BuildArchivedDPPokemonSprite(param0, monSpeciesEgg, monGender, param2, monShininess, monForm, monPersonality);
     } else {
-        sub_02075FB4(param0, monSpeciesEgg, monGender, param2, monShininess, monForm, monPersonality);
+        BuildArchivedPokemonSprite(param0, monSpeciesEgg, monGender, param2, monShininess, monForm, monPersonality);
     }
 
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
 }
 
-void sub_02075FB4(ArchivedSprite *param0, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality)
+void BuildArchivedPokemonSprite(ArchivedSprite *param0, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality)
 {
     // TODO enum values?
     param0->spindaSpots = 0;
@@ -2561,7 +2561,7 @@ u8 Pokemon_SanitizeFormId(u16 monSpecies, u8 monForm)
     return monForm;
 }
 
-static void sub_02076300(ArchivedSprite *param0, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality)
+static void BuildArchivedDPPokemonSprite(ArchivedSprite *param0, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality)
 {
     // TODO enum values?
     param0->spindaSpots = 0;

@@ -855,7 +855,7 @@ static void ov86_0223BAC8 (UnkStruct_ov86_0223B3C8 * param0, NNSG2dCellDataBank 
 
         sub_02021CAC(param0->unk_1B4[v12], 0);
         v11 = Party_GetPokemonBySlotIndex(param0->unk_0C->unk_04, param0->unk_2C8[v12]);
-        sub_02075EF4(&v1, (Pokemon *)v11, 2);
+        Pokemon_BuildArchivedSprite(&v1, (Pokemon *)v11, 2);
 
         param0->unk_2E0[v12] = Pokemon_GetValue((Pokemon *)v11, MON_DATA_SPECIES, NULL);
         param0->unk_2F8[v12] = Pokemon_GetValue((Pokemon *)v11, MON_DATA_FORM, NULL);

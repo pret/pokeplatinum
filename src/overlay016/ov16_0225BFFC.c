@@ -723,7 +723,7 @@ static void ov16_0225C684 (BattleSystem * param0, BattlerData * param1)
         v4 = 0;
     }
 
-    sub_02075FB4(&v1, v0->unk_02, v0->unk_04, v4, v0->unk_05, v0->unk_01, v0->unk_08);
+    BuildArchivedPokemonSprite(&v1, v0->unk_02, v0->unk_04, v4, v0->unk_05, v0->unk_01, v0->unk_08);
 
     v2 = sub_02008A90(param1->unk_20);
     *v2 = v1;

@@ -357,7 +357,7 @@ void ov16_0225CBDC (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
         v0 = 0;
     }
 
-    sub_02075FB4(&v1, param2->unk_02, param2->unk_01_0, v4->unk_13, v0, param2->unk_01_3, param2->unk_04);
+    BuildArchivedPokemonSprite(&v1, param2->unk_02, param2->unk_01_0, v4->unk_13, v0, param2->unk_01_3, param2->unk_04);
 
     v6 = sub_02076648(param2->unk_02, param2->unk_01_0, v4->unk_13, param2->unk_01_3, param2->unk_04);
 
@@ -428,7 +428,7 @@ void ov16_0225CE1C (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
         v0 = 0;
     }
 
-    sub_02075FB4(&v1->unk_14, param2->unk_02, param2->unk_01_0, v1->unk_84, v0, param2->unk_01_3, param2->unk_04);
+    BuildArchivedPokemonSprite(&v1->unk_14, param2->unk_02, param2->unk_01_0, v1->unk_84, v0, param2->unk_01_3, param2->unk_04);
 
     v1->unk_85 = sub_02076648(param2->unk_02, param2->unk_01_0, v1->unk_84, param2->unk_01_3, param2->unk_04);
 
@@ -480,7 +480,7 @@ void ov16_0225CF70 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
         v1 = 0;
     }
 
-    sub_02075FB4(&v2->unk_14, param2->unk_02, param2->unk_01_0, v2->unk_84, v1, param2->unk_01_3, param2->unk_04);
+    BuildArchivedPokemonSprite(&v2->unk_14, param2->unk_02, param2->unk_01_0, v2->unk_84, v1, param2->unk_01_3, param2->unk_04);
 
     v2->unk_85 = sub_02076648(param2->unk_02, param2->unk_01_0, v2->unk_84, param2->unk_01_3, param2->unk_04);
 
