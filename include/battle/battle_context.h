@@ -164,7 +164,7 @@ struct BattleContext {
     
     int gainedExp;
     int sharedExp;
-    u32 monsGainingExp[2];
+    u32 sideGetExpMask[2];
 
     int scriptNarc;
     int scriptFile;

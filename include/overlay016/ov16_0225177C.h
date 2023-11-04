@@ -293,8 +293,27 @@ void BattleMon_AddVal(BattleMon *mon, enum BattleMonParam paramID, int val);
  * 2 if battler 2 should move first and won a speed tie.
  */
 u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *battleCtx, int battler1, int battler2, BOOL ignoreQuickClaw);
-void BattleSystem_NoExpGain(BattleContext * param0, int param1);
-void BattleSystem_FlagExpGain(BattleSystem * param0, BattleContext * param1, int param2);
+
+/**
+ * @brief Clear the flag denoting that a battler (or its partner) are due to
+ * gain experience.
+ * 
+ * @param battleCtx
+ * @param battler   The battler who should not gain experience.
+ */
+void BattleSystem_ClearSideExpGain(BattleContext *battleCtx, int battler);
+
+/**
+ * @brief Flag a given battler as due to gain experience.
+ * 
+ * If the battle involves an AI partner, then this routine will not touch the
+ * flag for the opposing side of the battle.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler   The battler who should gain experience.
+ */
+void BattleSystem_FlagBattlerExpGain(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 BOOL BattleSystem_CheckPrimaryEffect(BattleSystem * param0, BattleContext * param1, int * param2);
 BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq);
 

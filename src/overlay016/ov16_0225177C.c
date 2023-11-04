@@ -1456,27 +1456,26 @@ u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *batt
     return result;
 }
 
-void BattleSystem_NoExpGain (BattleContext * param0, int param1)
+void BattleSystem_ClearSideExpGain(BattleContext *battleCtx, int battler)
 {
-    param0->monsGainingExp[(param1 >> 1) & 1] = 0;
+    battleCtx->sideGetExpMask[(battler >> 1) & 1] = 0;
 }
 
-void BattleSystem_FlagExpGain (BattleSystem * param0, BattleContext * param1, int param2)
+void BattleSystem_FlagBattlerExpGain(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
-    int v0;
-    u32 v1;
+    int side = 0;
+    u32 battleType = BattleSystem_BattleType(battleSys);
 
-    v0 = 0;
-    v1 = BattleSystem_BattleType(param0);
-
-    while (v0 <= 2) {
-        if (((param1->battlersSwitchingMask & FlagIndex(v0)) == 0) && ((param1->battlersSwitchingMask & FlagIndex(param2)) == 0) && (param1->battleMons[param2].curHP)) {
-            param1->monsGainingExp[(param2 >> 1) & 1] |= FlagIndex(param1->selectedPartySlot[v0]);
+    while (side <= 2) {
+        if ((battleCtx->battlersSwitchingMask & FlagIndex(side)) == FALSE
+                && (battleCtx->battlersSwitchingMask & FlagIndex(battler)) == FALSE
+                && battleCtx->battleMons[battler].curHP) {
+            battleCtx->sideGetExpMask[(battler >> 1) & 1] |= FlagIndex(battleCtx->selectedPartySlot[side]);
         }
 
-        v0 += 2;
+        side += 2;
 
-        if ((v1 == (0x2 | 0x8 | 0x40)) || (v1 == ((0x2 | 0x1) | 0x8 | 0x40))) {
+        if (battleType == BATTLE_TYPE_AI_PARTNER || battleType == BATTLE_TYPE_TRAINER_WITH_AI_PARTNER) {
             break;
         }
     }
