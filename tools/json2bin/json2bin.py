@@ -3,7 +3,7 @@ import pathlib
 import subprocess
 
 from argparse import ArgumentParser
-from enum import Enum, Flag
+from enum import Enum, Flag, auto
 from types import FunctionType, LambdaType
 
 
@@ -19,6 +19,12 @@ ARGPARSER.add_argument('--private-dir', required=True,
                        help='Directory where intermediate files will be written')
 ARGPARSER.add_argument('--output-dir', required=True,
                        help='Output directory where generated files will be written')
+
+
+class OptionalBehavior(Enum):
+    DISALLOW = 0
+    SKIP = auto()
+    PAD = auto()
 
 
 class Parser():
@@ -52,7 +58,7 @@ class Parser():
                  size: int | tuple[int,int],
                  func: FunctionType | LambdaType,
                  const_type: type[Enum] | None = None,
-                 optional: bool = False) -> 'Parser':
+                 optional: OptionalBehavior = OptionalBehavior.DISALLOW) -> 'Parser':
         '''
             Register a function for processing a given key within the JSON
             structure, along with a size of the field in bytes and any
@@ -114,10 +120,14 @@ class Parser():
                 data_key = key[5:] # first 4 characters are a key-prefix
                 data_val = self._walk(data, data_key.split('.'))
                 if data_val == {} or data_val is None:
-                    if optional:
+                    if optional == OptionalBehavior.DISALLOW:
+                        print(json.dumps(data, indent=4))
+                        raise KeyError(data_key)
+                    elif optional == OptionalBehavior.SKIP:
                         continue
-                    print(json.dumps(data, indent=4))
-                    raise KeyError(data_key)
+                    elif optional == OptionalBehavior.PAD:
+                        binary.extend((0).to_bytes(size, 'little'))
+                        continue
 
                 binary.extend(parse_func(data_val, size, const_type))
         return binary
