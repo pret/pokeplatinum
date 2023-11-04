@@ -2787,7 +2787,7 @@ static BOOL BattleController_TriggerImmunityAbilities(BattleSystem *battleSys, B
     do {
         switch (battleCtx->abilityCheckState) {
         case IMMUNITY_ABILITY_STATE_CHECK:
-            int nextSeq = BattleSystem_CheckImmunityAbilities(battleCtx, battleCtx->attacker, battleCtx->defender);
+            int nextSeq = BattleSystem_TriggerImmunityAbility(battleCtx, battleCtx->attacker, battleCtx->defender);
 
             if ((nextSeq && (battleCtx->moveStatusFlags & MOVE_STATUS_DID_NOT_HIT) == FALSE)
                     || nextSeq == BATTLE_SUBSEQ_BLOCKED_BY_SOUNDPROOF) {

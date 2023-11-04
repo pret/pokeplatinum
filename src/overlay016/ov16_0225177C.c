@@ -3444,133 +3444,130 @@ int Battler_CountMoves(BattleSystem *battleSys, BattleContext *battleCtx, int ba
     return i;
 }
 
-static u16 Unk_ov16_02270B8C[] = {
-    0x2D,
-    0x2E,
-    0x2F,
-    0x30,
-    0x67,
-    0xAD,
-    0xFD,
-    0x13F,
-    0x140,
-    0x130,
-    0x195,
-    0x1C0
+static u16 sSoundMoves[] = {
+    MOVE_GROWL,
+    MOVE_ROAR,
+    MOVE_SING,
+    MOVE_SUPERSONIC,
+    MOVE_SCREECH,
+    MOVE_SNORE,
+    MOVE_UPROAR,
+    MOVE_METAL_SOUND,
+    MOVE_GRASS_WHISTLE,
+    MOVE_HYPER_VOICE,
+    MOVE_BUG_BUZZ,
+    MOVE_CHATTER,
 };
 
-int BattleSystem_CheckImmunityAbilities (BattleContext * param0, int param1, int param2)
+int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, int defender)
 {
-    int v0;
-    int v1;
+    int subscript = NULL, moveType;
 
-    v0 = 0;
-
-    if (Battler_Ability(param0, param1) == 96) {
-        v1 = 0;
-    } else if (param0->moveType) {
-        v1 = param0->moveType;
+    if (Battler_Ability(battleCtx, attacker) == ABILITY_NORMALIZE) {
+        moveType = TYPE_NORMAL;
+    } else if (battleCtx->moveType) {
+        moveType = battleCtx->moveType;
     } else {
-        v1 = param0->aiContext.moveTable[param0->moveCur].type;
+        moveType = CURRENT_MOVE_DATA.type;
     }
 
-    if (Battler_IgnorableAbility(param0, param1, param2, 10) == 1) {
-        if ((v1 == 13) && (param1 != param2)) {
-            param0->hpCalcTemp = BattleSystem_Divide(param0->battleMons[param2].maxHP, 4);
-            v0 = (0 + 178);
-        }
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_VOLT_ABSORB) == TRUE
+            && moveType == TYPE_ELECTRIC
+            && attacker != defender) {
+        battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[defender].maxHP, 4);
+        subscript = BATTLE_SUBSEQ_ABILITY_RESTORES_HP;
     }
 
-    if (Battler_IgnorableAbility(param0, param1, param2, 11) == 1) {
-        if ((v1 == 11) && ((param0->battleStatusMask & 0x20) == 0) && (param0->aiContext.moveTable[param0->moveCur].power)) {
-            param0->hpCalcTemp = BattleSystem_Divide(param0->battleMons[param2].maxHP, 4);
-            v0 = (0 + 178);
-        }
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_WATER_ABSORB) == TRUE
+            && moveType == TYPE_WATER
+            && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE // do not proc on first turn of Dive
+            && CURRENT_MOVE_DATA.power) {
+        battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[defender].maxHP, 4);
+        subscript = BATTLE_SUBSEQ_ABILITY_RESTORES_HP;
     }
 
-    if (Battler_IgnorableAbility(param0, param1, param2, 18) == 1) {
-        if ((v1 == 10) && ((param0->battleMons[param2].status & 0x20) == 0) && ((param0->battleStatusMask & 0x20) == 0) && ((param0->aiContext.moveTable[param0->moveCur].power) || (param0->moveCur == 261))) {
-            v0 = (0 + 179);
-        }
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_FLASH_FIRE) == TRUE
+            && moveType == TYPE_FIRE
+            && (battleCtx->battleMons[defender].status & MON_CONDITION_FREEZE) == FALSE
+            && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+            && (CURRENT_MOVE_DATA.power || battleCtx->moveCur == MOVE_WILL_O_WISP)) {
+        subscript = BATTLE_SUBSEQ_ABSORB_AND_BOOST_FIRE_TYPE_MOVES;
     }
 
-    if (Battler_IgnorableAbility(param0, param1, param2, 43) == 1) {
-        {
-            int v2;
-
-            for (v2 = 0; v2 < NELEMS(Unk_ov16_02270B8C); v2++) {
-                if (Unk_ov16_02270B8C[v2] == param0->moveCur) {
-                    v0 = (0 + 181);
-                    break;
-                }
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_SOUNDPROOF) == TRUE) {
+        for (int i = 0; i < NELEMS(sSoundMoves); i++) {
+            if (sSoundMoves[i] == battleCtx->moveCur) {
+                subscript = BATTLE_SUBSEQ_BLOCKED_BY_SOUNDPROOF;
+                break;
             }
         }
     }
 
-    if (Battler_IgnorableAbility(param0, param1, param2, 78) == 1) {
-        if ((v1 == 13) && (param1 != param2)) {
-            v0 = (0 + 182);
-        }
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_MOTOR_DRIVE) == TRUE
+            && moveType == TYPE_ELECTRIC
+            && attacker != defender) {
+        subscript = BATTLE_SUBSEQ_ABSORB_AND_SPEED_UP_1_STAGE;
     }
 
-    if (Battler_IgnorableAbility(param0, param1, param2, 87) == 1) {
-        if ((v1 == 11) && ((param0->battleStatusMask & 0x20) == 0) && (param0->aiContext.moveTable[param0->moveCur].power)) {
-            param0->hpCalcTemp = BattleSystem_Divide(param0->battleMons[param2].maxHP, 4);
-            v0 = (0 + 178);
-        }
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_DRY_SKIN) == TRUE
+            && moveType == TYPE_WATER
+            && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+            && CURRENT_MOVE_DATA.power) {
+        battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[defender].maxHP, 4);
+        subscript = BATTLE_SUBSEQ_ABILITY_RESTORES_HP;
     }
 
-    return v0;
+    return subscript;
 }
 
-BOOL BattleSystem_TriggerTurnEndAbility (BattleSystem * param0, BattleContext * param1, int param2)
+BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
-    BOOL v0;
-    int v1;
+    BOOL result = FALSE;
+    int subscript;
 
-    v0 = 0;
-
-    switch (Battler_Ability(param1, param2)) {
-    case 3:
-        if ((param1->battleMons[param2].curHP) && (param1->battleMons[param2].statBoosts[0x3] < 12) && (param1->battleMons[param2].moveEffectsData.fakeOutTurnNumber != param1->totalTurns + 1)) {
-            param1->sideEffectParam = 0x11;
-            param1->sideEffectType = 3;
-            param1->sideEffectMon = param2;
-            v1 = (0 + 12);
-            v0 = 1;
+    switch (Battler_Ability(battleCtx, battler)) {
+    case ABILITY_SPEED_BOOST:
+        if (battleCtx->battleMons[battler].curHP
+                && battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_SPEED] < 12
+                && battleCtx->battleMons[battler].moveEffectsData.fakeOutTurnNumber != battleCtx->totalTurns + 1) {
+            battleCtx->sideEffectParam = MOVE_SUBSCRIPT_PTR_SPEED_UP_1_STAGE;
+            battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
+            battleCtx->sideEffectMon = battler;
+            subscript = BATTLE_SUBSEQ_UPDATE_STAT_STAGE;
+            result = TRUE;
         }
         break;
-    case 61:
-        if ((param1->battleMons[param2].status & 0xff) && (param1->battleMons[param2].curHP) && (BattleSystem_RandNext(param0) % 10 < 3)) {
-            if (param1->battleMons[param2].status & 0x7) {
-                param1->msgTemp = 0;
-            } else if (param1->battleMons[param2].status & 0xf88) {
-                param1->msgTemp = 1;
-            } else if (param1->battleMons[param2].status & 0x10) {
-                param1->msgTemp = 2;
-            } else if (param1->battleMons[param2].status & 0x40) {
-                param1->msgTemp = 3;
+
+    case ABILITY_SHED_SKIN:
+        if ((battleCtx->battleMons[battler].status & MON_CONDITION_ANY)
+                && battleCtx->battleMons[battler].curHP
+                && BattleSystem_RandNext(battleSys) % 10 < 3) {
+            if (battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP) {
+                battleCtx->msgTemp = MSGCOND_SLEEP;
+            } else if (battleCtx->battleMons[battler].status & MON_CONDITION_ANY_POISON) {
+                battleCtx->msgTemp = MSGCOND_POISON;
+            } else if (battleCtx->battleMons[battler].status & MON_CONDITION_BURN) {
+                battleCtx->msgTemp = MSGCOND_BURN;
+            } else if (battleCtx->battleMons[battler].status & MON_CONDITION_PARALYSIS) {
+                battleCtx->msgTemp = MSGCOND_PARALYSIS;
             } else {
-                param1->msgTemp = 4;
+                battleCtx->msgTemp = MSGCOND_FREEZE;
             }
 
-            param1->msgBattlerTemp = param2;
-
-            v1 = (0 + 190);
-            v0 = 1;
+            battleCtx->msgBattlerTemp = battler;
+            subscript = BATTLE_SUBSEQ_ABILITY_RESTORE_STATUS;
+            result = TRUE;
         }
         break;
-    default:
-        break;
     }
 
-    if (v0 == 1) {
-        BattleSystem_LoadScript(param1, 1, v1);
-        param1->commandNext = param1->command;
-        param1->command = 21;
+    if (result == TRUE) {
+        LOAD_SUBSEQ(subscript);
+        battleCtx->commandNext = battleCtx->command;
+        battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
     }
 
-    return v0;
+    return result;
 }
 
 int BattleSystem_Divide(int dividend, int divisor)
@@ -4101,7 +4098,7 @@ int BattleSystem_RandomOpponent(BattleSystem *battleSys, BattleContext *battleCt
     return chosen;
 }
 
-BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq)
+BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript)
 {
     BOOL result = FALSE;
 
@@ -4128,7 +4125,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             battleCtx->sideEffectMon = battleCtx->attacker;
             battleCtx->msgBattlerTemp = battleCtx->defender;
 
-            *nextSeq = BATTLE_SUBSEQ_PARALYZE;
+            *subscript = BATTLE_SUBSEQ_PARALYZE;
             result = TRUE;
         }
         break;
@@ -4152,7 +4149,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
                 && CURRENT_MOVE_DATA.power
                 && BattleMon_Get(battleCtx, battleCtx->defender, 27, NULL) != moveType
                 && BattleMon_Get(battleCtx, battleCtx->defender, 28, NULL) != moveType) {
-            *nextSeq = BATTLE_SUBSEQ_COLOR_CHANGE;
+            *subscript = BATTLE_SUBSEQ_COLOR_CHANGE;
             battleCtx->msgTemp = moveType;
             result = TRUE;
         }
@@ -4169,7 +4166,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * -1, 8);
             battleCtx->msgBattlerTemp = battleCtx->attacker;
 
-            *nextSeq = BATTLE_SUBSEQ_ROUGH_SKIN;
+            *subscript = BATTLE_SUBSEQ_ROUGH_SKIN;
             result = TRUE;
         }
         break;
@@ -4186,13 +4183,13 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             switch (BattleSystem_RandNext(battleSys) % 3) {
             case 0:
             default:
-                *nextSeq = BATTLE_SUBSEQ_POISON;
+                *subscript = BATTLE_SUBSEQ_POISON;
                 break;
             case 1:
-                *nextSeq = BATTLE_SUBSEQ_PARALYZE;
+                *subscript = BATTLE_SUBSEQ_PARALYZE;
                 break;
             case 2:
-                *nextSeq = BATTLE_SUBSEQ_FALL_ASLEEP;
+                *subscript = BATTLE_SUBSEQ_FALL_ASLEEP;
                 break;
             }
 
@@ -4217,7 +4214,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             battleCtx->sideEffectMon = battleCtx->attacker;
             battleCtx->msgBattlerTemp = battleCtx->defender;
 
-            *nextSeq = BATTLE_SUBSEQ_POISON;
+            *subscript = BATTLE_SUBSEQ_POISON;
             result = TRUE;
         }
         break;
@@ -4235,7 +4232,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             battleCtx->sideEffectMon = battleCtx->attacker;
             battleCtx->msgBattlerTemp = battleCtx->defender;
 
-            *nextSeq = BATTLE_SUBSEQ_BURN;
+            *subscript = BATTLE_SUBSEQ_BURN;
             result = TRUE;
         }
         break;
@@ -4254,7 +4251,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             battleCtx->sideEffectMon = battleCtx->attacker;
             battleCtx->msgBattlerTemp = battleCtx->defender;
 
-            *nextSeq = BATTLE_SUBSEQ_INFATUATE;
+            *subscript = BATTLE_SUBSEQ_INFATUATE;
             result = TRUE;
         }
         break;
@@ -4270,87 +4267,89 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * -1, 4);
             battleCtx->msgBattlerTemp = battleCtx->attacker;
 
-            *nextSeq = BATTLE_SUBSEQ_AFTERMATH;
+            *subscript = BATTLE_SUBSEQ_AFTERMATH;
             result = TRUE;
         }
-        break;
-
-    default:
         break;
     }
 
     return result;
 }
 
-BOOL BattleSystem_RecoverStatusByAbility (BattleSystem * param0, BattleContext * param1, int param2, int param3)
+BOOL BattleSystem_RecoverStatusByAbility(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int skipLoad)
 {
-    BOOL v0;
+    BOOL result = FALSE;
 
-    v0 = 0;
+    switch (Battler_Ability(battleCtx, battler)) {
+    case ABILITY_IMMUNITY:
+        if (battleCtx->battleMons[battler].status & MON_CONDITION_ANY_POISON) {
+            battleCtx->msgTemp = MSGCOND_POISON;
+            result = TRUE;
+        }
+        break;
 
-    switch (Battler_Ability(param1, param2)) {
-    case 17:
-        if (param1->battleMons[param2].status & 0xf88) {
-            param1->msgTemp = 1;
-            v0 = 1;
+    case ABILITY_OWN_TEMPO:
+        if (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_CONFUSION) {
+            battleCtx->msgTemp = MSGCOND_CONFUSION;
+            result = TRUE;
         }
         break;
-    case 20:
-        if (param1->battleMons[param2].statusVolatile & 0x7) {
-            param1->msgTemp = 5;
-            v0 = 1;
+
+    case ABILITY_LIMBER:
+        if (battleCtx->battleMons[battler].status & MON_CONDITION_PARALYSIS) {
+            battleCtx->msgTemp = MSGCOND_PARALYSIS;
+            result = TRUE;
         }
         break;
-    case 7:
-        if (param1->battleMons[param2].status & 0x40) {
-            param1->msgTemp = 3;
-            v0 = 1;
+
+    case ABILITY_INSOMNIA:
+    case ABILITY_VITAL_SPIRIT:
+        if (battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP) {
+            battleCtx->msgTemp = MSGCOND_SLEEP;
+            result = TRUE;
         }
         break;
-    case 15:
-    case 72:
-        if (param1->battleMons[param2].status & 0x7) {
-            param1->msgTemp = 0;
-            v0 = 1;
+
+    case ABILITY_WATER_VEIL:
+        if (battleCtx->battleMons[battler].status & MON_CONDITION_BURN) {
+            battleCtx->msgTemp = MSGCOND_BURN;
+            result = TRUE;
         }
         break;
-    case 41:
-        if (param1->battleMons[param2].status & 0x10) {
-            param1->msgTemp = 2;
-            v0 = 1;
+
+    case ABILITY_MAGMA_ARMOR:
+        if (battleCtx->battleMons[battler].status & MON_CONDITION_FREEZE) {
+            battleCtx->msgTemp = MSGCOND_FREEZE;
+            result = TRUE;
         }
         break;
-    case 40:
-        if (param1->battleMons[param2].status & 0x20) {
-            param1->msgTemp = 4;
-            v0 = 1;
+
+    case ABILITY_OBLIVIOUS:
+        if (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_ATTRACT) {
+            battleCtx->msgTemp = MSGCOND_INFATUATION;
+            result = TRUE;
         }
         break;
-    case 12:
-        if (param1->battleMons[param2].statusVolatile & 0xf0000) {
-            param1->msgTemp = 6;
-            v0 = 1;
-        }
-        break;
-    case 84:
-        if (param1->battleMons[param2].heldItem) {
-            param1->battleMons[param2].moveEffectsData.canUnburden = 1;
+
+    case ABILITY_UNBURDEN:
+        if (battleCtx->battleMons[battler].heldItem) {
+            battleCtx->battleMons[battler].moveEffectsData.canUnburden = TRUE;
         }
         break;
     }
 
-    if (v0 == 1) {
-        param1->msgBattlerTemp = param2;
-        param1->msgAbilityTemp = Battler_Ability(param1, param2);
+    if (result == TRUE) {
+        battleCtx->msgBattlerTemp = battler;
+        battleCtx->msgAbilityTemp = Battler_Ability(battleCtx, battler);
 
-        if (param3 == 0) {
-            BattleSystem_LoadScript(param1, 1, (0 + 221));
-            param1->commandNext = param1->command;
-            param1->command = 21;
+        if (skipLoad == FALSE) {
+            LOAD_SUBSEQ(BATTLE_SUBSEQ_ABILITY_FORBIDS_STATUS);
+            battleCtx->commandNext = battleCtx->command;
+            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
         }
     }
 
-    return v0;
+    return result;
 }
 
 BOOL Ability_ForbidsStatus(BattleContext *battleSys, int ability, int status)

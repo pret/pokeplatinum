@@ -590,8 +590,35 @@ void BattleSystem_UpdateLastResort(BattleSystem * param0, BattleContext * param1
  * @return The number of moves known.
  */
 int Battler_CountMoves(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
-int BattleSystem_CheckImmunityAbilities(BattleContext * param0, int param1, int param2);
-BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem * param0, BattleContext * param1, int param2);
+
+/**
+ * @brief Trigger an immunity-granting ability of the defender based on the
+ * attacker's current move.
+ * 
+ * Despite its name, this routine does NOT check for Levitate, which is
+ * handled inside the type-chart check routine.
+ * 
+ * @param battleCtx 
+ * @param attacker
+ * @param defender
+ * @return A subscript to be loaded for any triggered effect.
+ */
+int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, int defender);
+
+/**
+ * @brief Trigger an end-of-turn ability for the battler.
+ * 
+ * If an end-of-turn ability is triggered, then the respective subscript will
+ * be loaded into the script buffer, and the battle control command will be
+ * updated to run that script.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler 
+ * @return TRUE if a subscript has been loaded for a triggered effect, FALSE
+ * otherwise.
+ */
+BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 
 /**
  * @brief Perform a division, setting any zero-result to 1 or -1, matching the
@@ -620,8 +647,34 @@ int BattleSystem_ShowMonChecks(BattleSystem * param0, BattleContext * param1);
  * @return A random opponent of the attacker's.
  */
 int BattleSystem_RandomOpponent(BattleSystem *battleSys, BattleContext *battleCtx, int attacker);
-BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq);
-BOOL BattleSystem_RecoverStatusByAbility(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+
+/**
+ * @brief Trigger the defender's ability after a move deals damage to it.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param[out] subscript    Return-param for the subscript to be loaded for any
+ *                          triggered effect.
+ * @return TRUE if the returned subscript param should be loaded for a
+ * triggered effect.
+ */
+BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript);
+
+/**
+ * @brief Triggers a battler's ability which prevents an illegal status
+ * condition on the given battler, e.g. a paralyzed Pokemon with Limber.
+ * 
+ * This also contains the check responsible for setting the canUnburden flag.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler 
+ * @param skipLoad  If TRUE, the routine will skip loading the subscript
+ *                  responsible for curing an illegal status condition.
+ * @return TRUE if a subscript for an ability effect was loaded, FALSE
+ * otherwise.
+ */
+BOOL BattleSystem_RecoverStatusByAbility(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int skipLoad);
 
 /**
  * @brief Check if an ability forbids a value in the given status mask.
