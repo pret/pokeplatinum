@@ -85,7 +85,7 @@ def parse_evolutions(table: list, _size: int, _enum: None) -> bytes:
         
 
 SCHEMA = j2b.Parser() \
-         .register('evolutions', 44, parse_evolutions, optional=True)
+    .register('evolutions', 44, parse_evolutions, optional=j2b.OptionalBehavior.PAD)
 
 
 FORM_INDICES = {
