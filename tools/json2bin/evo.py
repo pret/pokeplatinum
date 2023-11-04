@@ -74,7 +74,7 @@ def parse_evolutions(table: list, _size: int, _enum: None) -> bytes:
     out = bytearray([])
     for j in range(min(len(table), 7)):
         evo = table[j]
-        method = evo_methods.EvoMethod['EVO_' + evo[0]]
+        method = evo_methods.EvoMethod[evo[0]]
         params = get_evo_params(method, evo)
         target = species.PokemonSpecies[evo[-1]]
         out.extend(table_line(method.value, params, target.value))
@@ -87,31 +87,6 @@ def parse_evolutions(table: list, _size: int, _enum: None) -> bytes:
 SCHEMA = j2b.Parser() \
          .register('evolutions', 44, parse_evolutions, optional=True)
 
-
-FORM_INDICES = {
-    'DEOXYS' : {
-        'ATTACK': 496,
-        'DEFENSE': 497,
-        'SPEED': 498,
-    },
-    'WORMADAM': {
-        'SANDY': 499,
-        'TRASH': 500,
-    },
-    'GIRATINA': {
-        'ORIGIN': 501,
-    },
-    'SHAYMIN': {
-        'SKY': 502,
-    },
-    'ROTOM': {
-        'HEAT': 503,
-        'WASH': 504,
-        'FROST': 505,
-        'FAN': 506,
-        'MOW': 507,
-    },
-}
 
 FORM_INDICES = {
     'DEOXYS' : {
