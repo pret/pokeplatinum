@@ -44,124 +44,6 @@
 #include "overlay016/ov16_0225CBB8.h"
 #include "overlay016/ov16_0226485C.h"
 
-void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot);
-void BattleSystem_ReloadPokemon(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot);
-void BattleSystem_LoadScript(BattleContext *battleCtx, int narc, int file);
-void BattleSystem_CallScript(BattleContext *battleCtx, int narc, int file);
-BOOL BattleSystem_PopScript(BattleContext *battleCtx);
-void ov16_02251F44(BattleContext * param0, int param1, int param2, int param3);
-void ov16_02251F80(BattleContext * param0, int param1, int param2, int param3);
-BOOL BattleIO_QueueIsEmpty(BattleContext *battleCtx);
-void BattleIO_UpdateTimeout(BattleContext *battleCtx);
-void BattleIO_ClearBuffer(BattleContext *battleCtx, int battler);
-int BattleMon_Get(BattleContext *battleCtx, int battler, enum BattleMonParam paramID, void *buf);
-void BattleMon_Set(BattleContext *battleCtx, int battler, enum BattleMonParam param, const void *buf);
-void Battler_AddVal(BattleContext *battleCtx, int battler, enum BattleMonParam paramID, int val);
-void BattleMon_AddVal(BattleMon *mon, enum BattleMonParam paramID, int val);
-u8 BattleSystem_CompareBattlerSpeed(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
-void BattleSystem_NoExpGain(BattleContext * param0, int param1);
-void BattleSystem_FlagExpGain(BattleSystem * param0, BattleContext * param1, int param2);
-BOOL BattleSystem_CheckPrimaryEffect(BattleSystem * param0, BattleContext * param1, int * param2);
-BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq);
-int BattleSystem_Defender(BattleSystem * param0, BattleContext * param1, int param2, u16 param3, int param4, int param5);
-void BattleSystem_RedirectTarget(BattleSystem * param0, BattleContext * param1, int param2, u16 param3);
-BOOL BattleMove_TriggerRedirectionAbilities(BattleSystem * param0, BattleContext * param1);
-void BattleMon_CopyToParty(BattleSystem * param0, BattleContext * param1, int param2);
-void Battler_LockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
-void Battler_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
-int ov16_02253F7C(BattleContext * param0, int param1);
-BOOL BattleSystem_CheckTrainerMessage(BattleSystem * param0, BattleContext * param1);
-void BattleContext_Init(BattleContext * param0);
-void BattleContext_InitCounters(BattleSystem * param0, BattleContext * param1);
-void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
-void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
-void BattleSystem_SetupNextTurn(BattleSystem * param0, BattleContext * param1);
-int BattleSystem_CheckStruggling(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
-BOOL BattleSystem_CanUseMove(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int moveSlot, BattleMessage *msgOut);
-int Battler_SlotForMove(BattleMon * param0, u16 param1);
-int BattleSystem_CheckTypeChart(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4, int param5, int param6, u32 * param7);
-void ov16_022552D4(BattleContext * param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, u32 * param8);
-BOOL BattleContext_MoveFailed(BattleContext * param0, int param1);
-u8 BattleSystem_CountAliveBattlers(BattleSystem *battleSys, BattleContext *battleCtx, BOOL sameSide, int defender);
-int BattleSystem_NicknameTag(BattleContext *battleSys, int battler);
-u16 Battler_SelectedMove(BattleContext * param0, int param1);
-int BattleSystem_CountAbility(BattleSystem *battleSys, BattleContext *battleCtx, enum CountAbilityMode mode, int battler, int ability);
-BOOL BattleMove_IsMultiTurn(BattleContext * param0, int param1);
-BOOL BattleSystem_TypeMatchup(BattleSystem *battleSys, int idx, u8 *moveType, u8 *vsType, u8 *multi);
-int BattleSystem_TypeMatchupMultiplier(u8 attackingType, u8 defendingType1, u8 defendingType2);
-BOOL Move_IsInvoker(u16 move);
-BOOL BattleSystem_IsGhostCurse(BattleContext * param0, u16 param1, int param2);
-BOOL BattleSystem_CanStealItem(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
-BOOL BattleSystem_NotHoldingMail(BattleContext * param0, int param1);
-BOOL BattleSystem_CanWhirlwind(BattleSystem *battleSys, BattleContext *battleCtx);
-u8 Battler_Ability(BattleContext * param0, int param1);
-BOOL Battler_IgnorableAbility(BattleContext *battleCtx, int attacker, int defender, int ability);
-BOOL BattleSystem_AnyReplacementMons(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
-BOOL BattleSystem_Trapped(BattleSystem * param0, BattleContext * param1, int param2, BattleMessage * param3);
-BOOL BattleSystem_TryEscape(BattleSystem * param0, BattleContext * param1, int param2);
-BOOL Battler_CheckTruant(BattleContext * param0, int param1);
-BOOL BattleSystem_Imprisoned(BattleSystem * param0, BattleContext * param1, int param2, int param3);
-BOOL BattleSystem_AnyBattlersWithMoveEffect(BattleSystem *battleSys, BattleContext *battleCtx, int effectMask);
-void BattleSystem_SetupLoop(BattleSystem *battleSys, BattleContext *battleCtx);
-void BattleSystem_SortMonsBySpeed(BattleSystem * param0, BattleContext * param1);
-BOOL BattleSystem_FailsInHighGravity(BattleSystem * param0, BattleContext * param1, int param2, int param3);
-BOOL BattleSystem_HealBlocked(BattleSystem * param0, BattleContext * param1, int param2, int param3);
-void BattleSystem_UpdateLastResort(BattleSystem * param0, BattleContext * param1);
-int Battler_CountMoves(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
-int BattleSystem_CheckImmunityAbilities(BattleContext * param0, int param1, int param2);
-BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem * param0, BattleContext * param1, int param2);
-int BattleSystem_Divide(int dividend, int divisor);
-int BattleSystem_ShowMonChecks(BattleSystem * param0, BattleContext * param1);
-int BattleSystem_RandomOpponent(BattleSystem *battleSys, BattleContext *battleCtx, int attacker);
-BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq);
-BOOL BattleSystem_RecoverStatusByAbility(BattleSystem * param0, BattleContext * param1, int param2, int param3);
-BOOL Ability_ForbidsStatus(BattleContext *battleSys, int ability, int status);
-BOOL BattleSystem_SynchronizeStatus(BattleSystem * battleSys, BattleContext * battleCtx, int controllerCommand);
-BOOL BattleSystem_TriggerHeldItem(BattleSystem * param0, BattleContext * param1, int param2);
-BOOL BattleSystem_TriggerLeftovers(BattleSystem * param0, BattleContext * param1, int param2);
-BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem * param0, BattleContext * param1, int param2, int * param3);
-BOOL BattleSystem_TriggerDetrimentalHeldItem(BattleSystem * param0, BattleContext * param1, int param2);
-u16 Battler_HeldItem(BattleContext *battleCtx, int battler);
-BOOL Battler_MovedThisTurn(BattleContext * param0, int param1);
-BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem * param0, BattleContext * param1, int * param2);
-s32 Battler_HeldItemEffect(BattleContext * param0, int param1);
-s32 Battler_HeldItemPower(BattleContext *battleCtx, int battler, enum HeldItemPowerOp opcode);
-s32 Battler_NaturalGiftPower(BattleContext *battleCtx, int battler);
-s32 Battler_NaturalGiftType(BattleContext *battleCtx, int battler);
-s32 Battler_ItemPluckEffect(BattleContext *battleCtx, int battler);
-s32 Battler_ItemFlingEffect(BattleContext *battleCtx, int battler);
-s32 Battler_ItemFlingPower(BattleContext *battleCtx, int battler);
-int BattleSystem_CanSwitch(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
-BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
-BOOL BattleSystem_FlingItem(BattleSystem * param0, BattleContext * param1, int param2);
-void BattleSystem_UpdateMetronomeCount(BattleSystem * param0, BattleContext * param1);
-void BattleSystem_VerifyMetronomeCount(BattleSystem * param0, BattleContext * param1);
-int ov16_022599D0(BattleContext * param0, int param1, int param2, int param3);
-BOOL BattleSystem_CanPickCommand(BattleContext *battleSys, int battler);
-void ov16_02259A5C(BattleSystem * param0, BattleContext * param1, Pokemon * param2);
-u8 BattleContext_IOBufferVal(BattleContext *battleCtx, int battler);
-BOOL Battler_SubstituteWasHit(BattleContext *battleCtx, int battler);
-BOOL BattleSystem_TrainerIsOT(BattleSystem * param0, BattleContext * param1);
-BOOL BattleSystem_PokemonWasTraded(BattleSystem * param0, Pokemon * param1);
-BOOL BattleSystem_UpdateWeatherForms(BattleSystem * param0, BattleContext * param1, int * param2);
-void ov16_0225A1B0(BattleSystem * param0, BattleContext * param1);
-void BattleSystem_SwitchSlots(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot);
-int BattleSystem_CalcMoveDamage(BattleSystem *battleSys, BattleContext *battleCtx, int move, u32 sideConditions, u32 fieldConditions, u16 inPower, u8 inType, u8 attacker, u8 defender, u8 criticalMul);
-int BattleSystem_CalcDamageVariance(BattleSystem *battleSys, BattleContext *battleCtx, int damage);
-int BattleSystem_CalcCriticalMulti(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int criticalStage, u32 sideConditions);
-BOOL Move_CanBeMimicked(u16 move);
-BOOL Move_CanBeMetronomed(BattleSystem *battleSys, BattleContext *battleCtx, int battler, u16 move);
-BOOL Move_CanBeEncored(BattleContext *battleCtx, u16 move);
-BOOL Move_MeFirstCanCopy(BattleContext *battleCtx, u16 move);
-s32 BattleSystem_GetItemData(BattleContext *battleCtx, u16 item, enum ItemDataParam paramID);
-int BattleSystem_SideToBattler(BattleSystem * param0, BattleContext * param1, int param2);
-void BattleSystem_SortMonsInTrickRoom(BattleSystem * param0, BattleContext * param1);
-BOOL BattleSystem_ShouldShowStatusEffect(BattleContext *battleCtx, int battler, int status);
-BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem * param0, BattleContext * param1, int * param2);
-void BattleSystem_DecPPForPressure(BattleContext * param0, int param1, int param2);
-BOOL BattleSystem_RecordingStopped(BattleSystem * param0, BattleContext * param1);
-int BattleContext_Get(BattleSystem *battleSys, BattleContext *battleCtx, enum BattleContextParam paramID, int battler);
-void BattleContext_Set(BattleSystem *battleSys, BattleContext *battleCtx, enum BattleContextParam paramID, int battler, int val);
 static BOOL ov16_02254EF4(BattleContext * param0, int param1, int param2, int param3);
 static int BattleContext_SideEffect(BattleContext * param0, int param1, u32 param2);
 static int ov16_0225B63C(BattleContext * param0, int param1, int param2, int param3, int param4, u32 * param5);
@@ -175,9 +57,6 @@ static void BattleAI_ClearKnownItem(BattleContext *battleCtx, u8 battler);
 static int ov16_0225B840(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 static BOOL ov16_0225B8E4(BattleContext * param0, int param1);
 static int BattleMove_Type(BattleSystem * param0, BattleContext * param1, int param2, int param3);
-int ov16_0225BA88(BattleSystem * param0, int param1);
-int ov16_0225BE28(BattleSystem * param0, int param1);
-int ov16_0225BE3C(BattleSystem * param0, BattleContext * param1, Pokemon * param2, int param3);
 
 static const Fraction sStatStageBoosts[];
 
@@ -405,7 +284,7 @@ void BattleIO_UpdateTimeout(BattleContext *battleCtx)
     }
 }
 
-void BattleIO_ClearBuffer (BattleContext *battleCtx, int battler)
+void BattleIO_ClearBuffer(BattleContext *battleCtx, int battler)
 {
     for (int i = 0; i < BATTLE_IO_BUFFER_SIZE; i++) {
         battleCtx->ioBuffer[battler][i] = 0;
@@ -1275,302 +1154,306 @@ void BattleMon_AddVal(BattleMon *mon, enum BattleMonParam paramID, int val)
     }
 }
 
-static const u8 Unk_ov16_0226EBA8[] = {
-    0x32,
-    0x6A,
-    0x7A,
-    0x75,
-    0x76,
-    0x79,
-    0x77,
-    0x78
+static const u8 sSpeedHalvingItemEffects[] = {
+    HOLD_EFFECT_EVS_UP_SPEED_DOWN,
+    HOLD_EFFECT_SPEED_DOWN_GROUNDED,
+    HOLD_EFFECT_LVLUP_HP_EV_UP,
+    HOLD_EFFECT_LVLUP_ATK_EV_UP,
+    HOLD_EFFECT_LVLUP_DEF_EV_UP,
+    HOLD_EFFECT_LVLUP_SPEED_EV_UP,
+    HOLD_EFFECT_LVLUP_SPATK_EV_UP,
+    HOLD_EFFECT_LVLUP_SPDEF_EV_UP
 };
 
-u8 BattleSystem_CompareBattlerSpeed (BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4)
+static inline int CompareSpeed_ApplySimple(BattleContext *battleCtx, int battler, int stage)
 {
-    u8 v0 = 0;
-    u32 v1, v2;
-    u16 v3 = 0, v4 = 0;
-    u8 v5;
-    u8 v6;
-    u8 v7;
-    u8 v8;
-    s8 v9 = 0;
-    s8 v10 = 0;
-    u8 v11 = 0, v12 = 0;
-    u8 v13 = 0, v14 = 0;
-    int v15;
-    int v16;
-    int v17;
-    int v18;
-    int v19;
-    int v20;
-    int v21;
-    int v22;
-    int v23;
+    if (Battler_Ability(battleCtx, battler) == ABILITY_SIMPLE) {
+        stage = 6 + ((stage - 6) * 2);
 
-    if ((param1->battleMons[param2].curHP == 0) && (param1->battleMons[param3].curHP)) {
+        if (stage > 12) {
+            stage = 12;
+        }
+
+        if (stage < 0) {
+            stage = 0;
+        }
+    }
+
+    return stage;
+}
+
+enum {
+    BATTLER_1_GOES_FIRST = 0,
+    BATTLER_2_GOES_FIRST,
+    BATTLER_2_WINS_SPEED_TIE,
+};
+
+u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *battleCtx, int battler1, int battler2, BOOL ignoreQuickClaw)
+{
+    u8 result = BATTLER_1_GOES_FIRST;
+    u32 battler1Speed, battler2Speed;
+    u16 battler1Move = 0, battler2Move = 0;
+    u8 battler1ItemEffect, battler1ItemParam;
+    u8 battler2ItemEffect, battler2ItemParam;
+    s8 battler1Priority = 0, battler2Priority = 0;
+    u8 battler1QuickClaw = 0, battler2QuickClaw = 0;
+    u8 battler1LaggingTail = 0, battler2LaggingTail = 0;
+    int battler1Action, battler2Action;
+    int battler1MoveSlot, battler2MoveSlot;
+    int battler1Ability, battler2Ability;
+    int battler1SpeedStage, battler2SpeedStage;
+    int i;
+
+    // If either battler is dead, short-circuit to preferring the other
+    if (battleCtx->battleMons[battler1].curHP == 0 && battleCtx->battleMons[battler2].curHP) {
         return 1;
     }
 
-    if ((param1->battleMons[param2].curHP) && (param1->battleMons[param3].curHP == 0)) {
+    if (battleCtx->battleMons[battler1].curHP && battleCtx->battleMons[battler2].curHP == 0) {
         return 0;
     }
 
-    v19 = Battler_Ability(param1, param2);
-    v20 = Battler_Ability(param1, param3);
-    v5 = Battler_HeldItemEffect(param1, param2);
-    v6 = Battler_HeldItemPower(param1, param2, 0);
-    v7 = Battler_HeldItemEffect(param1, param3);
-    v8 = Battler_HeldItemPower(param1, param3, 0);
-    v21 = param1->battleMons[param2].statBoosts[0x3];
-    v22 = param1->battleMons[param3].statBoosts[0x3];
+    battler1Ability = Battler_Ability(battleCtx, battler1);
+    battler2Ability = Battler_Ability(battleCtx, battler2);
+    battler1ItemEffect = Battler_HeldItemEffect(battleCtx, battler1);
+    battler1ItemParam = Battler_HeldItemPower(battleCtx, battler1, ITEM_POWER_CHECK_ALL);
+    battler2ItemEffect = Battler_HeldItemEffect(battleCtx, battler2);
+    battler2ItemParam = Battler_HeldItemPower(battleCtx, battler2, ITEM_POWER_CHECK_ALL);
+    battler1SpeedStage = battleCtx->battleMons[battler1].statBoosts[BATTLE_STAT_SPEED];
+    battler2SpeedStage = battleCtx->battleMons[battler2].statBoosts[BATTLE_STAT_SPEED];
 
-    if (Battler_Ability(param1, param2) == 86) {
-        v21 = 6 + ((v21 - 6) * 2);
+    battler1SpeedStage = CompareSpeed_ApplySimple(battleCtx, battler1, battler1SpeedStage);
+    battler2SpeedStage = CompareSpeed_ApplySimple(battleCtx, battler2, battler2SpeedStage);
 
-        if (v21 > 12) {
-            v21 = 12;
+    battler1Speed = battleCtx->battleMons[battler1].speed * sStatStageBoosts[battler1SpeedStage].numerator / sStatStageBoosts[battler1SpeedStage].denominator;
+    battler2Speed = battleCtx->battleMons[battler2].speed * sStatStageBoosts[battler2SpeedStage].numerator / sStatStageBoosts[battler2SpeedStage].denominator;
+
+    if (NO_CLOUD_NINE) {
+        if ((battler1Ability == ABILITY_SWIFT_SWIM && WEATHER_IS_RAIN)
+                || (battler1Ability == ABILITY_CHLOROPHYLL && WEATHER_IS_SUN)) {
+            battler1Speed *= 2;
         }
 
-        if (v21 < 0) {
-            v21 = 0;
-        }
-    }
-
-    if (Battler_Ability(param1, param3) == 86) {
-        v22 = 6 + ((v22 - 6) * 2);
-
-        if (v22 > 12) {
-            v22 = 12;
-        }
-
-        if (v22 < 0) {
-            v22 = 0;
+        if ((battler2Ability == ABILITY_SWIFT_SWIM && WEATHER_IS_RAIN)
+                || (battler2Ability == ABILITY_CHLOROPHYLL && WEATHER_IS_SUN)) {
+            battler2Speed *= 2;
         }
     }
 
-    v1 = param1->battleMons[param2].speed * sStatStageBoosts[v21].numerator / sStatStageBoosts[v21].denominator;
-    v2 = param1->battleMons[param3].speed * sStatStageBoosts[v22].numerator / sStatStageBoosts[v22].denominator;
-
-    if ((BattleSystem_CountAbility(param0, param1, 8, 0, 13) == 0) && (BattleSystem_CountAbility(param0, param1, 8, 0, 76) == 0)) {
-        if (((v19 == 33) && (param1->fieldConditionsMask & 0x3)) || ((v19 == 34) && (param1->fieldConditionsMask & 0x30))) {
-            v1 *= 2;
-        }
-
-        if (((v20 == 33) && (param1->fieldConditionsMask & 0x3)) || ((v20 == 34) && (param1->fieldConditionsMask & 0x30))) {
-            v2 *= 2;
-        }
-    }
-
-    for (v23 = 0; v23 < NELEMS(Unk_ov16_0226EBA8); v23++) {
-        if (BattleSystem_GetItemData(param1, param1->battleMons[param2].heldItem, 1) == Unk_ov16_0226EBA8[v23]) {
-            v1 /= 2;
+    for (i = 0; i < NELEMS(sSpeedHalvingItemEffects); i++) {
+        // The speed-halving effect of these items are not ignored by any negation effect
+        if (BattleSystem_GetItemData(battleCtx, battleCtx->battleMons[battler1].heldItem, ITEM_PARAM_HOLD_EFFECT) == sSpeedHalvingItemEffects[i]) {
+            battler1Speed /= 2;
             break;
         }
     }
 
-    if (v5 == 115) {
-        v1 = v1 * 15 / 10;
+    if (battler1ItemEffect == HOLD_EFFECT_CHOICE_SPEED) {
+        battler1Speed = battler1Speed * 15 / 10;
     }
 
-    if ((v5 == 102) && (param1->battleMons[param2].species == 132)) {
-        v1 *= 2;
+    if (battler1ItemEffect == HOLD_EFFECT_DITTO_SPEED_UP
+            && battleCtx->battleMons[battler1].species == SPECIES_DITTO) {
+        battler1Speed *= 2;
     }
 
-    if ((v19 == 95) && (param1->battleMons[param2].status & 0xff)) {
-        v1 = v1 * 15 / 10;
-    } else {
-        if (param1->battleMons[param2].status & 0x40) {
-            v1 /= 4;
-        }
+    if (battler1Ability == ABILITY_QUICK_FEET && (battleCtx->battleMons[battler1].status & MON_CONDITION_ANY)) {
+        battler1Speed = battler1Speed * 15 / 10;
+    } else if (battleCtx->battleMons[battler1].status & MON_CONDITION_PARALYSIS) {
+        battler1Speed /= 4;
     }
 
-    if ((v19 == 112) && ((param1->totalTurns - param1->battleMons[param2].moveEffectsData.slowStartTurnNumber) < 5)) {
-        v1 /= 2;
+    if (battler1Ability == ABILITY_SLOW_START
+            && battleCtx->totalTurns - battleCtx->battleMons[battler1].moveEffectsData.slowStartTurnNumber < 5) {
+        battler1Speed /= 2;
     }
 
-    if ((v19 == 84) && (param1->battleMons[param2].moveEffectsData.canUnburden) && (param1->battleMons[param2].heldItem == 0)) {
-        v1 *= 2;
+    if (battler1Ability == ABILITY_UNBURDEN
+            && battleCtx->battleMons[battler1].moveEffectsData.canUnburden
+            && battleCtx->battleMons[battler1].heldItem == ITEM_NONE) {
+        battler1Speed *= 2;
     }
 
-    if (param1->sideConditionsMask[Battler_Side(param0, param2)] & 0x300) {
-        v1 *= 2;
+    if (battleCtx->sideConditionsMask[Battler_Side(battleSys, battler1)] & SIDE_CONDITION_TAILWIND) {
+        battler1Speed *= 2;
     }
 
-    if (v5 == 52) {
-        if ((param1->speedRand[param2] % (100 / v6)) == 0) {
-            v11 = 1;
+    if (battler1ItemEffect == HOLD_EFFECT_SOMETIMES_PRIORITY) {
+        if (battleCtx->speedRand[battler1] % (100 / battler1ItemParam) == 0) {
+            battler1QuickClaw = 1;
 
-            if (param4 == 0) {
-                param1->battleMons[param2].moveEffectsData.quickClaw = 1;
+            if (ignoreQuickClaw == FALSE) {
+                battleCtx->battleMons[battler1].moveEffectsData.quickClaw = 1;
             }
         }
     }
 
-    if (v5 == 45) {
-        if (Battler_Ability(param1, param2) == 82) {
-            v6 /= 2;
+    if (battler1ItemEffect == HOLD_EFFECT_PINCH_PRIORITY) {
+        if (Battler_Ability(battleCtx, battler1) == ABILITY_GLUTTONY) {
+            battler1ItemParam /= 2;
         }
 
-        if (param1->battleMons[param2].curHP <= (param1->battleMons[param2].maxHP / v6)) {
-            v11 = 1;
+        if (battleCtx->battleMons[battler1].curHP <= (battleCtx->battleMons[battler1].maxHP / battler1ItemParam)) {
+            battler1QuickClaw = 1;
 
-            if (param4 == 0) {
-                param1->battleMons[param2].moveEffectsData.custapBerry = 1;
+            if (ignoreQuickClaw == FALSE) {
+                battleCtx->battleMons[battler1].moveEffectsData.custapBerry = 1;
             }
         }
     }
 
-    if (v5 == 107) {
-        v13 = 1;
+    if (battler1ItemEffect == HOLD_EFFECT_PRIORITY_DOWN) {
+        battler1LaggingTail = 1;
     }
 
-    for (v23 = 0; v23 < NELEMS(Unk_ov16_0226EBA8); v23++) {
-        if (BattleSystem_GetItemData(param1, param1->battleMons[param3].heldItem, 1) == Unk_ov16_0226EBA8[v23]) {
-            v2 /= 2;
+    for (i = 0; i < NELEMS(sSpeedHalvingItemEffects); i++) {
+        // The speed-halving effect of these items are not ignored by any negation effect
+        if (BattleSystem_GetItemData(battleCtx, battleCtx->battleMons[battler2].heldItem, ITEM_PARAM_HOLD_EFFECT) == sSpeedHalvingItemEffects[i]) {
+            battler2Speed /= 2;
             break;
         }
     }
 
-    if (v7 == 115) {
-        v2 = v2 * 15 / 10;
+    if (battler2ItemEffect == HOLD_EFFECT_CHOICE_SPEED) {
+        battler2Speed = battler2Speed * 15 / 10;
     }
 
-    if ((v7 == 102) && (param1->battleMons[param3].species == 132)) {
-        v2 *= 2;
+    if (battler2ItemEffect == HOLD_EFFECT_DITTO_SPEED_UP
+            && battleCtx->battleMons[battler2].species == SPECIES_DITTO) {
+        battler2Speed *= 2;
     }
 
-    if ((v20 == 95) && (param1->battleMons[param3].status & 0xff)) {
-        v2 = v2 * 15 / 10;
-    } else {
-        if (param1->battleMons[param3].status & 0x40) {
-            v2 /= 4;
-        }
+    if (battler2Ability == ABILITY_QUICK_FEET && (battleCtx->battleMons[battler2].status & MON_CONDITION_ANY)) {
+        battler2Speed = battler2Speed * 15 / 10;
+    } else if (battleCtx->battleMons[battler2].status & MON_CONDITION_PARALYSIS) {
+        battler2Speed /= 4;
     }
 
-    if ((v20 == 112) && ((param1->totalTurns - param1->battleMons[param3].moveEffectsData.slowStartTurnNumber) < 5)) {
-        v2 /= 2;
+    if (battler2Ability == ABILITY_SLOW_START
+            && battleCtx->totalTurns - battleCtx->battleMons[battler2].moveEffectsData.slowStartTurnNumber < 5) {
+        battler2Speed /= 2;
     }
 
-    if ((v20 == 84) && (param1->battleMons[param3].moveEffectsData.canUnburden) && (param1->battleMons[param3].heldItem == 0)) {
-        v2 *= 2;
+    if (battler2Ability == ABILITY_UNBURDEN
+            && battleCtx->battleMons[battler2].moveEffectsData.canUnburden
+            && battleCtx->battleMons[battler2].heldItem == ITEM_NONE) {
+        battler2Speed *= 2;
     }
 
-    if (param1->sideConditionsMask[Battler_Side(param0, param3)] & 0x300) {
-        v2 *= 2;
+    if (battleCtx->sideConditionsMask[Battler_Side(battleSys, battler2)] & SIDE_CONDITION_TAILWIND) {
+        battler2Speed *= 2;
     }
 
-    if (v7 == 52) {
-        if ((param1->speedRand[param3] % (100 / v8)) == 0) {
-            v12 = 1;
+    if (battler2ItemEffect == HOLD_EFFECT_SOMETIMES_PRIORITY) {
+        if (battleCtx->speedRand[battler2] % (100 / battler2ItemParam) == 0) {
+            battler2QuickClaw = 1;
 
-            if (param4 == 0) {
-                param1->battleMons[param3].moveEffectsData.quickClaw = 1;
+            if (ignoreQuickClaw == FALSE) {
+                battleCtx->battleMons[battler2].moveEffectsData.quickClaw = 1;
             }
         }
     }
 
-    if (v7 == 45) {
-        if (Battler_Ability(param1, param3) == 82) {
-            v8 /= 2;
+    if (battler2ItemEffect == HOLD_EFFECT_PINCH_PRIORITY) {
+        if (Battler_Ability(battleCtx, battler2) == ABILITY_GLUTTONY) {
+            battler2ItemParam /= 2;
         }
 
-        if (param1->battleMons[param3].curHP <= (param1->battleMons[param3].maxHP / v8)) {
-            v12 = 1;
+        if (battleCtx->battleMons[battler2].curHP <= (battleCtx->battleMons[battler2].maxHP / battler2ItemParam)) {
+            battler2QuickClaw = 1;
 
-            if (param4 == 0) {
-                param1->battleMons[param3].moveEffectsData.custapBerry = 1;
+            if (ignoreQuickClaw == FALSE) {
+                battleCtx->battleMons[battler2].moveEffectsData.custapBerry = 1;
             }
         }
     }
 
-    if (v7 == 107) {
-        v14 = 1;
+    if (battler2ItemEffect == HOLD_EFFECT_PRIORITY_DOWN) {
+        battler2LaggingTail = 1;
     }
 
-    param1->monSpeedValues[param2] = v1;
-    param1->monSpeedValues[param3] = v2;
+    battleCtx->monSpeedValues[battler1] = battler1Speed;
+    battleCtx->monSpeedValues[battler2] = battler2Speed;
 
-    if (param4 == 0) {
-        v15 = param1->battlerActions[param2][3];
-        v16 = param1->battlerActions[param3][3];
-        v17 = param1->moveSlot[param2];
-        v18 = param1->moveSlot[param3];
+    if (ignoreQuickClaw == FALSE) {
+        battler1Action = battleCtx->battlerActions[battler1][BATTLE_ACTION_SELECTED_COMMAND];
+        battler2Action = battleCtx->battlerActions[battler2][BATTLE_ACTION_SELECTED_COMMAND];
+        battler1MoveSlot = battleCtx->moveSlot[battler1];
+        battler2MoveSlot = battleCtx->moveSlot[battler2];
 
-        if (v15 == 1) {
-            if (param1->turnFlags[param2].struggling) {
-                v3 = 165;
+        if (battler1Action == PLAYER_INPUT_FIGHT) {
+            if (battleCtx->turnFlags[battler1].struggling) {
+                battler1Move = MOVE_STRUGGLE;
             } else {
-                v3 = BattleMon_Get(param1, param2, 6 + v17, NULL);
+                battler1Move = BattleMon_Get(battleCtx, battler1, BATTLEMON_MOVE_1 + battler1MoveSlot, NULL);
             }
         }
 
-        if (v16 == 1) {
-            if (param1->turnFlags[param3].struggling) {
-                v4 = 165;
+        if (battler2Action == PLAYER_INPUT_FIGHT) {
+            if (battleCtx->turnFlags[battler2].struggling) {
+                battler2Move = MOVE_STRUGGLE;
             } else {
-                v4 = BattleMon_Get(param1, param3, 6 + v18, NULL);
+                battler2Move = BattleMon_Get(battleCtx, battler2, BATTLEMON_MOVE_1 + battler2MoveSlot, NULL);
             }
         }
 
-        v9 = param1->aiContext.moveTable[v3].priority;
-        v10 = param1->aiContext.moveTable[v4].priority;
+        battler1Priority = MOVE_DATA(battler1Move).priority;
+        battler2Priority = MOVE_DATA(battler2Move).priority;
     }
 
-    if (v9 == v10) {
-        if ((v11) && (v12)) {
-            if (v1 < v2) {
-                v0 = 1;
-            } else if ((v1 == v2) && (BattleSystem_RandNext(param0) & 1)) {
-                v0 = 2;
+    if (battler1Priority == battler2Priority) {
+        if (battler1QuickClaw && battler2QuickClaw) {
+            if (battler1Speed < battler2Speed) {
+                result = BATTLER_2_GOES_FIRST;
+            } else if (battler1Speed == battler2Speed && (BattleSystem_RandNext(battleSys) & 1)) {
+                result = BATTLER_2_WINS_SPEED_TIE;
             }
-        } else if ((v11 == 0) && (v12)) {
-            v0 = 1;
-        } else if ((v11) && (v12 == 0)) {
-            v0 = 0;
-        } else if ((v13) && (v14)) {
-            if (v1 > v2) {
-                v0 = 1;
-            } else if ((v1 == v2) && (BattleSystem_RandNext(param0) & 1)) {
-                v0 = 2;
+        } else if (battler1QuickClaw == FALSE && battler2QuickClaw) {
+            result = BATTLER_2_GOES_FIRST;
+        } else if (battler1QuickClaw && battler2QuickClaw == FALSE) {
+            result = BATTLER_1_GOES_FIRST;
+        } else if (battler1LaggingTail && battler2LaggingTail) {
+            if (battler1Speed > battler2Speed) {
+                result = BATTLER_2_GOES_FIRST;
+            } else if (battler1Speed == battler2Speed && (BattleSystem_RandNext(battleSys) & 1)) {
+                result = BATTLER_2_WINS_SPEED_TIE;
             }
-        } else if ((v13) && (v14 == 0)) {
-            v0 = 1;
-        } else if ((v13 == 0) && (v14)) {
-            v0 = 0;
-        } else if ((v19 == 100) && (v20 == 100)) {
-            if (v1 > v2) {
-                v0 = 1;
-            } else if ((v1 == v2) && (BattleSystem_RandNext(param0) & 1)) {
-                v0 = 2;
+        } else if (battler1LaggingTail && battler2LaggingTail == FALSE) {
+            result = BATTLER_2_GOES_FIRST;
+        } else if (battler1LaggingTail == FALSE && battler2LaggingTail) {
+            result = BATTLER_1_GOES_FIRST;
+        } else if (battler1Ability == ABILITY_STALL && battler2Ability == ABILITY_STALL) {
+            if (battler1Speed > battler2Speed) {
+                result = BATTLER_2_GOES_FIRST;
+            } else if (battler1Speed == battler2Speed && (BattleSystem_RandNext(battleSys) & 1)) {
+                result = BATTLER_2_WINS_SPEED_TIE;
             }
-        } else if ((v19 == 100) && (v20 != 100)) {
-            v0 = 1;
-        } else if ((v19 != 100) && (v20 == 100)) {
-            v0 = 0;
-        } else if (param1->fieldConditionsMask & 0x70000) {
-            if (v1 > v2) {
-                v0 = 1;
+        } else if (battler1Ability == ABILITY_STALL && battler2Ability != ABILITY_STALL) {
+            result = BATTLER_2_GOES_FIRST;
+        } else if (battler1Ability != ABILITY_STALL && battler2Ability == ABILITY_STALL) {
+            result = BATTLER_1_GOES_FIRST;
+        } else if (battleCtx->fieldConditionsMask & FIELD_CONDITION_TRICK_ROOM) {
+            if (battler1Speed > battler2Speed) {
+                result = BATTLER_2_GOES_FIRST;
             }
 
-            if ((v1 == v2) && (BattleSystem_RandNext(param0) & 1)) {
-                v0 = 2;
+            if (battler1Speed == battler2Speed && (BattleSystem_RandNext(battleSys) & 1)) {
+                result = BATTLER_2_WINS_SPEED_TIE;
             }
         } else {
-            if (v1 < v2) {
-                v0 = 1;
+            if (battler1Speed < battler2Speed) {
+                result = BATTLER_2_GOES_FIRST;
             }
 
-            if ((v1 == v2) && (BattleSystem_RandNext(param0) & 1)) {
-                v0 = 2;
+            if (battler1Speed == battler2Speed && (BattleSystem_RandNext(battleSys) & 1)) {
+                result = BATTLER_2_WINS_SPEED_TIE;
             }
         }
-    } else if (v9 < v10) {
-        v0 = 1;
+    } else if (battler1Priority < battler2Priority) {
+        result = BATTLER_2_GOES_FIRST;
     }
 
-    return v0;
+    return result;
 }
 
 void BattleSystem_NoExpGain (BattleContext * param0, int param1)

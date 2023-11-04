@@ -226,6 +226,13 @@ BOOL BattleIO_QueueIsEmpty(BattleContext *battleCtx);
  * @param battleCtx 
  */
 void BattleIO_UpdateTimeout(BattleContext *battleCtx);
+
+/**
+ * @brief Clear the battle IO queue of all data.
+ * 
+ * @param battleCtx 
+ * @param battler 
+ */
 void BattleIO_ClearBuffer(BattleContext *battleCtx, int battler);
 
 /**
@@ -270,7 +277,22 @@ void Battler_AddVal(BattleContext *battleCtx, int battler, enum BattleMonParam p
  * @param val       Value to be added to the Pokemon's data field
  */
 void BattleMon_AddVal(BattleMon *mon, enum BattleMonParam paramID, int val);
-u8 BattleSystem_CompareBattlerSpeed(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
+
+/**
+ * @brief Compare the speed of two battlers and determine which of them should
+ * move first.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler1
+ * @param battler2 
+ * @param ignoreQuickClaw   If set to TRUE, the Quick Claw and Custap Berry
+ *                          flags will NOT be set after determining if they
+ *                          should activate.
+ * @return 0 if battler 1 should move first, 1 if battler 2 should move first,
+ * 2 if battler 2 should move first and won a speed tie.
+ */
+u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *battleCtx, int battler1, int battler2, BOOL ignoreQuickClaw);
 void BattleSystem_NoExpGain(BattleContext * param0, int param1);
 void BattleSystem_FlagExpGain(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL BattleSystem_CheckPrimaryEffect(BattleSystem * param0, BattleContext * param1, int * param2);
