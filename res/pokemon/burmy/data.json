@@ -54,12 +54,12 @@
     },
     "evolutions": [
         [
-            "LEVEL_FEMALE",
+            "EVO_LEVEL_FEMALE",
             20,
             "SPECIES_WORMADAM"
         ],
         [
-            "LEVEL_MALE",
+            "EVO_LEVEL_MALE",
             20,
             "SPECIES_MOTHIM"
         ]

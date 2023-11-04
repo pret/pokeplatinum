@@ -115,7 +115,7 @@
     },
     "evolutions": [
         [
-            "USE_ITEM",
+            "EVO_USE_ITEM",
             "ITEM_SHINY_STONE",
             "SPECIES_TOGEKISS"
         ]

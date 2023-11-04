@@ -81,12 +81,12 @@
     },
     "evolutions": [
         [
-            "TRADE_WITH_ITEM",
+            "EVO_TRADE_WITH_ITEM",
             "ITEM_DEEPSEATOOTH",
             "SPECIES_HUNTAIL"
         ],
         [
-            "TRADE_WITH_ITEM",
+            "EVO_TRADE_WITH_ITEM",
             "ITEM_DEEPSEASCALE",
             "SPECIES_GOREBYSS"
         ]

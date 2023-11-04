@@ -89,7 +89,7 @@
     },
     "evolutions": [
         [
-            "USE_ITEM",
+            "EVO_USE_ITEM",
             "ITEM_WATER_STONE",
             "SPECIES_CLOYSTER"
         ]

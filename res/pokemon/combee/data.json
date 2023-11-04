@@ -55,7 +55,7 @@
     },
     "evolutions": [
         [
-            "LEVEL_FEMALE",
+            "EVO_LEVEL_FEMALE",
             21,
             "SPECIES_VESPIQUEN"
         ]

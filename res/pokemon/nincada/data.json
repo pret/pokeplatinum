@@ -88,12 +88,12 @@
     },
     "evolutions": [
         [
-            "LEVEL_NINJASK",
+            "EVO_LEVEL_NINJASK",
             20,
             "SPECIES_NINJASK"
         ],
         [
-            "LEVEL_SHEDINJA",
+            "EVO_LEVEL_SHEDINJA",
             20,
             "SPECIES_SHEDINJA"
         ]

@@ -109,12 +109,12 @@
     },
     "evolutions": [
         [
-            "LEVEL_UP",
+            "EVO_LEVEL_UP",
             30,
             "SPECIES_GARDEVOIR"
         ],
         [
-            "USE_ITEM_MALE",
+            "EVO_USE_ITEM_MALE",
             "ITEM_DAWN_STONE",
             "SPECIES_GALLADE"
         ]
