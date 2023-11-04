@@ -62,7 +62,7 @@
 #include "strbuf.h"
 #include "pokemon.h"
 #include "move_table.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "unk_0207C908.h"
 #include "unk_0208C098.h"
 #include "overlay011/ov11_0221F800.h"
@@ -2448,9 +2448,9 @@ static void ov16_0226A698 (UnkStruct_ov16_02268A14 * param0)
     v1 = ov16_0223E018(param0->unk_00);
     v5 = BattleSystem_PaletteSys(param0->unk_00);
 
-    sub_0200CD7C(v5, 3, v0, v1, 19, sub_02079FD0(), 0, 3, NNS_G2D_VRAM_TYPE_2DSUB, 20022);
-    sub_0200CE0C(v0, v1, 19, sub_02079FD8(), 0, 20021);
-    sub_0200CE3C(v0, v1, 19, sub_02079FE4(), 0, 20021);
+    sub_0200CD7C(v5, 3, v0, v1, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DSUB, 20022);
+    sub_0200CE0C(v0, v1, 19, PokeIcon32KCellsFileIndex(), 0, 20021);
+    sub_0200CE3C(v0, v1, 19, PokeIcon32KAnimationFileIndex(), 0, 20021);
 }
 
 static void ov16_0226A718 (UnkStruct_ov16_02268A14 * param0)
@@ -2522,7 +2522,7 @@ static CellActorData * ov16_0226A7A4 (UnkStruct_ov16_02268A14 * param0, Pokemon 
     v0 = ov16_0223E010(param0->unk_00);
     v1 = ov16_0223E018(param0->unk_00);
 
-    sub_0200CBDC(v0, v1, 19, sub_02079D80(param1), 0, NNS_G2D_VRAM_TYPE_2DSUB, v2);
+    sub_0200CBDC(v0, v1, 19, Pokemon_IconSpriteIndex(param1), 0, NNS_G2D_VRAM_TYPE_2DSUB, v2);
 
     v3 = Unk_ov16_022704B0;
     v3.unk_14[0] = v2;
@@ -2531,7 +2531,7 @@ static CellActorData * ov16_0226A7A4 (UnkStruct_ov16_02268A14 * param0, Pokemon 
     v4 = sub_0200CE6C(v0, v1, &v3);
 
     sub_0200D500(v4, v3.unk_00, v3.unk_02, ((192 + 80) << FX32_SHIFT));
-    sub_02021F24(v4->unk_00, sub_02079FC4(param1));
+    sub_02021F24(v4->unk_00, Pokemon_IconPaletteIndex(param1));
 
     {
         int v6 = 0;

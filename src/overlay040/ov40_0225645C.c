@@ -19,7 +19,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "pokemon.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
@@ -373,7 +373,7 @@ static void ov40_02256808 (u32 param0, const UnkStruct_ov40_0225645C_1 * param1)
     u32 v0;
     u32 v1[3];
 
-    v0 = sub_02079D8C(1, 1, 0);
+    v0 = PokeIconSpriteIndex(1, 1, 0);
 
     v1[0] = (param1->unk_00 > 0) ? param1->unk_04[0] : v0;
     v1[1] = (param1->unk_00 > 1) ? param1->unk_04[1] : v0;
@@ -388,10 +388,10 @@ static void ov40_02256848 (UnkStruct_ov40_0225645C * param0, const UnkStruct_ov4
     BOOL v1;
 
     for (v0 = 0; v0 < param1->unk_00; v0++) {
-        ov25_02255938(param0->unk_24[0 + v0], 1 + sub_02079EDC(param1->unk_1C[v0], param1->unk_20[v0], 0));
+        ov25_02255938(param0->unk_24[0 + v0], 1 + PokeIconPaletteIndex(param1->unk_1C[v0], param1->unk_20[v0], 0));
     }
 
-    ov25_02255938(param0->unk_24[2], 1 + sub_02079EDC(1, 0, 1));
+    ov25_02255938(param0->unk_24[2], 1 + PokeIconPaletteIndex(1, 0, 1));
 
     if (param1->unk_00 > 0) {
         if (PokemonPersonalData_GetFormValue(param1->unk_1C[0], param1->unk_20[0], 28)) {

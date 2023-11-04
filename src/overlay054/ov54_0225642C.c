@@ -22,7 +22,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
 #include "overlay025/ov25_02255540.h"
@@ -212,11 +212,11 @@ static void ov54_022565EC (UnkStruct_ov54_0225642C * param0, const UnkStruct_ov5
     ov25_02255958(&param0->unk_54, 12, 5, 6, 8);
 
     for (v1 = 0; v1 < param1->unk_90; v1++) {
-        param0->unk_68[v1] = sub_02079D8C(param1->unk_00[v1].unk_00, 0, param1->unk_00[v1].unk_08);
+        param0->unk_68[v1] = PokeIconSpriteIndex(param1->unk_00[v1].unk_00, 0, param1->unk_00[v1].unk_08);
         param0->unk_24[v1] = ov25_02255810(param0->unk_20, &v0[v1], &param0->unk_54);
 
         ov25_02255940(param0->unk_24[v1], v1 * 16);
-        ov25_02255938(param0->unk_24[v1], sub_02079EDC(param1->unk_00[v1].unk_00, param1->unk_00[v1].unk_08, 0));
+        ov25_02255938(param0->unk_24[v1], PokeIconPaletteIndex(param1->unk_00[v1].unk_00, param1->unk_00[v1].unk_08, 0));
     }
 
     for ( ; v1 < 12; v1++) {

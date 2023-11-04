@@ -61,7 +61,7 @@
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 #include "pokemon.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "unk_0207E0B8.h"
 #include "unk_0209B6F8.h"
 #include "overlay063/ov63_0222BE18.h"
@@ -1192,9 +1192,9 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov104_0223F9AC = {
 
 void ov104_02232EC0 (UnkStruct_ov104_0223C4CC * param0)
 {
-    sub_0200CD7C(param0->unk_04, 2, param0->unk_34.unk_00, param0->unk_34.unk_04, 19, sub_02079FD0(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 2000);
-    sub_0200CE0C(param0->unk_34.unk_00, param0->unk_34.unk_04, 19, sub_02079FD8(), 0, 2000);
-    sub_0200CE3C(param0->unk_34.unk_00, param0->unk_34.unk_04, 19, sub_02079FE4(), 0, 2000);
+    sub_0200CD7C(param0->unk_04, 2, param0->unk_34.unk_00, param0->unk_34.unk_04, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 2000);
+    sub_0200CE0C(param0->unk_34.unk_00, param0->unk_34.unk_04, 19, PokeIcon32KCellsFileIndex(), 0, 2000);
+    sub_0200CE3C(param0->unk_34.unk_00, param0->unk_34.unk_04, 19, PokeIcon32KAnimationFileIndex(), 0, 2000);
 }
 
 void ov104_02232F28 (UnkStruct_ov104_0223C4CC * param0)
@@ -1212,7 +1212,7 @@ CellActorData * ov104_02232F4C (UnkStruct_ov104_0223C4CC * param0, Pokemon * par
     GF_ASSERT(param2 < (2008 - 2000));
 
     sub_0200D888(
-        param0->unk_34.unk_00, param0->unk_34.unk_04, 19, sub_02079D80(param1), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 2000 + param2);
+        param0->unk_34.unk_00, param0->unk_34.unk_04, 19, Pokemon_IconSpriteIndex(param1), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 2000 + param2);
 
     v1 = Unk_ov104_0223F9E0;
 
@@ -1223,7 +1223,7 @@ CellActorData * ov104_02232F4C (UnkStruct_ov104_0223C4CC * param0, Pokemon * par
 
     v0 = sub_0200CE6C(param0->unk_34.unk_00, param0->unk_34.unk_04, &v1);
 
-    sub_02021F24(v0->unk_00, sub_02079FC4(param1));
+    sub_02021F24(v0->unk_00, Pokemon_IconPaletteIndex(param1));
     sub_0200D330(v0);
 
     return v0;

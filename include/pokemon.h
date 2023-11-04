@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_02073C2C_H
-#define POKEPLATINUM_UNK_02073C2C_H
+#ifndef POKEPLATINUM_POKEMON_H
+#define POKEPLATINUM_POKEMON_H
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
@@ -870,4 +870,4 @@ BOOL Pokemon_SetBallSeal(int param0, Pokemon *mon, int heapID);
 void sub_02078B40(Pokemon *mon, UnkStruct_02078B40 *param1);
 void sub_02078E0C(UnkStruct_02078B40 *param0, Pokemon *mon);
 
-#endif // POKEPLATINUM_UNK_02073C2C_H
+#endif // POKEPLATINUM_POKEMON_H

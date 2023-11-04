@@ -22,7 +22,7 @@
 #include "unk_0201F834.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "party.h"
 #include "item.h"
 #include "unk_0207E0B8.h"
@@ -78,9 +78,9 @@ void ov107_02249604 (UnkStruct_ov107_02249954 * param0, Party * param1, u8 param
 
     v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 100);
 
-    param0->unk_1A0[3][1] = sub_020098B8(param0->unk_190[1], 19, sub_02079FD0(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 100);
-    param0->unk_1A0[3][2] = sub_02009BC4(param0->unk_190[2], v1, sub_02079FD8(), 0, 3, 2, 100);
-    param0->unk_1A0[3][3] = sub_02009BC4(param0->unk_190[3], v1, sub_02079FE4(), 0, 3, 3, 100);
+    param0->unk_1A0[3][1] = sub_020098B8(param0->unk_190[1], 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 100);
+    param0->unk_1A0[3][2] = sub_02009BC4(param0->unk_190[2], v1, PokeIcon32KCellsFileIndex(), 0, 3, 2, 100);
+    param0->unk_1A0[3][3] = sub_02009BC4(param0->unk_190[3], v1, PokeIcon32KAnimationFileIndex(), 0, 3, 3, 100);
 
     for (v0 = 0; v0 < 4; v0++) {
         if (v0 == 3) {
@@ -93,7 +93,7 @@ void ov107_02249604 (UnkStruct_ov107_02249954 * param0, Party * param1, u8 param
             v2 = Party_GetPokemonBySlotIndex(param1, v0);
         }
 
-        param0->unk_1A0[3 + v0][0] = sub_02009A4C(param0->unk_190[0], v1, sub_02079D80(v2), 0, 3 + v0, NNS_G2D_VRAM_TYPE_2DMAIN, 100);
+        param0->unk_1A0[3 + v0][0] = sub_02009A4C(param0->unk_190[0], v1, Pokemon_IconSpriteIndex(v2), 0, 3 + v0, NNS_G2D_VRAM_TYPE_2DMAIN, 100);
     }
 
     NARC_dtor(v1);

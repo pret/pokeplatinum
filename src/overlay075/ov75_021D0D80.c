@@ -51,7 +51,7 @@
 #include "strbuf.h"
 #include "unk_020279FC.h"
 #include "unk_020393C8.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "overlay075/ov75_021D0D80.h"
 
 enum {
@@ -902,9 +902,9 @@ static void ov75_021D1ADC (UnkStruct_ov75_021D1184 * param0)
         sub_0200A93C(param0->unk_00);
     }
 
-    sub_0200CC9C(param0->unk_A8, param0->unk_AC, 19, sub_02079FD0(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 0);
-    sub_0200CE0C(param0->unk_A8, param0->unk_AC, 19, sub_02079FD4(), 0, 0);
-    sub_0200CE3C(param0->unk_A8, param0->unk_AC, 19, sub_02079FE0(), 0, 0);
+    sub_0200CC9C(param0->unk_A8, param0->unk_AC, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 0);
+    sub_0200CE0C(param0->unk_A8, param0->unk_AC, 19, PokeIconCellsFileIndex(), 0, 0);
+    sub_0200CE3C(param0->unk_A8, param0->unk_AC, 19, PokeIconAnimationFileIndex(), 0, 0);
 
     for (v0 = 0; v0 < 3; v0++) {
         if (param0->unk_1C->unk_14[v0].val2 == 0xFFFF) {

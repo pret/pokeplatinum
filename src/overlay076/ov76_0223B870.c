@@ -52,7 +52,7 @@
 #include "unk_02024220.h"
 #include "unk_0202C9F4.h"
 #include "pokemon.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "unk_02097B18.h"
 #include "overlay012/ov12_02225864.h"
 #include "overlay076/ov76_0223B870.h"
@@ -549,15 +549,15 @@ void ov76_0223C110 (UnkStruct_ov76_0223DE00 * param0)
     v1 = param0->unk_D4.unk_0C;
     v2 = param0->unk_D4.unk_14;
 
-    sub_0200CD7C(v2, 2, v0, v1, 19, sub_02079FD0(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 16000);
+    sub_0200CD7C(v2, 2, v0, v1, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 16000);
 
     {
-        int v3 = sub_02079FDC();
+        int v3 = PokeIcon64KCellsFileIndex();
         sub_0200CE0C(v0, v1, 19, v3, 0, 17000);
     }
 
     {
-        int v4 = sub_02079FE8();
+        int v4 = PokeIcon64KAnimationFileIndex();
         sub_0200CE3C(v0, v1, 19, v4, 0, 18000);
     }
 }
@@ -575,7 +575,7 @@ void ov76_0223C188 (UnkStruct_ov76_0223DE00 * param0)
     for (v0 = 0; v0 < param0->unk_00->unk_00; v0++) {
         v5 = param0->unk_00->unk_04[v0];
 
-        sub_0200D888(param0->unk_D4.unk_08, param0->unk_D4.unk_0C, 19, sub_02079D80(v5), 0, NNS_G2D_VRAM_TYPE_2DMAIN, (v0 + 15000));
+        sub_0200D888(param0->unk_D4.unk_08, param0->unk_D4.unk_0C, 19, Pokemon_IconSpriteIndex(v5), 0, NNS_G2D_VRAM_TYPE_2DMAIN, (v0 + 15000));
 
         v6.unk_00 = 0;
         v6.unk_02 = 0;
@@ -598,7 +598,7 @@ void ov76_0223C188 (UnkStruct_ov76_0223DE00 * param0)
         v2 = Pokemon_GetValue(v5, MON_DATA_SPECIES, NULL);
         v1 = Pokemon_GetValue(v5, MON_DATA_IS_EGG, NULL);
         v4 = Pokemon_GetValue(v5, MON_DATA_FORM, NULL);
-        v3 = sub_02079EDC(v2, v4, v1);
+        v3 = PokeIconPaletteIndex(v2, v4, v1);
 
         sub_02021F24(param0->unk_2FC[v0]->unk_00, v3);
         sub_0200D364(param0->unk_2FC[v0], 1);

@@ -44,7 +44,7 @@
 #include "unk_020279FC.h"
 #include "unk_02033200.h"
 #include "unk_020797C8.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "unk_02099550.h"
 #include "overlay094/ov94_0223B140.h"
 #include "overlay094/ov94_0223BCB0.h"
@@ -355,7 +355,7 @@ static void ov94_0223C0D4 (UnkStruct_ov94_0223FD4C * param0)
         int v4, v5, v6, v7;
         u16 * v8;
 
-        v2 = sub_02006F88(19, sub_02079FD0(), &v3, 62);
+        v2 = sub_02006F88(19, PokeIconPalettesFileIndex(), &v3, 62);
 
         DC_FlushRange(v3->pRawData, (3 * 16) * 2);
         GX_LoadOBJPltt(v3->pRawData, 3 * 0x20, (3 * 16) * 2);

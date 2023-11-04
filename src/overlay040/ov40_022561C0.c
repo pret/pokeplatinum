@@ -17,7 +17,7 @@
 #include "unk_02022594.h"
 #include "unk_020261E4.h"
 #include "pokemon.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "overlay005/ov5_021E622C.h"
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay040/ov40_0225645C.h"
@@ -219,7 +219,7 @@ static void ov40_022563D0 (UnkStruct_ov40_0225645C_1 * param0, UnkStruct_0202631
         v1 = sub_02026220(v0);
         v3 = BoxPokemon_EnterDecryptionContext(v1);
 
-        param0->unk_04[v2] = sub_02079D40(v1);
+        param0->unk_04[v2] = BoxPokemon_IconSpriteIndex(v1);
         param0->unk_1C[v2] = BoxPokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
         param0->unk_20[v2] = BoxPokemon_GetValue(v1, MON_DATA_FORM, NULL);
         param0->unk_0C[v2] = ov5_021E6590(v0);

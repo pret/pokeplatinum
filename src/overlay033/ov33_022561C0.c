@@ -16,7 +16,7 @@
 #include "unk_02022594.h"
 #include "unk_020244AC.h"
 #include "pokemon.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "party.h"
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay033/ov33_02256474.h"
@@ -90,7 +90,7 @@ static BOOL ov33_0225621C (UnkStruct_ov33_0225621C * param0, UnkStruct_ov25_0225
                 if (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) == 0) {
                     param0->unk_04.unk_04[v4].unk_04 = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
                     param0->unk_04.unk_04[v4].unk_08 = Pokemon_GetValue(v1, MON_DATA_FORM, NULL);
-                    param0->unk_04.unk_04[v4].unk_00 = sub_02079D40((const BoxPokemon *)v1);
+                    param0->unk_04.unk_04[v4].unk_00 = BoxPokemon_IconSpriteIndex((const BoxPokemon *)v1);
                     v3 = ov33_0225630C(Pokemon_GetValue(v1, MON_DATA_FRIENDSHIP, NULL));
 
                     switch (v3) {

@@ -21,7 +21,7 @@
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "item.h"
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay025/ov25_02254560.h"
@@ -335,7 +335,7 @@ static void ov32_0225692C (UnkStruct_ov32_02256470 * param0, const UnkStruct_ov3
             if ((param1->unk_04[v3].unk_06 == 0) || param1->unk_04[v3].unk_0C) {
                 ov25_02255938(param0->unk_9C[v3], 1);
             } else {
-                u16 v4 = sub_02079EDC(param1->unk_04[v3].unk_04, param1->unk_04[v3].unk_0F, param1->unk_04[v3].unk_0E);
+                u16 v4 = PokeIconPaletteIndex(param1->unk_04[v3].unk_04, param1->unk_04[v3].unk_0F, param1->unk_04[v3].unk_0E);
                 ov25_02255938(param0->unk_9C[v3], 2 + v4);
             }
         }

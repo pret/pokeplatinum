@@ -65,7 +65,7 @@
 #include "unk_020279FC.h"
 #include "pokemon.h"
 #include "unk_020797C8.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "unk_0208694C.h"
 
 typedef struct {
@@ -966,7 +966,7 @@ static void sub_02086B30 (NNSG2dCharacterData * param0, NNSG2dPaletteData * para
 
     GX_LoadOBJ(param0->pRawData, (21 * 32 + 31) * 0x20, 0x20 * 4 * 4);
     v0 = (u8 *)param1->pRawData;
-    GX_LoadOBJPltt((void *)(v0 + sub_02079EDC(param2, param3, 0) * 0x20), 6 * 0x20, 0x20);
+    GX_LoadOBJPltt((void *)(v0 + PokeIconPaletteIndex(param2, param3, 0) * 0x20), 6 * 0x20, 0x20);
 }
 
 static int sub_02086B64 (UnkStruct_020067E8 * param0, int * param1)
@@ -1573,10 +1573,10 @@ static void sub_020877F4 (UnkStruct_02087A10 * param0, NARC * param1)
     param0->unk_328[0][3] = sub_02009BC4(param0->unk_318[3], param1, 14, 1, 0, 3, 18);
 
     if (param0->unk_00 == 1) {
-        param0->unk_518 = sub_02006F50(19, sub_02079D8C(param0->unk_04, 0, param0->unk_08), 0, &param0->unk_51C, 18);
+        param0->unk_518 = sub_02006F50(19, PokeIconSpriteIndex(param0->unk_04, 0, param0->unk_08), 0, &param0->unk_51C, 18);
         DC_FlushRange(param0->unk_51C, 0x20 * 4 * 4);
 
-        param0->unk_520 = sub_02006F88(19, sub_02079FD0(), &param0->unk_524, 18);
+        param0->unk_520 = sub_02006F88(19, PokeIconPalettesFileIndex(), &param0->unk_524, 18);
         DC_FlushRange(param0->unk_524, 0x20 * 4);
     }
 

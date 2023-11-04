@@ -43,7 +43,7 @@
 #include "unk_020393C8.h"
 #include "pokemon.h"
 #include "unk_020797C8.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "party.h"
 #include "item.h"
 #include "overlay094/ov94_0223BCB0.h"
@@ -1055,13 +1055,13 @@ static void ov94_02240DF8 (int param0, int param1, int param2, int param3, UnkSt
     u8 * v1;
     NNSG2dCharacterData * v2;
 
-    v1 = ov94_02240DD0(param5, sub_02079D8C(param0, param2, param1), &v2, 62);
+    v1 = ov94_02240DD0(param5, PokeIconSpriteIndex(param0, param2, param1), &v2, 62);
 
     MI_CpuCopyFast(v2->pRawData, param6->unk_0C, ((4 * 4) * 0x20));
 
     param6->unk_00 = (12 + param3 * (4 * 4)) * 0x20;
     param6->unk_08 = param4;
-    param6->unk_04 = sub_02079EDC(param0, param1, param2) + 3;
+    param6->unk_04 = PokeIconPaletteIndex(param0, param1, param2) + 3;
 
     Heap_FreeToHeap(v1);
 }

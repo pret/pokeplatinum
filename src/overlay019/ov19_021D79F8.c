@@ -25,7 +25,7 @@
 #include "unk_020218BC.h"
 #include "pokemon.h"
 #include "unk_020797C8.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021D79F8.h"
@@ -437,7 +437,7 @@ static void ov19_021D813C (UnkStruct_ov19_021D8318 * param0, u32 param1)
 
         if (v3) {
             param0->unk_5814[v2] = v3;
-            param0->unk_57D8[v2] = sub_02079D40(v1);
+            param0->unk_57D8[v2] = BoxPokemon_IconSpriteIndex(v1);
             ov19_021DA744(param0->unk_58F0, param0->unk_CD8[v2], param0->unk_57D8[v2], ((4 * 4) * 0x20 + 0x80));
         }
     }

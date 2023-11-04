@@ -10,7 +10,7 @@
 #include "unk_02005474.h"
 #include "heap.h"
 #include "unk_020218BC.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay107/ov107_02249604.h"
 #include "overlay107/ov107_02249B1C.h"
@@ -94,7 +94,7 @@ void ov107_02249BEC (UnkStruct_ov107_02249B8C * param0, u32 param1)
 
 void ov107_02249C08 (UnkStruct_ov107_02249B8C * param0, Pokemon * param1)
 {
-    sub_02021F24(param0->unk_04, sub_02079FC4(param1));
+    sub_02021F24(param0->unk_04, Pokemon_IconPaletteIndex(param1));
     return;
 }
 
