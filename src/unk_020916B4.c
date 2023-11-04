@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0208D7BC.h"
 #include "struct_defs/struct_02091850.h"
 #include "overlay115/struct_ov115_0226527C.h"
@@ -334,7 +334,7 @@ void sub_02091D50 (UnkStruct_0208D7BC * param0)
 
 void sub_02091F8C (UnkStruct_0208D7BC * param0)
 {
-    UnkStruct_02008A90 v0;
+    ArchivedSprite v0;
     void * v1;
 
     param0->unk_2B4.unk_04 = sub_0200762C(19);
@@ -342,9 +342,9 @@ void sub_02091F8C (UnkStruct_0208D7BC * param0)
     v1 = sub_0208DD48(param0);
 
     if (param0->unk_24C->unk_11 == 2) {
-        sub_02075F0C(&v0, v1, 2, 0);
+        BoxPokemon_BuildArchivedSprite(&v0, v1, 2, 0);
     } else {
-        sub_02075EF4(&v0, v1, 2);
+        Pokemon_BuildArchivedSprite(&v0, v1, 2);
     }
 
     sub_020789BC(param0->unk_6A0, param0->unk_2B4.unk_08, param0->unk_250.unk_0C, 1);

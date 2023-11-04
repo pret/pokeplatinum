@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/struct_02007C10.h"
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/cell_actor_data.h"
@@ -21,6 +21,9 @@
 #define OTID_NOT_SET    0
 #define OTID_SET        1
 #define OTID_NOT_SHINY  2
+
+#define FACE_BACK       0
+#define FACE_FRONT      2
 
 /**
  * @brief Pokemon Personal data structure. This contains data that is the same across all pokemon of the same species/form
@@ -538,11 +541,57 @@ u8 Pokemon_IsShiny(Pokemon *mon);
  */
 u8 Pokemon_IsPersonalityShiny(u32 monOTID, u32 monPersonality);
 
-u32 sub_02075E64(u32 param0);
-void sub_02075EF4(UnkStruct_02008A90 *param0, Pokemon *mon, u8 param2);
-void sub_02075F00(UnkStruct_02008A90 *param0, Pokemon *mon, u8 param2);
-void sub_02075F0C(UnkStruct_02008A90 *param0, BoxPokemon *boxMon, u8 param2, BOOL param3);
-void sub_02075FB4(UnkStruct_02008A90 *param0, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
+/**
+ * @brief Computes a personality value which, when applied to the given trainer ID, will result
+ * in a shiny Pokemon.
+ * 
+ * @param monOTID
+ * @return The computed personality value
+ */
+u32 Pokemon_FindShinyPersonality(u32 monOTID);
+
+/**
+ * @brief Build an ArchivedSprite for a Pokemon.
+ * 
+ * @param sprite    Pointer to the sprite structure to be populated
+ * @param mon       The Pokemon whose data will be used to build the sprite
+ * @param face      Which face of the Pokemon the player sees
+ */
+void Pokemon_BuildArchivedSprite(ArchivedSprite *sprite, Pokemon *mon, u8 face);
+
+/**
+ * @brief Build an ArchivedSprite for a Pokemon, preferring sprites from
+ * Diamond/Pearl where possible.
+ * 
+ * @param sprite    Pointer to the sprite structure to be populated
+ * @param mon       The Pokemon whose data will be used to build the sprite
+ * @param face      Which face of the Pokemon the player sees
+ */
+void Pokemon_BuildArchivedDPSprite(ArchivedSprite *sprite, Pokemon *mon, u8 face);
+
+/**
+ * @brief Build an ArchivedSprite for a BoxPokemon.
+ * 
+ * @param sprite    Pointer to the sprite structure to be populated
+ * @param mon       The Pokemon whose data will be used to build the sprite
+ * @param face      Which face of the Pokemon the player sees
+ * @param preferDP  If TRUE, prefer sprites from Diamond/Pearl over Platinum
+ */
+void BoxPokemon_BuildArchivedSprite(ArchivedSprite *sprite, BoxPokemon *boxMon, u8 face, BOOL preferDP);
+
+/**
+ * @brief Build an ArchivedSprite for a Pokemon sprite according to the input
+ * species, form, and gender.
+ * 
+ * @param sprite        Pointer to the sprite structure to be populated
+ * @param species       The Pokemon's species
+ * @param gender        The Pokemon's gender
+ * @param face          Which face of the Pokemon the player sees
+ * @param shiny         1 if the Pokemon is shiny, 0 if not
+ * @param form          The Pokemon's form
+ * @param personality   The Pokemon's personality value
+ */
+void BuildArchivedPokemonSprite(ArchivedSprite *sprite, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
 
 /**
  * @brief Sanitizes a pokemon form. If the given form is greater than the max for the given species, returns zero, else returns the form unchanged
@@ -557,7 +606,7 @@ u8 sub_020765AC(Pokemon *mon, u8 param1);
 u8 sub_020765B8(Pokemon *mon, u8 param1);
 u8 sub_020765C4(BoxPokemon *boxMon, u8 param1, BOOL param2);
 u8 sub_02076648(u16 monSpecies, u8 monGender, u8 param2, u8 monForm, u32 monPersonality);
-void sub_0207697C(UnkStruct_02008A90 *param0, u16 param1);
+void sub_0207697C(ArchivedSprite *param0, u16 param1);
 CellActorData *sub_02076994(UnkStruct_0200C6E4 *param0, UnkStruct_0200C704 *param1, PaletteSys *param2, int param3, int param4, int param5, int param6, int param7, int heapID);
 void sub_02076AAC(int param0, int param1, UnkStruct_ov5_021DE5D0 *param2);
 

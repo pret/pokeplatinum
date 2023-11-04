@@ -13,7 +13,7 @@
 #include "pokemon.h"
 
 #include "struct_defs/struct_02007C10.h"
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02081CF4.h"
@@ -751,7 +751,7 @@ void ov119_021D1844 (UnkStruct_ov119_021D17B8 * param0)
 
 void ov119_021D1858 (UnkStruct_ov119_021D0FD0 * param0)
 {
-    UnkStruct_02008A90 v0;
+    ArchivedSprite v0;
     UnkStruct_02007C10 v1[10];
     Pokemon * v2;
     int v3;
@@ -767,7 +767,7 @@ void ov119_021D1858 (UnkStruct_ov119_021D0FD0 * param0)
         Pokemon_SetValue(v2, 76, &v5);
     }
 
-    sub_02075EF4(&v0, v2, 2);
+    Pokemon_BuildArchivedSprite(&v0, v2, 2);
     sub_020789BC(param0->unk_04.unk_3C, &v1[0], v3, 1);
 
     param0->unk_70 = sub_02007C34(param0->unk_04.unk_38, &v0, 128, 96 + v4, 0, 0, &v1[0], NULL);

@@ -17,7 +17,7 @@
 #include "constdata/const_020F410C.h"
 
 #include "struct_defs/struct_02007C10.h"
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0201D738.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_defs/struct_0202818C.h"
@@ -101,7 +101,7 @@ static const u8 Unk_020F0A2C[] = {
 UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon * param1, int param2, UnkStruct_020279FC * param3, int param4, UnkStruct_02026324 * param5, UnkStruct_0207D3C0 * param6, UnkStruct_0202CD88 * param7, UnkStruct_02056B24 * param8, int param9, int param10, int param11)
 {
     UnkStruct_0207AE68 * v0;
-    UnkStruct_02008A90 v1;
+    ArchivedSprite v1;
     int v2;
 
     v0 = (UnkStruct_0207AE68 *)Heap_AllocFromHeap(param11, sizeof(UnkStruct_0207AE68));
@@ -946,10 +946,10 @@ static void sub_0207C460 (BGL * param0)
 
 static void sub_0207C498 (UnkStruct_0207AE68 * param0)
 {
-    UnkStruct_02008A90 v0;
+    ArchivedSprite v0;
     Pokemon * v1;
 
-    sub_02075EF4(&v0, param0->unk_28, 2);
+    Pokemon_BuildArchivedSprite(&v0, param0->unk_28, 2);
 
     param0->unk_1C[0] = sub_02007C34(param0->unk_18, &v0, 128, 80, 0, 0, NULL, NULL);
     v1 = Pokemon_New(param0->unk_5C);
@@ -957,7 +957,7 @@ static void sub_0207C498 (UnkStruct_0207AE68 * param0)
     Pokemon_Copy(param0->unk_28, v1);
     Pokemon_SetValue(v1, 5, (u8 *)&param0->unk_62);
     Pokemon_CalcLevelAndStats(v1);
-    sub_02075EF4(&v0, v1, 2);
+    Pokemon_BuildArchivedSprite(&v0, v1, 2);
     Heap_FreeToHeap(v1);
 
     param0->unk_1C[1] = sub_02007C34(param0->unk_18, &v0, 128, 80, 0, 0, NULL, NULL);

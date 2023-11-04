@@ -16,7 +16,7 @@
 #include "pokemon.h"
 #include "overlay021/struct_ov21_021D4C0C_decl.h"
 
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay019/struct_ov19_021DA864.h"
@@ -772,9 +772,9 @@ static void ov21_021E998C (Window * param0, int param1)
 
 static UnkStruct_02007C7C * ov21_021E99E0 (UnkStruct_02007768 * param0, Pokemon * param1, int param2, int param3, int param4)
 {
-    UnkStruct_02008A90 v0;
+    ArchivedSprite v0;
 
-    sub_02075EF4(&v0, param1, 2);
+    Pokemon_BuildArchivedSprite(&v0, param1, 2);
     return sub_02007C34(param0, &v0, param2, param3, 0, 0, NULL, NULL);
 }
 

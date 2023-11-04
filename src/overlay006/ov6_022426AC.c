@@ -8,7 +8,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200C738.h"
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay115/struct_ov115_02261520.h"
@@ -30,7 +30,7 @@ typedef struct UnkStruct_ov6_022426B8_t {
     UnkStruct_02009DC8 * unk_10[4];
     void * unk_20;
     void * unk_24;
-    UnkStruct_02008A90 unk_28;
+    ArchivedSprite unk_28;
     UnkStruct_020218BC * unk_38;
     UnkStruct_0200C738 unk_3C;
     UnkStruct_02022550 * unk_1C8;
@@ -93,7 +93,7 @@ void ov6_022426C0 (UnkStruct_ov6_022426B8 * param0, const int param1)
             }
         }
 
-        sub_02075FB4(&param0->unk_28, param1, v2, 2, 0, NULL, NULL);
+        BuildArchivedPokemonSprite(&param0->unk_28, param1, v2, 2, 0, NULL, NULL);
     }
 
     param0->unk_38 = sub_020095C4(1, &param0->unk_3C, 4);
@@ -110,8 +110,8 @@ void ov6_022426C0 (UnkStruct_ov6_022426B8 * param0, const int param1)
         param0->unk_10[3] = sub_02009BC4(param0->unk_00[3], v1, 12, 0, 3, 3, 4);
     }
 
-    param0->unk_20 = sub_0201363C(param0->unk_28.unk_00, param0->unk_28.unk_02, 4);
-    param0->unk_24 = sub_02013660(param0->unk_28.unk_00, param0->unk_28.unk_04, 4);
+    param0->unk_20 = sub_0201363C(param0->unk_28.archive, param0->unk_28.character, 4);
+    param0->unk_24 = sub_02013660(param0->unk_28.archive, param0->unk_28.palette, 4);
 
     ov6_02242880(param0->unk_00[0], param0->unk_00[1], param0->unk_20, param0->unk_24);
 

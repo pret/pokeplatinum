@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
 
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 
 #include "spl.h"
 
@@ -112,7 +112,7 @@ UnkSPLStruct6 * ov77_021D6CD0 (UnkStruct_ov77_021D6CFC * param0, int param1)
 void ov77_021D6CFC (UnkStruct_ov77_021D6CFC * param0)
 {
     u8 v0;
-    UnkStruct_02008A90 v1;
+    ArchivedSprite v1;
     UnkStruct_020203AC * v2;
     void * v3;
     int v4[3] = {389, 392, 395};
@@ -145,7 +145,7 @@ void ov77_021D6CFC (UnkStruct_ov77_021D6CFC * param0)
     param0->unk_00 = sub_0200762C(76);
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_02075FB4(&v1, v5[v0], 0, 2, 0, NULL, NULL);
+        BuildArchivedPokemonSprite(&v1, v5[v0], 0, 2, 0, NULL, NULL);
         param0->unk_04[v0] = sub_02007C34(param0->unk_00, &v1, Unk_ov77_021D7958[param0->unk_1C[v0]].unk_00, Unk_ov77_021D7958[param0->unk_1C[v0]].unk_04, 1023, v0, NULL, NULL);
         sub_02007DEC(param0->unk_04[v0], 6, 1);
     }

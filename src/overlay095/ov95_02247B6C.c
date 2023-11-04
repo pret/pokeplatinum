@@ -16,7 +16,7 @@
 #include "overlay095/struct_ov95_02247958_decl.h"
 
 #include "struct_defs/struct_02007C10.h"
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay019/struct_ov19_021DA864.h"
@@ -464,13 +464,13 @@ static void ov95_02248174 (UnkStruct_ov95_02247C6C * param0)
 
 static UnkStruct_02007C7C * ov95_02248240 (UnkStruct_ov95_02247C6C * param0)
 {
-    UnkStruct_02008A90 v0;
+    ArchivedSprite v0;
     BoxPokemon * v1;
     int v2;
 
     v1 = (BoxPokemon *)ov95_02247634(param0->unk_00);
 
-    sub_02075F0C(&v0, v1, 2, 0);
+    BoxPokemon_BuildArchivedSprite(&v0, v1, 2, 0);
     sub_020789BC(param0->unk_80, param0->unk_14, ov95_0224764C(param0->unk_00), 1);
 
     v2 = (100 - 20) + sub_020765C4(v1, 2, 0);

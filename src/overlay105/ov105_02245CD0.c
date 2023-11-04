@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02007C7C_decl.h"
 #include "pokemon.h"
 
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 
 #include "unk_0200762C.h"
 #include "gx_layers.h"
@@ -54,12 +54,12 @@ void ov105_02245D50 (UnkStruct_02007768 * param0)
 
 UnkStruct_02007C7C * ov105_02245D88 (UnkStruct_02007768 * param0, int param1, Pokemon * param2, int param3, int param4, int param5)
 {
-    UnkStruct_02008A90 v0;
+    ArchivedSprite v0;
     UnkStruct_02007C7C * v1;
     int v2;
     u32 v3;
 
-    sub_02075EF4(&v0, param2, 2);
+    Pokemon_BuildArchivedSprite(&v0, param2, 2);
 
     v2 = 0;
     v1 = sub_02007C34(param0, &v0, param3, (param4 + v2), param5, param1, NULL, NULL);

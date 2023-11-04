@@ -13,7 +13,7 @@
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/union_02022594_020225E0.h"
 #include "struct_defs/struct_02030A80.h"
@@ -1178,7 +1178,7 @@ static void ov62_0223B050 (UnkStruct_0208C06C * param0)
 {
     UnkStruct_ov62_02239DBC * v0 = param0->unk_860;
     PokemonPersonalData * v1;
-    UnkStruct_02008A90 v2;
+    ArchivedSprite v2;
     u8 v3;
     u8 v4;
     u32 v5 = v0->unk_04.unk_DC[v0->unk_1B0];
@@ -1209,7 +1209,7 @@ static void ov62_0223B050 (UnkStruct_0208C06C * param0)
     v9 = sub_02076648(v7, v3, v10, v6, v8);
     v9 = 0;
 
-    sub_02075FB4(&v2, v7, v3, v10, v4, v6, v8);
+    BuildArchivedPokemonSprite(&v2, v7, v3, v10, v4, v6, v8);
     v0->unk_32C = sub_02007C34(param0->unk_14.unk_50, &v2, 42, 91 + v9, 0, 0, NULL, NULL);
     PokemonPersonalData_Free(v1);
 }

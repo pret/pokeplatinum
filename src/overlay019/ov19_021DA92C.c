@@ -9,7 +9,7 @@
 #include "strbuf.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D5BAC.h"
@@ -164,9 +164,9 @@ void ov19_021DAA80 (UnkStruct_ov19_021DA9E0 * param0)
 
 void ov19_021DAA90 (UnkStruct_ov19_021DA9E0 * param0)
 {
-    UnkStruct_02008A90 v0;
+    ArchivedSprite v0;
 
-    sub_02075FB4(&v0, 1, 0, 0, 0, 0, 0);
+    BuildArchivedPokemonSprite(&v0, 1, 0, 0, 0, 0, 0);
     param0->unk_24 = sub_02007C34(param0->unk_20, &v0, 44, 84, 0, 0, NULL, NULL);
 }
 
@@ -532,7 +532,7 @@ void ov19_021DB078 (UnkStruct_ov19_021DA9E0 * param0)
 
 static void ov19_021DB0E4 (UnkStruct_ov19_021DA9E0 * param0)
 {
-    UnkStruct_02008A90 v0;
+    ArchivedSprite v0;
     const UnkStruct_ov19_021D5BAC * v1;
 
     v1 = ov19_021D5E70(param0->unk_10);
@@ -560,7 +560,7 @@ static void ov19_021DB0E4 (UnkStruct_ov19_021DA9E0 * param0)
         sub_0200C648(param0->unk_1C, 1, v1->unk_0A, 3, 1, &(param0->unk_04[2]), 0, 16);
     }
 
-    sub_02075F0C(&v0, v1->unk_00, 2, 0);
+    BoxPokemon_BuildArchivedSprite(&v0, v1->unk_00, 2, 0);
     param0->unk_24 = sub_02007C34(param0->unk_20, &v0, 44, 84, 0, 0, NULL, NULL);
     ov19_021DB24C(param0, v1->unk_0B);
 }

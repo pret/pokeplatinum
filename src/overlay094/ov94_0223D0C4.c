@@ -13,7 +13,7 @@
 
 #include "overlay094/const_ov94_02245FD8.h"
 
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02081CF4.h"
 #include "overlay094/struct_ov94_0223BA88_sub2.h"
@@ -595,22 +595,22 @@ void ov94_0223DA78 (MessageLoader * param0, Window param1[], u16 * param2, Pokem
 
 void ov94_0223DB2C (Pokemon * param0)
 {
-    UnkStruct_02008A90 v0;
+    ArchivedSprite v0;
     u8 * v1 = Heap_AllocFromHeap(62, (0x20 * 10 * 10));
 
-    sub_02075EF4(&v0, param0, 2);
+    Pokemon_BuildArchivedSprite(&v0, param0, 2);
 
     {
         int v2 = Pokemon_GetValue(param0, MON_DATA_PERSONALITY, NULL);
         int v3 = Pokemon_GetValue(param0, MON_DATA_SPECIES, NULL);
 
-        sub_020136A4(v0.unk_00, v0.unk_02, 62, 0, 0, 10, 10, v1, v2, 0, 2, v3);
+        sub_020136A4(v0.archive, v0.character, 62, 0, 0, 10, 10, v1, v2, 0, 2, v3);
     }
 
     DC_FlushRange(v1, (0x20 * 10 * 10));
     GX_LoadOBJ(v1, ((18 * 32 + 16) * 32), (0x20 * 10 * 10));
 
-    sub_02006E84(v0.unk_00, v0.unk_04, 1, 0x20 * 13, 32, 62);
+    sub_02006E84(v0.archive, v0.palette, 1, 0x20 * 13, 32, 62);
     Heap_FreeToHeap(v1);
 }
 

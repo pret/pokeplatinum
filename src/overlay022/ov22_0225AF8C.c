@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0202A150_decl.h"
 #include "pokemon.h"
 
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "overlay022/struct_ov22_02254DE0.h"
 #include "overlay022/struct_ov22_022550D4.h"
 #include "overlay022/struct_ov22_02255CB8.h"
@@ -347,7 +347,7 @@ static void ov22_0225B388 (UnkStruct_ov22_0225B1BC * param0, const UnkStruct_ov2
     ov22_022578F4(&param0->unk_1F4, &v0);
 
     {
-        UnkStruct_02008A90 v4;
+        ArchivedSprite v4;
 
         v1 = sub_0202A60C(param1->unk_00);
         v2 = sub_0202A614(param1->unk_00);

@@ -1161,7 +1161,7 @@ static void ov6_02241BAC (const u16 param0, const u8 param1, const int param2, c
         }
     }
 
-    v1 = sub_02075E64(param3);
+    v1 = Pokemon_FindShinyPersonality(param3);
 
     if (v2) {
         u8 v7, v8;
@@ -1174,7 +1174,7 @@ static void ov6_02241BAC (const u16 param0, const u8 param1, const int param2, c
                 if (v7 != v3) {
                     break;
                 } else {
-                    v1 = sub_02075E64(param3);
+                    v1 = Pokemon_FindShinyPersonality(param3);
                 }
             } else if (param4->unk_0E == 28) {
                 v8 = Pokemon_GetNatureOf(v1);
@@ -1182,7 +1182,7 @@ static void ov6_02241BAC (const u16 param0, const u8 param1, const int param2, c
                 if (v8 == v4) {
                     break;
                 } else {
-                    v1 = sub_02075E64(param3);
+                    v1 = Pokemon_FindShinyPersonality(param3);
                 }
             }
         } while (TRUE);

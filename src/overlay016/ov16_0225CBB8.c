@@ -30,7 +30,7 @@
 
 #include "struct_defs/struct_02007C10.h"
 #include "functypes/funcptr_02007C34.h"
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/trainer_data.h"
@@ -271,7 +271,7 @@ UnkStruct_ov16_022674C4 * ov16_02263B08(BattlerData * param0);
 UnkStruct_ov16_0226C378 * ov16_02263B0C(BattlerData * param0);
 void ov16_02263B10(BattlerData * param0);
 void ov16_02263B20(BattlerData * param0, int param1);
-static UnkStruct_02007C7C * ov16_02263B30(BattleSystem * param0, UnkStruct_02007768 * param1, UnkStruct_02008A90 * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, int param10, UnkStruct_02007C10 * param11, UnkFuncPtr_02007C34 * param12);
+static UnkStruct_02007C7C * ov16_02263B30(BattleSystem * param0, UnkStruct_02007768 * param1, ArchivedSprite * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, int param10, UnkStruct_02007C10 * param11, UnkFuncPtr_02007C34 * param12);
 static void ov16_02263C1C(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C3F8 * param2, BattleMessage * param3);
 static void ov16_02263CF0(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C40C * param2, BattleMessage * param3);
 static void ov16_02263DD0(BattleSystem * param0, BattlerData * param1, BattleMessage * param2);
@@ -325,7 +325,7 @@ void ov16_0225CBB8 (BattleSystem * param0, BattlerData * param1)
 void ov16_0225CBDC (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C168 * param2)
 {
     int v0;
-    UnkStruct_02008A90 v1;
+    ArchivedSprite v1;
     UnkStruct_02007768 * v2;
     UnkStruct_02007C10 v3[10];
     UnkStruct_ov16_0225E4E8 * v4;
@@ -357,7 +357,7 @@ void ov16_0225CBDC (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
         v0 = 0;
     }
 
-    sub_02075FB4(&v1, param2->unk_02, param2->unk_01_0, v4->unk_13, v0, param2->unk_01_3, param2->unk_04);
+    BuildArchivedPokemonSprite(&v1, param2->unk_02, param2->unk_01_0, v4->unk_13, v0, param2->unk_01_3, param2->unk_04);
 
     v6 = sub_02076648(param2->unk_02, param2->unk_01_0, v4->unk_13, param2->unk_01_3, param2->unk_04);
 
@@ -428,7 +428,7 @@ void ov16_0225CE1C (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
         v0 = 0;
     }
 
-    sub_02075FB4(&v1->unk_14, param2->unk_02, param2->unk_01_0, v1->unk_84, v0, param2->unk_01_3, param2->unk_04);
+    BuildArchivedPokemonSprite(&v1->unk_14, param2->unk_02, param2->unk_01_0, v1->unk_84, v0, param2->unk_01_3, param2->unk_04);
 
     v1->unk_85 = sub_02076648(param2->unk_02, param2->unk_01_0, v1->unk_84, param2->unk_01_3, param2->unk_04);
 
@@ -480,7 +480,7 @@ void ov16_0225CF70 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
         v1 = 0;
     }
 
-    sub_02075FB4(&v2->unk_14, param2->unk_02, param2->unk_01_0, v2->unk_84, v1, param2->unk_01_3, param2->unk_04);
+    BuildArchivedPokemonSprite(&v2->unk_14, param2->unk_02, param2->unk_01_0, v2->unk_84, v1, param2->unk_01_3, param2->unk_04);
 
     v2->unk_85 = sub_02076648(param2->unk_02, param2->unk_01_0, v2->unk_84, param2->unk_01_3, param2->unk_04);
 
@@ -658,7 +658,7 @@ void ov16_0225D3CC (BattleSystem * param0, BattlerData * param1)
 void ov16_0225D414 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_022651A8 * param2)
 {
     int v0;
-    UnkStruct_02008A90 v1;
+    ArchivedSprite v1;
     UnkStruct_02007768 * v2;
     UnkStruct_ov16_02260384 * v3;
     u32 v4;
@@ -5785,7 +5785,7 @@ void ov16_02263B20 (BattlerData * param0, int param1)
     sub_0200D3F4(param0->unk_18, param1);
 }
 
-static UnkStruct_02007C7C * ov16_02263B30 (BattleSystem * param0, UnkStruct_02007768 * param1, UnkStruct_02008A90 * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, int param10, UnkStruct_02007C10 * param11, UnkFuncPtr_02007C34 * param12)
+static UnkStruct_02007C7C * ov16_02263B30 (BattleSystem * param0, UnkStruct_02007768 * param1, ArchivedSprite * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, int param10, UnkStruct_02007C10 * param11, UnkFuncPtr_02007C34 * param12)
 {
     UnkStruct_02007C7C * v0;
     u8 * v1 = ov16_0223F2B8(ov16_0223E0C8(param0), param10);
@@ -5800,9 +5800,9 @@ static UnkStruct_02007C7C * ov16_02263B30 (BattleSystem * param0, UnkStruct_0200
         v3 = 0;
     }
 
-    sub_02013750(param2->unk_00, param2->unk_02, 5, v1, param2->unk_0C, 0, v3, param2->unk_06);
-    ov16_0223F2CC(ov16_0223E0C8(param0), param10, param2->unk_00);
-    ov16_0223F2E4(ov16_0223E0C8(param0), param10, param2->unk_04);
+    sub_02013750(param2->archive, param2->character, 5, v1, param2->personality, 0, v3, param2->spindaSpots);
+    ov16_0223F2CC(ov16_0223E0C8(param0), param10, param2->archive);
+    ov16_0223F2E4(ov16_0223E0C8(param0), param10, param2->palette);
     ov16_0223F2FC(ov16_0223E0C8(param0), param10, param6);
 
     v0 = sub_02007C7C(param1, param2, param3, param4 + param6, param5, param10, param10, param11, param12);

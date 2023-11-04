@@ -7,7 +7,7 @@
 #include "pokemon.h"
 
 #include "pokemon.h"
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_020951B0.h"
 #include "struct_defs/struct_020954F0.h"
 #include "struct_defs/struct_02095C48.h"
@@ -668,19 +668,19 @@ void sub_02095380 (const UnkStruct_ov6_02248BE8 * param0, Pokemon * param1, int 
 
 UnkStruct_02007C7C * sub_02095484 (UnkStruct_02007768 * param0, int param1, Pokemon * param2, int param3, UnkStruct_ov16_0223E0C8 * param4, int param5, int param6, int param7, int param8)
 {
-    UnkStruct_02008A90 v0;
+    ArchivedSprite v0;
     UnkStruct_02007C7C * v1;
     int v2, v3, v4;
 
-    sub_02075EF4(&v0, param2, param3);
+    Pokemon_BuildArchivedSprite(&v0, param2, param3);
 
     v2 = sub_020765AC(param2, param3);
 
     if (param4 != NULL) {
         GF_ASSERT(param4->unk_00 != NULL);
-        sub_02013610(v0.unk_00, v0.unk_02, param5, param4->unk_00);
-        param4->unk_08 = v0.unk_04;
-        param4->unk_04 = v0.unk_00;
+        sub_02013610(v0.archive, v0.character, param5, param4->unk_00);
+        param4->unk_08 = v0.palette;
+        param4->unk_04 = v0.archive;
     }
 
     v1 = sub_02007C34(param0, &v0, param6, param7 + v2, param8, param1, NULL, NULL);

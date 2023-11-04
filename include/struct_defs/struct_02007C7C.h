@@ -5,7 +5,7 @@
 #include "functypes/funcptr_02007C34.h"
 #include "struct_defs/struct_02007C7C_sub1.h"
 #include "struct_defs/struct_02007C7C_sub2.h"
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 
 typedef struct UnkStruct_02007C7C_t {
     u32 unk_00_0 : 1;
@@ -13,8 +13,8 @@ typedef struct UnkStruct_02007C7C_t {
     u32 unk_00_7 : 1;
     u32 unk_00_8 : 1;
     u32 : 23;
-    UnkStruct_02008A90 unk_04;
-    UnkStruct_02008A90 unk_14;
+    ArchivedSprite unk_04;
+    ArchivedSprite unk_14;
     UnkStruct_02007C7C_sub1 unk_24;
     u8 unk_58;
     u8 unk_59;

@@ -8,7 +8,7 @@
 #include "functypes/funcptr_02007C34.h"
 #include "struct_defs/struct_02007C7C.h"
 #include "struct_defs/struct_02008900.h"
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 
 #include "unk_02002F38.h"
 #include "narc.h"
@@ -276,8 +276,8 @@ static const UnkStruct_020E4E62 *Unk_021007A4[] = {
 void * sub_0200762C(int param0);
 void sub_02007768(UnkStruct_02007768 * param0);
 void sub_02007B6C(UnkStruct_02007768 * param0);
-UnkStruct_02007C7C * sub_02007C34(UnkStruct_02007768 * param0, UnkStruct_02008A90 * param1, int param2, int param3, int param4, int param5, UnkStruct_02007C10 * param6, UnkFuncPtr_02007C34 * param7);
-UnkStruct_02007C7C * sub_02007C7C(UnkStruct_02007768 * param0, UnkStruct_02008A90 * param1, int param2, int param3, int param4, int param5, int param6, UnkStruct_02007C10 * param7, UnkFuncPtr_02007C34 * param8);
+UnkStruct_02007C7C * sub_02007C34(UnkStruct_02007768 * param0, ArchivedSprite * param1, int param2, int param3, int param4, int param5, UnkStruct_02007C10 * param6, UnkFuncPtr_02007C34 * param7);
+UnkStruct_02007C7C * sub_02007C7C(UnkStruct_02007768 * param0, ArchivedSprite * param1, int param2, int param3, int param4, int param5, int param6, UnkStruct_02007C10 * param7, UnkFuncPtr_02007C34 * param8);
 void sub_02007DC8(UnkStruct_02007C7C * param0);
 void sub_02007DD4(UnkStruct_02007768 * param0);
 void sub_02007B98(UnkStruct_02007C7C * param0, int param1);
@@ -297,7 +297,7 @@ void sub_020089B0(UnkStruct_02007C7C * param0);
 void sub_02008A0C(UnkStruct_02007C7C * param0);
 void sub_02008A78(UnkStruct_02007768 * param0, u32 param1, u32 param2);
 void sub_02008A84(UnkStruct_02007768 * param0, u32 param1, u32 param2);
-UnkStruct_02008A90 * sub_02008A90(UnkStruct_02007C7C * param0);
+ArchivedSprite * sub_02008A90(UnkStruct_02007C7C * param0);
 void sub_02008A94(UnkStruct_02007768 * param0);
 void sub_02008B2C(UnkStruct_02007768 * param0, int param1);
 BOOL sub_02008B38(UnkStruct_02007C7C * param0);
@@ -521,7 +521,7 @@ BOOL sub_02007C24 (UnkStruct_02007C7C * param0)
     return param0->unk_58 != 0;
 }
 
-UnkStruct_02007C7C * sub_02007C34 (UnkStruct_02007768 * param0, UnkStruct_02008A90 * param1, int param2, int param3, int param4, int param5, UnkStruct_02007C10 * param6, UnkFuncPtr_02007C34 * param7)
+UnkStruct_02007C7C * sub_02007C34 (UnkStruct_02007768 * param0, ArchivedSprite * param1, int param2, int param3, int param4, int param5, UnkStruct_02007C10 * param6, UnkFuncPtr_02007C34 * param7)
 {
     int v0;
 
@@ -536,7 +536,7 @@ UnkStruct_02007C7C * sub_02007C34 (UnkStruct_02007768 * param0, UnkStruct_02008A
     return sub_02007C7C(param0, param1, param2, param3, param4, param5, v0, param6, param7);
 }
 
-UnkStruct_02007C7C * sub_02007C7C (UnkStruct_02007768 * param0, UnkStruct_02008A90 * param1, int param2, int param3, int param4, int param5, int param6, UnkStruct_02007C10 * param7, UnkFuncPtr_02007C34 * param8)
+UnkStruct_02007C7C * sub_02007C7C (UnkStruct_02007768 * param0, ArchivedSprite * param1, int param2, int param3, int param4, int param5, int param6, UnkStruct_02007C10 * param7, UnkFuncPtr_02007C34 * param8)
 {
     GF_ASSERT(param0->unk_00[param6].unk_00_0 == 0);
 
@@ -1178,7 +1178,7 @@ void sub_02008A84 (UnkStruct_02007768 * param0, u32 param1, u32 param2)
     param0->unk_2F8 = param2;
 }
 
-UnkStruct_02008A90 * sub_02008A90 (UnkStruct_02007C7C * param0)
+ArchivedSprite * sub_02008A90 (UnkStruct_02007C7C * param0)
 {
     return &param0->unk_04;
 }
@@ -1246,7 +1246,7 @@ static void sub_02008B78 (UnkStruct_02007768 * param0)
             param0->unk_00[v1].unk_00_7 = 0;
 
             v6 = 1;
-            v5 = NARC_AllocAndReadWholeMemberByIndexPair(param0->unk_00[v1].unk_04.unk_00, param0->unk_00[v1].unk_04.unk_02, param0->unk_2E8);
+            v5 = NARC_AllocAndReadWholeMemberByIndexPair(param0->unk_00[v1].unk_04.archive, param0->unk_00[v1].unk_04.character, param0->unk_2E8);
 
             NNS_G2dGetUnpackedCharacterData(v5, &v0);
 
@@ -1256,7 +1256,7 @@ static void sub_02008B78 (UnkStruct_02007768 * param0)
 
             v4 = v0->pRawData;
 
-            sub_020093A0(v4, param0->unk_00[v1].unk_04.unk_00);
+            sub_020093A0(v4, param0->unk_00[v1].unk_04.archive);
             sub_020091C0(&param0->unk_00[v1], v4);
 
             if (v1 == 3) {
@@ -1361,7 +1361,7 @@ static void sub_02008FC8 (UnkStruct_02007768 * param0)
             param0->unk_00[v1].unk_00_8 = 0;
 
             v6 = 1;
-            v5 = NARC_AllocAndReadWholeMemberByIndexPair(param0->unk_00[v1].unk_04.unk_00, param0->unk_00[v1].unk_04.unk_04, param0->unk_2E8);
+            v5 = NARC_AllocAndReadWholeMemberByIndexPair(param0->unk_00[v1].unk_04.archive, param0->unk_00[v1].unk_04.palette, param0->unk_2E8);
 
             NNS_G2dGetUnpackedPaletteData(v5, &v0);
 
@@ -1428,11 +1428,11 @@ static u8 sub_020091AC (u8 param0)
 
 static void sub_020091C0 (UnkStruct_02007C7C * param0, u8 * param1)
 {
-    if (param0->unk_04.unk_06 == 0) {
+    if (param0->unk_04.spindaSpots == 0) {
         return;
     }
 
-    sub_020091D8(param1, param0->unk_04.unk_0C, 1);
+    sub_020091D8(param1, param0->unk_04.personality, 1);
 }
 
 void sub_020091D8 (u8 * param0, u32 param1, BOOL param2)

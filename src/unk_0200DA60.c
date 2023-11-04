@@ -7,7 +7,7 @@
 #include "struct_decls/sys_task.h"
 #include "pokemon.h"
 
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_02013610.h"
 #include "struct_defs/struct_0201AE08.h"
@@ -65,7 +65,7 @@ static UnkStruct_0200ED50 * sub_0200ED14(BGL * param0, u8 param1, u8 param2, u8 
 static void sub_0200ED50(UnkStruct_0200ED50 * param0, u32 param1);
 static void sub_0200ED7C(UnkStruct_0200ED50 * param0);
 static void sub_0200EDD4(UnkStruct_0200ED50 * param0, u8 param1, u8 param2);
-static void sub_0200EE98(UnkStruct_ov5_021D30A8 * param0, UnkStruct_02008A90 * param1);
+static void sub_0200EE98(UnkStruct_ov5_021D30A8 * param0, ArchivedSprite * param1);
 static void sub_0200EE24(UnkStruct_ov5_021D30A8 * param0, u16 param1, u8 param2);
 static void sub_0200EE64(UnkStruct_ov5_021D30A8 * param0, Pokemon * param1);
 static void sub_0200EC9C(SysTask * param0, void * param1);
@@ -645,11 +645,11 @@ static void sub_0200EDD4 (UnkStruct_0200ED50 * param0, u8 param1, u8 param2)
 static void sub_0200EE24 (UnkStruct_ov5_021D30A8 * param0, u16 param1, u8 param2)
 {
     void * v0;
-    UnkStruct_02008A90 v1;
+    ArchivedSprite v1;
 
     v0 = sub_0200762C(param0->unk_1C6);
 
-    sub_02075FB4(&v1, param1, param2, 2, 0, NULL, NULL);
+    BuildArchivedPokemonSprite(&v1, param1, param2, 2, 0, NULL, NULL);
     sub_0200EE98(param0, &v1);
     sub_02007B6C(v0);
 }
@@ -657,16 +657,16 @@ static void sub_0200EE24 (UnkStruct_ov5_021D30A8 * param0, u16 param1, u8 param2
 static void sub_0200EE64 (UnkStruct_ov5_021D30A8 * param0, Pokemon * param1)
 {
     void * v0;
-    UnkStruct_02008A90 v1;
+    ArchivedSprite v1;
 
     v0 = sub_0200762C(param0->unk_1C6);
 
-    sub_02075EF4(&v1, param1, 2);
+    Pokemon_BuildArchivedSprite(&v1, param1, 2);
     sub_0200EE98(param0, &v1);
     sub_02007B6C(v0);
 }
 
-static void sub_0200EE98 (UnkStruct_ov5_021D30A8 * param0, UnkStruct_02008A90 * param1)
+static void sub_0200EE98 (UnkStruct_ov5_021D30A8 * param0, ArchivedSprite * param1)
 {
     u8 * v0;
     u32 v1;
@@ -679,11 +679,11 @@ static void sub_0200EE98 (UnkStruct_ov5_021D30A8 * param0, UnkStruct_02008A90 * 
 
     {
         UnkStruct_02013610 v6 = {0, 0, 10, 10};
-        sub_020135F0(param1->unk_00, param1->unk_02, param0->unk_1C6, &v6, &v0[0]);
+        sub_020135F0(param1->archive, param1->character, param0->unk_1C6, &v6, &v0[0]);
     }
     {
         UnkStruct_02013610 v7 = {10, 0, 10, 10};
-        sub_020135F0(param1->unk_00, param1->unk_02, param0->unk_1C6, &v7, &v0[(32 * 10 * 10)]);
+        sub_020135F0(param1->archive, param1->character, param0->unk_1C6, &v7, &v0[(32 * 10 * 10)]);
     }
 
     v2 = sub_02009DC8(param0->unk_194[0], 89301);
@@ -695,7 +695,7 @@ static void sub_0200EE98 (UnkStruct_ov5_021D30A8 * param0, UnkStruct_02008A90 * 
 
     Heap_FreeToHeap(v0);
 
-    v0 = sub_02013660(param1->unk_00, param1->unk_04, param0->unk_1C6);
+    v0 = sub_02013660(param1->archive, param1->palette, param0->unk_1C6);
     v4 = sub_02009DC8(param0->unk_194[1], 89301);
     v5 = sub_0200A72C(v4, v3);
     v1 = NNS_G2dGetImagePaletteLocation(v5, NNS_G2D_VRAM_TYPE_2DMAIN);

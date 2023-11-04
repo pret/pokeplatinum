@@ -16,7 +16,7 @@
 
 #include "struct_defs/struct_02007C10.h"
 #include "struct_defs/struct_02008900.h"
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02013610.h"
 #include "functypes/sys_task_func.h"
@@ -810,7 +810,7 @@ static void ov86_0223BAC8 (UnkStruct_ov86_0223B3C8 * param0, NNSG2dCellDataBank 
         {0, 0, 10, 10},
         {0 + 10, 0, 10, 10}
     };
-    UnkStruct_02008A90 v1;
+    ArchivedSprite v1;
     UnkStruct_ov19_021DA864 v2;
     UnkStruct_ov83_0223D9A8 v3;
     UnkStruct_ov5_021DE5D0 v4;
@@ -855,22 +855,22 @@ static void ov86_0223BAC8 (UnkStruct_ov86_0223B3C8 * param0, NNSG2dCellDataBank 
 
         sub_02021CAC(param0->unk_1B4[v12], 0);
         v11 = Party_GetPokemonBySlotIndex(param0->unk_0C->unk_04, param0->unk_2C8[v12]);
-        sub_02075EF4(&v1, (Pokemon *)v11, 2);
+        Pokemon_BuildArchivedSprite(&v1, (Pokemon *)v11, 2);
 
         param0->unk_2E0[v12] = Pokemon_GetValue((Pokemon *)v11, MON_DATA_SPECIES, NULL);
         param0->unk_2F8[v12] = Pokemon_GetValue((Pokemon *)v11, MON_DATA_FORM, NULL);
 
-        sub_02013720(v1.unk_00, v1.unk_02, 63, &v0[0], param0->unk_310, Pokemon_GetValue((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), 1, 2, param0->unk_2E0[v12]);
+        sub_02013720(v1.archive, v1.character, 63, &v0[0], param0->unk_310, Pokemon_GetValue((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), 1, 2, param0->unk_2E0[v12]);
 
         DC_FlushRange(param0->unk_310, 3200);
         GX_LoadOBJ(param0->unk_310, v12 * 2 * 3200, 3200);
 
-        sub_02013720(v1.unk_00, v1.unk_02, 63, &v0[1], param0->unk_310, Pokemon_GetValue((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), 1, 2, param0->unk_2E0[v12]);
+        sub_02013720(v1.archive, v1.character, 63, &v0[1], param0->unk_310, Pokemon_GetValue((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), 1, 2, param0->unk_2E0[v12]);
 
         DC_FlushRange(param0->unk_310, 3200);
         GX_LoadOBJ(param0->unk_310, v12 * 2 * 3200 + 3200, 3200);
 
-        sub_02006E84(v1.unk_00, v1.unk_04, 1, v12 * 0x20, 0x20, 63);
+        sub_02006E84(v1.archive, v1.palette, 1, v12 * 0x20, 0x20, 63);
         sub_020789BC(param0->unk_1C54, &param0->unk_1D8[v12][0], param0->unk_2E0[v12], 1);
     }
 

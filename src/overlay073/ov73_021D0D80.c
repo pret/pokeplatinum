@@ -18,7 +18,7 @@
 #include "overlay057/const_ov57_021D0F80.h"
 #include "constdata/const_020F2DAC.h"
 
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_020279FC.h"
@@ -1112,7 +1112,7 @@ static const u8 Unk_ov72_021D39D4[] = {
 
 static void ov73_021D1B80 (UnkStruct_ov73_021D1058 * param0)
 {
-    UnkStruct_02008A90 v0;
+    ArchivedSprite v0;
     void * v1;
     void * v2;
     void * v3;
@@ -1121,7 +1121,7 @@ static void ov73_021D1B80 (UnkStruct_ov73_021D1058 * param0)
     int v6 = 8;
     int v7 = 10;
 
-    sub_02075FB4(&v0, 427, 0, 2, 0, 0, 0);
+    BuildArchivedPokemonSprite(&v0, 427, 0, 2, 0, 0, 0);
 
     v1 = Heap_AllocFromHeap(param0->unk_00, (10 * 10) * 2);
 
@@ -1133,8 +1133,8 @@ static void ov73_021D1B80 (UnkStruct_ov73_021D1058 * param0)
         }
     }
 
-    v2 = sub_0201363C(v0.unk_00, v0.unk_02, param0->unk_00);
-    v3 = sub_02013660(v0.unk_00, v0.unk_04, param0->unk_00);
+    v2 = sub_0201363C(v0.archive, v0.character, param0->unk_00);
+    v3 = sub_02013660(v0.archive, v0.palette, param0->unk_00);
 
     MI_CpuCopy32(v3, param0->unk_B8, 0x20);
 

@@ -14,7 +14,7 @@
 #include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0202DF40.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay022/struct_ov22_022559F8.h"
@@ -72,7 +72,7 @@ typedef struct {
     int unk_270;
     fx32 unk_274;
     u8 unk_278[3200];
-    UnkStruct_02008A90 unk_EF8;
+    ArchivedSprite unk_EF8;
     void (* unk_F08)(void * param0);
 } UnkStruct_ov97_0223F550;
 
@@ -573,7 +573,7 @@ static int ov97_02237EA8 (int param0)
     return 0;
 }
 
-static void ov97_02237EF8 (UnkStruct_02022550 * param0, Pokemon * param1, int param2, int param3, u8 * param4, UnkStruct_02008A90 * param5)
+static void ov97_02237EF8 (UnkStruct_02022550 * param0, Pokemon * param1, int param2, int param3, u8 * param4, ArchivedSprite * param5)
 {
     int v0, v1;
     u32 v2;
@@ -582,10 +582,10 @@ static void ov97_02237EF8 (UnkStruct_02022550 * param0, Pokemon * param1, int pa
     v0 = Pokemon_GetGender(param1);
     v1 = Pokemon_IsShiny(param1);
 
-    sub_02075FB4(param5, param2, v0, 2, v1, param3, 0);
+    BuildArchivedPokemonSprite(param5, param2, v0, 2, v1, param3, 0);
 
     v2 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
-    sub_020136A4(param5->unk_00, param5->unk_02, v3->unk_08, 0, 0, 10, 10, param4, v2, 0, 2, param2);
+    sub_020136A4(param5->archive, param5->character, v3->unk_08, 0, 0, 10, 10, param4, v2, 0, 2, param2);
 
     DC_FlushRange(param4, 0x20 * 10 * 10);
 
@@ -600,7 +600,7 @@ static void ov97_02237EF8 (UnkStruct_02022550 * param0, Pokemon * param1, int pa
         NNSG2dImagePaletteProxy * v6 = sub_02021F9C(param0);
         u32 v7 = NNS_G2dGetImagePaletteLocation(v6, NNS_G2D_VRAM_TYPE_2DSUB);
 
-        sub_02006E84(param5->unk_00, param5->unk_04, 5, 0x20 * (2 + 1) + v7, 32, v3->unk_08);
+        sub_02006E84(param5->archive, param5->palette, 5, 0x20 * (2 + 1) + v7, 32, v3->unk_08);
     }
 }
 

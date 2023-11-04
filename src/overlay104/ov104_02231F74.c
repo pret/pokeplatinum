@@ -19,7 +19,7 @@
 #include "overlay104/struct_ov104_0222E930_decl.h"
 #include "overlay104/struct_ov104_022320B4_decl.h"
 
-#include "struct_defs/struct_02008A90.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/sentence.h"
@@ -1076,7 +1076,7 @@ void ov104_02232CE0 (UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int pa
     UnkStruct_0200C6E4 * v0 = param0->unk_34.unk_00;
     UnkStruct_0200C704 * v1 = param0->unk_34.unk_04;
     PaletteSys * v2 = param0->unk_04;
-    UnkStruct_02008A90 v3;
+    ArchivedSprite v3;
     void * v4;
     CellActorData * v5;
 
@@ -1123,8 +1123,8 @@ void ov104_02232CE0 (UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int pa
         v9 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
         v10 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
 
-        sub_02075EF4(&v3, param1, 2);
-        sub_020136A4(v3.unk_00, v3.unk_02, param2, 0, 0, 10, 10, v4, v9, 0, 2, v10);
+        Pokemon_BuildArchivedSprite(&v3, param1, 2);
+        sub_020136A4(v3.archive, v3.character, param2, 0, 0, 10, 10, v4, v9, 0, 2, v10);
     }
 
     {
@@ -1139,7 +1139,7 @@ void ov104_02232CE0 (UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int pa
         v12 = sub_02021F9C(v5->unk_00);
         v13 = sub_0201FAB4(v12, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-        PaletteSys_LoadPalette(v2, v3.unk_00, v3.unk_04, param2, 2, 0x20, v13 * 16);
+        PaletteSys_LoadPalette(v2, v3.archive, v3.palette, param2, 2, 0x20, v13 * 16);
 
         if (param8 > 0) {
             sub_020039B0(v2, 2, v13 * 16, 16, param8, param9);
