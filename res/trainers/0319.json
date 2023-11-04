@@ -1,0 +1,72 @@
+{
+    "name": "Candice",
+    "class": "TRAINER_CLASS_LEADER_CANDICE",
+    "items": [
+        "ITEM_HYPER_POTION",
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_SNEASEL",
+            "form": 0,
+            "level": 40,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_SLASH",
+                "MOVE_AERIAL_ACE",
+                "MOVE_FAINT_ATTACK",
+                "MOVE_ICE_SHARD"
+            ],
+            "power": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_PILOSWINE",
+            "form": 0,
+            "level": 40,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_AVALANCHE",
+                "MOVE_STONE_EDGE",
+                "MOVE_EARTHQUAKE",
+                "MOVE_HAIL"
+            ],
+            "power": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ABOMASNOW",
+            "form": 0,
+            "level": 42,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_AVALANCHE",
+                "MOVE_WOOD_HAMMER",
+                "MOVE_WATER_PULSE",
+                "MOVE_FOCUS_BLAST"
+            ],
+            "power": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_FROSLASS",
+            "form": 0,
+            "level": 44,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_BLIZZARD",
+                "MOVE_DOUBLE_TEAM",
+                "MOVE_SHADOW_BALL",
+                "MOVE_PSYCHIC"
+            ],
+            "power": 250,
+            "ball_seal": 0
+        }
+    ]
+}

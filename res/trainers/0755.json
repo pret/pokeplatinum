@@ -1,0 +1,20 @@
+{
+    "name": "Andrea",
+    "class": "TRAINER_CLASS_SKIER_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_ABOMASNOW",
+            "form": 0,
+            "level": 45,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

@@ -1,0 +1,40 @@
+{
+    "name": "Ashlee",
+    "class": "TRAINER_CLASS_RANGER_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_LINOONE",
+            "form": 0,
+            "level": 60,
+            "item": null,
+            "moves": null,
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BUTTERFREE",
+            "form": 0,
+            "level": 60,
+            "item": null,
+            "moves": null,
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ARBOK",
+            "form": 0,
+            "level": 60,
+            "item": null,
+            "moves": null,
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

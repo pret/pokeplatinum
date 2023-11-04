@@ -1,0 +1,39 @@
+{
+    "name": "Norman",
+    "class": "TRAINER_CLASS_YOUNGSTER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_CHATOT",
+            "form": 0,
+            "level": 24,
+            "item": null,
+            "moves": [
+                "MOVE_FURY_ATTACK",
+                "MOVE_SING",
+                "MOVE_GROWL",
+                "MOVE_PECK"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_CHERRIM",
+            "form": 0,
+            "level": 25,
+            "item": null,
+            "moves": [
+                "MOVE_PETAL_DANCE",
+                "MOVE_SUNNY_DAY",
+                "MOVE_MAGICAL_LEAF",
+                "MOVE_HELPING_HAND"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

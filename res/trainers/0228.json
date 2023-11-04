@@ -1,0 +1,55 @@
+{
+    "name": "Edgar",
+    "class": "TRAINER_CLASS_VETERAN",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_PORYGON_Z",
+            "form": 0,
+            "level": 46,
+            "item": null,
+            "moves": [
+                "MOVE_HYPER_BEAM",
+                "MOVE_SIGNAL_BEAM",
+                "MOVE_PSYCHIC",
+                "MOVE_THUNDERBOLT"
+            ],
+            "power": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_TANGROWTH",
+            "form": 0,
+            "level": 46,
+            "item": null,
+            "moves": [
+                "MOVE_POWER_WHIP",
+                "MOVE_MEGA_DRAIN",
+                "MOVE_TOXIC",
+                "MOVE_SLAM"
+            ],
+            "power": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_EMPOLEON",
+            "form": 0,
+            "level": 46,
+            "item": null,
+            "moves": [
+                "MOVE_BRINE",
+                "MOVE_DRILL_PECK",
+                "MOVE_METAL_CLAW",
+                "MOVE_GROWL"
+            ],
+            "power": 100,
+            "ball_seal": 0
+        }
+    ]
+}

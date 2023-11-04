@@ -1,0 +1,31 @@
+{
+    "name": "Geoffrey",
+    "class": "TRAINER_CLASS_DRAGON_TAMER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_GABITE",
+            "form": 0,
+            "level": 53,
+            "item": null,
+            "moves": null,
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ALTARIA",
+            "form": 0,
+            "level": 55,
+            "item": null,
+            "moves": null,
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

@@ -1,0 +1,58 @@
+{
+    "name": "Gardenia",
+    "class": "TRAINER_CLASS_LEADER_GARDENIA",
+    "items": [
+        "ITEM_SUPER_POTION",
+        "ITEM_SUPER_POTION"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_TURTWIG",
+            "form": 0,
+            "level": 20,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_GRASS_KNOT",
+                "MOVE_RAZOR_LEAF",
+                "MOVE_SUNNY_DAY",
+                "MOVE_REFLECT"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_CHERRIM",
+            "form": 0,
+            "level": 20,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_GRASS_KNOT",
+                "MOVE_LEECH_SEED",
+                "MOVE_MAGICAL_LEAF",
+                "MOVE_SAFEGUARD"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ROSERADE",
+            "form": 0,
+            "level": 22,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_GRASS_KNOT",
+                "MOVE_MAGICAL_LEAF",
+                "MOVE_POISON_STING",
+                "MOVE_STUN_SPORE"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

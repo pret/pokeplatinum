@@ -1,0 +1,55 @@
+{
+    "name": "Maylene",
+    "class": "TRAINER_CLASS_LEADER_MAYLENE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_MEDITITE",
+            "form": 0,
+            "level": 28,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_DRAIN_PUNCH",
+                "MOVE_CONFUSION",
+                "MOVE_ROCK_TOMB",
+                "MOVE_FAKE_OUT"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MACHOKE",
+            "form": 0,
+            "level": 29,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_KARATE_CHOP",
+                "MOVE_ROCK_TOMB",
+                "MOVE_STRENGTH",
+                "MOVE_FOCUS_ENERGY"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_LUCARIO",
+            "form": 0,
+            "level": 32,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_DRAIN_PUNCH",
+                "MOVE_FORCE_PALM",
+                "MOVE_METAL_CLAW",
+                "MOVE_BONE_RUSH"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        }
+    ]
+}

@@ -1,0 +1,52 @@
+{
+    "name": "Phillip",
+    "class": "TRAINER_CLASS_BUG_CATCHER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_WURMPLE",
+            "form": 0,
+            "level": 11,
+            "item": null,
+            "moves": [
+                "MOVE_TACKLE",
+                "MOVE_STRING_SHOT",
+                "MOVE_POISON_STING"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_CASCOON",
+            "form": 0,
+            "level": 13,
+            "item": null,
+            "moves": [
+                "MOVE_TACKLE",
+                "MOVE_STRING_SHOT",
+                "MOVE_POISON_STING",
+                "MOVE_HARDEN"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_DUSTOX",
+            "form": 0,
+            "level": 15,
+            "item": null,
+            "moves": [
+                "MOVE_TACKLE",
+                "MOVE_POISON_STING",
+                "MOVE_CONFUSION",
+                "MOVE_GUST"
+            ],
+            "power": 20,
+            "ball_seal": 0
+        }
+    ]
+}

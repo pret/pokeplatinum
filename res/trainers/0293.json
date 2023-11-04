@@ -1,0 +1,51 @@
+{
+    "name": "Erick",
+    "class": "TRAINER_CLASS_FISHERMAN",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_GOLDEEN",
+            "form": 0,
+            "level": 28,
+            "item": null,
+            "moves": [
+                "MOVE_WATER_PULSE",
+                "MOVE_PECK",
+                "MOVE_FLAIL",
+                "MOVE_SUPERSONIC"
+            ],
+            "power": 10,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SEAKING",
+            "form": 0,
+            "level": 31,
+            "item": null,
+            "moves": [
+                "MOVE_WATER_PULSE",
+                "MOVE_FURY_ATTACK",
+                "MOVE_FLAIL",
+                "MOVE_SUPERSONIC"
+            ],
+            "power": 10,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GYARADOS",
+            "form": 0,
+            "level": 31,
+            "item": null,
+            "moves": [
+                "MOVE_THRASH",
+                "MOVE_BITE"
+            ],
+            "power": 10,
+            "ball_seal": 0
+        }
+    ]
+}

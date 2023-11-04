@@ -1,0 +1,55 @@
+{
+    "name": "Clarice",
+    "class": "TRAINER_CLASS_ACE_TRAINER_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_SWALOT",
+            "form": 0,
+            "level": 53,
+            "item": null,
+            "moves": [
+                "MOVE_GUNK_SHOT",
+                "MOVE_YAWN",
+                "MOVE_BODY_SLAM",
+                "MOVE_PROTECT"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_NINETALES",
+            "form": 0,
+            "level": 54,
+            "item": null,
+            "moves": [
+                "MOVE_WILL_O_WISP",
+                "MOVE_FLAMETHROWER",
+                "MOVE_DARK_PULSE",
+                "MOVE_EXTRASENSORY"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MAGNEZONE",
+            "form": 0,
+            "level": 56,
+            "item": null,
+            "moves": [
+                "MOVE_FLASH_CANNON",
+                "MOVE_MIRROR_COAT",
+                "MOVE_DISCHARGE",
+                "MOVE_HYPER_BEAM"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

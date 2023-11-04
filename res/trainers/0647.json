@@ -1,0 +1,41 @@
+{
+    "name": "Zackary",
+    "class": "TRAINER_CLASS_CAMPER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_AMBIPOM",
+            "form": 0,
+            "level": 52,
+            "item": null,
+            "moves": [
+                "MOVE_BATON_PASS",
+                "MOVE_SWIFT",
+                "MOVE_NASTY_PLOT",
+                "MOVE_WATER_PULSE"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BIBAREL",
+            "form": 0,
+            "level": 52,
+            "item": null,
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_ICE_BEAM",
+                "MOVE_SURF",
+                "MOVE_SHADOW_BALL"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

@@ -1,0 +1,97 @@
+{
+    "name": "Cedric",
+    "class": "TRAINER_CLASS_RIVAL",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_STARAPTOR",
+            "form": 0,
+            "level": 53,
+            "item": null,
+            "moves": [
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_AERIAL_ACE",
+                "MOVE_STEEL_WING",
+                "MOVE_U_TURN"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_FLOATZEL",
+            "form": 0,
+            "level": 52,
+            "item": null,
+            "moves": [
+                "MOVE_AQUA_JET",
+                "MOVE_CRUNCH",
+                "MOVE_ICE_FANG",
+                "MOVE_BRICK_BREAK"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_HERACROSS",
+            "form": 0,
+            "level": 53,
+            "item": null,
+            "moves": [
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_AERIAL_ACE"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_RAPIDASH",
+            "form": 0,
+            "level": 52,
+            "item": null,
+            "moves": [
+                "MOVE_FIRE_BLAST",
+                "MOVE_SUNNY_DAY",
+                "MOVE_BOUNCE",
+                "MOVE_WILL_O_WISP"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SNORLAX",
+            "form": 0,
+            "level": 54,
+            "item": null,
+            "moves": [
+                "MOVE_BODY_SLAM",
+                "MOVE_CRUNCH",
+                "MOVE_EARTHQUAKE",
+                "MOVE_REST"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_TORTERRA",
+            "form": 0,
+            "level": 56,
+            "item": null,
+            "moves": [
+                "MOVE_LEAF_STORM",
+                "MOVE_EARTHQUAKE",
+                "MOVE_CRUNCH",
+                "MOVE_SYNTHESIS"
+            ],
+            "power": 200,
+            "ball_seal": 24
+        }
+    ]
+}

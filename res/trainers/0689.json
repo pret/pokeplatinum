@@ -1,0 +1,24 @@
+{
+    "name": "Carlos",
+    "class": "TRAINER_CLASS_PI",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_RISKY"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_SEAKING",
+            "form": 0,
+            "level": 48,
+            "item": null,
+            "moves": [
+                "MOVE_HORN_DRILL",
+                "MOVE_FLAIL"
+            ],
+            "power": 150,
+            "ball_seal": 0
+        }
+    ]
+}

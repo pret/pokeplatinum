@@ -1,0 +1,22 @@
+{
+    "name": "Darien",
+    "class": "TRAINER_CLASS_DRAGON_TAMER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_DRAGONITE",
+            "form": 0,
+            "level": 60,
+            "item": null,
+            "moves": null,
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

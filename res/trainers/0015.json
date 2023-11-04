@@ -1,0 +1,30 @@
+{
+    "name": "Liv & Liz",
+    "class": "TRAINER_CLASS_TWINS",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": true,
+    "party": [
+        {
+            "species": "SPECIES_PACHIRISU",
+            "form": 0,
+            "level": 11,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_PACHIRISU",
+            "form": 0,
+            "level": 11,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

@@ -1,0 +1,38 @@
+{
+    "name": "Cyndy",
+    "class": "TRAINER_CLASS_BEAUTY",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_MEOWTH",
+            "form": 0,
+            "level": 59,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SKITTY",
+            "form": 0,
+            "level": 59,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GLAMEOW",
+            "form": 0,
+            "level": 59,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

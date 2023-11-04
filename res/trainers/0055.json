@@ -1,0 +1,39 @@
+{
+    "name": "Ty & Sue",
+    "class": "TRAINER_CLASS_YOUNG_COUPLE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": true,
+    "party": [
+        {
+            "species": "SPECIES_BUNEARY",
+            "form": 0,
+            "level": 23,
+            "item": null,
+            "moves": [
+                "MOVE_FORESIGHT",
+                "MOVE_JUMP_KICK",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_DEFENSE_CURL"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BUIZEL",
+            "form": 0,
+            "level": 23,
+            "item": null,
+            "moves": [
+                "MOVE_AQUA_JET",
+                "MOVE_SWIFT",
+                "MOVE_PURSUIT",
+                "MOVE_SONIC_BOOM"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

@@ -1,0 +1,41 @@
+{
+    "name": "Destiny",
+    "class": "TRAINER_CLASS_ACE_TRAINER_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_ELECTABUZZ",
+            "form": 0,
+            "level": 47,
+            "item": null,
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_SHOCK_WAVE",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_IRON_TAIL"
+            ],
+            "power": 60,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_RAICHU",
+            "form": 0,
+            "level": 48,
+            "item": null,
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_DIG",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_LIGHT_SCREEN"
+            ],
+            "power": 60,
+            "ball_seal": 0
+        }
+    ]
+}

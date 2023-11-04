@@ -1,0 +1,29 @@
+{
+    "name": "Donald",
+    "class": "TRAINER_CLASS_BUG_CATCHER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_BURMY",
+            "form": 1,
+            "level": 14,
+            "item": null,
+            "moves": null,
+            "power": 10,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BURMY",
+            "form": 2,
+            "level": 14,
+            "item": null,
+            "moves": null,
+            "power": 10,
+            "ball_seal": 0
+        }
+    ]
+}

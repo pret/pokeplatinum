@@ -1,0 +1,41 @@
+{
+    "name": "Henry",
+    "class": "TRAINER_CLASS_ACE_TRAINER_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_RHYDON",
+            "form": 0,
+            "level": 47,
+            "item": null,
+            "moves": [
+                "MOVE_STONE_EDGE",
+                "MOVE_EARTHQUAKE",
+                "MOVE_HAMMER_ARM",
+                "MOVE_TAKE_DOWN"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_CARNIVINE",
+            "form": 0,
+            "level": 48,
+            "item": null,
+            "moves": [
+                "MOVE_WRING_OUT",
+                "MOVE_CRUNCH",
+                "MOVE_FAINT_ATTACK",
+                "MOVE_INGRAIN"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

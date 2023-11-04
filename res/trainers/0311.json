@@ -1,0 +1,37 @@
+{
+    "name": "Rafael",
+    "class": "TRAINER_CLASS_BLACK_BELT",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_DAMAGE_PRIORITY"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_CROAGUNK",
+            "form": 0,
+            "level": 26,
+            "item": null,
+            "moves": [
+                "MOVE_SWAGGER",
+                "MOVE_REVENGE",
+                "MOVE_FAINT_ATTACK"
+            ],
+            "power": 40,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MACHOKE",
+            "form": 0,
+            "level": 26,
+            "item": null,
+            "moves": [
+                "MOVE_KARATE_CHOP",
+                "MOVE_FORESIGHT"
+            ],
+            "power": 40,
+            "ball_seal": 0
+        }
+    ]
+}

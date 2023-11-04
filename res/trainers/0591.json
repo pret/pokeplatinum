@@ -1,0 +1,40 @@
+{
+    "name": "Kyler",
+    "class": "TRAINER_CLASS_RANGER_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_EXEGGCUTE",
+            "form": 0,
+            "level": 55,
+            "item": null,
+            "moves": null,
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ZANGOOSE",
+            "form": 0,
+            "level": 55,
+            "item": null,
+            "moves": null,
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_EMPOLEON",
+            "form": 0,
+            "level": 58,
+            "item": null,
+            "moves": null,
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

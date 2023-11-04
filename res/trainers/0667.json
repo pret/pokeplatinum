@@ -1,0 +1,27 @@
+{
+    "name": "Saul",
+    "class": "TRAINER_CLASS_ACE_TRAINER_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_TAUROS",
+            "form": 0,
+            "level": 63,
+            "item": null,
+            "moves": [
+                "MOVE_GIGA_IMPACT",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_EARTHQUAKE",
+                "MOVE_STONE_EDGE"
+            ],
+            "power": 50,
+            "ball_seal": 12
+        }
+    ]
+}

@@ -1,0 +1,29 @@
+{
+    "name": "Alexandra",
+    "class": "TRAINER_CLASS_BIRD_KEEPER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_STARLY",
+            "form": 0,
+            "level": 17,
+            "item": null,
+            "moves": null,
+            "power": 20,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_HOOTHOOT",
+            "form": 0,
+            "level": 17,
+            "item": null,
+            "moves": null,
+            "power": 20,
+            "ball_seal": 0
+        }
+    ]
+}

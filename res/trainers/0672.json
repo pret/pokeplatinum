@@ -1,0 +1,55 @@
+{
+    "name": "Moira",
+    "class": "TRAINER_CLASS_ACE_TRAINER_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_SANDSLASH",
+            "form": 0,
+            "level": 59,
+            "item": null,
+            "moves": [
+                "MOVE_SLASH",
+                "MOVE_GYRO_BALL",
+                "MOVE_DIG",
+                "MOVE_X_SCISSOR"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GASTRODON",
+            "form": 0,
+            "level": 59,
+            "item": null,
+            "moves": [
+                "MOVE_MUDDY_WATER",
+                "MOVE_RECOVER",
+                "MOVE_BODY_SLAM",
+                "MOVE_PROTECT"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_CLAYDOL",
+            "form": 0,
+            "level": 60,
+            "item": null,
+            "moves": [
+                "MOVE_EARTHQUAKE",
+                "MOVE_PSYCHIC",
+                "MOVE_ANCIENT_POWER",
+                "MOVE_COSMIC_POWER"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

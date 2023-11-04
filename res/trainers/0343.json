@@ -1,0 +1,41 @@
+{
+    "name": "Mackenzie",
+    "class": "TRAINER_CLASS_SCHOOL_KID_FEMALE",
+    "items": [
+        "ITEM_SUPER_POTION"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_DRIFLOON",
+            "form": 0,
+            "level": 21,
+            "item": null,
+            "moves": [
+                "MOVE_PAYBACK",
+                "MOVE_GUST",
+                "MOVE_ASTONISH",
+                "MOVE_MINIMIZE"
+            ],
+            "power": 10,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_DRIFLOON",
+            "form": 0,
+            "level": 21,
+            "item": null,
+            "moves": [
+                "MOVE_SPIT_UP",
+                "MOVE_SWALLOW",
+                "MOVE_STOCKPILE"
+            ],
+            "power": 10,
+            "ball_seal": 0
+        }
+    ]
+}

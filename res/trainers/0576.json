@@ -1,0 +1,55 @@
+{
+    "name": "Mikayla",
+    "class": "TRAINER_CLASS_ACE_TRAINER_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_SEVIPER",
+            "form": 0,
+            "level": 56,
+            "item": null,
+            "moves": [
+                "MOVE_NIGHT_SLASH",
+                "MOVE_POISON_FANG",
+                "MOVE_WRING_OUT",
+                "MOVE_GLARE"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_PERSIAN",
+            "form": 0,
+            "level": 56,
+            "item": null,
+            "moves": [
+                "MOVE_NIGHT_SLASH",
+                "MOVE_POWER_GEM",
+                "MOVE_FAINT_ATTACK",
+                "MOVE_FAKE_OUT"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ABSOL",
+            "form": 0,
+            "level": 56,
+            "item": null,
+            "moves": [
+                "MOVE_NIGHT_SLASH",
+                "MOVE_PSYCHO_CUT",
+                "MOVE_SLASH",
+                "MOVE_QUICK_ATTACK"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

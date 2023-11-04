@@ -1,0 +1,86 @@
+{
+    "name": "Cheryl",
+    "class": "TRAINER_CLASS_TRAINER_CHERYL",
+    "items": [
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_WOBBUFFET",
+            "form": 0,
+            "level": 61,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_COUNTER",
+                "MOVE_MIRROR_COAT",
+                "MOVE_SAFEGUARD",
+                "MOVE_ENCORE"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_DRIFBLIM",
+            "form": 0,
+            "level": 61,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_TOXIC",
+                "MOVE_OMINOUS_WIND",
+                "MOVE_FLY",
+                "MOVE_PROTECT"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_HARIYAMA",
+            "form": 0,
+            "level": 62,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_EARTHQUAKE",
+                "MOVE_BULLET_PUNCH",
+                "MOVE_STONE_EDGE"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_WAILORD",
+            "form": 0,
+            "level": 63,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_WATER_SPOUT",
+                "MOVE_BRINE",
+                "MOVE_EARTHQUAKE",
+                "MOVE_AVALANCHE"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BLISSEY",
+            "form": 0,
+            "level": 65,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_SOFTBOILED",
+                "MOVE_COUNTER",
+                "MOVE_PSYCHIC",
+                "MOVE_TOXIC"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        }
+    ]
+}

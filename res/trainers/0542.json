@@ -1,0 +1,27 @@
+{
+    "name": "Leonardo",
+    "class": "TRAINER_CLASS_GENTLEMAN",
+    "items": [
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_CHATOT",
+            "form": 0,
+            "level": 27,
+            "item": null,
+            "moves": [
+                "MOVE_MIMIC",
+                "MOVE_SING",
+                "MOVE_FURY_ATTACK",
+                "MOVE_ROOST"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

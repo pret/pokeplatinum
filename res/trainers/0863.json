@@ -1,0 +1,86 @@
+{
+    "name": "Marley",
+    "class": "TRAINER_CLASS_TRAINER_MARLEY",
+    "items": [
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_NINJASK",
+            "form": 0,
+            "level": 61,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_X_SCISSOR",
+                "MOVE_AERIAL_ACE",
+                "MOVE_SWORDS_DANCE",
+                "MOVE_SLASH"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ELECTRODE",
+            "form": 0,
+            "level": 61,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_HYPER_BEAM",
+                "MOVE_THUNDER",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_DOUBLE_TEAM"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_CROBAT",
+            "form": 0,
+            "level": 62,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_AIR_SLASH",
+                "MOVE_POISON_FANG",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_DOUBLE_TEAM"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_WEAVILE",
+            "form": 0,
+            "level": 63,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_ICE_SHARD",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_AERIAL_ACE"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ARCANINE",
+            "form": 0,
+            "level": 65,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_EXTREME_SPEED",
+                "MOVE_FLARE_BLITZ",
+                "MOVE_CRUNCH",
+                "MOVE_THUNDER_FANG"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        }
+    ]
+}

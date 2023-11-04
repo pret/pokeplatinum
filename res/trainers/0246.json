@@ -1,0 +1,54 @@
+{
+    "name": "Roark",
+    "class": "TRAINER_CLASS_LEADER_ROARK",
+    "items": [
+        "ITEM_POTION",
+        "ITEM_POTION"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_GEODUDE",
+            "form": 0,
+            "level": 12,
+            "item": null,
+            "moves": [
+                "MOVE_STEALTH_ROCK",
+                "MOVE_ROCK_THROW"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ONIX",
+            "form": 0,
+            "level": 12,
+            "item": null,
+            "moves": [
+                "MOVE_STEALTH_ROCK",
+                "MOVE_ROCK_THROW",
+                "MOVE_SCREECH"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_CRANIDOS",
+            "form": 0,
+            "level": 14,
+            "item": null,
+            "moves": [
+                "MOVE_HEADBUTT",
+                "MOVE_PURSUIT",
+                "MOVE_LEER"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

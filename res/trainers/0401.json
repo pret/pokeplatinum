@@ -1,0 +1,23 @@
+{
+    "name": "Walter",
+    "class": "TRAINER_CLASS_FISHERMAN",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_WHISCASH",
+            "form": 0,
+            "level": 33,
+            "item": null,
+            "moves": [
+                "MOVE_WATER_PULSE",
+                "MOVE_MAGNITUDE"
+            ],
+            "power": 10,
+            "ball_seal": 0
+        }
+    ]
+}

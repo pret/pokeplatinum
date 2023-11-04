@@ -1,0 +1,28 @@
+{
+    "name": "Darrius",
+    "class": "TRAINER_CLASS_SCIENTIST",
+    "items": [
+        "ITEM_X_SPECIAL"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_PORYGON2",
+            "form": 0,
+            "level": 42,
+            "item": null,
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_SIGNAL_BEAM",
+                "MOVE_ICE_BEAM",
+                "MOVE_TRI_ATTACK"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

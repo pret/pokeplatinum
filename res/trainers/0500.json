@@ -1,0 +1,55 @@
+{
+    "name": "Brenden",
+    "class": "TRAINER_CLASS_VETERAN",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_FORRETRESS",
+            "form": 0,
+            "level": 54,
+            "item": null,
+            "moves": [
+                "MOVE_FLASH_CANNON",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_STEALTH_ROCK",
+                "MOVE_TOXIC_SPIKES"
+            ],
+            "power": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GYARADOS",
+            "form": 0,
+            "level": 54,
+            "item": null,
+            "moves": [
+                "MOVE_EARTHQUAKE",
+                "MOVE_AQUA_TAIL",
+                "MOVE_ICE_FANG",
+                "MOVE_DRAGON_PULSE"
+            ],
+            "power": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_HIPPOWDON",
+            "form": 0,
+            "level": 54,
+            "item": null,
+            "moves": [
+                "MOVE_DIG",
+                "MOVE_CRUNCH",
+                "MOVE_PROTECT",
+                "MOVE_REST"
+            ],
+            "power": 100,
+            "ball_seal": 0
+        }
+    ]
+}

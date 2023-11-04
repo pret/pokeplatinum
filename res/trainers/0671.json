@@ -1,0 +1,41 @@
+{
+    "name": "Deanna",
+    "class": "TRAINER_CLASS_ACE_TRAINER_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_AMPHAROS",
+            "form": 0,
+            "level": 61,
+            "item": null,
+            "moves": [
+                "MOVE_DISCHARGE",
+                "MOVE_POWER_GEM",
+                "MOVE_SIGNAL_BEAM",
+                "MOVE_FIRE_PUNCH"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_TROPIUS",
+            "form": 0,
+            "level": 62,
+            "item": null,
+            "moves": [
+                "MOVE_LEAF_STORM",
+                "MOVE_AIR_SLASH",
+                "MOVE_EARTHQUAKE",
+                "MOVE_SILVER_WIND"
+            ],
+            "power": 50,
+            "ball_seal": 19
+        }
+    ]
+}

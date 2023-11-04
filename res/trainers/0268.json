@@ -1,0 +1,41 @@
+{
+    "name": "Sergio",
+    "class": "TRAINER_CLASS_ACE_TRAINER_SNOW_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_SNOVER",
+            "form": 0,
+            "level": 41,
+            "item": null,
+            "moves": [
+                "MOVE_ICE_SHARD",
+                "MOVE_SWAGGER",
+                "MOVE_ICY_WIND",
+                "MOVE_WOOD_HAMMER"
+            ],
+            "power": 60,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SNEASEL",
+            "form": 0,
+            "level": 42,
+            "item": null,
+            "moves": [
+                "MOVE_ICY_WIND",
+                "MOVE_SLASH",
+                "MOVE_FAINT_ATTACK",
+                "MOVE_QUICK_ATTACK"
+            ],
+            "power": 60,
+            "ball_seal": 0
+        }
+    ]
+}

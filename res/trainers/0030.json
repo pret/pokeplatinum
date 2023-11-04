@@ -1,0 +1,38 @@
+{
+    "name": "Nicole",
+    "class": "TRAINER_CLASS_CYCLIST_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_STARLY",
+            "form": 0,
+            "level": 17,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_STARLY",
+            "form": 0,
+            "level": 18,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_STARLY",
+            "form": 0,
+            "level": 19,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

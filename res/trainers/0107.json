@@ -1,0 +1,38 @@
+{
+    "name": "Jared",
+    "class": "TRAINER_CLASS_TUBER_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_SHELLOS",
+            "form": 1,
+            "level": 25,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SHELLOS",
+            "form": 1,
+            "level": 25,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SHELLOS",
+            "form": 0,
+            "level": 26,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 8
+        }
+    ]
+}

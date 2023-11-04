@@ -1,0 +1,56 @@
+{
+    "name": "Mars",
+    "class": "TRAINER_CLASS_COMMANDER_MARS",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_SETUP_FIRST_TURN"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_BRONZONG",
+            "form": 0,
+            "level": 58,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_GYRO_BALL",
+                "MOVE_EXTRASENSORY",
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_CONFUSE_RAY"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GOLBAT",
+            "form": 0,
+            "level": 58,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_AIR_CUTTER",
+                "MOVE_BITE",
+                "MOVE_POISON_FANG",
+                "MOVE_CONFUSE_RAY"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_PURUGLY",
+            "form": 0,
+            "level": 60,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_SLASH",
+                "MOVE_SHADOW_CLAW",
+                "MOVE_AERIAL_ACE",
+                "MOVE_HYPNOSIS"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        }
+    ]
+}

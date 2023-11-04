@@ -1,0 +1,42 @@
+{
+    "name": "Fredrick",
+    "class": "TRAINER_CLASS_SCIENTIST",
+    "items": [
+        "ITEM_X_DEFENSE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_KIRLIA",
+            "form": 0,
+            "level": 40,
+            "item": null,
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_MAGICAL_LEAF",
+                "MOVE_HYPNOSIS",
+                "MOVE_FUTURE_SIGHT"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_KADABRA",
+            "form": 0,
+            "level": 40,
+            "item": null,
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_PSYCHO_CUT",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_RECOVER"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

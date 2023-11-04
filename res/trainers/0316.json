@@ -1,0 +1,58 @@
+{
+    "name": "Wake",
+    "class": "TRAINER_CLASS_LEADER_WAKE",
+    "items": [
+        "ITEM_HYPER_POTION",
+        "ITEM_HYPER_POTION"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_GYARADOS",
+            "form": 0,
+            "level": 33,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_WATERFALL",
+                "MOVE_BRINE",
+                "MOVE_BITE",
+                "MOVE_TWISTER"
+            ],
+            "power": 150,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_QUAGSIRE",
+            "form": 0,
+            "level": 34,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_MUD_SHOT",
+                "MOVE_ROCK_TOMB",
+                "MOVE_WATER_PULSE",
+                "MOVE_YAWN"
+            ],
+            "power": 150,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_FLOATZEL",
+            "form": 0,
+            "level": 37,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_BRINE",
+                "MOVE_ICE_FANG",
+                "MOVE_CRUNCH",
+                "MOVE_AQUA_JET"
+            ],
+            "power": 150,
+            "ball_seal": 0
+        }
+    ]
+}

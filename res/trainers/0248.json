@@ -1,0 +1,37 @@
+{
+    "name": "Cedric",
+    "class": "TRAINER_CLASS_RIVAL",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_DAMAGE_PRIORITY"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_STARLY",
+            "form": 0,
+            "level": 7,
+            "item": null,
+            "moves": [
+                "MOVE_QUICK_ATTACK",
+                "MOVE_GROWL"
+            ],
+            "power": 30,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_CHIMCHAR",
+            "form": 0,
+            "level": 9,
+            "item": null,
+            "moves": [
+                "MOVE_SCRATCH",
+                "MOVE_LEER"
+            ],
+            "power": 30,
+            "ball_seal": 0
+        }
+    ]
+}

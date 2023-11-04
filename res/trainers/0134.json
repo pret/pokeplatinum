@@ -1,0 +1,27 @@
+{
+    "name": "Laura",
+    "class": "TRAINER_CLASS_ACE_TRAINER_SNOW_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_TROPIUS",
+            "form": 0,
+            "level": 42,
+            "item": null,
+            "moves": [
+                "MOVE_AIR_SLASH",
+                "MOVE_BODY_SLAM",
+                "MOVE_MAGICAL_LEAF",
+                "MOVE_SWEET_SCENT"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

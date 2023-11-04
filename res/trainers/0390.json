@@ -1,0 +1,55 @@
+{
+    "name": "Arthur",
+    "class": "TRAINER_CLASS_ACE_TRAINER_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_GASTRODON",
+            "form": 0,
+            "level": 54,
+            "item": null,
+            "moves": [
+                "MOVE_MUDDY_WATER",
+                "MOVE_RECOVER",
+                "MOVE_TOXIC",
+                "MOVE_WATER_PULSE"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BEEDRILL",
+            "form": 0,
+            "level": 54,
+            "item": null,
+            "moves": [
+                "MOVE_POISON_JAB",
+                "MOVE_U_TURN",
+                "MOVE_AERIAL_ACE",
+                "MOVE_SWORDS_DANCE"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ELECTRODE",
+            "form": 0,
+            "level": 55,
+            "item": null,
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_HYPER_BEAM",
+                "MOVE_ENDURE",
+                "MOVE_EXPLOSION"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

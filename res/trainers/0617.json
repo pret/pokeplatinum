@@ -1,0 +1,27 @@
+{
+    "name": "Dawn",
+    "class": "TRAINER_CLASS_DP_PLAYER_FEMALE",
+    "items": [
+        "ITEM_POTION"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_CHIMCHAR",
+            "form": 0,
+            "level": 13,
+            "item": null,
+            "moves": [
+                "MOVE_EMBER",
+                "MOVE_SCRATCH"
+            ],
+            "power": 30,
+            "ball_seal": 0
+        }
+    ]
+}

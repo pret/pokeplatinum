@@ -1,0 +1,40 @@
+{
+    "name": "Desiree",
+    "class": "TRAINER_CLASS_PSYCHIC_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_MR_MIME",
+            "form": 0,
+            "level": 54,
+            "item": null,
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_REFLECT",
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_DRAIN_PUNCH"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MISMAGIUS",
+            "form": 0,
+            "level": 54,
+            "item": null,
+            "moves": [
+                "MOVE_SHADOW_BALL",
+                "MOVE_MAGICAL_LEAF",
+                "MOVE_AERIAL_ACE",
+                "MOVE_SHOCK_WAVE"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

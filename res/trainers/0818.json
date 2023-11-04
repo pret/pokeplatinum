@@ -1,0 +1,36 @@
+{
+    "name": "Carrie",
+    "class": "TRAINER_CLASS_LASS",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_BONSLY",
+            "form": 0,
+            "level": 23,
+            "item": null,
+            "moves": [
+                "MOVE_BLOCK",
+                "MOVE_ROCK_THROW"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MIME_JR",
+            "form": 0,
+            "level": 24,
+            "item": null,
+            "moves": [
+                "MOVE_REFLECT",
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_DOUBLE_SLAP"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

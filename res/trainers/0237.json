@@ -1,0 +1,39 @@
+{
+    "name": "Al & Kay",
+    "class": "TRAINER_CLASS_DOUBLE_TEAM",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": true,
+    "party": [
+        {
+            "species": "SPECIES_STARAPTOR",
+            "form": 0,
+            "level": 50,
+            "item": null,
+            "moves": [
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_BRAVE_BIRD",
+                "MOVE_GROWL",
+                "MOVE_QUICK_ATTACK"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_AMBIPOM",
+            "form": 0,
+            "level": 50,
+            "item": null,
+            "moves": [
+                "MOVE_DOUBLE_HIT",
+                "MOVE_AERIAL_ACE",
+                "MOVE_SHOCK_WAVE",
+                "MOVE_WATER_PULSE"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+{
+    "name": "Christine",
+    "class": "TRAINER_CLASS_SCHOOL_KID_FEMALE",
+    "items": [
+        "ITEM_POTION"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_BIDOOF",
+            "form": 0,
+            "level": 6,
+            "item": null,
+            "moves": null,
+            "power": 10,
+            "ball_seal": 0
+        }
+    ]
+}

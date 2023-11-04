@@ -1,0 +1,20 @@
+{
+    "name": "Jamal",
+    "class": "TRAINER_CLASS_COLLECTOR",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_PORYGON",
+            "form": 0,
+            "level": 27,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

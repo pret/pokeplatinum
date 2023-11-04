@@ -1,0 +1,25 @@
+{
+    "name": "Anton",
+    "class": "TRAINER_CLASS_ACE_TRAINER_SNOW_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_GLALIE",
+            "form": 0,
+            "level": 44,
+            "item": null,
+            "moves": [
+                "MOVE_ICE_BEAM",
+                "MOVE_CRUNCH"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

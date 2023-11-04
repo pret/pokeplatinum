@@ -1,0 +1,20 @@
+{
+    "name": "Fernando",
+    "class": "TRAINER_CLASS_COLLECTOR",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_HERACROSS",
+            "form": 0,
+            "level": 25,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

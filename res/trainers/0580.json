@@ -1,0 +1,27 @@
+{
+    "name": "Jasmin",
+    "class": "TRAINER_CLASS_ACE_TRAINER_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_DRAPION",
+            "form": 0,
+            "level": 61,
+            "item": null,
+            "moves": [
+                "MOVE_CROSS_POISON",
+                "MOVE_CRUNCH",
+                "MOVE_X_SCISSOR",
+                "MOVE_AERIAL_ACE"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

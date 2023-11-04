@@ -1,0 +1,30 @@
+{
+    "name": "Helen",
+    "class": "TRAINER_CLASS_BATTLE_GIRL",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_DAMAGE_PRIORITY"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_MEDICHAM",
+            "form": 0,
+            "level": 44,
+            "item": null,
+            "moves": null,
+            "power": 30,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MACHOKE",
+            "form": 0,
+            "level": 44,
+            "item": null,
+            "moves": null,
+            "power": 30,
+            "ball_seal": 0
+        }
+    ]
+}

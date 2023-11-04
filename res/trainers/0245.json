@@ -1,0 +1,36 @@
+{
+    "name": "Darius",
+    "class": "TRAINER_CLASS_YOUNGSTER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_GEODUDE",
+            "form": 0,
+            "level": 9,
+            "item": null,
+            "moves": [
+                "MOVE_TACKLE",
+                "MOVE_DEFENSE_CURL"
+            ],
+            "power": 10,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ONIX",
+            "form": 0,
+            "level": 9,
+            "item": null,
+            "moves": [
+                "MOVE_ROCK_THROW",
+                "MOVE_TACKLE",
+                "MOVE_HARDEN"
+            ],
+            "power": 10,
+            "ball_seal": 0
+        }
+    ]
+}

@@ -1,0 +1,55 @@
+{
+    "name": "Dennis",
+    "class": "TRAINER_CLASS_ACE_TRAINER_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_GLIGAR",
+            "form": 0,
+            "level": 44,
+            "item": null,
+            "moves": [
+                "MOVE_SCREECH",
+                "MOVE_FAINT_ATTACK",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_POISON_STING"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_FLOATZEL",
+            "form": 0,
+            "level": 44,
+            "item": null,
+            "moves": [
+                "MOVE_AQUA_JET",
+                "MOVE_SWIFT",
+                "MOVE_PURSUIT",
+                "MOVE_QUICK_ATTACK"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_DRIFBLIM",
+            "form": 0,
+            "level": 45,
+            "item": null,
+            "moves": [
+                "MOVE_SWALLOW",
+                "MOVE_GUST",
+                "MOVE_STOCKPILE",
+                "MOVE_SHADOW_BALL"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

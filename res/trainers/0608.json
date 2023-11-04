@@ -1,0 +1,26 @@
+{
+    "name": "Cheryl",
+    "class": "TRAINER_CLASS_TRAINER_CHERYL",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_CHANSEY",
+            "form": 0,
+            "level": 20,
+            "item": null,
+            "moves": [
+                "MOVE_EGG_BOMB",
+                "MOVE_SOFTBOILED",
+                "MOVE_REFRESH"
+            ],
+            "power": 30,
+            "ball_seal": 0
+        }
+    ]
+}

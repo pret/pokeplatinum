@@ -1,0 +1,41 @@
+{
+    "name": "Brandi",
+    "class": "TRAINER_CLASS_ACE_TRAINER_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_MAROWAK",
+            "form": 0,
+            "level": 54,
+            "item": null,
+            "moves": [
+                "MOVE_BONE_RUSH",
+                "MOVE_STONE_EDGE",
+                "MOVE_SWORDS_DANCE",
+                "MOVE_ENDEAVOR"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_KANGASKHAN",
+            "form": 0,
+            "level": 57,
+            "item": null,
+            "moves": [
+                "MOVE_DIZZY_PUNCH",
+                "MOVE_CRUNCH",
+                "MOVE_OUTRAGE",
+                "MOVE_EARTHQUAKE"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

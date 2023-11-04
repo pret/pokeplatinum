@@ -1,0 +1,27 @@
+{
+    "name": "Buck",
+    "class": "TRAINER_CLASS_TRAINER_BUCK",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_CLAYDOL",
+            "form": 0,
+            "level": 63,
+            "item": null,
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_ANCIENT_POWER",
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_REFLECT"
+            ],
+            "power": 30,
+            "ball_seal": 0
+        }
+    ]
+}

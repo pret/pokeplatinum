@@ -1,0 +1,24 @@
+{
+    "name": "Lindsay",
+    "class": "TRAINER_CLASS_BEAUTY",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_ROSELIA",
+            "form": 0,
+            "level": 19,
+            "item": null,
+            "moves": [
+                "MOVE_MEGA_DRAIN",
+                "MOVE_POISON_STING",
+                "MOVE_STUN_SPORE"
+            ],
+            "power": 20,
+            "ball_seal": 0
+        }
+    ]
+}

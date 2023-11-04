@@ -1,0 +1,26 @@
+{
+    "name": "Deandre",
+    "class": "TRAINER_CLASS_PSYCHIC_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_DUSKNOIR",
+            "form": 0,
+            "level": 56,
+            "item": null,
+            "moves": [
+                "MOVE_SHADOW_PUNCH",
+                "MOVE_FIRE_PUNCH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_THUNDER_PUNCH"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

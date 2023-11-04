@@ -1,0 +1,38 @@
+{
+    "name": "Bradley",
+    "class": "TRAINER_CLASS_SKIER_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_SNORUNT",
+            "form": 0,
+            "level": 36,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SWINUB",
+            "form": 0,
+            "level": 36,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SNOVER",
+            "form": 0,
+            "level": 36,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

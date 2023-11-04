@@ -1,0 +1,25 @@
+{
+    "name": "Rachael",
+    "class": "TRAINER_CLASS_PSYCHIC_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_PSYDUCK",
+            "form": 0,
+            "level": 17,
+            "item": null,
+            "moves": [
+                "MOVE_CONFUSION",
+                "MOVE_WATER_GUN",
+                "MOVE_SCRATCH"
+            ],
+            "power": 20,
+            "ball_seal": 0
+        }
+    ]
+}

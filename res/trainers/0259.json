@@ -1,0 +1,51 @@
+{
+    "name": "Jenna",
+    "class": "TRAINER_CLASS_AROMA_LADY",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_BUDEW",
+            "form": 0,
+            "level": 15,
+            "item": null,
+            "moves": [
+                "MOVE_ABSORB",
+                "MOVE_STUN_SPORE",
+                "MOVE_WATER_SPORT"
+            ],
+            "power": 20,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BUDEW",
+            "form": 0,
+            "level": 16,
+            "item": null,
+            "moves": [
+                "MOVE_ABSORB",
+                "MOVE_STUN_SPORE",
+                "MOVE_WATER_SPORT"
+            ],
+            "power": 20,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BUDEW",
+            "form": 0,
+            "level": 17,
+            "item": null,
+            "moves": [
+                "MOVE_ABSORB",
+                "MOVE_STUN_SPORE",
+                "MOVE_WATER_SPORT"
+            ],
+            "power": 20,
+            "ball_seal": 0
+        }
+    ]
+}

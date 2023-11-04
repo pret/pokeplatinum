@@ -49,7 +49,7 @@ class Parser():
 
     def register(self,
                  field_name: str,
-                 size: int,
+                 size: int | tuple[int,int],
                  func: FunctionType | LambdaType,
                  const_type: type[Enum] | None = None,
                  optional: bool = False) -> 'Parser':
@@ -143,14 +143,14 @@ def parse_const(val: str, size: int, consts: type[Enum]) -> bytes:
     return consts[val].value.to_bytes(size, 'little')
 
 
-def parse_int(val: int, size: int, _consts: type[Enum]) -> bytes:
+def parse_int(val: int, size: int, _consts: type[Enum] = None) -> bytes:
     '''
         Simple parse wrapper for an integer.
     '''
     return val.to_bytes(size, 'little')
 
 
-def parse_sint(val: int, size: int, _consts: type[Enum]) -> bytes:
+def parse_sint(val: int, size: int, _consts: type[Enum] = None) -> bytes:
     '''
         Simple parse wrapper for a signed integer.
     '''

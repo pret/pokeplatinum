@@ -1,0 +1,27 @@
+{
+    "name": "Celeste",
+    "class": "TRAINER_CLASS_LADY",
+    "items": [
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_BLISSEY",
+            "form": 0,
+            "level": 35,
+            "item": "ITEM_RARE_CANDY",
+            "moves": [
+                "MOVE_FLING",
+                "MOVE_SOFTBOILED",
+                "MOVE_EGG_BOMB",
+                "MOVE_PSYCHIC"
+            ],
+            "power": 250,
+            "ball_seal": 27
+        }
+    ]
+}

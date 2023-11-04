@@ -1,0 +1,41 @@
+{
+    "name": "Rodolfo",
+    "class": "TRAINER_CLASS_ACE_TRAINER_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_STARMIE",
+            "form": 0,
+            "level": 55,
+            "item": null,
+            "moves": [
+                "MOVE_WATER_PULSE",
+                "MOVE_RECOVER",
+                "MOVE_PSYCHIC",
+                "MOVE_SWIFT"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_VIBRAVA",
+            "form": 0,
+            "level": 56,
+            "item": null,
+            "moves": [
+                "MOVE_DRAGON_BREATH",
+                "MOVE_EARTHQUAKE",
+                "MOVE_FAINT_ATTACK",
+                "MOVE_SCREECH"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

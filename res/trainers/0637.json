@@ -1,0 +1,53 @@
+{
+    "name": "Brianna",
+    "class": "TRAINER_CLASS_BIRD_KEEPER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_SKARMORY",
+            "form": 0,
+            "level": 59,
+            "item": null,
+            "moves": [
+                "MOVE_NIGHT_SLASH",
+                "MOVE_SLASH",
+                "MOVE_AIR_SLASH",
+                "MOVE_STEEL_WING"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_NOCTOWL",
+            "form": 0,
+            "level": 59,
+            "item": null,
+            "moves": [
+                "MOVE_HYPNOSIS",
+                "MOVE_PSYCHIC",
+                "MOVE_ROOST",
+                "MOVE_AIR_SLASH"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_NOCTOWL",
+            "form": 0,
+            "level": 59,
+            "item": null,
+            "moves": [
+                "MOVE_HYPNOSIS",
+                "MOVE_PSYCHIC",
+                "MOVE_ROOST",
+                "MOVE_AIR_SLASH"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+{
+    "name": "Mars",
+    "class": "TRAINER_CLASS_COMMANDER_MARS",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_ZUBAT",
+            "form": 0,
+            "level": 15,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_BITE",
+                "MOVE_LEECH_LIFE",
+                "MOVE_TOXIC"
+            ],
+            "power": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_PURUGLY",
+            "form": 0,
+            "level": 17,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_FAINT_ATTACK",
+                "MOVE_SCRATCH",
+                "MOVE_FAKE_OUT"
+            ],
+            "power": 100,
+            "ball_seal": 0
+        }
+    ]
+}

@@ -1,0 +1,69 @@
+{
+    "name": "Cedric",
+    "class": "TRAINER_CLASS_RIVAL",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_STARAVIA",
+            "form": 0,
+            "level": 34,
+            "item": null,
+            "moves": [
+                "MOVE_WING_ATTACK",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_ENDEAVOR",
+                "MOVE_DOUBLE_TEAM"
+            ],
+            "power": 80,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ROSELIA",
+            "form": 0,
+            "level": 32,
+            "item": null,
+            "moves": [
+                "MOVE_MEGA_DRAIN",
+                "MOVE_POISON_STING",
+                "MOVE_LEECH_SEED",
+                "MOVE_MAGICAL_LEAF"
+            ],
+            "power": 80,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_PONYTA",
+            "form": 0,
+            "level": 32,
+            "item": null,
+            "moves": [
+                "MOVE_EMBER",
+                "MOVE_STOMP",
+                "MOVE_TAIL_WHIP",
+                "MOVE_GROWL"
+            ],
+            "power": 80,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_PRINPLUP",
+            "form": 0,
+            "level": 36,
+            "item": null,
+            "moves": [
+                "MOVE_BUBBLE_BEAM",
+                "MOVE_PECK",
+                "MOVE_METAL_CLAW",
+                "MOVE_GROWL"
+            ],
+            "power": 80,
+            "ball_seal": 10
+        }
+    ]
+}

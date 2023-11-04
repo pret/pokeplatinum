@@ -1,0 +1,86 @@
+{
+    "name": "Riley",
+    "class": "TRAINER_CLASS_TRAINER_RILEY",
+    "items": [
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_ABSOL",
+            "form": 0,
+            "level": 61,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_PSYCHO_CUT",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_SWORDS_DANCE",
+                "MOVE_QUICK_ATTACK"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_URSARING",
+            "form": 0,
+            "level": 61,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_AVALANCHE",
+                "MOVE_SLASH",
+                "MOVE_AERIAL_ACE",
+                "MOVE_SHADOW_CLAW"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_METAGROSS",
+            "form": 0,
+            "level": 62,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_METEOR_MASH",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_HAMMER_ARM",
+                "MOVE_BULLET_PUNCH"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SALAMENCE",
+            "form": 0,
+            "level": 63,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_DRAGON_CLAW",
+                "MOVE_CRUNCH",
+                "MOVE_FIRE_FANG",
+                "MOVE_THUNDER_FANG"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_LUCARIO",
+            "form": 0,
+            "level": 65,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_EXTREME_SPEED",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_BONE_RUSH",
+                "MOVE_BLAZE_KICK"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        }
+    ]
+}

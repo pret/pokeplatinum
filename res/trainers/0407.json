@@ -1,0 +1,56 @@
+{
+    "name": "Jupiter",
+    "class": "TRAINER_CLASS_COMMANDER_JUPITER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_SETUP_FIRST_TURN"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_BRONZOR",
+            "form": 0,
+            "level": 44,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_GYRO_BALL",
+                "MOVE_EXTRASENSORY",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_REFLECT"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GOLBAT",
+            "form": 0,
+            "level": 44,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_AIR_CUTTER",
+                "MOVE_GIGA_DRAIN",
+                "MOVE_MEAN_LOOK"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SKUNTANK",
+            "form": 0,
+            "level": 46,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_NIGHT_SLASH",
+                "MOVE_POISON_JAB",
+                "MOVE_FLAMETHROWER",
+                "MOVE_SMOKE_SCREEN"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        }
+    ]
+}

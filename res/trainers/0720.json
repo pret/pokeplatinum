@@ -1,0 +1,27 @@
+{
+    "name": "Karina",
+    "class": "TRAINER_CLASS_PICNICKER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_EMPOLEON",
+            "form": 0,
+            "level": 54,
+            "item": null,
+            "moves": [
+                "MOVE_HYDRO_PUMP",
+                "MOVE_DRILL_PECK",
+                "MOVE_METAL_CLAW",
+                "MOVE_AQUA_JET"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

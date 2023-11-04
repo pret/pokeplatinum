@@ -1,0 +1,27 @@
+{
+    "name": "Isaiah",
+    "class": "TRAINER_CLASS_ACE_TRAINER_SNOW_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_PILOSWINE",
+            "form": 0,
+            "level": 44,
+            "item": null,
+            "moves": [
+                "MOVE_EARTHQUAKE",
+                "MOVE_FURY_ATTACK",
+                "MOVE_ICE_FANG",
+                "MOVE_ANCIENT_POWER"
+            ],
+            "power": 60,
+            "ball_seal": 0
+        }
+    ]
+}

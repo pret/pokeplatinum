@@ -1,0 +1,29 @@
+{
+    "name": "Emma & Lil",
+    "class": "TRAINER_CLASS_TWINS",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": true,
+    "party": [
+        {
+            "species": "SPECIES_BONSLY",
+            "form": 0,
+            "level": 22,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MIME_JR",
+            "form": 0,
+            "level": 22,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

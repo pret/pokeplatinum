@@ -1,0 +1,54 @@
+{
+    "name": "Brenna",
+    "class": "TRAINER_CLASS_ACE_TRAINER_SNOW_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_SNEASEL",
+            "form": 0,
+            "level": 40,
+            "item": null,
+            "moves": [
+                "MOVE_ICE_SHARD",
+                "MOVE_SLASH",
+                "MOVE_FAINT_ATTACK",
+                "MOVE_QUICK_ATTACK"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SNORUNT",
+            "form": 0,
+            "level": 40,
+            "item": null,
+            "moves": [
+                "MOVE_ICE_FANG",
+                "MOVE_CRUNCH",
+                "MOVE_HAIL"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SNOVER",
+            "form": 0,
+            "level": 41,
+            "item": null,
+            "moves": [
+                "MOVE_ICE_SHARD",
+                "MOVE_WOOD_HAMMER",
+                "MOVE_INGRAIN",
+                "MOVE_GRASS_WHISTLE"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

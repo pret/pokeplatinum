@@ -1,0 +1,55 @@
+{
+    "name": "Ernest",
+    "class": "TRAINER_CLASS_ACE_TRAINER_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_SCYTHER",
+            "form": 0,
+            "level": 32,
+            "item": null,
+            "moves": [
+                "MOVE_SLASH",
+                "MOVE_WING_ATTACK",
+                "MOVE_PURSUIT",
+                "MOVE_QUICK_ATTACK"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_PROBOPASS",
+            "form": 0,
+            "level": 31,
+            "item": null,
+            "moves": [
+                "MOVE_THUNDER_WAVE",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_MAGNET_BOMB",
+                "MOVE_IRON_DEFENSE"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_LUXIO",
+            "form": 0,
+            "level": 34,
+            "item": null,
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_CRUNCH",
+                "MOVE_SWAGGER",
+                "MOVE_DOUBLE_TEAM"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

@@ -1,0 +1,41 @@
+{
+    "name": "Clayton",
+    "class": "TRAINER_CLASS_VETERAN",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_STARAPTOR",
+            "form": 0,
+            "level": 47,
+            "item": null,
+            "moves": [
+                "MOVE_BRAVE_BIRD",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_DOUBLE_TEAM",
+                "MOVE_GROWL"
+            ],
+            "power": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_LICKILICKY",
+            "form": 0,
+            "level": 47,
+            "item": null,
+            "moves": [
+                "MOVE_SLAM",
+                "MOVE_POWER_WHIP",
+                "MOVE_EARTHQUAKE",
+                "MOVE_BRICK_BREAK"
+            ],
+            "power": 100,
+            "ball_seal": 0
+        }
+    ]
+}
