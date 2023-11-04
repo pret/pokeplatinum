@@ -11,8 +11,10 @@ from consts.pokemon import (
     species
 )
 
+
 def table_line(move_id: int, level: int) -> bytes:
     return ((move_id & 0x01FF) | ((level & 0x7F) << 9)).to_bytes(2, 'little', signed=False)
+
 
 def parse_level_up_moves(table: dict, _size: int, _enum: None):
     out = []
@@ -31,7 +33,7 @@ def parse_level_up_moves(table: dict, _size: int, _enum: None):
 
 SCHEMA = j2b.Parser() \
     .register_name(lambda s: s) \
-    .register('learnset.level_up', 0, parse_level_up_moves, optional=True) \
+    .register('learnset.level_up', 0, parse_level_up_moves, optional=j2b.OptionalBehavior.SKIP) \
     .pad(2, 0xff) \
     .align(4)
 
@@ -60,6 +62,8 @@ FORM_INDICES = {
         'MOW': 507,
     },
 }
+
+
 def indexer(file_path: pathlib.Path) -> int:
     name = file_path.parent.stem.upper()
     if name == '000': return 0
