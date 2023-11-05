@@ -253,7 +253,7 @@ static void BattleController_TrainerMessage(BattleSystem *battleSys, BattleConte
 
 static void BattleController_ShowBattleMon(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int nextSeq = BattleSystem_ShowMonChecks(battleSys, battleCtx);
+    int nextSeq = BattleSystem_TriggerEffectOnSwitch(battleSys, battleCtx);
 
     if (nextSeq) {
         LOAD_SUBSEQ(nextSeq);
@@ -3676,7 +3676,7 @@ static void BattleController_AfterMoveEffects(BattleSystem *battleSys, BattleCon
         }
 
     case AFTER_MOVE_EFFECT_TRIGGER_SWITCH_IN_EFFECTS:
-        int switchinSeq = BattleSystem_ShowMonChecks(battleSys, battleCtx);
+        int switchinSeq = BattleSystem_TriggerEffectOnSwitch(battleSys, battleCtx);
         if (switchinSeq) {
             LOAD_SUBSEQ(switchinSeq);
             battleCtx->commandNext = battleCtx->command;
@@ -3976,7 +3976,7 @@ static void BattleController_MoveEnd(BattleSystem *battleSys, BattleContext *bat
             return;
         }
 
-        int nextSeq = BattleSystem_ShowMonChecks(battleSys, battleCtx);
+        int nextSeq = BattleSystem_TriggerEffectOnSwitch(battleSys, battleCtx);
         if (nextSeq) {
             LOAD_SUBSEQ(nextSeq);
             battleCtx->commandNext = battleCtx->command;

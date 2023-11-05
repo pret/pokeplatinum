@@ -1113,7 +1113,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
     param0->unk_2418 = param1->unk_16C;
     param0->unk_2424 = param1->unk_140;
     param0->unk_242C = param1->unk_144;
-    param0->unk_2428 = param1->unk_14C;
+    param0->fieldWeather = param1->unk_14C;
     param0->unk_218 = param1->unk_11C;
 
     GF_ASSERT(param1->unk_11C != NULL);

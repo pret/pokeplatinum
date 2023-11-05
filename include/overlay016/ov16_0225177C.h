@@ -631,7 +631,16 @@ BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *
  * than 1.
  */
 int BattleSystem_Divide(int dividend, int divisor);
-int BattleSystem_ShowMonChecks(BattleSystem * param0, BattleContext * param1);
+
+/**
+ * @brief Trigger effects which process on-switch-in, e.g. weather abilities,
+ * Intimidate, status-restoring berries, and Amulet Coin.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return A subscript which should be loaded as a triggered effect, if any.
+ */
+int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *battleCtx);
 
 /**
  * @brief Pick a random opponent for the given attacker.
@@ -817,7 +826,19 @@ u8 BattleContext_IOBufferVal(BattleContext *battleCtx, int battler);
 BOOL Battler_SubstituteWasHit(BattleContext *battleCtx, int battler);
 BOOL BattleSystem_TrainerIsOT(BattleSystem * param0, BattleContext * param1);
 BOOL BattleSystem_PokemonIsOT(BattleSystem * param0, Pokemon * param1);
-BOOL BattleSystem_UpdateWeatherForms(BattleSystem * param0, BattleContext * param1, int * param2);
+
+/**
+ * @brief Trigger a form change for the battler stored in battleCtx->msgBattlerTemp,
+ * if applicable.
+ * 
+ * @param battleSys 
+ * @param battleCtx
+ * @param[out] subscript    Return-param for the subscript to be loaded for any
+ *                          triggered effect.
+ * @return TRUE if a form change has triggered and the returned subscript should
+ * be loaded for execution, FALSE otherwise.
+ */
+BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript);
 void ov16_0225A1B0(BattleSystem * param0, BattleContext * param1);
 
 /**
