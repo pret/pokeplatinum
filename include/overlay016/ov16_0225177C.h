@@ -696,10 +696,62 @@ BOOL BattleSystem_RecoverStatusByAbility(BattleSystem *battleSys, BattleContext 
  */
 BOOL Ability_ForbidsStatus(BattleContext *battleSys, int ability, int status);
 BOOL BattleSystem_SynchronizeStatus(BattleSystem * battleSys, BattleContext * battleCtx, int controllerCommand);
-BOOL BattleSystem_TriggerHeldItem(BattleSystem * param0, BattleContext * param1, int param2);
-BOOL BattleSystem_TriggerLeftovers(BattleSystem * param0, BattleContext * param1, int param2);
-BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem * param0, BattleContext * param1, int param2, int * param3);
-BOOL BattleSystem_TriggerDetrimentalHeldItem(BattleSystem * param0, BattleContext * param1, int param2);
+
+/**
+ * @brief Check if a held item should trigger due to status, an HP threshold, or
+ * a stat reduction, then load any such triggered effect's corresponding subscript.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler 
+ * @return TRUE if a subscript has been loaded for a triggered effect, FALSE
+ * otherwise. 
+ */
+BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
+
+/**
+ * @brief Check if a Leftovers-type item should trigger at the end of the turn.
+ * 
+ * This also contains the split-effect for Black Sludge.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler 
+ * @return TRUE if an effect has been loaded for a subscript to be run, FALSE
+ * otherwise.
+ */
+BOOL BattleSystem_TriggerLeftovers(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
+
+/**
+ * @brief Check if a held item should trigger due to status, an HP threshold, or
+ * a stat reduction.
+ * 
+ * Unlike its counterpart TriggerHeldItem, this routine will return the triggered
+ * effect subscript to the caller rather than immediately loading it for
+ * execution.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler 
+ * @param[out] subscript    Return param for the subscript to load for a
+ *                          triggered effect.
+ * @return TRUE if a subscript has been returned for a triggered effect, FALSE
+ * otherwise.
+ */
+BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int *subscript);
+
+/**
+ * @brief Check if a detrimental held item should trigger at the end of the turn.
+ * 
+ * This accounts for the effects of Toxic Orb, Flame Orb, and Sticky Barb.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler 
+ * @return TRUE if an effect has been loaded for a subscript to be run, FALSE
+ * otherwise.
+ */
+BOOL BattleSystem_TriggerDetrimentalHeldItem(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 
 /**
  * @brief Get the battler's held item.
@@ -709,9 +761,36 @@ BOOL BattleSystem_TriggerDetrimentalHeldItem(BattleSystem * param0, BattleContex
  * @return Integer ID of the battler's held item
  */
 u16 Battler_HeldItem(BattleContext *battleCtx, int battler);
-BOOL Battler_MovedThisTurn(BattleContext * param0, int param1);
-BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem * param0, BattleContext * param1, int * param2);
-s32 Battler_HeldItemEffect(BattleContext * param0, int param1);
+
+/**
+ * @brief Check if a battler moved this turn.
+ * 
+ * @param battleCtx 
+ * @param battler 
+ * @return TRUE if the battler's turn is over, FALSE if they have yet to move.
+ */
+BOOL Battler_MovedThisTurn(BattleContext *battleCtx, int battler);
+
+/**
+ * @brief Trigger a held item's effect when its holder takes damage.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param[out] subscript    Return param for the subscript to load for a
+ *                          triggered effect.
+ * @return TRUE if a subscript should be loaded for a triggered effect,
+ * FALSE otherwise.
+ */
+BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript);
+
+/**
+ * @brief Get the effect of the battler's held item.
+ * 
+ * @param battleCtx 
+ * @param battler 
+ * @return Integer ID of the effect of the battler's held item
+ */
+s32 Battler_HeldItemEffect(BattleContext *battleCtx, int battler);
 
 enum HeldItemPowerOp {
     ITEM_POWER_CHECK_ALL = 0, //< Check all possible effects which would suppress a battler's held item.
