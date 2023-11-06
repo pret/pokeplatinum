@@ -2352,10 +2352,10 @@ static int BattleController_CheckTypeChart(BattleSystem *battleSys, BattleContex
     if ((CURRENT_MOVE_DATA.range != RANGE_USER
             && CURRENT_MOVE_DATA.range != RANGE_USER_SIDE
             && CURRENT_MOVE_DATA.power
-            && (battleCtx->battleStatusMask & SYSCTL_SKIP_TYPE_CHECK) == FALSE
+            && (battleCtx->battleStatusMask & SYSCTL_IGNORE_IMMUNITIES) == FALSE
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE)
             || battleCtx->moveCur == MOVE_THUNDER_WAVE) {
-        battleCtx->damage = BattleSystem_CheckTypeChart(battleSys,
+        battleCtx->damage = BattleSystem_ApplyTypeChart(battleSys,
                 battleCtx,
                 battleCtx->moveCur,
                 battleCtx->moveType,

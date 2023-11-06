@@ -44,12 +44,12 @@
 #include "overlay016/ov16_0225CBB8.h"
 #include "overlay016/ov16_0226485C.h"
 
-static BOOL ov16_02254EF4(BattleContext * param0, int param1, int param2, int param3);
+static BOOL BasicTypeMulApplies(BattleContext *battleCtx, int attacker, int defender, int chartEntry);
 static int MapSideEffectToSubscript(BattleContext *battleCtx, enum SideEffectType type, u32 effect);
-static int ov16_0225B63C(BattleContext * param0, int param1, int param2, int param3, int param4, u32 * param5);
-static BOOL ov16_022553F8(BattleContext * param0, int param1, int param2);
-static void ov16_02255448(int param0, u32 * param1);
-static BOOL ov16_0225B6C8(BattleContext * param0, int param1);
+static int ApplyTypeMultiplier(BattleContext *battleCtx, int attacker, int mul, int damage, BOOL update, u32 *moveStatus);
+static BOOL NoImmunityOverrides(BattleContext *battleCtx, int itemEffect, int chartEntry);
+static void UpateMoveStatusForTypeMul(int mul, u32 *moveStatusMask);
+static BOOL MoveIsOnDamagingTurn(BattleContext *battleCtx, int move);
 static u8 Battler_MonType(BattleContext *battleCtx, int battler, enum BattleMonParam paramID);
 static void BattleAI_ClearKnownMoves(BattleContext *battleCtx, u8 battler);
 static void BattleAI_ClearKnownAbility(BattleContext *battleCtx, u8 battler);
@@ -2523,255 +2523,293 @@ static const u8 sTypeMatchupMultipliers[][3] = {
     { 0xFF, 0xFF, TYPE_MULTI_IMMUNE },
 };
 
-static BOOL ov16_02254EF4 (BattleContext * param0, int param1, int param2, int param3)
+/**
+ * @brief Check if the basic type multiplier applies.
+ * 
+ * @param battleCtx 
+ * @param attacker 
+ * @param defender 
+ * @param chartEntry    Index of the entry into the type-chart
+ * @return TRUE if there are no active effects to override the given chart-entry,
+ * FALSE if the chart-entry should be overriden
+ */
+static BOOL BasicTypeMulApplies(BattleContext *battleCtx, int attacker, int defender, int chartEntry)
 {
-    BOOL v0;
-    int v1;
+    int itemEffect = Battler_HeldItemEffect(battleCtx, defender);
+    BOOL result = TRUE;
 
-    v1 = Battler_HeldItemEffect(param0, param2);
-    v0 = 1;
-
-    if ((v1 == 106) || (param0->battleMons[param2].moveEffectsMask & 0x400)) {
-        if ((sTypeMatchupMultipliers[param3][1] == 2) && (sTypeMatchupMultipliers[param3][2] == 0)) {
-            v0 = 0;
-        }
+    if ((itemEffect == HOLD_EFFECT_SPEED_DOWN_GROUNDED || (battleCtx->battleMons[defender].moveEffectsMask & MOVE_EFFECT_INGRAIN))
+            && sTypeMatchupMultipliers[chartEntry][1] == TYPE_FLYING
+            && sTypeMatchupMultipliers[chartEntry][2] == TYPE_MULTI_IMMUNE) {
+        result = FALSE;
     }
 
-    if (param0->turnFlags[param2].roosting) {
-        if (sTypeMatchupMultipliers[param3][1] == 2) {
-            v0 = 0;
-        }
+    if (battleCtx->turnFlags[defender].roosting
+            && sTypeMatchupMultipliers[chartEntry][1] == TYPE_FLYING) {
+        result = FALSE;
     }
 
-    if (param0->fieldConditionsMask & 0x7000) {
-        if ((sTypeMatchupMultipliers[param3][1] == 2) && (sTypeMatchupMultipliers[param3][2] == 0)) {
-            v0 = 0;
-        }
+    if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY)
+            && sTypeMatchupMultipliers[chartEntry][1] == TYPE_FLYING
+            && sTypeMatchupMultipliers[chartEntry][2] == TYPE_MULTI_IMMUNE) {
+        result = FALSE;
     }
 
-    if (param0->battleMons[param2].moveEffectsMask & 0x400000) {
-        if ((sTypeMatchupMultipliers[param3][1] == 17) && (sTypeMatchupMultipliers[param3][2] == 0)) {
-            v0 = 0;
-        }
+    if ((battleCtx->battleMons[defender].moveEffectsMask & MOVE_EFFECT_MIRACLE_EYE)
+            && sTypeMatchupMultipliers[chartEntry][1] == TYPE_DARK
+            && sTypeMatchupMultipliers[chartEntry][2] == TYPE_MULTI_IMMUNE) {
+        result = FALSE;
     }
 
-    return v0;
+    return result;
 }
 
-int BattleSystem_CheckTypeChart (BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4, int param5, int param6, u32 * param7)
+int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCtx, int move, int inType, int attacker, int defender, int damage, u32 *moveStatusMask)
 {
-    int v0;
-    int v1;
-    u8 v2;
-    u32 v3;
-    u8 v4;
-    u8 v5;
-    u8 v6;
-    u8 v7;
+    int chartEntry;
+    int totalMul;
+    u8 moveType;
+    u32 movePower;
+    u8 attackerItemEffect;
+    u8 defenderItemEffect;
+    u8 attackerItemPower;
+    u8 defenderItemPower;
 
-    v1 = 1;
+    totalMul = 1;
 
-    if (param2 == 165) {
-        return param6;
+    if (move == MOVE_STRUGGLE) {
+        return damage;
     }
 
-    v4 = Battler_HeldItemEffect(param1, param4);
-    v6 = Battler_HeldItemPower(param1, param4, 0);
-    v5 = Battler_HeldItemEffect(param1, param5);
-    v7 = Battler_HeldItemPower(param1, param5, 0);
+    attackerItemEffect = Battler_HeldItemEffect(battleCtx, attacker);
+    attackerItemPower = Battler_HeldItemPower(battleCtx, attacker, ITEM_POWER_CHECK_ALL);
+    defenderItemEffect = Battler_HeldItemEffect(battleCtx, defender);
+    defenderItemPower = Battler_HeldItemPower(battleCtx, defender, ITEM_POWER_CHECK_ALL);
 
-    if (Battler_Ability(param1, param4) == 96) {
-        v2 = 0;
-    } else if (param3) {
-        v2 = param3;
+    if (Battler_Ability(battleCtx, attacker) == ABILITY_NORMALIZE) {
+        moveType = TYPE_NORMAL;
+    } else if (inType) {
+        moveType = inType;
     } else {
-        v2 = param1->aiContext.moveTable[param2].type;
+        moveType = MOVE_DATA(move).type;
     }
 
-    v3 = param1->aiContext.moveTable[param2].power;
+    movePower = MOVE_DATA(move).power;
 
-    if (((param1->battleStatusMask & 0x800) == 0) && ((BattleMon_Get(param1, param4, 27, NULL) == v2) || (BattleMon_Get(param1, param4, 28, NULL) == v2))) {
-        if (Battler_Ability(param1, param4) == 91) {
-            param6 *= 2;
+    if ((battleCtx->battleStatusMask & SYSCTL_IGNORE_TYPE_CHECKS) == FALSE && MON_HAS_TYPE(attacker, moveType)) {
+        if (Battler_Ability(battleCtx, attacker) == ABILITY_ADAPTABILITY) {
+            damage *= 2;
         } else {
-            param6 = param6 * 15 / 10;
+            damage = damage * 15 / 10;
         }
     }
 
-    if ((Battler_IgnorableAbility(param1, param4, param5, 26) == 1) && (v2 == 4) && (v5 != 106)) {
-        param7[0] |= 0x800;
-    } else if ((param1->battleMons[param5].moveEffectsData.magnetRiseTurns) && ((param1->battleMons[param5].moveEffectsMask & 0x400) == 0) && (v2 == 4) && (v5 != 106)) {
-        param7[0] |= 0x100000;
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_LEVITATE) == TRUE
+            && moveType == TYPE_GROUND
+            && defenderItemEffect != HOLD_EFFECT_SPEED_DOWN_GROUNDED) {
+        *moveStatusMask |= MOVE_STATUS_LEVITATED;
+    } else if (battleCtx->battleMons[defender].moveEffectsData.magnetRiseTurns
+            && (battleCtx->battleMons[defender].moveEffectsMask & MOVE_EFFECT_INGRAIN) == FALSE
+            && moveType == TYPE_GROUND
+            && defenderItemEffect != HOLD_EFFECT_SPEED_DOWN_GROUNDED) {
+        *moveStatusMask |= MOVE_STATUS_MAGNET_RISE;
     } else {
-        v0 = 0;
+        chartEntry = 0;
 
-        while (sTypeMatchupMultipliers[v0][0] != 0xff) {
-            if (sTypeMatchupMultipliers[v0][0] == 0xfe) {
-                if ((param1->battleMons[param5].statusVolatile & 0x20000000) || (Battler_Ability(param1, param4) == 113)) {
+        while (sTypeMatchupMultipliers[chartEntry][0] != 0xFF) {
+            if (sTypeMatchupMultipliers[chartEntry][0] == 0xFE) {
+                // The Ghost-type immunities are listed separately and ignored as a batch
+                if ((battleCtx->battleMons[defender].statusVolatile & VOLATILE_CONDITION_FORESIGHT)
+                        || Battler_Ability(battleCtx, attacker) == ABILITY_SCRAPPY) {
                     break;
                 } else {
-                    v0++;
+                    chartEntry++;
                     continue;
                 }
             }
 
-            if (sTypeMatchupMultipliers[v0][0] == v2) {
-                if (sTypeMatchupMultipliers[v0][1] == BattleMon_Get(param1, param5, 27, NULL)) {
-                    if (ov16_02254EF4(param1, param4, param5, v0) == 1) {
-                        param6 = ov16_0225B63C(param1, param4, sTypeMatchupMultipliers[v0][2], param6, v3, param7);
+            if (sTypeMatchupMultipliers[chartEntry][0] == moveType) {
+                if (sTypeMatchupMultipliers[chartEntry][1] == BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL)
+                        && BasicTypeMulApplies(battleCtx, attacker, defender, chartEntry) == TRUE) {
+                    damage = ApplyTypeMultiplier(battleCtx, attacker, sTypeMatchupMultipliers[chartEntry][2], damage, movePower, moveStatusMask);
 
-                        if (sTypeMatchupMultipliers[v0][2] == 20) {
-                            v1 *= 2;
-                        }
+                    if (sTypeMatchupMultipliers[chartEntry][2] == TYPE_MULTI_SUPER_EFF) {
+                        totalMul *= 2;
                     }
                 }
 
-                if ((sTypeMatchupMultipliers[v0][1] == BattleMon_Get(param1, param5, 28, NULL)) && (BattleMon_Get(param1, param5, 27, NULL) != BattleMon_Get(param1, param5, 28, NULL))) {
-                    if (ov16_02254EF4(param1, param4, param5, v0) == 1) {
-                        param6 = ov16_0225B63C(param1, param4, sTypeMatchupMultipliers[v0][2], param6, v3, param7);
+                if (sTypeMatchupMultipliers[chartEntry][1] == BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_2, NULL)
+                        && BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL) != BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_2, NULL)
+                        && BasicTypeMulApplies(battleCtx, attacker, defender, chartEntry) == TRUE) {
+                    damage = ApplyTypeMultiplier(battleCtx, attacker, sTypeMatchupMultipliers[chartEntry][2], damage, movePower, moveStatusMask);
 
-                        if (sTypeMatchupMultipliers[v0][2] == 20) {
-                            v1 *= 2;
-                        }
+                    if (sTypeMatchupMultipliers[chartEntry][2] == TYPE_MULTI_SUPER_EFF) {
+                        totalMul *= 2;
                     }
                 }
             }
 
-            v0++;
+            chartEntry++;
         }
     }
 
-    if ((Battler_IgnorableAbility(param1, param4, param5, 25) == 1) && (ov16_0225B6C8(param1, param2)) && (((param7[0] & 0x2) == 0) || ((param7[0] & (2 | 4)) == (2 | 4))) && (v3)) {
-        param7[0] |= 0x40000;
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_WONDER_GUARD) == TRUE
+            && MoveIsOnDamagingTurn(battleCtx, move)
+            && ((*moveStatusMask & MOVE_STATUS_SUPER_EFFECTIVE) == FALSE
+                || (*moveStatusMask & MOVE_STATUS_BASIC_EFFECTIVENESS) == MOVE_STATUS_BASIC_EFFECTIVENESS)
+            && movePower) {
+        *moveStatusMask |= MOVE_STATUS_WONDER_GUARD;
+    } else if ((battleCtx->battleStatusMask & SYSCTL_IGNORE_TYPE_CHECKS) == FALSE
+            && (battleCtx->battleStatusMask & SYSCTL_IGNORE_IMMUNITIES) == FALSE) {
+        if ((*moveStatusMask & MOVE_STATUS_SUPER_EFFECTIVE) && movePower) {
+            if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_FILTER) == TRUE
+                    || Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_SOLID_ROCK) == TRUE) {
+                damage = BattleSystem_Divide(damage * 3, 4);
+            }
+
+            if (attackerItemEffect == HOLD_EFFECT_POWER_UP_SE) {
+                damage = damage * (100 + attackerItemPower) / 100;
+            }
+        }
+
+        if ((*moveStatusMask & MOVE_STATUS_NOT_VERY_EFFECTIVE) && movePower) {
+            if (Battler_Ability(battleCtx, attacker) == ABILITY_TINTED_LENS) {
+                damage *= 2;
+            }
+        }
     } else {
-        if (((param1->battleStatusMask & 0x800) == 0) && ((param1->battleStatusMask & 0x8000) == 0)) {
-            if ((param7[0] & 0x2) && (v3)) {
-                if ((Battler_IgnorableAbility(param1, param4, param5, 111) == 1) || (Battler_IgnorableAbility(param1, param4, param5, 116) == 1)) {
-                    param6 = BattleSystem_Divide(param6 * 3, 4);
-                }
-
-                if (v4 == 96) {
-                    param6 = param6 * (100 + v6) / 100;
-                }
-            }
-
-            if ((param7[0] & 0x4) && (v3)) {
-                if (Battler_Ability(param1, param4) == 110) {
-                    param6 *= 2;
-                }
-            }
-        } else {
-            param7[0] &= (0x2 ^ 0xffffffff);
-            param7[0] &= (0x4 ^ 0xffffffff);
-        }
+        *moveStatusMask &= ~MOVE_STATUS_SUPER_EFFECTIVE;
+        *moveStatusMask &= ~MOVE_STATUS_NOT_VERY_EFFECTIVE;
     }
 
-    return param6;
+    return damage;
 }
 
-void ov16_022552D4 (BattleContext * param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, u32 * param8)
+void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inType, int attackerAbility, int defenderAbility, int defenderItemEffect, int defenderType1, int defenderType2, u32 *moveStatusMask)
 {
-    int v0;
-    u8 v1;
+    int chartEntry;
+    u8 moveType;
 
-    if (param1 == 165) {
+    if (move == MOVE_STRUGGLE) {
         return;
     }
 
-    if (param3 == 96) {
-        v1 = 0;
-    } else if (param2) {
-        v1 = param2;
+    if (attackerAbility == ABILITY_NORMALIZE) {
+        moveType = TYPE_NORMAL;
+    } else if (inType) {
+        moveType = inType;
     } else {
-        v1 = param0->aiContext.moveTable[param1].type;
+        moveType = MOVE_DATA(move).type;
     }
 
-    if ((param3 != 104) && (param4 == 26) && (v1 == 4) && ((param0->fieldConditionsMask & 0x7000) == 0) && (param5 != 106)) {
-        param8[0] |= 0x8;
+    if (attackerAbility != ABILITY_MOLD_BREAKER
+            && defenderAbility == ABILITY_LEVITATE
+            && moveType == TYPE_GROUND
+            && (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) == FALSE
+            && defenderItemEffect != HOLD_EFFECT_SPEED_DOWN_GROUNDED) {
+        *moveStatusMask |= MOVE_STATUS_INEFFECTIVE;
     } else {
-        v0 = 0;
+        chartEntry = 0;
 
-        while (sTypeMatchupMultipliers[v0][0] != 0xff) {
-            if (sTypeMatchupMultipliers[v0][0] == 0xfe) {
-                if (param3 == 113) {
+        while (sTypeMatchupMultipliers[chartEntry][0] != 0xFF) {
+            if (sTypeMatchupMultipliers[chartEntry][0] == 0xFE) {
+                if (attackerAbility == ABILITY_SCRAPPY) {
                     break;
                 } else {
-                    v0++;
+                    chartEntry++;
                     continue;
                 }
             }
 
-            if (sTypeMatchupMultipliers[v0][0] == v1) {
-                if (sTypeMatchupMultipliers[v0][1] == param6) {
-                    if (ov16_022553F8(param0, param5, v0) == 1) {
-                        ov16_02255448(sTypeMatchupMultipliers[v0][2], param8);
-                    }
+            if (sTypeMatchupMultipliers[chartEntry][0] == moveType) {
+                if (sTypeMatchupMultipliers[chartEntry][1] == defenderType1
+                        && NoImmunityOverrides(battleCtx, defenderItemEffect, chartEntry) == TRUE) {
+                    UpateMoveStatusForTypeMul(sTypeMatchupMultipliers[chartEntry][2], moveStatusMask);
                 }
 
-                if ((sTypeMatchupMultipliers[v0][1] == param7) && (param6 != param7)) {
-                    if (ov16_022553F8(param0, param5, v0) == 1) {
-                        ov16_02255448(sTypeMatchupMultipliers[v0][2], param8);
-                    }
+                if (sTypeMatchupMultipliers[chartEntry][1] == defenderType2
+                        && defenderType1 != defenderType2
+                        && NoImmunityOverrides(battleCtx, defenderItemEffect, chartEntry) == TRUE) {
+                    UpateMoveStatusForTypeMul(sTypeMatchupMultipliers[chartEntry][2], moveStatusMask);
                 }
             }
 
-            v0++;
+            chartEntry++;
         }
     }
 
-    if ((param3 != 104) && (param4 == 25) && (ov16_0225B6C8(param0, param1)) && (((param8[0] & 0x2) == 0) || ((param8[0] & (2 | 4)) == (2 | 4)))) {
-        param8[0] |= 0x8;
+    if (attackerAbility != ABILITY_MOLD_BREAKER
+            && defenderAbility == ABILITY_WONDER_GUARD
+            && MoveIsOnDamagingTurn(battleCtx, move)
+            && ((*moveStatusMask & MOVE_STATUS_SUPER_EFFECTIVE) == FALSE
+                || (*moveStatusMask & MOVE_STATUS_BASIC_EFFECTIVENESS) == MOVE_STATUS_BASIC_EFFECTIVENESS)) {
+        *moveStatusMask |= MOVE_STATUS_INEFFECTIVE;
     }
 
     return;
 }
 
-static BOOL ov16_022553F8 (BattleContext * param0, int param1, int param2)
+/**
+ * @brief Determines if there are no immunity-overriding effects in play.
+ * 
+ * This only checks for the basic immunity-overriding effects: Iron Ball
+ * and Gravity for Ground-type attacks against  Flying-type Pokemon.
+ * 
+ * @param battleCtx 
+ * @param itemEffect 
+ * @param chartEntry 
+ * @return TRUE if immunities should be respected, FALSE if not. 
+ */
+static BOOL NoImmunityOverrides(BattleContext *battleCtx, int itemEffect, int chartEntry)
 {
-    BOOL v0;
+    BOOL result = TRUE;
 
-    v0 = 1;
-
-    if (param1 == 106) {
-        if ((sTypeMatchupMultipliers[param2][1] == 2) && (sTypeMatchupMultipliers[param2][2] == 0)) {
-            v0 = 0;
-        }
+    if (itemEffect == HOLD_EFFECT_SPEED_DOWN_GROUNDED
+            && sTypeMatchupMultipliers[chartEntry][1] == TYPE_FLYING
+            && sTypeMatchupMultipliers[chartEntry][2] == TYPE_MULTI_IMMUNE) {
+        result = FALSE;
     }
 
-    if (param0->fieldConditionsMask & 0x7000) {
-        if ((sTypeMatchupMultipliers[param2][1] == 2) && (sTypeMatchupMultipliers[param2][2] == 0)) {
-            v0 = 0;
-        }
+    if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY)
+            && sTypeMatchupMultipliers[chartEntry][1] == TYPE_FLYING
+            && sTypeMatchupMultipliers[chartEntry][2] == TYPE_MULTI_IMMUNE) {
+        result = FALSE;
     }
 
-    return v0;
+    return result;
 }
 
-static void ov16_02255448 (int param0, u32 * param1)
+/**
+ * @brief Update the given move status mask according to a type multiplier.
+ * 
+ * @param mul 
+ * @param moveStatusMask 
+ */
+static void UpateMoveStatusForTypeMul(int mul, u32 *moveStatusMask)
 {
-    switch (param0) {
-    case 0:
-        param1[0] |= 0x8;
-        param1[0] &= (0x4 ^ 0xffffffff);
-        param1[0] &= (0x2 ^ 0xffffffff);
+    switch (mul) {
+    case TYPE_MULTI_IMMUNE:
+        *moveStatusMask |= MOVE_STATUS_INEFFECTIVE;
+        *moveStatusMask &= ~MOVE_STATUS_NOT_VERY_EFFECTIVE;
+        *moveStatusMask &= ~MOVE_STATUS_SUPER_EFFECTIVE;
         break;
-    case 5:
-        if (param1[0] & 0x2) {
-            param1[0] &= (0x2 ^ 0xffffffff);
+
+    case TYPE_MULTI_NOT_VERY_EFF:
+        if (*moveStatusMask & MOVE_STATUS_SUPER_EFFECTIVE) {
+            *moveStatusMask &= ~MOVE_STATUS_SUPER_EFFECTIVE;
         } else {
-            param1[0] |= 0x4;
+            *moveStatusMask |= MOVE_STATUS_NOT_VERY_EFFECTIVE;
         }
         break;
-    case 20:
-        if (param1[0] & 0x4) {
-            param1[0] &= (0x4 ^ 0xffffffff);
+
+    case TYPE_MULTI_SUPER_EFF:
+        if (*moveStatusMask & MOVE_STATUS_NOT_VERY_EFFECTIVE) {
+            *moveStatusMask &= ~MOVE_STATUS_NOT_VERY_EFFECTIVE;
         } else {
-            param1[0] |= 0x2;
+            *moveStatusMask |= MOVE_STATUS_SUPER_EFFECTIVE;
         }
         break;
     }
-
-    return;
 }
 
 BOOL BattleContext_MoveFailed (BattleContext * param0, int param1)
@@ -3854,7 +3892,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
 
                                 if (move) {
                                     effectiveness = 0;
-                                    battleCtx->damage = BattleSystem_CheckTypeChart(battleSys, battleCtx, move, NULL, j, battler, battleCtx->damage, &effectiveness);
+                                    battleCtx->damage = BattleSystem_ApplyTypeChart(battleSys, battleCtx, move, NULL, j, battler, battleCtx->damage, &effectiveness);
 
                                     if ((effectiveness & MOVE_STATUS_INEFFECTIVE) == FALSE
                                             && MoveCannotTriggerAnticipation(battleCtx, move) == FALSE
@@ -7486,59 +7524,82 @@ static int MapSideEffectToSubscript(BattleContext *battleCtx, enum SideEffectTyp
     return sSideEffectSubscripts[effect & MOVE_SIDE_EFFECT_SUBSCRIPT_POINTER];
 }
 
-static int ov16_0225B63C (BattleContext * param0, int param1, int param2, int param3, int param4, u32 * param5)
+/**
+ * @brief Apply the type multiplier to the given damage value and update the
+ * move status mask.
+ * 
+ * @param battleCtx 
+ * @param attacker 
+ * @param mul 
+ * @param damage 
+ * @param update        If TRUE, the move status mask will be updated
+ * @param[out] moveStatus 
+ * @return The resulting damage value after applying type effectiveness
+ */
+static int ApplyTypeMultiplier(BattleContext *battleCtx, int attacker, int mul, int damage, BOOL update, u32 *moveStatus)
 {
-    if (((param0->battleStatusMask & 0x800) == 0) && ((param0->battleStatusMask & 0x8000) == 0) && (param3)) {
-        param3 = BattleSystem_Divide(param3 * param2, 10);
+    if ((battleCtx->battleStatusMask & SYSCTL_IGNORE_TYPE_CHECKS) == FALSE
+            && (battleCtx->battleStatusMask & SYSCTL_IGNORE_IMMUNITIES) == FALSE
+            && damage) {
+        damage = BattleSystem_Divide(damage * mul, 10);
     }
 
-    switch (param2) {
-    case 0:
-        param5[0] |= 0x8;
-        param5[0] &= (0x4 ^ 0xffffffff);
-        param5[0] &= (0x2 ^ 0xffffffff);
+    switch (mul) {
+    case TYPE_MULTI_IMMUNE:
+        *moveStatus |= MOVE_STATUS_INEFFECTIVE;
+        *moveStatus &= ~MOVE_STATUS_NOT_VERY_EFFECTIVE;
+        *moveStatus &= ~MOVE_STATUS_SUPER_EFFECTIVE;
         break;
-    case 5:
-        if (param4) {
-            if (param5[0] & 0x2) {
-                param5[0] &= (0x2 ^ 0xffffffff);
+
+    case TYPE_MULTI_NOT_VERY_EFF:
+        if (update) {
+            if (*moveStatus & MOVE_STATUS_SUPER_EFFECTIVE) {
+                *moveStatus &= ~MOVE_STATUS_SUPER_EFFECTIVE;
             } else {
-                param5[0] |= 0x4;
+                *moveStatus |= MOVE_STATUS_NOT_VERY_EFFECTIVE;
             }
         }
         break;
-    case 20:
-        if (param4) {
-            if (param5[0] & 0x4) {
-                param5[0] &= (0x4 ^ 0xffffffff);
+
+    case TYPE_MULTI_SUPER_EFF:
+        if (update) {
+            if (*moveStatus & MOVE_STATUS_NOT_VERY_EFFECTIVE) {
+                *moveStatus &= ~MOVE_STATUS_NOT_VERY_EFFECTIVE;
             } else {
-                param5[0] |= 0x2;
+                *moveStatus |= MOVE_STATUS_SUPER_EFFECTIVE;
             }
         }
         break;
     }
 
-    return param3;
+    return damage;
 }
 
-static BOOL ov16_0225B6C8 (BattleContext * param0, int param1)
+/**
+ * @brief Checks if a move is on its damaging turn.
+ * 
+ * @param battleCtx 
+ * @param move 
+ * @return TRUE if the move is on its damaging turn, FALSE otherwise
+ */
+static BOOL MoveIsOnDamagingTurn(BattleContext *battleCtx, int move)
 {
-    switch (param0->aiContext.moveTable[param1].effect) {
-    case 26:
-    case 39:
-    case 75:
-    case 145:
-    case 151:
-    case 155:
-    case 255:
-    case 256:
-    case 263:
-    case 273:
-        return param0->battleStatusMask & 0x200;
+    switch (MOVE_DATA(move).effect) {
+    case BATTLE_EFFECT_BIDE:
+    case BATTLE_EFFECT_CHARGE_TURN_HIGH_CRIT:
+    case BATTLE_EFFECT_CHARGE_TURN_HIGH_CRIT_FLINCH:
+    case BATTLE_EFFECT_CHARGE_TURN_DEF_UP:
+    case BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN:
+    case BATTLE_EFFECT_FLY:
+    case BATTLE_EFFECT_DIVE:
+    case BATTLE_EFFECT_DIG:
+    case BATTLE_EFFECT_BOUNCE:
+    case BATTLE_EFFECT_FLINCH_BURN_HIT: // BUG: This entry should be Shadow Force, but is instead Fire Fang
+        return battleCtx->battleStatusMask & SYSCTL_LAST_OF_MULTI_TURN;
         break;
     }
 
-    return 1;
+    return TRUE;
 }
 
 /**
@@ -7905,7 +7966,7 @@ int ov16_0225BA88 (BattleSystem * param0, int param1)
 
                 if (v8) {
                     v16 = 0;
-                    ov16_022552D4(v20, v8, v9, Pokemon_GetValue(v19, MON_DATA_ABILITY, NULL), Battler_Ability(v20, v2), Battler_HeldItemEffect(v20, v2), BattleMon_Get(v20, v2, 27, NULL), BattleMon_Get(v20, v2, 28, NULL), &v16);
+                    BattleSystem_CalcEffectiveness(v20, v8, v9, Pokemon_GetValue(v19, MON_DATA_ABILITY, NULL), Battler_Ability(v20, v2), Battler_HeldItemEffect(v20, v2), BattleMon_Get(v20, v2, 27, NULL), BattleMon_Get(v20, v2, 28, NULL), &v16);
 
                     if (v16 & 0x2) {
                         break;
@@ -7938,7 +7999,7 @@ int ov16_0225BA88 (BattleSystem * param0, int param1)
                 if ((v8) && (v20->aiContext.moveTable[v8].power != 1)) {
                     v11 = BattleSystem_CalcMoveDamage(param0, v20, v8, v20->sideConditionsMask[Battler_Side(param0, v2)], v20->fieldConditionsMask, 0, 0, param1, v2, 1);
                     v16 = 0;
-                    v11 = BattleSystem_CheckTypeChart(param0, v20, v8, v9, param1, v2, v11, &v16);
+                    v11 = BattleSystem_ApplyTypeChart(param0, v20, v8, v9, param1, v2, v11, &v16);
 
                     if (v16 & (0x8 | 0x800 | 0x100000 | 0x40000)) {
                         v11 = 0;

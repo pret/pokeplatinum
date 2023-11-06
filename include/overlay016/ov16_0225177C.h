@@ -419,8 +419,47 @@ void BattleSystem_SetupNextTurn(BattleSystem * param0, BattleContext * param1);
 int BattleSystem_CheckStruggling(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
 BOOL BattleSystem_CanUseMove(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int moveSlot, BattleMessage *msgOut);
 int Battler_SlotForMove(BattleMon * param0, u16 param1);
-int BattleSystem_CheckTypeChart(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4, int param5, int param6, u32 * param7);
-void ov16_022552D4(BattleContext * param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, u32 * param8);
+
+/**
+ * @brief Apply type-chart effectiveness for a given move against its target.
+ * 
+ * This encapsulates the following multipliers:
+ * - Same-Type Attack Bonus (and its modification by the ability Adaptability)
+ * - Super/Not Very Effective multipliers for each of the defender's types
+ * - Type-effectiveness overrides for effects like Iron Ball, Roost, and Miracle Eye
+ * - Wonder Guard's override for moves that are not super-effective
+ * - Expert Belt's multiplier for super-effective moves
+ * - Filter and Solid Rock's multipliers for defenders taking super-effective damage
+ * - Tinted Lens's multiplier for defenders taking not-very-effective damage
+ * 
+ * The move status mask will also be updated with the correct flags.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param move 
+ * @param inType            If this is non-zero, then it will be regarded as the move's type
+ * @param attacker 
+ * @param defender 
+ * @param damage            Pre-calculated starting damage value
+ * @param[out] moveStatusMask   
+ * @return Damage value after applying the type-chart and related multipliers
+ */
+int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCtx, int move, int inType, int attacker, int defender, int damage, u32 *moveStatusMask);
+
+/**
+ * @brief Calculate the effectiveness mask of the given move.
+ * 
+ * @param battleCtx
+ * @param move
+ * @param inType                If this is non-zero, then it will be regarded as the move's type
+ * @param attackerAbility
+ * @param defenderAbility
+ * @param defenderItemEffect
+ * @param defenderType1
+ * @param defenderType2
+ * @param[out] moveStatusMask
+ */
+void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inType, int attackerAbility, int defenderAbility, int defenderItemEffect, int defenderType1, int defenderType2, u32 *moveStatusMask);
 BOOL BattleContext_MoveFailed(BattleContext * param0, int param1);
 
 /**

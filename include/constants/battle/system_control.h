@@ -12,9 +12,10 @@
 #define SYSCTL_BATON_PASS               (1 << 8)
 #define SYSCTL_LAST_OF_MULTI_TURN       (1 << 9)
 #define SYSCTL_NONSTANDARD_ACC_CHECK    (1 << 10) // used by Future Sight and OHKO moves
+#define SYSCTL_IGNORE_TYPE_CHECKS       (1 << 11)
 #define SYSCTL_MOVE_HIT                 (1 << 13) // this indicates that the move hit its target(s)
 #define SYSCTL_PLAYED_MOVE_ANIMATION    (1 << 14)
-#define SYSCTL_SKIP_TYPE_CHECK          (1 << 15)
+#define SYSCTL_IGNORE_IMMUNITIES        (1 << 15)
 #define SYSCTL_FAIL_STAT_STAGE_CHANGE   (1 << 17)
 #define SYSCTL_HIT_DURING_SHADOW_FORCE  (1 << 19)
 #define SYSCTL_REUSE_LAST_MOVE          (1 << 20)

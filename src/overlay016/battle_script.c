@@ -3843,7 +3843,6 @@ static BOOL BtlCmd_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *batt
  */
 static BOOL BtlCmd_SetStatusIcon(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-
     BattleScript_Iter(battleCtx, 1);
     int inBattler = BattleScript_Read(battleCtx);
     int status = BattleScript_Read(battleCtx);
@@ -5259,9 +5258,6 @@ static BOOL BtlCmd_TrySpite(BattleSystem *battleSys, BattleContext *battleCtx)
  * silently, and will only occur for individual party Pokemon. If the move using
  * this effect is Heal Bell, then it will fail for any party Pokemon with the
  * ability Soundproof.
- * 
- * Inputs:
- * 1. The distance to jump if the effect fails to execute.
  * 
  * @param battleSys 
  * @param battleCtx 
@@ -7210,7 +7206,7 @@ static BOOL BtlCmd_ApplyTypeMatchup(BattleSystem *battleSys, BattleContext *batt
 {
     BattleScript_Iter(battleCtx, 1);
 
-    battleCtx->damage = BattleSystem_CheckTypeChart(battleSys,
+    battleCtx->damage = BattleSystem_ApplyTypeChart(battleSys,
             battleCtx,
             battleCtx->moveCur,
             battleCtx->moveType,
@@ -8231,6 +8227,10 @@ static BOOL BtlCmd_GetItemEffectPower(BattleSystem *battleSys, BattleContext *ba
 /**
  * @brief Try to change the battler's type to one according to the battle
  * terrain.
+ * 
+ * Inputs:
+ * 1. The distance to jump ahead if the user is already of the terrain's
+ * corresponding type, or if the user is Arceus.
  * 
  * @param battleSys 
  * @param battleCtx 
