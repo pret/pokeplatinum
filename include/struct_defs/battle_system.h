@@ -126,7 +126,7 @@ struct BattleSystem {
     u16 unk_241E;
     int unk_2420;
     int unk_2424;
-    int unk_2428;
+    int fieldWeather;
     int unk_242C;
     u32 unk_2430;
     int unk_2434;

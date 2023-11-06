@@ -699,8 +699,8 @@ static BOOL BtlCmd_ShowEncounter(BattleSystem *battleSys, BattleContext *battleC
             }
         }
 
-        BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
-        BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
+        BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
+        BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
         break;
 
     case BTLSCR_ENEMY:
@@ -708,8 +708,8 @@ static BOOL BtlCmd_ShowEncounter(BattleSystem *battleSys, BattleContext *battleC
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
-                BattleSystem_NoExpGain(battleCtx, i);
-                BattleSystem_FlagExpGain(battleSys, battleCtx, i);
+                BattleSystem_ClearSideExpGain(battleCtx, i);
+                BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, i);
                 BattleIO_ShowEncounter(battleSys, i);
                 BattleSystem_DexFlagSeen(battleSys, i);
             }
@@ -720,11 +720,11 @@ static BOOL BtlCmd_ShowEncounter(BattleSystem *battleSys, BattleContext *battleC
         battlerData = BattleSystem_BattlerData(battleSys, battleCtx->attacker);
 
         if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
-            BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
-            BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
+            BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
+            BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
         } else {
-            BattleSystem_NoExpGain(battleCtx, battleCtx->attacker);
-            BattleSystem_FlagExpGain(battleSys, battleCtx, battleCtx->attacker);
+            BattleSystem_ClearSideExpGain(battleCtx, battleCtx->attacker);
+            BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, battleCtx->attacker);
         }
 
         BattleSystem_DexFlagSeen(battleSys, battleCtx->attacker);
@@ -735,11 +735,11 @@ static BOOL BtlCmd_ShowEncounter(BattleSystem *battleSys, BattleContext *battleC
         battlerData = BattleSystem_BattlerData(battleSys, battleCtx->defender);
 
         if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
-            BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
-            BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
+            BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
+            BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
         } else {
-            BattleSystem_NoExpGain(battleCtx, battleCtx->defender);
-            BattleSystem_FlagExpGain(battleSys, battleCtx, battleCtx->defender);
+            BattleSystem_ClearSideExpGain(battleCtx, battleCtx->defender);
+            BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, battleCtx->defender);
         }
 
         BattleSystem_DexFlagSeen(battleSys, battleCtx->defender);
@@ -750,11 +750,11 @@ static BOOL BtlCmd_ShowEncounter(BattleSystem *battleSys, BattleContext *battleC
         battlerData = BattleSystem_BattlerData(battleSys, battleCtx->switchedMon);
 
         if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
-            BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
-            BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
+            BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
+            BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
         } else {
-            BattleSystem_NoExpGain(battleCtx, battleCtx->switchedMon);
-            BattleSystem_FlagExpGain(battleSys, battleCtx, battleCtx->switchedMon);
+            BattleSystem_ClearSideExpGain(battleCtx, battleCtx->switchedMon);
+            BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, battleCtx->switchedMon);
         }
 
         BattleSystem_DexFlagSeen(battleSys, battleCtx->switchedMon);
@@ -805,8 +805,8 @@ static BOOL BtlCmd_ShowPokemon(BattleSystem *battleSys, BattleContext *battleCtx
             }
         }
 
-        BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
-        BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
+        BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
+        BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
         break;
 
     case BTLSCR_ENEMY:
@@ -814,8 +814,8 @@ static BOOL BtlCmd_ShowPokemon(BattleSystem *battleSys, BattleContext *battleCtx
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if (battlerData->battlerType & 0x1) {
-                BattleSystem_NoExpGain(battleCtx, i);
-                BattleSystem_FlagExpGain(battleSys, battleCtx, i);
+                BattleSystem_ClearSideExpGain(battleCtx, i);
+                BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, i);
                 BattleIO_ShowPokemon(battleSys, i, NULL, 0);
                 BattleSystem_DexFlagSeen(battleSys, i);
             }
@@ -826,11 +826,11 @@ static BOOL BtlCmd_ShowPokemon(BattleSystem *battleSys, BattleContext *battleCtx
         battlerData = BattleSystem_BattlerData(battleSys, battleCtx->attacker);
 
         if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
-            BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
-            BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
+            BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
+            BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
         } else {
-            BattleSystem_NoExpGain(battleCtx, battleCtx->attacker);
-            BattleSystem_FlagExpGain(battleSys, battleCtx, battleCtx->attacker);
+            BattleSystem_ClearSideExpGain(battleCtx, battleCtx->attacker);
+            BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, battleCtx->attacker);
         }
 
         BattleSystem_DexFlagSeen(battleSys, battleCtx->attacker);
@@ -841,11 +841,11 @@ static BOOL BtlCmd_ShowPokemon(BattleSystem *battleSys, BattleContext *battleCtx
         battlerData = BattleSystem_BattlerData(battleSys, battleCtx->defender);
 
         if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
-            BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
-            BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
+            BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
+            BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
         } else {
-            BattleSystem_NoExpGain(battleCtx, battleCtx->defender);
-            BattleSystem_FlagExpGain(battleSys, battleCtx, battleCtx->defender);
+            BattleSystem_ClearSideExpGain(battleCtx, battleCtx->defender);
+            BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, battleCtx->defender);
         }
 
         BattleSystem_DexFlagSeen(battleSys, battleCtx->defender);
@@ -856,11 +856,11 @@ static BOOL BtlCmd_ShowPokemon(BattleSystem *battleSys, BattleContext *battleCtx
         battlerData = BattleSystem_BattlerData(battleSys, battleCtx->switchedMon);
 
         if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
-            BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
-            BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
+            BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
+            BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
         } else {
-            BattleSystem_NoExpGain(battleCtx, battleCtx->switchedMon);
-            BattleSystem_FlagExpGain(battleSys, battleCtx, battleCtx->switchedMon);
+            BattleSystem_ClearSideExpGain(battleCtx, battleCtx->switchedMon);
+            BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, battleCtx->switchedMon);
         }
 
         BattleSystem_DexFlagSeen(battleSys, battleCtx->switchedMon);
@@ -2440,7 +2440,7 @@ static BOOL BtlCmd_CalcExpGain(BattleSystem *battleSys, BattleContext *battleCtx
             Pokemon *mon = BattleSystem_PartyPokemon(battleSys, BATTLER_US, i);
 
             if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) && Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL)) {
-                if (battleCtx->monsGainingExp[(battleCtx->faintedMon >> 1) & 1] & FlagIndex(i)) {
+                if (battleCtx->sideGetExpMask[(battleCtx->faintedMon >> 1) & 1] & FlagIndex(i)) {
                     totalMonsGainingExp++;
                 }
 
@@ -3058,20 +3058,20 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
 
     battleCtx->battleStatusMask &= ~SYSCTL_FAIL_STAT_STAGE_CHANGE;
 
-    if (battleCtx->sideEffectParam >= MOVE_SIDE_EFFECT_ATTACK_DOWN_2_STAGES) {
-        statOffset = battleCtx->sideEffectParam - MOVE_SIDE_EFFECT_ATTACK_DOWN_2_STAGES;
+    if (battleCtx->sideEffectParam >= MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_2_STAGES) {
+        statOffset = battleCtx->sideEffectParam - MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_2_STAGES;
         stageChange = -2;
         battleCtx->scriptTemp = STATUS_EFFECT_STAGE_DOWN;
-    } else if (battleCtx->sideEffectParam >= MOVE_SIDE_EFFECT_ATTACK_UP_2_STAGES) {
-        statOffset = battleCtx->sideEffectParam - MOVE_SIDE_EFFECT_ATTACK_UP_2_STAGES;
+    } else if (battleCtx->sideEffectParam >= MOVE_SUBSCRIPT_PTR_ATTACK_UP_2_STAGES) {
+        statOffset = battleCtx->sideEffectParam - MOVE_SUBSCRIPT_PTR_ATTACK_UP_2_STAGES;
         stageChange = 2;
         battleCtx->scriptTemp = STATUS_EFFECT_STAGE_UP;
-    } else if (battleCtx->sideEffectParam >= MOVE_SIDE_EFFECT_ATTACK_DOWN_1_STAGE) {
-        statOffset = battleCtx->sideEffectParam - MOVE_SIDE_EFFECT_ATTACK_DOWN_1_STAGE;
+    } else if (battleCtx->sideEffectParam >= MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_1_STAGE) {
+        statOffset = battleCtx->sideEffectParam - MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_1_STAGE;
         stageChange = -1;
         battleCtx->scriptTemp = STATUS_EFFECT_STAGE_DOWN;
     } else {
-        statOffset = battleCtx->sideEffectParam - MOVE_SIDE_EFFECT_ATTACK_UP_1_STAGE;
+        statOffset = battleCtx->sideEffectParam - MOVE_SUBSCRIPT_PTR_ATTACK_UP_1_STAGE;
         stageChange = 1;
         battleCtx->scriptTemp = STATUS_EFFECT_STAGE_UP;
     }
@@ -3080,17 +3080,17 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
         if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] == 12) {
             battleCtx->battleStatusMask |= SYSCTL_FAIL_STAT_STAGE_CHANGE;
 
-            if (battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_INDIRECT
-                    || battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_ABILITY) {
+            if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_INDIRECT
+                    || battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
                 BattleScript_Iter(battleCtx, jumpBlocked);
             } else {
                 SetupNicknameStatMsg(battleCtx, 142, statOffset); // "{0}'s {1} won't go higher!"
                 BattleScript_Iter(battleCtx, jumpNoChange);
             }
         } else {
-            if (battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_ABILITY) {
+            if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
                 SetupNicknameAbilityStatMsg(battleCtx, 622, statOffset); // "{0}'s {1} raised its {2}!"
-            } else if (battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_HELD_ITEM) {
+            } else if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_HELD_ITEM) {
                 battleCtx->msgBuffer.id = 756; // "The {0} raised {1}'s {2}!"
                 battleCtx->msgBuffer.tags = TAG_NICKNAME_ITEM_STAT;
                 battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->sideEffectMon);
@@ -3118,7 +3118,7 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
                     result = 1;
                 } else if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_CLEAR_BODY) == TRUE
                         || Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_WHITE_SMOKE) == TRUE) {
-                    if (battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_ABILITY) {
+                    if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
                         SetupNicknameAbilityNicknameAbilityMsg(battleCtx, 727); // "{0}'s {1} suppressed {2}'s {3}!"
                     } else {
                         battleCtx->msgBuffer.id = 669; // "{0}'s {1} prevents stat loss!"
@@ -3130,7 +3130,7 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
                     result = 1;
                 } else if (AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_KEEN_EYE, BATTLE_STAT_ACCURACY)
                         || AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_HYPER_CUTTER, BATTLE_STAT_ATTACK)) {
-                    if (battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_ABILITY) {
+                    if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
                         SetupNicknameAbilityNicknameAbilityMsg(battleCtx, 727); // "{0}'s {1} suppressed {2}'s {3}!"
                     } else {
                         SetupNicknameAbilityStatMsg(battleCtx, 704, statOffset); // "{0}'s {1} prevents {2} loss!"
@@ -3140,8 +3140,8 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
                 } else if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] == 0) {
                     battleCtx->battleStatusMask |= SYSCTL_FAIL_STAT_STAGE_CHANGE;
 
-                    if (battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_INDIRECT
-                            || battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_ABILITY) {
+                    if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_INDIRECT
+                            || battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
                         BattleScript_Iter(battleCtx, jumpBlocked);
 
                         return FALSE;
@@ -3152,7 +3152,7 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
                         return FALSE;
                     }
                 } else if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_SHIELD_DUST) == TRUE
-                        && battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_INDIRECT) {
+                        && battleCtx->sideEffectType == SIDE_EFFECT_TYPE_INDIRECT) {
                     result = 1;
                 } else if (battleCtx->battleMons[battleCtx->sideEffectMon].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE) {
                     result = 2;
@@ -3160,8 +3160,8 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
             } else if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] == 0) {
                 battleCtx->battleStatusMask |= SYSCTL_FAIL_STAT_STAGE_CHANGE;
 
-                if (battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_INDIRECT
-                        || battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_ABILITY) {
+                if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_INDIRECT
+                        || battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
                     BattleScript_Iter(battleCtx, jumpBlocked);
 
                     return FALSE;
@@ -3173,11 +3173,11 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
                 }
             }
 
-            if (result == 2 && battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_DIRECT) {
+            if (result == 2 && battleCtx->sideEffectType == SIDE_EFFECT_TYPE_DIRECT) {
                 BattleScript_Iter(battleCtx, jumpBlockedBySubstitute);
 
                 return FALSE;
-            } else if (result && battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_INDIRECT) {
+            } else if (result && battleCtx->sideEffectType == SIDE_EFFECT_TYPE_INDIRECT) {
                 BattleScript_Iter(battleCtx, jumpBlocked);
 
                 return FALSE;
@@ -3188,7 +3188,7 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
             }
         }
 
-        if (battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_ABILITY) {
+        if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
             battleCtx->msgBuffer.id = 662; // "{0}'s {1} cuts {2}'s {3}!"
             battleCtx->msgBuffer.tags = TAG_NICKNAME_ABILITY_NICKNAME_STAT;
             battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->attacker);
@@ -7863,7 +7863,7 @@ static BOOL BtlCmd_TryToxicSpikes(BattleSystem * battleSys, BattleContext * batt
  * - battleCtx->calcTemp will be set to the number of layers of Toxic Spikes on
  * the switched-in battler's side of the field. If the switched-in battler has
  * the Poison type, then this will instead be set to 0.
- * - battleCtx->sideEffectType will be set to SIDE_EFFECT_SOURCE_TOXIC_SPIKES.
+ * - battleCtx->sideEffectType will be set to SIDE_EFFECT_TYPE_TOXIC_SPIKES.
  * - battleCtx->sideEffectMon will be set to the switched-in battler.
  * - If the switched-in battler has the Poison type, then Toxic Spikes will be
  * cleared from its side of the field.
@@ -7883,7 +7883,7 @@ static BOOL BtlCmd_CheckToxicSpikes(BattleSystem * battleSys, BattleContext * ba
 
     if (battleCtx->sideConditions[side].toxicSpikesLayers) {
         battleCtx->calcTemp = battleCtx->sideConditions[side].toxicSpikesLayers;
-        battleCtx->sideEffectType = SIDE_EFFECT_SOURCE_TOXIC_SPIKES;
+        battleCtx->sideEffectType = SIDE_EFFECT_TYPE_TOXIC_SPIKES;
         battleCtx->sideEffectMon = battler;
 
         if (MON_HAS_TYPE(battleCtx->switchedMon, TYPE_POISON)) {
@@ -9121,7 +9121,7 @@ static BOOL BtlCmd_CheckWhiteOut(BattleSystem *battleSys, BattleContext *battleC
 
         // Don't consider the second slot if we have a partner
         // first condition here does not match as an AND of NEQs, must be a NOT of an OR of EQs
-        if (!(battleType == BATTLE_TYPE_TRAINER_WITH_AI_PARTNER || battleType == BATTLE_TYPE_2vs2_AI_DOUBLES)
+        if (!(battleType == BATTLE_TYPE_TRAINER_WITH_AI_PARTNER || battleType == BATTLE_TYPE_AI_PARTNER)
                 || Battler_Side(battleSys, battler) != BATTLER_US
                 || BattleSystem_BattlerSlot(battleSys, battler) != BATTLER_PLAYER_SLOT_2) {
             for (i = 0; i < Party_GetCurrentCount(party2); i++) {
@@ -9190,7 +9190,7 @@ static BOOL BtlCmd_BoostRandomStatBy2(BattleSystem *battleSys, BattleContext *ba
     }
 
     if (validStats) {
-        battleCtx->sideEffectDirectFlags = MOVE_SIDE_EFFECT_ATTACK_UP_2_STAGES + stats[BattleSystem_RandNext(battleSys) % validStats];
+        battleCtx->sideEffectDirectFlags = MOVE_SUBSCRIPT_PTR_ATTACK_UP_2_STAGES + stats[BattleSystem_RandNext(battleSys) % validStats];
         battleCtx->sideEffectDirectFlags |= MOVE_SIDE_EFFECT_TO_DEFENDER;
     } else {
         BattleScript_Iter(battleCtx, jumpNoValidBoosts);
@@ -9951,8 +9951,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         item = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
         itemEffect = Item_LoadParam(item, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_BATTLE);
 
-        // TODO: rename monsGainingExp (sideGetExpMask?)
-        if (itemEffect == HOLD_EFFECT_EXP_SHARE || (data->battleCtx->monsGainingExp[battler] & FlagIndex(slot))) {
+        if (itemEffect == HOLD_EFFECT_EXP_SHARE || (data->battleCtx->sideGetExpMask[battler] & FlagIndex(slot))) {
             break;
         }
     }
@@ -9985,7 +9984,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         msg.id = 1; // "{0} gained {1} Exp. Points!"
 
         if (Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL) && Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) != 100) {
-            if (data->battleCtx->monsGainingExp[battler] & FlagIndex(slot)) {
+            if (data->battleCtx->sideGetExpMask[battler] & FlagIndex(slot)) {
                 totalExp = data->battleCtx->gainedExp;
             }
 
@@ -10437,7 +10436,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         break;
 
     case SEQ_GET_EXP_CHECK_DONE:
-        data->battleCtx->monsGainingExp[battler] &= (FlagIndex(slot) ^ 0xFFFFFFFF); // this mon is done
+        data->battleCtx->sideGetExpMask[battler] &= (FlagIndex(slot) ^ 0xFFFFFFFF); // this mon is done
         data->tmpData[GET_EXP_PARTY_SLOT] = slot + 1;
         data->seqNum = SEQ_GET_EXP_START; // go back to the top and get the next mon
         break;

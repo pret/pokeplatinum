@@ -154,7 +154,7 @@ u16 * ov16_0223F1F0(BattleSystem * param0);
 int ov16_0223F1F8(BattleSystem * param0);
 u16 * ov16_0223F204(BattleSystem * param0);
 u16 * ov16_0223F210(BattleSystem * param0);
-int ov16_0223F21C(BattleSystem * param0);
+int BattleSystem_FieldWeather(BattleSystem * param0);
 u8 ov16_0223F228(BattleSystem * param0);
 void ov16_0223F234(BattleSystem * param0, u8 param1);
 int ov16_0223F240(BattleSystem * param0);
@@ -1239,9 +1239,9 @@ u16 * ov16_0223F210 (BattleSystem * param0)
     return &param0->unk_2304[0];
 }
 
-int ov16_0223F21C (BattleSystem * param0)
+int BattleSystem_FieldWeather(BattleSystem *battleSys)
 {
-    return param0->unk_2428;
+    return battleSys->fieldWeather;
 }
 
 u8 ov16_0223F228 (BattleSystem * param0)

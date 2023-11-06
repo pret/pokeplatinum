@@ -253,7 +253,7 @@ static void BattleController_TrainerMessage(BattleSystem *battleSys, BattleConte
 
 static void BattleController_ShowBattleMon(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int nextSeq = BattleSystem_ShowMonChecks(battleSys, battleCtx);
+    int nextSeq = BattleSystem_TriggerEffectOnSwitch(battleSys, battleCtx);
 
     if (nextSeq) {
         LOAD_SUBSEQ(nextSeq);
@@ -302,41 +302,6 @@ enum {
     COMMAND_SELECTION_ALERT_MESSAGE_WAIT,
     COMMAND_SELECTION_STRUGGLE_MESSAGE,
     COMMAND_SELECTION_CLEAR_TOUCH_SCREEN,
-};
-
-enum {
-    PLAYER_INPUT_FIGHT = 1,
-    PLAYER_INPUT_ITEM,
-    PLAYER_INPUT_PARTY,
-    PLAYER_INPUT_RUN,
-
-    PLAYER_INPUT_SAFARI_BALL = PLAYER_INPUT_FIGHT,
-    PLAYER_INPUT_SAFARI_BAIT = PLAYER_INPUT_ITEM,
-    PLAYER_INPUT_SAFARI_ROCK = PLAYER_INPUT_PARTY,
-    PLAYER_INPUT_SAFARI_RUN = PLAYER_INPUT_RUN,
-    PLAYER_INPUT_SAFARI_WAIT,
-
-    PLAYER_INPUT_PAL_PARK_BALL = PLAYER_INPUT_FIGHT,
-    PLAYER_INPUT_PAL_PARK_RUN = PLAYER_INPUT_RUN,
-
-    PLAYER_INPUT_MOVE_1 = 1,
-    PLAYER_INPUT_MOVE_2,
-    PLAYER_INPUT_MOVE_3,
-    PLAYER_INPUT_MOVE_4,
-
-    PLAYER_INPUT_PARTY_SLOT_1 = 1,
-    PLAYER_INPUT_PARTY_SLOT_2,
-    PLAYER_INPUT_PARTY_SLOT_3,
-    PLAYER_INPUT_PARTY_SLOT_4,
-    PLAYER_INPUT_PARTY_SLOT_5,
-    PLAYER_INPUT_PARTY_SLOT_6,
-
-    PLAYER_INPUT_TARGET_BATTLER_1 = 1,
-    PLAYER_INPUT_TARGET_BATTLER_2,
-    PLAYER_INPUT_TARGET_BATTLER_3,
-    PLAYER_INPUT_TARGET_BATTLER_4,
-
-    PLAYER_INPUT_CANCEL = 0xFF,
 };
 
 static inline BOOL SingleControllerForSide(BattleContext *battleCtx, int battler, int side)
@@ -1720,7 +1685,7 @@ static void BattleController_CheckMonConditions(BattleSystem *battleSys, BattleC
 
                 if ((battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_YAWN) == FALSE) {
                     battleCtx->sideEffectMon = battler;
-                    battleCtx->sideEffectType = 4;
+                    battleCtx->sideEffectType = SIDE_EFFECT_TYPE_MOVE_EFFECT;
 
                     PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_FALL_ASLEEP);
                     state = STATE_BREAK_OUT;
@@ -2822,7 +2787,7 @@ static BOOL BattleController_TriggerImmunityAbilities(BattleSystem *battleSys, B
     do {
         switch (battleCtx->abilityCheckState) {
         case IMMUNITY_ABILITY_STATE_CHECK:
-            int nextSeq = BattleSystem_CheckImmunityAbilities(battleCtx, battleCtx->attacker, battleCtx->defender);
+            int nextSeq = BattleSystem_TriggerImmunityAbility(battleCtx, battleCtx->attacker, battleCtx->defender);
 
             if ((nextSeq && (battleCtx->moveStatusFlags & MOVE_STATUS_DID_NOT_HIT) == FALSE)
                     || nextSeq == BATTLE_SUBSEQ_BLOCKED_BY_SOUNDPROOF) {
@@ -3334,7 +3299,7 @@ static void BattleController_TryMove(BattleSystem *battleSys, BattleContext *bat
 static void BattleController_PrimaryEffect(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int nextSeq;
-    if (BattleSystem_CheckPrimaryEffect(battleSys, battleCtx, &nextSeq) == TRUE) {
+    if (BattleSystem_TriggerPrimaryEffect(battleSys, battleCtx, &nextSeq) == TRUE) {
         LOAD_SUBSEQ(nextSeq);
         battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
         battleCtx->commandNext = BATTLE_CONTROL_MOVE_FAILED;
@@ -3711,7 +3676,7 @@ static void BattleController_AfterMoveEffects(BattleSystem *battleSys, BattleCon
         }
 
     case AFTER_MOVE_EFFECT_TRIGGER_SWITCH_IN_EFFECTS:
-        int switchinSeq = BattleSystem_ShowMonChecks(battleSys, battleCtx);
+        int switchinSeq = BattleSystem_TriggerEffectOnSwitch(battleSys, battleCtx);
         if (switchinSeq) {
             LOAD_SUBSEQ(switchinSeq);
             battleCtx->commandNext = battleCtx->command;
@@ -4011,7 +3976,7 @@ static void BattleController_MoveEnd(BattleSystem *battleSys, BattleContext *bat
             return;
         }
 
-        int nextSeq = BattleSystem_ShowMonChecks(battleSys, battleCtx);
+        int nextSeq = BattleSystem_TriggerEffectOnSwitch(battleSys, battleCtx);
         if (nextSeq) {
             LOAD_SUBSEQ(nextSeq);
             battleCtx->commandNext = battleCtx->command;
@@ -4682,7 +4647,7 @@ static BOOL BattleController_CheckExtraFlinch(BattleSystem *battleSys, BattleCon
             && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_TRIGGERS_KINGS_ROCK)
             && DEFENDING_MON.curHP) {
         battleCtx->sideEffectMon = battleCtx->defender;
-        battleCtx->sideEffectType = 2;
+        battleCtx->sideEffectType = SIDE_EFFECT_TYPE_INDIRECT;
 
         LOAD_SUBSEQ(BATTLE_SUBSEQ_FLINCH_MON);
         battleCtx->commandNext = battleCtx->command;

@@ -226,6 +226,13 @@ BOOL BattleIO_QueueIsEmpty(BattleContext *battleCtx);
  * @param battleCtx 
  */
 void BattleIO_UpdateTimeout(BattleContext *battleCtx);
+
+/**
+ * @brief Clear the battle IO queue of all data.
+ * 
+ * @param battleCtx 
+ * @param battler 
+ */
 void BattleIO_ClearBuffer(BattleContext *battleCtx, int battler);
 
 /**
@@ -270,11 +277,65 @@ void Battler_AddVal(BattleContext *battleCtx, int battler, enum BattleMonParam p
  * @param val       Value to be added to the Pokemon's data field
  */
 void BattleMon_AddVal(BattleMon *mon, enum BattleMonParam paramID, int val);
-u8 BattleSystem_CompareBattlerSpeed(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
-void BattleSystem_NoExpGain(BattleContext * param0, int param1);
-void BattleSystem_FlagExpGain(BattleSystem * param0, BattleContext * param1, int param2);
-BOOL BattleSystem_CheckPrimaryEffect(BattleSystem * param0, BattleContext * param1, int * param2);
-BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq);
+
+/**
+ * @brief Compare the speed of two battlers and determine which of them should
+ * move first.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler1
+ * @param battler2 
+ * @param ignoreQuickClaw   If set to TRUE, the Quick Claw and Custap Berry
+ *                          flags will NOT be set after determining if they
+ *                          should activate.
+ * @return 0 if battler 1 should move first, 1 if battler 2 should move first,
+ * 2 if battler 2 should move first and won a speed tie.
+ */
+u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *battleCtx, int battler1, int battler2, BOOL ignoreQuickClaw);
+
+/**
+ * @brief Clear the flag denoting that a battler (or its partner) are due to
+ * gain experience.
+ * 
+ * @param battleCtx
+ * @param battler   The battler who should not gain experience.
+ */
+void BattleSystem_ClearSideExpGain(BattleContext *battleCtx, int battler);
+
+/**
+ * @brief Flag a given battler as due to gain experience.
+ * 
+ * If the battle involves an AI partner, then this routine will not touch the
+ * flag for the opposing side of the battle.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler   The battler who should gain experience.
+ */
+void BattleSystem_FlagBattlerExpGain(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
+
+/**
+ * @brief Trigger a primary effect on the current move.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param[out] effect   Output parameter for the effect to be loaded.
+ * @return TRUE if an effect should be loaded, FALSE if the result should be
+ * ignored.
+ */
+BOOL BattleSystem_TriggerPrimaryEffect(BattleSystem *battleSys, BattleContext *battleCtx, int *effect);
+
+/**
+ * @brief Trigger a secondary effect on the current move.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param[out] effect   Output parameter for the effect to be loaded.
+ * @return TRUE if an effect should be loaded, FALSE if the result should be
+ * ignored.
+ */
+BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem *battleSys, BattleContext *battleCtx, int *effect);
 
 /**
  * @brief Find the defender for the move.
@@ -529,8 +590,35 @@ void BattleSystem_UpdateLastResort(BattleSystem * param0, BattleContext * param1
  * @return The number of moves known.
  */
 int Battler_CountMoves(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
-int BattleSystem_CheckImmunityAbilities(BattleContext * param0, int param1, int param2);
-BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem * param0, BattleContext * param1, int param2);
+
+/**
+ * @brief Trigger an immunity-granting ability of the defender based on the
+ * attacker's current move.
+ * 
+ * Despite its name, this routine does NOT check for Levitate, which is
+ * handled inside the type-chart check routine.
+ * 
+ * @param battleCtx 
+ * @param attacker
+ * @param defender
+ * @return A subscript to be loaded for any triggered effect.
+ */
+int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, int defender);
+
+/**
+ * @brief Trigger an end-of-turn ability for the battler.
+ * 
+ * If an end-of-turn ability is triggered, then the respective subscript will
+ * be loaded into the script buffer, and the battle control command will be
+ * updated to run that script.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler 
+ * @return TRUE if a subscript has been loaded for a triggered effect, FALSE
+ * otherwise.
+ */
+BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 
 /**
  * @brief Perform a division, setting any zero-result to 1 or -1, matching the
@@ -543,7 +631,16 @@ BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem * param0, BattleContext * p
  * than 1.
  */
 int BattleSystem_Divide(int dividend, int divisor);
-int BattleSystem_ShowMonChecks(BattleSystem * param0, BattleContext * param1);
+
+/**
+ * @brief Trigger effects which process on-switch-in, e.g. weather abilities,
+ * Intimidate, status-restoring berries, and Amulet Coin.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return A subscript which should be loaded as a triggered effect, if any.
+ */
+int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *battleCtx);
 
 /**
  * @brief Pick a random opponent for the given attacker.
@@ -559,8 +656,34 @@ int BattleSystem_ShowMonChecks(BattleSystem * param0, BattleContext * param1);
  * @return A random opponent of the attacker's.
  */
 int BattleSystem_RandomOpponent(BattleSystem *battleSys, BattleContext *battleCtx, int attacker);
-BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq);
-BOOL BattleSystem_RecoverStatusByAbility(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+
+/**
+ * @brief Trigger the defender's ability after a move deals damage to it.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param[out] subscript    Return-param for the subscript to be loaded for any
+ *                          triggered effect.
+ * @return TRUE if the returned subscript param should be loaded for a
+ * triggered effect.
+ */
+BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript);
+
+/**
+ * @brief Triggers a battler's ability which prevents an illegal status
+ * condition on the given battler, e.g. a paralyzed Pokemon with Limber.
+ * 
+ * This also contains the check responsible for setting the canUnburden flag.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler 
+ * @param skipLoad  If TRUE, the routine will skip loading the subscript
+ *                  responsible for curing an illegal status condition.
+ * @return TRUE if a subscript for an ability effect was loaded, FALSE
+ * otherwise.
+ */
+BOOL BattleSystem_RecoverStatusByAbility(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int skipLoad);
 
 /**
  * @brief Check if an ability forbids a value in the given status mask.
@@ -573,10 +696,62 @@ BOOL BattleSystem_RecoverStatusByAbility(BattleSystem * param0, BattleContext * 
  */
 BOOL Ability_ForbidsStatus(BattleContext *battleSys, int ability, int status);
 BOOL BattleSystem_SynchronizeStatus(BattleSystem * battleSys, BattleContext * battleCtx, int controllerCommand);
-BOOL BattleSystem_TriggerHeldItem(BattleSystem * param0, BattleContext * param1, int param2);
-BOOL BattleSystem_TriggerLeftovers(BattleSystem * param0, BattleContext * param1, int param2);
-BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem * param0, BattleContext * param1, int param2, int * param3);
-BOOL BattleSystem_TriggerDetrimentalHeldItem(BattleSystem * param0, BattleContext * param1, int param2);
+
+/**
+ * @brief Check if a held item should trigger due to status, an HP threshold, or
+ * a stat reduction, then load any such triggered effect's corresponding subscript.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler 
+ * @return TRUE if a subscript has been loaded for a triggered effect, FALSE
+ * otherwise. 
+ */
+BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
+
+/**
+ * @brief Check if a Leftovers-type item should trigger at the end of the turn.
+ * 
+ * This also contains the split-effect for Black Sludge.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler 
+ * @return TRUE if an effect has been loaded for a subscript to be run, FALSE
+ * otherwise.
+ */
+BOOL BattleSystem_TriggerLeftovers(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
+
+/**
+ * @brief Check if a held item should trigger due to status, an HP threshold, or
+ * a stat reduction.
+ * 
+ * Unlike its counterpart TriggerHeldItem, this routine will return the triggered
+ * effect subscript to the caller rather than immediately loading it for
+ * execution.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler 
+ * @param[out] subscript    Return param for the subscript to load for a
+ *                          triggered effect.
+ * @return TRUE if a subscript has been returned for a triggered effect, FALSE
+ * otherwise.
+ */
+BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int *subscript);
+
+/**
+ * @brief Check if a detrimental held item should trigger at the end of the turn.
+ * 
+ * This accounts for the effects of Toxic Orb, Flame Orb, and Sticky Barb.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler 
+ * @return TRUE if an effect has been loaded for a subscript to be run, FALSE
+ * otherwise.
+ */
+BOOL BattleSystem_TriggerDetrimentalHeldItem(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 
 /**
  * @brief Get the battler's held item.
@@ -586,9 +761,36 @@ BOOL BattleSystem_TriggerDetrimentalHeldItem(BattleSystem * param0, BattleContex
  * @return Integer ID of the battler's held item
  */
 u16 Battler_HeldItem(BattleContext *battleCtx, int battler);
-BOOL Battler_MovedThisTurn(BattleContext * param0, int param1);
-BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem * param0, BattleContext * param1, int * param2);
-s32 Battler_HeldItemEffect(BattleContext * param0, int param1);
+
+/**
+ * @brief Check if a battler moved this turn.
+ * 
+ * @param battleCtx 
+ * @param battler 
+ * @return TRUE if the battler's turn is over, FALSE if they have yet to move.
+ */
+BOOL Battler_MovedThisTurn(BattleContext *battleCtx, int battler);
+
+/**
+ * @brief Trigger a held item's effect when its holder takes damage.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param[out] subscript    Return param for the subscript to load for a
+ *                          triggered effect.
+ * @return TRUE if a subscript should be loaded for a triggered effect,
+ * FALSE otherwise.
+ */
+BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript);
+
+/**
+ * @brief Get the effect of the battler's held item.
+ * 
+ * @param battleCtx 
+ * @param battler 
+ * @return Integer ID of the effect of the battler's held item
+ */
+s32 Battler_HeldItemEffect(BattleContext *battleCtx, int battler);
 
 enum HeldItemPowerOp {
     ITEM_POWER_CHECK_ALL = 0, //< Check all possible effects which would suppress a battler's held item.
@@ -703,7 +905,19 @@ u8 BattleContext_IOBufferVal(BattleContext *battleCtx, int battler);
 BOOL Battler_SubstituteWasHit(BattleContext *battleCtx, int battler);
 BOOL BattleSystem_TrainerIsOT(BattleSystem * param0, BattleContext * param1);
 BOOL BattleSystem_PokemonIsOT(BattleSystem * param0, Pokemon * param1);
-BOOL BattleSystem_UpdateWeatherForms(BattleSystem * param0, BattleContext * param1, int * param2);
+
+/**
+ * @brief Trigger a form change for the battler stored in battleCtx->msgBattlerTemp,
+ * if applicable.
+ * 
+ * @param battleSys 
+ * @param battleCtx
+ * @param[out] subscript    Return-param for the subscript to be loaded for any
+ *                          triggered effect.
+ * @return TRUE if a form change has triggered and the returned subscript should
+ * be loaded for execution, FALSE otherwise.
+ */
+BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript);
 void ov16_0225A1B0(BattleSystem * param0, BattleContext * param1);
 
 /**
