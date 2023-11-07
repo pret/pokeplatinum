@@ -2357,7 +2357,7 @@ static BOOL BtlCmd_JumpToMove(BattleSystem *battleSys, BattleContext *battleCtx)
 
     if (targetIsSet == FALSE) {
         battleCtx->defender = BattleSystem_Defender(battleSys, battleCtx, battleCtx->attacker, battleCtx->msgMoveTemp, TRUE, 0);
-        BattleSystem_RedirectTarget(battleSys, battleCtx, battleCtx->attacker, battleCtx->msgMoveTemp);
+        BattleSystem_CheckRedirectionAbilities(battleSys, battleCtx, battleCtx->attacker, battleCtx->msgMoveTemp);
         ATTACKER_ACTION[BATTLE_ACTION_CHOOSE_TARGET] = battleCtx->defender;
     }
 

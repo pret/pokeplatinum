@@ -3203,7 +3203,7 @@ static void BattleController_BeforeMove(BattleSystem *battleSys, BattleContext *
         battleCtx->beforeMoveCheckState++;
 
     case BEFORE_MOVE_STATE_REDIRECT_TARGET:
-        BattleSystem_RedirectTarget(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveCur);
+        BattleSystem_CheckRedirectionAbilities(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveCur);
         battleCtx->beforeMoveCheckState = BEFORE_MOVE_START;
     }
 
@@ -3248,7 +3248,7 @@ static void BattleController_TryMove(BattleSystem *battleSys, BattleContext *bat
     case TRY_MOVE_STATE_TRIGGER_REDIRECTION_ABILITIES:
         battleCtx->tryMoveCheckState++;
 
-        if (BattleMove_TriggerRedirectionAbilities(battleSys, battleCtx) == TRUE) {
+        if (BattleSystem_TriggerRedirectionAbilities(battleSys, battleCtx) == TRUE) {
             return;
         }
 

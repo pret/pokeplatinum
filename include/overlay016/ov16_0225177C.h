@@ -356,8 +356,31 @@ BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem *battleSys, BattleContext 
  * @return The chosen defender for the move
  */
 int BattleSystem_Defender(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, u16 move, BOOL randomize, int inRange);
-void BattleSystem_RedirectTarget(BattleSystem * param0, BattleContext * param1, int param2, u16 param3);
-BOOL BattleMove_TriggerRedirectionAbilities(BattleSystem * param0, BattleContext * param1);
+
+/**
+ * @brief Check for redirection abilities given an attacker using a certain move.
+ * 
+ * This routine will update the appropriate flags and the current target if the
+ * used move is Electric- or Water-type, has single-target range, and at least
+ * one other battler on the field has Lightning Rod or Storm Drain, respectively.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param attacker 
+ * @param move 
+ */
+void BattleSystem_CheckRedirectionAbilities(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, u16 move);
+
+/**
+ * @brief Trigger a redirection ability's effect and load the appropriate
+ * subscript for execution.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return TRUE if a subscript was loaded and should be executed for the effect,
+ * FALSE otherwise.
+ */
+BOOL BattleSystem_TriggerRedirectionAbilities(BattleSystem *battleSys, BattleContext *battleCtx);
 void BattleMon_CopyToParty(BattleSystem * param0, BattleContext * param1, int param2);
 
 /**

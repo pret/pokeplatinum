@@ -3881,7 +3881,7 @@ u8 Pokemon_GetArceusTypeOf(u16 itemHoldEffect)
     case HOLD_EFFECT_ARCEUS_ICE:
         type = TYPE_ICE;
         break;
-    case HOLD_EFFECT_ARCEUS_FIGHT:
+    case HOLD_EFFECT_ARCEUS_FIGHTING:
         type = TYPE_FIGHTING;
         break;
     case HOLD_EFFECT_ARCEUS_POISON:
