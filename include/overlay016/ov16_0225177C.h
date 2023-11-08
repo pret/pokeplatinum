@@ -6,6 +6,7 @@
 #include "battle/battle_context.h"
 #include "battle/battle_mon.h"
 #include "battle/battle_message.h"
+#include "battle/btlcmd.h"
 
 enum BattleContextParam {
     BATTLECTX_SIDE_CONDITIONS_MASK = 0,
@@ -403,7 +404,16 @@ void Battler_LockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx, i
  * @param battler 
  */
 void Battler_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
-int ov16_02253F7C(BattleContext * param0, int param1);
+
+/**
+ * @brief Calculate the status effect value for a battler's non-volatile
+ * condition, if any.
+ * 
+ * @param battleCtx 
+ * @param battler 
+ * @return A value representing the battler's status non-volatile status.
+ */
+enum StatusEffect Battler_StatusCondition(BattleContext *battleCtx, int battler);
 BOOL BattleSystem_CheckTrainerMessage(BattleSystem * param0, BattleContext * param1);
 void BattleContext_Init(BattleContext * param0);
 void BattleContext_InitCounters(BattleSystem * param0, BattleContext * param1);

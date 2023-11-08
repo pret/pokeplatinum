@@ -1843,23 +1843,23 @@ void Battler_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx,
     battleCtx->battleMons[battler].moveEffectsData.furyCutterCount = 0;
 }
 
-int ov16_02253F7C (BattleContext * param0, int param1)
+enum StatusEffect Battler_StatusCondition(BattleContext *battleCtx, int battler)
 {
-    if (param0->battleMons[param1].status & 0x7) {
-        return 1;
-    } else if (param0->battleMons[param1].status & 0x8) {
-        return 2;
-    } else if (param0->battleMons[param1].status & 0x10) {
-        return 3;
-    } else if (param0->battleMons[param1].status & 0x20) {
-        return 4;
-    } else if (param0->battleMons[param1].status & 0x40) {
-        return 5;
-    } else if (param0->battleMons[param1].status & 0x80) {
-        return 2;
+    if (battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP) {
+        return STATUS_EFFECT_SLEEP;
+    } else if (battleCtx->battleMons[battler].status & MON_CONDITION_POISON) {
+        return STATUS_EFFECT_POISON;
+    } else if (battleCtx->battleMons[battler].status & MON_CONDITION_BURN) {
+        return STATUS_EFFECT_BURN;
+    } else if (battleCtx->battleMons[battler].status & MON_CONDITION_FREEZE) {
+        return STATUS_EFFECT_FREEZE;
+    } else if (battleCtx->battleMons[battler].status & MON_CONDITION_PARALYSIS) {
+        return STATUS_EFFECT_PARALYSIS;
+    } else if (battleCtx->battleMons[battler].status & MON_CONDITION_TOXIC) {
+        return STATUS_EFFECT_POISON;
     }
 
-    return 0;
+    return STATUS_EFFECT_NONE;
 }
 
 BOOL BattleSystem_CheckTrainerMessage (BattleSystem * param0, BattleContext * param1)

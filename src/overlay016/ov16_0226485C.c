@@ -554,7 +554,7 @@ void BattleIO_SlideHPGaugeIn (BattleSystem * param0, BattleContext * param1, int
     v0.unk_02 = param1->battleMons[param2].curHP;
     v0.unk_04 = param1->battleMons[param2].maxHP;
     v0.unk_06 = param1->selectedPartySlot[param2];
-    v0.unk_07_0 = ov16_02253F7C(param1, param2);
+    v0.unk_07_0 = Battler_StatusCondition(param1, param2);
 
     if (((param1->battleMons[param2].species == 29) || (param1->battleMons[param2].species == 32)) && (param1->battleMons[param2].hasNickname == 0)) {
         v0.unk_07_5 = 2;
@@ -1241,7 +1241,7 @@ void BattleIO_RefreshHPGauge (BattleSystem * param0, BattleContext * param1, int
     v0.unk_02 = param1->battleMons[param2].curHP;
     v0.unk_04 = param1->battleMons[param2].maxHP;
     v0.unk_06 = param1->selectedPartySlot[param2];
-    v0.unk_07_0 = ov16_02253F7C(param1, param2);
+    v0.unk_07_0 = Battler_StatusCondition(param1, param2);
 
     if (((param1->battleMons[param2].species == 29) || (param1->battleMons[param2].species == 32)) && (param1->battleMons[param2].hasNickname == 0)) {
         v0.unk_07_5 = 2;
