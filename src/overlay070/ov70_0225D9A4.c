@@ -1733,37 +1733,15 @@ static void ov70_0225ED4C (UnkStruct_ov70_0225EC20 * param0, UnkStruct_ov70_0225
     }
 }
 
-asm static void ov70_0225EDA8 (UnkStruct_ov70_0225EC20 * param0, u32 param1, u32 param2, u32 param3)
+static void ov70_0225EDA8 (UnkStruct_ov70_0225EC20 * param0, u32 param1, u32 param2, u32 param3)
 {
-    push {r3, r4, r5, r6, r7, lr}
-    add r5, r0, #0
-    ldr r0, [r5, #0x34]
-    add r4, r1, #0
-    add r7, r2, #0
-    add r6, r3, #0
-    cmp r0, #0
-    beq _0225EDBC
-    bl ErrorHandling_AssertFail
- _0225EDBC:
-    add r0, r4, #0
-    add r1, r7, #0
-    bl sub_02013A04
-    str r0, [r5, #0x34]
-    mov r1, #0
-    strh r4, [r5, #0x38]
-    cmp r4, #0
-    bls _0225EDDE
-    add r2, r1, #0
- _0225EDD0:
-    ldr r0, [r5, #0x34]
-    add r1, r1, #1
-    add r0, r0, r2
-    str r6, [r0, #4]
-    add r2, #8
-    cmp r1, r4
-    blo _0225EDD0
- _0225EDDE:
-    pop {r3, r4, r5, r6, r7, pc}
+    int v0;
+    GF_ASSERT(param0->unk_34 == NULL);
+    param0->unk_34 = sub_02013A04(param1, param2);
+    param0->unk_38 = param1;
+
+    for (v0 = 0; v0 < param1; v0++)
+        param0->unk_34[v0].unk_04 = param3;
 }
 
 static void ov70_0225EDE0 (UnkStruct_ov70_0225EC20 * param0)

@@ -1104,71 +1104,41 @@ BOOL ov5_021F76D0 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-asm BOOL ov5_021F7704 (UnkStruct_0203E724 * param0)
-{
-    push {r4, lr}
-    add r0, #0x80
-    ldr r0, [r0, #0]
-    mov r1, #0xf
-    ldr r0, [r0, #0x38]
-    bl sub_0206251C
-    add r4, r0, #0
-    beq _021F774E
-    bl sub_02063020
-    cmp r0, #0x28
-    bgt _021F7730
-    cmp r0, #0x26
-    blt _021F772A
-    beq _021F773A
-    cmp r0, #0x28
-    beq _021F773E
-    b _021F7746
- _021F772A:
-    cmp r0, #0x1c
-    beq _021F7736
-    b _021F7746
- _021F7730:
-    cmp r0, #0x30
-    beq _021F7742
-    b _021F7746
- _021F7736:
-    mov r1, #6
-    b _021F7748
- _021F773A:
-    mov r1, #5
-    b _021F7748
- _021F773E:
-    mov r1, #3
-    b _021F7748
- _021F7742:
-    mov r1, #2
-    b _021F7748
- _021F7746:
-    mov r1, #4
- _021F7748:
-    add r0, r4, #0
-    bl ov5_021F7654
- _021F774E:
-    mov r0, #0
-    pop {r4, pc}
+BOOL ov5_021F7704 (UnkStruct_0203E724 * param0)
+{    
+    int v0;
+    UnkStruct_02061AB4 * v1 = sub_0206251C(param0->unk_34->unk_38, 15);
+    if (v1 != NULL)
+    {
+        switch (sub_02063020(v1))
+        {
+            case 28:
+                v0 = 6;
+                break;
+            case 38:
+                v0 = 5;
+                break;
+            case 40:
+                v0 = 3;
+                break;
+            case 48:
+                v0 = 2;
+                break;
+            default:
+                v0 = 4;
+                break;
+        }
+        ov5_021F7654(v1, v0);
+    }
+    return 0;
 }
 
-asm BOOL ov5_021F7754 (UnkStruct_0203E724 * param0)
+BOOL ov5_021F7754 (UnkStruct_0203E724 * param0)
 {
-    push {r3, lr}
-    add r0, #0x80
-    ldr r0, [r0, #0]
-    mov r1, #0xf
-    ldr r0, [r0, #0x38]
-    bl sub_0206251C
-    cmp r0, #0
-    beq _021F776E
-    mov r1, #2
-    lsl r1, r1, #0xc
-    bl sub_020628C4
- _021F776E:
-    mov r0, #0
-    pop {r3, pc}
+    UnkStruct_02061AB4 * v0 = sub_0206251C(param0->unk_34->unk_38, 15);
+    if (v0 != NULL)
+        sub_020628C4(v0, 8192);
+    return 0;
 }
 
 BOOL ov5_021F7774 (UnkStruct_0203E724 * param0)

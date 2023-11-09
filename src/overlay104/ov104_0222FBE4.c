@@ -2887,30 +2887,19 @@ static BOOL ov104_02231F34 (UnkStruct_ov104_0222E930 * param0)
     return 0;
 }
 
-static asm BOOL ov104_02231F44 (UnkStruct_ov104_0222E930 * param0)
+static BOOL ov104_02231F44 (UnkStruct_ov104_0222E930 * param0)
 {
-    push {r3, lr}
-    ldr r2, [r0, #0x1c]
-    ldr r3, [r0, #0]
-    add r1, r2, #1
-    str r1, [r0, #0x1c]
-    ldrb r1, [r2]
-    ldr r0, [r3, #0x60]
-    bl ov104_0223327C
-    mov r0, #1
-    pop {r3, pc}
+    UnkStruct_ov104_022320B4 * v0 = param0->unk_00;
+    u8 v1 = *(param0->unk_1C++);
+    ov104_0223327C(v0->unk_60, v1);
+    return 1;
 }
 
-static asm BOOL ov104_02231F5C (UnkStruct_ov104_0222E930 * param0)
+
+static BOOL ov104_02231F5C (UnkStruct_ov104_0222E930 * param0)
 {
-    push {r3, lr}
-    ldr r2, [r0, #0x1c]
-    ldr r3, [r0, #0]
-    add r1, r2, #1
-    str r1, [r0, #0x1c]
-    ldrb r1, [r2]
-    ldr r0, [r3, #0x60]
-    bl ov104_02233298
-    mov r0, #1
-    pop {r3, pc}
+    UnkStruct_ov104_022320B4 * v0 = param0->unk_00;
+    u8 v1 = *(param0->unk_1C++);
+    ov104_02233298(v0->unk_60, v1);
+    return 1;
 }

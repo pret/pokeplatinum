@@ -2143,42 +2143,14 @@ static void ov109_021D27F0 (UnkStruct_ov109_021D0F70 * param0)
     }
 }
 
-asm static void ov109_021D2820 (UnkStruct_ov109_021D0F70 * param0, Strbuf *param1, int param2, u32 param3)
+static void ov109_021D2820 (UnkStruct_ov109_021D0F70 * param0, Strbuf *param1, int param2, u32 param3)
 {
-    push {r3, r4, r5, r6, r7, lr}
-    sub sp, #0x10
-    add r6, r1, #0
-    ldr r1, = 0xCB8
-    lsl r4, r2, #4
-    add r5, r0, r1
-    mov r1, #1
-    add r7, r3, #0
-    add r0, r5, r4
-    add r2, r1, #0
-    mov r3, #0xe
-    bl Window_Show
-    add r0, r5, r4
-    mov r1, #0xf
-    bl BGL_FillWindow
-    mov r0, #0
-    add r1, r6, #0
-    add r2, r0, #0
-    mov r3, #0x40
-    bl sub_02002EEC
-    mov r1, #0
-    add r3, r0, #0
-    str r1, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    str r7, [sp, #8]
-    add r0, r5, r4
-    add r2, r6, #0
-    str r1, [sp, #0xc]
-    bl sub_0201D78C
-    add r0, r5, r4
-    bl sub_0201A9A4
-    add sp, #0x10
-    pop {r3, r4, r5, r6, r7, pc}
+    UnkStruct_ov109_021D24F8 * v0 = &param0->unk_C9C;
+    Window * v1 = &v0->unk_1C[param2];
+    Window_Show(v1, 1, 1, 14);
+    BGL_FillWindow(v1, 15);
+    sub_0201D78C(v1, 0, param1, sub_02002EEC(0, param1, 0, 8 * 8), 0, 0xFF, param3, NULL);
+    sub_0201A9A4(v1);
 }
 
 static void ov109_021D2874 (UnkStruct_ov109_021D0F70 * param0, Strbuf *param1, int param2, int param3)

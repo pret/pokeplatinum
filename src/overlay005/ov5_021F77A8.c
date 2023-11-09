@@ -653,34 +653,14 @@ static const UnkStruct_ov5_02200CE4 Unk_ov5_02200CE4[] = {
     {0xFD, 0x0, 0x0, 0x6, 0x2, 0x2}
 };
 
-asm BOOL ov5_021F77A8 (UnkStruct_0203E724 * param0)
+BOOL ov5_021F77A8 (UnkStruct_0203E724 * param0)
 {
-    push {r4, r5, r6, lr}
-    add r5, r0, #0
-    bl sub_0203E838
-    add r1, r0, #0
-    add r0, r5, #0
-    add r0, #0x80
-    ldr r0, [r0, #0]
-    bl sub_0203F150
-    add r6, r0, #0
-    add r0, r5, #0
-    bl sub_0203E838
-    add r1, r0, #0
-    add r0, r5, #0
-    add r0, #0x80
-    ldr r0, [r0, #0]
-    bl sub_0203F118
-    add r5, #0x80
-    add r4, r0, #0
-    ldr r0, [r5, #0]
-    ldr r0, [r0, #0xc]
-    bl sub_02027560
-    add r1, r6, #0
-    bl sub_02026FE8
-    strh r0, [r4]
-    mov r0, #0
-    pop {r4, r5, r6, pc}
+    u16 v0 = sub_0203F150(param0->unk_34, sub_0203E838(param0));
+    u16 * v1 = sub_0203F118(param0->unk_34, sub_0203E838(param0));
+    UnkStruct_02026324 * v2 = sub_02027560(param0->unk_34->unk_0C);
+    
+    *v1 = sub_02026FE8(v2, v0);
+    return 0;
 }
 
 BOOL ov5_021F77E8 (UnkStruct_0203E724 * param0)

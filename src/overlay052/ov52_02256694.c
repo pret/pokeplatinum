@@ -374,66 +374,22 @@ static void ov52_02256B64 (UnkStruct_ov52_02256694 * param0)
     sub_0201ACCC(&param0->unk_20);
 }
 
-asm static void ov52_02256BDC (UnkStruct_ov52_02256694 * param0)
+static void ov52_02256BDC (UnkStruct_ov52_02256694 * param0)
 {
-    push {r4, lr}
-    sub sp, #0x10
-    add r4, r0, #0
-    add r0, #0x20
-    mov r1, #4
-    bl BGL_FillWindow
-    ldr r0, [r4, #0x58]
-    ldr r2, [r4, #0x5c]
-    mov r1, #2
-    bl MessageLoader_GetStrbuf
-    mov r0, #0
-    ldr r1, [r4, #0x5c]
-    add r2, r0, #0
-    bl sub_02002D7C
-    mov r1, #0xc0
-    sub r0, r1, r0
-    lsr r3, r0, #1
-    mov r0, #8
-    str r0, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    ldr r0, = 0x10804
-    mov r1, #0
-    str r0, [sp, #8]
-    str r1, [sp, #0xc]
-    add r0, r4, #0
-    ldr r2, [r4, #0x5c]
-    add r0, #0x20
-    bl sub_0201D78C
-    ldr r0, [r4, #0x58]
-    ldr r2, [r4, #0x5c]
-    mov r1, #4
-    bl MessageLoader_GetStrbuf
-    mov r0, #0
-    ldr r1, [r4, #0x5c]
-    add r2, r0, #0
-    bl sub_02002EB4
-    mov r1, #0xc0
-    sub r0, r1, r0
-    lsr r3, r0, #1
-    mov r0, #0x18
-    str r0, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    ldr r0, = 0x10804
-    mov r1, #0
-    str r0, [sp, #8]
-    str r1, [sp, #0xc]
-    add r0, r4, #0
-    ldr r2, [r4, #0x5c]
-    add r0, #0x20
-    bl sub_0201D78C
-    add r4, #0x20
-    add r0, r4, #0
-    bl sub_0201ACCC
-    add sp, #0x10
-    pop {r4, pc}
-    nop
+    u32 v0;
+    u32 v1;
+    
+    BGL_FillWindow(&param0->unk_20, 4);
+    MessageLoader_GetStrbuf(param0->unk_58, 2, param0->unk_5C);
+
+    v0 = ((24 * 8) - sub_02002D7C(0, param0->unk_5C, 0)) / 2;
+    sub_0201D78C(&param0->unk_20, 0, param0->unk_5C, v0, 8, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
+    MessageLoader_GetStrbuf(param0->unk_58, 4, param0->unk_5C);
+
+    v1 = ((24 * 8) - sub_02002EB4(0, param0->unk_5C, 0)) / 2;
+    sub_0201D78C(&param0->unk_20, 0, param0->unk_5C, v1, 24, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
+
+    sub_0201ACCC(&param0->unk_20);
 }
 
 static void ov52_02256C64 (UnkStruct_ov52_02256694 * param0, const UnkStruct_ov52_02256694_1 * param1)

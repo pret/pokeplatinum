@@ -84,7 +84,9 @@ typedef struct UnkStruct_ov104_02232B5C_t {
     u8 unk_96;
     u8 unk_97_0 : 1;
     u8 unk_97_1 : 1;
-    u8 unk_97_2 : 6;
+    u8 unk_97_2 : 4;
+    u8 unk_97_6 : 1;
+    u8 unk_97_7 : 1;
     u8 unk_98;
     u8 unk_99;
     u8 unk_9A;
@@ -139,8 +141,8 @@ static void ov104_02232B2C(UnkStruct_ov104_02232B5C * param0);
 void ov104_02232B5C(UnkStruct_ov104_02232B5C * param0);
 void ov104_022330FC(UnkStruct_ov104_0222E930 * param0, u16 * param1);
 void ov104_0223310C(UnkStruct_ov104_0222E930 * param0, u16 * param1, u32 param2);
-extern void ov104_0223327C(void);
-extern void ov104_02233298(void);
+extern void ov104_0223327C(UnkStruct_ov104_02232B5C * param0, int param1);
+extern void ov104_02233298(UnkStruct_ov104_02232B5C * param0, int param1);
 
 void ov104_02231F74 (UnkStruct_ov104_022320B4 * param0, const MessageLoader * param1, u16 param2, u8 param3, UnkStruct_ov104_0222FEDC * param4)
 {
@@ -311,112 +313,28 @@ void ov104_022322A8 (UnkStruct_ov104_02232B5C * param0, u32 param1, u32 param2, 
     return;
 }
 
-asm void ov104_022322B0 (UnkStruct_ov104_02232B5C * param0)
+void ov104_022322B0 (UnkStruct_ov104_02232B5C * param0)
 {
-    push {r4, r5, lr}
-    sub sp, #0x14
-    add r5, r0, #0
-    ldr r0, [r5, #0]
-    bl ov104_0222E924
-    add r4, r0, #0
-    add r0, r5, #0
-    bl ov104_02232414
-    mov r1, #7
-    tst r1, r0
-    bne _022322CE
-    lsr r0, r0, #3
-    b _022322D2
- _022322CE:
-    lsr r0, r0, #3
-    add r0, r0, #1
- _022322D2:
-    add r1, r5, #0
-    add r1, #0x97
-    ldrb r1, [r1]
-    lsl r1, r1, #0x19
-    lsr r1, r1, #0x1f
-    beq _022322EC
-    add r1, r5, #0
-    add r1, #0x98
-    ldrb r1, [r1]
-    sub r2, r1, r0
-    add r1, r5, #0
-    add r1, #0x98
-    strb r2, [r1]
- _022322EC:
-    add r1, r5, #0
-    add r1, #0x97
-    ldrb r1, [r1]
-    lsl r1, r1, #0x18
-    lsr r1, r1, #0x1f
-    beq _0223230E
-    add r1, r5, #0
-    add r1, #0x99
-    ldrb r2, [r1]
-    add r1, r5, #0
-    add r1, #0x9b
-    ldrb r1, [r1]
-    lsl r1, r1, #1
-    sub r2, r2, r1
-    add r1, r5, #0
-    add r1, #0x99
-    strb r2, [r1]
- _0223230E:
-    add r1, r5, #0
-    add r1, #0x99
-    ldrb r1, [r1]
-    lsl r0, r0, #0x18
-    add r3, r5, #0
-    str r1, [sp]
-    lsr r0, r0, #0x18
-    str r0, [sp, #4]
-    add r0, r5, #0
-    add r0, #0x9b
-    ldrb r0, [r0]
-    add r1, r5, #0
-    mov r2, #1
-    lsl r0, r0, #0x19
-    lsr r0, r0, #0x18
-    str r0, [sp, #8]
-    mov r0, #0xe
-    str r0, [sp, #0xc]
-    str r2, [sp, #0x10]
-    add r3, #0x98
-    ldrb r3, [r3]
-    ldr r0, [r4, #0]
-    add r1, #8
-    bl BGL_AddWindow
-    add r0, r5, #0
-    ldr r2, = 0x3D9
-    add r0, #8
-    mov r1, #1
-    mov r3, #0xc
-    bl Window_Show
-    add r0, r5, #0
-    bl ov104_02232454
-    ldr r2, [r5, #0]
-    add r1, r5, #0
-    add r1, #0x96
-    ldr r2, [r2, #0x34]
-    add r0, r5, #0
-    lsl r2, r2, #0x18
-    ldrb r1, [r1]
-    add r0, #0xa4
-    lsr r2, r2, #0x18
-    bl sub_02001B9C
-    add r1, r5, #0
-    add r1, #0xb0
-    str r0, [r1, #0]
-    add r0, r5, #0
-    bl ov104_022325D8
-    ldr r0, = ov104_022324C8
-    add r1, r5, #0
-    mov r2, #0
-    bl SysTask_Start
-    str r0, [r5, #4]
-    add sp, #0x14
-    pop {r4, r5, pc}
-    nop
+    u32 v0;
+    UnkStruct_ov104_0223C4CC * v1 = ov104_0222E924(param0->unk_00);
+    
+    v0 = ov104_02232414(param0);
+    if (v0 % 8 == 0)
+        v0 /= 8;
+    else
+        v0 = v0 / 8 + 1;
+    
+    if (param0->unk_97_6)
+        param0->unk_98 -= v0;
+    if (param0->unk_97_7)
+        param0->unk_99 -= param0->unk_9B * 2;
+    
+    BGL_AddWindow(v1->unk_00, &param0->unk_08, 1, param0->unk_98, param0->unk_99, v0, param0->unk_9B * 2, 14, 1);
+    Window_Show(&param0->unk_08, 1, 985, 12);
+    ov104_02232454(param0);
+    param0->unk_B0 = sub_02001B9C(&param0->unk_A4, param0->unk_96, param0->unk_00->unk_34);
+    ov104_022325D8(param0);
+    param0->unk_04 = SysTask_Start(ov104_022324C8, param0, 0);
 }
 
 static void ov104_02232390 (UnkStruct_ov104_02232B5C * param0, u32 param1, u32 param2, u32 param3)
@@ -571,152 +489,34 @@ void ov104_0223261C (UnkStruct_ov104_02232B5C * param0, u32 param1, u32 param2, 
     return;
 }
 
-asm void ov104_02232624 (UnkStruct_ov104_02232B5C * param0)
+void ov104_02232624 (UnkStruct_ov104_02232B5C * param0)
 {
-    push {r4, r5, lr}
-    sub sp, #0x14
-    add r5, r0, #0
-    ldr r0, [r5, #0]
-    bl ov104_0222E924
-    add r4, r0, #0
-    add r0, r5, #0
-    bl ov104_022327F0
-    mov r1, #7
-    tst r1, r0
-    bne _02232642
-    lsr r1, r0, #3
-    b _02232646
- _02232642:
-    lsr r0, r0, #3
-    add r1, r0, #1
- _02232646:
-    add r0, r5, #0
-    add r0, #0x97
-    ldrb r0, [r0]
-    lsl r0, r0, #0x19
-    lsr r0, r0, #0x1f
-    beq _02232660
-    add r0, r5, #0
-    add r0, #0x98
-    ldrb r0, [r0]
-    sub r2, r0, r1
-    add r0, r5, #0
-    add r0, #0x98
-    strb r2, [r0]
- _02232660:
-    add r0, r5, #0
-    add r0, #0x9b
-    ldrb r0, [r0]
-    cmp r0, #8
-    bls _022326B0
-    add r0, r5, #0
-    add r0, #0x97
-    ldrb r0, [r0]
-    lsl r0, r0, #0x18
-    lsr r0, r0, #0x1f
-    beq _02232684
-    add r0, r5, #0
-    add r0, #0x99
-    ldrb r2, [r0]
-    add r0, r5, #0
-    add r0, #0x99
-    sub r2, #0x10
-    strb r2, [r0]
- _02232684:
-    add r0, r5, #0
-    add r0, #0x99
-    ldrb r0, [r0]
-    add r3, r5, #0
-    mov r2, #1
-    str r0, [sp]
-    lsl r0, r1, #0x18
-    lsr r0, r0, #0x18
-    str r0, [sp, #4]
-    mov r0, #0x10
-    str r0, [sp, #8]
-    mov r0, #0xe
-    str r0, [sp, #0xc]
-    str r2, [sp, #0x10]
-    add r3, #0x98
-    add r1, r5, #0
-    ldrb r3, [r3]
-    ldr r0, [r4, #0]
-    add r1, #8
-    bl BGL_AddWindow
-    b _022326FE
- _022326B0:
-    add r2, r5, #0
-    add r2, #0x97
-    ldrb r2, [r2]
-    lsl r2, r2, #0x18
-    lsr r2, r2, #0x1f
-    beq _022326CC
-    add r2, r5, #0
-    add r2, #0x99
-    ldrb r2, [r2]
-    lsl r0, r0, #1
-    sub r2, r2, r0
-    add r0, r5, #0
-    add r0, #0x99
-    strb r2, [r0]
- _022326CC:
-    add r0, r5, #0
-    add r0, #0x99
-    ldrb r0, [r0]
-    add r3, r5, #0
-    mov r2, #1
-    str r0, [sp]
-    lsl r0, r1, #0x18
-    lsr r0, r0, #0x18
-    str r0, [sp, #4]
-    add r0, r5, #0
-    add r0, #0x9b
-    ldrb r0, [r0]
-    add r1, r5, #0
-    add r3, #0x98
-    lsl r0, r0, #0x19
-    lsr r0, r0, #0x18
-    str r0, [sp, #8]
-    mov r0, #0xe
-    str r0, [sp, #0xc]
-    str r2, [sp, #0x10]
-    ldrb r3, [r3]
-    ldr r0, [r4, #0]
-    add r1, #8
-    bl BGL_AddWindow
- _022326FE:
-    add r0, r5, #0
-    ldr r2, = 0x3D9
-    add r0, #8
-    mov r1, #1
-    mov r3, #0xc
-    bl Window_Show
-    add r0, r5, #0
-    bl ov104_02232830
-    ldr r3, [r5, #0]
-    add r2, r5, #0
-    add r2, #0x96
-    ldr r3, [r3, #0x34]
-    mov r0, #0x65
-    lsl r0, r0, #2
-    lsl r3, r3, #0x18
-    ldrb r2, [r2]
-    add r0, r5, r0
-    mov r1, #0
-    lsr r3, r3, #0x18
-    bl sub_0200112C
-    mov r1, #0x6d
-    lsl r1, r1, #2
-    str r0, [r5, r1]
-    add r0, r5, #0
-    bl ov104_02232B2C
-    ldr r0, = ov104_0223296C
-    add r1, r5, #0
-    mov r2, #0
-    bl SysTask_Start
-    str r0, [r5, #4]
-    add sp, #0x14
-    pop {r4, r5, pc}
+    u32 v0;
+    UnkStruct_ov104_0223C4CC * v1 = ov104_0222E924(param0->unk_00);
+    
+    v0 = ov104_022327F0(param0);
+    if (v0 % 8 == 0)
+        v0 /= 8;
+    else
+        v0 = v0 / 8 + 1;
+    
+    if (param0->unk_97_6)
+        param0->unk_98 -= v0;
+
+    if (param0->unk_9B > 8) {
+        if (param0->unk_97_7)
+            param0->unk_99 -= 8 * 2;
+        BGL_AddWindow(v1->unk_00, &param0->unk_08, 1, param0->unk_98, param0->unk_99, v0, 8 * 2, 14, 1);
+    } else {
+        if (param0->unk_97_7)
+            param0->unk_99 -= param0->unk_9B * 2;
+        BGL_AddWindow(v1->unk_00, &param0->unk_08, 1, param0->unk_98, param0->unk_99, v0, param0->unk_9B * 2, 14, 1);
+    }
+    Window_Show(&param0->unk_08, 1, 985, 12);
+    ov104_02232830(param0);
+    param0->unk_1B4 = sub_0200112C((const UnkStruct_ov84_02240FA8 *)&param0->unk_194, 0, param0->unk_96, param0->unk_00->unk_34);
+    ov104_02232B2C(param0);
+    param0->unk_04 = SysTask_Start(ov104_0223296C, param0, 0);
 }
 
 static void ov104_02232750 (UnkStruct_ov104_02232B5C * param0, u32 param1, u32 param2, u32 param3)
@@ -1356,36 +1156,12 @@ void ov104_022331E8 (SysTask * param0, void * param1)
     }
 }
 
-asm void ov104_0223327C (void)
+void ov104_0223327C(UnkStruct_ov104_02232B5C * param0, int param1)
 {
-    add r2, r0, #0
-    add r2, #0x97
-    ldrb r3, [r2]
-    lsl r1, r1, #0x18
-    lsr r1, r1, #0x18
-    mov r2, #0x40
-    lsl r1, r1, #0x1f
-    bic r3, r2
-    lsr r1, r1, #0x19
-    orr r1, r3
-    add r0, #0x97
-    strb r1, [r0]
-    bx lr
+    param0->unk_97_6 = param1;
 }
 
-asm void ov104_02233298 (void)
+void ov104_02233298(UnkStruct_ov104_02232B5C * param0, int param1)
 {
-    add r2, r0, #0
-    add r2, #0x97
-    ldrb r3, [r2]
-    lsl r1, r1, #0x18
-    lsr r1, r1, #0x18
-    mov r2, #0x80
-    lsl r1, r1, #0x1f
-    bic r3, r2
-    lsr r1, r1, #0x18
-    orr r1, r3
-    add r0, #0x97
-    strb r1, [r0]
-    bx lr
+    param0->unk_97_7 = param1;
 }

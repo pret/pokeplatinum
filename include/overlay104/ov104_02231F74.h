@@ -40,7 +40,7 @@ void ov104_022330FC(UnkStruct_ov104_0222E930 * param0, u16 * param1);
 void ov104_0223310C(UnkStruct_ov104_0222E930 * param0, u16 * param1, u32 param2);
 void ov104_0223319C(SysTask * param0, void * param1);
 void ov104_022331E8(SysTask * param0, void * param1);
-void ov104_0223327C(void);
-void ov104_02233298(void);
+void ov104_0223327C(UnkStruct_ov104_02232B5C * param0, int param1);
+void ov104_02233298(UnkStruct_ov104_02232B5C * param0, int param1);
 
 #endif // POKEPLATINUM_OV104_02231F74_H

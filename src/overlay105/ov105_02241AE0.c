@@ -1761,78 +1761,17 @@ static void ov105_02243D84 (UnkStruct_ov105_02241FF4 * param0)
     return;
 }
 
-asm static void ov105_02243DE4 (UnkStruct_ov105_02241FF4 * param0)
+static void ov105_02243DE4 (UnkStruct_ov105_02241FF4 * param0)
 {
-    push {r4, lr}
-    sub sp, #0x18
-    add r4, r0, #0
-    mov r0, #0xab
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    bl ov105_02246060
-    mov r0, #0xab
-    mov r1, #0
-    lsl r0, r0, #2
-    str r1, [r4, r0]
-    sub r0, r0, #4
-    ldr r0, [r4, r0]
-    bl ov105_022461A4
-    add r1, r4, #0
-    ldr r0, [r4, #0x4c]
-    add r1, #0xc0
-    bl ov105_02246260
-    mov r3, #1
-    add r1, r4, #0
-    str r3, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    str r3, [sp, #8]
-    mov r0, #2
-    str r0, [sp, #0xc]
-    mov r0, #0xf
-    str r0, [sp, #0x10]
-    mov r0, #0
-    str r0, [sp, #0x14]
-    add r0, r4, #0
-    add r1, #0xc0
-    mov r2, #0x17
-    bl ov105_02244C60
-    strb r0, [r4, #0x10]
-    mov r0, #0x11
-    str r0, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    mov r3, #1
-    add r1, r4, #0
-    str r3, [sp, #8]
-    mov r0, #2
-    str r0, [sp, #0xc]
-    mov r0, #0xf
-    str r0, [sp, #0x10]
-    mov r0, #0
-    str r0, [sp, #0x14]
-    add r0, r4, #0
-    add r1, #0xc0
-    mov r2, #0x18
-    bl ov105_02244CC0
-    strb r0, [r4, #0x10]
-    mov r0, #0x4e
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    bl sub_02027B50
-    add r1, r0, #0
-    add r0, r4, #0
-    add r0, #0xa0
-    bl ov105_0224628C
-    add r0, r4, #0
-    mov r1, #0xd
-    bl ov105_02244D14
-    strb r0, [r4, #0x10]
-    add r4, #0xc0
-    add r0, r4, #0
-    bl sub_0201A9A4
-    add sp, #0x18
-    pop {r4, pc}
+    ov105_02246060(param0->unk_310);
+    param0->unk_310 = NULL;
+    ov105_022461A4(param0->unk_30C, 0);
+    ov105_02246260(param0->unk_4C, &param0->unk_50[7]);
+    param0->unk_10 = ov105_02244C60(param0, &param0->unk_50[7], 23, 1, 1, 0xFF, 1, 2, 15, 0);
+    param0->unk_10 = ov105_02244CC0(param0, &param0->unk_50[7], 24, 1, 1 + 16, 0xFF, 1, 2, 15, 0);
+    ov105_0224628C(&param0->unk_50[5], sub_02027B50(param0->unk_138));
+    param0->unk_10 = ov105_02244D14(param0, 13);
+    sub_0201A9A4(&param0->unk_50[7]);
 }
 
 static BOOL ov105_02243E84 (UnkStruct_ov105_02241FF4 * param0)

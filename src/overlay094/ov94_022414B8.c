@@ -902,59 +902,25 @@ void ov94_02242204 (Window * param0, MessageLoader * param1, int param2, int par
     Strbuf_Free(v0);
 }
 
-asm void ov94_0224226C (Window * param0, MessageLoader * param1, int param2, int param3, int param4, u32 param5, int param6, int param7)
+void ov94_0224226C (Window * param0, MessageLoader * param1, int param2, int param3, int param4, u32 param5, int param6, int param7)
 {
-    push {r4, r5, r6, lr}
-    sub sp, #8
-    add r6, r0, #0
-    mov r0, #0
-    mvn r0, r0
-    add r5, r3, #0
-    cmp r2, r0
-    beq _022422AC
-    ldr r0, [sp, #0x20]
-    cmp r0, #0
-    bne _02242286
-    ldr r3, = Unk_ov94_0224610C
-    b _02242288
- _02242286:
-    ldr r3, = Unk_ov94_022460AC
- _02242288:
-    add r0, r1, #0
-    lsl r1, r2, #3
-    ldr r1, [r3, r1]
-    bl MessageLoader_GetNewStrbuf
-    add r4, r0, #0
-    ldr r0, [sp, #0x1c]
-    str r5, [sp]
-    str r0, [sp, #4]
-    ldr r2, [sp, #0x24]
-    ldr r3, [sp, #0x18]
-    add r0, r6, #0
-    add r1, r4, #0
-    bl ov94_02245900
-    add r0, r4, #0
-    bl Strbuf_Free
- _022422AC:
-    add sp, #8
-    pop {r4, r5, r6, pc}
+    Strbuf * v0;
+    if (param2 != -1) {
+        const UnkStruct_ov94_022460AC * v1;
+        if (param6 == 0) {
+            v1 = Unk_ov94_0224610C;
+        } else {
+            v1 = Unk_ov94_022460AC;
+        }
+        v0 = MessageLoader_GetNewStrbuf(param1, v1[param2].unk_00);
+        ov94_02245900(param0, v0, param7, param4, param3, param5);
+        Strbuf_Free(v0);
+    }
 }
 
-asm void ov94_022422B8 (Window * param0, MessageLoader * param1, int param2, int param3, int param4, u32 param5, int param6)
+void ov94_022422B8 (Window * param0, MessageLoader * param1, int param2, int param3, int param4, u32 param5, int param6)
 {
-    push {r4, lr}
-    sub sp, #0x10
-    ldr r4, [sp, #0x18]
-    str r4, [sp]
-    ldr r4, [sp, #0x1c]
-    str r4, [sp, #4]
-    ldr r4, [sp, #0x20]
-    str r4, [sp, #8]
-    mov r4, #0
-    str r4, [sp, #0xc]
-    bl ov94_0224226C
-    add sp, #0x10
-    pop {r4, pc}
+    ov94_0224226C(param0, param1, param2, param3, param4, param5, param6, 0);
 }
 
 void ov94_022422D4 (MessageLoader * param0, MessageLoader * param1, UnkStruct_0200B358 * param2, Window param3[], int param4, int param5, int param6)

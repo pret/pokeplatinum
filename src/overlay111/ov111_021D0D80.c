@@ -1538,59 +1538,13 @@ static u8 ov111_021D23C4 (UnkStruct_ov111_021D0F7C * param0, Window * param1, in
     return sub_0201D78C(param1, param9, param0->unk_40, param3, param4, param5, (u32)((((param6) & 0xff) << 16) | (((param7) & 0xff) << 8) | (((param8) & 0xff) << 0)), NULL);
 }
 
-asm static u8 ov111_021D2424 (UnkStruct_ov111_021D0F7C * param0, Window * param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
+static u8 ov111_021D2424 (UnkStruct_ov111_021D0F7C * param0, Window * param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
 {
-    push {r3, r4, r5, r6, r7, lr}
-    sub sp, #0x10
-    add r4, r1, #0
-    add r1, sp, #0x38
-    ldrb r1, [r1]
-    add r5, r0, #0
-    add r0, r4, #0
-    add r7, r2, #0
-    add r6, r3, #0
-    bl BGL_FillWindow
-    ldr r0, [r5, #0x38]
-    ldr r2, [r5, #0x44]
-    add r1, r7, #0
-    bl MessageLoader_GetStrbuf
-    ldr r0, [r5, #0x3c]
-    ldr r1, [r5, #0x40]
-    ldr r2, [r5, #0x44]
-    bl sub_0200C388
-    add r0, sp, #0x3c
-    ldrb r0, [r0]
-    ldr r1, [r5, #0x40]
-    mov r2, #0
-    bl sub_02002D7C
-    add r0, r0, #1
-    lsr r0, r0, #1
-    sub r3, r6, r0
-    ldr r0, [sp, #0x28]
-    add r2, sp, #0x18
-    str r0, [sp]
-    ldr r0, [sp, #0x2c]
-    str r0, [sp, #4]
-    add r0, sp, #0x38
-    ldrb r1, [r0]
-    ldrb r0, [r2, #0x18]
-    ldrb r2, [r2, #0x1c]
-    lsl r0, r0, #0x18
-    lsl r2, r2, #0x18
-    lsr r0, r0, #8
-    lsr r2, r2, #0x10
-    orr r0, r2
-    orr r0, r1
-    str r0, [sp, #8]
-    mov r0, #0
-    str r0, [sp, #0xc]
-    add r1, sp, #0x3c
-    ldrb r1, [r1]
-    ldr r2, [r5, #0x40]
-    add r0, r4, #0
-    bl sub_0201D78C
-    add sp, #0x10
-    pop {r3, r4, r5, r6, r7, pc}
+    BGL_FillWindow(param1, param8);
+    MessageLoader_GetStrbuf(param0->unk_38, param2, param0->unk_44);
+    sub_0200C388(param0->unk_3C, param0->unk_40, param0->unk_44);
+    param3 -= (sub_02002D7C(param9, param0->unk_40, 0) + 1) / 2;
+    return sub_0201D78C(param1, param9, param0->unk_40, param3, param4, param5, (u32)((((param6) & 0xff) << 16) | (((param7) & 0xff) << 8) | (((param8) & 0xff) << 0)), NULL);
 }
 
 static u8 ov111_021D2494 (UnkStruct_ov111_021D0F7C * param0)
