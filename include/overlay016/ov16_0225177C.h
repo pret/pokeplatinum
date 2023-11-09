@@ -6,6 +6,7 @@
 #include "battle/battle_context.h"
 #include "battle/battle_mon.h"
 #include "battle/battle_message.h"
+#include "battle/btlcmd.h"
 
 enum BattleContextParam {
     BATTLECTX_SIDE_CONDITIONS_MASK = 0,
@@ -356,8 +357,31 @@ BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem *battleSys, BattleContext 
  * @return The chosen defender for the move
  */
 int BattleSystem_Defender(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, u16 move, BOOL randomize, int inRange);
-void BattleSystem_RedirectTarget(BattleSystem * param0, BattleContext * param1, int param2, u16 param3);
-BOOL BattleMove_TriggerRedirectionAbilities(BattleSystem * param0, BattleContext * param1);
+
+/**
+ * @brief Check for redirection abilities given an attacker using a certain move.
+ * 
+ * This routine will update the appropriate flags and the current target if the
+ * used move is Electric- or Water-type, has single-target range, and at least
+ * one other battler on the field has Lightning Rod or Storm Drain, respectively.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param attacker 
+ * @param move 
+ */
+void BattleSystem_CheckRedirectionAbilities(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, u16 move);
+
+/**
+ * @brief Trigger a redirection ability's effect and load the appropriate
+ * subscript for execution.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return TRUE if a subscript was loaded and should be executed for the effect,
+ * FALSE otherwise.
+ */
+BOOL BattleSystem_TriggerRedirectionAbilities(BattleSystem *battleSys, BattleContext *battleCtx);
 void BattleMon_CopyToParty(BattleSystem * param0, BattleContext * param1, int param2);
 
 /**
@@ -380,7 +404,16 @@ void Battler_LockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx, i
  * @param battler 
  */
 void Battler_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
-int ov16_02253F7C(BattleContext * param0, int param1);
+
+/**
+ * @brief Calculate the status effect value for a battler's non-volatile
+ * condition, if any.
+ * 
+ * @param battleCtx 
+ * @param battler 
+ * @return A value representing the battler's status non-volatile status.
+ */
+enum StatusEffect Battler_StatusCondition(BattleContext *battleCtx, int battler);
 BOOL BattleSystem_CheckTrainerMessage(BattleSystem * param0, BattleContext * param1);
 void BattleContext_Init(BattleContext * param0);
 void BattleContext_InitCounters(BattleSystem * param0, BattleContext * param1);
@@ -419,8 +452,47 @@ void BattleSystem_SetupNextTurn(BattleSystem * param0, BattleContext * param1);
 int BattleSystem_CheckStruggling(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
 BOOL BattleSystem_CanUseMove(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int moveSlot, BattleMessage *msgOut);
 int Battler_SlotForMove(BattleMon * param0, u16 param1);
-int BattleSystem_CheckTypeChart(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4, int param5, int param6, u32 * param7);
-void ov16_022552D4(BattleContext * param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, u32 * param8);
+
+/**
+ * @brief Apply type-chart effectiveness for a given move against its target.
+ * 
+ * This encapsulates the following multipliers:
+ * - Same-Type Attack Bonus (and its modification by the ability Adaptability)
+ * - Super/Not Very Effective multipliers for each of the defender's types
+ * - Type-effectiveness overrides for effects like Iron Ball, Roost, and Miracle Eye
+ * - Wonder Guard's override for moves that are not super-effective
+ * - Expert Belt's multiplier for super-effective moves
+ * - Filter and Solid Rock's multipliers for defenders taking super-effective damage
+ * - Tinted Lens's multiplier for defenders taking not-very-effective damage
+ * 
+ * The move status mask will also be updated with the correct flags.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param move 
+ * @param inType            If this is non-zero, then it will be regarded as the move's type
+ * @param attacker 
+ * @param defender 
+ * @param damage            Pre-calculated starting damage value
+ * @param[out] moveStatusMask   
+ * @return Damage value after applying the type-chart and related multipliers
+ */
+int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCtx, int move, int inType, int attacker, int defender, int damage, u32 *moveStatusMask);
+
+/**
+ * @brief Calculate the effectiveness mask of the given move.
+ * 
+ * @param battleCtx
+ * @param move
+ * @param inType                If this is non-zero, then it will be regarded as the move's type
+ * @param attackerAbility
+ * @param defenderAbility
+ * @param defenderItemEffect
+ * @param defenderType1
+ * @param defenderType2
+ * @param[out] moveStatusMask
+ */
+void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inType, int attackerAbility, int defenderAbility, int defenderItemEffect, int defenderType1, int defenderType2, u32 *moveStatusMask);
 BOOL BattleContext_MoveFailed(BattleContext * param0, int param1);
 
 /**
