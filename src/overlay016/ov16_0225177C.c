@@ -4164,7 +4164,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
             for (i = 0; i < maxBattlers; i++) {
                 battler = battleCtx->monSpeedOrder[i];
 
-                if (BattleSystem_TriggerHeldItemOnStatus(battleSys, battleCtx, battler, &subscript) == TRUE) { // document
+                if (BattleSystem_TriggerHeldItemOnStatus(battleSys, battleCtx, battler, &subscript) == TRUE) {
                     battleCtx->msgBattlerTemp = battler;
                     result = SWITCH_IN_CHECK_RESULT_BREAK;
                     break;
@@ -4779,7 +4779,9 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
 
                 result = TRUE;
             }
-            break;case HOLD_EFFECT_PINCH_ATK_UP:
+            break;
+        
+        case HOLD_EFFECT_PINCH_ATK_UP:
             if (Battler_Ability(battleCtx, battler) == ABILITY_GLUTTONY) {
                 itemPower /= 2;
             }
@@ -7342,49 +7344,58 @@ BOOL BattleSystem_ShouldShowStatusEffect(BattleContext *battleCtx, int battler, 
     return result;
 }
 
-BOOL BattleSystem_TriggerHeldItemOnPivotMove (BattleSystem * param0, BattleContext * param1, int * param2)
+BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript)
 {
-    BOOL v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4;
-    int v5;
-    int v6;
+    BOOL result = FALSE;
+    int attackerItemEffect = Battler_HeldItemEffect(battleCtx, battleCtx->attacker);
+    int attackerItemPower = Battler_HeldItemPower(battleCtx, battleCtx->attacker, ITEM_POWER_CHECK_ALL);
+    int defenderItemEffect = Battler_HeldItemEffect(battleCtx, battleCtx->defender);
+    int defenderItemPower = Battler_HeldItemPower(battleCtx, battleCtx->defender, ITEM_POWER_CHECK_ALL);
+    int attackingSide = Battler_Side(battleSys, battleCtx->attacker);
 
-    v0 = 0;
-    v2 = Battler_HeldItemEffect(param1, param1->attacker);
-    v3 = Battler_HeldItemPower(param1, param1->attacker, 0);
-    v4 = Battler_HeldItemEffect(param1, param1->defender);
-    v5 = Battler_HeldItemPower(param1, param1->defender, 0);
-    v6 = Battler_Side(param0, param1->attacker);
-
-    if ((v2 == 88) && (param1->battleStatusMask & 0x2000) && (param1->selfTurnFlags[param1->attacker].shellBellDamageDealt) && (param1->attacker != param1->defender) && (param1->battleMons[param1->attacker].curHP < param1->battleMons[param1->attacker].maxHP) && (param1->battleMons[param1->attacker].curHP)) {
-        param1->hpCalcTemp = BattleSystem_Divide(param1->selfTurnFlags[param1->attacker].shellBellDamageDealt * -1, v3);
-        param1->msgBattlerTemp = param1->attacker;
-        param2[0] = (0 + 213);
-        v0 = 1;
+    if (attackerItemEffect == HOLD_EFFECT_HP_RESTORE_ON_DMG
+            && (battleCtx->battleStatusMask & SYSCTL_MOVE_HIT)
+            && ATTACKER_SELF_TURN_FLAGS.shellBellDamageDealt
+            && battleCtx->attacker != battleCtx->defender
+            && ATTACKING_MON.curHP < ATTACKING_MON.maxHP
+            && ATTACKING_MON.curHP) {
+        battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKER_SELF_TURN_FLAGS.shellBellDamageDealt * -1, attackerItemPower);
+        battleCtx->msgBattlerTemp = battleCtx->attacker;
+        *subscript = BATTLE_SUBSEQ_RESTORE_A_LITTLE_HP;
+        result = TRUE;
     }
 
-    if ((v2 == 98) && (Battler_Ability(param1, param1->attacker) != 98) && (param1->battleStatusMask & 0x2000) && (param1->aiContext.moveTable[param1->moveCur].class != 2) && (param1->battleMons[param1->attacker].curHP)) {
-        param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param1->attacker].maxHP * -1, 10);
-        param1->msgBattlerTemp = param1->attacker;
-        param2[0] = (0 + 214);
-        v0 = 1;
+    if (attackerItemEffect == HOLD_EFFECT_HP_DRAIN_ON_ATK
+            && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_MAGIC_GUARD
+            && (battleCtx->battleStatusMask & SYSCTL_MOVE_HIT)
+            && CURRENT_MOVE_DATA.class != CLASS_STATUS
+            && ATTACKING_MON.curHP) {
+        battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * -1, 10);
+        battleCtx->msgBattlerTemp = battleCtx->attacker;
+        *subscript = BATTLE_SUBSEQ_LOSE_HP_FROM_ITEM;
+        result = TRUE;
     }
 
-    if ((v4 == 46) && (param1->battleMons[param1->attacker].curHP) && (Battler_Ability(param1, param1->attacker) != 98) && (param1->selfTurnFlags[param1->defender].physicalDamageTaken)) {
-        param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param1->attacker].maxHP * -1, v5);
-        param2[0] = (0 + 266);
-        v0 = 1;
+    if (defenderItemEffect == HOLD_EFFECT_RECOIL_PHYSICAL
+            && battleCtx->battleMons[battleCtx->attacker].curHP
+            && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_MAGIC_GUARD
+            && DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken) {
+        battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * -1, defenderItemPower);
+        *subscript = BATTLE_SUBSEQ_HELD_ITEM_RECOIL_WHEN_HIT;
+        result = TRUE;
     }
 
-    if ((v4 == 116) && (param1->battleMons[param1->attacker].curHP) && (param1->battleMons[param1->attacker].heldItem == 0) && ((param1->sideConditions[v6].knockedOffItemsMask & FlagIndex(param1->selectedPartySlot[param1->attacker])) == 0) && ((param1->selfTurnFlags[param1->defender].physicalDamageTaken) || (param1->selfTurnFlags[param1->defender].specialDamageTaken)) && (param1->aiContext.moveTable[param1->moveCur].flags & 0x1)) {
-        param2[0] = (0 + 216);
-        v0 = 1;
+    if (defenderItemEffect == HOLD_EFFECT_DMG_USER_CONTACT_XFR
+            && ATTACKING_MON.curHP
+            && ATTACKING_MON.heldItem == ITEM_NONE
+            && (battleCtx->sideConditions[attackingSide].knockedOffItemsMask & FlagIndex(battleCtx->selectedPartySlot[battleCtx->attacker])) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)) {
+        *subscript = BATTLE_SUBSEQ_TRANSFER_STICKY_BARB;
+        result = TRUE;
     }
 
-    return v0;
+    return result;
 }
 
 void BattleSystem_DecPPForPressure (BattleContext * param0, int param1, int param2)

@@ -1134,7 +1134,21 @@ void BattleSystem_SortMonsInTrickRoom(BattleSystem * param0, BattleContext * par
  * @return TRUE if the status effect should be shown, FALSE otherwise.
  */
 BOOL BattleSystem_ShouldShowStatusEffect(BattleContext *battleCtx, int battler, int status);
-BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem * param0, BattleContext * param1, int * param2);
+
+/**
+ * @brief Trigger a held item's effect after a pivoting move has been used.
+ * 
+ * This is meant to support triggering effects such as Shell Bell, Life Orb,
+ * and Sticky Barb transferral before the user of a pivoting move switches out.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param[out] subscript    Return param for the subscript to load for a
+ *                          triggered effect.
+ * @return TRUE if a subscript should be loaded for a triggered effect,
+ * FALSE otherwise.
+ */
+BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript);
 void BattleSystem_DecPPForPressure(BattleContext * param0, int param1, int param2);
 BOOL BattleSystem_RecordingStopped(BattleSystem * param0, BattleContext * param1);
 
