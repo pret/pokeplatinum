@@ -51,9 +51,9 @@
 #define MON_HAS_TYPE(mon, type)     (BattleMon_Get(battleCtx, mon, BATTLEMON_TYPE_1, NULL) == type || BattleMon_Get(battleCtx, mon, BATTLEMON_TYPE_2, NULL) == type)
 #define MON_IS_NOT_TYPE(mon, type)  (BattleMon_Get(battleCtx, mon, BATTLEMON_TYPE_1, NULL) != type && BattleMon_Get(battleCtx, mon, BATTLEMON_TYPE_2, NULL) != type)
 
-#define NO_TARGET_SINGLE_TURN   (battleCtx->defender == BATTLER_NONE && BattleMove_IsMultiTurn(battleCtx, battleCtx->moveCur) == FALSE)
+#define NO_TARGET_SINGLE_TURN   (battleCtx->defender == BATTLER_NONE && Move_IsMultiTurn(battleCtx, battleCtx->moveCur) == FALSE)
 #define NO_TARGET_MULTI_TURN    (battleCtx->defender == BATTLER_NONE \
-                                && BattleMove_IsMultiTurn(battleCtx, battleCtx->moveCur) == TRUE \
+                                && Move_IsMultiTurn(battleCtx, battleCtx->moveCur) == TRUE \
                                 && ( \
                                     (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_MOVE_LOCKED) \
                                     || (battleCtx->battleStatusMask & SYSCTL_LAST_OF_MULTI_TURN) \

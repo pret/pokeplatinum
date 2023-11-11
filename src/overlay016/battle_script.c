@@ -5011,7 +5011,7 @@ static BOOL BtlCmd_TryConversion2(BattleSystem *battleSys, BattleContext *battle
     if (battleCtx->conversion2Move[battleCtx->attacker]
             && battleCtx->conversion2Battler[battleCtx->attacker] != BATTLER_NONE) {
         // Fail to execute if the source move's owner is locked into the first turn of a multi-turn move
-        if (BattleMove_IsMultiTurn(battleCtx, battleCtx->conversion2Move[battleCtx->attacker])
+        if (Move_IsMultiTurn(battleCtx, battleCtx->conversion2Move[battleCtx->attacker])
                 && (battleCtx->battleMons[battleCtx->conversion2Battler[battleCtx->attacker]].statusVolatile & VOLATILE_CONDITION_MOVE_LOCKED)) {
             BattleScript_Iter(battleCtx, jumpOnFail);
             return FALSE;
@@ -5154,13 +5154,13 @@ static BOOL BtlCmd_TrySleepTalk(BattleSystem *battleSys, BattleContext *battleCt
                 || ATTACKING_MON.moves[i] == MOVE_FOCUS_PUNCH
                 || ATTACKING_MON.moves[i] == MOVE_UPROAR
                 || ATTACKING_MON.moves[i] == MOVE_CHATTER
-                || BattleMove_IsMultiTurn(battleCtx, ATTACKING_MON.moves[i])) {
+                || Move_IsMultiTurn(battleCtx, ATTACKING_MON.moves[i])) {
             invalidMovesMask |= FlagIndex(i);
         }
     }
 
     // Check for other invalid moves (only skip the PP check)
-    invalidMovesMask = BattleSystem_CheckStruggling(battleSys, battleCtx, battleCtx->attacker, invalidMovesMask, ~STRUGGLE_CHECK_NO_PP);
+    invalidMovesMask = BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battleCtx->attacker, invalidMovesMask, ~CHECK_INVALID_NO_PP);
     if (invalidMovesMask == STRUGGLING_ALL) {
         BattleScript_Iter(battleCtx, jumpOnFail);
     } else {

@@ -106,16 +106,17 @@
 #define BATTLE_STATUS_GIRATINA      (1 << 6)
 #define BATTLE_STATUS_DISTORTION    (1 << 7)
 
-#define STRUGGLE_CHECK_NO_MOVES     (1 << 0)
-#define STRUGGLE_CHECK_NO_PP        (1 << 1)
-#define STRUGGLE_CHECK_DISABLED     (1 << 2)
-#define STRUGGLE_CHECK_TORMENTED    (1 << 3)
-#define STRUGGLE_CHECK_TAUNTED      (1 << 4)
-#define STRUGGLE_CHECK_IMPRISONED   (1 << 5)
-#define STRUGGLE_CHECK_GRAVITY      (1 << 6)
-#define STRUGGLE_CHECK_HEAL_BLOCKED (1 << 7)
-#define STRUGGLE_CHECK_CHOICED      (1 << 9)
-#define STRUGGLE_CHECK_ALL          ~0
+#define CHECK_INVALID_NO_MOVE       (1 << 0)
+#define CHECK_INVALID_NO_PP         (1 << 1)
+#define CHECK_INVALID_DISABLED      (1 << 2)
+#define CHECK_INVALID_TORMENTED     (1 << 3)
+#define CHECK_INVALID_TAUNTED       (1 << 4)
+#define CHECK_INVALID_IMPRISONED    (1 << 5)
+#define CHECK_INVALID_GRAVITY       (1 << 6)
+#define CHECK_INVALID_HEAL_BLOCK    (1 << 7)
+#define CHECK_INVALID_ENCORE        (1 << 8) // this one is only implicit
+#define CHECK_INVALID_CHOICE_ITEM   (1 << 9)
+#define CHECK_INVALID_ALL           ~0
 
 #define STRUGGLING_MOVE_1           (1 << 0)
 #define STRUGGLING_MOVE_2           (1 << 1)

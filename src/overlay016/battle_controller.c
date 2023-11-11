@@ -430,7 +430,7 @@ static void BattleController_CommandSelectionInput(BattleSystem *battleSys, Batt
 
                 switch (BattleContext_IOBufferVal(battleCtx, i)) {
                 case PLAYER_INPUT_FIGHT:
-                    if (BattleSystem_CheckStruggling(battleSys, battleCtx, i, 0, STRUGGLE_CHECK_ALL) == STRUGGLING_ALL) {
+                    if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, i, 0, CHECK_INVALID_ALL) == STRUGGLING_ALL) {
                         // Don't let the player select a move if they are out of PP on all moves
                         battleCtx->turnFlags[i].struggling = TRUE;
 
@@ -2169,9 +2169,9 @@ static int BattleController_CheckObedience(BattleSystem *battleSys, BattleContex
 
     rand1 = ((BattleSystem_RandNext(battleSys) & 0xFF) * (ATTACKING_MON.level + maxLevel)) >> 8;
     if (rand1 < maxLevel) {
-        rand1 = BattleSystem_CheckStruggling(battleSys, battleCtx, battleCtx->attacker, FlagIndex(ATTACKER_MOVE_SLOT), STRUGGLE_CHECK_ALL);
+        rand1 = BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battleCtx->attacker, FlagIndex(ATTACKER_MOVE_SLOT), CHECK_INVALID_ALL);
 
-        if (rand1 == 0xF) {
+        if (rand1 == STRUGGLING_ALL) {
             *nextSeq = BATTLE_SUBSEQ_DISOBEY_DO_NOTHING;
             return OBEY_CHECK_DO_NOTHING;
         }
@@ -2325,7 +2325,7 @@ static BOOL BattleController_HasNoTarget(BattleSystem *battleSys, BattleContext 
 
     // Don't alter the target for charge-turn moves that are just charging up this turn
     if (battleCtx->defender == BATTLER_NONE
-            && BattleMove_IsMultiTurn(battleCtx, battleCtx->moveCur) == TRUE
+            && Move_IsMultiTurn(battleCtx, battleCtx->moveCur) == TRUE
             && result == FALSE
             && solarMove == FALSE
             && Battler_HeldItemEffect(battleCtx, battleCtx->attacker) != HOLD_EFFECT_CHARGE_SKIP
@@ -2570,7 +2570,7 @@ static BOOL BattleController_CheckStatusDisruption(BattleSystem *battleSys, Batt
             break;
 
         case CHECK_STATUS_STATE_IMPRISON:
-            if (BattleSystem_Imprisoned(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
+            if (Move_Imprisoned(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
                 battleCtx->moveFailFlags[battleCtx->attacker].imprisoned = TRUE;
 
                 LOAD_SUBSEQ(BATTLE_SUBSEQ_MOVE_IS_IMPRISONED);
@@ -2584,7 +2584,7 @@ static BOOL BattleController_CheckStatusDisruption(BattleSystem *battleSys, Batt
             break;
 
         case CHECK_STATUS_STATE_GRAVITY:
-            if (BattleSystem_FailsInHighGravity(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
+            if (Move_FailsInHighGravity(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
                 battleCtx->moveFailFlags[battleCtx->attacker].gravity = TRUE;
 
                 LOAD_SUBSEQ(BATTLE_SUBSEQ_MOVE_FAIL_GRAVITY);
@@ -2598,7 +2598,7 @@ static BOOL BattleController_CheckStatusDisruption(BattleSystem *battleSys, Batt
             break;
 
         case CHECK_STATUS_STATE_HEAL_BLOCK:
-            if (BattleSystem_HealBlocked(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
+            if (Move_HealBlocked(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
                 battleCtx->moveFailFlags[battleCtx->attacker].healBlocked = TRUE;
 
                 LOAD_SUBSEQ(BATTLE_SUBSEQ_MOVE_IS_HEAL_BLOCKED);
@@ -3007,8 +3007,8 @@ static int BattleController_CheckMoveHitOverrides(BattleSystem *battleSys, Battl
 
     if (battleCtx->turnFlags[defender].protecting
             && (MOVE_DATA(move).flags & MOVE_FLAG_CAN_PROTECT)
-            && (move != MOVE_CURSE || BattleSystem_IsGhostCurse(battleCtx, move, attacker) == TRUE) // Ghost-Curse can be Protected
-            && (BattleMove_IsMultiTurn(battleCtx, move) == FALSE || (battleCtx->battleStatusMask & SYSCTL_LAST_OF_MULTI_TURN))) {
+            && (move != MOVE_CURSE || Move_IsGhostCurse(battleCtx, move, attacker) == TRUE) // Ghost-Curse can be Protected
+            && (Move_IsMultiTurn(battleCtx, move) == FALSE || (battleCtx->battleStatusMask & SYSCTL_LAST_OF_MULTI_TURN))) {
         Battler_UnlockMoveChoice(battleSys, battleCtx, attacker);
         battleCtx->moveStatusFlags |= MOVE_STATUS_PROTECTED;
         return 0;
@@ -4348,7 +4348,7 @@ static BOOL BattleController_CheckBattleOver(BattleSystem * battleSys, BattleCon
 static BOOL BattleController_MustSelectTarget(BattleSystem *battleSys, BattleContext *battleCtx, u8 battler, u32 battleType, int *range, int moveSlot, u32 *target)
 {
     if (battleCtx->battleMons[battler].moves[moveSlot] == MOVE_CURSE
-            && BattleSystem_IsGhostCurse(battleCtx, battleCtx->battleMons[battler].moves[moveSlot], battler) == FALSE) {
+            && Move_IsGhostCurse(battleCtx, battleCtx->battleMons[battler].moves[moveSlot], battler) == FALSE) {
         *range = RANGE_USER;
     } else {
         *range = MOVE_DATA(battleCtx->battleMons[battler].moves[moveSlot]).range;

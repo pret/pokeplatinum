@@ -2241,157 +2241,165 @@ void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *batt
     BattleAI_ClearKnownItem(battleCtx, battler);
 }
 
-void BattleSystem_SetupNextTurn (BattleSystem * param0, BattleContext * param1)
+void BattleSystem_SetupNextTurn(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
+    for (int i = 0; i < MAX_BATTLERS; i++) {
+        MI_CpuClearFast(&battleCtx->turnFlags[i], sizeof(struct TurnFlags));
+        MI_CpuClearFast(&battleCtx->moveFailFlags[i], sizeof(struct MoveFailFlags));
 
-    for (v0 = 0; v0 < 4; v0++) {
-        MI_CpuClearFast(&param1->turnFlags[v0], sizeof(struct TurnFlags));
-        MI_CpuClearFast(&param1->moveFailFlags[v0], sizeof(struct MoveFailFlags));
+        battleCtx->battleMons[i].statusVolatile &= ~VOLATILE_CONDITION_FLINCH;
 
-        param1->battleMons[v0].statusVolatile &= (0x8 ^ 0xffffffff);
-
-        if (param1->battleMons[v0].moveEffectsData.rechargeTurnNumber + 1 < param1->totalTurns) {
-            param1->battleMons[v0].statusVolatile &= (0x400000 ^ 0xffffffff);
+        if (battleCtx->battleMons[i].moveEffectsData.rechargeTurnNumber + 1 < battleCtx->totalTurns) {
+            battleCtx->battleMons[i].statusVolatile &= ~VOLATILE_CONDITION_RECHARGING;
         }
 
-        if ((param1->battleMons[v0].status & 0x7) && (param1->battleMons[v0].statusVolatile & 0x1000)) {
-            Battler_UnlockMoveChoice(param0, param1, v0);
+        if ((battleCtx->battleMons[i].status & MON_CONDITION_SLEEP)
+                && (battleCtx->battleMons[i].statusVolatile & VOLATILE_CONDITION_MOVE_LOCKED)) {
+            Battler_UnlockMoveChoice(battleSys, battleCtx, i);
         }
 
-        if ((param1->battleMons[v0].status & 0x7) && (param1->battleMons[v0].statusVolatile & 0xc00)) {
-            param1->battleMons[v0].statusVolatile &= (0xc00 ^ 0xffffffff);
+        if ((battleCtx->battleMons[i].status & MON_CONDITION_SLEEP)
+                && (battleCtx->battleMons[i].statusVolatile & VOLATILE_CONDITION_THRASH)) {
+            battleCtx->battleMons[i].statusVolatile &= ~VOLATILE_CONDITION_THRASH;
         }
     }
 
-    param1->sideConditions[0].followMe = 0;
-    param1->sideConditions[1].followMe = 0;
+    battleCtx->sideConditions[BATTLER_US].followMe = FALSE;
+    battleCtx->sideConditions[BATTLER_THEM].followMe = FALSE;
 }
 
-int BattleSystem_CheckStruggling (BattleSystem *battleSys, BattleContext *battleCtx, int battler, int moveFlags, int struggleChecksMask)
+int BattleSystem_CheckInvalidMoves(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int invalidMoves, int opMask)
 {
-    int v0;
-    int v1;
+    int itemEffect = Battler_HeldItemEffect(battleCtx, battler);
 
-    v1 = Battler_HeldItemEffect(battleCtx, battler);
-
-    for (v0 = 0; v0 < 4; v0++) {
-        if ((battleCtx->battleMons[battler].moves[v0] == 0) && (struggleChecksMask & 0x1)) {
-            moveFlags |= FlagIndex(v0);
+    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+        if (battleCtx->battleMons[battler].moves[i] == MOVE_NONE
+                && (opMask & CHECK_INVALID_NO_MOVE)) {
+            invalidMoves |= FlagIndex(i);
         }
 
-        if ((battleCtx->battleMons[battler].ppCur[v0] == 0) && (struggleChecksMask & 0x2)) {
-            moveFlags |= FlagIndex(v0);
+        if (battleCtx->battleMons[battler].ppCur[i] == 0
+                && (opMask & CHECK_INVALID_NO_PP)) {
+            invalidMoves |= FlagIndex(i);
         }
 
-        if ((battleCtx->battleMons[battler].moves[v0] == battleCtx->battleMons[battler].moveEffectsData.disabledMove) && (struggleChecksMask & 0x4)) {
-            moveFlags |= FlagIndex(v0);
+        if (battleCtx->battleMons[battler].moves[i] == battleCtx->battleMons[battler].moveEffectsData.disabledMove
+                && (opMask & CHECK_INVALID_DISABLED)) {
+            invalidMoves |= FlagIndex(i);
         }
 
-        if ((battleCtx->battleMons[battler].moves[v0] == battleCtx->movePrevByBattler[battler]) && (struggleChecksMask & 0x8) && (battleCtx->battleMons[battler].statusVolatile & 0x80000000)) {
-            moveFlags |= FlagIndex(v0);
+        if (battleCtx->battleMons[battler].moves[i] == battleCtx->movePrevByBattler[battler]
+                && (opMask & CHECK_INVALID_TORMENTED)
+                && (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_TORMENT)) {
+            invalidMoves |= FlagIndex(i);
         }
 
-        if ((battleCtx->battleMons[battler].moveEffectsData.tauntedTurns) && (struggleChecksMask & 0x10) && (battleCtx->aiContext.moveTable[battleCtx->battleMons[battler].moves[v0]].power == 0)) {
-            moveFlags |= FlagIndex(v0);
+        if (battleCtx->battleMons[battler].moveEffectsData.tauntedTurns
+                && (opMask & CHECK_INVALID_TAUNTED)
+                && MOVE_DATA(battleCtx->battleMons[battler].moves[i]).power == 0) {
+            invalidMoves |= FlagIndex(i);
         }
 
-        if ((BattleSystem_Imprisoned(battleSys, battleCtx, battler, battleCtx->battleMons[battler].moves[v0])) && (struggleChecksMask & 0x20)) {
-            moveFlags |= FlagIndex(v0);
+        if (Move_Imprisoned(battleSys, battleCtx, battler, battleCtx->battleMons[battler].moves[i])
+                && (opMask & CHECK_INVALID_IMPRISONED)) {
+            invalidMoves |= FlagIndex(i);
         }
 
-        if ((BattleSystem_FailsInHighGravity(battleSys, battleCtx, battler, battleCtx->battleMons[battler].moves[v0])) && (struggleChecksMask & 0x40)) {
-            moveFlags |= FlagIndex(v0);
+        if (Move_FailsInHighGravity(battleSys, battleCtx, battler, battleCtx->battleMons[battler].moves[i])
+                && (opMask & CHECK_INVALID_GRAVITY)) {
+            invalidMoves |= FlagIndex(i);
         }
 
-        if ((BattleSystem_HealBlocked(battleSys, battleCtx, battler, battleCtx->battleMons[battler].moves[v0])) && (struggleChecksMask & 0x80)) {
-            moveFlags |= FlagIndex(v0);
+        if (Move_HealBlocked(battleSys, battleCtx, battler, battleCtx->battleMons[battler].moves[i])
+                && (opMask & CHECK_INVALID_HEAL_BLOCK)) {
+            invalidMoves |= FlagIndex(i);
         }
 
-        if ((battleCtx->battleMons[battler].moveEffectsData.encoredMove) && (battleCtx->battleMons[battler].moveEffectsData.encoredMove != battleCtx->battleMons[battler].moves[v0])) {
-            moveFlags |= FlagIndex(v0);
+        if (battleCtx->battleMons[battler].moveEffectsData.encoredMove
+                && battleCtx->battleMons[battler].moveEffectsData.encoredMove != battleCtx->battleMons[battler].moves[i]) {
+            invalidMoves |= FlagIndex(i);
         }
 
-        if (((v1 == 55) || (v1 == 115) || (v1 == 125)) && (struggleChecksMask & 0x200)) {
-            if (Battler_SlotForMove(&battleCtx->battleMons[battler], battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove) == 4) {
-                battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove = 0;
-            } else {
-                if ((battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove) && (battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove != battleCtx->battleMons[battler].moves[v0])) {
-                    moveFlags |= FlagIndex(v0);
-                }
+        if ((itemEffect == HOLD_EFFECT_CHOICE_ATK || itemEffect == HOLD_EFFECT_CHOICE_SPEED || itemEffect == HOLD_EFFECT_CHOICE_SPATK)
+                && (opMask & CHECK_INVALID_CHOICE_ITEM)) {
+            if (Battler_SlotForMove(&battleCtx->battleMons[battler], battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove) == LEARNED_MOVES_MAX) {
+                battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove = MOVE_NONE;
+            } else if (battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove
+                    && battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove != battleCtx->battleMons[battler].moves[i]) {
+                invalidMoves |= FlagIndex(i);
             }
         }
     }
 
-    return moveFlags;
+    return invalidMoves;
 }
 
-BOOL BattleSystem_CanUseMove (BattleSystem *battleSys, BattleContext *battleCtx, int battler, int moveSlot, BattleMessage *msgOut)
+BOOL BattleSystem_CanUseMove(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int moveSlot, BattleMessage *msgOut)
 {
     BOOL result = TRUE;
 
-    if (BattleSystem_CheckStruggling(battleSys, battleCtx, battler, 0, 0x4) & FlagIndex(moveSlot)) {
-        msgOut->tags = 10;
-        msgOut->id = 609;
+    if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_DISABLED) & FlagIndex(moveSlot)) {
+        msgOut->tags = TAG_NICKNAME_MOVE;
+        msgOut->id = 609; // "{0}'s {1} is disabled!"
         msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
         msgOut->params[1] = battleCtx->battleMons[battler].moves[moveSlot];
         result = FALSE;
-    } else if (BattleSystem_CheckStruggling(battleSys, battleCtx, battler, 0, 0x8) & FlagIndex(moveSlot)) {
-        msgOut->tags = 2;
-        msgOut->id = 612;
+    } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_TORMENTED) & FlagIndex(moveSlot)) {
+        msgOut->tags = TAG_NICKNAME;
+        msgOut->id = 612; // "{0} can't use the same move twice in a row due to the torment!"
         msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
         result = FALSE;
-    } else if (BattleSystem_CheckStruggling(battleSys, battleCtx, battler, 0, 0x10) & FlagIndex(moveSlot)) {
-        msgOut->tags = 10;
-        msgOut->id = 613;
+    } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_TAUNTED) & FlagIndex(moveSlot)) {
+        msgOut->tags = TAG_NICKNAME_MOVE;
+        msgOut->id = 613; // "{0} can't use {1} after the taunt!"
         msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
         msgOut->params[1] = battleCtx->battleMons[battler].moves[moveSlot];
         result = FALSE;
-    } else if (BattleSystem_CheckStruggling(battleSys, battleCtx, battler, 0, 0x20) & FlagIndex(moveSlot)) {
-        msgOut->tags = 10;
-        msgOut->id = 616;
+    } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_IMPRISONED) & FlagIndex(moveSlot)) {
+        msgOut->tags = TAG_NICKNAME_MOVE;
+        msgOut->id = 616; // "{0} can't use the sealed {1}!"
         msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
         msgOut->params[1] = battleCtx->battleMons[battler].moves[moveSlot];
         result = FALSE;
-    } else if (BattleSystem_CheckStruggling(battleSys, battleCtx, battler, 0, 0x40) & FlagIndex(moveSlot)) {
-        msgOut->tags = 10;
-        msgOut->id = 1001;
+    } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_GRAVITY) & FlagIndex(moveSlot)) {
+        msgOut->tags = TAG_NICKNAME_MOVE;
+        msgOut->id = 1001; // "{0} can't use {1} because of gravity!"
         msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
         msgOut->params[1] = battleCtx->battleMons[battler].moves[moveSlot];
         result = FALSE;
-    } else if (BattleSystem_CheckStruggling(battleSys, battleCtx, battler, 0, 0x80) & FlagIndex(moveSlot)) {
-        msgOut->tags = 34;
-        msgOut->id = 1057;
+    } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_HEAL_BLOCK) & FlagIndex(moveSlot)) {
+        msgOut->tags = TAG_NICKNAME_MOVE_MOVE;
+        msgOut->id = 1057; // "{0} can't use {2} because of {1}!"
         msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
-        msgOut->params[1] = 377;
+        msgOut->params[1] = MOVE_HEAL_BLOCK;
         msgOut->params[2] = battleCtx->battleMons[battler].moves[moveSlot];
         result = FALSE;
-    } else if (BattleSystem_CheckStruggling(battleSys, battleCtx, battler, 0, 0x200) & FlagIndex(moveSlot)) {
-        msgOut->tags = 24;
-        msgOut->id = 911;
+    } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_CHOICE_ITEM) & FlagIndex(moveSlot)) {
+        msgOut->tags = TAG_ITEM_MOVE;
+        msgOut->id = 911; // "The {0} allows the use of only {1}!"
         msgOut->params[0] = battleCtx->battleMons[battler].heldItem;
         msgOut->params[1] = battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove;
         result = FALSE;
-    } else if (BattleSystem_CheckStruggling(battleSys, battleCtx, battler, 0, 0x2) & FlagIndex(moveSlot)) {
-        msgOut->tags = 0;
-        msgOut->id = 823;
+    } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_NO_PP) & FlagIndex(moveSlot)) {
+        msgOut->tags = TAG_NONE;
+        msgOut->id = 823; // "There's no PP left for this move!"
         result = FALSE;
     }
 
     return result;
 }
 
-int Battler_SlotForMove (BattleMon * param0, u16 param1)
+int Battler_SlotForMove(BattleMon *mon, u16 move)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
-        if (param0->moves[v0] == param1) {
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        if (mon->moves[i] == move) {
             break;
         }
     }
 
-    return v0;
+    return i;
 }
 
 /**
@@ -2973,24 +2981,23 @@ int BattleSystem_CountAbility(BattleSystem *battleSys, BattleContext *battleCtx,
     return result;
 }
 
-BOOL BattleMove_IsMultiTurn (BattleContext * param0, int param1)
+BOOL Move_IsMultiTurn(BattleContext *battleCtx, int move)
 {
-    switch (param0->aiContext.moveTable[param1].effect) {
-    case 26:
-    case 39:
-    case 75:
-    case 145:
-    case 151:
-    case 155:
-    case 255:
-    case 256:
-    case 263:
-    case 272:
-        return 1;
-        break;
+    switch (MOVE_DATA(move).effect) {
+    case BATTLE_EFFECT_BIDE:
+    case BATTLE_EFFECT_CHARGE_TURN_HIGH_CRIT:
+    case BATTLE_EFFECT_CHARGE_TURN_HIGH_CRIT_FLINCH:
+    case BATTLE_EFFECT_CHARGE_TURN_DEF_UP:
+    case BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN:
+    case BATTLE_EFFECT_FLY:
+    case BATTLE_EFFECT_DIVE:
+    case BATTLE_EFFECT_DIG:
+    case BATTLE_EFFECT_BOUNCE:
+    case BATTLE_EFFECT_SHADOW_FORCE:
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL BattleSystem_TypeMatchup(BattleSystem *battleSys, int idx, u8 *moveType, u8 *vsType, u8 *multi)
@@ -3047,9 +3054,9 @@ BOOL Move_IsInvoker(u16 move)
     return FALSE;
 }
 
-BOOL BattleSystem_IsGhostCurse (BattleContext * param0, u16 param1, int param2)
+BOOL Move_IsGhostCurse(BattleContext *battleCtx, u16 move, int battler)
 {
-    return (param1 == 174) && ((BattleMon_Get(param0, param2, 27, NULL) == 7) || (BattleMon_Get(param0, param2, 28, NULL) == 7));
+    return move == MOVE_CURSE && MON_HAS_TYPE(battler, TYPE_GHOST);
 }
 
 BOOL BattleSystem_CanStealItem(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
@@ -3087,17 +3094,24 @@ BOOL BattleSystem_CanWhirlwind(BattleSystem *battleSys, BattleContext *battleCtx
     return result;
 }
 
-u8 Battler_Ability (BattleContext * param0, int param1)
+u8 Battler_Ability(BattleContext *battleCtx, int battler)
 {
-    if ((param0->battleMons[param1].moveEffectsMask & 0x200000) && (param0->battleMons[param1].ability != 121)) {
-        return 0;
-    } else if ((param0->fieldConditionsMask & 0x7000) && (param0->battleMons[param1].ability == 26)) {
-        return 0;
-    } else if ((param0->battleMons[param1].moveEffectsMask & 0x400) && (param0->battleMons[param1].ability == 26)) {
-        return 0;
-    } else {
-        return param0->battleMons[param1].ability;
+    if ((battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_ABILITY_SUPPRESSED)
+            && battleCtx->battleMons[battler].ability != ABILITY_MULTITYPE) {
+        return ABILITY_NONE;
+    } 
+    
+    if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY)
+            && battleCtx->battleMons[battler].ability == ABILITY_LEVITATE) {
+        return ABILITY_NONE;
+    } 
+    
+    if ((battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_INGRAIN)
+            && battleCtx->battleMons[battler].ability == ABILITY_LEVITATE) {
+        return ABILITY_NONE;
     }
+    
+    return battleCtx->battleMons[battler].ability;
 }
 
 BOOL Battler_IgnorableAbility(BattleContext *battleCtx, int attacker, int defender, int ability)
@@ -3312,33 +3326,32 @@ BOOL Battler_CheckTruant (BattleContext * param0, int param1)
     return v0;
 }
 
-BOOL BattleSystem_Imprisoned (BattleSystem * param0, BattleContext * param1, int param2, int param3)
+BOOL Move_Imprisoned(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int move)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    BOOL v4;
+    // must declare C89-style to match
+    int i, maxBattlers, side, j;
+    BOOL result;
 
-    v4 = 0;
-    v1 = BattleSystem_MaxBattlers(param0);
-    v2 = Battler_Side(param0, param2);
+    result = FALSE;
+    maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    side = Battler_Side(battleSys, battler);
 
-    for (v0 = 0; v0 < v1; v0++) {
-        if ((v2 != Battler_Side(param0, v0)) && (param1->battleMons[v0].moveEffectsMask & 0x2000)) {
-            for (v3 = 0; v3 < 4; v3++) {
-                if (param3 == param1->battleMons[v0].moves[v3]) {
+    for (i = 0; i < maxBattlers; i++) {
+        if (side != Battler_Side(battleSys, i)
+                && (battleCtx->battleMons[i].moveEffectsMask & MOVE_EFFECT_IMPRISON)) {
+            for (j = 0; j < LEARNED_MOVES_MAX; j++) {
+                if (move == battleCtx->battleMons[i].moves[j]) {
                     break;
                 }
             }
 
-            if (v3 != 4) {
-                v4 = 1;
+            if (j != LEARNED_MOVES_MAX) {
+                result = TRUE;
             }
         }
     }
 
-    return v4;
+    return result;
 }
 
 BOOL BattleSystem_AnyBattlersWithMoveEffect(BattleSystem *battleSys, BattleContext *battleCtx, int effectMask)
@@ -3389,68 +3402,62 @@ void BattleSystem_SortMonsBySpeed (BattleSystem *battleSys, BattleContext *battl
     }
 }
 
-static const u16 Unk_ov16_0226EBD4[] = {
-    0x13,
-    0x154,
-    0x1A,
-    0x88,
-    0x96,
-    0x189
+static const u16 sMovesAffectedByGravity[] = {
+    MOVE_FLY,
+    MOVE_BOUNCE,
+    MOVE_JUMP_KICK,
+    MOVE_HI_JUMP_KICK,
+    MOVE_SPLASH,
+    MOVE_MAGNET_RISE,
 };
 
-BOOL BattleSystem_FailsInHighGravity (BattleSystem * param0, BattleContext * param1, int param2, int param3)
+BOOL Move_FailsInHighGravity(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int move)
 {
-    int v0;
-    BOOL v1;
+    BOOL result = FALSE;
 
-    v1 = 0;
-
-    if (param1->fieldConditionsMask & 0x7000) {
-        for (v0 = 0; v0 < NELEMS(Unk_ov16_0226EBD4); v0++) {
-            if (Unk_ov16_0226EBD4[v0] == param3) {
-                v1 = 1;
+    if (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) {
+        for (int i = 0; i < NELEMS(sMovesAffectedByGravity); i++) {
+            if (sMovesAffectedByGravity[i] == move) {
+                result = TRUE;
                 break;
             }
         }
     }
 
-    return v1;
+    return result;
 }
 
-static const u16 Unk_ov16_0226EBFA[] = {
-    0x69,
-    0x87,
-    0x9C,
-    0xD0,
-    0xEA,
-    0xEB,
-    0xEC,
-    0x100,
-    0x1C8,
-    0x12F,
-    0x163,
-    0x1CD,
-    0x169,
-    0x111
+static const u16 sMovesAffectedByHealBlock[] = {
+    MOVE_RECOVER,
+    MOVE_SOFTBOILED,
+    MOVE_REST,
+    MOVE_MILK_DRINK,
+    MOVE_MORNING_SUN,
+    MOVE_SYNTHESIS,
+    MOVE_MOONLIGHT,
+    MOVE_SWALLOW,
+    MOVE_HEAL_ORDER,
+    MOVE_SLACK_OFF,
+    MOVE_ROOST,
+    MOVE_LUNAR_DANCE,
+    MOVE_HEALING_WISH,
+    MOVE_WISH,
 };
 
-BOOL BattleSystem_HealBlocked (BattleSystem * param0, BattleContext * param1, int param2, int param3)
+BOOL Move_HealBlocked(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int move)
 {
-    int v0;
-    BOOL v1;
+    BOOL result = FALSE;
 
-    v1 = 0;
-
-    if (param1->battleMons[param2].moveEffectsData.healBlockTurns) {
-        for (v0 = 0; v0 < NELEMS(Unk_ov16_0226EBFA); v0++) {
-            if (Unk_ov16_0226EBFA[v0] == param3) {
-                v1 = 1;
+    if (battleCtx->battleMons[battler].moveEffectsData.healBlockTurns) {
+        for (int i = 0; i < NELEMS(sMovesAffectedByHealBlock); i++) {
+            if (sMovesAffectedByHealBlock[i] == move) {
+                result = TRUE;
                 break;
             }
         }
     }
 
-    return v1;
+    return result;
 }
 
 void BattleSystem_UpdateLastResort (BattleSystem * param0, BattleContext * param1)
@@ -4164,7 +4171,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
             for (i = 0; i < maxBattlers; i++) {
                 battler = battleCtx->monSpeedOrder[i];
 
-                if (BattleSystem_TriggerHeldItemOnStatus(battleSys, battleCtx, battler, &subscript) == TRUE) { // document
+                if (BattleSystem_TriggerHeldItemOnStatus(battleSys, battleCtx, battler, &subscript) == TRUE) {
                     battleCtx->msgBattlerTemp = battler;
                     result = SWITCH_IN_CHECK_RESULT_BREAK;
                     break;
@@ -4779,7 +4786,9 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
 
                 result = TRUE;
             }
-            break;case HOLD_EFFECT_PINCH_ATK_UP:
+            break;
+        
+        case HOLD_EFFECT_PINCH_ATK_UP:
             if (Battler_Ability(battleCtx, battler) == ABILITY_GLUTTONY) {
                 itemPower /= 2;
             }
@@ -7199,8 +7208,8 @@ BOOL Move_CanBeMetronomed(BattleSystem *battleSys, BattleContext *battleCtx, int
 {
     int i = 0;
 
-    if (BattleSystem_FailsInHighGravity(battleSys, battleCtx, battler, move) == TRUE
-            || BattleSystem_HealBlocked(battleSys, battleCtx, battler, move) == TRUE) {
+    if (Move_FailsInHighGravity(battleSys, battleCtx, battler, move) == TRUE
+            || Move_HealBlocked(battleSys, battleCtx, battler, move) == TRUE) {
         return FALSE;
     }
 
@@ -7342,49 +7351,58 @@ BOOL BattleSystem_ShouldShowStatusEffect(BattleContext *battleCtx, int battler, 
     return result;
 }
 
-BOOL BattleSystem_TriggerHeldItemOnPivotMove (BattleSystem * param0, BattleContext * param1, int * param2)
+BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript)
 {
-    BOOL v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4;
-    int v5;
-    int v6;
+    BOOL result = FALSE;
+    int attackerItemEffect = Battler_HeldItemEffect(battleCtx, battleCtx->attacker);
+    int attackerItemPower = Battler_HeldItemPower(battleCtx, battleCtx->attacker, ITEM_POWER_CHECK_ALL);
+    int defenderItemEffect = Battler_HeldItemEffect(battleCtx, battleCtx->defender);
+    int defenderItemPower = Battler_HeldItemPower(battleCtx, battleCtx->defender, ITEM_POWER_CHECK_ALL);
+    int attackingSide = Battler_Side(battleSys, battleCtx->attacker);
 
-    v0 = 0;
-    v2 = Battler_HeldItemEffect(param1, param1->attacker);
-    v3 = Battler_HeldItemPower(param1, param1->attacker, 0);
-    v4 = Battler_HeldItemEffect(param1, param1->defender);
-    v5 = Battler_HeldItemPower(param1, param1->defender, 0);
-    v6 = Battler_Side(param0, param1->attacker);
-
-    if ((v2 == 88) && (param1->battleStatusMask & 0x2000) && (param1->selfTurnFlags[param1->attacker].shellBellDamageDealt) && (param1->attacker != param1->defender) && (param1->battleMons[param1->attacker].curHP < param1->battleMons[param1->attacker].maxHP) && (param1->battleMons[param1->attacker].curHP)) {
-        param1->hpCalcTemp = BattleSystem_Divide(param1->selfTurnFlags[param1->attacker].shellBellDamageDealt * -1, v3);
-        param1->msgBattlerTemp = param1->attacker;
-        param2[0] = (0 + 213);
-        v0 = 1;
+    if (attackerItemEffect == HOLD_EFFECT_HP_RESTORE_ON_DMG
+            && (battleCtx->battleStatusMask & SYSCTL_MOVE_HIT)
+            && ATTACKER_SELF_TURN_FLAGS.shellBellDamageDealt
+            && battleCtx->attacker != battleCtx->defender
+            && ATTACKING_MON.curHP < ATTACKING_MON.maxHP
+            && ATTACKING_MON.curHP) {
+        battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKER_SELF_TURN_FLAGS.shellBellDamageDealt * -1, attackerItemPower);
+        battleCtx->msgBattlerTemp = battleCtx->attacker;
+        *subscript = BATTLE_SUBSEQ_RESTORE_A_LITTLE_HP;
+        result = TRUE;
     }
 
-    if ((v2 == 98) && (Battler_Ability(param1, param1->attacker) != 98) && (param1->battleStatusMask & 0x2000) && (param1->aiContext.moveTable[param1->moveCur].class != 2) && (param1->battleMons[param1->attacker].curHP)) {
-        param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param1->attacker].maxHP * -1, 10);
-        param1->msgBattlerTemp = param1->attacker;
-        param2[0] = (0 + 214);
-        v0 = 1;
+    if (attackerItemEffect == HOLD_EFFECT_HP_DRAIN_ON_ATK
+            && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_MAGIC_GUARD
+            && (battleCtx->battleStatusMask & SYSCTL_MOVE_HIT)
+            && CURRENT_MOVE_DATA.class != CLASS_STATUS
+            && ATTACKING_MON.curHP) {
+        battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * -1, 10);
+        battleCtx->msgBattlerTemp = battleCtx->attacker;
+        *subscript = BATTLE_SUBSEQ_LOSE_HP_FROM_ITEM;
+        result = TRUE;
     }
 
-    if ((v4 == 46) && (param1->battleMons[param1->attacker].curHP) && (Battler_Ability(param1, param1->attacker) != 98) && (param1->selfTurnFlags[param1->defender].physicalDamageTaken)) {
-        param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param1->attacker].maxHP * -1, v5);
-        param2[0] = (0 + 266);
-        v0 = 1;
+    if (defenderItemEffect == HOLD_EFFECT_RECOIL_PHYSICAL
+            && battleCtx->battleMons[battleCtx->attacker].curHP
+            && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_MAGIC_GUARD
+            && DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken) {
+        battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * -1, defenderItemPower);
+        *subscript = BATTLE_SUBSEQ_HELD_ITEM_RECOIL_WHEN_HIT;
+        result = TRUE;
     }
 
-    if ((v4 == 116) && (param1->battleMons[param1->attacker].curHP) && (param1->battleMons[param1->attacker].heldItem == 0) && ((param1->sideConditions[v6].knockedOffItemsMask & FlagIndex(param1->selectedPartySlot[param1->attacker])) == 0) && ((param1->selfTurnFlags[param1->defender].physicalDamageTaken) || (param1->selfTurnFlags[param1->defender].specialDamageTaken)) && (param1->aiContext.moveTable[param1->moveCur].flags & 0x1)) {
-        param2[0] = (0 + 216);
-        v0 = 1;
+    if (defenderItemEffect == HOLD_EFFECT_DMG_USER_CONTACT_XFR
+            && ATTACKING_MON.curHP
+            && ATTACKING_MON.heldItem == ITEM_NONE
+            && (battleCtx->sideConditions[attackingSide].knockedOffItemsMask & FlagIndex(battleCtx->selectedPartySlot[battleCtx->attacker])) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)) {
+        *subscript = BATTLE_SUBSEQ_TRANSFER_STICKY_BARB;
+        result = TRUE;
     }
 
-    return v0;
+    return result;
 }
 
 void BattleSystem_DecPPForPressure (BattleContext * param0, int param1, int param2)
