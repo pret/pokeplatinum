@@ -325,7 +325,7 @@ void ov14_0221FC20 (BattleSystem * param0, BattleContext * param1, u8 param2, u8
         param3 = param3 >> 1;
     }
 
-    v1 = BattleSystem_CheckStruggling(param0, param1, param2, 0, 0xffffffff);
+    v1 = BattleSystem_CheckInvalidMoves(param0, param1, param2, 0, CHECK_INVALID_ALL);
 
     for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
         if (v1 & FlagIndex(v0)) {

@@ -430,7 +430,7 @@ static void BattleController_CommandSelectionInput(BattleSystem *battleSys, Batt
 
                 switch (BattleContext_IOBufferVal(battleCtx, i)) {
                 case PLAYER_INPUT_FIGHT:
-                    if (BattleSystem_CheckStruggling(battleSys, battleCtx, i, 0, STRUGGLE_CHECK_ALL) == STRUGGLING_ALL) {
+                    if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, i, 0, CHECK_INVALID_ALL) == STRUGGLING_ALL) {
                         // Don't let the player select a move if they are out of PP on all moves
                         battleCtx->turnFlags[i].struggling = TRUE;
 
@@ -2169,9 +2169,9 @@ static int BattleController_CheckObedience(BattleSystem *battleSys, BattleContex
 
     rand1 = ((BattleSystem_RandNext(battleSys) & 0xFF) * (ATTACKING_MON.level + maxLevel)) >> 8;
     if (rand1 < maxLevel) {
-        rand1 = BattleSystem_CheckStruggling(battleSys, battleCtx, battleCtx->attacker, FlagIndex(ATTACKER_MOVE_SLOT), STRUGGLE_CHECK_ALL);
+        rand1 = BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battleCtx->attacker, FlagIndex(ATTACKER_MOVE_SLOT), CHECK_INVALID_ALL);
 
-        if (rand1 == 0xF) {
+        if (rand1 == STRUGGLING_ALL) {
             *nextSeq = BATTLE_SUBSEQ_DISOBEY_DO_NOTHING;
             return OBEY_CHECK_DO_NOTHING;
         }
@@ -2570,7 +2570,7 @@ static BOOL BattleController_CheckStatusDisruption(BattleSystem *battleSys, Batt
             break;
 
         case CHECK_STATUS_STATE_IMPRISON:
-            if (BattleSystem_Imprisoned(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
+            if (Move_Imprisoned(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
                 battleCtx->moveFailFlags[battleCtx->attacker].imprisoned = TRUE;
 
                 LOAD_SUBSEQ(BATTLE_SUBSEQ_MOVE_IS_IMPRISONED);
@@ -2584,7 +2584,7 @@ static BOOL BattleController_CheckStatusDisruption(BattleSystem *battleSys, Batt
             break;
 
         case CHECK_STATUS_STATE_GRAVITY:
-            if (BattleSystem_FailsInHighGravity(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
+            if (Move_FailsInHighGravity(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
                 battleCtx->moveFailFlags[battleCtx->attacker].gravity = TRUE;
 
                 LOAD_SUBSEQ(BATTLE_SUBSEQ_MOVE_FAIL_GRAVITY);
@@ -2598,7 +2598,7 @@ static BOOL BattleController_CheckStatusDisruption(BattleSystem *battleSys, Batt
             break;
 
         case CHECK_STATUS_STATE_HEAL_BLOCK:
-            if (BattleSystem_HealBlocked(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
+            if (Move_HealBlocked(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
                 battleCtx->moveFailFlags[battleCtx->attacker].healBlocked = TRUE;
 
                 LOAD_SUBSEQ(BATTLE_SUBSEQ_MOVE_IS_HEAL_BLOCKED);

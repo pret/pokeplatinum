@@ -449,9 +449,54 @@ void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *batt
  */
 void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 void BattleSystem_SetupNextTurn(BattleSystem * param0, BattleContext * param1);
-int BattleSystem_CheckStruggling(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
+
+/**
+ * @brief Compute which moves are invalid for the battler to use, performing
+ * checks according to the input opcode mask.
+ * 
+ * The following op-codes are supported in the input mask:
+ * - CHECK_INVALID_NO_MOVE -> flag empty move-slots
+ * - CHECK_INVALID_NO_PP -> flag moves with no remaining PP
+ * - CHECK_INVALID_DISABLED -> flag the battler's Disabled move
+ * - CHECK_INVALID_TORMENTED -> flag the battler's last-used move
+ * - CHECK_INVALID_TAUNTED -> flag any of the battler's moves with 0 power
+ * - CHECK_INVALID_IMPRISONED -> flag any of the battler's Imprisoned moves
+ * - CHECK_INVALID_GRAVITY -> flag any of the battler's moves which fail in high gravity
+ * - CHECK_INVALID_HEAL_BLOCK -> flag any of the battler's healing moves
+ * - CHECK_INVALID_CHOICE_ITEM -> flag any of the battler's moves other than their choice-locked move
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler       The battler choosing their move
+ * @param invalidMoves  An initial mask of moves which should be deemed invalid
+ * @param opMask        An input opcode mask determining which checks should be
+ *                      made for move validity
+ * @return A bitmask denoting which of the battler's move slots are invalid for
+ * selection
+ */
+int BattleSystem_CheckInvalidMoves(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int invalidMoves, int opMask);
+
+/**
+ * @brief Determine if a battler can use the move in the given slot, populating
+ * the input BattleMessage struct with a message to display if they cannot.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler 
+ * @param moveSlot      The slot of the move that the battler is trying to use
+ * @param[out] msgOut   An output message for display to the player
+ * @return TRUE if the move can be used, FALSE if it cannot
+ */
 BOOL BattleSystem_CanUseMove(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int moveSlot, BattleMessage *msgOut);
-int Battler_SlotForMove(BattleMon * param0, u16 param1);
+
+/**
+ * @brief Determine which slot of the Pokemon's moveset contains a given move.
+ * 
+ * @param mon 
+ * @param move 
+ * @return The slot of the Pokemon's moveset containing the input move
+ */
+int Battler_SlotForMove(BattleMon *mon, u16 move);
 
 /**
  * @brief Apply type-chart effectiveness for a given move against its target.
@@ -634,7 +679,19 @@ BOOL BattleSystem_AnyReplacementMons(BattleSystem *battleSys, BattleContext *bat
 BOOL BattleSystem_Trapped(BattleSystem * param0, BattleContext * param1, int param2, BattleMessage * param3);
 BOOL BattleSystem_TryEscape(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL Battler_CheckTruant(BattleContext * param0, int param1);
-BOOL BattleSystem_Imprisoned(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+
+/**
+ * @brief Checks if a given move has been Imprisoned by one of the battler's
+ * opponents.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler   The battler trying to execute a move.
+ * @param move      The move to be executed.
+ * @return TRUE if any of the battler's opponents has used Imprison and also
+ * knows the requested move; FALSE otherwise.
+ */
+BOOL Move_Imprisoned(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int move);
 
 /**
  * @brief Check if any active battlers are flagged as having the given move
@@ -649,8 +706,31 @@ BOOL BattleSystem_Imprisoned(BattleSystem * param0, BattleContext * param1, int 
 BOOL BattleSystem_AnyBattlersWithMoveEffect(BattleSystem *battleSys, BattleContext *battleCtx, int effectMask);
 void BattleSystem_SetupLoop(BattleSystem *battleSys, BattleContext *battleCtx);
 void BattleSystem_SortMonsBySpeed(BattleSystem * param0, BattleContext * param1);
-BOOL BattleSystem_FailsInHighGravity(BattleSystem * param0, BattleContext * param1, int param2, int param3);
-BOOL BattleSystem_HealBlocked(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+
+/**
+ * @brief Check if a given move should fail due to high gravity conditions.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler 
+ * @param move      The move to be executed
+ * @return TRUE if the field is under high gravity conditions AND the move
+ * should fail in such conditions; FALSE otherwise
+ */
+BOOL Move_FailsInHighGravity(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int move);
+
+/**
+ * @brief Check if a given move should fail due to the battler being afflicted
+ * by Heal Block.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler   The battler trying to execute a move
+ * @param move      The move to be executed
+ * @return TRUE if the battler is afflicted with Heal Block AND the move should
+ * fail due to such afflicition; FALSE otherwise
+ */
+BOOL Move_HealBlocked(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int move);
 void BattleSystem_UpdateLastResort(BattleSystem * param0, BattleContext * param1);
 
 /**

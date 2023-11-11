@@ -763,7 +763,7 @@ void BattleIO_ShowMoveSelectScreen (BattleSystem *battleSys, BattleContext *batt
         v0.unk_10[i] = MoveTable_CalcMaxPP(battleCtx->battleMons[battler].moves[i], battleCtx->battleMons[battler].ppUps[i]);
     }
 
-    v0.unk_02 = BattleSystem_CheckStruggling(battleSys, battleCtx, battler, 0, STRUGGLE_CHECK_ALL);
+    v0.unk_02 = BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_ALL);
 
     ov16_02264A04(battleSys, 1, battler, &v0, sizeof(UnkStruct_ov16_022656F0));
 }
