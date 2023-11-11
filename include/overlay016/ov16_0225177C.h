@@ -568,7 +568,16 @@ u16 Battler_SelectedMove(BattleContext * param0, int param1);
  * be a mask of the battlers matching the criteria.
  */
 int BattleSystem_CountAbility(BattleSystem *battleSys, BattleContext *battleCtx, enum CountAbilityMode mode, int battler, int ability);
-BOOL BattleMove_IsMultiTurn(BattleContext * param0, int param1);
+
+/**
+ * @brief Determine if a given move is a multi-turn move.
+ * 
+ * @param battleCtx 
+ * @param move 
+ * @return TRUE if the move is a multi-turn move (one which has a charging
+ * turn); FALSE if not
+ */
+BOOL Move_IsMultiTurn(BattleContext *battleCtx, int move);
 
 /**
  * @brief Access a particular entry in the type-matchup table.
@@ -616,7 +625,17 @@ int BattleSystem_TypeMatchupMultiplier(u8 attackingType, u8 defendingType1, u8 d
  * @return TRUE if the move is invoker-class, FALSE if not.
  */
 BOOL Move_IsInvoker(u16 move);
-BOOL BattleSystem_IsGhostCurse(BattleContext * param0, u16 param1, int param2);
+
+/**
+ * @brief Check if a given move is Curse being used by a Ghost-type Pokemon.
+ * 
+ * @param battleCtx 
+ * @param move 
+ * @param battler 
+ * @return TRUE if the move is Curse and the battler has the Ghost typing;
+ * FALSE otherwise
+ */
+BOOL Move_IsGhostCurse(BattleContext *battleCtx, u16 move, int battler);
 
 /**
  * @brief Determine if a battler's item can be stolen.
@@ -645,7 +664,16 @@ BOOL BattleSystem_NotHoldingMail(BattleContext * param0, int param1);
  * @return TRUE if Whirlwind should succeed, FALSE if it should fail.
  */
 BOOL BattleSystem_CanWhirlwind(BattleSystem *battleSys, BattleContext *battleCtx);
-u8 Battler_Ability(BattleContext * param0, int param1);
+
+/**
+ * @brief Get the battler's ability, accounting for disrupting effects on itself,
+ * e.g. Gastro Acid, Gravity, and Ingrain.
+ * 
+ * @param battleCtx 
+ * @param battler 
+ * @return The battler's ability
+ */
+u8 Battler_Ability(BattleContext *battleCtx, int battler);
 
 /**
  * @brief Check if the given defender has the specified ability, treating it as

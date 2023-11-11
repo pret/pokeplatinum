@@ -2981,24 +2981,23 @@ int BattleSystem_CountAbility(BattleSystem *battleSys, BattleContext *battleCtx,
     return result;
 }
 
-BOOL BattleMove_IsMultiTurn (BattleContext * param0, int param1)
+BOOL Move_IsMultiTurn(BattleContext *battleCtx, int move)
 {
-    switch (param0->aiContext.moveTable[param1].effect) {
-    case 26:
-    case 39:
-    case 75:
-    case 145:
-    case 151:
-    case 155:
-    case 255:
-    case 256:
-    case 263:
-    case 272:
-        return 1;
-        break;
+    switch (MOVE_DATA(move).effect) {
+    case BATTLE_EFFECT_BIDE:
+    case BATTLE_EFFECT_CHARGE_TURN_HIGH_CRIT:
+    case BATTLE_EFFECT_CHARGE_TURN_HIGH_CRIT_FLINCH:
+    case BATTLE_EFFECT_CHARGE_TURN_DEF_UP:
+    case BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN:
+    case BATTLE_EFFECT_FLY:
+    case BATTLE_EFFECT_DIVE:
+    case BATTLE_EFFECT_DIG:
+    case BATTLE_EFFECT_BOUNCE:
+    case BATTLE_EFFECT_SHADOW_FORCE:
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL BattleSystem_TypeMatchup(BattleSystem *battleSys, int idx, u8 *moveType, u8 *vsType, u8 *multi)
@@ -3055,9 +3054,9 @@ BOOL Move_IsInvoker(u16 move)
     return FALSE;
 }
 
-BOOL BattleSystem_IsGhostCurse (BattleContext * param0, u16 param1, int param2)
+BOOL Move_IsGhostCurse(BattleContext *battleCtx, u16 move, int battler)
 {
-    return (param1 == 174) && ((BattleMon_Get(param0, param2, 27, NULL) == 7) || (BattleMon_Get(param0, param2, 28, NULL) == 7));
+    return move == MOVE_CURSE && MON_HAS_TYPE(battler, TYPE_GHOST);
 }
 
 BOOL BattleSystem_CanStealItem(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
@@ -3095,17 +3094,24 @@ BOOL BattleSystem_CanWhirlwind(BattleSystem *battleSys, BattleContext *battleCtx
     return result;
 }
 
-u8 Battler_Ability (BattleContext * param0, int param1)
+u8 Battler_Ability(BattleContext *battleCtx, int battler)
 {
-    if ((param0->battleMons[param1].moveEffectsMask & 0x200000) && (param0->battleMons[param1].ability != 121)) {
-        return 0;
-    } else if ((param0->fieldConditionsMask & 0x7000) && (param0->battleMons[param1].ability == 26)) {
-        return 0;
-    } else if ((param0->battleMons[param1].moveEffectsMask & 0x400) && (param0->battleMons[param1].ability == 26)) {
-        return 0;
-    } else {
-        return param0->battleMons[param1].ability;
+    if ((battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_ABILITY_SUPPRESSED)
+            && battleCtx->battleMons[battler].ability != ABILITY_MULTITYPE) {
+        return ABILITY_NONE;
+    } 
+    
+    if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY)
+            && battleCtx->battleMons[battler].ability == ABILITY_LEVITATE) {
+        return ABILITY_NONE;
+    } 
+    
+    if ((battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_INGRAIN)
+            && battleCtx->battleMons[battler].ability == ABILITY_LEVITATE) {
+        return ABILITY_NONE;
     }
+    
+    return battleCtx->battleMons[battler].ability;
 }
 
 BOOL Battler_IgnorableAbility(BattleContext *battleCtx, int attacker, int defender, int ability)

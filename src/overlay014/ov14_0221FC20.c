@@ -541,7 +541,7 @@ static u8 ov14_0221FE38 (BattleSystem * param0, BattleContext * param1)
     }
 
     if (v7 == 174) {
-        if (BattleSystem_IsGhostCurse(param1, v7, param1->aiContext.attacker) == 0) {
+        if (Move_IsGhostCurse(param1, v7, param1->aiContext.attacker) == 0) {
             param1->aiContext.selectedTarget[param1->aiContext.attacker] = param1->aiContext.attacker;
         }
     }
