@@ -4419,7 +4419,7 @@ static void ov16_02262258 (SysTask * param0, void * param1)
     v1 = ov16_0225BE28(v0->unk_00, v4);
 
     if (v1 == 6) {
-        v1 = ov16_0225BA88(v0->unk_00, v4);
+        v1 = BattleAI_PostKOSwitchIn(v0->unk_00, v4);
 
         if (v1 == 6) {
             v2 = BattleSystem_Party(v0->unk_00, v0->unk_09);

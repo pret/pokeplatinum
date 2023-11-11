@@ -1293,8 +1293,30 @@ int BattleContext_Get(BattleSystem *battleSys, BattleContext *battleCtx, enum Ba
  * @param val       Value to which the field should be set
  */
 void BattleContext_Set(BattleSystem *battleSys, BattleContext *battleCtx, enum BattleContextParam paramID, int battler, int val);
-int ov16_0225BA88(BattleSystem * param0, int param1);
+
+/**
+ * @brief Determine what Pokemon the AI will switch-in from their party after
+ * one of their active battlers has been KO'd.
+ * 
+ * @param battleSys 
+ * @param battler 
+ * @return The party slot of the Pokemon to be switched in.
+ */
+int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler);
 int ov16_0225BE28(BattleSystem * param0, int param1);
-int ov16_0225BE3C(BattleSystem * param0, BattleContext * param1, Pokemon * param2, int param3);
+
+/**
+ * @brief Compute the variable-type of a move, given its use by a given Pokemon.
+ * 
+ * This is used by moves such as Natural Gift, Hidden Power, and Weather Ball.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param mon       The Pokemon using the move.
+ * @param move      The move being used.
+ * @return The variable-type of a move, considering parameters of its user and
+ * the battlefield.
+ */
+int Move_CalcVariableType(BattleSystem *battleSys, BattleContext *battleCtx, Pokemon *mon, int move);
 
 #endif // POKEPLATINUM_OV16_0225177C_H
