@@ -382,7 +382,15 @@ void BattleSystem_CheckRedirectionAbilities(BattleSystem *battleSys, BattleConte
  * FALSE otherwise.
  */
 BOOL BattleSystem_TriggerRedirectionAbilities(BattleSystem *battleSys, BattleContext *battleCtx);
-void BattleMon_CopyToParty(BattleSystem * param0, BattleContext * param1, int param2);
+
+/**
+ * @brief Copy the given battler back to its backing Pokemon structure in the party.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler 
+ */
+void BattleMon_CopyToParty(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 
 /**
  * @brief Locks the battler into their current move.
@@ -448,7 +456,14 @@ void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *batt
  * @param battler 
  */
 void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
-void BattleSystem_SetupNextTurn(BattleSystem * param0, BattleContext * param1);
+
+/**
+ * @brief Clear single-turn flags and buffered values in setup for the next turn.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ */
+void BattleSystem_SetupNextTurn(BattleSystem *battleSys, BattleContext *battleCtx);
 
 /**
  * @brief Compute which moves are invalid for the battler to use, performing
@@ -538,7 +553,16 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
  * @param[out] moveStatusMask
  */
 void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inType, int attackerAbility, int defenderAbility, int defenderItemEffect, int defenderType1, int defenderType2, u32 *moveStatusMask);
-BOOL BattleContext_MoveFailed(BattleContext * param0, int param1);
+
+/**
+ * @brief Check if a battler's move failed to execute for the turn.
+ * 
+ * @param battleCtx 
+ * @param battler 
+ * @return TRUE if the battler's move failed to execute for the turn, FALSE
+ * otherwise.
+ */
+BOOL BattleContext_MoveFailed(BattleContext *battleCtx, int battler);
 
 /**
  * @brief Count the number of targets hit by a move.
@@ -552,8 +576,24 @@ BOOL BattleContext_MoveFailed(BattleContext * param0, int param1);
  * @return The number of battlers hit by the move.
  */
 u8 BattleSystem_CountAliveBattlers(BattleSystem *battleSys, BattleContext *battleCtx, BOOL sameSide, int defender);
+
+/**
+ * @brief Apply a nickname tag to the given battler for message-formatting.
+ * 
+ * @param battleSys 
+ * @param battler 
+ * @return The battler + a nickname tag value.
+ */
 int BattleSystem_NicknameTag(BattleContext *battleSys, int battler);
-u16 Battler_SelectedMove(BattleContext * param0, int param1);
+
+/**
+ * @brief Get a battler's selected move for the turn, if any.
+ * 
+ * @param battleCtx 
+ * @param battler 
+ * @return The battler's selected move for the turn.
+ */
+u16 Battler_SelectedMove(BattleContext *battleCtx, int battler);
 
 /**
  * @brief Count the number of instances of the given ability on the battlefield.
@@ -646,7 +686,15 @@ BOOL Move_IsGhostCurse(BattleContext *battleCtx, u16 move, int battler);
  * @return FALSE
  */
 BOOL BattleSystem_CanStealItem(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
-BOOL BattleSystem_NotHoldingMail(BattleContext * param0, int param1);
+
+/**
+ * @brief Check if a battler is *not* holding Mail.
+ * 
+ * @param battleCtx 
+ * @param battler 
+ * @return TRUE if the battler is *not* holding Mail, FALSE if so.
+ */
+BOOL BattleSystem_NotHoldingMail(BattleContext *battleCtx, int battler);
 
 /**
  * @brief Determine if a target can be Whirlwinded away by an attacker.
@@ -706,7 +754,15 @@ BOOL Battler_IgnorableAbility(BattleContext *battleCtx, int attacker, int defend
 BOOL BattleSystem_AnyReplacementMons(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 BOOL BattleSystem_Trapped(BattleSystem * param0, BattleContext * param1, int param2, BattleMessage * param3);
 BOOL BattleSystem_TryEscape(BattleSystem * param0, BattleContext * param1, int param2);
-BOOL Battler_CheckTruant(BattleContext * param0, int param1);
+
+/**
+ * @brief Check if Truant is active for the turn for a given battler.
+ * 
+ * @param battleCtx 
+ * @param battler 
+ * @return TRUE if the battler is loafing due to Truant, FALSE if not.
+ */
+BOOL Battler_CheckTruant(BattleContext * battleCtx, int battler);
 
 /**
  * @brief Checks if a given move has been Imprisoned by one of the battler's
@@ -732,8 +788,23 @@ BOOL Move_Imprisoned(BattleSystem *battleSys, BattleContext *battleCtx, int batt
  * othewise
  */
 BOOL BattleSystem_AnyBattlersWithMoveEffect(BattleSystem *battleSys, BattleContext *battleCtx, int effectMask);
+
+/**
+ * @brief Setup flags for a move loop, e.g. for multi-hit or spread moves.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ */
 void BattleSystem_SetupLoop(BattleSystem *battleSys, BattleContext *battleCtx);
-void BattleSystem_SortMonsBySpeed(BattleSystem * param0, BattleContext * param1);
+
+/**
+ * @brief Sort all active battlers by their speed for the turn, ignoring Quick
+ * Claw type effects.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ */
+void BattleSystem_SortMonSpeedOrder(BattleSystem *battleSys, BattleContext *battleCtx);
 
 /**
  * @brief Check if a given move should fail due to high gravity conditions.
@@ -759,7 +830,14 @@ BOOL Move_FailsInHighGravity(BattleSystem *battleSys, BattleContext *battleCtx, 
  * fail due to such afflicition; FALSE otherwise
  */
 BOOL Move_HealBlocked(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int move);
-void BattleSystem_UpdateLastResort(BattleSystem * param0, BattleContext * param1);
+
+/**
+ * @brief Update buffers for the attacking Pokemon related to Last Resort.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ */
+void BattleSystem_UpdateLastResort(BattleSystem *battleSys, BattleContext *battleCtx);
 
 /**
  * @brief Count the number of moves known by a battler.
@@ -875,7 +953,18 @@ BOOL BattleSystem_RecoverStatusByAbility(BattleSystem *battleSys, BattleContext 
  * FALSE if not
  */
 BOOL Ability_ForbidsStatus(BattleContext *battleSys, int ability, int status);
-BOOL BattleSystem_SynchronizeStatus(BattleSystem * battleSys, BattleContext * battleCtx, int controllerCommand);
+
+/**
+ * @brief Synchronize a defender's newly-applied status with the Pokemon who
+ * applied it.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param controllerCommand The command to return to after sharing the status
+ * @return TRUE if a subscript has been loaded for the status-sharing effect,
+ * FALSE if not.
+ */
+BOOL BattleSystem_SynchronizeStatus(BattleSystem *battleSys, BattleContext *battleCtx, int controllerCommand);
 
 /**
  * @brief Check if a held item should trigger due to status, an HP threshold, or
@@ -1035,7 +1124,16 @@ s32 Battler_ItemFlingEffect(BattleContext *battleCtx, int battler);
  * @return Fling power of the battler's held item.
  */
 s32 Battler_ItemFlingPower(BattleContext *battleCtx, int battler);
-int BattleSystem_CanSwitch(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
+
+/**
+ * @brief Check if a battler is trapped and cannot switch.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler 
+ * @return TRUE if the battler is trapped, FALSE if not.
+ */
+BOOL Battler_IsTrapped(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 
 /**
  * @brief Try to Pluck the given battler's berry.
@@ -1068,11 +1166,42 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
  * Fling effect; FALSE if no such follow-up is needed.
  */
 BOOL BattleSystem_FlingItem(BattleSystem * param0, BattleContext * param1, int param2);
-void BattleSystem_UpdateMetronomeCount(BattleSystem * param0, BattleContext * param1);
-void BattleSystem_VerifyMetronomeCount(BattleSystem * param0, BattleContext * param1);
+
+/**
+ * @brief Update the count for the Metronome held item.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ */
+void BattleSystem_UpdateMetronomeCount(BattleSystem *battleSys, BattleContext *battleCtx);
+
+/**
+ * @brief Verify the current count for the Metronome held item.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ */
+void BattleSystem_VerifyMetronomeCount(BattleSystem *battleSys, BattleContext *battleCtx);
 int ov16_022599D0(BattleContext * param0, int param1, int param2, int param3);
-BOOL BattleSystem_CanPickCommand(BattleContext *battleSys, int battler);
+
+/**
+ * @brief Check if a battler can choose their action for the turn.
+ * 
+ * @param battleSys 
+ * @param battler 
+ * @return TRUE if the battler can choose their action for the turn, FALSE
+ * if not.
+ */
+BOOL Battler_CanPickCommand(BattleContext *battleSys, int battler);
 void ov16_02259A5C(BattleSystem * param0, BattleContext * param1, Pokemon * param2);
+
+/**
+ * @brief Get the top byte of the IO buffer for the given battler.
+ * 
+ * @param battleCtx 
+ * @param battler 
+ * @return Top byte of the IO buffer for the given battler.
+ */
 u8 BattleContext_IOBufferVal(BattleContext *battleCtx, int battler);
 
 /**
@@ -1083,8 +1212,25 @@ u8 BattleContext_IOBufferVal(BattleContext *battleCtx, int battler);
  * @return TRUE if the battler's substitute was hit, FALSE if not.
  */
 BOOL Battler_SubstituteWasHit(BattleContext *battleCtx, int battler);
-BOOL BattleSystem_TrainerIsOT(BattleSystem * param0, BattleContext * param1);
-BOOL BattleSystem_PokemonIsOT(BattleSystem * param0, Pokemon * param1);
+
+/**
+ * @brief Check if the player is the attacking Pokemon's OT.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return TRUE if the player is the attacking Pokemon's OT, FALSE
+ * otherwise.
+ */
+BOOL BattleSystem_TrainerIsOT(BattleSystem *battleSys, BattleContext *battleCtx);
+
+/**
+ * @brief Check if the player is a given Pokemon's OT.
+ * 
+ * @param battleSys 
+ * @param mon 
+ * @return TRUE if the player is the given Pokemon's OT, FALSE otherwise.
+ */
+BOOL BattleSystem_PokemonIsOT(BattleSystem *battleSys, Pokemon *mon);
 
 /**
  * @brief Trigger a form change for the battler stored in battleCtx->msgBattlerTemp,
@@ -1226,8 +1372,24 @@ BOOL Move_MeFirstCanCopy(BattleContext *battleCtx, u16 move);
  * @return s32-representation of the data pulled from the item table
  */
 s32 BattleSystem_GetItemData(BattleContext *battleCtx, u16 item, enum ItemDataParam paramID);
-int BattleSystem_SideToBattler(BattleSystem * param0, BattleContext * param1, int param2);
-void BattleSystem_SortMonsInTrickRoom(BattleSystem * param0, BattleContext * param1);
+
+/**
+ * @brief Determine the first battler which matches the input side value.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param side 
+ * @return The first battler which matches the input side value.
+ */
+int BattleSystem_SideToBattler(BattleSystem *battleSys, BattleContext *battleCtx, int side);
+
+/**
+ * @brief Sort the action order for battlers based on their speed and actions.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ */
+void BattleSystem_SortMonActionOrder(BattleSystem *battleSys, BattleContext *battleCtx);
 
 /**
  * @brief Determine if a status effect should be shown for the given battler.
@@ -1257,7 +1419,16 @@ BOOL BattleSystem_ShouldShowStatusEffect(BattleContext *battleCtx, int battler, 
  * FALSE otherwise.
  */
 BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript);
-void BattleSystem_DecPPForPressure(BattleContext * param0, int param1, int param2);
+
+/**
+ * @brief Decrement additional PP from the attacker's selected move if its
+ * target has the Pressure ability.
+ * 
+ * @param battleCtx 
+ * @param attacker 
+ * @param defender 
+ */
+void BattleSystem_DecPPForPressure(BattleContext *battleCtx, int attacker, int defender);
 BOOL BattleSystem_RecordingStopped(BattleSystem * param0, BattleContext * param1);
 
 /**

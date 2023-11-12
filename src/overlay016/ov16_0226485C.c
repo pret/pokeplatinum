@@ -596,7 +596,7 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
     v10 = 0;
 
     for (v1 = 0; v1 < BattleSystem_MaxBattlers(battleSys); v1++) {
-        if (BattleSystem_CanPickCommand(battleCtx, v1) == 0) {
+        if (Battler_CanPickCommand(battleCtx, v1) == 0) {
             v10 |= FlagIndex(v1);
         }
     }

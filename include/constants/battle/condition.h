@@ -45,6 +45,8 @@
                                         | VOLATILE_CONDITION_CONFUSION \
                                         | VOLATILE_CONDITION_CURSE \
                                         | VOLATILE_CONDITION_SUBSTITUTE)
+#define VOLATILE_CONDITION_TRAPPED      (VOLATILE_CONDITION_BIND \
+                                        | VOLATILE_CONDITION_MEAN_LOOK)
 
 #define VOLATILE_CONDITION_CONFUSION_SHIFT  0
 #define VOLATILE_CONDITION_UPROAR_SHIFT     4
