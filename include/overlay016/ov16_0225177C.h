@@ -770,8 +770,29 @@ BOOL Battler_IgnorableAbility(BattleContext *battleCtx, int attacker, int defend
  * otherwise FALSE. 
  */
 BOOL BattleSystem_AnyReplacementMons(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
-BOOL BattleSystem_Trapped(BattleSystem * param0, BattleContext * param1, int param2, BattleMessage * param3);
-BOOL BattleSystem_TryEscape(BattleSystem * param0, BattleContext * param1, int param2);
+
+/**
+ * @brief Check if a battler is trapped and cannot switch and, optionally,
+ * populate a message for display.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler 
+ * @param[out] msgOut   If non-null, will be populated with a message for
+ *                      display to the player
+ * @return TRUE if the battler is trapped, FALSE if not.
+ */
+BOOL Battler_IsTrappedMsg(BattleSystem *battleSys, BattleContext *battleCtx, int battler, BattleMessage *msgOut);
+
+/**
+ * @brief Try to escape a battle.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler   The battler trying to escape
+ * @return TRUE if escape is successful, FALSE otherwise
+ */
+BOOL Battler_CanEscape(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 
 /**
  * @brief Check if Truant is active for the turn for a given battler.

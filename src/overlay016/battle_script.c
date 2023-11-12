@@ -6382,7 +6382,7 @@ static BOOL BtlCmd_TryTeleport(BattleSystem *battleSys, BattleContext *battleCtx
     BattleScript_Iter(battleCtx, 1);
     int jumpIfTrapped = BattleScript_Read(battleCtx);
 
-    if (BattleSystem_Trapped(battleSys, battleCtx, battleCtx->attacker, NULL)) {
+    if (Battler_IsTrappedMsg(battleSys, battleCtx, battleCtx->attacker, NULL)) {
         BattleScript_Iter(battleCtx, jumpIfTrapped);
     }
 
@@ -8803,7 +8803,7 @@ static BOOL BtlCmd_TryEscape(BattleSystem *battleSys, BattleContext *battleCtx)
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
 
-    if (BattleSystem_TryEscape(battleSys, battleCtx, battler)) {
+    if (Battler_CanEscape(battleSys, battleCtx, battler)) {
         BattleScript_Iter(battleCtx, jumpOnFail);
     }
 

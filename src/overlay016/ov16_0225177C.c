@@ -3196,126 +3196,127 @@ BOOL BattleSystem_AnyReplacementMons(BattleSystem *battleSys, BattleContext *bat
     return result;
 }
 
-BOOL BattleSystem_Trapped (BattleSystem * param0, BattleContext * param1, int param2, BattleMessage * param3)
+BOOL Battler_IsTrappedMsg(BattleSystem *battleSys, BattleContext *battleCtx, int battler, BattleMessage *msgOut)
 {
-    int v0;
-    int v1;
-    u8 v2;
-    int v3;
-    u32 v4;
+    int tmp;
+    int maxBattlers;
+    u8 side;
+    int itemEffect;
+    u32 battleType;
 
-    v4 = BattleSystem_BattleType(param0);
-    v3 = Battler_HeldItemEffect(param1, param2);
+    battleType = BattleSystem_BattleType(battleSys);
+    itemEffect = Battler_HeldItemEffect(battleCtx, battler);
 
-    if ((v3 == 63) || (v4 & (0x4 | 0x20 | 0x200 | 0x80)) || (Battler_Ability(param1, param2) == 50)) {
-        return 0;
+    if (itemEffect == HOLD_EFFECT_FLEE
+            || (battleType & BATTLE_TYPE_NO_EXPERIENCE)
+            || Battler_Ability(battleCtx, battler) == ABILITY_RUN_AWAY) {
+        return FALSE;
     }
 
-    v2 = Battler_Side(param0, param2);
-    v1 = BattleSystem_MaxBattlers(param0);
+    side = Battler_Side(battleSys, battler);
+    maxBattlers = BattleSystem_MaxBattlers(battleSys);
 
-    if ((v0 = BattleSystem_CountAbility(param0, param1, 9, param2, 23)) && (Battler_Ability(param1, param2) != 23)) {
-        if (param3 == NULL) {
-            return 1;
+    if ((tmp = BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_EXCEPT_ME, battler, ABILITY_SHADOW_TAG))
+            && Battler_Ability(battleCtx, battler) != ABILITY_SHADOW_TAG) {
+        if (msgOut == NULL) {
+            return TRUE;
         }
 
-        param3->tags = 11;
-        param3->id = 39;
-        param3->params[0] = BattleSystem_NicknameTag(param1, v0);
-        param3->params[1] = 23;
-        return 1;
+        msgOut->tags = TAG_NICKNAME_ABILITY;
+        msgOut->id = 39; // "{0} prevents escape with {1}!"
+        msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, tmp);
+        msgOut->params[1] = ABILITY_SHADOW_TAG;
+        return TRUE;
     }
 
-    if ((v0 = BattleSystem_CountAbility(param0, param1, 3, param2, 71))) {
-        if (((param1->fieldConditionsMask & 0x7000) == 0) && (v3 != 106)) {
-            if ((Battler_Ability(param1, param2) != 26) && (param1->battleMons[param2].moveEffectsData.magnetRiseTurns == 0) && ((BattleMon_Get(param1, param2, 27, NULL) != 2) && (BattleMon_Get(param1, param2, 28, NULL) != 2))) {
-                if (param3 == NULL) {
-                    return 1;
+    if ((tmp = BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_THEIR_SIDE, battler, ABILITY_ARENA_TRAP))) {
+        if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) == FALSE && itemEffect != HOLD_EFFECT_SPEED_DOWN_GROUNDED) {
+            if (Battler_Ability(battleCtx, battler) != ABILITY_LEVITATE
+                    && battleCtx->battleMons[battler].moveEffectsData.magnetRiseTurns == 0
+                    && MON_IS_NOT_TYPE(battler, TYPE_FLYING)) {
+                if (msgOut == NULL) {
+                    return TRUE;
                 }
 
-                param3->tags = 11;
-                param3->id = 39;
-                param3->params[0] = BattleSystem_NicknameTag(param1, v0);
-                param3->params[1] = 71;
-                return 1;
+                msgOut->tags = TAG_NICKNAME_ABILITY;
+                msgOut->id = 39; // "{0} prevents escape with {1}!"
+                msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, tmp);
+                msgOut->params[1] = ABILITY_ARENA_TRAP;
+                return TRUE;
             }
         } else {
-            if (param3 == NULL) {
-                return 1;
+            if (msgOut == NULL) {
+                return TRUE;
             }
 
-            param3->tags = 11;
-            param3->id = 39;
-            param3->params[0] = BattleSystem_NicknameTag(param1, v0);
-            param3->params[1] = 71;
-            return 1;
+            msgOut->tags = TAG_NICKNAME_ABILITY;
+            msgOut->id = 39; // "{0} prevents escape with {1}!"
+            msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, tmp);
+            msgOut->params[1] = ABILITY_ARENA_TRAP;
+            return TRUE;
         }
     }
 
-    if ((v0 = BattleSystem_CountAbility(param0, param1, 3, param2, 42)) && ((BattleMon_Get(param1, param2, 27, NULL) == 8) || (BattleMon_Get(param1, param2, 28, NULL) == 8))) {
-        if (param3 == NULL) {
-            return 1;
+    if ((tmp = BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_THEIR_SIDE, battler, ABILITY_MAGNET_PULL))
+            && MON_HAS_TYPE(battler, TYPE_STEEL)) {
+        if (msgOut == NULL) {
+            return TRUE;
         }
 
-        param3->tags = 11;
-        param3->id = 39;
-        param3->params[0] = BattleSystem_NicknameTag(param1, v0);
-        param3->params[1] = 42;
-        return 1;
+        msgOut->tags = TAG_NICKNAME_ABILITY;
+        msgOut->id = 39; // "{0} prevents escape with {1}!"
+        msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, tmp);
+        msgOut->params[1] = ABILITY_MAGNET_PULL;
+        return TRUE;
     }
 
-    if ((param1->battleMons[param2].statusVolatile & (0xe000 | 0x4000000)) || (param1->battleMons[param2].moveEffectsMask & 0x400)) {
-        if (param3 == NULL) {
-            return 1;
+    if ((battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_TRAPPED)
+            || (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_INGRAIN)) {
+        if (msgOut == NULL) {
+            return TRUE;
         }
 
-        param3->tags = 0;
-        param3->id = 794;
-        return 1;
+        msgOut->tags = TAG_NONE;
+        msgOut->id = 794; // "Can't escape!"
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL BattleSystem_TryEscape (BattleSystem * param0, BattleContext * param1, int param2)
+BOOL Battler_CanEscape(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
-    BOOL v0;
-    u8 v1;
-    int v2;
-    u8 v3;
-    u32 v4;
+    u32 battleType = BattleSystem_BattleType(battleSys);
+    int itemEffect = Battler_HeldItemEffect(battleCtx, battler);
+    BOOL result = FALSE;
 
-    v4 = BattleSystem_BattleType(param0);
-    v2 = Battler_HeldItemEffect(param1, param2);
-    v0 = 0;
-
-    if (v2 == 63) {
-        param1->turnFlags[param2].fleeing = 1;
-        v0 = 1;
-    } else if (v4 & (0x4 | 0x20 | 0x200 | 0x80)) {
-        v0 = 1;
-    } else if (Battler_Ability(param1, param2) == 50) {
-        param1->turnFlags[param2].fleeing = 2;
-        v0 = 1;
+    if (itemEffect == HOLD_EFFECT_FLEE) {
+        battleCtx->turnFlags[battler].fleeing = 1;
+        result = TRUE;
+    } else if (battleType & BATTLE_TYPE_NO_EXPERIENCE) {
+        result = TRUE;
+    } else if (Battler_Ability(battleCtx, battler) == ABILITY_RUN_AWAY) {
+        battleCtx->turnFlags[battler].fleeing = 2;
+        result = TRUE;
     } else {
-        if (param1->battleMons[param2].speed < param1->battleMons[param2 ^ 1].speed) {
-            v1 = param1->battleMons[param2].speed * 128 / param1->battleMons[param2 ^ 1].speed + param1->runAttempts * 30;
+        if (battleCtx->battleMons[battler].speed < battleCtx->battleMons[battler ^ 1].speed) {
+            u8 escape = battleCtx->battleMons[battler].speed * 128 / battleCtx->battleMons[battler ^ 1].speed + battleCtx->runAttempts * 30;
 
-            if (v1 > (BattleSystem_RandNext(param0) % 256)) {
-                v0 = 1;
+            if (escape > BattleSystem_RandNext(battleSys) % 256) {
+                result = TRUE;
             }
         } else {
-            v0 = 1;
+            result = TRUE;
         }
 
-        if (v0 == 0) {
-            BattleIO_IncrementRecord(param0, param2, 0, (((70 + 1)) + 27));
+        if (result == FALSE) {
+            BattleIO_IncrementRecord(battleSys, battler, 0, (((70 + 1)) + 27));
         }
 
-        param1->runAttempts++;
+        battleCtx->runAttempts++;
     }
 
-    return v0;
+    return result;
 }
 
 BOOL Battler_CheckTruant(BattleContext * battleCtx, int battler)

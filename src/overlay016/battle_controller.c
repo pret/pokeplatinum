@@ -615,7 +615,7 @@ static void BattleController_CommandSelectionInput(BattleSystem *battleSys, Batt
                     battleCtx->curCommandState[i] = COMMAND_SELECTION_ALERT_MESSAGE_WAIT;
                     battleCtx->nextCommandState[i] = COMMAND_SELECTION_INIT;
                 }
-            } else if (BattleSystem_Trapped(battleSys, battleCtx, i, &msg)) {
+            } else if (Battler_IsTrappedMsg(battleSys, battleCtx, i, &msg)) {
                 if (BattleSystem_BattleStatus(battleSys) & BATTLE_STATUS_RECORDING) {
                     BattleSystem_SetStopRecording(battleSys, 1);
                     BattleSystem_RecordingStopped(battleSys, BattleSystem_Context(battleSys));
@@ -2003,7 +2003,7 @@ static void BattleController_FleeCommand(BattleSystem *battleSys, BattleContext 
             battleCtx->commandNext = BATTLE_CONTROL_FIGHT_END;
         }
     } else {
-        if (BattleSystem_TryEscape(battleSys, battleCtx, battleCtx->attacker)) {
+        if (Battler_CanEscape(battleSys, battleCtx, battleCtx->attacker)) {
             LOAD_SUBSEQ(BATTLE_SUBSEQ_ESCAPE);
             battleCtx->scriptCursor = 0;
             battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
