@@ -203,8 +203,26 @@ void BattleSystem_CallScript(BattleContext *battleCtx, int narc, int file);
  * a stack was popped and should be executed.
  */
 BOOL BattleSystem_PopScript(BattleContext *battleCtx);
-void ov16_02251F44(BattleContext * param0, int param1, int param2, int param3);
-void ov16_02251F80(BattleContext * param0, int param1, int param2, int param3);
+
+/**
+ * @brief Enqueue a value onto the given IO queue for the battler.
+ * 
+ * @param battleCtx 
+ * @param id        ID of the queue to enqueue the value onto
+ * @param battler   Battler for which the value should be enqueued
+ * @param val       Value which will be enqueued
+ */
+void BattleIO_EnqueueVal(BattleContext *battleCtx, int id, int battler, int val);
+
+/**
+ * @brief Dequeue a specific value from the given IO queue for the battler.
+ * 
+ * @param battleCtx 
+ * @param id        ID of the queue to dequeue the value from
+ * @param battler   Battler for which the value should be dequeued
+ * @param val       Value which will be dequeued
+ */
+void BattleIO_DequeueVal(BattleContext *battleCtx, int id, int battler, int val);
 
 /**
  * @brief Determine if the Battle IO queue is empty (i.e., there are no pending

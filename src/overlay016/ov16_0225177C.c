@@ -226,34 +226,34 @@ BOOL BattleSystem_PopScript(BattleContext *battleCtx)
     return TRUE;
 }
 
-void ov16_02251F44 (BattleContext * param0, int param1, int param2, int param3)
+void BattleIO_EnqueueVal(BattleContext *battleCtx, int id, int battler, int val)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < 16; v0++) {
-        if (param0->ioQueue[param1][param2][v0] == 0) {
-            param0->ioQueue[param1][param2][v0] = param3;
+    for (i = 0; i < BATTLE_IO_QUEUE_SIZE; i++) {
+        if (battleCtx->ioQueue[id][battler][i] == 0) {
+            battleCtx->ioQueue[id][battler][i] = val;
             break;
         }
     }
 
-    GF_ASSERT(v0 < 16);
+    GF_ASSERT(i < BATTLE_IO_QUEUE_SIZE);
 }
 
-void ov16_02251F80 (BattleContext * param0, int param1, int param2, int param3)
+void BattleIO_DequeueVal(BattleContext *battleCtx, int id, int battler, int val)
 {
-    int v0;
+    int i;
 
-    GF_ASSERT(param3 != 0);
+    GF_ASSERT(val != 0);
 
-    for (v0 = 0; v0 < 16; v0++) {
-        if (param0->ioQueue[param1][param2][v0] == param3) {
-            param0->ioQueue[param1][param2][v0] = 0;
+    for (i = 0; i < BATTLE_IO_QUEUE_SIZE; i++) {
+        if (battleCtx->ioQueue[id][battler][i] == val) {
+            battleCtx->ioQueue[id][battler][i] = 0;
             break;
         }
     }
 
-    GF_ASSERT(v0 < 16);
+    GF_ASSERT(i < BATTLE_IO_QUEUE_SIZE);
 }
 
 BOOL BattleIO_QueueIsEmpty(BattleContext *battleCtx)
