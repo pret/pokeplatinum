@@ -6243,24 +6243,20 @@ BOOL Battler_CanPickCommand(BattleContext *battleSys, int battler)
     return result;
 }
 
-void ov16_02259A5C (BattleSystem * param0, BattleContext * param1, Pokemon * param2)
+void BattleSystem_SetPokemonCatchData(BattleSystem *battleSys, BattleContext *battleCtx, Pokemon *mon)
 {
-    TrainerInfo * v0;
-    int v1;
-    int v2;
-    int v3;
+    TrainerInfo *trInfo = BattleSystem_TrainerInfo(battleSys, BATTLER_US);
+    int mapHeader = BattleSystem_MapHeader(battleSys);
+    int terrain = BattleSystem_Terrain(battleSys);
 
-    v0 = BattleSystem_TrainerInfo(param0, 0);
-    v1 = BattleSystem_MapHeader(param0);
-    v2 = BattleSystem_Terrain(param0);
-
-    if (BattleSystem_BattleType(param0) & 0x200) {
-        v3 = Pokemon_GetValue(param2, MON_DATA_POKEBALL, NULL);
+    int ball;
+    if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_PAL_PARK) {
+        ball = Pokemon_GetValue(mon, MON_DATA_POKEBALL, NULL);
     } else {
-        v3 = param1->msgItemTemp;
+        ball = battleCtx->msgItemTemp;
     }
 
-    sub_02077E64(param2, v0, v3, v1, v2, 5);
+    Pokemon_SetCatchData(mon, trInfo, ball, mapHeader, terrain, HEAP_ID_BATTLE);
 }
 
 u8 BattleContext_IOBufferVal(BattleContext *battleCtx, int battler)

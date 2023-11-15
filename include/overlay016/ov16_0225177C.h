@@ -1270,7 +1270,17 @@ enum PokemonCryMod Battler_CryModulation(BattleContext *battleCtx, int battler, 
  * if not.
  */
 BOOL Battler_CanPickCommand(BattleContext *battleSys, int battler);
-void ov16_02259A5C(BattleSystem * param0, BattleContext * param1, Pokemon * param2);
+
+/**
+ * @brief Set the catch-data for a newly-caught Pokemon.
+ * 
+ * This will set the met-location and Poke Ball for the newly-caught Pokemon.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param mon 
+ */
+void BattleSystem_SetPokemonCatchData(BattleSystem *battleSys, BattleContext *battleCtx, Pokemon *mon);
 
 /**
  * @brief Get the top byte of the IO buffer for the given battler.

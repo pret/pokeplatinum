@@ -10735,7 +10735,7 @@ static void BattleScript_CatchMonTask (SysTask * param0, void * param1)
 
                 if (BattleSystem_BattleType(v2->battleSys) & (0x200 | 0x400)) {
                     v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
-                    ov16_02259A5C(v2->battleSys, v2->battleCtx, v3);
+                    BattleSystem_SetPokemonCatchData(v2->battleSys, v2->battleCtx, v3);
                     sub_02015738(ov16_0223E220(v2->battleSys), 1);
                     sub_02003178(v4, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
                     sub_0200872C(v5, 0, 16, 0, 0x0);
@@ -10962,7 +10962,7 @@ static void BattleScript_CatchMonTask (SysTask * param0, void * param1)
                 v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
 
                 ov16_0223F9A0(v2->battleSys, v1);
-                ov16_02259A5C(v2->battleSys, v2->battleCtx, v3);
+                BattleSystem_SetPokemonCatchData(v2->battleSys, v2->battleCtx, v3);
                 ov16_0223EF48(v2->battleSys, v3);
                 ov16_0223EF68(v2->battleSys, v3);
                 BattleIO_IncrementRecord(v2->battleSys, 0, 0, (1 + 8));
