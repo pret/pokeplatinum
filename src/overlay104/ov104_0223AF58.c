@@ -1586,7 +1586,7 @@ BattleParams * ov104_0223B250 (UnkStruct_ov104_0223B5C0 * param0, UnkStruct_ov10
     v5 = ov104_0223B50C(param0->unk_04);
     v13 = Party_GetFromSavedata(param0->unk_6FC);
 
-    sub_02097284(v13);
+    HealParty(v13);
 
     v8 = sub_02051D8C(11, ov104_0223B4D4(param0->unk_04));
     sub_020521B8(v8, NULL, param1->unk_08, param1->unk_1C, param1->unk_0C, param1->unk_10, param1->unk_20);
