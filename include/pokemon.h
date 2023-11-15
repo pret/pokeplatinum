@@ -178,16 +178,16 @@ typedef struct BoxPokemon {
  * @brief Party Pokemon data structure
  */
 typedef struct PartyPokemon {
-    u32 unk_00;
+    u32 status; // status
     u8 level;  //!< The pokemons level
-    u8 unk_05;
-    u16 unk_06;
-    u16 unk_08;
-    u16 unk_0A;
-    u16 unk_0C;
-    u16 unk_0E;
-    u16 unk_10;
-    u16 unk_12;
+    u8 mail; // mail
+    u16 hp; // hp?
+    u16 maxHP; // max hp?
+    u16 attack; // attack? 0a
+    u16 defense; // defense? 0c
+    u16 speed; // speed? 0e
+    u16 spAtk; // sp. attack? 10
+    u16 spDef; // sp. defense? 12
     UnkStruct_0202818C unk_14;
     UnkStruct_0202CA28 unk_4C;
 } PartyPokemon;
