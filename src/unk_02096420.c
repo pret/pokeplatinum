@@ -12,7 +12,7 @@
 #include "unk_02096420.h"
 
 static u8 sub_02096F34(Pokemon * param0, u32 param1);
-static u8 sub_02096F84(Pokemon * param0, u32 param1, u32 param2);
+static u8 SetMonPP(Pokemon * param0, u32 param1, u32 param2);
 static u8 sub_02097004(Pokemon * param0, u32 param1, u32 param2);
 static void sub_020970AC(Pokemon * param0, u32 param1, u32 param2, u32 param3);
 static s32 sub_020970EC(s32 param0, s32 param1, s32 param2);
@@ -371,14 +371,14 @@ u8 sub_02096954 (Pokemon * param0, u16 param1, u16 param2, u16 param3, u32 param
     }
 
     if (Item_Get(v0, 36) != 0) {
-        if (sub_02096F84(param0, param2, Item_Get(v0, 55)) == 1) {
+        if (SetMonPP(param0, param2, Item_Get(v0, 55)) == 1) {
             v2 = 1;
         }
 
         v3 = 1;
     } else if (Item_Get(v0, 37) != 0) {
         for (v1[0] = 0; v1[0] < 4; v1[0]++) {
-            if (sub_02096F84(param0, v1[0], Item_Get(v0, 55)) == 1) {
+            if (SetMonPP(param0, v1[0], Item_Get(v0, 55)) == 1) {
                 v2 = 1;
             }
         }
@@ -532,55 +532,55 @@ u8 sub_02096F14 (Party * param0, u16 param1, u8 param2, u8 param3, u16 param4, u
     return sub_02096954(v0, param1, param3, param4, param5);
 }
 
-static u8 sub_02096F34 (Pokemon * param0, u32 param1)
+static u8 sub_02096F34 (Pokemon * mon, u32 moveIDX) // param0,1
 {
-    u16 v0;
-    u8 v1;
-    u8 v2;
+    u16 move; // v0
+    u8 ppCurr; // v1
+    u8 ppUps; // v2
 
-    v0 = (u16)Pokemon_GetValue(param0, MON_DATA_MOVE1 + param1, NULL);
+    move = (u16)Pokemon_GetValue(mon, MON_DATA_MOVE1 + moveIDX, NULL);
 
-    if (v0 == 0) {
+    if (move == 0) {
         return 0;
     }
 
-    v1 = (u8)Pokemon_GetValue(param0, MON_DATA_MOVE1_CUR_PP + param1, NULL);
-    v2 = (u8)Pokemon_GetValue(param0, MON_DATA_MOVE1_PP_UPS + param1, NULL);
+    ppCurr = (u8)Pokemon_GetValue(mon, MON_DATA_MOVE1_CUR_PP + moveIDX, NULL);
+    ppUps = (u8)Pokemon_GetValue(mon, MON_DATA_MOVE1_PP_UPS + moveIDX, NULL);
 
-    if (v1 < MoveTable_CalcMaxPP(v0, v2)) {
+    if (ppCurr < MoveTable_CalcMaxPP(move, ppUps)) {
         return 1;
     }
 
     return 0;
 }
 
-static u8 sub_02096F84 (Pokemon * param0, u32 param1, u32 param2)
+static u8 SetMonPP (Pokemon * mon, u32 moveIDX, u32 pp)
 {
-    u16 v0;
-    u8 v1;
-    u8 v2;
+    u16 move;
+    u8 ppCurr;
+    u8 ppMax;
 
-    v0 = (u16)Pokemon_GetValue(param0, MON_DATA_MOVE1 + param1, NULL);
+    move = (u16)Pokemon_GetValue(mon, MON_DATA_MOVE1 + moveIDX, NULL);
 
-    if (v0 == 0) {
+    if (move == 0) {
         return 0;
     }
 
-    v1 = (u8)Pokemon_GetValue(param0, MON_DATA_MOVE1_CUR_PP + param1, NULL);
-    v2 = (u8)MoveTable_CalcMaxPP(v0, Pokemon_GetValue(param0, MON_DATA_MOVE1_PP_UPS + param1, NULL));
+    ppCurr = (u8)Pokemon_GetValue(mon, MON_DATA_MOVE1_CUR_PP + moveIDX, NULL);
+    ppMax = (u8)MoveTable_CalcMaxPP(move, Pokemon_GetValue(mon, MON_DATA_MOVE1_PP_UPS + moveIDX, NULL));
 
-    if (v1 < v2) {
-        if (param2 == 127) {
-            v1 = v2;
+    if (ppCurr < ppMax) {
+        if (pp == 127) { // case from healing function
+            ppCurr = ppMax; // ppCurr = max pp
         } else {
-            v1 += param2;
+            ppCurr += pp;
 
-            if (v1 > v2) {
-                v1 = v2;
+            if (ppCurr > ppMax) {
+                ppCurr = ppMax;
             }
         }
 
-        Pokemon_SetValue(param0, 58 + param1, &v1);
+        Pokemon_SetValue(mon, 58 + moveIDX, &ppCurr); // set the pp of the move
         return 1;
     }
 
@@ -751,30 +751,39 @@ static u8 sub_020971D0 (Pokemon * param0, s32 param1, s32 param2, u16 param3, u3
     return 1;
 }
 
-void sub_02097284 (Party * param0)
+void HealParty (Party * party) 
 {
-    int v0, v1, v2;
-    u32 v3;
-    Pokemon * v4;
+    int i, j, monCount;
+    u32 tmp;
+    Pokemon * mon;
 
-    v2 = Party_GetCurrentCount(param0);
+    monCount = Party_GetCurrentCount(party);
 
-    for (v0 = 0; v0 < v2; v0++) {
-        v4 = Party_GetPokemonBySlotIndex(param0, v0);
+    // loop through party
+    for (i = 0; i < monCount; i++) {
+        // set mon pointer to current pokemon
+        mon = Party_GetPokemonBySlotIndex(party, i);
 
-        if (Pokemon_GetValue(v4, MON_DATA_172, NULL) == 0) {
+        // data sanity?
+        if (Pokemon_GetValue(mon, MON_DATA_172, NULL) == 0) {
             continue;
         }
 
-        v3 = Pokemon_GetValue(v4, MON_DATA_MAX_HP, NULL);
-        Pokemon_SetValue(v4, 163, &v3);
+        // set tmp variable to max hp value
+        tmp = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
+        // set mon's current hp to max hp
+        Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &tmp);
 
-        v3 = 0;
-        Pokemon_SetValue(v4, 160, &v3);
+        // set tmp variable to 0
+        tmp = 0;
+        // clear mon's status condition
+        Pokemon_SetValue(mon, MON_DATA_STATUS_CONDITION, &tmp);
 
-        for (v1 = 0; v1 < 4; v1++) {
-            if (sub_02096F34(v4, v1) == 1) {
-                sub_02096F84(v4, v1, 127);
+        // loop through mon's moves
+        for (j = 0; j < 4; j++) {
+            // check if move is at max pp
+            if (sub_02096F34(mon, j) == 1) {
+                SetMonPP(mon, j, 127); // set
             }
         }
     }

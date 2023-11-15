@@ -187,7 +187,7 @@ static BOOL sub_02050B30 (UnkStruct_020508D4 * param0)
         }
 
         if (sub_0206A984(sub_020507E4(v0->unk_0C))) {
-            sub_02097284(Party_GetFromSavedata(v0->unk_0C));
+            HealParty(Party_GetFromSavedata(v0->unk_0C));
         }
 
         sub_020518B0(v0, v1->unk_10);
@@ -405,7 +405,7 @@ static BOOL sub_02050EE0 (UnkStruct_020508D4 * param0)
         }
 
         if (sub_0206A984(sub_020507E4(v0->unk_0C))) {
-            sub_02097284(Party_GetFromSavedata(v0->unk_0C));
+            HealParty(Party_GetFromSavedata(v0->unk_0C));
         }
 
         sub_020518B0(v0, v1->unk_10);

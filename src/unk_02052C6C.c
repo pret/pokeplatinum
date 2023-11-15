@@ -132,7 +132,7 @@ static BOOL sub_02052CBC (UnkStruct_020508D4 * param0)
     {
         int v6;
 
-        sub_02097284(Party_GetFromSavedata(v2->unk_0C));
+        HealParty(Party_GetFromSavedata(v2->unk_0C));
         sub_02024804();
         v6 = sub_020246E0(v2->unk_0C);
         sub_02052C6C(v2, v3->unk_00);

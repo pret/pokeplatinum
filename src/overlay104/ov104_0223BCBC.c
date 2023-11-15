@@ -254,8 +254,8 @@ BattleParams * ov104_0223BDD8 (UnkStruct_ov104_0223BFFC * param0, UnkStruct_ov10
         break;
     }
 
-    sub_02097284(param0->unk_70);
-    sub_02097284(param0->unk_74);
+    HealParty(param0->unk_70);
+    HealParty(param0->unk_74);
 
     return v5;
 }

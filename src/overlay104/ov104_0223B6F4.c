@@ -174,7 +174,7 @@ BattleParams * ov104_0223B810 (UnkStruct_ov104_0223BA10 * param0, UnkStruct_ov10
     v2 = ov104_0223B7A8(param0->unk_10, 0);
     v3 = ov104_0223B7DC(param0->unk_10, 0);
 
-    sub_02097284(param0->unk_2C);
+    HealParty(param0->unk_2C);
     v5 = sub_02051D8C(11, ov104_0223B9E4(param0->unk_10));
     sub_020521B8(v5, NULL, param1->unk_08, param1->unk_1C, param1->unk_0C, param1->unk_10, param1->unk_20);
 
@@ -283,24 +283,24 @@ void ov104_0223BA24 (Party * param0)
 {
     int v0, v1, v2;
     u32 v3;
-    Pokemon * v4;
+    Pokemon * mon;
 
     v2 = Party_GetCurrentCount(param0);
 
     for (v0 = 0; v0 < v2; v0++) {
-        v4 = Party_GetPokemonBySlotIndex(param0, v0);
+        mon = Party_GetPokemonBySlotIndex(param0, v0);
 
-        if (Pokemon_GetValue(v4, MON_DATA_172, NULL) == 0) {
+        if (Pokemon_GetValue(mon, MON_DATA_172, NULL) == 0) {
             continue;
         }
 
-        if (Pokemon_GetValue(v4, MON_DATA_CURRENT_HP, NULL) == 0) {
+        if (Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL) == 0) {
             v3 = 1;
-            Pokemon_SetValue(v4, 163, &v3);
+            Pokemon_SetValue(mon, 163, &v3);
         }
 
         v3 = 0;
-        Pokemon_SetValue(v4, 160, &v3);
+        Pokemon_SetValue(mon, 160, &v3);
     }
 
     return;

@@ -2005,7 +2005,7 @@ static BOOL ov104_02231050 (UnkStruct_ov104_0222E930 * param0)
 
     v0 = sub_0209B970(param0->unk_00->unk_00);
 
-    sub_02097284(Party_GetFromSavedata(v0->unk_08));
+    HealParty(Party_GetFromSavedata(v0->unk_08));
     return 0;
 }
 
