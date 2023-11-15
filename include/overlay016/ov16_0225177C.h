@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_OV16_0225177C_H
 #define POKEPLATINUM_OV16_0225177C_H
 
+#include "constants/sound.h"
+
 #include "pokemon.h"
 #include "struct_decls/battle_system.h"
 #include "battle/battle_context.h"
@@ -1246,7 +1248,18 @@ void BattleSystem_UpdateMetronomeCount(BattleSystem *battleSys, BattleContext *b
  * @param battleCtx 
  */
 void BattleSystem_VerifyMetronomeCount(BattleSystem *battleSys, BattleContext *battleCtx);
-int ov16_022599D0(BattleContext * param0, int param1, int param2, int param3);
+
+/**
+ * @brief Determine what modulating effect to apply to a battler's cry
+ * whenever they are sent into battle.
+ * 
+ * @param battleCtx 
+ * @param battler 
+ * @param battlerType 
+ * @param encounter     TRUE if this is a start-of-battle cry.
+ * @return The type of modulating effect applied to the battler's cry.
+ */
+enum PokemonCryMod Battler_CryModulation(BattleContext *battleCtx, int battler, int battlerType, BOOL encounter);
 
 /**
  * @brief Check if a battler can choose their action for the turn.

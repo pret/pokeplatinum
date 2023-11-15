@@ -419,7 +419,7 @@ void ov104_0222E204 (UnkStruct_02022550 * param0, s16 param1, s16 param2, u8 par
 
 u8 ov104_0222E240 (u16 param0, u16 param1)
 {
-    switch (sub_0208C104(param0, param1, 48)) {
+    switch (HealthBar_Color(param0, param1, 48)) {
     case 4:
         return 1;
     case 3:

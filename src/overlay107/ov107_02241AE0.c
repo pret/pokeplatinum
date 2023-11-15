@@ -1504,8 +1504,8 @@ static void ov107_02242F5C (UnkStruct_ov107_02241D6C * param0)
 
         v2 = Pokemon_GetValue(v19, MON_DATA_CURRENT_HP, NULL);
         v3 = Pokemon_GetValue(v19, MON_DATA_MAX_HP, NULL);
-        v4 = ov107_022450E8(param0, sub_0208C104(v2, v3, 48));
-        v5 = ov107_02245114(param0, sub_0208C104(v2, v3, 48));
+        v4 = ov107_022450E8(param0, HealthBar_Color(v2, v3, 48));
+        v5 = ov107_02245114(param0, HealthBar_Color(v2, v3, 48));
 
         param0->unk_420[v15] = ov107_02249B1C(&param0->unk_1D8, 0, 0, 0, v5, 64 * v15 + v13, 58 + 20, 3, NULL);
         param0->unk_3F4[v15] = ov107_02249B1C(&param0->unk_1D8, 3 + v15, 3, 3, v4, 64 * v15 + v13, 58, 2, NULL);
@@ -3144,8 +3144,8 @@ static BOOL ov107_02244E44 (UnkStruct_ov107_02241D6C * param0, u8 param1, u8 par
     v6 = Party_GetPokemonBySlotIndex(param0->unk_43C, v5);
     v0 = Pokemon_GetValue(v6, MON_DATA_CURRENT_HP, NULL);
     v1 = Pokemon_GetValue(v6, MON_DATA_MAX_HP, NULL);
-    v2 = ov107_022450E8(param0, sub_0208C104(v0, v1, 48));
-    v3 = ov107_02245114(param0, sub_0208C104(v0, v1, 48));
+    v2 = ov107_022450E8(param0, HealthBar_Color(v0, v1, 48));
+    v3 = ov107_02245114(param0, HealthBar_Color(v0, v1, 48));
 
     switch (param2) {
     case 4:

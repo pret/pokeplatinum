@@ -1369,7 +1369,7 @@ static void sub_0208D9D0 (UnkStruct_0208D7BC * param0)
     u8 v2;
     u8 v3;
 
-    switch (sub_0208C104(param0->unk_250.unk_24, param0->unk_250.unk_26, 48)) {
+    switch (HealthBar_Color(param0->unk_250.unk_24, param0->unk_250.unk_26, 48)) {
     case 4:
     case 3:
     case 0:

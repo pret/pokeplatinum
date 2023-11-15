@@ -7,6 +7,7 @@
 #include "constants/gender.h"
 #include "constants/heap.h"
 #include "constants/items.h"
+#include "constants/sound.h"
 #include "constants/species.h"
 #include "constants/string.h"
 #include "constants/trainer.h"
@@ -6203,35 +6204,29 @@ void BattleSystem_VerifyMetronomeCount(BattleSystem *battleSys, BattleContext *b
     }
 }
 
-int ov16_022599D0 (BattleContext * param0, int param1, int param2, int param3)
+enum PokemonCryMod Battler_CryModulation(BattleContext *battleCtx, int battler, int battlerType, BOOL encounter)
 {
-    int v0;
-    int v1;
-    int v2;
-
-    if ((param3 == 1) && ((param2 == 2) || (param2 == 3))) {
-        v2 = 1;
+    BOOL doubles;
+    if (encounter == TRUE
+            && (battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1 || battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1)) {
+        doubles = TRUE;
     } else {
-        v2 = 0;
+        doubles = FALSE;
     }
 
-    v0 = 0;
-
-    if (v2 == 1) {
-        v0 = 0;
+    int cryMod = POKECRY_NORMAL;
+    if (doubles == TRUE) { // conditional must stay to match, even though it's superfluous
+        cryMod = POKECRY_NORMAL;
     }
 
-    v1 = sub_0208C104(param0->battleMons[param1].curHP, param0->battleMons[param1].maxHP, (8 * 6));
+    int hpColor = HealthBar_Color(battleCtx->battleMons[battler].curHP, battleCtx->battleMons[battler].maxHP, (8 * 6));
 
-    if ((param0->battleMons[param1].status & 0xff) || ((v1 != 4) && (v1 != 3))) {
-        if (v2 == 1) {
-            v0 = 11;
-        } else {
-            v0 = 11;
-        }
+    if ((battleCtx->battleMons[battler].status & MON_CONDITION_ANY)
+            || (hpColor != BARCOLOR_MAX && hpColor != BARCOLOR_GREEN)) {
+        cryMod = POKECRY_PINCH_NORMAL;
     }
 
-    return v0;
+    return cryMod;
 }
 
 BOOL Battler_CanPickCommand(BattleContext *battleSys, int battler)

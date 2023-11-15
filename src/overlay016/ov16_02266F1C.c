@@ -1303,7 +1303,7 @@ static void ov16_02267F70 (UnkStruct_ov16_022674C4 * param0, u8 param1)
         {
             int v10;
 
-            v10 = sub_0208C0D4(v4, (8 * 6));
+            v10 = App_BarColor(v4, (8 * 6));
 
             switch (v10) {
             case 3:

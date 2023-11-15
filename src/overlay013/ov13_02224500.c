@@ -722,7 +722,7 @@ static u8 ov13_02225324 (UnkStruct_ov13_02221ED0 * param0)
         return 5;
     }
 
-    switch (sub_0208C104(param0->unk_10, param0->unk_12, 48)) {
+    switch (HealthBar_Color(param0->unk_10, param0->unk_12, 48)) {
     case 4:
         return 1;
     case 3:
