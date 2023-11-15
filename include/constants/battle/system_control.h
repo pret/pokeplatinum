@@ -30,6 +30,7 @@
 #define SYSCTL_ATTACK_MESSAGE_SHOWN     (1 << 2)
 #define SYSCTL_MAGIC_COAT_REFLECTED     (1 << 3)
 #define SYSCTL_UTURN_ACTIVE             (1 << 4)
+#define SYSCTL_FIRST_DAMAGE_MSG_SHOWN   (1 << 5)
 #define SYSCTL_MOVE_SUCCEEDED           (1 << 6) // this only reflects that the move is executed, not whether it hit or missed
 #define SYSCTL_FORM_CHANGE              (1 << 26)
 

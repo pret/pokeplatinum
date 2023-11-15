@@ -9,6 +9,7 @@
 #include "constants/items.h"
 #include "constants/species.h"
 #include "constants/string.h"
+#include "constants/trainer.h"
 #include "constants/narc_files/battle_skill_subseq.h"
 
 #include "struct_decls/struct_party_decl.h"
@@ -1862,123 +1863,116 @@ enum StatusEffect Battler_StatusCondition(BattleContext *battleCtx, int battler)
     return STATUS_EFFECT_NONE;
 }
 
-BOOL BattleSystem_CheckTrainerMessage (BattleSystem * param0, BattleContext * param1)
+enum {
+    CHECK_TRMSG_START = 0,
+
+    CHECK_TRMSG_FIRST_DAMAGE = CHECK_TRMSG_START,
+    CHECK_TRMSG_ACTIVE_BATTLER_HALF_HP,
+    CHECK_TRMSG_LAST_BATTLER,
+    CHECK_TRMSG_LAST_BATTLER_HALF_HP,
+    
+    CHECK_TRMSG_END,
+};
+
+BOOL BattleSystem_CheckTrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
+    int battleType = BattleSystem_BattleType(battleSys);
 
-    v0 = BattleSystem_BattleType(param0);
-
-    if (v0 & (0x4 | 0x80)) {
-        return 0;
+    if (battleType & BATTLE_TYPE_NO_TRAINER_MESSAGES) {
+        return FALSE;
     }
 
-    if ((v0 & 0x1) == 0) {
-        return 0;
+    if ((battleType & BATTLE_TYPE_TRAINER) == FALSE) {
+        return FALSE;
     }
 
-    if (v0 & 0x2) {
-        return 0;
+    if (battleType & BATTLE_TYPE_DOUBLES) {
+        return FALSE;
     }
 
-    v1 = ov16_0223E0D8(param0, 1);
-    v2 = 0;
+    int trID = Battler_TrainerID(battleSys, BATTLER_THEM);
+    int state = CHECK_TRMSG_START;
 
     do {
-        switch (v2) {
-        case 0:
-            if ((param1->battleMons[1].timesDamaged == 1) && ((param1->battleStatusMask2 & 0x20) == 0)) {
-                if (TrainerData_HasMessageType(v1, 13, 5)) {
-                    param1->battleStatusMask2 |= 0x20;
-                    param1->msgTemp = 13;
-                    return 1;
+        switch (state) {
+        case CHECK_TRMSG_FIRST_DAMAGE:
+            if (battleCtx->battleMons[BATTLER_THEM].timesDamaged == 1
+                    && (battleCtx->battleStatusMask2 & SYSCTL_FIRST_DAMAGE_MSG_SHOWN) == FALSE
+                    && TrainerData_HasMessageType(trID, TRMSG_FIRST_DAMAGE, HEAP_ID_BATTLE)) {
+                battleCtx->battleStatusMask2 |= SYSCTL_FIRST_DAMAGE_MSG_SHOWN;
+                battleCtx->msgTemp = TRMSG_FIRST_DAMAGE;
+                return TRUE;
+            }
+
+            state++;
+            break;
+
+        case CHECK_TRMSG_ACTIVE_BATTLER_HALF_HP:
+            if ((battleCtx->battleMons[BATTLER_THEM].trainerMessageFlags & TRMSG_ACTIVE_BATTLER_HALF_HP_FLAG) == FALSE
+                    && battleCtx->battleMons[BATTLER_THEM].curHP <= battleCtx->battleMons[BATTLER_THEM].maxHP / 2
+                    && TrainerData_HasMessageType(trID, TRMSG_ACTIVE_BATTLER_HALF_HP, HEAP_ID_BATTLE)) {
+                battleCtx->battleMons[BATTLER_THEM].trainerMessageFlags |= TRMSG_ACTIVE_BATTLER_HALF_HP_FLAG;
+                battleCtx->msgTemp = TRMSG_ACTIVE_BATTLER_HALF_HP;
+                return TRUE;
+            }
+
+            state++;
+            break;
+
+        case CHECK_TRMSG_LAST_BATTLER:
+            if ((battleCtx->battleMons[BATTLER_THEM].trainerMessageFlags & TRMSG_LAST_BATTLER_FLAG) == FALSE) {
+                Party *party = BattleSystem_Party(battleSys, BATTLER_THEM);
+                int alive = 0;
+
+                for (int i = 0; i < Party_GetCurrentCount(party); i++) {
+                    Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
+
+                    if (Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL)) {
+                        alive++;
+                    }
+                }
+
+                if (alive == 1 && TrainerData_HasMessageType(trID, TRMSG_LAST_BATTLER, HEAP_ID_BATTLE)) {
+                    battleCtx->battleMons[BATTLER_THEM].trainerMessageFlags |= TRMSG_LAST_BATTLER_FLAG;
+                    battleCtx->msgTemp = TRMSG_LAST_BATTLER;
+                    return TRUE;
                 }
             }
 
-            v2++;
+            state++;
             break;
-        case 1:
-            if ((param1->battleMons[1].trainerMessageFlags & 0x2) == 0) {
-                if (param1->battleMons[1].curHP <= (param1->battleMons[1].maxHP / 2)) {
-                    if (TrainerData_HasMessageType(v1, 14, 5)) {
-                        param1->battleMons[1].trainerMessageFlags |= 0x2;
-                        param1->msgTemp = 14;
-                        return 1;
+
+        case CHECK_TRMSG_LAST_BATTLER_HALF_HP:
+            if ((battleCtx->battleMons[BATTLER_THEM].trainerMessageFlags & TRMSG_LAST_BATTLER_HALF_HP_FLAG) == FALSE) {
+                Party *party = BattleSystem_Party(battleSys, BATTLER_THEM);
+                int alive = 0;
+
+                for (int i = 0; i < Party_GetCurrentCount(party); i++) {
+                    Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
+
+                    if (Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL)) {
+                        alive++;
                     }
+                }
+
+                if (alive == 1
+                        && battleCtx->battleMons[BATTLER_THEM].curHP <= battleCtx->battleMons[BATTLER_THEM].maxHP / 2
+                        && TrainerData_HasMessageType(trID, TRMSG_LAST_BATTLER_HALF_HP, HEAP_ID_BATTLE)) {
+                    battleCtx->battleMons[BATTLER_THEM].trainerMessageFlags |= TRMSG_LAST_BATTLER_HALF_HP_FLAG;
+                    battleCtx->msgTemp = TRMSG_LAST_BATTLER_HALF_HP;
+                    return TRUE;
                 }
             }
 
-            v2++;
+            state++;
             break;
-        case 2:
-            if ((param1->battleMons[1].trainerMessageFlags & 0x3) == 0) {
-                {
-                    int v3;
-                    int v4;
-                    Party * v5;
-                    Pokemon * v6;
 
-                    v5 = BattleSystem_Party(param0, 1);
-                    v4 = 0;
-
-                    for (v3 = 0; v3 < Party_GetCurrentCount(v5); v3++) {
-                        v6 = Party_GetPokemonBySlotIndex(v5, v3);
-
-                        if (Pokemon_GetValue(v6, MON_DATA_CURRENT_HP, NULL)) {
-                            v4++;
-                        }
-                    }
-
-                    if (v4 == 1) {
-                        if (TrainerData_HasMessageType(v1, 15, 5)) {
-                            param1->battleMons[1].trainerMessageFlags |= 0x3;
-                            param1->msgTemp = 15;
-                            return 1;
-                        }
-                    }
-                }
-            }
-
-            v2++;
-            break;
-        case 3:
-            if ((param1->battleMons[1].trainerMessageFlags & 0x4) == 0) {
-                {
-                    int v7;
-                    int v8;
-                    Party * v9;
-                    Pokemon * v10;
-
-                    v9 = BattleSystem_Party(param0, 1);
-                    v8 = 0;
-
-                    for (v7 = 0; v7 < Party_GetCurrentCount(v9); v7++) {
-                        v10 = Party_GetPokemonBySlotIndex(v9, v7);
-
-                        if (Pokemon_GetValue(v10, MON_DATA_CURRENT_HP, NULL)) {
-                            v8++;
-                        }
-                    }
-
-                    if ((v8 == 1) && (param1->battleMons[1].curHP <= (param1->battleMons[1].maxHP / 2))) {
-                        if (TrainerData_HasMessageType(v1, 16, 5)) {
-                            param1->battleMons[1].trainerMessageFlags |= 0x4;
-                            param1->msgTemp = 16;
-                            return 1;
-                        }
-                    }
-                }
-            }
-
-            v2++;
-            break;
-        case 4:
+        case CHECK_TRMSG_END:
             break;
         }
-    } while (v2 != 4);
+    } while (state != CHECK_TRMSG_END);
 
-    return 0;
+    return FALSE;
 }
 
 void BattleContext_Init (BattleContext * param0)

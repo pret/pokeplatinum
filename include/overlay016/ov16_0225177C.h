@@ -440,7 +440,19 @@ void Battler_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx,
  * @return A value representing the battler's status non-volatile status.
  */
 enum StatusEffect Battler_StatusCondition(BattleContext *battleCtx, int battler);
-BOOL BattleSystem_CheckTrainerMessage(BattleSystem * param0, BattleContext * param1);
+
+/**
+ * @brief Check if the given trainer has a trainer message to be shown.
+ * 
+ * If a trainer message is to be shown, then the respective battler will be
+ * updated with the appropriate flag, and battleCtx->msgTemp will be loaded
+ * with the type of message to be shown.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return TRUE if a message should be shown, else FALSE.
+ */
+BOOL BattleSystem_CheckTrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx);
 void BattleContext_Init(BattleContext * param0);
 void BattleContext_InitCounters(BattleSystem * param0, BattleContext * param1);
 

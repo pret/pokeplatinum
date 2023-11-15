@@ -1146,7 +1146,7 @@ void ov16_0225DD7C (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     UnkStruct_ov16_0225D8F0 * v0;
     int v1;
 
-    v1 = ov16_0223E0D8(param0, param1->unk_190);
+    v1 = Battler_TrainerID(param0, param1->unk_190);
     v0 = (UnkStruct_ov16_0225D8F0 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0225D8F0));
 
     v0->unk_00 = param0;
@@ -2985,11 +2985,11 @@ static void ov16_022604C8 (SysTask * param0, void * param1)
         } else {
             if (v4 & 0x20) {
                 v10.tags = 8;
-                v10.params[0] = ov16_0223E0D8(v0->unk_00, v0->unk_09);
+                v10.params[0] = Battler_TrainerID(v0->unk_00, v0->unk_09);
                 v10.id = 922;
             } else if (v4 & 0x200) {
                 v10.tags = 8;
-                v10.params[0] = ov16_0223E0D8(v0->unk_00, v0->unk_09);
+                v10.params[0] = Battler_TrainerID(v0->unk_00, v0->unk_09);
                 v10.id = 1222;
             } else {
                 v10.tags = 2;
