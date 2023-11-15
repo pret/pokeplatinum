@@ -4416,7 +4416,7 @@ static void ov16_02262258 (SysTask * param0, void * param1)
         v5 = BattleSystem_Partner(v0->unk_00, v4);
     }
 
-    v1 = ov16_0225BE28(v0->unk_00, v4);
+    v1 = BattleAI_SwitchedSlot(v0->unk_00, v4);
 
     if (v1 == 6) {
         v1 = BattleAI_PostKOSwitchIn(v0->unk_00, v4);
@@ -6409,13 +6409,13 @@ static void ov16_022646C8 (SysTask * param0, void * param1)
 static void ov16_02264730 (BattleSystem * param0)
 {
     BattleSystem_SetStopRecording(param0, 1);
-    BattleSystem_RecordingStopped(param0, BattleSystem_Context(param0));
+    Battle_RecordingStopped(param0, BattleSystem_Context(param0));
 }
 
 static void ov16_0226474C (BattleSystem * param0)
 {
     BattleSystem_SetStopRecording(param0, 2);
-    BattleSystem_RecordingStopped(param0, BattleSystem_Context(param0));
+    Battle_RecordingStopped(param0, BattleSystem_Context(param0));
 }
 
 static u8 ov16_02264768 (BattleSystem * param0, u8 param1, u8 param2)

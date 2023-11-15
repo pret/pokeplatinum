@@ -6470,17 +6470,14 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
     return result;
 }
 
-void ov16_0225A1B0 (BattleSystem * param0, BattleContext * param1)
+void BattleSystem_InitPartyOrder(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-
-    for (v0 = 0; v0 < BattleSystem_MaxBattlers(param0); v0++) {
-        for (v1 = 0; v1 < 6; v1++) {
-            param1->partyOrder[v0][v1] = v1;
+    for (int i = 0; i < BattleSystem_MaxBattlers(battleSys); i++) {
+        for (int j = 0; j < MAX_PARTY_SIZE; j++) {
+            battleCtx->partyOrder[i][j] = j;
         }
 
-        BattleSystem_SwitchSlots(param0, param1, v0, param1->selectedPartySlot[v0]);
+        BattleSystem_SwitchSlots(battleSys, battleCtx, i, battleCtx->selectedPartySlot[i]);
     }
 }
 
@@ -7407,10 +7404,10 @@ void BattleSystem_DecPPForPressure(BattleContext *battleCtx, int attacker, int d
     }
 }
 
-BOOL BattleSystem_RecordingStopped (BattleSystem *battleSys, BattleContext *battleCtx)
+BOOL Battle_RecordingStopped(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (ov16_0223F710(battleSys)) {
-        battleCtx->command = 42;
+    if (BattleSystem_RecordingStopped(battleSys)) {
+        battleCtx->command = BATTLE_CONTROL_SCREEN_WIPE;
         return TRUE;
     }
 
@@ -8105,12 +8102,10 @@ int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler)
     return picked;
 }
 
-int ov16_0225BE28 (BattleSystem * param0, int param1)
+int BattleAI_SwitchedSlot(BattleSystem *battleSys, int battler)
 {
-    BattleContext * v0;
-
-    v0 = BattleSystem_Context(param0);
-    return v0->aiSwitchedPartySlot[param1];
+    BattleContext *battleCtx = BattleSystem_Context(battleSys);
+    return battleCtx->aiSwitchedPartySlot[battler];
 }
 
 int Move_CalcVariableType(BattleSystem *battleSys, BattleContext *battleCtx, Pokemon *mon, int move)

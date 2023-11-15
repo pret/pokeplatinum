@@ -1231,7 +1231,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
  * @return TRUE if a follow-up subsequence should be run to apply the item's
  * Fling effect; FALSE if no such follow-up is needed.
  */
-BOOL BattleSystem_FlingItem(BattleSystem * param0, BattleContext * param1, int param2);
+BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 
 /**
  * @brief Update the count for the Metronome held item.
@@ -1331,7 +1331,14 @@ BOOL BattleSystem_PokemonIsOT(BattleSystem *battleSys, Pokemon *mon);
  * be loaded for execution, FALSE otherwise.
  */
 BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript);
-void ov16_0225A1B0(BattleSystem * param0, BattleContext * param1);
+
+/**
+ * @brief Initialize the party order buffer.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ */
+void BattleSystem_InitPartyOrder(BattleSystem *battleSys, BattleContext *battleCtx);
 
 /**
  * @brief Switch the party order by swapping the battler in the given party slot
@@ -1516,7 +1523,18 @@ BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem *battleSys, BattleCont
  * @param defender 
  */
 void BattleSystem_DecPPForPressure(BattleContext *battleCtx, int attacker, int defender);
-BOOL BattleSystem_RecordingStopped(BattleSystem * param0, BattleContext * param1);
+
+/**
+ * @brief Check if the recording for a battle has finished playing.
+ * 
+ * If the recording has finished, then the controller will be set to a
+ * SCREEN_WIPE command.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return TRUE if the recording has stopped, FALSE otherwise.
+ */
+BOOL Battle_RecordingStopped(BattleSystem *battleSys, BattleContext *battleCtx);
 
 /**
  * @brief Get an accessible field from the BattleContext struct.
@@ -1561,7 +1579,15 @@ void BattleContext_Set(BattleSystem *battleSys, BattleContext *battleCtx, enum B
  * @return The party slot of the Pokemon to be switched in.
  */
 int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler);
-int ov16_0225BE28(BattleSystem * param0, int param1);
+
+/**
+ * @brief Get the switched-to slot determined by the AI for a given battler.
+ * 
+ * @param battleSys 
+ * @param battler 
+ * @return The AI's switched-to slot for the battler.
+ */
+int BattleAI_SwitchedSlot(BattleSystem *battleSys, int battler);
 
 /**
  * @brief Compute the variable-type of a move, given its use by a given Pokemon.

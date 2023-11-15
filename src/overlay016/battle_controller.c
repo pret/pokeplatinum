@@ -515,7 +515,7 @@ static void BattleController_CommandSelectionInput(BattleSystem *battleSys, Batt
                 } else if (BattleSystem_CanUseMove(battleSys, battleCtx, i, battleCtx->ioBuffer[i][0] - 1, &msg) == FALSE) {
                     if (BattleSystem_BattleStatus(battleSys) & BATTLE_STATUS_RECORDING) {
                         BattleSystem_SetStopRecording(battleSys, 1);
-                        BattleSystem_RecordingStopped(battleSys, BattleSystem_Context(battleSys));
+                        Battle_RecordingStopped(battleSys, BattleSystem_Context(battleSys));
                     } else {
                         BattleIO_SetAlertMessage(battleSys, i, msg);
                         battleCtx->curCommandState[i] = COMMAND_SELECTION_ALERT_MESSAGE_WAIT;
@@ -606,7 +606,7 @@ static void BattleController_CommandSelectionInput(BattleSystem *battleSys, Batt
             } else if ((battleType & BATTLE_TYPE_TRAINER) && (battleType & BATTLE_TYPE_LINK) == FALSE) {
                 if (BattleSystem_BattleStatus(battleSys) & BATTLE_STATUS_RECORDING) {
                     BattleSystem_SetStopRecording(battleSys, 1);
-                    BattleSystem_RecordingStopped(battleSys, BattleSystem_Context(battleSys));
+                    Battle_RecordingStopped(battleSys, BattleSystem_Context(battleSys));
                 } else {
                     msg.tags = 0;
                     msg.id = 793;
@@ -618,7 +618,7 @@ static void BattleController_CommandSelectionInput(BattleSystem *battleSys, Batt
             } else if (Battler_IsTrappedMsg(battleSys, battleCtx, i, &msg)) {
                 if (BattleSystem_BattleStatus(battleSys) & BATTLE_STATUS_RECORDING) {
                     BattleSystem_SetStopRecording(battleSys, 1);
-                    BattleSystem_RecordingStopped(battleSys, BattleSystem_Context(battleSys));
+                    Battle_RecordingStopped(battleSys, BattleSystem_Context(battleSys));
                 } else {
                     BattleIO_SetAlertMessage(battleSys, i, msg);
                     battleCtx->curCommandState[i] = COMMAND_SELECTION_ALERT_MESSAGE_WAIT;
@@ -873,7 +873,7 @@ static void BattleController_BranchActions(BattleSystem *battleSys, BattleContex
 {
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
 
-    if (BattleSystem_RecordingStopped(battleSys, battleCtx)) {
+    if (Battle_RecordingStopped(battleSys, battleCtx)) {
         return;
     }
 

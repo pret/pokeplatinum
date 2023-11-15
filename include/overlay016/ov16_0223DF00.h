@@ -258,7 +258,7 @@ void ov16_0223F638(BattleSystem * param0, u16 param1, u8 * param2);
 u16 ov16_0223F6E4(BattleSystem * param0);
 int ov16_0223F6F0(BattleSystem * param0, u16 param1);
 u16 BattleSystem_TrainerItems(BattleSystem * param0, int param1, int param2);
-u32 ov16_0223F710(BattleSystem * param0);
+u32 BattleSystem_RecordingStopped(BattleSystem * param0);
 void BattleSystem_SetStopRecording(BattleSystem *battleSys, int flag);
 BOOL ov16_0223F7A4(BattleSystem * param0);
 void BattleSystem_ShowStopPlaybackButton(BattleSystem *battleSys);

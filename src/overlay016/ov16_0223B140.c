@@ -811,7 +811,7 @@ static void ov16_0223BCB4 (UnkStruct_020067E8 * param0)
 
     sub_0201DCF0(v0->cellTransferState);
 
-    if (ov16_0223F710(v0)) {
+    if (BattleSystem_RecordingStopped(v0)) {
         sub_0200500C(127);
     }
 
@@ -1175,7 +1175,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
                     BattleContext_Set(param0, param0->battleCtx, 2, v0, v1);
                 }
 
-                ov16_0225A1B0(param0, param0->battleCtx);
+                BattleSystem_InitPartyOrder(param0, param0->battleCtx);
             } else if (param0->battleType & 0x8) {
                 for (v0 = 0; v0 < 4; v0++) {
                     v2.unk_00 = v0;
@@ -1202,7 +1202,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
                     BattleContext_Set(param0, param0->battleCtx, 2, v0, v1);
                 }
 
-                ov16_0225A1B0(param0, param0->battleCtx);
+                BattleSystem_InitPartyOrder(param0, param0->battleCtx);
             } else if (param0->battleType & 0x2) {
                 for (v0 = 0; v0 < 4; v0++) {
                     v2.unk_00 = v0;
@@ -1259,7 +1259,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
                 }
             }
         }
-        ov16_0225A1B0(param0, param0->battleCtx);
+        BattleSystem_InitPartyOrder(param0, param0->battleCtx);
     } else if (param0->battleType & 0x10) {
         {
             int v8;
@@ -1299,7 +1299,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
                 }
             }
         }
-        ov16_0225A1B0(param0, param0->battleCtx);
+        BattleSystem_InitPartyOrder(param0, param0->battleCtx);
         param0->unk_23F8 = 1;
     } else if (param0->battleType & 0x8) {
         for (v0 = 0; v0 < 4; v0++) {
@@ -1327,7 +1327,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
             BattleContext_Set(param0, param0->battleCtx, 2, v0, v1);
         }
 
-        ov16_0225A1B0(param0, param0->battleCtx);
+        BattleSystem_InitPartyOrder(param0, param0->battleCtx);
         param0->unk_23F8 = 1;
     } else if (param0->battleType & 0x2) {
         for (v0 = 0; v0 < 4; v0++) {
@@ -1361,7 +1361,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
             BattleContext_Set(param0, param0->battleCtx, 2, v0, v1);
         }
 
-        ov16_0225A1B0(param0, param0->battleCtx);
+        BattleSystem_InitPartyOrder(param0, param0->battleCtx);
         param0->unk_23F8 = 1;
     } else {
         for (v0 = 0; v0 < 2; v0++) {
@@ -1387,7 +1387,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
             BattleContext_Set(param0, param0->battleCtx, 2, v0, v1);
         }
 
-        ov16_0225A1B0(param0, param0->battleCtx);
+        BattleSystem_InitPartyOrder(param0, param0->battleCtx);
         param0->unk_23F8 = 1;
     }
 
