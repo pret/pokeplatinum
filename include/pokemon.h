@@ -182,16 +182,16 @@ typedef struct BoxPokemon {
  *  Rather than recalculating stats after each battle, they're stored here.
  */
 typedef struct PartyPokemon {
-    u32 status; // status
-    u8 level;  // level
-    u8 mail; // mail 04
-    u16 hp; // hp 06
-    u16 maxHP; // max hp 08
-    u16 attack; // attack 0a
-    u16 defense; // defense 0c
-    u16 speed; // speed 0e
-    u16 spAtk; // sp. attack 10
-    u16 spDef; // sp. defense
+    u32 status;
+    u8 level;
+    u8 mail;
+    u16 hp;
+    u16 maxHP;
+    u16 attack;
+    u16 defense;
+    u16 speed;
+    u16 spAtk;
+    u16 spDef;
     UnkStruct_0202818C unk_14;
     UnkStruct_0202CA28 unk_4C;
 } PartyPokemon;
