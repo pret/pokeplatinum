@@ -540,34 +540,34 @@ static u32 Pokemon_GetDataInternal(Pokemon *mon, enum PokemonDataParam param, vo
 
     switch (param) {
     case MON_DATA_STATUS_CONDITION:
-        result = mon->party.unk_00;
+        result = mon->party.status;
         break;
     case MON_DATA_LEVEL:
         result = mon->party.level;
         break;
     case MON_DATA_162:
-        result = mon->party.unk_05;
+        result = mon->party.mail;
         break;
     case MON_DATA_CURRENT_HP:
-        result = mon->party.unk_06;
+        result = mon->party.hp;
         break;
     case MON_DATA_MAX_HP:
-        result = mon->party.unk_08;
+        result = mon->party.maxHP;
         break;
     case MON_DATA_ATK:
-        result = mon->party.unk_0A;
+        result = mon->party.attack;
         break;
     case MON_DATA_DEF:
-        result = mon->party.unk_0C;
+        result = mon->party.defense;
         break;
     case MON_DATA_SPEED:
-        result = mon->party.unk_0E;
+        result = mon->party.speed;
         break;
     case MON_DATA_SP_ATK:
-        result = mon->party.unk_10;
+        result = mon->party.spAtk;
         break;
     case MON_DATA_SP_DEF:
-        result = mon->party.unk_12;
+        result = mon->party.spDef;
         break;
     case MON_DATA_170:
         sub_020281A0(&mon->party.unk_14, dest);
@@ -1048,34 +1048,34 @@ static void Pokemon_SetDataInternal(Pokemon *mon, enum PokemonDataParam param, c
 
     switch (param) {
     case MON_DATA_STATUS_CONDITION:
-        mon->party.unk_00 = u32Value[0];
+        mon->party.status = u32Value[0];
         break;
     case MON_DATA_LEVEL:
         mon->party.level = u8Value[0];
         break;
     case MON_DATA_162:
-        mon->party.unk_05 = u8Value[0];
+        mon->party.mail = u8Value[0];
         break;
     case MON_DATA_CURRENT_HP:
-        mon->party.unk_06 = u16Value[0];
+        mon->party.hp = u16Value[0];
         break;
     case MON_DATA_MAX_HP:
-        mon->party.unk_08 = u16Value[0];
+        mon->party.maxHP = u16Value[0];
         break;
     case MON_DATA_ATK:
-        mon->party.unk_0A = u16Value[0];
+        mon->party.attack = u16Value[0];
         break;
     case MON_DATA_DEF:
-        mon->party.unk_0C = u16Value[0];
+        mon->party.defense = u16Value[0];
         break;
     case MON_DATA_SPEED:
-        mon->party.unk_0E = u16Value[0];
+        mon->party.speed = u16Value[0];
         break;
     case MON_DATA_SP_ATK:
-        mon->party.unk_10 = u16Value[0];
+        mon->party.spAtk = u16Value[0];
         break;
     case MON_DATA_SP_DEF:
-        mon->party.unk_12 = u16Value[0];
+        mon->party.spDef = u16Value[0];
         break;
     case MON_DATA_170:
         sub_020281A0(value, &mon->party.unk_14);
@@ -1523,10 +1523,10 @@ static void Pokemon_IncreaseDataInternal(Pokemon *mon, enum PokemonDataParam par
 {
     switch (param) {
     case MON_DATA_CURRENT_HP:
-        if (mon->party.unk_06 + value > mon->party.unk_08) {
-            mon->party.unk_06 = mon->party.unk_08;
+        if (mon->party.hp + value > mon->party.maxHP) {
+            mon->party.hp = mon->party.maxHP;
         } else {
-            mon->party.unk_06 += value;
+            mon->party.hp += value;
         }
         break;
     case MON_DATA_STATUS_CONDITION:
@@ -4852,16 +4852,16 @@ void sub_02078B40(Pokemon *mon, UnkStruct_02078B40 *param1)
 
     param1->pokeball = monDataBlockD->pokeball;
 
-    param1->unk_5C = mon->party.unk_00;
+    param1->unk_5C = mon->party.status;
     param1->level = mon->party.level;
-    param1->unk_61 = mon->party.unk_05;
-    param1->unk_62 = mon->party.unk_06;
-    param1->unk_64 = mon->party.unk_08;
-    param1->unk_66 = mon->party.unk_0A;
-    param1->unk_68 = mon->party.unk_0C;
-    param1->unk_6A = mon->party.unk_0E;
-    param1->unk_6C = mon->party.unk_10;
-    param1->unk_6E = mon->party.unk_12;
+    param1->unk_61 = mon->party.mail;
+    param1->unk_62 = mon->party.hp;
+    param1->unk_64 = mon->party.maxHP;
+    param1->unk_66 = mon->party.attack;
+    param1->unk_68 = mon->party.defense;
+    param1->unk_6A = mon->party.speed;
+    param1->unk_6C = mon->party.spAtk;
+    param1->unk_6E = mon->party.spDef;
 
     if (mon->box.partyDecrypted == FALSE) {
         Pokemon_EncryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
@@ -4928,16 +4928,16 @@ void sub_02078E0C(UnkStruct_02078B40 *param0, Pokemon *mon)
 
     monDataBlockD->pokeball = param0->pokeball;
 
-    mon->party.unk_00 = param0->unk_5C;
+    mon->party.status = param0->unk_5C;
     mon->party.level = param0->level;
-    mon->party.unk_05 = param0->unk_61;
-    mon->party.unk_06 = param0->unk_62;
-    mon->party.unk_08 = param0->unk_64;
-    mon->party.unk_0A = param0->unk_66;
-    mon->party.unk_0C = param0->unk_68;
-    mon->party.unk_0E = param0->unk_6A;
-    mon->party.unk_10 = param0->unk_6C;
-    mon->party.unk_12 = param0->unk_6E;
+    mon->party.mail = param0->unk_61;
+    mon->party.hp = param0->unk_62;
+    mon->party.maxHP = param0->unk_64;
+    mon->party.attack = param0->unk_66;
+    mon->party.defense = param0->unk_68;
+    mon->party.speed = param0->unk_6A;
+    mon->party.spAtk = param0->unk_6C;
+    mon->party.spDef = param0->unk_6E;
 
     Pokemon_EncryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
     mon->box.checksum = Pokemon_GetDataChecksum(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4);

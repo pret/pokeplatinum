@@ -2527,7 +2527,7 @@ static BOOL sub_02080F3C (UnkStruct_0207F248 * param0, u8 param1, s8 param2)
 
         v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param1);
         v1 = param0->unk_704[param1].unk_06;
-        Pokemon_SetValue(v0, 163, &v1);
+        Pokemon_SetValue(v0, 163, &v1); //hm
         return 1;
     }
 
