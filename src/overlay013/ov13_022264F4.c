@@ -50,7 +50,7 @@
 #include "overlay013/ov13_02228128.h"
 #include "overlay013/ov13_02228A38.h"
 #include "overlay016/ov16_0223DF00.h"
-#include "overlay016/ov16_0225177C.h"
+#include "battle/battle_lib.h"
 #include "overlay016/ov16_0226DE44.h"
 
 static void ov13_02226590(SysTask * param0, void * param1);

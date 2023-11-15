@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV16_0225177C_H
-#define POKEPLATINUM_OV16_0225177C_H
+#ifndef POKEPLATINUM_BATTLE_BATTLE_LIB_H
+#define POKEPLATINUM_BATTLE_BATTLE_LIB_H
 
 #include "constants/sound.h"
 
@@ -1603,4 +1603,4 @@ int BattleAI_SwitchedSlot(BattleSystem *battleSys, int battler);
  */
 int Move_CalcVariableType(BattleSystem *battleSys, BattleContext *battleCtx, Pokemon *mon, int move);
 
-#endif // POKEPLATINUM_OV16_0225177C_H
+#endif // POKEPLATINUM_BATTLE_BATTLE_LIB_H
