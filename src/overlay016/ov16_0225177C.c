@@ -1975,76 +1975,70 @@ BOOL BattleSystem_CheckTrainerMessage(BattleSystem *battleSys, BattleContext *ba
     return FALSE;
 }
 
-void BattleContext_Init (BattleContext * param0)
+void BattleContext_Init(BattleContext *battleCtx)
 {
-    int v0;
+    battleCtx->damage = 0;
+    battleCtx->criticalMul = 1;
+    battleCtx->criticalBoosts = 0;
+    battleCtx->movePower = 0;
+    battleCtx->powerMul = 10;
+    battleCtx->moveType = TYPE_NORMAL;
+    battleCtx->moveEffectChance = 0;
+    battleCtx->moveStatusFlags = 0;
+    battleCtx->faintedMon = BATTLER_NONE;
+    battleCtx->sideEffectDirectFlags = MOVE_SUBSCRIPT_PTR_NONE;
+    battleCtx->sideEffectIndirectFlags = MOVE_SUBSCRIPT_PTR_NONE;
+    battleCtx->sideEffectAbilityFlags = MOVE_SUBSCRIPT_PTR_NONE;
+    battleCtx->sideEffectType = SIDE_EFFECT_TYPE_NONE;
+    battleCtx->sideEffectParam = MOVE_SUBSCRIPT_PTR_NONE;
+    battleCtx->sideEffectMon = BATTLER_NONE;
+    battleCtx->multiHitCounter = 0;
+    battleCtx->multiHitNumHits = 0;
+    battleCtx->battlerCounter = 0;
+    battleCtx->multiHitLoop = 0;
+    battleCtx->afterMoveMessageType = 0;
+    battleCtx->multiHitCheckFlags = 0;
+    battleCtx->multiHitAccuracyCheck = 0;
+    battleCtx->fieldConditionCheckState = 0;
+    battleCtx->monConditionCheckState = 0;
+    battleCtx->sideConditionCheckState = 0;
+    battleCtx->turnStartCheckState = 0;
+    battleCtx->afterMoveHitCheckState = 0;
+    battleCtx->afterMoveMessageState = 0;
+    battleCtx->afterMoveEffectState = 0;
+    battleCtx->beforeMoveCheckState = 0;
+    battleCtx->tryMoveCheckState = 0;
+    battleCtx->statusCheckState = 0;
+    battleCtx->abilityCheckState = 0;
+    battleCtx->battleStatusMask &= SYSCTL_INIT;
+    battleCtx->battleStatusMask2 &= SYSCTL_INIT2;
+    battleCtx->magnitude = 0;
 
-    param0->damage = 0;
-    param0->criticalMul = 1;
-    param0->criticalBoosts = 0;
-    param0->movePower = 0;
-    param0->powerMul = 10;
-    param0->moveType = 0;
-    param0->moveEffectChance = 0;
-    param0->moveStatusFlags = 0;
-    param0->faintedMon = 0xff;
-    param0->sideEffectDirectFlags = 0;
-    param0->sideEffectIndirectFlags = 0;
-    param0->sideEffectAbilityFlags = 0;
-    param0->sideEffectType = 0;
-    param0->sideEffectParam = 0x0;
-    param0->sideEffectMon = 0xff;
-    param0->multiHitCounter = 0;
-    param0->multiHitNumHits = 0;
-    param0->battlerCounter = 0;
-    param0->multiHitLoop = 0;
-    param0->afterMoveMessageType = 0;
-    param0->multiHitCheckFlags = 0;
-    param0->multiHitAccuracyCheck = 0;
-    param0->fieldConditionCheckState = 0;
-    param0->monConditionCheckState = 0;
-    param0->sideConditionCheckState = 0;
-    param0->turnStartCheckState = 0;
-    param0->afterMoveHitCheckState = 0;
-    param0->afterMoveMessageState = 0;
-    param0->afterMoveEffectState = 0;
-    param0->beforeMoveCheckState = 0;
-    param0->tryMoveCheckState = 0;
-    param0->statusCheckState = 0;
-    param0->abilityCheckState = 0;
-    param0->battleStatusMask &= ((1 | 2 | 4 | 8 | 16 | 32 | 256 | 512 | 1024 | 2048 | 0x80000 | 8192) | (4096 | 16384 | 32768 | 65536 | 0x20000 | 0x40000 | 0x100000 | 0x200000 | 0x400000 | 128 | 64)) ^ 0xffffffff;
-    param0->battleStatusMask2 &= (2 | 4 | 8 | 16 | 64 | 256) ^ 0xffffffff;
-    param0->magnitude = 0;
-
-    for (v0 = 0; v0 < 4; v0++) {
-        MI_CpuClearFast(&param0->selfTurnFlags[v0], sizeof(struct SelfTurnFlags));
-        param0->aiSwitchedPartySlot[v0] = 6;
+    for (int i = 0; i < MAX_BATTLERS; i++) {
+        MI_CpuClearFast(&battleCtx->selfTurnFlags[i], sizeof(struct SelfTurnFlags));
+        battleCtx->aiSwitchedPartySlot[i] = 6;
     }
 }
 
-void BattleContext_InitCounters (BattleSystem * param0, BattleContext * param1)
+void BattleContext_InitCounters(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-
-    for (v1 = 0; v1 < 4; v1++) {
-        param1->moveHitBattler[v1] = 0xff;
-        param1->switchedPartySlot[v1] = 6;
-        param1->speedRand[v1] = BattleSystem_RandNext(param0);
+    for (int i = 0; i < MAX_BATTLERS; i++) {
+        battleCtx->moveHitBattler[i] = BATTLER_NONE;
+        battleCtx->switchedPartySlot[i] = 6;
+        battleCtx->speedRand[i] = BattleSystem_RandNext(battleSys);
     }
 
-    param1->prizeMoneyMul = 1;
-    param1->meFirstTurnOrder = 1;
+    battleCtx->prizeMoneyMul = 1;
+    battleCtx->meFirstTurnOrder = 1;
 
-    v0 = BattleSystem_BattleType(param0);
-
-    if ((v0 & 0x2) == 0) {
-        param1->battlersSwitchingMask |= FlagIndex(2);
-        param1->battlersSwitchingMask |= FlagIndex(3);
+    int battleType = BattleSystem_BattleType(battleSys);
+    if ((battleType & BATTLE_TYPE_DOUBLES) == FALSE) {
+        battleCtx->battlersSwitchingMask |= FlagIndex(BATTLER_PLAYER_SLOT_2);
+        battleCtx->battlersSwitchingMask |= FlagIndex(BATTLER_ENEMY_SLOT_2);
     }
 
-    param1->safariCatchStage = 6;
-    param1->safariEscapeCount = 6;
+    battleCtx->safariCatchStage = 6;
+    battleCtx->safariEscapeCount = 6;
 }
 
 void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *battleCtx, int battler)

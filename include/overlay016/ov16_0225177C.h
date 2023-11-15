@@ -453,8 +453,21 @@ enum StatusEffect Battler_StatusCondition(BattleContext *battleCtx, int battler)
  * @return TRUE if a message should be shown, else FALSE.
  */
 BOOL BattleSystem_CheckTrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx);
-void BattleContext_Init(BattleContext * param0);
-void BattleContext_InitCounters(BattleSystem * param0, BattleContext * param1);
+
+/**
+ * @brief Initialize the BattleContext structure with start-of-turn state.
+ * 
+ * @param battleCtx 
+ */
+void BattleContext_Init(BattleContext *battleCtx);
+
+/**
+ * @brief Initialize standard counters for the BattleContext structure.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ */
+void BattleContext_InitCounters(BattleSystem *battleSys, BattleContext *battleCtx);
 
 /**
  * @brief Update relevant buffers for a battler after a switch.
