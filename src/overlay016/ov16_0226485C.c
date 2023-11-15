@@ -234,7 +234,7 @@ static BOOL ov16_022648F4 (BattleSystem * param0, void * param1)
             v7 = v0[1];
 
             if (ov16_0223ED60(param0)) {
-                ov16_02251F80(param0->battleCtx, v7, v2, v6);
+                BattleIO_DequeueVal(param0->battleCtx, v7, v2, v6);
             }
         }
         v5 = 1;
@@ -291,7 +291,7 @@ static void ov16_02264A04 (BattleSystem * param0, int param1, int param2, void *
                 int v2;
 
                 for (v2 = 0; v2 < sub_02035E18(); v2++) {
-                    ov16_02251F44(param0->battleCtx, v2, param2, v1[0]);
+                    BattleIO_EnqueueVal(param0->battleCtx, v2, param2, v1[0]);
                 }
             }
         }
@@ -299,7 +299,7 @@ static void ov16_02264A04 (BattleSystem * param0, int param1, int param2, void *
         sub_0207A81C(param0, param1, param2, param3, param4);
     } else {
         if (param1 == 1) {
-            ov16_02251F44(param0->battleCtx, 0, param2, v1[0]);
+            BattleIO_EnqueueVal(param0->battleCtx, 0, param2, v1[0]);
         }
 
         ov16_0226485C(param0, param1, param2, param3, param4);
@@ -596,7 +596,7 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
     v10 = 0;
 
     for (v1 = 0; v1 < BattleSystem_MaxBattlers(battleSys); v1++) {
-        if (BattleSystem_CanPickCommand(battleCtx, v1) == 0) {
+        if (Battler_CanPickCommand(battleCtx, v1) == 0) {
             v10 |= FlagIndex(v1);
         }
     }
@@ -1656,7 +1656,7 @@ BOOL ov16_02266AE4 (BattleSystem * param0, void * param1)
             v7 = v0[1];
 
             if (ov16_0223ED60(param0)) {
-                ov16_02251F80(param0->battleCtx, v7, v2, v6);
+                BattleIO_DequeueVal(param0->battleCtx, v7, v2, v6);
             }
         }
     } else {

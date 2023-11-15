@@ -248,7 +248,7 @@ static void BattleController_TrainerMessage(BattleSystem *battleSys, BattleConte
         battleCtx->command = BATTLE_CONTROL_SHOW_BATTLE_MON;
     }
 
-    BattleSystem_SortMonsBySpeed(battleSys, battleCtx);
+    BattleSystem_SortMonSpeedOrder(battleSys, battleCtx);
 }
 
 static void BattleController_ShowBattleMon(BattleSystem *battleSys, BattleContext *battleCtx)
@@ -260,7 +260,7 @@ static void BattleController_ShowBattleMon(BattleSystem *battleSys, BattleContex
         battleCtx->commandNext = battleCtx->command;
         battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
     } else {
-        BattleSystem_SortMonsBySpeed(battleSys, battleCtx);
+        BattleSystem_SortMonSpeedOrder(battleSys, battleCtx);
         BattleSystem_ShowStopPlaybackButton(battleSys);
         battleCtx->command = BATTLE_CONTROL_INIT_COMMAND_SELECTION;
     }
@@ -331,7 +331,7 @@ static void BattleController_CommandSelectionInput(BattleSystem *battleSys, Batt
                 battleCtx->curCommandState[i] = COMMAND_SELECTION_WAIT;
                 battleCtx->battlerActions[i][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_MOVE_END;
                 break;
-            } else if (BattleSystem_CanPickCommand(battleCtx, i) == FALSE) {
+            } else if (Battler_CanPickCommand(battleCtx, i) == FALSE) {
                 battleCtx->turnFlags[i].ppDecremented = TRUE;
                 battleCtx->curCommandState[i] = COMMAND_SELECTION_WAIT;
                 battleCtx->battlerActions[i][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_FIGHT;
@@ -569,7 +569,7 @@ static void BattleController_CommandSelectionInput(BattleSystem *battleSys, Batt
 
         case COMMAND_SELECTION_PARTY_SELECT_INIT:
             int doublesSelection = 6;
-            BOOL canSwitch = BattleSystem_CanSwitch(battleSys, battleCtx, i);
+            BOOL canSwitch = Battler_IsTrapped(battleSys, battleCtx, i);
 
             // Check the partner's selection in a double battle
             if ((BattleSystem_BattlerSlot(battleSys, i) == BATTLER_TYPE_PLAYER_SIDE_SLOT_2 || BattleSystem_BattlerSlot(battleSys, i) == BATTLER_TYPE_ENEMY_SIDE_SLOT_2)
@@ -615,7 +615,7 @@ static void BattleController_CommandSelectionInput(BattleSystem *battleSys, Batt
                     battleCtx->curCommandState[i] = COMMAND_SELECTION_ALERT_MESSAGE_WAIT;
                     battleCtx->nextCommandState[i] = COMMAND_SELECTION_INIT;
                 }
-            } else if (BattleSystem_Trapped(battleSys, battleCtx, i, &msg)) {
+            } else if (Battler_IsTrappedMsg(battleSys, battleCtx, i, &msg)) {
                 if (BattleSystem_BattleStatus(battleSys) & BATTLE_STATUS_RECORDING) {
                     BattleSystem_SetStopRecording(battleSys, 1);
                     BattleSystem_RecordingStopped(battleSys, BattleSystem_Context(battleSys));
@@ -884,7 +884,7 @@ static void BattleController_BranchActions(BattleSystem *battleSys, BattleContex
         }
     }
 
-    BattleSystem_SortMonsBySpeed(battleSys, battleCtx);
+    BattleSystem_SortMonSpeedOrder(battleSys, battleCtx);
     if (battleCtx->turnOrderCounter == maxBattlers) {
         battleCtx->turnOrderCounter = 0;
         battleCtx->command = BATTLE_CONTROL_CHECK_FIELD_CONDITIONS;
@@ -1881,7 +1881,7 @@ static void BattleController_FightCommand(BattleSystem *battleSys, BattleContext
         ATTACKING_MON.moveEffectsData.encoredMoveSlot = 0;
         ATTACKING_MON.moveEffectsData.encoredTurns = 0;
         randomizeTarget = TRUE;
-    } else if (BattleSystem_CanPickCommand(battleCtx, battleCtx->attacker) == FALSE) {
+    } else if (Battler_CanPickCommand(battleCtx, battleCtx->attacker) == FALSE) {
         // Relock the attacker into its move. There should be no override here, as the attacker
         // should not have been able to choose any input.
         battleCtx->moveTemp = battleCtx->moveLockedInto[battleCtx->attacker];
@@ -2003,7 +2003,7 @@ static void BattleController_FleeCommand(BattleSystem *battleSys, BattleContext 
             battleCtx->commandNext = BATTLE_CONTROL_FIGHT_END;
         }
     } else {
-        if (BattleSystem_TryEscape(battleSys, battleCtx, battleCtx->attacker)) {
+        if (Battler_CanEscape(battleSys, battleCtx, battleCtx->attacker)) {
             LOAD_SUBSEQ(BATTLE_SUBSEQ_ESCAPE);
             battleCtx->scriptCursor = 0;
             battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
@@ -2127,7 +2127,7 @@ static int BattleController_CheckObedience(BattleSystem *battleSys, BattleContex
     if (BattleSystem_TrainerIsOT(battleSys, battleCtx) == TRUE) {
         return OBEY_CHECK_SUCCESS;
     }
-    if (BattleSystem_CanPickCommand(battleCtx, battleCtx->attacker) == FALSE) {
+    if (Battler_CanPickCommand(battleCtx, battleCtx->attacker) == FALSE) {
         return OBEY_CHECK_SUCCESS;
     }
     if (battleCtx->moveCur == MOVE_BIDE && (battleCtx->battleStatusMask & SYSCTL_LAST_OF_MULTI_TURN)) {
@@ -3994,8 +3994,8 @@ static void BattleController_MoveEnd(BattleSystem *battleSys, BattleContext *bat
 
     battleCtx->battlerActions[battleCtx->battlerActionOrder[battleCtx->turnOrderCounter]][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_MOVE_END;
     if (ATTACKER_SELF_TURN_FLAGS.trickRoomActivated) {
-        BattleSystem_SortMonsInTrickRoom(battleSys, battleCtx);
-        BattleSystem_SortMonsBySpeed(battleSys, battleCtx);
+        BattleSystem_SortMonActionOrder(battleSys, battleCtx);
+        BattleSystem_SortMonSpeedOrder(battleSys, battleCtx);
         battleCtx->turnOrderCounter = 0;
     } else {
         battleCtx->turnOrderCounter++;

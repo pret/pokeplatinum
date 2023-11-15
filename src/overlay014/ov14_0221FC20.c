@@ -3427,7 +3427,7 @@ static BOOL ov14_0222342C (BattleSystem * param0, BattleContext * param1, int pa
             if ((Pokemon_GetValue(v5, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES_EGG, NULL) != 494) && (v0 != param1->selectedPartySlot[param2])) {
                 for (v1 = 0; v1 < 4; v1++) {
                     v2 = Pokemon_GetValue(v5, MON_DATA_MOVE1 + v1, NULL);
-                    v3 = ov16_0225BE3C(param0, param1, v5, v2);
+                    v3 = Move_CalcVariableType(param0, param1, v5, v2);
 
                     if (v2) {
                         v4 = 0;
@@ -3519,7 +3519,7 @@ static BOOL ov14_022235F0 (BattleSystem * param0, BattleContext * param1, int pa
         if ((Pokemon_GetValue(v12, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v12, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v12, MON_DATA_SPECIES_EGG, NULL) != 494) && (v0 != param1->selectedPartySlot[v4]) && (v0 != param1->selectedPartySlot[v5]) && (v0 != param1->aiSwitchedPartySlot[v4]) && (v0 != param1->aiSwitchedPartySlot[v5])) {
             for (v1 = 0; v1 < 4; v1++) {
                 v6 = Pokemon_GetValue(v12, MON_DATA_MOVE1 + v1, NULL);
-                v7 = ov16_0225BE3C(param0, param1, v12, v6);
+                v7 = Move_CalcVariableType(param0, param1, v12, v6);
 
                 if ((v6) && (param1->aiContext.moveTable[v6].power)) {
                     v8 = 0;
@@ -3558,7 +3558,7 @@ static BOOL ov14_022235F0 (BattleSystem * param0, BattleContext * param1, int pa
         if ((Pokemon_GetValue(v12, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v12, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v12, MON_DATA_SPECIES_EGG, NULL) != 494) && (v0 != param1->selectedPartySlot[v4]) && (v0 != param1->selectedPartySlot[v5]) && (v0 != param1->aiSwitchedPartySlot[v4]) && (v0 != param1->aiSwitchedPartySlot[v5])) {
             for (v1 = 0; v1 < 4; v1++) {
                 v6 = Pokemon_GetValue(v12, MON_DATA_MOVE1 + v1, NULL);
-                v7 = ov16_0225BE3C(param0, param1, v12, v6);
+                v7 = Move_CalcVariableType(param0, param1, v12, v6);
 
                 if ((v6) && (param1->aiContext.moveTable[v6].power)) {
                     v8 = 0;
@@ -3765,7 +3765,7 @@ static BOOL ov14_02223E10 (BattleSystem * param0, BattleContext * param1, int pa
             if (v6 & param3) {
                 for (v1 = 0; v1 < 4; v1++) {
                     v4 = Pokemon_GetValue(v9, MON_DATA_MOVE1 + v1, NULL);
-                    v5 = ov16_0225BE3C(param0, param1, v9, v4);
+                    v5 = Move_CalcVariableType(param0, param1, v9, v4);
 
                     if (v4) {
                         v6 = 0;
@@ -3926,7 +3926,7 @@ int ov14_022243BC (BattleSystem * param0, int param1)
     if ((v3 & 0x1) || ((Battler_Side(param0, param1) == 0))) {
         if (ov14_022241A4(param0, v7, param1)) {
             if (v7->aiSwitchedPartySlot[param1] == 6) {
-                if ((v0 = ov16_0225BA88(param0, param1)) == 6) {
+                if ((v0 = BattleAI_PostKOSwitchIn(param0, param1)) == 6) {
                     v1 = param1;
 
                     if ((v3 & 0x10) || (v3 & 0x8)) {
