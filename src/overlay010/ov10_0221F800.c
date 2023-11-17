@@ -1944,7 +1944,7 @@ static void ov10_02221A3C (UnkStruct_ov10_0221FB28 * param0)
         Heap_FreeToHeap(v2);
     }
 
-    sub_02081940(param0->unk_00->unk_24, param0->unk_298, param0->unk_358, param0->unk_418);
+    LoadScreenDataFromNARC(param0->unk_00->unk_24, param0->unk_298, param0->unk_358, param0->unk_418);
     NARC_dtor(v0);
 }
 

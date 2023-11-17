@@ -234,7 +234,7 @@ int sub_020836A8 (GameWindowLayout * param0)
     if (Message_Printing(param0->unk_B10) == 0) {
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             sub_0200E084(&param0->unk_04[34], 1);
-            sub_020819B4(param0);
+            LoadOverlay118(param0);
             return 19;
         }
     }
@@ -245,7 +245,7 @@ int sub_020836A8 (GameWindowLayout * param0)
 int sub_020836E4 (GameWindowLayout * param0)
 {
     if (ov118_021D0DBC(param0) == 1) {
-        sub_020819CC(param0);
+        UnloadOverlay118(param0);
         return 17;
     }
 
