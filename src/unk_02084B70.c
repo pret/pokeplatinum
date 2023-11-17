@@ -594,7 +594,7 @@ int sub_02085804 (UnkStruct_0207F248 * param0)
     case 1:
 
         v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
-        sub_02096954(v0, param0->unk_5A4->unk_24, 0, sub_02086930(param0), 12);
+        ApplyItemEffectsToPokemon(v0, param0->unk_5A4->unk_24, 0, sub_02086930(param0), 12);
 
         v2 = Pokemon_GetValue(v0, MON_DATA_CURRENT_HP, NULL);
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 70);

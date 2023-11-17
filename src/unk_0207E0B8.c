@@ -2603,7 +2603,7 @@ static int sub_0208107C (UnkStruct_0207F248 * param0)
         return 6;
     }
 
-    if (sub_0209693C(param0->unk_5A4->unk_00, param0->unk_5A4->unk_24, param0->unk_B11, 0, 12) == 1) {
+    if (CheckItemEffectsOnPartyMember(param0->unk_5A4->unk_00, param0->unk_5A4->unk_24, param0->unk_B11, 0, 12) == 1) {
         Bag_SubtractItem(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
 
         if (Item_Get(v0, 26) != 0) {

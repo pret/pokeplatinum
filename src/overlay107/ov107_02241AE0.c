@@ -3564,7 +3564,7 @@ void ov107_02245438 (int param0, int param1, void * param2, void * param3)
 
 static void ov107_02245454 (Pokemon * param0, u16 param1)
 {
-    sub_02096954(param0, param1, 0, 0, 100);
+    ApplyItemEffectsToPokemon(param0, param1, 0, 0, 100);
     return;
 }
 
