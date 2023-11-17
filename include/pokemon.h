@@ -182,16 +182,16 @@ typedef struct BoxPokemon {
  *  Rather than recalculating stats after each battle, they're stored here.
  */
 typedef struct PartyPokemon {
-    u32 status;
-    u8 level;
-    u8 mail;
-    u16 hp;
-    u16 maxHP;
-    u16 attack;
-    u16 defense;
-    u16 speed;
-    u16 spAtk;
-    u16 spDef;
+    u32 status; //!< The pokemons status
+    u8 level; //!< The pokemons level
+    u8 mail; //!< The ID of the mail the pokemon is holding
+    u16 hp; //!< The pokemons current HP
+    u16 maxHP; //!< The pokemons maximum HP
+    u16 attack; //!< The pokemons Attack stat
+    u16 defense; //!< The pokemons Defense stat
+    u16 speed; //!< The pokemons Speed stat
+    u16 spAtk; //!< The pokemons Special Attack stat
+    u16 spDef; //!< The pokemons Special Defense stat
     UnkStruct_0202818C unk_14;
     UnkStruct_0202CA28 unk_4C;
 } PartyPokemon;
@@ -200,8 +200,8 @@ typedef struct PartyPokemon {
  * @brief The main Pokemon data structure
  */
 typedef struct Pokemon {
-    BoxPokemon box; // Contains the pokemons boxed data
-    PartyPokemon party; // Contains the pokemons extra data while it is in the players party
+    BoxPokemon box; //!< Contains the pokemons boxed data
+    PartyPokemon party; //!< Contains the pokemons extra data while it is in the players party
 } Pokemon;
 
 /**
