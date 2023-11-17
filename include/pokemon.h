@@ -801,10 +801,10 @@ int Pokemon_LoadLevelUpMoveIdsOf(int monSpecies, int monForm, u16 *monLevelUpMov
 
 void Pokemon_ApplyPokerus(Party *party);
 u8 Pokemon_HasPokerus(Party *party, u8 param1);
-void UpdatePokerusStatusInParty(Party *party, s32 param1);
+void Party_UpdatePokerusStatus(Party *party, s32 param1);
 void Pokemon_ValidatePokerus(Party *party);
-BOOL IsPokemonInfectedWithPokerus(Pokemon *mon);
-BOOL CanPokemonSpreadPokerus(Pokemon *mon);
+BOOL Pokemon_InfectedWithPokerus(Pokemon *mon);
+BOOL Pokemon_CanSpreadPokerus(Pokemon *mon);
 
 /**
  * @brief Sets Arceus' form based on its held item. Has no effect if the given Pokemon is not an Arceus
@@ -953,10 +953,10 @@ void Pokemon_PlayCry(ChatotCry *chatotCry, enum PokemonCryMod crymod, u16 specie
  * @param delay                 Number of frames until playback will begin.
  */
 void Pokemon_PlayDelayedCry(ChatotCry *chatotCry, enum PokemonCryMod crymod, u16 species, int form, int pan, int volume, int forceDefaultChatot, int heapID, u8 delay);
-BOOL IsPokemonEligibleForAction(Pokemon *mon);
+BOOL Pokemon_IsEligibleForAction(Pokemon *mon);
 void Pokemon_SetCatchData(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
-void PostCapturePokemonProcessing(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
-void AssignHeldItemToPokemon(Pokemon *mon, u32 param1, int param2);
+void Pokemon_UpdateAfterCatch(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
+void Pokemon_GiveHeldItem(Pokemon *mon, u32 param1, int param2);
 BOOL Pokemon_CanLearnTM(Pokemon *mon, u8 tmID);
 BOOL CanPokemonFormLearnTM(u16 monSpecies, int monForm, u8 tmID);
 

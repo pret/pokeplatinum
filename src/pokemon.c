@@ -3785,7 +3785,7 @@ u8 Pokemon_HasPokerus(Party *party, u8 param1)
     return result;
 }
 
-void UpdatePokerusStatusInParty(Party *party, s32 param1)
+void Party_UpdatePokerusStatus(Party *party, s32 param1)
 {
     int currentPartyCount = Party_GetCurrentCount(party);
 
@@ -3846,7 +3846,7 @@ void Pokemon_ValidatePokerus(Party *party)
     }
 }
 
-BOOL IsPokemonInfectedWithPokerus(Pokemon *mon)
+BOOL Pokemon_InfectedWithPokerus(Pokemon *mon)
 {
     return IsBoxPokemonInfectedWithPokerus(&mon->box);
 }
@@ -3856,7 +3856,7 @@ static BOOL IsBoxPokemonInfectedWithPokerus(BoxPokemon *boxMon)
     return (BoxPokemon_GetValue(boxMon, MON_DATA_POKERUS, NULL) & 0xf) != 0;
 }
 
-BOOL CanPokemonSpreadPokerus(Pokemon *mon)
+BOOL Pokemon_CanSpreadPokerus(Pokemon *mon)
 {
     return CanBoxPokemonSpreadPokerus(&mon->box);
 }
@@ -4215,7 +4215,7 @@ void Pokemon_PlayDelayedCry(ChatotCry *chatotCry, enum PokemonCryMod crymod, u16
     Sound_PlayDelayedPokemonCry(crymod, species, pan, volume, heapID, delay, form);
 }
 
-BOOL IsPokemonEligibleForAction(Pokemon *mon)
+BOOL Pokemon_IsEligibleForAction(Pokemon *mon)
 {
     int monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     int monForm = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
@@ -4244,7 +4244,7 @@ static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *pa
     BoxPokemon_SetValue(boxMon, MON_DATA_158, &param4);
 }
 
-void PostCapturePokemonProcessing(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5)
+void Pokemon_UpdateAfterCatch(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5)
 {
     PostCaptureBoxPokemonProcessing(&mon->box, param1, monPokeball, param3, param4, param5);
 }
@@ -4259,7 +4259,7 @@ static const u16 sHeldItemChance[][2] = {
     {20, 80}
 };
 
-void AssignHeldItemToPokemon(Pokemon *mon, u32 param1, int param2)
+void Pokemon_GiveHeldItem(Pokemon *mon, u32 param1, int param2)
 {
     if (param1 & (0x1 | 0x80)) {
         return;

@@ -49,7 +49,7 @@ BOOL IsChatotCryStructReadyForProcessing (const ChatotCry * cry)
     u8 * v0 = sub_02003D5C(31);
     u8 * v1 = sub_02003D5C(54);
 
-    if (IsChatotCryValid(cry) == 0) {
+    if (IsChatotCryDataValid(cry) == 0) {
         return 0;
     }
 
@@ -153,7 +153,7 @@ MICResult StopMicSampling (void)
 
 void StoreMicDataInChatotCryStruct (ChatotCry * param0)
 {
-    StoreProcessedAudioInChatotCry(param0, (const s8 *)sub_02005014());
+    StoreProcessedAudioInChatotCryData(param0, (const s8 *)sub_02005014());
     return;
 }
 
@@ -209,7 +209,7 @@ int Sound_Chatter (ChatotCry * param0)
     const s8 * v0;
     s8 v1;
 
-    if (IsChatotCryValid(param0) == 0) {
+    if (IsChatotCryDataValid(param0) == 0) {
         return 0;
     }
 
