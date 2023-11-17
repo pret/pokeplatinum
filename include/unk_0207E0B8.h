@@ -13,13 +13,13 @@ u8 sub_02080354(GameWindowLayout * param0, u8 param1);
 u8 sub_02080404(GameWindowLayout * param0, u8 param1);
 u8 sub_02080488(GameWindowLayout * param0, u8 param1);
 u8 sub_020805D0(u8 param0, u8 param1);
-u8 sub_02080BCC(u16 param0);
+u8 GetElementIndex(u16 param0);
 u32 sub_02081930(void);
 u32 sub_02081934(void);
 u32 sub_02081938(void);
 u32 sub_0208193C(void);
-void sub_02081940(u32 param0, u16 * param1, u16 * param2, u16 * param3);
-void sub_020819B4(GameWindowLayout * param0);
-void sub_020819CC(GameWindowLayout * param0);
+void LoadScreenDataFromNARC(u32 param0, u16 * param1, u16 * param2, u16 * param3);
+void LoadOverlay118(GameWindowLayout * param0);
+void UnloadOverlay118(GameWindowLayout * param0);
 
 #endif // POKEPLATINUM_UNK_0207E0B8_H
