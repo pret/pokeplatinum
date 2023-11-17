@@ -12,7 +12,7 @@ typedef struct {
     Pokemon * unk_04[6];
     Party * unk_1C;
     UnkStruct_0202CA1C * unk_20;
-    UnkStruct_020279FC * unk_24;
+    AnimationControlFlags * unk_24;
     SaveData * unk_28;
     u8 unk_2C;
     u8 unk_2D;

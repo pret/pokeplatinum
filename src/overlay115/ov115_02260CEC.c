@@ -174,7 +174,7 @@ typedef struct {
 } UnkStruct_ov115_02264A40;
 
 typedef struct {
-    UnkStruct_02022550 * unk_00;
+    GraphicElementData * unk_00;
     UnkStruct_02017294 unk_04;
     UnkStruct_02017294 unk_7C;
     BOOL unk_F4;
@@ -188,12 +188,12 @@ typedef struct {
 
 typedef struct {
     BOOL unk_00;
-    UnkStruct_02022550 * unk_04;
+    GraphicElementData * unk_04;
 } UnkStruct_ov115_02264BA0;
 
 typedef struct {
     BOOL unk_00;
-    UnkStruct_02022550 * unk_04;
+    GraphicElementData * unk_04;
     VecFx32 unk_08;
     s32 unk_14;
     BOOL unk_18;
@@ -204,7 +204,7 @@ typedef struct {
 } UnkStruct_ov115_02264C90;
 
 typedef struct {
-    UnkStruct_02022550 * unk_00[3];
+    GraphicElementData * unk_00[3];
     u32 unk_0C[3];
     VecFx32 unk_18[3];
     BOOL unk_3C;
@@ -250,7 +250,7 @@ typedef struct {
 typedef struct {
     UnkStruct_02009DC8 * unk_00[4];
     UnkStruct_ov19_021DA864 unk_10;
-    UnkStruct_02022550 * unk_34;
+    GraphicElementData * unk_34;
     u8 unk_38;
     u8 unk_39;
     u8 unk_3A;
@@ -267,7 +267,7 @@ typedef struct {
 typedef struct {
     UnkStruct_02009DC8 * unk_00[4];
     UnkStruct_ov19_021DA864 unk_10;
-    UnkStruct_02022550 * unk_34;
+    GraphicElementData * unk_34;
     Window unk_38;
     FontOAM * unk_48;
     UnkStruct_02012B20 * unk_4C;
@@ -297,8 +297,8 @@ typedef struct {
     Strbuf* unk_10;
     u16 unk_14;
     u16 unk_16;
-    UnkStruct_0207C690 * unk_18;
-    UnkStruct_020218BC * unk_1C;
+    GenericPointerData * unk_18;
+    GraphicElementManager * unk_1C;
     UnkStruct_0200C738 unk_20;
     UnkStruct_02009714 * unk_1AC[4];
     UnkStruct_ov19_021DA864 unk_1BC;

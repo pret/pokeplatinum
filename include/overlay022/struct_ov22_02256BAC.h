@@ -10,9 +10,9 @@
 
 typedef struct {
     BGL * unk_00;
-    UnkStruct_020218BC * unk_04;
+    GraphicElementManager * unk_04;
     UnkStruct_02009714 ** unk_08;
-    const UnkStruct_020279FC * unk_0C;
+    const AnimationControlFlags * unk_0C;
     int unk_10;
     int unk_14;
     int unk_18;

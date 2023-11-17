@@ -25,13 +25,13 @@
 typedef struct {
     int unk_00;
     BOOL unk_04;
-    UnkStruct_0200C6E4 * unk_08;
-    UnkStruct_0200C704 * unk_0C;
+    CellTransferStateData * unk_08;
+    AnimationResourceCollection * unk_0C;
     BGL * unk_10;
     PaletteSys * unk_14;
     Window unk_18[11];
-    UnkStruct_02013A04 * unk_C8;
-    UnkStruct_02001AF4 * unk_CC;
+    ResourceMetadata * unk_C8;
+    UIControlData * unk_CC;
     UnkStruct_02007768 * unk_D0;
     UnkStruct_02007C7C * unk_D4;
     int unk_D8;
@@ -41,7 +41,7 @@ typedef struct {
     UnkStruct_02015920 * unk_150;
     UnkStruct_ov12_02235FE0 * unk_154;
     BallRotation * unk_158;
-    UnkStruct_0207C690 * unk_15C;
+    GenericPointerData * unk_15C;
     UnkStruct_02012744 * unk_160;
     FontOAM * unk_164[2];
     SpriteManagerAllocation unk_16C[2];

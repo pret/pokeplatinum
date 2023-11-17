@@ -15,7 +15,7 @@
 #include "unk_0202CBE4.h"
 
 struct UnkStruct_02025E0C_t {
-    UnkStruct_020279FC unk_00;
+    AnimationControlFlags unk_00;
     TrainerInfo unk_04;
     u16 unk_24;
     UnkStruct_02025E5C unk_26;
@@ -44,7 +44,7 @@ TrainerInfo * sub_02025E38 (SaveData * param0)
     return &v0->unk_04;
 }
 
-UnkStruct_020279FC * sub_02025E44 (SaveData * param0)
+AnimationControlFlags * sub_02025E44 (SaveData * param0)
 {
     UnkStruct_02025E0C * v0;
 

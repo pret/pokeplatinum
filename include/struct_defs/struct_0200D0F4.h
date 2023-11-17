@@ -6,7 +6,7 @@
 #include "overlay019/struct_ov19_021DA864.h"
 
 typedef struct CellActorData {
-    UnkStruct_02022550 * unk_00;
+    GraphicElementData * unk_00;
     UnkStruct_ov19_021DA864 * unk_04;
     UnkStruct_02009508 * unk_08;
     int unk_0C;

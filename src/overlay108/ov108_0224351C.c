@@ -21,7 +21,7 @@ struct UnkStruct_ov108_02243594_t {
     u8 unk_0B;
     u16 unk_0C;
     u16 unk_0E;
-    UnkStruct_02022550 * unk_10;
+    GraphicElementData * unk_10;
 };
 
 UnkStruct_ov108_02243594 * ov108_0224351C(UnkStruct_ov108_02243030 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u16 param5, u16 param6, u32 param7, int param8, u8 param9);

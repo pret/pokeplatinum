@@ -44,7 +44,7 @@
 #include "overlay005/ov5_021EA874.h"
 
 typedef struct {
-    UnkStruct_02013A04 * unk_00;
+    ResourceMetadata * unk_00;
     UnkStruct_0200112C * unk_04;
     Strbuf* unk_08;
     Strbuf* unk_0C;
@@ -55,7 +55,7 @@ typedef struct {
     UnkStruct_0200B358 * unk_38;
     MessageLoader * unk_3C;
     int unk_40;
-    UnkStruct_02001AF4 * unk_44;
+    UIControlData * unk_44;
     int unk_48;
     int unk_4C[8];
     int unk_6C[8];

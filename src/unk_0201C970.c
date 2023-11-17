@@ -92,7 +92,7 @@ void sub_0201CAB0 (NNSG3dRenderObj * param0, const VecFx32 * param1, const MtxFx
     NNS_G3dGeFlushBuffer();
 }
 
-static UnkStruct_0207C690 * Unk_021BFB0C = NULL;
+static GenericPointerData * Unk_021BFB0C = NULL;
 
 void sub_0201CAF4 (const u8 param0)
 {

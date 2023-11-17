@@ -277,7 +277,7 @@ static void sub_02052F28 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * para
 
 static void sub_02052FA8 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * param1)
 {
-    UnkStruct_020279FC * v0 = sub_02025E44(param0->unk_0C);
+    AnimationControlFlags * v0 = sub_02025E44(param0->unk_0C);
 
     param1->unk_2C = MessageBank_GetNewStrbufFromNARC(26, 213, 15, 32);
 

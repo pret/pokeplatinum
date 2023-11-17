@@ -150,15 +150,15 @@ typedef struct {
     UnkStruct_0203CDB0 * unk_00;
     BGL * unk_04;
     MATHRandContext32 unk_08;
-    UnkStruct_020218BC * unk_20;
+    GraphicElementManager * unk_20;
     UnkStruct_0200C738 unk_24;
     UnkStruct_02009714 * unk_1B0[4];
     UnkStruct_02009DC8 * unk_1C0[8];
     UnkStruct_ov19_021DA864 unk_1E0;
     UnkStruct_ov19_021DA864 unk_204[2];
-    UnkStruct_02022550 * unk_24C[8];
+    GraphicElementData * unk_24C[8];
     UnkStruct_ov23_0223E6F8 unk_26C[250];
-    UnkStruct_02001AF4 * unk_848;
+    UIControlData * unk_848;
     UnkStruct_ov23_0223E6F8 * unk_84C[8];
     u8 unk_86C[8];
     UnkStruct_ov23_0223FC9C unk_874[8];

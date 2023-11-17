@@ -46,7 +46,7 @@ typedef struct {
     u32 unk_0C;
     UnkStruct_ov22_0225B1BC * unk_10;
     UnkStruct_ov22_0225A0E4 unk_14;
-    UnkStruct_02022550 * unk_1FC;
+    GraphicElementData * unk_1FC;
     Window * unk_200;
 } UnkStruct_ov22_0225B85C;
 

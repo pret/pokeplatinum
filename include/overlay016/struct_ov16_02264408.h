@@ -10,7 +10,7 @@
 #include "overlay016/struct_ov16_02264408_sub1.h"
 
 typedef struct {
-    UnkStruct_0200C6E4 * unk_00;
+    CellTransferStateData * unk_00;
     BGL * unk_04;
     PaletteSys * unk_08;
     UnkStruct_ov16_0223E0C8 * unk_0C[4];

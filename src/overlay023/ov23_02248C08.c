@@ -39,7 +39,7 @@ UnkStruct_ov23_02248D20 * ov23_02248C08 (UnkStruct_ov84_02240FA8 * param0, u16 p
         v0->unk_1D = param3;
 
         {
-            UnkStruct_02013A04 * v1 = sub_02013A04(param0->unk_10, v0->unk_1D);
+            ResourceMetadata * v1 = sub_02013A04(param0->unk_10, v0->unk_1D);
             int v2;
 
             for (v2 = 0; v2 < param0->unk_10; v2++) {
@@ -89,7 +89,7 @@ u32 ov23_02248D20 (UnkStruct_ov23_02248D20 * param0)
     u16 v1, v2, v3;
     int v4, v5;
     u32 v6;
-    UnkStruct_02013A04 * v7;
+    ResourceMetadata * v7;
 
     if (param0->unk_00) {
         int v8 = sub_02001504(v0, 2);

@@ -271,10 +271,10 @@ void ov83_0223D95C (UnkStruct_ov83_0223D784 * param0, UnkStruct_ov83_0223D95C * 
     }
 }
 
-UnkStruct_02022550 * ov83_0223D9A8 (UnkStruct_ov83_0223D784 * param0, UnkStruct_ov83_0223D95C * param1, fx32 param2, fx32 param3, fx32 param4, int param5, int param6)
+GraphicElementData * ov83_0223D9A8 (UnkStruct_ov83_0223D784 * param0, UnkStruct_ov83_0223D95C * param1, fx32 param2, fx32 param3, fx32 param4, int param5, int param6)
 {
     UnkStruct_ov83_0223D9A8 v0;
-    UnkStruct_02022550 * v1;
+    GraphicElementData * v1;
 
     v0.unk_00 = param0->unk_00;
     v0.unk_04 = &param1->unk_14;

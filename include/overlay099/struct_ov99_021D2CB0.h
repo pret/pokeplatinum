@@ -25,10 +25,10 @@ typedef struct {
     BOOL unk_04;
     BGL * unk_08;
     PaletteSys * unk_0C;
-    UnkStruct_0207C690 * unk_10;
+    GenericPointerData * unk_10;
     SysTask * unk_14;
-    UnkStruct_0200C6E4 * unk_18;
-    UnkStruct_0200C704 * unk_1C;
+    CellTransferStateData * unk_18;
+    AnimationResourceCollection * unk_1C;
     MessageLoader * unk_20;
     Window * unk_24;
     UnkStruct_020203AC * unk_28;

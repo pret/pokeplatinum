@@ -10,7 +10,7 @@
 int Player_SaveSize(void);
 void Player_Init(UnkStruct_02025E0C * param0);
 TrainerInfo * sub_02025E38(SaveData * param0);
-UnkStruct_020279FC * sub_02025E44(SaveData * param0);
+AnimationControlFlags * sub_02025E44(SaveData * param0);
 u16 * sub_02025E50(SaveData * param0);
 UnkStruct_02025E5C * sub_02025E5C(SaveData * param0);
 

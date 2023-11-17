@@ -85,7 +85,7 @@ void sub_0203E414(UnkStruct_020508D4 * param0, int param1);
 void sub_0203E518(UnkStruct_020508D4 * param0);
 void * sub_0203E53C(UnkStruct_0203CDB0 * param0, int param1, int param2);
 void * sub_0203E564(UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u16 param3, int param4);
-UnkStruct_02098C44 * sub_0203E598(UnkStruct_0203CDB0 * param0, int param1, int param2);
+PartyManagementData * sub_0203E598(UnkStruct_0203CDB0 * param0, int param1, int param2);
 void * sub_0203E608(UnkStruct_0203CDB0 * param0, int param1);
 void * sub_0203E63C(int param0, UnkStruct_0203CDB0 * param1, u16 param2, u16 param3);
 void sub_0203E6C0(UnkStruct_0203CDB0 * param0, int param1, int param2);

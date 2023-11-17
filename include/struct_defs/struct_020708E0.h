@@ -13,8 +13,8 @@
 typedef struct {
     Window unk_00;
     Window unk_10;
-    UnkStruct_02001AF4 * unk_20;
-    UnkStruct_02013A04 * unk_24;
+    UIControlData * unk_20;
+    ResourceMetadata * unk_24;
     u16 unk_28;
     u16 unk_2A;
     u32 unk_2C;

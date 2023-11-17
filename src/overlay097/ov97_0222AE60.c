@@ -133,7 +133,7 @@ typedef struct {
     int unk_150;
     BOOL unk_154[1];
     Window unk_158;
-    UnkStruct_02022550 * unk_168[2];
+    GraphicElementData * unk_168[2];
     int unk_170;
 } UnkStruct_0222AE60;
 

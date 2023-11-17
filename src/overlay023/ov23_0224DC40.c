@@ -67,9 +67,9 @@ typedef struct {
     UnkStruct_ov23_02250CD4 * unk_04;
     UnkStruct_0203CDB0 * unk_08;
     Window unk_0C;
-    UnkStruct_02013A04 * unk_1C;
+    ResourceMetadata * unk_1C;
     UnkStruct_0200112C * unk_20;
-    UnkStruct_02001AF4 * unk_24;
+    UIControlData * unk_24;
     UnkStruct_ov23_0224F184 unk_28;
     UnkFuncPtr_ov23_0224DCB8 unk_2C;
     u16 unk_30;
@@ -89,9 +89,9 @@ typedef struct {
     SysTask * unk_00;
     UnkStruct_0203CDB0 * unk_04;
     Window unk_08;
-    UnkStruct_02013A04 * unk_18;
+    ResourceMetadata * unk_18;
     UnkStruct_0200112C * unk_1C;
-    UnkStruct_02001AF4 * unk_20;
+    UIControlData * unk_20;
     UnkStruct_ov23_0224F184 unk_24;
     UnkFuncPtr_ov23_0224DCB8 unk_28;
     u16 unk_2C;

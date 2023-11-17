@@ -334,13 +334,13 @@ static void sub_02068630 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
 {
     UnkStruct_0203CDB0 * v0;
     UnkStruct_020708E0 * v1;
-    UnkStruct_02098C44 * v2;
+    PartyManagementData * v2;
 
     v0 = sub_02050A60(param0->unk_00);
     v1 = sub_02050A64(param0->unk_00);
-    v2 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02098C44));
+    v2 = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
 
-    memset(v2, 0, sizeof(UnkStruct_02098C44));
+    memset(v2, 0, sizeof(PartyManagementData));
 
     v2->unk_00 = Party_GetFromSavedata(v0->unk_0C);
     v2->unk_04 = sub_0207D990(v0->unk_0C);
@@ -587,13 +587,13 @@ static void sub_02068A34 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
 {
     UnkStruct_0203CDB0 * v0;
     UnkStruct_020708E0 * v1;
-    UnkStruct_02098C44 * v2;
+    PartyManagementData * v2;
 
     v0 = sub_02050A60(param0->unk_00);
     v1 = sub_02050A64(param0->unk_00);
-    v2 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02098C44));
+    v2 = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
 
-    memset(v2, 0, sizeof(UnkStruct_02098C44));
+    memset(v2, 0, sizeof(PartyManagementData));
 
     v2->unk_00 = Party_GetFromSavedata(v0->unk_0C);
     v2->unk_04 = sub_0207D990(v0->unk_0C);
@@ -956,7 +956,7 @@ static BOOL sub_02068F48 (UnkStruct_020508D4 * param0)
         sub_0205D8F4(v0->unk_08, &v1->unk_00, 3);
 
         {
-            const UnkStruct_020279FC * v2 = sub_02025E44(v0->unk_0C);
+            const AnimationControlFlags * v2 = sub_02025E44(v0->unk_0C);
 
             sub_0205D944(&v1->unk_00, v2);
             v1->unk_14 = sub_0205D994(&v1->unk_00, v1->unk_10, v2, 1);
@@ -987,13 +987,13 @@ static void sub_02068FEC (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
 {
     UnkStruct_0203CDB0 * v0;
     UnkStruct_020708E0 * v1;
-    UnkStruct_02098C44 * v2;
+    PartyManagementData * v2;
 
     v0 = sub_02050A60(param0->unk_00);
     v1 = sub_02050A64(param0->unk_00);
-    v2 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02098C44));
+    v2 = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
 
-    memset(v2, 0, sizeof(UnkStruct_02098C44));
+    memset(v2, 0, sizeof(PartyManagementData));
 
     v2->unk_00 = Party_GetFromSavedata(v0->unk_0C);
     v2->unk_04 = sub_0207D990(v0->unk_0C);
@@ -1115,7 +1115,7 @@ static void sub_020691E0 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
 {
     UnkStruct_0203CDB0 * v0;
     UnkStruct_020708E0 * v1;
-    UnkStruct_02098C44 * v2;
+    PartyManagementData * v2;
 
     v0 = sub_02050A60(param0->unk_00);
     v1 = sub_02050A64(param0->unk_00);

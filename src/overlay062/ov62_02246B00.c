@@ -27,7 +27,7 @@
 
 static inline void inline_ov62_02247CE0(UnkStruct_ov62_02246BF4 * param0, int param1, s16 param2, s16 param3);
 
-UnkStruct_ov62_02246B00 * ov62_02246B00 (int param0, int param1, int param2[], UnkStruct_020279FC * param3)
+UnkStruct_ov62_02246B00 * ov62_02246B00 (int param0, int param1, int param2[], AnimationControlFlags * param3)
 {
     int v0;
     UnkStruct_ov62_02246B00 * v1 = NULL;
@@ -585,8 +585,8 @@ void ov62_02247574 (UnkStruct_ov62_02246BF4 * param0)
 {
     NARC * v0;
     BGL * v1;
-    UnkStruct_0200C6E4 * v2;
-    UnkStruct_0200C704 * v3;
+    CellTransferStateData * v2;
+    AnimationResourceCollection * v3;
     PaletteSys * v4;
 
     v2 = param0->unk_220.unk_04;
@@ -639,8 +639,8 @@ void ov62_02247754 (UnkStruct_ov62_02246BF4 * param0)
     int v1 = 0;
     int v2 = 0;
     UnkStruct_ov104_0223F9E0 v3;
-    UnkStruct_0200C6E4 * v4;
-    UnkStruct_0200C704 * v5;
+    CellTransferStateData * v4;
+    AnimationResourceCollection * v5;
     PaletteSys * v6;
 
     v4 = param0->unk_220.unk_04;
@@ -684,8 +684,8 @@ void ov62_02247754 (UnkStruct_ov62_02246BF4 * param0)
 void ov62_0224784C (UnkStruct_ov62_02246BF4 * param0)
 {
     UnkStruct_ov104_0223F9E0 v0;
-    UnkStruct_0200C6E4 * v1;
-    UnkStruct_0200C704 * v2;
+    CellTransferStateData * v1;
+    AnimationResourceCollection * v2;
     PaletteSys * v3;
 
     v1 = param0->unk_220.unk_04;

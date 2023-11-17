@@ -14,7 +14,7 @@ typedef struct UnkStruct_0202F298_t {
     UnkStruct_0202FAA8_sub1 unk_150;
     UnkStruct_0202FD30 unk_1150[4];
     TrainerInfo unk_1B68[4];
-    UnkStruct_020279FC unk_1BE8;
+    AnimationControlFlags unk_1BE8;
     u16 unk_1BEA;
     UnkStruct_0202F298_sub1 unk_1BEC;
 } UnkStruct_0202F298;

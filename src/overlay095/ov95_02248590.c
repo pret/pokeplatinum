@@ -131,7 +131,7 @@ typedef struct {
     int unk_04;
     int unk_08;
     UnkStruct_ov95_02247568 unk_0C;
-    UnkStruct_02022550 * unk_1C[20][2];
+    GraphicElementData * unk_1C[20][2];
     u32 unk_BC;
     BGL * unk_C0;
     UnkStruct_ov95_02247004 * unk_C4;

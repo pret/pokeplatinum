@@ -209,10 +209,10 @@ struct UnkStruct_ov108_02241DB0_t {
     BGL * unk_90;
     Window unk_94[2];
     UnkStruct_02081CF4 unk_B4;
-    UnkStruct_02001AF4 * unk_C0;
-    UnkStruct_02013A04 unk_C4[2];
+    UIControlData * unk_C0;
+    ResourceMetadata unk_C4[2];
     PaletteSys * unk_D4;
-    UnkStruct_020279FC * unk_D8;
+    AnimationControlFlags * unk_D8;
     SaveData * unk_DC;
     UnkStruct_020304A0 * unk_E0;
     UnkStruct_020305B8 * unk_E4;

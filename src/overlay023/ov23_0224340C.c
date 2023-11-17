@@ -121,14 +121,14 @@ typedef struct {
     UnkStruct_ov23_02248A6C * unk_00[8];
     SysTask * unk_20[8];
     UnkStruct_0203CDB0 * unk_40;
-    UnkStruct_020218BC * unk_44;
+    GraphicElementManager * unk_44;
     UnkStruct_0200C738 unk_48;
     UnkStruct_02009714 * unk_1D4[2][4];
     UnkStruct_02009DC8 * unk_1F4[2][4];
     UnkStruct_ov19_021DA864 unk_214;
     UnkStruct_ov19_021DA864 unk_238;
-    UnkStruct_02022550 * unk_25C[32];
-    UnkStruct_02022550 * unk_2DC[4];
+    GraphicElementData * unk_25C[32];
+    GraphicElementData * unk_2DC[4];
     UnkStruct_020508D4 * unk_2EC;
     SysTask * unk_2F0;
     SysTask * unk_2F4;

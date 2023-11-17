@@ -176,8 +176,8 @@ void ov76_0223B36C (UnkStruct_ov76_0223DE00 * param0, u8 param1, u8 param2)
 {
     int v0;
     int v1;
-    UnkStruct_0200C6E4 * v2;
-    UnkStruct_0200C704 * v3;
+    CellTransferStateData * v2;
+    AnimationResourceCollection * v3;
     PaletteSys * v4;
 
     v2 = param0->unk_D4.unk_08;
@@ -277,8 +277,8 @@ BOOL ov76_0223B52C (UnkStruct_ov76_0223DE00 * param0, u8 param1)
     int v1;
     UnkStruct_ov76_0223B52C * v2;
     UnkStruct_ov104_0223F9E0 v3;
-    UnkStruct_0200C6E4 * v4;
-    UnkStruct_0200C704 * v5;
+    CellTransferStateData * v4;
+    AnimationResourceCollection * v5;
     PaletteSys * v6;
 
     v4 = param0->unk_D4.unk_08;

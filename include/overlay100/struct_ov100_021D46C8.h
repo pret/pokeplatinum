@@ -20,11 +20,11 @@
 
 typedef struct {
     NARC * unk_00;
-    UnkStruct_0200C6E4 * unk_04;
-    UnkStruct_0200C704 * unk_08;
+    CellTransferStateData * unk_04;
+    AnimationResourceCollection * unk_08;
     BGL * unk_0C;
     PaletteSys * unk_10;
-    UnkStruct_0207C690 * unk_14;
+    GenericPointerData * unk_14;
     UnkStruct_020203AC * unk_18;
     NNSFndAllocator unk_1C;
     MessageLoader * unk_2C;

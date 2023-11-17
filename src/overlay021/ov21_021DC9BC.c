@@ -103,10 +103,10 @@ typedef struct {
 
 typedef struct {
     int unk_00;
-    UnkStruct_02022550 * unk_04[44];
+    GraphicElementData * unk_04[44];
     UnkStruct_02009DC8 * unk_B4[4];
     int unk_C4;
-    UnkStruct_02022550 * unk_C8;
+    GraphicElementData * unk_C8;
     UnkStruct_ov21_021D4CA0 * unk_CC;
     UnkStruct_02009DC8 * unk_D0[4];
     UnkStruct_ov21_021D4CA0 * unk_E0[3];

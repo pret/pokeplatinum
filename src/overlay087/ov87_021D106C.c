@@ -52,9 +52,9 @@ typedef struct UnkStruct_ov87_021D106C_t {
     int unk_0C;
     BGL * unk_10;
     Window unk_14[2];
-    UnkStruct_020218BC * unk_34;
+    GraphicElementManager * unk_34;
     UnkStruct_0200C738 unk_38;
-    UnkStruct_02022550 * unk_1C4[6];
+    GraphicElementData * unk_1C4[6];
     void * unk_1DC;
     void * unk_1E0;
     MessageLoader * unk_1E4;

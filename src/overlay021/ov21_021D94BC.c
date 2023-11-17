@@ -87,11 +87,11 @@ typedef struct {
 } UnkStruct_ov21_021D9B24;
 
 typedef struct {
-    UnkStruct_02022550 * unk_00[6];
+    GraphicElementData * unk_00[6];
     UnkStruct_ov21_021D4CA0 * unk_18[6];
-    UnkStruct_02022550 * unk_30[15];
+    GraphicElementData * unk_30[15];
     UnkStruct_ov21_021D4CA0 * unk_6C[15];
-    UnkStruct_02022550 * unk_A8[15];
+    GraphicElementData * unk_A8[15];
     UnkStruct_02009DC8 * unk_E4[4];
     UnkStruct_02009DC8 * unk_F4[4];
     int unk_104;

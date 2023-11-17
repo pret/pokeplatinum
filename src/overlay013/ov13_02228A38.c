@@ -16,7 +16,7 @@
 
 struct UnkStruct_ov13_02228A50_t {
     UnkStruct_ov16_0226DC24 * unk_00;
-    const UnkStruct_020F1DB8 * unk_04;
+    const ByteFlagSet * unk_04;
     u8 unk_08;
     u8 unk_09;
     u8 unk_0A;
@@ -70,7 +70,7 @@ void ov13_02228A90 (UnkStruct_ov13_02228A50 * param0)
     param0->unk_0A = 0xff;
 }
 
-void ov13_02228A9C (UnkStruct_ov13_02228A50 * param0, const UnkStruct_020F1DB8 * param1)
+void ov13_02228A9C (UnkStruct_ov13_02228A50 * param0, const ByteFlagSet * param1)
 {
     ov13_02228A90(param0);
 
@@ -103,7 +103,7 @@ static u8 ov13_02228ACC (UnkStruct_ov13_02228A50 * param0)
     return 0;
 }
 
-static u8 ov13_02228B18 (const UnkStruct_020F1DB8 * param0, u8 param1)
+static u8 ov13_02228B18 (const ByteFlagSet * param0, u8 param1)
 {
     switch (param1) {
     case 0:

@@ -19,7 +19,7 @@ typedef struct {
     BOOL unk_00;
     Window * unk_04;
     BGL * unk_08;
-    UnkStruct_020218BC * unk_0C;
+    GraphicElementManager * unk_0C;
     const UnkStruct_ov19_021D4DF0 * unk_10;
     UnkStruct_ov19_021D61B0 * unk_14;
     UnkStruct_0200C440 * unk_18;
@@ -28,10 +28,10 @@ typedef struct {
     UnkStruct_02007C7C * unk_24;
     void * unk_28;
     NNSG2dCellDataBank * unk_2C;
-    UnkStruct_02022550 * unk_30;
+    GraphicElementData * unk_30;
     void * unk_34;
     NNSG2dCellDataBank * unk_38;
-    UnkStruct_02022550 * unk_3C[2];
+    GraphicElementData * unk_3C[2];
     Strbuf* unk_44;
     Strbuf* unk_48;
     SysTask * unk_4C;

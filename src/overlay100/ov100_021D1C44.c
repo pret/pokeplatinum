@@ -74,8 +74,8 @@ static void ov100_021D1C98 (UnkStruct_ov100_021D1C98 * param0)
 {
     NARC * v0 = param0->unk_1EBC->unk_00;
     BGL * v1 = param0->unk_1EBC->unk_0C;
-    UnkStruct_0200C6E4 * v2 = param0->unk_1EBC->unk_04;
-    UnkStruct_0200C704 * v3 = param0->unk_1EBC->unk_08;
+    CellTransferStateData * v2 = param0->unk_1EBC->unk_04;
+    AnimationResourceCollection * v3 = param0->unk_1EBC->unk_08;
     PaletteSys * v4 = param0->unk_1EBC->unk_10;
     int v5 = 50000;
 
@@ -198,8 +198,8 @@ static void ov100_021D2250 (UnkStruct_ov100_021D1C98 * param0)
     int v0;
     NARC * v1 = param0->unk_1EBC->unk_00;
     BGL * v2 = param0->unk_1EBC->unk_0C;
-    UnkStruct_0200C6E4 * v3 = param0->unk_1EBC->unk_04;
-    UnkStruct_0200C704 * v4 = param0->unk_1EBC->unk_08;
+    CellTransferStateData * v3 = param0->unk_1EBC->unk_04;
+    AnimationResourceCollection * v4 = param0->unk_1EBC->unk_08;
     PaletteSys * v5 = param0->unk_1EBC->unk_10;
     UnkStruct_ov104_0223F9E0 v6;
 

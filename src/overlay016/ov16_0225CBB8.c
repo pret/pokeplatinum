@@ -2675,7 +2675,7 @@ static void ov16_0225FD5C (SysTask * param0, void * param1)
                 }
             } else if (v1 >= (256 + 40)) {
                 {
-                    UnkStruct_0200C704 * v8;
+                    AnimationResourceCollection * v8;
 
                     v8 = ov16_0223E018(v0->unk_00);
                     sub_0200D0F4(v0->unk_04->unk_18);
@@ -2728,7 +2728,7 @@ static void ov16_0225FD5C (SysTask * param0, void * param1)
 
         if (v1 <= -40) {
             {
-                UnkStruct_0200C704 * v10;
+                AnimationResourceCollection * v10;
 
                 v10 = ov16_0223E018(v0->unk_00);
 
@@ -2819,7 +2819,7 @@ static void    ov16_02260284 (SysTask * param0, void * param1)
         break;
     case 1:
     {
-        UnkStruct_0200C704 * v3;
+        AnimationResourceCollection * v3;
 
         v3 = ov16_0223E018(v0->unk_00);
         sub_0200D0F4(v0->unk_04->unk_18);
@@ -6217,8 +6217,8 @@ static void ov16_02264360 (BattleSystem * param0, BattlerData * param1, BattleMe
 
 static CellActorData * ov16_022643B8 (BattleSystem * param0, int param1, int param2, int param3, s16 param4, s16 param5)
 {
-    UnkStruct_0200C6E4 * v0;
-    UnkStruct_0200C704 * v1;
+    CellTransferStateData * v0;
+    AnimationResourceCollection * v1;
     PaletteSys * v2;
     CellActorData * v3;
     int v4;

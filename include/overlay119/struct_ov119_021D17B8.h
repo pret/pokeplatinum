@@ -21,14 +21,14 @@ typedef struct {
     int unk_0C;
     int unk_10;
     Window unk_14[2];
-    UnkStruct_0207C690 * unk_34;
+    GenericPointerData * unk_34;
     UnkStruct_02007768 * unk_38;
     NARC * unk_3C;
     UnkStruct_ov119_021D14DC * unk_40;
-    UnkStruct_02013A04 * unk_44;
-    UnkStruct_02001AF4 * unk_48;
-    UnkStruct_0200C704 * unk_4C;
-    UnkStruct_0200C6E4 * unk_50;
+    ResourceMetadata * unk_44;
+    UIControlData * unk_48;
+    AnimationResourceCollection * unk_4C;
+    CellTransferStateData * unk_50;
     UnkStruct_02015F84 * unk_54;
 } UnkStruct_ov119_021D17B8;
 

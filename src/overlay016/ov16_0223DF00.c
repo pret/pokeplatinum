@@ -90,8 +90,8 @@ int BattleSystem_PartyCount(BattleSystem *battleSys, int battler);
 Pokemon* BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slot);
 UnkStruct_02007768 * ov16_0223E000(BattleSystem * param0);
 UnkStruct_ov12_0221FCDC * ov16_0223E008(BattleSystem * param0);
-UnkStruct_0200C6E4 * ov16_0223E010(BattleSystem * param0);
-UnkStruct_0200C704 * ov16_0223E018(BattleSystem * param0);
+CellTransferStateData * ov16_0223E010(BattleSystem * param0);
+AnimationResourceCollection * ov16_0223E018(BattleSystem * param0);
 UnkStruct_ov16_02268520 * ov16_0223E020(BattleSystem * param0, int param1);
 UnkStruct_ov16_02268A14 * ov16_0223E02C(BattleSystem * param0);
 UnkStruct_0200C440 * ov16_0223E04C(BattleSystem * param0);
@@ -137,7 +137,7 @@ u8 ov16_0223ED60(BattleSystem * param0);
 u8 ov16_0223ED6C(BattleSystem * param0);
 int BattleSystem_NumSafariBalls(BattleSystem * param0);
 void BattleSystem_SetSafariBalls(BattleSystem * param0, int param1);
-UnkStruct_020279FC * ov16_0223EDA4(BattleSystem * param0);
+AnimationControlFlags * ov16_0223EDA4(BattleSystem * param0);
 BOOL BattleSystem_AnimationsOn(BattleSystem *battleSys);
 int ov16_0223EDE0(BattleSystem * param0);
 u8 BattleSystem_TextSpeed(BattleSystem * param0);
@@ -311,12 +311,12 @@ UnkStruct_ov12_0221FCDC * ov16_0223E008 (BattleSystem * param0)
     return param0->unk_8C;
 }
 
-UnkStruct_0200C6E4 * ov16_0223E010 (BattleSystem * param0)
+CellTransferStateData * ov16_0223E010 (BattleSystem * param0)
 {
     return param0->unk_90;
 }
 
-UnkStruct_0200C704 * ov16_0223E018 (BattleSystem * param0)
+AnimationResourceCollection * ov16_0223E018 (BattleSystem * param0)
 {
     return param0->unk_94;
 }
@@ -1014,7 +1014,7 @@ void BattleSystem_SetSafariBalls (BattleSystem * param0, int param1)
     param0->safariBalls = param1;
 }
 
-UnkStruct_020279FC * ov16_0223EDA4 (BattleSystem * param0)
+AnimationControlFlags * ov16_0223EDA4 (BattleSystem * param0)
 {
     return param0->unk_1B0;
 }

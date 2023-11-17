@@ -10,6 +10,6 @@ typedef struct {
     u8 unk_05;
     u8 unk_06;
     u8 unk_07;
-} UnkStruct_020F1DB8;
+} ByteFlagSet;
 
 #endif // POKEPLATINUM_STRUCT_020F1DB8_H

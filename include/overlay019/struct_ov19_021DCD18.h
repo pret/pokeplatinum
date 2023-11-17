@@ -6,7 +6,7 @@
 #include <nnsys.h>
 
 typedef struct {
-    UnkStruct_02022550 * unk_00;
+    GraphicElementData * unk_00;
     NNSG2dImageProxy unk_04;
     u32 unk_28;
     u16 unk_2C;

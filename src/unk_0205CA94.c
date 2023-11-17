@@ -34,7 +34,7 @@
 #include "unk_02061804.h"
 
 typedef struct {
-    UnkStruct_020218BC * unk_00;
+    GraphicElementManager * unk_00;
     UnkStruct_02009508 * unk_04;
     UnkStruct_02009714 * unk_08[4];
     UnkStruct_02009CFC * unk_18[2];
@@ -61,20 +61,20 @@ typedef struct {
 
 typedef struct {
     VecFx32 unk_00;
-    UnkStruct_02022550 * unk_0C;
+    GraphicElementData * unk_0C;
     int unk_10;
 } UnkStruct_0205D3C4;
 
 typedef struct {
     VecFx32 unk_00;
-    UnkStruct_02022550 * unk_0C;
+    GraphicElementData * unk_0C;
     int unk_10;
     int unk_14;
 } UnkStruct_0205D5E0;
 
 typedef struct {
     VecFx32 unk_00;
-    UnkStruct_02022550 * unk_0C;
+    GraphicElementData * unk_0C;
     int unk_10;
 } UnkStruct_0205D4A4;
 
@@ -87,7 +87,7 @@ static void sub_0205D080(SysTask * param0, UnkStruct_0205D274 * param1);
 void sub_0205D094(UnkStruct_0205D094 * param0, int param1, u32 param2);
 static void sub_0205D0AC(UnkStruct_0205D094 * param0);
 static void sub_0205D274(UnkStruct_0205D274 * param0, UnkStruct_0205D3AC * param1, int param2);
-static UnkStruct_02022550 * sub_0205D344(UnkStruct_0205D094 * param0, int param1, VecFx32 * param2, int param3, int param4);
+static GraphicElementData * sub_0205D344(UnkStruct_0205D094 * param0, int param1, VecFx32 * param2, int param3, int param4);
 static void sub_0205D3AC(UnkStruct_0205D3AC * param0);
 static void sub_0205D0B4(UnkStruct_0205D094 * param0);
 static void sub_0205D0D8(UnkStruct_0205D094 * param0, int param1, u32 param2);
@@ -561,10 +561,10 @@ void sub_0205D274 (UnkStruct_0205D274 * param0, UnkStruct_0205D3AC * param1, int
     param1->unk_04(&param0->unk_04, param1);
 }
 
-static UnkStruct_02022550 * sub_0205D344 (UnkStruct_0205D094 * param0, int param1, VecFx32 * param2, int param3, int param4)
+static GraphicElementData * sub_0205D344 (UnkStruct_0205D094 * param0, int param1, VecFx32 * param2, int param3, int param4)
 {
     UnkStruct_ov115_02261520 v0;
-    UnkStruct_02022550 * v1;
+    GraphicElementData * v1;
     VecFx32 v2 = {FX32_ONE, FX32_ONE, FX32_ONE};
 
     memset(&v0, 0, sizeof(UnkStruct_ov115_02261520));

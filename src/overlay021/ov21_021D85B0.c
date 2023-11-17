@@ -72,10 +72,10 @@ typedef struct {
     int unk_14;
     BOOL unk_18;
     int unk_1C;
-    UnkStruct_02022550 * unk_20;
+    GraphicElementData * unk_20;
     UnkStruct_02009DC8 * unk_24[4];
     UnkStruct_ov21_021D157C unk_34;
-    UnkStruct_02022550 * unk_58;
+    GraphicElementData * unk_58;
     void * unk_5C;
     NNSG2dScreenData * unk_60;
 } UnkStruct_ov21_021D9320;

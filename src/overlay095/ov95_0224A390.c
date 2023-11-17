@@ -89,7 +89,7 @@ typedef struct {
     int unk_08;
     BOOL unk_0C;
     UnkStruct_ov95_02247568 unk_10;
-    UnkStruct_02022550 * unk_20[1];
+    GraphicElementData * unk_20[1];
     BGL * unk_24;
     UnkStruct_ov95_0224773C * unk_28;
     UnkStruct_ov95_02247958 * unk_2C;

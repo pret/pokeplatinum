@@ -21,8 +21,8 @@ typedef struct {
     UnkStruct_02007768 * unk_04;
     UnkStruct_02007C7C * unk_08[4];
     UnkStruct_02007C7C * unk_18;
-    UnkStruct_0200C6E4 * unk_1C;
-    UnkStruct_0200C704 * unk_20;
+    CellTransferStateData * unk_1C;
+    AnimationResourceCollection * unk_20;
     BGL * unk_24;
     Window unk_28[1];
     MessageLoader * unk_38;

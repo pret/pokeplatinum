@@ -520,7 +520,7 @@ typedef struct {
     UnkStruct_ov5_021DDF74 * unk_44;
     UnkStruct_ov5_021DE47C unk_48;
     UnkStruct_ov5_021DE5A4 unk_1E8;
-    UnkStruct_02022550 * unk_21C[2];
+    GraphicElementData * unk_21C[2];
     UnkStruct_020203AC * unk_224;
     UnkStruct_ov5_021DDE14 unk_228;
     s32 unk_240;
@@ -532,7 +532,7 @@ typedef struct {
     UnkStruct_ov5_021DE374 * unk_28;
     UnkStruct_ov5_021DE47C unk_2C;
     UnkStruct_ov5_021DE5A4 unk_1CC;
-    UnkStruct_02022550 * unk_200[2];
+    GraphicElementData * unk_200[2];
     UnkStruct_020203AC * unk_208;
     UnkStruct_ov5_021DDE14 unk_20C;
     s32 unk_224;
@@ -546,7 +546,7 @@ typedef struct {
     BOOL unk_4C;
     UnkStruct_ov5_021DE47C unk_50;
     UnkStruct_ov5_021DE5A4 unk_1F0;
-    UnkStruct_02022550 * unk_224[2];
+    GraphicElementData * unk_224[2];
     UnkStruct_020203AC * unk_22C;
     UnkStruct_ov5_021DDE14 unk_230;
     s32 unk_248;
@@ -555,7 +555,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov5_021DE47C unk_00;
     UnkStruct_ov5_021DE5A4 unk_1A0;
-    UnkStruct_02022550 * unk_1D4[3];
+    GraphicElementData * unk_1D4[3];
     UnkStruct_ov5_021DDD80 unk_1E0[3];
     UnkStruct_ov5_021DDD80 unk_21C[3];
     UnkStruct_ov5_021DE6BC * unk_258[3];
@@ -575,7 +575,7 @@ typedef struct {
     UnkStruct_ov5_021DDD80 unk_48;
     UnkStruct_ov5_021DE47C unk_5C;
     UnkStruct_ov5_021DE5A4 unk_1FC;
-    UnkStruct_02022550 * unk_230;
+    GraphicElementData * unk_230;
     UnkStruct_020203AC * unk_234;
     UnkStruct_ov5_021DDE14 unk_238;
     s32 unk_250;
@@ -584,7 +584,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov5_021DE47C unk_00;
     UnkStruct_ov5_021DE5A4 unk_1A0;
-    UnkStruct_02022550 * unk_1D4[3];
+    GraphicElementData * unk_1D4[3];
     UnkStruct_ov5_021DDD80 unk_1E0[3];
     UnkStruct_ov5_021DDD80 unk_21C[3];
     BOOL unk_258[3];
@@ -1630,14 +1630,14 @@ typedef struct {
     UnkStruct_ov5_021DDE14 unk_14;
     UnkStruct_ov5_021DE47C unk_2C;
     UnkStruct_ov5_021DE5A4 unk_1CC;
-    UnkStruct_02022550 * unk_200;
+    GraphicElementData * unk_200;
     s32 unk_204;
 } UnkStruct_ov5_021E4260;
 
 typedef struct {
     UnkStruct_ov5_021DE47C unk_00;
     UnkStruct_ov5_021DE5A4 unk_1A0;
-    UnkStruct_02022550 * unk_1D4[4];
+    GraphicElementData * unk_1D4[4];
     UnkStruct_ov5_021DDE14 unk_1E4[2];
 } UnkStruct_ov5_021E44C0;
 
@@ -1892,7 +1892,7 @@ static const s32 Unk_ov5_021F9E94[6][8] = {
 typedef struct {
     UnkStruct_ov5_021DE47C unk_00;
     UnkStruct_ov5_021DE5A4 unk_1A0;
-    UnkStruct_02022550 * unk_1D4[6];
+    GraphicElementData * unk_1D4[6];
     UnkStruct_ov5_021DDE14 unk_1EC[6];
     UnkStruct_ov5_021DDE14 unk_27C[6];
     UnkStruct_ov5_021DDE14 unk_30C[6];
@@ -1907,7 +1907,7 @@ typedef struct {
     UnkStruct_ov5_021DEC18 * unk_04;
     UnkStruct_ov5_021DE47C unk_08;
     UnkStruct_ov5_021DE5A4 unk_1A8;
-    UnkStruct_02022550 * unk_1DC;
+    GraphicElementData * unk_1DC;
     UnkStruct_ov5_021DDD80 unk_1E0;
     UnkStruct_ov5_021DDD80 unk_1F4;
     UnkStruct_ov5_021DDD80 unk_208;
@@ -2515,7 +2515,7 @@ static const UnkStruct_ov5_021F9D0C Unk_ov5_021F9D0C[5] = {
 typedef struct {
     s16 unk_00;
     s16 unk_02;
-    UnkStruct_02022550 * unk_04[4];
+    GraphicElementData * unk_04[4];
     UnkStruct_ov5_021DDDBC unk_14[4];
 } UnkStruct_ov5_021E5128;
 
@@ -2526,7 +2526,7 @@ typedef struct {
     UnkStruct_ov5_021DED04 * unk_40;
     UnkStruct_ov5_021DE47C unk_44;
     UnkStruct_ov5_021DE5A4 unk_1E4[2];
-    UnkStruct_02022550 * unk_24C;
+    GraphicElementData * unk_24C;
     UnkStruct_ov5_021E5128 unk_250;
     UnkStruct_ov5_021E52A8_sub1 unk_2B4;
     UnkStruct_ov5_021E52A8_sub2 unk_2BC;
@@ -2543,7 +2543,7 @@ typedef struct {
     UnkStruct_ov5_021DDD80 unk_48;
     UnkStruct_ov5_021DE47C unk_5C;
     UnkStruct_ov5_021DE5A4 unk_1FC[4];
-    UnkStruct_02022550 * unk_2CC[4];
+    GraphicElementData * unk_2CC[4];
     VecFx32 unk_2DC;
     VecFx32 unk_2E8;
     UnkStruct_ov5_021E5128 unk_2F4;

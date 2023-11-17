@@ -238,7 +238,7 @@ void ov13_02224500 (UnkStruct_ov13_022213F0 * param0)
 static void ov13_0222453C (UnkStruct_ov13_022213F0 * param0)
 {
     UnkStruct_ov104_02241308 v0 = {18, 6, 6, 6, 0, 0};
-    UnkStruct_0200C6E4 * v1 = ov16_0223E010(param0->unk_00->unk_08);
+    CellTransferStateData * v1 = ov16_0223E010(param0->unk_00->unk_08);
 
     param0->unk_1FB0 = sub_0200C704(v1);
 
@@ -248,7 +248,7 @@ static void ov13_0222453C (UnkStruct_ov13_022213F0 * param0)
 
 static void ov13_02224588 (UnkStruct_ov13_022213F0 * param0)
 {
-    UnkStruct_0200C6E4 * v0;
+    CellTransferStateData * v0;
     u32 v1;
     NARC * v2;
 
@@ -272,7 +272,7 @@ static void ov13_02224588 (UnkStruct_ov13_022213F0 * param0)
 
 static void ov13_02224670 (UnkStruct_ov13_022213F0 * param0)
 {
-    UnkStruct_0200C6E4 * v0 = ov16_0223E010(param0->unk_00->unk_08);
+    CellTransferStateData * v0 = ov16_0223E010(param0->unk_00->unk_08);
     NARC * v1;
 
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PST_GRA, param0->unk_00->unk_0C);
@@ -286,7 +286,7 @@ static void ov13_02224670 (UnkStruct_ov13_022213F0 * param0)
 
 static void ov13_02224720 (UnkStruct_ov13_022213F0 * param0)
 {
-    UnkStruct_0200C6E4 * v0;
+    CellTransferStateData * v0;
     u32 v1;
 
     v0 = ov16_0223E010(param0->unk_00->unk_08);
@@ -303,7 +303,7 @@ static void ov13_02224720 (UnkStruct_ov13_022213F0 * param0)
 
 static void ov13_02224798 (UnkStruct_ov13_022213F0 * param0)
 {
-    UnkStruct_0200C6E4 * v0;
+    CellTransferStateData * v0;
     u32 v1;
     NARC * v2;
 
@@ -319,7 +319,7 @@ static void ov13_02224798 (UnkStruct_ov13_022213F0 * param0)
 
 static void ov13_02224848 (UnkStruct_ov13_022213F0 * param0)
 {
-    UnkStruct_0200C6E4 * v0 = ov16_0223E010(param0->unk_00->unk_08);
+    CellTransferStateData * v0 = ov16_0223E010(param0->unk_00->unk_08);
 
     sub_0200CD7C(param0->unk_1E4, 3, v0, param0->unk_1FB0, 72, 27, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45067);
     sub_0200CE0C(v0, param0->unk_1FB0, 72, 25, 0, 45067);
@@ -330,7 +330,7 @@ static void ov13_02224848 (UnkStruct_ov13_022213F0 * param0)
 static CellActorData * ov13_022248D8 (UnkStruct_ov13_022213F0 * param0, u32 param1)
 {
     UnkStruct_ov104_0223F9E0 v0;
-    UnkStruct_0200C6E4 * v1;
+    CellTransferStateData * v1;
 
     v1 = ov16_0223E010(param0->unk_00->unk_08);
 
@@ -364,7 +364,7 @@ static void ov13_02224948 (UnkStruct_ov13_022213F0 * param0)
 
 void ov13_02224970 (UnkStruct_ov13_022213F0 * param0)
 {
-    UnkStruct_0200C6E4 * v0;
+    CellTransferStateData * v0;
     u32 v1;
 
     v0 = ov16_0223E010(param0->unk_00->unk_08);
@@ -398,7 +398,7 @@ static void ov13_022249CC (UnkStruct_ov13_022213F0 * param0)
 
 static void ov13_02224A0C (UnkStruct_ov13_022213F0 * param0, CellActorData * param1, u32 param2, u8 param3)
 {
-    UnkStruct_0200C6E4 * v0 = ov16_0223E010(param0->unk_00->unk_08);
+    CellTransferStateData * v0 = ov16_0223E010(param0->unk_00->unk_08);
 
     sub_0200D948(v0, param0->unk_1FB0, sub_0207C944(), sub_0207C908(param3), 1, param2);
     sub_0200D41C(param1, sub_0207C92C(param3) + 4);
@@ -406,7 +406,7 @@ static void ov13_02224A0C (UnkStruct_ov13_022213F0 * param0, CellActorData * par
 
 static void ov13_02224A5C (UnkStruct_ov13_022213F0 * param0, CellActorData * param1, u32 param2)
 {
-    UnkStruct_0200C6E4 * v0 = ov16_0223E010(param0->unk_00->unk_08);
+    CellTransferStateData * v0 = ov16_0223E010(param0->unk_00->unk_08);
 
     sub_0200D948(v0, param0->unk_1FB0, sub_0207CAC0(), sub_0207CA90(param2), 1, 45077);
     sub_0200D41C(param1, sub_0207CAA8(param2) + 4);
@@ -794,7 +794,7 @@ static void ov13_02225420 (UnkStruct_ov13_022213F0 * param0)
 
 static void ov13_0222554C (UnkStruct_ov13_022213F0 * param0)
 {
-    UnkStruct_0200C6E4 * v0;
+    CellTransferStateData * v0;
     UnkStruct_ov16_0226DC24 * v1;
 
     v0 = ov16_0223E010(param0->unk_00->unk_08);
@@ -810,7 +810,7 @@ static void ov13_022255B8 (UnkStruct_ov13_022213F0 * param0)
     ov16_0226DBFC(param0->unk_1FB0, 45080, 45068, 45068, 45068);
 }
 
-static const UnkStruct_020F1DB8 Unk_ov13_02229464[] = {
+static const ByteFlagSet Unk_ov13_02229464[] = {
     {0x8, 0x8, 0x78, 0x28, 0x6, 0x2, 0x6, 0x1},
     {0x88, 0x10, 0xF8, 0x30, 0x4, 0x3, 0x0, 0x2},
     {0x8, 0x38, 0x78, 0x58, 0x0, 0x4, 0x1, 0x3},
@@ -820,21 +820,21 @@ static const UnkStruct_020F1DB8 Unk_ov13_02229464[] = {
     {0xE0, 0xA0, 0xF8, 0xB8, 0x5, 0x0, 0x5, 0x0}
 };
 
-static const UnkStruct_020F1DB8 Unk_ov13_02229344[] = {
+static const ByteFlagSet Unk_ov13_02229344[] = {
     {0x10, 0x10, 0xF0, 0x88, 0x0, 0x81, 0x0, 0x0},
     {0x8, 0xA0, 0x60, 0xB8, 0x0, 0x1, 0x1, 0x2},
     {0x70, 0xA0, 0xC8, 0xB8, 0x0, 0x2, 0x1, 0x3},
     {0xE0, 0xA0, 0xF8, 0xB8, 0x0, 0x3, 0x2, 0x3}
 };
 
-static const UnkStruct_020F1DB8 Unk_ov13_02229304[] = {
+static const ByteFlagSet Unk_ov13_02229304[] = {
     {0x8, 0xA0, 0x20, 0xB8, 0x0, 0x0, 0x0, 0x1},
     {0x30, 0xA0, 0x48, 0xB8, 0x1, 0x1, 0x0, 0x2},
     {0x68, 0xA0, 0xC0, 0xB8, 0x2, 0x2, 0x1, 0x3},
     {0xE0, 0xA0, 0xF8, 0xB8, 0x3, 0x3, 0x2, 0x3}
 };
 
-static const UnkStruct_020F1DB8 Unk_ov13_022294D4[] = {
+static const ByteFlagSet Unk_ov13_022294D4[] = {
     {0x8, 0x38, 0x78, 0x58, 0x0, 0x2, 0x0, 0x1},
     {0x88, 0x38, 0xF8, 0x58, 0x1, 0x3, 0x0, 0x1},
     {0x8, 0x68, 0x78, 0x88, 0x0, 0x84, 0x2, 0x3},
@@ -845,7 +845,7 @@ static const UnkStruct_020F1DB8 Unk_ov13_022294D4[] = {
     {0xE0, 0xA0, 0xF8, 0xB8, 0x3, 0x7, 0x6, 0x7}
 };
 
-static const UnkStruct_020F1DB8 Unk_ov13_02229364[] = {
+static const ByteFlagSet Unk_ov13_02229364[] = {
     {0x5C, 0x9D, 0x7C, 0xA5, 0x0, 0x2, 0x0, 0x1},
     {0x84, 0x9D, 0xA4, 0xA5, 0x1, 0x3, 0x0, 0x4},
     {0x5C, 0xAD, 0x7C, 0xB5, 0x0, 0x2, 0x2, 0x3},
@@ -853,7 +853,7 @@ static const UnkStruct_020F1DB8 Unk_ov13_02229364[] = {
     {0xE0, 0xA0, 0xF8, 0xB8, 0x4, 0x4, 0x83, 0x4}
 };
 
-static const UnkStruct_020F1DB8 Unk_ov13_0222949C[] = {
+static const ByteFlagSet Unk_ov13_0222949C[] = {
     {0x8, 0x38, 0x78, 0x58, 0x5, 0x2, 0x0, 0x1},
     {0x88, 0x38, 0xF8, 0x58, 0x5, 0x3, 0x0, 0x1},
     {0x8, 0x68, 0x78, 0x88, 0x0, 0x4, 0x2, 0x3},
@@ -863,13 +863,13 @@ static const UnkStruct_020F1DB8 Unk_ov13_0222949C[] = {
     {0xE0, 0xA0, 0xF8, 0xB8, 0x3, 0x6, 0x4, 0x6}
 };
 
-static const UnkStruct_020F1DB8 Unk_ov13_022292D4[] = {
+static const ByteFlagSet Unk_ov13_022292D4[] = {
     {0x8, 0xA0, 0xC8, 0xB8, 0x1, 0x0, 0x0, 0x2},
     {0xC0, 0x8, 0xF8, 0x18, 0x1, 0x82, 0x0, 0x1},
     {0xE0, 0xA0, 0xF8, 0xB8, 0x1, 0x2, 0x0, 0x2}
 };
 
-static const UnkStruct_020F1DB8 Unk_ov13_022293B4[] = {
+static const ByteFlagSet Unk_ov13_022293B4[] = {
     {0x8, 0x38, 0x78, 0x58, 0x0, 0x2, 0x0, 0x1},
     {0x88, 0x38, 0xF8, 0x58, 0x1, 0x3, 0x0, 0x1},
     {0x8, 0x68, 0x78, 0x88, 0x0, 0x4, 0x2, 0x3},
@@ -877,7 +877,7 @@ static const UnkStruct_020F1DB8 Unk_ov13_022293B4[] = {
     {0xE0, 0xA0, 0xF8, 0xB8, 0x83, 0x4, 0x4, 0x4}
 };
 
-static const UnkStruct_020F1DB8 * const Unk_ov13_0222938C[] = {
+static const ByteFlagSet * const Unk_ov13_0222938C[] = {
     Unk_ov13_02229464,
     Unk_ov13_02229344,
     Unk_ov13_02229304,

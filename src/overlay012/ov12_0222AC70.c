@@ -39,8 +39,8 @@ typedef struct {
     u8 unk_05;
     u8 unk_06;
     UnkStruct_ov12_0221FCDC * unk_08;
-    UnkStruct_0200C6E4 * unk_0C;
-    UnkStruct_0200C704 * unk_10;
+    CellTransferStateData * unk_0C;
+    AnimationResourceCollection * unk_10;
     CellActorData * unk_14[3];
     UnkStruct_ov12_02225F6C unk_20;
 } UnkStruct_ov12_0222AC70;
@@ -79,7 +79,7 @@ typedef struct {
     s16 unk_0A;
     UnkStruct_ov12_0221FCDC * unk_0C;
     UnkStruct_02007C7C * unk_10;
-    UnkStruct_0200C704 * unk_14;
+    AnimationResourceCollection * unk_14;
     CellActorData * unk_18[4];
     UnkStruct_ov12_02225F6C unk_28[4];
 } UnkStruct_ov12_0222B4C8;
@@ -139,7 +139,7 @@ typedef struct {
     u8 unk_00;
     u8 unk_01;
     UnkStruct_ov12_0221FCDC * unk_04;
-    UnkStruct_0200C704 * unk_08;
+    AnimationResourceCollection * unk_08;
     CellActorData * unk_0C;
     CellActorData * unk_10;
 } UnkStruct_ov12_0222BFF4;
@@ -159,7 +159,7 @@ typedef struct {
     s8 unk_08;
     UnkStruct_02007C7C * unk_0C;
     UnkStruct_ov12_0221FCDC * unk_10;
-    UnkStruct_0200C704 * unk_14;
+    AnimationResourceCollection * unk_14;
     UnkStruct_ov12_0222C1A4_sub1 unk_18[3];
 } UnkStruct_ov12_0222C1A4;
 
@@ -171,7 +171,7 @@ typedef struct {
     int unk_04;
     BGL * unk_08;
     UnkStruct_ov12_0221FCDC * unk_0C;
-    UnkStruct_0200C704 * unk_10;
+    AnimationResourceCollection * unk_10;
     UnkStruct_ov12_02235998 unk_14[4];
     UnkStruct_ov12_02235998 unk_64[4];
     UnkStruct_ov12_02225F6C unk_B4;
@@ -185,7 +185,7 @@ typedef struct {
     UnkStruct_ov12_02235350 unk_04;
     BGL * unk_08;
     UnkStruct_ov12_0221FCDC * unk_0C;
-    UnkStruct_0200C704 * unk_10;
+    AnimationResourceCollection * unk_10;
     UnkStruct_02007C7C * unk_14;
     CellActorData * unk_18;
     UnkStruct_ov12_02225F6C unk_1C;
@@ -269,8 +269,8 @@ typedef struct {
     int unk_08;
     u8 unk_0C;
     UnkStruct_ov12_0221FCDC * unk_10;
-    UnkStruct_0200C6E4 * unk_14;
-    UnkStruct_0200C704 * unk_18;
+    CellTransferStateData * unk_14;
+    AnimationResourceCollection * unk_18;
     UnkStruct_02007C7C * unk_1C;
     s16 unk_20;
     int unk_24;
@@ -379,7 +379,7 @@ static void ov12_0222AC70 (SysTask * param0, void * param1)
     sub_0200C7EC(v1->unk_10);
 }
 
-void ov12_0222AE68 (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, CellActorData * param3)
+void ov12_0222AE68 (UnkStruct_ov12_0221FCDC * param0, CellTransferStateData * param1, AnimationResourceCollection * param2, CellActorData * param3)
 {
     int v0;
     UnkStruct_ov12_0222AC70 * v1;
@@ -1738,7 +1738,7 @@ static void ov12_0222CBFC (SysTask * param0, void * param1)
     sub_0200C7EC(v1->unk_10.unk_10);
 }
 
-void ov12_0222CC54 (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, CellActorData * param3)
+void ov12_0222CC54 (UnkStruct_ov12_0221FCDC * param0, CellTransferStateData * param1, AnimationResourceCollection * param2, CellActorData * param3)
 {
     int v0;
     int v1;
@@ -2138,7 +2138,7 @@ static void ov12_0222D128 (SysTask * param0, void * param1)
     sub_0200C7EC(v1->unk_18);
 }
 
-void ov12_0222D56C (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, CellActorData * param3)
+void ov12_0222D56C (UnkStruct_ov12_0221FCDC * param0, CellTransferStateData * param1, AnimationResourceCollection * param2, CellActorData * param3)
 {
     int v0;
     UnkStruct_ov12_0222D128 * v1;

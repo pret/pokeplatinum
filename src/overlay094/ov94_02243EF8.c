@@ -29,7 +29,7 @@ typedef struct {
 
 static void ov94_0224400C(SysTask * param0, void * param1);
 static void ov94_022440FC(SysTask * param0, void * param1);
-static void ov94_022441A0(UnkStruct_02022550 * param0, int param1, int param2);
+static void ov94_022441A0(GraphicElementData * param0, int param1, int param2);
 static void ov94_02243FF0(UnkStruct_ov94_02243FF0 * param0, int param1);
 static void ov94_0224432C(UnkStruct_ov94_0223FD4C * param0);
 static void ov94_02244378(NNSG2dCharacterData * param0, NNSG2dPaletteData * param1, int param2, int param3, int param4);
@@ -202,7 +202,7 @@ static void ov94_022440FC (SysTask * param0, void * param1)
     }
 }
 
-static void ov94_022441A0 (UnkStruct_02022550 * param0, int param1, int param2)
+static void ov94_022441A0 (GraphicElementData * param0, int param1, int param2)
 {
     VecFx32 v0;
 

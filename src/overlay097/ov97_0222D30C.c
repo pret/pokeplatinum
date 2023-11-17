@@ -89,7 +89,7 @@ typedef struct {
     int unk_00;
     int unk_04;
     BOOL unk_08;
-    UnkStruct_02022550 * unk_0C;
+    GraphicElementData * unk_0C;
     VecFx32 unk_10;
     fx32 unk_1C;
     fx32 unk_20;
@@ -1177,9 +1177,9 @@ static void ov97_0222E398 (UnkStruct_ov97_0222E398 * param0)
     sub_020093B4(&param0->unk_10[v9 + 1], v7, v7, v7, v7, 0xffffffff, 0xffffffff, 0, 0, param0->unk_0C->unk_190[0], param0->unk_0C->unk_190[1], param0->unk_0C->unk_190[2], param0->unk_0C->unk_190[3], NULL, NULL);
 }
 
-static UnkStruct_02022550 * ov97_0222E538 (UnkStruct_ov97_0222E398 * param0, int param1)
+static GraphicElementData * ov97_0222E538 (UnkStruct_ov97_0222E398 * param0, int param1)
 {
-    UnkStruct_02022550 * v0;
+    GraphicElementData * v0;
 
     {
         UnkStruct_ov115_02261520 v1;

@@ -83,9 +83,9 @@ static void ov99_021D1380(BGL * param0);
 static void ov99_021D1720(UnkStruct_ov99_021D2CB0 * param0);
 static void ov99_021D1918(UnkStruct_ov99_021D2CB0 * param0);
 static void ov99_021D19A0(UnkStruct_ov99_021D2CB0 * param0);
-static UnkStruct_0207C690 * ov99_021D19AC(int param0);
+static GenericPointerData * ov99_021D19AC(int param0);
 static void ov99_021D19C8(void);
-static void ov99_021D1A4C(UnkStruct_0207C690 * param0);
+static void ov99_021D1A4C(GenericPointerData * param0);
 static void ov99_021D16E4(UnkStruct_ov99_021D2CB0 * param0);
 static void ov99_021D1270(UnkStruct_ov99_021D2CB0 * param0);
 static void ov99_021D1314(UnkStruct_ov99_021D2CB0 * param0);
@@ -774,9 +774,9 @@ static void ov99_021D19A0 (UnkStruct_ov99_021D2CB0 * param0)
     sub_020203B8(param0->unk_28);
 }
 
-static UnkStruct_0207C690 * ov99_021D19AC (int param0)
+static GenericPointerData * ov99_021D19AC (int param0)
 {
-    UnkStruct_0207C690 * v0;
+    GenericPointerData * v0;
 
     v0 = sub_02024220(param0, 0, 1, 0, 1, ov99_021D19C8);
     return v0;
@@ -797,7 +797,7 @@ static void ov99_021D19C8 (void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void ov99_021D1A4C (UnkStruct_0207C690 * param0)
+static void ov99_021D1A4C (GenericPointerData * param0)
 {
     sub_020242C4(param0);
 }

@@ -35,7 +35,7 @@
 typedef struct {
     UnkStruct_ov19_021DCF88 * unk_00;
     u32 unk_04;
-    UnkStruct_02022550 * unk_08;
+    GraphicElementData * unk_08;
     u16 unk_0C;
     s16 unk_0E;
     fx32 unk_10;
@@ -45,7 +45,7 @@ typedef struct {
 
 typedef struct {
     void * unk_00;
-    UnkStruct_02022550 * unk_04;
+    GraphicElementData * unk_04;
     fx32 unk_08;
     fx32 unk_0C;
     fx32 unk_10;
@@ -61,7 +61,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_ov19_021DCF88 * unk_00;
-    UnkStruct_02022550 ** unk_04;
+    GraphicElementData ** unk_04;
     UnkStruct_ov19_021DDBD0 unk_08[10];
     u8 unk_1C0[10];
     u8 unk_1CA;
@@ -74,14 +74,14 @@ struct UnkStruct_ov19_021DCF88_t {
     UnkStruct_ov19_021D61B0 * unk_00;
     const UnkStruct_ov19_021D4DF0 * unk_04;
     BGL * unk_08;
-    UnkStruct_020218BC * unk_0C;
+    GraphicElementManager * unk_0C;
     u32 unk_10;
     SysTask * unk_14;
     NNSG2dImagePaletteProxy unk_18;
-    UnkStruct_02022550 * unk_2C;
-    UnkStruct_02022550 * unk_30;
-    UnkStruct_02022550 * unk_34[8];
-    UnkStruct_02022550 * unk_54[10];
+    GraphicElementData * unk_2C;
+    GraphicElementData * unk_30;
+    GraphicElementData * unk_34[8];
+    GraphicElementData * unk_54[10];
     int unk_7C;
     int unk_80;
     Strbuf* unk_84;
@@ -119,7 +119,7 @@ static void ov19_021DDA7C(UnkStruct_ov19_021DCF88 * param0);
 static void ov19_021DDA9C(SysTask * param0, void * param1);
 static void ov19_021DDB20(SysTask * param0, void * param1);
 static void ov19_021DDBD0(SysTask * param0, UnkStruct_ov19_021DDBD0 * param1);
-static void ov19_021DDBF8(UnkStruct_ov19_021DDBF8 * param0, UnkStruct_02022550 * param1, UnkStruct_ov19_021DDBD0 * param2, u32 param3, u32 param4, u32 param5, u32 param6, BOOL param7);
+static void ov19_021DDBF8(UnkStruct_ov19_021DDBF8 * param0, GraphicElementData * param1, UnkStruct_ov19_021DDBD0 * param2, u32 param3, u32 param4, u32 param5, u32 param6, BOOL param7);
 static void ov19_021DDC74(UnkStruct_ov19_021DDBF8 * param0, UnkStruct_ov19_021DDBD0 * param1, u32 param2, u32 param3, u32 param4);
 static void ov19_021DDCC0(SysTask * param0, void * param1);
 static void ov19_021DDD78(void * param0);
@@ -307,7 +307,7 @@ static const u16 Unk_ov19_021E0264[] = {
     0x0
 };
 
-BOOL ov19_021DCF88 (UnkStruct_ov19_021DCF88 ** param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, BGL * param3, UnkStruct_020218BC * param4)
+BOOL ov19_021DCF88 (UnkStruct_ov19_021DCF88 ** param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, BGL * param3, GraphicElementManager * param4)
 {
     if (ov19_021D5E08(param2) == 4) {
         *param0 = NULL;
@@ -1051,7 +1051,7 @@ static void ov19_021DDBD0 (SysTask * param0, UnkStruct_ov19_021DDBD0 * param1)
     SysTask_Done(param0);
 }
 
-static void ov19_021DDBF8 (UnkStruct_ov19_021DDBF8 * param0, UnkStruct_02022550 * param1, UnkStruct_ov19_021DDBD0 * param2, u32 param3, u32 param4, u32 param5, u32 param6, BOOL param7)
+static void ov19_021DDBF8 (UnkStruct_ov19_021DDBF8 * param0, GraphicElementData * param1, UnkStruct_ov19_021DDBD0 * param2, u32 param3, u32 param4, u32 param5, u32 param6, BOOL param7)
 {
     SysTaskFunc v0;
 

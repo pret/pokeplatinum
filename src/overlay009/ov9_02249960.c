@@ -104,7 +104,7 @@ typedef struct {
 } UnkStruct_ov9_02251EC8;
 
 typedef struct {
-    UnkStruct_020218BC * unk_00;
+    GraphicElementManager * unk_00;
     UnkStruct_0200C738 unk_04;
     UnkStruct_02009714 * unk_190;
     UnkStruct_02009714 * unk_194;
@@ -156,7 +156,7 @@ typedef struct {
     fx32 unk_00;
     fx32 unk_04;
     UnkStruct_ov9_0224B1B4 unk_08;
-    UnkStruct_02022550 * unk_40;
+    GraphicElementData * unk_40;
 } UnkStruct_ov9_0224B2C0;
 
 typedef struct {
@@ -934,7 +934,7 @@ static void ov9_0224AED8(UnkStruct_ov9_02249B04 * param0);
 static void ov9_0224AEE4(UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224B064 * param1, NARC * param2);
 static void ov9_0224B064(UnkStruct_ov9_0224B064 * param0);
 static void ov9_0224B124(SysTask * param0, void * param1);
-static UnkStruct_02022550 * ov9_0224B130(UnkStruct_ov9_0224B064 * param0, const VecFx32 * param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7);
+static GraphicElementData * ov9_0224B130(UnkStruct_ov9_0224B064 * param0, const VecFx32 * param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7);
 static void ov9_0224B1B4(UnkStruct_ov9_02249B04 * param0, UnkStruct_ov5_021DF47C * param1, UnkStruct_ov9_0224B064 * param2);
 static void ov9_0224B3A8(UnkStruct_ov9_02249B04 * param0);
 static void ov9_0224B3F4(UnkStruct_ov9_02249B04 * param0);
@@ -2758,11 +2758,11 @@ static void ov9_0224B124 (SysTask * param0, void * param1)
     sub_020219F8(v0->unk_00);
 }
 
-static UnkStruct_02022550 * ov9_0224B130 (UnkStruct_ov9_0224B064 * param0, const VecFx32 * param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7)
+static GraphicElementData * ov9_0224B130 (UnkStruct_ov9_0224B064 * param0, const VecFx32 * param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7)
 {
     UnkStruct_ov19_021DA864 v0;
     UnkStruct_ov83_0223D9A8 v1;
-    UnkStruct_02022550 * v2;
+    GraphicElementData * v2;
 
     sub_020093B4(&v0, ((param2) + 0xff), ((param3) + 0xff), ((param4) + 0xff), ((param5) + 0xff), 0xffffffff, 0xffffffff, 0, param6, param0->unk_190, param0->unk_194, param0->unk_198, param0->unk_19C, NULL, NULL);
 

@@ -87,12 +87,12 @@ struct UnkStruct_ov56_02256468_t {
     MessageLoader * unk_1C;
     u16 * unk_20;
     NNSG2dScreenData * unk_24;
-    UnkStruct_020218BC * unk_28;
+    GraphicElementManager * unk_28;
     UnkStruct_0200C738 unk_2C;
     UnkStruct_02009714 * unk_1B8[4];
     UnkStruct_02009DC8 * unk_1C8[4];
     UnkStruct_ov19_021DA864 unk_1D8;
-    UnkStruct_02022550 * unk_1FC[8];
+    GraphicElementData * unk_1FC[8];
     int unk_21C;
     int unk_220;
     int unk_224;
@@ -123,7 +123,7 @@ static void ov56_022568E0(UnkStruct_ov56_02256468 * param0);
 static void ov56_022567FC(UnkStruct_ov56_02256468 * param0, int param1, UnkStruct_0205C924 * param2);
 static void ov56_02256D04(UnkStruct_ov56_02256468 * param0);
 static void ov56_022569E0(UnkStruct_ov56_02256468 * param0);
-static void ov56_02256994(UnkStruct_02022550 * param0, int param1);
+static void ov56_02256994(GraphicElementData * param0, int param1);
 static void ov56_02257098(UnkStruct_ov56_02256468 * param0);
 static void ov56_02256EE8(UnkStruct_ov56_02256468 * param0, u32 param1, Sentence * param2, TrainerInfo * param3);
 static int ov56_02256FC8(UnkStruct_ov56_02256468 * param0, Sentence * param1, int param2);
@@ -534,7 +534,7 @@ static const UnkUnion_02022594 Unk_ov56_02257250[] = {
     {0xff, 0x0, 0x0, 0x0}
 };
 
-static void ov56_02256994 (UnkStruct_02022550 * param0, int param1)
+static void ov56_02256994 (GraphicElementData * param0, int param1)
 {
     VecFx32 v0;
 

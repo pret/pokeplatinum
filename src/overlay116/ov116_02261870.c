@@ -232,8 +232,8 @@ static const s16 Unk_ov116_02267A78[][3] = {
 void ov116_02261D08 (UnkStruct_ov116_02262A8C * param0)
 {
     UnkStruct_ov104_0223F9E0 v0;
-    UnkStruct_0200C6E4 * v1 = param0->unk_14->unk_08;
-    UnkStruct_0200C704 * v2 = param0->unk_14->unk_0C;
+    CellTransferStateData * v1 = param0->unk_14->unk_08;
+    AnimationResourceCollection * v2 = param0->unk_14->unk_0C;
     PaletteSys * v3 = param0->unk_14->unk_14;
     int v4;
 
@@ -250,8 +250,8 @@ void ov116_02261D08 (UnkStruct_ov116_02262A8C * param0)
 void ov116_02261D70 (UnkStruct_ov116_02262A8C * param0)
 {
     UnkStruct_ov104_0223F9E0 v0;
-    UnkStruct_0200C6E4 * v1 = param0->unk_14->unk_08;
-    UnkStruct_0200C704 * v2 = param0->unk_14->unk_0C;
+    CellTransferStateData * v1 = param0->unk_14->unk_08;
+    AnimationResourceCollection * v2 = param0->unk_14->unk_0C;
     PaletteSys * v3 = param0->unk_14->unk_14;
     int v4;
     s16 v5[] = {72, 180, 24, 232};
@@ -577,8 +577,8 @@ void ov116_022622C8 (UnkStruct_ov116_0226139C * param0)
     NARC * v0 = param0->unk_48.unk_00;
     NARC * v1 = param0->unk_48.unk_04;
     BGL * v2 = param0->unk_48.unk_10;
-    UnkStruct_0200C6E4 * v3 = param0->unk_48.unk_08;
-    UnkStruct_0200C704 * v4 = param0->unk_48.unk_0C;
+    CellTransferStateData * v3 = param0->unk_48.unk_08;
+    AnimationResourceCollection * v4 = param0->unk_48.unk_0C;
     PaletteSys * v5 = param0->unk_48.unk_14;
     NARC * v6;
     int v7;
@@ -682,8 +682,8 @@ void ov116_022622C8 (UnkStruct_ov116_0226139C * param0)
 void ov116_022625A8 (UnkStruct_ov116_0226139C * param0, UnkStruct_ov116_02262A8C * param1)
 {
     UnkStruct_ov104_0223F9E0 v0;
-    UnkStruct_0200C6E4 * v1 = param1->unk_14->unk_08;
-    UnkStruct_0200C704 * v2 = param1->unk_14->unk_0C;
+    CellTransferStateData * v1 = param1->unk_14->unk_08;
+    AnimationResourceCollection * v2 = param1->unk_14->unk_0C;
     PaletteSys * v3 = param1->unk_14->unk_14;
     int v4;
     int v5 = 0;
@@ -723,8 +723,8 @@ CellActorData * ov116_022626E8 (UnkStruct_ov116_02262A8C * param0, s16 param1, s
 {
     CellActorData * v0;
     UnkStruct_ov104_0223F9E0 v1;
-    UnkStruct_0200C6E4 * v2 = param0->unk_14->unk_08;
-    UnkStruct_0200C704 * v3 = param0->unk_14->unk_0C;
+    CellTransferStateData * v2 = param0->unk_14->unk_08;
+    AnimationResourceCollection * v3 = param0->unk_14->unk_0C;
     PaletteSys * v4 = param0->unk_14->unk_14;
 
     ov116_02261CD8(&v1, param1, param2, 1, 0, 9003);
@@ -743,8 +743,8 @@ void ov116_02262724 (UnkStruct_ov116_02262A8C * param0)
     int v0;
     CellActorData * v1;
     UnkStruct_ov104_0223F9E0 v2;
-    UnkStruct_0200C6E4 * v3 = param0->unk_14->unk_08;
-    UnkStruct_0200C704 * v4 = param0->unk_14->unk_0C;
+    CellTransferStateData * v3 = param0->unk_14->unk_08;
+    AnimationResourceCollection * v4 = param0->unk_14->unk_0C;
     PaletteSys * v5 = param0->unk_14->unk_14;
 
     for (v0 = 0; v0 < 2; v0++) {
@@ -789,8 +789,8 @@ void ov116_02262840 (UnkStruct_ov116_02262A8C * param0)
     int v0;
     CellActorData * v1;
     UnkStruct_ov104_0223F9E0 v2;
-    UnkStruct_0200C6E4 * v3 = param0->unk_14->unk_08;
-    UnkStruct_0200C704 * v4 = param0->unk_14->unk_0C;
+    CellTransferStateData * v3 = param0->unk_14->unk_08;
+    AnimationResourceCollection * v4 = param0->unk_14->unk_0C;
     PaletteSys * v5 = param0->unk_14->unk_14;
 
     ov116_02261CD8(&v2, 128, 128, 1, 7, 9007);
@@ -815,8 +815,8 @@ void ov116_022628B8 (UnkStruct_ov116_0226139C * param0)
     NARC * v0 = param0->unk_48.unk_00;
     NARC * v1 = param0->unk_48.unk_04;
     BGL * v2 = param0->unk_48.unk_10;
-    UnkStruct_0200C6E4 * v3 = param0->unk_48.unk_08;
-    UnkStruct_0200C704 * v4 = param0->unk_48.unk_0C;
+    CellTransferStateData * v3 = param0->unk_48.unk_08;
+    AnimationResourceCollection * v4 = param0->unk_48.unk_0C;
     PaletteSys * v5 = param0->unk_48.unk_14;
     NARC * v6 = v0;
 

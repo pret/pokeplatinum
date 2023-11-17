@@ -309,7 +309,7 @@ u32 sub_02001504 (UnkStruct_0200112C * param0, u8 param1)
     return v0;
 }
 
-void sub_020015CC (UnkStruct_0200112C * param0, UnkStruct_02013A04 * param1)
+void sub_020015CC (UnkStruct_0200112C * param0, ResourceMetadata * param1)
 {
     param0->unk_00.unk_00 = param1;
 }

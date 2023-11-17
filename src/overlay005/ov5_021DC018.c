@@ -62,13 +62,13 @@ struct UnkStruct_ov5_021DC1A4_t {
     u16 * unk_A4;
     u16 * unk_A8;
     UnkStruct_02081CF4 unk_AC;
-    UnkStruct_02001AF4 * unk_B8;
-    UnkStruct_02013A04 unk_BC[28];
+    UIControlData * unk_B8;
+    ResourceMetadata unk_BC[28];
     UnkStruct_ov84_02240FA8 unk_19C;
     UnkStruct_0200112C * unk_1BC;
     u16 unk_1C0;
     u16 unk_1C2;
-    UnkStruct_02013A04 unk_1C4[28];
+    ResourceMetadata unk_1C4[28];
     u16 unk_2A4[28];
     u16 unk_2DC;
 };

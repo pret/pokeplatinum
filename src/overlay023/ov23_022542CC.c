@@ -38,7 +38,7 @@ typedef struct UnkStruct_ov23_022542D8_t {
     UnkStruct_0203CDB0 * unk_00;
     Window unk_04;
     Window unk_14;
-    UnkStruct_02013A04 * unk_24;
+    ResourceMetadata * unk_24;
     UnkStruct_0200112C * unk_28;
     Strbuf* unk_2C;
     u16 * unk_30;
@@ -53,7 +53,7 @@ typedef struct UnkStruct_ov23_02254594_t {
     UnkStruct_0206A844 * unk_04;
     Window unk_08;
     Window unk_18;
-    UnkStruct_02013A04 * unk_28;
+    ResourceMetadata * unk_28;
     UnkStruct_ov23_02248D20 * unk_2C;
     UnkStruct_0200112C * unk_30;
     Strbuf* unk_34;

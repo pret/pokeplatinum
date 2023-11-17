@@ -125,7 +125,7 @@ typedef struct {
 
 typedef struct {
     BGL * unk_00;
-    UnkStruct_020218BC * unk_04;
+    GraphicElementManager * unk_04;
     UnkStruct_0200C738 unk_08;
     UnkStruct_02009714 * unk_194[4];
     NARC * unk_1A4;

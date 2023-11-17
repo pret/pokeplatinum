@@ -413,7 +413,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov94_022459F8 = {
     0x0
 };
 
-UnkStruct_02001AF4 * ov94_0223C3C0 (BGL * param0, int param1, int param2)
+UIControlData * ov94_0223C3C0 (BGL * param0, int param1, int param2)
 {
     UnkStruct_ov61_0222C884 v0;
 
@@ -430,7 +430,7 @@ void ov94_0223C3F4 (UnkStruct_ov94_0223FD4C * param0, int param1, int param2)
     param0->unk_30 = param2;
 }
 
-void ov94_0223C3FC (UnkStruct_02022550 * param0, int param1, int param2)
+void ov94_0223C3FC (GraphicElementData * param0, int param1, int param2)
 {
     VecFx32 v0;
 

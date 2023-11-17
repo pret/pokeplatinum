@@ -7,7 +7,7 @@
 
 typedef struct {
     int unk_00;
-    UnkStruct_02022550 * unk_04;
+    GraphicElementData * unk_04;
     const NNSG2dImageProxy * unk_08;
 } UnkStruct_ov101_021D8544;
 

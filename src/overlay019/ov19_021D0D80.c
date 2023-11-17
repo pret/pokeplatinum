@@ -141,7 +141,7 @@ typedef struct UnkStruct_ov19_021D5DF8_t {
     MessageLoader * unk_198;
     UnkStruct_0200B358 * unk_19C;
     Pokemon * unk_1A0;
-    UnkStruct_020279FC * unk_1A4;
+    AnimationControlFlags * unk_1A4;
     int (* unk_1A8)(struct UnkStruct_ov19_021D5DF8_t * param0);
     void (* unk_1AC)(struct UnkStruct_ov19_021D5DF8_t * param0, u32 * param1);
     u32 unk_1B0;

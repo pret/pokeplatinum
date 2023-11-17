@@ -609,7 +609,7 @@ u8 sub_020765B8(Pokemon *mon, u8 param1);
 u8 sub_020765C4(BoxPokemon *boxMon, u8 param1, BOOL param2);
 u8 sub_02076648(u16 monSpecies, u8 monGender, u8 param2, u8 monForm, u32 monPersonality);
 void sub_0207697C(ArchivedSprite *param0, u16 param1);
-CellActorData *sub_02076994(UnkStruct_0200C6E4 *param0, UnkStruct_0200C704 *param1, PaletteSys *param2, int param3, int param4, int param5, int param6, int param7, int heapID);
+CellActorData *sub_02076994(CellTransferStateData *param0, AnimationResourceCollection *param1, PaletteSys *param2, int param3, int param4, int param5, int param6, int param7, int heapID);
 void sub_02076AAC(int param0, int param1, UnkStruct_ov5_021DE5D0 *param2);
 
 /**

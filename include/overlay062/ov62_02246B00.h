@@ -5,7 +5,7 @@
 #include "overlay062/struct_ov62_02246B00.h"
 #include "overlay062/struct_ov62_02246BF4.h"
 
-UnkStruct_ov62_02246B00 * ov62_02246B00(int param0, int param1, int param2[], UnkStruct_020279FC * param3);
+UnkStruct_ov62_02246B00 * ov62_02246B00(int param0, int param1, int param2[], AnimationControlFlags * param3);
 void ov62_02246B4C(UnkStruct_ov62_02246B00 * param0);
 void ov62_02246B70(UnkStruct_ov62_02246BF4 * param0, int param1);
 void ov62_02246BF4(UnkStruct_ov62_02246BF4 * param0);

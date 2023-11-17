@@ -10,11 +10,11 @@
 #include <nnsys.h>
 
 typedef struct {
-    UnkStruct_020218BC * unk_00;
+    GraphicElementManager * unk_00;
     UnkStruct_0200C738 unk_04;
     UnkStruct_02009714 * unk_190[4];
     UnkStruct_02009DC8 * unk_1A0[2][4];
-    UnkStruct_02022550 * unk_1C0[25];
+    GraphicElementData * unk_1C0[25];
     void * unk_224[8];
     NNSG2dPaletteData * unk_244[8];
 } UnkStruct_ov71_0223D238;

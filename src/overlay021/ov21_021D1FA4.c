@@ -221,13 +221,13 @@ void ov21_021D2280 (const UnkStruct_ov21_021D13FC * param0, BOOL param1, int par
     }
 }
 
-UnkStruct_02022550 * ov21_021D22A8 (const UnkStruct_ov21_021D13FC * param0)
+GraphicElementData * ov21_021D22A8 (const UnkStruct_ov21_021D13FC * param0)
 {
     GF_ASSERT(param0->unk_1B0.unk_00);
     return param0->unk_1B0.unk_00;
 }
 
-UnkStruct_02022550 * ov21_021D22C4 (const UnkStruct_ov21_021D13FC * param0)
+GraphicElementData * ov21_021D22C4 (const UnkStruct_ov21_021D13FC * param0)
 {
     GF_ASSERT(param0->unk_1B0.unk_04);
     return param0->unk_1B0.unk_04;
@@ -904,7 +904,7 @@ static void ov21_021D2D4C (UnkStruct_ov21_021D13FC * param0)
     }
 }
 
-void ov21_021D2D88 (UnkStruct_ov21_021D22F8 * param0, UnkStruct_020218BC * param1, UnkStruct_02009714 ** param2, int param3, int param4)
+void ov21_021D2D88 (UnkStruct_ov21_021D22F8 * param0, GraphicElementManager * param1, UnkStruct_02009714 ** param2, int param3, int param4)
 {
     UnkStruct_ov19_021DA864 v0;
     UnkStruct_ov83_0223D9A8 v1;

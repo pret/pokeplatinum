@@ -43,7 +43,7 @@ typedef struct UnkStruct_ov20_021D3E0C_t {
     SysTask * unk_18;
     UnkStruct_ov20_021D4FF0 unk_1C;
     UnkStruct_ov20_021D4E8C unk_3C;
-    UnkStruct_02022550 * unk_5C;
+    GraphicElementData * unk_5C;
 } UnkStruct_ov20_021D3E0C;
 
 static u32 ov20_021D3B74(UnkStruct_ov20_021D3E0C * param0, BGL * param1, u32 param2);

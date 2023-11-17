@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_02001AF4_DECL_H
 #define POKEPLATINUM_STRUCT_02001AF4_DECL_H
 
-typedef struct UnkStruct_02001AF4_t UnkStruct_02001AF4;
+typedef struct UIControlData_t UIControlData;
 
 #endif // POKEPLATINUM_STRUCT_02001AF4_DECL_H

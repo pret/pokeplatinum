@@ -67,7 +67,7 @@ static void ov16_02267C58(UnkStruct_ov16_022674C4 * param0);
 static void ov16_02267CA8(UnkStruct_ov16_022674C4 * param0, int param1);
 static void ov16_02267CE8(UnkStruct_ov16_022674C4 * param0, u32 param1);
 static void ov16_02267DC4(UnkStruct_ov16_022674C4 * param0, u32 param1);
-static void ov16_02266FE4(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, NARC * param2, PaletteSys * param3, int param4);
+static void ov16_02266FE4(CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2, PaletteSys * param3, int param4);
 static void ov16_02267244(UnkStruct_ov16_022674C4 * param0);
 static void ov16_0226728C(UnkStruct_ov16_022674C4 * param0);
 static const UnkStruct_ov104_0223F9E0 * ov16_022682B0(u8 param0);
@@ -409,7 +409,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov16_0226F57C = {
 
 #include "overlay016/rodata_ov16_0226F6AC.h"
 
-void ov16_02266F1C (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, NARC * param2, PaletteSys * param3, int param4)
+void ov16_02266F1C (CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2, PaletteSys * param3, int param4)
 {
     const UnkStruct_ov104_0223F9E0 * v0;
 
@@ -426,7 +426,7 @@ void ov16_02266F1C (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, NA
     }
 }
 
-static void ov16_02266FE4 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, NARC * param2, PaletteSys * param3, int param4)
+static void ov16_02266FE4 (CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2, PaletteSys * param3, int param4)
 {
     const UnkStruct_ov104_0223F9E0 * v0;
 
@@ -440,7 +440,7 @@ static void ov16_02266FE4 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * par
     }
 }
 
-CellActorData * ov16_02267060 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, int param2)
+CellActorData * ov16_02267060 (CellTransferStateData * param0, AnimationResourceCollection * param1, int param2)
 {
     const UnkStruct_ov104_0223F9E0 * v0;
     CellActorData * v1;
@@ -592,8 +592,8 @@ static void ov16_02267244 (UnkStruct_ov16_022674C4 * param0)
 
 void ov16_02267258 (UnkStruct_ov16_022674C4 * param0)
 {
-    UnkStruct_0200C6E4 * v0;
-    UnkStruct_0200C704 * v1;
+    CellTransferStateData * v0;
+    AnimationResourceCollection * v1;
     const UnkStruct_ov104_0223F9E0 * v2;
 
     v2 = ov16_022682B0(param0->unk_25);
@@ -607,8 +607,8 @@ void ov16_02267258 (UnkStruct_ov16_022674C4 * param0)
 
 static void ov16_0226728C (UnkStruct_ov16_022674C4 * param0)
 {
-    UnkStruct_0200C6E4 * v0;
-    UnkStruct_0200C704 * v1;
+    CellTransferStateData * v0;
+    AnimationResourceCollection * v1;
     const UnkStruct_ov104_0223F9E0 * v2;
 
     v2 = ov16_02268314(param0->unk_25);
@@ -628,8 +628,8 @@ static void ov16_0226728C (UnkStruct_ov16_022674C4 * param0)
 void ov16_022672C4 (UnkStruct_ov16_022674C4 * param0)
 {
     const UnkStruct_ov104_0223F9E0 * v0;
-    UnkStruct_0200C6E4 * v1;
-    UnkStruct_0200C704 * v2;
+    CellTransferStateData * v1;
+    AnimationResourceCollection * v2;
     PaletteSys * v3;
     NARC * v4;
 
@@ -1614,7 +1614,7 @@ void ov16_0226834C (UnkStruct_ov16_022674C4 * param0, u8 * param1)
 static void ov16_02268380 (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0226834C * v0 = param1;
-    UnkStruct_0200C704 * v1;
+    AnimationResourceCollection * v1;
     int v2;
     PaletteSys * v3;
 

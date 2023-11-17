@@ -82,7 +82,7 @@ typedef struct {
 typedef struct {
     Window unk_00[1];
     s32 unk_10;
-    UnkStruct_02022550 * unk_14;
+    GraphicElementData * unk_14;
     UnkStruct_02009DC8 * unk_18[4];
     u16 unk_28;
     u16 unk_2A;
@@ -115,7 +115,7 @@ typedef struct {
     Window unk_08;
     Strbuf* unk_18;
     void * unk_1C;
-    UnkStruct_02001AF4 * unk_20;
+    UIControlData * unk_20;
 } UnkStruct_ov68_0225D128;
 
 typedef struct {
@@ -128,7 +128,7 @@ typedef struct {
 
 typedef struct {
     BGL * unk_00;
-    UnkStruct_020218BC * unk_04;
+    GraphicElementManager * unk_04;
     UnkStruct_0200C738 unk_08;
     UnkStruct_02009714 * unk_194[4];
     NARC * unk_1A4;
@@ -146,7 +146,7 @@ static void ov68_0225C91C(UnkStruct_ov68_0225C91C * param0, SaveData * param1, u
 static void ov68_0225C960(UnkStruct_ov68_0225C91C * param0);
 static void ov68_0225C980(UnkStruct_ov68_0225C91C * param0);
 static void ov68_0225C98C(UnkStruct_ov68_0225C91C * param0);
-static void ov68_0225C9A0(UnkStruct_ov68_0225C91C * param0, UnkStruct_020279FC * param1, u32 param2);
+static void ov68_0225C9A0(UnkStruct_ov68_0225C91C * param0, AnimationControlFlags * param1, u32 param2);
 static void ov68_0225CA8C(UnkStruct_ov68_0225C91C * param0);
 static void ov68_0225CAB4(UnkStruct_ov68_0225C91C * param0, u32 param1);
 static void ov68_0225CB44(UnkStruct_ov68_0225C91C * param0);
@@ -453,7 +453,7 @@ static void ov68_0225C914 (void * param0)
 
 static void ov68_0225C91C (UnkStruct_ov68_0225C91C * param0, SaveData * param1, u32 param2)
 {
-    UnkStruct_020279FC * v0;
+    AnimationControlFlags * v0;
 
     v0 = sub_02025E44(param1);
     param0->unk_1A4 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, param2);
@@ -485,7 +485,7 @@ static void ov68_0225C98C (UnkStruct_ov68_0225C91C * param0)
     sub_0201DCAC();
 }
 
-static void ov68_0225C9A0 (UnkStruct_ov68_0225C91C * param0, UnkStruct_020279FC * param1, u32 param2)
+static void ov68_0225C9A0 (UnkStruct_ov68_0225C91C * param0, AnimationControlFlags * param1, u32 param2)
 {
     sub_02018368(&Unk_ov68_0225DD48);
 
@@ -921,7 +921,7 @@ static void ov68_0225D128 (UnkStruct_ov68_0225D128 * param0, UnkStruct_ov68_0225
     param0->unk_18 = Strbuf_Init(256, param3);
 
     {
-        UnkStruct_020279FC * v0;
+        AnimationControlFlags * v0;
 
         v0 = sub_02025E44(param2);
         param0->unk_04 = sub_02027AC0(v0);

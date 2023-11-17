@@ -99,9 +99,9 @@ typedef struct {
     NNSG2dScreenData * unk_3C;
     NNSG2dScreenData * unk_40;
     Window unk_44[6];
-    UnkStruct_02001AF4 * unk_A4;
-    UnkStruct_0200C6E4 * unk_A8;
-    UnkStruct_0200C704 * unk_AC;
+    UIControlData * unk_A4;
+    CellTransferStateData * unk_A8;
+    AnimationResourceCollection * unk_AC;
     CellActorData * unk_B0[3];
 } UnkStruct_ov75_021D1184;
 

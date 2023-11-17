@@ -9,7 +9,7 @@ typedef struct {
     int unk_04[5];
     int unk_18;
     Strbuf* unk_1C;
-    UnkStruct_020279FC * unk_20;
+    AnimationControlFlags * unk_20;
     int unk_24;
     u32 unk_28;
     u32 unk_2C;

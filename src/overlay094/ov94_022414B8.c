@@ -87,7 +87,7 @@ static int ov94_02242040(UnkStruct_ov94_0223FD4C * param0);
 static int ov94_02242068(UnkStruct_ov94_0223FD4C * param0);
 static int ov94_0224208C(UnkStruct_ov94_0223FD4C * param0);
 static void ov94_02242668(UnkStruct_ov94_0223BA88 * param0, UnkStruct_ov94_0223FD4C * param1);
-static int ov94_02242718(UnkStruct_02013A04 ** param0, MessageLoader * param1, MessageLoader * param2, u16 * param3, u8 * param4, int param5, int param6, UnkStruct_02026324 * param7);
+static int ov94_02242718(ResourceMetadata ** param0, MessageLoader * param1, MessageLoader * param2, u16 * param3, u8 * param4, int param5, int param6, UnkStruct_02026324 * param7);
 static u32 ov94_022421E8(int param0, u32 param1);
 
 static int (* Unk_ov94_0224695C[])(UnkStruct_ov94_0223FD4C *) = {
@@ -1100,7 +1100,7 @@ static const UnkStruct_ov84_02240FA8 Unk_ov94_0224608C = {
     NULL
 };
 
-UnkStruct_0200112C * ov94_022426A8 (UnkStruct_ov94_0223FD4C * param0, UnkStruct_02013A04 ** param1, Window * param2, MessageLoader * param3)
+UnkStruct_0200112C * ov94_022426A8 (UnkStruct_ov94_0223FD4C * param0, ResourceMetadata ** param1, Window * param2, MessageLoader * param3)
 {
     UnkStruct_ov84_02240FA8 v0;
     int v1;
@@ -1133,7 +1133,7 @@ static u16 Unk_ov94_02246928[] = {
     0x1ED
 };
 
-static int ov94_02242718 (UnkStruct_02013A04 ** param0, MessageLoader * param1, MessageLoader * param2, u16 * param3, u8 * param4, int param5, int param6, UnkStruct_02026324 * param7)
+static int ov94_02242718 (ResourceMetadata ** param0, MessageLoader * param1, MessageLoader * param2, u16 * param3, u8 * param4, int param5, int param6, UnkStruct_02026324 * param7)
 {
     int v0, v1, v2 = 0;
     int v3 = Unk_ov94_02246928[param6 + 1] - Unk_ov94_02246928[param6];
@@ -1176,7 +1176,7 @@ static int ov94_02242718 (UnkStruct_02013A04 ** param0, MessageLoader * param1, 
     return v2 + 1;
 }
 
-UnkStruct_0200112C * ov94_022427C0 (UnkStruct_ov94_0223FD4C * param0, UnkStruct_02013A04 ** param1, Window * param2, MessageLoader * param3, MessageLoader * param4, UnkStruct_ov94_0223FD4C_sub3 * param5, UnkStruct_02026324 * param6)
+UnkStruct_0200112C * ov94_022427C0 (UnkStruct_ov94_0223FD4C * param0, ResourceMetadata ** param1, Window * param2, MessageLoader * param3, MessageLoader * param4, UnkStruct_ov94_0223FD4C_sub3 * param5, UnkStruct_02026324 * param6)
 {
     UnkStruct_ov84_02240FA8 v0;
     int v1, v2, v3;
@@ -1203,7 +1203,7 @@ static Unk_ov94_0224693C[][2] = {
     {0x79, 0xFFFFFFFE}
 };
 
-UnkStruct_0200112C * ov94_02242840 (UnkStruct_02013A04 ** param0, Window * param1, MessageLoader * param2)
+UnkStruct_0200112C * ov94_02242840 (ResourceMetadata ** param0, Window * param1, MessageLoader * param2)
 {
     UnkStruct_ov84_02240FA8 v0;
     int v1;
@@ -1224,7 +1224,7 @@ UnkStruct_0200112C * ov94_02242840 (UnkStruct_02013A04 ** param0, Window * param
     return sub_0200112C(&v0, 0, 0, 62);
 }
 
-UnkStruct_0200112C * ov94_022428B0 (UnkStruct_02013A04 ** param0, Window * param1, MessageLoader * param2, int param3)
+UnkStruct_0200112C * ov94_022428B0 (ResourceMetadata ** param0, Window * param1, MessageLoader * param2, int param3)
 {
     UnkStruct_ov84_02240FA8 v0;
     int v1;
@@ -1294,7 +1294,7 @@ int ov94_02242970 (int param0, int param1, int param2)
     return 0;
 }
 
-UnkStruct_0200112C * ov94_022429B4 (UnkStruct_02013A04 ** param0, Window * param1, MessageLoader * param2, MessageLoader * param3)
+UnkStruct_0200112C * ov94_022429B4 (ResourceMetadata ** param0, Window * param1, MessageLoader * param2, MessageLoader * param3)
 {
     UnkStruct_ov84_02240FA8 v0;
     int v1;

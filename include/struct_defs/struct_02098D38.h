@@ -6,7 +6,7 @@
 
 typedef struct {
     void * unk_00;
-    UnkStruct_020279FC * unk_04;
+    AnimationControlFlags * unk_04;
     const u16 * unk_08;
     u32 unk_0C;
     u8 unk_10;

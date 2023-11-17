@@ -197,7 +197,7 @@ FS_EXTERN_OVERLAY(overlay121);
 
 typedef struct {
     int unk_00;
-    UnkStruct_02098C44 * unk_04;
+    PartyManagementData * unk_04;
     UnkStruct_02098D38 * unk_08;
 } UnkStruct_0203D444;
 
@@ -392,11 +392,11 @@ void sub_0203D334 (UnkStruct_0203CDB0 * param0, void * param1)
     sub_0203CD84(param0, &Unk_020F410C, param1);
 }
 
-static UnkStruct_02098C44 * sub_0203D344 (int param0, UnkStruct_0203CDB0 * param1, int param2, int param3)
+static PartyManagementData * sub_0203D344 (int param0, UnkStruct_0203CDB0 * param1, int param2, int param3)
 {
-    UnkStruct_02098C44 * v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_02098C44));
+    PartyManagementData * v0 = Heap_AllocFromHeap(param0, sizeof(PartyManagementData));
 
-    MI_CpuClearFast(v0, sizeof(UnkStruct_02098C44));
+    MI_CpuClearFast(v0, sizeof(PartyManagementData));
 
     v0->unk_00 = Party_GetFromSavedata(param1->unk_0C);
     v0->unk_04 = sub_0207D990(param1->unk_0C);
@@ -411,7 +411,7 @@ static UnkStruct_02098C44 * sub_0203D344 (int param0, UnkStruct_0203CDB0 * param
 
 void * sub_0203D390 (UnkStruct_0203CDB0 * param0, UnkStruct_02070950 * param1, u8 param2)
 {
-    UnkStruct_02098C44 * v0 = sub_0203D344(11, param0, 0, 0);
+    PartyManagementData * v0 = sub_0203D344(11, param0, 0, 0);
 
     v0->unk_18 = param1;
     v0->unk_22 = param2;
@@ -423,7 +423,7 @@ void * sub_0203D390 (UnkStruct_0203CDB0 * param0, UnkStruct_02070950 * param1, u
 
 void * sub_0203D3C0 (int param0, UnkStruct_0203CDB0 * param1)
 {
-    UnkStruct_02098C44 * v0 = sub_0203D344(11, param1, 0, 3);
+    PartyManagementData * v0 = sub_0203D344(11, param1, 0, 3);
 
     sub_0203CD84(param1, &Unk_020F1E88, v0);
     return v0;
@@ -431,7 +431,7 @@ void * sub_0203D3C0 (int param0, UnkStruct_0203CDB0 * param1)
 
 void * sub_0203D3E4 (int param0, UnkStruct_0203CDB0 * param1)
 {
-    UnkStruct_02098C44 * v0 = sub_0203D344(11, param1, 0, 19);
+    PartyManagementData * v0 = sub_0203D344(11, param1, 0, 19);
 
     sub_0203CD84(param1, &Unk_020F1E88, v0);
     return v0;
@@ -439,13 +439,13 @@ void * sub_0203D3E4 (int param0, UnkStruct_0203CDB0 * param1)
 
 int sub_0203D408 (void * param0)
 {
-    UnkStruct_02098C44 * v0 = param0;
+    PartyManagementData * v0 = param0;
     return v0->unk_22;
 }
 
 void * sub_0203D410 (int param0, UnkStruct_0203CDB0 * param1, int param2)
 {
-    UnkStruct_02098C44 * v0 = sub_0203D344(11, param1, 0, 18);
+    PartyManagementData * v0 = sub_0203D344(11, param1, 0, 18);
 
     v0->unk_22 = param2;
     sub_0203CD84(param1, &Unk_020F1E88, v0);
@@ -455,7 +455,7 @@ void * sub_0203D410 (int param0, UnkStruct_0203CDB0 * param1, int param2)
 
 int sub_0203D438 (void * param0)
 {
-    UnkStruct_02098C44 * v0 = param0;
+    PartyManagementData * v0 = param0;
     return v0->unk_23;
 }
 
@@ -519,7 +519,7 @@ static BOOL sub_0203D444 (UnkStruct_020508D4 * param0)
 void * sub_0203D50C (UnkStruct_020508D4 * param0, int param1)
 {
     UnkStruct_0203D444 * v0;
-    UnkStruct_02098C44 * v1;
+    PartyManagementData * v1;
     UnkStruct_0203CDB0 * v2 = sub_02050A60(param0);
 
     v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_0203D444));
@@ -538,7 +538,7 @@ void * sub_0203D50C (UnkStruct_020508D4 * param0, int param1)
 
 void * sub_0203D578 (int param0, UnkStruct_0203CDB0 * param1, int param2, int param3, int param4, int param5)
 {
-    UnkStruct_02098C44 * v0 = sub_0203D344(11, param1, 0, 13);
+    PartyManagementData * v0 = sub_0203D344(11, param1, 0, 13);
 
     v0->unk_22 = param5;
     v0->unk_29 = 2;
@@ -580,7 +580,7 @@ void * sub_0203D5C8 (int param0, UnkStruct_0203CDB0 * param1, int param2)
 
 void * sub_0203D644 (UnkStruct_0203CDB0 * param0, int param1)
 {
-    UnkStruct_02098C44 * v0 = sub_0203D344(11, param0, 0, 21);
+    PartyManagementData * v0 = sub_0203D344(11, param0, 0, 21);
 
     v0->unk_22 = param1;
     sub_0203CD84(param0, &Unk_020F1E88, v0);
@@ -773,7 +773,7 @@ void * sub_0203D8AC (UnkStruct_0203CDB0 * param0)
     return v0;
 }
 
-static void sub_0203D8DC (UnkStruct_0203CDB0 * param0, UnkStruct_020279FC * param1)
+static void sub_0203D8DC (UnkStruct_0203CDB0 * param0, AnimationControlFlags * param1)
 {
     FS_EXTERN_OVERLAY(overlay74);
 
@@ -790,7 +790,7 @@ static void sub_0203D8DC (UnkStruct_0203CDB0 * param0, UnkStruct_020279FC * para
 void * sub_0203D8EC (UnkStruct_0203CDB0 * param0)
 {
     UnkStruct_0203D8EC * v0;
-    UnkStruct_020279FC * v1;
+    AnimationControlFlags * v1;
 
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0203D8EC));
     v1 = sub_02025E44(sub_0203D174(param0));
@@ -1617,7 +1617,7 @@ static BOOL sub_0203E35C (UnkStruct_020508D4 * param0)
 void sub_0203E414 (UnkStruct_020508D4 * param0, int param1)
 {
     UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
-    UnkStruct_020279FC * v1 = sub_02025E44(v0->unk_0C);
+    AnimationControlFlags * v1 = sub_02025E44(v0->unk_0C);
     UnkStruct_0203E35C * v2 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0203E35C));
 
     v2->unk_0C.unk_00 = &v2->unk_00;
@@ -1724,12 +1724,12 @@ void * sub_0203E564 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u16 para
     return v0;
 }
 
-UnkStruct_02098C44 * sub_0203E598 (UnkStruct_0203CDB0 * param0, int param1, int param2)
+PartyManagementData * sub_0203E598 (UnkStruct_0203CDB0 * param0, int param1, int param2)
 {
-    UnkStruct_02098C44 * v0;
+    PartyManagementData * v0;
 
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02098C44));
-    memset(v0, 0, sizeof(UnkStruct_02098C44));
+    v0 = Heap_AllocFromHeap(param1, sizeof(PartyManagementData));
+    memset(v0, 0, sizeof(PartyManagementData));
 
     v0->unk_00 = Party_GetFromSavedata(param0->unk_0C);
     v0->unk_04 = sub_0207D990(param0->unk_0C);

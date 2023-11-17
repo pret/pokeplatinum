@@ -71,7 +71,7 @@ typedef struct {
     UnkStruct_02007768 * unk_10;
     UnkStruct_02007C7C * unk_14;
     UnkStruct_02007C10 unk_18[10];
-    UnkStruct_02022550 * unk_40[2];
+    GraphicElementData * unk_40[2];
     UnkStruct_ov95_02247568 unk_48;
     BGL * unk_58;
     Window unk_5C;

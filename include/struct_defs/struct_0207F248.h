@@ -31,10 +31,10 @@ typedef struct {
     u16 unk_324[96];
     u16 unk_3E4[96];
     u16 unk_4A4[128];
-    UnkStruct_02098C44 * unk_5A4;
-    UnkStruct_0200C6E4 * unk_5A8;
-    UnkStruct_0200C704 * unk_5AC;
-    UnkStruct_02022550 * unk_5B0[29];
+    PartyManagementData * unk_5A4;
+    CellTransferStateData * unk_5A8;
+    AnimationResourceCollection * unk_5AC;
+    GraphicElementData * unk_5B0[29];
     CellActorData * unk_624[29];
     UnkStruct_0200C440 * unk_698;
     MessageLoader * unk_69C;
@@ -42,13 +42,13 @@ typedef struct {
     Strbuf* unk_6A4;
     Strbuf* unk_6A8;
     Strbuf* unk_6AC[20];
-    UnkStruct_02013A04 * unk_6FC;
-    UnkStruct_02001AF4 * unk_700;
-    UnkStruct_020831B4 unk_704[6];
-    const UnkStruct_020F1DB8 * unk_7F4;
-    UnkStruct_02083D1C unk_7F8;
-    UnkFuncPtr_0207F248 unk_B00;
-    UnkFuncPtr_0207F248_sub1 unk_B04;
+    ResourceMetadata * unk_6FC;
+    UIControlData * unk_700;
+    StrBufWrapper unk_704[6];
+    const ByteFlagSet * unk_7F4;
+    DualArrayShortData unk_7F8;
+    GenericFunctionPtr unk_B00;
+    FunctionPtrPair unk_B04;
     u8 unk_B0C;
     u8 unk_B0D;
     u8 unk_B0E;
@@ -61,8 +61,8 @@ typedef struct {
     u8 unk_B13;
     u16 unk_B14[6];
     HeightWeightData * unk_B20;
-    UnkStruct_ov118_021D0FDC * unk_B24;
-    UnkStruct_0207C690 * unk_B28;
-} UnkStruct_0207F248;
+    OverlayMetadata * unk_B24;
+    GenericPointerData * unk_B28;
+} GameWindowLayout;
 
 #endif // POKEPLATINUM_STRUCT_0207F248_H

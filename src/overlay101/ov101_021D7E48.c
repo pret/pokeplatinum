@@ -36,7 +36,7 @@ typedef struct UnkStruct_ov101_021D7E48_t {
     u8 unk_09;
     u8 unk_0A;
     u8 unk_0B;
-    UnkStruct_020218BC * unk_0C;
+    GraphicElementManager * unk_0C;
     UnkStruct_0200C738 unk_10;
     NNSG2dCellTransferState * unk_19C;
     UnkStruct_02009714 * unk_1A0;
@@ -325,7 +325,7 @@ void ov101_021D84A4 (UnkStruct_ov101_021D7E48 * param0, UnkStruct_ov101_021D8544
 {
     UnkStruct_ov19_021DA864 v0;
     UnkStruct_ov83_0223D9A8 v1;
-    UnkStruct_02022550 * v2;
+    GraphicElementData * v2;
 
     if (param8 == param0->unk_0B) {
         param8 = 0xffffffff;
@@ -362,13 +362,13 @@ void ov101_021D8544 (UnkStruct_ov101_021D8544 * param0)
     param0->unk_04 = NULL;
 }
 
-void ov101_021D8560 (UnkStruct_02022550 * param0, VecFx32 * param1)
+void ov101_021D8560 (GraphicElementData * param0, VecFx32 * param1)
 {
     const VecFx32 * v0 = sub_02021D28(param0);
     *param1 = *v0;
 }
 
-void ov101_021D8574 (UnkStruct_02022550 * param0, VecFx32 * param1)
+void ov101_021D8574 (GraphicElementData * param0, VecFx32 * param1)
 {
     const VecFx32 * v0 = sub_02021D2C(param0);
     *param1 = *v0;

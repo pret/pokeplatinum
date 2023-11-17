@@ -32,7 +32,7 @@ struct UnkStruct_ov104_022320B4_t {
     BOOL unk_5C;
     UnkStruct_ov104_02232B5C * unk_60;
     Window unk_64;
-    UnkStruct_02001AF4 * unk_74;
+    UIControlData * unk_74;
     u16 * unk_78;
     void * unk_7C;
     void * unk_80;

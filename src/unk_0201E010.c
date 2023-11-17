@@ -5,19 +5,19 @@
 
 #include "unk_0201E010.h"
 
-void sub_0201E010 (const UnkStruct_020F1DB8 * param0, u8 * param1, u8 * param2)
+void sub_0201E010 (const ByteFlagSet * param0, u8 * param1, u8 * param2)
 {
     *param1 = param0->unk_00;
     *param2 = param0->unk_01;
 }
 
-void sub_0201E01C (const UnkStruct_020F1DB8 * param0, u8 * param1, u8 * param2)
+void sub_0201E01C (const ByteFlagSet * param0, u8 * param1, u8 * param2)
 {
     *param1 = param0->unk_02;
     *param2 = param0->unk_03;
 }
 
-u8 sub_0201E028 (const UnkStruct_020F1DB8 * param0, u8 * param1, u8 * param2, u8 * param3, u8 * param4, u8 param5, u8 param6)
+u8 sub_0201E028 (const ByteFlagSet * param0, u8 * param1, u8 * param2, u8 * param3, u8 * param4, u8 param5, u8 param6)
 {
     u8 v0 = param5;
 

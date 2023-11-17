@@ -82,10 +82,10 @@ typedef struct {
 
 static void ov23_0224F460(UnkStruct_ov23_02250CD4 * param0);
 static void ov23_0224F498(UnkStruct_ov23_02250CD4 * param0);
-static void ov23_0224F4D0(UnkStruct_02022550 * param0, u32 param1);
-static void ov23_0224F500(UnkStruct_02022550 * param0, u16 param1, u16 param2);
+static void ov23_0224F4D0(GraphicElementData * param0, u32 param1);
+static void ov23_0224F500(GraphicElementData * param0, u16 param1, u16 param2);
 static void ov23_0224F52C(UnkStruct_ov23_02250CD4 * param0, u16 param1, u16 param2);
-static void ov23_0224F560(UnkStruct_02022550 * param0);
+static void ov23_0224F560(GraphicElementData * param0);
 static void ov23_0224F914(SysTask * param0, void * param1);
 static BOOL ov23_0224FA58(SysTask * param0, void * param1);
 static void ov23_0224FE38(UnkStruct_ov23_02250CD4 * param0, UnkFuncPtr_ov23_02248D20 param1);
@@ -250,7 +250,7 @@ static void ov23_0224F498 (UnkStruct_ov23_02250CD4 * param0)
     }
 }
 
-static void ov23_0224F4D0 (UnkStruct_02022550 * param0, u32 param1)
+static void ov23_0224F4D0 (GraphicElementData * param0, u32 param1)
 {
     VecFx32 v0;
 
@@ -260,7 +260,7 @@ static void ov23_0224F4D0 (UnkStruct_02022550 * param0, u32 param1)
     sub_02021C50(param0, &v0);
 }
 
-static void ov23_0224F500 (UnkStruct_02022550 * param0, u16 param1, u16 param2)
+static void ov23_0224F500 (GraphicElementData * param0, u16 param1, u16 param2)
 {
     u32 v0 = sub_02021E24(param0);
 
@@ -274,7 +274,7 @@ static void ov23_0224F52C (UnkStruct_ov23_02250CD4 * param0, u16 param1, u16 par
     ov23_0224F500(param0->unk_23C[1 + param2]->unk_00, 1, 1);
 }
 
-static void ov23_0224F560 (UnkStruct_02022550 * param0)
+static void ov23_0224F560 (GraphicElementData * param0)
 {
     if ((sub_02021E24(param0) % 3) != 1) {
         return;

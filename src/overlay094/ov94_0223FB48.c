@@ -54,7 +54,7 @@
 typedef struct {
     int unk_00;
     int unk_04;
-    UnkStruct_02022550 * unk_08;
+    GraphicElementData * unk_08;
     u8 unk_0C[512];
 } UnkStruct_ov94_02240FA0;
 
@@ -75,7 +75,7 @@ static int ov94_02240AE8(UnkStruct_ov94_0223FD4C * param0);
 static int ov94_02240D08(UnkStruct_ov94_0223FD4C * param0);
 static int ov94_02240D28(UnkStruct_ov94_0223FD4C * param0);
 static void ov94_02240D58(UnkStruct_ov94_0223FD4C * param0, int param1, int param2, int param3, u16 param4, int param5);
-static void ov94_02240DF8(int param0, int param1, int param2, int param3, UnkStruct_02022550 * param4, NARC * param5, UnkStruct_ov94_02240FA0 * param6);
+static void ov94_02240DF8(int param0, int param1, int param2, int param3, GraphicElementData * param4, NARC * param5, UnkStruct_ov94_02240FA0 * param6);
 static void ov94_02240FA0(UnkStruct_ov94_0223FD4C * param0, int param1);
 static int ov94_022405CC(int param0, int param1, int param2);
 static void ov94_022404F0(UnkStruct_ov94_0223FD4C * param0);
@@ -91,10 +91,10 @@ static int ov94_02240C84(UnkStruct_ov94_0223FD4C * param0);
 static int ov94_02240CA8(UnkStruct_ov94_0223FD4C * param0);
 static int ov94_02241384(BoxPokemon * param0, UnkStruct_ov94_0223BA88_sub3 * param1);
 static void ov94_022413BC(UnkStruct_ov94_0223BA88 * param0, UnkStruct_ov94_0223FD4C * param1);
-static void ov94_02240EAC(BoxPokemon * param0, UnkStruct_02022550 * param1, UnkStruct_02022550 * param2, u16 * param3, int param4, NARC * param5, UnkStruct_ov94_0223BA88_sub2 * param6, UnkStruct_ov94_02240FA0 * param7);
+static void ov94_02240EAC(BoxPokemon * param0, GraphicElementData * param1, GraphicElementData * param2, u16 * param3, int param4, NARC * param5, UnkStruct_ov94_0223BA88_sub2 * param6, UnkStruct_ov94_02240FA0 * param7);
 void * ov94_02240DD0(NARC * param0, u32 param1, NNSG2dCharacterData ** param2, u32 param3);
 static int ov94_02241328(UnkStruct_ov94_0223BA88_sub2 * param0, UnkStruct_ov94_0223BA88_sub3 * param1);
-static void ov94_02241464(UnkStruct_ov94_0223BA88_sub2 * param0, UnkStruct_02022550 ** param1, UnkStruct_ov94_0223BA88_sub3 * param2, UnkStruct_ov94_02240FA0 * param3);
+static void ov94_02241464(UnkStruct_ov94_0223BA88_sub2 * param0, GraphicElementData ** param1, UnkStruct_ov94_0223BA88_sub3 * param2, UnkStruct_ov94_02240FA0 * param3);
 static int ov94_0224121C(Party * param0, PCBoxes * param1, int param2, int param3);
 static int ov94_022412F4(Party * param0, PCBoxes * param1, int param2, int param3);
 static int ov94_02240BB0(UnkStruct_ov94_0223FD4C * param0);
@@ -1049,7 +1049,7 @@ void * ov94_02240DD0 (NARC * param0, u32 param1, NNSG2dCharacterData ** param2, 
     return v0;
 }
 
-static void ov94_02240DF8 (int param0, int param1, int param2, int param3, UnkStruct_02022550 * param4, NARC * param5, UnkStruct_ov94_02240FA0 * param6)
+static void ov94_02240DF8 (int param0, int param1, int param2, int param3, GraphicElementData * param4, NARC * param5, UnkStruct_ov94_02240FA0 * param6)
 {
     u8 * v0;
     u8 * v1;
@@ -1089,7 +1089,7 @@ static void ov94_02240E5C (void * param0)
     Heap_FreeToHeap(v0->unk_1114);
 }
 
-static void ov94_02240EAC (BoxPokemon * param0, UnkStruct_02022550 * param1, UnkStruct_02022550 * param2, u16 * param3, int param4, NARC * param5, UnkStruct_ov94_0223BA88_sub2 * param6, UnkStruct_ov94_02240FA0 * param7)
+static void ov94_02240EAC (BoxPokemon * param0, GraphicElementData * param1, GraphicElementData * param2, u16 * param3, int param4, NARC * param5, UnkStruct_ov94_0223BA88_sub2 * param6, UnkStruct_ov94_02240FA0 * param7)
 {
     int v0, v1, v2, v3;
 
@@ -1401,7 +1401,7 @@ static void ov94_022413BC (UnkStruct_ov94_0223BA88 * param0, UnkStruct_ov94_0223
     param0->unk_F0 = v1;
 }
 
-static void ov94_02241464 (UnkStruct_ov94_0223BA88_sub2 * param0, UnkStruct_02022550 ** param1, UnkStruct_ov94_0223BA88_sub3 * param2, UnkStruct_ov94_02240FA0 * param3)
+static void ov94_02241464 (UnkStruct_ov94_0223BA88_sub2 * param0, GraphicElementData ** param1, UnkStruct_ov94_0223BA88_sub3 * param2, UnkStruct_ov94_02240FA0 * param3)
 {
     int v0, v1;
 

@@ -104,7 +104,7 @@ typedef struct {
     u32 unk_00;
     Window * unk_04;
     UnkStruct_0200112C * unk_08;
-    UnkStruct_02013A04 unk_0C[23];
+    ResourceMetadata unk_0C[23];
     Strbuf* unk_C4[23];
     s32 unk_120;
     UnkStruct_0200B358 * unk_124;
@@ -115,14 +115,14 @@ typedef struct {
     void (* unk_134)(void *, u32);
     UnkStruct_02009714 * unk_138[4];
     UnkStruct_02009DC8 * unk_148[4];
-    UnkStruct_02022550 * unk_158[2];
+    GraphicElementData * unk_158[2];
 } UnkStruct_ov7_0224C768;
 
 typedef void (* UnkFuncPtr_ov7_0224C768)(void *, u32);
 
 typedef struct {
     u32 unk_00;
-    UnkStruct_02001AF4 * unk_04;
+    UIControlData * unk_04;
     u32 unk_08;
 } UnkStruct_ov7_0224CC44;
 
@@ -142,7 +142,7 @@ typedef struct UnkStruct_ov7_0224BEFC_t {
     UnkStruct_0207D3C0 * unk_10;
     BGL * unk_14;
     u32 unk_18;
-    UnkStruct_020218BC * unk_1C;
+    GraphicElementManager * unk_1C;
     UnkStruct_0200C738 unk_20;
     MessageLoader * unk_1AC;
     u32 unk_1B0;
@@ -168,7 +168,7 @@ static void ov7_0224C580(UnkStruct_ov7_0224C3EC * param0, MessageLoader * param1
 static void ov7_0224C620(UnkStruct_ov7_0224C620 * param0, BGL * param1, MessageLoader * param2, u32 param3);
 static void ov7_0224C698(UnkStruct_ov7_0224C620 * param0);
 static void ov7_0224C6DC(UnkStruct_ov7_0224C620 * param0, u32 param1, u32 param2, u32 param3);
-static void ov7_0224C768(UnkStruct_ov7_0224C768 * param0, BGL * param1, u32 param2, const UnkStruct_ov7_0224F1B4 * param3, u32 param4, MessageLoader * param5, void * param6, UnkFuncPtr_ov7_0224C768 param7, UnkStruct_020218BC * param8);
+static void ov7_0224C768(UnkStruct_ov7_0224C768 * param0, BGL * param1, u32 param2, const UnkStruct_ov7_0224F1B4 * param3, u32 param4, MessageLoader * param5, void * param6, UnkFuncPtr_ov7_0224C768 param7, GraphicElementManager * param8);
 static void ov7_0224C934(UnkStruct_ov7_0224C768 * param0);
 static u32 ov7_0224C9A4(UnkStruct_ov7_0224C768 * param0);
 static void ov7_0224CA0C(UnkStruct_ov7_0224C768 * param0);
@@ -372,7 +372,7 @@ BOOL ov7_0224BF2C (UnkStruct_ov7_0224BEFC * param0)
 
 static void ov7_0224C338 (UnkStruct_ov7_0224BEFC * param0)
 {
-    UnkStruct_020279FC * v0 = sub_02025E44(param0->unk_08);
+    AnimationControlFlags * v0 = sub_02025E44(param0->unk_08);
 
     param0->unk_1B0 = sub_02027B50(v0);
     param0->unk_1B4 = sub_02027AC0(v0);
@@ -571,7 +571,7 @@ static void ov7_0224C6DC (UnkStruct_ov7_0224C620 * param0, u32 param1, u32 param
     Window_Show(param0->unk_04, 0, (1 + (18 + 12)), 11);
 }
 
-static void ov7_0224C768 (UnkStruct_ov7_0224C768 * param0, BGL * param1, u32 param2, const UnkStruct_ov7_0224F1B4 * param3, u32 param4, MessageLoader * param5, void * param6, UnkFuncPtr_ov7_0224C768 param7, UnkStruct_020218BC * param8)
+static void ov7_0224C768 (UnkStruct_ov7_0224C768 * param0, BGL * param1, u32 param2, const UnkStruct_ov7_0224F1B4 * param3, u32 param4, MessageLoader * param5, void * param6, UnkFuncPtr_ov7_0224C768 param7, GraphicElementManager * param8)
 {
     int v0;
     Strbuf* v1;

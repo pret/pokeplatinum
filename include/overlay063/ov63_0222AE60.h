@@ -8,7 +8,7 @@
 #include "overlay063/struct_ov63_0222BB38_decl.h"
 #include "overlay064/struct_ov64_022302EC.h"
 
-UnkStruct_ov63_0222AE60 * ov63_0222AE60(UnkStruct_020218BC * param0, PaletteSys * param1, u32 param2, u32 param3);
+UnkStruct_ov63_0222AE60 * ov63_0222AE60(GraphicElementManager * param0, PaletteSys * param1, u32 param2, u32 param3);
 void ov63_0222AF14(UnkStruct_ov63_0222AE60 * param0);
 void ov63_0222AF94(UnkStruct_ov63_0222AE60 * param0, u32 param1, u32 param2, int param3, u32 param4);
 void ov63_0222AFD0(UnkStruct_ov63_0222AE60 * param0, u32 param1);
@@ -20,7 +20,7 @@ void ov63_0222B0A0(UnkStruct_ov63_0222AE60 * param0, u32 param1, u32 param2, u32
 void ov63_0222B0B8(UnkStruct_ov63_0222AE60 * param0);
 UnkStruct_ov63_0222BB38 * ov63_0222B0C0(UnkStruct_ov63_0222AE60 * param0, const UnkStruct_ov64_022302EC * param1, u32 param2, u32 param3);
 void ov63_0222B210(UnkStruct_ov63_0222BB38 * param0);
-const UnkStruct_02022550 * ov63_0222B234(const UnkStruct_ov63_0222BB38 * param0);
+const GraphicElementData * ov63_0222B234(const UnkStruct_ov63_0222BB38 * param0);
 void ov63_0222B238(UnkStruct_ov63_0222BB38 * param0, s16 param1, s16 param2);
 void ov63_0222B278(UnkStruct_ov63_0222BB38 * param0, u16 param1);
 u16 ov63_0222B284(const UnkStruct_ov63_0222BB38 * param0);

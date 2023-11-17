@@ -134,8 +134,8 @@ static void ov16_0223CE68(void * param0);
 static void ov16_0223CF1C(void * param0);
 static void ov16_0223CF48(SysTask * param0, void * param1);
 static void ov16_0223CF8C(SysTask * param0, void * param1);
-static UnkStruct_0207C690 * ov16_0223CD7C(void);
-static void ov16_0223CE20(UnkStruct_0207C690 * param0);
+static GenericPointerData * ov16_0223CD7C(void);
+static void ov16_0223CE20(GenericPointerData * param0);
 static void ov16_0223CD9C(void);
 static void ov16_0223DD4C(BattleSystem * param0);
 static void ov16_0223D0C4(SysTask * param0, void * param1);
@@ -1434,9 +1434,9 @@ static BOOL ov16_0223CD3C (u16 param0)
     return 0;
 }
 
-static UnkStruct_0207C690 * ov16_0223CD7C (void)
+static GenericPointerData * ov16_0223CD7C (void)
 {
-    UnkStruct_0207C690 * v0;
+    GenericPointerData * v0;
 
     v0 = sub_02024220(5, 0, 2, 0, 2, ov16_0223CD9C);
     return v0;
@@ -1457,7 +1457,7 @@ static void ov16_0223CD9C (void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void ov16_0223CE20 (UnkStruct_0207C690 * param0)
+static void ov16_0223CE20 (GenericPointerData * param0)
 {
     sub_020242C4(param0);
 }

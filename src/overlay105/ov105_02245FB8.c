@@ -21,7 +21,7 @@ struct UnkStruct_ov105_02246060_t {
     u8 unk_03;
     const UnkStruct_ov105_02246394 * unk_04;
     const u8 * unk_08;
-    UnkStruct_02022550 * unk_0C;
+    GraphicElementData * unk_0C;
     u8 unk_10;
 };
 

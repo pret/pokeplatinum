@@ -7,7 +7,7 @@
 
 typedef struct {
     Pokemon * unk_00;
-    UnkStruct_020279FC * unk_04;
+    AnimationControlFlags * unk_04;
     TrainerInfo * unk_08;
     u16 unk_0C;
 } UnkStruct_0203E2FC;

@@ -77,13 +77,13 @@ typedef struct {
     Window unk_54;
     Window unk_64;
     Window unk_74;
-    UnkStruct_02001AF4 * unk_84;
+    UIControlData * unk_84;
     void * unk_88;
     int unk_8C;
     int unk_90;
     int unk_94;
     int unk_98;
-    UnkStruct_02013A04 * unk_9C;
+    ResourceMetadata * unk_9C;
     UnkStruct_0200112C * unk_A0;
     UnkStruct_ov61_0222C3B0 unk_A4;
 } UnkStruct_ov61_0222C664;
@@ -104,7 +104,7 @@ static void ov61_0222C7F8(UnkStruct_ov61_0222C664 * param0, int param1, int para
 static int ov61_0222C834(int param0);
 static void ov61_0222C850(UnkStruct_ov61_0222C664 * param0);
 static void ov61_0222C86C(UnkStruct_ov61_0222C664 * param0);
-static UnkStruct_02001AF4 * ov61_0222C884(BGL * param0, int param1, int param2);
+static UIControlData * ov61_0222C884(BGL * param0, int param1, int param2);
 static void ov61_0222C8B8(UnkStruct_ov61_0222C664 * param0, MessageLoader * param1, int param2, int param3, u16 param4);
 static void ov61_0222C920(UnkStruct_ov61_0222C664 * param0, int param1, int param2);
 static BOOL ov61_0222C928(int param0, int param1);
@@ -560,7 +560,7 @@ static void ov61_0222C86C (UnkStruct_ov61_0222C664 * param0)
     }
 }
 
-static UnkStruct_02001AF4 * ov61_0222C884 (BGL * param0, int param1, int param2)
+static UIControlData * ov61_0222C884 (BGL * param0, int param1, int param2)
 {
     UnkStruct_ov61_0222C884 v0;
 

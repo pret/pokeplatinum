@@ -65,14 +65,14 @@ typedef struct {
 } UnkStruct_ov21_021D7464;
 
 typedef struct {
-    UnkStruct_02022550 * unk_00[9];
+    GraphicElementData * unk_00[9];
     int unk_24;
     UnkStruct_ov21_021D4CA0 * unk_28[9];
     int unk_4C;
-    UnkStruct_02022550 * unk_50[9];
-    UnkStruct_02022550 * unk_74;
+    GraphicElementData * unk_50[9];
+    GraphicElementData * unk_74;
     fx32 unk_78;
-    UnkStruct_02022550 * unk_7C;
+    GraphicElementData * unk_7C;
     UnkStruct_02009714 * unk_80[4];
     UnkStruct_ov19_021DA864 unk_90;
     UnkStruct_ov19_021DA864 unk_B4;
@@ -155,7 +155,7 @@ static void ov21_021D6C44(UnkStruct_ov21_021D71A8 * param0, UnkStruct_ov21_021D1
 static void ov21_021D6CC8(UnkStruct_ov21_021D71A8 * param0, UnkStruct_ov21_021D13FC * param1, const UnkStruct_ov21_021D5B68 * param2, int param3);
 static void ov21_021D6D78(UnkStruct_ov21_021D71A8 * param0, UnkStruct_ov21_021D13FC * param1, const UnkStruct_ov21_021D5B68 * param2, int param3, int param4, int param5);
 static void ov21_021D6DF4(UnkStruct_ov21_021D71A8 * param0, UnkStruct_ov21_021D13FC * param1, int param2, int param3, int param4);
-static void ov21_021D6CA4(UnkStruct_02022550 * param0, int * param1, int * param2);
+static void ov21_021D6CA4(GraphicElementData * param0, int * param1, int * param2);
 static fx32 ov21_021D6BF8(fx32 param0, fx32 param1, int param2, int param3);
 static void ov21_021D6F20(UnkStruct_ov21_021D71A8 * param0, UnkStruct_ov21_021D13FC * param1, const UnkStruct_ov21_021D5B68 * param2);
 static void ov21_021D6F74(const UnkStruct_ov21_021D5B68 * param0);
@@ -1202,7 +1202,7 @@ static void ov21_021D6C44 (UnkStruct_ov21_021D71A8 * param0, UnkStruct_ov21_021D
     }
 }
 
-static void ov21_021D6CA4 (UnkStruct_02022550 * param0, int * param1, int * param2)
+static void ov21_021D6CA4 (GraphicElementData * param0, int * param1, int * param2)
 {
     const VecFx32 * v0;
 
