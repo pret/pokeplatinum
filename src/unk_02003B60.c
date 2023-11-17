@@ -125,7 +125,7 @@ void sub_02003BD8 (void)
         sub_02003C64();
     }
 
-    sub_02006224();
+    CheckMicRecordingStatus();
 
     for (v0 = 0; v0 < 2; v0++) {
         if (v1->unk_BCDD0[v0] != 0) {

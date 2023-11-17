@@ -700,7 +700,7 @@ static int ov88_0223B914 (UnkStruct_02095E80 * param0)
         }
         break;
     case 14:
-        ov88_0223D140(sub_0202CC98(param0->unk_04));
+        ov88_0223D140(GetChatotCryDataFromSave(param0->unk_04));
         param0->unk_4C++;
         break;
     case 15:
@@ -1538,7 +1538,7 @@ static void ov88_0223CE74 (UnkStruct_02095E80 * param0)
         v1 = param0->unk_6F4[param0->unk_88[0]].unk_06;
 
         if (v0 == 441) {
-            Sound_PlayChatotCry(sub_0202CC98(param0->unk_04), 0, 100, 0);
+            Sound_PlayChatotCry(GetChatotCryDataFromSave(param0->unk_04), 0, 100, 0);
         } else {
             sub_02005844(v0, v1);
         }
@@ -2528,8 +2528,8 @@ static void ov88_0223E694 (Party * param0, Party * param1, int param2, int param
     param4->unk_2C = param2;
 
     if (Party_HasSpecies(param0, 441) == 0) {
-        ChatotCry * v4 = sub_0202CC98(param4->unk_10);
-        sub_0202CCA8(v4);
+        ChatotCry * v4 = GetChatotCryDataFromSave(param4->unk_10);
+        ResetChatotCryDataStatus(v4);
     }
 
     sub_0202F180(param4->unk_10, v1);

@@ -361,7 +361,7 @@ void ov104_0222E134 (SaveData * param0, Pokemon * param1)
     TrainerInfo * v5 = sub_02025E38(param0);
 
     v0 = Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL);
-    sub_02077EE4(param1, sub_02025E38(param0), 4, 0, 0, 11);
+    PostCapturePokemonProcessing(param1, sub_02025E38(param0), 4, 0, 0, 11);
 
     v3 = sub_0203A138(562);
     sub_0209304C(param1, v5, v4, v3, 11);

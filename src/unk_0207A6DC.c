@@ -421,7 +421,7 @@ BOOL sub_0207AAA0 (UnkStruct_0207A778 * param0)
     }
 
     v0 = (ChatotCry *)&param0->unk_20[0];
-    sub_0202CD3C(v0, param0->unk_00->unk_F0[0]);
+    CopyChatotCryData(v0, param0->unk_00->unk_F0[0]);
 
     return 1;
 }

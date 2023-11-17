@@ -19,7 +19,7 @@ void ChatotCry_Init (ChatotCry * param0)
     param0->exists = FALSE;
 }
 
-ChatotCry * sub_0202CC84 (int param0)
+ChatotCry * AllocateAndInitializeChatotCryData (int param0)
 {
     ChatotCry * v0 = Heap_AllocFromHeap(param0, sizeof(ChatotCry));
 
@@ -27,27 +27,27 @@ ChatotCry * sub_0202CC84 (int param0)
     return v0;
 }
 
-ChatotCry * sub_0202CC98 (SaveData * param0)
+ChatotCry * GetChatotCryDataFromSave (SaveData * param0)
 {
     return (ChatotCry *)SaveData_Get(param0, 22);
 }
 
-BOOL sub_0202CCA4 (const ChatotCry * param0)
+BOOL IsChatotCryDataValid (const ChatotCry * param0)
 {
     return param0->exists;
 }
 
-void sub_0202CCA8 (ChatotCry * param0)
+void ResetChatotCryDataStatus (ChatotCry * param0)
 {
     param0->exists = FALSE;
 }
 
-const void * sub_0202CCB0 (const ChatotCry * param0)
+const void * GetChatotCryAudioBuffer (const ChatotCry * param0)
 {
     return param0->data;
 }
 
-void sub_0202CCB4 (s8 * param0, const s8 * param1)
+void ProcessChatotCryAudioData (s8 * param0, const s8 * param1)
 {
     int v0, v1 = 0;
     s8 v2;
@@ -68,7 +68,7 @@ void sub_0202CCB4 (s8 * param0, const s8 * param1)
     }
 }
 
-void sub_0202CCEC (ChatotCry * param0, const s8 * param1)
+void StoreProcessedAudioInChatotCryData (ChatotCry * param0, const s8 * param1)
 {
     int v0, v1;
     s8 v2;
@@ -92,7 +92,7 @@ void sub_0202CCEC (ChatotCry * param0, const s8 * param1)
     }
 }
 
-void sub_0202CD3C (ChatotCry * param0, const ChatotCry * param1)
+void CopyChatotCryData (ChatotCry * param0, const ChatotCry * param1)
 {
     MI_CpuCopyFast(param1, param0, sizeof(ChatotCry));
 }

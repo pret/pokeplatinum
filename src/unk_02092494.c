@@ -13,25 +13,25 @@
 #include "pokemon.h"
 #include "unk_02092494.h"
 
-static int sub_02092E8C(Pokemon * param0, BOOL param1, int param2);
-static void sub_02092878(UnkStruct_02090800 * param0);
-static void sub_020928A0(UnkStruct_02090800 * param0, int param1);
-static void sub_020929C0(UnkStruct_02090800 * param0, int param1);
-static void sub_02092B1C(UnkStruct_02090800 * param0, int param1, int param2);
-static void sub_02092C24(UnkStruct_02090800 * param0);
-static void sub_02092E10(UnkStruct_02090800 * param0);
-static void sub_02092E4C(UnkStruct_02090800 * param0);
-static void sub_020932A4(BoxPokemon * param0, TrainerInfo * param1, int param2);
-static void sub_020932F0(BoxPokemon * param0, int param1, int param2);
-static void sub_02093368(BoxPokemon * param0, int param1);
-static void sub_020933C8(BoxPokemon * param0);
-static void sub_020933E8(BoxPokemon * param0);
+static int DeterminePokemonStatus(Pokemon * param0, BOOL param1, int param2);
+static void InitializeNatureRelatedStrBuf(PokemonInfoDisplayStruct * param0);
+static void InitializePokemonMetInfoStrBuf(PokemonInfoDisplayStruct * param0, int param1);
+static void InitializeAlternateMetInfoStrBuf(PokemonInfoDisplayStruct * param0, int param1);
+static void InitializeSpecialMetInfoStrBuf(PokemonInfoDisplayStruct * param0, int param1, int param2);
+static void InitializeIVsStrBuf(PokemonInfoDisplayStruct * param0);
+static void InitializeFlavorAffinityStrBuf(PokemonInfoDisplayStruct * param0);
+static void InitializeFriendshipLevelStrBuf(PokemonInfoDisplayStruct * param0);
+static void AssignTrainerInfoToBoxPokemon(BoxPokemon * param0, TrainerInfo * param1, int param2);
+static void SetMetLocationForBoxPokemon(BoxPokemon * param0, int param1, int param2);
+static void ResetBoxPokemonEggStatus(BoxPokemon * param0, int param1);
+static void FinalizeBoxPokemonData(BoxPokemon * param0);
+static void UpdateBoxPokemonAfterCheck(BoxPokemon * param0);
 
-UnkStruct_02090800 * sub_02092494 (Pokemon * param0, BOOL param1, int param2)
+PokemonInfoDisplayStruct * sub_02092494 (Pokemon * param0, BOOL param1, int param2)
 {
-    UnkStruct_02090800 * v0;
+    PokemonInfoDisplayStruct * v0;
 
-    v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_02090800));
+    v0 = Heap_AllocFromHeap(param2, sizeof(PokemonInfoDisplayStruct));
     v0->unk_00 = param2;
     v0->unk_04 = MessageLoader_Init(1, 26, 455, v0->unk_00);
     v0->unk_08 = sub_0200B368(9, 32, v0->unk_00);
@@ -55,238 +55,238 @@ UnkStruct_02090800 * sub_02092494 (Pokemon * param0, BOOL param1, int param2)
         v0->unk_34.unk_04 = NULL;
     }
 
-    switch (sub_02092E8C(v0->unk_0C, v0->unk_10, v0->unk_00)) {
+    switch (DeterminePokemonStatus(v0->unk_0C, v0->unk_10, v0->unk_00)) {
     case 0:
         v0->unk_14.unk_00 = 1;
-        sub_02092878(v0);
+        InitializeNatureRelatedStrBuf(v0);
 
         v0->unk_1C.unk_00 = 2;
-        sub_020928A0(v0, 49);
+        InitializePokemonMetInfoStrBuf(v0, 49);
 
         v0->unk_24.unk_00 = 6;
-        sub_02092C24(v0);
+        InitializeIVsStrBuf(v0);
 
         v0->unk_2C.unk_00 = 7;
-        sub_02092E10(v0);
+        InitializeFlavorAffinityStrBuf(v0);
         break;
     case 1:
         v0->unk_14.unk_00 = 1;
-        sub_02092878(v0);
+        InitializeNatureRelatedStrBuf(v0);
 
         v0->unk_1C.unk_00 = 2;
-        sub_020928A0(v0, 50);
+        InitializePokemonMetInfoStrBuf(v0, 50);
 
         v0->unk_24.unk_00 = 6;
-        sub_02092C24(v0);
+        InitializeIVsStrBuf(v0);
 
         v0->unk_2C.unk_00 = 7;
-        sub_02092E10(v0);
+        InitializeFlavorAffinityStrBuf(v0);
         break;
     case 2:
         v0->unk_14.unk_00 = 1;
-        sub_02092878(v0);
+        InitializeNatureRelatedStrBuf(v0);
 
         v0->unk_1C.unk_00 = 2;
-        sub_020928A0(v0, 51);
+        InitializePokemonMetInfoStrBuf(v0, 51);
 
         v0->unk_24.unk_00 = 6;
-        sub_02092C24(v0);
+        InitializeIVsStrBuf(v0);
 
         v0->unk_2C.unk_00 = 7;
-        sub_02092E10(v0);
+        InitializeFlavorAffinityStrBuf(v0);
         break;
     case 3:
         v0->unk_14.unk_00 = 1;
-        sub_02092878(v0);
+        InitializeNatureRelatedStrBuf(v0);
 
         v0->unk_1C.unk_00 = 2;
-        sub_020928A0(v0, 52);
+        InitializePokemonMetInfoStrBuf(v0, 52);
 
         v0->unk_24.unk_00 = 8;
-        sub_02092C24(v0);
+        InitializeIVsStrBuf(v0);
 
         v0->unk_2C.unk_00 = 9;
-        sub_02092E10(v0);
+        InitializeFlavorAffinityStrBuf(v0);
         break;
     case 4:
         v0->unk_14.unk_00 = 1;
-        sub_02092878(v0);
+        InitializeNatureRelatedStrBuf(v0);
 
         v0->unk_1C.unk_00 = 2;
-        sub_020928A0(v0, 53);
+        InitializePokemonMetInfoStrBuf(v0, 53);
 
         v0->unk_24.unk_00 = 8;
-        sub_02092C24(v0);
+        InitializeIVsStrBuf(v0);
 
         v0->unk_2C.unk_00 = 9;
-        sub_02092E10(v0);
+        InitializeFlavorAffinityStrBuf(v0);
         break;
     case 5:
         v0->unk_14.unk_00 = 1;
-        sub_02092878(v0);
+        InitializeNatureRelatedStrBuf(v0);
 
         v0->unk_1C.unk_00 = 2;
-        sub_020928A0(v0, 54);
+        InitializePokemonMetInfoStrBuf(v0, 54);
 
         v0->unk_24.unk_00 = 8;
-        sub_02092C24(v0);
+        InitializeIVsStrBuf(v0);
 
         v0->unk_2C.unk_00 = 9;
-        sub_02092E10(v0);
+        InitializeFlavorAffinityStrBuf(v0);
         break;
     case 6:
         v0->unk_14.unk_00 = 1;
-        sub_02092878(v0);
+        InitializeNatureRelatedStrBuf(v0);
 
         v0->unk_1C.unk_00 = 2;
-        sub_020928A0(v0, 55);
+        InitializePokemonMetInfoStrBuf(v0, 55);
 
         v0->unk_24.unk_00 = 8;
-        sub_02092C24(v0);
+        InitializeIVsStrBuf(v0);
 
         v0->unk_2C.unk_00 = 9;
-        sub_02092E10(v0);
+        InitializeFlavorAffinityStrBuf(v0);
         break;
     case 7:
         v0->unk_14.unk_00 = 1;
-        sub_02092878(v0);
+        InitializeNatureRelatedStrBuf(v0);
 
         v0->unk_1C.unk_00 = 2;
-        sub_020928A0(v0, 56);
+        InitializePokemonMetInfoStrBuf(v0, 56);
 
         v0->unk_24.unk_00 = 7;
-        sub_02092C24(v0);
+        InitializeIVsStrBuf(v0);
 
         v0->unk_2C.unk_00 = 8;
-        sub_02092E10(v0);
+        InitializeFlavorAffinityStrBuf(v0);
         break;
     case 8:
         v0->unk_14.unk_00 = 1;
-        sub_02092878(v0);
+        InitializeNatureRelatedStrBuf(v0);
 
         v0->unk_1C.unk_00 = 2;
-        sub_020928A0(v0, 57);
+        InitializePokemonMetInfoStrBuf(v0, 57);
 
         v0->unk_24.unk_00 = 7;
-        sub_02092C24(v0);
+        InitializeIVsStrBuf(v0);
 
         v0->unk_2C.unk_00 = 8;
-        sub_02092E10(v0);
+        InitializeFlavorAffinityStrBuf(v0);
         break;
     case 9:
         v0->unk_14.unk_00 = 1;
-        sub_02092878(v0);
+        InitializeNatureRelatedStrBuf(v0);
 
         v0->unk_1C.unk_00 = 2;
-        sub_020928A0(v0, 58);
+        InitializePokemonMetInfoStrBuf(v0, 58);
 
         v0->unk_24.unk_00 = 9;
-        sub_02092C24(v0);
+        InitializeIVsStrBuf(v0);
         break;
     case 10:
         v0->unk_14.unk_00 = 1;
-        sub_02092878(v0);
+        InitializeNatureRelatedStrBuf(v0);
 
         v0->unk_1C.unk_00 = 2;
-        sub_020928A0(v0, 59);
+        InitializePokemonMetInfoStrBuf(v0, 59);
 
         v0->unk_24.unk_00 = 9;
-        sub_02092C24(v0);
+        InitializeIVsStrBuf(v0);
         break;
     case 11:
         v0->unk_14.unk_00 = 1;
-        sub_02092878(v0);
+        InitializeNatureRelatedStrBuf(v0);
 
         v0->unk_1C.unk_00 = 2;
-        sub_020928A0(v0, 60);
+        InitializePokemonMetInfoStrBuf(v0, 60);
 
         v0->unk_24.unk_00 = 9;
-        sub_02092C24(v0);
+        InitializeIVsStrBuf(v0);
         break;
     case 12:
         v0->unk_14.unk_00 = 1;
-        sub_02092878(v0);
+        InitializeNatureRelatedStrBuf(v0);
 
         v0->unk_1C.unk_00 = 2;
-        sub_020928A0(v0, 61);
+        InitializePokemonMetInfoStrBuf(v0, 61);
 
         v0->unk_24.unk_00 = 9;
-        sub_02092C24(v0);
+        InitializeIVsStrBuf(v0);
         break;
     case 13:
         v0->unk_14.unk_00 = 1;
-        sub_02092878(v0);
+        InitializeNatureRelatedStrBuf(v0);
 
         v0->unk_1C.unk_00 = 2;
-        sub_020928A0(v0, 62);
+        InitializePokemonMetInfoStrBuf(v0, 62);
 
         v0->unk_24.unk_00 = 9;
-        sub_02092C24(v0);
+        InitializeIVsStrBuf(v0);
         break;
     case 14:
         v0->unk_14.unk_00 = 1;
-        sub_02092878(v0);
+        InitializeNatureRelatedStrBuf(v0);
 
         v0->unk_1C.unk_00 = 2;
-        sub_020928A0(v0, 63);
+        InitializePokemonMetInfoStrBuf(v0, 63);
 
         v0->unk_24.unk_00 = 9;
-        sub_02092C24(v0);
+        InitializeIVsStrBuf(v0);
         break;
     case 15:
         v0->unk_14.unk_00 = 1;
-        sub_02092878(v0);
+        InitializeNatureRelatedStrBuf(v0);
 
         v0->unk_1C.unk_00 = 2;
-        sub_020929C0(v0, 64);
+        InitializeAlternateMetInfoStrBuf(v0, 64);
 
         v0->unk_24.unk_00 = 6;
-        sub_02092C24(v0);
+        InitializeIVsStrBuf(v0);
 
         v0->unk_2C.unk_00 = 7;
-        sub_02092E10(v0);
+        InitializeFlavorAffinityStrBuf(v0);
         break;
     case 16:
         v0->unk_1C.unk_00 = 1;
-        sub_02092B1C(v0, 101, 0);
+        InitializeSpecialMetInfoStrBuf(v0, 101, 0);
 
         v0->unk_34.unk_00 = 6;
-        sub_02092E4C(v0);
+        InitializeFriendshipLevelStrBuf(v0);
         break;
     case 17:
         v0->unk_1C.unk_00 = 1;
-        sub_02092B1C(v0, 102, 1);
+        InitializeSpecialMetInfoStrBuf(v0, 102, 1);
 
         v0->unk_34.unk_00 = 6;
-        sub_02092E4C(v0);
+        InitializeFriendshipLevelStrBuf(v0);
         break;
     case 18:
         v0->unk_1C.unk_00 = 1;
-        sub_02092B1C(v0, 103, 0);
+        InitializeSpecialMetInfoStrBuf(v0, 103, 0);
 
         v0->unk_34.unk_00 = 6;
-        sub_02092E4C(v0);
+        InitializeFriendshipLevelStrBuf(v0);
         break;
     case 19:
         v0->unk_1C.unk_00 = 1;
-        sub_02092B1C(v0, 103, 1);
+        InitializeSpecialMetInfoStrBuf(v0, 103, 1);
 
         v0->unk_34.unk_00 = 6;
-        sub_02092E4C(v0);
+        InitializeFriendshipLevelStrBuf(v0);
         break;
     case 20:
         v0->unk_1C.unk_00 = 1;
-        sub_02092B1C(v0, 104, 0);
+        InitializeSpecialMetInfoStrBuf(v0, 104, 0);
 
         v0->unk_34.unk_00 = 6;
-        sub_02092E4C(v0);
+        InitializeFriendshipLevelStrBuf(v0);
         break;
     }
 
     return v0;
 }
 
-void sub_0209282C (UnkStruct_02090800 * param0)
+void sub_0209282C (PokemonInfoDisplayStruct * param0)
 {
     if (param0->unk_14.unk_04 != NULL) {
         Heap_FreeToHeap(param0->unk_14.unk_04);
@@ -313,7 +313,7 @@ void sub_0209282C (UnkStruct_02090800 * param0)
     Heap_FreeToHeap(param0);
 }
 
-static void sub_02092878 (UnkStruct_02090800 * param0)
+static void InitializeNatureRelatedStrBuf (PokemonInfoDisplayStruct * param0)
 {
     int v0 = Pokemon_GetNature(param0->unk_0C);
 
@@ -325,7 +325,7 @@ static void sub_02092878 (UnkStruct_02090800 * param0)
     MessageLoader_GetStrbuf(param0->unk_04, (24 + v0), param0->unk_14.unk_04);
 }
 
-static void sub_020928A0 (UnkStruct_02090800 * param0, int param1)
+static void InitializePokemonMetInfoStrBuf (PokemonInfoDisplayStruct * param0, int param1)
 {
     Strbuf* v0 = Strbuf_Init((((2 * 18) * 2) * 8), param0->unk_00);
 
@@ -345,7 +345,7 @@ static void sub_020928A0 (UnkStruct_02090800 * param0, int param1)
     Strbuf_Free(v0);
 }
 
-static void sub_020929C0 (UnkStruct_02090800 * param0, int param1)
+static void InitializeAlternateMetInfoStrBuf (PokemonInfoDisplayStruct * param0, int param1)
 {
     Strbuf* v0 = Strbuf_Init((((2 * 18) * 2) * 4), param0->unk_00);
 
@@ -388,7 +388,7 @@ static void sub_020929C0 (UnkStruct_02090800 * param0, int param1)
     Strbuf_Free(v0);
 }
 
-static void sub_02092B1C (UnkStruct_02090800 * param0, int param1, int param2)
+static void InitializeSpecialMetInfoStrBuf (PokemonInfoDisplayStruct * param0, int param1, int param2)
 {
     Strbuf* v0 = Strbuf_Init((((2 * 18) * 2) * 5), param0->unk_00);
 
@@ -421,7 +421,7 @@ static const u16 Unk_020F5578[6][5] = {
     {0x60, 0x61, 0x62, 0x63, 0x64}
 };
 
-static void sub_02092C24 (UnkStruct_02090800 * param0)
+static void InitializeIVsStrBuf (PokemonInfoDisplayStruct * param0)
 {
     int v0[6], v1, v2;
     int v3, v4;
@@ -596,7 +596,7 @@ static const u16 Unk_020F556C[6] = {
     0x45
 };
 
-static void sub_02092E10 (UnkStruct_02090800 * param0)
+static void InitializeFlavorAffinityStrBuf (PokemonInfoDisplayStruct * param0)
 {
     int v0, v1, v2;
 
@@ -613,7 +613,7 @@ static void sub_02092E10 (UnkStruct_02090800 * param0)
     MessageLoader_GetStrbuf(param0->unk_04, v2, param0->unk_2C.unk_04);
 }
 
-static void sub_02092E4C (UnkStruct_02090800 * param0)
+static void InitializeFriendshipLevelStrBuf (PokemonInfoDisplayStruct * param0)
 {
     int v0 = Pokemon_GetValue(param0->unk_0C, MON_DATA_FRIENDSHIP, NULL);
     int v1;
@@ -633,7 +633,7 @@ static void sub_02092E4C (UnkStruct_02090800 * param0)
     MessageLoader_GetStrbuf(param0->unk_04, v1, param0->unk_34.unk_04);
 }
 
-static int sub_02092E8C (Pokemon * param0, BOOL param1, int param2)
+static int DeterminePokemonStatus (Pokemon * param0, BOOL param1, int param2)
 {
     int v0 = 0;
 
@@ -718,10 +718,10 @@ static int sub_02092E8C (Pokemon * param0, BOOL param1, int param2)
 
 void sub_0209304C (Pokemon * param0, TrainerInfo * param1, int param2, int param3, int param4)
 {
-    sub_0209305C(&param0->box, param1, param2, param3, param4);
+    ProcessBoxPokemonWithTrainerInfo(&param0->box, param1, param2, param3, param4);
 }
 
-void sub_0209305C (BoxPokemon * param0, TrainerInfo * param1, int param2, int param3, int param4)
+void ProcessBoxPokemonWithTrainerInfo (BoxPokemon * param0, TrainerInfo * param1, int param2, int param3, int param4)
 {
     switch (param2) {
     case 0:
@@ -730,64 +730,64 @@ void sub_0209305C (BoxPokemon * param0, TrainerInfo * param1, int param2, int pa
         }
 
         if (BoxPokemon_GetValue(param0, MON_DATA_IS_EGG, NULL) == 0) {
-            sub_02093368(param0, 0);
-            sub_020932F0(param0, param3, 1);
-            sub_020933C8(param0);
+            ResetBoxPokemonEggStatus(param0, 0);
+            SetMetLocationForBoxPokemon(param0, param3, 1);
+            FinalizeBoxPokemonData(param0);
         } else {
-            sub_020932F0(param0, param3, 0);
-            sub_02093368(param0, 1);
+            SetMetLocationForBoxPokemon(param0, param3, 0);
+            ResetBoxPokemonEggStatus(param0, 1);
         }
 
-        sub_020932A4(param0, param1, param4);
+        AssignTrainerInfoToBoxPokemon(param0, param1, param4);
         break;
     case 1:
         if (BoxPokemon_GetValue(param0, MON_DATA_IS_EGG, NULL) == 0) {
-            sub_02093368(param0, 0);
-            sub_020932F0(param0, (sub_02017070(1, 1)), 1);
-            sub_020933C8(param0);
+            ResetBoxPokemonEggStatus(param0, 0);
+            SetMetLocationForBoxPokemon(param0, (sub_02017070(1, 1)), 1);
+            FinalizeBoxPokemonData(param0);
         } else {
-            sub_02093368(param0, 0);
-            sub_020932F0(param0, (sub_02017070(1, 1)), 1);
+            ResetBoxPokemonEggStatus(param0, 0);
+            SetMetLocationForBoxPokemon(param0, (sub_02017070(1, 1)), 1);
         }
         break;
     case 2:
-        sub_02093368(param0, 0);
-        sub_020932F0(param0, (sub_02017070(0, 55)), 1);
-        sub_020933C8(param0);
+        ResetBoxPokemonEggStatus(param0, 0);
+        SetMetLocationForBoxPokemon(param0, (sub_02017070(0, 55)), 1);
+        FinalizeBoxPokemonData(param0);
         break;
     case 3:
-        sub_020932F0(param0, param3, 0);
-        sub_02093368(param0, 1);
-        sub_020932A4(param0, param1, param4);
+        SetMetLocationForBoxPokemon(param0, param3, 0);
+        ResetBoxPokemonEggStatus(param0, 1);
+        AssignTrainerInfoToBoxPokemon(param0, param1, param4);
         break;
     case 4:
         if (sub_0207884C(param0, param1, param4) == 1) {
             if (BoxPokemon_GetValue(param0, MON_DATA_IS_EGG, NULL) == 0) {
-                sub_02093368(param0, 0);
-                sub_020932F0(param0, param3, 1);
-                sub_020933C8(param0);
+                ResetBoxPokemonEggStatus(param0, 0);
+                SetMetLocationForBoxPokemon(param0, param3, 1);
+                FinalizeBoxPokemonData(param0);
             } else {
-                sub_020932F0(param0, param3, 0);
-                sub_02093368(param0, 1);
+                SetMetLocationForBoxPokemon(param0, param3, 0);
+                ResetBoxPokemonEggStatus(param0, 1);
             }
         } else {
             if (BoxPokemon_GetValue(param0, MON_DATA_IS_EGG, NULL) == 0) {
-                sub_02093368(param0, 0);
-                sub_020932F0(param0, param3, 1);
-                sub_020933C8(param0);
+                ResetBoxPokemonEggStatus(param0, 0);
+                SetMetLocationForBoxPokemon(param0, param3, 1);
+                FinalizeBoxPokemonData(param0);
             } else {
-                sub_02093368(param0, 0);
-                sub_020932F0(param0, param3, 1);
+                ResetBoxPokemonEggStatus(param0, 0);
+                SetMetLocationForBoxPokemon(param0, param3, 1);
             }
         }
 
-        sub_020933E8(param0);
+        UpdateBoxPokemonAfterCheck(param0);
         break;
     case 5:
         if (BoxPokemon_GetValue(param0, MON_DATA_IS_EGG, NULL) == 0) {
             (void)0;
         } else {
-            sub_020932F0(param0, (sub_02017070(1, 2)), 1);
+            SetMetLocationForBoxPokemon(param0, (sub_02017070(1, 2)), 1);
         }
         break;
     case 6:
@@ -813,13 +813,13 @@ void sub_0209305C (BoxPokemon * param0, TrainerInfo * param1, int param2, int pa
             }
         }
 
-        sub_020932F0(param0, param3, 1);
-        sub_020932A4(param0, param1, param4);
+        SetMetLocationForBoxPokemon(param0, param3, 1);
+        AssignTrainerInfoToBoxPokemon(param0, param1, param4);
         break;
     }
 }
 
-static void sub_020932A4 (BoxPokemon * param0, TrainerInfo * param1, int param2)
+static void AssignTrainerInfoToBoxPokemon (BoxPokemon * param0, TrainerInfo * param1, int param2)
 {
     int v0 = TrainerInfo_ID(param1);
     int v1 = TrainerInfo_Gender(param1);
@@ -831,7 +831,7 @@ static void sub_020932A4 (BoxPokemon * param0, TrainerInfo * param1, int param2)
     Strbuf_Free(v2);
 }
 
-static void sub_020932F0 (BoxPokemon * param0, int param1, int param2)
+static void SetMetLocationForBoxPokemon (BoxPokemon * param0, int param1, int param2)
 {
     RTCDate v0;
 
@@ -850,7 +850,7 @@ static void sub_020932F0 (BoxPokemon * param0, int param1, int param2)
     }
 }
 
-static void sub_02093368 (BoxPokemon * param0, int param1)
+static void ResetBoxPokemonEggStatus (BoxPokemon * param0, int param1)
 {
     int v0 = 0;
 
@@ -867,13 +867,13 @@ static void sub_02093368 (BoxPokemon * param0, int param1)
     }
 }
 
-static void sub_020933C8 (BoxPokemon * param0)
+static void FinalizeBoxPokemonData (BoxPokemon * param0)
 {
     int v0 = BoxPokemon_GetValue(param0, MON_DATA_LEVEL, NULL);
     BoxPokemon_SetValue(param0, 156, &v0);
 }
 
-static void sub_020933E8 (BoxPokemon * param0)
+static void UpdateBoxPokemonAfterCheck (BoxPokemon * param0)
 {
     int v0 = 1;
     BoxPokemon_SetValue(param0, 110, &v0);

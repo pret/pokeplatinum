@@ -425,7 +425,7 @@ BOOL sub_02005844 (u16 param0, u8 param1)
     }
 
     if (v0 == 441) {
-        if (sub_0200629C(*v3, 0, 127, 0) == 1) {
+        if (ProcessAudioInput(*v3, 0, 127, 0) == 1) {
             Sound_FlagDefaultChatotCry(0);
             return 1;
         }
@@ -477,7 +477,7 @@ void sub_0200592C (int param0)
         sub_02004C4C(15);
     }
 
-    sub_02006350();
+    ResetMicStatusFlags();
     sub_0200605C();
 
     return;
