@@ -4,15 +4,15 @@
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-int GetSizeOfChatotCryData(void);
-void ChatotCry_Init(ChatotCryData * param0);
-ChatotCryData * AllocateAndInitializeChatotCryData(int param0);
-ChatotCryData * GetChatotCryDataFromSave(SaveData * param0);
-BOOL IsChatotCryDataValid(const ChatotCryData * param0);
-void ResetChatotCryDataStatus(ChatotCryData * param0);
-const void * GetChatotCryAudioBuffer(const ChatotCryData * param0);
+int GetSizeOfChatotCry(void);
+void ChatotCry_Init(ChatotCry * param0);
+ChatotCry * AllocateAndInitializeChatotCry(int param0);
+ChatotCry * GetChatotCryFromSave(SaveData * param0);
+BOOL IsChatotCryValid(const ChatotCry * param0);
+void ResetChatotCryStatus(ChatotCry * param0);
+const void * GetChatotCryAudioBuffer(const ChatotCry * param0);
 void ProcessChatotCryAudioData(s8 * param0, const s8 * param1);
-void StoreProcessedAudioInChatotCryData(ChatotCryData * param0, const s8 * param1);
-void CopyChatotCryData(ChatotCryData * param0, const ChatotCryData * param1);
+void StoreProcessedAudioInChatotCry(ChatotCry * param0, const s8 * param1);
+void CopyChatotCry(ChatotCry * param0, const ChatotCry * param1);
 
 #endif // POKEPLATINUM_UNK_0202CC64_H

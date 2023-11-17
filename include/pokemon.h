@@ -886,8 +886,8 @@ BOOL Pokemon_SetRotomForm(Pokemon *mon, int monForm, int moveSlot);
  */
 void Pokemon_LoadLevelUpMovesOf(int monSpecies, int monForm, u16 *monLevelUpMoves);
 
-void HandleChatotSpecialInteraction(ChatotCryData *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7);
-void HandleChatotSpecialAction(ChatotCryData *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7, u8 param8);
+void HandleChatotSpecialInteraction(ChatotCry *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7);
+void HandleChatotSpecialAction(ChatotCry *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7, u8 param8);
 BOOL IsPokemonEligibleForAction(Pokemon *mon);
 void InitializePokemonAfterCapture(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
 void PostCapturePokemonProcessing(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);

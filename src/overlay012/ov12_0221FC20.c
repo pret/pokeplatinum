@@ -85,7 +85,7 @@ typedef struct UnkStruct_ov12_02223178_t {
     u8 unk_E8[4];
     u32 unk_EC[4];
     u32 unk_FC[4];
-    ChatotCryData * unk_10C;
+    ChatotCry * unk_10C;
     u8 * unk_110;
     u16 * unk_114;
     int unk_118;

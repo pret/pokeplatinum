@@ -7,46 +7,46 @@
 #include "unk_020244AC.h"
 #include "unk_0202CC64.h"
 
-typedef struct ChatotCryData_t {
+typedef struct ChatotCry_t {
     BOOL unk_00;
     s8 unk_04[1000];
-} ChatotCryData;
+} ChatotCry;
 
-int GetSizeOfChatotCryData (void)
+int GetSizeOfChatotCry (void)
 {
-    return sizeof(ChatotCryData);
+    return sizeof(ChatotCry);
 }
 
-void ChatotCry_Init (ChatotCryData * param0)
+void ChatotCry_Init (ChatotCry * param0)
 {
-    MI_CpuClear32(param0, sizeof(ChatotCryData));
+    MI_CpuClear32(param0, sizeof(ChatotCry));
     param0->unk_00 = 0;
 }
 
-ChatotCryData * AllocateAndInitializeChatotCryData (int param0)
+ChatotCry * AllocateAndInitializeChatotCry (int param0)
 {
-    ChatotCryData * v0 = Heap_AllocFromHeap(param0, sizeof(ChatotCryData));
+    ChatotCry * v0 = Heap_AllocFromHeap(param0, sizeof(ChatotCry));
 
     ChatotCry_Init(v0);
     return v0;
 }
 
-ChatotCryData * GetChatotCryDataFromSave (SaveData * param0)
+ChatotCry * GetChatotCryFromSave (SaveData * param0)
 {
-    return (ChatotCryData *)SaveData_Get(param0, 22);
+    return (ChatotCry *)SaveData_Get(param0, 22);
 }
 
-BOOL IsChatotCryDataValid (const ChatotCryData * param0)
+BOOL IsChatotCryValid (const ChatotCry * param0)
 {
     return param0->unk_00;
 }
 
-void ResetChatotCryDataStatus (ChatotCryData * param0)
+void ResetChatotCryStatus (ChatotCry * param0)
 {
     param0->unk_00 = 0;
 }
 
-const void * GetChatotCryAudioBuffer (const ChatotCryData * param0)
+const void * GetChatotCryAudioBuffer (const ChatotCry * param0)
 {
     return param0->unk_04;
 }
@@ -72,7 +72,7 @@ void ProcessChatotCryAudioData (s8 * param0, const s8 * param1)
     }
 }
 
-void StoreProcessedAudioInChatotCryData (ChatotCryData * param0, const s8 * param1)
+void StoreProcessedAudioInChatotCry (ChatotCry * param0, const s8 * param1)
 {
     int v0, v1;
     s8 v2;
@@ -96,7 +96,7 @@ void StoreProcessedAudioInChatotCryData (ChatotCryData * param0, const s8 * para
     }
 }
 
-void CopyChatotCryData (ChatotCryData * param0, const ChatotCryData * param1)
+void CopyChatotCry (ChatotCry * param0, const ChatotCry * param1)
 {
-    MI_CpuCopyFast(param1, param0, sizeof(ChatotCryData));
+    MI_CpuCopyFast(param1, param0, sizeof(ChatotCry));
 }

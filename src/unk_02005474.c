@@ -407,7 +407,7 @@ BOOL sub_02005844 (u16 param0, u8 param1)
     u16 v0;
     int v1;
     u8 * v2 = sub_02003D5C(18);
-    ChatotCryData ** v3 = sub_02003D5C(36);
+    ChatotCry ** v3 = sub_02003D5C(36);
     u8 * v4 = sub_02003D5C(53);
 
     v0 = param0;
@@ -509,7 +509,7 @@ BOOL sub_020059D0 (int param0, u16 param1, int param2, int param3, int param4, u
     u8 * v9 = sub_02003D5C(17);
     u8 * v10 = sub_02003D5C(18);
     u8 * v11 = sub_02003D5C(30);
-    ChatotCryData ** v12 = sub_02003D5C(36);
+    ChatotCry ** v12 = sub_02003D5C(36);
 
     v4 = 0;
     v5 = 0;

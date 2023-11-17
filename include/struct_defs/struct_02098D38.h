@@ -22,7 +22,7 @@ typedef struct {
     u32 unk_1C;
     void * unk_20;
     void * unk_24;
-    ChatotCryData * unk_28;
+    ChatotCry * unk_28;
     BOOL unk_2C;
 } UnkStruct_02098D38;
 

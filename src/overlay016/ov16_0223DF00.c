@@ -143,7 +143,7 @@ int ov16_0223EDE0(BattleSystem * param0);
 u8 BattleSystem_TextSpeed(BattleSystem * param0);
 int BattleSystem_Ruleset(BattleSystem * param0);
 UnkStruct_02015F84 * ov16_0223EE28(BattleSystem * param0);
-ChatotCryData * BattleSystem_ChatotVoice(BattleSystem * param0, int param1);
+ChatotCry * BattleSystem_ChatotVoice(BattleSystem * param0, int param1);
 void ov16_0223EE70(BattleSystem * param0);
 void ov16_0223EF2C(BattleSystem * param0, int param1, int param2);
 void ov16_0223EF48(BattleSystem * param0, Pokemon * param1);
@@ -1053,7 +1053,7 @@ UnkStruct_02015F84 * ov16_0223EE28 (BattleSystem * param0)
     return param0->unk_1C4;
 }
 
-ChatotCryData * BattleSystem_ChatotVoice (BattleSystem * param0, int param1)
+ChatotCry * BattleSystem_ChatotVoice (BattleSystem * param0, int param1)
 {
     if ((param0->battleType & 0x8) || ((param0->battleType & 0x10) && (BattleSystem_BattlerSlot(param0, param1) & 0x1))) {
         return param0->unk_78[param1];

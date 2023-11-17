@@ -330,9 +330,9 @@ int ov19_021D0E58 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov19_021D5DF8 * v0 = sub_0200682C(param0);
 
     if (Party_HasSpecies(v0->unk_124, 441) == 0) {
-        ChatotCryData * v1 = GetChatotCryDataFromSave(v0->unk_11C);
+        ChatotCry * v1 = GetChatotCryFromSave(v0->unk_11C);
 
-        ResetChatotCryDataStatus(v1);
+        ResetChatotCryStatus(v1);
     }
 
     ov19_021D64A0(v0->unk_114);

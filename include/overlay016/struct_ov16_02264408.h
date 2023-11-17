@@ -25,7 +25,7 @@ typedef struct {
     u32 unk_4C[4];
     int unk_50;
     UnkStruct_ov16_02264408_sub1 unk_54;
-    ChatotCryData * unk_6C;
+    ChatotCry * unk_6C;
     u8 * unk_70;
     u16 * unk_74;
 } UnkStruct_ov16_02264408;

@@ -12,16 +12,16 @@
 #include "unk_0202CC64.h"
 
 BOOL CheckMicRecordingStatus(void);
-BOOL IsChatotCryStructReadyForProcessing(const ChatotCryData * param0);
-BOOL ProcessAudioInput(const ChatotCryData * param0, u32 param1, int param2, int param3);
+BOOL IsChatotCryStructReadyForProcessing(const ChatotCry * param0);
+BOOL ProcessAudioInput(const ChatotCry * param0, u32 param1, int param2, int param3);
 void ResetMicStatusFlags(void);
 MICResult StartMicSampling(void);
 MICResult StopMicSampling(void);
-void StoreMicDataInChatotCryStruct(ChatotCryData * param0);
+void StoreMicDataInChatotCryStruct(ChatotCry * param0);
 void SetMicProcessingFlag(u8 param0);
-BOOL ProcessChatotCryStructWithAudioParams(ChatotCryData * param0, u32 param1, int param2, int param3);
-BOOL ProcessChatotCryStructWithExtendedAudioParams(ChatotCryData * param0, u32 param1, int param2, int param3, u8 param4);
-int Sound_Chatter(ChatotCryData * param0);
+BOOL ProcessChatotCryStructWithAudioParams(ChatotCry * param0, u32 param1, int param2, int param3);
+BOOL ProcessChatotCryStructWithExtendedAudioParams(ChatotCry * param0, u32 param1, int param2, int param3, u8 param4);
+int Sound_Chatter(ChatotCry * param0);
 BOOL IsAudioParamValid(int param0);
 
 BOOL CheckMicRecordingStatus (void)
@@ -44,12 +44,12 @@ BOOL CheckMicRecordingStatus (void)
     return 0;
 }
 
-BOOL IsChatotCryStructReadyForProcessing (const ChatotCryData * cry)
+BOOL IsChatotCryStructReadyForProcessing (const ChatotCry * cry)
 {
     u8 * v0 = sub_02003D5C(31);
     u8 * v1 = sub_02003D5C(54);
 
-    if (IsChatotCryDataValid(cry) == 0) {
+    if (IsChatotCryValid(cry) == 0) {
         return 0;
     }
 
@@ -64,7 +64,7 @@ BOOL IsChatotCryStructReadyForProcessing (const ChatotCryData * cry)
     return 1;
 }
 
-BOOL ProcessAudioInput (const ChatotCryData * param0, u32 param1, int param2, int param3)
+BOOL ProcessAudioInput (const ChatotCry * param0, u32 param1, int param2, int param3)
 {
     u16 v0;
     int v1, v2;
@@ -151,9 +151,9 @@ MICResult StopMicSampling (void)
     return sub_02004B64();
 }
 
-void StoreMicDataInChatotCryStruct (ChatotCryData * param0)
+void StoreMicDataInChatotCryStruct (ChatotCry * param0)
 {
-    StoreProcessedAudioInChatotCryData(param0, (const s8 *)sub_02005014());
+    StoreProcessedAudioInChatotCry(param0, (const s8 *)sub_02005014());
     return;
 }
 
@@ -165,10 +165,10 @@ void SetMicProcessingFlag (u8 param0)
     return;
 }
 
-BOOL ProcessChatotCryStructWithAudioParams (ChatotCryData * param0, u32 param1, int param2, int param3)
+BOOL ProcessChatotCryStructWithAudioParams (ChatotCry * param0, u32 param1, int param2, int param3)
 {
     int v0;
-    ChatotCryData ** v1 = sub_02003D5C(36);
+    ChatotCry ** v1 = sub_02003D5C(36);
 
     if (param0 == NULL) {
         v0 = ProcessAudioInput(*v1, param1, param2, param3);
@@ -184,10 +184,10 @@ BOOL ProcessChatotCryStructWithAudioParams (ChatotCryData * param0, u32 param1, 
     return v0;
 }
 
-BOOL ProcessChatotCryStructWithExtendedAudioParams (ChatotCryData * param0, u32 param1, int param2, int param3, u8 param4)
+BOOL ProcessChatotCryStructWithExtendedAudioParams (ChatotCry * param0, u32 param1, int param2, int param3, u8 param4)
 {
     int v0;
-    ChatotCryData ** v1 = sub_02003D5C(36);
+    ChatotCry ** v1 = sub_02003D5C(36);
 
     if (param0 == NULL) {
         v0 = ProcessAudioInput(*v1, param1, param2, param3);
@@ -204,12 +204,12 @@ BOOL ProcessChatotCryStructWithExtendedAudioParams (ChatotCryData * param0, u32 
     return v0;
 }
 
-int Sound_Chatter (ChatotCryData * param0)
+int Sound_Chatter (ChatotCry * param0)
 {
     const s8 * v0;
     s8 v1;
 
-    if (IsChatotCryDataValid(param0) == 0) {
+    if (IsChatotCryValid(param0) == 0) {
         return 0;
     }
 

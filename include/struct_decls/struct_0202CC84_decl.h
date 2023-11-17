@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_0202CC84_DECL_H
 #define POKEPLATINUM_STRUCT_0202CC84_DECL_H
 
-typedef struct ChatotCryData_t ChatotCryData;
+typedef struct ChatotCry_t ChatotCry;
 
 #endif // POKEPLATINUM_STRUCT_0202CC84_DECL_H

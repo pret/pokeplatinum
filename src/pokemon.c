@@ -4146,7 +4146,7 @@ void Pokemon_LoadLevelUpMovesOf(int monSpecies, int monForm, u16 *monLevelUpMove
     NARC_ReadWholeMemberByIndexPair(monLevelUpMoves, NARC_INDEX_POKETOOL__PERSONAL__WOTBL, monSpecies);
 }
 
-void HandleChatotSpecialInteraction(ChatotCryData *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7)
+void HandleChatotSpecialInteraction(ChatotCry *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7)
 {
     if (monSpecies == SPECIES_CHATOT) {
         if (IsAudioParamValid(param1) == 0) {
@@ -4164,7 +4164,7 @@ void HandleChatotSpecialInteraction(ChatotCryData *param0, int param1, u16 monSp
     }
 }
 
-void HandleChatotSpecialAction(ChatotCryData *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7, u8 param8)
+void HandleChatotSpecialAction(ChatotCry *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7, u8 param8)
 {
     if (monSpecies == SPECIES_CHATOT) {
         if (IsAudioParamValid(param1) == 0) {

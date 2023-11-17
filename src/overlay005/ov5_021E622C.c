@@ -2041,8 +2041,8 @@ static void ov5_021E62C4 (Party * param0, int param1, UnkStruct_02026218 * param
     Party_RemovePokemonBySlotIndex(param0, param1);
 
     if (Party_HasSpecies(param0, 441) == 0) {
-        ChatotCryData * v7 = GetChatotCryDataFromSave(param3);
-        ResetChatotCryDataStatus(v7);
+        ChatotCry * v7 = GetChatotCryFromSave(param3);
+        ResetChatotCryStatus(v7);
     }
 }
 
