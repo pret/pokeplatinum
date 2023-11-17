@@ -332,7 +332,7 @@ int ov19_021D0E58 (UnkStruct_020067E8 * param0, int * param1)
     if (Party_HasSpecies(v0->unk_124, 441) == 0) {
         ChatotCry * v1 = GetChatotCryDataFromSave(v0->unk_11C);
 
-        ResetChatotCryDataStatus(v1);
+        ResetChatotCryStatus(v1);
     }
 
     ov19_021D64A0(v0->unk_114);

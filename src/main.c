@@ -84,7 +84,7 @@ void NitroMain (void)
     Unk_02101D28.unk_10.unk_00 = -1;
     Unk_02101D28.unk_10.unk_08 = sub_020244AC();
 
-    sub_02003B60(GetChatotCryDataFromSave(Unk_02101D28.unk_10.unk_08), sub_02025E44(Unk_02101D28.unk_10.unk_08));
+    sub_02003B60(GetChatotCryFromSave(Unk_02101D28.unk_10.unk_08), sub_02025E44(Unk_02101D28.unk_10.unk_08));
     sub_02022844();
 
     if (sub_02038FFC(3) == DWC_INIT_RESULT_DESTROY_OTHER_SETTING) {

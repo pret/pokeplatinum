@@ -700,7 +700,7 @@ static int ov88_0223B914 (UnkStruct_02095E80 * param0)
         }
         break;
     case 14:
-        ov88_0223D140(GetChatotCryDataFromSave(param0->unk_04));
+        ov88_0223D140(GetChatotCryFromSave(param0->unk_04));
         param0->unk_4C++;
         break;
     case 15:

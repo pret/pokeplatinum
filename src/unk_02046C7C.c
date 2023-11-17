@@ -121,7 +121,7 @@ BOOL sub_02046CFC (UnkStruct_0203E724 * param0)
     v8.unk_14 = sub_0202A750(param0->unk_34->unk_0C);
     v8.unk_18 = sub_02025E44(param0->unk_34->unk_0C);
     v8.unk_1C = param0->unk_34->unk_0C;
-    v8.unk_20 = GetChatotCryDataFromSave(param0->unk_34->unk_0C);
+    v8.unk_20 = GetChatotCryFromSave(param0->unk_34->unk_0C);
 
     *v2 = sub_02093800(&v8);
 

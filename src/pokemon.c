@@ -5,6 +5,7 @@
 
 #include "constants/items.h"
 #include "constants/moves.h"
+#include "constants/narc.h"
 #include "constants/pokemon.h"
 #include "constants/sound.h"
 #include "constants/species.h"

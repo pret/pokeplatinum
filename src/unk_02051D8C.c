@@ -100,7 +100,7 @@ BattleParams * sub_02051D8C (int param0, u32 param1)
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        v1->unk_F0[v0] = AllocateAndInitializeChatotCryData(param0);
+        v1->unk_F0[v0] = AllocateAndInitializeChatotCry(param0);
     }
 
     v1->unk_E0 = sub_0207D3C0(param0);
@@ -247,7 +247,7 @@ void sub_02052184 (BattleParams * param0, const TrainerInfo * param1, int param2
 
 void sub_020521A4 (BattleParams * param0, const ChatotCry * param1, int param2)
 {
-    CopyChatotCryData(param0->unk_F0[param2], param1);
+    CopyChatotCry(param0->unk_F0[param2], param1);
 }
 
 void sub_020521B8 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, SaveData * param2, int param3, UnkStruct_0202B628 * param4, UnkStruct_0207D99C * param5, UnkStruct_0209C370 * param6)
