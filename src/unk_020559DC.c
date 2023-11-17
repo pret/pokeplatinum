@@ -101,7 +101,7 @@ static void sub_02055AC0 (UnkStruct_0203CDB0 * param0, s32 param1)
         Party * v0;
 
         v0 = Party_GetFromSavedata(param0->unk_0C);
-        UpdatePokerusStatusInParty(v0, param1);
+        Party_UpdatePokerusStatus(v0, param1);
     }
 
     {

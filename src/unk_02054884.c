@@ -41,7 +41,7 @@ BOOL sub_020548B0 (int param0, SaveData * param1, u16 param2, u8 param3, u16 par
 
     Pokemon_Init(v1);
     Pokemon_InitWith(v1, param2, param3, 32, 0, 0, 0, 0);
-    InitializePokemonAfterCapture(v1, v4, 4, param5, param6, param0);
+    Pokemon_InitAfterCatch(v1, v4, 4, param5, param6, param0);
 
     v2 = param4;
     Pokemon_SetValue(v1, 6, &v2);

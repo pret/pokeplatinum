@@ -63,7 +63,7 @@ enum PokemonDataParam {
     MON_DATA_3,
     MON_DATA_4,
     MON_DATA_SPECIES,
-    MON_DATA_HELD_ITEM, // 6
+    MON_DATA_HELD_ITEM,
     MON_DATA_OT_ID,
     MON_DATA_EXP,
     MON_DATA_FRIENDSHIP,
@@ -217,10 +217,10 @@ enum PokemonDataParam {
     MON_DATA_OT_GENDER,
     MON_DATA_158,
     MON_DATA_159,
-    MON_DATA_STATUS_CONDITION, // 160
+    MON_DATA_STATUS_CONDITION,
     MON_DATA_LEVEL,
     MON_DATA_162,
-    MON_DATA_CURRENT_HP, //163
+    MON_DATA_CURRENT_HP,
     MON_DATA_MAX_HP,
     MON_DATA_ATK,
     MON_DATA_DEF,
@@ -229,7 +229,7 @@ enum PokemonDataParam {
     MON_DATA_SP_DEF,
     MON_DATA_170,
     MON_DATA_171,
-    MON_DATA_172, // data sanity?
+    MON_DATA_172, //!< possible data sanity check
     MON_DATA_173,
     MON_DATA_SPECIES_EGG,
     MON_DATA_COMBINED_IVS,

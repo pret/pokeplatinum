@@ -1686,7 +1686,7 @@ static BOOL ov6_02242514 (const int param0, const UnkStruct_ov6_022422D0 * param
         }
     }
 
-    AssignHeldItemToPokemon(param2, param3->battleType, v0);
+    Pokemon_GiveHeldItem(param2, param3->battleType, v0);
 
     {
         u8 v1;
