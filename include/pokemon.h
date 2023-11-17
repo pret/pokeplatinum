@@ -646,7 +646,7 @@ u8 BoxPokemon_SpriteYOffset(BoxPokemon *boxMon, u8 face, BOOL preferDP);
  */
 u8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 personality);
 void sub_0207697C(ArchivedSprite *param0, u16 param1);
-CellActorData *sub_02076994(UnkStruct_0200C6E4 *param0, UnkStruct_0200C704 *param1, PaletteSys *param2, int param3, int param4, int param5, int param6, int param7, int heapID);
+CellActorData *sub_02076994(CellTransferStateData *param0, AnimationResourceCollection *param1, PaletteSys *param2, int param3, int param4, int param5, int param6, int param7, int heapID);
 void sub_02076AAC(int param0, int param1, UnkStruct_ov5_021DE5D0 *param2);
 
 /**

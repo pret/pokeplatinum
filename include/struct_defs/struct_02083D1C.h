@@ -9,6 +9,6 @@ typedef struct {
     u8 unk_304;
     u8 unk_305;
     u8 unk_306;
-} UnkStruct_02083D1C;
+} DualArrayShortData;
 
 #endif // POKEPLATINUM_STRUCT_02083D1C_H

@@ -97,7 +97,7 @@ typedef struct {
 } UnkStruct_ov114_0225CCD0;
 
 typedef struct {
-    UnkStruct_020218BC * unk_00;
+    GraphicElementManager * unk_00;
     UnkStruct_0200C738 unk_04;
 } UnkStruct_ov114_0225CFCC;
 
@@ -135,8 +135,8 @@ typedef struct {
 
 typedef struct {
     Window unk_00;
-    UnkStruct_02022550 * unk_10;
-    UnkStruct_02022550 * unk_14;
+    GraphicElementData * unk_10;
+    GraphicElementData * unk_14;
     u16 unk_18;
     u8 unk_1A;
     u8 unk_1B;
@@ -206,7 +206,7 @@ typedef struct {
 typedef struct {
     void * unk_00;
     NNSG2dScreenData * unk_04;
-    UnkStruct_02022550 * unk_08[15];
+    GraphicElementData * unk_08[15];
     UnkStruct_ov114_0225CDB4 * unk_44;
     u8 unk_48;
     u8 unk_49;
@@ -252,7 +252,7 @@ typedef struct UnkStruct_ov114_0225E854_t {
 } UnkStruct_ov114_0225E854;
 
 typedef struct {
-    UnkStruct_02022550 * unk_00[2];
+    GraphicElementData * unk_00[2];
     s16 unk_08;
     s16 unk_0A;
     u8 unk_0C[2][192];
@@ -266,12 +266,12 @@ typedef struct UnkStruct_ov114_02025CAD4_t {
     u32 unk_00;
     u16 unk_04;
     s16 unk_06;
-    UnkStruct_020218BC * unk_08;
+    GraphicElementManager * unk_08;
     NARC * unk_0C;
     UnkStruct_ov114_0225CCD0 unk_10;
     UnkStruct_ov114_0225CDB4 * unk_28;
     SysTask * unk_2C;
-    UnkStruct_02022550 * unk_30;
+    GraphicElementData * unk_30;
     UnkStruct_ov114_0225FAB8 unk_34;
 } UnkStruct_ov114_0225CAD4;
 
@@ -286,7 +286,7 @@ static void ov114_0225CCB0(NNSG2dScreenData * param0, u32 param1);
 static void ov114_0225CCD0(UnkStruct_ov114_0225CCD0 * param0, u32 param1, u32 param2);
 static void ov114_0225CD10(UnkStruct_ov114_0225CCD0 * param0);
 static UnkStruct_ov114_0225CDB4 * ov114_0225CD54(UnkStruct_ov114_0225CCD0 * param0, NARC * param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
-static UnkStruct_02022550 * ov114_0225CDB4(UnkStruct_ov114_0225CDB4 * param0, UnkStruct_020218BC * param1, s16 param2, s16 param3, u16 param4, u32 param5);
+static GraphicElementData * ov114_0225CDB4(UnkStruct_ov114_0225CDB4 * param0, GraphicElementManager * param1, s16 param2, s16 param3, u16 param4, u32 param5);
 static void ov114_0225CDE0(UnkStruct_ov114_0225CCD0 * param0, UnkStruct_ov114_0225CDB4 * param1, NARC * param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, u32 param9);
 static void ov114_0225CEB8(UnkStruct_ov114_0225CCD0 * param0, UnkStruct_ov114_0225CDB4 * param1);
 static void ov114_0225CEF0(UnkStruct_ov114_0225CEF0 * param0, const UnkStruct_ov84_0223BA5C * param1, const UnkStruct_ov114_02260284 * param2, u32 param3, u32 param4);
@@ -383,7 +383,7 @@ static BOOL ov114_0225F7D8(UnkStruct_ov114_0225E854 * param0);
 static void ov114_0225F83C(UnkStruct_ov114_0225E854 * param0);
 static BOOL ov114_0225F860(UnkStruct_ov114_0225E854 * param0);
 static void ov114_0225F890(UnkStruct_ov114_0225E854 * param0);
-static void ov114_0225F9B8(UnkStruct_ov114_0225FAB8 * param0, UnkStruct_ov114_0225CDB4 * param1, UnkStruct_020218BC * param2, u32 param3);
+static void ov114_0225F9B8(UnkStruct_ov114_0225FAB8 * param0, UnkStruct_ov114_0225CDB4 * param1, GraphicElementManager * param2, u32 param3);
 static BOOL ov114_0225FAB8(UnkStruct_ov114_0225FAB8 * param0);
 static BOOL ov114_0225FAD8(UnkStruct_ov114_0225FAB8 * param0);
 static void ov114_0225FB10(UnkStruct_ov114_0225FAB8 * param0, s32 param1);
@@ -1109,7 +1109,7 @@ BOOL ov114_0225CA98 (const UnkStruct_ov114_0225C76C * param0)
     return 0;
 }
 
-UnkStruct_ov114_0225CAD4 * ov114_0225CAD4 (UnkStruct_020218BC * param0, u32 param1)
+UnkStruct_ov114_0225CAD4 * ov114_0225CAD4 (GraphicElementManager * param0, u32 param1)
 {
     UnkStruct_ov114_0225CAD4 * v0;
 
@@ -1285,7 +1285,7 @@ static UnkStruct_ov114_0225CDB4 * ov114_0225CD54 (UnkStruct_ov114_0225CCD0 * par
     return v1;
 }
 
-static UnkStruct_02022550 * ov114_0225CDB4 (UnkStruct_ov114_0225CDB4 * param0, UnkStruct_020218BC * param1, s16 param2, s16 param3, u16 param4, u32 param5)
+static GraphicElementData * ov114_0225CDB4 (UnkStruct_ov114_0225CDB4 * param0, GraphicElementManager * param1, s16 param2, s16 param3, u16 param4, u32 param5)
 {
     UnkStruct_ov83_0223D9A8 v0;
 
@@ -3654,7 +3654,7 @@ static void ov114_0225F988 (UnkStruct_ov114_0225E854 * param0)
     }
 }
 
-static void ov114_0225F9B8 (UnkStruct_ov114_0225FAB8 * param0, UnkStruct_ov114_0225CDB4 * param1, UnkStruct_020218BC * param2, u32 param3)
+static void ov114_0225F9B8 (UnkStruct_ov114_0225FAB8 * param0, UnkStruct_ov114_0225CDB4 * param1, GraphicElementManager * param2, u32 param3)
 {
     int v0;
     int v1;

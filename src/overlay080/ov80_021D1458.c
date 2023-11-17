@@ -43,7 +43,7 @@ typedef struct {
     u16 unk_08;
     u8 unk_0A;
     u8 unk_0B;
-    UnkStruct_02022550 * unk_0C;
+    GraphicElementData * unk_0C;
 } UnkStruct_ov80_021D1744;
 
 typedef struct {
@@ -79,9 +79,9 @@ typedef struct {
     UnkStruct_ov80_021D2C1C * unk_9C;
     UnkStruct_ov80_021D2AF4 * unk_A0;
     UnkStruct_ov80_021D2570 unk_A4;
-    UnkStruct_02022550 * unk_100;
-    UnkStruct_02022550 * unk_104;
-    UnkStruct_02022550 * unk_108;
+    GraphicElementData * unk_100;
+    GraphicElementData * unk_104;
+    GraphicElementData * unk_108;
     SysTask * unk_10C;
 } UnkStruct_ov80_021D1478;
 

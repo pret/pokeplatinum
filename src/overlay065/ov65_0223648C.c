@@ -119,7 +119,7 @@ typedef struct {
     u8 unk_14;
     u8 unk_15;
     u16 unk_16;
-    UnkStruct_020218BC * unk_18;
+    GraphicElementManager * unk_18;
     UnkStruct_0200C738 unk_1C;
     UnkStruct_02009714 * unk_1A8[4];
     UnkStruct_ov63_0222BE18 * unk_1B8;
@@ -130,7 +130,7 @@ typedef struct {
     Window unk_210;
     Window unk_220;
     Window unk_230;
-    UnkStruct_02001AF4 * unk_240;
+    UIControlData * unk_240;
     void * unk_244;
     NNSG2dScreenData * unk_248;
     void * unk_24C;

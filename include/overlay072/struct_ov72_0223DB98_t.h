@@ -23,7 +23,7 @@ struct UnkStruct_ov72_0223DB98_t {
     BGL * unk_00;
     BOOL unk_04;
     UnkStruct_0202CD88 * unk_08;
-    UnkStruct_020279FC * unk_0C;
+    AnimationControlFlags * unk_0C;
     UnkStruct_0200B358 * unk_10;
     MessageLoader * unk_14;
     Strbuf* unk_18[5];
@@ -31,15 +31,15 @@ struct UnkStruct_ov72_0223DB98_t {
     Strbuf* unk_30;
     Strbuf* unk_34;
     int unk_38;
-    UnkStruct_020218BC * unk_3C;
+    GraphicElementManager * unk_3C;
     UnkStruct_0200C738 unk_40;
     UnkStruct_02009714 * unk_1CC[4];
     UnkStruct_02009DC8 * unk_1DC[2][4];
     UnkStruct_ov19_021DA864 unk_1FC;
     UnkStruct_ov19_021DA864 unk_220;
-    UnkStruct_02022550 * unk_244[14];
-    UnkStruct_02022550 * unk_27C[14];
-    UnkStruct_02022550 * unk_2B4[9];
+    GraphicElementData * unk_244[14];
+    GraphicElementData * unk_27C[14];
+    GraphicElementData * unk_2B4[9];
     Window unk_2D8[5];
     Window unk_328;
     Window unk_338;

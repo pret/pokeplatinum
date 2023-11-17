@@ -8,7 +8,7 @@
 #include "overlay080/struct_ov80_021D2C5C.h"
 #include "overlay080/struct_ov80_021D2E10.h"
 
-UnkStruct_ov80_021D2C1C * ov80_021D2AF4(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, u8 * param2, short param3, int param4);
+UnkStruct_ov80_021D2C1C * ov80_021D2AF4(CellTransferStateData * param0, AnimationResourceCollection * param1, u8 * param2, short param3, int param4);
 void ov80_021D2C1C(UnkStruct_ov80_021D2C1C * param0);
 UnkStruct_ov80_021D2C5C * ov80_021D2C5C(UnkStruct_ov80_021D2C1C * param0, int param1, int param2, int param3);
 int ov80_021D2CC0(UnkStruct_ov80_021D2C1C * param0, int param1, int param2, int param3);

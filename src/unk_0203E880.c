@@ -64,7 +64,7 @@ struct UnkStruct_0203EF60_t {
     BOOL unk_0C;
     UnkStruct_ov5_021DC1A4 * unk_10;
     Window unk_14;
-    UnkStruct_02001AF4 * unk_24;
+    UIControlData * unk_24;
     int unk_28;
     UnkStruct_02061AB4 * unk_2C;
     UnkStruct_02061AB4 * unk_30;

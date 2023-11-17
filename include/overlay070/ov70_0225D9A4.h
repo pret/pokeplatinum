@@ -50,7 +50,7 @@ void ov70_0225E00C(UnkStruct_ov70_0225DEE8 * param0, u32 param1);
 void ov70_0225E020(UnkStruct_ov70_0225DEE8 * param0, u32 param1, u32 param2);
 void ov70_0225E034(UnkStruct_ov70_0225DEE8 * param0);
 void ov70_0225E044(UnkStruct_ov70_0225DEE8 * param0, const Strbuf *param1, u32 param2);
-const UnkStruct_02013A04 * ov70_0225E054(const UnkStruct_ov70_0225DEE8 * param0);
+const ResourceMetadata * ov70_0225E054(const UnkStruct_ov70_0225DEE8 * param0);
 BOOL ov70_0225E064(const UnkStruct_ov70_0225DEE8 * param0, u32 param1);
 void ov70_0225E074(UnkStruct_ov70_0225DEE8 * param0, const UnkStruct_ov84_02240FA8 * param1, u16 param2, u16 param3);
 void ov70_0225E0A4(UnkStruct_ov70_0225DEE8 * param0, const UnkStruct_ov84_02240FA8 * param1, u16 param2, u16 param3, u8 param4, u8 param5, u8 param6);

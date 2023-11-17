@@ -6,7 +6,7 @@
 
 typedef struct {
     int unk_00;
-    UnkStruct_020279FC * unk_04;
+    AnimationControlFlags * unk_04;
     const TrainerInfo * unk_08;
 } UnkStruct_020985E4;
 

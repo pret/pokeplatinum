@@ -11,7 +11,7 @@ typedef struct {
     UnkStruct_ov21_021D4C0C * unk_00;
     const Window * unk_04;
     const NNSG2dImagePaletteProxy * unk_08;
-    const UnkStruct_02022550 * unk_0C;
+    const GraphicElementData * unk_0C;
     int unk_10;
     int unk_14;
     int unk_18;

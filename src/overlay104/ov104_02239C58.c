@@ -109,8 +109,8 @@ static void ov104_02239D1C (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * pa
 {
     u8 v0;
 
-    param1->unk_A8 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02098C44));
-    MI_CpuClearFast(param1->unk_A8, sizeof(UnkStruct_02098C44));
+    param1->unk_A8 = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
+    MI_CpuClearFast(param1->unk_A8, sizeof(PartyManagementData));
 
     param1->unk_A8->unk_00 = Party_GetFromSavedata(param1->unk_00);
     param1->unk_A8->unk_04 = sub_0207D990(param1->unk_00);

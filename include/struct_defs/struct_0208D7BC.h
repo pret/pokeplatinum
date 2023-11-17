@@ -29,9 +29,9 @@ typedef struct {
     UnkStruct_02091850 unk_350[4];
     UnkStruct_02091850 unk_3B0[4];
     u32 unk_410;
-    UnkStruct_0200C6E4 * unk_414;
-    UnkStruct_0200C704 * unk_418;
-    UnkStruct_02022550 * unk_41C[77];
+    CellTransferStateData * unk_414;
+    AnimationResourceCollection * unk_418;
+    GraphicElementData * unk_41C[77];
     CellActorData * unk_550[77];
     UnkStruct_0200C440 * unk_684;
     MessageLoader * unk_688;

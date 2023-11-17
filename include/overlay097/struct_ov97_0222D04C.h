@@ -24,7 +24,7 @@
 typedef struct {
     BGL * unk_00;
     SaveData * unk_04;
-    UnkStruct_020279FC * unk_08;
+    AnimationControlFlags * unk_08;
     UnkStruct_0200B358 * unk_0C;
     MessageLoader * unk_10;
     Strbuf* unk_14;
@@ -36,7 +36,7 @@ typedef struct {
     int unk_70;
     int unk_74;
     UnkStruct_0200112C * unk_78;
-    UnkStruct_02013A04 * unk_7C;
+    ResourceMetadata * unk_7C;
     int unk_80;
     int unk_84;
     int unk_88;
@@ -45,12 +45,12 @@ typedef struct {
     int unk_438;
     int unk_43C;
     int unk_440;
-    UnkStruct_020218BC * unk_444;
+    GraphicElementManager * unk_444;
     UnkStruct_0200C738 unk_448;
     UnkStruct_02009714 * unk_5D4[6];
     UnkStruct_02009DC8 * unk_5EC[6];
     UnkStruct_ov19_021DA864 unk_604;
-    UnkStruct_02022550 * unk_628;
+    GraphicElementData * unk_628;
     int unk_62C;
     int unk_630;
     int unk_634;

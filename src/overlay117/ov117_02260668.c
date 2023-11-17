@@ -69,9 +69,9 @@
 #include "overlay117/ov117_022666C0.h"
 
 static void ov117_02260DA0(void * param0);
-static UnkStruct_0207C690 * ov117_02260E14(int param0);
+static GenericPointerData * ov117_02260E14(int param0);
 static void ov117_02260E34(void);
-static void ov117_02260EB8(UnkStruct_0207C690 * param0);
+static void ov117_02260EB8(GenericPointerData * param0);
 static void ov117_02260F7C(SysTask * param0, void * param1);
 static void ov117_022610D8(BGL * param0);
 static void ov117_02261280(UnkStruct_ov117_02261280 * param0);
@@ -517,9 +517,9 @@ static void ov117_02260DA0 (void * param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static UnkStruct_0207C690 * ov117_02260E14 (int param0)
+static GenericPointerData * ov117_02260E14 (int param0)
 {
-    UnkStruct_0207C690 * v0;
+    GenericPointerData * v0;
 
     v0 = sub_02024220(param0, 0, 1, 0, 2, ov117_02260E34);
     return v0;
@@ -540,7 +540,7 @@ static void ov117_02260E34 (void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void ov117_02260EB8 (UnkStruct_0207C690 * param0)
+static void ov117_02260EB8 (GenericPointerData * param0)
 {
     sub_020242C4(param0);
 }

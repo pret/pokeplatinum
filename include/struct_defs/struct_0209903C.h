@@ -15,7 +15,7 @@ typedef struct {
     u16 unk_0A;
     u16 unk_0C;
     u16 unk_0E;
-    UnkStruct_020218BC * unk_10;
+    GraphicElementManager * unk_10;
     UnkStruct_0200C738 unk_14;
     UnkStruct_02009508 * unk_1A0;
     UnkStruct_02009714 * unk_1A4[4];

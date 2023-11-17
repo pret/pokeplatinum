@@ -277,7 +277,7 @@ static int sub_02098C2C (UnkStruct_02098BE4 * param0)
 
 static int sub_02098C44 (UnkStruct_02098BE4 * param0)
 {
-    UnkStruct_02098C44 * v0;
+    PartyManagementData * v0;
 
     if (!sub_02098AF8(&param0->unk_14)) {
         return 1;
@@ -289,8 +289,8 @@ static int sub_02098C44 (UnkStruct_02098BE4 * param0)
 
     param0->unk_0C->unk_02 = 0;
 
-    v0 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02098C44));
-    MI_CpuClear8(v0, sizeof(UnkStruct_02098C44));
+    v0 = Heap_AllocFromHeap(param0->unk_00, sizeof(PartyManagementData));
+    MI_CpuClear8(v0, sizeof(PartyManagementData));
     v0->unk_00 = param0->unk_0C->unk_10;
     v0->unk_04 = param0->unk_0C->unk_14;
     v0->unk_21 = 0;
@@ -306,7 +306,7 @@ static int sub_02098C44 (UnkStruct_02098BE4 * param0)
 static int sub_02098CB0 (UnkStruct_02098BE4 * param0)
 {
     u8 v0;
-    UnkStruct_02098C44 * v1;
+    PartyManagementData * v1;
     UnkStruct_02098D38 * v2;
     static const u8 v3[] = {
         4, 7, 8
@@ -316,7 +316,7 @@ static int sub_02098CB0 (UnkStruct_02098BE4 * param0)
         return 2;
     }
 
-    v1 = (UnkStruct_02098C44 *)param0->unk_10;
+    v1 = (PartyManagementData *)param0->unk_10;
     v0 = v1->unk_22;
     param0->unk_08 = v0;
     Heap_FreeToHeap(param0->unk_10);

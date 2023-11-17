@@ -31,7 +31,7 @@ typedef struct {
     UnkStruct_ov13_02228A50 * unk_34;
     UnkStruct_ov16_0226DEEC * unk_38;
     BagItem unk_3C[5][36];
-    UnkStruct_0200C704 * unk_30C;
+    AnimationResourceCollection * unk_30C;
     CellActorData * unk_310[6];
     u16 unk_328[3][144];
     u16 unk_688[4][130];

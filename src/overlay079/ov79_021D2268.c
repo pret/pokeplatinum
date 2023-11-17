@@ -100,7 +100,7 @@ struct UnkStruct_ov79_021D29B4_t {
     int unk_08;
     UnkStruct_ov79_021D2C50 unk_0C;
     UnkStruct_ov79_021D2C50 unk_68;
-    UnkStruct_02022550 * unk_C4;
+    GraphicElementData * unk_C4;
     Sprite * unk_C8;
     UnkStruct_ov79_021D29E4 unk_CC[4];
 };
@@ -121,7 +121,7 @@ typedef struct {
     UnkStruct_0209916C * unk_60[2];
     BGL * unk_68;
     Window unk_6C;
-    UnkStruct_0200C6E4 * unk_7C;
+    CellTransferStateData * unk_7C;
     UnkStruct_ov79_021D29B4 unk_80;
 } UnkStruct_ov79_021D2928;
 

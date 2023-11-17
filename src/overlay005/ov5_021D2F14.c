@@ -99,10 +99,10 @@ void ov5_021D30A8 (UnkStruct_ov5_021D30A8 * param0)
     }
 }
 
-UnkStruct_02022550 * ov5_021D3104 (UnkStruct_ov5_021D30A8 * param0, const UnkStruct_ov7_0224F358 * param1)
+GraphicElementData * ov5_021D3104 (UnkStruct_ov5_021D30A8 * param0, const UnkStruct_ov7_0224F358 * param1)
 {
     UnkStruct_ov115_02261520 v0;
-    UnkStruct_02022550 * v1;
+    GraphicElementData * v1;
     VecFx32 v2 = {FX32_ONE, FX32_ONE, FX32_ONE};
     VecFx32 v3;
 

@@ -26,9 +26,9 @@ typedef struct {
     s16 unk_1C;
     s16 unk_1E;
     s16 unk_20;
-    UnkStruct_02022550 * unk_24;
+    GraphicElementData * unk_24;
     u8 unk_28;
     u8 unk_29;
-} UnkStruct_020831B4;
+} StrBufWrapper;
 
 #endif // POKEPLATINUM_STRUCT_020831B4_H

@@ -41,13 +41,13 @@ struct UnkStruct_ov19_021DEC04_t {
     UnkStruct_ov19_021D61B0 * unk_04;
     const UnkStruct_ov19_021D4DF0 * unk_08;
     BGL * unk_0C;
-    UnkStruct_020218BC * unk_10;
+    GraphicElementManager * unk_10;
     UnkStruct_ov19_021DA384 * unk_14;
     u32 unk_18[2];
-    UnkStruct_02022550 * unk_20[2];
-    UnkStruct_02022550 * unk_28[2];
-    UnkStruct_02022550 * unk_30;
-    UnkStruct_02022550 * unk_34[2][5];
+    GraphicElementData * unk_20[2];
+    GraphicElementData * unk_28[2];
+    GraphicElementData * unk_30;
+    GraphicElementData * unk_34[2][5];
     void * unk_5C;
     NNSG2dCellDataBank * unk_60;
     void * unk_64;
@@ -90,7 +90,7 @@ static void ov19_021DF834(UnkStruct_ov19_021DEC04 * param0);
 static void ov19_021DF8C8(UnkStruct_ov19_021DEC04 * param0, int param1);
 static void ov19_021DF930(SysTask * param0, void * param1);
 
-BOOL ov19_021DEC04 (UnkStruct_ov19_021DEC04 ** param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, BGL * param3, UnkStruct_020218BC * param4, MessageLoader * param5, NARC * param6)
+BOOL ov19_021DEC04 (UnkStruct_ov19_021DEC04 ** param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, BGL * param3, GraphicElementManager * param4, MessageLoader * param5, NARC * param6)
 {
     if (ov19_021D5E08(param2) != 4) {
         *param0 = NULL;
@@ -677,7 +677,7 @@ static void ov19_021DF834 (UnkStruct_ov19_021DEC04 * param0)
 {
     int v0 = ov19_021D5F9C(param0->unk_08);
     const UnkStruct_ov19_021D5FAC * v1 = ov19_021D5FAC(param0->unk_08, v0);
-    UnkStruct_02022550 * v2 = param0->unk_20[v0];
+    GraphicElementData * v2 = param0->unk_20[v0];
     BoxPokemon * v3 = (BoxPokemon *)(v1->unk_00);
     NNSG2dCharacterData * v4;
 

@@ -20,7 +20,7 @@ typedef struct {
     const Strbuf* unk_0C;
     const TrainerInfo * unk_10;
     UnkStruct_0202A750 * unk_14;
-    const UnkStruct_020279FC * unk_18;
+    const AnimationControlFlags * unk_18;
     SaveData * unk_1C;
     void * unk_20;
 } UnkStruct_02093800;

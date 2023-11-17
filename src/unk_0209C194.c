@@ -30,7 +30,7 @@ typedef struct {
     UnkStruct_0209C194_1 unk_08;
     UnkStruct_0209C194 * unk_28;
     UnkStruct_0203CDB0 * unk_2C;
-    UnkStruct_02098C44 * unk_30;
+    PartyManagementData * unk_30;
     UnkStruct_02098D38 * unk_34;
 } UnkStruct_0209C1EC;
 

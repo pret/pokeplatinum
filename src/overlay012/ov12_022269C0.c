@@ -34,11 +34,11 @@ typedef struct {
 typedef struct {
     u8 unk_00;
     UnkStruct_ov12_0221FCDC * unk_04;
-    UnkStruct_0200C6E4 * unk_08;
-    UnkStruct_0200C704 * unk_0C;
+    CellTransferStateData * unk_08;
+    AnimationResourceCollection * unk_0C;
     CellActorData * unk_10;
     CellActorData * unk_14[100];
-    UnkStruct_02022550 * unk_1A4[10];
+    GraphicElementData * unk_1A4[10];
 } UnkStruct_ov12_02226AAC;
 
 void ov12_022269C0 (UnkStruct_ov12_0221FCDC * param0)
@@ -155,7 +155,7 @@ static void ov12_02226AAC (SysTask * param0, void * param1)
     }
 }
 
-void ov12_02226B1C (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, CellActorData * param3)
+void ov12_02226B1C (UnkStruct_ov12_0221FCDC * param0, CellTransferStateData * param1, AnimationResourceCollection * param2, CellActorData * param3)
 {
     UnkStruct_ov12_02226AAC * v0;
     UnkStruct_ov104_0223F9E0 v1;

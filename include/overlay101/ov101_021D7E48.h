@@ -22,7 +22,7 @@ void ov101_021D82F0(UnkStruct_ov101_021D7E48 * param0, NARC * param1, u32 param2
 void ov101_021D8358(UnkStruct_ov101_021D7E48 * param0, u32 param1, u32 param2, u32 param3, u32 param4);
 void ov101_021D84A4(UnkStruct_ov101_021D7E48 * param0, UnkStruct_ov101_021D8544 * param1, const VecFx32 * param2, u32 param3, int param4, u32 param5, u32 param6, u32 param7, u32 param8, int param9, int param10);
 void ov101_021D8544(UnkStruct_ov101_021D8544 * param0);
-void ov101_021D8560(UnkStruct_02022550 * param0, VecFx32 * param1);
-void ov101_021D8574(UnkStruct_02022550 * param0, VecFx32 * param1);
+void ov101_021D8560(GraphicElementData * param0, VecFx32 * param1);
+void ov101_021D8574(GraphicElementData * param0, VecFx32 * param1);
 
 #endif // POKEPLATINUM_OV101_021D7E48_H

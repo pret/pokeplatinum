@@ -57,17 +57,17 @@
 #include "overlay021/ov21_021E8D48.h"
 
 typedef struct {
-    UnkStruct_02022550 * unk_00;
+    GraphicElementData * unk_00;
     UnkStruct_02009DC8 * unk_04[4];
 } UnkStruct_ov21_021E94F8;
 
 typedef struct {
-    UnkStruct_02022550 * unk_00;
+    GraphicElementData * unk_00;
     UnkStruct_ov21_021D4CA0 * unk_04;
 } UnkStruct_ov21_021E95B0;
 
 typedef struct {
-    UnkStruct_02022550 * unk_00[2];
+    GraphicElementData * unk_00[2];
     UnkStruct_02009DC8 * unk_08[4];
 } UnkStruct_ov21_021E968C;
 
@@ -85,7 +85,7 @@ typedef struct UnkStruct_ov21_021E8D48_t {
     PaletteSys * unk_08;
     Sprite * unk_0C;
     UnkStruct_0200C738 unk_10;
-    UnkStruct_020218BC * unk_19C;
+    GraphicElementManager * unk_19C;
     UnkStruct_02009714 * unk_1A0[4];
     UnkStruct_ov21_021D4C0C * unk_1B0;
     UnkStruct_ov21_021D22F8 unk_1B4;
@@ -121,15 +121,15 @@ static void ov21_021E93C4(UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** pa
 static void ov21_021E93F8(UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** param1, UnkStruct_ov19_021DA864 * param2, int param3);
 static void ov21_021E9458(UnkStruct_ov21_021E94F8 * param0, UnkStruct_02009714 ** param1, int param2, int param3);
 static void ov21_021E94A4(UnkStruct_ov21_021E94F8 * param0, UnkStruct_02009714 ** param1);
-static void ov21_021E94B0(UnkStruct_ov21_021E94F8 * param0, UnkStruct_020218BC * param1, UnkStruct_02009714 ** param2, int param3);
+static void ov21_021E94B0(UnkStruct_ov21_021E94F8 * param0, GraphicElementManager * param1, UnkStruct_02009714 ** param2, int param3);
 static void ov21_021E94F8(UnkStruct_ov21_021E94F8 * param0);
-static void ov21_021E9504(UnkStruct_ov21_021E95B0 * param0, UnkStruct_020218BC * param1, UnkStruct_02009714 ** param2, int param3, UnkStruct_02009DC8 ** param4);
+static void ov21_021E9504(UnkStruct_ov21_021E95B0 * param0, GraphicElementManager * param1, UnkStruct_02009714 ** param2, int param3, UnkStruct_02009DC8 ** param4);
 static void ov21_021E9554(UnkStruct_ov21_021E95B0 * param0);
 static void ov21_021E9560(UnkStruct_ov21_021E95B0 * param0, UnkStruct_ov21_021D4C0C * param1, int param2, int param3, UnkStruct_02009DC8 * param4);
 static void ov21_021E95B0(UnkStruct_ov21_021E95B0 * param0);
 static void ov21_021E95BC(UnkStruct_ov21_021E968C * param0, UnkStruct_02009714 ** param1, int param2, int param3, NARC * param4);
 static void ov21_021E95EC(UnkStruct_ov21_021E968C * param0, UnkStruct_02009714 ** param1);
-static void ov21_021E95F8(UnkStruct_ov21_021E968C * param0, UnkStruct_020218BC * param1, UnkStruct_02009714 ** param2, int param3, int param4);
+static void ov21_021E95F8(UnkStruct_ov21_021E968C * param0, GraphicElementManager * param1, UnkStruct_02009714 ** param2, int param3, int param4);
 static void ov21_021E968C(UnkStruct_ov21_021E968C * param0);
 static void ov21_021E96A8(BGL * param0, int param1, NARC * param2);
 static void ov21_021E97C4(BGL * param0, int param1, NARC * param2);
@@ -509,7 +509,7 @@ static void ov21_021E94A4 (UnkStruct_ov21_021E94F8 * param0, UnkStruct_02009714 
     ov21_021E93C4(param0->unk_04, param1);
 }
 
-static void ov21_021E94B0 (UnkStruct_ov21_021E94F8 * param0, UnkStruct_020218BC * param1, UnkStruct_02009714 ** param2, int param3)
+static void ov21_021E94B0 (UnkStruct_ov21_021E94F8 * param0, GraphicElementManager * param1, UnkStruct_02009714 ** param2, int param3)
 {
     UnkStruct_ov83_0223D9A8 v0;
     UnkStruct_ov19_021DA864 v1;
@@ -533,7 +533,7 @@ static void ov21_021E94F8 (UnkStruct_ov21_021E94F8 * param0)
     sub_02021BD4(param0->unk_00);
 }
 
-static void ov21_021E9504 (UnkStruct_ov21_021E95B0 * param0, UnkStruct_020218BC * param1, UnkStruct_02009714 ** param2, int param3, UnkStruct_02009DC8 ** param4)
+static void ov21_021E9504 (UnkStruct_ov21_021E95B0 * param0, GraphicElementManager * param1, UnkStruct_02009714 ** param2, int param3, UnkStruct_02009DC8 ** param4)
 {
     UnkStruct_ov83_0223D9A8 v0;
     UnkStruct_ov19_021DA864 v1;
@@ -597,7 +597,7 @@ static void ov21_021E95EC (UnkStruct_ov21_021E968C * param0, UnkStruct_02009714 
     ov21_021E93C4(param0->unk_08, param1);
 }
 
-static void ov21_021E95F8 (UnkStruct_ov21_021E968C * param0, UnkStruct_020218BC * param1, UnkStruct_02009714 ** param2, int param3, int param4)
+static void ov21_021E95F8 (UnkStruct_ov21_021E968C * param0, GraphicElementManager * param1, UnkStruct_02009714 ** param2, int param3, int param4)
 {
     UnkStruct_ov83_0223D9A8 v0;
     UnkStruct_ov19_021DA864 v1;

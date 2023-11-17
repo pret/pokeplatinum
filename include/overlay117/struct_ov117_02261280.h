@@ -42,8 +42,8 @@ typedef struct UnkStruct_ov117_02261280_t {
     u32 unk_0C[4];
     UnkStruct_ov114_0225CAD4 * unk_1C;
     int unk_20;
-    UnkStruct_0200C6E4 * unk_24;
-    UnkStruct_0200C704 * unk_28;
+    CellTransferStateData * unk_24;
+    AnimationResourceCollection * unk_28;
     BGL * unk_2C;
     Window unk_30[5];
     MessageLoader * unk_80;
@@ -52,7 +52,7 @@ typedef struct UnkStruct_ov117_02261280_t {
     PaletteSys * unk_8C;
     UnkStruct_02012744 * unk_90;
     SysTask * unk_94;
-    UnkStruct_0207C690 * unk_98;
+    GenericPointerData * unk_98;
     UnkStruct_020203AC * unk_9C;
     UnkStruct_020203AC * unk_A0;
     UnkStruct_02014014 * unk_A4;

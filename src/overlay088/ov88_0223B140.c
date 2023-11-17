@@ -102,7 +102,7 @@
 #include "overlay088/ov88_0223B140.h"
 #include "overlay088/ov88_0223E9C4.h"
 
-static void ov88_0223B2F0(NNSG2dCharacterData * param0, int param1, int param2, int param3, int param4, UnkStruct_02022550 * param5);
+static void ov88_0223B2F0(NNSG2dCharacterData * param0, int param1, int param2, int param3, int param4, GraphicElementData * param5);
 static void ov88_0223B320(UnkStruct_02095E80 * param0);
 static void ov88_0223C0E0(void * param0);
 static void ov88_0223C15C(void);
@@ -118,8 +118,8 @@ static void ov88_0223CE34(u32 * param0);
 static void ov88_0223CE74(UnkStruct_02095E80 * param0);
 static void ov88_0223CEF0(u16 * param0);
 static int ov88_0223CF30(int param0, int param1, UnkStruct_ov88_0223C8AC * param2);
-static void ov88_0223CF68(int param0, UnkStruct_02022550 * param1, int param2);
-static int ov88_0223CFF4(u32 * param0, int * param1, UnkStruct_02022550 * param2, UnkStruct_ov88_0223C8AC * param3, int param4);
+static void ov88_0223CF68(int param0, GraphicElementData * param1, int param2);
+static int ov88_0223CFF4(u32 * param0, int * param1, GraphicElementData * param2, UnkStruct_ov88_0223C8AC * param3, int param4);
 static int ov88_0223C800(int param0, Pokemon * param1, u8 * param2, ArchivedSprite * param3);
 static void ov88_0223E7F0(UnkStruct_0202B628 * param0, Pokemon * param1);
 static void ov88_0223D140(ChatotCry * param0);
@@ -139,7 +139,7 @@ static void ov88_0223BFD8(UnkStruct_02095E80 * param0);
 static void ov88_0223BE28(UnkStruct_02095E80 * param0);
 static void ov88_0223CB34(Window * param0, int param1, UnkStruct_02095E80 * param2);
 static void ov88_0223BD18(Pokemon * param0, UnkStruct_ov88_0223C8AC * param1);
-static void ov88_0223E87C(UnkStruct_02022550 * param0, int param1, int param2);
+static void ov88_0223E87C(GraphicElementData * param0, int param1, int param2);
 static int ov88_0223C8AC(UnkStruct_ov88_0223C8AC * param0, Party * param1, int param2, int param3);
 static void ov88_0223D0C0(SaveData * param0);
 static int ov88_0223B914(UnkStruct_02095E80 * param0);
@@ -169,7 +169,7 @@ static void ov88_0223DFF4(UnkStruct_02095E80 * param0);
 static void ov88_0223E1AC(UnkStruct_02095E80 * param0);
 static void ov88_0223E1C0(UnkStruct_02095E80 * param0, int param1, int param2);
 static void ov88_0223DE68(VecFx32 param0[], int param1, int param2, int param3, int param4);
-static void ov88_0223DE7C(UnkStruct_02022550 * param0, UnkStruct_02022550 * param1, UnkStruct_02022550 * param2, int param3, VecFx32 param4[], UnkStruct_ov88_0223C8AC * param5);
+static void ov88_0223DE7C(GraphicElementData * param0, GraphicElementData * param1, GraphicElementData * param2, int param3, VecFx32 param4[], UnkStruct_ov88_0223C8AC * param5);
 static void ov88_0223BDA4(UnkStruct_02095E80 * param0, int param1);
 static void ov88_0223E848(UnkStruct_02095E80 * param0);
 static void ov88_0223C860(Window * param0, Party * param1, int param2, int param3, int param4);
@@ -349,7 +349,7 @@ int ov88_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static void ov88_0223B2F0 (NNSG2dCharacterData * param0, int param1, int param2, int param3, int param4, UnkStruct_02022550 * param5)
+static void ov88_0223B2F0 (NNSG2dCharacterData * param0, int param1, int param2, int param3, int param4, GraphicElementData * param5)
 {
     u8 * v0;
 
@@ -1588,7 +1588,7 @@ static const int Unk_ov88_0223EE50[][3] = {
     {0x11, 0x12, 0x13}
 };
 
-static void ov88_0223CF68 (int param0, UnkStruct_02022550 * param1, int param2)
+static void ov88_0223CF68 (int param0, GraphicElementData * param1, int param2)
 {
     VecFx32 v0;
 
@@ -1611,7 +1611,7 @@ static void ov88_0223CF68 (int param0, UnkStruct_02022550 * param1, int param2)
     }
 }
 
-static int ov88_0223CFF4 (u32 * param0, int * param1, UnkStruct_02022550 * param2, UnkStruct_ov88_0223C8AC * param3, int param4)
+static int ov88_0223CFF4 (u32 * param0, int * param1, GraphicElementData * param2, UnkStruct_ov88_0223C8AC * param3, int param4)
 {
     int v0 = *param0 - 1;
     int v1 = 0;
@@ -2232,7 +2232,7 @@ static void ov88_0223DE68 (VecFx32 param0[], int param1, int param2, int param3,
     param0[1].y = FX32_ONE * param4;
 }
 
-static void ov88_0223DE7C (UnkStruct_02022550 * param0, UnkStruct_02022550 * param1, UnkStruct_02022550 * param2, int param3, VecFx32 param4[], UnkStruct_ov88_0223C8AC * param5)
+static void ov88_0223DE7C (GraphicElementData * param0, GraphicElementData * param1, GraphicElementData * param2, int param3, VecFx32 param4[], UnkStruct_ov88_0223C8AC * param5)
 {
     VecFx32 v0, v1, v2;
 
@@ -2559,7 +2559,7 @@ static void ov88_0223E848 (UnkStruct_02095E80 * param0)
     sub_02019184(param0->unk_174, 3, 0, param0->unk_2310);
 }
 
-static void ov88_0223E87C (UnkStruct_02022550 * param0, int param1, int param2)
+static void ov88_0223E87C (GraphicElementData * param0, int param1, int param2)
 {
     VecFx32 v0;
 

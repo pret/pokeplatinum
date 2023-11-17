@@ -2733,7 +2733,7 @@ static BOOL sub_020407B4 (UnkStruct_0203E724 * param0)
 static BOOL sub_020407C4 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_02001AF4 ** v1 = sub_0203F098(v0, 2);
+    UIControlData ** v1 = sub_0203F098(v0, 2);
     u16 v2 = sub_0203E838(param0);
 
     sub_0200DAA4(v0->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
@@ -2750,7 +2750,7 @@ static BOOL sub_02040824 (UnkStruct_0203E724 * param0)
 {
     u32 v0;
     UnkStruct_0203CDB0 * v1 = param0->unk_34;
-    UnkStruct_02001AF4 ** v2 = sub_0203F098(v1, 2);
+    UIControlData ** v2 = sub_0203F098(v1, 2);
     u16 * v3 = sub_0203F118(v1, param0->unk_18[0]);
 
     v0 = sub_02002114(*v2, 4);
@@ -3697,7 +3697,7 @@ static BOOL sub_02041860 (UnkStruct_0203E724 * param0)
     void ** v2;
     u16 * v3;
     u16 * v4;
-    UnkStruct_02098C44 * v5;
+    PartyManagementData * v5;
 
     v3 = inline_0204FCAC(param0);
     v4 = inline_0204FCAC(param0);
@@ -3736,7 +3736,7 @@ static BOOL sub_020418E0 (UnkStruct_0203E724 * param0)
     u16 * v3;
     u16 * v4;
     u16 * v5;
-    UnkStruct_02098C44 * v6;
+    PartyManagementData * v6;
 
     v3 = inline_0204FCAC(param0);
     v4 = inline_0204FCAC(param0);
@@ -3778,7 +3778,7 @@ static BOOL sub_02041984 (UnkStruct_0203E724 * param0)
     u16 * v3;
     u16 * v4;
     u16 * v5;
-    UnkStruct_02098C44 * v6;
+    PartyManagementData * v6;
 
     v3 = inline_0204FCAC(param0);
     v4 = inline_0204FCAC(param0);
@@ -5038,7 +5038,7 @@ static BOOL sub_02043040 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_0204304C (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02098C44 * v0;
+    PartyManagementData * v0;
     void ** v1;
 
     v1 = sub_0203F098(param0->unk_34, 19);
@@ -5453,7 +5453,7 @@ static BOOL sub_020437FC (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043854 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02098C44 * v0;
+    PartyManagementData * v0;
     void ** v1;
     u16 * v2 = inline_0204FCAC(param0);
 

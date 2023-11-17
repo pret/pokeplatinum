@@ -46,7 +46,7 @@ typedef struct {
     BGL * unk_14;
     MessageLoader * unk_18;
     Window unk_1C;
-    UnkStruct_02001AF4 * unk_2C;
+    UIControlData * unk_2C;
     SaveData * unk_30;
     void * unk_34;
 } UnkStruct_02099DFC;

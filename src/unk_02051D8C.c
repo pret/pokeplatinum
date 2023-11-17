@@ -158,7 +158,7 @@ BattleParams * sub_02051F38 (int param0, int param1)
 BattleParams * sub_02051F4C (int param0, const UnkStruct_0203CDB0 * param1)
 {
     TrainerInfo * v0 = sub_02025E38(param1->unk_0C);
-    UnkStruct_020279FC * v1 = sub_02025E44(param1->unk_0C);
+    AnimationControlFlags * v1 = sub_02025E44(param1->unk_0C);
     MessageLoader * v2;
     Strbuf* v3;
     BattleParams * v4;
@@ -257,7 +257,7 @@ void sub_020521B8 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, Sav
     UnkStruct_0207D3C0 * v2 = sub_0207D990(param2);
     UnkStruct_02026324 * v3 = sub_02027560(param2);
     ChatotCry * v4 = GetChatotCryDataFromSave(param2);
-    UnkStruct_020279FC * v5 = sub_02025E44(param2);
+    AnimationControlFlags * v5 = sub_02025E44(param2);
     UnkStruct_0203A790 * v6 = sub_0203A790(param2);
 
     if (param1 != NULL) {
@@ -312,7 +312,7 @@ void sub_02052348 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, int
     UnkStruct_0207D3C0 * v4 = sub_0207D990(param1->unk_0C);
     UnkStruct_02026324 * v5 = sub_02027560(param1->unk_0C);
     ChatotCry * v6 = GetChatotCryDataFromSave(param1->unk_0C);
-    UnkStruct_020279FC * v7 = sub_02025E44(param1->unk_0C);
+    AnimationControlFlags * v7 = sub_02025E44(param1->unk_0C);
     Pokemon * v8;
 
     param0->unk_128 = 6;
@@ -362,7 +362,7 @@ void sub_020524E4 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, con
     UnkStruct_0207D3C0 * v1 = sub_0207D990(param1->unk_0C);
     UnkStruct_02026324 * v2 = sub_02027560(param1->unk_0C);
     ChatotCry * v3 = GetChatotCryDataFromSave(param1->unk_0C);
-    UnkStruct_020279FC * v4 = sub_02025E44(param1->unk_0C);
+    AnimationControlFlags * v4 = sub_02025E44(param1->unk_0C);
     const UnkStruct_0202610C * v5 = param1->unk_B0;
     int v6, v7, v8;
     Pokemon * v9;

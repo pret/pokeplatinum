@@ -9,7 +9,7 @@ typedef struct {
     int unk_04[4];
     u8 padding_14[4];
     Strbuf* unk_18;
-    UnkStruct_020279FC * unk_1C;
+    AnimationControlFlags * unk_1C;
 } UnkStruct_ov62_02246B00;
 
 #endif // POKEPLATINUM_STRUCT_OV62_02246B00_H

@@ -74,7 +74,7 @@ typedef struct {
     UnkStruct_ov67_0225D210 unk_40;
     UnkStruct_ov67_0225D210 unk_70;
     UnkStruct_ov67_0225D210 unk_A0;
-    UnkStruct_02001AF4 * unk_D0;
+    UIControlData * unk_D0;
     UnkStruct_ov61_0222C3B0 unk_D4;
 } UnkStruct_ov67_0225D154;
 
@@ -591,7 +591,7 @@ static void ov67_0225CE30 (UnkStruct_ov67_0225D154 * param0, u32 param1)
     }
 
     {
-        UnkStruct_020279FC * v1;
+        AnimationControlFlags * v1;
         u8 v2;
 
         v1 = sub_02025E44(param0->unk_00);

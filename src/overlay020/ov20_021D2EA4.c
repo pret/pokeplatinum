@@ -50,9 +50,9 @@ typedef struct UnkStruct_ov20_021D30F8_t {
     Window unk_0C;
     Window unk_1C;
     Window unk_2C;
-    UnkStruct_02022550 * unk_3C;
-    UnkStruct_02022550 * unk_40;
-    UnkStruct_02022550 * unk_44;
+    GraphicElementData * unk_3C;
+    GraphicElementData * unk_40;
+    GraphicElementData * unk_44;
     MessageLoader * unk_48;
     Strbuf* unk_4C;
     UnkStruct_020149F0 * unk_50;

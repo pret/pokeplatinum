@@ -12,11 +12,11 @@
 #include "heap.h"
 #include "strbuf.h"
 
-static UnkStruct_02013A04 * sub_02013AAC(UnkStruct_02013A04 * param0, u32 * param1);
+static ResourceMetadata * sub_02013AAC(ResourceMetadata * param0, u32 * param1);
 
-UnkStruct_02013A04 * sub_02013A04 (u32 param0, u32 param1)
+ResourceMetadata * sub_02013A04 (u32 param0, u32 param1)
 {
-    UnkStruct_02013A04 * v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02013A04) * (param0 + 1));
+    ResourceMetadata * v0 = Heap_AllocFromHeap(param1, sizeof(ResourceMetadata) * (param0 + 1));
 
     if (v0) {
         u32 v1;
@@ -33,13 +33,13 @@ UnkStruct_02013A04 * sub_02013A04 (u32 param0, u32 param1)
     return v0;
 }
 
-void sub_02013A3C (UnkStruct_02013A04 * param0)
+void sub_02013A3C (ResourceMetadata * param0)
 {
     sub_02013AE8(param0);
     Heap_FreeToHeap(param0);
 }
 
-void sub_02013A4C (UnkStruct_02013A04 * param0, const MessageLoader * param1, u32 param2, u32 param3)
+void sub_02013A4C (ResourceMetadata * param0, const MessageLoader * param1, u32 param2, u32 param3)
 {
     u32 v0;
 
@@ -51,7 +51,7 @@ void sub_02013A4C (UnkStruct_02013A04 * param0, const MessageLoader * param1, u3
     }
 }
 
-void sub_02013A6C (UnkStruct_02013A04 * param0, const Strbuf *param1, u32 param2)
+void sub_02013A6C (ResourceMetadata * param0, const Strbuf *param1, u32 param2)
 {
     u32 v0;
 
@@ -63,7 +63,7 @@ void sub_02013A6C (UnkStruct_02013A04 * param0, const Strbuf *param1, u32 param2
     }
 }
 
-void sub_02013A90 (UnkStruct_02013A04 * param0, const UnkStruct_02013A04 * param1)
+void sub_02013A90 (ResourceMetadata * param0, const ResourceMetadata * param1)
 {
     u32 v0;
 
@@ -75,9 +75,9 @@ void sub_02013A90 (UnkStruct_02013A04 * param0, const UnkStruct_02013A04 * param
     }
 }
 
-static UnkStruct_02013A04 * sub_02013AAC (UnkStruct_02013A04 * param0, u32 * param1)
+static ResourceMetadata * sub_02013AAC (ResourceMetadata * param0, u32 * param1)
 {
-    UnkStruct_02013A04 * v0;
+    ResourceMetadata * v0;
 
     while (param0->unk_00 != NULL) {
         if (param0->unk_00 == ((const void *)0xffffffff)) {
@@ -99,9 +99,9 @@ static UnkStruct_02013A04 * sub_02013AAC (UnkStruct_02013A04 * param0, u32 * par
     return v0;
 }
 
-void sub_02013AE8 (UnkStruct_02013A04 * param0)
+void sub_02013AE8 (ResourceMetadata * param0)
 {
-    UnkStruct_02013A04 * v0 = param0;
+    ResourceMetadata * v0 = param0;
 
     while (v0->unk_00 != ((const void *)0xffffffff)) {
         if (v0->unk_00 == NULL) {

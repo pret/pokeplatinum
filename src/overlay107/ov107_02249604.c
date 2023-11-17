@@ -29,7 +29,7 @@
 #include "overlay107/ov107_02249604.h"
 
 void ov107_02249604(UnkStruct_ov107_02249954 * param0, Party * param1, u8 param2);
-UnkStruct_02022550 * ov107_022498A4(UnkStruct_ov107_02249954 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, u8 param7);
+GraphicElementData * ov107_022498A4(UnkStruct_ov107_02249954 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, u8 param7);
 void ov107_02249954(UnkStruct_ov107_02249954 * param0);
 void ov107_022499BC(UnkStruct_ov107_02249954 * param0, u16 param1);
 void ov107_022499FC(UnkStruct_ov107_02249954 * param0, u16 param1);
@@ -112,11 +112,11 @@ void ov107_02249604 (UnkStruct_ov107_02249954 * param0, Party * param1, u8 param
     return;
 }
 
-UnkStruct_02022550 * ov107_022498A4 (UnkStruct_ov107_02249954 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, u8 param7)
+GraphicElementData * ov107_022498A4 (UnkStruct_ov107_02249954 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, u8 param7)
 {
     int v0;
     UnkStruct_ov19_021DA864 v1;
-    UnkStruct_02022550 * v2;
+    GraphicElementData * v2;
 
     sub_020093B4(&v1, param1, param2, param3, param3, 0xffffffff, 0xffffffff, 0, param6, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 

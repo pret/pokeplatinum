@@ -118,7 +118,7 @@ typedef struct {
 } UnkStruct_ov78_021D235C;
 
 typedef struct {
-    UnkStruct_02022550 * unk_00;
+    GraphicElementData * unk_00;
     UnkStruct_02009DC8 * unk_04[6];
     VecFx32 unk_1C;
     SysTask * unk_28;
@@ -166,9 +166,9 @@ typedef struct {
     int unk_A8;
     Strbuf* unk_AC;
     UnkStruct_ov61_0222C884 unk_B0;
-    UnkStruct_02001AF4 * unk_B8;
+    UIControlData * unk_B8;
     UnkStruct_0200C738 unk_BC;
-    UnkStruct_020218BC * unk_248;
+    GraphicElementManager * unk_248;
     UnkStruct_02009714 * unk_24C[6];
     UnkStruct_02007768 * unk_264;
     Sprite * unk_268[3];

@@ -56,8 +56,8 @@ typedef struct UnkStruct_ov7_02249C2C_t {
     UnkStruct_0200B358 * unk_54;
     UnkStruct_0200B358 * unk_58;
     UnkStruct_0200112C * unk_5C;
-    UnkStruct_02001AF4 * unk_60;
-    UnkStruct_02013A04 * unk_64;
+    UIControlData * unk_60;
+    ResourceMetadata * unk_64;
     UnkStruct_0203CDB0 * unk_68;
     UnkFuncPtr_ov7_02249C2C unk_6C;
     UnkFuncPtr_ov7_02249C2C_1 unk_70;

@@ -136,7 +136,7 @@ typedef struct {
     int unk_04;
     BOOL unk_08;
     BGL * unk_0C;
-    UnkStruct_0207C690 * unk_10;
+    GenericPointerData * unk_10;
     u32 unk_14;
     UnkStruct_ov77_021D2F38 unk_18;
     UnkStruct_ov77_021D37C0 unk_34;

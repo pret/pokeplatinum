@@ -94,7 +94,7 @@ struct UnkStruct_ov5_021F6704_t {
     UnkStruct_0200112C * unk_23C;
     u16 unk_240;
     u16 unk_242;
-    UnkStruct_02013A04 unk_244[120];
+    ResourceMetadata unk_244[120];
     u16 unk_604[120];
     u16 unk_6F4;
 };

@@ -19,7 +19,7 @@
 #include "overlay105/ov105_02245AAC.h"
 
 void ov105_02245AAC(UnkStruct_ov105_02245AAC * param0);
-UnkStruct_02022550 * ov105_02245BA4(UnkStruct_ov105_02245AAC * param0, u32 param1, u32 param2, u32 param3, int param4, u8 param5);
+GraphicElementData * ov105_02245BA4(UnkStruct_ov105_02245AAC * param0, u32 param1, u32 param2, u32 param3, int param4, u8 param5);
 void ov105_02245C50(UnkStruct_ov105_02245AAC * param0);
 static void ov105_02245C98(void);
 
@@ -60,11 +60,11 @@ void ov105_02245AAC (UnkStruct_ov105_02245AAC * param0)
     return;
 }
 
-UnkStruct_02022550 * ov105_02245BA4 (UnkStruct_ov105_02245AAC * param0, u32 param1, u32 param2, u32 param3, int param4, u8 param5)
+GraphicElementData * ov105_02245BA4 (UnkStruct_ov105_02245AAC * param0, u32 param1, u32 param2, u32 param3, int param4, u8 param5)
 {
     int v0;
     UnkStruct_ov19_021DA864 v1;
-    UnkStruct_02022550 * v2;
+    GraphicElementData * v2;
 
     sub_020093B4(&v1, param1, param1, param1, param1, 0xffffffff, 0xffffffff, 0, param4, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 

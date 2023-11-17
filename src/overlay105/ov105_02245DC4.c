@@ -14,7 +14,7 @@
 struct UnkStruct_ov105_02245E1C_t {
     int unk_00;
     int unk_04;
-    UnkStruct_02022550 * unk_08;
+    GraphicElementData * unk_08;
 };
 
 UnkStruct_ov105_02245E1C * ov105_02245DC4(UnkStruct_ov105_02245AAC * param0, u32 param1, int param2, int param3, u32 param4);

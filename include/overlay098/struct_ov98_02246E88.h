@@ -14,7 +14,7 @@
 typedef struct {
     UnkStruct_020067E8 * unk_00;
     SaveData * unk_04;
-    UnkStruct_020279FC * unk_08;
+    AnimationControlFlags * unk_08;
     void * unk_0C;
     NNSFndHeapHandle unk_10;
     DWCInetControl unk_14;

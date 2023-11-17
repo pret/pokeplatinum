@@ -28,7 +28,7 @@
 typedef struct {
     u8 unk_00;
     u8 unk_01;
-    UnkStruct_02022550 * unk_04;
+    GraphicElementData * unk_04;
     SysTask * unk_08;
 } UnkStruct_ov77_021D6ADC;
 
@@ -54,7 +54,7 @@ typedef struct {
 } UnkStruct_ov77_021D6A0C;
 
 typedef struct {
-    UnkStruct_020218BC * unk_00;
+    GraphicElementManager * unk_00;
     UnkStruct_0200C738 unk_04;
     UnkStruct_02009714 * unk_190[4];
     UnkStruct_02009DC8 * unk_1A0[4];
@@ -163,7 +163,7 @@ void ov77_021D6760 (UnkStruct_ov77_021D6734 * param0)
     Heap_FreeToHeap(param0);
 }
 
-UnkStruct_02022550 ** ov77_021D6794 (UnkStruct_ov77_021D6734 * param0, const int param1)
+GraphicElementData ** ov77_021D6794 (UnkStruct_ov77_021D6734 * param0, const int param1)
 {
     GF_ASSERT(param1 < param0->unk_00);
     return &param0->unk_04[param1].unk_04;

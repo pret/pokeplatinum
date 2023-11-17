@@ -17,6 +17,6 @@ void sub_020014DC(UnkStruct_0200112C * param0, u16 * param1, u16 * param2);
 u8 sub_020014F0(UnkStruct_0200112C * param0);
 u32 sub_020014F8(UnkStruct_0200112C * param0, u16 param1);
 u32 sub_02001504(UnkStruct_0200112C * param0, u8 param1);
-void sub_020015CC(UnkStruct_0200112C * param0, UnkStruct_02013A04 * param1);
+void sub_020015CC(UnkStruct_0200112C * param0, ResourceMetadata * param1);
 
 #endif // POKEPLATINUM_UNK_0200112C_H

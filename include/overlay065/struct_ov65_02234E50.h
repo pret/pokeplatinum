@@ -34,7 +34,7 @@ typedef struct {
     Window unk_FC[8][2];
     Window unk_1FC;
     UnkStruct_02009DC8 * unk_20C[4];
-    UnkStruct_02022550 * unk_21C[3];
+    GraphicElementData * unk_21C[3];
     SpriteManagerAllocation unk_228;
     FontOAM * unk_234;
     u32 unk_238;

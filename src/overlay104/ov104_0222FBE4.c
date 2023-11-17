@@ -141,7 +141,7 @@ typedef struct {
     UnkStruct_ov104_0223EBD0 * unk_2C;
 } UnkStruct_ov104_02231148;
 
-void ov104_0223DC7C(int param0, BGL * param1, UnkStruct_0200C6E4 * param2, UnkStruct_0200C704 * param3, PaletteSys * param4, u16 * param5, s16 param6, s16 param7);
+void ov104_0223DC7C(int param0, BGL * param1, CellTransferStateData * param2, AnimationResourceCollection * param3, PaletteSys * param4, u16 * param5, s16 param6, s16 param7);
 u16 ov104_0222FC8C(UnkStruct_ov104_0222E930 * param0, u16 param1);
 u16 * ov104_0222FC14(UnkStruct_ov104_0222E930 * param0, u16 param1);
 static BOOL ov104_0222FCA0(UnkStruct_ov104_0222E930 * param0);

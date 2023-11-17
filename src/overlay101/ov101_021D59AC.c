@@ -1468,7 +1468,7 @@ static void ov101_021D6E3C (UnkStruct_ov101_021D5D90 * param0, void * param1)
     }
 }
 
-static void ov101_021D6E78 (UnkStruct_ov101_021D5D90 * param0, fx32 param1, fx32 param2, fx32 param3, fx32 param4, UnkStruct_02022550 * param5, int param6)
+static void ov101_021D6E78 (UnkStruct_ov101_021D5D90 * param0, fx32 param1, fx32 param2, fx32 param3, fx32 param4, GraphicElementData * param5, int param6)
 {
     VecFx32 v0, v1;
 

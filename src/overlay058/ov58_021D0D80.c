@@ -86,7 +86,7 @@ static void ov58_021D1554(UnkStruct_02095EAC * param0, NARC * param1);
 static void ov58_021D16D8(UnkStruct_02095EAC * param0);
 static void ov58_021D18AC(UnkStruct_02095EAC * param0, UnkStruct_020067E8 * param1);
 static void ov58_021D19D4(UnkStruct_02095EAC * param0);
-static void ov58_021D1A10(UnkStruct_02022550 * param0, int param1, int param2);
+static void ov58_021D1A10(GraphicElementData * param0, int param1, int param2);
 static void ov58_021D1A80(UnkStruct_02095EAC * param0);
 static int ov58_021D1CF4(UnkStruct_02095EAC * param0, int param1);
 static void ov58_021D1D40(UnkStruct_02095EAC * param0);
@@ -124,8 +124,8 @@ static int ov58_021D2A30(void);
 static int ov58_021D1DBC(UnkStruct_02095EAC * param0, int param1);
 static int ov58_021D1D64(UnkStruct_02095EAC * param0, int param1);
 static int ov58_021D1DC8(UnkStruct_02095EAC * param0, int param1);
-static void ov58_021D1CAC(UnkStruct_02022550 ** param0, int param1);
-static void ov58_021D1CDC(UnkStruct_02022550 ** param0, BOOL param1);
+static void ov58_021D1CAC(GraphicElementData ** param0, int param1);
+static void ov58_021D1CDC(GraphicElementData ** param0, BOOL param1);
 static void ov58_021D2528(Window * param0, void * param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9);
 static void ov58_021D2B3C(UnkStruct_02095EAC * param0, int param1);
 static int ov58_021D2B5C(UnkStruct_02095EAC * param0);
@@ -775,7 +775,7 @@ static void ov58_021D19D4 (UnkStruct_02095EAC * param0)
     BGL_DeleteWindow(&param0->unk_33C);
 }
 
-static void ov58_021D1A10 (UnkStruct_02022550 * param0, int param1, int param2)
+static void ov58_021D1A10 (GraphicElementData * param0, int param1, int param2)
 {
     VecFx32 v0;
 
@@ -908,7 +908,7 @@ static void ov58_021D1A80 (UnkStruct_02095EAC * param0)
     }
 }
 
-static void ov58_021D1CAC (UnkStruct_02022550 ** param0, int param1)
+static void ov58_021D1CAC (GraphicElementData ** param0, int param1)
 {
     int v0;
 
@@ -921,7 +921,7 @@ static void ov58_021D1CAC (UnkStruct_02022550 ** param0, int param1)
     }
 }
 
-static void ov58_021D1CDC (UnkStruct_02022550 ** param0, BOOL param1)
+static void ov58_021D1CDC (GraphicElementData ** param0, BOOL param1)
 {
     if (param1 == 1) {
         sub_02021D6C(param0[8], Unk_ov58_021D2EEC[8][2] + 1);
