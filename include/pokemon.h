@@ -764,10 +764,10 @@ int Pokemon_LoadLevelUpMoveIdsOf(int monSpecies, int monForm, u16 *monLevelUpMov
 
 void Pokemon_ApplyPokerus(Party *party);
 u8 Pokemon_HasPokerus(Party *party, u8 param1);
-void sub_020777B4(Party *party, s32 param1);
+void UpdatePokerusStatusInParty(Party *party, s32 param1);
 void Pokemon_ValidatePokerus(Party *party);
-BOOL sub_020778D8(Pokemon *mon);
-BOOL sub_020778F8(Pokemon *mon);
+BOOL IsPokemonInfectedWithPokerus(Pokemon *mon);
+BOOL CanPokemonSpreadPokerus(Pokemon *mon);
 
 /**
  * @brief Sets Arceus' form based on its held item. Has no effect if the given Pokemon is not an Arceus
@@ -886,14 +886,14 @@ BOOL Pokemon_SetRotomForm(Pokemon *mon, int monForm, int moveSlot);
  */
 void Pokemon_LoadLevelUpMovesOf(int monSpecies, int monForm, u16 *monLevelUpMoves);
 
-void sub_02077D3C(UnkStruct_0202CC84 *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7);
-void sub_02077DB4(UnkStruct_0202CC84 *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7, u8 param8);
-BOOL sub_02077E3C(Pokemon *mon);
-void sub_02077E64(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
-void sub_02077EE4(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
-void sub_02077F0C(Pokemon *mon, u32 param1, int param2);
+void HandleChatotSpecialInteraction(ChatotCryData *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7);
+void HandleChatotSpecialAction(ChatotCryData *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7, u8 param8);
+BOOL IsPokemonEligibleForAction(Pokemon *mon);
+void InitializePokemonAfterCapture(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
+void PostCapturePokemonProcessing(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
+void AssignHeldItemToPokemon(Pokemon *mon, u32 param1, int param2);
 BOOL Pokemon_CanLearnTM(Pokemon *mon, u8 tmID);
-BOOL Pokemon_CanFormLearnTM(u16 monSpecies, int monForm, u8 tmID);
+BOOL CanPokemonFormLearnTM(u16 monSpecies, int monForm, u8 tmID);
 
 /**
  * @brief Sets the ability of a Pokemon based on its species, form and peronsality value

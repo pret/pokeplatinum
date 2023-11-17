@@ -308,7 +308,7 @@ void ov104_0223BA24 (Party * param0)
 
 void ov104_0223BA7C (UnkStruct_ov104_0223BA10 * param0, Pokemon * param1)
 {
-    sub_02077EE4(param1, sub_02025E38(param0->unk_04), 4, 0, 0, 11);
+    PostCapturePokemonProcessing(param1, sub_02025E38(param0->unk_04), 4, 0, 0, 11);
     return;
 }
 

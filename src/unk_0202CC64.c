@@ -7,51 +7,51 @@
 #include "unk_020244AC.h"
 #include "unk_0202CC64.h"
 
-typedef struct UnkStruct_0202CC84_t {
+typedef struct ChatotCryData_t {
     BOOL unk_00;
     s8 unk_04[1000];
-} UnkStruct_0202CC84;
+} ChatotCryData;
 
-int ChatotCry_SaveSize (void)
+int GetSizeOfChatotCryData (void)
 {
-    return sizeof(UnkStruct_0202CC84);
+    return sizeof(ChatotCryData);
 }
 
-void ChatotCry_Init (UnkStruct_0202CC84 * param0)
+void ChatotCry_Init (ChatotCryData * param0)
 {
-    MI_CpuClear32(param0, sizeof(UnkStruct_0202CC84));
+    MI_CpuClear32(param0, sizeof(ChatotCryData));
     param0->unk_00 = 0;
 }
 
-UnkStruct_0202CC84 * sub_0202CC84 (int param0)
+ChatotCryData * AllocateAndInitializeChatotCryData (int param0)
 {
-    UnkStruct_0202CC84 * v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0202CC84));
+    ChatotCryData * v0 = Heap_AllocFromHeap(param0, sizeof(ChatotCryData));
 
     ChatotCry_Init(v0);
     return v0;
 }
 
-UnkStruct_0202CC84 * sub_0202CC98 (SaveData * param0)
+ChatotCryData * GetChatotCryDataFromSave (SaveData * param0)
 {
-    return (UnkStruct_0202CC84 *)SaveData_Get(param0, 22);
+    return (ChatotCryData *)SaveData_Get(param0, 22);
 }
 
-BOOL sub_0202CCA4 (const UnkStruct_0202CC84 * param0)
+BOOL IsChatotCryDataValid (const ChatotCryData * param0)
 {
     return param0->unk_00;
 }
 
-void sub_0202CCA8 (UnkStruct_0202CC84 * param0)
+void ResetChatotCryDataStatus (ChatotCryData * param0)
 {
     param0->unk_00 = 0;
 }
 
-const void * sub_0202CCB0 (const UnkStruct_0202CC84 * param0)
+const void * GetChatotCryAudioBuffer (const ChatotCryData * param0)
 {
     return param0->unk_04;
 }
 
-void sub_0202CCB4 (s8 * param0, const s8 * param1)
+void ProcessChatotCryAudioData (s8 * param0, const s8 * param1)
 {
     int v0, v1 = 0;
     s8 v2;
@@ -72,7 +72,7 @@ void sub_0202CCB4 (s8 * param0, const s8 * param1)
     }
 }
 
-void sub_0202CCEC (UnkStruct_0202CC84 * param0, const s8 * param1)
+void StoreProcessedAudioInChatotCryData (ChatotCryData * param0, const s8 * param1)
 {
     int v0, v1;
     s8 v2;
@@ -96,7 +96,7 @@ void sub_0202CCEC (UnkStruct_0202CC84 * param0, const s8 * param1)
     }
 }
 
-void sub_0202CD3C (UnkStruct_0202CC84 * param0, const UnkStruct_0202CC84 * param1)
+void CopyChatotCryData (ChatotCryData * param0, const ChatotCryData * param1)
 {
-    MI_CpuCopyFast(param1, param0, sizeof(UnkStruct_0202CC84));
+    MI_CpuCopyFast(param1, param0, sizeof(ChatotCryData));
 }

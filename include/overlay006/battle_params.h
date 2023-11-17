@@ -31,7 +31,7 @@ typedef struct {
     UnkStruct_0207D99C * unk_E4;
     UnkStruct_02026324 * unk_E8;
     PCBoxes * unk_EC;
-    UnkStruct_0202CC84 * unk_F0[4];
+    ChatotCryData * unk_F0[4];
     UnkStruct_02056B24 * unk_100;
     UnkStruct_0202C878 * unk_104;
     UnkStruct_020279FC * unk_108;

@@ -65,7 +65,7 @@ struct BattleSystem {
     UnkStruct_02026324 *pokedex;
     PCBoxes *pcBoxes;
     Party *parties[4];
-    UnkStruct_0202CC84 * unk_78[4];
+    ChatotCryData * unk_78[4];
     UnkStruct_02007768 * unk_88;
     UnkStruct_ov12_0221FCDC * unk_8C;
     UnkStruct_0200C6E4 * unk_90;

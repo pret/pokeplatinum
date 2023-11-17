@@ -1233,7 +1233,7 @@ static int ov6_02244228 (UnkStruct_ov6_02243FFC * param0)
         param0->unk_00++;
 
         {
-            sub_02077E3C(param0->unk_5C);
+            IsPokemonEligibleForAction(param0->unk_5C);
         }
     }
 

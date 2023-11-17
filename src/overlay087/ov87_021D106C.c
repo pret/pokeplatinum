@@ -213,7 +213,7 @@ static BOOL ov87_021D12C0 (UnkStruct_ov87_021D106C * param0, int * param1)
         if (v1 == v0->unk_18) {
             sub_02021FE0(param0->unk_1C4[v1], GX_OAM_MODE_NORMAL);
             sub_02021F58(param0->unk_1C4[v1], 0);
-            sub_020063D4(1);
+            SetMicProcessingFlag(1);
 
             sub_02005844(v0->unk_20[v1].unk_10, v0->unk_20[v1].unk_13);
         } else {
@@ -562,7 +562,7 @@ static void ov87_021D1970 (UnkStruct_ov87_021D106C * param0)
         sub_02006E84(v1.archive, v1.palette, 1, v3 * 0x20, 0x20, 61);
 
         if (v3 == v2->unk_18) {
-            sub_020063D4(1);
+            SetMicProcessingFlag(1);
             sub_02005844(v2->unk_20[v3].unk_10, v2->unk_20[v3].unk_13);
             sub_02021FE0(param0->unk_1C4[v3], GX_OAM_MODE_NORMAL);
         } else {

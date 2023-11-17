@@ -6252,7 +6252,7 @@ void ov16_02259A5C (BattleSystem * param0, BattleContext * param1, Pokemon * par
         v3 = param1->msgItemTemp;
     }
 
-    sub_02077E64(param2, v0, v3, v1, v2, 5);
+    InitializePokemonAfterCapture(param2, v0, v3, v1, v2, 5);
 }
 
 u8 BattleContext_IOBufferVal (BattleContext *battleCtx, int battler)

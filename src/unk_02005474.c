@@ -407,7 +407,7 @@ BOOL sub_02005844 (u16 param0, u8 param1)
     u16 v0;
     int v1;
     u8 * v2 = sub_02003D5C(18);
-    UnkStruct_0202CC84 ** v3 = sub_02003D5C(36);
+    ChatotCryData ** v3 = sub_02003D5C(36);
     u8 * v4 = sub_02003D5C(53);
 
     v0 = param0;
@@ -423,8 +423,8 @@ BOOL sub_02005844 (u16 param0, u8 param1)
     }
 
     if (v0 == 441) {
-        if (sub_0200629C(*v3, 0, 127, 0) == 1) {
-            sub_020063D4(0);
+        if (ProcessAudioInput(*v3, 0, 127, 0) == 1) {
+            SetMicProcessingFlag(0);
             return 1;
         }
     }
@@ -441,7 +441,7 @@ BOOL sub_02005844 (u16 param0, u8 param1)
         sub_02004AA0(v0, 8);
     }
 
-    sub_020063D4(0);
+    SetMicProcessingFlag(0);
 
     if (v1 == 0) {
         (void)0;
@@ -475,7 +475,7 @@ void sub_0200592C (int param0)
         sub_02004C4C(15);
     }
 
-    sub_02006350();
+    ResetMicStatusFlags();
     sub_0200605C();
 
     return;
@@ -509,7 +509,7 @@ BOOL sub_020059D0 (int param0, u16 param1, int param2, int param3, int param4, u
     u8 * v9 = sub_02003D5C(17);
     u8 * v10 = sub_02003D5C(18);
     u8 * v11 = sub_02003D5C(30);
-    UnkStruct_0202CC84 ** v12 = sub_02003D5C(36);
+    ChatotCryData ** v12 = sub_02003D5C(36);
 
     v4 = 0;
     v5 = 0;
@@ -577,7 +577,7 @@ BOOL sub_020059D0 (int param0, u16 param1, int param2, int param3, int param4, u
 
             return 1;
         default:
-            sub_020063D4(1);
+            SetMicProcessingFlag(1);
             break;
         }
     }
@@ -890,7 +890,7 @@ static BOOL sub_020060EC (u16 param0, s8 param1, u8 param2)
 
     *v1 = 1;
 
-    sub_020063D4(1);
+    SetMicProcessingFlag(1);
     v0 = sub_02005844(param0, param2);
     sub_02004F68(8, 0xffff, param1);
 

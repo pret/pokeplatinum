@@ -85,7 +85,7 @@ typedef struct UnkStruct_ov12_02223178_t {
     u8 unk_E8[4];
     u32 unk_EC[4];
     u32 unk_FC[4];
-    UnkStruct_0202CC84 * unk_10C;
+    ChatotCryData * unk_10C;
     u8 * unk_110;
     u16 * unk_114;
     int unk_118;
@@ -3836,7 +3836,7 @@ static void ov12_022230D4 (UnkStruct_ov12_0221FCDC * param0)
     v3 = param0->unk_BC->unk_D8[param0->unk_BC->unk_14];
     v4 = param0->unk_BC->unk_E8[param0->unk_BC->unk_14];
 
-    sub_02077D3C(param0->unk_BC->unk_10C, v0, v3, v4, v1, v2, param0->unk_BC->unk_118, param0->unk_00);
+    HandleChatotSpecialInteraction(param0->unk_BC->unk_10C, v0, v3, v4, v1, v2, param0->unk_BC->unk_118, param0->unk_00);
 }
 
 static void ov12_02223134 (UnkStruct_ov12_0221FCDC * param0)

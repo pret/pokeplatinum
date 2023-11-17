@@ -132,7 +132,7 @@ int ov118_021D0DBC (UnkStruct_0207F248 * param0)
         v0->unk_00++;
         break;
     case 7:
-        sub_02077E3C(v1);
+        IsPokemonEligibleForAction(v1);
         v0->unk_00++;
         break;
     case 8:

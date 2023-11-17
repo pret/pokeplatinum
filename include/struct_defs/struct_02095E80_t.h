@@ -110,7 +110,7 @@ struct UnkStruct_02095E80_t {
     int (* unk_226C)(UnkStruct_02095E80 *);
     Party * unk_2270;
     Party * unk_2274;
-    UnkStruct_0202CC84 * unk_2278;
+    ChatotCryData * unk_2278;
     UnkStruct_02027F8C * unk_227C;
     UnkStruct_02027F8C unk_2280;
     int unk_2308;

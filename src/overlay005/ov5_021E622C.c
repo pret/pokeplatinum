@@ -2041,8 +2041,8 @@ static void ov5_021E62C4 (Party * param0, int param1, UnkStruct_02026218 * param
     Party_RemovePokemonBySlotIndex(param0, param1);
 
     if (Party_HasSpecies(param0, 441) == 0) {
-        UnkStruct_0202CC84 * v7 = sub_0202CC98(param3);
-        sub_0202CCA8(v7);
+        ChatotCryData * v7 = GetChatotCryDataFromSave(param3);
+        ResetChatotCryDataStatus(v7);
     }
 }
 
@@ -2441,7 +2441,7 @@ static void ov5_021E6948 (Pokemon * param0, BoxPokemon * param1, BoxPokemon * pa
         if (v7->unk_00[v0] != 0) {
             for (v1 = 0; v1 < 100; v1++) {
                 if (v7->unk_00[v0] == Item_MoveForTMHM(328 + v1)) {
-                    if (Pokemon_CanFormLearnTM(v3, v6, v1)) {
+                    if (CanPokemonFormLearnTM(v3, v6, v1)) {
                         if (Pokemon_AddMove(param0, v7->unk_00[v0]) == 0xffff) {
                             Pokemon_ReplaceMove(param0, v7->unk_00[v0]);
                         }

@@ -49,8 +49,8 @@ struct UnkStruct_02003D54_t {
     void * unk_BCD8C;
     int unk_BCD90;
     SysTask * unk_BCD94;
-    UnkStruct_0202CC84 * unk_BCD98;
-    UnkStruct_0202CC84 * unk_BCD9C[4];
+    ChatotCryData * unk_BCD98;
+    ChatotCryData * unk_BCD9C[4];
     int unk_BCDAC[2];
     int unk_BCDB4[2];
     int unk_BCDBC[2];
@@ -61,7 +61,7 @@ struct UnkStruct_02003D54_t {
     u8 unk_BCDD3;
 };
 
-void sub_02003B60(UnkStruct_0202CC84 * param0, UnkStruct_020279FC * param1);
+void sub_02003B60(ChatotCryData * param0, UnkStruct_020279FC * param1);
 void sub_02003BD8(void);
 void sub_02003D0C(int param0);
 UnkStruct_02003D54 * sub_02003D54(void);
@@ -87,7 +87,7 @@ static UnkStruct_02003D54 Unk_02101DF8;
 static int Unk_02101DF0;
 static NNSSndCaptureOutputEffectType Unk_02101DF4;
 
-void sub_02003B60 (UnkStruct_0202CC84 * param0, UnkStruct_020279FC * param1)
+void sub_02003B60 (ChatotCryData * param0, UnkStruct_020279FC * param1)
 {
     UnkStruct_02003D54 * v0 = sub_02003D54();
 
@@ -125,7 +125,7 @@ void sub_02003BD8 (void)
         sub_02003C64();
     }
 
-    sub_02006224();
+    CheckMicRecordingStatus();
 
     for (v0 = 0; v0 < 2; v0++) {
         if (v1->unk_BCDD0[v0] != 0) {

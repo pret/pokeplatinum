@@ -414,14 +414,14 @@ static void sub_0207AA90 (int param0, int param1, void * param2, void * param3)
 
 BOOL sub_0207AAA0 (UnkStruct_0207A778 * param0)
 {
-    UnkStruct_0202CC84 * v0;
+    ChatotCryData * v0;
 
     if (sub_02035B54() != 264) {
         return 0;
     }
 
-    v0 = (UnkStruct_0202CC84 *)&param0->unk_20[0];
-    sub_0202CD3C(v0, param0->unk_00->unk_F0[0]);
+    v0 = (ChatotCryData *)&param0->unk_20[0];
+    CopyChatotCryData(v0, param0->unk_00->unk_F0[0]);
 
     return 1;
 }

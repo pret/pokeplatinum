@@ -1102,9 +1102,9 @@ static void sub_0208D200 (UnkStruct_0208D7BC * param0, Pokemon * param1, UnkStru
     param2->unk_4E = Pokemon_GetValue(param1, MON_DATA_FORM, NULL);
     param2->unk_50_0 = sub_0208E9F0(param1);
 
-    if (sub_020778F8(param1) == 1) {
+    if (CanPokemonSpreadPokerus(param1) == 1) {
         param2->unk_50_30 = 2;
-    } else if (sub_020778D8(param1) == 1) {
+    } else if (IsPokemonInfectedWithPokerus(param1) == 1) {
         param2->unk_50_30 = 1;
 
         if (param2->unk_50_0 == 7) {
@@ -1147,7 +1147,7 @@ static void sub_0208D618 (UnkStruct_0208D7BC * param0)
     sub_02078A4C(param0->unk_6A0, &v0, param0->unk_250.unk_0C, 1);
 
     if (param0->unk_250.unk_0C == 441) {
-        sub_02006438(param0->unk_24C->unk_28, 0, 100, 0, v0);
+        ProcessChatotCryStructWithExtendedAudioParams(param0->unk_24C->unk_28, 0, 100, 0, v0);
     } else {
         sub_0200590C(param0->unk_250.unk_0C, v0, param0->unk_250.unk_4E);
     }

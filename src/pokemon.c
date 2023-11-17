@@ -123,11 +123,11 @@ static void BoxPokemon_ReplaceMove(BoxPokemon *boxMon, u16 moveID);
 static void BoxPokemon_SetMoveSlot(BoxPokemon *boxMon, u16 moveID, u8 moveSlot);
 static BOOL Pokemon_HasMove(Pokemon *mon, u16 moveID);
 static s8 BoxPokemon_GetFlavorAffinity(BoxPokemon *boxMon, int flavor);
-static BOOL sub_020778E0(BoxPokemon *boxMon);
-static BOOL sub_02077900(BoxPokemon *boxMon);
-static void sub_02077EA4(BoxPokemon *boxMon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
-static void sub_02077EF8(BoxPokemon *boxMon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
-static BOOL BoxPokemon_CanLearnTM(BoxPokemon *boxMon, u8 tmID);
+static BOOL IsBoxPokemonInfectedWithPokerus(BoxPokemon *boxMon);
+static BOOL CanBoxPokemonSpreadPokerus(BoxPokemon *boxMon);
+static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
+static void PostCaptureBoxPokemonProcessing(BoxPokemon *boxMon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
+static BOOL CanBoxPokemonLearnTM(BoxPokemon *boxMon, u8 tmID);
 static void BoxPokemon_CalcAbility(BoxPokemon *boxMon);
 static void PokemonPersonalData_LoadSpecies(int monSpecies, PokemonPersonalData *monPersonalData);
 static void PokemonPersonalData_LoadForm(int monSpecies, int monForm, PokemonPersonalData *monPersonalData);
@@ -3756,7 +3756,7 @@ u8 Pokemon_HasPokerus(Party *party, u8 param1)
     return result;
 }
 
-void sub_020777B4(Party *party, s32 param1)
+void UpdatePokerusStatusInParty(Party *party, s32 param1)
 {
     int currentPartyCount = Party_GetCurrentCount(party);
 
@@ -3817,22 +3817,22 @@ void Pokemon_ValidatePokerus(Party *party)
     }
 }
 
-BOOL sub_020778D8(Pokemon *mon)
+BOOL IsPokemonInfectedWithPokerus(Pokemon *mon)
 {
-    return sub_020778E0(&mon->box);
+    return IsBoxPokemonInfectedWithPokerus(&mon->box);
 }
 
-static BOOL sub_020778E0(BoxPokemon *boxMon)
+static BOOL IsBoxPokemonInfectedWithPokerus(BoxPokemon *boxMon)
 {
     return (BoxPokemon_GetValue(boxMon, MON_DATA_POKERUS, NULL) & 0xf) != 0;
 }
 
-BOOL sub_020778F8(Pokemon *mon)
+BOOL CanPokemonSpreadPokerus(Pokemon *mon)
 {
-    return sub_02077900(&mon->box);
+    return CanBoxPokemonSpreadPokerus(&mon->box);
 }
 
-static BOOL sub_02077900(BoxPokemon *boxMon)
+static BOOL CanBoxPokemonSpreadPokerus(BoxPokemon *boxMon)
 {
     u8 monPokerus = BoxPokemon_GetValue(boxMon, MON_DATA_POKERUS, NULL);
 
@@ -4146,43 +4146,43 @@ void Pokemon_LoadLevelUpMovesOf(int monSpecies, int monForm, u16 *monLevelUpMove
     NARC_ReadWholeMemberByIndexPair(monLevelUpMoves, NARC_INDEX_POKETOOL__PERSONAL__WOTBL, monSpecies);
 }
 
-void sub_02077D3C(UnkStruct_0202CC84 *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7)
+void HandleChatotSpecialInteraction(ChatotCryData *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7)
 {
     if (monSpecies == SPECIES_CHATOT) {
-        if (sub_020064C8(param1) == 0) {
-            sub_020063D4(1);
+        if (IsAudioParamValid(param1) == 0) {
+            SetMicProcessingFlag(1);
             sub_020059D0(param1, monSpecies, param4, param5, param7, param3);
         } else {
             if (param6) {
-                sub_020063D4(1);
+                SetMicProcessingFlag(1);
             }
 
-            sub_020063E4(param0, NULL, param5, param4);
+            ProcessChatotCryStructWithAudioParams(param0, NULL, param5, param4);
         }
     } else {
         sub_020059D0(param1, monSpecies, param4, param5, param7, param3);
     }
 }
 
-void sub_02077DB4(UnkStruct_0202CC84 *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7, u8 param8)
+void HandleChatotSpecialAction(ChatotCryData *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7, u8 param8)
 {
     if (monSpecies == SPECIES_CHATOT) {
-        if (sub_020064C8(param1) == 0) {
-            sub_020063D4(1);
+        if (IsAudioParamValid(param1) == 0) {
+            SetMicProcessingFlag(1);
             sub_02005F4C(param1, monSpecies, param4, param5, param7, param8, param3);
         } else {
             if (param6) {
-                sub_020063D4(1);
+                SetMicProcessingFlag(1);
             }
 
-            sub_02006438(param0, NULL, param5, param4, param8);
+            ProcessChatotCryStructWithExtendedAudioParams(param0, NULL, param5, param4, param8);
         }
     } else {
         sub_02005F4C(param1, monSpecies, param4, param5, param7, param8, param3);
     }
 }
 
-BOOL sub_02077E3C(Pokemon *mon)
+BOOL IsPokemonEligibleForAction(Pokemon *mon)
 {
     int monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     int monForm = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
@@ -4190,9 +4190,9 @@ BOOL sub_02077E3C(Pokemon *mon)
     return sub_02005844(monSpecies, monForm);
 }
 
-void sub_02077E64(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5)
+void InitializePokemonAfterCapture(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5)
 {
-    sub_02077EA4(&mon->box, param1, monPokeball, param3, param4, param5);
+    InitializeBoxPokemonAfterCapture(&mon->box, param1, monPokeball, param3, param4, param5);
 
     if (monPokeball == ITEM_HEAL_BALL) {
         int monMaxHP = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
@@ -4203,22 +4203,22 @@ void sub_02077E64(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3
     }
 }
 
-static void sub_02077EA4(BoxPokemon *boxMon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5)
+static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5)
 {
-    sub_0209305C(boxMon, param1, 0, param3, param5);
+    ProcessBoxPokemonWithTrainerInfo(boxMon, param1, 0, param3, param5);
     BoxPokemon_SetValue(boxMon, MON_DATA_MET_GAME, &Unk_020E4C40);
     BoxPokemon_SetValue(boxMon, MON_DATA_POKEBALL, &monPokeball);
     BoxPokemon_SetValue(boxMon, MON_DATA_158, &param4);
 }
 
-void sub_02077EE4(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5)
+void PostCapturePokemonProcessing(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5)
 {
-    sub_02077EF8(&mon->box, param1, monPokeball, param3, param4, param5);
+    PostCaptureBoxPokemonProcessing(&mon->box, param1, monPokeball, param3, param4, param5);
 }
 
-static void sub_02077EF8(BoxPokemon *boxMon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5)
+static void PostCaptureBoxPokemonProcessing(BoxPokemon *boxMon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5)
 {
-    sub_02077EA4(boxMon, param1, monPokeball, param3, param4, param5);
+    InitializeBoxPokemonAfterCapture(boxMon, param1, monPokeball, param3, param4, param5);
 }
 
 static const u16 sHeldItemChance[][2] = {
@@ -4226,7 +4226,7 @@ static const u16 sHeldItemChance[][2] = {
     {20, 80}
 };
 
-void sub_02077F0C(Pokemon *mon, u32 param1, int param2)
+void AssignHeldItemToPokemon(Pokemon *mon, u32 param1, int param2)
 {
     if (param1 & (0x1 | 0x80)) {
         return;
@@ -4254,18 +4254,18 @@ void sub_02077F0C(Pokemon *mon, u32 param1, int param2)
 
 BOOL Pokemon_CanLearnTM(Pokemon *mon, u8 tmID)
 {
-    return BoxPokemon_CanLearnTM(&mon->box, tmID);
+    return CanBoxPokemonLearnTM(&mon->box, tmID);
 }
 
-static BOOL BoxPokemon_CanLearnTM(BoxPokemon *boxMon, u8 tmID)
+static BOOL CanBoxPokemonLearnTM(BoxPokemon *boxMon, u8 tmID)
 {
     u16 monSpeciesEgg = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_EGG, NULL);
     int monForm = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
 
-    return Pokemon_CanFormLearnTM(monSpeciesEgg, monForm, tmID);
+    return CanPokemonFormLearnTM(monSpeciesEgg, monForm, tmID);
 }
 
-BOOL Pokemon_CanFormLearnTM(u16 monSpecies, int monForm, u8 tmID)
+BOOL CanPokemonFormLearnTM(u16 monSpecies, int monForm, u8 tmID)
 {
     if (monSpecies == SPECIES_EGG) {
         return FALSE;

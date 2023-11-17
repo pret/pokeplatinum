@@ -11,20 +11,20 @@
 #include "unk_0201D15C.h"
 #include "unk_0202CC64.h"
 
-BOOL sub_02006224(void);
-BOOL sub_02006260(const UnkStruct_0202CC84 * param0);
-BOOL sub_0200629C(const UnkStruct_0202CC84 * param0, u32 param1, int param2, int param3);
-void sub_02006350(void);
-MICResult sub_0200637C(void);
-MICResult sub_020063B8(void);
-void sub_020063C0(UnkStruct_0202CC84 * param0);
-void sub_020063D4(u8 param0);
-BOOL sub_020063E4(UnkStruct_0202CC84 * param0, u32 param1, int param2, int param3);
-BOOL sub_02006438(UnkStruct_0202CC84 * param0, u32 param1, int param2, int param3, u8 param4);
-int Sound_Chatter(UnkStruct_0202CC84 * param0);
-BOOL sub_020064C8(int param0);
+BOOL CheckMicRecordingStatus(void);
+BOOL IsChatotCryStructReadyForProcessing(const ChatotCryData * param0);
+BOOL ProcessAudioInput(const ChatotCryData * param0, u32 param1, int param2, int param3);
+void ResetMicStatusFlags(void);
+MICResult StartMicSampling(void);
+MICResult StopMicSampling(void);
+void StoreMicDataInChatotCryStruct(ChatotCryData * param0);
+void SetMicProcessingFlag(u8 param0);
+BOOL ProcessChatotCryStructWithAudioParams(ChatotCryData * param0, u32 param1, int param2, int param3);
+BOOL ProcessChatotCryStructWithExtendedAudioParams(ChatotCryData * param0, u32 param1, int param2, int param3, u8 param4);
+int Sound_Chatter(ChatotCryData * param0);
+BOOL IsAudioParamValid(int param0);
 
-BOOL sub_02006224 (void)
+BOOL CheckMicRecordingStatus (void)
 {
     u8 * v0 = sub_02003D5C(16);
     u8 * v1 = sub_02003D5C(30);
@@ -32,11 +32,11 @@ BOOL sub_02006224 (void)
     if (*v1 == 1) {
         if (*v0 == 1) {
             if (sub_02004D04(14) == 0) {
-                sub_02006350();
+                ResetMicStatusFlags();
                 return 1;
             }
         } else {
-            sub_02006350();
+            ResetMicStatusFlags();
             return 1;
         }
     }
@@ -44,12 +44,12 @@ BOOL sub_02006224 (void)
     return 0;
 }
 
-BOOL sub_02006260 (const UnkStruct_0202CC84 * param0)
+BOOL IsChatotCryStructReadyForProcessing (const ChatotCryData * cry)
 {
     u8 * v0 = sub_02003D5C(31);
     u8 * v1 = sub_02003D5C(54);
 
-    if (sub_0202CCA4(param0) == 0) {
+    if (IsChatotCryDataValid(cry) == 0) {
         return 0;
     }
 
@@ -64,14 +64,14 @@ BOOL sub_02006260 (const UnkStruct_0202CC84 * param0)
     return 1;
 }
 
-BOOL sub_0200629C (const UnkStruct_0202CC84 * param0, u32 param1, int param2, int param3)
+BOOL ProcessAudioInput (const ChatotCryData * param0, u32 param1, int param2, int param3)
 {
     u16 v0;
     int v1, v2;
     s8 * v3 = sub_02005014();
     u8 * v4 = sub_02003D5C(30);
 
-    if (sub_02006260(param0) == 0) {
+    if (IsChatotCryStructReadyForProcessing(param0) == 0) {
         return 0;
     }
 
@@ -82,11 +82,11 @@ BOOL sub_0200629C (const UnkStruct_0202CC84 * param0, u32 param1, int param2, in
     }
 
     sub_0200592C(0);
-    sub_02006350();
+    ResetMicStatusFlags();
     sub_02004BCC(14);
 
     v0 = (LCRNG_Next() % 8192);
-    sub_0202CCB4(v3, sub_0202CCB0(param0));
+    ProcessChatotCryAudioData(v3, GetChatotCryAudioBuffer(param0));
 
     {
         UnkStruct_02004CB4 v5;
@@ -107,12 +107,12 @@ BOOL sub_0200629C (const UnkStruct_0202CC84 * param0, u32 param1, int param2, in
     }
 
     *v4 = 1;
-    sub_020063D4(0);
+    SetMicProcessingFlag(0);
 
     return v1;
 }
 
-void sub_02006350 (void)
+void ResetMicStatusFlags (void)
 {
     u8 * v0 = sub_02003D5C(16);
     u8 * v1 = sub_02003D5C(30);
@@ -126,7 +126,7 @@ void sub_02006350 (void)
     return;
 }
 
-MICResult sub_0200637C (void)
+MICResult StartMicSampling (void)
 {
     MICAutoParam v0;
 
@@ -146,18 +146,18 @@ MICResult sub_0200637C (void)
     return sub_02004B5C(&v0);
 }
 
-MICResult sub_020063B8 (void)
+MICResult StopMicSampling (void)
 {
     return sub_02004B64();
 }
 
-void sub_020063C0 (UnkStruct_0202CC84 * param0)
+void StoreMicDataInChatotCryStruct (ChatotCryData * param0)
 {
-    sub_0202CCEC(param0, (const s8 *)sub_02005014());
+    StoreProcessedAudioInChatotCryData(param0, (const s8 *)sub_02005014());
     return;
 }
 
-void sub_020063D4 (u8 param0)
+void SetMicProcessingFlag (u8 param0)
 {
     u8 * v0 = sub_02003D5C(31);
 
@@ -165,38 +165,38 @@ void sub_020063D4 (u8 param0)
     return;
 }
 
-BOOL sub_020063E4 (UnkStruct_0202CC84 * param0, u32 param1, int param2, int param3)
+BOOL ProcessChatotCryStructWithAudioParams (ChatotCryData * param0, u32 param1, int param2, int param3)
 {
     int v0;
-    UnkStruct_0202CC84 ** v1 = sub_02003D5C(36);
+    ChatotCryData ** v1 = sub_02003D5C(36);
 
     if (param0 == NULL) {
-        v0 = sub_0200629C(*v1, param1, param2, param3);
+        v0 = ProcessAudioInput(*v1, param1, param2, param3);
     } else {
-        v0 = sub_0200629C(param0, param1, param2, param3);
+        v0 = ProcessAudioInput(param0, param1, param2, param3);
     }
 
     if (v0 == 0) {
-        sub_020063D4(1);
+        SetMicProcessingFlag(1);
         v0 = sub_020059D0(0, 441, param3, param2, 11, 0);
     }
 
     return v0;
 }
 
-BOOL sub_02006438 (UnkStruct_0202CC84 * param0, u32 param1, int param2, int param3, u8 param4)
+BOOL ProcessChatotCryStructWithExtendedAudioParams (ChatotCryData * param0, u32 param1, int param2, int param3, u8 param4)
 {
     int v0;
-    UnkStruct_0202CC84 ** v1 = sub_02003D5C(36);
+    ChatotCryData ** v1 = sub_02003D5C(36);
 
     if (param0 == NULL) {
-        v0 = sub_0200629C(*v1, param1, param2, param3);
+        v0 = ProcessAudioInput(*v1, param1, param2, param3);
     } else {
-        v0 = sub_0200629C(param0, param1, param2, param3);
+        v0 = ProcessAudioInput(param0, param1, param2, param3);
     }
 
     if (v0 == 0) {
-        sub_020063D4(1);
+        SetMicProcessingFlag(1);
         sub_02005F4C(0, 441, param3, param2, 11, param4, 0);
         v0 = 1;
     }
@@ -204,16 +204,16 @@ BOOL sub_02006438 (UnkStruct_0202CC84 * param0, u32 param1, int param2, int para
     return v0;
 }
 
-int Sound_Chatter (UnkStruct_0202CC84 * param0)
+int Sound_Chatter (ChatotCryData * param0)
 {
     const s8 * v0;
     s8 v1;
 
-    if (sub_0202CCA4(param0) == 0) {
+    if (IsChatotCryDataValid(param0) == 0) {
         return 0;
     }
 
-    v0 = sub_0202CCB0(param0);
+    v0 = GetChatotCryAudioBuffer(param0);
     v1 = v0[15];
 
     if ((-128 <= v1) && (v1 < -30)) {
@@ -227,7 +227,7 @@ int Sound_Chatter (UnkStruct_0202CC84 * param0)
     return 0;
 }
 
-BOOL sub_020064C8 (int param0)
+BOOL IsAudioParamValid (int param0)
 {
     switch (param0) {
     case 0:
