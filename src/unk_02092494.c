@@ -718,116 +718,117 @@ static int DeterminePokemonStatus (Pokemon * param0, BOOL param1, int param2)
 
 void sub_0209304C (Pokemon * param0, TrainerInfo * param1, int param2, int param3, int param4)
 {
-    ProcessBoxPokemonWithTrainerInfo(&param0->box, param1, param2, param3, param4);
+    UpdateBoxMonStatusAndTrainerInfo(&param0->box, param1, param2, param3, param4);
 }
 
-void ProcessBoxPokemonWithTrainerInfo (BoxPokemon * param0, TrainerInfo * param1, int param2, int param3, int param4)
+void UpdateBoxMonStatusAndTrainerInfo (BoxPokemon * boxMon, TrainerInfo * trainerInfo, int sel, int metLocation, int heapID)
 {
-    switch (param2) {
+    switch (sel) {
     case 0:
-        if (param3 > (sub_02017070(1, 0))) {
-            param3 = (sub_02017070(2, 2));
+        if (metLocation > (sub_02017070(1, 0))) {
+            metLocation = (sub_02017070(2, 2));
         }
 
-        if (BoxPokemon_GetValue(param0, MON_DATA_IS_EGG, NULL) == 0) {
-            ResetBoxPokemonEggStatus(param0, 0);
-            SetMetLocationForBoxPokemon(param0, param3, 1);
-            FinalizeBoxPokemonData(param0);
+        if (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == 0) {
+            ResetBoxPokemonEggStatus(boxMon, 0);
+            SetMetLocationForBoxPokemon(boxMon, metLocation, 1);
+            FinalizeBoxPokemonData(boxMon);
         } else {
-            SetMetLocationForBoxPokemon(param0, param3, 0);
-            ResetBoxPokemonEggStatus(param0, 1);
+            SetMetLocationForBoxPokemon(boxMon, metLocation, 0);
+            ResetBoxPokemonEggStatus(boxMon, 1);
         }
 
-        AssignTrainerInfoToBoxPokemon(param0, param1, param4);
+        AssignTrainerInfoToBoxPokemon(boxMon, trainerInfo, heapID);
         break;
     case 1:
-        if (BoxPokemon_GetValue(param0, MON_DATA_IS_EGG, NULL) == 0) {
-            ResetBoxPokemonEggStatus(param0, 0);
-            SetMetLocationForBoxPokemon(param0, (sub_02017070(1, 1)), 1);
-            FinalizeBoxPokemonData(param0);
+        if (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == 0) {
+            ResetBoxPokemonEggStatus(boxMon, 0);
+            SetMetLocationForBoxPokemon(boxMon, (sub_02017070(1, 1)), 1);
+            FinalizeBoxPokemonData(boxMon);
         } else {
-            ResetBoxPokemonEggStatus(param0, 0);
-            SetMetLocationForBoxPokemon(param0, (sub_02017070(1, 1)), 1);
+            ResetBoxPokemonEggStatus(boxMon, 0);
+            SetMetLocationForBoxPokemon(boxMon, (sub_02017070(1, 1)), 1);
         }
         break;
     case 2:
-        ResetBoxPokemonEggStatus(param0, 0);
-        SetMetLocationForBoxPokemon(param0, (sub_02017070(0, 55)), 1);
-        FinalizeBoxPokemonData(param0);
+        ResetBoxPokemonEggStatus(boxMon, 0);
+        SetMetLocationForBoxPokemon(boxMon, (sub_02017070(0, 55)), 1);
+        FinalizeBoxPokemonData(boxMon);
         break;
     case 3:
-        SetMetLocationForBoxPokemon(param0, param3, 0);
-        ResetBoxPokemonEggStatus(param0, 1);
-        AssignTrainerInfoToBoxPokemon(param0, param1, param4);
+        SetMetLocationForBoxPokemon(boxMon, metLocation, 0);
+        ResetBoxPokemonEggStatus(boxMon, 1);
+        AssignTrainerInfoToBoxPokemon(boxMon, trainerInfo, heapID);
         break;
     case 4:
-        if (sub_0207884C(param0, param1, param4) == 1) {
-            if (BoxPokemon_GetValue(param0, MON_DATA_IS_EGG, NULL) == 0) {
-                ResetBoxPokemonEggStatus(param0, 0);
-                SetMetLocationForBoxPokemon(param0, param3, 1);
-                FinalizeBoxPokemonData(param0);
+        if (sub_0207884C(boxMon, trainerInfo, heapID) == 1) {
+            if (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == 0) {
+                ResetBoxPokemonEggStatus(boxMon, 0);
+                SetMetLocationForBoxPokemon(boxMon, metLocation, 1);
+                FinalizeBoxPokemonData(boxMon);
             } else {
-                SetMetLocationForBoxPokemon(param0, param3, 0);
-                ResetBoxPokemonEggStatus(param0, 1);
+                SetMetLocationForBoxPokemon(boxMon, metLocation, 0);
+                ResetBoxPokemonEggStatus(boxMon, 1);
             }
         } else {
-            if (BoxPokemon_GetValue(param0, MON_DATA_IS_EGG, NULL) == 0) {
-                ResetBoxPokemonEggStatus(param0, 0);
-                SetMetLocationForBoxPokemon(param0, param3, 1);
-                FinalizeBoxPokemonData(param0);
+            if (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == 0) {
+                ResetBoxPokemonEggStatus(boxMon, 0);
+                SetMetLocationForBoxPokemon(boxMon, metLocation, 1);
+                FinalizeBoxPokemonData(boxMon);
             } else {
-                ResetBoxPokemonEggStatus(param0, 0);
-                SetMetLocationForBoxPokemon(param0, param3, 1);
+                ResetBoxPokemonEggStatus(boxMon, 0);
+                SetMetLocationForBoxPokemon(boxMon, metLocation, 1);
             }
         }
 
-        UpdateBoxPokemonAfterCheck(param0);
+        UpdateBoxPokemonAfterCheck(boxMon);
         break;
     case 5:
-        if (BoxPokemon_GetValue(param0, MON_DATA_IS_EGG, NULL) == 0) {
+        if (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == 0) {
             (void)0;
         } else {
-            SetMetLocationForBoxPokemon(param0, (sub_02017070(1, 2)), 1);
+            SetMetLocationForBoxPokemon(boxMon, (sub_02017070(1, 2)), 1);
         }
         break;
     case 6:
-        if (param3 > (sub_02017070(1, 0))) {
-            param3 = (sub_02017070(2, 2));
+        if (metLocation > (sub_02017070(1, 0))) {
+            metLocation = (sub_02017070(2, 2));
         }
 
-        if (sub_0207884C(param0, param1, param4) == 0) {
+        if (sub_0207884C(boxMon, trainerInfo, heapID) == 0) {
             {
                 int v0;
 
-                v0 = BoxPokemon_GetValue(param0, MON_DATA_153, NULL);
-                BoxPokemon_SetValue(param0, 152, &v0);
+                v0 = BoxPokemon_GetValue(boxMon, MON_DATA_153, NULL);
+                BoxPokemon_SetValue(boxMon, 152, &v0);
 
-                v0 = BoxPokemon_GetValue(param0, MON_DATA_149, NULL);
-                BoxPokemon_SetValue(param0, 146, &v0);
+                v0 = BoxPokemon_GetValue(boxMon, MON_DATA_149, NULL);
+                BoxPokemon_SetValue(boxMon, 146, &v0);
 
-                v0 = BoxPokemon_GetValue(param0, MON_DATA_150, NULL);
-                BoxPokemon_SetValue(param0, 147, &v0);
+                v0 = BoxPokemon_GetValue(boxMon, MON_DATA_150, NULL);
+                BoxPokemon_SetValue(boxMon, 147, &v0);
 
-                v0 = BoxPokemon_GetValue(param0, MON_DATA_151, NULL);
-                BoxPokemon_SetValue(param0, 148, &v0);
+                v0 = BoxPokemon_GetValue(boxMon, MON_DATA_151, NULL);
+                BoxPokemon_SetValue(boxMon, 148, &v0);
             }
         }
 
-        SetMetLocationForBoxPokemon(param0, param3, 1);
-        AssignTrainerInfoToBoxPokemon(param0, param1, param4);
+        SetMetLocationForBoxPokemon(boxMon, metLocation, 1);
+        AssignTrainerInfoToBoxPokemon(boxMon, trainerInfo, heapID);
         break;
     }
 }
 
-static void AssignTrainerInfoToBoxPokemon (BoxPokemon * param0, TrainerInfo * param1, int param2)
-{
-    int v0 = TrainerInfo_ID(param1);
-    int v1 = TrainerInfo_Gender(param1);
-    Strbuf* v2 = TrainerInfo_NameNewStrbuf(param1, param2);
 
-    BoxPokemon_SetValue(param0, 7, &v0);
-    BoxPokemon_SetValue(param0, 157, &v1);
-    BoxPokemon_SetValue(param0, 145, v2);
+static void AssignTrainerInfoToBoxPokemon (BoxPokemon * boxMon, TrainerInfo * trainerInfo, int heapID)
+{
+    int v0 = TrainerInfo_ID(trainerInfo);
+    int v1 = TrainerInfo_Gender(trainerInfo);
+    Strbuf* v2 = TrainerInfo_NameNewStrbuf(trainerInfo, heapID);
+
+    BoxPokemon_SetValue(boxMon, 7, &v0);
+    BoxPokemon_SetValue(boxMon, 157, &v1);
+    BoxPokemon_SetValue(boxMon, 145, v2);
     Strbuf_Free(v2);
 }
 

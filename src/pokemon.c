@@ -4205,7 +4205,7 @@ void InitializePokemonAfterCapture(Pokemon *mon, TrainerInfo *param1, int monPok
 
 static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5)
 {
-    ProcessBoxPokemonWithTrainerInfo(boxMon, param1, 0, param3, param5);
+    UpdateBoxMonStatusAndTrainerInfo(boxMon, param1, 0, param3, param5);
     BoxPokemon_SetValue(boxMon, MON_DATA_MET_GAME, &Unk_020E4C40);
     BoxPokemon_SetValue(boxMon, MON_DATA_POKEBALL, &monPokeball);
     BoxPokemon_SetValue(boxMon, MON_DATA_158, &param4);
