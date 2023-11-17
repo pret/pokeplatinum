@@ -5681,7 +5681,7 @@ static BOOL sub_02043C3C (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = sub_02050A60(param0->unk_28);
 
-    HealParty(Party_GetFromSavedata(v0->unk_0C));
+    HealAllPokemonInParty(Party_GetFromSavedata(v0->unk_0C));
     return 0;
 }
 

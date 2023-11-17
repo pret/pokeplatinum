@@ -11,15 +11,15 @@
 #include "item.h"
 #include "unk_02096420.h"
 
-static u8 sub_02096F34(Pokemon * param0, u32 param1);
-static u8 SetMonPP(Pokemon * param0, u32 param1, u32 param2);
-static u8 sub_02097004(Pokemon * param0, u32 param1, u32 param2);
-static void sub_020970AC(Pokemon * param0, u32 param1, u32 param2, u32 param3);
-static s32 sub_020970EC(s32 param0, s32 param1, s32 param2);
-static u8 sub_020971D0(Pokemon * param0, s32 param1, s32 param2, u16 param3, u32 param4);
-static u8 sub_02097144(Pokemon * param0, ItemData * param1);
+static u8 CheckMovePPAvailability(Pokemon * param0, u32 param1);
+static u8 UpdatePokemonMovePP(Pokemon * param0, u32 param1, u32 param2);
+static u8 IncreaseMovePPUps(Pokemon * param0, u32 param1, u32 param2);
+static void RestorePokemonHP(Pokemon * param0, u32 param1, u32 param2, u32 param3);
+static s32 CalculateEVUpdate(s32 param0, s32 param1, s32 param2);
+static u8 UpdatePokemonFriendship(Pokemon * param0, s32 param1, s32 param2, u16 param3, u32 param4);
+static u8 CheckFriendshipItemEffect(Pokemon * param0, ItemData * param1);
 
-u8 sub_02096420 (Pokemon * param0, u16 param1, u16 param2, u32 param3)
+u8 CheckItemEffectsOnPokemon (Pokemon * param0, u16 param1, u16 param2, u32 param3)
 {
     ItemData * v0;
     s32 v1[8];
@@ -104,7 +104,7 @@ u8 sub_02096420 (Pokemon * param0, u16 param1, u16 param2, u32 param3)
     }
 
     if (Item_Get(v0, 36) != 0) {
-        if (sub_02096F34(param0, param2) == 1) {
+        if (CheckMovePPAvailability(param0, param2) == 1) {
             Heap_FreeToHeap(v0);
             return 1;
         }
@@ -112,7 +112,7 @@ u8 sub_02096420 (Pokemon * param0, u16 param1, u16 param2, u32 param3)
 
     if (Item_Get(v0, 37) != 0) {
         for (v1[0] = 0; v1[0] < 4; v1[0]++) {
-            if (sub_02096F34(param0, v1[0]) == 1) {
+            if (CheckMovePPAvailability(param0, v1[0]) == 1) {
                 Heap_FreeToHeap(v0);
                 return 1;
             }
@@ -141,7 +141,7 @@ u8 sub_02096420 (Pokemon * param0, u16 param1, u16 param2, u32 param3)
                     return 1;
                 }
 
-                if (sub_02097144(param0, v0) == 1) {
+                if (CheckFriendshipItemEffect(param0, v0) == 1) {
                     Heap_FreeToHeap(v0);
                     return 1;
                 }
@@ -163,7 +163,7 @@ u8 sub_02096420 (Pokemon * param0, u16 param1, u16 param2, u32 param3)
                 return 1;
             }
 
-            if (sub_02097144(param0, v0) == 1) {
+            if (CheckFriendshipItemEffect(param0, v0) == 1) {
                 Heap_FreeToHeap(v0);
                 return 1;
             }
@@ -184,7 +184,7 @@ u8 sub_02096420 (Pokemon * param0, u16 param1, u16 param2, u32 param3)
                 return 1;
             }
 
-            if (sub_02097144(param0, v0) == 1) {
+            if (CheckFriendshipItemEffect(param0, v0) == 1) {
                 Heap_FreeToHeap(v0);
                 return 1;
             }
@@ -205,7 +205,7 @@ u8 sub_02096420 (Pokemon * param0, u16 param1, u16 param2, u32 param3)
                 return 1;
             }
 
-            if (sub_02097144(param0, v0) == 1) {
+            if (CheckFriendshipItemEffect(param0, v0) == 1) {
                 Heap_FreeToHeap(v0);
                 return 1;
             }
@@ -226,7 +226,7 @@ u8 sub_02096420 (Pokemon * param0, u16 param1, u16 param2, u32 param3)
                 return 1;
             }
 
-            if (sub_02097144(param0, v0) == 1) {
+            if (CheckFriendshipItemEffect(param0, v0) == 1) {
                 Heap_FreeToHeap(v0);
                 return 1;
             }
@@ -247,7 +247,7 @@ u8 sub_02096420 (Pokemon * param0, u16 param1, u16 param2, u32 param3)
                 return 1;
             }
 
-            if (sub_02097144(param0, v0) == 1) {
+            if (CheckFriendshipItemEffect(param0, v0) == 1) {
                 Heap_FreeToHeap(v0);
                 return 1;
             }
@@ -259,13 +259,13 @@ u8 sub_02096420 (Pokemon * param0, u16 param1, u16 param2, u32 param3)
     return 0;
 }
 
-u8 sub_0209693C (Party * param0, u16 param1, u8 param2, u8 param3, u32 param4)
+u8 CheckItemEffectsOnPartyMember (Party * param0, u16 param1, u8 param2, u8 param3, u32 param4)
 {
     Pokemon * v0 = Party_GetPokemonBySlotIndex(param0, param2);
-    return sub_02096420(v0, param1, param3, param4);
+    return CheckItemEffectsOnPokemon(v0, param1, param3, param4);
 }
 
-u8 sub_02096954 (Pokemon * param0, u16 param1, u16 param2, u16 param3, u32 param4)
+u8 ApplyItemEffectsToPokemon (Pokemon * param0, u16 param1, u16 param2, u16 param3, u32 param4)
 {
     ItemData * v0;
     s32 v1[8];
@@ -320,14 +320,14 @@ u8 sub_02096954 (Pokemon * param0, u16 param1, u16 param2, u16 param3, u32 param
 
     if (((Item_Get(v0, 23) != 0) || (Item_Get(v0, 24) != 0)) && (Item_Get(v0, 25) != 0)) {
         if (v1[0] == 0) {
-            sub_020970AC(param0, v1[0], v1[1], Item_Get(v0, 54));
+            RestorePokemonHP(param0, v1[0], v1[1], Item_Get(v0, 54));
             v2 = 1;
         }
 
         v3 = 1;
     } else if (Item_Get(v0, 38) != 0) {
         if (v1[0] < v1[1]) {
-            sub_020970AC(param0, v1[0], v1[1], Item_Get(v0, 54));
+            RestorePokemonHP(param0, v1[0], v1[1], Item_Get(v0, 54));
             v2 = 1;
         }
 
@@ -343,7 +343,7 @@ u8 sub_02096954 (Pokemon * param0, u16 param1, u16 param2, u16 param3, u32 param
 
             if (v1[0] == 0) {
                 v1[3] = Pokemon_GetValue(param0, MON_DATA_MAX_HP, NULL);
-                sub_020970AC(param0, v1[0], v1[3], v1[3] - v1[1]);
+                RestorePokemonHP(param0, v1[0], v1[3], v1[3] - v1[1]);
             }
 
             v2 = 1;
@@ -357,13 +357,13 @@ u8 sub_02096954 (Pokemon * param0, u16 param1, u16 param2, u16 param3, u32 param
     }
 
     if (Item_Get(v0, 34) != 0) {
-        if (sub_02097004(param0, param2, 1) == 1) {
+        if (IncreaseMovePPUps(param0, param2, 1) == 1) {
             v2 = 1;
         }
 
         v3 = 1;
     } else if (Item_Get(v0, 35) != 0) {
-        if (sub_02097004(param0, param2, 3) == 1) {
+        if (IncreaseMovePPUps(param0, param2, 3) == 1) {
             v2 = 1;
         }
 
@@ -371,14 +371,14 @@ u8 sub_02096954 (Pokemon * param0, u16 param1, u16 param2, u16 param3, u32 param
     }
 
     if (Item_Get(v0, 36) != 0) {
-        if (SetMonPP(param0, param2, Item_Get(v0, 55)) == 1) {
+        if (UpdatePokemonMovePP(param0, param2, Item_Get(v0, 55)) == 1) {
             v2 = 1;
         }
 
         v3 = 1;
     } else if (Item_Get(v0, 37) != 0) {
         for (v1[0] = 0; v1[0] < 4; v1[0]++) {
-            if (SetMonPP(param0, v1[0], Item_Get(v0, 55)) == 1) {
+            if (UpdatePokemonMovePP(param0, v1[0], Item_Get(v0, 55)) == 1) {
                 v2 = 1;
             }
         }
@@ -396,7 +396,7 @@ u8 sub_02096954 (Pokemon * param0, u16 param1, u16 param2, u16 param3, u32 param
     if (Pokemon_GetValue(param0, MON_DATA_SPECIES, NULL) != 292) {
         if (Item_Get(v0, 39) != 0) {
             v1[7] = Item_Get(v0, 48);
-            v1[6] = sub_020970EC(v1[0], (v1[1] + v1[2] + v1[3] + v1[4] + v1[5]), v1[7]);
+            v1[6] = CalculateEVUpdate(v1[0], (v1[1] + v1[2] + v1[3] + v1[4] + v1[5]), v1[7]);
 
             if (v1[6] != -1) {
                 v1[0] = v1[6];
@@ -413,7 +413,7 @@ u8 sub_02096954 (Pokemon * param0, u16 param1, u16 param2, u16 param3, u32 param
 
     if (Item_Get(v0, 40) != 0) {
         v1[7] = Item_Get(v0, 49);
-        v1[6] = sub_020970EC(v1[1], (v1[0] + v1[2] + v1[3] + v1[4] + v1[5]), v1[7]);
+        v1[6] = CalculateEVUpdate(v1[1], (v1[0] + v1[2] + v1[3] + v1[4] + v1[5]), v1[7]);
 
         if (v1[6] != -1) {
             v1[1] = v1[6];
@@ -429,7 +429,7 @@ u8 sub_02096954 (Pokemon * param0, u16 param1, u16 param2, u16 param3, u32 param
 
     if (Item_Get(v0, 41) != 0) {
         v1[7] = Item_Get(v0, 50);
-        v1[6] = sub_020970EC(v1[2], (v1[0] + v1[1] + v1[3] + v1[4] + v1[5]), v1[7]);
+        v1[6] = CalculateEVUpdate(v1[2], (v1[0] + v1[1] + v1[3] + v1[4] + v1[5]), v1[7]);
 
         if (v1[6] != -1) {
             v1[2] = v1[6];
@@ -445,7 +445,7 @@ u8 sub_02096954 (Pokemon * param0, u16 param1, u16 param2, u16 param3, u32 param
 
     if (Item_Get(v0, 42) != 0) {
         v1[7] = Item_Get(v0, 51);
-        v1[6] = sub_020970EC(v1[3], (v1[0] + v1[1] + v1[2] + v1[4] + v1[5]), v1[7]);
+        v1[6] = CalculateEVUpdate(v1[3], (v1[0] + v1[1] + v1[2] + v1[4] + v1[5]), v1[7]);
 
         if (v1[6] != -1) {
             v1[3] = v1[6];
@@ -461,7 +461,7 @@ u8 sub_02096954 (Pokemon * param0, u16 param1, u16 param2, u16 param3, u32 param
 
     if (Item_Get(v0, 43) != 0) {
         v1[7] = Item_Get(v0, 52);
-        v1[6] = sub_020970EC(v1[4], (v1[0] + v1[1] + v1[2] + v1[3] + v1[5]), v1[7]);
+        v1[6] = CalculateEVUpdate(v1[4], (v1[0] + v1[1] + v1[2] + v1[3] + v1[5]), v1[7]);
 
         if (v1[6] != -1) {
             v1[4] = v1[6];
@@ -477,7 +477,7 @@ u8 sub_02096954 (Pokemon * param0, u16 param1, u16 param2, u16 param3, u32 param
 
     if (Item_Get(v0, 44) != 0) {
         v1[7] = Item_Get(v0, 53);
-        v1[6] = sub_020970EC(v1[5], (v1[0] + v1[1] + v1[2] + v1[3] + v1[4]), v1[7]);
+        v1[6] = CalculateEVUpdate(v1[5], (v1[0] + v1[1] + v1[2] + v1[3] + v1[4]), v1[7]);
 
         if (v1[6] != -1) {
             v1[5] = v1[6];
@@ -500,21 +500,21 @@ u8 sub_02096954 (Pokemon * param0, u16 param1, u16 param2, u16 param3, u32 param
 
     if (v1[0] < 100) {
         if (Item_Get(v0, 45) != 0) {
-            if (sub_020971D0(param0, v1[0], Item_Get(v0, 56), param3, param4) == 0) {
+            if (UpdatePokemonFriendship(param0, v1[0], Item_Get(v0, 56), param3, param4) == 0) {
                 Heap_FreeToHeap(v0);
                 return v2;
             }
         }
     } else if ((v1[0] >= 100) && (v1[0] < 200)) {
         if (Item_Get(v0, 46) != 0) {
-            if (sub_020971D0(param0, v1[0], Item_Get(v0, 57), param3, param4) == 0) {
+            if (UpdatePokemonFriendship(param0, v1[0], Item_Get(v0, 57), param3, param4) == 0) {
                 Heap_FreeToHeap(v0);
                 return v2;
             }
         }
     } else if ((v1[0] >= 200) && (v1[0] <= 255)) {
         if (Item_Get(v0, 47) != 0) {
-            if (sub_020971D0(param0, v1[0], Item_Get(v0, 58), param3, param4) == 0) {
+            if (UpdatePokemonFriendship(param0, v1[0], Item_Get(v0, 58), param3, param4) == 0) {
                 Heap_FreeToHeap(v0);
                 return v2;
             }
@@ -529,10 +529,10 @@ u8 sub_02096F14 (Party * param0, u16 param1, u8 param2, u8 param3, u16 param4, u
 {
     Pokemon * v0 = Party_GetPokemonBySlotIndex(param0, param2);
 
-    return sub_02096954(v0, param1, param3, param4, param5);
+    return ApplyItemEffectsToPokemon(v0, param1, param3, param4, param5);
 }
 
-static u8 sub_02096F34 (Pokemon * mon, u32 moveIDX) // param0,1
+static u8 CheckMovePPAvailability (Pokemon * mon, u32 moveIDX) // param0,1
 {
     u16 move; // v0
     u8 ppCurr; // v1
@@ -554,7 +554,7 @@ static u8 sub_02096F34 (Pokemon * mon, u32 moveIDX) // param0,1
     return 0;
 }
 
-static u8 SetMonPP (Pokemon * mon, u32 moveIDX, u32 pp)
+static u8 UpdatePokemonMovePP (Pokemon * mon, u32 moveIDX, u32 pp)
 {
     u16 move;
     u8 ppCurr;
@@ -587,7 +587,7 @@ static u8 SetMonPP (Pokemon * mon, u32 moveIDX, u32 pp)
     return 0;
 }
 
-static u8 sub_02097004 (Pokemon * param0, u32 param1, u32 param2)
+static u8 IncreaseMovePPUps (Pokemon * param0, u32 param1, u32 param2)
 {
     u16 v0;
     u8 v1;
@@ -623,7 +623,7 @@ static u8 sub_02097004 (Pokemon * param0, u32 param1, u32 param2)
     return 1;
 }
 
-static void sub_020970AC (Pokemon * param0, u32 param1, u32 param2, u32 param3)
+static void RestorePokemonHP (Pokemon * mon, u32 param1, u32 param2, u32 param3)
 {
     if (param2 == 1) {
         param3 = 1;
@@ -641,10 +641,10 @@ static void sub_020970AC (Pokemon * param0, u32 param1, u32 param2, u32 param3)
         param1 += param3;
     }
 
-    Pokemon_SetValue(param0, 163, &param1);
+    Pokemon_SetValue(mon, 163, &param1);
 }
 
-static s32 sub_020970EC (s32 param0, s32 param1, s32 param2)
+static s32 CalculateEVUpdate (s32 param0, s32 param1, s32 param2)
 {
     if ((param0 == 0) && (param2 < 0)) {
         return -1;
@@ -673,7 +673,7 @@ static s32 sub_020970EC (s32 param0, s32 param1, s32 param2)
     return param0;
 }
 
-static u8 sub_02097144 (Pokemon * param0, ItemData * param1)
+static u8 CheckFriendshipItemEffect (Pokemon * param0, ItemData * param1)
 {
     s32 v0;
     s32 v1;
@@ -713,7 +713,7 @@ static u8 sub_02097144 (Pokemon * param0, ItemData * param1)
     return 0;
 }
 
-static u8 sub_020971D0 (Pokemon * param0, s32 param1, s32 param2, u16 param3, u32 param4)
+static u8 UpdatePokemonFriendship (Pokemon * param0, s32 param1, s32 param2, u16 param3, u32 param4)
 {
     if ((param1 == 255) && (param2 > 0)) {
         return 0;
@@ -751,7 +751,7 @@ static u8 sub_020971D0 (Pokemon * param0, s32 param1, s32 param2, u16 param3, u3
     return 1;
 }
 
-void HealParty (Party * party) 
+void HealAllPokemonInParty (Party * party) 
 {
     int i, j, monCount;
     u32 tmp;
@@ -782,8 +782,8 @@ void HealParty (Party * party)
         // loop through mon's moves
         for (j = 0; j < 4; j++) {
             // check if move is at max pp
-            if (sub_02096F34(mon, j) == 1) {
-                SetMonPP(mon, j, 127); // set
+            if (CheckMovePPAvailability(mon, j) == 1) {
+                UpdatePokemonMovePP(mon, j, 127); // set
             }
         }
     }
