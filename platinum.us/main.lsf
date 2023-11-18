@@ -694,7 +694,7 @@ Overlay overlay16
 	Object main.nef.p/src_overlay016_ov16_0223DF00.c.o
 	Object main.nef.p/src_overlay016_battle_script.c.o
 	Object main.nef.p/src_overlay016_battle_controller.c.o
-	Object main.nef.p/src_overlay016_ov16_0225177C.c.o
+	Object main.nef.p/src_overlay016_battle_lib.c.o
 	Object main.nef.p/src_overlay016_ov16_0225BFFC.c.o
 	Object main.nef.p/src_overlay016_ov16_0225CBB8.c.o
 	Object main.nef.p/src_overlay016_ov16_02264798.c.o

@@ -1,5 +1,7 @@
-#ifndef POKEPLATINUM_OV16_0225177C_H
-#define POKEPLATINUM_OV16_0225177C_H
+#ifndef POKEPLATINUM_BATTLE_BATTLE_LIB_H
+#define POKEPLATINUM_BATTLE_BATTLE_LIB_H
+
+#include "constants/sound.h"
 
 #include "pokemon.h"
 #include "struct_decls/battle_system.h"
@@ -440,9 +442,34 @@ void Battler_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx,
  * @return A value representing the battler's status non-volatile status.
  */
 enum StatusEffect Battler_StatusCondition(BattleContext *battleCtx, int battler);
-BOOL BattleSystem_CheckTrainerMessage(BattleSystem * param0, BattleContext * param1);
-void BattleContext_Init(BattleContext * param0);
-void BattleContext_InitCounters(BattleSystem * param0, BattleContext * param1);
+
+/**
+ * @brief Check if the given trainer has a trainer message to be shown.
+ * 
+ * If a trainer message is to be shown, then the respective battler will be
+ * updated with the appropriate flag, and battleCtx->msgTemp will be loaded
+ * with the type of message to be shown.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return TRUE if a message should be shown, else FALSE.
+ */
+BOOL BattleSystem_CheckTrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+
+/**
+ * @brief Initialize the BattleContext structure with start-of-turn state.
+ * 
+ * @param battleCtx 
+ */
+void BattleContext_Init(BattleContext *battleCtx);
+
+/**
+ * @brief Initialize standard counters for the BattleContext structure.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ */
+void BattleContext_InitCounters(BattleSystem *battleSys, BattleContext *battleCtx);
 
 /**
  * @brief Update relevant buffers for a battler after a switch.
@@ -1204,7 +1231,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
  * @return TRUE if a follow-up subsequence should be run to apply the item's
  * Fling effect; FALSE if no such follow-up is needed.
  */
-BOOL BattleSystem_FlingItem(BattleSystem * param0, BattleContext * param1, int param2);
+BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 
 /**
  * @brief Update the count for the Metronome held item.
@@ -1221,7 +1248,18 @@ void BattleSystem_UpdateMetronomeCount(BattleSystem *battleSys, BattleContext *b
  * @param battleCtx 
  */
 void BattleSystem_VerifyMetronomeCount(BattleSystem *battleSys, BattleContext *battleCtx);
-int ov16_022599D0(BattleContext * param0, int param1, int param2, int param3);
+
+/**
+ * @brief Determine what modulating effect to apply to a battler's cry
+ * whenever they are sent into battle.
+ * 
+ * @param battleCtx 
+ * @param battler 
+ * @param battlerType 
+ * @param encounter     TRUE if this is a start-of-battle cry.
+ * @return The type of modulating effect applied to the battler's cry.
+ */
+enum PokemonCryMod Battler_CryModulation(BattleContext *battleCtx, int battler, int battlerType, BOOL encounter);
 
 /**
  * @brief Check if a battler can choose their action for the turn.
@@ -1232,7 +1270,17 @@ int ov16_022599D0(BattleContext * param0, int param1, int param2, int param3);
  * if not.
  */
 BOOL Battler_CanPickCommand(BattleContext *battleSys, int battler);
-void ov16_02259A5C(BattleSystem * param0, BattleContext * param1, Pokemon * param2);
+
+/**
+ * @brief Set the catch-data for a newly-caught Pokemon.
+ * 
+ * This will set the met-location and Poke Ball for the newly-caught Pokemon.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param mon 
+ */
+void BattleSystem_SetPokemonCatchData(BattleSystem *battleSys, BattleContext *battleCtx, Pokemon *mon);
 
 /**
  * @brief Get the top byte of the IO buffer for the given battler.
@@ -1283,7 +1331,14 @@ BOOL BattleSystem_PokemonIsOT(BattleSystem *battleSys, Pokemon *mon);
  * be loaded for execution, FALSE otherwise.
  */
 BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript);
-void ov16_0225A1B0(BattleSystem * param0, BattleContext * param1);
+
+/**
+ * @brief Initialize the party order buffer.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ */
+void BattleSystem_InitPartyOrder(BattleSystem *battleSys, BattleContext *battleCtx);
 
 /**
  * @brief Switch the party order by swapping the battler in the given party slot
@@ -1468,7 +1523,18 @@ BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem *battleSys, BattleCont
  * @param defender 
  */
 void BattleSystem_DecPPForPressure(BattleContext *battleCtx, int attacker, int defender);
-BOOL BattleSystem_RecordingStopped(BattleSystem * param0, BattleContext * param1);
+
+/**
+ * @brief Check if the recording for a battle has finished playing.
+ * 
+ * If the recording has finished, then the controller will be set to a
+ * SCREEN_WIPE command.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return TRUE if the recording has stopped, FALSE otherwise.
+ */
+BOOL Battle_RecordingStopped(BattleSystem *battleSys, BattleContext *battleCtx);
 
 /**
  * @brief Get an accessible field from the BattleContext struct.
@@ -1513,7 +1579,15 @@ void BattleContext_Set(BattleSystem *battleSys, BattleContext *battleCtx, enum B
  * @return The party slot of the Pokemon to be switched in.
  */
 int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler);
-int ov16_0225BE28(BattleSystem * param0, int param1);
+
+/**
+ * @brief Get the switched-to slot determined by the AI for a given battler.
+ * 
+ * @param battleSys 
+ * @param battler 
+ * @return The AI's switched-to slot for the battler.
+ */
+int BattleAI_SwitchedSlot(BattleSystem *battleSys, int battler);
 
 /**
  * @brief Compute the variable-type of a move, given its use by a given Pokemon.
@@ -1529,4 +1603,4 @@ int ov16_0225BE28(BattleSystem * param0, int param1);
  */
 int Move_CalcVariableType(BattleSystem *battleSys, BattleContext *battleCtx, Pokemon *mon, int move);
 
-#endif // POKEPLATINUM_OV16_0225177C_H
+#endif // POKEPLATINUM_BATTLE_BATTLE_LIB_H

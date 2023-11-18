@@ -291,7 +291,7 @@ static u8 sub_02083158 (UnkStruct_020831B4 * param0)
         return 5;
     }
 
-    switch (sub_0208C104(param0->unk_06, param0->unk_08, 48)) {
+    switch (HealthBar_Color(param0->unk_06, param0->unk_08, 48)) {
     case 4:
         return 1;
     case 3:

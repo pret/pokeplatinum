@@ -147,7 +147,7 @@
 #include "overlay014/ov14_0221FC20.h"
 #include "overlay016/ov16_0223B140.h"
 #include "overlay016/ov16_0223DF00.h"
-#include "overlay016/ov16_0225177C.h"
+#include "battle/battle_lib.h"
 #include "overlay016/ov16_0225CBB8.h"
 #include "overlay016/ov16_02264798.h"
 #include "overlay016/ov16_0226485C.h"
@@ -1146,7 +1146,7 @@ void ov16_0225DD7C (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     UnkStruct_ov16_0225D8F0 * v0;
     int v1;
 
-    v1 = ov16_0223E0D8(param0, param1->unk_190);
+    v1 = Battler_TrainerID(param0, param1->unk_190);
     v0 = (UnkStruct_ov16_0225D8F0 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0225D8F0));
 
     v0->unk_00 = param0;
@@ -2985,11 +2985,11 @@ static void ov16_022604C8 (SysTask * param0, void * param1)
         } else {
             if (v4 & 0x20) {
                 v10.tags = 8;
-                v10.params[0] = ov16_0223E0D8(v0->unk_00, v0->unk_09);
+                v10.params[0] = Battler_TrainerID(v0->unk_00, v0->unk_09);
                 v10.id = 922;
             } else if (v4 & 0x200) {
                 v10.tags = 8;
-                v10.params[0] = ov16_0223E0D8(v0->unk_00, v0->unk_09);
+                v10.params[0] = Battler_TrainerID(v0->unk_00, v0->unk_09);
                 v10.id = 1222;
             } else {
                 v10.tags = 2;
@@ -4416,7 +4416,7 @@ static void ov16_02262258 (SysTask * param0, void * param1)
         v5 = BattleSystem_Partner(v0->unk_00, v4);
     }
 
-    v1 = ov16_0225BE28(v0->unk_00, v4);
+    v1 = BattleAI_SwitchedSlot(v0->unk_00, v4);
 
     if (v1 == 6) {
         v1 = BattleAI_PostKOSwitchIn(v0->unk_00, v4);
@@ -6409,13 +6409,13 @@ static void ov16_022646C8 (SysTask * param0, void * param1)
 static void ov16_02264730 (BattleSystem * param0)
 {
     BattleSystem_SetStopRecording(param0, 1);
-    BattleSystem_RecordingStopped(param0, BattleSystem_Context(param0));
+    Battle_RecordingStopped(param0, BattleSystem_Context(param0));
 }
 
 static void ov16_0226474C (BattleSystem * param0)
 {
     BattleSystem_SetStopRecording(param0, 2);
-    BattleSystem_RecordingStopped(param0, BattleSystem_Context(param0));
+    Battle_RecordingStopped(param0, BattleSystem_Context(param0));
 }
 
 static u8 ov16_02264768 (BattleSystem * param0, u8 param1, u8 param2)

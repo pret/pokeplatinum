@@ -2083,7 +2083,7 @@ static u8 ov10_02221E84 (UnkStruct_ov10_0221FB28 * param0, u32 param1)
         return 5;
     }
 
-    switch (sub_0208C104(param0->unk_214[param1].unk_06, param0->unk_214[param1].unk_08, 48)) {
+    switch (HealthBar_Color(param0->unk_214[param1].unk_06, param0->unk_214[param1].unk_08, 48)) {
     case 4:
         return 1;
     case 3:
@@ -2317,7 +2317,7 @@ static void ov10_02222594 (UnkStruct_ov10_0221FB28 * param0, u32 param1)
     u32 v1;
 
     v0 = &param0->unk_10[param1 * 4 + 3];
-    v1 = sub_0208C104(param0->unk_214[param1].unk_06, param0->unk_214[param1].unk_08, 48);
+    v1 = HealthBar_Color(param0->unk_214[param1].unk_06, param0->unk_214[param1].unk_08, 48);
 
     switch (v1) {
     case 0:

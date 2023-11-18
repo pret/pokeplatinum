@@ -66,7 +66,7 @@
 #include "flags.h"
 #include "unk_0207A6DC.h"
 #include "overlay016/ov16_0223DF00.h"
-#include "overlay016/ov16_0225177C.h"
+#include "battle/battle_lib.h"
 #include "overlay016/ov16_0226485C.h"
 
 void BattleIO_SetupBattleUI(BattleSystem * param0, int param1);
@@ -326,7 +326,7 @@ void BattleIO_SetEncounter (BattleSystem * param0, int param1)
     v0.unk_01_2 = param0->battleCtx->battleMons[param1].isShiny;
     v0.unk_02 = param0->battleCtx->battleMons[param1].species;
     v0.unk_04 = param0->battleCtx->battleMons[param1].personality;
-    v0.unk_08 = ov16_022599D0(param0->battleCtx, param1, BattleSystem_BattlerSlot(param0, param1), 1);
+    v0.unk_08 = Battler_CryModulation(param0->battleCtx, param1, BattleSystem_BattlerSlot(param0, param1), 1);
     v0.unk_01_3 = param0->battleCtx->battleMons[param1].formNum;
 
     for (v1 = 0; v1 < 4; v1++) {
@@ -349,7 +349,7 @@ void BattleIO_ShowEncounter (BattleSystem * param0, int param1)
     v0.unk_01_2 = param0->battleCtx->battleMons[param1].isShiny;
     v0.unk_02 = param0->battleCtx->battleMons[param1].species;
     v0.unk_04 = param0->battleCtx->battleMons[param1].personality;
-    v0.unk_08 = ov16_022599D0(param0->battleCtx, param1, BattleSystem_BattlerSlot(param0, param1), 1);
+    v0.unk_08 = Battler_CryModulation(param0->battleCtx, param1, BattleSystem_BattlerSlot(param0, param1), 1);
     v0.unk_0C = param0->battleCtx->selectedPartySlot[param1];
     v0.unk_01_3 = param0->battleCtx->battleMons[param1].formNum;
     v0.unk_10 = param0->battleCtx->battleMons[param1].capturedBall;
@@ -384,7 +384,7 @@ void BattleIO_ShowPokemon (BattleSystem * param0, int param1, int param2, int pa
 
     v0.unk_01_2 = param0->battleCtx->battleMons[param1].isShiny;
     v0.unk_02 = param0->battleCtx->battleMons[param1].species;
-    v0.unk_08 = ov16_022599D0(param0->battleCtx, param1, BattleSystem_BattlerSlot(param0, param1), 0);
+    v0.unk_08 = Battler_CryModulation(param0->battleCtx, param1, BattleSystem_BattlerSlot(param0, param1), 0);
     v0.unk_0C = param0->battleCtx->selectedPartySlot[param1];
     v0.unk_01_3 = param0->battleCtx->battleMons[param1].formNum;
 

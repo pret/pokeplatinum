@@ -387,7 +387,7 @@ static void ov13_02221ED0 (UnkStruct_ov13_022213F0 * param0, u32 param1, u16 par
     v1 = 1;
     v2 = App_PixelCount(v0->unk_10, v0->unk_12, 48);
 
-    switch (sub_0208C104(v0->unk_10, v0->unk_12, 48)) {
+    switch (HealthBar_Color(v0->unk_10, v0->unk_12, 48)) {
     case 0:
         sub_0201A9A4(&param0->unk_206C[param1]);
         return;

@@ -72,7 +72,7 @@
 #include "item.h"
 #include "flags.h"
 #include "overlay016/ov16_0223DF00.h"
-#include "overlay016/ov16_0225177C.h"
+#include "battle/battle_lib.h"
 #include "overlay016/ov16_0225CBB8.h"
 #include "overlay016/ov16_02266F1C.h"
 #include "overlay016/ov16_02268520.h"
@@ -111,7 +111,7 @@ u16 * ov16_0223E0BC(BattleSystem * param0);
 UnkStruct_ov16_0223E0C8 * ov16_0223E0C8(BattleSystem * param0);
 UnkStruct_0200B358 * ov16_0223E0D0(BattleSystem * param0);
 Strbuf* ov16_0223E0D4(BattleSystem * param0);
-u16 ov16_0223E0D8(BattleSystem * param0, int param1);
+u16 Battler_TrainerID(BattleSystem * param0, int param1);
 TrainerData * BattleSystem_TrainerData(BattleSystem * param0, int param1);
 TrainerInfo* BattleSystem_TrainerInfo(BattleSystem *battleSys, int battler);
 UnkStruct_0207D3C0 * BattleSystem_Bag(BattleSystem * param0);
@@ -195,7 +195,7 @@ void ov16_0223F638(BattleSystem * param0, u16 param1, u8 * param2);
 u16 ov16_0223F6E4(BattleSystem * param0);
 int ov16_0223F6F0(BattleSystem * param0, u16 param1);
 u16 BattleSystem_TrainerItems(BattleSystem * param0, int param1, int param2);
-u32 ov16_0223F710(BattleSystem * param0);
+u32 BattleSystem_RecordingStopped(BattleSystem * param0);
 void BattleSystem_SetStopRecording(BattleSystem *battleSys, int flag);
 BOOL ov16_0223F7A4(BattleSystem * param0);
 void BattleSystem_ShowStopPlaybackButton(BattleSystem * param0);
@@ -426,15 +426,18 @@ Strbuf* ov16_0223E0D4 (BattleSystem * param0)
     return param0->msgBuffer;
 }
 
-u16 ov16_0223E0D8 (BattleSystem * param0, int param1)
+u16 Battler_TrainerID(BattleSystem *battleSys, int battler)
 {
-    if ((param0->battleType & 0x8) || ((param0->battleType & 0x10) && (BattleSystem_BattlerSlot(param0, param1) & 0x1))) {
-        return param0->trainerIDs[param1];
-    } else if (param0->battleType & 0x2) {
-        return param0->trainerIDs[param1 & 1];
-    } else {
-        return param0->trainerIDs[param1];
+    if ((battleSys->battleType & BATTLE_TYPE_2vs2)
+            || ((battleSys->battleType & BATTLE_TYPE_TAG) && (BattleSystem_BattlerSlot(battleSys, battler) & BATTLER_THEM))) {
+        return battleSys->trainerIDs[battler];
     }
+    
+    if (battleSys->battleType & BATTLE_TYPE_DOUBLES) {
+        return battleSys->trainerIDs[battler & 1];
+    }
+
+    return battleSys->trainerIDs[battler];
 }
 
 TrainerData * BattleSystem_TrainerData (BattleSystem * param0, int param1)
@@ -1560,7 +1563,7 @@ u16 BattleSystem_TrainerItems (BattleSystem * param0, int param1, int param2)
     return param0->trainers[param1].items[param2];
 }
 
-u32 ov16_0223F710 (BattleSystem * param0)
+u32 BattleSystem_RecordingStopped (BattleSystem * param0)
 {
     return param0->unk_2474_0;
 }

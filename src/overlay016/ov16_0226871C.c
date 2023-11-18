@@ -2541,7 +2541,7 @@ static CellActorData * ov16_0226A7A4 (UnkStruct_ov16_02268A14 * param0, Pokemon 
         } else if (param5 == 3) {
             v6 = 5;
         } else {
-            switch (sub_0208C104(param3, param4, (8 * 6))) {
+            switch (HealthBar_Color(param3, param4, (8 * 6))) {
             case 4:
                 v6 = 1;
                 break;

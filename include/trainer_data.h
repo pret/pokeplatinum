@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_TRAINER_DATA_H
 #define POKEPLATINUM_TRAINER_DATA_H
 
+#include "constants/trainer.h"
+
 #include "strbuf.h"
 #include "struct_defs/trainer_data.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -48,8 +50,7 @@ u32 TrainerData_LoadParam(int trainerID, enum TrainerDataParam paramID);
  * @param heapID        Heap on which to allocate archive access.
  * @return TRUE if the trainer has a message of the given type; FALSE if not.
  */
-// TODO: enum?
-BOOL TrainerData_HasMessageType(int trainerID, int msgType, int heapID);
+BOOL TrainerData_HasMessageType(int trainerID, enum TrainerMessageType msgType, int heapID);
 
 /**
  * @brief Load the trainer's message of a given type into the provided Strbuf.
@@ -61,7 +62,7 @@ BOOL TrainerData_HasMessageType(int trainerID, int msgType, int heapID);
  * @param[out] strbuf   Strbuf which will contain the result message.
  * @param heapID        Heap on which to allocate archive access.
  */
-void TrainerData_LoadMessage(int trainerID, int msgType, Strbuf *strbuf, int heapID);
+void TrainerData_LoadMessage(int trainerID, enum TrainerMessageType msgType, Strbuf *strbuf, int heapID);
 
 /**
  * @brief Load data for the requested trainer.

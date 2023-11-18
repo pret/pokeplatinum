@@ -18,7 +18,7 @@
 #include "party.h"
 #include "overlay014/ov14_0221FC20.h"
 #include "overlay016/ov16_0223DF00.h"
-#include "overlay016/ov16_0225177C.h"
+#include "battle/battle_lib.h"
 
 static const u16 Unk_ov14_0222EE90[] = {
 	0x7,

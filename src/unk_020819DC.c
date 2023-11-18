@@ -367,7 +367,7 @@ void sub_02082104 (UnkStruct_0207F248 * param0, u8 param1)
 
     v0 = &param0->unk_04[3 + param1 * 5];
 
-    switch (sub_0208C104(param0->unk_704[param1].unk_06, param0->unk_704[param1].unk_08, 48)) {
+    switch (HealthBar_Color(param0->unk_704[param1].unk_06, param0->unk_704[param1].unk_08, 48)) {
     case 0:
         sub_0201A9A4(v0);
         return;

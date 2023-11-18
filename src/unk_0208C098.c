@@ -53,33 +53,33 @@ u8 App_PixelCount(u32 cur, u32 max, u8 maxPixels)
     return pixels;
 }
 
-u8 sub_0208C0D4 (u32 param0, u32 param1)
+u8 App_BarColor(u32 cur, u32 max)
 {
-    param0 <<= 8;
-    param1 <<= 8;
+    cur <<= 8;
+    max <<= 8;
 
-    if (param0 > (param1 / 2)) {
-        return 3;
-    } else if (param0 > (param1 / 5)) {
-        return 2;
-    } else if (param0 > 0) {
-        return 1;
+    if (cur > max / 2) {
+        return BARCOLOR_GREEN;
+    }
+    
+    if (cur > max / 5) {
+        return BARCOLOR_YELLOW;
+    } 
+    
+    if (cur > 0) {
+        return BARCOLOR_RED;
     }
 
-    return 0;
+    return BARCOLOR_EMPTY;
 }
 
-u8 sub_0208C104 (u16 param0, u16 param1, u32 param2)
+u8 HealthBar_Color(u16 curHP, u16 maxHP, u32 barSize)
 {
-    u32 v0;
-
-    if (param0 == param1) {
-        return 4;
+    if (curHP == maxHP) {
+        return BARCOLOR_MAX;
     }
 
-    v0 = App_PixelCount(param0, param1, param2);
-
-    return sub_0208C0D4(v0, param2);
+    return App_BarColor(App_PixelCount(curHP, maxHP, barSize), barSize);
 }
 
 void sub_0208C120 (u8 param0, u32 param1)

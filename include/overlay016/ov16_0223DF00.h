@@ -103,7 +103,15 @@ u16 * ov16_0223E0BC(BattleSystem * param0);
 UnkStruct_ov16_0223E0C8 * ov16_0223E0C8(BattleSystem * param0);
 UnkStruct_0200B358 * ov16_0223E0D0(BattleSystem * param0);
 Strbuf* ov16_0223E0D4(BattleSystem * param0);
-u16 ov16_0223E0D8(BattleSystem * param0, int param1);
+
+/**
+ * @brief Get the trainer ID for a particular battler.
+ * 
+ * @param battleSys
+ * @param battler
+ * @return The battler's trainer ID
+ */
+u16 Battler_TrainerID(BattleSystem *battleSys, int battler);
 TrainerData * BattleSystem_TrainerData(BattleSystem * param0, int param1);
 
 /**
@@ -250,7 +258,7 @@ void ov16_0223F638(BattleSystem * param0, u16 param1, u8 * param2);
 u16 ov16_0223F6E4(BattleSystem * param0);
 int ov16_0223F6F0(BattleSystem * param0, u16 param1);
 u16 BattleSystem_TrainerItems(BattleSystem * param0, int param1, int param2);
-u32 ov16_0223F710(BattleSystem * param0);
+u32 BattleSystem_RecordingStopped(BattleSystem * param0);
 void BattleSystem_SetStopRecording(BattleSystem *battleSys, int flag);
 BOOL ov16_0223F7A4(BattleSystem * param0);
 void BattleSystem_ShowStopPlaybackButton(BattleSystem *battleSys);

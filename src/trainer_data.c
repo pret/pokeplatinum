@@ -97,7 +97,7 @@ u32 TrainerData_LoadParam(int trainerID, enum TrainerDataParam paramID)
     return result;
 }
 
-BOOL TrainerData_HasMessageType(int trainerID, int msgType, int heapID)
+BOOL TrainerData_HasMessageType(int trainerID, enum TrainerMessageType msgType, int heapID)
 {
     NARC *narc; // must declare up here to match
     u16 offset, data[2];
@@ -126,7 +126,7 @@ BOOL TrainerData_HasMessageType(int trainerID, int msgType, int heapID)
     return result;
 }
 
-void TrainerData_LoadMessage(int trainerID, int msgType, Strbuf *strbuf, int heapID)
+void TrainerData_LoadMessage(int trainerID, enum TrainerMessageType msgType, Strbuf *strbuf, int heapID)
 {
     NARC *narc; // must declare up here to match
     u16 offset, data[2];

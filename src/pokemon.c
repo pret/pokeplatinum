@@ -4190,7 +4190,7 @@ BOOL sub_02077E3C(Pokemon *mon)
     return sub_02005844(monSpecies, monForm);
 }
 
-void sub_02077E64(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5)
+void Pokemon_SetCatchData(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5)
 {
     sub_02077EA4(&mon->box, param1, monPokeball, param3, param4, param5);
 
