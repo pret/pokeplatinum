@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -52,7 +52,7 @@ typedef struct {
     int unk_04;
     u8 unk_08;
     UnkStruct_ov12_0221FCDC * unk_0C;
-    UnkStruct_02007C7C * unk_10;
+    Sprite * unk_10;
     UnkStruct_ov12_02225F6C unk_14;
     UnkStruct_ov12_02225F6C unk_38;
 } UnkStruct_ov12_0222AFA0;
@@ -63,7 +63,7 @@ typedef struct {
     s16 unk_02;
     int unk_04;
     UnkStruct_ov12_0221FCDC * unk_08;
-    UnkStruct_02007C7C * unk_0C;
+    Sprite * unk_0C;
     UnkStruct_ov12_02225F6C unk_10;
     UnkStruct_ov12_02225F6C unk_34;
 } UnkStruct_ov12_0222B220;
@@ -78,7 +78,7 @@ typedef struct {
     s16 unk_08;
     s16 unk_0A;
     UnkStruct_ov12_0221FCDC * unk_0C;
-    UnkStruct_02007C7C * unk_10;
+    Sprite * unk_10;
     UnkStruct_0200C704 * unk_14;
     CellActorData * unk_18[4];
     UnkStruct_ov12_02225F6C unk_28[4];
@@ -89,7 +89,7 @@ typedef struct {
     u8 unk_01;
     u8 unk_02;
     UnkStruct_ov12_0221FCDC * unk_04;
-    UnkStruct_02007C7C * unk_08;
+    Sprite * unk_08;
     UnkStruct_ov12_02225F6C unk_0C;
 } UnkStruct_ov12_0222B914;
 
@@ -99,7 +99,7 @@ typedef struct {
     s16 unk_02;
     s16 unk_04;
     UnkStruct_ov12_0221FCDC * unk_08;
-    UnkStruct_02007C7C * unk_0C;
+    Sprite * unk_0C;
     UnkStruct_ov12_02225F6C unk_10;
 } UnkStruct_ov12_0222BA18;
 
@@ -110,7 +110,7 @@ typedef struct {
     s16 unk_04;
     s16 unk_06;
     UnkStruct_ov12_0221FCDC * unk_08;
-    UnkStruct_02007C7C * unk_0C;
+    Sprite * unk_0C;
     UnkStruct_ov12_02225F6C unk_10;
 } UnkStruct_ov12_0222BB30;
 
@@ -120,7 +120,7 @@ typedef struct {
     PaletteSys * unk_04;
     UnkStruct_ov12_0221FCDC * unk_08;
     UnkStruct_ov12_022267D4 * unk_0C;
-    UnkStruct_02007C7C * unk_10;
+    Sprite * unk_10;
 } UnkStruct_ov12_0222BD48;
 
 typedef struct {
@@ -130,7 +130,7 @@ typedef struct {
     s16 unk_04;
     s16 unk_06;
     UnkStruct_ov12_0221FCDC * unk_08;
-    UnkStruct_02007C7C * unk_0C;
+    Sprite * unk_0C;
     UnkStruct_ov12_02225F6C unk_10;
     UnkStruct_ov12_02225F6C unk_34;
 } UnkStruct_ov12_0222BE80;
@@ -157,7 +157,7 @@ typedef struct {
     s16 unk_02;
     int unk_04;
     s8 unk_08;
-    UnkStruct_02007C7C * unk_0C;
+    Sprite * unk_0C;
     UnkStruct_ov12_0221FCDC * unk_10;
     UnkStruct_0200C704 * unk_14;
     UnkStruct_ov12_0222C1A4_sub1 unk_18[3];
@@ -186,7 +186,7 @@ typedef struct {
     BGL * unk_08;
     UnkStruct_ov12_0221FCDC * unk_0C;
     UnkStruct_0200C704 * unk_10;
-    UnkStruct_02007C7C * unk_14;
+    Sprite * unk_14;
     CellActorData * unk_18;
     UnkStruct_ov12_02225F6C unk_1C;
     UnkStruct_ov12_02225F6C unk_40;
@@ -196,7 +196,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov12_0223595C unk_00;
     UnkStruct_ov12_0222C7E0_sub1 unk_1C;
-    UnkStruct_02007C7C * unk_28[2];
+    Sprite * unk_28[2];
     s16 unk_30;
     s16 unk_32;
     s16 unk_34;
@@ -209,7 +209,7 @@ typedef struct {
     UnkStruct_ov12_0223595C unk_00;
     UnkStruct_ov12_0222C7E0_sub1 unk_1C;
     UnkStruct_ov12_02235350 unk_28[4];
-    UnkStruct_02007C7C * unk_38[4];
+    Sprite * unk_38[4];
     int unk_48;
     UnkStruct_ov12_02225F6C unk_4C;
 } UnkStruct_ov12_0222C994;
@@ -218,7 +218,7 @@ typedef struct {
     UnkStruct_ov12_0223595C unk_00;
     UnkStruct_ov12_0222C7E0_sub1 unk_1C;
     UnkStruct_ov12_02235350 unk_28[2];
-    UnkStruct_02007C7C * unk_30[2];
+    Sprite * unk_30[2];
     CellActorData * unk_38[2];
     UnkStruct_ov12_02225F6C unk_40[2];
 } UnkStruct_ov12_0222CACC;
@@ -271,7 +271,7 @@ typedef struct {
     UnkStruct_ov12_0221FCDC * unk_10;
     UnkStruct_0200C6E4 * unk_14;
     UnkStruct_0200C704 * unk_18;
-    UnkStruct_02007C7C * unk_1C;
+    Sprite * unk_1C;
     s16 unk_20;
     int unk_24;
     u16 unk_28;

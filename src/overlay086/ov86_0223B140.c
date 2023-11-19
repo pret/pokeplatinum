@@ -14,7 +14,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 
-#include "struct_defs/struct_02007C10.h"
+#include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_02008900.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200C738.h"
@@ -81,7 +81,7 @@ typedef struct {
     UnkStruct_02022550 * unk_1CC;
     void * unk_1D0;
     void * unk_1D4;
-    UnkStruct_02007C10 unk_1D8[6][10];
+    SpriteAnimationFrame unk_1D8[6][10];
     int unk_2C8[6];
     int unk_2E0[6];
     u32 unk_2F8[6];
@@ -172,7 +172,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov86_0223BDAC unk_00;
     UnkStruct_02022550 * unk_08;
-    const UnkStruct_02007C10 * unk_0C;
+    const SpriteAnimationFrame * unk_0C;
     UnkStruct_02008900 unk_10;
     NNSG2dImageProxy unk_24[2];
     BOOL unk_6C;

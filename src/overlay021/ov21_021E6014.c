@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02022550_decl.h"
@@ -89,9 +89,9 @@ static void ov21_021E66B0(UnkStruct_ov21_021E6118 * param0, const UnkStruct_ov21
 static void ov21_021E67C8(UnkStruct_ov21_021E6118 * param0, const UnkStruct_ov21_021E6104 * param1);
 static void ov21_021E6844(UnkStruct_ov21_021E6118 * param0);
 static void ov21_021E6860(UnkStruct_02022550 * param0, short param1);
-static void ov21_021E687C(UnkStruct_02007C7C * param0, short param1);
+static void ov21_021E687C(Sprite * param0, short param1);
 static void ov21_021E688C(UnkStruct_02022550 * param0, short param1);
-static void ov21_021E68B0(UnkStruct_02007C7C * param0, short param1);
+static void ov21_021E68B0(Sprite * param0, short param1);
 
 void ov21_021E6014 (UnkStruct_ov21_021E68F4 * param0, UnkStruct_ov21_021D0F60 * param1, int param2)
 {
@@ -520,7 +520,7 @@ static void ov21_021E66B0 (UnkStruct_ov21_021E6118 * param0, const UnkStruct_ov2
 
 static void ov21_021E67C8 (UnkStruct_ov21_021E6118 * param0, const UnkStruct_ov21_021E6104 * param1)
 {
-    UnkStruct_02007C7C * v0 = ov21_021D2170(param0->unk_00);
+    Sprite * v0 = ov21_021D2170(param0->unk_00);
     short v1;
     short v2;
     int v3 = ov21_021D37BC(param1->unk_04);
@@ -539,7 +539,7 @@ static void ov21_021E67C8 (UnkStruct_ov21_021E6118 * param0, const UnkStruct_ov2
 
 static void ov21_021E6844 (UnkStruct_ov21_021E6118 * param0)
 {
-    UnkStruct_02007C7C * v0 = ov21_021D2170(param0->unk_00);
+    Sprite * v0 = ov21_021D2170(param0->unk_00);
 
     sub_02007DEC(v0, 6, 1);
     sub_02008780(v0);
@@ -555,7 +555,7 @@ static void ov21_021E6860 (UnkStruct_02022550 * param0, short param1)
     sub_02021C50(param0, &v0);
 }
 
-static void ov21_021E687C (UnkStruct_02007C7C * param0, short param1)
+static void ov21_021E687C (Sprite * param0, short param1)
 {
     sub_02007DEC(param0, 1, 88 + param1);
 }
@@ -570,7 +570,7 @@ static void ov21_021E688C (UnkStruct_02022550 * param0, short param1)
     sub_02021C80(param0, &v0, 2);
 }
 
-static void ov21_021E68B0 (UnkStruct_02007C7C * param0, short param1)
+static void ov21_021E68B0 (Sprite * param0, short param1)
 {
     fx32 v0;
 

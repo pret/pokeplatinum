@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
@@ -1256,7 +1256,7 @@ static void ov21_021DDC14 (UnkStruct_ov21_021DD420 * param0)
 
 static void ov21_021DDCF4 (UnkStruct_ov21_021DCAE0 * param0, const UnkStruct_ov21_021DCACC * param1)
 {
-    UnkStruct_02007C7C * v0 = ov21_021D2170(param0->unk_00);
+    Sprite * v0 = ov21_021D2170(param0->unk_00);
     int v1 = ov21_021D37BC(param1->unk_00);
 
     ov21_021D1890(param0->unk_00, param1->unk_00, v1, 2, 40, 120);

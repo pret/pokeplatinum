@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 
@@ -728,7 +728,7 @@ void ov12_02235838 (UnkStruct_ov12_0221FCDC * param0, int param1, BOOL param2)
     G2_SetWndOutsidePlane((1 << ov12_022233EC(param0, 0)) | (1 << ov12_022233EC(param0, 1)) | GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_OBJ, 1);
 }
 
-void ov12_02235918 (UnkStruct_02007C7C * param0, UnkStruct_ov12_02235350 * param1)
+void ov12_02235918 (Sprite * param0, UnkStruct_ov12_02235350 * param1)
 {
     if (param0 == NULL) {
         param1->unk_00 = 0;

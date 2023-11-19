@@ -16,7 +16,7 @@
 
 #include "constdata/const_020F410C.h"
 
-#include "struct_defs/struct_02007C10.h"
+#include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0201D738.h"
 #include "struct_defs/struct_020279FC.h"
@@ -286,7 +286,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
     case 4:
         if (sub_0200384C(param0->unk_14) == 0) {
             {
-                UnkStruct_02007C10 v0[10];
+                SpriteAnimationFrame v0[10];
 
                 sub_020789F4(param0->unk_80, param0->unk_44, param0->unk_1C[0], param0->unk_60, 2, 0, 0);
                 sub_020789BC(param0->unk_80, &v0[0], param0->unk_60, 1);
@@ -390,7 +390,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
     case 10:
         if ((sub_0200384C(param0->unk_14) == 0) && (sub_0207C8E0(param0->unk_30) == 0)) {
             {
-                UnkStruct_02007C10 v2[10];
+                SpriteAnimationFrame v2[10];
 
                 sub_020789F4(param0->unk_80, param0->unk_44, param0->unk_1C[1], param0->unk_62, 2, 0, 0);
                 sub_020789BC(param0->unk_80, &v2[0], param0->unk_62, 1);
@@ -654,7 +654,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
     case 42:
         if (sub_0200384C(param0->unk_14) == 0) {
             {
-                UnkStruct_02007C10 v4[10];
+                SpriteAnimationFrame v4[10];
 
                 sub_020789F4(param0->unk_80, param0->unk_44, param0->unk_1C[0], param0->unk_60, 2, 0, 0);
                 sub_020789BC(param0->unk_80, &v4[0], param0->unk_60, 1);

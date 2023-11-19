@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
@@ -101,7 +101,7 @@ struct UnkStruct_ov79_021D29B4_t {
     UnkStruct_ov79_021D2C50 unk_0C;
     UnkStruct_ov79_021D2C50 unk_68;
     UnkStruct_02022550 * unk_C4;
-    UnkStruct_02007C7C * unk_C8;
+    Sprite * unk_C8;
     UnkStruct_ov79_021D29E4 unk_CC[4];
 };
 

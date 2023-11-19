@@ -6,7 +6,7 @@
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
@@ -77,7 +77,7 @@ typedef struct UnkStruct_ov12_02223178_t {
     UnkStruct_0200C6E4 * unk_AC;
     UnkStruct_ov16_0223E0C8 * unk_B0[4];
     u8 unk_C0[4];
-    UnkStruct_02007C7C * unk_C4[4];
+    Sprite * unk_C4[4];
     u32 unk_D4;
     u16 unk_D8[4];
     u8 unk_E0[4];
@@ -213,7 +213,7 @@ typedef struct UnkStruct_ov12_022222D4_t {
 typedef struct {
     u8 unk_00;
     u8 unk_01;
-    UnkStruct_02007C7C * unk_04;
+    Sprite * unk_04;
     SysTask * unk_08;
 } UnkStruct_ov12_0222118C_sub1;
 
@@ -2187,7 +2187,7 @@ static void ov12_02221580 (UnkStruct_ov12_0221FCDC * param0)
     v10 = param0->unk_BC->unk_E8[v7];
     {
         UnkStruct_ov104_0223F9E0 v11;
-        UnkStruct_02007C7C * v12 = ov12_022232FC(param0, v7);
+        Sprite * v12 = ov12_022232FC(param0, v7);
         int v13;
         int v14;
         s16 v15;
@@ -2346,7 +2346,7 @@ static void ov12_02221834 (UnkStruct_ov12_0221FCDC * param0)
         {
             int v5;
             int v6;
-            UnkStruct_02007C7C * v7;
+            Sprite * v7;
 
             v6 = ov12_022210A8(param0, v0);
             v7 = ov12_022232FC(param0, v6);
@@ -3974,7 +3974,7 @@ int ov12_022232EC (UnkStruct_ov12_0221FCDC * param0, int param1)
     return param0->unk_BC->unk_EC[param1];
 }
 
-UnkStruct_02007C7C * ov12_022232FC (UnkStruct_ov12_0221FCDC * param0, int param1)
+Sprite * ov12_022232FC (UnkStruct_ov12_0221FCDC * param0, int param1)
 {
     if (param0->unk_BC->unk_C4[param1] == NULL) {
         return NULL;
@@ -4279,7 +4279,7 @@ UnkStruct_ov12_02223764 * ov12_022234F8 (BattleSystem * param0, int param1, int 
             {
                 int v11;
                 UnkStruct_ov104_0223F9E0 v12;
-                UnkStruct_02007C7C * v13;
+                Sprite * v13;
                 s16 v14, v15;
 
                 v13 = v2->unk_48[v5];

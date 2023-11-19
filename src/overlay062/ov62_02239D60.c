@@ -4,7 +4,7 @@
 #include "overlay062/ov62_const_funcptr_tables.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
@@ -75,7 +75,7 @@ typedef struct {
     Window unk_1B4[8];
     Window unk_234[8];
     CellActorData * unk_2B4[30];
-    UnkStruct_02007C7C * unk_32C;
+    Sprite * unk_32C;
     UnkStruct_02023FCC * unk_330[5];
     UnkStruct_02023FCC * unk_344;
     UnkStruct_ov62_022312B0 unk_348[2];

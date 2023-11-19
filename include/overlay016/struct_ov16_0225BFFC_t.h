@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV16_0225BFFC_T_H
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/cell_actor_data.h"
 #include "struct_decls/sys_task.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -15,8 +15,8 @@
 struct BattlerData {
     UnkStruct_ov16_0225BFFC_sub1 unk_00;
     CellActorData * unk_18;
-    UnkStruct_02007C7C * unk_1C;
-    UnkStruct_02007C7C * unk_20;
+    Sprite * unk_1C;
+    Sprite * unk_20;
     Window * unk_24;
     UnkStruct_ov16_022674C4 unk_28;
     UnkStruct_ov16_0226C378 unk_7B;

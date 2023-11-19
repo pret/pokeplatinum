@@ -5,21 +5,21 @@
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02015F84_decl.h"
+#include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
-#include "struct_defs/struct_02007C10.h"
+#include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0202818C.h"
 #include "struct_defs/struct_0202CA28.h"
-#include "struct_defs/struct_020789BC.h"
-#include "struct_defs/struct_020789F4.h"
+#include "struct_defs/archived_poke_sprite_data.h"
+#include "struct_defs/poke_animation_settings.h"
 #include "struct_defs/struct_02078B40.h"
 #include "overlay005/struct_ov5_021DE5D0.h"
 #include "overlay104/struct_ov104_0223F9E0.h"
@@ -137,7 +137,7 @@ static void Pokemon_DecryptData(void *data, u32 bytes, u32 seed);
 static u16 Pokemon_GetDataChecksum(void *data, u32 bytes);
 static void *BoxPokemon_GetDataBlock(BoxPokemon *boxMon, u32 personality, enum PokemonDataBlockID dataBlockID);
 static int Pokemon_GetFormNarcIndex(int monSpecies, int monForm);
-static inline int Pokemon_GetLowestBitInverse(int num);
+static inline int Pokemon_Face(int num);
 
 void Pokemon_Init(Pokemon *mon)
 {
@@ -4675,68 +4675,67 @@ void sub_0207896C(BoxPokemon *boxMon)
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
 }
 
-static inline int Pokemon_GetLowestBitInverse(int num)
+static inline int Pokemon_Face(int clientType)
 {
-    int result = (num & 0x1) ? 0 : 1;
-    return result;
+    return (clientType & 1) ? 0 : 1;
 }
 
-void sub_020789BC(NARC *narc, UnkStruct_02007C10 *param1, u16 param2, u16 param3)
+void sub_020789BC(NARC *narc, SpriteAnimationFrame *param1, u16 param2, u16 param3)
 {
-    int v1 = Pokemon_GetLowestBitInverse(param3);
+    int v1 = Pokemon_Face(param3);
 
-    UnkStruct_020789BC v0;
-    NARC_ReadFromMember(narc, 0, param2 * sizeof(UnkStruct_020789BC), sizeof(UnkStruct_020789BC), &v0);
-    MI_CpuCopy8(&v0.unk_00[v1].unk_03[0], param1, sizeof(UnkStruct_02007C10) * 10);
+    ArchivedPokeSpriteData v0;
+    NARC_ReadFromMember(narc, 0, param2 * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &v0);
+    MI_CpuCopy8(&v0.faces[v1].frames[0], param1, sizeof(SpriteAnimationFrame) * 10);
 }
 
-void sub_020789F4(NARC *narc, UnkStruct_02015F84 *param1, UnkStruct_02007C7C *param2, u16 param3, int param4, int param5, int param6)
+void sub_020789F4(NARC *narc, PokemonAnimationSys *param1, Sprite *param2, u16 param3, int param4, int param5, int param6)
 {
     int v3 = (param4 == 2) ? 0 : 1;
 
-    UnkStruct_020789BC v1;
-    NARC_ReadFromMember(narc, 0, param3 * sizeof(UnkStruct_020789BC), sizeof(UnkStruct_020789BC), &v1);
+    ArchivedPokeSpriteData v1;
+    NARC_ReadFromMember(narc, 0, param3 * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &v1);
 
-    UnkStruct_020789F4 v0;
-    v0.unk_00 = v1.unk_00[v3].unk_01;
-    v0.unk_02 = v1.unk_00[v3].unk_02;
-    v0.unk_04 = param5;
+    PokeAnimationSettings v0;
+    v0.animation = v1.faces[v3].animation;
+    v0.startDelay = v1.faces[v3].startDelay;
+    v0.reverse = param5;
 
     sub_02015FCC(param1, param2, &v0, param6);
 }
 
 void sub_02078A4C(NARC *narc, u8 *param1, u16 param2, u16 param3)
 {
-    int v1 = Pokemon_GetLowestBitInverse(param3);
+    int v1 = Pokemon_Face(param3);
 
-    UnkStruct_020789BC v0;
-    NARC_ReadFromMember(narc, 0, param2 * sizeof(UnkStruct_020789BC), sizeof(UnkStruct_020789BC), &v0);
+    ArchivedPokeSpriteData v0;
+    NARC_ReadFromMember(narc, 0, param2 * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &v0);
 
-    *param1 = v0.unk_00[v1].unk_00;
+    *param1 = v0.faces[v1].cryDelay;
 }
 
 void sub_02078A80(NARC *narc, s8 *param1, u16 param2)
 {
-    UnkStruct_020789BC v0;
+    ArchivedPokeSpriteData v0;
 
-    NARC_ReadFromMember(narc, 0, param2 * sizeof(UnkStruct_020789BC), sizeof(UnkStruct_020789BC), &v0);
-    *param1 = v0.unk_56;
+    NARC_ReadFromMember(narc, 0, param2 * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &v0);
+    *param1 = v0.height;
 }
 
 void sub_02078AA4(NARC *narc, s8 *param1, u16 param2)
 {
-    UnkStruct_020789BC v0;
+    ArchivedPokeSpriteData v0;
 
-    NARC_ReadFromMember(narc, 0, param2 * sizeof(UnkStruct_020789BC), sizeof(UnkStruct_020789BC), &v0);
-    *param1 = v0.unk_57;
+    NARC_ReadFromMember(narc, 0, param2 * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &v0);
+    *param1 = v0.shadowOffsetX;
 }
 
 void sub_02078AC8(NARC *narc, u8 *param1, u16 param2)
 {
-    UnkStruct_020789BC v0;
+    ArchivedPokeSpriteData v0;
 
-    NARC_ReadFromMember(narc, 0, param2 * sizeof(UnkStruct_020789BC), sizeof(UnkStruct_020789BC), &v0);
-    *param1 = v0.unk_58;
+    NARC_ReadFromMember(narc, 0, param2 * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &v0);
+    *param1 = v0.shadowSize;
 }
 
 BOOL Pokemon_SetBallSeal(int param0, Pokemon *mon, int heapID)

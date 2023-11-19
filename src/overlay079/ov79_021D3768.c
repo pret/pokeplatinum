@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 
 #include "struct_defs/archived_sprite.h"
 #include "overlay079/struct_ov79_021D3820.h"
@@ -83,7 +83,7 @@ static void ov79_021D3870 (UnkStruct_ov79_021D3820 * param0, int param1)
 static void ov79_021D38D0 (UnkStruct_ov79_021D3820 * param0, UnkStruct_ov79_021D38D0 * param1, int param2)
 {
     ArchivedSprite v0;
-    UnkStruct_02007C7C * v1;
+    Sprite * v1;
 
     param0->unk_04 = sub_0200762C(param2);
 

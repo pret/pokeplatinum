@@ -7,7 +7,7 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "message.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
@@ -100,9 +100,9 @@ static void ov17_0224BE50(SysTask * param0, void * param1);
 static void ov17_0224BE64(UnkStruct_ov17_0224BE50 * param0);
 static void ov17_0224BF58(UnkStruct_ov17_0224BE50 * param0);
 static void ov17_0224C414(SysTask * param0, void * param1);
-static BOOL ov17_0224B7BC(UnkStruct_ov17_0224B7BC * param0, UnkStruct_02007C7C * param1, UnkStruct_ov17_0224B09C * param2, int param3, int param4, int param5, UnkStruct_ov17_0224ABFC * param6, u32 param7);
-static BOOL ov17_0224B8D0(UnkStruct_ov17_0224B7BC * param0, UnkStruct_02007C7C * param1, UnkStruct_ov17_0224B09C * param2, int param3, int param4, int param5, int param6, u32 param7);
-static BOOL ov17_0224BA50(UnkStruct_ov17_0224B7BC * param0, UnkStruct_02007C7C * param1, UnkStruct_ov17_0224B09C * param2, int param3, int param4, int param5, int param6, u32 param7);
+static BOOL ov17_0224B7BC(UnkStruct_ov17_0224B7BC * param0, Sprite * param1, UnkStruct_ov17_0224B09C * param2, int param3, int param4, int param5, UnkStruct_ov17_0224ABFC * param6, u32 param7);
+static BOOL ov17_0224B8D0(UnkStruct_ov17_0224B7BC * param0, Sprite * param1, UnkStruct_ov17_0224B09C * param2, int param3, int param4, int param5, int param6, u32 param7);
+static BOOL ov17_0224BA50(UnkStruct_ov17_0224B7BC * param0, Sprite * param1, UnkStruct_ov17_0224B09C * param2, int param3, int param4, int param5, int param6, u32 param7);
 static void ov17_0224ABFC(SysTask * param0, void * param1);
 static int ov17_0224B06C(int param0);
 static void ov17_0224AE84(SysTask * param0, void * param1);
@@ -1124,7 +1124,7 @@ static int ov17_0224B06C (int param0)
     return v0;
 }
 
-void ov17_0224B09C (UnkStruct_02007C7C * param0, UnkStruct_ov17_0224B09C * param1)
+void ov17_0224B09C (Sprite * param0, UnkStruct_ov17_0224B09C * param1)
 {
     s32 v0, v1;
 
@@ -1449,7 +1449,7 @@ static void ov17_0224B5F0 (SysTask * param0, void * param1)
     }
 }
 
-static inline void inline_ov17_0224B7BC (UnkStruct_ov17_0224B7BC * param0, UnkStruct_02007C7C * param1, UnkStruct_ov17_0224B09C * param2, int param3, int param4, int param5)
+static inline void inline_ov17_0224B7BC (UnkStruct_ov17_0224B7BC * param0, Sprite * param1, UnkStruct_ov17_0224B09C * param2, int param3, int param4, int param5)
 {
     s32 v0, v1, v2, v3;
     s32 v4, v5;
@@ -1485,7 +1485,7 @@ static inline void inline_ov17_0224B7BC (UnkStruct_ov17_0224B7BC * param0, UnkSt
     ov22_0225B100(param2->unk_00, param2->unk_04, param2->unk_08);
 }
 
-static BOOL ov17_0224B7BC (UnkStruct_ov17_0224B7BC * param0, UnkStruct_02007C7C * param1, UnkStruct_ov17_0224B09C * param2, int param3, int param4, int param5, UnkStruct_ov17_0224ABFC * param6, u32 param7)
+static BOOL ov17_0224B7BC (UnkStruct_ov17_0224B7BC * param0, Sprite * param1, UnkStruct_ov17_0224B09C * param2, int param3, int param4, int param5, UnkStruct_ov17_0224ABFC * param6, u32 param7)
 {
     BOOL v0 = 0;
 
@@ -1532,7 +1532,7 @@ static BOOL ov17_0224B7BC (UnkStruct_ov17_0224B7BC * param0, UnkStruct_02007C7C 
     return v0;
 }
 
-static BOOL ov17_0224B8D0 (UnkStruct_ov17_0224B7BC * param0, UnkStruct_02007C7C * param1, UnkStruct_ov17_0224B09C * param2, int param3, int param4, int param5, int param6, u32 param7)
+static BOOL ov17_0224B8D0 (UnkStruct_ov17_0224B7BC * param0, Sprite * param1, UnkStruct_ov17_0224B09C * param2, int param3, int param4, int param5, int param6, u32 param7)
 {
     BOOL v0 = 0;
     s32 v1;
@@ -1600,7 +1600,7 @@ static BOOL ov17_0224B8D0 (UnkStruct_ov17_0224B7BC * param0, UnkStruct_02007C7C 
     return v0;
 }
 
-static BOOL ov17_0224BA50 (UnkStruct_ov17_0224B7BC * param0, UnkStruct_02007C7C * param1, UnkStruct_ov17_0224B09C * param2, int param3, int param4, int param5, int param6, u32 param7)
+static BOOL ov17_0224BA50 (UnkStruct_ov17_0224B7BC * param0, Sprite * param1, UnkStruct_ov17_0224B09C * param2, int param3, int param4, int param5, int param6, u32 param7)
 {
     BOOL v0 = 0;
     s32 v1;

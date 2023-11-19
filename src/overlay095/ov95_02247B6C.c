@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -15,7 +15,7 @@
 #include "overlay095/struct_ov95_0224773C_decl.h"
 #include "overlay095/struct_ov95_02247958_decl.h"
 
-#include "struct_defs/struct_02007C10.h"
+#include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
@@ -52,8 +52,8 @@ typedef struct {
     int unk_04;
     int unk_08;
     UnkStruct_02007768 * unk_0C;
-    UnkStruct_02007C7C * unk_10;
-    UnkStruct_02007C10 unk_14[10];
+    Sprite * unk_10;
+    SpriteAnimationFrame unk_14[10];
     UnkStruct_02022550 * unk_3C[2];
     UnkStruct_ov95_02247568 unk_44;
     BGL * unk_54;
@@ -93,7 +93,7 @@ static int ov95_02247ED8(UnkStruct_ov95_02247C6C * param0, int * param1);
 static int ov95_02247F04(UnkStruct_ov95_02247C6C * param0, int * param1);
 static int ov95_02248090(UnkStruct_ov95_02247C6C * param0, int * param1);
 static void ov95_02248174(UnkStruct_ov95_02247C6C * param0);
-static UnkStruct_02007C7C * ov95_02248240(UnkStruct_ov95_02247C6C * param0);
+static Sprite * ov95_02248240(UnkStruct_ov95_02247C6C * param0);
 static void ov95_0224829C(UnkStruct_ov95_02247C6C * param0);
 static void ov95_02248340(UnkStruct_ov95_02247C6C * param0);
 static void ov95_02248364(UnkStruct_ov95_02247C6C * param0, int param1, int param2, int param3);
@@ -462,7 +462,7 @@ static void ov95_02248174 (UnkStruct_ov95_02247C6C * param0)
     sub_02008A84(param0->unk_0C, NNS_GfdGetPlttKeyAddr(v1), NNS_GfdGetPlttKeySize(v1));
 }
 
-static UnkStruct_02007C7C * ov95_02248240 (UnkStruct_ov95_02247C6C * param0)
+static Sprite * ov95_02248240 (UnkStruct_ov95_02247C6C * param0)
 {
     ArchivedSprite v0;
     BoxPokemon * v1;

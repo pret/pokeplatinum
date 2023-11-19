@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/sys_task.h"
@@ -703,7 +703,7 @@ static void ov12_0222E080 (SysTask * param0, void * param1)
     switch (v0->unk_04.unk_00) {
     case 0:
     {
-        UnkStruct_02007C7C * v1;
+        Sprite * v1;
 
         v1 = ov12_022232FC(v0->unk_04.unk_04, ov12_02220240(v0->unk_04.unk_04));
         sub_02007DEC(v1, 6, 1);
@@ -736,7 +736,7 @@ static void ov12_0222E080 (SysTask * param0, void * param1)
         }
 
         {
-            UnkStruct_02007C7C * v2;
+            Sprite * v2;
 
             v2 = ov12_022232FC(v0->unk_04.unk_04, ov12_02220240(v0->unk_04.unk_04));
             sub_02007DEC(v2, 6, 0);
@@ -998,7 +998,7 @@ void ov12_0222E61C (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param
             s16 v5;
             s16 v6;
             int v7;
-            UnkStruct_02007C7C * v8;
+            Sprite * v8;
 
             v7 = ov12_02220240(param0);
             v8 = ov12_022232FC(param0, v7);

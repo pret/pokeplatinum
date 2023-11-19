@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_020789BC_SUB1_DECL_H
 #define POKEPLATINUM_STRUCT_020789BC_SUB1_DECL_H
 
-typedef struct UnkStruct_020789BC_sub1_t UnkStruct_020789BC_sub1;
+typedef struct ArchivedAnimation_sub1_t ArchivedAnimation_sub1;
 
 #endif // POKEPLATINUM_STRUCT_020789BC_SUB1_DECL_H

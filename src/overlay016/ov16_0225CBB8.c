@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "message.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
@@ -28,7 +28,7 @@
 #include "overlay012/const_ov12_0223B0A0.h"
 #include "overlay012/const_ov12_0223B0B8.h"
 
-#include "struct_defs/struct_02007C10.h"
+#include "struct_defs/sprite_animation_frame.h"
 #include "functypes/funcptr_02007C34.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200D0F4.h"
@@ -266,12 +266,12 @@ static void ov16_022636D4(SysTask * param0, void * param1);
 void ov16_02263730(BattleSystem * param0, BattlerData * param1);
 u8 Battler_Type(BattlerData * param0);
 u8 Battler_BootState(BattlerData * param0);
-UnkStruct_02007C7C * ov16_02263AFC(BattlerData * param0);
+Sprite * ov16_02263AFC(BattlerData * param0);
 UnkStruct_ov16_022674C4 * ov16_02263B08(BattlerData * param0);
 UnkStruct_ov16_0226C378 * ov16_02263B0C(BattlerData * param0);
 void ov16_02263B10(BattlerData * param0);
 void ov16_02263B20(BattlerData * param0, int param1);
-static UnkStruct_02007C7C * ov16_02263B30(BattleSystem * param0, UnkStruct_02007768 * param1, ArchivedSprite * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, int param10, UnkStruct_02007C10 * param11, UnkFuncPtr_02007C34 * param12);
+static Sprite * ov16_02263B30(BattleSystem * param0, UnkStruct_02007768 * param1, ArchivedSprite * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, int param10, SpriteAnimationFrame * param11, UnkFuncPtr_02007C34 * param12);
 static void ov16_02263C1C(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C3F8 * param2, BattleMessage * param3);
 static void ov16_02263CF0(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C40C * param2, BattleMessage * param3);
 static void ov16_02263DD0(BattleSystem * param0, BattlerData * param1, BattleMessage * param2);
@@ -327,7 +327,7 @@ void ov16_0225CBDC (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     int v0;
     ArchivedSprite v1;
     UnkStruct_02007768 * v2;
-    UnkStruct_02007C10 v3[10];
+    SpriteAnimationFrame v3[10];
     UnkStruct_ov16_0225E4E8 * v4;
     int v5;
     u8 v6;
@@ -1868,7 +1868,7 @@ static void ov16_0225EA80 (SysTask * param0, void * param1)
 
             {
                 UnkStruct_02007768 * v2;
-                UnkStruct_02007C10 v3[10];
+                SpriteAnimationFrame v3[10];
 
                 v2 = ov16_0223E000(v0->unk_00);
                 sub_020789BC(v0->unk_04->unk_1A0, &v3[0], v0->unk_86, v0->unk_82);
@@ -2037,7 +2037,7 @@ static void ov16_0225F0C0 (SysTask * param0, void * param1)
     }
         {
             UnkStruct_02007768 * v3;
-            UnkStruct_02007C10 v4[10];
+            SpriteAnimationFrame v4[10];
 
             v3 = ov16_0223E000(v0->unk_00);
             sub_020789BC(v0->unk_04->unk_1A0, &v4[0], v0->unk_86, v0->unk_82);
@@ -5752,7 +5752,7 @@ u8 Battler_BootState (BattlerData *battler)
     return battler->bootState;
 }
 
-UnkStruct_02007C7C * ov16_02263AFC (BattlerData * param0)
+Sprite * ov16_02263AFC (BattlerData * param0)
 {
     if (param0->unk_20) {
         return param0->unk_20;
@@ -5785,9 +5785,9 @@ void ov16_02263B20 (BattlerData * param0, int param1)
     sub_0200D3F4(param0->unk_18, param1);
 }
 
-static UnkStruct_02007C7C * ov16_02263B30 (BattleSystem * param0, UnkStruct_02007768 * param1, ArchivedSprite * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, int param10, UnkStruct_02007C10 * param11, UnkFuncPtr_02007C34 * param12)
+static Sprite * ov16_02263B30 (BattleSystem * param0, UnkStruct_02007768 * param1, ArchivedSprite * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, int param10, SpriteAnimationFrame * param11, UnkFuncPtr_02007C34 * param12)
 {
-    UnkStruct_02007C7C * v0;
+    Sprite * v0;
     u8 * v1 = ov16_0223F2B8(ov16_0223E0C8(param0), param10);
     int v2;
     int v3;

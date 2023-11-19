@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_02015F84_decl.h"
+#include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
@@ -29,7 +29,7 @@ typedef struct {
     UnkStruct_02001AF4 * unk_48;
     UnkStruct_0200C704 * unk_4C;
     UnkStruct_0200C6E4 * unk_50;
-    UnkStruct_02015F84 * unk_54;
+    PokemonAnimationSys * unk_54;
 } UnkStruct_ov119_021D17B8;
 
 #endif // POKEPLATINUM_STRUCT_OV119_021D17B8_H

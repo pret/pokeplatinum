@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "message.h"
@@ -83,7 +83,7 @@ typedef struct UnkStruct_ov21_021E8D48_t {
     BGL * unk_00;
     Window * unk_04;
     PaletteSys * unk_08;
-    UnkStruct_02007C7C * unk_0C;
+    Sprite * unk_0C;
     UnkStruct_0200C738 unk_10;
     UnkStruct_020218BC * unk_19C;
     UnkStruct_02009714 * unk_1A0[4];
@@ -101,9 +101,9 @@ typedef struct UnkStruct_ov21_021E8D48_t {
 } UnkStruct_ov21_021E8D48;
 
 static void ov21_021E9828(SysTask * param0, void * param1);
-static void ov21_021E98D8(PaletteSys * param0, UnkStruct_02007C7C * param1);
-static void ov21_021E98F8(PaletteSys * param0, UnkStruct_02007C7C * param1, int param2, int param3, int param4, int param5, int param6);
-static BOOL ov21_021E9948(PaletteSys * param0, UnkStruct_02007C7C * param1);
+static void ov21_021E98D8(PaletteSys * param0, Sprite * param1);
+static void ov21_021E98F8(PaletteSys * param0, Sprite * param1, int param2, int param3, int param4, int param5, int param6);
+static BOOL ov21_021E9948(PaletteSys * param0, Sprite * param1);
 static void ov21_021E8E0C(UnkStruct_ov21_021E8D48 * param0, const UnkStruct_ov21_021E8E0C * param1);
 static void ov21_021E900C(UnkStruct_ov21_021E8D48 * param0);
 static void ov21_021E90B0(BGL * param0, int param1);
@@ -114,7 +114,7 @@ static void ov21_021E9208(UnkStruct_02009714 ** param0, int param1);
 static void ov21_021E9228(UnkStruct_02009714 ** param0);
 static void ov21_021E9240(UnkStruct_ov21_021D22F8 * param0, UnkStruct_ov21_021D4C0C * param1, int param2, int param3, int param4);
 static void ov21_021E92B0(UnkStruct_ov21_021D22F8 * param0);
-static UnkStruct_02007C7C * ov21_021E99E0(UnkStruct_02007768 * param0, Pokemon * param1, int param2, int param3, int param4);
+static Sprite * ov21_021E99E0(UnkStruct_02007768 * param0, Pokemon * param1, int param2, int param3, int param4);
 static void ov21_021E92C4(UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9);
 static void ov21_021E9344(UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** param1, int param2, NARC * param3, int param4, int param5, int param6, int param7, int param8, int param9);
 static void ov21_021E93C4(UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** param1);
@@ -189,7 +189,7 @@ BOOL ov21_021E8DEC (const UnkStruct_ov21_021E8D48 * param0)
     return 0;
 }
 
-UnkStruct_02007C7C * ov21_021E8E00 (UnkStruct_ov21_021E8D48 * param0)
+Sprite * ov21_021E8E00 (UnkStruct_ov21_021E8D48 * param0)
 {
     return param0->unk_0C;
 }
@@ -725,20 +725,20 @@ static void ov21_021E9828 (SysTask * param0, void * param1)
     sub_020219F8(v0->unk_19C);
 }
 
-static void ov21_021E98D8 (PaletteSys * param0, UnkStruct_02007C7C * param1)
+static void ov21_021E98D8 (PaletteSys * param0, Sprite * param1)
 {
     sub_02003070(param0, 0, 0, 32 * 0x10);
     sub_02003070(param0, 2, 0, (((16 - 2) * 16) * sizeof(u16)));
 }
 
-static void ov21_021E98F8 (PaletteSys * param0, UnkStruct_02007C7C * param1, int param2, int param3, int param4, int param5, int param6)
+static void ov21_021E98F8 (PaletteSys * param0, Sprite * param1, int param2, int param3, int param4, int param5, int param6)
 {
     sub_020086FC(param1, param2, param4, param5, param6);
     sub_02003178(param0, 0x1 | 0x4, 0xffff, param5, param3, param4, param6);
     sub_02003858(param0, 0);
 }
 
-static BOOL ov21_021E9948 (PaletteSys * param0, UnkStruct_02007C7C * param1)
+static BOOL ov21_021E9948 (PaletteSys * param0, Sprite * param1)
 {
     BOOL v0[2];
 
@@ -770,7 +770,7 @@ static void ov21_021E998C (Window * param0, int param1)
     MessageLoader_Free(v1);
 }
 
-static UnkStruct_02007C7C * ov21_021E99E0 (UnkStruct_02007768 * param0, Pokemon * param1, int param2, int param3, int param4)
+static Sprite * ov21_021E99E0 (UnkStruct_02007768 * param0, Pokemon * param1, int param2, int param3, int param4)
 {
     ArchivedSprite v0;
 

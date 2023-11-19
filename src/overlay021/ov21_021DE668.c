@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02022550_decl.h"
@@ -586,7 +586,7 @@ static void ov21_021DEF3C (UnkStruct_ov21_021DE760 * param0)
 
 static void ov21_021DEF54 (UnkStruct_ov21_021DE760 * param0, const UnkStruct_ov21_021DE6D4 * param1)
 {
-    UnkStruct_02007C7C * v0 = ov21_021D2170(param0->unk_00);
+    Sprite * v0 = ov21_021D2170(param0->unk_00);
     int v1 = ov21_021D37BC(param1->unk_04);
 
     ov21_021D1890(param0->unk_00, param1->unk_04, v1, 2, 48, 72);
@@ -595,7 +595,7 @@ static void ov21_021DEF54 (UnkStruct_ov21_021DE760 * param0, const UnkStruct_ov2
 
 static void ov21_021DEF8C (UnkStruct_ov21_021DE760 * param0)
 {
-    UnkStruct_02007C7C * v0 = ov21_021D2170(param0->unk_00);
+    Sprite * v0 = ov21_021D2170(param0->unk_00);
 
     sub_02007DEC(v0, 6, 1);
     sub_02008780(v0);

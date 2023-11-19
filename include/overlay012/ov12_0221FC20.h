@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV12_0221FC20_H
 
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/cell_actor_data.h"
@@ -68,7 +68,7 @@ int ov12_022232C4(UnkStruct_ov12_0221FCDC * param0, int param1);
 int ov12_022232D0(UnkStruct_ov12_0221FCDC * param0, int param1);
 int ov12_022232E0(UnkStruct_ov12_0221FCDC * param0, int param1);
 int ov12_022232EC(UnkStruct_ov12_0221FCDC * param0, int param1);
-UnkStruct_02007C7C * ov12_022232FC(UnkStruct_ov12_0221FCDC * param0, int param1);
+Sprite * ov12_022232FC(UnkStruct_ov12_0221FCDC * param0, int param1);
 PaletteSys * ov12_0222332C(UnkStruct_ov12_0221FCDC * param0);
 int ov12_02223334(UnkStruct_ov12_0221FCDC * param0, int param1);
 int ov12_02223344(UnkStruct_ov12_0221FCDC * param0, int param1);

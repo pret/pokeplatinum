@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -155,7 +155,7 @@ void ov21_021D2164 (UnkStruct_ov21_021D13FC * param0, int param1, int param2)
     ov21_021D222C(param0, param1, param2, 0);
 }
 
-UnkStruct_02007C7C * ov21_021D2170 (const UnkStruct_ov21_021D13FC * param0)
+Sprite * ov21_021D2170 (const UnkStruct_ov21_021D13FC * param0)
 {
     return ov21_021D2274(param0, 0);
 }
@@ -203,7 +203,7 @@ void ov21_021D2250 (UnkStruct_ov21_021D13FC * param0, int * param1, int * param2
     *param2 = sub_020080C0(param0->unk_154[param3], 1);
 }
 
-UnkStruct_02007C7C * ov21_021D2274 (const UnkStruct_ov21_021D13FC * param0, int param1)
+Sprite * ov21_021D2274 (const UnkStruct_ov21_021D13FC * param0, int param1)
 {
     return param0->unk_154[param1];
 }
@@ -358,7 +358,7 @@ BOOL ov21_021D24EC (UnkStruct_ov21_021D23F8 * param0)
 
 void ov21_021D24FC (const UnkStruct_ov21_021D13FC * param0, UnkStruct_ov21_021D23F8 * param1)
 {
-    UnkStruct_02007C7C * v0;
+    Sprite * v0;
     int v1;
 
     v1 = -ov21_021D24B8(param1);
@@ -369,7 +369,7 @@ void ov21_021D24FC (const UnkStruct_ov21_021D13FC * param0, UnkStruct_ov21_021D2
 
 void ov21_021D251C (const UnkStruct_ov21_021D13FC * param0, UnkStruct_ov21_021D23F8 * param1, int param2)
 {
-    UnkStruct_02007C7C * v0;
+    Sprite * v0;
     int v1;
 
     v1 = -ov21_021D24B8(param1);

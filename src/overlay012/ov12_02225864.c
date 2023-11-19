@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02013B10_decl.h"
 #include "struct_decls/struct_02013BE0_decl.h"
 #include "struct_decls/sys_task.h"
@@ -228,13 +228,13 @@ void ov12_022259FC (UnkStruct_ov12_02225F6C * param0, CellActorData * param1)
     sub_0200D6E8(param1, v0, v1);
 }
 
-void ov12_02225A18 (UnkStruct_ov12_02225F6C * param0, UnkStruct_02007C7C * param1, s16 param2, s16 param3)
+void ov12_02225A18 (UnkStruct_ov12_02225F6C * param0, Sprite * param1, s16 param2, s16 param3)
 {
     sub_02007DEC(param1, 0, param2 + param0->unk_00);
     sub_02007DEC(param1, 1, param3 + param0->unk_02);
 }
 
-void ov12_02225A3C (UnkStruct_ov12_02225F6C * param0, UnkStruct_02007C7C * param1)
+void ov12_02225A3C (UnkStruct_ov12_02225F6C * param0, Sprite * param1)
 {
     sub_02007DEC(param1, 12, param0->unk_00);
     sub_02007DEC(param1, 13, param0->unk_02);
@@ -306,7 +306,7 @@ BOOL ov12_02225B78 (UnkStruct_ov12_02225F6C * param0, s16 param1, s16 param2, Ce
     return 0;
 }
 
-BOOL ov12_02225BA0 (UnkStruct_ov12_02225F6C * param0, s16 param1, s16 param2, UnkStruct_02007C7C * param3)
+BOOL ov12_02225BA0 (UnkStruct_ov12_02225F6C * param0, s16 param1, s16 param2, Sprite * param3)
 {
     if (ov12_02225AE0(param0)) {
         ov12_02225A18(param0, param3, param1, param2);
@@ -356,7 +356,7 @@ BOOL ov12_02225C50 (UnkStruct_ov12_02225F6C * param0, CellActorData * param1)
     return 0;
 }
 
-BOOL ov12_02225C74 (UnkStruct_ov12_02225F6C * param0, UnkStruct_02007C7C * param1)
+BOOL ov12_02225C74 (UnkStruct_ov12_02225F6C * param0, Sprite * param1)
 {
     if (ov12_02225C14(param0)) {
         ov12_02225A18(param0, param1, 0, 0);
@@ -589,7 +589,7 @@ s16 ov12_02225FD4 (s16 param0, int param1, fx32 param2)
     return v5;
 }
 
-void ov12_02226024 (UnkStruct_02007C7C * param0, s16 param1, s16 param2, fx32 param3, int param4)
+void ov12_02226024 (Sprite * param0, s16 param1, s16 param2, fx32 param3, int param4)
 {
     s16 v0;
     s16 v1;
@@ -634,7 +634,7 @@ BOOL ov12_022260A8 (UnkStruct_ov12_02225F6C * param0, CellActorData * param1)
     return 0;
 }
 
-BOOL ov12_022260C8 (UnkStruct_ov12_02225F6C * param0, UnkStruct_02007C7C * param1)
+BOOL ov12_022260C8 (UnkStruct_ov12_02225F6C * param0, Sprite * param1)
 {
     if (ov12_02225EB8(param0)) {
         ov12_02225A3C(param0, param1);
@@ -644,7 +644,7 @@ BOOL ov12_022260C8 (UnkStruct_ov12_02225F6C * param0, UnkStruct_02007C7C * param
     return 0;
 }
 
-BOOL ov12_022260E8 (UnkStruct_ov12_02225F6C * param0, UnkStruct_02007C7C * param1)
+BOOL ov12_022260E8 (UnkStruct_ov12_02225F6C * param0, Sprite * param1)
 {
     if (ov12_02225F6C(param0)) {
         ov12_02225A3C(param0, param1);
@@ -716,7 +716,7 @@ BOOL ov12_02226138 (UnkStruct_ov12_02225F6C * param0)
     return 0;
 }
 
-BOOL ov12_0222619C (UnkStruct_ov12_02225F6C * param0, s16 param1, s16 param2, UnkStruct_02007C7C * param3)
+BOOL ov12_0222619C (UnkStruct_ov12_02225F6C * param0, s16 param1, s16 param2, Sprite * param3)
 {
     if (ov12_02226138(param0)) {
         ov12_02225A18(param0, param3, param1, param2);

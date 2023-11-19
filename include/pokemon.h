@@ -3,13 +3,13 @@
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_defs/struct_02007C10.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_defs/sprite_animation_frame.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/cell_actor_data.h"
-#include "struct_decls/struct_02015F84_decl.h"
+#include "struct_decls/pokemon_animation_sys_decl.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_decls/struct_02078B40_decl.h"
@@ -909,8 +909,8 @@ BOOL sub_0207884C(BoxPokemon *boxMon, TrainerInfo *param1, int heapID);
 int sub_020788D0(int param0);
 void sub_0207893C(Pokemon *mon);
 void sub_0207896C(BoxPokemon *boxMon);
-void sub_020789BC(NARC *narc, UnkStruct_02007C10 *param1, u16 param2, u16 param3);
-void sub_020789F4(NARC *narc, UnkStruct_02015F84 *param1, UnkStruct_02007C7C *param2, u16 param3, int param4, int param5, int param6);
+void sub_020789BC(NARC *narc, SpriteAnimationFrame *param1, u16 param2, u16 param3);
+void sub_020789F4(NARC *narc, PokemonAnimationSys *param1, Sprite *param2, u16 param3, int param4, int param5, int param6);
 void sub_02078A4C(NARC *narc, u8 *param1, u16 param2, u16 param3);
 void sub_02078A80(NARC *narc, s8 *param1, u16 param2);
 void sub_02078AA4(NARC *narc, s8 *param1, u16 param2);

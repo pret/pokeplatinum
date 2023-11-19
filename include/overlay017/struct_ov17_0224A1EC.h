@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
@@ -31,7 +31,7 @@ typedef struct {
     UnkStruct_02095C48_sub1 * unk_00;
     UnkStruct_ov17_0224B09C unk_04[4];
     UnkStruct_02007768 * unk_44;
-    UnkStruct_02007C7C * unk_48[4];
+    Sprite * unk_48[4];
     UnkStruct_0200C6E4 * unk_58;
     UnkStruct_0200C704 * unk_5C;
     BGL * unk_60;

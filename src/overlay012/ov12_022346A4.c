@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/sys_task.h"
@@ -439,7 +439,7 @@ void ov12_02234D98 (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param
 {
     UnkStruct_ov12_02234BD8 * v0;
     int v1;
-    UnkStruct_02007C7C * v2;
+    Sprite * v2;
     UnkStruct_ov104_0223F9E0 v3;
 
     v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02234BD8));

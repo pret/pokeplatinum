@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV17_0224A0FC_H
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "overlay017/struct_ov17_0224A1EC.h"
@@ -61,7 +61,7 @@ void ov17_0224AFF8(UnkStruct_0200C704 * param0);
 BOOL ov17_0224B01C(UnkStruct_ov17_0224DF54 * param0);
 void ov17_0224B058(UnkStruct_ov17_0224DF54 * param0);
 void ov17_0224B068(UnkStruct_ov17_0224A1EC * param0, int param1);
-void ov17_0224B09C(UnkStruct_02007C7C * param0, UnkStruct_ov17_0224B09C * param1);
+void ov17_0224B09C(Sprite * param0, UnkStruct_ov17_0224B09C * param1);
 void ov17_0224B0CC(UnkStruct_ov17_0224A1EC * param0);
 void ov17_0224B20C(UnkStruct_ov17_0224DF54 * param0, const UnkStruct_ov17_0224EDE0 * param1);
 void ov17_0224B59C(UnkStruct_ov17_0224DF54 * param0);
