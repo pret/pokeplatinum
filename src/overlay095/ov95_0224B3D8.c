@@ -376,7 +376,7 @@ static int ov95_0224B71C (UnkStruct_ov95_0224B4D4 * param0, int * param1)
             if (BoxPokemon_GetValue((BoxPokemon *)v0, MON_DATA_IS_EGG, NULL) == 0) {
                 u8 v1;
 
-                sub_02078A4C(param0->unk_84, &v1, ov95_02247660(param0->unk_00), 1);
+                PokeSprite_LoadCryDelay(param0->unk_84, &v1, ov95_02247660(param0->unk_00), 1);
                 sub_0200590C(ov95_02247660(param0->unk_00), v1, ov95_02247668(param0->unk_00));
                 sub_02007B98(param0->unk_14, 1);
             }
@@ -515,7 +515,7 @@ static Sprite * ov95_0224BA8C (UnkStruct_ov95_0224B4D4 * param0)
     v1 = (BoxPokemon *)ov95_0224763C(param0->unk_00);
 
     BoxPokemon_BuildArchivedSprite(&v0, v1, 2, 0);
-    sub_020789BC(param0->unk_84, param0->unk_18, ov95_02247660(param0->unk_00), 1);
+    PokeSprite_LoadAnimationFrames(param0->unk_84, param0->unk_18, ov95_02247660(param0->unk_00), 1);
 
     v2 = (100 - 20) + sub_020765C4(v1, 2, 0);
     return sub_02007C34(param0->unk_10, &v0, 128, v2, 0, 0, param0->unk_18, NULL);

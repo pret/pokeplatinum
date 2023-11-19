@@ -871,7 +871,7 @@ static void ov86_0223BAC8 (UnkStruct_ov86_0223B3C8 * param0, NNSG2dCellDataBank 
         GX_LoadOBJ(param0->unk_310, v12 * 2 * 3200 + 3200, 3200);
 
         sub_02006E84(v1.archive, v1.palette, 1, v12 * 0x20, 0x20, 63);
-        sub_020789BC(param0->unk_1C54, &param0->unk_1D8[v12][0], param0->unk_2E0[v12], 1);
+        PokeSprite_LoadAnimationFrames(param0->unk_1C54, &param0->unk_1D8[v12][0], param0->unk_2E0[v12], 1);
     }
 
     NNS_G2dInitImageProxy(&v5);

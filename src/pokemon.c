@@ -4680,7 +4680,7 @@ static inline int Pokemon_Face(int clientType)
     return (clientType & 1) ? 0 : 1;
 }
 
-void sub_020789BC(NARC *narc, SpriteAnimationFrame *param1, u16 param2, u16 param3)
+void PokeSprite_LoadAnimationFrames(NARC *narc, SpriteAnimationFrame *param1, u16 param2, u16 param3)
 {
     int v1 = Pokemon_Face(param3);
 
@@ -4689,7 +4689,7 @@ void sub_020789BC(NARC *narc, SpriteAnimationFrame *param1, u16 param2, u16 para
     MI_CpuCopy8(&v0.faces[v1].frames[0], param1, sizeof(SpriteAnimationFrame) * 10);
 }
 
-void sub_020789F4(NARC *narc, PokemonAnimationSys *param1, Sprite *param2, u16 param3, int param4, int param5, int param6)
+void PokeSprite_LoadAnimation(NARC *narc, PokemonAnimationSys *param1, Sprite *param2, u16 param3, int param4, int param5, int param6)
 {
     int v3 = (param4 == 2) ? 0 : 1;
 
@@ -4701,10 +4701,10 @@ void sub_020789F4(NARC *narc, PokemonAnimationSys *param1, Sprite *param2, u16 p
     v0.startDelay = v1.faces[v3].startDelay;
     v0.reverse = param5;
 
-    sub_02015FCC(param1, param2, &v0, param6);
+    PokeAnimation_Init(param1, param2, &v0, param6);
 }
 
-void sub_02078A4C(NARC *narc, u8 *param1, u16 param2, u16 param3)
+void PokeSprite_LoadCryDelay(NARC *narc, u8 *param1, u16 param2, u16 param3)
 {
     int v1 = Pokemon_Face(param3);
 
@@ -4714,23 +4714,23 @@ void sub_02078A4C(NARC *narc, u8 *param1, u16 param2, u16 param3)
     *param1 = v0.faces[v1].cryDelay;
 }
 
-void sub_02078A80(NARC *narc, s8 *param1, u16 param2)
+void PokeSprite_LoadYOffset(NARC *narc, s8 *param1, u16 param2)
 {
     ArchivedPokeSpriteData v0;
 
     NARC_ReadFromMember(narc, 0, param2 * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &v0);
-    *param1 = v0.height;
+    *param1 = v0.yOffset;
 }
 
-void sub_02078AA4(NARC *narc, s8 *param1, u16 param2)
+void PokeSprite_LoadXOffsetShadow(NARC *narc, s8 *param1, u16 param2)
 {
     ArchivedPokeSpriteData v0;
 
     NARC_ReadFromMember(narc, 0, param2 * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &v0);
-    *param1 = v0.shadowOffsetX;
+    *param1 = v0.xOffsetShadow;
 }
 
-void sub_02078AC8(NARC *narc, u8 *param1, u16 param2)
+void PokeSprite_LoadShadowSize(NARC *narc, u8 *param1, u16 param2)
 {
     ArchivedPokeSpriteData v0;
 

@@ -194,7 +194,7 @@ void sub_02015FB8 (PokemonAnimationSys * param0)
     Heap_FreeToHeap(param0);
 }
 
-void sub_02015FCC (PokemonAnimationSys * param0, Sprite * param1, const PokeAnimationSettings * param2, const u8 param3)
+void PokeAnimation_Init (PokemonAnimationSys * param0, Sprite * param1, const PokeAnimationSettings * param2, const u8 param3)
 {
     u8 v0 = param3;
     int v1 = param2->animation;

@@ -15,8 +15,8 @@ typedef struct PokeSpriteFaceData {
 
 typedef struct ArchivedPokeSpriteData {
     PokeSpriteFaceData faces[MAX_FACES]; ///< Data for each display-face of the Pokemon's sprite.
-    s8 height; ///< Height of the Pokemon's sprite-face.
-    s8 shadowOffsetX; ///< Horizontal offset for the shadow sprite beneath the Pokemon's sprite.
+    s8 yOffset; ///< Vertical offset of the Pokemon's sprite for either face.
+    s8 xOffsetShadow; ///< Horizontal offset for the shadow sprite beneath the Pokemon's sprite.
     u8 shadowSize; ///< Size of the shadow sprite beneath the Pokemon's sprite. TODO: enum
 } ArchivedPokeSpriteData;
 

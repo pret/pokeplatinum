@@ -1144,7 +1144,7 @@ static void sub_0208D618 (UnkStruct_0208D7BC * param0)
         return;
     }
 
-    sub_02078A4C(param0->unk_6A0, &v0, param0->unk_250.unk_0C, 1);
+    PokeSprite_LoadCryDelay(param0->unk_6A0, &v0, param0->unk_250.unk_0C, 1);
 
     if (param0->unk_250.unk_0C == 441) {
         sub_02006438(param0->unk_24C->unk_28, 0, 100, 0, v0);

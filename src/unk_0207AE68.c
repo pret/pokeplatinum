@@ -118,8 +118,8 @@ UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon * param1, int param2,
     v0->unk_5C = param11;
     v0->unk_80 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, param11);
 
-    sub_02078A4C(v0->unk_80, &(v0->unk_84), v0->unk_60, 1);
-    sub_02078A4C(v0->unk_80, &(v0->unk_85), v0->unk_62, 1);
+    PokeSprite_LoadCryDelay(v0->unk_80, &(v0->unk_84), v0->unk_60, 1);
+    PokeSprite_LoadCryDelay(v0->unk_80, &(v0->unk_85), v0->unk_62, 1);
 
     v0->unk_14 = sub_02002F38(param11);
 
@@ -288,8 +288,8 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
             {
                 SpriteAnimationFrame v0[10];
 
-                sub_020789F4(param0->unk_80, param0->unk_44, param0->unk_1C[0], param0->unk_60, 2, 0, 0);
-                sub_020789BC(param0->unk_80, &v0[0], param0->unk_60, 1);
+                PokeSprite_LoadAnimation(param0->unk_80, param0->unk_44, param0->unk_1C[0], param0->unk_60, 2, 0, 0);
+                PokeSprite_LoadAnimationFrames(param0->unk_80, &v0[0], param0->unk_60, 1);
                 sub_02007C10(param0->unk_1C[0], &v0[0]);
                 sub_02007B98(param0->unk_1C[0], NULL);
             }
@@ -392,8 +392,8 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
             {
                 SpriteAnimationFrame v2[10];
 
-                sub_020789F4(param0->unk_80, param0->unk_44, param0->unk_1C[1], param0->unk_62, 2, 0, 0);
-                sub_020789BC(param0->unk_80, &v2[0], param0->unk_62, 1);
+                PokeSprite_LoadAnimation(param0->unk_80, param0->unk_44, param0->unk_1C[1], param0->unk_62, 2, 0, 0);
+                PokeSprite_LoadAnimationFrames(param0->unk_80, &v2[0], param0->unk_62, 1);
                 sub_02007C10(param0->unk_1C[1], &v2[0]);
                 sub_02007B98(param0->unk_1C[1], NULL);
             }
@@ -656,8 +656,8 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
             {
                 SpriteAnimationFrame v4[10];
 
-                sub_020789F4(param0->unk_80, param0->unk_44, param0->unk_1C[0], param0->unk_60, 2, 0, 0);
-                sub_020789BC(param0->unk_80, &v4[0], param0->unk_60, 1);
+                PokeSprite_LoadAnimation(param0->unk_80, param0->unk_44, param0->unk_1C[0], param0->unk_60, 2, 0, 0);
+                PokeSprite_LoadAnimationFrames(param0->unk_80, &v4[0], param0->unk_60, 1);
                 sub_02007C10(param0->unk_1C[0], &v4[0]);
                 sub_02007B98(param0->unk_1C[0], NULL);
             }
