@@ -102,7 +102,7 @@
     },
     "evolutions": [
         [
-            "LEVEL_UP",
+            "EVO_LEVEL_UP",
             36,
             "SPECIES_BLASTOISE"
         ]

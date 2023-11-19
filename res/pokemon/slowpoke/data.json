@@ -111,12 +111,12 @@
     },
     "evolutions": [
         [
-            "LEVEL_UP",
+            "EVO_LEVEL_UP",
             37,
             "SPECIES_SLOWBRO"
         ],
         [
-            "TRADE_WITH_ITEM",
+            "EVO_TRADE_WITH_ITEM",
             "ITEM_KINGS_ROCK",
             "SPECIES_SLOWKING"
         ]

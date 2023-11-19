@@ -86,7 +86,7 @@
     },
     "evolutions": [
         [
-            "LEVEL_UP",
+            "EVO_LEVEL_UP",
             14,
             "SPECIES_NUZLEAF"
         ]

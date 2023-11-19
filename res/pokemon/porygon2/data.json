@@ -105,7 +105,7 @@
     },
     "evolutions": [
         [
-            "TRADE_WITH_ITEM",
+            "EVO_TRADE_WITH_ITEM",
             "ITEM_DUBIOUS_DISC",
             "SPECIES_PORYGON_Z"
         ]

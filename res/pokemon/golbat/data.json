@@ -102,7 +102,7 @@
     },
     "evolutions": [
         [
-            "HAPPINESS",
+            "EVO_HAPPINESS",
             "SPECIES_CROBAT"
         ]
     ]

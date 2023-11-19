@@ -628,6 +628,18 @@ pl_personal_narc = custom_target('pl_personal.narc',
     ]
 )
 
+evo_narc = custom_target('evo.narc',
+    output: 'evo.narc',
+    input: personal_files,
+    command: [
+        evo_py,
+        '--knarc', knarc_exe,
+        '--source-dir', '@CURRENT_SOURCE_DIR@',
+        '--private-dir', '@PRIVATE_DIR@',
+        '--output-dir', '@OUTDIR@',
+    ]
+)
+
 pl_poke_icon_narc = custom_target('pl_poke_icon.narc',
     output: 'pl_poke_icon.narc',
     input: [
@@ -679,6 +691,7 @@ pl_otherpoke_narc = custom_target('pl_otherpoke.narc',
 )
 
 nitrofs_files += pl_personal_narc
+nitrofs_files += evo_narc
 nitrofs_files += pl_poke_icon_narc
 nitrofs_files += pl_pokegra_narc
 nitrofs_files += pl_otherpoke_narc

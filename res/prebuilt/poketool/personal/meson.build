@@ -1,5 +1,4 @@
 prebuilt_files = [
-    'evo.narc',
     'growtbl.narc',
     'personal.narc',
     'pl_growtbl.narc',

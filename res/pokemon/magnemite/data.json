@@ -97,7 +97,7 @@
     },
     "evolutions": [
         [
-            "LEVEL_UP",
+            "EVO_LEVEL_UP",
             30,
             "SPECIES_MAGNETON"
         ]

@@ -106,7 +106,7 @@
     },
     "evolutions": [
         [
-            "LEVEL_UP",
+            "EVO_LEVEL_UP",
             37,
             "SPECIES_TOXICROAK"
         ]

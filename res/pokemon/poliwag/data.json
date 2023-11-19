@@ -90,7 +90,7 @@
     },
     "evolutions": [
         [
-            "LEVEL_UP",
+            "EVO_LEVEL_UP",
             25,
             "SPECIES_POLIWHIRL"
         ]

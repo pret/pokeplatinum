@@ -1,0 +1,31 @@
+from enum import Enum, auto
+
+
+class EvoMethod(Enum):
+    EVO_NONE                = 0
+    EVO_HAPPINESS           = auto()
+    EVO_HAPPINESS_DAY       = auto()
+    EVO_HAPPINESS_NIGHT     = auto()
+    EVO_LEVEL_UP            = auto()
+    EVO_TRADE               = auto()
+    EVO_TRADE_WITH_ITEM     = auto()
+    EVO_USE_ITEM            = auto()
+    EVO_LEVEL_ATK_GT_DEF    = auto()
+    EVO_LEVEL_ATK_EQ_DEF    = auto()
+    EVO_LEVEL_ATK_LT_DEF    = auto()
+    EVO_LEVEL_PID_LOW       = auto()
+    EVO_LEVEL_PID_HIGH      = auto()
+    EVO_LEVEL_NINJASK       = auto()
+    EVO_LEVEL_SHEDINJA      = auto()
+    EVO_BEAUTY              = auto()
+    EVO_USE_ITEM_MALE       = auto()
+    EVO_USE_ITEM_FEMALE     = auto()
+    EVO_USE_ITEM_DAY        = auto()
+    EVO_USE_ITEM_NIGHT      = auto()
+    EVO_KNOW_MOVE           = auto()
+    EVO_MON_IN_PARTY        = auto()
+    EVO_LEVEL_MALE          = auto()
+    EVO_LEVEL_FEMALE        = auto()
+    EVO_ELECTRIC_FIELD      = auto()
+    EVO_MOSSY_STONE         = auto()
+    EVO_ICY_STONE           = auto()

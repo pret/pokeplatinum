@@ -99,8 +99,8 @@
     },
     "evolutions": [
         [
-            "KNOW_MOVE",
-            "ANCIENT_POWER",
+            "EVO_KNOW_MOVE",
+            "MOVE_ANCIENT_POWER",
             "SPECIES_YANMEGA"
         ]
     ]

@@ -102,7 +102,7 @@
     },
     "evolutions": [
         [
-            "ELECTRIC_FIELD",
+            "EVO_ELECTRIC_FIELD",
             "SPECIES_MAGNEZONE"
         ]
     ]

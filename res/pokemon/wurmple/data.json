@@ -56,12 +56,12 @@
     },
     "evolutions": [
         [
-            "LEVEL_PID_LOW",
+            "EVO_LEVEL_PID_LOW",
             7,
             "SPECIES_SILCOON"
         ],
         [
-            "LEVEL_PID_HIGH",
+            "EVO_LEVEL_PID_HIGH",
             7,
             "SPECIES_CASCOON"
         ]
