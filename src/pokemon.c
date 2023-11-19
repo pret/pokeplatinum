@@ -4680,62 +4680,62 @@ static inline int Pokemon_Face(int clientType)
     return (clientType & 1) ? 0 : 1;
 }
 
-void PokeSprite_LoadAnimationFrames(NARC *narc, SpriteAnimationFrame *param1, u16 param2, u16 param3)
+void PokeSprite_LoadAnimationFrames(NARC *narc, SpriteAnimationFrame *frames, u16 species, u16 clientType)
 {
-    int v1 = Pokemon_Face(param3);
+    int face = Pokemon_Face(clientType);
 
-    ArchivedPokeSpriteData v0;
-    NARC_ReadFromMember(narc, 0, param2 * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &v0);
-    MI_CpuCopy8(&v0.faces[v1].frames[0], param1, sizeof(SpriteAnimationFrame) * 10);
+    ArchivedPokeSpriteData data;
+    NARC_ReadFromMember(narc, 0, species * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &data);
+    MI_CpuCopy8(data.faces[face].frames, frames, sizeof(SpriteAnimationFrame) * MAX_ANIMATION_FRAMES);
 }
 
-void PokeSprite_LoadAnimation(NARC *narc, PokemonAnimationSys *param1, Sprite *param2, u16 param3, int param4, int param5, int param6)
+void PokeSprite_LoadAnimation(NARC *narc, PokemonAnimationSys *animationSys, Sprite *sprite, u16 species, int face, int reverse, int frame)
 {
-    int v3 = (param4 == 2) ? 0 : 1;
+    int faceType = (face == FACE_FRONT) ? 0 : 1;
 
-    ArchivedPokeSpriteData v1;
-    NARC_ReadFromMember(narc, 0, param3 * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &v1);
+    ArchivedPokeSpriteData spriteData;
+    NARC_ReadFromMember(narc, 0, species * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &spriteData);
 
-    PokeAnimationSettings v0;
-    v0.animation = v1.faces[v3].animation;
-    v0.startDelay = v1.faces[v3].startDelay;
-    v0.reverse = param5;
+    PokeAnimationSettings settings;
+    settings.animation = spriteData.faces[faceType].animation;
+    settings.startDelay = spriteData.faces[faceType].startDelay;
+    settings.reverse = reverse;
 
-    PokeAnimation_Init(param1, param2, &v0, param6);
+    PokeAnimation_Init(animationSys, sprite, &settings, frame);
 }
 
-void PokeSprite_LoadCryDelay(NARC *narc, u8 *param1, u16 param2, u16 param3)
+void PokeSprite_LoadCryDelay(NARC *narc, u8 *cryDelay, u16 species, u16 clientType)
 {
-    int v1 = Pokemon_Face(param3);
+    int face = Pokemon_Face(clientType);
 
-    ArchivedPokeSpriteData v0;
-    NARC_ReadFromMember(narc, 0, param2 * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &v0);
+    ArchivedPokeSpriteData data;
+    NARC_ReadFromMember(narc, 0, species * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &data);
 
-    *param1 = v0.faces[v1].cryDelay;
+    *cryDelay = data.faces[face].cryDelay;
 }
 
-void PokeSprite_LoadYOffset(NARC *narc, s8 *param1, u16 param2)
+void PokeSprite_LoadYOffset(NARC *narc, s8 *yOffset, u16 species)
 {
-    ArchivedPokeSpriteData v0;
+    ArchivedPokeSpriteData data;
 
-    NARC_ReadFromMember(narc, 0, param2 * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &v0);
-    *param1 = v0.yOffset;
+    NARC_ReadFromMember(narc, 0, species * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &data);
+    *yOffset = data.yOffset;
 }
 
-void PokeSprite_LoadXOffsetShadow(NARC *narc, s8 *param1, u16 param2)
+void PokeSprite_LoadXOffsetShadow(NARC *narc, s8 *xOffsetShadow, u16 species)
 {
-    ArchivedPokeSpriteData v0;
+    ArchivedPokeSpriteData data;
 
-    NARC_ReadFromMember(narc, 0, param2 * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &v0);
-    *param1 = v0.xOffsetShadow;
+    NARC_ReadFromMember(narc, 0, species * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &data);
+    *xOffsetShadow = data.xOffsetShadow;
 }
 
-void PokeSprite_LoadShadowSize(NARC *narc, u8 *param1, u16 param2)
+void PokeSprite_LoadShadowSize(NARC *narc, u8 *shadowSize, u16 species)
 {
-    ArchivedPokeSpriteData v0;
+    ArchivedPokeSpriteData data;
 
-    NARC_ReadFromMember(narc, 0, param2 * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &v0);
-    *param1 = v0.shadowSize;
+    NARC_ReadFromMember(narc, 0, species * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &data);
+    *shadowSize = data.shadowSize;
 }
 
 BOOL Pokemon_SetBallSeal(int param0, Pokemon *mon, int heapID)
