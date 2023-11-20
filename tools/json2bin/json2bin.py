@@ -27,6 +27,11 @@ class OptionalBehavior(Enum):
     PAD = auto()
 
 
+class OutputMode(Enum):
+    SINGLE_FILE = 0
+    MULTI_FILE = auto()
+
+
 class Parser():
     __slots__ = ('registry', 'padding_index', 'field_index', 'alignment_index')
 
@@ -169,13 +174,13 @@ def parse_sint(val: int, size: int, _consts: type[Enum] = None) -> bytes:
     return val.to_bytes(size, 'little')
 
 
-def parse(fname_in: str, schema: Parser) -> bytes:
+def _parse(fname_in: str, schema: Parser) -> bytes:
     with open(fname_in, 'r', encoding='utf8') as input_file:
         input_json = json.load(input_file)
         return schema.parse(input_json)
 
 
-def write(output_bin: bytes, output_idx: int, output_dir: str | None):
+def _write(output_bin: bytes, output_idx: int, output_dir: str | None):
     output_fname = f'{output_idx:04}.bin'
     if output_dir:
         output_fname = pathlib.Path(output_dir) / output_fname
@@ -183,14 +188,13 @@ def write(output_bin: bytes, output_idx: int, output_dir: str | None):
         output_file.write(output_bin)
 
 
-def process(fname_in: str,
-            schema: Parser,
-            output_dir: str | None,
-            index_func: FunctionType):
+def _process(fname_in: str,
+             schema: Parser,
+             index_func: FunctionType) -> (any, any):
     fname_in_path = pathlib.Path(fname_in)
-    output_bin = parse(fname_in, schema)
+    output_bin = _parse(fname_in, schema)
     output_idx = index_func(fname_in_path)
-    write(output_bin, output_idx, output_dir)
+    return (output_idx, output_bin)
 
 
 def json2bin(target: str,
@@ -199,8 +203,9 @@ def json2bin(target: str,
              output_dir: str | None,
              index_func: FunctionType,
              glob_pattern: str='*.json',
-             narc_name: str | None=None,
-             narc_packer: str | None=None):
+             narc_name: str | None = None,
+             narc_packer: str | None = None,
+             output_mode: OutputMode = OutputMode.MULTI_FILE):
     private_dir = pathlib.Path(private_dir)
     output_dir = pathlib.Path(output_dir)
 
@@ -208,8 +213,20 @@ def json2bin(target: str,
         raise RuntimeError('Missing narc_name or narc_packer input in batch mode; halting')
 
     private_dir.mkdir(exist_ok=True, parents=True)
+    binaries = {}
     for fname_in in pathlib.Path(target).glob(glob_pattern):
-        process(fname_in, schema, private_dir, index_func)
+        (output_idx, output_bin) = _process(fname_in, schema, index_func)
+
+        if output_mode == OutputMode.SINGLE_FILE:
+            binaries[output_idx] = output_bin
+        elif output_mode == OutputMode.MULTI_FILE:
+            _write(output_bin, output_idx, private_dir)
+    
+    if output_mode == OutputMode.SINGLE_FILE:
+        merged = bytearray([])
+        for idx in sorted(binaries.keys()):
+            merged.extend(binaries[idx])
+        _write(merged, 0, private_dir)
 
     subprocess.run([
         pathlib.Path(narc_packer),
