@@ -116,7 +116,7 @@ static u16 Pokemon_GetNatureStatValue(u8 monNature, u16 monStatValue, u8 statTyp
 static u8 BoxPokemon_IsShiny(BoxPokemon *boxMon);
 static inline BOOL Pokemon_InlineIsPersonalityShiny(u32 monOTID, u32 monPersonality);
 static void BuildArchivedDPPokemonSprite(ArchivedSprite *param0, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
-static u8 sub_020767BC(u16 monSpecies, u8 monGender, u8 param2, u8 monForm, u32 monPersonality);
+static u8 LoadPokemonDPSpriteHeight(u16 monSpecies, u8 monGender, u8 param2, u8 monForm, u32 monPersonality);
 static void BoxPokemon_SetDefaultMoves(BoxPokemon *boxMon);
 static u16 BoxPokemon_AddMove(BoxPokemon *boxMon, u16 moveID);
 static void BoxPokemon_ReplaceMove(BoxPokemon *boxMon, u16 moveID);
@@ -2716,108 +2716,120 @@ static void BuildArchivedDPPokemonSprite(ArchivedSprite *sprite, u16 species, u8
     }
 }
 
-u8 sub_020765AC(Pokemon *mon, u8 param1)
+u8 Pokemon_SpriteYOffset(Pokemon *mon, u8 face)
 {
-    return sub_020765C4(&mon->box, param1, FALSE);
+    return BoxPokemon_SpriteYOffset(&mon->box, face, FALSE);
 }
 
-u8 sub_020765B8(Pokemon *mon, u8 param1)
+u8 Pokemon_DPSpriteYOffset(Pokemon *mon, u8 face)
 {
-    return sub_020765C4(&mon->box, param1, TRUE);
+    return BoxPokemon_SpriteYOffset(&mon->box, face, TRUE);
 }
 
-u8 sub_020765C4(BoxPokemon *boxMon, u8 param1, BOOL param2)
+u8 BoxPokemon_SpriteYOffset(BoxPokemon *boxMon, u8 face, BOOL preferDP)
 {
-    u16 monSpeciesEgg = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_EGG, NULL);
-    u8 monGender = BoxPokemon_GetGender(boxMon);
-    u32 monPersonality = BoxPokemon_GetValue(boxMon, MON_DATA_PERSONALITY, NULL);
+    u16 species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_EGG, NULL);
+    u8 gender = BoxPokemon_GetGender(boxMon);
+    u32 personality = BoxPokemon_GetValue(boxMon, MON_DATA_PERSONALITY, NULL);
 
-    u8 monForm;
-    // TODO enum values?
-    if (monSpeciesEgg == SPECIES_EGG) {
+    u8 form;
+    if (species == SPECIES_EGG) {
         if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_MANAPHY) {
-            monForm = 1;
+            form = 1;
         } else {
-            monForm = 0;
+            form = 0;
         }
     } else {
-        monForm = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
+        form = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
     }
 
-    if (param2 == TRUE) {
-        return sub_020767BC(monSpeciesEgg, monGender, param1, monForm, monPersonality);
+    if (preferDP == TRUE) {
+        return LoadPokemonDPSpriteHeight(species, gender, face, form, personality);
     }
 
-    return sub_02076648(monSpeciesEgg, monGender, param1, monForm, monPersonality);
+    return LoadPokemonSpriteYOffset(species, gender, face, form, personality);
 }
 
-u8 sub_02076648(u16 monSpecies, u8 monGender, u8 param2, u8 monForm, u32 monPersonality)
+u8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 personality)
 {
-    // TODO enum values?
-    monForm = Pokemon_SanitizeFormId(monSpecies, monForm);
+    form = Pokemon_SanitizeFormId(species, form);
 
     int narcIndex;
     int memberIndex;
-    switch (monSpecies) {
+    switch (species) {
     case SPECIES_BURMY:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 72 + (param2 / 2) + monForm * 2;
+        memberIndex = 72 + (face / 2) + form * 2;
         break;
+
     case SPECIES_WORMADAM:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 78 + (param2 / 2) + monForm * 2;
+        memberIndex = 78 + (face / 2) + form * 2;
         break;
+
     case SPECIES_SHELLOS:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 84 + param2 + monForm;
+        memberIndex = 84 + face + form;
         break;
+
     case SPECIES_GASTRODON:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 88 + param2 + monForm;
+        memberIndex = 88 + face + form;
         break;
+
     case SPECIES_CHERRIM:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 92 + param2 + monForm;
+        memberIndex = 92 + face + form;
         break;
+
     case SPECIES_ARCEUS:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 96 + (param2 / 2) + monForm * 2;
+        memberIndex = 96 + (face / 2) + form * 2;
         break;
+
     case SPECIES_CASTFORM:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 64 + param2 * 2 + monForm;
+        memberIndex = 64 + face * 2 + form;
         break;
+
     case SPECIES_DEOXYS:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 0 + (param2 / 2) + monForm * 2;
+        memberIndex = 0 + (face / 2) + form * 2;
         break;
+
     case SPECIES_UNOWN:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 8 + (param2 / 2) + monForm * 2;
+        memberIndex = 8 + (face / 2) + form * 2;
         break;
+
     case SPECIES_EGG:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 132 + monForm;
+        memberIndex = 132 + form;
         break;
+
     case SPECIES_BAD_EGG:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
         memberIndex = 132;
         break;
+
     case SPECIES_SHAYMIN:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 136 + (param2 / 2) + monForm * 2;
+        memberIndex = 136 + (face / 2) + form * 2;
         break;
+
     case SPECIES_ROTOM:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 140 + (param2 / 2) + monForm * 2;
+        memberIndex = 140 + (face / 2) + form * 2;
         break;
+
     case SPECIES_GIRATINA:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 152 + (param2 / 2) + monForm * 2;
+        memberIndex = 152 + (face / 2) + form * 2;
         break;
+
     default:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT;
-        memberIndex = monSpecies * 4 + param2 + (monGender != 1 ? 1 : 0);
+        memberIndex = species * 4 + face + (gender != GENDER_FEMALE ? 1 : 0);
         break;
     }
 
@@ -2826,88 +2838,102 @@ u8 sub_02076648(u16 monSpecies, u8 monGender, u8 param2, u8 monForm, u32 monPers
     return result;
 }
 
-static u8 sub_020767BC(u16 monSpecies, u8 monGender, u8 param2, u8 monForm, u32 monPersonality)
+static u8 LoadPokemonDPSpriteHeight(u16 species, u8 gender, u8 face, u8 form, u32 personality)
 {
     // TODO enum values?
-    monForm = Pokemon_SanitizeFormId(monSpecies, monForm);
+    form = Pokemon_SanitizeFormId(species, form);
 
     int narcIndex;
     int memberIndex;
-    switch (monSpecies) {
+    switch (species) {
     case SPECIES_BURMY:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 72 + (param2 / 2) + monForm * 2;
+        memberIndex = 72 + (face / 2) + form * 2;
         break;
+
     case SPECIES_WORMADAM:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 78 + (param2 / 2) + monForm * 2;
+        memberIndex = 78 + (face / 2) + form * 2;
         break;
+
     case SPECIES_SHELLOS:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 84 + param2 + monForm;
+        memberIndex = 84 + face + form;
         break;
+
     case SPECIES_GASTRODON:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 88 + param2 + monForm;
+        memberIndex = 88 + face + form;
         break;
+
     case SPECIES_CHERRIM:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 92 + param2 + monForm;
+        memberIndex = 92 + face + form;
         break;
+
     case SPECIES_ARCEUS:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 96 + (param2 / 2) + monForm * 2;
+        memberIndex = 96 + (face / 2) + form * 2;
         break;
+
     case SPECIES_CASTFORM:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 64 + param2 * 2 + monForm;
+        memberIndex = 64 + face * 2 + form;
         break;
+
     case SPECIES_DEOXYS:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 0 + (param2 / 2) + monForm * 2;
+        memberIndex = 0 + (face / 2) + form * 2;
         break;
+
     case SPECIES_UNOWN:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 8 + (param2 / 2) + monForm * 2;
+        memberIndex = 8 + (face / 2) + form * 2;
         break;
+
     case SPECIES_EGG:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 132 + monForm;
+        memberIndex = 132 + form;
         break;
+
     case SPECIES_BAD_EGG:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
         memberIndex = 132;
         break;
+
     case SPECIES_SHAYMIN:
-        if (monForm > 0) {
+        if (form > 0) {
             narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-            memberIndex = 136 + (param2 / 2) + monForm * 2;
+            memberIndex = 136 + (face / 2) + form * 2;
         } else {
             narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT;
-            memberIndex = monSpecies * 4 + param2 + (monGender != 1 ? 1 : 0);
+            memberIndex = species * 4 + face + (gender != GENDER_FEMALE ? 1 : 0);
         }
         break;
+
     case SPECIES_ROTOM:
-        if (monForm > 0) {
+        if (form > 0) {
             narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-            memberIndex = 140 + (param2 / 2) + monForm * 2;
+            memberIndex = 140 + (face / 2) + form * 2;
         } else {
             narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT;
-            memberIndex = monSpecies * 4 + param2 + (monGender != 1 ? 1 : 0);
+            memberIndex = species * 4 + face + (gender != GENDER_FEMALE ? 1 : 0);
         }
         break;
+
     case SPECIES_GIRATINA:
-        if (monForm > 0) {
+        if (form > 0) {
             narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-            memberIndex = 152 + (param2 / 2) + monForm * 2;
+            memberIndex = 152 + (face / 2) + form * 2;
         } else {
             narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT;
-            memberIndex = monSpecies * 4 + param2 + (monGender != 1 ? 1 : 0);
+            memberIndex = species * 4 + face + (gender != GENDER_FEMALE ? 1 : 0);
         }
         break;
+
     default:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT;
-        memberIndex = monSpecies * 4 + param2 + (monGender != 1 ? 1 : 0);
+        memberIndex = species * 4 + face + (gender != GENDER_FEMALE ? 1 : 0);
         break;
     }
 

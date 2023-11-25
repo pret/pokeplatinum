@@ -759,7 +759,7 @@ void ov119_021D1858 (UnkStruct_ov119_021D0FD0 * param0)
 
     v2 = param0->unk_00->unk_0C.unk_00;
     v3 = Pokemon_GetValue(v2, MON_DATA_SPECIES, NULL);
-    v4 = sub_020765AC(v2, 2);
+    v4 = Pokemon_SpriteYOffset(v2, 2);
 
     {
         int v5 = 0;

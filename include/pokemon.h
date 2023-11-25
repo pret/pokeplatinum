@@ -602,10 +602,45 @@ void BuildArchivedPokemonSprite(ArchivedSprite *sprite, u16 monSpecies, u8 monGe
  */
 u8 Pokemon_SanitizeFormId(u16 monSpecies, u8 monForm);
 
-u8 sub_020765AC(Pokemon *mon, u8 param1);
-u8 sub_020765B8(Pokemon *mon, u8 param1);
-u8 sub_020765C4(BoxPokemon *boxMon, u8 param1, BOOL param2);
-u8 sub_02076648(u16 monSpecies, u8 monGender, u8 param2, u8 monForm, u32 monPersonality);
+/**
+ * @brief Load the Y-offset applied to a Pokemon's sprite-face on display.
+ * 
+ * @param mon 
+ * @param face 
+ * @return Y-offset applied to the sprite-face on display
+ */
+u8 Pokemon_SpriteYOffset(Pokemon *mon, u8 face);
+
+/**
+ * @brief Load the Y-offset applied to a Pokemon's DP sprite-face on display.
+ * 
+ * @param mon 
+ * @param face 
+ * @return Y-offset applied to the DP sprite-face on display
+ */
+u8 Pokemon_DPSpriteYOffset(Pokemon *mon, u8 face);
+
+/**
+ * @brief Load the Y-offset applied to a Pokemon's sprite-face on display.
+ * 
+ * @param mon 
+ * @param face 
+ * @param preferDP  If TRUE, prefer Diamond/Pearl sprites, where possible
+ * @return Y-offset applied to the sprite-face on display
+ */
+u8 BoxPokemon_SpriteYOffset(BoxPokemon *boxMon, u8 face, BOOL preferDP);
+
+/**
+ * @brief Load the Y-offset applied to a Pokemon's sprite-face on display.
+ * 
+ * @param species       The Pokemon's species
+ * @param gender        The Pokemon's gender
+ * @param face          Which face of the Pokemon the player sees
+ * @param form          The Pokemon's form
+ * @param personality   The Pokemon's personality value
+ * @return Y-offset applied to the sprite-face on display
+ */
+u8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 personality);
 void sub_0207697C(ArchivedSprite *param0, u16 param1);
 CellActorData *sub_02076994(UnkStruct_0200C6E4 *param0, UnkStruct_0200C704 *param1, PaletteSys *param2, int param3, int param4, int param5, int param6, int param7, int heapID);
 void sub_02076AAC(int param0, int param1, UnkStruct_ov5_021DE5D0 *param2);

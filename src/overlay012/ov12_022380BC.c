@@ -104,7 +104,7 @@ static void ov12_022380DC (UnkStruct_ov12_022380DC * param0, int param1, int par
     param0->unk_08[param0->unk_00]->unk_04 = v1->archive;
     param0->unk_08[param0->unk_00]->unk_08 = v1->palette;
 
-    v11 = param0->unk_08[param0->unk_00]->unk_0C = sub_02076648(v2, v3, v4, v6, v7);
+    v11 = param0->unk_08[param0->unk_00]->unk_0C = LoadPokemonSpriteYOffset(v2, v3, v4, v6, v7);
     v8 = ov12_022384CC(param0->unk_4C[param0->unk_00], 1);
 
     sub_02007DEC(param0->unk_18[param0->unk_00], 1, v8 + v11);
@@ -153,7 +153,7 @@ void ov12_022382BC (UnkStruct_ov12_022380DC * param0, int param1)
 
     param0->unk_08[param0->unk_00]->unk_04 = v0->archive;
     param0->unk_08[param0->unk_00]->unk_08 = v0->palette;
-    param0->unk_08[param0->unk_00]->unk_0C = sub_02076648(v1, v2, v3, v4, v5);
+    param0->unk_08[param0->unk_00]->unk_0C = LoadPokemonSpriteYOffset(v1, v2, v3, v4, v5);
 
     v6 = ov12_022384CC(param0->unk_4C[param0->unk_00], 1) + param0->unk_08[param0->unk_00]->unk_0C;
 

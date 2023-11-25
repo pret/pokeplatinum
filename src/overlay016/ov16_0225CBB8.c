@@ -359,7 +359,7 @@ void ov16_0225CBDC (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 
     BuildArchivedPokemonSprite(&v1, param2->unk_02, param2->unk_01_0, v4->unk_13, v0, param2->unk_01_3, param2->unk_04);
 
-    v6 = sub_02076648(param2->unk_02, param2->unk_01_0, v4->unk_13, param2->unk_01_3, param2->unk_04);
+    v6 = LoadPokemonSpriteYOffset(param2->unk_02, param2->unk_01_0, v4->unk_13, param2->unk_01_3, param2->unk_04);
 
     PokeSprite_LoadYOffset(param1->unk_1A0, &v7, param2->unk_02);
     PokeSprite_LoadXOffsetShadow(param1->unk_1A0, &v8, param2->unk_02);
@@ -430,7 +430,7 @@ void ov16_0225CE1C (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 
     BuildArchivedPokemonSprite(&v1->unk_14, param2->unk_02, param2->unk_01_0, v1->unk_84, v0, param2->unk_01_3, param2->unk_04);
 
-    v1->unk_85 = sub_02076648(param2->unk_02, param2->unk_01_0, v1->unk_84, param2->unk_01_3, param2->unk_04);
+    v1->unk_85 = LoadPokemonSpriteYOffset(param2->unk_02, param2->unk_01_0, v1->unk_84, param2->unk_01_3, param2->unk_04);
 
     PokeSprite_LoadYOffset(param1->unk_1A0, &v1->unk_90, param2->unk_02);
     PokeSprite_LoadXOffsetShadow(param1->unk_1A0, &v1->unk_91, param2->unk_02);
@@ -482,7 +482,7 @@ void ov16_0225CF70 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 
     BuildArchivedPokemonSprite(&v2->unk_14, param2->unk_02, param2->unk_01_0, v2->unk_84, v1, param2->unk_01_3, param2->unk_04);
 
-    v2->unk_85 = sub_02076648(param2->unk_02, param2->unk_01_0, v2->unk_84, param2->unk_01_3, param2->unk_04);
+    v2->unk_85 = LoadPokemonSpriteYOffset(param2->unk_02, param2->unk_01_0, v2->unk_84, param2->unk_01_3, param2->unk_04);
 
     PokeSprite_LoadYOffset(param1->unk_1A0, &v2->unk_90, param2->unk_02);
     PokeSprite_LoadXOffsetShadow(param1->unk_1A0, &v2->unk_91, param2->unk_02);
@@ -4948,7 +4948,7 @@ static void ov16_02262A9C (SysTask * param0, void * param1)
 
         v0->unk_66++;
     case 8:
-        v3 = sub_02076648(v0->unk_68, v0->unk_6A, v0->unk_67, v0->unk_6B, v0->unk_6C);
+        v3 = LoadPokemonSpriteYOffset(v0->unk_68, v0->unk_6A, v0->unk_67, v0->unk_6B, v0->unk_6C);
         v3 = 80 - v3;
         sub_020086D4(v0->unk_08, 0, 0, 80, v3);
         v0->unk_66++;

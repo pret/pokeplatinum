@@ -1203,7 +1203,7 @@ static void ov17_0224E1F4 (SysTask * param0, void * param1)
                     ov22_0225B1AC(v0->unk_08->unk_00, -100);
                 }
 
-                v7 = sub_020765B8(v0->unk_00, 2);
+                v7 = Pokemon_DPSpriteYOffset(v0->unk_00, 2);
 
                 v0->unk_14 = (ov17_0224A10C(v0->unk_0D) + v7) * 0x100;
                 v0->unk_18 = ov17_0224A120(v0->unk_0D) * 0x100;
@@ -1222,7 +1222,7 @@ static void ov17_0224E1F4 (SysTask * param0, void * param1)
         }
 
         if (v0->unk_28 >= v0->unk_0E) {
-            v7 = sub_020765B8(v0->unk_00, 2);
+            v7 = Pokemon_DPSpriteYOffset(v0->unk_00, 2);
             v0->unk_10 = ov17_0224A0FC(v0->unk_0D) * 0x100;
             v0->unk_14 = (ov17_0224A10C(v0->unk_0D) + v7) * 0x100;
             v0->unk_18 = ov17_0224A120(v0->unk_0D) * 0x100;

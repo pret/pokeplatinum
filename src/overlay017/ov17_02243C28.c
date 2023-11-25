@@ -337,7 +337,7 @@ static void ov17_02243F68 (SysTask * param0, void * param1)
     int v1, v2;
 
     v1 = v0->unk_15;
-    v2 = sub_020765AC(v0->unk_00->unk_0C.unk_00->unk_00[v1], 0);
+    v2 = Pokemon_SpriteYOffset(v0->unk_00->unk_0C.unk_00->unk_00[v1], 0);
 
     switch (v0->unk_14) {
     case 0:
@@ -353,7 +353,7 @@ static void ov17_02243F68 (SysTask * param0, void * param1)
         int v3, v4;
 
         v3 = v0->unk_15;
-        v4 = sub_020765AC(v0->unk_00->unk_0C.unk_00->unk_00[v3], 0);
+        v4 = Pokemon_SpriteYOffset(v0->unk_00->unk_0C.unk_00->unk_00[v3], 0);
 
         sub_02007DEC(v0->unk_00->unk_0C.unk_08[v3], 37, 0);
         sub_02007DEC(v0->unk_00->unk_0C.unk_08[v3], 6, 0);
@@ -423,7 +423,7 @@ static void ov17_022440E0 (UnkStruct_ov17_0224F30C * param0, void * param1, cons
     v1->unk_15 = v2->unk_00;
 
     v4 = v1->unk_15;
-    v3 = sub_020765AC(v0->unk_0C.unk_00->unk_00[v4], 0);
+    v3 = Pokemon_SpriteYOffset(v0->unk_0C.unk_00->unk_00[v4], 0);
 
     v1->unk_0C = (((256 - 40))) << 8;
     v1->unk_10 = ((((104 + 8)))) << 8;
@@ -437,7 +437,7 @@ static void ov17_0224413C (SysTask * param0, void * param1)
     int v1, v2;
 
     v1 = v0->unk_15;
-    v2 = sub_020765AC(v0->unk_00->unk_0C.unk_00->unk_00[v1], 0);
+    v2 = Pokemon_SpriteYOffset(v0->unk_00->unk_0C.unk_00->unk_00[v1], 0);
 
     switch (v0->unk_14) {
     case 0:
@@ -755,7 +755,7 @@ static void ov17_022444BC (SysTask * param0, void * param1)
         {
             int v17;
 
-            v17 = sub_020765AC(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], 0);
+            v17 = Pokemon_SpriteYOffset(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], 0);
 
             if (v0->unk_104.unk_00 != ((0x40 ^ 0xffffffff) & (0x80 ^ 0xffffffff) & (0x40000 ^ 0xffffffff) & (0x20000000 ^ 0xffffffff))) {
                 sub_02007DEC(v0->unk_00->unk_0C.unk_08[v0->unk_0D], 6, 0);

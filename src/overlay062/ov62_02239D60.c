@@ -1206,7 +1206,7 @@ static void ov62_0223B050 (UnkStruct_0208C06C * param0)
     v1 = PokemonPersonalData_FromMonSpecies(v7, 102);
     v3 = Pokemon_GetGenderOf(v7, v8);
     v4 = Pokemon_IsPersonalityShiny(v5, v8);
-    v9 = sub_02076648(v7, v3, v10, v6, v8);
+    v9 = LoadPokemonSpriteYOffset(v7, v3, v10, v6, v8);
     v9 = 0;
 
     BuildArchivedPokemonSprite(&v2, v7, v3, v10, v4, v6, v8);

@@ -460,7 +460,7 @@ void ov12_0222EFB0 (UnkStruct_ov12_0221FCDC * param0)
             }
 
             v8 = ov12_02220248(v0->unk_00.unk_04);
-            v7 = sub_02076648(ov12_022232D0(v0->unk_00.unk_04, v8), ov12_022232C4(v0->unk_00.unk_04, v8), v13, ov12_022232E0(v0->unk_00.unk_04, v8), ov12_022232EC(v0->unk_00.unk_04, v8));
+            v7 = LoadPokemonSpriteYOffset(ov12_022232D0(v0->unk_00.unk_04, v8), ov12_022232C4(v0->unk_00.unk_04, v8), v13, ov12_022232E0(v0->unk_00.unk_04, v8), ov12_022232EC(v0->unk_00.unk_04, v8));
         }
 
         sub_0200D4C4(v0->unk_1C[0], v12.unk_00, v11.unk_02 + v7);

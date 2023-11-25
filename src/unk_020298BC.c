@@ -304,7 +304,7 @@ static void sub_02029BB0 (UnkStruct_02029D04 * param0)
 
 static void sub_02029BD8 (Pokemon * param0, u8 * param1, u8 * param2)
 {
-    u8 v0 = sub_020765B8(param0, 2);
+    u8 v0 = Pokemon_DPSpriteYOffset(param0, 2);
 
     *param1 = 192 - (8 * 8);
     *param2 = (16 + 129) - ((80 / 2) - v0) + -4;

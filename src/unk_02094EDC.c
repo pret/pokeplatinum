@@ -674,7 +674,7 @@ Sprite * sub_02095484 (UnkStruct_02007768 * param0, int param1, Pokemon * param2
 
     Pokemon_BuildArchivedSprite(&v0, param2, param3);
 
-    v2 = sub_020765AC(param2, param3);
+    v2 = Pokemon_SpriteYOffset(param2, param3);
 
     if (param4 != NULL) {
         GF_ASSERT(param4->unk_00 != NULL);

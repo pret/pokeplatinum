@@ -360,7 +360,7 @@ void ov17_0224A134 (UnkStruct_ov17_0224DF54 * param0)
         int v3;
 
         v3 = param0->unk_A3C.unk_05[v0];
-        v2 = sub_020765B8(param0->unk_00->unk_00.unk_00[v3], 2);
+        v2 = Pokemon_DPSpriteYOffset(param0->unk_00->unk_00.unk_00[v3], 2);
 
         v1.unk_04 = Unk_ov17_022546F4[v0][0];
         v1.unk_08 = Unk_ov17_022546F4[v0][1] + v2;
@@ -842,7 +842,7 @@ void ov17_0224AB08 (UnkStruct_ov17_0224A1EC * param0, UnkStruct_0200C6E4 * param
         sub_0200D6A4(param0->unk_200[v0].unk_04, 1);
         param0->unk_200[v0].unk_13 = v0;
         param0->unk_200[v0].unk_0C = &param0->unk_04[v0];
-        param0->unk_200[v0].unk_14 = sub_020765B8(param0->unk_00->unk_00[v0], 2);
+        param0->unk_200[v0].unk_14 = Pokemon_DPSpriteYOffset(param0->unk_00->unk_00[v0], 2);
         ov17_0224AC78(&param0->unk_200[v0], 1, 1);
         param0->unk_200[v0].unk_00 = SysTask_Start(ov17_0224ABFC, &param0->unk_200[v0], (((30000 + 10000) + 100) + 1000));
     }

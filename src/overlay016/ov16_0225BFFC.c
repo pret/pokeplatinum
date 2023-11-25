@@ -734,7 +734,7 @@ static void ov16_0225C684 (BattleSystem * param0, BattlerData * param1)
     ov16_0223F2CC(ov16_0223E0C8(param0), param1->unk_190, v2->archive);
     ov16_0223F2E4(ov16_0223E0C8(param0), param1->unk_190, v2->palette);
 
-    v3 = sub_02076648(v0->unk_02, v0->unk_04, v4, v0->unk_01, v0->unk_08);
+    v3 = LoadPokemonSpriteYOffset(v0->unk_02, v0->unk_04, v4, v0->unk_01, v0->unk_08);
     ov16_0223F2FC(ov16_0223E0C8(param0), param1->unk_190, v3);
 
     v3 = ov12_022384CC(param1->battlerType, 1) + v3;

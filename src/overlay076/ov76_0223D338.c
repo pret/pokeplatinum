@@ -719,7 +719,7 @@ void ov76_0223DD88 (UnkStruct_ov76_0223DE00 * param0)
     Pokemon_BuildArchivedSprite(&v0, param0->unk_428, 2);
 
     v2 = Pokemon_GetValue(param0->unk_428, MON_DATA_SPECIES, NULL);
-    v3 = sub_020765AC(param0->unk_428, 2);
+    v3 = Pokemon_SpriteYOffset(param0->unk_428, 2);
 
     param0->unk_D4.unk_D8 = v3;
     PokeSprite_LoadAnimationFrames(param0->unk_42C, &v1[0], v2, 1);
