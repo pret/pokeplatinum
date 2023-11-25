@@ -2,7 +2,6 @@ prebuilt_files = [
     'dp_height_o.narc',
     'dp_height.narc',
     'height_o.narc',
-    'height.narc',
     'otherpoke.narc',
     'poke_shadow_ofx.narc',
     'poke_shadow.narc',

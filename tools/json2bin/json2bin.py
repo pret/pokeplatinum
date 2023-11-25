@@ -205,7 +205,8 @@ def json2bin(target: str,
              glob_pattern: str='*.json',
              narc_name: str | None = None,
              narc_packer: str | None = None,
-             output_mode: OutputMode = OutputMode.MULTI_FILE):
+             output_mode: OutputMode = OutputMode.MULTI_FILE,
+             skip_stems: list[str] = []):
     private_dir = pathlib.Path(private_dir)
     output_dir = pathlib.Path(output_dir)
 
@@ -215,6 +216,9 @@ def json2bin(target: str,
     private_dir.mkdir(exist_ok=True, parents=True)
     binaries = {}
     for fname_in in pathlib.Path(target).glob(glob_pattern):
+        if fname_in.parent.stem in skip_stems or fname_in.parent.parent.stem in skip_stems:
+            continue
+
         (output_idx, output_bin) = _process(fname_in, schema, index_func)
 
         if output_mode == OutputMode.SINGLE_FILE:

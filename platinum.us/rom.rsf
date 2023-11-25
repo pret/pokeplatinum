@@ -183,7 +183,13 @@ RomSpec
 	File msgdata/scenario/scr_msg.narc
 	File poketool/pokegra/dp_height.narc
 	File poketool/pokegra/dp_height_o.narc
-	File poketool/pokegra/height.narc
+
+	Root /poketool/pokegra
+	HostRoot res/pokemon
+	File height.narc
+
+	Root /
+	HostRoot res/prebuilt
 	File poketool/pokegra/height_o.narc
 	File poketool/pokegra/otherpoke.narc
 
@@ -391,7 +397,13 @@ RomSpec
 	File application/zukanlist/zkn_data/zukan_enc_diamond.narc
 	File application/zukanlist/zkn_data/zukan_enc_pearl.narc
 	File application/zukanlist/zkn_data/zukan_enc_platinum.narc
-	File poketool/poke_edit/pl_poke_data.narc
+
+	Root /poketool/poke_edit
+	HostRoot res/pokemon
+	File pl_poke_data.narc
+
+	Root /
+	HostRoot res/prebuilt
 	File debug/cb_edit/d_test.narc
 	File application/custom_ball/edit/pl_cb_data.narc
 	File frontier/script/fr_script.narc

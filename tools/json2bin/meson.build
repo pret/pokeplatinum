@@ -4,3 +4,4 @@ pokemon_personal_data_py = find_program('pokemon_personal_data.py', native: true
 pokemon_wotbl_data_py = find_program('pokemon_wotbl_data.py', native: true)
 trainer_data_py = find_program('trainer_data.py', native: true)
 evo_py = find_program('evo.py', native: true)
+pl_poke_data_py = find_program('pl_poke_data.py', native: true)
