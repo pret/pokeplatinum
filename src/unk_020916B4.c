@@ -347,7 +347,7 @@ void sub_02091F8C (UnkStruct_0208D7BC * param0)
         Pokemon_BuildArchivedSprite(&v0, v1, 2);
     }
 
-    sub_020789BC(param0->unk_6A0, param0->unk_2B4.unk_08, param0->unk_250.unk_0C, 1);
+    PokeSprite_LoadAnimationFrames(param0->unk_6A0, param0->unk_2B4.unk_08, param0->unk_250.unk_0C, 1);
 
     param0->unk_2B4.unk_38 = PokemonPersonalData_GetFormValue(param0->unk_250.unk_0C, param0->unk_250.unk_4E, 28) ^ 1;
     param0->unk_2B4.unk_34 = sub_02007C34(param0->unk_2B4.unk_04, &v0, 52, 104, 0, 0, param0->unk_2B4.unk_08, NULL);
@@ -358,10 +358,10 @@ void sub_02091F8C (UnkStruct_0208D7BC * param0)
 void sub_02092028 (UnkStruct_0208D7BC * param0)
 {
     if (param0->unk_250.unk_50_28 != 0) {
-        sub_020789F4(param0->unk_6A0, param0->unk_2B4.unk_30, param0->unk_2B4.unk_34, 0, 2, param0->unk_2B4.unk_38, 0);
+        PokeSprite_LoadAnimation(param0->unk_6A0, param0->unk_2B4.unk_30, param0->unk_2B4.unk_34, 0, 2, param0->unk_2B4.unk_38, 0);
     } else {
         sub_02007B98(param0->unk_2B4.unk_34, 1);
-        sub_020789F4(param0->unk_6A0, param0->unk_2B4.unk_30, param0->unk_2B4.unk_34, param0->unk_250.unk_0C, 2, param0->unk_2B4.unk_38, 0);
+        PokeSprite_LoadAnimation(param0->unk_6A0, param0->unk_2B4.unk_30, param0->unk_2B4.unk_34, param0->unk_250.unk_0C, 2, param0->unk_2B4.unk_38, 0);
     }
 }
 

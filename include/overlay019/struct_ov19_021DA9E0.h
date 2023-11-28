@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV19_021DA9E0_H
 
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
@@ -25,7 +25,7 @@ typedef struct {
     UnkStruct_0200C440 * unk_18;
     UnkStruct_0200C440 * unk_1C;
     UnkStruct_02007768 * unk_20;
-    UnkStruct_02007C7C * unk_24;
+    Sprite * unk_24;
     void * unk_28;
     NNSG2dCellDataBank * unk_2C;
     UnkStruct_02022550 * unk_30;

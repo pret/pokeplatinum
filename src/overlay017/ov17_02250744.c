@@ -4,7 +4,7 @@
 #include "assert.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "message.h"
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
@@ -50,7 +50,7 @@ typedef struct {
 } UnkStruct_ov17_02251598;
 
 typedef struct {
-    UnkStruct_02007C7C * unk_00;
+    Sprite * unk_00;
     u8 * unk_04;
     s32 unk_08;
     s32 unk_0C;

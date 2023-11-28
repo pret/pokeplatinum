@@ -1,6 +1,5 @@
 subdir('icongra')
 subdir('personal')
-subdir('poke_edit')
 subdir('pokeanm')
 subdir('pokefoot')
 subdir('pokegra')

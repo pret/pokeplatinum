@@ -122,7 +122,7 @@ static int sub_02098304 (UnkStruct_020067E8 * param0, int * param1)
 
             v1 = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
 
-            sub_02078A4C(v0->unk_04.unk_3C, &v0->unk_6C, v1, 1);
+            PokeSprite_LoadCryDelay(v0->unk_04.unk_3C, &v0->unk_6C, v1, 1);
 
             if (v1 == 490) {
                 v0->unk_5C = 1;

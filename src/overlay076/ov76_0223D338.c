@@ -12,7 +12,7 @@
 
 #include "overlay076/const_ov76_0223EF3C.h"
 
-#include "struct_defs/struct_02007C10.h"
+#include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_02015958.h"
@@ -712,17 +712,17 @@ void ov76_0223DCC0 (UnkStruct_ov76_0223DE00 * param0)
 void ov76_0223DD88 (UnkStruct_ov76_0223DE00 * param0)
 {
     ArchivedSprite v0;
-    UnkStruct_02007C10 v1[10];
+    SpriteAnimationFrame v1[10];
     int v2;
     int v3;
 
     Pokemon_BuildArchivedSprite(&v0, param0->unk_428, 2);
 
     v2 = Pokemon_GetValue(param0->unk_428, MON_DATA_SPECIES, NULL);
-    v3 = sub_020765AC(param0->unk_428, 2);
+    v3 = Pokemon_SpriteYOffset(param0->unk_428, 2);
 
     param0->unk_D4.unk_D8 = v3;
-    sub_020789BC(param0->unk_42C, &v1[0], v2, 1);
+    PokeSprite_LoadAnimationFrames(param0->unk_42C, &v1[0], v2, 1);
     param0->unk_D4.unk_D4 = sub_02007C34(param0->unk_D4.unk_D0, &v0, (256 - 64), 48 + v3, -0x280, 0, &v1[0], NULL);
 }
 
@@ -735,7 +735,7 @@ static void ov76_0223DE00 (UnkStruct_ov76_0223DE00 * param0)
     v1 = Pokemon_GetNature(param0->unk_428);
 
     sub_02007B98(param0->unk_D4.unk_D4, 1);
-    sub_020789F4(param0->unk_42C, param0->unk_D4.unk_188, param0->unk_D4.unk_D4, v0, 2, 0, 0);
+    PokeSprite_LoadAnimation(param0->unk_42C, param0->unk_D4.unk_188, param0->unk_D4.unk_D4, v0, 2, 0, 0);
 }
 
 static void ov76_0223DE54 (UnkStruct_ov76_0223DE00 * param0)

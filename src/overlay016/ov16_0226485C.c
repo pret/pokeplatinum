@@ -441,9 +441,9 @@ void BattleIO_ReturnPokemon (BattleSystem * param0, BattleContext * param1, int 
     v0.unk_00 = 5;
 
     if (param0->battleCtx->battleMons[param2].statusVolatile & 0x200000) {
-        v0.unk_01 = sub_02076648(param0->battleCtx->battleMons[param2].species, param0->battleCtx->battleMons[param2].moveEffectsData.transformedGender, v1, v2, param0->battleCtx->battleMons[param2].moveEffectsData.transformedPID);
+        v0.unk_01 = LoadPokemonSpriteYOffset(param0->battleCtx->battleMons[param2].species, param0->battleCtx->battleMons[param2].moveEffectsData.transformedGender, v1, v2, param0->battleCtx->battleMons[param2].moveEffectsData.transformedPID);
     } else {
-        v0.unk_01 = sub_02076648(param0->battleCtx->battleMons[param2].species, param0->battleCtx->battleMons[param2].gender, v1, v2, param0->battleCtx->battleMons[param2].personality);
+        v0.unk_01 = LoadPokemonSpriteYOffset(param0->battleCtx->battleMons[param2].species, param0->battleCtx->battleMons[param2].gender, v1, v2, param0->battleCtx->battleMons[param2].personality);
     }
 
     v0.unk_02 = param0->battleCtx->battleMons[param2].capturedBall;
@@ -482,9 +482,9 @@ void ov16_02265050 (BattleSystem * param0, int param1, int param2)
     v0.unk_00 = 6;
 
     if (param0->battleCtx->battleMons[param1].statusVolatile & 0x200000) {
-        v0.unk_01 = sub_02076648(param0->battleCtx->battleMons[param1].species, param0->battleCtx->battleMons[param1].moveEffectsData.transformedGender, v1, v2, param0->battleCtx->battleMons[param1].moveEffectsData.transformedPID);
+        v0.unk_01 = LoadPokemonSpriteYOffset(param0->battleCtx->battleMons[param1].species, param0->battleCtx->battleMons[param1].moveEffectsData.transformedGender, v1, v2, param0->battleCtx->battleMons[param1].moveEffectsData.transformedPID);
     } else {
-        v0.unk_01 = sub_02076648(param0->battleCtx->battleMons[param1].species, param0->battleCtx->battleMons[param1].gender, v1, v2, param0->battleCtx->battleMons[param1].personality);
+        v0.unk_01 = LoadPokemonSpriteYOffset(param0->battleCtx->battleMons[param1].species, param0->battleCtx->battleMons[param1].gender, v1, v2, param0->battleCtx->battleMons[param1].personality);
     }
 
     v0.unk_02 = param2;

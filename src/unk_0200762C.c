@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "struct_defs/struct_02007768.h"
-#include "struct_defs/struct_02007C10.h"
+#include "struct_defs/sprite_animation_frame.h"
 #include "functypes/funcptr_02007C34.h"
 #include "struct_defs/struct_02007C7C.h"
 #include "struct_defs/struct_02008900.h"
@@ -276,40 +276,40 @@ static const UnkStruct_020E4E62 *Unk_021007A4[] = {
 void * sub_0200762C(int param0);
 void sub_02007768(UnkStruct_02007768 * param0);
 void sub_02007B6C(UnkStruct_02007768 * param0);
-UnkStruct_02007C7C * sub_02007C34(UnkStruct_02007768 * param0, ArchivedSprite * param1, int param2, int param3, int param4, int param5, UnkStruct_02007C10 * param6, UnkFuncPtr_02007C34 * param7);
-UnkStruct_02007C7C * sub_02007C7C(UnkStruct_02007768 * param0, ArchivedSprite * param1, int param2, int param3, int param4, int param5, int param6, UnkStruct_02007C10 * param7, UnkFuncPtr_02007C34 * param8);
-void sub_02007DC8(UnkStruct_02007C7C * param0);
+Sprite * sub_02007C34(UnkStruct_02007768 * param0, ArchivedSprite * param1, int param2, int param3, int param4, int param5, SpriteAnimationFrame * param6, UnkFuncPtr_02007C34 * param7);
+Sprite * sub_02007C7C(UnkStruct_02007768 * param0, ArchivedSprite * param1, int param2, int param3, int param4, int param5, int param6, SpriteAnimationFrame * param7, UnkFuncPtr_02007C34 * param8);
+void sub_02007DC8(Sprite * param0);
 void sub_02007DD4(UnkStruct_02007768 * param0);
-void sub_02007B98(UnkStruct_02007C7C * param0, int param1);
-void sub_02007C10(UnkStruct_02007C7C * param0, UnkStruct_02007C10 * param1);
-BOOL sub_02007C24(UnkStruct_02007C7C * param0);
-void sub_02007DEC(UnkStruct_02007C7C * param0, int param1, int param2);
-int sub_020080C0(UnkStruct_02007C7C * param0, int param1);
-void sub_02008274(UnkStruct_02007C7C * param0, int param1, int param2);
-void sub_020086D4(UnkStruct_02007C7C * param0, int param1, int param2, int param3, int param4);
-void sub_020086FC(UnkStruct_02007C7C * param0, int param1, int param2, int param3, int param4);
+void sub_02007B98(Sprite * param0, int param1);
+void sub_02007C10(Sprite * param0, SpriteAnimationFrame * param1);
+BOOL sub_02007C24(Sprite * param0);
+void sub_02007DEC(Sprite * param0, int param1, int param2);
+int sub_020080C0(Sprite * param0, int param1);
+void sub_02008274(Sprite * param0, int param1, int param2);
+void sub_020086D4(Sprite * param0, int param1, int param2, int param3, int param4);
+void sub_020086FC(Sprite * param0, int param1, int param2, int param3, int param4);
 void sub_0200872C(UnkStruct_02007768 * param0, int param1, int param2, int param3, int param4);
-void sub_02008780(UnkStruct_02007C7C * param0);
-BOOL sub_020087B4(UnkStruct_02007C7C * param0);
-void sub_020087C8(UnkStruct_02007C7C * param0, int param1);
-void sub_020089A0(UnkStruct_02007C7C * param0);
-void sub_020089B0(UnkStruct_02007C7C * param0);
-void sub_02008A0C(UnkStruct_02007C7C * param0);
+void sub_02008780(Sprite * param0);
+BOOL sub_020087B4(Sprite * param0);
+void sub_020087C8(Sprite * param0, int param1);
+void sub_020089A0(Sprite * param0);
+void sub_020089B0(Sprite * param0);
+void sub_02008A0C(Sprite * param0);
 void sub_02008A78(UnkStruct_02007768 * param0, u32 param1, u32 param2);
 void sub_02008A84(UnkStruct_02007768 * param0, u32 param1, u32 param2);
-ArchivedSprite * sub_02008A90(UnkStruct_02007C7C * param0);
+ArchivedSprite * sub_02008A90(Sprite * param0);
 void sub_02008A94(UnkStruct_02007768 * param0);
 void sub_02008B2C(UnkStruct_02007768 * param0, int param1);
-BOOL sub_02008B38(UnkStruct_02007C7C * param0);
+BOOL sub_02008B38(Sprite * param0);
 void sub_02008B54(UnkStruct_02007768 * param0, u32 param1);
 void sub_02008B60(UnkStruct_02007768 * param0, u32 param1);
 void sub_020091D8(u8 * param0, u32 param1, BOOL param2);
 void sub_02009348(u8 * param0);
 static void sub_02008B78(UnkStruct_02007768 * param0);
 static void sub_02008FC8(UnkStruct_02007768 * param0);
-static void sub_020088D8(UnkStruct_02007C7C * param0);
+static void sub_020088D8(Sprite * param0);
 static u8 sub_020091AC(u8 param0);
-static void sub_020091C0(UnkStruct_02007C7C * param0, u8 * param1);
+static void sub_020091C0(Sprite * param0, u8 * param1);
 
 void * sub_0200762C (int param0)
 {
@@ -335,7 +335,7 @@ void * sub_0200762C (int param0)
     MI_CpuClearFast(v0->unk_304, sizeof((0x20 * 6)));
 
     for (v1 = 0; v1 < 4; v1++) {
-        MI_CpuClearFast(&v0->unk_00[v1], sizeof(UnkStruct_02007C7C));
+        MI_CpuClearFast(&v0->unk_00[v1], sizeof(Sprite));
     }
 
     NNS_G2dSetupSoftwareSpriteCamera();
@@ -491,7 +491,7 @@ void sub_02007B6C (UnkStruct_02007768 * param0)
     Heap_FreeToHeap(param0);
 }
 
-void sub_02007B98 (UnkStruct_02007C7C * param0, int param1)
+void sub_02007B98 (Sprite * param0, int param1)
 {
     int v0;
 
@@ -501,27 +501,27 @@ void sub_02007B98 (UnkStruct_02007C7C * param0, int param1)
         param0->unk_5C[v0] = 0;
     }
 
-    if (param0->unk_84[param0->unk_59].unk_00 == -1) {
+    if (param0->unk_84[param0->unk_59].spriteFrame == -1) {
         param0->unk_5B = 0;
     } else {
         param0->unk_58 = 1;
-        param0->unk_5B = param0->unk_84[param0->unk_59].unk_00;
-        param0->unk_5A = param0->unk_84[param0->unk_59].unk_01;
-        param0->unk_24.unk_08 = param0->unk_84[param0->unk_59].unk_02;
+        param0->unk_5B = param0->unk_84[param0->unk_59].spriteFrame;
+        param0->unk_5A = param0->unk_84[param0->unk_59].frameDelay;
+        param0->unk_24.unk_08 = param0->unk_84[param0->unk_59].xOffset;
     }
 }
 
-void sub_02007C10 (UnkStruct_02007C7C * param0, UnkStruct_02007C10 * param1)
+void sub_02007C10 (Sprite * param0, SpriteAnimationFrame * param1)
 {
-    MI_CpuCopy8(param1, &param0->unk_84, sizeof(UnkStruct_02007C10) * 10);
+    MI_CpuCopy8(param1, &param0->unk_84, sizeof(SpriteAnimationFrame) * 10);
 }
 
-BOOL sub_02007C24 (UnkStruct_02007C7C * param0)
+BOOL sub_02007C24 (Sprite * param0)
 {
     return param0->unk_58 != 0;
 }
 
-UnkStruct_02007C7C * sub_02007C34 (UnkStruct_02007768 * param0, ArchivedSprite * param1, int param2, int param3, int param4, int param5, UnkStruct_02007C10 * param6, UnkFuncPtr_02007C34 * param7)
+Sprite * sub_02007C34 (UnkStruct_02007768 * param0, ArchivedSprite * param1, int param2, int param3, int param4, int param5, SpriteAnimationFrame * param6, UnkFuncPtr_02007C34 * param7)
 {
     int v0;
 
@@ -536,11 +536,11 @@ UnkStruct_02007C7C * sub_02007C34 (UnkStruct_02007768 * param0, ArchivedSprite *
     return sub_02007C7C(param0, param1, param2, param3, param4, param5, v0, param6, param7);
 }
 
-UnkStruct_02007C7C * sub_02007C7C (UnkStruct_02007768 * param0, ArchivedSprite * param1, int param2, int param3, int param4, int param5, int param6, UnkStruct_02007C10 * param7, UnkFuncPtr_02007C34 * param8)
+Sprite * sub_02007C7C (UnkStruct_02007768 * param0, ArchivedSprite * param1, int param2, int param3, int param4, int param5, int param6, SpriteAnimationFrame * param7, UnkFuncPtr_02007C34 * param8)
 {
     GF_ASSERT(param0->unk_00[param6].unk_00_0 == 0);
 
-    MI_CpuClearFast(&param0->unk_00[param6], sizeof(UnkStruct_02007C7C));
+    MI_CpuClearFast(&param0->unk_00[param6], sizeof(Sprite));
 
     param0->unk_00[param6].unk_00_0 = 1;
     param0->unk_00[param6].unk_00_7 = 1;
@@ -568,13 +568,13 @@ UnkStruct_02007C7C * sub_02007C7C (UnkStruct_02007768 * param0, ArchivedSprite *
     param0->unk_00[param6].unk_6C.unk_00_4 = 1;
 
     if (param7 != NULL) {
-        MI_CpuCopy8(param7, &param0->unk_00[param6].unk_84, sizeof(UnkStruct_02007C10) * 10);
+        MI_CpuCopy8(param7, &param0->unk_00[param6].unk_84, sizeof(SpriteAnimationFrame) * 10);
     }
 
     return &param0->unk_00[param6];
 }
 
-void sub_02007DC8 (UnkStruct_02007C7C * param0)
+void sub_02007DC8 (Sprite * param0)
 {
     param0->unk_00_0 = 0;
 }
@@ -588,7 +588,7 @@ void sub_02007DD4 (UnkStruct_02007768 * param0)
     }
 }
 
-void sub_02007DEC (UnkStruct_02007C7C * param0, int param1, int param2)
+void sub_02007DEC (Sprite * param0, int param1, int param2)
 {
     switch (param1) {
     case 0:
@@ -740,7 +740,7 @@ void sub_02007DEC (UnkStruct_02007C7C * param0, int param1, int param2)
     }
 }
 
-int sub_020080C0 (UnkStruct_02007C7C * param0, int param1)
+int sub_020080C0 (Sprite * param0, int param1)
 {
     switch (param1) {
     case 0:
@@ -843,7 +843,7 @@ int sub_020080C0 (UnkStruct_02007C7C * param0, int param1)
     return 0;
 }
 
-void sub_02008274 (UnkStruct_02007C7C * param0, int param1, int param2)
+void sub_02008274 (Sprite * param0, int param1, int param2)
 {
     switch (param1) {
     case 0:
@@ -995,7 +995,7 @@ void sub_02008274 (UnkStruct_02007C7C * param0, int param1, int param2)
     }
 }
 
-void sub_020086D4 (UnkStruct_02007C7C * param0, int param1, int param2, int param3, int param4)
+void sub_020086D4 (Sprite * param0, int param1, int param2, int param3, int param4)
 {
     param0->unk_24.unk_30_1 = 1;
     param0->unk_24.unk_20 = param1;
@@ -1004,7 +1004,7 @@ void sub_020086D4 (UnkStruct_02007C7C * param0, int param1, int param2, int para
     param0->unk_24.unk_23 = param4;
 }
 
-void sub_020086FC (UnkStruct_02007C7C * param0, int param1, int param2, int param3, int param4)
+void sub_020086FC (Sprite * param0, int param1, int param2, int param3, int param4)
 {
     param0->unk_24.unk_30_12 = 1;
     param0->unk_24.unk_24 = param1;
@@ -1030,7 +1030,7 @@ void sub_0200872C (UnkStruct_02007768 * param0, int param1, int param2, int para
     }
 }
 
-void sub_02008780 (UnkStruct_02007C7C * param0)
+void sub_02008780 (Sprite * param0)
 {
     param0->unk_24.unk_30_12 = 0;
     param0->unk_24.unk_24 = 0;
@@ -1041,65 +1041,65 @@ void sub_02008780 (UnkStruct_02007C7C * param0)
     param0->unk_00_8 = 1;
 }
 
-BOOL sub_020087B4 (UnkStruct_02007C7C * param0)
+BOOL sub_020087B4 (Sprite * param0)
 {
     return param0->unk_24.unk_30_12 == 1;
 }
 
-void sub_020087C8 (UnkStruct_02007C7C * param0, int param1)
+void sub_020087C8 (Sprite * param0, int param1)
 {
     param0->unk_24.unk_0A = ((80 / 2) - param1) - ((((80 / 2) - param1) * param0->unk_24.unk_12) >> 8);
 }
 
-static inline void inline_02008900 (u8 * param0, u8 * param1, u8 * param2, u8 * param3, u8 * param4, const UnkStruct_02007C10 * param5)
+static inline void inline_02008900 (u8 * param0, u8 * param1, u8 * param2, u8 * param3, u8 * param4, const SpriteAnimationFrame * param5)
 {
     if (*param0) {
         if ((*param3) == 0) {
             (*param2)++;
 
-            while (param5[*param2].unk_00 < -1) {
+            while (param5[*param2].spriteFrame < -1) {
                 param4[*param2]++;
 
-                if ((param5[*param2].unk_01 == param4[*param2]) || (param5[*param2].unk_01 == 0)) {
+                if ((param5[*param2].frameDelay == param4[*param2]) || (param5[*param2].frameDelay == 0)) {
                     param4[*param2] = 0;
                     *param2++;
                 } else {
-                    *param2 = param5[*param2].unk_00 * -1 - 2;
+                    *param2 = param5[*param2].spriteFrame * -1 - 2;
                 }
             }
 
-            if ((param5[*param2].unk_00 == -1) || ((*param2) >= 10)) {
+            if ((param5[*param2].spriteFrame == -1) || ((*param2) >= 10)) {
                 (*param1) = 0;
                 (*param0) = 0;
                 return;
             }
 
-            (*param1) = param5[*param2].unk_00;
-            (*param3) = param5[*param2].unk_01;
+            (*param1) = param5[*param2].spriteFrame;
+            (*param3) = param5[*param2].frameDelay;
         } else {
             (*param3)--;
         }
     }
 }
 
-static void sub_020087DC (UnkStruct_02007C7C * param0)
+static void sub_020087DC (Sprite * param0)
 {
     if (param0->unk_58) {
         if (param0->unk_5A == 0) {
             param0->unk_59++;
 
-            while (param0->unk_84[param0->unk_59].unk_00 < -1) {
+            while (param0->unk_84[param0->unk_59].spriteFrame < -1) {
                 param0->unk_5C[param0->unk_59]++;
 
-                if ((param0->unk_84[param0->unk_59].unk_01 == param0->unk_5C[param0->unk_59]) || (param0->unk_84[param0->unk_59].unk_01 == 0)) {
+                if ((param0->unk_84[param0->unk_59].frameDelay == param0->unk_5C[param0->unk_59]) || (param0->unk_84[param0->unk_59].frameDelay == 0)) {
                     param0->unk_5C[param0->unk_59] = 0;
                     param0->unk_59++;
                 } else {
-                    param0->unk_59 = (param0->unk_84[param0->unk_59].unk_00 * -1) - 2;
+                    param0->unk_59 = (param0->unk_84[param0->unk_59].spriteFrame * -1) - 2;
                 }
             }
 
-            if (((param0->unk_59) >= 10) || (param0->unk_84[param0->unk_59].unk_00 == -1)) {
+            if (((param0->unk_59) >= 10) || (param0->unk_84[param0->unk_59].spriteFrame == -1)) {
                 param0->unk_5B = 0;
                 param0->unk_58 = 0;
                 param0->unk_24.unk_08 = 0;
@@ -1107,28 +1107,28 @@ static void sub_020087DC (UnkStruct_02007C7C * param0)
                 return;
             }
 
-            param0->unk_5B = param0->unk_84[param0->unk_59].unk_00;
-            param0->unk_5A = param0->unk_84[param0->unk_59].unk_01;
-            param0->unk_24.unk_08 = param0->unk_84[param0->unk_59].unk_02;
+            param0->unk_5B = param0->unk_84[param0->unk_59].spriteFrame;
+            param0->unk_5A = param0->unk_84[param0->unk_59].frameDelay;
+            param0->unk_24.unk_08 = param0->unk_84[param0->unk_59].xOffset;
         } else {
             param0->unk_5A--;
         }
     }
 }
 
-static void sub_020088D8 (UnkStruct_02007C7C * param0)
+static void sub_020088D8 (Sprite * param0)
 {
     sub_020087DC(param0);
 }
 
-void sub_020088E0 (UnkStruct_02008900 * param0, const UnkStruct_02007C10 * param1)
+void sub_020088E0 (UnkStruct_02008900 * param0, const SpriteAnimationFrame * param1)
 {
     int v0;
 
     param0->unk_00 = 1;
     param0->unk_02 = 0;
-    param0->unk_01 = param1[0].unk_00;
-    param0->unk_03 = param1[0].unk_01;
+    param0->unk_01 = param1[0].spriteFrame;
+    param0->unk_03 = param1[0].frameDelay;
     param0->unk_10 = param1;
 
     for (v0 = 0; v0 < 10; v0++) {
@@ -1146,19 +1146,19 @@ int sub_02008900 (UnkStruct_02008900 * param0)
     return -1;
 }
 
-void sub_020089A0 (UnkStruct_02007C7C * param0)
+void sub_020089A0 (Sprite * param0)
 {
     param0->unk_00_7 = 1;
     param0->unk_00_8 = 1;
 }
 
-void sub_020089B0 (UnkStruct_02007C7C * param0)
+void sub_020089B0 (Sprite * param0)
 {
     param0->unk_14 = param0->unk_04;
     param0->unk_78 = param0->unk_6C;
 }
 
-void sub_02008A0C (UnkStruct_02007C7C * param0)
+void sub_02008A0C (Sprite * param0)
 {
     param0->unk_04 = param0->unk_14;
     param0->unk_6C = param0->unk_78;
@@ -1178,7 +1178,7 @@ void sub_02008A84 (UnkStruct_02007768 * param0, u32 param1, u32 param2)
     param0->unk_2F8 = param2;
 }
 
-ArchivedSprite * sub_02008A90 (UnkStruct_02007C7C * param0)
+ArchivedSprite * sub_02008A90 (Sprite * param0)
 {
     return &param0->unk_04;
 }
@@ -1215,7 +1215,7 @@ void sub_02008B2C (UnkStruct_02007768 * param0, int param1)
     param0->unk_333 = param1;
 }
 
-BOOL sub_02008B38 (UnkStruct_02007C7C * param0)
+BOOL sub_02008B38 (Sprite * param0)
 {
     GF_ASSERT(param0 != NULL);
     return param0->unk_00_0 != 0;
@@ -1426,7 +1426,7 @@ static u8 sub_020091AC (u8 param0)
     return v0;
 }
 
-static void sub_020091C0 (UnkStruct_02007C7C * param0, u8 * param1)
+static void sub_020091C0 (Sprite * param0, u8 * param1)
 {
     if (param0->unk_04.spindaSpots == 0) {
         return;

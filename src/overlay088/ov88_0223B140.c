@@ -1330,7 +1330,7 @@ static void ov88_0223C8D8 (Window * param0, int param1, Party * param2, int para
     Pokemon * v5;
 
     v5 = Party_GetPokemonBySlotIndex(param2, param3);
-    v4 = sub_020765AC(v5, 2);
+    v4 = Pokemon_SpriteYOffset(v5, 2);
 
     sub_02021CAC(param4->unk_464[param1], 1);
     ov88_0223E87C(param4->unk_464[param1], Unk_ov88_0223EF54[param1][0], Unk_ov88_0223EF54[param1][1] + v4 + 192);

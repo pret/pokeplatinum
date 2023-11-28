@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/sys_task.h"
@@ -87,7 +87,7 @@ typedef struct {
     int unk_10;
     int unk_14;
     int unk_18;
-    UnkStruct_02007C7C * unk_1C;
+    Sprite * unk_1C;
     UnkStruct_ov12_0223595C unk_20;
     UnkStruct_ov12_02235998 unk_3C;
 } UnkStruct_ov12_0222F464;
@@ -257,7 +257,7 @@ void ov12_0222EC90 (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param
         }
 
         {
-            UnkStruct_02007C7C * v5;
+            Sprite * v5;
             s16 v6, v7, v8, v9;
 
             v5 = ov12_022232FC(v0->unk_00.unk_04, ov12_02220240(v0->unk_00.unk_04));
@@ -436,7 +436,7 @@ void ov12_0222EFB0 (UnkStruct_ov12_0221FCDC * param0)
         u8 v7;
         u8 v8;
         u8 v9;
-        UnkStruct_02007C7C * v10;
+        Sprite * v10;
         UnkStruct_ov12_02235350 v11;
         UnkStruct_ov12_02235350 v12;
 
@@ -460,7 +460,7 @@ void ov12_0222EFB0 (UnkStruct_ov12_0221FCDC * param0)
             }
 
             v8 = ov12_02220248(v0->unk_00.unk_04);
-            v7 = sub_02076648(ov12_022232D0(v0->unk_00.unk_04, v8), ov12_022232C4(v0->unk_00.unk_04, v8), v13, ov12_022232E0(v0->unk_00.unk_04, v8), ov12_022232EC(v0->unk_00.unk_04, v8));
+            v7 = LoadPokemonSpriteYOffset(ov12_022232D0(v0->unk_00.unk_04, v8), ov12_022232C4(v0->unk_00.unk_04, v8), v13, ov12_022232E0(v0->unk_00.unk_04, v8), ov12_022232EC(v0->unk_00.unk_04, v8));
         }
 
         sub_0200D4C4(v0->unk_1C[0], v12.unk_00, v11.unk_02 + v7);
@@ -596,7 +596,7 @@ void ov12_0222F2F8 (UnkStruct_ov12_0221FCDC * param0)
     ov12_022201E8(v1->unk_00.unk_04, ov12_0222F208, v1);
 }
 
-static void ov12_0222F44C (UnkStruct_02007C7C * param0, int param1, int param2, int param3, int param4)
+static void ov12_0222F44C (Sprite * param0, int param1, int param2, int param3, int param4)
 {
     sub_020086D4(param0, param1, 80 - param3, param2, param4);
 }

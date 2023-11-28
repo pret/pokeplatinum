@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV21_021D1FA4_H
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -24,12 +24,12 @@ void ov21_021D2098(UnkStruct_ov21_021D13FC * param0);
 void ov21_021D2124(UnkStruct_ov21_021D13FC * param0);
 void ov21_021D214C(UnkStruct_ov21_021D13FC * param0);
 void ov21_021D2164(UnkStruct_ov21_021D13FC * param0, int param1, int param2);
-UnkStruct_02007C7C * ov21_021D2170(const UnkStruct_ov21_021D13FC * param0);
+Sprite * ov21_021D2170(const UnkStruct_ov21_021D13FC * param0);
 void ov21_021D217C(const UnkStruct_ov21_021D13FC * param0, BOOL param1);
 void ov21_021D2188(UnkStruct_ov21_021D13FC * param0, int param1, int param2, int param3, int param4, u8 param5, u32 param6, int param7, int param8, int param9);
 void ov21_021D222C(UnkStruct_ov21_021D13FC * param0, int param1, int param2, int param3);
 void ov21_021D2250(UnkStruct_ov21_021D13FC * param0, int * param1, int * param2, int param3);
-UnkStruct_02007C7C * ov21_021D2274(const UnkStruct_ov21_021D13FC * param0, int param1);
+Sprite * ov21_021D2274(const UnkStruct_ov21_021D13FC * param0, int param1);
 void ov21_021D2280(const UnkStruct_ov21_021D13FC * param0, BOOL param1, int param2);
 UnkStruct_02022550 * ov21_021D22A8(const UnkStruct_ov21_021D13FC * param0);
 UnkStruct_02022550 * ov21_021D22C4(const UnkStruct_ov21_021D13FC * param0);

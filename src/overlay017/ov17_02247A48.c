@@ -232,7 +232,7 @@ static void ov17_02247B00 (UnkStruct_ov17_0224F30C * param0, void * param1, cons
         }
     }
 
-    v3 = sub_020765B8(v0->unk_0C.unk_00->unk_00[v1->unk_00], 2);
+    v3 = Pokemon_DPSpriteYOffset(v0->unk_0C.unk_00->unk_00[v1->unk_00], 2);
 
     {
         UnkStruct_ov22_0225AF8C v5;
@@ -276,7 +276,7 @@ static void ov17_02247C5C (SysTask * param0, void * param1)
         break;
     case 1:
         G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
-        v1 = sub_020765B8(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_11], 2);
+        v1 = Pokemon_DPSpriteYOffset(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_11], 2);
         ov22_0225B158(v0->unk_00->unk_F18[v0->unk_11].unk_00, v0->unk_00->unk_F18[v0->unk_11].unk_04, v0->unk_00->unk_F18[v0->unk_11].unk_08, v1);
         ov22_0225B074(v0->unk_00->unk_F18[v0->unk_11].unk_00, 1);
         v0->unk_10++;
@@ -345,7 +345,7 @@ static void ov17_02247DC8 (SysTask * param0, void * param1)
         v0->unk_10++;
         break;
     case 1:
-        v1 = sub_020765B8(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_11], 2);
+        v1 = Pokemon_DPSpriteYOffset(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_11], 2);
         v0->unk_18 += 0x100;
 
         if (v0->unk_18 >= ((96 - 32) << 8)) {
@@ -553,7 +553,7 @@ static void ov17_02248198 (SysTask * param0, void * param1)
     UnkStruct_ov17_02248198 * v0 = param1;
     int v1;
 
-    v1 = sub_020765B8(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_11], 2);
+    v1 = Pokemon_DPSpriteYOffset(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_11], 2);
 
     switch (v0->unk_10) {
     case 0:
@@ -944,7 +944,7 @@ static void ov17_02248860 (SysTask * param0, void * param1)
             UnkStruct_ov22_0225AF8C v1;
             int v2;
 
-            v2 = sub_020765B8(v0->unk_38.unk_00->unk_0C.unk_00->unk_00[v0->unk_38.unk_0E], 2);
+            v2 = Pokemon_DPSpriteYOffset(v0->unk_38.unk_00->unk_0C.unk_00->unk_00[v0->unk_38.unk_0E], 2);
             MI_CpuClear8(&v1, sizeof(UnkStruct_ov22_0225AF8C));
 
             v1.unk_0C = 22;
@@ -1059,7 +1059,7 @@ static void ov17_02248AA4 (SysTask * param0, void * param1)
     s32 v1;
     s32 v2, v3;
 
-    v1 = sub_020765B8(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0E], 2);
+    v1 = Pokemon_DPSpriteYOffset(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0E], 2);
 
     switch (v0->unk_0C) {
     case 0:

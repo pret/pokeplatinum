@@ -104,7 +104,7 @@ static void ov12_022380DC (UnkStruct_ov12_022380DC * param0, int param1, int par
     param0->unk_08[param0->unk_00]->unk_04 = v1->archive;
     param0->unk_08[param0->unk_00]->unk_08 = v1->palette;
 
-    v11 = param0->unk_08[param0->unk_00]->unk_0C = sub_02076648(v2, v3, v4, v6, v7);
+    v11 = param0->unk_08[param0->unk_00]->unk_0C = LoadPokemonSpriteYOffset(v2, v3, v4, v6, v7);
     v8 = ov12_022384CC(param0->unk_4C[param0->unk_00], 1);
 
     sub_02007DEC(param0->unk_18[param0->unk_00], 1, v8 + v11);
@@ -112,9 +112,9 @@ static void ov12_022380DC (UnkStruct_ov12_022380DC * param0, int param1, int par
     if (v4 == 2) {
         NARC * v13 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, param3);
 
-        sub_02078A80(v13, &v9, v2);
-        sub_02078AA4(v13, &v10, v2);
-        sub_02078AC8(v13, &v12, v2);
+        PokeSprite_LoadYOffset(v13, &v9, v2);
+        PokeSprite_LoadXOffsetShadow(v13, &v10, v2);
+        PokeSprite_LoadShadowSize(v13, &v12, v2);
         NARC_dtor(v13);
 
         sub_02007DEC(param0->unk_18[param0->unk_00], 46, v12);
@@ -153,7 +153,7 @@ void ov12_022382BC (UnkStruct_ov12_022380DC * param0, int param1)
 
     param0->unk_08[param0->unk_00]->unk_04 = v0->archive;
     param0->unk_08[param0->unk_00]->unk_08 = v0->palette;
-    param0->unk_08[param0->unk_00]->unk_0C = sub_02076648(v1, v2, v3, v4, v5);
+    param0->unk_08[param0->unk_00]->unk_0C = LoadPokemonSpriteYOffset(v1, v2, v3, v4, v5);
 
     v6 = ov12_022384CC(param0->unk_4C[param0->unk_00], 1) + param0->unk_08[param0->unk_00]->unk_0C;
 

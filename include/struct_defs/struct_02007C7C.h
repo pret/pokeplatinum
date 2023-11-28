@@ -1,13 +1,13 @@
 #ifndef POKEPLATINUM_STRUCT_02007C7C_H
 #define POKEPLATINUM_STRUCT_02007C7C_H
 
-#include "struct_defs/struct_02007C10.h"
+#include "struct_defs/sprite_animation_frame.h"
 #include "functypes/funcptr_02007C34.h"
 #include "struct_defs/struct_02007C7C_sub1.h"
 #include "struct_defs/struct_02007C7C_sub2.h"
 #include "struct_defs/archived_sprite.h"
 
-typedef struct UnkStruct_02007C7C_t {
+typedef struct Sprite {
     u32 unk_00_0 : 1;
     u32 unk_00_1 : 6;
     u32 unk_00_7 : 1;
@@ -25,7 +25,7 @@ typedef struct UnkStruct_02007C7C_t {
     UnkFuncPtr_02007C34 * unk_68;
     UnkStruct_02007C7C_sub2 unk_6C;
     UnkStruct_02007C7C_sub2 unk_78;
-    UnkStruct_02007C10 unk_84[10];
-} UnkStruct_02007C7C;
+    SpriteAnimationFrame unk_84[10];
+} Sprite;
 
 #endif // POKEPLATINUM_STRUCT_02007C7C_H

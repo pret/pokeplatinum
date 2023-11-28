@@ -5,10 +5,10 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02015F84_decl.h"
+#include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02026324_decl.h"
@@ -31,7 +31,7 @@ struct UnkStruct_0207AE68_t {
     Strbuf* unk_10;
     PaletteSys * unk_14;
     UnkStruct_02007768 * unk_18;
-    UnkStruct_02007C7C * unk_1C[2];
+    Sprite * unk_1C[2];
     Party * unk_24;
     Pokemon * unk_28;
     UnkStruct_020279FC * unk_2C;
@@ -40,7 +40,7 @@ struct UnkStruct_0207AE68_t {
     UnkStruct_020067E8 * unk_38;
     UnkStruct_02098D38 * unk_3C;
     void * unk_40;
-    UnkStruct_02015F84 * unk_44;
+    PokemonAnimationSys * unk_44;
     UnkStruct_02026324 * unk_48;
     UnkStruct_0207D3C0 * unk_4C;
     UnkStruct_0202CD88 * unk_50;

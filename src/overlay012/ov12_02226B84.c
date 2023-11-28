@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
@@ -69,7 +69,7 @@ typedef struct {
 typedef struct {
     u8 unk_00;
     UnkStruct_ov12_0221FCDC * unk_04;
-    UnkStruct_02007C7C * unk_08;
+    Sprite * unk_08;
     UnkStruct_ov12_02225D50 unk_0C;
     s32 unk_20;
     int unk_24;
@@ -80,7 +80,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov12_0221FCDC * unk_00;
     UnkStruct_ov12_02225F6C unk_04;
-    UnkStruct_02007C7C * unk_28;
+    Sprite * unk_28;
     s16 unk_2C;
     s16 unk_2E;
 } UnkStruct_ov12_022274E4;
@@ -108,7 +108,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_ov12_0221FCDC * unk_00;
-    UnkStruct_02007C7C * unk_04;
+    Sprite * unk_04;
     int unk_08;
     int unk_0C;
     int unk_10;
@@ -139,7 +139,7 @@ typedef struct {
     int unk_04;
     s16 unk_08;
     s16 unk_0A;
-    UnkStruct_02007C7C * unk_0C;
+    Sprite * unk_0C;
     UnkStruct_ov12_02225F6C unk_10;
     int unk_34;
     int unk_38;
@@ -215,7 +215,7 @@ typedef struct {
     u8 unk_09;
     u8 unk_0A;
     UnkStruct_ov12_0221FCDC * unk_0C;
-    UnkStruct_02007C7C * unk_10;
+    Sprite * unk_10;
     UnkStruct_ov12_02225F6C unk_14;
     UnkStruct_ov12_02225F6C unk_38;
 } UnkStruct_ov12_0222862C;
@@ -232,7 +232,7 @@ typedef struct {
     int unk_10;
     int unk_14;
     UnkStruct_ov12_0221FCDC * unk_18;
-    UnkStruct_02007C7C * unk_1C;
+    Sprite * unk_1C;
     UnkStruct_ov12_02225F6C unk_20;
     UnkStruct_ov12_02225F6C unk_44;
 } UnkStruct_ov12_02228868;
@@ -436,7 +436,7 @@ typedef struct {
 
 static int ov12_02229454(UnkStruct_ov12_0221FCDC * param0, int param1);
 
-static void ov12_02226B84 (UnkStruct_02007C7C * param0)
+static void ov12_02226B84 (Sprite * param0)
 {
     sub_02007DEC(param0, 12, 0x100);
     sub_02007DEC(param0, 13, 0x100);
@@ -1041,7 +1041,7 @@ static void ov12_02227738 (SysTask * param0, void * param1)
 void ov12_0222777C (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, CellActorData * param3)
 {
     UnkStruct_ov12_02227620 * v0;
-    UnkStruct_02007C7C * v1;
+    Sprite * v1;
 
     v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02227620));
 
@@ -1357,7 +1357,7 @@ static void ov12_02227B4C (SysTask * param0, void * param1)
 void ov12_02227CBC (UnkStruct_ov12_0221FCDC * param0)
 {
     UnkStruct_ov12_02227B4C * v0;
-    UnkStruct_02007C7C * v1;
+    Sprite * v1;
     int v2;
 
     v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02227B4C));

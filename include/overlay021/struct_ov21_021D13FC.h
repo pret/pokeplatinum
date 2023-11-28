@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02015064_decl.h"
@@ -25,7 +25,7 @@ typedef struct {
     UnkStruct_02009714 * unk_13C[4];
     UnkStruct_ov21_021D4C0C * unk_14C;
     UnkStruct_02007768 * unk_150;
-    UnkStruct_02007C7C * unk_154[4];
+    Sprite * unk_154[4];
     UnkStruct_02015064 * unk_164;
     UnkStruct_ov21_021D23F8 unk_168;
     UnkStruct_ov21_021D23F8 unk_18C;

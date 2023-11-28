@@ -1,0 +1,149 @@
+{
+    "front": {
+        "y_offset": {
+            "female": 0,
+            "male": 0
+        },
+        "addl_y_offset": 0,
+        "animation": 15,
+        "cry_delay": 0,
+        "start_delay": 16,
+        "frames": [
+            {
+                "sprite_frame": 1,
+                "frame_delay": 15,
+                "x_shift": 0,
+                "y_shift": 0
+            },
+            {
+                "sprite_frame": -2,
+                "frame_delay": 3,
+                "x_shift": 0,
+                "y_shift": 0
+            },
+            {
+                "sprite_frame": -1,
+                "frame_delay": 0,
+                "x_shift": 0,
+                "y_shift": 0
+            },
+            {
+                "sprite_frame": -1,
+                "frame_delay": 0,
+                "x_shift": 0,
+                "y_shift": 0
+            },
+            {
+                "sprite_frame": -1,
+                "frame_delay": 0,
+                "x_shift": 0,
+                "y_shift": 0
+            },
+            {
+                "sprite_frame": -1,
+                "frame_delay": 0,
+                "x_shift": 0,
+                "y_shift": 0
+            },
+            {
+                "sprite_frame": -1,
+                "frame_delay": 0,
+                "x_shift": 0,
+                "y_shift": 0
+            },
+            {
+                "sprite_frame": -1,
+                "frame_delay": 0,
+                "x_shift": 0,
+                "y_shift": 0
+            },
+            {
+                "sprite_frame": -1,
+                "frame_delay": 0,
+                "x_shift": 0,
+                "y_shift": 0
+            },
+            {
+                "sprite_frame": -1,
+                "frame_delay": 0,
+                "x_shift": 0,
+                "y_shift": 0
+            }
+        ]
+    },
+    "back": {
+        "y_offset": {
+            "female": 0,
+            "male": 0
+        },
+        "animation": 59,
+        "cry_delay": 15,
+        "start_delay": 12,
+        "frames": [
+            {
+                "sprite_frame": 0,
+                "frame_delay": 12,
+                "x_shift": 0,
+                "y_shift": 0
+            },
+            {
+                "sprite_frame": 1,
+                "frame_delay": 15,
+                "x_shift": 10,
+                "y_shift": 0
+            },
+            {
+                "sprite_frame": 1,
+                "frame_delay": 6,
+                "x_shift": 10,
+                "y_shift": 0
+            },
+            {
+                "sprite_frame": -1,
+                "frame_delay": 0,
+                "x_shift": 0,
+                "y_shift": 0
+            },
+            {
+                "sprite_frame": -1,
+                "frame_delay": 0,
+                "x_shift": 0,
+                "y_shift": 0
+            },
+            {
+                "sprite_frame": -1,
+                "frame_delay": 0,
+                "x_shift": 0,
+                "y_shift": 0
+            },
+            {
+                "sprite_frame": -1,
+                "frame_delay": 0,
+                "x_shift": 0,
+                "y_shift": 0
+            },
+            {
+                "sprite_frame": -1,
+                "frame_delay": 0,
+                "x_shift": 0,
+                "y_shift": 0
+            },
+            {
+                "sprite_frame": -1,
+                "frame_delay": 0,
+                "x_shift": 0,
+                "y_shift": 0
+            },
+            {
+                "sprite_frame": -1,
+                "frame_delay": 0,
+                "x_shift": 0,
+                "y_shift": 0
+            }
+        ]
+    },
+    "shadow": {
+        "x_offset": -5,
+        "size": "SHADOW_SIZE_LARGE"
+    }
+}

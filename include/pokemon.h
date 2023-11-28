@@ -3,13 +3,13 @@
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_defs/struct_02007C10.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_defs/sprite_animation_frame.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/cell_actor_data.h"
-#include "struct_decls/struct_02015F84_decl.h"
+#include "struct_decls/pokemon_animation_sys_decl.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_decls/struct_02078B40_decl.h"
@@ -602,10 +602,45 @@ void BuildArchivedPokemonSprite(ArchivedSprite *sprite, u16 monSpecies, u8 monGe
  */
 u8 Pokemon_SanitizeFormId(u16 monSpecies, u8 monForm);
 
-u8 sub_020765AC(Pokemon *mon, u8 param1);
-u8 sub_020765B8(Pokemon *mon, u8 param1);
-u8 sub_020765C4(BoxPokemon *boxMon, u8 param1, BOOL param2);
-u8 sub_02076648(u16 monSpecies, u8 monGender, u8 param2, u8 monForm, u32 monPersonality);
+/**
+ * @brief Load the Y-offset applied to a Pokemon's sprite-face on display.
+ * 
+ * @param mon 
+ * @param face 
+ * @return Y-offset applied to the sprite-face on display
+ */
+u8 Pokemon_SpriteYOffset(Pokemon *mon, u8 face);
+
+/**
+ * @brief Load the Y-offset applied to a Pokemon's DP sprite-face on display.
+ * 
+ * @param mon 
+ * @param face 
+ * @return Y-offset applied to the DP sprite-face on display
+ */
+u8 Pokemon_DPSpriteYOffset(Pokemon *mon, u8 face);
+
+/**
+ * @brief Load the Y-offset applied to a Pokemon's sprite-face on display.
+ * 
+ * @param mon 
+ * @param face 
+ * @param preferDP  If TRUE, prefer Diamond/Pearl sprites, where possible
+ * @return Y-offset applied to the sprite-face on display
+ */
+u8 BoxPokemon_SpriteYOffset(BoxPokemon *boxMon, u8 face, BOOL preferDP);
+
+/**
+ * @brief Load the Y-offset applied to a Pokemon's sprite-face on display.
+ * 
+ * @param species       The Pokemon's species
+ * @param gender        The Pokemon's gender
+ * @param face          Which face of the Pokemon the player sees
+ * @param form          The Pokemon's form
+ * @param personality   The Pokemon's personality value
+ * @return Y-offset applied to the sprite-face on display
+ */
+u8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 personality);
 void sub_0207697C(ArchivedSprite *param0, u16 param1);
 CellActorData *sub_02076994(UnkStruct_0200C6E4 *param0, UnkStruct_0200C704 *param1, PaletteSys *param2, int param3, int param4, int param5, int param6, int param7, int heapID);
 void sub_02076AAC(int param0, int param1, UnkStruct_ov5_021DE5D0 *param2);
@@ -909,12 +944,70 @@ BOOL sub_0207884C(BoxPokemon *boxMon, TrainerInfo *param1, int heapID);
 int sub_020788D0(int param0);
 void sub_0207893C(Pokemon *mon);
 void sub_0207896C(BoxPokemon *boxMon);
-void sub_020789BC(NARC *narc, UnkStruct_02007C10 *param1, u16 param2, u16 param3);
-void sub_020789F4(NARC *narc, UnkStruct_02015F84 *param1, UnkStruct_02007C7C *param2, u16 param3, int param4, int param5, int param6);
-void sub_02078A4C(NARC *narc, u8 *param1, u16 param2, u16 param3);
-void sub_02078A80(NARC *narc, s8 *param1, u16 param2);
-void sub_02078AA4(NARC *narc, s8 *param1, u16 param2);
-void sub_02078AC8(NARC *narc, u8 *param1, u16 param2);
+
+/**
+ * @brief Load the animation frames for a given species and a client type
+ * (implicitly defining which face of the sprite is visible to the player).
+ * 
+ * @param narc          Handle to the pl_poke_data archive
+ * @param[out] frames   Out-param for the loaded frame data
+ * @param species       Species to be loaded
+ * @param clientType    Client-type of who made the load request
+ */
+void PokeSprite_LoadAnimationFrames(NARC *narc, SpriteAnimationFrame *frames, u16 species, u16 clientType);
+
+/**
+ * @brief Load the animation data for a given species and a client type.
+ * 
+ * @param narc          Handle to the pl_poke_data archive
+ * @param animationSys  Animation system container
+ * @param sprite        Pre-loaded Pokemon sprite
+ * @param species       Species to be loaded
+ * @param face          Which face is visible to the player
+ * @param reverse       If TRUE, reverse the sprite + animation
+ * @param frame         Which frame of the animation to initialize
+ */
+void PokeSprite_LoadAnimation(NARC *narc, PokemonAnimationSys *animationSys, Sprite *sprite, u16 species, int face, int reverse, int frame);
+
+/**
+ * @brief Load the cry delay for a given species and a client type.
+ * 
+ * @param narc          Handle to the pl_poke_data archive
+ * @param[out] cryDelay Out-param for the loaded cry delay value
+ * @param species       Species to be loaded
+ * @param clientType    Client-type of who made the load request
+ */
+void PokeSprite_LoadCryDelay(NARC *narc, u8 *cryDelay, u16 species, u16 clientType);
+
+/**
+ * @brief Load the vertical offset for a given species and a client type.
+ * 
+ * @param narc          Handle to the pl_poke_data archive
+ * @param[out] yOffset  Out-param for the loaded vertical offset value
+ * @param species       Species to be loaded
+ * @param clientType    Client-type of who made the load request
+ */
+void PokeSprite_LoadYOffset(NARC *narc, s8 *yOffset, u16 species);
+
+/**
+ * @brief Load the shadow's horizontal offset for a given species and a client type.
+ * 
+ * @param narc                  Handle to the pl_poke_data archive
+ * @param[out] xOffsetShadow    Out-param for the loaded cry delay value
+ * @param species               Species to be loaded
+ * @param clientType            Client-type of who made the load request
+ */
+void PokeSprite_LoadXOffsetShadow(NARC *narc, s8 *xOffsetShadow, u16 species);
+
+/**
+ * @brief Load the shadow size for a given species and a client type.
+ * 
+ * @param narc              Handle to the pl_poke_data archive
+ * @param[out] shadowSize   Out-param for the loaded cry delay value
+ * @param species           Species to be loaded
+ * @param clientType        Client-type of who made the load request
+ */
+void PokeSprite_LoadShadowSize(NARC *narc, u8 *shadowSize, u16 species);
 BOOL Pokemon_SetBallSeal(int param0, Pokemon *mon, int heapID);
 void sub_02078B40(Pokemon *mon, UnkStruct_02078B40 *param1);
 void sub_02078E0C(UnkStruct_02078B40 *param0, Pokemon *mon);

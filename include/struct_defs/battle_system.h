@@ -11,7 +11,7 @@
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02015F84_decl.h"
+#include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
@@ -86,7 +86,7 @@ struct BattleSystem {
     void * unk_1B8;
     UnkStruct_0209C370 * unk_1BC;
     UnkStruct_ov10_0221F800 * unk_1C0;
-    UnkStruct_02015F84 * unk_1C4;
+    PokemonAnimationSys * unk_1C4;
     NNSG2dCellTransferState *cellTransferState;
     UnkStruct_ov16_0223E0C8 unk_1CC[4];
     BattleParams_sub1 unk_20C;

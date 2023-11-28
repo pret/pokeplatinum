@@ -15,7 +15,7 @@
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
@@ -10813,7 +10813,7 @@ static void BattleScript_CatchMonTask (SysTask * param0, void * param1)
         break;
     case 14:
     {
-        UnkStruct_02007C7C * v13;
+        Sprite * v13;
 
         v13 = ov21_021E8E00(v2->tmpPtr[0]);
         sub_02008274(v13, 0, 4);

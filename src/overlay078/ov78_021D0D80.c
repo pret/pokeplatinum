@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "message.h"
@@ -146,7 +146,7 @@ typedef struct {
 } UnkStruct_ov78_021D2448;
 
 typedef struct {
-    UnkStruct_02007C7C * unk_00;
+    Sprite * unk_00;
     UnkStruct_ov78_021D2448_sub1 unk_04;
     SysTask * unk_3C;
 } UnkStruct_ov78_021D26B4;
@@ -171,7 +171,7 @@ typedef struct {
     UnkStruct_020218BC * unk_248;
     UnkStruct_02009714 * unk_24C[6];
     UnkStruct_02007768 * unk_264;
-    UnkStruct_02007C7C * unk_268[3];
+    Sprite * unk_268[3];
     UnkStruct_ov78_021D26B4 unk_274;
     NNSFndAllocator unk_2B4;
     UnkStruct_ov78_021D15CC unk_2C4[6];
@@ -237,7 +237,7 @@ static void ov78_021D1CA8(UnkStruct_ov78_021D107C * param0, int param1);
 static void ov78_021D1DF0(UnkStruct_ov78_021D107C * param0);
 static void ov78_021D1E28(UnkStruct_ov78_021D107C * param0);
 static void ov78_021D1E44(UnkStruct_ov78_021D107C * param0, int param1);
-static void ov78_021D1468(UnkStruct_02007C7C ** param0, UnkStruct_ov78_021D107C * param1, int param2);
+static void ov78_021D1468(Sprite ** param0, UnkStruct_ov78_021D107C * param1, int param2);
 static void ov78_021D15CC(UnkStruct_ov78_021D15CC * param0, int param1, int param2, int param3, NNSFndAllocator * param4);
 static void ov78_021D1604(UnkStruct_ov78_021D15CC * param0, int param1, int param2);
 static void ov78_021D16D8(UnkStruct_ov78_021D15CC * param0, NNSFndAllocator * param1);
@@ -261,7 +261,7 @@ static BOOL ov78_021D2608(UnkStruct_ov78_021D2448 * param0);
 static void ov78_021D2618(UnkStruct_ov78_021D107C * param0);
 static void ov78_021D2688(UnkStruct_ov78_021D107C * param0);
 static BOOL ov78_021D26A4(UnkStruct_ov78_021D107C * param0);
-static void ov78_021D26B4(UnkStruct_ov78_021D26B4 * param0, UnkStruct_02007C7C * param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, int param8);
+static void ov78_021D26B4(UnkStruct_ov78_021D26B4 * param0, Sprite * param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, int param8);
 static void ov78_021D270C(UnkStruct_ov78_021D26B4 * param0);
 static void ov78_021D2740(SysTask * param0, void * param1);
 static void ov78_021D1C58(UnkStruct_ov78_021D107C * param0);
@@ -658,7 +658,7 @@ static void ov78_021D13B8 (UnkStruct_ov78_021D107C * param0, int param1)
     }
 }
 
-static void ov78_021D1468 (UnkStruct_02007C7C ** param0, UnkStruct_ov78_021D107C * param1, int param2)
+static void ov78_021D1468 (Sprite ** param0, UnkStruct_ov78_021D107C * param1, int param2)
 {
     ArchivedSprite v0;
     int v1;
@@ -1626,7 +1626,7 @@ static BOOL ov78_021D26A4 (UnkStruct_ov78_021D107C * param0)
     return ov78_021D2608(&param0->unk_6A8);
 }
 
-static void ov78_021D26B4 (UnkStruct_ov78_021D26B4 * param0, UnkStruct_02007C7C * param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, int param8)
+static void ov78_021D26B4 (UnkStruct_ov78_021D26B4 * param0, Sprite * param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, int param8)
 {
     GF_ASSERT(param0->unk_3C == NULL);
 

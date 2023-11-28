@@ -5,21 +5,21 @@
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02015F84_decl.h"
+#include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
-#include "struct_defs/struct_02007C10.h"
+#include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0202818C.h"
 #include "struct_defs/struct_0202CA28.h"
-#include "struct_defs/struct_020789BC.h"
-#include "struct_defs/struct_020789F4.h"
+#include "struct_defs/archived_poke_sprite_data.h"
+#include "struct_defs/poke_animation_settings.h"
 #include "struct_defs/struct_02078B40.h"
 #include "overlay005/struct_ov5_021DE5D0.h"
 #include "overlay104/struct_ov104_0223F9E0.h"
@@ -116,7 +116,7 @@ static u16 Pokemon_GetNatureStatValue(u8 monNature, u16 monStatValue, u8 statTyp
 static u8 BoxPokemon_IsShiny(BoxPokemon *boxMon);
 static inline BOOL Pokemon_InlineIsPersonalityShiny(u32 monOTID, u32 monPersonality);
 static void BuildArchivedDPPokemonSprite(ArchivedSprite *param0, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
-static u8 sub_020767BC(u16 monSpecies, u8 monGender, u8 param2, u8 monForm, u32 monPersonality);
+static u8 LoadPokemonDPSpriteHeight(u16 monSpecies, u8 monGender, u8 param2, u8 monForm, u32 monPersonality);
 static void BoxPokemon_SetDefaultMoves(BoxPokemon *boxMon);
 static u16 BoxPokemon_AddMove(BoxPokemon *boxMon, u16 moveID);
 static void BoxPokemon_ReplaceMove(BoxPokemon *boxMon, u16 moveID);
@@ -137,7 +137,7 @@ static void Pokemon_DecryptData(void *data, u32 bytes, u32 seed);
 static u16 Pokemon_GetDataChecksum(void *data, u32 bytes);
 static void *BoxPokemon_GetDataBlock(BoxPokemon *boxMon, u32 personality, enum PokemonDataBlockID dataBlockID);
 static int Pokemon_GetFormNarcIndex(int monSpecies, int monForm);
-static inline int Pokemon_GetLowestBitInverse(int num);
+static inline int Pokemon_Face(int num);
 
 void Pokemon_Init(Pokemon *mon)
 {
@@ -2716,108 +2716,120 @@ static void BuildArchivedDPPokemonSprite(ArchivedSprite *sprite, u16 species, u8
     }
 }
 
-u8 sub_020765AC(Pokemon *mon, u8 param1)
+u8 Pokemon_SpriteYOffset(Pokemon *mon, u8 face)
 {
-    return sub_020765C4(&mon->box, param1, FALSE);
+    return BoxPokemon_SpriteYOffset(&mon->box, face, FALSE);
 }
 
-u8 sub_020765B8(Pokemon *mon, u8 param1)
+u8 Pokemon_DPSpriteYOffset(Pokemon *mon, u8 face)
 {
-    return sub_020765C4(&mon->box, param1, TRUE);
+    return BoxPokemon_SpriteYOffset(&mon->box, face, TRUE);
 }
 
-u8 sub_020765C4(BoxPokemon *boxMon, u8 param1, BOOL param2)
+u8 BoxPokemon_SpriteYOffset(BoxPokemon *boxMon, u8 face, BOOL preferDP)
 {
-    u16 monSpeciesEgg = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_EGG, NULL);
-    u8 monGender = BoxPokemon_GetGender(boxMon);
-    u32 monPersonality = BoxPokemon_GetValue(boxMon, MON_DATA_PERSONALITY, NULL);
+    u16 species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_EGG, NULL);
+    u8 gender = BoxPokemon_GetGender(boxMon);
+    u32 personality = BoxPokemon_GetValue(boxMon, MON_DATA_PERSONALITY, NULL);
 
-    u8 monForm;
-    // TODO enum values?
-    if (monSpeciesEgg == SPECIES_EGG) {
+    u8 form;
+    if (species == SPECIES_EGG) {
         if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_MANAPHY) {
-            monForm = 1;
+            form = 1;
         } else {
-            monForm = 0;
+            form = 0;
         }
     } else {
-        monForm = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
+        form = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
     }
 
-    if (param2 == TRUE) {
-        return sub_020767BC(monSpeciesEgg, monGender, param1, monForm, monPersonality);
+    if (preferDP == TRUE) {
+        return LoadPokemonDPSpriteHeight(species, gender, face, form, personality);
     }
 
-    return sub_02076648(monSpeciesEgg, monGender, param1, monForm, monPersonality);
+    return LoadPokemonSpriteYOffset(species, gender, face, form, personality);
 }
 
-u8 sub_02076648(u16 monSpecies, u8 monGender, u8 param2, u8 monForm, u32 monPersonality)
+u8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 personality)
 {
-    // TODO enum values?
-    monForm = Pokemon_SanitizeFormId(monSpecies, monForm);
+    form = Pokemon_SanitizeFormId(species, form);
 
     int narcIndex;
     int memberIndex;
-    switch (monSpecies) {
+    switch (species) {
     case SPECIES_BURMY:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 72 + (param2 / 2) + monForm * 2;
+        memberIndex = 72 + (face / 2) + form * 2;
         break;
+
     case SPECIES_WORMADAM:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 78 + (param2 / 2) + monForm * 2;
+        memberIndex = 78 + (face / 2) + form * 2;
         break;
+
     case SPECIES_SHELLOS:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 84 + param2 + monForm;
+        memberIndex = 84 + face + form;
         break;
+
     case SPECIES_GASTRODON:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 88 + param2 + monForm;
+        memberIndex = 88 + face + form;
         break;
+
     case SPECIES_CHERRIM:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 92 + param2 + monForm;
+        memberIndex = 92 + face + form;
         break;
+
     case SPECIES_ARCEUS:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 96 + (param2 / 2) + monForm * 2;
+        memberIndex = 96 + (face / 2) + form * 2;
         break;
+
     case SPECIES_CASTFORM:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 64 + param2 * 2 + monForm;
+        memberIndex = 64 + face * 2 + form;
         break;
+
     case SPECIES_DEOXYS:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 0 + (param2 / 2) + monForm * 2;
+        memberIndex = 0 + (face / 2) + form * 2;
         break;
+
     case SPECIES_UNOWN:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 8 + (param2 / 2) + monForm * 2;
+        memberIndex = 8 + (face / 2) + form * 2;
         break;
+
     case SPECIES_EGG:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 132 + monForm;
+        memberIndex = 132 + form;
         break;
+
     case SPECIES_BAD_EGG:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
         memberIndex = 132;
         break;
+
     case SPECIES_SHAYMIN:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 136 + (param2 / 2) + monForm * 2;
+        memberIndex = 136 + (face / 2) + form * 2;
         break;
+
     case SPECIES_ROTOM:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 140 + (param2 / 2) + monForm * 2;
+        memberIndex = 140 + (face / 2) + form * 2;
         break;
+
     case SPECIES_GIRATINA:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 152 + (param2 / 2) + monForm * 2;
+        memberIndex = 152 + (face / 2) + form * 2;
         break;
+
     default:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT;
-        memberIndex = monSpecies * 4 + param2 + (monGender != 1 ? 1 : 0);
+        memberIndex = species * 4 + face + (gender != GENDER_FEMALE ? 1 : 0);
         break;
     }
 
@@ -2826,88 +2838,102 @@ u8 sub_02076648(u16 monSpecies, u8 monGender, u8 param2, u8 monForm, u32 monPers
     return result;
 }
 
-static u8 sub_020767BC(u16 monSpecies, u8 monGender, u8 param2, u8 monForm, u32 monPersonality)
+static u8 LoadPokemonDPSpriteHeight(u16 species, u8 gender, u8 face, u8 form, u32 personality)
 {
     // TODO enum values?
-    monForm = Pokemon_SanitizeFormId(monSpecies, monForm);
+    form = Pokemon_SanitizeFormId(species, form);
 
     int narcIndex;
     int memberIndex;
-    switch (monSpecies) {
+    switch (species) {
     case SPECIES_BURMY:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 72 + (param2 / 2) + monForm * 2;
+        memberIndex = 72 + (face / 2) + form * 2;
         break;
+
     case SPECIES_WORMADAM:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 78 + (param2 / 2) + monForm * 2;
+        memberIndex = 78 + (face / 2) + form * 2;
         break;
+
     case SPECIES_SHELLOS:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 84 + param2 + monForm;
+        memberIndex = 84 + face + form;
         break;
+
     case SPECIES_GASTRODON:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 88 + param2 + monForm;
+        memberIndex = 88 + face + form;
         break;
+
     case SPECIES_CHERRIM:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 92 + param2 + monForm;
+        memberIndex = 92 + face + form;
         break;
+
     case SPECIES_ARCEUS:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 96 + (param2 / 2) + monForm * 2;
+        memberIndex = 96 + (face / 2) + form * 2;
         break;
+
     case SPECIES_CASTFORM:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 64 + param2 * 2 + monForm;
+        memberIndex = 64 + face * 2 + form;
         break;
+
     case SPECIES_DEOXYS:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 0 + (param2 / 2) + monForm * 2;
+        memberIndex = 0 + (face / 2) + form * 2;
         break;
+
     case SPECIES_UNOWN:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 8 + (param2 / 2) + monForm * 2;
+        memberIndex = 8 + (face / 2) + form * 2;
         break;
+
     case SPECIES_EGG:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 132 + monForm;
+        memberIndex = 132 + form;
         break;
+
     case SPECIES_BAD_EGG:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
         memberIndex = 132;
         break;
+
     case SPECIES_SHAYMIN:
-        if (monForm > 0) {
+        if (form > 0) {
             narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-            memberIndex = 136 + (param2 / 2) + monForm * 2;
+            memberIndex = 136 + (face / 2) + form * 2;
         } else {
             narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT;
-            memberIndex = monSpecies * 4 + param2 + (monGender != 1 ? 1 : 0);
+            memberIndex = species * 4 + face + (gender != GENDER_FEMALE ? 1 : 0);
         }
         break;
+
     case SPECIES_ROTOM:
-        if (monForm > 0) {
+        if (form > 0) {
             narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-            memberIndex = 140 + (param2 / 2) + monForm * 2;
+            memberIndex = 140 + (face / 2) + form * 2;
         } else {
             narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT;
-            memberIndex = monSpecies * 4 + param2 + (monGender != 1 ? 1 : 0);
+            memberIndex = species * 4 + face + (gender != GENDER_FEMALE ? 1 : 0);
         }
         break;
+
     case SPECIES_GIRATINA:
-        if (monForm > 0) {
+        if (form > 0) {
             narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-            memberIndex = 152 + (param2 / 2) + monForm * 2;
+            memberIndex = 152 + (face / 2) + form * 2;
         } else {
             narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT;
-            memberIndex = monSpecies * 4 + param2 + (monGender != 1 ? 1 : 0);
+            memberIndex = species * 4 + face + (gender != GENDER_FEMALE ? 1 : 0);
         }
         break;
+
     default:
         narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT;
-        memberIndex = monSpecies * 4 + param2 + (monGender != 1 ? 1 : 0);
+        memberIndex = species * 4 + face + (gender != GENDER_FEMALE ? 1 : 0);
         break;
     }
 
@@ -4675,68 +4701,67 @@ void sub_0207896C(BoxPokemon *boxMon)
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
 }
 
-static inline int Pokemon_GetLowestBitInverse(int num)
+static inline int Pokemon_Face(int clientType)
 {
-    int result = (num & 0x1) ? 0 : 1;
-    return result;
+    return (clientType & 1) ? 0 : 1;
 }
 
-void sub_020789BC(NARC *narc, UnkStruct_02007C10 *param1, u16 param2, u16 param3)
+void PokeSprite_LoadAnimationFrames(NARC *narc, SpriteAnimationFrame *frames, u16 species, u16 clientType)
 {
-    int v1 = Pokemon_GetLowestBitInverse(param3);
+    int face = Pokemon_Face(clientType);
 
-    UnkStruct_020789BC v0;
-    NARC_ReadFromMember(narc, 0, param2 * sizeof(UnkStruct_020789BC), sizeof(UnkStruct_020789BC), &v0);
-    MI_CpuCopy8(&v0.unk_00[v1].unk_03[0], param1, sizeof(UnkStruct_02007C10) * 10);
+    ArchivedPokeSpriteData data;
+    NARC_ReadFromMember(narc, 0, species * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &data);
+    MI_CpuCopy8(data.faces[face].frames, frames, sizeof(SpriteAnimationFrame) * MAX_ANIMATION_FRAMES);
 }
 
-void sub_020789F4(NARC *narc, UnkStruct_02015F84 *param1, UnkStruct_02007C7C *param2, u16 param3, int param4, int param5, int param6)
+void PokeSprite_LoadAnimation(NARC *narc, PokemonAnimationSys *animationSys, Sprite *sprite, u16 species, int face, int reverse, int frame)
 {
-    int v3 = (param4 == 2) ? 0 : 1;
+    int faceType = (face == FACE_FRONT) ? 0 : 1;
 
-    UnkStruct_020789BC v1;
-    NARC_ReadFromMember(narc, 0, param3 * sizeof(UnkStruct_020789BC), sizeof(UnkStruct_020789BC), &v1);
+    ArchivedPokeSpriteData spriteData;
+    NARC_ReadFromMember(narc, 0, species * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &spriteData);
 
-    UnkStruct_020789F4 v0;
-    v0.unk_00 = v1.unk_00[v3].unk_01;
-    v0.unk_02 = v1.unk_00[v3].unk_02;
-    v0.unk_04 = param5;
+    PokeAnimationSettings settings;
+    settings.animation = spriteData.faces[faceType].animation;
+    settings.startDelay = spriteData.faces[faceType].startDelay;
+    settings.reverse = reverse;
 
-    sub_02015FCC(param1, param2, &v0, param6);
+    PokeAnimation_Init(animationSys, sprite, &settings, frame);
 }
 
-void sub_02078A4C(NARC *narc, u8 *param1, u16 param2, u16 param3)
+void PokeSprite_LoadCryDelay(NARC *narc, u8 *cryDelay, u16 species, u16 clientType)
 {
-    int v1 = Pokemon_GetLowestBitInverse(param3);
+    int face = Pokemon_Face(clientType);
 
-    UnkStruct_020789BC v0;
-    NARC_ReadFromMember(narc, 0, param2 * sizeof(UnkStruct_020789BC), sizeof(UnkStruct_020789BC), &v0);
+    ArchivedPokeSpriteData data;
+    NARC_ReadFromMember(narc, 0, species * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &data);
 
-    *param1 = v0.unk_00[v1].unk_00;
+    *cryDelay = data.faces[face].cryDelay;
 }
 
-void sub_02078A80(NARC *narc, s8 *param1, u16 param2)
+void PokeSprite_LoadYOffset(NARC *narc, s8 *yOffset, u16 species)
 {
-    UnkStruct_020789BC v0;
+    ArchivedPokeSpriteData data;
 
-    NARC_ReadFromMember(narc, 0, param2 * sizeof(UnkStruct_020789BC), sizeof(UnkStruct_020789BC), &v0);
-    *param1 = v0.unk_56;
+    NARC_ReadFromMember(narc, 0, species * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &data);
+    *yOffset = data.yOffset;
 }
 
-void sub_02078AA4(NARC *narc, s8 *param1, u16 param2)
+void PokeSprite_LoadXOffsetShadow(NARC *narc, s8 *xOffsetShadow, u16 species)
 {
-    UnkStruct_020789BC v0;
+    ArchivedPokeSpriteData data;
 
-    NARC_ReadFromMember(narc, 0, param2 * sizeof(UnkStruct_020789BC), sizeof(UnkStruct_020789BC), &v0);
-    *param1 = v0.unk_57;
+    NARC_ReadFromMember(narc, 0, species * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &data);
+    *xOffsetShadow = data.xOffsetShadow;
 }
 
-void sub_02078AC8(NARC *narc, u8 *param1, u16 param2)
+void PokeSprite_LoadShadowSize(NARC *narc, u8 *shadowSize, u16 species)
 {
-    UnkStruct_020789BC v0;
+    ArchivedPokeSpriteData data;
 
-    NARC_ReadFromMember(narc, 0, param2 * sizeof(UnkStruct_020789BC), sizeof(UnkStruct_020789BC), &v0);
-    *param1 = v0.unk_58;
+    NARC_ReadFromMember(narc, 0, species * sizeof(ArchivedPokeSpriteData), sizeof(ArchivedPokeSpriteData), &data);
+    *shadowSize = data.shadowSize;
 }
 
 BOOL Pokemon_SetBallSeal(int param0, Pokemon *mon, int heapID)

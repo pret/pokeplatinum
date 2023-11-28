@@ -10,13 +10,13 @@
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02015F84_decl.h"
+#include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
@@ -142,7 +142,7 @@ BOOL BattleSystem_AnimationsOn(BattleSystem *battleSys);
 int ov16_0223EDE0(BattleSystem * param0);
 u8 BattleSystem_TextSpeed(BattleSystem * param0);
 int BattleSystem_Ruleset(BattleSystem * param0);
-UnkStruct_02015F84 * ov16_0223EE28(BattleSystem * param0);
+PokemonAnimationSys * ov16_0223EE28(BattleSystem * param0);
 UnkStruct_0202CC84 * BattleSystem_ChatotVoice(BattleSystem * param0, int param1);
 void ov16_0223EE70(BattleSystem * param0);
 void ov16_0223EF2C(BattleSystem * param0, int param1, int param2);
@@ -202,7 +202,7 @@ void BattleSystem_ShowStopPlaybackButton(BattleSystem * param0);
 u8 BattleSystem_RecordedChatter(BattleSystem * param0, int param1);
 void ov16_0223F858(BattleSystem * param0, u8 * param1);
 void ov16_0223F87C(BattleSystem * param0, u8 * param1);
-void ov16_0223F8AC(BattleSystem * param0, UnkStruct_02007C7C ** param1);
+void ov16_0223F8AC(BattleSystem * param0, Sprite ** param1);
 void BattleSystem_SetGaugePriority(BattleSystem * param0, int param1);
 u32 BattleSystem_CalcMoneyPenalty(Party *party, TrainerInfo *trainerInfo);
 void BattleSystem_DexFlagSeen(BattleSystem * param0, int param1);
@@ -1051,7 +1051,7 @@ int BattleSystem_Ruleset (BattleSystem * param0)
     return sub_02027B14(param0->unk_1B0);
 }
 
-UnkStruct_02015F84 * ov16_0223EE28 (BattleSystem * param0)
+PokemonAnimationSys * ov16_0223EE28 (BattleSystem * param0)
 {
     return param0->unk_1C4;
 }
@@ -1637,7 +1637,7 @@ void ov16_0223F87C (BattleSystem * param0, u8 * param1)
     }
 }
 
-void ov16_0223F8AC (BattleSystem * param0, UnkStruct_02007C7C ** param1)
+void ov16_0223F8AC (BattleSystem * param0, Sprite ** param1)
 {
     int v0;
 

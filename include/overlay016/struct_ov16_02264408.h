@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV16_02264408_H
 
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
@@ -15,7 +15,7 @@ typedef struct {
     PaletteSys * unk_08;
     UnkStruct_ov16_0223E0C8 * unk_0C[4];
     u8 unk_1C[4];
-    UnkStruct_02007C7C * unk_20[4];
+    Sprite * unk_20[4];
     u32 unk_30;
     u16 unk_34[4];
     u8 unk_3C[4];

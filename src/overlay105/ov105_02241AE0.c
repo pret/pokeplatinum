@@ -8,7 +8,7 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -119,7 +119,7 @@ struct UnkStruct_ov105_02241FF4_t {
     PaletteSys * unk_120;
     UnkStruct_0207C690 * unk_124;
     UnkStruct_02007768 * unk_128;
-    UnkStruct_02007C7C * unk_12C[3];
+    Sprite * unk_12C[3];
     UnkStruct_020279FC * unk_138;
     SaveData * unk_13C;
     UnkStruct_02098D38 * unk_140;

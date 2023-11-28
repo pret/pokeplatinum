@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -17,7 +17,7 @@
 #include "overlay095/struct_ov95_0224773C_decl.h"
 #include "overlay095/struct_ov95_02247958_decl.h"
 
-#include "struct_defs/struct_02007C10.h"
+#include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
@@ -69,8 +69,8 @@ typedef struct {
     int unk_08;
     BOOL unk_0C;
     UnkStruct_02007768 * unk_10;
-    UnkStruct_02007C7C * unk_14;
-    UnkStruct_02007C10 unk_18[10];
+    Sprite * unk_14;
+    SpriteAnimationFrame unk_18[10];
     UnkStruct_02022550 * unk_40[2];
     UnkStruct_ov95_02247568 unk_48;
     BGL * unk_58;
@@ -118,7 +118,7 @@ static int ov95_0224B71C(UnkStruct_ov95_0224B4D4 * param0, int * param1);
 static int ov95_0224B81C(UnkStruct_ov95_0224B4D4 * param0, int * param1);
 static BOOL ov95_0224B990(UnkStruct_ov95_0224B4D4 * param0, int param1);
 static void ov95_0224B9C0(UnkStruct_ov95_0224B4D4 * param0);
-static UnkStruct_02007C7C * ov95_0224BA8C(UnkStruct_ov95_0224B4D4 * param0);
+static Sprite * ov95_0224BA8C(UnkStruct_ov95_0224B4D4 * param0);
 static void ov95_0224BAE8(UnkStruct_ov95_0224B4D4 * param0);
 static void ov95_0224BB8C(UnkStruct_ov95_0224B4D4 * param0);
 static void ov95_0224BBB0(UnkStruct_ov95_0224B4D4 * param0, int param1, int param2, int param3);
@@ -376,7 +376,7 @@ static int ov95_0224B71C (UnkStruct_ov95_0224B4D4 * param0, int * param1)
             if (BoxPokemon_GetValue((BoxPokemon *)v0, MON_DATA_IS_EGG, NULL) == 0) {
                 u8 v1;
 
-                sub_02078A4C(param0->unk_84, &v1, ov95_02247660(param0->unk_00), 1);
+                PokeSprite_LoadCryDelay(param0->unk_84, &v1, ov95_02247660(param0->unk_00), 1);
                 sub_0200590C(ov95_02247660(param0->unk_00), v1, ov95_02247668(param0->unk_00));
                 sub_02007B98(param0->unk_14, 1);
             }
@@ -506,7 +506,7 @@ static void ov95_0224B9C0 (UnkStruct_ov95_0224B4D4 * param0)
     sub_02008A84(param0->unk_10, NNS_GfdGetPlttKeyAddr(v1), NNS_GfdGetPlttKeySize(v1));
 }
 
-static UnkStruct_02007C7C * ov95_0224BA8C (UnkStruct_ov95_0224B4D4 * param0)
+static Sprite * ov95_0224BA8C (UnkStruct_ov95_0224B4D4 * param0)
 {
     ArchivedSprite v0;
     BoxPokemon * v1;
@@ -515,9 +515,9 @@ static UnkStruct_02007C7C * ov95_0224BA8C (UnkStruct_ov95_0224B4D4 * param0)
     v1 = (BoxPokemon *)ov95_0224763C(param0->unk_00);
 
     BoxPokemon_BuildArchivedSprite(&v0, v1, 2, 0);
-    sub_020789BC(param0->unk_84, param0->unk_18, ov95_02247660(param0->unk_00), 1);
+    PokeSprite_LoadAnimationFrames(param0->unk_84, param0->unk_18, ov95_02247660(param0->unk_00), 1);
 
-    v2 = (100 - 20) + sub_020765C4(v1, 2, 0);
+    v2 = (100 - 20) + BoxPokemon_SpriteYOffset(v1, 2, 0);
     return sub_02007C34(param0->unk_10, &v0, 128, v2, 0, 0, param0->unk_18, NULL);
 }
 

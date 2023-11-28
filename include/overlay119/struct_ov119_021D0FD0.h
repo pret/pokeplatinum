@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV119_021D0FD0_H
 #define POKEPLATINUM_STRUCT_OV119_021D0FD0_H
 
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/cell_actor_data.h"
 #include "struct_defs/struct_0209843C.h"
 #include "overlay119/struct_ov119_021D16C0.h"
@@ -15,7 +15,7 @@ typedef struct {
     int unk_64;
     int unk_68;
     u8 unk_6C;
-    UnkStruct_02007C7C * unk_70;
+    Sprite * unk_70;
     CellActorData * unk_74;
     CellActorData * unk_78;
     CellActorData * unk_7C;

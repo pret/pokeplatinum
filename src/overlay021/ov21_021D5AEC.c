@@ -4,7 +4,7 @@
 #include "core_sys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02007C7C_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "message.h"
@@ -1357,7 +1357,7 @@ static void ov21_021D6F20 (UnkStruct_ov21_021D71A8 * param0, UnkStruct_ov21_021D
 {
     fx32 v0;
     int v1;
-    UnkStruct_02007C7C * v2;
+    Sprite * v2;
 
     v0 = FX_Mul(31 << FX32_SHIFT, ((64 * 10) - param2->unk_0C) << FX32_SHIFT);
     v0 = FX_Div(v0, (64 * 10) << FX32_SHIFT);
@@ -1369,7 +1369,7 @@ static void ov21_021D6F20 (UnkStruct_ov21_021D71A8 * param0, UnkStruct_ov21_021D
 
 static void ov21_021D6F64 (UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D5B68 * param1)
 {
-    UnkStruct_02007C7C * v0;
+    Sprite * v0;
 
     v0 = ov21_021D2170(param0);
     sub_02007DEC(v0, 23, 31);
