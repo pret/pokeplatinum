@@ -120,6 +120,12 @@ subdir('lib')
 
 
 ############################################################
+###                     FILE SYSTEM                      ###
+############################################################
+subdir('res')
+
+
+############################################################
 ###                     ARM9 BINARY                      ###
 ############################################################
 subdir('src')
@@ -139,7 +145,8 @@ main = executable('main',
     include_directories: [
         public_includes,
         libgds_public_includes,
-        libspl_public_includes
+        libspl_public_includes,
+        gmm_header_includes
     ],
     dependencies: [
         nitrosdk_dep,
@@ -162,12 +169,6 @@ main = executable('main',
     link_depends: main_lcf,
     native: false
 )
-
-
-############################################################
-###                     FILE SYSTEM                      ###
-############################################################
-subdir('res')
 
 
 ############################################################

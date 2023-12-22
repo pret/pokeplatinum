@@ -725,12 +725,15 @@ pl_msg_gmm = files(
     'pl_msg_0723.gmm',
 )
 
+gmm_header_target = meson.current_build_dir() / 'gmm'
+gmm_header_includes = include_directories('.')
+
 gmm_header_dir = custom_target('gmm_header_dir',
     output: 'gmm_header_dir',
     command: [
         'sh', '-c', '"$@"',
         '--',
-        'mkdir', '-p', '../include/constants/text'
+        'mkdir', '-p', gmm_header_target
     ]
 )
 
@@ -739,7 +742,7 @@ gmm_to_bin_gen = generator(msgenc_exe,
         '-e',
         '--gmm',
         '-c', charmap_txt.full_path(),
-        '-H', '../include/constants/text/' + '@BASENAME@' + '.h',
+        '-H', gmm_header_target / '@BASENAME@' + '.h',
         '@INPUT@',
         '@OUTPUT@'
     ],

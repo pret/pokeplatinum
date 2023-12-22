@@ -51,9 +51,6 @@ symbols.csv
 res/**/*.c
 *.o
 
-# Generated headers
-include/constants/text/*.h
-
 # Utilities
 ntruncompbw
 *.elf
