@@ -725,15 +725,25 @@ pl_msg_gmm = files(
     'pl_msg_0723.gmm',
 )
 
+gmm_header_dir = custom_target('gmm_header_dir',
+    output: 'gmm_header_dir',
+    command: [
+        'sh', '-c', '"$@"',
+        '--',
+        'mkdir', '-p', '../include/constants/text'
+    ]
+)
+
 gmm_to_bin_gen = generator(msgenc_exe,
     arguments: [
         '-e',
         '--gmm',
         '-c', charmap_txt.full_path(),
+        '-H', '../include/constants/text/' + '@BASENAME@' + '.h',
         '@INPUT@',
         '@OUTPUT@'
     ],
-    depends: charmap_txt,
+    depends: [ charmap_txt, gmm_header_dir ],
     output: '@BASENAME@' + '.bin'
 )
 
