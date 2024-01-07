@@ -18,3 +18,9 @@ if not nitrogfx_exe.found()
     subproject('nitrogfx', default_options: 'native=true')
     nitrogfx_exe = find_program('nitrogfx', native: true)
 endif
+
+constgen_py = find_program('constgen_py', native: true, required: false)
+if not constgen_py.found()
+    subproject('constgen')
+    constgen_py = find_program('constgen_py', native: true)
+endif

@@ -1,0 +1,5 @@
+[wrap-git]
+url = https://github.com/lhearachel/constgen.git
+revision = meson
+depth = 1
+directory = constgen
