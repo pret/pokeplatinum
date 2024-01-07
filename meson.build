@@ -31,7 +31,8 @@ c_args = [
     '-inline', 'on,noauto',
     '-char', 'signed',
     '-nosyspath',
-    '-stdinc'
+    '-stdinc',
+    '-sym', 'on'
 ]
 
 add_global_arguments(c_args,
@@ -61,7 +62,8 @@ link_args = [
     '-symtab', 'sort',
     '-msgstyle' ,'gcc',
     '-m', '_start',
-    '-force_active', 'DGTi_hash2_arm4_small'
+    '-force_active', 'DGTi_hash2_arm4_small',
+    '-sym', 'on'
 ]
 
 
@@ -198,7 +200,7 @@ pokeplatinum_nds = custom_target('pokeplatinum.us.nds',
         ichneumon_sub_defs,
         fixrom_exe,
         nitrofs_files # Make sure this is always listed last
-    ], 
+    ],
     command : [
         'sh', '-c',
         '"$@" && @INPUT6@ @OUTPUT0@ --secure-crc 0xF8B8 --game-code CPUE',
