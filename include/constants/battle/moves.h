@@ -31,25 +31,13 @@
 #define MOVE_EFFECT_SHADOW_FORCE            (1 << 29)
 #define MOVE_EFFECT_IMPRISONED              (1 << 30) // applied to mons which are affected by Imprison
 
-#define MOVE_EFFECT_SEMI_INVULNERABLE       (MOVE_EFFECT_AIRBORNE \
-                                            | MOVE_EFFECT_UNDERGROUND \
-                                            | MOVE_EFFECT_UNDERWATER \
-                                            | MOVE_EFFECT_SHADOW_FORCE)
-#define MOVE_EFFECT_BATON_PASSED            (MOVE_EFFECT_LEECH_SEED_RECIPIENT \
-                                            | MOVE_EFFECT_LEECH_SEED \
-                                            | MOVE_EFFECT_LOCK_ON \
-                                            | MOVE_EFFECT_PERISH_SONG \
-                                            | MOVE_EFFECT_INGRAIN \
-                                            | MOVE_EFFECT_MUD_SPORT \
-                                            | MOVE_EFFECT_WATER_SPORT \
-                                            | MOVE_EFFECT_NO_CRITICAL \
-                                            | MOVE_EFFECT_POWER_TRICK \
-                                            | MOVE_EFFECT_AQUA_RING \
-                                            | MOVE_EFFECT_ABILITY_SUPPRESSED \
-                                            | MOVE_EFFECT_EMBARGO \
-                                            | MOVE_EFFECT_HEAL_BLOCK \
-                                            | MOVE_EFFECT_MAGNET_RISE)
-#define MOVE_EFFECT_NO_WEATHER_DAMAGE       (MOVE_EFFECT_UNDERGROUND | MOVE_EFFECT_UNDERWATER)
+#define MOVE_EFFECT_SEMI_INVULNERABLE   (MOVE_EFFECT_AIRBORNE | MOVE_EFFECT_UNDERGROUND | MOVE_EFFECT_UNDERWATER | MOVE_EFFECT_SHADOW_FORCE)
+
+#define MOVE_EFFECT_BATON_PASSED    (MOVE_EFFECT_LEECH_SEED_RECIPIENT | MOVE_EFFECT_LEECH_SEED | MOVE_EFFECT_LOCK_ON | MOVE_EFFECT_PERISH_SONG | MOVE_EFFECT_INGRAIN \
+                                    | MOVE_EFFECT_MUD_SPORT | MOVE_EFFECT_WATER_SPORT | MOVE_EFFECT_NO_CRITICAL | MOVE_EFFECT_POWER_TRICK|MOVE_EFFECT_AQUA_RING \
+                                    | MOVE_EFFECT_ABILITY_SUPPRESSED | MOVE_EFFECT_EMBARGO | MOVE_EFFECT_HEAL_BLOCK | MOVE_EFFECT_MAGNET_RISE)
+
+#define MOVE_EFFECT_NO_WEATHER_DAMAGE   (MOVE_EFFECT_UNDERGROUND | MOVE_EFFECT_UNDERWATER)
 
 #define MOVE_EFFECT_LOCK_ON_SHIFT   3
 #define MOVE_EFFECT_YAWN_SHIFT      11
@@ -80,23 +68,11 @@
 
 #define MOVE_STATUS_NO_MORE_WORK        (1 << 31)
 
-#define MOVE_STATUS_DID_NOT_HIT         (MOVE_STATUS_MISSED \
-                                        | MOVE_STATUS_INEFFECTIVE \
-                                        | MOVE_STATUS_FAILED \
-                                        | MOVE_STATUS_LEVITATED \
-                                        | MOVE_STATUS_ONE_HIT_KO_FAILED \
-                                        | MOVE_STATUS_MULTI_HIT_DISRUPTED \
-                                        | MOVE_STATUS_PROTECTED \
-                                        | MOVE_STATUS_SEMI_INVULNERABLE \
-                                        | MOVE_STATUS_LOST_FOCUS \
-                                        | MOVE_STATUS_WONDER_GUARD \
-                                        | MOVE_STATUS_STURDY \
-                                        | MOVE_STATUS_MAGNET_RISE)
+#define MOVE_STATUS_DID_NOT_HIT (MOVE_STATUS_MISSED | MOVE_STATUS_INEFFECTIVE | MOVE_STATUS_FAILED | MOVE_STATUS_LEVITATED \
+                                | MOVE_STATUS_ONE_HIT_KO_FAILED | MOVE_STATUS_MULTI_HIT_DISRUPTED | MOVE_STATUS_PROTECTED | MOVE_STATUS_SEMI_INVULNERABLE \
+                                | MOVE_STATUS_LOST_FOCUS | MOVE_STATUS_WONDER_GUARD | MOVE_STATUS_STURDY | MOVE_STATUS_MAGNET_RISE)
 
-#define MOVE_STATUS_NO_EFFECTS          (MOVE_STATUS_DID_NOT_HIT \
-                                        | MOVE_STATUS_NO_PP \
-                                        | MOVE_STATUS_NO_MORE_WORK)
-
+#define MOVE_STATUS_NO_EFFECTS          (MOVE_STATUS_DID_NOT_HIT | MOVE_STATUS_NO_PP | MOVE_STATUS_NO_MORE_WORK)
 #define MOVE_STATUS_DID_NOT_AFFECT      (MOVE_STATUS_INEFFECTIVE | MOVE_STATUS_WONDER_GUARD)
 #define MOVE_STATUS_IMMUNE              (MOVE_STATUS_DID_NOT_AFFECT | MOVE_STATUS_LEVITATED | MOVE_STATUS_MAGNET_RISE)
 #define MOVE_STATUS_GENERAL_MISS        (MOVE_STATUS_MISSED | MOVE_STATUS_SEMI_INVULNERABLE)
@@ -115,10 +91,7 @@
 #define RANGE_USER_OR_ALLY              (1 << 9)
 #define RANGE_SINGLE_TARGET_ME_FIRST    (1 << 10)
 
-#define RANGE_MY_SIDE   (RANGE_SINGLE_TARGET_SPECIAL \
-                        | RANGE_USER \
-                        | RANGE_FIELD \
-                        | RANGE_USER_OR_ALLY)
+#define RANGE_MY_SIDE   (RANGE_SINGLE_TARGET_SPECIAL | RANGE_USER | RANGE_FIELD | RANGE_USER_OR_ALLY)
 
 #define MOVE_FLAG_MAKES_CONTACT         (1 << 0)
 #define MOVE_FLAG_CAN_PROTECT           (1 << 1)

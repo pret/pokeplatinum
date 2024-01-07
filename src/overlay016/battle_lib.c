@@ -23,7 +23,6 @@
 #include "battle/battle_controller.h"
 #include "battle/battle_message.h"
 #include "battle/battle_mon.h"
-#include "battle/btlcmd.h"
 #include "battle/common.h"
 
 #include "unk_020021B0.h"
@@ -1845,23 +1844,23 @@ void Battler_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx,
     battleCtx->battleMons[battler].moveEffectsData.furyCutterCount = 0;
 }
 
-enum StatusEffect Battler_StatusCondition(BattleContext *battleCtx, int battler)
+enum BattleAnimation Battler_StatusCondition(BattleContext *battleCtx, int battler)
 {
     if (battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP) {
-        return STATUS_EFFECT_SLEEP;
+        return BATTLE_ANIMATION_ASLEEP;
     } else if (battleCtx->battleMons[battler].status & MON_CONDITION_POISON) {
-        return STATUS_EFFECT_POISON;
+        return BATTLE_ANIMATION_POISONED;
     } else if (battleCtx->battleMons[battler].status & MON_CONDITION_BURN) {
-        return STATUS_EFFECT_BURN;
+        return BATTLE_ANIMATION_BURNED;
     } else if (battleCtx->battleMons[battler].status & MON_CONDITION_FREEZE) {
-        return STATUS_EFFECT_FREEZE;
+        return BATTLE_ANIMATION_FROZEN;
     } else if (battleCtx->battleMons[battler].status & MON_CONDITION_PARALYSIS) {
-        return STATUS_EFFECT_PARALYSIS;
+        return BATTLE_ANIMATION_PARALYZED;
     } else if (battleCtx->battleMons[battler].status & MON_CONDITION_TOXIC) {
-        return STATUS_EFFECT_POISON;
+        return BATTLE_ANIMATION_POISONED;
     }
 
-    return STATUS_EFFECT_NONE;
+    return BATTLE_ANIMATION_NONE;
 }
 
 enum {
@@ -7309,17 +7308,17 @@ void BattleSystem_SortMonActionOrder(BattleSystem *battleSys, BattleContext *bat
     }
 }
 
-static const enum StatusEffect sEffectsAlwaysShown[] = {
-    STATUS_EFFECT_CHANGE_FORM_OUT,
-    STATUS_EFFECT_CHANGE_FORM_IN,
-    STATUS_EFFECT_ITEM_ESCAPE,
-    STATUS_EFFECT_WEATHER_FOG,
-    STATUS_EFFECT_WEATHER_RAIN,
-    STATUS_EFFECT_WEATHER_HAIL,
-    STATUS_EFFECT_WEATHER_SAND,
-    STATUS_EFFECT_WEATHER_SUN,
-    STATUS_EFFECT_SUBSTITUTE_ON,
-    STATUS_EFFECT_SUBSTITUTE_OFF,
+static const enum BattleAnimation sEffectsAlwaysShown[] = {
+    BATTLE_ANIMATION_SUB_OUT,
+    BATTLE_ANIMATION_SUB_IN,
+    BATTLE_ANIMATION_ITEM_ESCAPE,
+    BATTLE_ANIMATION_WEATHER_FOG,
+    BATTLE_ANIMATION_WEATHER_RAIN,
+    BATTLE_ANIMATION_WEATHER_HAIL,
+    BATTLE_ANIMATION_WEATHER_SAND,
+    BATTLE_ANIMATION_WEATHER_SUN,
+    BATTLE_ANIMATION_SUBSTITUTE_IN,
+    BATTLE_ANIMATION_SUBSTITUTE_OUT,
 };
 
 BOOL BattleSystem_ShouldShowStatusEffect(BattleContext *battleCtx, int battler, int status)

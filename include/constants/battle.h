@@ -1,16 +1,32 @@
 #ifndef POKEPLATINUM_CONSTANTS_BATTLE_H
 #define POKEPLATINUM_CONSTANTS_BATTLE_H
 
+#ifndef __ASM_PM_
+#include "consts/generated/c/battle.h"
+
+enum BattleActions {
+    BATTLE_ACTION_PICK_COMMAND = 0,
+    BATTLE_ACTION_CHOOSE_TARGET,
+    BATTLE_ACTION_TEMP_VALUE,
+    BATTLE_ACTION_SELECTED_COMMAND,
+
+    MAX_BATTLE_ACTIONS
+};
+
+enum BattlerBootState {
+    BATTLER_BOOT_STATE_NORMAL = 0,
+    BATTLER_BOOT_STATE_AI,
+    BATTLER_BOOT_STATE_LINK,
+};
+#endif
+
 #include "constants/battle/condition.h"
 #include "constants/battle/message_tags.h"
 #include "constants/battle/moves.h"
-#include "constants/battle/scripts.h"
 #include "constants/battle/side_effects.h"
 #include "constants/battle/system_control.h"
 #include "constants/battle/terrain.h"
 #include "constants/battle/turn_flags.h"
-
-#include "consts/generated/c/battle.h"
 
 #define BATTLE_TYPE_SINGLES         (0 << 0)
 #define BATTLE_TYPE_WILD_MON        (0 << 0)
@@ -146,20 +162,5 @@
 #define SOUNDPROOF_SLOT_2   (1 << 1)
 #define NO_PARTNER_SLOT_1   (1 << 2)
 #define NO_PARTNER_SLOT_2   (1 << 3)
-
-enum BattleActions {
-    BATTLE_ACTION_PICK_COMMAND = 0,
-    BATTLE_ACTION_CHOOSE_TARGET,
-    BATTLE_ACTION_TEMP_VALUE,
-    BATTLE_ACTION_SELECTED_COMMAND,
-
-    MAX_BATTLE_ACTIONS
-};
-
-enum BattlerBootState {
-    BATTLER_BOOT_STATE_NORMAL = 0,
-    BATTLER_BOOT_STATE_AI,
-    BATTLER_BOOT_STATE_LINK,
-};
 
 #endif // POKEPLATINUM_CONSTANTS_BATTLE_H

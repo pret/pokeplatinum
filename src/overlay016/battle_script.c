@@ -2137,43 +2137,43 @@ static BOOL BtlCmd_If(BattleSystem *battleSys, BattleContext *battleCtx)
     int *data = BattleScript_VarAddress(battleSys, battleCtx, srcVar);
 
     switch (op) {
-    case IFOP_EQU:
+    case OPCODE_EQU:
         if (*data != compareTo) {
             jump = 0;
         }
         break;
 
-    case IFOP_NEQ:
+    case OPCODE_NEQ:
         if (*data == compareTo) {
             jump = 0;
         }
         break;
 
-    case IFOP_GT:
+    case OPCODE_GT:
         if (*data <= compareTo) {
             jump = 0;
         }
         break;
 
-    case IFOP_LTE:
+    case OPCODE_LTE:
         if (*data > compareTo) {
             jump = 0;
         }
         break;
 
-    case IFOP_FLAG_SET:
+    case OPCODE_FLAG_SET:
         if ((*data & compareTo) == FALSE) {
             jump = 0;
         }
         break;
 
-    case IFOP_FLAG_NOT:
+    case OPCODE_FLAG_NOT:
         if (*data & compareTo) {
             jump = 0;
         }
         break;
 
-    case IFOP_AND:
+    case OPCODE_AND:
         if ((*data & compareTo) != compareTo) {
             jump = 0;
         }
@@ -2218,43 +2218,43 @@ static BOOL BtlCmd_IfMonData(BattleSystem *battleSys, BattleContext *battleCtx)
     int data = BattleMon_Get(battleCtx, battler, srcParam, NULL);
 
     switch (op) {
-    case IFOP_EQU:
+    case OPCODE_EQU:
         if (data != compareTo) {
             jump = 0;
         }
         break;
 
-    case IFOP_NEQ:
+    case OPCODE_NEQ:
         if (data == compareTo) {
             jump = 0;
         }
         break;
 
-    case IFOP_GT:
+    case OPCODE_GT:
         if (data <= compareTo) {
             jump = 0;
         }
         break;
 
-    case IFOP_LTE:
+    case OPCODE_LTE:
         if (data > compareTo) {
             jump = 0;
         }
         break;
 
-    case IFOP_FLAG_SET:
+    case OPCODE_FLAG_SET:
         if ((data & compareTo) == FALSE) {
             jump = 0;
         }
         break;
 
-    case IFOP_FLAG_NOT:
+    case OPCODE_FLAG_NOT:
         if (data & compareTo) {
             jump = 0;
         }
         break;
 
-    case IFOP_AND:
+    case OPCODE_AND:
         if ((data & compareTo) != compareTo) {
             jump = 0;
         }
@@ -2921,64 +2921,64 @@ static BOOL BtlCmd_SetVarValue(BattleSystem *battleSys, BattleContext *battleCtx
     u32 mask;
 
     switch (op) {
-    case VALOP_SET:
+    case OPCODE_SET:
         *var = srcVal;
         break;
 
-    case VALOP_ADD:
+    case OPCODE_ADD:
         *var += srcVal;
         break;
         
-    case VALOP_SUB:
+    case OPCODE_SUB:
         *var -= srcVal;
         break;
 
-    case VALOP_FLAG_ON:
+    case OPCODE_FLAG_ON:
         *var |= srcVal;
         break;
 
-    case VALOP_FLAG_OFF:
+    case OPCODE_FLAG_OFF:
         *var &= FLAG_NEGATE(srcVal);
         break;
 
-    case VALOP_MUL:
+    case OPCODE_MUL:
         *var *= srcVal;
         break;
 
-    case VALOP_DIV:
+    case OPCODE_DIV:
         *var /= srcVal;
         break;
 
-    case VALOP_LSH:
+    case OPCODE_LEFT_SHIFT:
         *var = *var << srcVal;
         break;
 
-    case VALOP_RSH:
+    case OPCODE_RIGHT_SHIFT:
         mask = *var;
         mask = mask >> srcVal;
         *var = mask;
         break;
 
-    case VALOP_FLAG_INDEX:
+    case OPCODE_FLAG_INDEX:
         *var = FlagIndex(srcVal);
         break;
 
-    case VALOP_GET:
+    case OPCODE_GET:
         GF_ASSERT(FALSE);
         break;
 
-    case VALOP_SUB_TO_ZERO:
+    case OPCODE_SUB_TO_ZERO:
         *var -= srcVal;
         if (*var < 0) {
             *var = 0;
         }
         break;
 
-    case VALOP_XOR:
+    case OPCODE_BITWISE_XOR:
         *var ^= srcVal;
         break;
 
-    case VALOP_AND:
+    case OPCODE_BITWISE_AND:
         *var &= srcVal;
         break;
 
@@ -3061,19 +3061,19 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
     if (battleCtx->sideEffectParam >= MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_2_STAGES) {
         statOffset = battleCtx->sideEffectParam - MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_2_STAGES;
         stageChange = -2;
-        battleCtx->scriptTemp = STATUS_EFFECT_STAGE_DOWN;
+        battleCtx->scriptTemp = BATTLE_ANIMATION_STAT_DROP;
     } else if (battleCtx->sideEffectParam >= MOVE_SUBSCRIPT_PTR_ATTACK_UP_2_STAGES) {
         statOffset = battleCtx->sideEffectParam - MOVE_SUBSCRIPT_PTR_ATTACK_UP_2_STAGES;
         stageChange = 2;
-        battleCtx->scriptTemp = STATUS_EFFECT_STAGE_UP;
+        battleCtx->scriptTemp = BATTLE_ANIMATION_STAT_BOOST;
     } else if (battleCtx->sideEffectParam >= MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_1_STAGE) {
         statOffset = battleCtx->sideEffectParam - MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_1_STAGE;
         stageChange = -1;
-        battleCtx->scriptTemp = STATUS_EFFECT_STAGE_DOWN;
+        battleCtx->scriptTemp = BATTLE_ANIMATION_STAT_DROP;
     } else {
         statOffset = battleCtx->sideEffectParam - MOVE_SUBSCRIPT_PTR_ATTACK_UP_1_STAGE;
         stageChange = 1;
-        battleCtx->scriptTemp = STATUS_EFFECT_STAGE_UP;
+        battleCtx->scriptTemp = BATTLE_ANIMATION_STAT_BOOST;
     }
 
     if (stageChange > 0) {
@@ -3237,53 +3237,53 @@ static BOOL BtlCmd_SetMonDataValue(BattleSystem *battleSys, BattleContext *battl
     int monData = BattleMon_Get(battleCtx, battler, paramID, NULL);
 
     switch (op) {
-    case VALOP_SET:
+    case OPCODE_SET:
         monData = srcVal;
         break;
 
-    case VALOP_ADD:
+    case OPCODE_ADD:
         monData += srcVal;
         break;
 
-    case VALOP_SUB:
+    case OPCODE_SUB:
         monData -= srcVal;
         break;
 
-    case VALOP_FLAG_ON:
+    case OPCODE_FLAG_ON:
         monData |= srcVal;
         break;
 
-    case VALOP_FLAG_OFF:
+    case OPCODE_FLAG_OFF:
         monData &= FLAG_NEGATE(srcVal);
         break;
 
-    case VALOP_MUL:
+    case OPCODE_MUL:
         monData *= srcVal;
         break;
 
-    case VALOP_DIV:
+    case OPCODE_DIV:
         monData /= srcVal;
         break;
 
-    case VALOP_LSH:
+    case OPCODE_LEFT_SHIFT:
         monData = monData << srcVal;
         break;
 
-    case VALOP_RSH:
+    case OPCODE_RIGHT_SHIFT:
         u32 mask = monData;
         mask = mask >> srcVal;
         monData = mask;
         break;
 
-    case VALOP_FLAG_INDEX:
+    case OPCODE_FLAG_INDEX:
         monData = FlagIndex(srcVal);
         break;
 
-    case VALOP_GET:
+    case OPCODE_GET:
         GF_ASSERT(FALSE);
         break;
 
-    case VALOP_SUB_TO_ZERO:
+    case OPCODE_SUB_TO_ZERO:
         monData -= srcVal;
 
         if (monData < 0) {
@@ -3291,11 +3291,11 @@ static BOOL BtlCmd_SetMonDataValue(BattleSystem *battleSys, BattleContext *battl
         }
         break;
 
-    case VALOP_XOR:
+    case OPCODE_BITWISE_XOR:
         monData ^= srcVal;
         break;
 
-    case VALOP_AND:
+    case OPCODE_BITWISE_AND:
         monData &= srcVal;
         break;
 
@@ -3468,53 +3468,53 @@ static BOOL BtlCmd_SetVarFromVar(BattleSystem *battleSys, BattleContext *battleC
     int *srcData = BattleScript_VarAddress(battleSys, battleCtx, srcVar);
 
     switch (op) {
-    case VALOP_SET:
+    case OPCODE_SET:
         *dstData = *srcData;
         break;
 
-    case VALOP_ADD:
+    case OPCODE_ADD:
         *dstData += *srcData;
         break;
 
-    case VALOP_SUB:
+    case OPCODE_SUB:
         *dstData -= *srcData;
         break;
 
-    case VALOP_FLAG_ON:
+    case OPCODE_FLAG_ON:
         *dstData |= *srcData;
         break;
 
-    case VALOP_FLAG_OFF:
+    case OPCODE_FLAG_OFF:
         *dstData &= FLAG_NEGATE(*srcData);
         break;
 
-    case VALOP_MUL:
+    case OPCODE_MUL:
         *dstData *= *srcData;
         break;
 
-    case VALOP_DIV:
+    case OPCODE_DIV:
         *dstData /= *srcData;
         break;
 
-    case VALOP_LSH:
+    case OPCODE_LEFT_SHIFT:
         *dstData = *dstData << *srcData;
         break;
 
-    case VALOP_RSH:
+    case OPCODE_RIGHT_SHIFT:
         u32 tmp = *dstData;
         tmp = tmp >> *srcData;
         *dstData = tmp;
         break;
 
-    case VALOP_FLAG_INDEX:
+    case OPCODE_FLAG_INDEX:
         *dstData = FlagIndex(*srcData);
         break;
 
-    case VALOP_GET:
+    case OPCODE_GET:
         *srcData = *dstData;
         break;
 
-    case VALOP_SUB_TO_ZERO:
+    case OPCODE_SUB_TO_ZERO:
         *dstData -= *srcData;
 
         if (*dstData < 0) {
@@ -3522,11 +3522,11 @@ static BOOL BtlCmd_SetVarFromVar(BattleSystem *battleSys, BattleContext *battleC
         }
         break;
 
-    case VALOP_XOR:
+    case OPCODE_BITWISE_XOR:
         *dstData ^= *srcData;
         break;
 
-    case VALOP_AND:
+    case OPCODE_BITWISE_AND:
         *dstData &= *srcData;
         break;
 
@@ -3566,53 +3566,53 @@ static BOOL BtlCmd_SetMonDataFromVar(BattleSystem *battleSys, BattleContext *bat
     int *varData = BattleScript_VarAddress(battleSys, battleCtx, var);
 
     switch (op) {
-    case VALOP_SET:
+    case OPCODE_SET:
         monData = *varData;
         break;
 
-    case VALOP_ADD:
+    case OPCODE_ADD:
         monData += *varData;
         break;
 
-    case VALOP_SUB:
+    case OPCODE_SUB:
         monData -= *varData;
         break;
 
-    case VALOP_FLAG_ON:
+    case OPCODE_FLAG_ON:
         monData |= *varData;
         break;
 
-    case VALOP_FLAG_OFF:
+    case OPCODE_FLAG_OFF:
         monData &= FLAG_NEGATE(*varData);
         break;
 
-    case VALOP_MUL:
+    case OPCODE_MUL:
         monData *= *varData;
         break;
 
-    case VALOP_DIV:
+    case OPCODE_DIV:
         monData /= *varData;
         break;
 
-    case VALOP_LSH:
+    case OPCODE_LEFT_SHIFT:
         monData = monData << *varData;
         break;
 
-    case VALOP_RSH:
+    case OPCODE_RIGHT_SHIFT:
         u32 mask = monData;
         mask = mask >> *varData;
         monData = mask;
         break;
 
-    case VALOP_FLAG_INDEX:
+    case OPCODE_FLAG_INDEX:
         monData = FlagIndex(*varData);
         break;
 
-    case VALOP_GET:
+    case OPCODE_GET:
         *varData = monData;
         break;
 
-    case VALOP_SUB_TO_ZERO:
+    case OPCODE_SUB_TO_ZERO:
         monData -= *varData;
 
         if (monData < 0) {
@@ -3620,11 +3620,11 @@ static BOOL BtlCmd_SetMonDataFromVar(BattleSystem *battleSys, BattleContext *bat
         }
         break;
 
-    case VALOP_XOR:
+    case OPCODE_BITWISE_XOR:
         monData ^= *varData;
         break;
 
-    case VALOP_AND:
+    case OPCODE_BITWISE_AND:
         monData &= *varData;
         break;
 
@@ -3633,7 +3633,7 @@ static BOOL BtlCmd_SetMonDataFromVar(BattleSystem *battleSys, BattleContext *bat
         break;
     }
 
-    if (op != VALOP_GET) {
+    if (op != OPCODE_GET) {
         if (paramID == BATTLEMON_ABILITY) {
             BattleAI_SetAbility(battleCtx, battler, monData);
         }
@@ -3987,10 +3987,10 @@ static BOOL BtlCmd_PlayStatusEffect(BattleSystem *battleSys, BattleContext *batt
     int effect = BattleScript_Read(battleCtx);
 
     if (BattleSystem_AnimationsOn(battleSys) == TRUE
-            || effect == STATUS_EFFECT_CHANGE_FORM_OUT
-            || effect == STATUS_EFFECT_CHANGE_FORM_IN
-            || effect == STATUS_EFFECT_SUBSTITUTE_OFF
-            || effect == STATUS_EFFECT_SUBSTITUTE_ON) {
+            || effect == BATTLE_ANIMATION_SUB_OUT
+            || effect == BATTLE_ANIMATION_SUB_IN
+            || effect == BATTLE_ANIMATION_SUBSTITUTE_OUT
+            || effect == BATTLE_ANIMATION_SUBSTITUTE_IN) {
         int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
         if (BattleSystem_ShouldShowStatusEffect(battleCtx, battler, effect) == TRUE) {
             BattleIO_PlayStatusEffect(battleSys, battleCtx, battler, effect);
@@ -4023,10 +4023,10 @@ static BOOL BtlCmd_PlayStatusEffectAToD(BattleSystem *battleSys, BattleContext *
     int effect = BattleScript_Read(battleCtx);
 
     if (BattleSystem_AnimationsOn(battleSys) == TRUE
-            || effect == STATUS_EFFECT_CHANGE_FORM_OUT
-            || effect == STATUS_EFFECT_CHANGE_FORM_IN
-            || effect == STATUS_EFFECT_SUBSTITUTE_OFF
-            || effect == STATUS_EFFECT_SUBSTITUTE_ON) {
+            || effect == BATTLE_ANIMATION_SUB_OUT
+            || effect == BATTLE_ANIMATION_SUB_IN
+            || effect == BATTLE_ANIMATION_SUBSTITUTE_OUT
+            || effect == BATTLE_ANIMATION_SUBSTITUTE_IN) {
         int attacker = BattleScript_Battler(battleSys, battleCtx, inAttacker);
         int defender = BattleScript_Battler(battleSys, battleCtx, inDefender);
 
@@ -4060,10 +4060,10 @@ static BOOL BtlCmd_PlayStatusEffectFromVar(BattleSystem *battleSys, BattleContex
     int *effect = BattleScript_VarAddress(battleSys, battleCtx, var);
 
     if ((BattleSystem_AnimationsOn(battleSys) == TRUE
-            || var == STATUS_EFFECT_CHANGE_FORM_OUT // bug: this should be *effect, not var
-            || var == STATUS_EFFECT_CHANGE_FORM_IN // bug: this should be *effect, not var
-            || *effect == STATUS_EFFECT_SUBSTITUTE_OFF
-            || *effect == STATUS_EFFECT_SUBSTITUTE_ON)
+            || var == BATTLE_ANIMATION_SUB_OUT // bug: this should be *effect, not var
+            || var == BATTLE_ANIMATION_SUB_IN // bug: this should be *effect, not var
+            || *effect == BATTLE_ANIMATION_SUBSTITUTE_OUT
+            || *effect == BATTLE_ANIMATION_SUBSTITUTE_IN)
             && BattleSystem_ShouldShowStatusEffect(battleCtx, battler, *effect) == TRUE) {
         BattleIO_PlayStatusEffect(battleSys, battleCtx, battler, *effect);
     }
@@ -4280,43 +4280,43 @@ static BOOL BtlCmd_IfVar(BattleSystem *battleSys, BattleContext *battleCtx)
     u32 *rhs = BattleScript_VarAddress(battleSys, battleCtx, rhsVar);
 
     switch (op) {
-    case IFOP_EQU:
+    case OPCODE_EQU:
         if (*lhs != *rhs) {
             jump = 0;
         }
         break;
 
-    case IFOP_NEQ:
+    case OPCODE_NEQ:
         if (*lhs == *rhs) {
             jump = 0;
         }
         break;
 
-    case IFOP_GT:
+    case OPCODE_GT:
         if (*lhs <= *rhs) {
             jump = 0;
         }
         break;
 
-    case IFOP_LTE:
+    case OPCODE_LTE:
         if (*lhs > *rhs) {
             jump = 0;
         }
         break;
 
-    case IFOP_FLAG_SET:
+    case OPCODE_FLAG_SET:
         if ((*lhs & *rhs) == FALSE) {
             jump = 0;
         }
         break;
 
-    case IFOP_FLAG_NOT:
+    case OPCODE_FLAG_NOT:
         if (*lhs & *rhs) {
             jump = 0;
         }
         break;
 
-    case IFOP_AND:
+    case OPCODE_AND:
         if ((*lhs & *rhs) != *rhs) {
             jump = 0;
         }
@@ -4361,43 +4361,43 @@ static BOOL BtlCmd_IfMonDataVar(BattleSystem *battleSys, BattleContext *battleCt
     u32 *rhs = BattleScript_VarAddress(battleSys, battleCtx, rhsVar);
 
     switch (op) {
-    case IFOP_EQU:
+    case OPCODE_EQU:
         if (lhs != *rhs) {
             jump = 0;
         }
         break;
         
-    case IFOP_NEQ:
+    case OPCODE_NEQ:
         if (lhs == *rhs) {
             jump = 0;
         }
         break;
 
-    case IFOP_GT:
+    case OPCODE_GT:
         if (lhs <= *rhs) {
             jump = 0;
         }
         break;
 
-    case IFOP_LTE:
+    case OPCODE_LTE:
         if (lhs > *rhs) {
             jump = 0;
         }
         break;
 
-    case IFOP_FLAG_SET:
+    case OPCODE_FLAG_SET:
         if ((lhs & *rhs) == FALSE) {
             jump = 0;
         }
         break;
 
-    case IFOP_FLAG_NOT:
+    case OPCODE_FLAG_NOT:
         if (lhs & *rhs) {
             jump = 0;
         }
         break;
 
-    case IFOP_AND:
+    case OPCODE_AND:
         if ((lhs & *rhs) != *rhs) {
             jump = 0;
         }
@@ -10072,7 +10072,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         if (Pokemon_ShouldLevelUp(mon)) {
             // Only play the special level-up animation for an active battler
             if (data->battleCtx->selectedPartySlot[expBattler] == slot) {
-                BattleIO_PlayStatusEffect(data->battleSys, data->battleCtx, expBattler, STATUS_EFFECT_LEVEL_UP);
+                BattleIO_PlayStatusEffect(data->battleSys, data->battleCtx, expBattler, BATTLE_ANIMATION_LEVEL_UP);
                 BattleIO_PlayLevelUpAnimation(data->battleSys, expBattler);
             }
 

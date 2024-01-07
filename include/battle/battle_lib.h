@@ -441,7 +441,7 @@ void Battler_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx,
  * @param battler 
  * @return A value representing the battler's status non-volatile status.
  */
-enum StatusEffect Battler_StatusCondition(BattleContext *battleCtx, int battler);
+enum BattleAnimation Battler_StatusCondition(BattleContext *battleCtx, int battler);
 
 /**
  * @brief Check if the given trainer has a trainer message to be shown.

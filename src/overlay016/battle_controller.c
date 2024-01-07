@@ -1127,7 +1127,7 @@ static void BattleController_CheckFieldConditions(BattleSystem *battleSys, Battl
                     }
                 }
 
-                battleCtx->scriptTemp = BATTLE_SCRIPT_ANIMATION_RAINING;
+                battleCtx->scriptTemp = BATTLE_ANIMATION_WEATHER_RAIN;
                 state = STATE_BREAK_OUT;
             }
 
@@ -1152,7 +1152,7 @@ static void BattleController_CheckFieldConditions(BattleSystem *battleSys, Battl
                     }
                 }
 
-                battleCtx->scriptTemp = BATTLE_SCRIPT_ANIMATION_SANDSTORM;
+                battleCtx->scriptTemp = BATTLE_ANIMATION_WEATHER_SAND;
                 state = STATE_BREAK_OUT;
             }
 
@@ -1177,7 +1177,7 @@ static void BattleController_CheckFieldConditions(BattleSystem *battleSys, Battl
                     }
                 }
 
-                battleCtx->scriptTemp = BATTLE_SCRIPT_ANIMATION_SUNNY;
+                battleCtx->scriptTemp = BATTLE_ANIMATION_WEATHER_SUN;
                 state = STATE_BREAK_OUT;
             }
 
@@ -1202,7 +1202,7 @@ static void BattleController_CheckFieldConditions(BattleSystem *battleSys, Battl
                     }
                 }
 
-                battleCtx->scriptTemp = BATTLE_SCRIPT_ANIMATION_HAILING;
+                battleCtx->scriptTemp = BATTLE_ANIMATION_WEATHER_HAIL;
                 state = STATE_BREAK_OUT;
             }
 
@@ -1216,7 +1216,7 @@ static void BattleController_CheckFieldConditions(BattleSystem *battleSys, Battl
                 
                 PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_WEATHER_CONTINUES);
 
-                battleCtx->scriptTemp = BATTLE_SCRIPT_ANIMATION_DEEP_FOG;
+                battleCtx->scriptTemp = BATTLE_ANIMATION_WEATHER_FOG;
                 state = STATE_BREAK_OUT;
             }
 
