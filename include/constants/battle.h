@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_CONSTANTS_BATTLE_H
 #define POKEPLATINUM_CONSTANTS_BATTLE_H
 
-#include "constants/battle/battle_effects.h"
 #include "constants/battle/condition.h"
 #include "constants/battle/message_tags.h"
 #include "constants/battle/moves.h"
@@ -10,6 +9,8 @@
 #include "constants/battle/system_control.h"
 #include "constants/battle/terrain.h"
 #include "constants/battle/turn_flags.h"
+
+#include "consts/generated/c/battle.h"
 
 #define BATTLE_TYPE_SINGLES         (0 << 0)
 #define BATTLE_TYPE_WILD_MON        (0 << 0)

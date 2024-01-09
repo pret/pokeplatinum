@@ -14,6 +14,7 @@
 /subprojects/libpng-*/
 /subprojects/zlib-*/
 /subprojects/packagecache
+/subprojects/constgen/
 
 # CLion folders
 .idea/

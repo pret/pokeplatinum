@@ -729,6 +729,7 @@ gmm_header_target = meson.current_build_dir() / 'gmm'
 gmm_header_includes = include_directories('.')
 
 gmm_header_dir = custom_target('gmm_header_dir',
+    capture: true,
     output: 'gmm_header_dir',
     command: [
         'sh', '-c', '"$@"',
