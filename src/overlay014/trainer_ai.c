@@ -16,7 +16,7 @@
 #include "flags.h"
 #include "pokemon.h"
 #include "party.h"
-#include "overlay014/ov14_0221FC20.h"
+#include "battle/trainer_ai.h"
 #include "overlay016/ov16_0223DF00.h"
 #include "battle/battle_lib.h"
 
