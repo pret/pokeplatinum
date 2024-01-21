@@ -178,9 +178,9 @@ static void ov14_022227F4(BattleSystem * param0, BattleContext * param1);
 static void ov14_02222BF8(BattleSystem * param0, BattleContext * param1);
 static void ov14_02222C28(BattleSystem * param0, BattleContext * param1, int param2);
 static BOOL ov14_02222C60(BattleSystem * param0, BattleContext * param1);
-static int ov14_02222CF0(BattleContext * param0);
-static int ov14_02222D10(BattleContext * param0, int param1);
-static void ov14_02222D24(BattleContext * param0, int param1);
+static int AIScript_Read(BattleContext *battleCtx);
+static int AIScript_ReadOffset(BattleContext *battleCtx, int ofs);
+static void AIScript_Iter(BattleContext *battleCtx, int i);
 static u8 ov14_02222D34(BattleContext * param0, u8 param1);
 static s32 ov14_02222E84(BattleSystem * param0, BattleContext * param1, u16 param2, u16 param3, u8 * param4, int param5, int param6, int param7, u8 param8);
 static int ov14_0222327C(BattleSystem * param0, BattleContext * param1, int param2, int param3);
@@ -607,13 +607,13 @@ static void ov14_02220184 (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
 
     if ((BattleSystem_RandNext(param0) % 256) < v0) {
-        ov14_02222D24(param1, v1);
+        AIScript_Iter(param1, v1);
     }
 }
 
@@ -622,13 +622,13 @@ static void ov14_022201C4 (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
 
     if ((BattleSystem_RandNext(param0) % 256) > v0) {
-        ov14_02222D24(param1, v1);
+        AIScript_Iter(param1, v1);
     }
 }
 
@@ -637,13 +637,13 @@ static void ov14_02220204 (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
 
     if ((BattleSystem_RandNext(param0) % 256) == v0) {
-        ov14_02222D24(param1, v1);
+        AIScript_Iter(param1, v1);
     }
 }
 
@@ -652,13 +652,13 @@ static void ov14_02220244 (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
 
     if ((BattleSystem_RandNext(param0) % 256) != v0) {
-        ov14_02222D24(param1, v1);
+        AIScript_Iter(param1, v1);
     }
 }
 
@@ -666,9 +666,9 @@ static void ov14_02220284 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
     param1->aiContext.moveScore[param1->aiContext.moveSlot] += v0;
 
     if (param1->aiContext.moveScore[param1->aiContext.moveSlot] < 0) {
@@ -684,16 +684,16 @@ static void ov14_022202B8 (BattleSystem * param0, BattleContext * param1)
     int v3;
     int v4;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v2 = ov14_02222CF0(param1);
-    v3 = ov14_02222CF0(param1);
-    v4 = ov14_02222CF0(param1);
+    v2 = AIScript_Read(param1);
+    v3 = AIScript_Read(param1);
+    v4 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v2);
     v1 = param1->battleMons[v0].curHP * 100 / param1->battleMons[v0].maxHP;
 
     if (v1 < v3) {
-        ov14_02222D24(param1, v4);
+        AIScript_Iter(param1, v4);
     }
 }
 
@@ -705,16 +705,16 @@ static void ov14_02220310 (BattleSystem * param0, BattleContext * param1)
     int v3;
     int v4;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v2 = ov14_02222CF0(param1);
-    v3 = ov14_02222CF0(param1);
-    v4 = ov14_02222CF0(param1);
+    v2 = AIScript_Read(param1);
+    v3 = AIScript_Read(param1);
+    v4 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v2);
     v1 = param1->battleMons[v0].curHP * 100 / param1->battleMons[v0].maxHP;
 
     if (v1 > v3) {
-        ov14_02222D24(param1, v4);
+        AIScript_Iter(param1, v4);
     }
 }
 
@@ -726,16 +726,16 @@ static void ov14_02220368 (BattleSystem * param0, BattleContext * param1)
     int v3;
     int v4;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v2 = ov14_02222CF0(param1);
-    v3 = ov14_02222CF0(param1);
-    v4 = ov14_02222CF0(param1);
+    v2 = AIScript_Read(param1);
+    v3 = AIScript_Read(param1);
+    v4 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v2);
     v1 = param1->battleMons[v0].curHP * 100 / param1->battleMons[v0].maxHP;
 
     if (v1 == v3) {
-        ov14_02222D24(param1, v4);
+        AIScript_Iter(param1, v4);
     }
 }
 
@@ -747,16 +747,16 @@ static void ov14_022203C0 (BattleSystem * param0, BattleContext * param1)
     int v3;
     int v4;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v2 = ov14_02222CF0(param1);
-    v3 = ov14_02222CF0(param1);
-    v4 = ov14_02222CF0(param1);
+    v2 = AIScript_Read(param1);
+    v3 = AIScript_Read(param1);
+    v4 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v2);
     v1 = param1->battleMons[v0].curHP * 100 / param1->battleMons[v0].maxHP;
 
     if (v1 != v3) {
-        ov14_02222D24(param1, v4);
+        AIScript_Iter(param1, v4);
     }
 }
 
@@ -767,15 +767,15 @@ static void ov14_02220418 (BattleSystem * param0, BattleContext * param1)
     u32 v2;
     int v3;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
-    v2 = ov14_02222CF0(param1);
-    v3 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
+    v2 = AIScript_Read(param1);
+    v3 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     if (param1->battleMons[v0].status & v2) {
-        ov14_02222D24(param1, v3);
+        AIScript_Iter(param1, v3);
     }
 }
 
@@ -786,15 +786,15 @@ static void ov14_02220464 (BattleSystem * param0, BattleContext * param1)
     u32 v2;
     int v3;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
-    v2 = ov14_02222CF0(param1);
-    v3 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
+    v2 = AIScript_Read(param1);
+    v3 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     if ((param1->battleMons[v0].status & v2) == 0) {
-        ov14_02222D24(param1, v3);
+        AIScript_Iter(param1, v3);
     }
 }
 
@@ -805,15 +805,15 @@ static void ov14_022204B0 (BattleSystem * param0, BattleContext * param1)
     u32 v2;
     int v3;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
-    v2 = ov14_02222CF0(param1);
-    v3 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
+    v2 = AIScript_Read(param1);
+    v3 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     if (param1->battleMons[v0].statusVolatile & v2) {
-        ov14_02222D24(param1, v3);
+        AIScript_Iter(param1, v3);
     }
 }
 
@@ -824,15 +824,15 @@ static void ov14_022204FC (BattleSystem * param0, BattleContext * param1)
     u32 v2;
     int v3;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
-    v2 = ov14_02222CF0(param1);
-    v3 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
+    v2 = AIScript_Read(param1);
+    v3 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     if ((param1->battleMons[v0].statusVolatile & v2) == 0) {
-        ov14_02222D24(param1, v3);
+        AIScript_Iter(param1, v3);
     }
 }
 
@@ -843,15 +843,15 @@ static void ov14_02220548 (BattleSystem * param0, BattleContext * param1)
     u32 v2;
     int v3;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
-    v2 = ov14_02222CF0(param1);
-    v3 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
+    v2 = AIScript_Read(param1);
+    v3 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     if (param1->battleMons[v0].moveEffectsMask & v2) {
-        ov14_02222D24(param1, v3);
+        AIScript_Iter(param1, v3);
     }
 }
 
@@ -862,15 +862,15 @@ static void ov14_02220590 (BattleSystem * param0, BattleContext * param1)
     u32 v2;
     int v3;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
-    v2 = ov14_02222CF0(param1);
-    v3 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
+    v2 = AIScript_Read(param1);
+    v3 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     if ((param1->battleMons[v0].moveEffectsMask & v2) == 0) {
-        ov14_02222D24(param1, v3);
+        AIScript_Iter(param1, v3);
     }
 }
 
@@ -882,16 +882,16 @@ static void ov14_022205D8 (BattleSystem * param0, BattleContext * param1)
     int v3;
     u8 v4;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
-    v2 = ov14_02222CF0(param1);
-    v3 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
+    v2 = AIScript_Read(param1);
+    v3 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
     v4 = Battler_Side(param0, v0);
 
     if (param1->sideConditionsMask[v4] & v2) {
-        ov14_02222D24(param1, v3);
+        AIScript_Iter(param1, v3);
     }
 }
 
@@ -903,16 +903,16 @@ static void ov14_02220628 (BattleSystem * param0, BattleContext * param1)
     int v3;
     u8 v4;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
-    v2 = ov14_02222CF0(param1);
-    v3 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
+    v2 = AIScript_Read(param1);
+    v3 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
     v4 = Battler_Side(param0, v0);
 
     if ((param1->sideConditionsMask[v4] & v2) == 0) {
-        ov14_02222D24(param1, v3);
+        AIScript_Iter(param1, v3);
     }
 }
 
@@ -921,13 +921,13 @@ static void ov14_02220678 (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
 
     if (param1->aiContext.calcTemp < v0) {
-        ov14_02222D24(param1, v1);
+        AIScript_Iter(param1, v1);
     }
 }
 
@@ -936,13 +936,13 @@ static void ov14_022206A8 (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
 
     if (param1->aiContext.calcTemp > v0) {
-        ov14_02222D24(param1, v1);
+        AIScript_Iter(param1, v1);
     }
 }
 
@@ -951,13 +951,13 @@ static void ov14_022206D8 (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
 
     if (param1->aiContext.calcTemp == v0) {
-        ov14_02222D24(param1, v1);
+        AIScript_Iter(param1, v1);
     }
 }
 
@@ -966,13 +966,13 @@ static void ov14_02220708 (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
 
     if (param1->aiContext.calcTemp != v0) {
-        ov14_02222D24(param1, v1);
+        AIScript_Iter(param1, v1);
     }
 }
 
@@ -981,13 +981,13 @@ static void ov14_02220738 (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
 
     if (param1->aiContext.calcTemp & v0) {
-        ov14_02222D24(param1, v1);
+        AIScript_Iter(param1, v1);
     }
 }
 
@@ -996,13 +996,13 @@ static void ov14_02220768 (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
 
     if ((param1->aiContext.calcTemp & v0) == 0) {
-        ov14_02222D24(param1, v1);
+        AIScript_Iter(param1, v1);
     }
 }
 
@@ -1011,13 +1011,13 @@ static void ov14_02220798 (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
 
     if (param1->aiContext.move == v0) {
-        ov14_02222D24(param1, v1);
+        AIScript_Iter(param1, v1);
     }
 }
 
@@ -1026,13 +1026,13 @@ static void ov14_022207C8 (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
 
     if (param1->aiContext.move != v0) {
-        ov14_02222D24(param1, v1);
+        AIScript_Iter(param1, v1);
     }
 }
 
@@ -1042,14 +1042,14 @@ static void ov14_022207F8 (BattleSystem * param0, BattleContext * param1)
     int v1;
     int v2;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
 
-    while ((v2 = ov14_02222D10(param1, v0)) != 0xffffffff) {
+    while ((v2 = AIScript_ReadOffset(param1, v0)) != 0xffffffff) {
         if (param1->aiContext.calcTemp == v2) {
-            ov14_02222D24(param1, v1);
+            AIScript_Iter(param1, v1);
             break;
         }
 
@@ -1063,12 +1063,12 @@ static void ov14_0222084C (BattleSystem * param0, BattleContext * param1)
     int v1;
     int v2;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
 
-    while ((v2 = ov14_02222D10(param1, v0)) != 0xffffffff) {
+    while ((v2 = AIScript_ReadOffset(param1, v0)) != 0xffffffff) {
         if (param1->aiContext.calcTemp == v2) {
             return;
         }
@@ -1076,7 +1076,7 @@ static void ov14_0222084C (BattleSystem * param0, BattleContext * param1)
         v0++;
     }
 
-    ov14_02222D24(param1, v1);
+    AIScript_Iter(param1, v1);
 }
 
 static void ov14_0222089C (BattleSystem * param0, BattleContext * param1)
@@ -1084,8 +1084,8 @@ static void ov14_0222089C (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
-    v1 = ov14_02222CF0(param1);
+    AIScript_Iter(param1, 1);
+    v1 = AIScript_Read(param1);
 
     for (v0 = 0; v0 < 4; v0++) {
         if ((param1->battleMons[param1->aiContext.attacker].moves[v0] != 0) && (param1->aiContext.moveTable[param1->battleMons[param1->aiContext.attacker].moves[v0]].power)) {
@@ -1094,7 +1094,7 @@ static void ov14_0222089C (BattleSystem * param0, BattleContext * param1)
     }
 
     if (v0 < 4) {
-        ov14_02222D24(param1, v1);
+        AIScript_Iter(param1, v1);
     }
 }
 
@@ -1103,8 +1103,8 @@ static void ov14_02220900 (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
-    v1 = ov14_02222CF0(param1);
+    AIScript_Iter(param1, 1);
+    v1 = AIScript_Read(param1);
 
     for (v0 = 0; v0 < 4; v0++) {
         if ((param1->battleMons[param1->aiContext.attacker].moves[v0] != 0) && (param1->aiContext.moveTable[param1->battleMons[param1->aiContext.attacker].moves[v0]].power)) {
@@ -1113,13 +1113,13 @@ static void ov14_02220900 (BattleSystem * param0, BattleContext * param1)
     }
 
     if (v0 == 4) {
-        ov14_02222D24(param1, v1);
+        AIScript_Iter(param1, v1);
     }
 }
 
 static void ov14_02220964 (BattleSystem * param0, BattleContext * param1)
 {
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
     param1->aiContext.calcTemp = param1->totalTurns;
 }
 
@@ -1128,9 +1128,9 @@ static void ov14_02220980 (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
 
     switch (v0) {
     case 1:
@@ -1176,10 +1176,10 @@ static void ov14_02220AB4 (BattleSystem * param0, BattleContext * param1)
     int v1;
     int v2;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
-    v2 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
+    v2 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     if ((BattleMon_Get(param1, v0, 27, NULL) == v2) || (BattleMon_Get(param1, v0, 28, NULL) == v2)) {
@@ -1191,7 +1191,7 @@ static void ov14_02220AB4 (BattleSystem * param0, BattleContext * param1)
 
 static void ov14_02220B10 (BattleSystem * param0, BattleContext * param1)
 {
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
     param1->aiContext.calcTemp = param1->aiContext.moveTable[param1->aiContext.move].power;
 }
 
@@ -1202,9 +1202,9 @@ static void ov14_02220B34 (BattleSystem * param0, BattleContext * param1)
     int v4;
     u8 v5[6];
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v4 = ov14_02222CF0(param1);
+    v4 = AIScript_Read(param1);
     v1 = 0;
 
     while (Unk_ov14_0222EE90[v1] != 0xffff) {
@@ -1253,9 +1253,9 @@ static void ov14_02220C70 (BattleSystem * param0, BattleContext * param1)
     u8 v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     param1->aiContext.calcTemp = param1->movePrevByBattler[v0];
@@ -1266,13 +1266,13 @@ static void ov14_02220CA4 (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
 
     if (v0 == param1->aiContext.calcTemp) {
-        ov14_02222D24(param1, v1);
+        AIScript_Iter(param1, v1);
     }
 }
 
@@ -1281,13 +1281,13 @@ static void ov14_02220CD4 (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
 
     if (v0 != param1->aiContext.calcTemp) {
-        ov14_02222D24(param1, v1);
+        AIScript_Iter(param1, v1);
     }
 }
 
@@ -1296,13 +1296,13 @@ static void ov14_02220D04 (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
 
     if (BattleSystem_CompareBattlerSpeed(param0, param1, param1->aiContext.attacker, param1->aiContext.defender, 1) == v0) {
-        ov14_02222D24(param1, v1);
+        AIScript_Iter(param1, v1);
     }
 }
 
@@ -1311,13 +1311,13 @@ static void ov14_02220D48 (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
 
     if (BattleSystem_CompareBattlerSpeed(param0, param1, param1->aiContext.attacker, param1->aiContext.defender, 1) != v0) {
-        ov14_02222D24(param1, v1);
+        AIScript_Iter(param1, v1);
     }
 }
 
@@ -1330,9 +1330,9 @@ static void ov14_02220D8C (BattleSystem * param0, BattleContext * param1)
     u8 v4, v5;
     int v6;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v6 = ov14_02222CF0(param1);
+    v6 = AIScript_Read(param1);
 
     param1->aiContext.calcTemp = 0;
 
@@ -1357,13 +1357,13 @@ static void ov14_02220D8C (BattleSystem * param0, BattleContext * param1)
 
 static void ov14_02220E68 (BattleSystem * param0, BattleContext * param1)
 {
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
     param1->aiContext.calcTemp = param1->aiContext.move;
 }
 
 static void ov14_02220E84 (BattleSystem * param0, BattleContext * param1)
 {
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
     param1->aiContext.calcTemp = param1->aiContext.moveTable[param1->aiContext.move].effect;
 }
 
@@ -1373,9 +1373,9 @@ static void ov14_02220EA8 (BattleSystem * param0, BattleContext * param1)
     int v1;
     int v2, v3;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     if (param1->battleMons[v0].moveEffectsMask & 0x200000) {
@@ -1416,10 +1416,10 @@ static void ov14_02220F88 (BattleSystem * param0, BattleContext * param1)
     int v3;
     int v4, v5;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
-    v2 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
+    v2 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     if (param1->battleMons[v0].moveEffectsMask & 0x200000) {
@@ -1469,7 +1469,7 @@ static void ov14_02221060 (BattleSystem * param0, BattleContext * param1)
     u16 v3;
     int v4;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
     param1->aiContext.calcTemp = 0;
 
@@ -1510,10 +1510,10 @@ static void ov14_02221114 (BattleSystem * param0, BattleContext * param1)
     u32 v2;
     u32 v3;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
     v2 = 40;
     v3 = 0;
     v2 = BattleSystem_ApplyTypeChart(param0, param1, param1->aiContext.move, ov14_0222327C(param0, param1, param1->aiContext.attacker, param1->aiContext.move), param1->aiContext.attacker, param1->aiContext.defender, v2, &v3);
@@ -1533,7 +1533,7 @@ static void ov14_02221114 (BattleSystem * param0, BattleContext * param1)
     }
 
     if (v2 == v0) {
-        ov14_02222D24(param1, v1);
+        AIScript_Iter(param1, v1);
     }
 }
 
@@ -1548,11 +1548,11 @@ static void ov14_022211AC (BattleSystem * param0, BattleContext * param1)
     u32 v7;
     int v8;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v6 = ov14_02222CF0(param1);
-    v7 = ov14_02222CF0(param1);
-    v8 = ov14_02222CF0(param1);
+    v6 = AIScript_Read(param1);
+    v7 = AIScript_Read(param1);
+    v8 = AIScript_Read(param1);
     v3 = ov14_02222D34(param1, v6);
 
     if (param0->battleType & 0x2) {
@@ -1568,7 +1568,7 @@ static void ov14_022211AC (BattleSystem * param0, BattleContext * param1)
         v1 = Party_GetPokemonBySlotIndex(v0, v2);
 
         if ((v2 != v4) && (v2 != v5) && (Pokemon_GetValue(v1, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 494) && (Pokemon_GetValue(v1, MON_DATA_STATUS_CONDITION, NULL) & v7)) {
-            ov14_02222D24(param1, v8);
+            AIScript_Iter(param1, v8);
             return;
         }
     }
@@ -1585,11 +1585,11 @@ static void ov14_022212A0 (BattleSystem * param0, BattleContext * param1)
     u32 v7;
     int v8;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v6 = ov14_02222CF0(param1);
-    v7 = ov14_02222CF0(param1);
-    v8 = ov14_02222CF0(param1);
+    v6 = AIScript_Read(param1);
+    v7 = AIScript_Read(param1);
+    v8 = AIScript_Read(param1);
     v3 = ov14_02222D34(param1, v6);
 
     if (param0->battleType & 0x2) {
@@ -1605,7 +1605,7 @@ static void ov14_022212A0 (BattleSystem * param0, BattleContext * param1)
         v1 = Party_GetPokemonBySlotIndex(v0, v2);
 
         if ((v2 != v4) && (v2 != v5) && (Pokemon_GetValue(v1, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 494) && ((Pokemon_GetValue(v1, MON_DATA_STATUS_CONDITION, NULL) & v7) == 0)) {
-            ov14_02222D24(param1, v8);
+            AIScript_Iter(param1, v8);
             return;
         }
     }
@@ -1613,7 +1613,7 @@ static void ov14_022212A0 (BattleSystem * param0, BattleContext * param1)
 
 static void ov14_02221394 (BattleSystem * param0, BattleContext * param1)
 {
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
     param1->aiContext.calcTemp = 0x0;
 
@@ -1643,13 +1643,13 @@ static void ov14_0222140C (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
 
     if (param1->aiContext.moveTable[param1->aiContext.move].effect == v0) {
-        ov14_02222D24(param1, v1);
+        AIScript_Iter(param1, v1);
     }
 }
 
@@ -1658,13 +1658,13 @@ static void ov14_02221444 (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
 
     if (param1->aiContext.moveTable[param1->aiContext.move].effect != v0) {
-        ov14_02222D24(param1, v1);
+        AIScript_Iter(param1, v1);
     }
 }
 
@@ -1676,16 +1676,16 @@ static void ov14_0222147C (BattleSystem * param0, BattleContext * param1)
     int v3;
     int v4;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
-    v2 = ov14_02222CF0(param1);
-    v3 = ov14_02222CF0(param1);
-    v4 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
+    v2 = AIScript_Read(param1);
+    v3 = AIScript_Read(param1);
+    v4 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     if (param1->battleMons[v0].statBoosts[v2] < v3) {
-        ov14_02222D24(param1, v4);
+        AIScript_Iter(param1, v4);
     }
 }
 
@@ -1697,16 +1697,16 @@ static void ov14_022214D0 (BattleSystem * param0, BattleContext * param1)
     int v3;
     int v4;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
-    v2 = ov14_02222CF0(param1);
-    v3 = ov14_02222CF0(param1);
-    v4 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
+    v2 = AIScript_Read(param1);
+    v3 = AIScript_Read(param1);
+    v4 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     if (param1->battleMons[v0].statBoosts[v2] > v3) {
-        ov14_02222D24(param1, v4);
+        AIScript_Iter(param1, v4);
     }
 }
 
@@ -1718,16 +1718,16 @@ static void ov14_02221524 (BattleSystem * param0, BattleContext * param1)
     int v3;
     int v4;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
-    v2 = ov14_02222CF0(param1);
-    v3 = ov14_02222CF0(param1);
-    v4 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
+    v2 = AIScript_Read(param1);
+    v3 = AIScript_Read(param1);
+    v4 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     if (param1->battleMons[v0].statBoosts[v2] == v3) {
-        ov14_02222D24(param1, v4);
+        AIScript_Iter(param1, v4);
     }
 }
 
@@ -1739,16 +1739,16 @@ static void ov14_02221578 (BattleSystem * param0, BattleContext * param1)
     int v3;
     int v4;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
-    v2 = ov14_02222CF0(param1);
-    v3 = ov14_02222CF0(param1);
-    v4 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
+    v2 = AIScript_Read(param1);
+    v3 = AIScript_Read(param1);
+    v4 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     if (param1->battleMons[v0].statBoosts[v2] != v3) {
-        ov14_02222D24(param1, v4);
+        AIScript_Iter(param1, v4);
     }
 }
 
@@ -1762,10 +1762,10 @@ static void ov14_022215CC (BattleSystem * param0, BattleContext * param1)
     u32 v6;
     u8 v7[6];
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
-    v2 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
+    v2 = AIScript_Read(param1);
 
     if (v1 == 1) {
         v3 = param1->aiContext.moveDamageRolls[param1->aiContext.moveSlot];
@@ -1801,7 +1801,7 @@ static void ov14_022215CC (BattleSystem * param0, BattleContext * param1)
         v6 = ov14_02222E84(param0, param1, param1->aiContext.move, param1->battleMons[param1->aiContext.attacker].heldItem, &v7[0], param1->aiContext.attacker, Battler_Ability(param1, param1->aiContext.attacker), param1->battleMons[param1->aiContext.attacker].moveEffectsData.embargoTurns, v3);
 
         if (param1->battleMons[param1->aiContext.defender].curHP <= v6) {
-            ov14_02222D24(param1, v2);
+            AIScript_Iter(param1, v2);
         }
     }
 }
@@ -1816,10 +1816,10 @@ static void ov14_022216F8 (BattleSystem * param0, BattleContext * param1)
     u32 v6;
     u8 v7[6];
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
-    v2 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
+    v2 = AIScript_Read(param1);
 
     if (v1 == 1) {
         v3 = param1->aiContext.moveDamageRolls[param1->aiContext.moveSlot];
@@ -1855,7 +1855,7 @@ static void ov14_022216F8 (BattleSystem * param0, BattleContext * param1)
         v6 = ov14_02222E84(param0, param1, param1->aiContext.move, param1->battleMons[param1->aiContext.attacker].heldItem, &v7[0], param1->aiContext.attacker, Battler_Ability(param1, param1->aiContext.attacker), param1->battleMons[param1->aiContext.attacker].moveEffectsData.embargoTurns, v3);
 
         if (param1->battleMons[param1->aiContext.defender].curHP > v6) {
-            ov14_02222D24(param1, v2);
+            AIScript_Iter(param1, v2);
         }
     }
 }
@@ -1868,11 +1868,11 @@ static void ov14_02221824 (BattleSystem * param0, BattleContext * param1)
     int v3;
     int v4;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v2 = ov14_02222CF0(param1);
-    v3 = ov14_02222CF0(param1);
-    v4 = ov14_02222CF0(param1);
+    v2 = AIScript_Read(param1);
+    v3 = AIScript_Read(param1);
+    v4 = AIScript_Read(param1);
     v1 = ov14_02222D34(param1, v2);
 
     switch (v2) {
@@ -1884,7 +1884,7 @@ static void ov14_02221824 (BattleSystem * param0, BattleContext * param1)
         }
 
         if (v0 < 4) {
-            ov14_02222D24(param1, v4);
+            AIScript_Iter(param1, v4);
         }
         break;
     case 3:
@@ -1899,7 +1899,7 @@ static void ov14_02221824 (BattleSystem * param0, BattleContext * param1)
         }
 
         if (v0 < 4) {
-            ov14_02222D24(param1, v4);
+            AIScript_Iter(param1, v4);
         }
         break;
     case 0:
@@ -1910,7 +1910,7 @@ static void ov14_02221824 (BattleSystem * param0, BattleContext * param1)
         }
 
         if (v0 < 4) {
-            ov14_02222D24(param1, v4);
+            AIScript_Iter(param1, v4);
         }
         break;
     default:
@@ -1926,11 +1926,11 @@ static void ov14_022218E4 (BattleSystem * param0, BattleContext * param1)
     int v3;
     int v4;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v2 = ov14_02222CF0(param1);
-    v3 = ov14_02222CF0(param1);
-    v4 = ov14_02222CF0(param1);
+    v2 = AIScript_Read(param1);
+    v3 = AIScript_Read(param1);
+    v4 = AIScript_Read(param1);
     v1 = ov14_02222D34(param1, v2);
 
     switch (v2) {
@@ -1942,7 +1942,7 @@ static void ov14_022218E4 (BattleSystem * param0, BattleContext * param1)
         }
 
         if (v0 == 4) {
-            ov14_02222D24(param1, v4);
+            AIScript_Iter(param1, v4);
         }
         break;
     case 3:
@@ -1957,7 +1957,7 @@ static void ov14_022218E4 (BattleSystem * param0, BattleContext * param1)
         }
 
         if (v0 == 4) {
-            ov14_02222D24(param1, v4);
+            AIScript_Iter(param1, v4);
         }
         break;
     case 0:
@@ -1968,7 +1968,7 @@ static void ov14_022218E4 (BattleSystem * param0, BattleContext * param1)
         }
 
         if (v0 == 4) {
-            ov14_02222D24(param1, v4);
+            AIScript_Iter(param1, v4);
         }
         break;
     default:
@@ -1984,11 +1984,11 @@ static void ov14_022219A4 (BattleSystem * param0, BattleContext * param1)
     int v3;
     int v4;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v2 = ov14_02222CF0(param1);
-    v3 = ov14_02222CF0(param1);
-    v4 = ov14_02222CF0(param1);
+    v2 = AIScript_Read(param1);
+    v3 = AIScript_Read(param1);
+    v4 = AIScript_Read(param1);
     v1 = ov14_02222D34(param1, v2);
 
     switch (v2) {
@@ -2000,7 +2000,7 @@ static void ov14_022219A4 (BattleSystem * param0, BattleContext * param1)
         }
 
         if (v0 < 4) {
-            ov14_02222D24(param1, v4);
+            AIScript_Iter(param1, v4);
         }
         break;
     case 0:
@@ -2011,7 +2011,7 @@ static void ov14_022219A4 (BattleSystem * param0, BattleContext * param1)
         }
 
         if (v0 < 4) {
-            ov14_02222D24(param1, v4);
+            AIScript_Iter(param1, v4);
         }
         break;
     default:
@@ -2027,11 +2027,11 @@ static void ov14_02221A48 (BattleSystem * param0, BattleContext * param1)
     int v3;
     int v4;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v2 = ov14_02222CF0(param1);
-    v3 = ov14_02222CF0(param1);
-    v4 = ov14_02222CF0(param1);
+    v2 = AIScript_Read(param1);
+    v3 = AIScript_Read(param1);
+    v4 = AIScript_Read(param1);
     v1 = ov14_02222D34(param1, v2);
 
     switch (v2) {
@@ -2043,7 +2043,7 @@ static void ov14_02221A48 (BattleSystem * param0, BattleContext * param1)
         }
 
         if (v0 == 4) {
-            ov14_02222D24(param1, v4);
+            AIScript_Iter(param1, v4);
         }
         break;
     case 0:
@@ -2054,7 +2054,7 @@ static void ov14_02221A48 (BattleSystem * param0, BattleContext * param1)
         }
 
         if (v0 == 4) {
-            ov14_02222D24(param1, v4);
+            AIScript_Iter(param1, v4);
         }
         break;
     default:
@@ -2069,22 +2069,22 @@ static void ov14_02221AEC (BattleSystem * param0, BattleContext * param1)
     int v2;
     int v3;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
-    v2 = ov14_02222CF0(param1);
-    v3 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
+    v2 = AIScript_Read(param1);
+    v3 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     switch (v2) {
     case 0x0:
         if (param1->battleMons[v0].moveEffectsData.disabledTurns) {
-            ov14_02222D24(param1, v3);
+            AIScript_Iter(param1, v3);
         }
         break;
     case 0x1:
         if (param1->battleMons[v0].moveEffectsData.encoredTurns) {
-            ov14_02222D24(param1, v3);
+            AIScript_Iter(param1, v3);
         }
         break;
     default:
@@ -2097,20 +2097,20 @@ static void ov14_02221B5C (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
 
     switch (v0) {
     case 0x0:
         if (param1->battleMons[param1->aiContext.attacker].moveEffectsData.disabledMove == param1->aiContext.move) {
-            ov14_02222D24(param1, v1);
+            AIScript_Iter(param1, v1);
         }
         break;
     case 0x1:
         if (param1->battleMons[param1->aiContext.attacker].moveEffectsData.encoredMove == param1->aiContext.move) {
-            ov14_02222D24(param1, v1);
+            AIScript_Iter(param1, v1);
         }
         break;
     default:
@@ -2120,7 +2120,7 @@ static void ov14_02221B5C (BattleSystem * param0, BattleContext * param1)
 
 static void ov14_02221BCC (BattleSystem * param0, BattleContext * param1)
 {
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
     param1->aiContext.stateFlags |= (0x1 | 0x2 | 0x8);
 }
 
@@ -2139,9 +2139,9 @@ static void ov14_02221BF0 (BattleSystem * param0, BattleContext * param1)
     u8 v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     param1->aiContext.calcTemp = param1->battleMons[v0].heldItem;
@@ -2152,9 +2152,9 @@ static void ov14_02221C24 (BattleSystem * param0, BattleContext * param1)
     u8 v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     if (param1->aiContext.attacker != v0) {
@@ -2172,11 +2172,11 @@ static void ov14_02221C88 (BattleSystem * param0, BattleContext * param1)
     int v3;
     int v4;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v2 = ov14_02222CF0(param1);
-    v3 = ov14_02222CF0(param1);
-    v4 = ov14_02222CF0(param1);
+    v2 = AIScript_Read(param1);
+    v3 = AIScript_Read(param1);
+    v4 = AIScript_Read(param1);
     v1 = ov14_02222D34(param1, v2);
 
     if ((v1 & 1) == (param1->aiContext.attacker & 1)) {
@@ -2186,7 +2186,7 @@ static void ov14_02221C88 (BattleSystem * param0, BattleContext * param1)
     }
 
     if (v0 == v3) {
-        ov14_02222D24(param1, v4);
+        AIScript_Iter(param1, v4);
     }
 }
 
@@ -2195,13 +2195,13 @@ static void ov14_02221CF0 (BattleSystem * param0, BattleContext * param1)
     u32 v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
 
     if (param1->fieldConditionsMask & v0) {
-        ov14_02222D24(param1, v1);
+        AIScript_Iter(param1, v1);
     }
 }
 
@@ -2212,10 +2212,10 @@ static void ov14_02221D20 (BattleSystem * param0, BattleContext * param1)
     u32 v2;
     u8 v3;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
-    v2 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
+    v2 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
     v3 = Battler_Side(param0, v0);
 
@@ -2237,10 +2237,10 @@ static void ov14_02221D88 (BattleSystem * param0, BattleContext * param1)
     int v3;
     Pokemon * v4;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
-    v2 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
+    v2 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     for (v3 = 0; v3 < BattleSystem_PartyCount(param0, v0); v3++) {
@@ -2248,7 +2248,7 @@ static void ov14_02221D88 (BattleSystem * param0, BattleContext * param1)
 
         if (v3 != param1->selectedPartySlot[v0]) {
             if (Pokemon_GetValue(v4, MON_DATA_CURRENT_HP, NULL) != Pokemon_GetValue(v4, MON_DATA_MAX_HP, NULL)) {
-                ov14_02222D24(param1, v2);
+                AIScript_Iter(param1, v2);
                 break;
             }
         }
@@ -2263,10 +2263,10 @@ static void ov14_02221E18 (BattleSystem * param0, BattleContext * param1)
     int v3, v4;
     Pokemon * v5;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
-    v2 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
+    v2 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     for (v3 = 0; v3 < BattleSystem_PartyCount(param0, v0); v3++) {
@@ -2275,7 +2275,7 @@ static void ov14_02221E18 (BattleSystem * param0, BattleContext * param1)
         if (v3 != param1->selectedPartySlot[v0]) {
             for (v4 = 0; v4 < 4; v4++) {
                 if (Pokemon_GetValue(v5, MON_DATA_MOVE1_CUR_PP + v4, NULL) != Pokemon_GetValue(v5, MON_DATA_MOVE1_MAX_PP + v4, NULL)) {
-                    ov14_02222D24(param1, v2);
+                    AIScript_Iter(param1, v2);
                     break;
                 }
             }
@@ -2292,9 +2292,9 @@ static void ov14_02221EBC (BattleSystem * param0, BattleContext * param1)
     u8 v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     param1->aiContext.calcTemp = Battler_ItemFlingPower(param1, v0);
@@ -2302,7 +2302,7 @@ static void ov14_02221EBC (BattleSystem * param0, BattleContext * param1)
 
 static void ov14_02221EEC (BattleSystem * param0, BattleContext * param1)
 {
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
     param1->aiContext.calcTemp = param1->battleMons[param1->aiContext.attacker].ppCur[param1->aiContext.moveSlot];
 }
 
@@ -2313,27 +2313,27 @@ static void ov14_02221F1C (BattleSystem * param0, BattleContext * param1)
     int v2;
     int v3;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
-    v2 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
+    v2 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
     v3 = Battler_CountMoves(param0, param1, v0);
 
     if ((param1->battleMons[v0].moveEffectsData.lastResortCount >= (v3 - 1)) && (v3 > 1)) {
-        ov14_02222D24(param1, v2);
+        AIScript_Iter(param1, v2);
     }
 }
 
 static void ov14_02221F78 (BattleSystem * param0, BattleContext * param1)
 {
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
     param1->aiContext.calcTemp = param1->aiContext.moveTable[param1->aiContext.move].class;
 }
 
 static void ov14_02221F9C (BattleSystem * param0, BattleContext * param1)
 {
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
     param1->aiContext.calcTemp = param1->aiContext.moveTable[param1->movePrevByBattler[param1->aiContext.defender]].class;
 }
 
@@ -2346,9 +2346,9 @@ static void ov14_02221FCC (BattleSystem * param0, BattleContext * param1)
     int v6;
     int v7;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v7 = ov14_02222CF0(param1);
+    v7 = AIScript_Read(param1);
     v6 = ov14_02222D34(param1, v7);
     v5 = BattleSystem_MaxBattlers(param0);
 
@@ -2381,9 +2381,9 @@ static void ov14_02222090 (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     param1->aiContext.calcTemp = param1->totalTurns - param1->battleMons[v0].moveEffectsData.fakeOutTurnNumber;
@@ -2402,10 +2402,10 @@ static void ov14_022220CC (BattleSystem * param0, BattleContext * param1)
     u8 v9[6];
     Pokemon * v10;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v2 = ov14_02222CF0(param1);
-    v3 = ov14_02222CF0(param1);
+    v2 = AIScript_Read(param1);
+    v3 = AIScript_Read(param1);
     v4 = param1->aiContext.attacker;
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -2430,7 +2430,7 @@ static void ov14_022220CC (BattleSystem * param0, BattleContext * param1)
                 v6 = ov14_02222D7C(param0, param1, param1->aiContext.attacker, &v8[0], &v7[0], Pokemon_GetValue(v10, MON_DATA_HELD_ITEM, NULL), &v9[0], Pokemon_GetValue(v10, MON_DATA_ABILITY, NULL), MON_DATA_PERSONALITY, v2);
 
                 if (v6 > v5) {
-                    ov14_02222D24(param1, v3);
+                    AIScript_Iter(param1, v3);
                     break;
                 }
             }
@@ -2442,12 +2442,12 @@ static void ov14_02222260 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
 
     if (ov14_02223B34(param0, param1, param1->aiContext.attacker, 1) == 1) {
-        ov14_02222D24(param1, v0);
+        AIScript_Iter(param1, v0);
     }
 }
 
@@ -2464,11 +2464,11 @@ static void ov14_02222298 (BattleSystem * param0, BattleContext * param1)
     s32 v8[4];
     u8 v9[6];
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
-    v2 = ov14_02222CF0(param1);
-    v3 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
+    v2 = AIScript_Read(param1);
+    v3 = AIScript_Read(param1);
 
     for (v0 = 0; v0 < 6; v0++) {
         v9[v0] = BattleMon_Get(param1, param1->aiContext.attacker, 10 + v0, NULL);
@@ -2486,7 +2486,7 @@ static void ov14_02222298 (BattleSystem * param0, BattleContext * param1)
     v7 = ov14_02222E84(param0, param1, param1->movePrevByBattler[v4], param1->battleMons[v4].heldItem, &v9[0], v4, Battler_Ability(param1, v4), param1->battleMons[v4].moveEffectsData.embargoTurns, v5);
 
     if (v7 > v6) {
-        ov14_02222D24(param1, v3);
+        AIScript_Iter(param1, v3);
     }
 }
 
@@ -2496,9 +2496,9 @@ static void ov14_022223B0 (BattleSystem * param0, BattleContext * param1)
     int v1;
     int v2;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
     v2 = ov14_02222D34(param1, v1);
 
     param1->aiContext.calcTemp = 0;
@@ -2516,10 +2516,10 @@ static void ov14_02222400 (BattleSystem * param0, BattleContext * param1)
     int v1;
     int v2;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
     v2 = ov14_02222D34(param1, v0);
 
     param1->aiContext.calcTemp = param1->battleMons[v2].statBoosts[v1] - param1->battleMons[param1->aiContext.attacker].statBoosts[v1];
@@ -2534,17 +2534,17 @@ static void ov14_02222450 (BattleSystem * param0, BattleContext * param1)
     int v4;
     int v5;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
-    v2 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
+    v2 = AIScript_Read(param1);
     v3 = ov14_02222D34(param1, v0);
 
     ov14_0222254C(param1, v3, &v4, &v5, v1);
 
     if (v4 < v5) {
-        ov14_02222D24(param1, v2);
+        AIScript_Iter(param1, v2);
     }
 }
 
@@ -2557,17 +2557,17 @@ static void ov14_022224A4 (BattleSystem * param0, BattleContext * param1)
     int v4;
     int v5;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
-    v2 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
+    v2 = AIScript_Read(param1);
     v3 = ov14_02222D34(param1, v0);
 
     ov14_0222254C(param1, v3, &v4, &v5, v1);
 
     if (v4 > v5) {
-        ov14_02222D24(param1, v2);
+        AIScript_Iter(param1, v2);
     }
 }
 
@@ -2580,17 +2580,17 @@ static void ov14_022224F8 (BattleSystem * param0, BattleContext * param1)
     int v4;
     int v5;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
-    v2 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
+    v2 = AIScript_Read(param1);
     v3 = ov14_02222D34(param1, v0);
 
     ov14_0222254C(param1, v3, &v4, &v5, v1);
 
     if (v4 == v5) {
-        ov14_02222D24(param1, v2);
+        AIScript_Iter(param1, v2);
     }
 }
 
@@ -2636,9 +2636,9 @@ static void ov14_02222648 (BattleSystem * param0, BattleContext * param1)
     u8 v6[6];
     int v7;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v5 = ov14_02222CF0(param1);
+    v5 = AIScript_Read(param1);
     v1 = 0;
 
     while (Unk_ov14_0222EE90[v1] != 0xffff) {
@@ -2699,10 +2699,10 @@ static void ov14_022227A4 (BattleSystem * param0, BattleContext * param1)
     int v1;
     int v2;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
 
     GF_ASSERT(v0 != 1);
     GF_ASSERT(v0 != 0);
@@ -2710,7 +2710,7 @@ static void ov14_022227A4 (BattleSystem * param0, BattleContext * param1)
     v2 = ov14_02222D34(param1, v0);
 
     if (param1->battlersSwitchingMask & FlagIndex(v2)) {
-        ov14_02222D24(param1, v1);
+        AIScript_Iter(param1, v1);
     }
 }
 
@@ -2720,10 +2720,10 @@ static void ov14_022227F4 (BattleSystem * param0, BattleContext * param1)
     int v1;
     int v2;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
 
     GF_ASSERT(v0 != 1);
     GF_ASSERT(v0 != 0);
@@ -2731,7 +2731,7 @@ static void ov14_022227F4 (BattleSystem * param0, BattleContext * param1)
     v2 = ov14_02222D34(param1, v0);
 
     if ((param1->battlersSwitchingMask & FlagIndex(v2)) == 0) {
-        ov14_02222D24(param1, v1);
+        AIScript_Iter(param1, v1);
     }
 }
 
@@ -2740,9 +2740,9 @@ static void ov14_02222844 (BattleSystem * param0, BattleContext * param1)
     u8 v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     param1->aiContext.calcTemp = param1->battleMons[v0].gender;
@@ -2753,9 +2753,9 @@ static void ov14_0222287C (BattleSystem * param0, BattleContext * param1)
     u8 v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     if (param1->battleMons[v0].moveEffectsData.fakeOutTurnNumber < param1->totalTurns) {
@@ -2770,9 +2770,9 @@ static void ov14_022228C8 (BattleSystem * param0, BattleContext * param1)
     u8 v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     param1->aiContext.calcTemp = param1->battleMons[v0].moveEffectsData.stockpileCount;
@@ -2780,7 +2780,7 @@ static void ov14_022228C8 (BattleSystem * param0, BattleContext * param1)
 
 static void ov14_02222900 (BattleSystem * param0, BattleContext * param1)
 {
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
     param1->aiContext.calcTemp = param0->battleType;
 }
 
@@ -2789,9 +2789,9 @@ static void ov14_02222918 (BattleSystem * param0, BattleContext * param1)
     u8 v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     param1->aiContext.calcTemp = param1->recycleItem[v0];
@@ -2799,19 +2799,19 @@ static void ov14_02222918 (BattleSystem * param0, BattleContext * param1)
 
 static void ov14_0222294C (BattleSystem * param0, BattleContext * param1)
 {
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
     param1->aiContext.calcTemp = param1->aiContext.moveTable[param1->aiContext.calcTemp].type;
 }
 
 static void ov14_0222296C (BattleSystem * param0, BattleContext * param1)
 {
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
     param1->aiContext.calcTemp = param1->aiContext.moveTable[param1->aiContext.calcTemp].power;
 }
 
 static void ov14_0222298C (BattleSystem * param0, BattleContext * param1)
 {
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
     param1->aiContext.calcTemp = param1->aiContext.moveTable[param1->aiContext.calcTemp].effect;
 }
 
@@ -2820,9 +2820,9 @@ static void ov14_022229AC (BattleSystem * param0, BattleContext * param1)
     u8 v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     if ((param1->moveProtect[v0] != 182) && (param1->moveProtect[v0] != 197) && (param1->moveProtect[v0] != 203)) {
@@ -2836,8 +2836,8 @@ static void ov14_02222A08 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
 
-    ov14_02222D24(param1, 1);
-    v0 = ov14_02222CF0(param1);
+    AIScript_Iter(param1, 1);
+    v0 = AIScript_Read(param1);
     ov14_02222C28(param0, param1, v0);
 }
 
@@ -2845,14 +2845,14 @@ static void ov14_02222A28 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
 
-    ov14_02222D24(param1, 1);
-    v0 = ov14_02222CF0(param1);
-    ov14_02222D24(param1, v0);
+    AIScript_Iter(param1, 1);
+    v0 = AIScript_Read(param1);
+    AIScript_Iter(param1, v0);
 }
 
 static void ov14_02222A44 (BattleSystem * param0, BattleContext * param1)
 {
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
     if (ov14_02222C60(param0, param1) == 1) {
         return;
@@ -2866,25 +2866,25 @@ static void ov14_02222A6C (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
-    v1 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
+    v1 = AIScript_Read(param1);
 
     switch (v0) {
     case 0x0:
         if (param1->battleMons[param1->aiContext.attacker].level > param1->battleMons[param1->aiContext.defender].level) {
-            ov14_02222D24(param1, v1);
+            AIScript_Iter(param1, v1);
         }
         break;
     case 0x1:
         if (param1->battleMons[param1->aiContext.attacker].level < param1->battleMons[param1->aiContext.defender].level) {
-            ov14_02222D24(param1, v1);
+            AIScript_Iter(param1, v1);
         }
         break;
     case 0x2:
         if (param1->battleMons[param1->aiContext.attacker].level == param1->battleMons[param1->aiContext.defender].level) {
-            ov14_02222D24(param1, v1);
+            AIScript_Iter(param1, v1);
         }
         break;
     default:
@@ -2896,11 +2896,11 @@ static void ov14_02222B10 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
 
-    ov14_02222D24(param1, 1);
-    v0 = ov14_02222CF0(param1);
+    AIScript_Iter(param1, 1);
+    v0 = AIScript_Read(param1);
 
     if (param1->battleMons[param1->aiContext.defender].moveEffectsData.tauntedTurns) {
-        ov14_02222D24(param1, v0);
+        AIScript_Iter(param1, v0);
     }
 }
 
@@ -2908,12 +2908,12 @@ static void ov14_02222B48 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
 
     if (param1->battleMons[param1->aiContext.defender].moveEffectsData.tauntedTurns == 0) {
-        ov14_02222D24(param1, v0);
+        AIScript_Iter(param1, v0);
     }
 }
 
@@ -2921,12 +2921,12 @@ static void ov14_02222B80 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v0 = ov14_02222CF0(param1);
+    v0 = AIScript_Read(param1);
 
     if ((param1->aiContext.attacker & 1) == (param1->aiContext.defender & 1)) {
-        ov14_02222D24(param1, v0);
+        AIScript_Iter(param1, v0);
     }
 }
 
@@ -2936,14 +2936,14 @@ static void ov14_02222BB4 (BattleSystem * param0, BattleContext * param1)
     int v1;
     int v2;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
-    v2 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
+    v2 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     if (param1->battleMons[v0].moveEffectsData.flashFire) {
-        ov14_02222D24(param1, v2);
+        AIScript_Iter(param1, v2);
     }
 }
 
@@ -2952,9 +2952,9 @@ static void ov14_02222BF8 (BattleSystem * param0, BattleContext * param1)
     u8 v0;
     int v1;
 
-    ov14_02222D24(param1, 1);
+    AIScript_Iter(param1, 1);
 
-    v1 = ov14_02222CF0(param1);
+    v1 = AIScript_Read(param1);
     v0 = ov14_02222D34(param1, v1);
 
     param1->aiContext.calcTemp = Battler_Ability(param1, v0);
@@ -2963,7 +2963,7 @@ static void ov14_02222BF8 (BattleSystem * param0, BattleContext * param1)
 static void ov14_02222C28 (BattleSystem * param0, BattleContext * param1, int param2)
 {
     param1->aiContext.scriptStackPointer[param1->aiContext.scriptStackSize++] = param1->aiScriptCursor;
-    ov14_02222D24(param1, param2);
+    AIScript_Iter(param1, param2);
 
     GF_ASSERT(param1->aiContext.scriptStackSize <= 8);
 }
@@ -2993,27 +2993,25 @@ static void TrainerAI_RecordLastMove(BattleSystem *battleSys, BattleContext *bat
     }
 }
 
-static int ov14_02222CF0 (BattleContext * param0)
+static int AIScript_Read(BattleContext *battleCtx)
 {
-    int v0;
+    int word = battleCtx->aiScriptTemp[battleCtx->aiScriptCursor];
+    battleCtx->aiScriptCursor++;
 
-    v0 = param0->aiScriptTemp[param0->aiScriptCursor];
-    param0->aiScriptCursor++;
-
-    return v0;
+    return word;
 }
 
-static int ov14_02222D10 (BattleContext * param0, int param1)
+static int AIScript_ReadOffset(BattleContext * battleCtx, int ofs)
 {
-    return param0->aiScriptTemp[param0->aiScriptCursor + param1];
+    return battleCtx->aiScriptTemp[battleCtx->aiScriptCursor + ofs];
 }
 
-static void ov14_02222D24 (BattleContext * param0, int param1)
+static void AIScript_Iter(BattleContext *battleCtx, int i)
 {
-    param0->aiScriptCursor += param1;
+    battleCtx->aiScriptCursor += i;
 }
 
-static u8 ov14_02222D34 (BattleContext * param0, u8 param1)
+static u8 ov14_02222D34(BattleContext * param0, u8 param1)
 {
     u8 v0;
 
