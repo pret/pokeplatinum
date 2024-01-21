@@ -54,13 +54,19 @@ static const u16 Unk_ov14_0222EE78[] = {
 	0xffff
 };
 
-typedef void (* UnkFuncPtr_ov14_0222EEAC)(BattleSystem *, BattleContext *);
+typedef void (*AICommandFunc)(BattleSystem*, BattleContext*);
+
+enum AIEvalStep {
+    AI_EVAL_STEP_INIT,
+    AI_EVAL_STEP_EVAL,
+    AI_EVAL_STEP_END,
+};
 
 static s32 ov14_02222D7C(BattleSystem * param0, BattleContext * param1, int param2, u16 * param3, s32 * param4, u16 param5, u8 * param6, int param7, int param8, int param9);
-static u8 TrainerAI_MainSingles(BattleSystem * param0, BattleContext * param1);
-static u8 TrainerAI_MainDoubles(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220078(BattleSystem * param0, BattleContext * param1);
-static void ov14_02222C88(BattleSystem * param0, BattleContext * param1);
+static u8 TrainerAI_MainSingles(BattleSystem *battleSys, BattleContext *battleCtx);
+static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCtx);
+static void TrainerAI_EvalMoves(BattleSystem *battleSys, BattleContext *battleCtx);
+static void TrainerAI_RecordLastMove(BattleSystem *battleSys, BattleContext *battleCtx);
 static void ov14_02220184(BattleSystem * param0, BattleContext * param1);
 static void ov14_022201C4(BattleSystem * param0, BattleContext * param1);
 static void ov14_02220204(BattleSystem * param0, BattleContext * param1);
@@ -190,7 +196,7 @@ static BOOL ov14_0222416C(BattleSystem * param0, BattleContext * param1, int par
 static BOOL TrainerAI_ShouldSwitch(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL TrainerAI_ShouldUseItem(BattleSystem * param0, int param1);
 
-static const UnkFuncPtr_ov14_0222EEAC Unk_ov14_0222EEAC[] = {
+static const AICommandFunc sAICommandTable[] = {
     ov14_02220184,
     ov14_022201C4,
     ov14_02220204,
@@ -370,221 +376,227 @@ u8 TrainerAI_Main(BattleSystem *battleSys, u8 battler)
     return result;
 }
 
-static u8 TrainerAI_MainSingles (BattleSystem * param0, BattleContext * param1)
+static u8 TrainerAI_MainSingles(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    u8 v1[4];
-    u8 v2[4];
-    u8 v3;
-    u8 v4 = 0;
-    u16 v5;
+    int i;
+    u8 maxScoreMoves[4];
+    u8 maxScoreMoveSlots[4];
+    u8 numMaxScoreMoves;
+    u8 action = AI_ENEMY_ATTACK_1;
+    u16 move;
 
-    ov14_02222C88(param0, param1);
+    TrainerAI_RecordLastMove(battleSys, battleCtx);
 
-    while (param1->aiContext.thinkingMask) {
-        if (param1->aiContext.thinkingMask & 1) {
-            if ((param1->aiContext.stateFlags & 0x10) == 0) {
-                param1->aiContext.scriptCursor = 0;
+    while (battleCtx->aiContext.thinkingMask) {
+        if (battleCtx->aiContext.thinkingMask & AI_FLAG_BASIC) {
+            if ((battleCtx->aiContext.stateFlags & AI_STATUS_FLAG_CONTINUE) == FALSE) {
+                battleCtx->aiContext.evalStep = AI_EVAL_STEP_INIT;
             }
 
-            ov14_02220078(param0, param1);
+            TrainerAI_EvalMoves(battleSys, battleCtx);
         }
 
-        param1->aiContext.thinkingMask = param1->aiContext.thinkingMask >> 1;
-        param1->aiContext.thinkingBitShift++;
-        param1->aiContext.moveSlot = 0;
+        battleCtx->aiContext.thinkingMask = battleCtx->aiContext.thinkingMask >> 1;
+        battleCtx->aiContext.thinkingBitShift++;
+        battleCtx->aiContext.moveSlot = 0;
     }
 
-    if (param1->aiContext.stateFlags & 0x2) {
-        v4 = 4;
-    } else if (param1->aiContext.stateFlags & 0x4) {
-        v4 = 5;
+    if (battleCtx->aiContext.stateFlags & AI_STATUS_FLAG_ESCAPE) {
+        action = AI_ENEMY_ESCAPE;
+    } else if (battleCtx->aiContext.stateFlags & AI_STATUS_FLAG_SAFARI) {
+        action = AI_ENEMY_SAFARI;
     } else {
-        v3 = 1;
-        v1[0] = param1->aiContext.moveScore[0];
-        v2[0] = 0;
+        // Get the move with the highest score; break ties randomly
+        numMaxScoreMoves = 1;
+        maxScoreMoves[0] = battleCtx->aiContext.moveScore[0];
+        maxScoreMoveSlots[0] = AI_ENEMY_ATTACK_1;
 
-        for (v0 = 1; v0 < 4; v0++) {
-            if (param1->battleMons[param1->aiContext.attacker].moves[v0]) {
-                if (v1[0] == param1->aiContext.moveScore[v0]) {
-                    v1[v3] = param1->aiContext.moveScore[v0];
-                    v2[v3++] = v0;
+        for (i = 1; i < LEARNED_MOVES_MAX; i++) {
+            if (battleCtx->battleMons[battleCtx->aiContext.attacker].moves[i]) {    // Attacker has a move in this slot
+                // Append to the list of max-score moves if equal score to the current max
+                if (maxScoreMoves[0] == battleCtx->aiContext.moveScore[i]) {
+                    maxScoreMoves[numMaxScoreMoves] = battleCtx->aiContext.moveScore[i];
+                    maxScoreMoveSlots[numMaxScoreMoves++] = i;
                 }
 
-                if (v1[0] < param1->aiContext.moveScore[v0]) {
-                    v3 = 1;
-                    v1[0] = param1->aiContext.moveScore[v0];
-                    v2[0] = v0;
+                // Set to be the maximum score if higher score than the current max
+                if (maxScoreMoves[0] < battleCtx->aiContext.moveScore[i]) {
+                    numMaxScoreMoves = 1;
+                    maxScoreMoves[0] = battleCtx->aiContext.moveScore[i];
+                    maxScoreMoveSlots[0] = i;
                 }
             }
         }
 
-        v4 = v2[BattleSystem_RandNext(param0) % v3];
+        action = maxScoreMoveSlots[BattleSystem_RandNext(battleSys) % numMaxScoreMoves];
     }
 
-    param1->aiContext.selectedTarget[param1->aiContext.attacker] = param1->aiContext.defender;
-
-    return v4;
+    battleCtx->aiContext.selectedTarget[battleCtx->aiContext.attacker] = battleCtx->aiContext.defender;
+    return action;
 }
 
-static u8 TrainerAI_MainDoubles (BattleSystem * param0, BattleContext * param1)
+static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0, v1, v2;
-    s16 v3[4];
-    u8 v4[4];
-    s8 v5[4];
-    s16 v6;
-    u16 v7;
-    s8 v8;
+    int battler, battlerCount, thinkingMask;
+    s16 maxScoreForBattler[MAX_BATTLERS];
+    u8 battlerTemp[MAX_BATTLERS];
+    s8 actionForBattler[MAX_BATTLERS];
+    s16 maxScore;
+    u16 move;
+    s8 moveSlot;
 
-    for (v0 = 0; v0 < 4; v0++) {
-        if ((v0 == param1->aiContext.attacker) || (param1->battleMons[v0].curHP == 0)) {
-            v5[v0] = -1;
-            v3[v0] = -1;
+    for (battler = 0; battler < MAX_BATTLERS; battler++) {
+        if (battler == battleCtx->aiContext.attacker || battleCtx->battleMons[battler].curHP == 0) {
+            actionForBattler[battler] = -1;
+            maxScoreForBattler[battler] = -1;
             continue;
         }
 
-        TrainerAI_Init(param0, param1, param1->aiContext.attacker, 0xf);
+        TrainerAI_Init(battleSys, battleCtx, battleCtx->aiContext.attacker, 0xf);
 
-        param1->aiContext.defender = v0;
-
-        if ((v0 & 1) != (param1->aiContext.attacker & 1)) {
-            ov14_02222C88(param0, param1);
+        // Record the last moves of enemy battlers
+        battleCtx->aiContext.defender = battler;
+        if ((battler & 1) != (battleCtx->aiContext.attacker & 1)) {
+            TrainerAI_RecordLastMove(battleSys, battleCtx);
         }
 
-        param1->aiContext.thinkingBitShift = 0;
-        param1->aiContext.moveSlot = 0;
+        battleCtx->aiContext.thinkingBitShift = 0;
+        battleCtx->aiContext.moveSlot = 0;
+        thinkingMask = battleCtx->aiContext.thinkingMask;
 
-        v2 = param1->aiContext.thinkingMask;
-
-        while (v2) {
-            if (v2 & 1) {
-                if ((param1->aiContext.stateFlags & 0x10) == 0) {
-                    param1->aiContext.scriptCursor = 0;
+        // Evaluate moves according with the current battler as the target
+        while (thinkingMask) {
+            if (thinkingMask & AI_FLAG_BASIC) {
+                if ((battleCtx->aiContext.stateFlags & AI_STATUS_FLAG_CONTINUE) == FALSE) {
+                    battleCtx->aiContext.evalStep = AI_EVAL_STEP_INIT;
                 }
 
-                ov14_02220078(param0, param1);
+                TrainerAI_EvalMoves(battleSys, battleCtx);
             }
 
-            v2 >>= 1;
-
-            param1->aiContext.thinkingBitShift++;
-            param1->aiContext.moveSlot = 0;
+            thinkingMask >>= 1;
+            battleCtx->aiContext.thinkingBitShift++;
+            battleCtx->aiContext.moveSlot = 0;
         }
 
-        if (param1->aiContext.stateFlags & 0x2) {
-            v5[v0] = 4;
-        } else if (param1->aiContext.stateFlags & 0x4) {
-            v5[v0] = 5;
+        if (battleCtx->aiContext.stateFlags & AI_STATUS_FLAG_ESCAPE) {
+            actionForBattler[battler] = AI_ENEMY_ESCAPE;
+        } else if (battleCtx->aiContext.stateFlags & AI_STATUS_FLAG_SAFARI) {
+            actionForBattler[battler] = AI_ENEMY_SAFARI;
         } else {
-            u8 v9[4];
-            u8 v10[4];
-            int v11, v12;
+            u8 tmpMaxScores[4];
+            u8 tmpMaxScoreMoveSlots[4];
+            int numMaxScoreMoves, i;
 
-            v9[0] = param1->aiContext.moveScore[0];
-            v10[0] = 0;
-            v11 = 1;
+            // Pick a random move from among the highest-scored moves on this target
+            tmpMaxScores[0] = battleCtx->aiContext.moveScore[0];
+            tmpMaxScoreMoveSlots[0] = 0;
+            numMaxScoreMoves = 1;
 
-            for (v12 = 1; v12 < 4; v12++) {
-                if (param1->battleMons[param1->aiContext.attacker].moves[v12]) {
-                    if (v9[0] == param1->aiContext.moveScore[v12]) {
-                        v9[v11] = param1->aiContext.moveScore[v12];
-                        v10[v11] = v12;
-                        v11++;
+            for (i = 1; i < LEARNED_MOVES_MAX; i++) {
+                if (battleCtx->battleMons[battleCtx->aiContext.attacker].moves[i]) {
+                    // Same score as max: append to list of possible max-score moves
+                    if (tmpMaxScores[0] == battleCtx->aiContext.moveScore[i]) {
+                        tmpMaxScores[numMaxScoreMoves] = battleCtx->aiContext.moveScore[i];
+                        tmpMaxScoreMoveSlots[numMaxScoreMoves] = i;
+                        numMaxScoreMoves++;
                     }
 
-                    if (v9[0] < param1->aiContext.moveScore[v12]) {
-                        v9[0] = param1->aiContext.moveScore[v12];
-                        v10[0] = v12;
-                        v11 = 1;
+                    // Higher score than max: set as new max score
+                    if (tmpMaxScores[0] < battleCtx->aiContext.moveScore[i]) {
+                        tmpMaxScores[0] = battleCtx->aiContext.moveScore[i];
+                        tmpMaxScoreMoveSlots[0] = i;
+                        numMaxScoreMoves = 1;
                     }
                 }
             }
 
-            v5[v0] = v10[BattleSystem_RandNext(param0) % v11];
-            v3[v0] = v9[0];
+            actionForBattler[battler] = tmpMaxScoreMoveSlots[BattleSystem_RandNext(battleSys) % numMaxScoreMoves];
+            maxScoreForBattler[battler] = tmpMaxScores[0];
 
-            if (v0 == (param1->aiContext.attacker ^ 2)) {
-                if (v3[v0] < 100) {
-                    v3[v0] = -1;
+            // Score moves on an ally below 100 to -1 (basically, never use them)
+            if (battler == (battleCtx->aiContext.attacker ^ 2)) {
+                if (maxScoreForBattler[battler] < 100) {
+                    maxScoreForBattler[battler] = -1;
                 }
             }
         }
     }
 
-    v6 = v3[0];
-    v4[0] = 0;
-    v1 = 1;
-
-    for (v0 = 1; v0 < 4; v0++) {
-        if (v6 == v3[v0]) {
-            v4[v1++] = v0;
+    // Get the highest overall score among all the possible targets
+    maxScore = maxScoreForBattler[0];
+    battlerTemp[0] = 0;
+    battlerCount = 1;
+    for (battler = 1; battler < MAX_BATTLERS; battler++) {
+        if (maxScore == maxScoreForBattler[battler]) {
+            battlerTemp[battlerCount++] = battler;
         }
 
-        if (v6 < v3[v0]) {
-            v6 = v3[v0];
-            v4[0] = v0;
-            v1 = 1;
-        }
-    }
-
-    param1->aiContext.selectedTarget[param1->aiContext.attacker] = v4[(BattleSystem_RandNext(param0) % v1)];
-
-    v8 = v5[param1->aiContext.selectedTarget[param1->aiContext.attacker]];
-    v7 = param1->battleMons[param1->aiContext.attacker].moves[v8];
-
-    if (param1->aiContext.moveTable[v7].range == 0x200) {
-        if (Battler_Side(param0, param1->aiContext.selectedTarget[param1->aiContext.attacker]) == 0) {
-            param1->aiContext.selectedTarget[param1->aiContext.attacker] = param1->aiContext.attacker;
+        if (maxScore < maxScoreForBattler[battler]) {
+            maxScore = maxScoreForBattler[battler];
+            battlerTemp[0] = battler;
+            battlerCount = 1;
         }
     }
 
-    if (v7 == 174) {
-        if (Move_IsGhostCurse(param1, v7, param1->aiContext.attacker) == 0) {
-            param1->aiContext.selectedTarget[param1->aiContext.attacker] = param1->aiContext.attacker;
-        }
+    // Pick a random target from among the maximum-scored targets
+    battleCtx->aiContext.selectedTarget[battleCtx->aiContext.attacker] = battlerTemp[(BattleSystem_RandNext(battleSys) % battlerCount)];
+    moveSlot = actionForBattler[battleCtx->aiContext.selectedTarget[battleCtx->aiContext.attacker]];
+    move = battleCtx->battleMons[battleCtx->aiContext.attacker].moves[moveSlot];
+
+    // Override targets as needed
+    if (battleCtx->aiContext.moveTable[move].range == RANGE_USER_OR_ALLY
+            && Battler_Side(battleSys, battleCtx->aiContext.selectedTarget[battleCtx->aiContext.attacker]) == 0) {
+        battleCtx->aiContext.selectedTarget[battleCtx->aiContext.attacker] = battleCtx->aiContext.attacker;
     }
 
-    return v8;
+    if (move == MOVE_CURSE && Move_IsGhostCurse(battleCtx, move, battleCtx->aiContext.attacker) == FALSE) {
+        battleCtx->aiContext.selectedTarget[battleCtx->aiContext.attacker] = battleCtx->aiContext.attacker;
+    }
+
+    return moveSlot;
 }
 
-static void ov14_02220078 (BattleSystem * param0, BattleContext * param1)
+static void TrainerAI_EvalMoves(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    while (param1->aiContext.scriptCursor != 2) {
-        switch (param1->aiContext.scriptCursor) {
-        case 0:
-            param1->aiScriptCursor = param1->aiScriptTemp[param1->aiContext.thinkingBitShift];
+    while (battleCtx->aiContext.evalStep != AI_EVAL_STEP_END) {
+        switch (battleCtx->aiContext.evalStep) {
+        case AI_EVAL_STEP_INIT:
+            battleCtx->aiScriptCursor = battleCtx->aiScriptTemp[battleCtx->aiContext.thinkingBitShift];
 
-            if (param1->battleMons[param1->aiContext.attacker].ppCur[param1->aiContext.moveSlot] == 0) {
-                param1->aiContext.move = 0;
+            if (battleCtx->battleMons[battleCtx->aiContext.attacker].ppCur[battleCtx->aiContext.moveSlot] == 0) {
+                battleCtx->aiContext.move = MOVE_NONE;
             } else {
-                param1->aiContext.move = param1->battleMons[param1->aiContext.attacker].moves[param1->aiContext.moveSlot];
+                battleCtx->aiContext.move = battleCtx->battleMons[battleCtx->aiContext.attacker].moves[battleCtx->aiContext.moveSlot];
             }
 
-            param1->aiContext.scriptCursor++;
+            battleCtx->aiContext.evalStep++;
             break;
-        case 1:
-            if (param1->aiContext.move != 0) {
-                Unk_ov14_0222EEAC[param1->aiScriptTemp[param1->aiScriptCursor]](param0, param1);
+
+        case AI_EVAL_STEP_EVAL:
+            if (battleCtx->aiContext.move != MOVE_NONE) {
+                sAICommandTable[battleCtx->aiScriptTemp[battleCtx->aiScriptCursor]](battleSys, battleCtx);
             } else {
-                param1->aiContext.moveScore[param1->aiContext.moveSlot] = 0;
-                param1->aiContext.stateFlags |= 0x1;
+                battleCtx->aiContext.moveScore[battleCtx->aiContext.moveSlot] = 0;
+                battleCtx->aiContext.stateFlags |= AI_STATUS_FLAG_DONE;
             }
 
-            if (param1->aiContext.stateFlags & 0x1) {
-                param1->aiContext.moveSlot++;
-
-                if ((param1->aiContext.moveSlot < 4) && ((param1->aiContext.stateFlags & 0x8) == 0)) {
-                    param1->aiContext.scriptCursor = 0;
+            if (battleCtx->aiContext.stateFlags & AI_STATUS_FLAG_DONE) {
+                // If we haven't gone through all the moves, loop back to INIT state and evaluate the next move
+                battleCtx->aiContext.moveSlot++;
+                if (battleCtx->aiContext.moveSlot < LEARNED_MOVES_MAX
+                        && (battleCtx->aiContext.stateFlags & AI_STATUS_FLAG_BREAK) == FALSE) {
+                    battleCtx->aiContext.evalStep = AI_EVAL_STEP_INIT;
                 } else {
-                    param1->aiContext.scriptCursor++;
+                    battleCtx->aiContext.evalStep++;
                 }
 
-                param1->aiContext.stateFlags &= (0x1 ^ 0xff);
+                battleCtx->aiContext.stateFlags &= AI_STATUS_FLAG_DONE_OFF;
             }
 
             break;
-        case 2:
+
+        case AI_EVAL_STEP_END:
             break;
         }
     }
@@ -2967,17 +2979,15 @@ static BOOL ov14_02222C60 (BattleSystem * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02222C88 (BattleSystem * param0, BattleContext * param1)
+static void TrainerAI_RecordLastMove(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 4; v0++) {
-        if (param1->aiContext.battlerMoves[param1->aiContext.defender][v0] == param1->movePrevByBattler[param1->aiContext.defender]) {
+    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+        if (battleCtx->aiContext.battlerMoves[battleCtx->aiContext.defender][i] == battleCtx->movePrevByBattler[battleCtx->aiContext.defender]) {
             break;
         }
 
-        if (param1->aiContext.battlerMoves[param1->aiContext.defender][v0] == 0) {
-            param1->aiContext.battlerMoves[param1->aiContext.defender][v0] = param1->movePrevByBattler[param1->aiContext.defender];
+        if (battleCtx->aiContext.battlerMoves[battleCtx->aiContext.defender][i] == MOVE_NONE) {
+            battleCtx->aiContext.battlerMoves[battleCtx->aiContext.defender][i] = battleCtx->movePrevByBattler[battleCtx->aiContext.defender];
             break;
         }
     }
