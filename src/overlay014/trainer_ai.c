@@ -55,8 +55,6 @@ static const u16 Unk_ov14_0222EE78[] = {
 typedef void (* UnkFuncPtr_ov14_0222EEAC)(BattleSystem *, BattleContext *);
 
 static s32 ov14_02222D7C(BattleSystem * param0, BattleContext * param1, int param2, u16 * param3, s32 * param4, u16 param5, u8 * param6, int param7, int param8, int param9);
-void ov14_0221FC20(BattleSystem * param0, BattleContext * param1, u8 param2, u8 param3);
-u8 ov14_0221FCF4(BattleSystem * param0, u8 param1);
 static u8 ov14_0221FD44(BattleSystem * param0, BattleContext * param1);
 static u8 ov14_0221FE38(BattleSystem * param0, BattleContext * param1);
 static void ov14_02220078(BattleSystem * param0, BattleContext * param1);
@@ -188,7 +186,6 @@ static BOOL ov14_02223E10(BattleSystem * param0, BattleContext * param1, int par
 static BOOL ov14_02224070(BattleSystem * param0, BattleContext * param1, int param2);
 static BOOL ov14_0222416C(BattleSystem * param0, BattleContext * param1, int param2);
 static BOOL ov14_022241A4(BattleSystem * param0, BattleContext * param1, int param2);
-int ov14_022243BC(BattleSystem * param0, int param1);
 BOOL ov14_022244B0(BattleSystem * param0, int param1);
 
 static const UnkFuncPtr_ov14_0222EEAC Unk_ov14_0222EEAC[] = {
@@ -303,7 +300,7 @@ static const UnkFuncPtr_ov14_0222EEAC Unk_ov14_0222EEAC[] = {
     ov14_02222BF8
 };
 
-void ov14_0221FC20 (BattleSystem * param0, BattleContext * param1, u8 param2, u8 param3)
+void TrainerAI_Init (BattleSystem * param0, BattleContext * param1, u8 param2, u8 param3)
 {
     int v0;
     u8 v1;
@@ -348,7 +345,7 @@ void ov14_0221FC20 (BattleSystem * param0, BattleContext * param1, u8 param2, u8
     }
 }
 
-u8 ov14_0221FCF4 (BattleSystem * param0, u8 param1)
+u8 TrainerAI_Main (BattleSystem * param0, u8 param1)
 {
     u8 v0;
     BattleContext * v1;
@@ -359,7 +356,7 @@ u8 ov14_0221FCF4 (BattleSystem * param0, u8 param1)
         v1->aiContext.attacker = param1;
         v1->aiContext.defender = BattleSystem_RandomOpponent(param0, v1, param1);
 
-        ov14_0221FC20(param0, v1, v1->aiContext.attacker, 0xf);
+        TrainerAI_Init(param0, v1, v1->aiContext.attacker, 0xf);
     }
 
     if ((param0->battleType & 0x2) == 0) {
@@ -445,7 +442,7 @@ static u8 ov14_0221FE38 (BattleSystem * param0, BattleContext * param1)
             continue;
         }
 
-        ov14_0221FC20(param0, param1, param1->aiContext.attacker, 0xf);
+        TrainerAI_Init(param0, param1, param1->aiContext.attacker, 0xf);
 
         param1->aiContext.defender = v0;
 
@@ -3911,7 +3908,7 @@ static BOOL ov14_022241A4 (BattleSystem * param0, BattleContext * param1, int pa
     return 0;
 }
 
-int ov14_022243BC (BattleSystem * param0, int param1)
+int TrainerAI_PickCommand (BattleSystem * param0, int param1)
 {
     int v0;
     u8 v1, v2;

@@ -3190,7 +3190,7 @@ static void ov16_02260AB4 (SysTask * param0, void * param1)
     UnkStruct_ov16_0225D5B8 * v0 = (UnkStruct_ov16_0225D5B8 *)param1;
     int v1;
 
-    v1 = ov14_022243BC(v0->unk_00, v0->unk_09);
+    v1 = TrainerAI_PickCommand(v0->unk_00, v0->unk_09);
 
     ov16_022656D4(v0->unk_00, v0->unk_09, v1);
     ov16_02266ABC(v0->unk_00, v0->unk_09, v0->unk_08);
@@ -3385,7 +3385,7 @@ static void ov16_02260DB0 (SysTask * param0, void * param1)
     v1 = BattleSystem_Context(v0->unk_00);
 
     if ((v3 & (0x1 | 0x100)) || (BattleSystem_BattleStatus(v0->unk_00) & 0x1) || (Battler_Side(v0->unk_00, v0->unk_1D) == 0)) {
-        v2 = ov14_0221FCF4(v0->unk_00, v0->unk_1D);
+        v2 = TrainerAI_Main(v0->unk_00, v0->unk_1D);
 
         switch (v2) {
         case 0xff:
