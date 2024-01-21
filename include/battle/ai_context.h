@@ -11,7 +11,7 @@ typedef struct AIContext {
     u8 moveSlot;
     u16 move;
 
-    s8 moveCurPP[4];
+    s8 moveScore[4];
 
     int calcTemp;
     u32 thinkingMask;

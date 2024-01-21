@@ -1,17 +1,19 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "pch/global_pch.h"
 #include "assert.h"
+
+#include "constants/battle.h"
+#include "constants/battle/trainer_ai.h"
 
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/battle_system.h"
 
-#include "battle/battle_context.h"
-
-#include "pokemon.h"
 #include "struct_defs/battle_system.h"
 #include "battle/ai_context.h"
 #include "battle/battle_context.h"
+#include "battle/battle_controller.h"
 
 #include "flags.h"
 #include "pokemon.h"
@@ -55,8 +57,8 @@ static const u16 Unk_ov14_0222EE78[] = {
 typedef void (* UnkFuncPtr_ov14_0222EEAC)(BattleSystem *, BattleContext *);
 
 static s32 ov14_02222D7C(BattleSystem * param0, BattleContext * param1, int param2, u16 * param3, s32 * param4, u16 param5, u8 * param6, int param7, int param8, int param9);
-static u8 ov14_0221FD44(BattleSystem * param0, BattleContext * param1);
-static u8 ov14_0221FE38(BattleSystem * param0, BattleContext * param1);
+static u8 TrainerAI_MainSingles(BattleSystem * param0, BattleContext * param1);
+static u8 TrainerAI_MainDoubles(BattleSystem * param0, BattleContext * param1);
 static void ov14_02220078(BattleSystem * param0, BattleContext * param1);
 static void ov14_02222C88(BattleSystem * param0, BattleContext * param1);
 static void ov14_02220184(BattleSystem * param0, BattleContext * param1);
@@ -185,8 +187,8 @@ static BOOL ov14_02223C8C(BattleSystem * param0, BattleContext * param1, int par
 static BOOL ov14_02223E10(BattleSystem * param0, BattleContext * param1, int param2, u32 param3, u8 param4);
 static BOOL ov14_02224070(BattleSystem * param0, BattleContext * param1, int param2);
 static BOOL ov14_0222416C(BattleSystem * param0, BattleContext * param1, int param2);
-static BOOL ov14_022241A4(BattleSystem * param0, BattleContext * param1, int param2);
-BOOL ov14_022244B0(BattleSystem * param0, int param1);
+static BOOL TrainerAI_ShouldSwitch(BattleSystem * param0, BattleContext * param1, int param2);
+BOOL TrainerAI_ShouldUseItem(BattleSystem * param0, int param1);
 
 static const UnkFuncPtr_ov14_0222EEAC Unk_ov14_0222EEAC[] = {
     ov14_02220184,
@@ -300,75 +302,75 @@ static const UnkFuncPtr_ov14_0222EEAC Unk_ov14_0222EEAC[] = {
     ov14_02222BF8
 };
 
-void TrainerAI_Init (BattleSystem * param0, BattleContext * param1, u8 param2, u8 param3)
+void TrainerAI_Init(BattleSystem *battleSys, BattleContext *battleCtx, u8 battler, u8 initScore)
 {
-    int v0;
-    u8 v1;
-    u8 * v2;
+    // must declare these up here to match
+    int i;
+    u8 invalidMoves;
 
-    v2 = (u8 *)&param1->aiContext;
-
-    for (v0 = 0; v0 < XtOffset(AIContext*, battlerMoves); v0++) {
-        v2[v0] = 0;
+    // explicit memset
+    u8 *adrs = (u8*)&battleCtx->aiContext;
+    for (i = 0; i < XtOffset(AIContext*, battlerMoves); i++) {
+        adrs[i] = 0;
     }
 
-    for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
-        if (param3 & 1) {
-            param1->aiContext.moveCurPP[v0] = 100;
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        if (initScore & 1) {
+            battleCtx->aiContext.moveScore[i] = 100;
         } else {
-            param1->aiContext.moveCurPP[v0] = 0;
+            battleCtx->aiContext.moveScore[i] = 0;
         }
 
-        param3 = param3 >> 1;
+        initScore = initScore >> 1;
     }
 
-    v1 = BattleSystem_CheckInvalidMoves(param0, param1, param2, 0, CHECK_INVALID_ALL);
-
-    for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
-        if (v1 & FlagIndex(v0)) {
-            param1->aiContext.moveCurPP[v0] = 0;
+    // pick damage rolls for moves and score invalid moves to 0
+    invalidMoves = BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_ALL);
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        if (invalidMoves & FlagIndex(i)) {
+            battleCtx->aiContext.moveScore[i] = 0;
         }
 
-        param1->aiContext.moveDamageRolls[v0] = 100 - (BattleSystem_RandNext(param0) % 16);
+        battleCtx->aiContext.moveDamageRolls[i] = 100 - (BattleSystem_RandNext(battleSys) % 16);
     }
 
-    param1->aiContext.scriptStackSize = 0;
+    battleCtx->aiContext.scriptStackSize = 0;
 
-    if (param0->battleType & 0x100) {
-        param1->aiContext.thinkingMask = 0x20000000;
+    // roaming Pokemon have special AI; otherwise, copy the AI behavior from the trainer data
+    if (battleSys->battleType & BATTLE_TYPE_ROAMER) {
+        battleCtx->aiContext.thinkingMask = AI_FLAG_ROAMING_POKEMON;
     } else {
-        param1->aiContext.thinkingMask = param0->trainers[param2].aiMask;
+        battleCtx->aiContext.thinkingMask = battleSys->trainers[battler].aiMask;
     }
 
-    if (param0->battleType & 0x2) {
-        param1->aiContext.thinkingMask |= 0x80;
+    // force double-battle strategies, if applicable
+    if (battleSys->battleType & BATTLE_TYPE_DOUBLES) {
+        battleCtx->aiContext.thinkingMask |= AI_FLAG_TAG_STRATEGY;
     }
 }
 
-u8 TrainerAI_Main (BattleSystem * param0, u8 param1)
+u8 TrainerAI_Main(BattleSystem *battleSys, u8 battler)
 {
-    u8 v0;
-    BattleContext * v1;
+    u8 result;
+    BattleContext *battleCtx = battleSys->battleCtx;
 
-    v1 = param0->battleCtx;
+    if ((battleCtx->aiContext.stateFlags & AI_STATUS_FLAG_CONTINUE) == FALSE) {
+        battleCtx->aiContext.attacker = battler;
+        battleCtx->aiContext.defender = BattleSystem_RandomOpponent(battleSys, battleCtx, battler);
 
-    if ((v1->aiContext.stateFlags & 0x10) == 0) {
-        v1->aiContext.attacker = param1;
-        v1->aiContext.defender = BattleSystem_RandomOpponent(param0, v1, param1);
-
-        TrainerAI_Init(param0, v1, v1->aiContext.attacker, 0xf);
+        TrainerAI_Init(battleSys, battleCtx, battleCtx->aiContext.attacker, AI_INIT_SCORE_ALL_MOVES);
     }
 
-    if ((param0->battleType & 0x2) == 0) {
-        v0 = ov14_0221FD44(param0, v1);
+    if ((battleSys->battleType & BATTLE_TYPE_DOUBLES) == FALSE) {
+        result = TrainerAI_MainSingles(battleSys, battleCtx);
     } else {
-        v0 = ov14_0221FE38(param0, v1);
+        result = TrainerAI_MainDoubles(battleSys, battleCtx);
     }
 
-    return v0;
+    return result;
 }
 
-static u8 ov14_0221FD44 (BattleSystem * param0, BattleContext * param1)
+static u8 TrainerAI_MainSingles (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     u8 v1[4];
@@ -399,19 +401,19 @@ static u8 ov14_0221FD44 (BattleSystem * param0, BattleContext * param1)
         v4 = 5;
     } else {
         v3 = 1;
-        v1[0] = param1->aiContext.moveCurPP[0];
+        v1[0] = param1->aiContext.moveScore[0];
         v2[0] = 0;
 
         for (v0 = 1; v0 < 4; v0++) {
             if (param1->battleMons[param1->aiContext.attacker].moves[v0]) {
-                if (v1[0] == param1->aiContext.moveCurPP[v0]) {
-                    v1[v3] = param1->aiContext.moveCurPP[v0];
+                if (v1[0] == param1->aiContext.moveScore[v0]) {
+                    v1[v3] = param1->aiContext.moveScore[v0];
                     v2[v3++] = v0;
                 }
 
-                if (v1[0] < param1->aiContext.moveCurPP[v0]) {
+                if (v1[0] < param1->aiContext.moveScore[v0]) {
                     v3 = 1;
-                    v1[0] = param1->aiContext.moveCurPP[v0];
+                    v1[0] = param1->aiContext.moveScore[v0];
                     v2[0] = v0;
                 }
             }
@@ -425,7 +427,7 @@ static u8 ov14_0221FD44 (BattleSystem * param0, BattleContext * param1)
     return v4;
 }
 
-static u8 ov14_0221FE38 (BattleSystem * param0, BattleContext * param1)
+static u8 TrainerAI_MainDoubles (BattleSystem * param0, BattleContext * param1)
 {
     int v0, v1, v2;
     s16 v3[4];
@@ -479,20 +481,20 @@ static u8 ov14_0221FE38 (BattleSystem * param0, BattleContext * param1)
             u8 v10[4];
             int v11, v12;
 
-            v9[0] = param1->aiContext.moveCurPP[0];
+            v9[0] = param1->aiContext.moveScore[0];
             v10[0] = 0;
             v11 = 1;
 
             for (v12 = 1; v12 < 4; v12++) {
                 if (param1->battleMons[param1->aiContext.attacker].moves[v12]) {
-                    if (v9[0] == param1->aiContext.moveCurPP[v12]) {
-                        v9[v11] = param1->aiContext.moveCurPP[v12];
+                    if (v9[0] == param1->aiContext.moveScore[v12]) {
+                        v9[v11] = param1->aiContext.moveScore[v12];
                         v10[v11] = v12;
                         v11++;
                     }
 
-                    if (v9[0] < param1->aiContext.moveCurPP[v12]) {
-                        v9[0] = param1->aiContext.moveCurPP[v12];
+                    if (v9[0] < param1->aiContext.moveScore[v12]) {
+                        v9[0] = param1->aiContext.moveScore[v12];
                         v10[0] = v12;
                         v11 = 1;
                     }
@@ -565,7 +567,7 @@ static void ov14_02220078 (BattleSystem * param0, BattleContext * param1)
             if (param1->aiContext.move != 0) {
                 Unk_ov14_0222EEAC[param1->aiScriptTemp[param1->aiScriptCursor]](param0, param1);
             } else {
-                param1->aiContext.moveCurPP[param1->aiContext.moveSlot] = 0;
+                param1->aiContext.moveScore[param1->aiContext.moveSlot] = 0;
                 param1->aiContext.stateFlags |= 0x1;
             }
 
@@ -655,10 +657,10 @@ static void ov14_02220284 (BattleSystem * param0, BattleContext * param1)
     ov14_02222D24(param1, 1);
 
     v0 = ov14_02222CF0(param1);
-    param1->aiContext.moveCurPP[param1->aiContext.moveSlot] += v0;
+    param1->aiContext.moveScore[param1->aiContext.moveSlot] += v0;
 
-    if (param1->aiContext.moveCurPP[param1->aiContext.moveSlot] < 0) {
-        param1->aiContext.moveCurPP[param1->aiContext.moveSlot] = 0;
+    if (param1->aiContext.moveScore[param1->aiContext.moveSlot] < 0) {
+        param1->aiContext.moveScore[param1->aiContext.moveSlot] = 0;
     }
 }
 
@@ -3835,7 +3837,7 @@ static BOOL ov14_0222416C (BattleSystem * param0, BattleContext * param1, int pa
     return v1 >= 4;
 }
 
-static BOOL ov14_022241A4 (BattleSystem * param0, BattleContext * param1, int param2)
+static BOOL TrainerAI_ShouldSwitch (BattleSystem * param0, BattleContext * param1, int param2)
 {
     int v0;
     int v1;
@@ -3908,57 +3910,63 @@ static BOOL ov14_022241A4 (BattleSystem * param0, BattleContext * param1, int pa
     return 0;
 }
 
-int TrainerAI_PickCommand (BattleSystem * param0, int param1)
+int TrainerAI_PickCommand(BattleSystem *battleSys, int battler)
 {
-    int v0;
-    u8 v1, v2;
-    u32 v3;
-    int v4, v5;
-    Pokemon * v6;
-    BattleContext * v7;
+    // must declare C89-style to match
+    int i;
+    u8 battler1, battler2;
+    u32 battleType;
+    int end;
+    Pokemon *mon;
+    BattleContext *battleCtx;
 
-    v7 = param0->battleCtx;
-    v3 = BattleSystem_BattleType(param0);
+    battleCtx = battleSys->battleCtx;
+    battleType = BattleSystem_BattleType(battleSys);
 
-    if ((v3 & 0x1) || ((Battler_Side(param0, param1) == 0))) {
-        if (ov14_022241A4(param0, v7, param1)) {
-            if (v7->aiSwitchedPartySlot[param1] == 6) {
-                if ((v0 = BattleAI_PostKOSwitchIn(param0, param1)) == 6) {
-                    v1 = param1;
-
-                    if ((v3 & 0x10) || (v3 & 0x8)) {
-                        v2 = v1;
+    if ((battleType & BATTLE_TYPE_TRAINER) || Battler_Side(battleSys, battler) == BATTLE_SIDE_PLAYER) {
+        if (TrainerAI_ShouldSwitch(battleSys, battleCtx, battler)) {
+            // Make sure that this is not a post-KO switch
+            if (battleCtx->aiSwitchedPartySlot[battler] == 6) {
+                // But use the post-KO switch logic to determine who to switch in
+                // If there is no strong switch score, pick the first valid battler
+                if ((i = BattleAI_PostKOSwitchIn(battleSys, battler)) == 6) {
+                    battler1 = battler;
+                    if ((battleType & BATTLE_TYPE_TAG) || (battleType & BATTLE_TYPE_2vs2)) {
+                        battler2 = battler1;
                     } else {
-                        v2 = BattleSystem_Partner(param0, param1);
+                        battler2 = BattleSystem_Partner(battleSys, battler);
                     }
 
-                    v4 = 0;
-                    v5 = BattleSystem_PartyCount(param0, param1);
+                    end = BattleSystem_PartyCount(battleSys, battler);
+                    for (i = 0; i < end; i++) {
+                        mon = BattleSystem_PartyPokemon(battleSys, battler, i);
 
-                    for (v0 = v4; v0 < v5; v0++) {
-                        v6 = BattleSystem_PartyPokemon(param0, param1, v0);
-
-                        if ((Pokemon_GetValue(v6, MON_DATA_CURRENT_HP, NULL) != 0) && (v0 != v7->selectedPartySlot[v1]) && (v0 != v7->selectedPartySlot[v2]) && (v0 != v7->aiSwitchedPartySlot[v1]) && (v0 != v7->aiSwitchedPartySlot[v2])) {
+                        if (Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL) != 0
+                                && i != battleCtx->selectedPartySlot[battler1]
+                                && i != battleCtx->selectedPartySlot[battler2]
+                                && i != battleCtx->aiSwitchedPartySlot[battler1]
+                                && i != battleCtx->aiSwitchedPartySlot[battler2]) {
                             break;
                         }
                     }
                 }
 
-                v7->aiSwitchedPartySlot[param1] = v0;
+                battleCtx->aiSwitchedPartySlot[battler] = i;
             }
 
-            return 3;
+            return PLAYER_INPUT_PARTY;
         }
 
-        if (ov14_022244B0(param0, param1)) {
-            return 2;
+        // Check if the AI determines that it should use an item
+        if (TrainerAI_ShouldUseItem(battleSys, battler)) {
+            return PLAYER_INPUT_ITEM;
         }
     }
 
-    return 1;
+    return PLAYER_INPUT_FIGHT;
 }
 
-BOOL ov14_022244B0 (BattleSystem * param0, int param1)
+BOOL TrainerAI_ShouldUseItem (BattleSystem * param0, int param1)
 {
     int v0;
     u8 v1 = 0;
