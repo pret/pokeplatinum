@@ -21,6 +21,9 @@
         "battle_lib_params": [
             "@BattleContextParam",
             "@BattleMonParam"
+        ],
+        "battle_controller_params": [
+            "@AfterMoveMessageType"
         ]
     },
     "definitions": {
@@ -914,6 +917,13 @@
                 "BATTLEMON_FORM_NUM",
                 "BATTLEMON_UNUSED_99",
                 "BATTLEMON_TEMP"
+            ]
+        },
+        "@AfterMoveMessageType": {
+            "type": "enum",
+            "values": [
+                "AFTER_MOVE_MESSAGE_ONE_HIT",
+                "AFTER_MOVE_MESSAGE_MULTI_HIT"
             ]
         }
     }
