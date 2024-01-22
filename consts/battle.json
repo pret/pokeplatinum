@@ -16,7 +16,10 @@
             "@MessageStatusCondition",
             "@TurnFlag",
             "@CheckSideConditionOp",
-            "@SideCondition"
+            "@SideCondition",
+            "@Throw",
+            "@Capture",
+            "@YesNoType"
         ],
         "battle_lib_params": [
             "@BattleContextParam",
@@ -924,6 +927,34 @@
             "values": [
                 "AFTER_MOVE_MESSAGE_ONE_HIT",
                 "AFTER_MOVE_MESSAGE_MULTI_HIT"
+            ]
+        },
+        "@Throw": {
+            "type": "enum",
+            "values": [
+                "BTLSCR_THROW_POKE_BALL",
+                "BTLSCR_THROW_SAFARI_BALL",
+                "BTLSCR_THROW_SAFARI_ROCK",
+                "BTLSCR_THROW_SAFARI_BAIT",
+                "BTLSCR_THROW_PARK_BALL"
+            ]
+        },
+        "@Capture": {
+            "type": "enum",
+            "values": [
+                "CAPTURE_NORMAL",
+                "CAPTURE_SAFARI"
+            ]
+        },
+        "@YesNoType": {
+            "type": "enum",
+            "values": [
+                "YES_NO_BASIC",
+                "YES_NO_FORGET_MOVE",
+                "YES_NO_GIVE_UP_ON_MOVE",
+                "YES_NO_NEXT_MON",
+                "YES_NO_CHANGE_MON",
+                "YES_NO_GIVE_NICKNAME"
             ]
         }
     }

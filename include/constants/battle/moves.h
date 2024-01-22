@@ -2,16 +2,19 @@
 #define POKEPLATINUM_CONSTANTS_BATTLE_MOVES_H
 
 #define MOVE_EFFECT_NONE                    0
-#define MOVE_EFFECT_LEECH_SEED_RECIPIENT    ((1 << 0) | (1 << 1)) // each bit defines which opponent receives the healing effect
+#define MOVE_EFFECT_LEECH_SEED_RECIPIENT_0  (1 << 0)
+#define MOVE_EFFECT_LEECH_SEED_RECIPIENT_1  (1 << 1)
 #define MOVE_EFFECT_LEECH_SEED              (1 << 2)
-#define MOVE_EFFECT_LOCK_ON                 ((1 << 3) | (1 << 4)) // counter for the number of Lock On turns remaining
+#define MOVE_EFFECT_LOCK_ON_0               (1 << 3)
+#define MOVE_EFFECT_LOCK_ON_1               (1 << 4)
 #define MOVE_EFFECT_PERISH_SONG             (1 << 5)
 #define MOVE_EFFECT_AIRBORNE                (1 << 6) // Fly, Bounce
 #define MOVE_EFFECT_UNDERGROUND             (1 << 7) // Dig
 #define MOVE_EFFECT_MINIMIZE                (1 << 8)
 #define MOVE_EFFECT_CHARGE                  (1 << 9)
 #define MOVE_EFFECT_INGRAIN                 (1 << 10)
-#define MOVE_EFFECT_YAWN                    ((1 << 11) | (1 << 12))
+#define MOVE_EFFECT_YAWN_0                  (1 << 11)
+#define MOVE_EFFECT_YAWN_1                  (1 << 12)
 #define MOVE_EFFECT_IMPRISON                (1 << 13) // applied to mons which use Imprison
 #define MOVE_EFFECT_GRUDGE                  (1 << 14)
 #define MOVE_EFFECT_NO_CRITICAL             (1 << 15) // checked for, but never set
@@ -30,6 +33,10 @@
 #define MOVE_EFFECT_CAMOUFLAGE              (1 << 28)
 #define MOVE_EFFECT_SHADOW_FORCE            (1 << 29)
 #define MOVE_EFFECT_IMPRISONED              (1 << 30) // applied to mons which are affected by Imprison
+
+#define MOVE_EFFECT_LEECH_SEED_RECIPIENT    (MOVE_EFFECT_LEECH_SEED_RECIPIENT_0 | MOVE_EFFECT_LEECH_SEED_RECIPIENT_1)
+#define MOVE_EFFECT_LOCK_ON                 (MOVE_EFFECT_LOCK_ON_0 | MOVE_EFFECT_LOCK_ON_1)
+#define MOVE_EFFECT_YAWN                    (MOVE_EFFECT_YAWN_0 | MOVE_EFFECT_YAWN_1)
 
 #define MOVE_EFFECT_SEMI_INVULNERABLE   (MOVE_EFFECT_AIRBORNE | MOVE_EFFECT_UNDERGROUND | MOVE_EFFECT_UNDERWATER | MOVE_EFFECT_SHADOW_FORCE)
 

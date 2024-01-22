@@ -42,16 +42,19 @@
 #define SYSCTL_MON_FAINTED_SHIFT        24
 #define SYSCTL_MON_SELFDESTRUCTED_SHIFT 28
 
+#define SYSCTL_NO_EXPERIENCE_GIVEN      (1 << 0)
 #define SYSCTL_UPDATE_STAT_STAGES       (1 << 1)
 #define SYSCTL_ATTACK_MESSAGE_SHOWN     (1 << 2)
 #define SYSCTL_MAGIC_COAT_REFLECTED     (1 << 3)
 #define SYSCTL_UTURN_ACTIVE             (1 << 4)
 #define SYSCTL_FIRST_DAMAGE_MSG_SHOWN   (1 << 5)
 #define SYSCTL_MOVE_SUCCEEDED           (1 << 6) // this only reflects that the move is executed, not whether it hit or missed
+#define SYSCTL_STAT_STAGE_CHANGE_SHOWN  (1 << 7)
 #define SYSCTL_RECOVER_HP_VISUAL        (1 << 8)
 #define SYSCTL_FORM_CHANGE              (1 << 26)
+#define SYSCTL_RECALC_MON_STATS         (1 << 27)
 
-#define SYSCTL_LINK_WAITING             ((1 << 24) | (1 << 25) | SYSCTL_FORM_CHANGE | (1 << 27))
+#define SYSCTL_LINK_WAITING             ((1 << 24) | (1 << 25) | SYSCTL_FORM_CHANGE | SYSCTL_RECALC_MON_STATS)
 #define SYSCTL_PAYOUT_EXP               ((1 << 28) | (1 << 29) | (1 << 30) | (1 << 31))
 
 #define SYSCTL_INIT2    (~(SYSCTL_UPDATE_STAT_STAGES \
