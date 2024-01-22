@@ -1,10 +1,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/abilities.h"
+#include "consts/generated/c/abilities.h"
+#include "consts/generated/c/gender.h"
+
 #include "constants/battle.h"
 #include "constants/flavor.h"
-#include "constants/gender.h"
 #include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/sound.h"

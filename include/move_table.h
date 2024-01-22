@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_MOVE_TABLE_H
 #define POKEPLATINUM_MOVE_TABLE_H
 
+#include "consts/generated/c/moves.h" // def for MoveAttribute
+
 typedef struct MoveContestData {
     u8 effect;
     u8 type;
@@ -20,21 +22,6 @@ typedef struct MoveTable {
     u8 flags;
     MoveContestData contest;
 } MoveTable;
-
-enum MoveAttribute {
-    MOVEATTRIBUTE_EFFECT = 0,
-    MOVEATTRIBUTE_CLASS,
-    MOVEATTRIBUTE_POWER,
-    MOVEATTRIBUTE_TYPE,
-    MOVEATTRIBUTE_ACCURACY,
-    MOVEATTRIBUTE_PP,
-    MOVEATTRIBUTE_EFFECT_CHANCE,
-    MOVEATTRIBUTE_RANGE,
-    MOVEATTRIBUTE_PRIORTY,
-    MOVEATTRIBUTE_FLAGS,
-    MOVEATTRIBUTE_CONTEST_EFFECT,
-    MOVEATTRIBUTE_CONTEST_TYPE,
-};
 
 /**
  * @brief Load the full move table into a destination buffer.
