@@ -55,3 +55,25 @@ jobs:
           name: pokeplatinum-failure-${{ github.run_id }}
           path: failure.tar.gz
           retention-days: 1
+      
+      - name: Checkout xMAP
+        if: ${{ github.event_name == 'push' }}
+        uses: actions/checkout@v4
+        with:
+          path: 'xmap'
+          ref: 'xmap'
+      
+      - name: Move xMAP
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          mkdir -p xmap
+          cp build/*.xMAP xmap/platinumus.xMAP
+          echo "XMAP_COMMIT_MSG=$( git log --format=%s ${GITHUB_SHA} )" >> $GITHUB_ENV
+      
+      - name: Update xMAP
+        if: ${{ github.event_name == 'push' }}
+        uses: EndBug/add-and-commit@v9
+        with:
+          cwd: "./xmap"
+          add: "*.xMAP"
+          message: ${{ env.XMAP_COMMIT_MSG }}
