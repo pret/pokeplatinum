@@ -4,7 +4,9 @@
 #include "pch/global_pch.h"
 #include "assert.h"
 
+#include "consts/generated/c/abilities.h"
 #include "constants/battle.h"
+#include "constants/items.h"
 #include "constants/battle/trainer_ai.h"
 
 #include "struct_decls/struct_party_decl.h"
@@ -183,7 +185,7 @@ static int AIScript_Read(BattleContext *battleCtx);
 static int AIScript_ReadOffset(BattleContext *battleCtx, int ofs);
 static void AIScript_Iter(BattleContext *battleCtx, int i);
 static u8 AIScript_Battler(BattleContext *battleCtx, u8 inBattler);
-static s32 ov14_02222E84(BattleSystem * param0, BattleContext * param1, u16 param2, u16 param3, u8 * param4, int param5, int param6, int param7, u8 param8);
+static s32 TrainerAI_CalcDamage(BattleSystem * param0, BattleContext * param1, u16 param2, u16 param3, u8 * param4, int param5, int param6, int param7, u8 param8);
 static int ov14_0222327C(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 static void ov14_0222254C(BattleContext * param0, int param1, int * param2, int * param3, int param4);
 static BOOL ov14_022233F4(BattleContext * param0, int param1);
@@ -1822,7 +1824,7 @@ static void ov14_022215CC (BattleSystem * param0, BattleContext * param1)
             v7[v0] = BattleMon_Get(param1, param1->aiContext.attacker, 10 + v0, NULL);
         }
 
-        v6 = ov14_02222E84(param0, param1, param1->aiContext.move, param1->battleMons[param1->aiContext.attacker].heldItem, &v7[0], param1->aiContext.attacker, Battler_Ability(param1, param1->aiContext.attacker), param1->battleMons[param1->aiContext.attacker].moveEffectsData.embargoTurns, v3);
+        v6 = TrainerAI_CalcDamage(param0, param1, param1->aiContext.move, param1->battleMons[param1->aiContext.attacker].heldItem, &v7[0], param1->aiContext.attacker, Battler_Ability(param1, param1->aiContext.attacker), param1->battleMons[param1->aiContext.attacker].moveEffectsData.embargoTurns, v3);
 
         if (param1->battleMons[param1->aiContext.defender].curHP <= v6) {
             AIScript_Iter(param1, v2);
@@ -1876,7 +1878,7 @@ static void ov14_022216F8 (BattleSystem * param0, BattleContext * param1)
             v7[v0] = BattleMon_Get(param1, param1->aiContext.attacker, 10 + v0, NULL);
         }
 
-        v6 = ov14_02222E84(param0, param1, param1->aiContext.move, param1->battleMons[param1->aiContext.attacker].heldItem, &v7[0], param1->aiContext.attacker, Battler_Ability(param1, param1->aiContext.attacker), param1->battleMons[param1->aiContext.attacker].moveEffectsData.embargoTurns, v3);
+        v6 = TrainerAI_CalcDamage(param0, param1, param1->aiContext.move, param1->battleMons[param1->aiContext.attacker].heldItem, &v7[0], param1->aiContext.attacker, Battler_Ability(param1, param1->aiContext.attacker), param1->battleMons[param1->aiContext.attacker].moveEffectsData.embargoTurns, v3);
 
         if (param1->battleMons[param1->aiContext.defender].curHP > v6) {
             AIScript_Iter(param1, v2);
@@ -2507,7 +2509,7 @@ static void ov14_02222298 (BattleSystem * param0, BattleContext * param1)
         v5 = 100;
     }
 
-    v7 = ov14_02222E84(param0, param1, param1->movePrevByBattler[v4], param1->battleMons[v4].heldItem, &v9[0], v4, Battler_Ability(param1, v4), param1->battleMons[v4].moveEffectsData.embargoTurns, v5);
+    v7 = TrainerAI_CalcDamage(param0, param1, param1->movePrevByBattler[v4], param1->battleMons[v4].heldItem, &v9[0], v4, Battler_Ability(param1, v4), param1->battleMons[v4].moveEffectsData.embargoTurns, v5);
 
     if (v7 > v6) {
         AIScript_Iter(param1, v3);
@@ -3144,7 +3146,7 @@ static s32 ov14_02222D7C (BattleSystem * param0, BattleContext * param1, int par
                 v8 = 100;
             }
 
-            param4[v0] = ov14_02222E84(param0, param1, param3[v0], param5, param6, param2, param7, param8, v8);
+            param4[v0] = TrainerAI_CalcDamage(param0, param1, param3[v0], param5, param6, param2, param7, param8, v8);
         } else {
             param4[v0] = 0;
         }
@@ -3159,206 +3161,268 @@ static s32 ov14_02222D7C (BattleSystem * param0, BattleContext * param1, int par
     return v7;
 }
 
-static const u16 Unk_ov14_0222EE60[][2] = {
-    {0x64, 0x14},
-    {0xFA, 0x28},
-    {0x1F4, 0x3C},
-    {0x3E8, 0x50},
-    {0x7D0, 0x64},
-    {0xFFFF, 0xFFFF}
-};
+#include "data/battle/weight_to_power.h"
 
-static s32 ov14_02222E84 (BattleSystem * param0, BattleContext * param1, u16 param2, u16 param3, u8 * param4, int param5, int param6, int param7, u8 param8)
+/**
+ * @brief Damage calculation routine visible to the AI.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param move      The move being used
+ * @param heldItem  The attacker's held item.
+ * @param ivs       The attacker's IVs. Used for Hidden Power calculation.  
+ * @param attacker  The attacker's ID.
+ * @param ability   The attacker's ability.
+ * @param embargo   Flag representing if the attacker is under Embargo or not.
+ * @param variance  Variance factor applied to the damage value. This is presumed
+ *                  to be a value in the range [85..100].
+ * @return Calculated damage value.
+ */
+static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCtx, u16 move, u16 heldItem, u8 *ivs, int attacker, int ability, BOOL embargo, u8 variance)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    u32 v4;
-    s32 v5;
+    // must declare C89-style to match
+    int defendingSide;
+    int power;
+    int type;
+    int typeTmp;
+    u32 effectivenessFlags;
+    s32 damage;
 
-    v0 = Battler_Side(param0, param1->aiContext.defender);
-    v5 = 0;
-    v1 = 0;
-    v2 = 0;
-    v4 = 0;
+    defendingSide = Battler_Side(battleSys, AI_CONTEXT.defender);
+    damage = 0;
+    power = 0;
+    type = 0;
+    effectivenessFlags = 0;
 
-    switch (param2) {
-    case 363:
-        if ((param6 != 103) && (param7 == 0)) {
-            v1 = BattleSystem_GetItemData(param1, param3, 11);
+    switch (move) {
+    case MOVE_NATURAL_GIFT:
+        if (ability != ABILITY_KLUTZ && embargo == FALSE) {
+            power = BattleSystem_GetItemData(battleCtx, heldItem, ITEM_PARAM_NATURAL_GIFT_POWER);
 
-            if (v1) {
-                v2 = BattleSystem_GetItemData(param1, param3, 12);
+            if (power) {
+                type = BattleSystem_GetItemData(battleCtx, heldItem, ITEM_PARAM_NATURAL_GIFT_TYPE);
             } else {
-                v2 = 0;
+                type = TYPE_NORMAL;
             }
         }
         break;
-    case 449:
-        if ((param6 != 103) && (param7 == 0)) {
-            v1 = 0;
 
-            switch (BattleSystem_GetItemData(param1, param3, 1)) {
-            case 131:
-                v2 = 1;
+    case MOVE_JUDGMENT:
+        if (ability != ABILITY_KLUTZ && embargo == FALSE) {
+            power = 0;
+
+            switch (BattleSystem_GetItemData(battleCtx, heldItem, ITEM_PARAM_HOLD_EFFECT)) {
+            case HOLD_EFFECT_ARCEUS_FIGHTING:
+                type = TYPE_FIGHTING;
                 break;
-            case 134:
-                v2 = 2;
+
+            case HOLD_EFFECT_ARCEUS_FLYING:
+                type = TYPE_FLYING;
                 break;
-            case 132:
-                v2 = 3;
+
+            case HOLD_EFFECT_ARCEUS_POISON:
+                type = TYPE_POISON;
                 break;
-            case 133:
-                v2 = 4;
+
+            case HOLD_EFFECT_ARCEUS_GROUND:
+                type = TYPE_GROUND;
                 break;
-            case 137:
-                v2 = 5;
+
+            case HOLD_EFFECT_ARCEUS_ROCK:
+                type = TYPE_ROCK;
                 break;
-            case 136:
-                v2 = 6;
+
+            case HOLD_EFFECT_ARCEUS_BUG:
+                type = TYPE_BUG;
                 break;
-            case 138:
-                v2 = 7;
+
+            case HOLD_EFFECT_ARCEUS_GHOST:
+                type = TYPE_GHOST;
                 break;
-            case 141:
-                v2 = 8;
+
+            case HOLD_EFFECT_ARCEUS_STEEL:
+                type = TYPE_STEEL;
                 break;
-            case 126:
-                v2 = 10;
+
+            case HOLD_EFFECT_ARCEUS_FIRE:
+                type = TYPE_FIRE;
                 break;
-            case 127:
-                v2 = 11;
+
+            case HOLD_EFFECT_ARCEUS_WATER:
+                type = TYPE_WATER;
                 break;
-            case 129:
-                v2 = 12;
+
+            case HOLD_EFFECT_ARCEUS_GRASS:
+                type = TYPE_GRASS;
                 break;
-            case 128:
-                v2 = 13;
+
+            case HOLD_EFFECT_ARCEUS_ELECTRIC:
+                type = TYPE_ELECTRIC;
                 break;
-            case 135:
-                v2 = 14;
+
+            case HOLD_EFFECT_ARCEUS_PSYCHIC:
+                type = TYPE_PSYCHIC;
                 break;
-            case 130:
-                v2 = 15;
+
+            case HOLD_EFFECT_ARCEUS_ICE:
+                type = TYPE_ICE;
                 break;
-            case 139:
-                v2 = 16;
+
+            case HOLD_EFFECT_ARCEUS_DRAGON:
+                type = TYPE_DRAGON;
                 break;
-            case 140:
-                v2 = 17;
+
+            case HOLD_EFFECT_ARCEUS_DARK:
+                type = TYPE_DARK;
                 break;
+
             default:
-                v2 = 0;
+                type = TYPE_NORMAL;
                 break;
             }
         }
         break;
-    case 237:
-        v1 = ((param4[0] & 2) >> 1) | ((param4[1] & 2) >> 0) | ((param4[2] & 2) << 1) | ((param4[3] & 2) << 2) | ((param4[4] & 2) << 3) | ((param4[5] & 2) << 4);
-        v2 = ((param4[0] & 1) >> 0) | ((param4[1] & 1) << 1) | ((param4[2] & 1) << 2) | ((param4[3] & 1) << 3) | ((param4[4] & 1) << 4) | ((param4[5] & 1) << 5);
-        v1 = v1 * 40 / 63 + 30;
-        v2 = (v2 * 15 / 63) + 1;
 
-        if (v2 >= 9) {
-            v2++;
+    case MOVE_HIDDEN_POWER:
+        power = ((ivs[STAT_HP] & 2) >> 1)
+            | ((ivs[STAT_ATTACK] & 2) >> 0)
+            | ((ivs[STAT_DEFENSE] & 2) << 1)
+            | ((ivs[STAT_SPEED] & 2) << 2)
+            | ((ivs[STAT_SPECIAL_ATTACK] & 2) << 3)
+            | ((ivs[STAT_SPECIAL_DEFENSE] & 2) << 4);
+        type = ((ivs[STAT_HP] & 1) >> 0)
+            | ((ivs[STAT_ATTACK] & 1) << 1)
+            | ((ivs[STAT_DEFENSE] & 1) << 2)
+            | ((ivs[STAT_SPEED] & 1) << 3)
+            | ((ivs[STAT_SPECIAL_ATTACK] & 1) << 4)
+            | ((ivs[STAT_SPECIAL_DEFENSE] & 1) << 5);
+
+        power = power * 40 / 63 + 30;
+        type = (type * 15 / 63) + 1;
+
+        if (type >= TYPE_MYSTERY) {
+            type++;
         }
         break;
-    case 360:
-        v1 = 1 + 25 * param1->monSpeedValues[param1->aiContext.defender] / param1->monSpeedValues[param5];
 
-        if (v1 > 150) {
-            v1 = 150;
+    case MOVE_GYRO_BALL:
+        power = 1 + 25 * battleCtx->monSpeedValues[AI_CONTEXT.defender] / battleCtx->monSpeedValues[attacker];
+
+        if (power > 150) {
+            power = 150;
         }
 
-        v2 = 0;
+        type = TYPE_NORMAL; // default to the base move type
         break;
-    case 82:
-        v5 = 40;
-        break;
-    case 69:
-    case 101:
-        v5 = param1->battleMons[param5].level;
-        break;
-    case 149:
-        v5 = param1->battleMons[param5].level * (BattleSystem_RandNext(param0) % 11 + 5) / 10;
-        break;
-    case 216:
-        v1 = param1->battleMons[param5].friendship * 10 / 25;
-        v2 = 0;
-        break;
-    case 218:
-        v1 = (255 - param1->battleMons[param5].friendship) * 10 / 25;
-        v2 = 0;
-        break;
-    case 222:
-        v1 = BattleSystem_RandNext(param0) % 100;
 
-        if (v1 < 5) {
-            v1 = 10;
-        } else if (v1 < 15) {
-            v1 = 30;
-        } else if (v1 < 35) {
-            v1 = 50;
-        } else if (v1 < 65) {
-            v1 = 70;
-        } else if (v1 < 85) {
-            v1 = 90;
-        } else if (v1 < 95) {
-            v1 = 110;
+    case MOVE_DRAGON_RAGE:
+        damage = 40;
+        break;
+
+    case MOVE_SEISMIC_TOSS:
+    case MOVE_NIGHT_SHADE:
+        damage = battleCtx->battleMons[attacker].level;
+        break;
+
+    case MOVE_PSYWAVE:
+        damage = battleCtx->battleMons[attacker].level * (BattleSystem_RandNext(battleSys) % 11 + 5) / 10;
+        break;
+
+    case MOVE_RETURN:
+        power = battleCtx->battleMons[attacker].friendship * 10 / 25;
+        type = TYPE_NORMAL;
+        break;
+
+    case MOVE_FRUSTRATION:
+        power = (255 - battleCtx->battleMons[attacker].friendship) * 10 / 25;
+        type = TYPE_NORMAL;
+        break;
+
+    case MOVE_MAGNITUDE:
+        // Simulate a Magnitude roll
+        power = BattleSystem_RandNext(battleSys) % 100;
+
+        if (power < 5) {
+            power = 10;
+        } else if (power < 15) {
+            power = 30;
+        } else if (power < 35) {
+            power = 50;
+        } else if (power < 65) {
+            power = 70;
+        } else if (power < 85) {
+            power = 90;
+        } else if (power < 95) {
+            power = 110;
         } else {
-            v1 = 150;
+            power = 150;
         }
 
-        v2 = 0;
+        type = TYPE_NORMAL;
         break;
-    case 49:
-        v5 = 20;
+
+    case MOVE_SONIC_BOOM:
+        damage = 20;
         break;
-    case 67:
-    case 447:
-    {
-        int v6;
 
-        v6 = 0;
+    case MOVE_LOW_KICK:
+    case MOVE_GRASS_KNOT: {
+        int i;
 
-        while (Unk_ov14_0222EE60[v6][0] != 0xffff) {
-            if (Unk_ov14_0222EE60[v6][0] >= param1->battleMons[param1->aiContext.defender].weight) {
+        for (i = 0; sWeightToPower[i][0] != 0xFFFF; i++) {
+            if (sWeightToPower[i][0] >= battleCtx->battleMons[AI_CONTEXT.defender].weight) {
                 break;
             }
-
-            v6++;
         }
 
-        if (Unk_ov14_0222EE60[v6][0] != 0xffff) {
-            v1 = Unk_ov14_0222EE60[v6][1];
+        if (sWeightToPower[i][0] != 0xFFFF) {
+            power = sWeightToPower[i][1];
         } else {
-            v1 = 120;
+            power = 120;
         }
+
+        break;
     }
-    break;
+
     default:
-        v1 = 0;
-        v2 = 0;
+        // Move has no special calculation logic; default to the basic calc
+        power = 0;
+        type = TYPE_NORMAL;
         break;
     }
 
-    if (v5 == 0) {
-        v5 = BattleSystem_CalcMoveDamage(param0, param1, param2, param1->sideConditionsMask[v0], param1->fieldConditionsMask, v1, v2, param5, param1->aiContext.defender, 1);
+    if (damage == 0) {
+        damage = BattleSystem_CalcMoveDamage(battleSys,
+                battleCtx,
+                move,
+                battleCtx->sideConditionsMask[defendingSide],
+                battleCtx->fieldConditionsMask,
+                power,
+                type,
+                attacker,
+                AI_CONTEXT.defender,
+                1);
     } else {
-        param1->battleStatusMask |= 0x800;
+        battleCtx->battleStatusMask |= SYSCTL_IGNORE_TYPE_CHECKS;
     }
 
-    v5 = BattleSystem_ApplyTypeChart(param0, param1, param2, v2, param5, param1->aiContext.defender, v5, &v4);
-    param1->battleStatusMask &= (0x800 ^ 0xffffffff);
+    damage = BattleSystem_ApplyTypeChart(battleSys,
+            battleCtx,
+            move,
+            type,
+            attacker,
+            AI_CONTEXT.defender,
+            damage,
+            &effectivenessFlags);
+    battleCtx->battleStatusMask &= ~SYSCTL_IGNORE_TYPE_CHECKS;
 
-    if (v4 & (0x8 | 0x800 | 0x100000 | 0x40000)) {
-        v5 = 0;
+    if (effectivenessFlags & MOVE_STATUS_IMMUNE) {
+        damage = 0;
     } else {
-        v5 = BattleSystem_Divide(v5 * param8, 100);
+        damage = BattleSystem_Divide(damage * variance, 100);
     }
 
-    return v5;
+    return damage;
 }
 
 static int ov14_0222327C (BattleSystem * param0, BattleContext * param1, int param2, int param3)
