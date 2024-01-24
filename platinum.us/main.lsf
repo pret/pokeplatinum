@@ -677,7 +677,7 @@ Overlay overlay13
 Overlay overlay14
 {
 	After overlay11
-	Object main.nef.p/src_overlay014_ov14_0221FC20.c.o
+	Object main.nef.p/src_overlay014_trainer_ai.c.o
 	Object main.nef.p/overlay014/asm_overlay014_ov14_022248A4.s.o
 }
 
