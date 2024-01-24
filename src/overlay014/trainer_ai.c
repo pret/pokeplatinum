@@ -62,11 +62,6 @@ enum AIEvalStep {
     AI_EVAL_STEP_END,
 };
 
-static s32 ov14_02222D7C(BattleSystem * param0, BattleContext * param1, int param2, u16 * param3, s32 * param4, u16 param5, u8 * param6, int param7, int param8, int param9);
-static u8 TrainerAI_MainSingles(BattleSystem *battleSys, BattleContext *battleCtx);
-static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCtx);
-static void TrainerAI_EvalMoves(BattleSystem *battleSys, BattleContext *battleCtx);
-static void TrainerAI_RecordLastMove(BattleSystem *battleSys, BattleContext *battleCtx);
 static void ov14_02220184(BattleSystem * param0, BattleContext * param1);
 static void ov14_022201C4(BattleSystem * param0, BattleContext * param1);
 static void ov14_02220204(BattleSystem * param0, BattleContext * param1);
@@ -176,12 +171,18 @@ static void ov14_02222648(BattleSystem * param0, BattleContext * param1);
 static void ov14_022227A4(BattleSystem * param0, BattleContext * param1);
 static void ov14_022227F4(BattleSystem * param0, BattleContext * param1);
 static void ov14_02222BF8(BattleSystem * param0, BattleContext * param1);
-static void ov14_02222C28(BattleSystem * param0, BattleContext * param1, int param2);
-static BOOL ov14_02222C60(BattleSystem * param0, BattleContext * param1);
+
+static s32 ov14_02222D7C(BattleSystem * param0, BattleContext * param1, int param2, u16 * param3, s32 * param4, u16 param5, u8 * param6, int param7, int param8, int param9);
+static u8 TrainerAI_MainSingles(BattleSystem *battleSys, BattleContext *battleCtx);
+static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCtx);
+static void TrainerAI_EvalMoves(BattleSystem *battleSys, BattleContext *battleCtx);
+static void TrainerAI_RecordLastMove(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AIScript_PushCursor(BattleSystem *battleSys, BattleContext *battleCtx, int address);
+static BOOL AIScript_PopCursor(BattleSystem *battleSys, BattleContext *battleCtx);
 static int AIScript_Read(BattleContext *battleCtx);
 static int AIScript_ReadOffset(BattleContext *battleCtx, int ofs);
 static void AIScript_Iter(BattleContext *battleCtx, int i);
-static u8 ov14_02222D34(BattleContext * param0, u8 param1);
+static u8 AIScript_Battler(BattleContext *battleCtx, u8 inBattler);
 static s32 ov14_02222E84(BattleSystem * param0, BattleContext * param1, u16 param2, u16 param3, u8 * param4, int param5, int param6, int param7, u8 param8);
 static int ov14_0222327C(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 static void ov14_0222254C(BattleContext * param0, int param1, int * param2, int * param3, int param4);
@@ -194,7 +195,7 @@ static BOOL ov14_02223E10(BattleSystem * param0, BattleContext * param1, int par
 static BOOL ov14_02224070(BattleSystem * param0, BattleContext * param1, int param2);
 static BOOL ov14_0222416C(BattleSystem * param0, BattleContext * param1, int param2);
 static BOOL TrainerAI_ShouldSwitch(BattleSystem * param0, BattleContext * param1, int param2);
-BOOL TrainerAI_ShouldUseItem(BattleSystem * param0, int param1);
+static BOOL TrainerAI_ShouldUseItem(BattleSystem * param0, int param1);
 
 static const AICommandFunc sAICommandTable[] = {
     ov14_02220184,
@@ -315,16 +316,16 @@ void TrainerAI_Init(BattleSystem *battleSys, BattleContext *battleCtx, u8 battle
     u8 invalidMoves;
 
     // explicit memset
-    u8 *adrs = (u8*)&battleCtx->aiContext;
+    u8 *adrs = (u8*)&AI_CONTEXT;
     for (i = 0; i < XtOffset(AIContext*, battlerMoves); i++) {
         adrs[i] = 0;
     }
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         if (initScore & 1) {
-            battleCtx->aiContext.moveScore[i] = 100;
+            AI_CONTEXT.moveScore[i] = 100;
         } else {
-            battleCtx->aiContext.moveScore[i] = 0;
+            AI_CONTEXT.moveScore[i] = 0;
         }
 
         initScore = initScore >> 1;
@@ -334,24 +335,24 @@ void TrainerAI_Init(BattleSystem *battleSys, BattleContext *battleCtx, u8 battle
     invalidMoves = BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_ALL);
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         if (invalidMoves & FlagIndex(i)) {
-            battleCtx->aiContext.moveScore[i] = 0;
+            AI_CONTEXT.moveScore[i] = 0;
         }
 
-        battleCtx->aiContext.moveDamageRolls[i] = 100 - (BattleSystem_RandNext(battleSys) % 16);
+        AI_CONTEXT.moveDamageRolls[i] = 100 - (BattleSystem_RandNext(battleSys) % 16);
     }
 
-    battleCtx->aiContext.scriptStackSize = 0;
+    AI_CONTEXT.scriptStackSize = 0;
 
     // roaming Pokemon have special AI; otherwise, copy the AI behavior from the trainer data
     if (battleSys->battleType & BATTLE_TYPE_ROAMER) {
-        battleCtx->aiContext.thinkingMask = AI_FLAG_ROAMING_POKEMON;
+        AI_CONTEXT.thinkingMask = AI_FLAG_ROAMING_POKEMON;
     } else {
-        battleCtx->aiContext.thinkingMask = battleSys->trainers[battler].aiMask;
+        AI_CONTEXT.thinkingMask = battleSys->trainers[battler].aiMask;
     }
 
     // force double-battle strategies, if applicable
     if (battleSys->battleType & BATTLE_TYPE_DOUBLES) {
-        battleCtx->aiContext.thinkingMask |= AI_FLAG_TAG_STRATEGY;
+        AI_CONTEXT.thinkingMask |= AI_FLAG_TAG_STRATEGY;
     }
 }
 
@@ -360,11 +361,11 @@ u8 TrainerAI_Main(BattleSystem *battleSys, u8 battler)
     u8 result;
     BattleContext *battleCtx = battleSys->battleCtx;
 
-    if ((battleCtx->aiContext.stateFlags & AI_STATUS_FLAG_CONTINUE) == FALSE) {
-        battleCtx->aiContext.attacker = battler;
-        battleCtx->aiContext.defender = BattleSystem_RandomOpponent(battleSys, battleCtx, battler);
+    if ((AI_CONTEXT.stateFlags & AI_STATUS_FLAG_CONTINUE) == FALSE) {
+        AI_CONTEXT.attacker = battler;
+        AI_CONTEXT.defender = BattleSystem_RandomOpponent(battleSys, battleCtx, battler);
 
-        TrainerAI_Init(battleSys, battleCtx, battleCtx->aiContext.attacker, AI_INIT_SCORE_ALL_MOVES);
+        TrainerAI_Init(battleSys, battleCtx, AI_CONTEXT.attacker, AI_INIT_SCORE_ALL_MOVES);
     }
 
     if ((battleSys->battleType & BATTLE_TYPE_DOUBLES) == FALSE) {
@@ -376,6 +377,13 @@ u8 TrainerAI_Main(BattleSystem *battleSys, u8 battler)
     return result;
 }
 
+/**
+ * @brief Main action-choice routine for single battles.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return The action that the AI picked for its turn. See enum AIActionChoice.
+ */
 static u8 TrainerAI_MainSingles(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
@@ -387,42 +395,42 @@ static u8 TrainerAI_MainSingles(BattleSystem *battleSys, BattleContext *battleCt
 
     TrainerAI_RecordLastMove(battleSys, battleCtx);
 
-    while (battleCtx->aiContext.thinkingMask) {
-        if (battleCtx->aiContext.thinkingMask & AI_FLAG_BASIC) {
-            if ((battleCtx->aiContext.stateFlags & AI_STATUS_FLAG_CONTINUE) == FALSE) {
-                battleCtx->aiContext.evalStep = AI_EVAL_STEP_INIT;
+    while (AI_CONTEXT.thinkingMask) {
+        if (AI_CONTEXT.thinkingMask & AI_FLAG_BASIC) {
+            if ((AI_CONTEXT.stateFlags & AI_STATUS_FLAG_CONTINUE) == FALSE) {
+                AI_CONTEXT.evalStep = AI_EVAL_STEP_INIT;
             }
 
             TrainerAI_EvalMoves(battleSys, battleCtx);
         }
 
-        battleCtx->aiContext.thinkingMask = battleCtx->aiContext.thinkingMask >> 1;
-        battleCtx->aiContext.thinkingBitShift++;
-        battleCtx->aiContext.moveSlot = 0;
+        AI_CONTEXT.thinkingMask = AI_CONTEXT.thinkingMask >> 1;
+        AI_CONTEXT.thinkingBitShift++;
+        AI_CONTEXT.moveSlot = 0;
     }
 
-    if (battleCtx->aiContext.stateFlags & AI_STATUS_FLAG_ESCAPE) {
+    if (AI_CONTEXT.stateFlags & AI_STATUS_FLAG_ESCAPE) {
         action = AI_ENEMY_ESCAPE;
-    } else if (battleCtx->aiContext.stateFlags & AI_STATUS_FLAG_SAFARI) {
+    } else if (AI_CONTEXT.stateFlags & AI_STATUS_FLAG_SAFARI) {
         action = AI_ENEMY_SAFARI;
     } else {
         // Get the move with the highest score; break ties randomly
         numMaxScoreMoves = 1;
-        maxScoreMoves[0] = battleCtx->aiContext.moveScore[0];
+        maxScoreMoves[0] = AI_CONTEXT.moveScore[0];
         maxScoreMoveSlots[0] = AI_ENEMY_ATTACK_1;
 
         for (i = 1; i < LEARNED_MOVES_MAX; i++) {
-            if (battleCtx->battleMons[battleCtx->aiContext.attacker].moves[i]) {    // Attacker has a move in this slot
+            if (battleCtx->battleMons[AI_CONTEXT.attacker].moves[i]) {    // Attacker has a move in this slot
                 // Append to the list of max-score moves if equal score to the current max
-                if (maxScoreMoves[0] == battleCtx->aiContext.moveScore[i]) {
-                    maxScoreMoves[numMaxScoreMoves] = battleCtx->aiContext.moveScore[i];
+                if (maxScoreMoves[0] == AI_CONTEXT.moveScore[i]) {
+                    maxScoreMoves[numMaxScoreMoves] = AI_CONTEXT.moveScore[i];
                     maxScoreMoveSlots[numMaxScoreMoves++] = i;
                 }
 
                 // Set to be the maximum score if higher score than the current max
-                if (maxScoreMoves[0] < battleCtx->aiContext.moveScore[i]) {
+                if (maxScoreMoves[0] < AI_CONTEXT.moveScore[i]) {
                     numMaxScoreMoves = 1;
-                    maxScoreMoves[0] = battleCtx->aiContext.moveScore[i];
+                    maxScoreMoves[0] = AI_CONTEXT.moveScore[i];
                     maxScoreMoveSlots[0] = i;
                 }
             }
@@ -431,10 +439,17 @@ static u8 TrainerAI_MainSingles(BattleSystem *battleSys, BattleContext *battleCt
         action = maxScoreMoveSlots[BattleSystem_RandNext(battleSys) % numMaxScoreMoves];
     }
 
-    battleCtx->aiContext.selectedTarget[battleCtx->aiContext.attacker] = battleCtx->aiContext.defender;
+    AI_CONTEXT.selectedTarget[AI_CONTEXT.attacker] = AI_CONTEXT.defender;
     return action;
 }
 
+/**
+ * @brief Main action-choice routine for double battles.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return The action that the AI picked for its turn. See enum AIActionChoice.
+ */
 static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int battler, battlerCount, thinkingMask;
@@ -446,42 +461,42 @@ static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCt
     s8 moveSlot;
 
     for (battler = 0; battler < MAX_BATTLERS; battler++) {
-        if (battler == battleCtx->aiContext.attacker || battleCtx->battleMons[battler].curHP == 0) {
+        if (battler == AI_CONTEXT.attacker || battleCtx->battleMons[battler].curHP == 0) {
             actionForBattler[battler] = -1;
             maxScoreForBattler[battler] = -1;
             continue;
         }
 
-        TrainerAI_Init(battleSys, battleCtx, battleCtx->aiContext.attacker, 0xf);
+        TrainerAI_Init(battleSys, battleCtx, AI_CONTEXT.attacker, 0xf);
 
         // Record the last moves of enemy battlers
-        battleCtx->aiContext.defender = battler;
-        if ((battler & 1) != (battleCtx->aiContext.attacker & 1)) {
+        AI_CONTEXT.defender = battler;
+        if ((battler & 1) != (AI_CONTEXT.attacker & 1)) {
             TrainerAI_RecordLastMove(battleSys, battleCtx);
         }
 
-        battleCtx->aiContext.thinkingBitShift = 0;
-        battleCtx->aiContext.moveSlot = 0;
-        thinkingMask = battleCtx->aiContext.thinkingMask;
+        AI_CONTEXT.thinkingBitShift = 0;
+        AI_CONTEXT.moveSlot = 0;
+        thinkingMask = AI_CONTEXT.thinkingMask;
 
         // Evaluate moves according with the current battler as the target
         while (thinkingMask) {
             if (thinkingMask & AI_FLAG_BASIC) {
-                if ((battleCtx->aiContext.stateFlags & AI_STATUS_FLAG_CONTINUE) == FALSE) {
-                    battleCtx->aiContext.evalStep = AI_EVAL_STEP_INIT;
+                if ((AI_CONTEXT.stateFlags & AI_STATUS_FLAG_CONTINUE) == FALSE) {
+                    AI_CONTEXT.evalStep = AI_EVAL_STEP_INIT;
                 }
 
                 TrainerAI_EvalMoves(battleSys, battleCtx);
             }
 
             thinkingMask >>= 1;
-            battleCtx->aiContext.thinkingBitShift++;
-            battleCtx->aiContext.moveSlot = 0;
+            AI_CONTEXT.thinkingBitShift++;
+            AI_CONTEXT.moveSlot = 0;
         }
 
-        if (battleCtx->aiContext.stateFlags & AI_STATUS_FLAG_ESCAPE) {
+        if (AI_CONTEXT.stateFlags & AI_STATUS_FLAG_ESCAPE) {
             actionForBattler[battler] = AI_ENEMY_ESCAPE;
-        } else if (battleCtx->aiContext.stateFlags & AI_STATUS_FLAG_SAFARI) {
+        } else if (AI_CONTEXT.stateFlags & AI_STATUS_FLAG_SAFARI) {
             actionForBattler[battler] = AI_ENEMY_SAFARI;
         } else {
             u8 tmpMaxScores[4];
@@ -489,22 +504,22 @@ static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCt
             int numMaxScoreMoves, i;
 
             // Pick a random move from among the highest-scored moves on this target
-            tmpMaxScores[0] = battleCtx->aiContext.moveScore[0];
+            tmpMaxScores[0] = AI_CONTEXT.moveScore[0];
             tmpMaxScoreMoveSlots[0] = 0;
             numMaxScoreMoves = 1;
 
             for (i = 1; i < LEARNED_MOVES_MAX; i++) {
-                if (battleCtx->battleMons[battleCtx->aiContext.attacker].moves[i]) {
+                if (battleCtx->battleMons[AI_CONTEXT.attacker].moves[i]) {
                     // Same score as max: append to list of possible max-score moves
-                    if (tmpMaxScores[0] == battleCtx->aiContext.moveScore[i]) {
-                        tmpMaxScores[numMaxScoreMoves] = battleCtx->aiContext.moveScore[i];
+                    if (tmpMaxScores[0] == AI_CONTEXT.moveScore[i]) {
+                        tmpMaxScores[numMaxScoreMoves] = AI_CONTEXT.moveScore[i];
                         tmpMaxScoreMoveSlots[numMaxScoreMoves] = i;
                         numMaxScoreMoves++;
                     }
 
                     // Higher score than max: set as new max score
-                    if (tmpMaxScores[0] < battleCtx->aiContext.moveScore[i]) {
-                        tmpMaxScores[0] = battleCtx->aiContext.moveScore[i];
+                    if (tmpMaxScores[0] < AI_CONTEXT.moveScore[i]) {
+                        tmpMaxScores[0] = AI_CONTEXT.moveScore[i];
                         tmpMaxScoreMoveSlots[0] = i;
                         numMaxScoreMoves = 1;
                     }
@@ -515,7 +530,7 @@ static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCt
             maxScoreForBattler[battler] = tmpMaxScores[0];
 
             // Score moves on an ally below 100 to -1 (basically, never use them)
-            if (battler == (battleCtx->aiContext.attacker ^ 2)) {
+            if (battler == (AI_CONTEXT.attacker ^ 2)) {
                 if (maxScoreForBattler[battler] < 100) {
                     maxScoreForBattler[battler] = -1;
                 }
@@ -540,58 +555,67 @@ static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCt
     }
 
     // Pick a random target from among the maximum-scored targets
-    battleCtx->aiContext.selectedTarget[battleCtx->aiContext.attacker] = battlerTemp[(BattleSystem_RandNext(battleSys) % battlerCount)];
-    moveSlot = actionForBattler[battleCtx->aiContext.selectedTarget[battleCtx->aiContext.attacker]];
-    move = battleCtx->battleMons[battleCtx->aiContext.attacker].moves[moveSlot];
+    AI_CONTEXT.selectedTarget[AI_CONTEXT.attacker] = battlerTemp[(BattleSystem_RandNext(battleSys) % battlerCount)];
+    moveSlot = actionForBattler[AI_CONTEXT.selectedTarget[AI_CONTEXT.attacker]];
+    move = battleCtx->battleMons[AI_CONTEXT.attacker].moves[moveSlot];
 
     // Override targets as needed
-    if (battleCtx->aiContext.moveTable[move].range == RANGE_USER_OR_ALLY
-            && Battler_Side(battleSys, battleCtx->aiContext.selectedTarget[battleCtx->aiContext.attacker]) == 0) {
-        battleCtx->aiContext.selectedTarget[battleCtx->aiContext.attacker] = battleCtx->aiContext.attacker;
+    if (AI_CONTEXT.moveTable[move].range == RANGE_USER_OR_ALLY
+            && Battler_Side(battleSys, AI_CONTEXT.selectedTarget[AI_CONTEXT.attacker]) == 0) {
+        AI_CONTEXT.selectedTarget[AI_CONTEXT.attacker] = AI_CONTEXT.attacker;
     }
 
-    if (move == MOVE_CURSE && Move_IsGhostCurse(battleCtx, move, battleCtx->aiContext.attacker) == FALSE) {
-        battleCtx->aiContext.selectedTarget[battleCtx->aiContext.attacker] = battleCtx->aiContext.attacker;
+    if (move == MOVE_CURSE && Move_IsGhostCurse(battleCtx, move, AI_CONTEXT.attacker) == FALSE) {
+        AI_CONTEXT.selectedTarget[AI_CONTEXT.attacker] = AI_CONTEXT.attacker;
     }
 
     return moveSlot;
 }
 
+/**
+ * @brief Evaluation loop for scoring each move available to the AI.
+ * 
+ * This does NOT score the potential choices of using an item or switching
+ * a Pokemon for turn.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ */
 static void TrainerAI_EvalMoves(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    while (battleCtx->aiContext.evalStep != AI_EVAL_STEP_END) {
-        switch (battleCtx->aiContext.evalStep) {
+    while (AI_CONTEXT.evalStep != AI_EVAL_STEP_END) {
+        switch (AI_CONTEXT.evalStep) {
         case AI_EVAL_STEP_INIT:
-            battleCtx->aiScriptCursor = battleCtx->aiScriptTemp[battleCtx->aiContext.thinkingBitShift];
+            battleCtx->aiScriptCursor = battleCtx->aiScriptTemp[AI_CONTEXT.thinkingBitShift];
 
-            if (battleCtx->battleMons[battleCtx->aiContext.attacker].ppCur[battleCtx->aiContext.moveSlot] == 0) {
-                battleCtx->aiContext.move = MOVE_NONE;
+            if (battleCtx->battleMons[AI_CONTEXT.attacker].ppCur[AI_CONTEXT.moveSlot] == 0) {
+                AI_CONTEXT.move = MOVE_NONE;
             } else {
-                battleCtx->aiContext.move = battleCtx->battleMons[battleCtx->aiContext.attacker].moves[battleCtx->aiContext.moveSlot];
+                AI_CONTEXT.move = battleCtx->battleMons[AI_CONTEXT.attacker].moves[AI_CONTEXT.moveSlot];
             }
 
-            battleCtx->aiContext.evalStep++;
+            AI_CONTEXT.evalStep++;
             break;
 
         case AI_EVAL_STEP_EVAL:
-            if (battleCtx->aiContext.move != MOVE_NONE) {
+            if (AI_CONTEXT.move != MOVE_NONE) {
                 sAICommandTable[battleCtx->aiScriptTemp[battleCtx->aiScriptCursor]](battleSys, battleCtx);
             } else {
-                battleCtx->aiContext.moveScore[battleCtx->aiContext.moveSlot] = 0;
-                battleCtx->aiContext.stateFlags |= AI_STATUS_FLAG_DONE;
+                AI_CONTEXT.moveScore[AI_CONTEXT.moveSlot] = 0;
+                AI_CONTEXT.stateFlags |= AI_STATUS_FLAG_DONE;
             }
 
-            if (battleCtx->aiContext.stateFlags & AI_STATUS_FLAG_DONE) {
+            if (AI_CONTEXT.stateFlags & AI_STATUS_FLAG_DONE) {
                 // If we haven't gone through all the moves, loop back to INIT state and evaluate the next move
-                battleCtx->aiContext.moveSlot++;
-                if (battleCtx->aiContext.moveSlot < LEARNED_MOVES_MAX
-                        && (battleCtx->aiContext.stateFlags & AI_STATUS_FLAG_BREAK) == FALSE) {
-                    battleCtx->aiContext.evalStep = AI_EVAL_STEP_INIT;
+                AI_CONTEXT.moveSlot++;
+                if (AI_CONTEXT.moveSlot < LEARNED_MOVES_MAX
+                        && (AI_CONTEXT.stateFlags & AI_STATUS_FLAG_BREAK) == FALSE) {
+                    AI_CONTEXT.evalStep = AI_EVAL_STEP_INIT;
                 } else {
-                    battleCtx->aiContext.evalStep++;
+                    AI_CONTEXT.evalStep++;
                 }
 
-                battleCtx->aiContext.stateFlags &= AI_STATUS_FLAG_DONE_OFF;
+                AI_CONTEXT.stateFlags &= AI_STATUS_FLAG_DONE_OFF;
             }
 
             break;
@@ -689,7 +713,7 @@ static void ov14_022202B8 (BattleSystem * param0, BattleContext * param1)
     v2 = AIScript_Read(param1);
     v3 = AIScript_Read(param1);
     v4 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v2);
+    v0 = AIScript_Battler(param1, v2);
     v1 = param1->battleMons[v0].curHP * 100 / param1->battleMons[v0].maxHP;
 
     if (v1 < v3) {
@@ -710,7 +734,7 @@ static void ov14_02220310 (BattleSystem * param0, BattleContext * param1)
     v2 = AIScript_Read(param1);
     v3 = AIScript_Read(param1);
     v4 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v2);
+    v0 = AIScript_Battler(param1, v2);
     v1 = param1->battleMons[v0].curHP * 100 / param1->battleMons[v0].maxHP;
 
     if (v1 > v3) {
@@ -731,7 +755,7 @@ static void ov14_02220368 (BattleSystem * param0, BattleContext * param1)
     v2 = AIScript_Read(param1);
     v3 = AIScript_Read(param1);
     v4 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v2);
+    v0 = AIScript_Battler(param1, v2);
     v1 = param1->battleMons[v0].curHP * 100 / param1->battleMons[v0].maxHP;
 
     if (v1 == v3) {
@@ -752,7 +776,7 @@ static void ov14_022203C0 (BattleSystem * param0, BattleContext * param1)
     v2 = AIScript_Read(param1);
     v3 = AIScript_Read(param1);
     v4 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v2);
+    v0 = AIScript_Battler(param1, v2);
     v1 = param1->battleMons[v0].curHP * 100 / param1->battleMons[v0].maxHP;
 
     if (v1 != v3) {
@@ -772,7 +796,7 @@ static void ov14_02220418 (BattleSystem * param0, BattleContext * param1)
     v1 = AIScript_Read(param1);
     v2 = AIScript_Read(param1);
     v3 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     if (param1->battleMons[v0].status & v2) {
         AIScript_Iter(param1, v3);
@@ -791,7 +815,7 @@ static void ov14_02220464 (BattleSystem * param0, BattleContext * param1)
     v1 = AIScript_Read(param1);
     v2 = AIScript_Read(param1);
     v3 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     if ((param1->battleMons[v0].status & v2) == 0) {
         AIScript_Iter(param1, v3);
@@ -810,7 +834,7 @@ static void ov14_022204B0 (BattleSystem * param0, BattleContext * param1)
     v1 = AIScript_Read(param1);
     v2 = AIScript_Read(param1);
     v3 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     if (param1->battleMons[v0].statusVolatile & v2) {
         AIScript_Iter(param1, v3);
@@ -829,7 +853,7 @@ static void ov14_022204FC (BattleSystem * param0, BattleContext * param1)
     v1 = AIScript_Read(param1);
     v2 = AIScript_Read(param1);
     v3 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     if ((param1->battleMons[v0].statusVolatile & v2) == 0) {
         AIScript_Iter(param1, v3);
@@ -848,7 +872,7 @@ static void ov14_02220548 (BattleSystem * param0, BattleContext * param1)
     v1 = AIScript_Read(param1);
     v2 = AIScript_Read(param1);
     v3 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     if (param1->battleMons[v0].moveEffectsMask & v2) {
         AIScript_Iter(param1, v3);
@@ -867,7 +891,7 @@ static void ov14_02220590 (BattleSystem * param0, BattleContext * param1)
     v1 = AIScript_Read(param1);
     v2 = AIScript_Read(param1);
     v3 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     if ((param1->battleMons[v0].moveEffectsMask & v2) == 0) {
         AIScript_Iter(param1, v3);
@@ -887,7 +911,7 @@ static void ov14_022205D8 (BattleSystem * param0, BattleContext * param1)
     v1 = AIScript_Read(param1);
     v2 = AIScript_Read(param1);
     v3 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
     v4 = Battler_Side(param0, v0);
 
     if (param1->sideConditionsMask[v4] & v2) {
@@ -908,7 +932,7 @@ static void ov14_02220628 (BattleSystem * param0, BattleContext * param1)
     v1 = AIScript_Read(param1);
     v2 = AIScript_Read(param1);
     v3 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
     v4 = Battler_Side(param0, v0);
 
     if ((param1->sideConditionsMask[v4] & v2) == 0) {
@@ -1180,7 +1204,7 @@ static void ov14_02220AB4 (BattleSystem * param0, BattleContext * param1)
 
     v1 = AIScript_Read(param1);
     v2 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     if ((BattleMon_Get(param1, v0, 27, NULL) == v2) || (BattleMon_Get(param1, v0, 28, NULL) == v2)) {
         param1->aiContext.calcTemp = 1;
@@ -1256,7 +1280,7 @@ static void ov14_02220C70 (BattleSystem * param0, BattleContext * param1)
     AIScript_Iter(param1, 1);
 
     v1 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     param1->aiContext.calcTemp = param1->movePrevByBattler[v0];
 }
@@ -1336,7 +1360,7 @@ static void ov14_02220D8C (BattleSystem * param0, BattleContext * param1)
 
     param1->aiContext.calcTemp = 0;
 
-    v3 = ov14_02222D34(param1, v6);
+    v3 = AIScript_Battler(param1, v6);
     v0 = BattleSystem_Party(param0, v3);
 
     if (param0->battleType & 0x2) {
@@ -1376,7 +1400,7 @@ static void ov14_02220EA8 (BattleSystem * param0, BattleContext * param1)
     AIScript_Iter(param1, 1);
 
     v1 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     if (param1->battleMons[v0].moveEffectsMask & 0x200000) {
         param1->aiContext.calcTemp = 0;
@@ -1420,7 +1444,7 @@ static void ov14_02220F88 (BattleSystem * param0, BattleContext * param1)
 
     v1 = AIScript_Read(param1);
     v2 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     if (param1->battleMons[v0].moveEffectsMask & 0x200000) {
         v3 = 0;
@@ -1553,7 +1577,7 @@ static void ov14_022211AC (BattleSystem * param0, BattleContext * param1)
     v6 = AIScript_Read(param1);
     v7 = AIScript_Read(param1);
     v8 = AIScript_Read(param1);
-    v3 = ov14_02222D34(param1, v6);
+    v3 = AIScript_Battler(param1, v6);
 
     if (param0->battleType & 0x2) {
         v4 = param1->selectedPartySlot[v3];
@@ -1590,7 +1614,7 @@ static void ov14_022212A0 (BattleSystem * param0, BattleContext * param1)
     v6 = AIScript_Read(param1);
     v7 = AIScript_Read(param1);
     v8 = AIScript_Read(param1);
-    v3 = ov14_02222D34(param1, v6);
+    v3 = AIScript_Battler(param1, v6);
 
     if (param0->battleType & 0x2) {
         v4 = param1->selectedPartySlot[v3];
@@ -1682,7 +1706,7 @@ static void ov14_0222147C (BattleSystem * param0, BattleContext * param1)
     v2 = AIScript_Read(param1);
     v3 = AIScript_Read(param1);
     v4 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     if (param1->battleMons[v0].statBoosts[v2] < v3) {
         AIScript_Iter(param1, v4);
@@ -1703,7 +1727,7 @@ static void ov14_022214D0 (BattleSystem * param0, BattleContext * param1)
     v2 = AIScript_Read(param1);
     v3 = AIScript_Read(param1);
     v4 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     if (param1->battleMons[v0].statBoosts[v2] > v3) {
         AIScript_Iter(param1, v4);
@@ -1724,7 +1748,7 @@ static void ov14_02221524 (BattleSystem * param0, BattleContext * param1)
     v2 = AIScript_Read(param1);
     v3 = AIScript_Read(param1);
     v4 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     if (param1->battleMons[v0].statBoosts[v2] == v3) {
         AIScript_Iter(param1, v4);
@@ -1745,7 +1769,7 @@ static void ov14_02221578 (BattleSystem * param0, BattleContext * param1)
     v2 = AIScript_Read(param1);
     v3 = AIScript_Read(param1);
     v4 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     if (param1->battleMons[v0].statBoosts[v2] != v3) {
         AIScript_Iter(param1, v4);
@@ -1873,7 +1897,7 @@ static void ov14_02221824 (BattleSystem * param0, BattleContext * param1)
     v2 = AIScript_Read(param1);
     v3 = AIScript_Read(param1);
     v4 = AIScript_Read(param1);
-    v1 = ov14_02222D34(param1, v2);
+    v1 = AIScript_Battler(param1, v2);
 
     switch (v2) {
     case 1:
@@ -1931,7 +1955,7 @@ static void ov14_022218E4 (BattleSystem * param0, BattleContext * param1)
     v2 = AIScript_Read(param1);
     v3 = AIScript_Read(param1);
     v4 = AIScript_Read(param1);
-    v1 = ov14_02222D34(param1, v2);
+    v1 = AIScript_Battler(param1, v2);
 
     switch (v2) {
     case 1:
@@ -1989,7 +2013,7 @@ static void ov14_022219A4 (BattleSystem * param0, BattleContext * param1)
     v2 = AIScript_Read(param1);
     v3 = AIScript_Read(param1);
     v4 = AIScript_Read(param1);
-    v1 = ov14_02222D34(param1, v2);
+    v1 = AIScript_Battler(param1, v2);
 
     switch (v2) {
     case 1:
@@ -2032,7 +2056,7 @@ static void ov14_02221A48 (BattleSystem * param0, BattleContext * param1)
     v2 = AIScript_Read(param1);
     v3 = AIScript_Read(param1);
     v4 = AIScript_Read(param1);
-    v1 = ov14_02222D34(param1, v2);
+    v1 = AIScript_Battler(param1, v2);
 
     switch (v2) {
     case 1:
@@ -2074,7 +2098,7 @@ static void ov14_02221AEC (BattleSystem * param0, BattleContext * param1)
     v1 = AIScript_Read(param1);
     v2 = AIScript_Read(param1);
     v3 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     switch (v2) {
     case 0x0:
@@ -2142,7 +2166,7 @@ static void ov14_02221BF0 (BattleSystem * param0, BattleContext * param1)
     AIScript_Iter(param1, 1);
 
     v1 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     param1->aiContext.calcTemp = param1->battleMons[v0].heldItem;
 }
@@ -2155,7 +2179,7 @@ static void ov14_02221C24 (BattleSystem * param0, BattleContext * param1)
     AIScript_Iter(param1, 1);
 
     v1 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     if (param1->aiContext.attacker != v0) {
         param1->aiContext.calcTemp = BattleSystem_GetItemData(param1, param1->aiContext.battlerHeldItems[v0], 1);
@@ -2177,7 +2201,7 @@ static void ov14_02221C88 (BattleSystem * param0, BattleContext * param1)
     v2 = AIScript_Read(param1);
     v3 = AIScript_Read(param1);
     v4 = AIScript_Read(param1);
-    v1 = ov14_02222D34(param1, v2);
+    v1 = AIScript_Battler(param1, v2);
 
     if ((v1 & 1) == (param1->aiContext.attacker & 1)) {
         v0 = param1->battleMons[v1].heldItem;
@@ -2216,7 +2240,7 @@ static void ov14_02221D20 (BattleSystem * param0, BattleContext * param1)
 
     v1 = AIScript_Read(param1);
     v2 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
     v3 = Battler_Side(param0, v0);
 
     switch (v2) {
@@ -2241,7 +2265,7 @@ static void ov14_02221D88 (BattleSystem * param0, BattleContext * param1)
 
     v1 = AIScript_Read(param1);
     v2 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     for (v3 = 0; v3 < BattleSystem_PartyCount(param0, v0); v3++) {
         v4 = BattleSystem_PartyPokemon(param0, v0, v3);
@@ -2267,7 +2291,7 @@ static void ov14_02221E18 (BattleSystem * param0, BattleContext * param1)
 
     v1 = AIScript_Read(param1);
     v2 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     for (v3 = 0; v3 < BattleSystem_PartyCount(param0, v0); v3++) {
         v5 = BattleSystem_PartyPokemon(param0, v0, v3);
@@ -2295,7 +2319,7 @@ static void ov14_02221EBC (BattleSystem * param0, BattleContext * param1)
     AIScript_Iter(param1, 1);
 
     v1 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     param1->aiContext.calcTemp = Battler_ItemFlingPower(param1, v0);
 }
@@ -2317,7 +2341,7 @@ static void ov14_02221F1C (BattleSystem * param0, BattleContext * param1)
 
     v1 = AIScript_Read(param1);
     v2 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
     v3 = Battler_CountMoves(param0, param1, v0);
 
     if ((param1->battleMons[v0].moveEffectsData.lastResortCount >= (v3 - 1)) && (v3 > 1)) {
@@ -2349,7 +2373,7 @@ static void ov14_02221FCC (BattleSystem * param0, BattleContext * param1)
     AIScript_Iter(param1, 1);
 
     v7 = AIScript_Read(param1);
-    v6 = ov14_02222D34(param1, v7);
+    v6 = AIScript_Battler(param1, v7);
     v5 = BattleSystem_MaxBattlers(param0);
 
     for (v0 = 0; v0 < v5; v0++) {
@@ -2384,7 +2408,7 @@ static void ov14_02222090 (BattleSystem * param0, BattleContext * param1)
     AIScript_Iter(param1, 1);
 
     v1 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     param1->aiContext.calcTemp = param1->totalTurns - param1->battleMons[v0].moveEffectsData.fakeOutTurnNumber;
 }
@@ -2475,7 +2499,7 @@ static void ov14_02222298 (BattleSystem * param0, BattleContext * param1)
     }
 
     v6 = ov14_02222D7C(param0, param1, param1->aiContext.attacker, &param1->battleMons[param1->aiContext.attacker].moves[0], &v8[0], param1->battleMons[param1->aiContext.attacker].heldItem, &v9[0], Battler_Ability(param1, param1->aiContext.attacker), param1->battleMons[param1->aiContext.attacker].moveEffectsData.embargoTurns, v2);
-    v4 = ov14_02222D34(param1, v1);
+    v4 = AIScript_Battler(param1, v1);
 
     if (v2 == 1) {
         v5 = param1->aiContext.moveDamageRolls[param1->aiContext.moveSlot];
@@ -2499,7 +2523,7 @@ static void ov14_022223B0 (BattleSystem * param0, BattleContext * param1)
     AIScript_Iter(param1, 1);
 
     v1 = AIScript_Read(param1);
-    v2 = ov14_02222D34(param1, v1);
+    v2 = AIScript_Battler(param1, v1);
 
     param1->aiContext.calcTemp = 0;
 
@@ -2520,7 +2544,7 @@ static void ov14_02222400 (BattleSystem * param0, BattleContext * param1)
 
     v0 = AIScript_Read(param1);
     v1 = AIScript_Read(param1);
-    v2 = ov14_02222D34(param1, v0);
+    v2 = AIScript_Battler(param1, v0);
 
     param1->aiContext.calcTemp = param1->battleMons[v2].statBoosts[v1] - param1->battleMons[param1->aiContext.attacker].statBoosts[v1];
 }
@@ -2539,7 +2563,7 @@ static void ov14_02222450 (BattleSystem * param0, BattleContext * param1)
     v0 = AIScript_Read(param1);
     v1 = AIScript_Read(param1);
     v2 = AIScript_Read(param1);
-    v3 = ov14_02222D34(param1, v0);
+    v3 = AIScript_Battler(param1, v0);
 
     ov14_0222254C(param1, v3, &v4, &v5, v1);
 
@@ -2562,7 +2586,7 @@ static void ov14_022224A4 (BattleSystem * param0, BattleContext * param1)
     v0 = AIScript_Read(param1);
     v1 = AIScript_Read(param1);
     v2 = AIScript_Read(param1);
-    v3 = ov14_02222D34(param1, v0);
+    v3 = AIScript_Battler(param1, v0);
 
     ov14_0222254C(param1, v3, &v4, &v5, v1);
 
@@ -2585,7 +2609,7 @@ static void ov14_022224F8 (BattleSystem * param0, BattleContext * param1)
     v0 = AIScript_Read(param1);
     v1 = AIScript_Read(param1);
     v2 = AIScript_Read(param1);
-    v3 = ov14_02222D34(param1, v0);
+    v3 = AIScript_Battler(param1, v0);
 
     ov14_0222254C(param1, v3, &v4, &v5, v1);
 
@@ -2707,7 +2731,7 @@ static void ov14_022227A4 (BattleSystem * param0, BattleContext * param1)
     GF_ASSERT(v0 != 1);
     GF_ASSERT(v0 != 0);
 
-    v2 = ov14_02222D34(param1, v0);
+    v2 = AIScript_Battler(param1, v0);
 
     if (param1->battlersSwitchingMask & FlagIndex(v2)) {
         AIScript_Iter(param1, v1);
@@ -2728,7 +2752,7 @@ static void ov14_022227F4 (BattleSystem * param0, BattleContext * param1)
     GF_ASSERT(v0 != 1);
     GF_ASSERT(v0 != 0);
 
-    v2 = ov14_02222D34(param1, v0);
+    v2 = AIScript_Battler(param1, v0);
 
     if ((param1->battlersSwitchingMask & FlagIndex(v2)) == 0) {
         AIScript_Iter(param1, v1);
@@ -2743,7 +2767,7 @@ static void ov14_02222844 (BattleSystem * param0, BattleContext * param1)
     AIScript_Iter(param1, 1);
 
     v1 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     param1->aiContext.calcTemp = param1->battleMons[v0].gender;
 }
@@ -2756,7 +2780,7 @@ static void ov14_0222287C (BattleSystem * param0, BattleContext * param1)
     AIScript_Iter(param1, 1);
 
     v1 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     if (param1->battleMons[v0].moveEffectsData.fakeOutTurnNumber < param1->totalTurns) {
         param1->aiContext.calcTemp = 0;
@@ -2773,7 +2797,7 @@ static void ov14_022228C8 (BattleSystem * param0, BattleContext * param1)
     AIScript_Iter(param1, 1);
 
     v1 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     param1->aiContext.calcTemp = param1->battleMons[v0].moveEffectsData.stockpileCount;
 }
@@ -2792,7 +2816,7 @@ static void ov14_02222918 (BattleSystem * param0, BattleContext * param1)
     AIScript_Iter(param1, 1);
 
     v1 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     param1->aiContext.calcTemp = param1->recycleItem[v0];
 }
@@ -2823,7 +2847,7 @@ static void ov14_022229AC (BattleSystem * param0, BattleContext * param1)
     AIScript_Iter(param1, 1);
 
     v1 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     if ((param1->moveProtect[v0] != 182) && (param1->moveProtect[v0] != 197) && (param1->moveProtect[v0] != 203)) {
         param1->aiContext.calcTemp = 0;
@@ -2838,7 +2862,7 @@ static void ov14_02222A08 (BattleSystem * param0, BattleContext * param1)
 
     AIScript_Iter(param1, 1);
     v0 = AIScript_Read(param1);
-    ov14_02222C28(param0, param1, v0);
+    AIScript_PushCursor(param0, param1, v0);
 }
 
 static void ov14_02222A28 (BattleSystem * param0, BattleContext * param1)
@@ -2854,7 +2878,7 @@ static void ov14_02222A44 (BattleSystem * param0, BattleContext * param1)
 {
     AIScript_Iter(param1, 1);
 
-    if (ov14_02222C60(param0, param1) == 1) {
+    if (AIScript_PopCursor(param0, param1) == 1) {
         return;
     }
 
@@ -2940,7 +2964,7 @@ static void ov14_02222BB4 (BattleSystem * param0, BattleContext * param1)
 
     v1 = AIScript_Read(param1);
     v2 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     if (param1->battleMons[v0].moveEffectsData.flashFire) {
         AIScript_Iter(param1, v2);
@@ -2955,44 +2979,73 @@ static void ov14_02222BF8 (BattleSystem * param0, BattleContext * param1)
     AIScript_Iter(param1, 1);
 
     v1 = AIScript_Read(param1);
-    v0 = ov14_02222D34(param1, v1);
+    v0 = AIScript_Battler(param1, v1);
 
     param1->aiContext.calcTemp = Battler_Ability(param1, v0);
 }
 
-static void ov14_02222C28 (BattleSystem * param0, BattleContext * param1, int param2)
+/**
+ * @brief Push an address for the AI script onto the cursor stack.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param address   Address to be pushed onto the cursor stack.
+ */
+static void AIScript_PushCursor(BattleSystem *battleSys, BattleContext *battleCtx, int address)
 {
-    param1->aiContext.scriptStackPointer[param1->aiContext.scriptStackSize++] = param1->aiScriptCursor;
-    AIScript_Iter(param1, param2);
+    AI_CONTEXT.scriptStackPointer[AI_CONTEXT.scriptStackSize++] = battleCtx->aiScriptCursor;
+    AIScript_Iter(battleCtx, address);
 
-    GF_ASSERT(param1->aiContext.scriptStackSize <= 8);
+    GF_ASSERT(AI_CONTEXT.scriptStackSize <= AI_MAX_STACK_SIZE);
 }
 
-static BOOL ov14_02222C60 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Pop the top element of the cursor stack into the cursor.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return TRUE if the cursor stack had an element to be popped; FALSE
+ * if it was empty.
+ */
+static BOOL AIScript_PopCursor(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (param1->aiContext.scriptStackSize) {
-        param1->aiContext.scriptStackSize--;
-        param1->aiScriptCursor = param1->aiContext.scriptStackPointer[param1->aiContext.scriptStackSize];
-        return 1;
-    } else {
-        return 0;
+    if (AI_CONTEXT.scriptStackSize) {
+        AI_CONTEXT.scriptStackSize--;
+        battleCtx->aiScriptCursor = AI_CONTEXT.scriptStackPointer[AI_CONTEXT.scriptStackSize];
+        return TRUE;
     }
+
+    return FALSE;
 }
 
+/**
+ * @brief Record the last move used by an active battler, if it is not
+ * already known.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ */
 static void TrainerAI_RecordLastMove(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
-        if (battleCtx->aiContext.battlerMoves[battleCtx->aiContext.defender][i] == battleCtx->movePrevByBattler[battleCtx->aiContext.defender]) {
+        if (AI_CONTEXT.battlerMoves[AI_CONTEXT.defender][i] == battleCtx->movePrevByBattler[AI_CONTEXT.defender]) {
             break;
         }
 
-        if (battleCtx->aiContext.battlerMoves[battleCtx->aiContext.defender][i] == MOVE_NONE) {
-            battleCtx->aiContext.battlerMoves[battleCtx->aiContext.defender][i] = battleCtx->movePrevByBattler[battleCtx->aiContext.defender];
+        if (AI_CONTEXT.battlerMoves[AI_CONTEXT.defender][i] == MOVE_NONE) {
+            AI_CONTEXT.battlerMoves[AI_CONTEXT.defender][i] = battleCtx->movePrevByBattler[AI_CONTEXT.defender];
             break;
         }
     }
 }
 
+/**
+ * @brief Read a word from the AI script at the current cursor position,
+ * then increment the cursor.
+ * 
+ * @param battleCtx 
+ * @return Current word for the AI script under the cursor.
+ */
 static int AIScript_Read(BattleContext *battleCtx)
 {
     int word = battleCtx->aiScriptTemp[battleCtx->aiScriptCursor];
@@ -3001,37 +3054,54 @@ static int AIScript_Read(BattleContext *battleCtx)
     return word;
 }
 
-static int AIScript_ReadOffset(BattleContext * battleCtx, int ofs)
+/**
+ * @brief Read a word from the AI script at the current cursor position
+ * offset by a specified value, then increment the cursor.
+ * 
+ * @param battleCtx 
+ * @return Current word for the AI script under the cursor + an offset.
+ */
+static int AIScript_ReadOffset(BattleContext *battleCtx, int ofs)
 {
     return battleCtx->aiScriptTemp[battleCtx->aiScriptCursor + ofs];
 }
 
+/**
+ * @brief Increment the cursor for the AI script by a fixed amount.
+ * 
+ * @param battleCtx 
+ * @param i         Amount by which to increment the script cursor.
+ */
 static void AIScript_Iter(BattleContext *battleCtx, int i)
 {
     battleCtx->aiScriptCursor += i;
 }
 
-static u8 ov14_02222D34(BattleContext * param0, u8 param1)
+/**
+ * @brief Determine the true battler ID for an input battler value as
+ * recognized by the AI script.
+ * 
+ * @param battleCtx 
+ * @param inBattler The input battler value.
+ * @return True battler ID for the input battler value.
+ */
+static u8 AIScript_Battler(BattleContext *battleCtx, u8 inBattler)
 {
-    u8 v0;
+    // the order of this switch statement must be maintained to match
+    switch (inBattler) {
+    case AI_BATTLER_ATTACKER:
+        return AI_CONTEXT.attacker;
 
-    switch (param1) {
-    case 1:
-        v0 = param0->aiContext.attacker;
-        break;
-    case 0:
+    case AI_BATTLER_DEFENDER:
     default:
-        v0 = param0->aiContext.defender;
-        break;
-    case 3:
-        v0 = param0->aiContext.attacker ^ 2;
-        break;
-    case 2:
-        v0 = param0->aiContext.defender ^ 2;
-        break;
-    }
+        return AI_CONTEXT.defender;
 
-    return v0;
+    case AI_BATTLER_ATTACKER_PARTNER:
+        return AI_CONTEXT.attacker ^ 2;
+
+    case AI_BATTLER_DEFENDER_PARTNER:
+        return AI_CONTEXT.defender ^ 2;
+    }
 }
 
 static s32 ov14_02222D7C (BattleSystem * param0, BattleContext * param1, int param2, u16 * param3, s32 * param4, u16 param5, u8 * param6, int param7, int param8, int param9)
@@ -3974,7 +4044,7 @@ int TrainerAI_PickCommand(BattleSystem *battleSys, int battler)
     return PLAYER_INPUT_FIGHT;
 }
 
-BOOL TrainerAI_ShouldUseItem (BattleSystem * param0, int param1)
+static BOOL TrainerAI_ShouldUseItem (BattleSystem * param0, int param1)
 {
     int v0;
     u8 v1 = 0;
