@@ -1,9 +1,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/abilities.h"
+#include "consts/generated/c/abilities.h"
+#include "consts/generated/c/battle_subscripts.h"
+#include "consts/generated/c/gender.h"
+
 #include "constants/battle.h"
-#include "constants/gender.h"
 #include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/narc.h"
@@ -11,7 +13,6 @@
 #include "constants/sdat.h"
 #include "constants/species.h"
 #include "constants/trainer.h"
-#include "constants/narc_files/battle_skill_subseq.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
@@ -99,93 +100,93 @@ typedef struct BattleMessageParams {
     int params[6]; //< Params for the rendered message
 } BattleMessageParams;
 
-static BOOL BtlCmd_SetupBattleUI(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_SetEncounter(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_ShowEncounter(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_ShowPokemon(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_ReturnPokemon(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PlayEncounterAnimation(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SetPokemonEncounter(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PokemonSlideIn(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PokemonSendOut(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_RecallPokemon(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_DeletePokemon(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SetTrainerEncounter(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_ThrowTrainerBall(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_SlideTrainerOut(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_SlideTrainerIn(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_Unused0A(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_SlideHPGaugeIn(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_SlideHPGaugeInWait(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_SlideHPGaugeOut(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_ThrowPokeball(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TrainerSlideOut(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TrainerSlideIn(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_BackgroundSlideIn(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_HealthbarSlideIn(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_HealthbarSlideInDelay(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_HealthbarSlideOut(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_Wait(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CalcDamage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CalcMaxDamage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PrintAttackMessage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PrintMessage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PrintGlobalMessage(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_PrintPreparedMessage(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_PrepareMessage(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_PrintSideLocalMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PrintBufferedMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_BufferMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_BufferLocalMessage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PlayMoveAnimation(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_PlayMoveAnimationA2D(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_FlickerBattler(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_UpdateHPValue(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_UpdateHPGauge(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_FaintBattler(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_PlayFaintingSequence(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_WaitFrames(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PlayMoveAnimationOnMons(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_FlickerMon(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_UpdateHealthBarValue(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_UpdateHealthBar(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryFaintMon(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PlayFaintAnimation(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_WaitButtonABTime(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PlaySound(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_If(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_IfMonData(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_FadeOut(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_JumpToSub(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_JumpToBattleEffect(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_JumpToMove(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_CheckCritical(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CompareVarToValue(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CompareMonDataToValue(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_FadeOutBattle(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_GoToSubscript(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_GoToEffectScript(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_GoToMoveScript(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CalcCrit(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CalcExpGain(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_StartGetExpTask(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_WaitGetExpTask(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_Dummy2A(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_ShowPartyList(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_WaitPartyList(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_Switch(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_JumpIfAnySwitches(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_ShowParty(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_WaitMonSelection(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SwitchAndUpdateMon(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_GoToIfAnySwitches(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_StartCatchMonTask(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_WaitCatchMonTask(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_SetupMultiHit(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_SetVarValue(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SetMultiHit(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_UpdateVar(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_SetMonDataValue(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_UpdateMonData(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_ClearVolatileStatus(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_ToggleVanish(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CheckAbility(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_Random(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_SetVarFromVar(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_SetMonDataFromVar(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_Jump(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_CallSub(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_CallSubFromVar(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_UpdateVarFromVar(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_UpdateMonDataFromVar(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_GoTo(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_Call(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CallFromVar(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SetMirrorMove(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_ResetStatChanges(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_ResetAllStatChanges(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_LockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_SetStatusIcon(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_TrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SetHealthbarStatus(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PrintTrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PayPrizeMoney(BattleSystem * param0, BattleContext * param1);
-static BOOL BtlCmd_PlayStatusEffect(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_PlayStatusEffectAToD(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_PlayStatusEffectFromVar(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PlayBattleAnimation(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PlayBattleAnimationOnMons(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PlayBattleAnimationFromVar(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PrintRecallMessage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PrintSendOutMessage(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_PrintBattleStartMessage(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_PrintLeadMonMessage(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_PreparedTrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PrintEncounterMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PrintFirstSendOutMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PrintBufferedTrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryConversion(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_IfVar(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_IfMonDataVar(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_GivePayDayMoney(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CompareVarToVar(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CompareMonDataToVar(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_AddPayDayMoney(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryLightScreen(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryReflect(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryMist(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryOHKOMove(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_Divide(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_DivideByVar(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_DivideVarByValue(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_DivideVarByVar(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryMimic(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_Metronome(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryDisable(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -198,39 +199,39 @@ static BOOL BtlCmd_TrySleepTalk(BattleSystem *battleSys, BattleContext *battleCt
 static BOOL BtlCmd_CalcFlailPower(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TrySpite(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryPartyStatusRefresh(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_CanStealItem(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_TryProtectEndure(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryStealItem(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryProtection(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TrySubstitute(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_CanWhirlwind(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryWhirlwind(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_Transform(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TrySpikes(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CheckSpikes(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryPerishSong(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_GetBattlerBySpeedOrder(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_IfVarIsValidBattler(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_GetMonBySpeedOrder(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_GoToIfValidMon(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_EndOfTurnWeatherEffect(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CalcRolloutPower(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CalcFuryCutterPower(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryAttract(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TrySafeguard(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_TryPresent(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_Present(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CalcMagnitudePower(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_TryReplaceBattler(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryReplaceFaintedMon(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_RapidSpin(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_WeatherHPRecovery(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CalcHiddenPowerParams(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CopyStatStages(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_TrySetupFutureSight(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryFutureSight(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CheckMoveHit(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryTeleport(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_BeatUp(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_FollowMe(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryHelpingHand(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_CanSwapItems(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_TrySetupWish(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TrySwapItems(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryWish(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryAssist(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_TrySetupMagicCoat(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_MagicCoatReflect(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TrySetMagicCoat(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_MagicCoat(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CalcRevengePowerMul(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryBreakScreens(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryYawn(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -238,11 +239,11 @@ static BOOL BtlCmd_TryKnockOff(BattleSystem *battleSys, BattleContext *battleCtx
 static BOOL BtlCmd_CalcHPFalloffPower(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryImprison(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryGrudge(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_TrySetupSnatch(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TrySnatch(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CalcWeightBasedPower(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_CalcWeatherBallPower(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_CheckForPursuit(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_ApplyTypeMatchup(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CalcWeatherBallParams(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryPursuit(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_ApplyTypeEffectiveness(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_IfTurnFlag(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SetTurnFlag(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CalcGyroBallPower(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -255,7 +256,7 @@ static BOOL BtlCmd_TryCopycat(BattleSystem *battleSys, BattleContext *battleCtx)
 static BOOL BtlCmd_CalcPunishmentPower(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TrySuckerPunch(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CheckSideCondition(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_CheckDefenderProtecting(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryFeint(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CheckCanShareStatus(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryLastResort(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryToxicSpikes(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -263,29 +264,29 @@ static BOOL BtlCmd_CheckToxicSpikes(BattleSystem *battleSys, BattleContext *batt
 static BOOL BtlCmd_CheckIgnorableAbility(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_IfSameSide(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_GenerateEndOfBattleItem(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_SetTrickRoom(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TrickRoom(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_IfMovedThisTurn(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_IfItemEffect(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_GetItemEffect(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_GetItemEffectPower(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckItemHoldEffect(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_GetItemHoldEffect(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_GetItemEffectParam(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryCamouflage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_GetTerrainMove(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_GetTerrainSecondaryEffect(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CalcNaturalGiftParams(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_TryPluckBerry(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_TryFlingItem(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_ShowYesNoScreen(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryPluck(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryFling(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_YesNoMenu(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_WaitYesNoResult(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_ShowPartyScreen(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_WaitPartyScreenResult(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_SubmitResult(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_ChoosePokemonMenu(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_WaitPokemonMenuResult(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SetLinkBattleResult(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CheckStealthRock(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_CheckActivateSecondaryEffect(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_CheckActivateChatterEffect(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckEffectActivation(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckChatterActivation(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_GetCurrentMoveData(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SetMosaic(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_ChangeWeatherForm(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_UpdateBG(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_ChangeForm(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SetBattleBackground(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_UseBagItem(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryEscape(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_ShowBattleStartPartyGauge(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -294,33 +295,33 @@ static BOOL BtlCmd_ShowPartyGauge(BattleSystem *battleSys, BattleContext *battle
 static BOOL BtlCmd_HidePartyGauge(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_LoadPartyGaugeGraphics(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_FreePartyGaugeGraphics(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_IncrementRecord(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_IncrementGameStat(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_RestoreSprite(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SpriteToOAM(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_OAMToSprite(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_CheckWhiteOut(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckBlackOut(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_BoostRandomStatBy2(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_RemoveItem(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryRecycle(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_ResultMesage(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_EscapeMesage(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_ForfeitMesage(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_CheckLeaveWith1HP(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PrintBattleResultMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PrintEscapeMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PrintForfeitMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckHoldOnWith1HP(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryRestoreStatusOnSwitch(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CheckSubstitute(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_CheckWeatherNegated(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckIgnoreWeather(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SetRandomTarget(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TriggerHeldItemOnPivotMove(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_RefreshSprite(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_PlayMoveHitSoundEffect(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_PlayMusic(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_CheckSafariContinues(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_WaitFramesNoSkip(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_CheckMoveIsType(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_LoadPersonalFormData(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_ReloadPokemon(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PlayMoveHitSound(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PlayBGM(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckSafariGameDone(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_WaitTime(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckCurMoveIsType(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_LoadArchivedMonData(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_RefreshMonData(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_End(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static int BattleScript_Read(BattleContext *battleCtx);
@@ -359,93 +360,93 @@ static void BattleScript_GetExpTask(SysTask *task, void *data);
 static void BattleScript_CatchMonTask(SysTask *task, void *data);
 
 static const BtlCmd sBattleCommands[] = {
-    BtlCmd_SetupBattleUI,
-    BtlCmd_SetEncounter,
-    BtlCmd_ShowEncounter,
-    BtlCmd_ShowPokemon,
-    BtlCmd_ReturnPokemon,
+    BtlCmd_PlayEncounterAnimation,
+    BtlCmd_SetPokemonEncounter,
+    BtlCmd_PokemonSlideIn,
+    BtlCmd_PokemonSendOut,
+    BtlCmd_RecallPokemon,
     BtlCmd_DeletePokemon,
     BtlCmd_SetTrainerEncounter,
-    BtlCmd_ThrowTrainerBall,
-    BtlCmd_SlideTrainerOut,
-    BtlCmd_SlideTrainerIn,
-    BtlCmd_Unused0A,
-    BtlCmd_SlideHPGaugeIn,
-    BtlCmd_SlideHPGaugeInWait,
-    BtlCmd_SlideHPGaugeOut,
+    BtlCmd_ThrowPokeball,
+    BtlCmd_TrainerSlideOut,
+    BtlCmd_TrainerSlideIn,
+    BtlCmd_BackgroundSlideIn,
+    BtlCmd_HealthbarSlideIn,
+    BtlCmd_HealthbarSlideInDelay,
+    BtlCmd_HealthbarSlideOut,
     BtlCmd_Wait,
     BtlCmd_CalcDamage,
     BtlCmd_CalcMaxDamage,
     BtlCmd_PrintAttackMessage,
     BtlCmd_PrintMessage,
     BtlCmd_PrintGlobalMessage,
-    BtlCmd_PrintPreparedMessage,
-    BtlCmd_PrepareMessage,
-    BtlCmd_PrintSideLocalMessage,
+    BtlCmd_PrintBufferedMessage,
+    BtlCmd_BufferMessage,
+    BtlCmd_BufferLocalMessage,
     BtlCmd_PlayMoveAnimation,
-    BtlCmd_PlayMoveAnimationA2D,
-    BtlCmd_FlickerBattler,
-    BtlCmd_UpdateHPValue,
-    BtlCmd_UpdateHPGauge,
-    BtlCmd_FaintBattler,
-    BtlCmd_PlayFaintingSequence,
-    BtlCmd_WaitFrames,
+    BtlCmd_PlayMoveAnimationOnMons,
+    BtlCmd_FlickerMon,
+    BtlCmd_UpdateHealthBarValue,
+    BtlCmd_UpdateHealthBar,
+    BtlCmd_TryFaintMon,
+    BtlCmd_PlayFaintAnimation,
+    BtlCmd_WaitButtonABTime,
     BtlCmd_PlaySound,
-    BtlCmd_If,
-    BtlCmd_IfMonData,
-    BtlCmd_FadeOut,
-    BtlCmd_JumpToSub,
-    BtlCmd_JumpToBattleEffect,
-    BtlCmd_JumpToMove,
-    BtlCmd_CheckCritical,
+    BtlCmd_CompareVarToValue,
+    BtlCmd_CompareMonDataToValue,
+    BtlCmd_FadeOutBattle,
+    BtlCmd_GoToSubscript,
+    BtlCmd_GoToEffectScript,
+    BtlCmd_GoToMoveScript,
+    BtlCmd_CalcCrit,
     BtlCmd_CalcExpGain,
     BtlCmd_StartGetExpTask,
     BtlCmd_WaitGetExpTask,
     BtlCmd_Dummy2A,
-    BtlCmd_ShowPartyList,
-    BtlCmd_WaitPartyList,
-    BtlCmd_Switch,
-    BtlCmd_JumpIfAnySwitches,
+    BtlCmd_ShowParty,
+    BtlCmd_WaitMonSelection,
+    BtlCmd_SwitchAndUpdateMon,
+    BtlCmd_GoToIfAnySwitches,
     BtlCmd_StartCatchMonTask,
     BtlCmd_WaitCatchMonTask,
-    BtlCmd_SetupMultiHit,
-    BtlCmd_SetVarValue,
+    BtlCmd_SetMultiHit,
+    BtlCmd_UpdateVar,
     BtlCmd_ChangeStatStage,
-    BtlCmd_SetMonDataValue,
+    BtlCmd_UpdateMonData,
     BtlCmd_ClearVolatileStatus,
     BtlCmd_ToggleVanish,
     BtlCmd_CheckAbility,
     BtlCmd_Random,
-    BtlCmd_SetVarFromVar,
-    BtlCmd_SetMonDataFromVar,
-    BtlCmd_Jump,
-    BtlCmd_CallSub,
-    BtlCmd_CallSubFromVar,
+    BtlCmd_UpdateVarFromVar,
+    BtlCmd_UpdateMonDataFromVar,
+    BtlCmd_GoTo,
+    BtlCmd_Call,
+    BtlCmd_CallFromVar,
     BtlCmd_SetMirrorMove,
-    BtlCmd_ResetStatChanges,
+    BtlCmd_ResetAllStatChanges,
     BtlCmd_LockMoveChoice,
     BtlCmd_UnlockMoveChoice,
-    BtlCmd_SetStatusIcon,
-    BtlCmd_TrainerMessage,
+    BtlCmd_SetHealthbarStatus,
+    BtlCmd_PrintTrainerMessage,
     BtlCmd_PayPrizeMoney,
-    BtlCmd_PlayStatusEffect,
-    BtlCmd_PlayStatusEffectAToD,
-    BtlCmd_PlayStatusEffectFromVar,
+    BtlCmd_PlayBattleAnimation,
+    BtlCmd_PlayBattleAnimationOnMons,
+    BtlCmd_PlayBattleAnimationFromVar,
     BtlCmd_PrintRecallMessage,
     BtlCmd_PrintSendOutMessage,
-    BtlCmd_PrintBattleStartMessage,
-    BtlCmd_PrintLeadMonMessage,
-    BtlCmd_PreparedTrainerMessage,
+    BtlCmd_PrintEncounterMessage,
+    BtlCmd_PrintFirstSendOutMessage,
+    BtlCmd_PrintBufferedTrainerMessage,
     BtlCmd_TryConversion,
-    BtlCmd_IfVar,
-    BtlCmd_IfMonDataVar,
-    BtlCmd_GivePayDayMoney,
+    BtlCmd_CompareVarToVar,
+    BtlCmd_CompareMonDataToVar,
+    BtlCmd_AddPayDayMoney,
     BtlCmd_TryLightScreen,
     BtlCmd_TryReflect,
     BtlCmd_TryMist,
     BtlCmd_TryOHKOMove,
-    BtlCmd_Divide,
-    BtlCmd_DivideByVar,
+    BtlCmd_DivideVarByValue,
+    BtlCmd_DivideVarByVar,
     BtlCmd_TryMimic,
     BtlCmd_Metronome,
     BtlCmd_TryDisable,
@@ -458,39 +459,39 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_CalcFlailPower,
     BtlCmd_TrySpite,
     BtlCmd_TryPartyStatusRefresh,
-    BtlCmd_CanStealItem,
-    BtlCmd_TryProtectEndure,
+    BtlCmd_TryStealItem,
+    BtlCmd_TryProtection,
     BtlCmd_TrySubstitute,
-    BtlCmd_CanWhirlwind,
+    BtlCmd_TryWhirlwind,
     BtlCmd_Transform,
     BtlCmd_TrySpikes,
     BtlCmd_CheckSpikes,
     BtlCmd_TryPerishSong,
-    BtlCmd_GetBattlerBySpeedOrder,
-    BtlCmd_IfVarIsValidBattler,
+    BtlCmd_GetMonBySpeedOrder,
+    BtlCmd_GoToIfValidMon,
     BtlCmd_EndOfTurnWeatherEffect,
     BtlCmd_CalcRolloutPower,
     BtlCmd_CalcFuryCutterPower,
     BtlCmd_TryAttract,
     BtlCmd_TrySafeguard,
-    BtlCmd_TryPresent,
+    BtlCmd_Present,
     BtlCmd_CalcMagnitudePower,
-    BtlCmd_TryReplaceBattler,
+    BtlCmd_TryReplaceFaintedMon,
     BtlCmd_RapidSpin,
     BtlCmd_WeatherHPRecovery,
     BtlCmd_CalcHiddenPowerParams,
     BtlCmd_CopyStatStages,
-    BtlCmd_TrySetupFutureSight,
+    BtlCmd_TryFutureSight,
     BtlCmd_CheckMoveHit,
     BtlCmd_TryTeleport,
     BtlCmd_BeatUp,
     BtlCmd_FollowMe,
     BtlCmd_TryHelpingHand,
-    BtlCmd_CanSwapItems,
-    BtlCmd_TrySetupWish,
+    BtlCmd_TrySwapItems,
+    BtlCmd_TryWish,
     BtlCmd_TryAssist,
-    BtlCmd_TrySetupMagicCoat,
-    BtlCmd_MagicCoatReflect,
+    BtlCmd_TrySetMagicCoat,
+    BtlCmd_MagicCoat,
     BtlCmd_CalcRevengePowerMul,
     BtlCmd_TryBreakScreens,
     BtlCmd_TryYawn,
@@ -498,11 +499,11 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_CalcHPFalloffPower,
     BtlCmd_TryImprison,
     BtlCmd_TryGrudge,
-    BtlCmd_TrySetupSnatch,
+    BtlCmd_TrySnatch,
     BtlCmd_CalcWeightBasedPower,
-    BtlCmd_CalcWeatherBallPower,
-    BtlCmd_CheckForPursuit,
-    BtlCmd_ApplyTypeMatchup,
+    BtlCmd_CalcWeatherBallParams,
+    BtlCmd_TryPursuit,
+    BtlCmd_ApplyTypeEffectiveness,
     BtlCmd_IfTurnFlag,
     BtlCmd_SetTurnFlag,
     BtlCmd_CalcGyroBallPower,
@@ -515,7 +516,7 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_CalcPunishmentPower,
     BtlCmd_TrySuckerPunch,
     BtlCmd_CheckSideCondition,
-    BtlCmd_CheckDefenderProtecting,
+    BtlCmd_TryFeint,
     BtlCmd_CheckCanShareStatus,
     BtlCmd_TryLastResort,
     BtlCmd_TryToxicSpikes,
@@ -523,29 +524,29 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_CheckIgnorableAbility,
     BtlCmd_IfSameSide,
     BtlCmd_GenerateEndOfBattleItem,
-    BtlCmd_SetTrickRoom,
+    BtlCmd_TrickRoom,
     BtlCmd_IfMovedThisTurn,
-    BtlCmd_IfItemEffect,
-    BtlCmd_GetItemEffect,
-    BtlCmd_GetItemEffectPower,
+    BtlCmd_CheckItemHoldEffect,
+    BtlCmd_GetItemHoldEffect,
+    BtlCmd_GetItemEffectParam,
     BtlCmd_TryCamouflage,
     BtlCmd_GetTerrainMove,
     BtlCmd_GetTerrainSecondaryEffect,
     BtlCmd_CalcNaturalGiftParams,
-    BtlCmd_TryPluckBerry,
-    BtlCmd_TryFlingItem,
-    BtlCmd_ShowYesNoScreen,
+    BtlCmd_TryPluck,
+    BtlCmd_TryFling,
+    BtlCmd_YesNoMenu,
     BtlCmd_WaitYesNoResult,
-    BtlCmd_ShowPartyScreen,
-    BtlCmd_WaitPartyScreenResult,
-    BtlCmd_SubmitResult,
+    BtlCmd_ChoosePokemonMenu,
+    BtlCmd_WaitPokemonMenuResult,
+    BtlCmd_SetLinkBattleResult,
     BtlCmd_CheckStealthRock,
-    BtlCmd_CheckActivateSecondaryEffect,
-    BtlCmd_CheckActivateChatterEffect,
+    BtlCmd_CheckEffectActivation,
+    BtlCmd_CheckChatterActivation,
     BtlCmd_GetCurrentMoveData,
     BtlCmd_SetMosaic,
-    BtlCmd_ChangeWeatherForm,
-    BtlCmd_UpdateBG,
+    BtlCmd_ChangeForm,
+    BtlCmd_SetBattleBackground,
     BtlCmd_UseBagItem,
     BtlCmd_TryEscape,
     BtlCmd_ShowBattleStartPartyGauge,
@@ -554,33 +555,33 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_HidePartyGauge,
     BtlCmd_LoadPartyGaugeGraphics,
     BtlCmd_FreePartyGaugeGraphics,
-    BtlCmd_IncrementRecord,
+    BtlCmd_IncrementGameStat,
     BtlCmd_RestoreSprite,
     BtlCmd_TriggerAbilityOnHit,
     BtlCmd_SpriteToOAM,
     BtlCmd_OAMToSprite,
-    BtlCmd_CheckWhiteOut,
+    BtlCmd_CheckBlackOut,
     BtlCmd_BoostRandomStatBy2,
     BtlCmd_RemoveItem,
     BtlCmd_TryRecycle,
     BtlCmd_TriggerHeldItemOnHit,
-    BtlCmd_ResultMesage,
-    BtlCmd_EscapeMesage,
-    BtlCmd_ForfeitMesage,
-    BtlCmd_CheckLeaveWith1HP,
+    BtlCmd_PrintBattleResultMessage,
+    BtlCmd_PrintEscapeMessage,
+    BtlCmd_PrintForfeitMessage,
+    BtlCmd_CheckHoldOnWith1HP,
     BtlCmd_TryRestoreStatusOnSwitch,
     BtlCmd_CheckSubstitute,
-    BtlCmd_CheckWeatherNegated,
+    BtlCmd_CheckIgnoreWeather,
     BtlCmd_SetRandomTarget,
     BtlCmd_TriggerHeldItemOnPivotMove,
     BtlCmd_RefreshSprite,
-    BtlCmd_PlayMoveHitSoundEffect,
-    BtlCmd_PlayMusic,
-    BtlCmd_CheckSafariContinues,
-    BtlCmd_WaitFramesNoSkip,
-    BtlCmd_CheckMoveIsType,
-    BtlCmd_LoadPersonalFormData,
-    BtlCmd_ReloadPokemon,
+    BtlCmd_PlayMoveHitSound,
+    BtlCmd_PlayBGM,
+    BtlCmd_CheckSafariGameDone,
+    BtlCmd_WaitTime,
+    BtlCmd_CheckCurMoveIsType,
+    BtlCmd_LoadArchivedMonData,
+    BtlCmd_RefreshMonData,
     BtlCmd_End
 };
 
@@ -604,7 +605,7 @@ BOOL BattleScript_Exec(BattleSystem *battleSys, BattleContext *battleCtx)
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_SetupBattleUI(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_PlayEncounterAnimation(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     BattleIO_SetupBattleUI(battleSys, BATTLER_US);
@@ -624,7 +625,7 @@ static BOOL BtlCmd_SetupBattleUI(BattleSystem *battleSys, BattleContext *battleC
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_SetEncounter(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_SetPokemonEncounter(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
@@ -671,7 +672,7 @@ static BOOL BtlCmd_SetEncounter(BattleSystem *battleSys, BattleContext *battleCt
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_ShowEncounter(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_PokemonSlideIn(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
@@ -777,7 +778,7 @@ static BOOL BtlCmd_ShowEncounter(BattleSystem *battleSys, BattleContext *battleC
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_ShowPokemon(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_PokemonSendOut(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
@@ -881,7 +882,7 @@ static BOOL BtlCmd_ShowPokemon(BattleSystem *battleSys, BattleContext *battleCtx
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_ReturnPokemon(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_RecallPokemon(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
@@ -1041,7 +1042,7 @@ static BOOL BtlCmd_SetTrainerEncounter(BattleSystem *battleSys, BattleContext *b
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_ThrowTrainerBall(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_ThrowPokeball(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
@@ -1112,7 +1113,7 @@ static BOOL BtlCmd_ThrowTrainerBall(BattleSystem *battleSys, BattleContext *batt
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_SlideTrainerOut(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_TrainerSlideOut(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
@@ -1229,7 +1230,7 @@ static BOOL BtlCmd_SlideTrainerOut(BattleSystem *battleSys, BattleContext *battl
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_SlideTrainerIn(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_TrainerSlideIn(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
@@ -1331,7 +1332,7 @@ static BOOL BtlCmd_SlideTrainerIn(BattleSystem *battleSys, BattleContext *battle
     return FALSE;
 }
 
-static BOOL BtlCmd_Unused0A(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_BackgroundSlideIn(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
@@ -1355,7 +1356,7 @@ static BOOL BtlCmd_Unused0A(BattleSystem *battleSys, BattleContext *battleCtx)
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_SlideHPGaugeIn(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_HealthbarSlideIn(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
@@ -1412,7 +1413,7 @@ static BOOL BtlCmd_SlideHPGaugeIn(BattleSystem *battleSys, BattleContext *battle
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_SlideHPGaugeInWait(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_HealthbarSlideInDelay(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
@@ -1471,7 +1472,7 @@ static BOOL BtlCmd_SlideHPGaugeInWait(BattleSystem *battleSys, BattleContext *ba
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_SlideHPGaugeOut(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_HealthbarSlideOut(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
@@ -1522,7 +1523,7 @@ static BOOL BtlCmd_SlideHPGaugeOut(BattleSystem *battleSys, BattleContext *battl
  * @brief Wait until the battle IO queue is empty.
  * 
  * This command ensures that all linked battlers are in sync with the present
- * state of the battle after a given action. If any linked battler hangs in
+ * state of the battle after a given action. CompareVarToValue any linked battler hangs in
  * this state for 1800 frames (~30 seconds), then the link status will be set
  * to an error state, forcing the battle to end.
  * 
@@ -1740,7 +1741,7 @@ static BOOL BtlCmd_PrintGlobalMessage(BattleSystem *battleSys, BattleContext *ba
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_PrintPreparedMessage(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_PrintBufferedMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     BattleIO_PrintMessage(battleSys, battleCtx, &battleCtx->msgBuffer);
@@ -1758,13 +1759,13 @@ static BOOL BtlCmd_PrintPreparedMessage(BattleSystem *battleSys, BattleContext *
  * 
  * Side effects:
  * - The contents of the prepared message are stored in battleCtx->msgBuffer.
- * This message can later be printed by invoking PrintPreparedMessage.
+ * This message can later be printed by invoking PrintBufferedMessage.
  * 
  * @param battleSys 
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_PrepareMessage(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_BufferMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
 
@@ -1788,7 +1789,7 @@ static BOOL BtlCmd_PrepareMessage(BattleSystem *battleSys, BattleContext *battle
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_PrintSideLocalMessage(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_BufferLocalMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int inBattler = BattleScript_Read(battleCtx);
@@ -1810,7 +1811,7 @@ static BOOL BtlCmd_PrintSideLocalMessage(BattleSystem *battleSys, BattleContext 
  * @brief Play a move animation, if move animations are enabled.
  * 
  * Inputs:
- * 1. The location from which the animation is sourced. If the input here is
+ * 1. The location from which the animation is sourced. CompareVarToValue the input here is
  * BTLSCR_MSG_TEMP, then the move to load is picked from battleCtx->msgMoveTemp.
  * Otherwise, it is picked from battleCtx->moveCur.
  * 
@@ -1837,7 +1838,7 @@ static BOOL BtlCmd_PlayMoveAnimation(BattleSystem *battleSys, BattleContext *bat
     }
 
     if (BattleSystem_AnimationsOn(battleSys) == FALSE) {
-        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_WAIT_MOVE_ANIMATION);
+        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSCRIPT_WAIT_MOVE_ANIMATION);
     }
 
     return FALSE;
@@ -1848,7 +1849,7 @@ static BOOL BtlCmd_PlayMoveAnimation(BattleSystem *battleSys, BattleContext *bat
  * if move animations are enabled.
  * 
  * Inputs:
- * 1. The location from which the animation is sourced. If the input here is
+ * 1. The location from which the animation is sourced. CompareVarToValue the input here is
  * BTLSCR_MSG_TEMP, then the move to load is picked from battleCtx->msgMoveTemp.
  * Otherwise, it is picked from battleCtx->moveCur.
  * 2. The attacker for the move animation.
@@ -1858,7 +1859,7 @@ static BOOL BtlCmd_PlayMoveAnimation(BattleSystem *battleSys, BattleContext *bat
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_PlayMoveAnimationA2D(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_PlayMoveAnimationOnMons(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int inMoveSource = BattleScript_Read(battleCtx);
@@ -1882,7 +1883,7 @@ static BOOL BtlCmd_PlayMoveAnimationA2D(BattleSystem *battleSys, BattleContext *
     }
 
     if (BattleSystem_AnimationsOn(battleSys) == FALSE) {
-        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_WAIT_MOVE_ANIMATION);
+        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSCRIPT_WAIT_MOVE_ANIMATION);
     }
 
     return FALSE;
@@ -1895,7 +1896,7 @@ static BOOL BtlCmd_PlayMoveAnimationA2D(BattleSystem *battleSys, BattleContext *
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_FlickerBattler(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_FlickerMon(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
 
@@ -1929,7 +1930,7 @@ static BOOL BtlCmd_FlickerBattler(BattleSystem *battleSys, BattleContext *battle
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_UpdateHPValue(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_UpdateHealthBarValue(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int inBattler = BattleScript_Read(battleCtx);
@@ -1970,7 +1971,7 @@ static BOOL BtlCmd_UpdateHPValue(BattleSystem *battleSys, BattleContext *battleC
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_UpdateHPGauge(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_UpdateHealthBar(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int inBattler = BattleScript_Read(battleCtx);
@@ -1998,7 +1999,7 @@ static BOOL BtlCmd_UpdateHPGauge(BattleSystem *battleSys, BattleContext *battleC
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_FaintBattler(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_TryFaintMon(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int inBattler = BattleScript_Read(battleCtx);
@@ -2029,7 +2030,7 @@ static BOOL BtlCmd_FaintBattler(BattleSystem *battleSys, BattleContext *battleCt
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_PlayFaintingSequence(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_PlayFaintAnimation(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
 
@@ -2058,7 +2059,7 @@ static BOOL BtlCmd_PlayFaintingSequence(BattleSystem *battleSys, BattleContext *
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_WaitFrames(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_WaitButtonABTime(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int frames = BattleScript_Read(battleCtx);
@@ -2126,7 +2127,7 @@ static BOOL BtlCmd_PlaySound(BattleSystem *battleSys, BattleContext *battleCtx)
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_If(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_CompareVarToValue(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int op = BattleScript_Read(battleCtx);
@@ -2137,43 +2138,43 @@ static BOOL BtlCmd_If(BattleSystem *battleSys, BattleContext *battleCtx)
     int *data = BattleScript_VarAddress(battleSys, battleCtx, srcVar);
 
     switch (op) {
-    case IFOP_EQU:
+    case OPCODE_EQU:
         if (*data != compareTo) {
             jump = 0;
         }
         break;
 
-    case IFOP_NEQ:
+    case OPCODE_NEQ:
         if (*data == compareTo) {
             jump = 0;
         }
         break;
 
-    case IFOP_GT:
+    case OPCODE_GT:
         if (*data <= compareTo) {
             jump = 0;
         }
         break;
 
-    case IFOP_LTE:
+    case OPCODE_LTE:
         if (*data > compareTo) {
             jump = 0;
         }
         break;
 
-    case IFOP_FLAG_SET:
+    case OPCODE_FLAG_SET:
         if ((*data & compareTo) == FALSE) {
             jump = 0;
         }
         break;
 
-    case IFOP_FLAG_NOT:
+    case OPCODE_FLAG_NOT:
         if (*data & compareTo) {
             jump = 0;
         }
         break;
 
-    case IFOP_AND:
+    case OPCODE_AND:
         if ((*data & compareTo) != compareTo) {
             jump = 0;
         }
@@ -2205,7 +2206,7 @@ static BOOL BtlCmd_If(BattleSystem *battleSys, BattleContext *battleCtx)
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_IfMonData(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_CompareMonDataToValue(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int op = BattleScript_Read(battleCtx);
@@ -2218,43 +2219,43 @@ static BOOL BtlCmd_IfMonData(BattleSystem *battleSys, BattleContext *battleCtx)
     int data = BattleMon_Get(battleCtx, battler, srcParam, NULL);
 
     switch (op) {
-    case IFOP_EQU:
+    case OPCODE_EQU:
         if (data != compareTo) {
             jump = 0;
         }
         break;
 
-    case IFOP_NEQ:
+    case OPCODE_NEQ:
         if (data == compareTo) {
             jump = 0;
         }
         break;
 
-    case IFOP_GT:
+    case OPCODE_GT:
         if (data <= compareTo) {
             jump = 0;
         }
         break;
 
-    case IFOP_LTE:
+    case OPCODE_LTE:
         if (data > compareTo) {
             jump = 0;
         }
         break;
 
-    case IFOP_FLAG_SET:
+    case OPCODE_FLAG_SET:
         if ((data & compareTo) == FALSE) {
             jump = 0;
         }
         break;
 
-    case IFOP_FLAG_NOT:
+    case OPCODE_FLAG_NOT:
         if (data & compareTo) {
             jump = 0;
         }
         break;
 
-    case IFOP_AND:
+    case OPCODE_AND:
         if ((data & compareTo) != compareTo) {
             jump = 0;
         }
@@ -2280,7 +2281,7 @@ static BOOL BtlCmd_IfMonData(BattleSystem *battleSys, BattleContext *battleCtx)
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_FadeOut(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_FadeOutBattle(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     BattleIO_FadeOut(battleSys, battleCtx);
@@ -2289,7 +2290,7 @@ static BOOL BtlCmd_FadeOut(BattleSystem *battleSys, BattleContext *battleCtx)
 }
 
 /**
- * @brief Jump to a subroutine sequence, abandoning the current script.
+ * @brief GoTo to a subroutine sequence, abandoning the current script.
  * 
  * Inputs:
  * 1. The subroutine sequence to jump to.
@@ -2298,7 +2299,7 @@ static BOOL BtlCmd_FadeOut(BattleSystem *battleSys, BattleContext *battleCtx)
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_JumpToSub(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_GoToSubscript(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int subseq = BattleScript_Read(battleCtx);
@@ -2309,13 +2310,13 @@ static BOOL BtlCmd_JumpToSub(BattleSystem *battleSys, BattleContext *battleCtx)
 }
 
 /**
- * @brief Jump to the battle effect sequence for the current move.
+ * @brief GoTo to the battle effect sequence for the current move.
  * 
  * @param battleSys 
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_JumpToBattleEffect(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_GoToEffectScript(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
 
@@ -2325,7 +2326,7 @@ static BOOL BtlCmd_JumpToBattleEffect(BattleSystem *battleSys, BattleContext *ba
 }
 
 /**
- * @brief Jump to the move sequence for the chosen move.
+ * @brief GoTo to the move sequence for the chosen move.
  * 
  * This is specifically for moves which call other moves (e.g., Assist, Me
  * First, Metronome, Sleep Talk) by setting battleCtx->msgMoveTemp.
@@ -2346,7 +2347,7 @@ static BOOL BtlCmd_JumpToBattleEffect(BattleSystem *battleSys, BattleContext *ba
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_JumpToMove(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_GoToMoveScript(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     BOOL targetIsSet = BattleScript_Read(battleCtx);
@@ -2363,7 +2364,7 @@ static BOOL BtlCmd_JumpToMove(BattleSystem *battleSys, BattleContext *battleCtx)
 
     if (battleCtx->defender == BATTLER_NONE) {
         battleCtx->commandNext = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
-        BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_NO_TARGET);
+        BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSCRIPT_NO_TARGET);
     } else {
         BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__WAZA_SEQ, battleCtx->moveCur);
     }
@@ -2374,7 +2375,7 @@ static BOOL BtlCmd_JumpToMove(BattleSystem *battleSys, BattleContext *battleCtx)
 /**
  * @brief Check if a critical hit should occur.
  * 
- * If the battle is either the catching tutorial or the player's first battle,
+ * CompareVarToValue the battle is either the catching tutorial or the player's first battle,
  * then this will always flag no critical hits.
  * 
  * Side effects:
@@ -2385,7 +2386,7 @@ static BOOL BtlCmd_JumpToMove(BattleSystem *battleSys, BattleContext *battleCtx)
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_CheckCritical(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_CalcCrit(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
 
@@ -2613,7 +2614,7 @@ static BOOL BtlCmd_Dummy2A(BattleSystem *battleSys, BattleContext *battleCtx)
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_ShowPartyList(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_ShowParty(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
 
@@ -2631,7 +2632,7 @@ static BOOL BtlCmd_ShowPartyList(BattleSystem *battleSys, BattleContext *battleC
 
     for (battler = 0; battler < maxBattlers; battler++) {
         if (BattleSystem_BattleType(battleSys) == BATTLE_TYPE_LINK_DOUBLES) {
-            // If both battlers are done selecting replacements, wait for all other battlers
+            // CompareVarToValue both battlers are done selecting replacements, wait for all other battlers
             int partner = BattleSystem_Partner(battleSys, battler);
             if ((switchingMask & FlagIndex(battler)) == FALSE
                     && (switchingMask & FlagIndex(partner)) == FALSE) {
@@ -2664,7 +2665,7 @@ static BOOL BtlCmd_ShowPartyList(BattleSystem *battleSys, BattleContext *battleC
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_WaitPartyList(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_WaitMonSelection(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
     int totalSwitching = 0;
@@ -2706,7 +2707,7 @@ static BOOL BtlCmd_WaitPartyList(BattleSystem *battleSys, BattleContext *battleC
 }
 
 /**
- * @brief Switch a battler for another.
+ * @brief SwitchAndUpdateMon a battler for another.
  * 
  * Inputs:
  * 1. The battler who is switching
@@ -2723,7 +2724,7 @@ static BOOL BtlCmd_WaitPartyList(BattleSystem *battleSys, BattleContext *battleC
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_Switch(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_SwitchAndUpdateMon(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int inBattler = BattleScript_Read(battleCtx);
@@ -2763,7 +2764,7 @@ static BOOL BtlCmd_Switch(BattleSystem *battleSys, BattleContext *battleCtx)
 }
 
 /**
- * @brief Jump to the designated address if any battlers are switching.
+ * @brief GoTo to the designated address if any battlers are switching.
  * 
  * Inputs:
  * 1. The jump distance
@@ -2772,7 +2773,7 @@ static BOOL BtlCmd_Switch(BattleSystem *battleSys, BattleContext *battleCtx)
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_JumpIfAnySwitches(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_GoToIfAnySwitches(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i; // must declare here to match
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
@@ -2848,8 +2849,8 @@ static BOOL BtlCmd_WaitCatchMonTask(BattleSystem *battleSys, BattleContext *batt
  * Twineedle, Triple Kick).
  * 
  * Inputs:
- * 1. The number of hits to apply to the move. If this value is passed as 0,
- * then a number of hits will be generated from 2 through 5. If the attacker
+ * 1. The number of hits to apply to the move. CompareVarToValue this value is passed as 0,
+ * then a number of hits will be generated from 2 through 5. CompareVarToValue the attacker
  * has Skill Link, then the generated number of hits will always be 5.
  * 2. The flags to set for the move, which control how to evaluate successive
  * hits. The relevant flags of note are:
@@ -2869,7 +2870,7 @@ static BOOL BtlCmd_WaitCatchMonTask(BattleSystem *battleSys, BattleContext *batt
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_SetupMultiHit(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_SetMultiHit(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int hits = BattleScript_Read(battleCtx);
@@ -2910,7 +2911,7 @@ static BOOL BtlCmd_SetupMultiHit(BattleSystem *battleSys, BattleContext *battleC
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_SetVarValue(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_UpdateVar(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int op = BattleScript_Read(battleCtx);
@@ -2921,64 +2922,64 @@ static BOOL BtlCmd_SetVarValue(BattleSystem *battleSys, BattleContext *battleCtx
     u32 mask;
 
     switch (op) {
-    case VALOP_SET:
+    case OPCODE_SET:
         *var = srcVal;
         break;
 
-    case VALOP_ADD:
+    case OPCODE_ADD:
         *var += srcVal;
         break;
         
-    case VALOP_SUB:
+    case OPCODE_SUB:
         *var -= srcVal;
         break;
 
-    case VALOP_FLAG_ON:
+    case OPCODE_FLAG_ON:
         *var |= srcVal;
         break;
 
-    case VALOP_FLAG_OFF:
+    case OPCODE_FLAG_OFF:
         *var &= FLAG_NEGATE(srcVal);
         break;
 
-    case VALOP_MUL:
+    case OPCODE_MUL:
         *var *= srcVal;
         break;
 
-    case VALOP_DIV:
+    case OPCODE_DIV:
         *var /= srcVal;
         break;
 
-    case VALOP_LSH:
+    case OPCODE_LEFT_SHIFT:
         *var = *var << srcVal;
         break;
 
-    case VALOP_RSH:
+    case OPCODE_RIGHT_SHIFT:
         mask = *var;
         mask = mask >> srcVal;
         *var = mask;
         break;
 
-    case VALOP_FLAG_INDEX:
+    case OPCODE_FLAG_INDEX:
         *var = FlagIndex(srcVal);
         break;
 
-    case VALOP_GET:
+    case OPCODE_GET:
         GF_ASSERT(FALSE);
         break;
 
-    case VALOP_SUB_TO_ZERO:
+    case OPCODE_SUB_TO_ZERO:
         *var -= srcVal;
         if (*var < 0) {
             *var = 0;
         }
         break;
 
-    case VALOP_XOR:
+    case OPCODE_BITWISE_XOR:
         *var ^= srcVal;
         break;
 
-    case VALOP_AND:
+    case OPCODE_BITWISE_AND:
         *var &= srcVal;
         break;
 
@@ -3061,19 +3062,19 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
     if (battleCtx->sideEffectParam >= MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_2_STAGES) {
         statOffset = battleCtx->sideEffectParam - MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_2_STAGES;
         stageChange = -2;
-        battleCtx->scriptTemp = STATUS_EFFECT_STAGE_DOWN;
+        battleCtx->scriptTemp = BATTLE_ANIMATION_STAT_DROP;
     } else if (battleCtx->sideEffectParam >= MOVE_SUBSCRIPT_PTR_ATTACK_UP_2_STAGES) {
         statOffset = battleCtx->sideEffectParam - MOVE_SUBSCRIPT_PTR_ATTACK_UP_2_STAGES;
         stageChange = 2;
-        battleCtx->scriptTemp = STATUS_EFFECT_STAGE_UP;
+        battleCtx->scriptTemp = BATTLE_ANIMATION_STAT_BOOST;
     } else if (battleCtx->sideEffectParam >= MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_1_STAGE) {
         statOffset = battleCtx->sideEffectParam - MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_1_STAGE;
         stageChange = -1;
-        battleCtx->scriptTemp = STATUS_EFFECT_STAGE_DOWN;
+        battleCtx->scriptTemp = BATTLE_ANIMATION_STAT_DROP;
     } else {
         statOffset = battleCtx->sideEffectParam - MOVE_SUBSCRIPT_PTR_ATTACK_UP_1_STAGE;
         stageChange = 1;
-        battleCtx->scriptTemp = STATUS_EFFECT_STAGE_UP;
+        battleCtx->scriptTemp = BATTLE_ANIMATION_STAT_BOOST;
     }
 
     if (stageChange > 0) {
@@ -3225,7 +3226,7 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_SetMonDataValue(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_UpdateMonData(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int op = BattleScript_Read(battleCtx);
@@ -3237,53 +3238,53 @@ static BOOL BtlCmd_SetMonDataValue(BattleSystem *battleSys, BattleContext *battl
     int monData = BattleMon_Get(battleCtx, battler, paramID, NULL);
 
     switch (op) {
-    case VALOP_SET:
+    case OPCODE_SET:
         monData = srcVal;
         break;
 
-    case VALOP_ADD:
+    case OPCODE_ADD:
         monData += srcVal;
         break;
 
-    case VALOP_SUB:
+    case OPCODE_SUB:
         monData -= srcVal;
         break;
 
-    case VALOP_FLAG_ON:
+    case OPCODE_FLAG_ON:
         monData |= srcVal;
         break;
 
-    case VALOP_FLAG_OFF:
+    case OPCODE_FLAG_OFF:
         monData &= FLAG_NEGATE(srcVal);
         break;
 
-    case VALOP_MUL:
+    case OPCODE_MUL:
         monData *= srcVal;
         break;
 
-    case VALOP_DIV:
+    case OPCODE_DIV:
         monData /= srcVal;
         break;
 
-    case VALOP_LSH:
+    case OPCODE_LEFT_SHIFT:
         monData = monData << srcVal;
         break;
 
-    case VALOP_RSH:
+    case OPCODE_RIGHT_SHIFT:
         u32 mask = monData;
         mask = mask >> srcVal;
         monData = mask;
         break;
 
-    case VALOP_FLAG_INDEX:
+    case OPCODE_FLAG_INDEX:
         monData = FlagIndex(srcVal);
         break;
 
-    case VALOP_GET:
+    case OPCODE_GET:
         GF_ASSERT(FALSE);
         break;
 
-    case VALOP_SUB_TO_ZERO:
+    case OPCODE_SUB_TO_ZERO:
         monData -= srcVal;
 
         if (monData < 0) {
@@ -3291,11 +3292,11 @@ static BOOL BtlCmd_SetMonDataValue(BattleSystem *battleSys, BattleContext *battl
         }
         break;
 
-    case VALOP_XOR:
+    case OPCODE_BITWISE_XOR:
         monData ^= srcVal;
         break;
 
-    case VALOP_AND:
+    case OPCODE_BITWISE_AND:
         monData &= srcVal;
         break;
 
@@ -3366,10 +3367,10 @@ static BOOL BtlCmd_ToggleVanish(BattleSystem *battleSys, BattleContext *battleCt
  * 1. Op-code which controls the behavior. See enum CheckHaveOp
  * 2. Input battler (or set of battlers) whose ability should be checked
  * 3. The ability to check for any battler to have (or not have)
- * 4. Jump distance if a battler in the input set meets the criteria
+ * 4. GoTo distance if a battler in the input set meets the criteria
  * 
  * Side effects:
- * - If any battler matches the criteria, battleCtx->abilityMon will be set
+ * - CompareVarToValue any battler matches the criteria, battleCtx->abilityMon will be set
  * to their identifier.
  * 
  * @param battleSys 
@@ -3457,7 +3458,7 @@ static BOOL BtlCmd_Random(BattleSystem *battleSys, BattleContext *battleCtx)
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_SetVarFromVar(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_UpdateVarFromVar(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int op = BattleScript_Read(battleCtx);
@@ -3468,53 +3469,53 @@ static BOOL BtlCmd_SetVarFromVar(BattleSystem *battleSys, BattleContext *battleC
     int *srcData = BattleScript_VarAddress(battleSys, battleCtx, srcVar);
 
     switch (op) {
-    case VALOP_SET:
+    case OPCODE_SET:
         *dstData = *srcData;
         break;
 
-    case VALOP_ADD:
+    case OPCODE_ADD:
         *dstData += *srcData;
         break;
 
-    case VALOP_SUB:
+    case OPCODE_SUB:
         *dstData -= *srcData;
         break;
 
-    case VALOP_FLAG_ON:
+    case OPCODE_FLAG_ON:
         *dstData |= *srcData;
         break;
 
-    case VALOP_FLAG_OFF:
+    case OPCODE_FLAG_OFF:
         *dstData &= FLAG_NEGATE(*srcData);
         break;
 
-    case VALOP_MUL:
+    case OPCODE_MUL:
         *dstData *= *srcData;
         break;
 
-    case VALOP_DIV:
+    case OPCODE_DIV:
         *dstData /= *srcData;
         break;
 
-    case VALOP_LSH:
+    case OPCODE_LEFT_SHIFT:
         *dstData = *dstData << *srcData;
         break;
 
-    case VALOP_RSH:
+    case OPCODE_RIGHT_SHIFT:
         u32 tmp = *dstData;
         tmp = tmp >> *srcData;
         *dstData = tmp;
         break;
 
-    case VALOP_FLAG_INDEX:
+    case OPCODE_FLAG_INDEX:
         *dstData = FlagIndex(*srcData);
         break;
 
-    case VALOP_GET:
+    case OPCODE_GET:
         *srcData = *dstData;
         break;
 
-    case VALOP_SUB_TO_ZERO:
+    case OPCODE_SUB_TO_ZERO:
         *dstData -= *srcData;
 
         if (*dstData < 0) {
@@ -3522,11 +3523,11 @@ static BOOL BtlCmd_SetVarFromVar(BattleSystem *battleSys, BattleContext *battleC
         }
         break;
 
-    case VALOP_XOR:
+    case OPCODE_BITWISE_XOR:
         *dstData ^= *srcData;
         break;
 
-    case VALOP_AND:
+    case OPCODE_BITWISE_AND:
         *dstData &= *srcData;
         break;
 
@@ -3553,7 +3554,7 @@ static BOOL BtlCmd_SetVarFromVar(BattleSystem *battleSys, BattleContext *battleC
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_SetMonDataFromVar(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_UpdateMonDataFromVar(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int op = BattleScript_Read(battleCtx);
@@ -3566,53 +3567,53 @@ static BOOL BtlCmd_SetMonDataFromVar(BattleSystem *battleSys, BattleContext *bat
     int *varData = BattleScript_VarAddress(battleSys, battleCtx, var);
 
     switch (op) {
-    case VALOP_SET:
+    case OPCODE_SET:
         monData = *varData;
         break;
 
-    case VALOP_ADD:
+    case OPCODE_ADD:
         monData += *varData;
         break;
 
-    case VALOP_SUB:
+    case OPCODE_SUB:
         monData -= *varData;
         break;
 
-    case VALOP_FLAG_ON:
+    case OPCODE_FLAG_ON:
         monData |= *varData;
         break;
 
-    case VALOP_FLAG_OFF:
+    case OPCODE_FLAG_OFF:
         monData &= FLAG_NEGATE(*varData);
         break;
 
-    case VALOP_MUL:
+    case OPCODE_MUL:
         monData *= *varData;
         break;
 
-    case VALOP_DIV:
+    case OPCODE_DIV:
         monData /= *varData;
         break;
 
-    case VALOP_LSH:
+    case OPCODE_LEFT_SHIFT:
         monData = monData << *varData;
         break;
 
-    case VALOP_RSH:
+    case OPCODE_RIGHT_SHIFT:
         u32 mask = monData;
         mask = mask >> *varData;
         monData = mask;
         break;
 
-    case VALOP_FLAG_INDEX:
+    case OPCODE_FLAG_INDEX:
         monData = FlagIndex(*varData);
         break;
 
-    case VALOP_GET:
+    case OPCODE_GET:
         *varData = monData;
         break;
 
-    case VALOP_SUB_TO_ZERO:
+    case OPCODE_SUB_TO_ZERO:
         monData -= *varData;
 
         if (monData < 0) {
@@ -3620,11 +3621,11 @@ static BOOL BtlCmd_SetMonDataFromVar(BattleSystem *battleSys, BattleContext *bat
         }
         break;
 
-    case VALOP_XOR:
+    case OPCODE_BITWISE_XOR:
         monData ^= *varData;
         break;
 
-    case VALOP_AND:
+    case OPCODE_BITWISE_AND:
         monData &= *varData;
         break;
 
@@ -3633,7 +3634,7 @@ static BOOL BtlCmd_SetMonDataFromVar(BattleSystem *battleSys, BattleContext *bat
         break;
     }
 
-    if (op != VALOP_GET) {
+    if (op != OPCODE_GET) {
         if (paramID == BATTLEMON_ABILITY) {
             BattleAI_SetAbility(battleCtx, battler, monData);
         }
@@ -3646,7 +3647,7 @@ static BOOL BtlCmd_SetMonDataFromVar(BattleSystem *battleSys, BattleContext *bat
 }
 
 /**
- * @brief Jump ahead a certain distance.
+ * @brief GoTo ahead a certain distance.
  * 
  * Inputs:
  * 1. The distance to jump forward in words.
@@ -3655,7 +3656,7 @@ static BOOL BtlCmd_SetMonDataFromVar(BattleSystem *battleSys, BattleContext *bat
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_Jump(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_GoTo(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int jump = BattleScript_Read(battleCtx);
@@ -3676,7 +3677,7 @@ static BOOL BtlCmd_Jump(BattleSystem *battleSys, BattleContext *battleCtx)
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_CallSub(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_Call(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int subseq = BattleScript_Read(battleCtx);
@@ -3697,7 +3698,7 @@ static BOOL BtlCmd_CallSub(BattleSystem *battleSys, BattleContext *battleCtx)
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_CallSubFromVar(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_CallFromVar(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int var = BattleScript_Read(battleCtx);
@@ -3747,7 +3748,7 @@ static BOOL BtlCmd_SetMirrorMove(BattleSystem *battleSys, BattleContext *battleC
 
         if (battleCtx->defender == BATTLER_NONE) {
             battleCtx->commandNext = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
-            BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_NO_TARGET);
+            BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSCRIPT_NO_TARGET);
         } else {
             ATTACKER_ACTION[BATTLE_ACTION_CHOOSE_TARGET] = battleCtx->defender;
             BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__WAZA_SEQ, move);
@@ -3766,7 +3767,7 @@ static BOOL BtlCmd_SetMirrorMove(BattleSystem *battleSys, BattleContext *battleC
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_ResetStatChanges(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_ResetAllStatChanges(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
 
@@ -3841,7 +3842,7 @@ static BOOL BtlCmd_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *batt
  * @param battleCtx 
  * @return BOOL 
  */
-static BOOL BtlCmd_SetStatusIcon(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_SetHealthbarStatus(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int inBattler = BattleScript_Read(battleCtx);
@@ -3864,7 +3865,7 @@ static BOOL BtlCmd_SetStatusIcon(BattleSystem *battleSys, BattleContext *battleC
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_TrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_PrintTrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int inBattler = BattleScript_Read(battleCtx);
@@ -3980,17 +3981,17 @@ static BOOL BtlCmd_PayPrizeMoney(BattleSystem *battleSys, BattleContext *battleC
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_PlayStatusEffect(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_PlayBattleAnimation(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int inBattler = BattleScript_Read(battleCtx);
     int effect = BattleScript_Read(battleCtx);
 
     if (BattleSystem_AnimationsOn(battleSys) == TRUE
-            || effect == STATUS_EFFECT_CHANGE_FORM_OUT
-            || effect == STATUS_EFFECT_CHANGE_FORM_IN
-            || effect == STATUS_EFFECT_SUBSTITUTE_OFF
-            || effect == STATUS_EFFECT_SUBSTITUTE_ON) {
+            || effect == BATTLE_ANIMATION_SUB_OUT
+            || effect == BATTLE_ANIMATION_SUB_IN
+            || effect == BATTLE_ANIMATION_SUBSTITUTE_OUT
+            || effect == BATTLE_ANIMATION_SUBSTITUTE_IN) {
         int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
         if (BattleSystem_ShouldShowStatusEffect(battleCtx, battler, effect) == TRUE) {
             BattleIO_PlayStatusEffect(battleSys, battleCtx, battler, effect);
@@ -4015,7 +4016,7 @@ static BOOL BtlCmd_PlayStatusEffect(BattleSystem *battleSys, BattleContext *batt
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_PlayStatusEffectAToD(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_PlayBattleAnimationOnMons(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int inAttacker = BattleScript_Read(battleCtx);
@@ -4023,10 +4024,10 @@ static BOOL BtlCmd_PlayStatusEffectAToD(BattleSystem *battleSys, BattleContext *
     int effect = BattleScript_Read(battleCtx);
 
     if (BattleSystem_AnimationsOn(battleSys) == TRUE
-            || effect == STATUS_EFFECT_CHANGE_FORM_OUT
-            || effect == STATUS_EFFECT_CHANGE_FORM_IN
-            || effect == STATUS_EFFECT_SUBSTITUTE_OFF
-            || effect == STATUS_EFFECT_SUBSTITUTE_ON) {
+            || effect == BATTLE_ANIMATION_SUB_OUT
+            || effect == BATTLE_ANIMATION_SUB_IN
+            || effect == BATTLE_ANIMATION_SUBSTITUTE_OUT
+            || effect == BATTLE_ANIMATION_SUBSTITUTE_IN) {
         int attacker = BattleScript_Battler(battleSys, battleCtx, inAttacker);
         int defender = BattleScript_Battler(battleSys, battleCtx, inDefender);
 
@@ -4050,7 +4051,7 @@ static BOOL BtlCmd_PlayStatusEffectAToD(BattleSystem *battleSys, BattleContext *
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_PlayStatusEffectFromVar(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_PlayBattleAnimationFromVar(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int inBattler = BattleScript_Read(battleCtx);
@@ -4060,10 +4061,10 @@ static BOOL BtlCmd_PlayStatusEffectFromVar(BattleSystem *battleSys, BattleContex
     int *effect = BattleScript_VarAddress(battleSys, battleCtx, var);
 
     if ((BattleSystem_AnimationsOn(battleSys) == TRUE
-            || var == STATUS_EFFECT_CHANGE_FORM_OUT // bug: this should be *effect, not var
-            || var == STATUS_EFFECT_CHANGE_FORM_IN // bug: this should be *effect, not var
-            || *effect == STATUS_EFFECT_SUBSTITUTE_OFF
-            || *effect == STATUS_EFFECT_SUBSTITUTE_ON)
+            || var == BATTLE_ANIMATION_SUB_OUT // bug: this should be *effect, not var
+            || var == BATTLE_ANIMATION_SUB_IN // bug: this should be *effect, not var
+            || *effect == BATTLE_ANIMATION_SUBSTITUTE_OUT
+            || *effect == BATTLE_ANIMATION_SUBSTITUTE_IN)
             && BattleSystem_ShouldShowStatusEffect(battleCtx, battler, *effect) == TRUE) {
         BattleIO_PlayStatusEffect(battleSys, battleCtx, battler, *effect);
     }
@@ -4124,7 +4125,7 @@ static BOOL BtlCmd_PrintSendOutMessage(BattleSystem *battleSys, BattleContext *b
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_PrintBattleStartMessage(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_PrintEncounterMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int inBattler = BattleScript_Read(battleCtx);
@@ -4145,7 +4146,7 @@ static BOOL BtlCmd_PrintBattleStartMessage(BattleSystem *battleSys, BattleContex
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_PrintLeadMonMessage(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_PrintFirstSendOutMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int inBattler = BattleScript_Read(battleCtx);
@@ -4166,7 +4167,7 @@ static BOOL BtlCmd_PrintLeadMonMessage(BattleSystem *battleSys, BattleContext *b
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_PreparedTrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_PrintBufferedTrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int inBattler = BattleScript_Read(battleCtx);
@@ -4268,7 +4269,7 @@ static BOOL BtlCmd_TryConversion(BattleSystem *battleSys, BattleContext *battleC
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_IfVar(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_CompareVarToVar(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int op = BattleScript_Read(battleCtx);
@@ -4280,43 +4281,43 @@ static BOOL BtlCmd_IfVar(BattleSystem *battleSys, BattleContext *battleCtx)
     u32 *rhs = BattleScript_VarAddress(battleSys, battleCtx, rhsVar);
 
     switch (op) {
-    case IFOP_EQU:
+    case OPCODE_EQU:
         if (*lhs != *rhs) {
             jump = 0;
         }
         break;
 
-    case IFOP_NEQ:
+    case OPCODE_NEQ:
         if (*lhs == *rhs) {
             jump = 0;
         }
         break;
 
-    case IFOP_GT:
+    case OPCODE_GT:
         if (*lhs <= *rhs) {
             jump = 0;
         }
         break;
 
-    case IFOP_LTE:
+    case OPCODE_LTE:
         if (*lhs > *rhs) {
             jump = 0;
         }
         break;
 
-    case IFOP_FLAG_SET:
+    case OPCODE_FLAG_SET:
         if ((*lhs & *rhs) == FALSE) {
             jump = 0;
         }
         break;
 
-    case IFOP_FLAG_NOT:
+    case OPCODE_FLAG_NOT:
         if (*lhs & *rhs) {
             jump = 0;
         }
         break;
 
-    case IFOP_AND:
+    case OPCODE_AND:
         if ((*lhs & *rhs) != *rhs) {
             jump = 0;
         }
@@ -4348,7 +4349,7 @@ static BOOL BtlCmd_IfVar(BattleSystem *battleSys, BattleContext *battleCtx)
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_IfMonDataVar(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_CompareMonDataToVar(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int op = BattleScript_Read(battleCtx);
@@ -4361,43 +4362,43 @@ static BOOL BtlCmd_IfMonDataVar(BattleSystem *battleSys, BattleContext *battleCt
     u32 *rhs = BattleScript_VarAddress(battleSys, battleCtx, rhsVar);
 
     switch (op) {
-    case IFOP_EQU:
+    case OPCODE_EQU:
         if (lhs != *rhs) {
             jump = 0;
         }
         break;
         
-    case IFOP_NEQ:
+    case OPCODE_NEQ:
         if (lhs == *rhs) {
             jump = 0;
         }
         break;
 
-    case IFOP_GT:
+    case OPCODE_GT:
         if (lhs <= *rhs) {
             jump = 0;
         }
         break;
 
-    case IFOP_LTE:
+    case OPCODE_LTE:
         if (lhs > *rhs) {
             jump = 0;
         }
         break;
 
-    case IFOP_FLAG_SET:
+    case OPCODE_FLAG_SET:
         if ((lhs & *rhs) == FALSE) {
             jump = 0;
         }
         break;
 
-    case IFOP_FLAG_NOT:
+    case OPCODE_FLAG_NOT:
         if (lhs & *rhs) {
             jump = 0;
         }
         break;
 
-    case IFOP_AND:
+    case OPCODE_AND:
         if ((lhs & *rhs) != *rhs) {
             jump = 0;
         }
@@ -4422,7 +4423,7 @@ static BOOL BtlCmd_IfMonDataVar(BattleSystem *battleSys, BattleContext *battleCt
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_GivePayDayMoney(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_AddPayDayMoney(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
 
@@ -4554,7 +4555,7 @@ static BOOL BtlCmd_TryMist(BattleSystem *battleSys, BattleContext *battleCtx)
 /**
  * @brief Try to execute a one-hit KO move (e.g., Guillotine, Sheer Cold).
  * 
- * These moves do not follow the standard accuracy formula. If the defender is
+ * These moves do not follow the standard accuracy formula. CompareVarToValue the defender is
  * a higher level than the attacker, then the move will always fail to hit, even
  * if the attacker is under the effect of No Guard or Lock On. Accuracy for
  * these moves scales linearly from their base accuracy according to the
@@ -4623,10 +4624,10 @@ static BOOL BtlCmd_TryOHKOMove(BattleSystem *battleSys, BattleContext *battleCtx
 }
 
 /**
- * @brief Divide the value of a variable by another static value, storing the
+ * @brief DivideVarByValue the value of a variable by another static value, storing the
  * result back into the source variable.
  * 
- * This operation will not permit quotients of 0. If the variable's value is
+ * This operation will not permit quotients of 0. CompareVarToValue the variable's value is
  * positive, then the minimum permissible quotient will be 1. Likewise, a
  * negative value will permit a maximum quotient of -1.
  * 
@@ -4638,7 +4639,7 @@ static BOOL BtlCmd_TryOHKOMove(BattleSystem *battleSys, BattleContext *battleCtx
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_Divide(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_DivideVarByValue(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int srcVar = BattleScript_Read(battleCtx);
@@ -4651,10 +4652,10 @@ static BOOL BtlCmd_Divide(BattleSystem *battleSys, BattleContext *battleCtx)
 }
 
 /**
- * @brief Divide the value of a variable by the value of another variable,
+ * @brief DivideVarByValue the value of a variable by the value of another variable,
  * storing the result back into the former.
  * 
- * This operation will not permit quotients of 0. If the variable's value is
+ * This operation will not permit quotients of 0. CompareVarToValue the variable's value is
  * positive, then the minimum permissible quotient will be 1. Likewise, a
  * negative value will permit a maximum quotient of -1.
  * 
@@ -4666,7 +4667,7 @@ static BOOL BtlCmd_Divide(BattleSystem *battleSys, BattleContext *battleCtx)
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_DivideByVar (BattleSystem * battleSys, BattleContext * battleCtx)
+static BOOL BtlCmd_DivideVarByVar (BattleSystem * battleSys, BattleContext * battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int srcVar = BattleScript_Read(battleCtx);
@@ -4867,15 +4868,15 @@ static BOOL BtlCmd_Counter(BattleSystem *battleSys, BattleContext *battleCtx)
             battleCtx->defender = lastAttacker;
         }
 
-        // If the target is no longer active, pick a random opponent
+        // CompareVarToValue the target is no longer active, pick a random opponent
         // This should always give us an active opponent, unless both have fainted
         if (DEFENDING_MON.curHP == 0) {
             battleCtx->defender = BattleSystem_RandomOpponent(battleSys, battleCtx, battleCtx->attacker);
 
-            // If there are no possible targets, fail
+            // CompareVarToValue there are no possible targets, fail
             if (DEFENDING_MON.curHP == 0) {
                 battleCtx->commandNext = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
-                BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_NO_TARGET);
+                BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSCRIPT_NO_TARGET);
             }
         }
 
@@ -4920,15 +4921,15 @@ static BOOL BtlCmd_MirrorCoat(BattleSystem *battleSys, BattleContext *battleCtx)
             battleCtx->defender = lastAttacker;
         }
 
-        // If the target is no longer active, pick a random opponent
+        // CompareVarToValue the target is no longer active, pick a random opponent
         // This should always give us an active opponent, unless both have fainted
         if (DEFENDING_MON.curHP == 0) {
             battleCtx->defender = BattleSystem_RandomOpponent(battleSys, battleCtx, battleCtx->attacker);
 
-            // If there are no possible targets, fail
+            // CompareVarToValue there are no possible targets, fail
             if (DEFENDING_MON.curHP == 0) {
                 battleCtx->commandNext = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
-                BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_NO_TARGET);
+                BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSCRIPT_NO_TARGET);
             }
         }
 
@@ -5255,7 +5256,7 @@ static BOOL BtlCmd_TrySpite(BattleSystem *battleSys, BattleContext *battleCtx)
  * @brief Try to clear the status of each party Pokemon.
  * 
  * This command does not fail in the traditional sense; failure always occurs
- * silently, and will only occur for individual party Pokemon. If the move using
+ * silently, and will only occur for individual party Pokemon. CompareVarToValue the move using
  * this effect is Heal Bell, then it will fail for any party Pokemon with the
  * ability Soundproof.
  * 
@@ -5326,7 +5327,7 @@ static BOOL BtlCmd_TryPartyStatusRefresh(BattleSystem *battleSys, BattleContext 
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_CanStealItem(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_TryStealItem(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int jumpOnFail = BattleScript_Read(battleCtx);
@@ -5382,7 +5383,7 @@ static const u16 sProtectSuccessRate[] = {
  * @param battleCtx 
  * @return BOOL 
  */
-static BOOL BtlCmd_TryProtectEndure(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_TryProtection(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int jumpOnFail = BattleScript_Read(battleCtx);
@@ -5474,7 +5475,7 @@ static BOOL BtlCmd_TrySubstitute(BattleSystem *battleSys, BattleContext *battleC
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_CanWhirlwind(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_TryWhirlwind(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int jumpOnFail = BattleScript_Read(battleCtx);
@@ -5612,7 +5613,7 @@ static BOOL BtlCmd_Transform(BattleSystem * battleSys, BattleContext * battleCtx
 /**
  * @brief Try to execute the Spikes effect.
  * 
- * If the defending side already has 3 layers of Spikes, then this command
+ * CompareVarToValue the defending side already has 3 layers of Spikes, then this command
  * will fail.
  * 
  * Inputs:
@@ -5686,7 +5687,7 @@ static BOOL BtlCmd_CheckSpikes(BattleSystem *battleSys, BattleContext *battleCtx
  * reset the perish count for any of these active battlers, nor will it affect
  * any battler with Soundproof.
  * 
- * If there are no active battlers which could be affected and do not have an
+ * CompareVarToValue there are no active battlers which could be affected and do not have an
  * active perish count, then this command will fail.
  * 
  * Inputs:
@@ -5737,7 +5738,7 @@ static BOOL BtlCmd_TryPerishSong(BattleSystem *battleSys, BattleContext *battleC
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_GetBattlerBySpeedOrder(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_GetMonBySpeedOrder(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int dstVar = BattleScript_Read(battleCtx);
@@ -5760,7 +5761,7 @@ static BOOL BtlCmd_GetBattlerBySpeedOrder(BattleSystem *battleSys, BattleContext
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_IfVarIsValidBattler(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_GoToIfValidMon(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int srcVar = BattleScript_Read(battleCtx);
@@ -5786,9 +5787,9 @@ static BOOL BtlCmd_IfVarIsValidBattler(BattleSystem *battleSys, BattleContext *b
  * Side effects:
  * - battleCtx->hpCalcTemp will be updated with the (signed) amount of HP to
  * add to an affected battler's current HP.
- * - If the effect to apply is due to Solar Power or Hydration, then
+ * - CompareVarToValue the effect to apply is due to Solar Power or Hydration, then
  * battleCtx->scriptTemp will be updated with an appropriate identifier.
- * - If the effect to apply is due to Hydration, then battleCtx->msgTemp will
+ * - CompareVarToValue the effect to apply is due to Hydration, then battleCtx->msgTemp will
  * be updated with the condition to be restored.
  * 
  * @param battleSys 
@@ -6023,7 +6024,7 @@ static BOOL BtlCmd_TrySafeguard(BattleSystem *battleSys, BattleContext *battleCt
  * @param battleCtx 
  * @return BOOL 
  */
-static BOOL BtlCmd_TryPresent(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_Present(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int jumpIfHeal = BattleScript_Read(battleCtx);
@@ -6101,7 +6102,7 @@ static BOOL BtlCmd_CalcMagnitudePower(BattleSystem *battleSys, BattleContext *ba
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_TryReplaceBattler(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_TryReplaceFaintedMon(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int inBattler = BattleScript_Read(battleCtx);
@@ -6143,7 +6144,7 @@ static BOOL BtlCmd_RapidSpin(BattleSystem *battleSys, BattleContext *battleCtx)
         ATTACKING_MON.statusVolatile &= ~VOLATILE_CONDITION_BIND;
         battleCtx->msgBattlerTemp = ATTACKING_MON.moveEffectsData.bindTarget;
         battleCtx->msgMoveTemp = ATTACKING_MON.moveEffectsData.bindingMove;
-        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_BREAK_BIND_EFFECT);
+        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSCRIPT_BREAK_BIND_EFFECT);
 
         return FALSE;
     }
@@ -6152,7 +6153,7 @@ static BOOL BtlCmd_RapidSpin(BattleSystem *battleSys, BattleContext *battleCtx)
         ATTACKING_MON.moveEffectsMask &= ~MOVE_EFFECT_LEECH_SEED;
         ATTACKING_MON.moveEffectsMask &= ~MOVE_EFFECT_LEECH_SEED_RECIPIENT;
         battleCtx->msgMoveTemp = MOVE_LEECH_SEED;
-        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_BLOW_AWAY_HAZARDS);
+        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSCRIPT_BLOW_AWAY_HAZARDS);
 
         return FALSE;
     }
@@ -6161,7 +6162,7 @@ static BOOL BtlCmd_RapidSpin(BattleSystem *battleSys, BattleContext *battleCtx)
         battleCtx->sideConditionsMask[side] &= ~SIDE_CONDITION_SPIKES;
         battleCtx->sideConditions[side].spikesLayers = 0;
         battleCtx->msgMoveTemp = MOVE_SPIKES;
-        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_BLOW_AWAY_HAZARDS);
+        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSCRIPT_BLOW_AWAY_HAZARDS);
 
         return FALSE;
     }
@@ -6171,7 +6172,7 @@ static BOOL BtlCmd_RapidSpin(BattleSystem *battleSys, BattleContext *battleCtx)
         battleCtx->sideConditions[side].toxicSpikesLayers = 0;
         battleCtx->msgMoveTemp = MOVE_TOXIC_SPIKES;
 
-        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_BLOW_AWAY_HAZARDS);
+        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSCRIPT_BLOW_AWAY_HAZARDS);
 
         return FALSE;
     }
@@ -6179,7 +6180,7 @@ static BOOL BtlCmd_RapidSpin(BattleSystem *battleSys, BattleContext *battleCtx)
     if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_STEALTH_ROCK) {
         battleCtx->sideConditionsMask[side] &= ~SIDE_CONDITION_STEALTH_ROCK;
         battleCtx->msgMoveTemp = MOVE_STEALTH_ROCK;
-        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_BLOW_AWAY_HAZARDS);
+        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSCRIPT_BLOW_AWAY_HAZARDS);
 
         return FALSE;
     }
@@ -6192,9 +6193,9 @@ static BOOL BtlCmd_RapidSpin(BattleSystem *battleSys, BattleContext *battleCtx)
 /**
  * @brief Recover HP using a weather-based move.
  * 
- * - If no weather is active, recovery is equal to 1/2 of the user's maximum HP.
- * - If the weather is sun, recovery is equal to 2/3 of the user's maximum HP.
- * - If any other weather is active, recovery is equal to 1/4 of the user's maximum HP.
+ * - CompareVarToValue no weather is active, recovery is equal to 1/2 of the user's maximum HP.
+ * - CompareVarToValue the weather is sun, recovery is equal to 2/3 of the user's maximum HP.
+ * - CompareVarToValue any other weather is active, recovery is equal to 1/4 of the user's maximum HP.
  * 
  * @param battleSys 
  * @param battleCtx 
@@ -6299,7 +6300,7 @@ static BOOL BtlCmd_CopyStatStages(BattleSystem *battleSys, BattleContext *battle
  * @param battleCtx 
  * @return BOOL 
  */
-static BOOL BtlCmd_TrySetupFutureSight(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_TryFutureSight(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int jumpOnFail = BattleScript_Read(battleCtx);
@@ -6568,7 +6569,7 @@ static BOOL BtlCmd_TryHelpingHand (BattleSystem *battleSys, BattleContext *battl
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_CanSwapItems(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_TrySwapItems(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int jumpOnFail = BattleScript_Read(battleCtx);
@@ -6605,7 +6606,7 @@ static BOOL BtlCmd_CanSwapItems(BattleSystem *battleSys, BattleContext *battleCt
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_TrySetupWish (BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_TryWish (BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int jumpOnFail = BattleScript_Read(battleCtx);
@@ -6691,7 +6692,7 @@ static BOOL BtlCmd_TryAssist(BattleSystem *battleSys, BattleContext *battleCtx)
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_TrySetupMagicCoat(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_TrySetMagicCoat(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
 
@@ -6719,7 +6720,7 @@ static BOOL BtlCmd_TrySetupMagicCoat(BattleSystem *battleSys, BattleContext *bat
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_MagicCoatReflect(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_MagicCoat(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
 
@@ -6832,7 +6833,7 @@ static BOOL BtlCmd_TryYawn(BattleSystem *battleSys, BattleContext *battleCtx)
  * 1. The distance to jump if the defender does not have a held item.
  * 
  * Side effects:
- * - If the target has a held item and does not have Sticky Hold, the mask
+ * - CompareVarToValue the target has a held item and does not have Sticky Hold, the mask
  * of knocked off items for the defending side will be updated to toggle the
  * flag for the target.
  * 
@@ -7009,7 +7010,7 @@ static BOOL BtlCmd_TryGrudge(BattleSystem *battleSys, BattleContext *battleCtx)
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_TrySetupSnatch(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_TrySnatch(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int jumpOnFail = BattleScript_Read(battleCtx);
@@ -7082,7 +7083,7 @@ static BOOL BtlCmd_CalcWeightBasedPower(BattleSystem *battleSys, BattleContext *
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_CalcWeatherBallPower(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_CalcWeatherBallParams(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
 
@@ -7123,7 +7124,7 @@ static BOOL BtlCmd_CalcWeatherBallPower(BattleSystem *battleSys, BattleContext *
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_CheckForPursuit(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_TryPursuit(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int jumpIfNoTrigger;
     int i;
@@ -7158,7 +7159,7 @@ static BOOL BtlCmd_CheckForPursuit(BattleSystem *battleSys, BattleContext *battl
                         && battleCtx->battleMons[i].ppCur[moveSlot]) {
                     battleCtx->battleMons[i].ppCur[moveSlot]--;
 
-                    // If the switching battler has Pressure, apply it to the battler using Pursuit.
+                    // CompareVarToValue the switching battler has Pressure, apply it to the battler using Pursuit.
                     if (Battler_Ability(battleCtx, battleCtx->switchedMon) == ABILITY_PRESSURE
                             && battleCtx->battleMons[i].ppCur[moveSlot]) {
                         battleCtx->battleMons[i].ppCur[moveSlot]--;
@@ -7202,7 +7203,7 @@ static BOOL BtlCmd_CheckForPursuit(BattleSystem *battleSys, BattleContext *battl
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_ApplyTypeMatchup(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_ApplyTypeEffectiveness(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
 
@@ -7386,7 +7387,7 @@ static BOOL BtlCmd_CalcGyroBallPower(BattleSystem *battleSys, BattleContext *bat
  * - battleCtx->defender will be set to the last battler to deal damage to the
  * attacker, or to the defending side's Follow Me user (if one exists), or to
  * either's partner (if the former has fainted).
- * - If there is no valid target, the "no target" subsequence will be executed.
+ * - CompareVarToValue there is no valid target, the "no target" subsequence will be executed.
  * 
  * @param battleSys 
  * @param battleCtx 
@@ -7415,7 +7416,7 @@ static BOOL BtlCmd_TryMetalBurst(BattleSystem *battleSys, BattleContext *battleC
 
             if (DEFENDING_MON.curHP == 0) {
                 battleCtx->commandNext = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
-                BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_NO_TARGET);
+                BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSCRIPT_NO_TARGET);
             }
         }
 
@@ -7757,7 +7758,7 @@ static BOOL BtlCmd_CheckSideCondition(BattleSystem *battleSys, BattleContext *ba
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_CheckDefenderProtecting(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_TryFeint(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int jumpOnFail = BattleScript_Read(battleCtx);
@@ -7857,11 +7858,11 @@ static BOOL BtlCmd_TryToxicSpikes(BattleSystem * battleSys, BattleContext * batt
  * 
  * Side effects:
  * - battleCtx->calcTemp will be set to the number of layers of Toxic Spikes on
- * the switched-in battler's side of the field. If the switched-in battler has
+ * the switched-in battler's side of the field. CompareVarToValue the switched-in battler has
  * the Poison type, then this will instead be set to 0.
  * - battleCtx->sideEffectType will be set to SIDE_EFFECT_TYPE_TOXIC_SPIKES.
  * - battleCtx->sideEffectMon will be set to the switched-in battler.
- * - If the switched-in battler has the Poison type, then Toxic Spikes will be
+ * - CompareVarToValue the switched-in battler has the Poison type, then Toxic Spikes will be
  * cleared from its side of the field.
  * 
  * @param battleSys 
@@ -7902,10 +7903,10 @@ static BOOL BtlCmd_CheckToxicSpikes(BattleSystem * battleSys, BattleContext * ba
  * 1. Op-code which controls the behavior. See enum CheckHaveOp
  * 2. Input battler (or set of battlers) whose ability should be checked
  * 3. The ability to check for any battler to have (or not have)
- * 4. Jump distance if a battler in the input set meets the criteria
+ * 4. GoTo distance if a battler in the input set meets the criteria
  * 
  * Side effects:
- * - If any battler matches the criteria, battleCtx->abilityMon will be set
+ * - CompareVarToValue any battler matches the criteria, battleCtx->abilityMon will be set
  * to their identifier.
  * 
  * @param battleSys 
@@ -7961,7 +7962,7 @@ static BOOL BtlCmd_CheckIgnorableAbility(BattleSystem *battleSys, BattleContext 
 }
 
 /**
- * @brief Jump forward a certain distance if two battlers are on the same
+ * @brief GoTo forward a certain distance if two battlers are on the same
  * side of the field.
  * 
  * Inputs:
@@ -8098,7 +8099,7 @@ static BOOL BtlCmd_GenerateEndOfBattleItem(BattleSystem *battleSys, BattleContex
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_SetTrickRoom(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_TrickRoom(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
 
@@ -8108,7 +8109,7 @@ static BOOL BtlCmd_SetTrickRoom(BattleSystem *battleSys, BattleContext *battleCt
 }
 
 /**
- * @brief Jump ahead if a given battler has already moved this turn.
+ * @brief GoTo ahead if a given battler has already moved this turn.
  * 
  * Inputs:
  * 1. The battler to check.
@@ -8133,7 +8134,7 @@ static BOOL BtlCmd_IfMovedThisTurn(BattleSystem *battleSys, BattleContext *battl
 }
 
 /**
- * @brief Jump ahead if a given battler has (or does not have) an item with the
+ * @brief GoTo ahead if a given battler has (or does not have) an item with the
  * given hold effect.
  * 
  * Inputs:
@@ -8147,7 +8148,7 @@ static BOOL BtlCmd_IfMovedThisTurn(BattleSystem *battleSys, BattleContext *battl
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_IfItemEffect(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_CheckItemHoldEffect(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int op = BattleScript_Read(battleCtx);
@@ -8180,7 +8181,7 @@ static BOOL BtlCmd_IfItemEffect(BattleSystem *battleSys, BattleContext *battleCt
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_GetItemEffect(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_GetItemHoldEffect(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int inBattler = BattleScript_Read(battleCtx);
@@ -8207,7 +8208,7 @@ static BOOL BtlCmd_GetItemEffect(BattleSystem *battleSys, BattleContext *battleC
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_GetItemEffectPower(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_GetItemEffectParam(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int inBattler = BattleScript_Read(battleCtx);
@@ -8356,7 +8357,7 @@ static BOOL BtlCmd_CalcNaturalGiftParams(BattleSystem *battleSys, BattleContext 
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_TryPluckBerry(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_TryPluck(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int jumpStickyHold = BattleScript_Read(battleCtx);
@@ -8384,7 +8385,7 @@ static BOOL BtlCmd_TryPluckBerry(BattleSystem *battleSys, BattleContext *battleC
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_TryFlingItem(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_TryFling(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int jumpNoEffect = BattleScript_Read(battleCtx);
@@ -8406,7 +8407,7 @@ static BOOL BtlCmd_TryFlingItem(BattleSystem *battleSys, BattleContext *battleCt
  * @param battleCtx 
  * @return BOOL 
  */
-static BOOL BtlCmd_ShowYesNoScreen(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_YesNoMenu(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int type = BattleScript_Read(battleCtx);
@@ -8461,7 +8462,7 @@ static BOOL BtlCmd_WaitYesNoResult(BattleSystem *battleSys, BattleContext *battl
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_ShowPartyScreen(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_ChoosePokemonMenu(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleSystem_MaxBattlers(battleSys); // must stay to match
     BattleScript_Iter(battleCtx, 1);
@@ -8489,7 +8490,7 @@ static BOOL BtlCmd_ShowPartyScreen(BattleSystem *battleSys, BattleContext *battl
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_WaitPartyScreenResult(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_WaitPokemonMenuResult(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     u8 input = BattleContext_IOBufferVal(battleCtx, 0);
 
@@ -8516,7 +8517,7 @@ static BOOL BtlCmd_WaitPartyScreenResult(BattleSystem *battleSys, BattleContext 
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_SubmitResult(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_SetLinkBattleResult(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
 
@@ -8603,7 +8604,7 @@ static BOOL BtlCmd_CheckStealthRock(BattleSystem *battleSys, BattleContext *batt
  * @param battleCtx 
  * @return FALSE  
  */
-static BOOL BtlCmd_CheckActivateSecondaryEffect(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_CheckEffectActivation(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int jumpNoEffect = BattleScript_Read(battleCtx);
@@ -8637,7 +8638,7 @@ static BOOL BtlCmd_CheckActivateSecondaryEffect(BattleSystem *battleSys, BattleC
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_CheckActivateChatterEffect(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_CheckChatterActivation(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int jumpNoEffect = BattleScript_Read(battleCtx);
@@ -8736,7 +8737,7 @@ static BOOL BtlCmd_SetMosaic(BattleSystem *battleSys, BattleContext *battleCtx)
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_ChangeWeatherForm(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_ChangeForm(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int inBattler = BattleScript_Read(battleCtx);
@@ -8754,7 +8755,7 @@ static BOOL BtlCmd_ChangeWeatherForm(BattleSystem *battleSys, BattleContext *bat
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_UpdateBG(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_SetBattleBackground(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     
@@ -8924,7 +8925,7 @@ static BOOL BtlCmd_FreePartyGaugeGraphics(BattleSystem *battleSys, BattleContext
     return FALSE;
 }
 
-static BOOL BtlCmd_IncrementRecord(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_IncrementGameStat(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int inBattler = BattleScript_Read(battleCtx);
@@ -9076,7 +9077,7 @@ static BOOL BtlCmd_OAMToSprite(BattleSystem *battleSys, BattleContext *battleCtx
 }
 
 /**
- * @brief Jump ahead a certain distance if the battler is out of Pokemon.
+ * @brief GoTo ahead a certain distance if the battler is out of Pokemon.
  * 
  * Inputs:
  * 1. The battler to be checked
@@ -9086,7 +9087,7 @@ static BOOL BtlCmd_OAMToSprite(BattleSystem *battleSys, BattleContext *battleCtx
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_CheckWhiteOut(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_CheckBlackOut(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int inBattler;
     int jumpIfWhiteOut;
@@ -9284,7 +9285,7 @@ static BOOL BtlCmd_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_ResultMesage(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_PrintBattleResultMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     BattleIO_ResultMessage(battleSys);
@@ -9299,7 +9300,7 @@ static BOOL BtlCmd_ResultMesage(BattleSystem *battleSys, BattleContext *battleCt
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_EscapeMesage(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_PrintEscapeMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     BattleIO_EscapeMessage(battleSys, battleCtx);
@@ -9314,7 +9315,7 @@ static BOOL BtlCmd_EscapeMesage(BattleSystem *battleSys, BattleContext *battleCt
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_ForfeitMesage(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_PrintForfeitMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     BattleIO_ForfeitMessage(battleSys);
@@ -9329,7 +9330,7 @@ static BOOL BtlCmd_ForfeitMesage(BattleSystem *battleSys, BattleContext *battleC
  * 1. The battler to be checked.
  * 
  * Side effects:
- * - If the battler should endure the hit, battleCtx->hpCalcTemp will be updated
+ * - CompareVarToValue the battler should endure the hit, battleCtx->hpCalcTemp will be updated
  * with the correct amount of damage to leave them at 1 HP, and
  * battleCtx->moveStatusFlags will be updated with the MOVE_STATUS_ENDURED_ITEM
  * flag.
@@ -9338,7 +9339,7 @@ static BOOL BtlCmd_ForfeitMesage(BattleSystem *battleSys, BattleContext *battleC
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_CheckLeaveWith1HP(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_CheckHoldOnWith1HP(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BOOL endure = FALSE;
 
@@ -9429,13 +9430,13 @@ static BOOL BtlCmd_CheckSubstitute(BattleSystem *battleSys, BattleContext *battl
 }
 
 /**
- * @brief Jump ahead a certain distance if a weather-negation effect is active.
+ * @brief GoTo ahead a certain distance if a weather-negation effect is active.
  * 
  * @param battleSys 
  * @param battleCtx 
  * @return BOOL 
  */
-static BOOL BtlCmd_CheckWeatherNegated(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_CheckIgnoreWeather(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int jumpIfActive = BattleScript_Read(battleCtx);
@@ -9523,7 +9524,7 @@ static BOOL BtlCmd_RefreshSprite(BattleSystem *battleSys, BattleContext *battleC
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_PlayMoveHitSoundEffect(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_PlayMoveHitSound(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int inBattler = BattleScript_Read(battleCtx);
@@ -9545,7 +9546,7 @@ static BOOL BtlCmd_PlayMoveHitSoundEffect(BattleSystem *battleSys, BattleContext
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_PlayMusic(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_PlayBGM(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int inBattler = BattleScript_Read(battleCtx);
@@ -9567,7 +9568,7 @@ static BOOL BtlCmd_PlayMusic(BattleSystem *battleSys, BattleContext *battleCtx)
  * @param battleCtx 
  * @return FALSE 
  */
-static BOOL BtlCmd_CheckSafariContinues(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_CheckSafariGameDone(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int jumpNotOver = BattleScript_Read(battleCtx);
@@ -9593,7 +9594,7 @@ static BOOL BtlCmd_CheckSafariContinues(BattleSystem *battleSys, BattleContext *
  * @param battleCtx 
  * @return BOOL 
  */
-static BOOL BtlCmd_WaitFramesNoSkip(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_WaitTime(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int wait = BattleScript_Read(battleCtx);
@@ -9628,7 +9629,7 @@ static BOOL BtlCmd_WaitFramesNoSkip(BattleSystem *battleSys, BattleContext *batt
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_CheckMoveIsType(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_CheckCurMoveIsType(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int type = BattleScript_Read(battleCtx);
@@ -9654,7 +9655,7 @@ static BOOL BtlCmd_CheckMoveIsType(BattleSystem *battleSys, BattleContext *battl
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_LoadPersonalFormData(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_LoadArchivedMonData(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int species = BattleScript_Read(battleCtx);
@@ -9678,7 +9679,7 @@ static BOOL BtlCmd_LoadPersonalFormData(BattleSystem *battleSys, BattleContext *
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_ReloadPokemon(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_RefreshMonData(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int inBattler = BattleScript_Read(battleCtx);
@@ -10072,7 +10073,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         if (Pokemon_ShouldLevelUp(mon)) {
             // Only play the special level-up animation for an active battler
             if (data->battleCtx->selectedPartySlot[expBattler] == slot) {
-                BattleIO_PlayStatusEffect(data->battleSys, data->battleCtx, expBattler, STATUS_EFFECT_LEVEL_UP);
+                BattleIO_PlayStatusEffect(data->battleSys, data->battleCtx, expBattler, BATTLE_ANIMATION_LEVEL_UP);
                 BattleIO_PlayLevelUpAnimation(data->battleSys, expBattler);
             }
 

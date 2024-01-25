@@ -49,10 +49,10 @@
 #include "unk_02092494.h"
 #include "flags.h"
 
+#include "consts/generated/c/gender.h"
 #include "constants/pokemon.h"
 #include "constants/species.h"
 #include "constants/items.h"
-#include "constants/gender.h"
 #include "constants/moves.h"
 
 // Columns: Spicy, Dry, Sweet, Bitter, Sour

@@ -1,22 +1,35 @@
 consts_manifests = files(
-    'battle.json'
+    'battle.json',
+    'global.json',
+    'narc_files.json',
 )
-
-gen_consts_includes = include_directories('.')
 
 gen_consts_root = meson.current_build_dir() / 'generated'
 gen_c_consts_root = gen_consts_root / 'c'
 gen_asm_consts_root = gen_consts_root / 'asm'
 
-generated_c_consts = custom_target('gen_c_consts',
+custom_target('generated_consts_c',
     build_by_default: true,
     capture: true,
-    output: 'gen_c_consts',
+    output: 'generated_consts_c',
     input: consts_manifests,
     command: [
         constgen_py,
         '-f', '@INPUT@',
         '-r', gen_c_consts_root,
         '-l', 'c'
+    ]
+)
+
+generated_consts_asm = custom_target('generated_consts_asm',
+    build_by_default: true,
+    capture: true,
+    output: 'generated_consts_asm',
+    input: consts_manifests,
+    command: [
+        constgen_py,
+        '-f', '@INPUT@',
+        '-r', gen_asm_consts_root,
+        '-l', 'asm'
     ]
 )

@@ -14,7 +14,8 @@ nuts_data_narc = custom_target('nuts_data.narc',
         '@OUTPUT0@',
         '@INPUT0@',
         '--narc',
-        '-i', '@SOURCE_ROOT@/include'
+        '-i', '@SOURCE_ROOT@/include',
+        '-i', '@SOURCE_ROOT@/build',
     ]
 )
 
@@ -35,7 +36,8 @@ pl_item_data_narc = custom_target('pl_item_data.narc',
         '@INPUT0@',
         '--narc',
         '--pad', '0xFF',
-        '-i', '@SOURCE_ROOT@/include'
+        '-i', '@SOURCE_ROOT@/include',
+        '-i', '@SOURCE_ROOT@/build',
     ]
 )
 

@@ -242,9 +242,15 @@ RomSpec
 	File battle/graphic/vs_demo_gra.narc
 	File wazaeffect/we.arc
 	File wazaeffect/we_sub.narc
-	File battle/skill/be_seq.narc
-	File battle/skill/sub_seq.narc
-	File battle/skill/waza_seq.narc
+
+	Root /battle/skill
+	HostRoot res/battle/scripts
+	File be_seq.narc
+	File sub_seq.narc
+	File waza_seq.narc
+
+	Root /
+	HostRoot res/prebuilt
 	File wazaeffect/effectclact/wecell.narc
 	File wazaeffect/effectclact/wecellanm.narc
 	File wazaeffect/effectclact/wechar.narc
