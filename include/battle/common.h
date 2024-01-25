@@ -30,6 +30,8 @@
 #define BATTLER_US      0
 #define BATTLER_THEM    1
 
+#define BATTLER_OPP(battler)    (battler ^ 1)
+
 #define CALC_SELF_HIT(move, power)  (BattleSystem_CalcMoveDamage(\
     battleSys,\
     battleCtx,\
