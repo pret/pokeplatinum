@@ -11,18 +11,19 @@
 
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/battle_system.h"
-
 #include "struct_defs/battle_system.h"
+
+#include "battle/common.h"
 #include "battle/ai_context.h"
 #include "battle/battle_context.h"
 #include "battle/battle_controller.h"
+#include "battle/trainer_ai.h"
+#include "battle/battle_lib.h"
 
 #include "flags.h"
 #include "pokemon.h"
 #include "party.h"
-#include "battle/trainer_ai.h"
 #include "overlay016/ov16_0223DF00.h"
-#include "battle/battle_lib.h"
 
 static const u16 Unk_ov14_0222EE90[] = {
 	0x7,
@@ -185,8 +186,8 @@ static int AIScript_Read(BattleContext *battleCtx);
 static int AIScript_ReadOffset(BattleContext *battleCtx, int ofs);
 static void AIScript_Iter(BattleContext *battleCtx, int i);
 static u8 AIScript_Battler(BattleContext *battleCtx, u8 inBattler);
-static s32 TrainerAI_CalcDamage(BattleSystem * param0, BattleContext * param1, u16 param2, u16 param3, u8 * param4, int param5, int param6, int param7, u8 param8);
-static int ov14_0222327C(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCtx, u16 move, u16 heldItem, u8 *ivs, int attacker, int ability, BOOL embargo, u8 variance);
+static int TrainerAI_MoveType(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int move);
 static void ov14_0222254C(BattleContext * param0, int param1, int * param2, int * param3, int param4);
 static BOOL ov14_022233F4(BattleContext * param0, int param1);
 static BOOL ov14_0222342C(BattleSystem * param0, BattleContext * param1, int param2);
@@ -1503,7 +1504,7 @@ static void ov14_02221060 (BattleSystem * param0, BattleContext * param1)
         v1 = 40;
         v2 = 0;
         v3 = param1->battleMons[param1->aiContext.attacker].moves[v0];
-        v4 = ov14_0222327C(param0, param1, param1->aiContext.attacker, v3);
+        v4 = TrainerAI_MoveType(param0, param1, param1->aiContext.attacker, v3);
 
         if (v3) {
             v1 = BattleSystem_ApplyTypeChart(param0, param1, v3, v4, param1->aiContext.attacker, param1->aiContext.defender, v1, &v2);
@@ -1542,7 +1543,7 @@ static void ov14_02221114 (BattleSystem * param0, BattleContext * param1)
     v1 = AIScript_Read(param1);
     v2 = 40;
     v3 = 0;
-    v2 = BattleSystem_ApplyTypeChart(param0, param1, param1->aiContext.move, ov14_0222327C(param0, param1, param1->aiContext.attacker, param1->aiContext.move), param1->aiContext.attacker, param1->aiContext.defender, v2, &v3);
+    v2 = BattleSystem_ApplyTypeChart(param0, param1, param1->aiContext.move, TrainerAI_MoveType(param0, param1, param1->aiContext.attacker, param1->aiContext.move), param1->aiContext.attacker, param1->aiContext.defender, v2, &v3);
 
     if (v2 == 60 * 2) {
         v2 = 80;
@@ -3425,104 +3426,139 @@ static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCt
     return damage;
 }
 
-static int ov14_0222327C (BattleSystem * param0, BattleContext * param1, int param2, int param3)
+/**
+ * @brief Compute the type of a move. Variable-type moves will have their type
+ * computed according to the usual routines (i.e., Natural Gift, Judgment,
+ * Hidden Power, and Weather Ball). Moves without a variable typing will be
+ * returned as TYPE_NORMAL.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler   The battler using the move.
+ * @param move      The move being used.
+ * @return The type of the move.
+ */
+static int TrainerAI_MoveType(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int move)
 {
-    int v0;
+    int result;
 
-    switch (param3) {
-    case 363:
-        v0 = Battler_NaturalGiftType(param1, param2);
+    switch (move) {
+    case MOVE_NATURAL_GIFT:
+        result = Battler_NaturalGiftType(battleCtx, battler);
         break;
-    case 449:
-        switch (Battler_HeldItemEffect(param1, param2)) {
-        case 131:
-            v0 = 1;
+
+    case MOVE_JUDGMENT:
+        switch (Battler_HeldItemEffect(battleCtx, battler)) {
+        case HOLD_EFFECT_ARCEUS_FIGHTING:
+            result = TYPE_FIGHTING;
             break;
-        case 134:
-            v0 = 2;
+
+        case HOLD_EFFECT_ARCEUS_FLYING:
+            result = TYPE_FLYING;
             break;
-        case 132:
-            v0 = 3;
+
+        case HOLD_EFFECT_ARCEUS_POISON:
+            result = TYPE_POISON;
             break;
-        case 133:
-            v0 = 4;
+
+        case HOLD_EFFECT_ARCEUS_GROUND:
+            result = TYPE_GROUND;
             break;
-        case 137:
-            v0 = 5;
+
+        case HOLD_EFFECT_ARCEUS_ROCK:
+            result = TYPE_ROCK;
             break;
-        case 136:
-            v0 = 6;
+
+        case HOLD_EFFECT_ARCEUS_BUG:
+            result = TYPE_BUG;
             break;
-        case 138:
-            v0 = 7;
+
+        case HOLD_EFFECT_ARCEUS_GHOST:
+            result = TYPE_GHOST;
             break;
-        case 141:
-            v0 = 8;
+
+        case HOLD_EFFECT_ARCEUS_STEEL:
+            result = TYPE_STEEL;
             break;
-        case 126:
-            v0 = 10;
+
+        case HOLD_EFFECT_ARCEUS_FIRE:
+            result = TYPE_FIRE;
             break;
-        case 127:
-            v0 = 11;
+
+        case HOLD_EFFECT_ARCEUS_WATER:
+            result = TYPE_WATER;
             break;
-        case 129:
-            v0 = 12;
+
+        case HOLD_EFFECT_ARCEUS_GRASS:
+            result = TYPE_GRASS;
             break;
-        case 128:
-            v0 = 13;
+
+        case HOLD_EFFECT_ARCEUS_ELECTRIC:
+            result = TYPE_ELECTRIC;
             break;
-        case 135:
-            v0 = 14;
+
+        case HOLD_EFFECT_ARCEUS_PSYCHIC:
+            result = TYPE_PSYCHIC;
             break;
-        case 130:
-            v0 = 15;
+
+        case HOLD_EFFECT_ARCEUS_ICE:
+            result = TYPE_ICE;
             break;
-        case 139:
-            v0 = 16;
+
+        case HOLD_EFFECT_ARCEUS_DRAGON:
+            result = TYPE_DRAGON;
             break;
-        case 140:
-            v0 = 17;
+
+        case HOLD_EFFECT_ARCEUS_DARK:
+            result = TYPE_DARK;
             break;
+
         default:
-            v0 = 0;
+            result = TYPE_NORMAL;
             break;
         }
         break;
-    case 237:
-        v0 = ((param1->battleMons[param2].hpIV & 1) >> 0) | ((param1->battleMons[param2].attackIV & 1) << 1) | ((param1->battleMons[param2].defenseIV & 1) << 2) | ((param1->battleMons[param2].speedIV & 1) << 3) | ((param1->battleMons[param2].spAttackIV & 1) << 4) | ((param1->battleMons[param2].spDefenseIV & 1) << 5);
-        v0 = (v0 * 15 / 63) + 1;
 
-        if (v0 >= 9) {
-            v0++;
+    case MOVE_HIDDEN_POWER:
+        result = ((battleCtx->battleMons[battler].hpIV & 1) >> 0)
+            | ((battleCtx->battleMons[battler].attackIV & 1) << 1)
+            | ((battleCtx->battleMons[battler].defenseIV & 1) << 2)
+            | ((battleCtx->battleMons[battler].speedIV & 1) << 3)
+            | ((battleCtx->battleMons[battler].spAttackIV & 1) << 4)
+            | ((battleCtx->battleMons[battler].spDefenseIV & 1) << 5);
+        result = (result * 15 / 63) + 1;
+
+        if (result >= TYPE_MYSTERY) {
+            result++;
         }
         break;
-    case 311:
-        if ((BattleSystem_CountAbility(param0, param1, 8, 0, 13) == 0) && (BattleSystem_CountAbility(param0, param1, 8, 0, 76) == 0)) {
-            if (param1->fieldConditionsMask & (0x3 | 0xc | 0x30 | 0xc0 | 0x8000)) {
-                if (param1->fieldConditionsMask & 0x3) {
-                    v0 = 11;
-                }
 
-                if (param1->fieldConditionsMask & 0xc) {
-                    v0 = 5;
-                }
+    case MOVE_WEATHER_BALL:
+        if (NO_CLOUD_NINE && (battleCtx->fieldConditionsMask & FIELD_CONDITION_WEATHER)) {
+            if (WEATHER_IS_RAIN) {
+                result = TYPE_WATER;
+            }
 
-                if (param1->fieldConditionsMask & 0x30) {
-                    v0 = 10;
-                }
+            if (WEATHER_IS_SAND) {
+                result = TYPE_ROCK;
+            }
 
-                if (param1->fieldConditionsMask & 0xc0) {
-                    v0 = 15;
-                }
+            if (WEATHER_IS_SUN) {
+                result = TYPE_FIRE;
+            }
+
+            if (WEATHER_IS_HAIL) {
+                result = TYPE_ICE;
             }
         }
         break;
+
     default:
-        v0 = 0;
+        result = TYPE_NORMAL;
         break;
     }
 
-    return v0;
+    return result;
 }
 
 static BOOL ov14_022233F4 (BattleContext * param0, int param1)
@@ -3550,7 +3586,7 @@ static BOOL ov14_0222342C (BattleSystem * param0, BattleContext * param1, int pa
     if (param1->battleMons[param2 ^ 1].ability == 25) {
         for (v0 = 0; v0 < 4; v0++) {
             v2 = param1->battleMons[param2].moves[v0];
-            v3 = ov14_0222327C(param0, param1, param2, v2);
+            v3 = TrainerAI_MoveType(param0, param1, param2, v2);
 
             if (v2) {
                 v4 = 0;
@@ -3613,7 +3649,7 @@ static BOOL ov14_022235F0 (BattleSystem * param0, BattleContext * param1, int pa
 
     for (v0 = 0; v0 < 4; v0++) {
         v6 = param1->battleMons[param2].moves[v0];
-        v7 = ov14_0222327C(param0, param1, param2, v6);
+        v7 = TrainerAI_MoveType(param0, param1, param2, v6);
 
         if ((v6) && (param1->aiContext.moveTable[v6].power)) {
             v11++;
@@ -3750,7 +3786,7 @@ static BOOL ov14_02223B34 (BattleSystem * param0, BattleContext * param1, int pa
     if ((param1->battlersSwitchingMask & FlagIndex(v2)) == 0) {
         for (v0 = 0; v0 < 4; v0++) {
             v4 = param1->battleMons[param2].moves[v0];
-            v5 = ov14_0222327C(param0, param1, param2, v4);
+            v5 = TrainerAI_MoveType(param0, param1, param2, v4);
 
             if (v4) {
                 v1 = 0;
@@ -3778,7 +3814,7 @@ static BOOL ov14_02223B34 (BattleSystem * param0, BattleContext * param1, int pa
     if ((param1->battlersSwitchingMask & FlagIndex(v2)) == 0) {
         for (v0 = 0; v0 < 4; v0++) {
             v4 = param1->battleMons[param2].moves[v0];
-            v5 = ov14_0222327C(param0, param1, param2, v4);
+            v5 = TrainerAI_MoveType(param0, param1, param2, v4);
 
             if (v4) {
                 v1 = 0;
@@ -3899,7 +3935,7 @@ static BOOL ov14_02223E10 (BattleSystem * param0, BattleContext * param1, int pa
 
         if ((Pokemon_GetValue(v9, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v9, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v9, MON_DATA_SPECIES_EGG, NULL) != 494) && (v0 != param1->selectedPartySlot[v2]) && (v0 != param1->selectedPartySlot[v3]) && (v0 != param1->aiSwitchedPartySlot[v2]) && (v0 != param1->aiSwitchedPartySlot[v3])) {
             v6 = 0;
-            v5 = ov14_0222327C(param0, param1, param1->moveHitBattler[param2], param1->moveHit[param2]);
+            v5 = TrainerAI_MoveType(param0, param1, param1->moveHitBattler[param2], param1->moveHit[param2]);
 
             BattleSystem_CalcEffectiveness(param1, param1->moveHit[param2], v5, Battler_Ability(param1, param1->moveHitBattler[param2]), Pokemon_GetValue(v9, MON_DATA_ABILITY, NULL), BattleSystem_GetItemData(param1, Pokemon_GetValue(v9, MON_DATA_HELD_ITEM, NULL), 1), Pokemon_GetValue(v9, MON_DATA_TYPE_1, NULL), Pokemon_GetValue(v9, MON_DATA_TYPE_2, NULL), &v6);
 
