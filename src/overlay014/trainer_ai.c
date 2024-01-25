@@ -200,7 +200,7 @@ static BOOL AI_HasPartyMemberWithSuperEffectiveMove(BattleSystem *battleSys, Bat
 static BOOL AI_IsAsleepWithNaturalCure(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 static BOOL AI_IsHeavilyStatBoosted(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 static BOOL TrainerAI_ShouldSwitch(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
-static BOOL TrainerAI_ShouldUseItem(BattleSystem * param0, int param1);
+static BOOL TrainerAI_ShouldUseItem(BattleSystem *battleSys, int battler);
 
 static const AICommandFunc sAICommandTable[] = {
     ov14_02220184,
@@ -4384,138 +4384,163 @@ int TrainerAI_PickCommand(BattleSystem *battleSys, int battler)
     return PLAYER_INPUT_FIGHT;
 }
 
-static BOOL TrainerAI_ShouldUseItem (BattleSystem * param0, int param1)
+/**
+ * @brief Determine if the AI should use an item on its active battler.
+ * 
+ * Several buffers will be filled, if an item should be used:
+ * 1. The item type (e.g., Full Restore, Potion, etc.)
+ * 2. Any parameters for the item, e.g. what status condition it heals
+ * 3. What item number is used
+ * 
+ * The trainer's pocket of items will also be updated appropriately.
+ * 
+ * @param battleSys 
+ * @param battler   The AI's battler.
+ * @return          TRUE if an item should be used, FALSE if not.
+ */
+static BOOL TrainerAI_ShouldUseItem(BattleSystem *battleSys, int battler)
 {
-    int v0;
-    u8 v1 = 0;
-    u16 v2;
-    u8 v3;
-    BOOL v4;
-    u8 * v5;
-    Party * v6;
-    Pokemon * v7;
-    BattleContext * v8;
+    int i;
+    u8 aliveMons = 0;
+    u16 item;
+    u8 hpRestore;
+    BOOL result;
+    Party *party;
+    Pokemon *mon;
+    BattleContext *battleCtx;
 
-    v8 = param0->battleCtx;
-    v8->aiContext.usedItemCondition[param1 >> 1] = 0;
+    battleCtx = battleSys->battleCtx;
+    AI_CONTEXT.usedItemCondition[battler >> 1] = 0;
+    result = FALSE;
 
-    v4 = 0;
-
-    if (((param0->battleType & ((0x2 | 0x1) | 0x8 | 0x40)) == ((0x2 | 0x1) | 0x8 | 0x40)) && (BattleSystem_BattlerSlot(param0, param1) == 4)) {
-        return v4;
+    // Don't let the AI partners ever use items in battle against trainers.
+    if ((battleSys->battleType & BATTLE_TYPE_TRAINER_WITH_AI_PARTNER) == BATTLE_TYPE_TRAINER_WITH_AI_PARTNER
+            && BattleSystem_BattlerSlot(battleSys, battler) == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
+        return result;
     }
 
-    if (v8->battleMons[param1].moveEffectsMask & 0x4000000) {
-        return v4;
+    // Don't try to use items if it's illegal to do so.
+    if (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_EMBARGO) {
+        return result;
     }
 
-    v6 = BattleSystem_Party(param0, param1);
+    party = BattleSystem_Party(battleSys, battler);
+    for (i = 0; i < Party_GetCurrentCount(party); i++) {
+        mon = Party_GetPokemonBySlotIndex(party, i);
 
-    for (v0 = 0; v0 < Party_GetCurrentCount(v6); v0++) {
-        v7 = Party_GetPokemonBySlotIndex(v6, v0);
-
-        if ((Pokemon_GetValue(v7, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v7, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v7, MON_DATA_SPECIES_EGG, NULL) != 494)) {
-            v1++;
+        if (Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL) != 0
+                && Pokemon_GetValue(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
+                && Pokemon_GetValue(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG) {
+            aliveMons++;
         }
     }
 
-    for (v0 = 0; v0 < 4; v0++) {
-        if ((v0 == 0) || (v1 <= v8->aiContext.trainerItemCounts[param1 >> 1] - v0 + 1)) {
-            v2 = v8->aiContext.trainerItems[param1 >> 1][v0];
+    for (i = 0; i < MAX_TRAINER_ITEMS; i++) {
+        if (i == 0 || aliveMons <= AI_CONTEXT.trainerItemCounts[battler >> 1] - i + 1) {
+            item = AI_CONTEXT.trainerItems[battler >> 1][i];
 
-            if (v2 == 0) {
+            if (item == ITEM_NONE) {
                 continue;
             }
 
-            if (v2 == 23) {
-                if ((v8->battleMons[param1].curHP < (v8->battleMons[param1].maxHP / 4)) && (v8->battleMons[param1].curHP)) {
-                    v8->aiContext.usedItemType[param1 >> 1] = 0;
-                    v4 = 1;
+            if (item == ITEM_FULL_RESTORE) {
+                if (battleCtx->battleMons[battler].curHP < (battleCtx->battleMons[battler].maxHP / 4)
+                        && battleCtx->battleMons[battler].curHP) {
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_FULL_RESTORE;
+                    result = TRUE;
                 }
-            } else if (BattleSystem_GetItemData(v8, v2, 38)) {
-                v3 = BattleSystem_GetItemData(v8, v2, 54);
+            } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HP_RESTORE)) {
+                hpRestore = BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HP_RESTORED);
 
-                if (v3) {
-                    if ((v8->battleMons[param1].curHP) && ((v8->battleMons[param1].curHP < (v8->battleMons[param1].maxHP / 4)) || ((v8->battleMons[param1].maxHP - v8->battleMons[param1].curHP) > v3))) {
-                        v8->aiContext.usedItemType[param1 >> 1] = 1;
-                        v4 = 1;
+                // Use an HP restore item if the battler is at less than 1/4 HP or if the full HP restore
+                // value of the item would be used.
+                if (hpRestore) {
+                    if (battleCtx->battleMons[battler].curHP
+                            && (battleCtx->battleMons[battler].curHP < (battleCtx->battleMons[battler].maxHP / 4)
+                                || (battleCtx->battleMons[battler].maxHP - battleCtx->battleMons[battler].curHP) > hpRestore)) {
+                        AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_RECOVER_HP;
+                        result = TRUE;
                     }
                 }
-            } else if (BattleSystem_GetItemData(v8, v2, 15)) {
-                if (v8->battleMons[param1].status & 0x7) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] |= FlagIndex(5);
-                    v8->aiContext.usedItemType[param1 >> 1] = 2;
-                    v4 = 1;
+            } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HEAL_SLEEP)) {
+                if (battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP) {
+                    AI_CONTEXT.usedItemCondition[battler >> 1] |= FlagIndex(5);
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_RECOVER_STATUS;
+                    result = TRUE;
                 }
-            } else if (BattleSystem_GetItemData(v8, v2, 16)) {
-                if ((v8->battleMons[param1].status & 0x8) || (v8->battleMons[param1].status & 0x80)) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] |= FlagIndex(4);
-                    v8->aiContext.usedItemType[param1 >> 1] = 2;
-                    v4 = 1;
+            } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HEAL_POISON)) {
+                if ((battleCtx->battleMons[battler].status & MON_CONDITION_POISON)
+                        || (battleCtx->battleMons[battler].status & MON_CONDITION_TOXIC)) {
+                    AI_CONTEXT.usedItemCondition[battler >> 1] |= FlagIndex(4);
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_RECOVER_STATUS;
+                    result = TRUE;
                 }
-            } else if (BattleSystem_GetItemData(v8, v2, 17)) {
-                if (v8->battleMons[param1].status & 0x10) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] |= FlagIndex(3);
-                    v8->aiContext.usedItemType[param1 >> 1] = 2;
-                    v4 = 1;
+            } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HEAL_BURN)) {
+                if (battleCtx->battleMons[battler].status & MON_CONDITION_BURN) {
+                    AI_CONTEXT.usedItemCondition[battler >> 1] |= FlagIndex(3);
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_RECOVER_STATUS;
+                    result = TRUE;
                 }
-            } else if (BattleSystem_GetItemData(v8, v2, 18)) {
-                if (v8->battleMons[param1].status & 0x20) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] |= FlagIndex(2);
-                    v8->aiContext.usedItemType[param1 >> 1] = 2;
-                    v4 = 1;
+            } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HEAL_FREEZE)) {
+                if (battleCtx->battleMons[battler].status & MON_CONDITION_FREEZE) {
+                    AI_CONTEXT.usedItemCondition[battler >> 1] |= FlagIndex(2);
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_RECOVER_STATUS;
+                    result = TRUE;
                 }
-            } else if (BattleSystem_GetItemData(v8, v2, 19)) {
-                if (v8->battleMons[param1].status & 0x40) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] |= FlagIndex(1);
-                    v8->aiContext.usedItemType[param1 >> 1] = 2;
-                    v4 = 1;
+            } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HEAL_PARALYSIS)) {
+                if (battleCtx->battleMons[battler].status & MON_CONDITION_PARALYSIS) {
+                    AI_CONTEXT.usedItemCondition[battler >> 1] |= FlagIndex(1);
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_RECOVER_STATUS;
+                    result = TRUE;
                 }
-            } else if (BattleSystem_GetItemData(v8, v2, 20)) {
-                if (v8->battleMons[param1].statusVolatile & 0x7) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] |= FlagIndex(0);
-                    v8->aiContext.usedItemType[param1 >> 1] = 2;
-                    v4 = 1;
+            } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HEAL_CONFUSION)) {
+                if (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_CONFUSION) {
+                    AI_CONTEXT.usedItemCondition[battler >> 1] |= FlagIndex(0);
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_RECOVER_STATUS;
+                    result = TRUE;
                 }
-            } else if ((v8->battleMons[param1].moveEffectsData.fakeOutTurnNumber - v8->totalTurns) >= 0) {
-                if (BattleSystem_GetItemData(v8, v2, 27)) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] = 0x1;
-                    v8->aiContext.usedItemType[param1 >> 1] = 3;
-                    v4 = 1;
-                } else if (BattleSystem_GetItemData(v8, v2, 28)) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] = 0x2;
-                    v8->aiContext.usedItemType[param1 >> 1] = 3;
-                    v4 = 1;
-                } else if (BattleSystem_GetItemData(v8, v2, 29)) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] = 0x4;
-                    v8->aiContext.usedItemType[param1 >> 1] = 3;
-                    v4 = 1;
-                } else if (BattleSystem_GetItemData(v8, v2, 30)) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] = 0x5;
-                    v8->aiContext.usedItemType[param1 >> 1] = 3;
-                    v4 = 1;
-                } else if (BattleSystem_GetItemData(v8, v2, 31)) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] = 0x3;
-                    v8->aiContext.usedItemType[param1 >> 1] = 3;
-                    v4 = 1;
-                } else if (BattleSystem_GetItemData(v8, v2, 32)) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] = 0x6;
-                    v8->aiContext.usedItemType[param1 >> 1] = 3;
-                    v4 = 1;
-                } else if ((BattleSystem_GetItemData(v8, v2, 22)) && ((v8->sideConditionsMask[1] & 0x40) == 0)) {
-                    v8->aiContext.usedItemType[param1 >> 1] = 4;
-                    v4 = 1;
+            // Don't try to use any of these until after the first turn that a mon is in play.
+            } else if ((battleCtx->battleMons[battler].moveEffectsData.fakeOutTurnNumber - battleCtx->totalTurns) >= 0) {
+                if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_ATK_STAGES)) {
+                    AI_CONTEXT.usedItemCondition[battler >> 1] = BATTLE_STAT_ATTACK;
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_STAT_BOOSTER;
+                    result = TRUE;
+                } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_DEF_STAGES)) {
+                    AI_CONTEXT.usedItemCondition[battler >> 1] = BATTLE_STAT_DEFENSE;
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_STAT_BOOSTER;
+                    result = TRUE;
+                } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_SPATK_STAGES)) {
+                    AI_CONTEXT.usedItemCondition[battler >> 1] = BATTLE_STAT_SP_ATTACK;
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_STAT_BOOSTER;
+                    result = TRUE;
+                } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_SPDEF_STAGES)) {
+                    AI_CONTEXT.usedItemCondition[battler >> 1] = BATTLE_STAT_SP_DEFENSE;
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_STAT_BOOSTER;
+                    result = TRUE;
+                } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_SPEED_STAGES)) {
+                    AI_CONTEXT.usedItemCondition[battler >> 1] = BATTLE_STAT_SPEED;
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_STAT_BOOSTER;
+                    result = TRUE;
+                } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_ACC_STAGES)) {
+                    AI_CONTEXT.usedItemCondition[battler >> 1] = BATTLE_STAT_ACCURACY;
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_STAT_BOOSTER;
+                    result = TRUE;
+                } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_GUARD_SPEC)
+                        && (battleCtx->sideConditionsMask[1] & SIDE_CONDITION_MIST) == FALSE) {
+                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_GUARD_SPEC;
+                    result = TRUE;
                 }
             } else {
-                v8->aiContext.usedItemType[param1 >> 1] = 5;
+                // Unrecognized item type
+                battleCtx->aiContext.usedItemType[battler >> 1] = ITEM_TYPE_MAX;
             }
 
-            if (v4 == 1) {
-                v8->aiContext.usedItem[param1 >> 1] = v2;
-                v8->aiContext.trainerItems[param1 >> 1][v0] = 0;
+            if (result == TRUE) {
+                battleCtx->aiContext.usedItem[battler >> 1] = item;
+                battleCtx->aiContext.trainerItems[battler >> 1][i] = 0;
             }
         }
     }
 
-    return v4;
+    return result;
 }
