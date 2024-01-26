@@ -1,0 +1,52 @@
+{
+    "targets": {
+        "trainer_ai": [
+            "@LoadTypeTarget",
+            "@AIWeather",
+            "@CheckEffect",
+            "@CheckLevel"
+        ]
+    },
+    "definitions": {
+        "@LoadTypeTarget": {
+            "type": "enum",
+            "values": [
+                "LOAD_DEFENDER_TYPE_1",
+                "LOAD_ATTACKER_TYPE_1",
+                "LOAD_DEFENDER_TYPE_2",
+                "LOAD_ATTACKER_TYPE_2",
+                "LOAD_MOVE_TYPE",
+                "LOAD_DEFENDER_PARTNER_TYPE_1",
+                "LOAD_ATTACKER_PARTNER_TYPE_1",
+                "LOAD_DEFENDER_PARTNER_TYPE_2",
+                "LOAD_ATTACKER_PARTNER_TYPE_2"
+            ]
+        },
+        "@AIWeather": {
+            "type": "enum",
+            "values": [
+                "AI_WEATHER_CLEAR",
+                "AI_WEATHER_SUNNY",
+                "AI_WEATHER_RAINING",
+                "AI_WEATHER_SANDSTORM",
+                "AI_WEATHER_HAILING",
+                "AI_WEATHER_DEEP_FOG"
+            ]
+        },
+        "@CheckEffect": {
+            "type": "enum",
+            "values": [
+                "CHECK_DISABLE",
+                "CHECK_ENCORE"
+            ]
+        },
+        "@CheckLevel": {
+            "type": "enum",
+            "values": [
+                "CHECK_HIGHER_THAN_TARGET",
+                "CHECK_LOWER_THAN_TARGET",
+                "CHECK_EQUAL_TO_TARGET"
+            ]
+        }
+    }
+}
