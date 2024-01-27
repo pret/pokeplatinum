@@ -2,6 +2,8 @@
 #define POKEPLATINUM_CONSTANTS_BATTLE_TRAINER_AI_H
 
 #ifndef __ASM_PM_
+#include "consts/generated/c/trainer_ai.h"
+
 enum AIActionChoice {
     AI_ENEMY_ATTACK_1 = 0,
     AI_ENEMY_ATTACK_2,
@@ -27,6 +29,8 @@ enum AIActionChoice {
 #define AI_FLAG_WEATHER             (1 << 9)
 #define AI_FLAG_HARRASSMENT         (1 << 10)
 #define AI_FLAG_ROAMING_POKEMON     (1 << 29)
+#define AI_FLAG_SAFARI              (1 << 30)
+#define AI_FLAG_CATCH_TUTORIAL      (1 << 31)
 
 #define AI_INIT_SCORE_MOVE_1        (1 << 0)
 #define AI_INIT_SCORE_MOVE_2        (1 << 1)
@@ -53,5 +57,18 @@ enum AIActionChoice {
 #define AI_BATTLER_ATTACKER_PARTNER (AI_BATTLER_ATTACKER ^ 2)
 
 #define AI_MAX_STACK_SIZE   8
+
+#define AI_NO_COMPARISON_MADE       0
+#define AI_NOT_HIGHEST_DAMAGE       1
+#define AI_MOVE_IS_HIGHEST_DAMAGE   2
+
+#define AI_NOT_HAVE 0
+#define AI_HAVE     1
+#define AI_UNKNOWN  2
+
+// for the script only; readable flags for commands that accept a boolean
+// flag determining if they roll for damage or not
+#define USE_MAX_DAMAGE  0
+#define ROLL_FOR_DAMAGE 1
 
 #endif

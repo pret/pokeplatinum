@@ -66,115 +66,115 @@ enum AIEvalStep {
     AI_EVAL_STEP_END,
 };
 
-static void ov14_02220184(BattleSystem * param0, BattleContext * param1);
-static void ov14_022201C4(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220204(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220244(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220284(BattleSystem * param0, BattleContext * param1);
-static void ov14_022202B8(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220310(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220368(BattleSystem * param0, BattleContext * param1);
-static void ov14_022203C0(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220418(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220464(BattleSystem * param0, BattleContext * param1);
-static void ov14_022204B0(BattleSystem * param0, BattleContext * param1);
-static void ov14_022204FC(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220548(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220590(BattleSystem * param0, BattleContext * param1);
-static void ov14_022205D8(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220628(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220678(BattleSystem * param0, BattleContext * param1);
-static void ov14_022206A8(BattleSystem * param0, BattleContext * param1);
-static void ov14_022206D8(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220708(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220738(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220768(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220798(BattleSystem * param0, BattleContext * param1);
-static void ov14_022207C8(BattleSystem * param0, BattleContext * param1);
-static void ov14_022207F8(BattleSystem * param0, BattleContext * param1);
-static void ov14_0222084C(BattleSystem * param0, BattleContext * param1);
-static void ov14_0222089C(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220900(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220964(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220980(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220B10(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220B34(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220C70(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220CA4(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220CD4(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220D04(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220D48(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220D8C(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220E68(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220E84(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220EA8(BattleSystem * param0, BattleContext * param1);
-static void ov14_02221060(BattleSystem * param0, BattleContext * param1);
-static void ov14_02221114(BattleSystem * param0, BattleContext * param1);
-static void ov14_022211AC(BattleSystem * param0, BattleContext * param1);
-static void ov14_022212A0(BattleSystem * param0, BattleContext * param1);
-static void ov14_02221394(BattleSystem * param0, BattleContext * param1);
-static void ov14_0222140C(BattleSystem * param0, BattleContext * param1);
-static void ov14_02221444(BattleSystem * param0, BattleContext * param1);
-static void ov14_0222147C(BattleSystem * param0, BattleContext * param1);
-static void ov14_022214D0(BattleSystem * param0, BattleContext * param1);
-static void ov14_02221524(BattleSystem * param0, BattleContext * param1);
-static void ov14_02221578(BattleSystem * param0, BattleContext * param1);
-static void ov14_022215CC(BattleSystem * param0, BattleContext * param1);
-static void ov14_022216F8(BattleSystem * param0, BattleContext * param1);
-static void ov14_02221824(BattleSystem * param0, BattleContext * param1);
-static void ov14_022218E4(BattleSystem * param0, BattleContext * param1);
-static void ov14_022219A4(BattleSystem * param0, BattleContext * param1);
-static void ov14_02221A48(BattleSystem * param0, BattleContext * param1);
-static void ov14_02221AEC(BattleSystem * param0, BattleContext * param1);
-static void ov14_02221B5C(BattleSystem * param0, BattleContext * param1);
-static void ov14_02221BCC(BattleSystem * param0, BattleContext * param1);
-static void ov14_02221BE8(BattleSystem * param0, BattleContext * param1);
-static void ov14_02221BEC(BattleSystem * param0, BattleContext * param1);
-static void ov14_02221BF0(BattleSystem * param0, BattleContext * param1);
-static void ov14_02221C24(BattleSystem * param0, BattleContext * param1);
-static void ov14_02222844(BattleSystem * param0, BattleContext * param1);
-static void ov14_0222287C(BattleSystem * param0, BattleContext * param1);
-static void ov14_022228C8(BattleSystem * param0, BattleContext * param1);
-static void ov14_02222900(BattleSystem * param0, BattleContext * param1);
-static void ov14_02222918(BattleSystem * param0, BattleContext * param1);
-static void ov14_0222294C(BattleSystem * param0, BattleContext * param1);
-static void ov14_0222296C(BattleSystem * param0, BattleContext * param1);
-static void ov14_0222298C(BattleSystem * param0, BattleContext * param1);
-static void ov14_022229AC(BattleSystem * param0, BattleContext * param1);
-static void ov14_02222A08(BattleSystem * param0, BattleContext * param1);
-static void ov14_02222A28(BattleSystem * param0, BattleContext * param1);
-static void ov14_02222A44(BattleSystem * param0, BattleContext * param1);
-static void ov14_02222A6C(BattleSystem * param0, BattleContext * param1);
-static void ov14_02222B10(BattleSystem * param0, BattleContext * param1);
-static void ov14_02222B48(BattleSystem * param0, BattleContext * param1);
-static void ov14_02222B80(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220AB4(BattleSystem * param0, BattleContext * param1);
-static void ov14_02220F88(BattleSystem * param0, BattleContext * param1);
-static void ov14_02222BB4(BattleSystem * param0, BattleContext * param1);
-static void ov14_02221C88(BattleSystem * param0, BattleContext * param1);
-static void ov14_02221CF0(BattleSystem * param0, BattleContext * param1);
-static void ov14_02221D20(BattleSystem * param0, BattleContext * param1);
-static void ov14_02221D88(BattleSystem * param0, BattleContext * param1);
-static void ov14_02221E18(BattleSystem * param0, BattleContext * param1);
-static void ov14_02221EBC(BattleSystem * param0, BattleContext * param1);
-static void ov14_02221EEC(BattleSystem * param0, BattleContext * param1);
-static void ov14_02221F1C(BattleSystem * param0, BattleContext * param1);
-static void ov14_02221F78(BattleSystem * param0, BattleContext * param1);
-static void ov14_02221F9C(BattleSystem * param0, BattleContext * param1);
-static void ov14_02221FCC(BattleSystem * param0, BattleContext * param1);
-static void ov14_02222090(BattleSystem * param0, BattleContext * param1);
-static void ov14_022220CC(BattleSystem * param0, BattleContext * param1);
-static void ov14_02222260(BattleSystem * param0, BattleContext * param1);
-static void ov14_02222298(BattleSystem * param0, BattleContext * param1);
-static void ov14_022223B0(BattleSystem * param0, BattleContext * param1);
-static void ov14_02222400(BattleSystem * param0, BattleContext * param1);
-static void ov14_02222450(BattleSystem * param0, BattleContext * param1);
-static void ov14_022224A4(BattleSystem * param0, BattleContext * param1);
-static void ov14_022224F8(BattleSystem * param0, BattleContext * param1);
-static void ov14_02222648(BattleSystem * param0, BattleContext * param1);
-static void ov14_022227A4(BattleSystem * param0, BattleContext * param1);
-static void ov14_022227F4(BattleSystem * param0, BattleContext * param1);
-static void ov14_02222BF8(BattleSystem * param0, BattleContext * param1);
+static void AICmd_IfRandomLessThan(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfRandomGreaterThan(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfRandomEqualTo(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfRandomNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_AddToMoveScore(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfHPPercentLessThan(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfHPPercentGreaterThan(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfHPPercentEqualTo(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfHPPercentNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfStatus(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfNotStatus(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfVolatileStatus(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfNotVolatileStatus(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfMoveEffect(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfNotMoveEffect(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfSideCondition(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfNotSideCondition(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfLoadedLessThan(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfLoadedGreaterThan(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfLoadedEqualTo(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfLoadedNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfLoadedMask(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfLoadedNotMask(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfMoveEqualTo(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfMoveNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfLoadedInTable(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfLoadedNotInTable(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfAttackerHasDamagingMoves(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfAttackerHasNoDamagingMoves(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadTurnCount(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadTypeFrom(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadMovePower(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_FlagMoveDamageScore(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadBattlerPreviousMove(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfTempEqualTo(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfTempNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfSpeedCompareEqualTo(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfSpeedCompareNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_CountAlivePartyBattlers(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadCurrentMove(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadCurrentMoveEffect(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadBattlerAbility(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_CalcMaxEffectiveness(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfMoveEffectivenessEquals(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfPartyMemberStatus(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfPartyMemberNotStatus(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadCurrentWeather(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfCurrentMoveEffectEqualTo(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfCurrentMoveEffectNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfStatStageLessThan(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfStatStageGreaterThan(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfStatStageEqualTo(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfStatStageNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfCurrentMoveKills(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfCurrentMoveDoesNotKill(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfMoveKnown(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfMoveNotKnown(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfMoveEffectKnown(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfMoveEffectNotKnown(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfBattlerUnderEffect(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfCurrentMoveMatchesEffect(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_Escape(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_Dummy3E(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_Dummy3F(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadHeldItem(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadHeldItemEffect(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadGender(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadIsFirstTurnInBattle(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadStockpileCount(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadBattleType(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadRecycleItem(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadTypeOfLoadedMove(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadPowerOfLoadedMove(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadEffectOfLoadedMove(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadProtectChain(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_PushAndGoTo(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_GoTo(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_PopOrEnd(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfLevel(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfTargetIsTaunted(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfTargetIsNotTaunted(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfTargetIsPartner(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_FlagBattlerIsType(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_CheckBattlerAbility(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfActivatedFlashFire(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfHeldItemEqualTo(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfFieldConditionsMask(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadSpikesLayers(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfAnyPartyMemberIsWounded(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfAnyPartyMemberUsedPP(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadFlingPower(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadCurrentMovePP(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfCanUseLastResort(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadCurrentMoveClass(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadDefenderLastUsedMoveClass(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadBattlerSpeedRank(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadIsBattlerFirstTurn(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfPartyMemberDealsMoreDamage(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfHasSuperEffectiveMove(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfBattlerDealsMoreDamage(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_SumPositiveStatStages(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_DiffStatStages(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfBattlerHasHigherStat(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfBattlerHasLowerStat(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfBattlerHasEqualStat(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_CheckIfHighestDamageWithPartner(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfBattlerFainted(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfBattlerNotFainted(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadAbility(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static u8 TrainerAI_MainSingles(BattleSystem *battleSys, BattleContext *battleCtx);
 static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -203,115 +203,115 @@ static BOOL TrainerAI_ShouldSwitch(BattleSystem *battleSys, BattleContext *battl
 static BOOL TrainerAI_ShouldUseItem(BattleSystem *battleSys, int battler);
 
 static const AICommandFunc sAICommandTable[] = {
-    ov14_02220184,
-    ov14_022201C4,
-    ov14_02220204,
-    ov14_02220244,
-    ov14_02220284,
-    ov14_022202B8,
-    ov14_02220310,
-    ov14_02220368,
-    ov14_022203C0,
-    ov14_02220418,
-    ov14_02220464,
-    ov14_022204B0,
-    ov14_022204FC,
-    ov14_02220548,
-    ov14_02220590,
-    ov14_022205D8,
-    ov14_02220628,
-    ov14_02220678,
-    ov14_022206A8,
-    ov14_022206D8,
-    ov14_02220708,
-    ov14_02220738,
-    ov14_02220768,
-    ov14_02220798,
-    ov14_022207C8,
-    ov14_022207F8,
-    ov14_0222084C,
-    ov14_0222089C,
-    ov14_02220900,
-    ov14_02220964,
-    ov14_02220980,
-    ov14_02220B10,
-    ov14_02220B34,
-    ov14_02220C70,
-    ov14_02220CA4,
-    ov14_02220CD4,
-    ov14_02220D04,
-    ov14_02220D48,
-    ov14_02220D8C,
-    ov14_02220E68,
-    ov14_02220E84,
-    ov14_02220EA8,
-    ov14_02221060,
-    ov14_02221114,
-    ov14_022211AC,
-    ov14_022212A0,
-    ov14_02221394,
-    ov14_0222140C,
-    ov14_02221444,
-    ov14_0222147C,
-    ov14_022214D0,
-    ov14_02221524,
-    ov14_02221578,
-    ov14_022215CC,
-    ov14_022216F8,
-    ov14_02221824,
-    ov14_022218E4,
-    ov14_022219A4,
-    ov14_02221A48,
-    ov14_02221AEC,
-    ov14_02221B5C,
-    ov14_02221BCC,
-    ov14_02221BE8,
-    ov14_02221BEC,
-    ov14_02221BF0,
-    ov14_02221C24,
-    ov14_02222844,
-    ov14_0222287C,
-    ov14_022228C8,
-    ov14_02222900,
-    ov14_02222918,
-    ov14_0222294C,
-    ov14_0222296C,
-    ov14_0222298C,
-    ov14_022229AC,
-    ov14_02222A08,
-    ov14_02222A28,
-    ov14_02222A44,
-    ov14_02222A6C,
-    ov14_02222B10,
-    ov14_02222B48,
-    ov14_02222B80,
-    ov14_02220AB4,
-    ov14_02220F88,
-    ov14_02222BB4,
-    ov14_02221C88,
-    ov14_02221CF0,
-    ov14_02221D20,
-    ov14_02221D88,
-    ov14_02221E18,
-    ov14_02221EBC,
-    ov14_02221EEC,
-    ov14_02221F1C,
-    ov14_02221F78,
-    ov14_02221F9C,
-    ov14_02221FCC,
-    ov14_02222090,
-    ov14_022220CC,
-    ov14_02222260,
-    ov14_02222298,
-    ov14_022223B0,
-    ov14_02222400,
-    ov14_02222450,
-    ov14_022224A4,
-    ov14_022224F8,
-    ov14_02222648,
-    ov14_022227A4,
-    ov14_022227F4,
-    ov14_02222BF8
+    AICmd_IfRandomLessThan,
+    AICmd_IfRandomGreaterThan,
+    AICmd_IfRandomEqualTo,
+    AICmd_IfRandomNotEqualTo,
+    AICmd_AddToMoveScore,
+    AICmd_IfHPPercentLessThan,
+    AICmd_IfHPPercentGreaterThan,
+    AICmd_IfHPPercentEqualTo,
+    AICmd_IfHPPercentNotEqualTo,
+    AICmd_IfStatus,
+    AICmd_IfNotStatus,
+    AICmd_IfVolatileStatus,
+    AICmd_IfNotVolatileStatus,
+    AICmd_IfMoveEffect,
+    AICmd_IfNotMoveEffect,
+    AICmd_IfSideCondition,
+    AICmd_IfNotSideCondition,
+    AICmd_IfLoadedLessThan,
+    AICmd_IfLoadedGreaterThan,
+    AICmd_IfLoadedEqualTo,
+    AICmd_IfLoadedNotEqualTo,
+    AICmd_IfLoadedMask,
+    AICmd_IfLoadedNotMask,
+    AICmd_IfMoveEqualTo,
+    AICmd_IfMoveNotEqualTo,
+    AICmd_IfLoadedInTable,
+    AICmd_IfLoadedNotInTable,
+    AICmd_IfAttackerHasDamagingMoves,
+    AICmd_IfAttackerHasNoDamagingMoves,
+    AICmd_LoadTurnCount,
+    AICmd_LoadTypeFrom,
+    AICmd_LoadMovePower,
+    AICmd_FlagMoveDamageScore,
+    AICmd_LoadBattlerPreviousMove,
+    AICmd_IfTempEqualTo,
+    AICmd_IfTempNotEqualTo,
+    AICmd_IfSpeedCompareEqualTo,
+    AICmd_IfSpeedCompareNotEqualTo,
+    AICmd_CountAlivePartyBattlers,
+    AICmd_LoadCurrentMove,
+    AICmd_LoadCurrentMoveEffect,
+    AICmd_LoadBattlerAbility,
+    AICmd_CalcMaxEffectiveness,
+    AICmd_IfMoveEffectivenessEquals,
+    AICmd_IfPartyMemberStatus,
+    AICmd_IfPartyMemberNotStatus,
+    AICmd_LoadCurrentWeather,
+    AICmd_IfCurrentMoveEffectEqualTo,
+    AICmd_IfCurrentMoveEffectNotEqualTo,
+    AICmd_IfStatStageLessThan,
+    AICmd_IfStatStageGreaterThan,
+    AICmd_IfStatStageEqualTo,
+    AICmd_IfStatStageNotEqualTo,
+    AICmd_IfCurrentMoveKills,
+    AICmd_IfCurrentMoveDoesNotKill,
+    AICmd_IfMoveKnown,
+    AICmd_IfMoveNotKnown,
+    AICmd_IfMoveEffectKnown,
+    AICmd_IfMoveEffectNotKnown,
+    AICmd_IfBattlerUnderEffect,
+    AICmd_IfCurrentMoveMatchesEffect,
+    AICmd_Escape,
+    AICmd_Dummy3E,
+    AICmd_Dummy3F,
+    AICmd_LoadHeldItem,
+    AICmd_LoadHeldItemEffect,
+    AICmd_LoadGender,
+    AICmd_LoadIsFirstTurnInBattle,
+    AICmd_LoadStockpileCount,
+    AICmd_LoadBattleType,
+    AICmd_LoadRecycleItem,
+    AICmd_LoadTypeOfLoadedMove,
+    AICmd_LoadPowerOfLoadedMove,
+    AICmd_LoadEffectOfLoadedMove,
+    AICmd_LoadProtectChain,
+    AICmd_PushAndGoTo,
+    AICmd_GoTo,
+    AICmd_PopOrEnd,
+    AICmd_IfLevel,
+    AICmd_IfTargetIsTaunted,
+    AICmd_IfTargetIsNotTaunted,
+    AICmd_IfTargetIsPartner,
+    AICmd_FlagBattlerIsType,
+    AICmd_CheckBattlerAbility,
+    AICmd_IfActivatedFlashFire,
+    AICmd_IfHeldItemEqualTo,
+    AICmd_IfFieldConditionsMask,
+    AICmd_LoadSpikesLayers,
+    AICmd_IfAnyPartyMemberIsWounded,
+    AICmd_IfAnyPartyMemberUsedPP,
+    AICmd_LoadFlingPower,
+    AICmd_LoadCurrentMovePP,
+    AICmd_IfCanUseLastResort,
+    AICmd_LoadCurrentMoveClass,
+    AICmd_LoadDefenderLastUsedMoveClass,
+    AICmd_LoadBattlerSpeedRank,
+    AICmd_LoadIsBattlerFirstTurn,
+    AICmd_IfPartyMemberDealsMoreDamage,
+    AICmd_IfHasSuperEffectiveMove,
+    AICmd_IfBattlerDealsMoreDamage,
+    AICmd_SumPositiveStatStages,
+    AICmd_DiffStatStages,
+    AICmd_IfBattlerHasHigherStat,
+    AICmd_IfBattlerHasLowerStat,
+    AICmd_IfBattlerHasEqualStat,
+    AICmd_CheckIfHighestDamageWithPartner,
+    AICmd_IfBattlerFainted,
+    AICmd_IfBattlerNotFainted,
+    AICmd_LoadAbility,
 };
 
 void TrainerAI_Init(BattleSystem *battleSys, BattleContext *battleCtx, u8 battler, u8 initScore)
@@ -631,1835 +631,1647 @@ static void TrainerAI_EvalMoves(BattleSystem *battleSys, BattleContext *battleCt
     }
 }
 
-static void ov14_02220184 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfRandomLessThan(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int val = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-
-    if ((BattleSystem_RandNext(param0) % 256) < v0) {
-        AIScript_Iter(param1, v1);
+    if ((BattleSystem_RandNext(battleSys) % 256) < val) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_022201C4 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfRandomGreaterThan(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int val = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-
-    if ((BattleSystem_RandNext(param0) % 256) > v0) {
-        AIScript_Iter(param1, v1);
+    if ((BattleSystem_RandNext(battleSys) % 256) > val) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02220204 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfRandomEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int val = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-
-    if ((BattleSystem_RandNext(param0) % 256) == v0) {
-        AIScript_Iter(param1, v1);
+    if ((BattleSystem_RandNext(battleSys) % 256) == val) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02220244 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfRandomNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int val = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-
-    if ((BattleSystem_RandNext(param0) % 256) != v0) {
-        AIScript_Iter(param1, v1);
+    if ((BattleSystem_RandNext(battleSys) % 256) != val) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02220284 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_AddToMoveScore(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int val = AIScript_Read(battleCtx);
+    AI_CONTEXT.moveScore[AI_CONTEXT.moveSlot] += val;
 
-    v0 = AIScript_Read(param1);
-    param1->aiContext.moveScore[param1->aiContext.moveSlot] += v0;
-
-    if (param1->aiContext.moveScore[param1->aiContext.moveSlot] < 0) {
-        param1->aiContext.moveScore[param1->aiContext.moveSlot] = 0;
+    if (AI_CONTEXT.moveScore[AI_CONTEXT.moveSlot] < 0) {
+        AI_CONTEXT.moveScore[AI_CONTEXT.moveSlot] = 0;
     }
 }
 
-static void ov14_022202B8 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfHPPercentLessThan(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    u32 v1;
-    int v2;
-    int v3;
-    int v4;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    int targetPercent = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
+    u32 hpPercent = battleCtx->battleMons[battler].curHP * 100 / battleCtx->battleMons[battler].maxHP;
 
-    v2 = AIScript_Read(param1);
-    v3 = AIScript_Read(param1);
-    v4 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v2);
-    v1 = param1->battleMons[v0].curHP * 100 / param1->battleMons[v0].maxHP;
-
-    if (v1 < v3) {
-        AIScript_Iter(param1, v4);
+    if (hpPercent < targetPercent) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02220310 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfHPPercentGreaterThan(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    u32 v1;
-    int v2;
-    int v3;
-    int v4;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    int targetPercent = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
+    u32 hpPercent = battleCtx->battleMons[battler].curHP * 100 / battleCtx->battleMons[battler].maxHP;
 
-    v2 = AIScript_Read(param1);
-    v3 = AIScript_Read(param1);
-    v4 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v2);
-    v1 = param1->battleMons[v0].curHP * 100 / param1->battleMons[v0].maxHP;
-
-    if (v1 > v3) {
-        AIScript_Iter(param1, v4);
+    if (hpPercent > targetPercent) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02220368 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfHPPercentEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    u32 v1;
-    int v2;
-    int v3;
-    int v4;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    int targetPercent = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
+    u32 hpPercent = battleCtx->battleMons[battler].curHP * 100 / battleCtx->battleMons[battler].maxHP;
 
-    v2 = AIScript_Read(param1);
-    v3 = AIScript_Read(param1);
-    v4 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v2);
-    v1 = param1->battleMons[v0].curHP * 100 / param1->battleMons[v0].maxHP;
-
-    if (v1 == v3) {
-        AIScript_Iter(param1, v4);
+    if (hpPercent == targetPercent) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_022203C0 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfHPPercentNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    u32 v1;
-    int v2;
-    int v3;
-    int v4;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    int targetPercent = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
+    u32 hpPercent = battleCtx->battleMons[battler].curHP * 100 / battleCtx->battleMons[battler].maxHP;
 
-    v2 = AIScript_Read(param1);
-    v3 = AIScript_Read(param1);
-    v4 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v2);
-    v1 = param1->battleMons[v0].curHP * 100 / param1->battleMons[v0].maxHP;
-
-    if (v1 != v3) {
-        AIScript_Iter(param1, v4);
+    if (hpPercent != targetPercent) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02220418 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfStatus(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
-    u32 v2;
-    int v3;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    u32 mask = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Read(param1);
-    v3 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-
-    if (param1->battleMons[v0].status & v2) {
-        AIScript_Iter(param1, v3);
+    if (battleCtx->battleMons[battler].status & mask) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02220464 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfNotStatus(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
-    u32 v2;
-    int v3;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    u32 mask = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Read(param1);
-    v3 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-
-    if ((param1->battleMons[v0].status & v2) == 0) {
-        AIScript_Iter(param1, v3);
+    if ((battleCtx->battleMons[battler].status & mask) == FALSE) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_022204B0 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfVolatileStatus(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
-    u32 v2;
-    int v3;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    u32 mask = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Read(param1);
-    v3 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-
-    if (param1->battleMons[v0].statusVolatile & v2) {
-        AIScript_Iter(param1, v3);
+    if (battleCtx->battleMons[battler].statusVolatile & mask) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_022204FC (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfNotVolatileStatus(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
-    u32 v2;
-    int v3;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    u32 mask = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Read(param1);
-    v3 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-
-    if ((param1->battleMons[v0].statusVolatile & v2) == 0) {
-        AIScript_Iter(param1, v3);
+    if ((battleCtx->battleMons[battler].statusVolatile & mask) == FALSE) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02220548 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfMoveEffect(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
-    u32 v2;
-    int v3;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    u32 mask = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Read(param1);
-    v3 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-
-    if (param1->battleMons[v0].moveEffectsMask & v2) {
-        AIScript_Iter(param1, v3);
+    if (battleCtx->battleMons[battler].moveEffectsMask & mask) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02220590 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfNotMoveEffect(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
-    u32 v2;
-    int v3;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    u32 mask = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Read(param1);
-    v3 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-
-    if ((param1->battleMons[v0].moveEffectsMask & v2) == 0) {
-        AIScript_Iter(param1, v3);
+    if ((battleCtx->battleMons[battler].moveEffectsMask & mask) == FALSE) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_022205D8 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfSideCondition(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
-    u32 v2;
-    int v3;
-    u8 v4;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    u32 mask = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
+    u8 side = Battler_Side(battleSys, battler);
 
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Read(param1);
-    v3 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-    v4 = Battler_Side(param0, v0);
-
-    if (param1->sideConditionsMask[v4] & v2) {
-        AIScript_Iter(param1, v3);
+    if (battleCtx->sideConditionsMask[side] & mask) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02220628 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfNotSideCondition(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
-    u32 v2;
-    int v3;
-    u8 v4;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    u32 mask = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
+    u8 side = Battler_Side(battleSys, battler);
 
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Read(param1);
-    v3 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-    v4 = Battler_Side(param0, v0);
-
-    if ((param1->sideConditionsMask[v4] & v2) == 0) {
-        AIScript_Iter(param1, v3);
+    if ((battleCtx->sideConditionsMask[side] & mask) == FALSE) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02220678 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfLoadedLessThan(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int val = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-
-    if (param1->aiContext.calcTemp < v0) {
-        AIScript_Iter(param1, v1);
+    if (AI_CONTEXT.calcTemp < val) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_022206A8 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfLoadedGreaterThan(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int val = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-
-    if (param1->aiContext.calcTemp > v0) {
-        AIScript_Iter(param1, v1);
+    if (AI_CONTEXT.calcTemp > val) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_022206D8 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfLoadedEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int val = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-
-    if (param1->aiContext.calcTemp == v0) {
-        AIScript_Iter(param1, v1);
+    if (AI_CONTEXT.calcTemp == val) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02220708 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfLoadedNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int val = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-
-    if (param1->aiContext.calcTemp != v0) {
-        AIScript_Iter(param1, v1);
+    if (AI_CONTEXT.calcTemp != val) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02220738 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfLoadedMask(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int mask = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-
-    if (param1->aiContext.calcTemp & v0) {
-        AIScript_Iter(param1, v1);
+    if (AI_CONTEXT.calcTemp & mask) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02220768 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfLoadedNotMask(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int mask = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-
-    if ((param1->aiContext.calcTemp & v0) == 0) {
-        AIScript_Iter(param1, v1);
+    if ((AI_CONTEXT.calcTemp & mask) == FALSE) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02220798 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfMoveEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int val = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-
-    if (param1->aiContext.move == v0) {
-        AIScript_Iter(param1, v1);
+    if (AI_CONTEXT.move == val) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_022207C8 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfMoveNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int val = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-
-    if (param1->aiContext.move != v0) {
-        AIScript_Iter(param1, v1);
+    if (AI_CONTEXT.move != val) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_022207F8 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfLoadedInTable(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int ofs = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    int val;
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-
-    while ((v2 = AIScript_ReadOffset(param1, v0)) != 0xffffffff) {
-        if (param1->aiContext.calcTemp == v2) {
-            AIScript_Iter(param1, v1);
+    while ((val = AIScript_ReadOffset(battleCtx, ofs)) != 0xFFFFFFFF) {
+        if (AI_CONTEXT.calcTemp == val) {
+            AIScript_Iter(battleCtx, jump);
             break;
         }
 
-        v0++;
+        ofs++;
     }
 }
 
-static void ov14_0222084C (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfLoadedNotInTable(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int ofs = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    int val;
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-
-    while ((v2 = AIScript_ReadOffset(param1, v0)) != 0xffffffff) {
-        if (param1->aiContext.calcTemp == v2) {
+    while ((val = AIScript_ReadOffset(battleCtx, ofs)) != 0xFFFFFFFF) {
+        if (AI_CONTEXT.calcTemp == val) {
             return;
         }
 
-        v0++;
+        ofs++;
     }
 
-    AIScript_Iter(param1, v1);
+    AIScript_Iter(battleCtx, jump);
 }
 
-static void ov14_0222089C (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfAttackerHasDamagingMoves(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
+    int jump = AIScript_Read(battleCtx);
 
-    AIScript_Iter(param1, 1);
-    v1 = AIScript_Read(param1);
-
-    for (v0 = 0; v0 < 4; v0++) {
-        if ((param1->battleMons[param1->aiContext.attacker].moves[v0] != 0) && (param1->aiContext.moveTable[param1->battleMons[param1->aiContext.attacker].moves[v0]].power)) {
+    int i;
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        if (battleCtx->battleMons[AI_CONTEXT.attacker].moves[i] != MOVE_NONE
+                && MOVE_DATA(battleCtx->battleMons[AI_CONTEXT.attacker].moves[i]).power) {
             break;
         }
     }
 
-    if (v0 < 4) {
-        AIScript_Iter(param1, v1);
+    if (i < LEARNED_MOVES_MAX) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02220900 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfAttackerHasNoDamagingMoves(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
+    int jump = AIScript_Read(battleCtx);
 
-    AIScript_Iter(param1, 1);
-    v1 = AIScript_Read(param1);
-
-    for (v0 = 0; v0 < 4; v0++) {
-        if ((param1->battleMons[param1->aiContext.attacker].moves[v0] != 0) && (param1->aiContext.moveTable[param1->battleMons[param1->aiContext.attacker].moves[v0]].power)) {
+    int i;
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        if (battleCtx->battleMons[AI_CONTEXT.attacker].moves[i] != MOVE_NONE
+                && MOVE_DATA(battleCtx->battleMons[AI_CONTEXT.attacker].moves[i]).power) {
             break;
         }
     }
 
-    if (v0 == 4) {
-        AIScript_Iter(param1, v1);
+    if (i == LEARNED_MOVES_MAX) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02220964 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_LoadTurnCount(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    AIScript_Iter(param1, 1);
-    param1->aiContext.calcTemp = param1->totalTurns;
+    AIScript_Iter(battleCtx, 1);
+    AI_CONTEXT.calcTemp = battleCtx->totalTurns;
 }
 
-static void ov14_02220980 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_LoadTypeFrom(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int param = AIScript_Read(battleCtx);
+    int partner;
 
-    v0 = AIScript_Read(param1);
+    switch (param) {
+    case LOAD_ATTACKER_TYPE_1:
+        AI_CONTEXT.calcTemp = BattleMon_Get(battleCtx, AI_CONTEXT.attacker, BATTLEMON_TYPE_1, NULL);
+        break;
 
-    switch (v0) {
-    case 1:
-        param1->aiContext.calcTemp = BattleMon_Get(param1, param1->aiContext.attacker, 27, NULL);
+    case LOAD_DEFENDER_TYPE_1:
+        AI_CONTEXT.calcTemp = BattleMon_Get(battleCtx, AI_CONTEXT.defender, BATTLEMON_TYPE_1, NULL);
         break;
-    case 0:
-        param1->aiContext.calcTemp = BattleMon_Get(param1, param1->aiContext.defender, 27, NULL);
+
+    case LOAD_ATTACKER_TYPE_2:
+        AI_CONTEXT.calcTemp = BattleMon_Get(battleCtx, AI_CONTEXT.attacker, BATTLEMON_TYPE_2, NULL);
         break;
-    case 3:
-        param1->aiContext.calcTemp = BattleMon_Get(param1, param1->aiContext.attacker, 28, NULL);
+
+    case LOAD_DEFENDER_TYPE_2:
+        AI_CONTEXT.calcTemp = BattleMon_Get(battleCtx, AI_CONTEXT.defender, BATTLEMON_TYPE_2, NULL);
         break;
-    case 2:
-        param1->aiContext.calcTemp = BattleMon_Get(param1, param1->aiContext.defender, 28, NULL);
+
+    case LOAD_MOVE_TYPE:
+        AI_CONTEXT.calcTemp = MOVE_DATA(AI_CONTEXT.move).type;
         break;
-    case 4:
-        param1->aiContext.calcTemp = param1->aiContext.moveTable[param1->aiContext.move].type;
+
+    case LOAD_ATTACKER_PARTNER_TYPE_1:
+        partner = BattleSystem_Partner(battleSys, AI_CONTEXT.attacker);
+        AI_CONTEXT.calcTemp = BattleMon_Get(battleCtx, partner, BATTLEMON_TYPE_1, NULL);
         break;
-    case 6:
-        v1 = BattleSystem_Partner(param0, param1->aiContext.attacker);
-        param1->aiContext.calcTemp = BattleMon_Get(param1, v1, 27, NULL);
+
+    case LOAD_DEFENDER_PARTNER_TYPE_1:
+        partner = BattleSystem_Partner(battleSys, AI_CONTEXT.defender);
+        AI_CONTEXT.calcTemp = BattleMon_Get(battleCtx, partner, BATTLEMON_TYPE_1, NULL);
         break;
-    case 5:
-        v1 = BattleSystem_Partner(param0, param1->aiContext.defender);
-        param1->aiContext.calcTemp = BattleMon_Get(param1, v1, 27, NULL);
+    
+    case LOAD_ATTACKER_PARTNER_TYPE_2:
+        partner = BattleSystem_Partner(battleSys, AI_CONTEXT.attacker);
+        AI_CONTEXT.calcTemp = BattleMon_Get(battleCtx, partner, BATTLEMON_TYPE_2, NULL);
         break;
-    case 8:
-        v1 = BattleSystem_Partner(param0, param1->aiContext.attacker);
-        param1->aiContext.calcTemp = BattleMon_Get(param1, v1, 28, NULL);
+
+    case LOAD_DEFENDER_PARTNER_TYPE_2:
+        partner = BattleSystem_Partner(battleSys, AI_CONTEXT.defender);
+        AI_CONTEXT.calcTemp = BattleMon_Get(battleCtx, partner, BATTLEMON_TYPE_1, NULL);
         break;
-    case 7:
-        v1 = BattleSystem_Partner(param0, param1->aiContext.defender);
-        param1->aiContext.calcTemp = BattleMon_Get(param1, v1, 27, NULL);
-        break;
+
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 }
 
-static void ov14_02220AB4 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_FlagBattlerIsType(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
-    int v2;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    int type = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-
-    if ((BattleMon_Get(param1, v0, 27, NULL) == v2) || (BattleMon_Get(param1, v0, 28, NULL) == v2)) {
-        param1->aiContext.calcTemp = 1;
+    if (MON_HAS_TYPE(battler, type)) {
+        AI_CONTEXT.calcTemp = TRUE;
     } else {
-        param1->aiContext.calcTemp = 0;
+        AI_CONTEXT.calcTemp = FALSE;
     }
 }
 
-static void ov14_02220B10 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_LoadMovePower(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    AIScript_Iter(param1, 1);
-    param1->aiContext.calcTemp = param1->aiContext.moveTable[param1->aiContext.move].power;
+    AIScript_Iter(battleCtx, 1);
+    AI_CONTEXT.calcTemp = MOVE_DATA(AI_CONTEXT.move).power;
 }
 
-static void ov14_02220B34 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_FlagMoveDamageScore(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0 = 0, v1, v2;
-    s32 v3[4];
-    int v4;
-    u8 v5[6];
+    int i = 0, riskyIdx, altPowerIdx;
+    s32 moveDamage[LEARNED_MOVES_MAX];
+    BOOL varyDamage;
+    u8 ivs[STAT_MAX];
 
-    AIScript_Iter(param1, 1);
+    AIScript_Iter(battleCtx, 1);
 
-    v4 = AIScript_Read(param1);
-    v1 = 0;
+    varyDamage = AIScript_Read(battleCtx);
 
-    while (sRiskyMoves[v1] != 0xffff) {
-        if (param1->aiContext.moveTable[param1->aiContext.move].effect == sRiskyMoves[v1]) {
+    for (riskyIdx = 0; sRiskyMoves[riskyIdx] != 0xFFFF; riskyIdx++) {
+        if (MOVE_DATA(AI_CONTEXT.move).effect == sRiskyMoves[riskyIdx]) {
             break;
         }
-
-        v1++;
     }
 
-    v2 = 0;
-
-    while (sAltPowerCalcMoves[v2] != 0xffff) {
-        if (param1->aiContext.moveTable[param1->aiContext.move].effect == sAltPowerCalcMoves[v2]) {
+    for (altPowerIdx = 0; sAltPowerCalcMoves[altPowerIdx] != 0xFFFF; altPowerIdx++) {
+        if (MOVE_DATA(AI_CONTEXT.move).effect == sAltPowerCalcMoves[altPowerIdx]) {
             break;
         }
-
-        v2++;
     }
 
-    if ((sAltPowerCalcMoves[v2] != 0xffff) || ((param1->aiContext.moveTable[param1->aiContext.move].power > 1) && (sRiskyMoves[v1] == 0xffff))) {
-        for (v0 = 0; v0 < 6; v0++) {
-            v5[v0] = BattleMon_Get(param1, param1->aiContext.attacker, 10 + v0, NULL);
+    if (sAltPowerCalcMoves[altPowerIdx] != 0xFFFF
+            || (MOVE_DATA(AI_CONTEXT.move).power > 1 && sRiskyMoves[riskyIdx] == 0xFFFF)) {
+        for (i = 0; i < STAT_MAX; i++) {
+            ivs[i] = BattleMon_Get(battleCtx, AI_CONTEXT.attacker, BATTLEMON_HP_IV + i, NULL);
         }
 
-        TrainerAI_CalcAllDamage(param0, param1, param1->aiContext.attacker, &param1->battleMons[param1->aiContext.attacker].moves[0], &v3[0], param1->battleMons[param1->aiContext.attacker].heldItem, &v5[0], Battler_Ability(param1, param1->aiContext.attacker), param1->battleMons[param1->aiContext.attacker].moveEffectsData.embargoTurns, v4);
+        TrainerAI_CalcAllDamage(battleSys,
+            battleCtx,
+            AI_CONTEXT.attacker,
+            battleCtx->battleMons[AI_CONTEXT.attacker].moves,
+            moveDamage,
+            battleCtx->battleMons[AI_CONTEXT.attacker].heldItem,
+            ivs,
+            Battler_Ability(battleCtx, AI_CONTEXT.attacker),
+            battleCtx->battleMons[AI_CONTEXT.attacker].moveEffectsData.embargoTurns,
+            varyDamage);
 
-        for (v0 = 0; v0 < 4; v0++) {
-            if (v3[v0] > v3[param1->aiContext.moveSlot]) {
+        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+            if (moveDamage[i] > moveDamage[AI_CONTEXT.moveSlot]) {
                 break;
             }
         }
 
-        if (v0 == 4) {
-            param1->aiContext.calcTemp = 2;
+        if (i == LEARNED_MOVES_MAX) {
+            AI_CONTEXT.calcTemp = AI_MOVE_IS_HIGHEST_DAMAGE;
         } else {
-            param1->aiContext.calcTemp = 1;
+            AI_CONTEXT.calcTemp = AI_NOT_HIGHEST_DAMAGE;
         }
     } else {
-        param1->aiContext.calcTemp = 0;
+        AI_CONTEXT.calcTemp = AI_NO_COMPARISON_MADE;
     }
 }
 
-static void ov14_02220C70 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_LoadBattlerPreviousMove(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    v1 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-
-    param1->aiContext.calcTemp = param1->movePrevByBattler[v0];
+    AI_CONTEXT.calcTemp = battleCtx->movePrevByBattler[battler];
 }
 
-static void ov14_02220CA4 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfTempEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int val = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-
-    if (v0 == param1->aiContext.calcTemp) {
-        AIScript_Iter(param1, v1);
+    if (val == AI_CONTEXT.calcTemp) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02220CD4 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfTempNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int val = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-
-    if (v0 != param1->aiContext.calcTemp) {
-        AIScript_Iter(param1, v1);
+    if (val != AI_CONTEXT.calcTemp) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02220D04 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfSpeedCompareEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int val = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-
-    if (BattleSystem_CompareBattlerSpeed(param0, param1, param1->aiContext.attacker, param1->aiContext.defender, 1) == v0) {
-        AIScript_Iter(param1, v1);
+    if (BattleSystem_CompareBattlerSpeed(battleSys, battleCtx, AI_CONTEXT.attacker, AI_CONTEXT.defender, TRUE) == val) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02220D48 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfSpeedCompareNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int val = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-
-    if (BattleSystem_CompareBattlerSpeed(param0, param1, param1->aiContext.attacker, param1->aiContext.defender, 1) != v0) {
-        AIScript_Iter(param1, v1);
+    if (BattleSystem_CompareBattlerSpeed(battleSys, battleCtx, AI_CONTEXT.attacker, AI_CONTEXT.defender, TRUE) != val) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02220D8C (BattleSystem * param0, BattleContext * param1)
+static void AICmd_CountAlivePartyBattlers(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    Party * v0;
-    Pokemon * v1;
-    int v2;
-    u8 v3;
-    u8 v4, v5;
-    int v6;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
 
-    v6 = AIScript_Read(param1);
+    AI_CONTEXT.calcTemp = 0;
 
-    param1->aiContext.calcTemp = 0;
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
+    Party *party = BattleSystem_Party(battleSys, battler);
+    u8 battlerSlot, partnerSlot;
 
-    v3 = AIScript_Battler(param1, v6);
-    v0 = BattleSystem_Party(param0, v3);
-
-    if (param0->battleType & 0x2) {
-        v4 = param1->selectedPartySlot[v3];
-        v5 = param1->selectedPartySlot[BattleSystem_Partner(param0, v3)];
+    if (battleSys->battleType & BATTLE_TYPE_DOUBLES) {
+        battlerSlot = battleCtx->selectedPartySlot[battler];
+        partnerSlot = battleCtx->selectedPartySlot[BattleSystem_Partner(battleSys, battler)];
     } else {
-        v4 = v5 = param1->selectedPartySlot[v3];
+        battlerSlot = partnerSlot = battleCtx->selectedPartySlot[battler];
     }
 
-    for (v2 = 0; v2 < BattleSystem_PartyCount(param0, v3); v2++) {
-        v1 = Party_GetPokemonBySlotIndex(v0, v2);
+    for (int i = 0; i < BattleSystem_PartyCount(battleSys, battler); i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
-        if ((v2 != v4) && (v2 != v5) && (Pokemon_GetValue(v1, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 494)) {
-            param1->aiContext.calcTemp++;
+        if (i != battlerSlot
+                && i != partnerSlot
+                && Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL) != 0
+                && Pokemon_GetValue(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
+                && Pokemon_GetValue(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG) {
+            AI_CONTEXT.calcTemp++;
         }
     }
 }
 
-static void ov14_02220E68 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_LoadCurrentMove(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    AIScript_Iter(param1, 1);
-    param1->aiContext.calcTemp = param1->aiContext.move;
+    AIScript_Iter(battleCtx, 1);
+    AI_CONTEXT.calcTemp = AI_CONTEXT.move;
 }
 
-static void ov14_02220E84 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_LoadCurrentMoveEffect(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    AIScript_Iter(param1, 1);
-    param1->aiContext.calcTemp = param1->aiContext.moveTable[param1->aiContext.move].effect;
+    AIScript_Iter(battleCtx, 1);
+    AI_CONTEXT.calcTemp = MOVE_DATA(AI_CONTEXT.move).effect;
 }
 
-static void ov14_02220EA8 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_LoadBattlerAbility(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
-    int v2, v3;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    v1 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-
-    if (param1->battleMons[v0].moveEffectsMask & 0x200000) {
-        param1->aiContext.calcTemp = 0;
-    } else if ((param1->aiContext.attacker != v0) && (v1 != 3)) {
-        if (param1->aiContext.battlerAbilities[v0]) {
-            param1->aiContext.calcTemp = param1->aiContext.battlerAbilities[v0];
+    if (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_ABILITY_SUPPRESSED) {
+        AI_CONTEXT.calcTemp = ABILITY_NONE;
+    } else if (AI_CONTEXT.attacker != battler && inBattler != AI_BATTLER_ATTACKER_PARTNER) {
+        // If we already know an opponent's ability, load that ability
+        if (AI_CONTEXT.battlerAbilities[battler]) {
+            AI_CONTEXT.calcTemp = AI_CONTEXT.battlerAbilities[battler];
         } else {
-            if ((param1->battleMons[v0].ability == 23) || (param1->battleMons[v0].ability == 42) || (param1->battleMons[v0].ability == 71)) {
-                param1->aiContext.calcTemp = param1->battleMons[v0].ability;
+            // If the opponent has an ability that traps us, we should already know about it (because it self-announces)
+            if (battleCtx->battleMons[battler].ability == ABILITY_SHADOW_TAG
+                    || battleCtx->battleMons[battler].ability == ABILITY_MAGNET_PULL
+                    || battleCtx->battleMons[battler].ability == ABILITY_ARENA_TRAP) {
+                AI_CONTEXT.calcTemp = battleCtx->battleMons[battler].ability;
             } else {
-                v2 = PokemonPersonalData_GetSpeciesValue(param1->battleMons[v0].species, 24);
-                v3 = PokemonPersonalData_GetSpeciesValue(param1->battleMons[v0].species, 25);
+                // Try to guess the opponent's ability (flip a coin)
+                int ability1 = PokemonPersonalData_GetSpeciesValue(battleCtx->battleMons[battler].species, MON_DATA_PERSONAL_ABILITY_1);
+                int ability2 = PokemonPersonalData_GetSpeciesValue(battleCtx->battleMons[battler].species, MON_DATA_PERSONAL_ABILITY_2);
 
-                if ((v2) && (v3)) {
-                    if (BattleSystem_RandNext(param0) & 1) {
-                        param1->aiContext.calcTemp = v2;
+                if (ability1 && ability2) {
+                    if (BattleSystem_RandNext(battleSys) & 1) {
+                        AI_CONTEXT.calcTemp = ability1;
                     } else {
-                        param1->aiContext.calcTemp = v3;
+                        AI_CONTEXT.calcTemp = ability2;
                     }
-                } else if (v2) {
-                    param1->aiContext.calcTemp = v2;
+                } else if (ability1) {
+                    AI_CONTEXT.calcTemp = ability1;
                 } else {
-                    param1->aiContext.calcTemp = v3;
+                    AI_CONTEXT.calcTemp = ability2;
                 }
             }
         }
     } else {
-        param1->aiContext.calcTemp = param1->battleMons[v0].ability;
+        AI_CONTEXT.calcTemp = battleCtx->battleMons[battler].ability;
     }
 }
 
-static void ov14_02220F88 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_CheckBattlerAbility(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4, v5;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    int expected = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
+    int tmpAbility;
 
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-
-    if (param1->battleMons[v0].moveEffectsMask & 0x200000) {
-        v3 = 0;
-    } else if ((v1 == 0) || (v1 == 2)) {
-        if (param1->aiContext.battlerAbilities[v0]) {
-            v3 = param1->aiContext.battlerAbilities[v0];
-            param1->aiContext.calcTemp = param1->aiContext.battlerAbilities[v0];
+    if (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_ABILITY_SUPPRESSED) {
+        tmpAbility = ABILITY_NONE;
+    } else if (inBattler == AI_BATTLER_DEFENDER || inBattler == AI_BATTLER_DEFENDER_PARTNER) {
+        // If we already know an opponent's ability, load that ability
+        if (AI_CONTEXT.battlerAbilities[battler]) {
+            tmpAbility = AI_CONTEXT.battlerAbilities[battler];
+            AI_CONTEXT.calcTemp = AI_CONTEXT.battlerAbilities[battler];
         } else {
-            if ((param1->battleMons[v0].ability == 23) || (param1->battleMons[v0].ability == 42) || (param1->battleMons[v0].ability == 71)) {
-                v3 = param1->battleMons[v0].ability;
+            // If the opponent has an ability that traps us, we should already know about it (because it self-announces)
+            if (battleCtx->battleMons[battler].ability == ABILITY_SHADOW_TAG
+                    || battleCtx->battleMons[battler].ability == ABILITY_MAGNET_PULL
+                    || battleCtx->battleMons[battler].ability == ABILITY_ARENA_TRAP) {
+                tmpAbility = battleCtx->battleMons[battler].ability;
             } else {
-                v4 = PokemonPersonalData_GetSpeciesValue(param1->battleMons[v0].species, 24);
-                v5 = PokemonPersonalData_GetSpeciesValue(param1->battleMons[v0].species, 25);
+                // Try to guess the opponent's ability (flip a coin)
+                int ability1 = PokemonPersonalData_GetSpeciesValue(battleCtx->battleMons[battler].species, MON_DATA_PERSONAL_ABILITY_1);
+                int ability2 = PokemonPersonalData_GetSpeciesValue(battleCtx->battleMons[battler].species, MON_DATA_PERSONAL_ABILITY_2);
 
-                if ((v4) && (v5)) {
-                    if ((v4 != v2) && (v5 != v2)) {
-                        v3 = v4;
+                if (ability1 && ability2) {
+                    // If the opponent has two abilities, but neither are the expected one,
+                    // prefer ability 1 for the final check
+                    if (ability1 != expected && ability2 != expected) {
+                        tmpAbility = ability1;
+                    // Otherwise, pretend that we don't know about it
                     } else {
-                        v3 = 0;
+                        tmpAbility = ABILITY_NONE;
                     }
-                } else if (v4) {
-                    v3 = v4;
+                } else if (ability1) {
+                    tmpAbility = ability1;
                 } else {
-                    v3 = v5;
+                    tmpAbility = ability2;
                 }
             }
         }
     } else {
-        v3 = param1->battleMons[v0].ability;
+        tmpAbility = battleCtx->battleMons[battler].ability;
     }
 
-    if (v3 == 0) {
-        param1->aiContext.calcTemp = 2;
-    } else if (v3 == v2) {
-        param1->aiContext.calcTemp = 1;
+    if (tmpAbility == ABILITY_NONE) {
+        AI_CONTEXT.calcTemp = AI_UNKNOWN;
+    } else if (tmpAbility == expected) {
+        AI_CONTEXT.calcTemp = AI_HAVE;
     } else {
-        param1->aiContext.calcTemp = 0;
+        AI_CONTEXT.calcTemp = AI_NOT_HAVE;
     }
 }
 
-static void ov14_02221060 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_CalcMaxEffectiveness(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    u32 v1;
-    u32 v2;
-    u16 v3;
-    int v4;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    AI_CONTEXT.calcTemp = TYPE_MULTI_IMMUNE;
 
-    param1->aiContext.calcTemp = 0;
+    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+        u32 damage = TYPE_MULTI_BASE_DAMAGE;
+        u32 effectiveness = 0;
+        u16 move = battleCtx->battleMons[AI_CONTEXT.attacker].moves[i];
+        int moveType = TrainerAI_MoveType(battleSys, battleCtx, AI_CONTEXT.attacker, move);
 
-    for (v0 = 0; v0 < 4; v0++) {
-        v1 = 40;
-        v2 = 0;
-        v3 = param1->battleMons[param1->aiContext.attacker].moves[v0];
-        v4 = TrainerAI_MoveType(param0, param1, param1->aiContext.attacker, v3);
+        if (move) {
+            damage = BattleSystem_ApplyTypeChart(battleSys,
+                battleCtx,
+                move,
+                moveType,
+                AI_CONTEXT.attacker,
+                AI_CONTEXT.defender,
+                damage,
+                &effectiveness);
 
-        if (v3) {
-            v1 = BattleSystem_ApplyTypeChart(param0, param1, v3, v4, param1->aiContext.attacker, param1->aiContext.defender, v1, &v2);
-
-            if (v1 == 60 * 2) {
-                v1 = 80;
-            } else if (v1 == 60 * 4) {
-                v1 = 160;
-            } else if (v1 == 60 / 2) {
-                v1 = 20;
-            } else if (v1 == 60 / 4) {
-                v1 = 10;
+            if (damage == TYPE_MULTI_STAB_DAMAGE * 2) {
+                damage = TYPE_MULTI_DOUBLE_DAMAGE;
+            } else if (damage == TYPE_MULTI_STAB_DAMAGE * 4) {
+                damage = TYPE_MULTI_QUADRUPLE_DAMAGE;
+            } else if (damage == TYPE_MULTI_STAB_DAMAGE / 2) {
+                damage = TYPE_MULTI_HALF_DAMAGE;
+            } else if (damage == TYPE_MULTI_STAB_DAMAGE / 4) {
+                damage = TYPE_MULTI_QUARTER_DAMAGE;
             }
 
-            if (v2 & (0x8 | 0x800 | 0x100000 | 0x40000)) {
-                v1 = 0;
+            if (effectiveness & MOVE_STATUS_IMMUNE) {
+                damage = TYPE_MULTI_IMMUNE;
             }
 
-            if (param1->aiContext.calcTemp < v1) {
-                param1->aiContext.calcTemp = v1;
+            if (AI_CONTEXT.calcTemp < damage) {
+                AI_CONTEXT.calcTemp = damage;
             }
         }
     }
 }
 
-static void ov14_02221114 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfMoveEffectivenessEquals(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    u32 v2;
-    u32 v3;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int expected = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u32 damage = TYPE_MULTI_BASE_DAMAGE;
+    u32 effectiveness = 0;
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-    v2 = 40;
-    v3 = 0;
-    v2 = BattleSystem_ApplyTypeChart(param0, param1, param1->aiContext.move, TrainerAI_MoveType(param0, param1, param1->aiContext.attacker, param1->aiContext.move), param1->aiContext.attacker, param1->aiContext.defender, v2, &v3);
+    damage = BattleSystem_ApplyTypeChart(battleSys,
+        battleCtx,
+        AI_CONTEXT.move,
+        TrainerAI_MoveType(battleSys, battleCtx, AI_CONTEXT.attacker, AI_CONTEXT.move),
+        AI_CONTEXT.attacker,
+        AI_CONTEXT.defender,
+        damage,
+        &effectiveness);
 
-    if (v2 == 60 * 2) {
-        v2 = 80;
-    } else if (v2 == 60 * 4) {
-        v2 = 160;
-    } else if (v2 == 60 / 2) {
-        v2 = 20;
-    } else if (v2 == 60 / 4) {
-        v2 = 10;
+    if (damage == TYPE_MULTI_STAB_DAMAGE * 2) {
+        damage = TYPE_MULTI_DOUBLE_DAMAGE;
+    } else if (damage == TYPE_MULTI_STAB_DAMAGE * 4) {
+        damage = TYPE_MULTI_QUADRUPLE_DAMAGE;
+    } else if (damage == TYPE_MULTI_STAB_DAMAGE / 2) {
+        damage = TYPE_MULTI_HALF_DAMAGE;
+    } else if (damage == TYPE_MULTI_STAB_DAMAGE / 4) {
+        damage = TYPE_MULTI_QUARTER_DAMAGE;
     }
 
-    if (v3 & (0x8 | 0x800 | 0x100000 | 0x40000)) {
-        v2 = 0;
+    if (effectiveness & MOVE_STATUS_IMMUNE) {
+        damage = TYPE_MULTI_IMMUNE;
     }
 
-    if (v2 == v0) {
-        AIScript_Iter(param1, v1);
+    if (damage == expected) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_022211AC (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfPartyMemberStatus(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    Party * v0;
-    Pokemon * v1;
-    int v2;
-    u8 v3;
-    u8 v4, v5;
-    int v6;
-    u32 v7;
-    int v8;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    Party *party; // this must be declared first to match
+    int inBattler = AIScript_Read(battleCtx);
+    u32 statusMask = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    v6 = AIScript_Read(param1);
-    v7 = AIScript_Read(param1);
-    v8 = AIScript_Read(param1);
-    v3 = AIScript_Battler(param1, v6);
-
-    if (param0->battleType & 0x2) {
-        v4 = param1->selectedPartySlot[v3];
-        v5 = param1->selectedPartySlot[BattleSystem_Partner(param0, v3)];
+    u8 slot1, slot2;
+    if (battleSys->battleType & BATTLE_TYPE_DOUBLES) {
+        slot1 = battleCtx->selectedPartySlot[battler];
+        slot2 = battleCtx->selectedPartySlot[BattleSystem_Partner(battleSys, battler)];
     } else {
-        v4 = v5 = param1->selectedPartySlot[v3];
+        slot1 = slot2 = battleCtx->selectedPartySlot[battler];
     }
 
-    v0 = BattleSystem_Party(param0, v3);
+    party = BattleSystem_Party(battleSys, battler);
+    for (int i = 0; i < BattleSystem_PartyCount(battleSys, battler); i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
-    for (v2 = 0; v2 < BattleSystem_PartyCount(param0, v3); v2++) {
-        v1 = Party_GetPokemonBySlotIndex(v0, v2);
-
-        if ((v2 != v4) && (v2 != v5) && (Pokemon_GetValue(v1, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 494) && (Pokemon_GetValue(v1, MON_DATA_STATUS_CONDITION, NULL) & v7)) {
-            AIScript_Iter(param1, v8);
+        if (i != slot1 && i != slot2
+                && Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL) != 0
+                && Pokemon_GetValue(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
+                && Pokemon_GetValue(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG
+                && (Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL) & statusMask)) {
+            AIScript_Iter(battleCtx, jump);
             return;
         }
     }
 }
 
-static void ov14_022212A0 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfPartyMemberNotStatus(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    Party * v0;
-    Pokemon * v1;
-    int v2;
-    u8 v3;
-    u8 v4, v5;
-    int v6;
-    u32 v7;
-    int v8;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    Party *party; // this must be declared first to match
+    int inBattler = AIScript_Read(battleCtx);
+    u32 statusMask = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    v6 = AIScript_Read(param1);
-    v7 = AIScript_Read(param1);
-    v8 = AIScript_Read(param1);
-    v3 = AIScript_Battler(param1, v6);
-
-    if (param0->battleType & 0x2) {
-        v4 = param1->selectedPartySlot[v3];
-        v5 = param1->selectedPartySlot[BattleSystem_Partner(param0, v3)];
+    u8 slot1, slot2;
+    if (battleSys->battleType & BATTLE_TYPE_DOUBLES) {
+        slot1 = battleCtx->selectedPartySlot[battler];
+        slot2 = battleCtx->selectedPartySlot[BattleSystem_Partner(battleSys, battler)];
     } else {
-        v4 = v5 = param1->selectedPartySlot[v3];
+        slot1 = slot2 = battleCtx->selectedPartySlot[battler];
     }
 
-    v0 = BattleSystem_Party(param0, v3);
+    party = BattleSystem_Party(battleSys, battler);
+    for (int i = 0; i < BattleSystem_PartyCount(battleSys, battler); i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
-    for (v2 = 0; v2 < BattleSystem_PartyCount(param0, v3); v2++) {
-        v1 = Party_GetPokemonBySlotIndex(v0, v2);
-
-        if ((v2 != v4) && (v2 != v5) && (Pokemon_GetValue(v1, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 494) && ((Pokemon_GetValue(v1, MON_DATA_STATUS_CONDITION, NULL) & v7) == 0)) {
-            AIScript_Iter(param1, v8);
+        if (i != slot1 && i != slot2
+                && Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL) != 0
+                && Pokemon_GetValue(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
+                && Pokemon_GetValue(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG
+                && (Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL) & statusMask) == FALSE) {
+            AIScript_Iter(battleCtx, jump);
             return;
         }
     }
 }
 
-static void ov14_02221394 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_LoadCurrentWeather(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    AIScript_Iter(param1, 1);
+    AIScript_Iter(battleCtx, 1);
 
-    param1->aiContext.calcTemp = 0x0;
+    AI_CONTEXT.calcTemp = AI_WEATHER_CLEAR;
 
-    if (param1->fieldConditionsMask & 0x3) {
-        param1->aiContext.calcTemp = 0x2;
+    if (WEATHER_IS_RAIN) {
+        AI_CONTEXT.calcTemp = AI_WEATHER_RAINING;
     }
 
-    if (param1->fieldConditionsMask & 0xc) {
-        param1->aiContext.calcTemp = 0x3;
+    if (WEATHER_IS_SAND) {
+        AI_CONTEXT.calcTemp = AI_WEATHER_SANDSTORM;
     }
 
-    if (param1->fieldConditionsMask & 0x30) {
-        param1->aiContext.calcTemp = 0x1;
+    if (WEATHER_IS_SUN) {
+        AI_CONTEXT.calcTemp = AI_WEATHER_SUNNY;
     }
 
-    if (param1->fieldConditionsMask & 0xc0) {
-        param1->aiContext.calcTemp = 0x4;
+    if (WEATHER_IS_HAIL) {
+        AI_CONTEXT.calcTemp = AI_WEATHER_HAILING;
     }
 
-    if (param1->fieldConditionsMask & 0x8000) {
-        param1->aiContext.calcTemp = 0x5;
+    if (WEATHER_IS_FOG) {
+        AI_CONTEXT.calcTemp = AI_WEATHER_DEEP_FOG;
     }
 }
 
-static void ov14_0222140C (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfCurrentMoveEffectEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int expected = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-
-    if (param1->aiContext.moveTable[param1->aiContext.move].effect == v0) {
-        AIScript_Iter(param1, v1);
+    if (MOVE_DATA(AI_CONTEXT.move).effect == expected) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02221444 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfCurrentMoveEffectNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int expected = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-
-    if (param1->aiContext.moveTable[param1->aiContext.move].effect != v0) {
-        AIScript_Iter(param1, v1);
+    if (MOVE_DATA(AI_CONTEXT.move).effect != expected) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_0222147C (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfStatStageLessThan(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    int stat = AIScript_Read(battleCtx);
+    int val = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Read(param1);
-    v3 = AIScript_Read(param1);
-    v4 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-
-    if (param1->battleMons[v0].statBoosts[v2] < v3) {
-        AIScript_Iter(param1, v4);
+    if (battleCtx->battleMons[battler].statBoosts[stat] < val) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_022214D0 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfStatStageGreaterThan(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    int stat = AIScript_Read(battleCtx);
+    int val = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Read(param1);
-    v3 = AIScript_Read(param1);
-    v4 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-
-    if (param1->battleMons[v0].statBoosts[v2] > v3) {
-        AIScript_Iter(param1, v4);
+    if (battleCtx->battleMons[battler].statBoosts[stat] > val) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02221524 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfStatStageEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    int stat = AIScript_Read(battleCtx);
+    int val = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Read(param1);
-    v3 = AIScript_Read(param1);
-    v4 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-
-    if (param1->battleMons[v0].statBoosts[v2] == v3) {
-        AIScript_Iter(param1, v4);
+    if (battleCtx->battleMons[battler].statBoosts[stat] == val) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02221578 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfStatStageNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    int stat = AIScript_Read(battleCtx);
+    int val = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Read(param1);
-    v3 = AIScript_Read(param1);
-    v4 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-
-    if (param1->battleMons[v0].statBoosts[v2] != v3) {
-        AIScript_Iter(param1, v4);
+    if (battleCtx->battleMons[battler].statBoosts[stat] != val) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_022215CC (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfCurrentMoveKills(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4, v5;
-    u32 v6;
-    u8 v7[6];
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    BOOL useDamageRoll = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
 
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Read(param1);
-
-    if (v1 == 1) {
-        v3 = param1->aiContext.moveDamageRolls[param1->aiContext.moveSlot];
+    int roll;
+    if (useDamageRoll == TRUE) {
+        roll = AI_CONTEXT.moveDamageRolls[AI_CONTEXT.moveSlot];
     } else {
-        v3 = 100;
+        roll = 100;
     }
 
-    v4 = 0;
-
-    while (sRiskyMoves[v4] != 0xffff) {
-        if (param1->aiContext.moveTable[param1->aiContext.move].effect == sRiskyMoves[v4]) {
+    int riskyIdx;
+    for (riskyIdx = 0; sRiskyMoves[riskyIdx] != 0xFFFF; riskyIdx++) {
+        if (MOVE_DATA(AI_CONTEXT.move).effect == sRiskyMoves[riskyIdx]) {
             break;
         }
-
-        v4++;
     }
 
-    v5 = 0;
-
-    while (sAltPowerCalcMoves[v5] != 0xffff) {
-        if (param1->aiContext.moveTable[param1->aiContext.move].effect == sAltPowerCalcMoves[v5]) {
+    int altPowerIdx;
+    for (altPowerIdx = 0; sAltPowerCalcMoves[altPowerIdx] != 0xFFFF; altPowerIdx++) {
+        if (MOVE_DATA(AI_CONTEXT.move).effect == sAltPowerCalcMoves[altPowerIdx]) {
             break;
         }
-
-        v5++;
     }
 
-    if ((sAltPowerCalcMoves[v5] != 0xffff) || ((param1->aiContext.moveTable[param1->aiContext.move].power > 1) && (sRiskyMoves[v4] == 0xffff))) {
-        for (v0 = 0; v0 < 6; v0++) {
-            v7[v0] = BattleMon_Get(param1, param1->aiContext.attacker, 10 + v0, NULL);
+    if (sAltPowerCalcMoves[altPowerIdx] != 0xFFFF
+            || (MOVE_DATA(AI_CONTEXT.move).power > 1 && sRiskyMoves[riskyIdx] == 0xFFFF)) {
+        u8 ivs[STAT_MAX];
+        for (int stat = STAT_HP; stat < STAT_MAX; stat++) {
+            ivs[stat] = BattleMon_Get(battleCtx, AI_CONTEXT.attacker, BATTLEMON_HP_IV + stat, NULL);
         }
 
-        v6 = TrainerAI_CalcDamage(param0, param1, param1->aiContext.move, param1->battleMons[param1->aiContext.attacker].heldItem, &v7[0], param1->aiContext.attacker, Battler_Ability(param1, param1->aiContext.attacker), param1->battleMons[param1->aiContext.attacker].moveEffectsData.embargoTurns, v3);
+        u32 damage = TrainerAI_CalcDamage(battleSys,
+            battleCtx,
+            AI_CONTEXT.move,
+            battleCtx->battleMons[AI_CONTEXT.attacker].heldItem,
+            ivs,
+            AI_CONTEXT.attacker,
+            Battler_Ability(battleCtx, AI_CONTEXT.attacker),
+            battleCtx->battleMons[AI_CONTEXT.attacker].moveEffectsData.embargoTurns,
+            roll);
 
-        if (param1->battleMons[param1->aiContext.defender].curHP <= v6) {
-            AIScript_Iter(param1, v2);
+        if (battleCtx->battleMons[AI_CONTEXT.defender].curHP <= damage) {
+            AIScript_Iter(battleCtx, jump);
         }
     }
 }
 
-static void ov14_022216F8 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfCurrentMoveDoesNotKill(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4, v5;
-    u32 v6;
-    u8 v7[6];
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    BOOL useDamageRoll = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
 
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Read(param1);
-
-    if (v1 == 1) {
-        v3 = param1->aiContext.moveDamageRolls[param1->aiContext.moveSlot];
+    int roll;
+    if (useDamageRoll == TRUE) {
+        roll = AI_CONTEXT.moveDamageRolls[AI_CONTEXT.moveSlot];
     } else {
-        v3 = 100;
+        roll = 100;
     }
 
-    v4 = 0;
+    int riskyIdx;
+    for (riskyIdx = 0; sRiskyMoves[riskyIdx] != 0xFFFF; riskyIdx++) {
+        if (MOVE_DATA(AI_CONTEXT.move).effect == sRiskyMoves[riskyIdx]) {
+            break;
+        }
+    }
 
-    while (sRiskyMoves[v4] != 0xffff) {
-        if (param1->aiContext.moveTable[param1->aiContext.move].effect == sRiskyMoves[v4]) {
+    int altPowerIdx;
+    for (altPowerIdx = 0; sAltPowerCalcMoves[altPowerIdx] != 0xFFFF; altPowerIdx++) {
+        if (MOVE_DATA(AI_CONTEXT.move).effect == sAltPowerCalcMoves[altPowerIdx]) {
+            break;
+        }
+    }
+
+    if (sAltPowerCalcMoves[altPowerIdx] != 0xFFFF
+            || (MOVE_DATA(AI_CONTEXT.move).power > 1 && sRiskyMoves[riskyIdx] == 0xFFFF)) {
+        u8 ivs[STAT_MAX];
+        for (int stat = STAT_HP; stat < STAT_MAX; stat++) {
+            ivs[stat] = BattleMon_Get(battleCtx, AI_CONTEXT.attacker, BATTLEMON_HP_IV + stat, NULL);
+        }
+
+        u32 damage = TrainerAI_CalcDamage(battleSys,
+            battleCtx,
+            AI_CONTEXT.move,
+            battleCtx->battleMons[AI_CONTEXT.attacker].heldItem,
+            ivs,
+            AI_CONTEXT.attacker,
+            Battler_Ability(battleCtx, AI_CONTEXT.attacker),
+            battleCtx->battleMons[AI_CONTEXT.attacker].moveEffectsData.embargoTurns,
+            roll);
+
+        if (battleCtx->battleMons[AI_CONTEXT.defender].curHP > damage) {
+            AIScript_Iter(battleCtx, jump);
+        }
+    }
+}
+
+static void AICmd_IfMoveKnown(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    AIScript_Iter(battleCtx, 1);
+
+    int inBattler = AIScript_Read(battleCtx);
+    int move = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
+    int i;
+
+    switch (inBattler) {
+    case AI_BATTLER_ATTACKER:
+        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+            if (battleCtx->battleMons[battler].moves[i] == move) {
+                break;
+            }
+        }
+
+        if (i < LEARNED_MOVES_MAX) {
+            AIScript_Iter(battleCtx, jump);
+        }
+        break;
+
+    case AI_BATTLER_ATTACKER_PARTNER:
+        if (battleCtx->battleMons[battler].curHP == 0) {
             break;
         }
 
-        v4++;
+        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+            if (battleCtx->battleMons[battler].moves[i] == move) {
+                break;
+            }
+        }
+
+        if (i < LEARNED_MOVES_MAX) {
+            AIScript_Iter(battleCtx, jump);
+        }
+        break;
+
+    case AI_BATTLER_DEFENDER:
+        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+            if (AI_CONTEXT.battlerMoves[battler][i] == move) {
+                break;
+            }
+        }
+
+        if (i < LEARNED_MOVES_MAX) {
+            AIScript_Iter(battleCtx, jump);
+        }
+        break;
+
+    default:
+        break;
     }
+}
 
-    v5 = 0;
+static void AICmd_IfMoveNotKnown(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    AIScript_Iter(battleCtx, 1);
 
-    while (sAltPowerCalcMoves[v5] != 0xffff) {
-        if (param1->aiContext.moveTable[param1->aiContext.move].effect == sAltPowerCalcMoves[v5]) {
+    int inBattler = AIScript_Read(battleCtx);
+    int move = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
+    int i;
+
+    switch (inBattler) {
+    case AI_BATTLER_ATTACKER:
+        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+            if (battleCtx->battleMons[battler].moves[i] == move) {
+                break;
+            }
+        }
+
+        if (i == LEARNED_MOVES_MAX) {
+            AIScript_Iter(battleCtx, jump);
+        }
+        break;
+
+    case AI_BATTLER_ATTACKER_PARTNER:
+        if (battleCtx->battleMons[battler].curHP == 0) {
             break;
         }
 
-        v5++;
-    }
-
-    if ((sAltPowerCalcMoves[v5] != 0xffff) || ((param1->aiContext.moveTable[param1->aiContext.move].power > 1) && (sRiskyMoves[v4] == 0xffff))) {
-        for (v0 = 0; v0 < 6; v0++) {
-            v7[v0] = BattleMon_Get(param1, param1->aiContext.attacker, 10 + v0, NULL);
-        }
-
-        v6 = TrainerAI_CalcDamage(param0, param1, param1->aiContext.move, param1->battleMons[param1->aiContext.attacker].heldItem, &v7[0], param1->aiContext.attacker, Battler_Ability(param1, param1->aiContext.attacker), param1->battleMons[param1->aiContext.attacker].moveEffectsData.embargoTurns, v3);
-
-        if (param1->battleMons[param1->aiContext.defender].curHP > v6) {
-            AIScript_Iter(param1, v2);
-        }
-    }
-}
-
-static void ov14_02221824 (BattleSystem * param0, BattleContext * param1)
-{
-    int v0;
-    u8 v1;
-    int v2;
-    int v3;
-    int v4;
-
-    AIScript_Iter(param1, 1);
-
-    v2 = AIScript_Read(param1);
-    v3 = AIScript_Read(param1);
-    v4 = AIScript_Read(param1);
-    v1 = AIScript_Battler(param1, v2);
-
-    switch (v2) {
-    case 1:
-        for (v0 = 0; v0 < 4; v0++) {
-            if (param1->battleMons[v1].moves[v0] == v3) {
+        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+            if (battleCtx->battleMons[battler].moves[i] == move) {
                 break;
             }
         }
 
-        if (v0 < 4) {
-            AIScript_Iter(param1, v4);
+        if (i == LEARNED_MOVES_MAX) {
+            AIScript_Iter(battleCtx, jump);
         }
         break;
-    case 3:
-        if (param1->battleMons[v1].curHP == 0) {
-            break;
-        }
 
-        for (v0 = 0; v0 < 4; v0++) {
-            if (param1->battleMons[v1].moves[v0] == v3) {
+    case AI_BATTLER_DEFENDER:
+        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+            if (AI_CONTEXT.battlerMoves[battler][i] == move) {
                 break;
             }
         }
 
-        if (v0 < 4) {
-            AIScript_Iter(param1, v4);
+        if (i == LEARNED_MOVES_MAX) {
+            AIScript_Iter(battleCtx, jump);
         }
         break;
-    case 0:
-        for (v0 = 0; v0 < 4; v0++) {
-            if (param1->aiContext.battlerMoves[v1][v0] == v3) {
-                break;
-            }
-        }
 
-        if (v0 < 4) {
-            AIScript_Iter(param1, v4);
-        }
-        break;
     default:
         break;
     }
 }
 
-static void ov14_022218E4 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfMoveEffectKnown(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    u8 v1;
-    int v2;
-    int v3;
-    int v4;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    int effect = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
+    int i;
 
-    v2 = AIScript_Read(param1);
-    v3 = AIScript_Read(param1);
-    v4 = AIScript_Read(param1);
-    v1 = AIScript_Battler(param1, v2);
-
-    switch (v2) {
-    case 1:
-        for (v0 = 0; v0 < 4; v0++) {
-            if (param1->battleMons[v1].moves[v0] == v3) {
+    switch (inBattler) {
+    case AI_BATTLER_ATTACKER:
+        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+            if (battleCtx->battleMons[battler].moves[i]
+                    && MOVE_DATA(battleCtx->battleMons[battler].moves[i]).effect == effect) {
                 break;
             }
         }
 
-        if (v0 == 4) {
-            AIScript_Iter(param1, v4);
+        if (i < LEARNED_MOVES_MAX) {
+            AIScript_Iter(battleCtx, jump);
         }
         break;
-    case 3:
-        if (param1->battleMons[v1].curHP == 0) {
-            break;
-        }
 
-        for (v0 = 0; v0 < 4; v0++) {
-            if (param1->battleMons[v1].moves[v0] == v3) {
+    case AI_BATTLER_DEFENDER:
+        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+            if (AI_CONTEXT.battlerMoves[battler][i]
+                    && MOVE_DATA(AI_CONTEXT.battlerMoves[battler][i]).effect == effect) {
                 break;
             }
         }
 
-        if (v0 == 4) {
-            AIScript_Iter(param1, v4);
+        if (i < LEARNED_MOVES_MAX) {
+            AIScript_Iter(battleCtx, jump);
         }
         break;
-    case 0:
-        for (v0 = 0; v0 < 4; v0++) {
-            if (param1->aiContext.battlerMoves[v1][v0] == v3) {
-                break;
-            }
-        }
 
-        if (v0 == 4) {
-            AIScript_Iter(param1, v4);
-        }
-        break;
     default:
         break;
     }
 }
 
-static void ov14_022219A4 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfMoveEffectNotKnown(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    u8 v1;
-    int v2;
-    int v3;
-    int v4;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    int effect = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
+    int i;
 
-    v2 = AIScript_Read(param1);
-    v3 = AIScript_Read(param1);
-    v4 = AIScript_Read(param1);
-    v1 = AIScript_Battler(param1, v2);
-
-    switch (v2) {
-    case 1:
-        for (v0 = 0; v0 < 4; v0++) {
-            if ((param1->battleMons[v1].moves[v0]) && (param1->aiContext.moveTable[param1->battleMons[v1].moves[v0]].effect == v3)) {
+    switch (inBattler) {
+    case AI_BATTLER_ATTACKER:
+        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+            if (battleCtx->battleMons[battler].moves[i]
+                    && MOVE_DATA(battleCtx->battleMons[battler].moves[i]).effect == effect) {
                 break;
             }
         }
 
-        if (v0 < 4) {
-            AIScript_Iter(param1, v4);
+        if (i == LEARNED_MOVES_MAX) {
+            AIScript_Iter(battleCtx, jump);
         }
         break;
-    case 0:
-        for (v0 = 0; v0 < 4; v0++) {
-            if ((param1->aiContext.battlerMoves[v1][v0]) && (param1->aiContext.moveTable[param1->aiContext.battlerMoves[v1][v0]].effect == v3)) {
+
+    case AI_BATTLER_DEFENDER:
+        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+            if (AI_CONTEXT.battlerMoves[battler][i]
+                    && MOVE_DATA(AI_CONTEXT.battlerMoves[battler][i]).effect == effect) {
                 break;
             }
         }
 
-        if (v0 < 4) {
-            AIScript_Iter(param1, v4);
+        if (i == LEARNED_MOVES_MAX) {
+            AIScript_Iter(battleCtx, jump);
         }
         break;
+
     default:
         break;
     }
 }
 
-static void ov14_02221A48 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfBattlerUnderEffect(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    u8 v1;
-    int v2;
-    int v3;
-    int v4;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    int check = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    v2 = AIScript_Read(param1);
-    v3 = AIScript_Read(param1);
-    v4 = AIScript_Read(param1);
-    v1 = AIScript_Battler(param1, v2);
-
-    switch (v2) {
-    case 1:
-        for (v0 = 0; v0 < 4; v0++) {
-            if ((param1->battleMons[v1].moves[v0]) && (param1->aiContext.moveTable[param1->battleMons[v1].moves[v0]].effect == v3)) {
-                break;
-            }
-        }
-
-        if (v0 == 4) {
-            AIScript_Iter(param1, v4);
+    switch (check) {
+    case CHECK_DISABLE:
+        if (battleCtx->battleMons[battler].moveEffectsData.disabledTurns) {
+            AIScript_Iter(battleCtx, jump);
         }
         break;
-    case 0:
-        for (v0 = 0; v0 < 4; v0++) {
-            if ((param1->aiContext.battlerMoves[v1][v0]) && (param1->aiContext.moveTable[param1->aiContext.battlerMoves[v1][v0]].effect == v3)) {
-                break;
-            }
-        }
 
-        if (v0 == 4) {
-            AIScript_Iter(param1, v4);
+    case CHECK_ENCORE:
+        if (battleCtx->battleMons[battler].moveEffectsData.encoredTurns) {
+            AIScript_Iter(battleCtx, jump);
         }
         break;
+
     default:
         break;
     }
 }
 
-static void ov14_02221AEC (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfCurrentMoveMatchesEffect(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
-    int v2;
-    int v3;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int check = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
 
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Read(param1);
-    v3 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-
-    switch (v2) {
-    case 0x0:
-        if (param1->battleMons[v0].moveEffectsData.disabledTurns) {
-            AIScript_Iter(param1, v3);
+    switch (check) {
+    case CHECK_DISABLE:
+        if (battleCtx->battleMons[AI_CONTEXT.attacker].moveEffectsData.disabledMove == AI_CONTEXT.move) {
+            AIScript_Iter(battleCtx, jump);
         }
         break;
-    case 0x1:
-        if (param1->battleMons[v0].moveEffectsData.encoredTurns) {
-            AIScript_Iter(param1, v3);
+
+    case CHECK_ENCORE:
+        if (battleCtx->battleMons[AI_CONTEXT.attacker].moveEffectsData.encoredMove == AI_CONTEXT.move) {
+            AIScript_Iter(battleCtx, jump);
         }
         break;
+
     default:
         break;
     }
 }
 
-static void ov14_02221B5C (BattleSystem * param0, BattleContext * param1)
+static void AICmd_Escape(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-
-    AIScript_Iter(param1, 1);
-
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-
-    switch (v0) {
-    case 0x0:
-        if (param1->battleMons[param1->aiContext.attacker].moveEffectsData.disabledMove == param1->aiContext.move) {
-            AIScript_Iter(param1, v1);
-        }
-        break;
-    case 0x1:
-        if (param1->battleMons[param1->aiContext.attacker].moveEffectsData.encoredMove == param1->aiContext.move) {
-            AIScript_Iter(param1, v1);
-        }
-        break;
-    default:
-        break;
-    }
+    AIScript_Iter(battleCtx, 1);
+    AI_CONTEXT.stateFlags |= (AI_STATUS_FLAG_DONE | AI_STATUS_FLAG_ESCAPE | AI_STATUS_FLAG_BREAK);
 }
 
-static void ov14_02221BCC (BattleSystem * param0, BattleContext * param1)
-{
-    AIScript_Iter(param1, 1);
-    param1->aiContext.stateFlags |= (0x1 | 0x2 | 0x8);
-}
-
-static void ov14_02221BE8 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_Dummy3E(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     return;
 }
 
-static void ov14_02221BEC (BattleSystem * param0, BattleContext * param1)
+static void AICmd_Dummy3F(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     return;
 }
 
-static void ov14_02221BF0 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_LoadHeldItem(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    v1 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-
-    param1->aiContext.calcTemp = param1->battleMons[v0].heldItem;
+    AI_CONTEXT.calcTemp = battleCtx->battleMons[battler].heldItem;
 }
 
-static void ov14_02221C24 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_LoadHeldItemEffect(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    v1 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-
-    if (param1->aiContext.attacker != v0) {
-        param1->aiContext.calcTemp = BattleSystem_GetItemData(param1, param1->aiContext.battlerHeldItems[v0], 1);
+    if (AI_CONTEXT.attacker != battler) {
+        AI_CONTEXT.calcTemp = BattleSystem_GetItemData(battleCtx, AI_CONTEXT.battlerHeldItems[battler], ITEM_PARAM_HOLD_EFFECT);
     } else {
-        param1->aiContext.calcTemp = BattleSystem_GetItemData(param1, param1->battleMons[v0].heldItem, 1);
+        AI_CONTEXT.calcTemp = BattleSystem_GetItemData(battleCtx, battleCtx->battleMons[battler].heldItem, ITEM_PARAM_HOLD_EFFECT);
     }
 }
 
-static void ov14_02221C88 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfHeldItemEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u16 v0;
-    u8 v1;
-    int v2;
-    int v3;
-    int v4;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    int expected = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
+    u16 heldItem;
 
-    v2 = AIScript_Read(param1);
-    v3 = AIScript_Read(param1);
-    v4 = AIScript_Read(param1);
-    v1 = AIScript_Battler(param1, v2);
-
-    if ((v1 & 1) == (param1->aiContext.attacker & 1)) {
-        v0 = param1->battleMons[v1].heldItem;
+    if ((battler & 1) == (AI_CONTEXT.attacker & 1)) {
+        heldItem = battleCtx->battleMons[battler].heldItem;
     } else {
-        v0 = param1->aiContext.battlerHeldItems[v1];
+        heldItem = AI_CONTEXT.battlerHeldItems[battler];
     }
 
-    if (v0 == v3) {
-        AIScript_Iter(param1, v4);
-    }
-}
-
-static void ov14_02221CF0 (BattleSystem * param0, BattleContext * param1)
-{
-    u32 v0;
-    int v1;
-
-    AIScript_Iter(param1, 1);
-
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-
-    if (param1->fieldConditionsMask & v0) {
-        AIScript_Iter(param1, v1);
+    if (heldItem == expected) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02221D20 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfFieldConditionsMask(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
-    u32 v2;
-    u8 v3;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    u32 mask = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
 
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-    v3 = Battler_Side(param0, v0);
+    if (battleCtx->fieldConditionsMask & mask) {
+        AIScript_Iter(battleCtx, jump);
+    }
+}
 
-    switch (v2) {
-    case 0x4:
-        param1->aiContext.calcTemp = param1->sideConditions[v3].spikesLayers;
+static void AICmd_LoadSpikesLayers(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    AIScript_Iter(battleCtx, 1);
+
+    int inBattler = AIScript_Read(battleCtx);
+    u32 sideCondition = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
+    u8 side = Battler_Side(battleSys, battler);
+
+    switch (sideCondition) {
+    case SIDE_CONDITION_SPIKES:
+        AI_CONTEXT.calcTemp = battleCtx->sideConditions[side].spikesLayers;
         break;
-    case 0x400:
-        param1->aiContext.calcTemp = param1->sideConditions[v3].toxicSpikesLayers;
+
+    case SIDE_CONDITION_TOXIC_SPIKES:
+        AI_CONTEXT.calcTemp = battleCtx->sideConditions[side].toxicSpikesLayers;
         break;
     }
 }
 
-static void ov14_02221D88 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfAnyPartyMemberIsWounded(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
-    int v2;
-    int v3;
-    Pokemon * v4;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
+    for (int i = 0; i < BattleSystem_PartyCount(battleSys, battler); i++) {
+        Pokemon *mon = BattleSystem_PartyPokemon(battleSys, battler, i);
 
-    for (v3 = 0; v3 < BattleSystem_PartyCount(param0, v0); v3++) {
-        v4 = BattleSystem_PartyPokemon(param0, v0, v3);
-
-        if (v3 != param1->selectedPartySlot[v0]) {
-            if (Pokemon_GetValue(v4, MON_DATA_CURRENT_HP, NULL) != Pokemon_GetValue(v4, MON_DATA_MAX_HP, NULL)) {
-                AIScript_Iter(param1, v2);
-                break;
-            }
+        if (i != battleCtx->selectedPartySlot[battler]
+                && Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL) != Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL)) {
+            AIScript_Iter(battleCtx, jump);
+            break;
         }
     }
 }
 
-static void ov14_02221E18 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfAnyPartyMemberUsedPP(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
-    int v2;
-    int v3, v4;
-    Pokemon * v5;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
+    int moveSlot; // must be declared outside of the loop to match
 
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
+    for (int partySlot = 0; partySlot < BattleSystem_PartyCount(battleSys, battler); partySlot++) {
+        Pokemon *mon = BattleSystem_PartyPokemon(battleSys, battler, partySlot);
 
-    for (v3 = 0; v3 < BattleSystem_PartyCount(param0, v0); v3++) {
-        v5 = BattleSystem_PartyPokemon(param0, v0, v3);
-
-        if (v3 != param1->selectedPartySlot[v0]) {
-            for (v4 = 0; v4 < 4; v4++) {
-                if (Pokemon_GetValue(v5, MON_DATA_MOVE1_CUR_PP + v4, NULL) != Pokemon_GetValue(v5, MON_DATA_MOVE1_MAX_PP + v4, NULL)) {
-                    AIScript_Iter(param1, v2);
+        if (partySlot != battleCtx->selectedPartySlot[battler]) {
+            for (moveSlot = 0; moveSlot < LEARNED_MOVES_MAX; moveSlot++) {
+                if (Pokemon_GetValue(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, NULL) != Pokemon_GetValue(mon, MON_DATA_MOVE1_MAX_PP + moveSlot, NULL)) {
+                    AIScript_Iter(battleCtx, jump);
                     break;
                 }
             }
 
-            if (v4 != 4) {
+            if (moveSlot != LEARNED_MOVES_MAX) {
                 break;
             }
         }
     }
 }
 
-static void ov14_02221EBC (BattleSystem * param0, BattleContext * param1)
+static void AICmd_LoadFlingPower(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    v1 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-
-    param1->aiContext.calcTemp = Battler_ItemFlingPower(param1, v0);
+    AI_CONTEXT.calcTemp = Battler_ItemFlingPower(battleCtx, battler);
 }
 
-static void ov14_02221EEC (BattleSystem * param0, BattleContext * param1)
+static void AICmd_LoadCurrentMovePP(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    AIScript_Iter(param1, 1);
-    param1->aiContext.calcTemp = param1->battleMons[param1->aiContext.attacker].ppCur[param1->aiContext.moveSlot];
+    AIScript_Iter(battleCtx, 1);
+    AI_CONTEXT.calcTemp = battleCtx->battleMons[AI_CONTEXT.attacker].ppCur[AI_CONTEXT.moveSlot];
 }
 
-static void ov14_02221F1C (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfCanUseLastResort(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
-    int v2;
-    int v3;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
+    int numKnownMoves = Battler_CountMoves(battleSys, battleCtx, battler);
 
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-    v3 = Battler_CountMoves(param0, param1, v0);
-
-    if ((param1->battleMons[v0].moveEffectsData.lastResortCount >= (v3 - 1)) && (v3 > 1)) {
-        AIScript_Iter(param1, v2);
+    if (battleCtx->battleMons[battler].moveEffectsData.lastResortCount >= (numKnownMoves - 1) && numKnownMoves > 1) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02221F78 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_LoadCurrentMoveClass(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    AIScript_Iter(param1, 1);
-    param1->aiContext.calcTemp = param1->aiContext.moveTable[param1->aiContext.move].class;
+    AIScript_Iter(battleCtx, 1);
+    AI_CONTEXT.calcTemp = MOVE_DATA(AI_CONTEXT.move).class;
 }
 
-static void ov14_02221F9C (BattleSystem * param0, BattleContext * param1)
+static void AICmd_LoadDefenderLastUsedMoveClass(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    AIScript_Iter(param1, 1);
-    param1->aiContext.calcTemp = param1->aiContext.moveTable[param1->movePrevByBattler[param1->aiContext.defender]].class;
+    AIScript_Iter(battleCtx, 1);
+    AI_CONTEXT.calcTemp = MOVE_DATA(battleCtx->movePrevByBattler[AI_CONTEXT.defender]).class;
 }
 
-static void ov14_02221FCC (BattleSystem * param0, BattleContext * param1)
+static void AICmd_LoadBattlerSpeedRank(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0, v1;
-    int v2[4];
-    int v3, v4;
-    int v5;
-    int v6;
-    int v7;
+    // Must declare C89-style to match
+    int i, j;
+    int speedOrder[4];
+    int cmp1, cmp2;
+    int maxBattlers;
+    int battler;
+    int inBattler;
 
-    AIScript_Iter(param1, 1);
+    AIScript_Iter(battleCtx, 1);
 
-    v7 = AIScript_Read(param1);
-    v6 = AIScript_Battler(param1, v7);
-    v5 = BattleSystem_MaxBattlers(param0);
+    inBattler = AIScript_Read(battleCtx);
+    battler = AIScript_Battler(battleCtx, inBattler);
+    maxBattlers = BattleSystem_MaxBattlers(battleSys);
 
-    for (v0 = 0; v0 < v5; v0++) {
-        v2[v0] = v0;
+    for (i = 0; i < maxBattlers; i++) {
+        speedOrder[i] = i;
     }
 
-    for (v0 = 0; v0 < v5 - 1; v0++) {
-        for (v1 = v0 + 1; v1 < v5; v1++) {
-            v3 = v2[v0];
-            v4 = v2[v1];
+    for (i = 0; i < maxBattlers - 1; i++) {
+        for (j = i + 1; j < maxBattlers; j++) {
+            cmp1 = speedOrder[i];
+            cmp2 = speedOrder[j];
 
-            if (BattleSystem_CompareBattlerSpeed(param0, param1, v3, v4, 1)) {
-                v2[v0] = v4;
-                v2[v1] = v3;
+            if (BattleSystem_CompareBattlerSpeed(battleSys, battleCtx, cmp1, cmp2, TRUE)) {
+                speedOrder[i] = cmp2;
+                speedOrder[j] = cmp1;
             }
         }
     }
 
-    for (v0 = 0; v0 < v5; v0++) {
-        if (v2[v0] == v6) {
-            param1->aiContext.calcTemp = v0;
+    for (i = 0; i < maxBattlers; i++) {
+        if (speedOrder[i] == battler) {
+            AI_CONTEXT.calcTemp = i;
             break;
         }
     }
 }
 
-static void ov14_02222090 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_LoadIsBattlerFirstTurn(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    int battler = AIScript_Battler(battleCtx, inBattler);
 
-    v1 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-
-    param1->aiContext.calcTemp = param1->totalTurns - param1->battleMons[v0].moveEffectsData.fakeOutTurnNumber;
+    AI_CONTEXT.calcTemp = battleCtx->totalTurns - battleCtx->battleMons[battler].moveEffectsData.fakeOutTurnNumber;
 }
 
-static void ov14_022220CC (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfPartyMemberDealsMoreDamage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0, v1;
-    int v2;
-    int v3;
-    int v4;
-    s32 v5;
-    s32 v6;
-    s32 v7[4];
-    u16 v8[4];
-    u8 v9[6];
-    Pokemon * v10;
+    // Declare C89-style to match
+    int i, j;
+    BOOL varyDamage;
+    int jump;
+    int battler;
+    s32 activeMonDamage;
+    s32 partyMonDamage;
+    s32 allDamageVals[LEARNED_MOVES_MAX];
+    u16 partyMonMoves[LEARNED_MOVES_MAX];
+    u8 ivs[STAT_MAX];
+    Pokemon *partyMon;
 
-    AIScript_Iter(param1, 1);
+    AIScript_Iter(battleCtx, 1);
 
-    v2 = AIScript_Read(param1);
-    v3 = AIScript_Read(param1);
-    v4 = param1->aiContext.attacker;
+    varyDamage = AIScript_Read(battleCtx);
+    jump = AIScript_Read(battleCtx);
+    battler = AI_CONTEXT.attacker;
 
-    for (v0 = 0; v0 < 6; v0++) {
-        v9[v0] = BattleMon_Get(param1, v4, 10 + v0, NULL);
+    for (i = 0; i < 6; i++) {
+        ivs[i] = BattleMon_Get(battleCtx, battler, BATTLEMON_HP_IV + i, NULL);
     }
 
-    v5 = TrainerAI_CalcAllDamage(param0, param1, param1->aiContext.attacker, &param1->battleMons[v4].moves[0], &v7[0], param1->battleMons[v4].heldItem, &v9[0], Battler_Ability(param1, v4), param1->battleMons[v4].moveEffectsData.embargoTurns, v2);
+    activeMonDamage = TrainerAI_CalcAllDamage(battleSys,
+        battleCtx,
+        AI_CONTEXT.attacker,
+        battleCtx->battleMons[battler].moves,
+        allDamageVals,
+        battleCtx->battleMons[battler].heldItem,
+        ivs,
+        Battler_Ability(battleCtx, battler),
+        battleCtx->battleMons[battler].moveEffectsData.embargoTurns,
+        varyDamage);
 
-    for (v0 = 0; v0 < BattleSystem_PartyCount(param0, v4); v0++) {
-        if (v0 != param1->selectedPartySlot[v4]) {
-            v10 = BattleSystem_PartyPokemon(param0, v4, v0);
+    for (i = 0; i < BattleSystem_PartyCount(battleSys, battler); i++) {
+        if (i != battleCtx->selectedPartySlot[battler]) {
+            partyMon = BattleSystem_PartyPokemon(battleSys, battler, i);
 
-            if ((Pokemon_GetValue(v10, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v10, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v10, MON_DATA_SPECIES_EGG, NULL) != 494)) {
-                for (v1 = 0; v1 < 4; v1++) {
-                    v8[v1] = Pokemon_GetValue(v10, MON_DATA_MOVE1 + v1, NULL);
+            if (Pokemon_GetValue(partyMon, MON_DATA_CURRENT_HP, NULL) != 0
+                    && Pokemon_GetValue(partyMon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
+                    && Pokemon_GetValue(partyMon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG) {
+                for (j = 0; j < LEARNED_MOVES_MAX; j++) {
+                    partyMonMoves[j] = Pokemon_GetValue(partyMon, MON_DATA_MOVE1 + j, NULL);
                 }
 
-                for (v1 = 0; v1 < 6; v1++) {
-                    v9[v1] = Pokemon_GetValue(v10, MON_DATA_HP_IV + v1, NULL);
+                for (j = 0; j < STAT_MAX; j++) {
+                    ivs[j] = Pokemon_GetValue(partyMon, MON_DATA_HP_IV + j, NULL);
                 }
 
-                v6 = TrainerAI_CalcAllDamage(param0, param1, param1->aiContext.attacker, &v8[0], &v7[0], Pokemon_GetValue(v10, MON_DATA_HELD_ITEM, NULL), &v9[0], Pokemon_GetValue(v10, MON_DATA_ABILITY, NULL), MON_DATA_PERSONALITY, v2);
+                partyMonDamage = TrainerAI_CalcAllDamage(battleSys,
+                    battleCtx,
+                    AI_CONTEXT.attacker,
+                    partyMonMoves,
+                    allDamageVals,
+                    Pokemon_GetValue(partyMon, MON_DATA_HELD_ITEM, NULL),
+                    ivs,
+                    Pokemon_GetValue(partyMon, MON_DATA_ABILITY, NULL),
+                    FALSE,
+                    varyDamage);
 
-                if (v6 > v5) {
-                    AIScript_Iter(param1, v3);
+                if (partyMonDamage > activeMonDamage) {
+                    AIScript_Iter(battleCtx, jump);
                     break;
                 }
             }
@@ -2467,159 +2279,148 @@ static void ov14_022220CC (BattleSystem * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02222260 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfHasSuperEffectiveMove(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int jump = AIScript_Read(battleCtx);
 
-    v0 = AIScript_Read(param1);
-
-    if (AI_HasSuperEffectiveMove(param0, param1, param1->aiContext.attacker, 1) == 1) {
-        AIScript_Iter(param1, v0);
+    if (AI_HasSuperEffectiveMove(battleSys, battleCtx, AI_CONTEXT.attacker, TRUE) == TRUE) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02222298 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfBattlerDealsMoreDamage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4;
-    int v5;
-    s32 v6;
-    s32 v7;
-    s32 v8[4];
-    u8 v9[6];
+    int i;
+    int inBattler;
+    BOOL varyDamage;
+    int jump;
+    int battler;
+    int roll;
+    s32 aiDamage;
+    s32 battlerDamage;
+    s32 damageVals[LEARNED_MOVES_MAX];
+    u8 ivs[STAT_MAX];
 
-    AIScript_Iter(param1, 1);
+    AIScript_Iter(battleCtx, 1);
 
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Read(param1);
-    v3 = AIScript_Read(param1);
+    inBattler = AIScript_Read(battleCtx);
+    varyDamage = AIScript_Read(battleCtx);
+    jump = AIScript_Read(battleCtx);
 
-    for (v0 = 0; v0 < 6; v0++) {
-        v9[v0] = BattleMon_Get(param1, param1->aiContext.attacker, 10 + v0, NULL);
+    for (i = 0; i < STAT_MAX; i++) {
+        ivs[i] = BattleMon_Get(battleCtx, AI_CONTEXT.attacker, BATTLEMON_HP_IV + i, NULL);
     }
 
-    v6 = TrainerAI_CalcAllDamage(param0, param1, param1->aiContext.attacker, &param1->battleMons[param1->aiContext.attacker].moves[0], &v8[0], param1->battleMons[param1->aiContext.attacker].heldItem, &v9[0], Battler_Ability(param1, param1->aiContext.attacker), param1->battleMons[param1->aiContext.attacker].moveEffectsData.embargoTurns, v2);
-    v4 = AIScript_Battler(param1, v1);
+    aiDamage = TrainerAI_CalcAllDamage(battleSys,
+        battleCtx,
+        AI_CONTEXT.attacker,
+        battleCtx->battleMons[AI_CONTEXT.attacker].moves,
+        damageVals,
+        battleCtx->battleMons[AI_CONTEXT.attacker].heldItem,
+        ivs,
+        Battler_Ability(battleCtx, AI_CONTEXT.attacker),
+        battleCtx->battleMons[AI_CONTEXT.attacker].moveEffectsData.embargoTurns,
+        varyDamage);
+    battler = AIScript_Battler(battleCtx, inBattler);
 
-    if (v2 == 1) {
-        v5 = param1->aiContext.moveDamageRolls[param1->aiContext.moveSlot];
+    if (varyDamage == TRUE) {
+        roll = AI_CONTEXT.moveDamageRolls[AI_CONTEXT.moveSlot];
     } else {
-        v5 = 100;
+        roll = 100;
     }
 
-    v7 = TrainerAI_CalcDamage(param0, param1, param1->movePrevByBattler[v4], param1->battleMons[v4].heldItem, &v9[0], v4, Battler_Ability(param1, v4), param1->battleMons[v4].moveEffectsData.embargoTurns, v5);
+    battlerDamage = TrainerAI_CalcDamage(battleSys,
+        battleCtx,
+        battleCtx->movePrevByBattler[battler],
+        battleCtx->battleMons[battler].heldItem,
+        ivs,
+        battler,
+        Battler_Ability(battleCtx, battler),
+        battleCtx->battleMons[battler].moveEffectsData.embargoTurns,
+        roll);
 
-    if (v7 > v6) {
-        AIScript_Iter(param1, v3);
+    if (battlerDamage > aiDamage) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_022223B0 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_SumPositiveStatStages(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    int battler = AIScript_Battler(battleCtx, inBattler);
 
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Battler(param1, v1);
+    AI_CONTEXT.calcTemp = 0;
 
-    param1->aiContext.calcTemp = 0;
-
-    for (v0 = 0x0; v0 < 0x8; v0++) {
-        if (param1->battleMons[v2].statBoosts[v0] > 6) {
-            param1->aiContext.calcTemp += param1->battleMons[v2].statBoosts[v0] - 6;
+    for (int stat = BATTLE_STAT_HP; stat < BATTLE_STAT_MAX; stat++) {
+        if (battleCtx->battleMons[battler].statBoosts[stat] > 6) {
+            AI_CONTEXT.calcTemp += battleCtx->battleMons[battler].statBoosts[stat] - 6;
         }
     }
 }
 
-static void ov14_02222400 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_DiffStatStages(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    int stat = AIScript_Read(battleCtx);
+    int battler = AIScript_Battler(battleCtx, inBattler);
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Battler(param1, v0);
-
-    param1->aiContext.calcTemp = param1->battleMons[v2].statBoosts[v1] - param1->battleMons[param1->aiContext.attacker].statBoosts[v1];
+    AI_CONTEXT.calcTemp = battleCtx->battleMons[battler].statBoosts[stat] - battleCtx->battleMons[AI_CONTEXT.attacker].statBoosts[stat];
 }
 
-static void ov14_02222450 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfBattlerHasHigherStat(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4;
-    int v5;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    int stat = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    int battler = AIScript_Battler(battleCtx, inBattler);
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Read(param1);
-    v3 = AIScript_Battler(param1, v0);
+    int aiStat, battlerStat;
+    TrainerAI_GetStats(battleCtx, battler, &aiStat, &battlerStat, stat);
 
-    TrainerAI_GetStats(param1, v3, &v4, &v5, v1);
-
-    if (v4 < v5) {
-        AIScript_Iter(param1, v2);
+    if (aiStat < battlerStat) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_022224A4 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfBattlerHasLowerStat(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4;
-    int v5;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    int stat = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    int battler = AIScript_Battler(battleCtx, inBattler);
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Read(param1);
-    v3 = AIScript_Battler(param1, v0);
+    int aiStat, battlerStat;
+    TrainerAI_GetStats(battleCtx, battler, &aiStat, &battlerStat, stat);
 
-    TrainerAI_GetStats(param1, v3, &v4, &v5, v1);
-
-    if (v4 > v5) {
-        AIScript_Iter(param1, v2);
+    if (aiStat > battlerStat) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_022224F8 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfBattlerHasEqualStat(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4;
-    int v5;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    int stat = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    int battler = AIScript_Battler(battleCtx, inBattler);
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Read(param1);
-    v3 = AIScript_Battler(param1, v0);
+    int aiStat, battlerStat;
+    TrainerAI_GetStats(battleCtx, battler, &aiStat, &battlerStat, stat);
 
-    TrainerAI_GetStats(param1, v3, &v4, &v5, v1);
-
-    if (v4 == v5) {
-        AIScript_Iter(param1, v2);
+    if (aiStat == battlerStat) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
@@ -2671,337 +2472,299 @@ static void TrainerAI_GetStats(BattleContext *battleCtx, int battler, int *buf1,
     }
 }
 
-static void ov14_02222648 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_CheckIfHighestDamageWithPartner(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0 = 0, v1, v2;
-    s32 v3;
-    s32 v4[4];
-    int v5;
-    u8 v6[6];
-    int v7;
+    int i = 0, j, k;
+    s32 moveDamage;
+    s32 damageVals[LEARNED_MOVES_MAX];
+    BOOL varyDamage;
+    u8 ivs[STAT_MAX];
+    int battler;
 
-    AIScript_Iter(param1, 1);
+    AIScript_Iter(battleCtx, 1);
+    varyDamage = AIScript_Read(battleCtx);
 
-    v5 = AIScript_Read(param1);
-    v1 = 0;
-
-    while (sRiskyMoves[v1] != 0xffff) {
-        if (param1->aiContext.moveTable[param1->aiContext.move].effect == sRiskyMoves[v1]) {
+    for (j = 0; sRiskyMoves[j] != 0xFFFF; j++) {
+        if (MOVE_DATA(AI_CONTEXT.move).effect == sRiskyMoves[j]) {
             break;
         }
-
-        v1++;
     }
 
-    v2 = 0;
-
-    while (sAltPowerCalcMoves[v2] != 0xffff) {
-        if (param1->aiContext.moveTable[param1->aiContext.move].effect == sAltPowerCalcMoves[v2]) {
+    for (k = 0; sAltPowerCalcMoves[k] != 0xFFFF; k++) {
+        if (MOVE_DATA(AI_CONTEXT.move).effect == sAltPowerCalcMoves[k]) {
             break;
         }
-
-        v2++;
     }
 
-    if ((sAltPowerCalcMoves[v2] != 0xffff) || ((param1->aiContext.moveTable[param1->aiContext.move].power > 1) && (sRiskyMoves[v1] == 0xffff))) {
-        v7 = param1->aiContext.attacker;
+    if (sAltPowerCalcMoves[k] != 0xFFFF
+            || (MOVE_DATA(AI_CONTEXT.move).power > 1 && sRiskyMoves[j] == 0xFFFF)) {
+        battler = AI_CONTEXT.attacker;
 
-        for (v1 = 0; v1 < 2; v1++) {
-            for (v0 = 0; v0 < 6; v0++) {
-                v6[v0] = BattleMon_Get(param1, v7, 10 + v0, NULL);
+        for (j = 0; j < MAX_BATTLERS_PER_SIDE; j++) {
+            for (i = STAT_HP; i < STAT_MAX; i++) {
+                ivs[i] = BattleMon_Get(battleCtx, battler, BATTLEMON_HP_IV + i, NULL);
             }
 
-            TrainerAI_CalcAllDamage(param0, param1, v7, &param1->battleMons[v7].moves[0], &v4[0], param1->battleMons[v7].heldItem, &v6[0], Battler_Ability(param1, v7), param1->battleMons[v7].moveEffectsData.embargoTurns, v5);
+            TrainerAI_CalcAllDamage(battleSys,
+                battleCtx,
+                battler,
+                battleCtx->battleMons[battler].moves,
+                damageVals,
+                battleCtx->battleMons[battler].heldItem,
+                ivs,
+                Battler_Ability(battleCtx, battler),
+                battleCtx->battleMons[battler].moveEffectsData.embargoTurns,
+                varyDamage);
 
-            v7 = BattleSystem_Partner(param0, param1->aiContext.attacker);
+            // Update to the partner for the next iteration
+            battler = BattleSystem_Partner(battleSys, AI_CONTEXT.attacker);
 
-            if (v1 == 0) {
-                v3 = v4[param1->aiContext.moveSlot];
+            if (j == 0) {
+                moveDamage = damageVals[AI_CONTEXT.moveSlot];
             }
 
-            for (v0 = 0; v0 < 4; v0++) {
-                if (v4[v0] > v3) {
+            for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+                if (damageVals[i] > moveDamage) {
                     break;
                 }
             }
 
-            if (v0 == 4) {
-                param1->aiContext.calcTemp = 2;
+            if (i == LEARNED_MOVES_MAX) {
+                AI_CONTEXT.calcTemp = AI_MOVE_IS_HIGHEST_DAMAGE;
             } else {
-                param1->aiContext.calcTemp = 1;
+                AI_CONTEXT.calcTemp = AI_NOT_HIGHEST_DAMAGE;
                 break;
             }
         }
     } else {
-        param1->aiContext.calcTemp = 0;
+        AI_CONTEXT.calcTemp = AI_NO_COMPARISON_MADE;
     }
 }
 
-static void ov14_022227A4 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfBattlerFainted(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
+    GF_ASSERT(inBattler != AI_BATTLER_ATTACKER);
+    GF_ASSERT(inBattler != AI_BATTLER_DEFENDER);
 
-    GF_ASSERT(v0 != 1);
-    GF_ASSERT(v0 != 0);
-
-    v2 = AIScript_Battler(param1, v0);
-
-    if (param1->battlersSwitchingMask & FlagIndex(v2)) {
-        AIScript_Iter(param1, v1);
+    int battler = AIScript_Battler(battleCtx, inBattler);
+    if (battleCtx->battlersSwitchingMask & FlagIndex(battler)) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_022227F4 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfBattlerNotFainted(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
+    GF_ASSERT(inBattler != AI_BATTLER_ATTACKER);
+    GF_ASSERT(inBattler != AI_BATTLER_DEFENDER);
 
-    GF_ASSERT(v0 != 1);
-    GF_ASSERT(v0 != 0);
-
-    v2 = AIScript_Battler(param1, v0);
-
-    if ((param1->battlersSwitchingMask & FlagIndex(v2)) == 0) {
-        AIScript_Iter(param1, v1);
+    int battler = AIScript_Battler(battleCtx, inBattler);
+    if ((battleCtx->battlersSwitchingMask & FlagIndex(battler)) == FALSE) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02222844 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_LoadGender(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    v1 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-
-    param1->aiContext.calcTemp = param1->battleMons[v0].gender;
+    AI_CONTEXT.calcTemp = battleCtx->battleMons[battler].gender;
 }
 
-static void ov14_0222287C (BattleSystem * param0, BattleContext * param1)
+static void AICmd_LoadIsFirstTurnInBattle(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    v1 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-
-    if (param1->battleMons[v0].moveEffectsData.fakeOutTurnNumber < param1->totalTurns) {
-        param1->aiContext.calcTemp = 0;
+    if (battleCtx->battleMons[battler].moveEffectsData.fakeOutTurnNumber < battleCtx->totalTurns) {
+        AI_CONTEXT.calcTemp = FALSE;
     } else {
-        param1->aiContext.calcTemp = 1;
+        AI_CONTEXT.calcTemp = TRUE;
     }
 }
 
-static void ov14_022228C8 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_LoadStockpileCount(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    v1 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-
-    param1->aiContext.calcTemp = param1->battleMons[v0].moveEffectsData.stockpileCount;
+    AI_CONTEXT.calcTemp = battleCtx->battleMons[battler].moveEffectsData.stockpileCount;
 }
 
-static void ov14_02222900 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_LoadBattleType(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    AIScript_Iter(param1, 1);
-    param1->aiContext.calcTemp = param0->battleType;
+    AIScript_Iter(battleCtx, 1);
+    AI_CONTEXT.calcTemp = battleSys->battleType;
 }
 
-static void ov14_02222918 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_LoadRecycleItem(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    v1 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-
-    param1->aiContext.calcTemp = param1->recycleItem[v0];
+    AI_CONTEXT.calcTemp = battleCtx->recycleItem[battler];
 }
 
-static void ov14_0222294C (BattleSystem * param0, BattleContext * param1)
+static void AICmd_LoadTypeOfLoadedMove(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    AIScript_Iter(param1, 1);
-    param1->aiContext.calcTemp = param1->aiContext.moveTable[param1->aiContext.calcTemp].type;
+    AIScript_Iter(battleCtx, 1);
+    AI_CONTEXT.calcTemp = MOVE_DATA(AI_CONTEXT.calcTemp).type;
 }
 
-static void ov14_0222296C (BattleSystem * param0, BattleContext * param1)
+static void AICmd_LoadPowerOfLoadedMove(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    AIScript_Iter(param1, 1);
-    param1->aiContext.calcTemp = param1->aiContext.moveTable[param1->aiContext.calcTemp].power;
+    AIScript_Iter(battleCtx, 1);
+    AI_CONTEXT.calcTemp = MOVE_DATA(AI_CONTEXT.calcTemp).power;
 }
 
-static void ov14_0222298C (BattleSystem * param0, BattleContext * param1)
+static void AICmd_LoadEffectOfLoadedMove(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    AIScript_Iter(param1, 1);
-    param1->aiContext.calcTemp = param1->aiContext.moveTable[param1->aiContext.calcTemp].effect;
+    AIScript_Iter(battleCtx, 1);
+    AI_CONTEXT.calcTemp = MOVE_DATA(AI_CONTEXT.calcTemp).effect;
 }
 
-static void ov14_022229AC (BattleSystem * param0, BattleContext * param1)
+static void AICmd_LoadProtectChain(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    v1 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-
-    if ((param1->moveProtect[v0] != 182) && (param1->moveProtect[v0] != 197) && (param1->moveProtect[v0] != 203)) {
-        param1->aiContext.calcTemp = 0;
+    if (battleCtx->moveProtect[battler] != MOVE_PROTECT
+            && battleCtx->moveProtect[battler] != MOVE_DETECT
+            && battleCtx->moveProtect[battler] != MOVE_ENDURE) {
+        AI_CONTEXT.calcTemp = 0;
     } else {
-        param1->aiContext.calcTemp = param1->battleMons[v0].moveEffectsData.protectSuccessTurns;
+        AI_CONTEXT.calcTemp = battleCtx->battleMons[battler].moveEffectsData.protectSuccessTurns;
     }
 }
 
-static void ov14_02222A08 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_PushAndGoTo(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-
-    AIScript_Iter(param1, 1);
-    v0 = AIScript_Read(param1);
-    AIScript_PushCursor(param0, param1, v0);
+    AIScript_Iter(battleCtx, 1);
+    int jump = AIScript_Read(battleCtx);
+    AIScript_PushCursor(battleSys, battleCtx, jump);
 }
 
-static void ov14_02222A28 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_GoTo(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-
-    AIScript_Iter(param1, 1);
-    v0 = AIScript_Read(param1);
-    AIScript_Iter(param1, v0);
+    AIScript_Iter(battleCtx, 1);
+    int jump = AIScript_Read(battleCtx);
+    AIScript_Iter(battleCtx, jump);
 }
 
-static void ov14_02222A44 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_PopOrEnd(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    AIScript_Iter(param1, 1);
+    AIScript_Iter(battleCtx, 1);
 
-    if (AIScript_PopCursor(param0, param1) == 1) {
+    if (AIScript_PopCursor(battleSys, battleCtx) == TRUE) {
         return;
     }
 
-    param1->aiContext.stateFlags |= 0x1;
+    AI_CONTEXT.stateFlags |= AI_STATUS_FLAG_DONE;
 }
 
-static void ov14_02222A6C (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfLevel(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int op = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
 
-    v0 = AIScript_Read(param1);
-    v1 = AIScript_Read(param1);
-
-    switch (v0) {
-    case 0x0:
-        if (param1->battleMons[param1->aiContext.attacker].level > param1->battleMons[param1->aiContext.defender].level) {
-            AIScript_Iter(param1, v1);
+    switch (op) {
+    case CHECK_HIGHER_THAN_TARGET:
+        if (battleCtx->battleMons[AI_CONTEXT.attacker].level > battleCtx->battleMons[AI_CONTEXT.defender].level) {
+            AIScript_Iter(battleCtx, jump);
         }
         break;
-    case 0x1:
-        if (param1->battleMons[param1->aiContext.attacker].level < param1->battleMons[param1->aiContext.defender].level) {
-            AIScript_Iter(param1, v1);
+
+    case CHECK_LOWER_THAN_TARGET:
+        if (battleCtx->battleMons[AI_CONTEXT.attacker].level < battleCtx->battleMons[AI_CONTEXT.defender].level) {
+            AIScript_Iter(battleCtx, jump);
         }
         break;
-    case 0x2:
-        if (param1->battleMons[param1->aiContext.attacker].level == param1->battleMons[param1->aiContext.defender].level) {
-            AIScript_Iter(param1, v1);
+
+    case CHECK_EQUAL_TO_TARGET:
+        if (battleCtx->battleMons[AI_CONTEXT.attacker].level == battleCtx->battleMons[AI_CONTEXT.defender].level) {
+            AIScript_Iter(battleCtx, jump);
         }
         break;
+
     default:
         break;
     }
 }
 
-static void ov14_02222B10 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfTargetIsTaunted(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
+    AIScript_Iter(battleCtx, 1);
+    int jump = AIScript_Read(battleCtx);
 
-    AIScript_Iter(param1, 1);
-    v0 = AIScript_Read(param1);
-
-    if (param1->battleMons[param1->aiContext.defender].moveEffectsData.tauntedTurns) {
-        AIScript_Iter(param1, v0);
+    if (battleCtx->battleMons[AI_CONTEXT.defender].moveEffectsData.tauntedTurns) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02222B48 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfTargetIsNotTaunted(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
+    AIScript_Iter(battleCtx, 1);
+    int jump = AIScript_Read(battleCtx);
 
-    AIScript_Iter(param1, 1);
-
-    v0 = AIScript_Read(param1);
-
-    if (param1->battleMons[param1->aiContext.defender].moveEffectsData.tauntedTurns == 0) {
-        AIScript_Iter(param1, v0);
+    if (battleCtx->battleMons[AI_CONTEXT.defender].moveEffectsData.tauntedTurns == 0) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02222B80 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfTargetIsPartner(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int jump = AIScript_Read(battleCtx);
 
-    v0 = AIScript_Read(param1);
-
-    if ((param1->aiContext.attacker & 1) == (param1->aiContext.defender & 1)) {
-        AIScript_Iter(param1, v0);
+    if ((AI_CONTEXT.attacker & 1) == (AI_CONTEXT.defender & 1)) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02222BB4 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_IfActivatedFlashFire(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
-    int v2;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    v1 = AIScript_Read(param1);
-    v2 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-
-    if (param1->battleMons[v0].moveEffectsData.flashFire) {
-        AIScript_Iter(param1, v2);
+    if (battleCtx->battleMons[battler].moveEffectsData.flashFire) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 
-static void ov14_02222BF8 (BattleSystem * param0, BattleContext * param1)
+static void AICmd_LoadAbility(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
+    AIScript_Iter(battleCtx, 1);
 
-    AIScript_Iter(param1, 1);
+    int inBattler = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    v1 = AIScript_Read(param1);
-    v0 = AIScript_Battler(param1, v1);
-
-    param1->aiContext.calcTemp = Battler_Ability(param1, v0);
+    AI_CONTEXT.calcTemp = Battler_Ability(battleCtx, battler);
 }
 
 /**
@@ -3009,12 +2772,12 @@ static void ov14_02222BF8 (BattleSystem * param0, BattleContext * param1)
  * 
  * @param battleSys 
  * @param battleCtx 
- * @param address   Address to be pushed onto the cursor stack.
+ * @param offset    Distance to jump ahead after pushing the cursor.
  */
-static void AIScript_PushCursor(BattleSystem *battleSys, BattleContext *battleCtx, int address)
+static void AIScript_PushCursor(BattleSystem *battleSys, BattleContext *battleCtx, int offset)
 {
     AI_CONTEXT.scriptStackPointer[AI_CONTEXT.scriptStackSize++] = battleCtx->aiScriptCursor;
-    AIScript_Iter(battleCtx, address);
+    AIScript_Iter(battleCtx, offset);
 
     GF_ASSERT(AI_CONTEXT.scriptStackSize <= AI_MAX_STACK_SIZE);
 }
@@ -3135,11 +2898,11 @@ static u8 AIScript_Battler(BattleContext *battleCtx, u8 inBattler)
  * @param heldItem      The attacker's held item.
  * @param ivs           The attacker's IVs. Used for calculating Hidden Power params.
  * @param ability       The attacker's ability.
- * @param embargo       TRUE if the attacker is under Embargo; FALSE otherwise.
+ * @param embargoTurns  Number of turns that the attacker is still under Embargo.
  * @param varyDamage    If TRUE, apply random damage variance to each calculation.
  * @return              The highest damage value among all considered moves.
  */
-static s32 TrainerAI_CalcAllDamage(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, u16 *moves, s32 *damageVals, u16 heldItem, u8 *ivs, int ability, BOOL embargo, BOOL varyDamage)
+static s32 TrainerAI_CalcAllDamage(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, u16 *moves, s32 *damageVals, u16 heldItem, u8 *ivs, int ability, int embargoTurns, BOOL varyDamage)
 {
     int i, riskyScanIdx, altPowerScanIdx;
     s32 maxDamage;
@@ -3175,7 +2938,7 @@ static s32 TrainerAI_CalcAllDamage(BattleSystem *battleSys, BattleContext *battl
                 damageRoll = 100;
             }
 
-            damageVals[i] = TrainerAI_CalcDamage(battleSys, battleCtx, moves[i], heldItem, ivs, attacker, ability, embargo, damageRoll);
+            damageVals[i] = TrainerAI_CalcDamage(battleSys, battleCtx, moves[i], heldItem, ivs, attacker, ability, embargoTurns, damageRoll);
         } else {
             damageVals[i] = 0;
         }
@@ -3198,17 +2961,17 @@ static s32 TrainerAI_CalcAllDamage(BattleSystem *battleSys, BattleContext *battl
  * 
  * @param battleSys 
  * @param battleCtx 
- * @param move      The move being used
- * @param heldItem  The attacker's held item.
- * @param ivs       The attacker's IVs. Used for Hidden Power calculation.  
- * @param attacker  The attacker's ID.
- * @param ability   The attacker's ability.
- * @param embargo   Flag representing if the attacker is under Embargo or not.
- * @param variance  Variance factor applied to the damage value. This is presumed
- *                  to be a value in the range [85..100].
+ * @param move          The move being used
+ * @param heldItem      The attacker's held item.
+ * @param ivs           The attacker's IVs. Used for Hidden Power calculation.  
+ * @param attacker      The attacker's ID.
+ * @param ability       The attacker's ability.
+ * @param embargoTurns  Number of turns that the attacker is still under Embargo.
+ * @param variance      Variance factor applied to the damage value. This is presumed
+ *                      to be a value in the range [85..100].
  * @return Calculated damage value.
  */
-static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCtx, u16 move, u16 heldItem, u8 *ivs, int attacker, int ability, BOOL embargo, u8 variance)
+static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCtx, u16 move, u16 heldItem, u8 *ivs, int attacker, int ability, int embargoTurns, u8 variance)
 {
     // must declare C89-style to match
     int defendingSide;
@@ -3226,7 +2989,7 @@ static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCt
 
     switch (move) {
     case MOVE_NATURAL_GIFT:
-        if (ability != ABILITY_KLUTZ && embargo == FALSE) {
+        if (ability != ABILITY_KLUTZ && embargoTurns == 0) {
             power = BattleSystem_GetItemData(battleCtx, heldItem, ITEM_PARAM_NATURAL_GIFT_POWER);
 
             if (power) {
@@ -3238,7 +3001,7 @@ static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCt
         break;
 
     case MOVE_JUDGMENT:
-        if (ability != ABILITY_KLUTZ && embargo == FALSE) {
+        if (ability != ABILITY_KLUTZ && embargoTurns == 0) {
             power = 0;
 
             switch (BattleSystem_GetItemData(battleCtx, heldItem, ITEM_PARAM_HOLD_EFFECT)) {
@@ -4532,12 +4295,12 @@ static BOOL TrainerAI_ShouldUseItem(BattleSystem *battleSys, int battler)
                 }
             } else {
                 // Unrecognized item type
-                battleCtx->aiContext.usedItemType[battler >> 1] = ITEM_TYPE_MAX;
+                AI_CONTEXT.usedItemType[battler >> 1] = ITEM_TYPE_MAX;
             }
 
             if (result == TRUE) {
-                battleCtx->aiContext.usedItem[battler >> 1] = item;
-                battleCtx->aiContext.trainerItems[battler >> 1][i] = 0;
+                AI_CONTEXT.usedItem[battler >> 1] = item;
+                AI_CONTEXT.trainerItems[battler >> 1][i] = 0;
             }
         }
     }

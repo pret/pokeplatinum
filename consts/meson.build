@@ -2,6 +2,7 @@ consts_manifests = files(
     'battle.json',
     'global.json',
     'narc_files.json',
+    'trainer_ai.json',
 )
 
 gen_consts_root = meson.current_build_dir() / 'generated'
