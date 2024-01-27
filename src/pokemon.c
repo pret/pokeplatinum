@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_0202CC84_decl.h"
+#include "struct_defs/chatot_cry.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/sprite_animation_frame.h"
@@ -4172,7 +4172,7 @@ void Pokemon_LoadLevelUpMovesOf(int monSpecies, int monForm, u16 *monLevelUpMove
     NARC_ReadWholeMemberByIndexPair(monLevelUpMoves, NARC_INDEX_POKETOOL__PERSONAL__WOTBL, monSpecies);
 }
 
-void sub_02077D3C(UnkStruct_0202CC84 *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7)
+void sub_02077D3C(ChatotCry *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7)
 {
     if (monSpecies == SPECIES_CHATOT) {
         if (sub_020064C8(param1) == 0) {
@@ -4190,7 +4190,7 @@ void sub_02077D3C(UnkStruct_0202CC84 *param0, int param1, u16 monSpecies, int pa
     }
 }
 
-void sub_02077DB4(UnkStruct_0202CC84 *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7, u8 param8)
+void sub_02077DB4(ChatotCry *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7, u8 param8)
 {
     if (monSpecies == SPECIES_CHATOT) {
         if (sub_020064C8(param1) == 0) {

@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02026218_decl.h"
 #include "struct_decls/struct_02026224_decl.h"
 #include "struct_decls/struct_02026310_decl.h"
-#include "struct_decls/struct_0202CC84_decl.h"
+#include "struct_defs/chatot_cry.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -2041,7 +2041,7 @@ static void ov5_021E62C4 (Party * param0, int param1, UnkStruct_02026218 * param
     Party_RemovePokemonBySlotIndex(param0, param1);
 
     if (Party_HasSpecies(param0, 441) == 0) {
-        UnkStruct_0202CC84 * v7 = sub_0202CC98(param3);
+        ChatotCry * v7 = sub_0202CC98(param3);
         sub_0202CCA8(v7);
     }
 }

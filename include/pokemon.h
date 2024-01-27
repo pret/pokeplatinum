@@ -11,7 +11,7 @@
 #include "struct_decls/cell_actor_data.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_0202CC84_decl.h"
+#include "struct_defs/chatot_cry.h"
 #include "struct_decls/struct_02078B40_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "overlay005/struct_ov5_021DE5D0.h"
@@ -919,8 +919,8 @@ BOOL Pokemon_SetRotomForm(Pokemon *mon, int monForm, int moveSlot);
  */
 void Pokemon_LoadLevelUpMovesOf(int monSpecies, int monForm, u16 *monLevelUpMoves);
 
-void sub_02077D3C(UnkStruct_0202CC84 *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7);
-void sub_02077DB4(UnkStruct_0202CC84 *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7, u8 param8);
+void sub_02077D3C(ChatotCry *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7);
+void sub_02077DB4(ChatotCry *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7, u8 param8);
 BOOL sub_02077E3C(Pokemon *mon);
 void Pokemon_SetCatchData(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
 void sub_02077EE4(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);

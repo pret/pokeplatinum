@@ -11,7 +11,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02023FCC_decl.h"
-#include "struct_decls/struct_0202CC84_decl.h"
+#include "struct_defs/chatot_cry.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
@@ -330,7 +330,7 @@ int ov19_021D0E58 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov19_021D5DF8 * v0 = sub_0200682C(param0);
 
     if (Party_HasSpecies(v0->unk_124, 441) == 0) {
-        UnkStruct_0202CC84 * v1 = sub_0202CC98(v0->unk_11C);
+        ChatotCry * v1 = sub_0202CC98(v0->unk_11C);
 
         sub_0202CCA8(v1);
     }

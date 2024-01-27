@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0202CC84_decl.h"
+#include "struct_defs/chatot_cry.h"
 
 #include "struct_defs/struct_02004CB4.h"
 
@@ -12,16 +12,16 @@
 #include "unk_0202CC64.h"
 
 BOOL sub_02006224(void);
-BOOL sub_02006260(const UnkStruct_0202CC84 * param0);
-BOOL sub_0200629C(const UnkStruct_0202CC84 * param0, u32 param1, int param2, int param3);
+BOOL sub_02006260(const ChatotCry * param0);
+BOOL sub_0200629C(const ChatotCry * param0, u32 param1, int param2, int param3);
 void sub_02006350(void);
 MICResult sub_0200637C(void);
 MICResult sub_020063B8(void);
-void sub_020063C0(UnkStruct_0202CC84 * param0);
+void sub_020063C0(ChatotCry * param0);
 void sub_020063D4(u8 param0);
-BOOL sub_020063E4(UnkStruct_0202CC84 * param0, u32 param1, int param2, int param3);
-BOOL sub_02006438(UnkStruct_0202CC84 * param0, u32 param1, int param2, int param3, u8 param4);
-int Sound_Chatter(UnkStruct_0202CC84 * param0);
+BOOL sub_020063E4(ChatotCry * param0, u32 param1, int param2, int param3);
+BOOL sub_02006438(ChatotCry * param0, u32 param1, int param2, int param3, u8 param4);
+int Sound_Chatter(ChatotCry * param0);
 BOOL sub_020064C8(int param0);
 
 BOOL sub_02006224 (void)
@@ -44,7 +44,7 @@ BOOL sub_02006224 (void)
     return 0;
 }
 
-BOOL sub_02006260 (const UnkStruct_0202CC84 * param0)
+BOOL sub_02006260 (const ChatotCry * param0)
 {
     u8 * v0 = sub_02003D5C(31);
     u8 * v1 = sub_02003D5C(54);
@@ -64,7 +64,7 @@ BOOL sub_02006260 (const UnkStruct_0202CC84 * param0)
     return 1;
 }
 
-BOOL sub_0200629C (const UnkStruct_0202CC84 * param0, u32 param1, int param2, int param3)
+BOOL sub_0200629C (const ChatotCry * param0, u32 param1, int param2, int param3)
 {
     u16 v0;
     int v1, v2;
@@ -151,7 +151,7 @@ MICResult sub_020063B8 (void)
     return sub_02004B64();
 }
 
-void sub_020063C0 (UnkStruct_0202CC84 * param0)
+void sub_020063C0 (ChatotCry * param0)
 {
     sub_0202CCEC(param0, (const s8 *)sub_02005014());
     return;
@@ -165,10 +165,10 @@ void sub_020063D4 (u8 param0)
     return;
 }
 
-BOOL sub_020063E4 (UnkStruct_0202CC84 * param0, u32 param1, int param2, int param3)
+BOOL sub_020063E4 (ChatotCry * param0, u32 param1, int param2, int param3)
 {
     int v0;
-    UnkStruct_0202CC84 ** v1 = sub_02003D5C(36);
+    ChatotCry ** v1 = sub_02003D5C(36);
 
     if (param0 == NULL) {
         v0 = sub_0200629C(*v1, param1, param2, param3);
@@ -184,10 +184,10 @@ BOOL sub_020063E4 (UnkStruct_0202CC84 * param0, u32 param1, int param2, int para
     return v0;
 }
 
-BOOL sub_02006438 (UnkStruct_0202CC84 * param0, u32 param1, int param2, int param3, u8 param4)
+BOOL sub_02006438 (ChatotCry * param0, u32 param1, int param2, int param3, u8 param4)
 {
     int v0;
-    UnkStruct_0202CC84 ** v1 = sub_02003D5C(36);
+    ChatotCry ** v1 = sub_02003D5C(36);
 
     if (param0 == NULL) {
         v0 = sub_0200629C(*v1, param1, param2, param3);
@@ -204,7 +204,7 @@ BOOL sub_02006438 (UnkStruct_0202CC84 * param0, u32 param1, int param2, int para
     return v0;
 }
 
-int Sound_Chatter (UnkStruct_0202CC84 * param0)
+int Sound_Chatter (ChatotCry * param0)
 {
     const s8 * v0;
     s8 v1;

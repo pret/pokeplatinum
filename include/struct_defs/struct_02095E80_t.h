@@ -19,7 +19,7 @@
 #include "struct_defs/struct_02027F8C.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_decls/struct_0202CC84_decl.h"
+#include "struct_defs/chatot_cry.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_decls/struct_party_decl.h"
@@ -110,7 +110,7 @@ struct UnkStruct_02095E80_t {
     int (* unk_226C)(UnkStruct_02095E80 *);
     Party * unk_2270;
     Party * unk_2274;
-    UnkStruct_0202CC84 * unk_2278;
+    ChatotCry * unk_2278;
     UnkStruct_02027F8C * unk_227C;
     UnkStruct_02027F8C unk_2280;
     int unk_2308;
