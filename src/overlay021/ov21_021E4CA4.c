@@ -1266,7 +1266,7 @@ static void ov21_021E5DE8 (UnkStruct_ov21_021E51DC * param0, UnkStruct_ov21_021E
 {
     param0->unk_2C = 1;
 
-    sub_020059D0(13, param2, 0, 127, 0x1ff, 0);
+    Sound_PlayPokemonCry(13, param2, 0, 127, 0x1ff, 0);
     ov21_021E5F00(param0);
 }
 

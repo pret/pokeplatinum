@@ -46,11 +46,11 @@ BOOL sub_02005844(u16 param0, u8 param1);
 BOOL sub_0200590C(u16 param0, u8 param1, u8 param2);
 void sub_0200592C(int param0);
 int sub_0200598C(void);
-BOOL sub_020059D0(int param0, u16 param1, int param2, int param3, int param4, u8 param5);
+BOOL Sound_PlayPokemonCry(int param0, u16 param1, int param2, int param3, int param4, u8 param5);
 void sub_02005E64(int param0, int param1);
 static void sub_02005EB0(SysTask * param0, void * param1);
 void sub_02005F24(void);
-void sub_02005F4C(int param0, u16 param1, int param2, int param3, int param4, u8 param5, u8 param6);
+void Sound_PlayDelayedPokemonCry(int param0, u16 param1, int param2, int param3, int param4, u8 param5, u8 param6);
 static BOOL sub_02006038(u16 param0, u8 param1);
 void sub_0200605C(void);
 static BOOL sub_020060EC(u16 param0, s8 param1, u8 param2);
@@ -424,7 +424,7 @@ BOOL sub_02005844 (u16 param0, u8 param1)
 
     if (v0 == 441) {
         if (sub_0200629C(*v3, 0, 127, 0) == 1) {
-            sub_020063D4(0);
+            Sound_FlagDefaultChatotCry(0);
             return 1;
         }
     }
@@ -441,7 +441,7 @@ BOOL sub_02005844 (u16 param0, u8 param1)
         sub_02004AA0(v0, 8);
     }
 
-    sub_020063D4(0);
+    Sound_FlagDefaultChatotCry(0);
 
     if (v1 == 0) {
         (void)0;
@@ -452,7 +452,7 @@ BOOL sub_02005844 (u16 param0, u8 param1)
 
 BOOL sub_0200590C (u16 param0, u8 param1, u8 param2)
 {
-    sub_02005F4C(0, param0, 0, 127, 11, param1, param2);
+    Sound_PlayDelayedPokemonCry(0, param0, 0, 127, 11, param1, param2);
     return 1;
 }
 
@@ -499,7 +499,7 @@ int sub_0200598C (void)
     return sub_02004B04(0);
 }
 
-BOOL sub_020059D0 (int param0, u16 param1, int param2, int param3, int param4, u8 param5)
+BOOL Sound_PlayPokemonCry (int param0, u16 param1, int param2, int param3, int param4, u8 param5)
 {
     int v0, v1;
     u16 v2;
@@ -577,7 +577,7 @@ BOOL sub_020059D0 (int param0, u16 param1, int param2, int param3, int param4, u
 
             return 1;
         default:
-            sub_020063D4(1);
+            Sound_FlagDefaultChatotCry(1);
             break;
         }
     }
@@ -779,7 +779,7 @@ void sub_02005F24 ()
     return;
 }
 
-void sub_02005F4C (int param0, u16 param1, int param2, int param3, int param4, u8 param5, u8 param6)
+void Sound_PlayDelayedPokemonCry (int param0, u16 param1, int param2, int param3, int param4, u8 param5, u8 param6)
 {
     u16 v0;
     int * v1;
@@ -822,7 +822,7 @@ void sub_02005F4C (int param0, u16 param1, int param2, int param3, int param4, u
     }
 
     if (param5 == 0) {
-        sub_020059D0(param0, v0, param2, param3, param4, param6);
+        Sound_PlayPokemonCry(param0, v0, param2, param3, param4, param6);
         return;
     }
 
@@ -890,7 +890,7 @@ static BOOL sub_020060EC (u16 param0, s8 param1, u8 param2)
 
     *v1 = 1;
 
-    sub_020063D4(1);
+    Sound_FlagDefaultChatotCry(1);
     v0 = sub_02005844(param0, param2);
     sub_02004F68(8, 0xffff, param1);
 

@@ -370,7 +370,7 @@ static void ov100_021D37F4 (SysTask * param0, void * param1)
         break;
     case 1:
         if ((++v0->unk_04) >= NELEMS(v1)) {
-            sub_020059D0(0, v0->unk_08, v0->unk_0C, 80, 111, 0);
+            Sound_PlayPokemonCry(0, v0->unk_08, v0->unk_0C, 80, 111, 0);
             v0->unk_00++;
         } else {
             sub_0201736C(&v0->unk_10->unk_00, FX32_CONST(v1[v0->unk_04]), FX32_CONST(1.00f), FX32_CONST(1.00f));

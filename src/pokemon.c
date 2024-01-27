@@ -4175,36 +4175,36 @@ void Pokemon_LoadLevelUpMovesOf(int monSpecies, int monForm, u16 *monLevelUpMove
 void sub_02077D3C(ChatotCry *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7)
 {
     if (monSpecies == SPECIES_CHATOT) {
-        if (sub_020064C8(param1) == 0) {
-            sub_020063D4(1);
-            sub_020059D0(param1, monSpecies, param4, param5, param7, param3);
+        if (Sound_CanPlayChatotCry(param1) == 0) {
+            Sound_FlagDefaultChatotCry(1);
+            Sound_PlayPokemonCry(param1, monSpecies, param4, param5, param7, param3);
         } else {
             if (param6) {
-                sub_020063D4(1);
+                Sound_FlagDefaultChatotCry(1);
             }
 
-            sub_020063E4(param0, NULL, param5, param4);
+            Sound_PlayChatotCry(param0, NULL, param5, param4);
         }
     } else {
-        sub_020059D0(param1, monSpecies, param4, param5, param7, param3);
+        Sound_PlayPokemonCry(param1, monSpecies, param4, param5, param7, param3);
     }
 }
 
 void sub_02077DB4(ChatotCry *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7, u8 param8)
 {
     if (monSpecies == SPECIES_CHATOT) {
-        if (sub_020064C8(param1) == 0) {
-            sub_020063D4(1);
-            sub_02005F4C(param1, monSpecies, param4, param5, param7, param8, param3);
+        if (Sound_CanPlayChatotCry(param1) == 0) {
+            Sound_FlagDefaultChatotCry(1);
+            Sound_PlayDelayedPokemonCry(param1, monSpecies, param4, param5, param7, param8, param3);
         } else {
             if (param6) {
-                sub_020063D4(1);
+                Sound_FlagDefaultChatotCry(1);
             }
 
-            sub_02006438(param0, NULL, param5, param4, param8);
+            Sound_PlayDelayedChatotCry(param0, NULL, param5, param4, param8);
         }
     } else {
-        sub_02005F4C(param1, monSpecies, param4, param5, param7, param8, param3);
+        Sound_PlayDelayedPokemonCry(param1, monSpecies, param4, param5, param7, param8, param3);
     }
 }
 

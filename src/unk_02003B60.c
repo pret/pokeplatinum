@@ -132,7 +132,7 @@ void sub_02003BD8 (void)
             v1->unk_BCDD0[v0]--;
 
             if (v1->unk_BCDD0[v0] == 0) {
-                sub_020059D0(v1->unk_BCDAC[v0], v1->unk_BCDCC[v0], v1->unk_BCDB4[v0], v1->unk_BCDBC[v0], v1->unk_BCDC4[v0], 0);
+                Sound_PlayPokemonCry(v1->unk_BCDAC[v0], v1->unk_BCDCC[v0], v1->unk_BCDB4[v0], v1->unk_BCDBC[v0], v1->unk_BCDC4[v0], 0);
             }
         }
     }

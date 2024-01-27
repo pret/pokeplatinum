@@ -18,11 +18,11 @@ void sub_02006350(void);
 MICResult sub_0200637C(void);
 MICResult sub_020063B8(void);
 void sub_020063C0(ChatotCry * param0);
-void sub_020063D4(u8 param0);
-BOOL sub_020063E4(ChatotCry * param0, u32 param1, int param2, int param3);
-BOOL sub_02006438(ChatotCry * param0, u32 param1, int param2, int param3, u8 param4);
+void Sound_FlagDefaultChatotCry(u8 param0);
+BOOL Sound_PlayChatotCry(ChatotCry * param0, u32 param1, int param2, int param3);
+BOOL Sound_PlayDelayedChatotCry(ChatotCry * param0, u32 param1, int param2, int param3, u8 param4);
 int Sound_Chatter(ChatotCry * param0);
-BOOL sub_020064C8(int param0);
+BOOL Sound_CanPlayChatotCry(int param0);
 
 BOOL sub_02006224 (void)
 {
@@ -107,7 +107,7 @@ BOOL sub_0200629C (const ChatotCry * param0, u32 param1, int param2, int param3)
     }
 
     *v4 = 1;
-    sub_020063D4(0);
+    Sound_FlagDefaultChatotCry(0);
 
     return v1;
 }
@@ -157,7 +157,7 @@ void sub_020063C0 (ChatotCry * param0)
     return;
 }
 
-void sub_020063D4 (u8 param0)
+void Sound_FlagDefaultChatotCry (u8 param0)
 {
     u8 * v0 = sub_02003D5C(31);
 
@@ -165,7 +165,7 @@ void sub_020063D4 (u8 param0)
     return;
 }
 
-BOOL sub_020063E4 (ChatotCry * param0, u32 param1, int param2, int param3)
+BOOL Sound_PlayChatotCry (ChatotCry * param0, u32 param1, int param2, int param3)
 {
     int v0;
     ChatotCry ** v1 = sub_02003D5C(36);
@@ -177,14 +177,14 @@ BOOL sub_020063E4 (ChatotCry * param0, u32 param1, int param2, int param3)
     }
 
     if (v0 == 0) {
-        sub_020063D4(1);
-        v0 = sub_020059D0(0, 441, param3, param2, 11, 0);
+        Sound_FlagDefaultChatotCry(1);
+        v0 = Sound_PlayPokemonCry(0, 441, param3, param2, 11, 0);
     }
 
     return v0;
 }
 
-BOOL sub_02006438 (ChatotCry * param0, u32 param1, int param2, int param3, u8 param4)
+BOOL Sound_PlayDelayedChatotCry (ChatotCry * param0, u32 param1, int param2, int param3, u8 param4)
 {
     int v0;
     ChatotCry ** v1 = sub_02003D5C(36);
@@ -196,8 +196,8 @@ BOOL sub_02006438 (ChatotCry * param0, u32 param1, int param2, int param3, u8 pa
     }
 
     if (v0 == 0) {
-        sub_020063D4(1);
-        sub_02005F4C(0, 441, param3, param2, 11, param4, 0);
+        Sound_FlagDefaultChatotCry(1);
+        Sound_PlayDelayedPokemonCry(0, 441, param3, param2, 11, param4, 0);
         v0 = 1;
     }
 
@@ -227,7 +227,7 @@ int Sound_Chatter (ChatotCry * param0)
     return 0;
 }
 
-BOOL sub_020064C8 (int param0)
+BOOL Sound_CanPlayChatotCry (int param0)
 {
     switch (param0) {
     case 0:

@@ -1538,7 +1538,7 @@ static void ov88_0223CE74 (UnkStruct_02095E80 * param0)
         v1 = param0->unk_6F4[param0->unk_88[0]].unk_06;
 
         if (v0 == 441) {
-            sub_020063E4(sub_0202CC98(param0->unk_04), 0, 100, 0);
+            Sound_PlayChatotCry(sub_0202CC98(param0->unk_04), 0, 100, 0);
         } else {
             sub_02005844(v0, v1);
         }

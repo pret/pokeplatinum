@@ -1147,7 +1147,7 @@ static void sub_0208D618 (UnkStruct_0208D7BC * param0)
     PokeSprite_LoadCryDelay(param0->unk_6A0, &v0, param0->unk_250.unk_0C, 1);
 
     if (param0->unk_250.unk_0C == 441) {
-        sub_02006438(param0->unk_24C->unk_28, 0, 100, 0, v0);
+        Sound_PlayDelayedChatotCry(param0->unk_24C->unk_28, 0, 100, 0, v0);
     } else {
         sub_0200590C(param0->unk_250.unk_0C, v0, param0->unk_250.unk_4E);
     }

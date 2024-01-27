@@ -694,10 +694,10 @@ static int ov79_021D2AF0 (UnkStruct_ov79_021D2928 * param0, UnkStruct_ov79_021D2
 
     switch (param0->unk_30.unk_09) {
     case 1:
-        sub_020059D0(11, param0->unk_30.unk_04, 0, 127, param0->unk_00, v0);
+        Sound_PlayPokemonCry(11, param0->unk_30.unk_04, 0, 127, param0->unk_00, v0);
         break;
     default:
-        sub_020059D0(0, param0->unk_30.unk_04, 0, 127, param0->unk_00, v0);
+        Sound_PlayPokemonCry(0, param0->unk_30.unk_04, 0, 127, param0->unk_00, v0);
         break;
     }
 

@@ -12,10 +12,10 @@ void sub_02006350(void);
 MICResult sub_0200637C(void);
 MICResult sub_020063B8(void);
 void sub_020063C0(ChatotCry * param0);
-void sub_020063D4(u8 param0);
-BOOL sub_020063E4(ChatotCry * param0, u32 param1, int param2, int param3);
-BOOL sub_02006438(ChatotCry * param0, u32 param1, int param2, int param3, u8 param4);
+void Sound_FlagDefaultChatotCry(u8 param0);
+BOOL Sound_PlayChatotCry(ChatotCry * param0, u32 param1, int param2, int param3);
+BOOL Sound_PlayDelayedChatotCry(ChatotCry * param0, u32 param1, int param2, int param3, u8 param4);
 int Sound_Chatter(ChatotCry * param0);
-BOOL sub_020064C8(int param0);
+BOOL Sound_CanPlayChatotCry(int param0);
 
 #endif // POKEPLATINUM_UNK_02006224_H
