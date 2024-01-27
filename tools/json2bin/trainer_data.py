@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from collections.abc import Mapping, Sequence
 import pathlib, functools
 
 from consts import (
@@ -12,7 +13,7 @@ from consts.pokemon import species
 import json2bin as j2b
 
 
-def derive_data_flags(party: list[dict], *args) -> bytes:
+def derive_data_flags(party: Sequence[Mapping], *args) -> bytes:
     defined_moves = False
     defined_items = False
     for mon in party:
@@ -25,7 +26,7 @@ def derive_data_flags(party: list[dict], *args) -> bytes:
     return (int(defined_moves) | (int(defined_items) << 1)).to_bytes(1, 'little')
 
 
-def parse_trainer_items(item_list: list[str], *args) -> bytes:
+def parse_trainer_items(item_list: Sequence[str], *args) -> bytes:
     item_bin = bytearray([])
     for item_str in item_list:
         item_bin.extend(item.Item[item_str].value.to_bytes(2, 'little'))
@@ -35,7 +36,7 @@ def parse_trainer_items(item_list: list[str], *args) -> bytes:
     return item_bin
 
 
-def parse_poke_moves(move_list: list[str], *args) -> bytes:
+def parse_poke_moves(move_list: Sequence[str], *args) -> bytes:
     move_bin = bytearray([])
     for move_str in move_list:
         move_bin.extend(moves.Move[move_str].value.to_bytes(2, 'little'))
@@ -64,7 +65,7 @@ def parse_party_mon(mon: dict, has_moves: bool, has_items: bool) -> bytes:
 
 # Parties are a complicated and variable structure, so just process them wholly
 # independently
-def parse_party_mons(party_list: list[dict], *args) -> bytes:
+def parse_party_mons(party_list: Sequence[Mapping], *args) -> bytes:
     if len(party_list) == 0: # special case, pads to 2 words instead of 1 word
         return (0).to_bytes(8, 'little')
 

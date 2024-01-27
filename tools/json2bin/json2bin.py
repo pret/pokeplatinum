@@ -2,6 +2,9 @@ import json
 import pathlib
 import subprocess
 
+from collections.abc import MutableMapping, MutableSequence, Mapping, Sequence
+from typing import Dict, List, Optional, Tuple, Type, Union
+
 from argparse import ArgumentParser
 from enum import Enum, Flag, auto
 from types import FunctionType, LambdaType
@@ -43,7 +46,7 @@ class Parser():
         self.field_index = 0
 
 
-    def register_name(self, func: FunctionType | LambdaType | None) -> 'Parser':
+    def register_name(self, func: Optional[Union[FunctionType, LambdaType]]) -> 'Parser':
         '''
             Register a function for processing the name key within the JSON
             structure. This differs from the standard function registration in
@@ -60,9 +63,9 @@ class Parser():
 
     def register(self,
                  field_name: str,
-                 size: int | tuple[int,int],
-                 func: FunctionType | LambdaType,
-                 const_type: type[Enum] | None = None,
+                 size: Union[int, Tuple[int,int]],
+                 func: Union[FunctionType, LambdaType],
+                 const_type: Optional[Type[Enum]] = None,
                  optional: OptionalBehavior = OptionalBehavior.DISALLOW) -> 'Parser':
         '''
             Register a function for processing a given key within the JSON
@@ -93,17 +96,17 @@ class Parser():
         return self
 
 
-    def _walk(self, data: dict, key_seq: list[str]) -> any:
+    def _walk(self, data: dict, key_seq: Sequence[str]) -> any:
         data_val = data
         for step in key_seq:
-            if type(data_val) == list:
+            if isinstance(data_val, list):
                 data_val = data_val[int(step)]
             else:
                 data_val = data_val.get(step, {}) # All future walks will return {}
         return data_val
 
 
-    def parse(self, data: dict) -> bytes:
+    def parse(self, data: Mapping) -> bytes:
         '''
             Parse the given JSON structure according to the currently-defined
             data schema.
@@ -138,7 +141,7 @@ class Parser():
         return binary
 
 
-def pack_flags(flags: list[str], size: int, consts: type[Flag]) -> bytes:
+def pack_flags(flags: Sequence[str], size: int, consts: Type[Flag]) -> bytes:
     '''
         Pack a list of flag constants into a bitmask. Flag values are defined
         by the specified consts type, which must descend from the enum.Flag
@@ -150,7 +153,7 @@ def pack_flags(flags: list[str], size: int, consts: type[Flag]) -> bytes:
     return result.value.to_bytes(size, 'little')
 
 
-def parse_const(val: str, size: int, consts: type[Enum]) -> bytes:
+def parse_const(val: str, size: int, consts: Type[Enum]) -> bytes:
     '''
         Simple parse wrapper for a value belonging to a set of constants,
         represented in JSON as a raw string name.
@@ -158,14 +161,14 @@ def parse_const(val: str, size: int, consts: type[Enum]) -> bytes:
     return consts[val].value.to_bytes(size, 'little')
 
 
-def parse_int(val: int, size: int, _consts: type[Enum] = None) -> bytes:
+def parse_int(val: int, size: int, _consts: Type[Enum] = None) -> bytes:
     '''
         Simple parse wrapper for an integer.
     '''
     return val.to_bytes(size, 'little')
 
 
-def parse_sint(val: int, size: int, _consts: type[Enum] = None) -> bytes:
+def parse_sint(val: int, size: int, _consts: Type[Enum] = None) -> bytes:
     '''
         Simple parse wrapper for a signed integer.
     '''
@@ -180,7 +183,7 @@ def _parse(fname_in: str, schema: Parser) -> bytes:
         return schema.parse(input_json)
 
 
-def _write(output_bin: bytes, output_idx: int, output_dir: str | None):
+def _write(output_bin: bytes, output_idx: int, output_dir: Optional[str]):
     output_fname = f'{output_idx:04}.bin'
     if output_dir:
         output_fname = pathlib.Path(output_dir) / output_fname
@@ -199,14 +202,14 @@ def _process(fname_in: str,
 
 def json2bin(target: str,
              schema: Parser,
-             private_dir: str | None,
-             output_dir: str | None,
+             private_dir: Optional[str],
+             output_dir: Optional[str],
              index_func: FunctionType,
              glob_pattern: str='*.json',
-             narc_name: str | None = None,
-             narc_packer: str | None = None,
+             narc_name: Optional[str] = None,
+             narc_packer: Optional[str] = None,
              output_mode: OutputMode = OutputMode.MULTI_FILE,
-             skip_stems: list[str] = []):
+             skip_stems: Sequence[str] = []):
     private_dir = pathlib.Path(private_dir)
     output_dir = pathlib.Path(output_dir)
 
