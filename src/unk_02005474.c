@@ -1,6 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/species.h"
+
 #include "struct_decls/sys_task.h"
 #include "struct_defs/chatot_cry.h"
 
@@ -522,8 +524,8 @@ BOOL Sound_PlayPokemonCry (int param0, u16 param1, int param2, int param3, int p
     }
 
     if (v2 != 494) {
-        if ((v2 > 495) || (v2 == 0)) {
-            v2 = 1;
+        if ((v2 > MAX_SPECIES) || (v2 == 0)) {
+            v2 = SPECIES_BULBASAUR;
         }
     }
 
@@ -552,7 +554,7 @@ BOOL Sound_PlayPokemonCry (int param0, u16 param1, int param2, int param3, int p
         sub_02004C4C(15);
     }
 
-    if (v2 == 441) {
+    if (v2 == SPECIES_CHATOT) {
         switch (param0) {
         case 0:
         case 1:

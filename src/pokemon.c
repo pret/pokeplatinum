@@ -1,6 +1,14 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/generated/c/gender.h"
+
+#include "constants/items.h"
+#include "constants/moves.h"
+#include "constants/pokemon.h"
+#include "constants/sound.h"
+#include "constants/species.h"
+
 #include "inlines.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
@@ -48,12 +56,6 @@
 #include "item.h"
 #include "unk_02092494.h"
 #include "flags.h"
-
-#include "consts/generated/c/gender.h"
-#include "constants/pokemon.h"
-#include "constants/species.h"
-#include "constants/items.h"
-#include "constants/moves.h"
 
 // Columns: Spicy, Dry, Sweet, Bitter, Sour
 // TODO enum here?
@@ -4172,40 +4174,44 @@ void Pokemon_LoadLevelUpMovesOf(int monSpecies, int monForm, u16 *monLevelUpMove
     NARC_ReadWholeMemberByIndexPair(monLevelUpMoves, NARC_INDEX_POKETOOL__PERSONAL__WOTBL, monSpecies);
 }
 
-void sub_02077D3C(ChatotCry *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7)
+void Pokemon_PlayCry(ChatotCry *chatotCry, enum PokemonCryMod crymod, u16 species, int form, int pan, int volume, int forceDefaultChatot, int heapID)
 {
-    if (monSpecies == SPECIES_CHATOT) {
-        if (Sound_CanPlayChatotCry(param1) == 0) {
-            Sound_FlagDefaultChatotCry(1);
-            Sound_PlayPokemonCry(param1, monSpecies, param4, param5, param7, param3);
+    if (species == SPECIES_CHATOT) {
+        if (Sound_CanPlayChatotCry(crymod) == FALSE) {
+            Sound_FlagDefaultChatotCry(TRUE);
+            Sound_PlayPokemonCry(crymod, species, pan, volume, heapID, form);
         } else {
-            if (param6) {
-                Sound_FlagDefaultChatotCry(1);
+            if (forceDefaultChatot) {
+                Sound_FlagDefaultChatotCry(TRUE);
             }
 
-            Sound_PlayChatotCry(param0, NULL, param5, param4);
+            Sound_PlayChatotCry(chatotCry, NULL, volume, pan);
         }
-    } else {
-        Sound_PlayPokemonCry(param1, monSpecies, param4, param5, param7, param3);
+
+        return;
     }
+    
+    Sound_PlayPokemonCry(crymod, species, pan, volume, heapID, form);
 }
 
-void sub_02077DB4(ChatotCry *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7, u8 param8)
+void Pokemon_PlayDelayedCry(ChatotCry *chatotCry, enum PokemonCryMod crymod, u16 species, int form, int pan, int volume, int forceDefaultChatot, int heapID, u8 delay)
 {
-    if (monSpecies == SPECIES_CHATOT) {
-        if (Sound_CanPlayChatotCry(param1) == 0) {
-            Sound_FlagDefaultChatotCry(1);
-            Sound_PlayDelayedPokemonCry(param1, monSpecies, param4, param5, param7, param8, param3);
+    if (species == SPECIES_CHATOT) {
+        if (Sound_CanPlayChatotCry(crymod) == FALSE) {
+            Sound_FlagDefaultChatotCry(TRUE);
+            Sound_PlayDelayedPokemonCry(crymod, species, pan, volume, heapID, delay, form);
         } else {
-            if (param6) {
-                Sound_FlagDefaultChatotCry(1);
+            if (forceDefaultChatot) {
+                Sound_FlagDefaultChatotCry(TRUE);
             }
 
-            Sound_PlayDelayedChatotCry(param0, NULL, param5, param4, param8);
+            Sound_PlayDelayedChatotCry(chatotCry, NULL, volume, pan, delay);
         }
-    } else {
-        Sound_PlayDelayedPokemonCry(param1, monSpecies, param4, param5, param7, param8, param3);
+
+        return;
     }
+    
+    Sound_PlayDelayedPokemonCry(crymod, species, pan, volume, heapID, delay, form);
 }
 
 BOOL sub_02077E3C(Pokemon *mon)

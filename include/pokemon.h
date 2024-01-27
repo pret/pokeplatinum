@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_POKEMON_H
 #define POKEPLATINUM_POKEMON_H
 
+#include "constants/sound.h"
+
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/sprite_animation_frame.h"
@@ -919,8 +921,36 @@ BOOL Pokemon_SetRotomForm(Pokemon *mon, int monForm, int moveSlot);
  */
 void Pokemon_LoadLevelUpMovesOf(int monSpecies, int monForm, u16 *monLevelUpMoves);
 
-void sub_02077D3C(ChatotCry *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7);
-void sub_02077DB4(ChatotCry *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7, u8 param8);
+/**
+ * @brief Play a Pokemon's cry, according to the given species and form number.
+ * 
+ * @param chatotCry             Chatot cry data from the save block. Only used
+ *                              if the Pokemon itself is Chatot.
+ * @param crymod                Modification to apply to the Pokemon's cry.
+ * @param species 
+ * @param form 
+ * @param pan 
+ * @param volume 
+ * @param forceDefaultChatot    If TRUE, force usage of Chatot's default cry.
+ * @param heapID 
+ */
+void Pokemon_PlayCry(ChatotCry *chatotCry, enum PokemonCryMod crymod, u16 species, int form, int pan, int volume, int forceDefaultChatot, int heapID);
+
+/**
+ * @brief Play a Pokemon's cry, according to the given species and form number.
+ * 
+ * @param chatotCry             Chatot cry data from the save block. Only used
+ *                              if the Pokemon itself is Chatot.
+ * @param crymod                Modification to apply to the Pokemon's cry.
+ * @param species 
+ * @param form 
+ * @param pan 
+ * @param volume 
+ * @param forceDefaultChatot    If TRUE, force usage of Chatot's default cry.
+ * @param heapID 
+ * @param delay                 Number of frames until playback will begin.
+ */
+void Pokemon_PlayDelayedCry(ChatotCry *chatotCry, enum PokemonCryMod crymod, u16 species, int form, int pan, int volume, int forceDefaultChatot, int heapID, u8 delay);
 BOOL sub_02077E3C(Pokemon *mon);
 void Pokemon_SetCatchData(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
 void sub_02077EE4(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
