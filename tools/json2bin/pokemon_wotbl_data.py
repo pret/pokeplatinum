@@ -21,9 +21,9 @@ def parse_level_up_moves(table: dict, _size: int, _enum: None):
     for key, value in table.items():
         level = int(key)
         level_moves = value
-        if type(level_moves) == str:
+        if isinstance(level_moves, str):
             out.extend(table_line(moves.Move[level_moves].value, level))
-        elif type(level_moves) == list:
+        elif isinstance(level_moves, list):
             for move in level_moves:
                 out.extend(table_line(moves.Move[move].value, level))
         else:

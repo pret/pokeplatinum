@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from collections.abc import Sequence
 import pathlib
 
 
@@ -17,7 +18,7 @@ from consts.pokemon import (
 )
 
 
-def get_evo_params(method: evo_methods.EvoMethod, evo: list):
+def get_evo_params(method: evo_methods.EvoMethod, evo: Sequence):
     maybe_param = evo[1]
     final_param = 0
     #None of these take an extra parameter
@@ -70,7 +71,7 @@ def table_line(evo_method: int, evo_params: int, species: int) -> bytes:
     return bytes(binary)
     
 
-def parse_evolutions(table: list, _size: int, _enum: None) -> bytes:
+def parse_evolutions(table: Sequence, _size: int, _enum: None) -> bytes:
     out = bytearray([])
     for j in range(min(len(table), 7)):
         evo = table[j]
