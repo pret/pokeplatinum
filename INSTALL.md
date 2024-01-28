@@ -28,10 +28,13 @@ You now have the choice between two different environments to use to build the p
 
     Press 'Y' when prompted to confirm the update. The update process may take a few minutes. Once completed, the terminal will automatically close.
 
-3. Reopen an MSYS terminal (pink icon) and enter the following command to install the necessary packages:
+3. Reopen an MSYS terminal (pink icon) and enter the following commands to install the necessary packages:
 
     ```
-    pacman -S git meson gcc arm-none-eabi-binutils
+    echo 'export MINGW_PACKAGE_PREFIX=mingw-w64-x86_64-' >> ~/.bashrc
+    echo 'export PATH=${PATH}:/mingw64/bin' >> ~/.bashrc
+    source ~/.bashrc
+    pacman -S git meson gcc "${MINGW_PACKAGE_PREFIX}arm-none-eabi-binutils"
     ```
 
     Press 'Y' when prompted to confirm the installation.
