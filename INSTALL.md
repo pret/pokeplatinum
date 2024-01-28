@@ -31,7 +31,7 @@ You now have the choice between two different environments to use to build the p
 3. Reopen an MSYS terminal (pink icon) and enter the following command to install the necessary packages:
 
     ```
-    pacman -S git meson gcc arm-none-eabi-binutils
+    pacman -S git meson gcc mingw-w64-x86_64-arm-none-eabi-binutils
     ```
 
     Press 'Y' when prompted to confirm the installation.
