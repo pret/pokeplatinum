@@ -66,7 +66,7 @@ void NitroMain (void)
 {
     sub_0201789C();
     sub_020179E4();
-    sub_02017AF4();
+    InitKeypadAndTouchpad();
 
     sub_02017B70(0);
     PM_GetBackLight(&Unk_02101D20, NULL);

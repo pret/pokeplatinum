@@ -202,55 +202,49 @@ void sub_020179E4 (void)
     MI_CpuClearFast((void *)HW_DB_PLTT, HW_DB_PLTT_SIZE);
 }
 
-void * sub_02017A40 (int param0, const char * param1)
+void * ReadFileToHeap (int heapID, const char * filename)
 {
-    FSFile v0;
-    void * v1;
+    FSFile file;
+    void * buf;
 
-    FS_InitFile(&v0);
+    FS_InitFile(&file);
 
-    if (FS_OpenFile(&v0, param1)) {
-        u32 v2 = FS_GetLength(&v0);
+    if (FS_OpenFile(&file, filename)) {
+        u32 length = FS_GetLength(&file);
 
-        v1 = Heap_AllocFromHeap(param0, v2);
+        buf = Heap_AllocFromHeap(heapID, length);
 
-        if (v1 == NULL) {
-            (void)0;
-        } else {
-            if (FS_ReadFile(&v0, v1, v2) != v2) {
-                Heap_FreeToHeapExplicit(param0, v1);
-                v1 = NULL;
+        if (buf != NULL) {
+            if (FS_ReadFile(&file, buf, length) != length) {
+                Heap_FreeToHeapExplicit(heapID, buf);
+                buf = NULL;
             }
         }
 
-        (void)FS_CloseFile(&v0);
+        FS_CloseFile(&file);
     } else {
-        v1 = NULL;
+        buf = NULL;
     }
 
-    return v1;
+    return buf;
 }
 
-void sub_02017A94 (const char * param0, void ** param1)
+void ReadFileToBuffer (const char * filename, void ** buf)
 {
-    FSFile v0;
+    FSFile file;
 
-    FS_InitFile(&v0);
+    FS_InitFile(&file);
 
-    if (FS_OpenFile(&v0, param0)) {
-        u32 v1 = FS_GetLength(&v0);
+    if (FS_OpenFile(&file, filename)) {
+        u32 length = FS_GetLength(&file);
 
-        if (*param1 == NULL) {
-            (void)0;
-        } else {
-            if (FS_ReadFile(&v0, *param1, v1) != v1) {
-                (void)0;
+        if (*buf != NULL) {
+            if (FS_ReadFile(&file, *buf, length) != length) {
+                /* error not handled */
             }
         }
 
-        (void)FS_CloseFile(&v0);
-    } else {
-        (void)0;
+        FS_CloseFile(&file);
     }
 }
 
@@ -270,7 +264,7 @@ void sub_02017ACC (void)
     }
 }
 
-void sub_02017AF4 (void)
+void InitKeypadAndTouchpad (void)
 {
     TPCalibrateParam v0;
 

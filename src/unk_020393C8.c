@@ -148,7 +148,7 @@ void * sub_020394A8 (u32 param0)
 {
     void * v0 = Heap_AllocFromHeapAtEnd(param0, 600);
 
-    sub_02017A94("data/pl_wm.NCLR", &v0);
+    ReadFileToBuffer("data/pl_wm.NCLR", &v0);
     DC_FlushRange(v0, 600);
 
     return v0;
@@ -161,7 +161,7 @@ static void sub_020394D0 (int param0, BOOL param1, u32 param2, u32 param3)
     if (v0) {
         NNSG2dPaletteData * v1;
 
-        sub_02017A94("data/pl_wm.NCLR", &v0);
+        ReadFileToBuffer("data/pl_wm.NCLR", &v0);
         DC_FlushRange(v0, 600);
         NNS_G2dGetUnpackedPaletteData(v0, &v1);
 
@@ -184,9 +184,9 @@ static void sub_02039530 (int param0, BOOL param1, u32 param2)
         int v2, v3, v4;
 
         if (param1) {
-            sub_02017A94("data/pl_wifi.NCGR", &v0);
+            ReadFileToBuffer("data/pl_wifi.NCGR", &v0);
         } else {
-            sub_02017A94("data/pl_wm.NCGR", &v0);
+            ReadFileToBuffer("data/pl_wm.NCGR", &v0);
         }
 
         DC_FlushRange(v0, 600);
