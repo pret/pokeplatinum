@@ -317,7 +317,7 @@ int ov67_0225C820 (UnkStruct_020067E8 * param0, int * param1)
     }
     break;
     case 10:
-        if (gCoreSys.padInput & PAD_BUTTON_A) {
+        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
             int v8;
             int v9;
 

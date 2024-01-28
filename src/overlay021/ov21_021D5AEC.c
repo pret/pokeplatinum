@@ -538,7 +538,7 @@ static void ov21_021D5FC4 (UnkStruct_ov21_021D5B68 * param0)
 
 static void ov21_021D5FD4 (UnkStruct_ov21_021D5B68 * param0)
 {
-    if (gCoreSys.padInput & PAD_BUTTON_B) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
         if (param0->unk_04->unk_1740 == 0) {
             param0->unk_28 = 1;
         } else {
@@ -548,17 +548,17 @@ static void ov21_021D5FD4 (UnkStruct_ov21_021D5B68 * param0)
         return;
     }
 
-    if (gCoreSys.padInput & PAD_BUTTON_A) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
         param0->unk_2C = 1;
         return;
     }
 
-    if (gCoreSys.padInput & PAD_BUTTON_X) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_X) {
         param0->unk_34 = 1;
         return;
     }
 
-    if (gCoreSys.padInput & PAD_BUTTON_SELECT) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_SELECT) {
         param0->unk_30 = 1;
         return;
     }
@@ -1766,7 +1766,7 @@ static void ov21_021D7590 (UnkStruct_ov21_021D7464 * param0, UnkStruct_ov21_021D
 
 static void ov21_021D75DC (UnkStruct_ov21_021D7464 * param0, UnkStruct_ov21_021D5B68 * param1)
 {
-    if (gCoreSys.unk_44 & PAD_KEY_UP) {
+    if (gCoreSys.heldKeys & PAD_KEY_UP) {
         if (ov21_021D6108(param1, -1)) {
             ov21_021D60FC(param1, param0, 2);
             param1->unk_20 = 1;
@@ -1779,7 +1779,7 @@ static void ov21_021D75DC (UnkStruct_ov21_021D7464 * param0, UnkStruct_ov21_021D
         return;
     }
 
-    if (gCoreSys.unk_44 & PAD_KEY_DOWN) {
+    if (gCoreSys.heldKeys & PAD_KEY_DOWN) {
         if (ov21_021D6108(param1, 1)) {
             ov21_021D60FC(param1, param0, 1);
             param1->unk_20 = 1;
@@ -1792,7 +1792,7 @@ static void ov21_021D75DC (UnkStruct_ov21_021D7464 * param0, UnkStruct_ov21_021D
         return;
     }
 
-    if (gCoreSys.padInput & PAD_KEY_LEFT) {
+    if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
         param0->unk_14 = 1;
         param0->unk_18 = 5;
         param0->unk_1C = -1;
@@ -1801,7 +1801,7 @@ static void ov21_021D75DC (UnkStruct_ov21_021D7464 * param0, UnkStruct_ov21_021D
         return;
     }
 
-    if (gCoreSys.padInput & PAD_KEY_RIGHT) {
+    if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
         param0->unk_14 = 1;
         param0->unk_18 = 5;
         param0->unk_1C = 1;

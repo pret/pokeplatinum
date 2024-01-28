@@ -217,7 +217,7 @@ int ov117_02260668 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_2C = sub_02018340(110);
 
     sub_0201DBEC(64, 110);
-    sub_02017DD4(4, 8);
+    SetAutorepeat(4, 8);
     ov117_022610D8(v0->unk_2C);
     sub_0201E3D8();
     sub_0201E450(4);

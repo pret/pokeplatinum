@@ -237,7 +237,7 @@ int ov97_02238EAC (UnkStruct_020067E8 * param0, int * param1)
             }
         }
 
-        if (gCoreSys.padInput & PAD_BUTTON_B) {
+        if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
             v2->unk_26D8 = 1;
         }
         break;
@@ -262,7 +262,7 @@ int ov97_02238EAC (UnkStruct_020067E8 * param0, int * param1)
             *param1 = 4109;
         }
 
-        if (gCoreSys.padInput & PAD_BUTTON_B) {
+        if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
             DWC_NASLoginAbort();
         }
         break;
@@ -318,7 +318,7 @@ int ov97_02238EAC (UnkStruct_020067E8 * param0, int * param1)
         break;
     case 4107:
         if (Unk_ov97_02240400 == 0) {
-            if (gCoreSys.padInput & PAD_BUTTON_B) {
+            if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
                 ov97_02238E44(v2, 3, param1, 4108, 4108);
             } else {
                 if (DWC_NdGetProgress(&v2->unk_26BC, &v2->unk_26C0) == 1) {
@@ -369,7 +369,7 @@ int ov97_02238EAC (UnkStruct_020067E8 * param0, int * param1)
         *param1 = 4112;
         break;
     case 4112:
-        if (gCoreSys.padInput & PAD_BUTTON_A) {
+        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
             v2->unk_26DC = NULL;
             DWC_ClearError();
             ov97_02238E94();
@@ -386,7 +386,7 @@ int ov97_02238EAC (UnkStruct_020067E8 * param0, int * param1)
             } else {
                 *param1 = v2->unk_16B0;
             }
-        } else if (gCoreSys.padInput & PAD_BUTTON_B) {
+        } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
             v2->unk_26D8 = 1;
         }
         break;
@@ -394,7 +394,7 @@ int ov97_02238EAC (UnkStruct_020067E8 * param0, int * param1)
         if (Unk_ov97_02240404 == 1) {
             Unk_ov97_02240404 = 0;
             *param1 = v2->unk_16B0;
-        } else if (gCoreSys.padInput & PAD_BUTTON_B) {
+        } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
             v2->unk_26D8 = 1;
         }
 

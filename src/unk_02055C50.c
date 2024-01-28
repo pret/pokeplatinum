@@ -401,7 +401,7 @@ static BOOL sub_02056124 (UnkStruct_020508D4 * param0)
         v1->unk_08 = 0;
         v1->unk_00 = 2;
     case 2:
-        if (gCoreSys.unk_44 & PAD_KEY_LEFT) {
+        if (gCoreSys.heldKeys & PAD_KEY_LEFT) {
             UnkStruct_02061AB4 * v2 = sub_02056074(v0, 2);
 
             if ((v2 == NULL) || !sub_020560E4(v2)) {
@@ -412,7 +412,7 @@ static BOOL sub_02056124 (UnkStruct_020508D4 * param0)
                 v1->unk_00 = 3;
                 break;
             }
-        } else if (gCoreSys.unk_44 & PAD_KEY_RIGHT) {
+        } else if (gCoreSys.heldKeys & PAD_KEY_RIGHT) {
             UnkStruct_02061AB4 * v2 = sub_02056074(v0, 3);
 
             if ((v2 == NULL) || !sub_020560E4(v2)) {
@@ -423,11 +423,11 @@ static BOOL sub_02056124 (UnkStruct_020508D4 * param0)
                 v1->unk_00 = 3;
                 break;
             }
-        } else if ((gCoreSys.unk_44 & PAD_KEY_UP) && (v1->unk_04 == 1)) {
+        } else if ((gCoreSys.heldKeys & PAD_KEY_UP) && (v1->unk_04 == 1)) {
             sub_0205EA84(v0->unk_3C, 0);
             v1->unk_00 = 4;
             break;
-        } else if ((gCoreSys.unk_44 & PAD_KEY_DOWN) && (v1->unk_04 == 0)) {
+        } else if ((gCoreSys.heldKeys & PAD_KEY_DOWN) && (v1->unk_04 == 0)) {
             v1->unk_00 = 4;
             break;
         }

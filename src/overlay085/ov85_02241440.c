@@ -246,7 +246,7 @@ int ov85_02241440 (UnkStruct_020067E8 * param0, int * param1)
     ov85_022417CC();
     ov85_022417E4(v0);
 
-    sub_02017DD4(4, 8);
+    SetAutorepeat(4, 8);
     sub_0201E3D8();
     sub_0201E450(4);
 
@@ -717,7 +717,7 @@ static int ov85_02241D10 (UnkStruct_ov85_022417E4 * param0)
 {
     u32 v0;
 
-    if (gCoreSys.unk_44 & PAD_KEY_UP) {
+    if (gCoreSys.heldKeys & PAD_KEY_UP) {
         v0 = ov85_02241EB8(param0->unk_1F8->unk_00, param0->unk_1F8->unk_08, -1);
 
         if (param0->unk_1F8->unk_08 != v0) {
@@ -737,7 +737,7 @@ static int ov85_02241D10 (UnkStruct_ov85_022417E4 * param0)
         return 1;
     }
 
-    if (gCoreSys.unk_44 & PAD_KEY_DOWN) {
+    if (gCoreSys.heldKeys & PAD_KEY_DOWN) {
         v0 = ov85_02241EB8(param0->unk_1F8->unk_00, param0->unk_1F8->unk_08, 1);
 
         if (param0->unk_1F8->unk_08 != v0) {
@@ -757,7 +757,7 @@ static int ov85_02241D10 (UnkStruct_ov85_022417E4 * param0)
         return 1;
     }
 
-    if ((gCoreSys.padInput & PAD_BUTTON_B) || (gCoreSys.touchInput)) {
+    if ((gCoreSys.pressedKeys & PAD_BUTTON_B) || (gCoreSys.touchPressed)) {
         sub_0208C120(1, 36);
         return 3;
     }

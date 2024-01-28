@@ -19,7 +19,7 @@ typedef struct {
 
 static void sub_02017808(BOOL param0);
 void sub_0201777C(void);
-static void sub_02017CA0(void);
+static void ApplyButtonModeToInput(void);
 
 CoreSys gCoreSys;
 
@@ -202,55 +202,49 @@ void sub_020179E4 (void)
     MI_CpuClearFast((void *)HW_DB_PLTT, HW_DB_PLTT_SIZE);
 }
 
-void * sub_02017A40 (int param0, const char * param1)
+void * ReadFileToHeap (int heapID, const char * filename)
 {
-    FSFile v0;
-    void * v1;
+    FSFile file;
+    void * buf;
 
-    FS_InitFile(&v0);
+    FS_InitFile(&file);
 
-    if (FS_OpenFile(&v0, param1)) {
-        u32 v2 = FS_GetLength(&v0);
+    if (FS_OpenFile(&file, filename)) {
+        u32 length = FS_GetLength(&file);
 
-        v1 = Heap_AllocFromHeap(param0, v2);
+        buf = Heap_AllocFromHeap(heapID, length);
 
-        if (v1 == NULL) {
-            (void)0;
-        } else {
-            if (FS_ReadFile(&v0, v1, v2) != v2) {
-                Heap_FreeToHeapExplicit(param0, v1);
-                v1 = NULL;
+        if (buf != NULL) {
+            if (FS_ReadFile(&file, buf, length) != length) {
+                Heap_FreeToHeapExplicit(heapID, buf);
+                buf = NULL;
             }
         }
 
-        (void)FS_CloseFile(&v0);
+        FS_CloseFile(&file);
     } else {
-        v1 = NULL;
+        buf = NULL;
     }
 
-    return v1;
+    return buf;
 }
 
-void sub_02017A94 (const char * param0, void ** param1)
+void ReadFileToBuffer (const char * filename, void ** buf)
 {
-    FSFile v0;
+    FSFile file;
 
-    FS_InitFile(&v0);
+    FS_InitFile(&file);
 
-    if (FS_OpenFile(&v0, param0)) {
-        u32 v1 = FS_GetLength(&v0);
+    if (FS_OpenFile(&file, filename)) {
+        u32 length = FS_GetLength(&file);
 
-        if (*param1 == NULL) {
-            (void)0;
-        } else {
-            if (FS_ReadFile(&v0, *param1, v1) != v1) {
-                (void)0;
+        if (*buf != NULL) {
+            if (FS_ReadFile(&file, *buf, length) != length) {
+                /* error not handled */
             }
         }
 
-        (void)FS_CloseFile(&v0);
-    } else {
-        (void)0;
+        FS_CloseFile(&file);
     }
 }
 
@@ -270,24 +264,24 @@ void sub_02017ACC (void)
     }
 }
 
-void sub_02017AF4 (void)
+void InitKeypadAndTouchpad (void)
 {
     TPCalibrateParam v0;
 
-    gCoreSys.unk_34 = 0;
-    gCoreSys.unk_38 = 0;
-    gCoreSys.unk_3C = 0;
-    gCoreSys.unk_40 = 0;
-    gCoreSys.unk_44 = 0;
-    gCoreSys.padInput = 0;
-    gCoreSys.unk_4C = 0;
-    gCoreSys.unk_50 = 0;
-    gCoreSys.unk_54 = 4;
-    gCoreSys.unk_58 = 8;
-    gCoreSys.unk_5C = 0;
-    gCoreSys.unk_5E = 0;
-    gCoreSys.touchInput = 0;
-    gCoreSys.unk_62 = 0;
+    gCoreSys.buttonMode = 0;
+    gCoreSys.heldKeysRaw = 0;
+    gCoreSys.pressedKeysRaw = 0;
+    gCoreSys.pressedKeysRepeatableRaw = 0;
+    gCoreSys.heldKeys = 0;
+    gCoreSys.pressedKeys = 0;
+    gCoreSys.pressedKeysRepeatable = 0;
+    gCoreSys.autorepeatTimer = 0;
+    gCoreSys.autorepeatRate = 4;
+    gCoreSys.autorepeatDelay = 8;
+    gCoreSys.touchX = 0;
+    gCoreSys.touchY = 0;
+    gCoreSys.touchPressed = 0;
+    gCoreSys.touchHeld = 0;
     gCoreSys.unk_64 = 0;
 
     TP_Init();
@@ -319,63 +313,63 @@ void sub_02017B8C (u8 param0)
     gCoreSys.unk_67 &= ~(param0);
 }
 
-void sub_02017B9C (void)
+void ReadKeypadAndTouchpad (void)
 {
-    TPData v0;
-    TPData v1;
-    int v2;
+    TPData tpRaw;
+    TPData tp;
+    u32 padRead;
 
     if (PAD_DetectFold()) {
-        gCoreSys.padInput = 0;
-        gCoreSys.unk_44 = 0;
-        gCoreSys.unk_4C = 0;
-        gCoreSys.touchInput = 0;
-        gCoreSys.unk_62 = 0;
+        // Can't press any buttons while the lid is closed.
+        gCoreSys.pressedKeys = 0;
+        gCoreSys.heldKeys = 0;
+        gCoreSys.pressedKeysRepeatable = 0;
+        gCoreSys.touchPressed = 0;
+        gCoreSys.touchHeld = 0;
         return;
     }
 
-    v2 = PAD_Read();
+    padRead = PAD_Read();
 
-    gCoreSys.unk_3C = v2 & (v2 ^ gCoreSys.unk_38);
-    gCoreSys.unk_40 = v2 & (v2 ^ gCoreSys.unk_38);
+    gCoreSys.pressedKeysRaw = padRead & (padRead ^ gCoreSys.heldKeysRaw);
+    gCoreSys.pressedKeysRepeatableRaw = gCoreSys.pressedKeysRaw;
 
-    if ((v2 != 0) && (gCoreSys.unk_38 == v2)) {
-        if (--gCoreSys.unk_50 == 0) {
-            gCoreSys.unk_40 = v2;
-            gCoreSys.unk_50 = gCoreSys.unk_54;
+    if ((padRead != 0) && (gCoreSys.heldKeysRaw == padRead)) {
+        if (--gCoreSys.autorepeatTimer == 0) {
+            gCoreSys.pressedKeysRepeatableRaw = padRead;
+            gCoreSys.autorepeatTimer = gCoreSys.autorepeatRate;
         }
     } else {
-        gCoreSys.unk_50 = gCoreSys.unk_58;
+        gCoreSys.autorepeatTimer = gCoreSys.autorepeatDelay;
     }
 
-    gCoreSys.unk_38 = v2;
-    gCoreSys.padInput = gCoreSys.unk_3C;
-    gCoreSys.unk_44 = gCoreSys.unk_38;
-    gCoreSys.unk_4C = gCoreSys.unk_40;
+    gCoreSys.heldKeysRaw = padRead;
 
-    sub_02017CA0();
+    gCoreSys.pressedKeys = gCoreSys.pressedKeysRaw;
+    gCoreSys.heldKeys = gCoreSys.heldKeysRaw;
+    gCoreSys.pressedKeysRepeatable = gCoreSys.pressedKeysRepeatableRaw;
+
+    ApplyButtonModeToInput();
 
     if (gCoreSys.unk_64 == 0) {
-        while (TP_RequestRawSampling(&v0) != 0) {
-            (void)0;
-        }
+        while (TP_RequestRawSampling(&tpRaw) != 0);
     } else {
-        TP_GetLatestRawPointInAuto(&v0);
+        TP_GetLatestRawPointInAuto(&tpRaw);
     }
 
-    TP_GetCalibratedPoint(&v1, &v0);
+    TP_GetCalibratedPoint(&tp, &tpRaw);
 
-    if (v1.validity == TP_VALIDITY_VALID) {
-        gCoreSys.unk_5C = v1.x;
-        gCoreSys.unk_5E = v1.y;
+    if (tp.validity == TP_VALIDITY_VALID) {
+        gCoreSys.touchX = tp.x;
+        gCoreSys.touchY = tp.y;
     } else {
-        if (gCoreSys.unk_62) {
-            switch (v1.validity) {
+        if (gCoreSys.touchHeld) {
+            switch (tp.validity) {
             case TP_VALIDITY_INVALID_X:
-                gCoreSys.unk_5E = v1.y;
+                gCoreSys.touchY = tp.y;
                 break;
             case TP_VALIDITY_INVALID_Y:
-                gCoreSys.unk_5C = v1.x;
+                gCoreSys.touchX = tp.x;
                 break;
             case TP_VALIDITY_INVALID_XY:
                 break;
@@ -383,98 +377,101 @@ void sub_02017B9C (void)
                 break;
             }
         } else {
-            v1.touch = 0;
+            tp.touch = 0;
         }
     }
 
-    gCoreSys.touchInput = (u16)(v1.touch & (v1.touch ^ gCoreSys.unk_62));
-    gCoreSys.unk_62 = v1.touch;
+    gCoreSys.touchPressed = (u16)(tp.touch & (tp.touch ^ gCoreSys.touchHeld));
+    gCoreSys.touchHeld = tp.touch;
 }
 
-static void sub_02017CA0 (void)
+static void ApplyButtonModeToInput (void)
 {
-    switch (gCoreSys.unk_34) {
+    switch (gCoreSys.buttonMode) {
     default:
-    case 0:
+    case BUTTON_MODE_NORMAL:
         break;
-    case 1:
-        if (gCoreSys.padInput & 0x8) {
-            gCoreSys.padInput |= 0x400;
+    case BUTTON_MODE_START_IS_X:
+        if (gCoreSys.pressedKeys & PAD_BUTTON_START) {
+            gCoreSys.pressedKeys |= PAD_BUTTON_X;
         }
 
-        if (gCoreSys.unk_44 & 0x8) {
-            gCoreSys.unk_44 |= 0x400;
+        if (gCoreSys.heldKeys & PAD_BUTTON_START) {
+            gCoreSys.heldKeys |= PAD_BUTTON_X;
         }
 
-        if (gCoreSys.unk_4C & 0x8) {
-            gCoreSys.unk_4C |= 0x400;
+        if (gCoreSys.pressedKeysRepeatable & PAD_BUTTON_START) {
+            gCoreSys.pressedKeysRepeatable |= PAD_BUTTON_X;
         }
         break;
-    case 2:
-    {
-        int v0 = 0;
-
-        if (gCoreSys.padInput & 0x400) {
-            v0 |= 0x800;
-        }
-
-        if (gCoreSys.padInput & 0x800) {
-            v0 |= 0x400;
-        }
-
-        gCoreSys.padInput &= ((0x400 | 0x800) ^ 0xffff); gCoreSys.padInput |= v0;
-    }
+    case BUTTON_MODE_SWAP_XY:
         {
-            int v0 = 0;
+            u32 tmp = 0;
 
-            if (gCoreSys.unk_44 & 0x400) {
-                v0 |= 0x800;
+            if (gCoreSys.pressedKeys & PAD_BUTTON_X) {
+                tmp |= PAD_BUTTON_Y;
             }
 
-            if (gCoreSys.unk_44 & 0x800) {
-                v0 |= 0x400;
+            if (gCoreSys.pressedKeys & PAD_BUTTON_Y) {
+                tmp |= PAD_BUTTON_X;
             }
 
-            gCoreSys.unk_44 &= ((0x400 | 0x800) ^ 0xffff); gCoreSys.unk_44 |= v0;
+            gCoreSys.pressedKeys &= ((PAD_BUTTON_X | PAD_BUTTON_Y) ^ 0xffff);
+            gCoreSys.pressedKeys |= tmp;
         }
         {
-            int v0 = 0;
+            u32 tmp = 0;
 
-            if (gCoreSys.unk_4C & 0x400) {
-                v0 |= 0x800;
+            if (gCoreSys.heldKeys & PAD_BUTTON_X) {
+                tmp |= PAD_BUTTON_Y;
             }
 
-            if (gCoreSys.unk_4C & 0x800) {
-                v0 |= 0x400;
+            if (gCoreSys.heldKeys & PAD_BUTTON_Y) {
+                tmp |= PAD_BUTTON_X;
             }
 
-            gCoreSys.unk_4C &= ((0x400 | 0x800) ^ 0xffff); gCoreSys.unk_4C |= v0;
+            gCoreSys.heldKeys &= ((PAD_BUTTON_X | PAD_BUTTON_Y) ^ 0xffff);
+            gCoreSys.heldKeys |= tmp;
+        }
+        {
+            u32 tmp = 0;
+
+            if (gCoreSys.pressedKeysRepeatable & PAD_BUTTON_X) {
+                tmp |= PAD_BUTTON_Y;
+            }
+
+            if (gCoreSys.pressedKeysRepeatable & PAD_BUTTON_Y) {
+                tmp |= PAD_BUTTON_X;
+            }
+
+            gCoreSys.pressedKeysRepeatable &= ((PAD_BUTTON_X | PAD_BUTTON_Y) ^ 0xffff);
+            gCoreSys.pressedKeysRepeatable |= tmp;
         }
         break;
-    case 3:
-        if (gCoreSys.padInput & 0x200) {
-            gCoreSys.padInput |= 0x1;
+    case BUTTON_MODE_L_IS_A:
+        if (gCoreSys.pressedKeys & PAD_BUTTON_L) {
+            gCoreSys.pressedKeys |= PAD_BUTTON_A;
         }
 
-        if (gCoreSys.unk_44 & 0x200) {
-            gCoreSys.unk_44 |= 0x1;
+        if (gCoreSys.heldKeys & PAD_BUTTON_L) {
+            gCoreSys.heldKeys |= PAD_BUTTON_A;
         }
 
-        if (gCoreSys.unk_4C & 0x200) {
-            gCoreSys.unk_4C |= 0x1;
+        if (gCoreSys.pressedKeysRepeatable & PAD_BUTTON_L) {
+            gCoreSys.pressedKeysRepeatable |= PAD_BUTTON_A;
         }
 
-        gCoreSys.padInput &= ((0x200 | 0x100) ^ 0xffff);
-        gCoreSys.unk_44 &= ((0x200 | 0x100) ^ 0xffff);
-        gCoreSys.unk_4C &= ((0x200 | 0x100) ^ 0xffff);
+        gCoreSys.pressedKeys &= ((PAD_BUTTON_L | PAD_BUTTON_R) ^ 0xffff);
+        gCoreSys.heldKeys &= ((PAD_BUTTON_L | PAD_BUTTON_R) ^ 0xffff);
+        gCoreSys.pressedKeysRepeatable &= ((PAD_BUTTON_L | PAD_BUTTON_R) ^ 0xffff);
         break;
     }
 }
 
-void sub_02017DD4 (int param0, int param1)
+void SetAutorepeat (int rate, int delay)
 {
-    gCoreSys.unk_54 = param0;
-    gCoreSys.unk_58 = param1;
+    gCoreSys.autorepeatRate = rate;
+    gCoreSys.autorepeatDelay = delay;
 }
 
 void sub_02017DE0 (u8 param0)

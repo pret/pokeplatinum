@@ -58,9 +58,9 @@ void ov83_0223F83C (UnkStruct_ov83_0223F820 * param0)
 {
     s32 v0;
 
-    if (gCoreSys.unk_62) {
-        param0->unk_00 = gCoreSys.unk_5C;
-        param0->unk_04 = gCoreSys.unk_5E;
+    if (gCoreSys.touchHeld) {
+        param0->unk_00 = gCoreSys.touchX;
+        param0->unk_04 = gCoreSys.touchY;
 
         if (param0->unk_14 == 0) {
             param0->unk_08 = param0->unk_00;
@@ -71,7 +71,7 @@ void ov83_0223F83C (UnkStruct_ov83_0223F820 * param0)
     param0->unk_10 = ov83_0223F7F4(param0->unk_00, param0->unk_04, param0->unk_08, param0->unk_0C, 128, 96);
     param0->unk_08 = param0->unk_00;
     param0->unk_0C = param0->unk_04;
-    param0->unk_14 = gCoreSys.unk_62;
+    param0->unk_14 = gCoreSys.touchHeld;
 }
 
 void ov83_0223F88C (UnkStruct_ov83_0223F88C * param0, UnkStruct_ov83_0223F820 * param1)

@@ -92,7 +92,7 @@ BattleParams * sub_02051D8C (int param0, u32 param1)
     v1->unk_14C = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        v1->parties[v0] = sub_02079FF4(param0);
+        v1->parties[v0] = Party_New(param0);
     }
 
     for (v0 = 0; v0 < 4; v0++) {

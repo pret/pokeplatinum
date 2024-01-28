@@ -674,7 +674,7 @@ static int ov91_021D122C (UnkStruct_ov91_021D0ED8 * param0)
     u32 v0;
     u16 v1, v2;
 
-    if (gCoreSys.padInput & (PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
+    if (gCoreSys.pressedKeys & (PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
         Sound_PlayEffect(1501);
         param0->unk_00->unk_14 ^= 1;
         ov91_021D1498(param0);

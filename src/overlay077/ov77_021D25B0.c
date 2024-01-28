@@ -947,7 +947,7 @@ static int ov77_021D2D08 (UnkStruct_020067E8 * param0, int * param1)
     sub_020177BC(NULL, NULL);
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
-    sub_02017DD4(4, 8);
+    SetAutorepeat(4, 8);
     Heap_Create(3, v1, 0xa0000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov77_021D2E9C), v1);
@@ -970,7 +970,7 @@ static int ov77_021D2D94 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov77_021D2E9C * v0 = sub_0200682C(param0);
 
-    if ((v0->unk_2A8) && ((gCoreSys.padInput & PAD_BUTTON_A) || (gCoreSys.padInput & PAD_BUTTON_START))) {
+    if ((v0->unk_2A8) && ((gCoreSys.pressedKeys & PAD_BUTTON_A) || (gCoreSys.pressedKeys & PAD_BUTTON_START))) {
         v0->unk_08 = 1;
         gCoreSys.unk_6C = 0;
         sub_0200F344(0, 0x0);

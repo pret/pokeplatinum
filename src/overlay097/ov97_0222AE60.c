@@ -206,7 +206,7 @@ static BOOL ov97_0222AE64 (UnkStruct_0222AE60 * param0)
             }
         }
     } else {
-        if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(1500);
             Window_Clear(&param0->unk_158, 0);
             BGL_DeleteWindow(&param0->unk_158);
@@ -391,10 +391,10 @@ static BOOL ov97_0222B07C (UnkStruct_0222AE60 * param0)
         if (param0->unk_134) {
             param0->unk_134--;
         } else {
-            if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 BGL_DeleteWindow(&param0->unk_13C);
                 param0->unk_12C = 19;
-                param0->unk_138 = gCoreSys.padInput;
+                param0->unk_138 = gCoreSys.pressedKeys;
                 Sound_PlayEffect(1500);
             }
         }
@@ -1075,8 +1075,8 @@ static int ov97_0222BE24 (UnkStruct_020067E8 * param0, int * param1)
         v1->unk_124 = 10;
         break;
     case 5:
-        if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            if (gCoreSys.padInput & PAD_BUTTON_A) {
+        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
                 Sound_PlayEffect(1500);
                 v1->unk_58 = v1->unk_DC[v1->unk_54];
 
@@ -1119,11 +1119,11 @@ static int ov97_0222BE24 (UnkStruct_020067E8 * param0, int * param1)
             break;
         }
 
-        if (gCoreSys.padInput & PAD_KEY_UP) {
+        if (gCoreSys.pressedKeys & PAD_KEY_UP) {
             ov97_0222BB88(v1, -1);
         }
 
-        if (gCoreSys.padInput & PAD_KEY_DOWN) {
+        if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
             ov97_0222BB88(v1, 1);
         }
 

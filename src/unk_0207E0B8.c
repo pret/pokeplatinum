@@ -265,7 +265,7 @@ static int sub_0207E0B8 (UnkStruct_020067E8 * param0, int * param1)
     G2_BlendNone();
     G2S_BlendNone();
 
-    sub_02017DD4(4, 8);
+    SetAutorepeat(4, 8);
     Heap_Create(3, 12, 0x30000);
 
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, 12);
@@ -600,7 +600,7 @@ static int sub_0207E6C0 (UnkStruct_0207F248 * param0)
 
 static int sub_0207E6E4 (UnkStruct_0207F248 * param0)
 {
-    if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Sound_PlayEffect(1500);
         return 32;
     }
@@ -1434,13 +1434,13 @@ static u8 sub_0207FA24 (UnkStruct_0207F248 * param0)
 
     v1 = 4;
 
-    if (gCoreSys.unk_4C & PAD_KEY_UP) {
+    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
         v1 = 0;
-    } else if (gCoreSys.unk_4C & PAD_KEY_DOWN) {
+    } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
         v1 = 1;
-    } else if (gCoreSys.unk_4C & PAD_KEY_LEFT) {
+    } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) {
         v1 = 2;
-    } else if (gCoreSys.unk_4C & PAD_KEY_RIGHT) {
+    } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT) {
         v1 = 3;
     }
 
@@ -1635,7 +1635,7 @@ static u8 sub_0207FE98 (UnkStruct_0207F248 * param0)
 {
     u8 v0;
 
-    if (gCoreSys.padInput & PAD_BUTTON_A) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
         if (param0->unk_B11 == 6) {
             return 4;
         } else if (param0->unk_B11 == 7) {
@@ -1675,7 +1675,7 @@ static u8 sub_0207FE98 (UnkStruct_0207F248 * param0)
         }
     }
 
-    if (gCoreSys.padInput & PAD_BUTTON_B) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
         if (param0->unk_B0F_7 == 0) {
             Sound_PlayEffect(1500);
             param0->unk_B11 = 7;
@@ -2044,7 +2044,7 @@ static u8 sub_020805E4 (UnkStruct_0207F248 * param0)
 {
     u8 v0;
 
-    if (gCoreSys.padInput & PAD_BUTTON_A) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
         Sound_PlayEffect(1500);
 
         if ((param0->unk_B11 >= 6) || (param0->unk_B11 == param0->unk_B0F_0)) {
@@ -2056,7 +2056,7 @@ static u8 sub_020805E4 (UnkStruct_0207F248 * param0)
         }
     }
 
-    if (gCoreSys.padInput & PAD_BUTTON_B) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
         Sound_PlayEffect(1500);
         sub_02083B88(param0);
         return 3;
@@ -2320,7 +2320,7 @@ static int sub_02080AD8 (UnkStruct_0207F248 * param0)
     if (v0 != 0xffffffff) {
         u16 v1 = 0xfffe;
 
-        if (sub_0201C784(param0->unk_00, 4, gCoreSys.unk_5C, gCoreSys.unk_5E, &v1) == 0) {
+        if (sub_0201C784(param0->unk_00, 4, gCoreSys.touchX, gCoreSys.touchY, &v1) == 0) {
             return 0xffffffff;
         }
     }
@@ -2376,7 +2376,7 @@ static int sub_02080BF4 (UnkStruct_0207F248 * param0)
 {
     switch (param0->unk_B14[1]) {
     case 0:
-        if (gCoreSys.padInput & PAD_BUTTON_A) {
+        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
             if (param0->unk_B11 >= 6) {
                 Sound_PlayEffect(1500);
                 sub_02083B88(param0);
@@ -2405,7 +2405,7 @@ static int sub_02080BF4 (UnkStruct_0207F248 * param0)
             }
         }
 
-        if (gCoreSys.padInput & PAD_BUTTON_B) {
+        if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
             Sound_PlayEffect(1500);
             sub_02083B88(param0);
             return 1;
@@ -2439,7 +2439,7 @@ static int sub_02080BF4 (UnkStruct_0207F248 * param0)
         }
         break;
     case 1:
-        if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(1500);
             sub_0200E084(&param0->unk_04[34], 1);
             sub_0200D414(param0->unk_5B0[6], 0);
@@ -2479,7 +2479,7 @@ static int sub_02080BF4 (UnkStruct_0207F248 * param0)
         }
         break;
     case 4:
-        if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(1500);
             sub_0200E084(&param0->unk_04[34], 1);
             sub_0200D414(param0->unk_5B0[6], 0);
@@ -2538,7 +2538,7 @@ static u8 sub_02080FD0 (UnkStruct_0207F248 * param0)
 {
     u8 v0;
 
-    if (gCoreSys.padInput & PAD_BUTTON_A) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
         if (param0->unk_B11 == 7) {
             if (param0->unk_B0F_7 == 0) {
                 Sound_PlayEffect(1500);
@@ -2556,7 +2556,7 @@ static u8 sub_02080FD0 (UnkStruct_0207F248 * param0)
         return 5;
     }
 
-    if (gCoreSys.padInput & PAD_BUTTON_B) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
         if (param0->unk_B0F_7 == 0) {
             Sound_PlayEffect(1500);
             param0->unk_B11 = 7;
@@ -2746,7 +2746,7 @@ static void sub_020814A8 (UnkStruct_0207F248 * param0, Pokemon * param1, u32 par
 static int sub_0208150C (UnkStruct_0207F248 * param0)
 {
     if (Message_Printing(param0->unk_B10) == 0) {
-        if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             return sub_0208170C(param0);
         }
     }
@@ -2757,7 +2757,7 @@ static int sub_0208150C (UnkStruct_0207F248 * param0)
 static int sub_0208153C (UnkStruct_0207F248 * param0)
 {
     if (Message_Printing(param0->unk_B10) == 0) {
-        if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             sub_0200E084(&param0->unk_04[34], 1);
             sub_020819B4(param0);
             return 13;

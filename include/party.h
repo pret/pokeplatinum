@@ -6,7 +6,7 @@
 #include "struct_decls/struct_021C0794_decl.h"
 
 int Party_SaveSize(void);
-Party * sub_02079FF4(u32 param0);
+Party * Party_New(u32 param0);
 void Party_Init(Party * param0);
 void Party_InitWithCapacity(Party * party, int capacity);
 BOOL Party_AddPokemon(Party * party, Pokemon * pokemon);

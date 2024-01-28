@@ -129,7 +129,7 @@ int sub_02099E38 (UnkStruct_020067E8 * param0, int * param1)
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        sub_02017DD4(4, 8);
+        SetAutorepeat(4, 8);
         sub_02099F80(v0);
         sub_0209A098(v0);
         sub_02017798(sub_02099F74, (void *)v0);
@@ -356,7 +356,7 @@ static BOOL sub_0209A200 (UnkStruct_02099DFC * param0, u32 param1, int param2, i
         }
         break;
     case 2:
-        if ((param2 != 0) || (gCoreSys.padInput & 1)) {
+        if ((param2 != 0) || (gCoreSys.pressedKeys & 1)) {
             param0->unk_08 = 0;
             v0 = 1;
         }

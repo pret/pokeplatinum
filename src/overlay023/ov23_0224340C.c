@@ -2393,11 +2393,11 @@ static void ov23_022451C8 (SysTask * param0, void * param1)
         }
         break;
     case 7:
-        if (gCoreSys.unk_62) {
+        if (gCoreSys.touchHeld) {
             UnkStruct_ov23_0224271C v4;
 
-            v4.unk_00 = gCoreSys.unk_5C;
-            v4.unk_02 = gCoreSys.unk_5E;
+            v4.unk_00 = gCoreSys.touchX;
+            v4.unk_02 = gCoreSys.touchY;
 
             if (ov23_02245064(&v4, v0->unk_10, v0)) {
                 if (v0->unk_19) {
@@ -3745,14 +3745,14 @@ static BOOL ov23_02246F20 (BGL * param0, UnkStruct_ov23_022468DC * param1)
         return 1;
     }
 
-    if (gCoreSys.touchInput) {
+    if (gCoreSys.touchPressed) {
         for (v0 = 0; v0 < ov23_022468C0(); v0++) {
             if (param1->unk_E4[v0]) {
                 continue;
             }
 
-            v8 = gCoreSys.unk_5C * FX32_ONE - param1->unk_44[v0].unk_00;
-            v9 = gCoreSys.unk_5E * FX32_ONE - param1->unk_44[v0].unk_04;
+            v8 = gCoreSys.touchX * FX32_ONE - param1->unk_44[v0].unk_00;
+            v9 = gCoreSys.touchY * FX32_ONE - param1->unk_44[v0].unk_04;
             v11 = FX_Mul(v8, v8) + FX_Mul(v9, v9);
             v11 = FX_Sqrt(v11);
 
@@ -3990,9 +3990,9 @@ static BOOL ov23_02247568 (BGL * param0, UnkStruct_ov23_022471D8 * param1)
         }
         break;
     case 3:
-        if (gCoreSys.touchInput) {
-            v7 = (gCoreSys.unk_5C - 128) * FX32_ONE;
-            v8 = (gCoreSys.unk_5E - param1->unk_120) * FX32_ONE;
+        if (gCoreSys.touchPressed) {
+            v7 = (gCoreSys.touchX - 128) * FX32_ONE;
+            v8 = (gCoreSys.touchY - param1->unk_120) * FX32_ONE;
             v10 = FX_Mul(v7, v7) + FX_Mul(v8, v8);
             v10 = FX_Sqrt(v10);
 

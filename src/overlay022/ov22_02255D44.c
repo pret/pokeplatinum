@@ -277,7 +277,7 @@ int ov22_02255E50 (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 5:
-        if ((gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) | (gCoreSys.touchInput)) {
+        if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) | (gCoreSys.touchPressed)) {
             ov22_0225A628(&v0->unk_5C4, 26, 385, 48);
             sub_02002B20(0);
             (*param1)++;

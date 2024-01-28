@@ -682,7 +682,7 @@ static int ov83_0223BF74 (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
     case 4:
         param1->unk_1C--;
 
-        if ((param1->unk_1C < 0) || (gCoreSys.touchInput) || (gCoreSys.padInput & ((PAD_BUTTON_A | PAD_BUTTON_B)))) {
+        if ((param1->unk_1C < 0) || (gCoreSys.touchPressed) || (gCoreSys.pressedKeys & ((PAD_BUTTON_A | PAD_BUTTON_B)))) {
             (*param2)++;
             break;
         }
@@ -700,7 +700,7 @@ static int ov83_0223BF74 (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
     case 6:
         param1->unk_1C--;
 
-        if ((gCoreSys.touchInput) || (param1->unk_1C < 0) || (gCoreSys.padInput & ((PAD_BUTTON_A | PAD_BUTTON_B)))) {
+        if ((gCoreSys.touchPressed) || (param1->unk_1C < 0) || (gCoreSys.pressedKeys & ((PAD_BUTTON_A | PAD_BUTTON_B)))) {
             (*param2)++;
         }
         break;
@@ -750,7 +750,7 @@ static int ov83_0223BF74 (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
     case 10:
         param1->unk_1C--;
 
-        if ((gCoreSys.touchInput) || (param1->unk_1C < 0) || (gCoreSys.padInput & ((PAD_BUTTON_A | PAD_BUTTON_B)))) {
+        if ((gCoreSys.touchPressed) || (param1->unk_1C < 0) || (gCoreSys.pressedKeys & ((PAD_BUTTON_A | PAD_BUTTON_B)))) {
             if (param1->unk_1488 > 1) {
                 ov83_0223EC8C(&param1->unk_6A0, 6);
                 ov83_0223E9BC(&param1->unk_6A0);

@@ -255,7 +255,7 @@ int ov19_021DFD2C (UnkStruct_ov19_021D4DF0 * param0)
 {
     UnkStruct_ov19_021DF964 * v0 = &(param0->unk_74);
 
-    if (gCoreSys.padInput & PAD_KEY_UP) {
+    if (gCoreSys.pressedKeys & PAD_KEY_UP) {
         if (v0->unk_20) {
             v0->unk_20--;
             return -2;
@@ -265,7 +265,7 @@ int ov19_021DFD2C (UnkStruct_ov19_021D4DF0 * param0)
         }
     }
 
-    if (gCoreSys.padInput & PAD_KEY_DOWN) {
+    if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
         if (v0->unk_20 < (v0->unk_21 - 1)) {
             v0->unk_20++;
             return -2;
@@ -275,12 +275,12 @@ int ov19_021DFD2C (UnkStruct_ov19_021D4DF0 * param0)
         }
     }
 
-    if (gCoreSys.padInput & PAD_BUTTON_B) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
         Sound_PlayEffect(1501);
         return -1;
     }
 
-    if (gCoreSys.padInput & PAD_BUTTON_A) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
         Sound_PlayEffect(1501);
         return v0->unk_00[v0->unk_20];
     }

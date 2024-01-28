@@ -5,6 +5,13 @@
 #include "struct_decls/struct_0201CD88_decl.h"
 #include "overlay023/funcptr_ov23_022537D4.h"
 
+enum ButtonMode {
+    BUTTON_MODE_NORMAL = 0,
+    BUTTON_MODE_START_IS_X = 1,
+    BUTTON_MODE_SWAP_XY = 2,
+    BUTTON_MODE_L_IS_A = 3,
+};
+
 typedef struct CoreSys {
     UnkFuncPtr_02017798 unk_00;
     void * unk_04;
@@ -19,20 +26,20 @@ typedef struct CoreSys {
     u32 * unk_28;
     u32 unk_2C;
     u32 unk_30;
-    int unk_34;
-    int unk_38;
-    int unk_3C;
-    int unk_40;
-    int unk_44;
-    int padInput;
-    int unk_4C;
-    int unk_50;
-    int unk_54;
-    int unk_58;
-    u16 unk_5C;
-    u16 unk_5E;
-    u16 touchInput;
-    u16 unk_62;
+    enum ButtonMode buttonMode;
+    u32 heldKeysRaw;
+    u32 pressedKeysRaw;
+    u32 pressedKeysRepeatableRaw;
+    u32 heldKeys;
+    u32 pressedKeys;
+    u32 pressedKeysRepeatable;
+    int autorepeatTimer;
+    int autorepeatRate;
+    int autorepeatDelay;
+    u16 touchX;
+    u16 touchY;
+    u16 touchPressed;
+    u16 touchHeld;
     u8 unk_64;
     u8 unk_65;
     u8 unk_66;

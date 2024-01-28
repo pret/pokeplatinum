@@ -192,7 +192,7 @@ static int ov77_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
-    sub_02017DD4(4, 8);
+    SetAutorepeat(4, 8);
     Heap_Create(3, v1, 0x40000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov77_021D17B4), v1);
@@ -259,7 +259,7 @@ static int ov77_021D0E3C (UnkStruct_020067E8 * param0, int * param1)
 
         v0->unk_4F8++;
 
-        if (((gCoreSys.padInput & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gCoreSys.padInput & PAD_BUTTON_START) == PAD_BUTTON_START)) {
+        if (((gCoreSys.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gCoreSys.pressedKeys & PAD_BUTTON_START) == PAD_BUTTON_START)) {
             v0->unk_4E8 = 1;
             sub_0200564C(0, 60);
             sub_02005844(487, 1);
@@ -268,7 +268,7 @@ static int ov77_021D0E3C (UnkStruct_020067E8 * param0, int * param1)
             break;
         }
 
-        if (((gCoreSys.unk_44 & (PAD_BUTTON_B | PAD_KEY_UP | PAD_BUTTON_SELECT)) == (PAD_BUTTON_B | PAD_KEY_UP | PAD_BUTTON_SELECT))) {
+        if (((gCoreSys.heldKeys & (PAD_BUTTON_B | PAD_KEY_UP | PAD_BUTTON_SELECT)) == (PAD_BUTTON_B | PAD_KEY_UP | PAD_BUTTON_SELECT))) {
             v0->unk_4E8 = 2;
             sub_0200F174(0, 0, 0, 0x0, 6, 1, v0->unk_00);
             *param1 = 6;
@@ -386,7 +386,7 @@ static void ov77_021D1184 (void)
 
 static BOOL ov77_021D11A4 (void)
 {
-    if (((gCoreSys.padInput & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gCoreSys.padInput & PAD_BUTTON_START) == PAD_BUTTON_START) || ((gCoreSys.padInput & PAD_BUTTON_SELECT) == PAD_BUTTON_SELECT)) {
+    if (((gCoreSys.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gCoreSys.pressedKeys & PAD_BUTTON_START) == PAD_BUTTON_START) || ((gCoreSys.pressedKeys & PAD_BUTTON_SELECT) == PAD_BUTTON_SELECT)) {
         return 1;
     }
 

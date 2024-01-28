@@ -157,7 +157,7 @@ int ov71_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
-    sub_02017DD4(4, 8);
+    SetAutorepeat(4, 8);
     Heap_Create(3, 25, 0x28000);
 
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__TRAINER_CASE, 25);
@@ -939,7 +939,7 @@ static int ov71_0223BEF8 (UnkStruct_ov71_0223B620 * param0)
 
     param0->unk_30D4 = 0xffffffff;
 
-    if (gCoreSys.touchInput) {
+    if (gCoreSys.touchPressed) {
         param0->unk_30C4 = 1;
     }
 
@@ -948,7 +948,7 @@ static int ov71_0223BEF8 (UnkStruct_ov71_0223B620 * param0)
     if (param0->unk_30D4 != 0xffffffff) {
         v1 = 1;
         v0 = 1;
-    } else if (gCoreSys.unk_62) {
+    } else if (gCoreSys.touchHeld) {
         param0->unk_30D4 = ov71_0223C654(param0->unk_00, Unk_ov71_0223D4D0[param0->unk_B4->unk_04_0].unk_00[param0->unk_337C]);
 
         if (param0->unk_30C4) {
@@ -960,9 +960,9 @@ static int ov71_0223BEF8 (UnkStruct_ov71_0223B620 * param0)
     }
 
     if (v1 == 0) {
-        if (gCoreSys.padInput & PAD_BUTTON_A) {
+        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
             v0 = 3;
-        } else if (gCoreSys.padInput & PAD_BUTTON_B) {
+        } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
             v0 = 4;
         }
     }
@@ -977,23 +977,23 @@ static void ov71_0223BFBC (UnkStruct_ov71_0223B620 * param0)
 
     v0 = 0;
 
-    if ((gCoreSys.unk_5C != 0xffff) && (gCoreSys.unk_5E != 0xffff) && (param0->unk_30DC != 0xffff) && (param0->unk_30E0 != 0xffff)) {
+    if ((gCoreSys.touchX != 0xffff) && (gCoreSys.touchY != 0xffff) && (param0->unk_30DC != 0xffff) && (param0->unk_30E0 != 0xffff)) {
         if ((param0->unk_30D4 != 0xffffffff) && (param0->unk_30D4 != 0)) {
             if (param0->unk_B4->unk_48[param0->unk_30D4 - 1].unk_00_0) {
-                if (param0->unk_30DC > gCoreSys.unk_5C) {
-                    v1 = param0->unk_30DC - gCoreSys.unk_5C;
+                if (param0->unk_30DC > gCoreSys.touchX) {
+                    v1 = param0->unk_30DC - gCoreSys.touchX;
                     param0->unk_3364.unk_02 = -1;
                 } else {
-                    v1 = gCoreSys.unk_5C - param0->unk_30DC;
+                    v1 = gCoreSys.touchX - param0->unk_30DC;
                     param0->unk_3364.unk_02 = 1;
                 }
 
                 if ((v1 >= 3) && (v1 <= 40)) {
-                    if (param0->unk_30E0 > gCoreSys.unk_5E) {
-                        v1 = param0->unk_30E0 - gCoreSys.unk_5E;
+                    if (param0->unk_30E0 > gCoreSys.touchY) {
+                        v1 = param0->unk_30E0 - gCoreSys.touchY;
                         param0->unk_3364.unk_03 = -1;
                     } else {
-                        v1 = gCoreSys.unk_5E - param0->unk_30E0;
+                        v1 = gCoreSys.touchY - param0->unk_30E0;
                         param0->unk_3364.unk_03 = 1;
                     }
 
@@ -1004,11 +1004,11 @@ static void ov71_0223BFBC (UnkStruct_ov71_0223B620 * param0)
                         ov71_0223C444(&param0->unk_3364);
                     }
                 } else if (v1 <= 40) {
-                    if (param0->unk_30E0 > gCoreSys.unk_5E) {
-                        v1 = param0->unk_30E0 - gCoreSys.unk_5E;
+                    if (param0->unk_30E0 > gCoreSys.touchY) {
+                        v1 = param0->unk_30E0 - gCoreSys.touchY;
                         param0->unk_3364.unk_03 = -1;
                     } else {
-                        v1 = gCoreSys.unk_5E - param0->unk_30E0;
+                        v1 = gCoreSys.touchY - param0->unk_30E0;
                         param0->unk_3364.unk_03 = 1;
                     }
 
@@ -1027,8 +1027,8 @@ static void ov71_0223BFBC (UnkStruct_ov71_0223B620 * param0)
         }
     }
 
-    param0->unk_30DC = gCoreSys.unk_5C;
-    param0->unk_30E0 = gCoreSys.unk_5E;
+    param0->unk_30DC = gCoreSys.touchX;
+    param0->unk_30E0 = gCoreSys.touchY;
 }
 
 static void ov71_0223C0D8 (UnkStruct_ov71_0223B620 * param0, const u8 param1)
@@ -1333,7 +1333,7 @@ static int ov71_0223C60C (BGL * param0, const UnkUnion_02022594 * param1)
         if (v0 != 0) {
             u16 v1 = 0x40;
 
-            if (sub_0201C784(param0, 2, gCoreSys.unk_5C, gCoreSys.unk_5E, &v1) == 0) {
+            if (sub_0201C784(param0, 2, gCoreSys.touchX, gCoreSys.touchY, &v1) == 0) {
                 return 0xffffffff;
             }
         } else {
@@ -1352,7 +1352,7 @@ static int ov71_0223C654 (BGL * param0, const UnkUnion_02022594 * param1)
         if (v0 != 0) {
             u16 v1 = 0x40;
 
-            if (sub_0201C784(param0, 2, gCoreSys.unk_5C, gCoreSys.unk_5E, &v1) == 0) {
+            if (sub_0201C784(param0, 2, gCoreSys.touchX, gCoreSys.touchY, &v1) == 0) {
                 return 0xffffffff;
             }
         } else {

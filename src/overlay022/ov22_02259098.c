@@ -158,8 +158,8 @@ BOOL ov22_02259278 (UnkStruct_020298D8 * param0, int * param1, int * param2, NNS
     v3 -= (v1 / 2);
     v4 -= (v2 / 2);
 
-    *param1 = gCoreSys.unk_5C - v3;
-    *param2 = gCoreSys.unk_5E - v4;
+    *param1 = gCoreSys.touchX - v3;
+    *param2 = gCoreSys.touchY - v4;
 
     v0 = ov22_02255420(param3, *param1, *param2, 0);
 

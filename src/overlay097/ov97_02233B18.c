@@ -1774,7 +1774,7 @@ static BOOL ov97_02235590 (UnkStruct_ov97_02234A2C * param0, int param1)
                 return 1;
             }
         } else {
-            if (gCoreSys.touchInput || gCoreSys.padInput) {
+            if (gCoreSys.touchPressed || gCoreSys.pressedKeys) {
                 sub_02002B20(0);
                 Sound_PlayEffect(1500);
                 return 1;
@@ -1935,7 +1935,7 @@ static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 7:
-        if (gCoreSys.touchInput || gCoreSys.padInput) {
+        if (gCoreSys.touchPressed || gCoreSys.pressedKeys) {
             ov97_02234CC4(v3, 0, 12, param1);
         }
         break;
@@ -2129,7 +2129,7 @@ static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 22:
-        if (gCoreSys.touchInput || gCoreSys.padInput) {
+        if (gCoreSys.touchPressed || gCoreSys.pressedKeys) {
             ov97_02234CF4(v3, 0, 24, param1);
             Sound_PlayEffect(1500);
         }

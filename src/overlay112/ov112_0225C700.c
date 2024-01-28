@@ -393,7 +393,7 @@ int ov112_0225C7C4 (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 2:
-        if ((gCoreSys.padInput & PAD_BUTTON_B) || (ov66_0222E12C(v1->unk_08) == 1) || (ov66_02231760() == 1)) {
+        if ((gCoreSys.pressedKeys & PAD_BUTTON_B) || (ov66_0222E12C(v1->unk_08) == 1) || (ov66_02231760() == 1)) {
             if ((ov66_0222E12C(v1->unk_08) == 1)) {
                 ov66_0222E2A4(v1->unk_08);
             }

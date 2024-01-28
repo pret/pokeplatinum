@@ -225,10 +225,10 @@ void ov117_02262798 (UnkStruct_ov117_02261280 * param0, UnkStruct_ov117_022626B0
         param1->unk_214 = 0;
         param1->unk_218 = 0;
     } else {
-        param1->unk_20C = gCoreSys.unk_5C;
-        param1->unk_210 = gCoreSys.unk_5E;
-        param1->unk_214 = gCoreSys.unk_62;
-        param1->unk_218 = gCoreSys.touchInput;
+        param1->unk_20C = gCoreSys.touchX;
+        param1->unk_210 = gCoreSys.touchY;
+        param1->unk_214 = gCoreSys.touchHeld;
+        param1->unk_218 = gCoreSys.touchPressed;
     }
 
     ov117_02263270(param1);

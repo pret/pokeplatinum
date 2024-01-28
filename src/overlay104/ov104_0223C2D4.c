@@ -167,7 +167,7 @@ UnkStruct_ov104_0223C4CC * ov104_0223C2D4 (UnkStruct_0209B75C * param0)
     v0->unk_00 = sub_02018340(94);
 
     sub_0201DBEC(64, 94);
-    sub_02017DD4(4, 8);
+    SetAutorepeat(4, 8);
 
     ov104_0223C948(v0->unk_00, v2);
     ov104_0223CB80(v0);

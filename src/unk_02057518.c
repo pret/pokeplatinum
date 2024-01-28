@@ -498,7 +498,7 @@ static void sub_02057E68 ()
 {
     u8 v0 = 2;
 
-    if (PAD_BUTTON_B & gCoreSys.unk_44) {
+    if (PAD_BUTTON_B & gCoreSys.heldKeys) {
         v0 = 1;
     }
 

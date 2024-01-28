@@ -123,7 +123,7 @@ UnkStruct_020218BC * sub_020218BC (const UnkStruct_020095C4 * param0)
     v0->unk_10.unk_FC = &v0->unk_10;
     v0->unk_10.unk_100 = &v0->unk_10;
     v0->unk_110 = param0->unk_04;
-    v0->unk_114 = sub_02017A40(param0->unk_08, "data/clact_default.NANR");
+    v0->unk_114 = ReadFileToHeap(param0->unk_08, "data/clact_default.NANR");
 
     NNS_G2dGetUnpackedAnimBank(v0->unk_114, &v0->unk_118);
     v0->unk_11C = 1;

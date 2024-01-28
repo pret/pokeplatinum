@@ -752,7 +752,7 @@ static int ov79_021D2C08 (UnkStruct_ov79_021D2928 * param0)
         return 7;
     }
 
-    if (((gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) == 0) && (param0->unk_0E++ < 90)) {
+    if (((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) == 0) && (param0->unk_0E++ < 90)) {
         return 7;
     }
 

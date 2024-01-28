@@ -513,7 +513,7 @@ static void ov33_02256B08 (UnkStruct_ov33_02256474 * param0, const UnkStruct_ov3
 
 static void ov33_02256B3C (const char * param0, ...)
 {
-    if (gCoreSys.unk_44 & PAD_BUTTON_B) {
+    if (gCoreSys.heldKeys & PAD_BUTTON_B) {
         va_list v0;
         va_start(v0, param0);
         va_end(v0);

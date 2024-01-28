@@ -556,7 +556,7 @@ static BOOL ov86_0223B574 (UnkStruct_ov86_0223B3C8 * param0)
         param0->unk_00++;
         break;
     case 8:
-        if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             return 1;
         }
         break;

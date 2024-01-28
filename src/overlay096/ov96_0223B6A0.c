@@ -99,7 +99,7 @@ int ov96_0223B6A0 (UnkStruct_020067E8 * param0, int * param1)
         v0->unk_BD4 = MessageLoader_Init(0, 26, 674, 68);
         v0->unk_BD8 = MessageLoader_Init(0, 26, 695, 68);
 
-        sub_02017DD4(4, 8);
+        SetAutorepeat(4, 8);
         ov96_0223B980(v0, param0);
         ov96_0223BC64(v0);
         sub_02004550(52, 0, 0);

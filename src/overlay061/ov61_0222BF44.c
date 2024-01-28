@@ -173,7 +173,7 @@ int ov61_0222BF44 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_04 = sub_02018340(117);
 
     sub_0201DBEC(64, 117);
-    sub_02017DD4(4, 8);
+    SetAutorepeat(4, 8);
     ov61_0222C224(v0->unk_04);
     sub_0201E3D8();
     sub_0201E450(4);
@@ -853,7 +853,7 @@ static int ov61_0222CC40 (UnkStruct_ov61_0222C664 * param0)
 
 static int ov61_0222CC64 (UnkStruct_ov61_0222C664 * param0)
 {
-    if (gCoreSys.padInput & PAD_BUTTON_A || gCoreSys.padInput & PAD_BUTTON_B) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_A || gCoreSys.pressedKeys & PAD_BUTTON_B) {
         Window_Clear(&param0->unk_64, 0);
         param0->unk_90 = 0;
 

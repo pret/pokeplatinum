@@ -756,7 +756,7 @@ static int ov94_02245540 (UnkStruct_ov94_0223FD4C * param0)
 
 static int ov94_02245564 (UnkStruct_ov94_0223FD4C * param0)
 {
-    if (gCoreSys.padInput & PAD_BUTTON_A || gCoreSys.padInput & PAD_BUTTON_B) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_A || gCoreSys.pressedKeys & PAD_BUTTON_B) {
         Window_Clear(&param0->unk_F8C, 0);
         param0->unk_2C = 0;
     }

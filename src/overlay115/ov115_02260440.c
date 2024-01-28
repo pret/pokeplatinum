@@ -132,7 +132,7 @@ int ov115_0226048C (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 2:
-        if (gCoreSys.unk_44 & PAD_BUTTON_A) {
+        if (gCoreSys.heldKeys & PAD_BUTTON_A) {
             break;
         }
 

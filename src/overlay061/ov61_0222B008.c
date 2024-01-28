@@ -156,7 +156,7 @@ static int ov61_0222B168 (UnkStruct_ov62_022349A8 * param0, UnkStruct_ov61_0222B
 
 static int ov61_0222B190 (UnkStruct_ov62_022349A8 * param0, UnkStruct_ov61_0222B138 * param1)
 {
-    if ((gCoreSys.padInput & PAD_BUTTON_A) || (gCoreSys.padInput & PAD_BUTTON_B)) {
+    if ((gCoreSys.pressedKeys & PAD_BUTTON_A) || (gCoreSys.pressedKeys & PAD_BUTTON_B)) {
         ov61_0222BB54(param0, NULL);
         return 1;
     }

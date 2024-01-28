@@ -2953,7 +2953,7 @@ static BOOL ov8_0224B3D4 (UnkStruct_020508D4 * param0)
 
         v2->unk_00++;
     case 12:
-        if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             int v9 = sub_0205EABC(v1->unk_3C);
             int v10 = sub_0205EAC8(v1->unk_3C);
 

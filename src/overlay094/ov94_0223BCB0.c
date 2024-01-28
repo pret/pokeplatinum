@@ -130,7 +130,7 @@ int ov94_0223BCB0 (UnkStruct_020067E8 * param0, int * param1)
         v0->unk_B94 = MessageLoader_Init(0, 26, 412, 62);
         v0->unk_BA0 = MessageLoader_Init(0, 26, 694, 62);
 
-        sub_02017DD4(4, 8);
+        SetAutorepeat(4, 8);
 
         ov94_0223C03C(v0, param0);
         ov94_0223C4E0(v0);

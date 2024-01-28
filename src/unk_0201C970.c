@@ -17,7 +17,7 @@ void sub_0201C970 (const u8 param0, const char * param1, NNSG3dResMdl ** param2,
     NNSG3dResTex * v0 = NULL;
     BOOL v1;
 
-    *param3 = sub_02017A40(param0, param1);
+    *param3 = ReadFileToHeap(param0, param1);
     NNS_G3D_NULL_ASSERT(*param3);
 
     v0 = NNS_G3dGetTex(*param3);

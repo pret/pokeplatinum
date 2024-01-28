@@ -141,7 +141,7 @@ int ov72_0223D7A0 (UnkStruct_020067E8 * param0, int * param1)
         v0->unk_10 = sub_0200B358(39);
         v0->unk_14 = MessageLoader_Init(0, 26, 425, 39);
 
-        sub_02017DD4(4, 8);
+        SetAutorepeat(4, 8);
         ov72_0223DA70();
         ov72_0223DA90(v0->unk_00);
         sub_0200F174(0, 1, 1, 0x0, 16, 1, 39);
@@ -1166,21 +1166,21 @@ static void ov72_0223EA18 (UnkStruct_ov72_0223DB98 * param0)
 
     v0 = 0;
 
-    if ((gCoreSys.unk_5C != 0xffff) && (gCoreSys.unk_5E != 0xffff) && (param0->unk_5D0C != 0xffff) && (param0->unk_5D10 != 0xffff)) {
-        if (param0->unk_5D0C > gCoreSys.unk_5C) {
-            v1 = param0->unk_5D0C - gCoreSys.unk_5C;
+    if ((gCoreSys.touchX != 0xffff) && (gCoreSys.touchY != 0xffff) && (param0->unk_5D0C != 0xffff) && (param0->unk_5D10 != 0xffff)) {
+        if (param0->unk_5D0C > gCoreSys.touchX) {
+            v1 = param0->unk_5D0C - gCoreSys.touchX;
             param0->unk_5D04.unk_02 = -1;
         } else {
-            v1 = gCoreSys.unk_5C - param0->unk_5D0C;
+            v1 = gCoreSys.touchX - param0->unk_5D0C;
             param0->unk_5D04.unk_02 = 1;
         }
 
         if ((v1 >= 3) && (v1 <= 40)) {
-            if (param0->unk_5D10 > gCoreSys.unk_5E) {
-                v1 = param0->unk_5D10 - gCoreSys.unk_5E;
+            if (param0->unk_5D10 > gCoreSys.touchY) {
+                v1 = param0->unk_5D10 - gCoreSys.touchY;
                 param0->unk_5D04.unk_03 = -1;
             } else {
-                v1 = gCoreSys.unk_5E - param0->unk_5D10;
+                v1 = gCoreSys.touchY - param0->unk_5D10;
                 param0->unk_5D04.unk_03 = 1;
             }
 
@@ -1191,11 +1191,11 @@ static void ov72_0223EA18 (UnkStruct_ov72_0223DB98 * param0)
                 (void)0;
             }
         } else if (v1 <= 40) {
-            if (param0->unk_5D10 > gCoreSys.unk_5E) {
-                v1 = param0->unk_5D10 - gCoreSys.unk_5E;
+            if (param0->unk_5D10 > gCoreSys.touchY) {
+                v1 = param0->unk_5D10 - gCoreSys.touchY;
                 param0->unk_5D04.unk_03 = -1;
             } else {
-                v1 = gCoreSys.unk_5E - param0->unk_5D10;
+                v1 = gCoreSys.touchY - param0->unk_5D10;
                 param0->unk_5D04.unk_03 = 1;
             }
 
@@ -1208,8 +1208,8 @@ static void ov72_0223EA18 (UnkStruct_ov72_0223DB98 * param0)
         }
     }
 
-    param0->unk_5D0C = gCoreSys.unk_5C;
-    param0->unk_5D10 = gCoreSys.unk_5E;
+    param0->unk_5D0C = gCoreSys.touchX;
+    param0->unk_5D10 = gCoreSys.touchY;
 }
 
 static void ov72_0223EAD8 (UnkStruct_ov72_0223EAD8 * param0)

@@ -259,7 +259,7 @@ BOOL sub_0200C8F0 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, con
 
     for (v0 = 0; v0 < v1; v0++) {
         v3 = sub_02009F38(param1->unk_08, v0);
-        v4 = sub_02017A40(param0->unk_00, param2->val1[v0]);
+        v4 = ReadFileToHeap(param0->unk_00, param2->val1[v0]);
 
         sub_02009F40(v4, v3, param0->unk_00);
         Heap_FreeToHeap(v4);
@@ -283,7 +283,7 @@ BOOL sub_0200C8F0 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, con
     sub_0200A368(param1->unk_24[0]);
     sub_0200A60C(param1->unk_24[1]);
 
-    v4 = sub_02017A40(param0->unk_00, param2->val2.unk_18);
+    v4 = ReadFileToHeap(param0->unk_00, param2->val2.unk_18);
     param1->unk_04 = sub_02009508(v4, param0->unk_00, param1->unk_0C[0], param1->unk_0C[1], param1->unk_0C[2], param1->unk_0C[3], param1->unk_0C[4], param1->unk_0C[5]);
 
     Heap_FreeToHeap(v4);

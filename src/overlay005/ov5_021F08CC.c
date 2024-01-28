@@ -489,7 +489,7 @@ static void * ov5_021F0D1C (u32 param0)
 
 static int ov5_021F0D40 (void)
 {
-    if ((gCoreSys.padInput & PAD_BUTTON_A)) {
+    if ((gCoreSys.pressedKeys & PAD_BUTTON_A)) {
         return 1;
     }
 
@@ -498,7 +498,7 @@ static int ov5_021F0D40 (void)
 
 static int ov5_021F0D54 (void)
 {
-    if ((gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B))) {
+    if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B))) {
         return 1;
     }
 

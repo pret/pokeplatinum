@@ -780,18 +780,18 @@ static BOOL ov68_0225CE48 (UnkStruct_ov68_0225D0F8 * param0, UnkStruct_ov68_0225
         param0->unk_28 = 5;
         break;
     case 5:
-        if (gCoreSys.padInput & PAD_BUTTON_A) {
+        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
             Sound_PlayEffect(1500);
             param0->unk_28++;
             break;
         }
 
-        if (gCoreSys.padInput & PAD_KEY_UP) {
+        if (gCoreSys.pressedKeys & PAD_KEY_UP) {
             if ((param0->unk_10 - 1) >= 0) {
                 Sound_PlayEffect(1504);
                 param0->unk_10--;
             }
-        } else if (gCoreSys.padInput & PAD_KEY_DOWN) {
+        } else if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
             if ((param0->unk_10 + 1) < 3) {
                 Sound_PlayEffect(1504);
                 param0->unk_10++;
@@ -1104,7 +1104,7 @@ static BOOL ov68_0225D478 (UnkStruct_ov68_0225D388 * param0, UnkStruct_ov68_0225
         param0->unk_60 = 22;
         break;
     case 2:
-        if (gCoreSys.padInput & PAD_BUTTON_A) {
+        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
             v0 = ov68_0225CBEC(param1, 0, 104);
             ov68_0225D1B4(param3, v0);
             param0->unk_62 = 3;
@@ -1153,7 +1153,7 @@ static BOOL ov68_0225D478 (UnkStruct_ov68_0225D388 * param0, UnkStruct_ov68_0225
     }
     break;
     case 6:
-        if (gCoreSys.padInput & PAD_BUTTON_A) {
+        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
             if (param0->unk_A8.unk_00 != (PPW_LOBBY_INVALID_QUESTION_NO)) {
                 param0->unk_60 = 7;
             } else {
@@ -1224,7 +1224,7 @@ static BOOL ov68_0225D478 (UnkStruct_ov68_0225D388 * param0, UnkStruct_ov68_0225
         param0->unk_60 = 22;
         break;
     case 15:
-        if (gCoreSys.padInput & PAD_BUTTON_A) {
+        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
             v0 = ov68_0225CBEC(param1, 0, 114);
             ov68_0225D1B4(param3, v0);
             param0->unk_62 = 16;
@@ -1272,7 +1272,7 @@ static BOOL ov68_0225D478 (UnkStruct_ov68_0225D388 * param0, UnkStruct_ov68_0225
     }
     break;
     case 19:
-        if (gCoreSys.padInput & PAD_BUTTON_A) {
+        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
             param0->unk_60 = 20;
         }
         break;

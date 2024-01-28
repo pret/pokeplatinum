@@ -50,7 +50,7 @@ void ov5_021D2F14 (UnkStruct_ov5_021D30A8 * param0, const UnkStruct_ov7_0224F2EC
 
     for (v4 = 0; v4 < param0->unk_1C4; v4++) {
         v0 = sub_02009F38(v1, v4);
-        v2 = sub_02017A40(param3, param1->val1[v4]);
+        v2 = ReadFileToHeap(param3, param1->val1[v4]);
 
         sub_02009F40(v2, v0, param3);
         Heap_FreeToHeap(v2);
@@ -78,7 +78,7 @@ void ov5_021D2F14 (UnkStruct_ov5_021D30A8 * param0, const UnkStruct_ov7_0224F2EC
     sub_0200A41C(param0->unk_1AC[0]);
     sub_0200A684(param0->unk_1AC[1]);
 
-    v2 = sub_02017A40(param3, param1->val2.unk_18);
+    v2 = ReadFileToHeap(param3, param1->val2.unk_18);
     param0->unk_190 = sub_02009508(v2, param3, param0->unk_194[0], param0->unk_194[1], param0->unk_194[2], param0->unk_194[3], param0->unk_194[4], param0->unk_194[5]);
 
     Heap_FreeToHeap(v2);

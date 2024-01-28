@@ -188,7 +188,7 @@ int ov58_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
         v0->unk_0C = sub_0200B358(39);
         v0->unk_10 = MessageLoader_Init(0, 26, 425, 39);
 
-        sub_02017DD4(4, 8);
+        SetAutorepeat(4, 8);
 
         ov58_021D1184();
         ov58_021D11A4(v0->unk_00);
@@ -890,7 +890,7 @@ static void ov58_021D1A80 (UnkStruct_02095EAC * param0)
     sub_02021CAC(param0->unk_23C[sub_0203608C()], 0);
 
     if (v1 != 0xffffffff) {
-        ov58_021D1A10(param0->unk_23C[sub_0203608C()], gCoreSys.unk_5C, gCoreSys.unk_5E);
+        ov58_021D1A10(param0->unk_23C[sub_0203608C()], gCoreSys.touchX, gCoreSys.touchY);
         sub_02021CAC(param0->unk_23C[sub_0203608C()], 1);
     }
 

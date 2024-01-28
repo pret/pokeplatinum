@@ -119,7 +119,7 @@ UnkStruct_02022BC0 * sub_02022A58 (UnkStruct_0202298C * param0, const char * par
     GF_ASSERT(v0);
     GF_ASSERT((sub_020229F8(param0, param2) == 1));
 
-    v0->unk_04 = sub_02017A40(param3, param1);
+    v0->unk_04 = ReadFileToHeap(param3, param1);
     GF_ASSERT(v0->unk_04);
     v0->unk_00 = param2;
 

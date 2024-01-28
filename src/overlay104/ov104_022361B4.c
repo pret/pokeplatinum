@@ -83,8 +83,8 @@ UnkStruct_ov104_0223BA10 * ov104_022361B4 (SaveData * param0, u16 param1, u8 par
     v9->unk_08 = sub_020302DC(param0);
     v9->unk_04 = param0;
     v9->unk_00 = 11;
-    v9->unk_28 = sub_02079FF4(11);
-    v9->unk_2C = sub_02079FF4(11);
+    v9->unk_28 = Party_New(11);
+    v9->unk_2C = Party_New(11);
     v9->unk_A20 = param6;
 
     v4 = v9->unk_08;

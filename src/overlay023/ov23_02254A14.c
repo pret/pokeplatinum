@@ -212,7 +212,7 @@ static BOOL ov23_02254AD4 (UnkStruct_020508D4 * param0)
 
     switch (v1->unk_00) {
     case 0:
-        sub_02017DD4(4, 8);
+        SetAutorepeat(4, 8);
 
         v1->unk_504 = ov23_022542CC();
         ov23_022542D8(v1->unk_504, v0, &v1->unk_516, &v1->unk_51A);
@@ -417,22 +417,22 @@ static BOOL ov23_02254DF8 (UnkStruct_020508D4 * param0)
             v12 = 1;
             v13 = v6->unk_3C.unk_00;
 
-            if (gCoreSys.unk_4C & PAD_KEY_LEFT) {
+            if (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) {
                 v0 = -(FX32_ONE * 16);
                 v1 = 0;
                 v13.unk_00--;
                 v13.unk_08--;
-            } else if (gCoreSys.unk_4C & PAD_KEY_RIGHT) {
+            } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT) {
                 v0 = (FX32_ONE * 16);
                 v1 = 0;
                 v13.unk_00++;
                 v13.unk_08++;
-            } else if (gCoreSys.unk_4C & PAD_KEY_UP) {
+            } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
                 v0 = 0;
                 v1 = -(FX32_ONE * 16);
                 v13.unk_04--;
                 v13.unk_0C--;
-            } else if (gCoreSys.unk_4C & PAD_KEY_DOWN) {
+            } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
                 v0 = 0;
                 v1 = (FX32_ONE * 16);
                 v13.unk_04++;
@@ -456,9 +456,9 @@ static BOOL ov23_02254DF8 (UnkStruct_020508D4 * param0)
                 }
             }
 
-            if (gCoreSys.padInput & PAD_BUTTON_A) {
+            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
                 v4 = 1;
-            } else if (gCoreSys.padInput & PAD_BUTTON_B) {
+            } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
                 ov23_02254A94(v5, v6->unk_3C.unk_10);
                 v6->unk_04 = 0;
                 return 0;
@@ -572,22 +572,22 @@ static BOOL ov23_02255100 (UnkStruct_020508D4 * param0)
         v3 = v7->unk_4FC->unk_58.z;
 
         if (!v4) {
-            if (gCoreSys.unk_4C & PAD_KEY_LEFT) {
+            if (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) {
                 Sound_PlayEffect(1509);
                 v2 -= (FX32_ONE * 16);
                 v1.unk_00--;
                 v1.unk_08--;
-            } else if (gCoreSys.unk_4C & PAD_KEY_RIGHT) {
+            } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT) {
                 Sound_PlayEffect(1509);
                 v2 += (FX32_ONE * 16);
                 v1.unk_00++;
                 v1.unk_08++;
-            } else if (gCoreSys.unk_4C & PAD_KEY_UP) {
+            } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
                 Sound_PlayEffect(1509);
                 v3 -= (FX32_ONE * 16);
                 v1.unk_04--;
                 v1.unk_0C--;
-            } else if (gCoreSys.unk_4C & PAD_KEY_DOWN) {
+            } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
                 Sound_PlayEffect(1509);
                 v3 += (FX32_ONE * 16);
                 v1.unk_04++;
@@ -596,9 +596,9 @@ static BOOL ov23_02255100 (UnkStruct_020508D4 * param0)
                 v0 = 0;
             }
 
-            if (gCoreSys.padInput & PAD_BUTTON_A) {
+            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
                 v5 = 1;
-            } else if (gCoreSys.padInput & PAD_BUTTON_B) {
+            } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
                 ov23_02255F20(v7->unk_4FC);
                 ov23_0225628C(v6, &v7->unk_4DC);
                 ov23_02255EBC(3, v7);
@@ -807,22 +807,22 @@ static BOOL ov23_02255580 (UnkStruct_020508D4 * param0)
         v3 = v7->unk_4FC->unk_58.z;
 
         if (!v4) {
-            if (gCoreSys.unk_4C & PAD_KEY_LEFT) {
+            if (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) {
                 Sound_PlayEffect(1509);
                 v2 -= (FX32_ONE * 16);
                 v1.unk_00--;
                 v1.unk_08--;
-            } else if (gCoreSys.unk_4C & PAD_KEY_RIGHT) {
+            } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT) {
                 Sound_PlayEffect(1509);
                 v2 += (FX32_ONE * 16);
                 v1.unk_00++;
                 v1.unk_08++;
-            } else if (gCoreSys.unk_4C & PAD_KEY_UP) {
+            } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
                 Sound_PlayEffect(1509);
                 v3 -= (FX32_ONE * 16);
                 v1.unk_04--;
                 v1.unk_0C--;
-            } else if (gCoreSys.unk_4C & PAD_KEY_DOWN) {
+            } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
                 Sound_PlayEffect(1509);
                 v3 += (FX32_ONE * 16);
                 v1.unk_04++;
@@ -831,9 +831,9 @@ static BOOL ov23_02255580 (UnkStruct_020508D4 * param0)
                 v0 = 0;
             }
 
-            if (gCoreSys.padInput & PAD_BUTTON_A) {
+            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
                 v5 = 1;
-            } else if (gCoreSys.padInput & PAD_BUTTON_B) {
+            } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
                 ov23_02255F20(v7->unk_4FC);
                 ov23_0225628C(v6, &v7->unk_4DC);
                 ov23_02255EBC(3, v7);
@@ -945,22 +945,22 @@ static BOOL ov23_02255850 (UnkStruct_020508D4 * param0)
             v7 = 1;
             v8 = v6->unk_3C.unk_00;
 
-            if (gCoreSys.unk_4C & PAD_KEY_LEFT) {
+            if (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) {
                 v0 = -(FX32_ONE * 16);
                 v1 = 0;
                 v8.unk_00--;
                 v8.unk_08--;
-            } else if (gCoreSys.unk_4C & PAD_KEY_RIGHT) {
+            } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT) {
                 v0 = (FX32_ONE * 16);
                 v1 = 0;
                 v8.unk_00++;
                 v8.unk_08++;
-            } else if (gCoreSys.unk_4C & PAD_KEY_UP) {
+            } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
                 v0 = 0;
                 v1 = -(FX32_ONE * 16);
                 v8.unk_04--;
                 v8.unk_0C--;
-            } else if (gCoreSys.unk_4C & PAD_KEY_DOWN) {
+            } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
                 v0 = 0;
                 v1 = (FX32_ONE * 16);
                 v8.unk_04++;
@@ -984,9 +984,9 @@ static BOOL ov23_02255850 (UnkStruct_020508D4 * param0)
                 }
             }
 
-            if (gCoreSys.padInput & PAD_BUTTON_A) {
+            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
                 v4 = 1;
-            } else if (gCoreSys.padInput & PAD_BUTTON_B) {
+            } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
                 ov23_02255BB8(&v6->unk_0C.unk_10, v6->unk_0C.unk_00, v6->unk_5C);
                 ov23_02255E8C(v6);
                 ov23_0225628C(v5, &v6->unk_4DC);
@@ -1367,7 +1367,7 @@ static void ov23_02255F40 (UnkStruct_0203CDB0 * param0, UnkStruct_ov23_02255A98 
 
     v6 = param0->unk_8C;
 
-    ov23_02255F28(gCoreSys.unk_5C, gCoreSys.unk_5E, param2);
+    ov23_02255F28(gCoreSys.touchX, gCoreSys.touchY, param2);
 
     v1 = ov5_021EAFA4(param2->unk_00, param2->unk_04, v6);
     v2 = v1.x / (FX32_ONE * 16);
@@ -1409,7 +1409,7 @@ static void ov23_02256000 (UnkStruct_0203CDB0 * param0, UnkStruct_ov23_02256000 
 
     v4 = param0->unk_8C;
 
-    ov23_02255F28(gCoreSys.unk_5C, gCoreSys.unk_5E, param1);
+    ov23_02255F28(gCoreSys.touchX, gCoreSys.touchY, param1);
 
     v1 = ov5_021EAFA4(param1->unk_00, param1->unk_04, v4);
     v2 = v1.x / (FX32_ONE * 16);
@@ -1439,14 +1439,14 @@ static BOOL ov23_02256098 (UnkStruct_ov23_02256098 * param0, UnkStruct_0203CDB0 
     v1 = 0;
     *param2 = 0;
 
-    if (gCoreSys.touchInput) {
-        if (!gCoreSys.unk_44) {
+    if (gCoreSys.touchPressed) {
+        if (!gCoreSys.heldKeys) {
             param0->unk_4F0.unk_08 = 1;
             ov23_02255F40(param1, &(param0->unk_3C), &param0->unk_4F0);
         }
 
         v1 = 1;
-    } else if (gCoreSys.unk_62) {
+    } else if (gCoreSys.touchHeld) {
         if (param0->unk_4F0.unk_08) {
             ov23_02255F40(param1, &(param0->unk_3C), &param0->unk_4F0);
         }
@@ -1470,14 +1470,14 @@ static BOOL ov23_02256104 (UnkStruct_ov23_02256098 * param0, UnkStruct_0203CDB0 
     v1 = 0;
     *param2 = 0;
 
-    if (gCoreSys.touchInput) {
-        if (!gCoreSys.unk_44) {
+    if (gCoreSys.touchPressed) {
+        if (!gCoreSys.heldKeys) {
             param0->unk_4F0.unk_08 = 1;
             ov23_02256000(param1, &param0->unk_4F0, param0->unk_4FC);
         }
 
         v1 = 1;
-    } else if (gCoreSys.unk_62) {
+    } else if (gCoreSys.touchHeld) {
         if (param0->unk_4F0.unk_08) {
             ov23_02256000(param1, &param0->unk_4F0, param0->unk_4FC);
         }
@@ -1501,8 +1501,8 @@ static BOOL ov23_02256174 (UnkStruct_ov23_02256098 * param0, UnkStruct_0203CDB0 
     v1 = 0;
     *param2 = 0;
 
-    if (gCoreSys.touchInput) {
-        if (!gCoreSys.unk_44) {
+    if (gCoreSys.touchPressed) {
+        if (!gCoreSys.heldKeys) {
             param0->unk_4F0.unk_08 = 1;
             *param2 = 1;
             ov23_02256000(param1, &param0->unk_4F0, param0->unk_4FC);
@@ -1524,14 +1524,14 @@ static BOOL ov23_022561BC (UnkStruct_ov23_02256098 * param0, UnkStruct_0203CDB0 
     v1 = 0;
     *param2 = 0;
 
-    if (gCoreSys.touchInput) {
-        if (!gCoreSys.unk_44) {
+    if (gCoreSys.touchPressed) {
+        if (!gCoreSys.heldKeys) {
             param0->unk_4F0.unk_08 = 1;
             ov23_02255F40(param1, &(param0->unk_3C), &param0->unk_4F0);
         }
 
         v1 = 1;
-    } else if (gCoreSys.unk_62) {
+    } else if (gCoreSys.touchHeld) {
         if (param0->unk_4F0.unk_08) {
             ov23_02255F40(param1, &(param0->unk_3C), &param0->unk_4F0);
         }

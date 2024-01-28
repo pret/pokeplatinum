@@ -926,8 +926,8 @@ static void ov69_0225CBE4 (int param0, int param1, int * param2, int * param3, i
     int v2 = 0;
     int v3 = 0;
 
-    if (gCoreSys.unk_5C != 0xffff) {
-        v2 = gCoreSys.unk_5C - param0;
+    if (gCoreSys.touchX != 0xffff) {
+        v2 = gCoreSys.touchX - param0;
 
         if (v2 < 0) {
             v2 ^= -1;
@@ -944,8 +944,8 @@ static void ov69_0225CBE4 (int param0, int param1, int * param2, int * param3, i
     *param2 = v0;
     *param3 = v2;
 
-    if (gCoreSys.unk_5E != 0xffff) {
-        v3 = gCoreSys.unk_5E - param1;
+    if (gCoreSys.touchY != 0xffff) {
+        v3 = gCoreSys.touchY - param1;
 
         if (v3 < 0) {
             v3 ^= -1;
@@ -1178,7 +1178,7 @@ static u32 ov69_0225CF9C (UnkStruct_ov69_0225CE64 * param0)
         Sound_PlayEffect(1501);
         return 2;
     } else {
-        if ((gCoreSys.padInput & PAD_BUTTON_X)) {
+        if ((gCoreSys.pressedKeys & PAD_BUTTON_X)) {
             {
                 UnkStruct_ov69_0225E0C0 v2;
 
@@ -1200,7 +1200,7 @@ static u32 ov69_0225CF9C (UnkStruct_ov69_0225CE64 * param0)
                 }
             }
         } else {
-            v0 = ov69_0225CC54(param0, gCoreSys.padInput, gCoreSys.unk_44);
+            v0 = ov69_0225CC54(param0, gCoreSys.pressedKeys, gCoreSys.heldKeys);
         }
     }
 
@@ -1878,8 +1878,8 @@ static void ov69_0225DC54 (UnkStruct_ov69_0225DC48 * param0)
 
     param0->unk_00 = 0;
 
-    if (gCoreSys.touchInput) {
-        if ((gCoreSys.unk_5C >= (25 * 8)) && (gCoreSys.unk_5C <= ((25 + 6) * 8)) && (gCoreSys.unk_5E >= (21 * 8)) && (gCoreSys.unk_5E <= ((21 + 2) * 8))) {
+    if (gCoreSys.touchPressed) {
+        if ((gCoreSys.touchX >= (25 * 8)) && (gCoreSys.touchX <= ((25 + 6) * 8)) && (gCoreSys.touchY >= (21 * 8)) && (gCoreSys.touchY <= ((21 + 2) * 8))) {
             param0->unk_00 = PAD_BUTTON_B;
             return;
         } else {
@@ -1888,13 +1888,13 @@ static void ov69_0225DC54 (UnkStruct_ov69_0225DC48 * param0)
             param0->unk_14 = 0;
             param0->unk_18 = 0;
             param0->unk_00 = 0;
-            param0->unk_08 = gCoreSys.unk_5C;
-            param0->unk_0C = gCoreSys.unk_5E;
+            param0->unk_08 = gCoreSys.touchX;
+            param0->unk_0C = gCoreSys.touchY;
             param0->unk_18 = 4;
         }
     }
 
-    if (gCoreSys.unk_62) {
+    if (gCoreSys.touchHeld) {
         switch (param0->unk_04) {
         case 0:
 
@@ -1908,8 +1908,8 @@ static void ov69_0225DC54 (UnkStruct_ov69_0225DC48 * param0)
             param0->unk_00 = v0 | v2;
             param0->unk_10 = v1;
             param0->unk_14 = v3;
-            param0->unk_08 = gCoreSys.unk_5C;
-            param0->unk_0C = gCoreSys.unk_5E;
+            param0->unk_08 = gCoreSys.touchX;
+            param0->unk_0C = gCoreSys.touchY;
             break;
         }
     } else {

@@ -839,7 +839,7 @@ void ov16_0225D794 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 
     v0->unk_08 = (UnkStruct_ov16_0225D840 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0225D840));
     v0->unk_08->unk_04 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov13_0221FC20));
-    v0->unk_08->unk_04->unk_00 = sub_02079FF4(5);
+    v0->unk_08->unk_04->unk_00 = Party_New(5);
     v0->unk_0E = 0;
     v0->unk_00 = param0;
     v0->unk_0C = param2->unk_00;
@@ -3078,7 +3078,7 @@ static void ov16_022604C8 (SysTask * param0, void * param1)
         v0->unk_0A = 5;
         break;
     case 5:
-        if (gCoreSys.padInput & PAD_BUTTON_START) {
+        if (gCoreSys.pressedKeys & PAD_BUTTON_START) {
             BattlerData * v14;
             int v15;
 
@@ -4280,7 +4280,7 @@ static void ov16_02261E8C (SysTask * param0, void * param1)
                 ov16_0223B384(v0->unk_00);
 
                 v0->unk_04 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov13_0221FC20));
-                v0->unk_04->unk_00 = sub_02079FF4(5);
+                v0->unk_04->unk_00 = Party_New(5);
 
                 if (((BattleSystem_BattleType(v0->unk_00) & (0x4 | 0x8)) == (0x4 | 0x8)) || (BattleSystem_BattleType(v0->unk_00) == (((0x2 | 0x1) | 0x8 | 0x40) | 0x80))) {
                     if (BattleSystem_BattlerSlot(v0->unk_00, v0->unk_09) == 2) {

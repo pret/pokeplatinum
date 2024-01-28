@@ -99,7 +99,7 @@ u32 ov23_02248D20 (UnkStruct_ov23_02248D20 * param0)
         if (param0->unk_1C) {
             ov23_02248CA4(v1, v2, param0);
 
-            if ((gCoreSys.padInput & PAD_BUTTON_A) || (gCoreSys.padInput & PAD_BUTTON_SELECT)) {
+            if ((gCoreSys.pressedKeys & PAD_BUTTON_A) || (gCoreSys.pressedKeys & PAD_BUTTON_SELECT)) {
                 Sound_PlayEffect(1500);
 
                 if (v1 + v2 == v8 - 1) {
@@ -163,7 +163,7 @@ u32 ov23_02248D20 (UnkStruct_ov23_02248D20 * param0)
                 return 0xffffffff;
             }
         } else {
-            if (gCoreSys.padInput & PAD_BUTTON_SELECT) {
+            if (gCoreSys.pressedKeys & PAD_BUTTON_SELECT) {
                 Sound_PlayEffect(1500);
 
                 if (v1 + v2 == v8 - 1) {

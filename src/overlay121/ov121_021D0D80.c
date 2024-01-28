@@ -84,7 +84,7 @@ int ov121_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     MI_CpuClear8(v0, sizeof(UnkStruct_ov121_021D0FF4));
     v0->unk_00 = ov121_021D1270(30);
 
-    sub_02017DD4(4, 8);
+    SetAutorepeat(4, 8);
     ov121_021D0F94();
     sub_0201E3D8();
     sub_0201E450(4);

@@ -174,7 +174,7 @@ int ov17_0224F4D4 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_10.unk_20 = sub_02018340(24);
 
     sub_0201DBEC(64, 24);
-    sub_02017DD4(4, 8);
+    SetAutorepeat(4, 8);
 
     ov17_0224FB34(v0->unk_10.unk_20);
 

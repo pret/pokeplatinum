@@ -161,7 +161,7 @@ static BOOL sub_020529C4 (UnkStruct_020508D4 * param0)
         }
         break;
     case 2:
-        if ((gCoreSys.padInput & PAD_BUTTON_A) || (gCoreSys.padInput & PAD_BUTTON_B)) {
+        if ((gCoreSys.pressedKeys & PAD_BUTTON_A) || (gCoreSys.pressedKeys & PAD_BUTTON_B)) {
             sub_0200F174(0, 0, 0, 0x0, 8, 1, 32);
             v0->unk_00++;
         }

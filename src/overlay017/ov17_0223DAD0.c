@@ -265,7 +265,7 @@ int ov17_0223DAD0 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_14.unk_60 = sub_02018340(23);
 
     sub_0201DBEC(64, 23);
-    sub_02017DD4(4, 8);
+    SetAutorepeat(4, 8);
 
     v0->unk_1074 = ov17_02249380(v0->unk_00, &v0->unk_14);
 

@@ -250,7 +250,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
         }
     }
 
-    if ((param0->unk_7C & 0x1) && (param0->unk_64 == 8) && (gCoreSys.padInput & PAD_BUTTON_B)) {
+    if ((param0->unk_7C & 0x1) && (param0->unk_64 == 8) && (gCoreSys.pressedKeys & PAD_BUTTON_B)) {
         sub_02003178(param0->unk_14, ((0x1 | 0x2 | 0x4 | 0x8)), (0xc00 ^ 0xffff), 0, 0, 16, 0x7fff);
         param0->unk_64 = 41;
     }
