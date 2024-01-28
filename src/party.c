@@ -22,7 +22,7 @@ int Party_SaveSize (void)
     return sizeof(Party);
 }
 
-Party * sub_02079FF4 (u32 param0)
+Party * Party_New (u32 param0)
 {
     Party * v0;
 

@@ -85,7 +85,7 @@ int ov73_021D3280 (UnkStruct_020067E8 * param0, int * param1)
         GXLayers_DisableEngineBLayers();
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
-        sub_02017DD4(4, 8);
+        SetAutorepeat(4, 8);
 
         ov73_021D342C(v0);
         ov73_021D366C(v0);

@@ -439,7 +439,7 @@ static void sub_02059BF4 (void)
 static void sub_02059C2C (BOOL param0, const Party * param1)
 {
     if (param1) {
-        Unk_021C084C->unk_44 = sub_02079FF4(11);
+        Unk_021C084C->unk_44 = Party_New(11);
         Party_cpy(param1, Unk_021C084C->unk_44);
     }
 

@@ -97,7 +97,7 @@ u8 sub_0208C15C (s16 * param0, u16 param1)
 
     v0 = *param0;
 
-    if (gCoreSys.unk_4C & PAD_KEY_UP) {
+    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
         *param0 += 1;
 
         if (*param0 > param1) {
@@ -111,7 +111,7 @@ u8 sub_0208C15C (s16 * param0, u16 param1)
         return 1;
     }
 
-    if (gCoreSys.unk_4C & PAD_KEY_DOWN) {
+    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
         *param0 -= 1;
 
         if (*param0 <= 0) {
@@ -125,7 +125,7 @@ u8 sub_0208C15C (s16 * param0, u16 param1)
         return 2;
     }
 
-    if (gCoreSys.unk_4C & PAD_KEY_LEFT) {
+    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) {
         *param0 -= 10;
 
         if (*param0 <= 0) {
@@ -139,7 +139,7 @@ u8 sub_0208C15C (s16 * param0, u16 param1)
         return 2;
     }
 
-    if (gCoreSys.unk_4C & PAD_KEY_RIGHT) {
+    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT) {
         *param0 += 10;
 
         if (*param0 > param1) {

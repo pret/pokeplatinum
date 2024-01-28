@@ -90,15 +90,15 @@ u32 sub_02001288 (UnkStruct_0200112C * param0)
 
     param0->unk_2F = 0;
 
-    if (gCoreSys.padInput & PAD_BUTTON_A) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
         return param0->unk_00.unk_00[param0->unk_28 + param0->unk_2A].unk_04;
     }
 
-    if (gCoreSys.padInput & PAD_BUTTON_B) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
         return 0xfffffffe;
     }
 
-    if (gCoreSys.unk_4C & PAD_KEY_UP) {
+    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
         if (sub_02001A18(param0, 1, 1, 0) == 0) {
             param0->unk_2F = 1;
         }
@@ -106,7 +106,7 @@ u32 sub_02001288 (UnkStruct_0200112C * param0)
         return 0xffffffff;
     }
 
-    if (gCoreSys.unk_4C & PAD_KEY_DOWN) {
+    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
         if (sub_02001A18(param0, 1, 1, 1) == 0) {
             param0->unk_2F = 2;
         }
@@ -121,12 +121,12 @@ u32 sub_02001288 (UnkStruct_0200112C * param0)
         v1 = 0;
         break;
     case 1:
-        v0 = (gCoreSys.unk_4C & PAD_KEY_LEFT);
-        v1 = (gCoreSys.unk_4C & PAD_KEY_RIGHT);
+        v0 = (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT);
+        v1 = (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT);
         break;
     case 2:
-        v0 = (gCoreSys.unk_4C & PAD_BUTTON_L);
-        v1 = (gCoreSys.unk_4C & PAD_BUTTON_R);
+        v0 = (gCoreSys.pressedKeysRepeatable & PAD_BUTTON_L);
+        v1 = (gCoreSys.pressedKeysRepeatable & PAD_BUTTON_R);
         break;
     }
 

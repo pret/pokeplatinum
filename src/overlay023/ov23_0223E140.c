@@ -1504,7 +1504,7 @@ static void ov23_0223F118 (SysTask * param0, void * param1)
         break;
     case 12:
         if (Message_Printing(Unk_ov23_02257740->unk_A24) == 0) {
-            if (gCoreSys.touchInput || (gCoreSys.padInput & PAD_BUTTON_A)) {
+            if (gCoreSys.touchInput || (gCoreSys.pressedKeys & PAD_BUTTON_A)) {
                 ov23_02254044(ov23_0224219C());
                 v0->unk_00++;
             }
@@ -1535,7 +1535,7 @@ static void ov23_0223F118 (SysTask * param0, void * param1)
         if (Message_Printing(Unk_ov23_02257740->unk_A24) == 0) {
             v0->unk_4C--;
 
-            if (gCoreSys.touchInput || (gCoreSys.padInput & PAD_BUTTON_A) || (v0->unk_4C == 0)) {
+            if (gCoreSys.touchInput || (gCoreSys.pressedKeys & PAD_BUTTON_A) || (v0->unk_4C == 0)) {
                 ov23_02254044(ov23_0224219C());
                 v0->unk_00 = 16;
             }
@@ -1557,7 +1557,7 @@ static void ov23_0223F118 (SysTask * param0, void * param1)
         if (Message_Printing(Unk_ov23_02257740->unk_A24) == 0) {
             v0->unk_4C--;
 
-            if (gCoreSys.touchInput || (gCoreSys.padInput & PAD_BUTTON_A) || (v0->unk_4C == 0)) {
+            if (gCoreSys.touchInput || (gCoreSys.pressedKeys & PAD_BUTTON_A) || (v0->unk_4C == 0)) {
                 if (ov23_02240A90(v0)) {
                     v0->unk_4C = 60;
                     v0->unk_00 = 15;
@@ -1666,7 +1666,7 @@ static void ov23_0223F118 (SysTask * param0, void * param1)
         if (Message_Printing(Unk_ov23_02257740->unk_A24) == 0) {
             v0->unk_4C--;
 
-            if (gCoreSys.touchInput || (gCoreSys.padInput & PAD_BUTTON_A) || (v0->unk_4C == 0)) {
+            if (gCoreSys.touchInput || (gCoreSys.pressedKeys & PAD_BUTTON_A) || (v0->unk_4C == 0)) {
                 ov23_02254044(ov23_0224219C());
                 v0->unk_00 = 19;
             }

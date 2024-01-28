@@ -157,7 +157,7 @@ int ov71_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
-    sub_02017DD4(4, 8);
+    SetAutorepeat(4, 8);
     Heap_Create(3, 25, 0x28000);
 
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__TRAINER_CASE, 25);
@@ -960,9 +960,9 @@ static int ov71_0223BEF8 (UnkStruct_ov71_0223B620 * param0)
     }
 
     if (v1 == 0) {
-        if (gCoreSys.padInput & PAD_BUTTON_A) {
+        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
             v0 = 3;
-        } else if (gCoreSys.padInput & PAD_BUTTON_B) {
+        } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
             v0 = 4;
         }
     }

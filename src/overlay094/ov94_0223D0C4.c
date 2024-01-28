@@ -361,11 +361,11 @@ static int ov94_0223D5B0 (UnkStruct_ov94_0223FD4C * param0)
 
 static int ov94_0223D5B8 (UnkStruct_ov94_0223FD4C * param0)
 {
-    if (gCoreSys.padInput & PAD_BUTTON_A) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
         ov94_0223D88C(param0, 5, 1, 0, 0xf0f, (Pokemon *)param0->unk_12C.unk_00.unk_00);
         ov94_0223C3F4(param0, 3, 7);
         Sound_PlayEffect(1500);
-    } else if (gCoreSys.padInput & PAD_BUTTON_B) {
+    } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
         param0->unk_2C = 2;
         ov94_0223C4C0(param0, 1, 0);
         Sound_PlayEffect(1500);

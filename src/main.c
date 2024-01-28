@@ -120,9 +120,9 @@ void NitroMain (void)
     while (TRUE) {
         sub_02000F30();
         sub_0200106C();
-        sub_02017B9C();
+        ReadKeypadAndTouchpad();
 
-        if ((gCoreSys.unk_38 & (PAD_BUTTON_START | PAD_BUTTON_SELECT | PAD_BUTTON_L | PAD_BUTTON_R)) == (PAD_BUTTON_START | PAD_BUTTON_SELECT | PAD_BUTTON_L | PAD_BUTTON_R)) {
+        if ((gCoreSys.heldKeysRaw & (PAD_BUTTON_START | PAD_BUTTON_SELECT | PAD_BUTTON_L | PAD_BUTTON_R)) == (PAD_BUTTON_START | PAD_BUTTON_SELECT | PAD_BUTTON_L | PAD_BUTTON_R)) {
             if (gCoreSys.unk_68 == 0) {
                 sub_02000F60(0);
             }
@@ -295,10 +295,10 @@ static void sub_02000F94 (int param0, int param1)
 
     while (TRUE) {
         sub_0200106C();
-        sub_02017B9C();
+        ReadKeypadAndTouchpad();
 
         if (v0 >= 30) {
-            if (gCoreSys.padInput & PAD_BUTTON_A) {
+            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
                 break;
             }
         }

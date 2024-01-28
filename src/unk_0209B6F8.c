@@ -115,7 +115,7 @@ int sub_0209B75C (UnkStruct_020067E8 * param0, int * param1)
         }
 
         if (ov104_0222E6A8(v0->unk_14) == 1) {
-            if (gCoreSys.padInput & PAD_BUTTON_B) {
+            if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
                 *param1 = 2;
             }
         }

@@ -149,7 +149,7 @@ static void ov23_02253E40 (SysTask * param0, void * param1)
         }
     }
 
-    if (gCoreSys.padInput & PAD_BUTTON_A) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
         ov23_02254044(v0);
     }
 }

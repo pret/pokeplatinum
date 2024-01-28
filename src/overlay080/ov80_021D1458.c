@@ -247,7 +247,7 @@ int ov80_021D163C (UnkStruct_ov80_021D2A08 * param0)
 {
     UnkStruct_ov80_021D1478 * v0 = param0->unk_34;
 
-    if ((v0->unk_14 <= 1) && gCoreSys.padInput & PAD_BUTTON_B) {
+    if ((v0->unk_14 <= 1) && gCoreSys.pressedKeys & PAD_BUTTON_B) {
         Sound_PlayEffect(1501);
         return 1;
     }
@@ -256,7 +256,7 @@ int ov80_021D163C (UnkStruct_ov80_021D2A08 * param0)
         return 0;
     }
 
-    ov80_021D18F8(param0, gCoreSys.unk_44);
+    ov80_021D18F8(param0, gCoreSys.heldKeys);
 
     return 0;
 }
@@ -266,14 +266,14 @@ int ov80_021D1678 (UnkStruct_ov80_021D2A08 * param0)
     UnkStruct_ov80_021D1478 * v0 = param0->unk_34;
 
     if (v0->unk_14 <= 1) {
-        if (gCoreSys.padInput & PAD_BUTTON_A) {
+        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
             if (ov80_021D29BC(param0)) {
                 Sound_PlayEffect(1501);
                 return 1;
             }
 
             return 0;
-        } else if (gCoreSys.padInput & PAD_BUTTON_B) {
+        } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
             Sound_PlayEffect(1501);
             return 1;
         }
@@ -283,7 +283,7 @@ int ov80_021D1678 (UnkStruct_ov80_021D2A08 * param0)
         return 0;
     }
 
-    ov80_021D18F8(param0, gCoreSys.unk_44);
+    ov80_021D18F8(param0, gCoreSys.heldKeys);
     return 0;
 }
 
@@ -291,12 +291,12 @@ int ov80_021D16D0 (UnkStruct_ov80_021D2A08 * param0)
 {
     UnkStruct_ov80_021D1478 * v0 = param0->unk_34;
 
-    if (gCoreSys.padInput & (PAD_BUTTON_B)) {
+    if (gCoreSys.pressedKeys & (PAD_BUTTON_B)) {
         Sound_PlayEffect(1501);
         return 1;
     }
 
-    ov80_021D18F8(param0, gCoreSys.unk_44);
+    ov80_021D18F8(param0, gCoreSys.heldKeys);
     return 0;
 }
 

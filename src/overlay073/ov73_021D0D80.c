@@ -190,7 +190,7 @@ int ov73_021D0E20 (UnkStruct_020067E8 * param0, int * param1)
 
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
-        sub_02017DD4(4, 8);
+        SetAutorepeat(4, 8);
 
         ov73_021D1058(v0);
         ov73_021D12C4(v0);
@@ -741,7 +741,7 @@ static BOOL ov73_021D1510 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
         }
         break;
     case 2:
-        if ((param2 != 0) || ((gCoreSys.padInput & PAD_BUTTON_A) == PAD_BUTTON_A)) {
+        if ((param2 != 0) || ((gCoreSys.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A)) {
             BGL_DeleteWindow(&param0->unk_1C);
             param0->unk_50 = 0;
             v0 = 1;
@@ -895,7 +895,7 @@ static BOOL ov73_021D1784 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
         }
         break;
     case 3:
-        if (((gCoreSys.padInput & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gCoreSys.padInput & PAD_BUTTON_B) == PAD_BUTTON_B)) {
+        if (((gCoreSys.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gCoreSys.pressedKeys & PAD_BUTTON_B) == PAD_BUTTON_B)) {
             Sound_PlayEffect(1500);
             param0->unk_54 = 4;
         }
@@ -1596,7 +1596,7 @@ static BOOL ov73_021D2318 (UnkStruct_ov73_021D1058 * param0)
         param0->unk_0C = 22;
         break;
     case 22:
-        if (gCoreSys.padInput) {
+        if (gCoreSys.pressedKeys) {
             param0->unk_0C = 27;
             break;
         }
@@ -1762,7 +1762,7 @@ static BOOL ov73_021D2318 (UnkStruct_ov73_021D1058 * param0)
             param0->unk_94[1] = 0;
             {sub_02019EBC(param0->unk_18, 0);}
             param0->unk_0C = 48;
-        } else if (gCoreSys.padInput) {
+        } else if (gCoreSys.pressedKeys) {
             param0->unk_0C = 49;
         }
         break;
@@ -1895,7 +1895,7 @@ static BOOL ov73_021D2318 (UnkStruct_ov73_021D1058 * param0)
         }
         break;
     case 67:
-        if ((gCoreSys.padInput & PAD_BUTTON_A) == PAD_BUTTON_A) {
+        if ((gCoreSys.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) {
             param0->unk_7C = 6;
             param0->unk_80 = 10;
             param0->unk_78 = 2;
@@ -1908,7 +1908,7 @@ static BOOL ov73_021D2318 (UnkStruct_ov73_021D1058 * param0)
             break;
         }
 
-        if ((gCoreSys.padInput & PAD_KEY_LEFT) == PAD_KEY_LEFT || (gCoreSys.padInput & PAD_KEY_RIGHT) == PAD_KEY_RIGHT) {
+        if ((gCoreSys.pressedKeys & PAD_KEY_LEFT) == PAD_KEY_LEFT || (gCoreSys.pressedKeys & PAD_KEY_RIGHT) == PAD_KEY_RIGHT) {
             if (param0->unk_84 == 0) {
                 param0->unk_84 = 1;
             } else {

@@ -152,7 +152,7 @@ int ov90_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_24 = sub_0202D764(v1->unk_00);
     v0->unk_00 = 74;
 
-    sub_02017DD4(4, 8);
+    SetAutorepeat(4, 8);
 
     return 1;
 }
@@ -331,7 +331,7 @@ static void ov90_021D1034 (void * param0)
 
 static int ov90_021D105C (UnkStruct_ov90_021D0ECC * param0)
 {
-    if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Sound_PlayEffect(1500);
         return 1;
     }
@@ -377,12 +377,12 @@ static int ov90_021D1080 (UnkStruct_ov90_021D0ECC * param0)
 {
     int v0 = 0;
 
-    if (gCoreSys.padInput & PAD_BUTTON_B) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
         Sound_PlayEffect(1500);
         return 1;
     }
 
-    if (gCoreSys.padInput & PAD_BUTTON_A) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
         Sound_PlayEffect(1500);
 
         if (param0->unk_0B >= 10) {
@@ -392,26 +392,26 @@ static int ov90_021D1080 (UnkStruct_ov90_021D0ECC * param0)
         param0->unk_0D = (param0->unk_0D + 1) % 2;
         v0 = 1;
     } else {
-        if (gCoreSys.unk_4C & PAD_KEY_UP) {
+        if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
             v0 = inline_ov90_021D1080(param0);
 
             if (v0) {
                 Sound_PlayEffect(1500);
             }
-        } else if (gCoreSys.unk_4C & PAD_KEY_DOWN) {
+        } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
             v0 = inline_ov90_021D1080_1(param0);
 
             if (v0) {
                 Sound_PlayEffect(1500);
             }
-        } else if (gCoreSys.unk_4C & PAD_KEY_LEFT) {
+        } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) {
             param0->unk_0C = (param0->unk_0C + 2) % 3;
             v0 = 1;
 
             if (param0->unk_0B != 10) {
                 Sound_PlayEffect(1500);
             }
-        } else if (gCoreSys.unk_4C & PAD_KEY_RIGHT) {
+        } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT) {
             param0->unk_0C = (param0->unk_0C + 1) % 3;
             v0 = 1;
 

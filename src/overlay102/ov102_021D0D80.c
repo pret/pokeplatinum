@@ -92,7 +92,7 @@ int ov102_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
-    sub_02017DD4(4, 8);
+    SetAutorepeat(4, 8);
 
     ov102_021D0F8C(v0);
     ov102_021D1174(v0);
@@ -147,7 +147,7 @@ int ov102_021D0E2C (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 4:
-        if ((((gCoreSys.padInput & PAD_BUTTON_A) == PAD_BUTTON_A)) || (((gCoreSys.padInput & PAD_BUTTON_B) == PAD_BUTTON_B)) || (gCoreSys.touchInput)) {
+        if ((((gCoreSys.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A)) || (((gCoreSys.pressedKeys & PAD_BUTTON_B) == PAD_BUTTON_B)) || (gCoreSys.touchInput)) {
             sub_0200F174(0, 0, 0, 0x0, 6, 1, v0->unk_00);
             *param1 = 5;
         }

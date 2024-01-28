@@ -48,14 +48,14 @@ void sub_02027A68 (SaveData * param0, int param1)
 
     switch (param1) {
     case 1:
-        gCoreSys.unk_34 = 1;
+        gCoreSys.buttonMode = 1;
         break;
     case 2:
-        gCoreSys.unk_34 = 3;
+        gCoreSys.buttonMode = 3;
         break;
     case 0:
     default:
-        gCoreSys.unk_34 = 0;
+        gCoreSys.buttonMode = 0;
         break;
     }
 }

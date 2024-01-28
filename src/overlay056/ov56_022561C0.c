@@ -157,7 +157,7 @@ static void ov56_022561C0 (SysTask * param0, void * param1)
     case 0:
         ov56_02256508(v1);
         ov56_02256294(v0);
-        sub_02017DD4(4, 8);
+        SetAutorepeat(4, 8);
         ov56_0225710C(v0);
         ov56_0225717C(v0, 1);
         v0->unk_00++;
@@ -693,19 +693,19 @@ static int ov56_02256BC0 (UnkStruct_ov56_02256468 * param0)
 
 static void ov56_02256C84 (UnkStruct_ov56_02256468 * param0)
 {
-    if (gCoreSys.unk_44 & PAD_BUTTON_L) {
+    if (gCoreSys.heldKeys & PAD_BUTTON_L) {
         ov56_0225718C(param0, 0);
 
-        if (gCoreSys.unk_4C & PAD_BUTTON_L) {
+        if (gCoreSys.pressedKeysRepeatable & PAD_BUTTON_L) {
             if (param0->unk_2D8.unk_04 != 0) {
                 param0->unk_2D8.unk_04--;
                 Sound_PlayEffect(1509);
             }
         }
-    } else if (gCoreSys.unk_44 & PAD_BUTTON_R) {
+    } else if (gCoreSys.heldKeys & PAD_BUTTON_R) {
         ov56_0225718C(param0, 1);
 
-        if (gCoreSys.unk_4C & PAD_BUTTON_R) {
+        if (gCoreSys.pressedKeysRepeatable & PAD_BUTTON_R) {
             if (param0->unk_2D8.unk_04 < param0->unk_2D8.unk_00 - 3) {
                 param0->unk_2D8.unk_04++;
                 Sound_PlayEffect(1509);

@@ -367,7 +367,7 @@ int ov92_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     gCoreSys.unk_65 = 1;
 
     GXLayers_SwapDisplay();
-    sub_02017DD4(4, 8);
+    SetAutorepeat(4, 8);
     sub_02002AC8(1);
     sub_02002AE4(0);
     sub_02002B20(0);
@@ -616,7 +616,7 @@ int ov92_021D0EB8 (UnkStruct_020067E8 * param0, int * param1)
         u16 v10 = v0->unk_BAD8;
         ov92_021D1700(v0);
 
-        if ((gCoreSys.padInput & PAD_BUTTON_B) || (v0->unk_BAF8 & PAD_BUTTON_B)) {
+        if ((gCoreSys.pressedKeys & PAD_BUTTON_B) || (v0->unk_BAF8 & PAD_BUTTON_B)) {
             Window_Clear(&v0->unk_B834, 0);
             Sound_PlayEffect(1501);
             BGL_WindowColor(&v0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
@@ -629,7 +629,7 @@ int ov92_021D0EB8 (UnkStruct_020067E8 * param0, int * param1)
                 *param1 = 17;
             }
         } else {
-            if ((gCoreSys.padInput & PAD_BUTTON_X) && (v0->unk_BB28 == 0)) {
+            if ((gCoreSys.pressedKeys & PAD_BUTTON_X) && (v0->unk_BB28 == 0)) {
                 v0->unk_BB28 = 1;
                 ov92_021D1F90(v0);
 
@@ -639,7 +639,7 @@ int ov92_021D0EB8 (UnkStruct_020067E8 * param0, int * param1)
                 break;
             }
 
-            if ((gCoreSys.padInput & (PAD_BUTTON_X | PAD_BUTTON_A | PAD_BUTTON_B)) && (v0->unk_BB28 == 1)) {
+            if ((gCoreSys.pressedKeys & (PAD_BUTTON_X | PAD_BUTTON_A | PAD_BUTTON_B)) && (v0->unk_BB28 == 1)) {
                 v0->unk_BB28 = 0;
                 ov92_021D1F90(v0);
                 break;
@@ -648,7 +648,7 @@ int ov92_021D0EB8 (UnkStruct_020067E8 * param0, int * param1)
             {
                 BOOL v11;
 
-                v11 = ov92_021D2460(v0, gCoreSys.padInput, gCoreSys.unk_44);
+                v11 = ov92_021D2460(v0, gCoreSys.pressedKeys, gCoreSys.heldKeys);
 
                 if ((v11 == 1) && (v0->unk_BB28 == 1)) {
                     v0->unk_BB28 = 0;
@@ -1034,7 +1034,7 @@ static BOOL ov92_021D1B70 (UnkStruct_ov92_021D1B24 * param0, u32 param1, int par
         }
         break;
     case 2:
-        if ((param2 != 0) || (gCoreSys.padInput & PAD_BUTTON_A)) {
+        if ((param2 != 0) || (gCoreSys.pressedKeys & PAD_BUTTON_A)) {
             param0->unk_B864 = 0;
             v0 = 1;
         }

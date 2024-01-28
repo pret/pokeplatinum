@@ -1941,19 +1941,19 @@ static BOOL ov70_0226AC24 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
     if (param1->unk_08 == ov70_0225CCAC(param0->unk_04)) {
         u32 v4 = 4;
 
-        if (gCoreSys.padInput & PAD_KEY_UP) {
+        if (gCoreSys.pressedKeys & PAD_KEY_UP) {
             v4 = 0;
         }
 
-        if (gCoreSys.padInput & PAD_KEY_DOWN) {
+        if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
             v4 = 1;
         }
 
-        if (gCoreSys.padInput & PAD_KEY_RIGHT) {
+        if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
             v4 = 3;
         }
 
-        if (gCoreSys.padInput & PAD_KEY_LEFT) {
+        if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
             v4 = 2;
         }
 

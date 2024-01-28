@@ -2194,12 +2194,12 @@ static BOOL ov6_02240364 (UnkStruct_ov6_022401B8 * param0, int param1, int param
     BOOL v1[2] = {0, 0};
     UnkStruct_ov6_02240260 * v2 = &param0->unk_34;
 
-    if (gCoreSys.padInput & PAD_KEY_UP) {
+    if (gCoreSys.pressedKeys & PAD_KEY_UP) {
         v2->unk_00++;
         v2->unk_00 %= 32;
     }
 
-    if (gCoreSys.padInput & PAD_KEY_DOWN) {
+    if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
         if (v2->unk_00) {
             v2->unk_00--;
         } else {
@@ -2207,12 +2207,12 @@ static BOOL ov6_02240364 (UnkStruct_ov6_022401B8 * param0, int param1, int param
         }
     }
 
-    if (gCoreSys.padInput & PAD_KEY_RIGHT) {
+    if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
         v2->unk_04++;
         v2->unk_04 %= 32;
     }
 
-    if (gCoreSys.padInput & PAD_KEY_LEFT) {
+    if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
         if (v2->unk_04) {
             v2->unk_04--;
         } else {

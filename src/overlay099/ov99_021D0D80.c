@@ -125,7 +125,7 @@ int ov99_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_08 = sub_02018340(75);
 
     sub_0201DBEC(64, 75);
-    sub_02017DD4(4, 8);
+    SetAutorepeat(4, 8);
 
     ov99_021D1380(v0->unk_08);
 
@@ -194,7 +194,7 @@ int ov99_021D1028 (UnkStruct_020067E8 * param0, int * param1)
         v0->unk_1110 = ov99_021D3F6C(v0->unk_110C, 1);
     }
 
-    if (v0->unk_00->unk_04 && (gCoreSys.padInput & PAD_BUTTON_START)) {
+    if (v0->unk_00->unk_04 && (gCoreSys.pressedKeys & PAD_BUTTON_START)) {
         if ((v0->unk_1100 == 0) && (v0->unk_1101 < 6)) {
             sub_0200F174(0, 0, 0, 0x0, 6, 1, 75);
             v0->unk_1100 = 1;

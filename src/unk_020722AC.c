@@ -270,13 +270,13 @@ static void sub_02072390 (SysTask * param0, void * param1)
         sub_0206A870(v0->unk_1A4);
     }
 
-    if (gCoreSys.padInput & PAD_BUTTON_B) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
         sub_02072EA4(v0, sub_02072518, sub_02072364);
         Sound_PlayEffect(1500);
         return;
     }
 
-    if (gCoreSys.padInput & PAD_BUTTON_A) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
         Sound_PlayEffect(1500);
 
         switch (v1) {
@@ -326,13 +326,13 @@ static void sub_02072470 (SysTask * param0, void * param1)
 
     v1 = sub_02001288(v0->unk_160);
 
-    if (gCoreSys.padInput & PAD_BUTTON_B) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
         sub_02072EA4(v0, sub_02072534, sub_02072370);
         Sound_PlayEffect(1500);
         return;
     }
 
-    if (gCoreSys.padInput & PAD_BUTTON_A) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
         Sound_PlayEffect(1500);
 
         switch (v1) {
@@ -504,7 +504,7 @@ static void sub_020726B4 (SysTask * param0, void * param1)
         }
         break;
     case 2:
-        if (!(gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B))) {
+        if (!(gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B))) {
             return;
         }
 
@@ -584,7 +584,7 @@ static void sub_020727F8 (SysTask * param0, void * param1)
         }
         break;
     case 2:
-        if (!(gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B))) {
+        if (!(gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B))) {
             return;
         }
 

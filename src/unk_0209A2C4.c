@@ -112,7 +112,7 @@ int sub_0209A300 (UnkStruct_020067E8 * param0, int * param1)
         GXLayers_DisableEngineBLayers();
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
-        sub_02017DD4(4, 8);
+        SetAutorepeat(4, 8);
         sub_0209A3D0(v0);
         sub_0209A4E4(v0);
         GXLayers_TurnBothDispOn();
@@ -332,7 +332,7 @@ static BOOL sub_0209A688 (UnkStruct_0209A3D0 * param0, u32 param1, int param2, i
         }
         break;
     case 2:
-        if ((param2 != 0) || (gCoreSys.padInput & PAD_BUTTON_A)) {
+        if ((param2 != 0) || (gCoreSys.pressedKeys & PAD_BUTTON_A)) {
             param0->unk_0C = 0;
             v0 = 1;
         }

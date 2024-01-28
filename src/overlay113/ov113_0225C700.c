@@ -393,7 +393,7 @@ int ov113_0225C700 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_08 = sub_02018340(118);
 
     sub_0201DBEC(64, 118);
-    sub_02017DD4(4, 8);
+    SetAutorepeat(4, 8);
 
     ov113_0225CF58(v0->unk_08);
 

@@ -1126,7 +1126,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
     param0->battleCtx = BattleContext_New(param0);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->parties[v0] = sub_02079FF4(5);
+        param0->parties[v0] = Party_New(5);
     }
 
     {

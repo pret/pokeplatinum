@@ -416,7 +416,7 @@ static void ov104_022324C8 (SysTask * param0, void * param1)
 
     v0 = sub_02001BE0(v1->unk_B0);
 
-    if ((gCoreSys.unk_4C & PAD_KEY_UP) || (gCoreSys.unk_4C & PAD_KEY_DOWN) || (gCoreSys.unk_4C & PAD_KEY_LEFT) || (gCoreSys.unk_4C & PAD_KEY_RIGHT)) {
+    if ((gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) || (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) || (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) || (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT)) {
         ov104_022325D8(v1);
     }
 
@@ -645,7 +645,7 @@ static void ov104_0223296C (SysTask * param0, void * param1)
         Sound_PlayEffect(1500);
     }
 
-    if ((gCoreSys.unk_4C & PAD_KEY_UP) || (gCoreSys.unk_4C & PAD_KEY_DOWN) || (gCoreSys.unk_4C & PAD_KEY_LEFT) || (gCoreSys.unk_4C & PAD_KEY_RIGHT)) {
+    if ((gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) || (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) || (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) || (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT)) {
         ov104_02232B2C(v2);
     }
 

@@ -742,7 +742,7 @@ int ov70_0225DB90 (UnkStruct_020067E8 * param0, int * param1)
     }
     break;
     case 4:
-        if (gCoreSys.padInput & PAD_BUTTON_A) {
+        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
             (*param1) = 7;
         }
         break;

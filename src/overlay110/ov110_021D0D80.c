@@ -228,7 +228,7 @@ static BOOL ov110_021D0FD0 (UnkStruct_ov110_021D0F78 * param0)
         break;
     case 1:
 
-        if ((gCoreSys.unk_44 & PAD_BUTTON_A) || (gCoreSys.unk_44 & PAD_BUTTON_B)) {
+        if ((gCoreSys.heldKeys & PAD_BUTTON_A) || (gCoreSys.heldKeys & PAD_BUTTON_B)) {
             return 1;
         }
         break;

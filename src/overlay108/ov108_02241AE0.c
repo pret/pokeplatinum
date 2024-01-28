@@ -609,7 +609,7 @@ static BOOL ov108_02241F28 (UnkStruct_ov108_02241DB0 * param0)
         param0->unk_08 = 6;
         break;
     case 6:
-        ov108_02242964(param0, gCoreSys.padInput);
+        ov108_02242964(param0, gCoreSys.pressedKeys);
 
         if (sub_0203608C() == 0) {
             if (param0->unk_18 > 0) {

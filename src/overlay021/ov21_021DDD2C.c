@@ -490,7 +490,7 @@ static void ov21_021DE358 (UnkStruct_ov21_021DDE4C * param0, UnkStruct_ov21_021D
     if ((ov21_021E33BC(param1->unk_08) == 1) && (ov21_021D3998(param1->unk_04) == 2)) {
         v0 = ov21_021DCA28(param1->unk_00);
 
-        if (gCoreSys.padInput & PAD_KEY_LEFT) {
+        if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
             v0--;
 
             if (v0 < 0) {
@@ -500,7 +500,7 @@ static void ov21_021DE358 (UnkStruct_ov21_021DDE4C * param0, UnkStruct_ov21_021D
             ov21_021DCA30(param1->unk_00, v0);
             ov21_021DE5A4(param0, param1);
             param0->unk_24 = 1;
-        } else if (gCoreSys.padInput & PAD_KEY_RIGHT) {
+        } else if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
             v0++;
 
             if (v0 >= 3) {

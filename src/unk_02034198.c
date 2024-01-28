@@ -513,7 +513,7 @@ BOOL sub_020349EC (void)
             Unk_021C07CC->unk_6B5++;
             Unk_021C07C5 = 0;
             sub_020347EC();
-            Unk_021C07CC->unk_654 |= (gCoreSys.unk_44 & 0x7fff);
+            Unk_021C07CC->unk_654 |= (gCoreSys.heldKeys & 0x7fff);
             sub_02035534();
             sub_02034B50();
             Unk_021C07CC->unk_654 &= 0x8000;

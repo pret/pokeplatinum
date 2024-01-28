@@ -1178,7 +1178,7 @@ static u32 ov69_0225CF9C (UnkStruct_ov69_0225CE64 * param0)
         Sound_PlayEffect(1501);
         return 2;
     } else {
-        if ((gCoreSys.padInput & PAD_BUTTON_X)) {
+        if ((gCoreSys.pressedKeys & PAD_BUTTON_X)) {
             {
                 UnkStruct_ov69_0225E0C0 v2;
 
@@ -1200,7 +1200,7 @@ static u32 ov69_0225CF9C (UnkStruct_ov69_0225CE64 * param0)
                 }
             }
         } else {
-            v0 = ov69_0225CC54(param0, gCoreSys.padInput, gCoreSys.unk_44);
+            v0 = ov69_0225CC54(param0, gCoreSys.pressedKeys, gCoreSys.heldKeys);
         }
     }
 

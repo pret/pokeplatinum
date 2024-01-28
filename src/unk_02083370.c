@@ -218,7 +218,7 @@ static void sub_020834B0 (UnkStruct_0207F248 * param0, int * param1)
 int sub_02083658 (UnkStruct_0207F248 * param0)
 {
     if (Message_Printing(param0->unk_B10) == 0) {
-        if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             sub_0200E084(&param0->unk_04[34], 1);
             sub_020826E0(param0, 29, 1);
             sub_0200D414(param0->unk_5B0[6], 0);
@@ -232,7 +232,7 @@ int sub_02083658 (UnkStruct_0207F248 * param0)
 int sub_020836A8 (UnkStruct_0207F248 * param0)
 {
     if (Message_Printing(param0->unk_B10) == 0) {
-        if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             sub_0200E084(&param0->unk_04[34], 1);
             sub_020819B4(param0);
             return 19;
@@ -377,7 +377,7 @@ static int sub_02083990 (void * param0)
 
 int sub_020839BC (UnkStruct_0207F248 * param0)
 {
-    if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         sub_0200E084(&param0->unk_04[34], 1);
         sub_020826E0(param0, 29, 1);
         sub_0200D414(param0->unk_5B0[6], 0);
@@ -761,7 +761,7 @@ static void sub_020844B0 (UnkStruct_0207F248 * param0, int * param1)
 
 int sub_020845A8 (UnkStruct_0207F248 * param0)
 {
-    if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         sub_0200E084(&param0->unk_04[34], 1);
         sub_020826E0(param0, 34, 1);
         sub_0200D414(param0->unk_5B0[6], 0);
@@ -1032,7 +1032,7 @@ static int sub_02084A18 (UnkStruct_0207F248 * param0)
 
 int sub_02084B34 (UnkStruct_0207F248 * param0)
 {
-    if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         sub_0200E084(&param0->unk_04[34], 1);
         sub_020826E0(param0, 29, 1);
         sub_0200D414(param0->unk_5B0[6], 0);

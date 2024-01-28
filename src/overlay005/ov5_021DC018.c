@@ -560,7 +560,7 @@ static void ov5_021DC95C (SysTask * param0, void * param1)
         Sound_PlayEffect(1500);
     }
 
-    if ((gCoreSys.unk_4C & PAD_KEY_UP) || (gCoreSys.unk_4C & PAD_KEY_DOWN) || (gCoreSys.unk_4C & PAD_KEY_LEFT) || (gCoreSys.unk_4C & PAD_KEY_RIGHT)) {
+    if ((gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) || (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) || (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) || (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT)) {
         ov5_021DCAF4(v2);
     }
 

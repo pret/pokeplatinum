@@ -262,7 +262,7 @@ void sub_0203CF5C (UnkStruct_0203CDB0 * param0)
 
     if (v2) {
         sub_0205F490(param0->unk_3C);
-        ov5_021D1CAC(&v1, param0, gCoreSys.padInput, gCoreSys.unk_44);
+        ov5_021D1CAC(&v1, param0, gCoreSys.pressedKeys, gCoreSys.heldKeys);
     }
 
     v0 = param0->unk_70;
@@ -313,7 +313,7 @@ void sub_0203CF5C (UnkStruct_0203CDB0 * param0)
                 ov5_021E0EEC(param0->unk_3C);
                 ov5_021EA714(param0, 0, 1);
             } else {
-                if (gCoreSys.padInput & PAD_BUTTON_A) {
+                if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
                     ov5_021DDA78(param0->unk_04->unk_08);
                 }
 
@@ -339,7 +339,7 @@ void sub_0203CF5C (UnkStruct_0203CDB0 * param0)
                 ov5_021E0EEC(param0->unk_3C);
                 ov5_021EA714(param0, 0, 1);
             } else {
-                if (gCoreSys.padInput & PAD_BUTTON_A) {
+                if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
                     ov5_021DDA78(param0->unk_04->unk_08);
                 }
 

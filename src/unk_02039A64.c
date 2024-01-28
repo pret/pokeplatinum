@@ -95,7 +95,7 @@ void sub_02039A64 (int param0, int param1)
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
-    sub_02017DD4(4, 8);
+    SetAutorepeat(4, 8);
     gCoreSys.unk_65 = 0;
     GXLayers_SwapDisplay();
 

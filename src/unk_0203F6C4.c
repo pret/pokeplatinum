@@ -2351,7 +2351,7 @@ static BOOL sub_02040180 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02040190 (UnkStruct_0203E724 * param0)
 {
-    if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         return 1;
     }
 
@@ -2367,7 +2367,7 @@ static BOOL sub_020401A8 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_020401D0 (UnkStruct_0203E724 * param0)
 {
-    if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         return 1;
     }
 
@@ -2388,19 +2388,19 @@ static BOOL sub_020401F4 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02040204 (UnkStruct_0203E724 * param0)
 {
-    if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         return 1;
     }
 
-    if (gCoreSys.padInput & PAD_KEY_UP) {
+    if (gCoreSys.pressedKeys & PAD_KEY_UP) {
         sub_0205EA84(param0->unk_34->unk_3C, 0);
-    } else if (gCoreSys.padInput & PAD_KEY_DOWN) {
+    } else if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
         sub_0205EA84(param0->unk_34->unk_3C, 1);
-    } else if (gCoreSys.padInput & PAD_KEY_LEFT) {
+    } else if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
         sub_0205EA84(param0->unk_34->unk_3C, 2);
-    } else if (gCoreSys.padInput & PAD_KEY_RIGHT) {
+    } else if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
         sub_0205EA84(param0->unk_34->unk_3C, 3);
-    } else if (gCoreSys.padInput & PAD_BUTTON_X) {
+    } else if (gCoreSys.pressedKeys & PAD_BUTTON_X) {
         sub_0203F0C0(param0->unk_34);
     } else {
         return 0;
@@ -2417,11 +2417,11 @@ static BOOL sub_02040284 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02040294 (UnkStruct_0203E724 * param0)
 {
-    if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         return 1;
     }
 
-    if (gCoreSys.padInput & (PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
+    if (gCoreSys.pressedKeys & (PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
         return 1;
     }
 
@@ -2651,13 +2651,13 @@ static BOOL sub_02040670 (UnkStruct_0203E724 * param0)
         return 1;
     }
 
-    if (gCoreSys.padInput & PAD_KEY_UP) {
+    if (gCoreSys.pressedKeys & PAD_KEY_UP) {
         v4 = 0;
-    } else if (gCoreSys.padInput & PAD_KEY_DOWN) {
+    } else if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
         v4 = 1;
-    } else if (gCoreSys.padInput & PAD_KEY_LEFT) {
+    } else if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
         v4 = 2;
-    } else if (gCoreSys.padInput & PAD_KEY_RIGHT) {
+    } else if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
         v4 = 3;
     }
 
@@ -2668,7 +2668,7 @@ static BOOL sub_02040670 (UnkStruct_0203E724 * param0)
         return 1;
     }
 
-    if (gCoreSys.padInput & PAD_BUTTON_X) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_X) {
         sub_0201D730(*v1);
         *v2 = 1;
         return 1;
@@ -2693,18 +2693,18 @@ static BOOL sub_02040730 (UnkStruct_0203E724 * param0)
     u16 * v1 = sub_0203F118(v0, param0->unk_18[0]);
     int v2 = 0xffff;
 
-    if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         *v1 = 0;
         return 1;
     }
 
-    if (gCoreSys.padInput & PAD_KEY_UP) {
+    if (gCoreSys.pressedKeys & PAD_KEY_UP) {
         v2 = 0;
-    } else if (gCoreSys.padInput & PAD_KEY_DOWN) {
+    } else if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
         v2 = 1;
-    } else if (gCoreSys.padInput & PAD_KEY_LEFT) {
+    } else if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
         v2 = 2;
-    } else if (gCoreSys.padInput & PAD_KEY_RIGHT) {
+    } else if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
         v2 = 3;
     }
 
@@ -2714,7 +2714,7 @@ static BOOL sub_02040730 (UnkStruct_0203E724 * param0)
         return 1;
     }
 
-    if (gCoreSys.padInput & PAD_BUTTON_X) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_X) {
         *v1 = 1;
         return 1;
     }
@@ -5588,7 +5588,7 @@ static BOOL sub_02043A4C (UnkStruct_0203E724 * param0)
     u16 * v0 = sub_0203F118(param0->unk_34, param0->unk_18[0]);
     u32 v1 = sub_0205B91C(param0->unk_34->unk_7C);
 
-    if (gCoreSys.padInput & PAD_BUTTON_B) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
         v1 = sub_0205B9EC(param0->unk_34->unk_7C, 8);
 
         if (v1) {
@@ -8225,11 +8225,11 @@ static BOOL sub_0204666C (UnkStruct_0203E724 * param0)
 
     *v0 = 0;
 
-    if (gCoreSys.unk_44 & PAD_BUTTON_A) {
+    if (gCoreSys.heldKeys & PAD_BUTTON_A) {
         *v0 = 1;
     }
 
-    if (gCoreSys.unk_44 & PAD_BUTTON_B) {
+    if (gCoreSys.heldKeys & PAD_BUTTON_B) {
         *v0 = 1;
     }
 

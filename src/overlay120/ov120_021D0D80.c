@@ -78,7 +78,7 @@ int ov120_021D0DB0 (UnkStruct_020067E8 * param0, int * param1)
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        sub_02017DD4(4, 8);
+        SetAutorepeat(4, 8);
 
         ov120_021D0F24(v0);
         ov120_021D114C(v0);

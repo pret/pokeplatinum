@@ -141,7 +141,7 @@ int ov72_0223D7A0 (UnkStruct_020067E8 * param0, int * param1)
         v0->unk_10 = sub_0200B358(39);
         v0->unk_14 = MessageLoader_Init(0, 26, 425, 39);
 
-        sub_02017DD4(4, 8);
+        SetAutorepeat(4, 8);
         ov72_0223DA70();
         ov72_0223DA90(v0->unk_00);
         sub_0200F174(0, 1, 1, 0x0, 16, 1, 39);

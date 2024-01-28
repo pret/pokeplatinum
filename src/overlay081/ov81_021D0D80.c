@@ -82,7 +82,7 @@ int ov81_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     G2_BlendNone();
     G2S_BlendNone();
 
-    sub_02017DD4(4, 8);
+    SetAutorepeat(4, 8);
     Heap_Create(3, 42, 0x20000);
 
     v1 = sub_02006840(param0);
@@ -341,7 +341,7 @@ static int ov81_021D1174 (UnkStruct_ov81_021D1610 * param0)
 
 static int ov81_021D1188 (UnkStruct_ov81_021D1610 * param0)
 {
-    if (gCoreSys.padInput & PAD_KEY_LEFT) {
+    if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
         if (ov81_021D13CC(param0, -1) == 1) {
             return 2;
         }
@@ -349,7 +349,7 @@ static int ov81_021D1188 (UnkStruct_ov81_021D1610 * param0)
         return 1;
     }
 
-    if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_KEY_RIGHT)) {
+    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_KEY_RIGHT)) {
         if (ov81_021D13CC(param0, 1) == 1) {
             return 3;
         }
@@ -357,7 +357,7 @@ static int ov81_021D1188 (UnkStruct_ov81_021D1610 * param0)
         return 1;
     }
 
-    if (gCoreSys.padInput & PAD_BUTTON_B) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
         if (param0->unk_105C != 0) {
             if (ov81_021D13CC(param0, -1) == 1) {
                 return 2;
@@ -368,7 +368,7 @@ static int ov81_021D1188 (UnkStruct_ov81_021D1610 * param0)
         }
     }
 
-    if (gCoreSys.padInput & PAD_BUTTON_START) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_START) {
         sub_0208C120(1, 42);
         return 4;
     }

@@ -878,7 +878,7 @@ static BOOL ov5_021E0560 (UnkStruct_020508D4 * param0)
     case 2:
     {
         int v2 = sub_0205EA78(v0->unk_0C);
-        u32 v3, v4 = gCoreSys.padInput, v5 = gCoreSys.unk_44;
+        u32 v3, v4 = gCoreSys.pressedKeys, v5 = gCoreSys.heldKeys;
         int v6 = sub_02061308(v0->unk_0C, v4, v5);
 
         if ((v6 == -1) || (v6 == v2)) {

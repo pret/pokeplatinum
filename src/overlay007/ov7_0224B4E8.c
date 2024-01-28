@@ -513,7 +513,7 @@ static BOOL ov7_0224BC74 (UnkStruct_020508D4 * param0)
         break;
     case 6:
         if (sub_0205DA04(v1->unk_74)) {
-            if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 v1->unk_7C = 0;
             }
         }
@@ -524,7 +524,7 @@ static BOOL ov7_0224BC74 (UnkStruct_020508D4 * param0)
         v1->unk_7C++;
         break;
     case 8:
-        if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov7_0224BBA0(v1);
             ov7_0224B4E8(v1, 106);
             ov7_0224B5A8(v1);

@@ -492,7 +492,7 @@ static void ov10_0221F930 (UnkStruct_ov10_0221FB28 * param0)
         break;
     case 2:
         if (param0->unk_BBC == 1) {
-            if (gCoreSys.padInput & PAD_BUTTON_A) {
+            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
                 param0->unk_BB0 = 3;
             }
         }

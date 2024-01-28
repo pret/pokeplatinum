@@ -320,7 +320,7 @@ int ov98_022471C8 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_04 = sub_02018340(109);
 
     sub_0201DBEC(64, 109);
-    sub_02017DD4(4, 8);
+    SetAutorepeat(4, 8);
     ov98_02247510(v0->unk_04);
     sub_0201E3D8();
     sub_0201E450(4);
@@ -2219,7 +2219,7 @@ static int ov98_02249414 (UnkStruct_ov98_02247704 * param0)
 
 static int ov98_02249438 (UnkStruct_ov98_02247704 * param0)
 {
-    if (gCoreSys.padInput & PAD_BUTTON_A || gCoreSys.padInput & PAD_BUTTON_B) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_A || gCoreSys.pressedKeys & PAD_BUTTON_B) {
         Window_Clear(&param0->unk_68, 0);
         param0->unk_08 = 0;
     }

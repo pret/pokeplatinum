@@ -1332,7 +1332,7 @@ static void ov17_02249014 (SysTask * param0, void * param1)
         v0->unk_15 = 1;
     }
 
-    if ((v0->unk_00->unk_00->unk_155 == 0) && (v0->unk_18 < 30) && ((gCoreSys.padInput & PAD_BUTTON_A) || (gCoreSys.touchInput))) {
+    if ((v0->unk_00->unk_00->unk_155 == 0) && (v0->unk_18 < 30) && ((gCoreSys.pressedKeys & PAD_BUTTON_A) || (gCoreSys.touchInput))) {
         v0->unk_18 = 30;
         v1 = 0;
         v0->unk_13 = 0;

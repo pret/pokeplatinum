@@ -589,7 +589,7 @@ void ov21_021D3960 (UnkStruct_ov21_021D3320 * param0)
         return;
     }
 
-    if (gCoreSys.padInput) {
+    if (gCoreSys.pressedKeys) {
         if (param0->unk_1758 == 0) {
             param0->unk_1758 = 1;
         } else {

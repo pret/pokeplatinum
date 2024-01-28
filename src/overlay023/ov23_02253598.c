@@ -349,7 +349,7 @@ static void ov23_0225381C (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_022537D4 * v0 = param1;
 
-    if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         ov23_022537D4(param0, param1);
     }
 }

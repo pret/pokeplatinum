@@ -155,9 +155,9 @@ int ov20_021D0DF8 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov20_021D16E8 * v0 = sub_0200682C(param0);
 
-    v0->unk_30 = gCoreSys.padInput;
-    v0->unk_32 = gCoreSys.unk_44;
-    v0->unk_34 = gCoreSys.unk_4C;
+    v0->unk_30 = gCoreSys.pressedKeys;
+    v0->unk_32 = gCoreSys.heldKeys;
+    v0->unk_34 = gCoreSys.pressedKeysRepeatable;
 
     sub_0202404C(v0->unk_40);
 

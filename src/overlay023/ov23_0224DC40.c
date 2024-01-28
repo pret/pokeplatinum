@@ -629,7 +629,7 @@ static void ov23_0224E2D8 (SysTask * param0, void * param1)
         break;
     case 7:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            if (( PAD_BUTTON_A )&gCoreSys.padInput) {
+            if (( PAD_BUTTON_A )&gCoreSys.pressedKeys) {
                 v0->unk_37 = 4;
             }
         }
@@ -666,7 +666,7 @@ static void ov23_0224E2D8 (SysTask * param0, void * param1)
         break;
     case 15:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            if (( PAD_BUTTON_A )&gCoreSys.padInput) {
+            if (( PAD_BUTTON_A )&gCoreSys.pressedKeys) {
                 v0->unk_37 = 14;
             }
         }
@@ -815,7 +815,7 @@ static void ov23_0224E2D8 (SysTask * param0, void * param1)
         break;
     case 37:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            if (gCoreSys.padInput & PAD_BUTTON_A) {
+            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
                 v0->unk_37 = 38;
             }
         }
@@ -1093,7 +1093,7 @@ static void ov23_0224EC50 (SysTask * param0, void * param1)
     case 2:
         v0->unk_2E = 12;
 
-        if (gCoreSys.padInput & PAD_BUTTON_B) {
+        if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
             ov23_0224DC40(v0, 8);
             v0->unk_34 = 8;
         } else if (v0->unk_35 == 5) {
@@ -1121,7 +1121,7 @@ static void ov23_0224EC50 (SysTask * param0, void * param1)
         break;
     case 9:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            if (( PAD_BUTTON_A )&gCoreSys.padInput) {
+            if (( PAD_BUTTON_A )&gCoreSys.pressedKeys) {
                 v0->unk_34 = 4;
             }
         }
@@ -1179,7 +1179,7 @@ static void ov23_0224EC50 (SysTask * param0, void * param1)
         break;
     case 21:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            if (( PAD_BUTTON_A )&gCoreSys.padInput) {
+            if (( PAD_BUTTON_A )&gCoreSys.pressedKeys) {
                 ov23_0224DC40(v0, 15);
                 v0->unk_34 = 15;
             }

@@ -1383,7 +1383,7 @@ static void ov21_021E5F5C (UnkStruct_ov21_021E51DC * param0, UnkStruct_ov21_021E
 {
     int v0 = ov21_021D37BC(param1->unk_04);
 
-    if (gCoreSys.padInput & PAD_BUTTON_A) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
         param0->unk_28 = 1;
 
         param0->unk_18[0] = 0;

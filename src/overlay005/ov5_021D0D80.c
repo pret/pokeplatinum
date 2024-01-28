@@ -539,7 +539,7 @@ static void ov5_021D134C (UnkStruct_0203CDB0 * param0, u8 param1)
         ov5_021D15F4(param0);
     }
 
-    if (gCoreSys.padInput & PAD_BUTTON_X) {
+    if (gCoreSys.pressedKeys & PAD_BUTTON_X) {
         (void)0;
     }
 }
