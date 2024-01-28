@@ -607,7 +607,7 @@ static int ov56_02256A68 (UnkStruct_ov56_02256468 * param0)
             param0->unk_228 = v0 - 2;
             break;
         default:
-            if (gCoreSys.touchInput == 0) {
+            if (gCoreSys.touchPressed == 0) {
                 break;
             }
 
@@ -935,10 +935,10 @@ static void ov56_0225712C (UnkStruct_ov56_02256468 * param0)
 {
     param0->unk_2EC = 0;
 
-    if (gCoreSys.touchInput) {
+    if (gCoreSys.touchPressed) {
         param0->unk_2EC = 1;
     } else {
-        if (gCoreSys.unk_62) {
+        if (gCoreSys.touchHeld) {
             param0->unk_2ED--;
 
             if (param0->unk_2ED < 0) {

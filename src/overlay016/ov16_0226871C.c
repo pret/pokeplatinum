@@ -3768,7 +3768,7 @@ static void ov16_0226BD74 (SysTask * param0, void * param1)
     v2 = sub_0200316C(v1, 1);
     v3 = (16 - 8) * 2;
 
-    if (gCoreSys.unk_62 && ((v4 == 1) || (v5 == 1))) {
+    if (gCoreSys.touchHeld && ((v4 == 1) || (v5 == 1))) {
         if (memcmp(&v2[8], &v0->unk_5C[8], v3) == 0) {
             if (BattleSystem_BattleType(v0->unk_00) & 0x80) {
                 MI_CpuCopy16(&v0->unk_60[0], &v2[0], 0x20);

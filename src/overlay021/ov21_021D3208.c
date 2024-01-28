@@ -584,7 +584,7 @@ BOOL ov21_021D3954 (const UnkStruct_ov21_021D3320 * param0)
 
 void ov21_021D3960 (UnkStruct_ov21_021D3320 * param0)
 {
-    if (gCoreSys.unk_62) {
+    if (gCoreSys.touchHeld) {
         param0->unk_1758 = 0;
         return;
     }

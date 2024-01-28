@@ -47,8 +47,8 @@ static BOOL sub_0202260C (const UnkUnion_020225E0 * param0, u32 param1, u32 para
 
 int sub_02022644 (const UnkUnion_02022594 * param0)
 {
-    if (gCoreSys.unk_62) {
-        return sub_02022594(param0, gCoreSys.unk_5C, gCoreSys.unk_5E);
+    if (gCoreSys.touchHeld) {
+        return sub_02022594(param0, gCoreSys.touchX, gCoreSys.touchY);
     }
 
     return 0xffffffff;
@@ -56,8 +56,8 @@ int sub_02022644 (const UnkUnion_02022594 * param0)
 
 int sub_02022664 (const UnkUnion_02022594 * param0)
 {
-    if (gCoreSys.touchInput) {
-        return sub_02022594(param0, gCoreSys.unk_5C, gCoreSys.unk_5E);
+    if (gCoreSys.touchPressed) {
+        return sub_02022594(param0, gCoreSys.touchX, gCoreSys.touchY);
     }
 
     return 0xffffffff;
@@ -65,16 +65,16 @@ int sub_02022664 (const UnkUnion_02022594 * param0)
 
 int sub_02022684 (const UnkUnion_020225E0 * param0)
 {
-    if (gCoreSys.unk_62) {
+    if (gCoreSys.touchHeld) {
         int v0;
 
         for (v0 = 0; param0[v0].val2.unk_00 != 0xff; v0++) {
             if (param0[v0].val2.unk_00 == 0xfe) {
-                if (sub_020225E0(&param0[v0], gCoreSys.unk_5C, gCoreSys.unk_5E)) {
+                if (sub_020225E0(&param0[v0], gCoreSys.touchX, gCoreSys.touchY)) {
                     return v0;
                 }
             } else {
-                if (sub_0202260C(&param0[v0], gCoreSys.unk_5C, gCoreSys.unk_5E)) {
+                if (sub_0202260C(&param0[v0], gCoreSys.touchX, gCoreSys.touchY)) {
                     return v0;
                 }
             }
@@ -86,16 +86,16 @@ int sub_02022684 (const UnkUnion_020225E0 * param0)
 
 int sub_020226DC (const UnkUnion_020225E0 * param0)
 {
-    if (gCoreSys.touchInput) {
+    if (gCoreSys.touchPressed) {
         int v0;
 
         for (v0 = 0; param0[v0].val2.unk_00 != 0xff; v0++) {
             if (param0[v0].val2.unk_00 == 0xfe) {
-                if (sub_020225E0(&param0[v0], gCoreSys.unk_5C, gCoreSys.unk_5E)) {
+                if (sub_020225E0(&param0[v0], gCoreSys.touchX, gCoreSys.touchY)) {
                     return v0;
                 }
             } else {
-                if (sub_0202260C(&param0[v0], gCoreSys.unk_5C, gCoreSys.unk_5E)) {
+                if (sub_0202260C(&param0[v0], gCoreSys.touchX, gCoreSys.touchY)) {
                     return v0;
                 }
             }
@@ -107,11 +107,11 @@ int sub_020226DC (const UnkUnion_020225E0 * param0)
 
 BOOL sub_02022734 (const UnkUnion_020225E0 * param0)
 {
-    if (gCoreSys.unk_62) {
+    if (gCoreSys.touchHeld) {
         if (param0->val2.unk_00 == 0xfe) {
-            return sub_020225E0(param0, gCoreSys.unk_5C, gCoreSys.unk_5E);
+            return sub_020225E0(param0, gCoreSys.touchX, gCoreSys.touchY);
         } else {
-            return sub_0202260C(param0, gCoreSys.unk_5C, gCoreSys.unk_5E);
+            return sub_0202260C(param0, gCoreSys.touchX, gCoreSys.touchY);
         }
     }
 
@@ -120,11 +120,11 @@ BOOL sub_02022734 (const UnkUnion_020225E0 * param0)
 
 BOOL sub_02022760 (const UnkUnion_020225E0 * param0)
 {
-    if (gCoreSys.touchInput) {
+    if (gCoreSys.touchPressed) {
         if (param0->val2.unk_00 == 0xfe) {
-            return sub_020225E0(param0, gCoreSys.unk_5C, gCoreSys.unk_5E);
+            return sub_020225E0(param0, gCoreSys.touchX, gCoreSys.touchY);
         } else {
-            return sub_0202260C(param0, gCoreSys.unk_5C, gCoreSys.unk_5E);
+            return sub_0202260C(param0, gCoreSys.touchX, gCoreSys.touchY);
         }
     }
 
@@ -133,19 +133,19 @@ BOOL sub_02022760 (const UnkUnion_020225E0 * param0)
 
 BOOL sub_0202278C (void)
 {
-    return gCoreSys.unk_62;
+    return gCoreSys.touchHeld;
 }
 
 BOOL TouchScreen_Tapped(void)
 {
-    return gCoreSys.touchInput;
+    return gCoreSys.touchPressed;
 }
 
 BOOL sub_020227A4 (u32 * param0, u32 * param1)
 {
-    if (gCoreSys.unk_62) {
-        *param0 = gCoreSys.unk_5C;
-        *param1 = gCoreSys.unk_5E;
+    if (gCoreSys.touchHeld) {
+        *param0 = gCoreSys.touchX;
+        *param1 = gCoreSys.touchY;
         return 1;
     }
 
@@ -154,9 +154,9 @@ BOOL sub_020227A4 (u32 * param0, u32 * param1)
 
 BOOL sub_020227C0 (u32 * param0, u32 * param1)
 {
-    if (gCoreSys.touchInput) {
-        *param0 = gCoreSys.unk_5C;
-        *param1 = gCoreSys.unk_5E;
+    if (gCoreSys.touchPressed) {
+        *param0 = gCoreSys.touchX;
+        *param1 = gCoreSys.touchY;
         return 1;
     }
 

@@ -489,10 +489,10 @@ int ov113_0225CA04 (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 2:
-        if (gCoreSys.touchInput && (gCoreSys.unk_5E < 160)) {
+        if (gCoreSys.touchPressed && (gCoreSys.touchY < 160)) {
             if (ov113_0225E318(v0, ((32 << 8) / 6)) == 1) {
-                v0->unk_8D8[v0->unk_920].unk_09 = gCoreSys.unk_5C;
-                v0->unk_8D8[v0->unk_920].unk_0A = gCoreSys.unk_5E;
+                v0->unk_8D8[v0->unk_920].unk_09 = gCoreSys.touchX;
+                v0->unk_8D8[v0->unk_920].unk_0A = gCoreSys.touchY;
 
                 ov113_0225DDC0(v0, &v0->unk_8D8[v0->unk_920], v0->unk_168.unk_04);
                 ov113_02260818(&v0->unk_8D8[v0->unk_920]);

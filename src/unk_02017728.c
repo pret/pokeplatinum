@@ -284,10 +284,10 @@ void sub_02017AF4 (void)
     gCoreSys.autorepeatTimer = 0;
     gCoreSys.autorepeatRate = 4;
     gCoreSys.autorepeatDelay = 8;
-    gCoreSys.unk_5C = 0;
-    gCoreSys.unk_5E = 0;
-    gCoreSys.touchInput = 0;
-    gCoreSys.unk_62 = 0;
+    gCoreSys.touchX = 0;
+    gCoreSys.touchY = 0;
+    gCoreSys.touchPressed = 0;
+    gCoreSys.touchHeld = 0;
     gCoreSys.unk_64 = 0;
 
     TP_Init();
@@ -321,8 +321,8 @@ void sub_02017B8C (u8 param0)
 
 void ReadKeypadAndTouchpad (void)
 {
-    TPData v0;
-    TPData v1;
+    TPData tpRaw;
+    TPData tp;
     u32 padRead;
 
     if (PAD_DetectFold()) {
@@ -330,8 +330,8 @@ void ReadKeypadAndTouchpad (void)
         gCoreSys.pressedKeys = 0;
         gCoreSys.heldKeys = 0;
         gCoreSys.pressedKeysRepeatable = 0;
-        gCoreSys.touchInput = 0;
-        gCoreSys.unk_62 = 0;
+        gCoreSys.touchPressed = 0;
+        gCoreSys.touchHeld = 0;
         return;
     }
 
@@ -358,26 +358,24 @@ void ReadKeypadAndTouchpad (void)
     ApplyButtonModeToInput();
 
     if (gCoreSys.unk_64 == 0) {
-        while (TP_RequestRawSampling(&v0) != 0) {
-            (void)0;
-        }
+        while (TP_RequestRawSampling(&tpRaw) != 0);
     } else {
-        TP_GetLatestRawPointInAuto(&v0);
+        TP_GetLatestRawPointInAuto(&tpRaw);
     }
 
-    TP_GetCalibratedPoint(&v1, &v0);
+    TP_GetCalibratedPoint(&tp, &tpRaw);
 
-    if (v1.validity == TP_VALIDITY_VALID) {
-        gCoreSys.unk_5C = v1.x;
-        gCoreSys.unk_5E = v1.y;
+    if (tp.validity == TP_VALIDITY_VALID) {
+        gCoreSys.touchX = tp.x;
+        gCoreSys.touchY = tp.y;
     } else {
-        if (gCoreSys.unk_62) {
-            switch (v1.validity) {
+        if (gCoreSys.touchHeld) {
+            switch (tp.validity) {
             case TP_VALIDITY_INVALID_X:
-                gCoreSys.unk_5E = v1.y;
+                gCoreSys.touchY = tp.y;
                 break;
             case TP_VALIDITY_INVALID_Y:
-                gCoreSys.unk_5C = v1.x;
+                gCoreSys.touchX = tp.x;
                 break;
             case TP_VALIDITY_INVALID_XY:
                 break;
@@ -385,12 +383,12 @@ void ReadKeypadAndTouchpad (void)
                 break;
             }
         } else {
-            v1.touch = 0;
+            tp.touch = 0;
         }
     }
 
-    gCoreSys.touchInput = (u16)(v1.touch & (v1.touch ^ gCoreSys.unk_62));
-    gCoreSys.unk_62 = v1.touch;
+    gCoreSys.touchPressed = (u16)(tp.touch & (tp.touch ^ gCoreSys.touchHeld));
+    gCoreSys.touchHeld = tp.touch;
 }
 
 static void ApplyButtonModeToInput (void)

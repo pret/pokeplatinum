@@ -631,7 +631,7 @@ static void ov21_021E530C (u32 param0, UnkStruct_ov21_021E4D90 * param1, UnkStru
             ov21_021E5E18(param2);
         }
 
-        param2->unk_38 = gCoreSys.unk_5C;
+        param2->unk_38 = gCoreSys.touchX;
         param2->unk_30 = 1;
         break;
     case 1:
@@ -640,8 +640,8 @@ static void ov21_021E530C (u32 param0, UnkStruct_ov21_021E4D90 * param1, UnkStru
         }
 
         param2->unk_4C = 1;
-        param2->unk_54 = gCoreSys.unk_5C;
-        param2->unk_58 = gCoreSys.unk_5E;
+        param2->unk_54 = gCoreSys.touchX;
+        param2->unk_58 = gCoreSys.touchY;
         break;
     case 2:
         if (param2->unk_2C) {
@@ -663,18 +663,18 @@ static void ov21_021E537C (u32 param0, UnkStruct_ov21_021E4D90 * param1, UnkStru
     switch (param0) {
     case 0:
         if (param2->unk_30 == 1) {
-            v0 = gCoreSys.unk_5C - param2->unk_38;
+            v0 = gCoreSys.touchX - param2->unk_38;
 
             if (param2->unk_34 == 0) {
                 if (12 <= v0) {
                     param2->unk_34 = 1;
-                    param2->unk_38 = gCoreSys.unk_5C;
+                    param2->unk_38 = gCoreSys.touchX;
                     Sound_PlayEffect(1527);
                 }
             } else {
                 if (-12 >= v0) {
                     param2->unk_34 = 0;
-                    param2->unk_38 = gCoreSys.unk_5C;
+                    param2->unk_38 = gCoreSys.touchX;
                     Sound_PlayEffect(1527);
                 }
             }
@@ -686,8 +686,8 @@ static void ov21_021E537C (u32 param0, UnkStruct_ov21_021E4D90 * param1, UnkStru
             ov21_021E5AAC(param2);
             ov21_021E5AD8(param2);
 
-            param2->unk_54 = gCoreSys.unk_5C;
-            param2->unk_58 = gCoreSys.unk_5E;
+            param2->unk_54 = gCoreSys.touchX;
+            param2->unk_58 = gCoreSys.touchY;
         }
         break;
     case 2:
@@ -696,11 +696,11 @@ static void ov21_021E537C (u32 param0, UnkStruct_ov21_021E4D90 * param1, UnkStru
                 param2->unk_20 = 1;
                 ov21_021E5ED8(param2, 0);
             } else {
-                if (gCoreSys.unk_5E < (99 - -16) + 16) {
+                if (gCoreSys.touchY < (99 - -16) + 16) {
                     if (param2->unk_34 == 0) {
-                        ov21_021E5BE4(param2, gCoreSys.unk_5C);
+                        ov21_021E5BE4(param2, gCoreSys.touchX);
                     } else {
-                        ov21_021E5C18(param2, gCoreSys.unk_5C);
+                        ov21_021E5C18(param2, gCoreSys.touchX);
                     }
 
                     param2->unk_3C = 0;
@@ -1022,8 +1022,8 @@ static void ov21_021E5A44 (UnkStruct_ov21_021E51DC * param0)
 
     v1 = param0->unk_54 - 51;
     v0 = param0->unk_58 - 157;
-    v3 = gCoreSys.unk_5C - 51;
-    v2 = gCoreSys.unk_5E - 157;
+    v3 = gCoreSys.touchX - 51;
+    v2 = gCoreSys.touchY - 157;
     v4 = sub_0201D4CC(v1, v0, v3, v2, 0);
 
     if (MATH_IAbs(v4) < 1) {

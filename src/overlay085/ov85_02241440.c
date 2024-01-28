@@ -757,7 +757,7 @@ static int ov85_02241D10 (UnkStruct_ov85_022417E4 * param0)
         return 1;
     }
 
-    if ((gCoreSys.pressedKeys & PAD_BUTTON_B) || (gCoreSys.touchInput)) {
+    if ((gCoreSys.pressedKeys & PAD_BUTTON_B) || (gCoreSys.touchPressed)) {
         sub_0208C120(1, 36);
         return 3;
     }

@@ -2247,7 +2247,7 @@ static int sub_02088898 (UnkStruct_02087A10 * param0, u16 param1, int param2)
         }
     }
 
-    if ((sub_02021D34(param0->unk_390[8]) == 0) && (gCoreSys.touchInput == 0)) {
+    if ((sub_02021D34(param0->unk_390[8]) == 0) && (gCoreSys.touchPressed == 0)) {
         sub_02021CAC(param0->unk_390[8], 1);
         return 2;
     }
@@ -2620,9 +2620,9 @@ static BOOL sub_0208903C (UnkStruct_02087A10 * param0)
         v1 = 4;
     }
 
-    if (gCoreSys.touchInput) {
-        v2 = gCoreSys.unk_5C;
-        v3 = gCoreSys.unk_5E;
+    if (gCoreSys.touchPressed) {
+        v2 = gCoreSys.touchX;
+        v3 = gCoreSys.touchY;
 
         for (v0 = v1; v0 < (NELEMS(Unk_020F2A14)); v0++) {
             v4 = Unk_020F2A14[v0].unk_00;

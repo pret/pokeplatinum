@@ -36,10 +36,10 @@ typedef struct CoreSys {
     int autorepeatTimer;
     int autorepeatRate;
     int autorepeatDelay;
-    u16 unk_5C;
-    u16 unk_5E;
-    u16 touchInput;
-    u16 unk_62;
+    u16 touchX;
+    u16 touchY;
+    u16 touchPressed;
+    u16 touchHeld;
     u8 unk_64;
     u8 unk_65;
     u8 unk_66;

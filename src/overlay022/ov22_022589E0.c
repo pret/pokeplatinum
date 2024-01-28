@@ -275,9 +275,9 @@ static void ov22_02258D4C (UnkStruct_ov22_02258A48 * param0)
     int v1, v2;
 
     if (v0->unk_10 != NULL) {
-        if ((gCoreSys.unk_5C != 0xffff) && (gCoreSys.unk_5C != 0xffff)) {
-            v1 = gCoreSys.unk_5C - v0->unk_14;
-            v2 = gCoreSys.unk_5E - v0->unk_18;
+        if ((gCoreSys.touchX != 0xffff) && (gCoreSys.touchX != 0xffff)) {
+            v1 = gCoreSys.touchX - v0->unk_14;
+            v2 = gCoreSys.touchY - v0->unk_18;
 
             ov22_022595F8(v0->unk_10, v1, v2);
         }
@@ -312,12 +312,12 @@ static void ov22_02258DAC (UnkStruct_ov22_02258A48 * param0)
     int v9, v10;
 
     if (v0->unk_10 != NULL) {
-        if ((gCoreSys.unk_5C != 0xffff) && (gCoreSys.unk_5C != 0xffff)) {
+        if ((gCoreSys.touchX != 0xffff) && (gCoreSys.touchX != 0xffff)) {
             ov22_022596B0(v0->unk_10, &v7, &v9, &v8, &v10);
             ov22_02259698(v0->unk_10, &v1, &v2);
 
-            v3 = gCoreSys.unk_5C - v0->unk_14;
-            v4 = gCoreSys.unk_5E - v0->unk_18;
+            v3 = gCoreSys.touchX - v0->unk_14;
+            v4 = gCoreSys.touchY - v0->unk_18;
 
             v5 = v3 + v7;
             v6 = v4 + v8;

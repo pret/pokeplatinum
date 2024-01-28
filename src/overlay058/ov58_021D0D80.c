@@ -890,7 +890,7 @@ static void ov58_021D1A80 (UnkStruct_02095EAC * param0)
     sub_02021CAC(param0->unk_23C[sub_0203608C()], 0);
 
     if (v1 != 0xffffffff) {
-        ov58_021D1A10(param0->unk_23C[sub_0203608C()], gCoreSys.unk_5C, gCoreSys.unk_5E);
+        ov58_021D1A10(param0->unk_23C[sub_0203608C()], gCoreSys.touchX, gCoreSys.touchY);
         sub_02021CAC(param0->unk_23C[sub_0203608C()], 1);
     }
 

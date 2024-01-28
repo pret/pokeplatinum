@@ -283,18 +283,18 @@ static BOOL ov73_021D0FFC (void)
     BOOL v0 = 0;
     u16 v1, v2;
 
-    if (gCoreSys.touchInput) {
-        if ((gCoreSys.unk_5C < 256) && (gCoreSys.unk_5E < 192)) {
-            if (gCoreSys.unk_5C < 128) {
-                v1 = 128 - gCoreSys.unk_5C;
+    if (gCoreSys.touchPressed) {
+        if ((gCoreSys.touchX < 256) && (gCoreSys.touchY < 192)) {
+            if (gCoreSys.touchX < 128) {
+                v1 = 128 - gCoreSys.touchX;
             } else {
-                v1 = gCoreSys.unk_5C - 128;
+                v1 = gCoreSys.touchX - 128;
             }
 
-            if (gCoreSys.unk_5E < 100) {
-                v2 = 100 - gCoreSys.unk_5E;
+            if (gCoreSys.touchY < 100) {
+                v2 = 100 - gCoreSys.touchY;
             } else {
-                v2 = gCoreSys.unk_5E - 100;
+                v2 = gCoreSys.touchY - 100;
             }
 
             if ((v1 * v1 + v2 * v2) <= 16 * 16) {

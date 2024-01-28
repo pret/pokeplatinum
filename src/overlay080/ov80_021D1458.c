@@ -396,7 +396,7 @@ static int ov80_021D1848 (UnkStruct_ov80_021D2A08 * param0, int param1)
 
     v1 = 0x12;
 
-    if (sub_0201C784(param0->unk_28, 5, gCoreSys.unk_5C, gCoreSys.unk_5E, &v1) == 0) {
+    if (sub_0201C784(param0->unk_28, 5, gCoreSys.touchX, gCoreSys.touchY, &v1) == 0) {
         return v0;
     }
 

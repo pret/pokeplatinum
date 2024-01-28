@@ -1367,7 +1367,7 @@ static void ov23_02255F40 (UnkStruct_0203CDB0 * param0, UnkStruct_ov23_02255A98 
 
     v6 = param0->unk_8C;
 
-    ov23_02255F28(gCoreSys.unk_5C, gCoreSys.unk_5E, param2);
+    ov23_02255F28(gCoreSys.touchX, gCoreSys.touchY, param2);
 
     v1 = ov5_021EAFA4(param2->unk_00, param2->unk_04, v6);
     v2 = v1.x / (FX32_ONE * 16);
@@ -1409,7 +1409,7 @@ static void ov23_02256000 (UnkStruct_0203CDB0 * param0, UnkStruct_ov23_02256000 
 
     v4 = param0->unk_8C;
 
-    ov23_02255F28(gCoreSys.unk_5C, gCoreSys.unk_5E, param1);
+    ov23_02255F28(gCoreSys.touchX, gCoreSys.touchY, param1);
 
     v1 = ov5_021EAFA4(param1->unk_00, param1->unk_04, v4);
     v2 = v1.x / (FX32_ONE * 16);
@@ -1439,14 +1439,14 @@ static BOOL ov23_02256098 (UnkStruct_ov23_02256098 * param0, UnkStruct_0203CDB0 
     v1 = 0;
     *param2 = 0;
 
-    if (gCoreSys.touchInput) {
+    if (gCoreSys.touchPressed) {
         if (!gCoreSys.heldKeys) {
             param0->unk_4F0.unk_08 = 1;
             ov23_02255F40(param1, &(param0->unk_3C), &param0->unk_4F0);
         }
 
         v1 = 1;
-    } else if (gCoreSys.unk_62) {
+    } else if (gCoreSys.touchHeld) {
         if (param0->unk_4F0.unk_08) {
             ov23_02255F40(param1, &(param0->unk_3C), &param0->unk_4F0);
         }
@@ -1470,14 +1470,14 @@ static BOOL ov23_02256104 (UnkStruct_ov23_02256098 * param0, UnkStruct_0203CDB0 
     v1 = 0;
     *param2 = 0;
 
-    if (gCoreSys.touchInput) {
+    if (gCoreSys.touchPressed) {
         if (!gCoreSys.heldKeys) {
             param0->unk_4F0.unk_08 = 1;
             ov23_02256000(param1, &param0->unk_4F0, param0->unk_4FC);
         }
 
         v1 = 1;
-    } else if (gCoreSys.unk_62) {
+    } else if (gCoreSys.touchHeld) {
         if (param0->unk_4F0.unk_08) {
             ov23_02256000(param1, &param0->unk_4F0, param0->unk_4FC);
         }
@@ -1501,7 +1501,7 @@ static BOOL ov23_02256174 (UnkStruct_ov23_02256098 * param0, UnkStruct_0203CDB0 
     v1 = 0;
     *param2 = 0;
 
-    if (gCoreSys.touchInput) {
+    if (gCoreSys.touchPressed) {
         if (!gCoreSys.heldKeys) {
             param0->unk_4F0.unk_08 = 1;
             *param2 = 1;
@@ -1524,14 +1524,14 @@ static BOOL ov23_022561BC (UnkStruct_ov23_02256098 * param0, UnkStruct_0203CDB0 
     v1 = 0;
     *param2 = 0;
 
-    if (gCoreSys.touchInput) {
+    if (gCoreSys.touchPressed) {
         if (!gCoreSys.heldKeys) {
             param0->unk_4F0.unk_08 = 1;
             ov23_02255F40(param1, &(param0->unk_3C), &param0->unk_4F0);
         }
 
         v1 = 1;
-    } else if (gCoreSys.unk_62) {
+    } else if (gCoreSys.touchHeld) {
         if (param0->unk_4F0.unk_08) {
             ov23_02255F40(param1, &(param0->unk_3C), &param0->unk_4F0);
         }

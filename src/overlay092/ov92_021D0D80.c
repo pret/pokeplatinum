@@ -856,8 +856,8 @@ static void ov92_021D1700 (UnkStruct_ov92_021D1B24 * param0)
 
     param0->unk_BAF8 = 0;
 
-    if (gCoreSys.touchInput) {
-        if ((gCoreSys.unk_5C >= (25 * 8)) && (gCoreSys.unk_5C <= ((25 + 6) * 8)) && (gCoreSys.unk_5E >= (21 * 8)) && (gCoreSys.unk_5E <= ((21 + 2) * 8))) {
+    if (gCoreSys.touchPressed) {
+        if ((gCoreSys.touchX >= (25 * 8)) && (gCoreSys.touchX <= ((25 + 6) * 8)) && (gCoreSys.touchY >= (21 * 8)) && (gCoreSys.touchY <= ((21 + 2) * 8))) {
             param0->unk_BAF8 = PAD_BUTTON_B;
             return;
         } else {
@@ -866,13 +866,13 @@ static void ov92_021D1700 (UnkStruct_ov92_021D1B24 * param0)
             param0->unk_BB0C = 0;
             param0->unk_BB10 = 0;
             param0->unk_BAF8 = 0;
-            param0->unk_BB00 = gCoreSys.unk_5C;
-            param0->unk_BB04 = gCoreSys.unk_5E;
+            param0->unk_BB00 = gCoreSys.touchX;
+            param0->unk_BB04 = gCoreSys.touchY;
             param0->unk_BB10 = 4;
         }
     }
 
-    if (gCoreSys.unk_62) {
+    if (gCoreSys.touchHeld) {
         switch (param0->unk_BAFC) {
         case 0:
             if (!param0->unk_BB10) {
@@ -885,8 +885,8 @@ static void ov92_021D1700 (UnkStruct_ov92_021D1B24 * param0)
             param0->unk_BAF8 = v0 | v2;
             param0->unk_BB08 = v1;
             param0->unk_BB0C = v3;
-            param0->unk_BB00 = gCoreSys.unk_5C;
-            param0->unk_BB04 = gCoreSys.unk_5E;
+            param0->unk_BB00 = gCoreSys.touchX;
+            param0->unk_BB04 = gCoreSys.touchY;
             break;
         }
     } else {
@@ -908,8 +908,8 @@ static void ov92_021D1818 (int param0, int param1, int * param2, int * param3, i
     int v2 = 0;
     int v3 = 0;
 
-    if (gCoreSys.unk_5C != 0xffff) {
-        v2 = gCoreSys.unk_5C - param0;
+    if (gCoreSys.touchX != 0xffff) {
+        v2 = gCoreSys.touchX - param0;
 
         if (v2 < 0) {
             v2 ^= -1;
@@ -925,8 +925,8 @@ static void ov92_021D1818 (int param0, int param1, int * param2, int * param3, i
     *param2 = v0;
     *param3 = v2;
 
-    if (gCoreSys.unk_5E != 0xffff) {
-        v3 = gCoreSys.unk_5E - param1;
+    if (gCoreSys.touchY != 0xffff) {
+        v3 = gCoreSys.touchY - param1;
 
         if (v3 < 0) {
             v3 ^= -1;

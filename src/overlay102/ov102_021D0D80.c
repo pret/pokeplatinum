@@ -147,7 +147,7 @@ int ov102_021D0E2C (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 4:
-        if ((((gCoreSys.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A)) || (((gCoreSys.pressedKeys & PAD_BUTTON_B) == PAD_BUTTON_B)) || (gCoreSys.touchInput)) {
+        if ((((gCoreSys.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A)) || (((gCoreSys.pressedKeys & PAD_BUTTON_B) == PAD_BUTTON_B)) || (gCoreSys.touchPressed)) {
             sub_0200F174(0, 0, 0, 0x0, 6, 1, v0->unk_00);
             *param1 = 5;
         }
