@@ -8,7 +8,7 @@
 #include <nnsys.h>
 
 void sub_02003B60(ChatotCry * param0, AnimationControlFlags * param1);
-void sub_02003BD8(void);
+void UpdateSound(void);
 void sub_02003D0C(int param0);
 UnkStruct_02003D54 * sub_02003D54(void);
 void * sub_02003D5C(int param0);

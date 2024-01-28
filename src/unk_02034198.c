@@ -1877,7 +1877,7 @@ void sub_020361BC (MATHRandContext32 * param0)
     RTCTime v2;
 
     sub_0201384C(&v1, &v2);
-    v0 = (((((((u64)v1.year * 16ULL + v1.month) * 32ULL) + v1.day) * 32ULL + v2.hour) * 64ULL + v2.minute) * 64ULL + (v2.second + gCoreSys.unk_2C));
+    v0 = (((((((u64)v1.year * 16ULL + v1.month) * 32ULL) + v1.day) * 32ULL + v2.hour) * 64ULL + v2.minute) * 64ULL + (v2.second + gCoreSys.frameCounter));
     MATH_InitRand32(param0, v0);
 }
 

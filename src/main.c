@@ -53,9 +53,9 @@ typedef struct {
 
 static void sub_02000E3C(void);
 static void sub_02000E54(void);
-static void sub_02000EE4(void);
+static void WaitFrame(void);
 static void sub_02000F10(int param0);
-static void sub_02000F60(int param0);
+static void SoftReset(int param0);
 static void sub_02000F94(int param0, int param1);
 static void sub_02000F30(void);
 
@@ -128,7 +128,7 @@ void NitroMain (void)
 
         if ((gCoreSys.heldKeysRaw & RESET_COMBO) == RESET_COMBO) {
             if (gCoreSys.inhibitReset == 0) {
-                sub_02000F60(0);
+                SoftReset(0);
             }
         }
 
@@ -140,7 +140,7 @@ void NitroMain (void)
 
             if (!gCoreSys.unk_30) {
                 OS_WaitIrq(1, OS_IE_V_BLANK);
-                gCoreSys.unk_2C++;
+                gCoreSys.frameCounter++;
             }
         }
 
@@ -151,7 +151,7 @@ void NitroMain (void)
 
         OS_WaitIrq(1, OS_IE_V_BLANK);
 
-        gCoreSys.unk_2C++;
+        gCoreSys.frameCounter++;
         gCoreSys.unk_30 = 0;
 
         sub_0200ABF0();
@@ -161,7 +161,7 @@ void NitroMain (void)
             gCoreSys.mainCallback(gCoreSys.mainCallbackData);
         }
 
-        sub_02003BD8();
+        UpdateSound();
         sub_0201CDD4(gCoreSys.unk_20);
     }
 }
@@ -213,13 +213,13 @@ void sub_02000EC4 (FSOverlayID param0, const UnkStruct_0208BE5C * param1)
     Unk_02101D28.unk_0C = param1;
 }
 
-static void sub_02000EE4 (void)
+static void WaitFrame (void)
 {
     sub_020349EC();
 
     OS_WaitIrq(1, OS_IE_V_BLANK);
 
-    gCoreSys.unk_2C++;
+    gCoreSys.frameCounter++;
     gCoreSys.unk_30 = 0;
 
     if (gCoreSys.mainCallback != NULL) {
@@ -235,7 +235,7 @@ static void sub_02000F10 (int param0)
         }
     }
 
-    sub_02000EE4();
+    WaitFrame();
 }
 
 static void sub_02000F30 (void)
@@ -255,7 +255,7 @@ static void sub_02000F30 (void)
     }
 }
 
-static void sub_02000F60 (int param0)
+static void SoftReset (int param0)
 {
     sub_0200F344(0, 0x7fff);
     sub_0200F344(1, 0x7fff);
@@ -272,7 +272,7 @@ static void sub_02000F60 (int param0)
 
 static void sub_02000F94 (int param0, int param1)
 {
-    int v0;
+    int elapsed;
     BOOL v1;
 
     if (param1 == 3) {
@@ -292,29 +292,29 @@ static void sub_02000F94 (int param0, int param1)
     }
 
     sub_02037DB0();
-    sub_02000EE4();
-    sub_02003BD8();
+    WaitFrame();
+    UpdateSound();
 
-    v0 = 0;
+    elapsed = 0;
 
     while (TRUE) {
         HandleConsoleFold();
         ReadKeypadAndTouchpad();
 
-        if (v0 >= 30) {
+        if (elapsed >= 30) {
             if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
                 break;
             }
         }
 
-        sub_02000EE4();
+        WaitFrame();
 
-        if (v0 < 30) {
-            v0++;
+        if (elapsed < 30) {
+            elapsed++;
         }
     }
 
-    sub_02000F60(param0);
+    SoftReset(param0);
 }
 
 void InitRNG (void)
@@ -325,7 +325,7 @@ void InitRNG (void)
 
     sub_0201384C(&v0, &v1);
 
-    v2 = v0.year + v0.month * 0x100 * v0.day * 0x10000 + v1.hour * 0x10000 + (v1.minute + v1.second) * 0x1000000 + gCoreSys.unk_2C;
+    v2 = v0.year + v0.month * 0x100 * v0.day * 0x10000 + v1.hour * 0x10000 + (v1.minute + v1.second) * 0x1000000 + gCoreSys.frameCounter;
 
     MTRNG_SetSeed(v2);
     LCRNG_SetSeed(v2);

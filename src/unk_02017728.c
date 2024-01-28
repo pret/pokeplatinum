@@ -179,7 +179,7 @@ void sub_0201789C (void)
     gCoreSys.unk_10 = NULL;
     gCoreSys.unk_14 = NULL;
     gCoreSys.unk_70 = NULL;
-    gCoreSys.unk_2C = 0;
+    gCoreSys.frameCounter = 0;
     gCoreSys.unk_65 = 0;
 
     CARD_SetCacheFlushThreshold(0x500, 0x2400);

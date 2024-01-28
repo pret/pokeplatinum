@@ -104,7 +104,7 @@ void Underground_Init (UnkStruct_020298B0 * param0)
     RTCTime v2;
 
     sub_0201384C(&v1, &v2);
-    v0 = (((((((u32)v1.year * 32ULL + v1.month) * 32ULL) + v1.day) * 32ULL + v2.hour) * 32ULL + v2.minute) * 32ULL + (v2.second + gCoreSys.unk_2C));
+    v0 = (((((((u32)v1.year * 32ULL + v1.month) * 32ULL) + v1.day) * 32ULL + v2.hour) * 32ULL + v2.minute) * 32ULL + (v2.second + gCoreSys.frameCounter));
 
     MI_CpuFill8(param0, 0, sizeof(UnkStruct_020298B0));
 

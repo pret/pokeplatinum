@@ -24,7 +24,7 @@ typedef struct CoreSys {
     UnkStruct_0201CD88 * unk_20;
     UnkStruct_0201CD88 * unk_24;
     u32 * unk_28;
-    u32 unk_2C;
+    u32 frameCounter;
     u32 unk_30;
     enum ButtonMode buttonMode;
     u32 heldKeysRaw;
