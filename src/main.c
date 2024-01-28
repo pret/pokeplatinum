@@ -56,8 +56,8 @@ static void sub_02000E54(void);
 static void WaitFrame(void);
 static void sub_02000F10(int param0);
 static void SoftReset(int param0);
-static void sub_02000F94(int param0, int param1);
-static void sub_02000F30(void);
+static void HeapCanaryFailed(int param0, int param1);
+static void CheckHeapCanary(void);
 
 static UnkStruct_02101D28 Unk_02101D28;
 // This variable doesn't really makes sense. If it's set to off, the game will
@@ -122,7 +122,7 @@ void NitroMain (void)
     gIgnoreCartridgeForWake = FALSE;
 
     while (TRUE) {
-        sub_02000F30();
+        CheckHeapCanary();
         HandleConsoleFold();
         ReadKeypadAndTouchpad();
 
@@ -133,7 +133,7 @@ void NitroMain (void)
         }
 
         if (sub_020349EC()) {
-            sub_02000F30();
+            CheckHeapCanary();
             sub_02000E54();
             sub_0201CDD4(gCoreSys.unk_18);
             sub_0201CDD4(gCoreSys.unk_24);
@@ -238,19 +238,19 @@ static void sub_02000F10 (int param0)
     WaitFrame();
 }
 
-static void sub_02000F30 (void)
+static void CheckHeapCanary (void)
 {
     int v0 = sub_020389D8();
 
     switch (v0) {
     case 1:
-        sub_02000F94(1, v0);
+        HeapCanaryFailed(1, v0);
         break;
     case 2:
-        sub_02000F94(0, v0);
+        HeapCanaryFailed(0, v0);
         break;
     case 3:
-        sub_02000F94(1, v0);
+        HeapCanaryFailed(1, v0);
         break;
     }
 }
@@ -270,7 +270,7 @@ static void SoftReset (int param0)
     }
 }
 
-static void sub_02000F94 (int param0, int param1)
+static void HeapCanaryFailed (int param0, int param1)
 {
     int elapsed;
     BOOL v1;

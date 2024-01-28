@@ -47,7 +47,7 @@ typedef struct CoreSys {
     u8 inhibitReset;
     u8 padding_69[3];
     BOOL unk_6C;
-    u32 * unk_70;
+    u32 * heapCanary;
 } CoreSys;
 
 extern CoreSys gCoreSys;

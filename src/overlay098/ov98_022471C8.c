@@ -1557,7 +1557,7 @@ static int ov98_0224897C (UnkStruct_ov98_02247704 * param0)
     DWC_CleanupInet();
 
     sub_02039794();
-    sub_02017B8C(4);
+    SleepUnlock(4);
 
     if (param0->unk_00->unk_11C == 1) {
         ov94_0223B7AC();
@@ -1593,7 +1593,7 @@ static int ov98_022489DC (UnkStruct_ov98_02247704 * param0)
         }
         break;
     case 2:
-        sub_02017B7C(4);
+        SleepLock(4);
 
         DWC_InitInetEx(&param0->unk_00->unk_14, 2, 1, 20);
         DWC_SetAuthServer((DWC_CONNECTINET_AUTH_RELEASE));
@@ -1627,7 +1627,7 @@ static int ov98_02248A68 (UnkStruct_ov98_02247704 * param0)
 
             sub_02039794();
             sub_0203859C();
-            sub_02017B8C(4);
+            SleepUnlock(4);
 
             if (param0->unk_00->unk_11C == 1) {
                 ov94_0223B7AC();
@@ -1707,7 +1707,7 @@ static int ov98_02248B24 (UnkStruct_ov98_02247704 * param0)
 
             sub_02039794();
             sub_0203859C();
-            sub_02017B8C(4);
+            SleepUnlock(4);
 
             if (param0->unk_00->unk_11C == 1) {
                 ov94_0223B7AC();
@@ -2172,7 +2172,7 @@ static int ov98_02249320 (UnkStruct_ov98_02247704 * param0)
 
         sub_02039794();
         sub_0203859C();
-        sub_02017B8C(4);
+        SleepUnlock(4);
 
         if (param0->unk_00->unk_11C == 1) {
             ov94_0223B7AC();
@@ -2337,7 +2337,7 @@ static int ov98_022495C4 (UnkStruct_ov98_02247704 * param0)
             DWC_CleanupInet();
 
             sub_02039794();
-            sub_02017B8C(4);
+            SleepUnlock(4);
 
             if (param0->unk_00->unk_11C == 1) {
                 ov94_0223B7AC();

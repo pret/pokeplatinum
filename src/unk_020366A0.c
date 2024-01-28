@@ -2005,7 +2005,7 @@ void sub_02038350 (void)
         return;
     }
 
-    sub_02017DF0(1);
+    ResetUnlock(1);
     sub_02032A70();
     sub_02036C94(sub_020373B8, 5);
 }
@@ -2075,14 +2075,14 @@ void sub_02038438 (SaveData * param0)
         Unk_021C07D4->unk_51 = 1;
         Unk_021C07D4->unk_28 = param0;
         sub_020388F4(0, 1);
-        sub_02017DE0(1);
+        ResetLock(1);
     }
 }
 
 void sub_0203848C (void)
 {
     if (Unk_021C07D4) {
-        sub_02017DF0(1);
+        ResetUnlock(1);
         sub_020388F4(0, 0);
         Heap_FreeToHeap(Unk_021C07D4);
         Unk_021C07D4 = NULL;
@@ -2100,14 +2100,14 @@ void sub_020384C0 (SaveData * param0)
         Unk_021C07D4->unk_51 = 1;
         Unk_021C07D4->unk_28 = param0;
         sub_020388F4(0, 1);
-        sub_02017DE0(1);
+        ResetLock(1);
     }
 }
 
 void sub_02038514 (void)
 {
     if (Unk_021C07D4) {
-        sub_02017DF0(1);
+        ResetUnlock(1);
         sub_020388F4(0, 0);
         Heap_FreeToHeap(Unk_021C07D4);
         Unk_021C07D4 = NULL;
@@ -2125,14 +2125,14 @@ void sub_02038548 (SaveData * param0)
         Unk_021C07D4->unk_51 = 1;
         Unk_021C07D4->unk_28 = param0;
         sub_020388F4(0, 1);
-        sub_02017DE0(1);
+        ResetLock(1);
     }
 }
 
 void sub_0203859C (void)
 {
     if (Unk_021C07D4) {
-        sub_02017DF0(1);
+        ResetUnlock(1);
         sub_020388F4(0, 0);
         Heap_FreeToHeap(Unk_021C07D4);
         Unk_021C07D4 = NULL;
@@ -2230,7 +2230,7 @@ void * sub_0203871C (SaveData * param0, int param1)
         return NULL;
     }
 
-    sub_02017DE0(1);
+    ResetLock(1);
     Heap_CreateAtEnd(3, 15, 0x7080);
     sub_020366A0(param0, 23);
     Unk_021C07D4->unk_00 = Heap_AllocFromHeap(15, param1);
@@ -2252,7 +2252,7 @@ void sub_0203878C (SaveData * param0, const void * param1)
         return;
     }
 
-    sub_02017DE0(1);
+    ResetLock(1);
     Heap_CreateAtEnd(3, 15, 0x7080);
     sub_020366A0(param0, 33);
 
@@ -2416,7 +2416,7 @@ void sub_020389C4 (u8 param0)
 
 u8 sub_020389D8 (void)
 {
-    if (sub_02017E54()) {
+    if (HeapCanaryOK()) {
         return 0;
     }
 
@@ -2459,7 +2459,7 @@ void sub_02038A20 (int param0)
     if (sub_02038938()) {
         if (sub_020360F0() || sub_020383E8() || sub_020385D0()
             || (Unk_021C07D4->unk_59 != 0) || sub_0203881C()) {
-            if (!sub_02017E54()) {
+            if (!HeapCanaryOK()) {
                 if (!sub_020389D8()) {
                     sub_0200569C();
                     sub_02024850(Unk_021C07D4->unk_28);
@@ -2701,7 +2701,7 @@ static void sub_02038D94 (void)
     v0 = ov66_02232854();
 
     if (v0) {
-        sub_02017DF0(1);
+        ResetUnlock(1);
         sub_02032A70();
         sub_02036C94(sub_020373B8, 5);
         sub_020362B4(0);

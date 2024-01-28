@@ -178,7 +178,7 @@ void sub_0201789C (void)
     gCoreSys.hblankCallback = NULL;
     gCoreSys.unk_10 = NULL;
     gCoreSys.unk_14 = NULL;
-    gCoreSys.unk_70 = NULL;
+    gCoreSys.heapCanary = NULL;
     gCoreSys.frameCounter = 0;
     gCoreSys.unk_65 = 0;
 
@@ -302,12 +302,12 @@ void sub_02017B70 (int param0)
     gCoreSys.unk_66 = param0;
 }
 
-void sub_02017B7C (u8 param0)
+void SleepLock (u8 param0)
 {
     gCoreSys.inhibitSleep |= param0;
 }
 
-void sub_02017B8C (u8 param0)
+void SleepUnlock (u8 param0)
 {
     gCoreSys.inhibitSleep &= ~(param0);
 }
@@ -473,36 +473,38 @@ void SetAutorepeat (int rate, int delay)
     gCoreSys.autorepeatDelay = delay;
 }
 
-void sub_02017DE0 (u8 param0)
+void ResetLock (u8 param0)
 {
     gCoreSys.inhibitReset |= param0;
 }
 
-void sub_02017DF0 (u8 param0)
+void ResetUnlock (u8 param0)
 {
     gCoreSys.inhibitReset &= ~(param0);
 }
 
-void sub_02017E00 (int param0)
-{
-    GF_ASSERT(gCoreSys.unk_70 == NULL);
+#define HEAP_CANARY 0x2f93a1bc
 
-    gCoreSys.unk_70 = Heap_AllocFromHeapAtEnd(param0, sizeof(u32));
-    *(gCoreSys.unk_70) = 0x2f93a1bc;
+void InitHeapCanary (int heapID)
+{
+    GF_ASSERT(gCoreSys.heapCanary == NULL);
+
+    gCoreSys.heapCanary = Heap_AllocFromHeapAtEnd(heapID, sizeof(u32));
+    *(gCoreSys.heapCanary) = HEAP_CANARY;
 }
 
-void sub_02017E2C (void)
+void FreeHeapCanary (void)
 {
-    GF_ASSERT(gCoreSys.unk_70 != NULL);
+    GF_ASSERT(gCoreSys.heapCanary != NULL);
 
-    *(gCoreSys.unk_70) = 0;
-    Heap_FreeToHeap(gCoreSys.unk_70);
-    gCoreSys.unk_70 = NULL;
+    *(gCoreSys.heapCanary) = 0;
+    Heap_FreeToHeap(gCoreSys.heapCanary);
+    gCoreSys.heapCanary = NULL;
 }
 
-BOOL sub_02017E54 (void)
+BOOL HeapCanaryOK (void)
 {
-    if ((gCoreSys.unk_70 != NULL) && (*(gCoreSys.unk_70) == 0x2f93a1bc)) {
+    if (gCoreSys.heapCanary && *gCoreSys.heapCanary == HEAP_CANARY) {
         return 1;
     }
 

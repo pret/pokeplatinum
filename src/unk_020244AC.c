@@ -193,7 +193,7 @@ BOOL sub_020245E8 (SaveData * param0)
     int v0, v1;
     u8 * v2 = Heap_AllocFromHeapAtEnd(3, 0x1000);
 
-    sub_02017B7C(1);
+    SleepLock(1);
 
     sub_0202516C(param0, 0, !param0->unk_20020[0]);
     sub_0202516C(param0, 1, !param0->unk_20020[1]);
@@ -211,7 +211,7 @@ BOOL sub_020245E8 (SaveData * param0)
     sub_0202479C(param0);
 
     param0->unk_04 = 0;
-    sub_02017B8C(1);
+    SleepUnlock(1);
 
     return 1;
 }
@@ -251,14 +251,14 @@ int sub_020246E0 (SaveData * param0)
     }
 
     if (param0->unk_08) {
-        sub_02017B7C(1);
+        SleepLock(1);
 
         sub_0202516C(param0, 0, !param0->unk_20020[0]);
         sub_0202516C(param0, 1, !param0->unk_20020[1]);
         sub_0202516C(param0, 0, param0->unk_20020[0]);
         sub_0202516C(param0, 1, param0->unk_20020[1]);
 
-        sub_02017B8C(1);
+        SleepUnlock(1);
     }
 
     v0 = sub_0202513C(param0);
@@ -778,7 +778,7 @@ static void sub_02024EC8 (SaveData * param0, UnkStruct_020250DC * param1, int pa
         param1->unk_0C = param2 + 1;
     }
 
-    sub_02017B7C(1);
+    SleepLock(1);
 }
 
 static int sub_02024F44 (SaveData * param0, UnkStruct_020250DC * param1)
@@ -872,7 +872,7 @@ static void sub_0202506C (SaveData * param0, UnkStruct_020250DC * param1, int pa
         param0->unk_0C = 0;
     }
 
-    sub_02017B8C(1);
+    SleepUnlock(1);
 }
 
 static void sub_020250DC (SaveData * param0, UnkStruct_020250DC * param1)
@@ -897,7 +897,7 @@ static void sub_020250DC (SaveData * param0, UnkStruct_020250DC * param1)
         param1->unk_24 = 0;
     }
 
-    sub_02017B8C(1);
+    SleepUnlock(1);
 }
 
 BOOL sub_0202513C (SaveData * param0)
@@ -1101,7 +1101,7 @@ int SaveDataExtra_Save (const SaveData * param0, int param1, void * param2)
     u32 v1;
     BOOL v2;
 
-    sub_02017B7C(1);
+    SleepLock(1);
 
     GF_ASSERT(param1 < gExtraSaveTableSize);
     v0 = &gExtraSaveTable[param1];
@@ -1130,10 +1130,10 @@ int SaveDataExtra_Save (const SaveData * param0, int param1, void * param2)
     }
 
     if (v2 == 1) {
-        sub_02017B8C(1);
+        SleepUnlock(1);
         return 2;
     } else {
-        sub_02017B8C(1);
+        SleepUnlock(1);
         return 3;
     }
 }
@@ -1146,7 +1146,7 @@ int SaveDataExtra_SaveMirror (SaveData * param0, int param1, void * param2)
     u32 v3, v4, v5;
     u8 v6;
 
-    sub_02017B7C(1);
+    SleepLock(1);
 
     GF_ASSERT(param1 < gExtraSaveTableSize);
     v0 = &gExtraSaveTable[param1];
@@ -1175,10 +1175,10 @@ int SaveDataExtra_SaveMirror (SaveData * param0, int param1, void * param2)
     }
 
     if (v2 == 1) {
-        sub_02017B8C(1);
+        SleepUnlock(1);
         return 2;
     } else {
-        sub_02017B8C(1);
+        SleepUnlock(1);
         return 3;
     }
 }

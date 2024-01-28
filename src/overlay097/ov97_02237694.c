@@ -850,7 +850,7 @@ int ov97_0223847C (void)
 
     switch (v1->unk_14) {
     case 0:
-        sub_02017DE0(4);
+        ResetLock(4);
         sub_02024814(v1->unk_18, 2);
         v1->unk_14++;
         break;
@@ -866,7 +866,7 @@ int ov97_0223847C (void)
         }
 
         if ((v0 == 2) || (v0 == 3)) {
-            sub_02017DF0(4);
+            ResetUnlock(4);
         }
 
         return v0;
@@ -897,7 +897,7 @@ void ov97_0223850C (void)
 
     sub_02024850(v0->unk_18);
     v0->unk_14 = 3;
-    sub_02017DF0(4);
+    ResetUnlock(4);
 }
 
 int ov97_02238528 (void)

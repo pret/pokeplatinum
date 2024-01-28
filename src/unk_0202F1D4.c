@@ -176,8 +176,8 @@ int sub_0202F3AC (SaveData * param0, BattleRecording * param1, int param2, u16 *
 
     switch (*param3) {
     case 0:
-        sub_02017DE0(8);
-        sub_02017E00(11);
+        ResetLock(8);
+        InitHeapCanary(11);
 
         v0 = SaveData_SaveBattleRecording(param0, param1, param2);
 
@@ -187,15 +187,15 @@ int sub_0202F3AC (SaveData * param0, BattleRecording * param1, int param2, u16 *
             return 0;
         }
 
-        sub_02017DF0(8);
+        ResetUnlock(8);
         return v0;
     case 1:
         v0 = sub_02024828(param0);
 
         if ((v0 == 2) || (v0 == 3)) {
             (*param3) = 0;
-            sub_02017E2C();
-            sub_02017DF0(8);
+            FreeHeapCanary();
+            ResetUnlock(8);
         }
 
         return v0;

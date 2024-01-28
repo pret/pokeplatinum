@@ -449,7 +449,7 @@ int ov109_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     sub_020388F4(1, 1);
     SetMainCallback(NULL, NULL);
     DisableHBlank();
-    sub_02017DE0(2);
+    ResetLock(2);
     Heap_Create(3, 95, 0x80000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov109_021D0F70), 95);
@@ -525,7 +525,7 @@ int ov109_021D0EB4 (UnkStruct_020067E8 * param0, int * param1)
     NARC_dtor(v0->unk_D80);
     sub_02006830(param0);
     Heap_Destroy(95);
-    sub_02017DF0(2);
+    ResetUnlock(2);
 
     return 1;
 }

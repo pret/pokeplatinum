@@ -576,7 +576,7 @@ static int ov88_0223B914 (UnkStruct_02095E80 * param0)
     switch (param0->unk_4C) {
     case 0:
         sub_020364F0(80);
-        sub_02017DE0(2);
+        ResetLock(2);
         ov88_0223E894(param0);
 
         {
@@ -753,7 +753,7 @@ static int ov88_0223B914 (UnkStruct_02095E80 * param0)
             sub_0200E084(&param0->unk_49C[23], 0);
             sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
             ov88_0223ECBC(&param0->unk_49C[21], 15, 1, param0->unk_184, param0->unk_178);
-            sub_02017DF0(2);
+            ResetUnlock(2);
 
             return 1;
         }
