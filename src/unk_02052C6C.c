@@ -27,7 +27,7 @@
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "gx_layers.h"
@@ -85,7 +85,7 @@ static void sub_02052C6C (UnkStruct_0203CDB0 * param0, BOOL param1)
 
     v1 = Party_GetFromSavedata(param0->unk_0C);
 
-    sub_020138A4(&v2);
+    GetCurrentDate(&v2);
     sub_0202DFA8(v0, v1, &v2);
     SaveData_SaveHallOfFame(param0->unk_0C, v0);
     Heap_FreeToHeap(v0);

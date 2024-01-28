@@ -5,7 +5,7 @@
 
 #include "message.h"
 #include "unk_0200B358.h"
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "unk_02017038.h"
 #include "heap.h"
 #include "strbuf.h"
@@ -836,7 +836,7 @@ static void SetMetLocationForBoxPokemon (BoxPokemon * param0, int param1, int pa
 {
     RTCDate v0;
 
-    sub_020138A4(&v0);
+    GetCurrentDate(&v0);
 
     if (param2 == 0) {
         BoxPokemon_SetValue(param0, 152, &param1);

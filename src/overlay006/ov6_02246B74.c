@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "overlay006/ov6_02246B74.h"
 
 typedef struct {
@@ -126,7 +126,7 @@ int ov6_02246B74 (const int param0, const BOOL param1)
         return 0;
     }
 
-    sub_020138A4(&v2);
+    GetCurrentDate(&v2);
 
     GF_ASSERT(v2.month > 0);
     GF_ASSERT(v2.month <= 12);

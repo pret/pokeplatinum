@@ -20,7 +20,7 @@
 #include "unk_020067E8.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "unk_02017428.h"
 #include "unk_02017728.h"
 #include "unk_0201CCF0.h"
@@ -75,7 +75,7 @@ void NitroMain (void)
     sub_02017B70(0);
     PM_GetBackLight(&sSavedBacklightState, NULL);
     sub_0202419C();
-    sub_0201378C();
+    InitRTC();
     sub_02000E3C();
     sub_02002B7C();
 
@@ -144,7 +144,7 @@ void NitroMain (void)
             }
         }
 
-        sub_020137C4();
+        UpdateRTC();
         sub_02017458();
         sub_020241CC();
         sub_0201CDD4(gCoreSys.unk_24);
@@ -323,7 +323,7 @@ void InitRNG (void)
     RTCTime v1;
     u32 v2;
 
-    sub_0201384C(&v0, &v1);
+    GetCurrentDateTime(&v0, &v1);
 
     v2 = v0.year + v0.month * 0x100 * v0.day * 0x10000 + v1.hour * 0x10000 + (v1.minute + v1.second) * 0x1000000 + gCoreSys.frameCounter;
 

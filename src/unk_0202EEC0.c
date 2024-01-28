@@ -3,7 +3,7 @@
 
 #include "pokemon.h"
 
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "unk_0202EEC0.h"
 #include "pokemon.h"
 
@@ -83,7 +83,7 @@ void sub_0202EFB8 (PalParkTransfer * param0, u32 param1)
     int v0 = sub_0202EF40(param0, param1);
 
     param0->unk_288[v0] = param1;
-    param0->unk_2D8[v0] = sub_020138EC();
+    param0->unk_2D8[v0] = GetTimestamp();
     param0->unk_378 = OS_GetOwnerRtcOffset();
 
     OS_GetMacAddress(param0->unk_380);
@@ -111,7 +111,7 @@ int sub_0202F028 (const PalParkTransfer * param0)
 int sub_0202F050 (const PalParkTransfer * param0, u32 param1)
 {
     int v0;
-    s64 v1 = sub_020138EC();
+    s64 v1 = GetTimestamp();
 
     for (v0 = 0; v0 < 20; v0++) {
         if (param0->unk_288[v0] == param1) {

@@ -10,7 +10,7 @@
 #include "struct_defs/struct_0202B370.h"
 #include "struct_defs/struct_0202B370_sub1.h"
 
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_0202ACE0.h"
@@ -251,7 +251,7 @@ void sub_0202B13C (UnkStruct_0202B370 * param0, int param1)
 {
     RTCDate v0;
 
-    sub_020138A4(&v0);
+    GetCurrentDate(&v0);
 
     param0->unk_1C0[param1].unk_2A = v0.year + 2000;
     param0->unk_1C0[param1].unk_2C = v0.month;

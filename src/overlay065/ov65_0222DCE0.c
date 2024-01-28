@@ -64,7 +64,7 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "heap.h"
@@ -3822,7 +3822,7 @@ static void ov65_02231A0C (void)
     ov4_021D2584(0);
 
     if (ov65_02231A54() == 0) {
-        if (sub_02013948() == 0) {
+        if (IsNight() == 0) {
             v0 = 1085;
         } else {
             v0 = 1086;

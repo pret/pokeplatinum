@@ -36,7 +36,7 @@
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -286,7 +286,7 @@ int ov67_0225C820 (UnkStruct_020067E8 * param0, int * param1)
             }
 
             {
-                v1->unk_0C->unk_00 = sub_020138EC();
+                v1->unk_0C->unk_00 = GetTimestamp();
             }
 
             v1->unk_10 = 1;

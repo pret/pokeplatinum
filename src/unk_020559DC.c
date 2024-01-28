@@ -10,7 +10,7 @@
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_02055BA8.h"
 
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "savedata/save_table.h"
 #include "unk_02025CB0.h"
 #include "unk_0202854C.h"
@@ -45,7 +45,7 @@ void sub_020559DC (UnkStruct_0203CDB0 * param0)
         return;
     }
 
-    sub_0201384C(&v0, &v1);
+    GetCurrentDateTime(&v0, &v1);
     sub_02055A14(param0, v2, &v0);
 
     inline_020559DC(param0, v2, &v0, &v1);
@@ -154,7 +154,7 @@ static void sub_02055B64 (UnkStruct_0203CDB0 * param0, s32 param1, const RTCTime
 int sub_02055BA8 (const UnkStruct_0203CDB0 * param0)
 {
     UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->unk_0C);
-    return sub_02013974(v0->unk_14.hour);
+    return TimeOfDayForHour(v0->unk_14.hour);
 }
 
 int sub_02055BB8 (const UnkStruct_0203CDB0 * param0)
@@ -203,7 +203,7 @@ void sub_02055C2C (const UnkStruct_0203CDB0 * param0)
 {
     UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->unk_0C);
 
-    v0->unk_2C = sub_020138EC();
+    v0->unk_2C = GetTimestamp();
 }
 
 BOOL sub_02055C40 (UnkStruct_0203CDB0 * param0)

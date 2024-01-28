@@ -59,7 +59,7 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "heap.h"
@@ -336,7 +336,7 @@ int ov88_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     sub_02038A1C(26, v0->unk_174);
     sub_02039734();
 
-    if (sub_02013948() == 0) {
+    if (IsNight() == 0) {
         sub_02004550(4, 1085, 1);
         sub_02004A84(1085);
     } else {

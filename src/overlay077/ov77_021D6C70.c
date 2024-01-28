@@ -11,7 +11,7 @@
 #include "spl.h"
 
 #include "unk_0200762C.h"
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "unk_02014000.h"
 #include "heap.h"
 #include "unk_02020020.h"
@@ -120,7 +120,7 @@ void ov77_021D6CFC (UnkStruct_ov77_021D6CFC * param0)
     int v6, v7;
     RTCTime v8;
 
-    sub_02013880(&v8);
+    GetCurrentTime(&v8);
 
     v6 = (v8.hour * v8.minute + v8.second) & 1;
     v7 = v8.second % 3;
