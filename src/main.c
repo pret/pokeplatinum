@@ -38,6 +38,8 @@
 #include "unk_02039A64.h"
 #include "unk_0209A74C.h"
 
+#define RESET_COMBO (PAD_BUTTON_START | PAD_BUTTON_SELECT | PAD_BUTTON_L | PAD_BUTTON_R)
+
 FS_EXTERN_OVERLAY(overlay57);
 FS_EXTERN_OVERLAY(overlay77);
 
@@ -122,7 +124,7 @@ void NitroMain (void)
         sub_0200106C();
         ReadKeypadAndTouchpad();
 
-        if ((gCoreSys.heldKeysRaw & (PAD_BUTTON_START | PAD_BUTTON_SELECT | PAD_BUTTON_L | PAD_BUTTON_R)) == (PAD_BUTTON_START | PAD_BUTTON_SELECT | PAD_BUTTON_L | PAD_BUTTON_R)) {
+        if ((gCoreSys.heldKeysRaw & RESET_COMBO) == RESET_COMBO) {
             if (gCoreSys.unk_68 == 0) {
                 sub_02000F60(0);
             }

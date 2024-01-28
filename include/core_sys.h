@@ -5,12 +5,12 @@
 #include "struct_decls/struct_0201CD88_decl.h"
 #include "overlay023/funcptr_ov23_022537D4.h"
 
-typedef enum ButtonMode {
+enum ButtonMode {
     BUTTON_MODE_NORMAL = 0,
     BUTTON_MODE_START_IS_X = 1,
     BUTTON_MODE_SWAP_XY = 2,
     BUTTON_MODE_L_IS_A = 3,
-} ButtonMode;
+};
 
 typedef struct CoreSys {
     UnkFuncPtr_02017798 unk_00;
@@ -26,7 +26,7 @@ typedef struct CoreSys {
     u32 * unk_28;
     u32 unk_2C;
     u32 unk_30;
-    ButtonMode buttonMode;
+    enum ButtonMode buttonMode;
     u32 heldKeysRaw;
     u32 pressedKeysRaw;
     u32 pressedKeysRepeatableRaw;
