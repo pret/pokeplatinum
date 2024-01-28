@@ -56,8 +56,8 @@ static int sub_020890F4 (UnkStruct_020067E8 * param0, int * param1)
     memset(v0, 0, sizeof(UnkStruct_02089688));
     v0->unk_38C = *(( UnkStruct_02089438 * )sub_02006840(param0));
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -91,7 +91,7 @@ static int sub_020890F4 (UnkStruct_020067E8 * param0, int * param1)
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2, 15, 7);
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 7, 8);
 
-    sub_02017798(sub_020895CC, v0);
+    SetMainCallback(sub_020895CC, v0);
 
     return 1;
 }

@@ -17,7 +17,7 @@ typedef struct {
     u32 unk_04;
 } UnkStruct_021BF6F0;
 
-static void sub_02017808(BOOL param0);
+static void SetHBlankEnabled(BOOL param0);
 void sub_0201777C(void);
 static void ApplyButtonModeToInput(void);
 
@@ -46,31 +46,31 @@ void sub_0201777C (void)
     (void)OS_EnableIrqMask(OS_IE_V_BLANK);
 }
 
-void sub_02017798 (UnkFuncPtr_02017798 param0, void * param1)
+void SetMainCallback (Callback cb, void * data)
 {
-    gCoreSys.unk_00 = param0;
-    gCoreSys.unk_04 = param1;
+    gCoreSys.mainCallback = cb;
+    gCoreSys.mainCallbackData = data;
 }
 
-void sub_020177A4 (void)
+void DisableHBlank (void)
 {
-    sub_02017808(0);
-    gCoreSys.unk_08 = NULL;
-    gCoreSys.unk_0C = NULL;
+    SetHBlankEnabled(0);
+    gCoreSys.hblankCallback = NULL;
+    gCoreSys.hblankCallbackData = NULL;
 }
 
-BOOL sub_020177BC (UnkFuncPtr_02017798 param0, void * param1)
+BOOL SetHBlankCallback (Callback cb, void * data)
 {
-    if (param0 == NULL) {
-        sub_02017808(0);
-        gCoreSys.unk_08 = NULL;
-        gCoreSys.unk_0C = NULL;
+    if (cb == NULL) {
+        SetHBlankEnabled(0);
+        gCoreSys.hblankCallback = NULL;
+        gCoreSys.hblankCallbackData = NULL;
         return 1;
     } else {
-        if (gCoreSys.unk_08 == NULL) {
-            gCoreSys.unk_0C = param1;
-            gCoreSys.unk_08 = param0;
-            sub_02017808(1);
+        if (gCoreSys.hblankCallback == NULL) {
+            gCoreSys.hblankCallbackData = data;
+            gCoreSys.hblankCallback = cb;
+            SetHBlankEnabled(1);
             return 1;
         } else {
             return 0;
@@ -78,29 +78,28 @@ BOOL sub_020177BC (UnkFuncPtr_02017798 param0, void * param1)
     }
 }
 
-static void sub_020177F4 (void)
+static void HBlankIntr (void)
 {
-    if (gCoreSys.unk_08) {
-        gCoreSys.unk_08(gCoreSys.unk_0C);
+    if (gCoreSys.hblankCallback) {
+        gCoreSys.hblankCallback(gCoreSys.hblankCallbackData);
     }
 }
 
-static void sub_02017808 (BOOL param0)
+static void SetHBlankEnabled (BOOL enabled)
 {
-    OSIrqMask v0;
+    OSIrqMask savedMask;
 
     OS_DisableIrq( );
 
-    if (param0 == 0) {
-        v0 = OS_GetIrqMask();
+    if (!enabled) {
+        savedMask = OS_GetIrqMask();
         OS_DisableIrqMask(OS_IE_H_BLANK);
-        (void)GX_HBlankIntr(0);
+        GX_HBlankIntr(0);
     } else {
-        v0 = OS_GetIrqMask();
-
-        OS_SetIrqFunction(OS_IE_H_BLANK, sub_020177F4);
+        savedMask = OS_GetIrqMask();
+        OS_SetIrqFunction(OS_IE_H_BLANK, HBlankIntr);
         OS_EnableIrqMask(OS_IE_H_BLANK);
-        (void)GX_HBlankIntr(1);
+        GX_HBlankIntr(1);
     }
 
     OS_EnableIrq( );
@@ -175,8 +174,8 @@ void sub_0201789C (void)
         FS_LoadTable(v1, v0);
     }
 
-    gCoreSys.unk_00 = NULL;
-    gCoreSys.unk_08 = NULL;
+    gCoreSys.mainCallback = NULL;
+    gCoreSys.hblankCallback = NULL;
     gCoreSys.unk_10 = NULL;
     gCoreSys.unk_14 = NULL;
     gCoreSys.unk_70 = NULL;
@@ -188,12 +187,12 @@ void sub_0201789C (void)
     sub_0201D640(0);
 }
 
-void sub_020179E4 (void)
+void InitGraphics (void)
 {
     GX_SetBankForLCDC(GX_VRAM_LCDC_ALL);
 
     MI_CpuClearFast((void *)HW_LCDC_VRAM, HW_LCDC_VRAM_SIZE);
-    (void)GX_DisableBankForLCDC();
+    GX_DisableBankForLCDC();
 
     MI_CpuFillFast((void *)HW_OAM, 192, HW_OAM_SIZE);
     MI_CpuFillFast((void *)HW_DB_OAM, 192, HW_DB_OAM_SIZE);

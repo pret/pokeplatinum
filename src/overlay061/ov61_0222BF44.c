@@ -153,8 +153,8 @@ int ov61_0222BF44 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov61_0222C664 * v0;
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -202,7 +202,7 @@ int ov61_0222BF44 (UnkStruct_020067E8 * param0, int * param1)
     sub_02002AC8(1);
     sub_02002AE4(0);
     sub_02002B20(0);
-    sub_02017798(ov61_0222C1FC, v0);
+    SetMainCallback(ov61_0222C1FC, v0);
 
     if (v0->unk_00->unk_10) {
         sub_02039734();
@@ -271,8 +271,8 @@ int ov61_0222C160 (UnkStruct_020067E8 * param0, int * param1)
     ov61_0222C70C(v0);
     Heap_FreeToHeap(v0->unk_04);
     ov61_0222C38C(v0->unk_04);
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     sub_0201DC3C();
     sub_0201E530();
     sub_02002AC8(0);

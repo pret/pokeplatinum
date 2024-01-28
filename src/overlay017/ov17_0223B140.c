@@ -148,8 +148,8 @@ int ov17_0223B140 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov17_02246F24 * v0;
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -262,7 +262,7 @@ int ov17_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_02004550(6, 1135, 1);
     sub_020959F4(v0->unk_00->unk_155);
-    sub_02017798(ov17_0223B6BC, v0);
+    SetMainCallback(ov17_0223B6BC, v0);
 
     return 1;
 }
@@ -377,8 +377,8 @@ int ov17_0223B580 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_0201E530();
     sub_02006830(param0);
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     Heap_Destroy(21);
     sub_02095A24();
     sub_02039794();

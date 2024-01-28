@@ -72,8 +72,8 @@ int ov22_0225B660 (UnkStruct_020067E8 * param0, int * param1)
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov22_0225B85C), 13);
     memset(v0, 0, sizeof(UnkStruct_ov22_0225B85C));
 
-    sub_02017798(ov22_0225B848, v0);
-    sub_020177A4();
+    SetMainCallback(ov22_0225B848, v0);
+    DisableHBlank();
 
     v1 = sub_02006840(param0);
 
@@ -171,8 +171,8 @@ int ov22_0225B7FC (UnkStruct_020067E8 * param0, int * param1)
     ov22_022555FC(&v0->unk_14);
     ov22_022550B4();
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     sub_02006830(param0);
     Heap_Destroy(13);
     Heap_Destroy(14);

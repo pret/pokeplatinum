@@ -321,7 +321,7 @@ void ov16_0223B384 (BattleSystem * param0)
 
 void ov16_0223B3E4 (BattleSystem * param0)
 {
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     ov16_02268A14(param0->unk_198);
     BGL_DeleteWindow(&param0->unk_08[0]);
 
@@ -474,7 +474,7 @@ void ov16_0223B578 (BattleSystem * param0)
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    sub_02017798(ov16_0223CE68, param0);
+    SetMainCallback(ov16_0223CE68, param0);
 
     param0->unk_23FB_1 = 1;
 
@@ -540,7 +540,7 @@ static void ov16_0223B790 (UnkStruct_020067E8 * param0)
 
     v0->unk_00 = ov16_0223CD7C();
 
-    sub_020177A4();
+    DisableHBlank();
     sub_02002BB8(2, 5);
 
     if (v0->battleType & 0x20) {
@@ -958,7 +958,7 @@ static void ov16_0223C004 (BattleSystem * param0, BGL * param1)
     GXLayers_TurnBothDispOn();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    sub_02017798(ov16_0223CE68, param0);
+    SetMainCallback(ov16_0223CE68, param0);
 }
 
 static void ov16_0223C210 (BattleSystem * param0)
@@ -1758,7 +1758,7 @@ static void ov16_0223D10C (UnkStruct_020067E8 * param0, BattleParams * param1)
         MessageLoader_Free(v5);
     }
 
-    sub_02017798(ov16_0223CF1C, v0);
+    SetMainCallback(ov16_0223CF1C, v0);
     sub_02003178(v0->unk_0C, (0x1 | 0x4), 0xffff, 0, 16, 0, 0x0);
 
     v0->unk_1024 = sub_0200E7FC(v0->unk_08, 1);
@@ -1997,7 +1997,7 @@ static void ov16_0223D7B4 (UnkStruct_020067E8 * param0)
 {
     UnkStruct_0207A778 * v0 = sub_0200682C(param0);
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     sub_0200F344(0, 0x0);
     sub_02002FA0(v0->unk_0C, 0);
     sub_02002F54(v0->unk_0C);

@@ -131,8 +131,8 @@ UnkStruct_ov104_0223C4CC * ov104_0223C2D4 (UnkStruct_0209B75C * param0)
     v4 = sub_02025E38(v3->unk_08);
     v2 = v3->unk_24;
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -195,7 +195,7 @@ UnkStruct_ov104_0223C4CC * ov104_0223C2D4 (UnkStruct_0209B75C * param0)
     sub_02002AC8(0);
     sub_02002B20(0);
 
-    sub_02017798(ov104_0223C6EC, v0);
+    SetMainCallback(ov104_0223C6EC, v0);
     v0->unk_A0 = sub_0200DA04(ov104_0223C71C, v0, 10);
     ov104_0222EB8C(v0, &v0->unk_90, v0->unk_C1);
     sub_02039734();
@@ -247,8 +247,8 @@ void ov104_0223C4CC (UnkStruct_ov104_0223C4CC * param0)
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     Heap_Destroy(94);
 
     sub_02002AC8(0);

@@ -118,8 +118,8 @@ void ErrorMessageReset_PrintErrorAndReset (void)
     OS_SetIrqFunction(OS_IE_V_BLANK, VBlankIntr);
     OS_EnableIrqMask(OS_IE_V_BLANK);
 
-    sub_02017798(NULL, NULL);
-    sub_020177BC(NULL, NULL);
+    SetMainCallback(NULL, NULL);
+    SetHBlankCallback(NULL, NULL);
 
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();

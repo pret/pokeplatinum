@@ -136,8 +136,8 @@ int ov115_0226048C (UnkStruct_020067E8 * param0, int * param1)
             break;
         }
 
-        sub_02017798(ov115_02260A50, v0);
-        sub_020177A4();
+        SetMainCallback(ov115_02260A50, v0);
+        DisableHBlank();
 
         v0->unk_38 = 0;
         v0->unk_3C = 0;
@@ -332,8 +332,8 @@ int ov115_0226048C (UnkStruct_020067E8 * param0, int * param1)
 
         ov115_02260D78(v0->unk_34);
         v0->unk_34 = NULL;
-        sub_02017798(NULL, NULL);
-        sub_020177A4();
+        SetMainCallback(NULL, NULL);
+        DisableHBlank();
         sub_0201DC3C();
         (*param1)++;
         break;
@@ -551,8 +551,8 @@ static void ov115_02260B30 (UnkStruct_ov115_0226095C * param0)
 
 static void ov115_02260B44 (UnkStruct_ov115_0226095C * param0, UnkStruct_ov115_02260440 * param1)
 {
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
 
     if (param0->unk_00 != NULL) {
         ov114_0225C838(param0->unk_00);

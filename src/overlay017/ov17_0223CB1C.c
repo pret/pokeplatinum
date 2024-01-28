@@ -128,8 +128,8 @@ int ov17_0223CB1C (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov17_02247A48 * v0;
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -223,7 +223,7 @@ int ov17_0223CB1C (UnkStruct_020067E8 * param0, int * param1)
     sub_02004234(0);
     sub_02004550(6, 1135, 1);
     sub_020959F4(v0->unk_00->unk_155);
-    sub_02017798(ov17_0223D0C8, v0);
+    SetMainCallback(ov17_0223D0C8, v0);
     Sound_PlayEffect(1541);
 
     return 1;
@@ -341,8 +341,8 @@ int ov17_0223CF8C (UnkStruct_020067E8 * param0, int * param1)
 
     sub_0201E530();
     sub_02006830(param0);
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     Heap_Destroy(22);
     sub_02095A24();
     sub_02039794();

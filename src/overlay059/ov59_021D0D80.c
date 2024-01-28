@@ -175,8 +175,8 @@ int ov59_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        sub_02017798(NULL, NULL);
-        sub_020177A4();
+        SetMainCallback(NULL, NULL);
+        DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
 
@@ -206,7 +206,7 @@ int ov59_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
         sub_0200F174(0, 17, 17, 0x0, 16, 1, 51);
 
         ov59_021D1388(v0, v1);
-        sub_02017798(ov59_021D1100, v0);
+        SetMainCallback(ov59_021D1100, v0);
 
         ov59_021D1250(v0, v1);
         ov59_021D1474();
@@ -330,7 +330,7 @@ int ov59_021D0FF4 (UnkStruct_020067E8 * param0, int * param1)
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
     sub_0205BEA8(0);
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     Heap_Destroy(51);
 
     return 1;

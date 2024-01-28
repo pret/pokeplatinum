@@ -83,8 +83,8 @@ int ov101_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov101_021D13C8 * v1;
     UnkStruct_0203E348 * v2;
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
     Heap_Create(3, 79, 0x80000);
@@ -154,7 +154,7 @@ int ov101_021D0EE4 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov101_021D0F3C * v0 = sub_0200682C(param0);
     UnkStruct_ov101_021D13C8 * v1 = v0->unk_04;
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
 
     ov101_021D0F3C(v0, v1);
 
@@ -235,7 +235,7 @@ static void ov101_021D0F9C (UnkStruct_ov101_021D13C8 * param0)
     G2S_SetBG3Priority(3);
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_OBJ, 8, 9);
 
-    sub_02017798(ov101_021D197C, param0);
+    SetMainCallback(ov101_021D197C, param0);
 }
 
 static void ov101_021D107C (UnkStruct_ov101_021D13C8 * param0)

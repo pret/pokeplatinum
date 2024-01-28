@@ -2192,13 +2192,13 @@ static void ov114_0225DF7C (UnkStruct_ov114_0225DFFC * param0, UnkStruct_ov114_0
     param0->unk_304 = sub_02013B10(param2, &param0->unk_04[0], &param0->unk_04[1]);
 
     sub_02013B80(param0->unk_304, 0);
-    sub_020177BC(ov114_0225E0AC, param0);
+    SetHBlankCallback(ov114_0225E0AC, param0);
 }
 
 static void ov114_0225DFFC (UnkStruct_ov114_0225DFFC * param0)
 {
     if (param0->unk_304 != NULL) {
-        sub_020177BC(NULL, NULL);
+        SetHBlankCallback(NULL, NULL);
         sub_02013B40(param0->unk_304);
         param0->unk_304 = NULL;
     }
@@ -3684,7 +3684,7 @@ static void ov114_0225F9B8 (UnkStruct_ov114_0225FAB8 * param0, UnkStruct_ov114_0
     param0->battlerType.planeMask = GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3;
     param0->battlerType.effect = 1;
 
-    sub_020177BC(ov114_0225FCF0, param0);
+    SetHBlankCallback(ov114_0225FCF0, param0);
     sub_02021D0C(param0->unk_00[1], 2);
 
     ov114_0225FC6C(param0);
@@ -3770,7 +3770,7 @@ static void ov114_0225FBF0 (UnkStruct_ov114_0225FAB8 * param0)
         }
     }
 
-    sub_020177A4();
+    DisableHBlank();
 
     GX_SetVisibleWnd(param0->unk_194);
     G2_SetWndOutsidePlane(param0->unk_190.planeMask, param0->unk_190.effect);

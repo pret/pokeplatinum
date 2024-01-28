@@ -896,8 +896,8 @@ static int sub_0208694C (UnkStruct_020067E8 * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        sub_02017798(NULL, NULL);
-        sub_020177A4();
+        SetMainCallback(NULL, NULL);
+        DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
 
@@ -922,7 +922,7 @@ static int sub_0208694C (UnkStruct_020067E8 * param0, int * param1)
         sub_020871B0(v0, (UnkStruct_0208737C *)sub_02006840(param0));
         sub_0208769C(v0, v1);
         sub_02002BB8(2, 18);
-        sub_02017798(sub_02087190, NULL);
+        SetMainCallback(sub_02087190, NULL);
         sub_0208737C(v0, param0);
         sub_02002BEC(0, 18);
         sub_020877C4();
@@ -1199,7 +1199,7 @@ static int sub_02086F3C (UnkStruct_020067E8 * param0, int * param1)
     MessageLoader_Free(v0->unk_16C);
     sub_0200B3F0(v0->unk_168);
     sub_02006830(param0);
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     Heap_Destroy(18);
 
     {

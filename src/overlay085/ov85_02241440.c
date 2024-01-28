@@ -218,8 +218,8 @@ int ov85_02241440 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov85_022417E4 * v0;
     NARC * v1;
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -256,7 +256,7 @@ int ov85_02241440 (UnkStruct_020067E8 * param0, int * param1)
     ov85_02242038(v0);
     ov85_02242218(v0);
 
-    sub_02017798(ov85_022415F4, v0);
+    SetMainCallback(ov85_022415F4, v0);
     sub_020397E4();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     NARC_dtor(v1);
@@ -304,7 +304,7 @@ int ov85_022415A0 (UnkStruct_020067E8 * param0, int * param1)
 
     Heap_FreeToHeap(v0->unk_1FC);
     sub_02006830(param0);
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     Heap_Destroy(36);
 
     G2_BlendNone();

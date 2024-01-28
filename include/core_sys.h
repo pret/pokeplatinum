@@ -13,10 +13,10 @@ enum ButtonMode {
 };
 
 typedef struct CoreSys {
-    UnkFuncPtr_02017798 unk_00;
-    void * unk_04;
-    UnkFuncPtr_02017798 unk_08;
-    void * unk_0C;
+    Callback mainCallback;
+    void * mainCallbackData;
+    Callback hblankCallback;
+    void * hblankCallbackData;
     UnkFuncPtr_ov23_022537D4 unk_10;
     UnkFuncPtr_ov23_022537D4 unk_14;
     UnkStruct_0201CD88 * unk_18;

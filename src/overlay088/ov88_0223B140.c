@@ -292,8 +292,8 @@ int ov88_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_02095E80 * v0;
     NARC * v1;
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -320,7 +320,7 @@ int ov88_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     ov88_0223C17C(v0->unk_174);
     sub_0200F174(0, 1, 1, 0x0, 16, 1, 26);
     ov88_0223C504(v0, v1);
-    sub_02017798(ov88_0223C0E0, v0);
+    SetMainCallback(ov88_0223C0E0, v0);
     ov88_0223C63C();
     ov88_0223C66C(v0, v1);
     ov88_0223CBA0(v0);
@@ -413,7 +413,7 @@ static void ov88_0223B3C0 (UnkStruct_02095E80 * param0)
 
     sub_02021CAC(param0->unk_39C[0], 1);
     sub_02021CAC(param0->unk_39C[1], 1);
-    sub_02017798(ov88_0223C0E0, param0);
+    SetMainCallback(ov88_0223C0E0, param0);
     NARC_dtor(v0);
 }
 
@@ -906,7 +906,7 @@ int ov88_0223C03C (UnkStruct_020067E8 * param0, int * param1)
     sub_0200B3F0(v0->unk_178);
     Strbuf_Free(v0->unk_18C);
     sub_02006830(param0);
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     Heap_Destroy(26);
 
     return 1;

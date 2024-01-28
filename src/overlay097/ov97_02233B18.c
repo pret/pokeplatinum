@@ -1546,7 +1546,7 @@ static void ov97_022351F0 (UnkStruct_ov97_02234A2C * param0)
 {
     int v0;
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
 
     for (v0 = 0; v0 < 30; v0++) {
         if (param0->unk_20C[v0].unk_00) {
@@ -1869,7 +1869,7 @@ static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
         ov97_022340B0(v3);
         ov97_0223468C(v3);
 
-        sub_02017798(ov97_022353CC, v3);
+        SetMainCallback(ov97_022353CC, v3);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
 
         if (v3->unk_04 == 1) {
@@ -1979,7 +1979,7 @@ static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
         ov97_02234508(v3);
         ov97_022343A8(v3);
 
-        sub_02017798(ov97_022353CC, v3);
+        SetMainCallback(ov97_022353CC, v3);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         ov97_02234B0C(v3, NULL);

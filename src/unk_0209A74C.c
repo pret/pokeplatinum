@@ -83,8 +83,8 @@ void sub_0209A74C (int param0)
 
     sub_0200F344(0, 0);
     sub_0200F344(1, 0);
-    sub_02017798(NULL, NULL);
-    sub_020177BC(NULL, NULL);
+    SetMainCallback(NULL, NULL);
+    SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -158,8 +158,8 @@ void sub_0209A8E0 (int param0)
 
     sub_0200F344(0, 0);
     sub_0200F344(1, 0);
-    sub_02017798(NULL, NULL);
-    sub_020177BC(NULL, NULL);
+    SetMainCallback(NULL, NULL);
+    SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
     GX_SetVisiblePlane(0);

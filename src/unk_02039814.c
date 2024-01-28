@@ -124,8 +124,8 @@ void sub_02039834 (int param0, int param1, int param2)
     OS_SetIrqFunction(OS_IE_V_BLANK, sub_02039814);
     (void)OS_EnableIrqMask(OS_IE_V_BLANK);
 
-    sub_02017798(NULL, NULL);
-    sub_020177BC(NULL, NULL);
+    SetMainCallback(NULL, NULL);
+    SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 

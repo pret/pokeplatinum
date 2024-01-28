@@ -447,8 +447,8 @@ int ov109_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_0209C194 * v1 = sub_02006840(param0);
 
     sub_020388F4(1, 1);
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     sub_02017DE0(2);
     Heap_Create(3, 95, 0x80000);
 
@@ -465,7 +465,7 @@ int ov109_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     sub_0201E3D8();
     sub_0201E450(4);
     ov109_021D1C28(v0);
-    sub_02017798(ov109_021D1C00, v0);
+    SetMainCallback(ov109_021D1C00, v0);
     ov109_021D29CC(v0);
     ov109_021D2AF0(v0);
 
@@ -520,7 +520,7 @@ int ov109_021D0EB4 (UnkStruct_020067E8 * param0, int * param1)
     ov109_021D2AF8(v0);
     ov109_021D1C68(v0);
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     sub_0201DC3C();
     NARC_dtor(v0->unk_D80);
     sub_02006830(param0);

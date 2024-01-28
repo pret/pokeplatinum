@@ -1337,8 +1337,8 @@ static BOOL ov76_0223EB1C (UnkStruct_ov76_0223DE00 * param0)
 
 void ov76_0223EB20 (int param0)
 {
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -1348,8 +1348,8 @@ void ov76_0223EB20 (int param0)
 
 void ov76_0223EB54 (int param0)
 {
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
 }
 
 void ov76_0223EB64 (BGL * param0)

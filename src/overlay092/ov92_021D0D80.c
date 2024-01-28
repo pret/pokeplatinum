@@ -321,8 +321,8 @@ int ov92_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov92_021D1B24 * v0;
     int v1 = 50;
 
-    sub_02017798(NULL, NULL);
-    sub_020177BC(NULL, NULL);
+    SetMainCallback(NULL, NULL);
+    SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -713,7 +713,7 @@ int ov92_021D1478 (UnkStruct_020067E8 * param0, int * param1)
     sub_0200B3F0(v0->unk_B870);
     sub_0201CBA0();
     Heap_FreeToHeap(v0->unk_B810);
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     sub_02006830(param0);
     Heap_Destroy(v1);
 

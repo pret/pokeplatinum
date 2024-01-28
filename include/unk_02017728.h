@@ -4,11 +4,11 @@
 #include "functypes/funcptr_02017798.h"
 
 void sub_02017728(void);
-void sub_02017798(UnkFuncPtr_02017798 param0, void * param1);
-void sub_020177A4(void);
-BOOL sub_020177BC(UnkFuncPtr_02017798 param0, void * param1);
+void SetMainCallback(Callback cb, void * data);
+void DisableHBlank(void);
+BOOL SetHBlankCallback(Callback cb, void * data);
 void sub_0201789C(void);
-void sub_020179E4(void);
+void InitGraphics(void);
 void * ReadFileToHeap(int heapID, const char * filename);
 void ReadFileToBuffer(const char * filename, void ** buf);
 void sub_02017ACC(void);

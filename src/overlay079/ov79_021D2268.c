@@ -209,8 +209,8 @@ int ov79_021D22E4 (UnkStruct_020067E8 * param0, int * param1)
     switch (*param1) {
     case 0:
 
-        sub_02017798(NULL, NULL);
-        sub_020177A4();
+        SetMainCallback(NULL, NULL);
+        DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
 
@@ -227,7 +227,7 @@ int ov79_021D22E4 (UnkStruct_020067E8 * param0, int * param1)
             return 0;
         }
 
-        sub_02017798(ov79_021D252C, v0);
+        SetMainCallback(ov79_021D252C, v0);
         break;
     case 2:
         if (v0->unk_04++ < 4) {
@@ -265,7 +265,7 @@ int ov79_021D22E4 (UnkStruct_020067E8 * param0, int * param1)
     case 7:
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
-        sub_02017798(NULL, NULL);
+        SetMainCallback(NULL, NULL);
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
 

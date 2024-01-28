@@ -255,8 +255,8 @@ static int sub_0207E0B8 (UnkStruct_020067E8 * param0, int * param1)
     GameWindowLayout * v0;
     NARC * v1;
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -319,7 +319,7 @@ static int sub_0207E0B8 (UnkStruct_020067E8 * param0, int * param1)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
     }
 
-    sub_02017798(sub_0207E898, v0);
+    SetMainCallback(sub_0207E898, v0);
     sub_020397E4();
     NARC_dtor(v1);
 
@@ -655,7 +655,7 @@ static int sub_0207E7E0 (UnkStruct_020067E8 * param0, int * param1)
     GameWindowLayout * v0 = sub_0200682C(param0);
     u32 v1;
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     sub_02082FF4(v0);
     sub_02081B90(v0);
     sub_0207EA24(v0->unk_00);

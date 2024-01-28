@@ -354,8 +354,8 @@ int ov113_0225C700 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov113_0225DBCC * v0;
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -460,7 +460,7 @@ int ov113_0225C700 (UnkStruct_020067E8 * param0, int * param1)
 
     v0->unk_18 = SysTask_Start(ov113_0225CEF0, v0, 60000);
 
-    sub_02017798(ov113_0225CF18, v0);
+    SetMainCallback(ov113_0225CF18, v0);
 
     return 1;
 }
@@ -671,8 +671,8 @@ int ov113_0225CDFC (UnkStruct_020067E8 * param0, int * param1)
 
     NARC_dtor(v0->unk_160);
     NARC_dtor(v0->unk_164);
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     sub_0201DC3C();
     sub_0201E530();
     sub_02002AC8(0);

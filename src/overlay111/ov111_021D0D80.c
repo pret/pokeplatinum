@@ -444,7 +444,7 @@ int ov111_021D0F40 (UnkStruct_020067E8 * param0, int * param1)
     ov111_021D1C0C(v1);
 
     sub_02006830(param0);
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     Heap_Destroy(115);
 
     return 1;
@@ -1139,8 +1139,8 @@ static void ov111_021D1C0C (UnkStruct_ov111_021D0F7C * param0)
 
 static void ov111_021D1D30 (void)
 {
-    sub_02017798(NULL, NULL);
-    sub_020177BC(NULL, NULL);
+    SetMainCallback(NULL, NULL);
+    SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -1206,7 +1206,7 @@ static void ov111_021D1D68 (UnkStruct_ov111_021D0F7C * param0)
 
     sub_0201E3D8();
     sub_0201E450(1);
-    sub_02017798(ov111_021D2090, (void *)param0);
+    SetMainCallback(ov111_021D2090, (void *)param0);
 
     return;
 }

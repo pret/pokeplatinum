@@ -67,7 +67,7 @@ extern const UnkStruct_0208BE5C Unk_ov77_021D788C;
 void NitroMain (void)
 {
     sub_0201789C();
-    sub_020179E4();
+    InitGraphics();
     InitKeypadAndTouchpad();
 
     sub_02017B70(0);
@@ -155,8 +155,8 @@ void NitroMain (void)
         sub_0200ABF0();
         sub_0200F27C();
 
-        if (gCoreSys.unk_00 != NULL) {
-            gCoreSys.unk_00(gCoreSys.unk_04);
+        if (gCoreSys.mainCallback != NULL) {
+            gCoreSys.mainCallback(gCoreSys.mainCallbackData);
         }
 
         sub_02003BD8();
@@ -220,8 +220,8 @@ static void sub_02000EE4 (void)
     gCoreSys.unk_2C++;
     gCoreSys.unk_30 = 0;
 
-    if (gCoreSys.unk_00 != NULL) {
-        gCoreSys.unk_00(gCoreSys.unk_04);
+    if (gCoreSys.mainCallback != NULL) {
+        gCoreSys.mainCallback(gCoreSys.mainCallbackData);
     }
 }
 
