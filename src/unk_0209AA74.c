@@ -138,7 +138,7 @@ void sub_0209AA74 (int param0, int param1)
     sub_0200AB4C(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
 
     while (TRUE) {
-        sub_0200106C();
+        HandleConsoleFold();
         OS_WaitIrq(1, OS_IE_V_BLANK);
     }
 

@@ -304,12 +304,12 @@ void sub_02017B70 (int param0)
 
 void sub_02017B7C (u8 param0)
 {
-    gCoreSys.unk_67 |= param0;
+    gCoreSys.inhibitSleep |= param0;
 }
 
 void sub_02017B8C (u8 param0)
 {
-    gCoreSys.unk_67 &= ~(param0);
+    gCoreSys.inhibitSleep &= ~(param0);
 }
 
 void ReadKeypadAndTouchpad (void)
@@ -475,12 +475,12 @@ void SetAutorepeat (int rate, int delay)
 
 void sub_02017DE0 (u8 param0)
 {
-    gCoreSys.unk_68 |= param0;
+    gCoreSys.inhibitReset |= param0;
 }
 
 void sub_02017DF0 (u8 param0)
 {
-    gCoreSys.unk_68 &= ~(param0);
+    gCoreSys.inhibitReset &= ~(param0);
 }
 
 void sub_02017E00 (int param0)

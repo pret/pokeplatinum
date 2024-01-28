@@ -167,7 +167,7 @@ void ErrorMessageReset_PrintErrorAndReset (void)
     sub_02037DB0();
 
     while (TRUE) {
-        sub_0200106C();
+        HandleConsoleFold();
         sub_020349EC();
 
         if (sub_02038AB8()) {
@@ -178,7 +178,7 @@ void ErrorMessageReset_PrintErrorAndReset (void)
     }
 
     while (TRUE) {
-        sub_0200106C();
+        HandleConsoleFold();
 
         if (PAD_Read() & PAD_BUTTON_A) {
             break;

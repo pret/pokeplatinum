@@ -1819,7 +1819,7 @@ static int ov97_02235624 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-extern int Unk_02101D24;
+extern int gIgnoreCartridgeForWake;
 
 static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
 {
@@ -1828,7 +1828,7 @@ static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
 
     CTRDG_IsExisting();
 
-    if ((CTRDG_IsPulledOut() == TRUE) || Unk_02101D24) {
+    if ((CTRDG_IsPulledOut() == TRUE) || gIgnoreCartridgeForWake) {
         UnkStruct_ov97_02233B8C * v4 = &v3->unk_E8F0;
 
         if ((v4->unk_00 == 3) || (v4->unk_00 == 4)) {

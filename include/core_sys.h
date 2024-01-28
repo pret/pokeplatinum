@@ -43,8 +43,8 @@ typedef struct CoreSys {
     u8 unk_64;
     u8 unk_65;
     u8 unk_66;
-    u8 unk_67;
-    u8 unk_68;
+    u8 inhibitSleep;
+    u8 inhibitReset;
     u8 padding_69[3];
     BOOL unk_6C;
     u32 * unk_70;

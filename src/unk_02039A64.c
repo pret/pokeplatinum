@@ -134,7 +134,7 @@ void sub_02039A64 (int param0, int param1)
     while (TRUE) {
         int v5 = PAD_Read();
 
-        sub_0200106C();
+        HandleConsoleFold();
 
         if (v5 & PAD_BUTTON_A) {
             break;

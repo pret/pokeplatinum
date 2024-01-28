@@ -1369,7 +1369,7 @@ static int ov109_021D1A14 (UnkStruct_ov109_021D0F70 * param0)
     ov109_021D2634(param0, 11);
     sub_020364F0(202);
 
-    gCoreSys.unk_68 = 1;
+    gCoreSys.inhibitReset = 1;
     param0->unk_00 = 44;
 
     return 0;
@@ -1393,7 +1393,7 @@ static int ov109_021D1AA8 (UnkStruct_ov109_021D0F70 * param0)
         param0->unk_CC->unk_14.unk_08, 2, &param0->unk_04);
 
     if (v0) {
-        gCoreSys.unk_68 = 0;
+        gCoreSys.inhibitReset = 0;
         sub_0200EBA0(param0->unk_DC8);
         param0->unk_00 = 48;
     }

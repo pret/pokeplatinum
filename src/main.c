@@ -60,8 +60,10 @@ static void sub_02000F94(int param0, int param1);
 static void sub_02000F30(void);
 
 static UnkStruct_02101D28 Unk_02101D28;
-static PMBackLightSwitch Unk_02101D20;
-BOOL Unk_02101D24;
+// This variable doesn't really makes sense. If it's set to off, the game will
+// repeatedly try to restore the backlight to its saved state.
+static PMBackLightSwitch sSavedBacklightState;
+BOOL gIgnoreCartridgeForWake;
 extern const UnkStruct_0208BE5C Unk_ov77_021D788C;
 
 void NitroMain (void)
@@ -71,7 +73,7 @@ void NitroMain (void)
     InitKeypadAndTouchpad();
 
     sub_02017B70(0);
-    PM_GetBackLight(&Unk_02101D20, NULL);
+    PM_GetBackLight(&sSavedBacklightState, NULL);
     sub_0202419C();
     sub_0201378C();
     sub_02000E3C();
@@ -113,19 +115,19 @@ void NitroMain (void)
     gCoreSys.unk_6C = 1;
     gCoreSys.unk_30 = 0;
 
-    sub_02001028();
+    InitRNG();
     sub_0200AB84();
     sub_02017428();
 
-    Unk_02101D24 = FALSE;
+    gIgnoreCartridgeForWake = FALSE;
 
     while (TRUE) {
         sub_02000F30();
-        sub_0200106C();
+        HandleConsoleFold();
         ReadKeypadAndTouchpad();
 
         if ((gCoreSys.heldKeysRaw & RESET_COMBO) == RESET_COMBO) {
-            if (gCoreSys.unk_68 == 0) {
+            if (gCoreSys.inhibitReset == 0) {
                 sub_02000F60(0);
             }
         }
@@ -263,7 +265,7 @@ static void sub_02000F60 (int param0)
     }
 
     while (TRUE) {
-        sub_0200106C();
+        HandleConsoleFold();
         sub_02000F10(param0);
     }
 }
@@ -296,7 +298,7 @@ static void sub_02000F94 (int param0, int param1)
     v0 = 0;
 
     while (TRUE) {
-        sub_0200106C();
+        HandleConsoleFold();
         ReadKeypadAndTouchpad();
 
         if (v0 >= 30) {
@@ -315,7 +317,7 @@ static void sub_02000F94 (int param0, int param1)
     sub_02000F60(param0);
 }
 
-void sub_02001028 (void)
+void InitRNG (void)
 {
     RTCDate v0;
     RTCTime v1;
@@ -329,50 +331,49 @@ void sub_02001028 (void)
     LCRNG_SetSeed(v2);
 }
 
-void sub_0200106C (void)
+void HandleConsoleFold (void)
 {
-    PMBackLightSwitch v0, v1;
-    PMWakeUpTrigger v2;
+    PMBackLightSwitch top, bottom;
+    PMWakeUpTrigger trigger;
 
     if (PAD_DetectFold()) {
-        if (gCoreSys.unk_67 == 0) {
-            sub_0201E630();
+        if (gCoreSys.inhibitSleep == 0) {
+            BeforeSleep();
 
             if (CTRDG_IsPulledOut() == TRUE) {
-                Unk_02101D24 = TRUE;
+                gIgnoreCartridgeForWake = TRUE;
             }
 
-GOTOLABEL:
-            v2 = PM_TRIGGER_COVER_OPEN | PM_TRIGGER_CARD;
+sleep_again:
+            trigger = PM_TRIGGER_COVER_OPEN | PM_TRIGGER_CARD;
 
-            if (gCoreSys.unk_66 && (Unk_02101D24 == FALSE)) {
-                v2 |= PM_TRIGGER_CARTRIDGE;
+            if (gCoreSys.unk_66 && !gIgnoreCartridgeForWake) {
+                trigger |= PM_TRIGGER_CARTRIDGE;
             }
 
-            PM_GoSleepMode(v2, 0, 0);
+            PM_GoSleepMode(trigger, 0, 0);
 
             if (CARD_IsPulledOut()) {
                 PM_ForceToPowerOff();
-            } else {
-                if (PAD_DetectFold()) {
-                    Unk_02101D24 = TRUE;
-                    goto GOTOLABEL;
-                }
+            } else if (PAD_DetectFold()) {
+                // Woke up because the cartridge got pulled out
+                gIgnoreCartridgeForWake = TRUE;
+                goto sleep_again;
             }
 
-            sub_0201E5FC();
+            AfterSleep();
         } else {
-            PM_GetBackLight(&v0, &v1);
+            PM_GetBackLight(&top, &bottom);
 
-            if (v0 == PM_BACKLIGHT_ON) {
+            if (top == PM_BACKLIGHT_ON) {
                 PM_SetBackLight(PM_LCD_ALL, PM_BACKLIGHT_OFF);
             }
         }
     } else {
-        PM_GetBackLight(&v0, &v1);
+        PM_GetBackLight(&top, &bottom);
 
-        if (v0 == PM_BACKLIGHT_OFF) {
-            PM_SetBackLight(PM_LCD_ALL, Unk_02101D20);
+        if (top == PM_BACKLIGHT_OFF) {
+            PM_SetBackLight(PM_LCD_ALL, sSavedBacklightState);
         }
     }
 }

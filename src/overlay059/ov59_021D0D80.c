@@ -1090,7 +1090,7 @@ static int ov59_021D1DC8 (UnkStruct_020961E8 * param0, int param1)
 {
     void * v0;
 
-    gCoreSys.unk_68 = 1;
+    gCoreSys.inhibitReset = 1;
     v0 = sub_0202C1B4(51);
 
     sub_0202B758(param0->unk_08->unk_10, v0, 4);
@@ -1115,7 +1115,7 @@ static int ov59_021D1E0C (UnkStruct_020961E8 * param0, int param1)
 
         param0->unk_0C.unk_00 = 0;
         param0->unk_3B4 = 0;
-        gCoreSys.unk_68 = 0;
+        gCoreSys.inhibitReset = 0;
         param0->unk_4AA4 = 0;
     }
 
