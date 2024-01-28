@@ -124,7 +124,7 @@ BOOL ov100_021D14A8 (void * param0)
         }
 
         if (v0->unk_04 == v2[v0->unk_08]) {
-            sub_020059D0(0, v4[v0->unk_08], 0, 100, 111, 0);
+            Sound_PlayPokemonCry(0, v4[v0->unk_08], 0, 100, 111, 0);
         }
 
         if ((++v0->unk_04) >= v1[v0->unk_08]) {

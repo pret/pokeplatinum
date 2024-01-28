@@ -18,7 +18,7 @@
 #include "trainer_info.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_defs/struct_020279FC.h"
-#include "struct_decls/struct_0202CC84_decl.h"
+#include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
@@ -204,7 +204,7 @@ int ov16_0223EDE0(BattleSystem * param0);
 u8 BattleSystem_TextSpeed(BattleSystem * param0);
 int BattleSystem_Ruleset(BattleSystem * param0);
 PokemonAnimationSys * ov16_0223EE28(BattleSystem * param0);
-UnkStruct_0202CC84 * BattleSystem_ChatotVoice(BattleSystem * param0, int param1);
+ChatotCry * BattleSystem_ChatotVoice(BattleSystem * param0, int param1);
 void ov16_0223EE70(BattleSystem * param0);
 void ov16_0223EF2C(BattleSystem * param0, int param1, int param2);
 void ov16_0223EF48(BattleSystem * param0, Pokemon * param1);

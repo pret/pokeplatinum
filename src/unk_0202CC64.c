@@ -2,53 +2,49 @@
 #include <string.h>
 
 #include "struct_decls/struct_021C0794_decl.h"
+#include "struct_defs/chatot_cry.h"
 
 #include "heap.h"
 #include "unk_020244AC.h"
 #include "unk_0202CC64.h"
 
-typedef struct UnkStruct_0202CC84_t {
-    BOOL unk_00;
-    s8 unk_04[1000];
-} UnkStruct_0202CC84;
-
 int ChatotCry_SaveSize (void)
 {
-    return sizeof(UnkStruct_0202CC84);
+    return sizeof(ChatotCry);
 }
 
-void ChatotCry_Init (UnkStruct_0202CC84 * param0)
+void ChatotCry_Init (ChatotCry * param0)
 {
-    MI_CpuClear32(param0, sizeof(UnkStruct_0202CC84));
-    param0->unk_00 = 0;
+    MI_CpuClear32(param0, sizeof(ChatotCry));
+    param0->exists = FALSE;
 }
 
-UnkStruct_0202CC84 * sub_0202CC84 (int param0)
+ChatotCry * sub_0202CC84 (int param0)
 {
-    UnkStruct_0202CC84 * v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0202CC84));
+    ChatotCry * v0 = Heap_AllocFromHeap(param0, sizeof(ChatotCry));
 
     ChatotCry_Init(v0);
     return v0;
 }
 
-UnkStruct_0202CC84 * sub_0202CC98 (SaveData * param0)
+ChatotCry * sub_0202CC98 (SaveData * param0)
 {
-    return (UnkStruct_0202CC84 *)SaveData_Get(param0, 22);
+    return (ChatotCry *)SaveData_Get(param0, 22);
 }
 
-BOOL sub_0202CCA4 (const UnkStruct_0202CC84 * param0)
+BOOL sub_0202CCA4 (const ChatotCry * param0)
 {
-    return param0->unk_00;
+    return param0->exists;
 }
 
-void sub_0202CCA8 (UnkStruct_0202CC84 * param0)
+void sub_0202CCA8 (ChatotCry * param0)
 {
-    param0->unk_00 = 0;
+    param0->exists = FALSE;
 }
 
-const void * sub_0202CCB0 (const UnkStruct_0202CC84 * param0)
+const void * sub_0202CCB0 (const ChatotCry * param0)
 {
-    return param0->unk_04;
+    return param0->data;
 }
 
 void sub_0202CCB4 (s8 * param0, const s8 * param1)
@@ -72,31 +68,31 @@ void sub_0202CCB4 (s8 * param0, const s8 * param1)
     }
 }
 
-void sub_0202CCEC (UnkStruct_0202CC84 * param0, const s8 * param1)
+void sub_0202CCEC (ChatotCry * param0, const s8 * param1)
 {
     int v0, v1;
     s8 v2;
     u8 v3;
 
-    param0->unk_00 = 1;
+    param0->exists = TRUE;
     v1 = 0;
 
     for (v0 = 0; v0 < 1000 * 2; v0 += 2) {
         v2 = (param1[v0] / 16);
         v3 = v2 + 8;
 
-        param0->unk_04[v1] = v3;
+        param0->data[v1] = v3;
 
         v2 = (param1[v0 + 1] / 16);
         v3 = v2 + 8;
 
-        param0->unk_04[v1] |= (v3 << 4);
+        param0->data[v1] |= (v3 << 4);
 
         v1++;
     }
 }
 
-void sub_0202CD3C (UnkStruct_0202CC84 * param0, const UnkStruct_0202CC84 * param1)
+void sub_0202CD3C (ChatotCry * param0, const ChatotCry * param1)
 {
-    MI_CpuCopyFast(param1, param0, sizeof(UnkStruct_0202CC84));
+    MI_CpuCopyFast(param1, param0, sizeof(ChatotCry));
 }

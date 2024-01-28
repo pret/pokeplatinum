@@ -14,7 +14,7 @@
 #include "trainer_info.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
-#include "struct_decls/struct_0202CC84_decl.h"
+#include "struct_defs/chatot_cry.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -122,7 +122,7 @@ static void ov88_0223CF68(int param0, UnkStruct_02022550 * param1, int param2);
 static int ov88_0223CFF4(u32 * param0, int * param1, UnkStruct_02022550 * param2, UnkStruct_ov88_0223C8AC * param3, int param4);
 static int ov88_0223C800(int param0, Pokemon * param1, u8 * param2, ArchivedSprite * param3);
 static void ov88_0223E7F0(UnkStruct_0202B628 * param0, Pokemon * param1);
-static void ov88_0223D140(UnkStruct_0202CC84 * param0);
+static void ov88_0223D140(ChatotCry * param0);
 static void ov88_0223E894(UnkStruct_02095E80 * param0);
 static void ov88_0223E8B4(UnkStruct_02095E80 * param0);
 static int ov88_0223E8D0(UnkStruct_02095E80 * param0);
@@ -1538,7 +1538,7 @@ static void ov88_0223CE74 (UnkStruct_02095E80 * param0)
         v1 = param0->unk_6F4[param0->unk_88[0]].unk_06;
 
         if (v0 == 441) {
-            sub_020063E4(sub_0202CC98(param0->unk_04), 0, 100, 0);
+            Sound_PlayChatotCry(sub_0202CC98(param0->unk_04), 0, 100, 0);
         } else {
             sub_02005844(v0, v1);
         }
@@ -1697,7 +1697,7 @@ static void ov88_0223D0D4 (TrainerInfo * param0, UnkStruct_02027F8C * param1, Un
     sub_0203597C(28, param2, sizeof(UnkStruct_02027F8C));
 }
 
-static void ov88_0223D140 (UnkStruct_0202CC84 * param0)
+static void ov88_0223D140 (ChatotCry * param0)
 {
     sub_0203597C(29, param0, 1000);
 }
@@ -1751,7 +1751,7 @@ static void ov88_0223D1EC (UnkStruct_02095E80 * param0, int param1)
     } else {
         param0->unk_0C.unk_00 = param0->unk_2274;
         param0->unk_0C.unk_13 = Party_GetCurrentCount(param0->unk_2274);
-        param0->unk_0C.unk_28 = (UnkStruct_0202CC84 *)param0->unk_2E6C[sub_0203608C() ^ 1];
+        param0->unk_0C.unk_28 = (ChatotCry *)param0->unk_2E6C[sub_0203608C() ^ 1];
         sub_0208E9C0(&param0->unk_0C, sub_02032EE8(sub_0203608C() ^ 1));
     }
 
@@ -2528,7 +2528,7 @@ static void ov88_0223E694 (Party * param0, Party * param1, int param2, int param
     param4->unk_2C = param2;
 
     if (Party_HasSpecies(param0, 441) == 0) {
-        UnkStruct_0202CC84 * v4 = sub_0202CC98(param4->unk_10);
+        ChatotCry * v4 = sub_0202CC98(param4->unk_10);
         sub_0202CCA8(v4);
     }
 

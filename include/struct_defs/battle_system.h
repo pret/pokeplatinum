@@ -19,7 +19,7 @@
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_02027F8C_decl.h"
-#include "struct_decls/struct_0202CC84_decl.h"
+#include "struct_defs/chatot_cry.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_02056B24_decl.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -65,7 +65,7 @@ struct BattleSystem {
     UnkStruct_02026324 *pokedex;
     PCBoxes *pcBoxes;
     Party *parties[4];
-    UnkStruct_0202CC84 * unk_78[4];
+    ChatotCry * unk_78[4];
     UnkStruct_02007768 * unk_88;
     UnkStruct_ov12_0221FCDC * unk_8C;
     UnkStruct_0200C6E4 * unk_90;
