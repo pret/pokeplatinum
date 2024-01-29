@@ -1,6 +1,0 @@
-#ifndef POKEPLATINUM_FUNCPTR_02017798_H
-#define POKEPLATINUM_FUNCPTR_02017798_H
-
-typedef void (* Callback)(void *);
-
-#endif // POKEPLATINUM_FUNCPTR_02017798_H

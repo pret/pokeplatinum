@@ -3,7 +3,6 @@
 
 #include "core_sys.h"
 
-#include "functypes/funcptr_02017798.h"
 #include "struct_defs/struct_02017E74.h"
 
 #include "unk_02017728.h"

@@ -1,9 +1,10 @@
 #ifndef POKEPLATINUM_CORE_SYS_H
 #define POKEPLATINUM_CORE_SYS_H
 
-#include "functypes/funcptr_02017798.h"
 #include "struct_decls/struct_0201CD88_decl.h"
 #include "overlay023/funcptr_ov23_022537D4.h"
+
+typedef void (* Callback)(void *);
 
 enum ButtonMode {
     BUTTON_MODE_NORMAL = 0,
@@ -14,9 +15,9 @@ enum ButtonMode {
 
 typedef struct CoreSys {
     Callback mainCallback;
-    void * mainCallbackData;
+    void *mainCallbackData;
     Callback hblankCallback;
-    void * hblankCallbackData;
+    void *hblankCallbackData;
     UnkFuncPtr_ov23_022537D4 unk_10;
     UnkFuncPtr_ov23_022537D4 unk_14;
     UnkStruct_0201CD88 * unk_18;
@@ -47,7 +48,7 @@ typedef struct CoreSys {
     u8 inhibitReset;
     u8 padding_69[3];
     BOOL unk_6C;
-    u32 * heapCanary;
+    u32 *heapCanary;
 } CoreSys;
 
 extern CoreSys gCoreSys;
