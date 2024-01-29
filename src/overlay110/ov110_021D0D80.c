@@ -62,7 +62,7 @@ typedef struct {
     Strbuf* unk_118;
     Strbuf* unk_11C;
     PaletteSys * unk_120;
-    const UnkStruct_020279FC * unk_124;
+    const AnimationControlFlags * unk_124;
     SaveData * unk_128;
     UnkStruct_0203068C * unk_12C;
 } UnkStruct_ov110_021D0F78;

@@ -33,7 +33,7 @@ void ov83_0223D784(UnkStruct_ov83_0223D784 * param0);
 void ov83_0223D7A8(UnkStruct_ov83_0223D784 * param0, UnkStruct_ov83_0223D95C * param1, NARC * param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, u32 param9);
 void ov83_0223D894(UnkStruct_ov83_0223D784 * param0, UnkStruct_ov83_0223D95C * param1, NARC * param2, UnkStruct_02009DC8 * param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
 void ov83_0223D95C(UnkStruct_ov83_0223D784 * param0, UnkStruct_ov83_0223D95C * param1);
-UnkStruct_02022550 * ov83_0223D9A8(UnkStruct_ov83_0223D784 * param0, UnkStruct_ov83_0223D95C * param1, fx32 param2, fx32 param3, fx32 param4, int param5, int param6);
+GraphicElementData * ov83_0223D9A8(UnkStruct_ov83_0223D784 * param0, UnkStruct_ov83_0223D95C * param1, fx32 param2, fx32 param3, fx32 param4, int param5, int param6);
 void ov83_0223D9DC(UnkStruct_ov83_0223D9EC * param0, fx32 param1, fx32 param2, int param3);
 BOOL ov83_0223D9EC(UnkStruct_ov83_0223D9EC * param0);
 void ov83_0223DA34(UnkStruct_ov83_0223DA94 * param0, fx32 param1, fx32 param2, fx32 param3, int param4);

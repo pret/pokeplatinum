@@ -307,8 +307,8 @@ typedef struct UnkStruct_ov109_021D0F70_t {
     NNSG2dScreenData * unk_D88;
     NNSG2dCharacterData * unk_D8C;
     NNSG2dPaletteData * unk_D90;
-    UnkStruct_0200C6E4 * unk_D94;
-    UnkStruct_0200C704 * unk_D98;
+    CellTransferStateData * unk_D94;
+    AnimationResourceCollection * unk_D98;
     PaletteSys * unk_D9C;
     GXRgb unk_DA0[8];
     SysTask * unk_DB0;
@@ -1963,8 +1963,8 @@ static void ov109_021D2368 (UnkStruct_ov109_021D0F70 * param0)
 
 static void ov109_021D2408 (UnkStruct_ov109_021D0F70 * param0)
 {
-    UnkStruct_0200C6E4 * v0 = param0->unk_D94;
-    UnkStruct_0200C704 * v1 = param0->unk_D98;
+    CellTransferStateData * v0 = param0->unk_D94;
+    AnimationResourceCollection * v1 = param0->unk_D98;
     PaletteSys * v2 = param0->unk_D9C;
     NARC * v3 = param0->unk_D80;
 

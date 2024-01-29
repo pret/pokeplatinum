@@ -85,7 +85,7 @@ struct UnkStruct_02087A10_t {
     int unk_0C;
     int unk_10;
     int unk_14;
-    UnkStruct_020279FC * unk_18;
+    AnimationControlFlags * unk_18;
     UnkStruct_02087A10_sub1 unk_1C;
     u16 unk_38;
     u16 unk_3A[6][13];
@@ -104,15 +104,15 @@ struct UnkStruct_02087A10_t {
     Strbuf* unk_17C;
     Strbuf* unk_180;
     Strbuf* unk_184;
-    UnkStruct_020218BC * unk_188;
+    GraphicElementManager * unk_188;
     UnkStruct_0200C738 unk_18C;
     UnkStruct_02009714 * unk_318[4];
     UnkStruct_02009DC8 * unk_328[2][4];
     UnkStruct_ov19_021DA864 unk_348;
     UnkStruct_ov19_021DA864 unk_36C;
-    UnkStruct_02022550 * unk_390[14];
-    UnkStruct_02022550 * unk_3C8[12];
-    UnkStruct_02022550 * unk_3F8[2];
+    GraphicElementData * unk_390[14];
+    GraphicElementData * unk_3C8[12];
+    GraphicElementData * unk_3F8[2];
     SysTask * unk_400[7];
     Window unk_41C[10];
     int unk_4BC;
@@ -138,14 +138,14 @@ struct UnkStruct_02087A10_t {
 };
 
 typedef struct {
-    UnkStruct_02022550 * unk_00;
-    UnkStruct_02022550 * unk_04;
+    GraphicElementData * unk_00;
+    GraphicElementData * unk_04;
     int unk_08;
     int unk_0C;
 } UnkStruct_020879DC;
 
 typedef struct {
-    UnkStruct_02022550 * unk_00;
+    GraphicElementData * unk_00;
     int unk_04;
     int unk_08;
     int unk_0C;
@@ -170,7 +170,7 @@ static void sub_020871CC(void);
 static void sub_020871EC(BGL * param0);
 static void sub_0208765C(BGL * param0, Window * param1);
 static void sub_0208769C(UnkStruct_02087A10 * param0, NARC * param1);
-static void sub_02087D64(BGL * param0, Window * param1, int * param2, int param3, int * param4, VecFx32 param5[], UnkStruct_02022550 ** param6, void * param7);
+static void sub_02087D64(BGL * param0, Window * param1, int * param2, int param3, int * param4, VecFx32 param5[], GraphicElementData ** param6, void * param7);
 static void sub_0208737C(UnkStruct_02087A10 * param0, UnkStruct_020067E8 * param1);
 static void sub_02088240(BGL * param0, int param1, VecFx32 param2[]);
 static void sub_02088260(VecFx32 param0[], int param1);
@@ -187,11 +187,11 @@ static void sub_02088754(Window * param0, u16 * param1, int param2, u16 * param3
 static int sub_02088898(UnkStruct_02087A10 * param0, u16 param1, int param2);
 static int sub_02088D08(int param0, int param1, int param2, int param3, u16 * param4, int param5);
 static int sub_02088C9C(int param0, int param1, u16 * param2, int param3);
-static void sub_02088E1C(UnkStruct_02022550 ** param0, int param1, int param2);
+static void sub_02088E1C(GraphicElementData ** param0, int param1, int param2);
 static void sub_020871B0(UnkStruct_02087A10 * param0, UnkStruct_0208737C * param1);
 static void sub_02088E58(Window * param0, u16 param1, int param2, u32 param3, u8 * param4);
 static void sub_02088454(UnkStruct_02087A10 * param0, int param1);
-static void sub_02088F40(int param0[], UnkStruct_02022550 ** param1, int param2);
+static void sub_02088F40(int param0[], GraphicElementData ** param1, int param2);
 static void sub_020879DC(SysTask * param0, void * param1);
 static void sub_02087CDC(SysTask * param0, void * param1);
 static void sub_02086B30(NNSG2dCharacterData * param0, NNSG2dPaletteData * param1, int param2, int param3);
@@ -1210,7 +1210,7 @@ static int sub_02086F3C (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-UnkStruct_0208737C * sub_0208712C (int param0, int param1, int param2, int param3, UnkStruct_020279FC * param4)
+UnkStruct_0208737C * sub_0208712C (int param0, int param1, int param2, int param3, AnimationControlFlags * param4)
 {
     UnkStruct_0208737C * v0;
 
@@ -1752,7 +1752,7 @@ static void sub_02087CDC (SysTask * param0, void * param1)
     v0->unk_04++;
 }
 
-static void sub_02087D64 (BGL * param0, Window * param1, int * param2, int param3, int * param4, VecFx32 param5[], UnkStruct_02022550 ** param6, void * param7)
+static void sub_02087D64 (BGL * param0, Window * param1, int * param2, int param3, int * param4, VecFx32 param5[], GraphicElementData ** param6, void * param7)
 {
     int v0 = *param4;
     int v1 = v0 ^ 1;
@@ -2443,7 +2443,7 @@ static int sub_02088D08 (int param0, int param1, int param2, int param3, u16 * p
     return 0;
 }
 
-static void sub_02088E1C (UnkStruct_02022550 ** param0, int param1, int param2)
+static void sub_02088E1C (GraphicElementData ** param0, int param1, int param2)
 {
     int v0;
 
@@ -2488,7 +2488,7 @@ static void sub_02088E58 (Window * param0, u16 param1, int param2, u32 param3, u
     sub_0201A954(param0);
 }
 
-static void sub_02088F40 (int param0[], UnkStruct_02022550 ** param1, int param2)
+static void sub_02088F40 (int param0[], GraphicElementData ** param1, int param2)
 {
     int v0, v1;
 

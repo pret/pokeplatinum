@@ -24,7 +24,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 
-typedef struct UnkStruct_02001AF4_t {
+typedef struct UIControlData_t {
     UnkStruct_02081CF4 unk_00;
     UnkStruct_020149F0 * unk_0C;
     u32 unk_10;
@@ -37,20 +37,20 @@ typedef struct UnkStruct_02001AF4_t {
     u8 unk_1A;
     u8 unk_1B;
     u8 unk_1C;
-} UnkStruct_02001AF4;
+} UIControlData;
 
 static void sub_0200DB10(BGL * param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u16 param7);
 static void sub_0200DD7C(BGL * param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u16 param7);
-static BOOL sub_02001DCC(UnkStruct_02001AF4 * param0, u8 param1, u16 param2);
-static u8 sub_02001E24(UnkStruct_02001AF4 * param0, u8 param1);
-static u8 sub_02001F1C(UnkStruct_02001AF4 * param0);
-static void sub_02001F5C(UnkStruct_02001AF4 * param0);
-static void sub_02001FE8(UnkStruct_02001AF4 * param0);
-static void sub_02002018(UnkStruct_02001AF4 * param0, u8 * param1, u8 * param2, u8 param3);
+static BOOL sub_02001DCC(UIControlData * param0, u8 param1, u16 param2);
+static u8 sub_02001E24(UIControlData * param0, u8 param1);
+static u8 sub_02001F1C(UIControlData * param0);
+static void sub_02001F5C(UIControlData * param0);
+static void sub_02001FE8(UIControlData * param0);
+static void sub_02002018(UIControlData * param0, u8 * param1, u8 * param2, u8 param3);
 
-UnkStruct_02001AF4 * sub_02001AF4 (const UnkStruct_02081CF4 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u32 param5)
+UIControlData * sub_02001AF4 (const UnkStruct_02081CF4 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u32 param5)
 {
-    UnkStruct_02001AF4 * v0 = (UnkStruct_02001AF4 *)Heap_AllocFromHeap(param4, sizeof(UnkStruct_02001AF4));
+    UIControlData * v0 = (UIControlData *)Heap_AllocFromHeap(param4, sizeof(UIControlData));
 
     v0->unk_00 = *param0;
     v0->unk_0C = sub_020149F0(param4);
@@ -69,20 +69,20 @@ UnkStruct_02001AF4 * sub_02001AF4 (const UnkStruct_02081CF4 * param0, u8 param1,
     return v0;
 }
 
-UnkStruct_02001AF4 * sub_02001B7C (const UnkStruct_02081CF4 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u32 param5)
+UIControlData * sub_02001B7C (const UnkStruct_02081CF4 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u32 param5)
 {
-    UnkStruct_02001AF4 * v0 = sub_02001AF4(param0, param1, param2, param3, param4, param5);
+    UIControlData * v0 = sub_02001AF4(param0, param1, param2, param3, param4, param5);
 
     sub_0201A954(v0->unk_00.unk_04);
     return v0;
 }
 
-UnkStruct_02001AF4 * sub_02001B9C (const UnkStruct_02081CF4 * param0, u8 param1, u8 param2)
+UIControlData * sub_02001B9C (const UnkStruct_02081CF4 * param0, u8 param1, u8 param2)
 {
     return sub_02001B7C(param0, sub_02002DF8(param0->unk_08, 0), 0, param1, param2, PAD_BUTTON_B);
 }
 
-void sub_02001BC4 (UnkStruct_02001AF4 * param0, u8 * param1)
+void sub_02001BC4 (UIControlData * param0, u8 * param1)
 {
     if (param1 != NULL) {
         *param1 = param0->unk_15;
@@ -92,7 +92,7 @@ void sub_02001BC4 (UnkStruct_02001AF4 * param0, u8 * param1)
     Heap_FreeToHeapExplicit(param0->unk_1C, param0);
 }
 
-u32 sub_02001BE0 (UnkStruct_02001AF4 * param0)
+u32 sub_02001BE0 (UIControlData * param0)
 {
     param0->unk_1B = 0;
 
@@ -141,7 +141,7 @@ u32 sub_02001BE0 (UnkStruct_02001AF4 * param0)
     return 0xffffffff;
 }
 
-u32 sub_02001C94 (UnkStruct_02001AF4 * param0, u16 param1)
+u32 sub_02001C94 (UIControlData * param0, u16 param1)
 {
     param0->unk_1B = 0;
 
@@ -190,7 +190,7 @@ u32 sub_02001C94 (UnkStruct_02001AF4 * param0, u16 param1)
     return 0xffffffff;
 }
 
-u32 sub_02001D44 (UnkStruct_02001AF4 * param0, u8 param1)
+u32 sub_02001D44 (UIControlData * param0, u8 param1)
 {
     switch (param1) {
     case 0:
@@ -216,17 +216,17 @@ u32 sub_02001D44 (UnkStruct_02001AF4 * param0, u8 param1)
     return 0xffffffff;
 }
 
-u8 sub_02001DC4 (UnkStruct_02001AF4 * param0)
+u8 sub_02001DC4 (UIControlData * param0)
 {
     return param0->unk_15;
 }
 
-u8 sub_02001DC8 (UnkStruct_02001AF4 * param0)
+u8 sub_02001DC8 (UIControlData * param0)
 {
     return param0->unk_1B;
 }
 
-static BOOL sub_02001DCC (UnkStruct_02001AF4 * param0, u8 param1, u16 param2)
+static BOOL sub_02001DCC (UIControlData * param0, u8 param1, u16 param2)
 {
     u8 v0 = param0->unk_15;
 
@@ -250,7 +250,7 @@ static BOOL sub_02001DCC (UnkStruct_02001AF4 * param0, u8 param1, u16 param2)
     return 1;
 }
 
-static u8 sub_02001E24 (UnkStruct_02001AF4 * param0, u8 param1)
+static u8 sub_02001E24 (UIControlData * param0, u8 param1)
 {
     s8 v0;
 
@@ -320,7 +320,7 @@ static u8 sub_02001E24 (UnkStruct_02001AF4 * param0, u8 param1)
     return 1;
 }
 
-static u8 sub_02001F1C (UnkStruct_02001AF4 * param0)
+static u8 sub_02001F1C (UIControlData * param0)
 {
     u8 v0 = 0;
     u8 v1, v2;
@@ -336,7 +336,7 @@ static u8 sub_02001F1C (UnkStruct_02001AF4 * param0)
     return v0;
 }
 
-static void sub_02001F5C (UnkStruct_02001AF4 * param0)
+static void sub_02001F5C (UIControlData * param0)
 {
     const void * v0;
     u8 v1, v2, v3;
@@ -359,7 +359,7 @@ static void sub_02001F5C (UnkStruct_02001AF4 * param0)
     }
 }
 
-static void sub_02001FE8 (UnkStruct_02001AF4 * param0)
+static void sub_02001FE8 (UIControlData * param0)
 {
     u8 v0, v1;
 
@@ -371,17 +371,17 @@ static void sub_02001FE8 (UnkStruct_02001AF4 * param0)
     sub_02014A58(param0->unk_0C, param0->unk_00.unk_04, v0, v1);
 }
 
-static void sub_02002018 (UnkStruct_02001AF4 * param0, u8 * param1, u8 * param2, u8 param3)
+static void sub_02002018 (UIControlData * param0, u8 * param1, u8 * param2, u8 param3)
 {
     *param1 = (param3 / param0->unk_00.unk_0A) * (param0->unk_16 + param0->unk_19 * 2);
     *param2 = (param3 % param0->unk_00.unk_0A) * (param0->unk_1A + param0->unk_00.unk_0B_0) + param0->unk_18;
 }
 
-UnkStruct_02001AF4 * sub_02002054 (BGL * param0, const UnkStruct_ov61_0222C884 * param1, u16 param2, u8 param3, u8 param4, u32 param5)
+UIControlData * sub_02002054 (BGL * param0, const UnkStruct_ov61_0222C884 * param1, u16 param2, u8 param3, u8 param4, u32 param5)
 {
     UnkStruct_02081CF4 v0;
     MessageLoader * v1;
-    UnkStruct_02013A04 * v2;
+    ResourceMetadata * v2;
 
     v1 = MessageLoader_Init(1, 26, 361, param5);
     v2 = sub_02013A04(2, param5);
@@ -405,12 +405,12 @@ UnkStruct_02001AF4 * sub_02002054 (BGL * param0, const UnkStruct_ov61_0222C884 *
     return sub_02001B7C(&v0, 8, 0, param4, param5, PAD_BUTTON_B);
 }
 
-UnkStruct_02001AF4 * sub_02002100 (BGL * param0, const UnkStruct_ov61_0222C884 * param1, u16 param2, u8 param3, u32 param4)
+UIControlData * sub_02002100 (BGL * param0, const UnkStruct_ov61_0222C884 * param1, u16 param2, u8 param3, u32 param4)
 {
     return sub_02002054(param0, param1, param2, param3, 0, param4);
 }
 
-u32 sub_02002114 (UnkStruct_02001AF4 * param0, u32 param1)
+u32 sub_02002114 (UIControlData * param0, u32 param1)
 {
     u32 v0 = sub_02001BE0(param0);
 
@@ -421,7 +421,7 @@ u32 sub_02002114 (UnkStruct_02001AF4 * param0, u32 param1)
     return v0;
 }
 
-u32 sub_02002134 (UnkStruct_02001AF4 * param0, u8 param1, u32 param2)
+u32 sub_02002134 (UIControlData * param0, u8 param1, u32 param2)
 {
     u32 v0 = sub_02001D44(param0, param1);
 
@@ -432,12 +432,12 @@ u32 sub_02002134 (UnkStruct_02001AF4 * param0, u8 param1, u32 param2)
     return v0;
 }
 
-void sub_02002154 (UnkStruct_02001AF4 * param0, u32 param1)
+void sub_02002154 (UIControlData * param0, u32 param1)
 {
     Window_Clear(param0->unk_00.unk_04, 0);
     BGL_DeleteWindow(param0->unk_00.unk_04);
     Heap_FreeToHeapExplicit(param1, param0->unk_00.unk_04);
-    sub_02013A3C((UnkStruct_02013A04 *)param0->unk_00.unk_00);
+    sub_02013A3C((ResourceMetadata *)param0->unk_00.unk_00);
     sub_02001BC4(param0, NULL);
 }
 

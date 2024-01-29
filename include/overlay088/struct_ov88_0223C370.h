@@ -20,7 +20,7 @@ typedef struct {
     UnkStruct_02027F8C * unk_0C;
     SaveData * unk_10;
     UnkStruct_0202C878 * unk_14;
-    UnkStruct_020279FC * unk_18;
+    AnimationControlFlags * unk_18;
     UnkStruct_0202B628 * unk_1C;
     UnkStruct_0202CD88 * unk_20;
     UnkStruct_02026324 * unk_24;

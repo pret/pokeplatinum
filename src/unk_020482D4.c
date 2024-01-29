@@ -223,7 +223,7 @@ BOOL sub_020484F8 (UnkStruct_0203E724 * param0)
 {
     u16 * v0 = inline_0204FCAC(param0);
 
-    if (sub_02006260(sub_0202CC98(param0->unk_34->unk_0C)) == 1) {
+    if (IsChatotCryStructReadyForProcessing(GetChatotCryDataFromSave(param0->unk_34->unk_0C)) == 1) {
         *v0 = 1;
         return 0;
     }
@@ -236,7 +236,7 @@ BOOL sub_02048530 (UnkStruct_0203E724 * param0)
 {
     u16 * v0 = inline_0204FCAC(param0);
 
-    if (sub_0200637C() == MIC_RESULT_SUCCESS) {
+    if (StartMicSampling() == MIC_RESULT_SUCCESS) {
         *v0 = 1;
         return 0;
     }
@@ -247,13 +247,13 @@ BOOL sub_02048530 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204855C (UnkStruct_0203E724 * param0)
 {
-    sub_020063B8();
+    StopMicSampling();
     return 1;
 }
 
 BOOL sub_02048568 (UnkStruct_0203E724 * param0)
 {
-    sub_020063C0(sub_0202CC98(param0->unk_34->unk_0C));
+    StoreMicDataInChatotCryStruct(GetChatotCryDataFromSave(param0->unk_34->unk_0C));
     return 1;
 }
 

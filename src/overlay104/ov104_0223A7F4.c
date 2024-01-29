@@ -353,8 +353,8 @@ BattleParams * ov104_0223ABA0 (UnkStruct_ov104_0223ADA0 * param0, UnkStruct_ov10
     v2 = ov104_0223AA50(param0->unk_04);
     v3 = ov104_0223AA74(param0->unk_04, 0);
 
-    sub_02097284(param0->unk_4D4);
-    sub_02097284(param0->unk_4D8);
+    HealAllPokemonInParty(param0->unk_4D4);
+    HealAllPokemonInParty(param0->unk_4D8);
 
     v4 = sub_02051D8C(11, ov104_0223AD74(param0->unk_04));
     sub_020521B8(v4, NULL, param1->unk_08, param1->unk_1C, param1->unk_0C, param1->unk_10, param1->unk_20);

@@ -113,8 +113,8 @@ typedef struct {
     u16 unk_13E;
     UnkStruct_ov84_02240FA8 unk_140;
     UnkStruct_0200112C * unk_160;
-    UnkStruct_02013A04 * unk_164;
-    UnkStruct_02001AF4 * unk_168;
+    ResourceMetadata * unk_164;
+    UIControlData * unk_168;
     UnkStruct_0203CDB0 * unk_16C;
     BGL * unk_170;
     Window unk_174;
@@ -124,7 +124,7 @@ typedef struct {
     UnkStruct_02097728 * unk_1A8;
     UnkStruct_02028430 * unk_1AC;
     UnkStruct_0207D3C0 * unk_1B0;
-    UnkStruct_02098C44 * unk_1B4;
+    PartyManagementData * unk_1B4;
 } UnkStruct_02072334;
 
 typedef struct {
@@ -522,7 +522,7 @@ static void sub_020726B4 (SysTask * param0, void * param1)
 static void sub_02072754 (SysTask * param0, void * param1)
 {
     u8 v0;
-    UnkStruct_02098C44 * v1;
+    PartyManagementData * v1;
     UnkStruct_02072334 * v2 = (UnkStruct_02072334 *)param1;
 
     switch (v2->unk_10) {
@@ -602,7 +602,7 @@ static void sub_02072878 (SysTask * param0, void * param1)
 {
     int v0;
     u8 v1, v2;
-    UnkStruct_02098C44 * v3;
+    PartyManagementData * v3;
     UnkStruct_02072334 * v4 = (UnkStruct_02072334 *)param1;
 
     switch (v4->unk_10) {
@@ -1218,12 +1218,12 @@ static int sub_020734F4 (UnkStruct_02072334 * param0, u8 param1)
 
 static int sub_02073524 (UnkStruct_02072334 * param0, int param1)
 {
-    UnkStruct_02098C44 * v0;
+    PartyManagementData * v0;
 
     switch (param0->unk_12) {
     case 0:
-        v0 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02098C44));
-        MI_CpuClear8(v0, sizeof(UnkStruct_02098C44));
+        v0 = Heap_AllocFromHeap(param0->unk_00, sizeof(PartyManagementData));
+        MI_CpuClear8(v0, sizeof(PartyManagementData));
 
         v0->unk_00 = Party_GetFromSavedata(sub_0203D174(param0->unk_16C));
         v0->unk_04 = sub_0207D990(sub_0203D174(param0->unk_16C));

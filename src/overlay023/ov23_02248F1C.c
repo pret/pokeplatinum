@@ -57,13 +57,13 @@ struct UnkStruct_ov23_0224942C_t {
     int unk_A4[17][4];
     UnkStruct_0203CDB0 * unk_1B4;
     BGL * unk_1B8;
-    UnkStruct_020218BC * unk_1BC;
+    GraphicElementManager * unk_1BC;
     UnkStruct_0200C738 unk_1C0;
     UnkStruct_02009714 * unk_34C[4];
     UnkStruct_02009DC8 * unk_35C[4];
     UnkStruct_ov19_021DA864 unk_36C;
-    UnkStruct_02022550 * unk_390[8];
-    UnkStruct_02022550 * unk_3B0[17];
+    GraphicElementData * unk_390[8];
+    GraphicElementData * unk_3B0[17];
     Window unk_3F4;
     int unk_404;
     int unk_408;
@@ -77,7 +77,7 @@ static void ov23_0224944C(BGL * param0, Window * param1);
 static void ov23_02249584(UnkStruct_ov23_0224942C * param0);
 static void ov23_02249214(UnkStruct_0205E884 * const param0, int param1[][2], int param2[][3]);
 static void ov23_022491CC(int param0[][2], int param1[][3]);
-static void ov23_022492C8(int param0[][3], UnkStruct_02022550 * param1[]);
+static void ov23_022492C8(int param0[][3], GraphicElementData * param1[]);
 static void ov23_0224944C(BGL * param0, Window * param1);
 static void ov23_02249438(BGL * param0);
 static void ov23_0224966C(BGL * param0, Window * param1, int * param2, int * param3, int * param4, UnkStruct_ov23_02249724 * param5);
@@ -86,7 +86,7 @@ static void ov23_02249778(UnkStruct_ov23_02249724 * param0);
 static int ov23_02249844(UnkStruct_ov23_02249724 * param0, Strbuf *param1);
 static Strbuf* ov23_022498C4(UnkStruct_ov23_02249724 * param0);
 static int ov23_02249900(UnkStruct_ov23_02249724 * param0);
-static void ov23_0224937C(int param0[][4], UnkStruct_02022550 * param1[]);
+static void ov23_0224937C(int param0[][4], GraphicElementData * param1[]);
 static void ov23_02249334(int param0[][4]);
 
 static UnkStruct_ov23_0224942C * Unk_ov23_02257768;
@@ -254,7 +254,7 @@ static void ov23_02249214 (UnkStruct_0205E884 * const param0, int param1[][2], i
     }
 }
 
-static void ov23_022492C8 (int param0[][3], UnkStruct_02022550 * param1[])
+static void ov23_022492C8 (int param0[][3], GraphicElementData * param1[])
 {
     int v0;
 
@@ -295,7 +295,7 @@ static void ov23_02249334 (int param0[][4])
     }
 }
 
-static void ov23_0224937C (int param0[][4], UnkStruct_02022550 * param1[])
+static void ov23_0224937C (int param0[][4], GraphicElementData * param1[])
 {
     int v0;
 

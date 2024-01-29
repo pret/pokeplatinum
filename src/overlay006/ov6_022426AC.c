@@ -31,9 +31,9 @@ typedef struct UnkStruct_ov6_022426B8_t {
     void * unk_20;
     void * unk_24;
     ArchivedSprite unk_28;
-    UnkStruct_020218BC * unk_38;
+    GraphicElementManager * unk_38;
     UnkStruct_0200C738 unk_3C;
-    UnkStruct_02022550 * unk_1C8;
+    GraphicElementData * unk_1C8;
     BOOL unk_1CC;
     BOOL unk_1D0;
 } UnkStruct_ov6_022426B8;

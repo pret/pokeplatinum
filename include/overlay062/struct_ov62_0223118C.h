@@ -19,8 +19,8 @@
 
 typedef struct {
     NARC * unk_00;
-    UnkStruct_0200C6E4 * unk_04;
-    UnkStruct_0200C704 * unk_08;
+    CellTransferStateData * unk_04;
+    AnimationResourceCollection * unk_08;
     u8 padding_0C[4];
     BGL * unk_10;
     PaletteSys * unk_14;
@@ -34,7 +34,7 @@ typedef struct {
     int unk_44;
     u8 unk_48;
     u8 padding_49[3];
-    UnkStruct_0207C690 * unk_4C;
+    GenericPointerData * unk_4C;
     UnkStruct_02007768 * unk_50;
     UnkStruct_ov62_022349A8 unk_54;
     UnkStruct_ov62_0223359C unk_46C;

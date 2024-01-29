@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02022550_decl.h"
 
 typedef struct {
-    UnkStruct_02022550 * unk_00;
+    GraphicElementData * unk_00;
     int unk_04;
     int unk_08;
     BOOL unk_0C;

@@ -6,8 +6,8 @@
 #include "struct_decls/struct_0200C704_decl.h"
 
 typedef struct {
-    UnkStruct_0200C6E4 * unk_00;
-    UnkStruct_0200C704 * unk_04;
+    CellTransferStateData * unk_00;
+    AnimationResourceCollection * unk_04;
     PaletteSys * unk_08;
 } UnkStruct_ov12_02223764_sub1;
 

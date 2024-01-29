@@ -41,7 +41,7 @@ const UnkStruct_ov80_021D2C5C_sub1 Unk_ov80_021D31D8[20] = {
 	{ 0xAC, 0x44, 0x0, 0x1, 0x3, 0xB6, 0x77 }
 };
 
-UnkStruct_ov80_021D2C1C * ov80_021D2AF4 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, u8 * param2, short param3, int param4)
+UnkStruct_ov80_021D2C1C * ov80_021D2AF4 (CellTransferStateData * param0, AnimationResourceCollection * param1, u8 * param2, short param3, int param4)
 {
     UnkStruct_ov80_021D2C1C * v0;
     UnkStruct_ov80_021D2C5C * v1;

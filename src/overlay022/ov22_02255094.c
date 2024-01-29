@@ -156,7 +156,7 @@ void ov22_022551D0 (UnkStruct_ov22_0225A0E4 * param0)
     sub_020151EC(param0->unk_00);
 }
 
-UnkStruct_02022550 * ov22_022551E4 (UnkStruct_ov22_0225A0E4 * param0, int param1, int param2, int param3, int param4, int param5)
+GraphicElementData * ov22_022551E4 (UnkStruct_ov22_0225A0E4 * param0, int param1, int param2, int param3, int param4, int param5)
 {
     UnkStruct_ov19_021DA864 v0;
     UnkStruct_ov83_0223D9A8 v1;

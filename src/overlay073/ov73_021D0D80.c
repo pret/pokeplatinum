@@ -68,7 +68,7 @@ FS_EXTERN_OVERLAY(overlay57);
 typedef struct {
     int unk_00;
     SaveData * unk_04;
-    UnkStruct_020279FC * unk_08;
+    AnimationControlFlags * unk_08;
     int unk_0C;
     int unk_10;
     UnkStruct_020067E8 * unk_14;
@@ -77,7 +77,7 @@ typedef struct {
     int unk_2C;
     Window unk_30;
     UnkStruct_0200112C * unk_40;
-    UnkStruct_02013A04 * unk_44;
+    ResourceMetadata * unk_44;
     int unk_48;
     MessageLoader * unk_4C;
     int unk_50;

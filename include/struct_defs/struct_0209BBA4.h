@@ -31,7 +31,7 @@ typedef struct {
     u8 unk_9F;
     u8 unk_A0;
     u8 unk_A1[4];
-    UnkStruct_02098C44 * unk_A8;
+    PartyManagementData * unk_A8;
     UnkStruct_02098D38 * unk_AC;
     u16 * unk_B0;
 } UnkStruct_0209BBA4;

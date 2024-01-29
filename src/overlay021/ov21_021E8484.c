@@ -67,10 +67,10 @@ typedef struct {
 } UnkStruct_ov21_021E88B0;
 
 typedef struct {
-    UnkStruct_02022550 * unk_00[1];
+    GraphicElementData * unk_00[1];
     UnkStruct_ov21_021D4CA0 * unk_04[1];
     UnkStruct_02009DC8 * unk_08[4];
-    UnkStruct_02022550 * unk_18[4];
+    GraphicElementData * unk_18[4];
     int unk_28[1];
     void * unk_2C[1];
 } UnkStruct_ov21_021E8794;
@@ -97,8 +97,8 @@ static void ov21_021E88B0(UnkStruct_ov21_021E88B0 * param0);
 static void ov21_021E88B8(UnkStruct_ov21_021E88B0 * param0, UnkStruct_ov21_021E8570 * param1);
 static void ov21_021E88D0(UnkStruct_ov21_021E88B0 * param0);
 static void ov21_021E88E8(u32 param0, u32 param1, void * param2);
-static void ov21_021E8BE8(UnkStruct_ov21_021E8584 * param0, UnkStruct_02022550 * param1, UnkStruct_ov21_021D4CA0 * param2, int param3, int param4, int param5, int * param6, int param7, int param8, int param9, void ** param10);
-static void ov21_021E8C94(UnkStruct_02022550 * param0, UnkStruct_ov21_021D4CA0 * param1, int param2, int param3, int param4);
+static void ov21_021E8BE8(UnkStruct_ov21_021E8584 * param0, GraphicElementData * param1, UnkStruct_ov21_021D4CA0 * param2, int param3, int param4, int param5, int * param6, int param7, int param8, int param9, void ** param10);
+static void ov21_021E8C94(GraphicElementData * param0, UnkStruct_ov21_021D4CA0 * param1, int param2, int param3, int param4);
 static void ov21_021E8CBC(UnkStruct_ov21_021E8584 * param0, UnkStruct_ov21_021E8794 * param1, const UnkStruct_ov21_021E88B0 * param2, int param3);
 static void ov21_021E8D3C(const UnkStruct_ov21_021E8570 * param0);
 static void ov21_021E8CF0(UnkStruct_ov21_021E88B0 * param0, UnkStruct_ov21_021E8570 * param1);
@@ -612,7 +612,7 @@ static void ov21_021E8BDC (UnkStruct_ov21_021E8794 * param0, UnkStruct_ov21_021E
     }
 }
 
-static void ov21_021E8BE8 (UnkStruct_ov21_021E8584 * param0, UnkStruct_02022550 * param1, UnkStruct_ov21_021D4CA0 * param2, int param3, int param4, int param5, int * param6, int param7, int param8, int param9, void ** param10)
+static void ov21_021E8BE8 (UnkStruct_ov21_021E8584 * param0, GraphicElementData * param1, UnkStruct_ov21_021D4CA0 * param2, int param3, int param4, int param5, int * param6, int param7, int param8, int param9, void ** param10)
 {
     int v0;
     NNSG2dPaletteData * v1;
@@ -662,7 +662,7 @@ static void ov21_021E8BE8 (UnkStruct_ov21_021E8584 * param0, UnkStruct_02022550 
     }
 }
 
-static void ov21_021E8C94 (UnkStruct_02022550 * param0, UnkStruct_ov21_021D4CA0 * param1, int param2, int param3, int param4)
+static void ov21_021E8C94 (GraphicElementData * param0, UnkStruct_ov21_021D4CA0 * param1, int param2, int param3, int param4)
 {
     int v0;
 

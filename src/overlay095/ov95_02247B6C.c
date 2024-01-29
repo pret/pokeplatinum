@@ -54,7 +54,7 @@ typedef struct {
     UnkStruct_02007768 * unk_0C;
     Sprite * unk_10;
     SpriteAnimationFrame unk_14[10];
-    UnkStruct_02022550 * unk_3C[2];
+    GraphicElementData * unk_3C[2];
     UnkStruct_ov95_02247568 unk_44;
     BGL * unk_54;
     Window unk_58;

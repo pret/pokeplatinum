@@ -59,7 +59,7 @@
 
 typedef struct {
     UnkStruct_02098D38 * unk_00;
-    UnkStruct_02098C44 * unk_04;
+    PartyManagementData * unk_04;
     UnkFuncPtr_0205AB10 * unk_08;
     Strbuf* unk_0C;
     Strbuf* unk_10;
@@ -158,9 +158,9 @@ static void sub_0205A0D8 (UnkStruct_0205A0D8 * param0, UnkStruct_0203CDB0 * para
 static void sub_0205A164 (UnkStruct_0205A0D8 * param0, int param1)
 {
     int v0;
-    UnkStruct_02098C44 * v1 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02098C44));
+    PartyManagementData * v1 = Heap_AllocFromHeap(param1, sizeof(PartyManagementData));
 
-    MI_CpuClear8(v1, sizeof(UnkStruct_02098C44));
+    MI_CpuClear8(v1, sizeof(PartyManagementData));
 
     v1->unk_0C = sub_02025E44(param0->unk_24->unk_0C);
     v1->unk_14 = (void *)param0->unk_24->unk_B0;

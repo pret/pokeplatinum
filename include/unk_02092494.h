@@ -5,9 +5,9 @@
 #include "pokemon.h"
 #include "struct_defs/struct_02090800.h"
 
-UnkStruct_02090800 * sub_02092494(Pokemon * param0, BOOL param1, int param2);
-void sub_0209282C(UnkStruct_02090800 * param0);
+PokemonInfoDisplayStruct * sub_02092494(Pokemon * param0, BOOL param1, int param2);
+void sub_0209282C(PokemonInfoDisplayStruct * param0);
 void sub_0209304C(Pokemon * param0, TrainerInfo * param1, int param2, int param3, int param4);
-void sub_0209305C(BoxPokemon * param0, TrainerInfo * param1, int param2, int param3, int param4);
+void UpdateBoxMonStatusAndTrainerInfo(BoxPokemon * boxMon, TrainerInfo * trainerInfo, int sel, int metLocation, int heapID);
 
 #endif // POKEPLATINUM_UNK_02092494_H

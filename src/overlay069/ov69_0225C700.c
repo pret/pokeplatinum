@@ -126,10 +126,10 @@ typedef struct {
 
 typedef struct {
     BGL * unk_00;
-    UnkStruct_020218BC * unk_04;
+    GraphicElementManager * unk_04;
     UnkStruct_0200C738 unk_08;
     UnkStruct_02009714 * unk_194[4];
-    UnkStruct_0207C690 * unk_1A4;
+    GenericPointerData * unk_1A4;
     NARC * unk_1A8;
 } UnkStruct_ov69_0225D35C;
 
@@ -200,7 +200,7 @@ typedef struct {
     s16 unk_32;
     u8 unk_34[4];
     u8 unk_38[4];
-    UnkStruct_02022550 * unk_3C[12];
+    GraphicElementData * unk_3C[12];
     UnkStruct_02009DC8 * unk_6C[12][4];
 } UnkStruct_ov69_0225EB60;
 
@@ -268,7 +268,7 @@ typedef struct {
     u16 unk_02;
     UnkStruct_ov69_0225DA74 unk_04;
     UnkStruct_0202C878 * unk_0C;
-    UnkStruct_020279FC * unk_10;
+    AnimationControlFlags * unk_10;
     int unk_14;
     int unk_18;
     UnkStruct_ov66_02231428 unk_1C;
@@ -301,11 +301,11 @@ static u32 ov69_0225D194(const VecFx32 * param0, const VecFx32 * param1);
 static u32 ov69_0225D1E0(const UnkStruct_ov69_0225CE64 * param0, u32 param1, UnkStruct_ov66_02231428 param2);
 static BOOL ov69_0225D268(UnkStruct_ov69_0225CE64 * param0, u8 param1, u8 param2);
 static void ov69_0225D2A8(UnkStruct_ov69_0225CE64 * param0, const UnkStruct_ov66_02230F50 * param1);
-static void ov69_0225D318(UnkStruct_ov69_0225D35C * param0, UnkStruct_020279FC * param1, u32 param2);
+static void ov69_0225D318(UnkStruct_ov69_0225D35C * param0, AnimationControlFlags * param1, u32 param2);
 static void ov69_0225D35C(UnkStruct_ov69_0225D35C * param0);
 static void ov69_0225D384(UnkStruct_ov69_0225D35C * param0);
 static void ov69_0225D390(UnkStruct_ov69_0225D35C * param0);
-static void ov69_0225D3A4(UnkStruct_ov69_0225D35C * param0, UnkStruct_020279FC * param1, u32 param2);
+static void ov69_0225D3A4(UnkStruct_ov69_0225D35C * param0, AnimationControlFlags * param1, u32 param2);
 static void ov69_0225D504(UnkStruct_ov69_0225D35C * param0);
 static void ov69_0225D53C(UnkStruct_ov69_0225D35C * param0, u32 param1);
 static void ov69_0225D5D8(UnkStruct_ov69_0225D35C * param0);
@@ -1391,7 +1391,7 @@ static void ov69_0225D2A8 (UnkStruct_ov69_0225CE64 * param0, const UnkStruct_ov6
     }
 }
 
-static void ov69_0225D318 (UnkStruct_ov69_0225D35C * param0, UnkStruct_020279FC * param1, u32 param2)
+static void ov69_0225D318 (UnkStruct_ov69_0225D35C * param0, AnimationControlFlags * param1, u32 param2)
 {
     param0->unk_1A8 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTIMER, param2);
 
@@ -1425,7 +1425,7 @@ static void ov69_0225D390 (UnkStruct_ov69_0225D35C * param0)
     sub_0201DCAC();
 }
 
-static void ov69_0225D3A4 (UnkStruct_ov69_0225D35C * param0, UnkStruct_020279FC * param1, u32 param2)
+static void ov69_0225D3A4 (UnkStruct_ov69_0225D35C * param0, AnimationControlFlags * param1, u32 param2)
 {
     sub_02018368(&Unk_ov69_0225F040);
 
@@ -1962,7 +1962,7 @@ static void ov69_0225DD60 (UnkStruct_ov69_0225DDC8 * param0, UnkStruct_ov69_0225
     memset(param0, 0, sizeof(UnkStruct_ov69_0225DC48));
 
     {
-        UnkStruct_020279FC * v0;
+        AnimationControlFlags * v0;
 
         v0 = sub_02025E44(param3);
         param0->unk_08 = sub_02027AC0(v0);
@@ -2910,7 +2910,7 @@ static void ov69_0225EE68 (const UnkStruct_ov69_0225ED90 * param0, UnkStruct_ov6
 static void ov69_0225EEC4 (UnkStruct_ov69_0225EB60 * param0, u32 param1)
 {
     VecFx32 v0;
-    UnkStruct_02022550 * v1;
+    GraphicElementData * v1;
 
     ov69_0225ED78(&param0->unk_00[param1], &v0);
 

@@ -13,7 +13,7 @@ typedef struct {
     int unk_04;
     SaveData * unk_08;
     UnkStruct_0205C22C * unk_0C;
-    UnkStruct_020279FC * unk_10;
+    AnimationControlFlags * unk_10;
     UnkStruct_0202CD88 * unk_14;
     UnkStruct_0202B628 * unk_18;
     UnkStruct_0203CDB0 * unk_1C;

@@ -177,7 +177,7 @@ static void ov5_021DEDE8(SysTask * param0, void * param1);
 static void ov5_021DEE24(SysTask * param0, void * param1);
 static void ov5_021DEE50(UnkStruct_ov5_021EF43C * param0, void * param1);
 static void ov5_021DEE84(UnkStruct_ov5_021DED04 * param0);
-static void ov5_021DE67C(UnkStruct_02022550 * param0, void * param1, u32 param2);
+static void ov5_021DE67C(GraphicElementData * param0, void * param1, u32 param2);
 static void ov5_021DF258(SysTask * param0, void * param1);
 static void ov5_021DF28C(SysTask * param0, void * param1);
 static void ov5_021DF30C(UnkStruct_0203CDB0 * param0);
@@ -865,7 +865,7 @@ void ov5_021DE5A4 (UnkStruct_ov5_021DE47C * param0, UnkStruct_ov5_021DE5A4 * par
     }
 }
 
-void ov5_021DE5D0 (UnkStruct_02022550 * param0, u32 param1, u32 param2, u8 param3, u16 param4)
+void ov5_021DE5D0 (GraphicElementData * param0, u32 param1, u32 param2, u8 param3, u16 param4)
 {
     UnkStruct_ov5_021DE5D0 v0;
     NNSG2dPaletteData * v1;
@@ -883,10 +883,10 @@ void ov5_021DE5D0 (UnkStruct_02022550 * param0, u32 param1, u32 param2, u8 param
     Heap_FreeToHeap(v2);
 }
 
-UnkStruct_02022550 * ov5_021DE62C (UnkStruct_ov5_021DE47C * param0, UnkStruct_ov5_021DE5A4 * param1, fx32 param2, fx32 param3, fx32 param4, int param5)
+GraphicElementData * ov5_021DE62C (UnkStruct_ov5_021DE47C * param0, UnkStruct_ov5_021DE5A4 * param1, fx32 param2, fx32 param3, fx32 param4, int param5)
 {
     UnkStruct_ov83_0223D9A8 v0;
-    UnkStruct_02022550 * v1;
+    GraphicElementData * v1;
 
     v0.unk_00 = param0->unk_00;
     v0.unk_04 = &param1->unk_10;
@@ -913,7 +913,7 @@ VecFx32 ov5_021DE660 (fx32 param0, fx32 param1, fx32 param2)
     return v0;
 }
 
-static void ov5_021DE67C (UnkStruct_02022550 * param0, void * param1, u32 param2)
+static void ov5_021DE67C (GraphicElementData * param0, void * param1, u32 param2)
 {
     NNSG2dImagePaletteProxy * v0;
 

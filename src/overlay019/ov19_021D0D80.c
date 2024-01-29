@@ -141,7 +141,7 @@ typedef struct UnkStruct_ov19_021D5DF8_t {
     MessageLoader * unk_198;
     UnkStruct_0200B358 * unk_19C;
     Pokemon * unk_1A0;
-    UnkStruct_020279FC * unk_1A4;
+    AnimationControlFlags * unk_1A4;
     int (* unk_1A8)(struct UnkStruct_ov19_021D5DF8_t * param0);
     void (* unk_1AC)(struct UnkStruct_ov19_021D5DF8_t * param0, u32 * param1);
     u32 unk_1B0;
@@ -330,9 +330,9 @@ int ov19_021D0E58 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov19_021D5DF8 * v0 = sub_0200682C(param0);
 
     if (Party_HasSpecies(v0->unk_124, 441) == 0) {
-        ChatotCry * v1 = sub_0202CC98(v0->unk_11C);
+        ChatotCry * v1 = GetChatotCryDataFromSave(v0->unk_11C);
 
-        sub_0202CCA8(v1);
+        ResetChatotCryDataStatus(v1);
     }
 
     ov19_021D64A0(v0->unk_114);

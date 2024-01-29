@@ -26,7 +26,7 @@
 
 static void sub_0208F194(UnkStruct_0208D7BC * param0, u8 param1, u8 param2, u8 param3);
 static void sub_0208EF0C(UnkStruct_0208D7BC * param0);
-static void sub_0208FC30(UnkStruct_02022550 * param0, u32 param1, u32 param2, const s16 * param3);
+static void sub_0208FC30(GraphicElementData * param0, u32 param1, u32 param2, const s16 * param3);
 
 static const UnkStruct_ov7_0224F358 Unk_020F41A8[] = {
     {0x1, 0x80, 0x18, 0x0, 0x0, 0x1, 0x1, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0},
@@ -242,7 +242,7 @@ static u8 sub_0208ECB8 (UnkStruct_0208D7BC * param0)
 
 void sub_0208ECF4 (UnkStruct_0208D7BC * param0)
 {
-    UnkStruct_02022550 ** v0;
+    GraphicElementData ** v0;
     s16 v1, v2;
     s16 v3;
     u16 v4;
@@ -831,7 +831,7 @@ void sub_0208FB54 (UnkStruct_0208D7BC * param0, u8 param1)
     }
 }
 
-static void sub_0208FC30 (UnkStruct_02022550 * param0, u32 param1, u32 param2, const s16 * param3)
+static void sub_0208FC30 (GraphicElementData * param0, u32 param1, u32 param2, const s16 * param3)
 {
     s32 v0, v1;
 

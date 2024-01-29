@@ -31,11 +31,11 @@ SDK_COMPILER_ASSERT(((3 + 1 + 1 + 2 + 4) + 6) == 17);
 void include_data_ov77_021D79B8(void);
 
 typedef struct UnkStruct_ov77_021D5564_t {
-    UnkStruct_020218BC * unk_00;
+    GraphicElementManager * unk_00;
     UnkStruct_0200C738 unk_04;
     UnkStruct_02009714 * unk_190[4];
     UnkStruct_02009DC8 * unk_1A0[11][4];
-    UnkStruct_02022550 * unk_250[17];
+    GraphicElementData * unk_250[17];
     UnkStruct_ov19_021DA864 unk_294[3];
     NNSG2dCellTransferState * unk_300;
 } UnkStruct_ov77_021D5564;
@@ -377,7 +377,7 @@ void ov77_021D5FB4 (UnkStruct_ov77_021D5564 * param0, UnkStruct_ov77_021D6734 * 
     int v0;
     UnkStruct_ov19_021DA864 v1;
     UnkStruct_ov115_02261520 v2;
-    UnkStruct_02022550 ** v3;
+    GraphicElementData ** v3;
 
     {
         ov77_021D54E8(5, param0, 0, &v2, &v1, 0, NNS_G2D_VRAM_TYPE_2DSUB);
@@ -394,7 +394,7 @@ void ov77_021D5FB4 (UnkStruct_ov77_021D5564 * param0, UnkStruct_ov77_021D6734 * 
 void ov77_021D6000 (UnkStruct_ov77_021D5564 * param0, UnkStruct_ov77_021D6734 * param1)
 {
     int v0;
-    UnkStruct_02022550 ** v1;
+    GraphicElementData ** v1;
 
     for (v0 = 0; v0 < 16; v0++) {
         v1 = ov77_021D6794(param1, v0);

@@ -15,7 +15,7 @@
 #include "unk_020218BC.h"
 
 typedef struct {
-    UnkStruct_02022550 * unk_00;
+    GraphicElementData * unk_00;
     int unk_04;
     int unk_08;
 } UnkStruct_02012CE0_sub1;
@@ -23,7 +23,7 @@ typedef struct {
 typedef struct FontOAM {
     UnkStruct_02012CE0_sub1 * unk_00;
     int unk_04;
-    const UnkStruct_02022550 * unk_08;
+    const GraphicElementData * unk_08;
     int unk_0C;
     int unk_10;
 } FontOAM;
@@ -70,7 +70,7 @@ static void sub_02012E6C(const Window * param0, const UnkStruct_02013034 * param
 static int sub_02012EE0(const Window * param0, const UnkStruct_02013034 * param1, NNSG2dImageProxy * param2, int param3, int param4, int param5, int param6, int param7);
 static int sub_02013034(const UnkStruct_02013034 * param0, int param1);
 static void sub_02013088(const UnkStruct_020127E8 * param0, const UnkStruct_02013034 * param1, const NNSG2dImageProxy * param2, FontOAM * param3);
-static UnkStruct_02022550 * sub_02013100(const UnkStruct_020127E8 * param0, const UnkStruct_02013034 * param1, const NNSG2dImageProxy * param2);
+static GraphicElementData * sub_02013100(const UnkStruct_020127E8 * param0, const UnkStruct_02013034 * param1, const NNSG2dImageProxy * param2);
 static void sub_020130DC(FontOAM * param0);
 static UnkStruct_02013034 * sub_02013188(int param0);
 static void sub_020131A4(UnkStruct_02013034 * param0);
@@ -396,7 +396,7 @@ void sub_02012BE0 (FontOAM * param0, const UnkStruct_02012B20 * param1, const Wi
     int v0;
     char * v1;
     NNSG2dImageProxy * v2;
-    UnkStruct_02022550 * v3 = param0->unk_00[0].unk_00;
+    GraphicElementData * v3 = param0->unk_00[0].unk_00;
     int v4;
 
     v4 = sub_02021FC8(v3);
@@ -725,7 +725,7 @@ static void sub_020130DC (FontOAM * param0)
     }
 }
 
-static UnkStruct_02022550 * sub_02013100 (const UnkStruct_020127E8 * param0, const UnkStruct_02013034 * param1, const NNSG2dImageProxy * param2)
+static GraphicElementData * sub_02013100 (const UnkStruct_020127E8 * param0, const UnkStruct_02013034 * param1, const NNSG2dImageProxy * param2)
 {
     UnkStruct_ov83_0223D9A8 v0;
     UnkStruct_ov19_021DA864 v1;
@@ -803,7 +803,7 @@ static void sub_020131D0 (UnkStruct_02013034 * param0, UnkStruct_02013034 * para
     param1->unk_0C = param0;
 }
 
-void sub_020131E0 (FontOAM * param0, const UnkStruct_02022550 * param1)
+void sub_020131E0 (FontOAM * param0, const GraphicElementData * param1)
 {
     param0->unk_08 = param1;
     sub_02012938(param0);

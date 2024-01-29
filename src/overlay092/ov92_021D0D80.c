@@ -85,7 +85,7 @@ typedef struct {
 typedef struct {
     int unk_00;
     UnkStruct_0202C878 * unk_04;
-    UnkStruct_020279FC * unk_08;
+    AnimationControlFlags * unk_08;
     UnkStruct_ov92_021D1B24_sub1 unk_0C;
     BGL * unk_B810;
     Window unk_B814;
@@ -93,8 +93,8 @@ typedef struct {
     Window unk_B834;
     Window unk_B844;
     UnkStruct_0200112C * unk_B854;
-    UnkStruct_02013A04 * unk_B858;
-    UnkStruct_02001AF4 * unk_B85C;
+    ResourceMetadata * unk_B858;
+    UIControlData * unk_B85C;
     MessageLoader * unk_B860;
     int unk_B864;
     int unk_B868;

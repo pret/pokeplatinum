@@ -1212,8 +1212,8 @@ void ov16_02268A14 (UnkStruct_ov16_02268A14 * param0)
 void ov16_02268A88 (UnkStruct_ov16_02268A14 * param0)
 {
     BGL * v0;
-    UnkStruct_0200C6E4 * v1;
-    UnkStruct_0200C704 * v2;
+    CellTransferStateData * v1;
+    AnimationResourceCollection * v2;
     PaletteSys * v3;
     int v4;
 
@@ -1250,8 +1250,8 @@ void ov16_02268A88 (UnkStruct_ov16_02268A14 * param0)
 void ov16_02268B8C (UnkStruct_ov16_02268A14 * param0)
 {
     int v0;
-    UnkStruct_0200C6E4 * v1;
-    UnkStruct_0200C704 * v2;
+    CellTransferStateData * v1;
+    AnimationResourceCollection * v2;
 
     v1 = ov16_0223E010(param0->unk_00);
     v2 = ov16_0223E018(param0->unk_00);
@@ -1274,8 +1274,8 @@ void ov16_02268C04 (NARC * param0, NARC * param1, UnkStruct_ov16_02268A14 * para
     const UnkStruct_ov16_02270670 * v0, * v1;
     int v2;
     BGL * v3;
-    UnkStruct_0200C6E4 * v4;
-    UnkStruct_0200C704 * v5;
+    CellTransferStateData * v4;
+    AnimationResourceCollection * v5;
 
     if (param5 != NULL) {
         MI_CpuCopy8(param5, &param2->unk_1A, sizeof(UnkStruct_ov16_02268A14_sub2));
@@ -1341,8 +1341,8 @@ void ov16_02268C04 (NARC * param0, NARC * param1, UnkStruct_ov16_02268A14 * para
 void ov16_02268D40 (NARC * param0, UnkStruct_ov16_02268A14 * param1)
 {
     int v0;
-    UnkStruct_0200C6E4 * v1;
-    UnkStruct_0200C704 * v2;
+    CellTransferStateData * v1;
+    AnimationResourceCollection * v2;
 
     GF_ASSERT(param1->unk_5BC[0] == NULL && param1->unk_5D4[0] == NULL);
 
@@ -1383,8 +1383,8 @@ void ov16_02268D40 (NARC * param0, UnkStruct_ov16_02268A14 * param1)
 static void ov16_02268F00 (UnkStruct_ov16_02268A14 * param0)
 {
     int v0;
-    UnkStruct_0200C6E4 * v1;
-    UnkStruct_0200C704 * v2;
+    CellTransferStateData * v1;
+    AnimationResourceCollection * v2;
 
     GF_ASSERT(param0->unk_5BC[0] != NULL && param0->unk_5D4[0] != NULL);
 
@@ -2439,8 +2439,8 @@ static int ov16_0226A634 (UnkStruct_ov16_02268A14 * param0, int param1, int para
 
 static void ov16_0226A698 (UnkStruct_ov16_02268A14 * param0)
 {
-    UnkStruct_0200C6E4 * v0;
-    UnkStruct_0200C704 * v1;
+    CellTransferStateData * v0;
+    AnimationResourceCollection * v1;
     int v2, v3, v4;
     PaletteSys * v5;
 
@@ -2455,7 +2455,7 @@ static void ov16_0226A698 (UnkStruct_ov16_02268A14 * param0)
 
 static void ov16_0226A718 (UnkStruct_ov16_02268A14 * param0)
 {
-    UnkStruct_0200C704 * v0;
+    AnimationResourceCollection * v0;
 
     v0 = ov16_0223E018(param0->unk_00);
 
@@ -2486,8 +2486,8 @@ static void ov16_0226A768 (UnkStruct_ov16_02268A14 * param0)
 
 static CellActorData * ov16_0226A7A4 (UnkStruct_ov16_02268A14 * param0, Pokemon * param1, int param2, int param3, int param4, int param5)
 {
-    UnkStruct_0200C6E4 * v0;
-    UnkStruct_0200C704 * v1;
+    CellTransferStateData * v0;
+    AnimationResourceCollection * v1;
     u32 v2;
     UnkStruct_ov104_0223F9E0 v3;
     CellActorData * v4;
@@ -2620,7 +2620,7 @@ static void ov16_0226A98C (UnkStruct_ov16_02268A14 * param0, UnkStruct_ov16_0226
     int v3;
     FontOAM * v4;
     BGL * v5;
-    UnkStruct_0200C704 * v6;
+    AnimationResourceCollection * v6;
     int v7, v8;
 
     GF_ASSERT(param1->unk_00 == NULL);
@@ -2866,8 +2866,8 @@ static void ov16_0226AEA0 (UnkStruct_ov16_02268A14 * param0, const Strbuf *param
 static void ov16_0226AF0C (UnkStruct_ov16_02268A14 * param0)
 {
     int v0;
-    UnkStruct_0200C6E4 * v1;
-    UnkStruct_0200C704 * v2;
+    CellTransferStateData * v1;
+    AnimationResourceCollection * v2;
     UnkStruct_ov104_0223F9E0 v3;
     UnkStruct_ov16_02260C00 * v4;
     int v5;
@@ -2909,8 +2909,8 @@ static void ov16_0226AF0C (UnkStruct_ov16_02268A14 * param0)
 static void ov16_0226AFF4 (UnkStruct_ov16_02268A14 * param0)
 {
     int v0;
-    UnkStruct_0200C6E4 * v1;
-    UnkStruct_0200C704 * v2;
+    CellTransferStateData * v1;
+    AnimationResourceCollection * v2;
 
     v1 = ov16_0223E010(param0->unk_00);
     v2 = ov16_0223E018(param0->unk_00);
@@ -2926,8 +2926,8 @@ static void ov16_0226AFF4 (UnkStruct_ov16_02268A14 * param0)
 static void ov16_0226B028 (UnkStruct_ov16_02268A14 * param0)
 {
     int v0;
-    UnkStruct_0200C6E4 * v1;
-    UnkStruct_0200C704 * v2;
+    CellTransferStateData * v1;
+    AnimationResourceCollection * v2;
 
     v1 = ov16_0223E010(param0->unk_00);
     v2 = ov16_0223E018(param0->unk_00);
@@ -4493,8 +4493,8 @@ static int(*const Unk_ov16_0227020C[])(UnkStruct_ov16_02268A14 *) = {
 
 static int ov16_0226CD18 (UnkStruct_ov16_02268A14 * param0)
 {
-    UnkStruct_0200C6E4 * v0;
-    UnkStruct_0200C704 * v1;
+    CellTransferStateData * v0;
+    AnimationResourceCollection * v1;
     PaletteSys * v2;
     int v3;
 

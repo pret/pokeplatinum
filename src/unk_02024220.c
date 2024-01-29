@@ -10,10 +10,10 @@
 
 static void sub_020242DC(void);
 
-UnkStruct_0207C690 * sub_02024220 (u32 param0, int param1, int param2, int param3, int param4, UnkFuncPtr_02024220 param5)
+GenericPointerData * sub_02024220 (u32 param0, int param1, int param2, int param3, int param4, UnkFuncPtr_02024220 param5)
 {
     int v0, v1;
-    UnkStruct_0207C690 * v2 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0207C690));
+    GenericPointerData * v2 = Heap_AllocFromHeap(param0, sizeof(GenericPointerData));
 
     v2->unk_00 = param0;
 
@@ -47,7 +47,7 @@ UnkStruct_0207C690 * sub_02024220 (u32 param0, int param1, int param2, int param
     return v2;
 }
 
-void sub_020242C4 (UnkStruct_0207C690 * param0)
+void sub_020242C4 (GenericPointerData * param0)
 {
     Heap_FreeToHeap(param0->unk_04);
     Heap_FreeToHeap(param0->unk_08);

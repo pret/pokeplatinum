@@ -108,13 +108,13 @@ typedef struct {
 } UnkStruct_ov97_02233DAC;
 
 typedef struct {
-    UnkStruct_02022550 * unk_00;
-    UnkStruct_02022550 * unk_04;
+    GraphicElementData * unk_00;
+    GraphicElementData * unk_04;
     int unk_08;
 } UnkStruct_ov97_02234A2C_sub1;
 
 typedef struct {
-    UnkStruct_02022550 * unk_00;
+    GraphicElementData * unk_00;
     int unk_04;
     int unk_08;
 } UnkStruct_ov97_02234A2C_sub2;
@@ -128,7 +128,7 @@ typedef struct {
 typedef struct {
     int unk_00;
     int unk_04;
-    UnkStruct_02022550 * unk_08;
+    GraphicElementData * unk_08;
     u8 unk_0C[512];
 } UnkStruct_ov97_0223F434;
 
@@ -139,23 +139,23 @@ typedef struct {
     int unk_0C;
     SaveData * unk_10;
     TrainerInfo * unk_14;
-    UnkStruct_020279FC * unk_18;
+    AnimationControlFlags * unk_18;
     int unk_1C;
     BGL * unk_20;
     int unk_24;
-    UnkStruct_020218BC * unk_28;
+    GraphicElementManager * unk_28;
     UnkStruct_0200C738 unk_2C;
     UnkStruct_02009714 * unk_1B8[6];
     UnkStruct_02009DC8 * unk_1D0[6];
     UnkStruct_ov19_021DA864 unk_1E8;
     UnkStruct_ov97_02234A2C_sub1 unk_20C[30];
     UnkUnion_02022594 unk_374[34];
-    UnkStruct_02022550 * unk_3FC[4];
-    UnkStruct_02022550 * unk_40C[4];
-    UnkStruct_02022550 * unk_41C[4];
+    GraphicElementData * unk_3FC[4];
+    GraphicElementData * unk_40C[4];
+    GraphicElementData * unk_41C[4];
     UnkStruct_ov97_02234A2C_sub2 unk_42C[6];
     int unk_474;
-    UnkStruct_02022550 * unk_478[6];
+    GraphicElementData * unk_478[6];
     UnkStruct_ov97_02233DAC unk_490;
     Window unk_4DC;
     Window unk_4EC;
@@ -651,7 +651,7 @@ static u8 GBASpeciesToDSFormId (int param0, u32 param1, int param2)
     return v0;
 }
 
-static void ov97_02234278 (int param0, int param1, u32 param2, int param3, int param4, UnkStruct_02022550 * param5)
+static void ov97_02234278 (int param0, int param1, u32 param2, int param3, int param4, GraphicElementData * param5)
 {
     u8 * v0;
     u8 v1;
@@ -669,7 +669,7 @@ static void ov97_02234278 (int param0, int param1, u32 param2, int param3, int p
     Heap_FreeToHeap(v0);
 }
 
-static void ov97_022342E4 (int param0, int param1, int param2, int param3, UnkStruct_02022550 * param4, void * param5, NARC * param6)
+static void ov97_022342E4 (int param0, int param1, int param2, int param3, GraphicElementData * param4, void * param5, NARC * param6)
 {
     u32 v0;
     NNSG2dCharacterData * v1;
@@ -799,10 +799,10 @@ static void ov97_02234508 (UnkStruct_ov97_02234A2C * param0)
     }
 }
 
-static UnkStruct_02022550 * ov97_02234638 (UnkStruct_ov97_02234A2C * param0, int param1, int param2, int param3, int param4)
+static GraphicElementData * ov97_02234638 (UnkStruct_ov97_02234A2C * param0, int param1, int param2, int param3, int param4)
 {
     UnkStruct_ov115_02261520 v0;
-    UnkStruct_02022550 * v1;
+    GraphicElementData * v1;
 
     ov97_022340FC(&v0, param0, &param0->unk_1E8, NNS_G2D_VRAM_TYPE_2DMAIN);
 

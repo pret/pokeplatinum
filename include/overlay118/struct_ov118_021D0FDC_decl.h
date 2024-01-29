@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV118_021D0FDC_DECL_H
 #define POKEPLATINUM_STRUCT_OV118_021D0FDC_DECL_H
 
-typedef struct UnkStruct_ov118_021D0FDC_t UnkStruct_ov118_021D0FDC;
+typedef struct OverlayMetadata_t OverlayMetadata;
 
 #endif // POKEPLATINUM_STRUCT_OV118_021D0FDC_DECL_H

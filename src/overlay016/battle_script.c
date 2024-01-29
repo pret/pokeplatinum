@@ -12213,8 +12213,8 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov16_0226E6F8 = {
 static void BattleScript_LoadPartyLevelUpIcon (BattleSystem * param0, BattleScriptTaskData * param1, Pokemon * param2)
 {
     UnkStruct_ov104_0223F9E0 v0;
-    UnkStruct_0200C6E4 * v1;
-    UnkStruct_0200C704 * v2;
+    CellTransferStateData * v1;
+    AnimationResourceCollection * v2;
     PaletteSys * v3;
     MessageLoader * v4;
     UnkStruct_0200B358 * v5;
@@ -12301,7 +12301,7 @@ static void BattleScript_LoadPartyLevelUpIcon (BattleSystem * param0, BattleScri
 
 static void BattleScript_FreePartyLevelUpIcon (BattleSystem * param0, BattleScriptTaskData * param1)
 {
-    UnkStruct_0200C704 * v0;
+    AnimationResourceCollection * v0;
 
     v0 = ov16_0223E018(param0);
 

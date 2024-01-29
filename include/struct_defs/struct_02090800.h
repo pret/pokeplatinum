@@ -12,11 +12,11 @@ typedef struct {
     UnkStruct_0200B358 * unk_08;
     Pokemon * unk_0C;
     BOOL unk_10;
-    UnkStruct_02090800_sub1 unk_14;
-    UnkStruct_02090800_sub1 unk_1C;
-    UnkStruct_02090800_sub1 unk_24;
-    UnkStruct_02090800_sub1 unk_2C;
-    UnkStruct_02090800_sub1 unk_34;
-} UnkStruct_02090800;
+    PokemonInfoDisplayStruct_sub1 unk_14;
+    PokemonInfoDisplayStruct_sub1 unk_1C;
+    PokemonInfoDisplayStruct_sub1 unk_24;
+    PokemonInfoDisplayStruct_sub1 unk_2C;
+    PokemonInfoDisplayStruct_sub1 unk_34;
+} PokemonInfoDisplayStruct;
 
 #endif // POKEPLATINUM_STRUCT_02090800_H

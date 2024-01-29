@@ -69,10 +69,10 @@ static int sub_0206B9D8 (UnkStruct_0206B9D8 * param0, UnkStruct_0203CDB0 * param
 {
     u8 v0;
     SaveData * v1;
-    UnkStruct_02098C44 * v2 = Heap_AllocFromHeapAtEnd(param2, sizeof(UnkStruct_02098C44));
+    PartyManagementData * v2 = Heap_AllocFromHeapAtEnd(param2, sizeof(PartyManagementData));
 
     v1 = param1->unk_0C;
-    MI_CpuClear8(v2, sizeof(UnkStruct_02098C44));
+    MI_CpuClear8(v2, sizeof(PartyManagementData));
 
     v2->unk_0C = sub_02025E44(v1);
     v2->unk_00 = Party_GetFromSavedata(v1);
@@ -97,7 +97,7 @@ static int sub_0206B9D8 (UnkStruct_0206B9D8 * param0, UnkStruct_0203CDB0 * param
 static int sub_0206BA84 (UnkStruct_0206B9D8 * param0, UnkStruct_0203CDB0 * param1)
 {
     int v0;
-    UnkStruct_02098C44 * v1;
+    PartyManagementData * v1;
 
     if (sub_020509B4(param1)) {
         return 1;

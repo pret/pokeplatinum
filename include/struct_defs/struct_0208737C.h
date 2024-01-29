@@ -16,7 +16,7 @@ typedef struct {
     u16 unk_1C[20];
     int unk_44;
     PCBoxes * unk_48;
-    UnkStruct_020279FC * unk_4C;
+    AnimationControlFlags * unk_4C;
 } UnkStruct_0208737C;
 
 #endif // POKEPLATINUM_STRUCT_0208737C_H

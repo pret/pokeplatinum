@@ -12,7 +12,7 @@ typedef struct {
     Pokemon * unk_00;
     UnkStruct_02029C68 * unk_04;
     const UnkStruct_02029D04 * unk_08;
-    const UnkStruct_020279FC * unk_0C;
+    const AnimationControlFlags * unk_0C;
     UnkStruct_0202CD88 * unk_10;
     const TrainerInfo * unk_14;
     BOOL * unk_18;

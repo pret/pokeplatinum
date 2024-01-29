@@ -14,7 +14,7 @@
 
 void ov119_021D0D80(void);
 void ov119_021D0DA8(void);
-UnkStruct_0207C690 * ov119_021D0DD4(void);
+GenericPointerData * ov119_021D0DD4(void);
 void ov119_021D0DF4(void);
 void ov119_021D0E78(void);
 void ov119_021D0EB8(BGL * param0);

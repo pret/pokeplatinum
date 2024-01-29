@@ -1102,9 +1102,9 @@ static void sub_0208D200 (UnkStruct_0208D7BC * param0, Pokemon * param1, UnkStru
     param2->unk_4E = Pokemon_GetValue(param1, MON_DATA_FORM, NULL);
     param2->unk_50_0 = sub_0208E9F0(param1);
 
-    if (sub_020778F8(param1) == 1) {
+    if (Pokemon_CanSpreadPokerus(param1) == 1) {
         param2->unk_50_30 = 2;
-    } else if (sub_020778D8(param1) == 1) {
+    } else if (Pokemon_InfectedWithPokerus(param1) == 1) {
         param2->unk_50_30 = 1;
 
         if (param2->unk_50_0 == 7) {

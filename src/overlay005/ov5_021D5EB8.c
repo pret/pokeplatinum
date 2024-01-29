@@ -74,7 +74,7 @@ typedef struct {
 
 typedef struct UnkStruct_ov5_021D6FA8_tag {
     UnkStruct_ov5_021D6594 * unk_00;
-    UnkStruct_02022550 * unk_04;
+    GraphicElementData * unk_04;
     void * unk_08;
     s32 unk_0C[10];
     struct UnkStruct_ov5_021D6FA8_tag * unk_34;
@@ -118,7 +118,7 @@ typedef struct {
     UnkStruct_02009F38 * unk_10;
     NNSG2dRendererInstance unk_14;
     NNSG2dRenderSurface unk_C0;
-    UnkStruct_020218BC * unk_130;
+    GraphicElementManager * unk_130;
     SysTask * unk_134;
 } UnkStruct_ov5_021D61D0;
 
@@ -258,7 +258,7 @@ static void ov5_021D61D0(UnkStruct_ov5_021D61D0 * param0);
 static void ov5_021D6290(UnkStruct_02009F38 * param0, int param1, int param2);
 static void ov5_021D62BC(UnkStruct_ov5_021D61D0 * param0);
 static void ov5_021D6284(SysTask * param0, void * param1);
-static void ov5_021D630C(UnkStruct_02022550 * param0, VecFx32 * param1);
+static void ov5_021D630C(GraphicElementData * param0, VecFx32 * param1);
 static void ov5_021D6FA8(UnkStruct_ov5_021D6FA8 * param0);
 static void ov5_021D6FD8(UnkStruct_ov5_021D6FA8 * param0);
 static UnkStruct_ov5_021D6FA8 * ov5_021D6F00(UnkStruct_ov5_021DB4B8 * param0, int param1);
@@ -854,7 +854,7 @@ static void ov5_021D62BC (UnkStruct_ov5_021D61D0 * param0)
     param0->unk_134 = NULL;
 }
 
-static void ov5_021D630C (UnkStruct_02022550 * param0, VecFx32 * param1)
+static void ov5_021D630C (GraphicElementData * param0, VecFx32 * param1)
 {
     if (param1->x > ((255 << FX32_SHIFT) + 64 * FX32_ONE)) {
         param1->x %= ((255 << FX32_SHIFT) + 64 * FX32_ONE);
@@ -1611,7 +1611,7 @@ static void ov5_021D6F4C (UnkStruct_ov19_021DA864 * param0, UnkStruct_ov5_021D65
 
 static void ov5_021D6FA8 (UnkStruct_ov5_021D6FA8 * param0)
 {
-    UnkStruct_02022550 * v0;
+    GraphicElementData * v0;
 
     param0->unk_38->unk_34 = param0->unk_34;
     param0->unk_34->unk_38 = param0->unk_38;

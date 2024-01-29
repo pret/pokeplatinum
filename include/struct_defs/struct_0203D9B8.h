@@ -19,7 +19,7 @@ typedef struct {
     TrainerInfo * unk_0C;
     Party * unk_10;
     UnkStruct_0207D3C0 * unk_14;
-    UnkStruct_020279FC * unk_18;
+    AnimationControlFlags * unk_18;
     UnkStruct_020989DC unk_1C[100];
 } UnkStruct_0203D9B8;
 

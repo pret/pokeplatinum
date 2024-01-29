@@ -76,7 +76,7 @@ const SaveTableEntry gSaveTable[] = {
     { SAVE_TABLE_ENTRY_RANDOM_GROUP,          SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)RandomGroup_SaveSize,       (SaveEntryInitFunc)RandomGroup_Init       },
     { SAVE_TABLE_ENTRY_JOURNAL,               SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Journal_SaveSize,           (SaveEntryInitFunc)Journal_Init           },
     { SAVE_TABLE_ENTRY_TRAINER_CARD,          SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)TrainerCard_SaveSize,       (SaveEntryInitFunc)TrainerCard_Init       },
-    { SAVE_TABLE_ENTRY_GAME_RECORDS,          SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)GameRecord_SaveSize,        (SaveEntryInitFunc)GameRecord_Init         },
+    { SAVE_TABLE_ENTRY_GAME_RECORDS,          SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)GameRecord_SaveSize,        (SaveEntryInitFunc)GameRecord_Init        },
     { SAVE_TABLE_ENTRY_BALL_SEALS,            SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)BallSeal_SaveSize,          (SaveEntryInitFunc)BallSeal_Init          },
     { SAVE_TABLE_ENTRY_CHATOT,                SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)ChatotCry_SaveSize,         (SaveEntryInitFunc)ChatotCry_Init         },
     { SAVE_TABLE_ENTRY_FRONTIER,              SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Frontier_SaveSize,          (SaveEntryInitFunc)Frontier_Init          },
@@ -93,7 +93,7 @@ const SaveTableEntry gSaveTable[] = {
     { SAVE_TABLE_ENTRY_SENTENCE,              SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Sentence_SaveSize,          (SaveEntryInitFunc)Sentence_Init          },
     { SAVE_TABLE_ENTRY_EMAIL,                 SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Email_SaveSize,             (SaveEntryInitFunc)Email_Init             },
     { SAVE_TABLE_ENTRY_WIFI_QUESTIONS,        SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)WiFiQuestion_SaveSize,      (SaveEntryInitFunc)WiFiQuestion_Init      },
-    { SAVE_TABLE_ENTRY_PC_BOXES,              SAVE_BLOCK_ID_BOXES,  (SaveEntrySizeFunc)PCBoxes_SaveSize,          (SaveEntryInitFunc)PCBoxes_Init          },
+    { SAVE_TABLE_ENTRY_PC_BOXES,              SAVE_BLOCK_ID_BOXES,  (SaveEntrySizeFunc)PCBoxes_SaveSize,          (SaveEntryInitFunc)PCBoxes_Init            },
 };
 
 const int gSaveTableSize = NELEMS(gSaveTable);

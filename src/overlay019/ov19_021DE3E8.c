@@ -38,10 +38,10 @@ struct UnkStruct_ov19_021DE3E8_t {
     UnkStruct_ov19_021D61B0 * unk_04;
     const UnkStruct_ov19_021D4DF0 * unk_08;
     BGL * unk_0C;
-    UnkStruct_020218BC * unk_10;
+    GraphicElementManager * unk_10;
     UnkStruct_ov19_021DA384 * unk_14;
     UnkStruct_ov19_021D8E00 * unk_18;
-    UnkStruct_02022550 * unk_1C[3];
+    GraphicElementData * unk_1C[3];
     int unk_28[3];
     int unk_34;
     int unk_38;
@@ -49,7 +49,7 @@ struct UnkStruct_ov19_021DE3E8_t {
 
 typedef struct {
     UnkStruct_ov19_021DE3E8 * unk_00;
-    UnkStruct_02022550 * unk_04;
+    GraphicElementData * unk_04;
     VecFx32 unk_08;
     VecFx32 unk_14;
     fx32 unk_20;
@@ -71,7 +71,7 @@ static void ov19_021DE718(UnkStruct_ov19_021DE3E8 * param0, int param1, int para
 static void ov19_021DE858(UnkStruct_ov19_021DE3E8 * param0, int param1, const VecFx32 * param2, int param3, int param4);
 static void ov19_021DE8E0(SysTask * param0, void * param1);
 
-BOOL ov19_021DE3E8 (UnkStruct_ov19_021DE3E8 ** param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, BGL * param3, UnkStruct_020218BC * param4)
+BOOL ov19_021DE3E8 (UnkStruct_ov19_021DE3E8 ** param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, BGL * param3, GraphicElementManager * param4)
 {
     UnkStruct_ov19_021DE3E8 * v0 = Heap_AllocFromHeap(10, sizeof(UnkStruct_ov19_021DE3E8));
 

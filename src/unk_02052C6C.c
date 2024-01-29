@@ -132,7 +132,7 @@ static BOOL sub_02052CBC (UnkStruct_020508D4 * param0)
     {
         int v6;
 
-        sub_02097284(Party_GetFromSavedata(v2->unk_0C));
+        HealAllPokemonInParty(Party_GetFromSavedata(v2->unk_0C));
         sub_02024804();
         v6 = sub_020246E0(v2->unk_0C);
         sub_02052C6C(v2, v3->unk_00);
@@ -277,7 +277,7 @@ static void sub_02052F28 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * para
 
 static void sub_02052FA8 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * param1)
 {
-    UnkStruct_020279FC * v0 = sub_02025E44(param0->unk_0C);
+    AnimationControlFlags * v0 = sub_02025E44(param0->unk_0C);
 
     param1->unk_2C = MessageBank_GetNewStrbufFromNARC(26, 213, 15, 32);
 

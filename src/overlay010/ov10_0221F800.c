@@ -105,8 +105,8 @@ typedef struct UnkStruct_ov10_0221FB28_t {
     PaletteSys * unk_08;
     BGL * unk_0C;
     Window unk_10[24];
-    UnkStruct_0200C6E4 * unk_190;
-    UnkStruct_0200C704 * unk_194;
+    CellTransferStateData * unk_190;
+    AnimationResourceCollection * unk_194;
     CellActorData * unk_198[30];
     u32 unk_210;
     UnkStruct_ov10_0221FB28_sub1 unk_214[6];
@@ -117,7 +117,7 @@ typedef struct UnkStruct_ov10_0221FB28_t {
     u16 unk_538[2][384];
     UnkStruct_02012744 * unk_B38;
     FontOAM * unk_B3C[4];
-    UnkStruct_0207C690 * unk_B4C;
+    GenericPointerData * unk_B4C;
     UnkStruct_02014014 * unk_B50;
     void * unk_B54;
     u8 unk_B58[4];
@@ -144,7 +144,7 @@ typedef struct UnkStruct_ov10_0221FB28_t {
     Strbuf* unk_BA8;
     int unk_BAC;
     int unk_BB0;
-    UnkStruct_02001AF4 * unk_BB4;
+    UIControlData * unk_BB4;
     void * unk_BB8;
     int unk_BBC;
     int unk_BC0;
@@ -1944,7 +1944,7 @@ static void ov10_02221A3C (UnkStruct_ov10_0221FB28 * param0)
         Heap_FreeToHeap(v2);
     }
 
-    sub_02081940(param0->unk_00->unk_24, param0->unk_298, param0->unk_358, param0->unk_418);
+    LoadScreenDataFromNARC(param0->unk_00->unk_24, param0->unk_298, param0->unk_358, param0->unk_418);
     NARC_dtor(v0);
 }
 

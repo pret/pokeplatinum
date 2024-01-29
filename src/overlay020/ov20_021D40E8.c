@@ -32,9 +32,9 @@ typedef struct UnkStruct_ov20_021D4210_t {
     BGL * unk_0C;
     Window unk_10;
     Window unk_20;
-    UnkStruct_02022550 * unk_30;
-    UnkStruct_02022550 * unk_34;
-    UnkStruct_02022550 * unk_38;
+    GraphicElementData * unk_30;
+    GraphicElementData * unk_34;
+    GraphicElementData * unk_38;
     Strbuf* unk_3C;
     UnkStruct_ov20_021D4FF0 unk_40;
     UnkStruct_ov20_021D4E8C unk_60;

@@ -586,7 +586,7 @@ struct UnkStruct_ov5_021F7ED8_t {
     UnkStruct_0200112C * unk_F0;
     u16 unk_F4;
     u16 unk_F6;
-    UnkStruct_02013A04 unk_F8[39];
+    ResourceMetadata unk_F8[39];
     u16 unk_230[39];
     u16 unk_27E;
 };

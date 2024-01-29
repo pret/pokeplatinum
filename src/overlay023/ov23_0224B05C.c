@@ -126,7 +126,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_0203CDB0 * unk_00;
-    UnkStruct_02001AF4 * unk_04;
+    UIControlData * unk_04;
     SysTask * unk_08;
     int unk_0C;
     int unk_10;
@@ -147,7 +147,7 @@ typedef struct {
 typedef struct {
     UnkStruct_0203CDB0 * unk_00;
     SysTask * unk_04;
-    UnkStruct_02001AF4 * unk_08;
+    UIControlData * unk_08;
     int unk_0C;
     u8 unk_10;
     u8 unk_11;
@@ -1013,11 +1013,11 @@ static int ov23_0224BD1C (int param0, BOOL param1)
     return v1;
 }
 
-static UnkStruct_02001AF4 * ov23_0224BD90 (BGL * param0, const UnkStruct_ov61_0222C884 * param1, u16 param2, u8 param3, u32 param4)
+static UIControlData * ov23_0224BD90 (BGL * param0, const UnkStruct_ov61_0222C884 * param1, u16 param2, u8 param3, u32 param4)
 {
     UnkStruct_02081CF4 v0;
     MessageLoader * v1 = ov23_02253E3C(ov23_0224219C());
-    UnkStruct_02013A04 * v2;
+    ResourceMetadata * v2;
 
     v2 = sub_02013A04(2, param4);
 

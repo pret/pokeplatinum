@@ -8,8 +8,8 @@
 typedef struct {
     BOOL unk_00;
     BOOL unk_04;
-    UnkStruct_02022550 * unk_08[4];
-    UnkStruct_02022550 * unk_18[4];
+    GraphicElementData * unk_08[4];
+    GraphicElementData * unk_18[4];
     UnkStruct_ov83_0223D95C unk_28[4];
     int unk_108;
     UnkStruct_ov83_0223DA94 unk_10C[4];
