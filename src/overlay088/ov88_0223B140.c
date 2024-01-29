@@ -59,7 +59,7 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "heap.h"
@@ -292,8 +292,8 @@ int ov88_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_02095E80 * v0;
     NARC * v1;
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -320,7 +320,7 @@ int ov88_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     ov88_0223C17C(v0->unk_174);
     sub_0200F174(0, 1, 1, 0x0, 16, 1, 26);
     ov88_0223C504(v0, v1);
-    sub_02017798(ov88_0223C0E0, v0);
+    SetMainCallback(ov88_0223C0E0, v0);
     ov88_0223C63C();
     ov88_0223C66C(v0, v1);
     ov88_0223CBA0(v0);
@@ -336,7 +336,7 @@ int ov88_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     sub_02038A1C(26, v0->unk_174);
     sub_02039734();
 
-    if (sub_02013948() == 0) {
+    if (IsNight() == 0) {
         sub_02004550(4, 1085, 1);
         sub_02004A84(1085);
     } else {
@@ -413,7 +413,7 @@ static void ov88_0223B3C0 (UnkStruct_02095E80 * param0)
 
     sub_02021CAC(param0->unk_39C[0], 1);
     sub_02021CAC(param0->unk_39C[1], 1);
-    sub_02017798(ov88_0223C0E0, param0);
+    SetMainCallback(ov88_0223C0E0, param0);
     NARC_dtor(v0);
 }
 
@@ -576,7 +576,7 @@ static int ov88_0223B914 (UnkStruct_02095E80 * param0)
     switch (param0->unk_4C) {
     case 0:
         sub_020364F0(80);
-        sub_02017DE0(2);
+        ResetLock(2);
         ov88_0223E894(param0);
 
         {
@@ -753,7 +753,7 @@ static int ov88_0223B914 (UnkStruct_02095E80 * param0)
             sub_0200E084(&param0->unk_49C[23], 0);
             sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
             ov88_0223ECBC(&param0->unk_49C[21], 15, 1, param0->unk_184, param0->unk_178);
-            sub_02017DF0(2);
+            ResetUnlock(2);
 
             return 1;
         }
@@ -906,7 +906,7 @@ int ov88_0223C03C (UnkStruct_020067E8 * param0, int * param1)
     sub_0200B3F0(v0->unk_178);
     Strbuf_Free(v0->unk_18C);
     sub_02006830(param0);
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     Heap_Destroy(26);
 
     return 1;

@@ -106,8 +106,8 @@ int sub_0209A300 (UnkStruct_020067E8 * param0, int * param1)
     case 0:
         sub_0200F344(0, 0);
         sub_0200F344(1, 0);
-        sub_02017798(NULL, NULL);
-        sub_020177BC(NULL, NULL);
+        SetMainCallback(NULL, NULL);
+        SetHBlankCallback(NULL, NULL);
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
         GX_SetVisiblePlane(0);
@@ -126,7 +126,7 @@ int sub_0209A300 (UnkStruct_020067E8 * param0, int * param1)
     case 2:
         sub_0209A530(v0);
         sub_0209A490(v0);
-        sub_02017798(NULL, NULL);
+        SetMainCallback(NULL, NULL);
         v1 = 1;
         break;
     }

@@ -17,7 +17,7 @@
 #include "overlay006/struct_ov6_02242634_sub2.h"
 
 #include "narc.h"
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_02025E08.h"
@@ -175,7 +175,7 @@ void ov6_02240C9C (const UnkStruct_ov6_02242634 * param0, int * param1, int * pa
 {
     int v0;
 
-    v0 = sub_02013960();
+    v0 = GetTimeOfDay();
 
     if ((v0 == 1) || (v0 == 2)) {
         (*param1) = param0->unk_48[0];

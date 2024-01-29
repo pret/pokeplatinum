@@ -163,8 +163,8 @@ static int ov5_021D0DA4 (UnkStruct_020067E8 * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        sub_02017798(NULL, NULL);
-        sub_020177A4();
+        SetMainCallback(NULL, NULL);
+        DisableHBlank();
 
         G2_BlendNone();
         G2S_BlendNone();
@@ -350,7 +350,7 @@ static int ov5_021D0FB4 (UnkStruct_020067E8 * param0, int * param1)
             sub_0201DC3C();
             sub_0201CBA0();
             ov5_021D1AE4(v0->unk_04->unk_04);
-            sub_02017798(NULL, NULL);
+            SetMainCallback(NULL, NULL);
             Heap_FreeToHeap(v0->unk_08);
             Heap_FreeToHeap(v0->unk_04);
 
@@ -948,7 +948,7 @@ static void ov5_021D1968 (UnkStruct_0203CDB0 * param0)
     ov5_021D5CE4(param0->unk_04->unk_10, ov5_021EFA8C(param0->unk_30));
     sub_02068344(param0);
     ov5_021EE7C0(param0);
-    sub_02017798(ov5_021D0D80, param0);
+    SetMainCallback(ov5_021D0D80, param0);
 }
 
 static UnkStruct_ov5_021D1A68 * ov5_021D1A14 (int param0, int param1)

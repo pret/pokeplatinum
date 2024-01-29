@@ -183,8 +183,8 @@ int ov95_02246C20 (UnkStruct_020067E8 * param0, int * param1)
             v0->unk_1B6 = BoxPokemon_GetValue((BoxPokemon *)(v0->unk_00->unk_04), MON_DATA_FORM, NULL);
             v0->unk_1B8 = NULL;
 
-            sub_02017798(NULL, NULL);
-            sub_020177A4();
+            SetMainCallback(NULL, NULL);
+            DisableHBlank();
             GXLayers_DisableEngineALayers();
             GXLayers_DisableEngineBLayers();
 

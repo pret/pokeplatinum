@@ -121,8 +121,8 @@ int sub_02099E38 (UnkStruct_020067E8 * param0, int * param1)
         sub_02004234(0);
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
-        sub_02017798(NULL, NULL);
-        sub_020177BC(NULL, NULL);
+        SetMainCallback(NULL, NULL);
+        SetHBlankCallback(NULL, NULL);
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
 
@@ -132,7 +132,7 @@ int sub_02099E38 (UnkStruct_020067E8 * param0, int * param1)
         SetAutorepeat(4, 8);
         sub_02099F80(v0);
         sub_0209A098(v0);
-        sub_02017798(sub_02099F74, (void *)v0);
+        SetMainCallback(sub_02099F74, (void *)v0);
         GXLayers_TurnBothDispOn();
         sub_0200F174(0, 1, 1, 0, 6, 1, v0->unk_00);
         *param1 = 1;
@@ -152,7 +152,7 @@ int sub_02099E38 (UnkStruct_020067E8 * param0, int * param1)
         if (ScreenWipe_Done() == TRUE) {
             sub_0209A0E0(v0);
             sub_0209A044(v0);
-            sub_02017798(NULL, NULL);
+            SetMainCallback(NULL, NULL);
             v1 = 1;
         }
         break;

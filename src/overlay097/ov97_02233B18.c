@@ -320,7 +320,7 @@ static int ov97_02233B8C (UnkStruct_ov97_02234A2C * param0)
         v0 = ov97_02236280();
 
         if (v0 == 0) {
-            sub_02017B8C(1);
+            SleepUnlock(1);
             return 12;
         }
 
@@ -337,7 +337,7 @@ static int ov97_02233B8C (UnkStruct_ov97_02234A2C * param0)
             v0 = ov97_022362C8();
 
             if (v0 == 8) {
-                sub_02017B8C(1);
+                SleepUnlock(1);
                 return 12;
             }
         }
@@ -352,19 +352,19 @@ static int ov97_02233B8C (UnkStruct_ov97_02234A2C * param0)
         } while (v2 != 2);
 
         ov97_022362C8();
-        sub_02017B7C(1);
+        SleepLock(1);
         v4->unk_00++;
         break;
     case 9:
         v0 = ov97_022362C8();
 
         if (v0 == 8) {
-            sub_02017B8C(1);
+            SleepUnlock(1);
             return 12;
         }
 
         if (v0 == 0) {
-            sub_02017B8C(1);
+            SleepUnlock(1);
             return 11;
         }
         break;
@@ -381,10 +381,10 @@ static void ov97_02233CE4 (UnkStruct_ov97_02234A2C * param0)
     v0 = SaveData_PalParkTransfer(param0->unk_10);
 
     sub_0202EFB8(v0, ov97_0223635C());
-    sub_02017DE0(4);
+    ResetLock(4);
 
     v1 = sub_020246E0(param0->unk_10);
-    sub_02017DF0(4);
+    ResetUnlock(4);
 }
 
 static void ov97_02233D10 (UnkStruct_ov97_02234A2C * param0)
@@ -1546,7 +1546,7 @@ static void ov97_022351F0 (UnkStruct_ov97_02234A2C * param0)
 {
     int v0;
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
 
     for (v0 = 0; v0 < 30; v0++) {
         if (param0->unk_20C[v0].unk_00) {
@@ -1819,7 +1819,7 @@ static int ov97_02235624 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-extern int Unk_02101D24;
+extern int gIgnoreCartridgeForWake;
 
 static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
 {
@@ -1828,7 +1828,7 @@ static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
 
     CTRDG_IsExisting();
 
-    if ((CTRDG_IsPulledOut() == TRUE) || Unk_02101D24) {
+    if ((CTRDG_IsPulledOut() == TRUE) || gIgnoreCartridgeForWake) {
         UnkStruct_ov97_02233B8C * v4 = &v3->unk_E8F0;
 
         if ((v4->unk_00 == 3) || (v4->unk_00 == 4)) {
@@ -1869,7 +1869,7 @@ static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
         ov97_022340B0(v3);
         ov97_0223468C(v3);
 
-        sub_02017798(ov97_022353CC, v3);
+        SetMainCallback(ov97_022353CC, v3);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
 
         if (v3->unk_04 == 1) {
@@ -1979,7 +1979,7 @@ static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
         ov97_02234508(v3);
         ov97_022343A8(v3);
 
-        sub_02017798(ov97_022353CC, v3);
+        SetMainCallback(ov97_022353CC, v3);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         ov97_02234B0C(v3, NULL);
@@ -2098,7 +2098,7 @@ static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
             v3->unk_E8F0.unk_00 = 0;
             v3->unk_E8F0.unk_08 = sub_0200E7FC(&v3->unk_4FC, (0x3F0 - (18 + 12)));
             *param1 = 21;
-            sub_02017DE0(4);
+            ResetLock(4);
             break;
         case 2:
             sub_02015A54(v3->unk_E8EC);
@@ -2125,7 +2125,7 @@ static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
 
             ov97_02233DD0(v3, &v3->unk_490, 0);
             *param1 = 22;
-            sub_02017DF0(4);
+            ResetUnlock(4);
         }
         break;
     case 22:

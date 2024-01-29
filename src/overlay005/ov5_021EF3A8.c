@@ -55,7 +55,7 @@ void ov5_021EF3DC (UnkStruct_ov5_021EF3BC * param0)
 {
     BOOL v0;
 
-    v0 = sub_020177BC(ov5_021EF47C, param0);
+    v0 = SetHBlankCallback(ov5_021EF47C, param0);
 
     GF_ASSERT(v0 == 1);
     param0->unk_00 = 1;
@@ -65,7 +65,7 @@ void ov5_021EF3FC (UnkStruct_ov5_021EF3BC * param0)
 {
     BOOL v0;
 
-    v0 = sub_020177BC(NULL, NULL);
+    v0 = SetHBlankCallback(NULL, NULL);
 
     GF_ASSERT(v0 == 1);
     param0->unk_00 = 0;

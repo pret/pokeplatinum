@@ -671,8 +671,8 @@ int ov70_0225D9A4 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_438 = ov70_02269190(v0->unk_34, v0->unk_44C, v0->unk_450, v0->unk_444, 112, 113);
     v0->unk_440 = ov70_0226C60C(112, v0);
 
-    sub_02017798(ov70_0225E4C8, v0);
-    sub_020177A4();
+    SetMainCallback(ov70_0225E4C8, v0);
+    DisableHBlank();
 
     return 1;
 }
@@ -815,8 +815,8 @@ int ov70_0225DDF8 (UnkStruct_020067E8 * param0, int * param1)
         v1->unk_18 = v0->unk_01;
     }
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
 
     ov70_0226C6F8(v0->unk_440);
     ov70_02269204(v0->unk_438);

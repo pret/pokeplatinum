@@ -137,8 +137,8 @@ int ov17_0224F4D4 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov17_0224FCA0 * v0;
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -218,7 +218,7 @@ int ov17_0224F4D4 (UnkStruct_020067E8 * param0, int * param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_02004550(6, 1135, 1);
     sub_020959F4(v0->unk_00->unk_155);
-    sub_02017798(ov17_0224FA24, v0);
+    SetMainCallback(ov17_0224FA24, v0);
 
     v0->unk_08 = sub_0200DA04(ov17_0224FAE4, v0, 10);
     Sound_PlayEffect(1765);
@@ -236,7 +236,7 @@ int ov17_0224F754 (UnkStruct_020067E8 * param0, int * param1)
     switch (*param1) {
     case 0:
         if (ScreenWipe_Done() == 1) {
-            sub_020177BC(ov17_0224FAAC, v0);
+            SetHBlankCallback(ov17_0224FAAC, v0);
             v0->unk_848 = ov17_0223F70C(24, v0->unk_10.unk_C0, Unk_ov17_02254AB4, NELEMS(Unk_ov17_02254AB4), 0xff, (50000 + 5000));
             *param1 = 1;
         }
@@ -333,8 +333,8 @@ int ov17_0224F86C (UnkStruct_020067E8 * param0, int * param1)
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     Heap_Destroy(24);
     sub_02095A24();
 

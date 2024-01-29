@@ -13,7 +13,7 @@
 #include "overlay050/struct_ov50_02256510_1.h"
 
 #include "unk_0200D9E8.h"
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "heap.h"
 #include "unk_02056720.h"
 #include "overlay025/ov25_02253CE0.h"
@@ -115,7 +115,7 @@ static BOOL ov50_0225621C (UnkStruct_ov50_022561D4 * param0, UnkStruct_ov25_0225
     };
     RTCDate v1;
 
-    sub_020138A4(&v1);
+    GetCurrentDate(&v1);
     param0->unk_98 = ov25_02254540(param1);
     ov50_022562AC(&(param0->unk_04), param0, &v1);
 

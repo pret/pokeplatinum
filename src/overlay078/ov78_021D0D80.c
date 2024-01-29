@@ -298,8 +298,8 @@ int ov78_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_704 = sub_02027AC0(v1->unk_04);
 
     sub_0201DBEC(8, 47);
-    sub_02017798(ov78_021D1058, v0);
-    sub_020177A4();
+    SetMainCallback(ov78_021D1058, v0);
+    DisableHBlank();
     sub_0201E3D8();
 
     v3 = sub_0201E450(4);
@@ -395,7 +395,7 @@ int ov78_021D0FA8 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_020425E0 * v1 = sub_02006840(param0);
     BOOL v2;
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
 
     v1->unk_00 = ov78_021D291C(v0->unk_54);
 

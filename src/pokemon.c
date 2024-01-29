@@ -40,7 +40,7 @@
 #include "message.h"
 #include "unk_0200B29C.h"
 #include "unk_0200C6E4.h"
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "unk_02015F84.h"
 #include "unk_02017038.h"
 #include "heap.h"
@@ -3139,13 +3139,13 @@ u16 sub_02076B94(Party *party, Pokemon *mon, u8 evoTypeList, u16 evoParam, int *
                 }
                 break;
             case 2:  // high friendship && daytime
-                if (sub_02013948() == 0 && 220 <= monFriendship) {
+                if (IsNight() == 0 && 220 <= monFriendship) {
                     targetSpecies = monEvolutionData->methods[i].targetSpecies;
                     evoTypeResult[0] = 2;
                 }
                 break;
             case 3:  // high friendship && nighttime
-                if (sub_02013948() == 1 && 220 <= monFriendship) {
+                if (IsNight() == 1 && 220 <= monFriendship) {
                     targetSpecies = monEvolutionData->methods[i].targetSpecies;
                     evoTypeResult[0] = 3;
                 }
@@ -3212,13 +3212,13 @@ u16 sub_02076B94(Party *party, Pokemon *mon, u8 evoTypeList, u16 evoParam, int *
                 }
                 break;
             case 18:  // happiny evo: hold param && daytime
-                if (sub_02013948() == 0 && monEvolutionData->methods[i].param == monHeldItem) {
+                if (IsNight() == 0 && monEvolutionData->methods[i].param == monHeldItem) {
                     targetSpecies = monEvolutionData->methods[i].targetSpecies;
                     evoTypeResult[0] = 18;
                 }
                 break;
             case 19:  // sneasel and gligar evo: hold param && nighttime
-                if (sub_02013948() == 1 && monEvolutionData->methods[i].param == monHeldItem) {
+                if (IsNight() == 1 && monEvolutionData->methods[i].param == monHeldItem) {
                     targetSpecies = monEvolutionData->methods[i].targetSpecies;
                     evoTypeResult[0] = 19;
                 }
@@ -4036,7 +4036,7 @@ BOOL Pokemon_CanShayminSkyForm(Pokemon *mon)
     u32 monFatefulEncounter = Pokemon_GetValue(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL);
 
     RTCTime rtcTime;
-    sub_02013880(&rtcTime);
+    GetCurrentTime(&rtcTime);
 
     return (monSpecies == SPECIES_SHAYMIN
             && monForm == 0

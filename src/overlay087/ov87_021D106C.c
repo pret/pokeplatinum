@@ -116,7 +116,7 @@ UnkStruct_ov87_021D106C * ov87_021D106C (UnkStruct_ov87_021D0D80 * param0, const
         v0->unk_1F8 = Strbuf_Init(256, 61);
         v0->unk_1FC = Pokemon_New(61);
 
-        sub_02017798(ov87_021D11AC, v0);
+        SetMainCallback(ov87_021D11AC, v0);
     }
 
     return v0;
@@ -125,7 +125,7 @@ UnkStruct_ov87_021D106C * ov87_021D106C (UnkStruct_ov87_021D0D80 * param0, const
 void ov87_021D1140 (UnkStruct_ov87_021D106C * param0)
 {
     if (param0) {
-        sub_02017798(NULL, NULL);
+        SetMainCallback(NULL, NULL);
         Heap_FreeToHeap(param0->unk_1FC);
         Strbuf_Free(param0->unk_1F8);
         Strbuf_Free(param0->unk_1F4);

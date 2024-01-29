@@ -300,8 +300,8 @@ int ov98_022471C8 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov98_02247704 * v0;
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -374,7 +374,7 @@ int ov98_022471C8 (UnkStruct_020067E8 * param0, int * param1)
     sub_02002AC8(1);
     sub_02002AE4(0);
     sub_02002B20(0);
-    sub_02017798(ov98_022474E8, v0);
+    SetMainCallback(ov98_022474E8, v0);
 
     return 1;
 }
@@ -434,8 +434,8 @@ int ov98_02247440 (UnkStruct_020067E8 * param0, int * param1)
     ov98_02247ACC(v0);
     Heap_FreeToHeap(v0->unk_04);
     ov98_022476D0(v0->unk_04);
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     sub_0201DC3C();
     sub_0201E530();
     sub_02002AC8(0);
@@ -1557,7 +1557,7 @@ static int ov98_0224897C (UnkStruct_ov98_02247704 * param0)
     DWC_CleanupInet();
 
     sub_02039794();
-    sub_02017B8C(4);
+    SleepUnlock(4);
 
     if (param0->unk_00->unk_11C == 1) {
         ov94_0223B7AC();
@@ -1593,7 +1593,7 @@ static int ov98_022489DC (UnkStruct_ov98_02247704 * param0)
         }
         break;
     case 2:
-        sub_02017B7C(4);
+        SleepLock(4);
 
         DWC_InitInetEx(&param0->unk_00->unk_14, 2, 1, 20);
         DWC_SetAuthServer((DWC_CONNECTINET_AUTH_RELEASE));
@@ -1627,7 +1627,7 @@ static int ov98_02248A68 (UnkStruct_ov98_02247704 * param0)
 
             sub_02039794();
             sub_0203859C();
-            sub_02017B8C(4);
+            SleepUnlock(4);
 
             if (param0->unk_00->unk_11C == 1) {
                 ov94_0223B7AC();
@@ -1707,7 +1707,7 @@ static int ov98_02248B24 (UnkStruct_ov98_02247704 * param0)
 
             sub_02039794();
             sub_0203859C();
-            sub_02017B8C(4);
+            SleepUnlock(4);
 
             if (param0->unk_00->unk_11C == 1) {
                 ov94_0223B7AC();
@@ -2172,7 +2172,7 @@ static int ov98_02249320 (UnkStruct_ov98_02247704 * param0)
 
         sub_02039794();
         sub_0203859C();
-        sub_02017B8C(4);
+        SleepUnlock(4);
 
         if (param0->unk_00->unk_11C == 1) {
             ov94_0223B7AC();
@@ -2337,7 +2337,7 @@ static int ov98_022495C4 (UnkStruct_ov98_02247704 * param0)
             DWC_CleanupInet();
 
             sub_02039794();
-            sub_02017B8C(4);
+            SleepUnlock(4);
 
             if (param0->unk_00->unk_11C == 1) {
                 ov94_0223B7AC();

@@ -270,8 +270,8 @@ static int ov74_021D1178 (UnkStruct_ov74_021D0D80 * param0)
 {
     switch (param0->unk_08) {
     case 0:
-        sub_02017798(NULL, NULL);
-        sub_020177A4();
+        SetMainCallback(NULL, NULL);
+        DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
 
@@ -294,7 +294,7 @@ static int ov74_021D1178 (UnkStruct_ov74_021D0D80 * param0)
         sub_0201DBEC(32, param0->unk_00);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
         sub_020397E4();
-        sub_02017798(ov74_021D1118, param0);
+        SetMainCallback(ov74_021D1118, param0);
         param0->unk_08 = 0;
         return 1;
     }
@@ -323,8 +323,8 @@ static int ov74_021D122C (UnkStruct_ov74_021D0D80 * param0)
         ov74_021D135C(param0);
         break;
     case 1:
-        sub_02017798(NULL, NULL);
-        sub_020177A4();
+        SetMainCallback(NULL, NULL);
+        DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
 

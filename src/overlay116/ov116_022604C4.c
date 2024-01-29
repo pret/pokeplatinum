@@ -66,8 +66,8 @@ static void ov116_022604C4 (UnkStruct_ov116_0226139C * param0)
     param0->unk_78 = LCRNG_GetSeed();
 
     ov116_022612CC(param0);
-    sub_02017798(ov116_02261794, param0);
-    sub_020177A4();
+    SetMainCallback(ov116_02261794, param0);
+    DisableHBlank();
     sub_0201DBEC(32, 106);
     sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
     sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
@@ -671,8 +671,8 @@ int ov116_02260CF4 (UnkStruct_020067E8 * param0, int * param1)
 
 static void ov116_022610FC (UnkStruct_ov116_0226139C * param0)
 {
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     sub_0201DC3C();
 
     {

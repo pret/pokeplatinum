@@ -37,8 +37,8 @@ int sub_02017498 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_02017498 * v0;
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 

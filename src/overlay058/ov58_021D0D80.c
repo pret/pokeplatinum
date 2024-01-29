@@ -171,8 +171,8 @@ int ov58_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        sub_02017798(NULL, NULL);
-        sub_020177A4();
+        SetMainCallback(NULL, NULL);
+        DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
 
@@ -208,7 +208,7 @@ int ov58_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
         sub_0201E3D8();
         sub_0201E450(2);
-        sub_02017798(ov58_021D115C, v0->unk_00);
+        SetMainCallback(ov58_021D115C, v0->unk_00);
 
         ov58_021D12C4(v0);
         ov58_021D1524();
@@ -319,7 +319,7 @@ int ov58_021D1018 (UnkStruct_020067E8 * param0, int * param1)
         v3 = sub_0202C168(39);
 
         sub_0202B758(v1->unk_04, v3, 4);
-        sub_02017798(NULL, NULL);
+        SetMainCallback(NULL, NULL);
         sub_0200A4E4(v0->unk_1D4[0][0]);
         sub_0200A4E4(v0->unk_1D4[1][0]);
         sub_0200A6DC(v0->unk_1D4[0][1]);
@@ -369,7 +369,7 @@ int ov58_021D1018 (UnkStruct_020067E8 * param0, int * param1)
 
         Heap_FreeToHeap(v0->unk_08);
         sub_02006830(param0);
-        sub_02017798(NULL, NULL);
+        SetMainCallback(NULL, NULL);
         Heap_Destroy(39);
         sub_02037B58(2);
 

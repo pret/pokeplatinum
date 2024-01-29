@@ -36,7 +36,7 @@
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -197,8 +197,8 @@ int ov67_0225C700 (UnkStruct_020067E8 * param0, int * param1)
     ov67_0225D188(&v0->unk_10, v0->unk_0C, 1, 674, 5, 1, 22, 2, (((((((((1 + (18 + 12)) + 9)) + (27 * 4))) + (23 * 16))) + (6 * 4))), v0->unk_00, 112);
     ov67_0225D37C(&v0->unk_10, 21);
 
-    sub_02017798(ov67_0225CE28, v0);
-    sub_020177A4();
+    SetMainCallback(ov67_0225CE28, v0);
+    DisableHBlank();
 
     return 1;
 }
@@ -286,7 +286,7 @@ int ov67_0225C820 (UnkStruct_020067E8 * param0, int * param1)
             }
 
             {
-                v1->unk_0C->unk_00 = sub_020138EC();
+                v1->unk_0C->unk_00 = GetTimestamp();
             }
 
             v1->unk_10 = 1;
@@ -403,8 +403,8 @@ int ov67_0225CB1C (UnkStruct_020067E8 * param0, int * param1)
 
     v0 = sub_0200682C(param0);
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
 
     inline_ov61_0222C160(&v0->unk_D4);
 
@@ -442,8 +442,8 @@ int ov67_0225CB8C (UnkStruct_020067E8 * param0, int * param1)
     ov67_0225D37C(&v0->unk_10, 21);
 
     sub_02039734();
-    sub_02017798(ov67_0225CE28, v0);
-    sub_020177A4();
+    SetMainCallback(ov67_0225CE28, v0);
+    DisableHBlank();
 
     return 1;
 }
@@ -540,8 +540,8 @@ int ov67_0225CDC0 (UnkStruct_020067E8 * param0, int * param1)
 
     v0 = sub_0200682C(param0);
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
 
     inline_ov61_0222C160(&v0->unk_D4);
 

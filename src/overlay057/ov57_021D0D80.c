@@ -72,7 +72,7 @@ const UnkStruct_0208BE5C Unk_ov57_021D0F70 = {
 static int ov57_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 {
     Heap_Create(3, 77, 131072);
-    sub_02001028();
+    InitRNG();
 
     return 1;
 }
@@ -96,7 +96,7 @@ static int ov57_021D0DAC (UnkStruct_020067E8 * param0, int * param1)
 static int ov57_021D0DC8 (UnkStruct_020067E8 * param0, int * param1)
 {
     Heap_Create(3, 77, 131072);
-    sub_02001028();
+    InitRNG();
 
     return 1;
 }
@@ -121,7 +121,7 @@ static int ov57_021D0E00 (UnkStruct_020067E8 * param0, int * param1)
 static int ov57_021D0E1C (UnkStruct_020067E8 * param0, int * param1)
 {
     Heap_Create(3, 77, 131072);
-    sub_02001028();
+    InitRNG();
 
     return 1;
 }

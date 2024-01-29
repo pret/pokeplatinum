@@ -28,7 +28,7 @@
 
 #include "unk_020021B0.h"
 #include "message.h"
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "heap.h"
 #include "strbuf.h"
 #include "savedata/save_table.h"
@@ -119,8 +119,8 @@ BattleParams * sub_02051D8C (int param0, u32 param1)
         RTCDate v2;
         RTCTime v3;
 
-        sub_0201384C(&v2, &v3);
-        v1->unk_174 = v2.year + v2.month * 0x100 * v2.day * 0x10000 + v3.hour * 0x10000 + (v3.minute + v3.second) * 0x1000000 + gCoreSys.unk_2C;
+        GetCurrentDateTime(&v2, &v3);
+        v1->unk_174 = v2.year + v2.month * 0x100 * v2.day * 0x10000 + v3.hour * 0x10000 + (v3.minute + v3.second) * 0x1000000 + gCoreSys.frameCounter;
     }
 
     if (sub_02035E38() == 1) {
@@ -269,7 +269,7 @@ void sub_020521B8 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, Sav
         {
             UnkStruct_02055BA8 * v7 = sub_02025CD8(param2);
 
-            param0->unk_138 = sub_02013974(v7->unk_14.hour);
+            param0->unk_138 = TimeOfDayForHour(v7->unk_14.hour);
         }
     }
 

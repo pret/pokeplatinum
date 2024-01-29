@@ -6,7 +6,7 @@
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_02055BA8.h"
 
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "unk_02025CB0.h"
 #include "map_header.h"
 #include "unk_0203A944.h"
@@ -1860,7 +1860,7 @@ int sub_0203A944 (UnkStruct_0203CDB0 * param0, int param1)
         int v1;
         UnkStruct_02055BA8 * v2 = sub_02025CD8(param0->unk_0C);
 
-        v1 = sub_02013900(&v2->unk_04) - 1;
+        v1 = DayNumberForDate(&v2->unk_04) - 1;
         GF_ASSERT(v1 >= 0 && v1 < 366);
 
         if ((v2->unk_04.month > 2) && !inline_0203A944(v2->unk_04.year)) {

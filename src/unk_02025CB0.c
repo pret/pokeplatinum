@@ -4,7 +4,7 @@
 #include "struct_decls/struct_021C0794_decl.h"
 #include "struct_defs/struct_02055BA8.h"
 
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "unk_020244AC.h"
 #include "unk_02025CB0.h"
 
@@ -113,7 +113,7 @@ void sub_02025D78 (UnkStruct_02025CCC * param0, s32 param1)
 void sub_02025D84 (UnkStruct_02055BA8 * param0)
 {
     param0->unk_00 = 1;
-    sub_0201384C(&param0->unk_04, &param0->unk_14);
+    GetCurrentDateTime(&param0->unk_04, &param0->unk_14);
     param0->unk_20 = RTC_ConvertDateToDay(&param0->unk_04);
     param0->unk_24 = RTC_ConvertDateTimeToSecond(&param0->unk_04, &param0->unk_14);
     param0->unk_2C = 0;
@@ -145,6 +145,6 @@ void sub_02025DC8 (UnkStruct_02055BA8 * param0, int param1)
 void sub_02025DE8 (UnkStruct_02055BA8 * param0)
 {
     param0->unk_34 = 60 * 24;
-    sub_0201384C(&param0->unk_04, &param0->unk_14);
+    GetCurrentDateTime(&param0->unk_04, &param0->unk_14);
     param0->unk_20 = RTC_ConvertDateToDay(&param0->unk_04);
 }

@@ -201,12 +201,12 @@ static void sub_0203344C (void * param0, WVRResult param1)
 static void sub_02033464 (void * param0, WVRResult param1)
 {
     Unk_021C07BC = 0;
-    sub_02017B8C(4);
+    SleepUnlock(4);
 }
 
 void sub_02033478 (void)
 {
-    sub_02017B7C(4);
+    SleepLock(4);
 
     Unk_021C07BC = 1;
 

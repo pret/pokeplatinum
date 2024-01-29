@@ -115,8 +115,8 @@ UnkStruct_ov20_021D2128 * ov20_021D2098 (const UnkStruct_ov20_021D16E8 * param0,
     if (v0) {
         int v1;
 
-        sub_02017798(NULL, NULL);
-        sub_020177A4();
+        SetMainCallback(NULL, NULL);
+        DisableHBlank();
 
         v0->unk_18 = param0;
         v0->unk_1C = param1;
@@ -142,7 +142,7 @@ void ov20_021D2128 (UnkStruct_ov20_021D2128 * param0)
     if (param0) {
         int v0;
 
-        sub_02017798(NULL, NULL);
+        SetMainCallback(NULL, NULL);
 
         for (v0 = 0; v0 < 4; v0++) {
             if (param0->unk_08[v0]) {

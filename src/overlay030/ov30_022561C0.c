@@ -12,7 +12,7 @@
 #include "overlay030/struct_ov30_022563EC_1.h"
 
 #include "unk_0200D9E8.h"
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "heap.h"
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay025/ov25_02255ACC.h"
@@ -84,7 +84,7 @@ static BOOL ov30_0225621C (UnkStruct_ov30_0225621C * param0, UnkStruct_ov25_0225
         param0->unk_06 = 0;
         param0->unk_14.unk_0C = 0;
 
-        sub_02013880(&(param0->unk_14.unk_00));
+        GetCurrentTime(&(param0->unk_14.unk_00));
 
         if (param0->unk_14.unk_00.hour >= 24) {
             param0->unk_14.unk_00.hour %= 24;
@@ -201,7 +201,7 @@ static BOOL ov30_02256364 (UnkStruct_ov30_0225621C * param0)
 
     if (ov30_02256488(param0->unk_24, 1)) {
         param0->unk_05 = param0->unk_14.unk_00.minute;
-        sub_02013880(&(param0->unk_14.unk_00));
+        GetCurrentTime(&(param0->unk_14.unk_00));
 
         if (param0->unk_05 != param0->unk_14.unk_00.minute) {
             ov30_02256464(param0->unk_24, 1);

@@ -12,7 +12,7 @@
 #include "struct_defs/struct_0203233C.h"
 
 #include "unk_0200D9E8.h"
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "heap.h"
 #include "unk_02030EE0.h"
 #include "unk_02032188.h"
@@ -1876,8 +1876,8 @@ void sub_020361BC (MATHRandContext32 * param0)
     RTCDate v1;
     RTCTime v2;
 
-    sub_0201384C(&v1, &v2);
-    v0 = (((((((u64)v1.year * 16ULL + v1.month) * 32ULL) + v1.day) * 32ULL + v2.hour) * 64ULL + v2.minute) * 64ULL + (v2.second + gCoreSys.unk_2C));
+    GetCurrentDateTime(&v1, &v2);
+    v0 = (((((((u64)v1.year * 16ULL + v1.month) * 32ULL) + v1.day) * 32ULL + v2.hour) * 64ULL + v2.minute) * 64ULL + (v2.second + gCoreSys.frameCounter));
     MATH_InitRand32(param0, v0);
 }
 

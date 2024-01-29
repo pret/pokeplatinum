@@ -77,7 +77,7 @@
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "unk_02014D38.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -6750,7 +6750,7 @@ static BOOL sub_02044EDC (UnkStruct_0203E724 * param0)
     RTCDate v0;
     u16 * v1 = inline_0204FCAC(param0);
 
-    sub_020138A4(&v0);
+    GetCurrentDate(&v0);
     *v1 = v0.week;
 
     return 0;
@@ -8435,7 +8435,7 @@ static BOOL sub_0204698C (UnkStruct_0203E724 * param0)
     s64 v2;
     s64 v3;
 
-    v2 = sub_020138EC();
+    v2 = GetTimestamp();
     v3 = v2 - v0->unk_C4.unk_00;
 
     if (v3 >= 120) {

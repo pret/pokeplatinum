@@ -355,8 +355,8 @@ int ov68_0225C700 (UnkStruct_020067E8 * param0, int * param1)
     GF_ASSERT(v1->unk_08 < 2);
     Unk_ov68_0225DEB0[v1->unk_08](&v0->unk_1DC, &v0->unk_1A8, &v0->unk_00, v1, 122);
 
-    sub_02017798(ov68_0225C914, v0);
-    sub_020177A4();
+    SetMainCallback(ov68_0225C914, v0);
+    DisableHBlank();
 
     return 1;
 }
@@ -429,8 +429,8 @@ int ov68_0225C8A8 (UnkStruct_020067E8 * param0, int * param1)
     v0 = sub_0200682C(param0);
     v1 = sub_02006840(param0);
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
 
     Unk_ov68_0225DEA0[v1->unk_08](&v0->unk_1DC, &v0->unk_1A8, &v0->unk_00);
 

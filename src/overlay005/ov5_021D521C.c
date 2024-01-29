@@ -5,7 +5,7 @@
 #include "overlay005/struct_ov5_021D5894.h"
 
 #include "unk_02006E3C.h"
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "heap.h"
 #include "unk_0201E0A4.h"
 #include "overlay005/ov5_021D521C.h"
@@ -39,7 +39,7 @@ UnkStruct_ov5_021D538C * ov5_021D521C (UnkStruct_ov5_021D5894 * param0, const u8
     v1->unk_00 = ov5_021D53D4(param1, &v1->unk_04);
     v1->unk_08 = 0;
 
-    v2 = sub_020138C8() / 2;
+    v2 = GetSecondsSinceMidnight() / 2;
 
     for (v0 = 0; v0 < v1->unk_00; v0++) {
         if (v1->unk_04[v0].unk_00 > v2) {
@@ -74,7 +74,7 @@ void ov5_021D5298 (UnkStruct_ov5_021D538C * param0)
 
     GF_ASSERT(param0);
 
-    v4 = sub_020138C8() / 2;
+    v4 = GetSecondsSinceMidnight() / 2;
 
     if (param0->unk_00 > 1) {
         if ((param0->unk_08 - 1) >= 0) {

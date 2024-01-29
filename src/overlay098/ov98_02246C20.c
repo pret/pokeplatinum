@@ -198,7 +198,7 @@ static void ov98_02246E08 (UnkStruct_ov98_02246E88 * param0)
         sub_02099550();
         sub_020995B4();
         sub_02033478();
-        sub_02017B8C(4);
+        SleepUnlock(4);
     }
 }
 

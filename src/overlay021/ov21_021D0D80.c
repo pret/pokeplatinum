@@ -146,8 +146,8 @@ int ov21_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
         Pokedex_SetupGiratina(v4);
     }
 
-    sub_02017798(ov21_021D0F04, v0);
-    sub_020177A4();
+    SetMainCallback(ov21_021D0F04, v0);
+    DisableHBlank();
     sub_0201E3D8();
 
     v3 = sub_0201E450(4);
@@ -213,7 +213,7 @@ int ov21_021D0EC8 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov21_021D0F18 * v0 = sub_0200682C(param0);
     BOOL v1;
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
 
     v1 = sub_0201E530();
     GF_ASSERT(v1 == 1);

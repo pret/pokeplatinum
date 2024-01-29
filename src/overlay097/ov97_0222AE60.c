@@ -923,7 +923,7 @@ static void ov97_0222BC9C (UnkStruct_020067E8 * param0)
     sub_02019044(v1->unk_00, 1);
     sub_02019044(v1->unk_00, 2);
     Heap_FreeToHeap(v1->unk_00);
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
 }
 
 u16 Unk_ov97_0223DF70[] = {
@@ -1065,7 +1065,7 @@ static int ov97_0222BE24 (UnkStruct_020067E8 * param0, int * param1)
         ov97_0222B404(v1);
         ov97_0222B46C(v1);
 
-        sub_02017798(ov97_0222BD48, v1->unk_00);
+        SetMainCallback(ov97_0222BD48, v1->unk_00);
 
         ov97_0222B9BC(v1);
         ov97_0222BAD8(v1, v1->unk_54);

@@ -1734,7 +1734,7 @@ static void ov16_02269550 (UnkStruct_ov16_02268A14 * param0, int param1)
     Sound_PlayEffect(1806);
     SysTask_Start(ov16_0226B988, v1, 1210);
 
-    v0 = sub_020177BC(ov16_0226BB94, v1);
+    v0 = SetHBlankCallback(ov16_0226BB94, v1);
     GF_ASSERT(v0 == 1);
 
     v1->unk_04 = sub_0200DA04(ov16_0226BA88, v1, 10);
@@ -3541,7 +3541,7 @@ static void ov16_0226B988 (SysTask * param0, void * param1)
     case 1:
         v0->unk_00->unk_66E = 0;
         SysTask_Done(v0->unk_04);
-        sub_020177A4();
+        DisableHBlank();
         GXS_SetVisibleWnd(GX_WNDMASK_NONE);
         ov16_0226BCCC(v0->unk_00, 1);
         v0->unk_13++;

@@ -83,8 +83,8 @@ void sub_0209A74C (int param0)
 
     sub_0200F344(0, 0);
     sub_0200F344(1, 0);
-    sub_02017798(NULL, NULL);
-    sub_020177BC(NULL, NULL);
+    SetMainCallback(NULL, NULL);
+    SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -128,7 +128,7 @@ void sub_0209A74C (int param0)
     sub_0200AB4C(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
 
     while (TRUE) {
-        sub_0200106C();
+        HandleConsoleFold();
         OS_WaitIrq(1, OS_IE_V_BLANK);
     }
 
@@ -158,8 +158,8 @@ void sub_0209A8E0 (int param0)
 
     sub_0200F344(0, 0);
     sub_0200F344(1, 0);
-    sub_02017798(NULL, NULL);
-    sub_020177BC(NULL, NULL);
+    SetMainCallback(NULL, NULL);
+    SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
     GX_SetVisiblePlane(0);
@@ -202,7 +202,7 @@ void sub_0209A8E0 (int param0)
     sub_0200AB4C(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
 
     while (TRUE) {
-        sub_0200106C();
+        HandleConsoleFold();
         OS_WaitIrq(1, OS_IE_V_BLANK);
     }
 

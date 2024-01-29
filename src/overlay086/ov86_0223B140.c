@@ -305,7 +305,7 @@ int ov86_0223B140 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov86_0223B3C8 * v0;
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     Heap_Create(3, 63, 196608);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov86_0223B3C8), 63);

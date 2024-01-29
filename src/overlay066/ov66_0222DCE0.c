@@ -54,8 +54,8 @@ int ov66_0222DCE0 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_04 = ov66_0222DDF0(v0->unk_00, 104);
     v0->unk_08 = ov66_02230C44(v1->unk_08, v1->unk_04, v1->unk_00, v0->unk_04, 104);
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
 
     v0->unk_0C = sub_0200DA3C(ov66_0222DDDC, v0, 0);
 
@@ -88,8 +88,8 @@ int ov66_0222DD90 (UnkStruct_020067E8 * param0, int * param1)
     v0 = sub_0200682C(param0);
 
     SysTask_Done(v0->unk_0C);
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
 
     ov66_02230C90(v0->unk_08);
     ov66_0222DEEC(v0->unk_04);

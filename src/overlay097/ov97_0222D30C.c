@@ -50,7 +50,7 @@
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "heap.h"
@@ -460,7 +460,7 @@ static void ov97_0222D658 (UnkStruct_020067E8 * param0)
             v4->val2.unk_348 = 0;
         }
 
-        sub_020138A4(&v7);
+        GetCurrentDate(&v7);
         v4->val2.unk_354 = RTC_ConvertDateToDay(&v7);
     }
 

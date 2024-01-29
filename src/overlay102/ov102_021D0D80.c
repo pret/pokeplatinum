@@ -84,8 +84,8 @@ int ov102_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);
-    sub_02017798(NULL, NULL);
-    sub_020177BC(NULL, NULL);
+    SetMainCallback(NULL, NULL);
+    SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -97,7 +97,7 @@ int ov102_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     ov102_021D0F8C(v0);
     ov102_021D1174(v0);
 
-    sub_02017798(ov102_021D0F80, (void *)v0);
+    SetMainCallback(ov102_021D0F80, (void *)v0);
     GXLayers_TurnBothDispOn();
 
     return 1;
@@ -170,7 +170,7 @@ int ov102_021D0F50 (UnkStruct_020067E8 * param0, int * param1)
     ov102_021D1204(v0);
     ov102_021D10F8(v0);
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     sub_02006830(param0);
     Heap_Destroy(v1);
 

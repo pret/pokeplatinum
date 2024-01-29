@@ -149,8 +149,8 @@ int ov71_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov71_0223B620 * v0;
     NARC * v1;
 
-    sub_02017798(NULL, NULL);
-    sub_020177BC(NULL, NULL);
+    SetMainCallback(NULL, NULL);
+    SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -250,7 +250,7 @@ int ov71_0223B140 (UnkStruct_020067E8 * param0, int * param1)
 
     ov71_0223C288();
 
-    sub_02017798(ov71_0223C18C, NULL);
+    SetMainCallback(ov71_0223C18C, NULL);
     sub_020397E4();
     sub_0200544C(1, (127 / 3));
     sub_0200F174(2, 3, 3, 0x0, 6, 1, 25);
@@ -401,7 +401,7 @@ int ov71_0223B5B8 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_0201E530();
     sub_02006830(param0);
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     Heap_Destroy(25);
     sub_0200544C(1, 127);
 

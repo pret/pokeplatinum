@@ -97,8 +97,8 @@ int ov94_0223BCB0 (UnkStruct_020067E8 * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        sub_02017798(NULL, NULL);
-        sub_020177A4();
+        SetMainCallback(NULL, NULL);
+        DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
 
@@ -234,7 +234,7 @@ int ov94_0223BF54 (UnkStruct_020067E8 * param0, int * param1)
     Heap_FreeToHeap(v0->unk_04);
     Heap_FreeToHeap(v0->unk_00);
     sub_02006830(param0);
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     Heap_Destroy(62);
 
     return 1;
@@ -503,7 +503,7 @@ static void ov94_0223C4E0 (UnkStruct_ov94_0223FD4C * param0)
     ov94_0223C0D4(param0);
     ov94_0223C32C(param0);
 
-    sub_02017798(ov94_0223BFE4, param0);
+    SetMainCallback(ov94_0223BFE4, param0);
 }
 
 static void ov94_0223C508 (UnkStruct_ov94_0223FD4C * param0)

@@ -17,7 +17,7 @@
 #include "struct_defs/struct_0202E828.h"
 #include "struct_defs/struct_0202E834.h"
 
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "unk_020244AC.h"
 #include "unk_0202E2CC.h"
 
@@ -144,7 +144,7 @@ static void sub_0202E3F4 (UnkStruct_0202E4D4 * param0, int param1, const u8 * pa
 {
     RTCDate v0;
 
-    sub_020138A4(&v0);
+    GetCurrentDate(&v0);
 
     param0->unk_04 = inline_0202D4B0(&v0);
     param0->unk_00 = param1;

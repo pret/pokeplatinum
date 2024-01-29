@@ -12,7 +12,7 @@
 #include "overlay101/struct_ov101_021D86B0.h"
 
 #include "unk_0200D9E8.h"
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "unk_02061804.h"
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
@@ -138,7 +138,7 @@ static void ov5_021F1424 (SysTask * param0, void * param1)
     int v0;
     UnkStruct_ov5_021F1388 * v1 = param1;
 
-    v0 = sub_02013960();
+    v0 = GetTimeOfDay();
 
     switch (v1->unk_00) {
     case 0:

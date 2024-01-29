@@ -12,7 +12,7 @@
 #include "overlay006/battle_params.h"
 
 #include "narc.h"
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "heap.h"
 #include "savedata/save_table.h"
 #include "unk_0202CD50.h"
@@ -64,15 +64,15 @@ void sub_020562F8 (UnkStruct_0203CDB0 * param0)
     sub_0205642C(param0, v1);
     sub_020564D0(v1);
 
-    v1->unk_40 = sub_020138EC();
+    v1->unk_40 = GetTimestamp();
 }
 
 void sub_02056328 (UnkStruct_0203CDB0 * param0)
 {
     UnkStruct_020564B4 * v0 = &Unk_021C07FC;
     UnkStruct_0202CD88 * v1 = sub_0202CD88(param0->unk_0C);
-    s64 v2 = sub_020138EC();
-    s64 v3 = sub_0201398C(v0->unk_40, v2);
+    s64 v2 = GetTimestamp();
+    s64 v3 = TimeElapsed(v0->unk_40, v2);
 
     if (v3 < 1000) {
         v0->unk_48 = ((1000 - v3) * 2);

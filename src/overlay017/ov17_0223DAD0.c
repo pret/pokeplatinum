@@ -229,8 +229,8 @@ int ov17_0223DAD0 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov17_0224DF54 * v0;
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -334,7 +334,7 @@ int ov17_0223DAD0 (UnkStruct_020067E8 * param0, int * param1)
     G2_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ), -6);
 
     Sound_PlayEffect(1765);
-    sub_02017798(ov17_0223E09C, v0);
+    SetMainCallback(ov17_0223E09C, v0);
 
     return 1;
 }
@@ -450,8 +450,8 @@ int ov17_0223DF0C (UnkStruct_020067E8 * param0, int * param1)
 
     sub_0201E530();
     sub_02006830(param0);
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     Heap_Destroy(23);
     sub_02095A24();
     sub_02039794();

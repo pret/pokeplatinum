@@ -124,8 +124,8 @@ int ov72_0223D7A0 (UnkStruct_020067E8 * param0, int * param1)
     case 0:
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
-        sub_02017798(NULL, NULL);
-        sub_020177A4();
+        SetMainCallback(NULL, NULL);
+        DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
 
@@ -158,7 +158,7 @@ int ov72_0223D7A0 (UnkStruct_020067E8 * param0, int * param1)
 
         sub_0201E3D8();
         sub_0201E450(1);
-        sub_02017798(ov72_0223DA48, v0->unk_00);
+        SetMainCallback(ov72_0223DA48, v0->unk_00);
         sub_02002BB8(2, 39);
 
         ov72_0223DB98(v0);
@@ -219,7 +219,7 @@ int ov72_0223D984 (UnkStruct_020067E8 * param0, int * param1)
 
     ov72_0223E9B4(v0->unk_5BFC, v0->unk_328.unk_0C);
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     sub_0200A4E4(v0->unk_1DC[0][0]);
     sub_0200A4E4(v0->unk_1DC[1][0]);
     sub_0200A6DC(v0->unk_1DC[0][1]);
@@ -245,7 +245,7 @@ int ov72_0223D984 (UnkStruct_020067E8 * param0, int * param1)
 
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     Heap_Destroy(39);
 
     return 1;

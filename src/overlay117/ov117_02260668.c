@@ -189,7 +189,7 @@ int ov117_02260668 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov117_02261280 * v0;
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
     GX_SetVisiblePlane(0);
@@ -289,7 +289,7 @@ int ov117_02260668 (UnkStruct_020067E8 * param0, int * param1)
         sub_02003070(v0->unk_8C, 2, v2 * 16, 3 * 0x20);
     }
 
-    sub_02017798(ov117_02260DA0, v0);
+    SetMainCallback(ov117_02260DA0, v0);
 
     if (v0->unk_00->unk_3C) {
         ov4_021D1E74(110);
@@ -442,7 +442,7 @@ int ov117_02260C10 (UnkStruct_020067E8 * param0, int * param1)
     ov117_022641E4(v0);
     ov117_02264508(v0);
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
 
     ov117_022615E0(v0);
     ov117_022618E8(v0);

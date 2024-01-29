@@ -133,8 +133,8 @@ int ov83_0223B5B0 (UnkStruct_020067E8 * param0, int * param1)
     v1->unk_28 = sub_02027AC0(v0->unk_10->unk_18);
     v1->unk_31C = 1;
 
-    sub_02017798(ov83_0223B5A0, v0);
-    sub_020177A4();
+    SetMainCallback(ov83_0223B5A0, v0);
+    DisableHBlank();
     sub_02004550(12, 1183, 1);
 
     return 1;
@@ -221,8 +221,8 @@ int ov83_0223B710 (UnkStruct_020067E8 * param0, int * param1)
 
     ov83_0223D1EC(v2);
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     sub_0201DC3C();
     MI_CpuClear8(v2, sizeof(UnkStruct_ov83_0223B784));
     sub_02006830(param0);

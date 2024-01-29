@@ -35,7 +35,7 @@
 #include "unk_0200A9DC.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "strbuf.h"
@@ -1703,7 +1703,7 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, U
 
 static void sub_02094E7C (UnkStruct_02095C48 * param0)
 {
-    LCRNG_SetSeed((sub_020138C8() * (LCRNG_GetSeed() + 10)) & 0xffff);
+    LCRNG_SetSeed((GetSecondsSinceMidnight() * (LCRNG_GetSeed() + 10)) & 0xffff);
 }
 
 u16 sub_02094E98 (UnkStruct_02095C48 * param0)

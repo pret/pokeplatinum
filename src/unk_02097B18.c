@@ -181,7 +181,7 @@ static int sub_02097B18 (UnkStruct_020067E8 * param0, int * param1)
     }
 
     ov76_0223DCC0(v0);
-    sub_02017798(ov76_0223ECB0, v0);
+    SetMainCallback(ov76_0223ECB0, v0);
     ov76_0223B8A8(v0);
     sub_02004550(59, 0, 0);
 

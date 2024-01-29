@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_020507E4_decl.h"
 
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "unk_020507CC.h"
 #include "unk_0206A8DC.h"
 
@@ -273,7 +273,7 @@ u16 sub_0206AB68 (UnkStruct_020507E4 * param0, int param1)
     case 494:
     case 497:
         if (sub_0206A8EC(param0, (2400 + 37)) == 1) {
-            if (sub_02013948() == 0) {
+            if (IsNight() == 0) {
                 v0 = 1016;
             } else {
                 v0 = 1045;
@@ -292,7 +292,7 @@ u16 sub_0206AB68 (UnkStruct_020507E4 * param0, int param1)
     case 74:
     case 75:
         if (sub_0206A8EC(param0, (2400 + 39)) == 1) {
-            if (sub_02013948() == 0) {
+            if (IsNight() == 0) {
                 v0 = 1013;
             } else {
                 v0 = 1042;
@@ -301,7 +301,7 @@ u16 sub_0206AB68 (UnkStruct_020507E4 * param0, int param1)
         break;
     case 201:
         if (sub_0206A8EC(param0, (2400 + 40)) == 1) {
-            if (sub_02013948() == 0) {
+            if (IsNight() == 0) {
                 v0 = 1023;
             } else {
                 v0 = 1052;
@@ -310,7 +310,7 @@ u16 sub_0206AB68 (UnkStruct_020507E4 * param0, int param1)
         break;
     case 256:
         if (sub_0206A8EC(param0, (2400 + 41)) == 1) {
-            if (sub_02013948() == 0) {
+            if (IsNight() == 0) {
                 v0 = 1006;
             } else {
                 v0 = 1035;
@@ -319,7 +319,7 @@ u16 sub_0206AB68 (UnkStruct_020507E4 * param0, int param1)
         break;
     case 399:
         if (sub_0206A8EC(param0, (2400 + 42)) == 1) {
-            if (sub_02013948() == 0) {
+            if (IsNight() == 0) {
                 v0 = 1006;
             } else {
                 v0 = 1035;

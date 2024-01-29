@@ -200,7 +200,7 @@ void sub_0207B0E0 (UnkStruct_0207AE68 * param0)
 
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     sub_0201A928(param0->unk_04, 1);
     sub_02002FA0(param0->unk_14, 0);
     sub_02002FA0(param0->unk_14, 1);
@@ -931,7 +931,7 @@ static void sub_0207C1CC (UnkStruct_0207AE68 * param0, BGL * param1)
 
     GXLayers_TurnBothDispOn();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    sub_02017798(sub_0207C520, param0);
+    SetMainCallback(sub_0207C520, param0);
 }
 
 static void sub_0207C460 (BGL * param0)

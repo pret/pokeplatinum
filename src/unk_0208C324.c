@@ -144,8 +144,8 @@ static int sub_0208C330 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_0208D7BC * v0;
     NARC * v1;
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -189,7 +189,7 @@ static int sub_0208C330 (UnkStruct_020067E8 * param0, int * param1)
     sub_0208D678(v0);
     sub_020920C0(v0);
     sub_020917E0(v0);
-    sub_02017798(sub_0208C604, v0);
+    SetMainCallback(sub_0208C604, v0);
     GXLayers_TurnBothDispOn();
     sub_02004550(61, 0, 0);
     sub_020397E4();
@@ -281,7 +281,7 @@ static int sub_0208C5A0 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_0208D7BC * v0 = sub_0200682C(param0);
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     sub_020917B0(v0);
     sub_0208EAF4(v0);
     sub_0208FE88(v0);

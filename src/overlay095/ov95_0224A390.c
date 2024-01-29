@@ -131,7 +131,7 @@ void * ov95_0224A390 (UnkStruct_ov95_02247628 * param0)
         v0->unk_0C = 0;
 
         ov95_0224A848(&(v0->unk_34));
-        sub_02017798(ov95_0224AB50, v0);
+        SetMainCallback(ov95_0224AB50, v0);
     }
 
     return v0;
@@ -144,7 +144,7 @@ void ov95_0224A3CC (void * param0)
     if (v0) {
         int v1;
 
-        sub_02017798(NULL, NULL);
+        SetMainCallback(NULL, NULL);
 
         ov95_0224A678(v0);
         ov95_0224A7A0(v0);

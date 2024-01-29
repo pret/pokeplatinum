@@ -128,8 +128,8 @@ static int ov79_021D0E1C (UnkStruct_ov79_021D0E1C * param0)
     switch (param0->unk_04) {
     case 0:
 
-        sub_02017798(NULL, NULL);
-        sub_020177A4();
+        SetMainCallback(NULL, NULL);
+        DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
 
@@ -184,7 +184,7 @@ static int ov79_021D0E1C (UnkStruct_ov79_021D0E1C * param0)
         sub_0201E530();
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
-        sub_02017798(NULL, NULL);
+        SetMainCallback(NULL, NULL);
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
         GX_SetVisiblePlane(0);
@@ -422,7 +422,7 @@ static int ov79_021D122C (UnkStruct_ov79_021D0E1C * param0)
     case 5:
         ov79_021D196C(param0);
         ov79_021D1B24(param0, param0->unk_1B, 4);
-        sub_02017798(ov79_021D0F7C, param0);
+        SetMainCallback(ov79_021D0F7C, param0);
         param0->unk_08 = 0;
         return 1;
     }

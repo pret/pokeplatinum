@@ -12,7 +12,7 @@
 #include "struct_defs/struct_02029894_sub2.h"
 #include "struct_defs/struct_020298B0.h"
 
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_020244AC.h"
@@ -103,8 +103,8 @@ void Underground_Init (UnkStruct_020298B0 * param0)
     RTCDate v1;
     RTCTime v2;
 
-    sub_0201384C(&v1, &v2);
-    v0 = (((((((u32)v1.year * 32ULL + v1.month) * 32ULL) + v1.day) * 32ULL + v2.hour) * 32ULL + v2.minute) * 32ULL + (v2.second + gCoreSys.unk_2C));
+    GetCurrentDateTime(&v1, &v2);
+    v0 = (((((((u32)v1.year * 32ULL + v1.month) * 32ULL) + v1.day) * 32ULL + v2.hour) * 32ULL + v2.minute) * 32ULL + (v2.second + gCoreSys.frameCounter));
 
     MI_CpuFill8(param0, 0, sizeof(UnkStruct_020298B0));
 

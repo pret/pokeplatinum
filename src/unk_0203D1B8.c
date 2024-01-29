@@ -67,7 +67,7 @@
 #include "overlay088/struct_ov88_0223C370.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "unk_02017498.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
@@ -1594,9 +1594,9 @@ static BOOL sub_0203E35C (UnkStruct_020508D4 * param0)
     case 1:
         if (sub_020509B4(v0) == 0) {
             u16 * v5 = sub_02025E50(v0->unk_0C);
-            s64 v6 = sub_020138EC();
+            s64 v6 = GetTimestamp();
 
-            sub_0206DD38(v0, Coins_GetValue(v5), v2->unk_00, sub_0201398C(v2->unk_04, v6) / 60);
+            sub_0206DD38(v0, Coins_GetValue(v5), v2->unk_00, TimeElapsed(v2->unk_04, v6) / 60);
             Coins_SetValue(sub_02025E50(v0->unk_0C), v2->unk_00);
 
             v4 = sub_0206B394(v1);
@@ -1622,7 +1622,7 @@ void sub_0203E414 (UnkStruct_020508D4 * param0, int param1)
 
     v2->unk_0C.unk_00 = &v2->unk_00;
     v2->unk_00 = Coins_GetValue(sub_02025E50(v0->unk_0C));
-    v2->unk_04 = sub_020138EC();
+    v2->unk_04 = GetTimestamp();
     v2->unk_0C.unk_08 = sub_0202CD88(v0->unk_0C);
     v2->unk_0C.unk_0C = 0;
     v2->unk_0C.unk_10 = sub_02027B50(v1);

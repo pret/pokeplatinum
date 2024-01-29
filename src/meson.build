@@ -46,7 +46,7 @@ pokeplatinum_c = files(
     'unk_02012480.c',
     'unk_02012744.c',
     'unk_020131EC.c',
-    'unk_0201378C.c',
+    'rtc.c',
     'unk_02013A04.c',
     'unk_02013B10.c',
     'unk_02014000.c',
