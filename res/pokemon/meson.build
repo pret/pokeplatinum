@@ -9,7 +9,7 @@ otherpoke_index = {} # otherpoke uses a unique, non-uniform structure
 # pl_poke_icon has some shared files that are listed at the beginning
 # of the NARC.
 poke_icon_shared = files(
-    '.shared/icon_palette.NCLR',
+    '.shared/pl_poke_icon.pal',
     '.shared/pl_poke_icon_anim_01.json',
     '.shared/pl_poke_icon_cell_01.json',
     '.shared/pl_poke_icon_anim_02.json',
