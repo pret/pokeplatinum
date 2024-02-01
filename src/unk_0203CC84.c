@@ -31,7 +31,7 @@
 #include "unk_020530C8.h"
 #include "unk_02057518.h"
 #include "unk_0205F180.h"
-#include "unk_0206940C.h"
+#include "pokeradar.h"
 #include "unk_0207D3B8.h"
 #include "unk_0209ACBC.h"
 #include "unk_0209C370.h"
@@ -184,9 +184,9 @@ static UnkStruct_0203CDB0 * sub_0203CDB0 (UnkStruct_020067E8 * param0)
     sub_0203A378(v1, 11);
 
     v1->unk_98 = sub_0207D99C(11);
-    v1->unk_94 = sub_0206940C(11);
+    v1->chain = CreateRadarChain(11);
 
-    sub_02069434(v1->unk_94);
+    ClearRadarChain(v1->chain);
 
     v1->unk_B4 = sub_0209ACBC(11);
     v1->unk_BC = sub_0209C370(11);
@@ -201,7 +201,7 @@ static void sub_0203CE6C (UnkStruct_020067E8 * param0)
     sub_02039DE4(v0->unk_2C);
     sub_0203A398(v0);
     Heap_FreeToHeap(v0->unk_98);
-    sub_0206942C(v0->unk_94);
+    FreeRadarChain(v0->chain);
     sub_0209ACDC(v0->unk_B4);
     sub_0209C388(v0->unk_BC);
 

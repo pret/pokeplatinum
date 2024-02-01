@@ -65,7 +65,7 @@
 #include "unk_0205E7D0.h"
 #include "unk_02061804.h"
 #include "unk_02068344.h"
-#include "unk_0206940C.h"
+#include "pokeradar.h"
 #include "overlay005/ov5_021D0D80.h"
 #include "overlay005/ov5_021D1A94.h"
 #include "overlay005/ov5_021D37AC.h"
@@ -448,7 +448,7 @@ static BOOL ov5_021D11CC (UnkStruct_0203CDB0 * param0)
     }
 
     {
-        sub_02069434(param0->unk_94);
+        ClearRadarChain(param0->chain);
         sub_02055554(param0, sub_02055428(param0, param0->unk_1C->unk_00), 1);
         sub_0203A418(param0);
 

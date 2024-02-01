@@ -167,7 +167,7 @@
 #include "unk_02061804.h"
 #include "unk_02063400.h"
 #include "unk_020655F4.h"
-#include "unk_0206940C.h"
+#include "pokeradar.h"
 #include "unk_02069BE0.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
@@ -4769,7 +4769,7 @@ static BOOL sub_02042AB0 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02042AE0 (UnkStruct_0203E724 * param0)
 {
-    sub_02069434(param0->unk_34->unk_94);
+    ClearRadarChain(param0->unk_34->chain);
 
     {
         int v0;

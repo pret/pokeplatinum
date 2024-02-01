@@ -6,7 +6,7 @@
 #include "overlay006/struct_ov6_022430E8.h"
 
 #include "unk_0202D7A8.h"
-#include "unk_0206940C.h"
+#include "pokeradar.h"
 #include "overlay006/ov6_022430C4.h"
 
 static void ov6_022431A0(UnkStruct_020698E4 * param0, UnkStruct_ov6_022430E8 ** param1);
@@ -56,15 +56,14 @@ int ov6_02243114 (UnkStruct_0203CDB0 * param0, const u8 param1)
 
 int ov6_02243140 (UnkStruct_0203CDB0 * param0)
 {
-    return sub_02069B90(param0);
+    return GetChainCount(param0);
 }
 
-int ov6_02243148 (UnkStruct_0203CDB0 * param0)
-{
-    int v0, v1;
+int GetRadarSpecies (UnkStruct_0203CDB0 * param0) {
+    int species, level;
 
-    sub_0206978C(param0->unk_94, &v0, &v1);
-    return v0;
+    GetRadarMon(param0->chain, &species, &level);
+    return species;
 }
 
 void ov6_02243160 (UnkStruct_020698E4 * param0)

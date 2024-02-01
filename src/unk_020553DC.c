@@ -15,7 +15,7 @@
 #include "unk_020507CC.h"
 #include "unk_020553DC.h"
 #include "unk_0205E7D0.h"
-#include "unk_0206940C.h"
+#include "pokeradar.h"
 #include "unk_0206A8DC.h"
 #include "trainer_data.h"
 
@@ -168,7 +168,7 @@ u16 sub_02055428 (UnkStruct_0203CDB0 * param0, int param1)
         }
     }
 
-    if (sub_0206981C(param0->unk_94) == 1) {
+    if (GetRadarChainActive(param0->chain) == 1) {
         return 1150;
     }
 

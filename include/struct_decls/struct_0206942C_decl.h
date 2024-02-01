@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_0206942C_DECL_H
 #define POKEPLATINUM_STRUCT_0206942C_DECL_H
 
-typedef struct UnkStruct_0206942C_t UnkStruct_0206942C;
+typedef struct RadarChain_t RadarChain;
 
 #endif // POKEPLATINUM_STRUCT_0206942C_DECL_H
