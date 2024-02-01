@@ -167,7 +167,7 @@ int ov62_022486A4 (SaveData * param0, int param1)
     Unk_021C07A4->unk_84.unk_60.unk_00 = sub_0202486C(param0, &Unk_021C07A4->unk_84, sizeof(UnkStruct_0202F41C) - (sizeof(UnkStruct_0202F298_sub1)) - (sizeof(u64)));
 
     sub_0202F858(&Unk_021C07A4->unk_E8, sizeof(UnkStruct_0202F298) - (sizeof(UnkStruct_0202F298_sub1)), Unk_021C07A4->unk_E8.unk_1BEC.unk_00 + ((Unk_021C07A4->unk_E8.unk_1BEC.unk_00 ^ 0xffff) << 16));
-    sub_02017DE0(8);
+    ResetLock(8);
 
     v0 = SaveData_SaveBattleRecording(param0, Unk_021C07A4, param1);
 
@@ -175,6 +175,6 @@ int ov62_022486A4 (SaveData * param0, int param1)
         v0 = sub_020246E0(param0);
     }
 
-    sub_02017DF0(8);
+    ResetUnlock(8);
     return v0;
 }

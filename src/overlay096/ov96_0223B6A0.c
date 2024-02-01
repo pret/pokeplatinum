@@ -71,8 +71,8 @@ int ov96_0223B6A0 (UnkStruct_020067E8 * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        sub_02017798(NULL, NULL);
-        sub_020177A4();
+        SetMainCallback(NULL, NULL);
+        DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
 
@@ -189,7 +189,7 @@ int ov96_0223B8CC (UnkStruct_020067E8 * param0, int * param1)
     sub_020334CC();
     Heap_FreeToHeap(v0->unk_04);
     sub_02006830(param0);
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     Heap_Destroy(68);
 
     return 1;
@@ -335,7 +335,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov96_0223DA78 = {
     0x0
 };
 
-UnkStruct_02001AF4 * ov96_0223BBC8 (BGL * param0, int param1, int param2)
+UIControlData * ov96_0223BBC8 (BGL * param0, int param1, int param2)
 {
     UnkStruct_ov61_0222C884 v0;
 
@@ -403,7 +403,7 @@ static void ov96_0223BC64 (UnkStruct_ov96_0223BF40 * param0)
     ov96_0223B9D0(param0);
     ov96_0223BB0C(param0);
 
-    sub_02017798(ov96_0223B940, param0);
+    SetMainCallback(ov96_0223B940, param0);
 }
 
 static void ov96_0223BC8C (UnkStruct_ov96_0223BF40 * param0)

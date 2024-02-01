@@ -95,8 +95,8 @@ static void ov72_0223E910(Window * param0, int param1, u32 param2, UnkStruct_ov7
 static void ov72_0223E914(UnkStruct_ov72_0223DB98 * param0);
 static void ov72_0223E930(UnkStruct_ov72_0223DB98 * param0, int param1);
 static int ov72_0223E99C(int param0);
-static void ov72_0223E388(UnkStruct_02022550 ** param0, int param1);
-static void ov72_0223E3A8(UnkStruct_02022550 ** param0, BOOL param1);
+static void ov72_0223E388(GraphicElementData ** param0, int param1);
+static void ov72_0223E3A8(GraphicElementData ** param0, BOOL param1);
 static int ov72_0223E528(UnkStruct_ov72_0223DB98 * param0, int param1);
 static void ov72_0223E430(BGL * param0, UnkStruct_02015920 * param1);
 static void ov72_0223E9B4(u8 * param0, u8 * param1);
@@ -124,8 +124,8 @@ int ov72_0223D7A0 (UnkStruct_020067E8 * param0, int * param1)
     case 0:
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
-        sub_02017798(NULL, NULL);
-        sub_020177A4();
+        SetMainCallback(NULL, NULL);
+        DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
 
@@ -151,14 +151,14 @@ int ov72_0223D7A0 (UnkStruct_020067E8 * param0, int * param1)
 
             v0->unk_5BFC = (u8 *)sub_0202C840(sub_0202C834(v2));
             v0->unk_08 = (UnkStruct_0202CD88 *)sub_0202CD88((SaveData *)sub_02006840(param0));
-            v0->unk_0C = (UnkStruct_020279FC *)sub_02025E44((SaveData *)sub_02006840(param0));
+            v0->unk_0C = (AnimationControlFlags *)sub_02025E44((SaveData *)sub_02006840(param0));
         }
 
         ov72_0223DCA8(v0, v1);
 
         sub_0201E3D8();
         sub_0201E450(1);
-        sub_02017798(ov72_0223DA48, v0->unk_00);
+        SetMainCallback(ov72_0223DA48, v0->unk_00);
         sub_02002BB8(2, 39);
 
         ov72_0223DB98(v0);
@@ -219,7 +219,7 @@ int ov72_0223D984 (UnkStruct_020067E8 * param0, int * param1)
 
     ov72_0223E9B4(v0->unk_5BFC, v0->unk_328.unk_0C);
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     sub_0200A4E4(v0->unk_1DC[0][0]);
     sub_0200A4E4(v0->unk_1DC[1][0]);
     sub_0200A6DC(v0->unk_1DC[0][1]);
@@ -245,7 +245,7 @@ int ov72_0223D984 (UnkStruct_020067E8 * param0, int * param1)
 
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     Heap_Destroy(39);
 
     return 1;
@@ -697,7 +697,7 @@ static void ov72_0223E2A8 (UnkStruct_ov72_0223DB98 * param0)
     }
 }
 
-static void ov72_0223E388 (UnkStruct_02022550 ** param0, int param1)
+static void ov72_0223E388 (GraphicElementData ** param0, int param1)
 {
     int v0;
 
@@ -710,7 +710,7 @@ static void ov72_0223E388 (UnkStruct_02022550 ** param0, int param1)
     }
 }
 
-static void ov72_0223E3A8 (UnkStruct_02022550 ** param0, BOOL param1)
+static void ov72_0223E3A8 (GraphicElementData ** param0, BOOL param1)
 {
     if (param1 == 1) {
         sub_02021D6C(param0[0], Unk_ov72_0223EB3C[0][2] + 1);

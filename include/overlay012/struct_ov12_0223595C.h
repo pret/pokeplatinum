@@ -13,9 +13,9 @@ typedef struct {
     u8 unk_02;
     u8 unk_03;
     UnkStruct_ov12_0221FCDC * unk_04;
-    UnkStruct_0200C6E4 * unk_08;
-    UnkStruct_0200C704 * unk_0C;
-    UnkStruct_0200C704 * unk_10;
+    CellTransferStateData * unk_08;
+    AnimationResourceCollection * unk_0C;
+    AnimationResourceCollection * unk_10;
     BGL * unk_14;
     PaletteSys * unk_18;
 } UnkStruct_ov12_0223595C;

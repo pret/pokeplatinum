@@ -114,13 +114,13 @@ struct UnkStruct_ov105_02241FF4_t {
     BGL * unk_4C;
     Window unk_50[10];
     UnkStruct_02081CF4 unk_F0;
-    UnkStruct_02001AF4 * unk_FC;
-    UnkStruct_02013A04 unk_100[4];
+    UIControlData * unk_FC;
+    ResourceMetadata unk_100[4];
     PaletteSys * unk_120;
-    UnkStruct_0207C690 * unk_124;
+    GenericPointerData * unk_124;
     UnkStruct_02007768 * unk_128;
     Sprite * unk_12C[3];
-    UnkStruct_020279FC * unk_138;
+    AnimationControlFlags * unk_138;
     SaveData * unk_13C;
     UnkStruct_02098D38 * unk_140;
     UnkStruct_ov105_02245AAC unk_144;
@@ -614,7 +614,7 @@ int ov105_02241F54 (UnkStruct_020067E8 * param0, int * param1)
     ov105_022451B4(v1);
 
     sub_02006830(param0);
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     Heap_Destroy(93);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay104));
 
@@ -2830,8 +2830,8 @@ static void ov105_022452A0 (UnkStruct_ov105_02241FF4 * param0)
 
 static void ov105_022452E4 (void)
 {
-    sub_02017798(NULL, NULL);
-    sub_020177BC(NULL, NULL);
+    SetMainCallback(NULL, NULL);
+    SetHBlankCallback(NULL, NULL);
 
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -2880,7 +2880,7 @@ static void ov105_0224531C (UnkStruct_ov105_02241FF4 * param0)
     }
 
     GXLayers_TurnBothDispOn();
-    sub_02017798(ov105_0224451C, (void *)param0);
+    SetMainCallback(ov105_0224451C, (void *)param0);
 
     return;
 }

@@ -32,9 +32,9 @@ typedef struct UnkStruct_ov16_0226DEEC_t {
     u8 unk_1E;
 } UnkStruct_ov16_0226DEEC;
 
-void ov16_0226DE44(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, u32 param2, PaletteSys * param3, u32 param4, u32 param5, u32 param6, u32 param7);
-void ov16_0226DEC4(UnkStruct_0200C704 * param0, u32 param1, u32 param2, u32 param3, u32 param4);
-UnkStruct_ov16_0226DEEC * ov16_0226DEEC(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
+void ov16_0226DE44(CellTransferStateData * param0, AnimationResourceCollection * param1, u32 param2, PaletteSys * param3, u32 param4, u32 param5, u32 param6, u32 param7);
+void ov16_0226DEC4(AnimationResourceCollection * param0, u32 param1, u32 param2, u32 param3, u32 param4);
+UnkStruct_ov16_0226DEEC * ov16_0226DEEC(CellTransferStateData * param0, AnimationResourceCollection * param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
 void ov16_0226DF68(UnkStruct_ov16_0226DEEC * param0);
 void ov16_0226DFB0(UnkStruct_ov16_0226DEEC * param0, int param1, int param2);
 void ov16_0226DFBC(UnkStruct_ov16_0226DEEC * param0);
@@ -54,7 +54,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov16_02270AD8 = {
     0x0
 };
 
-void ov16_0226DE44 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, u32 param2, PaletteSys * param3, u32 param4, u32 param5, u32 param6, u32 param7)
+void ov16_0226DE44 (CellTransferStateData * param0, AnimationResourceCollection * param1, u32 param2, PaletteSys * param3, u32 param4, u32 param5, u32 param6, u32 param7)
 {
     NARC * v0 = NARC_ctor(NARC_INDEX_GRAPHIC__EV_POKESELECT, param2);
 
@@ -65,7 +65,7 @@ void ov16_0226DE44 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, u3
     NARC_dtor(v0);
 }
 
-void ov16_0226DEC4 (UnkStruct_0200C704 * param0, u32 param1, u32 param2, u32 param3, u32 param4)
+void ov16_0226DEC4 (AnimationResourceCollection * param0, u32 param1, u32 param2, u32 param3, u32 param4)
 {
     sub_0200D070(param0, param1);
     sub_0200D080(param0, param2);
@@ -73,7 +73,7 @@ void ov16_0226DEC4 (UnkStruct_0200C704 * param0, u32 param1, u32 param2, u32 par
     sub_0200D0A0(param0, param4);
 }
 
-UnkStruct_ov16_0226DEEC * ov16_0226DEEC (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
+UnkStruct_ov16_0226DEEC * ov16_0226DEEC (CellTransferStateData * param0, AnimationResourceCollection * param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
 {
     UnkStruct_ov16_0226DEEC * v0;
     UnkStruct_ov104_0223F9E0 v1;

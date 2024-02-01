@@ -125,7 +125,7 @@ typedef struct {
 
 typedef struct {
     BGL * unk_00;
-    UnkStruct_020218BC * unk_04;
+    GraphicElementManager * unk_04;
     UnkStruct_0200C738 unk_08;
     UnkStruct_02009714 * unk_194[4];
     NARC * unk_1A4;
@@ -364,8 +364,8 @@ int ov112_0225C700 (UnkStruct_020067E8 * param0, int * param1)
     ov112_0225D1EC(&v0->unk_1C8, &v0->unk_08, 107);
     ov112_0225D57C(&v0->unk_264, &v0->unk_08, 107);
 
-    sub_02017798(ov112_0225C964, v0);
-    sub_020177A4();
+    SetMainCallback(ov112_0225C964, v0);
+    DisableHBlank();
 
     return 1;
 }
@@ -450,8 +450,8 @@ int ov112_0225C8FC (UnkStruct_020067E8 * param0, int * param1)
     ov112_0225D2D0(&v0->unk_1C8);
     ov112_0225CC84(&v0->unk_1B0);
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
 
     ov112_0225C9F4(&v0->unk_08);
 

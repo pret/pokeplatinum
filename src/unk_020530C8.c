@@ -128,7 +128,7 @@ typedef struct {
     Window unk_24;
     Strbuf* unk_34;
     u8 unk_38;
-    UnkStruct_02001AF4 * unk_3C;
+    UIControlData * unk_3C;
 } UnkStruct_02053FAC;
 
 typedef struct {

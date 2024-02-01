@@ -108,13 +108,13 @@ typedef struct {
 } UnkStruct_ov97_02233DAC;
 
 typedef struct {
-    UnkStruct_02022550 * unk_00;
-    UnkStruct_02022550 * unk_04;
+    GraphicElementData * unk_00;
+    GraphicElementData * unk_04;
     int unk_08;
 } UnkStruct_ov97_02234A2C_sub1;
 
 typedef struct {
-    UnkStruct_02022550 * unk_00;
+    GraphicElementData * unk_00;
     int unk_04;
     int unk_08;
 } UnkStruct_ov97_02234A2C_sub2;
@@ -128,7 +128,7 @@ typedef struct {
 typedef struct {
     int unk_00;
     int unk_04;
-    UnkStruct_02022550 * unk_08;
+    GraphicElementData * unk_08;
     u8 unk_0C[512];
 } UnkStruct_ov97_0223F434;
 
@@ -139,23 +139,23 @@ typedef struct {
     int unk_0C;
     SaveData * unk_10;
     TrainerInfo * unk_14;
-    UnkStruct_020279FC * unk_18;
+    AnimationControlFlags * unk_18;
     int unk_1C;
     BGL * unk_20;
     int unk_24;
-    UnkStruct_020218BC * unk_28;
+    GraphicElementManager * unk_28;
     UnkStruct_0200C738 unk_2C;
     UnkStruct_02009714 * unk_1B8[6];
     UnkStruct_02009DC8 * unk_1D0[6];
     UnkStruct_ov19_021DA864 unk_1E8;
     UnkStruct_ov97_02234A2C_sub1 unk_20C[30];
     UnkUnion_02022594 unk_374[34];
-    UnkStruct_02022550 * unk_3FC[4];
-    UnkStruct_02022550 * unk_40C[4];
-    UnkStruct_02022550 * unk_41C[4];
+    GraphicElementData * unk_3FC[4];
+    GraphicElementData * unk_40C[4];
+    GraphicElementData * unk_41C[4];
     UnkStruct_ov97_02234A2C_sub2 unk_42C[6];
     int unk_474;
-    UnkStruct_02022550 * unk_478[6];
+    GraphicElementData * unk_478[6];
     UnkStruct_ov97_02233DAC unk_490;
     Window unk_4DC;
     Window unk_4EC;
@@ -320,7 +320,7 @@ static int ov97_02233B8C (UnkStruct_ov97_02234A2C * param0)
         v0 = ov97_02236280();
 
         if (v0 == 0) {
-            sub_02017B8C(1);
+            SleepUnlock(1);
             return 12;
         }
 
@@ -337,7 +337,7 @@ static int ov97_02233B8C (UnkStruct_ov97_02234A2C * param0)
             v0 = ov97_022362C8();
 
             if (v0 == 8) {
-                sub_02017B8C(1);
+                SleepUnlock(1);
                 return 12;
             }
         }
@@ -352,19 +352,19 @@ static int ov97_02233B8C (UnkStruct_ov97_02234A2C * param0)
         } while (v2 != 2);
 
         ov97_022362C8();
-        sub_02017B7C(1);
+        SleepLock(1);
         v4->unk_00++;
         break;
     case 9:
         v0 = ov97_022362C8();
 
         if (v0 == 8) {
-            sub_02017B8C(1);
+            SleepUnlock(1);
             return 12;
         }
 
         if (v0 == 0) {
-            sub_02017B8C(1);
+            SleepUnlock(1);
             return 11;
         }
         break;
@@ -381,10 +381,10 @@ static void ov97_02233CE4 (UnkStruct_ov97_02234A2C * param0)
     v0 = SaveData_PalParkTransfer(param0->unk_10);
 
     sub_0202EFB8(v0, ov97_0223635C());
-    sub_02017DE0(4);
+    ResetLock(4);
 
     v1 = sub_020246E0(param0->unk_10);
-    sub_02017DF0(4);
+    ResetUnlock(4);
 }
 
 static void ov97_02233D10 (UnkStruct_ov97_02234A2C * param0)
@@ -651,7 +651,7 @@ static u8 GBASpeciesToDSFormId (int param0, u32 param1, int param2)
     return v0;
 }
 
-static void ov97_02234278 (int param0, int param1, u32 param2, int param3, int param4, UnkStruct_02022550 * param5)
+static void ov97_02234278 (int param0, int param1, u32 param2, int param3, int param4, GraphicElementData * param5)
 {
     u8 * v0;
     u8 v1;
@@ -669,7 +669,7 @@ static void ov97_02234278 (int param0, int param1, u32 param2, int param3, int p
     Heap_FreeToHeap(v0);
 }
 
-static void ov97_022342E4 (int param0, int param1, int param2, int param3, UnkStruct_02022550 * param4, void * param5, NARC * param6)
+static void ov97_022342E4 (int param0, int param1, int param2, int param3, GraphicElementData * param4, void * param5, NARC * param6)
 {
     u32 v0;
     NNSG2dCharacterData * v1;
@@ -799,10 +799,10 @@ static void ov97_02234508 (UnkStruct_ov97_02234A2C * param0)
     }
 }
 
-static UnkStruct_02022550 * ov97_02234638 (UnkStruct_ov97_02234A2C * param0, int param1, int param2, int param3, int param4)
+static GraphicElementData * ov97_02234638 (UnkStruct_ov97_02234A2C * param0, int param1, int param2, int param3, int param4)
 {
     UnkStruct_ov115_02261520 v0;
-    UnkStruct_02022550 * v1;
+    GraphicElementData * v1;
 
     ov97_022340FC(&v0, param0, &param0->unk_1E8, NNS_G2D_VRAM_TYPE_2DMAIN);
 
@@ -1546,7 +1546,7 @@ static void ov97_022351F0 (UnkStruct_ov97_02234A2C * param0)
 {
     int v0;
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
 
     for (v0 = 0; v0 < 30; v0++) {
         if (param0->unk_20C[v0].unk_00) {
@@ -1819,7 +1819,7 @@ static int ov97_02235624 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-extern int Unk_02101D24;
+extern int gIgnoreCartridgeForWake;
 
 static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
 {
@@ -1828,7 +1828,7 @@ static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
 
     CTRDG_IsExisting();
 
-    if ((CTRDG_IsPulledOut() == TRUE) || Unk_02101D24) {
+    if ((CTRDG_IsPulledOut() == TRUE) || gIgnoreCartridgeForWake) {
         UnkStruct_ov97_02233B8C * v4 = &v3->unk_E8F0;
 
         if ((v4->unk_00 == 3) || (v4->unk_00 == 4)) {
@@ -1869,7 +1869,7 @@ static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
         ov97_022340B0(v3);
         ov97_0223468C(v3);
 
-        sub_02017798(ov97_022353CC, v3);
+        SetMainCallback(ov97_022353CC, v3);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
 
         if (v3->unk_04 == 1) {
@@ -1979,7 +1979,7 @@ static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
         ov97_02234508(v3);
         ov97_022343A8(v3);
 
-        sub_02017798(ov97_022353CC, v3);
+        SetMainCallback(ov97_022353CC, v3);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         ov97_02234B0C(v3, NULL);
@@ -2098,7 +2098,7 @@ static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
             v3->unk_E8F0.unk_00 = 0;
             v3->unk_E8F0.unk_08 = sub_0200E7FC(&v3->unk_4FC, (0x3F0 - (18 + 12)));
             *param1 = 21;
-            sub_02017DE0(4);
+            ResetLock(4);
             break;
         case 2:
             sub_02015A54(v3->unk_E8EC);
@@ -2125,7 +2125,7 @@ static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
 
             ov97_02233DD0(v3, &v3->unk_490, 0);
             *param1 = 22;
-            sub_02017DF0(4);
+            ResetUnlock(4);
         }
         break;
     case 22:

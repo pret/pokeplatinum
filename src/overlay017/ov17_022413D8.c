@@ -547,7 +547,7 @@ void ov17_022416E4 (UnkStruct_ov17_0223F88C * param0)
     param0->unk_98.unk_00 = NULL;
 }
 
-static CellActorData * ov17_02241720 (PaletteSys * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, const UnkStruct_020954F0 * param3, int param4, NARC * param5)
+static CellActorData * ov17_02241720 (PaletteSys * param0, CellTransferStateData * param1, AnimationResourceCollection * param2, const UnkStruct_020954F0 * param3, int param4, NARC * param5)
 {
     CellActorData * v0;
     UnkStruct_ov104_0223F9E0 v1;
@@ -593,7 +593,7 @@ static CellActorData * ov17_02241720 (PaletteSys * param0, UnkStruct_0200C6E4 * 
     return v0;
 }
 
-static void ov17_02241814 (UnkStruct_0200C704 * param0, CellActorData * param1, int param2)
+static void ov17_02241814 (AnimationResourceCollection * param0, CellActorData * param1, int param2)
 {
     sub_0200D0F4(param1);
     sub_0200D070(param0, 33001 + param2);
@@ -602,7 +602,7 @@ static void ov17_02241814 (UnkStruct_0200C704 * param0, CellActorData * param1, 
     sub_0200D0A0(param0, 33001 + param2);
 }
 
-static void ov17_02241854 (PaletteSys * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, NARC * param3)
+static void ov17_02241854 (PaletteSys * param0, CellTransferStateData * param1, AnimationResourceCollection * param2, NARC * param3)
 {
     u32 v0, v1, v2;
 
@@ -615,7 +615,7 @@ static void ov17_02241854 (PaletteSys * param0, UnkStruct_0200C6E4 * param1, Unk
     sub_0200CE54(param1, param2, param3, v2, 1, 33004);
 }
 
-static CellActorData * ov17_022418A4 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, int param2)
+static CellActorData * ov17_022418A4 (CellTransferStateData * param0, AnimationResourceCollection * param1, int param2)
 {
     CellActorData * v0;
     UnkStruct_ov104_0223F9E0 v1;
@@ -639,7 +639,7 @@ static void ov17_02241900 (CellActorData * param0)
     sub_0200D0F4(param0);
 }
 
-static void ov17_02241908 (UnkStruct_0200C704 * param0)
+static void ov17_02241908 (AnimationResourceCollection * param0)
 {
     sub_0200D070(param0, 33004);
     sub_0200D090(param0, 33004);
@@ -670,7 +670,7 @@ void ov17_0224197C (UnkStruct_ov17_0223F88C * param0)
     ov17_02241908(param0->unk_1C);
 }
 
-void ov17_022419AC (PaletteSys * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, NARC * param3)
+void ov17_022419AC (PaletteSys * param0, CellTransferStateData * param1, AnimationResourceCollection * param2, NARC * param3)
 {
     u32 v0, v1, v2;
 
@@ -683,7 +683,7 @@ void ov17_022419AC (PaletteSys * param0, UnkStruct_0200C6E4 * param1, UnkStruct_
     sub_0200CE54(param1, param2, param3, v2, 1, 33011);
 }
 
-void ov17_02241A00 (UnkStruct_0200C704 * param0)
+void ov17_02241A00 (AnimationResourceCollection * param0)
 {
     sub_0200D070(param0, 33013);
     sub_0200D090(param0, 33011);
@@ -892,14 +892,14 @@ void ov17_02241E24 (UnkStruct_ov17_0223F88C * param0)
     param0->unk_C0 = NULL;
 }
 
-void ov17_02241E58 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, NARC * param2)
+void ov17_02241E58 (CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2)
 {
     sub_0200CC3C(param0, param1, param2, 17, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 33006);
     sub_0200CE24(param0, param1, param2, 16, 1, 33006);
     sub_0200CE54(param0, param1, param2, 15, 1, 33006);
 }
 
-void ov17_02241EA4 (UnkStruct_0200C704 * param0)
+void ov17_02241EA4 (AnimationResourceCollection * param0)
 {
     sub_0200D070(param0, 33006);
     sub_0200D090(param0, 33006);
@@ -932,7 +932,7 @@ void ov17_02241EF0 (UnkStruct_ov17_0223F88C * param0)
     }
 }
 
-static CellActorData * ov17_02241F08 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, int param2, int param3)
+static CellActorData * ov17_02241F08 (CellTransferStateData * param0, AnimationResourceCollection * param1, int param2, int param3)
 {
     CellActorData * v0;
 
@@ -1031,7 +1031,7 @@ static void ov17_0224207C (SysTask * param0, void * param1)
     }
 }
 
-void ov17_02242154 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, NARC * param2)
+void ov17_02242154 (CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2)
 {
     sub_0200CC3C(param0, param1, param2, 26, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 33008);
     sub_0200CE24(param0, param1, param2, 25, 1, 33008);
@@ -1041,7 +1041,7 @@ void ov17_02242154 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, NA
     sub_0200CE54(param0, param1, param2, 27, 1, 33007);
 }
 
-void ov17_022421E0 (UnkStruct_0200C704 * param0)
+void ov17_022421E0 (AnimationResourceCollection * param0)
 {
     sub_0200D070(param0, 33008);
     sub_0200D090(param0, 33008);
@@ -1077,7 +1077,7 @@ void ov17_02242248 (UnkStruct_ov17_0223F88C * param0)
     }
 }
 
-static CellActorData * ov17_02242260 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, int param2, int param3)
+static CellActorData * ov17_02242260 (CellTransferStateData * param0, AnimationResourceCollection * param1, int param2, int param3)
 {
     CellActorData * v0;
 
@@ -1089,7 +1089,7 @@ static CellActorData * ov17_02242260 (UnkStruct_0200C6E4 * param0, UnkStruct_020
     return v0;
 }
 
-static CellActorData * ov17_0224228C (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, int param2, int param3)
+static CellActorData * ov17_0224228C (CellTransferStateData * param0, AnimationResourceCollection * param1, int param2, int param3)
 {
     CellActorData * v0;
 
@@ -1629,14 +1629,14 @@ void ov17_02242FE8 (UnkStruct_ov17_02246F24 * param0)
     }
 }
 
-void ov17_02243040 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, NARC * param2)
+void ov17_02243040 (CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2)
 {
     sub_0200CC3C(param0, param1, param2, 23, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 33009);
     sub_0200CE24(param0, param1, param2, 22, 1, 33009);
     sub_0200CE54(param0, param1, param2, 21, 1, 33009);
 }
 
-void ov17_0224308C (UnkStruct_0200C704 * param0)
+void ov17_0224308C (AnimationResourceCollection * param0)
 {
     sub_0200D070(param0, 33009);
     sub_0200D090(param0, 33009);

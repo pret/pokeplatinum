@@ -56,8 +56,8 @@ static int sub_020890F4 (UnkStruct_020067E8 * param0, int * param1)
     memset(v0, 0, sizeof(UnkStruct_02089688));
     v0->unk_38C = *(( UnkStruct_02089438 * )sub_02006840(param0));
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -91,7 +91,7 @@ static int sub_020890F4 (UnkStruct_020067E8 * param0, int * param1)
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2, 15, 7);
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 7, 8);
 
-    sub_02017798(sub_020895CC, v0);
+    SetMainCallback(sub_020895CC, v0);
 
     return 1;
 }
@@ -159,7 +159,7 @@ static int sub_0208927C (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-UnkStruct_02089438 * sub_020893B4 (int param0, int param1, int param2[], UnkStruct_020279FC * param3, u32 param4, u32 param5)
+UnkStruct_02089438 * sub_020893B4 (int param0, int param1, int param2[], AnimationControlFlags * param3, u32 param4, u32 param5)
 {
     int v0;
     UnkStruct_02089438 * v1 = NULL;
@@ -181,7 +181,7 @@ UnkStruct_02089438 * sub_020893B4 (int param0, int param1, int param2[], UnkStru
     return v1;
 }
 
-UnkStruct_02089438 * sub_02089400 (int param0, int param1, int param2[], UnkStruct_020279FC * param3, u32 param4, u32 param5)
+UnkStruct_02089438 * sub_02089400 (int param0, int param1, int param2[], AnimationControlFlags * param3, u32 param4, u32 param5)
 {
     UnkStruct_02089438 * v0 = sub_020893B4(param0, param1, param2, param3, param4, param5);
 
@@ -190,7 +190,7 @@ UnkStruct_02089438 * sub_02089400 (int param0, int param1, int param2[], UnkStru
     return v0;
 }
 
-UnkStruct_02089438 * sub_0208941C (int param0, int param1, int param2[], UnkStruct_020279FC * param3, u32 param4, u32 param5, u32 param6, u32 param7)
+UnkStruct_02089438 * sub_0208941C (int param0, int param1, int param2[], AnimationControlFlags * param3, u32 param4, u32 param5, u32 param6, u32 param7)
 {
     UnkStruct_02089438 * v0 = sub_020893B4(param0, param1, param2, param3, param4, param5);
 

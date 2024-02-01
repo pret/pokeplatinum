@@ -68,7 +68,7 @@ FS_EXTERN_OVERLAY(overlay57);
 typedef struct {
     int unk_00;
     SaveData * unk_04;
-    UnkStruct_020279FC * unk_08;
+    AnimationControlFlags * unk_08;
     int unk_0C;
     int unk_10;
     UnkStruct_020067E8 * unk_14;
@@ -77,7 +77,7 @@ typedef struct {
     int unk_2C;
     Window unk_30;
     UnkStruct_0200112C * unk_40;
-    UnkStruct_02013A04 * unk_44;
+    ResourceMetadata * unk_44;
     int unk_48;
     MessageLoader * unk_4C;
     int unk_50;
@@ -182,8 +182,8 @@ int ov73_021D0E20 (UnkStruct_020067E8 * param0, int * param1)
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
 
-        sub_02017798(NULL, NULL);
-        sub_020177BC(NULL, NULL);
+        SetMainCallback(NULL, NULL);
+        SetHBlankCallback(NULL, NULL);
 
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
@@ -196,7 +196,7 @@ int ov73_021D0E20 (UnkStruct_020067E8 * param0, int * param1)
         ov73_021D12C4(v0);
         ov73_021D1318(v0);
 
-        sub_02017798(ov73_021D0FF0, (void *)v0);
+        SetMainCallback(ov73_021D0FF0, (void *)v0);
         GXLayers_TurnBothDispOn();
 
         *param1 = 1;
@@ -217,7 +217,7 @@ int ov73_021D0E20 (UnkStruct_020067E8 * param0, int * param1)
             ov73_021D1300(v0);
             ov73_021D1238(v0);
             ov73_021D1328(v0);
-            sub_02017798(NULL, NULL);
+            SetMainCallback(NULL, NULL);
 
             v1 = 1;
         }
@@ -227,7 +227,7 @@ int ov73_021D0E20 (UnkStruct_020067E8 * param0, int * param1)
             ov73_021D1300(v0);
             ov73_021D1238(v0);
             ov73_021D1328(v0);
-            sub_02017798(NULL, NULL);
+            SetMainCallback(NULL, NULL);
             *param1 = 4;
         }
         break;

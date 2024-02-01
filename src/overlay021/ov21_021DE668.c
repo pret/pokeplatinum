@@ -52,8 +52,8 @@ typedef struct {
 } UnkStruct_ov21_021DE760;
 
 typedef struct {
-    UnkStruct_02022550 * unk_00[3];
-    UnkStruct_02022550 * unk_0C;
+    GraphicElementData * unk_00[3];
+    GraphicElementData * unk_0C;
     UnkStruct_ov21_021D4CA0 * unk_10;
     UnkStruct_02009DC8 * unk_14[4];
     UnkStruct_02009DC8 * unk_24[4];
@@ -228,7 +228,7 @@ static int ov21_021DE79C (UnkStruct_ov21_021E6A68 * param0, void * param1)
     switch (param0->unk_00) {
     case 0:
         if (v0->unk_1C == 1) {
-            sub_020059D0(14, ov21_021D37BC(v0->unk_04), 0x1ff, 0x1ff, 0x1ff, 0);
+            Sound_PlayPokemonCry(14, ov21_021D37BC(v0->unk_04), 0x1ff, 0x1ff, 0x1ff, 0);
             v0->unk_1C = 0;
         }
 

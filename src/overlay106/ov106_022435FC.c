@@ -18,7 +18,7 @@ struct UnkStruct_ov106_02243650_t {
     u32 unk_04;
     u32 unk_08;
     const u8 * unk_0C;
-    UnkStruct_02022550 * unk_10;
+    GraphicElementData * unk_10;
 };
 
 UnkStruct_ov106_02243650 * ov106_022435FC(UnkStruct_ov106_02243310 * param0, u32 param1, u32 param2, u16 param3, u16 param4, const u8 * param5);

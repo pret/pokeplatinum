@@ -107,10 +107,10 @@ typedef struct UnkStruct_ov113_0225DBCC_t {
     BGL * unk_08;
     PaletteSys * unk_0C;
     UnkStruct_02012744 * unk_10;
-    UnkStruct_0207C690 * unk_14;
+    GenericPointerData * unk_14;
     SysTask * unk_18;
-    UnkStruct_0200C6E4 * unk_1C;
-    UnkStruct_0200C704 * unk_20;
+    CellTransferStateData * unk_1C;
+    AnimationResourceCollection * unk_20;
     UnkStruct_02015920 * unk_24;
     u8 unk_28;
     u8 unk_29;
@@ -157,9 +157,9 @@ static void ov113_0225D12C(BGL * param0);
 static void ov113_0225D160(UnkStruct_ov113_0225DBCC * param0, NARC * param1);
 static void ov113_0225DBCC(UnkStruct_ov113_0225DBCC * param0);
 static void ov113_0225DC4C(UnkStruct_ov113_0225DBCC * param0);
-static UnkStruct_0207C690 * ov113_0225DC6C(int param0);
+static GenericPointerData * ov113_0225DC6C(int param0);
 static void ov113_0225DC88(void);
-static void ov113_0225DD0C(UnkStruct_0207C690 * param0);
+static void ov113_0225DD0C(GenericPointerData * param0);
 static void ov113_0225D9FC(UnkStruct_ov113_0225DBCC * param0);
 static void ov113_0225DA9C(UnkStruct_ov113_0225DBCC * param0);
 static void ov113_0225DAA8(UnkStruct_ov113_0225DBCC * param0, NARC * param1);
@@ -354,8 +354,8 @@ int ov113_0225C700 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov113_0225DBCC * v0;
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -460,7 +460,7 @@ int ov113_0225C700 (UnkStruct_020067E8 * param0, int * param1)
 
     v0->unk_18 = SysTask_Start(ov113_0225CEF0, v0, 60000);
 
-    sub_02017798(ov113_0225CF18, v0);
+    SetMainCallback(ov113_0225CF18, v0);
 
     return 1;
 }
@@ -671,8 +671,8 @@ int ov113_0225CDFC (UnkStruct_020067E8 * param0, int * param1)
 
     NARC_dtor(v0->unk_160);
     NARC_dtor(v0->unk_164);
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     sub_0201DC3C();
     sub_0201E530();
     sub_02002AC8(0);
@@ -1282,9 +1282,9 @@ static void ov113_0225DC4C (UnkStruct_ov113_0225DBCC * param0)
     }
 }
 
-static UnkStruct_0207C690 * ov113_0225DC6C (int param0)
+static GenericPointerData * ov113_0225DC6C (int param0)
 {
-    UnkStruct_0207C690 * v0;
+    GenericPointerData * v0;
 
     v0 = sub_02024220(param0, 0, 2, 0, 2, ov113_0225DC88);
     return v0;
@@ -1305,7 +1305,7 @@ static void ov113_0225DC88 (void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void ov113_0225DD0C (UnkStruct_0207C690 * param0)
+static void ov113_0225DD0C (GenericPointerData * param0)
 {
     sub_020242C4(param0);
 }
@@ -1521,7 +1521,7 @@ static void ov113_0225E15C (UnkStruct_ov113_0225DBCC * param0, UnkStruct_ov113_0
     int v3;
     FontOAM * v4;
     BGL * v5;
-    UnkStruct_0200C704 * v6;
+    AnimationResourceCollection * v6;
     int v7, v8;
 
     GF_ASSERT(param1->unk_00 == NULL);

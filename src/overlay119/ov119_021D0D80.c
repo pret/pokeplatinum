@@ -57,7 +57,7 @@
 
 void ov119_021D0D80(void);
 void ov119_021D0DA8(void);
-UnkStruct_0207C690 * ov119_021D0DD4(void);
+GenericPointerData * ov119_021D0DD4(void);
 void ov119_021D0DF4(void);
 void ov119_021D0E78(void);
 static u32 ov119_021D13B4(u32 param0, BOOL param1);
@@ -81,9 +81,9 @@ void ov119_021D0DA8 (void)
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 7, 8);
 }
 
-UnkStruct_0207C690 * ov119_021D0DD4 (void)
+GenericPointerData * ov119_021D0DD4 (void)
 {
-    UnkStruct_0207C690 * v0;
+    GenericPointerData * v0;
 
     v0 = sub_02024220(71, 0, 2, 0, 2, ov119_021D0DF4);
     return v0;
@@ -536,8 +536,8 @@ void ov119_021D150C (UnkStruct_ov119_021D14DC * param0)
 
 void ov119_021D1514 (UnkStruct_ov119_021D0FD0 * param0)
 {
-    UnkStruct_0200C6E4 * v0;
-    UnkStruct_0200C704 * v1;
+    CellTransferStateData * v0;
+    AnimationResourceCollection * v1;
     PaletteSys * v2;
     int v3[][4] = {
         {4, 9, 3, 2},

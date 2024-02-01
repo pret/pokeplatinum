@@ -140,10 +140,10 @@ static u32 sub_0203AC3C(UnkStruct_0203CDB0 * param0);
 static void sub_0203B318(UnkStruct_020708E0 * param0, u8 * param1, u32 param2, u8 param3);
 static void sub_0203B4E8(UnkStruct_020708E0 * param0);
 static void sub_0203B520(UnkStruct_020708E0 * param0);
-static void sub_0203B558(UnkStruct_02022550 * param0, u32 param1);
-static void sub_0203B588(UnkStruct_02022550 * param0, u16 param1, u16 param2);
+static void sub_0203B558(GraphicElementData * param0, u32 param1);
+static void sub_0203B588(GraphicElementData * param0, u16 param1, u16 param2);
 static void sub_0203B5B4(UnkStruct_020708E0 * param0, u16 param1, u16 param2);
-static void sub_0203B5E8(UnkStruct_02022550 * param0);
+static void sub_0203B5E8(GraphicElementData * param0);
 static BOOL sub_0203AC44(UnkStruct_020508D4 * param0);
 static void sub_0203ADFC(UnkStruct_020508D4 * param0);
 static BOOL sub_0203B244(UnkStruct_020508D4 * param0);
@@ -840,7 +840,7 @@ static void sub_0203B520 (UnkStruct_020708E0 * param0)
     }
 }
 
-static void sub_0203B558 (UnkStruct_02022550 * param0, u32 param1)
+static void sub_0203B558 (GraphicElementData * param0, u32 param1)
 {
     VecFx32 v0;
 
@@ -850,7 +850,7 @@ static void sub_0203B558 (UnkStruct_02022550 * param0, u32 param1)
     sub_02021C50(param0, &v0);
 }
 
-static void sub_0203B588 (UnkStruct_02022550 * param0, u16 param1, u16 param2)
+static void sub_0203B588 (GraphicElementData * param0, u16 param1, u16 param2)
 {
     u32 v0 = sub_02021E24(param0);
 
@@ -864,7 +864,7 @@ static void sub_0203B5B4 (UnkStruct_020708E0 * param0, u16 param1, u16 param2)
     sub_0203B588(param0->unk_200[1 + param2]->unk_00, 1, 1);
 }
 
-static void sub_0203B5E8 (UnkStruct_02022550 * param0)
+static void sub_0203B5E8 (GraphicElementData * param0)
 {
     if ((sub_02021E24(param0) % 3) != 1) {
         return;
@@ -1014,13 +1014,13 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
 {
     UnkStruct_0203CDB0 * v0;
     UnkStruct_020708E0 * v1;
-    UnkStruct_02098C44 * v2;
+    PartyManagementData * v2;
 
     v0 = sub_02050A60(param0);
     v1 = sub_02050A64(param0);
-    v2 = (UnkStruct_02098C44 *)Heap_AllocFromHeap(11, sizeof(UnkStruct_02098C44));
+    v2 = (PartyManagementData *)Heap_AllocFromHeap(11, sizeof(PartyManagementData));
 
-    memcpy(v2, v1->unk_25C, sizeof(UnkStruct_02098C44));
+    memcpy(v2, v1->unk_25C, sizeof(PartyManagementData));
     Heap_FreeToHeap(v1->unk_25C);
 
     switch (v2->unk_23) {
@@ -1307,10 +1307,10 @@ static BOOL sub_0203BC5C (UnkStruct_020508D4 * param0)
         break;
     case 2:
     {
-        UnkStruct_02098C44 * v6;
+        PartyManagementData * v6;
 
-        v6 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02098C44));
-        memset(v6, 0, sizeof(UnkStruct_02098C44));
+        v6 = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
+        memset(v6, 0, sizeof(PartyManagementData));
 
         v6->unk_00 = Party_GetFromSavedata(v0->unk_0C);
         v6->unk_04 = sub_0207D990(v0->unk_0C);
@@ -1350,10 +1350,10 @@ static BOOL sub_0203BC5C (UnkStruct_020508D4 * param0)
             v1->unk_260 = sub_0203C540(v10, 0, (u8)v9);
             sub_0203B674(v1, sub_0203C558);
         } else {
-            UnkStruct_02098C44 * v13;
+            PartyManagementData * v13;
 
-            v13 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02098C44));
-            memset(v13, 0, sizeof(UnkStruct_02098C44));
+            v13 = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
+            memset(v13, 0, sizeof(PartyManagementData));
 
             v13->unk_00 = v7;
             v13->unk_04 = sub_0207D990(v0->unk_0C);
@@ -1636,13 +1636,13 @@ static BOOL sub_0203C1C8 (UnkStruct_020508D4 * param0)
     switch (v2->unk_12) {
     case 2:
     {
-        UnkStruct_02098C44 * v3;
+        PartyManagementData * v3;
         UnkStruct_0203C1C8 * v4;
 
-        v3 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02098C44));
+        v3 = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
         v4 = (UnkStruct_0203C1C8 *)v1->unk_260;
 
-        memset(v3, 0, sizeof(UnkStruct_02098C44));
+        memset(v3, 0, sizeof(PartyManagementData));
 
         v3->unk_00 = Party_GetFromSavedata(v0->unk_0C);
         v3->unk_04 = sub_0207D990(v0->unk_0C);
@@ -1862,12 +1862,12 @@ BOOL sub_0203C558 (UnkStruct_020508D4 * param0)
 static void sub_0203C668 (UnkStruct_0203CDB0 * param0, UnkStruct_020708E0 * param1, u8 param2)
 {
     UnkStruct_0203C540 * v0;
-    UnkStruct_02098C44 * v1;
+    PartyManagementData * v1;
 
     v0 = param1->unk_260;
-    v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02098C44));
+    v1 = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
 
-    memset(v1, 0, sizeof(UnkStruct_02098C44));
+    memset(v1, 0, sizeof(PartyManagementData));
     v1->unk_00 = Party_GetFromSavedata(param0->unk_0C);
     v1->unk_04 = sub_0207D990(param0->unk_0C);
     v1->unk_08 = sub_02028430(param0->unk_0C);

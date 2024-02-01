@@ -11,7 +11,7 @@ u32 sub_0201E450(u32 param0);
 u32 sub_0201E530(void);
 u32 sub_0201E564(UnkStruct_ov72_0223E2A8 * param0, u32 param1, u32 param2);
 void sub_0201E5C0(TPData * param0, u32 param1);
-void sub_0201E5FC(void);
-void sub_0201E630(void);
+void AfterSleep(void);
+void BeforeSleep(void);
 
 #endif // POKEPLATINUM_UNK_0201E3D8_H

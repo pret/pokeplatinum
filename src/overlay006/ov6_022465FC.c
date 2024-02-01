@@ -8,7 +8,7 @@
 #include "struct_defs/struct_0203CDB0.h"
 
 #include "narc.h"
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "unk_0201D15C.h"
 #include "savedata/save_table.h"
 #include "unk_0202E2CC.h"
@@ -301,7 +301,7 @@ int ov6_02246978 (UnkStruct_0203CDB0 * param0, int param1)
     default:
         GF_ASSERT(0);
     case 0:
-        switch (sub_02013960()) {
+        switch (GetTimeOfDay()) {
         case 0:
             return v1->unk_00;
         case 1:

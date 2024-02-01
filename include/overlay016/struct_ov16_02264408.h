@@ -5,12 +5,12 @@
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0202CC84_decl.h"
+#include "struct_defs/chatot_cry.h"
 #include "overlay016/struct_ov16_0223E0C8.h"
 #include "overlay016/struct_ov16_02264408_sub1.h"
 
 typedef struct {
-    UnkStruct_0200C6E4 * unk_00;
+    CellTransferStateData * unk_00;
     BGL * unk_04;
     PaletteSys * unk_08;
     UnkStruct_ov16_0223E0C8 * unk_0C[4];
@@ -25,7 +25,7 @@ typedef struct {
     u32 unk_4C[4];
     int unk_50;
     UnkStruct_ov16_02264408_sub1 unk_54;
-    UnkStruct_0202CC84 * unk_6C;
+    ChatotCry * unk_6C;
     u8 * unk_70;
     u16 * unk_74;
 } UnkStruct_ov16_02264408;

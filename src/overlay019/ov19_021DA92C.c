@@ -62,7 +62,7 @@ static void ov19_021DAE60(Window * param0, UnkStruct_ov19_021DA9E0 * param1, u32
 static void ov19_021DB0E4(UnkStruct_ov19_021DA9E0 * param0);
 static void ov19_021DB24C(UnkStruct_ov19_021DA9E0 * param0, u8 param1);
 
-BOOL ov19_021DA92C (UnkStruct_ov19_021DA9E0 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, BGL * param3, UnkStruct_020218BC * param4, const MessageLoader * param5, NARC * param6)
+BOOL ov19_021DA92C (UnkStruct_ov19_021DA9E0 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, BGL * param3, GraphicElementManager * param4, const MessageLoader * param5, NARC * param6)
 {
     int v0;
 

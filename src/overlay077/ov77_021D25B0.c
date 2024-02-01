@@ -136,7 +136,7 @@ typedef struct {
     int unk_04;
     BOOL unk_08;
     BGL * unk_0C;
-    UnkStruct_0207C690 * unk_10;
+    GenericPointerData * unk_10;
     u32 unk_14;
     UnkStruct_ov77_021D2F38 unk_18;
     UnkStruct_ov77_021D37C0 unk_34;
@@ -943,8 +943,8 @@ static int ov77_021D2D08 (UnkStruct_020067E8 * param0, int * param1)
     sub_0200AB84();
     sub_0200F344(0, 0x7fff);
     sub_0200F344(1, 0x7fff);
-    sub_02017798(NULL, NULL);
-    sub_020177BC(NULL, NULL);
+    SetMainCallback(NULL, NULL);
+    SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
     SetAutorepeat(4, 8);
@@ -1069,7 +1069,7 @@ static void ov77_021D2F0C (UnkStruct_ov77_021D2E9C * param0)
     param0->unk_18.unk_0C = param0->unk_0C;
     param0->unk_18.unk_14 = ov77_021D670C();
 
-    sub_02017798(ov77_021D2B30, (void *)param0);
+    SetMainCallback(ov77_021D2B30, (void *)param0);
 
     param0->unk_18.unk_02 = 1;
 }
@@ -1177,7 +1177,7 @@ static BOOL ov77_021D30D0 (UnkStruct_ov77_021D2F38 * param0, const int param1)
 
 static void ov77_021D3234 (UnkStruct_ov77_021D2E9C * param0)
 {
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
 
     if (param0->unk_18.unk_02) {
         ov77_021D67B0(param0->unk_18.unk_14);
@@ -1365,7 +1365,7 @@ static void ov77_021D34A8 (UnkStruct_ov77_021D2E9C * param0)
     NNS_G3dGlbMaterialColorSpecEmi(GX_RGB(18, 18, 18), GX_RGB(14, 14, 14), 0);
     NNS_G3dGlbPolygonAttr(13, GX_POLYGONMODE_MODULATE, GX_CULL_BACK, 0, 31, GX_POLYGON_ATTR_MISC_FOG);
 
-    sub_02017798(ov77_021D2B38, (void *)param0);
+    SetMainCallback(ov77_021D2B38, (void *)param0);
     sub_0200AB4C(-16, GX_BLEND_PLANEMASK_BG3, 1);
 
     param0->unk_34.unk_02 = 1;
@@ -1475,7 +1475,7 @@ static void ov77_021D36F8 (UnkStruct_ov77_021D2E9C * param0)
     GX_SetVisibleWnd(0);
     GXS_SetVisibleWnd(0);
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
 }
 
 static void ov77_021D37C0 (UnkStruct_ov77_021D37C0 * param0)

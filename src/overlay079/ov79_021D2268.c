@@ -100,7 +100,7 @@ struct UnkStruct_ov79_021D29B4_t {
     int unk_08;
     UnkStruct_ov79_021D2C50 unk_0C;
     UnkStruct_ov79_021D2C50 unk_68;
-    UnkStruct_02022550 * unk_C4;
+    GraphicElementData * unk_C4;
     Sprite * unk_C8;
     UnkStruct_ov79_021D29E4 unk_CC[4];
 };
@@ -121,7 +121,7 @@ typedef struct {
     UnkStruct_0209916C * unk_60[2];
     BGL * unk_68;
     Window unk_6C;
-    UnkStruct_0200C6E4 * unk_7C;
+    CellTransferStateData * unk_7C;
     UnkStruct_ov79_021D29B4 unk_80;
 } UnkStruct_ov79_021D2928;
 
@@ -209,8 +209,8 @@ int ov79_021D22E4 (UnkStruct_020067E8 * param0, int * param1)
     switch (*param1) {
     case 0:
 
-        sub_02017798(NULL, NULL);
-        sub_020177A4();
+        SetMainCallback(NULL, NULL);
+        DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
 
@@ -227,7 +227,7 @@ int ov79_021D22E4 (UnkStruct_020067E8 * param0, int * param1)
             return 0;
         }
 
-        sub_02017798(ov79_021D252C, v0);
+        SetMainCallback(ov79_021D252C, v0);
         break;
     case 2:
         if (v0->unk_04++ < 4) {
@@ -265,7 +265,7 @@ int ov79_021D22E4 (UnkStruct_020067E8 * param0, int * param1)
     case 7:
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
-        sub_02017798(NULL, NULL);
+        SetMainCallback(NULL, NULL);
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
 
@@ -694,10 +694,10 @@ static int ov79_021D2AF0 (UnkStruct_ov79_021D2928 * param0, UnkStruct_ov79_021D2
 
     switch (param0->unk_30.unk_09) {
     case 1:
-        sub_020059D0(11, param0->unk_30.unk_04, 0, 127, param0->unk_00, v0);
+        Sound_PlayPokemonCry(11, param0->unk_30.unk_04, 0, 127, param0->unk_00, v0);
         break;
     default:
-        sub_020059D0(0, param0->unk_30.unk_04, 0, 127, param0->unk_00, v0);
+        Sound_PlayPokemonCry(0, param0->unk_30.unk_04, 0, 127, param0->unk_00, v0);
         break;
     }
 

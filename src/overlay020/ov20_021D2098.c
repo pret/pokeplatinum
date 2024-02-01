@@ -49,7 +49,7 @@ typedef struct UnkStruct_ov20_021D2128_t {
     const UnkStruct_ov20_021D16E8 * unk_18;
     const UnkStruct_020998EC * unk_1C;
     BGL * unk_20;
-    UnkStruct_020218BC * unk_24;
+    GraphicElementManager * unk_24;
     UnkStruct_0200C738 unk_28;
     NNSG2dImageProxy unk_1B4[2];
     NNSG2dImagePaletteProxy unk_1FC[2];
@@ -115,8 +115,8 @@ UnkStruct_ov20_021D2128 * ov20_021D2098 (const UnkStruct_ov20_021D16E8 * param0,
     if (v0) {
         int v1;
 
-        sub_02017798(NULL, NULL);
-        sub_020177A4();
+        SetMainCallback(NULL, NULL);
+        DisableHBlank();
 
         v0->unk_18 = param0;
         v0->unk_1C = param1;
@@ -142,7 +142,7 @@ void ov20_021D2128 (UnkStruct_ov20_021D2128 * param0)
     if (param0) {
         int v0;
 
-        sub_02017798(NULL, NULL);
+        SetMainCallback(NULL, NULL);
 
         for (v0 = 0; v0 < 4; v0++) {
             if (param0->unk_08[v0]) {
@@ -966,7 +966,7 @@ BGL * ov20_021D2E04 (UnkStruct_ov20_021D2128 * param0)
     return param0->unk_20;
 }
 
-UnkStruct_020218BC * ov20_021D2E08 (UnkStruct_ov20_021D2128 * param0)
+GraphicElementManager * ov20_021D2E08 (UnkStruct_ov20_021D2128 * param0)
 {
     return param0->unk_24;
 }
@@ -984,10 +984,10 @@ void ov20_021D2E0C (UnkStruct_ov20_021D2128 * param0, UnkStruct_ov19_021DA864 * 
     param1->unk_1C = 0;
 }
 
-UnkStruct_02022550 * ov20_021D2E50 (UnkStruct_ov20_021D2128 * param0, UnkStruct_ov19_021DA864 * param1, u32 param2, u32 param3, u32 param4, int param5)
+GraphicElementData * ov20_021D2E50 (UnkStruct_ov20_021D2128 * param0, UnkStruct_ov19_021DA864 * param1, u32 param2, u32 param3, u32 param4, int param5)
 {
     UnkStruct_ov83_0223D9A8 v0;
-    UnkStruct_02022550 * v1;
+    GraphicElementData * v1;
     OSIntrMode v2;
 
     v0.unk_00 = param0->unk_24;

@@ -535,7 +535,7 @@ static void sub_02090578 (UnkStruct_0208D7BC * param0)
 
 static void sub_02090800 (Window * param0, Pokemon * param1, BOOL param2)
 {
-    UnkStruct_02090800 * v0 = sub_02092494(param1, param2, 19);
+    PokemonInfoDisplayStruct * v0 = sub_02092494(param1, param2, 19);
 
     if (v0->unk_14.unk_04 != NULL) {
         sub_0201D78C(param0, 0, v0->unk_14.unk_04, 0, 0 + (v0->unk_14.unk_00 - 1) * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);

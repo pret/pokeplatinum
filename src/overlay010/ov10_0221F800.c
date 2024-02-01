@@ -105,8 +105,8 @@ typedef struct UnkStruct_ov10_0221FB28_t {
     PaletteSys * unk_08;
     BGL * unk_0C;
     Window unk_10[24];
-    UnkStruct_0200C6E4 * unk_190;
-    UnkStruct_0200C704 * unk_194;
+    CellTransferStateData * unk_190;
+    AnimationResourceCollection * unk_194;
     CellActorData * unk_198[30];
     u32 unk_210;
     UnkStruct_ov10_0221FB28_sub1 unk_214[6];
@@ -117,7 +117,7 @@ typedef struct UnkStruct_ov10_0221FB28_t {
     u16 unk_538[2][384];
     UnkStruct_02012744 * unk_B38;
     FontOAM * unk_B3C[4];
-    UnkStruct_0207C690 * unk_B4C;
+    GenericPointerData * unk_B4C;
     UnkStruct_02014014 * unk_B50;
     void * unk_B54;
     u8 unk_B58[4];
@@ -144,7 +144,7 @@ typedef struct UnkStruct_ov10_0221FB28_t {
     Strbuf* unk_BA8;
     int unk_BAC;
     int unk_BB0;
-    UnkStruct_02001AF4 * unk_BB4;
+    UIControlData * unk_BB4;
     void * unk_BB8;
     int unk_BBC;
     int unk_BC0;
@@ -557,8 +557,8 @@ static u8 ov10_0221FB28 (UnkStruct_ov10_0221FB28 * param0)
 {
     G2_BlendNone();
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -620,7 +620,7 @@ static u8 ov10_0221FBFC (UnkStruct_ov10_0221FB28 * param0)
         ov10_02221C14(param0);
         sub_02039734();
         sub_0208C120(0, param0->unk_00->unk_24);
-        sub_02017798(ov10_02220C64, param0);
+        SetMainCallback(ov10_02220C64, param0);
         return 1;
     }
 
@@ -644,7 +644,7 @@ static u8 ov10_0221FC78 (UnkStruct_ov10_0221FB28 * param0)
         break;
     case 2:
         sub_0208C120(0, param0->unk_00->unk_24);
-        sub_02017798(ov10_02220C64, param0);
+        SetMainCallback(ov10_02220C64, param0);
         param0->unk_B76 = 0;
         param0->unk_B70 = 8;
         param0->unk_B71 = 4;
@@ -696,7 +696,7 @@ static u8 ov10_0221FD00 (UnkStruct_ov10_0221FB28 * param0)
         break;
     case 2:
         sub_0208C120(0, param0->unk_00->unk_24);
-        sub_02017798(ov10_02220C64, param0);
+        SetMainCallback(ov10_02220C64, param0);
         param0->unk_B76 = 0;
         param0->unk_B70 = 4;
         param0->unk_B71 = 2;
@@ -1161,7 +1161,7 @@ static u8 ov10_02220A50 (SysTask * param0, UnkStruct_ov10_0221FB28 * param1)
         return 0;
     }
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     ov10_02222A48(param1);
 
     if (param1->unk_00->unk_28 != 0) {
@@ -1944,7 +1944,7 @@ static void ov10_02221A3C (UnkStruct_ov10_0221FB28 * param0)
         Heap_FreeToHeap(v2);
     }
 
-    sub_02081940(param0->unk_00->unk_24, param0->unk_298, param0->unk_358, param0->unk_418);
+    LoadScreenDataFromNARC(param0->unk_00->unk_24, param0->unk_298, param0->unk_358, param0->unk_418);
     NARC_dtor(v0);
 }
 

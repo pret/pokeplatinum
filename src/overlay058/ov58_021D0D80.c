@@ -86,7 +86,7 @@ static void ov58_021D1554(UnkStruct_02095EAC * param0, NARC * param1);
 static void ov58_021D16D8(UnkStruct_02095EAC * param0);
 static void ov58_021D18AC(UnkStruct_02095EAC * param0, UnkStruct_020067E8 * param1);
 static void ov58_021D19D4(UnkStruct_02095EAC * param0);
-static void ov58_021D1A10(UnkStruct_02022550 * param0, int param1, int param2);
+static void ov58_021D1A10(GraphicElementData * param0, int param1, int param2);
 static void ov58_021D1A80(UnkStruct_02095EAC * param0);
 static int ov58_021D1CF4(UnkStruct_02095EAC * param0, int param1);
 static void ov58_021D1D40(UnkStruct_02095EAC * param0);
@@ -124,8 +124,8 @@ static int ov58_021D2A30(void);
 static int ov58_021D1DBC(UnkStruct_02095EAC * param0, int param1);
 static int ov58_021D1D64(UnkStruct_02095EAC * param0, int param1);
 static int ov58_021D1DC8(UnkStruct_02095EAC * param0, int param1);
-static void ov58_021D1CAC(UnkStruct_02022550 ** param0, int param1);
-static void ov58_021D1CDC(UnkStruct_02022550 ** param0, BOOL param1);
+static void ov58_021D1CAC(GraphicElementData ** param0, int param1);
+static void ov58_021D1CDC(GraphicElementData ** param0, BOOL param1);
 static void ov58_021D2528(Window * param0, void * param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9);
 static void ov58_021D2B3C(UnkStruct_02095EAC * param0, int param1);
 static int ov58_021D2B5C(UnkStruct_02095EAC * param0);
@@ -171,8 +171,8 @@ int ov58_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        sub_02017798(NULL, NULL);
-        sub_020177A4();
+        SetMainCallback(NULL, NULL);
+        DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
 
@@ -208,7 +208,7 @@ int ov58_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
         sub_0201E3D8();
         sub_0201E450(2);
-        sub_02017798(ov58_021D115C, v0->unk_00);
+        SetMainCallback(ov58_021D115C, v0->unk_00);
 
         ov58_021D12C4(v0);
         ov58_021D1524();
@@ -319,7 +319,7 @@ int ov58_021D1018 (UnkStruct_020067E8 * param0, int * param1)
         v3 = sub_0202C168(39);
 
         sub_0202B758(v1->unk_04, v3, 4);
-        sub_02017798(NULL, NULL);
+        SetMainCallback(NULL, NULL);
         sub_0200A4E4(v0->unk_1D4[0][0]);
         sub_0200A4E4(v0->unk_1D4[1][0]);
         sub_0200A6DC(v0->unk_1D4[0][1]);
@@ -369,7 +369,7 @@ int ov58_021D1018 (UnkStruct_020067E8 * param0, int * param1)
 
         Heap_FreeToHeap(v0->unk_08);
         sub_02006830(param0);
-        sub_02017798(NULL, NULL);
+        SetMainCallback(NULL, NULL);
         Heap_Destroy(39);
         sub_02037B58(2);
 
@@ -775,7 +775,7 @@ static void ov58_021D19D4 (UnkStruct_02095EAC * param0)
     BGL_DeleteWindow(&param0->unk_33C);
 }
 
-static void ov58_021D1A10 (UnkStruct_02022550 * param0, int param1, int param2)
+static void ov58_021D1A10 (GraphicElementData * param0, int param1, int param2)
 {
     VecFx32 v0;
 
@@ -908,7 +908,7 @@ static void ov58_021D1A80 (UnkStruct_02095EAC * param0)
     }
 }
 
-static void ov58_021D1CAC (UnkStruct_02022550 ** param0, int param1)
+static void ov58_021D1CAC (GraphicElementData ** param0, int param1)
 {
     int v0;
 
@@ -921,7 +921,7 @@ static void ov58_021D1CAC (UnkStruct_02022550 ** param0, int param1)
     }
 }
 
-static void ov58_021D1CDC (UnkStruct_02022550 ** param0, BOOL param1)
+static void ov58_021D1CDC (GraphicElementData ** param0, BOOL param1)
 {
     if (param1 == 1) {
         sub_02021D6C(param0[8], Unk_ov58_021D2EEC[8][2] + 1);

@@ -422,7 +422,7 @@ void sub_0200F634 (UnkStruct_0200F600 * param0, void * param1, UnkFuncPtr_0200F6
     GF_ASSERT(param0->unk_08[param3] != NULL);
 
     if ((param0->unk_10[0] == 0) && (param0->unk_10[1] == 0)) {
-        v0 = sub_020177BC(sub_0200F61C, param0);
+        v0 = SetHBlankCallback(sub_0200F61C, param0);
     }
 
     GF_ASSERT(v0 == 1);
@@ -443,7 +443,7 @@ void sub_0200F6AC (UnkStruct_0200F600 * param0, int param1)
     param0->unk_10[param1] = 0;
 
     if ((param0->unk_10[0] == 0) && (param0->unk_10[1] == 0)) {
-        sub_020177A4();
+        DisableHBlank();
     }
 
     param0->unk_08[param1] = sub_0200F764;

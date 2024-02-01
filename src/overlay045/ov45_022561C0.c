@@ -13,7 +13,7 @@
 #include "overlay045/struct_ov45_022566EC_1.h"
 
 #include "unk_0200D9E8.h"
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "heap.h"
 #include "unk_02056720.h"
 #include "overlay025/ov25_02253CE0.h"
@@ -127,7 +127,7 @@ static void ov45_022562C0 (UnkStruct_ov45_022566EC_1 * param0)
 {
     RTCTime v0;
 
-    sub_02013880(&v0);
+    GetCurrentTime(&v0);
 
     if (v0.hour >= 24) {
         v0.hour %= 24;
@@ -398,7 +398,7 @@ static BOOL ov45_02256664 (UnkStruct_ov45_022561D4 * param0)
 static void ov45_02256668 (UnkStruct_ov45_022561D4 * param0)
 {
     if (param0->unk_2C == 0) {
-        sub_02013880(&(param0->unk_20));
+        GetCurrentTime(&(param0->unk_20));
         param0->unk_30 = 1;
     }
 }

@@ -263,14 +263,14 @@ struct UnkStruct_ov107_02241D6C_t {
     BGL * unk_4C;
     Window unk_50[18];
     UnkStruct_02081CF4 unk_170;
-    UnkStruct_02001AF4 * unk_17C;
-    UnkStruct_02013A04 unk_180[3];
+    UIControlData * unk_17C;
+    ResourceMetadata unk_180[3];
     UnkStruct_0200112C * unk_198;
-    UnkStruct_02013A04 * unk_19C;
+    ResourceMetadata * unk_19C;
     UnkStruct_ov84_02240FA8 unk_1A0;
     PaletteSys * unk_1C0;
     UnkStruct_0200C440 * unk_1C4;
-    UnkStruct_020279FC * unk_1C8;
+    AnimationControlFlags * unk_1C8;
     SaveData * unk_1CC;
     UnkStruct_020302DC * unk_1D0;
     UnkStruct_0203041C * unk_1D4;
@@ -605,7 +605,7 @@ int ov107_02241D2C (UnkStruct_020067E8 * param0, int * param1)
     ov107_02242E14(v1);
 
     sub_02006830(param0);
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     Heap_Destroy(100);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay104));
 
@@ -1433,8 +1433,8 @@ static void ov107_02242E14 (UnkStruct_ov107_02241D6C * param0)
 
 static void ov107_02242F24 (void)
 {
-    sub_02017798(NULL, NULL);
-    sub_020177BC(NULL, NULL);
+    SetMainCallback(NULL, NULL);
+    SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -1539,7 +1539,7 @@ static void ov107_02242F5C (UnkStruct_ov107_02241D6C * param0)
         sub_02039734();
     }
 
-    sub_02017798(ov107_022433EC, (void *)param0);
+    SetMainCallback(ov107_022433EC, (void *)param0);
     return;
 }
 
@@ -3564,7 +3564,7 @@ void ov107_02245438 (int param0, int param1, void * param2, void * param3)
 
 static void ov107_02245454 (Pokemon * param0, u16 param1)
 {
-    sub_02096954(param0, param1, 0, 0, 100);
+    ApplyItemEffectsToPokemon(param0, param1, 0, 0, 100);
     return;
 }
 

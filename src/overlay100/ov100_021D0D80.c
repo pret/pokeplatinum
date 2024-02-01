@@ -62,7 +62,7 @@ int ov100_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     ov100_021D1034(&v0->unk_0C);
     sub_0200F174(0, 1, 1, 0x0, 6 * 2, 1, 111);
-    sub_02017798(ov100_021D13B4, v0);
+    SetMainCallback(ov100_021D13B4, v0);
 
     v0->unk_0C.unk_50.unk_00 = 31;
     v0->unk_0C.unk_50.unk_01 = 31;
@@ -155,8 +155,8 @@ int ov100_021D0F44 (UnkStruct_020067E8 * param0, int * param1)
 
     v0 = sub_0200682C(param0);
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     sub_0200E084(&v0->unk_0C.unk_30, 1);
     sub_0201ACF4(&v0->unk_0C.unk_30);
     BGL_DeleteWindow(&v0->unk_0C.unk_30);
@@ -217,8 +217,8 @@ static void ov100_021D0FA0 (UnkStruct_ov100_021D46C8 * param0)
 
 static void ov100_021D1034 (UnkStruct_ov100_021D46C8 * param0)
 {
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
     GX_SetVisiblePlane(0);

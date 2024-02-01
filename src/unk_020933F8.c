@@ -35,7 +35,7 @@
 #include "unk_0200A9DC.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "strbuf.h"
@@ -445,10 +445,10 @@ UnkStruct_02095C48 * sub_02093800 (const UnkStruct_02093800 * param0)
     }
 
     for (v2 = 0; v2 < 4; v2++) {
-        v0->unk_14C[v2] = sub_0202CC84(20);
+        v0->unk_14C[v2] = AllocateAndInitializeChatotCryData(20);
     }
 
-    sub_0202CD3C(v0->unk_14C[0], param0->unk_20);
+    CopyChatotCryData(v0->unk_14C[0], param0->unk_20);
 
     {
         Pokemon_Copy(param0->unk_08, v0->unk_00.unk_00[0]);
@@ -1703,7 +1703,7 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, U
 
 static void sub_02094E7C (UnkStruct_02095C48 * param0)
 {
-    LCRNG_SetSeed((sub_020138C8() * (LCRNG_GetSeed() + 10)) & 0xffff);
+    LCRNG_SetSeed((GetSecondsSinceMidnight() * (LCRNG_GetSeed() + 10)) & 0xffff);
 }
 
 u16 sub_02094E98 (UnkStruct_02095C48 * param0)

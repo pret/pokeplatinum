@@ -52,8 +52,8 @@ static void ov62_0222F848(UnkStruct_0208C06C * param0);
 
 void ov62_0222F2C0 (UnkStruct_0208C06C * param0)
 {
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
     GX_SetVisiblePlane(0);
@@ -86,7 +86,7 @@ void ov62_0222F2C0 (UnkStruct_0208C06C * param0)
         sub_02002B20(1);
     }
 
-    sub_02017798(ov62_0222F8E4, param0);
+    SetMainCallback(ov62_0222F8E4, param0);
 
     if (param0->unk_00 != 0) {
         ov62_02241130(param0);
@@ -212,7 +212,7 @@ void ov62_0222F514 (UnkStruct_0208C06C * param0)
 
     ov62_022411EC(param0);
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     sub_0201DC3C();
 }
 

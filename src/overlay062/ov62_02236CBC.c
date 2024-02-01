@@ -89,8 +89,8 @@ static void ov62_02236CF8 (UnkStruct_0208C06C * param0, int param1)
 {
     NARC * v0 = param0->unk_14.unk_00;
     BGL * v1 = param0->unk_14.unk_10;
-    UnkStruct_0200C6E4 * v2 = param0->unk_14.unk_04;
-    UnkStruct_0200C704 * v3 = param0->unk_14.unk_08;
+    CellTransferStateData * v2 = param0->unk_14.unk_04;
+    AnimationResourceCollection * v3 = param0->unk_14.unk_08;
     PaletteSys * v4 = param0->unk_14.unk_14;
 
     sub_0200CC3C(v2, v3, v0, 50, 0, param1, 11924);
@@ -137,8 +137,8 @@ static void ov62_02236E14 (UnkStruct_0208C06C * param0)
     UnkStruct_ov62_02236CBC * v0 = param0->unk_860;
     NARC * v1 = param0->unk_14.unk_00;
     BGL * v2 = param0->unk_14.unk_10;
-    UnkStruct_0200C6E4 * v3 = param0->unk_14.unk_04;
-    UnkStruct_0200C704 * v4 = param0->unk_14.unk_08;
+    CellTransferStateData * v3 = param0->unk_14.unk_04;
+    AnimationResourceCollection * v4 = param0->unk_14.unk_08;
     PaletteSys * v5 = param0->unk_14.unk_14;
 
     sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 6, 0, 0, 0, 102);
@@ -223,8 +223,8 @@ static void ov62_0223712C (UnkStruct_0208C06C * param0)
 {
     UnkStruct_ov62_02236CBC * v0 = param0->unk_860;
     BGL * v1 = param0->unk_14.unk_10;
-    UnkStruct_0200C6E4 * v2 = param0->unk_14.unk_04;
-    UnkStruct_0200C704 * v3 = param0->unk_14.unk_08;
+    CellTransferStateData * v2 = param0->unk_14.unk_04;
+    AnimationResourceCollection * v3 = param0->unk_14.unk_08;
     PaletteSys * v4 = param0->unk_14.unk_14;
     int v5;
     int v6[5];
@@ -264,8 +264,8 @@ static void ov62_022371CC (UnkStruct_0208C06C * param0)
     int v3[5];
     UnkStruct_ov62_02236CBC * v4 = param0->unk_860;
     BGL * v5 = param0->unk_14.unk_10;
-    UnkStruct_0200C6E4 * v6 = param0->unk_14.unk_04;
-    UnkStruct_0200C704 * v7 = param0->unk_14.unk_08;
+    CellTransferStateData * v6 = param0->unk_14.unk_04;
+    AnimationResourceCollection * v7 = param0->unk_14.unk_08;
     PaletteSys * v8 = param0->unk_14.unk_14;
     UnkStruct_ov104_0223F9E0 v9;
 

@@ -94,13 +94,13 @@ typedef struct UnkStruct_ov104_02232B5C_t {
     u16 * unk_9C;
     u16 * unk_A0;
     UnkStruct_02081CF4 unk_A4;
-    UnkStruct_02001AF4 * unk_B0;
-    UnkStruct_02013A04 unk_B4[28];
+    UIControlData * unk_B0;
+    ResourceMetadata unk_B4[28];
     UnkStruct_ov84_02240FA8 unk_194;
     UnkStruct_0200112C * unk_1B4;
     u16 unk_1B8;
     u16 unk_1BA;
-    UnkStruct_02013A04 unk_1BC[28];
+    ResourceMetadata unk_1BC[28];
     u16 unk_29C[28];
     u16 unk_2D4;
 } UnkStruct_ov104_02232B5C;
@@ -873,8 +873,8 @@ void ov104_02232C80 (UnkStruct_ov63_0222CCB8 * param0, UnkStruct_ov63_0222BEC0 *
 
 void ov104_02232CE0 (UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, u16 param9)
 {
-    UnkStruct_0200C6E4 * v0 = param0->unk_34.unk_00;
-    UnkStruct_0200C704 * v1 = param0->unk_34.unk_04;
+    CellTransferStateData * v0 = param0->unk_34.unk_00;
+    AnimationResourceCollection * v1 = param0->unk_34.unk_04;
     PaletteSys * v2 = param0->unk_04;
     ArchivedSprite v3;
     void * v4;

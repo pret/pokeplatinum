@@ -35,8 +35,8 @@ typedef struct {
 
 typedef struct UnkStruct_ov63_0222BB38_t {
     const UnkStruct_ov63_0222BB38_sub1 * unk_00;
-    UnkStruct_02022550 * unk_04;
-    UnkStruct_02022550 * unk_08;
+    GraphicElementData * unk_04;
+    GraphicElementData * unk_08;
     int unk_0C;
     int unk_10;
     s16 unk_14;
@@ -49,7 +49,7 @@ typedef struct {
 } UnkStruct_ov63_0222B96C;
 
 typedef struct UnkStruct_ov63_0222AE60_t {
-    UnkStruct_020218BC * unk_00;
+    GraphicElementManager * unk_00;
     PaletteSys * unk_04;
     UnkStruct_ov63_0222BB38 * unk_08;
     u32 unk_0C;
@@ -302,7 +302,7 @@ static const u8 Unk_ov63_0222D904[10] = {
     0x0
 };
 
-UnkStruct_ov63_0222AE60 * ov63_0222AE60 (UnkStruct_020218BC * param0, PaletteSys * param1, u32 param2, u32 param3)
+UnkStruct_ov63_0222AE60 * ov63_0222AE60 (GraphicElementManager * param0, PaletteSys * param1, u32 param2, u32 param3)
 {
     UnkStruct_ov63_0222AE60 * v0;
     int v1;
@@ -521,7 +521,7 @@ void ov63_0222B210 (UnkStruct_ov63_0222BB38 * param0)
     memset(param0, 0, sizeof(UnkStruct_ov63_0222BB38));
 }
 
-const UnkStruct_02022550 * ov63_0222B234 (const UnkStruct_ov63_0222BB38 * param0)
+const GraphicElementData * ov63_0222B234 (const UnkStruct_ov63_0222BB38 * param0)
 {
     return param0->unk_04;
 }

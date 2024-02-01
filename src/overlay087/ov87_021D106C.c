@@ -52,9 +52,9 @@ typedef struct UnkStruct_ov87_021D106C_t {
     int unk_0C;
     BGL * unk_10;
     Window unk_14[2];
-    UnkStruct_020218BC * unk_34;
+    GraphicElementManager * unk_34;
     UnkStruct_0200C738 unk_38;
-    UnkStruct_02022550 * unk_1C4[6];
+    GraphicElementData * unk_1C4[6];
     void * unk_1DC;
     void * unk_1E0;
     MessageLoader * unk_1E4;
@@ -116,7 +116,7 @@ UnkStruct_ov87_021D106C * ov87_021D106C (UnkStruct_ov87_021D0D80 * param0, const
         v0->unk_1F8 = Strbuf_Init(256, 61);
         v0->unk_1FC = Pokemon_New(61);
 
-        sub_02017798(ov87_021D11AC, v0);
+        SetMainCallback(ov87_021D11AC, v0);
     }
 
     return v0;
@@ -125,7 +125,7 @@ UnkStruct_ov87_021D106C * ov87_021D106C (UnkStruct_ov87_021D0D80 * param0, const
 void ov87_021D1140 (UnkStruct_ov87_021D106C * param0)
 {
     if (param0) {
-        sub_02017798(NULL, NULL);
+        SetMainCallback(NULL, NULL);
         Heap_FreeToHeap(param0->unk_1FC);
         Strbuf_Free(param0->unk_1F8);
         Strbuf_Free(param0->unk_1F4);
@@ -213,7 +213,7 @@ static BOOL ov87_021D12C0 (UnkStruct_ov87_021D106C * param0, int * param1)
         if (v1 == v0->unk_18) {
             sub_02021FE0(param0->unk_1C4[v1], GX_OAM_MODE_NORMAL);
             sub_02021F58(param0->unk_1C4[v1], 0);
-            sub_020063D4(1);
+            Sound_FlagDefaultChatotCry(1);
 
             sub_02005844(v0->unk_20[v1].unk_10, v0->unk_20[v1].unk_13);
         } else {
@@ -562,7 +562,7 @@ static void ov87_021D1970 (UnkStruct_ov87_021D106C * param0)
         sub_02006E84(v1.archive, v1.palette, 1, v3 * 0x20, 0x20, 61);
 
         if (v3 == v2->unk_18) {
-            sub_020063D4(1);
+            Sound_FlagDefaultChatotCry(1);
             sub_02005844(v2->unk_20[v3].unk_10, v2->unk_20[v3].unk_13);
             sub_02021FE0(param0->unk_1C4[v3], GX_OAM_MODE_NORMAL);
         } else {

@@ -14,7 +14,7 @@
 #include "trainer_info.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
-#include "struct_decls/struct_0202CC84_decl.h"
+#include "struct_defs/chatot_cry.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -59,7 +59,7 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "heap.h"
@@ -102,7 +102,7 @@
 #include "overlay088/ov88_0223B140.h"
 #include "overlay088/ov88_0223E9C4.h"
 
-static void ov88_0223B2F0(NNSG2dCharacterData * param0, int param1, int param2, int param3, int param4, UnkStruct_02022550 * param5);
+static void ov88_0223B2F0(NNSG2dCharacterData * param0, int param1, int param2, int param3, int param4, GraphicElementData * param5);
 static void ov88_0223B320(UnkStruct_02095E80 * param0);
 static void ov88_0223C0E0(void * param0);
 static void ov88_0223C15C(void);
@@ -118,11 +118,11 @@ static void ov88_0223CE34(u32 * param0);
 static void ov88_0223CE74(UnkStruct_02095E80 * param0);
 static void ov88_0223CEF0(u16 * param0);
 static int ov88_0223CF30(int param0, int param1, UnkStruct_ov88_0223C8AC * param2);
-static void ov88_0223CF68(int param0, UnkStruct_02022550 * param1, int param2);
-static int ov88_0223CFF4(u32 * param0, int * param1, UnkStruct_02022550 * param2, UnkStruct_ov88_0223C8AC * param3, int param4);
+static void ov88_0223CF68(int param0, GraphicElementData * param1, int param2);
+static int ov88_0223CFF4(u32 * param0, int * param1, GraphicElementData * param2, UnkStruct_ov88_0223C8AC * param3, int param4);
 static int ov88_0223C800(int param0, Pokemon * param1, u8 * param2, ArchivedSprite * param3);
 static void ov88_0223E7F0(UnkStruct_0202B628 * param0, Pokemon * param1);
-static void ov88_0223D140(UnkStruct_0202CC84 * param0);
+static void ov88_0223D140(ChatotCry * param0);
 static void ov88_0223E894(UnkStruct_02095E80 * param0);
 static void ov88_0223E8B4(UnkStruct_02095E80 * param0);
 static int ov88_0223E8D0(UnkStruct_02095E80 * param0);
@@ -139,7 +139,7 @@ static void ov88_0223BFD8(UnkStruct_02095E80 * param0);
 static void ov88_0223BE28(UnkStruct_02095E80 * param0);
 static void ov88_0223CB34(Window * param0, int param1, UnkStruct_02095E80 * param2);
 static void ov88_0223BD18(Pokemon * param0, UnkStruct_ov88_0223C8AC * param1);
-static void ov88_0223E87C(UnkStruct_02022550 * param0, int param1, int param2);
+static void ov88_0223E87C(GraphicElementData * param0, int param1, int param2);
 static int ov88_0223C8AC(UnkStruct_ov88_0223C8AC * param0, Party * param1, int param2, int param3);
 static void ov88_0223D0C0(SaveData * param0);
 static int ov88_0223B914(UnkStruct_02095E80 * param0);
@@ -169,7 +169,7 @@ static void ov88_0223DFF4(UnkStruct_02095E80 * param0);
 static void ov88_0223E1AC(UnkStruct_02095E80 * param0);
 static void ov88_0223E1C0(UnkStruct_02095E80 * param0, int param1, int param2);
 static void ov88_0223DE68(VecFx32 param0[], int param1, int param2, int param3, int param4);
-static void ov88_0223DE7C(UnkStruct_02022550 * param0, UnkStruct_02022550 * param1, UnkStruct_02022550 * param2, int param3, VecFx32 param4[], UnkStruct_ov88_0223C8AC * param5);
+static void ov88_0223DE7C(GraphicElementData * param0, GraphicElementData * param1, GraphicElementData * param2, int param3, VecFx32 param4[], UnkStruct_ov88_0223C8AC * param5);
 static void ov88_0223BDA4(UnkStruct_02095E80 * param0, int param1);
 static void ov88_0223E848(UnkStruct_02095E80 * param0);
 static void ov88_0223C860(Window * param0, Party * param1, int param2, int param3, int param4);
@@ -292,8 +292,8 @@ int ov88_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_02095E80 * v0;
     NARC * v1;
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -320,7 +320,7 @@ int ov88_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     ov88_0223C17C(v0->unk_174);
     sub_0200F174(0, 1, 1, 0x0, 16, 1, 26);
     ov88_0223C504(v0, v1);
-    sub_02017798(ov88_0223C0E0, v0);
+    SetMainCallback(ov88_0223C0E0, v0);
     ov88_0223C63C();
     ov88_0223C66C(v0, v1);
     ov88_0223CBA0(v0);
@@ -336,7 +336,7 @@ int ov88_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     sub_02038A1C(26, v0->unk_174);
     sub_02039734();
 
-    if (sub_02013948() == 0) {
+    if (IsNight() == 0) {
         sub_02004550(4, 1085, 1);
         sub_02004A84(1085);
     } else {
@@ -349,7 +349,7 @@ int ov88_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static void ov88_0223B2F0 (NNSG2dCharacterData * param0, int param1, int param2, int param3, int param4, UnkStruct_02022550 * param5)
+static void ov88_0223B2F0 (NNSG2dCharacterData * param0, int param1, int param2, int param3, int param4, GraphicElementData * param5)
 {
     u8 * v0;
 
@@ -413,7 +413,7 @@ static void ov88_0223B3C0 (UnkStruct_02095E80 * param0)
 
     sub_02021CAC(param0->unk_39C[0], 1);
     sub_02021CAC(param0->unk_39C[1], 1);
-    sub_02017798(ov88_0223C0E0, param0);
+    SetMainCallback(ov88_0223C0E0, param0);
     NARC_dtor(v0);
 }
 
@@ -576,7 +576,7 @@ static int ov88_0223B914 (UnkStruct_02095E80 * param0)
     switch (param0->unk_4C) {
     case 0:
         sub_020364F0(80);
-        sub_02017DE0(2);
+        ResetLock(2);
         ov88_0223E894(param0);
 
         {
@@ -700,7 +700,7 @@ static int ov88_0223B914 (UnkStruct_02095E80 * param0)
         }
         break;
     case 14:
-        ov88_0223D140(sub_0202CC98(param0->unk_04));
+        ov88_0223D140(GetChatotCryDataFromSave(param0->unk_04));
         param0->unk_4C++;
         break;
     case 15:
@@ -753,7 +753,7 @@ static int ov88_0223B914 (UnkStruct_02095E80 * param0)
             sub_0200E084(&param0->unk_49C[23], 0);
             sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
             ov88_0223ECBC(&param0->unk_49C[21], 15, 1, param0->unk_184, param0->unk_178);
-            sub_02017DF0(2);
+            ResetUnlock(2);
 
             return 1;
         }
@@ -906,7 +906,7 @@ int ov88_0223C03C (UnkStruct_020067E8 * param0, int * param1)
     sub_0200B3F0(v0->unk_178);
     Strbuf_Free(v0->unk_18C);
     sub_02006830(param0);
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     Heap_Destroy(26);
 
     return 1;
@@ -1538,7 +1538,7 @@ static void ov88_0223CE74 (UnkStruct_02095E80 * param0)
         v1 = param0->unk_6F4[param0->unk_88[0]].unk_06;
 
         if (v0 == 441) {
-            sub_020063E4(sub_0202CC98(param0->unk_04), 0, 100, 0);
+            Sound_PlayChatotCry(GetChatotCryDataFromSave(param0->unk_04), 0, 100, 0);
         } else {
             sub_02005844(v0, v1);
         }
@@ -1588,7 +1588,7 @@ static const int Unk_ov88_0223EE50[][3] = {
     {0x11, 0x12, 0x13}
 };
 
-static void ov88_0223CF68 (int param0, UnkStruct_02022550 * param1, int param2)
+static void ov88_0223CF68 (int param0, GraphicElementData * param1, int param2)
 {
     VecFx32 v0;
 
@@ -1611,7 +1611,7 @@ static void ov88_0223CF68 (int param0, UnkStruct_02022550 * param1, int param2)
     }
 }
 
-static int ov88_0223CFF4 (u32 * param0, int * param1, UnkStruct_02022550 * param2, UnkStruct_ov88_0223C8AC * param3, int param4)
+static int ov88_0223CFF4 (u32 * param0, int * param1, GraphicElementData * param2, UnkStruct_ov88_0223C8AC * param3, int param4)
 {
     int v0 = *param0 - 1;
     int v1 = 0;
@@ -1697,7 +1697,7 @@ static void ov88_0223D0D4 (TrainerInfo * param0, UnkStruct_02027F8C * param1, Un
     sub_0203597C(28, param2, sizeof(UnkStruct_02027F8C));
 }
 
-static void ov88_0223D140 (UnkStruct_0202CC84 * param0)
+static void ov88_0223D140 (ChatotCry * param0)
 {
     sub_0203597C(29, param0, 1000);
 }
@@ -1751,7 +1751,7 @@ static void ov88_0223D1EC (UnkStruct_02095E80 * param0, int param1)
     } else {
         param0->unk_0C.unk_00 = param0->unk_2274;
         param0->unk_0C.unk_13 = Party_GetCurrentCount(param0->unk_2274);
-        param0->unk_0C.unk_28 = (UnkStruct_0202CC84 *)param0->unk_2E6C[sub_0203608C() ^ 1];
+        param0->unk_0C.unk_28 = (ChatotCry *)param0->unk_2E6C[sub_0203608C() ^ 1];
         sub_0208E9C0(&param0->unk_0C, sub_02032EE8(sub_0203608C() ^ 1));
     }
 
@@ -2232,7 +2232,7 @@ static void ov88_0223DE68 (VecFx32 param0[], int param1, int param2, int param3,
     param0[1].y = FX32_ONE * param4;
 }
 
-static void ov88_0223DE7C (UnkStruct_02022550 * param0, UnkStruct_02022550 * param1, UnkStruct_02022550 * param2, int param3, VecFx32 param4[], UnkStruct_ov88_0223C8AC * param5)
+static void ov88_0223DE7C (GraphicElementData * param0, GraphicElementData * param1, GraphicElementData * param2, int param3, VecFx32 param4[], UnkStruct_ov88_0223C8AC * param5)
 {
     VecFx32 v0, v1, v2;
 
@@ -2528,8 +2528,8 @@ static void ov88_0223E694 (Party * param0, Party * param1, int param2, int param
     param4->unk_2C = param2;
 
     if (Party_HasSpecies(param0, 441) == 0) {
-        UnkStruct_0202CC84 * v4 = sub_0202CC98(param4->unk_10);
-        sub_0202CCA8(v4);
+        ChatotCry * v4 = GetChatotCryDataFromSave(param4->unk_10);
+        ResetChatotCryDataStatus(v4);
     }
 
     sub_0202F180(param4->unk_10, v1);
@@ -2559,7 +2559,7 @@ static void ov88_0223E848 (UnkStruct_02095E80 * param0)
     sub_02019184(param0->unk_174, 3, 0, param0->unk_2310);
 }
 
-static void ov88_0223E87C (UnkStruct_02022550 * param0, int param1, int param2)
+static void ov88_0223E87C (GraphicElementData * param0, int param1, int param2)
 {
     VecFx32 v0;
 

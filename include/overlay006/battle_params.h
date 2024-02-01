@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
-#include "struct_decls/struct_0202CC84_decl.h"
+#include "struct_defs/chatot_cry.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_02056B24_decl.h"
 #include "struct_decls/struct_0206D140_decl.h"
@@ -31,10 +31,10 @@ typedef struct {
     UnkStruct_0207D99C * unk_E4;
     UnkStruct_02026324 * unk_E8;
     PCBoxes * unk_EC;
-    UnkStruct_0202CC84 * unk_F0[4];
+    ChatotCry * unk_F0[4];
     UnkStruct_02056B24 * unk_100;
     UnkStruct_0202C878 * unk_104;
-    UnkStruct_020279FC * unk_108;
+    AnimationControlFlags * unk_108;
     UnkStruct_0206D140 * unk_10C;
     BattleParams_sub1 unk_110;
     UnkStruct_0202CD88 * unk_11C;

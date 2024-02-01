@@ -20,7 +20,7 @@
 #include "unk_020067E8.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "unk_02017428.h"
 #include "unk_02017728.h"
 #include "unk_0201CCF0.h"
@@ -53,27 +53,29 @@ typedef struct {
 
 static void sub_02000E3C(void);
 static void sub_02000E54(void);
-static void sub_02000EE4(void);
+static void WaitFrame(void);
 static void sub_02000F10(int param0);
-static void sub_02000F60(int param0);
-static void sub_02000F94(int param0, int param1);
-static void sub_02000F30(void);
+static void SoftReset(int param0);
+static void HeapCanaryFailed(int param0, int param1);
+static void CheckHeapCanary(void);
 
 static UnkStruct_02101D28 Unk_02101D28;
-static PMBackLightSwitch Unk_02101D20;
-BOOL Unk_02101D24;
+// This variable doesn't really makes sense. If it's set to off, the game will
+// repeatedly try to restore the backlight to its saved state.
+static PMBackLightSwitch sSavedBacklightState;
+BOOL gIgnoreCartridgeForWake;
 extern const UnkStruct_0208BE5C Unk_ov77_021D788C;
 
 void NitroMain (void)
 {
     sub_0201789C();
-    sub_020179E4();
+    InitGraphics();
     InitKeypadAndTouchpad();
 
     sub_02017B70(0);
-    PM_GetBackLight(&Unk_02101D20, NULL);
+    PM_GetBackLight(&sSavedBacklightState, NULL);
     sub_0202419C();
-    sub_0201378C();
+    InitRTC();
     sub_02000E3C();
     sub_02002B7C();
 
@@ -84,7 +86,7 @@ void NitroMain (void)
     Unk_02101D28.unk_10.unk_00 = -1;
     Unk_02101D28.unk_10.unk_08 = sub_020244AC();
 
-    sub_02003B60(sub_0202CC98(Unk_02101D28.unk_10.unk_08), sub_02025E44(Unk_02101D28.unk_10.unk_08));
+    sub_02003B60(GetChatotCryDataFromSave(Unk_02101D28.unk_10.unk_08), sub_02025E44(Unk_02101D28.unk_10.unk_08));
     sub_02022844();
 
     if (sub_02038FFC(3) == DWC_INIT_RESULT_DESTROY_OTHER_SETTING) {
@@ -113,53 +115,53 @@ void NitroMain (void)
     gCoreSys.unk_6C = 1;
     gCoreSys.unk_30 = 0;
 
-    sub_02001028();
+    InitRNG();
     sub_0200AB84();
     sub_02017428();
 
-    Unk_02101D24 = FALSE;
+    gIgnoreCartridgeForWake = FALSE;
 
     while (TRUE) {
-        sub_02000F30();
-        sub_0200106C();
+        CheckHeapCanary();
+        HandleConsoleFold();
         ReadKeypadAndTouchpad();
 
         if ((gCoreSys.heldKeysRaw & RESET_COMBO) == RESET_COMBO) {
-            if (gCoreSys.unk_68 == 0) {
-                sub_02000F60(0);
+            if (gCoreSys.inhibitReset == 0) {
+                SoftReset(0);
             }
         }
 
         if (sub_020349EC()) {
-            sub_02000F30();
+            CheckHeapCanary();
             sub_02000E54();
             sub_0201CDD4(gCoreSys.unk_18);
             sub_0201CDD4(gCoreSys.unk_24);
 
             if (!gCoreSys.unk_30) {
                 OS_WaitIrq(1, OS_IE_V_BLANK);
-                gCoreSys.unk_2C++;
+                gCoreSys.frameCounter++;
             }
         }
 
-        sub_020137C4();
+        UpdateRTC();
         sub_02017458();
         sub_020241CC();
         sub_0201CDD4(gCoreSys.unk_24);
 
         OS_WaitIrq(1, OS_IE_V_BLANK);
 
-        gCoreSys.unk_2C++;
+        gCoreSys.frameCounter++;
         gCoreSys.unk_30 = 0;
 
         sub_0200ABF0();
         sub_0200F27C();
 
-        if (gCoreSys.unk_00 != NULL) {
-            gCoreSys.unk_00(gCoreSys.unk_04);
+        if (gCoreSys.mainCallback != NULL) {
+            gCoreSys.mainCallback(gCoreSys.mainCallbackData);
         }
 
-        sub_02003BD8();
+        UpdateSound();
         sub_0201CDD4(gCoreSys.unk_20);
     }
 }
@@ -211,17 +213,17 @@ void sub_02000EC4 (FSOverlayID param0, const UnkStruct_0208BE5C * param1)
     Unk_02101D28.unk_0C = param1;
 }
 
-static void sub_02000EE4 (void)
+static void WaitFrame (void)
 {
     sub_020349EC();
 
     OS_WaitIrq(1, OS_IE_V_BLANK);
 
-    gCoreSys.unk_2C++;
+    gCoreSys.frameCounter++;
     gCoreSys.unk_30 = 0;
 
-    if (gCoreSys.unk_00 != NULL) {
-        gCoreSys.unk_00(gCoreSys.unk_04);
+    if (gCoreSys.mainCallback != NULL) {
+        gCoreSys.mainCallback(gCoreSys.mainCallbackData);
     }
 }
 
@@ -233,27 +235,27 @@ static void sub_02000F10 (int param0)
         }
     }
 
-    sub_02000EE4();
+    WaitFrame();
 }
 
-static void sub_02000F30 (void)
+static void CheckHeapCanary (void)
 {
     int v0 = sub_020389D8();
 
     switch (v0) {
     case 1:
-        sub_02000F94(1, v0);
+        HeapCanaryFailed(1, v0);
         break;
     case 2:
-        sub_02000F94(0, v0);
+        HeapCanaryFailed(0, v0);
         break;
     case 3:
-        sub_02000F94(1, v0);
+        HeapCanaryFailed(1, v0);
         break;
     }
 }
 
-static void sub_02000F60 (int param0)
+static void SoftReset (int param0)
 {
     sub_0200F344(0, 0x7fff);
     sub_0200F344(1, 0x7fff);
@@ -263,14 +265,14 @@ static void sub_02000F60 (int param0)
     }
 
     while (TRUE) {
-        sub_0200106C();
+        HandleConsoleFold();
         sub_02000F10(param0);
     }
 }
 
-static void sub_02000F94 (int param0, int param1)
+static void HeapCanaryFailed (int param0, int param1)
 {
-    int v0;
+    int elapsed;
     BOOL v1;
 
     if (param1 == 3) {
@@ -290,89 +292,88 @@ static void sub_02000F94 (int param0, int param1)
     }
 
     sub_02037DB0();
-    sub_02000EE4();
-    sub_02003BD8();
+    WaitFrame();
+    UpdateSound();
 
-    v0 = 0;
+    elapsed = 0;
 
     while (TRUE) {
-        sub_0200106C();
+        HandleConsoleFold();
         ReadKeypadAndTouchpad();
 
-        if (v0 >= 30) {
+        if (elapsed >= 30) {
             if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
                 break;
             }
         }
 
-        sub_02000EE4();
+        WaitFrame();
 
-        if (v0 < 30) {
-            v0++;
+        if (elapsed < 30) {
+            elapsed++;
         }
     }
 
-    sub_02000F60(param0);
+    SoftReset(param0);
 }
 
-void sub_02001028 (void)
+void InitRNG (void)
 {
     RTCDate v0;
     RTCTime v1;
     u32 v2;
 
-    sub_0201384C(&v0, &v1);
+    GetCurrentDateTime(&v0, &v1);
 
-    v2 = v0.year + v0.month * 0x100 * v0.day * 0x10000 + v1.hour * 0x10000 + (v1.minute + v1.second) * 0x1000000 + gCoreSys.unk_2C;
+    v2 = v0.year + v0.month * 0x100 * v0.day * 0x10000 + v1.hour * 0x10000 + (v1.minute + v1.second) * 0x1000000 + gCoreSys.frameCounter;
 
     MTRNG_SetSeed(v2);
     LCRNG_SetSeed(v2);
 }
 
-void sub_0200106C (void)
+void HandleConsoleFold (void)
 {
-    PMBackLightSwitch v0, v1;
-    PMWakeUpTrigger v2;
+    PMBackLightSwitch top, bottom;
+    PMWakeUpTrigger trigger;
 
     if (PAD_DetectFold()) {
-        if (gCoreSys.unk_67 == 0) {
-            sub_0201E630();
+        if (gCoreSys.inhibitSleep == 0) {
+            BeforeSleep();
 
             if (CTRDG_IsPulledOut() == TRUE) {
-                Unk_02101D24 = TRUE;
+                gIgnoreCartridgeForWake = TRUE;
             }
 
-GOTOLABEL:
-            v2 = PM_TRIGGER_COVER_OPEN | PM_TRIGGER_CARD;
+sleep_again:
+            trigger = PM_TRIGGER_COVER_OPEN | PM_TRIGGER_CARD;
 
-            if (gCoreSys.unk_66 && (Unk_02101D24 == FALSE)) {
-                v2 |= PM_TRIGGER_CARTRIDGE;
+            if (gCoreSys.unk_66 && !gIgnoreCartridgeForWake) {
+                trigger |= PM_TRIGGER_CARTRIDGE;
             }
 
-            PM_GoSleepMode(v2, 0, 0);
+            PM_GoSleepMode(trigger, 0, 0);
 
             if (CARD_IsPulledOut()) {
                 PM_ForceToPowerOff();
-            } else {
-                if (PAD_DetectFold()) {
-                    Unk_02101D24 = TRUE;
-                    goto GOTOLABEL;
-                }
+            } else if (PAD_DetectFold()) {
+                // Woke up because the cartridge got pulled out
+                gIgnoreCartridgeForWake = TRUE;
+                goto sleep_again;
             }
 
-            sub_0201E5FC();
+            AfterSleep();
         } else {
-            PM_GetBackLight(&v0, &v1);
+            PM_GetBackLight(&top, &bottom);
 
-            if (v0 == PM_BACKLIGHT_ON) {
+            if (top == PM_BACKLIGHT_ON) {
                 PM_SetBackLight(PM_LCD_ALL, PM_BACKLIGHT_OFF);
             }
         }
     } else {
-        PM_GetBackLight(&v0, &v1);
+        PM_GetBackLight(&top, &bottom);
 
-        if (v0 == PM_BACKLIGHT_OFF) {
-            PM_SetBackLight(PM_LCD_ALL, Unk_02101D20);
+        if (top == PM_BACKLIGHT_OFF) {
+            PM_SetBackLight(PM_LCD_ALL, sSavedBacklightState);
         }
     }
 }

@@ -72,10 +72,10 @@ typedef struct {
     UnkStruct_0200B358 * unk_FC;
     Strbuf* unk_100;
     UnkStruct_0200112C * unk_104;
-    UnkStruct_02013A04 * unk_108;
-    UnkStruct_02001AF4 * unk_10C;
-    UnkStruct_0200C6E4 * unk_110;
-    UnkStruct_0200C704 * unk_114;
+    ResourceMetadata * unk_108;
+    UIControlData * unk_10C;
+    CellTransferStateData * unk_110;
+    AnimationResourceCollection * unk_114;
     CellActorData * unk_118[13];
     UnkStruct_02098D38 unk_14C;
     UnkStruct_020067E8 * unk_17C;
@@ -85,12 +85,12 @@ typedef struct {
     u8 unk_186;
 } UnkStruct_ov91_021D0ED8;
 
-typedef int (* UnkFuncPtr_0207F248_1)(UnkStruct_ov91_021D0ED8 *);
+typedef int (* GenericFunctionPtr_1)(UnkStruct_ov91_021D0ED8 *);
 
 typedef struct {
-    UnkFuncPtr_0207F248_1 unk_00;
-    UnkFuncPtr_0207F248_1 unk_04;
-} UnkStruct_0207F248_1;
+    GenericFunctionPtr_1 unk_00;
+    GenericFunctionPtr_1 unk_04;
+} GameWindowLayout_1;
 
 static void ov91_021D0ED8(UnkStruct_ov91_021D0ED8 * param0);
 static void ov91_021D0F6C(UnkStruct_ov91_021D0ED8 * param0);
@@ -197,7 +197,7 @@ static const u32 Unk_ov91_021D282C[2][11] = {
     {0xB, 0xC, 0xD, 0xE, 0xF, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15}
 };
 
-static const UnkStruct_0207F248_1 Unk_ov91_021D27DC[] = {
+static const GameWindowLayout_1 Unk_ov91_021D27DC[] = {
     {ov91_021D1EC8, ov91_021D1EE8},
     {ov91_021D1F38, ov91_021D1F44},
     {ov91_021D1F94, ov91_021D1FA0},
@@ -383,7 +383,7 @@ int ov91_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_0201A9A4(&v0->unk_08[12]);
     ov91_021D2594(v0);
-    sub_02017798(ov91_021D0F9C, v0);
+    SetMainCallback(ov91_021D0F9C, v0);
 
     return 1;
 }
@@ -455,8 +455,8 @@ static void ov91_021D0ED8 (UnkStruct_ov91_021D0ED8 * param0)
 {
     NARC * v0;
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
 
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -479,7 +479,7 @@ static void ov91_021D0ED8 (UnkStruct_ov91_021D0ED8 * param0)
     ov91_021D1784(param0);
     ov91_021D1498(param0);
 
-    sub_02017798(ov91_021D0F9C, param0);
+    SetMainCallback(ov91_021D0F9C, param0);
     NARC_dtor(v0);
 }
 
@@ -492,7 +492,7 @@ static void ov91_021D0F6C (UnkStruct_ov91_021D0ED8 * param0)
     ov91_021D20B4(param0);
 
     sub_0201DC3C();
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
 }
 
 static void ov91_021D0F9C (void * param0)

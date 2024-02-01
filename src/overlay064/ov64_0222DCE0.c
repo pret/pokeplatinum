@@ -140,7 +140,7 @@ typedef struct {
 
 typedef struct {
     BGL * unk_00;
-    UnkStruct_020218BC * unk_04;
+    GraphicElementManager * unk_04;
     NNSG2dRenderSurface unk_08;
     UnkStruct_0200C738 unk_78;
     UnkStruct_02009714 * unk_204[4];
@@ -153,7 +153,7 @@ typedef struct {
     u32 unk_238;
     UnkStruct_ov19_021DA864 unk_23C;
     UnkStruct_02009DC8 * unk_260[4];
-    UnkStruct_02022550 * unk_270[2];
+    GraphicElementData * unk_270[2];
     UnkStruct_ov64_022300E4 unk_278;
 } UnkStruct_ov64_0222E21C;
 
@@ -163,7 +163,7 @@ typedef struct {
     void * unk_14;
     NNSG2dScreenData * unk_18;
     Window unk_1C;
-    UnkStruct_02001AF4 * unk_2C;
+    UIControlData * unk_2C;
     u32 unk_30;
     u32 unk_34;
     Strbuf* unk_38;
@@ -195,11 +195,11 @@ typedef struct {
     u32 unk_D8;
     u32 unk_DC;
     Window unk_E0;
-    UnkStruct_02013A04 * unk_F0[2];
+    ResourceMetadata * unk_F0[2];
     UnkStruct_0200112C * unk_F8;
-    UnkStruct_02001AF4 * unk_FC;
+    UIControlData * unk_FC;
     s32 unk_100;
-    UnkStruct_02022550 * unk_104;
+    GraphicElementData * unk_104;
     u32 unk_108;
 } UnkStruct_ov64_0222F0C4;
 
@@ -662,8 +662,8 @@ int ov64_0222DCE0 (UnkStruct_020067E8 * param0, int * param1)
     ov64_02230620(&v0->unk_41C, &v0->unk_28C, &v0->unk_04, 52);
     ov64_022308DC(&v0->unk_444, &v0->unk_28C, &v0->unk_04, 52);
 
-    sub_02017798(ov64_0222DF3C, v0);
-    sub_020177A4();
+    SetMainCallback(ov64_0222DF3C, v0);
+    DisableHBlank();
 
     return 1;
 }
@@ -721,8 +721,8 @@ int ov64_0222DEA4 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov64_0222DFD0 * v0 = sub_0200682C(param0);
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
 
     ov64_0222EC8C(&v0->unk_2C8, &v0->unk_28C, &v0->unk_04);
     ov64_0222F40C(&v0->unk_304, &v0->unk_28C, &v0->unk_04);
@@ -756,14 +756,14 @@ static void ov64_0222DF48 (UnkStruct_ov64_0222DFD0 * param0, u32 param1)
     ov64_02230680(&param0->unk_41C, &param0->unk_28C, &param0->unk_04, param1);
     ov64_02230B1C(&param0->unk_444, &param0->unk_28C, &param0->unk_04, param1);
 
-    sub_02017798(ov64_0222DF3C, param0);
-    sub_020177A4();
+    SetMainCallback(ov64_0222DF3C, param0);
+    DisableHBlank();
 }
 
 static void ov64_0222DFD0 (UnkStruct_ov64_0222DFD0 * param0)
 {
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
 
     ov64_0222EE00(&param0->unk_2C8, &param0->unk_28C, &param0->unk_04);
     ov64_0222F5F4(&param0->unk_304, &param0->unk_28C, &param0->unk_04);

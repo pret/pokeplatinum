@@ -22,8 +22,8 @@ void ov104_0222DF40(const UnkStruct_ov104_0223A348_sub2 * param0, Pokemon * para
 u16 ov104_0222E10C(u8 param0);
 void ov104_0222E134(SaveData * param0, Pokemon * param1);
 void ov104_0222E1C0(SaveData * param0, Party * param1, Pokemon * param2);
-void ov104_0222E1D8(UnkStruct_02022550 * param0, u8 param1);
-void ov104_0222E204(UnkStruct_02022550 * param0, s16 param1, s16 param2, u8 param3);
+void ov104_0222E1D8(GraphicElementData * param0, u8 param1);
+void ov104_0222E204(GraphicElementData * param0, s16 param1, s16 param2, u8 param3);
 u8 ov104_0222E240(u16 param0, u16 param1);
 void ov104_0222E278(UnkStruct_ov104_0223A348 * param0, u16 param1, int param2, int param3);
 void ov104_0222E284(BattleParams * param0, UnkStruct_ov104_0223A348_sub1 * param1, int param2, int param3, int param4);

@@ -36,7 +36,7 @@ output_dir = pathlib.Path(args.output_dir)
 bin_dest_dir = private_dir / 'pl_poke_icon_work'
 bin_dest_dir.mkdir(parents=True, exist_ok=True)
 
-shutil.copy(shared_dir / 'icon_palette.NCLR', bin_dest_dir / '0000.NCLR')
+subprocess.run([args.nitrogfx, shared_dir / 'pl_poke_icon.pal', bin_dest_dir / '0000.NCLR', '-bitdepth', '4'])
 
 for i in range(3):
     anim_file_src = shared_dir / f'pl_poke_icon_anim_{i+1:02}.json'

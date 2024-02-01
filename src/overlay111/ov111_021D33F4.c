@@ -17,7 +17,7 @@ struct UnkStruct_ov111_021D33F4_t {
     u8 unk_03;
     u32 unk_04;
     u32 unk_08;
-    UnkStruct_02022550 * unk_0C;
+    GraphicElementData * unk_0C;
 };
 
 UnkStruct_ov111_021D33F4 * ov111_021D33F4(UnkStruct_ov111_021D2F80 * param0, u32 param1, u32 param2, u16 param3, u16 param4, u8 param5, u32 param6, u32 param7);

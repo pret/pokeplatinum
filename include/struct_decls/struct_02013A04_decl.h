@@ -2,6 +2,6 @@
 #define POKEPLATINUM_STRUCT_02013A04_DECL_H
 #include "struct_defs/struct_02013A04_t.h"
 
-typedef struct UnkStruct_02013A04_t UnkStruct_02013A04;
+typedef struct ResourceMetadata_t ResourceMetadata;
 
 #endif // POKEPLATINUM_STRUCT_02013A04_DECL_H

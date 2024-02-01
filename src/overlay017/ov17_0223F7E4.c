@@ -641,8 +641,8 @@ void ov17_0223F9C4 (UnkStruct_ov17_0223F7E4 * param0, int param1, int param2, vo
     const UnkStruct_ov17_02253558 * v0, * v1;
     int v2;
     BGL * v3;
-    UnkStruct_0200C6E4 * v4;
-    UnkStruct_0200C704 * v5;
+    CellTransferStateData * v4;
+    AnimationResourceCollection * v5;
 
     param0->unk_0C = param3;
 
@@ -960,7 +960,7 @@ static void ov17_02240138 (UnkStruct_ov17_0223F7E4 * param0, UnkStruct_ov17_0224
     int v3;
     FontOAM * v4;
     BGL * v5;
-    UnkStruct_0200C704 * v6;
+    AnimationResourceCollection * v6;
     int v7, v8;
 
     GF_ASSERT(param1->unk_00 == NULL);
@@ -1057,8 +1057,8 @@ static void ov17_022402A8 (UnkStruct_ov17_0223F7E4 * param0)
 static void ov17_022402E8 (UnkStruct_ov17_0223F7E4 * param0, u16 param1[])
 {
     int v0;
-    UnkStruct_0200C6E4 * v1;
-    UnkStruct_0200C704 * v2;
+    CellTransferStateData * v1;
+    AnimationResourceCollection * v2;
     UnkStruct_ov104_0223F9E0 v3;
     int v4;
 
@@ -1085,8 +1085,8 @@ static void ov17_022402E8 (UnkStruct_ov17_0223F7E4 * param0, u16 param1[])
 static void ov17_02240388 (UnkStruct_ov17_0223F7E4 * param0)
 {
     int v0;
-    UnkStruct_0200C6E4 * v1;
-    UnkStruct_0200C704 * v2;
+    CellTransferStateData * v1;
+    AnimationResourceCollection * v2;
 
     v1 = param0->unk_04->unk_18;
     v2 = param0->unk_04->unk_1C;

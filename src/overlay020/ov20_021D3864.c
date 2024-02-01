@@ -28,7 +28,7 @@ typedef struct UnkStruct_ov20_021D3980_t {
     UnkStruct_ov20_021D2128 * unk_00;
     const UnkStruct_ov20_021D16E8 * unk_04;
     const UnkStruct_020998EC * unk_08;
-    UnkStruct_02022550 * unk_0C;
+    GraphicElementData * unk_0C;
 } UnkStruct_ov20_021D3980;
 
 static void ov20_021D390C(BGL * param0, const UnkStruct_ov61_0222C884 * param1, u32 param2);

@@ -174,8 +174,8 @@ __attribute__((aligned(4))) static const u16 Unk_ov16_02270134[][3] = {
 
 void ov16_02268520 (UnkStruct_ov16_02268520 * param0)
 {
-    UnkStruct_0200C6E4 * v0;
-    UnkStruct_0200C704 * v1;
+    CellTransferStateData * v0;
+    AnimationResourceCollection * v1;
     const UnkStruct_ov104_0223F9E0 * v2;
     int v3, v4, v5, v6, v7, v8;
     int v9;
@@ -213,8 +213,8 @@ void ov16_02268520 (UnkStruct_ov16_02268520 * param0)
 
 void ov16_0226862C (UnkStruct_ov16_02268520 * param0)
 {
-    UnkStruct_0200C6E4 * v0;
-    UnkStruct_0200C704 * v1;
+    CellTransferStateData * v0;
+    AnimationResourceCollection * v1;
     const UnkStruct_ov104_0223F9E0 * v2;
 
     v0 = ov16_0223E010(param0->unk_04);
@@ -237,7 +237,7 @@ void ov16_02268660 (UnkStruct_ov16_02268520 * param0)
 
 void ov16_02268674 (UnkStruct_ov16_02268520 * param0)
 {
-    UnkStruct_0200C704 * v0;
+    AnimationResourceCollection * v0;
     int v1, v2, v3;
 
     v0 = ov16_0223E018(param0->unk_04);

@@ -118,7 +118,7 @@ typedef struct {
 typedef struct {
     int unk_00;
     BGL * unk_04;
-    UnkStruct_0207C690 * unk_08;
+    GenericPointerData * unk_08;
     UnkStruct_ov77_021D17B4_sub1 unk_0C;
     UnkStruct_ov77_021D1568 unk_238;
     u16 unk_4E8;
@@ -183,8 +183,8 @@ static int ov77_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     G2S_BlendNone();
     G2_BlendNone();
 
-    sub_02017798(NULL, NULL);
-    sub_020177BC(NULL, NULL);
+    SetMainCallback(NULL, NULL);
+    SetHBlankCallback(NULL, NULL);
 
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -206,7 +206,7 @@ static int ov77_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     ov77_021D17B4(v0);
     ov77_021D11CC(v0);
 
-    sub_02017798(ov77_021D1178, (void *)v0);
+    SetMainCallback(ov77_021D1178, (void *)v0);
     GXLayers_TurnBothDispOn();
 
     return 1;
@@ -335,7 +335,7 @@ static int ov77_021D10FC (UnkStruct_020067E8 * param0, int * param1)
     int v1 = v0->unk_00;
     int v2 = v0->unk_4E8;
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
 
     ov77_021D11FC(v0);
     ov77_021D1908(v0);

@@ -22,7 +22,7 @@ typedef struct UnkStruct_ov17_0224DF54_t {
     SysTask * unk_04;
     SysTask * unk_08;
     UnkStruct_02014014 * unk_0C;
-    UnkStruct_0207C690 * unk_10;
+    GenericPointerData * unk_10;
     UnkStruct_ov17_0224A1EC unk_14;
     UnkStruct_ov17_0224DF54_sub1 unk_A3C;
     UnkStruct_ov17_0224DF54_sub2 unk_A6C;

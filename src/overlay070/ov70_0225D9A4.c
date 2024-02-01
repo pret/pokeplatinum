@@ -120,11 +120,11 @@ typedef struct {
 
 typedef struct {
     BGL * unk_00;
-    UnkStruct_020218BC * unk_04;
+    GraphicElementManager * unk_04;
     UnkStruct_0200C738 unk_08;
     UnkStruct_02009714 * unk_194[4];
     NNSG2dCellTransferState * unk_1A4;
-    UnkStruct_0207C690 * unk_1A8;
+    GenericPointerData * unk_1A8;
 } UnkStruct_ov70_0225E4EC;
 
 typedef struct {
@@ -139,16 +139,16 @@ typedef struct {
     UnkStruct_ov84_02240FA8 unk_00;
     Window unk_20;
     UnkStruct_0200112C * unk_30;
-    UnkStruct_02013A04 * unk_34;
+    ResourceMetadata * unk_34;
     u16 unk_38;
     u16 unk_3A;
     BOOL unk_3C;
     UnkStruct_02009DC8 * unk_40[4];
-    UnkStruct_02022550 * unk_50[2];
+    GraphicElementData * unk_50[2];
 } UnkStruct_ov70_0225EC20;
 
 typedef struct {
-    UnkStruct_02013A04 * unk_00;
+    ResourceMetadata * unk_00;
     UnkStruct_ov84_02240FA8 unk_04;
 } UnkStruct_ov70_0225F098;
 
@@ -184,11 +184,11 @@ typedef struct {
 typedef struct {
     u32 unk_00;
     Window unk_04[5];
-    UnkStruct_02022550 * unk_54;
+    GraphicElementData * unk_54;
     UnkStruct_02009DC8 * unk_58[4];
-    UnkStruct_02022550 * unk_68;
+    GraphicElementData * unk_68;
     UnkStruct_02009DC8 * unk_6C[4];
-    UnkStruct_02022550 * unk_7C[12];
+    GraphicElementData * unk_7C[12];
     UnkStruct_02009DC8 * unk_AC[4];
     UnkStruct_02009DC8 * unk_BC[12];
     UnkStruct_02009DC8 * unk_EC[4];
@@ -278,7 +278,7 @@ static void ov70_0225ED4C(UnkStruct_ov70_0225EC20 * param0, UnkStruct_ov70_0225E
 static void ov70_0225EDA8(UnkStruct_ov70_0225EC20 * param0, u32 param1, u32 param2, u32 param3);
 static void ov70_0225EDE0(UnkStruct_ov70_0225EC20 * param0);
 static void ov70_0225EDF8(UnkStruct_ov70_0225EC20 * param0, const Strbuf *param1, u32 param2);
-static const UnkStruct_02013A04 * ov70_0225EE04(const UnkStruct_ov70_0225EC20 * param0);
+static const ResourceMetadata * ov70_0225EE04(const UnkStruct_ov70_0225EC20 * param0);
 static BOOL ov70_0225EE08(const UnkStruct_ov70_0225EC20 * param0, u32 param1);
 static void ov70_0225EE30(UnkStruct_ov70_0225EC20 * param0, const UnkStruct_ov84_02240FA8 * param1, UnkStruct_ov70_0225E4EC * param2, u16 param3, u16 param4, u32 param5, u8 param6, u8 param7, u8 param8);
 static u32 ov70_0225EED8(UnkStruct_ov70_0225EC20 * param0);
@@ -671,8 +671,8 @@ int ov70_0225D9A4 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_438 = ov70_02269190(v0->unk_34, v0->unk_44C, v0->unk_450, v0->unk_444, 112, 113);
     v0->unk_440 = ov70_0226C60C(112, v0);
 
-    sub_02017798(ov70_0225E4C8, v0);
-    sub_020177A4();
+    SetMainCallback(ov70_0225E4C8, v0);
+    DisableHBlank();
 
     return 1;
 }
@@ -815,8 +815,8 @@ int ov70_0225DDF8 (UnkStruct_020067E8 * param0, int * param1)
         v1->unk_18 = v0->unk_01;
     }
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
 
     ov70_0226C6F8(v0->unk_440);
     ov70_02269204(v0->unk_438);
@@ -1001,7 +1001,7 @@ void ov70_0225E044 (UnkStruct_ov70_0225DEE8 * param0, const Strbuf *param1, u32 
     ov70_0225EDF8(&param0->unk_39C, param1, param2);
 }
 
-const UnkStruct_02013A04 * ov70_0225E054 (const UnkStruct_ov70_0225DEE8 * param0)
+const ResourceMetadata * ov70_0225E054 (const UnkStruct_ov70_0225DEE8 * param0)
 {
     return ov70_0225EE04(&param0->unk_39C);
 }
@@ -1314,7 +1314,7 @@ static void ov70_0225E4EC (UnkStruct_ov70_0225E4EC * param0, SaveData * param1, 
     }
 
     {
-        UnkStruct_020279FC * v1;
+        AnimationControlFlags * v1;
         u8 v2;
 
         v1 = sub_02025E44(param1);
@@ -1549,7 +1549,7 @@ static void ov70_0225E9C8 (UnkStruct_ov70_0225E9C8 * param0, UnkStruct_ov70_0225
     param0->unk_18 = Strbuf_Init(384, param3);
 
     {
-        UnkStruct_020279FC * v0;
+        AnimationControlFlags * v0;
 
         v0 = sub_02025E44(param2);
         param0->unk_14 = sub_02027AC0(v0);
@@ -1758,7 +1758,7 @@ static void ov70_0225EDF8 (UnkStruct_ov70_0225EC20 * param0, const Strbuf *param
     sub_02013A6C(param0->unk_34, param1, param2);
 }
 
-static const UnkStruct_02013A04 * ov70_0225EE04 (const UnkStruct_ov70_0225EC20 * param0)
+static const ResourceMetadata * ov70_0225EE04 (const UnkStruct_ov70_0225EC20 * param0)
 {
     return param0->unk_34;
 }

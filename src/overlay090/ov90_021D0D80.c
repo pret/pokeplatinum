@@ -91,16 +91,16 @@ typedef struct {
     u8 unk_0F;
     BGL * unk_10;
     UnkStruct_ov90_021D0D80 * unk_14;
-    UnkStruct_020279FC * unk_18;
+    AnimationControlFlags * unk_18;
     UnkStruct_0203068C * unk_1C;
     UnkStruct_0202D750 * unk_20;
     UnkStruct_0202D764 * unk_24;
     UnkStruct_ov90_021D0ECC_sub1 unk_28;
     Window unk_6C[5];
     UnkStruct_ov90_021D17F8 unk_BC[30];
-    UnkStruct_0200C6E4 * unk_29C;
-    UnkStruct_0200C704 * unk_2A0;
-    UnkStruct_02022550 * unk_2A4[4];
+    CellTransferStateData * unk_29C;
+    AnimationResourceCollection * unk_2A0;
+    GraphicElementData * unk_2A4[4];
 } UnkStruct_ov90_021D0ECC;
 
 static int ov90_021D0ECC(UnkStruct_ov90_021D0ECC * param0);
@@ -228,8 +228,8 @@ static int ov90_021D0ECC (UnkStruct_ov90_021D0ECC * param0)
 {
     switch (param0->unk_04) {
     case 0:
-        sub_02017798(NULL, NULL);
-        sub_020177A4();
+        SetMainCallback(NULL, NULL);
+        DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
 
@@ -262,7 +262,7 @@ static int ov90_021D0ECC (UnkStruct_ov90_021D0ECC * param0)
         ov90_021D1984(param0);
         break;
     case 4:
-        sub_02017798(ov90_021D1034, param0);
+        SetMainCallback(ov90_021D1034, param0);
         param0->unk_04 = 0;
         return 1;
     }
@@ -286,8 +286,8 @@ static int ov90_021D0F98 (UnkStruct_ov90_021D0ECC * param0)
         ov90_021D1280(param0);
         break;
     case 1:
-        sub_02017798(NULL, NULL);
-        sub_020177A4();
+        SetMainCallback(NULL, NULL);
+        DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
 

@@ -53,29 +53,29 @@ u32 ov17_0224F0B8 (void)
     return 46;
 }
 
-void ov17_0224F0BC (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, NNS_G2D_VRAM_TYPE param2, int param3, u32 param4)
+void ov17_0224F0BC (CellTransferStateData * param0, AnimationResourceCollection * param1, NNS_G2D_VRAM_TYPE param2, int param3, u32 param4)
 {
     sub_0200CBDC(param0, param1, ov17_0224F0B8(), ov17_0224F080(param3), 1, param2, param4);
 }
 
-void ov17_0224F0F0 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, u32 param2, u32 param3)
+void ov17_0224F0F0 (CellTransferStateData * param0, AnimationResourceCollection * param1, u32 param2, u32 param3)
 {
     sub_0200CE0C(param0, param1, ov17_0224F0B8(), ov17_0224F098(), 1, param2);
     sub_0200CE3C(param0, param1, ov17_0224F0B8(), ov17_0224F09C(), 1, param3);
 }
 
-void ov17_0224F138 (UnkStruct_0200C704 * param0, u32 param1)
+void ov17_0224F138 (AnimationResourceCollection * param0, u32 param1)
 {
     sub_0200D070(param0, param1);
 }
 
-void ov17_0224F140 (UnkStruct_0200C704 * param0, u32 param1, u32 param2)
+void ov17_0224F140 (AnimationResourceCollection * param0, u32 param1, u32 param2)
 {
     sub_0200D090(param0, param1);
     sub_0200D0A0(param0, param2);
 }
 
-CellActorData * ov17_0224F154 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, int param2, const UnkStruct_ov104_0223F9E0 * param3)
+CellActorData * ov17_0224F154 (CellTransferStateData * param0, AnimationResourceCollection * param1, int param2, const UnkStruct_ov104_0223F9E0 * param3)
 {
     CellActorData * v0;
     UnkStruct_ov104_0223F9E0 v1;

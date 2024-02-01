@@ -9,6 +9,6 @@ typedef struct {
     u16 unk_02_0 : 2;
     u16 unk_02_2 : 5;
     u16 : 1;
-} UnkStruct_020279FC;
+} AnimationControlFlags;
 
 #endif // POKEPLATINUM_STRUCT_020279FC_H

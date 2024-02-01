@@ -40,9 +40,9 @@ typedef struct UnkStruct_ov20_021D4AD4_t {
     const UnkStruct_ov20_021D16E8 * unk_04;
     const UnkStruct_020998EC * unk_08;
     BGL * unk_0C;
-    UnkStruct_020218BC * unk_10;
-    UnkStruct_02022550 * unk_14;
-    UnkStruct_02022550 * unk_18;
+    GraphicElementManager * unk_10;
+    GraphicElementData * unk_14;
+    GraphicElementData * unk_18;
     UnkStruct_ov20_021D4B2C unk_1C;
     u16 unk_2C[8][77];
     SysTask * unk_4FC;
@@ -69,7 +69,7 @@ static void ov20_021D4AD4(UnkStruct_ov20_021D4AD4 * param0);
 static void ov20_021D4AF8(UnkStruct_ov20_021D4B2C * param0, NARC * param1, u32 param2, u32 param3);
 static void ov20_021D4B2C(UnkStruct_ov20_021D4B2C * param0);
 static void ov20_021D4C40(SysTask * param0, void * param1);
-static UnkStruct_02022550 * ov20_021D4B40(UnkStruct_ov20_021D4AD4 * param0, NNSG2dImageProxy * param1, NNSG2dImagePaletteProxy * param2, UnkStruct_ov20_021D4B2C * param3, int param4, int param5, int param6, int param7);
+static GraphicElementData * ov20_021D4B40(UnkStruct_ov20_021D4AD4 * param0, NNSG2dImageProxy * param1, NNSG2dImagePaletteProxy * param2, UnkStruct_ov20_021D4B2C * param3, int param4, int param5, int param6, int param7);
 
 UnkStruct_ov20_021D4AD4 * ov20_021D4728 (UnkStruct_ov20_021D2128 * param0, const UnkStruct_ov20_021D16E8 * param1, const UnkStruct_020998EC * param2)
 {
@@ -345,11 +345,11 @@ static void ov20_021D4B2C (UnkStruct_ov20_021D4B2C * param0)
     Heap_FreeToHeap(param0->unk_08);
 }
 
-static UnkStruct_02022550 * ov20_021D4B40 (UnkStruct_ov20_021D4AD4 * param0, NNSG2dImageProxy * param1, NNSG2dImagePaletteProxy * param2, UnkStruct_ov20_021D4B2C * param3, int param4, int param5, int param6, int param7)
+static GraphicElementData * ov20_021D4B40 (UnkStruct_ov20_021D4AD4 * param0, NNSG2dImageProxy * param1, NNSG2dImagePaletteProxy * param2, UnkStruct_ov20_021D4B2C * param3, int param4, int param5, int param6, int param7)
 {
     UnkStruct_ov19_021DA864 v0;
     UnkStruct_ov83_0223D9A8 v1;
-    UnkStruct_02022550 * v2;
+    GraphicElementData * v2;
 
     v0.unk_00 = param1;
     v0.unk_08 = param2;

@@ -25,7 +25,7 @@ typedef struct {
     UnkStruct_0202C878 * unk_18;
     TrainerInfo * unk_1C;
     SaveData * unk_20;
-    UnkStruct_020279FC * unk_24;
+    AnimationControlFlags * unk_24;
     UnkStruct_0202CD88 * unk_28;
     UnkStruct_0202B628 * unk_2C;
     UnkStruct_0207D3C0 * unk_30;

@@ -1625,7 +1625,7 @@ static void ov16_0225E4E8 (SysTask * param0, void * param1)
                 {
                     u8 v4;
                     PokeSprite_LoadCryDelay(v0->unk_04->unk_1A0, &v4, v0->unk_16, v0->unk_1C);
-                    sub_02077DB4(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_11), v0->unk_18, v0->unk_16, v0->unk_2C, 117, 127, NULL, 5, v4);
+                    Pokemon_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_11), v0->unk_18, v0->unk_16, v0->unk_2C, 117, 127, NULL, 5, v4);
                 }
 
                 if ((v0->unk_1C == 1) || (v0->unk_1C == 3)) {
@@ -1668,7 +1668,7 @@ static void ov16_0225E4E8 (SysTask * param0, void * param1)
                     u8 v5;
 
                     PokeSprite_LoadCryDelay(v0->unk_04->unk_1A0, &v5, v0->unk_16, v0->unk_1C);
-                    sub_02077DB4(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_11), v0->unk_18, v0->unk_16, v0->unk_2C, -117, 127, NULL, 5, v5);
+                    Pokemon_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_11), v0->unk_18, v0->unk_16, v0->unk_2C, -117, 127, NULL, 5, v5);
                 }
 
                 if ((v0->unk_1C == 0) || (v0->unk_1C == 2)) {
@@ -1752,7 +1752,7 @@ static void ov16_0225E894 (SysTask * param0, void * param1)
                 u8 v4;
 
                 PokeSprite_LoadCryDelay(v0->unk_04->unk_1A0, &v4, v0->unk_16, v0->unk_1C);
-                sub_02077DB4(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_11), v0->unk_18, v0->unk_16, v0->unk_2C, 117, 127, NULL, 5, v4);
+                Pokemon_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_11), v0->unk_18, v0->unk_16, v0->unk_2C, 117, 127, NULL, 5, v4);
             }
 
             sub_0200D4C4(v0->unk_0C->unk_00, (24 * 8), (8 * 11));
@@ -1913,7 +1913,7 @@ static void ov16_0225EA80 (SysTask * param0, void * param1)
                     u8 v4;
 
                     PokeSprite_LoadCryDelay(v0->unk_04->unk_1A0, &v4, v0->unk_86, v0->unk_82);
-                    sub_02077DB4(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, 117, 127, NULL, 5, v4);
+                    Pokemon_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, 117, 127, NULL, 5, v4);
                 }
             } else {
                 sub_02007B98(v0->unk_04->unk_20, 1);
@@ -1922,7 +1922,7 @@ static void ov16_0225EA80 (SysTask * param0, void * param1)
                     u8 v5;
 
                     PokeSprite_LoadCryDelay(v0->unk_04->unk_1A0, &v5, v0->unk_86, v0->unk_82);
-                    sub_02077DB4(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, -117, 127, NULL, 5, v5);
+                    Pokemon_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, -117, 127, NULL, 5, v5);
                 }
             }
 
@@ -1942,7 +1942,7 @@ static void ov16_0225EA80 (SysTask * param0, void * param1)
                     u8 v6;
 
                     PokeSprite_LoadCryDelay(v0->unk_04->unk_1A0, &v6, v0->unk_86, v0->unk_82);
-                    sub_02077DB4(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, 117, 127, NULL, 5, v6);
+                    Pokemon_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, 117, 127, NULL, 5, v6);
                 }
             } else {
                 sub_02007B98(v0->unk_04->unk_20, 1);
@@ -1951,7 +1951,7 @@ static void ov16_0225EA80 (SysTask * param0, void * param1)
                     u8 v7;
 
                     PokeSprite_LoadCryDelay(v0->unk_04->unk_1A0, &v7, v0->unk_86, v0->unk_82);
-                    sub_02077DB4(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, -117, 127, NULL, 5, v7);
+                    Pokemon_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, -117, 127, NULL, 5, v7);
                 }
             }
 
@@ -2109,7 +2109,7 @@ static void ov16_0225F0C0 (SysTask * param0, void * param1)
                     u8 v6;
 
                     PokeSprite_LoadCryDelay(v0->unk_04->unk_1A0, &v6, v0->unk_86, v0->unk_82);
-                    sub_02077DB4(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, 117, 127, NULL, 5, v6);
+                    Pokemon_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, 117, 127, NULL, 5, v6);
                 }
             } else {
                 sub_02007B98(v0->unk_04->unk_20, 1);
@@ -2118,7 +2118,7 @@ static void ov16_0225F0C0 (SysTask * param0, void * param1)
                     u8 v7;
 
                     PokeSprite_LoadCryDelay(v0->unk_04->unk_1A0, &v7, v0->unk_86, v0->unk_82);
-                    sub_02077DB4(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, -117, 127, NULL, 5, v7);
+                    Pokemon_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, -117, 127, NULL, 5, v7);
                 }
             }
 
@@ -2137,7 +2137,7 @@ static void ov16_0225F0C0 (SysTask * param0, void * param1)
                     u8 v8;
 
                     PokeSprite_LoadCryDelay(v0->unk_04->unk_1A0, &v8, v0->unk_86, v0->unk_82);
-                    sub_02077DB4(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, 117, 127, NULL, 5, v8);
+                    Pokemon_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, 117, 127, NULL, 5, v8);
                 }
             } else {
                 sub_02007B98(v0->unk_04->unk_20, 1);
@@ -2146,7 +2146,7 @@ static void ov16_0225F0C0 (SysTask * param0, void * param1)
                     u8 v9;
 
                     PokeSprite_LoadCryDelay(v0->unk_04->unk_1A0, &v9, v0->unk_86, v0->unk_82);
-                    sub_02077DB4(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, -117, 127, NULL, 5, v9);
+                    Pokemon_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, -117, 127, NULL, 5, v9);
                 }
             }
 
@@ -2675,7 +2675,7 @@ static void ov16_0225FD5C (SysTask * param0, void * param1)
                 }
             } else if (v1 >= (256 + 40)) {
                 {
-                    UnkStruct_0200C704 * v8;
+                    AnimationResourceCollection * v8;
 
                     v8 = ov16_0223E018(v0->unk_00);
                     sub_0200D0F4(v0->unk_04->unk_18);
@@ -2728,7 +2728,7 @@ static void ov16_0225FD5C (SysTask * param0, void * param1)
 
         if (v1 <= -40) {
             {
-                UnkStruct_0200C704 * v10;
+                AnimationResourceCollection * v10;
 
                 v10 = ov16_0223E018(v0->unk_00);
 
@@ -2819,7 +2819,7 @@ static void    ov16_02260284 (SysTask * param0, void * param1)
         break;
     case 1:
     {
-        UnkStruct_0200C704 * v3;
+        AnimationResourceCollection * v3;
 
         v3 = ov16_0223E018(v0->unk_00);
         sub_0200D0F4(v0->unk_04->unk_18);
@@ -4911,7 +4911,7 @@ static void ov16_02262A9C (SysTask * param0, void * param1)
             v7 = -117;
         }
 
-        sub_02077DB4(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_65), 5, v0->unk_68, v0->unk_6B, v7, 127, v0->unk_72, 5, 0);
+        Pokemon_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_65), 5, v0->unk_68, v0->unk_6B, v7, 127, v0->unk_72, 5, 0);
         v0->unk_66++;
     }
     case 5:
@@ -6217,8 +6217,8 @@ static void ov16_02264360 (BattleSystem * param0, BattlerData * param1, BattleMe
 
 static CellActorData * ov16_022643B8 (BattleSystem * param0, int param1, int param2, int param3, s16 param4, s16 param5)
 {
-    UnkStruct_0200C6E4 * v0;
-    UnkStruct_0200C704 * v1;
+    CellTransferStateData * v0;
+    AnimationResourceCollection * v1;
     PaletteSys * v2;
     CellActorData * v3;
     int v4;

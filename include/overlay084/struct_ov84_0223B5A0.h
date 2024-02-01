@@ -28,10 +28,10 @@ typedef struct {
     UnkStruct_0207CB08 * unk_C4;
     UnkStruct_0207D3C0 * unk_C8;
     TrainerInfo * unk_CC;
-    UnkStruct_020279FC * unk_D0;
+    AnimationControlFlags * unk_D0;
     NARC * unk_D4;
-    UnkStruct_0200C6E4 * unk_D8;
-    UnkStruct_0200C704 * unk_DC;
+    CellTransferStateData * unk_D8;
+    AnimationResourceCollection * unk_DC;
     CellActorData * unk_E0[12];
     UnkStruct_0200C440 * unk_110;
     MessageLoader * unk_114;
@@ -39,10 +39,10 @@ typedef struct {
     MessageLoader * unk_11C;
     MessageLoader * unk_120;
     Strbuf* unk_124[12];
-    UnkStruct_02013A04 * unk_154;
-    UnkStruct_02001AF4 * unk_158;
+    ResourceMetadata * unk_154;
+    UIControlData * unk_158;
     UnkStruct_0200112C * unk_15C;
-    UnkStruct_02013A04 * unk_160;
+    ResourceMetadata * unk_160;
     Strbuf* unk_164[165];
     Strbuf* unk_3F8;
     Strbuf* unk_3FC;

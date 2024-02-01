@@ -2,11 +2,11 @@
 #define POKEPLATINUM_STRUCT_02098D38_H
 
 #include "struct_defs/struct_020279FC.h"
-#include "struct_decls/struct_0202CC84_decl.h"
+#include "struct_defs/chatot_cry.h"
 
 typedef struct {
     void * unk_00;
-    UnkStruct_020279FC * unk_04;
+    AnimationControlFlags * unk_04;
     const u16 * unk_08;
     u32 unk_0C;
     u8 unk_10;
@@ -22,7 +22,7 @@ typedef struct {
     u32 unk_1C;
     void * unk_20;
     void * unk_24;
-    UnkStruct_0202CC84 * unk_28;
+    ChatotCry * unk_28;
     BOOL unk_2C;
 } UnkStruct_02098D38;
 

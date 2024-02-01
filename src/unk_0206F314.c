@@ -105,8 +105,8 @@ typedef struct {
     UnkStruct_0206F7F8_sub1 unk_2C;
     UnkStruct_ov84_02240FA8 unk_A0;
     UnkStruct_0200112C * unk_C0;
-    UnkStruct_02013A04 * unk_C4;
-    UnkStruct_02001AF4 * unk_C8;
+    ResourceMetadata * unk_C4;
+    UIControlData * unk_C8;
     UnkStruct_0203CDB0 * unk_CC;
     BGL * unk_D0;
     Window unk_D4;

@@ -14,7 +14,7 @@ typedef struct {
     UnkStruct_0202D764 * unk_04;
     UnkStruct_02025CCC * unk_08;
     SaveData * unk_0C;
-    UnkStruct_020279FC * unk_10;
+    AnimationControlFlags * unk_10;
     DWCUserData * unk_14;
     int unk_18;
     int unk_1C;

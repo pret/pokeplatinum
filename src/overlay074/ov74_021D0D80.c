@@ -63,16 +63,16 @@ typedef struct UnkStruct_ov74_021D0D80_t {
     u32 unk_10_22 : 10;
     BGL * unk_14;
     UnkStruct_0203D8EC unk_18;
-    UnkStruct_020279FC * unk_1C;
+    AnimationControlFlags * unk_1C;
     MessageLoader * unk_20;
     void * unk_24;
     NNSG2dScreenData * unk_28;
     Window unk_2C[3];
     UnkStruct_ov74_021D1720 unk_5C[7];
-    UnkStruct_02001AF4 * unk_2A8;
+    UIControlData * unk_2A8;
     u32 unk_2AC;
-    UnkStruct_0200C6E4 * unk_2B0;
-    UnkStruct_0200C704 * unk_2B4;
+    CellTransferStateData * unk_2B0;
+    AnimationResourceCollection * unk_2B4;
     CellActorData * unk_2B8;
 } UnkStruct_ov74_021D0D80;
 
@@ -103,9 +103,9 @@ static u32 ov74_021D1BD0(UnkStruct_ov74_021D0D80 * param0);
 int ov74_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov74_021D0D80 * v0 = NULL;
-    UnkStruct_020279FC * v1;
+    AnimationControlFlags * v1;
 
-    v1 = (UnkStruct_020279FC *)sub_02006840(param0);
+    v1 = (AnimationControlFlags *)sub_02006840(param0);
 
     Heap_Create(3, 38, 0x10000);
 
@@ -270,8 +270,8 @@ static int ov74_021D1178 (UnkStruct_ov74_021D0D80 * param0)
 {
     switch (param0->unk_08) {
     case 0:
-        sub_02017798(NULL, NULL);
-        sub_020177A4();
+        SetMainCallback(NULL, NULL);
+        DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
 
@@ -294,7 +294,7 @@ static int ov74_021D1178 (UnkStruct_ov74_021D0D80 * param0)
         sub_0201DBEC(32, param0->unk_00);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
         sub_020397E4();
-        sub_02017798(ov74_021D1118, param0);
+        SetMainCallback(ov74_021D1118, param0);
         param0->unk_08 = 0;
         return 1;
     }
@@ -323,8 +323,8 @@ static int ov74_021D122C (UnkStruct_ov74_021D0D80 * param0)
         ov74_021D135C(param0);
         break;
     case 1:
-        sub_02017798(NULL, NULL);
-        sub_020177A4();
+        SetMainCallback(NULL, NULL);
+        DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
 

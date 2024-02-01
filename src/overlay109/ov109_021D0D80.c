@@ -307,8 +307,8 @@ typedef struct UnkStruct_ov109_021D0F70_t {
     NNSG2dScreenData * unk_D88;
     NNSG2dCharacterData * unk_D8C;
     NNSG2dPaletteData * unk_D90;
-    UnkStruct_0200C6E4 * unk_D94;
-    UnkStruct_0200C704 * unk_D98;
+    CellTransferStateData * unk_D94;
+    AnimationResourceCollection * unk_D98;
     PaletteSys * unk_D9C;
     GXRgb unk_DA0[8];
     SysTask * unk_DB0;
@@ -447,9 +447,9 @@ int ov109_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_0209C194 * v1 = sub_02006840(param0);
 
     sub_020388F4(1, 1);
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
-    sub_02017DE0(2);
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
+    ResetLock(2);
     Heap_Create(3, 95, 0x80000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov109_021D0F70), 95);
@@ -465,7 +465,7 @@ int ov109_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     sub_0201E3D8();
     sub_0201E450(4);
     ov109_021D1C28(v0);
-    sub_02017798(ov109_021D1C00, v0);
+    SetMainCallback(ov109_021D1C00, v0);
     ov109_021D29CC(v0);
     ov109_021D2AF0(v0);
 
@@ -520,12 +520,12 @@ int ov109_021D0EB4 (UnkStruct_020067E8 * param0, int * param1)
     ov109_021D2AF8(v0);
     ov109_021D1C68(v0);
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     sub_0201DC3C();
     NARC_dtor(v0->unk_D80);
     sub_02006830(param0);
     Heap_Destroy(95);
-    sub_02017DF0(2);
+    ResetUnlock(2);
 
     return 1;
 }
@@ -1369,7 +1369,7 @@ static int ov109_021D1A14 (UnkStruct_ov109_021D0F70 * param0)
     ov109_021D2634(param0, 11);
     sub_020364F0(202);
 
-    gCoreSys.unk_68 = 1;
+    gCoreSys.inhibitReset = 1;
     param0->unk_00 = 44;
 
     return 0;
@@ -1393,7 +1393,7 @@ static int ov109_021D1AA8 (UnkStruct_ov109_021D0F70 * param0)
         param0->unk_CC->unk_14.unk_08, 2, &param0->unk_04);
 
     if (v0) {
-        gCoreSys.unk_68 = 0;
+        gCoreSys.inhibitReset = 0;
         sub_0200EBA0(param0->unk_DC8);
         param0->unk_00 = 48;
     }
@@ -1963,8 +1963,8 @@ static void ov109_021D2368 (UnkStruct_ov109_021D0F70 * param0)
 
 static void ov109_021D2408 (UnkStruct_ov109_021D0F70 * param0)
 {
-    UnkStruct_0200C6E4 * v0 = param0->unk_D94;
-    UnkStruct_0200C704 * v1 = param0->unk_D98;
+    CellTransferStateData * v0 = param0->unk_D94;
+    AnimationResourceCollection * v1 = param0->unk_D98;
     PaletteSys * v2 = param0->unk_D9C;
     NARC * v3 = param0->unk_D80;
 

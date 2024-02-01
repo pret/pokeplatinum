@@ -68,7 +68,7 @@ typedef struct {
     int unk_20;
     BOOL unk_24[4];
     UnkStruct_ov97_02237AEC unk_34;
-    UnkStruct_02022550 * unk_26C;
+    GraphicElementData * unk_26C;
     int unk_270;
     fx32 unk_274;
     u8 unk_278[3200];
@@ -396,7 +396,7 @@ void ov97_02237B0C (int param0, int param1, int param2, int param3, int param4, 
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     }
 
-    sub_02017798(ov97_02237E58, NULL);
+    SetMainCallback(ov97_02237E58, NULL);
 }
 
 void ov97_02237C80 (fx32 param0, fx32 param1)
@@ -439,7 +439,7 @@ void ov97_02237CAC (int param0)
     }
 }
 
-UnkStruct_02022550 * ov97_02237D14 (int param0, UnkStruct_02022550 * param1, int param2, int param3, int param4)
+GraphicElementData * ov97_02237D14 (int param0, GraphicElementData * param1, int param2, int param3, int param4)
 {
     UnkStruct_ov97_0223F550 * v0 = &Unk_ov97_0223F550;
 
@@ -513,7 +513,7 @@ void ov97_02237DA0 (void)
     sub_0201E958();
     sub_0201F8B4();
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
 }
 
 u32 ov97_02237E4C (int param0)
@@ -573,7 +573,7 @@ static int ov97_02237EA8 (int param0)
     return 0;
 }
 
-static void ov97_02237EF8 (UnkStruct_02022550 * param0, Pokemon * param1, int param2, int param3, u8 * param4, ArchivedSprite * param5)
+static void ov97_02237EF8 (GraphicElementData * param0, Pokemon * param1, int param2, int param3, u8 * param4, ArchivedSprite * param5)
 {
     int v0, v1;
     u32 v2;
@@ -850,7 +850,7 @@ int ov97_0223847C (void)
 
     switch (v1->unk_14) {
     case 0:
-        sub_02017DE0(4);
+        ResetLock(4);
         sub_02024814(v1->unk_18, 2);
         v1->unk_14++;
         break;
@@ -866,7 +866,7 @@ int ov97_0223847C (void)
         }
 
         if ((v0 == 2) || (v0 == 3)) {
-            sub_02017DF0(4);
+            ResetUnlock(4);
         }
 
         return v0;
@@ -897,7 +897,7 @@ void ov97_0223850C (void)
 
     sub_02024850(v0->unk_18);
     v0->unk_14 = 3;
-    sub_02017DF0(4);
+    ResetUnlock(4);
 }
 
 int ov97_02238528 (void)

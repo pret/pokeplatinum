@@ -40,7 +40,7 @@
 #include "unk_0200B29C.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
@@ -366,7 +366,7 @@ typedef struct {
     SaveData * unk_08;
     UnkStruct_02026324 * unk_0C;
     TrainerInfo * unk_10;
-    UnkStruct_020279FC * unk_14;
+    AnimationControlFlags * unk_14;
     Window unk_18;
     Window unk_28;
     Window unk_38;
@@ -385,7 +385,7 @@ typedef struct {
     int unk_168;
     u8 unk_16C[12288];
     UnkStruct_020067E8 * unk_316C;
-    UnkStruct_02022550 * unk_3170;
+    GraphicElementData * unk_3170;
     MysteryGift * unk_3174;
     int unk_3178;
     int unk_317C;
@@ -840,7 +840,7 @@ static void ov97_0222C974 (UnkStruct_ov97_0222C388 * param0)
     v4->unk_34A[1] = 0;
     v4->unk_34A[2] = 0;
     v4->unk_350 = 0;
-    sub_020138A4(&v0);
+    GetCurrentDate(&v0);
     v4->unk_354 = RTC_ConvertDateToDay(&v0);
 
     sub_0200B3F0(v2);

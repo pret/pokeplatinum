@@ -34,9 +34,9 @@ struct UnkStruct_0207AE68_t {
     Sprite * unk_1C[2];
     Party * unk_24;
     Pokemon * unk_28;
-    UnkStruct_020279FC * unk_2C;
+    AnimationControlFlags * unk_2C;
     UnkStruct_0207C8C4 * unk_30;
-    UnkStruct_0207C690 * unk_34;
+    GenericPointerData * unk_34;
     UnkStruct_020067E8 * unk_38;
     UnkStruct_02098D38 * unk_3C;
     void * unk_40;

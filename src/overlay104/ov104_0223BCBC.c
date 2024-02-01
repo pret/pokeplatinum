@@ -254,8 +254,8 @@ BattleParams * ov104_0223BDD8 (UnkStruct_ov104_0223BFFC * param0, UnkStruct_ov10
         break;
     }
 
-    sub_02097284(param0->unk_70);
-    sub_02097284(param0->unk_74);
+    HealAllPokemonInParty(param0->unk_70);
+    HealAllPokemonInParty(param0->unk_74);
 
     return v5;
 }
@@ -294,7 +294,7 @@ BOOL ov104_0223C000 (u8 param0)
 
 void ov104_0223C010 (UnkStruct_ov104_0223BFFC * param0, Pokemon * param1)
 {
-    sub_02077EE4(param1, sub_02025E38(param0->unk_04), 4, 0, 0, 11);
+    Pokemon_UpdateAfterCatch(param1, sub_02025E38(param0->unk_04), 4, 0, 0, 11);
     return;
 }
 

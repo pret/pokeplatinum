@@ -144,8 +144,8 @@ static int sub_0208C330 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_0208D7BC * v0;
     NARC * v1;
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -189,7 +189,7 @@ static int sub_0208C330 (UnkStruct_020067E8 * param0, int * param1)
     sub_0208D678(v0);
     sub_020920C0(v0);
     sub_020917E0(v0);
-    sub_02017798(sub_0208C604, v0);
+    SetMainCallback(sub_0208C604, v0);
     GXLayers_TurnBothDispOn();
     sub_02004550(61, 0, 0);
     sub_020397E4();
@@ -281,7 +281,7 @@ static int sub_0208C5A0 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_0208D7BC * v0 = sub_0200682C(param0);
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     sub_020917B0(v0);
     sub_0208EAF4(v0);
     sub_0208FE88(v0);
@@ -1102,9 +1102,9 @@ static void sub_0208D200 (UnkStruct_0208D7BC * param0, Pokemon * param1, UnkStru
     param2->unk_4E = Pokemon_GetValue(param1, MON_DATA_FORM, NULL);
     param2->unk_50_0 = sub_0208E9F0(param1);
 
-    if (sub_020778F8(param1) == 1) {
+    if (Pokemon_CanSpreadPokerus(param1) == 1) {
         param2->unk_50_30 = 2;
-    } else if (sub_020778D8(param1) == 1) {
+    } else if (Pokemon_InfectedWithPokerus(param1) == 1) {
         param2->unk_50_30 = 1;
 
         if (param2->unk_50_0 == 7) {
@@ -1147,7 +1147,7 @@ static void sub_0208D618 (UnkStruct_0208D7BC * param0)
     PokeSprite_LoadCryDelay(param0->unk_6A0, &v0, param0->unk_250.unk_0C, 1);
 
     if (param0->unk_250.unk_0C == 441) {
-        sub_02006438(param0->unk_24C->unk_28, 0, 100, 0, v0);
+        Sound_PlayDelayedChatotCry(param0->unk_24C->unk_28, 0, 100, 0, v0);
     } else {
         sub_0200590C(param0->unk_250.unk_0C, v0, param0->unk_250.unk_4E);
     }

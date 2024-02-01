@@ -12,7 +12,7 @@
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
-#include "struct_decls/struct_0202CC84_decl.h"
+#include "struct_defs/chatot_cry.h"
 #include "struct_decls/battle_system.h"
 #include "overlay012/struct_ov12_0222118C_decl.h"
 #include "overlay012/struct_ov12_022211D8_decl.h"
@@ -74,7 +74,7 @@ typedef struct UnkStruct_ov12_02223178_t {
     int unk_18;
     UnkStruct_02014014 * unk_1C[16];
     UnkSPLStruct6 * unk_5C[20];
-    UnkStruct_0200C6E4 * unk_AC;
+    CellTransferStateData * unk_AC;
     UnkStruct_ov16_0223E0C8 * unk_B0[4];
     u8 unk_C0[4];
     Sprite * unk_C4[4];
@@ -85,7 +85,7 @@ typedef struct UnkStruct_ov12_02223178_t {
     u8 unk_E8[4];
     u32 unk_EC[4];
     u32 unk_FC[4];
-    UnkStruct_0202CC84 * unk_10C;
+    ChatotCry * unk_10C;
     u8 * unk_110;
     u16 * unk_114;
     int unk_118;
@@ -100,7 +100,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_ov12_0221FCDC * unk_00;
-    UnkStruct_0200C704 * unk_04;
+    AnimationResourceCollection * unk_04;
     CellActorData * unk_08;
     BOOL unk_0C;
 } UnkStruct_ov12_02221810;
@@ -127,10 +127,10 @@ typedef struct UnkStruct_ov12_0221FCDC_t {
     UnkStruct_ov12_02223178 * unk_BC;
     BGL * unk_C0;
     PaletteSys * unk_C4;
-    UnkStruct_0200C704 * unk_C8[4];
+    AnimationResourceCollection * unk_C8[4];
     CellActorData * unk_D8[10];
     UnkStruct_ov104_0223F9E0 unk_100;
-    UnkStruct_0200C704 * unk_134;
+    AnimationResourceCollection * unk_134;
     CellActorData * unk_138[5];
     BOOL unk_14C[5];
     UnkStruct_ov12_0222118C * unk_160[5];
@@ -768,18 +768,18 @@ CellActorData * ov12_022202C0 (UnkStruct_ov12_0221FCDC * param0, int param1)
     return param0->unk_138[param1];
 }
 
-UnkStruct_0200C704 * ov12_022202EC (UnkStruct_ov12_0221FCDC * param0)
+AnimationResourceCollection * ov12_022202EC (UnkStruct_ov12_0221FCDC * param0)
 {
     GF_ASSERT(param0 != NULL);
     return param0->unk_134;
 }
 
-UnkStruct_0200C704 * ov12_02220300 (UnkStruct_ov12_0221FCDC * param0)
+AnimationResourceCollection * ov12_02220300 (UnkStruct_ov12_0221FCDC * param0)
 {
     return param0->unk_C8[0];
 }
 
-UnkStruct_0200C6E4 * ov12_02220308 (UnkStruct_ov12_0221FCDC * param0)
+CellTransferStateData * ov12_02220308 (UnkStruct_ov12_0221FCDC * param0)
 {
     return param0->unk_BC->unk_AC;
 }
@@ -3836,7 +3836,7 @@ static void ov12_022230D4 (UnkStruct_ov12_0221FCDC * param0)
     v3 = param0->unk_BC->unk_D8[param0->unk_BC->unk_14];
     v4 = param0->unk_BC->unk_E8[param0->unk_BC->unk_14];
 
-    sub_02077D3C(param0->unk_BC->unk_10C, v0, v3, v4, v1, v2, param0->unk_BC->unk_118, param0->unk_00);
+    Pokemon_PlayCry(param0->unk_BC->unk_10C, v0, v3, v4, v1, v2, param0->unk_BC->unk_118, param0->unk_00);
 }
 
 static void ov12_02223134 (UnkStruct_ov12_0221FCDC * param0)

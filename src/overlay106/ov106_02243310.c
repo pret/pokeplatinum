@@ -23,7 +23,7 @@
 #include "overlay106/ov106_02243310.h"
 
 void ov106_02243310(UnkStruct_ov106_02243310 * param0, Pokemon * param1);
-UnkStruct_02022550 * ov106_022434BC(UnkStruct_ov106_02243310 * param0, u32 param1, u32 param2, u32 param3, u8 param4);
+GraphicElementData * ov106_022434BC(UnkStruct_ov106_02243310 * param0, u32 param1, u32 param2, u32 param3, u8 param4);
 void ov106_02243570(UnkStruct_ov106_02243310 * param0);
 static void ov106_022435C8(void);
 
@@ -73,11 +73,11 @@ void ov106_02243310 (UnkStruct_ov106_02243310 * param0, Pokemon * param1)
     return;
 }
 
-UnkStruct_02022550 * ov106_022434BC (UnkStruct_ov106_02243310 * param0, u32 param1, u32 param2, u32 param3, u8 param4)
+GraphicElementData * ov106_022434BC (UnkStruct_ov106_02243310 * param0, u32 param1, u32 param2, u32 param3, u8 param4)
 {
     int v0;
     UnkStruct_ov19_021DA864 v1;
-    UnkStruct_02022550 * v2;
+    GraphicElementData * v2;
 
     sub_020093B4(&v1, param1, param1, param1, param1, 0xffffffff, 0xffffffff, 0, 1, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 

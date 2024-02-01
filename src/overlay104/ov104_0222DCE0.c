@@ -42,8 +42,8 @@
 #include "overlay104/ov104_0222DCE0.h"
 
 void ov104_0222E1C0(SaveData * param0, Party * param1, Pokemon * param2);
-void ov104_0222E1D8(UnkStruct_02022550 * param0, u8 param1);
-void ov104_0222E204(UnkStruct_02022550 * param0, s16 param1, s16 param2, u8 param3);
+void ov104_0222E1D8(GraphicElementData * param0, u8 param1);
+void ov104_0222E204(GraphicElementData * param0, s16 param1, s16 param2, u8 param3);
 u8 ov104_0222E240(u16 param0, u16 param1);
 void ov104_0222E278(UnkStruct_ov104_0223A348 * param0, u16 param1, int param2, int param3);
 void ov104_0222E284(BattleParams * param0, UnkStruct_ov104_0223A348_sub1 * param1, int param2, int param3, int param4);
@@ -361,7 +361,7 @@ void ov104_0222E134 (SaveData * param0, Pokemon * param1)
     TrainerInfo * v5 = sub_02025E38(param0);
 
     v0 = Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL);
-    sub_02077EE4(param1, sub_02025E38(param0), 4, 0, 0, 11);
+    Pokemon_UpdateAfterCatch(param1, sub_02025E38(param0), 4, 0, 0, 11);
 
     v3 = sub_0203A138(562);
     sub_0209304C(param1, v5, v4, v3, 11);
@@ -385,7 +385,7 @@ void ov104_0222E1C0 (SaveData * param0, Party * param1, Pokemon * param2)
     return;
 }
 
-void ov104_0222E1D8 (UnkStruct_02022550 * param0, u8 param1)
+void ov104_0222E1D8 (GraphicElementData * param0, u8 param1)
 {
     if (sub_02021E24(param0) == param1) {
         return;
@@ -397,7 +397,7 @@ void ov104_0222E1D8 (UnkStruct_02022550 * param0, u8 param1)
     return;
 }
 
-void ov104_0222E204 (UnkStruct_02022550 * param0, s16 param1, s16 param2, u8 param3)
+void ov104_0222E204 (GraphicElementData * param0, s16 param1, s16 param2, u8 param3)
 {
     VecFx32 v0;
 

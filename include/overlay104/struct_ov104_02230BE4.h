@@ -10,7 +10,7 @@
 
 typedef struct {
     void * unk_00;
-    const UnkStruct_020279FC * unk_04;
+    const AnimationControlFlags * unk_04;
     SaveData * unk_08;
     UnkStruct_0202B628 * unk_0C;
     UnkStruct_0207D99C * unk_10;

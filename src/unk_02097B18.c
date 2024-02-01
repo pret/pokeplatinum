@@ -62,7 +62,7 @@ typedef struct {
     UnkStruct_ov76_0223DE00 * unk_00;
     UnkStruct_02097F38_sub1 * unk_04;
     UnkStruct_02097F18 * unk_08;
-    UnkStruct_02098C44 * unk_0C;
+    PartyManagementData * unk_0C;
     SaveData * unk_10;
     int unk_14;
 } UnkStruct_02097F38;
@@ -181,7 +181,7 @@ static int sub_02097B18 (UnkStruct_020067E8 * param0, int * param1)
     }
 
     ov76_0223DCC0(v0);
-    sub_02017798(ov76_0223ECB0, v0);
+    SetMainCallback(ov76_0223ECB0, v0);
     ov76_0223B8A8(v0);
     sub_02004550(59, 0, 0);
 
@@ -369,7 +369,7 @@ static BOOL sub_02097F38 (UnkStruct_020508D4 * param0)
     break;
     case 3:
     {
-        UnkStruct_02098C44 * v6 = v0->unk_0C;
+        PartyManagementData * v6 = v0->unk_0C;
 
         v6->unk_00 = v1->unk_1C;
         v6->unk_04 = sub_0207D990(v0->unk_10);
@@ -385,7 +385,7 @@ static BOOL sub_02097F38 (UnkStruct_020508D4 * param0)
     break;
     case 4:
     {
-        UnkStruct_02098C44 * v7 = v0->unk_0C;
+        PartyManagementData * v7 = v0->unk_0C;
         Pokemon * v8;
         UnkStruct_0202CA28 * v9;
         UnkStruct_0202CA64 * v10;
@@ -436,8 +436,8 @@ void sub_020980DC (UnkStruct_020508D4 * param0, SaveData * param1)
     memset(v0->unk_08, 0, sizeof(UnkStruct_02097F18));
     v0->unk_08->unk_24 = sub_02025E44(param1);
     v0->unk_08->unk_28 = param1;
-    v0->unk_0C = Heap_AllocFromHeap(11, sizeof(UnkStruct_02098C44));
-    memset(v0->unk_0C, 0, sizeof(UnkStruct_02098C44));
+    v0->unk_0C = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
+    memset(v0->unk_0C, 0, sizeof(PartyManagementData));
 
     sub_02050944(param0, sub_02097F38, v0);
 }

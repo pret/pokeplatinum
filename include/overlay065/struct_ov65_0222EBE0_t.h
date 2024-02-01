@@ -32,9 +32,9 @@ struct UnkStruct_ov65_0222EBE0_t {
     u8 unk_2C[32];
     int unk_4C[32];
     int unk_CC[32];
-    UnkStruct_02013A04 * unk_14C;
+    ResourceMetadata * unk_14C;
     UnkStruct_0200112C * unk_150;
-    UnkStruct_02013A04 * unk_154;
+    ResourceMetadata * unk_154;
     UnkStruct_0200112C * unk_158;
     BGL * unk_15C;
     SaveData * unk_160;
@@ -46,9 +46,9 @@ struct UnkStruct_ov65_0222EBE0_t {
     Strbuf* unk_178;
     Strbuf* unk_17C;
     int unk_180;
-    UnkStruct_02001AF4 * unk_184;
+    UIControlData * unk_184;
     void * unk_188;
-    UnkStruct_020218BC * unk_18C;
+    GraphicElementManager * unk_18C;
     UnkStruct_0200C738 unk_190;
     UnkStruct_02009714 * unk_31C[4];
     UnkStruct_02012744 * unk_32C;

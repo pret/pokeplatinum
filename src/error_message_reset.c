@@ -118,8 +118,8 @@ void ErrorMessageReset_PrintErrorAndReset (void)
     OS_SetIrqFunction(OS_IE_V_BLANK, VBlankIntr);
     OS_EnableIrqMask(OS_IE_V_BLANK);
 
-    sub_02017798(NULL, NULL);
-    sub_020177BC(NULL, NULL);
+    SetMainCallback(NULL, NULL);
+    SetHBlankCallback(NULL, NULL);
 
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -167,7 +167,7 @@ void ErrorMessageReset_PrintErrorAndReset (void)
     sub_02037DB0();
 
     while (TRUE) {
-        sub_0200106C();
+        HandleConsoleFold();
         sub_020349EC();
 
         if (sub_02038AB8()) {
@@ -178,7 +178,7 @@ void ErrorMessageReset_PrintErrorAndReset (void)
     }
 
     while (TRUE) {
-        sub_0200106C();
+        HandleConsoleFold();
 
         if (PAD_Read() & PAD_BUTTON_A) {
             break;

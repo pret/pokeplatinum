@@ -6,7 +6,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 
 typedef struct {
-    UnkStruct_020218BC * unk_00;
+    GraphicElementManager * unk_00;
     UnkStruct_0200C738 unk_04;
     UnkStruct_02009714 * unk_190[4];
 } UnkStruct_ov83_0223D784;

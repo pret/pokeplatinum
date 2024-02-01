@@ -76,7 +76,7 @@ void ov76_0223C32C(UnkStruct_ov76_0223DE00 * param0);
 void ov76_0223C354(UnkStruct_ov76_0223DE00 * param0);
 void ov76_0223C398(UnkStruct_ov76_0223C398 * param0);
 void ov76_0223C424(UnkStruct_ov76_0223C398 * param0);
-void ov76_0223C5A4(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, PaletteSys * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, NARC * param10);
+void ov76_0223C5A4(CellTransferStateData * param0, AnimationResourceCollection * param1, PaletteSys * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, NARC * param10);
 void ov76_0223C61C(UnkStruct_ov76_0223DE00 * param0, NARC * param1);
 void ov76_0223C7E0(UnkStruct_ov76_0223DE00 * param0);
 void ov76_0223C80C(UnkStruct_ov76_0223DE00 * param0, int param1, int param2);
@@ -238,8 +238,8 @@ void ov76_0223BB04 (UnkStruct_ov76_0223DE00 * param0)
 {
     int v0;
     int v1;
-    UnkStruct_0200C6E4 * v2;
-    UnkStruct_0200C704 * v3;
+    CellTransferStateData * v2;
+    AnimationResourceCollection * v3;
     PaletteSys * v4;
 
     v2 = param0->unk_D4.unk_08;
@@ -261,8 +261,8 @@ void ov76_0223BBAC (UnkStruct_ov76_0223DE00 * param0)
     int v0;
     UnkStruct_ov76_0223BBAC * v1;
     UnkStruct_ov104_0223F9E0 v2;
-    UnkStruct_0200C6E4 * v3;
-    UnkStruct_0200C704 * v4;
+    CellTransferStateData * v3;
+    AnimationResourceCollection * v4;
     PaletteSys * v5;
 
     v3 = param0->unk_D4.unk_08;
@@ -389,9 +389,9 @@ void ov76_0223BD30 (UnkStruct_ov76_0223DE00 * param0, s8 param1, int param2)
     SysTask_Start(ov76_0223BCA0, v0, 0x1000);
 }
 
-UnkStruct_0207C690 * ov76_0223BE6C (void)
+GenericPointerData * ov76_0223BE6C (void)
 {
-    UnkStruct_0207C690 * v0;
+    GenericPointerData * v0;
 
     v0 = sub_02024220(53, 0, 2, 0, 2, ov76_0223BE8C);
     return v0;
@@ -541,8 +541,8 @@ void ov76_0223C0EC (int param0, s16 * param1, s16 * param2)
 
 void ov76_0223C110 (UnkStruct_ov76_0223DE00 * param0)
 {
-    UnkStruct_0200C6E4 * v0;
-    UnkStruct_0200C704 * v1;
+    CellTransferStateData * v0;
+    AnimationResourceCollection * v1;
     PaletteSys * v2;
 
     v0 = param0->unk_D4.unk_08;
@@ -769,7 +769,7 @@ void ov76_0223C588 (UnkStruct_ov76_0223DE00 * param0)
     }
 }
 
-void ov76_0223C5A4 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, PaletteSys * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, NARC * param10)
+void ov76_0223C5A4 (CellTransferStateData * param0, AnimationResourceCollection * param1, PaletteSys * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, NARC * param10)
 {
     sub_0200CC3C(param0, param1, param10, param3, 1, param7, (param3 + 11000));
     sub_0200CDC4(param2, param8, param0, param1, param10, param4, 0, param9, param7, (param4 + 11000));
@@ -1143,8 +1143,8 @@ void ov76_0223CF88 (UnkStruct_ov76_0223DE00 * param0, NARC * param1)
 
 void ov76_0223CFEC (UnkStruct_ov76_0223DE00 * param0, NARC * param1)
 {
-    UnkStruct_0200C6E4 * v0;
-    UnkStruct_0200C704 * v1;
+    CellTransferStateData * v0;
+    AnimationResourceCollection * v1;
     PaletteSys * v2;
 
     v0 = param0->unk_D4.unk_08;
@@ -1171,8 +1171,8 @@ void ov76_0223D16C (UnkStruct_ov76_0223DE00 * param0)
     int v0;
     UnkStruct_ov76_0223BBAC * v1;
     UnkStruct_ov104_0223F9E0 v2;
-    UnkStruct_0200C6E4 * v3;
-    UnkStruct_0200C704 * v4;
+    CellTransferStateData * v3;
+    AnimationResourceCollection * v4;
     PaletteSys * v5;
 
     v3 = param0->unk_D4.unk_08;

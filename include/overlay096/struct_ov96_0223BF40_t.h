@@ -60,14 +60,14 @@ struct UnkStruct_ov96_0223BF40_t {
     Strbuf* unk_BE8;
     Strbuf* unk_BEC;
     int unk_BF0;
-    UnkStruct_020218BC * unk_BF4;
+    GraphicElementManager * unk_BF4;
     UnkStruct_0200C738 unk_BF8;
     UnkStruct_02009714 * unk_D84[4];
     UnkStruct_02009DC8 * unk_D94[3][4];
     UnkStruct_ov19_021DA864 unk_DC4;
     UnkStruct_ov19_021DA864 unk_DE8;
     UnkStruct_ov19_021DA864 unk_E0C;
-    UnkStruct_02022550 * unk_E30[2];
+    GraphicElementData * unk_E30[2];
     Window unk_E38;
     Window unk_E48;
     Window unk_E58;
@@ -75,7 +75,7 @@ struct UnkStruct_ov96_0223BF40_t {
     Window unk_E78;
     Window unk_E88[3];
     Window unk_EB8[11];
-    UnkStruct_02001AF4 * unk_F68;
+    UIControlData * unk_F68;
     void * unk_F6C;
     int unk_F70;
     int unk_F74;

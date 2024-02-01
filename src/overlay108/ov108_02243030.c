@@ -31,7 +31,7 @@ static const u8 Unk_ov108_02243760[4] = {
 };
 
 void ov108_02243030(UnkStruct_ov108_02243030 * param0, Party * param1, Party * param2, u8 param3);
-UnkStruct_02022550 * ov108_022430F0(UnkStruct_ov108_02243030 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, u8 param7);
+GraphicElementData * ov108_022430F0(UnkStruct_ov108_02243030 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, u8 param7);
 void ov108_02243194(UnkStruct_ov108_02243030 * param0);
 static void ov108_022431FC(void);
 static void ov108_02243230(UnkStruct_ov108_02243030 * param0);
@@ -74,11 +74,11 @@ void ov108_02243030 (UnkStruct_ov108_02243030 * param0, Party * param1, Party * 
     return;
 }
 
-UnkStruct_02022550 * ov108_022430F0 (UnkStruct_ov108_02243030 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, u8 param7)
+GraphicElementData * ov108_022430F0 (UnkStruct_ov108_02243030 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, u8 param7)
 {
     int v0;
     UnkStruct_ov19_021DA864 v1;
-    UnkStruct_02022550 * v2;
+    GraphicElementData * v2;
 
     sub_020093B4(&v1, param1, param2, param3, param3, 0xffffffff, 0xffffffff, 0, param6, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 

@@ -110,7 +110,7 @@ typedef struct {
     int unk_72C;
     int unk_730;
     UnkStruct_02095C60 * unk_734;
-    const UnkStruct_020279FC * unk_738;
+    const AnimationControlFlags * unk_738;
     u32 unk_73C;
     Strbuf* unk_740;
     UnkStruct_0200B358 * unk_744;
@@ -155,8 +155,8 @@ static void ov22_02256B04(UnkStruct_ov22_02259C58 * param0, void * param1);
 static void ov22_02256B24(UnkStruct_ov22_02259C58 * param0, void * param1);
 static void ov22_02256B44(UnkStruct_ov22_02259C58 * param0, void * param1);
 static void ov22_02256B78(UnkStruct_ov22_02259C58 * param0, void * param1);
-static void ov22_02256BAC(UnkStruct_ov22_02255D44 * param0, const UnkStruct_020279FC * param1);
-static void ov22_02256BF4(UnkStruct_ov22_02255D44 * param0, int param1, int param2, UnkStruct_02095C60 * param3, const UnkStruct_020279FC * param4);
+static void ov22_02256BAC(UnkStruct_ov22_02255D44 * param0, const AnimationControlFlags * param1);
+static void ov22_02256BF4(UnkStruct_ov22_02255D44 * param0, int param1, int param2, UnkStruct_02095C60 * param3, const AnimationControlFlags * param4);
 static void ov22_02256C38(UnkStruct_ov22_02255D44 * param0);
 static void ov22_02256C48(UnkStruct_ov22_02255D44 * param0, BOOL * param1);
 static void ov22_02256C70(SysTask * param0, void * param1);
@@ -208,8 +208,8 @@ int ov22_02255D44 (UnkStruct_020067E8 * param0, int * param1)
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov22_02255D44), 13);
     memset(v0, 0, sizeof(UnkStruct_ov22_02255D44));
 
-    sub_02017798(ov22_02256940, v0);
-    sub_020177A4();
+    SetMainCallback(ov22_02256940, v0);
+    DisableHBlank();
 
     v2 = sub_02006840(param0);
     v0->unk_738 = v2->unk_0C;
@@ -400,8 +400,8 @@ int ov22_02256098 (UnkStruct_020067E8 * param0, int * param1)
     ov22_022594AC(&v0->unk_3C0);
     ov22_022566F4(v0);
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
 
     v1 = sub_0201E530();
     GF_ASSERT(v1 == 1);
@@ -425,8 +425,8 @@ int ov22_02256174 (UnkStruct_020067E8 * param0, int * param1)
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov22_02255D44), 13);
     memset(v0, 0, sizeof(UnkStruct_ov22_02255D44));
 
-    sub_02017798(ov22_02256940, v0);
-    sub_020177A4();
+    SetMainCallback(ov22_02256940, v0);
+    DisableHBlank();
 
     v2 = sub_02006840(param0);
 
@@ -661,8 +661,8 @@ int ov22_02256600 (UnkStruct_020067E8 * param0, int * param1)
     ov22_022594AC(&v0->unk_3C0);
     ov22_022566F4(v0);
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
 
     v1 = sub_0201E530();
     GF_ASSERT(v1 == 1);
@@ -935,7 +935,7 @@ static void ov22_02256B78 (UnkStruct_ov22_02259C58 * param0, void * param1)
     }
 }
 
-static void ov22_02256BAC (UnkStruct_ov22_02255D44 * param0, const UnkStruct_020279FC * param1)
+static void ov22_02256BAC (UnkStruct_ov22_02255D44 * param0, const AnimationControlFlags * param1)
 {
     UnkStruct_ov22_02256BAC v0;
 
@@ -951,7 +951,7 @@ static void ov22_02256BAC (UnkStruct_ov22_02255D44 * param0, const UnkStruct_020
     ov22_0225A428(&param0->unk_5C4, &v0, (1 | 2 | 4 | 8));
 }
 
-static void ov22_02256BF4 (UnkStruct_ov22_02255D44 * param0, int param1, int param2, UnkStruct_02095C60 * param3, const UnkStruct_020279FC * param4)
+static void ov22_02256BF4 (UnkStruct_ov22_02255D44 * param0, int param1, int param2, UnkStruct_02095C60 * param3, const AnimationControlFlags * param4)
 {
     UnkStruct_ov22_02256BAC v0;
     BOOL v1;

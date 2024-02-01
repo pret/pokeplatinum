@@ -1073,8 +1073,8 @@ static void ov62_0223ADC0 (UnkStruct_0208C06C * param0, int param1)
 static void ov62_0223AE60 (UnkStruct_0208C06C * param0)
 {
     UnkStruct_ov62_02239DBC * v0 = param0->unk_860;
-    UnkStruct_0200C6E4 * v1;
-    UnkStruct_0200C704 * v2;
+    CellTransferStateData * v1;
+    AnimationResourceCollection * v2;
     PaletteSys * v3;
     UnkStruct_ov104_0223F9E0 v4;
 

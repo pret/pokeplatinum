@@ -59,7 +59,7 @@ struct UnkStruct_ov95_02247628_t {
     UnkStruct_0200B358 * unk_0C;
     MessageLoader * unk_10;
     Strbuf* unk_14;
-    UnkStruct_020218BC * unk_18;
+    GraphicElementManager * unk_18;
     UnkStruct_0200C738 unk_1C;
     SysTask * unk_1A8;
     BOOL unk_1AC;
@@ -183,8 +183,8 @@ int ov95_02246C20 (UnkStruct_020067E8 * param0, int * param1)
             v0->unk_1B6 = BoxPokemon_GetValue((BoxPokemon *)(v0->unk_00->unk_04), MON_DATA_FORM, NULL);
             v0->unk_1B8 = NULL;
 
-            sub_02017798(NULL, NULL);
-            sub_020177A4();
+            SetMainCallback(NULL, NULL);
+            DisableHBlank();
             GXLayers_DisableEngineALayers();
             GXLayers_DisableEngineBLayers();
 
@@ -650,9 +650,9 @@ void ov95_022475C4 (UnkStruct_ov19_021DA864 * param0, UnkStruct_ov95_02247568 * 
     param0->unk_1C = 0;
 }
 
-UnkStruct_02022550 * ov95_022475E4 (UnkStruct_ov95_02247628 * param0, UnkStruct_ov19_021DA864 * param1, u32 param2, u32 param3, u32 param4, int param5)
+GraphicElementData * ov95_022475E4 (UnkStruct_ov95_02247628 * param0, UnkStruct_ov19_021DA864 * param1, u32 param2, u32 param3, u32 param4, int param5)
 {
-    UnkStruct_02022550 * v0;
+    GraphicElementData * v0;
     UnkStruct_ov83_0223D9A8 v1;
 
     v1.unk_00 = param0->unk_18;

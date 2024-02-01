@@ -101,7 +101,7 @@ typedef struct BallRotation {
     s8 unk_22;
     BOOL unk_24;
     BOOL unk_28;
-    UnkStruct_0200C704 * unk_2C;
+    AnimationResourceCollection * unk_2C;
     CellActorData * unk_30;
     UnkStruct_ov12_02225D50 unk_34;
     UnkStruct_ov12_02225F6C unk_48[2];

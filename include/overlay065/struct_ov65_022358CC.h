@@ -7,7 +7,7 @@
 #include "overlay065/struct_ov65_022358CC_sub1.h"
 
 typedef struct {
-    UnkStruct_020218BC * unk_00;
+    GraphicElementManager * unk_00;
     UnkStruct_0200C738 unk_04;
     UnkStruct_02009714 * unk_190[4];
     UnkStruct_ov65_022358CC_sub1 unk_1A0;

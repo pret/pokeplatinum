@@ -100,12 +100,12 @@ typedef struct {
 } UnkStruct_ov21_021E5C80;
 
 typedef struct {
-    UnkStruct_02022550 * unk_00;
-    UnkStruct_02022550 * unk_04;
+    GraphicElementData * unk_00;
+    GraphicElementData * unk_04;
     UnkStruct_ov21_021E5C80 unk_08;
-    UnkStruct_02022550 * unk_20;
+    GraphicElementData * unk_20;
     UnkStruct_ov21_021E5C80 unk_24;
-    UnkStruct_02022550 * unk_3C;
+    GraphicElementData * unk_3C;
     int unk_40;
     fx32 unk_44;
     int unk_48;
@@ -149,9 +149,9 @@ static void ov21_021E5DE8(UnkStruct_ov21_021E51DC * param0, UnkStruct_ov21_021E4
 static void ov21_021E5E18(UnkStruct_ov21_021E51DC * param0);
 static void ov21_021E5E48(UnkStruct_ov21_021E51DC * param0, UnkStruct_ov21_021E4D90 * param1);
 static void ov21_021E5E78(UnkStruct_ov21_021E51DC * param0, BOOL param1);
-static void ov21_021E5C80(UnkStruct_02022550 * param0, UnkStruct_ov21_021E5C80 * param1, BOOL param2, BOOL param3);
-static void ov21_021E5CF8(UnkStruct_02022550 * param0, UnkStruct_ov21_021E5C80 * param1, BOOL param2, int param3);
-static void ov21_021E5D90(UnkStruct_02022550 * param0, UnkStruct_ov21_021E5C80 * param1, BOOL param2);
+static void ov21_021E5C80(GraphicElementData * param0, UnkStruct_ov21_021E5C80 * param1, BOOL param2, BOOL param3);
+static void ov21_021E5CF8(GraphicElementData * param0, UnkStruct_ov21_021E5C80 * param1, BOOL param2, int param3);
+static void ov21_021E5D90(GraphicElementData * param0, UnkStruct_ov21_021E5C80 * param1, BOOL param2);
 static void ov21_021E59B4(UnkStruct_ov21_021E5004 * param0, const UnkStruct_ov21_021E51DC * param1);
 static void ov21_021E5A04(UnkStruct_ov21_021E5004 * param0, const UnkStruct_ov21_021E51DC * param1);
 static void ov21_021E5A2C(UnkStruct_ov21_021E5004 * param0, const UnkStruct_ov21_021E51DC * param1);
@@ -1168,7 +1168,7 @@ static void ov21_021E5C4C (UnkStruct_ov21_021E5004 * param0)
     }
 }
 
-static void ov21_021E5C80 (UnkStruct_02022550 * param0, UnkStruct_ov21_021E5C80 * param1, BOOL param2, int param3)
+static void ov21_021E5C80 (GraphicElementData * param0, UnkStruct_ov21_021E5C80 * param1, BOOL param2, int param3)
 {
     int v0;
 
@@ -1202,7 +1202,7 @@ static void ov21_021E5C80 (UnkStruct_02022550 * param0, UnkStruct_ov21_021E5C80 
     }
 }
 
-static void ov21_021E5CF8 (UnkStruct_02022550 * param0, UnkStruct_ov21_021E5C80 * param1, BOOL param2, int param3)
+static void ov21_021E5CF8 (GraphicElementData * param0, UnkStruct_ov21_021E5C80 * param1, BOOL param2, int param3)
 {
     int v0;
 
@@ -1241,7 +1241,7 @@ static void ov21_021E5CF8 (UnkStruct_02022550 * param0, UnkStruct_ov21_021E5C80 
     }
 }
 
-static void ov21_021E5D90 (UnkStruct_02022550 * param0, UnkStruct_ov21_021E5C80 * param1, BOOL param2)
+static void ov21_021E5D90 (GraphicElementData * param0, UnkStruct_ov21_021E5C80 * param1, BOOL param2)
 {
     int v0;
 
@@ -1266,7 +1266,7 @@ static void ov21_021E5DE8 (UnkStruct_ov21_021E51DC * param0, UnkStruct_ov21_021E
 {
     param0->unk_2C = 1;
 
-    sub_020059D0(13, param2, 0, 127, 0x1ff, 0);
+    Sound_PlayPokemonCry(13, param2, 0, 127, 0x1ff, 0);
     ov21_021E5F00(param0);
 }
 

@@ -74,8 +74,8 @@ static void ov100_021D1C98 (UnkStruct_ov100_021D1C98 * param0)
 {
     NARC * v0 = param0->unk_1EBC->unk_00;
     BGL * v1 = param0->unk_1EBC->unk_0C;
-    UnkStruct_0200C6E4 * v2 = param0->unk_1EBC->unk_04;
-    UnkStruct_0200C704 * v3 = param0->unk_1EBC->unk_08;
+    CellTransferStateData * v2 = param0->unk_1EBC->unk_04;
+    AnimationResourceCollection * v3 = param0->unk_1EBC->unk_08;
     PaletteSys * v4 = param0->unk_1EBC->unk_10;
     int v5 = 50000;
 
@@ -198,8 +198,8 @@ static void ov100_021D2250 (UnkStruct_ov100_021D1C98 * param0)
     int v0;
     NARC * v1 = param0->unk_1EBC->unk_00;
     BGL * v2 = param0->unk_1EBC->unk_0C;
-    UnkStruct_0200C6E4 * v3 = param0->unk_1EBC->unk_04;
-    UnkStruct_0200C704 * v4 = param0->unk_1EBC->unk_08;
+    CellTransferStateData * v3 = param0->unk_1EBC->unk_04;
+    AnimationResourceCollection * v4 = param0->unk_1EBC->unk_08;
     PaletteSys * v5 = param0->unk_1EBC->unk_10;
     UnkStruct_ov104_0223F9E0 v6;
 
@@ -515,11 +515,11 @@ BOOL ov100_021D2428 (void * param0)
         }
 
         if (v0->unk_04 == 15 + 25) {
-            sub_020059D0(0, 483, -80, 40, 111, 0);
+            Sound_PlayPokemonCry(0, 483, -80, 40, 111, 0);
         }
 
         if (v0->unk_04 == 40 + 25) {
-            sub_020059D0(0, 484, +80, 40, 111, 0);
+            Sound_PlayPokemonCry(0, 484, +80, 40, 111, 0);
         }
 
         if (v0->unk_04 < 15 + 25) {
@@ -557,7 +557,7 @@ BOOL ov100_021D2428 (void * param0)
 
         sub_02017348(&v0->unk_1A0.unk_934[1].unk_00, 0);
         sub_02017348(&v0->unk_1A0.unk_934[2].unk_00, 1);
-        sub_020059D0(2, 487, 0, 127, 111, 0);
+        Sound_PlayPokemonCry(2, 487, 0, 127, 111, 0);
 
         v0->unk_04 = 0;
         v0->unk_00++;
@@ -597,7 +597,7 @@ BOOL ov100_021D2428 (void * param0)
         break;
     case 19:
         if ((++v0->unk_04) == 238) {
-            sub_020059D0(2, 487, 0, 127, 111, 0);
+            Sound_PlayPokemonCry(2, 487, 0, 127, 111, 0);
         }
 
         if (v0->unk_04 == 170) {

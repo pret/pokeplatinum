@@ -50,14 +50,14 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov17_02253680 = {
     0x0
 };
 
-void ov17_02241270 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, NARC * param2)
+void ov17_02241270 (CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2)
 {
     sub_0200CC3C(param0, param1, param2, 42, 1, NNS_G2D_VRAM_TYPE_2DSUB, 33019);
     sub_0200CE24(param0, param1, param2, 43, 1, 33014);
     sub_0200CE54(param0, param1, param2, 44, 1, 33014);
 }
 
-CellActorData * ov17_022412C0 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, int param2)
+CellActorData * ov17_022412C0 (CellTransferStateData * param0, AnimationResourceCollection * param1, int param2)
 {
     CellActorData * v0;
 
@@ -68,7 +68,7 @@ CellActorData * ov17_022412C0 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 *
     return v0;
 }
 
-void ov17_022412F0 (UnkStruct_0200C704 * param0)
+void ov17_022412F0 (AnimationResourceCollection * param0)
 {
     sub_0200D070(param0, 33019);
     sub_0200D090(param0, 33014);
@@ -80,14 +80,14 @@ void ov17_02241314 (CellActorData * param0)
     sub_0200D0F4(param0);
 }
 
-void ov17_0224131C (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, NARC * param2)
+void ov17_0224131C (CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2)
 {
     sub_0200CC3C(param0, param1, param2, 45, 1, NNS_G2D_VRAM_TYPE_2DSUB, 33018);
     sub_0200CE24(param0, param1, param2, 46, 1, 33013);
     sub_0200CE54(param0, param1, param2, 47, 1, 33013);
 }
 
-CellActorData * ov17_0224136C (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, int param2, int param3, int param4)
+CellActorData * ov17_0224136C (CellTransferStateData * param0, AnimationResourceCollection * param1, int param2, int param3, int param4)
 {
     CellActorData * v0;
 
@@ -108,7 +108,7 @@ void ov17_022413AC (CellActorData * param0)
     sub_0200D0F4(param0);
 }
 
-void ov17_022413B4 (UnkStruct_0200C704 * param0)
+void ov17_022413B4 (AnimationResourceCollection * param0)
 {
     sub_0200D070(param0, 33018);
     sub_0200D090(param0, 33013);

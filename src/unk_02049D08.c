@@ -432,7 +432,7 @@ void sub_0204A358 (UnkStruct_0204AFC4 * param0, UnkStruct_020508D4 * param1, voi
 BOOL sub_0204A378 (UnkStruct_0204AFC4 * param0, void ** param1, SaveData * param2)
 {
     u16 v0 = 0;
-    UnkStruct_02098C44 * v1 = *param1;
+    PartyManagementData * v1 = *param1;
     Party * v2;
     Pokemon * v3;
 

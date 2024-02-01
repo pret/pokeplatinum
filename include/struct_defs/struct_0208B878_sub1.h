@@ -8,8 +8,8 @@
 
 typedef struct {
     NARC * unk_00;
-    UnkStruct_0200C6E4 * unk_04;
-    UnkStruct_0200C704 * unk_08;
+    CellTransferStateData * unk_04;
+    AnimationResourceCollection * unk_08;
     PaletteSys * unk_0C;
 } UnkStruct_0208B878_sub1;
 

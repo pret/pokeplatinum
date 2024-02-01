@@ -8,7 +8,7 @@ typedef struct {
     Party * unk_00;
     void * unk_04;
     void * unk_08;
-    UnkStruct_020279FC * unk_0C;
+    AnimationControlFlags * unk_0C;
     void * unk_10;
     void * unk_14;
     void * unk_18;
@@ -31,6 +31,6 @@ typedef struct {
     u16 unk_38;
     u8 padding_3A[2];
     int unk_3C;
-} UnkStruct_02098C44;
+} PartyManagementData;
 
 #endif // POKEPLATINUM_STRUCT_02098C44_H

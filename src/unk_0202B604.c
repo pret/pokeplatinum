@@ -11,7 +11,7 @@
 #include "struct_defs/struct_0202BF4C.h"
 #include "struct_defs/struct_0202BFCC.h"
 
-#include "unk_0201378C.h"
+#include "rtc.h"
 #include "heap.h"
 #include "unk_020244AC.h"
 #include "trainer_info.h"
@@ -146,7 +146,7 @@ UnkStruct_0202B628 * sub_0202B634 (UnkStruct_0202B628 * param0, BOOL param1)
         return NULL;
     }
 
-    sub_020138A4(&v0);
+    GetCurrentDate(&v0);
 
     if ((param0[0].unk_00.unk_00_7 != 0) && ((param0[0].unk_00.unk_00_0 != v0.year) || (param0[0].unk_00.unk_00_7 != v0.month) || (param0[0].unk_00.unk_00_14 != v0.day) || (param0[0].unk_00.unk_00_11 != v0.week))) {
         for (v1 = 10 - 1; v1 >= 1; v1--) {
@@ -169,14 +169,14 @@ BOOL sub_0202B6A4 (UnkStruct_0202B628 * param0, BOOL param1)
         return 0;
     }
 
-    sub_020138A4(&v1);
+    GetCurrentDate(&v1);
 
     v0.year = param0[0].unk_00.unk_00_0;
     v0.month = param0[0].unk_00.unk_00_7;
     v0.day = param0[0].unk_00.unk_00_14;
     v0.week = param0[0].unk_00.unk_00_11;
 
-    v2 = sub_02013900(&v1) - sub_02013900(&v0);
+    v2 = DayNumberForDate(&v1) - DayNumberForDate(&v0);
 
     if (((v1.month == 12) && (v1.day == 31) && (v0.month == 1) && (v0.day == 1)) || ((v1.month == 1) && (v1.day == 1) && (v0.month == 12) && (v0.day == 31))) {
         s32 v3 = (s32)v1.year - (s32)v0.year;
@@ -580,7 +580,7 @@ void * sub_0202BC58 (u16 param0, u32 param1)
     RTCDate v1;
 
     v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_0202BC58));
-    sub_020138A4(&v1);
+    GetCurrentDate(&v1);
 
     v0->unk_00_0 = v1.year;
     v0->unk_00_7 = v1.month;

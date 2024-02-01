@@ -75,10 +75,10 @@ typedef struct {
     UnkStruct_0203E234 * unk_0C;
     BGL * unk_10;
     Window unk_14;
-    UnkStruct_020218BC * unk_24;
+    GraphicElementManager * unk_24;
     UnkStruct_0200C738 unk_28;
-    UnkStruct_02022550 * unk_1B4[6];
-    UnkStruct_02022550 * unk_1CC;
+    GraphicElementData * unk_1B4[6];
+    GraphicElementData * unk_1CC;
     void * unk_1D0;
     void * unk_1D4;
     SpriteAnimationFrame unk_1D8[6][10];
@@ -128,14 +128,14 @@ typedef struct {
 
 typedef struct {
     UnkStruct_ov86_0223BDAC unk_00;
-    UnkStruct_02022550 * unk_08;
+    GraphicElementData * unk_08;
     VecFx32 unk_0C;
     UnkStruct_ov86_0223D264 unk_18;
 } UnkStruct_ov86_0223BDE0;
 
 typedef struct {
     UnkStruct_ov86_0223BDAC unk_00;
-    UnkStruct_02022550 * unk_08;
+    GraphicElementData * unk_08;
     VecFx32 unk_0C;
     UnkStruct_ov86_0223D264 unk_18;
 } UnkStruct_ov86_0223BEA0;
@@ -171,7 +171,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_ov86_0223BDAC unk_00;
-    UnkStruct_02022550 * unk_08;
+    GraphicElementData * unk_08;
     const SpriteAnimationFrame * unk_0C;
     UnkStruct_02008900 unk_10;
     NNSG2dImageProxy unk_24[2];
@@ -208,7 +208,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_ov86_0223BDAC unk_00;
-    UnkStruct_02022550 ** unk_08;
+    GraphicElementData ** unk_08;
     UnkStruct_ov86_0223B3C8 * unk_0C;
     int unk_10;
     int unk_14;
@@ -305,7 +305,7 @@ int ov86_0223B140 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov86_0223B3C8 * v0;
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     Heap_Create(3, 63, 196608);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov86_0223B3C8), 63);

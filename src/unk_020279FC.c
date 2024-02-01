@@ -11,24 +11,24 @@
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 
-UnkStruct_020279FC * sub_020279FC (u32 param0)
+AnimationControlFlags * sub_020279FC (u32 param0)
 {
-    UnkStruct_020279FC * v0;
+    AnimationControlFlags * v0;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_020279FC));
+    v0 = Heap_AllocFromHeap(param0, sizeof(AnimationControlFlags));
     sub_02027A1C(v0);
 
     return v0;
 }
 
-void sub_02027A10 (const UnkStruct_020279FC * param0, UnkStruct_020279FC * param1)
+void sub_02027A10 (const AnimationControlFlags * param0, AnimationControlFlags * param1)
 {
-    MI_CpuCopy8(param0, param1, sizeof(UnkStruct_020279FC));
+    MI_CpuCopy8(param0, param1, sizeof(AnimationControlFlags));
 }
 
-void sub_02027A1C (UnkStruct_020279FC * param0)
+void sub_02027A1C (AnimationControlFlags * param0)
 {
-    MI_CpuFill8(param0, 0, sizeof(UnkStruct_020279FC));
+    MI_CpuFill8(param0, 0, sizeof(AnimationControlFlags));
 
     param0->unk_00_0 = 1;
     param0->unk_00_4 = 0;
@@ -40,7 +40,7 @@ void sub_02027A1C (UnkStruct_020279FC * param0)
 
 void sub_02027A68 (SaveData * param0, int param1)
 {
-    UnkStruct_020279FC * v0;
+    AnimationControlFlags * v0;
 
     if (param0 != NULL) {
         param1 = sub_02027B30(sub_02025E44(param0));
@@ -60,17 +60,17 @@ void sub_02027A68 (SaveData * param0, int param1)
     }
 }
 
-int sub_02027AA4 (const UnkStruct_020279FC * param0)
+int sub_02027AA4 (const AnimationControlFlags * param0)
 {
     return param0->unk_00_0;
 }
 
-void sub_02027AAC (UnkStruct_020279FC * param0, int param1)
+void sub_02027AAC (AnimationControlFlags * param0, int param1)
 {
     param0->unk_00_0 = param1;
 }
 
-u8 sub_02027AC0 (const UnkStruct_020279FC * param0)
+u8 sub_02027AC0 (const AnimationControlFlags * param0)
 {
     int v0 = sub_02027AA4(param0);
 
@@ -83,52 +83,52 @@ u8 sub_02027AC0 (const UnkStruct_020279FC * param0)
     }
 }
 
-int sub_02027ADC (const UnkStruct_020279FC * param0)
+int sub_02027ADC (const AnimationControlFlags * param0)
 {
     return param0->unk_00_4;
 }
 
-void sub_02027AE4 (UnkStruct_020279FC * param0, int param1)
+void sub_02027AE4 (AnimationControlFlags * param0, int param1)
 {
     param0->unk_00_4 = param1;
 }
 
-int GameConfig_BattleAnimations (const UnkStruct_020279FC * param0)
+int GameConfig_BattleAnimations (const AnimationControlFlags * param0)
 {
     return param0->unk_00_7;
 }
 
-void sub_02027B00 (UnkStruct_020279FC * param0, int param1)
+void sub_02027B00 (AnimationControlFlags * param0, int param1)
 {
     param0->unk_00_7 = param1;
 }
 
-int sub_02027B14 (const UnkStruct_020279FC * param0)
+int sub_02027B14 (const AnimationControlFlags * param0)
 {
     return param0->unk_00_6;
 }
 
-void sub_02027B1C (UnkStruct_020279FC * param0, int param1)
+void sub_02027B1C (AnimationControlFlags * param0, int param1)
 {
     param0->unk_00_6 = param1;
 }
 
-int sub_02027B30 (const UnkStruct_020279FC * param0)
+int sub_02027B30 (const AnimationControlFlags * param0)
 {
     return param0->unk_02_0;
 }
 
-void sub_02027B38 (UnkStruct_020279FC * param0, int param1)
+void sub_02027B38 (AnimationControlFlags * param0, int param1)
 {
     param0->unk_02_0 = param1;
 }
 
-int sub_02027B50 (const UnkStruct_020279FC * param0)
+int sub_02027B50 (const AnimationControlFlags * param0)
 {
     return param0->unk_02_2;
 }
 
-void sub_02027B58 (UnkStruct_020279FC * param0, int param1)
+void sub_02027B58 (AnimationControlFlags * param0, int param1)
 {
     param0->unk_02_2 = param1;
 }

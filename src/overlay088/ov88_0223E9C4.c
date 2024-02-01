@@ -57,7 +57,7 @@ static const u16 Unk_ov88_0223F170[][2] = {
     {0x14, 0xA}
 };
 
-void ov88_0223E9C4 (BGL * param0, Window * param1, UnkStruct_020279FC * param2)
+void ov88_0223E9C4 (BGL * param0, Window * param1, AnimationControlFlags * param2)
 {
     int v0;
 
@@ -165,7 +165,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov88_0223F148 = {
     0x112
 };
 
-u32 ov88_0223ED2C (BGL * param0, UnkStruct_02001AF4 ** param1, int * param2)
+u32 ov88_0223ED2C (BGL * param0, UIControlData ** param1, int * param2)
 {
     u32 v0 = 0xffffffff;
 
@@ -212,7 +212,7 @@ static const UnkStruct_ov84_02240FA8 Unk_ov88_0223F150 = {
     NULL
 };
 
-UnkStruct_0200112C * ov88_0223ED94 (UnkStruct_02013A04 * param0, int param1, Window * param2, BGL * param3)
+UnkStruct_0200112C * ov88_0223ED94 (ResourceMetadata * param0, int param1, Window * param2, BGL * param3)
 {
     UnkStruct_0200112C * v0;
     UnkStruct_ov84_02240FA8 v1;

@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_POKEMON_H
 #define POKEPLATINUM_POKEMON_H
 
+#include "constants/sound.h"
+
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/sprite_animation_frame.h"
@@ -11,7 +13,7 @@
 #include "struct_decls/cell_actor_data.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_0202CC84_decl.h"
+#include "struct_defs/chatot_cry.h"
 #include "struct_decls/struct_02078B40_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "overlay005/struct_ov5_021DE5D0.h"
@@ -176,18 +178,20 @@ typedef struct BoxPokemon {
 
 /**
  * @brief Party Pokemon data structure
+ *  This is used to store stats for a pokemon while it is in the players party.
+ *  Rather than recalculating stats after each battle, they're stored here.
  */
 typedef struct PartyPokemon {
-    u32 unk_00;
-    u8 level;  //!< The pokemons level
-    u8 unk_05;
-    u16 unk_06;
-    u16 unk_08;
-    u16 unk_0A;
-    u16 unk_0C;
-    u16 unk_0E;
-    u16 unk_10;
-    u16 unk_12;
+    u32 status; //!< The pokemons status
+    u8 level; //!< The pokemons level
+    u8 mail; //!< The ID of the mail the pokemon is holding
+    u16 hp; //!< The pokemons current HP
+    u16 maxHP; //!< The pokemons maximum HP
+    u16 attack; //!< The pokemons Attack stat
+    u16 defense; //!< The pokemons Defense stat
+    u16 speed; //!< The pokemons Speed stat
+    u16 spAtk; //!< The pokemons Special Attack stat
+    u16 spDef; //!< The pokemons Special Defense stat
     UnkStruct_0202818C unk_14;
     UnkStruct_0202CA28 unk_4C;
 } PartyPokemon;
@@ -642,7 +646,7 @@ u8 BoxPokemon_SpriteYOffset(BoxPokemon *boxMon, u8 face, BOOL preferDP);
  */
 u8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 personality);
 void sub_0207697C(ArchivedSprite *param0, u16 param1);
-CellActorData *sub_02076994(UnkStruct_0200C6E4 *param0, UnkStruct_0200C704 *param1, PaletteSys *param2, int param3, int param4, int param5, int param6, int param7, int heapID);
+CellActorData *sub_02076994(CellTransferStateData *param0, AnimationResourceCollection *param1, PaletteSys *param2, int param3, int param4, int param5, int param6, int param7, int heapID);
 void sub_02076AAC(int param0, int param1, UnkStruct_ov5_021DE5D0 *param2);
 
 /**
@@ -797,10 +801,10 @@ int Pokemon_LoadLevelUpMoveIdsOf(int monSpecies, int monForm, u16 *monLevelUpMov
 
 void Pokemon_ApplyPokerus(Party *party);
 u8 Pokemon_HasPokerus(Party *party, u8 param1);
-void sub_020777B4(Party *party, s32 param1);
+void Party_UpdatePokerusStatus(Party *party, s32 param1);
 void Pokemon_ValidatePokerus(Party *party);
-BOOL sub_020778D8(Pokemon *mon);
-BOOL sub_020778F8(Pokemon *mon);
+BOOL Pokemon_InfectedWithPokerus(Pokemon *mon);
+BOOL Pokemon_CanSpreadPokerus(Pokemon *mon);
 
 /**
  * @brief Sets Arceus' form based on its held item. Has no effect if the given Pokemon is not an Arceus
@@ -919,14 +923,42 @@ BOOL Pokemon_SetRotomForm(Pokemon *mon, int monForm, int moveSlot);
  */
 void Pokemon_LoadLevelUpMovesOf(int monSpecies, int monForm, u16 *monLevelUpMoves);
 
-void sub_02077D3C(UnkStruct_0202CC84 *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7);
-void sub_02077DB4(UnkStruct_0202CC84 *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7, u8 param8);
-BOOL sub_02077E3C(Pokemon *mon);
+/**
+ * @brief Play a Pokemon's cry, according to the given species and form number.
+ * 
+ * @param chatotCry             Chatot cry data from the save block. Only used
+ *                              if the Pokemon itself is Chatot.
+ * @param crymod                Modification to apply to the Pokemon's cry.
+ * @param species 
+ * @param form 
+ * @param pan 
+ * @param volume 
+ * @param forceDefaultChatot    If TRUE, force usage of Chatot's default cry.
+ * @param heapID 
+ */
+void Pokemon_PlayCry(ChatotCry *chatotCry, enum PokemonCryMod crymod, u16 species, int form, int pan, int volume, int forceDefaultChatot, int heapID);
+
+/**
+ * @brief Play a Pokemon's cry, according to the given species and form number.
+ * 
+ * @param chatotCry             Chatot cry data from the save block. Only used
+ *                              if the Pokemon itself is Chatot.
+ * @param crymod                Modification to apply to the Pokemon's cry.
+ * @param species 
+ * @param form 
+ * @param pan 
+ * @param volume 
+ * @param forceDefaultChatot    If TRUE, force usage of Chatot's default cry.
+ * @param heapID 
+ * @param delay                 Number of frames until playback will begin.
+ */
+void Pokemon_PlayDelayedCry(ChatotCry *chatotCry, enum PokemonCryMod crymod, u16 species, int form, int pan, int volume, int forceDefaultChatot, int heapID, u8 delay);
+BOOL Pokemon_IsEligibleForAction(Pokemon *mon);
 void Pokemon_SetCatchData(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
-void sub_02077EE4(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
-void sub_02077F0C(Pokemon *mon, u32 param1, int param2);
+void Pokemon_UpdateAfterCatch(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
+void Pokemon_GiveHeldItem(Pokemon *mon, u32 param1, int param2);
 BOOL Pokemon_CanLearnTM(Pokemon *mon, u8 tmID);
-BOOL Pokemon_CanFormLearnTM(u16 monSpecies, int monForm, u8 tmID);
+BOOL CanPokemonFormLearnTM(u16 monSpecies, int monForm, u8 tmID);
 
 /**
  * @brief Sets the ability of a Pokemon based on its species, form and peronsality value

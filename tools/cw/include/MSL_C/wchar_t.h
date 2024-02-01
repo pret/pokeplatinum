@@ -27,6 +27,16 @@ typedef _MSL_WCHAR_T_TYPE wchar_t;
 }
         #endif
     #endif
+#elif __GNUC__
+        #ifdef __cplusplus
+extern "C" {
+        #endif
+
+typedef _MSL_WCHAR_T_TYPE wchar_t;
+
+        #ifdef __cplusplus
+}
+        #endif
 #endif
 
 #ifdef __cplusplus

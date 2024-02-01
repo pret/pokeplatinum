@@ -339,8 +339,8 @@ static int sub_0204F50C (UnkStruct_0204F470 * param0, UnkStruct_0203CDB0 * param
 {
     u8 v0;
 
-    UnkStruct_02098C44 * v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02098C44));
-    MI_CpuClearFast(v1, sizeof(UnkStruct_02098C44));
+    PartyManagementData * v1 = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
+    MI_CpuClearFast(v1, sizeof(PartyManagementData));
 
     v1->unk_00 = Party_GetFromSavedata(param1->unk_0C);
     v1->unk_04 = sub_0207D990(param1->unk_0C);
@@ -378,7 +378,7 @@ static int sub_0204F50C (UnkStruct_0204F470 * param0, UnkStruct_0203CDB0 * param
 static int sub_0204F5D8 (UnkStruct_0204F470 * param0, UnkStruct_0203CDB0 * param1)
 {
     int v0;
-    UnkStruct_02098C44 * v1;
+    PartyManagementData * v1;
 
     if (sub_020509B4(param1)) {
         return UnkEnum_0204F13C_2;

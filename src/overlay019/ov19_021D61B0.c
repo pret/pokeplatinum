@@ -66,7 +66,7 @@ struct UnkStruct_ov19_021D61B0_t {
     SysTask * unk_00;
     SysTask * unk_04;
     SysTask * unk_08[4];
-    UnkStruct_020218BC * unk_18;
+    GraphicElementManager * unk_18;
     UnkStruct_0200C738 unk_1C;
     NNSG2dImagePaletteProxy unk_1A8;
     UnkStruct_02007768 * unk_1BC;
@@ -174,8 +174,8 @@ BOOL ov19_021D61B0 (UnkStruct_ov19_021D61B0 ** param0, const UnkStruct_ov19_021D
 
             v3 = NARC_ctor(NARC_INDEX_GRAPHIC__BOX, 10);
 
-            sub_02017798(NULL, NULL);
-            sub_020177A4();
+            SetMainCallback(NULL, NULL);
+            DisableHBlank();
             GXLayers_DisableEngineALayers();
             GXLayers_DisableEngineBLayers();
 
@@ -245,7 +245,7 @@ static void ov19_021D6474 (SysTask * param0, void * param1)
 
 void ov19_021D64A0 (UnkStruct_ov19_021D61B0 * param0)
 {
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     SysTask_Done(param0->unk_00);
     SysTask_Done(param0->unk_04);
 
@@ -1940,10 +1940,10 @@ void ov19_021D783C (UnkStruct_ov19_021DA864 * param0, NNSG2dImageProxy * param1,
     param0->unk_1C = 0;
 }
 
-UnkStruct_02022550 * ov19_021D785C (UnkStruct_020218BC * param0, UnkStruct_ov19_021DA864 * param1, u32 param2, u32 param3, u32 param4, int param5)
+GraphicElementData * ov19_021D785C (GraphicElementManager * param0, UnkStruct_ov19_021DA864 * param1, u32 param2, u32 param3, u32 param4, int param5)
 {
     UnkStruct_ov83_0223D9A8 v0;
-    UnkStruct_02022550 * v1;
+    GraphicElementData * v1;
 
     v0.unk_00 = param0;
     v0.unk_04 = param1;
@@ -1969,7 +1969,7 @@ UnkStruct_02022550 * ov19_021D785C (UnkStruct_020218BC * param0, UnkStruct_ov19_
     return v1;
 }
 
-void ov19_021D78AC (UnkStruct_02022550 * param0, u32 param1)
+void ov19_021D78AC (GraphicElementData * param0, u32 param1)
 {
     OSIntrMode v0 = OS_DisableInterrupts();
 

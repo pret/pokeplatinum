@@ -32,8 +32,8 @@ typedef struct {
     UnkStruct_ov17_0224B09C unk_04[4];
     UnkStruct_02007768 * unk_44;
     Sprite * unk_48[4];
-    UnkStruct_0200C6E4 * unk_58;
-    UnkStruct_0200C704 * unk_5C;
+    CellTransferStateData * unk_58;
+    AnimationResourceCollection * unk_5C;
     BGL * unk_60;
     Window unk_64[2];
     MessageLoader * unk_84;

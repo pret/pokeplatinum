@@ -5,7 +5,7 @@
 #include "struct_defs/struct_0205AA50.h"
 
 typedef struct {
-    const UnkStruct_02013A04 * unk_00;
+    const ResourceMetadata * unk_00;
     Window * unk_04;
     u8 unk_08;
     u8 unk_09;

@@ -19,7 +19,7 @@
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_02027F8C_decl.h"
-#include "struct_decls/struct_0202CC84_decl.h"
+#include "struct_defs/chatot_cry.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_02056B24_decl.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -44,7 +44,7 @@
 #include <nnsys.h>
 
 struct BattleSystem {
-    UnkStruct_0207C690 * unk_00;
+    GenericPointerData * unk_00;
     BGL * unk_04;
     Window * unk_08;
     MessageLoader * unk_0C;
@@ -65,11 +65,11 @@ struct BattleSystem {
     UnkStruct_02026324 *pokedex;
     PCBoxes *pcBoxes;
     Party *parties[4];
-    UnkStruct_0202CC84 * unk_78[4];
+    ChatotCry * unk_78[4];
     UnkStruct_02007768 * unk_88;
     UnkStruct_ov12_0221FCDC * unk_8C;
-    UnkStruct_0200C6E4 * unk_90;
-    UnkStruct_0200C704 * unk_94;
+    CellTransferStateData * unk_90;
+    AnimationResourceCollection * unk_94;
     UnkStruct_02056B24 * unk_98;
     UnkStruct_0206D140 * unk_9C;
     u16 trainerIDs[4];
@@ -81,7 +81,7 @@ struct BattleSystem {
     UnkStruct_0200C440 * unk_1A4;
     UnkStruct_0200C440 * unk_1A8;
     void * unk_1AC;
-    UnkStruct_020279FC * unk_1B0;
+    AnimationControlFlags * unk_1B0;
     UnkStruct_02027F8C * unk_1B4;
     void * unk_1B8;
     UnkStruct_0209C370 * unk_1BC;

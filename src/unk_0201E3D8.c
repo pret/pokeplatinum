@@ -193,7 +193,7 @@ void sub_0201E5C0 (TPData * param0, u32 param1)
     }
 }
 
-void sub_0201E5FC (void)
+void AfterSleep (void)
 {
     u32 v0;
 
@@ -211,7 +211,7 @@ void sub_0201E5FC (void)
     Unk_021C0704.unk_5A = 0;
 }
 
-void sub_0201E630 (void)
+void BeforeSleep (void)
 {
     u32 v0;
 

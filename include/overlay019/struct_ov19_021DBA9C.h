@@ -18,7 +18,7 @@
 typedef struct {
     UnkStruct_ov19_021D61B0 * unk_00;
     BGL * unk_04;
-    UnkStruct_020218BC * unk_08;
+    GraphicElementManager * unk_08;
     const UnkStruct_ov19_021D4DF0 * unk_0C;
     Window * unk_10;
     void * unk_14;
@@ -32,8 +32,8 @@ typedef struct {
     NNSG2dScreenData * unk_38;
     UnkStruct_0201AE08 unk_3C;
     UnkStruct_0200C440 * unk_44;
-    UnkStruct_02022550 * unk_48[18];
-    UnkStruct_02022550 * unk_90;
+    GraphicElementData * unk_48[18];
+    GraphicElementData * unk_90;
     u32 unk_94[18];
     SysTask * unk_DC;
     s32 unk_E0;

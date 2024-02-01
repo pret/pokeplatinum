@@ -175,8 +175,8 @@ int ov59_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        sub_02017798(NULL, NULL);
-        sub_020177A4();
+        SetMainCallback(NULL, NULL);
+        DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
 
@@ -206,7 +206,7 @@ int ov59_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
         sub_0200F174(0, 17, 17, 0x0, 16, 1, 51);
 
         ov59_021D1388(v0, v1);
-        sub_02017798(ov59_021D1100, v0);
+        SetMainCallback(ov59_021D1100, v0);
 
         ov59_021D1250(v0, v1);
         ov59_021D1474();
@@ -330,7 +330,7 @@ int ov59_021D0FF4 (UnkStruct_020067E8 * param0, int * param1)
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
     sub_0205BEA8(0);
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     Heap_Destroy(51);
 
     return 1;
@@ -1090,7 +1090,7 @@ static int ov59_021D1DC8 (UnkStruct_020961E8 * param0, int param1)
 {
     void * v0;
 
-    gCoreSys.unk_68 = 1;
+    gCoreSys.inhibitReset = 1;
     v0 = sub_0202C1B4(51);
 
     sub_0202B758(param0->unk_08->unk_10, v0, 4);
@@ -1115,7 +1115,7 @@ static int ov59_021D1E0C (UnkStruct_020961E8 * param0, int param1)
 
         param0->unk_0C.unk_00 = 0;
         param0->unk_3B4 = 0;
-        gCoreSys.unk_68 = 0;
+        gCoreSys.inhibitReset = 0;
         param0->unk_4AA4 = 0;
     }
 

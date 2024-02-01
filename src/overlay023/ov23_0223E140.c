@@ -150,15 +150,15 @@ typedef struct {
     UnkStruct_0203CDB0 * unk_00;
     BGL * unk_04;
     MATHRandContext32 unk_08;
-    UnkStruct_020218BC * unk_20;
+    GraphicElementManager * unk_20;
     UnkStruct_0200C738 unk_24;
     UnkStruct_02009714 * unk_1B0[4];
     UnkStruct_02009DC8 * unk_1C0[8];
     UnkStruct_ov19_021DA864 unk_1E0;
     UnkStruct_ov19_021DA864 unk_204[2];
-    UnkStruct_02022550 * unk_24C[8];
+    GraphicElementData * unk_24C[8];
     UnkStruct_ov23_0223E6F8 unk_26C[250];
-    UnkStruct_02001AF4 * unk_848;
+    UIControlData * unk_848;
     UnkStruct_ov23_0223E6F8 * unk_84C[8];
     u8 unk_86C[8];
     UnkStruct_ov23_0223FC9C unk_874[8];
@@ -1321,7 +1321,7 @@ static void ov23_0223EE80 (UnkStruct_ov23_0223EE80 * param0)
     v1 = sub_02018340(29);
     Unk_ov23_02257740->unk_04 = v1;
 
-    sub_02017798(ov23_022411E8, v1);
+    SetMainCallback(ov23_022411E8, v1);
 
     ov23_02253E2C(ov23_0224219C(), v1, (512 - (18 + 12)), (((512 - (18 + 12)) - 73) - (27 * 4)));
     ov23_0223EC34(v1);
@@ -1404,7 +1404,7 @@ static void ov23_0223F020 (UnkStruct_ov23_0223EE80 * param0)
     sub_0201E958();
     sub_0201F8B4();
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     Heap_FreeToHeap(Unk_ov23_02257740->unk_04);
 
     Unk_ov23_02257740->unk_04 = NULL;

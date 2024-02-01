@@ -11,7 +11,7 @@ typedef struct {
     const TrainerInfo * unk_08;
     int unk_0C;
     int unk_10;
-    const UnkStruct_020279FC * unk_14;
+    const AnimationControlFlags * unk_14;
 } UnkStruct_ov6_02246254;
 
 #endif // POKEPLATINUM_STRUCT_OV6_02246254_H

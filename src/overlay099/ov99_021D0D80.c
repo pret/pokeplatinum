@@ -83,9 +83,9 @@ static void ov99_021D1380(BGL * param0);
 static void ov99_021D1720(UnkStruct_ov99_021D2CB0 * param0);
 static void ov99_021D1918(UnkStruct_ov99_021D2CB0 * param0);
 static void ov99_021D19A0(UnkStruct_ov99_021D2CB0 * param0);
-static UnkStruct_0207C690 * ov99_021D19AC(int param0);
+static GenericPointerData * ov99_021D19AC(int param0);
 static void ov99_021D19C8(void);
-static void ov99_021D1A4C(UnkStruct_0207C690 * param0);
+static void ov99_021D1A4C(GenericPointerData * param0);
 static void ov99_021D16E4(UnkStruct_ov99_021D2CB0 * param0);
 static void ov99_021D1270(UnkStruct_ov99_021D2CB0 * param0);
 static void ov99_021D1314(UnkStruct_ov99_021D2CB0 * param0);
@@ -95,8 +95,8 @@ int ov99_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov99_021D2CB0 * v0;
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -172,7 +172,7 @@ int ov99_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     v0->unk_14 = SysTask_Start(ov99_021D1244, v0, 60000);
 
-    sub_02017798(ov99_021D1350, v0);
+    SetMainCallback(ov99_021D1350, v0);
     sub_02004550(14, 1186, 1);
 
     sub_0200AB4C(-16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
@@ -284,8 +284,8 @@ int ov99_021D11A8 (UnkStruct_020067E8 * param0, int * param1)
     ov99_021D19A0(v0);
 
     NARC_dtor(v0->unk_10F8);
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     sub_0201DC3C();
     sub_0201E530();
     sub_02006830(param0);
@@ -774,9 +774,9 @@ static void ov99_021D19A0 (UnkStruct_ov99_021D2CB0 * param0)
     sub_020203B8(param0->unk_28);
 }
 
-static UnkStruct_0207C690 * ov99_021D19AC (int param0)
+static GenericPointerData * ov99_021D19AC (int param0)
 {
-    UnkStruct_0207C690 * v0;
+    GenericPointerData * v0;
 
     v0 = sub_02024220(param0, 0, 1, 0, 1, ov99_021D19C8);
     return v0;
@@ -797,7 +797,7 @@ static void ov99_021D19C8 (void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void ov99_021D1A4C (UnkStruct_0207C690 * param0)
+static void ov99_021D1A4C (GenericPointerData * param0)
 {
     sub_020242C4(param0);
 }

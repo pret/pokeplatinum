@@ -14,7 +14,7 @@
 typedef struct {
     UnkStruct_02095C48 * unk_00;
     SysTask * unk_04;
-    UnkStruct_0207C690 * unk_08;
+    GenericPointerData * unk_08;
     UnkStruct_ov17_0223F88C unk_0C;
     UnkStruct_ov17_022472F8 unk_220;
     UnkStruct_ov17_02246F24_sub1 unk_304;

@@ -88,8 +88,8 @@ void sub_02039A64 (int param0, int param1)
 
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);
-    sub_02017798(NULL, NULL);
-    sub_020177BC(NULL, NULL);
+    SetMainCallback(NULL, NULL);
+    SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -134,7 +134,7 @@ void sub_02039A64 (int param0, int param1)
     while (TRUE) {
         int v5 = PAD_Read();
 
-        sub_0200106C();
+        HandleConsoleFold();
 
         if (v5 & PAD_BUTTON_A) {
             break;

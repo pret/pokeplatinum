@@ -68,7 +68,7 @@
 #include "unk_0207D3B8.h"
 #include "unk_0208C324.h"
 
-UnkStruct_0207AE68 * sub_0207AE68(Party * param0, Pokemon * param1, int param2, UnkStruct_020279FC * param3, int param4, UnkStruct_02026324 * param5, UnkStruct_0207D3C0 * param6, UnkStruct_0202CD88 * param7, UnkStruct_02056B24 * param8, int param9, int param10, int param11);
+UnkStruct_0207AE68 * sub_0207AE68(Party * param0, Pokemon * param1, int param2, AnimationControlFlags * param3, int param4, UnkStruct_02026324 * param5, UnkStruct_0207D3C0 * param6, UnkStruct_0202CD88 * param7, UnkStruct_02056B24 * param8, int param9, int param10, int param11);
 static void sub_0207B0A0(SysTask * param0, void * param1);
 BOOL sub_0207B0D0(UnkStruct_0207AE68 * param0);
 void sub_0207B0E0(UnkStruct_0207AE68 * param0);
@@ -98,7 +98,7 @@ static const u8 Unk_020F0A2C[] = {
     0x8
 };
 
-UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon * param1, int param2, UnkStruct_020279FC * param3, int param4, UnkStruct_02026324 * param5, UnkStruct_0207D3C0 * param6, UnkStruct_0202CD88 * param7, UnkStruct_02056B24 * param8, int param9, int param10, int param11)
+UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon * param1, int param2, AnimationControlFlags * param3, int param4, UnkStruct_02026324 * param5, UnkStruct_0207D3C0 * param6, UnkStruct_0202CD88 * param7, UnkStruct_02056B24 * param8, int param9, int param10, int param11)
 {
     UnkStruct_0207AE68 * v0;
     ArchivedSprite v1;
@@ -200,7 +200,7 @@ void sub_0207B0E0 (UnkStruct_0207AE68 * param0)
 
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
     sub_0201A928(param0->unk_04, 1);
     sub_02002FA0(param0->unk_14, 0);
     sub_02002FA0(param0->unk_14, 1);
@@ -931,7 +931,7 @@ static void sub_0207C1CC (UnkStruct_0207AE68 * param0, BGL * param1)
 
     GXLayers_TurnBothDispOn();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    sub_02017798(sub_0207C520, param0);
+    SetMainCallback(sub_0207C520, param0);
 }
 
 static void sub_0207C460 (BGL * param0)

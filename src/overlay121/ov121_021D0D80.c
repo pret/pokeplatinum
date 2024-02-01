@@ -32,7 +32,7 @@
 #include "overlay121/ov121_021D0D80.h"
 
 typedef struct {
-    UnkStruct_0207C690 * unk_00;
+    GenericPointerData * unk_00;
     UnkStruct_020203AC * unk_04;
     SysTask * unk_08;
     int unk_0C;
@@ -57,17 +57,17 @@ static void ov121_021D1068(UnkStruct_ov121_021D0FF4 * param0);
 static void ov121_021D1074(UnkStruct_ov121_021D0FF4 * param0);
 static void ov121_021D1184(UnkStruct_ov121_021D0FF4 * param0);
 static void ov121_021D11A8(UnkStruct_ov121_021D0FF4 * param0);
-static UnkStruct_0207C690 * ov121_021D1270(int param0);
+static GenericPointerData * ov121_021D1270(int param0);
 static void ov121_021D128C(void);
-static void ov121_021D1310(UnkStruct_0207C690 * param0);
+static void ov121_021D1310(GenericPointerData * param0);
 static void ov121_021D1318(UnkStruct_ov121_021D0FF4 * param0);
 
 int ov121_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov121_021D0FF4 * v0;
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -102,7 +102,7 @@ int ov121_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     sub_02002B20(0);
 
     v0->unk_08 = SysTask_Start(ov121_021D0F68, v0, 60000);
-    sub_02017798(ov121_021D0F7C, v0);
+    SetMainCallback(ov121_021D0F7C, v0);
 
     return 1;
 }
@@ -155,8 +155,8 @@ int ov121_021D0F14 (UnkStruct_020067E8 * param0, int * param1)
     ov121_021D1068(v0);
     ov121_021D1310(v0->unk_00);
 
-    sub_02017798(NULL, NULL);
-    sub_020177A4();
+    SetMainCallback(NULL, NULL);
+    DisableHBlank();
     sub_0201E530();
     sub_02002AC8(0);
     sub_02002AE4(0);
@@ -326,9 +326,9 @@ static void ov121_021D11A8 (UnkStruct_ov121_021D0FF4 * param0)
     NNS_G3dGePopMtx(1);
 }
 
-static UnkStruct_0207C690 * ov121_021D1270 (int param0)
+static GenericPointerData * ov121_021D1270 (int param0)
 {
-    UnkStruct_0207C690 * v0;
+    GenericPointerData * v0;
 
     v0 = sub_02024220(param0, 0, 2, 0, 2, ov121_021D128C);
     return v0;
@@ -350,7 +350,7 @@ static void ov121_021D128C (void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void ov121_021D1310 (UnkStruct_0207C690 * param0)
+static void ov121_021D1310 (GenericPointerData * param0)
 {
     sub_020242C4(param0);
 }

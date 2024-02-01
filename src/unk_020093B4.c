@@ -137,7 +137,7 @@ void sub_020095A8 (UnkStruct_02009508 * param0)
     Heap_FreeToHeap(param0);
 }
 
-UnkStruct_020218BC * sub_020095C4 (int param0, UnkStruct_0200C738 * param1, int param2)
+GraphicElementManager * sub_020095C4 (int param0, UnkStruct_0200C738 * param1, int param2)
 {
     UnkStruct_020095C4 v0;
     NNSG2dViewRect v1;

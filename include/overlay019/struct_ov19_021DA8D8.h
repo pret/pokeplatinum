@@ -9,14 +9,14 @@
 #include <nnsys.h>
 
 typedef struct {
-    UnkStruct_020218BC * unk_00;
-    UnkStruct_02022550 * unk_04;
+    GraphicElementManager * unk_00;
+    GraphicElementData * unk_04;
     void * unk_08;
     void * unk_0C;
     NNSG2dCellDataBank * unk_10;
     NNSG2dAnimBankData * unk_14;
     NNSG2dImageProxy unk_18;
-    UnkStruct_020218BC * unk_3C;
+    GraphicElementManager * unk_3C;
     const UnkStruct_ov19_021D4DF0 * unk_40;
     UnkStruct_ov19_021D61B0 * unk_44;
 } UnkStruct_ov19_021DA8D8;

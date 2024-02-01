@@ -10,7 +10,7 @@
 typedef struct {
     UnkFuncPtr_ov23_02248D20 unk_00;
     UnkStruct_020298B0 * unk_04;
-    UnkStruct_02013A04 * unk_08;
+    ResourceMetadata * unk_08;
     UnkStruct_0200112C * unk_0C;
     UnkStruct_020149F0 * unk_10;
     u16 unk_14;

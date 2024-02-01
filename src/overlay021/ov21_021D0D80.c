@@ -146,8 +146,8 @@ int ov21_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
         Pokedex_SetupGiratina(v4);
     }
 
-    sub_02017798(ov21_021D0F04, v0);
-    sub_020177A4();
+    SetMainCallback(ov21_021D0F04, v0);
+    DisableHBlank();
     sub_0201E3D8();
 
     v3 = sub_0201E450(4);
@@ -213,7 +213,7 @@ int ov21_021D0EC8 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov21_021D0F18 * v0 = sub_0200682C(param0);
     BOOL v1;
 
-    sub_02017798(NULL, NULL);
+    SetMainCallback(NULL, NULL);
 
     v1 = sub_0201E530();
     GF_ASSERT(v1 == 1);
@@ -541,7 +541,7 @@ UnkStruct_ov21_021E68F4 * ov21_021D1430 (UnkStruct_ov21_021D0F60 * param0, int p
     return &param0->unk_1C24[param1];
 }
 
-void ov21_021D144C (UnkStruct_02022550 * param0, int param1)
+void ov21_021D144C (GraphicElementData * param0, int param1)
 {
     switch (param1) {
     case 0:
@@ -564,7 +564,7 @@ void ov21_021D144C (UnkStruct_02022550 * param0, int param1)
     }
 }
 
-void ov21_021D1498 (UnkStruct_02022550 * param0, UnkStruct_ov21_021D4CA0 * param1, int param2)
+void ov21_021D1498 (GraphicElementData * param0, UnkStruct_ov21_021D4CA0 * param1, int param2)
 {
     int v0 = sub_02021E74(param0);
     int v1, v2;
@@ -593,7 +593,7 @@ void ov21_021D1498 (UnkStruct_02022550 * param0, UnkStruct_ov21_021D4CA0 * param
     }
 }
 
-void ov21_021D1524 (UnkStruct_02022550 * param0, UnkStruct_ov21_021D4CA0 * param1, int param2, int param3, int param4)
+void ov21_021D1524 (GraphicElementData * param0, UnkStruct_ov21_021D4CA0 * param1, int param2, int param3, int param4)
 {
     int v0;
 
@@ -721,8 +721,8 @@ Window * ov21_021D172C (UnkStruct_ov21_021D4C0C * param0, int param1, int param2
 
 void ov21_021D1778 (UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D3320 * param1, int param2, int param3, fx32 param4, fx32 param5)
 {
-    UnkStruct_02022550 * v0;
-    UnkStruct_02022550 * v1;
+    GraphicElementData * v0;
+    GraphicElementData * v1;
     UnkStruct_ov21_021D4CB8 v2;
     Window * v3;
     UnkStruct_02009DC8 * v4;
