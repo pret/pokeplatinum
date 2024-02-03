@@ -184,9 +184,9 @@ static UnkStruct_0203CDB0 * sub_0203CDB0 (UnkStruct_020067E8 * param0)
     sub_0203A378(v1, 11);
 
     v1->unk_98 = sub_0207D99C(11);
-    v1->chain = CreateRadarChain(11);
+    v1->chain = RadarChain_Init(11);
 
-    ClearRadarChain(v1->chain);
+    RadarChain_Clear(v1->chain);
 
     v1->unk_B4 = sub_0209ACBC(11);
     v1->unk_BC = sub_0209C370(11);
@@ -201,7 +201,7 @@ static void sub_0203CE6C (UnkStruct_020067E8 * param0)
     sub_02039DE4(v0->unk_2C);
     sub_0203A398(v0);
     Heap_FreeToHeap(v0->unk_98);
-    FreeRadarChain(v0->chain);
+    RadarChain_Free(v0->chain);
     sub_0209ACDC(v0->unk_B4);
     sub_0209C388(v0->unk_BC);
 

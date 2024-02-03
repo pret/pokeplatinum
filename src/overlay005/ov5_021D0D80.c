@@ -448,7 +448,7 @@ static BOOL ov5_021D11CC (UnkStruct_0203CDB0 * param0)
     }
 
     {
-        ClearRadarChain(param0->chain);
+        RadarChain_Clear(param0->chain);
         sub_02055554(param0, sub_02055428(param0, param0->unk_1C->unk_00), 1);
         sub_0203A418(param0);
 

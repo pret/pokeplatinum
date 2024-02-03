@@ -399,7 +399,7 @@ static BOOL sub_02050EE0 (UnkStruct_020508D4 * param0)
 
         if (sub_02052868(v1->unk_10->unk_14) == 0) {
             sub_02050DFC(v1);
-            ClearRadarChain(v0->chain);
+            RadarChain_Clear(v0->chain);
             sub_02050924(param0, sub_02052B2C, NULL);
             return 0;
         }
@@ -414,10 +414,10 @@ static BOOL sub_02050EE0 (UnkStruct_020508D4 * param0)
         if (GetRadarChainActive(v0->chain)) {
             if (sub_02069798(v0->chain)) {
                 if ((!(v1->unk_10->unk_14 == 0x1)) && (!(v1->unk_10->unk_14 == 0x4))) {
-                    ClearRadarChain(v0->chain);
+                    RadarChain_Clear(v0->chain);
                 }
             } else {
-                ClearRadarChain(v0->chain);
+                RadarChain_Clear(v0->chain);
             }
         }
 
@@ -541,7 +541,7 @@ void sub_0205120C (UnkStruct_020508D4 * param0, int * param1)
     UnkStruct_0203CDB0 * v2;
 
     v2 = sub_02050A60(param0);
-    ClearRadarChain(v2->chain);
+    RadarChain_Clear(v2->chain);
 
     v1 = sub_02051D8C(11, (0x0 | 0x0));
     sub_02052314(v1, v2);
@@ -562,7 +562,7 @@ void sub_02051270 (UnkStruct_020508D4 * param0, u16 param1, u8 param2, int * par
     UnkStruct_0203CDB0 * v2;
 
     v2 = sub_02050A60(param0);
-    ClearRadarChain(v2->chain);
+    RadarChain_Clear(v2->chain);
 
     v1 = sub_02051D8C(11, (0x0 | 0x0));
     sub_02052314(v1, v2);
@@ -586,7 +586,7 @@ void sub_020512E4 (UnkStruct_020508D4 * param0, u16 param1, u8 param2, int * par
     int v4;
 
     v2 = sub_02050A60(param0);
-    ClearRadarChain(v2->chain);
+    RadarChain_Clear(v2->chain);
 
     v1 = sub_02051D8C(11, (0x0 | 0x0));
     sub_02052314(v1, v2);
@@ -764,7 +764,7 @@ void sub_020515CC (UnkStruct_020508D4 * param0, int param1, int param2, int para
         v0 = 0x1;
     }
 
-    ClearRadarChain(v3->chain);
+    RadarChain_Clear(v3->chain);
     v2 = sub_02051D8C(11, v0);
     sub_02052314(v2, v3);
 
@@ -1011,7 +1011,7 @@ void sub_02051ABC (UnkStruct_020508D4 * param0, u16 param1, u8 param2, int * par
     UnkStruct_0203CDB0 * v2;
 
     v2 = sub_02050A60(param0);
-    ClearRadarChain(v2->chain);
+    RadarChain_Clear(v2->chain);
 
     v1 = sub_02051D8C(11, (0x0 | 0x0));
     sub_02052314(v1, v2);

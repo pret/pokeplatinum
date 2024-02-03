@@ -4769,7 +4769,7 @@ static BOOL sub_02042AB0 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02042AE0 (UnkStruct_0203E724 * param0)
 {
-    ClearRadarChain(param0->unk_34->chain);
+    RadarChain_Clear(param0->unk_34->chain);
 
     {
         int v0;

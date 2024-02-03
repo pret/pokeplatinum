@@ -314,7 +314,7 @@ BOOL ov6_02240D5C (UnkStruct_0203CDB0 * param0)
 
                 sub_02052314(v0, param0);
                 ov6_0224239C(v14.unk_00, v17, v0);
-                ClearRadarChain(param0->chain);
+                RadarChain_Clear(param0->chain);
                 sub_02050E10(param0, v0);
                 return 1;
             } else {
@@ -537,7 +537,7 @@ BOOL ov6_022411C8 (UnkStruct_0203CDB0 * param0, UnkStruct_020508D4 * param1)
 
             sub_02052314(v0, param0);
             ov6_0224239C(v13.unk_00, v15, v0);
-            ClearRadarChain(param0->chain);
+            RadarChain_Clear(param0->chain);
             sub_02050E78(param0, param1, v0);
             return 1;
         }
@@ -683,7 +683,7 @@ BOOL ov6_022413E4 (UnkStruct_0203CDB0 * param0, BattleParams ** param1)
 
                 sub_02052314(*param1, param0);
                 ov6_0224239C(v13.unk_00, v16, *param1);
-                ClearRadarChain(param0->chain);
+                RadarChain_Clear(param0->chain);
                 return 1;
             } else {
                 return 0;
@@ -789,7 +789,7 @@ static BOOL ov6_02241674 (UnkStruct_0203CDB0 * param0, Pokemon * param1, BattleP
         v0 = ov6_02241DC4(param1, 0xff, param5, param4, 0, 1, param2);
 
         if (v0) {
-            ClearRadarChain(param0->chain);
+            RadarChain_Clear(param0->chain);
         }
     }
 
@@ -1355,7 +1355,7 @@ static BOOL ov6_02241F7C (UnkStruct_0203CDB0 * param0, Pokemon * param1, const U
             v2 = param7;
             sub_02069B74(param0);
         } else {
-            ClearRadarChain(param0->chain);
+            RadarChain_Clear(param0->chain);
         }
     }
 
