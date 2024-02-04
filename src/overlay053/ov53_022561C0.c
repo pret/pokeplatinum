@@ -96,7 +96,7 @@ static BOOL ov53_0225621C (UnkStruct_ov53_0225621C * param0, UnkStruct_ov25_0225
     param0->unk_04.unk_04 = ov6_02243140(v1);
 
     if (param0->unk_04.unk_04) {
-        param0->unk_04.unk_00 = ov6_02243148(v1);
+        param0->unk_04.unk_00 = GetRadarSpecies(v1);
     } else {
         param0->unk_04.unk_00 = 0;
     }
@@ -212,7 +212,7 @@ static BOOL ov53_02256370 (UnkStruct_ov53_0225621C * param0)
         if (param0->unk_04.unk_04 == 0) {
             v1 = 0;
         } else {
-            v1 = ov6_02243148(v0);
+            v1 = GetRadarSpecies(v0);
         }
 
         if (v1 != param0->unk_04.unk_00) {

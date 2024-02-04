@@ -36,7 +36,7 @@
 #include "unk_020559DC.h"
 #include "unk_0205DAC8.h"
 #include "unk_0205E7D0.h"
-#include "unk_0206940C.h"
+#include "pokeradar.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
 #include "roaming_pokemon.h"
@@ -288,7 +288,7 @@ BOOL ov6_02240D5C (UnkStruct_0203CDB0 * param0)
 
     memset(&v10, 0, sizeof(UnkStruct_ov6_02241674));
 
-    if (!sub_020696DC(v2, v3, param0, param0->unk_94, &v10.unk_00, &v10.unk_04, &v10.unk_08)) {
+    if (!sub_020696DC(v2, v3, param0, param0->chain, &v10.unk_00, &v10.unk_04, &v10.unk_08)) {
         v10.unk_0C = 0;
     } else {
         v10.unk_0C = 1;
@@ -314,7 +314,7 @@ BOOL ov6_02240D5C (UnkStruct_0203CDB0 * param0)
 
                 sub_02052314(v0, param0);
                 ov6_0224239C(v14.unk_00, v17, v0);
-                sub_02069434(param0->unk_94);
+                RadarChain_Clear(param0->chain);
                 sub_02050E10(param0, v0);
                 return 1;
             } else {
@@ -537,7 +537,7 @@ BOOL ov6_022411C8 (UnkStruct_0203CDB0 * param0, UnkStruct_020508D4 * param1)
 
             sub_02052314(v0, param0);
             ov6_0224239C(v13.unk_00, v15, v0);
-            sub_02069434(param0->unk_94);
+            RadarChain_Clear(param0->chain);
             sub_02050E78(param0, param1, v0);
             return 1;
         }
@@ -683,7 +683,7 @@ BOOL ov6_022413E4 (UnkStruct_0203CDB0 * param0, BattleParams ** param1)
 
                 sub_02052314(*param1, param0);
                 ov6_0224239C(v13.unk_00, v16, *param1);
-                sub_02069434(param0->unk_94);
+                RadarChain_Clear(param0->chain);
                 return 1;
             } else {
                 return 0;
@@ -764,7 +764,7 @@ static BOOL ov6_02241674 (UnkStruct_0203CDB0 * param0, Pokemon * param1, BattleP
             param4[11].unk_00 = param3->unk_58[3];
         }
 
-        sub_0206978C(param0->unk_94, &v1, &v2);
+        GetRadarMon(param0->chain, &v1, &v2);
 
         if (param6->unk_04 == 1) {
             TrainerInfo * v3;
@@ -782,14 +782,14 @@ static BOOL ov6_02241674 (UnkStruct_0203CDB0 * param0, Pokemon * param1, BattleP
                 v4 = sub_0205EABC(param0->unk_3C);
                 v5 = sub_0205EAC8(param0->unk_3C);
 
-                sub_02069474(param0, v4, v5, param0->unk_94);
+                RadarSpawnPatches(param0, v4, v5, param0->chain);
             }
         }
     } else {
         v0 = ov6_02241DC4(param1, 0xff, param5, param4, 0, 1, param2);
 
         if (v0) {
-            sub_02069434(param0->unk_94);
+            RadarChain_Clear(param0->chain);
         }
     }
 
@@ -1347,7 +1347,7 @@ static BOOL ov6_02241F7C (UnkStruct_0203CDB0 * param0, Pokemon * param1, const U
     v3 = param3[v1].unk_00;
 
     if (param6 == 0) {
-        sub_02069774(param0->unk_94, v3, v2);
+        SetRadarMon(param0->chain, v3, v2);
         sub_02069B74(param0);
     } else {
         if (v3 == param6) {
@@ -1355,7 +1355,7 @@ static BOOL ov6_02241F7C (UnkStruct_0203CDB0 * param0, Pokemon * param1, const U
             v2 = param7;
             sub_02069B74(param0);
         } else {
-            sub_02069434(param0->unk_94);
+            RadarChain_Clear(param0->chain);
         }
     }
 

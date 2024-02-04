@@ -51,7 +51,7 @@
 #include "unk_02061804.h"
 #include "unk_02067A84.h"
 #include "unk_020683F4.h"
-#include "unk_0206940C.h"
+#include "pokeradar.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
 #include "unk_02071B10.h"
@@ -920,7 +920,7 @@ static BOOL ov5_021D2B08 (UnkStruct_0203CDB0 * param0)
 
 static BOOL ov5_021D2B14 (UnkStruct_0203CDB0 * param0)
 {
-    sub_02069B98(param0);
+    RadarChargeStep(param0);
     return 0;
 }
 

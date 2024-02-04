@@ -52,7 +52,7 @@
 #include "unk_02061804.h"
 #include "unk_02063400.h"
 #include "unk_020683F4.h"
-#include "unk_0206940C.h"
+#include "pokeradar.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206B9D8.h"
@@ -504,7 +504,7 @@ static BOOL sub_02068884 (UnkStruct_020508D4 * param0)
             ov5_021DFB54(v0->unk_3C, (1 << 1));
             ov5_021DFB5C(v0->unk_3C);
 
-            sub_02069434(v0->unk_94);
+            RadarChain_Clear(v0->chain);
         }
 
         (*v1)++;
@@ -721,7 +721,7 @@ static void sub_02068BF8 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     (*v2) = 0;
     sub_020509D4(v0);
 
-    v1->unk_22C = sub_02069A00;
+    v1->unk_22C = RefreshRadarChain;
     v1->unk_25C = v2;
     v1->unk_2A = 10;
 }
@@ -731,7 +731,7 @@ static BOOL sub_02068C38 (UnkStruct_02068870 * param0)
     int * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(int));
 
     *v0 = 0;
-    sub_02050904(param0->unk_00, sub_02069A00, v0);
+    sub_02050904(param0->unk_00, RefreshRadarChain, v0);
 
     return 0;
 }

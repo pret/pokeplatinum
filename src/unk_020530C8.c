@@ -64,7 +64,7 @@
 #include "unk_0205D8CC.h"
 #include "unk_0205E7D0.h"
 #include "unk_02061804.h"
-#include "unk_0206940C.h"
+#include "pokeradar.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
 #include "unk_02070428.h"
@@ -695,7 +695,7 @@ static BOOL sub_02053930 (UnkStruct_020508D4 * param0)
         sub_0205311C(v1, &v2->unk_04);
         sub_020533CC(v1);
         sub_020531C0(v1, 0);
-        sub_02069434(v1->unk_94);
+        RadarChain_Clear(v1->chain);
         (v2->unk_00)++;
         break;
     case 2:

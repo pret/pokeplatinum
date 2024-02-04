@@ -42,7 +42,7 @@
 #include "unk_020562F8.h"
 #include "unk_0205964C.h"
 #include "unk_02061804.h"
-#include "unk_0206940C.h"
+#include "pokeradar.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
@@ -399,7 +399,7 @@ static BOOL sub_02050EE0 (UnkStruct_020508D4 * param0)
 
         if (sub_02052868(v1->unk_10->unk_14) == 0) {
             sub_02050DFC(v1);
-            sub_02069434(v0->unk_94);
+            RadarChain_Clear(v0->chain);
             sub_02050924(param0, sub_02052B2C, NULL);
             return 0;
         }
@@ -411,13 +411,13 @@ static BOOL sub_02050EE0 (UnkStruct_020508D4 * param0)
         sub_020518B0(v0, v1->unk_10);
         sub_02051988(v0, v1->unk_10);
 
-        if (sub_0206981C(v0->unk_94)) {
-            if (sub_02069798(v0->unk_94)) {
+        if (GetRadarChainActive(v0->chain)) {
+            if (sub_02069798(v0->chain)) {
                 if ((!(v1->unk_10->unk_14 == 0x1)) && (!(v1->unk_10->unk_14 == 0x4))) {
-                    sub_02069434(v0->unk_94);
+                    RadarChain_Clear(v0->chain);
                 }
             } else {
-                sub_02069434(v0->unk_94);
+                RadarChain_Clear(v0->chain);
             }
         }
 
@@ -430,15 +430,15 @@ static BOOL sub_02050EE0 (UnkStruct_020508D4 * param0)
         v1->unk_00++;
         break;
     case 5:
-        if (sub_0206981C(v0->unk_94)) {
-            sub_020695C8(v0, v1->unk_10->unk_14, v0->unk_94);
-            sub_02069638(v0, v0->unk_94);
+        if (GetRadarChainActive(v0->chain)) {
+            SetupGrassPatches(v0, v1->unk_10->unk_14, v0->chain);
+            sub_02069638(v0, v0->chain);
         }
 
         v1->unk_00++;
         break;
     case 6:
-        if (sub_02069690(v0->unk_94)) {
+        if (sub_02069690(v0->chain)) {
             sub_02062C78(v0->unk_38);
             sub_02050DFC(v1);
             return 1;
@@ -541,7 +541,7 @@ void sub_0205120C (UnkStruct_020508D4 * param0, int * param1)
     UnkStruct_0203CDB0 * v2;
 
     v2 = sub_02050A60(param0);
-    sub_02069434(v2->unk_94);
+    RadarChain_Clear(v2->chain);
 
     v1 = sub_02051D8C(11, (0x0 | 0x0));
     sub_02052314(v1, v2);
@@ -562,7 +562,7 @@ void sub_02051270 (UnkStruct_020508D4 * param0, u16 param1, u8 param2, int * par
     UnkStruct_0203CDB0 * v2;
 
     v2 = sub_02050A60(param0);
-    sub_02069434(v2->unk_94);
+    RadarChain_Clear(v2->chain);
 
     v1 = sub_02051D8C(11, (0x0 | 0x0));
     sub_02052314(v1, v2);
@@ -586,7 +586,7 @@ void sub_020512E4 (UnkStruct_020508D4 * param0, u16 param1, u8 param2, int * par
     int v4;
 
     v2 = sub_02050A60(param0);
-    sub_02069434(v2->unk_94);
+    RadarChain_Clear(v2->chain);
 
     v1 = sub_02051D8C(11, (0x0 | 0x0));
     sub_02052314(v1, v2);
@@ -764,7 +764,7 @@ void sub_020515CC (UnkStruct_020508D4 * param0, int param1, int param2, int para
         v0 = 0x1;
     }
 
-    sub_02069434(v3->unk_94);
+    RadarChain_Clear(v3->chain);
     v2 = sub_02051D8C(11, v0);
     sub_02052314(v2, v3);
 
@@ -1011,7 +1011,7 @@ void sub_02051ABC (UnkStruct_020508D4 * param0, u16 param1, u8 param2, int * par
     UnkStruct_0203CDB0 * v2;
 
     v2 = sub_02050A60(param0);
-    sub_02069434(v2->unk_94);
+    RadarChain_Clear(v2->chain);
 
     v1 = sub_02051D8C(11, (0x0 | 0x0));
     sub_02052314(v1, v2);

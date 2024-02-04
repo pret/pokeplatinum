@@ -19,7 +19,7 @@
 #include "struct_decls/struct_0205C22C_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
-#include "struct_decls/struct_0206942C_decl.h"
+#include "pokeradar.h"
 #include "struct_decls/struct_0207D99C_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
 #include "struct_decls/struct_0209ACBC_decl.h"
@@ -82,7 +82,7 @@ typedef struct UnkStruct_0203CDB0_t {
     UnkStruct_02095E80 * unk_88;
     UnkStruct_ov5_021EB0E0 * unk_8C;
     int unk_90;
-    UnkStruct_0206942C * unk_94;
+    RadarChain *chain;
     UnkStruct_0207D99C * unk_98;
     UnkStruct_0202B628 * unk_9C;
     UnkStruct_ov5_021EF300 * unk_A0;
