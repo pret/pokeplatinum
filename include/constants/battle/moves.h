@@ -85,28 +85,4 @@
 #define MOVE_STATUS_GENERAL_MISS        (MOVE_STATUS_MISSED | MOVE_STATUS_SEMI_INVULNERABLE)
 #define MOVE_STATUS_BASIC_EFFECTIVENESS (MOVE_STATUS_SUPER_EFFECTIVE | MOVE_STATUS_NOT_VERY_EFFECTIVE)
 
-#define RANGE_SINGLE_TARGET             0
-#define RANGE_SINGLE_TARGET_SPECIAL     (1 << 0)
-#define RANGE_RANDOM_OPPONENT           (1 << 1)
-#define RANGE_ADJACENT_OPPONENTS        (1 << 2)
-#define RANGE_ALL_ADJACENT              (1 << 3)
-#define RANGE_USER                      (1 << 4)
-#define RANGE_USER_SIDE                 (1 << 5)
-#define RANGE_FIELD                     (1 << 6)
-#define RANGE_OPPONENT_SIDE             (1 << 7)
-#define RANGE_ALLY                      (1 << 8)
-#define RANGE_USER_OR_ALLY              (1 << 9)
-#define RANGE_SINGLE_TARGET_ME_FIRST    (1 << 10)
-
-#define RANGE_MY_SIDE   (RANGE_SINGLE_TARGET_SPECIAL | RANGE_USER | RANGE_FIELD | RANGE_USER_OR_ALLY)
-
-#define MOVE_FLAG_MAKES_CONTACT         (1 << 0)
-#define MOVE_FLAG_CAN_PROTECT           (1 << 1)
-#define MOVE_FLAG_CAN_MAGIC_COAT        (1 << 2)
-#define MOVE_FLAG_CAN_SNATCH            (1 << 3)
-#define MOVE_FLAG_CAN_MIRROR_MOVE       (1 << 4)
-#define MOVE_FLAG_TRIGGERS_KINGS_ROCK   (1 << 5)
-#define MOVE_FLAG_HIDES_HP_GAUGES       (1 << 6)
-#define MOVE_FLAG_HIDES_SHADOWS         (1 << 7)
-
 #endif // POKEPLATINUM_CONSTANTS_BATTLE_MOVES_H

@@ -1,0 +1,18 @@
+{
+    "targets": {
+        "shadows": [
+            "@PokemonBattleShadowSize"
+        ]
+    },
+    "definitions": {
+        "@PokemonBattleShadowSize": {
+            "type": "enum",
+            "values": [
+                "SHADOW_SIZE_NONE",
+                "SHADOW_SIZE_SMALL",
+                "SHADOW_SIZE_MEDIUM",
+                "SHADOW_SIZE_LARGE"
+            ]
+        }
+    }
+}
