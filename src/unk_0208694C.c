@@ -1146,7 +1146,7 @@ static int sub_02086F3C (UnkStruct_020067E8 * param0, int * param1)
         Heap_FreeToHeap(v4);
     }
 
-    if ((v0->unk_158 == 0) || (sub_0200220C(v0->unk_D8, v0->unk_118) == 0) || sub_02086F14(v0->unk_D8)) {
+    if ((v0->unk_158 == 0) || (GF_strcmp(v0->unk_D8, v0->unk_118) == 0) || sub_02086F14(v0->unk_D8)) {
         sub_02086E6C(v0, v1);
     } else {
         GF_strcpy(v0->unk_118, v0->unk_D8);
