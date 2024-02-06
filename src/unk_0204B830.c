@@ -248,43 +248,43 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
 
     v13 = sub_0202D79C(param0->unk_0C);
 
-    if (Pokemon_GetValue(v4, MON_DATA_46, 0)) {
+    if (Pokemon_GetValue(v4, MON_DATA_SINNOH_RED_RIBBON, 0)) {
         v13[sub_02092444(73)] = v14[0];
     }
 
-    if (Pokemon_GetValue(v4, MON_DATA_47, 0)) {
+    if (Pokemon_GetValue(v4, MON_DATA_SINNOH_GREEN_RIBBON, 0)) {
         v13[sub_02092444(74)] = v14[1];
     }
 
-    if (Pokemon_GetValue(v4, MON_DATA_48, 0)) {
+    if (Pokemon_GetValue(v4, MON_DATA_SINNOH_BLUE_RIBBON, 0)) {
         v13[sub_02092444(75)] = v14[2];
     }
 
-    if (Pokemon_GetValue(v4, MON_DATA_49, 0)) {
+    if (Pokemon_GetValue(v4, MON_DATA_SINNOH_FESTIVAL_RIBBON, 0)) {
         v13[sub_02092444(76)] = v14[3];
     }
 
-    if (Pokemon_GetValue(v4, MON_DATA_50, 0)) {
+    if (Pokemon_GetValue(v4, MON_DATA_SINNOH_CARNIVAL_RIBBON, 0)) {
         v13[sub_02092444(77)] = v14[4];
     }
 
-    if (Pokemon_GetValue(v4, MON_DATA_51, 0)) {
+    if (Pokemon_GetValue(v4, MON_DATA_SINNOH_CLASSIC_RIBBON, 0)) {
         v13[sub_02092444(78)] = v14[5];
     }
 
-    if (Pokemon_GetValue(v4, MON_DATA_52, 0)) {
+    if (Pokemon_GetValue(v4, MON_DATA_SINNOH_PREMIER_RIBBON, 0)) {
         v13[sub_02092444(79)] = v14[6];
     }
 
-    if (Pokemon_GetValue(v4, MON_DATA_MARINE_RIBBON, 0)) {
+    if (Pokemon_GetValue(v4, MON_DATA_HOENN_MARINE_RIBBON, 0)) {
         v13[sub_02092444(25)] = v14[7];
     }
 
-    if (Pokemon_GetValue(v4, MON_DATA_LAND_RIBBON, 0)) {
+    if (Pokemon_GetValue(v4, MON_DATA_HOENN_LAND_RIBBON, 0)) {
         v13[sub_02092444(26)] = v14[8];
     }
 
-    if (Pokemon_GetValue(v4, MON_DATA_SKY_RIBBON, 0)) {
+    if (Pokemon_GetValue(v4, MON_DATA_HOENN_SKY_RIBBON, 0)) {
         v13[sub_02092444(27)] = v14[9];
     }
 

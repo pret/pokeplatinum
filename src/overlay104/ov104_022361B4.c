@@ -582,7 +582,7 @@ int ov104_02236D10 (UnkStruct_ov104_0223BA10 * param0)
     for (v5 = v2; v5 < (v0 + v2); v5++) {
         v9 = Party_GetPokemonBySlotIndex(param0->unk_28, v5);
 
-        if (Pokemon_GetValue(v9, MON_DATA_172, NULL) == 0) {
+        if (Pokemon_GetValue(v9, MON_DATA_SPECIES_EXISTS, NULL) == 0) {
             continue;
         }
 

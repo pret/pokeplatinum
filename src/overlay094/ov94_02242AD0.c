@@ -1289,7 +1289,7 @@ static void ov94_02243BC4 (UnkStruct_ov94_0223FD4C * param0, Pokemon * param1, i
         u8 v1 = 70;
 
         if (Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == 493) {
-            if (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(param1, MON_DATA_153, NULL) == 86) && (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
+            if (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(param1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
                 UnkStruct_020507E4 * v2 = sub_020507E4(param0->unk_00->unk_20);
 
                 if (sub_0206B5F8(v2) == 0) {
@@ -1336,7 +1336,7 @@ static void ov94_02243CE4 (UnkStruct_ov94_0223FD4C * param0, Pokemon * param1, i
     }
 
     if (Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == 493) {
-        if (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(param1, MON_DATA_153, NULL) == 86) && (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
+        if (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(param1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
             UnkStruct_020507E4 * v0 = sub_020507E4(param0->unk_00->unk_20);
 
             if (sub_0206B5F8(v0) == 0) {

@@ -474,7 +474,7 @@ static void sub_0206CE08 (int param0, u16 * param1, Pokemon * param2)
 {
     Strbuf* v0 = Strbuf_Init(64, param0);
 
-    Pokemon_GetValue(param2, MON_DATA_119, v0);
+    Pokemon_GetValue(param2, MON_DATA_NICKNAME_STRBUF, v0);
     Strbuf_ToChars(v0, param1, 10 + 1);
     Strbuf_Free(v0);
 }
@@ -510,7 +510,7 @@ static void sub_0206CED0 (int param0, Pokemon * param1, u8 * param2, u16 * param
     if (*param2) {
         Strbuf* v0 = Strbuf_Init(64, param0);
 
-        Pokemon_GetValue(param1, MON_DATA_119, v0);
+        Pokemon_GetValue(param1, MON_DATA_NICKNAME_STRBUF, v0);
         Strbuf_ToChars(v0, param3, 10 + 1);
         Strbuf_Free(v0);
     }

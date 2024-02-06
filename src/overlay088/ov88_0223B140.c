@@ -775,7 +775,7 @@ static void ov88_0223BD18 (Pokemon * param0, UnkStruct_ov88_0223C8AC * param1)
     param1->unk_06 = Pokemon_GetValue(param0, MON_DATA_FORM, NULL);
     param1->unk_05 = Pokemon_GetValue(param0, MON_DATA_IS_EGG, NULL);
     param1->unk_08 = Pokemon_GetValue(param0, MON_DATA_GENDER, NULL);
-    param1->unk_0C = Pokemon_GetValue(param0, MON_DATA_162, NULL);
+    param1->unk_0C = Pokemon_GetValue(param0, MON_DATA_MAIL_ID, NULL);
 
     v1 = Pokemon_GetValue(param0, MON_DATA_HELD_ITEM, NULL);
 
@@ -1302,7 +1302,7 @@ static void ov88_0223C860 (Window * param0, Party * param1, int param2, int para
 
     v0 = Strbuf_Init(20, 26);
 
-    Pokemon_GetValue(Party_GetPokemonBySlotIndex(param1, param2), MON_DATA_119, v0);
+    Pokemon_GetValue(Party_GetPokemonBySlotIndex(param1, param2), MON_DATA_NICKNAME_STRBUF, v0);
     BGL_FillWindow(param0, 0);
     ov88_0223EC78(param0, v0, param3, 0, param4, 1);
     Strbuf_Free(v0);
@@ -2503,7 +2503,7 @@ static void ov88_0223E694 (Party * param0, Party * param1, int param2, int param
     Pokemon_Copy(Party_GetPokemonBySlotIndex(param1, param3), v1);
 
     if (Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL) == 493) {
-        if (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(v1, MON_DATA_153, NULL) == 86) && (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
+        if (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(v1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
             UnkStruct_020507E4 * v2 = sub_020507E4(param4->unk_10);
 
             if (sub_0206B5F8(v2) == 0) {
@@ -2611,7 +2611,7 @@ static int ov88_0223E914 (UnkStruct_02095E80 * param0)
     for (v0 = 0; v0 < v1; v0++) {
         v2 = Party_GetPokemonBySlotIndex(param0->unk_2270, v0);
 
-        if (Pokemon_GetValue(v2, MON_DATA_3, NULL)) {
+        if (Pokemon_GetValue(v2, MON_DATA_IS_DATA_INVALID, NULL)) {
             return 1;
         }
     }
@@ -2621,7 +2621,7 @@ static int ov88_0223E914 (UnkStruct_02095E80 * param0)
     for (v0 = 0; v0 < v1; v0++) {
         v2 = Party_GetPokemonBySlotIndex(param0->unk_2274, v0);
 
-        if (Pokemon_GetValue(v2, MON_DATA_3, NULL)) {
+        if (Pokemon_GetValue(v2, MON_DATA_IS_DATA_INVALID, NULL)) {
             return 2;
         }
     }

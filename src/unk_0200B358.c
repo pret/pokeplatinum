@@ -237,13 +237,13 @@ void sub_0200B594 (UnkStruct_0200B358 * param0, u32 param1, u32 param2)
 
 void sub_0200B5CC (UnkStruct_0200B358 * param0, u32 param1, BoxPokemon * param2)
 {
-    BoxPokemon_GetValue(param2, MON_DATA_119, param0->unk_0C);
+    BoxPokemon_GetValue(param2, MON_DATA_NICKNAME_STRBUF, param0->unk_0C);
     sub_0200B448(param0, param1, param0->unk_0C, NULL);
 }
 
 void sub_0200B5EC (UnkStruct_0200B358 * param0, u32 param1, BoxPokemon * param2)
 {
-    BoxPokemon_GetValue(param2, MON_DATA_145, param0->unk_0C);
+    BoxPokemon_GetValue(param2, MON_DATA_OTNAME_STRBUF, param0->unk_0C);
     sub_0200B448(param0, param1, param0->unk_0C, NULL);
 }
 

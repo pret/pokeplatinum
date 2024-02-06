@@ -1045,7 +1045,7 @@ static void sub_0208D200 (UnkStruct_0208D7BC * param0, Pokemon * param1, UnkStru
     param2->unk_12_0 = (u8)Pokemon_GetValue(param1, MON_DATA_LEVEL, NULL);
     param2->unk_50_28 = Pokemon_GetValue(param1, MON_DATA_IS_EGG, NULL);
 
-    if ((Pokemon_GetValue(param1, MON_DATA_176, NULL) == 1) && (param2->unk_50_28 == 0)) {
+    if ((Pokemon_GetValue(param1, MON_DATA_NIDORAN_HAS_NICKNAME, NULL) == 1) && (param2->unk_50_28 == 0)) {
         param2->unk_12_7 = 0;
     } else {
         param2->unk_12_7 = 1;
@@ -1098,7 +1098,7 @@ static void sub_0208D200 (UnkStruct_0208D7BC * param0, Pokemon * param1, UnkStru
         }
     }
 
-    param2->unk_4C = Pokemon_GetValue(param1, MON_DATA_11, NULL);
+    param2->unk_4C = Pokemon_GetValue(param1, MON_DATA_MARKS, NULL);
     param2->unk_4E = Pokemon_GetValue(param1, MON_DATA_FORM, NULL);
     param2->unk_50_0 = sub_0208E9F0(param1);
 

@@ -152,7 +152,7 @@ u32 PCBoxes_FirstEmptyBox (const PCBoxes * param0)
 
     while (TRUE) {
         for (v1 = 0; v1 < (5 * 6); v1++) {
-            if (BoxPokemon_GetValue((BoxPokemon *)(&(param0->unk_04[v0][v1])), MON_DATA_172, NULL) == 0) {
+            if (BoxPokemon_GetValue((BoxPokemon *)(&(param0->unk_04[v0][v1])), MON_DATA_SPECIES_EXISTS, NULL) == 0) {
                 return v0;
             }
         }
@@ -182,7 +182,7 @@ BOOL sub_020799F0 (const PCBoxes * param0, int * param1, int * param2)
 
     while (TRUE) {
         for ( ; v1 < (5 * 6); v1++) {
-            if (BoxPokemon_GetValue((BoxPokemon *)(&(param0->unk_04[v0][v1])), MON_DATA_172, NULL) == 0) {
+            if (BoxPokemon_GetValue((BoxPokemon *)(&(param0->unk_04[v0][v1])), MON_DATA_SPECIES_EXISTS, NULL) == 0) {
                 *param1 = v0;
                 *param2 = v1;
                 return 1;
@@ -212,7 +212,7 @@ u32 sub_02079A50 (const PCBoxes * param0)
 
     for (v0 = 0; v0 < 18; v0++) {
         for (v1 = 0; v1 < (5 * 6); v1++) {
-            if (BoxPokemon_GetValue((BoxPokemon *)(&(param0->unk_04[v0][v1])), MON_DATA_172, NULL) != 0) {
+            if (BoxPokemon_GetValue((BoxPokemon *)(&(param0->unk_04[v0][v1])), MON_DATA_SPECIES_EXISTS, NULL) != 0) {
                 v2++;
             }
         }
@@ -295,7 +295,7 @@ u32 sub_02079B54 (const PCBoxes * param0, u32 param1)
         u32 v1 = 0;
 
         for (v0 = 0; v0 < (5 * 6); v0++) {
-            if (BoxPokemon_GetValue((BoxPokemon *)(&(param0->unk_04[param1][v0])), MON_DATA_172, NULL)) {
+            if (BoxPokemon_GetValue((BoxPokemon *)(&(param0->unk_04[param1][v0])), MON_DATA_SPECIES_EXISTS, NULL)) {
                 v1++;
             }
         }
@@ -319,7 +319,7 @@ u32 sub_02079B98 (const PCBoxes * param0, u32 param1)
         u32 v1 = 0;
 
         for (v0 = 0; v0 < (5 * 6); v0++) {
-            if (BoxPokemon_GetValue((BoxPokemon *)(&(param0->unk_04[param1][v0])), MON_DATA_172, NULL)) {
+            if (BoxPokemon_GetValue((BoxPokemon *)(&(param0->unk_04[param1][v0])), MON_DATA_SPECIES_EXISTS, NULL)) {
                 if (BoxPokemon_GetValue((BoxPokemon *)(&(param0->unk_04[param1][v0])), MON_DATA_IS_EGG, NULL) == 0) {
                     v1++;
                 }

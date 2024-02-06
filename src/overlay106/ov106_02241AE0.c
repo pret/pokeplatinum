@@ -1145,7 +1145,7 @@ static void ov106_02242AC4 (UnkStruct_ov106_02243118 * param0, Window * param1, 
     u16 v6[(10 + 1)];
 
     v5 = Party_GetPokemonBySlotIndex(param0->unk_290, 0);
-    Pokemon_GetValue(v5, MON_DATA_179, v6);
+    Pokemon_GetValue(v5, MON_DATA_SPECIES_NAME, v6);
     BGL_FillWindow(param1, param6);
 
     v4 = Strbuf_Init((10 + 1), 98);

@@ -978,7 +978,7 @@ static void ov94_022423FC (MessageLoader * param0, UnkStruct_0200B358 * param1, 
     Strbuf* v3 = Strbuf_Init(10 + 1, 62);
     int v4, v5, v6;
 
-    BoxPokemon_GetValue(param3, MON_DATA_119, v2);
+    BoxPokemon_GetValue(param3, MON_DATA_NICKNAME_STRBUF, v2);
 
     v4 = BoxPokemon_GetValue(param3, MON_DATA_GENDER, NULL) + 1;
     v5 = BoxPokemon_GetLevel(param3);

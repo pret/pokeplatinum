@@ -2723,7 +2723,7 @@ static int ov5_021E6F6C (Party * param0)
     v2 = Party_GetCurrentCount(param0);
 
     for (v0 = 0; v0 < v2; v0++) {
-        if (Pokemon_GetValue(Party_GetPokemonBySlotIndex(param0, v0), MON_DATA_173, NULL) == 0) {
+        if (Pokemon_GetValue(Party_GetPokemonBySlotIndex(param0, v0), MON_DATA_EGG_EXISTS, NULL) == 0) {
             v1 = Pokemon_GetValue(Party_GetPokemonBySlotIndex(param0, v0), MON_DATA_ABILITY, NULL);
 
             if ((v1 == 40) || (v1 == 49)) {
@@ -2862,7 +2862,7 @@ BOOL ov5_021E7154 (UnkStruct_02026310 * param0, Party * param1, UnkStruct_0203CD
     v2 = 0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        if (BoxPokemon_GetValue(v8[v0], MON_DATA_172, NULL) != 0) {
+        if (BoxPokemon_GetValue(v8[v0], MON_DATA_SPECIES_EXISTS, NULL) != 0) {
             sub_02026260(sub_02026218(param0, v0), 1);
             v2++;
         }
@@ -2891,7 +2891,7 @@ BOOL ov5_021E7154 (UnkStruct_02026310 * param0, Party * param1, UnkStruct_0203CD
             Pokemon * v9 = Party_GetPokemonBySlotIndex(param1, v0);
 
             if (Pokemon_GetValue(v9, MON_DATA_IS_EGG, NULL)) {
-                if (Pokemon_GetValue(v9, MON_DATA_3, NULL)) {
+                if (Pokemon_GetValue(v9, MON_DATA_IS_DATA_INVALID, NULL)) {
                     continue;
                 }
 
@@ -3052,11 +3052,11 @@ static void ov5_021E742C (Pokemon * param0, int param1)
 
     v8 = Pokemon_GetValue(param0, MON_DATA_LANGUAGE, NULL);
     v9 = Pokemon_GetValue(param0, MON_DATA_MET_GAME, NULL);
-    v10 = Pokemon_GetValue(param0, MON_DATA_11, NULL);
+    v10 = Pokemon_GetValue(param0, MON_DATA_MARKS, NULL);
     v6 = Pokemon_GetValue(param0, MON_DATA_POKERUS, NULL);
     v12 = Pokemon_GetValue(param0, MON_DATA_FATEFUL_ENCOUNTER, NULL);
 
-    Pokemon_GetValue(param0, MON_DATA_145, v15);
+    Pokemon_GetValue(param0, MON_DATA_OTNAME_STRBUF, v15);
 
     v14 = Pokemon_GetValue(param0, MON_DATA_OT_GENDER, NULL);
     v4 = Pokemon_GetValue(param0, MON_DATA_OT_ID, NULL);
@@ -3102,19 +3102,19 @@ static void ov5_021E742C (Pokemon * param0, int param1)
         u8 v19, v20, v21;
 
         v18 = Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL);
-        v19 = Pokemon_GetValue(param0, MON_DATA_146, NULL);
-        v20 = Pokemon_GetValue(param0, MON_DATA_147, NULL);
-        v21 = Pokemon_GetValue(param0, MON_DATA_148, NULL);
+        v19 = Pokemon_GetValue(param0, MON_DATA_MET_YEAR, NULL);
+        v20 = Pokemon_GetValue(param0, MON_DATA_MET_MONTH, NULL);
+        v21 = Pokemon_GetValue(param0, MON_DATA_MET_DAY, NULL);
 
         Pokemon_SetValue(v16, 152, &v18);
         Pokemon_SetValue(v16, 146, &v19);
         Pokemon_SetValue(v16, 147, &v20);
         Pokemon_SetValue(v16, 148, &v21);
 
-        v18 = Pokemon_GetValue(param0, MON_DATA_153, NULL);
-        v19 = Pokemon_GetValue(param0, MON_DATA_149, NULL);
-        v20 = Pokemon_GetValue(param0, MON_DATA_150, NULL);
-        v21 = Pokemon_GetValue(param0, MON_DATA_151, NULL);
+        v18 = Pokemon_GetValue(param0, MON_DATA_HATCH_LOCATION, NULL);
+        v19 = Pokemon_GetValue(param0, MON_DATA_HATCH_YEAR, NULL);
+        v20 = Pokemon_GetValue(param0, MON_DATA_HATCH_MONTH, NULL);
+        v21 = Pokemon_GetValue(param0, MON_DATA_HATCH_DAY, NULL);
 
         Pokemon_SetValue(v16, 153, &v18);
         Pokemon_SetValue(v16, 149, &v19);

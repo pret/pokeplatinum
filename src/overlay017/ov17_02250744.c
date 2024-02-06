@@ -343,7 +343,7 @@ void ov17_02250B00 (UnkStruct_ov17_0224FCA0 * param0)
 
         for (v3 = 0; v3 < 4; v3++) {
             v4 = param0->unk_39A.unk_30[v3];
-            Pokemon_GetValue(param0->unk_10.unk_00->unk_00[v4], MON_DATA_119, v2);
+            Pokemon_GetValue(param0->unk_10.unk_00->unk_00[v4], MON_DATA_NICKNAME_STRBUF, v2);
             BGL_FillWindow(&param0->unk_10.unk_24[1 + v3], 0x0);
             BGL_FillWindow(&param0->unk_10.unk_24[5 + v3], 0x0);
             sub_0201D78C(&param0->unk_10.unk_24[1 + v3], 0, v2, 0, 3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);

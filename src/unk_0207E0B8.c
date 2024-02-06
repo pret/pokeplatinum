@@ -1068,11 +1068,11 @@ u8 sub_0207EF14 (GameWindowLayout * param0, u8 param1)
     param0->unk_704[param1].unk_08 = (u16)Pokemon_GetValue(v0, MON_DATA_MAX_HP, NULL);
     param0->unk_704[param1].unk_0A = (u16)Pokemon_GetValue(v0, MON_DATA_LEVEL, NULL);
     param0->unk_704[param1].unk_0C = (u16)Pokemon_GetValue(v0, MON_DATA_HELD_ITEM, NULL);
-    param0->unk_704[param1].unk_12 = (u16)Pokemon_GetValue(v0, MON_DATA_162, NULL);
+    param0->unk_704[param1].unk_12 = (u16)Pokemon_GetValue(v0, MON_DATA_MAIL_ID, NULL);
     param0->unk_704[param1].unk_10 = (u8)Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL);
     param0->unk_704[param1].unk_11 = (u8)Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
 
-    if (Pokemon_GetValue(v0, MON_DATA_176, NULL) == 1) {
+    if (Pokemon_GetValue(v0, MON_DATA_NIDORAN_HAS_NICKNAME, NULL) == 1) {
         param0->unk_704[param1].unk_0E_12 = 0;
     } else {
         param0->unk_704[param1].unk_0E_12 = 1;
@@ -1122,34 +1122,34 @@ static u32 sub_0207F134 (Pokemon * param0, u8 param1)
 
     switch (param1) {
     case 0:
-        v0 = Pokemon_GetValue(param0, MON_DATA_123, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_124, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_125, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_126, NULL);
+        v0 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_COOL_RIBBON, NULL);
+        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_COOL_RIBBON_GREAT, NULL);
+        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_COOL_RIBBON_ULTRA, NULL);
+        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_COOL_RIBBON_MASTER, NULL);
         break;
     case 1:
-        v0 = Pokemon_GetValue(param0, MON_DATA_127, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_128, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_129, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_130, NULL);
+        v0 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON, NULL);
+        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON_GREAT, NULL);
+        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON_ULTRA, NULL);
+        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON_MASTER, NULL);
         break;
     case 2:
-        v0 = Pokemon_GetValue(param0, MON_DATA_131, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_132, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_133, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_134, NULL);
+        v0 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_CUTE_RIBBON, NULL);
+        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_CUTE_RIBBON_GREAT, NULL);
+        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_CUTE_RIBBON_ULTRA, NULL);
+        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_CUTE_RIBBON_MASTER, NULL);
         break;
     case 3:
-        v0 = Pokemon_GetValue(param0, MON_DATA_135, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_136, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_137, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_138, NULL);
+        v0 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_SMART_RIBBON, NULL);
+        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_SMART_RIBBON_GREAT, NULL);
+        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_SMART_RIBBON_ULTRA, NULL);
+        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_SMART_RIBBON_MASTER, NULL);
         break;
     case 4:
-        v0 = Pokemon_GetValue(param0, MON_DATA_139, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_140, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_141, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_142, NULL);
+        v0 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_TOUGH_RIBBON, NULL);
+        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_TOUGH_RIBBON_GREAT, NULL);
+        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_TOUGH_RIBBON_ULTRA, NULL);
+        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_TOUGH_RIBBON_MASTER, NULL);
     }
 
     return v0;

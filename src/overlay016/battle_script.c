@@ -12254,7 +12254,7 @@ static void BattleScript_LoadPartyLevelUpIcon (BattleSystem * param0, BattleScri
 
     param1->tmpPtr[0] = sub_02012744(1, 5);
 
-    if (Pokemon_GetValue(param2, MON_DATA_176, NULL) == 0) {
+    if (Pokemon_GetValue(param2, MON_DATA_NIDORAN_HAS_NICKNAME, NULL) == 0) {
         v13 = 2;
     } else {
         v13 = Pokemon_GetValue(param2, MON_DATA_GENDER, NULL);
