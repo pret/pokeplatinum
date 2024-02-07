@@ -834,7 +834,7 @@ BOOL sub_0204E094 (UnkStruct_0203E724 * param0)
             v0 = Party_GetPokemonBySlotIndex(v1, v4);
 
             if (Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL) != 0) {
-                if (Pokemon_GetValue(v0, MON_DATA_3, NULL) != 0) {
+                if (Pokemon_GetValue(v0, MON_DATA_IS_DATA_INVALID, NULL) != 0) {
                     *v2 = 1;
                     return 0;
                 }

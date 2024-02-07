@@ -28,7 +28,7 @@ void PalParkTransfer_Init (PalParkTransfer * param0)
 
     for (v0 = 0; v0 < 6; v0++) {
         Pokemon_Init(&param0->unk_00[v0]);
-        GF_ASSERT(Pokemon_GetValue(&param0->unk_00[v0], MON_DATA_172, NULL) == 0);
+        GF_ASSERT(Pokemon_GetValue(&param0->unk_00[v0], MON_DATA_SPECIES_EXISTS, NULL) == 0);
     }
 }
 
@@ -40,7 +40,7 @@ void sub_0202EF04 (PalParkTransfer * param0)
 
     for (v0 = 0; v0 < 6; v0++) {
         Pokemon_Init(&param0->unk_00[v0]);
-        GF_ASSERT(Pokemon_GetValue(&param0->unk_00[v0], MON_DATA_172, NULL) == 0);
+        GF_ASSERT(Pokemon_GetValue(&param0->unk_00[v0], MON_DATA_SPECIES_EXISTS, NULL) == 0);
     }
 }
 
@@ -100,7 +100,7 @@ int sub_0202F028 (const PalParkTransfer * param0)
     int v0, v1;
 
     for (v1 = 0, v0 = 0; v0 < 6; v0++) {
-        if (Pokemon_GetValue((Pokemon *)&param0->unk_00[v0], MON_DATA_172, NULL)) {
+        if (Pokemon_GetValue((Pokemon *)&param0->unk_00[v0], MON_DATA_SPECIES_EXISTS, NULL)) {
             v1++;
         }
     }

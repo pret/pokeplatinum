@@ -231,7 +231,7 @@ static BOOL sub_0202EA98 (const UnkStruct_0202E858 * param0, const UnkStruct_020
         return 0;
     }
 
-    if (sub_0200220C(param0->unk_08, param1->unk_08)) {
+    if (GF_strcmp(param0->unk_08, param1->unk_08)) {
         return 0;
     }
 

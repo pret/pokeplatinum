@@ -586,7 +586,7 @@ static int ov104_02238584 (UnkStruct_ov104_0223BFFC * param0, Party * param1, Pa
     for (v3 = 0; v3 < param3; v3++) {
         v5 = Party_GetPokemonBySlotIndex(param1, v3);
 
-        if (Pokemon_GetValue(v5, MON_DATA_172, NULL) == 0) {
+        if (Pokemon_GetValue(v5, MON_DATA_SPECIES_EXISTS, NULL) == 0) {
             continue;
         }
 
@@ -605,7 +605,7 @@ static int ov104_02238584 (UnkStruct_ov104_0223BFFC * param0, Party * param1, Pa
         for (v3 = 0; v3 < param3; v3++) {
             v5 = Party_GetPokemonBySlotIndex(param2, v3);
 
-            if (Pokemon_GetValue(v5, MON_DATA_172, NULL) == 0) {
+            if (Pokemon_GetValue(v5, MON_DATA_SPECIES_EXISTS, NULL) == 0) {
                 continue;
             }
 

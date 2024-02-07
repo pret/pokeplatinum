@@ -845,7 +845,7 @@ int sub_02084780 (GameWindowLayout * param0)
 {
     Pokemon * v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
 
-    if (Pokemon_GetValue(v0, MON_DATA_162, NULL) == 0) {
+    if (Pokemon_GetValue(v0, MON_DATA_MAIL_ID, NULL) == 0) {
         MessageLoader_GetStrbuf(param0->unk_69C, 129, param0->unk_6A4);
         sub_02021CAC(param0->unk_5B0[22 + param0->unk_B11], 1);
     } else {

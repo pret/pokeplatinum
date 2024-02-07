@@ -2145,8 +2145,8 @@ static void ov107_02243C18 (UnkStruct_ov107_02241D6C * param0, Window * param1, 
     sub_0200B630(param0->unk_24, param2, Pokemon_GetValue(param5, param6, NULL));
     param0->unk_0A = ov107_02243860(param0, param1, param3, v0, v1, 0xff, 1, 2, 0, 0);
 
-    ov107_02244A74(param0, 4, Pokemon_GetValue(param5, param7, NULL), MON_DATA_3, 0);
-    ov107_02244A74(param0, 5, Pokemon_GetValue(param5, param8, NULL), MON_DATA_3, 0);
+    ov107_02244A74(param0, 4, Pokemon_GetValue(param5, param7, NULL), MON_DATA_IS_DATA_INVALID, 0);
+    ov107_02244A74(param0, 5, Pokemon_GetValue(param5, param8, NULL), MON_DATA_IS_DATA_INVALID, 0);
     param0->unk_0A = ov107_02243890(param0, param1, param4, v2, v3, 0xff, 1, 2, 0, 0, 1);
 
     return;

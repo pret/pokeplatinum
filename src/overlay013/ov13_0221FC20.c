@@ -1223,7 +1223,7 @@ static void ov13_02220F98 (UnkStruct_ov13_022213F0 * param0)
         param0->unk_04[v0].unk_15 = (u8)Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_TYPE_2, NULL);
         param0->unk_04[v0].unk_16_0 = (u8)Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_LEVEL, NULL);
 
-        if (Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_176, NULL) == 1) {
+        if (Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_NIDORAN_HAS_NICKNAME, NULL) == 1) {
             param0->unk_04[v0].unk_16_7 = 0;
         } else {
             param0->unk_04[v0].unk_16_7 = 1;
@@ -1248,7 +1248,7 @@ static void ov13_02220F98 (UnkStruct_ov13_022213F0 * param0)
         param0->unk_04[v0].unk_2A = (u8)Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_CUTE, NULL);
         param0->unk_04[v0].unk_2B = (u8)Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_SMART, NULL);
         param0->unk_04[v0].unk_2C = (u8)Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_TOUGH, NULL);
-        param0->unk_04[v0].unk_2D = (u16)Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_162, NULL);
+        param0->unk_04[v0].unk_2D = (u16)Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_MAIL_ID, NULL);
         param0->unk_04[v0].unk_2E = (u8)Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_FORM, NULL);
 
         for (v1 = 0; v1 < 4; v1++) {

@@ -69,7 +69,7 @@ u32 GF_strlen (const u16 * param0)
     return v0;
 }
 
-BOOL sub_0200220C (const u16 * param0, const u16 * param1)
+BOOL GF_strcmp (const u16 * param0, const u16 * param1)
 {
     while (*param0 == *param1) {
         if (*param0 == 0xffff) {

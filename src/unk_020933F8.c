@@ -505,7 +505,7 @@ static void sub_020939E0 (UnkStruct_02095C48 * param0, int param1, int param2)
             param0->unk_00.unk_D8[v1] = Strbuf_Init(8, 20);
         }
 
-        Pokemon_GetValue(param0->unk_00.unk_00[v1], MON_DATA_145, param0->unk_00.unk_D8[v1]);
+        Pokemon_GetValue(param0->unk_00.unk_00[v1], MON_DATA_OTNAME_STRBUF, param0->unk_00.unk_D8[v1]);
     }
 
     for (v1 = 1; v1 < 4; v1++) {
@@ -554,19 +554,19 @@ static int sub_02093B2C (Pokemon * param0, int param1)
     for (v1 = 0; v1 <= 3; v1++) {
         switch (param1) {
         case 0:
-            v2 = Pokemon_GetValue(param0, MON_DATA_123 + v1, NULL);
+            v2 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_COOL_RIBBON + v1, NULL);
             break;
         case 1:
-            v2 = Pokemon_GetValue(param0, MON_DATA_127 + v1, NULL);
+            v2 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON + v1, NULL);
             break;
         case 2:
-            v2 = Pokemon_GetValue(param0, MON_DATA_131 + v1, NULL);
+            v2 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_CUTE_RIBBON + v1, NULL);
             break;
         case 3:
-            v2 = Pokemon_GetValue(param0, MON_DATA_135 + v1, NULL);
+            v2 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_SMART_RIBBON + v1, NULL);
             break;
         case 4:
-            v2 = Pokemon_GetValue(param0, MON_DATA_139 + v1, NULL);
+            v2 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_TOUGH_RIBBON + v1, NULL);
             break;
         default:
             GF_ASSERT(0);

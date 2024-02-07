@@ -748,7 +748,7 @@ static int ov94_02240688 (UnkStruct_ov94_0223FD4C * param0)
 
                 v2 = Party_GetPokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_112);
 
-                if (Pokemon_GetValue(v2, MON_DATA_162, NULL)) {
+                if (Pokemon_GetValue(v2, MON_DATA_MAIL_ID, NULL)) {
                     v1 = 1;
                     param0->unk_2C = 14;
                 }
@@ -840,7 +840,7 @@ static int ov94_022408E8 (UnkStruct_ov94_0223FD4C * param0)
 
                 v2 = Party_GetPokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_112);
 
-                if (Pokemon_GetValue(v2, MON_DATA_162, NULL)) {
+                if (Pokemon_GetValue(v2, MON_DATA_MAIL_ID, NULL)) {
                     v1 = 1;
                     param0->unk_2C = 11;
                 }
@@ -1095,7 +1095,7 @@ static void ov94_02240EAC (BoxPokemon * param0, GraphicElementData * param1, Gra
 
     BoxPokemon_EnterDecryptionContext(param0);
 
-    v0 = BoxPokemon_GetValue(param0, MON_DATA_172, NULL);
+    v0 = BoxPokemon_GetValue(param0, MON_DATA_SPECIES_EXISTS, NULL);
     *param3 = BoxPokemon_GetValue(param0, MON_DATA_SPECIES, NULL);
 
     v3 = BoxPokemon_GetValue(param0, MON_DATA_FORM, NULL);
@@ -1171,7 +1171,7 @@ static void ov94_02240FA0 (UnkStruct_ov94_0223FD4C * param0, int param1)
             ov94_02240E50(v4, &param0->unk_1108->unk_00[v1]);
             ov94_02240EAC(v4, param0->unk_E28[v1], param0->unk_EA0[v1], &v0[v1], v1, v6, &param0->unk_1108->unk_00[v1], &v7[v1]);
 
-            if (Pokemon_GetValue(v3, MON_DATA_162, NULL)) {
+            if (Pokemon_GetValue(v3, MON_DATA_MAIL_ID, NULL)) {
                 sub_02021CAC(param0->unk_F18[v1], 1);
             } else {
                 sub_02021CAC(param0->unk_F18[v1], 0);
@@ -1324,11 +1324,11 @@ static int ov94_022412F4 (Party * param0, PCBoxes * param1, int param2, int para
         return 0;
     }
 
-    if (!BoxPokemon_GetValue(v0, MON_DATA_172, NULL)) {
+    if (!BoxPokemon_GetValue(v0, MON_DATA_SPECIES_EXISTS, NULL)) {
         return 0;
     }
 
-    if (BoxPokemon_GetValue(v0, MON_DATA_173, NULL)) {
+    if (BoxPokemon_GetValue(v0, MON_DATA_EGG_EXISTS, NULL)) {
         return 2;
     }
 

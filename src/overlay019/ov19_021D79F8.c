@@ -396,7 +396,7 @@ static void ov19_021D803C (UnkStruct_ov19_021D8318 * param0, UnkStruct_ov19_021D
         if (param1->unk_00 == NULL) {
             v1 = sub_02079C9C(v0, param0->unk_30, v3);
 
-            if (BoxPokemon_GetValue(v1, MON_DATA_172, NULL)) {
+            if (BoxPokemon_GetValue(v1, MON_DATA_SPECIES_EXISTS, NULL)) {
                 ov19_021DA548(param0->unk_58F0, v1, param0->unk_5814[v3], param0->unk_57D8[v3], param0->unk_CD8[v3], param2, 40 + 24 * v2, 2, ov19_021D85B4(v3), v4, param1);
             }
         }
@@ -601,7 +601,7 @@ void ov19_021D84E0 (UnkStruct_ov19_021D8318 * param0)
     for (v0 = 0; v0 < (5 * 6); v0++) {
         v2 = sub_02079C9C(param0->unk_58F8->unk_00, v1, v0);
 
-        if (BoxPokemon_GetValue(v2, MON_DATA_172, NULL)) {
+        if (BoxPokemon_GetValue(v2, MON_DATA_SPECIES_EXISTS, NULL)) {
             if (param0->unk_A8[param0->unk_02][v0].unk_00 == NULL) {
                 int v3, v4, v5;
 

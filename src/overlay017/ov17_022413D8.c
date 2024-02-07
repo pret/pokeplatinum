@@ -1583,7 +1583,7 @@ void ov17_02242EE4 (UnkStruct_ov17_02246F24 * param0, int param1)
 
     v0 = Strbuf_Init(12, 21);
 
-    Pokemon_GetValue(param0->unk_0C.unk_00->unk_00[param1], MON_DATA_119, v0);
+    Pokemon_GetValue(param0->unk_0C.unk_00->unk_00[param1], MON_DATA_NICKNAME_STRBUF, v0);
 
     if (param1 == param0->unk_00->unk_00.unk_113) {
         v1 = ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));

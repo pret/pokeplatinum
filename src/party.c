@@ -103,7 +103,7 @@ void sub_0207A128 (Party * party, int slot, Pokemon * param2)
 
     PARTY_ASSERT_SLOT(party, slot);
 
-    v0 = Pokemon_GetValue(&(party->pokemon[slot]), MON_DATA_172, NULL) - Pokemon_GetValue(param2, MON_DATA_172, NULL);
+    v0 = Pokemon_GetValue(&(party->pokemon[slot]), MON_DATA_SPECIES_EXISTS, NULL) - Pokemon_GetValue(param2, MON_DATA_SPECIES_EXISTS, NULL);
     party->pokemon[slot] = *param2;
     party->currentCount += v0;
 }

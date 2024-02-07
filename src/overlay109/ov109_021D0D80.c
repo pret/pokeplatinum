@@ -3576,7 +3576,7 @@ static BOOL ov109_021D3C94 (Party * param0)
         v2 = Party_GetPokemonBySlotIndex(param0, v0);
 
         if (Pokemon_GetValue(v2, MON_DATA_IS_EGG, NULL)) {
-            if (Pokemon_GetValue(v2, MON_DATA_3, NULL)) {
+            if (Pokemon_GetValue(v2, MON_DATA_IS_DATA_INVALID, NULL)) {
                 return 1;
             }
         }

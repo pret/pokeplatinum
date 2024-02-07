@@ -529,7 +529,7 @@ void ov94_0223D910 (MessageLoader * param0, MessageLoader * param1, UnkStruct_02
     Strbuf* v5 = Strbuf_Init((8 + 1) * 2, 62);
     int v6, v7, v8, v9, v10;
 
-    BoxPokemon_GetValue(param4, MON_DATA_119, v4);
+    BoxPokemon_GetValue(param4, MON_DATA_NICKNAME_STRBUF, v4);
 
     v10 = param5->unk_00;
     v6 = param5->unk_02;
@@ -580,7 +580,7 @@ void ov94_0223DA78 (MessageLoader * param0, Window param1[], u16 * param2, Pokem
     Strbuf_CopyChars(v0, param2);
 
     v2 = MessageLoader_GetNewStrbuf(param0, 172);
-    Pokemon_GetValue(param3, MON_DATA_145, v3);
+    Pokemon_GetValue(param3, MON_DATA_OTNAME_STRBUF, v3);
 
     ov94_02245900(&param1[0], v1, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
     ov94_02245900(&param1[1], v0, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
