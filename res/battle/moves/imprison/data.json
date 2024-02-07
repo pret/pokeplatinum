@@ -6,7 +6,7 @@
     "accuracy": 0,
     "pp": 10,
     "effect": {
-        "type": "MOVE_EFFECT_MAKE_SHARED_MOVES_UNUSEABLE",
+        "type": "BATTLE_EFFECT_MAKE_SHARED_MOVES_UNUSEABLE",
         "chance": 0
     },
     "range": "RANGE_USER",

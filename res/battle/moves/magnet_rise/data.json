@@ -6,7 +6,7 @@
     "accuracy": 0,
     "pp": 10,
     "effect": {
-        "type": "MOVE_EFFECT_GIVE_GROUND_IMMUNITY",
+        "type": "BATTLE_EFFECT_GIVE_GROUND_IMMUNITY",
         "chance": 0
     },
     "range": "RANGE_USER",

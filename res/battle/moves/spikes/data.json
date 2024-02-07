@@ -6,7 +6,7 @@
     "accuracy": 0,
     "pp": 20,
     "effect": {
-        "type": "MOVE_EFFECT_SET_SPIKES",
+        "type": "BATTLE_EFFECT_SET_SPIKES",
         "chance": 0
     },
     "range": "RANGE_OPPONENT_SIDE",

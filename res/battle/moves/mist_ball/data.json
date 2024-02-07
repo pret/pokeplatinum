@@ -6,15 +6,15 @@
     "accuracy": 100,
     "pp": 5,
     "effect": {
-        "type": "MOVE_EFFECT_LOWER_SP_ATK_HIT",
+        "type": "BATTLE_EFFECT_LOWER_SP_ATK_HIT",
         "chance": 50
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,
     "flags": [
-        "MOVE_FLAG_PROTECT",
-        "MOVE_FLAG_MIRROR_MOVE",
-        "MOVE_FLAG_HIDE_SHADOWS"
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_HIDES_SHADOWS"
     ],
     "contest": {
         "effect": 22,

@@ -6,13 +6,13 @@
     "accuracy": 0,
     "pp": 20,
     "effect": {
-        "type": "MOVE_EFFECT_EVA_UP_2_MINIMIZE",
+        "type": "BATTLE_EFFECT_EVA_UP_2_MINIMIZE",
         "chance": 0
     },
     "range": "RANGE_USER",
     "priority": 0,
     "flags": [
-        "MOVE_FLAG_SNATCH"
+        "MOVE_FLAG_CAN_SNATCH"
     ],
     "contest": {
         "effect": 13,

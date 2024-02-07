@@ -6,13 +6,13 @@
     "accuracy": 0,
     "pp": 5,
     "effect": {
-        "type": "MOVE_EFFECT_CURE_PARTY_STATUS",
+        "type": "BATTLE_EFFECT_CURE_PARTY_STATUS",
         "chance": 0
     },
     "range": "RANGE_USER_SIDE",
     "priority": 0,
     "flags": [
-        "MOVE_FLAG_SNATCH"
+        "MOVE_FLAG_CAN_SNATCH"
     ],
     "contest": {
         "effect": 8,

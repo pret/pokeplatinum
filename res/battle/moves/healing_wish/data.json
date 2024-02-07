@@ -6,7 +6,7 @@
     "accuracy": 0,
     "pp": 10,
     "effect": {
-        "type": "MOVE_EFFECT_FAINT_AND_FULL_HEAL_NEXT_MON",
+        "type": "BATTLE_EFFECT_FAINT_AND_FULL_HEAL_NEXT_MON",
         "chance": 0
     },
     "range": "RANGE_USER",

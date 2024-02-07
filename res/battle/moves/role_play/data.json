@@ -6,7 +6,7 @@
     "accuracy": 0,
     "pp": 10,
     "effect": {
-        "type": "MOVE_EFFECT_COPY_ABILITY",
+        "type": "BATTLE_EFFECT_COPY_ABILITY",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

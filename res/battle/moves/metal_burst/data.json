@@ -6,13 +6,13 @@
     "accuracy": 100,
     "pp": 10,
     "effect": {
-        "type": "MOVE_EFFECT_METAL_BURST",
+        "type": "BATTLE_EFFECT_METAL_BURST",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET_SPECIAL",
     "priority": 0,
     "flags": [
-        "MOVE_FLAG_MIRROR_MOVE"
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
     ],
     "contest": {
         "effect": 15,

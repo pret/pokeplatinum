@@ -6,7 +6,7 @@
     "accuracy": 0,
     "pp": 20,
     "effect": {
-        "type": "MOVE_EFFECT_STEALTH_ROCK",
+        "type": "BATTLE_EFFECT_STEALTH_ROCK",
         "chance": 0
     },
     "range": "RANGE_OPPONENT_SIDE",

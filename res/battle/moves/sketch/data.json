@@ -6,7 +6,7 @@
     "accuracy": 0,
     "pp": 1,
     "effect": {
-        "type": "MOVE_EFFECT_LEARN_MOVE_PERMANENT",
+        "type": "BATTLE_EFFECT_LEARN_MOVE_PERMANENT",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

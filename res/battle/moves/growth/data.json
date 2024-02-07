@@ -6,14 +6,14 @@
     "accuracy": 0,
     "pp": 40,
     "effect": {
-        "type": "MOVE_EFFECT_SP_ATK_UP",
+        "type": "BATTLE_EFFECT_SP_ATK_UP",
         "chance": 0
     },
     "range": "RANGE_USER",
     "priority": 0,
     "flags": [
-        "MOVE_FLAG_SNATCH",
-        "MOVE_FLAG_HIDE_HP_BARS"
+        "MOVE_FLAG_CAN_SNATCH",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
     ],
     "contest": {
         "effect": 11,

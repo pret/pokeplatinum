@@ -6,16 +6,16 @@
     "accuracy": 100,
     "pp": 20,
     "effect": {
-        "type": "MOVE_EFFECT_SP_ATK_DOWN_2_OPPOSITE_GENDER",
+        "type": "BATTLE_EFFECT_SP_ATK_DOWN_2_OPPOSITE_GENDER",
         "chance": 0
     },
     "range": "RANGE_ADJACENT_OPPONENTS",
     "priority": 0,
     "flags": [
-        "MOVE_FLAG_PROTECT",
-        "MOVE_FLAG_MAGIC_COAT",
-        "MOVE_FLAG_MIRROR_MOVE",
-        "MOVE_FLAG_HIDE_HP_BARS"
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MAGIC_COAT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
     ],
     "contest": {
         "effect": 19,
