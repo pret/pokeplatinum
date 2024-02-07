@@ -2,6 +2,7 @@
 #include <string.h>
 
 #include "constants/pokemon.h"
+#include "constants/species.h"
 
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/battle_system.h"
@@ -149,7 +150,7 @@ void ov16_02266B78(BattleSystem * param0, BattleContext * param1, UnkStruct_ov16
 void ov16_02264988(BattleSystem * param0, int param1);
 static void ov16_0226485C(BattleSystem * param0, int param1, int param2, void * param3, u8 param4);
 static void ov16_02264A04(BattleSystem * param0, int param1, int param2, void * param3, u8 param4);
-static void ov16_02266CF0(BattleSystem * param0, BattleContext * param1, PartyGaugeData * param2, int param3, int param4);
+static void PartyGaugeData_New(BattleSystem *battleSys, BattleContext *battleCtx, PartyGaugeData *partyGauge, int command, int battler);
 
 static void ov16_0226485C (BattleSystem * param0, int param1, int param2, void * param3, u8 param4)
 {
@@ -1386,7 +1387,7 @@ void BattleIO_ShowBattleStartPartyGauge (BattleSystem * param0, int param1)
 {
     PartyGaugeData v0;
 
-    ov16_02266CF0(param0, param0->battleCtx, &v0, 48, param1);
+    PartyGaugeData_New(param0, param0->battleCtx, &v0, 48, param1);
     ov16_02264A04(param0, 1, param1, &v0, sizeof(PartyGaugeData));
 }
 
@@ -1394,7 +1395,7 @@ void BattleIO_HideBattleStartPartyGauge (BattleSystem * param0, int param1)
 {
     PartyGaugeData v0;
 
-    ov16_02266CF0(param0, param0->battleCtx, &v0, 49, param1);
+    PartyGaugeData_New(param0, param0->battleCtx, &v0, 49, param1);
     ov16_02264A04(param0, 1, param1, &v0, sizeof(PartyGaugeData));
 }
 
@@ -1402,7 +1403,7 @@ void BattleIO_ShowPartyGauge (BattleSystem * param0, int param1)
 {
     PartyGaugeData v0;
 
-    ov16_02266CF0(param0, param0->battleCtx, &v0, 50, param1);
+    PartyGaugeData_New(param0, param0->battleCtx, &v0, 50, param1);
     ov16_02264A04(param0, 1, param1, &v0, sizeof(PartyGaugeData));
 }
 
@@ -1410,7 +1411,7 @@ void BattleIO_HidePartyGauge (BattleSystem * param0, int param1)
 {
     PartyGaugeData v0;
 
-    ov16_02266CF0(param0, param0->battleCtx, &v0, 51, param1);
+    PartyGaugeData_New(param0, param0->battleCtx, &v0, 51, param1);
     ov16_02264A04(param0, 1, param1, &v0, sizeof(PartyGaugeData));
 }
 
@@ -1716,100 +1717,64 @@ void ov16_02266B78 (BattleSystem * param0, BattleContext * param1, UnkStruct_ov1
     }
 }
 
-static void ov16_02266CF0 (BattleSystem * param0, BattleContext * param1, PartyGaugeData * param2, int param3, int param4)
+static inline void PartyGaugeData_Fill(BattleContext *battleCtx, PartyGaugeData *partyGauge, Party *party, int battler, int slot)
 {
-    int v0;
-    int v1, v2;
-    int v3;
-    int v4;
-    u32 v5;
-    Party * v6;
-    Pokemon * v7;
+    for (int i = 0; i < Party_GetCurrentCount(party); i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, battleCtx->partyOrder[battler][i]);
+        int species = Pokemon_GetValue(mon, MON_DATA_SPECIES_EGG, NULL);
 
-    MI_CpuClearFast(param2, sizeof(PartyGaugeData));
+        if (species && species != SPECIES_EGG) {
+            if (Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL)) {
+                if (Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL)) {
+                    partyGauge->status[slot] = BALL_STATUS_HAS_STATUS_CONDITION;
+                } else {
+                    partyGauge->status[slot] = BALL_STATUS_MON_ALIVE;
+                }
+            } else {
+                partyGauge->status[slot] = BALL_STATUS_MON_FAINTED;
+            }
 
-    v5 = BattleSystem_BattleType(param0);
-    param2->command = param3;
+            slot++;
+        }
+    }
+}
 
-    if (((v5 & (0x4 | 0x8)) == (0x4 | 0x8)) || ((v5 & 0x10) && (Battler_Side(param0, param4))) || ((v5 == ((0x2 | 0x1) | 0x8 | 0x40)) && (Battler_Side(param0, param4))) || ((v5 == (((0x2 | 0x1) | 0x8 | 0x40) | 0x80)))) {
-        if ((BattleSystem_BattlerSlot(param0, param4) == 2) || (BattleSystem_BattlerSlot(param0, param4) == 3)) {
-            v1 = param4;
-            v2 = BattleSystem_Partner(param0, param4);
+static void PartyGaugeData_New(BattleSystem *battleSys, BattleContext *battleCtx, PartyGaugeData *partyGauge, int command, int battler)
+{
+    MI_CpuClearFast(partyGauge, sizeof(PartyGaugeData));
+    u32 battleType = BattleSystem_BattleType(battleSys);
+    partyGauge->command = command;
+
+    // must make declarations here to match
+    int battler1, battler2;
+    Party *party;
+    
+    if ((battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_2vs2)) == (BATTLE_TYPE_LINK | BATTLE_TYPE_2vs2) // 2vs2 link battle
+            || ((battleType & BATTLE_TYPE_TAG) && Battler_Side(battleSys, battler)) // either of the two opponents on the enemy side
+            || ((battleType == BATTLE_TYPE_TRAINER_WITH_AI_PARTNER) && Battler_Side(battleSys, battler)) // either of the two opponents on the enemy side
+            || battleType == BATTLE_TYPE_FRONTIER_WITH_AI_PARTNER) { // frontier, AI partner
+        if (BattleSystem_BattlerSlot(battleSys, battler) == BATTLER_PLAYER_SLOT_2
+                || BattleSystem_BattlerSlot(battleSys, battler) == BATTLER_ENEMY_SLOT_2) {
+            battler1 = battler;
+            battler2 = BattleSystem_Partner(battleSys, battler);
         } else {
-            v1 = BattleSystem_Partner(param0, param4);
-            v2 = param4;
+            battler1 = BattleSystem_Partner(battleSys, battler);
+            battler2 = battler;
         }
 
-        v6 = BattleSystem_Party(param0, v1);
-        v4 = 0;
+        party = BattleSystem_Party(battleSys, battler1);
+        PartyGaugeData_Fill(battleCtx, partyGauge, party, battler1, 0);
 
-        for (v0 = 0; v0 < Party_GetCurrentCount(v6); v0++) {
-            v7 = Party_GetPokemonBySlotIndex(v6, param1->partyOrder[v1][v0]);
-            v3 = Pokemon_GetValue(v7, MON_DATA_SPECIES_EGG, NULL);
-
-            if ((v3) && (v3 != 494)) {
-                if (Pokemon_GetValue(v7, MON_DATA_CURRENT_HP, NULL)) {
-                    if (Pokemon_GetValue(v7, MON_DATA_STATUS_CONDITION, NULL)) {
-                        param2->status[v4] = 3;
-                    } else {
-                        param2->status[v4] = 1;
-                    }
-                } else {
-                    param2->status[v4] = 2;
-                }
-
-                v4++;
-            }
-        }
-
-        v6 = BattleSystem_Party(param0, v2);
-        v4 = 3;
-
-        for (v0 = 0; v0 < Party_GetCurrentCount(v6); v0++) {
-            v7 = Party_GetPokemonBySlotIndex(v6, param1->partyOrder[v2][v0]);
-            v3 = Pokemon_GetValue(v7, MON_DATA_SPECIES_EGG, NULL);
-
-            if ((v3) && (v3 != 494)) {
-                if (Pokemon_GetValue(v7, MON_DATA_CURRENT_HP, NULL)) {
-                    if (Pokemon_GetValue(v7, MON_DATA_STATUS_CONDITION, NULL)) {
-                        param2->status[v4] = 3;
-                    } else {
-                        param2->status[v4] = 1;
-                    }
-                } else {
-                    param2->status[v4] = 2;
-                }
-
-                v4++;
-            }
-        }
+        party = BattleSystem_Party(battleSys, battler2);
+        PartyGaugeData_Fill(battleCtx, partyGauge, party, battler2, 3);
     } else {
-        if ((v5 & 0x2) && ((v5 & 0x8) == 0)) {
-            param4 = param4 & 1;
+        if ((battleType & BATTLE_TYPE_DOUBLES) && (battleType & BATTLE_TYPE_2vs2) == FALSE) {
+            battler = battler & 1;
         } else {
-            param4 = param4;
+            battler = battler;
         }
 
-        v6 = BattleSystem_Party(param0, param4);
-        v4 = 0;
-
-        for (v0 = 0; v0 < Party_GetCurrentCount(v6); v0++) {
-            v7 = Party_GetPokemonBySlotIndex(v6, param1->partyOrder[param4][v0]);
-            v3 = Pokemon_GetValue(v7, MON_DATA_SPECIES_EGG, NULL);
-
-            if ((v3) && (v3 != 494)) {
-                if (Pokemon_GetValue(v7, MON_DATA_CURRENT_HP, NULL)) {
-                    if (Pokemon_GetValue(v7, MON_DATA_STATUS_CONDITION, NULL)) {
-                        param2->status[v4] = 3;
-                    } else {
-                        param2->status[v4] = 1;
-                    }
-                } else {
-                    param2->status[v4] = 2;
-                }
-
-                v4++;
-            }
-        }
+        party = BattleSystem_Party(battleSys, battler);
+        PartyGaugeData_Fill(battleCtx, partyGauge, party, battler, 0);
     }
 }
