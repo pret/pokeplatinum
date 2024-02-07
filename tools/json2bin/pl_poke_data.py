@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 import pathlib
-
 import json2bin as j2b
 
-from consts.pokemon import species, shadow
+from consts.generated.py import (
+    species,
+    shadows
+)
 
 
 def parse_frame(frame: dict) -> bytes:
@@ -33,7 +35,7 @@ SCHEMA = j2b.Parser() \
     .register('back', 43, parse_face) \
     .register('front.addl_y_offset', 1, j2b.parse_sint) \
     .register('shadow.x_offset', 1, j2b.parse_sint) \
-    .register('shadow.size', 1, j2b.parse_const, shadow.ShadowSize)
+    .register('shadow.size', 1, j2b.parse_const, shadows.PokemonBattleShadowSize)
 
 
 def indexer(file_path: pathlib.Path) -> int:

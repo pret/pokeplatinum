@@ -4,6 +4,8 @@ import json
 import pathlib
 import subprocess
 
+from consts.generated.py.pokemon import PokemonGenderRatio
+
 
 argparser = argparse.ArgumentParser(
     prog='pl_poke_icon.narc packer',
@@ -43,8 +45,11 @@ for i, subdir in enumerate(args.subdirs):
         pkdata = json.load(data_file)
     
     gender_ratio = pkdata['gender_ratio']
-    female_only = (gender_ratio == 'FEMALE_ONLY')
-    male_or_genderless = (gender_ratio in ['MALE_ONLY', 'NO_GENDER'])
+    female_only = (gender_ratio == PokemonGenderRatio.GENDER_RATIO_FEMALE_ONLY.name)
+    male_or_genderless = (gender_ratio in [
+        PokemonGenderRatio.GENDER_RATIO_MALE_ONLY.name,
+        PokemonGenderRatio.GENDER_RATIO_NO_GENDER.name
+    ])
 
     j = 0
     for face in ['back', 'front']:

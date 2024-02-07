@@ -6,7 +6,7 @@
     "accuracy": 0,
     "pp": 40,
     "effect": {
-        "type": "MOVE_EFFECT_PASS_STATS_AND_STATUS",
+        "type": "BATTLE_EFFECT_PASS_STATS_AND_STATUS",
         "chance": 0
     },
     "range": "RANGE_USER",

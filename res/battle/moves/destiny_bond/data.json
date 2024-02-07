@@ -6,7 +6,7 @@
     "accuracy": 0,
     "pp": 5,
     "effect": {
-        "type": "MOVE_EFFECT_KO_MON_THAT_DEFEATED_USER",
+        "type": "BATTLE_EFFECT_KO_MON_THAT_DEFEATED_USER",
         "chance": 0
     },
     "range": "RANGE_USER",

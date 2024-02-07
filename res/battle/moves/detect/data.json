@@ -6,7 +6,7 @@
     "accuracy": 0,
     "pp": 5,
     "effect": {
-        "type": "MOVE_EFFECT_PROTECT",
+        "type": "BATTLE_EFFECT_PROTECT",
         "chance": 0
     },
     "range": "RANGE_USER",

@@ -6,7 +6,7 @@
     "accuracy": 100,
     "pp": 10,
     "effect": {
-        "type": "MOVE_EFFECT_REMOVE_PROTECT",
+        "type": "BATTLE_EFFECT_REMOVE_PROTECT",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

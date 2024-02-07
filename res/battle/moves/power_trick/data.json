@@ -6,13 +6,13 @@
     "accuracy": 0,
     "pp": 10,
     "effect": {
-        "type": "MOVE_EFFECT_SWAP_ATK_DEF",
+        "type": "BATTLE_EFFECT_SWAP_ATK_DEF",
         "chance": 0
     },
     "range": "RANGE_USER",
     "priority": 0,
     "flags": [
-        "MOVE_FLAG_HIDE_HP_BARS"
+        "MOVE_FLAG_HIDES_HP_GAUGES"
     ],
     "contest": {
         "effect": 16,

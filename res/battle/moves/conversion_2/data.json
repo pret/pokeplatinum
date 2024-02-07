@@ -6,7 +6,7 @@
     "accuracy": 0,
     "pp": 30,
     "effect": {
-        "type": "MOVE_EFFECT_CONVERSION2",
+        "type": "BATTLE_EFFECT_CONVERSION2",
         "chance": 0
     },
     "range": "RANGE_USER",

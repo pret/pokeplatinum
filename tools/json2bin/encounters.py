@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
 import pathlib
-
-from consts.pokemon import (
-    species
-)
-
 import json2bin as j2b
+
+from consts.generated.py import species
 
 
 SCHEMA = j2b.Parser().register('land_rate', 4, j2b.parse_int)

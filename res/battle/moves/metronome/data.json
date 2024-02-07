@@ -6,13 +6,13 @@
     "accuracy": 0,
     "pp": 10,
     "effect": {
-        "type": "MOVE_EFFECT_CALL_RANDOM_MOVE",
+        "type": "BATTLE_EFFECT_CALL_RANDOM_MOVE",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET_SPECIAL",
     "priority": 0,
     "flags": [
-        "MOVE_FLAG_HIDE_HP_BARS"
+        "MOVE_FLAG_HIDES_HP_GAUGES"
     ],
     "contest": {
         "effect": 14,

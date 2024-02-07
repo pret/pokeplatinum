@@ -6,14 +6,14 @@
     "accuracy": 0,
     "pp": 20,
     "effect": {
-        "type": "MOVE_EFFECT_AVERAGE_HP",
+        "type": "BATTLE_EFFECT_AVERAGE_HP",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,
     "flags": [
-        "MOVE_FLAG_PROTECT",
-        "MOVE_FLAG_MIRROR_MOVE"
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
     ],
     "contest": {
         "effect": 10,

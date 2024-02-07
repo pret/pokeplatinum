@@ -26,13 +26,13 @@
         "common": "ITEM_NONE",
         "rare": "ITEM_NONE"
     },
-    "gender_ratio": "FEMALE_ONLY",
+    "gender_ratio": "GENDER_RATIO_FEMALE_ONLY",
     "hatch_cycles": 20,
     "base_friendship": 70,
-    "exp_rate": "MEDIUM_FAST",
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
     "egg_groups": [
-        "MONSTER",
-        "MONSTER"
+        "EGG_GROUP_MONSTER",
+        "EGG_GROUP_MONSTER"
     ],
     "abilities": [
         "ABILITY_EARLY_BIRD",

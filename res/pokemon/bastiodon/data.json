@@ -26,13 +26,13 @@
         "common": "ITEM_NONE",
         "rare": "ITEM_NONE"
     },
-    "gender_ratio": "FEMALE_12_5",
+    "gender_ratio": "GENDER_RATIO_FEMALE_12_5",
     "hatch_cycles": 30,
     "base_friendship": 70,
-    "exp_rate": "ERRATIC",
+    "exp_rate": "EXP_RATE_ERRATIC",
     "egg_groups": [
-        "MONSTER",
-        "MONSTER"
+        "EGG_GROUP_MONSTER",
+        "EGG_GROUP_MONSTER"
     ],
     "abilities": [
         "ABILITY_STURDY",

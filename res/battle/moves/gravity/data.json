@@ -6,7 +6,7 @@
     "accuracy": 0,
     "pp": 5,
     "effect": {
-        "type": "MOVE_EFFECT_GRAVITY",
+        "type": "BATTLE_EFFECT_GRAVITY",
         "chance": 0
     },
     "range": "RANGE_FIELD",

@@ -26,13 +26,13 @@
         "common": "ITEM_NONE",
         "rare": "ITEM_NONE"
     },
-    "gender_ratio": "MALE_ONLY",
+    "gender_ratio": "GENDER_RATIO_MALE_ONLY",
     "hatch_cycles": 20,
     "base_friendship": 35,
-    "exp_rate": "SLOW",
+    "exp_rate": "EXP_RATE_SLOW",
     "egg_groups": [
-        "AMORPHOUS",
-        "AMORPHOUS"
+        "EGG_GROUP_AMORPHOUS",
+        "EGG_GROUP_AMORPHOUS"
     ],
     "abilities": [
         "ABILITY_STEADFAST",

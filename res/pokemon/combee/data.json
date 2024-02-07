@@ -26,13 +26,13 @@
         "common": "ITEM_HONEY",
         "rare": "ITEM_HONEY"
     },
-    "gender_ratio": "FEMALE_12_5",
+    "gender_ratio": "GENDER_RATIO_FEMALE_12_5",
     "hatch_cycles": 15,
     "base_friendship": 70,
-    "exp_rate": "MEDIUM_SLOW",
+    "exp_rate": "EXP_RATE_MEDIUM_SLOW",
     "egg_groups": [
-        "BUG",
-        "BUG"
+        "EGG_GROUP_BUG",
+        "EGG_GROUP_BUG"
     ],
     "abilities": [
         "ABILITY_HONEY_GATHER",

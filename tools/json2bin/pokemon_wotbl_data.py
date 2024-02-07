@@ -1,13 +1,9 @@
 #!/usr/bin/env python3
 import pathlib
-
 import json2bin as j2b
 
-from consts import (
-    moves
-)
-
-from consts.pokemon import (
+from consts.generated.py import (
+    moves,
     species
 )
 

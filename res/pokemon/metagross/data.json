@@ -26,13 +26,13 @@
         "common": "ITEM_NONE",
         "rare": "ITEM_METAL_COAT"
     },
-    "gender_ratio": "NO_GENDER",
+    "gender_ratio": "GENDER_RATIO_NO_GENDER",
     "hatch_cycles": 40,
     "base_friendship": 35,
-    "exp_rate": "SLOW",
+    "exp_rate": "EXP_RATE_SLOW",
     "egg_groups": [
-        "MINERAL",
-        "MINERAL"
+        "EGG_GROUP_MINERAL",
+        "EGG_GROUP_MINERAL"
     ],
     "abilities": [
         "ABILITY_CLEAR_BODY",

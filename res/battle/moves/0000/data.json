@@ -6,7 +6,7 @@
     "accuracy": 0,
     "pp": 0,
     "effect": {
-        "type": "MOVE_EFFECT_HIT",
+        "type": "BATTLE_EFFECT_HIT",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

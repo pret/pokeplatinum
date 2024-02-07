@@ -6,7 +6,7 @@
     "accuracy": 0,
     "pp": 5,
     "effect": {
-        "type": "MOVE_EFFECT_REMOVE_ALL_PP_ON_DEFEAT",
+        "type": "BATTLE_EFFECT_REMOVE_ALL_PP_ON_DEFEAT",
         "chance": 0
     },
     "range": "RANGE_USER",

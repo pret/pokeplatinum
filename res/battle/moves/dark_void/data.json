@@ -6,16 +6,16 @@
     "accuracy": 80,
     "pp": 10,
     "effect": {
-        "type": "MOVE_EFFECT_STATUS_SLEEP",
+        "type": "BATTLE_EFFECT_STATUS_SLEEP",
         "chance": 0
     },
     "range": "RANGE_ADJACENT_OPPONENTS",
     "priority": 0,
     "flags": [
-        "MOVE_FLAG_PROTECT",
-        "MOVE_FLAG_MAGIC_COAT",
-        "MOVE_FLAG_MIRROR_MOVE",
-        "MOVE_FLAG_HIDE_SHADOWS"
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MAGIC_COAT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_HIDES_SHADOWS"
     ],
     "contest": {
         "effect": 19,

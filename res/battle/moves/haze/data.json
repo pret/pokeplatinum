@@ -6,7 +6,7 @@
     "accuracy": 0,
     "pp": 30,
     "effect": {
-        "type": "MOVE_EFFECT_RESET_STAT_CHANGES",
+        "type": "BATTLE_EFFECT_RESET_STAT_CHANGES",
         "chance": 0
     },
     "range": "RANGE_FIELD",

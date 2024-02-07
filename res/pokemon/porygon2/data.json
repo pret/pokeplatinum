@@ -26,13 +26,13 @@
         "common": "ITEM_NONE",
         "rare": "ITEM_NONE"
     },
-    "gender_ratio": "NO_GENDER",
+    "gender_ratio": "GENDER_RATIO_NO_GENDER",
     "hatch_cycles": 20,
     "base_friendship": 70,
-    "exp_rate": "MEDIUM_FAST",
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
     "egg_groups": [
-        "MINERAL",
-        "MINERAL"
+        "EGG_GROUP_MINERAL",
+        "EGG_GROUP_MINERAL"
     ],
     "abilities": [
         "ABILITY_TRACE",

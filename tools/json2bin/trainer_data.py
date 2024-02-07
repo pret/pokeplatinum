@@ -2,13 +2,13 @@
 from collections.abc import Mapping, Sequence
 import pathlib, functools
 
-from consts import (
-    item,
+from consts.generated.py import (
+    items,
     moves,
-    trainer
+    species,
+    trainer,
+    trainer_ai
 )
-
-from consts.pokemon import species
 
 import json2bin as j2b
 
@@ -18,7 +18,7 @@ def derive_data_flags(party: Sequence[Mapping], *args) -> bytes:
     defined_items = False
     for mon in party:
         defined_moves |= functools.reduce(lambda x, y: x or y,
-                                          map(lambda move: move != moves.Move.MOVE_0000.name,
+                                          map(lambda move: move != moves.Move.MOVE_NONE.name,
                                               mon.get('moves', []) if mon.get('moves', []) else []),
                                           False)
         defined_items |= bool(mon.get('item', None))
@@ -29,10 +29,10 @@ def derive_data_flags(party: Sequence[Mapping], *args) -> bytes:
 def parse_trainer_items(item_list: Sequence[str], *args) -> bytes:
     item_bin = bytearray([])
     for item_str in item_list:
-        item_bin.extend(item.Item[item_str].value.to_bytes(2, 'little'))
+        item_bin.extend(items.Item[item_str].value.to_bytes(2, 'little'))
     
     for _ in range(4 - len(item_list)):
-        item_bin.extend(item.Item.ITEM_NONE.value.to_bytes(2, 'little'))
+        item_bin.extend(items.Item.ITEM_NONE.value.to_bytes(2, 'little'))
     return item_bin
 
 
@@ -42,7 +42,7 @@ def parse_poke_moves(move_list: Sequence[str], *args) -> bytes:
         move_bin.extend(moves.Move[move_str].value.to_bytes(2, 'little'))
 
     for _ in range(4 - len(move_list)):
-        move_bin.extend(moves.Move.MOVE_0000.value.to_bytes(2, 'little'))
+        move_bin.extend(moves.Move.MOVE_NONE.value.to_bytes(2, 'little'))
     return move_bin
 
 
@@ -55,7 +55,7 @@ def parse_party_mon(mon: dict, has_moves: bool, has_items: bool) -> bytes:
     binary_mon.extend(j2b.parse_int(species_and_form, 2))
 
     if has_items:
-        binary_mon.extend(j2b.parse_const(mon['item'], 2, item.Item))
+        binary_mon.extend(j2b.parse_const(mon['item'], 2, items.Item))
     if has_moves:
         binary_mon.extend(parse_poke_moves(mon['moves']))
     
@@ -90,7 +90,7 @@ DATA_SCHEMA = j2b.Parser() \
     .register('party', 1,
               lambda party, size, _: j2b.parse_int(len(party), size, _)) \
     .register('items', 8, parse_trainer_items) \
-    .register('ai_flags', 4, j2b.pack_flags, trainer.AIFlag) \
+    .register('ai_flags', 4, j2b.pack_flags, trainer_ai.AIFlag) \
     .register('double_battle', 1,
               lambda val, size, _: j2b.parse_int(2 if val else 0, size, _)) \
     .pad(3)

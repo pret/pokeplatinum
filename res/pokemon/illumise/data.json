@@ -26,13 +26,13 @@
         "common": "ITEM_NONE",
         "rare": "ITEM_NONE"
     },
-    "gender_ratio": "FEMALE_ONLY",
+    "gender_ratio": "GENDER_RATIO_FEMALE_ONLY",
     "hatch_cycles": 15,
     "base_friendship": 70,
-    "exp_rate": "FLUCTUATING",
+    "exp_rate": "EXP_RATE_FLUCTUATING",
     "egg_groups": [
-        "BUG",
-        "HUMAN_LIKE"
+        "EGG_GROUP_BUG",
+        "EGG_GROUP_HUMAN_LIKE"
     ],
     "abilities": [
         "ABILITY_OBLIVIOUS",

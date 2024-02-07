@@ -6,14 +6,14 @@
     "accuracy": 70,
     "pp": 20,
     "effect": {
-        "type": "MOVE_EFFECT_POISON_HIT",
+        "type": "BATTLE_EFFECT_POISON_HIT",
         "chance": 40
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,
     "flags": [
-        "MOVE_FLAG_PROTECT",
-        "MOVE_FLAG_MIRROR_MOVE"
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
     ],
     "contest": {
         "effect": 5,
