@@ -699,6 +699,8 @@ pl_otherpoke_narc = custom_target('pl_otherpoke.narc',
 height_narc = custom_target('height.narc',
     output: 'height.narc',
     input: personal_files,
+    env: json2bin_env,
+    depends: [ generated_consts_py ],
     command: [
         make_height_py,
         '--knarc', knarc_exe,

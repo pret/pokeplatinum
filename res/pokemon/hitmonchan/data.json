@@ -26,13 +26,13 @@
         "common": "ITEM_NONE",
         "rare": "ITEM_NONE"
     },
-    "gender_ratio": "MALE_ONLY",
+    "gender_ratio": "GENDER_RATIO_MALE_ONLY",
     "hatch_cycles": 25,
     "base_friendship": 70,
-    "exp_rate": "MEDIUM_FAST",
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
     "egg_groups": [
-        "HUMAN_LIKE",
-        "HUMAN_LIKE"
+        "EGG_GROUP_HUMAN_LIKE",
+        "EGG_GROUP_HUMAN_LIKE"
     ],
     "abilities": [
         "ABILITY_KEEN_EYE",

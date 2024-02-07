@@ -26,13 +26,13 @@
         "common": "ITEM_LUM_BERRY",
         "rare": "ITEM_LUM_BERRY"
     },
-    "gender_ratio": "NO_GENDER",
+    "gender_ratio": "GENDER_RATIO_NO_GENDER",
     "hatch_cycles": 120,
     "base_friendship": 100,
-    "exp_rate": "MEDIUM_SLOW",
+    "exp_rate": "EXP_RATE_MEDIUM_SLOW",
     "egg_groups": [
-        "UNDISCOVERED",
-        "UNDISCOVERED"
+        "EGG_GROUP_UNDISCOVERED",
+        "EGG_GROUP_UNDISCOVERED"
     ],
     "abilities": [
         "ABILITY_SYNCHRONIZE",

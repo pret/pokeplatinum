@@ -26,13 +26,13 @@
         "common": "ITEM_STARDUST",
         "rare": "ITEM_STAR_PIECE"
     },
-    "gender_ratio": "NO_GENDER",
+    "gender_ratio": "GENDER_RATIO_NO_GENDER",
     "hatch_cycles": 20,
     "base_friendship": 70,
-    "exp_rate": "SLOW",
+    "exp_rate": "EXP_RATE_SLOW",
     "egg_groups": [
-        "WATER_3",
-        "WATER_3"
+        "EGG_GROUP_WATER_3",
+        "EGG_GROUP_WATER_3"
     ],
     "abilities": [
         "ABILITY_ILLUMINATE",

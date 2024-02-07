@@ -26,13 +26,13 @@
         "common": "ITEM_NONE",
         "rare": "ITEM_NONE"
     },
-    "gender_ratio": "FEMALE_50",
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
     "hatch_cycles": 15,
     "base_friendship": 70,
-    "exp_rate": "MEDIUM_FAST",
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
     "egg_groups": [
-        "BUG",
-        "BUG"
+        "EGG_GROUP_BUG",
+        "EGG_GROUP_BUG"
     ],
     "abilities": [
         "ABILITY_SHED_SKIN",

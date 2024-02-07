@@ -26,13 +26,13 @@
         "common": "ITEM_NONE",
         "rare": "ITEM_NONE"
     },
-    "gender_ratio": "FEMALE_12_5",
+    "gender_ratio": "GENDER_RATIO_FEMALE_12_5",
     "hatch_cycles": 35,
     "base_friendship": 70,
-    "exp_rate": "MEDIUM_FAST",
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
     "egg_groups": [
-        "FIELD",
-        "FIELD"
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_FIELD"
     ],
     "abilities": [
         "ABILITY_SYNCHRONIZE",
