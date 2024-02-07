@@ -3,6 +3,7 @@
 
 #include "constants/pokemon.h"
 #include "constants/species.h"
+#include "constants/battle/battle_io.h"
 
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/battle_system.h"
@@ -1300,48 +1301,44 @@ void BattleIO_ClearTouchScreen (BattleSystem *battleSys, int battler)
     SendMessage(battleSys, 1, battler, &v0, 4);
 }
 
-void BattleIO_ShowBattleStartPartyGauge (BattleSystem * param0, int param1)
+void BattleIO_ShowBattleStartPartyGauge(BattleSystem *battleSys, int battler)
 {
-    PartyGaugeData v0;
-
-    PartyGaugeData_New(param0, param0->battleCtx, &v0, 48, param1);
-    SendMessage(param0, 1, param1, &v0, sizeof(PartyGaugeData));
+    PartyGaugeData gauge;
+    PartyGaugeData_New(battleSys, battleSys->battleCtx, &gauge, BTLIOCMD_SHOW_BATTLE_START_PARTY_GAUGE, battler);
+    SendMessage(battleSys, BTLIO_RECIPIENT_ENQUEUE, battler, &gauge, sizeof(PartyGaugeData));
 }
 
-void BattleIO_HideBattleStartPartyGauge (BattleSystem * param0, int param1)
+void BattleIO_HideBattleStartPartyGauge(BattleSystem *battleSys, int battler)
 {
-    PartyGaugeData v0;
-
-    PartyGaugeData_New(param0, param0->battleCtx, &v0, 49, param1);
-    SendMessage(param0, 1, param1, &v0, sizeof(PartyGaugeData));
+    PartyGaugeData gauge;
+    PartyGaugeData_New(battleSys, battleSys->battleCtx, &gauge, BTLIOCMD_HIDE_BATTLE_START_PARTY_GAUGE, battler);
+    SendMessage(battleSys, BTLIO_RECIPIENT_ENQUEUE, battler, &gauge, sizeof(PartyGaugeData));
 }
 
-void BattleIO_ShowPartyGauge (BattleSystem * param0, int param1)
+void BattleIO_ShowPartyGauge(BattleSystem *battleSys, int battler)
 {
-    PartyGaugeData v0;
-
-    PartyGaugeData_New(param0, param0->battleCtx, &v0, 50, param1);
-    SendMessage(param0, 1, param1, &v0, sizeof(PartyGaugeData));
+    PartyGaugeData gauge;
+    PartyGaugeData_New(battleSys, battleSys->battleCtx, &gauge, BTLIOCMD_SHOW_PARTY_GAUGE, battler);
+    SendMessage(battleSys, BTLIO_RECIPIENT_ENQUEUE, battler, &gauge, sizeof(PartyGaugeData));
 }
 
-void BattleIO_HidePartyGauge (BattleSystem * param0, int param1)
+void BattleIO_HidePartyGauge(BattleSystem *battleSys, int battler)
 {
-    PartyGaugeData v0;
-
-    PartyGaugeData_New(param0, param0->battleCtx, &v0, 51, param1);
-    SendMessage(param0, 1, param1, &v0, sizeof(PartyGaugeData));
+    PartyGaugeData gauge;
+    PartyGaugeData_New(battleSys, battleSys->battleCtx, &gauge, BTLIOCMD_HIDE_PARTY_GAUGE, battler);
+    SendMessage(battleSys, BTLIO_RECIPIENT_ENQUEUE, battler, &gauge, sizeof(PartyGaugeData));
 }
 
-void BattleIO_LoadPartyGaugeGraphics (BattleSystem * param0)
+void BattleIO_LoadPartyGaugeGraphics(BattleSystem *battleSys)
 {
-    int v0 = 52;
-    SendMessage(param0, 1, 0, &v0, 4);
+    int command = BTLIOCMD_LOAD_PARTY_GAUGE_GRAPHICS;
+    SendMessage(battleSys, BTLIO_RECIPIENT_ENQUEUE, NULL, &command, sizeof(int));
 }
 
-void BattleIO_FreePartyGaugeGraphics (BattleSystem * param0)
+void BattleIO_FreePartyGaugeGraphics(BattleSystem *battleSys)
 {
-    int v0 = 53;
-    SendMessage(param0, 1, 0, &v0, 4);
+    int command = BTLIOCMD_FREE_PARTY_GAUGE_GRAPHICS;
+    SendMessage(battleSys, BTLIO_RECIPIENT_ENQUEUE, NULL, &command, sizeof(int));
 }
 
 void BattleIO_IncrementRecord (BattleSystem * param0, int param1, int param2, int param3)
