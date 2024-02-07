@@ -8,6 +8,8 @@ endforeach
 trdata_narc = custom_target('trdata.narc',
     output: 'trdata.narc',
     input: trainer_data_files,
+    env: json2bin_env,
+    depends: [ generated_consts_py ],
     command: [
         trainer_data_py,
         '--mode', 'data',
@@ -21,6 +23,8 @@ trdata_narc = custom_target('trdata.narc',
 trpoke_narc = custom_target('trpoke.narc',
     output: 'trpoke.narc',
     input: trainer_data_files,
+    env: json2bin_env,
+    depends: [ generated_consts_py ],
     command: [
         trainer_data_py,
         '--mode', 'poke',

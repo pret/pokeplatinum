@@ -1,3 +1,6 @@
+json2bin_env = environment()
+json2bin_env.set('PYTHONPATH', meson.project_build_root()) # access to constants geneated by constgen
+
 encounters_py = find_program('encounters.py', native: true)
 movedata_py = find_program('movedata.py', native: true)
 pokemon_personal_data_py = find_program('pokemon_personal_data.py', native: true)
