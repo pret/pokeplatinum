@@ -65,7 +65,7 @@
 #include "overlay016/struct_ov16_0225C454.h"
 #include "overlay016/struct_ov16_0225C468.h"
 #include "overlay016/struct_ov16_0225C65C.h"
-#include "overlay016/struct_ov16_0225C840.h"
+#include "struct_defs/battle_io.h"
 #include "overlay016/struct_ov16_0225C9F0.h"
 #include "overlay016/struct_ov16_0225CA4C.h"
 #include "overlay016/struct_ov16_0225CA60.h"
@@ -194,10 +194,10 @@ void ov16_0225DF6C(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0
 void ov16_0225E008(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C468 * param2);
 void ov16_0225E0BC(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C65C * param2);
 void ov16_0225E0F4(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_022664F8 * param2);
-void ov16_0225E134(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C840 * param2);
-void ov16_0225E17C(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C840 * param2);
-void ov16_0225E1B4(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C840 * param2);
-void ov16_0225E200(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C840 * param2);
+void ov16_0225E134(BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2);
+void ov16_0225E17C(BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2);
+void ov16_0225E1B4(BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2);
+void ov16_0225E200(BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2);
 void ov16_0225E23C(BattleSystem * param0, BattlerData * param1);
 void ov16_0225E294(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_02265BBC * param2);
 void ov16_0225E2C8(BattleSystem * param0, BattlerData * param1);
@@ -1338,7 +1338,7 @@ void ov16_0225E0F4 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     SysTask_Start(ov16_022634DC, v0, 0);
 }
 
-void ov16_0225E134 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C840 * param2)
+void ov16_0225E134 (BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2)
 {
     UnkStruct_ov16_0225E134 * v0;
     int v1;
@@ -1347,19 +1347,19 @@ void ov16_0225E134 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 
     v0->unk_07 = 0;
     v0->unk_00 = param0;
-    v0->unk_04 = param2->unk_00;
+    v0->unk_04 = param2->command;
     v0->unk_05 = param1->unk_190;
     v0->unk_06 = param1->battlerType;
 
     for (v1 = 0; v1 < 6; v1++) {
-        v0->unk_08[v1] = param2->unk_02[v1];
+        v0->unk_08[v1] = param2->status[v1];
     }
 
     v0->unk_0E = 0;
     SysTask_Start(ov16_0226354C, v0, 0);
 }
 
-void ov16_0225E17C (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C840 * param2)
+void ov16_0225E17C (BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2)
 {
     UnkStruct_ov16_0225E134 * v0;
     int v1;
@@ -1368,7 +1368,7 @@ void ov16_0225E17C (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 
     v0->unk_07 = 0;
     v0->unk_00 = param0;
-    v0->unk_04 = param2->unk_00;
+    v0->unk_04 = param2->command;
     v0->unk_05 = param1->unk_190;
     v0->unk_06 = param1->battlerType;
     v0->unk_0E = 0;
@@ -1376,7 +1376,7 @@ void ov16_0225E17C (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     SysTask_Start(ov16_02263604, v0, 0);
 }
 
-void ov16_0225E1B4 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C840 * param2)
+void ov16_0225E1B4 (BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2)
 {
     UnkStruct_ov16_0225E134 * v0;
     int v1;
@@ -1385,12 +1385,12 @@ void ov16_0225E1B4 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 
     v0->unk_07 = 0;
     v0->unk_00 = param0;
-    v0->unk_04 = param2->unk_00;
+    v0->unk_04 = param2->command;
     v0->unk_05 = param1->unk_190;
     v0->unk_06 = param1->battlerType;
 
     for (v1 = 0; v1 < 6; v1++) {
-        v0->unk_08[v1] = param2->unk_02[v1];
+        v0->unk_08[v1] = param2->status[v1];
     }
 
     v0->unk_0E = 1;
@@ -1398,7 +1398,7 @@ void ov16_0225E1B4 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     SysTask_Start(ov16_0226354C, v0, 0);
 }
 
-void ov16_0225E200 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C840 * param2)
+void ov16_0225E200 (BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2)
 {
     UnkStruct_ov16_0225E134 * v0;
     int v1;
@@ -1407,7 +1407,7 @@ void ov16_0225E200 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 
     v0->unk_07 = 0;
     v0->unk_00 = param0;
-    v0->unk_04 = param2->unk_00;
+    v0->unk_04 = param2->command;
     v0->unk_05 = param1->unk_190;
     v0->unk_06 = param1->battlerType;
     v0->unk_0E = 1;

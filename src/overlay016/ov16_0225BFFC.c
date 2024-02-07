@@ -40,7 +40,7 @@
 #include "overlay016/struct_ov16_0225C468.h"
 #include "overlay016/struct_ov16_0225C65C.h"
 #include "overlay016/struct_ov16_0225C684.h"
-#include "overlay016/struct_ov16_0225C840.h"
+#include "struct_defs/battle_io.h"
 #include "overlay016/struct_ov16_0225C988.h"
 #include "overlay016/struct_ov16_0225C9F0.h"
 #include "overlay016/struct_ov16_0225CA14.h"
@@ -790,7 +790,7 @@ static void ov16_0225C79C (BattleSystem * param0, BattlerData * param1)
 
 static void ov16_0225C840 (BattleSystem * param0, BattlerData * param1)
 {
-    UnkStruct_ov16_0225C840 * v0 = (UnkStruct_ov16_0225C840 *)&param1->unk_90[0];
+    PartyGaugeData * v0 = (PartyGaugeData *)&param1->unk_90[0];
 
     ov16_0225E134(param0, param1, v0);
     ov16_0225CBB0(param1);
@@ -798,7 +798,7 @@ static void ov16_0225C840 (BattleSystem * param0, BattlerData * param1)
 
 static void ov16_0225C854 (BattleSystem * param0, BattlerData * param1)
 {
-    UnkStruct_ov16_0225C840 * v0 = (UnkStruct_ov16_0225C840 *)&param1->unk_90[0];
+    PartyGaugeData * v0 = (PartyGaugeData *)&param1->unk_90[0];
 
     ov16_0225E17C(param0, param1, v0);
     ov16_0225CBB0(param1);
@@ -806,7 +806,7 @@ static void ov16_0225C854 (BattleSystem * param0, BattlerData * param1)
 
 static void ov16_0225C868 (BattleSystem * param0, BattlerData * param1)
 {
-    UnkStruct_ov16_0225C840 * v0 = (UnkStruct_ov16_0225C840 *)&param1->unk_90[0];
+    PartyGaugeData * v0 = (PartyGaugeData *)&param1->unk_90[0];
 
     if (Battler_Side(param0, param1->unk_190)) {
         ov16_0225E1B4(param0, param1, v0);
@@ -819,7 +819,7 @@ static void ov16_0225C868 (BattleSystem * param0, BattlerData * param1)
 
 static void ov16_0225C8A4 (BattleSystem * param0, BattlerData * param1)
 {
-    UnkStruct_ov16_0225C840 * v0 = (UnkStruct_ov16_0225C840 *)&param1->unk_90[0];
+    PartyGaugeData * v0 = (PartyGaugeData *)&param1->unk_90[0];
 
     if (Battler_Side(param0, param1->unk_190)) {
         ov16_0225E200(param0, param1, v0);

@@ -37,7 +37,7 @@
 #include "overlay016/struct_ov16_0225C468.h"
 #include "overlay016/struct_ov16_0225C65C.h"
 #include "overlay016/struct_ov16_0225C684.h"
-#include "overlay016/struct_ov16_0225C840.h"
+#include "struct_defs/battle_io.h"
 #include "overlay016/struct_ov16_0225C988.h"
 #include "overlay016/struct_ov16_0225C9F0.h"
 #include "overlay016/struct_ov16_0225CA14.h"
@@ -149,7 +149,7 @@ void ov16_02266B78(BattleSystem * param0, BattleContext * param1, UnkStruct_ov16
 void ov16_02264988(BattleSystem * param0, int param1);
 static void ov16_0226485C(BattleSystem * param0, int param1, int param2, void * param3, u8 param4);
 static void ov16_02264A04(BattleSystem * param0, int param1, int param2, void * param3, u8 param4);
-static void ov16_02266CF0(BattleSystem * param0, BattleContext * param1, UnkStruct_ov16_0225C840 * param2, int param3, int param4);
+static void ov16_02266CF0(BattleSystem * param0, BattleContext * param1, PartyGaugeData * param2, int param3, int param4);
 
 static void ov16_0226485C (BattleSystem * param0, int param1, int param2, void * param3, u8 param4)
 {
@@ -1384,34 +1384,34 @@ void BattleIO_ClearTouchScreen (BattleSystem *battleSys, int battler)
 
 void BattleIO_ShowBattleStartPartyGauge (BattleSystem * param0, int param1)
 {
-    UnkStruct_ov16_0225C840 v0;
+    PartyGaugeData v0;
 
     ov16_02266CF0(param0, param0->battleCtx, &v0, 48, param1);
-    ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C840));
+    ov16_02264A04(param0, 1, param1, &v0, sizeof(PartyGaugeData));
 }
 
 void BattleIO_HideBattleStartPartyGauge (BattleSystem * param0, int param1)
 {
-    UnkStruct_ov16_0225C840 v0;
+    PartyGaugeData v0;
 
     ov16_02266CF0(param0, param0->battleCtx, &v0, 49, param1);
-    ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C840));
+    ov16_02264A04(param0, 1, param1, &v0, sizeof(PartyGaugeData));
 }
 
 void BattleIO_ShowPartyGauge (BattleSystem * param0, int param1)
 {
-    UnkStruct_ov16_0225C840 v0;
+    PartyGaugeData v0;
 
     ov16_02266CF0(param0, param0->battleCtx, &v0, 50, param1);
-    ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C840));
+    ov16_02264A04(param0, 1, param1, &v0, sizeof(PartyGaugeData));
 }
 
 void BattleIO_HidePartyGauge (BattleSystem * param0, int param1)
 {
-    UnkStruct_ov16_0225C840 v0;
+    PartyGaugeData v0;
 
     ov16_02266CF0(param0, param0->battleCtx, &v0, 51, param1);
-    ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C840));
+    ov16_02264A04(param0, 1, param1, &v0, sizeof(PartyGaugeData));
 }
 
 void BattleIO_LoadPartyGaugeGraphics (BattleSystem * param0)
@@ -1716,7 +1716,7 @@ void ov16_02266B78 (BattleSystem * param0, BattleContext * param1, UnkStruct_ov1
     }
 }
 
-static void ov16_02266CF0 (BattleSystem * param0, BattleContext * param1, UnkStruct_ov16_0225C840 * param2, int param3, int param4)
+static void ov16_02266CF0 (BattleSystem * param0, BattleContext * param1, PartyGaugeData * param2, int param3, int param4)
 {
     int v0;
     int v1, v2;
@@ -1726,10 +1726,10 @@ static void ov16_02266CF0 (BattleSystem * param0, BattleContext * param1, UnkStr
     Party * v6;
     Pokemon * v7;
 
-    MI_CpuClearFast(param2, sizeof(UnkStruct_ov16_0225C840));
+    MI_CpuClearFast(param2, sizeof(PartyGaugeData));
 
     v5 = BattleSystem_BattleType(param0);
-    param2->unk_00 = param3;
+    param2->command = param3;
 
     if (((v5 & (0x4 | 0x8)) == (0x4 | 0x8)) || ((v5 & 0x10) && (Battler_Side(param0, param4))) || ((v5 == ((0x2 | 0x1) | 0x8 | 0x40)) && (Battler_Side(param0, param4))) || ((v5 == (((0x2 | 0x1) | 0x8 | 0x40) | 0x80)))) {
         if ((BattleSystem_BattlerSlot(param0, param4) == 2) || (BattleSystem_BattlerSlot(param0, param4) == 3)) {
@@ -1750,12 +1750,12 @@ static void ov16_02266CF0 (BattleSystem * param0, BattleContext * param1, UnkStr
             if ((v3) && (v3 != 494)) {
                 if (Pokemon_GetValue(v7, MON_DATA_CURRENT_HP, NULL)) {
                     if (Pokemon_GetValue(v7, MON_DATA_STATUS_CONDITION, NULL)) {
-                        param2->unk_02[v4] = 3;
+                        param2->status[v4] = 3;
                     } else {
-                        param2->unk_02[v4] = 1;
+                        param2->status[v4] = 1;
                     }
                 } else {
-                    param2->unk_02[v4] = 2;
+                    param2->status[v4] = 2;
                 }
 
                 v4++;
@@ -1772,12 +1772,12 @@ static void ov16_02266CF0 (BattleSystem * param0, BattleContext * param1, UnkStr
             if ((v3) && (v3 != 494)) {
                 if (Pokemon_GetValue(v7, MON_DATA_CURRENT_HP, NULL)) {
                     if (Pokemon_GetValue(v7, MON_DATA_STATUS_CONDITION, NULL)) {
-                        param2->unk_02[v4] = 3;
+                        param2->status[v4] = 3;
                     } else {
-                        param2->unk_02[v4] = 1;
+                        param2->status[v4] = 1;
                     }
                 } else {
-                    param2->unk_02[v4] = 2;
+                    param2->status[v4] = 2;
                 }
 
                 v4++;
@@ -1800,12 +1800,12 @@ static void ov16_02266CF0 (BattleSystem * param0, BattleContext * param1, UnkStr
             if ((v3) && (v3 != 494)) {
                 if (Pokemon_GetValue(v7, MON_DATA_CURRENT_HP, NULL)) {
                     if (Pokemon_GetValue(v7, MON_DATA_STATUS_CONDITION, NULL)) {
-                        param2->unk_02[v4] = 3;
+                        param2->status[v4] = 3;
                     } else {
-                        param2->unk_02[v4] = 1;
+                        param2->status[v4] = 1;
                     }
                 } else {
-                    param2->unk_02[v4] = 2;
+                    param2->status[v4] = 2;
                 }
 
                 v4++;
