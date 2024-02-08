@@ -24,11 +24,11 @@ typedef struct {
     UnkStruct_0203E274 * unk_00;
     BOOL unk_04;
     BGL * unk_08;
-    PaletteSys * unk_0C;
+    PaletteData * unk_0C;
     GenericPointerData * unk_10;
     SysTask * unk_14;
-    CellTransferStateData * unk_18;
-    AnimationResourceCollection * unk_1C;
+    SpriteRenderer * unk_18;
+    SpriteGfxHandler * unk_1C;
     MessageLoader * unk_20;
     Window * unk_24;
     UnkStruct_020203AC * unk_28;

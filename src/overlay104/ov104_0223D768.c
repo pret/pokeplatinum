@@ -63,7 +63,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov104_022417D8[] = {
     }
 };
 
-void ov104_0223D768 (CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2, PaletteSys * param3, u16 param4)
+void ov104_0223D768 (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, PaletteData * param3, u16 param4)
 {
     const UnkStruct_ov104_0223F9E0 * v0;
 
@@ -76,7 +76,7 @@ void ov104_0223D768 (CellTransferStateData * param0, AnimationResourceCollection
     sub_0200CE54(param0, param1, param2, v0->unk_14[3], 1, v0->unk_14[3]);
 }
 
-void ov104_0223D7EC (AnimationResourceCollection * param0, u16 param1)
+void ov104_0223D7EC (SpriteGfxHandler * param0, u16 param1)
 {
     const UnkStruct_ov104_0223F9E0 * v0;
 
@@ -89,7 +89,7 @@ void ov104_0223D7EC (AnimationResourceCollection * param0, u16 param1)
     sub_0200D0A0(param0, v0->unk_14[3]);
 }
 
-CellActorData * ov104_0223D828 (CellTransferStateData * param0, AnimationResourceCollection * param1, u16 param2)
+CellActorData * ov104_0223D828 (SpriteRenderer * param0, SpriteGfxHandler * param1, u16 param2)
 {
     CellActorData * v0;
 

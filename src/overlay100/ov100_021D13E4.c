@@ -233,9 +233,9 @@ static void ov100_021D1808 (UnkStruct_ov100_021D1808 * param0)
 {
     NARC * v0 = param0->unk_7C4->unk_00;
     BGL * v1 = param0->unk_7C4->unk_0C;
-    CellTransferStateData * v2 = param0->unk_7C4->unk_04;
-    AnimationResourceCollection * v3 = param0->unk_7C4->unk_08;
-    PaletteSys * v4 = param0->unk_7C4->unk_10;
+    SpriteRenderer * v2 = param0->unk_7C4->unk_04;
+    SpriteGfxHandler * v3 = param0->unk_7C4->unk_08;
+    PaletteData * v4 = param0->unk_7C4->unk_10;
     int v5 = 50000;
 
     sub_020070E8(v0, 70, v1, 5, 0, 0, 0, 111);
@@ -289,9 +289,9 @@ static void ov100_021D1A54 (UnkStruct_ov100_021D1808 * param0)
     int v0;
     NARC * v1 = param0->unk_7C4->unk_00;
     BGL * v2 = param0->unk_7C4->unk_0C;
-    CellTransferStateData * v3 = param0->unk_7C4->unk_04;
-    AnimationResourceCollection * v4 = param0->unk_7C4->unk_08;
-    PaletteSys * v5 = param0->unk_7C4->unk_10;
+    SpriteRenderer * v3 = param0->unk_7C4->unk_04;
+    SpriteGfxHandler * v4 = param0->unk_7C4->unk_08;
+    PaletteData * v5 = param0->unk_7C4->unk_10;
     UnkStruct_ov104_0223F9E0 v6;
 
     v6.unk_00 = 0;

@@ -90,15 +90,15 @@ int BattleSystem_PartyCount(BattleSystem *battleSys, int battler);
 Pokemon* BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slot);
 UnkStruct_02007768 * ov16_0223E000(BattleSystem * param0);
 UnkStruct_ov12_0221FCDC * ov16_0223E008(BattleSystem * param0);
-CellTransferStateData * ov16_0223E010(BattleSystem * param0);
-AnimationResourceCollection * ov16_0223E018(BattleSystem * param0);
+SpriteRenderer * ov16_0223E010(BattleSystem * param0);
+SpriteGfxHandler * ov16_0223E018(BattleSystem * param0);
 UnkStruct_ov16_02268520 * ov16_0223E020(BattleSystem * param0, int param1);
 UnkStruct_ov16_02268A14 * ov16_0223E02C(BattleSystem * param0);
 UnkStruct_0200C440 * ov16_0223E04C(BattleSystem * param0);
 UnkStruct_0200C440 * ov16_0223E054(BattleSystem * param0);
 MessageLoader * BattleSystem_MessageLoader(BattleSystem * param0);
 MessageLoader * ov16_0223E060(BattleSystem * param0);
-PaletteSys * BattleSystem_PaletteSys(BattleSystem * param0);
+PaletteData * BattleSystem_PaletteSys(BattleSystem * param0);
 UnkStruct_02026324 * ov16_0223E068(BattleSystem * param0);
 u8 * ov16_0223E06C(BattleSystem * param0);
 u8 * ov16_0223E074(BattleSystem * param0);
@@ -311,12 +311,12 @@ UnkStruct_ov12_0221FCDC * ov16_0223E008 (BattleSystem * param0)
     return param0->unk_8C;
 }
 
-CellTransferStateData * ov16_0223E010 (BattleSystem * param0)
+SpriteRenderer * ov16_0223E010 (BattleSystem * param0)
 {
     return param0->unk_90;
 }
 
-AnimationResourceCollection * ov16_0223E018 (BattleSystem * param0)
+SpriteGfxHandler * ov16_0223E018 (BattleSystem * param0)
 {
     return param0->unk_94;
 }
@@ -361,7 +361,7 @@ MessageLoader * ov16_0223E060 (BattleSystem * param0)
     return param0->unk_10;
 }
 
-PaletteSys * BattleSystem_PaletteSys (BattleSystem * param0)
+PaletteData * BattleSystem_PaletteSys (BattleSystem * param0)
 {
     return param0->unk_28;
 }

@@ -23,7 +23,7 @@
 
 typedef struct UnkStruct_ov104_0223C4CC_t {
     BGL * unk_00;
-    PaletteSys * unk_04;
+    PaletteData * unk_04;
     UnkStruct_0209B75C * unk_08;
     GenericPointerData * unk_0C;
     UnkStruct_ov104_0223D5F0 * unk_10;
@@ -36,8 +36,8 @@ typedef struct UnkStruct_ov104_0223C4CC_t {
     UnkStruct_ov63_0222D848 * unk_2C;
     UnkStruct_ov63_0222D77C * unk_30;
     struct {
-        CellTransferStateData * unk_00;
-        AnimationResourceCollection * unk_04;
+        SpriteRenderer * unk_00;
+        SpriteGfxHandler * unk_04;
     } unk_34;
     UnkStruct_ov104_0223D3B0_1 unk_3C;
     CellActorData * unk_80[4];

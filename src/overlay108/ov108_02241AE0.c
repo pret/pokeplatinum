@@ -211,7 +211,7 @@ struct UnkStruct_ov108_02241DB0_t {
     UnkStruct_02081CF4 unk_B4;
     UIControlData * unk_C0;
     ResourceMetadata unk_C4[2];
-    PaletteSys * unk_D4;
+    PaletteData * unk_D4;
     AnimationControlFlags * unk_D8;
     SaveData * unk_DC;
     UnkStruct_020304A0 * unk_E0;

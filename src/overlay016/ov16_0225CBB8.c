@@ -2673,7 +2673,7 @@ static void ov16_0225FD5C (SysTask * param0, void * param1)
                 }
             } else if (v1 >= (256 + 40)) {
                 {
-                    AnimationResourceCollection * v8;
+                    SpriteGfxHandler * v8;
 
                     v8 = ov16_0223E018(v0->unk_00);
                     sub_0200D0F4(v0->unk_04->unk_18);
@@ -2726,7 +2726,7 @@ static void ov16_0225FD5C (SysTask * param0, void * param1)
 
         if (v1 <= -40) {
             {
-                AnimationResourceCollection * v10;
+                SpriteGfxHandler * v10;
 
                 v10 = ov16_0223E018(v0->unk_00);
 
@@ -2817,7 +2817,7 @@ static void    ov16_02260284 (SysTask * param0, void * param1)
         break;
     case 1:
     {
-        AnimationResourceCollection * v3;
+        SpriteGfxHandler * v3;
 
         v3 = ov16_0223E018(v0->unk_00);
         sub_0200D0F4(v0->unk_04->unk_18);
@@ -3641,7 +3641,7 @@ static void ov16_0226110C (SysTask * param0, void * param1)
 static void ov16_022611DC (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0225D794 * v0 = (UnkStruct_ov16_0225D794 *)param1;
-    PaletteSys * v1;
+    PaletteData * v1;
 
     v1 = BattleSystem_PaletteSys(v0->unk_00);
 
@@ -4245,7 +4245,7 @@ static void ov16_02261DE0 (SysTask * param0, void * param1)
 static void ov16_02261E8C (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0225D840 * v0 = (UnkStruct_ov16_0225D840 *)param1;
-    PaletteSys * v1;
+    PaletteData * v1;
 
     v1 = BattleSystem_PaletteSys(v0->unk_00);
 
@@ -4980,7 +4980,7 @@ static void ov16_02262A9C (SysTask * param0, void * param1)
 static void ov16_02262D28 (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0225DC7C * v0 = (UnkStruct_ov16_0225DC7C *)param1;
-    PaletteSys * v1;
+    PaletteData * v1;
     UnkStruct_02007768 * v2;
 
     v1 = BattleSystem_PaletteSys(v0->unk_00);
@@ -5187,7 +5187,7 @@ static void  ov16_02263014 (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0225CBB8 * v0 = (UnkStruct_ov16_0225CBB8 *)param1;
     BGL * v1;
-    PaletteSys * v2;
+    PaletteData * v2;
     int v3;
     int v4;
 
@@ -5316,7 +5316,7 @@ static void  ov16_02263014 (SysTask * param0, void * param1)
 static void ov16_022633A4 (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0225E0BC * v0 = (UnkStruct_ov16_0225E0BC *)param1;
-    PaletteSys * v1;
+    PaletteData * v1;
 
     v1 = BattleSystem_PaletteSys(v0->unk_00);
 
@@ -6215,9 +6215,9 @@ static void ov16_02264360 (BattleSystem * param0, BattlerData * param1, BattleMe
 
 static CellActorData * ov16_022643B8 (BattleSystem * param0, int param1, int param2, int param3, s16 param4, s16 param5)
 {
-    CellTransferStateData * v0;
-    AnimationResourceCollection * v1;
-    PaletteSys * v2;
+    SpriteRenderer * v0;
+    SpriteGfxHandler * v1;
+    PaletteData * v2;
     CellActorData * v3;
     int v4;
 

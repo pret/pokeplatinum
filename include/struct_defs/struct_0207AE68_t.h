@@ -29,7 +29,7 @@ struct UnkStruct_0207AE68_t {
     MessageLoader * unk_08;
     UnkStruct_0200B358 * unk_0C;
     Strbuf* unk_10;
-    PaletteSys * unk_14;
+    PaletteData * unk_14;
     UnkStruct_02007768 * unk_18;
     Sprite * unk_1C[2];
     Party * unk_24;

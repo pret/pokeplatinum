@@ -50,7 +50,7 @@ typedef struct {
 
 typedef struct UnkStruct_ov63_0222AE60_t {
     GraphicElementManager * unk_00;
-    PaletteSys * unk_04;
+    PaletteData * unk_04;
     UnkStruct_ov63_0222BB38 * unk_08;
     u32 unk_0C;
     UnkStruct_ov63_0222BB38_sub1 unk_10[151];
@@ -302,7 +302,7 @@ static const u8 Unk_ov63_0222D904[10] = {
     0x0
 };
 
-UnkStruct_ov63_0222AE60 * ov63_0222AE60 (GraphicElementManager * param0, PaletteSys * param1, u32 param2, u32 param3)
+UnkStruct_ov63_0222AE60 * ov63_0222AE60 (GraphicElementManager * param0, PaletteData * param1, u32 param2, u32 param3)
 {
     UnkStruct_ov63_0222AE60 * v0;
     int v1;

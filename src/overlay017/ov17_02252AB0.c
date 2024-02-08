@@ -20,9 +20,9 @@ typedef struct UnkStruct_ov17_02252B48_t {
 } UnkStruct_ov17_02252B48;
 
 static void ov17_02252CB8(SysTask * param0, void * param1);
-void ov17_02252AB0(CellTransferStateData * param0, AnimationResourceCollection * param1, PaletteSys * param2, u32 param3, u32 param4, u32 param5, u32 param6);
-void ov17_02252B20(AnimationResourceCollection * param0, u32 param1, u32 param2, u32 param3, u32 param4);
-UnkStruct_ov17_02252B48 * ov17_02252B48(CellTransferStateData * param0, AnimationResourceCollection * param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
+void ov17_02252AB0(SpriteRenderer * param0, SpriteGfxHandler * param1, PaletteData * param2, u32 param3, u32 param4, u32 param5, u32 param6);
+void ov17_02252B20(SpriteGfxHandler * param0, u32 param1, u32 param2, u32 param3, u32 param4);
+UnkStruct_ov17_02252B48 * ov17_02252B48(SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
 void ov17_02252BCC(UnkStruct_ov17_02252B48 * param0);
 void ov17_02252C9C(UnkStruct_ov17_02252B48 * param0);
 
@@ -39,7 +39,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov17_02254D9C = {
     0x0
 };
 
-void ov17_02252AB0 (CellTransferStateData * param0, AnimationResourceCollection * param1, PaletteSys * param2, u32 param3, u32 param4, u32 param5, u32 param6)
+void ov17_02252AB0 (SpriteRenderer * param0, SpriteGfxHandler * param1, PaletteData * param2, u32 param3, u32 param4, u32 param5, u32 param6)
 {
     sub_0200CD7C(param2, 3, param0, param1, 27, 80, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, param4);
     sub_0200CBDC(param0, param1, 27, 250, 1, NNS_G2D_VRAM_TYPE_2DSUB, param3);
@@ -47,7 +47,7 @@ void ov17_02252AB0 (CellTransferStateData * param0, AnimationResourceCollection 
     sub_0200CE3C(param0, param1, 27, 252, 1, param6);
 }
 
-void ov17_02252B20 (AnimationResourceCollection * param0, u32 param1, u32 param2, u32 param3, u32 param4)
+void ov17_02252B20 (SpriteGfxHandler * param0, u32 param1, u32 param2, u32 param3, u32 param4)
 {
     sub_0200D070(param0, param1);
     sub_0200D080(param0, param2);
@@ -55,7 +55,7 @@ void ov17_02252B20 (AnimationResourceCollection * param0, u32 param1, u32 param2
     sub_0200D0A0(param0, param4);
 }
 
-UnkStruct_ov17_02252B48 * ov17_02252B48 (CellTransferStateData * param0, AnimationResourceCollection * param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
+UnkStruct_ov17_02252B48 * ov17_02252B48 (SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
 {
     UnkStruct_ov17_02252B48 * v0;
     UnkStruct_ov104_0223F9E0 v1;

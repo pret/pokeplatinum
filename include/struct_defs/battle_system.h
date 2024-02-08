@@ -54,7 +54,7 @@ struct BattleSystem {
     SysTask * unk_1C;
     SysTask * unk_20;
     SysTask * unk_24;
-    PaletteSys * unk_28;
+    PaletteData * unk_28;
     u32 battleType;
     BattleContext *battleCtx;
     BattlerData *battlers[MAX_BATTLERS];
@@ -68,8 +68,8 @@ struct BattleSystem {
     ChatotCry * unk_78[4];
     UnkStruct_02007768 * unk_88;
     UnkStruct_ov12_0221FCDC * unk_8C;
-    CellTransferStateData * unk_90;
-    AnimationResourceCollection * unk_94;
+    SpriteRenderer * unk_90;
+    SpriteGfxHandler * unk_94;
     UnkStruct_02056B24 * unk_98;
     UnkStruct_0206D140 * unk_9C;
     u16 trainerIDs[4];

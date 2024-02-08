@@ -834,9 +834,9 @@ static void ov16_0225C8A4 (BattleSystem * param0, BattlerData * param1)
 
 static void ov16_0225C8E0 (BattleSystem * param0, BattlerData * param1)
 {
-    CellTransferStateData * v0;
-    AnimationResourceCollection * v1;
-    PaletteSys * v2;
+    SpriteRenderer * v0;
+    SpriteGfxHandler * v1;
+    PaletteData * v2;
 
     v0 = ov16_0223E010(param0);
     v1 = ov16_0223E018(param0);
@@ -849,7 +849,7 @@ static void ov16_0225C8E0 (BattleSystem * param0, BattlerData * param1)
 
 static void ov16_0225C91C (BattleSystem * param0, BattlerData * param1)
 {
-    AnimationResourceCollection * v0;
+    SpriteGfxHandler * v0;
 
     v0 = ov16_0223E018(param0);
 

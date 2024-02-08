@@ -105,12 +105,12 @@ typedef struct UnkStruct_ov113_0225DBCC_t {
     UnkStruct_ov66_0223127C * unk_00;
     SaveData * unk_04;
     BGL * unk_08;
-    PaletteSys * unk_0C;
+    PaletteData * unk_0C;
     UnkStruct_02012744 * unk_10;
     GenericPointerData * unk_14;
     SysTask * unk_18;
-    CellTransferStateData * unk_1C;
-    AnimationResourceCollection * unk_20;
+    SpriteRenderer * unk_1C;
+    SpriteGfxHandler * unk_20;
     UnkStruct_02015920 * unk_24;
     u8 unk_28;
     u8 unk_29;
@@ -1521,7 +1521,7 @@ static void ov113_0225E15C (UnkStruct_ov113_0225DBCC * param0, UnkStruct_ov113_0
     int v3;
     FontOAM * v4;
     BGL * v5;
-    AnimationResourceCollection * v6;
+    SpriteGfxHandler * v6;
     int v7, v8;
 
     GF_ASSERT(param1->unk_00 == NULL);

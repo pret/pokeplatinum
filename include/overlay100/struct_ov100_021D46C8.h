@@ -20,10 +20,10 @@
 
 typedef struct {
     NARC * unk_00;
-    CellTransferStateData * unk_04;
-    AnimationResourceCollection * unk_08;
+    SpriteRenderer * unk_04;
+    SpriteGfxHandler * unk_08;
     BGL * unk_0C;
-    PaletteSys * unk_10;
+    PaletteData * unk_10;
     GenericPointerData * unk_14;
     UnkStruct_020203AC * unk_18;
     NNSFndAllocator unk_1C;

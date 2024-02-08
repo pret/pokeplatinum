@@ -72,7 +72,7 @@ typedef struct UnkStruct_ov12_022267D4_t {
     s8 unk_15;
     s8 unk_16;
     s8 unk_17;
-    PaletteSys * unk_18;
+    PaletteData * unk_18;
 } UnkStruct_ov12_022267D4;
 
 static void ov12_022268DC(u16 * param0, u16 param1);
@@ -1154,7 +1154,7 @@ void ov12_02226858 (UnkStruct_ov12_022267D4 * param0)
     Heap_FreeToHeap(param0);
 }
 
-UnkStruct_ov12_022267D4 * ov12_02226870 (PaletteSys * param0, int param1, int param2, u16 param3, u16 param4, s8 param5, s8 param6, u8 param7, u8 param8, u16 param9, int param10)
+UnkStruct_ov12_022267D4 * ov12_02226870 (PaletteData * param0, int param1, int param2, u16 param3, u16 param4, s8 param5, s8 param6, u8 param7, u8 param8, u16 param9, int param10)
 {
     UnkStruct_ov12_022267D4 * v0 = NULL;
 
@@ -1203,7 +1203,7 @@ static void ov12_022268DC (u16 * param0, u16 param1)
 
 void ov12_02226924 (UnkStruct_ov12_0221FCDC * param0)
 {
-    PaletteSys * v0;
+    PaletteData * v0;
     u16 * v1;
 
     v0 = ov12_0222332C(param0);
@@ -1218,7 +1218,7 @@ void ov12_02226924 (UnkStruct_ov12_0221FCDC * param0)
 
 void ov12_02226954 (UnkStruct_ov12_0221FCDC * param0)
 {
-    PaletteSys * v0;
+    PaletteData * v0;
 
     v0 = ov12_0222332C(param0);
 

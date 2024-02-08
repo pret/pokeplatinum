@@ -60,9 +60,9 @@ typedef struct PartyGauge {
     s8 pokeballCount;
 } PartyGauge;
 
-static void ov16_0226D2A0(PartyGaugeArrow * param0, enum PartyGaugeSide param1, enum PartyGaugePosition param2, CellTransferStateData * param3, AnimationResourceCollection * param4);
+static void ov16_0226D2A0(PartyGaugeArrow * param0, enum PartyGaugeSide param1, enum PartyGaugePosition param2, SpriteRenderer * param3, SpriteGfxHandler * param4);
 static void ov16_0226D3F8(PartyGaugeArrow * param0, enum HideArrowType param1);
-static void ov16_0226D540(PartyGaugePokeballs * param0, s8 * param1, enum PartyGaugeSide param2, enum ShowPartyGaugeType param3, enum PartyGaugePosition param4, int param5, int param6, CellTransferStateData * param7, AnimationResourceCollection * param8);
+static void ov16_0226D540(PartyGaugePokeballs * param0, s8 * param1, enum PartyGaugeSide param2, enum ShowPartyGaugeType param3, enum PartyGaugePosition param4, int param5, int param6, SpriteRenderer * param7, SpriteGfxHandler * param8);
 static void ov16_0226D938(PartyGaugePokeballs * param0, int param1, enum HidePartyGaugeType param2, s16 * param3);
 static void ov16_0226D34C(SysTask * param0, void * param1);
 static void ov16_0226D434(SysTask * param0, void * param1);
@@ -125,7 +125,7 @@ __attribute__((aligned(4))) static const u16 Unk_ov16_02270A1C[] = {
     0x32
 };
 
-void PartyGauge_LoadGraphics (CellTransferStateData * param0, AnimationResourceCollection * param1, PaletteSys * param2)
+void PartyGauge_LoadGraphics (SpriteRenderer * param0, SpriteGfxHandler * param1, PaletteData * param2)
 {
     NARC * v0;
 
@@ -138,7 +138,7 @@ void PartyGauge_LoadGraphics (CellTransferStateData * param0, AnimationResourceC
     NARC_dtor(v0);
 }
 
-void PartyGauge_FreeGraphics (AnimationResourceCollection * param0)
+void PartyGauge_FreeGraphics (SpriteGfxHandler * param0)
 {
     sub_0200D070(param0, 20413);
     sub_0200D080(param0, 20037);
@@ -161,7 +161,7 @@ static void ov16_0226D17C (PartyGauge * param0)
     Heap_FreeToHeap(param0);
 }
 
-PartyGauge * PartyGauge_Show (u8 param0[], enum PartyGaugeSide param1, enum ShowPartyGaugeType param2, enum PartyGaugePosition param3, CellTransferStateData * param4, AnimationResourceCollection * param5)
+PartyGauge * PartyGauge_Show (u8 param0[], enum PartyGaugeSide param1, enum ShowPartyGaugeType param2, enum PartyGaugePosition param3, SpriteRenderer * param4, SpriteGfxHandler * param5)
 {
     PartyGauge * v0;
     int v1, v2;
@@ -241,7 +241,7 @@ void PartyGauge_Free (PartyGauge * param0)
     ov16_0226D17C(param0);
 }
 
-static void ov16_0226D2A0 (PartyGaugeArrow * param0, enum PartyGaugeSide param1, enum PartyGaugePosition param2, CellTransferStateData * param3, AnimationResourceCollection * param4)
+static void ov16_0226D2A0 (PartyGaugeArrow * param0, enum PartyGaugeSide param1, enum PartyGaugePosition param2, SpriteRenderer * param3, SpriteGfxHandler * param4)
 {
     GF_ASSERT(param0->cells == NULL && param0->task == NULL);
 
@@ -379,7 +379,7 @@ static void ov16_0226D434 (SysTask * param0, void * param1)
     }
 }
 
-static void ov16_0226D540 (PartyGaugePokeballs * param0, s8 * param1, enum PartyGaugeSide param2, enum ShowPartyGaugeType param3, enum PartyGaugePosition param4, int param5, int param6, CellTransferStateData * param7, AnimationResourceCollection * param8)
+static void ov16_0226D540 (PartyGaugePokeballs * param0, s8 * param1, enum PartyGaugeSide param2, enum ShowPartyGaugeType param3, enum PartyGaugePosition param4, int param5, int param6, SpriteRenderer * param7, SpriteGfxHandler * param8)
 {
     GF_ASSERT(param0->cells == NULL && param0->task == NULL);
 

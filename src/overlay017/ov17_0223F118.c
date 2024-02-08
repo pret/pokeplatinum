@@ -111,7 +111,7 @@ void ov17_0223F1E0 (GenericPointerData * param0)
     sub_020242C4(param0);
 }
 
-void ov17_0223F1E8 (int param0, BGL * param1, AnimationResourceCollection * param2, UnkStruct_02012744 * param3, UnkStruct_ov17_0223F2E4 * param4, const Strbuf *param5, int param6, u32 param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
+void ov17_0223F1E8 (int param0, BGL * param1, SpriteGfxHandler * param2, UnkStruct_02012744 * param3, UnkStruct_ov17_0223F2E4 * param4, const Strbuf *param5, int param6, u32 param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
 {
     UnkStruct_020127E8 v0;
     Window v1;
@@ -314,7 +314,7 @@ void ov17_0223F374 (UnkStruct_02095C48 * param0)
     }
 }
 
-void ov17_0223F560 (CellTransferStateData * param0, AnimationResourceCollection * param1, PaletteSys * param2, int param3, int param4, int param5, int param6)
+void ov17_0223F560 (SpriteRenderer * param0, SpriteGfxHandler * param1, PaletteData * param2, int param3, int param4, int param5, int param6)
 {
     if (param3 != -1) {
         sub_0200CBDC(param0, param1, 46, 73, 1, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
@@ -333,7 +333,7 @@ void ov17_0223F560 (CellTransferStateData * param0, AnimationResourceCollection 
     }
 }
 
-void ov17_0223F5E8 (AnimationResourceCollection * param0, int param1, int param2, int param3, int param4)
+void ov17_0223F5E8 (SpriteGfxHandler * param0, int param1, int param2, int param3, int param4)
 {
     if (param1 != -1) {
         sub_0200D070(param0, param1);
@@ -352,7 +352,7 @@ void ov17_0223F5E8 (AnimationResourceCollection * param0, int param1, int param2
     }
 }
 
-void ov17_0223F630 (UnkStruct_ov17_0223F6E8 * param0, CellTransferStateData * param1, AnimationResourceCollection * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, u32 param10)
+void ov17_0223F630 (UnkStruct_ov17_0223F6E8 * param0, SpriteRenderer * param1, SpriteGfxHandler * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, u32 param10)
 {
     int v0;
     UnkStruct_ov104_0223F9E0 v1;
@@ -403,7 +403,7 @@ static void ov17_0223F6E8 (SysTask * param0, void * param1)
     }
 }
 
-UnkStruct_ov17_0223F744 * ov17_0223F70C (int param0, PaletteSys * param1, const u16 * param2, int param3, int param4, u32 param5)
+UnkStruct_ov17_0223F744 * ov17_0223F70C (int param0, PaletteData * param1, const u16 * param2, int param3, int param4, u32 param5)
 {
     UnkStruct_ov17_0223F744 * v0;
 

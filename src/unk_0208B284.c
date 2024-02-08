@@ -25,7 +25,7 @@ typedef struct {
 
 static BOOL sub_0208B2DC(s16 param0, s16 param1, f32 param2, f32 param3, f32 * param4, f32 * param5, f32 param6, s16 param7);
 static void sub_0208B3D4(SysTask * param0, void * param1);
-UnkStruct_0208B878 * sub_0208B284(UnkStruct_0208B284 param0, CellTransferStateData * param1, AnimationResourceCollection * param2, PaletteSys * param3);
+UnkStruct_0208B878 * sub_0208B284(UnkStruct_0208B284 param0, SpriteRenderer * param1, SpriteGfxHandler * param2, PaletteData * param3);
 void sub_0208B6B0(UnkStruct_0208B878 * param0, int param1);
 void sub_0208B7B4(UnkStruct_0208B878 * param0);
 void sub_0208B830(UnkStruct_0208B878 * param0);
@@ -41,7 +41,7 @@ static const int Unk_020F2FB0[] = {
     97, 98, 99, 100, 101, 128, 133,
 };
 
-UnkStruct_0208B878 * sub_0208B284 (UnkStruct_0208B284 param0, CellTransferStateData * param1, AnimationResourceCollection * param2, PaletteSys * param3)
+UnkStruct_0208B878 * sub_0208B284 (UnkStruct_0208B284 param0, SpriteRenderer * param1, SpriteGfxHandler * param2, PaletteData * param3)
 {
     UnkStruct_0208B878 * v0;
 
@@ -174,9 +174,9 @@ static void sub_0208B3D4 (SysTask * param0, void * param1)
 void sub_0208B63C (UnkStruct_0208B878 * param0, int param1)
 {
     NARC * v0;
-    CellTransferStateData * v1;
-    AnimationResourceCollection * v2;
-    PaletteSys * v3;
+    SpriteRenderer * v1;
+    SpriteGfxHandler * v2;
+    PaletteData * v3;
 
     v1 = param0->unk_00.unk_04;
     v2 = param0->unk_00.unk_08;
@@ -192,9 +192,9 @@ void sub_0208B63C (UnkStruct_0208B878 * param0, int param1)
 void sub_0208B6B0 (UnkStruct_0208B878 * param0, int param1)
 {
     NARC * v0;
-    CellTransferStateData * v1;
-    AnimationResourceCollection * v2;
-    PaletteSys * v3;
+    SpriteRenderer * v1;
+    SpriteGfxHandler * v2;
+    PaletteData * v3;
     int v4 = 22222 + param0->unk_10.unk_08;
 
     v1 = param0->unk_00.unk_04;
@@ -228,9 +228,9 @@ void sub_0208B7B4 (UnkStruct_0208B878 * param0)
 {
     int v0;
     UnkStruct_ov104_0223F9E0 v1;
-    CellTransferStateData * v2;
-    AnimationResourceCollection * v3;
-    PaletteSys * v4;
+    SpriteRenderer * v2;
+    SpriteGfxHandler * v3;
+    PaletteData * v4;
 
     v2 = param0->unk_00.unk_04;
     v3 = param0->unk_00.unk_08;

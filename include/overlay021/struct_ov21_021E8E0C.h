@@ -8,7 +8,7 @@
 
 typedef struct {
     BGL * unk_00;
-    PaletteSys * unk_04;
+    PaletteData * unk_04;
     UnkStruct_02007768 * unk_08;
     int unk_0C;
     Pokemon * unk_10;

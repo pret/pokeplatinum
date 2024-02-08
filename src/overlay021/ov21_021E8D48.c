@@ -82,7 +82,7 @@ typedef struct {
 typedef struct UnkStruct_ov21_021E8D48_t {
     BGL * unk_00;
     Window * unk_04;
-    PaletteSys * unk_08;
+    PaletteData * unk_08;
     Sprite * unk_0C;
     UnkStruct_0200C738 unk_10;
     GraphicElementManager * unk_19C;
@@ -101,9 +101,9 @@ typedef struct UnkStruct_ov21_021E8D48_t {
 } UnkStruct_ov21_021E8D48;
 
 static void ov21_021E9828(SysTask * param0, void * param1);
-static void ov21_021E98D8(PaletteSys * param0, Sprite * param1);
-static void ov21_021E98F8(PaletteSys * param0, Sprite * param1, int param2, int param3, int param4, int param5, int param6);
-static BOOL ov21_021E9948(PaletteSys * param0, Sprite * param1);
+static void ov21_021E98D8(PaletteData * param0, Sprite * param1);
+static void ov21_021E98F8(PaletteData * param0, Sprite * param1, int param2, int param3, int param4, int param5, int param6);
+static BOOL ov21_021E9948(PaletteData * param0, Sprite * param1);
 static void ov21_021E8E0C(UnkStruct_ov21_021E8D48 * param0, const UnkStruct_ov21_021E8E0C * param1);
 static void ov21_021E900C(UnkStruct_ov21_021E8D48 * param0);
 static void ov21_021E90B0(BGL * param0, int param1);
@@ -725,20 +725,20 @@ static void ov21_021E9828 (SysTask * param0, void * param1)
     sub_020219F8(v0->unk_19C);
 }
 
-static void ov21_021E98D8 (PaletteSys * param0, Sprite * param1)
+static void ov21_021E98D8 (PaletteData * param0, Sprite * param1)
 {
     sub_02003070(param0, 0, 0, 32 * 0x10);
     sub_02003070(param0, 2, 0, (((16 - 2) * 16) * sizeof(u16)));
 }
 
-static void ov21_021E98F8 (PaletteSys * param0, Sprite * param1, int param2, int param3, int param4, int param5, int param6)
+static void ov21_021E98F8 (PaletteData * param0, Sprite * param1, int param2, int param3, int param4, int param5, int param6)
 {
     sub_020086FC(param1, param2, param4, param5, param6);
     sub_02003178(param0, 0x1 | 0x4, 0xffff, param5, param3, param4, param6);
     sub_02003858(param0, 0);
 }
 
-static BOOL ov21_021E9948 (PaletteSys * param0, Sprite * param1)
+static BOOL ov21_021E9948 (PaletteData * param0, Sprite * param1)
 {
     BOOL v0[2];
 

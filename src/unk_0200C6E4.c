@@ -42,7 +42,7 @@ typedef struct CellTransferStateData_t {
     int unk_08;
     NNSG2dCellTransferState * unk_0C;
     UnkStruct_0200C738 unk_10;
-} CellTransferStateData;
+} SpriteRenderer;
 
 typedef struct AnimationResourceCollection_t {
     GraphicElementManager * unk_00;
@@ -52,20 +52,20 @@ typedef struct AnimationResourceCollection_t {
     UnkStruct_02009CFC * unk_24[6];
     int unk_3C[6];
     int unk_54;
-} AnimationResourceCollection;
+} SpriteGfxHandler;
 
-static BOOL sub_0200D11C(CellTransferStateData * param0, AnimationResourceCollection * param1, int param2, int param3, int param4, int param5, int param6);
-static BOOL sub_0200D18C(CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2, int param3, int param4, int param5, int param6);
+static BOOL sub_0200D11C(SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, int param3, int param4, int param5, int param6);
+static BOOL sub_0200D18C(SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, int param3, int param4, int param5, int param6);
 static BOOL sub_0200D1FC(UnkStruct_02009CFC * param0, UnkStruct_02009DC8 * param1);
 static BOOL sub_0200D27C(UnkStruct_02009714 * param0, UnkStruct_02009CFC * param1, int param2);
 static BOOL sub_0200D2D0(UnkStruct_02009714 * param0, UnkStruct_02009CFC * param1, int param2);
 static BOOL sub_0200D230(UnkStruct_02009714 * param0, UnkStruct_02009CFC * param1, int param2);
 
-CellTransferStateData * sub_0200C6E4 (int param0)
+SpriteRenderer * sub_0200C6E4 (int param0)
 {
-    CellTransferStateData * v0 = NULL;
+    SpriteRenderer * v0 = NULL;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(CellTransferStateData));
+    v0 = Heap_AllocFromHeap(param0, sizeof(SpriteRenderer));
 
     if (v0 == NULL) {
         return NULL;
@@ -78,14 +78,14 @@ CellTransferStateData * sub_0200C6E4 (int param0)
     return v0;
 }
 
-AnimationResourceCollection * sub_0200C704 (CellTransferStateData * param0)
+SpriteGfxHandler * sub_0200C704 (SpriteRenderer * param0)
 {
     int v0;
-    AnimationResourceCollection * v1 = NULL;
+    SpriteGfxHandler * v1 = NULL;
 
     GF_ASSERT(param0 != NULL);
 
-    v1 = Heap_AllocFromHeap(param0->unk_00, sizeof(AnimationResourceCollection));
+    v1 = Heap_AllocFromHeap(param0->unk_00, sizeof(SpriteGfxHandler));
 
     if (v1 == NULL) {
         return NULL;
@@ -100,12 +100,12 @@ AnimationResourceCollection * sub_0200C704 (CellTransferStateData * param0)
     return v1;
 }
 
-UnkStruct_0200C738 * sub_0200C738 (CellTransferStateData * param0)
+UnkStruct_0200C738 * sub_0200C738 (SpriteRenderer * param0)
 {
     return &param0->unk_10;
 }
 
-BOOL sub_0200C73C (CellTransferStateData * param0, const UnkStruct_ov104_0224133C * param1, const UnkStruct_ov104_022412F4 * param2, int param3)
+BOOL sub_0200C73C (SpriteRenderer * param0, const UnkStruct_ov104_0224133C * param1, const UnkStruct_ov104_022412F4 * param2, int param3)
 {
     GF_ASSERT(param0 != NULL);
 
@@ -139,7 +139,7 @@ BOOL sub_0200C73C (CellTransferStateData * param0, const UnkStruct_ov104_0224133
     return 1;
 }
 
-BOOL sub_0200C7C0 (CellTransferStateData * param0, AnimationResourceCollection * param1, int param2)
+BOOL sub_0200C7C0 (SpriteRenderer * param0, SpriteGfxHandler * param1, int param2)
 {
     if ((param0 == NULL) || (param1 == NULL)) {
         return 0;
@@ -154,7 +154,7 @@ void sub_0200C7E4 (GraphicElementData * param0)
     sub_02021BD4(param0);
 }
 
-void sub_0200C7EC (AnimationResourceCollection * param0)
+void sub_0200C7EC (SpriteGfxHandler * param0)
 {
     GF_ASSERT(param0 != NULL);
     sub_020219F8(param0->unk_00);
@@ -170,12 +170,12 @@ void sub_0200C808 (void)
     sub_0201DCE8();
 }
 
-void sub_0200C810 (AnimationResourceCollection * param0)
+void sub_0200C810 (SpriteGfxHandler * param0)
 {
     sub_02021964(param0->unk_00);
 }
 
-void sub_0200C81C (AnimationResourceCollection * param0)
+void sub_0200C81C (SpriteGfxHandler * param0)
 {
     if (param0->unk_04 == NULL) {
         return;
@@ -184,7 +184,7 @@ void sub_0200C81C (AnimationResourceCollection * param0)
     sub_020095A8(param0->unk_04);
 }
 
-void sub_0200C82C (AnimationResourceCollection * param0)
+void sub_0200C82C (SpriteGfxHandler * param0)
 {
     int v0;
     UnkStruct_02009F38 * v1;
@@ -204,7 +204,7 @@ void sub_0200C82C (AnimationResourceCollection * param0)
     }
 }
 
-void sub_0200C880 (CellTransferStateData * param0)
+void sub_0200C880 (SpriteRenderer * param0)
 {
     sub_0201DCF0(param0->unk_0C);
     sub_0201E958();
@@ -215,13 +215,13 @@ void sub_0200C880 (CellTransferStateData * param0)
     }
 }
 
-void sub_0200C8A0 (CellTransferStateData * param0, AnimationResourceCollection * param1)
+void sub_0200C8A0 (SpriteRenderer * param0, SpriteGfxHandler * param1)
 {
     param0->unk_04--;
     Heap_FreeToHeap(param1);
 }
 
-void sub_0200C8B0 (CellTransferStateData * param0, AnimationResourceCollection * param1)
+void sub_0200C8B0 (SpriteRenderer * param0, SpriteGfxHandler * param1)
 {
     sub_0200C810(param1);
     sub_0200C81C(param1);
@@ -229,7 +229,7 @@ void sub_0200C8B0 (CellTransferStateData * param0, AnimationResourceCollection *
     sub_0200C8A0(param0, param1);
 }
 
-void sub_0200C8D4 (CellTransferStateData * param0)
+void sub_0200C8D4 (SpriteRenderer * param0)
 {
     GF_ASSERT(param0->unk_04 == 0);
 
@@ -237,7 +237,7 @@ void sub_0200C8D4 (CellTransferStateData * param0)
     Heap_FreeToHeap(param0);
 }
 
-BOOL sub_0200C8F0 (CellTransferStateData * param0, AnimationResourceCollection * param1, const UnkStruct_ov7_0224F2EC * param2)
+BOOL sub_0200C8F0 (SpriteRenderer * param0, SpriteGfxHandler * param1, const UnkStruct_ov7_0224F2EC * param2)
 {
     int v0;
     int v1 = 6;
@@ -290,7 +290,7 @@ BOOL sub_0200C8F0 (CellTransferStateData * param0, AnimationResourceCollection *
     return 1;
 }
 
-GraphicElementData * sub_0200CA08 (CellTransferStateData * param0, AnimationResourceCollection * param1, const UnkStruct_ov7_0224F358 * param2)
+GraphicElementData * sub_0200CA08 (SpriteRenderer * param0, SpriteGfxHandler * param1, const UnkStruct_ov7_0224F358 * param2)
 {
     GraphicElementData * v0 = NULL;
 
@@ -298,7 +298,7 @@ GraphicElementData * sub_0200CA08 (CellTransferStateData * param0, AnimationReso
     return v0;
 }
 
-GraphicElementData * sub_0200CA44 (CellTransferStateData * param0, AnimationResourceCollection * param1, int param2, s16 param3, s16 param4, s16 param5, u16 param6, int param7, int param8, int param9, int param10, int param11, int param12, int param13)
+GraphicElementData * sub_0200CA44 (SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, s16 param3, s16 param4, s16 param5, u16 param6, int param7, int param8, int param9, int param10, int param11, int param12, int param13)
 {
     GraphicElementData * v0 = NULL;
     UnkStruct_ov115_02261520 v1;
@@ -331,7 +331,7 @@ GraphicElementData * sub_0200CA44 (CellTransferStateData * param0, AnimationReso
     return v0;
 }
 
-BOOL sub_0200CB30 (CellTransferStateData * param0, AnimationResourceCollection * param1, const UnkStruct_ov104_02241308 * param2)
+BOOL sub_0200CB30 (SpriteRenderer * param0, SpriteGfxHandler * param1, const UnkStruct_ov104_02241308 * param2)
 {
     int v0;
     int v1;
@@ -371,7 +371,7 @@ BOOL sub_0200CB30 (CellTransferStateData * param0, AnimationResourceCollection *
     return 1;
 }
 
-BOOL sub_0200CBDC (CellTransferStateData * param0, AnimationResourceCollection * param1, int param2, int param3, BOOL param4, int param5, int param6)
+BOOL sub_0200CBDC (SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, int param3, BOOL param4, int param5, int param6)
 {
     UnkStruct_02009DC8 * v0;
 
@@ -393,7 +393,7 @@ BOOL sub_0200CBDC (CellTransferStateData * param0, AnimationResourceCollection *
     return (v0 == NULL) ? 0 : 1;
 }
 
-BOOL sub_0200CC3C (CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2, int param3, int param4, int param5, int param6)
+BOOL sub_0200CC3C (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, int param3, int param4, int param5, int param6)
 {
     UnkStruct_02009DC8 * v0;
 
@@ -414,7 +414,7 @@ BOOL sub_0200CC3C (CellTransferStateData * param0, AnimationResourceCollection *
     return (v0 == NULL) ? 0 : 1;
 }
 
-s8 sub_0200CC9C (CellTransferStateData * param0, AnimationResourceCollection * param1, int param2, int param3, int param4, int param5, int param6, int param7)
+s8 sub_0200CC9C (SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, int param3, int param4, int param5, int param6, int param7)
 {
     UnkStruct_02009DC8 * v0;
     int v1;
@@ -438,7 +438,7 @@ s8 sub_0200CC9C (CellTransferStateData * param0, AnimationResourceCollection * p
     return -1;
 }
 
-s8 sub_0200CD0C (CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2, int param3, int param4, int param5, int param6, int param7)
+s8 sub_0200CD0C (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, int param3, int param4, int param5, int param6, int param7)
 {
     UnkStruct_02009DC8 * v0;
     int v1;
@@ -461,7 +461,7 @@ s8 sub_0200CD0C (CellTransferStateData * param0, AnimationResourceCollection * p
     return -1;
 }
 
-u8 sub_0200CD7C (PaletteSys * param0, int param1, CellTransferStateData * param2, AnimationResourceCollection * param3, int param4, int param5, int param6, int param7, int param8, int param9)
+u8 sub_0200CD7C (PaletteData * param0, int param1, SpriteRenderer * param2, SpriteGfxHandler * param3, int param4, int param5, int param6, int param7, int param8, int param9)
 {
     int v0;
 
@@ -474,7 +474,7 @@ u8 sub_0200CD7C (PaletteSys * param0, int param1, CellTransferStateData * param2
     return v0;
 }
 
-u8 sub_0200CDC4 (PaletteSys * param0, int param1, CellTransferStateData * param2, AnimationResourceCollection * param3, NARC * param4, int param5, int param6, int param7, int param8, int param9)
+u8 sub_0200CDC4 (PaletteData * param0, int param1, SpriteRenderer * param2, SpriteGfxHandler * param3, NARC * param4, int param5, int param6, int param7, int param8, int param9)
 {
     int v0;
 
@@ -487,27 +487,27 @@ u8 sub_0200CDC4 (PaletteSys * param0, int param1, CellTransferStateData * param2
     return v0;
 }
 
-BOOL sub_0200CE0C (CellTransferStateData * param0, AnimationResourceCollection * param1, int param2, int param3, int param4, int param5)
+BOOL sub_0200CE0C (SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, int param3, int param4, int param5)
 {
     return sub_0200D11C(param0, param1, param2, param3, param4, 2, param5);
 }
 
-BOOL sub_0200CE24 (CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2, int param3, int param4, int param5)
+BOOL sub_0200CE24 (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, int param3, int param4, int param5)
 {
     return sub_0200D18C(param0, param1, param2, param3, param4, 2, param5);
 }
 
-BOOL sub_0200CE3C (CellTransferStateData * param0, AnimationResourceCollection * param1, int param2, int param3, int param4, int param5)
+BOOL sub_0200CE3C (SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, int param3, int param4, int param5)
 {
     return sub_0200D11C(param0, param1, param2, param3, param4, 3, param5);
 }
 
-BOOL sub_0200CE54 (CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2, int param3, int param4, int param5)
+BOOL sub_0200CE54 (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, int param3, int param4, int param5)
 {
     return sub_0200D18C(param0, param1, param2, param3, param4, 3, param5);
 }
 
-CellActorData * sub_0200CE6C (CellTransferStateData * param0, AnimationResourceCollection * param1, const UnkStruct_ov104_0223F9E0 * param2)
+CellActorData * sub_0200CE6C (SpriteRenderer * param0, SpriteGfxHandler * param1, const UnkStruct_ov104_0223F9E0 * param2)
 {
     int v0;
     int v1;
@@ -589,39 +589,39 @@ CellActorData * sub_0200CE6C (CellTransferStateData * param0, AnimationResourceC
     return v2;
 }
 
-const NNSG2dImagePaletteProxy * sub_0200D04C (AnimationResourceCollection * param0, int param1)
+const NNSG2dImagePaletteProxy * sub_0200D04C (SpriteGfxHandler * param0, int param1)
 {
     UnkStruct_02009DC8 * v0 = sub_02009DC8(param0->unk_0C[1], param1);
     return sub_0200A72C(v0, NULL);
 }
 
-u32 sub_0200D05C (AnimationResourceCollection * param0, int param1, NNS_G2D_VRAM_TYPE param2)
+u32 sub_0200D05C (SpriteGfxHandler * param0, int param1, NNS_G2D_VRAM_TYPE param2)
 {
     UnkStruct_02009DC8 * v0 = sub_02009DC8(param0->unk_0C[1], param1);
     return sub_0200A760(v0, param2);
 }
 
-BOOL sub_0200D070 (AnimationResourceCollection * param0, int param1)
+BOOL sub_0200D070 (SpriteGfxHandler * param0, int param1)
 {
     return sub_0200D27C(param0->unk_0C[0], param0->unk_24[0], param1);
 }
 
-BOOL sub_0200D080 (AnimationResourceCollection * param0, int param1)
+BOOL sub_0200D080 (SpriteGfxHandler * param0, int param1)
 {
     return sub_0200D2D0(param0->unk_0C[1], param0->unk_24[1], param1);
 }
 
-BOOL sub_0200D090 (AnimationResourceCollection * param0, int param1)
+BOOL sub_0200D090 (SpriteGfxHandler * param0, int param1)
 {
     return sub_0200D230(param0->unk_0C[2], param0->unk_24[2], param1);
 }
 
-BOOL sub_0200D0A0 (AnimationResourceCollection * param0, int param1)
+BOOL sub_0200D0A0 (SpriteGfxHandler * param0, int param1)
 {
     return sub_0200D230(param0->unk_0C[3], param0->unk_24[3], param1);
 }
 
-void sub_0200D0B0 (CellTransferStateData * param0, AnimationResourceCollection * param1)
+void sub_0200D0B0 (SpriteRenderer * param0, SpriteGfxHandler * param1)
 {
     int v0;
 
@@ -648,7 +648,7 @@ void sub_0200D0F4 (CellActorData * param0)
     Heap_FreeToHeap(param0);
 }
 
-static BOOL sub_0200D11C (CellTransferStateData * param0, AnimationResourceCollection * param1, int param2, int param3, int param4, int param5, int param6)
+static BOOL sub_0200D11C (SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, int param3, int param4, int param5, int param6)
 {
     UnkStruct_02009DC8 * v0;
     int v1;
@@ -670,7 +670,7 @@ static BOOL sub_0200D11C (CellTransferStateData * param0, AnimationResourceColle
     return (v0 == NULL) ? 0 : 1;
 }
 
-static BOOL sub_0200D18C (CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2, int param3, int param4, int param5, int param6)
+static BOOL sub_0200D18C (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, int param3, int param4, int param5, int param6)
 {
     UnkStruct_02009DC8 * v0;
     int v1;
@@ -1244,7 +1244,7 @@ u32 sub_0200D81C (CellActorData * param0)
     return sub_020220F4(param0->unk_00);
 }
 
-BOOL sub_0200D828 (CellTransferStateData * param0, AnimationResourceCollection * param1, int param2, int param3, BOOL param4, int param5, int param6)
+BOOL sub_0200D828 (SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, int param3, BOOL param4, int param5, int param6)
 {
     UnkStruct_02009DC8 * v0;
 
@@ -1266,7 +1266,7 @@ BOOL sub_0200D828 (CellTransferStateData * param0, AnimationResourceCollection *
     return (v0 == NULL) ? 0 : 1;
 }
 
-BOOL sub_0200D888 (CellTransferStateData * param0, AnimationResourceCollection * param1, int param2, int param3, BOOL param4, int param5, int param6)
+BOOL sub_0200D888 (SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, int param3, BOOL param4, int param5, int param6)
 {
     UnkStruct_02009DC8 * v0;
 
@@ -1288,7 +1288,7 @@ BOOL sub_0200D888 (CellTransferStateData * param0, AnimationResourceCollection *
     return (v0 == NULL) ? 0 : 1;
 }
 
-BOOL sub_0200D8E8 (CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2, int param3, BOOL param4, int param5, int param6)
+BOOL sub_0200D8E8 (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, int param3, BOOL param4, int param5, int param6)
 {
     UnkStruct_02009DC8 * v0;
 
@@ -1310,7 +1310,7 @@ BOOL sub_0200D8E8 (CellTransferStateData * param0, AnimationResourceCollection *
     return (v0 == NULL) ? 0 : 1;
 }
 
-void sub_0200D948 (CellTransferStateData * param0, AnimationResourceCollection * param1, int param2, int param3, BOOL param4, int param5)
+void sub_0200D948 (SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, int param3, BOOL param4, int param5)
 {
     UnkStruct_02009DC8 * v0;
 
@@ -1320,7 +1320,7 @@ void sub_0200D948 (CellTransferStateData * param0, AnimationResourceCollection *
     sub_0200A4C0(v0);
 }
 
-void sub_0200D97C (CellTransferStateData * param0, AnimationResourceCollection * param1, int param2, int param3, BOOL param4, int param5)
+void sub_0200D97C (SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, int param3, BOOL param4, int param5)
 {
     UnkStruct_02009DC8 * v0;
 
@@ -1330,12 +1330,12 @@ void sub_0200D97C (CellTransferStateData * param0, AnimationResourceCollection *
     sub_0200A6B8(v0);
 }
 
-GraphicElementManager * sub_0200D9B0 (AnimationResourceCollection * param0)
+GraphicElementManager * sub_0200D9B0 (SpriteGfxHandler * param0)
 {
     return param0->unk_00;
 }
 
-void sub_0200D9B4 (CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2, int param3, BOOL param4, int param5)
+void sub_0200D9B4 (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, int param3, BOOL param4, int param5)
 {
     UnkStruct_02009DC8 * v0;
 

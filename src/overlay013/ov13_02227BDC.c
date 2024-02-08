@@ -79,7 +79,7 @@ void ov13_02227BDC (UnkStruct_ov13_02227244 * param0)
 static void ov13_02227C08 (UnkStruct_ov13_02227244 * param0)
 {
     UnkStruct_ov104_02241308 v0 = {8, 8, 3, 3, 0, 0};
-    CellTransferStateData * v1 = ov16_0223E010(param0->unk_00->unk_00);
+    SpriteRenderer * v1 = ov16_0223E010(param0->unk_00->unk_00);
 
     param0->unk_30C = sub_0200C704(v1);
 
@@ -89,7 +89,7 @@ static void ov13_02227C08 (UnkStruct_ov13_02227244 * param0)
 
 static void ov13_02227C54 (UnkStruct_ov13_02227244 * param0)
 {
-    CellTransferStateData * v0;
+    SpriteRenderer * v0;
     u32 v1;
     NARC * v2;
 
@@ -108,7 +108,7 @@ static void ov13_02227C54 (UnkStruct_ov13_02227244 * param0)
 
 static void ov13_02227D10 (UnkStruct_ov13_02227244 * param0, u16 param1, u32 param2)
 {
-    CellTransferStateData * v0 = ov16_0223E010(param0->unk_00->unk_00);
+    SpriteRenderer * v0 = ov16_0223E010(param0->unk_00->unk_00);
     sub_0200D948(v0, param0->unk_30C, 16, Item_FileID(param1, 1), 0, param2);
 }
 
@@ -120,7 +120,7 @@ static void ov13_02227D48 (UnkStruct_ov13_02227244 * param0, u16 param1, u16 par
 static CellActorData * ov13_02227D78 (UnkStruct_ov13_02227244 * param0, u32 param1)
 {
     UnkStruct_ov104_0223F9E0 v0;
-    CellTransferStateData * v1;
+    SpriteRenderer * v1;
 
     v1 = ov16_0223E010(param0->unk_00->unk_00);
 
@@ -152,7 +152,7 @@ static void ov13_02227DE8 (UnkStruct_ov13_02227244 * param0)
 
 void ov13_02227E08 (UnkStruct_ov13_02227244 * param0)
 {
-    CellTransferStateData * v0;
+    SpriteRenderer * v0;
     u32 v1;
 
     v0 = ov16_0223E010(param0->unk_00->unk_00);
@@ -235,7 +235,7 @@ static void ov13_02227F38 (UnkStruct_ov13_02227244 * param0)
 
 static void ov13_02227F7C (UnkStruct_ov13_02227244 * param0)
 {
-    CellTransferStateData * v0;
+    SpriteRenderer * v0;
     UnkStruct_ov16_0226DC24 * v1;
 
     v0 = ov16_0223E010(param0->unk_00->unk_00);
@@ -308,7 +308,7 @@ void ov13_02228050 (UnkStruct_ov13_02227244 * param0)
 
 static void ov13_02228070 (UnkStruct_ov13_02227244 * param0)
 {
-    CellTransferStateData * v0;
+    SpriteRenderer * v0;
     UnkStruct_ov16_0226DEEC * v1;
 
     v0 = ov16_0223E010(param0->unk_00->unk_00);

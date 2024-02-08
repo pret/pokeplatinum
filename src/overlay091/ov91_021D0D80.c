@@ -74,8 +74,8 @@ typedef struct {
     UnkStruct_0200112C * unk_104;
     ResourceMetadata * unk_108;
     UIControlData * unk_10C;
-    CellTransferStateData * unk_110;
-    AnimationResourceCollection * unk_114;
+    SpriteRenderer * unk_110;
+    SpriteGfxHandler * unk_114;
     CellActorData * unk_118[13];
     UnkStruct_02098D38 unk_14C;
     UnkStruct_020067E8 * unk_17C;

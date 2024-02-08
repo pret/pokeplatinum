@@ -74,7 +74,7 @@ typedef struct UnkStruct_ov12_02223178_t {
     int unk_18;
     UnkStruct_02014014 * unk_1C[16];
     UnkSPLStruct6 * unk_5C[20];
-    CellTransferStateData * unk_AC;
+    SpriteRenderer * unk_AC;
     UnkStruct_ov16_0223E0C8 * unk_B0[4];
     u8 unk_C0[4];
     Sprite * unk_C4[4];
@@ -100,7 +100,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_ov12_0221FCDC * unk_00;
-    AnimationResourceCollection * unk_04;
+    SpriteGfxHandler * unk_04;
     CellActorData * unk_08;
     BOOL unk_0C;
 } UnkStruct_ov12_02221810;
@@ -126,11 +126,11 @@ typedef struct UnkStruct_ov12_0221FCDC_t {
     UnkFuncPtr_ov12_02239EEC unk_B8;
     UnkStruct_ov12_02223178 * unk_BC;
     BGL * unk_C0;
-    PaletteSys * unk_C4;
-    AnimationResourceCollection * unk_C8[4];
+    PaletteData * unk_C4;
+    SpriteGfxHandler * unk_C8[4];
     CellActorData * unk_D8[10];
     UnkStruct_ov104_0223F9E0 unk_100;
-    AnimationResourceCollection * unk_134;
+    SpriteGfxHandler * unk_134;
     CellActorData * unk_138[5];
     BOOL unk_14C[5];
     UnkStruct_ov12_0222118C * unk_160[5];
@@ -768,18 +768,18 @@ CellActorData * ov12_022202C0 (UnkStruct_ov12_0221FCDC * param0, int param1)
     return param0->unk_138[param1];
 }
 
-AnimationResourceCollection * ov12_022202EC (UnkStruct_ov12_0221FCDC * param0)
+SpriteGfxHandler * ov12_022202EC (UnkStruct_ov12_0221FCDC * param0)
 {
     GF_ASSERT(param0 != NULL);
     return param0->unk_134;
 }
 
-AnimationResourceCollection * ov12_02220300 (UnkStruct_ov12_0221FCDC * param0)
+SpriteGfxHandler * ov12_02220300 (UnkStruct_ov12_0221FCDC * param0)
 {
     return param0->unk_C8[0];
 }
 
-CellTransferStateData * ov12_02220308 (UnkStruct_ov12_0221FCDC * param0)
+SpriteRenderer * ov12_02220308 (UnkStruct_ov12_0221FCDC * param0)
 {
     return param0->unk_BC->unk_AC;
 }
@@ -3987,7 +3987,7 @@ Sprite * ov12_022232FC (UnkStruct_ov12_0221FCDC * param0, int param1)
     }
 }
 
-PaletteSys * ov12_0222332C (UnkStruct_ov12_0221FCDC * param0)
+PaletteData * ov12_0222332C (UnkStruct_ov12_0221FCDC * param0)
 {
     return param0->unk_C4;
 }

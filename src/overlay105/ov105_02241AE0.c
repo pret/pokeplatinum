@@ -116,7 +116,7 @@ struct UnkStruct_ov105_02241FF4_t {
     UnkStruct_02081CF4 unk_F0;
     UIControlData * unk_FC;
     ResourceMetadata unk_100[4];
-    PaletteSys * unk_120;
+    PaletteData * unk_120;
     GenericPointerData * unk_124;
     UnkStruct_02007768 * unk_128;
     Sprite * unk_12C[3];

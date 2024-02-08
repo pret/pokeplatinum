@@ -93,15 +93,15 @@ typedef struct {
     UnkStruct_020978D8 * unk_1C;
     MessageLoader * unk_20;
     Strbuf* unk_24[3];
-    PaletteSys * unk_30;
+    PaletteData * unk_30;
     void * unk_34;
     void * unk_38;
     NNSG2dScreenData * unk_3C;
     NNSG2dScreenData * unk_40;
     Window unk_44[6];
     UIControlData * unk_A4;
-    CellTransferStateData * unk_A8;
-    AnimationResourceCollection * unk_AC;
+    SpriteRenderer * unk_A8;
+    SpriteGfxHandler * unk_AC;
     CellActorData * unk_B0[3];
 } UnkStruct_ov75_021D1184;
 

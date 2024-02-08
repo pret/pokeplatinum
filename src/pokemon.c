@@ -3141,7 +3141,7 @@ static const int Unk_020F0588[] = {
     0x1
 };
 
-CellActorData *sub_02076994(CellTransferStateData *param0, AnimationResourceCollection *param1, PaletteSys *param2, int param3, int param4, int param5, int param6, int param7, int heapID)
+CellActorData *sub_02076994(SpriteRenderer *param0, SpriteGfxHandler *param1, PaletteData *param2, int param3, int param4, int param5, int param6, int param7, int heapID)
 {
     UnkStruct_ov104_0223F9E0 v0;
     CellActorData *v1;

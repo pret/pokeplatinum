@@ -34,9 +34,9 @@ enum HideArrowType {
     HIDE_ARROW_FADE_IN_PLACE,
 };
 
-void PartyGauge_LoadGraphics(CellTransferStateData * param0, AnimationResourceCollection * param1, PaletteSys * param2);
-void PartyGauge_FreeGraphics(AnimationResourceCollection * param0);
-PartyGauge * PartyGauge_Show(u8 param0[], enum PartyGaugeSide param1, enum ShowPartyGaugeType param2, enum PartyGaugePosition param3, CellTransferStateData * param4, AnimationResourceCollection * param5);
+void PartyGauge_LoadGraphics(SpriteRenderer * param0, SpriteGfxHandler * param1, PaletteData * param2);
+void PartyGauge_FreeGraphics(SpriteGfxHandler * param0);
+PartyGauge * PartyGauge_Show(u8 param0[], enum PartyGaugeSide param1, enum ShowPartyGaugeType param2, enum PartyGaugePosition param3, SpriteRenderer * param4, SpriteGfxHandler * param5);
 BOOL PartyGauge_ShowIsDone(PartyGauge * param0);
 void PartyGauge_Hide(PartyGauge * param0, enum HideArrowType param1, enum HidePartyGaugeType param2);
 BOOL PartyGauge_HideIsDone(PartyGauge * param0);

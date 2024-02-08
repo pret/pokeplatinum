@@ -92,7 +92,7 @@ struct UnkStruct_ov111_021D0F7C_t {
     u16 unk_48[8];
     BGL * unk_58;
     Window unk_5C[16];
-    PaletteSys * unk_15C;
+    PaletteData * unk_15C;
     UnkStruct_0200C440 * unk_160;
     AnimationControlFlags * unk_164;
     SaveData * unk_168;

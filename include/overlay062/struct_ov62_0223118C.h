@@ -19,11 +19,11 @@
 
 typedef struct {
     NARC * unk_00;
-    CellTransferStateData * unk_04;
-    AnimationResourceCollection * unk_08;
+    SpriteRenderer * unk_04;
+    SpriteGfxHandler * unk_08;
     u8 padding_0C[4];
     BGL * unk_10;
-    PaletteSys * unk_14;
+    PaletteData * unk_14;
     UnkStruct_02023FCC * unk_18;
     UnkUnion_02022594 unk_1C[5];
     BOOL unk_30;

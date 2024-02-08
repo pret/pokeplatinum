@@ -32,8 +32,8 @@ typedef struct {
     u16 unk_3E4[96];
     u16 unk_4A4[128];
     PartyManagementData * unk_5A4;
-    CellTransferStateData * unk_5A8;
-    AnimationResourceCollection * unk_5AC;
+    SpriteRenderer * unk_5A8;
+    SpriteGfxHandler * unk_5AC;
     GraphicElementData * unk_5B0[29];
     CellActorData * unk_624[29];
     UnkStruct_0200C440 * unk_698;

@@ -7,7 +7,7 @@
 #include "struct_defs/struct_0208B284.h"
 #include "struct_defs/struct_0208B878.h"
 
-UnkStruct_0208B878 * sub_0208B284(UnkStruct_0208B284 param0, CellTransferStateData * param1, AnimationResourceCollection * param2, PaletteSys * param3);
+UnkStruct_0208B878 * sub_0208B284(UnkStruct_0208B284 param0, SpriteRenderer * param1, SpriteGfxHandler * param2, PaletteData * param3);
 void sub_0208B63C(UnkStruct_0208B878 * param0, int param1);
 BOOL sub_0208B878(UnkStruct_0208B878 * param0, int param1);
 BOOL sub_0208B8B0(UnkStruct_0208B878 * param0, BOOL param1);

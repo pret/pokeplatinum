@@ -121,7 +121,7 @@ typedef struct {
     UnkStruct_0209916C * unk_60[2];
     BGL * unk_68;
     Window unk_6C;
-    CellTransferStateData * unk_7C;
+    SpriteRenderer * unk_7C;
     UnkStruct_ov79_021D29B4 unk_80;
 } UnkStruct_ov79_021D2928;
 

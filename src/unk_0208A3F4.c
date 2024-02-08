@@ -70,9 +70,9 @@ void sub_0208A490 (UnkStruct_02089688 * param0)
 {
     NARC * v0;
     BGL * v1;
-    CellTransferStateData * v2;
-    AnimationResourceCollection * v3;
-    PaletteSys * v4;
+    SpriteRenderer * v2;
+    SpriteGfxHandler * v3;
+    PaletteData * v4;
 
     v2 = param0->unk_2C0.unk_04;
     v3 = param0->unk_2C0.unk_08;
@@ -303,9 +303,9 @@ asm void sub_0208A758 (UnkStruct_02089688 * param0)
 void sub_0208A8A0 (UnkStruct_02089688 * param0)
 {
     UnkStruct_ov104_0223F9E0 v0;
-    CellTransferStateData * v1;
-    AnimationResourceCollection * v2;
-    PaletteSys * v3;
+    SpriteRenderer * v1;
+    SpriteGfxHandler * v2;
+    PaletteData * v3;
 
     v1 = param0->unk_2C0.unk_04;
     v2 = param0->unk_2C0.unk_08;
@@ -359,9 +359,9 @@ void sub_0208A8A0 (UnkStruct_02089688 * param0)
 void sub_0208A9BC (UnkStruct_02089688 * param0)
 {
     UnkStruct_ov104_0223F9E0 v0;
-    CellTransferStateData * v1;
-    AnimationResourceCollection * v2;
-    PaletteSys * v3;
+    SpriteRenderer * v1;
+    SpriteGfxHandler * v2;
+    PaletteData * v3;
 
     v1 = param0->unk_2C0.unk_04;
     v2 = param0->unk_2C0.unk_08;

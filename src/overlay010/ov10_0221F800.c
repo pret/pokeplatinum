@@ -102,11 +102,11 @@ typedef struct {
 typedef struct UnkStruct_ov10_0221FB28_t {
     UnkStruct_ov10_0221F800 * unk_00;
     const UnkFuncPtr_ov10_02222AD0 * unk_04;
-    PaletteSys * unk_08;
+    PaletteData * unk_08;
     BGL * unk_0C;
     Window unk_10[24];
-    CellTransferStateData * unk_190;
-    AnimationResourceCollection * unk_194;
+    SpriteRenderer * unk_190;
+    SpriteGfxHandler * unk_194;
     CellActorData * unk_198[30];
     u32 unk_210;
     UnkStruct_ov10_0221FB28_sub1 unk_214[6];

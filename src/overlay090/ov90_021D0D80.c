@@ -98,8 +98,8 @@ typedef struct {
     UnkStruct_ov90_021D0ECC_sub1 unk_28;
     Window unk_6C[5];
     UnkStruct_ov90_021D17F8 unk_BC[30];
-    CellTransferStateData * unk_29C;
-    AnimationResourceCollection * unk_2A0;
+    SpriteRenderer * unk_29C;
+    SpriteGfxHandler * unk_2A0;
     GraphicElementData * unk_2A4[4];
 } UnkStruct_ov90_021D0ECC;
 

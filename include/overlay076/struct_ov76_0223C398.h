@@ -25,10 +25,10 @@
 typedef struct {
     int unk_00;
     BOOL unk_04;
-    CellTransferStateData * unk_08;
-    AnimationResourceCollection * unk_0C;
+    SpriteRenderer * unk_08;
+    SpriteGfxHandler * unk_0C;
     BGL * unk_10;
-    PaletteSys * unk_14;
+    PaletteData * unk_14;
     Window unk_18[11];
     ResourceMetadata * unk_C8;
     UIControlData * unk_CC;

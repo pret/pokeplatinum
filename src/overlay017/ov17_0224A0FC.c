@@ -390,12 +390,12 @@ void ov17_0224A1EC (UnkStruct_ov17_0224A1EC * param0)
     }
 }
 
-void ov17_0224A20C (CellTransferStateData * param0, AnimationResourceCollection * param1)
+void ov17_0224A20C (SpriteRenderer * param0, SpriteGfxHandler * param1)
 {
     return;
 }
 
-void ov17_0224A210 (AnimationResourceCollection * param0)
+void ov17_0224A210 (SpriteGfxHandler * param0)
 {
     return;
 }
@@ -508,7 +508,7 @@ void ov17_0224A368 (UnkStruct_ov17_0224A1EC * param0, int param1, int param2, in
     ov17_0224A214(param0, v0, param3);
 }
 
-void ov17_0224A390 (CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2)
+void ov17_0224A390 (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2)
 {
     sub_0200CC3C(param0, param1, param2, 58, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 33003);
     sub_0200CC3C(param0, param1, param2, 59, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 33004);
@@ -518,7 +518,7 @@ void ov17_0224A390 (CellTransferStateData * param0, AnimationResourceCollection 
     sub_0200CE54(param0, param1, param2, 63, 1, 33003);
 }
 
-void ov17_0224A428 (AnimationResourceCollection * param0)
+void ov17_0224A428 (SpriteGfxHandler * param0)
 {
     sub_0200D070(param0, 33003);
     sub_0200D070(param0, 33004);
@@ -528,7 +528,7 @@ void ov17_0224A428 (AnimationResourceCollection * param0)
     sub_0200D0A0(param0, 33003);
 }
 
-static int ov17_0224A46C (UnkStruct_ov17_0224A1EC * param0, CellTransferStateData * param1, AnimationResourceCollection * param2, int param3, int param4, int param5, int param6, int param7)
+static int ov17_0224A46C (UnkStruct_ov17_0224A1EC * param0, SpriteRenderer * param1, SpriteGfxHandler * param2, int param3, int param4, int param5, int param6, int param7)
 {
     CellActorData * v0;
     int v1;
@@ -605,21 +605,21 @@ void ov17_0224A580 (UnkStruct_ov17_0224A1EC * param0)
     }
 }
 
-void ov17_0224A5A8 (CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2)
+void ov17_0224A5A8 (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2)
 {
     sub_0200CC3C(param0, param1, param2, 55, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 33007);
     sub_0200CE24(param0, param1, param2, 56, 1, 33004);
     sub_0200CE54(param0, param1, param2, 57, 1, 33004);
 }
 
-void ov17_0224A5F8 (AnimationResourceCollection * param0)
+void ov17_0224A5F8 (SpriteGfxHandler * param0)
 {
     sub_0200D070(param0, 33007);
     sub_0200D090(param0, 33004);
     sub_0200D0A0(param0, 33004);
 }
 
-void ov17_0224A61C (UnkStruct_ov17_0224A1EC * param0, CellTransferStateData * param1, AnimationResourceCollection * param2)
+void ov17_0224A61C (UnkStruct_ov17_0224A1EC * param0, SpriteRenderer * param1, SpriteGfxHandler * param2)
 {
     CellActorData * v0;
     int v1;
@@ -676,7 +676,7 @@ void ov17_0224A7B8 (UnkStruct_ov17_0224A1EC * param0)
     }
 }
 
-void ov17_0224A7E0 (UnkStruct_ov17_0224A1EC * param0, CellTransferStateData * param1, AnimationResourceCollection * param2, int param3, int param4, u8 param5)
+void ov17_0224A7E0 (UnkStruct_ov17_0224A1EC * param0, SpriteRenderer * param1, SpriteGfxHandler * param2, int param3, int param4, u8 param5)
 {
     CellActorData * v0;
     int v1, v2, v3, v4;
@@ -762,21 +762,21 @@ void ov17_0224A95C (UnkStruct_ov17_0224A1EC * param0)
     }
 }
 
-void ov17_0224A984 (CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2)
+void ov17_0224A984 (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2)
 {
     sub_0200CC3C(param0, param1, param2, 64, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 33008);
     sub_0200CE24(param0, param1, param2, 65, 1, 33005);
     sub_0200CE54(param0, param1, param2, 66, 1, 33005);
 }
 
-void ov17_0224A9D4 (AnimationResourceCollection * param0)
+void ov17_0224A9D4 (SpriteGfxHandler * param0)
 {
     sub_0200D070(param0, 33008);
     sub_0200D090(param0, 33005);
     sub_0200D0A0(param0, 33005);
 }
 
-void ov17_0224A9F8 (UnkStruct_ov17_0224A1EC * param0, CellTransferStateData * param1, AnimationResourceCollection * param2)
+void ov17_0224A9F8 (UnkStruct_ov17_0224A1EC * param0, SpriteRenderer * param1, SpriteGfxHandler * param2)
 {
     CellActorData * v0;
 
@@ -818,21 +818,21 @@ static void ov17_0224AA68 (SysTask * param0, void * param1)
     sub_0200D500(v0->unk_14.unk_1E8, v1, v2 - 8 * 5, (256 * FX32_ONE));
 }
 
-void ov17_0224AA94 (CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2)
+void ov17_0224AA94 (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2)
 {
     sub_0200CC3C(param0, param1, param2, 90, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 33010);
     sub_0200CE24(param0, param1, param2, 89, 1, 33007);
     sub_0200CE54(param0, param1, param2, 88, 1, 33007);
 }
 
-void ov17_0224AAE4 (AnimationResourceCollection * param0)
+void ov17_0224AAE4 (SpriteGfxHandler * param0)
 {
     sub_0200D070(param0, 33010);
     sub_0200D090(param0, 33007);
     sub_0200D0A0(param0, 33007);
 }
 
-void ov17_0224AB08 (UnkStruct_ov17_0224A1EC * param0, CellTransferStateData * param1, AnimationResourceCollection * param2)
+void ov17_0224AB08 (UnkStruct_ov17_0224A1EC * param0, SpriteRenderer * param1, SpriteGfxHandler * param2)
 {
     int v0;
 
@@ -907,21 +907,21 @@ void ov17_0224AC78 (UnkStruct_ov17_0224ABFC * param0, int param1, int param2)
     param0->unk_12 = param2;
 }
 
-void ov17_0224AC80 (CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2)
+void ov17_0224AC80 (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2)
 {
     sub_0200CC3C(param0, param1, param2, 93, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 33011);
     sub_0200CE24(param0, param1, param2, 92, 1, 33008);
     sub_0200CE54(param0, param1, param2, 91, 1, 33008);
 }
 
-void ov17_0224ACD0 (AnimationResourceCollection * param0)
+void ov17_0224ACD0 (SpriteGfxHandler * param0)
 {
     sub_0200D070(param0, 33011);
     sub_0200D090(param0, 33008);
     sub_0200D0A0(param0, 33008);
 }
 
-void ov17_0224ACF4 (UnkStruct_ov17_0224A1EC * param0, CellTransferStateData * param1, AnimationResourceCollection * param2)
+void ov17_0224ACF4 (UnkStruct_ov17_0224A1EC * param0, SpriteRenderer * param1, SpriteGfxHandler * param2)
 {
     return;
 }
@@ -931,14 +931,14 @@ void ov17_0224ACF8 (UnkStruct_ov17_0224A1EC * param0)
     return;
 }
 
-void ov17_0224ACFC (CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2)
+void ov17_0224ACFC (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2)
 {
     sub_0200CC3C(param0, param1, param2, 96, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 33012);
     sub_0200CE24(param0, param1, param2, 95, 1, 33009);
     sub_0200CE54(param0, param1, param2, 94, 1, 33009);
 }
 
-void ov17_0224AD4C (AnimationResourceCollection * param0)
+void ov17_0224AD4C (SpriteGfxHandler * param0)
 {
     sub_0200D070(param0, 33012);
     sub_0200D090(param0, 33009);
@@ -1065,14 +1065,14 @@ static void ov17_0224AF3C (UnkStruct_ov17_0224DF54 * param0, int param1, int par
     }
 }
 
-void ov17_0224AFA8 (CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2)
+void ov17_0224AFA8 (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2)
 {
     sub_0200CC3C(param0, param1, param2, 99, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 33013);
     sub_0200CE24(param0, param1, param2, 98, 1, 33010);
     sub_0200CE54(param0, param1, param2, 97, 1, 33010);
 }
 
-void ov17_0224AFF8 (AnimationResourceCollection * param0)
+void ov17_0224AFF8 (SpriteGfxHandler * param0)
 {
     sub_0200D070(param0, 33013);
     sub_0200D090(param0, 33010);
@@ -1968,21 +1968,21 @@ int ov17_0224C300 (UnkStruct_ov17_0224DF54 * param0)
     return Message_Printing(param0->unk_14.unk_A18);
 }
 
-void ov17_0224C310 (CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2)
+void ov17_0224C310 (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2)
 {
     sub_0200CC3C(param0, param1, param2, 76, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 33009);
     sub_0200CE24(param0, param1, param2, 77, 1, 33006);
     sub_0200CE54(param0, param1, param2, 78, 1, 33006);
 }
 
-void ov17_0224C360 (AnimationResourceCollection * param0)
+void ov17_0224C360 (SpriteGfxHandler * param0)
 {
     sub_0200D070(param0, 33009);
     sub_0200D090(param0, 33006);
     sub_0200D0A0(param0, 33006);
 }
 
-void ov17_0224C384 (UnkStruct_ov17_0224DF54 * param0, CellTransferStateData * param1, AnimationResourceCollection * param2)
+void ov17_0224C384 (UnkStruct_ov17_0224DF54 * param0, SpriteRenderer * param1, SpriteGfxHandler * param2)
 {
     UnkStruct_ov17_0224C384 * v0;
 

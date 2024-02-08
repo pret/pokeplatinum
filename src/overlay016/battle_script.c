@@ -10136,7 +10136,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
     case SEQ_GET_EXP_LEVEL_UP_SUMMARY_INIT: {
         BGL *bgl = BattleSystem_BGL(data->battleSys);
         Window *window = BattleSystem_Window(data->battleSys, 1);
-        PaletteSys *paletteSys = BattleSystem_PaletteSys(data->battleSys);
+        PaletteData *paletteSys = BattleSystem_PaletteSys(data->battleSys);
 
         G2_SetBG0Priority(1 + 1); // this is the background + 1; could do with a constant
         BGL_SetPriority(1, 1);
@@ -10559,7 +10559,7 @@ static void BattleScript_CatchMonTask (SysTask * param0, void * param1)
     int v1;
     BattleScriptTaskData * v2 = param1;
     Pokemon * v3;
-    PaletteSys * v4;
+    PaletteData * v4;
     UnkStruct_02007768 * v5;
     MessageLoader * v6;
 
@@ -12213,9 +12213,9 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov16_0226E6F8 = {
 static void BattleScript_LoadPartyLevelUpIcon (BattleSystem * param0, BattleScriptTaskData * param1, Pokemon * param2)
 {
     UnkStruct_ov104_0223F9E0 v0;
-    CellTransferStateData * v1;
-    AnimationResourceCollection * v2;
-    PaletteSys * v3;
+    SpriteRenderer * v1;
+    SpriteGfxHandler * v2;
+    PaletteData * v3;
     MessageLoader * v4;
     UnkStruct_0200B358 * v5;
     Strbuf* v6, * v7;
@@ -12301,7 +12301,7 @@ static void BattleScript_LoadPartyLevelUpIcon (BattleSystem * param0, BattleScri
 
 static void BattleScript_FreePartyLevelUpIcon (BattleSystem * param0, BattleScriptTaskData * param1)
 {
-    AnimationResourceCollection * v0;
+    SpriteGfxHandler * v0;
 
     v0 = ov16_0223E018(param0);
 

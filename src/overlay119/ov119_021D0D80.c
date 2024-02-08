@@ -287,7 +287,7 @@ void ov119_021D1048 (void)
     sub_0200F174(0, 0, 0, 0x0, 6, 1, 71);
 }
 
-void ov119_021D1068 (BGL * param0, PaletteSys * param1, int param2)
+void ov119_021D1068 (BGL * param0, PaletteData * param1, int param2)
 {
     int v0 = 71;
 
@@ -388,7 +388,7 @@ void ov119_021D12F8 (Window * param0)
     BGL_DeleteWindow(param0);
 }
 
-void ov119_021D1308 (BGL * param0, PaletteSys * param1)
+void ov119_021D1308 (BGL * param0, PaletteData * param1)
 {
     int v0 = 118;
     int v1 = 0;
@@ -402,7 +402,7 @@ void ov119_021D1308 (BGL * param0, PaletteSys * param1)
     PaletteSys_LoadPalette(param1, v0, v3, v5, 0, 0x20 * 2, 0);
 }
 
-void ov119_021D135C (BGL * param0, PaletteSys * param1)
+void ov119_021D135C (BGL * param0, PaletteData * param1)
 {
     int v0 = 12;
     int v1 = 10;
@@ -536,9 +536,9 @@ void ov119_021D150C (UnkStruct_ov119_021D14DC * param0)
 
 void ov119_021D1514 (UnkStruct_ov119_021D0FD0 * param0)
 {
-    CellTransferStateData * v0;
-    AnimationResourceCollection * v1;
-    PaletteSys * v2;
+    SpriteRenderer * v0;
+    SpriteGfxHandler * v1;
+    PaletteData * v2;
     int v3[][4] = {
         {4, 9, 3, 2},
         {4, 9, 3, 2}

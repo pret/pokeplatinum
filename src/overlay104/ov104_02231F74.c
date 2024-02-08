@@ -873,9 +873,9 @@ void ov104_02232C80 (UnkStruct_ov63_0222CCB8 * param0, UnkStruct_ov63_0222BEC0 *
 
 void ov104_02232CE0 (UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, u16 param9)
 {
-    CellTransferStateData * v0 = param0->unk_34.unk_00;
-    AnimationResourceCollection * v1 = param0->unk_34.unk_04;
-    PaletteSys * v2 = param0->unk_04;
+    SpriteRenderer * v0 = param0->unk_34.unk_00;
+    SpriteGfxHandler * v1 = param0->unk_34.unk_04;
+    PaletteData * v2 = param0->unk_04;
     ArchivedSprite v3;
     void * v4;
     CellActorData * v5;

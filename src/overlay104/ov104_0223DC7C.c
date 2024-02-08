@@ -75,9 +75,9 @@ typedef struct {
     int unk_08;
     void * unk_0C;
     BGL * unk_10;
-    CellTransferStateData * unk_14;
-    AnimationResourceCollection * unk_18;
-    PaletteSys * unk_1C;
+    SpriteRenderer * unk_14;
+    SpriteGfxHandler * unk_18;
+    PaletteData * unk_1C;
     u16 * unk_20;
     NARC * unk_24;
     s16 unk_28;
@@ -130,7 +130,7 @@ typedef struct {
     u8 unk_0B;
 } UnkStruct_ov104_0224191C;
 
-void ov104_0223DC7C(int param0, BGL * param1, CellTransferStateData * param2, AnimationResourceCollection * param3, PaletteSys * param4, u16 * param5, s16 param6, s16 param7);
+void ov104_0223DC7C(int param0, BGL * param1, SpriteRenderer * param2, SpriteGfxHandler * param3, PaletteData * param4, u16 * param5, s16 param6, s16 param7);
 static void ov104_0223DD30(UnkStruct_ov104_0223DD30 * param0, SysTask * param1);
 static void ov104_0223DD5C(SysTask * param0, void * param1);
 static void ov104_0223DDB4(SysTask * param0, void * param1);
@@ -186,7 +186,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov104_022418E8 = {
     0x0
 };
 
-void ov104_0223DC7C (int param0, BGL * param1, CellTransferStateData * param2, AnimationResourceCollection * param3, PaletteSys * param4, u16 * param5, s16 param6, s16 param7)
+void ov104_0223DC7C (int param0, BGL * param1, SpriteRenderer * param2, SpriteGfxHandler * param3, PaletteData * param4, u16 * param5, s16 param6, s16 param7)
 {
     SysTask * v0;
     UnkStruct_ov104_0223DD30 * v1;
@@ -435,7 +435,7 @@ static void ov104_0223E29C (UnkStruct_ov104_0223DD30 * param0, UnkStruct_ov104_0
     int v3;
     FontOAM * v4;
     BGL * v5;
-    AnimationResourceCollection * v6;
+    SpriteGfxHandler * v6;
     int v7, v8;
 
     GF_ASSERT(param1->unk_00 == NULL);

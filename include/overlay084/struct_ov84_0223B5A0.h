@@ -30,8 +30,8 @@ typedef struct {
     TrainerInfo * unk_CC;
     AnimationControlFlags * unk_D0;
     NARC * unk_D4;
-    CellTransferStateData * unk_D8;
-    AnimationResourceCollection * unk_DC;
+    SpriteRenderer * unk_D8;
+    SpriteGfxHandler * unk_DC;
     CellActorData * unk_E0[12];
     UnkStruct_0200C440 * unk_110;
     MessageLoader * unk_114;

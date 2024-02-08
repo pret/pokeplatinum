@@ -228,7 +228,7 @@ static void ov12_0222EC18 (SysTask * param0, void * param1)
     sub_0200C7EC(v0->unk_00.unk_10);
 }
 
-void ov12_0222EC90 (UnkStruct_ov12_0221FCDC * param0, CellTransferStateData * param1, AnimationResourceCollection * param2, CellActorData * param3)
+void ov12_0222EC90 (UnkStruct_ov12_0221FCDC * param0, SpriteRenderer * param1, SpriteGfxHandler * param2, CellActorData * param3)
 {
     UnkStruct_ov12_0222EC18 * v0 = NULL;
 

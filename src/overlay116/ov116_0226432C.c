@@ -617,7 +617,7 @@ static void ov116_0226501C (UnkStruct_ov116_02265470 * param0)
     UnkStruct_ov116_0226501C * v0 = param0->unk_08[0];
     int * v1 = param0->unk_08[1];
     int * v2 = param0->unk_08[3];
-    PaletteSys * v3 = param0->unk_08[2];
+    PaletteData * v3 = param0->unk_08[2];
 
     if (param0->unk_04 == 0) {
         return;

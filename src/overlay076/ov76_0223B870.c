@@ -76,14 +76,14 @@ void ov76_0223C32C(UnkStruct_ov76_0223DE00 * param0);
 void ov76_0223C354(UnkStruct_ov76_0223DE00 * param0);
 void ov76_0223C398(UnkStruct_ov76_0223C398 * param0);
 void ov76_0223C424(UnkStruct_ov76_0223C398 * param0);
-void ov76_0223C5A4(CellTransferStateData * param0, AnimationResourceCollection * param1, PaletteSys * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, NARC * param10);
+void ov76_0223C5A4(SpriteRenderer * param0, SpriteGfxHandler * param1, PaletteData * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, NARC * param10);
 void ov76_0223C61C(UnkStruct_ov76_0223DE00 * param0, NARC * param1);
 void ov76_0223C7E0(UnkStruct_ov76_0223DE00 * param0);
 void ov76_0223C80C(UnkStruct_ov76_0223DE00 * param0, int param1, int param2);
 void ov76_0223C88C(UnkStruct_ov76_0223DE00 * param0);
 void ov76_0223C8BC(UnkStruct_ov76_0223DE00 * param0);
-void ov76_0223C8EC(BGL * param0, PaletteSys * param1, int param2);
-void ov76_0223C974(BGL * param0, PaletteSys * param1, int param2);
+void ov76_0223C8EC(BGL * param0, PaletteData * param1, int param2);
+void ov76_0223C974(BGL * param0, PaletteData * param1, int param2);
 void ov76_0223CA30(Window * param0, int param1);
 void ov76_0223CA98(BGL * param0, Window * param1, int param2, int param3, int param4, int param5, int param6, int param7);
 void ov76_0223CB58(UnkStruct_ov76_0223DE00 * param0);
@@ -238,9 +238,9 @@ void ov76_0223BB04 (UnkStruct_ov76_0223DE00 * param0)
 {
     int v0;
     int v1;
-    CellTransferStateData * v2;
-    AnimationResourceCollection * v3;
-    PaletteSys * v4;
+    SpriteRenderer * v2;
+    SpriteGfxHandler * v3;
+    PaletteData * v4;
 
     v2 = param0->unk_D4.unk_08;
     v3 = param0->unk_D4.unk_0C;
@@ -261,9 +261,9 @@ void ov76_0223BBAC (UnkStruct_ov76_0223DE00 * param0)
     int v0;
     UnkStruct_ov76_0223BBAC * v1;
     UnkStruct_ov104_0223F9E0 v2;
-    CellTransferStateData * v3;
-    AnimationResourceCollection * v4;
-    PaletteSys * v5;
+    SpriteRenderer * v3;
+    SpriteGfxHandler * v4;
+    PaletteData * v5;
 
     v3 = param0->unk_D4.unk_08;
     v4 = param0->unk_D4.unk_0C;
@@ -541,9 +541,9 @@ void ov76_0223C0EC (int param0, s16 * param1, s16 * param2)
 
 void ov76_0223C110 (UnkStruct_ov76_0223DE00 * param0)
 {
-    CellTransferStateData * v0;
-    AnimationResourceCollection * v1;
-    PaletteSys * v2;
+    SpriteRenderer * v0;
+    SpriteGfxHandler * v1;
+    PaletteData * v2;
 
     v0 = param0->unk_D4.unk_08;
     v1 = param0->unk_D4.unk_0C;
@@ -769,7 +769,7 @@ void ov76_0223C588 (UnkStruct_ov76_0223DE00 * param0)
     }
 }
 
-void ov76_0223C5A4 (CellTransferStateData * param0, AnimationResourceCollection * param1, PaletteSys * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, NARC * param10)
+void ov76_0223C5A4 (SpriteRenderer * param0, SpriteGfxHandler * param1, PaletteData * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, NARC * param10)
 {
     sub_0200CC3C(param0, param1, param10, param3, 1, param7, (param3 + 11000));
     sub_0200CDC4(param2, param8, param0, param1, param10, param4, 0, param9, param7, (param4 + 11000));
@@ -915,7 +915,7 @@ void ov76_0223C8BC (UnkStruct_ov76_0223DE00 * param0)
     sub_0200D0F4(param0->unk_2F4[1]);
 }
 
-void ov76_0223C8EC (BGL * param0, PaletteSys * param1, int param2)
+void ov76_0223C8EC (BGL * param0, PaletteData * param1, int param2)
 {
     sub_0200DD0C(param0, 1, 1, 15, param2, 53);
     PaletteSys_LoadPalette(param1, 38, sub_0200DD08(param2), 53, 0, 0x20, 12 * 16);
@@ -924,7 +924,7 @@ void ov76_0223C8EC (BGL * param0, PaletteSys * param1, int param2)
     PaletteSys_LoadPalette(param1, 14, 7, 53, 0, 0x20, 14 * 16);
 }
 
-void ov76_0223C974 (BGL * param0, PaletteSys * param1, int param2)
+void ov76_0223C974 (BGL * param0, PaletteData * param1, int param2)
 {
     sub_0200DD0C(param0, 4, 1, 15, param2, 53);
     PaletteSys_LoadPalette(param1, 38, sub_0200DD08(param2), 53, 1, 0x20, 12 * 16);
@@ -1143,9 +1143,9 @@ void ov76_0223CF88 (UnkStruct_ov76_0223DE00 * param0, NARC * param1)
 
 void ov76_0223CFEC (UnkStruct_ov76_0223DE00 * param0, NARC * param1)
 {
-    CellTransferStateData * v0;
-    AnimationResourceCollection * v1;
-    PaletteSys * v2;
+    SpriteRenderer * v0;
+    SpriteGfxHandler * v1;
+    PaletteData * v2;
 
     v0 = param0->unk_D4.unk_08;
     v1 = param0->unk_D4.unk_0C;
@@ -1171,9 +1171,9 @@ void ov76_0223D16C (UnkStruct_ov76_0223DE00 * param0)
     int v0;
     UnkStruct_ov76_0223BBAC * v1;
     UnkStruct_ov104_0223F9E0 v2;
-    CellTransferStateData * v3;
-    AnimationResourceCollection * v4;
-    PaletteSys * v5;
+    SpriteRenderer * v3;
+    SpriteGfxHandler * v4;
+    PaletteData * v5;
 
     v3 = param0->unk_D4.unk_08;
     v4 = param0->unk_D4.unk_0C;
