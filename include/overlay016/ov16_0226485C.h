@@ -125,7 +125,7 @@ void BattleIO_PlayMoveHitSoundEffect(BattleSystem * param0, BattleContext * para
 void BattleIO_PlayMusic(BattleSystem * param0, int param1, int param2);
 void BattleIO_SubmitResult(BattleSystem * param0);
 void BattleIO_ClearMessageBox(BattleSystem * param0);
-void ov16_02266ABC(BattleSystem * param0, int param1, int param2);
+void ClearCommand(BattleSystem * param0, int param1, int param2);
 BOOL ov16_02266AE4(BattleSystem * param0, void * param1);
 void ov16_02266B78(BattleSystem * param0, BattleContext * param1, UnkStruct_ov16_02265BBC * param2, int param3, int param4, int param5, int param6, u16 param7);
 

@@ -366,7 +366,7 @@ void ov16_0225CBDC (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     PokeSprite_LoadShadowSize(param1->unk_1A0, &v9, param2->unk_02);
     PokeSprite_LoadAnimationFrames(param1->unk_1A0, &v3[0], param2->unk_02, param1->battlerType);
 
-    v4->unk_08 = param1->unk_20 = ov16_02263B30(param0, v2, &v1, Unk_ov12_0223B0B8[param1->battlerType][0], Unk_ov12_0223B0B8[param1->battlerType][1], Unk_ov12_0223B0B8[param1->battlerType][2], v6, v7, v8, v9, param1->unk_190, &v3[0], NULL);
+    v4->unk_08 = param1->unk_20 = ov16_02263B30(param0, v2, &v1, Unk_ov12_0223B0B8[param1->battlerType][0], Unk_ov12_0223B0B8[param1->battlerType][1], Unk_ov12_0223B0B8[param1->battlerType][2], v6, v7, v8, v9, param1->battler, &v3[0], NULL);
 
     if (v4->unk_13 == 2) {
         sub_020086FC(v4->unk_08, 8, 8, 0, 0x0);
@@ -390,7 +390,7 @@ void ov16_0225CBDC (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     v4->unk_00 = param0;
     v4->unk_04 = param1;
     v4->unk_10 = param2->unk_00;
-    v4->unk_11 = param1->unk_190;
+    v4->unk_11 = param1->battler;
     v4->unk_16 = param2->unk_02;
     v4->unk_2C = param2->unk_01_3;
     v4->unk_18 = param2->unk_08;
@@ -442,7 +442,7 @@ void ov16_0225CE1C (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     v1->unk_83 = 0;
     v1->unk_96 = 0;
     v1->unk_80 = param2->unk_00;
-    v1->unk_81 = param1->unk_190;
+    v1->unk_81 = param1->battler;
     v1->unk_86 = param2->unk_02;
     v1->unk_97 = param2->unk_01_3;
     v1->unk_82 = param1->battlerType;
@@ -492,7 +492,7 @@ void ov16_0225CF70 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     v2->unk_00 = param0;
     v2->unk_04 = param1;
     v2->unk_80 = param2->unk_00;
-    v2->unk_81 = param1->unk_190;
+    v2->unk_81 = param1->battler;
     v2->unk_86 = param2->unk_02;
     v2->unk_97 = param2->unk_01_3;
     v2->unk_82 = param1->battlerType;
@@ -526,7 +526,7 @@ void ov16_0225D118 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     v1->unk_04 = param1;
     v1->unk_08 = param1->unk_20;
     v1->unk_68 = param2->unk_00;
-    v1->unk_69 = param1->unk_190;
+    v1->unk_69 = param1->battler;
     v1->unk_6A = param1->battlerType;
     v1->unk_6B = 0;
     v1->unk_6C = param2->unk_01;
@@ -553,7 +553,7 @@ void ov16_0225D1C4 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     v0->unk_00 = param0;
     v0->unk_04 = param1->unk_20;
     v0->unk_08 = param2->unk_00;
-    v0->unk_09 = param1->unk_190;
+    v0->unk_09 = param1->battler;
     v0->unk_0A = param1->battlerType;
     v0->unk_0B = 0;
     v0->unk_0C = param2->unk_01;
@@ -588,13 +588,13 @@ void ov16_0225D228 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
         v2 = param1->battlerType & 1;
     }
 
-    param2->unk_02 = ov16_02264768(param0, param1->unk_190, param2->unk_02);
+    param2->unk_02 = ov16_02264768(param0, param1->battler, param2->unk_02);
 
     v1->unk_08 = param1->unk_18 = ov16_022643B8(param0, v2, param2->unk_02, param1->battlerType, Unk_ov12_0223B0B8[v2][0], Unk_ov12_0223B0B8[v2][1]);
     v1->unk_10 = Unk_ov12_0223B0A0[v2][0];
     v1->unk_00 = param0;
     v1->unk_0C = param2->unk_00;
-    v1->unk_0D = param1->unk_190;
+    v1->unk_0D = param1->battler;
     v1->unk_14 = param1->battlerType;
     v1->unk_1C = 0;
 
@@ -615,7 +615,7 @@ void ov16_0225D360 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     v0->unk_00 = param0;
     v0->unk_08 = param2->unk_00;
     v0->unk_10 = param2->unk_01;
-    v0->unk_09 = param1->unk_190;
+    v0->unk_09 = param1->battler;
     v0->unk_04 = param1;
 
     if (param1->battlerType & 0x1) {
@@ -625,9 +625,9 @@ void ov16_0225D360 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
         {
             TrainerData * v1;
 
-            v1 = BattleSystem_TrainerData(param0, param1->unk_190);
+            v1 = BattleSystem_TrainerData(param0, param1->battler);
             v0->unk_0B = 0;
-            v0->unk_0C = sub_020788D0(ov16_02264768(param0, param1->unk_190, v1->class));
+            v0->unk_0C = sub_020788D0(ov16_02264768(param0, param1->battler, v1->class));
         }
     }
 
@@ -642,8 +642,8 @@ void ov16_0225D3CC (BattleSystem * param0, BattlerData * param1)
 
     v0->unk_0A = 0;
     v0->unk_00 = param0;
-    v0->unk_08 = param1->unk_90[0];
-    v0->unk_09 = param1->unk_190;
+    v0->unk_08 = param1->data[0];
+    v0->unk_09 = param1->battler;
     v0->unk_04 = param1;
 
     if (param1->battlerType & 0x1) {
@@ -677,7 +677,7 @@ void ov16_0225D414 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     v3->unk_0C = Unk_ov12_0223B0A0[param1->battlerType & 1][param2->unk_04];
     v3->unk_00 = param0;
     v3->unk_08 = param2->unk_00;
-    v3->unk_09 = param1->unk_190;
+    v3->unk_09 = param1->battler;
 
     SysTask_Start(ov16_02260384, v3, 0);
 }
@@ -690,7 +690,7 @@ void ov16_0225D4A8 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     MI_CpuClearFast(&v0->unk_00, sizeof(UnkStruct_ov16_022674C4_sub1));
 
     v0->unk_0C = param0;
-    v0->unk_24 = param1->unk_190;
+    v0->unk_24 = param1->battler;
     v0->unk_25 = ov16_0226825C(param1->battlerType, BattleSystem_BattleType(param0));
     v0->unk_4C = param2->unk_00;
     v0->unk_28 = param2->unk_02;
@@ -719,8 +719,8 @@ void ov16_0225D570 (BattleSystem * param0, BattlerData * param1)
     v0 = &param1->unk_28;
     MI_CpuClearFast(&v0->unk_00, sizeof(UnkStruct_ov16_022674C4_sub1));
     v0->unk_0C = param0;
-    v0->unk_24 = param1->unk_190;
-    v0->unk_4C = param1->unk_90[0];
+    v0->unk_24 = param1->battler;
+    v0->unk_4C = param1->data[0];
 
     ov16_022676A8(v0, 1);
     v0->unk_10 = SysTask_Start(ov16_02260480, v0, 1000);
@@ -738,7 +738,7 @@ void ov16_0225D5B8 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     v0->unk_0B = 0;
     v0->unk_00 = param0;
     v0->unk_08 = param2->unk_00;
-    v0->unk_09 = param1->unk_190;
+    v0->unk_09 = param1->battler;
     v0->unk_34 = param1->battlerType;
     v0->unk_04 = &param1->unk_28;
     v0->unk_23 = param2->unk_01;
@@ -783,8 +783,8 @@ void ov16_0225D698 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 
     v0->unk_20 = 0;
     v0->unk_00 = param0;
-    v0->unk_1C = param1->unk_90[0];
-    v0->unk_1D = param1->unk_190;
+    v0->unk_1C = param1->data[0];
+    v0->unk_1D = param1->battler;
     v0->unk_1E = param1->battlerType;
     v0->unk_04 = &param1->unk_28;
     v0->unk_1F = param2->unk_01;
@@ -811,8 +811,8 @@ void ov16_0225D708 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 
     v0->unk_0F = 0;
     v0->unk_00 = param0;
-    v0->unk_0C = param1->unk_90[0];
-    v0->unk_0D = param1->unk_190;
+    v0->unk_0C = param1->data[0];
+    v0->unk_0D = param1->battler;
     v0->unk_0E = param1->battlerType;
     v0->unk_30 = param2->unk_02;
     v0->unk_04 = &param1->unk_28;
@@ -843,7 +843,7 @@ void ov16_0225D794 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     v0->unk_0E = 0;
     v0->unk_00 = param0;
     v0->unk_0C = param2->unk_00;
-    v0->unk_0D = param1->unk_190;
+    v0->unk_0D = param1->battler;
     v0->unk_0F = param1->battlerType;
     v0->unk_14 = param2->unk_01;
     v0->unk_15 = param2->unk_02;
@@ -899,7 +899,7 @@ void ov16_0225D8AC (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     v0->unk_0E = 0;
     v0->unk_00 = param0;
     v0->unk_0C = param2->unk_00;
-    v0->unk_0D = param1->unk_190;
+    v0->unk_0D = param1->battler;
     v0->unk_04 = &param1->unk_28;
     v0->unk_10 = param2->unk_02;
     v0->unk_0F = param2->unk_01;
@@ -920,11 +920,11 @@ void ov16_0225D8F0 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 
     v0->unk_00 = param0;
     v0->unk_04 = param2->unk_00;
-    v0->unk_05 = param1->unk_190;
+    v0->unk_05 = param1->battler;
 
     v2.id = 0 + param2->unk_02 * 3;
     v2.tags = 2;
-    v2.params[0] = param1->unk_190 | (param2->unk_01 << 8);
+    v2.params[0] = param1->battler | (param2->unk_01 << 8);
 
     v0->unk_06 = BattleMessage_Print(param0, v1, &v2, BattleSystem_TextSpeed(param0));
 
@@ -940,8 +940,8 @@ void ov16_0225D958 (BattleSystem * param0, BattlerData * param1, BattleMessage *
     v0 = (UnkStruct_ov16_0225D8F0 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0225D8F0));
 
     v0->unk_00 = param0;
-    v0->unk_04 = param1->unk_90[0];
-    v0->unk_05 = param1->unk_190;
+    v0->unk_04 = param1->data[0];
+    v0->unk_05 = param1->battler;
     v0->unk_06 = BattleMessage_Print(param0, v1, param2, BattleSystem_TextSpeed(param0));
 
     SysTask_Start(ov16_02262F7C, v0, 0);
@@ -956,8 +956,8 @@ void ov16_0225D9A8 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     v0->unk_6A = 0;
     v0->unk_00 = param0;
     v0->unk_04 = param1;
-    v0->unk_68 = param1->unk_90[0];
-    v0->unk_69 = param1->unk_190;
+    v0->unk_68 = param1->data[0];
+    v0->unk_69 = param1->battler;
     v0->unk_0C = ov16_0223E008(param0);
     v0->unk_10 = *param2;
     v0->unk_08 = param1->unk_20;
@@ -983,7 +983,7 @@ void ov16_0225DA44 (BattleSystem * param0, BattlerData * param1)
     v0->unk_09 = 0;
     v0->unk_00 = param0;
     v0->unk_04 = param1->unk_20;
-    v0->unk_08 = param1->unk_190;
+    v0->unk_08 = param1->battler;
     v0->unk_0A = 0;
 
     SysTask_Start(ov16_0226292C, v0, 0);
@@ -1000,7 +1000,7 @@ void ov16_0225DA74 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 
     v0->unk_0C = param0;
     v0->unk_4C = param2->unk_00;
-    v0->unk_24 = param1->unk_190;
+    v0->unk_24 = param1->battler;
     v0->unk_25 = ov16_0226825C(param1->battlerType, BattleSystem_BattleType(param0));
     v0->unk_28 = param2->unk_02;
     v0->unk_2C = param2->unk_04;
@@ -1027,7 +1027,7 @@ void    ov16_0225DB00 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov
 
     v0->unk_0C = param0;
     v0->unk_4C = param2->unk_00;
-    v0->unk_24 = param1->unk_190;
+    v0->unk_24 = param1->battler;
     v0->unk_38 = param2->unk_04;
     v0->unk_3C = param2->unk_0C;
     v0->unk_40 = param2->unk_08 - v0->unk_38;
@@ -1036,7 +1036,7 @@ void    ov16_0225DB00 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov
         v0->unk_10 = SysTask_Start(ov16_022629DC, v0, 1000);
         return;
     } else {
-        ov16_02266ABC(v0->unk_0C, v0->unk_24, v0->unk_4C);
+        ClearCommand(v0->unk_0C, v0->unk_24, v0->unk_4C);
     }
 }
 
@@ -1057,7 +1057,7 @@ void ov16_0225DB74 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     v0->unk_00 = param0;
     v0->unk_04 = param1;
     v0->unk_64 = param2->unk_00;
-    v0->unk_65 = param1->unk_190;
+    v0->unk_65 = param1->battler;
     v0->unk_08 = param1->unk_20;
     v0->unk_68 = param2->unk_02;
     v0->unk_6A = param2->unk_01;
@@ -1087,7 +1087,7 @@ void ov16_0225DC4C (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
         v0 = -117;
     }
 
-    ov16_02266ABC(param0, param1->unk_190, param2->unk_00);
+    ClearCommand(param0, param1->battler, param2->unk_00);
     sub_02005728(param2->unk_04, v0);
 }
 
@@ -1099,8 +1099,8 @@ void ov16_0225DC7C (BattleSystem * param0, BattlerData * param1)
 
     v0->unk_06 = 0;
     v0->unk_00 = param0;
-    v0->unk_04 = param1->unk_90[0];
-    v0->unk_05 = param1->unk_190;
+    v0->unk_04 = param1->data[0];
+    v0->unk_05 = param1->battler;
 
     SysTask_Start(ov16_02262D28, v0, 0);
 }
@@ -1115,7 +1115,7 @@ void ov16_0225DCB0 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     v0->unk_00 = param0;
     v0->unk_04 = param1;
     v0->unk_60 = param2->unk_00;
-    v0->unk_61 = param1->unk_190;
+    v0->unk_61 = param1->battler;
     v0->unk_62 = 0;
     v0->unk_63 = param2->unk_01;
     v0->unk_64 = param2->unk_02;
@@ -1138,7 +1138,7 @@ void ov16_0225DD44 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     param1->unk_28.unk_4A = param2->unk_01;
 
     ov16_02267084(&param1->unk_28, param1->unk_28.unk_28, (1 << 8));
-    ov16_02266ABC(param0, param1->unk_190, param2->unk_00);
+    ClearCommand(param0, param1->battler, param2->unk_00);
 }
 
 void ov16_0225DD7C (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C3E4 * param2)
@@ -1146,13 +1146,13 @@ void ov16_0225DD7C (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     UnkStruct_ov16_0225D8F0 * v0;
     int v1;
 
-    v1 = Battler_TrainerID(param0, param1->unk_190);
+    v1 = Battler_TrainerID(param0, param1->battler);
     v0 = (UnkStruct_ov16_0225D8F0 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0225D8F0));
 
     v0->unk_00 = param0;
     v0->unk_04 = param2->unk_00;
-    v0->unk_05 = param1->unk_190;
-    v0->unk_06 = ov16_0223F9FC(param0, v1, param1->unk_190, param2->unk_01, BattleSystem_TextSpeed(param0));
+    v0->unk_05 = param1->battler;
+    v0->unk_06 = ov16_0223F9FC(param0, v1, param1->battler, param2->unk_01, BattleSystem_TextSpeed(param0));
 
     SysTask_Start(ov16_02262F7C, v0, 0);
 }
@@ -1170,7 +1170,7 @@ void ov16_0225DDD8 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 
     v0->unk_00 = param0;
     v0->unk_04 = param2->unk_00;
-    v0->unk_05 = param1->unk_190;
+    v0->unk_05 = param1->battler;
     v0->unk_06 = BattleMessage_Print(param0, v1, &v2, BattleSystem_TextSpeed(param0));
 
     SysTask_Start(ov16_02262F7C, v0, 0);
@@ -1189,7 +1189,7 @@ void ov16_0225DE30 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 
     v0->unk_00 = param0;
     v0->unk_04 = param2->unk_00;
-    v0->unk_05 = param1->unk_190;
+    v0->unk_05 = param1->battler;
     v0->unk_06 = BattleMessage_Print(param0, v1, &v2, BattleSystem_TextSpeed(param0));
 
     SysTask_Start(ov16_02262F7C, v0, 0);
@@ -1208,7 +1208,7 @@ void ov16_0225DE88 (BattleSystem * param0, BattlerData * param1)
 
     v0->unk_00 = param0;
     v0->unk_04 = 34;
-    v0->unk_05 = param1->unk_190;
+    v0->unk_05 = param1->battler;
     v0->unk_06 = BattleMessage_Print(param0, v1, &v2, BattleSystem_TextSpeed(param0));
 
     SysTask_Start(ov16_02262F7C, v0, 0);
@@ -1227,7 +1227,7 @@ void ov16_0225DEDC (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 
     v0->unk_00 = param0;
     v0->unk_04 = param2->unk_00;
-    v0->unk_05 = param1->unk_190;
+    v0->unk_05 = param1->battler;
     v0->unk_06 = BattleMessage_Print(param0, v1, &v2, BattleSystem_TextSpeed(param0));
 
     SysTask_Start(ov16_02262F7C, v0, 0);
@@ -1240,8 +1240,8 @@ void ov16_0225DF34 (BattleSystem * param0, BattlerData * param1)
     v0 = (UnkStruct_ov16_0225DF34 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0225DF34));
 
     v0->unk_00 = param0;
-    v0->unk_08 = param1->unk_90[0];
-    v0->unk_09 = param1->unk_190;
+    v0->unk_08 = param1->data[0];
+    v0->unk_09 = param1->battler;
     v0->unk_0A = 0;
     v0->unk_04 = &param1->unk_28;
 
@@ -1259,20 +1259,20 @@ void ov16_0225DF6C (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 
         v0->unk_00 = param0;
         v0->unk_04 = param2->unk_00;
-        v0->unk_05 = param1->unk_190;
+        v0->unk_05 = param1->battler;
         v0->unk_07 = 0;
         v0->unk_06 = BattleMessage_Print(param0, v1, &param2->unk_04, BattleSystem_TextSpeed(param0));
 
         SysTask_Start(ov16_02262FC0, v0, 0);
     } else if (param1->bootState == 0x1) {
-        ov16_022661B0(param0, param1->unk_190);
-        ov16_02266ABC(param0, param1->unk_190, param2->unk_00);
+        ov16_022661B0(param0, param1->battler);
+        ClearCommand(param0, param1->battler, param2->unk_00);
     } else {
         if ((BattleSystem_BattleType(param0) & 0x4) == 0) {
-            ov16_022661B0(param0, param1->unk_190);
+            ov16_022661B0(param0, param1->battler);
         }
 
-        ov16_02266ABC(param0, param1->unk_190, param2->unk_00);
+        ClearCommand(param0, param1->battler, param2->unk_00);
     }
 }
 
@@ -1285,7 +1285,7 @@ void ov16_0225E008 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     MI_CpuClearFast(&v0->unk_00, sizeof(UnkStruct_ov16_022674C4_sub1));
 
     v0->unk_0C = param0;
-    v0->unk_24 = param1->unk_190;
+    v0->unk_24 = param1->battler;
     v0->unk_25 = ov16_0226825C(param1->battlerType, BattleSystem_BattleType(param0));
     v0->unk_4C = param2->unk_00;
     v0->unk_28 = param2->unk_02;
@@ -1301,7 +1301,7 @@ void ov16_0225E008 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     v0->unk_27 = param2->unk_10;
 
     ov16_02267084(v0, v0->unk_28, 0xffffffff ^ (1 << 5));
-    ov16_02266ABC(v0->unk_0C, v0->unk_24, v0->unk_4C);
+    ClearCommand(v0->unk_0C, v0->unk_24, v0->unk_4C);
 }
 
 void ov16_0225E0BC (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C65C * param2)
@@ -1313,7 +1313,7 @@ void ov16_0225E0BC (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     v0->unk_0A = 0;
     v0->unk_00 = param0;
     v0->unk_08 = param2->unk_00;
-    v0->unk_09 = param1->unk_190;
+    v0->unk_09 = param1->battler;
     v0->unk_0C = param2->unk_02;
     v0->unk_0E = param2->unk_01;
 
@@ -1330,7 +1330,7 @@ void ov16_0225E0F4 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     v0->unk_00 = param0;
     v0->unk_04 = param1->unk_20;
     v0->unk_08 = param2->unk_00;
-    v0->unk_09 = param1->unk_190;
+    v0->unk_09 = param1->battler;
     v0->unk_0B = param2->unk_01;
     v0->unk_0C = 0;
     v0->unk_0D = param2->unk_02;
@@ -1348,7 +1348,7 @@ void ov16_0225E134 (BattleSystem * param0, BattlerData * param1, PartyGaugeData 
     v0->unk_07 = 0;
     v0->unk_00 = param0;
     v0->unk_04 = param2->command;
-    v0->unk_05 = param1->unk_190;
+    v0->unk_05 = param1->battler;
     v0->unk_06 = param1->battlerType;
 
     for (v1 = 0; v1 < 6; v1++) {
@@ -1369,7 +1369,7 @@ void ov16_0225E17C (BattleSystem * param0, BattlerData * param1, PartyGaugeData 
     v0->unk_07 = 0;
     v0->unk_00 = param0;
     v0->unk_04 = param2->command;
-    v0->unk_05 = param1->unk_190;
+    v0->unk_05 = param1->battler;
     v0->unk_06 = param1->battlerType;
     v0->unk_0E = 0;
 
@@ -1386,7 +1386,7 @@ void ov16_0225E1B4 (BattleSystem * param0, BattlerData * param1, PartyGaugeData 
     v0->unk_07 = 0;
     v0->unk_00 = param0;
     v0->unk_04 = param2->command;
-    v0->unk_05 = param1->unk_190;
+    v0->unk_05 = param1->battler;
     v0->unk_06 = param1->battlerType;
 
     for (v1 = 0; v1 < 6; v1++) {
@@ -1408,7 +1408,7 @@ void ov16_0225E200 (BattleSystem * param0, BattlerData * param1, PartyGaugeData 
     v0->unk_07 = 0;
     v0->unk_00 = param0;
     v0->unk_04 = param2->command;
-    v0->unk_05 = param1->unk_190;
+    v0->unk_05 = param1->battler;
     v0->unk_06 = param1->battlerType;
     v0->unk_0E = 1;
 
@@ -1430,16 +1430,16 @@ void ov16_0225E23C (BattleSystem * param0, BattlerData * param1)
         ov16_0223F2A4(param0, sub_0200E7FC(BattleSystem_Window(param0, 0), 1));
     }
 
-    ov16_02266ABC(param0, param1->unk_190, 55);
+    ClearCommand(param0, param1->battler, 55);
 }
 
 void ov16_0225E294 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_02265BBC * param2)
 {
     UnkStruct_ov12_022380DC v0;
 
-    ov16_02264530(param0, param2, &v0, param1->unk_190);
+    ov16_02264530(param0, param2, &v0, param1->battler);
     ov12_022382BC(&v0, 5);
-    ov16_02266ABC(param0, param1->unk_190, param2->unk_00);
+    ClearCommand(param0, param1->battler, param2->unk_00);
 }
 
 void ov16_0225E2C8 (BattleSystem * param0, BattlerData * param1)
@@ -1451,8 +1451,8 @@ void ov16_0225E2C8 (BattleSystem * param0, BattlerData * param1)
     v0->unk_0E = 0;
     v0->unk_00 = param0;
     v0->unk_04 = param1;
-    v0->unk_0C = param1->unk_90[0];
-    v0->unk_0D = param1->unk_190;
+    v0->unk_0C = param1->data[0];
+    v0->unk_0D = param1->battler;
     v0->unk_08 = param1->unk_20;
 
     SysTask_Start(ov16_02263688, v0, 0);
@@ -1467,8 +1467,8 @@ void ov16_0225E300 (BattleSystem * param0, BattlerData * param1)
     v0->unk_0E = 0;
     v0->unk_00 = param0;
     v0->unk_04 = param1;
-    v0->unk_0C = param1->unk_90[0];
-    v0->unk_0D = param1->unk_190;
+    v0->unk_0C = param1->data[0];
+    v0->unk_0D = param1->battler;
     v0->unk_08 = param1->unk_20;
 
     SysTask_Start(ov16_022636D4, v0, 0);
@@ -1487,7 +1487,7 @@ void ov16_0225E338 (BattleSystem * param0, BattlerData * param1)
 
     v0->unk_00 = param0;
     v0->unk_04 = 59;
-    v0->unk_05 = param1->unk_190;
+    v0->unk_05 = param1->battler;
     v0->unk_06 = BattleMessage_Print(param0, v1, &v2, BattleSystem_TextSpeed(param0));
 
     SysTask_Start(ov16_02262F7C, v0, 0);
@@ -1506,7 +1506,7 @@ void ov16_0225E38C (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 
     v0->unk_00 = param0;
     v0->unk_04 = 60;
-    v0->unk_05 = param1->unk_190;
+    v0->unk_05 = param1->battler;
     v0->unk_06 = BattleMessage_Print(param0, v1, &v2, BattleSystem_TextSpeed(param0));
 
     SysTask_Start(ov16_02262F7C, v0, 0);
@@ -1525,7 +1525,7 @@ void ov16_0225E3E0 (BattleSystem * param0, BattlerData * param1)
 
     v0->unk_00 = param0;
     v0->unk_04 = 61;
-    v0->unk_05 = param1->unk_190;
+    v0->unk_05 = param1->battler;
     v0->unk_06 = BattleMessage_Print(param0, v1, &v2, BattleSystem_TextSpeed(param0));
 
     SysTask_Start(ov16_02262F7C, v0, 0);
@@ -1535,9 +1535,9 @@ void ov16_0225E434 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 {
     UnkStruct_ov12_022380DC v0;
 
-    ov16_02264530(param0, param2, &v0, param1->unk_190);
+    ov16_02264530(param0, param2, &v0, param1->battler);
     ov12_02238390(&v0, 5);
-    ov16_02266ABC(param0, param1->unk_190, param2->unk_00);
+    ClearCommand(param0, param1->battler, param2->unk_00);
 }
 
 void ov16_0225E468 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225CA4C * param2)
@@ -1562,13 +1562,13 @@ void ov16_0225E468 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
         break;
     }
 
-    ov16_02266ABC(param0, param1->unk_190, param2->unk_00);
+    ClearCommand(param0, param1->battler, param2->unk_00);
 }
 
 void ov16_0225E4C8 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225CA60 * param2)
 {
     Sound_PlayBGM(param2->unk_02);
-    ov16_02266ABC(param0, param1->unk_190, param2->unk_00);
+    ClearCommand(param0, param1->battler, param2->unk_00);
 }
 
 static void ov16_0225E4E8 (SysTask * param0, void * param1)
@@ -1704,7 +1704,7 @@ static void ov16_0225E4E8 (SysTask * param0, void * param1)
         break;
     default:
         sub_02005454(0);
-        ov16_02266ABC(v0->unk_00, v0->unk_11, v0->unk_10);
+        ClearCommand(v0->unk_00, v0->unk_11, v0->unk_10);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
         break;
@@ -1786,7 +1786,7 @@ static void ov16_0225E894 (SysTask * param0, void * param1)
         break;
     default:
         sub_02005454(0);
-        ov16_02266ABC(v0->unk_00, v0->unk_11, v0->unk_10);
+        ClearCommand(v0->unk_00, v0->unk_11, v0->unk_10);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
         break;
@@ -2001,7 +2001,7 @@ static void ov16_0225EA80 (SysTask * param0, void * param1)
         break;
     default:
         sub_02005454(0);
-        ov16_02266ABC(v0->unk_00, v0->unk_81, v0->unk_80);
+        ClearCommand(v0->unk_00, v0->unk_81, v0->unk_80);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
         break;
@@ -2220,7 +2220,7 @@ static void ov16_0225F0C0 (SysTask * param0, void * param1)
         v0->unk_83++;
         break;
     default:
-        ov16_02266ABC(v0->unk_00, v0->unk_81, v0->unk_80);
+        ClearCommand(v0->unk_00, v0->unk_81, v0->unk_80);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
         break;
@@ -2346,7 +2346,7 @@ static void ov16_0225F764 (SysTask * param0, void * param1)
         }
         break;
     case 8:
-        ov16_02266ABC(v0->unk_00, v0->unk_69, v0->unk_68);
+        ClearCommand(v0->unk_00, v0->unk_69, v0->unk_68);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
         break;
@@ -2373,7 +2373,7 @@ static void  ov16_0225FA00 (SysTask * param0, void * param1)
         }
         break;
     case 1:
-        ov16_02266ABC(v0->unk_00, v0->unk_09, v0->unk_08);
+        ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
         break;
@@ -2502,7 +2502,7 @@ static void ov16_0225FA70 (SysTask * param0, void * param1)
 
         v0->unk_0E = 4;
     case 4:
-        ov16_02266ABC(v0->unk_00, v0->unk_0D, v0->unk_0C);
+        ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
         break;
@@ -2786,7 +2786,7 @@ static void ov16_0225FD5C (SysTask * param0, void * param1)
         v0->unk_0A = 6;
         break;
     case 6:
-        ov16_02266ABC(v0->unk_00, v0->unk_09, v0->unk_08);
+        ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
         break;
@@ -2830,7 +2830,7 @@ static void    ov16_02260284 (SysTask * param0, void * param1)
         sub_0200D090(v3, 20007 + v0->unk_04->battlerType);
         sub_0200D0A0(v3, 20007 + v0->unk_04->battlerType);
     }
-        ov16_02266ABC(v0->unk_00, v0->unk_09, v0->unk_08);
+        ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
         break;
@@ -2865,7 +2865,7 @@ static void ov16_02260384 (SysTask * param0, void * param1)
         sub_0200D4C4(v0->unk_04, v1, v2);
         break;
     case 1:
-        ov16_02266ABC(v0->unk_00, v0->unk_09, v0->unk_08);
+        ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
         break;
@@ -2893,7 +2893,7 @@ static void ov16_0226040C (SysTask * param0, void * param1)
         }
         break;
     default:
-        ov16_02266ABC(v0->unk_0C, v0->unk_24, v0->unk_4C);
+        ClearCommand(v0->unk_0C, v0->unk_24, v0->unk_4C);
         v0->unk_10 = NULL;
         SysTask_Done(param0);
         break;
@@ -2911,7 +2911,7 @@ static void ov16_02260480 (SysTask * param0, void * param1)
         }
         break;
     default:
-        ov16_02266ABC(v0->unk_0C, v0->unk_24, v0->unk_4C);
+        ClearCommand(v0->unk_0C, v0->unk_24, v0->unk_4C);
         v0->unk_10 = NULL;
         SysTask_Done(param0);
         ov16_02267620(v0, 0);
@@ -3177,7 +3177,7 @@ static void ov16_022604C8 (SysTask * param0, void * param1)
     case 8:
         if (ov16_0226BCD0(v2) == 1) {
             ov16_022656D4(v0->unk_00, v0->unk_09, v0->unk_0C);
-            ov16_02266ABC(v0->unk_00, v0->unk_09, v0->unk_08);
+            ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
             Heap_FreeToHeap(param1);
             SysTask_Done(param0);
         }
@@ -3193,7 +3193,7 @@ static void ov16_02260AB4 (SysTask * param0, void * param1)
     v1 = TrainerAI_PickCommand(v0->unk_00, v0->unk_09);
 
     ov16_022656D4(v0->unk_00, v0->unk_09, v1);
-    ov16_02266ABC(v0->unk_00, v0->unk_09, v0->unk_08);
+    ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
 
     Heap_FreeToHeap(param1);
     SysTask_Done(param0);
@@ -3203,7 +3203,7 @@ static void ov16_02260AE4 (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0225D5B8 * v0 = (UnkStruct_ov16_0225D5B8 *)param1;
 
-    ov16_02266ABC(v0->unk_00, v0->unk_09, v0->unk_08);
+    ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
     Heap_FreeToHeap(param1);
     SysTask_Done(param0);
 }
@@ -3242,7 +3242,7 @@ static void ov16_02260B04 (SysTask * param0, void * param1)
         ov16_022656D4(v0->unk_00, v0->unk_09, 5);
     }
 
-    ov16_02266ABC(v0->unk_00, v0->unk_09, v0->unk_08);
+    ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
 
     Heap_FreeToHeap(param1);
     SysTask_Done(param0);
@@ -3253,7 +3253,7 @@ static void ov16_02260B84 (SysTask * param0, void * param1)
     UnkStruct_ov16_0225D5B8 * v0 = (UnkStruct_ov16_0225D5B8 *)param1;
 
     ov16_022656D4(v0->unk_00, v0->unk_09, 4);
-    ov16_02266ABC(v0->unk_00, v0->unk_09, v0->unk_08);
+    ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
 
     Heap_FreeToHeap(param1);
     SysTask_Done(param0);
@@ -3273,7 +3273,7 @@ static void ov16_02260BAC (SysTask * param0, void * param1)
     }
 
     ov16_022656D4(v0->unk_00, v0->unk_09, v1);
-    ov16_02266ABC(v0->unk_00, v0->unk_09, v0->unk_08);
+    ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
 
     Heap_FreeToHeap(param1);
     SysTask_Done(param0);
@@ -3366,7 +3366,7 @@ static void ov16_02260C00 (SysTask * param0, void * param1)
     default:
         if (ov16_0226BCD0(v2) == 1) {
             ov16_0223F234(v0->unk_00, 1);
-            ov16_02266ABC(v0->unk_00, v0->unk_1D, v0->unk_1C);
+            ClearCommand(v0->unk_00, v0->unk_1D, v0->unk_1C);
             Heap_FreeToHeap(param1);
             SysTask_Done(param0);
         }
@@ -3417,7 +3417,7 @@ static void ov16_02260DB0 (SysTask * param0, void * param1)
     }
 
     ov16_02265790(v0->unk_00, v0->unk_1D, v2);
-    ov16_02266ABC(v0->unk_00, v0->unk_1D, v0->unk_1C);
+    ClearCommand(v0->unk_00, v0->unk_1D, v0->unk_1C);
 
     Heap_FreeToHeap(param1);
     SysTask_Done(param0);
@@ -3427,7 +3427,7 @@ static void ov16_02260E78 (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0225D698 * v0 = (UnkStruct_ov16_0225D698 *)param1;
 
-    ov16_02266ABC(v0->unk_00, v0->unk_1D, v0->unk_1C);
+    ClearCommand(v0->unk_00, v0->unk_1D, v0->unk_1C);
     Heap_FreeToHeap(param1);
     SysTask_Done(param0);
 }
@@ -3456,7 +3456,7 @@ static void ov16_02260E98 (SysTask * param0, void * param1)
     }
 
     ov16_02265790(v0->unk_00, v0->unk_1D, v1);
-    ov16_02266ABC(v0->unk_00, v0->unk_1D, v0->unk_1C);
+    ClearCommand(v0->unk_00, v0->unk_1D, v0->unk_1C);
 
     Heap_FreeToHeap(param1);
     SysTask_Done(param0);
@@ -3553,7 +3553,7 @@ static void ov16_02260F14 (SysTask * param0, void * param1)
                 }
 
                 ov16_022658CC(v0->unk_00, v0->unk_0D, v12);
-                ov16_02266ABC(v0->unk_00, v0->unk_0D, v0->unk_0C);
+                ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
                 Heap_FreeToHeap(param1);
                 SysTask_Done(param0);
             }
@@ -3574,7 +3574,7 @@ static void ov16_022610A8 (SysTask * param0, void * param1)
     GF_ASSERT(v2 < 5);
 
     ov16_022658CC(v0->unk_00, v0->unk_0D, v2);
-    ov16_02266ABC(v0->unk_00, v0->unk_0D, v0->unk_0C);
+    ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
     Heap_FreeToHeap(param1);
     SysTask_Done(param0);
@@ -3584,7 +3584,7 @@ static void ov16_022610EC (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0225D708 * v0 = (UnkStruct_ov16_0225D708 *)param1;
 
-    ov16_02266ABC(v0->unk_00, v0->unk_0D, v0->unk_0C);
+    ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
     Heap_FreeToHeap(param1);
     SysTask_Done(param0);
@@ -3634,7 +3634,7 @@ static void ov16_0226110C (SysTask * param0, void * param1)
     }
 
     ov16_022658CC(v0->unk_00, v0->unk_0D, v1);
-    ov16_02266ABC(v0->unk_00, v0->unk_0D, v0->unk_0C);
+    ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
     Heap_FreeToHeap(param1);
     SysTask_Done(param0);
@@ -3863,7 +3863,7 @@ static void ov16_022611DC (SysTask * param0, void * param1)
         }
 
         ov16_02265A70(v0->unk_00, v0->unk_0D, v7);
-        ov16_02266ABC(v0->unk_00, v0->unk_0D, v0->unk_0C);
+        ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
         Heap_FreeToHeap(v0->unk_08->unk_04->unk_00);
         Heap_FreeToHeap(v0->unk_08->unk_04);
@@ -4187,7 +4187,7 @@ static void ov16_02261D50 (SysTask * param0, void * param1)
     v1.item = 1;
 
     ov16_02265A70(v0->unk_00, v0->unk_0D, v1);
-    ov16_02266ABC(v0->unk_00, v0->unk_0D, v0->unk_0C);
+    ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
     Heap_FreeToHeap(v0->unk_08->unk_04->unk_00);
     Heap_FreeToHeap(v0->unk_08->unk_04);
@@ -4200,7 +4200,7 @@ static void ov16_02261DA8 (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0225D794 * v0 = (UnkStruct_ov16_0225D794 *)param1;
 
-    ov16_02266ABC(v0->unk_00, v0->unk_0D, v0->unk_0C);
+    ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
     Heap_FreeToHeap(v0->unk_08->unk_04->unk_00);
     Heap_FreeToHeap(v0->unk_08->unk_04);
@@ -4235,7 +4235,7 @@ static void ov16_02261DE0 (SysTask * param0, void * param1)
     v1.target = (v2 & 0xf0) >> 8;
 
     ov16_02265A70(v0->unk_00, v0->unk_0D, v1);
-    ov16_02266ABC(v0->unk_00, v0->unk_0D, v0->unk_0C);
+    ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
     Heap_FreeToHeap(v0->unk_08->unk_04->unk_00);
     Heap_FreeToHeap(v0->unk_08->unk_04);
@@ -4388,7 +4388,7 @@ static void ov16_02261E8C (SysTask * param0, void * param1)
                 ov16_02265B10(v0->unk_00, v0->unk_09, 1 + v0->unk_04->unk_2C[v0->unk_04->unk_11]);
             }
 
-            ov16_02266ABC(v0->unk_00, v0->unk_09, v0->unk_08);
+            ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
             Heap_FreeToHeap(v0->unk_04->unk_00);
             Heap_FreeToHeap(v0->unk_04);
             Heap_FreeToHeap(param1);
@@ -4435,7 +4435,7 @@ static void ov16_02262258 (SysTask * param0, void * param1)
     }
 
     ov16_02265B10(v0->unk_00, v0->unk_09, 1 + v1);
-    ov16_02266ABC(v0->unk_00, v0->unk_09, v0->unk_08);
+    ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
 
     Heap_FreeToHeap(param1);
     SysTask_Done(param0);
@@ -4445,7 +4445,7 @@ static void ov16_0226230C (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0225D840 * v0 = (UnkStruct_ov16_0225D840 *)param1;
 
-    ov16_02266ABC(v0->unk_00, v0->unk_09, v0->unk_08);
+    ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
 
     Heap_FreeToHeap(param1);
     SysTask_Done(param0);
@@ -4489,7 +4489,7 @@ static void  ov16_0226232C (SysTask * param0, void * param1)
     }
 
     ov16_02265B10(v0->unk_00, v0->unk_09, v1);
-    ov16_02266ABC(v0->unk_00, v0->unk_09, v0->unk_08);
+    ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
 
     Heap_FreeToHeap(param1);
     SysTask_Done(param0);
@@ -4615,7 +4615,7 @@ static void ov16_022623F0 (SysTask * param0, void * param1)
     case 4:
         if (ov16_0226BCD0(v2) == 1) {
             ov16_022656D4(v0->unk_00, v0->unk_0D, v0->unk_08);
-            ov16_02266ABC(v0->unk_00, v0->unk_0D, v0->unk_0C);
+            ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
             Heap_FreeToHeap(param1);
             SysTask_Done(param0);
         }
@@ -4627,7 +4627,7 @@ static void ov16_0226262C (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0225D8AC * v0 = (UnkStruct_ov16_0225D8AC *)param1;
 
-    ov16_02266ABC(v0->unk_00, v0->unk_0D, v0->unk_0C);
+    ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
     Heap_FreeToHeap(param1);
     SysTask_Done(param0);
@@ -4637,7 +4637,7 @@ static void ov16_0226264C (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0225D8AC * v0 = (UnkStruct_ov16_0225D8AC *)param1;
 
-    ov16_02266ABC(v0->unk_00, v0->unk_0D, v0->unk_0C);
+    ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
     Heap_FreeToHeap(param1);
     SysTask_Done(param0);
@@ -4657,7 +4657,7 @@ static void ov16_0226266C (SysTask * param0, void * param1)
     }
 
     ov16_022656D4(v0->unk_00, v0->unk_0D, v1);
-    ov16_02266ABC(v0->unk_00, v0->unk_0D, v0->unk_0C);
+    ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
     Heap_FreeToHeap(param1);
     SysTask_Done(param0);
@@ -4747,7 +4747,7 @@ static void ov16_022626C0 (SysTask * param0, void * param1)
         v0->unk_6A++;
         break;
     case 10:
-        ov16_02266ABC(v0->unk_00, v0->unk_69, v0->unk_68);
+        ClearCommand(v0->unk_00, v0->unk_69, v0->unk_68);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
         break;
@@ -4784,7 +4784,7 @@ static void ov16_0226292C (SysTask * param0, void * param1)
     } else {
         v1 = 0;
         sub_02007DEC(v0->unk_04, 6, v1);
-        ov16_02266ABC(v0->unk_00, v0->unk_08, 23);
+        ClearCommand(v0->unk_00, v0->unk_08, 23);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
     }
@@ -4807,7 +4807,7 @@ static void ov16_02262988 (SysTask * param0, void * param1)
         }
         break;
     default:
-        ov16_02266ABC(v0->unk_0C, v0->unk_24, v0->unk_4C);
+        ClearCommand(v0->unk_0C, v0->unk_24, v0->unk_4C);
         v0->unk_10 = NULL;
         SysTask_Done(param0);
         return;
@@ -4850,7 +4850,7 @@ static void ov16_022629DC (SysTask * param0, void * param1)
         }
         break;
     default:
-        ov16_02266ABC(v0->unk_0C, v0->unk_24, v0->unk_4C);
+        ClearCommand(v0->unk_0C, v0->unk_24, v0->unk_4C);
         v0->unk_10 = NULL;
         SysTask_Done(param0);
         break;
@@ -4972,7 +4972,7 @@ static void ov16_02262A9C (SysTask * param0, void * param1)
         }
         break;
     case 10:
-        ov16_02266ABC(v0->unk_00, v0->unk_65, v0->unk_64);
+        ClearCommand(v0->unk_00, v0->unk_65, v0->unk_64);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
         break;
@@ -5001,7 +5001,7 @@ static void ov16_02262D28 (SysTask * param0, void * param1)
         }
         break;
     case 2:
-        ov16_02266ABC(v0->unk_00, v0->unk_05, v0->unk_04);
+        ClearCommand(v0->unk_00, v0->unk_05, v0->unk_04);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
         break;
@@ -5067,7 +5067,7 @@ static void ov16_02262DC4 (SysTask * param0, void * param1)
         }
         break;
     default:
-        ov16_02266ABC(v0->unk_00, v0->unk_61, v0->unk_60);
+        ClearCommand(v0->unk_00, v0->unk_61, v0->unk_60);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
         break;
@@ -5086,7 +5086,7 @@ static void ov16_02262F30 (SysTask * param0, void * param1)
         break;
     case 1:
         if (v0->unk_0B == 1) {
-            ov16_02266ABC(v0->unk_00, v0->unk_09, v0->unk_08);
+            ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
             Heap_FreeToHeap(param1);
             SysTask_Done(param0);
         }
@@ -5104,7 +5104,7 @@ static void ov16_02262F7C (SysTask * param0, void * param1)
     }
 
     if (Message_Printing(v0->unk_06) == 0) {
-        ov16_02266ABC(v0->unk_00, v0->unk_05, v0->unk_04);
+        ClearCommand(v0->unk_00, v0->unk_05, v0->unk_04);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
     }
@@ -5124,7 +5124,7 @@ static void ov16_02262FC0 (SysTask * param0, void * param1)
     case 1:
         if (++v0->unk_08 == 40) {
             ov16_022661B0(v0->unk_00, v0->unk_05);
-            ov16_02266ABC(v0->unk_00, v0->unk_05, v0->unk_04);
+            ClearCommand(v0->unk_00, v0->unk_05, v0->unk_04);
             Heap_FreeToHeap(param1);
             SysTask_Done(param0);
         }
@@ -5363,7 +5363,7 @@ static void ov16_022633A4 (SysTask * param0, void * param1)
                 ov16_02265B10(v0->unk_00, v0->unk_09, v0->unk_04->unk_34 + 1);
             }
 
-            ov16_02266ABC(v0->unk_00, v0->unk_09, v0->unk_08);
+            ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
 
             Heap_FreeToHeap(v0->unk_04);
             Heap_FreeToHeap(param1);
@@ -5400,7 +5400,7 @@ static void ov16_022634DC (SysTask * param0, void * param1)
         }
         break;
     case 1:
-        ov16_02266ABC(v0->unk_00, v0->unk_09, v0->unk_08);
+        ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
         break;
@@ -5456,7 +5456,7 @@ static void ov16_0226354C (SysTask * param0, void * param1)
         }
         break;
     default:
-        ov16_02266ABC(v0->unk_00, v0->unk_05, v0->unk_04);
+        ClearCommand(v0->unk_00, v0->unk_05, v0->unk_04);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
         break;
@@ -5500,7 +5500,7 @@ static void ov16_02263604 (SysTask * param0, void * param1)
         }
         break;
     default:
-        ov16_02266ABC(v0->unk_00, v0->unk_05, v0->unk_04);
+        ClearCommand(v0->unk_00, v0->unk_05, v0->unk_04);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
         break;
@@ -5518,7 +5518,7 @@ static void ov16_02263688 (SysTask * param0, void * param1)
         v0->unk_0E++;
         break;
     default:
-        ov16_02266ABC(v0->unk_00, v0->unk_0D, v0->unk_0C);
+        ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
         break;
@@ -5540,7 +5540,7 @@ static void ov16_022636D4 (SysTask * param0, void * param1)
 
     ov12_022237A4(v0->unk_04->unk_88, v0->unk_0D);
     v0->unk_04->unk_88 = NULL;
-    ov16_02266ABC(v0->unk_00, v0->unk_0D, v0->unk_0C);
+    ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
     Heap_FreeToHeap(param1);
     SysTask_Done(param0);
@@ -5552,7 +5552,7 @@ void ov16_02263730 (BattleSystem * param0, BattlerData * param1)
     u32 v1 = BattleSystem_BattleStatus(param0);
 
     if (v0 & 0x40) {
-        if (param1->unk_190) {
+        if (param1->battler) {
             param1->unk_00.unk_00 = &ov16_02260AB4;
             param1->unk_00.unk_04 = &ov16_02260DB0;
             param1->unk_00.unk_08 = &ov16_022610A8;
@@ -5829,14 +5829,14 @@ static void ov16_02263C1C (BattleSystem * param0, BattlerData * param1, UnkStruc
         if (BattleSystem_BattleType(param0) & 0x4) {
             param3->id = 990;
             param3->tags = 27;
-            param3->params[0] = param1->unk_190;
-            param3->params[1] = param1->unk_190 | (param2->unk_01 << 8);
+            param3->params[0] = param1->battler;
+            param3->params[1] = param1->battler | (param2->unk_01 << 8);
         } else {
             param3->id = 989;
             param3->tags = 50;
-            param3->params[0] = param1->unk_190;
-            param3->params[1] = param1->unk_190;
-            param3->params[2] = param1->unk_190 | (param2->unk_01 << 8);
+            param3->params[0] = param1->battler;
+            param3->params[1] = param1->battler;
+            param3->params[2] = param1->battler | (param2->unk_01 << 8);
         }
     } else {
         if (((BattleSystem_BattleType(param0) & 0x2) == 0) && ((BattleSystem_BattleType(param0) & 0x4) == 0)) {
@@ -5856,7 +5856,7 @@ static void ov16_02263C1C (BattleSystem * param0, BattlerData * param1, UnkStruc
         }
 
         param3->tags = 2;
-        param3->params[0] = param1->unk_190 | (param2->unk_01 << 8);
+        param3->params[0] = param1->battler | (param2->unk_01 << 8);
     }
 }
 
@@ -5866,14 +5866,14 @@ static void ov16_02263CF0 (BattleSystem * param0, BattlerData * param1, UnkStruc
         if ((BattleSystem_BattleType(param0) & 0x4) == 0) {
             param3->id = 972;
             param3->tags = 50;
-            param3->params[0] = param1->unk_190;
-            param3->params[1] = param1->unk_190;
-            param3->params[2] = param1->unk_190 | (param2->unk_01 << 8);
+            param3->params[0] = param1->battler;
+            param3->params[1] = param1->battler;
+            param3->params[2] = param1->battler | (param2->unk_01 << 8);
         } else {
             param3->id = 974;
             param3->tags = 27;
-            param3->params[0] = param1->unk_190;
-            param3->params[1] = param1->unk_190 | (param2->unk_01 << 8);
+            param3->params[0] = param1->battler;
+            param3->params[1] = param1->battler | (param2->unk_01 << 8);
         }
     } else {
         if (((BattleSystem_BattleType(param0) & 0x2) == 0) && ((BattleSystem_BattleType(param0) & 0x4) == 0)) {
@@ -5893,7 +5893,7 @@ static void ov16_02263CF0 (BattleSystem * param0, BattlerData * param1, UnkStruc
         }
 
         param3->tags = 2;
-        param3->params[0] = param1->unk_190 | (param2->unk_01 << 8);
+        param3->params[0] = param1->battler | (param2->unk_01 << 8);
     }
 }
 
@@ -5958,10 +5958,10 @@ static void ov16_02263E7C (BattleSystem * param0, BattlerData * param1, UnkStruc
 
     if (param1->battlerType & 0x1) {
         if (v0 & 0x2) {
-            v1 = param1->unk_190;
-            v2 = BattleSystem_Partner(param0, param1->unk_190);
+            v1 = param1->battler;
+            v2 = BattleSystem_Partner(param0, param1->battler);
         } else {
-            v1 = param1->unk_190;
+            v1 = param1->battler;
             v2 = v1;
         }
 
@@ -6046,13 +6046,13 @@ static void ov16_02263E7C (BattleSystem * param0, BattlerData * param1, UnkStruc
                 }
             }
         } else if (v0 & 0x8) {
-            v1 = BattleSystem_Partner(param0, param1->unk_190);
-            v2 = param1->unk_190;
+            v1 = BattleSystem_Partner(param0, param1->battler);
+            v2 = param1->battler;
         } else if (v0 & 0x2) {
             v1 = BattleSystem_BattlerOfType(param0, 2);
             v2 = BattleSystem_BattlerOfType(param0, 4);
         } else {
-            v1 = param1->unk_190;
+            v1 = param1->battler;
             v2 = v1;
         }
 
@@ -6209,7 +6209,7 @@ static void ov16_02264360 (BattleSystem * param0, BattlerData * param1, BattleMe
             param2->params[0] = BattleSystem_BattlerOfType(param0, 2);
         }
     } else {
-        param2->params[0] = param1->unk_190;
+        param2->params[0] = param1->battler;
     }
 
     BattleSystem_SetResultFlag(param0, 0x2 | 0x80 | 0x40);
@@ -6270,7 +6270,7 @@ static void ov16_02264408 (BattleSystem * param0, BattlerData * param1, UnkStruc
     ov16_0223F8AC(param0, &(v0.unk_20[0]));
 
     v0.unk_30 = BattleSystem_BattleType(param0);
-    v0.unk_6C = BattleSystem_ChatotVoice(param0, param1->unk_190);
+    v0.unk_6C = BattleSystem_ChatotVoice(param0, param1->battler);
     v0.unk_70 = ov16_0223F1E8(param0);
     v0.unk_74 = ov16_0223F1F0(param0);
     v0.unk_54.unk_00 = 7;

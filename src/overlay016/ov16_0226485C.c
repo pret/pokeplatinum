@@ -142,9 +142,9 @@ static BOOL ov16_022648F4 (BattleSystem * param0, void * param1)
             v5 = 1;
         }
     } else if (v1 == 1) {
-        if (param0->battlers[v2]->unk_90[0] == 0) {
+        if (param0->battlers[v2]->data[0] == 0) {
             for (v4 = 0; v4 < v3; v4++) {
-                param0->battlers[v2]->unk_90[v4] = v0[v4];
+                param0->battlers[v2]->data[v4] = v0[v4];
             }
 
             v5 = 1;
@@ -1523,7 +1523,7 @@ void BattleIO_ClearMessageBox (BattleSystem * param0)
     SendMessage(param0, 1, 0, &v0, 4);
 }
 
-void ov16_02266ABC (BattleSystem * param0, int param1, int param2)
+void ClearCommand (BattleSystem * param0, int param1, int param2)
 {
     UnkStruct_ov16_02266ABC v0;
 
@@ -1557,7 +1557,7 @@ BOOL ov16_02266AE4 (BattleSystem * param0, void * param1)
             param0->battlers[v2]->unk_1A4 = 1;
 
             for (v4 = 0; v4 < v3; v4++) {
-                param0->battlers[v2]->unk_90[v4] = v0[v4];
+                param0->battlers[v2]->data[v4] = v0[v4];
             }
         } else {
             v5 = 0;
