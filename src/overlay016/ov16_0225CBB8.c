@@ -89,7 +89,6 @@
 #include "overlay016/struct_ov16_0225DF6C.h"
 #include "overlay016/struct_ov16_0225E0BC.h"
 #include "overlay016/struct_ov16_0225E0F4.h"
-#include "overlay016/struct_ov16_0225E134.h"
 #include "overlay016/struct_ov16_0225E2C8.h"
 #include "overlay016/struct_ov16_0225E300.h"
 #include "overlay016/struct_ov16_0225E4E8.h"
@@ -1338,79 +1337,89 @@ void ov16_0225E0F4 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     SysTask_Start(ov16_022634DC, v0, 0);
 }
 
+typedef struct PartyGaugeTask {
+    BattleSystem *battleSys;
+    u8 command;
+    u8 battler;
+    u8 battlerType;
+    u8 state;
+    u8 status[MAX_PARTY_SIZE];
+    u8 midBattle;
+} PartyGaugeTask;
+
 void ov16_0225E134 (BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2)
 {
-    UnkStruct_ov16_0225E134 * v0;
+    PartyGaugeTask * v0;
     int v1;
 
-    v0 = (UnkStruct_ov16_0225E134 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0225E134));
+    v0 = (PartyGaugeTask *)Heap_AllocFromHeap(5, sizeof(PartyGaugeTask));
 
-    v0->unk_07 = 0;
-    v0->unk_00 = param0;
-    v0->unk_04 = param2->command;
-    v0->unk_05 = param1->battler;
-    v0->unk_06 = param1->battlerType;
+    v0->state = 0;
+    v0->battleSys = param0;
+    v0->command = param2->command;
+    v0->battler = param1->battler;
+    v0->battlerType = param1->battlerType;
 
     for (v1 = 0; v1 < 6; v1++) {
-        v0->unk_08[v1] = param2->status[v1];
+        v0->status[v1] = param2->status[v1];
     }
 
-    v0->unk_0E = 0;
+    v0->midBattle = 0;
     SysTask_Start(ov16_0226354C, v0, 0);
 }
 
 void ov16_0225E17C (BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2)
 {
-    UnkStruct_ov16_0225E134 * v0;
+    PartyGaugeTask * v0;
     int v1;
 
-    v0 = (UnkStruct_ov16_0225E134 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0225E134));
+    v0 = (PartyGaugeTask *)Heap_AllocFromHeap(5, sizeof(PartyGaugeTask));
 
-    v0->unk_07 = 0;
-    v0->unk_00 = param0;
-    v0->unk_04 = param2->command;
-    v0->unk_05 = param1->battler;
-    v0->unk_06 = param1->battlerType;
-    v0->unk_0E = 0;
+    v0->state = 0;
+    v0->battleSys = param0;
+    v0->command = param2->command;
+    v0->battler = param1->battler;
+    v0->battlerType = param1->battlerType;
+    v0->midBattle = 0;
 
     SysTask_Start(ov16_02263604, v0, 0);
 }
 
 void ov16_0225E1B4 (BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2)
 {
-    UnkStruct_ov16_0225E134 * v0;
+    PartyGaugeTask * v0;
     int v1;
 
-    v0 = (UnkStruct_ov16_0225E134 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0225E134));
+    v0 = (PartyGaugeTask *)Heap_AllocFromHeap(5, sizeof(PartyGaugeTask));
 
-    v0->unk_07 = 0;
-    v0->unk_00 = param0;
-    v0->unk_04 = param2->command;
-    v0->unk_05 = param1->battler;
-    v0->unk_06 = param1->battlerType;
+    v0->state = 0;
+    v0->battleSys = param0;
+    v0->command = param2->command;
+    v0->battler = param1->battler;
+    v0->battlerType = param1->battlerType;
 
     for (v1 = 0; v1 < 6; v1++) {
-        v0->unk_08[v1] = param2->status[v1];
+        v0->status[v1] = param2->status[v1];
     }
 
-    v0->unk_0E = 1;
+    v0->midBattle = 1;
 
     SysTask_Start(ov16_0226354C, v0, 0);
 }
 
 void ov16_0225E200 (BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2)
 {
-    UnkStruct_ov16_0225E134 * v0;
+    PartyGaugeTask * v0;
     int v1;
 
-    v0 = (UnkStruct_ov16_0225E134 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0225E134));
+    v0 = (PartyGaugeTask *)Heap_AllocFromHeap(5, sizeof(PartyGaugeTask));
 
-    v0->unk_07 = 0;
-    v0->unk_00 = param0;
-    v0->unk_04 = param2->command;
-    v0->unk_05 = param1->battler;
-    v0->unk_06 = param1->battlerType;
-    v0->unk_0E = 1;
+    v0->state = 0;
+    v0->battleSys = param0;
+    v0->command = param2->command;
+    v0->battler = param1->battler;
+    v0->battlerType = param1->battlerType;
+    v0->midBattle = 1;
 
     SysTask_Start(ov16_02263604, v0, 0);
 }
@@ -5409,30 +5418,30 @@ static void ov16_022634DC (SysTask * param0, void * param1)
 
 static void ov16_0226354C (SysTask * param0, void * param1)
 {
-    UnkStruct_ov16_0225E134 * v0 = (UnkStruct_ov16_0225E134 *)param1;
+    PartyGaugeTask * v0 = (PartyGaugeTask *)param1;
     UnkEnum_ov16_0226D194 v1;
     UnkEnum_ov16_0226D194_1 v2;
 
-    if (Battler_Side(v0->unk_00, v0->unk_05) == 0) {
+    if (Battler_Side(v0->battleSys, v0->battler) == 0) {
         v1 = UnkEnum_ov16_0226D194_00;
     } else {
         v1 = UnkEnum_ov16_0226D194_01;
     }
 
-    switch (v0->unk_07) {
+    switch (v0->state) {
     case 0:
     {
         UnkStruct_ov16_0226D160 * v3;
         UnkEnum_ov16_0226D194_1 v4;
         UnkEnum_ov16_0226D194_3 v5;
 
-        if (v0->unk_0E == 0) {
+        if (v0->midBattle == 0) {
             v4 = UnkEnum_ov16_0226D194_1_00;
             v5 = UnkEnum_ov16_0226D194_3_01;
         } else {
             v4 = UnkEnum_ov16_0226D194_1_01;
 
-            switch (v0->unk_06) {
+            switch (v0->battlerType) {
             case 3:
                 v5 = UnkEnum_ov16_0226D194_3_00;
                 break;
@@ -5445,18 +5454,18 @@ static void ov16_0226354C (SysTask * param0, void * param1)
             }
         }
 
-        v3 = ov16_0226D194(v0->unk_08, v1, v4, v5, ov16_0223E010(v0->unk_00), ov16_0223E018(v0->unk_00));
-        ov16_0223E040(v0->unk_00, v1, v3);
+        v3 = ov16_0226D194(v0->status, v1, v4, v5, ov16_0223E010(v0->battleSys), ov16_0223E018(v0->battleSys));
+        ov16_0223E040(v0->battleSys, v1, v3);
     }
-        v0->unk_07++;
+        v0->state++;
         break;
     case 1:
-        if (ov16_0226D1FC(ov16_0223E034(v0->unk_00, v1)) == 1) {
-            v0->unk_07++;
+        if (ov16_0226D1FC(ov16_0223E034(v0->battleSys, v1)) == 1) {
+            v0->state++;
         }
         break;
     default:
-        ClearCommand(v0->unk_00, v0->unk_05, v0->unk_04);
+        ClearCommand(v0->battleSys, v0->battler, v0->command);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
         break;
@@ -5465,23 +5474,23 @@ static void ov16_0226354C (SysTask * param0, void * param1)
 
 static void ov16_02263604 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov16_0225E134 * v0 = (UnkStruct_ov16_0225E134 *)param1;
+    PartyGaugeTask * v0 = (PartyGaugeTask *)param1;
     UnkEnum_ov16_0226D194 v1;
     UnkStruct_ov16_0226D160 * v2;
     UnkEnum_ov16_0226D220 v3;
     UnkEnum_ov16_0226D194_2 v4;
 
-    if (Battler_Side(v0->unk_00, v0->unk_05) == 0) {
+    if (Battler_Side(v0->battleSys, v0->battler) == 0) {
         v1 = UnkEnum_ov16_0226D194_00;
     } else {
         v1 = UnkEnum_ov16_0226D194_01;
     }
 
-    v2 = ov16_0223E034(v0->unk_00, v1);
+    v2 = ov16_0223E034(v0->battleSys, v1);
 
-    switch (v0->unk_07) {
+    switch (v0->state) {
     case 0:
-        if (v0->unk_0E == 0) {
+        if (v0->midBattle == 0) {
             v3 = UnkEnum_ov16_0226D220_00;
             v4 = UnkEnum_ov16_0226D194_2_00;
         } else {
@@ -5490,17 +5499,17 @@ static void ov16_02263604 (SysTask * param0, void * param1)
         }
 
         ov16_0226D220(v2, v3, v4);
-        v0->unk_07++;
+        v0->state++;
         break;
     case 1:
         if (ov16_0226D258(v2) == 1) {
             ov16_0226D27C(v2);
-            ov16_0223E040(v0->unk_00, v1, NULL);
-            v0->unk_07++;
+            ov16_0223E040(v0->battleSys, v1, NULL);
+            v0->state++;
         }
         break;
     default:
-        ClearCommand(v0->unk_00, v0->unk_05, v0->unk_04);
+        ClearCommand(v0->battleSys, v0->battler, v0->command);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
         break;
