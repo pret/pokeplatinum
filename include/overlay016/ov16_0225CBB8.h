@@ -81,10 +81,42 @@ void ov16_0225DF6C(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0
 void ov16_0225E008(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C468 * param2);
 void ov16_0225E0BC(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C65C * param2);
 void ov16_0225E0F4(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_022664F8 * param2);
-void ov16_0225E134(BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2);
-void ov16_0225E17C(BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2);
-void ov16_0225E1B4(BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2);
-void ov16_0225E200(BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2);
+
+/**
+ * @brief Show the start-of-battle party gauge.
+ * 
+ * @param battleSys 
+ * @param battlerData 
+ * @param partyGauge 
+ */
+void Battler_ShowBattleStartPartyGauge(BattleSystem *battleSys, BattlerData *battlerData, PartyGaugeData *partyGauge);
+
+/**
+ * @brief Hide the start-of-battle party gauge.
+ * 
+ * @param battleSys 
+ * @param battlerData 
+ * @param partyGauge 
+ */
+void Battler_HideBattleStartPartyGauge(BattleSystem *battleSys, BattlerData *battlerData, PartyGaugeData *partyGauge);
+
+/**
+ * @brief Show the mid-battle party gauge.
+ * 
+ * @param battleSys 
+ * @param battlerData 
+ * @param partyGauge 
+ */
+void Battler_ShowPartyGauge(BattleSystem *battleSys, BattlerData *battlerData, PartyGaugeData *partyGauge);
+
+/**
+ * @brief Hide the mid-battle party gauge.
+ * 
+ * @param battleSys 
+ * @param battlerData 
+ * @param partyGauge 
+ */
+void Battler_HidePartyGauge(BattleSystem *battleSys, BattlerData *battlerData, PartyGaugeData *partyGauge);
 void ov16_0225E23C(BattleSystem * param0, BattlerData * param1);
 void ov16_0225E294(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_02265BBC * param2);
 void ov16_0225E2C8(BattleSystem * param0, BattlerData * param1);

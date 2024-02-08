@@ -6,6 +6,8 @@
 #include "core_sys.h"
 #include "assert.h"
 
+#include "constants/heap.h"
+
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
@@ -193,10 +195,10 @@ void ov16_0225DF6C(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0
 void ov16_0225E008(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C468 * param2);
 void ov16_0225E0BC(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C65C * param2);
 void ov16_0225E0F4(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_022664F8 * param2);
-void ov16_0225E134(BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2);
-void ov16_0225E17C(BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2);
-void ov16_0225E1B4(BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2);
-void ov16_0225E200(BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2);
+void Battler_ShowBattleStartPartyGauge(BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2);
+void Battler_HideBattleStartPartyGauge(BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2);
+void Battler_ShowPartyGauge(BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2);
+void Battler_HidePartyGauge(BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2);
 void ov16_0225E23C(BattleSystem * param0, BattlerData * param1);
 void ov16_0225E294(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_02265BBC * param2);
 void ov16_0225E2C8(BattleSystem * param0, BattlerData * param1);
@@ -258,8 +260,8 @@ static void ov16_02262FC0(SysTask * param0, void * param1);
 static void ov16_02263014(SysTask * param0, void * param1);
 static void ov16_022633A4(SysTask * param0, void * param1);
 static void ov16_022634DC(SysTask * param0, void * param1);
-static void ov16_0226354C(SysTask * param0, void * param1);
-static void ov16_02263604(SysTask * param0, void * param1);
+static void ShowPartyGaugeTask(SysTask * param0, void * param1);
+static void HidePartyGaugeTask(SysTask * param0, void * param1);
 static void ov16_02263688(SysTask * param0, void * param1);
 static void ov16_022636D4(SysTask * param0, void * param1);
 void ov16_02263730(BattleSystem * param0, BattlerData * param1);
@@ -1347,81 +1349,68 @@ typedef struct PartyGaugeTask {
     u8 midBattle;
 } PartyGaugeTask;
 
-void ov16_0225E134 (BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2)
+void Battler_ShowBattleStartPartyGauge(BattleSystem *battleSys, BattlerData *battlerData, PartyGaugeData *partyGauge)
 {
-    PartyGaugeTask * v0;
-    int v1;
+    PartyGaugeTask *task = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(PartyGaugeTask));
 
-    v0 = (PartyGaugeTask *)Heap_AllocFromHeap(5, sizeof(PartyGaugeTask));
+    task->state = 0;
+    task->battleSys = battleSys;
+    task->command = partyGauge->command;
+    task->battler = battlerData->battler;
+    task->battlerType = battlerData->battlerType;
 
-    v0->state = 0;
-    v0->battleSys = param0;
-    v0->command = param2->command;
-    v0->battler = param1->battler;
-    v0->battlerType = param1->battlerType;
-
-    for (v1 = 0; v1 < 6; v1++) {
-        v0->status[v1] = param2->status[v1];
+    for (int i = 0; i < MAX_PARTY_SIZE; i++) {
+        task->status[i] = partyGauge->status[i];
     }
 
-    v0->midBattle = 0;
-    SysTask_Start(ov16_0226354C, v0, 0);
+    task->midBattle = FALSE;
+    SysTask_Start(ShowPartyGaugeTask, task, 0);
 }
 
-void ov16_0225E17C (BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2)
+void Battler_HideBattleStartPartyGauge(BattleSystem *battleSys, BattlerData *battlerData, PartyGaugeData *partyGauge)
 {
-    PartyGaugeTask * v0;
-    int v1;
+    PartyGaugeTask *task = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(PartyGaugeTask));
 
-    v0 = (PartyGaugeTask *)Heap_AllocFromHeap(5, sizeof(PartyGaugeTask));
+    task->state = 0;
+    task->battleSys = battleSys;
+    task->command = partyGauge->command;
+    task->battler = battlerData->battler;
+    task->battlerType = battlerData->battlerType;
+    task->midBattle = FALSE;
 
-    v0->state = 0;
-    v0->battleSys = param0;
-    v0->command = param2->command;
-    v0->battler = param1->battler;
-    v0->battlerType = param1->battlerType;
-    v0->midBattle = 0;
-
-    SysTask_Start(ov16_02263604, v0, 0);
+    SysTask_Start(HidePartyGaugeTask, task, 0);
 }
 
-void ov16_0225E1B4 (BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2)
+void Battler_ShowPartyGauge(BattleSystem *battleSys, BattlerData *battlerData, PartyGaugeData *partyGauge)
 {
-    PartyGaugeTask * v0;
-    int v1;
+    PartyGaugeTask *task = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(PartyGaugeTask));
 
-    v0 = (PartyGaugeTask *)Heap_AllocFromHeap(5, sizeof(PartyGaugeTask));
+    task->state = 0;
+    task->battleSys = battleSys;
+    task->command = partyGauge->command;
+    task->battler = battlerData->battler;
+    task->battlerType = battlerData->battlerType;
 
-    v0->state = 0;
-    v0->battleSys = param0;
-    v0->command = param2->command;
-    v0->battler = param1->battler;
-    v0->battlerType = param1->battlerType;
-
-    for (v1 = 0; v1 < 6; v1++) {
-        v0->status[v1] = param2->status[v1];
+    for (int i = 0; i < MAX_PARTY_SIZE; i++) {
+        task->status[i] = partyGauge->status[i];
     }
 
-    v0->midBattle = 1;
-
-    SysTask_Start(ov16_0226354C, v0, 0);
+    task->midBattle = TRUE;
+    SysTask_Start(ShowPartyGaugeTask, task, 0);
 }
 
-void ov16_0225E200 (BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2)
+void Battler_HidePartyGauge(BattleSystem *battleSys, BattlerData *battlerData, PartyGaugeData *partyGauge)
 {
-    PartyGaugeTask * v0;
-    int v1;
+    PartyGaugeTask *task = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(PartyGaugeTask));
 
-    v0 = (PartyGaugeTask *)Heap_AllocFromHeap(5, sizeof(PartyGaugeTask));
+    task->state = 0;
+    task->battleSys = battleSys;
+    task->command = partyGauge->command;
+    task->battler = battlerData->battler;
+    task->battlerType = battlerData->battlerType;
+    task->midBattle = TRUE;
 
-    v0->state = 0;
-    v0->battleSys = param0;
-    v0->command = param2->command;
-    v0->battler = param1->battler;
-    v0->battlerType = param1->battlerType;
-    v0->midBattle = 1;
-
-    SysTask_Start(ov16_02263604, v0, 0);
+    SysTask_Start(HidePartyGaugeTask, task, 0);
 }
 
 void ov16_0225E23C (BattleSystem * param0, BattlerData * param1)
@@ -5416,7 +5405,7 @@ static void ov16_022634DC (SysTask * param0, void * param1)
     }
 }
 
-static void ov16_0226354C (SysTask * param0, void * param1)
+static void ShowPartyGaugeTask (SysTask * param0, void * param1)
 {
     PartyGaugeTask * v0 = (PartyGaugeTask *)param1;
     UnkEnum_ov16_0226D194 v1;
@@ -5472,7 +5461,7 @@ static void ov16_0226354C (SysTask * param0, void * param1)
     }
 }
 
-static void ov16_02263604 (SysTask * param0, void * param1)
+static void HidePartyGaugeTask (SysTask * param0, void * param1)
 {
     PartyGaugeTask * v0 = (PartyGaugeTask *)param1;
     UnkEnum_ov16_0226D194 v1;
