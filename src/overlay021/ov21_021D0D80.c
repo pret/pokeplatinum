@@ -545,13 +545,13 @@ void ov21_021D144C (GraphicElementData * param0, int param1)
 {
     switch (param1) {
     case 0:
-        sub_02021E50(param0, 1);
+        SpriteActor_SetAnimFrame(param0, 1);
         break;
     case 2:
-        sub_02021E50(param0, 2);
+        SpriteActor_SetAnimFrame(param0, 2);
         break;
     case 1:
-        sub_02021E50(param0, 3);
+        SpriteActor_SetAnimFrame(param0, 3);
         break;
     case 3:
     case (3 + 1):

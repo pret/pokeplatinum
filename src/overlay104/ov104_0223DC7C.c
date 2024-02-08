@@ -301,10 +301,10 @@ static BOOL ov104_0223DDE4 (UnkStruct_ov104_0223DD30 * param0, u32 param1, const
             SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_14, param0->unk_18, param0->unk_24, 146, 0, 2003);
         }
 
-        v0->unk_90 = sub_0200CE6C(param0->unk_14, param0->unk_18, &Unk_ov104_022418B4);
+        v0->unk_90 = SpriteActor_LoadResources(param0->unk_14, param0->unk_18, &Unk_ov104_022418B4);
 
         sub_0200D3F4(v0->unk_90, 0);
-        sub_0200D324(v0->unk_90->unk_00);
+        SpriteActor_UpdateObject(v0->unk_90->unk_00);
         ov104_0223E3FC(param0, &v0->unk_14, (FX32_CONST(72)) + FX32_CONST(param0->unk_28), (FX32_CONST(82)) + FX32_CONST(param0->unk_2A), param1);
         param0->unk_00++;
         break;
@@ -527,12 +527,12 @@ static void ov104_0223E3FC (UnkStruct_ov104_0223DD30 * param0, UnkStruct_ov104_0
     param1->unk_02 = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param1->unk_04[v0] = sub_0200CE6C(param0->unk_14, param0->unk_18, &v1);
+        param1->unk_04[v0] = SpriteActor_LoadResources(param0->unk_14, param0->unk_18, &v1);
         sub_0200D3F4(param1->unk_04[v0], 0);
 
         if (v0 != 3) {
             sub_02021CF8(param1->unk_04[v0]->unk_00, 2);
-            sub_02021D6C(param1->unk_04[v0]->unk_00, 1);
+            SpriteActor_SetSpriteAnimActive(param1->unk_04[v0]->unk_00, 1);
             ov104_0223E534(&param1->unk_14[v0], FX32_CONST(2), FX32_CONST(1), 6);
         } else {
             ov104_0223E534(&param1->unk_14[v0], FX32_CONST(1), FX32_CONST(1), 6);

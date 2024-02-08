@@ -119,14 +119,14 @@ void ov17_022477B8 (UnkStruct_ov17_02247A48 * param0, int param1, int param2, fx
     v0 = Heap_AllocFromHeap(22, sizeof(UnkStruct_ov17_022477B8));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_022477B8));
 
-    v0->unk_04 = sub_0200CE6C(param0->unk_0C.unk_1C, param0->unk_0C.unk_20, &Unk_ov17_022543F8);
+    v0->unk_04 = SpriteActor_LoadResources(param0->unk_0C.unk_1C, param0->unk_0C.unk_20, &Unk_ov17_022543F8);
     sub_0200D500(v0->unk_04, param1, param2, (256 * FX32_ONE));
 
     if (param4 == 1) {
         sub_0200D364(v0->unk_04, 1);
     }
 
-    sub_0200D324(v0->unk_04->unk_00);
+    SpriteActor_UpdateObject(v0->unk_04->unk_00);
 
     v0->unk_08 = param1 << 8;
     v0->unk_0C = param2 << 8;

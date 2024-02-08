@@ -60,14 +60,14 @@ void ov94_02243EF8 (UnkStruct_ov94_0223FD4C * param0, int param1)
     param0->unk_F34[0] = sub_02021AA0(&v0);
 
     sub_02021CC8(param0->unk_F34[0], 1);
-    sub_02021D6C(param0->unk_F34[0], 3 + param1 * 7);
+    SpriteActor_SetSpriteAnimActive(param0->unk_F34[0], 3 + param1 * 7);
     sub_02021CAC(param0->unk_F34[0], 1);
 
     for (v1 = 0; v1 < 7; v1++) {
         param0->unk_F34[v1 + 1] = sub_02021AA0(&v0);
 
         sub_02021CC8(param0->unk_F34[v1 + 1], 1);
-        sub_02021D6C(param0->unk_F34[v1 + 1], 14 + v1 * 4);
+        SpriteActor_SetSpriteAnimActive(param0->unk_F34[v1 + 1], 14 + v1 * 4);
         sub_02021CAC(param0->unk_F34[v1 + 1], 0);
 
         ov94_022441A0(param0->unk_F34[v1 + 1], Unk_ov94_02246322[v1][0], Unk_ov94_02246322[v1][1]);
@@ -96,7 +96,7 @@ void ov94_02243FA8 (UnkStruct_ov94_0223FD4C * param0, int param1)
 
 static void ov94_02243FF0 (UnkStruct_ov94_02243FF0 * param0, int param1)
 {
-    sub_02021D6C(param0->unk_0C->unk_F34[0], param1 + param0->unk_08 * 7);
+    SpriteActor_SetSpriteAnimActive(param0->unk_0C->unk_F34[0], param1 + param0->unk_08 * 7);
 }
 
 static void ov94_0224400C (SysTask * param0, void * param1)
@@ -253,9 +253,9 @@ void ov94_02244234 (UnkStruct_ov94_0223FD4C * param0, int param1, int param2)
             ov94_02244378(param0->unk_10F8, param0->unk_1100, v0, v1, v2);
 
             if (param2) {
-                sub_02021D6C(param0->unk_F34[v0 + 1], 14 + v0 * 4);
+                SpriteActor_SetSpriteAnimActive(param0->unk_F34[v0 + 1], 14 + v0 * 4);
             } else {
-                sub_02021D6C(param0->unk_F34[v0 + 1], 17 + v0 * 4);
+                SpriteActor_SetSpriteAnimActive(param0->unk_F34[v0 + 1], 17 + v0 * 4);
             }
 
             sub_02021CAC(param0->unk_F34[v0 + 1], 1);
@@ -277,7 +277,7 @@ void ov94_022442E4 (UnkStruct_ov94_0223FD4C * param0)
     for (v0 = 0; v0 < 7; v0++) {
         if (sub_02021D34(param0->unk_F34[v0 + 1])) {
             if (sub_02021E24(param0->unk_F34[v0 + 1]) != ov94_022442DC(v0) + 1) {
-                sub_02021D6C(param0->unk_F34[v0 + 1], ov94_022442DC(v0) + 1);
+                SpriteActor_SetSpriteAnimActive(param0->unk_F34[v0 + 1], ov94_022442DC(v0) + 1);
             }
         }
     }

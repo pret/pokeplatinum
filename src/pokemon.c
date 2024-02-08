@@ -3173,10 +3173,10 @@ CellActorData *sub_02076994(SpriteRenderer *param0, SpriteGfxHandler *param1, Pa
     v0.unk_14[3] = 20007 + param7;
     v0.unk_08 = Unk_020F0588[param7];
 
-    v1 = sub_0200CE6C(param0, param1, &v0);
+    v1 = SpriteActor_LoadResources(param0, param1, &v0);
 
     sub_02021F24(v1->unk_00, 0);
-    sub_0200D4C4(v1, param3, param4);
+    SpriteActor_SetSpritePositionXY(v1, param3, param4);
     sub_0200D330(v1);
     sub_0200D390(v1, 1);
 

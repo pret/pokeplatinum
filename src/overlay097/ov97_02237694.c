@@ -468,7 +468,7 @@ GraphicElementData * ov97_02237D14 (int param0, GraphicElementData * param1, int
 
     sub_02021CC8(param1, 1);
     sub_02021E80(param1, 0);
-    sub_02021D6C(param1, param4);
+    SpriteActor_SetSpriteAnimActive(param1, param4);
     sub_02021CAC(param1, 1);
 
     return param1;

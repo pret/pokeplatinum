@@ -253,10 +253,10 @@ void sub_0208B7B4 (UnkStruct_0208B878 * param0)
     v1.unk_14[5] = 0xffffffff;
 
     for (v0 = 0; v0 < param0->unk_10.unk_00; v0++) {
-        param0->unk_24[v0].unk_00 = sub_0200CE6C(v2, v3, &v1);
+        param0->unk_24[v0].unk_00 = SpriteActor_LoadResources(v2, v3, &v1);
 
         sub_0200D330(param0->unk_24[v0].unk_00);
-        sub_0200D4C4(param0->unk_24[v0].unk_00, 256 / 2, 192 / 2);
+        SpriteActor_SetSpritePositionXY(param0->unk_24[v0].unk_00, 256 / 2, 192 / 2);
     }
 }
 

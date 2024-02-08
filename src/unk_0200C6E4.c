@@ -324,7 +324,7 @@ GraphicElementData * sub_0200CA44 (SpriteRenderer * param0, SpriteGfxHandler * p
     v0 = sub_02021AA0(&v1);
 
     if (v0 != NULL) {
-        sub_02021D6C(v0, param6);
+        SpriteActor_SetSpriteAnimActive(v0, param6);
         sub_02021E90(v0, param8);
     }
 
@@ -507,7 +507,7 @@ BOOL SpriteRenderer_LoadAnimResObjFromOpenNarc (SpriteRenderer * param0, SpriteG
     return sub_0200D18C(param0, param1, param2, param3, param4, 3, param5);
 }
 
-CellActorData * sub_0200CE6C (SpriteRenderer * param0, SpriteGfxHandler * param1, const UnkStruct_ov104_0223F9E0 * param2)
+CellActorData * SpriteActor_LoadResources (SpriteRenderer * param0, SpriteGfxHandler * param1, const UnkStruct_ov104_0223F9E0 * param2)
 {
     int v0;
     int v1;
@@ -580,7 +580,7 @@ CellActorData * sub_0200CE6C (SpriteRenderer * param0, SpriteGfxHandler * param1
     if (v2->unk_00 != NULL) {
         v1 = sub_02021EE8(v2->unk_00);
 
-        sub_02021D6C(v2->unk_00, param2->unk_06);
+        SpriteActor_SetSpriteAnimActive(v2->unk_00, param2->unk_06);
         sub_02021E90(v2->unk_00, v1 + param2->unk_0C);
     } else {
         GF_ASSERT(FALSE);
@@ -788,14 +788,14 @@ static BOOL sub_0200D2D0 (UnkStruct_02009714 * param0, UnkStruct_02009CFC * para
     return 0;
 }
 
-void sub_0200D324 (GraphicElementData * param0)
+void SpriteActor_UpdateObject (GraphicElementData * param0)
 {
     sub_02021E2C(param0, FX32_ONE);
 }
 
 void sub_0200D330 (CellActorData * param0)
 {
-    sub_0200D324(param0->unk_00);
+    SpriteActor_UpdateObject(param0->unk_00);
 }
 
 void sub_0200D33C (CellActorData * param0)
@@ -815,7 +815,7 @@ u32 sub_0200D358 (CellActorData * param0)
 
 void sub_0200D364 (CellActorData * param0, u32 param1)
 {
-    sub_02021D6C(param0->unk_00, param1);
+    SpriteActor_SetSpriteAnimActive(param0->unk_00, param1);
 }
 
 void sub_0200D370 (CellActorData * param0, u32 param1)
@@ -860,7 +860,7 @@ BOOL sub_0200D3B8 (CellActorData * param0)
 
 void sub_0200D3C4 (GraphicElementData * param0, u16 param1)
 {
-    sub_02021E50(param0, param1);
+    SpriteActor_SetAnimFrame(param0, param1);
 }
 
 void sub_0200D3CC (CellActorData * param0, u16 param1)
@@ -878,14 +878,14 @@ u16 sub_0200D3E0 (CellActorData * param0)
     return sub_0200D3D8(param0->unk_00);
 }
 
-void sub_0200D3EC (GraphicElementData * param0, int param1)
+void SpriteActor_DrawSprite (GraphicElementData * param0, int param1)
 {
     sub_02021CAC(param0, param1);
 }
 
 void sub_0200D3F4 (CellActorData * param0, int param1)
 {
-    sub_0200D3EC(param0->unk_00, param1);
+    SpriteActor_DrawSprite(param0->unk_00, param1);
 }
 
 int sub_0200D400 (GraphicElementData * param0)
@@ -974,7 +974,7 @@ void sub_0200D494 (GraphicElementData * param0, s16 param1, s16 param2)
     sub_02021C50(param0, &v0);
 }
 
-void sub_0200D4C4 (CellActorData * param0, s16 param1, s16 param2)
+void SpriteActor_SetSpritePositionXY (CellActorData * param0, s16 param1, s16 param2)
 {
     sub_0200D494(param0->unk_00, param1, param2);
 }
@@ -1014,7 +1014,7 @@ void sub_0200D50C (GraphicElementData * param0, s16 * param1, s16 * param2)
     }
 }
 
-void sub_0200D550 (CellActorData * param0, s16 * param1, s16 * param2)
+void SpriteActor_GetSpritePositionXY (CellActorData * param0, s16 * param1, s16 * param2)
 {
     sub_0200D50C(param0->unk_00, param1, param2);
 }
@@ -1234,7 +1234,7 @@ void sub_0200D808 (GraphicElementData * param0, GXOamMode param1)
     sub_02021FE0(param0, param1);
 }
 
-void sub_0200D810 (CellActorData * param0, GXOamMode param1)
+void SpriteActor_SetOAMMode (CellActorData * param0, GXOamMode param1)
 {
     sub_0200D808(param0->unk_00, param1);
 }

@@ -583,7 +583,7 @@ void ov119_021D161C (UnkStruct_ov119_021D0FD0 * param0)
     v0.unk_14[4] = 0xffffffff;
     v0.unk_14[5] = 0xffffffff;
 
-    param0->unk_74 = sub_0200CE6C(param0->unk_04.unk_50, param0->unk_04.unk_4C, &v0);
+    param0->unk_74 = SpriteActor_LoadResources(param0->unk_04.unk_50, param0->unk_04.unk_4C, &v0);
 
     sub_0200D330(param0->unk_74);
     sub_0200D6A4(param0->unk_74, 2);
@@ -596,12 +596,12 @@ void ov119_021D161C (UnkStruct_ov119_021D0FD0 * param0)
     v0.unk_14[2] = 25002;
     v0.unk_14[3] = 25003;
 
-    param0->unk_78 = sub_0200CE6C(param0->unk_04.unk_50, param0->unk_04.unk_4C, &v0);
+    param0->unk_78 = SpriteActor_LoadResources(param0->unk_04.unk_50, param0->unk_04.unk_4C, &v0);
     sub_0200D330(param0->unk_78);
 
     v0.unk_02 = 192 - (6 * 8);
 
-    param0->unk_7C = sub_0200CE6C(param0->unk_04.unk_50, param0->unk_04.unk_4C, &v0);
+    param0->unk_7C = SpriteActor_LoadResources(param0->unk_04.unk_50, param0->unk_04.unk_4C, &v0);
     sub_0200D330(param0->unk_7C);
 }
 

@@ -221,8 +221,8 @@ void ov16_0226862C (UnkStruct_ov16_02268520 * param0)
     v1 = ov16_0223E018(param0->unk_04);
     v2 = &Unk_ov16_022700CC[param0->unk_08];
 
-    param0->unk_00 = sub_0200CE6C(v0, v1, v2);
-    sub_0200D324(param0->unk_00->unk_00);
+    param0->unk_00 = SpriteActor_LoadResources(v0, v1, v2);
+    SpriteActor_UpdateObject(param0->unk_00->unk_00);
 }
 
 void ov16_02268660 (UnkStruct_ov16_02268520 * param0)

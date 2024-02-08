@@ -580,9 +580,9 @@ static void ov21_021DFE0C (UnkStruct_ov21_021DFFF8 * param0, UnkStruct_ov21_021D
         param0->unk_00[v5] = sub_02021B90(&v1);
 
         if ((v5 % 2) == 0) {
-            sub_02021D6C(param0->unk_00[v5], 0);
+            SpriteActor_SetSpriteAnimActive(param0->unk_00[v5], 0);
         } else {
-            sub_02021D6C(param0->unk_00[v5], 2);
+            SpriteActor_SetSpriteAnimActive(param0->unk_00[v5], 2);
         }
     }
 
@@ -592,7 +592,7 @@ static void ov21_021DFE0C (UnkStruct_ov21_021DFFF8 * param0, UnkStruct_ov21_021D
 
     param0->unk_BC = sub_02021B90(&v1);
 
-    sub_02021D6C(param0->unk_BC, 1);
+    SpriteActor_SetSpriteAnimActive(param0->unk_BC, 1);
     sub_02021CC8(param0->unk_BC, 1);
     sub_02021E80(param0->unk_BC, 0);
 

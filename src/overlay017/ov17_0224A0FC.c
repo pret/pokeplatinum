@@ -575,10 +575,10 @@ static int ov17_0224A46C (UnkStruct_ov17_0224A1EC * param0, SpriteRenderer * par
         break;
     }
 
-    v0 = sub_0200CE6C(param1, param2, &v2);
+    v0 = SpriteActor_LoadResources(param1, param2, &v2);
 
     sub_0200D364(v0, param3);
-    sub_0200D324(v0->unk_00);
+    SpriteActor_UpdateObject(v0->unk_00);
     sub_0200D500(v0, param5, param6, (256 * FX32_ONE));
     sub_0200D390(v0, 1);
 
@@ -625,7 +625,7 @@ void ov17_0224A61C (UnkStruct_ov17_0224A1EC * param0, SpriteRenderer * param1, S
     int v1;
 
     for (v1 = 0; v1 < 3; v1++) {
-        param0->unk_960[v1] = sub_0200CE6C(param1, param2, &Unk_ov17_02254794);
+        param0->unk_960[v1] = SpriteActor_LoadResources(param1, param2, &Unk_ov17_02254794);
         sub_0200D3F4(param0->unk_960[v1], 0);
     }
 }
@@ -699,7 +699,7 @@ void ov17_0224A7E0 (UnkStruct_ov17_0224A1EC * param0, SpriteRenderer * param1, S
 
     sub_0200D364(v5->unk_00, param3);
     sub_0200D500(v5->unk_00, v2, v3, (256 * FX32_ONE));
-    sub_0200D324(v5->unk_00->unk_00);
+    SpriteActor_UpdateObject(v5->unk_00->unk_00);
     sub_0200D3F4(v5->unk_00, 1);
 
     for (v1 = 0; v1 < 3; v1++) {
@@ -780,8 +780,8 @@ void ov17_0224A9F8 (UnkStruct_ov17_0224A1EC * param0, SpriteRenderer * param1, S
 {
     CellActorData * v0;
 
-    v0 = sub_0200CE6C(param1, param2, &Unk_ov17_022547C8);
-    sub_0200D324(v0->unk_00);
+    v0 = SpriteActor_LoadResources(param1, param2, &Unk_ov17_022547C8);
+    SpriteActor_UpdateObject(v0->unk_00);
 
     param0->unk_1E8 = v0;
 }
@@ -837,8 +837,8 @@ void ov17_0224AB08 (UnkStruct_ov17_0224A1EC * param0, SpriteRenderer * param1, S
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_200[v0].unk_04 = sub_0200CE6C(param1, param2, &Unk_ov17_02254830);
-        sub_0200D324(param0->unk_200[v0].unk_04->unk_00);
+        param0->unk_200[v0].unk_04 = SpriteActor_LoadResources(param1, param2, &Unk_ov17_02254830);
+        SpriteActor_UpdateObject(param0->unk_200[v0].unk_04->unk_00);
         sub_0200D6A4(param0->unk_200[v0].unk_04, 1);
         param0->unk_200[v0].unk_13 = v0;
         param0->unk_200[v0].unk_0C = &param0->unk_04[v0];
@@ -966,7 +966,7 @@ BOOL ov17_0224AD70 (UnkStruct_ov17_0224DF54 * param0, int param1, int param2)
         return 0;
     }
 
-    v0 = sub_0200CE6C(param0->unk_14.unk_58, param0->unk_14.unk_5C, &Unk_ov17_02254864);
+    v0 = SpriteActor_LoadResources(param0->unk_14.unk_58, param0->unk_14.unk_5C, &Unk_ov17_02254864);
 
     if (v0 == NULL) {
         return 0;
@@ -978,7 +978,7 @@ BOOL ov17_0224AD70 (UnkStruct_ov17_0224DF54 * param0, int param1, int param2)
     sub_0200D364(v0, param2);
     sub_0200D500(v0, v5, v6, (256 * FX32_ONE));
     sub_02021CC8(v0->unk_00, 1);
-    sub_0200D324(v0->unk_00);
+    SpriteActor_UpdateObject(v0->unk_00);
 
     v1 = sub_02094E98(param0->unk_00);
     v2 = 0x500;
@@ -1085,10 +1085,10 @@ BOOL ov17_0224B01C (UnkStruct_ov17_0224DF54 * param0)
     UnkStruct_ov17_0224B058 * v1;
 
     v1 = &param0->unk_14.unk_910;
-    v0 = sub_0200CE6C(param0->unk_14.unk_58, param0->unk_14.unk_5C, &Unk_ov17_0225472C);
+    v0 = SpriteActor_LoadResources(param0->unk_14.unk_58, param0->unk_14.unk_5C, &Unk_ov17_0225472C);
 
     sub_0200D500(v0, -1, (0x16 * 8), (256 * FX32_ONE));
-    sub_0200D324(v0->unk_00);
+    SpriteActor_UpdateObject(v0->unk_00);
     sub_0200D3F4(v0, 0);
 
     v1->unk_04 = v0;
@@ -1994,9 +1994,9 @@ void ov17_0224C384 (UnkStruct_ov17_0224DF54 * param0, SpriteRenderer * param1, S
     param0->unk_14.unk_1FC = v0;
 
     v0->unk_08 = param0;
-    v0->unk_04 = sub_0200CE6C(param0->unk_14.unk_58, param0->unk_14.unk_5C, &Unk_ov17_022547FC);
+    v0->unk_04 = SpriteActor_LoadResources(param0->unk_14.unk_58, param0->unk_14.unk_5C, &Unk_ov17_022547FC);
 
-    sub_0200D324(v0->unk_04->unk_00);
+    SpriteActor_UpdateObject(v0->unk_04->unk_00);
     sub_0200D3F4(v0->unk_04, 0);
 
     v0->unk_00 = SysTask_Start(ov17_0224C414, v0, ((30000 + 10000) + 15));
@@ -2025,7 +2025,7 @@ static void ov17_0224C414 (SysTask * param0, void * param1)
         break;
     }
 
-    sub_0200D324(v0->unk_04->unk_00);
+    SpriteActor_UpdateObject(v0->unk_04->unk_00);
 }
 
 void ov17_0224C434 (UnkStruct_ov17_0224B058 * param0, u32 param1, u32 param2, int param3)

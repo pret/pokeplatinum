@@ -153,17 +153,17 @@ static void ov22_02259D94 (UnkStruct_ov22_02259C58 * param0, void * param1)
 
 void ov22_02259D98 (UnkStruct_ov22_02259C58 * param0)
 {
-    sub_02021E50(param0->unk_00, 2);
+    SpriteActor_SetAnimFrame(param0->unk_00, 2);
 }
 
 void ov22_02259DA4 (UnkStruct_ov22_02259C58 * param0)
 {
-    sub_02021E50(param0->unk_00, 0);
+    SpriteActor_SetAnimFrame(param0->unk_00, 0);
 }
 
 void ov22_02259DB0 (UnkStruct_ov22_02259C58 * param0)
 {
-    sub_02021E50(param0->unk_00, 1);
+    SpriteActor_SetAnimFrame(param0->unk_00, 1);
 }
 
 void ov22_02259DBC (UnkStruct_ov22_02259D2C * param0, UnkStruct_ov22_0225A0E4 * param1)

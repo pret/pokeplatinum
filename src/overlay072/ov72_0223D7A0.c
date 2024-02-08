@@ -543,7 +543,7 @@ static void ov72_0223DF58 (UnkStruct_ov72_0223DB98 * param0)
             param0->unk_2B4[v0] = sub_02021AA0(&v1);
 
             sub_02021CC8(param0->unk_2B4[v0], 1);
-            sub_02021D6C(param0->unk_2B4[v0], Unk_ov72_0223EB3C[v0][2]);
+            SpriteActor_SetSpriteAnimActive(param0->unk_2B4[v0], Unk_ov72_0223EB3C[v0][2]);
             sub_02021E90(param0->unk_2B4[v0], 0);
 
             if (v0 == 0) {
@@ -703,9 +703,9 @@ static void ov72_0223E388 (GraphicElementData ** param0, int param1)
 
     for (v0 = 0; v0 < 1; v0++) {
         if (v0 == param1) {
-            sub_02021D6C(param0[v0], Unk_ov72_0223EB3C[v0][2] + 1);
+            SpriteActor_SetSpriteAnimActive(param0[v0], Unk_ov72_0223EB3C[v0][2] + 1);
         } else {
-            sub_02021D6C(param0[v0], Unk_ov72_0223EB3C[v0][2]);
+            SpriteActor_SetSpriteAnimActive(param0[v0], Unk_ov72_0223EB3C[v0][2]);
         }
     }
 }
@@ -713,9 +713,9 @@ static void ov72_0223E388 (GraphicElementData ** param0, int param1)
 static void ov72_0223E3A8 (GraphicElementData ** param0, BOOL param1)
 {
     if (param1 == 1) {
-        sub_02021D6C(param0[0], Unk_ov72_0223EB3C[0][2] + 1);
+        SpriteActor_SetSpriteAnimActive(param0[0], Unk_ov72_0223EB3C[0][2] + 1);
     } else {
-        sub_02021D6C(param0[0], Unk_ov72_0223EB3C[0][2]);
+        SpriteActor_SetSpriteAnimActive(param0[0], Unk_ov72_0223EB3C[0][2]);
     }
 }
 

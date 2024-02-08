@@ -441,7 +441,7 @@ static void ov56_02256704 (UnkStruct_ov56_02256468 * param0)
             param0->unk_1FC[v0] = sub_02021AA0(&v1);
 
             sub_02021CC8(param0->unk_1FC[v0], 1);
-            sub_02021D6C(param0->unk_1FC[v0], v0);
+            SpriteActor_SetSpriteAnimActive(param0->unk_1FC[v0], v0);
         }
     }
 }
@@ -975,7 +975,7 @@ static void ov56_0225718C (UnkStruct_ov56_02256468 * param0, int param1)
     v1 = sub_02021E24(param0->unk_1FC[param1]);
 
     if ((v0 > 1) || (v1 != param1 + 4)) {
-        sub_02021D6C(param0->unk_1FC[param1], param1 + 4);
+        SpriteActor_SetSpriteAnimActive(param0->unk_1FC[param1], param1 + 4);
     }
 
     param0->unk_2F4[param1] = 1;
@@ -998,7 +998,7 @@ static void ov56_022571D0 (UnkStruct_ov56_02256468 * param0)
         } else {
             if (sub_02021D3C(param0->unk_1FC[v0]) == 0) {
                 sub_02021CC8(param0->unk_1FC[v0], 1);
-                sub_02021E50(param0->unk_1FC[v0], 1 + 1);
+                SpriteActor_SetAnimFrame(param0->unk_1FC[v0], 1 + 1);
             }
         }
     }

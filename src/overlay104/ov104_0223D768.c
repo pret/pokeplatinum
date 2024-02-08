@@ -95,8 +95,8 @@ CellActorData * ov104_0223D828 (SpriteRenderer * param0, SpriteGfxHandler * para
 
     GF_ASSERT(param2 < NELEMS(Unk_ov104_022417D8));
 
-    v0 = sub_0200CE6C(param0, param1, &Unk_ov104_022417D8[param2]);
-    sub_0200D324(v0->unk_00);
+    v0 = SpriteActor_LoadResources(param0, param1, &Unk_ov104_022417D8[param2]);
+    SpriteActor_UpdateObject(v0->unk_00);
     return v0;
 }
 

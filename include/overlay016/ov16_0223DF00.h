@@ -292,7 +292,7 @@ void ov16_0223F9A0(BattleSystem * param0, int param1);
  * FALSE if not.
  */
 BOOL BattleSystem_CaughtSpecies(BattleSystem *battleSys, int species);
-void ov16_0223F9F0(void);
+void Battle_SetDefaultBlend(void);
 u8 ov16_0223F9FC(BattleSystem * param0, int param1, int param2, int param3, int param4);
 u8 BattleMessage_Print(BattleSystem * param0, MessageLoader * param1, BattleMessage * param2, int param3);
 u8 BattleMessage_PrintToWindow(BattleSystem * param0, Window * param1, MessageLoader * param2, BattleMessage * param3, int param4, int param5, int param6, int param7, int param8);

@@ -1324,7 +1324,7 @@ static void ov12_02220798 (UnkStruct_ov12_0221FCDC * param0)
     }
 
     if (ov12_0221FDD4(param0) == 0) {
-        ov16_0223F9F0();
+        Battle_SetDefaultBlend();
 
         sub_02019690(ov12_022233B0(param0, 1), 0x4000, 0, ov12_0221FDE4(param0));
         sub_02019EBC(ov12_02220278(param0), ov12_022233B0(param0, 1));
@@ -1965,7 +1965,7 @@ static void ov12_0222118C (SysTask * param0, void * param1)
     v2 = sub_020080C0(v0->unk_04.unk_04, 1);
     v2 -= sub_020080C0(v0->unk_04.unk_04, 41);
 
-    sub_0200D4C4(v0->unk_00, v1, v2);
+    SpriteActor_SetSpritePositionXY(v0->unk_00, v1, v2);
 }
 
 static void ov12_022211D8 (SysTask * param0, void * param1)
@@ -2213,7 +2213,7 @@ static void ov12_02221580 (UnkStruct_ov12_0221FCDC * param0)
             v11.unk_14[v14] = v2[v14];
         }
 
-        v1 = sub_0200CE6C(param0->unk_BC->unk_AC, param0->unk_134, &v11);
+        v1 = SpriteActor_LoadResources(param0->unk_BC->unk_AC, param0->unk_134, &v11);
 
         if (v12 == NULL) {
             sub_0200D3F4(v1, 0);
@@ -2777,7 +2777,7 @@ static BOOL ov12_02221D50 (SysTask * param0, UnkStruct_ov12_02221BBC * param1)
         break;
     case 4:
         if (ov12_0221FDD4(param1->unk_48) == 0) {
-            ov16_0223F9F0();
+            Battle_SetDefaultBlend();
         } else {
             ov17_022413D8();
         }
@@ -3712,7 +3712,7 @@ static void ov12_02222EBC (UnkStruct_ov12_0221FCDC * param0)
 
         param0->unk_100 = v6;
 
-        v4 = sub_0200CE6C(param0->unk_BC->unk_AC, param0->unk_C8[v2], &v6);
+        v4 = SpriteActor_LoadResources(param0->unk_BC->unk_AC, param0->unk_C8[v2], &v6);
     }
 
     v3 = inline_ov12_022204C4(param0->unk_18);
@@ -3770,7 +3770,7 @@ static void ov12_02222FC8 (UnkStruct_ov12_0221FCDC * param0)
 
         param0->unk_100 = v5;
 
-        v3 = sub_0200CE6C(param0->unk_BC->unk_AC, param0->unk_C8[v1], &v5);
+        v3 = SpriteActor_LoadResources(param0->unk_BC->unk_AC, param0->unk_C8[v1], &v5);
         GF_ASSERT(param0->unk_D8[v2] == NULL);
         param0->unk_D8[v2] = v3;
     }
@@ -4306,7 +4306,7 @@ UnkStruct_ov12_02223764 * ov12_022234F8 (BattleSystem * param0, int param1, int 
                     v12.unk_14[v11] = v9[v11];
                 }
 
-                v10 = sub_0200CE6C(v2->unk_08.unk_00, v2->unk_08.unk_04, &v12);
+                v10 = SpriteActor_LoadResources(v2->unk_08.unk_00, v2->unk_08.unk_04, &v12);
                 sub_0200D330(v10);
                 v2->unk_24[v5] = v10;
 

@@ -912,7 +912,7 @@ void ov104_02232CE0 (UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int pa
             v8.unk_14[v7] = param3;
         }
 
-        v5 = sub_0200CE6C(v0, v1, &v8);
+        v5 = SpriteActor_LoadResources(v0, v1, &v8);
         sub_0200D330(v5);
     }
 
@@ -1021,7 +1021,7 @@ CellActorData * ov104_02232F4C (UnkStruct_ov104_0223C4CC * param0, Pokemon * par
     v1.unk_02 = param4;
     v1.unk_08 = 200;
 
-    v0 = sub_0200CE6C(param0->unk_34.unk_00, param0->unk_34.unk_04, &v1);
+    v0 = SpriteActor_LoadResources(param0->unk_34.unk_00, param0->unk_34.unk_04, &v1);
 
     sub_02021F24(v0->unk_00, Pokemon_IconPaletteIndex(param1));
     sub_0200D330(v0);
@@ -1067,7 +1067,7 @@ CellActorData * ov104_022330AC (UnkStruct_ov104_0223C4CC * param0, int param1, i
     v1.unk_02 = param2;
     v1.unk_08 = 300;
 
-    v0 = sub_0200CE6C(param0->unk_34.unk_00, param0->unk_34.unk_04, &v1);
+    v0 = SpriteActor_LoadResources(param0->unk_34.unk_00, param0->unk_34.unk_04, &v1);
     sub_0200D330(v0);
 
     return v0;

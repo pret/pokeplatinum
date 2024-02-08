@@ -854,7 +854,7 @@ static void sub_0203B588 (GraphicElementData * param0, u16 param1, u16 param2)
 {
     u32 v0 = sub_02021E24(param0);
 
-    sub_02021D6C(param0, (v0 / 3) * 3 + param1);
+    SpriteActor_SetSpriteAnimActive(param0, (v0 / 3) * 3 + param1);
     sub_02021EC4(param0, param2);
 }
 

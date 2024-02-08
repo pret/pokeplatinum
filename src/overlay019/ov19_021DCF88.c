@@ -461,7 +461,7 @@ static void ov19_021DD224 (UnkStruct_ov19_021DCF88 * param0, NARC * param1)
     sub_02021D0C(param0->unk_30, 1);
 
     if (ov19_021D5E08(param0->unk_04) == 3) {
-        sub_02021D6C(param0->unk_30, 1);
+        SpriteActor_SetSpriteAnimActive(param0->unk_30, 1);
     }
 }
 
@@ -552,7 +552,7 @@ void ov19_021DD378 (UnkStruct_ov19_021DCF88 * param0)
             v2->unk_18 = Unk_ov19_021E0258[v0] >> FX32_SHIFT;
 
             if (v2->unk_08 != NULL) {
-                sub_02021D6C(v2->unk_08, 1);
+                SpriteActor_SetSpriteAnimActive(v2->unk_08, 1);
             }
 
             ov19_021DD344(param0, v1, v2);
@@ -600,7 +600,7 @@ static void ov19_021DD46C (SysTask * param0, void * param1)
         G2S_ChangeBlendAlpha(v1->unk_D4[v0->unk_0E], v1->unk_E4[v0->unk_0E]);
 
         if (++(v0->unk_0E) >= 16) {
-            sub_02021D6C(v0->unk_08, 0);
+            SpriteActor_SetSpriteAnimActive(v0->unk_08, 0);
             ov19_021DD358(v1);
         }
         break;
@@ -649,7 +649,7 @@ static void ov19_021DD544 (SysTask * param0, void * param1)
         G2S_ChangeBlendAlpha(v1->unk_D4[v0->unk_0E], v1->unk_E4[v0->unk_0E]);
 
         if (++(v0->unk_0E) >= 16) {
-            sub_02021D6C(v0->unk_08, 0);
+            SpriteActor_SetSpriteAnimActive(v0->unk_08, 0);
             ov19_021DD358(v1);
         }
         break;
@@ -949,7 +949,7 @@ static void ov19_021DD9DC (UnkStruct_ov19_021DCF88 * param0)
         param0->unk_34[v3] = ov19_021D785C(param0->unk_0C, &v0, 240, 368, 48, NNS_G2D_VRAM_TYPE_2DSUB);
         GF_ASSERT(param0->unk_34[v3] != NULL);
 
-        sub_02021D6C(param0->unk_34[v3], ov19_021DD9B8(v3, v2));
+        SpriteActor_SetSpriteAnimActive(param0->unk_34[v3], ov19_021DD9B8(v3, v2));
     }
 
     param0->unk_80 = ov19_021D5EC0(param0->unk_04);
@@ -1486,7 +1486,7 @@ void ov19_021DE2F4 (UnkStruct_ov19_021DCF88 * param0)
             u32 v1 = ov19_021D5EC8(param0->unk_04);
 
             for (v0 = 0; v0 < 8; v0++) {
-                sub_02021D6C(param0->unk_34[v0], ov19_021DD9B8(v0, v1));
+                SpriteActor_SetSpriteAnimActive(param0->unk_34[v0], ov19_021DD9B8(v0, v1));
             }
         }
     }

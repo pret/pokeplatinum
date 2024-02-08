@@ -1332,7 +1332,7 @@ static BOOL ov104_0223066C (UnkStruct_ov104_0222E930 * param0)
         v9 = (*((param0)->unk_1C++));
         v10 = ov104_0223D2FC(v1, v9, v4);
 
-        sub_0200D4C4(v10, v5, v6);
+        SpriteActor_SetSpritePositionXY(v10, v5, v6);
         sub_0200D3F4(v10, v7);
 
         ov104_0223D378(v1, v9, v8);

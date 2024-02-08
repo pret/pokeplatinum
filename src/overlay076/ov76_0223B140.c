@@ -57,11 +57,11 @@ void ov76_0223B184 (UnkUnion_02022594 * param0, CellActorData * param1, BOOL par
     }
 
     if (param2 == 1) {
-        sub_0200D4C4(param1, gCoreSys.touchX, gCoreSys.touchY);
-        sub_0200D550(param1, &v0, &v1);
+        SpriteActor_SetSpritePositionXY(param1, gCoreSys.touchX, gCoreSys.touchY);
+        SpriteActor_GetSpritePositionXY(param1, &v0, &v1);
         ov76_0223B174(param0);
     } else {
-        sub_0200D550(param1, &v0, &v1);
+        SpriteActor_GetSpritePositionXY(param1, &v0, &v1);
         ov76_0223B15C(param0, v0, v1);
     }
 }
@@ -312,7 +312,7 @@ BOOL ov76_0223B52C (UnkStruct_ov76_0223DE00 * param0, u8 param1)
     v3.unk_14[1] = 21000 + 293;
     v3.unk_14[2] = 22000 + 93;
     v3.unk_14[3] = 23000 + 1;
-    v2->unk_08 = sub_0200CE6C(v4, v5, &v3);
+    v2->unk_08 = SpriteActor_LoadResources(v4, v5, &v3);
 
     sub_0200D330(v2->unk_08);
 
@@ -403,7 +403,7 @@ BOOL ov76_0223B6C4 (UnkStruct_ov76_0223DE00 * param0, int param1)
         return 1;
     }
 
-    sub_0200D550(param0->unk_324[param1].unk_08, &v1, &v2);
+    SpriteActor_GetSpritePositionXY(param0->unk_324[param1].unk_08, &v1, &v2);
     v0 = ov12_02237E54(v1, v2, 190, 70);
 
     if (v0 > 60) {
@@ -440,9 +440,9 @@ void ov76_0223B758 (UnkStruct_ov76_0223DE00 * param0, int param1)
     v0 = ov76_0223B6C4(param0, param1);
 
     if (v0 == 0) {
-        sub_0200D810(param0->unk_324[param1].unk_08, GX_OAM_MODE_XLU);
+        SpriteActor_SetOAMMode(param0->unk_324[param1].unk_08, GX_OAM_MODE_XLU);
     } else {
-        sub_0200D810(param0->unk_324[param1].unk_08, GX_OAM_MODE_NORMAL);
+        SpriteActor_SetOAMMode(param0->unk_324[param1].unk_08, GX_OAM_MODE_NORMAL);
     }
 }
 
@@ -468,7 +468,7 @@ void ov76_0223B7D4 (UnkStruct_ov76_0223DE00 * param0, int param1)
 {
     s16 v0, v1;
 
-    sub_0200D550(param0->unk_324[param1].unk_08, &v0, &v1);
+    SpriteActor_GetSpritePositionXY(param0->unk_324[param1].unk_08, &v0, &v1);
 
     param0->unk_324[param1].unk_05 = (u8)v0;
     param0->unk_324[param1].unk_06 = (u8)v1;

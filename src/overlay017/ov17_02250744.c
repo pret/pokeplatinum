@@ -417,7 +417,7 @@ void ov17_02250DB0 (UnkStruct_ov17_0224FCA0 * param0)
         sub_0200D888(param0->unk_10.unk_18, param0->unk_10.unk_1C, 19, Pokemon_IconSpriteIndex(param0->unk_00->unk_00.unk_00[v2]), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 33002 + v2);
 
         v0.unk_14[0] = 33002 + v2;
-        param0->unk_10.unk_128[v2] = sub_0200CE6C(param0->unk_10.unk_18, param0->unk_10.unk_1C, &v0);
+        param0->unk_10.unk_128[v2] = SpriteActor_LoadResources(param0->unk_10.unk_18, param0->unk_10.unk_1C, &v0);
 
         sub_0200D364(param0->unk_10.unk_128[v2], 1);
         sub_02021F24(param0->unk_10.unk_128[v2]->unk_00, Pokemon_IconPaletteIndex(param0->unk_00->unk_00.unk_00[v2]));
@@ -426,7 +426,7 @@ void ov17_02250DB0 (UnkStruct_ov17_0224FCA0 * param0)
 
     for (v2 = 0; v2 < 4; v2++) {
         v1 = param0->unk_39A.unk_30[v2];
-        sub_0200D4C4(param0->unk_10.unk_128[v1], Unk_ov17_02254BD4[v2].unk_00, Unk_ov17_02254BD4[v2].unk_02);
+        SpriteActor_SetSpritePositionXY(param0->unk_10.unk_128[v1], Unk_ov17_02254BD4[v2].unk_00, Unk_ov17_02254BD4[v2].unk_02);
     }
 
     param0->unk_10.unk_124 = SysTask_Start(ov17_02250F4C, param0, (50000 + 1000));
@@ -526,7 +526,7 @@ static void ov17_02251070 (UnkStruct_ov17_0224FCA0 * param0)
     MI_CpuClear8(v1, sizeof(UnkStruct_ov17_02251070));
 
     v1->unk_00 = param0;
-    v1->unk_04 = sub_0200CE6C(param0->unk_10.unk_18, param0->unk_10.unk_1C, &Unk_ov17_02254C28);
+    v1->unk_04 = SpriteActor_LoadResources(param0->unk_10.unk_18, param0->unk_10.unk_1C, &Unk_ov17_02254C28);
 
     v2 = (sub_02094E98(param0->unk_00) & 0xff) + 20;
     v3 = -16 + (sub_02094E98(param0->unk_00) % (96 - 32 - 16));
@@ -534,7 +534,7 @@ static void ov17_02251070 (UnkStruct_ov17_0224FCA0 * param0)
     v1->unk_08 = v2 * 0x100;
     v1->unk_0C = v3 * 0x100;
 
-    sub_0200D4C4(v1->unk_04, v2, v3);
+    SpriteActor_SetSpritePositionXY(v1->unk_04, v2, v3);
 
     v1->unk_14 = (sub_02094E98(param0->unk_00) % 0x200) + 0x60;
     v1->unk_18 = (sub_02094E98(param0->unk_00) % 0x300) + 0x100;
@@ -569,7 +569,7 @@ static void ov17_02251140 (SysTask * param0, void * param1)
     v0->unk_08 -= v0->unk_14;
     v0->unk_0C += 0x280;
 
-    sub_0200D4C4(v0->unk_04, (v0->unk_08 / 0x100) + v0->unk_10, v0->unk_0C / 0x100);
+    SpriteActor_SetSpritePositionXY(v0->unk_04, (v0->unk_08 / 0x100) + v0->unk_10, v0->unk_0C / 0x100);
     sub_0200D330(v0->unk_04);
 }
 
@@ -583,14 +583,14 @@ void ov17_0225122C (UnkStruct_ov17_0224FCA0 * param0, NARC * param1)
         int v0, v1;
 
         for (v0 = 0; v0 < 4; v0++) {
-            param0->unk_10.unk_138[v0] = sub_0200CE6C(param0->unk_10.unk_18, param0->unk_10.unk_1C, &Unk_ov17_02254C90);
+            param0->unk_10.unk_138[v0] = SpriteActor_LoadResources(param0->unk_10.unk_18, param0->unk_10.unk_1C, &Unk_ov17_02254C90);
             sub_0200D330(param0->unk_10.unk_138[v0]);
             sub_0200D3F4(param0->unk_10.unk_138[v0], 0);
         }
 
         for (v0 = 0; v0 < 4; v0++) {
             v1 = param0->unk_39A.unk_30[v0];
-            sub_0200D4C4(param0->unk_10.unk_138[v1], Unk_ov17_02254BE4[v0].unk_00, Unk_ov17_02254BE4[v0].unk_02);
+            SpriteActor_SetSpritePositionXY(param0->unk_10.unk_138[v1], Unk_ov17_02254BE4[v0].unk_00, Unk_ov17_02254BE4[v0].unk_02);
         }
     }
 }
@@ -673,7 +673,7 @@ void ov17_022513F4 (UnkStruct_ov17_0224FCA0 * param0, int param1, int param2, in
 
     for (v6 = 0; v6 < v5; v6++) {
         if (v1[v6] == NULL) {
-            v1[v6] = sub_0200CE6C(param0->unk_10.unk_18, param0->unk_10.unk_1C, &Unk_ov17_02254CC4);
+            v1[v6] = SpriteActor_LoadResources(param0->unk_10.unk_18, param0->unk_10.unk_1C, &Unk_ov17_02254CC4);
         }
     }
 
@@ -689,7 +689,7 @@ void ov17_022513F4 (UnkStruct_ov17_0224FCA0 * param0, int param1, int param2, in
     }
 
     for (v6 = 0; v6 < v5; v6++) {
-        sub_0200D4C4(v1[v6], v3 + v6 * 16, v4);
+        SpriteActor_SetSpritePositionXY(v1[v6], v3 + v6 * 16, v4);
         sub_0200D330(v1[v6]);
     }
 }

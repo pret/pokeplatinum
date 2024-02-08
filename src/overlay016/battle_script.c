@@ -12239,7 +12239,7 @@ static void BattleScript_LoadPartyLevelUpIcon (BattleSystem * param0, BattleScri
     sub_0200CE0C(v1, v2, 27, 257, 1, 20013);
     sub_0200CE3C(v1, v2, 27, 258, 1, 20013);
 
-    param1->cellActorData[0] = sub_0200CE6C(v1, v2, &Unk_ov16_0226E6C4);
+    param1->cellActorData[0] = SpriteActor_LoadResources(v1, v2, &Unk_ov16_0226E6C4);
 
     sub_0200D330(param1->cellActorData[0]);
     sub_0200D888(v1, v2, 19, Pokemon_IconSpriteIndex(param2), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 20022);
@@ -12247,7 +12247,7 @@ static void BattleScript_LoadPartyLevelUpIcon (BattleSystem * param0, BattleScri
     sub_0200CE0C(v1, v2, 19, PokeIcon64KCellsFileIndex(), 0, 20014);
     sub_0200CE3C(v1, v2, 19, PokeIcon64KAnimationFileIndex(), 0, 20014);
 
-    param1->cellActorData[1] = sub_0200CE6C(v1, v2, &Unk_ov16_0226E6F8);
+    param1->cellActorData[1] = SpriteActor_LoadResources(v1, v2, &Unk_ov16_0226E6F8);
 
     sub_02021F24(param1->cellActorData[1]->unk_00, Pokemon_IconPaletteIndex(param2));
     sub_0200D330(param1->cellActorData[1]);

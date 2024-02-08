@@ -133,9 +133,9 @@ static void ov12_02226AAC (SysTask * param0, void * param1)
 
     switch (v0->unk_00) {
     case 0:
-        sub_0200D324(v0->unk_14[0]->unk_00);
-        sub_0200D324(v0->unk_14[1]->unk_00);
-        sub_0200D324(v0->unk_14[2]->unk_00);
+        SpriteActor_UpdateObject(v0->unk_14[0]->unk_00);
+        SpriteActor_UpdateObject(v0->unk_14[1]->unk_00);
+        SpriteActor_UpdateObject(v0->unk_14[2]->unk_00);
 
         sub_0200D5AC(v0->unk_14[0]->unk_00, 1, 0);
         sub_0200D5AC(v0->unk_14[1]->unk_00, -1, 0);
@@ -177,7 +177,7 @@ void ov12_02226B1C (UnkStruct_ov12_0221FCDC * param0, SpriteRenderer * param1, S
         int v2;
 
         for (v2 = 1; v2 < 3; v2++) {
-            v0->unk_14[v2] = sub_0200CE6C(v0->unk_08, v0->unk_0C, &v1);
+            v0->unk_14[v2] = SpriteActor_LoadResources(v0->unk_08, v0->unk_0C, &v1);
         }
     }
 

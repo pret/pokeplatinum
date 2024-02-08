@@ -697,7 +697,7 @@ static void ov65_02235A94 (UnkStruct_ov65_022358CC * param0, u32 param1)
     sub_02021CAC(param0->unk_1A0.unk_34, 0);
     sub_02021CAC(param0->unk_1A0.unk_38, 0);
     sub_02021CC8(param0->unk_1A0.unk_34, 1);
-    sub_02021D6C(param0->unk_1A0.unk_38, 1);
+    SpriteActor_SetSpriteAnimActive(param0->unk_1A0.unk_38, 1);
 }
 
 static void ov65_02235B14 (UnkStruct_ov65_022358CC * param0)

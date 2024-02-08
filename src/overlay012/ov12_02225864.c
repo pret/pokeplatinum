@@ -217,7 +217,7 @@ u32 ov12_022259AC (fx32 param0, fx32 param1, fx32 param2)
 
 void ov12_022259DC (UnkStruct_ov12_02225F6C * param0, CellActorData * param1, s16 param2, s16 param3)
 {
-    sub_0200D4C4(param1, param2 + param0->unk_00, param3 + param0->unk_02);
+    SpriteActor_SetSpritePositionXY(param1, param2 + param0->unk_00, param3 + param0->unk_02);
 }
 
 void ov12_022259FC (UnkStruct_ov12_02225F6C * param0, CellActorData * param1)
@@ -620,8 +620,8 @@ void ov12_0222605C (CellActorData * param0, s16 param1, s16 param2, fx32 param3,
         v1 = param1 - param2;
     }
 
-    sub_0200D550(param0, &v2, &v3);
-    sub_0200D4C4(param0, v2, v1 + v0);
+    SpriteActor_GetSpritePositionXY(param0, &v2, &v3);
+    SpriteActor_SetSpritePositionXY(param0, v2, v1 + v0);
 }
 
 BOOL ov12_022260A8 (UnkStruct_ov12_02225F6C * param0, CellActorData * param1)
@@ -778,7 +778,7 @@ BOOL ov12_02226274 (UnkStruct_ov12_02226274 * param0)
 
         if (v1[v0]) {
             if (param0->unk_AE == 0) {
-                sub_0200D4C4(param0->unk_98[v0], param0->unk_00 + param0->unk_04[v0].unk_00, param0->unk_02 + param0->unk_04[v0].unk_02);
+                SpriteActor_SetSpritePositionXY(param0->unk_98[v0], param0->unk_00 + param0->unk_04[v0].unk_00, param0->unk_02 + param0->unk_04[v0].unk_02);
             } else {
                 ov12_02225FA4(&param0->unk_04[v0], &v2, &v3);
                 sub_0200D6E8(param0->unk_98[v0], v2, v3);

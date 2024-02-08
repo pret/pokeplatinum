@@ -267,7 +267,7 @@ static void ov84_02240950 (UnkStruct_ov84_0223B5A0 * param0)
     u32 v0;
 
     for (v0 = 0; v0 < 12; v0++) {
-        param0->unk_E0[v0] = sub_0200CE6C(param0->unk_D8, param0->unk_DC, &Unk_ov84_022411B0[v0]);
+        param0->unk_E0[v0] = SpriteActor_LoadResources(param0->unk_D8, param0->unk_DC, &Unk_ov84_022411B0[v0]);
     }
 
     sub_0200D3F4(param0->unk_E0[5], 0);
@@ -287,8 +287,8 @@ static void ov84_02240950 (UnkStruct_ov84_0223B5A0 * param0)
     ov84_02240D3C(param0, 0);
 
     sub_0200D364(param0->unk_E0[0], param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08);
-    sub_0200D4C4(param0->unk_E0[1], ov84_02240C30(param0, param0->unk_C4->unk_64), 97);
-    sub_0200D4C4(param0->unk_E0[4], 177, 24 + (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04 - 1) * 16);
+    SpriteActor_SetSpritePositionXY(param0->unk_E0[1], ov84_02240C30(param0, param0->unk_C4->unk_64), 97);
+    SpriteActor_SetSpritePositionXY(param0->unk_E0[4], 177, 24 + (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04 - 1) * 16);
 
     {
         VecFx32 v1 = {FX32_ONE, FX32_ONE, FX32_ONE};
@@ -413,11 +413,11 @@ static void ov84_02240C48 (UnkStruct_ov84_0223B5A0 * param0)
 void ov84_02240CF0 (UnkStruct_ov84_0223B5A0 * param0, u8 param1)
 {
     if (param1 == 0) {
-        sub_0200D4C4(param0->unk_E0[8], 220, 156);
-        sub_0200D4C4(param0->unk_E0[9], 220, 180);
+        SpriteActor_SetSpritePositionXY(param0->unk_E0[8], 220, 156);
+        SpriteActor_SetSpritePositionXY(param0->unk_E0[9], 220, 180);
     } else {
-        sub_0200D4C4(param0->unk_E0[8], 162, 108);
-        sub_0200D4C4(param0->unk_E0[9], 162, 132);
+        SpriteActor_SetSpritePositionXY(param0->unk_E0[8], 162, 108);
+        SpriteActor_SetSpritePositionXY(param0->unk_E0[9], 162, 132);
     }
 
     ov84_02240D3C(param0, 1);
@@ -455,7 +455,7 @@ void ov84_02240D5C (UnkStruct_ov84_0223B5A0 * param0, u16 param1, u8 param2)
 void ov84_02240E24 (UnkStruct_ov84_0223B5A0 * param0, s16 param1, s16 param2)
 {
     sub_0200D3F4(param0->unk_E0[6], 1);
-    sub_0200D4C4(param0->unk_E0[6], param1, param2);
+    SpriteActor_SetSpritePositionXY(param0->unk_E0[6], param1, param2);
     sub_0200D3CC(param0->unk_E0[6], 0);
     sub_0200D364(param0->unk_E0[6], 0);
 }

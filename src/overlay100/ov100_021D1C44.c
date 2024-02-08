@@ -222,13 +222,13 @@ static void ov100_021D2250 (UnkStruct_ov100_021D1C98 * param0)
     v6.unk_14[3] = 50000;
 
     for (v0 = 0; v0 < 3; v0++) {
-        param0->unk_08.unk_0C[v0].unk_00 = sub_0200CE6C(v3, v4, &v6);
+        param0->unk_08.unk_0C[v0].unk_00 = SpriteActor_LoadResources(v3, v4, &v6);
 
         sub_0200D330(param0->unk_08.unk_0C[v0].unk_00);
         sub_0200D6A4(param0->unk_08.unk_0C[v0].unk_00, 2);
         sub_0200D6E8(param0->unk_08.unk_0C[v0].unk_00, 0.5f, 0.5f);
         sub_0200D430(param0->unk_08.unk_0C[v0].unk_00, v0);
-        sub_0200D4C4(param0->unk_08.unk_0C[v0].unk_00, 16 + (v0 * 64), 64);
+        SpriteActor_SetSpritePositionXY(param0->unk_08.unk_0C[v0].unk_00, 16 + (v0 * 64), 64);
 
         param0->unk_08.unk_0C[v0].unk_0C = 1;
         param0->unk_08.unk_0C[v0].unk_08 = v0;

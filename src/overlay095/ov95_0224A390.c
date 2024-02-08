@@ -191,7 +191,7 @@ static int ov95_0224A464 (UnkStruct_ov95_0224A42C * param0, int * param1)
     switch (*param1) {
     case 0:
         if (ScreenWipe_Done()) {
-            sub_02021D6C(param0->unk_20[0], 3);
+            SpriteActor_SetSpriteAnimActive(param0->unk_20[0], 3);
             sub_02021CAC(param0->unk_20[0], 1);
             (*param1)++;
         }

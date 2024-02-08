@@ -81,7 +81,7 @@ UnkStruct_ov16_0226DC24 * ov16_0226DC24 (SpriteRenderer * param0, SpriteGfxHandl
     MI_CpuClear8(v0, sizeof(UnkStruct_ov16_0226DC24));
 
     for (v2 = 0; v2 < 5; v2++) {
-        v0->unk_00[v2] = sub_0200CE6C(param0, param1, &v1);
+        v0->unk_00[v2] = SpriteActor_LoadResources(param0, param1, &v1);
         sub_0200D3F4(v0->unk_00[v2], 0);
     }
 

@@ -446,9 +446,9 @@ CellActorData * ov16_02267060 (SpriteRenderer * param0, SpriteGfxHandler * param
     CellActorData * v1;
 
     v0 = ov16_022682B0(param2);
-    v1 = sub_0200CE6C(param0, param1, v0);
+    v1 = SpriteActor_LoadResources(param0, param1, v0);
 
-    sub_0200D324(v1->unk_00);
+    SpriteActor_UpdateObject(v1->unk_00);
     return v1;
 }
 
@@ -793,7 +793,7 @@ void ov16_022675AC (UnkStruct_ov16_022674C4 * param0)
 {
     if (param0->unk_08 != NULL) {
         sub_02021CC8(param0->unk_08->unk_00, 0);
-        sub_02021E50(param0->unk_08->unk_00, 0);
+        SpriteActor_SetAnimFrame(param0->unk_08->unk_00, 0);
         ov16_022675F8(param0, 0);
     }
 
@@ -886,7 +886,7 @@ static void ov16_0226774C (SysTask * param0, void * param1)
     v4 = 0;
     v3 = ov16_022682B0(v0->unk_25);
 
-    sub_0200D550(v0->unk_04, &v1, &v2);
+    SpriteActor_GetSpritePositionXY(v0->unk_04, &v1, &v2);
 
     switch (v0->unk_25) {
     case 0:
@@ -929,10 +929,10 @@ static void ov16_0226774C (SysTask * param0, void * param1)
         break;
     }
 
-    sub_0200D4C4(v0->unk_04, v1, v2);
+    SpriteActor_SetSpritePositionXY(v0->unk_04, v1, v2);
 
     if (v0->unk_08 != NULL) {
-        sub_0200D4C4(v0->unk_08, v1 - Unk_ov16_0226F334[v0->unk_25], v2 + 0);
+        SpriteActor_SetSpritePositionXY(v0->unk_08, v1 - Unk_ov16_0226F334[v0->unk_25], v2 + 0);
     }
 
     if (v4 > 0) {

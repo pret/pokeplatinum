@@ -1116,7 +1116,7 @@ static BOOL ov12_02236918 (BallRotation * param0)
             v0.unk_0C = 0xFF;
             v0.unk_10 = 0;
 
-            sub_0200D550(param0->unk_30, &v0.unk_00, &v0.unk_02);
+            SpriteActor_GetSpritePositionXY(param0->unk_30, &v0.unk_00, &v0.unk_02);
 
             param0->unk_D8 = ov12_02223764(param0->unk_90.battleSys, param0->unk_90.heapID);
             param0->unk_D0 = ov12_02236690(&v0);
@@ -1166,7 +1166,7 @@ static BOOL ov12_022369FC (BallRotation * param0)
 
     switch (param0->unk_0C) {
     case 0:
-        sub_0200D550(param0->unk_30, &param0->unk_B8.unk_00, &param0->unk_B8.unk_02);
+        SpriteActor_GetSpritePositionXY(param0->unk_30, &param0->unk_B8.unk_00, &param0->unk_B8.unk_02);
         param0->unk_B8.unk_04 = 60;
         param0->unk_B8.unk_06 = 180;
         param0->unk_B8.unk_08 = 10;
@@ -1261,7 +1261,7 @@ static BOOL ov12_02236B20 (BallRotation * param0)
         {
             s16 v0, v1;
 
-            sub_0200D550(param0->unk_30, &v0, &v1);
+            SpriteActor_GetSpritePositionXY(param0->unk_30, &v0, &v1);
             ov12_02225BC8(&param0->unk_48[0], v0, v0, v1, v1 + 32, 32 / 3);
 
             param0->unk_08++;
@@ -1473,7 +1473,7 @@ static BOOL ov12_02236D18 (BallRotation * param0)
             v1.unk_0C = ov12_02235FB4(v1.unk_04);
             v1.unk_10 = 0;
 
-            sub_0200D550(param0->unk_30, &v1.unk_00, &v1.unk_02);
+            SpriteActor_GetSpritePositionXY(param0->unk_30, &v1.unk_00, &v1.unk_02);
             param0->unk_D0 = ov12_02236690(&v1);
         }
         param0->unk_08++;
@@ -1545,7 +1545,7 @@ static BOOL ov12_02236E7C (BallRotation * param0)
 {
     switch (param0->unk_08) {
     case 0:
-        sub_0200D810(param0->unk_30, GX_OAM_MODE_XLU);
+        SpriteActor_SetOAMMode(param0->unk_30, GX_OAM_MODE_XLU);
         param0->unk_08++;
     case 1:
         if (param0->unk_20 > 0) {
@@ -1876,7 +1876,7 @@ static BOOL ov12_02237474 (BallRotation * param0)
         v0.unk_0C = 0xFF;
         v0.unk_10 = 1;
 
-        sub_0200D550(param0->unk_30, &v0.unk_00, &v0.unk_02);
+        SpriteActor_GetSpritePositionXY(param0->unk_30, &v0.unk_00, &v0.unk_02);
         param0->unk_D0 = ov12_02236690(&v0);
     }
         param0->unk_08++;
@@ -1971,7 +1971,7 @@ static BOOL ov12_02237694 (BallRotation * param0)
     if (param0->unk_30 != NULL) {
         s16 v0, v1;
 
-        sub_0200D550(param0->unk_30, &v0, &v1);
+        SpriteActor_GetSpritePositionXY(param0->unk_30, &v0, &v1);
 
         param0->unk_B8.unk_00 = v0;
         param0->unk_B8.unk_02 = v1;
@@ -2099,7 +2099,7 @@ void ov12_0223786C (BallRotation * param0, int param1)
     param0->unk_10 = 0;
     param0->unk_1C = 1;
 
-    sub_0200D550(param0->unk_30, &param0->unk_B8.unk_00, &param0->unk_B8.unk_02);
+    SpriteActor_GetSpritePositionXY(param0->unk_30, &param0->unk_B8.unk_00, &param0->unk_B8.unk_02);
 }
 
 int ov12_02237890 (BallRotation * param0)
@@ -2111,7 +2111,7 @@ int ov12_02237890 (BallRotation * param0)
 
 static void ov12_022378A0 (BallRotation * param0)
 {
-    sub_0200D550(param0->unk_30, &param0->unk_B8.unk_00, &param0->unk_B8.unk_02);
+    SpriteActor_GetSpritePositionXY(param0->unk_30, &param0->unk_B8.unk_00, &param0->unk_B8.unk_02);
 
     switch (param0->unk_90.type) {
     case 0:
@@ -2120,7 +2120,7 @@ static void ov12_022378A0 (BallRotation * param0)
     case 3:
     case 4:
     case 5:
-        sub_0200D550(param0->unk_30, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
+        SpriteActor_GetSpritePositionXY(param0->unk_30, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
         param0->unk_B8.unk_10 = 0;
         param0->unk_B8.unk_08 = 12;
         return;
@@ -2130,7 +2130,7 @@ static void ov12_022378A0 (BallRotation * param0)
         param0->unk_B8.unk_06 += 32;
         break;
     case 7:
-        sub_0200D550(param0->unk_30, &param0->unk_B8.unk_00, &param0->unk_B8.unk_02);
+        SpriteActor_GetSpritePositionXY(param0->unk_30, &param0->unk_B8.unk_00, &param0->unk_B8.unk_02);
         ov12_02225864(1, 4, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
         param0->unk_B8.unk_10 = 48;
         param0->unk_B8.unk_06 += 32;
@@ -2333,7 +2333,7 @@ static void ov12_02237D8C (BallRotation * param0)
         v1.unk_14[v0] = param0->unk_90.target + 6000;
     }
 
-    param0->unk_30 = sub_0200CE6C(param0->unk_90.cellActorSys, param0->unk_2C, &v1);
+    param0->unk_30 = SpriteActor_LoadResources(param0->unk_90.cellActorSys, param0->unk_2C, &v1);
 
     sub_0200D3F4(param0->unk_30, 1);
     sub_0200D6A4(param0->unk_30, 2);
@@ -2351,7 +2351,7 @@ void ov12_02237E0C (BallRotation * param0, int param1)
 
 void ov12_02237E18 (BallRotation * param0, s16 param1, s16 param2)
 {
-    sub_0200D4C4(param0->unk_30, param1, param2);
+    SpriteActor_SetSpritePositionXY(param0->unk_30, param1, param2);
 }
 
 void ov12_02237E24 (BallRotation * param0, u16 param1)

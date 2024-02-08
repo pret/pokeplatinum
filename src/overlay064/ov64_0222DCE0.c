@@ -1246,7 +1246,7 @@ static void ov64_0222E9A4 (UnkStruct_ov64_0222E21C * param0, u32 param1)
 
         sub_02021CC8(param0->unk_270[v1], 1);
         sub_02021CAC(param0->unk_270[v1], 0);
-        sub_02021D6C(param0->unk_270[v1], v1);
+        SpriteActor_SetSpriteAnimActive(param0->unk_270[v1], v1);
     }
 }
 
@@ -2648,7 +2648,7 @@ static void ov64_0222FF5C (UnkStruct_ov64_0222F0C4 * param0)
     u32 v1;
 
     sub_02021CAC(param0->unk_104, 1);
-    sub_02021D6C(param0->unk_104, 2);
+    SpriteActor_SetSpriteAnimActive(param0->unk_104, 2);
 
     param0->unk_108 = 0;
 

@@ -937,7 +937,7 @@ static void ov80_021D2398 (UnkStruct_ov80_021D2A08 * param0)
     v0->unk_108 = sub_0200CA08(param0->unk_D8, param0->unk_DC, &v1);
 
     sub_02021CAC(v0->unk_108, 1);
-    sub_02021E50(v0->unk_108, param0->unk_2C->unk_0C);
+    SpriteActor_SetAnimFrame(v0->unk_108, param0->unk_2C->unk_0C);
     sub_0200D494(v0->unk_108, v0->unk_18 * 7 + (48 - 23), v0->unk_1C * 7 + (6 - 40));
 }
 
@@ -1099,7 +1099,7 @@ static void ov80_021D2774 (SysTask * param0, void * param1)
     case 0:
         sub_02021CAC(v1->unk_100, 1);
         sub_02021CC8(v1->unk_100, 1);
-        sub_02021E50(v1->unk_100, 1);
+        SpriteActor_SetAnimFrame(v1->unk_100, 1);
         Sound_PlayEffect(1508);
         v1->unk_04++;
         break;

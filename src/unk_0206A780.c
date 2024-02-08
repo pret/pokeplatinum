@@ -99,8 +99,8 @@ void sub_0206A870 (UnkStruct_0206A844 * param0)
 
 void sub_0206A8A0 (UnkStruct_0206A844 * param0, s16 param1, s16 param2, s16 param3)
 {
-    sub_0200D4C4(param0->unk_1C8[0], param1, param2);
-    sub_0200D4C4(param0->unk_1C8[1], param1, param3);
+    SpriteActor_SetSpritePositionXY(param0->unk_1C8[0], param1, param2);
+    SpriteActor_SetSpritePositionXY(param0->unk_1C8[1], param1, param3);
 }
 
 void sub_0206A8C4 (UnkStruct_0206A844 * param0, u16 param1, BOOL param2)

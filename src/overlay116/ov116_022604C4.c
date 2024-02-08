@@ -402,7 +402,7 @@ static BOOL ov116_02260B6C (UnkStruct_ov116_02262A8C * param0)
 
     if (param0->unk_0C == 2) {
         if (sub_0200D37C(param0->unk_D8) != 2) {
-            sub_0200D4C4(param0->unk_D8, 128, 100);
+            SpriteActor_SetSpritePositionXY(param0->unk_D8, 128, 100);
             sub_0200D370(param0->unk_D8, 2);
 
             ov116_02266FEC(&param0->unk_FC.unk_190);

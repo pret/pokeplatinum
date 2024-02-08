@@ -61,9 +61,9 @@ CellActorData * ov17_022412C0 (SpriteRenderer * param0, SpriteGfxHandler * param
 {
     CellActorData * v0;
 
-    v0 = sub_0200CE6C(param0, param1, &Unk_ov17_0225364C);
+    v0 = SpriteActor_LoadResources(param0, param1, &Unk_ov17_0225364C);
     sub_0200D500(v0, (5 * 8) + (11 * 8) * param2, (0xc * 8) + 0 * param2, (((192 + 80) << FX32_SHIFT)));
-    sub_0200D324(v0->unk_00);
+    SpriteActor_UpdateObject(v0->unk_00);
 
     return v0;
 }
@@ -92,13 +92,13 @@ CellActorData * ov17_0224136C (SpriteRenderer * param0, SpriteGfxHandler * param
     CellActorData * v0;
 
     if (param4 >= 0) {
-        v0 = sub_0200CE6C(param0, param1, &Unk_ov17_02253618);
+        v0 = SpriteActor_LoadResources(param0, param1, &Unk_ov17_02253618);
     } else {
-        v0 = sub_0200CE6C(param0, param1, &Unk_ov17_02253680);
+        v0 = SpriteActor_LoadResources(param0, param1, &Unk_ov17_02253680);
     }
 
     sub_0200D500(v0, param2, param3, (((192 + 80) << FX32_SHIFT)));
-    sub_0200D324(v0->unk_00);
+    SpriteActor_UpdateObject(v0->unk_00);
 
     return v0;
 }

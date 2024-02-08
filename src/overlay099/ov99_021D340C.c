@@ -218,8 +218,8 @@ static void ov99_021D35E8 (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D
 
 static void ov99_021D36B0 (UnkStruct_ov99_021D2CB0 * param0)
 {
-    sub_0200D810(param0->unk_10E0[3], GX_OAM_MODE_XLU);
-    sub_0200D810(param0->unk_10E0[4], GX_OAM_MODE_XLU);
+    SpriteActor_SetOAMMode(param0->unk_10E0[3], GX_OAM_MODE_XLU);
+    SpriteActor_SetOAMMode(param0->unk_10E0[4], GX_OAM_MODE_XLU);
 }
 
 static void ov99_021D36D4 (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D340C * param1)

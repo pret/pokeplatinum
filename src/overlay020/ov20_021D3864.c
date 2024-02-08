@@ -103,18 +103,18 @@ static void ov20_021D3980 (UnkStruct_ov20_021D3980 * param0)
     ov20_021D2E0C(param0->unk_00, &v0, 0, 3);
     param0->unk_0C = ov20_021D2E50(param0->unk_00, &v0, 64, 56, 5, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    sub_02021D6C(param0->unk_0C, 2);
+    SpriteActor_SetSpriteAnimActive(param0->unk_0C, 2);
     sub_02021CAC(param0->unk_0C, 0);
 }
 
 void ov20_021D39BC (UnkStruct_ov20_021D3980 * param0)
 {
-    sub_02021D6C(param0->unk_0C, 3);
+    SpriteActor_SetSpriteAnimActive(param0->unk_0C, 3);
 }
 
 void ov20_021D39C8 (UnkStruct_ov20_021D3980 * param0)
 {
-    sub_02021D6C(param0->unk_0C, 2);
+    SpriteActor_SetSpriteAnimActive(param0->unk_0C, 2);
 }
 
 void ov20_021D39D4 (UnkStruct_ov20_021D3980 * param0, BOOL param1)
@@ -146,7 +146,7 @@ void ov20_021D39EC (UnkStruct_ov20_021D3980 * param0, int param1)
     }
 
     sub_02021C50(param0->unk_0C, &v0);
-    sub_02021D6C(param0->unk_0C, 2);
+    SpriteActor_SetSpriteAnimActive(param0->unk_0C, 2);
 }
 
 void ov20_021D3A2C (UnkStruct_ov20_021D3980 * param0)

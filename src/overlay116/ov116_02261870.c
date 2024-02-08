@@ -239,7 +239,7 @@ void ov116_02261D08 (UnkStruct_ov116_02262A8C * param0)
 
     for (v4 = 0; v4 < (3 * 12); v4++) {
         ov116_02261CD8(&v0, v4 * 8, 20, 1, 3, 9006);
-        param0->unk_28[v4] = sub_0200CE6C(v1, v2, &v0);
+        param0->unk_28[v4] = SpriteActor_LoadResources(v1, v2, &v0);
         sub_0200D430(param0->unk_28[v4], 3);
         sub_0200D364(param0->unk_28[v4], (v4 % 11) + 1);
     }
@@ -261,7 +261,7 @@ void ov116_02261D70 (UnkStruct_ov116_02262A8C * param0)
 
         v0.unk_2C = 0;
         v0.unk_08 = 1;
-        param0->unk_B8[v4] = sub_0200CE6C(v1, v2, &v0);
+        param0->unk_B8[v4] = SpriteActor_LoadResources(v1, v2, &v0);
 
         sub_0200D33C(param0->unk_B8[v4]);
         sub_0200D430(param0->unk_B8[v4], 1);
@@ -698,16 +698,16 @@ void ov116_022625A8 (UnkStruct_ov116_0226139C * param0, UnkStruct_ov116_02262A8C
         ov116_02261CD8(&v0, Unk_ov116_02267A78[param1->unk_04 - 1][v5] + 0, (176 + 64), 2, 0, 9000);
         v0.unk_08 = 1;
 
-        param1->unk_1C[v5] = sub_0200CE6C(v1, v2, &v0);
+        param1->unk_1C[v5] = SpriteActor_LoadResources(v1, v2, &v0);
         ov116_02261CD8(&v0, Unk_ov116_02267A78[param1->unk_04 - 1][v5] + 0, ((176 + 64) + 0), 2, 0, 9000);
         v0.unk_08 = 2;
 
-        param1->unk_20[v5] = sub_0200CE6C(v1, v2, &v0);
+        param1->unk_20[v5] = SpriteActor_LoadResources(v1, v2, &v0);
         sub_0200D430(param1->unk_20[v5], 0 + ov116_02264680(param0, v4));
         ov116_02261CD8(&v0, Unk_ov116_02267A78[param1->unk_04 - 1][v5] + 0, ((176 + 64) + 0), 2, 0, 9000);
         v0.unk_08 = 3;
 
-        param1->unk_24[v5] = sub_0200CE6C(v1, v2, &v0);
+        param1->unk_24[v5] = SpriteActor_LoadResources(v1, v2, &v0);
         sub_0200D430(param1->unk_24[v5], 0 + ov116_02264680(param0, v4));
         sub_0200D364(param1->unk_24[v5], 5);
         sub_0200D33C(param1->unk_1C[v5]);
@@ -731,7 +731,7 @@ CellActorData * ov116_022626E8 (UnkStruct_ov116_02262A8C * param0, s16 param1, s
 
     v1.unk_2C = 0;
     v1.unk_08 = 0;
-    v0 = sub_0200CE6C(v2, v3, &v1);
+    v0 = SpriteActor_LoadResources(v2, v3, &v1);
 
     sub_0200D33C(v0);
 
@@ -752,24 +752,24 @@ void ov116_02262724 (UnkStruct_ov116_02262A8C * param0)
 
         v2.unk_2C = 2;
         v2.unk_08 = 20;
-        param0->unk_D0[v0] = sub_0200CE6C(v3, v4, &v2);
+        param0->unk_D0[v0] = SpriteActor_LoadResources(v3, v4, &v2);
 
         sub_0200D364(param0->unk_D0[v0], 0);
         sub_0200D330(param0->unk_D0[v0]);
         sub_0200D430(param0->unk_D0[v0], 4);
-        sub_0200D810(param0->unk_D0[v0], GX_OAM_MODE_XLU);
+        SpriteActor_SetOAMMode(param0->unk_D0[v0], GX_OAM_MODE_XLU);
         sub_0200D3F4(param0->unk_D0[v0], 0);
 
         ov116_02261CD8(&v2, 0, 0, 2, 0, 9000);
 
         v2.unk_2C = 2;
         v2.unk_08 = 20;
-        param0->unk_C8[v0] = sub_0200CE6C(v3, v4, &v2);
+        param0->unk_C8[v0] = SpriteActor_LoadResources(v3, v4, &v2);
 
         sub_0200D364(param0->unk_C8[v0], 6);
         sub_0200D330(param0->unk_C8[v0]);
         sub_0200D430(param0->unk_C8[v0], 0);
-        sub_0200D810(param0->unk_C8[v0], GX_OAM_MODE_XLU);
+        SpriteActor_SetOAMMode(param0->unk_C8[v0], GX_OAM_MODE_XLU);
         sub_0200D3F4(param0->unk_C8[v0], 0);
     }
 }
@@ -797,7 +797,7 @@ void ov116_02262840 (UnkStruct_ov116_02262A8C * param0)
 
     v2.unk_2C = 0;
     v2.unk_08 = 0;
-    param0->unk_D8 = sub_0200CE6C(v3, v4, &v2);
+    param0->unk_D8 = SpriteActor_LoadResources(v3, v4, &v2);
 
     sub_0200D364(param0->unk_D8, 1);
     sub_0200D3F4(param0->unk_D8, 1);

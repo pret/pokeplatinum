@@ -151,7 +151,7 @@ CellActorData * sub_0207CA58 (SpriteRenderer * param0, SpriteGfxHandler * param1
 
     v1 = *param3;
     v1.unk_0C = sub_0207C92C(param2);
-    v0 = sub_0200CE6C(param0, param1, &v1);
+    v0 = SpriteActor_LoadResources(param0, param1, &v1);
 
     return v0;
 }

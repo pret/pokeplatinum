@@ -441,7 +441,7 @@ static void sub_02083AD0 (GameWindowLayout * param0, int * param1)
     sub_0200D414(param0->unk_5B0[6], 0);
     sub_0200D50C(param0->unk_5B0[6], &v0, &v1);
     sub_0200D494(param0->unk_5B0[7], v0, v1);
-    sub_02021D6C(param0->unk_5B0[7], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B0F_0) + 2);
+    SpriteActor_SetSpriteAnimActive(param0->unk_5B0[7], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B0F_0) + 2);
     sub_02021CAC(param0->unk_5B0[7], 1);
     sub_0207F8F8(param0, param0->unk_B0F_0);
     sub_0200E084(&param0->unk_04[33], 1);
@@ -1020,7 +1020,7 @@ static int sub_02084A18 (GameWindowLayout * param0)
         sub_0200D414(param0->unk_5B0[6], 0);
         sub_0200D50C(param0->unk_5B0[6], &v0, &v1);
         sub_0200D494(param0->unk_5B0[7], v0, v1);
-        sub_02021D6C(param0->unk_5B0[7], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B0F_0) + 2);
+        SpriteActor_SetSpriteAnimActive(param0->unk_5B0[7], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B0F_0) + 2);
         sub_02021CAC(param0->unk_5B0[7], 1);
         sub_0207F8F8(param0, param0->unk_B0F_0);
         sub_020826E0(param0, 36, 1);

@@ -2006,7 +2006,7 @@ static void ov109_021D24C0 (UnkStruct_ov109_021D0F70 * param0)
 
 static CellActorData * ov109_021D24E0 (UnkStruct_ov109_021D0F70 * param0, const UnkStruct_ov104_0223F9E0 * param1)
 {
-    CellActorData * v0 = sub_0200CE6C(param0->unk_D94, param0->unk_D98, param1);
+    CellActorData * v0 = SpriteActor_LoadResources(param0->unk_D94, param0->unk_D98, param1);
     return v0;
 }
 

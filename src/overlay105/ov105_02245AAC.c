@@ -97,7 +97,7 @@ GraphicElementData * ov105_02245BA4 (UnkStruct_ov105_02245AAC * param0, u32 para
         v2 = sub_02021AA0(&v3);
 
         sub_02021CC8(v2, 1);
-        sub_02021D6C(v2, param2);
+        SpriteActor_SetSpriteAnimActive(v2, param2);
     }
 
     return v2;

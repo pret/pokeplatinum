@@ -249,17 +249,17 @@ static void ShowArrow (PartyGaugeArrow * param0, enum PartyGaugeSide param1, enu
 
     MI_CpuClear8(param0, sizeof(PartyGaugeArrow));
 
-    param0->cells = sub_0200CE6C(param3, param4, &Unk_ov16_02270A3C);
+    param0->cells = SpriteActor_LoadResources(param3, param4, &Unk_ov16_02270A3C);
 
     if (param1 == PARTY_GAUGE_OURS) {
-        sub_0200D4C4(param0->cells, (256 + 96), Unk_ov16_02270A2C[param2]);
-        sub_02021D6C(param0->cells->unk_00, 8);
+        SpriteActor_SetSpritePositionXY(param0->cells, (256 + 96), Unk_ov16_02270A2C[param2]);
+        SpriteActor_SetSpriteAnimActive(param0->cells->unk_00, 8);
     } else {
-        sub_0200D4C4(param0->cells, -96, Unk_ov16_02270A24[param2]);
-        sub_02021D6C(param0->cells->unk_00, 7);
+        SpriteActor_SetSpritePositionXY(param0->cells, -96, Unk_ov16_02270A24[param2]);
+        SpriteActor_SetSpriteAnimActive(param0->cells->unk_00, 7);
     }
 
-    sub_0200D324(param0->cells->unk_00);
+    SpriteActor_UpdateObject(param0->cells->unk_00);
 
     param0->side = param1;
     param0->position = param2;
@@ -278,7 +278,7 @@ static void ov16_0226D34C (SysTask * param0, void * param1)
     {
         s16 v1, v2;
 
-        sub_0200D550(v0->cells, &v1, &v2);
+        SpriteActor_GetSpritePositionXY(v0->cells, &v1, &v2);
         v0->x = v1 << 8;
     }
         v0->state++;
@@ -292,7 +292,7 @@ static void ov16_0226D34C (SysTask * param0, void * param1)
                 v0->state++;
             }
 
-            sub_0200D4C4(v0->cells, v0->x >> 8, Unk_ov16_02270A2C[v0->position]);
+            SpriteActor_SetSpritePositionXY(v0->cells, v0->x >> 8, Unk_ov16_02270A2C[v0->position]);
         } else {
             v0->x += 0x1200;
 
@@ -301,7 +301,7 @@ static void ov16_0226D34C (SysTask * param0, void * param1)
                 v0->state++;
             }
 
-            sub_0200D4C4(v0->cells, v0->x >> 8, Unk_ov16_02270A24[v0->position]);
+            SpriteActor_SetSpritePositionXY(v0->cells, v0->x >> 8, Unk_ov16_02270A24[v0->position]);
         }
         break;
     default:
@@ -336,11 +336,11 @@ static void ov16_0226D434 (SysTask * param0, void * param1)
     {
         s16 v1, v2;
 
-        sub_0200D550(v0->cells, &v1, &v2);
+        SpriteActor_GetSpritePositionXY(v0->cells, &v1, &v2);
         v0->x = v1 << 8;
     }
 
-        sub_0200D810(v0->cells, GX_OAM_MODE_XLU);
+        SpriteActor_SetOAMMode(v0->cells, GX_OAM_MODE_XLU);
 
         v0->alpha = 16 << 8;
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, (v0->alpha >> 8), 16 - (v0->alpha >> 8));
@@ -356,10 +356,10 @@ static void ov16_0226D434 (SysTask * param0, void * param1)
         if (v0->hideType == HIDE_ARROW_FADE_AND_SCROLL) {
             if (v0->side == PARTY_GAUGE_OURS) {
                 v0->x -= 0x400;
-                sub_0200D4C4(v0->cells, v0->x >> 8, Unk_ov16_02270A2C[v0->position]);
+                SpriteActor_SetSpritePositionXY(v0->cells, v0->x >> 8, Unk_ov16_02270A2C[v0->position]);
             } else {
                 v0->x += 0x400;
-                sub_0200D4C4(v0->cells, v0->x >> 8, Unk_ov16_02270A24[v0->position]);
+                SpriteActor_SetSpritePositionXY(v0->cells, v0->x >> 8, Unk_ov16_02270A24[v0->position]);
             }
         }
 
@@ -367,14 +367,14 @@ static void ov16_0226D434 (SysTask * param0, void * param1)
 
         if (v0->alpha <= 0) {
             v0->alpha = 0;
-            sub_0200D3EC(v0->cells->unk_00, 0);
+            SpriteActor_DrawSprite(v0->cells->unk_00, 0);
             v0->state++;
         }
 
         G2_ChangeBlendAlpha(v0->alpha >> 8, 16 - (v0->alpha >> 8));
         break;
     default:
-        ov16_0223F9F0();
+        Battle_SetDefaultBlend();
         SysTask_Done(param0);
         v0->task = NULL;
         return;
@@ -386,16 +386,16 @@ static void ShowPokeballs (PartyGaugePokeballs * param0, s8 * param1, enum Party
     GF_ASSERT(param0->cells == NULL && param0->task == NULL);
 
     MI_CpuClear8(param0, sizeof(PartyGaugePokeballs));
-    param0->cells = sub_0200CE6C(param7, param8, &Unk_ov16_02270A70);
+    param0->cells = SpriteActor_LoadResources(param7, param8, &Unk_ov16_02270A70);
 
     if (param2 == PARTY_GAUGE_OURS) {
-        sub_0200D4C4(param0->cells, (256 + 20), Unk_ov16_02270A34[param4]);
+        SpriteActor_SetSpritePositionXY(param0->cells, (256 + 20), Unk_ov16_02270A34[param4]);
     } else {
-        sub_0200D4C4(param0->cells, -20, Unk_ov16_02270A1C[param4]);
+        SpriteActor_SetSpritePositionXY(param0->cells, -20, Unk_ov16_02270A1C[param4]);
     }
 
-    sub_02021D6C(param0->cells->unk_00, param6);
-    sub_0200D324(param0->cells->unk_00);
+    SpriteActor_SetSpriteAnimActive(param0->cells->unk_00, param6);
+    SpriteActor_UpdateObject(param0->cells->unk_00);
 
     param0->side = param2;
     param0->ballSlot = param5;
@@ -432,7 +432,7 @@ static void ov16_0226D654 (SysTask * param0, void * param1)
     {
         s16 v1, v2;
 
-        sub_0200D550(v0->cells, &v1, &v2);
+        SpriteActor_GetSpritePositionXY(v0->cells, &v1, &v2);
         v0->xStart = v1 << 8;
     }
         v0->state++;
@@ -451,7 +451,7 @@ static void ov16_0226D654 (SysTask * param0, void * param1)
                 v0->state++;
             }
 
-            sub_0200D4C4(v0->cells, v0->xStart >> 8, Unk_ov16_02270A34[v0->position]);
+            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, Unk_ov16_02270A34[v0->position]);
         } else {
             v0->xStart += 0x1200;
 
@@ -460,10 +460,10 @@ static void ov16_0226D654 (SysTask * param0, void * param1)
                 v0->state++;
             }
 
-            sub_0200D4C4(v0->cells, v0->xStart >> 8, Unk_ov16_02270A1C[v0->position]);
+            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, Unk_ov16_02270A1C[v0->position]);
         }
 
-        sub_0200D324(v0->cells->unk_00);
+        SpriteActor_UpdateObject(v0->cells->unk_00);
         break;
     case 3:
 
@@ -472,14 +472,14 @@ static void ov16_0226D654 (SysTask * param0, void * param1)
 
     case 4:
         if (*(v0->pokeballCount) != 6) {
-            sub_0200D324(v0->cells->unk_00);
+            SpriteActor_UpdateObject(v0->cells->unk_00);
             break;
         }
 
         if (v0->side == PARTY_GAUGE_OURS) {
-            sub_02021E50(v0->cells->unk_00, 1);
+            SpriteActor_SetAnimFrame(v0->cells->unk_00, 1);
         } else {
-            sub_02021E50(v0->cells->unk_00, 1);
+            SpriteActor_SetAnimFrame(v0->cells->unk_00, 1);
         }
 
         v0->delay = 0;
@@ -491,7 +491,7 @@ static void ov16_0226D654 (SysTask * param0, void * param1)
             break;
         }
 
-        sub_02021D6C(v0->cells->unk_00, v0->flipAnimation);
+        SpriteActor_SetSpriteAnimActive(v0->cells->unk_00, v0->flipAnimation);
         v0->delay = 0;
         v0->state++;
     case 6:
@@ -503,7 +503,7 @@ static void ov16_0226D654 (SysTask * param0, void * param1)
                 v0->state++;
             }
 
-            sub_0200D4C4(v0->cells, v0->xStart >> 8, Unk_ov16_02270A34[v0->position]);
+            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, Unk_ov16_02270A34[v0->position]);
         } else {
             v0->xStart -= 0x600;
 
@@ -512,13 +512,13 @@ static void ov16_0226D654 (SysTask * param0, void * param1)
                 v0->state++;
             }
 
-            sub_0200D4C4(v0->cells, v0->xStart >> 8, Unk_ov16_02270A1C[v0->position]);
+            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, Unk_ov16_02270A1C[v0->position]);
         }
 
-        sub_0200D324(v0->cells->unk_00);
+        SpriteActor_UpdateObject(v0->cells->unk_00);
         break;
     default:
-        sub_02021E50(v0->cells->unk_00, 0);
+        SpriteActor_SetAnimFrame(v0->cells->unk_00, 0);
         SysTask_Done(param0);
         v0->task = NULL;
         return;
@@ -534,10 +534,10 @@ static void ov16_0226D854 (SysTask * param0, void * param1)
     {
         s16 v1, v2;
 
-        sub_0200D550(v0->cells, &v1, &v2);
+        SpriteActor_GetSpritePositionXY(v0->cells, &v1, &v2);
         v0->xStart = v1 << 8;
     }
-        sub_02021E50(v0->cells->unk_00, 0);
+        SpriteActor_SetAnimFrame(v0->cells->unk_00, 0);
         v0->state++;
     case 1:
         if (v0->delay > 0) {
@@ -553,7 +553,7 @@ static void ov16_0226D854 (SysTask * param0, void * param1)
                 v0->state++;
             }
 
-            sub_0200D4C4(v0->cells, v0->xStart >> 8, Unk_ov16_02270A34[v0->position]);
+            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, Unk_ov16_02270A34[v0->position]);
         } else {
             v0->xStart += 0x1200;
 
@@ -562,7 +562,7 @@ static void ov16_0226D854 (SysTask * param0, void * param1)
                 v0->state++;
             }
 
-            sub_0200D4C4(v0->cells, v0->xStart >> 8, Unk_ov16_02270A1C[v0->position]);
+            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, Unk_ov16_02270A1C[v0->position]);
         }
         break;
     default:
@@ -604,10 +604,10 @@ static void ov16_0226D99C (SysTask * param0, void * param1)
     {
         s16 v1, v2;
 
-        sub_0200D550(v0->cells, &v1, &v2);
+        SpriteActor_GetSpritePositionXY(v0->cells, &v1, &v2);
         v0->xStart = v1 << 8;
     }
-        sub_0200D810(v0->cells, GX_OAM_MODE_XLU);
+        SpriteActor_SetOAMMode(v0->cells, GX_OAM_MODE_XLU);
         v0->state++;
     case 1:
         if (v0->startDelay > 0) {
@@ -622,21 +622,21 @@ static void ov16_0226D99C (SysTask * param0, void * param1)
     case 2:
         if (v0->side == PARTY_GAUGE_OURS) {
             v0->xStart -= 0xc00;
-            sub_0200D4C4(v0->cells, v0->xStart >> 8, Unk_ov16_02270A34[v0->position]);
+            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, Unk_ov16_02270A34[v0->position]);
         } else {
             v0->xStart += 0xc00;
-            sub_0200D4C4(v0->cells, v0->xStart >> 8, Unk_ov16_02270A1C[v0->position]);
+            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, Unk_ov16_02270A1C[v0->position]);
         }
 
         if ((v0->xStart < -16 * 0x100) || (v0->xStart > ((256 + 16) << 8))) {
             v0->state++;
         }
 
-        sub_0200D324(v0->cells->unk_00);
+        SpriteActor_UpdateObject(v0->cells->unk_00);
         break;
     case 100:
     default:
-        sub_0200D3EC(v0->cells->unk_00, 0);
+        SpriteActor_DrawSprite(v0->cells->unk_00, 0);
         SysTask_Done(param0);
         v0->task = NULL;
         return;
@@ -653,13 +653,13 @@ static void ov16_0226DAAC (SysTask * param0, void * param1)
 
     switch (v0->state) {
     case 0:
-        sub_0200D810(v0->cells, GX_OAM_MODE_XLU);
+        SpriteActor_SetOAMMode(v0->cells, GX_OAM_MODE_XLU);
         v0->state++;
     case 1:
         break;
     case 100:
     default:
-        sub_0200D3EC(v0->cells->unk_00, 0);
+        SpriteActor_DrawSprite(v0->cells->unk_00, 0);
         SysTask_Done(param0);
         v0->task = NULL;
         return;

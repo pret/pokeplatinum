@@ -590,7 +590,7 @@ static void sub_0200EC9C (SysTask * param0, void * param1)
         return;
     case 2:
         v0->unk_1D3 = 3;
-        sub_02021D6C(v0->unk_1C8->unk_00, 1);
+        SpriteActor_SetSpriteAnimActive(v0->unk_1C8->unk_00, 1);
         break;
     case 3:
         if (sub_02021E74(v0->unk_1C8->unk_00) == 6) {

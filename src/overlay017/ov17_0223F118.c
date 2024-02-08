@@ -370,12 +370,12 @@ void ov17_0223F630 (UnkStruct_ov17_0223F6E8 * param0, SpriteRenderer * param1, S
     v1.unk_2C = param9;
 
     for (v0 = 0; v0 < 6; v0++) {
-        param0->unk_00[v0] = sub_0200CE6C(param1, param2, &v1);
+        param0->unk_00[v0] = SpriteActor_LoadResources(param1, param2, &v1);
 
-        sub_0200D4C4(param0->unk_00[v0], Unk_ov17_022531CC[v0].unk_00, Unk_ov17_022531CC[v0].unk_02);
+        SpriteActor_SetSpritePositionXY(param0->unk_00[v0], Unk_ov17_022531CC[v0].unk_00, Unk_ov17_022531CC[v0].unk_02);
         sub_0200D364(param0->unk_00[v0], Unk_ov17_022531CC[v0].unk_06);
         sub_0200D6A4(param0->unk_00[v0], 1);
-        sub_0200D324(param0->unk_00[v0]->unk_00);
+        SpriteActor_UpdateObject(param0->unk_00[v0]->unk_00);
     }
 
     param0->unk_18 = SysTask_Start(ov17_0223F6E8, param0, param10);

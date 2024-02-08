@@ -1635,7 +1635,7 @@ static void sub_02087A10 (UnkStruct_02087A10 * param0)
             param0->unk_390[v0] = sub_02021AA0(&v1);
 
             sub_02021CC8(param0->unk_390[v0], 1);
-            sub_02021D6C(param0->unk_390[v0], Unk_020F2984[v0][2]);
+            SpriteActor_SetSpriteAnimActive(param0->unk_390[v0], Unk_020F2984[v0][2]);
             sub_02021F58(param0->unk_390[v0], Unk_020F2984[v0][3]);
         }
 
@@ -1660,7 +1660,7 @@ static void sub_02087A10 (UnkStruct_02087A10 * param0)
             param0->unk_3C8[v0] = sub_02021AA0(&v1);
 
             sub_02021CC8(param0->unk_3C8[v0], 1);
-            sub_02021D6C(param0->unk_3C8[v0], 43);
+            SpriteActor_SetSpriteAnimActive(param0->unk_3C8[v0], 43);
         }
 
         sub_02088E1C(param0->unk_3C8, param0->unk_158, param0->unk_0C);
@@ -1682,29 +1682,29 @@ static void sub_02087BE4 (UnkStruct_02087A10 * param0, UnkStruct_ov115_02261520 
     switch (param0->unk_00) {
     case 0:
         if (param0->unk_04 == 0) {
-            sub_02021D6C(param0->unk_3F8[0], 48);
+            SpriteActor_SetSpriteAnimActive(param0->unk_3F8[0], 48);
         } else {
-            sub_02021D6C(param0->unk_3F8[0], 49);
+            SpriteActor_SetSpriteAnimActive(param0->unk_3F8[0], 49);
         }
         break;
     case 3:
-        sub_02021D6C(param0->unk_3F8[0], 51);
+        SpriteActor_SetSpriteAnimActive(param0->unk_3F8[0], 51);
         break;
     case 6:
-        sub_02021D6C(param0->unk_3F8[0], 55);
+        SpriteActor_SetSpriteAnimActive(param0->unk_3F8[0], 55);
         break;
     case 5:
-        sub_02021D6C(param0->unk_3F8[0], 54);
+        SpriteActor_SetSpriteAnimActive(param0->unk_3F8[0], 54);
         break;
     case 4:
     case 7:
-        sub_02021D6C(param0->unk_3F8[0], 53);
+        SpriteActor_SetSpriteAnimActive(param0->unk_3F8[0], 53);
         break;
     case 2:
-        sub_02021D6C(param0->unk_3F8[0], 47);
+        SpriteActor_SetSpriteAnimActive(param0->unk_3F8[0], 47);
         break;
     case 1:
-        sub_02021D6C(param0->unk_3F8[0], 50);
+        SpriteActor_SetSpriteAnimActive(param0->unk_3F8[0], 50);
 
         if (param0->unk_10 != 2) {
             param1->unk_08.x = FX32_ONE * ((10 * 8) + param0->unk_0C * 13);
@@ -1712,9 +1712,9 @@ static void sub_02087BE4 (UnkStruct_02087A10 * param0, UnkStruct_ov115_02261520 
             param0->unk_3F8[1] = sub_02021AA0(param1);
 
             if (param0->unk_10 == 0) {
-                sub_02021D6C(param0->unk_3F8[1], 45);
+                SpriteActor_SetSpriteAnimActive(param0->unk_3F8[1], 45);
             } else {
-                sub_02021D6C(param0->unk_3F8[1], 46);
+                SpriteActor_SetSpriteAnimActive(param0->unk_3F8[1], 46);
             }
         }
         break;
@@ -2036,7 +2036,7 @@ static void sub_02088454 (UnkStruct_02087A10 * param0, int param1)
         VecFx32 v0;
 
         if ((param0->unk_1C.unk_0C == 0) && (param0->unk_1C.unk_0C != param0->unk_1C.unk_04)) {
-            sub_02021D6C(param0->unk_390[8], 39);
+            SpriteActor_SetSpriteAnimActive(param0->unk_390[8], 39);
         }
 
         v0.x = FX32_ONE * (26 + param0->unk_1C.unk_00 * 16);
@@ -2049,13 +2049,13 @@ static void sub_02088454 (UnkStruct_02087A10 * param0, int param1)
         v1.x = FX32_ONE * Unk_020F251C[v2];
         v1.y = FX32_ONE * (88 - 20);
 
-        sub_02021D6C(param0->unk_390[8], Unk_020F24E8[v2]);
+        SpriteActor_SetSpriteAnimActive(param0->unk_390[8], Unk_020F24E8[v2]);
         sub_02021C50(param0->unk_390[8], &v1);
     }
 
     param0->unk_38 = 180;
 
-    sub_02021E50(param0->unk_390[8], 0);
+    SpriteActor_SetAnimFrame(param0->unk_390[8], 0);
 
     param0->unk_1C.unk_08 = param0->unk_1C.unk_00;
     param0->unk_1C.unk_0C = param0->unk_1C.unk_04;
@@ -2342,7 +2342,7 @@ static int sub_02088898 (UnkStruct_02087A10 * param0, u16 param1, int param2)
             sub_02021FE0(param0->unk_390[8], GX_OAM_MODE_XLU);
 
             G2_SetBlendAlpha(0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2, 8, 8);
-            sub_02021D6C(param0->unk_390[8], 60);
+            SpriteActor_SetSpriteAnimActive(param0->unk_390[8], 60);
 
             param0->unk_1C.unk_18 = 1;
 
@@ -2448,11 +2448,11 @@ static void sub_02088E1C (GraphicElementData ** param0, int param1, int param2)
     int v0;
 
     for (v0 = 0; v0 < param2; v0++) {
-        sub_02021D6C(param0[v0], 43);
+        SpriteActor_SetSpriteAnimActive(param0[v0], 43);
     }
 
     if (param1 != param2) {
-        sub_02021D6C(param0[param1], 44);
+        SpriteActor_SetSpriteAnimActive(param0[param1], 44);
     }
 }
 
@@ -2495,17 +2495,17 @@ static void sub_02088F40 (int param0[], GraphicElementData ** param1, int param2
     for (v0 = 0; v0 < 3; v0++) {
         if (param0[v0]) {
             for (v1 = 0; v1 < 3; v1++) {
-                sub_02021D6C(param1[v1], Unk_020F2984[v1][2]);
+                SpriteActor_SetSpriteAnimActive(param1[v1], Unk_020F2984[v1][2]);
             }
 
-            sub_02021D6C(param1[v0], Unk_020F2984[v0][2] - 3);
+            SpriteActor_SetSpriteAnimActive(param1[v0], Unk_020F2984[v0][2] - 3);
             break;
         }
     }
 
     for (v0 = 5; v0 < 7; v0++) {
         if (param0[v0]) {
-            sub_02021D6C(param1[v0], Unk_020F2984[v0][2] + 1);
+            SpriteActor_SetSpriteAnimActive(param1[v0], Unk_020F2984[v0][2] + 1);
         }
     }
 
@@ -2520,9 +2520,9 @@ static void sub_02088FD0 (UnkStruct_02087A10 * param0)
         if (param0->unk_158 == param0->unk_0C) {
             param0->unk_1C.unk_00 = 12;
             param0->unk_1C.unk_04 = 0;
-            sub_02021D6C(param0->unk_390[8], 39);
+            SpriteActor_SetSpriteAnimActive(param0->unk_390[8], 39);
         } else {
-            sub_02021D6C(param0->unk_390[8], 39);
+            SpriteActor_SetSpriteAnimActive(param0->unk_390[8], 39);
         }
 
         if (param0->unk_1C.unk_14 == 0) {

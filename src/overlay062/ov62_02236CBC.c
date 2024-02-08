@@ -77,9 +77,9 @@ static void ov62_02236CBC (UnkStruct_0208C06C * param0, int param1)
     UnkStruct_ov62_02236CBC * v0 = param0->unk_860;
 
     if (param1 == 0) {
-        sub_0200D4C4(v0->unk_9C[1].unk_08, 128, 232);
+        SpriteActor_SetSpritePositionXY(v0->unk_9C[1].unk_08, 128, 232);
     } else {
-        sub_0200D4C4(v0->unk_9C[1].unk_08, 80, 232);
+        SpriteActor_SetSpritePositionXY(v0->unk_9C[1].unk_08, 80, 232);
     }
 
     sub_020128C4(v0->unk_9C[1].unk_0C, 36, -8);
@@ -109,13 +109,13 @@ static void ov62_02236D48 (UnkStruct_0208C06C * param0)
     ov62_0223118C(&v0->unk_9C[1], &param0->unk_14, NNS_G2D_VRAM_TYPE_2DSUB);
     ov62_0223124C(&v0->unk_9C[1], &param0->unk_14, 3);
 
-    sub_0200D4C4(v0->unk_9C[1].unk_08, 128, 232);
+    SpriteActor_SetSpritePositionXY(v0->unk_9C[1].unk_08, 128, 232);
     sub_020128C4(v0->unk_9C[1].unk_0C, 36, -8);
     sub_020129D0(v0->unk_9C[1].unk_0C, 1);
 
     v0->unk_94[1] = ov62_022313E0(param0, NNS_G2D_VRAM_TYPE_2DSUB);
 
-    sub_0200D4C4(v0->unk_94[1], 220, 160 + 64);
+    SpriteActor_SetSpritePositionXY(v0->unk_94[1], 220, 160 + 64);
     sub_0200D364(v0->unk_94[1], 2);
     sub_0200D3F4(v0->unk_94[1], 0);
 
@@ -286,7 +286,7 @@ static void ov62_022371CC (UnkStruct_0208C06C * param0)
     v9.unk_14[3] = 165535;
 
     for (v0 = 0; v0 < 5; v0++) {
-        v4->unk_40[v0] = sub_0200CE6C(param0->unk_14.unk_04, param0->unk_14.unk_08, &v9);
+        v4->unk_40[v0] = SpriteActor_LoadResources(param0->unk_14.unk_04, param0->unk_14.unk_08, &v9);
         sub_0200D364(v4->unk_40[v0], 1);
         sub_0200D330(v4->unk_40[v0]);
         sub_0200D6E8(v4->unk_40[v0], v4->unk_04[v0], v4->unk_04[v0]);
@@ -304,7 +304,7 @@ static void ov62_022371CC (UnkStruct_0208C06C * param0)
             v9.unk_14[3] = 18181;
         }
 
-        v4->unk_54[v0] = sub_0200CE6C(param0->unk_14.unk_04, param0->unk_14.unk_08, &v9);
+        v4->unk_54[v0] = SpriteActor_LoadResources(param0->unk_14.unk_04, param0->unk_14.unk_08, &v9);
 
         if (v0 == 3) {
             sub_0200D364(v4->unk_54[v0], 0);
@@ -336,7 +336,7 @@ static void ov62_022371CC (UnkStruct_0208C06C * param0)
     }
 
     for (v0 = 0; v0 < 5; v0++) {
-        v4->unk_68[v0] = sub_0200CE6C(param0->unk_14.unk_04, param0->unk_14.unk_08, &v9);
+        v4->unk_68[v0] = SpriteActor_LoadResources(param0->unk_14.unk_04, param0->unk_14.unk_08, &v9);
 
         if (v3[v0] == 0) {
             sub_0200D364(v4->unk_68[v0], 5);
@@ -384,7 +384,7 @@ static void ov62_022371CC (UnkStruct_0208C06C * param0)
     }
 
     for (v0 = 0; v0 < 4 + 1; v0++) {
-        v4->unk_7C[v0] = sub_0200CE6C(param0->unk_14.unk_04, param0->unk_14.unk_08, &v9);
+        v4->unk_7C[v0] = SpriteActor_LoadResources(param0->unk_14.unk_04, param0->unk_14.unk_08, &v9);
 
         if (v2[v0] == 0) {
             if (v0 < v1) {
@@ -479,9 +479,9 @@ static BOOL ov62_022375A4 (UnkStruct_0208C06C * param0)
         v5 = (106 << FX32_SHIFT) - sub_0201D264(v0->unk_2C[v1]) * v0->unk_18[v1];
 
         sub_0200D614(v0->unk_68[v1], v4, v5);
-        sub_0200D550(v0->unk_68[v1], &v2, &v3);
-        sub_0200D4C4(v0->unk_40[v1], v2 - 32, v3 - 2);
-        sub_0200D4C4(v0->unk_54[v1], v2 + 16, v3 - 2);
+        SpriteActor_GetSpritePositionXY(v0->unk_68[v1], &v2, &v3);
+        SpriteActor_SetSpritePositionXY(v0->unk_40[v1], v2 - 32, v3 - 2);
+        SpriteActor_SetSpritePositionXY(v0->unk_54[v1], v2 + 16, v3 - 2);
         sub_0200D6E8(v0->unk_68[v1], v0->unk_04[v1], v0->unk_04[v1]);
         sub_0200D6E8(v0->unk_40[v1], v0->unk_04[v1], v0->unk_04[v1]);
         sub_0200D6E8(v0->unk_54[v1], v0->unk_04[v1], v0->unk_04[v1]);
@@ -529,9 +529,9 @@ static BOOL ov62_022376C4 (UnkStruct_0208C06C * param0)
         v5 = (106 << FX32_SHIFT) - sub_0201D264(v0->unk_2C[v1]) * v0->unk_18[v1];
 
         sub_0200D614(v0->unk_68[v1], v4, v5);
-        sub_0200D550(v0->unk_68[v1], &v2, &v3);
-        sub_0200D4C4(v0->unk_40[v1], v2 - 32, v3 - 2);
-        sub_0200D4C4(v0->unk_54[v1], v2 + 16, v3 - 2);
+        SpriteActor_GetSpritePositionXY(v0->unk_68[v1], &v2, &v3);
+        SpriteActor_SetSpritePositionXY(v0->unk_40[v1], v2 - 32, v3 - 2);
+        SpriteActor_SetSpritePositionXY(v0->unk_54[v1], v2 + 16, v3 - 2);
         sub_0200D6E8(v0->unk_68[v1], v0->unk_04[v1], v0->unk_04[v1]);
         sub_0200D6E8(v0->unk_40[v1], v0->unk_04[v1], v0->unk_04[v1]);
         sub_0200D6E8(v0->unk_54[v1], v0->unk_04[v1], v0->unk_04[v1]);
@@ -564,9 +564,9 @@ static void ov62_02237814 (UnkStruct_0208C06C * param0)
         v6 = v7[v1][1] << FX32_SHIFT;
 
         sub_0200D614(v0->unk_68[v1], v5, v6);
-        sub_0200D550(v0->unk_68[v1], &v3, &v4);
-        sub_0200D4C4(v0->unk_40[v1], v3 - 32, v4 - 2);
-        sub_0200D4C4(v0->unk_54[v1], v3 + 16, v4 - 2);
+        SpriteActor_GetSpritePositionXY(v0->unk_68[v1], &v3, &v4);
+        SpriteActor_SetSpritePositionXY(v0->unk_40[v1], v3 - 32, v4 - 2);
+        SpriteActor_SetSpritePositionXY(v0->unk_54[v1], v3 + 16, v4 - 2);
     }
 }
 

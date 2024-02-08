@@ -90,7 +90,7 @@ UnkStruct_ov16_0226DEEC * ov16_0226DEEC (SpriteRenderer * param0, SpriteGfxHandl
     v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov16_0226DEEC));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov16_0226DEEC));
 
-    v0->unk_00 = sub_0200CE6C(param0, param1, &v1);
+    v0->unk_00 = SpriteActor_LoadResources(param0, param1, &v1);
     sub_0200D3F4(v0->unk_00, 0);
 
     v0->unk_14 = (192 << FX32_SHIFT);

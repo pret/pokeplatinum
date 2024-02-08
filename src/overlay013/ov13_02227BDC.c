@@ -138,7 +138,7 @@ static CellActorData * ov13_02227D78 (UnkStruct_ov13_02227244 * param0, u32 para
     v0.unk_2C = 1;
     v0.unk_30 = 0;
 
-    return sub_0200CE6C(v1, param0->unk_30C, &v0);
+    return SpriteActor_LoadResources(v1, param0->unk_30C, &v0);
 }
 
 static void ov13_02227DE8 (UnkStruct_ov13_02227244 * param0)
@@ -169,7 +169,7 @@ void ov13_02227E08 (UnkStruct_ov13_02227244 * param0)
 static void ov13_02227E48 (CellActorData * param0, const int param1, const int param2)
 {
     sub_0200D3F4(param0, 1);
-    sub_0200D4C4(param0, param1, param2);
+    SpriteActor_SetSpritePositionXY(param0, param1, param2);
 }
 
 void ov13_02227E68 (UnkStruct_ov13_02227244 * param0, u32 param1)

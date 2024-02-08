@@ -941,10 +941,10 @@ static CellActorData * ov117_02263A00 (UnkStruct_ov117_02261280 * param0)
     UnkStruct_ov104_0223F9E0 v1;
 
     v1 = Unk_ov117_02266B38;
-    v0 = sub_0200CE6C(param0->unk_24, param0->unk_28, &v1);
+    v0 = SpriteActor_LoadResources(param0->unk_24, param0->unk_28, &v1);
 
     sub_0200D3F4(v0, 0);
-    sub_0200D324(v0->unk_00);
+    SpriteActor_UpdateObject(v0->unk_00);
 
     return v0;
 }
@@ -961,7 +961,7 @@ static void ov117_02263A6C (UnkStruct_ov117_022626B0 * param0, CellActorData * p
 
     sub_0200D500(param1, param0->unk_21C, (param0->unk_230 >> FX32_SHIFT) + Unk_ov117_02266B05[param0->unk_270].unk_02, ((192 + 160) << FX32_SHIFT));
     sub_0200D364(param1, v0);
-    sub_0200D324(param1->unk_00);
+    SpriteActor_UpdateObject(param1->unk_00);
 }
 
 static void ov117_02263AE4 (CellActorData * param0)

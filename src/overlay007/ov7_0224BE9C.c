@@ -661,7 +661,7 @@ static void ov7_0224C768 (UnkStruct_ov7_0224C768 * param0, BGL * param1, u32 par
         v3.unk_08.y = v4[v0] * FX32_ONE;
         param0->unk_158[v0] = sub_02021B90(&v3);
 
-        sub_02021D6C(param0->unk_158[v0], v0);
+        SpriteActor_SetSpriteAnimActive(param0->unk_158[v0], v0);
         sub_02021CC8(param0->unk_158[v0], 1);
     }
 }
