@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_UNK_0200C6E4_H
 #define POKEPLATINUM_UNK_0200C6E4_H
 
+#include "constants/palette.h"
+
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
@@ -39,16 +41,16 @@ BOOL sub_0200C8F0(SpriteRenderer * param0, SpriteGfxHandler * param1, const UnkS
 GraphicElementData * sub_0200CA08(SpriteRenderer * param0, SpriteGfxHandler * param1, const UnkStruct_ov7_0224F358 * param2);
 GraphicElementData * sub_0200CA44(SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, s16 param3, s16 param4, s16 param5, u16 param6, int param7, int param8, int param9, int param10, int param11, int param12, int param13);
 BOOL sub_0200CB30(SpriteRenderer * param0, SpriteGfxHandler * param1, const UnkStruct_ov104_02241308 * param2);
-BOOL sub_0200CBDC(SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, int param3, int param4, int param5, int param6);
-BOOL SpriteRenderer_LoadCharResObjFromOpenNarc(SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, int param3, int param4, int param5, int param6);
+BOOL sub_0200CBDC(SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, int param3, BOOL param4, int param5, int param6);
+BOOL SpriteRenderer_LoadCharResObjFromOpenNarc(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, NARC *narc, int fileID, BOOL compressed, int vram, int resID);
 s8 sub_0200CC9C(SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, int param3, int param4, int param5, int param6, int param7);
 s8 sub_0200CD0C(SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, int param3, int param4, int param5, int param6, int param7);
 u8 sub_0200CD7C(PaletteData * param0, int param1, SpriteRenderer * param2, SpriteGfxHandler * param3, int param4, int param5, int param6, int param7, int param8, int param9);
-u8 SpriteRenderer_LoadPalette(PaletteData * param0, int param1, SpriteRenderer * param2, SpriteGfxHandler * param3, NARC * param4, int param5, int param6, int param7, int param8, int param9);
+u8 SpriteRenderer_LoadPalette(PaletteData *palette, enum PaletteBufferId paletteBuffer, SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, NARC *narc, int fileID, BOOL compressed, int palID, int vram, int resID);
 BOOL sub_0200CE0C(SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, int param3, int param4, int param5);
-BOOL SpriteRenderer_LoadCellResObjFromOpenNarc(SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, int param3, int param4, int param5);
+BOOL SpriteRenderer_LoadCellResObjFromOpenNarc(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, NARC *narc, int fileID, BOOL compressed, int resID);
 BOOL sub_0200CE3C(SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, int param3, int param4, int param5);
-BOOL SpriteRenderer_LoadAnimResObjFromOpenNarc(SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, int param3, int param4, int param5);
+BOOL SpriteRenderer_LoadAnimResObjFromOpenNarc(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, NARC *narc, int fileID, BOOL compressed, int resID);
 CellActorData * sub_0200CE6C(SpriteRenderer * param0, SpriteGfxHandler * param1, const UnkStruct_ov104_0223F9E0 * param2);
 const NNSG2dImagePaletteProxy * sub_0200D04C(SpriteGfxHandler * param0, int param1);
 u32 sub_0200D05C(SpriteGfxHandler * param0, int param1, NNS_G2D_VRAM_TYPE param2);

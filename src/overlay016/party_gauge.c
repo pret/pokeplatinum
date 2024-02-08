@@ -5,6 +5,9 @@
 
 #include "assert.h"
 
+#include "constants/heap.h"
+#include "constants/palette.h"
+
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
@@ -60,20 +63,20 @@ typedef struct PartyGauge {
     s8 pokeballCount;
 } PartyGauge;
 
-static void ov16_0226D2A0(PartyGaugeArrow * param0, enum PartyGaugeSide param1, enum PartyGaugePosition param2, SpriteRenderer * param3, SpriteGfxHandler * param4);
-static void ov16_0226D3F8(PartyGaugeArrow * param0, enum HideArrowType param1);
-static void ov16_0226D540(PartyGaugePokeballs * param0, s8 * param1, enum PartyGaugeSide param2, enum ShowPartyGaugeType param3, enum PartyGaugePosition param4, int param5, int param6, SpriteRenderer * param7, SpriteGfxHandler * param8);
-static void ov16_0226D938(PartyGaugePokeballs * param0, int param1, enum HidePartyGaugeType param2, s16 * param3);
+static void ShowArrow(PartyGaugeArrow * param0, enum PartyGaugeSide param1, enum PartyGaugePosition param2, SpriteRenderer * param3, SpriteGfxHandler * param4);
+static void HideArrow(PartyGaugeArrow * param0, enum HideArrowType param1);
+static void ShowPokeballs(PartyGaugePokeballs * param0, s8 * param1, enum PartyGaugeSide param2, enum ShowPartyGaugeType param3, enum PartyGaugePosition param4, int param5, int param6, SpriteRenderer * param7, SpriteGfxHandler * param8);
+static void HidePokeballs(PartyGaugePokeballs * param0, int param1, enum HidePartyGaugeType param2, s16 * param3);
 static void ov16_0226D34C(SysTask * param0, void * param1);
 static void ov16_0226D434(SysTask * param0, void * param1);
 static void ov16_0226D654(SysTask * param0, void * param1);
 static void ov16_0226D854(SysTask * param0, void * param1);
 static void ov16_0226D99C(SysTask * param0, void * param1);
 static void ov16_0226DAAC(SysTask * param0, void * param1);
-static int ov16_0226DB04(int param0, enum PartyGaugeSide param1);
+static int PokeballsAnimationFrame(int param0, enum PartyGaugeSide param1);
 static int ov16_0226DB44(int param0);
-static PartyGauge * ov16_0226D160(void);
-static void ov16_0226D17C(PartyGauge * param0);
+static PartyGauge* NewPartyGauge(void);
+static void FreePartyGauge(PartyGauge *partyGauge);
 
 static const UnkStruct_ov104_0223F9E0 Unk_ov16_02270A3C = {
     0x0,
@@ -125,123 +128,122 @@ __attribute__((aligned(4))) static const u16 Unk_ov16_02270A1C[] = {
     0x32
 };
 
-void PartyGauge_LoadGraphics (SpriteRenderer * param0, SpriteGfxHandler * param1, PaletteData * param2)
+// TODO: naix?
+#define PARTY_GAUGE_NCLR        110
+#define PARTY_GAUGE_NCGR_BIN    340
+#define PARTY_GAUGE_NCER_BIN    341
+#define PARTY_GAUGE_NANR_BIN    342
+
+// TODO: enum?
+#define PARTY_GAUGE_PLTT_RES_ID 20037
+#define PARTY_GAUGE_CHAR_RES_ID 20413
+#define PARTY_GAUGE_CELL_RES_ID 20407
+#define PARTY_GAUGE_ANIM_RES_ID 20396
+
+void PartyGauge_LoadGraphics(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, PaletteData *palette)
 {
-    NARC * v0;
+    NARC *narc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
-    v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
+    SpriteRenderer_LoadPalette(palette, PLTTBUF_MAIN_OBJ, renderer, gfxHandler, narc, PARTY_GAUGE_NCLR, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, PARTY_GAUGE_PLTT_RES_ID);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(renderer, gfxHandler, narc, PARTY_GAUGE_NCGR_BIN, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, PARTY_GAUGE_CHAR_RES_ID);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(renderer, gfxHandler, narc, PARTY_GAUGE_NCER_BIN, TRUE, PARTY_GAUGE_CELL_RES_ID);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(renderer, gfxHandler, narc, PARTY_GAUGE_NANR_BIN, TRUE, PARTY_GAUGE_ANIM_RES_ID);
 
-    SpriteRenderer_LoadPalette(param2, 2, param0, param1, v0, 110, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20037);
-    SpriteRenderer_LoadCharResObjFromOpenNarc(param0, param1, v0, 340, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20413);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(param0, param1, v0, 341, 1, 20407);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0, param1, v0, 342, 1, 20396);
-    NARC_dtor(v0);
+    NARC_dtor(narc);
 }
 
-void PartyGauge_FreeGraphics (SpriteGfxHandler * param0)
+void PartyGauge_FreeGraphics(SpriteGfxHandler *gfxHandler)
 {
-    SpriteGfxHandler_UnloadCharObjById(param0, 20413);
-    SpriteGfxHandler_UnloadPlttObjById(param0, 20037);
-    SpriteGfxHandler_UnloadCellObjById(param0, 20407);
-    SpriteGfxHandler_UnloadAnimObjById(param0, 20396);
+    SpriteGfxHandler_UnloadCharObjById(gfxHandler, PARTY_GAUGE_CHAR_RES_ID);
+    SpriteGfxHandler_UnloadPlttObjById(gfxHandler, PARTY_GAUGE_PLTT_RES_ID);
+    SpriteGfxHandler_UnloadCellObjById(gfxHandler, PARTY_GAUGE_CELL_RES_ID);
+    SpriteGfxHandler_UnloadAnimObjById(gfxHandler, PARTY_GAUGE_ANIM_RES_ID);
 }
 
-static PartyGauge * ov16_0226D160 (void)
+static PartyGauge* NewPartyGauge()
 {
-    PartyGauge * v0;
-
-    v0 = Heap_AllocFromHeap(5, sizeof(PartyGauge));
-    MI_CpuClear8(v0, sizeof(PartyGauge));
-    return v0;
+    PartyGauge *gauge = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(PartyGauge));
+    MI_CpuClear8(gauge, sizeof(PartyGauge));
+    return gauge;
 }
 
-static void ov16_0226D17C (PartyGauge * param0)
+static void FreePartyGauge(PartyGauge *gauge)
 {
-    GF_ASSERT(param0->arrow.task == NULL);
-    Heap_FreeToHeap(param0);
+    GF_ASSERT(gauge->arrow.task == NULL);
+    Heap_FreeToHeap(gauge);
 }
 
-PartyGauge * PartyGauge_Show (u8 param0[], enum PartyGaugeSide param1, enum ShowPartyGaugeType param2, enum PartyGaugePosition param3, SpriteRenderer * param4, SpriteGfxHandler * param5)
+PartyGauge* PartyGauge_Show(u8 ballStatus[], enum PartyGaugeSide side, enum ShowPartyGaugeType showType, enum PartyGaugePosition pos, SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler)
 {
-    PartyGauge * v0;
-    int v1, v2;
+    PartyGauge *gauge = NewPartyGauge();
+    ShowArrow(&gauge->arrow, side, pos, renderer, gfxHandler);
 
-    v0 = ov16_0226D160();
-    ov16_0226D2A0(&v0->arrow, param1, param3, param4, param5);
-
-    for (v1 = 0; v1 < 6; v1++) {
-        v2 = ov16_0226DB04(param0[v1], param1);
-        ov16_0226D540(&v0->pokeballs[v1], &v0->pokeballCount, param1, param2, param3, v1, v2, param4, param5);
+    for (int slot = 0; slot < MAX_PARTY_SIZE; slot++) {
+        int frame = PokeballsAnimationFrame(ballStatus[slot], side);
+        ShowPokeballs(&gauge->pokeballs[slot], &gauge->pokeballCount, side, showType, pos, slot, frame, renderer, gfxHandler);
     }
 
-    return v0;
+    return gauge;
 }
 
-BOOL PartyGauge_ShowIsDone (PartyGauge * param0)
+BOOL PartyGauge_ShowIsDone(PartyGauge *gauge)
 {
-    int v0;
-
-    if (param0->arrow.task == NULL) {
-        for (v0 = 0; v0 < 6; v0++) {
-            if (param0->pokeballs[v0].task != NULL) {
+    int i;
+    if (gauge->arrow.task == NULL) {
+        for (i = 0; i < MAX_PARTY_SIZE; i++) {
+            if (gauge->pokeballs[i].task != NULL) {
                 break;
             }
         }
 
-        if (v0 == 6) {
-            return 1;
+        if (i == MAX_PARTY_SIZE) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-void PartyGauge_Hide (PartyGauge * param0, enum HideArrowType param1, enum HidePartyGaugeType param2)
+void PartyGauge_Hide(PartyGauge *gauge, enum HideArrowType hideArrowType, enum HidePartyGaugeType hideGaugeType)
 {
-    int v0;
+    GF_ASSERT(gauge != NULL);
 
-    GF_ASSERT(param0 != NULL);
-
-    ov16_0226D3F8(&param0->arrow, param1);
-
-    for (v0 = 0; v0 < 6; v0++) {
-        ov16_0226D938(&param0->pokeballs[v0], v0, param2, &param0->arrow.alpha);
+    HideArrow(&gauge->arrow, hideArrowType);
+    for (int i = 0; i < MAX_PARTY_SIZE; i++) {
+        HidePokeballs(&gauge->pokeballs[i], i, hideGaugeType, &gauge->arrow.alpha);
     }
 }
 
-BOOL PartyGauge_HideIsDone (PartyGauge * param0)
+BOOL PartyGauge_HideIsDone(PartyGauge *gauge)
 {
-    int v0;
-
-    if (param0->arrow.task == NULL) {
-        for (v0 = 0; v0 < 6; v0++) {
-            if (param0->pokeballs[v0].task != NULL) {
+    int i;
+    if (gauge->arrow.task == NULL) {
+        for (i = 0; i < MAX_PARTY_SIZE; i++) {
+            if (gauge->pokeballs[i].task != NULL) {
                 break;
             }
         }
 
-        if (v0 == 6) {
-            return 1;
+        if (i == MAX_PARTY_SIZE) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-void PartyGauge_Free (PartyGauge * param0)
+void PartyGauge_Free(PartyGauge *gauge)
 {
-    int v0;
+    sub_0200D0F4(gauge->arrow.cells);
 
-    sub_0200D0F4(param0->arrow.cells);
-
-    for (v0 = 0; v0 < 6; v0++) {
-        sub_0200D0F4(param0->pokeballs[v0].cells);
+    for (int i = 0; i < MAX_PARTY_SIZE; i++) {
+        sub_0200D0F4(gauge->pokeballs[i].cells);
     }
 
-    ov16_0226D17C(param0);
+    FreePartyGauge(gauge);
 }
 
-static void ov16_0226D2A0 (PartyGaugeArrow * param0, enum PartyGaugeSide param1, enum PartyGaugePosition param2, SpriteRenderer * param3, SpriteGfxHandler * param4)
+static void ShowArrow (PartyGaugeArrow * param0, enum PartyGaugeSide param1, enum PartyGaugePosition param2, SpriteRenderer * param3, SpriteGfxHandler * param4)
 {
     GF_ASSERT(param0->cells == NULL && param0->task == NULL);
 
@@ -309,7 +311,7 @@ static void ov16_0226D34C (SysTask * param0, void * param1)
     }
 }
 
-static void ov16_0226D3F8 (PartyGaugeArrow * param0, enum HideArrowType param1)
+static void HideArrow (PartyGaugeArrow * param0, enum HideArrowType param1)
 {
     GF_ASSERT(param0->cells != NULL && param0->task == NULL);
 
@@ -379,7 +381,7 @@ static void ov16_0226D434 (SysTask * param0, void * param1)
     }
 }
 
-static void ov16_0226D540 (PartyGaugePokeballs * param0, s8 * param1, enum PartyGaugeSide param2, enum ShowPartyGaugeType param3, enum PartyGaugePosition param4, int param5, int param6, SpriteRenderer * param7, SpriteGfxHandler * param8)
+static void ShowPokeballs (PartyGaugePokeballs * param0, s8 * param1, enum PartyGaugeSide param2, enum ShowPartyGaugeType param3, enum PartyGaugePosition param4, int param5, int param6, SpriteRenderer * param7, SpriteGfxHandler * param8)
 {
     GF_ASSERT(param0->cells == NULL && param0->task == NULL);
 
@@ -570,7 +572,7 @@ static void ov16_0226D854 (SysTask * param0, void * param1)
     }
 }
 
-static void ov16_0226D938 (PartyGaugePokeballs * param0, int param1, enum HidePartyGaugeType param2, s16 * param3)
+static void HidePokeballs (PartyGaugePokeballs * param0, int param1, enum HidePartyGaugeType param2, s16 * param3)
 {
     GF_ASSERT(param0->cells != NULL && param0->task == NULL);
 
@@ -664,7 +666,7 @@ static void ov16_0226DAAC (SysTask * param0, void * param1)
     }
 }
 
-static int ov16_0226DB04 (int param0, enum PartyGaugeSide param1)
+static int PokeballsAnimationFrame (int param0, enum PartyGaugeSide param1)
 {
     int v0;
 

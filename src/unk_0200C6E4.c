@@ -393,7 +393,7 @@ BOOL sub_0200CBDC (SpriteRenderer * param0, SpriteGfxHandler * param1, int param
     return (v0 == NULL) ? 0 : 1;
 }
 
-BOOL SpriteRenderer_LoadCharResObjFromOpenNarc (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, int param3, int param4, int param5, int param6)
+BOOL SpriteRenderer_LoadCharResObjFromOpenNarc (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, int param3, BOOL param4, int param5, int param6)
 {
     UnkStruct_02009DC8 * v0;
 
@@ -474,7 +474,7 @@ u8 sub_0200CD7C (PaletteData * param0, int param1, SpriteRenderer * param2, Spri
     return v0;
 }
 
-u8 SpriteRenderer_LoadPalette (PaletteData * param0, int param1, SpriteRenderer * param2, SpriteGfxHandler * param3, NARC * param4, int param5, int param6, int param7, int param8, int param9)
+u8 SpriteRenderer_LoadPalette (PaletteData * param0, enum PaletteBufferId param1, SpriteRenderer * param2, SpriteGfxHandler * param3, NARC * param4, int param5, BOOL param6, int param7, int param8, int param9)
 {
     int v0;
 
@@ -492,7 +492,7 @@ BOOL sub_0200CE0C (SpriteRenderer * param0, SpriteGfxHandler * param1, int param
     return sub_0200D11C(param0, param1, param2, param3, param4, 2, param5);
 }
 
-BOOL SpriteRenderer_LoadCellResObjFromOpenNarc (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, int param3, int param4, int param5)
+BOOL SpriteRenderer_LoadCellResObjFromOpenNarc (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, int param3, BOOL param4, int param5)
 {
     return sub_0200D18C(param0, param1, param2, param3, param4, 2, param5);
 }
@@ -502,7 +502,7 @@ BOOL sub_0200CE3C (SpriteRenderer * param0, SpriteGfxHandler * param1, int param
     return sub_0200D11C(param0, param1, param2, param3, param4, 3, param5);
 }
 
-BOOL SpriteRenderer_LoadAnimResObjFromOpenNarc (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, int param3, int param4, int param5)
+BOOL SpriteRenderer_LoadAnimResObjFromOpenNarc (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, int param3, BOOL param4, int param5)
 {
     return sub_0200D18C(param0, param1, param2, param3, param4, 3, param5);
 }
