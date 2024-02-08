@@ -32,7 +32,7 @@ u32 sub_0207A280 (const UnkStruct_02026324 * param0)
 u32 sub_0207A294 (u32 param0, u32 param1)
 {
     if (param0 == 0) {
-        return sub_020775A4(param1);
+        return Pokemon_GetSinnohDexNumber(param1);
     }
 
     return param1;

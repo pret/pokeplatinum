@@ -6606,7 +6606,7 @@ static BOOL sub_02044BE8 (UnkStruct_0203E724 * param0)
     *v1 = 25;
 
     for (v4 = 1, v5 = 0; v4 <= 493; v4++) {
-        if ((sub_02026FE8(v0, v4) == 1) && (sub_020775A4(v4) != 0)) {
+        if ((sub_02026FE8(v0, v4) == 1) && (Pokemon_GetSinnohDexNumber(v4) != 0)) {
             if (v5 == v3) {
                 *v1 = v4;
                 break;

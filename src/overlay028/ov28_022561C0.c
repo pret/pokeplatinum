@@ -640,7 +640,7 @@ static void ov28_02256914 (UnkStruct_ov28_02256210 * param0, const UnkStruct_ov2
         if (sub_02027474(v1)) {
             v2 = v0;
         } else {
-            v2 = sub_020775C4((u16)v0);
+            v2 = Pokemon_GetNationalDexNumber((u16)v0);
         }
 
         if (((v2 > 0) && (v2 <= 493)) && sub_02026FE8(v1, v2)) {
