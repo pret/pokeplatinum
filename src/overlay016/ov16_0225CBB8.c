@@ -5408,37 +5408,37 @@ static void ov16_022634DC (SysTask * param0, void * param1)
 static void ShowPartyGaugeTask (SysTask * param0, void * param1)
 {
     PartyGaugeTask * v0 = (PartyGaugeTask *)param1;
-    UnkEnum_ov16_0226D194 v1;
-    UnkEnum_ov16_0226D194_1 v2;
+    enum PartyGaugeSide v1;
+    enum ShowPartyGaugeType v2;
 
     if (Battler_Side(v0->battleSys, v0->battler) == 0) {
-        v1 = UnkEnum_ov16_0226D194_00;
+        v1 = PARTY_GAUGE_OURS;
     } else {
-        v1 = UnkEnum_ov16_0226D194_01;
+        v1 = PARTY_GAUGE_THEIRS;
     }
 
     switch (v0->state) {
     case 0:
     {
         UnkStruct_ov16_0226D160 * v3;
-        UnkEnum_ov16_0226D194_1 v4;
-        UnkEnum_ov16_0226D194_3 v5;
+        enum ShowPartyGaugeType v4;
+        enum PartyGaugePosition v5;
 
         if (v0->midBattle == 0) {
-            v4 = UnkEnum_ov16_0226D194_1_00;
-            v5 = UnkEnum_ov16_0226D194_3_01;
+            v4 = SHOW_PARTY_GAUGE_BATTLE_START;
+            v5 = PARTY_GAUGE_POSITION_MIDDLE;
         } else {
-            v4 = UnkEnum_ov16_0226D194_1_01;
+            v4 = SHOW_PARTY_GAUGE_MID_BATTLE;
 
             switch (v0->battlerType) {
             case 3:
-                v5 = UnkEnum_ov16_0226D194_3_00;
+                v5 = PARTY_GAUGE_POSITION_HIGH;
                 break;
             case 5:
-                v5 = UnkEnum_ov16_0226D194_3_02;
+                v5 = PARTY_GAUGE_POSITION_LOW;
                 break;
             default:
-                v5 = UnkEnum_ov16_0226D194_3_01;
+                v5 = PARTY_GAUGE_POSITION_MIDDLE;
                 break;
             }
         }
@@ -5464,15 +5464,15 @@ static void ShowPartyGaugeTask (SysTask * param0, void * param1)
 static void HidePartyGaugeTask (SysTask * param0, void * param1)
 {
     PartyGaugeTask * v0 = (PartyGaugeTask *)param1;
-    UnkEnum_ov16_0226D194 v1;
+    enum PartyGaugeSide v1;
     UnkStruct_ov16_0226D160 * v2;
-    UnkEnum_ov16_0226D220 v3;
-    UnkEnum_ov16_0226D194_2 v4;
+    enum HideArrowType v3;
+    enum HidePartyGaugeType v4;
 
     if (Battler_Side(v0->battleSys, v0->battler) == 0) {
-        v1 = UnkEnum_ov16_0226D194_00;
+        v1 = PARTY_GAUGE_OURS;
     } else {
-        v1 = UnkEnum_ov16_0226D194_01;
+        v1 = PARTY_GAUGE_THEIRS;
     }
 
     v2 = ov16_0223E034(v0->battleSys, v1);
@@ -5480,11 +5480,11 @@ static void HidePartyGaugeTask (SysTask * param0, void * param1)
     switch (v0->state) {
     case 0:
         if (v0->midBattle == 0) {
-            v3 = UnkEnum_ov16_0226D220_00;
-            v4 = UnkEnum_ov16_0226D194_2_00;
+            v3 = HIDE_ARROW_FADE_AND_SCROLL;
+            v4 = HIDE_PARTY_GAUGE_BATTLE_START;
         } else {
-            v3 = UnkEnum_ov16_0226D220_01;
-            v4 = UnkEnum_ov16_0226D194_2_01;
+            v3 = HIDE_ARROW_FADE_IN_PLACE;
+            v4 = HIDE_PARTY_GAUGE_MID_BATTLE;
         }
 
         ov16_0226D220(v2, v3, v4);

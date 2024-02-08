@@ -26,9 +26,9 @@
 typedef struct {
     CellActorData * unk_00;
     SysTask * unk_04;
-    UnkEnum_ov16_0226D220 unk_08;
-    UnkEnum_ov16_0226D194 unk_0C;
-    UnkEnum_ov16_0226D194_3 unk_10;
+    enum HideArrowType unk_08;
+    enum PartyGaugeSide unk_0C;
+    enum PartyGaugePosition unk_10;
     s32 unk_14;
     s16 unk_18;
     u8 unk_1A;
@@ -38,9 +38,9 @@ typedef struct {
 typedef struct {
     CellActorData * unk_00;
     SysTask * unk_04;
-    UnkEnum_ov16_0226D194 unk_08;
-    UnkEnum_ov16_0226D194_3 unk_0C;
-    UnkEnum_ov16_0226D194_2 unk_10;
+    enum PartyGaugeSide unk_08;
+    enum PartyGaugePosition unk_0C;
+    enum HidePartyGaugeType unk_10;
     s8 * unk_14;
     s16 * unk_18;
     s32 unk_1C;
@@ -60,17 +60,17 @@ typedef struct UnkStruct_ov16_0226D160_t {
     s8 unk_13C;
 } UnkStruct_ov16_0226D160;
 
-static void ov16_0226D2A0(UnkStruct_ov16_0226D2A0 * param0, UnkEnum_ov16_0226D194 param1, UnkEnum_ov16_0226D194_3 param2, CellTransferStateData * param3, AnimationResourceCollection * param4);
-static void ov16_0226D3F8(UnkStruct_ov16_0226D2A0 * param0, UnkEnum_ov16_0226D220 param1);
-static void ov16_0226D540(UnkStruct_ov16_0226D540 * param0, s8 * param1, UnkEnum_ov16_0226D194 param2, UnkEnum_ov16_0226D194_1 param3, UnkEnum_ov16_0226D194_3 param4, int param5, int param6, CellTransferStateData * param7, AnimationResourceCollection * param8);
-static void ov16_0226D938(UnkStruct_ov16_0226D540 * param0, int param1, UnkEnum_ov16_0226D194_2 param2, s16 * param3);
+static void ov16_0226D2A0(UnkStruct_ov16_0226D2A0 * param0, enum PartyGaugeSide param1, enum PartyGaugePosition param2, CellTransferStateData * param3, AnimationResourceCollection * param4);
+static void ov16_0226D3F8(UnkStruct_ov16_0226D2A0 * param0, enum HideArrowType param1);
+static void ov16_0226D540(UnkStruct_ov16_0226D540 * param0, s8 * param1, enum PartyGaugeSide param2, enum ShowPartyGaugeType param3, enum PartyGaugePosition param4, int param5, int param6, CellTransferStateData * param7, AnimationResourceCollection * param8);
+static void ov16_0226D938(UnkStruct_ov16_0226D540 * param0, int param1, enum HidePartyGaugeType param2, s16 * param3);
 static void ov16_0226D34C(SysTask * param0, void * param1);
 static void ov16_0226D434(SysTask * param0, void * param1);
 static void ov16_0226D654(SysTask * param0, void * param1);
 static void ov16_0226D854(SysTask * param0, void * param1);
 static void ov16_0226D99C(SysTask * param0, void * param1);
 static void ov16_0226DAAC(SysTask * param0, void * param1);
-static int ov16_0226DB04(int param0, UnkEnum_ov16_0226D194 param1);
+static int ov16_0226DB04(int param0, enum PartyGaugeSide param1);
 static int ov16_0226DB44(int param0);
 static UnkStruct_ov16_0226D160 * ov16_0226D160(void);
 static void ov16_0226D17C(UnkStruct_ov16_0226D160 * param0);
@@ -161,7 +161,7 @@ static void ov16_0226D17C (UnkStruct_ov16_0226D160 * param0)
     Heap_FreeToHeap(param0);
 }
 
-UnkStruct_ov16_0226D160 * ov16_0226D194 (u8 param0[], UnkEnum_ov16_0226D194 param1, UnkEnum_ov16_0226D194_1 param2, UnkEnum_ov16_0226D194_3 param3, CellTransferStateData * param4, AnimationResourceCollection * param5)
+UnkStruct_ov16_0226D160 * ov16_0226D194 (u8 param0[], enum PartyGaugeSide param1, enum ShowPartyGaugeType param2, enum PartyGaugePosition param3, CellTransferStateData * param4, AnimationResourceCollection * param5)
 {
     UnkStruct_ov16_0226D160 * v0;
     int v1, v2;
@@ -196,7 +196,7 @@ BOOL ov16_0226D1FC (UnkStruct_ov16_0226D160 * param0)
     return 0;
 }
 
-void ov16_0226D220 (UnkStruct_ov16_0226D160 * param0, UnkEnum_ov16_0226D220 param1, UnkEnum_ov16_0226D194_2 param2)
+void ov16_0226D220 (UnkStruct_ov16_0226D160 * param0, enum HideArrowType param1, enum HidePartyGaugeType param2)
 {
     int v0;
 
@@ -241,7 +241,7 @@ void ov16_0226D27C (UnkStruct_ov16_0226D160 * param0)
     ov16_0226D17C(param0);
 }
 
-static void ov16_0226D2A0 (UnkStruct_ov16_0226D2A0 * param0, UnkEnum_ov16_0226D194 param1, UnkEnum_ov16_0226D194_3 param2, CellTransferStateData * param3, AnimationResourceCollection * param4)
+static void ov16_0226D2A0 (UnkStruct_ov16_0226D2A0 * param0, enum PartyGaugeSide param1, enum PartyGaugePosition param2, CellTransferStateData * param3, AnimationResourceCollection * param4)
 {
     GF_ASSERT(param0->unk_00 == NULL && param0->unk_04 == NULL);
 
@@ -249,7 +249,7 @@ static void ov16_0226D2A0 (UnkStruct_ov16_0226D2A0 * param0, UnkEnum_ov16_0226D1
 
     param0->unk_00 = sub_0200CE6C(param3, param4, &Unk_ov16_02270A3C);
 
-    if (param1 == UnkEnum_ov16_0226D194_00) {
+    if (param1 == PARTY_GAUGE_OURS) {
         sub_0200D4C4(param0->unk_00, (256 + 96), Unk_ov16_02270A2C[param2]);
         sub_02021D6C(param0->unk_00->unk_00, 8);
     } else {
@@ -282,7 +282,7 @@ static void ov16_0226D34C (SysTask * param0, void * param1)
         v0->unk_1A++;
 
     case 1:
-        if (v0->unk_0C == UnkEnum_ov16_0226D194_00) {
+        if (v0->unk_0C == PARTY_GAUGE_OURS) {
             v0->unk_14 -= 0x1200;
 
             if (v0->unk_14 <= (256 - 32) << 8) {
@@ -309,14 +309,14 @@ static void ov16_0226D34C (SysTask * param0, void * param1)
     }
 }
 
-static void ov16_0226D3F8 (UnkStruct_ov16_0226D2A0 * param0, UnkEnum_ov16_0226D220 param1)
+static void ov16_0226D3F8 (UnkStruct_ov16_0226D2A0 * param0, enum HideArrowType param1)
 {
     GF_ASSERT(param0->unk_00 != NULL && param0->unk_04 == NULL);
 
     param0->unk_1A = 0;
     param0->unk_08 = param1;
 
-    if (param1 == UnkEnum_ov16_0226D220_00) {
+    if (param1 == HIDE_ARROW_FADE_AND_SCROLL) {
         param0->unk_1B = 4;
     } else {
         param0->unk_1B = 0;
@@ -351,8 +351,8 @@ static void ov16_0226D434 (SysTask * param0, void * param1)
 
         v0->unk_1A++;
     case 2:
-        if (v0->unk_08 == UnkEnum_ov16_0226D220_00) {
-            if (v0->unk_0C == UnkEnum_ov16_0226D194_00) {
+        if (v0->unk_08 == HIDE_ARROW_FADE_AND_SCROLL) {
+            if (v0->unk_0C == PARTY_GAUGE_OURS) {
                 v0->unk_14 -= 0x400;
                 sub_0200D4C4(v0->unk_00, v0->unk_14 >> 8, Unk_ov16_02270A2C[v0->unk_10]);
             } else {
@@ -379,14 +379,14 @@ static void ov16_0226D434 (SysTask * param0, void * param1)
     }
 }
 
-static void ov16_0226D540 (UnkStruct_ov16_0226D540 * param0, s8 * param1, UnkEnum_ov16_0226D194 param2, UnkEnum_ov16_0226D194_1 param3, UnkEnum_ov16_0226D194_3 param4, int param5, int param6, CellTransferStateData * param7, AnimationResourceCollection * param8)
+static void ov16_0226D540 (UnkStruct_ov16_0226D540 * param0, s8 * param1, enum PartyGaugeSide param2, enum ShowPartyGaugeType param3, enum PartyGaugePosition param4, int param5, int param6, CellTransferStateData * param7, AnimationResourceCollection * param8)
 {
     GF_ASSERT(param0->unk_00 == NULL && param0->unk_04 == NULL);
 
     MI_CpuClear8(param0, sizeof(UnkStruct_ov16_0226D540));
     param0->unk_00 = sub_0200CE6C(param7, param8, &Unk_ov16_02270A70);
 
-    if (param2 == UnkEnum_ov16_0226D194_00) {
+    if (param2 == PARTY_GAUGE_OURS) {
         sub_0200D4C4(param0->unk_00, (256 + 20), Unk_ov16_02270A34[param4]);
     } else {
         sub_0200D4C4(param0->unk_00, -20, Unk_ov16_02270A1C[param4]);
@@ -402,7 +402,7 @@ static void ov16_0226D540 (UnkStruct_ov16_0226D540 * param0, s8 * param1, UnkEnu
     param0->unk_14 = param1;
     param0->unk_2A = ((param6 == 6) ? 1811 : 1810);
 
-    if (param2 == UnkEnum_ov16_0226D194_00) {
+    if (param2 == PARTY_GAUGE_OURS) {
         param0->unk_20 = (256 - 128 + 20 + 14) + param5 * 16;
         param0->unk_24 = (256 - 128 + 20 + 14) + param5 * 15 - 6;
     } else {
@@ -412,7 +412,7 @@ static void ov16_0226D540 (UnkStruct_ov16_0226D540 * param0, s8 * param1, UnkEnu
 
     param0->unk_2C = 0;
 
-    if (param3 == UnkEnum_ov16_0226D194_1_00) {
+    if (param3 == SHOW_PARTY_GAUGE_BATTLE_START) {
         param0->unk_28 = 3 * param5 + 5;
         param0->unk_04 = SysTask_Start(ov16_0226D654, param0, (500 + 1));
     } else {
@@ -440,7 +440,7 @@ static void ov16_0226D654 (SysTask * param0, void * param1)
             break;
         }
     case 2:
-        if (v0->unk_08 == UnkEnum_ov16_0226D194_00) {
+        if (v0->unk_08 == PARTY_GAUGE_OURS) {
             v0->unk_1C -= 0x1200;
 
             if (v0->unk_1C <= v0->unk_24 << 8) {
@@ -474,7 +474,7 @@ static void ov16_0226D654 (SysTask * param0, void * param1)
             break;
         }
 
-        if (v0->unk_08 == UnkEnum_ov16_0226D194_00) {
+        if (v0->unk_08 == PARTY_GAUGE_OURS) {
             sub_02021E50(v0->unk_00->unk_00, 1);
         } else {
             sub_02021E50(v0->unk_00->unk_00, 1);
@@ -493,7 +493,7 @@ static void ov16_0226D654 (SysTask * param0, void * param1)
         v0->unk_28 = 0;
         v0->unk_2C++;
     case 6:
-        if (v0->unk_08 == UnkEnum_ov16_0226D194_00) {
+        if (v0->unk_08 == PARTY_GAUGE_OURS) {
             v0->unk_1C += 0x600;
 
             if (v0->unk_1C >= v0->unk_20 << 8) {
@@ -543,7 +543,7 @@ static void ov16_0226D854 (SysTask * param0, void * param1)
             break;
         }
     case 2:
-        if (v0->unk_08 == UnkEnum_ov16_0226D194_00) {
+        if (v0->unk_08 == PARTY_GAUGE_OURS) {
             v0->unk_1C -= 0x1200;
 
             if (v0->unk_1C <= v0->unk_20 << 8) {
@@ -570,13 +570,13 @@ static void ov16_0226D854 (SysTask * param0, void * param1)
     }
 }
 
-static void ov16_0226D938 (UnkStruct_ov16_0226D540 * param0, int param1, UnkEnum_ov16_0226D194_2 param2, s16 * param3)
+static void ov16_0226D938 (UnkStruct_ov16_0226D540 * param0, int param1, enum HidePartyGaugeType param2, s16 * param3)
 {
     GF_ASSERT(param0->unk_00 != NULL && param0->unk_04 == NULL);
 
     param0->unk_2C = 0;
 
-    if (param2 == UnkEnum_ov16_0226D194_2_00) {
+    if (param2 == HIDE_PARTY_GAUGE_BATTLE_START) {
         param0->unk_18 = param3;
         param0->unk_28 = 3 * param1;
         param0->unk_2F = 4;
@@ -618,7 +618,7 @@ static void ov16_0226D99C (SysTask * param0, void * param1)
             break;
         }
     case 2:
-        if (v0->unk_08 == UnkEnum_ov16_0226D194_00) {
+        if (v0->unk_08 == PARTY_GAUGE_OURS) {
             v0->unk_1C -= 0xc00;
             sub_0200D4C4(v0->unk_00, v0->unk_1C >> 8, Unk_ov16_02270A34[v0->unk_0C]);
         } else {
@@ -664,7 +664,7 @@ static void ov16_0226DAAC (SysTask * param0, void * param1)
     }
 }
 
-static int ov16_0226DB04 (int param0, UnkEnum_ov16_0226D194 param1)
+static int ov16_0226DB04 (int param0, enum PartyGaugeSide param1)
 {
     int v0;
 
@@ -674,13 +674,13 @@ static int ov16_0226DB04 (int param0, UnkEnum_ov16_0226D194 param1)
         v0 = 6;
         break;
     case 1:
-        v0 = (param1 == UnkEnum_ov16_0226D194_00) ? 3 : 0;
+        v0 = (param1 == PARTY_GAUGE_OURS) ? 3 : 0;
         break;
     case 2:
-        v0 = (param1 == UnkEnum_ov16_0226D194_00) ? 5 : 2;
+        v0 = (param1 == PARTY_GAUGE_OURS) ? 5 : 2;
         break;
     case 3:
-        v0 = (param1 == UnkEnum_ov16_0226D194_00) ? 4 : 1;
+        v0 = (param1 == PARTY_GAUGE_OURS) ? 4 : 1;
         break;
     }
 

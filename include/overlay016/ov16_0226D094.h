@@ -8,11 +8,37 @@
 
 #include "enums.h"
 
+enum PartyGaugeSide {
+    PARTY_GAUGE_OURS,
+    PARTY_GAUGE_THEIRS,
+};
+
+enum ShowPartyGaugeType {
+    SHOW_PARTY_GAUGE_BATTLE_START,
+    SHOW_PARTY_GAUGE_MID_BATTLE,
+};
+
+enum HidePartyGaugeType {
+    HIDE_PARTY_GAUGE_BATTLE_START,
+    HIDE_PARTY_GAUGE_MID_BATTLE,
+};
+
+enum PartyGaugePosition {
+    PARTY_GAUGE_POSITION_HIGH,
+    PARTY_GAUGE_POSITION_MIDDLE,
+    PARTY_GAUGE_POSITION_LOW,
+};
+
+enum HideArrowType {
+    HIDE_ARROW_FADE_AND_SCROLL,
+    HIDE_ARROW_FADE_IN_PLACE,
+};
+
 void ov16_0226D094(CellTransferStateData * param0, AnimationResourceCollection * param1, PaletteSys * param2);
 void ov16_0226D12C(AnimationResourceCollection * param0);
-UnkStruct_ov16_0226D160 * ov16_0226D194(u8 param0[], UnkEnum_ov16_0226D194 param1, UnkEnum_ov16_0226D194_1 param2, UnkEnum_ov16_0226D194_3 param3, CellTransferStateData * param4, AnimationResourceCollection * param5);
+UnkStruct_ov16_0226D160 * ov16_0226D194(u8 param0[], enum PartyGaugeSide param1, enum ShowPartyGaugeType param2, enum PartyGaugePosition param3, CellTransferStateData * param4, AnimationResourceCollection * param5);
 BOOL ov16_0226D1FC(UnkStruct_ov16_0226D160 * param0);
-void ov16_0226D220(UnkStruct_ov16_0226D160 * param0, UnkEnum_ov16_0226D220 param1, UnkEnum_ov16_0226D194_2 param2);
+void ov16_0226D220(UnkStruct_ov16_0226D160 * param0, enum HideArrowType param1, enum HidePartyGaugeType param2);
 BOOL ov16_0226D258(UnkStruct_ov16_0226D160 * param0);
 void ov16_0226D27C(UnkStruct_ov16_0226D160 * param0);
 

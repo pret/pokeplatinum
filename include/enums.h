@@ -268,32 +268,6 @@ typedef enum {
     UnkEnum_ov66_022324D0_12 = UnkEnum_ov66_022324D0_02 + 1,
 } UnkEnum_ov66_022324D0;
 
-typedef enum {
-    UnkEnum_ov16_0226D194_00,
-    UnkEnum_ov16_0226D194_01,
-} UnkEnum_ov16_0226D194;
-
-typedef enum {
-    UnkEnum_ov16_0226D220_00,
-    UnkEnum_ov16_0226D220_01,
-} UnkEnum_ov16_0226D220;
-
-typedef enum {
-    UnkEnum_ov16_0226D194_1_00,
-    UnkEnum_ov16_0226D194_1_01,
-} UnkEnum_ov16_0226D194_1;
-
-typedef enum {
-    UnkEnum_ov16_0226D194_2_00,
-    UnkEnum_ov16_0226D194_2_01,
-} UnkEnum_ov16_0226D194_2;
-
-typedef enum {
-    UnkEnum_ov16_0226D194_3_00,
-    UnkEnum_ov16_0226D194_3_01,
-    UnkEnum_ov16_0226D194_3_02,
-} UnkEnum_ov16_0226D194_3;
-
 enum {
     GX_BLEND_BGALL = GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3,
     GX_BLEND_ALL   = GX_BLEND_BGALL | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD,

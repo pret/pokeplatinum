@@ -37,6 +37,8 @@
 #include "overlay016/struct_ov16_02268A14_decl.h"
 #include "overlay016/struct_ov16_0226D160_decl.h"
 
+#include "overlay016/ov16_0226D094.h"
+
 #include "enums.h"
 
 #define ENEMY_IN_SLOT_RIGHT 0
@@ -84,8 +86,8 @@ CellTransferStateData * ov16_0223E010(BattleSystem * param0);
 AnimationResourceCollection * ov16_0223E018(BattleSystem * param0);
 UnkStruct_ov16_02268520 * ov16_0223E020(BattleSystem * param0, int param1);
 UnkStruct_ov16_02268A14 * ov16_0223E02C(BattleSystem * param0);
-UnkStruct_ov16_0226D160 * ov16_0223E034(BattleSystem * param0, UnkEnum_ov16_0226D194 param1);
-void ov16_0223E040(BattleSystem * param0, UnkEnum_ov16_0226D194 param1, UnkStruct_ov16_0226D160 * param2);
+UnkStruct_ov16_0226D160 * ov16_0223E034(BattleSystem * param0, enum PartyGaugeSide param1);
+void ov16_0223E040(BattleSystem * param0, enum PartyGaugeSide param1, UnkStruct_ov16_0226D160 * param2);
 UnkStruct_0200C440 * ov16_0223E04C(BattleSystem * param0);
 UnkStruct_0200C440 * ov16_0223E054(BattleSystem * param0);
 MessageLoader * BattleSystem_MessageLoader(BattleSystem * param0);
