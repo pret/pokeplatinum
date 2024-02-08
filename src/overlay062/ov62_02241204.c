@@ -568,7 +568,7 @@ static void ov62_022414C0 (UnkStruct_0208C06C * param0)
             continue;
         }
 
-        sub_0200D070(param0->unk_14.unk_08, 100000 + v4[v0]);
+        SpriteGfxHandler_UnloadCharObjById(param0->unk_14.unk_08, 100000 + v4[v0]);
     }
 
     ov62_02234540(param0, 0);

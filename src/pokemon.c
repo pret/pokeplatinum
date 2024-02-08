@@ -3158,10 +3158,10 @@ CellActorData *sub_02076994(SpriteRenderer *param0, SpriteGfxHandler *param1, Pa
 
     narc = NARC_ctor(v3.unk_00, heapID);
 
-    sub_0200CC3C(param0, param1, narc, v3.unk_04, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 20015 + param7);
-    sub_0200CDC4(param2, 2, param0, param1, narc, v3.unk_08, 0, v4, NNS_G2D_VRAM_TYPE_2DMAIN, 20010 + param7);
-    sub_0200CE24(param0, param1, narc, v3.unk_0C, 0, 20007 + param7);
-    sub_0200CE54(param0, param1, narc, v3.unk_10, 0, 20007 + param7);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(param0, param1, narc, v3.unk_04, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 20015 + param7);
+    SpriteRenderer_LoadPalette(param2, 2, param0, param1, narc, v3.unk_08, 0, v4, NNS_G2D_VRAM_TYPE_2DMAIN, 20010 + param7);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(param0, param1, narc, v3.unk_0C, 0, 20007 + param7);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0, param1, narc, v3.unk_10, 0, 20007 + param7);
     NARC_dtor(narc);
 
     v0 = Unk_020F05E4;

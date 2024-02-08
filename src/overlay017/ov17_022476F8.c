@@ -100,16 +100,16 @@ void ov17_02247734 (UnkStruct_ov17_022476F8 * param0)
 
 void ov17_0224774C (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2)
 {
-    sub_0200CC3C(param0, param1, param2, 67, 1, NNS_G2D_VRAM_TYPE_2DSUB, 33002);
-    sub_0200CE24(param0, param1, param2, 68, 1, 33002);
-    sub_0200CE54(param0, param1, param2, 69, 1, 33002);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(param0, param1, param2, 67, 1, NNS_G2D_VRAM_TYPE_2DSUB, 33002);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(param0, param1, param2, 68, 1, 33002);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0, param1, param2, 69, 1, 33002);
 }
 
 void ov17_02247798 (SpriteGfxHandler * param0)
 {
-    sub_0200D070(param0, 33002);
-    sub_0200D090(param0, 33002);
-    sub_0200D0A0(param0, 33002);
+    SpriteGfxHandler_UnloadCharObjById(param0, 33002);
+    SpriteGfxHandler_UnloadCellObjById(param0, 33002);
+    SpriteGfxHandler_UnloadAnimObjById(param0, 33002);
 }
 
 void ov17_022477B8 (UnkStruct_ov17_02247A48 * param0, int param1, int param2, fx32 param3, int param4)

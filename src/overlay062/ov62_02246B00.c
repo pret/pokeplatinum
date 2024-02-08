@@ -597,14 +597,14 @@ void ov62_02247574 (UnkStruct_ov62_02246BF4 * param0)
 
     sub_020070E8(v0, 54, param0->unk_220.unk_0C, 3, 0, 0, 0, 102);
     sub_0200710C(v0, 43, v1, 3, 0, 0, 0, 102);
-    sub_0200CDC4(v4, 2, v2, v3, v0, 44, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1000);
-    sub_0200CC3C(v2, v3, v0, 40, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1000);
-    sub_0200CE24(v2, v3, v0, 41, 0, 1000);
-    sub_0200CE54(v2, v3, v0, 42, 0, 1000);
-    sub_0200CDC4(v4, 2, v2, v3, v0, 88, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1001);
-    sub_0200CC3C(v2, v3, v0, 87, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1001);
-    sub_0200CE24(v2, v3, v0, 85, 0, 1001);
-    sub_0200CE54(v2, v3, v0, 86, 0, 1001);
+    SpriteRenderer_LoadPalette(v4, 2, v2, v3, v0, 44, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1000);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(v2, v3, v0, 40, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1000);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(v2, v3, v0, 41, 0, 1000);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(v2, v3, v0, 42, 0, 1000);
+    SpriteRenderer_LoadPalette(v4, 2, v2, v3, v0, 88, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1001);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(v2, v3, v0, 87, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1001);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(v2, v3, v0, 85, 0, 1001);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(v2, v3, v0, 86, 0, 1001);
 }
 
 void ov62_02247694 (UnkStruct_ov62_02246BF4 * param0)
@@ -623,14 +623,14 @@ void ov62_02247694 (UnkStruct_ov62_02246BF4 * param0)
         sub_0200D0F4(param0->unk_188[v0].unk_0C);
     }
 
-    sub_0200D070(param0->unk_220.unk_08, 1000);
-    sub_0200D080(param0->unk_220.unk_08, 1000);
-    sub_0200D090(param0->unk_220.unk_08, 1000);
-    sub_0200D0A0(param0->unk_220.unk_08, 1000);
-    sub_0200D070(param0->unk_220.unk_08, 1001);
-    sub_0200D080(param0->unk_220.unk_08, 1001);
-    sub_0200D090(param0->unk_220.unk_08, 1001);
-    sub_0200D0A0(param0->unk_220.unk_08, 1001);
+    SpriteGfxHandler_UnloadCharObjById(param0->unk_220.unk_08, 1000);
+    SpriteGfxHandler_UnloadPlttObjById(param0->unk_220.unk_08, 1000);
+    SpriteGfxHandler_UnloadCellObjById(param0->unk_220.unk_08, 1000);
+    SpriteGfxHandler_UnloadAnimObjById(param0->unk_220.unk_08, 1000);
+    SpriteGfxHandler_UnloadCharObjById(param0->unk_220.unk_08, 1001);
+    SpriteGfxHandler_UnloadPlttObjById(param0->unk_220.unk_08, 1001);
+    SpriteGfxHandler_UnloadCellObjById(param0->unk_220.unk_08, 1001);
+    SpriteGfxHandler_UnloadAnimObjById(param0->unk_220.unk_08, 1001);
 }
 
 void ov62_02247754 (UnkStruct_ov62_02246BF4 * param0)

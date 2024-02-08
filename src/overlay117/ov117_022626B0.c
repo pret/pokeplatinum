@@ -920,19 +920,19 @@ static void ov117_022638D8 (UnkStruct_ov117_02261280 * param0)
 
     v0 = NARC_ctor(NARC_INDEX_APPLICATION__BALLOON__GRAPHIC__BALLOON_GRA, 110);
 
-    sub_0200CDC4(param0->unk_8C, 2, param0->unk_24, param0->unk_28, v0, 58, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10005);
-    sub_0200CC3C(param0->unk_24, param0->unk_28, v0, 55, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 10003);
-    sub_0200CE24(param0->unk_24, param0->unk_28, v0, 57, 0, 10003);
-    sub_0200CE54(param0->unk_24, param0->unk_28, v0, 56, 0, 10003);
+    SpriteRenderer_LoadPalette(param0->unk_8C, 2, param0->unk_24, param0->unk_28, v0, 58, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10005);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_24, param0->unk_28, v0, 55, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 10003);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_24, param0->unk_28, v0, 57, 0, 10003);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_24, param0->unk_28, v0, 56, 0, 10003);
     NARC_dtor(v0);
 }
 
 static void ov117_022639BC (UnkStruct_ov117_02261280 * param0)
 {
-    sub_0200D070(param0->unk_28, 10003);
-    sub_0200D090(param0->unk_28, 10003);
-    sub_0200D0A0(param0->unk_28, 10003);
-    sub_0200D080(param0->unk_28, 10005);
+    SpriteGfxHandler_UnloadCharObjById(param0->unk_28, 10003);
+    SpriteGfxHandler_UnloadCellObjById(param0->unk_28, 10003);
+    SpriteGfxHandler_UnloadAnimObjById(param0->unk_28, 10003);
+    SpriteGfxHandler_UnloadPlttObjById(param0->unk_28, 10005);
 }
 
 static CellActorData * ov117_02263A00 (UnkStruct_ov117_02261280 * param0)

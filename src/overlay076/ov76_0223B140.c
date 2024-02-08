@@ -421,7 +421,7 @@ void ov76_0223B704 (UnkStruct_ov76_0223DE00 * param0, int param1)
     v0 = sub_02098140(param0->unk_324[param1].unk_04);
     v1 = (param1 + 20000);
 
-    sub_0200D070(param0->unk_D4.unk_0C, v1);
+    SpriteGfxHandler_UnloadCharObjById(param0->unk_D4.unk_0C, v1);
     sub_0200D0F4(param0->unk_324[param1].unk_08);
 
     param0->unk_324[param1].unk_08 = NULL;

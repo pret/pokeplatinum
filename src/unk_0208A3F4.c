@@ -88,20 +88,20 @@ void sub_0208A490 (UnkStruct_02089688 * param0)
     sub_0200710C(v0, 17, v1, 5, 0, 0, 0, 101);
     PaletteSys_LoadPalette(v4, 159, 16, 101, 1, 0x20 * 1, 0);
 
-    sub_0200CDC4(v4, 2, v2, v3, v0, 1, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1000);
-    sub_0200CC3C(v2, v3, v0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1000);
-    sub_0200CE24(v2, v3, v0, 2, 0, 1000);
-    sub_0200CE54(v2, v3, v0, 3, 0, 1000);
+    SpriteRenderer_LoadPalette(v4, 2, v2, v3, v0, 1, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1000);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(v2, v3, v0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1000);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(v2, v3, v0, 2, 0, 1000);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(v2, v3, v0, 3, 0, 1000);
 
-    sub_0200CDC4(v4, 2, v2, v3, v0, 5, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1001);
-    sub_0200CC3C(v2, v3, v0, 4, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1001);
-    sub_0200CE24(v2, v3, v0, 6, 0, 1001);
-    sub_0200CE54(v2, v3, v0, 7, 0, 1001);
+    SpriteRenderer_LoadPalette(v4, 2, v2, v3, v0, 5, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1001);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(v2, v3, v0, 4, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1001);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(v2, v3, v0, 6, 0, 1001);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(v2, v3, v0, 7, 0, 1001);
 
-    sub_0200CDC4(v4, 2, v2, v3, v0, 9, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 1002);
-    sub_0200CC3C(v2, v3, v0, 8, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1002);
-    sub_0200CE24(v2, v3, v0, 10, 0, 1002);
-    sub_0200CE54(v2, v3, v0, 11, 0, 1002);
+    SpriteRenderer_LoadPalette(v4, 2, v2, v3, v0, 9, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 1002);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(v2, v3, v0, 8, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1002);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(v2, v3, v0, 10, 0, 1002);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(v2, v3, v0, 11, 0, 1002);
 
     {
         int v5 = sub_02027B50(param0->unk_38C.unk_20);

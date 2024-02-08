@@ -12309,14 +12309,14 @@ static void BattleScript_FreePartyLevelUpIcon (BattleSystem * param0, BattleScri
     sub_0200D0F4(param1->cellActorData[1]);
     sub_02012870(param1->fontOAM);
     sub_0201EE28(&param1->spriteMgrAlloc);
-    sub_0200D070(v0, 20021);
-    sub_0200D080(v0, 20016);
-    sub_0200D090(v0, 20013);
-    sub_0200D0A0(v0, 20013);
-    sub_0200D070(v0, 20022);
-    sub_0200D080(v0, 20017);
-    sub_0200D090(v0, 20014);
-    sub_0200D0A0(v0, 20014);
+    SpriteGfxHandler_UnloadCharObjById(v0, 20021);
+    SpriteGfxHandler_UnloadPlttObjById(v0, 20016);
+    SpriteGfxHandler_UnloadCellObjById(v0, 20013);
+    SpriteGfxHandler_UnloadAnimObjById(v0, 20013);
+    SpriteGfxHandler_UnloadCharObjById(v0, 20022);
+    SpriteGfxHandler_UnloadPlttObjById(v0, 20017);
+    SpriteGfxHandler_UnloadCellObjById(v0, 20014);
+    SpriteGfxHandler_UnloadAnimObjById(v0, 20014);
     sub_020127BC(param1->tmpPtr[0]);
 }
 

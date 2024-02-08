@@ -852,10 +852,10 @@ static void ov104_0223D058 (UnkStruct_ov104_0223C4CC * param0)
             if (param0->unk_80[v1] != NULL) {
                 sub_0200D0F4(param0->unk_80[v1]);
 
-                sub_0200D070(param0->unk_34.unk_04, 50000 + v1);
-                sub_0200D080(param0->unk_34.unk_04, 50000 + v1);
-                sub_0200D090(param0->unk_34.unk_04, 50000 + v1);
-                sub_0200D0A0(param0->unk_34.unk_04, 50000 + v1);
+                SpriteGfxHandler_UnloadCharObjById(param0->unk_34.unk_04, 50000 + v1);
+                SpriteGfxHandler_UnloadPlttObjById(param0->unk_34.unk_04, 50000 + v1);
+                SpriteGfxHandler_UnloadCellObjById(param0->unk_34.unk_04, 50000 + v1);
+                SpriteGfxHandler_UnloadAnimObjById(param0->unk_34.unk_04, 50000 + v1);
             }
         }
     }

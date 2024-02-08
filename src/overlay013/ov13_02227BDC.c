@@ -97,12 +97,12 @@ static void ov13_02227C54 (UnkStruct_ov13_02227244 * param0)
     v0 = ov16_0223E010(param0->unk_00->unk_00);
 
     for (v1 = 0; v1 < 6; v1++) {
-        sub_0200CC3C(v0, param0->unk_30C, v2, Item_FileID(1, 1), 0, NNS_G2D_VRAM_TYPE_2DSUB, 46263 + v1);
-        sub_0200CDC4(param0->unk_08, 3, v0, param0->unk_30C, v2, Item_FileID(1, 2), 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 46263 + v1);
+        SpriteRenderer_LoadCharResObjFromOpenNarc(v0, param0->unk_30C, v2, Item_FileID(1, 1), 0, NNS_G2D_VRAM_TYPE_2DSUB, 46263 + v1);
+        SpriteRenderer_LoadPalette(param0->unk_08, 3, v0, param0->unk_30C, v2, Item_FileID(1, 2), 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 46263 + v1);
     }
 
-    sub_0200CE24(v0, param0->unk_30C, v2, Item_IconNCERFile(), 0, 46263);
-    sub_0200CE54(v0, param0->unk_30C, v2, Item_IconNANRFile(), 0, 46263);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(v0, param0->unk_30C, v2, Item_IconNCERFile(), 0, 46263);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(v0, param0->unk_30C, v2, Item_IconNANRFile(), 0, 46263);
     NARC_dtor(v2);
 }
 

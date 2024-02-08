@@ -336,19 +336,19 @@ void ov17_0223F560 (SpriteRenderer * param0, SpriteGfxHandler * param1, PaletteD
 void ov17_0223F5E8 (SpriteGfxHandler * param0, int param1, int param2, int param3, int param4)
 {
     if (param1 != -1) {
-        sub_0200D070(param0, param1);
+        SpriteGfxHandler_UnloadCharObjById(param0, param1);
     }
 
     if (param2 != -1) {
-        sub_0200D080(param0, param2);
+        SpriteGfxHandler_UnloadPlttObjById(param0, param2);
     }
 
     if (param3 != -1) {
-        sub_0200D090(param0, param3);
+        SpriteGfxHandler_UnloadCellObjById(param0, param3);
     }
 
     if (param4 != -1) {
-        sub_0200D0A0(param0, param4);
+        SpriteGfxHandler_UnloadAnimObjById(param0, param4);
     }
 }
 

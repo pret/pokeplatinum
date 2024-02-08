@@ -58,19 +58,19 @@ void ov16_0226DE44 (SpriteRenderer * param0, SpriteGfxHandler * param1, u32 para
 {
     NARC * v0 = NARC_ctor(NARC_INDEX_GRAPHIC__EV_POKESELECT, param2);
 
-    sub_0200CDC4(param3, 3, param0, param1, v0, 11, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, param5);
-    sub_0200CC3C(param0, param1, v0, 10, 0, NNS_G2D_VRAM_TYPE_2DSUB, param4);
-    sub_0200CE24(param0, param1, v0, 12, 0, param6);
-    sub_0200CE54(param0, param1, v0, 13, 0, param7);
+    SpriteRenderer_LoadPalette(param3, 3, param0, param1, v0, 11, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, param5);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(param0, param1, v0, 10, 0, NNS_G2D_VRAM_TYPE_2DSUB, param4);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(param0, param1, v0, 12, 0, param6);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0, param1, v0, 13, 0, param7);
     NARC_dtor(v0);
 }
 
 void ov16_0226DEC4 (SpriteGfxHandler * param0, u32 param1, u32 param2, u32 param3, u32 param4)
 {
-    sub_0200D070(param0, param1);
-    sub_0200D080(param0, param2);
-    sub_0200D090(param0, param3);
-    sub_0200D0A0(param0, param4);
+    SpriteGfxHandler_UnloadCharObjById(param0, param1);
+    SpriteGfxHandler_UnloadPlttObjById(param0, param2);
+    SpriteGfxHandler_UnloadCellObjById(param0, param3);
+    SpriteGfxHandler_UnloadAnimObjById(param0, param4);
 }
 
 UnkStruct_ov16_0226DEEC * ov16_0226DEEC (SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)

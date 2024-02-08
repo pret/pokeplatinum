@@ -415,14 +415,14 @@ void ov16_02266F1C (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * p
 
     v0 = ov16_022682B0(param4);
 
-    sub_0200CC3C(param0, param1, param2, v0->unk_14[0], 1, NNS_G2D_VRAM_TYPE_2DMAIN, v0->unk_14[0]);
-    sub_0200CDC4(param3, 2, param0, param1, param2, 71, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20006);
-    sub_0200CE24(param0, param1, param2, v0->unk_14[2], 1, v0->unk_14[2]);
-    sub_0200CE54(param0, param1, param2, v0->unk_14[3], 1, v0->unk_14[3]);
-    sub_0200CDC4(param3, 2, param0, param1, param2, 71, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20007);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(param0, param1, param2, v0->unk_14[0], 1, NNS_G2D_VRAM_TYPE_2DMAIN, v0->unk_14[0]);
+    SpriteRenderer_LoadPalette(param3, 2, param0, param1, param2, 71, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20006);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(param0, param1, param2, v0->unk_14[2], 1, v0->unk_14[2]);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0, param1, param2, v0->unk_14[3], 1, v0->unk_14[3]);
+    SpriteRenderer_LoadPalette(param3, 2, param0, param1, param2, 71, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20007);
 
     if ((param4 == 6) || (param4 == 7)) {
-        sub_0200CDC4(param3, 2, param0, param1, param2, 81, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20008);
+        SpriteRenderer_LoadPalette(param3, 2, param0, param1, param2, 81, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20008);
     }
 }
 
@@ -433,10 +433,10 @@ static void ov16_02266FE4 (SpriteRenderer * param0, SpriteGfxHandler * param1, N
     v0 = ov16_02268314(param4);
 
     if (v0 != NULL) {
-        sub_0200CC3C(param0, param1, param2, v0->unk_14[0], 1, NNS_G2D_VRAM_TYPE_2DMAIN, v0->unk_14[0]);
-        sub_0200CDC4(param3, 2, param0, param1, param2, 71, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20006);
-        sub_0200CE24(param0, param1, param2, v0->unk_14[2], 1, v0->unk_14[2]);
-        sub_0200CE54(param0, param1, param2, v0->unk_14[3], 1, v0->unk_14[3]);
+        SpriteRenderer_LoadCharResObjFromOpenNarc(param0, param1, param2, v0->unk_14[0], 1, NNS_G2D_VRAM_TYPE_2DMAIN, v0->unk_14[0]);
+        SpriteRenderer_LoadPalette(param3, 2, param0, param1, param2, 71, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20006);
+        SpriteRenderer_LoadCellResObjFromOpenNarc(param0, param1, param2, v0->unk_14[2], 1, v0->unk_14[2]);
+        SpriteRenderer_LoadAnimResObjFromOpenNarc(param0, param1, param2, v0->unk_14[3], 1, v0->unk_14[3]);
     }
 }
 
@@ -600,9 +600,9 @@ void ov16_02267258 (UnkStruct_ov16_022674C4 * param0)
     v0 = ov16_0223E010(param0->unk_0C);
     v1 = ov16_0223E018(param0->unk_0C);
 
-    sub_0200D070(v1, v2->unk_14[0]);
-    sub_0200D090(v1, v2->unk_14[2]);
-    sub_0200D0A0(v1, v2->unk_14[3]);
+    SpriteGfxHandler_UnloadCharObjById(v1, v2->unk_14[0]);
+    SpriteGfxHandler_UnloadCellObjById(v1, v2->unk_14[2]);
+    SpriteGfxHandler_UnloadAnimObjById(v1, v2->unk_14[3]);
 }
 
 static void ov16_0226728C (UnkStruct_ov16_022674C4 * param0)
@@ -620,9 +620,9 @@ static void ov16_0226728C (UnkStruct_ov16_022674C4 * param0)
     v0 = ov16_0223E010(param0->unk_0C);
     v1 = ov16_0223E018(param0->unk_0C);
 
-    sub_0200D070(v1, v2->unk_14[0]);
-    sub_0200D090(v1, v2->unk_14[2]);
-    sub_0200D0A0(v1, v2->unk_14[3]);
+    SpriteGfxHandler_UnloadCharObjById(v1, v2->unk_14[0]);
+    SpriteGfxHandler_UnloadCellObjById(v1, v2->unk_14[2]);
+    SpriteGfxHandler_UnloadAnimObjById(v1, v2->unk_14[3]);
 }
 
 void ov16_022672C4 (UnkStruct_ov16_022674C4 * param0)

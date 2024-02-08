@@ -66,13 +66,13 @@ void ov17_0224F0F0 (SpriteRenderer * param0, SpriteGfxHandler * param1, u32 para
 
 void ov17_0224F138 (SpriteGfxHandler * param0, u32 param1)
 {
-    sub_0200D070(param0, param1);
+    SpriteGfxHandler_UnloadCharObjById(param0, param1);
 }
 
 void ov17_0224F140 (SpriteGfxHandler * param0, u32 param1, u32 param2)
 {
-    sub_0200D090(param0, param1);
-    sub_0200D0A0(param0, param2);
+    SpriteGfxHandler_UnloadCellObjById(param0, param1);
+    SpriteGfxHandler_UnloadAnimObjById(param0, param2);
 }
 
 CellActorData * ov17_0224F154 (SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, const UnkStruct_ov104_0223F9E0 * param3)

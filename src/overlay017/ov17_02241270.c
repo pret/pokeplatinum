@@ -52,9 +52,9 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov17_02253680 = {
 
 void ov17_02241270 (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2)
 {
-    sub_0200CC3C(param0, param1, param2, 42, 1, NNS_G2D_VRAM_TYPE_2DSUB, 33019);
-    sub_0200CE24(param0, param1, param2, 43, 1, 33014);
-    sub_0200CE54(param0, param1, param2, 44, 1, 33014);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(param0, param1, param2, 42, 1, NNS_G2D_VRAM_TYPE_2DSUB, 33019);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(param0, param1, param2, 43, 1, 33014);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0, param1, param2, 44, 1, 33014);
 }
 
 CellActorData * ov17_022412C0 (SpriteRenderer * param0, SpriteGfxHandler * param1, int param2)
@@ -70,9 +70,9 @@ CellActorData * ov17_022412C0 (SpriteRenderer * param0, SpriteGfxHandler * param
 
 void ov17_022412F0 (SpriteGfxHandler * param0)
 {
-    sub_0200D070(param0, 33019);
-    sub_0200D090(param0, 33014);
-    sub_0200D0A0(param0, 33014);
+    SpriteGfxHandler_UnloadCharObjById(param0, 33019);
+    SpriteGfxHandler_UnloadCellObjById(param0, 33014);
+    SpriteGfxHandler_UnloadAnimObjById(param0, 33014);
 }
 
 void ov17_02241314 (CellActorData * param0)
@@ -82,9 +82,9 @@ void ov17_02241314 (CellActorData * param0)
 
 void ov17_0224131C (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2)
 {
-    sub_0200CC3C(param0, param1, param2, 45, 1, NNS_G2D_VRAM_TYPE_2DSUB, 33018);
-    sub_0200CE24(param0, param1, param2, 46, 1, 33013);
-    sub_0200CE54(param0, param1, param2, 47, 1, 33013);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(param0, param1, param2, 45, 1, NNS_G2D_VRAM_TYPE_2DSUB, 33018);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(param0, param1, param2, 46, 1, 33013);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0, param1, param2, 47, 1, 33013);
 }
 
 CellActorData * ov17_0224136C (SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, int param3, int param4)
@@ -110,7 +110,7 @@ void ov17_022413AC (CellActorData * param0)
 
 void ov17_022413B4 (SpriteGfxHandler * param0)
 {
-    sub_0200D070(param0, 33018);
-    sub_0200D090(param0, 33013);
-    sub_0200D0A0(param0, 33013);
+    SpriteGfxHandler_UnloadCharObjById(param0, 33018);
+    SpriteGfxHandler_UnloadCellObjById(param0, 33013);
+    SpriteGfxHandler_UnloadAnimObjById(param0, 33013);
 }

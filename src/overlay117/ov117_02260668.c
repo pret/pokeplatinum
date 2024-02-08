@@ -1010,7 +1010,7 @@ asm static void ov117_0226168C (UnkStruct_ov117_02261280 * param0, NARC * param1
     ldr r2, [r5, #0x24]
     ldr r3, [r5, #0x28]
     mov r1, #2
-    bl sub_0200CDC4
+    bl SpriteRenderer_LoadPalette
     add r0, r5, #0
     add r0, #0x80
     ldr r0, [r0, #0]
@@ -1164,7 +1164,7 @@ asm static void ov117_0226168C (UnkStruct_ov117_02261280 * param0, NARC * param1
     ldr r0, [r0, #0]
     ldr r2, [r5, #0x24]
     ldr r3, [r5, #0x28]
-    bl sub_0200CDC4
+    bl SpriteRenderer_LoadPalette
     mov r0, #0
     str r0, [sp]
     mov r0, #1
@@ -1175,7 +1175,7 @@ asm static void ov117_0226168C (UnkStruct_ov117_02261280 * param0, NARC * param1
     ldr r0, [r5, #0x24]
     ldr r1, [r5, #0x28]
     mov r3, #0x18
-    bl sub_0200CC3C
+    bl SpriteRenderer_LoadCharResObjFromOpenNarc
     mov r0, #0
     str r0, [sp]
     ldr r0, = 0x2712
@@ -1184,7 +1184,7 @@ asm static void ov117_0226168C (UnkStruct_ov117_02261280 * param0, NARC * param1
     ldr r0, [r5, #0x24]
     ldr r1, [r5, #0x28]
     mov r3, #0x1a
-    bl sub_0200CE24
+    bl SpriteRenderer_LoadCellResObjFromOpenNarc
     mov r0, #0
     str r0, [sp]
     ldr r0, = 0x2712
@@ -1193,7 +1193,7 @@ asm static void ov117_0226168C (UnkStruct_ov117_02261280 * param0, NARC * param1
     ldr r0, [r5, #0x24]
     ldr r1, [r5, #0x28]
     mov r3, #0x19
-    bl sub_0200CE54
+    bl SpriteRenderer_LoadAnimResObjFromOpenNarc
     add r0, r5, #0
     bl ov117_02266130
     ldr r1, = 0x15A8
@@ -1271,10 +1271,10 @@ static void ov117_022618E8 (UnkStruct_ov117_02261280 * param0)
 
 static void ov117_02261940 (UnkStruct_ov117_02261280 * param0, NARC * param1)
 {
-    sub_0200CDC4(param0->unk_8C, 3, param0->unk_24, param0->unk_28, param1, 23, 0, 9, NNS_G2D_VRAM_TYPE_2DSUB, 10006);
-    sub_0200CC3C(param0->unk_24, param0->unk_28, param1, 20, 0, NNS_G2D_VRAM_TYPE_2DSUB, 10004);
-    sub_0200CE24(param0->unk_24, param0->unk_28, param1, 22, 0, 10004);
-    sub_0200CE54(param0->unk_24, param0->unk_28, param1, 21, 0, 10004);
+    SpriteRenderer_LoadPalette(param0->unk_8C, 3, param0->unk_24, param0->unk_28, param1, 23, 0, 9, NNS_G2D_VRAM_TYPE_2DSUB, 10006);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 20, 0, NNS_G2D_VRAM_TYPE_2DSUB, 10004);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 22, 0, 10004);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 21, 0, 10004);
 
     ov117_022648E0(param0);
     ov117_02264FB0(param0, &param0->unk_1458);

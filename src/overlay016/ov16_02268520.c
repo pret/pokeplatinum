@@ -203,11 +203,11 @@ void ov16_02268520 (UnkStruct_ov16_02268520 * param0)
         v8 = 20006;
     }
 
-    sub_0200CC3C(v0, v1, v10, v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, v4);
-    sub_0200CDC4(BattleSystem_PaletteSys(param0->unk_04), 2, v0, v1, v10, Unk_ov16_02270134[param0->unk_09][v9], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20009);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(v0, v1, v10, v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, v4);
+    SpriteRenderer_LoadPalette(BattleSystem_PaletteSys(param0->unk_04), 2, v0, v1, v10, Unk_ov16_02270134[param0->unk_09][v9], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20009);
     PaletteSys_LoadPalette(BattleSystem_PaletteSys(param0->unk_04), 27, Unk_ov16_02270134[param0->unk_09][v9], 5, 0, 0x20, 0x7 * 0x10);
-    sub_0200CE24(v0, v1, v10, v5, 1, v6);
-    sub_0200CE54(v0, v1, v10, v7, 1, v8);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(v0, v1, v10, v5, 1, v6);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(v0, v1, v10, v7, 1, v8);
     NARC_dtor(v10);
 }
 
@@ -252,10 +252,10 @@ void ov16_02268674 (UnkStruct_ov16_02268520 * param0)
         v3 = 20006;
     }
 
-    sub_0200D070(v0, v1);
-    sub_0200D080(v0, 20009);
-    sub_0200D090(v0, v2);
-    sub_0200D0A0(v0, v3);
+    SpriteGfxHandler_UnloadCharObjById(v0, v1);
+    SpriteGfxHandler_UnloadPlttObjById(v0, 20009);
+    SpriteGfxHandler_UnloadCellObjById(v0, v2);
+    SpriteGfxHandler_UnloadAnimObjById(v0, v3);
 }
 
 void ov16_022686BC (UnkStruct_ov16_02268520 * param0, int param1)

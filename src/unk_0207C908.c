@@ -130,18 +130,18 @@ void sub_0207C9EC (SpriteRenderer * param0, SpriteGfxHandler * param1, u32 param
 
 void sub_0207CA34 (SpriteGfxHandler * param0, u32 param1)
 {
-    sub_0200D070(param0, param1);
+    SpriteGfxHandler_UnloadCharObjById(param0, param1);
 }
 
 void sub_0207CA3C (SpriteGfxHandler * param0, u32 param1)
 {
-    sub_0200D080(param0, param1);
+    SpriteGfxHandler_UnloadPlttObjById(param0, param1);
 }
 
 void sub_0207CA44 (SpriteGfxHandler * param0, u32 param1, u32 param2)
 {
-    sub_0200D090(param0, param1);
-    sub_0200D0A0(param0, param2);
+    SpriteGfxHandler_UnloadCellObjById(param0, param1);
+    SpriteGfxHandler_UnloadAnimObjById(param0, param2);
 }
 
 CellActorData * sub_0207CA58 (SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, const UnkStruct_ov104_0223F9E0 * param3)
@@ -185,7 +185,7 @@ void sub_0207CAC4 (SpriteRenderer * param0, SpriteGfxHandler * param1, NNS_G2D_V
 
 void sub_0207CAF8 (SpriteGfxHandler * param0, u32 param1)
 {
-    sub_0200D070(param0, param1);
+    SpriteGfxHandler_UnloadCharObjById(param0, param1);
 }
 
 void sub_0207CB00 (CellActorData * param0)

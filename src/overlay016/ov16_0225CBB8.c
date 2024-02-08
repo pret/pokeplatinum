@@ -2679,10 +2679,10 @@ static void ov16_0225FD5C (SysTask * param0, void * param1)
                     sub_0200D0F4(v0->unk_04->unk_18);
                     v0->unk_04->unk_18 = NULL;
 
-                    sub_0200D070(v8, 20015 + v0->unk_04->battlerType);
-                    sub_0200D080(v8, 20010 + v0->unk_04->battlerType);
-                    sub_0200D090(v8, 20007 + v0->unk_04->battlerType);
-                    sub_0200D0A0(v8, 20007 + v0->unk_04->battlerType);
+                    SpriteGfxHandler_UnloadCharObjById(v8, 20015 + v0->unk_04->battlerType);
+                    SpriteGfxHandler_UnloadPlttObjById(v8, 20010 + v0->unk_04->battlerType);
+                    SpriteGfxHandler_UnloadCellObjById(v8, 20007 + v0->unk_04->battlerType);
+                    SpriteGfxHandler_UnloadAnimObjById(v8, 20007 + v0->unk_04->battlerType);
                 }
                 v0->unk_0A = 6;
             }
@@ -2733,10 +2733,10 @@ static void ov16_0225FD5C (SysTask * param0, void * param1)
                 sub_0200D0F4(v0->unk_04->unk_18);
                 v0->unk_04->unk_18 = NULL;
 
-                sub_0200D070(v10, 20015 + v0->unk_04->battlerType);
-                sub_0200D080(v10, 20010 + v0->unk_04->battlerType);
-                sub_0200D090(v10, 20007 + v0->unk_04->battlerType);
-                sub_0200D0A0(v10, 20007 + v0->unk_04->battlerType);
+                SpriteGfxHandler_UnloadCharObjById(v10, 20015 + v0->unk_04->battlerType);
+                SpriteGfxHandler_UnloadPlttObjById(v10, 20010 + v0->unk_04->battlerType);
+                SpriteGfxHandler_UnloadCellObjById(v10, 20007 + v0->unk_04->battlerType);
+                SpriteGfxHandler_UnloadAnimObjById(v10, 20007 + v0->unk_04->battlerType);
             }
             v0->unk_0A = 6;
         }
@@ -2823,10 +2823,10 @@ static void    ov16_02260284 (SysTask * param0, void * param1)
         sub_0200D0F4(v0->unk_04->unk_18);
         v0->unk_04->unk_18 = NULL;
 
-        sub_0200D070(v3, 20015 + v0->unk_04->battlerType);
-        sub_0200D080(v3, 20010 + v0->unk_04->battlerType);
-        sub_0200D090(v3, 20007 + v0->unk_04->battlerType);
-        sub_0200D0A0(v3, 20007 + v0->unk_04->battlerType);
+        SpriteGfxHandler_UnloadCharObjById(v3, 20015 + v0->unk_04->battlerType);
+        SpriteGfxHandler_UnloadPlttObjById(v3, 20010 + v0->unk_04->battlerType);
+        SpriteGfxHandler_UnloadCellObjById(v3, 20007 + v0->unk_04->battlerType);
+        SpriteGfxHandler_UnloadAnimObjById(v3, 20007 + v0->unk_04->battlerType);
     }
         ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
         Heap_FreeToHeap(param1);

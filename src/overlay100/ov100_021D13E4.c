@@ -248,10 +248,10 @@ static void ov100_021D1808 (UnkStruct_ov100_021D1808 * param0)
         sub_02002FBC(v4, &v6, 0, 0, 0x2);
     }
 
-    sub_0200CDC4(v4, 3, v2, v3, v0, 50, 0, 3, NNS_G2D_VRAM_TYPE_2DSUB, v5);
-    sub_0200CE24(v2, v3, v0, 48, 0, v5);
-    sub_0200CE54(v2, v3, v0, 47, 0, v5);
-    sub_0200CC3C(v2, v3, v0, 49, 0, NNS_G2D_VRAM_TYPE_2DSUB, v5);
+    SpriteRenderer_LoadPalette(v4, 3, v2, v3, v0, 50, 0, 3, NNS_G2D_VRAM_TYPE_2DSUB, v5);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(v2, v3, v0, 48, 0, v5);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(v2, v3, v0, 47, 0, v5);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(v2, v3, v0, 49, 0, NNS_G2D_VRAM_TYPE_2DSUB, v5);
 
     ov100_021D4AC8(&param0->unk_1A4.unk_498, 60, param0->unk_7C4->unk_00);
 

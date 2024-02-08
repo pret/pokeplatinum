@@ -148,10 +148,10 @@ void ov62_022317CC (UnkStruct_0208C06C * param0, int param1)
     PaletteSys_LoadPalette(v0, 162, ov62_02231710(param0, 0), 102, 1, 0x20, 14 * 16);
     sub_0208B63C(param0->unk_6F0, param0->unk_14.unk_48);
     sub_0208B63C(param0->unk_6F0, param0->unk_14.unk_48);
-    sub_0200D080(v2, 9999);
-    sub_0200D080(v2, 10000);
-    sub_0200CDC4(v0, 2, v1, v2, v3, ov62_02231710(param0, 2), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 9999);
-    sub_0200CDC4(v0, 3, v1, v2, v3, ov62_02231710(param0, 2), 0, 3, NNS_G2D_VRAM_TYPE_2DSUB, 10000);
+    SpriteGfxHandler_UnloadPlttObjById(v2, 9999);
+    SpriteGfxHandler_UnloadPlttObjById(v2, 10000);
+    SpriteRenderer_LoadPalette(v0, 2, v1, v2, v3, ov62_02231710(param0, 2), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 9999);
+    SpriteRenderer_LoadPalette(v0, 3, v1, v2, v3, ov62_02231710(param0, 2), 0, 3, NNS_G2D_VRAM_TYPE_2DSUB, 10000);
 }
 
 void ov62_022318E8 (UnkStruct_0208C06C * param0)
@@ -814,10 +814,10 @@ static void ov62_022320A0 (UnkStruct_ov62_022323B8 * param0, int param1)
 
 static void ov62_022320B0 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C06C * param1)
 {
-    sub_0200D070(param1->unk_14.unk_08, 100000);
-    sub_0200D080(param1->unk_14.unk_08, 100000);
-    sub_0200D090(param1->unk_14.unk_08, 100000);
-    sub_0200D0A0(param1->unk_14.unk_08, 100000);
+    SpriteGfxHandler_UnloadCharObjById(param1->unk_14.unk_08, 100000);
+    SpriteGfxHandler_UnloadPlttObjById(param1->unk_14.unk_08, 100000);
+    SpriteGfxHandler_UnloadCellObjById(param1->unk_14.unk_08, 100000);
+    SpriteGfxHandler_UnloadAnimObjById(param1->unk_14.unk_08, 100000);
 
     if (param0->unk_04) {
         sub_0200D0F4(param0->unk_04);
@@ -899,10 +899,10 @@ static void ov62_022321F4 (UnkStruct_ov62_022323B8 * param0, int param1)
 
 static void ov62_02232200 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C06C * param1)
 {
-    sub_0200D070(param1->unk_14.unk_08, 165535);
-    sub_0200D080(param1->unk_14.unk_08, 165535);
-    sub_0200D090(param1->unk_14.unk_08, 165535);
-    sub_0200D0A0(param1->unk_14.unk_08, 165535);
+    SpriteGfxHandler_UnloadCharObjById(param1->unk_14.unk_08, 165535);
+    SpriteGfxHandler_UnloadPlttObjById(param1->unk_14.unk_08, 165535);
+    SpriteGfxHandler_UnloadCellObjById(param1->unk_14.unk_08, 165535);
+    SpriteGfxHandler_UnloadAnimObjById(param1->unk_14.unk_08, 165535);
     sub_0200D0F4(param0->unk_08);
 }
 
@@ -2255,9 +2255,9 @@ void ov62_0223331C (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param
     SpriteGfxHandler * v5 = param1->unk_14.unk_08;
     PaletteData * v6 = param1->unk_14.unk_14;
 
-    sub_0200CC3C(v4, v5, v2, 127, 0, param2, 200000);
-    sub_0200CE24(v4, v5, v2, 126, 0, 200000);
-    sub_0200CE54(v4, v5, v2, 125, 0, 200000);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(v4, v5, v2, 127, 0, param2, 200000);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(v4, v5, v2, 126, 0, 200000);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(v4, v5, v2, 125, 0, 200000);
 
     v1.unk_00 = 128;
     v1.unk_02 = 96;
@@ -2349,9 +2349,9 @@ void ov62_0223349C (UnkStruct_ov62_02233310 * param0)
 
 void ov62_022334FC (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param1)
 {
-    sub_0200D070(param1->unk_14.unk_08, 200000);
-    sub_0200D090(param1->unk_14.unk_08, 200000);
-    sub_0200D0A0(param1->unk_14.unk_08, 200000);
+    SpriteGfxHandler_UnloadCharObjById(param1->unk_14.unk_08, 200000);
+    SpriteGfxHandler_UnloadCellObjById(param1->unk_14.unk_08, 200000);
+    SpriteGfxHandler_UnloadAnimObjById(param1->unk_14.unk_08, 200000);
     sub_0200D0F4(param0->unk_2C[0]);
     sub_0200D0F4(param0->unk_2C[1]);
 }
@@ -2708,9 +2708,9 @@ void ov62_022339DC (UnkStruct_0208C06C * param0)
 
 void ov62_02233A44 (UnkStruct_0208C06C * param0)
 {
-    sub_0200D080(param0->unk_14.unk_08, 100000);
-    sub_0200D090(param0->unk_14.unk_08, 100000);
-    sub_0200D0A0(param0->unk_14.unk_08, 100000);
+    SpriteGfxHandler_UnloadPlttObjById(param0->unk_14.unk_08, 100000);
+    SpriteGfxHandler_UnloadCellObjById(param0->unk_14.unk_08, 100000);
+    SpriteGfxHandler_UnloadAnimObjById(param0->unk_14.unk_08, 100000);
 }
 
 NARC * ov62_02233A68 (int param0)
@@ -2779,7 +2779,7 @@ void ov62_02233B24 (UnkStruct_0208C06C * param0, int param1, CellActorData * par
         return;
     }
 
-    sub_0200D070(param0->unk_14.unk_08, 100000 + param1);
+    SpriteGfxHandler_UnloadCharObjById(param0->unk_14.unk_08, 100000 + param1);
     sub_0200D0F4(param2);
 }
 
@@ -3155,13 +3155,13 @@ void ov62_02234228 (UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C * param
 {
     int v0;
 
-    sub_0200D080(param1->unk_14.unk_08, 100000);
-    sub_0200D090(param1->unk_14.unk_08, 100000);
-    sub_0200D0A0(param1->unk_14.unk_08, 100000);
+    SpriteGfxHandler_UnloadPlttObjById(param1->unk_14.unk_08, 100000);
+    SpriteGfxHandler_UnloadCellObjById(param1->unk_14.unk_08, 100000);
+    SpriteGfxHandler_UnloadAnimObjById(param1->unk_14.unk_08, 100000);
 
     for (v0 = 0; v0 < 12; v0++) {
         if (param0->unk_0C[v0]) {
-            sub_0200D070(param1->unk_14.unk_08, 100000 + v0);
+            SpriteGfxHandler_UnloadCharObjById(param1->unk_14.unk_08, 100000 + v0);
             sub_0200D0F4(param0->unk_0C[v0]);
             param0->unk_0C[v0] = NULL;
         }

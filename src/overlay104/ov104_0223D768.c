@@ -70,10 +70,10 @@ void ov104_0223D768 (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * 
     GF_ASSERT(param4 < NELEMS(Unk_ov104_022417D8));
     v0 = &Unk_ov104_022417D8[param4];
 
-    sub_0200CC3C(param0, param1, param2, v0->unk_14[0], 1, NNS_G2D_VRAM_TYPE_2DMAIN, v0->unk_14[0]);
-    sub_0200CDC4(param3, 2, param0, param1, param2, v0->unk_14[1], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, v0->unk_14[1]);
-    sub_0200CE24(param0, param1, param2, v0->unk_14[2], 1, v0->unk_14[2]);
-    sub_0200CE54(param0, param1, param2, v0->unk_14[3], 1, v0->unk_14[3]);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(param0, param1, param2, v0->unk_14[0], 1, NNS_G2D_VRAM_TYPE_2DMAIN, v0->unk_14[0]);
+    SpriteRenderer_LoadPalette(param3, 2, param0, param1, param2, v0->unk_14[1], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, v0->unk_14[1]);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(param0, param1, param2, v0->unk_14[2], 1, v0->unk_14[2]);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0, param1, param2, v0->unk_14[3], 1, v0->unk_14[3]);
 }
 
 void ov104_0223D7EC (SpriteGfxHandler * param0, u16 param1)
@@ -83,10 +83,10 @@ void ov104_0223D7EC (SpriteGfxHandler * param0, u16 param1)
     GF_ASSERT(param1 < NELEMS(Unk_ov104_022417D8));
     v0 = &Unk_ov104_022417D8[param1];
 
-    sub_0200D070(param0, v0->unk_14[0]);
-    sub_0200D080(param0, v0->unk_14[1]);
-    sub_0200D090(param0, v0->unk_14[2]);
-    sub_0200D0A0(param0, v0->unk_14[3]);
+    SpriteGfxHandler_UnloadCharObjById(param0, v0->unk_14[0]);
+    SpriteGfxHandler_UnloadPlttObjById(param0, v0->unk_14[1]);
+    SpriteGfxHandler_UnloadCellObjById(param0, v0->unk_14[2]);
+    SpriteGfxHandler_UnloadAnimObjById(param0, v0->unk_14[3]);
 }
 
 CellActorData * ov104_0223D828 (SpriteRenderer * param0, SpriteGfxHandler * param1, u16 param2)

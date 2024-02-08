@@ -885,10 +885,10 @@ void ov104_02232CE0 (UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int pa
 
         v6 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, param2);
 
-        sub_0200CC3C(v0, v1, v6, 112, 0, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
-        sub_0200CDC4(v2, 2, v0, v1, v6, 111, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param3);
-        sub_0200CE24(v0, v1, v6, 113, 0, param3);
-        sub_0200CE54(v0, v1, v6, 114, 0, param3);
+        SpriteRenderer_LoadCharResObjFromOpenNarc(v0, v1, v6, 112, 0, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
+        SpriteRenderer_LoadPalette(v2, 2, v0, v1, v6, 111, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param3);
+        SpriteRenderer_LoadCellResObjFromOpenNarc(v0, v1, v6, 113, 0, param3);
+        SpriteRenderer_LoadAnimResObjFromOpenNarc(v0, v1, v6, 114, 0, param3);
         NARC_dtor(v6);
     }
 
@@ -958,10 +958,10 @@ void ov104_02232E80 (UnkStruct_ov104_0223C4CC * param0, int param1)
 
     param0->unk_80[param1 - 50000] = NULL;
 
-    sub_0200D070(param0->unk_34.unk_04, param1);
-    sub_0200D080(param0->unk_34.unk_04, param1);
-    sub_0200D090(param0->unk_34.unk_04, param1);
-    sub_0200D0A0(param0->unk_34.unk_04, param1);
+    SpriteGfxHandler_UnloadCharObjById(param0->unk_34.unk_04, param1);
+    SpriteGfxHandler_UnloadPlttObjById(param0->unk_34.unk_04, param1);
+    SpriteGfxHandler_UnloadCellObjById(param0->unk_34.unk_04, param1);
+    SpriteGfxHandler_UnloadAnimObjById(param0->unk_34.unk_04, param1);
 }
 
 static const UnkStruct_ov104_0223F9E0 Unk_ov104_0223F9E0 = {
@@ -999,9 +999,9 @@ void ov104_02232EC0 (UnkStruct_ov104_0223C4CC * param0)
 
 void ov104_02232F28 (UnkStruct_ov104_0223C4CC * param0)
 {
-    sub_0200D090(param0->unk_34.unk_04, 2000);
-    sub_0200D0A0(param0->unk_34.unk_04, 2000);
-    sub_0200D080(param0->unk_34.unk_04, 2000);
+    SpriteGfxHandler_UnloadCellObjById(param0->unk_34.unk_04, 2000);
+    SpriteGfxHandler_UnloadAnimObjById(param0->unk_34.unk_04, 2000);
+    SpriteGfxHandler_UnloadPlttObjById(param0->unk_34.unk_04, 2000);
 }
 
 CellActorData * ov104_02232F4C (UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int param2, int param3, int param4)
@@ -1031,7 +1031,7 @@ CellActorData * ov104_02232F4C (UnkStruct_ov104_0223C4CC * param0, Pokemon * par
 
 void ov104_02232FD4 (UnkStruct_ov104_0223C4CC * param0, CellActorData * param1, int param2)
 {
-    sub_0200D070(param0->unk_34.unk_04, 2000 + param2);
+    SpriteGfxHandler_UnloadCharObjById(param0->unk_34.unk_04, 2000 + param2);
     sub_0200D0F4(param1);
 }
 
@@ -1041,19 +1041,19 @@ void ov104_02232FEC (UnkStruct_ov104_0223C4CC * param0)
 
     v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, 94);
 
-    sub_0200CDC4(param0->unk_04, 2, param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_02081934(), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2001);
-    sub_0200CE24(param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_02081938(), 0, 2001);
-    sub_0200CE54(param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_0208193C(), 0, 2001);
+    SpriteRenderer_LoadPalette(param0->unk_04, 2, param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_02081934(), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2001);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_02081938(), 0, 2001);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_0208193C(), 0, 2001);
     sub_0200D888(param0->unk_34.unk_00, param0->unk_34.unk_04, 20, sub_02081930(), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 2009);
     NARC_dtor(v0);
 }
 
 void ov104_0223307C (UnkStruct_ov104_0223C4CC * param0)
 {
-    sub_0200D070(param0->unk_34.unk_04, 2009);
-    sub_0200D090(param0->unk_34.unk_04, 2001);
-    sub_0200D0A0(param0->unk_34.unk_04, 2001);
-    sub_0200D080(param0->unk_34.unk_04, 2001);
+    SpriteGfxHandler_UnloadCharObjById(param0->unk_34.unk_04, 2009);
+    SpriteGfxHandler_UnloadCellObjById(param0->unk_34.unk_04, 2001);
+    SpriteGfxHandler_UnloadAnimObjById(param0->unk_34.unk_04, 2001);
+    SpriteGfxHandler_UnloadPlttObjById(param0->unk_34.unk_04, 2001);
 }
 
 CellActorData * ov104_022330AC (UnkStruct_ov104_0223C4CC * param0, int param1, int param2)

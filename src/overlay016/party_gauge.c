@@ -131,19 +131,19 @@ void PartyGauge_LoadGraphics (SpriteRenderer * param0, SpriteGfxHandler * param1
 
     v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
 
-    sub_0200CDC4(param2, 2, param0, param1, v0, 110, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20037);
-    sub_0200CC3C(param0, param1, v0, 340, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20413);
-    sub_0200CE24(param0, param1, v0, 341, 1, 20407);
-    sub_0200CE54(param0, param1, v0, 342, 1, 20396);
+    SpriteRenderer_LoadPalette(param2, 2, param0, param1, v0, 110, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20037);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(param0, param1, v0, 340, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20413);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(param0, param1, v0, 341, 1, 20407);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0, param1, v0, 342, 1, 20396);
     NARC_dtor(v0);
 }
 
 void PartyGauge_FreeGraphics (SpriteGfxHandler * param0)
 {
-    sub_0200D070(param0, 20413);
-    sub_0200D080(param0, 20037);
-    sub_0200D090(param0, 20407);
-    sub_0200D0A0(param0, 20396);
+    SpriteGfxHandler_UnloadCharObjById(param0, 20413);
+    SpriteGfxHandler_UnloadPlttObjById(param0, 20037);
+    SpriteGfxHandler_UnloadCellObjById(param0, 20407);
+    SpriteGfxHandler_UnloadAnimObjById(param0, 20396);
 }
 
 static PartyGauge * ov16_0226D160 (void)
