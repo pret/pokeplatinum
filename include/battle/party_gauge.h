@@ -34,12 +34,12 @@ enum HideArrowType {
     HIDE_ARROW_FADE_IN_PLACE,
 };
 
-void ov16_0226D094(CellTransferStateData * param0, AnimationResourceCollection * param1, PaletteSys * param2);
-void ov16_0226D12C(AnimationResourceCollection * param0);
-PartyGauge * ov16_0226D194(u8 param0[], enum PartyGaugeSide param1, enum ShowPartyGaugeType param2, enum PartyGaugePosition param3, CellTransferStateData * param4, AnimationResourceCollection * param5);
-BOOL ov16_0226D1FC(PartyGauge * param0);
-void ov16_0226D220(PartyGauge * param0, enum HideArrowType param1, enum HidePartyGaugeType param2);
-BOOL ov16_0226D258(PartyGauge * param0);
-void ov16_0226D27C(PartyGauge * param0);
+void PartyGauge_LoadGraphics(CellTransferStateData * param0, AnimationResourceCollection * param1, PaletteSys * param2);
+void PartyGauge_FreeGraphics(AnimationResourceCollection * param0);
+PartyGauge * PartyGauge_Show(u8 param0[], enum PartyGaugeSide param1, enum ShowPartyGaugeType param2, enum PartyGaugePosition param3, CellTransferStateData * param4, AnimationResourceCollection * param5);
+BOOL PartyGauge_ShowIsDone(PartyGauge * param0);
+void PartyGauge_Hide(PartyGauge * param0, enum HideArrowType param1, enum HidePartyGaugeType param2);
+BOOL PartyGauge_HideIsDone(PartyGauge * param0);
+void PartyGauge_Free(PartyGauge * param0);
 
 #endif // POKEPLATINUM_OV16_0226D094_H

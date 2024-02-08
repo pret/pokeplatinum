@@ -81,7 +81,7 @@
 #include "overlay016/ov16_0226485C.h"
 #include "overlay016/ov16_02266F1C.h"
 #include "overlay016/ov16_0226871C.h"
-#include "overlay016/ov16_0226D094.h"
+#include "battle/party_gauge.h"
 
 typedef void (* UnkFuncPtr_ov16_0226F068)(BattleSystem *, BattlerData *);
 
@@ -842,7 +842,7 @@ static void ov16_0225C8E0 (BattleSystem * param0, BattlerData * param1)
     v1 = ov16_0223E018(param0);
     v2 = BattleSystem_PaletteSys(param0);
 
-    ov16_0226D094(v0, v1, v2);
+    PartyGauge_LoadGraphics(v0, v1, v2);
     ClearCommand(param0, param1->battler, 52);
     ZeroDataBuffer(param1);
 }
@@ -853,7 +853,7 @@ static void ov16_0225C91C (BattleSystem * param0, BattlerData * param1)
 
     v0 = ov16_0223E018(param0);
 
-    ov16_0226D12C(v0);
+    PartyGauge_FreeGraphics(v0);
     ClearCommand(param0, param1->battler, 53);
     ZeroDataBuffer(param1);
 }

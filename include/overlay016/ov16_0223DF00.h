@@ -37,7 +37,7 @@
 #include "overlay016/struct_ov16_02268A14_decl.h"
 #include "overlay016/struct_ov16_0226D160_decl.h"
 
-#include "overlay016/ov16_0226D094.h"
+#include "battle/party_gauge.h"
 
 #include "enums.h"
 

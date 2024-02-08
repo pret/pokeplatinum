@@ -21,7 +21,7 @@
 #include "heap.h"
 #include "unk_020218BC.h"
 #include "overlay016/ov16_0223DF00.h"
-#include "overlay016/ov16_0226D094.h"
+#include "battle/party_gauge.h"
 
 typedef struct {
     CellActorData *cells;
@@ -125,7 +125,7 @@ __attribute__((aligned(4))) static const u16 Unk_ov16_02270A1C[] = {
     0x32
 };
 
-void ov16_0226D094 (CellTransferStateData * param0, AnimationResourceCollection * param1, PaletteSys * param2)
+void PartyGauge_LoadGraphics (CellTransferStateData * param0, AnimationResourceCollection * param1, PaletteSys * param2)
 {
     NARC * v0;
 
@@ -138,7 +138,7 @@ void ov16_0226D094 (CellTransferStateData * param0, AnimationResourceCollection 
     NARC_dtor(v0);
 }
 
-void ov16_0226D12C (AnimationResourceCollection * param0)
+void PartyGauge_FreeGraphics (AnimationResourceCollection * param0)
 {
     sub_0200D070(param0, 20413);
     sub_0200D080(param0, 20037);
@@ -161,7 +161,7 @@ static void ov16_0226D17C (PartyGauge * param0)
     Heap_FreeToHeap(param0);
 }
 
-PartyGauge * ov16_0226D194 (u8 param0[], enum PartyGaugeSide param1, enum ShowPartyGaugeType param2, enum PartyGaugePosition param3, CellTransferStateData * param4, AnimationResourceCollection * param5)
+PartyGauge * PartyGauge_Show (u8 param0[], enum PartyGaugeSide param1, enum ShowPartyGaugeType param2, enum PartyGaugePosition param3, CellTransferStateData * param4, AnimationResourceCollection * param5)
 {
     PartyGauge * v0;
     int v1, v2;
@@ -177,7 +177,7 @@ PartyGauge * ov16_0226D194 (u8 param0[], enum PartyGaugeSide param1, enum ShowPa
     return v0;
 }
 
-BOOL ov16_0226D1FC (PartyGauge * param0)
+BOOL PartyGauge_ShowIsDone (PartyGauge * param0)
 {
     int v0;
 
@@ -196,7 +196,7 @@ BOOL ov16_0226D1FC (PartyGauge * param0)
     return 0;
 }
 
-void ov16_0226D220 (PartyGauge * param0, enum HideArrowType param1, enum HidePartyGaugeType param2)
+void PartyGauge_Hide (PartyGauge * param0, enum HideArrowType param1, enum HidePartyGaugeType param2)
 {
     int v0;
 
@@ -209,7 +209,7 @@ void ov16_0226D220 (PartyGauge * param0, enum HideArrowType param1, enum HidePar
     }
 }
 
-BOOL ov16_0226D258 (PartyGauge * param0)
+BOOL PartyGauge_HideIsDone (PartyGauge * param0)
 {
     int v0;
 
@@ -228,7 +228,7 @@ BOOL ov16_0226D258 (PartyGauge * param0)
     return 0;
 }
 
-void ov16_0226D27C (PartyGauge * param0)
+void PartyGauge_Free (PartyGauge * param0)
 {
     int v0;
 

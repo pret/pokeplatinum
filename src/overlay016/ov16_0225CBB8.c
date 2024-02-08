@@ -154,7 +154,7 @@
 #include "overlay016/ov16_0226485C.h"
 #include "overlay016/ov16_02266F1C.h"
 #include "overlay016/ov16_0226871C.h"
-#include "overlay016/ov16_0226D094.h"
+#include "battle/party_gauge.h"
 
 void ov16_0225CBB8(BattleSystem * param0, BattlerData * param1);
 void ov16_0225CBDC(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C168 * param2);
@@ -5443,13 +5443,13 @@ static void ShowPartyGaugeTask (SysTask * param0, void * param1)
             }
         }
 
-        v3 = ov16_0226D194(v0->status, v1, v4, v5, ov16_0223E010(v0->battleSys), ov16_0223E018(v0->battleSys));
+        v3 = PartyGauge_Show(v0->status, v1, v4, v5, ov16_0223E010(v0->battleSys), ov16_0223E018(v0->battleSys));
         ov16_0223E040(v0->battleSys, v1, v3);
     }
         v0->state++;
         break;
     case 1:
-        if (ov16_0226D1FC(ov16_0223E034(v0->battleSys, v1)) == 1) {
+        if (PartyGauge_ShowIsDone(ov16_0223E034(v0->battleSys, v1)) == 1) {
             v0->state++;
         }
         break;
@@ -5487,12 +5487,12 @@ static void HidePartyGaugeTask (SysTask * param0, void * param1)
             v4 = HIDE_PARTY_GAUGE_MID_BATTLE;
         }
 
-        ov16_0226D220(v2, v3, v4);
+        PartyGauge_Hide(v2, v3, v4);
         v0->state++;
         break;
     case 1:
-        if (ov16_0226D258(v2) == 1) {
-            ov16_0226D27C(v2);
+        if (PartyGauge_HideIsDone(v2) == 1) {
+            PartyGauge_Free(v2);
             ov16_0223E040(v0->battleSys, v1, NULL);
             v0->state++;
         }
