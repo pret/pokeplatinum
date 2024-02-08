@@ -5420,7 +5420,7 @@ static void ShowPartyGaugeTask (SysTask * param0, void * param1)
     switch (v0->state) {
     case 0:
     {
-        UnkStruct_ov16_0226D160 * v3;
+        PartyGauge * v3;
         enum ShowPartyGaugeType v4;
         enum PartyGaugePosition v5;
 
@@ -5465,7 +5465,7 @@ static void HidePartyGaugeTask (SysTask * param0, void * param1)
 {
     PartyGaugeTask * v0 = (PartyGaugeTask *)param1;
     enum PartyGaugeSide v1;
-    UnkStruct_ov16_0226D160 * v2;
+    PartyGauge * v2;
     enum HideArrowType v3;
     enum HidePartyGaugeType v4;
 
