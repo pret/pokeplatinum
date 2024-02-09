@@ -1,12 +1,10 @@
-#ifndef POKEPLATINUM_OV16_0226D094_H
-#define POKEPLATINUM_OV16_0226D094_H
+#ifndef POKEPLATINUM_BATTLE_PARTY_GAUGE_H
+#define POKEPLATINUM_BATTLE_PARTY_GAUGE_H
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "overlay016/struct_ov16_0226D160_decl.h"
-
-#include "enums.h"
 
 enum PartyGaugeSide {
     PARTY_GAUGE_OURS,
@@ -104,4 +102,4 @@ BOOL PartyGauge_HideIsDone(PartyGauge *gauge);
  */
 void PartyGauge_Free(PartyGauge *gauge);
 
-#endif // POKEPLATINUM_OV16_0226D094_H
+#endif // POKEPLATINUM_BATTLE_PARTY_GAUGE_H
