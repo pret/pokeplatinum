@@ -15,6 +15,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/sys_task.h"
 
+#include "struct_defs/battle_io.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/sprite_template.h"
 
@@ -78,16 +79,16 @@ enum PartyGaugeAnimIndex {
 
 static void ShowArrow(PartyGaugeArrow *arrow, enum PartyGaugeSide side, enum PartyGaugePosition pos, SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler);
 static void HideArrow(PartyGaugeArrow *arrow, enum HideArrowType type);
-static void ShowPokeballs(PartyGaugePokeballs * param0, s8 * param1, enum PartyGaugeSide param2, enum ShowPartyGaugeType param3, enum PartyGaugePosition param4, int param5, int param6, SpriteRenderer * param7, SpriteGfxHandler * param8);
-static void HidePokeballs(PartyGaugePokeballs * param0, int param1, enum HidePartyGaugeType param2, s16 * param3);
+static void ShowPokeballs(PartyGaugePokeballs *pokeballs, s8 *numBalls, enum PartyGaugeSide side, enum ShowPartyGaugeType type, enum PartyGaugePosition pos, int slot, int frame, SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler);
+static void HidePokeballs(PartyGaugePokeballs *pokeballs, int slot, enum HidePartyGaugeType type, s16 *arrowAlpha);
 static void ShowArrowTask(SysTask *task, void *data);
 static void HideArrowTask(SysTask *task, void *data);
-static void ov16_0226D654(SysTask * param0, void * param1);
-static void ov16_0226D854(SysTask * param0, void * param1);
-static void ov16_0226D99C(SysTask * param0, void * param1);
-static void ov16_0226DAAC(SysTask * param0, void * param1);
-static int PokeballsAnimationFrame(int param0, enum PartyGaugeSide param1);
-static int ov16_0226DB44(int param0);
+static void ShowPokeballsStartOfBattleTask(SysTask *task, void *data);
+static void ShowPokeballsMidBattleTask(SysTask *task, void *data);
+static void HidePokeballsStartOfBattleTask(SysTask *task, void *data);
+static void HidePokeballsMidBattleTask(SysTask *task, void *data);
+static int PokeballsAnimationFrame(enum PartyGaugeBallStatus status, enum PartyGaugeSide side);
+static int FlippedAnimationFrame(int frame);
 static PartyGauge* NewPartyGauge(void);
 static void FreePartyGauge(PartyGauge *partyGauge);
 
@@ -149,12 +150,28 @@ static const SpriteTemplate sPokeballTemplate = {
 #define ARROW_X_END_THEIRS      (SCREEN_EDGE_LEFT  + 32)
 #define ARROW_Y_POS_OURS        120
 #define ARROW_Y_POS_THEIRS      56
+
+#define POKEBALL_X_START_OURS   (SCREEN_EDGE_RIGHT + 20)
+#define POKEBALL_X_START_THEIRS (SCREEN_EDGE_LEFT  - 20)
+#define POKEBALL_X_END_OURS     (SCREEN_EDGE_RIGHT - 128 + 34)
+#define POKEBALL_X_END_THEIRS   (SCREEN_EDGE_LEFT  + 128 - 34)
 #define POKEBALL_Y_POS_OURS     (ARROW_Y_POS_OURS - 6)
 #define POKEBALL_Y_POS_THEIRS   (ARROW_Y_POS_THEIRS - 6)
+
+#define POKEBALL_SPACING            16
+#define POKEBALL_OVERFLOW_SPACING   15
+#define POKEBALL_OVERFLOW_LEN       6
 
 #define ARROW_IN_SPEED          (18 << 8)
 #define ARROW_OUT_SPEED         (4 << 8)
 #define ARROW_FADE_SPEED        (1 << 8)
+
+#define POKEBALL_IN_SPEED       (18 << 8)
+#define POKEBALL_IN_SPEED_SLOW  (6 << 8)
+#define POKEBALL_OUT_SPEED      (12 << 8)
+
+#define POKEBALL_SLOT_SHOW_DELAY    3
+#define POKEBALL_FLAT_SHOW_DELAY    5
 
 #define HIGH_LOW_Y_POS_DIFF     36
 
@@ -438,331 +455,357 @@ static void HideArrowTask(SysTask *task, void *data)
     }
 }
 
-static void ShowPokeballs (PartyGaugePokeballs * param0, s8 * param1, enum PartyGaugeSide param2, enum ShowPartyGaugeType param3, enum PartyGaugePosition param4, int param5, int param6, SpriteRenderer * param7, SpriteGfxHandler * param8)
+enum {
+    SHOW_POKEBALLS_INIT = 0,
+    SHOW_POKEBALLS_DELAY,
+    SHOW_POKEBALLS_DRAW,
+    SHOW_POKEBALLS_INCREMENT,
+    SHOW_POKEBALLS_SET_FRAME,
+    SHOW_POKEBALLS_ANIMATE,
+    SHOW_POKEBALLS_SCROLL,
+    SHOW_POKEBALLS_DONE,
+};
+
+static void ShowPokeballs(PartyGaugePokeballs *pokeballs, s8 *numBalls, enum PartyGaugeSide side, enum ShowPartyGaugeType type, enum PartyGaugePosition pos, int slot, int frame, SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler)
 {
-    GF_ASSERT(param0->cells == NULL && param0->task == NULL);
+    GF_ASSERT(pokeballs->cells == NULL && pokeballs->task == NULL);
 
-    MI_CpuClear8(param0, sizeof(PartyGaugePokeballs));
-    param0->cells = SpriteActor_LoadResources(param7, param8, &sPokeballTemplate);
+    MI_CpuClear8(pokeballs, sizeof(PartyGaugePokeballs));
+    pokeballs->cells = SpriteActor_LoadResources(renderer, gfxHandler, &sPokeballTemplate);
 
-    if (param2 == PARTY_GAUGE_OURS) {
-        SpriteActor_SetSpritePositionXY(param0->cells, (256 + 20), sPokeballYPosOurs[param4]);
+    if (side == PARTY_GAUGE_OURS) {
+        SpriteActor_SetSpritePositionXY(pokeballs->cells, POKEBALL_X_START_OURS, sPokeballYPosOurs[pos]);
     } else {
-        SpriteActor_SetSpritePositionXY(param0->cells, -20, sPokeballYPosTheirs[param4]);
+        SpriteActor_SetSpritePositionXY(pokeballs->cells, POKEBALL_X_START_THEIRS, sPokeballYPosTheirs[pos]);
     }
 
-    SpriteActor_SetSpriteAnimActive(param0->cells->unk_00, param6);
-    SpriteActor_UpdateObject(param0->cells->unk_00);
+    SpriteActor_SetSpriteAnimActive(pokeballs->cells->unk_00, frame);
+    SpriteActor_UpdateObject(pokeballs->cells->unk_00);
 
-    param0->side = param2;
-    param0->ballSlot = param5;
-    param0->position = param4;
-    param0->flipAnimation = ov16_0226DB44(param6);
-    param0->pokeballCount = param1;
-    param0->sdatID = ((param6 == 6) ? 1811 : 1810);
+    pokeballs->side = side;
+    pokeballs->ballSlot = slot;
+    pokeballs->position = pos;
+    pokeballs->flipAnimation = FlippedAnimationFrame(frame);
+    pokeballs->pokeballCount = numBalls;
+    pokeballs->sdatID = frame == PGANM_POKEBALL_EMPTY_SLOT ? SEQ_PARTY_GAUGE_BALL_EMPTY : SEQ_PARTY_GAUGE_BALL_IN;
 
-    if (param2 == PARTY_GAUGE_OURS) {
-        param0->xEnd = (256 - 128 + 20 + 14) + param5 * 16;
-        param0->xOverflow = (256 - 128 + 20 + 14) + param5 * 15 - 6;
+    if (side == PARTY_GAUGE_OURS) {
+        pokeballs->xEnd = POKEBALL_X_END_OURS + slot * POKEBALL_SPACING;
+        pokeballs->xOverflow = POKEBALL_X_END_OURS + slot * POKEBALL_OVERFLOW_SPACING - POKEBALL_OVERFLOW_LEN;
     } else {
-        param0->xEnd = (128 - 20 - 14) - param5 * 16;
-        param0->xOverflow = (128 - 20 - 14) - param5 * 15 + 6;
+        pokeballs->xEnd = POKEBALL_X_END_THEIRS - slot * POKEBALL_SPACING;
+        pokeballs->xOverflow = POKEBALL_X_END_THEIRS - slot * POKEBALL_OVERFLOW_SPACING + POKEBALL_OVERFLOW_LEN;
     }
 
-    param0->state = 0;
+    pokeballs->state = SHOW_POKEBALLS_INIT;
 
-    if (param3 == SHOW_PARTY_GAUGE_BATTLE_START) {
-        param0->delay = 3 * param5 + 5;
-        param0->task = SysTask_Start(ov16_0226D654, param0, (500 + 1));
+    if (type == SHOW_PARTY_GAUGE_BATTLE_START) {
+        // At the start of the battle, Poke Balls scroll behind the arrow and roll across the screen
+        pokeballs->delay = POKEBALL_SLOT_SHOW_DELAY * slot + POKEBALL_FLAT_SHOW_DELAY;
+        pokeballs->task = SysTask_Start(ShowPokeballsStartOfBattleTask, pokeballs, POKEBALL_TASK_PRIORITY);
     } else {
-        param0->delay = 0;
-        param0->task = SysTask_Start(ov16_0226D854, param0, (500 + 1));
+        // Mid-battle, the Poke Balls scroll in alongside the arrow, and they do not roll across the screen
+        pokeballs->delay = 0;
+        pokeballs->task = SysTask_Start(ShowPokeballsMidBattleTask, pokeballs, POKEBALL_TASK_PRIORITY);
     }
 }
 
-static void ov16_0226D654 (SysTask * param0, void * param1)
+static void ShowPokeballsStartOfBattleTask(SysTask *task, void *data)
 {
-    PartyGaugePokeballs * v0 = param1;
+    PartyGaugePokeballs * pokeballs = data;
 
-    switch (v0->state) {
-    case 0:
-    {
-        s16 v1, v2;
+    switch (pokeballs->state) {
+    case SHOW_POKEBALLS_INIT:
+        s16 x, y;
+        SpriteActor_GetSpritePositionXY(pokeballs->cells, &x, &y);
+        pokeballs->xStart = x << 8;
 
-        SpriteActor_GetSpritePositionXY(v0->cells, &v1, &v2);
-        v0->xStart = v1 << 8;
-    }
-        v0->state++;
-    case 1:
-        if (v0->delay > 0) {
-            v0->delay--;
+        pokeballs->state++;
+        // fall-through
+    case SHOW_POKEBALLS_DELAY:
+        if (pokeballs->delay > 0) {
+            pokeballs->delay--;
             break;
         }
-    case 2:
-        if (v0->side == PARTY_GAUGE_OURS) {
-            v0->xStart -= 0x1200;
+        // fall-through
+    case SHOW_POKEBALLS_DRAW:
+        if (pokeballs->side == PARTY_GAUGE_OURS) {
+            pokeballs->xStart -= POKEBALL_IN_SPEED;
 
-            if (v0->xStart <= v0->xOverflow << 8) {
-                v0->xStart = v0->xOverflow << 8;
-                Sound_PlayEffect(v0->sdatID);
-                v0->state++;
+            if (pokeballs->xStart <= pokeballs->xOverflow << 8) {
+                pokeballs->xStart = pokeballs->xOverflow << 8;
+                Sound_PlayEffect(pokeballs->sdatID);
+                pokeballs->state++;
             }
 
-            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, sPokeballYPosOurs[v0->position]);
+            SpriteActor_SetSpritePositionXY(pokeballs->cells, pokeballs->xStart >> 8, sPokeballYPosOurs[pokeballs->position]);
         } else {
-            v0->xStart += 0x1200;
+            pokeballs->xStart += POKEBALL_IN_SPEED;
 
-            if (v0->xStart >= v0->xOverflow << 8) {
-                v0->xStart = v0->xOverflow << 8;
-                v0->state++;
+            if (pokeballs->xStart >= pokeballs->xOverflow << 8) {
+                pokeballs->xStart = pokeballs->xOverflow << 8;
+                pokeballs->state++;
             }
 
-            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, sPokeballYPosTheirs[v0->position]);
+            SpriteActor_SetSpritePositionXY(pokeballs->cells, pokeballs->xStart >> 8, sPokeballYPosTheirs[pokeballs->position]);
         }
 
-        SpriteActor_UpdateObject(v0->cells->unk_00);
+        SpriteActor_UpdateObject(pokeballs->cells->unk_00);
         break;
-    case 3:
 
-        (*(v0->pokeballCount))++;
-        v0->state++;
-
-    case 4:
-        if (*(v0->pokeballCount) != 6) {
-            SpriteActor_UpdateObject(v0->cells->unk_00);
+    case SHOW_POKEBALLS_INCREMENT:
+        (*(pokeballs->pokeballCount))++;
+        pokeballs->state++;
+        // fall-through
+    case SHOW_POKEBALLS_SET_FRAME:
+        if (*(pokeballs->pokeballCount) != 6) {
+            SpriteActor_UpdateObject(pokeballs->cells->unk_00);
             break;
         }
 
-        if (v0->side == PARTY_GAUGE_OURS) {
-            SpriteActor_SetAnimFrame(v0->cells->unk_00, 1);
+        if (pokeballs->side == PARTY_GAUGE_OURS) {
+            SpriteActor_SetAnimFrame(pokeballs->cells->unk_00, 1);
         } else {
-            SpriteActor_SetAnimFrame(v0->cells->unk_00, 1);
+            SpriteActor_SetAnimFrame(pokeballs->cells->unk_00, 1);
         }
 
-        v0->delay = 0;
-        v0->state++;
-    case 5:
-        v0->delay++;
+        pokeballs->delay = 0;
+        pokeballs->state++;
+        // fall-through
+    case SHOW_POKEBALLS_ANIMATE:
+        pokeballs->delay++;
 
-        if (v0->delay < 0) {
+        if (pokeballs->delay < 0) {
             break;
         }
 
-        SpriteActor_SetSpriteAnimActive(v0->cells->unk_00, v0->flipAnimation);
-        v0->delay = 0;
-        v0->state++;
-    case 6:
-        if (v0->side == PARTY_GAUGE_OURS) {
-            v0->xStart += 0x600;
+        SpriteActor_SetSpriteAnimActive(pokeballs->cells->unk_00, pokeballs->flipAnimation);
+        pokeballs->delay = 0;
+        pokeballs->state++;
+        // fall-through
+    case SHOW_POKEBALLS_SCROLL:
+        if (pokeballs->side == PARTY_GAUGE_OURS) {
+            pokeballs->xStart += POKEBALL_IN_SPEED_SLOW; // need more dissection on what exactly this is for
 
-            if (v0->xStart >= v0->xEnd << 8) {
-                v0->xStart = v0->xEnd << 8;
-                v0->state++;
+            if (pokeballs->xStart >= pokeballs->xEnd << 8) {
+                pokeballs->xStart = pokeballs->xEnd << 8;
+                pokeballs->state++;
             }
 
-            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, sPokeballYPosOurs[v0->position]);
+            SpriteActor_SetSpritePositionXY(pokeballs->cells, pokeballs->xStart >> 8, sPokeballYPosOurs[pokeballs->position]);
         } else {
-            v0->xStart -= 0x600;
+            pokeballs->xStart -= POKEBALL_IN_SPEED_SLOW;
 
-            if (v0->xStart <= v0->xEnd << 8) {
-                v0->xStart = v0->xEnd << 8;
-                v0->state++;
+            if (pokeballs->xStart <= pokeballs->xEnd << 8) {
+                pokeballs->xStart = pokeballs->xEnd << 8;
+                pokeballs->state++;
             }
 
-            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, sPokeballYPosTheirs[v0->position]);
+            SpriteActor_SetSpritePositionXY(pokeballs->cells, pokeballs->xStart >> 8, sPokeballYPosTheirs[pokeballs->position]);
         }
 
-        SpriteActor_UpdateObject(v0->cells->unk_00);
+        SpriteActor_UpdateObject(pokeballs->cells->unk_00);
         break;
+    
     default:
-        SpriteActor_SetAnimFrame(v0->cells->unk_00, 0);
-        SysTask_Done(param0);
-        v0->task = NULL;
-        return;
+        SpriteActor_SetAnimFrame(pokeballs->cells->unk_00, 0);
+        SysTask_Done(task);
+        pokeballs->task = NULL;
     }
 }
 
-static void ov16_0226D854 (SysTask * param0, void * param1)
+static void ShowPokeballsMidBattleTask(SysTask *task, void *data)
 {
-    PartyGaugePokeballs * v0 = param1;
+    PartyGaugePokeballs *pokeballs = data;
 
-    switch (v0->state) {
-    case 0:
-    {
-        s16 v1, v2;
+    switch (pokeballs->state) {
+    case SHOW_POKEBALLS_INIT:
+        s16 x, y;
+        SpriteActor_GetSpritePositionXY(pokeballs->cells, &x, &y);
+        pokeballs->xStart = x << 8;
 
-        SpriteActor_GetSpritePositionXY(v0->cells, &v1, &v2);
-        v0->xStart = v1 << 8;
-    }
-        SpriteActor_SetAnimFrame(v0->cells->unk_00, 0);
-        v0->state++;
-    case 1:
-        if (v0->delay > 0) {
-            v0->delay--;
+        SpriteActor_SetAnimFrame(pokeballs->cells->unk_00, 0);
+        pokeballs->state++;
+        // fall-through
+    case SHOW_POKEBALLS_DELAY:
+        if (pokeballs->delay > 0) {
+            pokeballs->delay--;
             break;
         }
-    case 2:
-        if (v0->side == PARTY_GAUGE_OURS) {
-            v0->xStart -= 0x1200;
+        // fall-through
+    case SHOW_POKEBALLS_DRAW:
+        if (pokeballs->side == PARTY_GAUGE_OURS) {
+            pokeballs->xStart -= POKEBALL_IN_SPEED;
 
-            if (v0->xStart <= v0->xEnd << 8) {
-                v0->xStart = v0->xEnd << 8;
-                v0->state++;
+            if (pokeballs->xStart <= pokeballs->xEnd << 8) {
+                pokeballs->xStart = pokeballs->xEnd << 8;
+                pokeballs->state++;
             }
 
-            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, sPokeballYPosOurs[v0->position]);
+            SpriteActor_SetSpritePositionXY(pokeballs->cells, pokeballs->xStart >> 8, sPokeballYPosOurs[pokeballs->position]);
         } else {
-            v0->xStart += 0x1200;
+            pokeballs->xStart += POKEBALL_IN_SPEED;
 
-            if (v0->xStart >= v0->xEnd << 8) {
-                v0->xStart = v0->xEnd << 8;
-                v0->state++;
+            if (pokeballs->xStart >= pokeballs->xEnd << 8) {
+                pokeballs->xStart = pokeballs->xEnd << 8;
+                pokeballs->state++;
             }
 
-            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, sPokeballYPosTheirs[v0->position]);
+            SpriteActor_SetSpritePositionXY(pokeballs->cells, pokeballs->xStart >> 8, sPokeballYPosTheirs[pokeballs->position]);
         }
         break;
+
     default:
-        SysTask_Done(param0);
-        v0->task = NULL;
-        return;
+        SysTask_Done(task);
+        pokeballs->task = NULL;
     }
 }
 
-static void HidePokeballs (PartyGaugePokeballs * param0, int param1, enum HidePartyGaugeType param2, s16 * param3)
+static void HidePokeballs(PartyGaugePokeballs *pokeballs, int slot, enum HidePartyGaugeType type, s16 *arrowAlpha)
 {
-    GF_ASSERT(param0->cells != NULL && param0->task == NULL);
+    GF_ASSERT(pokeballs->cells != NULL && pokeballs->task == NULL);
 
-    param0->state = 0;
+    pokeballs->state = 0;
 
-    if (param2 == HIDE_PARTY_GAUGE_BATTLE_START) {
-        param0->arrowAlpha = param3;
-        param0->delay = 3 * param1;
-        param0->startDelay = 4;
-        param0->task = SysTask_Start(ov16_0226D99C, param0, (500 + 1));
+    if (type == HIDE_PARTY_GAUGE_BATTLE_START) {
+        pokeballs->arrowAlpha = arrowAlpha;
+        pokeballs->delay = 3 * slot;
+        pokeballs->startDelay = 4;
+        pokeballs->task = SysTask_Start(HidePokeballsStartOfBattleTask, pokeballs, POKEBALL_TASK_PRIORITY);
     } else {
-        param0->arrowAlpha = param3;
-        param0->delay = 0;
-        param0->startDelay = 0;
-        param0->task = SysTask_Start(ov16_0226DAAC, param0, (500 + 1));
+        pokeballs->arrowAlpha = arrowAlpha;
+        pokeballs->delay = 0;
+        pokeballs->startDelay = 0;
+        pokeballs->task = SysTask_Start(HidePokeballsMidBattleTask, pokeballs, POKEBALL_TASK_PRIORITY);
     }
 }
 
-static void ov16_0226D99C (SysTask * param0, void * param1)
+enum {
+    HIDE_POKEBALLS_INIT = 0,
+    HIDE_POKEBALLS_DELAY,
+    HIDE_POKEBALLS_FADE,
+    HIDE_POKEBALLS_DONE,
+
+    HIDE_POKEBALLS_BREAK = 100,
+};
+
+static void HidePokeballsStartOfBattleTask(SysTask *task, void *data)
 {
-    PartyGaugePokeballs * v0 = param1;
+    PartyGaugePokeballs * pokeballs = data;
 
-    if ((*(v0->arrowAlpha)) == 0) {
-        v0->state = 100;
+    if (*(pokeballs->arrowAlpha) == 0) {
+        pokeballs->state = HIDE_POKEBALLS_BREAK;
     }
 
-    switch (v0->state) {
-    case 0:
-    {
-        s16 v1, v2;
+    switch (pokeballs->state) {
+    case HIDE_POKEBALLS_INIT:
+        s16 x, y;
 
-        SpriteActor_GetSpritePositionXY(v0->cells, &v1, &v2);
-        v0->xStart = v1 << 8;
-    }
-        SpriteActor_SetOAMMode(v0->cells, GX_OAM_MODE_XLU);
-        v0->state++;
-    case 1:
-        if (v0->startDelay > 0) {
-            v0->startDelay--;
+        SpriteActor_GetSpritePositionXY(pokeballs->cells, &x, &y);
+        pokeballs->xStart = x << 8;
+
+        SpriteActor_SetOAMMode(pokeballs->cells, GX_OAM_MODE_XLU);
+        pokeballs->state++;
+        // fall-through
+    case HIDE_POKEBALLS_DELAY:
+        if (pokeballs->startDelay > 0) {
+            pokeballs->startDelay--;
             break;
         }
 
-        if (v0->delay > 0) {
-            v0->delay--;
+        if (pokeballs->delay > 0) {
+            pokeballs->delay--;
             break;
         }
-    case 2:
-        if (v0->side == PARTY_GAUGE_OURS) {
-            v0->xStart -= 0xc00;
-            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, sPokeballYPosOurs[v0->position]);
+        // fall-through
+    case HIDE_POKEBALLS_FADE:
+        if (pokeballs->side == PARTY_GAUGE_OURS) {
+            pokeballs->xStart -= POKEBALL_OUT_SPEED;
+            SpriteActor_SetSpritePositionXY(pokeballs->cells, pokeballs->xStart >> 8, sPokeballYPosOurs[pokeballs->position]);
         } else {
-            v0->xStart += 0xc00;
-            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, sPokeballYPosTheirs[v0->position]);
+            pokeballs->xStart += POKEBALL_OUT_SPEED;
+            SpriteActor_SetSpritePositionXY(pokeballs->cells, pokeballs->xStart >> 8, sPokeballYPosTheirs[pokeballs->position]);
         }
 
-        if ((v0->xStart < -16 * 0x100) || (v0->xStart > ((256 + 16) << 8))) {
-            v0->state++;
+        // Need some more documentation on this one
+        if (pokeballs->xStart < -16 * 0x100 || pokeballs->xStart > ((256 + 16) << 8)) {
+            pokeballs->state++;
         }
 
-        SpriteActor_UpdateObject(v0->cells->unk_00);
+        SpriteActor_UpdateObject(pokeballs->cells->unk_00);
         break;
-    case 100:
+
+    case HIDE_POKEBALLS_BREAK:
     default:
-        SpriteActor_DrawSprite(v0->cells->unk_00, 0);
-        SysTask_Done(param0);
-        v0->task = NULL;
-        return;
+        SpriteActor_DrawSprite(pokeballs->cells->unk_00, 0);
+        SysTask_Done(task);
+        pokeballs->task = NULL;
     }
 }
 
-static void ov16_0226DAAC (SysTask * param0, void * param1)
+static void HidePokeballsMidBattleTask(SysTask *task, void *data)
 {
-    PartyGaugePokeballs * v0 = param1;
+    PartyGaugePokeballs *pokeballs = data;
 
-    if ((*(v0->arrowAlpha)) == 0) {
-        v0->state = 100;
+    if (*(pokeballs->arrowAlpha) == 0) {
+        pokeballs->state = HIDE_POKEBALLS_BREAK;
     }
 
-    switch (v0->state) {
-    case 0:
-        SpriteActor_SetOAMMode(v0->cells, GX_OAM_MODE_XLU);
-        v0->state++;
-    case 1:
+    switch (pokeballs->state) {
+    case HIDE_POKEBALLS_INIT:
+        SpriteActor_SetOAMMode(pokeballs->cells, GX_OAM_MODE_XLU);
+        pokeballs->state++;
+        // fall-through
+    case HIDE_POKEBALLS_DELAY:
+        // let the pokeballs fade out alongside the arrow
         break;
-    case 100:
+
+    case HIDE_POKEBALLS_BREAK:
     default:
-        SpriteActor_DrawSprite(v0->cells->unk_00, 0);
-        SysTask_Done(param0);
-        v0->task = NULL;
-        return;
+        SpriteActor_DrawSprite(pokeballs->cells->unk_00, 0);
+        SysTask_Done(task);
+        pokeballs->task = NULL;
     }
 }
 
-static int PokeballsAnimationFrame (int param0, enum PartyGaugeSide param1)
+static int PokeballsAnimationFrame(enum PartyGaugeBallStatus status, enum PartyGaugeSide side)
 {
-    int v0;
-
-    switch (param0) {
-    case 0:
+    switch (status) {
+    case BALL_STATUS_NO_MON:
     default:
-        v0 = 6;
-        break;
-    case 1:
-        v0 = (param1 == PARTY_GAUGE_OURS) ? 3 : 0;
-        break;
-    case 2:
-        v0 = (param1 == PARTY_GAUGE_OURS) ? 5 : 2;
-        break;
-    case 3:
-        v0 = (param1 == PARTY_GAUGE_OURS) ? 4 : 1;
-        break;
-    }
+        return PGANM_POKEBALL_EMPTY_SLOT;
+        
+    case BALL_STATUS_MON_ALIVE:
+        return (side == PARTY_GAUGE_OURS) ? PGANM_POKEBALL_HEALTHY_OURS : PGANM_POKEBALL_HEALTHY_THEIRS;
+        
+    case BALL_STATUS_MON_FAINTED:
+        return (side == PARTY_GAUGE_OURS) ? PGANM_POKEBALL_FAINTED_OURS : PGANM_POKEBALL_FAINTED_THEIRS;
 
-    return v0;
+    case BALL_STATUS_HAS_STATUS_CONDITION:
+        return (side == PARTY_GAUGE_OURS) ? PGANM_POKEBALL_STATUSED_OURS : PGANM_POKEBALL_STATUSED_THEIRS;
+    }
 }
 
-static int ov16_0226DB44 (int param0)
+static int FlippedAnimationFrame(int frame)
 {
-    switch (param0) {
-    case 6:
+    switch (frame) {
+    case PGANM_POKEBALL_EMPTY_SLOT:
     default:
-        return param0;
-    case 3:
-        return 0;
-    case 0:
-        return 3;
-    case 5:
-        return 2;
-    case 2:
-        return 5;
-    case 4:
-        return 1;
-    case 1:
-        return 4;
+        return frame;
+
+    case PGANM_POKEBALL_HEALTHY_OURS:
+        return PGANM_POKEBALL_HEALTHY_THEIRS;
+    case PGANM_POKEBALL_HEALTHY_THEIRS:
+        return PGANM_POKEBALL_HEALTHY_OURS;
+
+    case PGANM_POKEBALL_FAINTED_OURS:
+        return PGANM_POKEBALL_FAINTED_THEIRS;
+    case PGANM_POKEBALL_FAINTED_THEIRS:
+        return PGANM_POKEBALL_FAINTED_OURS;
+
+    case PGANM_POKEBALL_STATUSED_OURS:
+        return PGANM_POKEBALL_STATUSED_THEIRS;
+    case PGANM_POKEBALL_STATUSED_THEIRS:
+        return PGANM_POKEBALL_STATUSED_OURS;
     }
 }
