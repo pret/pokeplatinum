@@ -24,56 +24,56 @@
 #include "overlay016/ov16_0226D094.h"
 
 typedef struct {
-    CellActorData * unk_00;
-    SysTask * unk_04;
-    UnkEnum_ov16_0226D220 unk_08;
-    UnkEnum_ov16_0226D194 unk_0C;
-    UnkEnum_ov16_0226D194_3 unk_10;
-    s32 unk_14;
-    s16 unk_18;
-    u8 unk_1A;
-    u8 unk_1B;
-} UnkStruct_ov16_0226D2A0;
+    CellActorData *cells;
+    SysTask *task;
+    enum HideArrowType hideType;
+    enum PartyGaugeSide side;
+    enum PartyGaugePosition position;
+    s32 x;
+    s16 alpha;
+    u8 state;
+    u8 delay;
+} PartyGaugeArrow;
 
 typedef struct {
-    CellActorData * unk_00;
-    SysTask * unk_04;
-    UnkEnum_ov16_0226D194 unk_08;
-    UnkEnum_ov16_0226D194_3 unk_0C;
-    UnkEnum_ov16_0226D194_2 unk_10;
-    s8 * unk_14;
-    s16 * unk_18;
-    s32 unk_1C;
-    s32 unk_20;
-    s32 unk_24;
-    s16 unk_28;
-    u16 unk_2A;
-    u8 unk_2C;
-    u8 unk_2D;
-    u8 unk_2E;
-    u8 unk_2F;
-} UnkStruct_ov16_0226D540;
+    CellActorData *cells;
+    SysTask *task;
+    enum PartyGaugeSide side;
+    enum PartyGaugePosition position;
+    enum HidePartyGaugeType hideType;
+    s8 *pokeballCount;
+    s16 *arrowAlpha;
+    s32 xStart;
+    s32 xEnd;
+    s32 xOverflow;
+    s16 delay;
+    u16 sdatID;
+    u8 state;
+    u8 ballSlot;
+    u8 flipAnimation;
+    u8 startDelay;
+} PartyGaugePokeballs;
 
-typedef struct UnkStruct_ov16_0226D160_t {
-    UnkStruct_ov16_0226D2A0 unk_00;
-    UnkStruct_ov16_0226D540 unk_1C[6];
-    s8 unk_13C;
-} UnkStruct_ov16_0226D160;
+typedef struct PartyGauge {
+    PartyGaugeArrow arrow;
+    PartyGaugePokeballs pokeballs[MAX_PARTY_SIZE];
+    s8 pokeballCount;
+} PartyGauge;
 
-static void ov16_0226D2A0(UnkStruct_ov16_0226D2A0 * param0, UnkEnum_ov16_0226D194 param1, UnkEnum_ov16_0226D194_3 param2, CellTransferStateData * param3, AnimationResourceCollection * param4);
-static void ov16_0226D3F8(UnkStruct_ov16_0226D2A0 * param0, UnkEnum_ov16_0226D220 param1);
-static void ov16_0226D540(UnkStruct_ov16_0226D540 * param0, s8 * param1, UnkEnum_ov16_0226D194 param2, UnkEnum_ov16_0226D194_1 param3, UnkEnum_ov16_0226D194_3 param4, int param5, int param6, CellTransferStateData * param7, AnimationResourceCollection * param8);
-static void ov16_0226D938(UnkStruct_ov16_0226D540 * param0, int param1, UnkEnum_ov16_0226D194_2 param2, s16 * param3);
+static void ov16_0226D2A0(PartyGaugeArrow * param0, enum PartyGaugeSide param1, enum PartyGaugePosition param2, CellTransferStateData * param3, AnimationResourceCollection * param4);
+static void ov16_0226D3F8(PartyGaugeArrow * param0, enum HideArrowType param1);
+static void ov16_0226D540(PartyGaugePokeballs * param0, s8 * param1, enum PartyGaugeSide param2, enum ShowPartyGaugeType param3, enum PartyGaugePosition param4, int param5, int param6, CellTransferStateData * param7, AnimationResourceCollection * param8);
+static void ov16_0226D938(PartyGaugePokeballs * param0, int param1, enum HidePartyGaugeType param2, s16 * param3);
 static void ov16_0226D34C(SysTask * param0, void * param1);
 static void ov16_0226D434(SysTask * param0, void * param1);
 static void ov16_0226D654(SysTask * param0, void * param1);
 static void ov16_0226D854(SysTask * param0, void * param1);
 static void ov16_0226D99C(SysTask * param0, void * param1);
 static void ov16_0226DAAC(SysTask * param0, void * param1);
-static int ov16_0226DB04(int param0, UnkEnum_ov16_0226D194 param1);
+static int ov16_0226DB04(int param0, enum PartyGaugeSide param1);
 static int ov16_0226DB44(int param0);
-static UnkStruct_ov16_0226D160 * ov16_0226D160(void);
-static void ov16_0226D17C(UnkStruct_ov16_0226D160 * param0);
+static PartyGauge * ov16_0226D160(void);
+static void ov16_0226D17C(PartyGauge * param0);
 
 static const UnkStruct_ov104_0223F9E0 Unk_ov16_02270A3C = {
     0x0,
@@ -146,44 +146,44 @@ void ov16_0226D12C (AnimationResourceCollection * param0)
     sub_0200D0A0(param0, 20396);
 }
 
-static UnkStruct_ov16_0226D160 * ov16_0226D160 (void)
+static PartyGauge * ov16_0226D160 (void)
 {
-    UnkStruct_ov16_0226D160 * v0;
+    PartyGauge * v0;
 
-    v0 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0226D160));
-    MI_CpuClear8(v0, sizeof(UnkStruct_ov16_0226D160));
+    v0 = Heap_AllocFromHeap(5, sizeof(PartyGauge));
+    MI_CpuClear8(v0, sizeof(PartyGauge));
     return v0;
 }
 
-static void ov16_0226D17C (UnkStruct_ov16_0226D160 * param0)
+static void ov16_0226D17C (PartyGauge * param0)
 {
-    GF_ASSERT(param0->unk_00.unk_04 == NULL);
+    GF_ASSERT(param0->arrow.task == NULL);
     Heap_FreeToHeap(param0);
 }
 
-UnkStruct_ov16_0226D160 * ov16_0226D194 (u8 param0[], UnkEnum_ov16_0226D194 param1, UnkEnum_ov16_0226D194_1 param2, UnkEnum_ov16_0226D194_3 param3, CellTransferStateData * param4, AnimationResourceCollection * param5)
+PartyGauge * ov16_0226D194 (u8 param0[], enum PartyGaugeSide param1, enum ShowPartyGaugeType param2, enum PartyGaugePosition param3, CellTransferStateData * param4, AnimationResourceCollection * param5)
 {
-    UnkStruct_ov16_0226D160 * v0;
+    PartyGauge * v0;
     int v1, v2;
 
     v0 = ov16_0226D160();
-    ov16_0226D2A0(&v0->unk_00, param1, param3, param4, param5);
+    ov16_0226D2A0(&v0->arrow, param1, param3, param4, param5);
 
     for (v1 = 0; v1 < 6; v1++) {
         v2 = ov16_0226DB04(param0[v1], param1);
-        ov16_0226D540(&v0->unk_1C[v1], &v0->unk_13C, param1, param2, param3, v1, v2, param4, param5);
+        ov16_0226D540(&v0->pokeballs[v1], &v0->pokeballCount, param1, param2, param3, v1, v2, param4, param5);
     }
 
     return v0;
 }
 
-BOOL ov16_0226D1FC (UnkStruct_ov16_0226D160 * param0)
+BOOL ov16_0226D1FC (PartyGauge * param0)
 {
     int v0;
 
-    if (param0->unk_00.unk_04 == NULL) {
+    if (param0->arrow.task == NULL) {
         for (v0 = 0; v0 < 6; v0++) {
-            if (param0->unk_1C[v0].unk_04 != NULL) {
+            if (param0->pokeballs[v0].task != NULL) {
                 break;
             }
         }
@@ -196,26 +196,26 @@ BOOL ov16_0226D1FC (UnkStruct_ov16_0226D160 * param0)
     return 0;
 }
 
-void ov16_0226D220 (UnkStruct_ov16_0226D160 * param0, UnkEnum_ov16_0226D220 param1, UnkEnum_ov16_0226D194_2 param2)
+void ov16_0226D220 (PartyGauge * param0, enum HideArrowType param1, enum HidePartyGaugeType param2)
 {
     int v0;
 
     GF_ASSERT(param0 != NULL);
 
-    ov16_0226D3F8(&param0->unk_00, param1);
+    ov16_0226D3F8(&param0->arrow, param1);
 
     for (v0 = 0; v0 < 6; v0++) {
-        ov16_0226D938(&param0->unk_1C[v0], v0, param2, &param0->unk_00.unk_18);
+        ov16_0226D938(&param0->pokeballs[v0], v0, param2, &param0->arrow.alpha);
     }
 }
 
-BOOL ov16_0226D258 (UnkStruct_ov16_0226D160 * param0)
+BOOL ov16_0226D258 (PartyGauge * param0)
 {
     int v0;
 
-    if (param0->unk_00.unk_04 == NULL) {
+    if (param0->arrow.task == NULL) {
         for (v0 = 0; v0 < 6; v0++) {
-            if (param0->unk_1C[v0].unk_04 != NULL) {
+            if (param0->pokeballs[v0].task != NULL) {
                 break;
             }
         }
@@ -228,443 +228,443 @@ BOOL ov16_0226D258 (UnkStruct_ov16_0226D160 * param0)
     return 0;
 }
 
-void ov16_0226D27C (UnkStruct_ov16_0226D160 * param0)
+void ov16_0226D27C (PartyGauge * param0)
 {
     int v0;
 
-    sub_0200D0F4(param0->unk_00.unk_00);
+    sub_0200D0F4(param0->arrow.cells);
 
     for (v0 = 0; v0 < 6; v0++) {
-        sub_0200D0F4(param0->unk_1C[v0].unk_00);
+        sub_0200D0F4(param0->pokeballs[v0].cells);
     }
 
     ov16_0226D17C(param0);
 }
 
-static void ov16_0226D2A0 (UnkStruct_ov16_0226D2A0 * param0, UnkEnum_ov16_0226D194 param1, UnkEnum_ov16_0226D194_3 param2, CellTransferStateData * param3, AnimationResourceCollection * param4)
+static void ov16_0226D2A0 (PartyGaugeArrow * param0, enum PartyGaugeSide param1, enum PartyGaugePosition param2, CellTransferStateData * param3, AnimationResourceCollection * param4)
 {
-    GF_ASSERT(param0->unk_00 == NULL && param0->unk_04 == NULL);
+    GF_ASSERT(param0->cells == NULL && param0->task == NULL);
 
-    MI_CpuClear8(param0, sizeof(UnkStruct_ov16_0226D2A0));
+    MI_CpuClear8(param0, sizeof(PartyGaugeArrow));
 
-    param0->unk_00 = sub_0200CE6C(param3, param4, &Unk_ov16_02270A3C);
+    param0->cells = sub_0200CE6C(param3, param4, &Unk_ov16_02270A3C);
 
-    if (param1 == UnkEnum_ov16_0226D194_00) {
-        sub_0200D4C4(param0->unk_00, (256 + 96), Unk_ov16_02270A2C[param2]);
-        sub_02021D6C(param0->unk_00->unk_00, 8);
+    if (param1 == PARTY_GAUGE_OURS) {
+        sub_0200D4C4(param0->cells, (256 + 96), Unk_ov16_02270A2C[param2]);
+        sub_02021D6C(param0->cells->unk_00, 8);
     } else {
-        sub_0200D4C4(param0->unk_00, -96, Unk_ov16_02270A24[param2]);
-        sub_02021D6C(param0->unk_00->unk_00, 7);
+        sub_0200D4C4(param0->cells, -96, Unk_ov16_02270A24[param2]);
+        sub_02021D6C(param0->cells->unk_00, 7);
     }
 
-    sub_0200D324(param0->unk_00->unk_00);
+    sub_0200D324(param0->cells->unk_00);
 
-    param0->unk_0C = param1;
-    param0->unk_10 = param2;
-    param0->unk_1A = 0;
-    param0->unk_04 = SysTask_Start(ov16_0226D34C, param0, 500);
+    param0->side = param1;
+    param0->position = param2;
+    param0->state = 0;
+    param0->task = SysTask_Start(ov16_0226D34C, param0, 500);
 
     Sound_PlayEffect(1809);
 }
 
 static void ov16_0226D34C (SysTask * param0, void * param1)
 {
-    UnkStruct_ov16_0226D2A0 * v0 = param1;
+    PartyGaugeArrow * v0 = param1;
 
-    switch (v0->unk_1A) {
+    switch (v0->state) {
     case 0:
     {
         s16 v1, v2;
 
-        sub_0200D550(v0->unk_00, &v1, &v2);
-        v0->unk_14 = v1 << 8;
+        sub_0200D550(v0->cells, &v1, &v2);
+        v0->x = v1 << 8;
     }
-        v0->unk_1A++;
+        v0->state++;
 
     case 1:
-        if (v0->unk_0C == UnkEnum_ov16_0226D194_00) {
-            v0->unk_14 -= 0x1200;
+        if (v0->side == PARTY_GAUGE_OURS) {
+            v0->x -= 0x1200;
 
-            if (v0->unk_14 <= (256 - 32) << 8) {
-                v0->unk_14 = (256 - 32) << 8;
-                v0->unk_1A++;
+            if (v0->x <= (256 - 32) << 8) {
+                v0->x = (256 - 32) << 8;
+                v0->state++;
             }
 
-            sub_0200D4C4(v0->unk_00, v0->unk_14 >> 8, Unk_ov16_02270A2C[v0->unk_10]);
+            sub_0200D4C4(v0->cells, v0->x >> 8, Unk_ov16_02270A2C[v0->position]);
         } else {
-            v0->unk_14 += 0x1200;
+            v0->x += 0x1200;
 
-            if (v0->unk_14 >= 32 << 8) {
-                v0->unk_14 = 32 << 8;
-                v0->unk_1A++;
+            if (v0->x >= 32 << 8) {
+                v0->x = 32 << 8;
+                v0->state++;
             }
 
-            sub_0200D4C4(v0->unk_00, v0->unk_14 >> 8, Unk_ov16_02270A24[v0->unk_10]);
+            sub_0200D4C4(v0->cells, v0->x >> 8, Unk_ov16_02270A24[v0->position]);
         }
         break;
     default:
         SysTask_Done(param0);
-        v0->unk_04 = NULL;
+        v0->task = NULL;
         return;
     }
 }
 
-static void ov16_0226D3F8 (UnkStruct_ov16_0226D2A0 * param0, UnkEnum_ov16_0226D220 param1)
+static void ov16_0226D3F8 (PartyGaugeArrow * param0, enum HideArrowType param1)
 {
-    GF_ASSERT(param0->unk_00 != NULL && param0->unk_04 == NULL);
+    GF_ASSERT(param0->cells != NULL && param0->task == NULL);
 
-    param0->unk_1A = 0;
-    param0->unk_08 = param1;
+    param0->state = 0;
+    param0->hideType = param1;
 
-    if (param1 == UnkEnum_ov16_0226D220_00) {
-        param0->unk_1B = 4;
+    if (param1 == HIDE_ARROW_FADE_AND_SCROLL) {
+        param0->delay = 4;
     } else {
-        param0->unk_1B = 0;
+        param0->delay = 0;
     }
 
-    param0->unk_04 = SysTask_Start(ov16_0226D434, param0, 500);
+    param0->task = SysTask_Start(ov16_0226D434, param0, 500);
 }
 
 static void ov16_0226D434 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov16_0226D2A0 * v0 = param1;
+    PartyGaugeArrow * v0 = param1;
 
-    switch (v0->unk_1A) {
+    switch (v0->state) {
     case 0:
     {
         s16 v1, v2;
 
-        sub_0200D550(v0->unk_00, &v1, &v2);
-        v0->unk_14 = v1 << 8;
+        sub_0200D550(v0->cells, &v1, &v2);
+        v0->x = v1 << 8;
     }
 
-        sub_0200D810(v0->unk_00, GX_OAM_MODE_XLU);
+        sub_0200D810(v0->cells, GX_OAM_MODE_XLU);
 
-        v0->unk_18 = 16 << 8;
-        G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, (v0->unk_18 >> 8), 16 - (v0->unk_18 >> 8));
-        v0->unk_1A++;
+        v0->alpha = 16 << 8;
+        G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, (v0->alpha >> 8), 16 - (v0->alpha >> 8));
+        v0->state++;
     case 1:
-        if (v0->unk_1B > 0) {
-            v0->unk_1B--;
+        if (v0->delay > 0) {
+            v0->delay--;
             break;
         }
 
-        v0->unk_1A++;
+        v0->state++;
     case 2:
-        if (v0->unk_08 == UnkEnum_ov16_0226D220_00) {
-            if (v0->unk_0C == UnkEnum_ov16_0226D194_00) {
-                v0->unk_14 -= 0x400;
-                sub_0200D4C4(v0->unk_00, v0->unk_14 >> 8, Unk_ov16_02270A2C[v0->unk_10]);
+        if (v0->hideType == HIDE_ARROW_FADE_AND_SCROLL) {
+            if (v0->side == PARTY_GAUGE_OURS) {
+                v0->x -= 0x400;
+                sub_0200D4C4(v0->cells, v0->x >> 8, Unk_ov16_02270A2C[v0->position]);
             } else {
-                v0->unk_14 += 0x400;
-                sub_0200D4C4(v0->unk_00, v0->unk_14 >> 8, Unk_ov16_02270A24[v0->unk_10]);
+                v0->x += 0x400;
+                sub_0200D4C4(v0->cells, v0->x >> 8, Unk_ov16_02270A24[v0->position]);
             }
         }
 
-        v0->unk_18 -= 0x100;
+        v0->alpha -= 0x100;
 
-        if (v0->unk_18 <= 0) {
-            v0->unk_18 = 0;
-            sub_0200D3EC(v0->unk_00->unk_00, 0);
-            v0->unk_1A++;
+        if (v0->alpha <= 0) {
+            v0->alpha = 0;
+            sub_0200D3EC(v0->cells->unk_00, 0);
+            v0->state++;
         }
 
-        G2_ChangeBlendAlpha(v0->unk_18 >> 8, 16 - (v0->unk_18 >> 8));
+        G2_ChangeBlendAlpha(v0->alpha >> 8, 16 - (v0->alpha >> 8));
         break;
     default:
         ov16_0223F9F0();
         SysTask_Done(param0);
-        v0->unk_04 = NULL;
+        v0->task = NULL;
         return;
     }
 }
 
-static void ov16_0226D540 (UnkStruct_ov16_0226D540 * param0, s8 * param1, UnkEnum_ov16_0226D194 param2, UnkEnum_ov16_0226D194_1 param3, UnkEnum_ov16_0226D194_3 param4, int param5, int param6, CellTransferStateData * param7, AnimationResourceCollection * param8)
+static void ov16_0226D540 (PartyGaugePokeballs * param0, s8 * param1, enum PartyGaugeSide param2, enum ShowPartyGaugeType param3, enum PartyGaugePosition param4, int param5, int param6, CellTransferStateData * param7, AnimationResourceCollection * param8)
 {
-    GF_ASSERT(param0->unk_00 == NULL && param0->unk_04 == NULL);
+    GF_ASSERT(param0->cells == NULL && param0->task == NULL);
 
-    MI_CpuClear8(param0, sizeof(UnkStruct_ov16_0226D540));
-    param0->unk_00 = sub_0200CE6C(param7, param8, &Unk_ov16_02270A70);
+    MI_CpuClear8(param0, sizeof(PartyGaugePokeballs));
+    param0->cells = sub_0200CE6C(param7, param8, &Unk_ov16_02270A70);
 
-    if (param2 == UnkEnum_ov16_0226D194_00) {
-        sub_0200D4C4(param0->unk_00, (256 + 20), Unk_ov16_02270A34[param4]);
+    if (param2 == PARTY_GAUGE_OURS) {
+        sub_0200D4C4(param0->cells, (256 + 20), Unk_ov16_02270A34[param4]);
     } else {
-        sub_0200D4C4(param0->unk_00, -20, Unk_ov16_02270A1C[param4]);
+        sub_0200D4C4(param0->cells, -20, Unk_ov16_02270A1C[param4]);
     }
 
-    sub_02021D6C(param0->unk_00->unk_00, param6);
-    sub_0200D324(param0->unk_00->unk_00);
+    sub_02021D6C(param0->cells->unk_00, param6);
+    sub_0200D324(param0->cells->unk_00);
 
-    param0->unk_08 = param2;
-    param0->unk_2D = param5;
-    param0->unk_0C = param4;
-    param0->unk_2E = ov16_0226DB44(param6);
-    param0->unk_14 = param1;
-    param0->unk_2A = ((param6 == 6) ? 1811 : 1810);
+    param0->side = param2;
+    param0->ballSlot = param5;
+    param0->position = param4;
+    param0->flipAnimation = ov16_0226DB44(param6);
+    param0->pokeballCount = param1;
+    param0->sdatID = ((param6 == 6) ? 1811 : 1810);
 
-    if (param2 == UnkEnum_ov16_0226D194_00) {
-        param0->unk_20 = (256 - 128 + 20 + 14) + param5 * 16;
-        param0->unk_24 = (256 - 128 + 20 + 14) + param5 * 15 - 6;
+    if (param2 == PARTY_GAUGE_OURS) {
+        param0->xEnd = (256 - 128 + 20 + 14) + param5 * 16;
+        param0->xOverflow = (256 - 128 + 20 + 14) + param5 * 15 - 6;
     } else {
-        param0->unk_20 = (128 - 20 - 14) - param5 * 16;
-        param0->unk_24 = (128 - 20 - 14) - param5 * 15 + 6;
+        param0->xEnd = (128 - 20 - 14) - param5 * 16;
+        param0->xOverflow = (128 - 20 - 14) - param5 * 15 + 6;
     }
 
-    param0->unk_2C = 0;
+    param0->state = 0;
 
-    if (param3 == UnkEnum_ov16_0226D194_1_00) {
-        param0->unk_28 = 3 * param5 + 5;
-        param0->unk_04 = SysTask_Start(ov16_0226D654, param0, (500 + 1));
+    if (param3 == SHOW_PARTY_GAUGE_BATTLE_START) {
+        param0->delay = 3 * param5 + 5;
+        param0->task = SysTask_Start(ov16_0226D654, param0, (500 + 1));
     } else {
-        param0->unk_28 = 0;
-        param0->unk_04 = SysTask_Start(ov16_0226D854, param0, (500 + 1));
+        param0->delay = 0;
+        param0->task = SysTask_Start(ov16_0226D854, param0, (500 + 1));
     }
 }
 
 static void ov16_0226D654 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov16_0226D540 * v0 = param1;
+    PartyGaugePokeballs * v0 = param1;
 
-    switch (v0->unk_2C) {
+    switch (v0->state) {
     case 0:
     {
         s16 v1, v2;
 
-        sub_0200D550(v0->unk_00, &v1, &v2);
-        v0->unk_1C = v1 << 8;
+        sub_0200D550(v0->cells, &v1, &v2);
+        v0->xStart = v1 << 8;
     }
-        v0->unk_2C++;
+        v0->state++;
     case 1:
-        if (v0->unk_28 > 0) {
-            v0->unk_28--;
+        if (v0->delay > 0) {
+            v0->delay--;
             break;
         }
     case 2:
-        if (v0->unk_08 == UnkEnum_ov16_0226D194_00) {
-            v0->unk_1C -= 0x1200;
+        if (v0->side == PARTY_GAUGE_OURS) {
+            v0->xStart -= 0x1200;
 
-            if (v0->unk_1C <= v0->unk_24 << 8) {
-                v0->unk_1C = v0->unk_24 << 8;
-                Sound_PlayEffect(v0->unk_2A);
-                v0->unk_2C++;
+            if (v0->xStart <= v0->xOverflow << 8) {
+                v0->xStart = v0->xOverflow << 8;
+                Sound_PlayEffect(v0->sdatID);
+                v0->state++;
             }
 
-            sub_0200D4C4(v0->unk_00, v0->unk_1C >> 8, Unk_ov16_02270A34[v0->unk_0C]);
+            sub_0200D4C4(v0->cells, v0->xStart >> 8, Unk_ov16_02270A34[v0->position]);
         } else {
-            v0->unk_1C += 0x1200;
+            v0->xStart += 0x1200;
 
-            if (v0->unk_1C >= v0->unk_24 << 8) {
-                v0->unk_1C = v0->unk_24 << 8;
-                v0->unk_2C++;
+            if (v0->xStart >= v0->xOverflow << 8) {
+                v0->xStart = v0->xOverflow << 8;
+                v0->state++;
             }
 
-            sub_0200D4C4(v0->unk_00, v0->unk_1C >> 8, Unk_ov16_02270A1C[v0->unk_0C]);
+            sub_0200D4C4(v0->cells, v0->xStart >> 8, Unk_ov16_02270A1C[v0->position]);
         }
 
-        sub_0200D324(v0->unk_00->unk_00);
+        sub_0200D324(v0->cells->unk_00);
         break;
     case 3:
 
-        (*(v0->unk_14))++;
-        v0->unk_2C++;
+        (*(v0->pokeballCount))++;
+        v0->state++;
 
     case 4:
-        if (*(v0->unk_14) != 6) {
-            sub_0200D324(v0->unk_00->unk_00);
+        if (*(v0->pokeballCount) != 6) {
+            sub_0200D324(v0->cells->unk_00);
             break;
         }
 
-        if (v0->unk_08 == UnkEnum_ov16_0226D194_00) {
-            sub_02021E50(v0->unk_00->unk_00, 1);
+        if (v0->side == PARTY_GAUGE_OURS) {
+            sub_02021E50(v0->cells->unk_00, 1);
         } else {
-            sub_02021E50(v0->unk_00->unk_00, 1);
+            sub_02021E50(v0->cells->unk_00, 1);
         }
 
-        v0->unk_28 = 0;
-        v0->unk_2C++;
+        v0->delay = 0;
+        v0->state++;
     case 5:
-        v0->unk_28++;
+        v0->delay++;
 
-        if (v0->unk_28 < 0) {
+        if (v0->delay < 0) {
             break;
         }
 
-        sub_02021D6C(v0->unk_00->unk_00, v0->unk_2E);
-        v0->unk_28 = 0;
-        v0->unk_2C++;
+        sub_02021D6C(v0->cells->unk_00, v0->flipAnimation);
+        v0->delay = 0;
+        v0->state++;
     case 6:
-        if (v0->unk_08 == UnkEnum_ov16_0226D194_00) {
-            v0->unk_1C += 0x600;
+        if (v0->side == PARTY_GAUGE_OURS) {
+            v0->xStart += 0x600;
 
-            if (v0->unk_1C >= v0->unk_20 << 8) {
-                v0->unk_1C = v0->unk_20 << 8;
-                v0->unk_2C++;
+            if (v0->xStart >= v0->xEnd << 8) {
+                v0->xStart = v0->xEnd << 8;
+                v0->state++;
             }
 
-            sub_0200D4C4(v0->unk_00, v0->unk_1C >> 8, Unk_ov16_02270A34[v0->unk_0C]);
+            sub_0200D4C4(v0->cells, v0->xStart >> 8, Unk_ov16_02270A34[v0->position]);
         } else {
-            v0->unk_1C -= 0x600;
+            v0->xStart -= 0x600;
 
-            if (v0->unk_1C <= v0->unk_20 << 8) {
-                v0->unk_1C = v0->unk_20 << 8;
-                v0->unk_2C++;
+            if (v0->xStart <= v0->xEnd << 8) {
+                v0->xStart = v0->xEnd << 8;
+                v0->state++;
             }
 
-            sub_0200D4C4(v0->unk_00, v0->unk_1C >> 8, Unk_ov16_02270A1C[v0->unk_0C]);
+            sub_0200D4C4(v0->cells, v0->xStart >> 8, Unk_ov16_02270A1C[v0->position]);
         }
 
-        sub_0200D324(v0->unk_00->unk_00);
+        sub_0200D324(v0->cells->unk_00);
         break;
     default:
-        sub_02021E50(v0->unk_00->unk_00, 0);
+        sub_02021E50(v0->cells->unk_00, 0);
         SysTask_Done(param0);
-        v0->unk_04 = NULL;
+        v0->task = NULL;
         return;
     }
 }
 
 static void ov16_0226D854 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov16_0226D540 * v0 = param1;
+    PartyGaugePokeballs * v0 = param1;
 
-    switch (v0->unk_2C) {
+    switch (v0->state) {
     case 0:
     {
         s16 v1, v2;
 
-        sub_0200D550(v0->unk_00, &v1, &v2);
-        v0->unk_1C = v1 << 8;
+        sub_0200D550(v0->cells, &v1, &v2);
+        v0->xStart = v1 << 8;
     }
-        sub_02021E50(v0->unk_00->unk_00, 0);
-        v0->unk_2C++;
+        sub_02021E50(v0->cells->unk_00, 0);
+        v0->state++;
     case 1:
-        if (v0->unk_28 > 0) {
-            v0->unk_28--;
+        if (v0->delay > 0) {
+            v0->delay--;
             break;
         }
     case 2:
-        if (v0->unk_08 == UnkEnum_ov16_0226D194_00) {
-            v0->unk_1C -= 0x1200;
+        if (v0->side == PARTY_GAUGE_OURS) {
+            v0->xStart -= 0x1200;
 
-            if (v0->unk_1C <= v0->unk_20 << 8) {
-                v0->unk_1C = v0->unk_20 << 8;
-                v0->unk_2C++;
+            if (v0->xStart <= v0->xEnd << 8) {
+                v0->xStart = v0->xEnd << 8;
+                v0->state++;
             }
 
-            sub_0200D4C4(v0->unk_00, v0->unk_1C >> 8, Unk_ov16_02270A34[v0->unk_0C]);
+            sub_0200D4C4(v0->cells, v0->xStart >> 8, Unk_ov16_02270A34[v0->position]);
         } else {
-            v0->unk_1C += 0x1200;
+            v0->xStart += 0x1200;
 
-            if (v0->unk_1C >= v0->unk_20 << 8) {
-                v0->unk_1C = v0->unk_20 << 8;
-                v0->unk_2C++;
+            if (v0->xStart >= v0->xEnd << 8) {
+                v0->xStart = v0->xEnd << 8;
+                v0->state++;
             }
 
-            sub_0200D4C4(v0->unk_00, v0->unk_1C >> 8, Unk_ov16_02270A1C[v0->unk_0C]);
+            sub_0200D4C4(v0->cells, v0->xStart >> 8, Unk_ov16_02270A1C[v0->position]);
         }
         break;
     default:
         SysTask_Done(param0);
-        v0->unk_04 = NULL;
+        v0->task = NULL;
         return;
     }
 }
 
-static void ov16_0226D938 (UnkStruct_ov16_0226D540 * param0, int param1, UnkEnum_ov16_0226D194_2 param2, s16 * param3)
+static void ov16_0226D938 (PartyGaugePokeballs * param0, int param1, enum HidePartyGaugeType param2, s16 * param3)
 {
-    GF_ASSERT(param0->unk_00 != NULL && param0->unk_04 == NULL);
+    GF_ASSERT(param0->cells != NULL && param0->task == NULL);
 
-    param0->unk_2C = 0;
+    param0->state = 0;
 
-    if (param2 == UnkEnum_ov16_0226D194_2_00) {
-        param0->unk_18 = param3;
-        param0->unk_28 = 3 * param1;
-        param0->unk_2F = 4;
-        param0->unk_04 = SysTask_Start(ov16_0226D99C, param0, (500 + 1));
+    if (param2 == HIDE_PARTY_GAUGE_BATTLE_START) {
+        param0->arrowAlpha = param3;
+        param0->delay = 3 * param1;
+        param0->startDelay = 4;
+        param0->task = SysTask_Start(ov16_0226D99C, param0, (500 + 1));
     } else {
-        param0->unk_18 = param3;
-        param0->unk_28 = 0;
-        param0->unk_2F = 0;
-        param0->unk_04 = SysTask_Start(ov16_0226DAAC, param0, (500 + 1));
+        param0->arrowAlpha = param3;
+        param0->delay = 0;
+        param0->startDelay = 0;
+        param0->task = SysTask_Start(ov16_0226DAAC, param0, (500 + 1));
     }
 }
 
 static void ov16_0226D99C (SysTask * param0, void * param1)
 {
-    UnkStruct_ov16_0226D540 * v0 = param1;
+    PartyGaugePokeballs * v0 = param1;
 
-    if ((*(v0->unk_18)) == 0) {
-        v0->unk_2C = 100;
+    if ((*(v0->arrowAlpha)) == 0) {
+        v0->state = 100;
     }
 
-    switch (v0->unk_2C) {
+    switch (v0->state) {
     case 0:
     {
         s16 v1, v2;
 
-        sub_0200D550(v0->unk_00, &v1, &v2);
-        v0->unk_1C = v1 << 8;
+        sub_0200D550(v0->cells, &v1, &v2);
+        v0->xStart = v1 << 8;
     }
-        sub_0200D810(v0->unk_00, GX_OAM_MODE_XLU);
-        v0->unk_2C++;
+        sub_0200D810(v0->cells, GX_OAM_MODE_XLU);
+        v0->state++;
     case 1:
-        if (v0->unk_2F > 0) {
-            v0->unk_2F--;
+        if (v0->startDelay > 0) {
+            v0->startDelay--;
             break;
         }
 
-        if (v0->unk_28 > 0) {
-            v0->unk_28--;
+        if (v0->delay > 0) {
+            v0->delay--;
             break;
         }
     case 2:
-        if (v0->unk_08 == UnkEnum_ov16_0226D194_00) {
-            v0->unk_1C -= 0xc00;
-            sub_0200D4C4(v0->unk_00, v0->unk_1C >> 8, Unk_ov16_02270A34[v0->unk_0C]);
+        if (v0->side == PARTY_GAUGE_OURS) {
+            v0->xStart -= 0xc00;
+            sub_0200D4C4(v0->cells, v0->xStart >> 8, Unk_ov16_02270A34[v0->position]);
         } else {
-            v0->unk_1C += 0xc00;
-            sub_0200D4C4(v0->unk_00, v0->unk_1C >> 8, Unk_ov16_02270A1C[v0->unk_0C]);
+            v0->xStart += 0xc00;
+            sub_0200D4C4(v0->cells, v0->xStart >> 8, Unk_ov16_02270A1C[v0->position]);
         }
 
-        if ((v0->unk_1C < -16 * 0x100) || (v0->unk_1C > ((256 + 16) << 8))) {
-            v0->unk_2C++;
+        if ((v0->xStart < -16 * 0x100) || (v0->xStart > ((256 + 16) << 8))) {
+            v0->state++;
         }
 
-        sub_0200D324(v0->unk_00->unk_00);
+        sub_0200D324(v0->cells->unk_00);
         break;
     case 100:
     default:
-        sub_0200D3EC(v0->unk_00->unk_00, 0);
+        sub_0200D3EC(v0->cells->unk_00, 0);
         SysTask_Done(param0);
-        v0->unk_04 = NULL;
+        v0->task = NULL;
         return;
     }
 }
 
 static void ov16_0226DAAC (SysTask * param0, void * param1)
 {
-    UnkStruct_ov16_0226D540 * v0 = param1;
+    PartyGaugePokeballs * v0 = param1;
 
-    if ((*(v0->unk_18)) == 0) {
-        v0->unk_2C = 100;
+    if ((*(v0->arrowAlpha)) == 0) {
+        v0->state = 100;
     }
 
-    switch (v0->unk_2C) {
+    switch (v0->state) {
     case 0:
-        sub_0200D810(v0->unk_00, GX_OAM_MODE_XLU);
-        v0->unk_2C++;
+        sub_0200D810(v0->cells, GX_OAM_MODE_XLU);
+        v0->state++;
     case 1:
         break;
     case 100:
     default:
-        sub_0200D3EC(v0->unk_00->unk_00, 0);
+        sub_0200D3EC(v0->cells->unk_00, 0);
         SysTask_Done(param0);
-        v0->unk_04 = NULL;
+        v0->task = NULL;
         return;
     }
 }
 
-static int ov16_0226DB04 (int param0, UnkEnum_ov16_0226D194 param1)
+static int ov16_0226DB04 (int param0, enum PartyGaugeSide param1)
 {
     int v0;
 
@@ -674,13 +674,13 @@ static int ov16_0226DB04 (int param0, UnkEnum_ov16_0226D194 param1)
         v0 = 6;
         break;
     case 1:
-        v0 = (param1 == UnkEnum_ov16_0226D194_00) ? 3 : 0;
+        v0 = (param1 == PARTY_GAUGE_OURS) ? 3 : 0;
         break;
     case 2:
-        v0 = (param1 == UnkEnum_ov16_0226D194_00) ? 5 : 2;
+        v0 = (param1 == PARTY_GAUGE_OURS) ? 5 : 2;
         break;
     case 3:
-        v0 = (param1 == UnkEnum_ov16_0226D194_00) ? 4 : 1;
+        v0 = (param1 == PARTY_GAUGE_OURS) ? 4 : 1;
         break;
     }
 

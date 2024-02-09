@@ -331,12 +331,12 @@ UnkStruct_ov16_02268A14 * ov16_0223E02C (BattleSystem * param0)
     return param0->unk_198;
 }
 
-UnkStruct_ov16_0226D160 * ov16_0223E034 (BattleSystem * param0, UnkEnum_ov16_0226D194 param1)
+PartyGauge * ov16_0223E034 (BattleSystem * param0, enum PartyGaugeSide param1)
 {
     return param0->unk_19C[param1];
 }
 
-void ov16_0223E040 (BattleSystem * param0, UnkEnum_ov16_0226D194 param1, UnkStruct_ov16_0226D160 * param2)
+void ov16_0223E040 (BattleSystem * param0, enum PartyGaugeSide param1, PartyGauge * param2)
 {
     param0->unk_19C[param1] = param2;
 }

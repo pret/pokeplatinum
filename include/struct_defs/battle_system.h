@@ -77,7 +77,7 @@ struct BattleSystem {
     TrainerData trainers[4];
     UnkStruct_ov16_02268520 unk_17C[2];
     UnkStruct_ov16_02268A14 * unk_198;
-    UnkStruct_ov16_0226D160 * unk_19C[2];
+    PartyGauge * unk_19C[2];
     UnkStruct_0200C440 * unk_1A4;
     UnkStruct_0200C440 * unk_1A8;
     void * unk_1AC;

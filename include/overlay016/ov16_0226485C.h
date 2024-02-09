@@ -64,12 +64,54 @@ void BattleIO_SetMosaic(BattleSystem * param0, int param1, int param2, int param
 void BattleIO_ChangeWeatherForm(BattleSystem * param0, int param1);
 void BattleIO_UpdateBG(BattleSystem * param0, int param1);
 void BattleIO_ClearTouchScreen(BattleSystem * param0, int param1);
-void BattleIO_ShowBattleStartPartyGauge(BattleSystem * param0, int param1);
-void BattleIO_HideBattleStartPartyGauge(BattleSystem * param0, int param1);
-void BattleIO_ShowPartyGauge(BattleSystem * param0, int param1);
-void BattleIO_HidePartyGauge(BattleSystem * param0, int param1);
-void BattleIO_LoadPartyGaugeGraphics(BattleSystem * param0);
-void BattleIO_FreePartyGaugeGraphics(BattleSystem * param0);
+
+/**
+ * @brief Push a command to the I/O queue to show the party gauge at the start of a battle for a
+ * given battler.
+ * 
+ * @param battleSys 
+ * @param battler 
+ */
+void BattleIO_ShowBattleStartPartyGauge(BattleSystem *battleSys, int battler);
+
+/**
+ * @brief Push a command to the I/O queue to hide the party gauge at the start of a battle for a
+ * given battler.
+ * 
+ * @param battleSys 
+ * @param battler 
+ */
+void BattleIO_HideBattleStartPartyGauge(BattleSystem *battleSys, int battler);
+
+/**
+ * @brief Push a command to the I/O queue to show the party gauge for a given battler.
+ * 
+ * @param battleSys 
+ * @param battler 
+ */
+void BattleIO_ShowPartyGauge(BattleSystem *battleSys, int battler);
+
+/**
+ * @brief Push a command to the I/O queue to hide the party gauge for a given battler.
+ * 
+ * @param battleSys 
+ * @param battler 
+ */
+void BattleIO_HidePartyGauge(BattleSystem *battleSys, int battler);
+
+/**
+ * @brief Push a command to the I/O queue to load the graphics resources for the party gauge.
+ * 
+ * @param battleSys 
+ */
+void BattleIO_LoadPartyGaugeGraphics(BattleSystem *battleSys);
+
+/**
+ * @brief Push a command to the I/O queue to free the graphics resources for the party gauge.
+ * 
+ * @param battleSys 
+ */
+void BattleIO_FreePartyGaugeGraphics(BattleSystem *battleSys);
 void BattleIO_IncrementRecord(BattleSystem * param0, int param1, int param2, int param3);
 void BattleIO_LinkWaitMessage(BattleSystem *battleSys, int battler);
 void BattleIO_RestoreSprite(BattleSystem * param0, BattleContext * param1, int param2);
@@ -83,7 +125,7 @@ void BattleIO_PlayMoveHitSoundEffect(BattleSystem * param0, BattleContext * para
 void BattleIO_PlayMusic(BattleSystem * param0, int param1, int param2);
 void BattleIO_SubmitResult(BattleSystem * param0);
 void BattleIO_ClearMessageBox(BattleSystem * param0);
-void ov16_02266ABC(BattleSystem * param0, int param1, int param2);
+void ClearCommand(BattleSystem * param0, int param1, int param2);
 BOOL ov16_02266AE4(BattleSystem * param0, void * param1);
 void ov16_02266B78(BattleSystem * param0, BattleContext * param1, UnkStruct_ov16_02265BBC * param2, int param3, int param4, int param5, int param6, u16 param7);
 
