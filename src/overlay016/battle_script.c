@@ -47,7 +47,7 @@
 #include "overlay012/struct_ov12_02237728.h"
 #include "overlay016/struct_ov16_0225BFFC_t.h"
 #include "overlay021/struct_ov21_021E8E0C.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "core_sys.h"
 #include "flags.h"
@@ -12184,7 +12184,7 @@ static int BattleMessage_TrainerNameTag(BattleSystem *battleSys, BattleContext *
     return BattleScript_Battler(battleSys, battleCtx, battlerIn);
 }
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov16_0226E6C4 = {
+static const SpriteTemplate Unk_ov16_0226E6C4 = {
     0x80,
     0x0,
     0x0,
@@ -12197,7 +12197,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov16_0226E6C4 = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov16_0226E6F8 = {
+static const SpriteTemplate Unk_ov16_0226E6F8 = {
     0x98,
     0x18,
     0x0,
@@ -12212,7 +12212,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov16_0226E6F8 = {
 
 static void BattleScript_LoadPartyLevelUpIcon (BattleSystem * param0, BattleScriptTaskData * param1, Pokemon * param2)
 {
-    UnkStruct_ov104_0223F9E0 v0;
+    SpriteTemplate v0;
     SpriteRenderer * v1;
     SpriteGfxHandler * v2;
     PaletteData * v3;

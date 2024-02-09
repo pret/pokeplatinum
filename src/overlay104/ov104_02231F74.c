@@ -35,7 +35,7 @@
 #include "overlay104/struct_ov104_0223319C.h"
 #include "overlay104/struct_ov104_022331E8.h"
 #include "overlay104/struct_ov104_0223C4CC.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
@@ -894,22 +894,22 @@ void ov104_02232CE0 (UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int pa
 
     {
         int v7;
-        UnkStruct_ov104_0223F9E0 v8;
+        SpriteTemplate v8;
 
-        MI_CpuClear8(&v8, sizeof(UnkStruct_ov104_0223F9E0));
+        MI_CpuClear8(&v8, sizeof(SpriteTemplate));
 
-        v8.unk_00 = param4;
-        v8.unk_02 = param5;
-        v8.unk_04 = 0;
-        v8.unk_06 = 0;
-        v8.unk_08 = param6;
-        v8.unk_0C = 0;
-        v8.unk_10 = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v8.unk_2C = param7;
-        v8.unk_30 = 0;
+        v8.x = param4;
+        v8.y = param5;
+        v8.z = 0;
+        v8.animIdx = 0;
+        v8.priority = param6;
+        v8.plttIdx = 0;
+        v8.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+        v8.bgPriority = param7;
+        v8.transferToVRAM = FALSE;
 
         for (v7 = 0; v7 < 6; v7++) {
-            v8.unk_14[v7] = param3;
+            v8.resources[v7] = param3;
         }
 
         v5 = SpriteActor_LoadResources(v0, v1, &v8);
@@ -964,7 +964,7 @@ void ov104_02232E80 (UnkStruct_ov104_0223C4CC * param0, int param1)
     SpriteGfxHandler_UnloadAnimObjById(param0->unk_34.unk_04, param1);
 }
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov104_0223F9E0 = {
+static const SpriteTemplate Unk_ov104_0223F9E0 = {
     0x0,
     0x0,
     0x0,
@@ -977,7 +977,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov104_0223F9E0 = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov104_0223F9AC = {
+static const SpriteTemplate Unk_ov104_0223F9AC = {
     0x0,
     0x0,
     0x0,
@@ -1007,7 +1007,7 @@ void ov104_02232F28 (UnkStruct_ov104_0223C4CC * param0)
 CellActorData * ov104_02232F4C (UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int param2, int param3, int param4)
 {
     CellActorData * v0;
-    UnkStruct_ov104_0223F9E0 v1;
+    SpriteTemplate v1;
 
     GF_ASSERT(param2 < (2008 - 2000));
 
@@ -1016,10 +1016,10 @@ CellActorData * ov104_02232F4C (UnkStruct_ov104_0223C4CC * param0, Pokemon * par
 
     v1 = Unk_ov104_0223F9E0;
 
-    v1.unk_14[0] += param2;
-    v1.unk_00 = param3;
-    v1.unk_02 = param4;
-    v1.unk_08 = 200;
+    v1.resources[0] += param2;
+    v1.x = param3;
+    v1.y = param4;
+    v1.priority = 200;
 
     v0 = SpriteActor_LoadResources(param0->unk_34.unk_00, param0->unk_34.unk_04, &v1);
 
@@ -1059,13 +1059,13 @@ void ov104_0223307C (UnkStruct_ov104_0223C4CC * param0)
 CellActorData * ov104_022330AC (UnkStruct_ov104_0223C4CC * param0, int param1, int param2)
 {
     CellActorData * v0;
-    UnkStruct_ov104_0223F9E0 v1;
+    SpriteTemplate v1;
 
     v1 = Unk_ov104_0223F9AC;
 
-    v1.unk_00 = param1;
-    v1.unk_02 = param2;
-    v1.unk_08 = 300;
+    v1.x = param1;
+    v1.y = param2;
+    v1.priority = 300;
 
     v0 = SpriteActor_LoadResources(param0->unk_34.unk_00, param0->unk_34.unk_04, &v1);
     sub_0200D330(v0);

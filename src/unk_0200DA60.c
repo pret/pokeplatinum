@@ -13,7 +13,7 @@
 #include "struct_defs/struct_0201AE08.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay005/struct_ov5_021D30A8.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 #include "overlay104/struct_ov104_02241308.h"
 
 #include "unk_02002328.h"
@@ -72,7 +72,7 @@ static void sub_0200EC9C(SysTask * param0, void * param1);
 static void sub_0200EF7C(UnkStruct_0200ED50 * param0, u8 param1, u16 param2);
 static void sub_0200F12C(UnkStruct_0200ED50 * param0);
 
-static const UnkStruct_ov104_0223F9E0 Unk_020E5040 = {
+static const SpriteTemplate Unk_020E5040 = {
     0x0,
     0x0,
     0x0,
@@ -631,10 +631,10 @@ static void sub_0200ED7C (UnkStruct_0200ED50 * param0)
 
 static void sub_0200EDD4 (UnkStruct_0200ED50 * param0, u8 param1, u8 param2)
 {
-    UnkStruct_ov104_0223F9E0 v0 = Unk_020E5040;
+    SpriteTemplate v0 = Unk_020E5040;
 
-    v0.unk_00 = (param1 + 5) * 8;
-    v0.unk_02 = (param2 + 5) * 8;
+    v0.x = (param1 + 5) * 8;
+    v0.y = (param2 + 5) * 8;
 
     param0->unk_1C8 = ov5_021D3584(&param0->unk_00, &v0);
 

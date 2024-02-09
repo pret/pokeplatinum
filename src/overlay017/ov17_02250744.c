@@ -15,7 +15,7 @@
 #include "overlay017/struct_ov17_022507C4.h"
 #include "overlay017/struct_ov17_022508E4.h"
 #include "overlay017/struct_ov17_02254C0C.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
@@ -132,7 +132,7 @@ static const UnkStruct_ov17_02254C0C Unk_ov17_02254C0C[] = {
     {0x5, 0x0}
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_02254C5C = {
+static const SpriteTemplate Unk_ov17_02254C5C = {
     0x0,
     0x0,
     0x0,
@@ -145,7 +145,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov17_02254C5C = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_02254C28 = {
+static const SpriteTemplate Unk_ov17_02254C28 = {
     0x0,
     0x0,
     0x0,
@@ -158,7 +158,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov17_02254C28 = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_02254C90 = {
+static const SpriteTemplate Unk_ov17_02254C90 = {
     0x0,
     0x0,
     0x0,
@@ -171,7 +171,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov17_02254C90 = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_02254CC4 = {
+static const SpriteTemplate Unk_ov17_02254CC4 = {
     0x0,
     0x0,
     0x0,
@@ -401,7 +401,7 @@ void ov17_02250D8C (UnkStruct_ov17_0224FCA0 * param0)
 
 void ov17_02250DB0 (UnkStruct_ov17_0224FCA0 * param0)
 {
-    UnkStruct_ov104_0223F9E0 v0;
+    SpriteTemplate v0;
     int v1, v2;
     NARC * v3;
 
@@ -416,7 +416,7 @@ void ov17_02250DB0 (UnkStruct_ov17_0224FCA0 * param0)
     for (v2 = 0; v2 < 4; v2++) {
         sub_0200D888(param0->unk_10.unk_18, param0->unk_10.unk_1C, 19, Pokemon_IconSpriteIndex(param0->unk_00->unk_00.unk_00[v2]), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 33002 + v2);
 
-        v0.unk_14[0] = 33002 + v2;
+        v0.resources[0] = 33002 + v2;
         param0->unk_10.unk_128[v2] = SpriteActor_LoadResources(param0->unk_10.unk_18, param0->unk_10.unk_1C, &v0);
 
         sub_0200D364(param0->unk_10.unk_128[v2], 1);

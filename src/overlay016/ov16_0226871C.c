@@ -37,7 +37,7 @@
 #include "overlay016/struct_ov16_0226AC98.h"
 #include "overlay016/struct_ov16_0226C378.h"
 #include "overlay097/struct_ov97_0222DB78.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_02002328.h"
 #include "unk_02002B7C.h"
@@ -830,7 +830,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
     }
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov16_02270414 = {
+static const SpriteTemplate Unk_ov16_02270414 = {
     0xC,
     0xD,
     0x0,
@@ -843,7 +843,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov16_02270414 = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov16_02270448 = {
+static const SpriteTemplate Unk_ov16_02270448 = {
     0xF6,
     0x9,
     0x0,
@@ -856,7 +856,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov16_02270448 = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov16_0227047C = {
+static const SpriteTemplate Unk_ov16_0227047C = {
     0x0,
     0x0,
     0x0,
@@ -869,7 +869,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov16_0227047C = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov16_022704B0 = {
+static const SpriteTemplate Unk_ov16_022704B0 = {
     0x0,
     0x0,
     0x0,
@@ -2489,7 +2489,7 @@ static CellActorData * ov16_0226A7A4 (UnkStruct_ov16_02268A14 * param0, Pokemon 
     SpriteRenderer * v0;
     SpriteGfxHandler * v1;
     u32 v2;
-    UnkStruct_ov104_0223F9E0 v3;
+    SpriteTemplate v3;
     CellActorData * v4;
     int v5;
 
@@ -2525,12 +2525,12 @@ static CellActorData * ov16_0226A7A4 (UnkStruct_ov16_02268A14 * param0, Pokemon 
     sub_0200CBDC(v0, v1, 19, Pokemon_IconSpriteIndex(param1), 0, NNS_G2D_VRAM_TYPE_2DSUB, v2);
 
     v3 = Unk_ov16_022704B0;
-    v3.unk_14[0] = v2;
-    v3.unk_00 = Unk_ov16_02270304[v5][0];
-    v3.unk_02 = Unk_ov16_02270304[v5][1];
+    v3.resources[0] = v2;
+    v3.x = Unk_ov16_02270304[v5][0];
+    v3.y = Unk_ov16_02270304[v5][1];
     v4 = SpriteActor_LoadResources(v0, v1, &v3);
 
-    sub_0200D500(v4, v3.unk_00, v3.unk_02, ((192 + 80) << FX32_SHIFT));
+    sub_0200D500(v4, v3.x, v3.y, ((192 + 80) << FX32_SHIFT));
     sub_02021F24(v4->unk_00, Pokemon_IconPaletteIndex(param1));
 
     {
@@ -2868,7 +2868,7 @@ static void ov16_0226AF0C (UnkStruct_ov16_02268A14 * param0)
     int v0;
     SpriteRenderer * v1;
     SpriteGfxHandler * v2;
-    UnkStruct_ov104_0223F9E0 v3;
+    SpriteTemplate v3;
     UnkStruct_ov16_02260C00 * v4;
     int v5;
     int v6;
@@ -2885,13 +2885,13 @@ static void ov16_0226AF0C (UnkStruct_ov16_02268A14 * param0)
 
         if (v4->unk_00[v0] != 0) {
             v5 = MoveTable_LoadParam(v4->unk_00[v0], MOVEATTRIBUTE_TYPE);
-            v3.unk_14[0] = 20025 + v0;
-            v3.unk_00 = Unk_ov16_022702B4[v0][0];
-            v3.unk_02 = Unk_ov16_022702B4[v0][1];
+            v3.resources[0] = 20025 + v0;
+            v3.x = Unk_ov16_022702B4[v0][0];
+            v3.y = Unk_ov16_022702B4[v0][1];
 
             param0->unk_5EC[v0] = sub_0207CA58(v1, v2, v5, &v3);
 
-            sub_0200D500(param0->unk_5EC[v0], v3.unk_00, v3.unk_02, ((192 + 80) << FX32_SHIFT));
+            sub_0200D500(param0->unk_5EC[v0], v3.x, v3.y, ((192 + 80) << FX32_SHIFT));
 
             {
                 void * v8;

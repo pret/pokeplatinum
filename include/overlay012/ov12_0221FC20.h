@@ -18,7 +18,7 @@
 #include "overlay012/funcptr_ov12_02239EEC.h"
 #include "overlay016/struct_ov16_02264408.h"
 #include "overlay016/struct_ov16_02265BBC.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "spl.h"
 
@@ -62,7 +62,7 @@ int ov12_02223178(UnkStruct_ov12_02223178 * param0);
 s8 ov12_0222317C(UnkStruct_ov12_0221FCDC * param0, s8 param1);
 s8 ov12_02223234(s8 param0, s8 param1, s8 param2);
 BOOL ov12_0222325C(UnkStruct_ov12_0221FCDC * param0, int param1[], int param2);
-UnkStruct_ov104_0223F9E0 ov12_0222329C(UnkStruct_ov12_0221FCDC * param0);
+SpriteTemplate ov12_0222329C(UnkStruct_ov12_0221FCDC * param0);
 int ov12_022232B8(UnkStruct_ov12_0221FCDC * param0, int param1);
 int ov12_022232C4(UnkStruct_ov12_0221FCDC * param0, int param1);
 int ov12_022232D0(UnkStruct_ov12_0221FCDC * param0, int param1);

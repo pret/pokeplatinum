@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 
 #include "struct_defs/struct_0206A844.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 #include "overlay104/struct_ov104_02241308.h"
 
 #include "narc.h"
@@ -14,7 +14,7 @@
 #include "unk_0206A780.h"
 #include "overlay005/ov5_021D2F14.h"
 
-static const UnkStruct_ov104_0223F9E0 Unk_020EFA04[] = {
+static const SpriteTemplate Unk_020EFA04[] = {
     {
         0x50,
         0x10,

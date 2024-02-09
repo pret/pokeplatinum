@@ -17,7 +17,7 @@
 #include "overlay012/struct_ov12_02236030.h"
 #include "overlay012/struct_ov12_02236690.h"
 #include "overlay012/struct_ov12_02237728.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 #include "overlay104/struct_ov104_02241308.h"
 
 #include "spl.h"
@@ -2316,21 +2316,21 @@ static void ov12_02237C54 (BallRotation * param0)
 static void ov12_02237D8C (BallRotation * param0)
 {
     int v0;
-    UnkStruct_ov104_0223F9E0 v1;
+    SpriteTemplate v1;
     int v2;
 
-    ov12_02237B14(param0, &v1.unk_00, &v1.unk_02);
+    ov12_02237B14(param0, &v1.x, &v1.y);
 
-    v1.unk_04 = 0;
-    v1.unk_06 = 0;
-    v1.unk_08 = 0;
-    v1.unk_0C = 0;
-    v1.unk_10 = 1;
-    v1.unk_2C = param0->unk_90.bgPrio;
-    v1.unk_30 = 0;
+    v1.z = 0;
+    v1.animIdx = 0;
+    v1.priority = 0;
+    v1.plttIdx = 0;
+    v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v1.bgPriority = param0->unk_90.bgPrio;
+    v1.transferToVRAM = FALSE;
 
     for (v0 = 0; v0 < 6; v0++) {
-        v1.unk_14[v0] = param0->unk_90.target + 6000;
+        v1.resources[v0] = param0->unk_90.target + 6000;
     }
 
     param0->unk_30 = SpriteActor_LoadResources(param0->unk_90.cellActorSys, param0->unk_2C, &v1);

@@ -13,7 +13,7 @@
 #include "struct_decls/struct_02022550_decl.h"
 #include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay007/struct_ov7_0224F358.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
@@ -51,7 +51,7 @@ BOOL sub_0200CE0C(SpriteRenderer * param0, SpriteGfxHandler * param1, int param2
 BOOL SpriteRenderer_LoadCellResObjFromOpenNarc(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, NARC *narc, int fileID, BOOL compressed, int resID);
 BOOL sub_0200CE3C(SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, int param3, int param4, int param5);
 BOOL SpriteRenderer_LoadAnimResObjFromOpenNarc(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, NARC *narc, int fileID, BOOL compressed, int resID);
-CellActorData * SpriteActor_LoadResources(SpriteRenderer * param0, SpriteGfxHandler * param1, const UnkStruct_ov104_0223F9E0 * param2);
+CellActorData * SpriteActor_LoadResources(SpriteRenderer * param0, SpriteGfxHandler * param1, const SpriteTemplate * param2);
 const NNSG2dImagePaletteProxy * sub_0200D04C(SpriteGfxHandler * param0, int param1);
 u32 sub_0200D05C(SpriteGfxHandler * param0, int param1, NNS_G2D_VRAM_TYPE param2);
 BOOL SpriteGfxHandler_UnloadCharObjById(SpriteGfxHandler * param0, int param1);

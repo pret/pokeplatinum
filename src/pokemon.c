@@ -33,7 +33,7 @@
 #include "struct_defs/poke_animation_settings.h"
 #include "struct_defs/struct_02078B40.h"
 #include "overlay005/struct_ov5_021DE5D0.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_020021B0.h"
 #include "unk_02005474.h"
@@ -3119,7 +3119,7 @@ void sub_0207697C(ArchivedSprite *param0, u16 param1)
     param0->personality = 0;
 }
 
-static const UnkStruct_ov104_0223F9E0 Unk_020F05E4 = {
+static const SpriteTemplate Unk_020F05E4 = {
     0x0,
     0x0,
     0x0,
@@ -3143,7 +3143,7 @@ static const int Unk_020F0588[] = {
 
 CellActorData *sub_02076994(SpriteRenderer *param0, SpriteGfxHandler *param1, PaletteData *param2, int param3, int param4, int param5, int param6, int param7, int heapID)
 {
-    UnkStruct_ov104_0223F9E0 v0;
+    SpriteTemplate v0;
     CellActorData *v1;
     NARC *narc;
     UnkStruct_ov5_021DE5D0 v3;
@@ -3167,11 +3167,11 @@ CellActorData *sub_02076994(SpriteRenderer *param0, SpriteGfxHandler *param1, Pa
     v0 = Unk_020F05E4;
 
     // TODO enum values?
-    v0.unk_14[0] = 20015 + param7;
-    v0.unk_14[1] = 20010 + param7;
-    v0.unk_14[2] = 20007 + param7;
-    v0.unk_14[3] = 20007 + param7;
-    v0.unk_08 = Unk_020F0588[param7];
+    v0.resources[0] = 20015 + param7;
+    v0.resources[1] = 20010 + param7;
+    v0.resources[2] = 20007 + param7;
+    v0.resources[3] = 20007 + param7;
+    v0.priority = Unk_020F0588[param7];
 
     v1 = SpriteActor_LoadResources(param0, param1, &v0);
 

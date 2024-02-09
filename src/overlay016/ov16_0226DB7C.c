@@ -8,7 +8,7 @@
 #include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_0200D0F4.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "narc.h"
 #include "unk_0200C6E4.h"
@@ -29,7 +29,7 @@ void ov16_0226DCA8(UnkStruct_ov16_0226DC24 * param0);
 void ov16_0226DD7C(UnkStruct_ov16_0226DC24 * param0, int param1, int param2, int param3, int param4);
 void ov16_0226DDE8(UnkStruct_ov16_0226DC24 * param0);
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov16_02270AA4 = {
+static const SpriteTemplate Unk_ov16_02270AA4 = {
     0x0,
     0x0,
     0x0,
@@ -66,16 +66,16 @@ void ov16_0226DBFC (SpriteGfxHandler * param0, u32 param1, u32 param2, u32 param
 UnkStruct_ov16_0226DC24 * ov16_0226DC24 (SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
 {
     UnkStruct_ov16_0226DC24 * v0;
-    UnkStruct_ov104_0223F9E0 v1;
+    SpriteTemplate v1;
     int v2;
 
     v1 = Unk_ov16_02270AA4;
-    v1.unk_14[0] = param3;
-    v1.unk_14[1] = param4;
-    v1.unk_14[2] = param5;
-    v1.unk_14[3] = param6;
-    v1.unk_08 = param7;
-    v1.unk_2C = param8;
+    v1.resources[0] = param3;
+    v1.resources[1] = param4;
+    v1.resources[2] = param5;
+    v1.resources[3] = param6;
+    v1.priority = param7;
+    v1.bgPriority = param8;
 
     v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov16_0226DC24));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov16_0226DC24));

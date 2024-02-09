@@ -16,7 +16,7 @@
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
@@ -160,7 +160,7 @@ static const UnkStruct_ov104_0224191C Unk_ov104_0224191C[] = {
     {0x388, 0x75, 0x76, 0x77, 0x78, 0x89, 0x88, 0x87, 0x0}
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov104_022418B4 = {
+static const SpriteTemplate Unk_ov104_022418B4 = {
     0x0,
     0x0,
     0x0,
@@ -173,7 +173,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov104_022418B4 = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov104_022418E8 = {
+static const SpriteTemplate Unk_ov104_022418E8 = {
     0x0,
     0x0,
     0x0,
@@ -518,10 +518,10 @@ static void ov104_0223E3CC (const Strbuf *param0, int param1, int * param2, int 
 static void ov104_0223E3FC (UnkStruct_ov104_0223DD30 * param0, UnkStruct_ov104_0223E48C * param1, fx32 param2, fx32 param3, u32 param4)
 {
     int v0;
-    UnkStruct_ov104_0223F9E0 v1 = Unk_ov104_022418E8;
+    SpriteTemplate v1 = Unk_ov104_022418E8;
 
-    v1.unk_00 = param2 >> FX32_SHIFT;
-    v1.unk_02 = param3 >> FX32_SHIFT;
+    v1.x = param2 >> FX32_SHIFT;
+    v1.y = param3 >> FX32_SHIFT;
 
     param1->unk_00 = 0;
     param1->unk_02 = 0;

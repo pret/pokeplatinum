@@ -24,7 +24,7 @@
 #include "overlay005/struct_ov5_021D30A8.h"
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_02240FA8.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 #include "overlay104/struct_ov104_02241308.h"
 
 #include "unk_0200112C.h"
@@ -625,7 +625,7 @@ static void sub_0206FCC4 (UnkStruct_0206F7F8 * param0)
     UnkStruct_ov104_02241308 v1 = {
         1, 1, 1, 1, 0, 0
     };
-    static const UnkStruct_ov104_0223F9E0 v2[] = {
+    static const SpriteTemplate v2[] = {
         {
             0x7E,
             0x10,

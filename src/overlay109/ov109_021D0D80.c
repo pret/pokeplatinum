@@ -28,7 +28,7 @@
 #include "overlay072/struct_ov72_0223E2A8.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
@@ -350,7 +350,7 @@ static void ov109_021D2344(UnkStruct_ov109_021D0F70 * param0, u32 param1);
 static void ov109_021D2368(UnkStruct_ov109_021D0F70 * param0);
 static void ov109_021D2408(UnkStruct_ov109_021D0F70 * param0);
 static void ov109_021D24C0(UnkStruct_ov109_021D0F70 * param0);
-static CellActorData * ov109_021D24E0(UnkStruct_ov109_021D0F70 * param0, const UnkStruct_ov104_0223F9E0 * param1);
+static CellActorData * ov109_021D24E0(UnkStruct_ov109_021D0F70 * param0, const SpriteTemplate * param1);
 static void ov109_021D24F8(UnkStruct_ov109_021D0F70 * param0);
 static void ov109_021D25E8(UnkStruct_ov109_021D0F70 * param0);
 static void ov109_021D2634(UnkStruct_ov109_021D0F70 * param0, u32 param1);
@@ -2004,7 +2004,7 @@ static void ov109_021D24C0 (UnkStruct_ov109_021D0F70 * param0)
     sub_0200C8D4(param0->unk_D94);
 }
 
-static CellActorData * ov109_021D24E0 (UnkStruct_ov109_021D0F70 * param0, const UnkStruct_ov104_0223F9E0 * param1)
+static CellActorData * ov109_021D24E0 (UnkStruct_ov109_021D0F70 * param0, const SpriteTemplate * param1)
 {
     CellActorData * v0 = SpriteActor_LoadResources(param0->unk_D94, param0->unk_D98, param1);
     return v0;
@@ -3107,26 +3107,26 @@ static void ov109_021D3600 (SysTask * param0, void * param1)
 
 static SysTask * ov109_021D3684 (UnkStruct_ov109_021D0F70 * param0)
 {
-    UnkStruct_ov104_0223F9E0 v0;
+    SpriteTemplate v0;
     UnkStruct_ov109_021D3600 * v1 = Heap_AllocFromHeapAtEnd(95, sizeof(UnkStruct_ov109_021D3600));
 
     memset(v1, 0, sizeof(UnkStruct_ov109_021D3600));
 
-    v0.unk_00 = 128;
-    v0.unk_02 = 100;
-    v0.unk_04 = 0;
-    v0.unk_06 = 0;
-    v0.unk_08 = 0;
-    v0.unk_0C = 0;
-    v0.unk_10 = 1;
-    v0.unk_2C = 0;
-    v0.unk_30 = 0;
-    v0.unk_14[0] = 4;
-    v0.unk_14[1] = 5;
-    v0.unk_14[2] = 6;
-    v0.unk_14[3] = 7;
-    v0.unk_14[4] = 0xffffffff;
-    v0.unk_14[5] = 0xffffffff;
+    v0.x = 128;
+    v0.y = 100;
+    v0.z = 0;
+    v0.animIdx = 0;
+    v0.priority = 0;
+    v0.plttIdx = 0;
+    v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v0.bgPriority = 0;
+    v0.transferToVRAM = FALSE;
+    v0.resources[0] = 4;
+    v0.resources[1] = 5;
+    v0.resources[2] = 6;
+    v0.resources[3] = 7;
+    v0.resources[4] = SPRITE_RESOURCE_NONE;
+    v0.resources[5] = SPRITE_RESOURCE_NONE;
 
     v1->unk_14 = ov109_021D24E0(param0, &v0);
     sub_0200D330(v1->unk_14);

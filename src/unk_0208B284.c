@@ -9,7 +9,7 @@
 
 #include "struct_defs/struct_0208B284.h"
 #include "struct_defs/struct_0208B878.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "narc.h"
 #include "unk_0200C6E4.h"
@@ -227,7 +227,7 @@ void sub_0208B6B0 (UnkStruct_0208B878 * param0, int param1)
 void sub_0208B7B4 (UnkStruct_0208B878 * param0)
 {
     int v0;
-    UnkStruct_ov104_0223F9E0 v1;
+    SpriteTemplate v1;
     SpriteRenderer * v2;
     SpriteGfxHandler * v3;
     PaletteData * v4;
@@ -236,21 +236,21 @@ void sub_0208B7B4 (UnkStruct_0208B878 * param0)
     v3 = param0->unk_00.unk_08;
     v4 = param0->unk_00.unk_0C;
 
-    v1.unk_00 = 128;
-    v1.unk_02 = 96;
-    v1.unk_04 = 0;
-    v1.unk_06 = 0;
-    v1.unk_08 = 0;
-    v1.unk_10 = param0->unk_10.unk_08;
-    v1.unk_2C = 0;
-    v1.unk_30 = 0;
-    v1.unk_0C = 0;
-    v1.unk_14[0] = 22222 + param0->unk_10.unk_08;
-    v1.unk_14[1] = 22222 + param0->unk_10.unk_08;
-    v1.unk_14[2] = 22222 + param0->unk_10.unk_08;
-    v1.unk_14[3] = 22222 + param0->unk_10.unk_08;
-    v1.unk_14[4] = 0xffffffff;
-    v1.unk_14[5] = 0xffffffff;
+    v1.x = 128;
+    v1.y = 96;
+    v1.z = 0;
+    v1.animIdx = 0;
+    v1.priority = 0;
+    v1.vramType = param0->unk_10.unk_08;
+    v1.bgPriority = 0;
+    v1.transferToVRAM = FALSE;
+    v1.plttIdx = 0;
+    v1.resources[0] = 22222 + param0->unk_10.unk_08;
+    v1.resources[1] = 22222 + param0->unk_10.unk_08;
+    v1.resources[2] = 22222 + param0->unk_10.unk_08;
+    v1.resources[3] = 22222 + param0->unk_10.unk_08;
+    v1.resources[4] = SPRITE_RESOURCE_NONE;
+    v1.resources[5] = SPRITE_RESOURCE_NONE;
 
     for (v0 = 0; v0 < param0->unk_10.unk_00; v0++) {
         param0->unk_24[v0].unk_00 = SpriteActor_LoadResources(v2, v3, &v1);

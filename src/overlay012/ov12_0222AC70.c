@@ -18,7 +18,7 @@
 #include "overlay012/struct_ov12_02235350.h"
 #include "overlay012/struct_ov12_0223595C.h"
 #include "overlay012/struct_ov12_02235998.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_02002F38.h"
 #include "unk_0200762C.h"
@@ -383,7 +383,7 @@ void ov12_0222AE68 (UnkStruct_ov12_0221FCDC * param0, SpriteRenderer * param1, S
 {
     int v0;
     UnkStruct_ov12_0222AC70 * v1;
-    UnkStruct_ov104_0223F9E0 v2;
+    SpriteTemplate v2;
 
     v1 = Heap_AllocFromHeap(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_0222AC70));
 
@@ -2142,7 +2142,7 @@ void ov12_0222D56C (UnkStruct_ov12_0221FCDC * param0, SpriteRenderer * param1, S
 {
     int v0;
     UnkStruct_ov12_0222D128 * v1;
-    UnkStruct_ov104_0223F9E0 v2;
+    SpriteTemplate v2;
 
     v1 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222D128));
 

@@ -10,7 +10,7 @@
 #include "struct_defs/struct_0200D0F4.h"
 #include "overlay012/struct_ov12_02225F6C.h"
 #include "overlay012/struct_ov12_02226454.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
@@ -74,7 +74,7 @@ static void ov12_02234CA8(SysTask * param0, void * param1);
 
 void ov12_022346A4 (UnkStruct_ov12_0221FCDC * param0, SpriteRenderer * param1, SpriteGfxHandler * param2, CellActorData * param3)
 {
-    UnkStruct_ov104_0223F9E0 v0;
+    SpriteTemplate v0;
     UnkStruct_ov12_022346A4 * v1;
     int v2;
     int v3;
@@ -88,13 +88,13 @@ void ov12_022346A4 (UnkStruct_ov12_0221FCDC * param0, SpriteRenderer * param1, S
     v1->unk_10 = ov12_02225964(param0, v3);
 
     v0 = ov12_0222329C(v1->unk_00);
-    v0.unk_00 = ov12_022258E0(param0, v3, 0);
-    v0.unk_02 = ov12_022258E0(param0, v3, 1);
+    v0.x = ov12_022258E0(param0, v3, 0);
+    v0.y = ov12_022258E0(param0, v3, 1);
 
     for (v2 = 0; v2 < 2; v2++) {
         if (v2 == 0) {
             v1->unk_14[v2] = param3;
-            SpriteActor_SetSpritePositionXY(v1->unk_14[v2], v0.unk_00, v0.unk_02);
+            SpriteActor_SetSpritePositionXY(v1->unk_14[v2], v0.x, v0.y);
         } else {
             v1->unk_14[v2] = SpriteActor_LoadResources(param1, param2, &v0);
         }
@@ -250,7 +250,7 @@ static void ov12_02234918 (SysTask * param0, void * param1)
 
 void ov12_02234A10 (UnkStruct_ov12_0221FCDC * param0, SpriteRenderer * param1, SpriteGfxHandler * param2, CellActorData * param3)
 {
-    UnkStruct_ov104_0223F9E0 v0;
+    SpriteTemplate v0;
     UnkStruct_ov12_02234A10 * v1;
     int v2;
     int v3;
@@ -265,13 +265,13 @@ void ov12_02234A10 (UnkStruct_ov12_0221FCDC * param0, SpriteRenderer * param1, S
     v4 = ov12_02225964(param0, v2);
     v0 = ov12_0222329C(v1->unk_00);
 
-    v0.unk_00 = ov12_022258E0(param0, v2, 0);
-    v0.unk_02 = ov12_022258E0(param0, v2, 1);
+    v0.x = ov12_022258E0(param0, v2, 0);
+    v0.y = ov12_022258E0(param0, v2, 1);
 
     for (v3 = 6 - 1; v3 >= 0; v3--) {
         if (v3 == 6 - 1) {
             v1->unk_0C[v3] = param3;
-            SpriteActor_SetSpritePositionXY(param3, v0.unk_00, v0.unk_02);
+            SpriteActor_SetSpritePositionXY(param3, v0.x, v0.y);
         } else {
             v1->unk_0C[v3] = SpriteActor_LoadResources(param1, param2, &v0);
         }
@@ -440,7 +440,7 @@ void ov12_02234D98 (UnkStruct_ov12_0221FCDC * param0, SpriteRenderer * param1, S
     UnkStruct_ov12_02234BD8 * v0;
     int v1;
     Sprite * v2;
-    UnkStruct_ov104_0223F9E0 v3;
+    SpriteTemplate v3;
 
     v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02234BD8));
 

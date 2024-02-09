@@ -26,7 +26,7 @@
 #include "overlay017/struct_ov17_02246F24.h"
 #include "overlay017/struct_ov17_022472F8.h"
 #include "overlay017/struct_ov17_022538F0.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
@@ -181,7 +181,7 @@ static void ov17_022436A4(SysTask * param0, void * param1);
 static void ov17_02243750(SysTask * param0, void * param1);
 static void ov17_022414C0(SysTask * param0, void * param1);
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_022538BC = {
+static const SpriteTemplate Unk_ov17_022538BC = {
     0x60,
     0x28,
     0x0,
@@ -194,7 +194,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov17_022538BC = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_02253820 = {
+static const SpriteTemplate Unk_ov17_02253820 = {
     0x60,
     0x20,
     0x0,
@@ -207,7 +207,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov17_02253820 = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_02253854 = {
+static const SpriteTemplate Unk_ov17_02253854 = {
     0x0,
     0x0,
     0x0,
@@ -220,7 +220,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov17_02253854 = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_02253888 = {
+static const SpriteTemplate Unk_ov17_02253888 = {
     0x0,
     0x0,
     0x0,
@@ -233,7 +233,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov17_02253888 = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_022537EC = {
+static const SpriteTemplate Unk_ov17_022537EC = {
     0x0,
     0x0,
     0x0,
@@ -246,7 +246,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov17_022537EC = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_0225371C = {
+static const SpriteTemplate Unk_ov17_0225371C = {
     0x0,
     0x0,
     0x0,
@@ -259,7 +259,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov17_0225371C = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_02253750 = {
+static const SpriteTemplate Unk_ov17_02253750 = {
     0x0,
     0x0,
     0x0,
@@ -272,7 +272,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov17_02253750 = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_02253784 = {
+static const SpriteTemplate Unk_ov17_02253784 = {
     0x0,
     0x0,
     0x0,
@@ -285,7 +285,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov17_02253784 = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_022537B8 = {
+static const SpriteTemplate Unk_ov17_022537B8 = {
     0x0,
     0x0,
     0x0,
@@ -386,7 +386,7 @@ __attribute__((aligned(4))) const u8 Unk_ov17_022536B4[] = {
 
 void include_unk_ov17_02253784 ()
 {
-    s16 dummy = Unk_ov17_02253784.unk_00;
+    s16 dummy = Unk_ov17_02253784.x;
 }
 
 void ov17_022413D8 (void)
@@ -550,7 +550,7 @@ void ov17_022416E4 (UnkStruct_ov17_0223F88C * param0)
 static CellActorData * ov17_02241720 (PaletteData * param0, SpriteRenderer * param1, SpriteGfxHandler * param2, const UnkStruct_020954F0 * param3, int param4, NARC * param5)
 {
     CellActorData * v0;
-    UnkStruct_ov104_0223F9E0 v1;
+    SpriteTemplate v1;
     u32 v2, v3, v4, v5;
 
     switch (param4) {
@@ -580,12 +580,12 @@ static CellActorData * ov17_02241720 (PaletteData * param0, SpriteRenderer * par
     SpriteRenderer_LoadAnimResObjFromOpenNarc(param1, param2, param5, v5, 1, 33001 + param4);
 
     v1 = Unk_ov17_022538BC;
-    v1.unk_14[0] = 33001 + param4;
-    v1.unk_14[1] = 33002 + param4;
-    v1.unk_14[2] = 33001 + param4;
-    v1.unk_14[3] = 33001 + param4;
-    v1.unk_00 = (8 * 12) + (4 * 8) * param4;
-    v1.unk_02 = (8 * 5) + 0 * param4;
+    v1.resources[0] = 33001 + param4;
+    v1.resources[1] = 33002 + param4;
+    v1.resources[2] = 33001 + param4;
+    v1.resources[3] = 33001 + param4;
+    v1.x = (8 * 12) + (4 * 8) * param4;
+    v1.y = (8 * 5) + 0 * param4;
 
     v0 = SpriteActor_LoadResources(param1, param2, &v1);
     SpriteActor_UpdateObject(v0->unk_00);
@@ -618,15 +618,15 @@ static void ov17_02241854 (PaletteData * param0, SpriteRenderer * param1, Sprite
 static CellActorData * ov17_022418A4 (SpriteRenderer * param0, SpriteGfxHandler * param1, int param2)
 {
     CellActorData * v0;
-    UnkStruct_ov104_0223F9E0 v1;
+    SpriteTemplate v1;
     const int v2[] = {
         2, 4, 5,
     };
 
     v1 = Unk_ov17_02253820;
-    v1.unk_00 = ((8 * 12)) + ((4 * 8)) * param2;
-    v1.unk_02 = (8 * 4) + 0 * param2;
-    v1.unk_0C = v2[param2];
+    v1.x = ((8 * 12)) + ((4 * 8)) * param2;
+    v1.y = (8 * 4) + 0 * param2;
+    v1.plttIdx = v2[param2];
 
     v0 = SpriteActor_LoadResources(param0, param1, &v1);
     SpriteActor_UpdateObject(v0->unk_00);
@@ -693,7 +693,7 @@ void ov17_02241A00 (SpriteGfxHandler * param0)
 void ov17_02241A24 (UnkStruct_ov17_0223F88C * param0)
 {
     CellActorData * v0;
-    UnkStruct_ov104_0223F9E0 v1;
+    SpriteTemplate v1;
 
     v1 = Unk_ov17_022537B8;
     v0 = SpriteActor_LoadResources(param0->unk_18, param0->unk_1C, &v1);

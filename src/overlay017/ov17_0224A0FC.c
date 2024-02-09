@@ -35,7 +35,7 @@
 #include "overlay017/struct_ov17_02253084.h"
 #include "overlay017/struct_ov17_0225470C.h"
 #include "overlay022/struct_ov22_0225AF8C.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "spl.h"
 
@@ -157,7 +157,7 @@ __attribute__((aligned(4))) static const u8 Unk_ov17_022549BC[] = {
     0xB8
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_02254760 = {
+static const SpriteTemplate Unk_ov17_02254760 = {
     0x0,
     0x0,
     0x0,
@@ -170,7 +170,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov17_02254760 = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_02254794 = {
+static const SpriteTemplate Unk_ov17_02254794 = {
     0x0,
     0x0,
     0x0,
@@ -183,7 +183,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov17_02254794 = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_022547C8 = {
+static const SpriteTemplate Unk_ov17_022547C8 = {
     0x0,
     0x0,
     0x0,
@@ -196,7 +196,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov17_022547C8 = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_022547FC = {
+static const SpriteTemplate Unk_ov17_022547FC = {
     0x0,
     0x90,
     0x0,
@@ -209,7 +209,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov17_022547FC = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_02254830 = {
+static const SpriteTemplate Unk_ov17_02254830 = {
     0x0,
     0x0,
     0x0,
@@ -222,7 +222,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov17_02254830 = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_02254864 = {
+static const SpriteTemplate Unk_ov17_02254864 = {
     0x0,
     0x0,
     0x0,
@@ -235,7 +235,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov17_02254864 = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_0225472C = {
+static const SpriteTemplate Unk_ov17_0225472C = {
     0x0,
     0x0,
     0x0,
@@ -532,46 +532,46 @@ static int ov17_0224A46C (UnkStruct_ov17_0224A1EC * param0, SpriteRenderer * par
 {
     CellActorData * v0;
     int v1;
-    UnkStruct_ov104_0223F9E0 v2;
+    SpriteTemplate v2;
 
     v2 = Unk_ov17_02254760;
 
     if (param3 == 2) {
-        v2.unk_08 += 10;
+        v2.priority += 10;
     } else {
         switch (param7) {
         case 0:
         default:
             break;
         case 1:
-            v2.unk_08 += 3;
+            v2.priority += 3;
             break;
         case 2:
-            v2.unk_08 += 2;
+            v2.priority += 2;
             break;
         case 3:
-            v2.unk_08 += 1;
+            v2.priority += 1;
             break;
         }
     }
 
     switch (param4) {
     case 3:
-        v2.unk_14[0] = 33004;
-        v2.unk_0C = 2;
+        v2.resources[0] = 33004;
+        v2.plttIdx = 2;
         break;
     case 4:
-        v2.unk_14[0] = 33006;
-        v2.unk_0C = 6;
+        v2.resources[0] = 33006;
+        v2.plttIdx = 6;
         break;
     case 1:
-        v2.unk_14[0] = 33005;
-        v2.unk_0C = 7;
+        v2.resources[0] = 33005;
+        v2.plttIdx = 7;
         break;
     case 2:
     default:
-        v2.unk_14[0] = 33003;
-        v2.unk_0C = 2;
+        v2.resources[0] = 33003;
+        v2.plttIdx = 2;
         break;
     }
 

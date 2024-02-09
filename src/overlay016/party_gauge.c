@@ -15,7 +15,7 @@
 #include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_0200D0F4.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_02005474.h"
 #include "narc.h"
@@ -78,7 +78,7 @@ static int ov16_0226DB44(int param0);
 static PartyGauge* NewPartyGauge(void);
 static void FreePartyGauge(PartyGauge *partyGauge);
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov16_02270A3C = {
+static const SpriteTemplate Unk_ov16_02270A3C = {
     0x0,
     0x0,
     0x0,
@@ -91,7 +91,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov16_02270A3C = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov16_02270A70 = {
+static const SpriteTemplate Unk_ov16_02270A70 = {
     0x0,
     0x0,
     0x0,

@@ -14,7 +14,7 @@
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0208C06C.h"
 #include "overlay062/struct_ov62_022312B0.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
@@ -267,23 +267,23 @@ static void ov62_022371CC (UnkStruct_0208C06C * param0)
     SpriteRenderer * v6 = param0->unk_14.unk_04;
     SpriteGfxHandler * v7 = param0->unk_14.unk_08;
     PaletteData * v8 = param0->unk_14.unk_14;
-    UnkStruct_ov104_0223F9E0 v9;
+    SpriteTemplate v9;
 
-    v9.unk_00 = 0;
-    v9.unk_02 = 256;
-    v9.unk_04 = 0;
-    v9.unk_06 = 0;
-    v9.unk_08 = 10;
-    v9.unk_0C = 0;
-    v9.unk_10 = 1;
-    v9.unk_2C = 0;
-    v9.unk_30 = 0;
-    v9.unk_14[4] = 0xffffffff;
-    v9.unk_14[5] = 0xffffffff;
-    v9.unk_14[0] = 165535;
-    v9.unk_14[1] = 165535;
-    v9.unk_14[2] = 165535;
-    v9.unk_14[3] = 165535;
+    v9.x = 0;
+    v9.y = 256;
+    v9.z = 0;
+    v9.animIdx = 0;
+    v9.priority = 10;
+    v9.plttIdx = 0;
+    v9.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v9.bgPriority = 0;
+    v9.transferToVRAM = FALSE;
+    v9.resources[4] = SPRITE_RESOURCE_NONE;
+    v9.resources[5] = SPRITE_RESOURCE_NONE;
+    v9.resources[0] = 165535;
+    v9.resources[1] = 165535;
+    v9.resources[2] = 165535;
+    v9.resources[3] = 165535;
 
     for (v0 = 0; v0 < 5; v0++) {
         v4->unk_40[v0] = SpriteActor_LoadResources(param0->unk_14.unk_04, param0->unk_14.unk_08, &v9);
@@ -293,15 +293,15 @@ static void ov62_022371CC (UnkStruct_0208C06C * param0)
     }
 
     for (v0 = 0; v0 < 5; v0++) {
-        v9.unk_14[0] = 18181 + v0;
-        v9.unk_14[1] = 18181 + v0;
+        v9.resources[0] = 18181 + v0;
+        v9.resources[1] = 18181 + v0;
 
         if (v0 == 3) {
-            v9.unk_14[2] = 18181 + 1;
-            v9.unk_14[3] = 18181 + 1;
+            v9.resources[2] = 18181 + 1;
+            v9.resources[3] = 18181 + 1;
         } else {
-            v9.unk_14[2] = 18181;
-            v9.unk_14[3] = 18181;
+            v9.resources[2] = 18181;
+            v9.resources[3] = 18181;
         }
 
         v4->unk_54[v0] = SpriteActor_LoadResources(param0->unk_14.unk_04, param0->unk_14.unk_08, &v9);
@@ -317,13 +317,13 @@ static void ov62_022371CC (UnkStruct_0208C06C * param0)
         sub_0200D41C(v4->unk_54[v0], 10 + v0);
     }
 
-    v9.unk_14[0] = 28282;
-    v9.unk_14[1] = 28282;
-    v9.unk_14[2] = 28282;
-    v9.unk_14[3] = 28282;
-    v9.unk_14[4] = 0xffffffff;
-    v9.unk_14[5] = 0xffffffff;
-    v9.unk_08 = 20;
+    v9.resources[0] = 28282;
+    v9.resources[1] = 28282;
+    v9.resources[2] = 28282;
+    v9.resources[3] = 28282;
+    v9.resources[4] = SPRITE_RESOURCE_NONE;
+    v9.resources[5] = SPRITE_RESOURCE_NONE;
+    v9.priority = 20;
 
     {
         UnkStruct_020507E4 * v10 = sub_020507E4(param0->unk_830);
@@ -354,14 +354,14 @@ static void ov62_022371CC (UnkStruct_0208C06C * param0)
         sub_0200D6E8(v4->unk_68[v0], v4->unk_04[v0], v4->unk_04[v0]);
     }
 
-    v9.unk_14[0] = 29292;
-    v9.unk_14[1] = 29292;
-    v9.unk_14[2] = 29292;
-    v9.unk_14[3] = 29292;
-    v9.unk_14[4] = 0xffffffff;
-    v9.unk_14[5] = 0xffffffff;
-    v9.unk_10 = 2;
-    v9.unk_08 = 0;
+    v9.resources[0] = 29292;
+    v9.resources[1] = 29292;
+    v9.resources[2] = 29292;
+    v9.resources[3] = 29292;
+    v9.resources[4] = SPRITE_RESOURCE_NONE;
+    v9.resources[5] = SPRITE_RESOURCE_NONE;
+    v9.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
+    v9.priority = 0;
 
     {
         int v12 = 1000;

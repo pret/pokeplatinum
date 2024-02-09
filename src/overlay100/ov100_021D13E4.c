@@ -11,7 +11,7 @@
 #include "overlay100/struct_ov100_021D1808.h"
 #include "overlay100/struct_ov100_021D4DD8.h"
 #include "overlay100/struct_ov100_021D4EBC.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 #include "overlay115/struct_ov115_0226527C.h"
 
 #include "unk_02002F38.h"
@@ -292,25 +292,25 @@ static void ov100_021D1A54 (UnkStruct_ov100_021D1808 * param0)
     SpriteRenderer * v3 = param0->unk_7C4->unk_04;
     SpriteGfxHandler * v4 = param0->unk_7C4->unk_08;
     PaletteData * v5 = param0->unk_7C4->unk_10;
-    UnkStruct_ov104_0223F9E0 v6;
+    SpriteTemplate v6;
 
-    v6.unk_00 = 0;
-    v6.unk_02 = 0;
-    v6.unk_04 = 0;
-    v6.unk_06 = 0;
-    v6.unk_08 = 0;
-    v6.unk_0C = 0;
-    v6.unk_10 = 2;
-    v6.unk_2C = 2;
-    v6.unk_30 = 0;
+    v6.x = 0;
+    v6.y = 0;
+    v6.z = 0;
+    v6.animIdx = 0;
+    v6.priority = 0;
+    v6.plttIdx = 0;
+    v6.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
+    v6.bgPriority = 2;
+    v6.transferToVRAM = FALSE;
 
-    v6.unk_14[4] = 0xffffffff;
-    v6.unk_14[5] = 0xffffffff;
+    v6.resources[4] = SPRITE_RESOURCE_NONE;
+    v6.resources[5] = SPRITE_RESOURCE_NONE;
 
-    v6.unk_14[0] = 50000;
-    v6.unk_14[1] = 50000;
-    v6.unk_14[2] = 50000;
-    v6.unk_14[3] = 50000;
+    v6.resources[0] = 50000;
+    v6.resources[1] = 50000;
+    v6.resources[2] = 50000;
+    v6.resources[3] = 50000;
 
     for (v0 = 0; v0 < 3; v0++) {
         param0->unk_0C.unk_D4[v0].unk_00 = SpriteActor_LoadResources(v3, v4, &v6);
@@ -339,9 +339,9 @@ static void ov100_021D1A54 (UnkStruct_ov100_021D1808 * param0)
         f32 v9[] = {0.1f, 0.3f, 0.2f};
 
         if (v0 == 1) {
-            v6.unk_2C = 0;
+            v6.bgPriority = 0;
         } else {
-            v6.unk_2C = 2;
+            v6.bgPriority = 2;
         }
 
         param0->unk_0C.unk_0C[v0].unk_00 = SpriteActor_LoadResources(v3, v4, &v6);

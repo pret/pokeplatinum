@@ -10,7 +10,7 @@
 #include "overlay099/struct_ov99_021D2CB0.h"
 #include "overlay099/struct_ov99_021D2CB0_sub2.h"
 #include "overlay099/struct_ov99_021D3A40.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
@@ -240,7 +240,7 @@ static const UnkStruct_ov99_021D4A04 Unk_ov99_021D4A04[] = {
     }
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov99_021D499C = {
+static const SpriteTemplate Unk_ov99_021D499C = {
     0x0,
     0x0,
     0x0,
@@ -253,7 +253,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov99_021D499C = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov99_021D4968 = {
+static const SpriteTemplate Unk_ov99_021D4968 = {
     0x0,
     0x0,
     0x0,
@@ -266,7 +266,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov99_021D4968 = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov99_021D4934 = {
+static const SpriteTemplate Unk_ov99_021D4934 = {
     0x0,
     0x0,
     0x0,
@@ -279,7 +279,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov99_021D4934 = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov99_021D49D0 = {
+static const SpriteTemplate Unk_ov99_021D49D0 = {
     0x0,
     0x0,
     0x0,
@@ -292,7 +292,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov99_021D49D0 = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov99_021D48CC = {
+static const SpriteTemplate Unk_ov99_021D48CC = {
     0x0,
     0x0,
     0x0,
@@ -305,7 +305,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov99_021D48CC = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov99_021D4900 = {
+static const SpriteTemplate Unk_ov99_021D4900 = {
     0xC0,
     0xA0,
     0x0,
@@ -358,7 +358,7 @@ static void ov99_021D1BC4 (UnkStruct_ov99_021D2CB0 * param0, CellActorData ** pa
 {
     CellActorData * v0;
     CellActorData * v1;
-    UnkStruct_ov104_0223F9E0 v2 = Unk_ov99_021D4900;
+    SpriteTemplate v2 = Unk_ov99_021D4900;
 
     MI_CpuClear8(&param0->unk_1114, sizeof(UnkStruct_ov99_021D2CB0_sub2));
 
@@ -368,7 +368,7 @@ static void ov99_021D1BC4 (UnkStruct_ov99_021D2CB0 * param0, CellActorData ** pa
     SpriteActor_UpdateObject(v0->unk_00);
 
     *param1 = v0;
-    v2.unk_08 = 60;
+    v2.priority = 60;
     v1 = SpriteActor_LoadResources(param0->unk_18, param0->unk_1C, &v2);
 
     sub_0200D364(v1, 2);

@@ -8,7 +8,7 @@
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
@@ -158,7 +158,7 @@ static void ov12_02226AAC (SysTask * param0, void * param1)
 void ov12_02226B1C (UnkStruct_ov12_0221FCDC * param0, SpriteRenderer * param1, SpriteGfxHandler * param2, CellActorData * param3)
 {
     UnkStruct_ov12_02226AAC * v0;
-    UnkStruct_ov104_0223F9E0 v1;
+    SpriteTemplate v1;
 
     v0 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov12_02226AAC));
 

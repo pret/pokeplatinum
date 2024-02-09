@@ -21,7 +21,7 @@
 #include "overlay017/struct_ov17_0223F2E4.h"
 #include "overlay017/struct_ov17_0223F6E8.h"
 #include "overlay017/struct_ov17_0223F744.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
@@ -49,7 +49,7 @@ static void ov17_0223F6E8(SysTask * param0, void * param1);
 static void ov17_0223F15C(void);
 static void ov17_0223F774(SysTask * param0, void * param1);
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_022531FC = {
+static const SpriteTemplate Unk_ov17_022531FC = {
     0x0,
     0x0,
     0x0,
@@ -355,19 +355,19 @@ void ov17_0223F5E8 (SpriteGfxHandler * param0, int param1, int param2, int param
 void ov17_0223F630 (UnkStruct_ov17_0223F6E8 * param0, SpriteRenderer * param1, SpriteGfxHandler * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, u32 param10)
 {
     int v0;
-    UnkStruct_ov104_0223F9E0 v1;
+    SpriteTemplate v1;
 
     GF_ASSERT(NELEMS(Unk_ov17_022531CC) == 6);
 
     v1 = Unk_ov17_022531FC;
 
-    v1.unk_14[0] = param3;
-    v1.unk_14[1] = param4;
-    v1.unk_14[2] = param5;
-    v1.unk_14[3] = param6;
-    v1.unk_0C = param7;
-    v1.unk_08 = param8;
-    v1.unk_2C = param9;
+    v1.resources[0] = param3;
+    v1.resources[1] = param4;
+    v1.resources[2] = param5;
+    v1.resources[3] = param6;
+    v1.plttIdx = param7;
+    v1.priority = param8;
+    v1.bgPriority = param9;
 
     for (v0 = 0; v0 < 6; v0++) {
         param0->unk_00[v0] = SpriteActor_LoadResources(param1, param2, &v1);

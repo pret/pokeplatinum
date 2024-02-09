@@ -24,7 +24,7 @@
 #include "overlay023/struct_ov23_02250CD4.h"
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_02240FA8.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 #include "overlay104/struct_ov104_02241308.h"
 
 #include "unk_0200112C.h"
@@ -157,7 +157,7 @@ static const UnkStruct_ov84_02240FA8 Unk_ov23_02256904 = {
     NULL
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov23_0225695C[] = {
+static const SpriteTemplate Unk_ov23_0225695C[] = {
     {
         0xCC,
         0x14,
@@ -211,11 +211,11 @@ static void ov23_0224F294 (UnkStruct_ov23_02250CD4 * param0, u8 * param1, u32 pa
     NARC_dtor(v2);
 
     for (v1 = 0; v1 < param2; v1++) {
-        UnkStruct_ov104_0223F9E0 v3;
+        SpriteTemplate v3;
 
         v3 = Unk_ov23_0225695C[1];
-        v3.unk_02 += 24 * v1;
-        v3.unk_06 = param1[v1] * 3;
+        v3.y += 24 * v1;
+        v3.animIdx = param1[v1] * 3;
 
         param0->unk_23C[1 + v1] = ov5_021D3584(&param0->unk_74, &v3);
 

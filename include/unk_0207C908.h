@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/cell_actor_data.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include <nnsys.h>
 
@@ -22,7 +22,7 @@ void sub_0207C9EC(SpriteRenderer * param0, SpriteGfxHandler * param1, u32 param2
 void sub_0207CA34(SpriteGfxHandler * param0, u32 param1);
 void sub_0207CA3C(SpriteGfxHandler * param0, u32 param1);
 void sub_0207CA44(SpriteGfxHandler * param0, u32 param1, u32 param2);
-CellActorData * sub_0207CA58(SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, const UnkStruct_ov104_0223F9E0 * param3);
+CellActorData * sub_0207CA58(SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, const SpriteTemplate * param3);
 void sub_0207CA88(CellActorData * param0);
 u32 sub_0207CA90(int param0);
 u8 sub_0207CAA8(int param0);

@@ -20,7 +20,7 @@
 #include "struct_defs/struct_02099F80.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
@@ -564,42 +564,42 @@ void ov119_021D1514 (UnkStruct_ov119_021D0FD0 * param0)
 
 void ov119_021D161C (UnkStruct_ov119_021D0FD0 * param0)
 {
-    UnkStruct_ov104_0223F9E0 v0;
+    SpriteTemplate v0;
 
-    v0.unk_00 = 128;
-    v0.unk_02 = 120;
-    v0.unk_04 = 0;
-    v0.unk_06 = 0;
-    v0.unk_08 = 0;
-    v0.unk_0C = 0;
-    v0.unk_10 = 1;
-    v0.unk_2C = 2;
-    v0.unk_30 = 0;
+    v0.x = 128;
+    v0.y = 120;
+    v0.z = 0;
+    v0.animIdx = 0;
+    v0.priority = 0;
+    v0.plttIdx = 0;
+    v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v0.bgPriority = 2;
+    v0.transferToVRAM = FALSE;
 
-    v0.unk_14[0] = 20000;
-    v0.unk_14[1] = 20001;
-    v0.unk_14[2] = 20002;
-    v0.unk_14[3] = 20003;
-    v0.unk_14[4] = 0xffffffff;
-    v0.unk_14[5] = 0xffffffff;
+    v0.resources[0] = 20000;
+    v0.resources[1] = 20001;
+    v0.resources[2] = 20002;
+    v0.resources[3] = 20003;
+    v0.resources[4] = SPRITE_RESOURCE_NONE;
+    v0.resources[5] = SPRITE_RESOURCE_NONE;
 
     param0->unk_74 = SpriteActor_LoadResources(param0->unk_04.unk_50, param0->unk_04.unk_4C, &v0);
 
     sub_0200D330(param0->unk_74);
     sub_0200D6A4(param0->unk_74, 2);
 
-    v0.unk_00 = 0;
-    v0.unk_02 = 0 - (2 * 8);
-    v0.unk_2C = 0;
-    v0.unk_14[0] = 25000;
-    v0.unk_14[1] = 25001;
-    v0.unk_14[2] = 25002;
-    v0.unk_14[3] = 25003;
+    v0.x = 0;
+    v0.y = 0 - (2 * 8);
+    v0.bgPriority = 0;
+    v0.resources[0] = 25000;
+    v0.resources[1] = 25001;
+    v0.resources[2] = 25002;
+    v0.resources[3] = 25003;
 
     param0->unk_78 = SpriteActor_LoadResources(param0->unk_04.unk_50, param0->unk_04.unk_4C, &v0);
     sub_0200D330(param0->unk_78);
 
-    v0.unk_02 = 192 - (6 * 8);
+    v0.y = 192 - (6 * 8);
 
     param0->unk_7C = SpriteActor_LoadResources(param0->unk_04.unk_50, param0->unk_04.unk_4C, &v0);
     sub_0200D330(param0->unk_7C);

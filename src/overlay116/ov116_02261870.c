@@ -15,7 +15,7 @@
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_02017294.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 #include "overlay116/struct_ov116_0226139C.h"
 #include "overlay116/struct_ov116_02262A8C.h"
 #include "overlay116/struct_ov116_0226501C.h"
@@ -40,7 +40,7 @@
 
 static inline void inline_ov116_02261940(UnkStruct_ov116_0226501C * param0);
 static inline void inline_ov116_02261940_1(void);
-static void ov116_02261CD8(UnkStruct_ov104_0223F9E0 * param0, s16 param1, s16 param2, int param3, int param4, int param5);
+static void ov116_02261CD8(SpriteTemplate * param0, s16 param1, s16 param2, int param3, int param4, int param5);
 void include_ov116_02261870(void);
 
 void ov116_02261870 (UnkStruct_02017294 * param0, MtxFx43 * param1, VecFx32 * param2)
@@ -203,23 +203,23 @@ void ov116_02261C88 (UnkStruct_ov116_0226139C * param0)
     sub_020203D4(param0->unk_48.unk_1C);
 }
 
-static void ov116_02261CD8 (UnkStruct_ov104_0223F9E0 * param0, s16 param1, s16 param2, int param3, int param4, int param5)
+static void ov116_02261CD8 (SpriteTemplate * param0, s16 param1, s16 param2, int param3, int param4, int param5)
 {
-    param0->unk_00 = param1;
-    param0->unk_02 = param2;
-    param0->unk_04 = 0;
-    param0->unk_06 = 0;
-    param0->unk_08 = 0;
-    param0->unk_10 = param3;
-    param0->unk_2C = 2;
-    param0->unk_30 = 0;
-    param0->unk_0C = param4;
-    param0->unk_14[0] = param5;
-    param0->unk_14[1] = param5;
-    param0->unk_14[2] = param5;
-    param0->unk_14[3] = param5;
-    param0->unk_14[4] = 0xffffffff;
-    param0->unk_14[5] = 0xffffffff;
+    param0->x = param1;
+    param0->y = param2;
+    param0->z = 0;
+    param0->animIdx = 0;
+    param0->priority = 0;
+    param0->vramType = param3;
+    param0->bgPriority = 2;
+    param0->transferToVRAM = FALSE;
+    param0->plttIdx = param4;
+    param0->resources[0] = param5;
+    param0->resources[1] = param5;
+    param0->resources[2] = param5;
+    param0->resources[3] = param5;
+    param0->resources[4] = SPRITE_RESOURCE_NONE;
+    param0->resources[5] = SPRITE_RESOURCE_NONE;
 }
 
 static const s16 Unk_ov116_02267A78[][3] = {
@@ -231,7 +231,7 @@ static const s16 Unk_ov116_02267A78[][3] = {
 
 void ov116_02261D08 (UnkStruct_ov116_02262A8C * param0)
 {
-    UnkStruct_ov104_0223F9E0 v0;
+    SpriteTemplate v0;
     SpriteRenderer * v1 = param0->unk_14->unk_08;
     SpriteGfxHandler * v2 = param0->unk_14->unk_0C;
     PaletteData * v3 = param0->unk_14->unk_14;
@@ -249,7 +249,7 @@ void ov116_02261D08 (UnkStruct_ov116_02262A8C * param0)
 
 void ov116_02261D70 (UnkStruct_ov116_02262A8C * param0)
 {
-    UnkStruct_ov104_0223F9E0 v0;
+    SpriteTemplate v0;
     SpriteRenderer * v1 = param0->unk_14->unk_08;
     SpriteGfxHandler * v2 = param0->unk_14->unk_0C;
     PaletteData * v3 = param0->unk_14->unk_14;
@@ -259,8 +259,8 @@ void ov116_02261D70 (UnkStruct_ov116_02262A8C * param0)
     for (v4 = 0; v4 < 4; v4++) {
         ov116_02261CD8(&v0, v5[v4], (192 + 32), 1, 1, 9004);
 
-        v0.unk_2C = 0;
-        v0.unk_08 = 1;
+        v0.bgPriority = 0;
+        v0.priority = 1;
         param0->unk_B8[v4] = SpriteActor_LoadResources(v1, v2, &v0);
 
         sub_0200D33C(param0->unk_B8[v4]);
@@ -681,7 +681,7 @@ void ov116_022622C8 (UnkStruct_ov116_0226139C * param0)
 
 void ov116_022625A8 (UnkStruct_ov116_0226139C * param0, UnkStruct_ov116_02262A8C * param1)
 {
-    UnkStruct_ov104_0223F9E0 v0;
+    SpriteTemplate v0;
     SpriteRenderer * v1 = param1->unk_14->unk_08;
     SpriteGfxHandler * v2 = param1->unk_14->unk_0C;
     PaletteData * v3 = param1->unk_14->unk_14;
@@ -696,16 +696,16 @@ void ov116_022625A8 (UnkStruct_ov116_0226139C * param0, UnkStruct_ov116_02262A8C
 
         param1->unk_DC[v4] = v5;
         ov116_02261CD8(&v0, Unk_ov116_02267A78[param1->unk_04 - 1][v5] + 0, (176 + 64), 2, 0, 9000);
-        v0.unk_08 = 1;
+        v0.priority = 1;
 
         param1->unk_1C[v5] = SpriteActor_LoadResources(v1, v2, &v0);
         ov116_02261CD8(&v0, Unk_ov116_02267A78[param1->unk_04 - 1][v5] + 0, ((176 + 64) + 0), 2, 0, 9000);
-        v0.unk_08 = 2;
+        v0.priority = 2;
 
         param1->unk_20[v5] = SpriteActor_LoadResources(v1, v2, &v0);
         sub_0200D430(param1->unk_20[v5], 0 + ov116_02264680(param0, v4));
         ov116_02261CD8(&v0, Unk_ov116_02267A78[param1->unk_04 - 1][v5] + 0, ((176 + 64) + 0), 2, 0, 9000);
-        v0.unk_08 = 3;
+        v0.priority = 3;
 
         param1->unk_24[v5] = SpriteActor_LoadResources(v1, v2, &v0);
         sub_0200D430(param1->unk_24[v5], 0 + ov116_02264680(param0, v4));
@@ -722,15 +722,15 @@ void ov116_022625A8 (UnkStruct_ov116_0226139C * param0, UnkStruct_ov116_02262A8C
 CellActorData * ov116_022626E8 (UnkStruct_ov116_02262A8C * param0, s16 param1, s16 param2)
 {
     CellActorData * v0;
-    UnkStruct_ov104_0223F9E0 v1;
+    SpriteTemplate v1;
     SpriteRenderer * v2 = param0->unk_14->unk_08;
     SpriteGfxHandler * v3 = param0->unk_14->unk_0C;
     PaletteData * v4 = param0->unk_14->unk_14;
 
     ov116_02261CD8(&v1, param1, param2, 1, 0, 9003);
 
-    v1.unk_2C = 0;
-    v1.unk_08 = 0;
+    v1.bgPriority = 0;
+    v1.priority = 0;
     v0 = SpriteActor_LoadResources(v2, v3, &v1);
 
     sub_0200D33C(v0);
@@ -742,7 +742,7 @@ void ov116_02262724 (UnkStruct_ov116_02262A8C * param0)
 {
     int v0;
     CellActorData * v1;
-    UnkStruct_ov104_0223F9E0 v2;
+    SpriteTemplate v2;
     SpriteRenderer * v3 = param0->unk_14->unk_08;
     SpriteGfxHandler * v4 = param0->unk_14->unk_0C;
     PaletteData * v5 = param0->unk_14->unk_14;
@@ -750,8 +750,8 @@ void ov116_02262724 (UnkStruct_ov116_02262A8C * param0)
     for (v0 = 0; v0 < 2; v0++) {
         ov116_02261CD8(&v2, 0, 0, 1, 4, 9002);
 
-        v2.unk_2C = 2;
-        v2.unk_08 = 20;
+        v2.bgPriority = 2;
+        v2.priority = 20;
         param0->unk_D0[v0] = SpriteActor_LoadResources(v3, v4, &v2);
 
         sub_0200D364(param0->unk_D0[v0], 0);
@@ -762,8 +762,8 @@ void ov116_02262724 (UnkStruct_ov116_02262A8C * param0)
 
         ov116_02261CD8(&v2, 0, 0, 2, 0, 9000);
 
-        v2.unk_2C = 2;
-        v2.unk_08 = 20;
+        v2.bgPriority = 2;
+        v2.priority = 20;
         param0->unk_C8[v0] = SpriteActor_LoadResources(v3, v4, &v2);
 
         sub_0200D364(param0->unk_C8[v0], 6);
@@ -788,15 +788,15 @@ void ov116_02262840 (UnkStruct_ov116_02262A8C * param0)
 {
     int v0;
     CellActorData * v1;
-    UnkStruct_ov104_0223F9E0 v2;
+    SpriteTemplate v2;
     SpriteRenderer * v3 = param0->unk_14->unk_08;
     SpriteGfxHandler * v4 = param0->unk_14->unk_0C;
     PaletteData * v5 = param0->unk_14->unk_14;
 
     ov116_02261CD8(&v2, 128, 128, 1, 7, 9007);
 
-    v2.unk_2C = 0;
-    v2.unk_08 = 0;
+    v2.bgPriority = 0;
+    v2.priority = 0;
     param0->unk_D8 = SpriteActor_LoadResources(v3, v4, &v2);
 
     sub_0200D364(param0->unk_D8, 1);

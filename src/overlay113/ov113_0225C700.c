@@ -36,7 +36,7 @@
 #include "overlay066/struct_ov66_022589B4.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
@@ -272,7 +272,7 @@ static const u16 Unk_ov113_022608AC[] = {
     0x55
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov113_02260A04 = {
+static const SpriteTemplate Unk_ov113_02260A04 = {
     0x0,
     0x0,
     0x0,
@@ -285,7 +285,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov113_02260A04 = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov113_02260A38 = {
+static const SpriteTemplate Unk_ov113_02260A38 = {
     0x0,
     0x0,
     0x0,
@@ -298,7 +298,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov113_02260A38 = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov113_02260A6C = {
+static const SpriteTemplate Unk_ov113_02260A6C = {
     0x0,
     0x0,
     0x0,
@@ -311,7 +311,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov113_02260A6C = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov113_02260AA0 = {
+static const SpriteTemplate Unk_ov113_02260AA0 = {
     0x0,
     0x0,
     0x0,
@@ -324,7 +324,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov113_02260AA0 = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov113_0226099C = {
+static const SpriteTemplate Unk_ov113_0226099C = {
     0x0,
     0x0,
     0x0,
@@ -337,7 +337,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov113_0226099C = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov113_022609D0 = {
+static const SpriteTemplate Unk_ov113_022609D0 = {
     0x0,
     0x0,
     0x0,
@@ -973,13 +973,13 @@ static void ov113_0225D304 (UnkStruct_ov113_0225DBCC * param0, NARC * param1)
 static void ov113_0225D484 (UnkStruct_ov113_0225DBCC * param0)
 {
     int v0;
-    UnkStruct_ov104_0223F9E0 v1;
+    SpriteTemplate v1;
 
     v1 = Unk_ov113_02260A04;
 
     for (v0 = 0; v0 < 6; v0++) {
-        v1.unk_00 = 16 + 32 * v0;
-        v1.unk_02 = 176;
+        v1.x = 16 + 32 * v0;
+        v1.y = 176;
 
         param0->unk_924[v0] = SpriteActor_LoadResources(param0->unk_1C, param0->unk_20, &v1);
 
@@ -990,8 +990,8 @@ static void ov113_0225D484 (UnkStruct_ov113_0225DBCC * param0)
     v1 = Unk_ov113_02260A38;
 
     for (v0 = 0; v0 < 6; v0++) {
-        v1.unk_00 = 16 + 32 * v0;
-        v1.unk_02 = 176;
+        v1.x = 16 + 32 * v0;
+        v1.y = 176;
 
         param0->unk_93C[v0] = SpriteActor_LoadResources(param0->unk_1C, param0->unk_20, &v1);
 
@@ -1002,9 +1002,9 @@ static void ov113_0225D484 (UnkStruct_ov113_0225DBCC * param0)
     v1 = Unk_ov113_02260A6C;
 
     for (v0 = 0; v0 < 6; v0++) {
-        v1.unk_00 = 16 + 32 * v0;
-        v1.unk_02 = 176;
-        v1.unk_14[0] = 10001 + v0;
+        v1.x = 16 + 32 * v0;
+        v1.y = 176;
+        v1.resources[0] = 10001 + v0;
 
         param0->unk_954[v0] = SpriteActor_LoadResources(param0->unk_1C, param0->unk_20, &v1);
         SpriteActor_UpdateObject(param0->unk_954[v0]->unk_00);
@@ -1059,7 +1059,7 @@ static void ov113_0225D630 (UnkStruct_ov113_0225DBCC * param0, NARC * param1)
 static void ov113_0225D6F8 (UnkStruct_ov113_0225DBCC * param0)
 {
     int v0;
-    UnkStruct_ov104_0223F9E0 v1;
+    SpriteTemplate v1;
 
     param0->unk_96C = SpriteActor_LoadResources(param0->unk_1C, param0->unk_20, &Unk_ov113_0226099C);
 
@@ -1069,7 +1069,7 @@ static void ov113_0225D6F8 (UnkStruct_ov113_0225DBCC * param0)
     v1 = Unk_ov113_022609D0;
 
     for (v0 = 0; v0 < 8; v0++) {
-        v1.unk_14[0] = 10010 + v0;
+        v1.resources[0] = 10010 + v0;
         param0->unk_970[v0] = SpriteActor_LoadResources(param0->unk_1C, param0->unk_20, &v1);
 
         sub_0200D500(param0->unk_970[v0], Unk_ov113_02260934[v0][0], Unk_ov113_02260934[v0][1], ((192 + 80) << FX32_SHIFT));
@@ -1467,15 +1467,15 @@ void ov113_0225E05C (UnkStruct_ov113_0225DBCC * param0, u32 param1)
 
 static void ov113_0225E068 (UnkStruct_ov113_0225DBCC * param0, int param1)
 {
-    UnkStruct_ov104_0223F9E0 v0;
+    SpriteTemplate v0;
     int v1;
 
     v0 = Unk_ov113_02260AA0;
 
     for (v1 = 0; v1 < 3; v1++) {
         if (param0->unk_990[v1] == NULL) {
-            v0.unk_00 = 16 + 32 * param1;
-            v0.unk_02 = 176;
+            v0.x = 16 + 32 * param1;
+            v0.y = 176;
             param0->unk_990[v1] = SpriteActor_LoadResources(param0->unk_1C, param0->unk_20, &v0);
 
             break;

@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 #include "overlay117/struct_ov117_02261280.h"
 #include "overlay117/struct_ov117_02264E84.h"
 
@@ -129,7 +129,7 @@ static const fx16 Unk_ov117_02266B12[3 * 6] = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov117_02266B38 = {
+static const SpriteTemplate Unk_ov117_02266B38 = {
     0x0,
     0x0,
     0x0,
@@ -938,7 +938,7 @@ static void ov117_022639BC (UnkStruct_ov117_02261280 * param0)
 static CellActorData * ov117_02263A00 (UnkStruct_ov117_02261280 * param0)
 {
     CellActorData * v0;
-    UnkStruct_ov104_0223F9E0 v1;
+    SpriteTemplate v1;
 
     v1 = Unk_ov117_02266B38;
     v0 = SpriteActor_LoadResources(param0->unk_24, param0->unk_28, &v1);

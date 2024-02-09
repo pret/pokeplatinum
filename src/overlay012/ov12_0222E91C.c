@@ -14,7 +14,7 @@
 #include "overlay012/struct_ov12_0223595C.h"
 #include "overlay012/struct_ov12_02235998.h"
 #include "overlay012/struct_ov12_022380DC.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_02002F38.h"
 #include "unk_0200762C.h"
@@ -242,7 +242,7 @@ void ov12_0222EC90 (UnkStruct_ov12_0221FCDC * param0, SpriteRenderer * param1, S
 
         {
             s16 v2, v3;
-            UnkStruct_ov104_0223F9E0 v4;
+            SpriteTemplate v4;
 
             v4 = ov12_0222329C(v0->unk_00.unk_04);
             v0->unk_30[0] = param3;

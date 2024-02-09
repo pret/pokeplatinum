@@ -17,7 +17,7 @@
 #include "overlay012/struct_ov12_02225F6C.h"
 #include "overlay012/struct_ov12_02226274.h"
 #include "overlay012/struct_ov12_02226454.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_02002F38.h"
 #include "unk_0200762C.h"
@@ -671,7 +671,7 @@ void ov12_0222F9E4 (UnkStruct_ov12_0221FCDC * param0)
     ov12_022201E8(v0->unk_00, ov12_0222F888, v0);
 }
 
-static void ov12_0222FAFC (UnkStruct_ov12_0222FAFC * param0, SpriteRenderer * param1, SpriteGfxHandler * param2, const UnkStruct_ov104_0223F9E0 * param3, const UnkStruct_ov12_0222FAFC * param4)
+static void ov12_0222FAFC (UnkStruct_ov12_0222FAFC * param0, SpriteRenderer * param1, SpriteGfxHandler * param2, const SpriteTemplate * param3, const UnkStruct_ov12_0222FAFC * param4)
 {
     param0->unk_00 = SpriteActor_LoadResources(param1, param2, param3);
     param0->unk_04 = param4->unk_04;
@@ -817,7 +817,7 @@ static void ov12_0222FC44 (SysTask * param0, void * param1)
 void ov12_0222FE30 (UnkStruct_ov12_0221FCDC * param0, SpriteRenderer * param1, SpriteGfxHandler * param2, CellActorData * param3)
 {
     UnkStruct_ov12_0222FC44 * v0;
-    UnkStruct_ov104_0223F9E0 v1;
+    SpriteTemplate v1;
     int v2;
     int v3;
     int v4;
@@ -851,8 +851,8 @@ void ov12_0222FE30 (UnkStruct_ov12_0221FCDC * param0, SpriteRenderer * param1, S
     sub_0200D460(v0->unk_0C.unk_00, 1);
 
     v1 = ov12_0222329C(v0->unk_00);
-    v1.unk_00 = v0->unk_0C.unk_3E;
-    v1.unk_02 = v0->unk_0C.unk_40;
+    v1.x = v0->unk_0C.unk_3E;
+    v1.y = v0->unk_0C.unk_40;
 
     for (v2 = 0; v2 < 2; v2++) {
         ov12_0222FAFC(&v0->unk_58[v2], v0->unk_04, v0->unk_08, &v1, &v0->unk_0C);
@@ -1631,7 +1631,7 @@ void ov12_02231010 (UnkStruct_ov12_0221FCDC * param0, SpriteRenderer * param1, S
     int v2;
     int v3;
     int v4;
-    UnkStruct_ov104_0223F9E0 v5;
+    SpriteTemplate v5;
 
     v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02230F3C));
     v0->unk_00 = param0;
@@ -2872,7 +2872,7 @@ static void ov12_022328B8 (SysTask * param0, void * param1)
 void ov12_022329E0 (UnkStruct_ov12_0221FCDC * param0, SpriteRenderer * param1, SpriteGfxHandler * param2, CellActorData * param3)
 {
     UnkStruct_ov12_02232720 * v0;
-    UnkStruct_ov104_0223F9E0 v1;
+    SpriteTemplate v1;
     int v2;
     s16 v3;
     s16 v4;
@@ -3336,7 +3336,7 @@ void ov12_02233454 (UnkStruct_ov12_0221FCDC * param0, SpriteRenderer * param1, S
 {
     UnkStruct_ov12_022332E8 * v0;
     int v1;
-    UnkStruct_ov104_0223F9E0 v2;
+    SpriteTemplate v2;
 
     v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_022332E8));
 
@@ -3460,7 +3460,7 @@ void ov12_02233734 (UnkStruct_ov12_0221FCDC * param0, SpriteRenderer * param1, S
     UnkStruct_ov12_0223351C * v0;
     int v1;
     Sprite * v2;
-    UnkStruct_ov104_0223F9E0 v3;
+    SpriteTemplate v3;
 
     v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0223351C));
 
@@ -3579,7 +3579,7 @@ void ov12_022339C4 (UnkStruct_ov12_0221FCDC * param0, SpriteRenderer * param1, S
     int v1;
     s16 v2, v3;
     Sprite * v4;
-    UnkStruct_ov104_0223F9E0 v5;
+    SpriteTemplate v5;
 
     v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02233900));
 

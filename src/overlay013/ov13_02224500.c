@@ -9,7 +9,7 @@
 #include "struct_defs/struct_020F1DB8.h"
 #include "overlay013/struct_ov13_022213F0.h"
 #include "overlay013/struct_ov13_02221ED0.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 #include "overlay104/struct_ov104_02241308.h"
 
 #include "narc.h"
@@ -329,24 +329,24 @@ static void ov13_02224848 (UnkStruct_ov13_022213F0 * param0)
 
 static CellActorData * ov13_022248D8 (UnkStruct_ov13_022213F0 * param0, u32 param1)
 {
-    UnkStruct_ov104_0223F9E0 v0;
+    SpriteTemplate v0;
     SpriteRenderer * v1;
 
     v1 = ov16_0223E010(param0->unk_00->unk_08);
 
-    v0.unk_00 = 0;
-    v0.unk_02 = 0;
-    v0.unk_04 = 0;
-    v0.unk_06 = 0;
-    v0.unk_08 = Unk_ov13_02229514[param1][4];
-    v0.unk_0C = 0;
-    v0.unk_10 = NNS_G2D_VRAM_TYPE_2DSUB;
-    v0.unk_14[0] = Unk_ov13_02229514[param1][0];
-    v0.unk_14[1] = Unk_ov13_02229514[param1][1];
-    v0.unk_14[2] = Unk_ov13_02229514[param1][2];
-    v0.unk_14[3] = Unk_ov13_02229514[param1][3];
-    v0.unk_2C = 1;
-    v0.unk_30 = 0;
+    v0.x = 0;
+    v0.y = 0;
+    v0.z = 0;
+    v0.animIdx = 0;
+    v0.priority = Unk_ov13_02229514[param1][4];
+    v0.plttIdx = 0;
+    v0.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
+    v0.resources[0] = Unk_ov13_02229514[param1][0];
+    v0.resources[1] = Unk_ov13_02229514[param1][1];
+    v0.resources[2] = Unk_ov13_02229514[param1][2];
+    v0.resources[3] = Unk_ov13_02229514[param1][3];
+    v0.bgPriority = 1;
+    v0.transferToVRAM = FALSE;
 
     return SpriteActor_LoadResources(v1, param0->unk_1FB0, &v0);
 }

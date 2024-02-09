@@ -14,7 +14,7 @@
 #include "overlay012/struct_ov12_02226454.h"
 #include "overlay012/struct_ov12_02235350.h"
 #include "overlay012/struct_ov12_0223595C.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
@@ -192,7 +192,7 @@ void ov12_0222D7C0 (UnkStruct_ov12_0221FCDC * param0, SpriteRenderer * param1, S
 {
     int v0;
     UnkStruct_ov12_0222D6B0 * v1;
-    UnkStruct_ov104_0223F9E0 v2;
+    SpriteTemplate v2;
 
     v1 = Heap_AllocFromHeap(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_0222D6B0));
 
@@ -413,7 +413,7 @@ void ov12_0222DB60 (UnkStruct_ov12_0221FCDC * param0, SpriteRenderer * param1, S
 {
     int v0;
     UnkStruct_ov12_0222D934 * v1;
-    UnkStruct_ov104_0223F9E0 v2;
+    SpriteTemplate v2;
 
     v1 = Heap_AllocFromHeap(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_0222D934));
 
@@ -637,7 +637,7 @@ void ov12_0222DEFC (UnkStruct_ov12_0221FCDC * param0, SpriteRenderer * param1, S
     int v0;
     int v1;
     UnkStruct_ov12_0222DE24 * v2;
-    UnkStruct_ov104_0223F9E0 v3;
+    SpriteTemplate v3;
 
     v2 = Heap_AllocFromHeap(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_0222DE24));
     GF_ASSERT(v2 != NULL);
@@ -839,7 +839,7 @@ void ov12_0222E2F8 (UnkStruct_ov12_0221FCDC * param0, SpriteRenderer * param1, S
 
     {
         int v1;
-        UnkStruct_ov104_0223F9E0 v2;
+        SpriteTemplate v2;
 
         v2 = ov12_0222329C(v0->unk_00.unk_04);
 
@@ -979,7 +979,7 @@ void ov12_0222E61C (UnkStruct_ov12_0221FCDC * param0, SpriteRenderer * param1, S
     {
         int v1;
         s16 v2, v3;
-        UnkStruct_ov104_0223F9E0 v4;
+        SpriteTemplate v4;
 
         v4 = ov12_0222329C(v0->unk_00.unk_04);
 

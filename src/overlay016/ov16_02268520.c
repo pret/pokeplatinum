@@ -8,7 +8,7 @@
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "overlay016/struct_ov16_02268520.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_02002F38.h"
 #include "narc.h"
@@ -16,7 +16,7 @@
 #include "overlay016/ov16_0223DF00.h"
 #include "overlay016/ov16_02268520.h"
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov16_022700CC[] = {
+static const SpriteTemplate Unk_ov16_022700CC[] = {
     {
         0x150,
         0x88,
@@ -176,7 +176,7 @@ void ov16_02268520 (UnkStruct_ov16_02268520 * param0)
 {
     SpriteRenderer * v0;
     SpriteGfxHandler * v1;
-    const UnkStruct_ov104_0223F9E0 * v2;
+    const SpriteTemplate * v2;
     int v3, v4, v5, v6, v7, v8;
     int v9;
     NARC * v10;
@@ -215,7 +215,7 @@ void ov16_0226862C (UnkStruct_ov16_02268520 * param0)
 {
     SpriteRenderer * v0;
     SpriteGfxHandler * v1;
-    const UnkStruct_ov104_0223F9E0 * v2;
+    const SpriteTemplate * v2;
 
     v0 = ov16_0223E010(param0->unk_04);
     v1 = ov16_0223E018(param0->unk_04);

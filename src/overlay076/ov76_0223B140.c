@@ -13,7 +13,7 @@
 #include "struct_defs/struct_0202CA28.h"
 #include "overlay076/struct_ov76_0223B52C.h"
 #include "overlay076/struct_ov76_0223DE00.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "game_overlay.h"
 #include "unk_0200C6E4.h"
@@ -276,7 +276,7 @@ BOOL ov76_0223B52C (UnkStruct_ov76_0223DE00 * param0, u8 param1)
     int v0;
     int v1;
     UnkStruct_ov76_0223B52C * v2;
-    UnkStruct_ov104_0223F9E0 v3;
+    SpriteTemplate v3;
     SpriteRenderer * v4;
     SpriteGfxHandler * v5;
     PaletteData * v6;
@@ -293,25 +293,25 @@ BOOL ov76_0223B52C (UnkStruct_ov76_0223DE00 * param0, u8 param1)
 
     ov76_0223B36C(param0, v2->unk_04, param1);
 
-    v3.unk_00 = v2->unk_05;
-    v3.unk_02 = v2->unk_06;
-    v3.unk_04 = 0;
-    v3.unk_06 = 0;
-    v3.unk_0C = 0;
-    v3.unk_30 = 0;
-    v3.unk_08 = 0;
-    v3.unk_10 = 2;
-    v3.unk_2C = 1;
-    v3.unk_14[4] = 0xffffffff;
-    v3.unk_14[5] = 0xffffffff;
+    v3.x = v2->unk_05;
+    v3.y = v2->unk_06;
+    v3.z = 0;
+    v3.animIdx = 0;
+    v3.plttIdx = 0;
+    v3.transferToVRAM = FALSE;
+    v3.priority = 0;
+    v3.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
+    v3.bgPriority = 1;
+    v3.resources[4] = SPRITE_RESOURCE_NONE;
+    v3.resources[5] = SPRITE_RESOURCE_NONE;
 
     v0 = sub_02098140(v2->unk_04);
     v1 = (param1 + 20000);
 
-    v3.unk_14[0] = v1;
-    v3.unk_14[1] = 21000 + 293;
-    v3.unk_14[2] = 22000 + 93;
-    v3.unk_14[3] = 23000 + 1;
+    v3.resources[0] = v1;
+    v3.resources[1] = 21000 + 293;
+    v3.resources[2] = 22000 + 93;
+    v3.resources[3] = 23000 + 1;
     v2->unk_08 = SpriteActor_LoadResources(v4, v5, &v3);
 
     sub_0200D330(v2->unk_08);

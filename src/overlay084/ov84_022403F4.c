@@ -4,7 +4,7 @@
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0207CB08.h"
 #include "overlay084/struct_ov84_0223B5A0.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
@@ -25,7 +25,7 @@ static void ov84_02240C48(UnkStruct_ov84_0223B5A0 * param0);
 static u8 ov84_02240C30(UnkStruct_ov84_0223B5A0 * param0, u8 param1);
 static void ov84_02240B98(UnkStruct_ov84_0223B5A0 * param0);
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov84_022411B0[] = {
+static const SpriteTemplate Unk_ov84_022411B0[] = {
     {
         0x30,
         0x32,

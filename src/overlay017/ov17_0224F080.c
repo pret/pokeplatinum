@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_0200C6E4.h"
 #include "overlay017/ov17_0224F080.h"
@@ -75,13 +75,13 @@ void ov17_0224F140 (SpriteGfxHandler * param0, u32 param1, u32 param2)
     SpriteGfxHandler_UnloadAnimObjById(param0, param2);
 }
 
-CellActorData * ov17_0224F154 (SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, const UnkStruct_ov104_0223F9E0 * param3)
+CellActorData * ov17_0224F154 (SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, const SpriteTemplate * param3)
 {
     CellActorData * v0;
-    UnkStruct_ov104_0223F9E0 v1;
+    SpriteTemplate v1;
 
     v1 = *param3;
-    v1.unk_0C = ov17_0224F0A0(param2);
+    v1.plttIdx = ov17_0224F0A0(param2);
     v0 = SpriteActor_LoadResources(param0, param1, &v1);
 
     return v0;

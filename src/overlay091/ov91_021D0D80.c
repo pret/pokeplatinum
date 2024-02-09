@@ -28,7 +28,7 @@
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay097/struct_ov97_0222DB78.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
@@ -205,7 +205,7 @@ static const GameWindowLayout_1 Unk_ov91_021D27DC[] = {
     {ov91_021D1FF4, ov91_021D2008}
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov91_021D28FC[] = {
+static const SpriteTemplate Unk_ov91_021D28FC[] = {
     {
         0x92,
         0x8,

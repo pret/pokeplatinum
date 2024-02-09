@@ -6,12 +6,12 @@
 #include "struct_decls/struct_0200C704_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_0200C6E4.h"
 #include "overlay017/ov17_02241270.h"
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_0225364C = {
+static const SpriteTemplate Unk_ov17_0225364C = {
     0x28,
     0x60,
     0x0,
@@ -24,7 +24,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov17_0225364C = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_02253618 = {
+static const SpriteTemplate Unk_ov17_02253618 = {
     0x0,
     0x0,
     0x0,
@@ -37,7 +37,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov17_02253618 = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_02253680 = {
+static const SpriteTemplate Unk_ov17_02253680 = {
     0x0,
     0x0,
     0x0,

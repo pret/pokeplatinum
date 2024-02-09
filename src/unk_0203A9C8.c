@@ -36,7 +36,7 @@
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_02098D38.h"
 #include "overlay021/struct_ov21_021D0D80.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 #include "overlay104/struct_ov104_02241308.h"
 
 #include "unk_02001AF4.h"
@@ -194,7 +194,7 @@ static const u32 Unk_020EA05C[][2] = {
     {0x8, (u32)sub_0203C164}
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_020EA0A4[] = {
+static const SpriteTemplate Unk_020EA0A4[] = {
     {
         0xCC,
         0x14,
@@ -793,15 +793,15 @@ static void sub_0203B318 (UnkStruct_020708E0 * param0, u8 * param1, u32 param2, 
     ov5_021D3414(&param0->unk_38, v2, 6, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 13529);
 
     for (v1 = 0; v1 < param2; v1++) {
-        UnkStruct_ov104_0223F9E0 v3;
+        SpriteTemplate v3;
 
         v3 = Unk_020EA0A4[1];
-        v3.unk_02 += 24 * v1;
+        v3.y += 24 * v1;
 
         if ((param1[v1] == 2) && (param3 == 1)) {
-            v3.unk_06 = 9 * 3;
+            v3.animIdx = 9 * 3;
         } else {
-            v3.unk_06 = param1[v1] * 3;
+            v3.animIdx = param1[v1] * 3;
         }
 
         param0->unk_200[1 + v1] = ov5_021D3584(&param0->unk_38, &v3);

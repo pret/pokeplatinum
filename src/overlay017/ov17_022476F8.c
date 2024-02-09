@@ -14,7 +14,7 @@
 #include "overlay017/struct_ov17_0224792C.h"
 #include "overlay017/struct_ov17_02247A48.h"
 #include "overlay017/struct_ov17_0225442C.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
@@ -41,7 +41,7 @@ typedef struct {
     u16 unk_16;
 } UnkStruct_ov17_022477B8;
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_022543F8 = {
+static const SpriteTemplate Unk_ov17_022543F8 = {
     0x0,
     0x0,
     0x0,

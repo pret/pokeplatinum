@@ -17,7 +17,7 @@
 #include "overlay007/struct_ov7_0224F358.h"
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay022/struct_ov22_022559F8.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
@@ -507,7 +507,7 @@ BOOL SpriteRenderer_LoadAnimResObjFromOpenNarc (SpriteRenderer * param0, SpriteG
     return sub_0200D18C(param0, param1, param2, param3, param4, 3, param5);
 }
 
-CellActorData * SpriteActor_LoadResources (SpriteRenderer * param0, SpriteGfxHandler * param1, const UnkStruct_ov104_0223F9E0 * param2)
+CellActorData * SpriteActor_LoadResources (SpriteRenderer * param0, SpriteGfxHandler * param1, const SpriteTemplate * param2)
 {
     int v0;
     int v1;
@@ -539,7 +539,7 @@ CellActorData * SpriteActor_LoadResources (SpriteRenderer * param0, SpriteGfxHan
     }
 
     for (v0 = 0; v0 < 6; v0++) {
-        v4[v0] = param2->unk_14[v0];
+        v4[v0] = param2->resources[v0];
     }
 
     if ((param1->unk_0C[4] == NULL) || (param1->unk_0C[5] == NULL)) {
@@ -555,15 +555,15 @@ CellActorData * SpriteActor_LoadResources (SpriteRenderer * param0, SpriteGfxHan
         }
     }
 
-    sub_020093B4(v2->unk_04, v4[0], v4[1], v4[2], v4[3], v4[4], v4[5], param2->unk_30, param2->unk_2C, param1->unk_0C[0], param1->unk_0C[1], param1->unk_0C[2], param1->unk_0C[3], param1->unk_0C[4], param1->unk_0C[5]);
+    sub_020093B4(v2->unk_04, v4[0], v4[1], v4[2], v4[3], v4[4], v4[5], param2->transferToVRAM, param2->bgPriority, param1->unk_0C[0], param1->unk_0C[1], param1->unk_0C[2], param1->unk_0C[3], param1->unk_0C[4], param1->unk_0C[5]);
 
     v3.unk_00 = param1->unk_00;
     v3.unk_04 = v2->unk_04;
-    v3.unk_08.x = FX32_CONST(param2->unk_00);
-    v3.unk_08.y = FX32_CONST(param2->unk_02);
-    v3.unk_08.z = FX32_CONST(param2->unk_04);
+    v3.unk_08.x = FX32_CONST(param2->x);
+    v3.unk_08.y = FX32_CONST(param2->y);
+    v3.unk_08.z = FX32_CONST(param2->z);
 
-    if (param2->unk_10 == NNS_G2D_VRAM_TYPE_2DSUB) {
+    if (param2->vramType == NNS_G2D_VRAM_TYPE_2DSUB) {
         v3.unk_08.y += (192 << FX32_SHIFT);
     }
 
@@ -571,17 +571,17 @@ CellActorData * SpriteActor_LoadResources (SpriteRenderer * param0, SpriteGfxHan
     v3.unk_14.y = FX32_ONE;
     v3.unk_14.z = FX32_ONE;
     v3.unk_20 = 0;
-    v3.unk_24 = param2->unk_08;
-    v3.unk_28 = param2->unk_10;
+    v3.unk_24 = param2->priority;
+    v3.unk_28 = param2->vramType;
     v3.unk_2C = param0->unk_00;
     v2->unk_00 = sub_02021AA0(&v3);
-    v2->unk_0C = param2->unk_30;
+    v2->unk_0C = param2->transferToVRAM;
 
     if (v2->unk_00 != NULL) {
         v1 = sub_02021EE8(v2->unk_00);
 
-        SpriteActor_SetSpriteAnimActive(v2->unk_00, param2->unk_06);
-        sub_02021E90(v2->unk_00, v1 + param2->unk_0C);
+        SpriteActor_SetSpriteAnimActive(v2->unk_00, param2->animIdx);
+        sub_02021E90(v2->unk_00, v1 + param2->plttIdx);
     } else {
         GF_ASSERT(FALSE);
     }

@@ -25,7 +25,7 @@
 #include "overlay017/struct_ov17_0223F88C.h"
 #include "overlay017/struct_ov17_022472F8.h"
 #include "overlay097/struct_ov97_0222DB78.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
@@ -473,7 +473,7 @@ static const UnkStruct_ov17_02253558 Unk_ov17_02253558[] = {
     }
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_02253354 = {
+static const SpriteTemplate Unk_ov17_02253354 = {
     0x0,
     0x0,
     0x0,
@@ -1059,7 +1059,7 @@ static void ov17_022402E8 (UnkStruct_ov17_0223F7E4 * param0, u16 param1[])
     int v0;
     SpriteRenderer * v1;
     SpriteGfxHandler * v2;
-    UnkStruct_ov104_0223F9E0 v3;
+    SpriteTemplate v3;
     int v4;
 
     v1 = param0->unk_04->unk_18;
@@ -1072,12 +1072,12 @@ static void ov17_022402E8 (UnkStruct_ov17_0223F7E4 * param0, u16 param1[])
         if (param1[v0] != 0) {
             v4 = param0->unk_18C.unk_130[v0];
 
-            v3.unk_14[0] = 33014 + v0;
-            v3.unk_00 = Unk_ov17_02253298[v0][0];
-            v3.unk_02 = Unk_ov17_02253298[v0][1];
+            v3.resources[0] = 33014 + v0;
+            v3.x = Unk_ov17_02253298[v0][0];
+            v3.y = Unk_ov17_02253298[v0][1];
 
             param0->unk_118[v0] = ov17_0224F154(v1, v2, v4, &v3);
-            sub_0200D500(param0->unk_118[v0], v3.unk_00, v3.unk_02, (((192 + 80) << FX32_SHIFT)));
+            sub_0200D500(param0->unk_118[v0], v3.x, v3.y, (((192 + 80) << FX32_SHIFT)));
         }
     }
 }
