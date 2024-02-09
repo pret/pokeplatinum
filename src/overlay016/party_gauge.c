@@ -7,6 +7,7 @@
 
 #include "constants/heap.h"
 #include "constants/palette.h"
+#include "constants/sdat.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
@@ -63,12 +64,24 @@ typedef struct PartyGauge {
     s8 pokeballCount;
 } PartyGauge;
 
-static void ShowArrow(PartyGaugeArrow * param0, enum PartyGaugeSide param1, enum PartyGaugePosition param2, SpriteRenderer * param3, SpriteGfxHandler * param4);
-static void HideArrow(PartyGaugeArrow * param0, enum HideArrowType param1);
+enum PartyGaugeAnimIndex {
+    PGANM_POKEBALL_HEALTHY_THEIRS = 0,
+    PGANM_POKEBALL_STATUSED_THEIRS,
+    PGANM_POKEBALL_FAINTED_THEIRS,
+    PGANM_POKEBALL_HEALTHY_OURS,
+    PGANM_POKEBALL_STATUSED_OURS,
+    PGANM_POKEBALL_FAINTED_OURS,
+    PGANM_POKEBALL_EMPTY_SLOT,
+    PGANM_ARROW_THEIRS,
+    PGANM_ARROW_OURS,
+};
+
+static void ShowArrow(PartyGaugeArrow *arrow, enum PartyGaugeSide side, enum PartyGaugePosition pos, SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler);
+static void HideArrow(PartyGaugeArrow *arrow, enum HideArrowType type);
 static void ShowPokeballs(PartyGaugePokeballs * param0, s8 * param1, enum PartyGaugeSide param2, enum ShowPartyGaugeType param3, enum PartyGaugePosition param4, int param5, int param6, SpriteRenderer * param7, SpriteGfxHandler * param8);
 static void HidePokeballs(PartyGaugePokeballs * param0, int param1, enum HidePartyGaugeType param2, s16 * param3);
-static void ov16_0226D34C(SysTask * param0, void * param1);
-static void ov16_0226D434(SysTask * param0, void * param1);
+static void ShowArrowTask(SysTask *task, void *data);
+static void HideArrowTask(SysTask *task, void *data);
 static void ov16_0226D654(SysTask * param0, void * param1);
 static void ov16_0226D854(SysTask * param0, void * param1);
 static void ov16_0226D99C(SysTask * param0, void * param1);
@@ -78,54 +91,95 @@ static int ov16_0226DB44(int param0);
 static PartyGauge* NewPartyGauge(void);
 static void FreePartyGauge(PartyGauge *partyGauge);
 
-static const SpriteTemplate Unk_ov16_02270A3C = {
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0xA,
-    0x0,
-    NNS_G2D_VRAM_TYPE_2DMAIN,
-    {0x4FBD, 0x4E45, 0x4FB7, 0x4FAC, 0xFFFFFFFF, 0xFFFFFFFF},
-    0x0,
-    0x0
+// TODO: enum?
+#define PARTY_GAUGE_PLTT_RES_ID 20037
+#define PARTY_GAUGE_CHAR_RES_ID 20413
+#define PARTY_GAUGE_CELL_RES_ID 20407
+#define PARTY_GAUGE_ANIM_RES_ID 20396
+
+static const SpriteTemplate sArrowTemplate = {
+    .x = 0,
+    .y = 0,
+    .z = 0,
+    .animIdx = 0,
+    .priority = 10,
+    .plttIdx = 0,
+    .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    .resources = {
+        PARTY_GAUGE_CHAR_RES_ID,
+        PARTY_GAUGE_PLTT_RES_ID,
+        PARTY_GAUGE_CELL_RES_ID,
+        PARTY_GAUGE_ANIM_RES_ID,
+        SPRITE_RESOURCE_NONE,
+        SPRITE_RESOURCE_NONE,
+    },
+    .bgPriority = 0,
+    .transferToVRAM = FALSE,
 };
 
-static const SpriteTemplate Unk_ov16_02270A70 = {
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x8,
-    0x0,
-    NNS_G2D_VRAM_TYPE_2DMAIN,
-    {0x4FBD, 0x4E45, 0x4FB7, 0x4FAC, 0xFFFFFFFF, 0xFFFFFFFF},
-    0x0,
-    0x0
+static const SpriteTemplate sPokeballTemplate = {
+    .x = 0,
+    .y = 0,
+    .z = 0,
+    .animIdx = 0,
+    .priority = 8,
+    .plttIdx = 0,
+    .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    .resources = {
+        PARTY_GAUGE_CHAR_RES_ID,
+        PARTY_GAUGE_PLTT_RES_ID,
+        PARTY_GAUGE_CELL_RES_ID,
+        PARTY_GAUGE_ANIM_RES_ID,
+        SPRITE_RESOURCE_NONE,
+        SPRITE_RESOURCE_NONE,
+    },
+    .bgPriority = 0,
+    .transferToVRAM = FALSE,
 };
 
-__attribute__((aligned(4))) static const u16 Unk_ov16_02270A2C[] = {
-    0x54,
-    0x78,
-    0x78
+#define ARROW_TASK_PRIORITY     500
+#define POKEBALL_TASK_PRIORITY  (ARROW_TASK_PRIORITY + 1)
+
+#define SCREEN_EDGE_RIGHT       256
+#define SCREEN_EDGE_LEFT        0
+
+#define ARROW_X_START_OURS      (SCREEN_EDGE_RIGHT + 96)  // 96 pixels off-screem
+#define ARROW_X_START_THEIRS    (SCREEN_EDGE_LEFT  - 96)  // 96 pixels off-screen
+#define ARROW_X_END_OURS        (SCREEN_EDGE_RIGHT - 32)
+#define ARROW_X_END_THEIRS      (SCREEN_EDGE_LEFT  + 32)
+#define ARROW_Y_POS_OURS        120
+#define ARROW_Y_POS_THEIRS      56
+#define POKEBALL_Y_POS_OURS     (ARROW_Y_POS_OURS - 6)
+#define POKEBALL_Y_POS_THEIRS   (ARROW_Y_POS_THEIRS - 6)
+
+#define ARROW_IN_SPEED          (18 << 8)
+#define ARROW_OUT_SPEED         (4 << 8)
+#define ARROW_FADE_SPEED        (1 << 8)
+
+#define HIGH_LOW_Y_POS_DIFF     36
+
+__attribute__((aligned(4))) static const u16 sArrowYPosOurs[] = {
+    [PARTY_GAUGE_POSITION_HIGH]   = ARROW_Y_POS_OURS - HIGH_LOW_Y_POS_DIFF,
+    [PARTY_GAUGE_POSITION_MIDDLE] = ARROW_Y_POS_OURS,
+    [PARTY_GAUGE_POSITION_LOW]    = ARROW_Y_POS_OURS
 };
 
-__attribute__((aligned(4))) static const u16 Unk_ov16_02270A24[] = {
-    0x14,
-    0x38,
-    0x38
+__attribute__((aligned(4))) static const u16 sArrowYPosTheirs[] = {
+    [PARTY_GAUGE_POSITION_HIGH]   = ARROW_Y_POS_THEIRS - HIGH_LOW_Y_POS_DIFF,
+    [PARTY_GAUGE_POSITION_MIDDLE] = ARROW_Y_POS_THEIRS,
+    [PARTY_GAUGE_POSITION_LOW]    = ARROW_Y_POS_THEIRS
 };
 
-__attribute__((aligned(4))) static const u16 Unk_ov16_02270A34[] = {
-    0x4E,
-    0x72,
-    0x72
+__attribute__((aligned(4))) static const u16 sPokeballYPosOurs[] = {
+    [PARTY_GAUGE_POSITION_HIGH]   = POKEBALL_Y_POS_OURS - HIGH_LOW_Y_POS_DIFF,
+    [PARTY_GAUGE_POSITION_MIDDLE] = POKEBALL_Y_POS_OURS,
+    [PARTY_GAUGE_POSITION_LOW]    = POKEBALL_Y_POS_OURS
 };
 
-__attribute__((aligned(4))) static const u16 Unk_ov16_02270A1C[] = {
-    0xE,
-    0x32,
-    0x32
+__attribute__((aligned(4))) static const u16 sPokeballYPosTheirs[] = {
+    [PARTY_GAUGE_POSITION_HIGH]   = POKEBALL_Y_POS_THEIRS - HIGH_LOW_Y_POS_DIFF,
+    [PARTY_GAUGE_POSITION_MIDDLE] = POKEBALL_Y_POS_THEIRS,
+    [PARTY_GAUGE_POSITION_LOW]    = POKEBALL_Y_POS_THEIRS
 };
 
 // TODO: naix?
@@ -133,12 +187,6 @@ __attribute__((aligned(4))) static const u16 Unk_ov16_02270A1C[] = {
 #define PARTY_GAUGE_NCGR_BIN    340
 #define PARTY_GAUGE_NCER_BIN    341
 #define PARTY_GAUGE_NANR_BIN    342
-
-// TODO: enum?
-#define PARTY_GAUGE_PLTT_RES_ID 20037
-#define PARTY_GAUGE_CHAR_RES_ID 20413
-#define PARTY_GAUGE_CELL_RES_ID 20407
-#define PARTY_GAUGE_ANIM_RES_ID 20396
 
 void PartyGauge_LoadGraphics(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, PaletteData *palette)
 {
@@ -243,141 +291,150 @@ void PartyGauge_Free(PartyGauge *gauge)
     FreePartyGauge(gauge);
 }
 
-static void ShowArrow (PartyGaugeArrow * param0, enum PartyGaugeSide param1, enum PartyGaugePosition param2, SpriteRenderer * param3, SpriteGfxHandler * param4)
+enum ShowArrowState {
+    SHOW_ARROW_INIT = 0,
+    SHOW_ARROW_DRAW,
+    SHOW_ARROW_DONE,
+};
+
+static void ShowArrow(PartyGaugeArrow *arrow, enum PartyGaugeSide side, enum PartyGaugePosition pos, SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler)
 {
-    GF_ASSERT(param0->cells == NULL && param0->task == NULL);
+    GF_ASSERT(arrow->cells == NULL && arrow->task == NULL);
 
-    MI_CpuClear8(param0, sizeof(PartyGaugeArrow));
+    MI_CpuClear8(arrow, sizeof(PartyGaugeArrow));
+    arrow->cells = SpriteActor_LoadResources(renderer, gfxHandler, &sArrowTemplate);
 
-    param0->cells = SpriteActor_LoadResources(param3, param4, &Unk_ov16_02270A3C);
-
-    if (param1 == PARTY_GAUGE_OURS) {
-        SpriteActor_SetSpritePositionXY(param0->cells, (256 + 96), Unk_ov16_02270A2C[param2]);
-        SpriteActor_SetSpriteAnimActive(param0->cells->unk_00, 8);
+    if (side == PARTY_GAUGE_OURS) {
+        SpriteActor_SetSpritePositionXY(arrow->cells, ARROW_X_START_OURS, sArrowYPosOurs[pos]);
+        SpriteActor_SetSpriteAnimActive(arrow->cells->unk_00, PGANM_ARROW_OURS);
     } else {
-        SpriteActor_SetSpritePositionXY(param0->cells, -96, Unk_ov16_02270A24[param2]);
-        SpriteActor_SetSpriteAnimActive(param0->cells->unk_00, 7);
+        SpriteActor_SetSpritePositionXY(arrow->cells, ARROW_X_START_THEIRS, sArrowYPosTheirs[pos]);
+        SpriteActor_SetSpriteAnimActive(arrow->cells->unk_00, PGANM_ARROW_THEIRS);
     }
 
-    SpriteActor_UpdateObject(param0->cells->unk_00);
+    SpriteActor_UpdateObject(arrow->cells->unk_00);
 
-    param0->side = param1;
-    param0->position = param2;
-    param0->state = 0;
-    param0->task = SysTask_Start(ov16_0226D34C, param0, 500);
+    arrow->side = side;
+    arrow->position = pos;
+    arrow->state = SHOW_ARROW_INIT;
+    arrow->task = SysTask_Start(ShowArrowTask, arrow, ARROW_TASK_PRIORITY);
 
-    Sound_PlayEffect(1809);
+    Sound_PlayEffect(SEQ_PARTY_GAUGE_ARROW_IN);
 }
 
-static void ov16_0226D34C (SysTask * param0, void * param1)
+static void ShowArrowTask(SysTask *task, void *data)
 {
-    PartyGaugeArrow * v0 = param1;
+    PartyGaugeArrow *arrow = data;
 
-    switch (v0->state) {
-    case 0:
-    {
-        s16 v1, v2;
+    switch (arrow->state) {
+    case SHOW_ARROW_INIT:
+        s16 x, y;
 
-        SpriteActor_GetSpritePositionXY(v0->cells, &v1, &v2);
-        v0->x = v1 << 8;
-    }
-        v0->state++;
-
-    case 1:
-        if (v0->side == PARTY_GAUGE_OURS) {
-            v0->x -= 0x1200;
-
-            if (v0->x <= (256 - 32) << 8) {
-                v0->x = (256 - 32) << 8;
-                v0->state++;
+        SpriteActor_GetSpritePositionXY(arrow->cells, &x, &y);
+        arrow->x = x << 8; 
+        arrow->state++;
+        // fall-through
+    case SHOW_ARROW_DRAW:
+        if (arrow->side == PARTY_GAUGE_OURS) {
+            arrow->x -= ARROW_IN_SPEED;
+            if (arrow->x <= ARROW_X_END_OURS << 8) {
+                arrow->x = ARROW_X_END_OURS << 8;
+                arrow->state++;
             }
 
-            SpriteActor_SetSpritePositionXY(v0->cells, v0->x >> 8, Unk_ov16_02270A2C[v0->position]);
+            SpriteActor_SetSpritePositionXY(arrow->cells, arrow->x >> 8, sArrowYPosOurs[arrow->position]);
         } else {
-            v0->x += 0x1200;
-
-            if (v0->x >= 32 << 8) {
-                v0->x = 32 << 8;
-                v0->state++;
+            arrow->x += ARROW_IN_SPEED;
+            if (arrow->x >= ARROW_X_END_THEIRS << 8) {
+                arrow->x = ARROW_X_END_THEIRS << 8;
+                arrow->state++;
             }
 
-            SpriteActor_SetSpritePositionXY(v0->cells, v0->x >> 8, Unk_ov16_02270A24[v0->position]);
+            SpriteActor_SetSpritePositionXY(arrow->cells, arrow->x >> 8, sArrowYPosTheirs[arrow->position]);
         }
         break;
+
     default:
-        SysTask_Done(param0);
-        v0->task = NULL;
-        return;
+        SysTask_Done(task);
+        arrow->task = NULL;
     }
 }
 
-static void HideArrow (PartyGaugeArrow * param0, enum HideArrowType param1)
+enum HideArrowState {
+    HIDE_ARROW_INIT = 0,
+    HIDE_ARROW_DELAY,
+    HIDE_ARROW_FADE,
+    HIDE_ARROW_DONE,
+};
+
+static void HideArrow(PartyGaugeArrow *arrow, enum HideArrowType type)
 {
-    GF_ASSERT(param0->cells != NULL && param0->task == NULL);
+    GF_ASSERT(arrow->cells != NULL && arrow->task == NULL);
 
-    param0->state = 0;
-    param0->hideType = param1;
+    arrow->state = HIDE_ARROW_INIT;
+    arrow->hideType = type;
 
-    if (param1 == HIDE_ARROW_FADE_AND_SCROLL) {
-        param0->delay = 4;
+    if (type == HIDE_ARROW_FADE_AND_SCROLL) {
+        arrow->delay = 4;
     } else {
-        param0->delay = 0;
+        arrow->delay = 0;
     }
 
-    param0->task = SysTask_Start(ov16_0226D434, param0, 500);
+    arrow->task = SysTask_Start(HideArrowTask, arrow, ARROW_TASK_PRIORITY);
 }
 
-static void ov16_0226D434 (SysTask * param0, void * param1)
+static void HideArrowTask(SysTask *task, void *data)
 {
-    PartyGaugeArrow * v0 = param1;
+    PartyGaugeArrow *arrow = data;
 
-    switch (v0->state) {
-    case 0:
-    {
-        s16 v1, v2;
+    switch (arrow->state) {
+    case HIDE_ARROW_INIT:
+        s16 x, y;
 
-        SpriteActor_GetSpritePositionXY(v0->cells, &v1, &v2);
-        v0->x = v1 << 8;
-    }
+        SpriteActor_GetSpritePositionXY(arrow->cells, &x, &y);
+        arrow->x = x << 8;
 
-        SpriteActor_SetOAMMode(v0->cells, GX_OAM_MODE_XLU);
+        SpriteActor_SetOAMMode(arrow->cells, GX_OAM_MODE_XLU);
+        arrow->alpha = 16 << 8;
 
-        v0->alpha = 16 << 8;
-        G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, (v0->alpha >> 8), 16 - (v0->alpha >> 8));
-        v0->state++;
-    case 1:
-        if (v0->delay > 0) {
-            v0->delay--;
+        G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD,
+            (arrow->alpha >> 8), 16 - (arrow->alpha >> 8));
+        arrow->state++;
+        // fall-through
+    case HIDE_ARROW_DELAY:
+        if (arrow->delay > 0) {
+            arrow->delay--;
             break;
         }
 
-        v0->state++;
-    case 2:
-        if (v0->hideType == HIDE_ARROW_FADE_AND_SCROLL) {
-            if (v0->side == PARTY_GAUGE_OURS) {
-                v0->x -= 0x400;
-                SpriteActor_SetSpritePositionXY(v0->cells, v0->x >> 8, Unk_ov16_02270A2C[v0->position]);
+        arrow->state++;
+        // fall-through
+    case HIDE_ARROW_FADE:
+        if (arrow->hideType == HIDE_ARROW_FADE_AND_SCROLL) {
+            if (arrow->side == PARTY_GAUGE_OURS) {
+                arrow->x -= ARROW_OUT_SPEED;
+                SpriteActor_SetSpritePositionXY(arrow->cells, arrow->x >> 8, sArrowYPosOurs[arrow->position]);
             } else {
-                v0->x += 0x400;
-                SpriteActor_SetSpritePositionXY(v0->cells, v0->x >> 8, Unk_ov16_02270A24[v0->position]);
+                arrow->x += ARROW_OUT_SPEED;
+                SpriteActor_SetSpritePositionXY(arrow->cells, arrow->x >> 8, sArrowYPosTheirs[arrow->position]);
             }
         }
 
-        v0->alpha -= 0x100;
+        arrow->alpha -= ARROW_FADE_SPEED;
 
-        if (v0->alpha <= 0) {
-            v0->alpha = 0;
-            SpriteActor_DrawSprite(v0->cells->unk_00, 0);
-            v0->state++;
+        if (arrow->alpha <= 0) {
+            arrow->alpha = 0;
+            SpriteActor_DrawSprite(arrow->cells->unk_00, 0);
+            arrow->state++;
         }
 
-        G2_ChangeBlendAlpha(v0->alpha >> 8, 16 - (v0->alpha >> 8));
+        G2_ChangeBlendAlpha(arrow->alpha >> 8, 16 - (arrow->alpha >> 8));
         break;
+
     default:
         Battle_SetDefaultBlend();
-        SysTask_Done(param0);
-        v0->task = NULL;
-        return;
+        SysTask_Done(task);
+        arrow->task = NULL;
     }
 }
 
@@ -386,12 +443,12 @@ static void ShowPokeballs (PartyGaugePokeballs * param0, s8 * param1, enum Party
     GF_ASSERT(param0->cells == NULL && param0->task == NULL);
 
     MI_CpuClear8(param0, sizeof(PartyGaugePokeballs));
-    param0->cells = SpriteActor_LoadResources(param7, param8, &Unk_ov16_02270A70);
+    param0->cells = SpriteActor_LoadResources(param7, param8, &sPokeballTemplate);
 
     if (param2 == PARTY_GAUGE_OURS) {
-        SpriteActor_SetSpritePositionXY(param0->cells, (256 + 20), Unk_ov16_02270A34[param4]);
+        SpriteActor_SetSpritePositionXY(param0->cells, (256 + 20), sPokeballYPosOurs[param4]);
     } else {
-        SpriteActor_SetSpritePositionXY(param0->cells, -20, Unk_ov16_02270A1C[param4]);
+        SpriteActor_SetSpritePositionXY(param0->cells, -20, sPokeballYPosTheirs[param4]);
     }
 
     SpriteActor_SetSpriteAnimActive(param0->cells->unk_00, param6);
@@ -451,7 +508,7 @@ static void ov16_0226D654 (SysTask * param0, void * param1)
                 v0->state++;
             }
 
-            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, Unk_ov16_02270A34[v0->position]);
+            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, sPokeballYPosOurs[v0->position]);
         } else {
             v0->xStart += 0x1200;
 
@@ -460,7 +517,7 @@ static void ov16_0226D654 (SysTask * param0, void * param1)
                 v0->state++;
             }
 
-            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, Unk_ov16_02270A1C[v0->position]);
+            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, sPokeballYPosTheirs[v0->position]);
         }
 
         SpriteActor_UpdateObject(v0->cells->unk_00);
@@ -503,7 +560,7 @@ static void ov16_0226D654 (SysTask * param0, void * param1)
                 v0->state++;
             }
 
-            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, Unk_ov16_02270A34[v0->position]);
+            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, sPokeballYPosOurs[v0->position]);
         } else {
             v0->xStart -= 0x600;
 
@@ -512,7 +569,7 @@ static void ov16_0226D654 (SysTask * param0, void * param1)
                 v0->state++;
             }
 
-            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, Unk_ov16_02270A1C[v0->position]);
+            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, sPokeballYPosTheirs[v0->position]);
         }
 
         SpriteActor_UpdateObject(v0->cells->unk_00);
@@ -553,7 +610,7 @@ static void ov16_0226D854 (SysTask * param0, void * param1)
                 v0->state++;
             }
 
-            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, Unk_ov16_02270A34[v0->position]);
+            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, sPokeballYPosOurs[v0->position]);
         } else {
             v0->xStart += 0x1200;
 
@@ -562,7 +619,7 @@ static void ov16_0226D854 (SysTask * param0, void * param1)
                 v0->state++;
             }
 
-            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, Unk_ov16_02270A1C[v0->position]);
+            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, sPokeballYPosTheirs[v0->position]);
         }
         break;
     default:
@@ -622,10 +679,10 @@ static void ov16_0226D99C (SysTask * param0, void * param1)
     case 2:
         if (v0->side == PARTY_GAUGE_OURS) {
             v0->xStart -= 0xc00;
-            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, Unk_ov16_02270A34[v0->position]);
+            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, sPokeballYPosOurs[v0->position]);
         } else {
             v0->xStart += 0xc00;
-            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, Unk_ov16_02270A1C[v0->position]);
+            SpriteActor_SetSpritePositionXY(v0->cells, v0->xStart >> 8, sPokeballYPosTheirs[v0->position]);
         }
 
         if ((v0->xStart < -16 * 0x100) || (v0->xStart > ((256 + 16) << 8))) {
