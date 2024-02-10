@@ -69,7 +69,7 @@
 #include "unk_0207A6DC.h"
 #include "overlay016/ov16_0223DF00.h"
 #include "battle/battle_lib.h"
-#include "overlay016/ov16_0226485C.h"
+#include "battle/battle_io.h"
 
 static void ov16_0226485C(BattleSystem * param0, int param1, int param2, void * param3, u8 param4);
 static void SendMessage(BattleSystem *battleSys, int recipient, int message, void *body, u8 bodySize);

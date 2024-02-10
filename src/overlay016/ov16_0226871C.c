@@ -67,7 +67,7 @@
 #include "unk_0208C098.h"
 #include "overlay011/ov11_0221F800.h"
 #include "overlay016/ov16_0223DF00.h"
-#include "overlay016/ov16_0225CBB8.h"
+#include "battle/battle_display.h"
 #include "overlay016/ov16_0226871C.h"
 #include "overlay016/ov16_0226DB7C.h"
 #include "overlay016/ov16_0226DE44.h"

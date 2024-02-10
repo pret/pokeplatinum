@@ -73,7 +73,7 @@
 #include "flags.h"
 #include "overlay016/ov16_0223DF00.h"
 #include "battle/battle_lib.h"
-#include "overlay016/ov16_0225CBB8.h"
+#include "battle/battle_display.h"
 #include "overlay016/ov16_02266F1C.h"
 #include "overlay016/ov16_02268520.h"
 #include "overlay016/ov16_0226871C.h"
