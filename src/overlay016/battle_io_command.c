@@ -20,7 +20,6 @@
 #include "overlay016/struct_ov16_0225BFFC_t.h"
 #include "overlay016/struct_ov16_0225C168.h"
 #include "overlay016/struct_ov16_0225C17C.h"
-#include "overlay016/struct_ov16_0225C23C.h"
 #include "overlay016/struct_ov16_0225C260.h"
 #include "overlay016/struct_ov16_0225C29C.h"
 #include "overlay016/struct_ov16_0225C2B0.h"
@@ -394,7 +393,7 @@ static void ov16_0225C228 (BattleSystem * param0, BattlerData * param1)
 
 static void ov16_0225C23C (BattleSystem * param0, BattlerData * param1)
 {
-    UnkStruct_ov16_0225C23C * v0 = (UnkStruct_ov16_0225C23C *)&param1->data[0];
+    HealthbarData * v0 = (HealthbarData *)&param1->data[0];
 
     ov16_0225D4A8(param0, param1, v0);
     ZeroDataBuffer(param1);

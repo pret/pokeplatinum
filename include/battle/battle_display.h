@@ -3,10 +3,10 @@
 
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/battle_system.h"
+#include "struct_defs/battle_io.h"
 #include "overlay016/struct_ov16_0225BFFC_decl.h"
 #include "overlay016/struct_ov16_0225C168.h"
 #include "overlay016/struct_ov16_0225C17C.h"
-#include "overlay016/struct_ov16_0225C23C.h"
 #include "overlay016/struct_ov16_0225C260.h"
 #include "overlay016/struct_ov16_0225C29C.h"
 #include "overlay016/struct_ov16_0225C2B0.h"
@@ -27,7 +27,6 @@
 #include "overlay016/struct_ov16_0225C454.h"
 #include "overlay016/struct_ov16_0225C468.h"
 #include "overlay016/struct_ov16_0225C65C.h"
-#include "struct_defs/battle_io.h"
 #include "overlay016/struct_ov16_0225C9F0.h"
 #include "overlay016/struct_ov16_0225CA4C.h"
 #include "overlay016/struct_ov16_0225CA60.h"
@@ -52,7 +51,7 @@ void ov16_0225D228(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0
 void ov16_0225D360(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_02265154 * param2);
 void ov16_0225D3CC(BattleSystem * param0, BattlerData * param1);
 void ov16_0225D414(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_022651A8 * param2);
-void ov16_0225D4A8(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C23C * param2);
+void ov16_0225D4A8(BattleSystem * param0, BattlerData * param1, HealthbarData * param2);
 void ov16_0225D570(BattleSystem * param0, BattlerData * param1);
 void ov16_0225D5B8(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C260 * param2);
 void ov16_0225D698(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_022656F0 * param2);

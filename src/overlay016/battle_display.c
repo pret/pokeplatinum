@@ -46,7 +46,6 @@
 #include "overlay016/struct_ov16_0225BFFC_t.h"
 #include "overlay016/struct_ov16_0225C168.h"
 #include "overlay016/struct_ov16_0225C17C.h"
-#include "overlay016/struct_ov16_0225C23C.h"
 #include "overlay016/struct_ov16_0225C260.h"
 #include "overlay016/struct_ov16_0225C29C.h"
 #include "overlay016/struct_ov16_0225C2B0.h"
@@ -622,7 +621,7 @@ void ov16_0225D414 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     SysTask_Start(ov16_02260384, v3, 0);
 }
 
-void ov16_0225D4A8 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C23C * param2)
+void ov16_0225D4A8 (BattleSystem * param0, BattlerData * param1, HealthbarData * param2)
 {
     UnkStruct_ov16_022674C4 * v0;
 
@@ -632,19 +631,19 @@ void ov16_0225D4A8 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     v0->unk_0C = param0;
     v0->unk_24 = param1->battler;
     v0->unk_25 = ov16_0226825C(param1->battlerType, BattleSystem_BattleType(param0));
-    v0->unk_4C = param2->unk_00;
-    v0->unk_28 = param2->unk_02;
-    v0->unk_2C = param2->unk_04;
-    v0->unk_48 = param2->unk_01;
-    v0->unk_49 = param2->unk_07_5;
+    v0->unk_4C = param2->command;
+    v0->unk_28 = param2->curHP;
+    v0->unk_2C = param2->maxHP;
+    v0->unk_48 = param2->level;
+    v0->unk_49 = param2->gender;
     v0->unk_30 = 0;
-    v0->unk_38 = param2->unk_08;
-    v0->unk_3C = param2->unk_0C;
-    v0->unk_26 = param2->unk_06;
-    v0->unk_4A = param2->unk_07_0;
-    v0->unk_4B = param2->unk_07_7;
-    v0->unk_4D = param2->unk_14;
-    v0->unk_27 = param2->unk_10;
+    v0->unk_38 = param2->expFromLastLevel;
+    v0->unk_3C = param2->expToNextLevel;
+    v0->unk_26 = param2->selectedPartySlot;
+    v0->unk_4A = param2->status;
+    v0->unk_4B = param2->speciesCaught;
+    v0->unk_4D = param2->delay;
+    v0->unk_27 = param2->numSafariBalls;
 
     ov16_02267620(v0, 0);
     ov16_02267084(v0, v0->unk_28, 0xffffffff);

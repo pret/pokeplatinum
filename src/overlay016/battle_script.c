@@ -1369,7 +1369,7 @@ static BOOL BtlCmd_HealthbarSlideIn(BattleSystem *battleSys, BattleContext *batt
     switch (battlerIn) {
     case BTLSCR_ALL_BATTLERS:
         for (i = 0; i < maxBattlers; i++) {
-            BattleIO_SlideHPGaugeIn(battleSys, battleCtx, i, 0);
+            BattleIO_SlideHealthbarIn(battleSys, battleCtx, i, 0);
         }
         break;
 
@@ -1378,7 +1378,7 @@ static BOOL BtlCmd_HealthbarSlideIn(BattleSystem *battleSys, BattleContext *batt
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
-                BattleIO_SlideHPGaugeIn(battleSys, battleCtx, i, 0);
+                BattleIO_SlideHealthbarIn(battleSys, battleCtx, i, 0);
             }
         }
         break;
@@ -1388,14 +1388,14 @@ static BOOL BtlCmd_HealthbarSlideIn(BattleSystem *battleSys, BattleContext *batt
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
-                BattleIO_SlideHPGaugeIn(battleSys, battleCtx, i, 0);
+                BattleIO_SlideHealthbarIn(battleSys, battleCtx, i, 0);
             }
         }
         break;
 
     default:
         i = BattleScript_Battler(battleSys, battleCtx, battlerIn);
-        BattleIO_SlideHPGaugeIn(battleSys, battleCtx, i, 0);
+        BattleIO_SlideHealthbarIn(battleSys, battleCtx, i, 0);
         break;
     }
 
@@ -1427,7 +1427,7 @@ static BOOL BtlCmd_HealthbarSlideInDelay(BattleSystem *battleSys, BattleContext 
     switch (battlerIn) {
     case BTLSCR_ALL_BATTLERS:
         for (i = 0; i < maxBattlers; i++) {
-            BattleIO_SlideHPGaugeIn(battleSys, battleCtx, i, 0);
+            BattleIO_SlideHealthbarIn(battleSys, battleCtx, i, 0);
         }
         break;
 
@@ -1436,7 +1436,7 @@ static BOOL BtlCmd_HealthbarSlideInDelay(BattleSystem *battleSys, BattleContext 
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
-                BattleIO_SlideHPGaugeIn(battleSys, battleCtx, i, wait);
+                BattleIO_SlideHealthbarIn(battleSys, battleCtx, i, wait);
                 wait += 4;
             }
         }
@@ -1447,7 +1447,7 @@ static BOOL BtlCmd_HealthbarSlideInDelay(BattleSystem *battleSys, BattleContext 
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
-                BattleIO_SlideHPGaugeIn(battleSys, battleCtx, i, wait);
+                BattleIO_SlideHealthbarIn(battleSys, battleCtx, i, wait);
                 wait += 4;
             }
         }
@@ -1455,7 +1455,7 @@ static BOOL BtlCmd_HealthbarSlideInDelay(BattleSystem *battleSys, BattleContext 
 
     default:
         i = BattleScript_Battler(battleSys, battleCtx, battlerIn);
-        BattleIO_SlideHPGaugeIn(battleSys, battleCtx, i, wait);
+        BattleIO_SlideHealthbarIn(battleSys, battleCtx, i, wait);
         break;
     }
 
@@ -1485,7 +1485,7 @@ static BOOL BtlCmd_HealthbarSlideOut(BattleSystem *battleSys, BattleContext *bat
     switch (battlerIn) {
     case BTLSCR_ALL_BATTLERS:
         for (i = 0; i < maxBattlers; i++) {
-            BattleIO_SlideHPGaugeOut(battleSys, i);
+            BattleIO_SlideHealthbarOut(battleSys, i);
         }
         break;
 
@@ -1495,7 +1495,7 @@ static BOOL BtlCmd_HealthbarSlideOut(BattleSystem *battleSys, BattleContext *bat
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE
                     && (battleCtx->battlersSwitchingMask & FlagIndex(i)) == FALSE) {
-                BattleIO_SlideHPGaugeOut(battleSys, i);
+                BattleIO_SlideHealthbarOut(battleSys, i);
             }
         }
         break;
@@ -1505,14 +1505,14 @@ static BOOL BtlCmd_HealthbarSlideOut(BattleSystem *battleSys, BattleContext *bat
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
-                BattleIO_SlideHPGaugeOut(battleSys, i);
+                BattleIO_SlideHealthbarOut(battleSys, i);
             }
         }
         break;
 
     default:
         i = BattleScript_Battler(battleSys, battleCtx, battlerIn);
-        BattleIO_SlideHPGaugeOut(battleSys, i);
+        BattleIO_SlideHealthbarOut(battleSys, i);
         break;
     }
 
