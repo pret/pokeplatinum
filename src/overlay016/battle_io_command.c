@@ -100,8 +100,8 @@ static void ov16_0225C1F0(BattleSystem * param0, BattlerData * param1);
 static void ov16_0225C204(BattleSystem * param0, BattlerData * param1);
 static void ov16_0225C218(BattleSystem * param0, BattlerData * param1);
 static void ov16_0225C228(BattleSystem * param0, BattlerData * param1);
-static void ov16_0225C23C(BattleSystem * param0, BattlerData * param1);
-static void ov16_0225C250(BattleSystem * param0, BattlerData * param1);
+static void BtlIOCmd_SlideHealthbarIn(BattleSystem *battleSys, BattlerData *battlerData);
+static void BtlIOCmd_SlideHealthbarOut(BattleSystem *battleSys, BattlerData *battlerData);
 static void ov16_0225C260(BattleSystem * param0, BattlerData * param1);
 static void ov16_0225C288(BattleSystem * param0, BattlerData * param1);
 static void ov16_0225C29C(BattleSystem * param0, BattlerData * param1);
@@ -218,8 +218,8 @@ static const UnkFuncPtr_ov16_0226F068 Unk_ov16_0226F068[] = {
     ov16_0225C204,
     ov16_0225C218,
     ov16_0225C228,
-    ov16_0225C23C,
-    ov16_0225C250,
+    [BTLIOCMD_SLIDE_HEALTHBAR_IN]  = BtlIOCmd_SlideHealthbarIn,
+    [BTLIOCMD_SLIDE_HEALTHBAR_OUT] = BtlIOCmd_SlideHealthbarOut,
     ov16_0225C260,
     ov16_0225C288,
     ov16_0225C29C,
@@ -391,18 +391,30 @@ static void ov16_0225C228 (BattleSystem * param0, BattlerData * param1)
     ZeroDataBuffer(param1);
 }
 
-static void ov16_0225C23C (BattleSystem * param0, BattlerData * param1)
+/**
+ * @brief Slide a healthbar in on the screen.
+ * 
+ * @param battleSys 
+ * @param battlerData 
+ */
+static void BtlIOCmd_SlideHealthbarIn(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    HealthbarData * v0 = (HealthbarData *)&param1->data[0];
+    HealthbarData *healthbar = (HealthbarData *)&battlerData->data[0];
 
-    ov16_0225D4A8(param0, param1, v0);
-    ZeroDataBuffer(param1);
+    BattleDisplay_SlideHealthbarIn(battleSys, battlerData, healthbar);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C250 (BattleSystem * param0, BattlerData * param1)
+/**
+ * @brief Slide a healthbar out of the screen.
+ * 
+ * @param battleSys 
+ * @param battlerData 
+ */
+static void BtlIOCmd_SlideHealthbarOut(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    ov16_0225D570(param0, param1);
-    ZeroDataBuffer(param1);
+    BattleDisplay_SlideHealthbarOut(battleSys, battlerData);
+    ZeroDataBuffer(battlerData);
 }
 
 static void ov16_0225C260 (BattleSystem * param0, BattlerData * param1)

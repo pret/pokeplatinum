@@ -621,7 +621,7 @@ void ov16_0225D414 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     SysTask_Start(ov16_02260384, v3, 0);
 }
 
-void ov16_0225D4A8 (BattleSystem * param0, BattlerData * param1, HealthbarData * param2)
+void BattleDisplay_SlideHealthbarIn (BattleSystem * param0, BattlerData * param1, HealthbarData * param2)
 {
     UnkStruct_ov16_022674C4 * v0;
 
@@ -651,7 +651,7 @@ void ov16_0225D4A8 (BattleSystem * param0, BattlerData * param1, HealthbarData *
     v0->unk_10 = SysTask_Start(ov16_0226040C, v0, 1000);
 }
 
-void ov16_0225D570 (BattleSystem * param0, BattlerData * param1)
+void BattleDisplay_SlideHealthbarOut (BattleSystem * param0, BattlerData * param1)
 {
     UnkStruct_ov16_022674C4 * v0;
 
