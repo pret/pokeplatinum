@@ -758,7 +758,7 @@ static void ov61_0222BB60 (UnkStruct_ov62_022349A8 * param0, int param1, int par
 
     sub_0200B60C(param0->unk_3F8, 0, param2, 5, 2, 1);
     v1 = MessageLoader_GetNewStrbuf(param0->unk_3F4, v0);
-    sub_0200C388(param0->unk_3F8, param0->unk_3FC, v1);
+    StringFormatter_Format(param0->unk_3F8, param0->unk_3FC, v1);
     Strbuf_Free(v1);
     ov61_0222BB54(param0, param0->unk_3FC);
 }

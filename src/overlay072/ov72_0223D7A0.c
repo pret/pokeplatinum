@@ -1104,7 +1104,7 @@ static void ov72_0223E930 (UnkStruct_ov72_0223DB98 * param0, int param1)
     v0 = Strbuf_Init((40 * 2), 39);
 
     MessageLoader_GetStrbuf(param0->unk_14, param1, v0);
-    sub_0200C388(param0->unk_10, param0->unk_34, v0);
+    StringFormatter_Format(param0->unk_10, param0->unk_34, v0);
     Strbuf_Free(v0);
     BGL_FillWindow(&param0->unk_338, 0xf0f);
     sub_0200E060(&param0->unk_338, 0, 1, 10);

@@ -476,7 +476,7 @@ static void ov7_0224C4E0 (UnkStruct_ov7_0224C3EC * param0, MessageLoader * param
 
     sub_0200B60C(v2, 1, param3[param4].unk_08, 3, 0, 1);
     sub_0200BFAC(v2, 2, param3[param4].unk_00);
-    sub_0200C388(v2, v1, v0);
+    StringFormatter_Format(v2, v1, v0);
 
     ov7_0224C468(param0, v1, param2);
 
@@ -503,7 +503,7 @@ static void ov7_0224C580 (UnkStruct_ov7_0224C3EC * param0, MessageLoader * param
 
     sub_0200B60C(v2, 1, param3[param4].unk_08, 3, 0, 1);
     sub_0200BFAC(v2, 2, param3[param4].unk_00);
-    sub_0200C388(v2, v1, v0);
+    StringFormatter_Format(v2, v1, v0);
 
     ov7_0224C468(param0, v1, param2);
 
@@ -564,7 +564,7 @@ static void ov7_0224C6DC (UnkStruct_ov7_0224C620 * param0, u32 param1, u32 param
     BGL_FillWindow(param0->unk_04, 15);
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_0200C388(param0->unk_08, param0->unk_0C, param0->unk_10[v0]);
+        StringFormatter_Format(param0->unk_08, param0->unk_0C, param0->unk_10[v0]);
         sub_0201D78C(param0->unk_04, 0, param0->unk_0C, 0, 16 * v0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     }
 
@@ -621,7 +621,7 @@ static void ov7_0224C768 (UnkStruct_ov7_0224C768 * param0, BGL * param1, u32 par
 
     for (v0 = 0; v0 < param4; v0++) {
         sub_0200BFAC(param0->unk_124, 0, param3[v0].unk_00);
-        sub_0200C388(param0->unk_124, param0->unk_128, v1);
+        StringFormatter_Format(param0->unk_124, param0->unk_128, v1);
 
         param0->unk_C4[v0] = Strbuf_Clone(param0->unk_128, param2);
         param0->unk_0C[v0].unk_00 = param0->unk_C4[v0];

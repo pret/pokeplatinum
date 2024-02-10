@@ -609,7 +609,7 @@ static Strbuf* ov68_0225CBEC (UnkStruct_ov68_0225CB70 * param0, u32 param1, u32 
     GF_ASSERT(param1 < 9);
 
     MessageLoader_GetStrbuf(param0->unk_00[param1], param2, param0->unk_2C);
-    sub_0200C388(param0->unk_24, param0->unk_28, param0->unk_2C);
+    StringFormatter_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
 
     return param0->unk_28;
 }

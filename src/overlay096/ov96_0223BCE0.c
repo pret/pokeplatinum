@@ -1567,7 +1567,7 @@ static void ov96_0223D750 (UnkStruct_ov96_0223BF40 * param0, MessageLoader * par
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param1, param2);
 
-    sub_0200C388(param0->unk_BCC, param0->unk_BDC, v0);
+    StringFormatter_Format(param0->unk_BCC, param0->unk_BDC, v0);
     BGL_FillWindow(&param0->unk_E38, 0xf0f);
     sub_0200E060(&param0->unk_E38, 0, 1, 14);
 
@@ -1677,7 +1677,7 @@ static void ov96_0223D9B8 (UnkStruct_ov96_0223BF40 * param0, int param1)
     Strbuf* v0 = Strbuf_Init((16 * 8 * 2), 68);
 
     MessageLoader_GetStrbuf(param0->unk_BD8, param1, v0);
-    sub_0200C388(param0->unk_BCC, param0->unk_BEC, v0);
+    StringFormatter_Format(param0->unk_BCC, param0->unk_BEC, v0);
     BGL_FillWindow(&param0->unk_E78, 15);
     Window_Show(&param0->unk_E78, 1, (1 + (18 + 12)), 11);
 

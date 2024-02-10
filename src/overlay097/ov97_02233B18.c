@@ -469,7 +469,7 @@ static void ov97_02233DD0 (UnkStruct_ov97_02234A2C * param0, UnkStruct_ov97_0223
         v0 = param0->unk_12668;
         v6 = MessageLoader_GetNewStrbuf(v2, param1->unk_34);
 
-        sub_0200C388(v1, param0->unk_12668, v6);
+        StringFormatter_Format(v1, param0->unk_12668, v6);
         Strbuf_Free(v6);
 
         v3 = ov97_02233DAC(param1, v0, param2);

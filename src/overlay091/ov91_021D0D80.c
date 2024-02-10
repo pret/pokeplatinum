@@ -872,7 +872,7 @@ static void ov91_021D1618 (UnkStruct_ov91_021D0ED8 * param0, u32 param1, u32 par
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_F8, param1);
     sub_0200B60C(param0->unk_FC, 0, param2, param3, param4, 1);
-    sub_0200C388(param0->unk_FC, param0->unk_100, v0);
+    StringFormatter_Format(param0->unk_FC, param0->unk_100, v0);
     Strbuf_Free(v0);
 }
 
@@ -1147,7 +1147,7 @@ static void ov91_021D1C10 (UnkStruct_ov91_021D0ED8 * param0, u32 param1)
     }
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_F8, Unk_ov91_021D282C[param0->unk_00->unk_15][param1]);
-    sub_0200C388(param0->unk_FC, param0->unk_100, v0);
+    StringFormatter_Format(param0->unk_FC, param0->unk_100, v0);
     Strbuf_Free(v0);
 }
 

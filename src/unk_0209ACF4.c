@@ -266,7 +266,7 @@ static void sub_0209B084 (UnkStruct_0209AD84 * param0, int param1, BOOL param2)
 
     if (param2) {
         MessageLoader_GetStrbuf(param0->unk_10, param1, param0->unk_04);
-        sub_0200C388(param0->unk_0C, param0->unk_08, param0->unk_04);
+        StringFormatter_Format(param0->unk_0C, param0->unk_08, param0->unk_04);
     } else {
         MessageLoader_GetStrbuf(param0->unk_10, param1, param0->unk_08);
     }

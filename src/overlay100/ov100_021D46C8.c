@@ -46,7 +46,7 @@ int ov100_021D46C8 (UnkStruct_ov100_021D46C8 * param0, UnkStruct_020985E4 * para
         UnkStruct_0200B358 * v6 = sub_0200B358(111);
 
         sub_0200B48C(v6, 0, v5, 0, 1, GAME_LANGUAGE);
-        sub_0200C388(v6, v3, v2);
+        StringFormatter_Format(v6, v3, v2);
         Strbuf_Free(v5);
         sub_0200B3F0(v6);
     } else {

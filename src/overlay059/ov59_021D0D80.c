@@ -1577,7 +1577,7 @@ static void ov59_021D2628 (UnkStruct_020961E8 * param0, int param1, int param2)
     v0 = Strbuf_Init((90 * 2), 51);
 
     MessageLoader_GetStrbuf(param0->unk_28, param1, v0);
-    sub_0200C388(param0->unk_24, param0->unk_44, v0);
+    StringFormatter_Format(param0->unk_24, param0->unk_44, v0);
     Strbuf_Free(v0);
     BGL_FillWindow(&param0->unk_34C, 0xf0f);
     sub_0200E060(&param0->unk_34C, 0, 1, 10);

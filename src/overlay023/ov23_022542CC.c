@@ -443,7 +443,7 @@ static void ov23_022546E0 (UnkStruct_ov23_02254594 * param0)
 
             sub_0200B60C(v16, 0, param0->unk_40, 2, 1, 1);
             sub_0200B60C(v16, 1, param0->unk_41, 2, 1, 1);
-            sub_0200C388(v16, v15, v14);
+            StringFormatter_Format(v16, v15, v14);
             PrintStringSimple(&param0->unk_18, 0, v15, 0, 16, 0xff, NULL);
 
             sub_0200B3F0(v16);

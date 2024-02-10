@@ -704,7 +704,7 @@ void ov62_02230FC8 (UnkStruct_0208C06C * param0, UnkStruct_ov62_022307C0_sub1 * 
             v0 = Strbuf_Init(255, 102);
 
             sub_0200B48C(v3, 0, v5, 0, 1, GAME_LANGUAGE);
-            sub_0200C388(v3, v0, v4);
+            StringFormatter_Format(v3, v0, v4);
             Strbuf_Free(v4);
             Strbuf_Free(v5);
             sub_0200B3F0(v3);
@@ -720,7 +720,7 @@ void ov62_02230FC8 (UnkStruct_0208C06C * param0, UnkStruct_ov62_022307C0_sub1 * 
             v0 = Strbuf_Init(255, 102);
 
             sub_0200B48C(v3, 0, v5, 0, 1, GAME_LANGUAGE);
-            sub_0200C388(v3, v0, v4);
+            StringFormatter_Format(v3, v0, v4);
             Strbuf_Free(v4);
             Strbuf_Free(v5);
             sub_0200B3F0(v3);

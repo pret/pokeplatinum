@@ -218,7 +218,7 @@ static void ov17_02247990 (UnkStruct_ov17_02247A48 * param0, MessageLoader * par
     v0 = MessageLoader_GetNewStrbuf(param1, param2);
     ov17_0224792C(param0, param3, param4);
 
-    sub_0200C388(param0->unk_0C.unk_3C, param0->unk_0C.unk_40, v0);
+    StringFormatter_Format(param0->unk_0C.unk_3C, param0->unk_0C.unk_40, v0);
     BGL_FillWindow(&param0->unk_0C.unk_28[0], 0xff);
 
     param0->unk_0C.unk_C4 = PrintStringSimple(&param0->unk_0C.unk_28[0], 1, param0->unk_0C.unk_40, 0, 0, v1, NULL);

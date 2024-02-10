@@ -2973,7 +2973,7 @@ static Strbuf* ov69_0225EF90 (UnkStruct_ov69_0225EF54 * param0, u32 param1)
 {
     MessageLoader_GetStrbuf(param0->unk_00, 3, param0->unk_0C);
     sub_0200BDD0(param0->unk_04, 0, param1);
-    sub_0200C388(param0->unk_04, param0->unk_08, param0->unk_0C);
+    StringFormatter_Format(param0->unk_04, param0->unk_08, param0->unk_0C);
 
     return param0->unk_08;
 }
@@ -2983,7 +2983,7 @@ static Strbuf* ov69_0225EFB8 (UnkStruct_ov69_0225EF54 * param0, u32 param1, u32 
     sub_0200C41C(param0->unk_04);
     MessageLoader_GetStrbuf(param0->unk_00, 3, param0->unk_0C);
     sub_0200BE08(param0->unk_04, 0, param1, param2);
-    sub_0200C388(param0->unk_04, param0->unk_08, param0->unk_0C);
+    StringFormatter_Format(param0->unk_04, param0->unk_08, param0->unk_0C);
 
     return param0->unk_08;
 }

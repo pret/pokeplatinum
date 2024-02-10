@@ -2028,7 +2028,7 @@ static void ov70_0225F25C (UnkStruct_ov70_0225F208 * param0)
 static Strbuf* ov70_0225F288 (UnkStruct_ov70_0225F208 * param0, int param1, u32 param2)
 {
     MessageLoader_GetStrbuf(param0->unk_04[param1], param2, param0->unk_18);
-    sub_0200C388(param0->unk_00, param0->unk_14, param0->unk_18);
+    StringFormatter_Format(param0->unk_00, param0->unk_14, param0->unk_18);
     return param0->unk_14;
 }
 

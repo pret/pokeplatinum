@@ -2082,7 +2082,7 @@ static void ov109_021D268C (UnkStruct_ov109_021D0F70 * param0, u32 param1, const
     v0 = Strbuf_Init(0x100, 95);
 
     MessageLoader_GetStrbuf(v1->unk_04, param1, v0);
-    sub_0200C388(v1->unk_08, v1->unk_6C, v0);
+    StringFormatter_Format(v1->unk_08, v1->unk_6C, v0);
     Strbuf_Free(v0);
     sub_0200E060(v2, 1, (1 + 9), 14);
     BGL_FillWindow(v2, 15);
@@ -2101,7 +2101,7 @@ static void ov109_021D2714 (UnkStruct_ov109_021D0F70 * param0, u32 param1, u32 p
     v0 = Strbuf_Init(0x100, 95);
 
     MessageLoader_GetStrbuf(v1->unk_04, param1, v0);
-    sub_0200C388(v1->unk_08, v1->unk_6C, v0);
+    StringFormatter_Format(v1->unk_08, v1->unk_6C, v0);
     Strbuf_Free(v0);
     sub_0200E060(v2, 1, (1 + 9), 14);
     BGL_FillWindow(v2, 15);

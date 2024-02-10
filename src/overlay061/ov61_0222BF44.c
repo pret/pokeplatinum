@@ -510,7 +510,7 @@ static void ov61_0222C794 (UnkStruct_ov61_0222C664 * param0, int param1)
     Strbuf* v0 = Strbuf_Init((16 * 8 * 2), 117);
 
     MessageLoader_GetStrbuf(param0->unk_2C, param1, v0);
-    sub_0200C388(param0->unk_20, param0->unk_3C, v0);
+    StringFormatter_Format(param0->unk_20, param0->unk_3C, v0);
     BGL_FillWindow(&param0->unk_64, 15);
     Window_Show(&param0->unk_64, 1, (1 + (18 + 12)), 11);
 
@@ -577,7 +577,7 @@ static void ov61_0222C8B8 (UnkStruct_ov61_0222C664 * param0, MessageLoader * par
 
     v0 = MessageLoader_GetNewStrbuf(param1, param2);
 
-    sub_0200C388(param0->unk_20, param0->unk_34, v0);
+    StringFormatter_Format(param0->unk_20, param0->unk_34, v0);
     Strbuf_Free(v0);
     BGL_FillWindow(&param0->unk_44, 0xf0f);
     sub_0200E060(&param0->unk_44, 0, 1, 10);

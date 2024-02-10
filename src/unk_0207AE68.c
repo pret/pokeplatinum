@@ -986,7 +986,7 @@ static u8 sub_0207C584 (UnkStruct_0207AE68 * param0, int param1)
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_08, param1);
 
-    sub_0200C388(param0->unk_0C, param0->unk_10, v0);
+    StringFormatter_Format(param0->unk_0C, param0->unk_10, v0);
     Heap_FreeToHeap(v0);
     BGL_FillWindow(param0->unk_04, 0xff);
 

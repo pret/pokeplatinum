@@ -2559,7 +2559,7 @@ static BOOL sub_020404A4 (UnkStruct_0203E724 * param0)
     ov5_021E1B68(v0);
 
     MessageLoader_GetStrbuf(param0->unk_2C, v7, *v1);
-    sub_0200C388(*v3, *v2, *v1);
+    StringFormatter_Format(*v3, *v2, *v1);
     PrintStringSimple(ov5_021E1B50(v0->unk_64), 1, *v2, 0, 0, 0, NULL);
 
     return 1;
@@ -2628,7 +2628,7 @@ static BOOL sub_020405DC (UnkStruct_0203E724 * param0)
     u16 v6 = sub_0203E838(param0);
 
     MessageLoader_GetStrbuf(param0->unk_2C, v5, *v2);
-    sub_0200C388(*v4, *v3, *v2);
+    StringFormatter_Format(*v4, *v3, *v2);
 
     *v1 = sub_0205D994(ov5_021E1B50(v0->unk_64), *v3, sub_02025E44(param0->unk_34->unk_0C), 1);
 

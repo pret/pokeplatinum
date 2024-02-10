@@ -159,7 +159,7 @@ static Strbuf* ov23_02253E6C (UnkStruct_ov23_02253E2C * param0)
     Strbuf* v0 = param0->unk_00;
 
     if (param0->unk_44_1) {
-        sub_0200C388(param0->unk_28, param0->unk_04, param0->unk_00);
+        StringFormatter_Format(param0->unk_28, param0->unk_04, param0->unk_00);
         v0 = param0->unk_04;
         param0->unk_44_1 = 0;
     }

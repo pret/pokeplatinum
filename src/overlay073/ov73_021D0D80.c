@@ -727,7 +727,7 @@ static BOOL ov73_021D1510 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
             MessageLoader_GetStrbuf(param0->unk_4C, param1, v1);
             sub_0200B48C(param0->unk_64, 0, param0->unk_70->unk_18, param0->unk_84, 1, GAME_LANGUAGE);
             sub_0200B48C(param0->unk_64, 1, param0->unk_74->unk_18, 0, 1, GAME_LANGUAGE);
-            sub_0200C388(param0->unk_64, param0->unk_5C, v1);
+            StringFormatter_Format(param0->unk_64, param0->unk_5C, v1);
             Strbuf_Free(v1);
         }
 

@@ -1068,7 +1068,7 @@ static u8 ov106_02242918 (UnkStruct_ov106_02243118 * param0, Window * param1, in
 {
     BGL_FillWindow(param1, param8);
     MessageLoader_GetStrbuf(param0->unk_20, param2, param0->unk_2C);
-    sub_0200C388(param0->unk_24, param0->unk_28, param0->unk_2C);
+    StringFormatter_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
 
     return sub_0201D78C(param1, param9, param0->unk_28, param3, param4, param5, (u32)((((param6) & 0xff) << 16) | (((param7) & 0xff) << 8) | (((param8) & 0xff) << 0)), NULL);
 }

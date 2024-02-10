@@ -417,7 +417,7 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
 
             sub_0200B5CC(param0->unk_14, 0, Pokemon_GetBoxPokemon(v3));
             sub_0200B630(param0->unk_14, 1, 373);
-            sub_0200C388(param0->unk_14, param0->unk_18, v4);
+            StringFormatter_Format(param0->unk_14, param0->unk_18, v4);
             Strbuf_Free(v4);
 
             ov13_022279F4(param0);
@@ -440,7 +440,7 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
                 v5 = MessageLoader_Init(1, 26, 213, v0->unk_0C);
                 v6 = MessageLoader_GetNewStrbuf(v5, 36);
                 sub_0200B498(param0->unk_14, 0, v0->unk_04);
-                sub_0200C388(param0->unk_14, param0->unk_18, v6);
+                StringFormatter_Format(param0->unk_14, param0->unk_18, v6);
                 Strbuf_Free(v6);
                 MessageLoader_Free(v5);
                 ov13_022279F4(param0);

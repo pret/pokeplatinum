@@ -507,7 +507,7 @@ static void ov94_0223D88C (UnkStruct_ov94_0223FD4C * param0, int param1, int par
 
     sub_0200B538(param0->unk_B8C, 0, Pokemon_GetBoxPokemon(param5));
     v0 = MessageLoader_GetNewStrbuf(param0->unk_B90, param1);
-    sub_0200C388(param0->unk_B8C, param0->unk_BAC, v0);
+    StringFormatter_Format(param0->unk_B8C, param0->unk_BAC, v0);
     BGL_FillWindow(&param0->unk_F5C, 0xf0f);
     sub_0200E060(&param0->unk_F5C, 0, 1, 10);
 

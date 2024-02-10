@@ -2407,7 +2407,7 @@ static void ov98_02249714 (UnkStruct_ov98_02247704 * param0, MessageLoader * par
 
     v0 = MessageLoader_GetNewStrbuf(param1, param2);
 
-    sub_0200C388(param0->unk_20, param0->unk_38, v0);
+    StringFormatter_Format(param0->unk_20, param0->unk_38, v0);
     Strbuf_Free(v0);
     BGL_FillWindow(&param0->unk_48, 0xf0f);
     sub_0200E060(&param0->unk_48, 0, 1, 10);
@@ -2508,7 +2508,7 @@ static void ov98_02249900 (UnkStruct_ov98_02247704 * param0, int param1)
     Strbuf* v0 = Strbuf_Init((16 * 8 * 2), 109);
 
     MessageLoader_GetStrbuf(param0->unk_30, param1, v0);
-    sub_0200C388(param0->unk_20, param0->unk_40, v0);
+    StringFormatter_Format(param0->unk_20, param0->unk_40, v0);
 
     BGL_FillWindow(&param0->unk_68, 15);
     Window_Show(&param0->unk_68, 1, (1 + (18 + 12)), 11);

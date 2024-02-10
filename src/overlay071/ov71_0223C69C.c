@@ -108,7 +108,7 @@ void ov71_0223C6F0 (Window * param0, const UnkStruct_02072014 * param1)
 
             sub_0200B60C(v4, 5, param1->unk_1C, 6, 0, 1);
             MessageLoader_GetStrbuf(v1, 14, v3);
-            sub_0200C388(v4, v2, v3);
+            StringFormatter_Format(v4, v2, v3);
 
             v5 = (8 * 17) - sub_02002D7C(0, v2, 0);
 
@@ -120,7 +120,7 @@ void ov71_0223C6F0 (Window * param0, const UnkStruct_02072014 * param1)
 
             sub_0200B60C(v4, 5, param1->unk_20, 3, 0, 1);
             MessageLoader_GetStrbuf(v1, 21, v3);
-            sub_0200C388(v4, v2, v3);
+            StringFormatter_Format(v4, v2, v3);
 
             v6 = (8 * 17) - sub_02002D7C(0, v2, 0);
 
@@ -142,7 +142,7 @@ void ov71_0223C6F0 (Window * param0, const UnkStruct_02072014 * param1)
                 MessageLoader_GetStrbuf(v1, 15, v3);
             }
 
-            sub_0200C388(v4, v2, v3);
+            StringFormatter_Format(v4, v2, v3);
             v7 = (8 * 28) - sub_02002D7C(0, v2, 0);
             sub_0201D78C(&param0[5], 0, v2, v7, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
         }
@@ -154,7 +154,7 @@ void ov71_0223C6F0 (Window * param0, const UnkStruct_02072014 * param1)
             sub_0200C2E0(v4, 3, param1->unk_30);
             sub_0200B60C(v4, 4, param1->unk_31, 2, 2, 1);
             MessageLoader_GetStrbuf(v1, 17, v3);
-            sub_0200C388(v4, v2, v3);
+            StringFormatter_Format(v4, v2, v3);
 
             v8 = (8 * 28) - sub_02002D7C(0, v2, 0);
 
@@ -316,7 +316,7 @@ asm void ov71_0223CA28 (Window * param0, const UnkStruct_02072014 * param1)
     ldr r2, [sp, #0x14]
     add r0, r4, #0
     add r1, r5, #0
-    bl sub_0200C388
+    bl StringFormatter_Format
     b _0223CBA6
  _0223CB6E:
     ldr r2, [sp, #0x14]
@@ -367,7 +367,7 @@ asm void ov71_0223CA28 (Window * param0, const UnkStruct_02072014 * param1)
     ldr r2, [sp, #0x14]
     add r0, r4, #0
     add r1, r5, #0
-    bl sub_0200C388
+    bl StringFormatter_Format
     mov r0, #0
     add r1, r5, #0
     add r2, r0, #0
@@ -402,7 +402,7 @@ asm void ov71_0223CA28 (Window * param0, const UnkStruct_02072014 * param1)
     ldr r2, [sp, #0x14]
     add r0, r4, #0
     add r1, r5, #0
-    bl sub_0200C388
+    bl StringFormatter_Format
     mov r0, #0
     add r1, r5, #0
     add r2, r0, #0
@@ -494,7 +494,7 @@ asm void ov71_0223CA28 (Window * param0, const UnkStruct_02072014 * param1)
     ldr r2, [sp, #0x14]
     add r0, r4, #0
     add r1, r5, #0
-    bl sub_0200C388
+    bl StringFormatter_Format
     mov r0, #0
     add r1, r5, #0
     add r2, r0, #0
@@ -573,7 +573,7 @@ void ov71_0223CDE8 (Window * param0, const UnkStruct_02072014 * param1, Strbuf *
         sub_0200B60C(v5, 0, sub_0202CC58(param1->unk_18), 3, 1, 1);
         sub_0200B60C(v5, 1, sub_0202CC5C(param1->unk_18), 2, 2, 1);
         MessageLoader_GetStrbuf(v2, 16, v4);
-        sub_0200C388(v5, v3, v4);
+        StringFormatter_Format(v5, v3, v4);
         v1 = (8 * 28) - sub_02002D7C(0, v3, 0);
         sub_0201D78C(&param0[5], 0, v3, v1, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
 

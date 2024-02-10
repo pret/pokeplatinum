@@ -1031,15 +1031,15 @@ static void sub_0208D200 (UnkStruct_0208D7BC * param0, Pokemon * param1, UnkStru
 
     MessageLoader_GetStrbuf(param0->unk_688, 11, param0->unk_694);
     sub_0200B538(param0->unk_690, 0, v0);
-    sub_0200C388(param0->unk_690, param0->unk_250.unk_00, param0->unk_694);
+    StringFormatter_Format(param0->unk_690, param0->unk_250.unk_00, param0->unk_694);
 
     MessageLoader_GetStrbuf(param0->unk_688, 0, param0->unk_694);
     sub_0200B5CC(param0->unk_690, 0, v0);
-    sub_0200C388(param0->unk_690, param0->unk_250.unk_04, param0->unk_694);
+    StringFormatter_Format(param0->unk_690, param0->unk_250.unk_04, param0->unk_694);
 
     MessageLoader_GetStrbuf(param0->unk_688, 14, param0->unk_694);
     sub_0200B5EC(param0->unk_690, 0, v0);
-    sub_0200C388(param0->unk_690, param0->unk_250.unk_08, param0->unk_694);
+    StringFormatter_Format(param0->unk_690, param0->unk_250.unk_08, param0->unk_694);
 
     param2->unk_0E = (u16)Pokemon_GetValue(param1, MON_DATA_HELD_ITEM, NULL);
     param2->unk_12_0 = (u8)Pokemon_GetValue(param1, MON_DATA_LEVEL, NULL);

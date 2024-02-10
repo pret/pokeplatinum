@@ -801,10 +801,10 @@ static void sub_02070050 (UnkStruct_0206F7F8 * param0, BOOL param1)
 
         sub_0200B60C(param0->unk_2C.unk_04, 0, v2, 1, 1, 1);
         sub_0200B48C(param0->unk_2C.unk_04, 1, v6->unk_04[v0].unk_00->unk_08, 2, 1, GAME_LANGUAGE);
-        sub_0200C388(param0->unk_2C.unk_04, param0->unk_2C.unk_08, param0->unk_2C.unk_18);
+        StringFormatter_Format(param0->unk_2C.unk_04, param0->unk_2C.unk_08, param0->unk_2C.unk_18);
         sub_0201D78C(&param0->unk_D4, 0, param0->unk_2C.unk_08, 8, v3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((15 & 0xff) << 0)))), NULL);
         sub_0200B60C(param0->unk_2C.unk_04, 0, v4, v7->unk_04, 1, 1);
-        sub_0200C388(param0->unk_2C.unk_04, param0->unk_2C.unk_08, param0->unk_2C.unk_1C[v7->unk_06 - 15]);
+        StringFormatter_Format(param0->unk_2C.unk_04, param0->unk_2C.unk_08, param0->unk_2C.unk_1C[v7->unk_06 - 15]);
         sub_0201D78C(&param0->unk_D4, 0, param0->unk_2C.unk_08, (24 * 8) - sub_02002D7C(0, param0->unk_2C.unk_08, 0) - 8, v3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((15 & 0xff) << 0)))), NULL);
 
         param0->unk_32C[v3] = v0;

@@ -1065,7 +1065,7 @@ static void ov5_021F7FF8 (UnkStruct_ov5_021F7ED8 * param0, u32 param1, u32 param
         Strbuf* v2 = Strbuf_Init((40 * 2), 4);
 
         MessageLoader_GetStrbuf(param0->unk_B8, param1, v2);
-        sub_0200C388(param0->unk_BC, param0->unk_1C[param0->unk_C7], v2);
+        StringFormatter_Format(param0->unk_BC, param0->unk_1C[param0->unk_C7], v2);
         param0->unk_F8[param0->unk_C7].unk_00 = (const void *)param0->unk_1C[param0->unk_C7];
         Strbuf_Free(v2);
     }

@@ -389,7 +389,7 @@ static void ov87_021D1590 (UnkStruct_ov87_021D106C * param0)
     sub_0200C2E0(param0->unk_1F0, 2, v0->unk_04.month);
     sub_0200B60C(param0->unk_1F0, 3, v0->unk_04.day, 2, 0, 1);
     MessageLoader_GetStrbuf(param0->unk_1E4, 0, param0->unk_1F4);
-    sub_0200C388(param0->unk_1F0, param0->unk_1F8, param0->unk_1F4);
+    StringFormatter_Format(param0->unk_1F0, param0->unk_1F8, param0->unk_1F4);
     BGL_FillWindow(v1, 15);
     PrintStringSimple(v1, 0, param0->unk_1F8, 0, 0, 0xff, NULL);
     sub_0201ACCC(v1);
@@ -426,7 +426,7 @@ static void ov87_021D1640 (UnkStruct_ov87_021D106C * param0)
         PrintStringSimple(v2, 0, param0->unk_1F4, 174, 0, 0xff, NULL);
         MessageLoader_GetStrbuf(param0->unk_1E4, 1, param0->unk_1F4);
         sub_0200B60C(param0->unk_1F0, 0, v1->unk_12, 4, 1, 1);
-        sub_0200C388(param0->unk_1F0, param0->unk_1F8, param0->unk_1F4);
+        StringFormatter_Format(param0->unk_1F0, param0->unk_1F8, param0->unk_1F4);
         PrintStringSimple(v2, 0, param0->unk_1F8, 194, 0, 0xff, NULL);
         MessageLoader_GetStrbuf(param0->unk_1E4, 2, param0->unk_1F4);
         PrintStringSimple(v2, 0, param0->unk_1F4, 0, 16, 0xff, NULL);

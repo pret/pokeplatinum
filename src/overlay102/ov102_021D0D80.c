@@ -405,7 +405,7 @@ static void ov102_021D1420 (UnkStruct_ov102_021D0F8C * param0)
 
         MessageLoader_GetStrbuf(param0->unk_34, 0, v1);
         sub_0200B498(param0->unk_38, 0, param0->unk_0C);
-        sub_0200C388(param0->unk_38, v0, v1);
+        StringFormatter_Format(param0->unk_38, v0, v1);
         sub_0201D78C(&param0->unk_14, 0, v0, 48, 32, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
         sub_0201D78C(&param0->unk_24, 0, v0, 48, 32, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
         Strbuf_Free(v1);

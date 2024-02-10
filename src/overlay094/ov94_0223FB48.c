@@ -1019,7 +1019,7 @@ static void ov94_02240D58 (UnkStruct_ov94_0223FD4C * param0, int param1, int par
     Strbuf* v1;
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_B90, param1);
-    sub_0200C388(param0->unk_B8C, param0->unk_BAC, v1);
+    StringFormatter_Format(param0->unk_B8C, param0->unk_BAC, v1);
 
     if (param5 == 0) {
         v0 = &param0->unk_F5C;

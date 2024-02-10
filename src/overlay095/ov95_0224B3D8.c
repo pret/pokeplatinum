@@ -416,7 +416,7 @@ static int ov95_0224B81C (UnkStruct_ov95_0224B4D4 * param0, int * param1)
             }
 
             MessageLoader_GetStrbuf(v0, v2, param0->unk_6C);
-            sub_0200C388(v1, param0->unk_70, param0->unk_6C);
+            StringFormatter_Format(v1, param0->unk_70, param0->unk_6C);
             PrintStringSimple(&(param0->unk_5C), 1, param0->unk_70, 0, 0, 0xff, NULL);
 
             sub_0200E010(&(param0->unk_5C), 109, 2);
@@ -434,7 +434,7 @@ static int ov95_0224B81C (UnkStruct_ov95_0224B4D4 * param0, int * param1)
             UnkStruct_0200B358 * v5 = ov95_0224762C(param0->unk_00);
 
             MessageLoader_GetStrbuf(v4, 3, param0->unk_6C);
-            sub_0200C388(v5, param0->unk_70, param0->unk_6C);
+            StringFormatter_Format(v5, param0->unk_70, param0->unk_6C);
             BGL_FillWindow(&(param0->unk_5C), 0xf);
             PrintStringSimple(&(param0->unk_5C), 1, param0->unk_70, 0, 0, 0xff, NULL);
             sub_0201ACCC(&(param0->unk_5C));

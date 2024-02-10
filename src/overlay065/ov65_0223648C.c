@@ -835,7 +835,7 @@ static void ov65_02236C7C (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
     }
 
     MessageLoader_GetStrbuf(param0->unk_08, Unk_ov65_02239E5C[param1->unk_00], param0->unk_10);
-    sub_0200C388(param0->unk_04, param0->unk_0C, param0->unk_10);
+    StringFormatter_Format(param0->unk_04, param0->unk_0C, param0->unk_10);
     sub_0201D78C(&param0->unk_200, 0, param0->unk_0C, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     sub_0201A9A4(&param0->unk_200);
     sub_0201A9A4(&param0->unk_220);
@@ -916,7 +916,7 @@ static void ov65_02236E50 (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
     v0 = Strbuf_Init(256, param4);
 
     MessageLoader_GetStrbuf(param0->unk_08, param2, v0);
-    sub_0200C388(param0->unk_04, param0->unk_0C, v0);
+    StringFormatter_Format(param0->unk_04, param0->unk_0C, v0);
 
     param0->unk_14 = sub_0201D78C(&param0->unk_1F0, 1, param0->unk_0C, 0, 0, param0->unk_16, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
 
@@ -980,7 +980,7 @@ static void ov65_02236F70 (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
     ov65_02237284(param0, param1, param2, 1, param3);
 
     MessageLoader_GetStrbuf(param0->unk_08, 131, v0);
-    sub_0200C388(param0->unk_04, v1, v0);
+    StringFormatter_Format(param0->unk_04, v1, v0);
 
     BGL_FillWindow(&param0->unk_230, 15);
     sub_0201D78C(&param0->unk_230, 0, v1, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
@@ -1032,14 +1032,14 @@ static void ov65_0223709C (UnkStruct_ov65_022367A8 * param0, UnkStruct_ov65_0223
     ov65_0223726C(param1, param2, param3, 0, param4);
 
     MessageLoader_GetStrbuf(param1->unk_08, 129, v0);
-    sub_0200C388(param1->unk_04, v1, v0);
+    StringFormatter_Format(param1->unk_04, v1, v0);
     BGL_WindowColor(&param1->unk_220, 15, 0, param3 * (2 * 8), (20 * 8), (2 * 8));
     sub_0201D78C(&param1->unk_220, 0, v1, 0, param3 * (2 * 8), 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
 
     ov65_02237284(param1, param2, param3, 0, param4);
 
     MessageLoader_GetStrbuf(param1->unk_08, 130, v0);
-    sub_0200C388(param1->unk_04, v1, v0);
+    StringFormatter_Format(param1->unk_04, v1, v0);
     sub_0201D78C(&param1->unk_220, 0, v1, 72, param3 * (2 * 8), 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     sub_0201A9A4(&param1->unk_220);
 

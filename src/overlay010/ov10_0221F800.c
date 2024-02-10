@@ -2270,7 +2270,7 @@ static void ov10_02222400 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * par
     v2 = MessageLoader_GetNewStrbuf(param1, 8 + param5);
 
     sub_0200B5CC(param3, 0, Pokemon_GetBoxPokemon(v0));
-    sub_0200C388(param3, param4, v2);
+    StringFormatter_Format(param3, param4, v2);
     Strbuf_Free(v2);
     sub_0201D78C(v1, 0, param4, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 

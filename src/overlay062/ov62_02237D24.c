@@ -1439,7 +1439,7 @@ asm static void ov62_02239724 (UnkStruct_0208C06C * param0)
     ldr r0, [sp, #0x18]
     ldr r2, [sp, #0x1c]
     add r1, r7, #0
-    bl sub_0200C388
+    bl StringFormatter_Format
     add r0, r7, #0
     bl Strbuf_NumLines
     mov r5, #0
@@ -1574,7 +1574,7 @@ asm static void ov62_02239854 (UnkStruct_0208C06C * param0, int param1)
     ldr r0, [sp, #0x18]
     ldr r2, [sp, #0x1c]
     add r1, r7, #0
-    bl sub_0200C388
+    bl StringFormatter_Format
     add r0, r7, #0
     bl Strbuf_NumLines
     mov r5, #0

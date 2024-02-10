@@ -79,7 +79,7 @@ static void ov62_02247DD8 (UnkStruct_0208C06C * param0, int param1, int param2)
         v4 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
 
         sub_0200B48C(v2, 0, v3, 0, 1, GAME_LANGUAGE);
-        sub_0200C388(v2, v0, v4);
+        StringFormatter_Format(v2, v0, v4);
         Strbuf_Free(v3);
         Strbuf_Free(v4);
         sub_0200B3F0(v2);

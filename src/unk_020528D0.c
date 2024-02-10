@@ -194,7 +194,7 @@ static void sub_02052AA4 (UnkStruct_02052AA4 * param0, u16 param1, u8 param2, u8
 
     BGL_FillWindow(&param0->unk_0C, 0);
     MessageLoader_GetStrbuf(param0->unk_1C, param1, v0);
-    sub_0200C388(param0->unk_20, v1, v0);
+    StringFormatter_Format(param0->unk_20, v1, v0);
 
     {
         u32 v2 = sub_02002EB4(0, v1, 0);

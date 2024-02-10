@@ -199,7 +199,7 @@ asm static void ov23_0225360C (Window * param0, MessageLoader * param1, TrainerI
     ldr r0, [sp, #0x1c]
     ldr r1, [sp, #0x18]
     add r2, r4, #0
-    bl sub_0200C388
+    bl StringFormatter_Format
     mov r0, #1
     str r0, [sp]
     mov r0, #0xff
@@ -221,7 +221,7 @@ asm static void ov23_0225360C (Window * param0, MessageLoader * param1, TrainerI
     ldr r0, [sp, #0x1c]
     ldr r1, [sp, #0x18]
     add r2, r4, #0
-    bl sub_0200C388
+    bl StringFormatter_Format
     mov r0, #1
     str r0, [sp]
     mov r0, #0xff
@@ -293,7 +293,7 @@ asm static void ov23_0225360C (Window * param0, MessageLoader * param1, TrainerI
     ldr r0, [sp, #0x1c]
     ldr r1, [sp, #0x18]
     add r2, r4, #0
-    bl sub_0200C388
+    bl StringFormatter_Format
     str r5, [sp]
     mov r0, #0xff
     str r0, [sp, #4]
@@ -495,7 +495,7 @@ static void ov23_02253A78 (Window * param0, MessageLoader * param1, TrainerInfo 
 
     sub_0200B498(v0, 1, param2);
     MessageLoader_GetStrbuf(param1, 12, v1);
-    sub_0200C388(v0, v2, v1);
+    StringFormatter_Format(v0, v2, v1);
     PrintStringSimple(param0, 0, v2, v7, 1, 0xff, NULL);
 
     MessageLoader_GetStrbuf(param1, 13, v1);
@@ -503,7 +503,7 @@ static void ov23_02253A78 (Window * param0, MessageLoader * param1, TrainerInfo 
 
     sub_0200B60C(v0, 6, sub_020295B8(param3), 6, 1, 1);
     MessageLoader_GetStrbuf(param1, 14, v1);
-    sub_0200C388(v0, v2, v1);
+    StringFormatter_Format(v0, v2, v1);
     PrintStringSimple(param0, 0, v2, v7 + 100, 1 + v8, 0xff, NULL);
 
     MessageLoader_GetStrbuf(param1, 15, v1);
@@ -515,12 +515,12 @@ static void ov23_02253A78 (Window * param0, MessageLoader * param1, TrainerInfo 
         if (v13) {
             sub_0200B498(v0, 0, v13);
             MessageLoader_GetStrbuf(param1, 16, v1);
-            sub_0200C388(v0, v2, v1);
+            StringFormatter_Format(v0, v2, v1);
             PrintStringSimple(param0, 0, v2, v7, 1 + v8 * (4 + v3), 0xff, NULL);
 
             sub_0200B60C(v0, 5, TrainerInfo_ID_LowHalf(v13), 5, 2, 1);
             MessageLoader_GetStrbuf(param1, 17, v1);
-            sub_0200C388(v0, v2, v1);
+            StringFormatter_Format(v0, v2, v1);
 
             PrintStringSimple(param0, 0, v2, v7 + v12, 1 + v8 * (4 + v3), 0xff, NULL);
             Heap_FreeToHeap(v13);

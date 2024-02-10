@@ -2429,13 +2429,13 @@ static void BattleMessage_PCBoxName (BattleSystem * param0, u32 param1, int para
     sub_0200BD40(param0->unk_14, param1, param0->pcBoxes, param2);
 }
 
-static void BattleMessage_Format (BattleSystem * param0, MessageLoader * param1, BattleMessage * param2)
+static void BattleMessage_Format(BattleSystem * param0, MessageLoader * param1, BattleMessage * param2)
 {
     Strbuf* v0;
 
     v0 = MessageLoader_GetNewStrbuf(param1, param2->id);
 
-    sub_0200C388(param0->unk_14, param0->msgBuffer, v0);
+    StringFormatter_Format(param0->unk_14, param0->msgBuffer, v0);
     Strbuf_Free(v0);
 }
 

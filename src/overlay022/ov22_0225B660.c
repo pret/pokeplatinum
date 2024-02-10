@@ -310,7 +310,7 @@ static void ov22_0225BB00 (UnkStruct_ov22_0225B85C * param0)
 
     v7 = Strbuf_Init(200, 13);
     v6 = MessageLoader_GetNewStrbuf(v8, 45);
-    sub_0200C388(v5, v7, v6);
+    StringFormatter_Format(v5, v7, v6);
 
     v3 = sub_02002D7C(0, v7, 0);
     v1 = 128 - (v3 / 2);
@@ -359,7 +359,7 @@ static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
     GF_ASSERT(v7);
 
     v3 = MessageLoader_GetNewStrbuf(v7, 43);
-    sub_0200C388(v1, v2, v3);
+    StringFormatter_Format(v1, v2, v3);
     Strbuf_Free(v3);
     v10 = sub_02002D7C(0, v2, 0);
     v8 = 128 - (v10 / 2);
@@ -367,7 +367,7 @@ static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
     sub_0201D78C(param0->unk_200, 0, v2, v8, v9, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     v3 = MessageLoader_GetNewStrbuf(v7, 44);
-    sub_0200C388(v1, v2, v3);
+    StringFormatter_Format(v1, v2, v3);
     Strbuf_Free(v3);
     v10 = sub_02002D7C(0, v2, 0);
     v8 = 128 - (v10 / 2);

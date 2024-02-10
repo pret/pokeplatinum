@@ -952,7 +952,7 @@ void sub_0200C338 (UnkStruct_0200B358 * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200C388 (const UnkStruct_0200B358 * param0, Strbuf *param1, const Strbuf *param2)
+void StringFormatter_Format (const UnkStruct_0200B358 * param0, Strbuf *param1, const Strbuf *param2)
 {
     const u16 * v0;
     u16 * v1;

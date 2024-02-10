@@ -963,7 +963,7 @@ static void ov16_02267864 (UnkStruct_ov16_022674C4 * param0)
     v8 = Pokemon_GetBoxPokemon(v7);
 
     sub_0200B5CC(v9, 0, v8);
-    sub_0200C388(v9, v5, v6);
+    StringFormatter_Format(v9, v5, v6);
     sub_0201A870(v0, &v3, 8, 2, 0, 0xf);
     sub_0201D7E0(&v3, 0, v5, 0, 0, 0xff, ((u32)(((0xe & 0xff) << 16) | ((2 & 0xff) << 8) | (((0xf & 0xff) << 0)))), 0, 0, NULL);
 
@@ -1220,7 +1220,7 @@ static void ov16_02267DC4 (UnkStruct_ov16_022674C4 * param0, u32 param1)
     }
 
     sub_0200B60C(v7, 0, param0->unk_27, 2, 1, 1);
-    sub_0200C388(v7, v5, v6);
+    StringFormatter_Format(v7, v5, v6);
     sub_0201A870(v0, &v3, 13, 2, 0, 0xf);
     sub_0201D7E0(&v3, 0, v5, 0, 0, 0xff, ((u32)(((0xe & 0xff) << 16) | ((2 & 0xff) << 8) | (((0xf & 0xff) << 0)))), 0, 0, NULL);
 

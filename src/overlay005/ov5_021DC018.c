@@ -219,7 +219,7 @@ static void ov5_021DC290 (UnkStruct_ov5_021DC1A4 * param0, u32 param1, u32 param
         Strbuf* v2 = Strbuf_Init((40 * 2), 4);
 
         MessageLoader_GetStrbuf(param0->unk_8C, param1, v2);
-        sub_0200C388(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
+        StringFormatter_Format(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
         param0->unk_BC[param0->unk_9B].unk_00 = (const void *)param0->unk_1C[param0->unk_9B];
         Strbuf_Free(v2);
     }
@@ -443,7 +443,7 @@ static void ov5_021DC708 (UnkStruct_ov5_021DC1A4 * param0, u32 param1, u32 param
         Strbuf* v2 = Strbuf_Init((40 * 2), 4);
 
         MessageLoader_GetStrbuf(param0->unk_8C, param1, v2);
-        sub_0200C388(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
+        StringFormatter_Format(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
         param0->unk_1C4[param0->unk_9B].unk_00 = (const void *)param0->unk_1C[param0->unk_9B];
         Strbuf_Free(v2);
     }
@@ -614,7 +614,7 @@ static void ov5_021DCA90 (UnkStruct_ov5_021DC1A4 * param0, u16 param1, u32 param
 
     BGL_FillWindow(param0->unk_18, 15);
     MessageLoader_GetStrbuf(param0->unk_8C, param1, v0);
-    sub_0200C388(param0->unk_90, v1, v0);
+    StringFormatter_Format(param0->unk_90, v1, v0);
     PrintStringSimple(param0->unk_18, 1, v1, 0, 0, param2, NULL);
     Strbuf_Free(v0);
     Strbuf_Free(v1);
@@ -669,7 +669,7 @@ static void ov5_021DCC00 (UnkStruct_ov5_021DC1A4 * param0, u16 param1, u8 param2
     Strbuf* v1 = Strbuf_Init((40 * 2), 4);
 
     MessageLoader_GetStrbuf(param0->unk_8C, param1, v0);
-    sub_0200C388(param0->unk_90, v1, v0);
+    StringFormatter_Format(param0->unk_90, v1, v0);
     PrintStringSimple(&param0->unk_08, 0, v1, param2, param3, 0xff, NULL);
     Strbuf_Free(v0);
     Strbuf_Free(v1);
@@ -863,7 +863,7 @@ void ov5_021DCF6C (UnkStruct_0203CDB0 * param0, Window * param1)
     v4 = TrainerInfo_Money(sub_02025E38(param0->unk_0C));
 
     sub_0200B60C(v1, 0, v4, 6, 1, 1);
-    sub_0200C388(v1, v2, v3);
+    StringFormatter_Format(v1, v2, v3);
 
     v5 = (10 * 8) - sub_02002D7C(0, v2, 0);
 
@@ -912,7 +912,7 @@ void ov5_021DD098 (UnkStruct_0203CDB0 * param0, Window * param1)
     v4 = Coins_GetValue(sub_02025E50(param0->unk_0C));
 
     sub_0200B60C(v1, 0, v4, 5, 1, 1);
-    sub_0200C388(v1, v2, v3);
+    StringFormatter_Format(v1, v2, v3);
 
     v5 = (10 * 8) - sub_02002D7C(0, v2, 0);
 
@@ -955,7 +955,7 @@ void ov5_021DD1A4 (UnkStruct_0203CDB0 * param0, Window * param1)
     v4 = sub_0202D230(sub_0202D750(param0->unk_0C), 0, 0);
 
     sub_0200B60C(v1, 0, v4, 5, 1, 1);
-    sub_0200C388(v1, v2, v3);
+    StringFormatter_Format(v1, v2, v3);
 
     v5 = (10 * 8) - sub_02002D7C(0, v2, 0);
 
