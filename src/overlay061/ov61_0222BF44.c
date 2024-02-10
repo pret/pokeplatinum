@@ -555,7 +555,7 @@ static void ov61_0222C850 (UnkStruct_ov61_0222C664 * param0)
 static void ov61_0222C86C (UnkStruct_ov61_0222C664 * param0)
 {
     if (param0->unk_88 != NULL) {
-        sub_0200EBA0(param0->unk_88);
+        DeleteWaitDial(param0->unk_88);
         param0->unk_88 = NULL;
     }
 }

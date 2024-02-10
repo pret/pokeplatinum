@@ -1789,7 +1789,7 @@ static BOOL ov104_02230CC4 (UnkStruct_ov104_0222E930 * param0)
 {
     UnkStruct_ov104_022320B4 * v0 = param0->unk_00;
 
-    sub_0200EBA0(v0->unk_7C);
+    DeleteWaitDial(v0->unk_7C);
     return 0;
 }
 

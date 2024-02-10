@@ -562,7 +562,7 @@ void ov94_0223C5D8 (UnkStruct_ov94_0223FD4C * param0)
 void ov94_0223C5F4 (UnkStruct_ov94_0223FD4C * param0)
 {
     if (param0->unk_10DC != NULL) {
-        sub_0200EBA0(param0->unk_10DC);
+        DeleteWaitDial(param0->unk_10DC);
         param0->unk_10DC = NULL;
     }
 }

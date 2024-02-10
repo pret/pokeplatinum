@@ -1667,7 +1667,7 @@ static void ov96_0223D978 (UnkStruct_ov96_0223BF40 * param0)
 static void ov96_0223D99C (UnkStruct_ov96_0223BF40 * param0)
 {
     if (param0->unk_F6C != NULL) {
-        sub_0200EBA0(param0->unk_F6C);
+        DeleteWaitDial(param0->unk_F6C);
         param0->unk_F6C = NULL;
     }
 }

@@ -1984,7 +1984,7 @@ static BOOL ov16_0223D354 (UnkStruct_020067E8 * param0)
     case 33:
         if (sub_0200384C(v0->unk_0C) == 0) {
             v1 = 1;
-            sub_0200EBA0(v0->unk_1024);
+            DeleteWaitDial(v0->unk_1024);
             sub_02036378(0);
         }
         break;

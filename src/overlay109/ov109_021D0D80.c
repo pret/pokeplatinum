@@ -1394,7 +1394,7 @@ static int ov109_021D1AA8 (UnkStruct_ov109_021D0F70 * param0)
 
     if (v0) {
         gCoreSys.inhibitReset = 0;
-        sub_0200EBA0(param0->unk_DC8);
+        DeleteWaitDial(param0->unk_DC8);
         param0->unk_00 = 48;
     }
 

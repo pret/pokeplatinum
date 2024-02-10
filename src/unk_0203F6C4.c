@@ -2784,7 +2784,7 @@ static BOOL sub_02040898 (UnkStruct_0203E724 * param0)
     void ** v0;
 
     v0 = sub_0203F098(param0->unk_34, 18);
-    sub_0200EBA0(*v0);
+    DeleteWaitDial(*v0);
 
     return 0;
 }

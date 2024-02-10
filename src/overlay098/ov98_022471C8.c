@@ -717,7 +717,7 @@ static void ov98_02247AF0 (UnkStruct_ov98_02247704 * param0)
 static void ov98_02247B0C (UnkStruct_ov98_02247704 * param0)
 {
     if (param0->unk_8C != NULL) {
-        sub_0200EBA0(param0->unk_8C);
+        DeleteWaitDial(param0->unk_8C);
         param0->unk_8C = NULL;
     }
 }

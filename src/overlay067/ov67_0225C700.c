@@ -707,7 +707,7 @@ static void ov67_0225D310 (UnkStruct_ov67_0225D210 * param0)
 {
     if (param0->unk_20 == 1) {
         GF_ASSERT(param0->unk_24 != NULL);
-        sub_0200EBA0(param0->unk_24);
+        DeleteWaitDial(param0->unk_24);
         param0->unk_24 = NULL;
     }
 }

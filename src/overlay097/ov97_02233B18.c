@@ -1964,7 +1964,7 @@ static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
         break;
     case 10:
         ov97_02233CE4(v3);
-        sub_0200EBA0(v3->unk_E8F0.unk_08);
+        DeleteWaitDial(v3->unk_E8F0.unk_08);
         v3->unk_04 = 7;
         *param1 = 11;
         break;
@@ -2114,7 +2114,7 @@ static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
         v2 = ov97_02233B8C(v3);
 
         if (v2 != 10) {
-            sub_0200EBA0(v3->unk_E8F0.unk_08);
+            DeleteWaitDial(v3->unk_E8F0.unk_08);
             Sound_PlayEffect(1563);
 
             if (v2 == 11) {

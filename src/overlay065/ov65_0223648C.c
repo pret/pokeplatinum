@@ -1520,7 +1520,7 @@ static void ov65_022378C4 (UnkStruct_ov65_022367A8 * param0, const UnkStruct_020
         return;
     }
 
-    sub_0200EBA0(param0->unk_30.unk_24C);
+    DeleteWaitDial(param0->unk_30.unk_24C);
 
     param0->unk_30.unk_24C = NULL;
     v0 = sub_02027B50(sub_02025E44(param1->unk_08));

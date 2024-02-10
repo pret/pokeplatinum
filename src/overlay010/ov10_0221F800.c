@@ -2505,7 +2505,7 @@ static void ov10_02222A28 (UnkStruct_ov10_0221FB28 * param0)
 static void ov10_02222A48 (UnkStruct_ov10_0221FB28 * param0)
 {
     if (param0->unk_BB8 != NULL) {
-        sub_0200EBA0(param0->unk_BB8);
+        DeleteWaitDial(param0->unk_BB8);
         param0->unk_BB8 = NULL;
     }
 }

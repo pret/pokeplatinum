@@ -879,18 +879,15 @@ void ov16_0225D8F0 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 
 void BattleDisplay_PrintMessage(BattleSystem *battleSys, BattlerData *battlerData, BattleMessage *battleMsg)
 {
-    BattleMessageWaitTask * waitData;
-    MessageLoader * msgLoader;
+    MessageLoader *msgLoader = BattleSystem_MessageLoader(battleSys);
+    BattleMessageWaitTask *taskData = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(BattleMessageWaitTask));
 
-    msgLoader = BattleSystem_MessageLoader(battleSys);
-    waitData = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(BattleMessageWaitTask));
+    taskData->battleSys = battleSys;
+    taskData->command = battlerData->data[0];
+    taskData->battler = battlerData->battler;
+    taskData->msgIdx = BattleMessage_Print(battleSys, msgLoader, battleMsg, BattleSystem_TextSpeed(battleSys));
 
-    waitData->battleSys = battleSys;
-    waitData->command = battlerData->data[0];
-    waitData->battler = battlerData->battler;
-    waitData->msgIdx = BattleMessage_Print(battleSys, msgLoader, battleMsg, BattleSystem_TextSpeed(battleSys));
-
-    SysTask_Start(WaitForBattleMessagePrint, waitData, 0);
+    SysTask_Start(WaitForBattleMessagePrint, taskData, 0);
 }
 
 void ov16_0225D9A8 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_02265BBC * param2)
@@ -1370,7 +1367,7 @@ void ov16_0225E23C (BattleSystem * param0, BattlerData * param1)
         v1.tags = 0;
 
         BattleMessage_Print(param0, v0, &v1, NULL);
-        ov16_0223F2A4(param0, sub_0200E7FC(BattleSystem_Window(param0, 0), 1));
+        Battle_SetWaitDial(param0, sub_0200E7FC(BattleSystem_Window(param0, 0), 1));
     }
 
     ClearCommand(param0, param1->battler, 55);
@@ -5037,19 +5034,19 @@ static void ov16_02262F30 (SysTask * param0, void * param1)
     }
 }
 
-static void WaitForBattleMessagePrint (SysTask * param0, void * param1)
+static void WaitForBattleMessagePrint(SysTask *task, void *data)
 {
-    BattleMessageWaitTask * v0 = (BattleMessageWaitTask *)param1;
+    BattleMessageWaitTask *waitTask = data;
 
-    if (ov16_0223F29C(v0->battleSys)) {
-        sub_0200EBA0(ov16_0223F29C(v0->battleSys));
-        ov16_0223F2A4(v0->battleSys, NULL);
+    if (Battle_WaitDial(waitTask->battleSys)) {
+        DeleteWaitDial(Battle_WaitDial(waitTask->battleSys));
+        Battle_SetWaitDial(waitTask->battleSys, NULL);
     }
 
-    if (Message_Printing(v0->msgIdx) == 0) {
-        ClearCommand(v0->battleSys, v0->battler, v0->command);
-        Heap_FreeToHeap(param1);
-        SysTask_Done(param0);
+    if (Message_Printing(waitTask->msgIdx) == FALSE) {
+        ClearCommand(waitTask->battleSys, waitTask->battler, waitTask->command);
+        Heap_FreeToHeap(data);
+        SysTask_Done(task);
     }
 }
 

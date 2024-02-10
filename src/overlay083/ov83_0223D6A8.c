@@ -1125,7 +1125,7 @@ void ov83_0223E9BC (UnkStruct_ov83_0223E824 * param0)
 void ov83_0223E9D0 (UnkStruct_ov83_0223E824 * param0)
 {
     if (param0->unk_34 != NULL) {
-        sub_0200EBA0(param0->unk_34);
+        DeleteWaitDial(param0->unk_34);
         param0->unk_34 = NULL;
     }
 }

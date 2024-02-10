@@ -317,7 +317,7 @@ static BOOL sub_0209A0F4 (UnkStruct_02099DFC * param0)
         break;
     case 5:
         sub_020245E8(param0->unk_30);
-        sub_0200EBA0(param0->unk_34);
+        DeleteWaitDial(param0->unk_34);
         param0->unk_04 = 6;
         break;
     case 6:
