@@ -110,7 +110,7 @@ static void ov16_0225C2B0(BattleSystem * param0, BattlerData * param1);
 static void ov16_0225C2C4(BattleSystem * param0, BattlerData * param1);
 static void ov16_0225C2D8(BattleSystem * param0, BattlerData * param1);
 static void ov16_0225C2EC(BattleSystem * param0, BattlerData * param1);
-static void ov16_0225C300(BattleSystem * param0, BattlerData * param1);
+static void BtlIOCmd_PrintBattleMessage(BattleSystem *battleSys, BattlerData *battlerData);
 static void ov16_0225C314(BattleSystem * param0, BattlerData * param1);
 static void ov16_0225C328(BattleSystem * param0, BattlerData * param1);
 static void ov16_0225C35C(BattleSystem * param0, BattlerData * param1);
@@ -228,7 +228,7 @@ static const UnkFuncPtr_ov16_0226F068 Unk_ov16_0226F068[] = {
     ov16_0225C2C4,
     ov16_0225C2D8,
     ov16_0225C2EC,
-    ov16_0225C300,
+    [BTLIOCMD_PRINT_MESSAGE] = BtlIOCmd_PrintBattleMessage,
     ov16_0225C314,
     ov16_0225C328,
     ov16_0225C35C,
@@ -463,12 +463,18 @@ static void ov16_0225C2EC (BattleSystem * param0, BattlerData * param1)
     ZeroDataBuffer(param1);
 }
 
-static void ov16_0225C300 (BattleSystem * param0, BattlerData * param1)
+/**
+ * @brief Print a message to the screen.
+ * 
+ * @param battleSys 
+ * @param battlerData 
+ */
+static void BtlIOCmd_PrintBattleMessage(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    BattleMessage * v0 = (BattleMessage *)&param1->data[0];
+    BattleMessage *battleMsg = (BattleMessage *)&battlerData->data[0];
 
-    ov16_0225D958(param0, param1, v0);
-    ZeroDataBuffer(param1);
+    BattleUI_PrintMessage(battleSys, battlerData, battleMsg);
+    ZeroDataBuffer(battlerData);
 }
 
 static void ov16_0225C314 (BattleSystem * param0, BattlerData * param1)

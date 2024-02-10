@@ -878,10 +878,10 @@ void BattleIO_PrintAttackMessage (BattleSystem * param0, BattleContext * param1)
     SendMessage(param0, 1, param1->attacker, &v0, sizeof(UnkStruct_ov16_0225C2EC));
 }
 
-void BattleIO_PrintMessage (BattleSystem * param0, BattleContext * param1, BattleMessage * param2)
+void BattleIO_PrintMessage(BattleSystem *battleSys, BattleContext *battleCtx, BattleMessage *battleMsg)
 {
-    param2->commandCode = 21;
-    SendMessage(param0, 1, param1->attacker, param2, sizeof(BattleMessage));
+    battleMsg->commandCode = BTLIOCMD_PRINT_MESSAGE;
+    SendMessage(battleSys, BTLIO_RECIPIENT_ENQUEUE, battleCtx->attacker, battleMsg, sizeof(BattleMessage));
 }
 
 void BattleIO_PlayMoveAnimation (BattleSystem * param0, BattleContext * param1, u16 param2)

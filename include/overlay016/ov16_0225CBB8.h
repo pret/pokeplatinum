@@ -61,7 +61,15 @@ void ov16_0225D794(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0
 void ov16_0225D840(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C2C4 * param2);
 void ov16_0225D8AC(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C2D8 * param2);
 void ov16_0225D8F0(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C2EC * param2);
-void ov16_0225D958(BattleSystem * param0, BattlerData * param1, BattleMessage * param2);
+
+/**
+ * @brief Print a message to the screen.
+ * 
+ * @param battleSys
+ * @param battlerData
+ * @param battleMsg
+ */
+void BattleUI_PrintMessage(BattleSystem *battleSys, BattlerData *battlerData, BattleMessage *battleMsg);
 void ov16_0225D9A8(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_02265BBC * param2);
 void ov16_0225DA44(BattleSystem * param0, BattlerData * param1);
 void ov16_0225DA74(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C35C * param2);

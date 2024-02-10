@@ -81,7 +81,6 @@
 #include "overlay016/struct_ov16_0225D794.h"
 #include "overlay016/struct_ov16_0225D840.h"
 #include "overlay016/struct_ov16_0225D8AC.h"
-#include "overlay016/struct_ov16_0225D8F0.h"
 #include "overlay016/struct_ov16_0225D9A8.h"
 #include "overlay016/struct_ov16_0225DA44.h"
 #include "overlay016/struct_ov16_0225DB74.h"
@@ -175,7 +174,7 @@ void ov16_0225D794(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0
 void ov16_0225D840(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C2C4 * param2);
 void ov16_0225D8AC(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C2D8 * param2);
 void ov16_0225D8F0(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C2EC * param2);
-void ov16_0225D958(BattleSystem * param0, BattlerData * param1, BattleMessage * param2);
+void BattleUI_PrintMessage(BattleSystem * param0, BattlerData * param1, BattleMessage * param2);
 void ov16_0225D9A8(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_02265BBC * param2);
 void ov16_0225DA44(BattleSystem * param0, BattlerData * param1);
 void ov16_0225DA74(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C35C * param2);
@@ -255,7 +254,7 @@ static void ov16_02262A9C(SysTask * param0, void * param1);
 static void ov16_02262D28(SysTask * param0, void * param1);
 static void ov16_02262DC4(SysTask * param0, void * param1);
 static void ov16_02262F30(SysTask * param0, void * param1);
-static void ov16_02262F7C(SysTask * param0, void * param1);
+static void WaitForBattleMessagePrint(SysTask * param0, void * param1);
 static void ov16_02262FC0(SysTask * param0, void * param1);
 static void ov16_02263014(SysTask * param0, void * param1);
 static void ov16_022633A4(SysTask * param0, void * param1);
@@ -910,42 +909,49 @@ void ov16_0225D8AC (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     SysTask_Start(param1->unk_00.unk_14, v0, 0);
 }
 
+typedef struct BattleMessageWaitTask {
+    BattleSystem *battleSys;
+    u8 command;
+    u8 battler;
+    u8 msgIdx;
+} BattleMessageWaitTask;
+
 void ov16_0225D8F0 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C2EC * param2)
 {
-    UnkStruct_ov16_0225D8F0 * v0;
+    BattleMessageWaitTask * v0;
     MessageLoader * v1;
     BattleMessage v2;
 
     v1 = ov16_0223E060(param0);
-    v0 = (UnkStruct_ov16_0225D8F0 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0225D8F0));
+    v0 = (BattleMessageWaitTask *)Heap_AllocFromHeap(5, sizeof(BattleMessageWaitTask));
 
-    v0->unk_00 = param0;
-    v0->unk_04 = param2->unk_00;
-    v0->unk_05 = param1->battler;
+    v0->battleSys = param0;
+    v0->command = param2->unk_00;
+    v0->battler = param1->battler;
 
     v2.id = 0 + param2->unk_02 * 3;
     v2.tags = 2;
     v2.params[0] = param1->battler | (param2->unk_01 << 8);
 
-    v0->unk_06 = BattleMessage_Print(param0, v1, &v2, BattleSystem_TextSpeed(param0));
+    v0->msgIdx = BattleMessage_Print(param0, v1, &v2, BattleSystem_TextSpeed(param0));
 
-    SysTask_Start(ov16_02262F7C, v0, 0);
+    SysTask_Start(WaitForBattleMessagePrint, v0, 0);
 }
 
-void ov16_0225D958 (BattleSystem * param0, BattlerData * param1, BattleMessage * param2)
+void BattleUI_PrintMessage(BattleSystem *battleSys, BattlerData *battlerData, BattleMessage *battleMsg)
 {
-    UnkStruct_ov16_0225D8F0 * v0;
-    MessageLoader * v1;
+    BattleMessageWaitTask * waitData;
+    MessageLoader * msgLoader;
 
-    v1 = BattleSystem_MessageLoader(param0);
-    v0 = (UnkStruct_ov16_0225D8F0 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0225D8F0));
+    msgLoader = BattleSystem_MessageLoader(battleSys);
+    waitData = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(BattleMessageWaitTask));
 
-    v0->unk_00 = param0;
-    v0->unk_04 = param1->data[0];
-    v0->unk_05 = param1->battler;
-    v0->unk_06 = BattleMessage_Print(param0, v1, param2, BattleSystem_TextSpeed(param0));
+    waitData->battleSys = battleSys;
+    waitData->command = battlerData->data[0];
+    waitData->battler = battlerData->battler;
+    waitData->msgIdx = BattleMessage_Print(battleSys, msgLoader, battleMsg, BattleSystem_TextSpeed(battleSys));
 
-    SysTask_Start(ov16_02262F7C, v0, 0);
+    SysTask_Start(WaitForBattleMessagePrint, waitData, 0);
 }
 
 void ov16_0225D9A8 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_02265BBC * param2)
@@ -1144,94 +1150,94 @@ void ov16_0225DD44 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 
 void ov16_0225DD7C (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C3E4 * param2)
 {
-    UnkStruct_ov16_0225D8F0 * v0;
+    BattleMessageWaitTask * v0;
     int v1;
 
     v1 = Battler_TrainerID(param0, param1->battler);
-    v0 = (UnkStruct_ov16_0225D8F0 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0225D8F0));
+    v0 = (BattleMessageWaitTask *)Heap_AllocFromHeap(5, sizeof(BattleMessageWaitTask));
 
-    v0->unk_00 = param0;
-    v0->unk_04 = param2->unk_00;
-    v0->unk_05 = param1->battler;
-    v0->unk_06 = ov16_0223F9FC(param0, v1, param1->battler, param2->unk_01, BattleSystem_TextSpeed(param0));
+    v0->battleSys = param0;
+    v0->command = param2->unk_00;
+    v0->battler = param1->battler;
+    v0->msgIdx = ov16_0223F9FC(param0, v1, param1->battler, param2->unk_01, BattleSystem_TextSpeed(param0));
 
-    SysTask_Start(ov16_02262F7C, v0, 0);
+    SysTask_Start(WaitForBattleMessagePrint, v0, 0);
 }
 
 void ov16_0225DDD8 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C3F8 * param2)
 {
-    UnkStruct_ov16_0225D8F0 * v0;
+    BattleMessageWaitTask * v0;
     MessageLoader * v1;
     BattleMessage v2;
 
     ov16_02263C1C(param0, param1, param2, &v2);
 
     v1 = BattleSystem_MessageLoader(param0);
-    v0 = (UnkStruct_ov16_0225D8F0 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0225D8F0));
+    v0 = (BattleMessageWaitTask *)Heap_AllocFromHeap(5, sizeof(BattleMessageWaitTask));
 
-    v0->unk_00 = param0;
-    v0->unk_04 = param2->unk_00;
-    v0->unk_05 = param1->battler;
-    v0->unk_06 = BattleMessage_Print(param0, v1, &v2, BattleSystem_TextSpeed(param0));
+    v0->battleSys = param0;
+    v0->command = param2->unk_00;
+    v0->battler = param1->battler;
+    v0->msgIdx = BattleMessage_Print(param0, v1, &v2, BattleSystem_TextSpeed(param0));
 
-    SysTask_Start(ov16_02262F7C, v0, 0);
+    SysTask_Start(WaitForBattleMessagePrint, v0, 0);
 }
 
 void ov16_0225DE30 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C40C * param2)
 {
-    UnkStruct_ov16_0225D8F0 * v0;
+    BattleMessageWaitTask * v0;
     MessageLoader * v1;
     BattleMessage v2;
 
     ov16_02263CF0(param0, param1, param2, &v2);
 
     v1 = BattleSystem_MessageLoader(param0);
-    v0 = (UnkStruct_ov16_0225D8F0 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0225D8F0));
+    v0 = (BattleMessageWaitTask *)Heap_AllocFromHeap(5, sizeof(BattleMessageWaitTask));
 
-    v0->unk_00 = param0;
-    v0->unk_04 = param2->unk_00;
-    v0->unk_05 = param1->battler;
-    v0->unk_06 = BattleMessage_Print(param0, v1, &v2, BattleSystem_TextSpeed(param0));
+    v0->battleSys = param0;
+    v0->command = param2->unk_00;
+    v0->battler = param1->battler;
+    v0->msgIdx = BattleMessage_Print(param0, v1, &v2, BattleSystem_TextSpeed(param0));
 
-    SysTask_Start(ov16_02262F7C, v0, 0);
+    SysTask_Start(WaitForBattleMessagePrint, v0, 0);
 }
 
 void ov16_0225DE88 (BattleSystem * param0, BattlerData * param1)
 {
-    UnkStruct_ov16_0225D8F0 * v0;
+    BattleMessageWaitTask * v0;
     MessageLoader * v1;
     BattleMessage v2;
 
     ov16_02263DD0(param0, param1, &v2);
 
     v1 = BattleSystem_MessageLoader(param0);
-    v0 = (UnkStruct_ov16_0225D8F0 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0225D8F0));
+    v0 = (BattleMessageWaitTask *)Heap_AllocFromHeap(5, sizeof(BattleMessageWaitTask));
 
-    v0->unk_00 = param0;
-    v0->unk_04 = 34;
-    v0->unk_05 = param1->battler;
-    v0->unk_06 = BattleMessage_Print(param0, v1, &v2, BattleSystem_TextSpeed(param0));
+    v0->battleSys = param0;
+    v0->command = 34;
+    v0->battler = param1->battler;
+    v0->msgIdx = BattleMessage_Print(param0, v1, &v2, BattleSystem_TextSpeed(param0));
 
-    SysTask_Start(ov16_02262F7C, v0, 0);
+    SysTask_Start(WaitForBattleMessagePrint, v0, 0);
 }
 
 void ov16_0225DEDC (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C430 * param2)
 {
-    UnkStruct_ov16_0225D8F0 * v0;
+    BattleMessageWaitTask * v0;
     MessageLoader * v1;
     BattleMessage v2;
 
     ov16_02263E7C(param0, param1, param2, &v2);
 
     v1 = BattleSystem_MessageLoader(param0);
-    v0 = (UnkStruct_ov16_0225D8F0 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0225D8F0));
+    v0 = (BattleMessageWaitTask *)Heap_AllocFromHeap(5, sizeof(BattleMessageWaitTask));
 
-    v0->unk_00 = param0;
-    v0->unk_04 = param2->unk_00;
-    v0->unk_05 = param1->battler;
-    v0->unk_06 = BattleMessage_Print(param0, v1, &v2, BattleSystem_TextSpeed(param0));
+    v0->battleSys = param0;
+    v0->command = param2->unk_00;
+    v0->battler = param1->battler;
+    v0->msgIdx = BattleMessage_Print(param0, v1, &v2, BattleSystem_TextSpeed(param0));
 
-    SysTask_Start(ov16_02262F7C, v0, 0);
+    SysTask_Start(WaitForBattleMessagePrint, v0, 0);
 }
 
 void ov16_0225DF34 (BattleSystem * param0, BattlerData * param1)
@@ -1474,59 +1480,59 @@ void ov16_0225E300 (BattleSystem * param0, BattlerData * param1)
 
 void ov16_0225E338 (BattleSystem * param0, BattlerData * param1)
 {
-    UnkStruct_ov16_0225D8F0 * v0;
+    BattleMessageWaitTask * v0;
     MessageLoader * v1;
     BattleMessage v2;
 
     ov16_022641B4(param0, param1, &v2);
 
     v1 = BattleSystem_MessageLoader(param0);
-    v0 = (UnkStruct_ov16_0225D8F0 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0225D8F0));
+    v0 = (BattleMessageWaitTask *)Heap_AllocFromHeap(5, sizeof(BattleMessageWaitTask));
 
-    v0->unk_00 = param0;
-    v0->unk_04 = 59;
-    v0->unk_05 = param1->battler;
-    v0->unk_06 = BattleMessage_Print(param0, v1, &v2, BattleSystem_TextSpeed(param0));
+    v0->battleSys = param0;
+    v0->command = 59;
+    v0->battler = param1->battler;
+    v0->msgIdx = BattleMessage_Print(param0, v1, &v2, BattleSystem_TextSpeed(param0));
 
-    SysTask_Start(ov16_02262F7C, v0, 0);
+    SysTask_Start(WaitForBattleMessagePrint, v0, 0);
 }
 
 void ov16_0225E38C (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C9F0 * param2)
 {
-    UnkStruct_ov16_0225D8F0 * v0;
+    BattleMessageWaitTask * v0;
     MessageLoader * v1;
     BattleMessage v2;
 
     ov16_02264270(param0, param1, param2, &v2);
 
     v1 = BattleSystem_MessageLoader(param0);
-    v0 = (UnkStruct_ov16_0225D8F0 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0225D8F0));
+    v0 = (BattleMessageWaitTask *)Heap_AllocFromHeap(5, sizeof(BattleMessageWaitTask));
 
-    v0->unk_00 = param0;
-    v0->unk_04 = 60;
-    v0->unk_05 = param1->battler;
-    v0->unk_06 = BattleMessage_Print(param0, v1, &v2, BattleSystem_TextSpeed(param0));
+    v0->battleSys = param0;
+    v0->command = 60;
+    v0->battler = param1->battler;
+    v0->msgIdx = BattleMessage_Print(param0, v1, &v2, BattleSystem_TextSpeed(param0));
 
-    SysTask_Start(ov16_02262F7C, v0, 0);
+    SysTask_Start(WaitForBattleMessagePrint, v0, 0);
 }
 
 void ov16_0225E3E0 (BattleSystem * param0, BattlerData * param1)
 {
-    UnkStruct_ov16_0225D8F0 * v0;
+    BattleMessageWaitTask * v0;
     MessageLoader * v1;
     BattleMessage v2;
 
     ov16_02264360(param0, param1, &v2);
 
     v1 = BattleSystem_MessageLoader(param0);
-    v0 = (UnkStruct_ov16_0225D8F0 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0225D8F0));
+    v0 = (BattleMessageWaitTask *)Heap_AllocFromHeap(5, sizeof(BattleMessageWaitTask));
 
-    v0->unk_00 = param0;
-    v0->unk_04 = 61;
-    v0->unk_05 = param1->battler;
-    v0->unk_06 = BattleMessage_Print(param0, v1, &v2, BattleSystem_TextSpeed(param0));
+    v0->battleSys = param0;
+    v0->command = 61;
+    v0->battler = param1->battler;
+    v0->msgIdx = BattleMessage_Print(param0, v1, &v2, BattleSystem_TextSpeed(param0));
 
-    SysTask_Start(ov16_02262F7C, v0, 0);
+    SysTask_Start(WaitForBattleMessagePrint, v0, 0);
 }
 
 void ov16_0225E434 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_02265BBC * param2)
@@ -5092,17 +5098,17 @@ static void ov16_02262F30 (SysTask * param0, void * param1)
     }
 }
 
-static void ov16_02262F7C (SysTask * param0, void * param1)
+static void WaitForBattleMessagePrint (SysTask * param0, void * param1)
 {
-    UnkStruct_ov16_0225D8F0 * v0 = (UnkStruct_ov16_0225D8F0 *)param1;
+    BattleMessageWaitTask * v0 = (BattleMessageWaitTask *)param1;
 
-    if (ov16_0223F29C(v0->unk_00)) {
-        sub_0200EBA0(ov16_0223F29C(v0->unk_00));
-        ov16_0223F2A4(v0->unk_00, NULL);
+    if (ov16_0223F29C(v0->battleSys)) {
+        sub_0200EBA0(ov16_0223F29C(v0->battleSys));
+        ov16_0223F2A4(v0->battleSys, NULL);
     }
 
-    if (Message_Printing(v0->unk_06) == 0) {
-        ClearCommand(v0->unk_00, v0->unk_05, v0->unk_04);
+    if (Message_Printing(v0->msgIdx) == 0) {
+        ClearCommand(v0->battleSys, v0->battler, v0->command);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
     }

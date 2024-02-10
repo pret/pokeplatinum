@@ -33,7 +33,15 @@ void BattleIO_ShowPartyScreen(BattleSystem *battleSys, BattleContext *battleCtx,
 void ov16_02265B10(BattleSystem * param0, int param1, int param2);
 void BattleIO_ShowYesNoScreen(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int promptMsg, int yesnoType, int move, int nickname);
 void BattleIO_PrintAttackMessage(BattleSystem * param0, BattleContext * param1);
-void BattleIO_PrintMessage(BattleSystem * param0, BattleContext * param1, BattleMessage * param2);
+
+/**
+ * @brief Submit a BattleMessage to the I/O queue for display on the screen.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battleMsg 
+ */
+void BattleIO_PrintMessage(BattleSystem *battleSys, BattleContext *battleCtx, BattleMessage *battleMsg);
 void BattleIO_PlayMoveAnimation(BattleSystem * param0, BattleContext * param1, u16 param2);
 void BattleIO_PlayMoveAnimationA2D(BattleSystem * param0, BattleContext * param1, u16 param2, int param3, int param4);
 void BattleIO_FlickerBattler(BattleSystem * param0, int param1, u32 param2);
