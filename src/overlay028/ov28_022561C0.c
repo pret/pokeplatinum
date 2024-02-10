@@ -13,6 +13,7 @@
 #include "struct_defs/union_02022594_020225E0.h"
 #include "overlay028/struct_ov28_0225697C_1.h"
 
+#include "constants/species.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_0202631C.h"
@@ -631,7 +632,7 @@ static void ov28_02256914 (UnkStruct_ov28_02256210 * param0, const UnkStruct_ov2
 {
     s64 v0 = ov28_02257468(param1);
 
-    if ((v0 > 0) && (v0 <= 493)) {
+    if ((v0 > 0) && (v0 <= NATIONAL_DEX_COUNT)) {
         UnkStruct_02026324 * v1;
         u16 v2;
 
@@ -643,7 +644,7 @@ static void ov28_02256914 (UnkStruct_ov28_02256210 * param0, const UnkStruct_ov2
             v2 = Pokemon_NationalDexNumber((u16)v0);
         }
 
-        if (((v2 > 0) && (v2 <= 493)) && sub_02026FE8(v1, v2)) {
+        if (((v2 > 0) && (v2 <= NATIONAL_DEX_COUNT)) && sub_02026FE8(v1, v2)) {
             ov25_02254444(v2, 0);
         }
     }

@@ -9,8 +9,8 @@ void sub_02002F5C(PaletteData * param0, int param1, void * param2, void * param3
 void sub_02002F70(PaletteData * param0, int param1, u32 param2, u32 param3);
 void sub_02002FA0(PaletteData * param0, int param1);
 void sub_02002FBC(PaletteData * param0, const void * param1, int param2, u16 param3, u16 param4);
-void sub_02002FEC(PaletteData * param0, u32 param1, u32 param2, u32 param3, int param4, u32 param5, u16 param6, u16 param7);
-void PaletteSys_LoadPalette(PaletteData * param0, u32 param1, u32 param2, u32 param3, int param4, u32 param5, u16 param6);
+void sub_02002FEC(PaletteData * param0, u32 bankID, u32 memberIndex, u32 param3, int param4, u32 param5, u16 param6, u16 param7);
+void PaletteSys_LoadPalette(PaletteData * param0, u32 bankID, u32 memberIndex, u32 param3, int param4, u32 param5, u16 param6);
 void sub_02003070(PaletteData * param0, int param1, u16 param2, u32 param3);
 void sub_020030E4(u32 param0, u32 param1, u32 param2, u32 param3, u16 param4, void * param5);
 void sub_02003120(PaletteData * param0, int param1, u16 param2, int param3, u16 param4, u16 param5);

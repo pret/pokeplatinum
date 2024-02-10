@@ -62,6 +62,7 @@
 #include "unk_0202CD50.h"
 #include "unk_02030EA4.h"
 #include "pokemon.h"
+#include "constants/species.h"
 #include "party.h"
 #include "unk_0207E060.h"
 #include "overlay066/ov66_0222DDF0.h"
@@ -2354,7 +2355,7 @@ static void ov66_0222F7C8 (UnkStruct_ov66_0222F6C4 * param0, SaveData * param1, 
                 param0->unk_20.unk_2C[v8] = Pokemon_GetValue(v6, MON_DATA_FORM, NULL);
                 param0->unk_20.unk_32[v8] = Pokemon_GetValue(v6, MON_DATA_IS_EGG, NULL);
             } else {
-                param0->unk_20.unk_20[v8] = 495;
+                param0->unk_20.unk_20[v8] = SPECIES_BAD_EGG;
             }
         }
     }

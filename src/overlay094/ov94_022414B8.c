@@ -4,6 +4,8 @@
 
 #include "core_sys.h"
 
+#include "constants/species.h"
+
 #include "struct_decls/struct_0200112C_decl.h"
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
@@ -1028,15 +1030,15 @@ u8 * ov94_02242548 (int param0)
 {
     u32 v0, v1, v2;
     u16 * v3;
-    u8 * v4 = Heap_AllocFromHeap(62, 493 + 1);
+    u8 *v4 = Heap_AllocFromHeap(62, NATIONAL_DEX_COUNT + 1);
 
-    MI_CpuClearFast(v4, 493 + 1);
+    MI_CpuClearFast(v4, NATIONAL_DEX_COUNT + 1);
 
     v3 = sub_02007068(75, 12, 0, param0, 0, &v0);
     v1 = v0 / (sizeof(u16));
 
     for (v2 = 0; v2 < v1; v2++) {
-        if (v3[v2] < 493 + 1) {
+        if (v3[v2] < NATIONAL_DEX_COUNT + 1) {
             v4[v3[v2]] = 1;
         }
     }

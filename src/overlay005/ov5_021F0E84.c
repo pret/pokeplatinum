@@ -3,13 +3,14 @@
 #include <nnsys.h>
 
 #include "overlay005/ov5_021F0E84.h"
+#include "constants/species.h"
 
 typedef struct {
     u16 unk_00;
     u16 unk_02;
 } UnkStruct_ov5_021FFA54;
 
-static const UnkStruct_ov5_021FFA54 Unk_ov5_021FFA54[494] = {
+static const UnkStruct_ov5_021FFA54 Unk_ov5_021FFA54[NATIONAL_DEX_COUNT + 1] = {
     {0x0, 0x0},
     {0x1, 0x1},
     {0x1, 0x1},

@@ -43,6 +43,7 @@
 #include "unk_0204FA34.h"
 #include "unk_020508D4.h"
 #include "unk_0205DFC4.h"
+#include "constants/species.h"
 #include "pokemon.h"
 #include "party.h"
 #include "unk_0207A274.h"
@@ -553,7 +554,7 @@ BOOL sub_0204F6D8 (UnkStruct_0203E724 * param0)
     if (v0 != 1) {
         v4 = 0;
     } else {
-        for (v5 = 0; v5 < 493; v5++) {
+        for (v5 = 0; v5 < NATIONAL_DEX_COUNT; v5++) {
             v4 += sub_020308BC(v9->unk_0C, v2,
                                0, v5);
             ;
@@ -639,7 +640,7 @@ BOOL sub_0204F8A8 (UnkStruct_0203E724 * param0)
     if (v0 != 1) {
         v4 = 0;
     } else {
-        for (v3 = 0; v3 < 493; v3++) {
+        for (v3 = 0; v3 < NATIONAL_DEX_COUNT; v3++) {
             v2 = 0;
 
             v2 += sub_020308BC(v5->unk_0C, v1,
@@ -691,7 +692,7 @@ BOOL sub_0204F950 (UnkStruct_0203E724 * param0)
     if (v0 != 1) {
         v4 = 0;
     } else {
-        for (v5 = 0; v5 < 493; v5++) {
+        for (v5 = 0; v5 < NATIONAL_DEX_COUNT; v5++) {
             v4 += sub_020308BC(v6->unk_0C, v2,
                                0, v5);
             ;

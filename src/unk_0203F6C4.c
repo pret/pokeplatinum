@@ -184,6 +184,7 @@
 #include "unk_02071CD0.h"
 #include "unk_02071D40.h"
 #include "unk_020722AC.h"
+#include "constants/species.h"
 #include "pokemon.h"
 #include "trainer_data.h"
 #include "unk_020797C8.h"
@@ -6605,7 +6606,7 @@ static BOOL sub_02044BE8 (UnkStruct_0203E724 * param0)
     v3 = LCRNG_Next() % v2;
     *v1 = 25;
 
-    for (v4 = 1, v5 = 0; v4 <= 493; v4++) {
+    for (v4 = 1, v5 = 0; v4 <= NATIONAL_DEX_COUNT; v4++) {
         if ((sub_02026FE8(v0, v4) == 1) && (Pokemon_SinnohDexNumber(v4) != 0)) {
             if (v5 == v3) {
                 *v1 = v4;

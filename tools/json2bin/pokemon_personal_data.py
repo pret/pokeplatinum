@@ -55,35 +55,39 @@ SCHEMA = j2b.Parser() \
     .register('learnset.tms', 16, j2b.pack_flags, tm_learnset.TMLearnsetFlags)
 
 
+NATIONAL_DEX_COUNT = 493
+
+# I'm not sure if this is correct? The form indices in-game are offset at NATIONAL_DEX_COUNT, not SPECIES_BAD_EGG
 FORM_INDICES = {
     'DEOXYS' : {
-        'ATTACK': 496,
-        'DEFENSE': 497,
-        'SPEED': 498,
+        'ATTACK': NATIONAL_DEX_COUNT + 3,
+        'DEFENSE': NATIONAL_DEX_COUNT + 4,
+        'SPEED': NATIONAL_DEX_COUNT + 5,
     },
     'WORMADAM': {
-        'SANDY': 499,
-        'TRASH': 500,
+        'SANDY': NATIONAL_DEX_COUNT + 6,
+        'TRASH': NATIONAL_DEX_COUNT + 7,
     },
     'GIRATINA': {
-        'ORIGIN': 501,
+        'ORIGIN': NATIONAL_DEX_COUNT + 8,
     },
     'SHAYMIN': {
-        'SKY': 502,
+        'SKY': NATIONAL_DEX_COUNT + 9,
     },
     'ROTOM': {
-        'HEAT': 503,
-        'WASH': 504,
-        'FROST': 505,
-        'FAN': 506,
-        'MOW': 507,
+        'HEAT': NATIONAL_DEX_COUNT + 10,
+        'WASH': NATIONAL_DEX_COUNT + 11,
+        'FROST': NATIONAL_DEX_COUNT + 12,
+        'FAN': NATIONAL_DEX_COUNT + 13,
+        'MOW': NATIONAL_DEX_COUNT + 14,
     },
 }
+
 def indexer(file_path: pathlib.Path) -> int:
     name = file_path.parent.stem.upper()
     if name == '000': return 0
-    if name == 'egg': return 494
-    if name == 'bad_egg': return 495
+    if name == 'egg': return NATIONAL_DEX_COUNT + 1
+    if name == 'bad_egg': return NATIONAL_DEX_COUNT + 2
     if file_path.parent.parent.stem == 'forms':
         species_idx = file_path.parent.parent.parent.stem.upper()
         form = file_path.parent.stem.upper()

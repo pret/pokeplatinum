@@ -4,6 +4,7 @@
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "unk_02006E3C.h"
+#include "narc.h"
 #include "message.h"
 #include "unk_02014D38.h"
 #include "heap.h"
@@ -181,7 +182,7 @@ void sub_02014DB8 (u16 param0, Strbuf *param1)
 
         sub_02014E4C(param0, &v0, &v1);
         v0 = Unk_020E550C[v0];
-        MessageBank_GetStrbufFromNARC(26, v0, v1, 0, param1);
+        MessageBank_GetStrbufFromNARC(NARC_INDEX_MSGDATA__PL_MSG, v0, v1, 0, param1);
     } else {
         Strbuf_Clear(param1);
     }

@@ -2,6 +2,7 @@
 #include <string.h>
 
 #include "inlines.h"
+#include "constants/species.h"
 
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
@@ -306,7 +307,7 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
 
     sub_0209304C(v4, v1, 4, sub_02017070(2, v12), 32);
 
-    if (Pokemon_GetValue(v4, MON_DATA_SPECIES, NULL) == 493) {
+    if (Pokemon_GetValue(v4, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
         if (Pokemon_GetValue(v4, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1) {
             if (sub_0206B5F8(v2) == 0) {
                 sub_0206B608(v2, 1);

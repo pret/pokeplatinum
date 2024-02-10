@@ -10,24 +10,32 @@
 #include "unk_020244AC.h"
 #include "unk_0202631C.h"
 #include "pokemon.h"
+#include "constants/species.h"
 #include "unk_020986CC.h"
 
-typedef struct UnkStruct_02026324_t {
-    u32 unk_00;
-    u32 unk_04[16];
-    u32 unk_44[16];
-    u32 unk_84[2][16];
+// These u32[16] arrays store pokedex seen/caught info as bit flags
+// Therefore 32 * 16 = 512 pokedex slots. These need to be bumped up if it's pushed past this number
+// ReadBit and WriteBit may need to be changed as well, to handle a larger range of bits
+
+#define UNOWN_COUNT 28
+#define BYTE_SLOTS 16
+
+typedef struct PokedexData {
+    u32 magic;
+    u32 caughtPokemon[BYTE_SLOTS];
+    u32 seenPokemon[BYTE_SLOTS];
+    u32 recordedGenders[2][BYTE_SLOTS];
     u32 unk_104;
     u8 unk_108;
     u8 unk_109;
     u8 unk_10A;
     u8 unk_10B;
-    u8 unk_10C[28];
-    u8 unk_128[496];
-    u8 unk_318;
+    u8 unk_10C[UNOWN_COUNT];
+    u8 recordedLanguages[MAX_SPECIES + 1];
+    u8 canDetectForms;
     u8 unk_319;
-    u8 unk_31A;
-    u8 unk_31B;
+    u8 pokedexObtained;
+    u8 nationalDexObtained;
     u32 unk_31C;
     u8 unk_320;
     u8 unk_321;
@@ -54,14 +62,14 @@ void sub_02026338 (const UnkStruct_02026324 * param0, UnkStruct_02026324 * param
     MI_CpuCopy8(param0, param1, sizeof(UnkStruct_02026324));
 }
 
-static inline void inline_02026DD0 (const UnkStruct_02026324 * param0)
+static inline void CheckPokedexIntegrity (const UnkStruct_02026324 * param0)
 {
-    GF_ASSERT(param0->unk_00 == 3203386110);
+    GF_ASSERT(param0->magic == 3203386110);
 }
 
 static BOOL sub_02026344 (u16 param0)
 {
-    if ((param0 == 0) || (param0 > 493)) {
+    if ((param0 == 0) || (param0 > NATIONAL_DEX_COUNT)) {
         GF_ASSERT(0);
         return 1;
     } else {
@@ -69,16 +77,16 @@ static BOOL sub_02026344 (u16 param0)
     }
 }
 
-static inline BOOL inline_02026464 (const u8 * param0, u16 param1)
+static inline BOOL ReadBit (const u8 * array, u16 bitNumber)
 {
-    param1--;
-    return 0 != (param0[param1 >> 3] & (1 << (param1 & 7)));
+    bitNumber--;
+    return 0 != (array[bitNumber >> 3] & (1 << (bitNumber & 7)));
 }
 
-static inline void inline_0202736C_sub (u8 * param0, u16 param1)
+static inline void WriteBit (u8 * array, u16 bitNumber)
 {
-    param1--;
-    param0[param1 >> 3] |= 1 << (param1 & 7);
+    bitNumber--;
+    array[bitNumber >> 3] |= 1 << (bitNumber & 7);
 }
 
 static inline void inline_02026360 (u8 * param0, u8 param1, u16 param2)
@@ -106,21 +114,21 @@ static inline void inline_020267B8 (u8 * param0, u8 param1, u16 param2)
 
 static inline void inline_0202736C (UnkStruct_02026324 * param0, u16 param1)
 {
-    inline_0202736C_sub((u8 *)param0->unk_44, param1);
+    WriteBit((u8 *)param0->seenPokemon, param1);
 }
 
 static inline void inline_sub_0202736C_1 (UnkStruct_02026324 * param0, u16 param1)
 {
-    inline_0202736C_sub((u8 *)param0->unk_04, param1);
+    WriteBit((u8 *)param0->caughtPokemon, param1);
 }
 
 static void sub_02026360 (UnkStruct_02026324 * param0, u8 param1, u8 param2, u16 param3)
 {
     if (param2 == 0) {
-        inline_02026360((u8 *)param0->unk_84[1], param1, param3);
+        inline_02026360((u8 *)param0->recordedGenders[1], param1, param3);
     }
 
-    inline_02026360((u8 *)param0->unk_84[param2], param1, param3);
+    inline_02026360((u8 *)param0->recordedGenders[param2], param1, param3);
 }
 
 static void sub_020263D8 (UnkStruct_02026324 * param0, u8 param1, u8 param2, u16 param3)
@@ -136,17 +144,17 @@ static void sub_020263D8 (UnkStruct_02026324 * param0, u8 param1, u8 param2, u16
 
 static inline BOOL inline_02026FE8 (const UnkStruct_02026324 * param0, u16 param1)
 {
-    return inline_02026464((const u8 *)param0->unk_44, param1);
+    return ReadBit((const u8 *)param0->seenPokemon, param1);
 }
 
 static inline BOOL inline_02026F9C (const UnkStruct_02026324 * param0, u16 param1)
 {
-    return inline_02026464((const u8 *)param0->unk_04, param1);
+    return ReadBit((const u8 *)param0->caughtPokemon, param1);
 }
 
 static inline u8 inline_02026BAC (const UnkStruct_02026324 * param0, u16 param1, u8 param2)
 {
-    return inline_02026464((const u8 *)param0->unk_84[param2], param1);
+    return ReadBit((const u8 *)param0->recordedGenders[param2], param1);
 }
 
 static inline void inline_0202736C_1 (UnkStruct_02026324 * param0, u16 param1, u32 param2)
@@ -160,7 +168,7 @@ static int sub_02026400 (const UnkStruct_02026324 * param0)
 {
     int v0;
 
-    for (v0 = 0; v0 < 28; v0++) {
+    for (v0 = 0; v0 < UNOWN_COUNT; v0++) {
         if (param0->unk_10C[v0] == 0xff) {
             break;
         }
@@ -173,7 +181,7 @@ static BOOL sub_02026418 (const UnkStruct_02026324 * param0, u8 param1)
 {
     int v0;
 
-    for (v0 = 0; v0 < 28; v0++) {
+    for (v0 = 0; v0 < UNOWN_COUNT; v0++) {
         if (param0->unk_10C[v0] == param1) {
             return 1;
         }
@@ -192,7 +200,7 @@ static void sub_0202643C (UnkStruct_02026324 * param0, int param1)
 
     v0 = sub_02026400(param0);
 
-    if (v0 < 28) {
+    if (v0 < UNOWN_COUNT) {
         param0->unk_10C[v0] = param1;
     }
 }
@@ -224,8 +232,8 @@ static int sub_02026464 (const UnkStruct_02026324 * param0, u32 param1)
         break;
     }
 
-    v0 = inline_02026464(v2, 1);
-    v1 = inline_02026464(v2, 2);
+    v0 = ReadBit(v2, 1);
+    v1 = ReadBit(v2, 2);
 
     if (v0 == v1) {
         return 1;
@@ -265,7 +273,7 @@ static BOOL sub_02026514 (const UnkStruct_02026324 * param0, u32 param1, u8 para
     v2 = sub_02026464(param0, param1);
 
     for (v1 = 0; v1 < v2; v1++) {
-        v0 = inline_02026464(v3, v1 + 1);
+        v0 = ReadBit(v3, v1 + 1);
 
         if (v0 == param2) {
             return 1;
@@ -409,9 +417,9 @@ static void sub_02026850 (UnkStruct_02026324 * param0, u8 param1, u8 param2)
     GF_ASSERT(param1 <= 15);
 
     if (param2 < 2) {
-        sub_02026834(param0->unk_04, param1, param2);
+        sub_02026834(param0->caughtPokemon, param1, param2);
     } else {
-        sub_02026834(param0->unk_44, param1, param2 - 2);
+        sub_02026834(param0->seenPokemon, param1, param2 - 2);
     }
 }
 
@@ -428,9 +436,9 @@ static u32 sub_0202688C (const UnkStruct_02026324 * param0, u8 param1)
     u32 v0;
 
     if (param1 < 2) {
-        v0 = inline_0202688C(param0->unk_04, param1);
+        v0 = inline_0202688C(param0->caughtPokemon, param1);
     } else {
-        v0 = inline_0202688C(param0->unk_44, param1 - 2);
+        v0 = inline_0202688C(param0->seenPokemon, param1 - 2);
     }
 
     return v0;
@@ -622,7 +630,7 @@ static void sub_02026B88 (UnkStruct_02026324 * param0, u16 param1, u32 param2)
         return;
     }
 
-    param0->unk_128[v0] |= 1 << v1;
+    param0->recordedLanguages[v0] |= 1 << v1;
 }
 
 static u32 sub_02026BAC (const UnkStruct_02026324 * param0, u16 param1, int param2)
@@ -682,7 +690,7 @@ static int sub_02026C24 (const UnkStruct_02026324 * param0, u32 param1, int para
         break;
     }
 
-    return inline_02026464(v0, param2 + 1);
+    return ReadBit(v0, param2 + 1);
 }
 
 static int sub_02026CCC (const UnkStruct_02026324 * param0, u32 param1, int param2)
@@ -747,10 +755,10 @@ void Pokedex_Init (UnkStruct_02026324 * param0)
 {
     memset(param0, 0, sizeof(UnkStruct_02026324));
 
-    param0->unk_00 = 3203386110;
-    param0->unk_31B = 0;
+    param0->magic = 3203386110;
+    param0->nationalDexObtained = FALSE;
 
-    memset(param0->unk_10C, 0xff, sizeof(u8) * 28);
+    memset(param0->unk_10C, 0xff, sizeof(u8) * UNOWN_COUNT);
 
     param0->unk_108 = 0xff;
     param0->unk_109 = 0xff;
@@ -768,10 +776,10 @@ u16 sub_02026DD0 (const UnkStruct_02026324 * param0)
     int v0;
     int v1;
 
-    inline_02026DD0(param0);
+    CheckPokedexIntegrity(param0);
     v1 = 0;
 
-    for (v0 = 1; v0 <= 493; v0++) {
+    for (v0 = 1; v0 <= NATIONAL_DEX_COUNT; v0++) {
         if (Pokedex_CaughtSpecies(param0, v0) == 1) {
             v1++;
         }
@@ -785,10 +793,10 @@ u16 sub_02026E0C (const UnkStruct_02026324 * param0)
     int v0;
     int v1;
 
-    inline_02026DD0(param0);
+    CheckPokedexIntegrity(param0);
     v1 = 0;
 
-    for (v0 = 1; v0 <= 493; v0++) {
+    for (v0 = 1; v0 <= NATIONAL_DEX_COUNT; v0++) {
         if (sub_02026FE8(param0, v0) == 1) {
             v1++;
         }
@@ -811,10 +819,10 @@ u16 sub_02026E64 (const UnkStruct_02026324 * param0)
     int v0;
     int v1;
 
-    inline_02026DD0(param0);
+    CheckPokedexIntegrity(param0);
     v1 = 0;
 
-    for (v0 = 1; v0 <= 493; v0++) {
+    for (v0 = 1; v0 <= NATIONAL_DEX_COUNT; v0++) {
         if (Pokedex_CaughtSpecies(param0, v0) == 1) {
             if (Pokemon_SinnohDexNumber(v0) != 0) {
                 v1++;
@@ -830,10 +838,10 @@ u16 sub_02026EAC (const UnkStruct_02026324 * param0)
     int v0;
     int v1;
 
-    inline_02026DD0(param0);
+    CheckPokedexIntegrity(param0);
     v1 = 0;
 
-    for (v0 = 1; v0 <= 493; v0++) {
+    for (v0 = 1; v0 <= NATIONAL_DEX_COUNT; v0++) {
         if (sub_02026FE8(param0, v0) == 1) {
             if (Pokemon_SinnohDexNumber(v0) != 0) {
                 v1++;
@@ -863,7 +871,7 @@ BOOL sub_02026F0C (const UnkStruct_02026324 * param0)
 
     v0 = sub_02026F58(param0);
 
-    if (v0 >= 210) {
+    if (v0 >= LOCAL_DEX_COUNT) {
         return 1;
     }
 
@@ -877,7 +885,7 @@ u16 sub_02026F20 (const UnkStruct_02026324 * param0)
 
     v1 = 0;
 
-    for (v0 = 1; v0 <= 493; v0++) {
+    for (v0 = 1; v0 <= NATIONAL_DEX_COUNT; v0++) {
         if (Pokedex_CaughtSpecies(param0, v0) == 1) {
             if (sub_02026D44(v0) == 1) {
                 v1++;
@@ -896,7 +904,7 @@ u16 sub_02026F58 (const UnkStruct_02026324 * param0)
 
     v1 = 0;
 
-    for (v0 = 1; v0 <= 493; v0++) {
+    for (v0 = 1; v0 <= NATIONAL_DEX_COUNT; v0++) {
         if (sub_02026FE8(param0, v0) == 1) {
             v2 = Pokemon_SinnohDexNumber(v0);
 
@@ -913,7 +921,7 @@ u16 sub_02026F58 (const UnkStruct_02026324 * param0)
 
 BOOL Pokedex_CaughtSpecies (const UnkStruct_02026324 * param0, u16 param1)
 {
-    inline_02026DD0(param0);
+    CheckPokedexIntegrity(param0);
 
     if (sub_02026344(param1)) {
         return 0;
@@ -928,7 +936,7 @@ BOOL Pokedex_CaughtSpecies (const UnkStruct_02026324 * param0, u16 param1)
 
 BOOL sub_02026FE8 (const UnkStruct_02026324 * param0, u16 param1)
 {
-    inline_02026DD0(param0);
+    CheckPokedexIntegrity(param0);
 
     if (sub_02026344(param1)) {
         return 0;
@@ -941,7 +949,7 @@ u32 sub_0202702C (const UnkStruct_02026324 * param0, u8 param1)
 {
     u32 v0;
 
-    inline_02026DD0(param0);
+    CheckPokedexIntegrity(param0);
 
     switch (param1) {
     case 0:
@@ -957,7 +965,7 @@ u32 sub_0202702C (const UnkStruct_02026324 * param0, u8 param1)
 
 u32 sub_02027058 (const UnkStruct_02026324 * param0, u16 param1, int param2)
 {
-    inline_02026DD0(param0);
+    CheckPokedexIntegrity(param0);
 
     if (sub_02026344(param1)) {
         return -1;
@@ -972,7 +980,7 @@ u32 sub_02027058 (const UnkStruct_02026324 * param0, u16 param1, int param2)
 
 u32 sub_020270AC (const UnkStruct_02026324 * param0, int param1)
 {
-    inline_02026DD0(param0);
+    CheckPokedexIntegrity(param0);
 
     if (sub_02026400(param0) <= param1) {
         return -1;
@@ -983,13 +991,13 @@ u32 sub_020270AC (const UnkStruct_02026324 * param0, int param1)
 
 u32 sub_020270DC (const UnkStruct_02026324 * param0)
 {
-    inline_02026DD0(param0);
+    CheckPokedexIntegrity(param0);
     return sub_02026400(param0);
 }
 
 u32 sub_020270F8 (const UnkStruct_02026324 * param0, int param1)
 {
-    inline_02026DD0(param0);
+    CheckPokedexIntegrity(param0);
 
     if (sub_02026464(param0, 422) <= param1) {
         return -1;
@@ -1000,13 +1008,13 @@ u32 sub_020270F8 (const UnkStruct_02026324 * param0, int param1)
 
 u32 sub_02027130 (const UnkStruct_02026324 * param0)
 {
-    inline_02026DD0(param0);
+    CheckPokedexIntegrity(param0);
     return sub_02026464(param0, 422);
 }
 
 u32 sub_02027154 (const UnkStruct_02026324 * param0, int param1)
 {
-    inline_02026DD0(param0);
+    CheckPokedexIntegrity(param0);
 
     if (sub_02026464(param0, 423) <= param1) {
         return -1;
@@ -1017,13 +1025,13 @@ u32 sub_02027154 (const UnkStruct_02026324 * param0, int param1)
 
 u32 sub_0202718C (const UnkStruct_02026324 * param0)
 {
-    inline_02026DD0(param0);
+    CheckPokedexIntegrity(param0);
     return sub_02026464(param0, 423);
 }
 
 u32 sub_020271B0 (const UnkStruct_02026324 * param0, int param1)
 {
-    inline_02026DD0(param0);
+    CheckPokedexIntegrity(param0);
 
     if (sub_020266F8(param0, 412) <= param1) {
         return -1;
@@ -1034,13 +1042,13 @@ u32 sub_020271B0 (const UnkStruct_02026324 * param0, int param1)
 
 u32 sub_020271E8 (const UnkStruct_02026324 * param0)
 {
-    inline_02026DD0(param0);
+    CheckPokedexIntegrity(param0);
     return sub_020266F8(param0, 412);
 }
 
 u32 sub_02027208 (const UnkStruct_02026324 * param0, int param1)
 {
-    inline_02026DD0(param0);
+    CheckPokedexIntegrity(param0);
 
     if (sub_020266F8(param0, 413) <= param1) {
         return -1;
@@ -1051,30 +1059,30 @@ u32 sub_02027208 (const UnkStruct_02026324 * param0, int param1)
 
 u32 sub_02027240 (const UnkStruct_02026324 * param0)
 {
-    inline_02026DD0(param0);
+    CheckPokedexIntegrity(param0);
     return sub_020266F8(param0, 413);
 }
 
 u32 sub_02027264 (const UnkStruct_02026324 * param0, int param1)
 {
-    inline_02026DD0(param0);
+    CheckPokedexIntegrity(param0);
     return sub_0202688C(param0, param1);
 }
 
 u32 sub_02027288 (const UnkStruct_02026324 * param0)
 {
-    inline_02026DD0(param0);
+    CheckPokedexIntegrity(param0);
     return sub_020268B8(param0);
 }
 
-void sub_020272A4 (UnkStruct_02026324 * param0, Pokemon * param1)
+void sub_020272A4 (UnkStruct_02026324 * param0, Pokemon * pokemon)
 {
-    u16 v0 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
-    u32 v1 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
-    u32 v2 = Pokemon_GetGender(param1);
+    u16 v0 = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
+    u32 v1 = Pokemon_GetValue(pokemon, MON_DATA_PERSONALITY, NULL);
+    u32 v2 = Pokemon_GetGender(pokemon);
     u32 v3;
 
-    inline_02026DD0(param0);
+    CheckPokedexIntegrity(param0);
 
     if (sub_02026344(v0)) {
         return;
@@ -1091,7 +1099,7 @@ void sub_020272A4 (UnkStruct_02026324 * param0, Pokemon * param1)
         }
     }
 
-    sub_02026A60(param0, v0, param1);
+    sub_02026A60(param0, v0, pokemon);
     inline_0202736C(param0, v0);
 }
 
@@ -1103,7 +1111,7 @@ void sub_0202736C (UnkStruct_02026324 * param0, Pokemon * param1)
     u32 v3 = Pokemon_GetGender(param1);
     u32 v4;
 
-    inline_02026DD0(param0);
+    CheckPokedexIntegrity(param0);
 
     if (sub_02026344(v0)) {
         return;
@@ -1129,26 +1137,26 @@ void sub_0202736C (UnkStruct_02026324 * param0, Pokemon * param1)
 
 void sub_02027454 (UnkStruct_02026324 * param0)
 {
-    inline_02026DD0(param0);
-    param0->unk_31B = 1;
+    CheckPokedexIntegrity(param0);
+    param0->nationalDexObtained = 1;
 }
 
 BOOL sub_02027474 (const UnkStruct_02026324 * param0)
 {
-    inline_02026DD0(param0);
-    return param0->unk_31B;
+    CheckPokedexIntegrity(param0);
+    return param0->nationalDexObtained;
 }
 
 BOOL sub_02027494 (const UnkStruct_02026324 * param0)
 {
-    inline_02026DD0(param0);
-    return param0->unk_318;
+    CheckPokedexIntegrity(param0);
+    return param0->canDetectForms;
 }
 
 void sub_020274B0 (UnkStruct_02026324 * param0)
 {
-    inline_02026DD0(param0);
-    param0->unk_318 = 1;
+    CheckPokedexIntegrity(param0);
+    param0->canDetectForms = 1;
 }
 
 BOOL sub_020274D0 (const UnkStruct_02026324 * param0, u16 param1, u32 param2)
@@ -1157,12 +1165,12 @@ BOOL sub_020274D0 (const UnkStruct_02026324 * param0, u16 param1, u32 param2)
 
     GF_ASSERT(param2 < 8);
 
-    inline_02026DD0(param0);
+    CheckPokedexIntegrity(param0);
 
     v0 = param1;
     param2 = sub_020986CC(param2);
 
-    return param0->unk_128[v0] & (1 << param2);
+    return param0->recordedLanguages[v0] & (1 << param2);
 }
 
 void sub_02027508 (UnkStruct_02026324 * param0)
@@ -1177,14 +1185,14 @@ BOOL sub_02027514 (const UnkStruct_02026324 * param0)
 
 BOOL sub_02027520 (const UnkStruct_02026324 * param0)
 {
-    inline_02026DD0(param0);
-    return param0->unk_31A;
+    CheckPokedexIntegrity(param0);
+    return param0->pokedexObtained;
 }
 
 void sub_02027540 (UnkStruct_02026324 * param0)
 {
-    inline_02026DD0(param0);
-    param0->unk_31A = 1;
+    CheckPokedexIntegrity(param0);
+    param0->pokedexObtained = 1;
 }
 
 UnkStruct_02026324 * sub_02027560 (SaveData * param0)
@@ -1197,7 +1205,7 @@ UnkStruct_02026324 * sub_02027560 (SaveData * param0)
 
 u32 sub_0202756C (const UnkStruct_02026324 * param0, int param1, int param2)
 {
-    inline_02026DD0(param0);
+    CheckPokedexIntegrity(param0);
 
     switch (param1) {
     case 201:
@@ -1252,29 +1260,29 @@ u32 sub_0202756C (const UnkStruct_02026324 * param0, int param1, int param2)
     return 0;
 }
 
-u32 sub_020276C8 (const UnkStruct_02026324 * param0, int param1)
+u32 sub_020276C8 (const UnkStruct_02026324 * pokedex, int param1)
 {
-    inline_02026DD0(param0);
+    CheckPokedexIntegrity(pokedex);
 
     switch (param1) {
     case 201:
-        return sub_020270DC(param0);
+        return sub_020270DC(pokedex);
     case 422:
-        return sub_02027130(param0);
+        return sub_02027130(pokedex);
     case 423:
-        return sub_0202718C(param0);
+        return sub_0202718C(pokedex);
     case 412:
-        return sub_020271E8(param0);
+        return sub_020271E8(pokedex);
     case 413:
-        return sub_02027240(param0);
+        return sub_02027240(pokedex);
     case 386:
-        return sub_02027288(param0);
+        return sub_02027288(pokedex);
     case 492:
-        return sub_02026464(param0, 492);
+        return sub_02026464(pokedex, 492);
     case 487:
-        return sub_02026464(param0, 487);
+        return sub_02026464(pokedex, 487);
     case 479:
-        return sub_02026958(param0, 479);
+        return sub_02026958(pokedex, 479);
     default:
         break;
     }

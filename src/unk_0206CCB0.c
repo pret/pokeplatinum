@@ -60,6 +60,7 @@
 #include "roaming_pokemon.h"
 #include "unk_0206CCB0.h"
 #include "unk_02071CFC.h"
+#include "constants/species.h"
 #include "pokemon.h"
 #include "party.h"
 #include "unk_0207D3B8.h"
@@ -2761,9 +2762,9 @@ static int sub_0206F01C (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     u16 v1, v2, v3;
     const UnkStruct_02026324 * v4 = sub_02027560(param0->unk_0C);
 
-    v1 = (LCRNG_Next() % (493 - 1)) + 1;
+    v1 = (LCRNG_Next() % (NATIONAL_DEX_COUNT - 1)) + 1;
 
-    for (v2 = 1; v2 <= 493; v2++) {
+    for (v2 = 1; v2 <= NATIONAL_DEX_COUNT; v2++) {
         if (sub_02026FE8(v4, v1) == 1) {
             v3 = v1;
             break;
@@ -2771,7 +2772,7 @@ static int sub_0206F01C (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
 
         v1++;
 
-        if (v1 == 493) {
+        if (v1 == NATIONAL_DEX_COUNT) {
             v1 = 1;
         }
     }
@@ -2862,9 +2863,9 @@ static int sub_0206F160 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     sub_0206CE74(param1, 0, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), Pokemon_GetValue(v3, MON_DATA_GENDER, NULL), TrainerInfo_RegionCode(v5), TrainerInfo_GameCode(v5));
     sub_0200BFAC(param1, 1, (LCRNG_Next() % 100));
 
-    v1 = (LCRNG_Next() % (493 - 2) + 1);
+    v1 = (LCRNG_Next() % (NATIONAL_DEX_COUNT - 2) + 1);
 
-    for (v2 = 1; v2 <= 493; v2++) {
+    for (v2 = 1; v2 <= NATIONAL_DEX_COUNT; v2++) {
         if (sub_02026FE8(v6, v1) == 1) {
             v0 = sub_0206F0D8(v1, 4);
             sub_0200B48C(param1, 2, v0, 0, 1, GAME_LANGUAGE);
@@ -2874,7 +2875,7 @@ static int sub_0206F160 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
 
         v1++;
 
-        if (v1 >= 493) {
+        if (v1 >= NATIONAL_DEX_COUNT) {
             v1 = 1;
         }
     }

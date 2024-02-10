@@ -242,16 +242,16 @@ BOOL ov21_021D3464 (UnkStruct_ov21_021D3320 * param0, int param1, int param2, in
     int v5;
     BOOL v6;
 
-    v0 = Heap_AllocFromHeapAtEnd(param7, sizeof(u16) * 493);
+    v0 = Heap_AllocFromHeapAtEnd(param7, sizeof(u16) * NATIONAL_DEX_COUNT);
 
     GF_ASSERT(v0);
-    memset(v0, 0, sizeof(u16) * 493);
+    memset(v0, 0, sizeof(u16) * NATIONAL_DEX_COUNT);
 
     v1 = 0;
-    v2 = Heap_AllocFromHeapAtEnd(param7, sizeof(u16) * 493);
+    v2 = Heap_AllocFromHeapAtEnd(param7, sizeof(u16) * NATIONAL_DEX_COUNT);
 
     GF_ASSERT(v2);
-    memset(v2, 0, sizeof(u16) * 493);
+    memset(v2, 0, sizeof(u16) * NATIONAL_DEX_COUNT);
 
     v3 = 0;
 
@@ -676,7 +676,7 @@ static void ov21_021D3AB8 (UnkStruct_ov21_021D3A60 * param0, const u16 * param1,
                 v1++;
                 param0->unk_1728++;
             } else {
-                param0->unk_F70[param0->unk_1728] = (493 + 1);
+                param0->unk_F70[param0->unk_1728] = (NATIONAL_DEX_COUNT + 1);
                 param0->unk_1728++;
             }
         }

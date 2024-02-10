@@ -1,6 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/species.h"
+
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "overlay113/struct_ov113_0225DBCC_decl.h"
@@ -553,7 +555,7 @@ static UnkStruct_ov113_0225E6B8 * ov113_0225E6B8 (UnkStruct_ov113_0225DBCC * par
     v0->unk_240_24 = 0xff;
     v0->unk_00 = *param2;
 
-    if (v0->unk_00.unk_02 > 493) {
+    if (v0->unk_00.unk_02 > NATIONAL_DEX_COUNT) {
         GF_ASSERT(0);
         v0->unk_00.unk_02 = 132;
     }

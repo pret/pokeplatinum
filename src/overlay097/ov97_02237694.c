@@ -52,6 +52,7 @@
 #include "strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_02033200.h"
+#include "constants/species.h"
 #include "pokemon.h"
 #include "item.h"
 #include "overlay097/ov97_02237694.h"
@@ -628,10 +629,10 @@ static void ov97_02237FF4 (UnkStruct_ov97_0223F550 * param0, int param1, UnkStru
         ov97_02237EF8(param0->unk_26C, v0, Pokemon_GetValue(v0, MON_DATA_SPECIES, 0), Pokemon_GetValue(v0, MON_DATA_FORM, 0), param0->unk_278, &param0->unk_EF8);
         break;
     case 2:
-        ov97_02237EF8(param0->unk_26C, v0, 494, 0, param0->unk_278, &param0->unk_EF8);
+        ov97_02237EF8(param0->unk_26C, v0, SPECIES_EGG, 0, param0->unk_278, &param0->unk_EF8);
         break;
     case 7:
-        ov97_02237EF8(param0->unk_26C, v0, 494, 1, param0->unk_278, &param0->unk_EF8);
+        ov97_02237EF8(param0->unk_26C, v0, SPECIES_EGG, 1, param0->unk_278, &param0->unk_EF8);
         break;
     }
 }

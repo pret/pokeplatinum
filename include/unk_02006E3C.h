@@ -16,7 +16,7 @@ u32 sub_02006F00(u32 param0, u32 param1, BOOL param2, int param3, u32 param4, NN
 void sub_02006F28(u32 param0, u32 param1, BOOL param2, int param3, u32 param4, NNS_G2D_VRAM_TYPE param5, u32 param6, u32 param7, NNSG2dImageProxy * param8);
 void * sub_02006F50(u32 param0, u32 param1, BOOL param2, NNSG2dCharacterData ** param3, u32 param4);
 void * sub_02006F6C(u32 param0, u32 param1, BOOL param2, NNSG2dScreenData ** param3, u32 param4);
-void * sub_02006F88(u32 param0, u32 param1, NNSG2dPaletteData ** param2, u32 param3);
+void * sub_02006F88(u32 bankID, u32 memberIndex, NNSG2dPaletteData ** param2, u32 param3);
 void * sub_02006FA0(u32 param0, u32 param1, BOOL param2, NNSG2dCellDataBank ** param3, u32 param4);
 void * sub_02006FBC(u32 param0, u32 param1, BOOL param2, NNSG2dAnimBankData ** param3, u32 param4);
 void * sub_02006FD8(u32 param0, u32 param1, u32 param2);
