@@ -82,7 +82,6 @@
 #include "overlay016/ov16_0226E148.h"
 
 BGL * BattleSystem_BGL(BattleSystem * param0);
-Window * BattleSystem_Window(BattleSystem * param0, int param1);
 u32 BattleSystem_BattleType(BattleSystem * param0);
 BattleContext * BattleSystem_Context(BattleSystem * param0);
 BattlerData * BattleSystem_BattlerData(BattleSystem * param0, int param1);
@@ -212,7 +211,6 @@ void ov16_0223F9A0(BattleSystem * param0, int param1);
 BOOL BattleSystem_CaughtSpecies(BattleSystem *battleSys, int species);
 void Battle_SetDefaultBlend(void);
 u8 ov16_0223F9FC(BattleSystem * param0, int param1, int param2, int param3, int param4);
-u8 BattleMessage_Print(BattleSystem * param0, MessageLoader * param1, BattleMessage * param2, int param3);
 u8 BattleMessage_PrintToWindow(BattleSystem * param0, Window * param1, MessageLoader * param2, BattleMessage * param3, int param4, int param5, int param6, int param7, int param8);
 static void BattleMessage_CheckSide(BattleSystem *battleSys, BattleMessage *battleMsg);
 static void BattleMessage_FillFormatBuffers(BattleSystem *battleSys, BattleMessage *battleMsg);
@@ -240,9 +238,9 @@ BGL * BattleSystem_BGL (BattleSystem * param0)
     return param0->unk_04;
 }
 
-Window * BattleSystem_Window (BattleSystem * param0, int param1)
+Window* BattleSystem_Window(BattleSystem *battleSys, int idx)
 {
-    return &param0->unk_08[param1];
+    return &battleSys->windows[idx];
 }
 
 u32 BattleSystem_BattleType (BattleSystem *battleSys)
@@ -1797,17 +1795,17 @@ u8 ov16_0223F9FC (BattleSystem * param0, int param1, int param2, int param3, int
     return v1;
 }
 
-u8 BattleMessage_Print (BattleSystem * param0, MessageLoader * param1, BattleMessage * param2, int param3)
+u8 BattleMessage_Print(BattleSystem *battleSys, MessageLoader *msgLoader, BattleMessage *battleMsg, int renderDelay)
 {
-    Window * v0 = BattleSystem_Window(param0, 0);
+    Window *textWindow = BattleSystem_Window(battleSys, 0);
 
-    BattleMessage_CheckSide(param0, param2);
-    BattleMessage_FillFormatBuffers(param0, param2);
-    BattleMessage_Format(param0, param1, param2);
+    BattleMessage_CheckSide(battleSys, battleMsg);
+    BattleMessage_FillFormatBuffers(battleSys, battleMsg);
+    BattleMessage_Format(battleSys, msgLoader, battleMsg);
 
-    BGL_FillWindow(v0, 0xff);
+    BGL_FillWindow(textWindow, 0xFF);
 
-    return PrintStringSimple(v0, 1, param0->msgBuffer, 0, 0, param3, BattleMessage_Callback);
+    return PrintStringSimple(textWindow, 1, battleSys->msgBuffer, 0, 0, renderDelay, BattleMessage_Callback);
 }
 
 u8 BattleMessage_PrintToWindow (BattleSystem * param0, Window * param1, MessageLoader * param2, BattleMessage * param3, int param4, int param5, int param6, int param7, int param8)
