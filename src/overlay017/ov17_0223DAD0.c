@@ -729,7 +729,7 @@ static void ov17_0223E458 (UnkStruct_ov17_0224DF54 * param0)
 
 static void ov17_0223E4B0 (UnkStruct_ov17_0224DF54 * param0, NARC * param1)
 {
-    sub_0200CDC4(param0->unk_14.unk_90, 2, param0->unk_14.unk_58, param0->unk_14.unk_5C, param1, 6, 0, 8, NNS_G2D_VRAM_TYPE_2DMAIN, 33001);
+    SpriteRenderer_LoadPalette(param0->unk_14.unk_90, 2, param0->unk_14.unk_58, param0->unk_14.unk_5C, param1, 6, 0, 8, NNS_G2D_VRAM_TYPE_2DMAIN, 33001);
 
     ov17_0224A20C(param0->unk_14.unk_58, param0->unk_14.unk_5C);
     ov17_0224A390(param0->unk_14.unk_58, param0->unk_14.unk_5C, param1);
@@ -769,7 +769,7 @@ static void ov17_0223E588 (UnkStruct_ov17_0224DF54 * param0)
     ov17_0224AFF8(param0->unk_14.unk_5C);
     ov17_0224B058(param0);
 
-    sub_0200D080(param0->unk_14.unk_5C, 33001);
+    SpriteGfxHandler_UnloadPlttObjById(param0->unk_14.unk_5C, 33001);
 }
 
 static void ov17_0223E60C (UnkStruct_ov17_0224DF54 * param0, NARC * param1)

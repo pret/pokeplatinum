@@ -21,7 +21,7 @@
 #include "overlay017/struct_ov17_0223F2E4.h"
 #include "overlay017/struct_ov17_0223F6E8.h"
 #include "overlay017/struct_ov17_0223F744.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
@@ -49,7 +49,7 @@ static void ov17_0223F6E8(SysTask * param0, void * param1);
 static void ov17_0223F15C(void);
 static void ov17_0223F774(SysTask * param0, void * param1);
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_022531FC = {
+static const SpriteTemplate Unk_ov17_022531FC = {
     0x0,
     0x0,
     0x0,
@@ -111,7 +111,7 @@ void ov17_0223F1E0 (GenericPointerData * param0)
     sub_020242C4(param0);
 }
 
-void ov17_0223F1E8 (int param0, BGL * param1, AnimationResourceCollection * param2, UnkStruct_02012744 * param3, UnkStruct_ov17_0223F2E4 * param4, const Strbuf *param5, int param6, u32 param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
+void ov17_0223F1E8 (int param0, BGL * param1, SpriteGfxHandler * param2, UnkStruct_02012744 * param3, UnkStruct_ov17_0223F2E4 * param4, const Strbuf *param5, int param6, u32 param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
 {
     UnkStruct_020127E8 v0;
     Window v1;
@@ -314,7 +314,7 @@ void ov17_0223F374 (UnkStruct_02095C48 * param0)
     }
 }
 
-void ov17_0223F560 (CellTransferStateData * param0, AnimationResourceCollection * param1, PaletteSys * param2, int param3, int param4, int param5, int param6)
+void ov17_0223F560 (SpriteRenderer * param0, SpriteGfxHandler * param1, PaletteData * param2, int param3, int param4, int param5, int param6)
 {
     if (param3 != -1) {
         sub_0200CBDC(param0, param1, 46, 73, 1, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
@@ -333,49 +333,49 @@ void ov17_0223F560 (CellTransferStateData * param0, AnimationResourceCollection 
     }
 }
 
-void ov17_0223F5E8 (AnimationResourceCollection * param0, int param1, int param2, int param3, int param4)
+void ov17_0223F5E8 (SpriteGfxHandler * param0, int param1, int param2, int param3, int param4)
 {
     if (param1 != -1) {
-        sub_0200D070(param0, param1);
+        SpriteGfxHandler_UnloadCharObjById(param0, param1);
     }
 
     if (param2 != -1) {
-        sub_0200D080(param0, param2);
+        SpriteGfxHandler_UnloadPlttObjById(param0, param2);
     }
 
     if (param3 != -1) {
-        sub_0200D090(param0, param3);
+        SpriteGfxHandler_UnloadCellObjById(param0, param3);
     }
 
     if (param4 != -1) {
-        sub_0200D0A0(param0, param4);
+        SpriteGfxHandler_UnloadAnimObjById(param0, param4);
     }
 }
 
-void ov17_0223F630 (UnkStruct_ov17_0223F6E8 * param0, CellTransferStateData * param1, AnimationResourceCollection * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, u32 param10)
+void ov17_0223F630 (UnkStruct_ov17_0223F6E8 * param0, SpriteRenderer * param1, SpriteGfxHandler * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, u32 param10)
 {
     int v0;
-    UnkStruct_ov104_0223F9E0 v1;
+    SpriteTemplate v1;
 
     GF_ASSERT(NELEMS(Unk_ov17_022531CC) == 6);
 
     v1 = Unk_ov17_022531FC;
 
-    v1.unk_14[0] = param3;
-    v1.unk_14[1] = param4;
-    v1.unk_14[2] = param5;
-    v1.unk_14[3] = param6;
-    v1.unk_0C = param7;
-    v1.unk_08 = param8;
-    v1.unk_2C = param9;
+    v1.resources[0] = param3;
+    v1.resources[1] = param4;
+    v1.resources[2] = param5;
+    v1.resources[3] = param6;
+    v1.plttIdx = param7;
+    v1.priority = param8;
+    v1.bgPriority = param9;
 
     for (v0 = 0; v0 < 6; v0++) {
-        param0->unk_00[v0] = sub_0200CE6C(param1, param2, &v1);
+        param0->unk_00[v0] = SpriteActor_LoadResources(param1, param2, &v1);
 
-        sub_0200D4C4(param0->unk_00[v0], Unk_ov17_022531CC[v0].unk_00, Unk_ov17_022531CC[v0].unk_02);
+        SpriteActor_SetSpritePositionXY(param0->unk_00[v0], Unk_ov17_022531CC[v0].unk_00, Unk_ov17_022531CC[v0].unk_02);
         sub_0200D364(param0->unk_00[v0], Unk_ov17_022531CC[v0].unk_06);
         sub_0200D6A4(param0->unk_00[v0], 1);
-        sub_0200D324(param0->unk_00[v0]->unk_00);
+        SpriteActor_UpdateObject(param0->unk_00[v0]->unk_00);
     }
 
     param0->unk_18 = SysTask_Start(ov17_0223F6E8, param0, param10);
@@ -403,7 +403,7 @@ static void ov17_0223F6E8 (SysTask * param0, void * param1)
     }
 }
 
-UnkStruct_ov17_0223F744 * ov17_0223F70C (int param0, PaletteSys * param1, const u16 * param2, int param3, int param4, u32 param5)
+UnkStruct_ov17_0223F744 * ov17_0223F70C (int param0, PaletteData * param1, const u16 * param2, int param3, int param4, u32 param5)
 {
     UnkStruct_ov17_0223F744 * v0;
 

@@ -10,8 +10,8 @@
 
 void ov17_022476F8(UnkStruct_ov17_022476F8 * param0, int param1);
 void ov17_02247734(UnkStruct_ov17_022476F8 * param0);
-void ov17_0224774C(CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2);
-void ov17_02247798(AnimationResourceCollection * param0);
+void ov17_0224774C(SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2);
+void ov17_02247798(SpriteGfxHandler * param0);
 void ov17_022477B8(UnkStruct_ov17_02247A48 * param0, int param1, int param2, fx32 param3, int param4);
 void ov17_022478D0(UnkStruct_ov17_02247A48 * param0, int param1);
 void ov17_02247918(UnkStruct_ov17_02247A48 * param0);

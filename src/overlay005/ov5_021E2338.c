@@ -692,9 +692,9 @@ void ov5_021E2B54 (SysTask * param0, void * param1)
 
         ov5_021DDF9C(v0, v1->unk_44, 96, 6, 0, (255 * FX32_ONE), (FX32_ONE * 10));
 
-        sub_02021D6C(
+        SpriteActor_SetSpriteAnimActive(
             v1->unk_21C[0], 1);
-        sub_02021D6C(
+        SpriteActor_SetSpriteAnimActive(
             v1->unk_21C[1], 2);
 
         ov5_021DDE14(&v1->unk_2C, 0, (255 * FX32_ONE), (FX32_ONE * 10), 6);
@@ -2567,7 +2567,7 @@ static void ov5_021E5128 (UnkStruct_ov5_021E5128 * param0, UnkStruct_ov5_021DE47
 
         if (v0 != 3) {
             sub_02021CF8(param0->unk_04[v0], 2);
-            sub_02021D6C(param0->unk_04[v0], 1);
+            SpriteActor_SetSpriteAnimActive(param0->unk_04[v0], 1);
 
             ov5_021DDDBC(&param0->unk_14[v0], FX32_CONST(2), FX32_CONST(1), 6);
         } else {
@@ -3034,7 +3034,7 @@ static BOOL ov5_021E5890 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
             v0->unk_2CC[v5] = ov5_021DE62C(
                 &v0->unk_5C, v7, 0, 0, 0, 0);
             sub_02021CAC(v0->unk_2CC[v5], 0);
-            sub_02021D6C(v0->unk_2CC[v5], v8);
+            SpriteActor_SetSpriteAnimActive(v0->unk_2CC[v5], v8);
             sub_02021E80(v0->unk_2CC[v5], 1);
         }
 

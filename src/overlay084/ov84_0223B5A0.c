@@ -1249,7 +1249,7 @@ static u8 ov84_0223C5B8 (UnkStruct_ov84_0223B5A0 * param0)
     sub_020014DC(param0->unk_15C, &v2, &v3);
 
     if (v0->unk_04 != v3) {
-        sub_0200D4C4(
+        SpriteActor_SetSpritePositionXY(
             param0->unk_E0[4], 177, 24 + (v3 - 1) * 16);
     }
 
@@ -1558,7 +1558,7 @@ static u8 ov84_0223CBD8 (UnkStruct_ov84_0223B5A0 * param0)
             ov84_0223C194(&param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09);
             ov84_0223C1D0(&param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09, 9);
             ov84_0223C224(param0, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04);
-            sub_0200D4C4(param0->unk_E0[4], 177, 24 + (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04 - 1) * 16);
+            SpriteActor_SetSpritePositionXY(param0->unk_E0[4], 177, 24 + (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04 - 1) * 16);
             sub_0200D3F4(param0->unk_E0[4], 1);
 
             v0->unk_02++;
@@ -1771,25 +1771,25 @@ static void ov84_0223D0FC (UnkStruct_ov84_0223B5A0 * param0)
         switch (param0->unk_480) {
         case 0:
         case 1:
-            sub_0200D550(param0->unk_E0[2], &v0, &v1);
+            SpriteActor_GetSpritePositionXY(param0->unk_E0[2], &v0, &v1);
 
             v0 -= 1;
-            sub_0200D4C4(param0->unk_E0[2], v0, v1);
-            sub_0200D550(param0->unk_E0[3], &v0, &v1);
+            SpriteActor_SetSpritePositionXY(param0->unk_E0[2], v0, v1);
+            SpriteActor_GetSpritePositionXY(param0->unk_E0[3], &v0, &v1);
 
             v0 += 1;
-            sub_0200D4C4(param0->unk_E0[3], v0, v1);
+            SpriteActor_SetSpritePositionXY(param0->unk_E0[3], v0, v1);
             break;
         case 2:
         case 3:
-            sub_0200D550(param0->unk_E0[2], &v0, &v1);
+            SpriteActor_GetSpritePositionXY(param0->unk_E0[2], &v0, &v1);
 
             v0 += 1;
-            sub_0200D4C4(param0->unk_E0[2], v0, v1);
-            sub_0200D550(param0->unk_E0[3], &v0, &v1);
+            SpriteActor_SetSpritePositionXY(param0->unk_E0[2], v0, v1);
+            SpriteActor_GetSpritePositionXY(param0->unk_E0[3], &v0, &v1);
 
             v0 -= 1;
-            sub_0200D4C4(param0->unk_E0[3], v0, v1);
+            SpriteActor_SetSpritePositionXY(param0->unk_E0[3], v0, v1);
             break;
         }
 
@@ -1879,7 +1879,7 @@ static u8 ov84_0223D2F8 (UnkStruct_ov84_0223B5A0 * param0)
     sub_020014DC(param0->unk_15C, &v2, &v3);
 
     if (v0->unk_04 != v3) {
-        sub_0200D4C4(param0->unk_E0[5], 177, 24 + (v3 - 1) * 16 - 8);
+        SpriteActor_SetSpritePositionXY(param0->unk_E0[5], 177, 24 + (v3 - 1) * 16 - 8);
     }
 
     v0->unk_06 = v2;
@@ -1954,7 +1954,7 @@ static void ov84_0223D4E8 (UnkStruct_ov84_0223B5A0 * param0)
     UnkStruct_ov84_0223BE5C * v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
 
     if (param0->unk_47A == 0) {
-        sub_0200D4C4(param0->unk_E0[4], 177, 24 + (v0->unk_04 - 1) * 16);
+        SpriteActor_SetSpritePositionXY(param0->unk_E0[4], 177, 24 + (v0->unk_04 - 1) * 16);
         sub_0200D3F4(param0->unk_E0[4], 1);
         sub_0200D3F4(param0->unk_E0[5], 0);
 
@@ -1963,7 +1963,7 @@ static void ov84_0223D4E8 (UnkStruct_ov84_0223B5A0 * param0)
             sub_0200D3F4(param0->unk_E0[3], 1);
         }
     } else {
-        sub_0200D4C4(param0->unk_E0[5], 177, 24 + (v0->unk_04 - 1) * 16 - 8);
+        SpriteActor_SetSpritePositionXY(param0->unk_E0[5], 177, 24 + (v0->unk_04 - 1) * 16 - 8);
         sub_0200D3F4(param0->unk_E0[4], 0);
         sub_0200D3F4(param0->unk_E0[5], 1);
 
@@ -3082,7 +3082,7 @@ static BOOL ov84_0223ED64 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
         return 0;
     }
 
-    sub_0200D4C4(param0->unk_E0[4], 177, 24 + (v1 - 1) * 16);
+    SpriteActor_SetSpritePositionXY(param0->unk_E0[4], 177, 24 + (v1 - 1) * 16);
 
     param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06 = v0;
     param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04 = v1;
@@ -3128,7 +3128,7 @@ static BOOL ov84_0223EE80 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
         return 0;
     }
 
-    sub_0200D4C4(param0->unk_E0[5], 177, 24 + (v1 - 1) * 16 - 8);
+    SpriteActor_SetSpritePositionXY(param0->unk_E0[5], 177, 24 + (v1 - 1) * 16 - 8);
 
     param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06 = v0;
     param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04 = v1;

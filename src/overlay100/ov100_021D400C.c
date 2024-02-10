@@ -228,7 +228,7 @@ void ov100_021D4438 (SysTask * param0, void * param1)
         BOOL v3;
 
         if (v0->unk_04 && v0->unk_3C) {
-            sub_0200D550(v0->unk_04, &v1, &v2);
+            SpriteActor_GetSpritePositionXY(v0->unk_04, &v1, &v2);
 
             v3 = ov100_021D4104(v0, v1, v2, 3.0f, 1);
 

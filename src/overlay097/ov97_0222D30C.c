@@ -1208,7 +1208,7 @@ static GraphicElementData * ov97_0222E538 (UnkStruct_ov97_0222E398 * param0, int
     if (v0) {
         sub_02021CC8(v0, 1);
         sub_02021E80(v0, 0);
-        sub_02021D6C(v0, 0);
+        SpriteActor_SetSpriteAnimActive(v0, 0);
         sub_02021CAC(v0, 1);
     }
 
@@ -1220,7 +1220,7 @@ static void ov97_0222E5B4 (UnkStruct_ov97_0222E398 * param0)
     param0->unk_3008.unk_0C = ov97_0222E538(param0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     sub_02021DCC(param0->unk_3008.unk_0C, 2);
-    sub_02021E50(param0->unk_3008.unk_0C, 0);
+    SpriteActor_SetAnimFrame(param0->unk_3008.unk_0C, 0);
     sub_02021CAC(param0->unk_3008.unk_0C, 0);
     sub_02021F58(param0->unk_3008.unk_0C, 0);
     sub_02021CF8(param0->unk_3008.unk_0C, 2);
@@ -1239,7 +1239,7 @@ static void ov97_0222E60C (UnkStruct_ov97_0222E398 * param0)
     param0->unk_3054.unk_0C = ov97_0222E538(param0, NNS_G2D_VRAM_TYPE_2DSUB);
 
     sub_02021DCC(param0->unk_3054.unk_0C, 4);
-    sub_02021E50(param0->unk_3054.unk_0C, 0);
+    SpriteActor_SetAnimFrame(param0->unk_3054.unk_0C, 0);
     sub_02021CAC(param0->unk_3054.unk_0C, 0);
     sub_02021F58(param0->unk_3054.unk_0C, 0);
     sub_02021CF8(param0->unk_3054.unk_0C, 2);
@@ -1295,7 +1295,7 @@ static void ov97_0222E6F8 (UnkStruct_ov97_0222E398 * param0)
     for (v0 = 0; v0 < 80; v0++) {
         param0->unk_88[v0].unk_0C = ov97_0222E538(param0, NNS_G2D_VRAM_TYPE_2DMAIN);
         sub_02021DCC(param0->unk_88[v0].unk_0C, 1);
-        sub_02021E50(param0->unk_88[v0].unk_0C, 0);
+        SpriteActor_SetAnimFrame(param0->unk_88[v0].unk_0C, 0);
     }
 }
 
@@ -1307,7 +1307,7 @@ static void ov97_0222E734 (UnkStruct_ov97_0222E398 * param0)
         if (v0 < (80 / 4)) {
             param0->unk_88[v0].unk_0C = ov97_0222E538(param0, NNS_G2D_VRAM_TYPE_2DMAIN);
             sub_02021DCC(param0->unk_88[v0].unk_0C, 1);
-            sub_02021E50(param0->unk_88[v0].unk_0C, 0);
+            SpriteActor_SetAnimFrame(param0->unk_88[v0].unk_0C, 0);
         } else {
             param0->unk_88[v0].unk_0C = NULL;
         }
@@ -1321,7 +1321,7 @@ static void ov97_0222E77C (UnkStruct_ov97_0222E398 * param0)
     for (v0 = 0; v0 < 80; v0++) {
         param0->unk_1848[v0].unk_0C = ov97_0222E538(param0, NNS_G2D_VRAM_TYPE_2DSUB);
         sub_02021DCC(param0->unk_1848[v0].unk_0C, 5);
-        sub_02021E50(param0->unk_1848[v0].unk_0C, 0);
+        SpriteActor_SetAnimFrame(param0->unk_1848[v0].unk_0C, 0);
     }
 }
 
@@ -1573,7 +1573,7 @@ static void ov97_0222EEB8 (SysTask * param0, void * param1)
     f32 v2, v3;
 
     if (v0->unk_30) {
-        sub_02021E50(v0->unk_0C, 0);
+        SpriteActor_SetAnimFrame(v0->unk_0C, 0);
         v0->unk_30--;
         return;
     } else {

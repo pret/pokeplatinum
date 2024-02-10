@@ -617,7 +617,7 @@ static void ov116_0226501C (UnkStruct_ov116_02265470 * param0)
     UnkStruct_ov116_0226501C * v0 = param0->unk_08[0];
     int * v1 = param0->unk_08[1];
     int * v2 = param0->unk_08[3];
-    PaletteSys * v3 = param0->unk_08[2];
+    PaletteData * v3 = param0->unk_08[2];
 
     if (param0->unk_04 == 0) {
         return;
@@ -694,10 +694,10 @@ static void ov116_0226510C (UnkStruct_ov116_02265470 * param0)
                 continue;
             }
 
-            sub_0200D550(v5, &v1, &v2);
+            SpriteActor_GetSpritePositionXY(v5, &v1, &v2);
             if (v2 > v3[v0]) {
                 v2 -= 6;
-                sub_0200D4C4(v5, v1, v2);
+                SpriteActor_SetSpritePositionXY(v5, v1, v2);
                 v4[v0] = 0;
             }
         }
@@ -725,10 +725,10 @@ static void ov116_0226510C (UnkStruct_ov116_02265470 * param0)
                 continue;
             }
 
-            sub_0200D550(v5, &v1, &v2);
+            SpriteActor_GetSpritePositionXY(v5, &v1, &v2);
             if (v2 < (192 + 32)) {
                 v2 += 6;
-                sub_0200D4C4(v5, v1, v2);
+                SpriteActor_SetSpritePositionXY(v5, v1, v2);
                 v4[v0] = 0;
             }
         }
@@ -918,10 +918,10 @@ void ov116_02265470 (UnkStruct_ov116_02262A8C * param0)
             {
                 s16 v2, v3;
 
-                sub_0200D550(param0->unk_B8[0], &v2, &v3);
-                sub_0200D4C4(param0->unk_B8[0], v2, (192 + 32));
-                sub_0200D550(param0->unk_B8[1], &v2, &v3);
-                sub_0200D4C4(param0->unk_B8[1], v2, (192 + 32));
+                SpriteActor_GetSpritePositionXY(param0->unk_B8[0], &v2, &v3);
+                SpriteActor_SetSpritePositionXY(param0->unk_B8[0], v2, (192 + 32));
+                SpriteActor_GetSpritePositionXY(param0->unk_B8[1], &v2, &v3);
+                SpriteActor_SetSpritePositionXY(param0->unk_B8[1], v2, (192 + 32));
             }
             break;
         case 2:
@@ -941,10 +941,10 @@ void ov116_02265470 (UnkStruct_ov116_02262A8C * param0)
             {
                 s16 v5, v6;
 
-                sub_0200D550(param0->unk_B8[2], &v5, &v6);
-                sub_0200D4C4(param0->unk_B8[2], v5, (192 + 32));
-                sub_0200D550(param0->unk_B8[3], &v5, &v6);
-                sub_0200D4C4(param0->unk_B8[3], v5, (192 + 32));
+                SpriteActor_GetSpritePositionXY(param0->unk_B8[2], &v5, &v6);
+                SpriteActor_SetSpritePositionXY(param0->unk_B8[2], v5, (192 + 32));
+                SpriteActor_GetSpritePositionXY(param0->unk_B8[3], &v5, &v6);
+                SpriteActor_SetSpritePositionXY(param0->unk_B8[3], v5, (192 + 32));
             }
             break;
         case 4:

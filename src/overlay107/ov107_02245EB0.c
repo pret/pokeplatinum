@@ -122,7 +122,7 @@ struct UnkStruct_ov107_02246170_t {
     ResourceMetadata unk_120[3];
     UnkStruct_0200112C * unk_138;
     ResourceMetadata * unk_13C;
-    PaletteSys * unk_140;
+    PaletteData * unk_140;
     UnkStruct_0200C440 * unk_144;
     AnimationControlFlags * unk_148;
     SaveData * unk_14C;

@@ -59,8 +59,8 @@ typedef struct UnkStruct_ov80_021D2A08_t {
     NNSG2dScreenData * unk_CC;
     NNSG2dScreenData * unk_D0;
     NNSG2dScreenData * unk_D4;
-    CellTransferStateData * unk_D8;
-    AnimationResourceCollection * unk_DC;
+    SpriteRenderer * unk_D8;
+    SpriteGfxHandler * unk_DC;
     CellActorData * unk_E0;
 } UnkStruct_ov80_021D2A08;
 

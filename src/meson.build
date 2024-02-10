@@ -540,7 +540,7 @@ pokeplatinum_c = files(
     'overlay016/ov16_02266F1C.c',
     'overlay016/ov16_02268520.c',
     'overlay016/ov16_0226871C.c',
-    'overlay016/ov16_0226D094.c',
+    'overlay016/party_gauge.c',
     'overlay016/ov16_0226DB7C.c',
     'overlay016/ov16_0226DE44.c',
     'overlay016/ov16_0226E148.c',

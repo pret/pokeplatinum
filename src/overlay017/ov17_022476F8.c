@@ -14,7 +14,7 @@
 #include "overlay017/struct_ov17_0224792C.h"
 #include "overlay017/struct_ov17_02247A48.h"
 #include "overlay017/struct_ov17_0225442C.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
@@ -41,7 +41,7 @@ typedef struct {
     u16 unk_16;
 } UnkStruct_ov17_022477B8;
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_022543F8 = {
+static const SpriteTemplate Unk_ov17_022543F8 = {
     0x0,
     0x0,
     0x0,
@@ -98,18 +98,18 @@ void ov17_02247734 (UnkStruct_ov17_022476F8 * param0)
     }
 }
 
-void ov17_0224774C (CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2)
+void ov17_0224774C (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2)
 {
-    sub_0200CC3C(param0, param1, param2, 67, 1, NNS_G2D_VRAM_TYPE_2DSUB, 33002);
-    sub_0200CE24(param0, param1, param2, 68, 1, 33002);
-    sub_0200CE54(param0, param1, param2, 69, 1, 33002);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(param0, param1, param2, 67, 1, NNS_G2D_VRAM_TYPE_2DSUB, 33002);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(param0, param1, param2, 68, 1, 33002);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0, param1, param2, 69, 1, 33002);
 }
 
-void ov17_02247798 (AnimationResourceCollection * param0)
+void ov17_02247798 (SpriteGfxHandler * param0)
 {
-    sub_0200D070(param0, 33002);
-    sub_0200D090(param0, 33002);
-    sub_0200D0A0(param0, 33002);
+    SpriteGfxHandler_UnloadCharObjById(param0, 33002);
+    SpriteGfxHandler_UnloadCellObjById(param0, 33002);
+    SpriteGfxHandler_UnloadAnimObjById(param0, 33002);
 }
 
 void ov17_022477B8 (UnkStruct_ov17_02247A48 * param0, int param1, int param2, fx32 param3, int param4)
@@ -119,14 +119,14 @@ void ov17_022477B8 (UnkStruct_ov17_02247A48 * param0, int param1, int param2, fx
     v0 = Heap_AllocFromHeap(22, sizeof(UnkStruct_ov17_022477B8));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_022477B8));
 
-    v0->unk_04 = sub_0200CE6C(param0->unk_0C.unk_1C, param0->unk_0C.unk_20, &Unk_ov17_022543F8);
+    v0->unk_04 = SpriteActor_LoadResources(param0->unk_0C.unk_1C, param0->unk_0C.unk_20, &Unk_ov17_022543F8);
     sub_0200D500(v0->unk_04, param1, param2, (256 * FX32_ONE));
 
     if (param4 == 1) {
         sub_0200D364(v0->unk_04, 1);
     }
 
-    sub_0200D324(v0->unk_04->unk_00);
+    SpriteActor_UpdateObject(v0->unk_04->unk_00);
 
     v0->unk_08 = param1 << 8;
     v0->unk_0C = param2 << 8;

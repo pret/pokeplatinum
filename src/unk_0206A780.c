@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 
 #include "struct_defs/struct_0206A844.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 #include "overlay104/struct_ov104_02241308.h"
 
 #include "narc.h"
@@ -14,7 +14,7 @@
 #include "unk_0206A780.h"
 #include "overlay005/ov5_021D2F14.h"
 
-static const UnkStruct_ov104_0223F9E0 Unk_020EFA04[] = {
+static const SpriteTemplate Unk_020EFA04[] = {
     {
         0x50,
         0x10,
@@ -99,8 +99,8 @@ void sub_0206A870 (UnkStruct_0206A844 * param0)
 
 void sub_0206A8A0 (UnkStruct_0206A844 * param0, s16 param1, s16 param2, s16 param3)
 {
-    sub_0200D4C4(param0->unk_1C8[0], param1, param2);
-    sub_0200D4C4(param0->unk_1C8[1], param1, param3);
+    SpriteActor_SetSpritePositionXY(param0->unk_1C8[0], param1, param2);
+    SpriteActor_SetSpritePositionXY(param0->unk_1C8[1], param1, param3);
 }
 
 void sub_0206A8C4 (UnkStruct_0206A844 * param0, u16 param1, BOOL param2)

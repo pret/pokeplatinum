@@ -556,7 +556,7 @@ static void ov21_021E8AA8 (UnkStruct_ov21_021E8794 * param0, UnkStruct_ov21_021E
 
     param0->unk_00[0] = sub_02021B90(&v1);
 
-    sub_02021D6C(param0->unk_00[0], 2);
+    SpriteActor_SetSpriteAnimActive(param0->unk_00[0], 2);
 }
 
 static void ov21_021E8B34 (UnkStruct_ov21_021E8794 * param0)

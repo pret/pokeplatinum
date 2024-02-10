@@ -18,7 +18,7 @@
 #include "overlay012/funcptr_ov12_02239EEC.h"
 #include "overlay016/struct_ov16_02264408.h"
 #include "overlay016/struct_ov16_02265BBC.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "spl.h"
 
@@ -46,9 +46,9 @@ BGL * ov12_02220278(UnkStruct_ov12_0221FCDC * param0);
 s32 ov12_02220280(UnkStruct_ov12_0221FCDC * param0, int param1);
 CellActorData * ov12_02220298(UnkStruct_ov12_0221FCDC * param0, int param1);
 CellActorData * ov12_022202C0(UnkStruct_ov12_0221FCDC * param0, int param1);
-AnimationResourceCollection * ov12_022202EC(UnkStruct_ov12_0221FCDC * param0);
-AnimationResourceCollection * ov12_02220300(UnkStruct_ov12_0221FCDC * param0);
-CellTransferStateData * ov12_02220308(UnkStruct_ov12_0221FCDC * param0);
+SpriteGfxHandler * ov12_022202EC(UnkStruct_ov12_0221FCDC * param0);
+SpriteGfxHandler * ov12_02220300(UnkStruct_ov12_0221FCDC * param0);
+SpriteRenderer * ov12_02220308(UnkStruct_ov12_0221FCDC * param0);
 void ov12_02220474(void);
 int ov12_02220540(UnkStruct_ov12_0221FCDC * param0, int param1);
 void ov12_02220590(UnkStruct_ov12_0221FCDC * param0, UnkStruct_ov12_022380DC * param1, int param2);
@@ -62,14 +62,14 @@ int ov12_02223178(UnkStruct_ov12_02223178 * param0);
 s8 ov12_0222317C(UnkStruct_ov12_0221FCDC * param0, s8 param1);
 s8 ov12_02223234(s8 param0, s8 param1, s8 param2);
 BOOL ov12_0222325C(UnkStruct_ov12_0221FCDC * param0, int param1[], int param2);
-UnkStruct_ov104_0223F9E0 ov12_0222329C(UnkStruct_ov12_0221FCDC * param0);
+SpriteTemplate ov12_0222329C(UnkStruct_ov12_0221FCDC * param0);
 int ov12_022232B8(UnkStruct_ov12_0221FCDC * param0, int param1);
 int ov12_022232C4(UnkStruct_ov12_0221FCDC * param0, int param1);
 int ov12_022232D0(UnkStruct_ov12_0221FCDC * param0, int param1);
 int ov12_022232E0(UnkStruct_ov12_0221FCDC * param0, int param1);
 int ov12_022232EC(UnkStruct_ov12_0221FCDC * param0, int param1);
 Sprite * ov12_022232FC(UnkStruct_ov12_0221FCDC * param0, int param1);
-PaletteSys * ov12_0222332C(UnkStruct_ov12_0221FCDC * param0);
+PaletteData * ov12_0222332C(UnkStruct_ov12_0221FCDC * param0);
 int ov12_02223334(UnkStruct_ov12_0221FCDC * param0, int param1);
 int ov12_02223344(UnkStruct_ov12_0221FCDC * param0, int param1);
 int ov12_02223354(UnkStruct_ov12_0221FCDC * param0, int param1);

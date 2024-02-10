@@ -8,9 +8,9 @@
 
 typedef struct {
     NARC * unk_00;
-    CellTransferStateData * unk_04;
-    AnimationResourceCollection * unk_08;
-    PaletteSys * unk_0C;
+    SpriteRenderer * unk_04;
+    SpriteGfxHandler * unk_08;
+    PaletteData * unk_0C;
 } UnkStruct_0208B878_sub1;
 
 #endif // POKEPLATINUM_STRUCT_0208B878_SUB1_H

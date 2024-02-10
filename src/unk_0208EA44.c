@@ -263,11 +263,11 @@ void sub_0208ECF4 (UnkStruct_0208D7BC * param0)
 
         if (param0->unk_6A4 == v5) {
             if (v4 < 8) {
-                sub_02021D6C(v0[v5], v4 + 8);
+                SpriteActor_SetSpriteAnimActive(v0[v5], v4 + 8);
             }
         } else {
             if (v4 >= 8) {
-                sub_02021D6C(v0[v5], v4 - 8);
+                SpriteActor_SetSpriteAnimActive(v0[v5], v4 - 8);
             }
         }
 
@@ -332,7 +332,7 @@ void sub_0208EE9C (UnkStruct_0208D7BC * param0)
     } else if (param0->unk_250.unk_50_0 != 0) {
         sub_02021CAC(param0->unk_41C[76], 0);
         sub_02021CAC(param0->unk_41C[20], 1);
-        sub_02021D6C(param0->unk_41C[20], param0->unk_250.unk_50_0);
+        SpriteActor_SetSpriteAnimActive(param0->unk_41C[20], param0->unk_250.unk_50_0);
     } else {
         sub_02021CAC(param0->unk_41C[76], 1);
         sub_02021CAC(param0->unk_41C[20], 0);
@@ -361,18 +361,18 @@ void sub_0208EF58 (UnkStruct_0208D7BC * param0)
     u16 v0;
 
     for (v0 = 11; v0 <= 19; v0++) {
-        sub_0200D3EC(param0->unk_41C[v0], 0);
+        SpriteActor_DrawSprite(param0->unk_41C[v0], 0);
     }
 
     switch (param0->unk_6A4) {
     case 0:
-        sub_0200D3EC(param0->unk_41C[11], 1);
+        SpriteActor_DrawSprite(param0->unk_41C[11], 1);
 
         if (param0->unk_250.unk_10 == param0->unk_250.unk_11) {
             sub_0200D494(param0->unk_41C[11], 216, 80);
         } else {
             sub_0200D494(param0->unk_41C[11], 199, 80);
-            sub_0200D3EC(param0->unk_41C[12], 1);
+            SpriteActor_DrawSprite(param0->unk_41C[12], 1);
             sub_0200D494(
                 param0->unk_41C[12], 233, 80);
         }
@@ -384,13 +384,13 @@ void sub_0208EF58 (UnkStruct_0208D7BC * param0)
             }
 
             sub_0208F194(param0, 13 + v0, 5 + v0, MoveTable_LoadParam(param0->unk_250.unk_34[v0], MOVEATTRIBUTE_TYPE));
-            sub_0200D3EC(param0->unk_41C[13 + v0], 1);
+            SpriteActor_DrawSprite(param0->unk_41C[13 + v0], 1);
             sub_0200D494(param0->unk_41C[13 + v0], 151, 42 + v0 * 32);
         }
 
         if (param0->unk_24C->unk_18 != 0) {
             sub_0208F194(param0, 13 + 4, 5 + 4, MoveTable_LoadParam(param0->unk_24C->unk_18, MOVEATTRIBUTE_TYPE));
-            sub_0200D3EC(param0->unk_41C[13 + 4], 1);
+            SpriteActor_DrawSprite(param0->unk_41C[13 + 4], 1);
             sub_0200D494(param0->unk_41C[13 + 4], 151, 42 + 4 * 32);
         }
 
@@ -405,13 +405,13 @@ void sub_0208EF58 (UnkStruct_0208D7BC * param0)
             }
 
             sub_0208F194(param0, 13 + v0, 5 + v0, MoveTable_LoadParam(param0->unk_250.unk_34[v0], MOVEATTRIBUTE_CONTEST_TYPE) + 18);
-            sub_0200D3EC(param0->unk_41C[13 + v0], 1);
+            SpriteActor_DrawSprite(param0->unk_41C[13 + v0], 1);
             sub_0200D494(param0->unk_41C[13 + v0], 151, 42 + v0 * 32);
         }
 
         if (param0->unk_24C->unk_18 != 0) {
             sub_0208F194(param0, 13 + 4, 5 + 4, MoveTable_LoadParam(param0->unk_24C->unk_18, MOVEATTRIBUTE_CONTEST_TYPE) + 18);
-            sub_0200D3EC(param0->unk_41C[13 + 4], 1);
+            SpriteActor_DrawSprite(param0->unk_41C[13 + 4], 1);
             sub_0200D494(param0->unk_41C[13 + 4], 151, 42 + 4 * 32);
         }
 
@@ -501,7 +501,7 @@ void sub_0208F34C (UnkStruct_0208D7BC * param0)
 
     for (v0 = 29; v0 <= 40; v0++) {
         sub_02021CAC(param0->unk_41C[v0], 0);
-        sub_02021E50(param0->unk_41C[v0], 0);
+        SpriteActor_SetAnimFrame(param0->unk_41C[v0], 0);
     }
 }
 
@@ -530,8 +530,8 @@ void sub_0208F3B0 (UnkStruct_0208D7BC * param0)
     case 1:
         if (param0->unk_6AB == 0) {
             sub_02021CAC(param0->unk_41C[29 + param0->unk_6AA], 1);
-            sub_02021E50(param0->unk_41C[29 + param0->unk_6AA], 0);
-            sub_02021D6C(param0->unk_41C[29 + param0->unk_6AA], 0);
+            SpriteActor_SetAnimFrame(param0->unk_41C[29 + param0->unk_6AA], 0);
+            SpriteActor_SetSpriteAnimActive(param0->unk_41C[29 + param0->unk_6AA], 0);
 
             param0->unk_6AA++;
 
@@ -556,8 +556,8 @@ void sub_0208F3B0 (UnkStruct_0208D7BC * param0)
         if (param0->unk_6AB == 32) {
             for (v0 = 29; v0 < 29 + param0->unk_6A9; v0++) {
                 sub_02021CAC(param0->unk_41C[v0], 1);
-                sub_02021E50(param0->unk_41C[v0], 0);
-                sub_02021D6C(param0->unk_41C[v0], 0);
+                SpriteActor_SetAnimFrame(param0->unk_41C[v0], 0);
+                SpriteActor_SetSpriteAnimActive(param0->unk_41C[v0], 0);
             }
 
             param0->unk_6AB = 0;
@@ -594,22 +594,22 @@ void sub_0208F574 (UnkStruct_0208D7BC * param0)
 
     for (v0 = 0; v0 < 6; v0++) {
         if (param0->unk_250.unk_4C & (1 << v0)) {
-            sub_02021D6C(param0->unk_41C[23 + v0], 1);
+            SpriteActor_SetSpriteAnimActive(param0->unk_41C[23 + v0], 1);
         } else {
-            sub_02021D6C(param0->unk_41C[23 + v0], 0);
+            SpriteActor_SetSpriteAnimActive(param0->unk_41C[23 + v0], 0);
         }
     }
 
     if ((param0->unk_250.unk_50_29 == 1) && (param0->unk_250.unk_50_28 == 0)) {
-        sub_0200D3EC(param0->unk_41C[53], 1);
+        SpriteActor_DrawSprite(param0->unk_41C[53], 1);
     } else {
-        sub_0200D3EC(param0->unk_41C[53], 0);
+        SpriteActor_DrawSprite(param0->unk_41C[53], 0);
     }
 
     if (param0->unk_250.unk_50_30 == 2) {
-        sub_0200D3EC(param0->unk_41C[54], 1);
+        SpriteActor_DrawSprite(param0->unk_41C[54], 1);
     } else {
-        sub_0200D3EC(param0->unk_41C[54], 0);
+        SpriteActor_DrawSprite(param0->unk_41C[54], 0);
     }
 }
 
@@ -618,8 +618,8 @@ void sub_0208F600 (UnkStruct_0208D7BC * param0)
     s16 v0, v1;
 
     sub_02021CAC(param0->unk_41C[41], 1);
-    sub_02021E50(param0->unk_41C[41], 0);
-    sub_02021D6C(param0->unk_41C[41], 0);
+    SpriteActor_SetAnimFrame(param0->unk_41C[41], 0);
+    SpriteActor_SetSpriteAnimActive(param0->unk_41C[41], 0);
 
     sub_02092368(param0, &v0, &v1);
 
@@ -685,7 +685,7 @@ void sub_0208F7A4 (UnkStruct_0208D7BC * param0)
         sub_0200D494(param0->unk_41C[19], 32, 68);
     }
 
-    sub_0200D3EC(param0->unk_41C[19], 1);
+    SpriteActor_DrawSprite(param0->unk_41C[19], 1);
 }
 
 static s16 sub_0208F800 (u32 param0, s16 param1, s16 param2)
@@ -758,7 +758,7 @@ void sub_0208FA04 (UnkStruct_0208D7BC * param0)
         }
     }
 
-    sub_02021D6C(param0->unk_41C[70], 0);
+    SpriteActor_SetSpriteAnimActive(param0->unk_41C[70], 0);
 }
 
 void sub_0208FAA4 (UnkStruct_0208D7BC * param0)
@@ -855,8 +855,8 @@ static void sub_0208FC30 (GraphicElementData * param0, u32 param1, u32 param2, c
     }
 
     sub_0200D494(param0, v0, v1);
-    sub_02021E50(param0, 0);
-    sub_02021D6C(param0, 0);
+    SpriteActor_SetAnimFrame(param0, 0);
+    SpriteActor_SetSpriteAnimActive(param0, 0);
 }
 
 void sub_0208FCD4 (UnkStruct_0208D7BC * param0)

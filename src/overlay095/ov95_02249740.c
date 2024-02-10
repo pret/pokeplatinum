@@ -221,7 +221,7 @@ static int ov95_02249840 (UnkStruct_ov95_022497D8 * param0, int * param1)
     case 2:
         if (ov95_02249CF0(&(param0->unk_34))) {
             Sound_PlayEffect(1709);
-            sub_02021D6C(param0->unk_20[0], 3);
+            SpriteActor_SetSpriteAnimActive(param0->unk_20[0], 3);
             sub_02021CAC(param0->unk_20[0], 1);
             (*param1)++;
         }

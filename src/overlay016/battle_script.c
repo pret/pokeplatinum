@@ -47,7 +47,7 @@
 #include "overlay012/struct_ov12_02237728.h"
 #include "overlay016/struct_ov16_0225BFFC_t.h"
 #include "overlay021/struct_ov21_021E8E0C.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "core_sys.h"
 #include "flags.h"
@@ -10136,7 +10136,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
     case SEQ_GET_EXP_LEVEL_UP_SUMMARY_INIT: {
         BGL *bgl = BattleSystem_BGL(data->battleSys);
         Window *window = BattleSystem_Window(data->battleSys, 1);
-        PaletteSys *paletteSys = BattleSystem_PaletteSys(data->battleSys);
+        PaletteData *paletteSys = BattleSystem_PaletteSys(data->battleSys);
 
         G2_SetBG0Priority(1 + 1); // this is the background + 1; could do with a constant
         BGL_SetPriority(1, 1);
@@ -10559,7 +10559,7 @@ static void BattleScript_CatchMonTask (SysTask * param0, void * param1)
     int v1;
     BattleScriptTaskData * v2 = param1;
     Pokemon * v3;
-    PaletteSys * v4;
+    PaletteData * v4;
     UnkStruct_02007768 * v5;
     MessageLoader * v6;
 
@@ -12184,7 +12184,7 @@ static int BattleMessage_TrainerNameTag(BattleSystem *battleSys, BattleContext *
     return BattleScript_Battler(battleSys, battleCtx, battlerIn);
 }
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov16_0226E6C4 = {
+static const SpriteTemplate Unk_ov16_0226E6C4 = {
     0x80,
     0x0,
     0x0,
@@ -12197,7 +12197,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov16_0226E6C4 = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov16_0226E6F8 = {
+static const SpriteTemplate Unk_ov16_0226E6F8 = {
     0x98,
     0x18,
     0x0,
@@ -12212,10 +12212,10 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov16_0226E6F8 = {
 
 static void BattleScript_LoadPartyLevelUpIcon (BattleSystem * param0, BattleScriptTaskData * param1, Pokemon * param2)
 {
-    UnkStruct_ov104_0223F9E0 v0;
-    CellTransferStateData * v1;
-    AnimationResourceCollection * v2;
-    PaletteSys * v3;
+    SpriteTemplate v0;
+    SpriteRenderer * v1;
+    SpriteGfxHandler * v2;
+    PaletteData * v3;
     MessageLoader * v4;
     UnkStruct_0200B358 * v5;
     Strbuf* v6, * v7;
@@ -12239,7 +12239,7 @@ static void BattleScript_LoadPartyLevelUpIcon (BattleSystem * param0, BattleScri
     sub_0200CE0C(v1, v2, 27, 257, 1, 20013);
     sub_0200CE3C(v1, v2, 27, 258, 1, 20013);
 
-    param1->cellActorData[0] = sub_0200CE6C(v1, v2, &Unk_ov16_0226E6C4);
+    param1->cellActorData[0] = SpriteActor_LoadResources(v1, v2, &Unk_ov16_0226E6C4);
 
     sub_0200D330(param1->cellActorData[0]);
     sub_0200D888(v1, v2, 19, Pokemon_IconSpriteIndex(param2), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 20022);
@@ -12247,7 +12247,7 @@ static void BattleScript_LoadPartyLevelUpIcon (BattleSystem * param0, BattleScri
     sub_0200CE0C(v1, v2, 19, PokeIcon64KCellsFileIndex(), 0, 20014);
     sub_0200CE3C(v1, v2, 19, PokeIcon64KAnimationFileIndex(), 0, 20014);
 
-    param1->cellActorData[1] = sub_0200CE6C(v1, v2, &Unk_ov16_0226E6F8);
+    param1->cellActorData[1] = SpriteActor_LoadResources(v1, v2, &Unk_ov16_0226E6F8);
 
     sub_02021F24(param1->cellActorData[1]->unk_00, Pokemon_IconPaletteIndex(param2));
     sub_0200D330(param1->cellActorData[1]);
@@ -12301,7 +12301,7 @@ static void BattleScript_LoadPartyLevelUpIcon (BattleSystem * param0, BattleScri
 
 static void BattleScript_FreePartyLevelUpIcon (BattleSystem * param0, BattleScriptTaskData * param1)
 {
-    AnimationResourceCollection * v0;
+    SpriteGfxHandler * v0;
 
     v0 = ov16_0223E018(param0);
 
@@ -12309,14 +12309,14 @@ static void BattleScript_FreePartyLevelUpIcon (BattleSystem * param0, BattleScri
     sub_0200D0F4(param1->cellActorData[1]);
     sub_02012870(param1->fontOAM);
     sub_0201EE28(&param1->spriteMgrAlloc);
-    sub_0200D070(v0, 20021);
-    sub_0200D080(v0, 20016);
-    sub_0200D090(v0, 20013);
-    sub_0200D0A0(v0, 20013);
-    sub_0200D070(v0, 20022);
-    sub_0200D080(v0, 20017);
-    sub_0200D090(v0, 20014);
-    sub_0200D0A0(v0, 20014);
+    SpriteGfxHandler_UnloadCharObjById(v0, 20021);
+    SpriteGfxHandler_UnloadPlttObjById(v0, 20016);
+    SpriteGfxHandler_UnloadCellObjById(v0, 20013);
+    SpriteGfxHandler_UnloadAnimObjById(v0, 20013);
+    SpriteGfxHandler_UnloadCharObjById(v0, 20022);
+    SpriteGfxHandler_UnloadPlttObjById(v0, 20017);
+    SpriteGfxHandler_UnloadCellObjById(v0, 20014);
+    SpriteGfxHandler_UnloadAnimObjById(v0, 20014);
     sub_020127BC(param1->tmpPtr[0]);
 }
 

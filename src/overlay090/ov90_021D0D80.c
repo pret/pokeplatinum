@@ -98,8 +98,8 @@ typedef struct {
     UnkStruct_ov90_021D0ECC_sub1 unk_28;
     Window unk_6C[5];
     UnkStruct_ov90_021D17F8 unk_BC[30];
-    CellTransferStateData * unk_29C;
-    AnimationResourceCollection * unk_2A0;
+    SpriteRenderer * unk_29C;
+    SpriteGfxHandler * unk_2A0;
     GraphicElementData * unk_2A4[4];
 } UnkStruct_ov90_021D0ECC;
 
@@ -978,10 +978,10 @@ static void ov90_021D1C90 (UnkStruct_ov90_021D0ECC * param0, u8 param1, u8 param
         sub_02021CAC(param0->unk_2A4[1], 1);
 
         if (param1 == 10) {
-            sub_02021E50(param0->unk_2A4[1], 1);
+            SpriteActor_SetAnimFrame(param0->unk_2A4[1], 1);
             sub_02021CAC(param0->unk_2A4[0], 0);
         } else {
-            sub_02021E50(param0->unk_2A4[1], 0);
+            SpriteActor_SetAnimFrame(param0->unk_2A4[1], 0);
             sub_02021CAC(param0->unk_2A4[0], 1);
         }
     } else {

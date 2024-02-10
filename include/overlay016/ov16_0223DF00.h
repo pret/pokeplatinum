@@ -37,7 +37,7 @@
 #include "overlay016/struct_ov16_02268A14_decl.h"
 #include "overlay016/struct_ov16_0226D160_decl.h"
 
-#include "overlay016/ov16_0226D094.h"
+#include "battle/party_gauge.h"
 
 #include "enums.h"
 
@@ -82,8 +82,8 @@ int BattleSystem_PartyCount(BattleSystem *battleSys, int battler);
 Pokemon* BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slot);
 UnkStruct_02007768 * ov16_0223E000(BattleSystem * param0);
 UnkStruct_ov12_0221FCDC * ov16_0223E008(BattleSystem * param0);
-CellTransferStateData * ov16_0223E010(BattleSystem * param0);
-AnimationResourceCollection * ov16_0223E018(BattleSystem * param0);
+SpriteRenderer * ov16_0223E010(BattleSystem * param0);
+SpriteGfxHandler * ov16_0223E018(BattleSystem * param0);
 UnkStruct_ov16_02268520 * ov16_0223E020(BattleSystem * param0, int param1);
 UnkStruct_ov16_02268A14 * ov16_0223E02C(BattleSystem * param0);
 PartyGauge * ov16_0223E034(BattleSystem * param0, enum PartyGaugeSide param1);
@@ -92,7 +92,7 @@ UnkStruct_0200C440 * ov16_0223E04C(BattleSystem * param0);
 UnkStruct_0200C440 * ov16_0223E054(BattleSystem * param0);
 MessageLoader * BattleSystem_MessageLoader(BattleSystem * param0);
 MessageLoader * ov16_0223E060(BattleSystem * param0);
-PaletteSys * BattleSystem_PaletteSys(BattleSystem * param0);
+PaletteData * BattleSystem_PaletteSys(BattleSystem * param0);
 UnkStruct_02026324 * ov16_0223E068(BattleSystem * param0);
 u8 * ov16_0223E06C(BattleSystem * param0);
 u8 * ov16_0223E074(BattleSystem * param0);
@@ -292,7 +292,7 @@ void ov16_0223F9A0(BattleSystem * param0, int param1);
  * FALSE if not.
  */
 BOOL BattleSystem_CaughtSpecies(BattleSystem *battleSys, int species);
-void ov16_0223F9F0(void);
+void Battle_SetDefaultBlend(void);
 u8 ov16_0223F9FC(BattleSystem * param0, int param1, int param2, int param3, int param4);
 u8 BattleMessage_Print(BattleSystem * param0, MessageLoader * param1, BattleMessage * param2, int param3);
 u8 BattleMessage_PrintToWindow(BattleSystem * param0, Window * param1, MessageLoader * param2, BattleMessage * param3, int param4, int param5, int param6, int param7, int param8);

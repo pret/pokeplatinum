@@ -271,7 +271,7 @@ static void ov94_0223D3DC (UnkStruct_ov94_0223FD4C * param0)
     param0->unk_F30 = sub_02021AA0(&v0);
 
     sub_02021CC8(param0->unk_F30, 1);
-    sub_02021D6C(param0->unk_F30, 37);
+    SpriteActor_SetSpriteAnimActive(param0->unk_F30, 37);
     sub_02039734();
 }
 

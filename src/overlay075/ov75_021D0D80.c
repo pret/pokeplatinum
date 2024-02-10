@@ -23,7 +23,7 @@
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
@@ -93,15 +93,15 @@ typedef struct {
     UnkStruct_020978D8 * unk_1C;
     MessageLoader * unk_20;
     Strbuf* unk_24[3];
-    PaletteSys * unk_30;
+    PaletteData * unk_30;
     void * unk_34;
     void * unk_38;
     NNSG2dScreenData * unk_3C;
     NNSG2dScreenData * unk_40;
     Window unk_44[6];
     UIControlData * unk_A4;
-    CellTransferStateData * unk_A8;
-    AnimationResourceCollection * unk_AC;
+    SpriteRenderer * unk_A8;
+    SpriteGfxHandler * unk_AC;
     CellActorData * unk_B0[3];
 } UnkStruct_ov75_021D1184;
 
@@ -872,7 +872,7 @@ static void ov75_021D19C8 (UnkStruct_ov75_021D1184 * param0)
 static void ov75_021D1ADC (UnkStruct_ov75_021D1184 * param0)
 {
     int v0 = 0, v1 = 0;
-    UnkStruct_ov104_0223F9E0 v2;
+    SpriteTemplate v2;
 
     sub_020397E4();
 
@@ -912,26 +912,26 @@ static void ov75_021D1ADC (UnkStruct_ov75_021D1184 * param0)
         }
 
         sub_0200D828(param0->unk_A8, param0->unk_AC, 19, param0->unk_1C->unk_14[v0].val1_0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v0);
-        MI_CpuClear8(&v2, sizeof(UnkStruct_ov104_0223F9E0));
+        MI_CpuClear8(&v2, sizeof(SpriteTemplate));
 
-        v2.unk_00 = (16 * 8) - (40 * v0);
-        v2.unk_02 = 160;
-        v2.unk_04 = 0;
+        v2.x = (16 * 8) - (40 * v0);
+        v2.y = 160;
+        v2.z = 0;
 
-        v2.unk_06 = 0;
-        v2.unk_2C = 2;
-        v2.unk_0C = param0->unk_1C->unk_14[v0].val1_12;
-        v2.unk_30 = 0;
-        v2.unk_10 = NNS_G2D_VRAM_TYPE_2DMAIN;
+        v2.animIdx = 0;
+        v2.bgPriority = 2;
+        v2.plttIdx = param0->unk_1C->unk_14[v0].val1_12;
+        v2.transferToVRAM = FALSE;
+        v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
 
-        v2.unk_14[0] = v0;
-        v2.unk_14[1] = 0;
-        v2.unk_14[2] = 0;
-        v2.unk_14[3] = 0;
-        v2.unk_14[4] = 0xffffffff;
-        v2.unk_14[5] = 0xffffffff;
+        v2.resources[0] = v0;
+        v2.resources[1] = 0;
+        v2.resources[2] = 0;
+        v2.resources[3] = 0;
+        v2.resources[4] = SPRITE_RESOURCE_NONE;
+        v2.resources[5] = SPRITE_RESOURCE_NONE;
 
-        param0->unk_B0[v0] = sub_0200CE6C(param0->unk_A8, param0->unk_AC, &v2);
+        param0->unk_B0[v0] = SpriteActor_LoadResources(param0->unk_A8, param0->unk_AC, &v2);
 
         if (param0->unk_1C->unk_14[v0].val1_0 == 7) {
             sub_0200D3F4(param0->unk_B0[v0], 0);

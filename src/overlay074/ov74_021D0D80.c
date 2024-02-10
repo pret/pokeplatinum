@@ -71,8 +71,8 @@ typedef struct UnkStruct_ov74_021D0D80_t {
     UnkStruct_ov74_021D1720 unk_5C[7];
     UIControlData * unk_2A8;
     u32 unk_2AC;
-    CellTransferStateData * unk_2B0;
-    AnimationResourceCollection * unk_2B4;
+    SpriteRenderer * unk_2B0;
+    SpriteGfxHandler * unk_2B4;
     CellActorData * unk_2B8;
 } UnkStruct_ov74_021D0D80;
 

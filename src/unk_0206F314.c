@@ -24,7 +24,7 @@
 #include "overlay005/struct_ov5_021D30A8.h"
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_02240FA8.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 #include "overlay104/struct_ov104_02241308.h"
 
 #include "unk_0200112C.h"
@@ -361,7 +361,7 @@ static int sub_0206F554 (UnkStruct_0206F7F8 * param0)
         if (param0->unk_28 > 0) {
             Sound_PlayEffect(1500);
             --param0->unk_28;
-            sub_0200D4C4(param0->unk_2FC[0], 126, 16 + 16 * param0->unk_28);
+            SpriteActor_SetSpritePositionXY(param0->unk_2FC[0], 126, 16 + 16 * param0->unk_28);
         }
     }
 
@@ -369,7 +369,7 @@ static int sub_0206F554 (UnkStruct_0206F7F8 * param0)
         if (param0->unk_28 < (param0->unk_21 - 1)) {
             Sound_PlayEffect(1500);
             ++param0->unk_28;
-            sub_0200D4C4(param0->unk_2FC[0], 126, 16 + 16 * param0->unk_28);
+            SpriteActor_SetSpritePositionXY(param0->unk_2FC[0], 126, 16 + 16 * param0->unk_28);
         }
     }
 
@@ -625,7 +625,7 @@ static void sub_0206FCC4 (UnkStruct_0206F7F8 * param0)
     UnkStruct_ov104_02241308 v1 = {
         1, 1, 1, 1, 0, 0
     };
-    static const UnkStruct_ov104_0223F9E0 v2[] = {
+    static const SpriteTemplate v2[] = {
         {
             0x7E,
             0x10,
@@ -745,7 +745,7 @@ static void sub_0206FF60 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     sub_020014DC(param0, &v0, &v1);
     v2 = sub_02001504(param0, 2);
 
-    sub_0200D4C4(v3->unk_2FC[0], 126, 16 + 16 * (v1 + v0));
+    SpriteActor_SetSpritePositionXY(v3->unk_2FC[0], 126, 16 + 16 * (v1 + v0));
 }
 
 static void sub_0206FFB4 (UnkStruct_0206F7F8 * param0)
@@ -757,7 +757,7 @@ static void sub_0206FFB4 (UnkStruct_0206F7F8 * param0)
 static void sub_0206FFE4 (UnkStruct_0206F7F8 * param0)
 {
     sub_0206FFB4(param0);
-    sub_0200D4C4(param0->unk_2FC[0], 126, 16 + param0->unk_28 * 16);
+    SpriteActor_SetSpritePositionXY(param0->unk_2FC[0], 126, 16 + param0->unk_28 * 16);
     sub_0200D3F4(param0->unk_2FC[0], 1);
 }
 

@@ -1268,19 +1268,19 @@ static void ov23_0223ED68 (int param0, int param1, BOOL param2, BOOL param3, BOO
     VecFx32 v3;
 
     if (param2) {
-        sub_02021D6C(Unk_ov23_02257740->unk_24C[0], 0);
+        SpriteActor_SetSpriteAnimActive(Unk_ov23_02257740->unk_24C[0], 0);
     } else {
-        sub_02021D6C(Unk_ov23_02257740->unk_24C[0], 1);
+        SpriteActor_SetSpriteAnimActive(Unk_ov23_02257740->unk_24C[0], 1);
     }
 
     if (param3) {
-        sub_02021D6C(Unk_ov23_02257740->unk_24C[3], 2);
+        SpriteActor_SetSpriteAnimActive(Unk_ov23_02257740->unk_24C[3], 2);
         Sound_PlayEffect(1700);
     } else if (param2) {
-        sub_02021D6C(Unk_ov23_02257740->unk_24C[3], 3);
+        SpriteActor_SetSpriteAnimActive(Unk_ov23_02257740->unk_24C[3], 3);
         Sound_PlayEffect(1698);
     } else {
-        sub_02021D6C(Unk_ov23_02257740->unk_24C[3], 4);
+        SpriteActor_SetSpriteAnimActive(Unk_ov23_02257740->unk_24C[3], 4);
         Sound_PlayEffect(1699);
     }
 
@@ -1294,7 +1294,7 @@ static void ov23_0223ED68 (int param0, int param1, BOOL param2, BOOL param3, BOO
     sub_02021C50(Unk_ov23_02257740->unk_24C[3], &v3);
 
     if (param4) {
-        sub_02021D6C(Unk_ov23_02257740->unk_24C[4], 5);
+        SpriteActor_SetSpriteAnimActive(Unk_ov23_02257740->unk_24C[4], 5);
         sub_02021CC8(Unk_ov23_02257740->unk_24C[4], 1);
         sub_02021C50(Unk_ov23_02257740->unk_24C[4], &v3);
     }
@@ -2013,7 +2013,7 @@ static void ov23_0223FDE0 (UnkStruct_ov23_0223EE80 * param0)
                 v4.x = FX32_ONE * v1;
                 v4.y = FX32_ONE * v2;
 
-                sub_02021D6C(Unk_ov23_02257740->unk_24C[5 + v3], 8 + v3);
+                SpriteActor_SetSpriteAnimActive(Unk_ov23_02257740->unk_24C[5 + v3], 8 + v3);
                 sub_02021C50(Unk_ov23_02257740->unk_24C[5 + v3], &v4);
             }
         }
@@ -2379,7 +2379,7 @@ static void ov23_022404F8 (BGL * param0, int param1, int param2, int param3)
         }
 
         if (2 == param3) {
-            sub_02021D6C(Unk_ov23_02257740->unk_24C[2], 6);
+            SpriteActor_SetSpriteAnimActive(Unk_ov23_02257740->unk_24C[2], 6);
             sub_02021CC8(Unk_ov23_02257740->unk_24C[2], 1);
 
             v0.x = FX32_ONE * 232;
@@ -2398,7 +2398,7 @@ static void ov23_022404F8 (BGL * param0, int param1, int param2, int param3)
         }
 
         if (2 == param3) {
-            sub_02021D6C(Unk_ov23_02257740->unk_24C[2], 7);
+            SpriteActor_SetSpriteAnimActive(Unk_ov23_02257740->unk_24C[2], 7);
             sub_02021CC8(Unk_ov23_02257740->unk_24C[2], 1);
 
             v0.x = FX32_ONE * 232;
@@ -2435,7 +2435,7 @@ static void ov23_02240688 (BGL * param0)
     v4 = 6 - (v1 % 24) / 4;
 
     ov23_02240660(&v0);
-    sub_02021D6C(Unk_ov23_02257740->unk_24C[1], v4);
+    SpriteActor_SetSpriteAnimActive(Unk_ov23_02257740->unk_24C[1], v4);
 
     v1 = v1 + 8;
     v2 = ((26 * 8) - v1) / 8;

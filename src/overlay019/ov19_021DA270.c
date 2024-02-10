@@ -282,7 +282,7 @@ void ov19_021DA7B8 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * 
         sub_02021CF8(param1->unk_00, 0);
     }
 
-    sub_02021D6C(param1->unk_00, param2);
+    SpriteActor_SetSpriteAnimActive(param1->unk_00, param2);
 }
 
 BOOL ov19_021DA7E0 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * param1)

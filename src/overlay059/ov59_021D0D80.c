@@ -672,7 +672,7 @@ static void ov59_021D1598 (UnkStruct_020961E8 * param0)
             param0->unk_28C[v0 + 1] = sub_02021AA0(&v1);
 
             sub_02021CC8(param0->unk_28C[v0 + 1], 1);
-            sub_02021D6C(param0->unk_28C[v0 + 1], 27 + (v0 - 1) * 2);
+            SpriteActor_SetSpriteAnimActive(param0->unk_28C[v0 + 1], 27 + (v0 - 1) * 2);
             sub_02021CAC(param0->unk_28C[v0 + 1], 0);
         }
 
@@ -1051,7 +1051,7 @@ void ov59_021D1D40 (UnkStruct_020961E8 * param0)
 {
     MessageLoader_GetStrbuf(param0->unk_28, 18, param0->unk_48);
     ov59_021D1784(&param0->unk_36C, param0->unk_48, 0);
-    sub_02021D6C(param0->unk_28C[0], 37);
+    SpriteActor_SetSpriteAnimActive(param0->unk_28C[0], 37);
 
     param0->unk_0C.unk_00 = 1;
 }
@@ -1111,7 +1111,7 @@ static int ov59_021D1E0C (UnkStruct_020961E8 * param0, int param1)
         sub_020057A4(1624, 8);
         ov59_021D2628(param0, 13, 0);
         ov59_021D19B0(param0, 29);
-        sub_02021D6C(param0->unk_28C[0], 0);
+        SpriteActor_SetSpriteAnimActive(param0->unk_28C[0], 0);
 
         param0->unk_0C.unk_00 = 0;
         param0->unk_3B4 = 0;
@@ -1626,10 +1626,10 @@ static void ov59_021D26E8 (UnkStruct_020961E8 * param0)
             v2 = TrainerInfo_Appearance(param0->unk_3C8[v0][0]);
 
             if (sub_0203608C() == v0) {
-                sub_02021D6C(param0->unk_28C[v0 + 1], 38 + v3 * 2);
+                SpriteActor_SetSpriteAnimActive(param0->unk_28C[v0 + 1], 38 + v3 * 2);
             } else {
                 ov59_021D2860(param0->unk_390, param0->unk_3A0, v0, v2, v3);
-                sub_02021D6C(param0->unk_28C[v0 + 1], 27 + v0 * 2);
+                SpriteActor_SetSpriteAnimActive(param0->unk_28C[v0 + 1], 27 + v0 * 2);
             }
         }
             sub_02021CAC(param0->unk_28C[v0 + 1], 1);
@@ -1641,9 +1641,9 @@ static void ov59_021D26E8 (UnkStruct_020961E8 * param0)
         case 3:
             if (sub_0203608C() == v0) {
                 int v4 = TrainerInfo_Gender(param0->unk_3C8[v0][0]);
-                sub_02021D6C(param0->unk_28C[v0 + 1], 38 + v4 * 2 + 1);
+                SpriteActor_SetSpriteAnimActive(param0->unk_28C[v0 + 1], 38 + v4 * 2 + 1);
             } else {
-                sub_02021D6C(param0->unk_28C[v0 + 1], 27 + v0 * 2 + 1);
+                SpriteActor_SetSpriteAnimActive(param0->unk_28C[v0 + 1], 27 + v0 * 2 + 1);
             }
 
             param0->unk_3F0[v0] = 0;

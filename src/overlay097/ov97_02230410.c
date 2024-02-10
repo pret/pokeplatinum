@@ -1002,8 +1002,8 @@ static void ov97_022314FC (UnkStruct_ov97_02230868 * param0, int param1, int * p
     }
 
     if (v1 != param0->unk_3E10) {
-        sub_02021D6C(param0->unk_2E88[0], param0->unk_3E10 == 0 ? 1 : 0);
-        sub_02021D6C(param0->unk_2E88[1], param0->unk_3E10 == 0 ? 0 : 1);
+        SpriteActor_SetSpriteAnimActive(param0->unk_2E88[0], param0->unk_3E10 == 0 ? 1 : 0);
+        SpriteActor_SetSpriteAnimActive(param0->unk_2E88[1], param0->unk_3E10 == 0 ? 0 : 1);
     }
 
     v0 = 0;

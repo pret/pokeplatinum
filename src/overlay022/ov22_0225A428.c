@@ -317,7 +317,7 @@ static void ov22_0225A914 (UnkStruct_ov22_0225A914 * param0, GraphicElementManag
             v1.unk_08.x *= FX32_ONE;
 
             param0->unk_10[(v2 * 10) + v3] = sub_02021B90(&v1);
-            sub_02021D6C(param0->unk_10[(v2 * 10) + v3], 1);
+            SpriteActor_SetSpriteAnimActive(param0->unk_10[(v2 * 10) + v3], 1);
 
             if (((v2 * 10) + v3) >= param3) {
                 sub_02021CAC(param0->unk_10[(v2 * 10) + v3], 0);
@@ -332,11 +332,11 @@ static void ov22_0225A9C8 (UnkStruct_ov22_0225A914 * param0, int param1)
 
     if (param0->unk_60 < param1) {
         for (v0 = param0->unk_60; v0 < param1; v0++) {
-            sub_02021D6C(param0->unk_10[v0], 0);
+            SpriteActor_SetSpriteAnimActive(param0->unk_10[v0], 0);
         }
     } else if (param0->unk_60 > param1) {
         for (v0 = param0->unk_60 - 1; v0 >= param1; v0--) {
-            sub_02021D6C(param0->unk_10[v0], 1);
+            SpriteActor_SetSpriteAnimActive(param0->unk_10[v0], 1);
         }
     }
 
@@ -484,7 +484,7 @@ static void ov22_0225ACE4 (UnkStruct_ov22_0225AB54 * param0)
         v1 = v2 / v3;
 
         GF_ASSERT(v1 <= 10);
-        sub_02021D6C(param0->unk_10[v0], 0 + v1);
+        SpriteActor_SetSpriteAnimActive(param0->unk_10[v0], 0 + v1);
 
         v2 -= v1 * v3;
         v3 /= 10;

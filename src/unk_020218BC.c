@@ -457,7 +457,7 @@ u32 sub_02021D44 (const GraphicElementData * param0)
     return v0;
 }
 
-void sub_02021D6C (GraphicElementData * param0, u32 param1)
+void SpriteActor_SetSpriteAnimActive (GraphicElementData * param0, u32 param1)
 {
     const NNSG2dAnimSequence * v0;
 
@@ -482,7 +482,7 @@ void sub_02021D6C (GraphicElementData * param0, u32 param1)
 void sub_02021DCC (GraphicElementData * param0, u32 param1)
 {
     if (param0->unk_F0 != param1) {
-        sub_02021D6C(param0, param1);
+        SpriteActor_SetSpriteAnimActive(param0, param1);
     }
 }
 
@@ -493,13 +493,13 @@ void sub_02021DE0 (GraphicElementData * param0)
 
         NNS_G2dResetAnimCtrlState(&v0->unk_08.animCtrl);
         NNS_G2dStartAnimCtrl(&v0->unk_08.animCtrl);
-        sub_02021E50(param0, 0);
+        SpriteActor_SetAnimFrame(param0, 0);
     } else {
         MultiCellAnimationData * v1 = (MultiCellAnimationData *)&param0->unk_40;
 
         NNS_G2dResetAnimCtrlState(&v1->unk_08.animCtrl);
         NNS_G2dStartAnimCtrl(&v1->unk_08.animCtrl);
-        sub_02021E50(param0, 0);
+        SpriteActor_SetAnimFrame(param0, 0);
     }
 }
 
@@ -519,7 +519,7 @@ void sub_02021E2C (GraphicElementData * param0, fx32 param1)
     }
 }
 
-void sub_02021E50 (GraphicElementData * param0, u16 param1)
+void SpriteActor_SetAnimFrame (GraphicElementData * param0, u16 param1)
 {
     if ((param0->unk_EC == 1) || (param0->unk_EC == 3)) {
         CellAnimationData * v0 = (CellAnimationData *)&param0->unk_40;

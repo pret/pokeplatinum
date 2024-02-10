@@ -845,20 +845,20 @@ static void ov21_021D6744 (UnkStruct_ov21_021D71A8 * param0, UnkStruct_ov21_021D
 
     for (v1 = 0; v1 < 9; v1++) {
         param0->unk_00[v1] = sub_02021B90(&v0);
-        sub_02021D6C(param0->unk_00[v1], 0);
+        SpriteActor_SetSpriteAnimActive(param0->unk_00[v1], 0);
     }
 
     v0.unk_14 = 0;
 
     for (v1 = 0; v1 < 9; v1++) {
         param0->unk_50[v1] = sub_02021B90(&v0);
-        sub_02021D6C(param0->unk_50[v1], 1);
+        SpriteActor_SetSpriteAnimActive(param0->unk_50[v1], 1);
     }
 
     v0.unk_14 = 0;
     param0->unk_74 = sub_02021B90(&v0);
 
-    sub_02021D6C(param0->unk_74, 2);
+    SpriteActor_SetSpriteAnimActive(param0->unk_74, 2);
 
     v0.unk_14 = 0;
     v0.unk_08.x = 56 << FX32_SHIFT;

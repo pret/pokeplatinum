@@ -769,7 +769,7 @@ static int sub_0208CD44 (UnkStruct_0208D7BC * param0)
 
         if (param0->unk_6A5_0 != 4) {
             if ((Item_IsHMMove(param0->unk_250.unk_34[param0->unk_6A5_0]) == 1) && (param0->unk_24C->unk_18 != 0)) {
-                sub_0200D3EC(param0->unk_41C[18], 0);
+                SpriteActor_DrawSprite(param0->unk_41C[18], 0);
                 sub_0208E46C(param0);
                 sub_020914F8(param0);
                 return 10;
@@ -1650,11 +1650,11 @@ static u8 sub_0208DD8C (UnkStruct_0208D7BC * param0)
         }
 
         sub_0208DFF4(param0);
-        sub_0200D3EC(param0->unk_41C[11], 1);
+        SpriteActor_DrawSprite(param0->unk_41C[11], 1);
         sub_0208F7A4(param0);
 
         if (param0->unk_250.unk_10 != param0->unk_250.unk_11) {
-            sub_0200D3EC(param0->unk_41C[12], 1);
+            SpriteActor_DrawSprite(param0->unk_41C[12], 1);
         }
 
         sub_02021CAC(param0->unk_41C[9], 1);
@@ -1668,10 +1668,10 @@ static u8 sub_0208DEA4 (UnkStruct_0208D7BC * param0)
 {
     switch (param0->unk_6A6) {
     case 0:
-        sub_0200D3EC(param0->unk_41C[11], 0);
-        sub_0200D3EC(param0->unk_41C[12], 0);
-        sub_0200D3EC(param0->unk_41C[18], 0);
-        sub_0200D3EC(param0->unk_41C[19], 0);
+        SpriteActor_DrawSprite(param0->unk_41C[11], 0);
+        SpriteActor_DrawSprite(param0->unk_41C[12], 0);
+        SpriteActor_DrawSprite(param0->unk_41C[18], 0);
+        SpriteActor_DrawSprite(param0->unk_41C[19], 0);
         sub_02021CAC(param0->unk_41C[9], 0);
         sub_0201AD10(&param0->unk_04[35]);
         sub_0208F6DC(param0, NULL);
@@ -1761,11 +1761,11 @@ static void sub_0208E07C (UnkStruct_0208D7BC * param0, u32 param1)
 {
     if (param1 == 0xffffffff) {
         sub_020913D8(param0);
-        sub_0200D3EC(param0->unk_41C[18], 0);
+        SpriteActor_DrawSprite(param0->unk_41C[18], 0);
     } else {
         sub_020912A4(param0, param1);
         sub_0208F294(param0, param1);
-        sub_0200D3EC(param0->unk_41C[18], 1);
+        SpriteActor_DrawSprite(param0->unk_41C[18], 1);
     }
 }
 
@@ -1819,11 +1819,11 @@ static void sub_0208E190 (UnkStruct_0208D7BC * param0)
     sub_02091420(param0);
     sub_0208DFF4(param0);
 
-    sub_0200D3EC(param0->unk_41C[11], 1);
+    SpriteActor_DrawSprite(param0->unk_41C[11], 1);
     sub_0208F7A4(param0);
 
     if (param0->unk_250.unk_10 != param0->unk_250.unk_11) {
-        sub_0200D3EC(param0->unk_41C[12], 1);
+        SpriteActor_DrawSprite(param0->unk_41C[12], 1);
     }
 
     sub_02021CAC(param0->unk_41C[9], 1);
@@ -1881,7 +1881,7 @@ static u8 sub_0208E308 (UnkStruct_0208D7BC * param0)
     switch (param0->unk_6A6) {
     case 0:
         sub_0208F964(param0);
-        sub_0200D3EC(param0->unk_41C[19], 0);
+        SpriteActor_DrawSprite(param0->unk_41C[19], 0);
         sub_0208E498(param0, 0xffffffff);
         sub_02021CAC(param0->unk_41C[9], 0);
         sub_0201AD10(&param0->unk_04[35]);
@@ -1971,10 +1971,10 @@ static void sub_0208E508 (UnkStruct_0208D7BC * param0)
 
     if (param0->unk_6A4 == 3) {
         sub_0208F964(param0);
-        sub_0200D3EC(param0->unk_41C[11], 1);
+        SpriteActor_DrawSprite(param0->unk_41C[11], 1);
 
         if (param0->unk_250.unk_10 != param0->unk_250.unk_11) {
-            sub_0200D3EC(param0->unk_41C[12], 1);
+            SpriteActor_DrawSprite(param0->unk_41C[12], 1);
         }
 
         sub_0201C63C(param0->unk_00, 2, 3, 0);

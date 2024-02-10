@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_02002F38_DECL_H
 #define POKEPLATINUM_STRUCT_02002F38_DECL_H
 
-typedef struct UnkStruct_02002F38_t PaletteSys;
+typedef struct UnkStruct_02002F38_t PaletteData;
 
 #endif // POKEPLATINUM_STRUCT_02002F38_DECL_H

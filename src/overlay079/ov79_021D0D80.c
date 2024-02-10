@@ -775,7 +775,7 @@ static void ov79_021D167C (UnkStruct_ov79_021D0E1C * param0)
         param0->unk_1CC[v0] = sub_0200CA08(param0->unk_1B8, param0->unk_1BC, &v1[3]);
 
         sub_02021CAC(param0->unk_1CC[v0], 1);
-        sub_02021D6C(param0->unk_1CC[v0], v0 + 3);
+        SpriteActor_SetSpriteAnimActive(param0->unk_1CC[v0], v0 + 3);
         sub_0200D494(param0->unk_1CC[v0], v2[v0].unk_00, v2[v0].unk_02);
     }
 
@@ -794,7 +794,7 @@ static void ov79_021D167C (UnkStruct_ov79_021D0E1C * param0)
         param0->unk_1E0[v0] = sub_0200CA08(param0->unk_1B8, param0->unk_1BC, &v1[4]);
 
         sub_02021CAC(param0->unk_1E0[v0], 1);
-        sub_02021D6C(param0->unk_1E0[v0], v0 * 3);
+        SpriteActor_SetSpriteAnimActive(param0->unk_1E0[v0], v0 * 3);
         sub_02021CE4(param0->unk_1E0[v0], FX32_CONST(2));
         sub_02021E90(param0->unk_1E0[v0], v0 + 2);
         sub_02021CC8(param0->unk_1E0[v0], 0);

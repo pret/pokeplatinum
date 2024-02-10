@@ -1315,7 +1315,7 @@ static void ov115_022615B0 (UnkStruct_ov115_022615B0 * param0, UnkStruct_ov115_0
         param0->unk_18[v0] = param1->unk_08;
         param0->unk_00[v0] = sub_02021AA0(param1);
 
-        sub_02021D6C(param0->unk_00[v0], 2);
+        SpriteActor_SetSpriteAnimActive(param0->unk_00[v0], 2);
         sub_02021CAC(param0->unk_00[v0], 0);
         sub_02021CC8(param0->unk_00[v0], 1);
         sub_02021CE4(param0->unk_00[v0], FX32_CONST(1.5));
@@ -1393,7 +1393,7 @@ static void ov115_02261660 (UnkStruct_ov115_022615B0 * param0, u32 param1, u32 p
         v6 = 7;
     }
 
-    sub_02021D6C(param0->unk_00[v1], v5);
+    SpriteActor_SetSpriteAnimActive(param0->unk_00[v1], v5);
     param0->unk_0C[v1] = 0;
     sub_02021CAC(param0->unk_00[v1], 1);
     ov115_0226177C(param0, v1);
@@ -2740,7 +2740,7 @@ static BOOL ov115_02263150 (UnkStruct_ov115_02263130 * param0, UnkStruct_ov115_0
 {
     switch (param0->unk_3A) {
     case 0:
-        sub_02021E50(param0->unk_34, 0);
+        SpriteActor_SetAnimFrame(param0->unk_34, 0);
         ov115_02264BAC(&param1->unk_1AB4.unk_6A34);
         ov115_02264BD8(&param1->unk_1AB4.unk_6A34, 128, Unk_ov115_02265B7C[0]);
 
