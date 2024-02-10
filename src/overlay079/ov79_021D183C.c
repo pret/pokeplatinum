@@ -160,7 +160,7 @@ void ov79_021D196C (UnkStruct_ov79_021D0E1C * param0)
 
         sub_0200B48C(param0->unk_30.unk_00, 0, sub_02015918(param0->unk_28, v2->unk_02), 0, 0, GAME_LANGUAGE);
         sub_0200B60C(param0->unk_30.unk_00, 1, v2->unk_01, 2, 2, 1);
-        sub_0200C388(param0->unk_30.unk_00, param0->unk_30.unk_04, param0->unk_30.unk_0C);
+        StringFormatter_Format(param0->unk_30.unk_00, param0->unk_30.unk_04, param0->unk_30.unk_0C);
         sub_02013A6C(param0->unk_CC, param0->unk_30.unk_04, v2->unk_05);
     }
 
@@ -360,7 +360,7 @@ static void ov79_021D1D94 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     }
 
     sub_0200B60C(v0->unk_30.unk_00, 0, v4, 2, 0, 1);
-    sub_0200C388(v0->unk_30.unk_00, v0->unk_30.unk_04, v0->unk_30.unk_10);
+    StringFormatter_Format(v0->unk_30.unk_00, v0->unk_30.unk_04, v0->unk_30.unk_10);
     sub_0201D78C(&v0->unk_E8[1], 0, v0->unk_30.unk_04, 8, 0, 0, v1, NULL);
     sub_0209933C(v0->unk_1F8, v0->unk_1FC, v0->unk_20->unk_1C[param1].unk_02);
     sub_0200D3F4(v0->unk_1FC->unk_04, 1);
@@ -413,7 +413,7 @@ void ov79_021D1FBC (UnkStruct_ov79_021D0E1C * param0)
 {
     Strbuf_Clear(param0->unk_30.unk_04);
     sub_0200B48C(param0->unk_30.unk_00, 0, sub_02015918(param0->unk_28, param0->unk_20->unk_1C[param0->unk_1A].unk_02), 2, 1, GAME_LANGUAGE);
-    sub_0200C388(param0->unk_30.unk_00, param0->unk_30.unk_04, param0->unk_30.unk_14);
+    StringFormatter_Format(param0->unk_30.unk_00, param0->unk_30.unk_04, param0->unk_30.unk_14);
 
     ov79_021D1850(param0, param0->unk_30.unk_04, param0->unk_30.unk_4C, 1);
 }
@@ -422,7 +422,7 @@ void ov79_021D2008 (UnkStruct_ov79_021D0E1C * param0)
 {
     Strbuf_Clear(param0->unk_30.unk_04);
     sub_0200B48C(param0->unk_30.unk_00, 0, sub_02015918(param0->unk_28, param0->unk_20->unk_1C[param0->unk_1A].unk_02), 2, 1, GAME_LANGUAGE);
-    sub_0200C388(param0->unk_30.unk_00, param0->unk_30.unk_04, param0->unk_30.unk_18);
+    StringFormatter_Format(param0->unk_30.unk_00, param0->unk_30.unk_04, param0->unk_30.unk_18);
 
     ov79_021D1850(param0, param0->unk_30.unk_04, param0->unk_30.unk_4C, 0);
 }

@@ -570,7 +570,7 @@ void ov83_0223DF10 (UnkStruct_ov83_0223E138 * param0)
 void ov83_0223DF30 (UnkStruct_ov83_0223E138 * param0, int param1)
 {
     sub_0200B70C(param0->unk_18->unk_04, 0, param1);
-    sub_0200C388(param0->unk_18->unk_04, param0->unk_18->unk_08, param0->unk_18->unk_10);
+    StringFormatter_Format(param0->unk_18->unk_04, param0->unk_18->unk_08, param0->unk_18->unk_10);
     BGL_FillWindow(param0->unk_08, 15);
     ov83_0223E21C(param0->unk_08, param0->unk_18->unk_08, 0, 0);
     sub_0200E060(param0->unk_08, 0, 1, 0);
@@ -616,7 +616,7 @@ void ov83_0223DFAC (UnkStruct_ov83_0223E138 * param0)
 
         v5 = param0->unk_1C->unk_130[v0];
         sub_0200B498(param0->unk_18->unk_04, 0, param0->unk_1C->unk_134[v5]);
-        sub_0200C388(param0->unk_18->unk_04, param0->unk_18->unk_08, param0->unk_18->unk_14);
+        StringFormatter_Format(param0->unk_18->unk_04, param0->unk_18->unk_08, param0->unk_18->unk_14);
 
         v6 = ov83_0223D6A8((v3 * 8) + 32, param0->unk_18->unk_08, 1);
         v7 = (v4 * 8) + 8;
@@ -1125,7 +1125,7 @@ void ov83_0223E9BC (UnkStruct_ov83_0223E824 * param0)
 void ov83_0223E9D0 (UnkStruct_ov83_0223E824 * param0)
 {
     if (param0->unk_34 != NULL) {
-        sub_0200EBA0(param0->unk_34);
+        DeleteWaitDial(param0->unk_34);
         param0->unk_34 = NULL;
     }
 }
@@ -1154,14 +1154,14 @@ static void ov83_0223EA6C (UnkStruct_ov83_0223E824 * param0)
     sub_0200B60C(param0->unk_1C->unk_04, 0, param0->unk_24->unk_58.unk_0E, 2, 2, 1);
     sub_0200B60C(param0->unk_1C->unk_04, 1, param0->unk_24->unk_58.unk_0F, 2, 2, 1);
     sub_0200B60C(param0->unk_1C->unk_04, 2, param0->unk_24->unk_58.unk_10, 2, 2, 1);
-    sub_0200C388(param0->unk_1C->unk_04, param0->unk_1C->unk_08, param0->unk_1C->unk_4C[1]);
+    StringFormatter_Format(param0->unk_1C->unk_04, param0->unk_1C->unk_08, param0->unk_1C->unk_4C[1]);
     sub_0201D78C(param0->unk_08[1], 0, param0->unk_1C->unk_08, 160, 24, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     sub_0201D78C(param0->unk_08[1], 0, param0->unk_1C->unk_4C[2], 0, 48, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     sub_0200B60C(param0->unk_1C->unk_04, 0, param0->unk_24->unk_58.unk_00, 4, 0, 1);
 
     {
         int v0 = (param0->unk_24->unk_58.unk_00 == 1) ? 3 : 5;
-        sub_0200C388(param0->unk_1C->unk_04, param0->unk_1C->unk_08, param0->unk_1C->unk_4C[v0]);
+        StringFormatter_Format(param0->unk_1C->unk_04, param0->unk_1C->unk_08, param0->unk_1C->unk_4C[v0]);
     }
 
     sub_0201D78C(param0->unk_08[1], 0, param0->unk_1C->unk_08, 160, 48, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
@@ -1170,7 +1170,7 @@ static void ov83_0223EA6C (UnkStruct_ov83_0223E824 * param0)
 
     {
         int v1 = (param0->unk_24->unk_58.unk_04 == 1) ? 3 : 5;
-        sub_0200C388(param0->unk_1C->unk_04, param0->unk_1C->unk_08, param0->unk_1C->unk_4C[v1]);
+        StringFormatter_Format(param0->unk_1C->unk_04, param0->unk_1C->unk_08, param0->unk_1C->unk_4C[v1]);
     }
 
     sub_0201D78C(param0->unk_08[1], 0, param0->unk_1C->unk_08, 160, 68, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
@@ -1182,7 +1182,7 @@ static void ov83_0223EBD8 (UnkStruct_ov83_0223E824 * param0)
     sub_0200BF74(param0->unk_1C->unk_04, 3, param0->unk_24->unk_58.unk_0C);
     sub_0200B60C(param0->unk_1C->unk_04, 1, param0->unk_24->unk_58.unk_0D, 2, 2, 1);
     sub_0200B60C(param0->unk_1C->unk_04, 2, param0->unk_20, 2, 2, 1);
-    sub_0200C388(param0->unk_1C->unk_04, param0->unk_1C->unk_08, param0->unk_1C->unk_4C[7]);
+    StringFormatter_Format(param0->unk_1C->unk_04, param0->unk_1C->unk_08, param0->unk_1C->unk_4C[7]);
     sub_0201D78C(param0->unk_08[2], 0, param0->unk_1C->unk_08, 16, 24, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     sub_0201A9A4(param0->unk_08[2]);
 }
@@ -1220,7 +1220,7 @@ void ov83_0223EC8C (UnkStruct_ov83_0223E824 * param0, u32 param1)
     switch (param1) {
     case 0:
         sub_0200B498(param0->unk_1C->unk_04, 0, param0->unk_24->unk_134[param0->unk_24->unk_144]);
-        sub_0200C388(param0->unk_1C->unk_04, param0->unk_1C->unk_08, param0->unk_1C->unk_18);
+        StringFormatter_Format(param0->unk_1C->unk_04, param0->unk_1C->unk_08, param0->unk_1C->unk_18);
         v0 = param0->unk_1C->unk_08;
         break;
     case 1:

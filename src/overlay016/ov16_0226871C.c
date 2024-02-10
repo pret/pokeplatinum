@@ -67,7 +67,7 @@
 #include "unk_0208C098.h"
 #include "overlay011/ov11_0221F800.h"
 #include "overlay016/ov16_0223DF00.h"
-#include "overlay016/ov16_0225CBB8.h"
+#include "battle/battle_display.h"
 #include "overlay016/ov16_0226871C.h"
 #include "overlay016/ov16_0226DB7C.h"
 #include "overlay016/ov16_0226DE44.h"
@@ -2017,8 +2017,8 @@ static void ov16_02269DB0 (UnkStruct_ov16_02268A14 * param0, int param1, int par
     v4 = Strbuf_Init(100, 5);
 
     sub_0200B630(v5, 0, v6->unk_00);
-    sub_0200C388(v5, v3, v1);
-    sub_0200C388(v5, v4, v2);
+    StringFormatter_Format(v5, v3, v1);
+    StringFormatter_Format(v5, v4, v2);
 
     ov16_0226A98C(param0, &param0->unk_4CC[0], v3, 2, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((3 & 0xff) << 0))), 2, 20023, 128, 68, 1, NULL);
     ov16_0226A98C(param0, &param0->unk_4CC[1], v4, 2, ((u32)(((10 & 0xff) << 16) | ((11 & 0xff) << 8) | ((12 & 0xff) << 0))), 2, 20023, 128, 140, 1, NULL);
@@ -2081,8 +2081,8 @@ static void ov16_02269F68 (UnkStruct_ov16_02268A14 * param0, int param1, int par
     v4 = Strbuf_Init(100, 5);
 
     sub_0200B630(v5, 0, v6->unk_00);
-    sub_0200C388(v5, v3, v1);
-    sub_0200C388(v5, v4, v2);
+    StringFormatter_Format(v5, v3, v1);
+    StringFormatter_Format(v5, v4, v2);
 
     ov16_0226A98C(param0, &param0->unk_4CC[0], v3, 2, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((3 & 0xff) << 0))), 2, 20023, 128, 68, 1, NULL);
     ov16_0226A98C(param0, &param0->unk_4CC[1], v4, 2, ((u32)(((10 & 0xff) << 16) | ((11 & 0xff) << 8) | ((12 & 0xff) << 0))), 2, 20023, 128, 140, 1, NULL);
@@ -2109,8 +2109,8 @@ static void ov16_0226A04C (UnkStruct_ov16_02268A14 * param0, int param1, int par
     v4 = Strbuf_Init(100, 5);
 
     sub_0200B630(v5, 0, v6->unk_00);
-    sub_0200C388(v5, v3, v1);
-    sub_0200C388(v5, v4, v2);
+    StringFormatter_Format(v5, v3, v1);
+    StringFormatter_Format(v5, v4, v2);
 
     ov16_0226A98C(param0, &param0->unk_4CC[0], v3, 2, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((3 & 0xff) << 0))), 2, 20023, 128, 68, 1, NULL);
     ov16_0226A98C(param0, &param0->unk_4CC[1], v4, 2, ((u32)(((10 & 0xff) << 16) | ((11 & 0xff) << 8) | ((12 & 0xff) << 0))), 2, 20023, 128, 140, 1, NULL);
@@ -2168,7 +2168,7 @@ static void ov16_0226A12C (UnkStruct_ov16_02268A14 * param0, int param1, int par
             v7 = Pokemon_GetBoxPokemon(v6);
 
             sub_0200B5CC(v8, 0, v7);
-            sub_0200C388(v8, v4, v5);
+            StringFormatter_Format(v8, v4, v5);
 
             if (v1 & 1) {
                 v9 = ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((3 & 0xff) << 0)));
@@ -2824,7 +2824,7 @@ void ov16_0226AC98 (UnkStruct_ov16_02268A14 * param0, int param1, const UnkStruc
         if ((v0->unk_78[v4].unk_00.unk_0C == NULL) || (v0->unk_C8[v4].unk_00.unk_0C == NULL) || (param2->unk_00[v4] != 0) || (param2->unk_00[v4] != v0->unk_00.unk_00[v4]) || (param2->unk_08[v4] != v0->unk_00.unk_08[v4]) || (param2->unk_10[v4] != v0->unk_00.unk_10[v4])) {
             sub_0200B60C(v10, 0, param2->unk_08[v4], 2, 1, 0);
             sub_0200B60C(v10, 1, param2->unk_10[v4], 2, 1, 0);
-            sub_0200C388(v10, v7, v8);
+            StringFormatter_Format(v10, v7, v8);
 
             v11 = ov16_0226B924(param2->unk_08[v4], param2->unk_10[v4]);
 

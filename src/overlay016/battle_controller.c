@@ -44,8 +44,8 @@
 #include "overlay016/ov16_0223B140.h"
 #include "overlay016/ov16_0223DF00.h"
 #include "battle/battle_lib.h"
-#include "overlay016/ov16_0225CBB8.h"
-#include "overlay016/ov16_0226485C.h"
+#include "battle/battle_display.h"
+#include "battle/battle_io.h"
 
 enum {
     STATE_PROCESSING = 0,

@@ -1604,7 +1604,7 @@ static void ov70_0225EB08 (UnkStruct_ov70_0225E9C8 * param0)
 static void ov70_0225EB24 (UnkStruct_ov70_0225E9C8 * param0)
 {
     if (param0->unk_1C != NULL) {
-        sub_0200EBA0(param0->unk_1C);
+        DeleteWaitDial(param0->unk_1C);
         param0->unk_1C = NULL;
     }
 }
@@ -1667,7 +1667,7 @@ static void ov70_0225EBC4 (UnkStruct_ov70_0225E9C8 * param0, const Strbuf *param
     BGL_FillWindow(&param0->unk_00, 15);
     Strbuf_Copy(param0->unk_18, param1);
 
-    param0->unk_10 = sub_0201D738(&param0->unk_00, 1, param0->unk_18, 0, 0, param0->unk_14, NULL);
+    param0->unk_10 = PrintStringSimple(&param0->unk_00, 1, param0->unk_18, 0, 0, param0->unk_14, NULL);
 
     sub_0200E69C(&param0->unk_00, 1, (1 + (18 + 12)), 2, 3);
 }
@@ -2028,7 +2028,7 @@ static void ov70_0225F25C (UnkStruct_ov70_0225F208 * param0)
 static Strbuf* ov70_0225F288 (UnkStruct_ov70_0225F208 * param0, int param1, u32 param2)
 {
     MessageLoader_GetStrbuf(param0->unk_04[param1], param2, param0->unk_18);
-    sub_0200C388(param0->unk_00, param0->unk_14, param0->unk_18);
+    StringFormatter_Format(param0->unk_00, param0->unk_14, param0->unk_18);
     return param0->unk_14;
 }
 

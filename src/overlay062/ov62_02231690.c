@@ -505,7 +505,7 @@ asm static void ov62_02231C78 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C
     ldr r2, [sp, #0x30]
     add r0, r4, #0
     add r1, r6, #0
-    bl sub_0200C388
+    bl StringFormatter_Format
     add r0, r5, #0
     mov r1, #0
     bl BGL_FillWindow
@@ -560,7 +560,7 @@ asm static void ov62_02231C78 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C
     ldr r2, [sp, #0x38]
     add r0, r4, #0
     add r1, r6, #0
-    bl sub_0200C388
+    bl StringFormatter_Format
     add r0, r5, #0
     mov r1, #0
     bl BGL_FillWindow
@@ -664,7 +664,7 @@ asm static void ov62_02231C78 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C
     ldr r1, [sp, #0x44]
     ldr r2, [sp, #0x48]
     add r0, r4, #0
-    bl sub_0200C388
+    bl StringFormatter_Format
     mov r1, #0
     str r1, [sp]
     mov r0, #0xff
@@ -707,7 +707,7 @@ asm static void ov62_02231C78 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C
     ldr r2, [sp, #0x4c]
     add r0, r4, #0
     add r1, r5, #0
-    bl sub_0200C388
+    bl StringFormatter_Format
     mov r1, #0
     str r1, [sp]
     mov r0, #0xff
@@ -1045,12 +1045,12 @@ static void ov62_022323CC (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C 
             v0 = Strbuf_Init(255, 102);
             v1 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 23);
             sub_0200BE08(v2, 0, v4, v5);
-            sub_0200C388(v2, v0, v1);
+            StringFormatter_Format(v2, v0, v1);
         } else {
             v0 = Strbuf_Init(255, 102);
             v1 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 22);
             sub_0200BDD0(v2, 0, v4);
-            sub_0200C388(v2, v0, v1);
+            StringFormatter_Format(v2, v0, v1);
         }
 
         Strbuf_Free(v1);
@@ -1481,7 +1481,7 @@ asm void ov62_02232778 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * p
     ldr r2, [sp, #0x4c]
     add r0, r5, #0
     add r1, r7, #0
-    bl sub_0200C388
+    bl StringFormatter_Format
     ldr r0, [r4, #0x28]
     add r2, r7, #0
     ldr r0, [r0, #8]
@@ -1518,7 +1518,7 @@ asm void ov62_02232778 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * p
     ldr r2, [sp, #0x2f8]
     add r0, r5, #0
     add r1, r7, #0
-    bl sub_0200C388
+    bl StringFormatter_Format
     ldr r0, [r4, #0x28]
     add r2, r7, #0
     ldr r0, [r0, #8]
@@ -1923,7 +1923,7 @@ asm int ov62_02232C78 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * pa
     ldr r2, [sp, #0x54]
     add r0, r5, #0
     add r1, r7, #0
-    bl sub_0200C388
+    bl StringFormatter_Format
     ldr r0, [r4, #0x28]
     add r2, r7, #0
     ldr r0, [r0, #8]
@@ -1960,7 +1960,7 @@ asm int ov62_02232C78 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * pa
     ldr r2, [sp, #0x2f8]
     add r0, r5, #0
     add r1, r7, #0
-    bl sub_0200C388
+    bl StringFormatter_Format
     ldr r0, [r4, #0x28]
     add r2, r7, #0
     ldr r0, [r0, #8]
@@ -2854,7 +2854,7 @@ static void ov62_02233B50 (UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C 
         v8 = Strbuf_Init(255, 102);
 
         sub_0200B48C(v9, 0, v6, 0, 1, GAME_LANGUAGE);
-        sub_0200C388(v9, v8, v7);
+        StringFormatter_Format(v9, v8, v7);
         BGL_FillWindow(v10, 0x0);
         sub_0201D78C(v10, 0, v8, ov62_0223429C(v10, v8), 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         sub_0201A9A4(v10);
@@ -2887,7 +2887,7 @@ static void ov62_02233B50 (UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C 
 
                 Strbuf_FormatInt(v6, v13, 4, 0, 1);
                 sub_0200B48C(v9, 0, v6, 0, 1, GAME_LANGUAGE);
-                sub_0200C388(v9, v8, v7);
+                StringFormatter_Format(v9, v8, v7);
                 BGL_FillWindow(v10, 0x0);
                 sub_0201D78C(v10, 0, v8, ov62_0223429C(v10, v8), 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
                 sub_0201A9A4(v10);
@@ -2935,7 +2935,7 @@ static void ov62_02233B50 (UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C 
             sub_0200B48C(v9, 2, v17, 0, 1, GAME_LANGUAGE);
             sub_0200B48C(v9, 1, v18, 0, 1, GAME_LANGUAGE);
             sub_0200B48C(v9, 0, v19, 0, 1, GAME_LANGUAGE);
-            sub_0200C388(v9, v8, v7);
+            StringFormatter_Format(v9, v8, v7);
             BGL_FillWindow(v10, 0x0);
             sub_0201D78C(v10, 0, v8, ov62_0223429C(v10, v8), 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
             sub_0201A9A4(v10);

@@ -45,7 +45,15 @@
 #define ENEMY_IN_SLOT_LEFT  2
 
 BGL * BattleSystem_BGL(BattleSystem * param0);
-Window * BattleSystem_Window(BattleSystem * param0, int param1);
+
+/**
+ * @brief Get one of the allocated windows for the battle display.
+ * 
+ * @param battleSys 
+ * @param idx 
+ * @return 
+ */
+Window* BattleSystem_Window(BattleSystem *battleSys, int idx);
 u32 BattleSystem_BattleType(BattleSystem * param0);
 BattleContext * BattleSystem_Context(BattleSystem * param0);
 BattlerData * BattleSystem_BattlerData(BattleSystem * param0, int param1);
@@ -225,8 +233,8 @@ void ov16_0223F24C(BattleSystem * param0, int param1);
 void ov16_0223F268(BattleSystem * param0);
 void BattleSystem_SetCommandSelectionFlags(BattleSystem *battleSys, int flags);
 void ov16_0223F290(BattleSystem * param0, int param1);
-void * ov16_0223F29C(BattleSystem * param0);
-void ov16_0223F2A4(BattleSystem * param0, void * param1);
+void * Battle_WaitDial(BattleSystem * param0);
+void Battle_SetWaitDial(BattleSystem * param0, void * param1);
 UnkStruct_ov16_0223E0C8 * ov16_0223F2AC(BattleSystem * param0, int param1);
 u8 * ov16_0223F2B8(UnkStruct_ov16_0223E0C8 * param0, int param1);
 void ov16_0223F2CC(UnkStruct_ov16_0223E0C8 * param0, int param1, int param2);
@@ -294,7 +302,17 @@ void ov16_0223F9A0(BattleSystem * param0, int param1);
 BOOL BattleSystem_CaughtSpecies(BattleSystem *battleSys, int species);
 void Battle_SetDefaultBlend(void);
 u8 ov16_0223F9FC(BattleSystem * param0, int param1, int param2, int param3, int param4);
-u8 BattleMessage_Print(BattleSystem * param0, MessageLoader * param1, BattleMessage * param2, int param3);
+
+/**
+ * @brief Print a BattleMessage to the main text display window.
+ * 
+ * @param battleSys 
+ * @param msgLoader 
+ * @param battleMsg 
+ * @param renderDelay   Delay in flames applied to rendering between each character of the string.
+ * @return 
+ */
+u8 BattleMessage_Print(BattleSystem *battleSys, MessageLoader *msgLoader, BattleMessage *battleMsg, int renderDelay);
 u8 BattleMessage_PrintToWindow(BattleSystem * param0, Window * param1, MessageLoader * param2, BattleMessage * param3, int param4, int param5, int param6, int param7, int param8);
 
 #endif // POKEPLATINUM_OV16_0223DF00_H

@@ -1529,10 +1529,10 @@ static void ov17_02242DC0 (UnkStruct_ov17_02246F24 * param0, MessageLoader * par
     v0 = MessageLoader_GetNewStrbuf(param1, param2);
     ov17_0224290C(param0, param3, param4, param5);
 
-    sub_0200C388(param0->unk_0C.unk_48, param0->unk_0C.unk_4C, v0);
+    StringFormatter_Format(param0->unk_0C.unk_48, param0->unk_0C.unk_4C, v0);
     BGL_FillWindow(&param0->unk_0C.unk_28[0], 0xff);
 
-    param0->unk_0C.unk_210 = sub_0201D738(&param0->unk_0C.unk_28[0], 1, param0->unk_0C.unk_4C, 0, 0, v1, NULL);
+    param0->unk_0C.unk_210 = PrintStringSimple(&param0->unk_0C.unk_28[0], 1, param0->unk_0C.unk_4C, 0, 0, v1, NULL);
 
     if (v1 == 0) {
         param0->unk_0C.unk_210 = 0xff;

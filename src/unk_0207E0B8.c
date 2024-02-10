@@ -2124,7 +2124,7 @@ static int HandleGameWindowEvent (GameWindowLayout * param0)
             v2 = sub_02026074(param0->unk_5A4->unk_14, 3);
 
             sub_0200B60C(param0->unk_6A0, 0, v2, 3, 0, 1);
-            sub_0200C388(param0->unk_6A0, param0->unk_6A4, v1);
+            StringFormatter_Format(param0->unk_6A0, param0->unk_6A4, v1);
             Strbuf_Free(v1);
         }
             sub_02082708(param0, 0xffffffff, 1);
@@ -2466,7 +2466,7 @@ static int ProcessWindowInput (GameWindowLayout * param0)
 
             sub_0200B5CC(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
             sub_0200B60C(param0->unk_6A0, 1, param0->unk_B14[2], 3, 0, 1);
-            sub_0200C388(param0->unk_6A0, param0->unk_6A4, v1);
+            StringFormatter_Format(param0->unk_6A0, param0->unk_6A4, v1);
             Strbuf_Free(v1);
             sub_02082708(param0, 0xffffffff, 1);
 
@@ -2658,13 +2658,13 @@ static int ProcessItemApplication (GameWindowLayout * param0)
             MessageLoader_GetStrbuf(param0->unk_69C, 203, param0->unk_6A8);
             sub_0200B5CC(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
             sub_0200B744(param0->unk_6A0, 1, param0->unk_5A4->unk_24);
-            sub_0200C388(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
+            StringFormatter_Format(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
             v2 = 11;
         } else if (v4 != NULL) {
             if (v4->unk_1C->unk_00 == 466) {
                 MessageLoader_GetStrbuf(param0->unk_69C, 204, param0->unk_6A8);
                 sub_0200B70C(param0->unk_6A0, 0, param0->unk_5A4->unk_24);
-                sub_0200C388(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
+                StringFormatter_Format(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
                 v2 = 11;
             }
         }
@@ -2683,13 +2683,13 @@ static int ProcessItemApplication (GameWindowLayout * param0)
             MessageLoader_GetStrbuf(param0->unk_69C, 118, param0->unk_6A8);
             sub_0200B5CC(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
             sub_0200B70C(param0->unk_6A0, 1, param0->unk_5A4->unk_24);
-            sub_0200C388(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
+            StringFormatter_Format(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
             break;
         case 1:
             MessageLoader_GetStrbuf(param0->unk_69C, 78, param0->unk_6A8);
             sub_0200B5CC(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
             sub_0200B744(param0->unk_6A0, 1, param0->unk_704[param0->unk_B11].unk_0C);
-            sub_0200C388(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
+            StringFormatter_Format(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
             v2 = 9;
             break;
         case 2:
@@ -2821,7 +2821,7 @@ static int ProcessPokemonItemSwap (GameWindowLayout * param0)
             MessageLoader_GetStrbuf(param0->unk_69C, 84, param0->unk_6A8);
             sub_0200B70C(param0->unk_6A0, 1, v5);
             sub_0200B70C(param0->unk_6A0, 2, v4);
-            sub_0200C388(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
+            StringFormatter_Format(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
 
             if ((v4 != 112) && (v5 == 112) && (v1 != -1)) {
                 v0 = 12;
@@ -2877,13 +2877,13 @@ static int UpdatePokemonFormWithItem (GameWindowLayout * param0)
         MessageLoader_GetStrbuf(param0->unk_69C, 118, param0->unk_6A8);
         sub_0200B5CC(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
         sub_0200B70C(param0->unk_6A0, 1, param0->unk_5A4->unk_24);
-        sub_0200C388(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
+        StringFormatter_Format(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
     } else {
         sub_0207D570(param0->unk_5A4->unk_04, (u16)v3, 1, 12);
         MessageLoader_GetStrbuf(param0->unk_69C, 84, param0->unk_6A8);
         sub_0200B70C(param0->unk_6A0, 1, v3);
         sub_0200B70C(param0->unk_6A0, 2, v2);
-        sub_0200C388(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
+        StringFormatter_Format(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
     }
 
     sub_0200E060(v1, 1, (1 + 9), 15);

@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/generated/c/battle.h"
+
 #include "battle/common.h"
 #include "constants/battle.h"
 #include "constants/heap.h"
@@ -73,14 +75,13 @@
 #include "flags.h"
 #include "overlay016/ov16_0223DF00.h"
 #include "battle/battle_lib.h"
-#include "overlay016/ov16_0225CBB8.h"
+#include "battle/battle_display.h"
 #include "overlay016/ov16_02266F1C.h"
 #include "overlay016/ov16_02268520.h"
 #include "overlay016/ov16_0226871C.h"
 #include "overlay016/ov16_0226E148.h"
 
 BGL * BattleSystem_BGL(BattleSystem * param0);
-Window * BattleSystem_Window(BattleSystem * param0, int param1);
 u32 BattleSystem_BattleType(BattleSystem * param0);
 BattleContext * BattleSystem_Context(BattleSystem * param0);
 BattlerData * BattleSystem_BattlerData(BattleSystem * param0, int param1);
@@ -162,8 +163,8 @@ void ov16_0223F24C(BattleSystem * param0, int param1);
 void ov16_0223F268(BattleSystem * param0);
 void BattleSystem_SetCommandSelectionFlags(BattleSystem *battleSys, int flags);
 void ov16_0223F290(BattleSystem * param0, int param1);
-void * ov16_0223F29C(BattleSystem * param0);
-void ov16_0223F2A4(BattleSystem * param0, void * param1);
+void * Battle_WaitDial(BattleSystem * param0);
+void Battle_SetWaitDial(BattleSystem * param0, void * param1);
 u8 * ov16_0223F2B8(UnkStruct_ov16_0223E0C8 * param0, int param1);
 void ov16_0223F2CC(UnkStruct_ov16_0223E0C8 * param0, int param1, int param2);
 void ov16_0223F2E4(UnkStruct_ov16_0223E0C8 * param0, int param1, int param2);
@@ -210,27 +211,26 @@ void ov16_0223F9A0(BattleSystem * param0, int param1);
 BOOL BattleSystem_CaughtSpecies(BattleSystem *battleSys, int species);
 void Battle_SetDefaultBlend(void);
 u8 ov16_0223F9FC(BattleSystem * param0, int param1, int param2, int param3, int param4);
-u8 BattleMessage_Print(BattleSystem * param0, MessageLoader * param1, BattleMessage * param2, int param3);
 u8 BattleMessage_PrintToWindow(BattleSystem * param0, Window * param1, MessageLoader * param2, BattleMessage * param3, int param4, int param5, int param6, int param7, int param8);
-static void ov16_0223FBE8(BattleSystem * param0, BattleMessage * param1);
-static void ov16_0223FDE4(BattleSystem * param0, BattleMessage * param1);
-static void ov16_02240584(BattleSystem * param0, MessageLoader * param1, BattleMessage * param2);
-static BOOL ov16_022405A4(UnkStruct_0201D738 * param0, u16 param1);
-static void ov16_02240460(BattleSystem * param0, u32 param1, int param2);
-static void ov16_02240484(BattleSystem * param0, u32 param1, int param2);
-static void ov16_02240490(BattleSystem * param0, u32 param1, int param2);
-static void ov16_0224049C(BattleSystem * param0, u32 param1, int param2);
-static void ov16_022404B4(BattleSystem * param0, u32 param1, int param2, int param3);
-static void ov16_022404E0(BattleSystem * param0, u32 param1, int param2);
-static void ov16_022404EC(BattleSystem * param0, u32 param1, int param2);
-static void ov16_022404F8(BattleSystem * param0, u32 param1, int param2);
-static void ov16_02240504(BattleSystem * param0, u32 param1, int param2);
-static void ov16_02240510(BattleSystem * param0, u32 param1, int param2);
-static void ov16_02240534(BattleSystem * param0, u32 param1, int param2);
-static void ov16_02240538(BattleSystem * param0, u32 param1, int param2);
-static void ov16_02240544(BattleSystem * param0, u32 param1, int param2);
-static void ov16_0224055C(BattleSystem * param0, u32 param1, int param2);
-static void ov16_02240574(BattleSystem * param0, u32 param1, int param2);
+static void BattleMessage_CheckSide(BattleSystem *battleSys, BattleMessage *battleMsg);
+static void BattleMessage_FillFormatBuffers(BattleSystem *battleSys, BattleMessage *battleMsg);
+static void BattleMessage_Format(BattleSystem *battleSys, MessageLoader *msgLoader, BattleMessage *battleMsg);
+static BOOL BattleMessage_Callback(UnkStruct_0201D738 * param0, u16 param1);
+static void BattleMessage_Nickname(BattleSystem * param0, u32 param1, int param2);
+static void BattleMessage_MoveName(BattleSystem * param0, u32 param1, int param2);
+static void BattleMessage_ItemName(BattleSystem * param0, u32 param1, int param2);
+static void BattleMessage_Number(BattleSystem * param0, u32 param1, int param2);
+static void BattleMessage_NumberDigits(BattleSystem * param0, u32 param1, int param2, int param3);
+static void BattleMessage_TypeName(BattleSystem * param0, u32 param1, int param2);
+static void BattleMessage_AbilityName(BattleSystem * param0, u32 param1, int param2);
+static void BattleMessage_StatName(BattleSystem * param0, u32 param1, int param2);
+static void BattleMessage_StatusName(BattleSystem * param0, u32 param1, int param2);
+static void BattleMessage_PokemonName(BattleSystem * param0, u32 param1, int param2);
+static void BattleMessage_PoffinName(BattleSystem * param0, u32 param1, int param2);
+static void BattleMessage_FlavorName(BattleSystem * param0, u32 param1, int param2);
+static void BattleMessage_TrainerClassName(BattleSystem * param0, u32 param1, int param2);
+static void BattleMessage_TrainerName(BattleSystem * param0, u32 param1, int param2);
+static void BattleMessage_PCBoxName(BattleSystem * param0, u32 param1, int param2);
 static u8 ov16_0223F6D4(u8 * param0, u8 * param1, u16 * param2);
 
 BGL * BattleSystem_BGL (BattleSystem * param0)
@@ -238,9 +238,9 @@ BGL * BattleSystem_BGL (BattleSystem * param0)
     return param0->unk_04;
 }
 
-Window * BattleSystem_Window (BattleSystem * param0, int param1)
+Window* BattleSystem_Window(BattleSystem *battleSys, int idx)
 {
-    return &param0->unk_08[param1];
+    return &battleSys->windows[idx];
 }
 
 u32 BattleSystem_BattleType (BattleSystem *battleSys)
@@ -418,7 +418,7 @@ UnkStruct_ov16_0223E0C8 * ov16_0223E0C8 (BattleSystem * param0)
 
 UnkStruct_0200B358 * ov16_0223E0D0 (BattleSystem * param0)
 {
-    return param0->unk_14;
+    return param0->strFormatter;
 }
 
 Strbuf* ov16_0223E0D4 (BattleSystem * param0)
@@ -1290,12 +1290,12 @@ void ov16_0223F290 (BattleSystem * param0, int param1)
     param0->unk_2440 = param1;
 }
 
-void * ov16_0223F29C (BattleSystem * param0)
+void * Battle_WaitDial (BattleSystem * param0)
 {
     return param0->unk_1B8;
 }
 
-void ov16_0223F2A4 (BattleSystem * param0, void * param1)
+void Battle_SetWaitDial (BattleSystem * param0, void * param1)
 {
     param0->unk_1B8 = param1;
 }
@@ -1747,7 +1747,7 @@ u8 ov16_0223F9FC (BattleSystem * param0, int param1, int param2, int param3, int
                 }
 
                 BGL_FillWindow(v0, 0xff);
-                v1 = sub_0201D738(v0, 1, v2, 0, 0, param4, ov16_022405A4);
+                v1 = PrintStringSimple(v0, 1, v2, 0, 0, param4, BattleMessage_Callback);
                 Strbuf_Free(v2);
             }
         } else {
@@ -1781,7 +1781,7 @@ u8 ov16_0223F9FC (BattleSystem * param0, int param1, int param2, int param3, int
 
                 BGL_FillWindow(v0, 0xff);
 
-                v1 = sub_0201D738(v0, 1, v4, 0, 0, param4, ov16_022405A4);
+                v1 = PrintStringSimple(v0, 1, v4, 0, 0, param4, BattleMessage_Callback);
                 Strbuf_Free(v4);
                 MessageLoader_Free(v3);
             }
@@ -1789,32 +1789,32 @@ u8 ov16_0223F9FC (BattleSystem * param0, int param1, int param2, int param3, int
     } else {
         TrainerData_LoadMessage(param1, param3, param0->msgBuffer, 5);
         BGL_FillWindow(v0, 0xff);
-        v1 = sub_0201D738(v0, 1, param0->msgBuffer, 0, 0, param4, ov16_022405A4);
+        v1 = PrintStringSimple(v0, 1, param0->msgBuffer, 0, 0, param4, BattleMessage_Callback);
     }
 
     return v1;
 }
 
-u8 BattleMessage_Print (BattleSystem * param0, MessageLoader * param1, BattleMessage * param2, int param3)
+u8 BattleMessage_Print(BattleSystem *battleSys, MessageLoader *msgLoader, BattleMessage *battleMsg, int renderDelay)
 {
-    Window * v0 = BattleSystem_Window(param0, 0);
+    Window *textWindow = BattleSystem_Window(battleSys, 0);
 
-    ov16_0223FBE8(param0, param2);
-    ov16_0223FDE4(param0, param2);
-    ov16_02240584(param0, param1, param2);
+    BattleMessage_CheckSide(battleSys, battleMsg);
+    BattleMessage_FillFormatBuffers(battleSys, battleMsg);
+    BattleMessage_Format(battleSys, msgLoader, battleMsg);
 
-    BGL_FillWindow(v0, 0xff);
+    BGL_FillWindow(textWindow, 0xFF);
 
-    return sub_0201D738(v0, 1, param0->msgBuffer, 0, 0, param3, ov16_022405A4);
+    return PrintStringSimple(textWindow, 1, battleSys->msgBuffer, 0, 0, renderDelay, BattleMessage_Callback);
 }
 
 u8 BattleMessage_PrintToWindow (BattleSystem * param0, Window * param1, MessageLoader * param2, BattleMessage * param3, int param4, int param5, int param6, int param7, int param8)
 {
     int v0;
 
-    ov16_0223FBE8(param0, param3);
-    ov16_0223FDE4(param0, param3);
-    ov16_02240584(param0, param2, param3);
+    BattleMessage_CheckSide(param0, param3);
+    BattleMessage_FillFormatBuffers(param0, param3);
+    BattleMessage_Format(param0, param2, param3);
 
     if (param6 & 0x1) {
         BGL_FillWindow(param1, 0xff);
@@ -1826,541 +1826,622 @@ u8 BattleMessage_PrintToWindow (BattleSystem * param0, Window * param1, MessageL
         v0 = 0;
     }
 
-    return sub_0201D738(param1, 0, param0->msgBuffer, param4 + v0, param5, param8, ov16_022405A4);
+    return PrintStringSimple(param1, 0, param0->msgBuffer, param4 + v0, param5, param8, BattleMessage_Callback);
 }
 
-static void ov16_0223FBE8 (BattleSystem * param0, BattleMessage * param1)
+/**
+ * @brief Check what side of the battle the incoming message applies to, and update
+ * the message's bank ID as appropriate.
+ * 
+ * This routine is responsible for shifting the message ID for messages that have
+ * separate entries for the player, an enemy trainer, and a wild Pokemon.
+ * 
+ * @param battleSys 
+ * @param battleMsg 
+ */
+static void BattleMessage_CheckSide(BattleSystem *battleSys, BattleMessage *battleMsg)
 {
-    u32 v0;
+    u32 battleType = BattleSystem_BattleType(battleSys);
 
-    v0 = BattleSystem_BattleType(param0);
-
-    if (param1->tags & 0x80) {
+    if (battleMsg->tags & TAG_GLOBAL_MESSAGE) {
         return;
     }
 
-    if (param1->tags & 0x40) {
-        if (Battler_Side(param0, param1->battler)) {
-            param1->id++;
+    if (battleMsg->tags & TAG_SIDE_LOCAL_MESSAGE) {
+        if (Battler_Side(battleSys, battleMsg->battler)) {
+            battleMsg->id++;
         }
 
         return;
     }
 
-    switch (param1->tags & 0x3f) {
-    case 0:
-    case 3:
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-    case 8:
-    case 22:
-    case 24:
-    case 25:
-    case 26:
-    case 27:
-    case 28:
-    case 29:
-    case 30:
-    case 49:
-    case 50:
-    case 51:
-    case 56:
-    case 57:
-    case 58:
-    case 59:
-    case 60:
+    switch (battleMsg->tags & BATTLE_MESSAGE_TAGS) {
+    case TAG_NONE:
+    case TAG_MOVE:
+    case TAG_STAT:
+    case TAG_ITEM:
+    case TAG_NUMBER:
+    case TAG_NUMBERS:
+    case TAG_TRNAME:
+    case TAG_MOVE_MOVE:
+    case TAG_ITEM_MOVE:
+    case TAG_NUMBER_NUMBER:
+    case TAG_TRNAME_TRNAME:
+    case TAG_TRNAME_NICKNAME:
+    case TAG_TRNAME_ITEM:
+    case TAG_TRNAME_NUM:
+    case TAG_TRCLASS_TRNAME:
+    case TAG_TRNAME_NICKNAME_NICKNAME:
+    case TAG_TRCLASS_TRNAME_NICKNAME:
+    case TAG_TRCLASS_TRNAME_ITEM:
+    case TAG_TRNAME_NICKNAME_TRNAME_NICKNAME:
+    case TAG_TRCLASS_TRNAME_NICKNAME_NICKNAME:
+    case TAG_TRCLASS_TRNAME_NICKNAME_TRNAME:
+    case TAG_TRCLASS_TRNAME_TRCLASS_TRNAME:
+    case TAG_TRCLASS_TRNAME_NICKNAME_TRCLASS_TRNAME_NICKNAME:
         break;
-    case 1:
-        if (Battler_Side(param0, param1->params[0] & 0xff)) {
-            param1->id++;
-        }
-        break;
-    case 2:
-    case 10:
-    case 11:
-    case 12:
-    case 13:
-    case 14:
-    case 15:
-    case 16:
-    case 17:
-    case 18:
-    case 19:
-    case 34:
-    case 35:
-    case 37:
-    case 38:
-    case 39:
-    case 40:
-    case 41:
-    case 42:
-    case 44:
-    case 45:
-    case 46:
-    case 47:
-        if (Battler_Side(param0, param1->params[0] & 0xff)) {
-            param1->id++;
 
-            if (v0 & 0x1) {
-                param1->id++;
-            }
+    case TAG_NONE_SIDE_CONSCIOUS:
+        if (Battler_Side(battleSys, battleMsg->params[0] & 0xFF)) {
+            battleMsg->id++;
         }
         break;
-    case 20:
-        if (Battler_Side(param0, param1->params[1] & 0xff)) {
-            param1->id++;
-        }
-        break;
-    case 21:
-    case 23:
-    case 48:
-        if (Battler_Side(param0, param1->params[1] & 0xff)) {
-            param1->id++;
 
-            if (v0 & 0x1) {
-                param1->id++;
+    case TAG_NICKNAME:
+    case TAG_NICKNAME_MOVE:
+    case TAG_NICKNAME_ABILITY:
+    case TAG_NICKNAME_STAT:
+    case TAG_NICKNAME_TYPE:
+    case TAG_NICKNAME_POKE:
+    case TAG_NICKNAME_ITEM:
+    case TAG_NICKNAME_POFFIN:
+    case TAG_NICKNAME_NUM:
+    case TAG_NICKNAME_TRNAME:
+    case TAG_NICKNAME_BOX:
+    case TAG_NICKNAME_MOVE_MOVE:
+    case TAG_NICKNAME_MOVE_NUMBER:
+    case TAG_NICKNAME_ABILITY_MOVE:
+    case TAG_NICKNAME_ABILITY_ITEM:
+    case TAG_NICKNAME_ABILITY_STAT:
+    case TAG_NICKNAME_ABILITY_TYPE:
+    case TAG_NICKNAME_ABILITY_STATUS:
+    case TAG_NICKNAME_ABILITY_NUMBER:
+    case TAG_NICKNAME_ITEM_MOVE:
+    case TAG_NICKNAME_ITEM_STAT:
+    case TAG_NICKNAME_ITEM_STATUS:
+    case TAG_NICKNAME_BOX_BOX:
+        if (Battler_Side(battleSys, battleMsg->params[0] & 0xFF)) {
+            battleMsg->id++;
+
+            if (battleType & BATTLE_TYPE_TRAINER) {
+                battleMsg->id++;
             }
         }
         break;
-    case 9:
-    case 31:
-    case 32:
-    case 33:
-        if (Battler_Side(param0, param1->params[0] & 0xff)) {
-            param1->id += 3;
 
-            if (v0 & 0x1) {
-                param1->id += 2;
-            }
+    case TAG_MOVE_SIDE:
+        if (Battler_Side(battleSys, battleMsg->params[1] & 0xFF)) {
+            battleMsg->id++;
+        }
+        break;
 
-            if (Battler_Side(param0, param1->params[1] & 0xff)) {
-                param1->id++;
-            }
-        } else {
-            if (Battler_Side(param0, param1->params[1] & 0xff)) {
-                param1->id++;
+    case TAG_MOVE_NICKNAME:
+    case TAG_ABILITY_NICKNAME:
+    case TAG_ITEM_NICKNAME_FLAVOR:
+        if (Battler_Side(battleSys, battleMsg->params[1] & 0xFF)) {
+            battleMsg->id++;
 
-                if (v0 & 0x1) {
-                    param1->id++;
-                }
+            if (battleType & BATTLE_TYPE_TRAINER) {
+                battleMsg->id++;
             }
         }
         break;
-    case 36:
-    case 43:
-    case 52:
-    case 53:
-    case 54:
-    case 55:
-        if (Battler_Side(param0, param1->params[0] & 0xff)) {
-            param1->id += 3;
 
-            if (v0 & 0x1) {
-                param1->id += 2;
+    case TAG_NICKNAME_NICKNAME:
+    case TAG_NICKNAME_NICKNAME_MOVE:
+    case TAG_NICKNAME_NICKNAME_ABILITY:
+    case TAG_NICKNAME_NICKNAME_ITEM:
+        if (Battler_Side(battleSys, battleMsg->params[0] & 0xFF)) {
+            battleMsg->id += 3;
+
+            if (battleType & BATTLE_TYPE_TRAINER) {
+                battleMsg->id += 2;
             }
 
-            if (Battler_Side(param0, param1->params[2] & 0xff)) {
-                param1->id++;
+            if (Battler_Side(battleSys, battleMsg->params[1] & 0xFF)) {
+                battleMsg->id++;
             }
-        } else {
-            if (Battler_Side(param0, param1->params[2] & 0xff)) {
-                param1->id++;
+        } else if (Battler_Side(battleSys, battleMsg->params[1] & 0xFF)) {
+            battleMsg->id++;
 
-                if (v0 & 0x1) {
-                    param1->id++;
-                }
+            if (battleType & BATTLE_TYPE_TRAINER) {
+                battleMsg->id++;
             }
         }
         break;
+
+    case TAG_NICKNAME_ABILITY_NICKNAME:
+    case TAG_NICKNAME_ITEM_NICKNAME:
+    case TAG_NICKNAME_ABILITY_NICKNAME_MOVE:
+    case TAG_NICKNAME_ABILITY_NICKNAME_ABILITY:
+    case TAG_NICKNAME_ABILITY_NICKNAME_STAT:
+    case TAG_NICKNAME_ITEM_NICKNAME_ITEM:
+        if (Battler_Side(battleSys, battleMsg->params[0] & 0xFF)) {
+            battleMsg->id += 3;
+
+            if (battleType & BATTLE_TYPE_TRAINER) {
+                battleMsg->id += 2;
+            }
+
+            if (Battler_Side(battleSys, battleMsg->params[2] & 0xFF)) {
+                battleMsg->id++;
+            }
+        } else if (Battler_Side(battleSys, battleMsg->params[2] & 0xFF)) {
+            battleMsg->id++;
+
+            if (battleType & BATTLE_TYPE_TRAINER) {
+                battleMsg->id++;
+            }
+        }
+        break;
+
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 }
 
-static void ov16_0223FDE4 (BattleSystem * param0, BattleMessage * param1)
+/**
+ * @brief Fill formatting buffers with data from the battle message parameters, according
+ * to the message's tag.
+ * 
+ * @param battleSys 
+ * @param battleMsg 
+ */
+static void BattleMessage_FillFormatBuffers(BattleSystem *battleSys, BattleMessage *battleMsg)
 {
-    switch (param1->tags & 0x3f) {
-    case 0:
-    case 1:
+    switch (battleMsg->tags & BATTLE_MESSAGE_TAGS) {
+    case TAG_NONE:
+    case TAG_NONE_SIDE_CONSCIOUS:
         break;
-    case 2:
-        ov16_02240460(param0, 0, param1->params[0]);
+
+    case TAG_NICKNAME:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
         break;
-    case 3:
-    case 20:
-        ov16_02240484(param0, 0, param1->params[0]);
+
+    case TAG_MOVE:
+    case TAG_MOVE_SIDE:
+        BattleMessage_MoveName(battleSys, 0, battleMsg->params[0]);
         break;
-    case 4:
-        ov16_022404F8(param0, 0, param1->params[0]);
+
+    case TAG_STAT:
+        BattleMessage_StatName(battleSys, 0, battleMsg->params[0]);
         break;
-    case 5:
-        ov16_02240490(param0, 0, param1->params[0]);
+
+    case TAG_ITEM:
+        BattleMessage_ItemName(battleSys, 0, battleMsg->params[0]);
         break;
-    case 6:
-        ov16_0224049C(param0, 0, param1->params[0]);
+
+    case TAG_NUMBER:
+        BattleMessage_Number(battleSys, 0, battleMsg->params[0]);
         break;
-    case 7:
-        ov16_022404B4(param0, 0, param1->params[0], param1->digits);
+
+    case TAG_NUMBERS:
+        BattleMessage_NumberDigits(battleSys, 0, battleMsg->params[0], battleMsg->digits);
         break;
-    case 8:
-        ov16_0224055C(param0, 0, param1->params[0]);
+
+    case TAG_TRNAME:
+        BattleMessage_TrainerName(battleSys, 0, battleMsg->params[0]);
         break;
-    case 9:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_02240460(param0, 1, param1->params[1]);
+
+    case TAG_NICKNAME_NICKNAME:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_Nickname(battleSys, 1, battleMsg->params[1]);
         break;
-    case 10:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_02240484(param0, 1, param1->params[1]);
+
+    case TAG_NICKNAME_MOVE:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_MoveName(battleSys, 1, battleMsg->params[1]);
         break;
-    case 11:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_022404EC(param0, 1, param1->params[1]);
+
+    case TAG_NICKNAME_ABILITY:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_AbilityName(battleSys, 1, battleMsg->params[1]);
         break;
-    case 12:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_022404F8(param0, 1, param1->params[1]);
+
+    case TAG_NICKNAME_STAT:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_StatName(battleSys, 1, battleMsg->params[1]);
         break;
-    case 13:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_022404E0(param0, 1, param1->params[1]);
+
+    case TAG_NICKNAME_TYPE:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_TypeName(battleSys, 1, battleMsg->params[1]);
         break;
-    case 14:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_02240510(param0, 1, param1->params[1]);
+
+    case TAG_NICKNAME_POKE:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_PokemonName(battleSys, 1, battleMsg->params[1]);
         break;
-    case 15:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_02240490(param0, 1, param1->params[1]);
+
+    case TAG_NICKNAME_ITEM:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_ItemName(battleSys, 1, battleMsg->params[1]);
         break;
-    case 16:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_02240534(param0, 1, param1->params[1]);
+
+    case TAG_NICKNAME_POFFIN:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_PoffinName(battleSys, 1, battleMsg->params[1]);
         break;
-    case 17:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_0224049C(param0, 1, param1->params[1]);
+
+    case TAG_NICKNAME_NUM:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_Number(battleSys, 1, battleMsg->params[1]);
         break;
-    case 18:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_0224055C(param0, 1, param1->params[1]);
+
+    case TAG_NICKNAME_TRNAME:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_TrainerName(battleSys, 1, battleMsg->params[1]);
         break;
-    case 19:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_02240574(param0, 1, param1->params[1]);
+
+    case TAG_NICKNAME_BOX:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_PCBoxName(battleSys, 1, battleMsg->params[1]);
         break;
-    case 21:
-        ov16_02240484(param0, 0, param1->params[0]);
-        ov16_02240460(param0, 1, param1->params[1]);
+
+    case TAG_MOVE_NICKNAME:
+        BattleMessage_MoveName(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_Nickname(battleSys, 1, battleMsg->params[1]);
         break;
-    case 22:
-        ov16_02240484(param0, 0, param1->params[0]);
-        ov16_02240484(param0, 1, param1->params[1]);
+
+    case TAG_MOVE_MOVE:
+        BattleMessage_MoveName(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_MoveName(battleSys, 1, battleMsg->params[1]);
         break;
-    case 23:
-        ov16_022404EC(param0, 0, param1->params[0]);
-        ov16_02240460(param0, 1, param1->params[1]);
+
+    case TAG_ABILITY_NICKNAME:
+        BattleMessage_AbilityName(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_Nickname(battleSys, 1, battleMsg->params[1]);
         break;
-    case 24:
-        ov16_02240490(param0, 0, param1->params[0]);
-        ov16_02240484(param0, 1, param1->params[1]);
+
+    case TAG_ITEM_MOVE:
+        BattleMessage_ItemName(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_MoveName(battleSys, 1, battleMsg->params[1]);
         break;
-    case 25:
-        ov16_0224049C(param0, 0, param1->params[0]);
-        ov16_0224049C(param0, 1, param1->params[1]);
+
+    case TAG_NUMBER_NUMBER:
+        BattleMessage_Number(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_Number(battleSys, 1, battleMsg->params[1]);
         break;
-    case 26:
-        ov16_0224055C(param0, 0, param1->params[0]);
-        ov16_0224055C(param0, 1, param1->params[1]);
+
+    case TAG_TRNAME_TRNAME:
+        BattleMessage_TrainerName(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_TrainerName(battleSys, 1, battleMsg->params[1]);
         break;
-    case 27:
-        ov16_0224055C(param0, 0, param1->params[0]);
-        ov16_02240460(param0, 1, param1->params[1]);
+
+    case TAG_TRNAME_NICKNAME:
+        BattleMessage_TrainerName(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_Nickname(battleSys, 1, battleMsg->params[1]);
         break;
-    case 28:
-        ov16_0224055C(param0, 0, param1->params[0]);
-        ov16_02240490(param0, 1, param1->params[1]);
+
+    case TAG_TRNAME_ITEM:
+        BattleMessage_TrainerName(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_ItemName(battleSys, 1, battleMsg->params[1]);
         break;
-    case 29:
-        ov16_0224055C(param0, 0, param1->params[0]);
-        ov16_0224049C(param0, 1, param1->params[1]);
+
+    case TAG_TRNAME_NUM:
+        BattleMessage_TrainerName(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_Number(battleSys, 1, battleMsg->params[1]);
         break;
-    case 30:
-        ov16_02240544(param0, 0, param1->params[0]);
-        ov16_0224055C(param0, 1, param1->params[1]);
+
+    case TAG_TRCLASS_TRNAME:
+        BattleMessage_TrainerClassName(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_TrainerName(battleSys, 1, battleMsg->params[1]);
         break;
-    case 31:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_02240460(param0, 1, param1->params[1]);
-        ov16_02240484(param0, 2, param1->params[2]);
+
+    case TAG_NICKNAME_NICKNAME_MOVE:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_Nickname(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_MoveName(battleSys, 2, battleMsg->params[2]);
         break;
-    case 32:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_02240460(param0, 1, param1->params[1]);
-        ov16_022404EC(param0, 2, param1->params[2]);
+
+    case TAG_NICKNAME_NICKNAME_ABILITY:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_Nickname(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_AbilityName(battleSys, 2, battleMsg->params[2]);
         break;
-    case 33:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_02240460(param0, 1, param1->params[1]);
-        ov16_02240490(param0, 2, param1->params[2]);
+
+    case TAG_NICKNAME_NICKNAME_ITEM:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_Nickname(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_ItemName(battleSys, 2, battleMsg->params[2]);
         break;
-    case 34:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_02240484(param0, 1, param1->params[1]);
-        ov16_02240484(param0, 2, param1->params[2]);
+
+    case TAG_NICKNAME_MOVE_MOVE:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_MoveName(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_MoveName(battleSys, 2, battleMsg->params[2]);
         break;
-    case 35:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_02240484(param0, 1, param1->params[1]);
-        ov16_0224049C(param0, 2, param1->params[2]);
+
+    case TAG_NICKNAME_MOVE_NUMBER:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_MoveName(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_Number(battleSys, 2, battleMsg->params[2]);
         break;
-    case 36:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_022404EC(param0, 1, param1->params[1]);
-        ov16_02240460(param0, 2, param1->params[2]);
+
+    case TAG_NICKNAME_ABILITY_NICKNAME:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_AbilityName(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_Nickname(battleSys, 2, battleMsg->params[2]);
         break;
-    case 37:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_022404EC(param0, 1, param1->params[1]);
-        ov16_02240484(param0, 2, param1->params[2]);
+
+    case TAG_NICKNAME_ABILITY_MOVE:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_AbilityName(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_MoveName(battleSys, 2, battleMsg->params[2]);
         break;
-    case 38:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_022404EC(param0, 1, param1->params[1]);
-        ov16_02240490(param0, 2, param1->params[2]);
+
+    case TAG_NICKNAME_ABILITY_ITEM:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_AbilityName(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_ItemName(battleSys, 2, battleMsg->params[2]);
         break;
-    case 39:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_022404EC(param0, 1, param1->params[1]);
-        ov16_022404F8(param0, 2, param1->params[2]);
+
+    case TAG_NICKNAME_ABILITY_STAT:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_AbilityName(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_StatName(battleSys, 2, battleMsg->params[2]);
         break;
-    case 40:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_022404EC(param0, 1, param1->params[1]);
-        ov16_022404E0(param0, 2, param1->params[2]);
+
+    case TAG_NICKNAME_ABILITY_TYPE:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_AbilityName(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_TypeName(battleSys, 2, battleMsg->params[2]);
         break;
-    case 41:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_022404EC(param0, 1, param1->params[1]);
-        ov16_02240504(param0, 2, param1->params[2]);
+
+    case TAG_NICKNAME_ABILITY_STATUS:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_AbilityName(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_StatusName(battleSys, 2, battleMsg->params[2]);
         break;
-    case 42:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_022404EC(param0, 1, param1->params[1]);
-        ov16_0224049C(param0, 2, param1->params[2]);
+
+    case TAG_NICKNAME_ABILITY_NUMBER:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_AbilityName(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_Number(battleSys, 2, battleMsg->params[2]);
         break;
-    case 43:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_02240490(param0, 1, param1->params[1]);
-        ov16_02240460(param0, 2, param1->params[2]);
+
+    case TAG_NICKNAME_ITEM_NICKNAME:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_ItemName(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_Nickname(battleSys, 2, battleMsg->params[2]);
         break;
-    case 44:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_02240490(param0, 1, param1->params[1]);
-        ov16_02240484(param0, 2, param1->params[2]);
+
+    case TAG_NICKNAME_ITEM_MOVE:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_ItemName(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_MoveName(battleSys, 2, battleMsg->params[2]);
         break;
-    case 45:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_02240490(param0, 1, param1->params[1]);
-        ov16_022404F8(param0, 2, param1->params[2]);
+
+    case TAG_NICKNAME_ITEM_STAT:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_ItemName(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_StatName(battleSys, 2, battleMsg->params[2]);
         break;
-    case 46:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_02240490(param0, 1, param1->params[1]);
-        ov16_02240504(param0, 2, param1->params[2]);
+
+    case TAG_NICKNAME_ITEM_STATUS:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_ItemName(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_StatusName(battleSys, 2, battleMsg->params[2]);
         break;
-    case 47:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_02240574(param0, 1, param1->params[1]);
-        ov16_02240574(param0, 2, param1->params[2]);
+
+    case TAG_NICKNAME_BOX_BOX:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_PCBoxName(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_PCBoxName(battleSys, 2, battleMsg->params[2]);
         break;
-    case 48:
-        ov16_02240490(param0, 0, param1->params[0]);
-        ov16_02240460(param0, 1, param1->params[1]);
-        ov16_02240538(param0, 2, param1->params[2]);
+
+    case TAG_ITEM_NICKNAME_FLAVOR:
+        BattleMessage_ItemName(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_Nickname(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_FlavorName(battleSys, 2, battleMsg->params[2]);
         break;
-    case 49:
-        ov16_0224055C(param0, 0, param1->params[0]);
-        ov16_02240460(param0, 1, param1->params[1]);
-        ov16_02240460(param0, 2, param1->params[2]);
+
+    case TAG_TRNAME_NICKNAME_NICKNAME:
+        BattleMessage_TrainerName(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_Nickname(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_Nickname(battleSys, 2, battleMsg->params[2]);
         break;
-    case 50:
-        ov16_02240544(param0, 0, param1->params[0]);
-        ov16_0224055C(param0, 1, param1->params[1]);
-        ov16_02240460(param0, 2, param1->params[2]);
+
+    case TAG_TRCLASS_TRNAME_NICKNAME:
+        BattleMessage_TrainerClassName(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_TrainerName(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_Nickname(battleSys, 2, battleMsg->params[2]);
         break;
-    case 51:
-        ov16_02240544(param0, 0, param1->params[0]);
-        ov16_0224055C(param0, 1, param1->params[1]);
-        ov16_02240490(param0, 2, param1->params[2]);
+
+    case TAG_TRCLASS_TRNAME_ITEM:
+        BattleMessage_TrainerClassName(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_TrainerName(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_ItemName(battleSys, 2, battleMsg->params[2]);
         break;
-    case 52:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_022404EC(param0, 1, param1->params[1]);
-        ov16_02240460(param0, 2, param1->params[2]);
-        ov16_02240484(param0, 3, param1->params[3]);
+
+    case TAG_NICKNAME_ABILITY_NICKNAME_MOVE:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_AbilityName(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_Nickname(battleSys, 2, battleMsg->params[2]);
+        BattleMessage_MoveName(battleSys, 3, battleMsg->params[3]);
         break;
-    case 53:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_022404EC(param0, 1, param1->params[1]);
-        ov16_02240460(param0, 2, param1->params[2]);
-        ov16_022404EC(param0, 3, param1->params[3]);
+
+    case TAG_NICKNAME_ABILITY_NICKNAME_ABILITY:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_AbilityName(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_Nickname(battleSys, 2, battleMsg->params[2]);
+        BattleMessage_AbilityName(battleSys, 3, battleMsg->params[3]);
         break;
-    case 54:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_022404EC(param0, 1, param1->params[1]);
-        ov16_02240460(param0, 2, param1->params[2]);
-        ov16_022404F8(param0, 3, param1->params[3]);
+
+    case TAG_NICKNAME_ABILITY_NICKNAME_STAT:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_AbilityName(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_Nickname(battleSys, 2, battleMsg->params[2]);
+        BattleMessage_StatName(battleSys, 3, battleMsg->params[3]);
         break;
-    case 55:
-        ov16_02240460(param0, 0, param1->params[0]);
-        ov16_02240490(param0, 1, param1->params[1]);
-        ov16_02240460(param0, 2, param1->params[2]);
-        ov16_02240490(param0, 3, param1->params[3]);
+
+    case TAG_NICKNAME_ITEM_NICKNAME_ITEM:
+        BattleMessage_Nickname(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_ItemName(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_Nickname(battleSys, 2, battleMsg->params[2]);
+        BattleMessage_ItemName(battleSys, 3, battleMsg->params[3]);
         break;
-    case 56:
-        ov16_0224055C(param0, 0, param1->params[0]);
-        ov16_02240460(param0, 1, param1->params[1]);
-        ov16_0224055C(param0, 2, param1->params[2]);
-        ov16_02240460(param0, 3, param1->params[3]);
+
+    case TAG_TRNAME_NICKNAME_TRNAME_NICKNAME:
+        BattleMessage_TrainerName(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_Nickname(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_TrainerName(battleSys, 2, battleMsg->params[2]);
+        BattleMessage_Nickname(battleSys, 3, battleMsg->params[3]);
         break;
-    case 57:
-        ov16_02240544(param0, 0, param1->params[0]);
-        ov16_0224055C(param0, 1, param1->params[1]);
-        ov16_02240460(param0, 2, param1->params[2]);
-        ov16_02240460(param0, 3, param1->params[3]);
+
+    case TAG_TRCLASS_TRNAME_NICKNAME_NICKNAME:
+        BattleMessage_TrainerClassName(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_TrainerName(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_Nickname(battleSys, 2, battleMsg->params[2]);
+        BattleMessage_Nickname(battleSys, 3, battleMsg->params[3]);
         break;
-    case 58:
-        ov16_02240544(param0, 0, param1->params[0]);
-        ov16_0224055C(param0, 1, param1->params[1]);
-        ov16_02240460(param0, 2, param1->params[2]);
-        ov16_0224055C(param0, 3, param1->params[3]);
+
+    case TAG_TRCLASS_TRNAME_NICKNAME_TRNAME:
+        BattleMessage_TrainerClassName(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_TrainerName(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_Nickname(battleSys, 2, battleMsg->params[2]);
+        BattleMessage_TrainerName(battleSys, 3, battleMsg->params[3]);
         break;
-    case 59:
-        ov16_02240544(param0, 0, param1->params[0]);
-        ov16_0224055C(param0, 1, param1->params[1]);
-        ov16_02240544(param0, 2, param1->params[2]);
-        ov16_0224055C(param0, 3, param1->params[3]);
+
+    case TAG_TRCLASS_TRNAME_TRCLASS_TRNAME:
+        BattleMessage_TrainerClassName(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_TrainerName(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_TrainerClassName(battleSys, 2, battleMsg->params[2]);
+        BattleMessage_TrainerName(battleSys, 3, battleMsg->params[3]);
         break;
-    case 60:
-        ov16_02240544(param0, 0, param1->params[0]);
-        ov16_0224055C(param0, 1, param1->params[1]);
-        ov16_02240460(param0, 2, param1->params[2]);
-        ov16_02240544(param0, 3, param1->params[3]);
-        ov16_0224055C(param0, 4, param1->params[4]);
-        ov16_02240460(param0, 5, param1->params[5]);
+
+    case TAG_TRCLASS_TRNAME_NICKNAME_TRCLASS_TRNAME_NICKNAME:
+        BattleMessage_TrainerClassName(battleSys, 0, battleMsg->params[0]);
+        BattleMessage_TrainerName(battleSys, 1, battleMsg->params[1]);
+        BattleMessage_Nickname(battleSys, 2, battleMsg->params[2]);
+        BattleMessage_TrainerClassName(battleSys, 3, battleMsg->params[3]);
+        BattleMessage_TrainerName(battleSys, 4, battleMsg->params[4]);
+        BattleMessage_Nickname(battleSys, 5, battleMsg->params[5]);
         break;
+
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 }
 
-static void ov16_02240460 (BattleSystem * param0, u32 param1, int param2)
+static void BattleMessage_Nickname (BattleSystem * param0, u32 param1, int param2)
 {
     Pokemon * v0;
 
     v0 = BattleSystem_PartyPokemon(param0, param2 & 0xff, (param2 & 0xff00) >> 8);
-    sub_0200B5CC(param0->unk_14, param1, &v0->box);
+    sub_0200B5CC(param0->strFormatter, param1, &v0->box);
 }
 
-static void ov16_02240484 (BattleSystem * param0, u32 param1, int param2)
+static void BattleMessage_MoveName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B630(param0->unk_14, param1, param2);
+    sub_0200B630(param0->strFormatter, param1, param2);
 }
 
-static void ov16_02240490 (BattleSystem * param0, u32 param1, int param2)
+static void BattleMessage_ItemName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B70C(param0->unk_14, param1, param2);
+    sub_0200B70C(param0->strFormatter, param1, param2);
 }
 
-static void ov16_0224049C (BattleSystem * param0, u32 param1, int param2)
+static void BattleMessage_Number (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B60C(param0->unk_14, param1, param2, 5, 0, 1);
+    sub_0200B60C(param0->strFormatter, param1, param2, 5, 0, 1);
 }
 
-static void ov16_022404B4 (BattleSystem * param0, u32 param1, int param2, int param3)
+static void BattleMessage_NumberDigits (BattleSystem * param0, u32 param1, int param2, int param3)
 {
     if (param3) {
-        sub_0200B60C(param0->unk_14, param1, param2, param3, 1, 1);
+        sub_0200B60C(param0->strFormatter, param1, param2, param3, 1, 1);
     } else {
-        sub_0200B60C(param0->unk_14, param1, param2, 5, 1, 1);
+        sub_0200B60C(param0->strFormatter, param1, param2, 5, 1, 1);
     }
 }
 
-static void ov16_022404E0 (BattleSystem * param0, u32 param1, int param2)
+static void BattleMessage_TypeName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B7EC(param0->unk_14, param1, param2);
+    sub_0200B7EC(param0->strFormatter, param1, param2);
 }
 
-static void ov16_022404EC (BattleSystem * param0, u32 param1, int param2)
+static void BattleMessage_AbilityName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B6A0(param0->unk_14, param1, param2);
+    sub_0200B6A0(param0->strFormatter, param1, param2);
 }
 
-static void ov16_022404F8 (BattleSystem * param0, u32 param1, int param2)
+static void BattleMessage_StatName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B824(param0->unk_14, param1, param2);
+    sub_0200B824(param0->strFormatter, param1, param2);
 }
 
-static void ov16_02240504 (BattleSystem * param0, u32 param1, int param2)
+static void BattleMessage_StatusName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B85C(param0->unk_14, param1, param2);
+    sub_0200B85C(param0->strFormatter, param1, param2);
 }
 
-static void ov16_02240510 (BattleSystem * param0, u32 param1, int param2)
+static void BattleMessage_PokemonName (BattleSystem * param0, u32 param1, int param2)
 {
     Pokemon * v0;
 
     v0 = BattleSystem_PartyPokemon(param0, param2 & 0xff, (param2 & 0xff00) >> 8);
-    sub_0200B538(param0->unk_14, param1, &v0->box);
+    sub_0200B538(param0->strFormatter, param1, &v0->box);
 }
 
-static void ov16_02240534 (BattleSystem * param0, u32 param1, int param2)
+static void BattleMessage_PoffinName (BattleSystem * param0, u32 param1, int param2)
 {
     return;
 }
 
-static void ov16_02240538 (BattleSystem * param0, u32 param1, int param2)
+static void BattleMessage_FlavorName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B890(param0->unk_14, param1, param2);
+    sub_0200B890(param0->strFormatter, param1, param2);
 }
 
-static void ov16_02240544 (BattleSystem * param0, u32 param1, int param2)
-{
-    TrainerData * v0;
-
-    v0 = BattleSystem_TrainerData(param0, param2);
-    sub_0200B9D0(param0->unk_14, param1, v0);
-}
-
-static void ov16_0224055C (BattleSystem * param0, u32 param1, int param2)
+static void BattleMessage_TrainerClassName (BattleSystem * param0, u32 param1, int param2)
 {
     TrainerData * v0;
 
     v0 = BattleSystem_TrainerData(param0, param2);
-    sub_0200BA74(param0->unk_14, param1, v0);
+    sub_0200B9D0(param0->strFormatter, param1, v0);
 }
 
-static void ov16_02240574 (BattleSystem * param0, u32 param1, int param2)
+static void BattleMessage_TrainerName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200BD40(param0->unk_14, param1, param0->pcBoxes, param2);
+    TrainerData * v0;
+
+    v0 = BattleSystem_TrainerData(param0, param2);
+    sub_0200BA74(param0->strFormatter, param1, v0);
 }
 
-static void ov16_02240584 (BattleSystem * param0, MessageLoader * param1, BattleMessage * param2)
+static void BattleMessage_PCBoxName (BattleSystem * param0, u32 param1, int param2)
 {
-    Strbuf* v0;
-
-    v0 = MessageLoader_GetNewStrbuf(param1, param2->id);
-
-    sub_0200C388(param0->unk_14, param0->msgBuffer, v0);
-    Strbuf_Free(v0);
+    sub_0200BD40(param0->strFormatter, param1, param0->pcBoxes, param2);
 }
 
-static BOOL ov16_022405A4 (UnkStruct_0201D738 * param0, u16 param1)
+/**
+ * @brief Load the requested message and format it into a string to be printed to the screen.
+ * 
+ * @param battleSys 
+ * @param msgLoader 
+ * @param battleMsg 
+ */
+static void BattleMessage_Format(BattleSystem *battleSys, MessageLoader *msgLoader, BattleMessage *battleMsg)
+{
+    Strbuf *strbuf = MessageLoader_GetNewStrbuf(msgLoader, battleMsg->id);
+    StringFormatter_Format(battleSys->strFormatter, battleSys->msgBuffer, strbuf);
+    Strbuf_Free(strbuf);
+}
+
+static BOOL BattleMessage_Callback (UnkStruct_0201D738 * param0, u16 param1)
 {
     BOOL v0;
 

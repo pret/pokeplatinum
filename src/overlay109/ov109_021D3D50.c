@@ -1579,15 +1579,15 @@ static void ov109_021D55A8 (UnkStruct_ov109_021D5140 * param0, int param1, int p
     v0 = Strbuf_Init((90 * 2), 95);
 
     MessageLoader_GetStrbuf(param0->unk_38, param1, v0);
-    sub_0200C388(param0->unk_34, param0->unk_54, v0);
+    StringFormatter_Format(param0->unk_34, param0->unk_54, v0);
     Strbuf_Free(v0);
     BGL_FillWindow(&param0->unk_35C, 0xf0f);
     sub_0200E060(&param0->unk_35C, 0, 1, 10);
 
     if (param2 == 0) {
-        param0->unk_5C = sub_0201D738(&param0->unk_35C, 1, param0->unk_54, 0, 0, ov109_021D5854(param0), NULL);
+        param0->unk_5C = PrintStringSimple(&param0->unk_35C, 1, param0->unk_54, 0, 0, ov109_021D5854(param0), NULL);
     } else {
-        sub_0201D738(&param0->unk_35C, 1, param0->unk_54, 0, 0, 0, NULL);
+        PrintStringSimple(&param0->unk_35C, 1, param0->unk_54, 0, 0, 0, NULL);
         param0->unk_5C = 0xff;
     }
 }

@@ -194,7 +194,7 @@ void sub_02081CAC (GameWindowLayout * param0, u16 param1, u8 param2)
     v0 = MessageLoader_GetNewStrbuf(param0->unk_69C, 156 + param2);
 
     sub_0200B630(param0->unk_6A0, 0, param1);
-    sub_0200C388(param0->unk_6A0, param0->unk_6AC[16 + param2], v0);
+    StringFormatter_Format(param0->unk_6A0, param0->unk_6AC[16 + param2], v0);
 
     Strbuf_Free(v0);
 }
@@ -250,7 +250,7 @@ void sub_02081E08 (GameWindowLayout * param0)
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 37);
 
         sub_0200B5CC(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
-        sub_0200C388(param0->unk_6A0, param0->unk_6A4, v1);
+        StringFormatter_Format(param0->unk_6A0, param0->unk_6A4, v1);
         Strbuf_Free(v1);
     }
 }
@@ -276,7 +276,7 @@ void sub_02081ED8 (GameWindowLayout * param0, Pokemon * param1, u32 param2)
     v0 = MessageLoader_GetNewStrbuf(param0->unk_69C, Unk_020F1EA0[param2][0]);
 
     sub_0200B5CC(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(param1));
-    sub_0200C388(param0->unk_6A0, param0->unk_704[param2].unk_00, v0);
+    StringFormatter_Format(param0->unk_6A0, param0->unk_704[param2].unk_00, v0);
     Strbuf_Free(v0);
 }
 
@@ -584,7 +584,7 @@ static void sub_02082680 (GameWindowLayout * param0, Window * param1, u32 param2
         MessageLoader_GetStrbuf(param0->unk_69C, param2, param0->unk_6A4);
     }
 
-    sub_0201D738(param1, 1, param0->unk_6A4, 0, 0, 0xff, NULL);
+    PrintStringSimple(param1, 1, param0->unk_6A4, 0, 0, 0xff, NULL);
     sub_0201A9A4(param1);
 }
 
@@ -619,7 +619,7 @@ void sub_0208274C (GameWindowLayout * param0)
 {
     sub_02002AC8(1);
     sub_02002AE4(0);
-    param0->unk_B10 = sub_0201D738(
+    param0->unk_B10 = PrintStringSimple(
         &param0->unk_04[34], 1, param0->unk_6A4, 0, 0, sub_02027AC0(param0->unk_5A4->unk_0C), sub_0208279C);
 }
 
@@ -762,18 +762,18 @@ void sub_020829DC (GameWindowLayout * param0)
 
     for (v2 = 0; v2 < 6; v2++) {
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 185 + v2);
-        sub_0201D738(&param0->unk_254[0], 0, v1, 0, 16 * v2, 0xff, NULL);
+        PrintStringSimple(&param0->unk_254[0], 0, v1, 0, 16 * v2, 0xff, NULL);
         Strbuf_Free(v1);
 
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 191);
 
         sub_0200B60C(param0->unk_6A0, 0, v3[v2] - param0->unk_B14[v2], 2, 0, 1);
-        sub_0200C388(param0->unk_6A0, param0->unk_6A4, v1);
+        StringFormatter_Format(param0->unk_6A0, param0->unk_6A4, v1);
         Strbuf_Free(v1);
 
         {
             u32 v4 = 14 * 8 - 8 - sub_02002D7C(0, param0->unk_6A4, 0);
-            sub_0201D738(&param0->unk_254[0], 0, param0->unk_6A4, v4, 16 * v2, 0xff, NULL);
+            PrintStringSimple(&param0->unk_254[0], 0, param0->unk_6A4, v4, 16 * v2, 0xff, NULL);
         }
 
         param0->unk_B14[v2] = v3[v2];
@@ -793,11 +793,11 @@ void sub_02082B58 (GameWindowLayout * param0)
 
     for (v2 = 0; v2 < 6; v2++) {
         sub_0200B60C(param0->unk_6A0, 0, param0->unk_B14[v2], 3, 0, 1);
-        sub_0200C388(param0->unk_6A0, param0->unk_6A4, v0);
+        StringFormatter_Format(param0->unk_6A0, param0->unk_6A4, v0);
 
         v1 = sub_02002D7C(0, param0->unk_6A4, 0);
 
-        sub_0201D738(&param0->unk_254[0], 0, param0->unk_6A4, 14 * 8 - v1 - 8, 16 * v2, 0xff, NULL);
+        PrintStringSimple(&param0->unk_254[0], 0, param0->unk_6A4, 14 * 8 - v1 - 8, 16 * v2, 0xff, NULL);
     }
 
     Strbuf_Free(v0);

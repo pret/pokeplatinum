@@ -451,7 +451,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
                 sub_020364F0(0);
                 sub_0200B498(v0->unk_28, 0, v0->unk_74);
                 MessageLoader_GetStrbuf(v0->unk_2C, 14, v0->unk_0C);
-                sub_0200C388(v0->unk_28, v0->unk_10, v0->unk_0C);
+                StringFormatter_Format(v0->unk_28, v0->unk_10, v0->unk_0C);
                 v0->unk_30 = sub_0205AA50(v0, v0->unk_10);
                 v0->unk_34 = 27;
             }
@@ -522,7 +522,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
     case 36:
         sub_0200B538(v0->unk_28, 1, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(v0->unk_50, v0->unk_84)));
         MessageLoader_GetStrbuf(v0->unk_2C, 18, v0->unk_0C);
-        sub_0200C388(v0->unk_28, v0->unk_10, v0->unk_0C);
+        StringFormatter_Format(v0->unk_28, v0->unk_10, v0->unk_0C);
         v0->unk_30 = sub_0205AA50(v0, v0->unk_10);
         v0->unk_34 = 37;
         break;
@@ -544,7 +544,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
             if (v0->unk_81 == 1) {
                 sub_0205B0B4(v0);
                 MessageLoader_GetStrbuf(v0->unk_2C, 14, v0->unk_0C);
-                sub_0200C388(v0->unk_28, v0->unk_10, v0->unk_0C);
+                StringFormatter_Format(v0->unk_28, v0->unk_10, v0->unk_0C);
                 v0->unk_30 = sub_0205AA50(v0, v0->unk_10);
                 sub_020364F0(2);
                 v0->unk_34 = 39;
@@ -890,11 +890,11 @@ static void sub_0205ADF8 (UnkStruct_0205A0D8 * param0, int param1)
             v2 = Pokemon_GetValue((Pokemon *)(&param0->unk_48[v1 * v3]), MON_DATA_SPECIES, NULL);
 
             MessageLoader_GetStrbuf(v4, v2, param0->unk_0C);
-            sub_0201D738(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
+            PrintStringSimple(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
         }
 
         MessageLoader_GetStrbuf(param0->unk_2C, 21, param0->unk_0C);
-        sub_0201D738(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
+        PrintStringSimple(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
         MessageLoader_Free(v4);
     }
 
@@ -920,7 +920,7 @@ static void sub_0205AF18 (UnkStruct_0205A0D8 * param0, int param1)
 
         for (v1 = 0; v1 < 3; v1++) {
             MessageLoader_GetStrbuf(param0->unk_2C, 22 + v1, param0->unk_0C);
-            sub_0201D738(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
+            PrintStringSimple(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
         }
     }
 
@@ -1027,7 +1027,7 @@ static BOOL sub_0205B140 (UnkStruct_020508D4 * param0)
 
         MessageLoader_GetStrbuf(v1->unk_1C, 2 + v2->unk_03, v1->unk_00);
         sub_0200B498(v1->unk_18, 0, sub_02032EE8(v1->unk_24));
-        sub_0200C388(v1->unk_18, v1->unk_04, v1->unk_00);
+        StringFormatter_Format(v1->unk_18, v1->unk_04, v1->unk_00);
         sub_0205D8F4(v0->unk_08, &v1->unk_08, 3);
         sub_0205D944(&v1->unk_08, sub_02025E44(v0->unk_0C));
 

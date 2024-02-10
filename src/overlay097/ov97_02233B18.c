@@ -469,7 +469,7 @@ static void ov97_02233DD0 (UnkStruct_ov97_02234A2C * param0, UnkStruct_ov97_0223
         v0 = param0->unk_12668;
         v6 = MessageLoader_GetNewStrbuf(v2, param1->unk_34);
 
-        sub_0200C388(v1, param0->unk_12668, v6);
+        StringFormatter_Format(v1, param0->unk_12668, v6);
         Strbuf_Free(v6);
 
         v3 = ov97_02233DAC(param1, v0, param2);
@@ -1964,7 +1964,7 @@ static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
         break;
     case 10:
         ov97_02233CE4(v3);
-        sub_0200EBA0(v3->unk_E8F0.unk_08);
+        DeleteWaitDial(v3->unk_E8F0.unk_08);
         v3->unk_04 = 7;
         *param1 = 11;
         break;
@@ -2114,7 +2114,7 @@ static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
         v2 = ov97_02233B8C(v3);
 
         if (v2 != 10) {
-            sub_0200EBA0(v3->unk_E8F0.unk_08);
+            DeleteWaitDial(v3->unk_E8F0.unk_08);
             Sound_PlayEffect(1563);
 
             if (v2 == 11) {

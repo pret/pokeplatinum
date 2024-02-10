@@ -486,7 +486,7 @@ static void ov10_0221F930 (UnkStruct_ov10_0221FB28 * param0)
     case 1:
         ov10_022229D4(param0);
         MessageLoader_GetStrbuf(param0->unk_BA0, 0, param0->unk_BA8);
-        param0->unk_BAC = sub_0201D738(&param0->unk_B7C, 1, param0->unk_BA8, 0, 0, 0, NULL);
+        param0->unk_BAC = PrintStringSimple(&param0->unk_B7C, 1, param0->unk_BA8, 0, 0, 0, NULL);
         sub_0201C3C0(param0->unk_0C, 0);
         param0->unk_BB0 = 2;
         break;
@@ -507,7 +507,7 @@ static void ov10_0221F930 (UnkStruct_ov10_0221FB28 * param0)
         BGL_WindowColor(&param0->unk_B8C, 15, 0, 0, 27 * 8, 4 * 8);
         sub_0200E060(&param0->unk_B8C, 0, 1, 15);
 
-        param0->unk_BAC = sub_0201D738(&param0->unk_B8C, 1, param0->unk_BA8, 0, 0, 0, NULL);
+        param0->unk_BAC = PrintStringSimple(&param0->unk_B8C, 1, param0->unk_BA8, 0, 0, 0, NULL);
         param0->unk_BB4 = sub_02002054(param0->unk_0C, &Unk_ov10_02222A68, (1 + (18 + 12)), 14, 1, param0->unk_00->unk_24);
 
         sub_0201C3C0(param0->unk_0C, 0);
@@ -532,7 +532,7 @@ static void ov10_0221F930 (UnkStruct_ov10_0221FB28 * param0)
     case 5:
         ov10_022229D4(param0);
         MessageLoader_GetStrbuf(param0->unk_BA0, 5, param0->unk_BA8);
-        param0->unk_BAC = sub_0201D738(&param0->unk_B7C, 1, param0->unk_BA8, 0, 0, 0, NULL);
+        param0->unk_BAC = PrintStringSimple(&param0->unk_B7C, 1, param0->unk_BA8, 0, 0, 0, NULL);
         sub_0201C3C0(param0->unk_0C, 0);
         param0->unk_BB0 = 6;
         break;
@@ -1028,7 +1028,7 @@ static u8 ov10_02220700 (UnkStruct_ov10_0221FB28 * param0)
     case 0:
         ov10_022229D4(param0);
         MessageLoader_GetStrbuf(param0->unk_BA0, 8, param0->unk_BA8);
-        param0->unk_BAC = sub_0201D738(&param0->unk_B7C, 1, param0->unk_BA8, 0, 0, 0, NULL);
+        param0->unk_BAC = PrintStringSimple(&param0->unk_B7C, 1, param0->unk_BA8, 0, 0, 0, NULL);
         ov10_02222A28(param0);
         param0->unk_B76++;
         break;
@@ -1050,7 +1050,7 @@ static u8 ov10_02220700 (UnkStruct_ov10_0221FB28 * param0)
         ov10_02222A48(param0);
         BGL_WindowColor(&param0->unk_B7C, 15, 0, 0, 27 * 8, 4 * 8);
 
-        param0->unk_BAC = sub_0201D738(&param0->unk_B7C, 1, param0->unk_BA8, 0, 0, 0, NULL);
+        param0->unk_BAC = PrintStringSimple(&param0->unk_B7C, 1, param0->unk_BA8, 0, 0, 0, NULL);
     }
 
         param0->unk_B75 = 0;
@@ -1082,7 +1082,7 @@ static u8 ov10_022208B0 (UnkStruct_ov10_0221FB28 * param0)
     case 0:
         ov10_022229D4(param0);
         MessageLoader_GetStrbuf(param0->unk_BA0, 9, param0->unk_BA8);
-        param0->unk_BAC = sub_0201D738(&param0->unk_B7C, 1, param0->unk_BA8, 0, 0, 0, NULL);
+        param0->unk_BAC = PrintStringSimple(&param0->unk_B7C, 1, param0->unk_BA8, 0, 0, 0, NULL);
         sub_020364F0(62);
 
         if (param0->unk_BBC == 0) {
@@ -2270,7 +2270,7 @@ static void ov10_02222400 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * par
     v2 = MessageLoader_GetNewStrbuf(param1, 8 + param5);
 
     sub_0200B5CC(param3, 0, Pokemon_GetBoxPokemon(v0));
-    sub_0200C388(param3, param4, v2);
+    StringFormatter_Format(param3, param4, v2);
     Strbuf_Free(v2);
     sub_0201D78C(v1, 0, param4, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
@@ -2505,7 +2505,7 @@ static void ov10_02222A28 (UnkStruct_ov10_0221FB28 * param0)
 static void ov10_02222A48 (UnkStruct_ov10_0221FB28 * param0)
 {
     if (param0->unk_BB8 != NULL) {
-        sub_0200EBA0(param0->unk_BB8);
+        DeleteWaitDial(param0->unk_BB8);
         param0->unk_BB8 = NULL;
     }
 }

@@ -945,7 +945,7 @@ int ov97_0222CB10 (UnkStruct_ov97_0222C388 * param0)
     case UnkEnum_ov97_0222C6F8_29:
         ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 30);
         sub_02021CAC(param0->unk_3170, 0);
-        sub_0200EBA0(param0->unk_34D8);
+        DeleteWaitDial(param0->unk_34D8);
         param0->unk_34D8 = NULL;
         Sound_PlayEffect(1500);
         param0->unk_160 = 1800;
@@ -1076,7 +1076,7 @@ int ov97_0222CB10 (UnkStruct_ov97_0222C388 * param0)
             ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 73);
 
             sub_02021CAC(param0->unk_3170, 0);
-            sub_0200EBA0(param0->unk_34D8);
+            DeleteWaitDial(param0->unk_34D8);
             Sound_PlayEffect(1500);
 
             param0->unk_34D8 = NULL;
@@ -1103,7 +1103,7 @@ int ov97_0222CB10 (UnkStruct_ov97_0222C388 * param0)
         sub_02021CAC(param0->unk_3170, 0);
 
         if (param0->unk_34D8) {
-            sub_0200EBA0(param0->unk_34D8);
+            DeleteWaitDial(param0->unk_34D8);
         }
 
         param0->unk_34D8 = NULL;
@@ -1130,7 +1130,7 @@ int ov97_0222CB10 (UnkStruct_ov97_0222C388 * param0)
                 param0->unk_148 = 0;
 
                 if (param0->unk_34D8) {
-                    sub_0200EBA0(param0->unk_34D8);
+                    DeleteWaitDial(param0->unk_34D8);
                 }
 
                 return 5;

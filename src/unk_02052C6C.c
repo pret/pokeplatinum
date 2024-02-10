@@ -296,7 +296,7 @@ static BOOL sub_02052FFC (UnkStruct_0205300C * param0)
 static void sub_0205300C (UnkStruct_0205300C * param0)
 {
     Strbuf_Free(param0->unk_2C);
-    sub_0200EBA0(param0->unk_30);
+    DeleteWaitDial(param0->unk_30);
     sub_0205D988(&param0->unk_1C);
 }
 

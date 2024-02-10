@@ -341,8 +341,8 @@ static int ov95_02247F04 (UnkStruct_ov95_02247C6C * param0, int * param1)
             }
 
             MessageLoader_GetStrbuf(v0, v2, param0->unk_68);
-            sub_0200C388(v1, param0->unk_6C, param0->unk_68);
-            sub_0201D738(&(param0->unk_58), 1, param0->unk_6C, 0, 0, 0xff, NULL);
+            StringFormatter_Format(v1, param0->unk_6C, param0->unk_68);
+            PrintStringSimple(&(param0->unk_58), 1, param0->unk_6C, 0, 0, 0xff, NULL);
             sub_0200E010(&(param0->unk_58), 109, 2);
             sub_0201A954(&(param0->unk_58));
             param0->unk_08 = 0;
@@ -355,7 +355,7 @@ static int ov95_02247F04 (UnkStruct_ov95_02247C6C * param0, int * param1)
             UnkStruct_0200B358 * v5 = ov95_0224762C(param0->unk_00);
 
             MessageLoader_GetStrbuf(v4, 1, param0->unk_68);
-            sub_0200C388(v5, param0->unk_6C, param0->unk_68);
+            StringFormatter_Format(v5, param0->unk_6C, param0->unk_68);
 
             {
                 const BoxPokemon * v6 = ov95_02247634(param0->unk_00);
@@ -369,7 +369,7 @@ static int ov95_02247F04 (UnkStruct_ov95_02247C6C * param0, int * param1)
                 }
 
                 BGL_FillWindow(&(param0->unk_58), 0xf);
-                sub_0201D738(&(param0->unk_58), 1, param0->unk_6C, 0, 0, 0xff, NULL);
+                PrintStringSimple(&(param0->unk_58), 1, param0->unk_6C, 0, 0, 0xff, NULL);
                 sub_0201ACCC(&(param0->unk_58));
                 param0->unk_08 = 0;
                 (*param1)++;

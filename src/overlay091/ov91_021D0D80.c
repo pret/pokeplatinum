@@ -872,7 +872,7 @@ static void ov91_021D1618 (UnkStruct_ov91_021D0ED8 * param0, u32 param1, u32 par
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_F8, param1);
     sub_0200B60C(param0->unk_FC, 0, param2, param3, param4, 1);
-    sub_0200C388(param0->unk_FC, param0->unk_100, v0);
+    StringFormatter_Format(param0->unk_FC, param0->unk_100, v0);
     Strbuf_Free(v0);
 }
 
@@ -1147,7 +1147,7 @@ static void ov91_021D1C10 (UnkStruct_ov91_021D0ED8 * param0, u32 param1)
     }
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_F8, Unk_ov91_021D282C[param0->unk_00->unk_15][param1]);
-    sub_0200C388(param0->unk_FC, param0->unk_100, v0);
+    StringFormatter_Format(param0->unk_FC, param0->unk_100, v0);
     Strbuf_Free(v0);
 }
 
@@ -1168,7 +1168,7 @@ static void ov91_021D1DF8 (UnkStruct_ov91_021D0ED8 * param0, u32 param1)
     sub_02002AC8(1);
     sub_02002AE4(0);
 
-    param0->unk_185 = sub_0201D738(&param0->unk_08[12], 1, param0->unk_100, 0, 0, sub_02027AC0(param0->unk_00->unk_08), ov91_021D1E50);
+    param0->unk_185 = PrintStringSimple(&param0->unk_08[12], 1, param0->unk_100, 0, 0, sub_02027AC0(param0->unk_00->unk_08), ov91_021D1E50);
 }
 
 static BOOL ov91_021D1E50 (UnkStruct_0201D738 * param0, u16 param1)

@@ -1001,7 +1001,7 @@ static int sub_02086B64 (UnkStruct_020067E8 * param0, int * param1)
             sub_02087544(v0, param0);
             BGL_FillWindow(&v0->unk_41C[9], 0xf0f);
             sub_0200E060(&v0->unk_41C[9], 0, ((32 * 8)), 10);
-            v0->unk_4BC = sub_0201D738(&v0->unk_41C[9], 1, v0->unk_180, 0, 0, 1, NULL);
+            v0->unk_4BC = PrintStringSimple(&v0->unk_41C[9], 1, v0->unk_180, 0, 0, 1, NULL);
             sub_0201A954(&v0->unk_41C[9]);
             v0->unk_4C0 = 6;
             break;
@@ -1826,7 +1826,7 @@ static void sub_02087D64 (BGL * param0, Window * param1, int * param2, int param
 static void sub_02087F48 (Window * param0, int param1, Strbuf *param2)
 {
     sub_0200E060(param0, 0, ((32 * 8)), 10);
-    sub_0201D738(param0, 1, param2, 0, 0, 0, NULL);
+    PrintStringSimple(param0, 1, param2, 0, 0, 0, NULL);
     sub_0201A954(param0);
 }
 

@@ -317,7 +317,7 @@ static BOOL sub_0209A0F4 (UnkStruct_02099DFC * param0)
         break;
     case 5:
         sub_020245E8(param0->unk_30);
-        sub_0200EBA0(param0->unk_34);
+        DeleteWaitDial(param0->unk_34);
         param0->unk_04 = 6;
         break;
     case 6:
@@ -340,7 +340,7 @@ static BOOL sub_0209A200 (UnkStruct_02099DFC * param0, u32 param1, int param2, i
 
         param0->unk_10 = Strbuf_Init(0x400, param0->unk_00);
         MessageLoader_GetStrbuf(param0->unk_18, param1, param0->unk_10);
-        param0->unk_0C = sub_0201D738(&param0->unk_1C, 1, param0->unk_10, 0, 0, param3, NULL);
+        param0->unk_0C = PrintStringSimple(&param0->unk_1C, 1, param0->unk_10, 0, 0, param3, NULL);
 
         if (param3 == 0) {
             Strbuf_Free(param0->unk_10);

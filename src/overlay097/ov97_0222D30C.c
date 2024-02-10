@@ -231,7 +231,7 @@ static void ov97_0222D30C (UnkStruct_ov97_0222D04C * param0, int param1)
         }
     } else {
         if (param0->unk_2A50) {
-            sub_0200EBA0(param0->unk_2A50);
+            DeleteWaitDial(param0->unk_2A50);
         }
 
         param0->unk_2A50 = NULL;

@@ -154,7 +154,7 @@ static void ov7_02249960 (int param0, BOOL param1)
 
     if (param1) {
         MessageLoader_GetStrbuf(Unk_ov7_0224F5A0->unk_74, param0, Unk_ov7_0224F5A0->unk_00[4]);
-        sub_0200C388(Unk_ov7_0224F5A0->unk_58, Unk_ov7_0224F5A0->unk_00[5], Unk_ov7_0224F5A0->unk_00[4]);
+        StringFormatter_Format(Unk_ov7_0224F5A0->unk_58, Unk_ov7_0224F5A0->unk_00[5], Unk_ov7_0224F5A0->unk_00[4]);
     } else {
         MessageLoader_GetStrbuf(Unk_ov7_0224F5A0->unk_74, param0, Unk_ov7_0224F5A0->unk_00[5]);
     }
@@ -317,17 +317,17 @@ static void ov7_02249C94 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
         sub_0200B60C(Unk_ov7_0224F5A0->unk_50, 0, v1 + 1, 2, 2, 1);
         sub_0200B498(Unk_ov7_0224F5A0->unk_50, 1, Unk_ov7_0224F5A0->unk_7C);
         MessageLoader_GetStrbuf(Unk_ov7_0224F5A0->unk_74, 63, Unk_ov7_0224F5A0->unk_00[1]);
-        sub_0200C388(Unk_ov7_0224F5A0->unk_50, Unk_ov7_0224F5A0->unk_00[0], Unk_ov7_0224F5A0->unk_00[1]);
-        sub_0201D738(&Unk_ov7_0224F5A0->unk_20, 0, Unk_ov7_0224F5A0->unk_00[0], 8, param2 * 16, 0xff, NULL);
+        StringFormatter_Format(Unk_ov7_0224F5A0->unk_50, Unk_ov7_0224F5A0->unk_00[0], Unk_ov7_0224F5A0->unk_00[1]);
+        PrintStringSimple(&Unk_ov7_0224F5A0->unk_20, 0, Unk_ov7_0224F5A0->unk_00[0], 8, param2 * 16, 0xff, NULL);
         sub_0200B60C(Unk_ov7_0224F5A0->unk_50, 2, TrainerInfo_ID(Unk_ov7_0224F5A0->unk_7C) % 0x10000, 5, 2, 1);
         MessageLoader_GetStrbuf(Unk_ov7_0224F5A0->unk_74, 65, Unk_ov7_0224F5A0->unk_00[3]);
-        sub_0200C388(Unk_ov7_0224F5A0->unk_50, Unk_ov7_0224F5A0->unk_00[2], Unk_ov7_0224F5A0->unk_00[3]);
-        sub_0201D738(&Unk_ov7_0224F5A0->unk_20, 0, Unk_ov7_0224F5A0->unk_00[2], 11 * 8, param2 * 16, 0xff, NULL);
+        StringFormatter_Format(Unk_ov7_0224F5A0->unk_50, Unk_ov7_0224F5A0->unk_00[2], Unk_ov7_0224F5A0->unk_00[3]);
+        PrintStringSimple(&Unk_ov7_0224F5A0->unk_20, 0, Unk_ov7_0224F5A0->unk_00[2], 11 * 8, param2 * 16, 0xff, NULL);
     } else {
         sub_0200B60C(Unk_ov7_0224F5A0->unk_50, 0, v1 + 1, 2, 2, 1);
         MessageLoader_GetStrbuf(Unk_ov7_0224F5A0->unk_74, 64, Unk_ov7_0224F5A0->unk_00[1]);
-        sub_0200C388(Unk_ov7_0224F5A0->unk_50, Unk_ov7_0224F5A0->unk_00[0], Unk_ov7_0224F5A0->unk_00[1]);
-        sub_0201D738(&Unk_ov7_0224F5A0->unk_20, 0, Unk_ov7_0224F5A0->unk_00[0], 8, param2 * 16, 0xff, NULL);
+        StringFormatter_Format(Unk_ov7_0224F5A0->unk_50, Unk_ov7_0224F5A0->unk_00[0], Unk_ov7_0224F5A0->unk_00[1]);
+        PrintStringSimple(&Unk_ov7_0224F5A0->unk_20, 0, Unk_ov7_0224F5A0->unk_00[0], 8, param2 * 16, 0xff, NULL);
     }
 }
 
@@ -399,8 +399,8 @@ static void ov7_02249EE0 (UnkStruct_ov7_02249C2C * param0)
     sub_0200B498(Unk_ov7_0224F5A0->unk_54, 0, Unk_ov7_0224F5A0->unk_78);
     sub_0200B60C(Unk_ov7_0224F5A0->unk_54, 1, TrainerInfo_ID(Unk_ov7_0224F5A0->unk_78) % 0x10000, 5, 2, 1);
     MessageLoader_GetStrbuf(Unk_ov7_0224F5A0->unk_74, 62, Unk_ov7_0224F5A0->unk_00[6]);
-    sub_0200C388(Unk_ov7_0224F5A0->unk_54, Unk_ov7_0224F5A0->unk_00[7], Unk_ov7_0224F5A0->unk_00[6]);
-    sub_0201D738(&Unk_ov7_0224F5A0->unk_30, 0, Unk_ov7_0224F5A0->unk_00[7], 2, 2, 0, NULL);
+    StringFormatter_Format(Unk_ov7_0224F5A0->unk_54, Unk_ov7_0224F5A0->unk_00[7], Unk_ov7_0224F5A0->unk_00[6]);
+    PrintStringSimple(&Unk_ov7_0224F5A0->unk_30, 0, Unk_ov7_0224F5A0->unk_00[7], 2, 2, 0, NULL);
 }
 
 static void ov7_02249F54 (SysTask * param0, void * param1)
@@ -416,7 +416,7 @@ static void ov7_02249F54 (SysTask * param0, void * param1)
         for (v2 = 0; v2 < 16; v2++) {
             sub_0200B60C(Unk_ov7_0224F5A0->unk_50, 0, v2 + 1, 2, 2, 1);
             MessageLoader_GetStrbuf(Unk_ov7_0224F5A0->unk_74, 64, Unk_ov7_0224F5A0->unk_00[1]);
-            sub_0200C388(Unk_ov7_0224F5A0->unk_50, Unk_ov7_0224F5A0->unk_00[0], Unk_ov7_0224F5A0->unk_00[1]);
+            StringFormatter_Format(Unk_ov7_0224F5A0->unk_50, Unk_ov7_0224F5A0->unk_00[0], Unk_ov7_0224F5A0->unk_00[1]);
             sub_02013A6C(Unk_ov7_0224F5A0->unk_64, Unk_ov7_0224F5A0->unk_00[0], 0);
         }
 
@@ -551,7 +551,7 @@ asm static void ov7_0224A128 (SysTask * param0, void * param1)
     ldr r0, [r2, #0x58]
     ldr r1, [r2, #0x14]
     ldr r2, [r2, #0x10]
-    bl sub_0200C388
+    bl StringFormatter_Format
     ldr r0, = Unk_ov7_0224F5A0
               ldr r0, [r0, #0]
     add r0, #0x40
@@ -592,7 +592,7 @@ asm static void ov7_0224A128 (SysTask * param0, void * param1)
     str r3, [sp, #8]
     ldr r2, [r2, #0x14]
     add r0, #0x40
-    bl sub_0201D738
+    bl PrintStringSimple
     ldr r1, = Unk_ov7_0224F5A0
               ldr r1, [r1, #0]
     add r1, #0x94
@@ -730,12 +730,12 @@ static void ov7_0224A438 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     if (NULL != sub_02032EE8(v0)) {
         sub_0200B498(Unk_ov7_0224F5A0->unk_50, 0, sub_02032EE8(v0));
         MessageLoader_GetStrbuf(Unk_ov7_0224F5A0->unk_74, 66, Unk_ov7_0224F5A0->unk_00[1]);
-        sub_0200C388(Unk_ov7_0224F5A0->unk_50, Unk_ov7_0224F5A0->unk_00[0], Unk_ov7_0224F5A0->unk_00[1]);
-        sub_0201D738(&Unk_ov7_0224F5A0->unk_20, 0, Unk_ov7_0224F5A0->unk_00[0], 8, param2 * 16, 0, NULL);
+        StringFormatter_Format(Unk_ov7_0224F5A0->unk_50, Unk_ov7_0224F5A0->unk_00[0], Unk_ov7_0224F5A0->unk_00[1]);
+        PrintStringSimple(&Unk_ov7_0224F5A0->unk_20, 0, Unk_ov7_0224F5A0->unk_00[0], 8, param2 * 16, 0, NULL);
         sub_0200B60C(Unk_ov7_0224F5A0->unk_50, 2, TrainerInfo_ID_LowHalf(sub_02032EE8(v0)), 5, 2, 1);
         MessageLoader_GetStrbuf(Unk_ov7_0224F5A0->unk_74, 65, Unk_ov7_0224F5A0->unk_00[3]);
-        sub_0200C388(Unk_ov7_0224F5A0->unk_50, Unk_ov7_0224F5A0->unk_00[2], Unk_ov7_0224F5A0->unk_00[3]);
-        sub_0201D738(&Unk_ov7_0224F5A0->unk_20, 0, Unk_ov7_0224F5A0->unk_00[2], 9 * 8, param2 * 16, 0, NULL);
+        StringFormatter_Format(Unk_ov7_0224F5A0->unk_50, Unk_ov7_0224F5A0->unk_00[2], Unk_ov7_0224F5A0->unk_00[3]);
+        PrintStringSimple(&Unk_ov7_0224F5A0->unk_20, 0, Unk_ov7_0224F5A0->unk_00[2], 9 * 8, param2 * 16, 0, NULL);
     }
 }
 
@@ -841,8 +841,8 @@ static void ov7_0224A64C (UnkStruct_ov7_02249C2C * param0)
     sub_0200B60C(Unk_ov7_0224F5A0->unk_54, 0, v1, 2, 5, 1);
     BGL_FillWindow(&Unk_ov7_0224F5A0->unk_30, 15);
     MessageLoader_GetStrbuf(Unk_ov7_0224F5A0->unk_74, v0, Unk_ov7_0224F5A0->unk_00[7]);
-    sub_0200C388(Unk_ov7_0224F5A0->unk_54, Unk_ov7_0224F5A0->unk_00[6], Unk_ov7_0224F5A0->unk_00[7]);
-    sub_0201D738(&Unk_ov7_0224F5A0->unk_30, 0, Unk_ov7_0224F5A0->unk_00[6], 2, 2, 0, NULL);
+    StringFormatter_Format(Unk_ov7_0224F5A0->unk_54, Unk_ov7_0224F5A0->unk_00[6], Unk_ov7_0224F5A0->unk_00[7]);
+    PrintStringSimple(&Unk_ov7_0224F5A0->unk_30, 0, Unk_ov7_0224F5A0->unk_00[6], 2, 2, 0, NULL);
 }
 
 static void ov7_0224A6D4 (int param0, UnkStruct_ov7_02249C2C * param1)

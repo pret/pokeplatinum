@@ -770,7 +770,7 @@ void sub_0208B230 (Window * param0, int param1)
     v1 = MessageLoader_GetNewStrbuf(v0, param1);
 
     BGL_FillWindow(param0, 15);
-    sub_0201D738(param0, 1, v1, 0, 0, 0, NULL);
+    PrintStringSimple(param0, 1, v1, 0, 0, 0, NULL);
     sub_0201A954(param0);
 
     Strbuf_Free(v1);

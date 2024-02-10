@@ -273,14 +273,14 @@ static void ov23_0225265C (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 
     BGL_FillWindow(&v0->unk_20, 15);
     MessageLoader_GetStrbuf(ov23_02253E3C(ov23_022421BC()), 23 + v0->unk_2AB, v0->unk_68);
-    sub_0201D738(&v0->unk_20, 0, v0->unk_68, 1, 1, 0xff, NULL);
+    PrintStringSimple(&v0->unk_20, 0, v0->unk_68, 1, 1, 0xff, NULL);
 
     if (param1 != 0xfffffffe) {
         sub_0200BA94(v0->unk_70, 2, v0->unk_279[v1]);
         sub_0200B60C(v0->unk_70, 6, v0->unk_27E[v1], 2, 1, 1);
         MessageLoader_GetStrbuf(ov23_02253E3C(ov23_022421BC()), 25, v0->unk_68);
-        sub_0200C388(v0->unk_70, v0->unk_6C, v0->unk_68);
-        sub_0201D738(&v0->unk_20, 0, v0->unk_6C, 1, 17, 0xff, NULL);
+        StringFormatter_Format(v0->unk_70, v0->unk_6C, v0->unk_68);
+        PrintStringSimple(&v0->unk_20, 0, v0->unk_6C, 1, 17, 0xff, NULL);
     } else {
         (void)0;
     }
@@ -353,7 +353,7 @@ static void ov23_02252754 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     }
 
     MessageLoader_GetStrbuf(ov23_02253E3C(ov23_022421BC()), 23 + v1->unk_2AB, v1->unk_68);
-    sub_0201D738(&v1->unk_20, 0, v1->unk_68, 1, 1, 0xff, NULL);
+    PrintStringSimple(&v1->unk_20, 0, v1->unk_68, 1, 1, 0xff, NULL);
 
     if (param1 == 0xfffffffe) {
         (void)0;
@@ -361,8 +361,8 @@ static void ov23_02252754 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
         sub_0200BA94(v1->unk_70, 2, v7);
         sub_0200B60C(v1->unk_70, 6, v8, 2, 1, 1);
         MessageLoader_GetStrbuf(ov23_02253E3C(ov23_022421BC()), 25, v1->unk_68);
-        sub_0200C388(v1->unk_70, v1->unk_6C, v1->unk_68);
-        sub_0201D738(&v1->unk_20, 0, v1->unk_6C, 1, 17, 0xff, NULL);
+        StringFormatter_Format(v1->unk_70, v1->unk_6C, v1->unk_68);
+        PrintStringSimple(&v1->unk_20, 0, v1->unk_6C, 1, 17, 0xff, NULL);
 
         v1->unk_279[0] = v7;
         v1->unk_27E[0] = v8;
@@ -370,7 +370,7 @@ static void ov23_02252754 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
         v1->unk_279[0] = v7;
 
         MessageLoader_GetStrbuf(ov23_02253E3C(ov23_022421BC()), 26, v1->unk_68);
-        sub_0201D738(&v1->unk_20, 0, v1->unk_68, 1, 17, 0xff, NULL);
+        PrintStringSimple(&v1->unk_20, 0, v1->unk_68, 1, 17, 0xff, NULL);
     }
 
     sub_0201A9A4(&v1->unk_20);
@@ -568,7 +568,7 @@ void ov23_02252D74 (UnkStruct_ov23_02250CD4 * param0, int param1)
     sub_0201A954(&param0->unk_30);
 
     MessageLoader_GetStrbuf(ov23_02253E3C(ov23_022421BC()), param1, param0->unk_68);
-    sub_0201D738(&param0->unk_30, 0, param0->unk_68, 1, 1, 0xff, NULL);
+    PrintStringSimple(&param0->unk_30, 0, param0->unk_68, 1, 1, 0xff, NULL);
     sub_0201A9A4(&param0->unk_30);
 }
 

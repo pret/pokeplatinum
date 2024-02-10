@@ -99,28 +99,28 @@ void sub_0201D730 (u8 param0)
     sub_0201D6B0(param0);
 }
 
-u8 sub_0201D738 (Window * param0, u32 param1, const Strbuf *param2, u32 param3, u32 param4, u32 param5, UnkFuncPtr_0201D834 param6)
+u8 PrintStringSimple (Window *window, u32 fontID, const Strbuf *strbuf, u32 xOffset, u32 yOffset, u32 renderDelay, UnkFuncPtr_0201D834 callback)
 {
     UnkStruct_0201D738 v0;
 
-    v0.unk_00_val2 = param2;
-    v0.unk_04 = param0;
-    v0.unk_09 = param1;
-    v0.unk_0A = param3;
-    v0.unk_0B = param4;
-    v0.unk_0C = param3;
-    v0.unk_0E = param4;
-    v0.unk_10 = Unk_02100840[param1].unk_02;
-    v0.unk_12 = Unk_02100840[param1].unk_03;
-    v0.unk_14 = Unk_02100840[param1].unk_04;
-    v0.unk_15 = Unk_02100840[param1].unk_05;
-    v0.unk_16 = Unk_02100840[param1].unk_06;
-    v0.unk_17 = Unk_02100840[param1].unk_07;
+    v0.unk_00_val2 = strbuf;
+    v0.unk_04 = window;
+    v0.unk_09 = fontID;
+    v0.unk_0A = xOffset;
+    v0.unk_0B = yOffset;
+    v0.unk_0C = xOffset;
+    v0.unk_0E = yOffset;
+    v0.unk_10 = Unk_02100840[fontID].unk_02;
+    v0.unk_12 = Unk_02100840[fontID].unk_03;
+    v0.unk_14 = Unk_02100840[fontID].unk_04;
+    v0.unk_15 = Unk_02100840[fontID].unk_05;
+    v0.unk_16 = Unk_02100840[fontID].unk_06;
+    v0.unk_17 = Unk_02100840[fontID].unk_07;
     v0.unk_18 = 0;
     v0.unk_1A = 0;
     v0.unk_1B = 0xFF;
 
-    return sub_0201D834(&v0, param5, param6);
+    return sub_0201D834(&v0, renderDelay, callback);
 }
 
 u8 sub_0201D78C (Window * param0, u32 param1, const Strbuf *param2, u32 param3, u32 param4, u32 param5, u32 param6, UnkFuncPtr_0201D834 param7)

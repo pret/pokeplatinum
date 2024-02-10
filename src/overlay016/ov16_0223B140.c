@@ -89,9 +89,9 @@
 #include "overlay016/ov16_0223DF00.h"
 #include "battle/battle_controller.h"
 #include "battle/battle_lib.h"
-#include "overlay016/ov16_0225BFFC.h"
-#include "overlay016/ov16_0225CBB8.h"
-#include "overlay016/ov16_0226485C.h"
+#include "battle/battle_io_command.h"
+#include "battle/battle_display.h"
+#include "battle/battle_io.h"
 #include "overlay016/ov16_02268520.h"
 #include "overlay016/ov16_0226871C.h"
 #include "overlay016/ov16_0226E148.h"
@@ -323,7 +323,7 @@ void ov16_0223B3E4 (BattleSystem * param0)
 {
     SetMainCallback(NULL, NULL);
     ov16_02268A14(param0->unk_198);
-    BGL_DeleteWindow(&param0->unk_08[0]);
+    BGL_DeleteWindow(&param0->windows[0]);
 
     ov16_0223C288(param0->unk_04);
     ov16_0223C2BC(param0);
@@ -375,7 +375,7 @@ void ov16_0223B430 (BattleSystem * param0)
 
 void ov16_0223B53C (BattleSystem * param0)
 {
-    BGL_DeleteWindow(&param0->unk_08[0]);
+    BGL_DeleteWindow(&param0->windows[0]);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     sub_02019044(param0->unk_04, 1);
@@ -478,9 +478,9 @@ void ov16_0223B578 (BattleSystem * param0)
 
     param0->unk_23FB_1 = 1;
 
-    BGL_AddWindow(param0->unk_04, param0->unk_08, 1, 0x2, 0x13, 27, 4, 0xb, (18 + 12) + 1);
-    BGL_FillWindow(param0->unk_08, 0xff);
-    sub_0200E060(&param0->unk_08[0], 0, 1, 10);
+    BGL_AddWindow(param0->unk_04, param0->windows, 1, 0x2, 0x13, 27, 4, 0xb, (18 + 12) + 1);
+    BGL_FillWindow(param0->windows, 0xff);
+    sub_0200E060(&param0->windows[0], 0, 1, 10);
 
     ov16_0223DD4C(param0);
 }
@@ -559,7 +559,7 @@ static void ov16_0223B790 (UnkStruct_020067E8 * param0)
     sub_02002F70(v0->unk_28, 3, 0x200, 5);
 
     v0->unk_04 = sub_02018340(5);
-    v0->unk_08 = sub_0201A778(5, 3);
+    v0->windows = sub_0201A778(5, 3);
 
     for (v3 = 0; v3 < 4; v3++) {
         v0->unk_1CC[v3].unk_00 = Heap_AllocFromHeap(5, (32 * 10 * 10));
@@ -579,9 +579,9 @@ static void ov16_0223B790 (UnkStruct_020067E8 * param0)
 
     ov16_0223C004(v0, v0->unk_04);
 
-    BGL_AddWindow(v0->unk_04, &v0->unk_08[0], 1, 2, 0x13, 27, 4, 11, ((18 + 12) + 1));
-    BGL_FillWindow(&v0->unk_08[0], 0xff);
-    sub_0200E060(&v0->unk_08[0], 0, 1, 10);
+    BGL_AddWindow(v0->unk_04, &v0->windows[0], 1, 2, 0x13, 27, 4, 11, ((18 + 12) + 1));
+    BGL_FillWindow(&v0->windows[0], 0xff);
+    sub_0200E060(&v0->windows[0], 0, 1, 10);
 
     v0->unk_90 = sub_0200C6E4(5);
 
@@ -626,7 +626,7 @@ static void ov16_0223B790 (UnkStruct_020067E8 * param0)
 
     v0->unk_0C = MessageLoader_Init(1, 26, 368, 5);
     v0->unk_10 = MessageLoader_Init(1, 26, 0, 5);
-    v0->unk_14 = sub_0200B358(5);
+    v0->strFormatter = sub_0200B358(5);
     v0->msgBuffer = Strbuf_Init((2 * 160), 5);
 
     MI_CpuCopy16(sub_02003164(v0->unk_28, 0), &v0->unk_2224[0], 0x20 * 7);
@@ -771,7 +771,7 @@ static void ov16_0223BCB4 (UnkStruct_020067E8 * param0)
     sub_02002F54(v0->unk_28);
     MessageLoader_Free(v0->unk_0C);
     MessageLoader_Free(v0->unk_10);
-    sub_0200B3F0(v0->unk_14);
+    sub_0200B3F0(v0->strFormatter);
     sub_02015FB8(v0->unk_1C4);
     sub_020141E4();
 
@@ -791,7 +791,7 @@ static void ov16_0223BCB4 (UnkStruct_020067E8 * param0)
     sub_02002AC8(0);
     sub_02002AE4(0);
     sub_02002B20(0);
-    sub_0201A928(v0->unk_08, 3);
+    sub_0201A928(v0->windows, 3);
     Heap_FreeToHeap(v0->unk_04);
     Heap_FreeToHeap(v0->unk_21C);
     Heap_FreeToHeap(v0->unk_220);
@@ -1752,7 +1752,7 @@ static void ov16_0223D10C (UnkStruct_020067E8 * param0, BattleParams * param1)
         v6 = Strbuf_Init(0x100, 5);
 
         MessageLoader_GetStrbuf(v5, 923, v6);
-        sub_0201D738(v0->unk_08, 1, v6, 0, 0, NULL, NULL);
+        PrintStringSimple(v0->unk_08, 1, v6, 0, 0, NULL, NULL);
 
         Strbuf_Free(v6);
         MessageLoader_Free(v5);
@@ -1984,7 +1984,7 @@ static BOOL ov16_0223D354 (UnkStruct_020067E8 * param0)
     case 33:
         if (sub_0200384C(v0->unk_0C) == 0) {
             v1 = 1;
-            sub_0200EBA0(v0->unk_1024);
+            DeleteWaitDial(v0->unk_1024);
             sub_02036378(0);
         }
         break;

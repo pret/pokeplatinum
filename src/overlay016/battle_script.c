@@ -87,8 +87,8 @@
 #include "overlay016/ov16_0223B140.h"
 #include "overlay016/ov16_0223DF00.h"
 #include "battle/battle_lib.h"
-#include "overlay016/ov16_0225CBB8.h"
-#include "overlay016/ov16_0226485C.h"
+#include "battle/battle_display.h"
+#include "battle/battle_io.h"
 #include "overlay016/ov16_02268520.h"
 #include "overlay021/ov21_021E8D48.h"
 
@@ -12270,7 +12270,7 @@ static void BattleScript_LoadPartyLevelUpIcon (BattleSystem * param0, BattleScri
 
     sub_0200B5CC(v5, 0, Pokemon_GetBoxPokemon(param2));
     sub_0200B60C(v5, 1, Pokemon_GetValue(param2, MON_DATA_LEVEL, NULL), 3, 0, 1);
-    sub_0200C388(v5, v7, v6);
+    StringFormatter_Format(v5, v7, v6);
     Strbuf_Free(v6);
     sub_0201A7A0(&v9);
     sub_0201A870(v8, &v9, 12, 4, 0, 0);

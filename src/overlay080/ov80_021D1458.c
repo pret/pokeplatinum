@@ -371,7 +371,7 @@ int ov80_021D1758 (UnkStruct_ov80_021D2A08 * param0)
 
     sub_0200E69C(v1, 1, (((((1023 - (21 * 4)) - (28 * 4)) - (28 * 14)) - (10 * 2)) - 100), (15 - 1), v2->unk_04);
     BGL_FillWindow(v1, 15);
-    sub_0201D738(v1, 1, param0->unk_88, 0, 0, 0xff, NULL);
+    PrintStringSimple(v1, 1, param0->unk_88, 0, 0, 0xff, NULL);
     sub_0201A954(v1);
     sub_0201A954(&v0->unk_28[3]);
 

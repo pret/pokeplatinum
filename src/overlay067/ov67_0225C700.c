@@ -664,8 +664,8 @@ static void ov67_0225D210 (UnkStruct_ov67_0225D210 * param0, u32 param1)
 
     BGL_FillWindow(&param0->unk_08, 15);
     MessageLoader_GetStrbuf(param0->unk_04, param1, param0->unk_1C);
-    sub_0200C388(param0->unk_00, param0->unk_18, param0->unk_1C);
-    sub_0201D738(&param0->unk_08, 1, param0->unk_18, 0, 0, 0xff, NULL);
+    StringFormatter_Format(param0->unk_00, param0->unk_18, param0->unk_1C);
+    PrintStringSimple(&param0->unk_08, 1, param0->unk_18, 0, 0, 0xff, NULL);
 
     if (param0->unk_20 == 0) {
         Window_Show(&param0->unk_08, 1, (1 + (18 + 12)), 14);
@@ -707,7 +707,7 @@ static void ov67_0225D310 (UnkStruct_ov67_0225D210 * param0)
 {
     if (param0->unk_20 == 1) {
         GF_ASSERT(param0->unk_24 != NULL);
-        sub_0200EBA0(param0->unk_24);
+        DeleteWaitDial(param0->unk_24);
         param0->unk_24 = NULL;
     }
 }
@@ -733,7 +733,7 @@ static void ov67_0225D37C (UnkStruct_ov67_0225D210 * param0, u32 param1)
 {
     BGL_FillWindow(&param0->unk_08, 0);
     MessageLoader_GetStrbuf(param0->unk_04, param1, param0->unk_1C);
-    sub_0200C388(param0->unk_00, param0->unk_18, param0->unk_1C);
+    StringFormatter_Format(param0->unk_00, param0->unk_18, param0->unk_1C);
     sub_0201D78C(&param0->unk_08, 1, param0->unk_18, sub_02002EEC(0, param0->unk_18, 0, 0xB0), 0, 0, 0xF0E00, 0);
 }
 

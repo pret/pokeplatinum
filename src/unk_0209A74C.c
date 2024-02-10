@@ -120,7 +120,7 @@ void sub_0209A74C (int param0)
     BGL_WindowColor(&v1, 15, 0, 0, 26 * 8, 18 * 8);
     Window_Show(&v1, 0, 512 - 9, 2);
     MessageLoader_GetStrbuf(v2, v4, v3);
-    sub_0201D738(&v1, 0, v3, 0, 0, 0, NULL);
+    PrintStringSimple(&v1, 0, v3, 0, 0, 0, NULL);
     Strbuf_Free(v3);
     GXLayers_TurnBothDispOn();
     sub_0200F338(0);
@@ -194,7 +194,7 @@ void sub_0209A8E0 (int param0)
     BGL_WindowColor(&v1, 15, 0, 0, 26 * 8, 18 * 8);
     Window_Show(&v1, 0, (512 - 9), 2);
     MessageLoader_GetStrbuf(v2, v4, v3);
-    sub_0201D738(&v1, 0, v3, 0, 0, 0, NULL);
+    PrintStringSimple(&v1, 0, v3, 0, 0, 0, NULL);
     Strbuf_Free(v3);
     GXLayers_TurnBothDispOn();
     sub_0200F338(0);

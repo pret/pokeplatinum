@@ -1831,7 +1831,7 @@ static u8 ov107_022437CC (UnkStruct_ov107_02241D6C * param0, Window * param1, in
     u8 v0;
     BGL_FillWindow(param1, param8);
     MessageLoader_GetStrbuf(param0->unk_20, param2, param0->unk_2C);
-    sub_0200C388(param0->unk_24, param0->unk_28, param0->unk_2C);
+    StringFormatter_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
     
     switch (param10) {
     case 1:
@@ -1857,7 +1857,7 @@ static u8 ov107_02243890 (UnkStruct_ov107_02241D6C * param0, Window * param1, in
 {
     u8 v0;
     MessageLoader_GetStrbuf(param0->unk_20, param2, param0->unk_2C);
-    sub_0200C388(param0->unk_24, param0->unk_28, param0->unk_2C);
+    StringFormatter_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
     
     switch (param10) {
     case 1:
@@ -2279,7 +2279,7 @@ static u8 ov107_02243EF8 (UnkStruct_ov107_02241D6C * param0, Window * param1, u1
 
     BGL_FillWindow(param1, 0);
     MessageLoader_GetStrbuf(param0->unk_1C, param2, param0->unk_2C);
-    sub_0200C388(param0->unk_24, param0->unk_28, param0->unk_2C);
+    StringFormatter_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
 
     v0 = sub_0201D78C(param1, 0, param0->unk_28, 0, 6, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0))), NULL);
 

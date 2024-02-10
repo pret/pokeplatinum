@@ -115,8 +115,8 @@ void ov19_021DB448 (UnkStruct_ov19_021DB6F0 * param0, u32 param1)
     ov19_021DB4B4(param0->unk_00, param0->unk_18[0].unk_04, param0->unk_18[0].unk_05, param0->unk_18[0].unk_06, param0->unk_18[0].unk_07, param0->unk_18[0].unk_08);
     BGL_FillWindow(&param0->unk_18[0], 15);
     MessageLoader_GetStrbuf(param0->unk_10, param1, param0->unk_30);
-    sub_0200C388(param0->unk_2C, param0->unk_34, param0->unk_30);
-    sub_0201D738(&(param0->unk_18[0]), 1, param0->unk_34, 0, 0, 0xff, NULL);
+    StringFormatter_Format(param0->unk_2C, param0->unk_34, param0->unk_30);
+    PrintStringSimple(&(param0->unk_18[0]), 1, param0->unk_34, 0, 0, 0xff, NULL);
     sub_0201ACCC(&(param0->unk_18[0]));
     sub_02019448(param0->unk_00, 1);
 

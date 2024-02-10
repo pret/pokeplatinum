@@ -609,7 +609,7 @@ static Strbuf* ov68_0225CBEC (UnkStruct_ov68_0225CB70 * param0, u32 param1, u32 
     GF_ASSERT(param1 < 9);
 
     MessageLoader_GetStrbuf(param0->unk_00[param1], param2, param0->unk_2C);
-    sub_0200C388(param0->unk_24, param0->unk_28, param0->unk_2C);
+    StringFormatter_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
 
     return param0->unk_28;
 }
@@ -976,7 +976,7 @@ static void ov68_0225D284 (UnkStruct_ov68_0225D128 * param0)
 static void ov68_0225D2A0 (UnkStruct_ov68_0225D128 * param0)
 {
     if (param0->unk_1C != NULL) {
-        sub_0200EBA0(param0->unk_1C);
+        DeleteWaitDial(param0->unk_1C);
         param0->unk_1C = NULL;
     }
 }

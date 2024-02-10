@@ -1019,7 +1019,7 @@ static void ov94_02240D58 (UnkStruct_ov94_0223FD4C * param0, int param1, int par
     Strbuf* v1;
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_B90, param1);
-    sub_0200C388(param0->unk_B8C, param0->unk_BAC, v1);
+    StringFormatter_Format(param0->unk_B8C, param0->unk_BAC, v1);
 
     if (param5 == 0) {
         v0 = &param0->unk_F5C;
@@ -1030,7 +1030,7 @@ static void ov94_02240D58 (UnkStruct_ov94_0223FD4C * param0, int param1, int par
     BGL_FillWindow(v0, 0xf0f);
     sub_0200E060(v0, 0, 1, 10);
 
-    param0->unk_BE0 = sub_0201D738(v0, 1, param0->unk_BAC, 0, 0, param2, NULL);
+    param0->unk_BE0 = PrintStringSimple(v0, 1, param0->unk_BAC, 0, 0, param2, NULL);
 
     Strbuf_Free(v1);
 }

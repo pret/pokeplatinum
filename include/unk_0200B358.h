@@ -83,7 +83,7 @@ void sub_0200C2A8(UnkStruct_0200B358 * param0, u32 param1, u32 param2);
 void sub_0200C2E0(UnkStruct_0200B358 * param0, u32 param1, u32 param2);
 void sub_0200C324(UnkStruct_0200B358 * param0, u32 param1);
 void sub_0200C338(UnkStruct_0200B358 * param0, u32 param1, u32 param2);
-void sub_0200C388(const UnkStruct_0200B358 * param0, Strbuf *param1, const Strbuf *param2);
+void StringFormatter_Format(const UnkStruct_0200B358 * param0, Strbuf *param1, const Strbuf *param2);
 void sub_0200C41C(UnkStruct_0200B358 * param0);
 
 #endif // POKEPLATINUM_UNK_0200B358_H

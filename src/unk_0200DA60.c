@@ -533,7 +533,7 @@ static void sub_0200EB8C (SysTask * param0, void * param1)
     SysTask_Done(param0);
 }
 
-void sub_0200EBA0 (void * param0)
+void DeleteWaitDial (void * param0)
 {
     UnkStruct_0200E924 * v0 = param0;
 

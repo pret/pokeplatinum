@@ -1394,7 +1394,7 @@ static int ov109_021D1AA8 (UnkStruct_ov109_021D0F70 * param0)
 
     if (v0) {
         gCoreSys.inhibitReset = 0;
-        sub_0200EBA0(param0->unk_DC8);
+        DeleteWaitDial(param0->unk_DC8);
         param0->unk_00 = 48;
     }
 
@@ -2066,7 +2066,7 @@ static void ov109_021D2634 (UnkStruct_ov109_021D0F70 * param0, u32 param1)
     sub_0200E060(v1, 1, (1 + 9), 14);
     BGL_FillWindow(v1, 15);
     MessageLoader_GetStrbuf(v0->unk_04, param1, v0->unk_6C);
-    sub_0201D738(v1, 1, v0->unk_6C, 0, 0, 0xff, NULL);
+    PrintStringSimple(v1, 1, v0->unk_6C, 0, 0, 0xff, NULL);
     sub_0201A9A4(v1);
 }
 
@@ -2082,11 +2082,11 @@ static void ov109_021D268C (UnkStruct_ov109_021D0F70 * param0, u32 param1, const
     v0 = Strbuf_Init(0x100, 95);
 
     MessageLoader_GetStrbuf(v1->unk_04, param1, v0);
-    sub_0200C388(v1->unk_08, v1->unk_6C, v0);
+    StringFormatter_Format(v1->unk_08, v1->unk_6C, v0);
     Strbuf_Free(v0);
     sub_0200E060(v2, 1, (1 + 9), 14);
     BGL_FillWindow(v2, 15);
-    sub_0201D738(v2, 1, v1->unk_6C, 0, 0, 0xff, NULL);
+    PrintStringSimple(v2, 1, v1->unk_6C, 0, 0, 0xff, NULL);
     sub_0201A9A4(v2);
 }
 
@@ -2101,11 +2101,11 @@ static void ov109_021D2714 (UnkStruct_ov109_021D0F70 * param0, u32 param1, u32 p
     v0 = Strbuf_Init(0x100, 95);
 
     MessageLoader_GetStrbuf(v1->unk_04, param1, v0);
-    sub_0200C388(v1->unk_08, v1->unk_6C, v0);
+    StringFormatter_Format(v1->unk_08, v1->unk_6C, v0);
     Strbuf_Free(v0);
     sub_0200E060(v2, 1, (1 + 9), 14);
     BGL_FillWindow(v2, 15);
-    sub_0201D738(v2, 1, v1->unk_6C, 0, 0, 0xff, NULL);
+    PrintStringSimple(v2, 1, v1->unk_6C, 0, 0, 0xff, NULL);
     sub_0201A9A4(v2);
 }
 

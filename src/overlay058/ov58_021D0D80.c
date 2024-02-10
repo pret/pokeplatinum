@@ -1718,7 +1718,7 @@ static void ov58_021D2A98 (UnkStruct_02095EAC * param0, int param1, int param2)
     v0 = Strbuf_Init((40 * 2), 39);
 
     MessageLoader_GetStrbuf(param0->unk_10, param1, v0);
-    sub_0200C388(param0->unk_0C, param0->unk_2C, v0);
+    StringFormatter_Format(param0->unk_0C, param0->unk_2C, v0);
     Strbuf_Free(v0);
 
     BGL_FillWindow(&param0->unk_33C, 0xf0f);
@@ -1728,7 +1728,7 @@ static void ov58_021D2A98 (UnkStruct_02095EAC * param0, int param1, int param2)
         param2 = 0;
     }
 
-    param0->unk_30 = sub_0201D738(&param0->unk_33C, 1, param0->unk_2C, 0, 0, param2, NULL);
+    param0->unk_30 = PrintStringSimple(&param0->unk_33C, 1, param0->unk_2C, 0, 0, param2, NULL);
 
     if (param2 == 0) {
         param0->unk_30 = 0xff;

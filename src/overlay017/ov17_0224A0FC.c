@@ -1944,10 +1944,10 @@ static void ov17_0224C244 (UnkStruct_ov17_0224DF54 * param0, MessageLoader * par
     v0 = MessageLoader_GetNewStrbuf(param1, param2);
     ov17_0224C0C0(param0, param3, param4);
 
-    sub_0200C388(param0->unk_14.unk_88, param0->unk_14.unk_8C, v0);
+    StringFormatter_Format(param0->unk_14.unk_88, param0->unk_14.unk_8C, v0);
     BGL_FillWindow(&param0->unk_14.unk_64[0], 0xff);
 
-    param0->unk_14.unk_A18 = sub_0201D738(&param0->unk_14.unk_64[0], 1, param0->unk_14.unk_8C, 0, 0, v1, NULL);
+    param0->unk_14.unk_A18 = PrintStringSimple(&param0->unk_14.unk_64[0], 1, param0->unk_14.unk_8C, 0, 0, v1, NULL);
     Strbuf_Free(v0);
 }
 
@@ -2117,9 +2117,9 @@ void ov17_0224C5A0 (UnkStruct_ov17_0224DF54 * param0, u32 param1, const UnkStruc
 
     ov17_0224C0C0(param0, v1, param2);
 
-    sub_0200C388(param0->unk_14.unk_88, param0->unk_14.unk_8C, v2);
+    StringFormatter_Format(param0->unk_14.unk_88, param0->unk_14.unk_8C, v2);
     BGL_FillWindow(&param0->unk_14.unk_64[1], 0xff);
-    sub_0201D738(&param0->unk_14.unk_64[1], 1, param0->unk_14.unk_8C, 0, 0, 0, NULL);
+    PrintStringSimple(&param0->unk_14.unk_64[1], 1, param0->unk_14.unk_8C, 0, 0, 0, NULL);
     Strbuf_Free(v2);
 
     param0->unk_1B25 = 1;

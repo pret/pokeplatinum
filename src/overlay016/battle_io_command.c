@@ -75,10 +75,10 @@
 #include "overlay012/ov12_02235E94.h"
 #include "overlay012/ov12_022380BC.h"
 #include "overlay016/ov16_0223DF00.h"
-#include "overlay016/ov16_0225BFFC.h"
-#include "overlay016/ov16_0225CBB8.h"
+#include "battle/battle_io_command.h"
+#include "battle/battle_display.h"
 #include "overlay016/ov16_02264798.h"
-#include "overlay016/ov16_0226485C.h"
+#include "battle/battle_io.h"
 #include "overlay016/ov16_02266F1C.h"
 #include "overlay016/ov16_0226871C.h"
 #include "battle/party_gauge.h"
@@ -110,7 +110,7 @@ static void ov16_0225C2B0(BattleSystem * param0, BattlerData * param1);
 static void ov16_0225C2C4(BattleSystem * param0, BattlerData * param1);
 static void ov16_0225C2D8(BattleSystem * param0, BattlerData * param1);
 static void ov16_0225C2EC(BattleSystem * param0, BattlerData * param1);
-static void ov16_0225C300(BattleSystem * param0, BattlerData * param1);
+static void BtlIOCmd_PrintBattleMessage(BattleSystem *battleSys, BattlerData *battlerData);
 static void ov16_0225C314(BattleSystem * param0, BattlerData * param1);
 static void ov16_0225C328(BattleSystem * param0, BattlerData * param1);
 static void ov16_0225C35C(BattleSystem * param0, BattlerData * param1);
@@ -228,7 +228,7 @@ static const UnkFuncPtr_ov16_0226F068 Unk_ov16_0226F068[] = {
     ov16_0225C2C4,
     ov16_0225C2D8,
     ov16_0225C2EC,
-    ov16_0225C300,
+    [BTLIOCMD_PRINT_MESSAGE] = BtlIOCmd_PrintBattleMessage,
     ov16_0225C314,
     ov16_0225C328,
     ov16_0225C35C,
@@ -463,12 +463,18 @@ static void ov16_0225C2EC (BattleSystem * param0, BattlerData * param1)
     ZeroDataBuffer(param1);
 }
 
-static void ov16_0225C300 (BattleSystem * param0, BattlerData * param1)
+/**
+ * @brief Print a message to the screen.
+ * 
+ * @param battleSys 
+ * @param battlerData 
+ */
+static void BtlIOCmd_PrintBattleMessage(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    BattleMessage * v0 = (BattleMessage *)&param1->data[0];
+    BattleMessage *battleMsg = (BattleMessage *)&battlerData->data[0];
 
-    ov16_0225D958(param0, param1, v0);
-    ZeroDataBuffer(param1);
+    BattleDisplay_PrintMessage(battleSys, battlerData, battleMsg);
+    ZeroDataBuffer(battlerData);
 }
 
 static void ov16_0225C314 (BattleSystem * param0, BattlerData * param1)
@@ -794,7 +800,7 @@ static void ov16_0225C840 (BattleSystem * param0, BattlerData * param1)
 {
     PartyGaugeData * v0 = (PartyGaugeData *)&param1->data[0];
 
-    Battler_ShowBattleStartPartyGauge(param0, param1, v0);
+    BattleDisplay_ShowBattleStartPartyGauge(param0, param1, v0);
     ZeroDataBuffer(param1);
 }
 
@@ -802,7 +808,7 @@ static void ov16_0225C854 (BattleSystem * param0, BattlerData * param1)
 {
     PartyGaugeData * v0 = (PartyGaugeData *)&param1->data[0];
 
-    Battler_HideBattleStartPartyGauge(param0, param1, v0);
+    BattleDisplay_HideBattleStartPartyGauge(param0, param1, v0);
     ZeroDataBuffer(param1);
 }
 
@@ -811,7 +817,7 @@ static void ov16_0225C868 (BattleSystem * param0, BattlerData * param1)
     PartyGaugeData * v0 = (PartyGaugeData *)&param1->data[0];
 
     if (Battler_Side(param0, param1->battler)) {
-        Battler_ShowPartyGauge(param0, param1, v0);
+        BattleDisplay_ShowPartyGauge(param0, param1, v0);
     } else {
         ClearCommand(param0, param1->battler, 50);
     }
@@ -824,7 +830,7 @@ static void ov16_0225C8A4 (BattleSystem * param0, BattlerData * param1)
     PartyGaugeData * v0 = (PartyGaugeData *)&param1->data[0];
 
     if (Battler_Side(param0, param1->battler)) {
-        Battler_HidePartyGauge(param0, param1, v0);
+        BattleDisplay_HidePartyGauge(param0, param1, v0);
     } else {
         ClearCommand(param0, param1->battler, 51);
     }

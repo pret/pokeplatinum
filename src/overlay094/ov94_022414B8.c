@@ -331,11 +331,11 @@ static void ov94_0224158C (UnkStruct_ov94_0223FD4C * param0, int param1, int par
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_B90, param1);
 
-    sub_0200C388(param0->unk_B8C, param0->unk_BAC, v0);
+    StringFormatter_Format(param0->unk_B8C, param0->unk_BAC, v0);
     BGL_FillWindow(&param0->unk_F5C, 0xf0f);
     sub_0200E060(&param0->unk_F5C, 0, 1, 10);
 
-    param0->unk_BE0 = sub_0201D738(&param0->unk_F5C, 1, param0->unk_BAC, 0, 0, param2, NULL);
+    param0->unk_BE0 = PrintStringSimple(&param0->unk_F5C, 1, param0->unk_BAC, 0, 0, param2, NULL);
 
     Strbuf_Free(v0);
 }

@@ -1097,7 +1097,7 @@ static void sub_020732C4 (UnkStruct_02072334 * param0, int param1, u8 param2, u8
     if (param1 == 0) {
         Strbuf_Clear(param0->unk_110.unk_04);
         sub_0200B48C(param0->unk_110.unk_00, 0, param0->unk_1C[param0->unk_18].unk_08, 2, 1, GAME_LANGUAGE);
-        sub_0200C388(param0->unk_110.unk_00, param0->unk_110.unk_04, param0->unk_110.unk_10[param1]);
+        StringFormatter_Format(param0->unk_110.unk_00, param0->unk_110.unk_04, param0->unk_110.unk_10[param1]);
 
         v0 = param0->unk_110.unk_04;
     } else {

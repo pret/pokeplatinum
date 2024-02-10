@@ -478,7 +478,7 @@ static void ov23_0224966C (BGL * param0, Window * param1, int * param2, int * pa
     switch (*param3) {
     case 0:
         if ((v0 = ov23_022498C4(param5)) != NULL) {
-            *param2 = sub_0201D738(
+            *param2 = PrintStringSimple(
                 param1, 1, v0, 0, 16, 1, NULL);
             *param3 = 1;
         }

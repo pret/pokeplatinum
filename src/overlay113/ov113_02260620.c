@@ -590,7 +590,7 @@ void ov113_02260620 (MessageLoader * param0, UnkStruct_0200B358 * param1, Window
     v2 = MessageLoader_GetNewStrbuf(param0, 0);
     v3 = Strbuf_Init(v5, 118);
 
-    sub_0200C388(param1, v3, v2);
+    StringFormatter_Format(param1, v3, v2);
     BGL_FillWindow(&param2[v7], 0x0);
 
     if (ov66_0222E924(param3, v8) == 1) {

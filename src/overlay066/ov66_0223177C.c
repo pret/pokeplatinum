@@ -742,7 +742,7 @@ static BOOL ov66_02232068 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
 
     v0 = MessageLoader_GetNewStrbuf(param3, 7);
 
-    sub_0200C388(param2, param4, v0);
+    StringFormatter_Format(param2, param4, v0);
     Strbuf_Free(v0);
 
     return 1;
@@ -758,7 +758,7 @@ static BOOL ov66_022320BC (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
 
     v0 = MessageLoader_GetNewStrbuf(param3, 8);
 
-    sub_0200C388(param2, param4, v0);
+    StringFormatter_Format(param2, param4, v0);
     Strbuf_Free(v0);
 
     return 1;
@@ -804,7 +804,7 @@ static BOOL ov66_0223211C (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
         v0 = MessageLoader_GetNewStrbuf(param3, 5);
     }
 
-    sub_0200C388(param2, param4, v0);
+    StringFormatter_Format(param2, param4, v0);
     Strbuf_Free(v0);
 
     return 1;
@@ -820,7 +820,7 @@ static BOOL ov66_02232258 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
 
     v0 = MessageLoader_GetNewStrbuf(param3, 9);
 
-    sub_0200C388(param2, param4, v0);
+    StringFormatter_Format(param2, param4, v0);
     Strbuf_Free(v0);
 
     return 1;
@@ -844,7 +844,7 @@ static BOOL ov66_022322B8 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
 
     v0 = MessageLoader_GetNewStrbuf(param3, 10 + (4 - param0->unk_04[0]));
 
-    sub_0200C388(param2, param4, v0);
+    StringFormatter_Format(param2, param4, v0);
     Strbuf_Free(v0);
 
     return 1;
@@ -879,7 +879,7 @@ static BOOL ov66_02232330 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
 
     v0 = MessageLoader_GetNewStrbuf(param3, v1);
 
-    sub_0200C388(param2, param4, v0);
+    StringFormatter_Format(param2, param4, v0);
     Strbuf_Free(v0);
 
     return 1;
@@ -928,7 +928,7 @@ static BOOL ov66_022323C4 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
         v0 = MessageLoader_GetNewStrbuf(param3, v3[param0->unk_04[1] - 1]);
     }
 
-    sub_0200C388(param2, param4, v0);
+    StringFormatter_Format(param2, param4, v0);
     Strbuf_Free(v0);
 
     return 1;

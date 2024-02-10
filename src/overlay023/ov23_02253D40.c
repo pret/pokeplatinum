@@ -159,7 +159,7 @@ static Strbuf* ov23_02253E6C (UnkStruct_ov23_02253E2C * param0)
     Strbuf* v0 = param0->unk_00;
 
     if (param0->unk_44_1) {
-        sub_0200C388(param0->unk_28, param0->unk_04, param0->unk_00);
+        StringFormatter_Format(param0->unk_28, param0->unk_04, param0->unk_00);
         v0 = param0->unk_04;
         param0->unk_44_1 = 0;
     }
@@ -190,7 +190,7 @@ static int ov23_02253E90 (UnkStruct_ov23_02253E2C * param0, BOOL param1, UnkStru
 
     v0 = ov23_02253E6C(param0);
 
-    param0->unk_30 = sub_0201D738(&param0->unk_08, 1, v0, 0, 0, param0->unk_38, NULL);
+    param0->unk_30 = PrintStringSimple(&param0->unk_08, 1, v0, 0, 0, param0->unk_38, NULL);
     param0->unk_1C = param2;
     param0->unk_3C = param3;
 
