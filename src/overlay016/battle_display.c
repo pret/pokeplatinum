@@ -155,59 +155,6 @@
 #include "overlay016/ov16_0226871C.h"
 #include "battle/party_gauge.h"
 
-void ov16_0225CBB8(BattleSystem * param0, BattlerData * param1);
-void ov16_0225CBDC(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C168 * param2);
-void ov16_0225CE1C(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C17C * param2);
-void ov16_0225CF70(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C17C * param2);
-void ov16_0225D118(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_02264EF8 * param2);
-void ov16_0225D1C4(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_02265050 * param2);
-void ov16_0225D228(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_02265124 * param2);
-void ov16_0225D360(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_02265154 * param2);
-void ov16_0225D3CC(BattleSystem * param0, BattlerData * param1);
-void ov16_0225D414(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_022651A8 * param2);
-void ov16_0225D4A8(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C23C * param2);
-void ov16_0225D570(BattleSystem * param0, BattlerData * param1);
-void ov16_0225D5B8(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C260 * param2);
-void ov16_0225D698(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_022656F0 * param2);
-void ov16_0225D708(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C29C * param2);
-void ov16_0225D794(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C2B0 * param2);
-void ov16_0225D840(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C2C4 * param2);
-void ov16_0225D8AC(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C2D8 * param2);
-void ov16_0225D8F0(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C2EC * param2);
-void BattleUI_PrintMessage(BattleSystem * param0, BattlerData * param1, BattleMessage * param2);
-void ov16_0225D9A8(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_02265BBC * param2);
-void ov16_0225DA44(BattleSystem * param0, BattlerData * param1);
-void ov16_0225DA74(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C35C * param2);
-void ov16_0225DB00(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C370 * param2);
-void ov16_0225DB74(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C384 * param2);
-void ov16_0225DC4C(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C398 * param2);
-void ov16_0225DC7C(BattleSystem * param0, BattlerData * param1);
-void ov16_0225DCB0(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C3BC * param2);
-void ov16_0225DD44(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C3D0 * param2);
-void ov16_0225DD7C(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C3E4 * param2);
-void ov16_0225DDD8(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C3F8 * param2);
-void ov16_0225DE30(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C40C * param2);
-void ov16_0225DE88(BattleSystem * param0, BattlerData * param1);
-void ov16_0225DEDC(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C430 * param2);
-void ov16_0225DF34(BattleSystem * param0, BattlerData * param1);
-void ov16_0225DF6C(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C454 * param2);
-void ov16_0225E008(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C468 * param2);
-void ov16_0225E0BC(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C65C * param2);
-void ov16_0225E0F4(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_022664F8 * param2);
-void Battler_ShowBattleStartPartyGauge(BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2);
-void Battler_HideBattleStartPartyGauge(BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2);
-void Battler_ShowPartyGauge(BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2);
-void Battler_HidePartyGauge(BattleSystem * param0, BattlerData * param1, PartyGaugeData * param2);
-void ov16_0225E23C(BattleSystem * param0, BattlerData * param1);
-void ov16_0225E294(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_02265BBC * param2);
-void ov16_0225E2C8(BattleSystem * param0, BattlerData * param1);
-void ov16_0225E300(BattleSystem * param0, BattlerData * param1);
-void ov16_0225E338(BattleSystem * param0, BattlerData * param1);
-void ov16_0225E38C(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C9F0 * param2);
-void ov16_0225E3E0(BattleSystem * param0, BattlerData * param1);
-void ov16_0225E434(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_02265BBC * param2);
-void ov16_0225E468(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225CA4C * param2);
-void ov16_0225E4C8(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225CA60 * param2);
 static void ov16_0225E4E8(SysTask * param0, void * param1);
 static void ov16_0225E894(SysTask * param0, void * param1);
 static void ov16_0225EA80(SysTask * param0, void * param1);
@@ -263,14 +210,6 @@ static void ShowPartyGaugeTask(SysTask * param0, void * param1);
 static void HidePartyGaugeTask(SysTask * param0, void * param1);
 static void ov16_02263688(SysTask * param0, void * param1);
 static void ov16_022636D4(SysTask * param0, void * param1);
-void ov16_02263730(BattleSystem * param0, BattlerData * param1);
-u8 Battler_Type(BattlerData * param0);
-u8 Battler_BootState(BattlerData * param0);
-Sprite * ov16_02263AFC(BattlerData * param0);
-UnkStruct_ov16_022674C4 * ov16_02263B08(BattlerData * param0);
-UnkStruct_ov16_0226C378 * ov16_02263B0C(BattlerData * param0);
-void ov16_02263B10(BattlerData * param0);
-void ov16_02263B20(BattlerData * param0, int param1);
 static Sprite * ov16_02263B30(BattleSystem * param0, UnkStruct_02007768 * param1, ArchivedSprite * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, int param10, SpriteAnimationFrame * param11, UnkFuncPtr_02007C34 * param12);
 static void ov16_02263C1C(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C3F8 * param2, BattleMessage * param3);
 static void ov16_02263CF0(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C40C * param2, BattleMessage * param3);
@@ -938,7 +877,7 @@ void ov16_0225D8F0 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     SysTask_Start(WaitForBattleMessagePrint, v0, 0);
 }
 
-void BattleUI_PrintMessage(BattleSystem *battleSys, BattlerData *battlerData, BattleMessage *battleMsg)
+void BattleDisplay_PrintMessage(BattleSystem *battleSys, BattlerData *battlerData, BattleMessage *battleMsg)
 {
     BattleMessageWaitTask * waitData;
     MessageLoader * msgLoader;
@@ -1355,7 +1294,7 @@ typedef struct PartyGaugeTask {
     u8 midBattle;
 } PartyGaugeTask;
 
-void Battler_ShowBattleStartPartyGauge(BattleSystem *battleSys, BattlerData *battlerData, PartyGaugeData *partyGauge)
+void BattleDisplay_ShowBattleStartPartyGauge(BattleSystem *battleSys, BattlerData *battlerData, PartyGaugeData *partyGauge)
 {
     PartyGaugeTask *task = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(PartyGaugeTask));
 
@@ -1373,7 +1312,7 @@ void Battler_ShowBattleStartPartyGauge(BattleSystem *battleSys, BattlerData *bat
     SysTask_Start(ShowPartyGaugeTask, task, 0);
 }
 
-void Battler_HideBattleStartPartyGauge(BattleSystem *battleSys, BattlerData *battlerData, PartyGaugeData *partyGauge)
+void BattleDisplay_HideBattleStartPartyGauge(BattleSystem *battleSys, BattlerData *battlerData, PartyGaugeData *partyGauge)
 {
     PartyGaugeTask *task = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(PartyGaugeTask));
 
@@ -1387,7 +1326,7 @@ void Battler_HideBattleStartPartyGauge(BattleSystem *battleSys, BattlerData *bat
     SysTask_Start(HidePartyGaugeTask, task, 0);
 }
 
-void Battler_ShowPartyGauge(BattleSystem *battleSys, BattlerData *battlerData, PartyGaugeData *partyGauge)
+void BattleDisplay_ShowPartyGauge(BattleSystem *battleSys, BattlerData *battlerData, PartyGaugeData *partyGauge)
 {
     PartyGaugeTask *task = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(PartyGaugeTask));
 
@@ -1405,7 +1344,7 @@ void Battler_ShowPartyGauge(BattleSystem *battleSys, BattlerData *battlerData, P
     SysTask_Start(ShowPartyGaugeTask, task, 0);
 }
 
-void Battler_HidePartyGauge(BattleSystem *battleSys, BattlerData *battlerData, PartyGaugeData *partyGauge)
+void BattleDisplay_HidePartyGauge(BattleSystem *battleSys, BattlerData *battlerData, PartyGaugeData *partyGauge)
 {
     PartyGaugeTask *task = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(PartyGaugeTask));
 
