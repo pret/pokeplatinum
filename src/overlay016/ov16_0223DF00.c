@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/generated/c/battle.h"
+
 #include "battle/common.h"
 #include "constants/battle.h"
 #include "constants/heap.h"
@@ -212,7 +214,7 @@ void Battle_SetDefaultBlend(void);
 u8 ov16_0223F9FC(BattleSystem * param0, int param1, int param2, int param3, int param4);
 u8 BattleMessage_Print(BattleSystem * param0, MessageLoader * param1, BattleMessage * param2, int param3);
 u8 BattleMessage_PrintToWindow(BattleSystem * param0, Window * param1, MessageLoader * param2, BattleMessage * param3, int param4, int param5, int param6, int param7, int param8);
-static void BattleMessage_CheckSide(BattleSystem * param0, BattleMessage * param1);
+static void BattleMessage_CheckSide(BattleSystem *battleSys, BattleMessage *battleMsg);
 static void BattleMessage_FillTagBuffers(BattleSystem * param0, BattleMessage * param1);
 static void BattleMessage_Format(BattleSystem * param0, MessageLoader * param1, BattleMessage * param2);
 static BOOL BattleMessage_Callback(UnkStruct_0201D738 * param0, u16 param1);
@@ -1829,153 +1831,164 @@ u8 BattleMessage_PrintToWindow (BattleSystem * param0, Window * param1, MessageL
     return PrintStringSimple(param1, 0, param0->msgBuffer, param4 + v0, param5, param8, BattleMessage_Callback);
 }
 
-static void BattleMessage_CheckSide (BattleSystem * param0, BattleMessage * param1)
+/**
+ * @brief Check what side of the battle the incoming message applies to, and update
+ * the message's bank ID as appropriate.
+ * 
+ * This routine is responsible for shifting the message ID for messages that have
+ * separate entries for the player, an enemy trainer, and a wild Pokemon.
+ * 
+ * @param battleSys 
+ * @param battleMsg 
+ */
+static void BattleMessage_CheckSide(BattleSystem *battleSys, BattleMessage *battleMsg)
 {
-    u32 v0;
+    u32 battleType = BattleSystem_BattleType(battleSys);
 
-    v0 = BattleSystem_BattleType(param0);
-
-    if (param1->tags & 0x80) {
+    if (battleMsg->tags & TAG_GLOBAL_MESSAGE) {
         return;
     }
 
-    if (param1->tags & 0x40) {
-        if (Battler_Side(param0, param1->battler)) {
-            param1->id++;
+    if (battleMsg->tags & TAG_SIDE_LOCAL_MESSAGE) {
+        if (Battler_Side(battleSys, battleMsg->battler)) {
+            battleMsg->id++;
         }
 
         return;
     }
 
-    switch (param1->tags & 0x3f) {
-    case 0:
-    case 3:
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-    case 8:
-    case 22:
-    case 24:
-    case 25:
-    case 26:
-    case 27:
-    case 28:
-    case 29:
-    case 30:
-    case 49:
-    case 50:
-    case 51:
-    case 56:
-    case 57:
-    case 58:
-    case 59:
-    case 60:
+    switch (battleMsg->tags & BATTLE_MESSAGE_TAGS) {
+    case TAG_NONE:
+    case TAG_MOVE:
+    case TAG_STAT:
+    case TAG_ITEM:
+    case TAG_NUMBER:
+    case TAG_NUMBERS:
+    case TAG_TRNAME:
+    case TAG_MOVE_MOVE:
+    case TAG_ITEM_MOVE:
+    case TAG_NUMBER_NUMBER:
+    case TAG_TRNAME_TRNAME:
+    case TAG_TRNAME_NICKNAME:
+    case TAG_TRNAME_ITEM:
+    case TAG_TRNAME_NUM:
+    case TAG_TRCLASS_TRNAME:
+    case TAG_TRNAME_NICKNAME_NICKNAME:
+    case TAG_TRCLASS_TRNAME_NICKNAME:
+    case TAG_TRCLASS_TRNAME_ITEM:
+    case TAG_TRNAME_NICKNAME_TRNAME_NICKNAME:
+    case TAG_TRCLASS_TRNAME_NICKNAME_NICKNAME:
+    case TAG_TRCLASS_TRNAME_NICKNAME_TRNAME:
+    case TAG_TRCLASS_TRNAME_TRCLASS_TRNAME:
+    case TAG_TRCLASS_TRNAME_NICKNAME_TRCLASS_TRNAME_NICKNAME:
         break;
-    case 1:
-        if (Battler_Side(param0, param1->params[0] & 0xff)) {
-            param1->id++;
-        }
-        break;
-    case 2:
-    case 10:
-    case 11:
-    case 12:
-    case 13:
-    case 14:
-    case 15:
-    case 16:
-    case 17:
-    case 18:
-    case 19:
-    case 34:
-    case 35:
-    case 37:
-    case 38:
-    case 39:
-    case 40:
-    case 41:
-    case 42:
-    case 44:
-    case 45:
-    case 46:
-    case 47:
-        if (Battler_Side(param0, param1->params[0] & 0xff)) {
-            param1->id++;
 
-            if (v0 & 0x1) {
-                param1->id++;
-            }
+    case TAG_NONE_SIDE_CONSCIOUS:
+        if (Battler_Side(battleSys, battleMsg->params[0] & 0xFF)) {
+            battleMsg->id++;
         }
         break;
-    case 20:
-        if (Battler_Side(param0, param1->params[1] & 0xff)) {
-            param1->id++;
-        }
-        break;
-    case 21:
-    case 23:
-    case 48:
-        if (Battler_Side(param0, param1->params[1] & 0xff)) {
-            param1->id++;
 
-            if (v0 & 0x1) {
-                param1->id++;
+    case TAG_NICKNAME:
+    case TAG_NICKNAME_MOVE:
+    case TAG_NICKNAME_ABILITY:
+    case TAG_NICKNAME_STAT:
+    case TAG_NICKNAME_TYPE:
+    case TAG_NICKNAME_POKE:
+    case TAG_NICKNAME_ITEM:
+    case TAG_NICKNAME_POFFIN:
+    case TAG_NICKNAME_NUM:
+    case TAG_NICKNAME_TRNAME:
+    case TAG_NICKNAME_BOX:
+    case TAG_NICKNAME_MOVE_MOVE:
+    case TAG_NICKNAME_MOVE_NUMBER:
+    case TAG_NICKNAME_ABILITY_MOVE:
+    case TAG_NICKNAME_ABILITY_ITEM:
+    case TAG_NICKNAME_ABILITY_STAT:
+    case TAG_NICKNAME_ABILITY_TYPE:
+    case TAG_NICKNAME_ABILITY_STATUS:
+    case TAG_NICKNAME_ABILITY_NUMBER:
+    case TAG_NICKNAME_ITEM_MOVE:
+    case TAG_NICKNAME_ITEM_STAT:
+    case TAG_NICKNAME_ITEM_STATUS:
+    case TAG_NICKNAME_BOX_BOX:
+        if (Battler_Side(battleSys, battleMsg->params[0] & 0xFF)) {
+            battleMsg->id++;
+
+            if (battleType & BATTLE_TYPE_TRAINER) {
+                battleMsg->id++;
             }
         }
         break;
-    case 9:
-    case 31:
-    case 32:
-    case 33:
-        if (Battler_Side(param0, param1->params[0] & 0xff)) {
-            param1->id += 3;
 
-            if (v0 & 0x1) {
-                param1->id += 2;
-            }
+    case TAG_MOVE_SIDE:
+        if (Battler_Side(battleSys, battleMsg->params[1] & 0xFF)) {
+            battleMsg->id++;
+        }
+        break;
 
-            if (Battler_Side(param0, param1->params[1] & 0xff)) {
-                param1->id++;
-            }
-        } else {
-            if (Battler_Side(param0, param1->params[1] & 0xff)) {
-                param1->id++;
+    case TAG_MOVE_NICKNAME:
+    case TAG_ABILITY_NICKNAME:
+    case TAG_ITEM_NICKNAME_FLAVOR:
+        if (Battler_Side(battleSys, battleMsg->params[1] & 0xFF)) {
+            battleMsg->id++;
 
-                if (v0 & 0x1) {
-                    param1->id++;
-                }
+            if (battleType & BATTLE_TYPE_TRAINER) {
+                battleMsg->id++;
             }
         }
         break;
-    case 36:
-    case 43:
-    case 52:
-    case 53:
-    case 54:
-    case 55:
-        if (Battler_Side(param0, param1->params[0] & 0xff)) {
-            param1->id += 3;
 
-            if (v0 & 0x1) {
-                param1->id += 2;
+    case TAG_NICKNAME_NICKNAME:
+    case TAG_NICKNAME_NICKNAME_MOVE:
+    case TAG_NICKNAME_NICKNAME_ABILITY:
+    case TAG_NICKNAME_NICKNAME_ITEM:
+        if (Battler_Side(battleSys, battleMsg->params[0] & 0xFF)) {
+            battleMsg->id += 3;
+
+            if (battleType & BATTLE_TYPE_TRAINER) {
+                battleMsg->id += 2;
             }
 
-            if (Battler_Side(param0, param1->params[2] & 0xff)) {
-                param1->id++;
+            if (Battler_Side(battleSys, battleMsg->params[1] & 0xFF)) {
+                battleMsg->id++;
             }
-        } else {
-            if (Battler_Side(param0, param1->params[2] & 0xff)) {
-                param1->id++;
+        } else if (Battler_Side(battleSys, battleMsg->params[1] & 0xFF)) {
+            battleMsg->id++;
 
-                if (v0 & 0x1) {
-                    param1->id++;
-                }
+            if (battleType & BATTLE_TYPE_TRAINER) {
+                battleMsg->id++;
             }
         }
         break;
+
+    case TAG_NICKNAME_ABILITY_NICKNAME:
+    case TAG_NICKNAME_ITEM_NICKNAME:
+    case TAG_NICKNAME_ABILITY_NICKNAME_MOVE:
+    case TAG_NICKNAME_ABILITY_NICKNAME_ABILITY:
+    case TAG_NICKNAME_ABILITY_NICKNAME_STAT:
+    case TAG_NICKNAME_ITEM_NICKNAME_ITEM:
+        if (Battler_Side(battleSys, battleMsg->params[0] & 0xFF)) {
+            battleMsg->id += 3;
+
+            if (battleType & BATTLE_TYPE_TRAINER) {
+                battleMsg->id += 2;
+            }
+
+            if (Battler_Side(battleSys, battleMsg->params[2] & 0xFF)) {
+                battleMsg->id++;
+            }
+        } else if (Battler_Side(battleSys, battleMsg->params[2] & 0xFF)) {
+            battleMsg->id++;
+
+            if (battleType & BATTLE_TYPE_TRAINER) {
+                battleMsg->id++;
+            }
+        }
+        break;
+
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 }
