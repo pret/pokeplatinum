@@ -1667,7 +1667,7 @@ static void ov70_0225EBC4 (UnkStruct_ov70_0225E9C8 * param0, const Strbuf *param
     BGL_FillWindow(&param0->unk_00, 15);
     Strbuf_Copy(param0->unk_18, param1);
 
-    param0->unk_10 = sub_0201D738(&param0->unk_00, 1, param0->unk_18, 0, 0, param0->unk_14, NULL);
+    param0->unk_10 = PrintStringSimple(&param0->unk_00, 1, param0->unk_18, 0, 0, param0->unk_14, NULL);
 
     sub_0200E69C(&param0->unk_00, 1, (1 + (18 + 12)), 2, 3);
 }

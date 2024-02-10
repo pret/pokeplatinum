@@ -56,7 +56,7 @@ int ov100_021D46C8 (UnkStruct_ov100_021D46C8 * param0, UnkStruct_020985E4 * para
     v4 = sub_02027AC0(param1->unk_04);
     BGL_FillWindow(&param0->unk_30, 0xFF);
 
-    v0 = sub_0201D738(&param0->unk_30, 1, v3, 0, 0, v4, NULL);
+    v0 = PrintStringSimple(&param0->unk_30, 1, v3, 0, 0, v4, NULL);
     sub_0201A954(&param0->unk_30);
 
     sub_0200E060(&param0->unk_30, 0, 500, 15);

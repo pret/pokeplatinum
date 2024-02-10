@@ -402,7 +402,7 @@ void ov116_02261F70 (UnkStruct_ov116_02262A8C * param0)
         v0 = MessageLoader_Init(0, 26, 410, 106);
         v1 = MessageLoader_GetNewStrbuf(v0, 0);
 
-        sub_0201D738(&param0->unk_1FC8, 0, v1, 0, 0, 0, NULL);
+        PrintStringSimple(&param0->unk_1FC8, 0, v1, 0, 0, 0, NULL);
         Strbuf_Free(v1);
         MessageLoader_Free(v0);
     }

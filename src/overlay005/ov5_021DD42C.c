@@ -174,5 +174,5 @@ static void ov5_021DD6B4 (UnkStruct_ov5_021DD648 * param0, int param1, int param
 
 static void ov5_021DD6DC (UnkStruct_ov5_021DD648 * param0, int param1)
 {
-    *(param0->unk_14) = sub_0201D738(param0->unk_0C, param1, param0->unk_00, 0, 0, 0, NULL);
+    *(param0->unk_14) = PrintStringSimple(param0->unk_0C, param1, param0->unk_00, 0, 0, 0, NULL);
 }

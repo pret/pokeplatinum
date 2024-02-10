@@ -917,7 +917,7 @@ void ov94_02245824 (UnkStruct_ov94_0223FD4C * param0, MessageLoader * param1, in
     BGL_FillWindow(&param0->unk_F5C, 0xf0f);
     sub_0200E060(&param0->unk_F5C, 0, 1, 10);
 
-    param0->unk_BE0 = sub_0201D738(&param0->unk_F5C, 1, param0->unk_BAC, 0, 0, param3, NULL);
+    param0->unk_BE0 = PrintStringSimple(&param0->unk_F5C, 1, param0->unk_BAC, 0, 0, param3, NULL);
     param0->unk_10E0 = 0;
 }
 
@@ -966,7 +966,7 @@ static void ov94_0224593C (UnkStruct_ov94_0223FD4C * param0, int param1)
     BGL_FillWindow(&param0->unk_F8C, 15);
     Window_Show(&param0->unk_F8C, 1, (1 + (18 + 12)), 11);
 
-    param0->unk_BE0 = sub_0201D738(&param0->unk_F8C, 1, param0->unk_BDC, 0, 0, 0, NULL);
+    param0->unk_BE0 = PrintStringSimple(&param0->unk_F8C, 1, param0->unk_BDC, 0, 0, 0, NULL);
 
     Strbuf_Free(v0);
 }

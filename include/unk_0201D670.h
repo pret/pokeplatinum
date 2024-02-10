@@ -12,7 +12,7 @@ void sub_0201D670(const UnkStruct_0201D670 * param0);
 void sub_0201D710(void);
 u8 Message_Printing(u8 param0);
 void sub_0201D730(u8 param0);
-u8 sub_0201D738(Window * param0, u32 param1, const Strbuf *param2, u32 param3, u32 param4, u32 param5, UnkFuncPtr_0201D834 param6);
+u8 PrintStringSimple(Window * param0, u32 param1, const Strbuf *param2, u32 param3, u32 param4, u32 param5, UnkFuncPtr_0201D834 param6);
 u8 sub_0201D78C(Window * param0, u32 param1, const Strbuf *param2, u32 param3, u32 param4, u32 param5, u32 param6, UnkFuncPtr_0201D834 param7);
 u8 sub_0201D7E0(Window * param0, u32 param1, const Strbuf *param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, UnkFuncPtr_0201D834 param9);
 u8 sub_0201D834(const UnkStruct_0201D738 * param0, u32 param1, UnkFuncPtr_0201D834 param2);

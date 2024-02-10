@@ -198,7 +198,7 @@ static void ov104_02232050 (UnkStruct_ov104_022320B4 * param0, int param1, int p
     sub_02002AC8(param3);
     sub_02002AE4(param4);
     sub_02002B20(0);
-    param0->unk_50 = sub_0201D738(&param0->unk_64, param1, param0->unk_48, 0, 0, param2, NULL);
+    param0->unk_50 = PrintStringSimple(&param0->unk_64, param1, param0->unk_48, 0, 0, param2, NULL);
 }
 
 void ov104_02232088 (UnkStruct_ov104_022320B4 * param0)
@@ -712,7 +712,7 @@ static void ov104_02232AC4 (UnkStruct_ov104_02232B5C * param0, u16 param1, u32 p
 
     sub_0200C388(param0->unk_90, v1, v0);
 
-    sub_0201D738(param0->unk_18, 1, v1, 0, 0, param2, NULL);
+    PrintStringSimple(param0->unk_18, 1, v1, 0, 0, param2, NULL);
 
     Strbuf_Free(v0);
     Strbuf_Free(v1);

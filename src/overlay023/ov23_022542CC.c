@@ -186,7 +186,7 @@ static void ov23_0225437C (UnkStruct_ov23_022542D8 * param0)
 
             BGL_FillWindow(&param0->unk_14, 15);
             v8 = MessageLoader_GetNewStrbuf(v5, 0);
-            sub_0201D738(&param0->unk_14, 0, v8, 0, 0, 0xff, NULL);
+            PrintStringSimple(&param0->unk_14, 0, v8, 0, 0, 0xff, NULL);
             Strbuf_Free(v8);
         }
 
@@ -438,13 +438,13 @@ static void ov23_022546E0 (UnkStruct_ov23_02254594 * param0)
             v14 = MessageLoader_GetNewStrbuf(v12, 10);
             v15 = Strbuf_Init(6, 4);
 
-            sub_0201D738(&param0->unk_18, 0, v13, 0, 0, 0xff, NULL);
+            PrintStringSimple(&param0->unk_18, 0, v13, 0, 0, 0xff, NULL);
             v16 = sub_0200B358(4);
 
             sub_0200B60C(v16, 0, param0->unk_40, 2, 1, 1);
             sub_0200B60C(v16, 1, param0->unk_41, 2, 1, 1);
             sub_0200C388(v16, v15, v14);
-            sub_0201D738(&param0->unk_18, 0, v15, 0, 16, 0xff, NULL);
+            PrintStringSimple(&param0->unk_18, 0, v15, 0, 16, 0xff, NULL);
 
             sub_0200B3F0(v16);
             Strbuf_Free(v13);

@@ -1532,7 +1532,7 @@ static void ov17_02242DC0 (UnkStruct_ov17_02246F24 * param0, MessageLoader * par
     sub_0200C388(param0->unk_0C.unk_48, param0->unk_0C.unk_4C, v0);
     BGL_FillWindow(&param0->unk_0C.unk_28[0], 0xff);
 
-    param0->unk_0C.unk_210 = sub_0201D738(&param0->unk_0C.unk_28[0], 1, param0->unk_0C.unk_4C, 0, 0, v1, NULL);
+    param0->unk_0C.unk_210 = PrintStringSimple(&param0->unk_0C.unk_28[0], 1, param0->unk_0C.unk_4C, 0, 0, v1, NULL);
 
     if (v1 == 0) {
         param0->unk_0C.unk_210 = 0xff;

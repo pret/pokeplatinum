@@ -54,7 +54,7 @@ u8 sub_0205D994 (Window * param0, Strbuf *param1, const AnimationControlFlags * 
     sub_02002AE4(0);
     sub_02002B20(0);
 
-    v0 = sub_0201D738(param0, 1, param1, 0, 0, sub_02027AC0(param2), NULL);
+    v0 = PrintStringSimple(param0, 1, param1, 0, 0, sub_02027AC0(param2), NULL);
     return v0;
 }
 
@@ -64,7 +64,7 @@ u8 sub_0205D9CC (Window * param0, Strbuf *param1, int param2, int param3, u8 par
     sub_02002AE4(param5);
     sub_02002B20(0);
 
-    return sub_0201D738(param0, param2, param1, 0, 0, param3, NULL);
+    return PrintStringSimple(param0, param2, param1, 0, 0, param3, NULL);
 }
 
 u8 sub_0205DA04 (u8 param0)

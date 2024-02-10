@@ -347,11 +347,11 @@ static void ov7_0224B8DC (UnkStruct_ov7_0224B4E8 * param0)
 
     MessageLoader_GetStrbuf(v0, 95, v2);
     sub_0200C388(v1, v3, v2);
-    sub_0201D738(v4, 0, v3, v10 + v12, 0, 0xff, NULL);
+    PrintStringSimple(v4, 0, v3, v10 + v12, 0, 0xff, NULL);
 
     for (v5 = 0; v5 < 9; v5++) {
         MessageLoader_GetStrbuf(v0, 75 + v5, v2);
-        sub_0201D738(v4, 0, v2, v10, v9 + v11 * v5, 0xff, NULL);
+        PrintStringSimple(v4, 0, v2, v10, v9 + v11 * v5, 0xff, NULL);
     }
 
     for (v5 = 0; v5 < 9; v5++) {
@@ -412,7 +412,7 @@ static void ov7_0224B8DC (UnkStruct_ov7_0224B4E8 * param0)
             int v14 = sub_02002D7C(0, v3, 0);
             int v15 = v13 - v14;
 
-            sub_0201D738(v4, 0, v3, v15, v9 + v11 * v5, 0xff, NULL);
+            PrintStringSimple(v4, 0, v3, v15, v9 + v11 * v5, 0xff, NULL);
         }
     }
 

@@ -2560,7 +2560,7 @@ static BOOL sub_020404A4 (UnkStruct_0203E724 * param0)
 
     MessageLoader_GetStrbuf(param0->unk_2C, v7, *v1);
     sub_0200C388(*v3, *v2, *v1);
-    sub_0201D738(ov5_021E1B50(v0->unk_64), 1, *v2, 0, 0, 0, NULL);
+    PrintStringSimple(ov5_021E1B50(v0->unk_64), 1, *v2, 0, 0, 0, NULL);
 
     return 1;
 }

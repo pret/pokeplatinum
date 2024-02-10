@@ -997,7 +997,7 @@ static void ov92_021D1888 (UnkStruct_ov92_021D1B24 * param0, NARC * param1)
             u32 v5;
 
             v5 = sub_02002EEC(2, v0, 0, 6 * 8);
-            sub_0201D738(&param0->unk_B834, 2, v0, v5, 0, 0xff, NULL);
+            PrintStringSimple(&param0->unk_B834, 2, v0, v5, 0, 0xff, NULL);
         }
 
         Strbuf_Free(v0);
@@ -1024,7 +1024,7 @@ static BOOL ov92_021D1B70 (UnkStruct_ov92_021D1B24 * param0, u32 param1, int par
         BGL_WindowColor(&param0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
         param0->unk_B86C = Strbuf_Init(0x400, param0->unk_00);
         MessageLoader_GetStrbuf(param0->unk_B860, param1, param0->unk_B86C);
-        param0->unk_B868 = sub_0201D738(&param0->unk_B814, 1, param0->unk_B86C, 0, 0, sub_02027AC0(param0->unk_08), NULL);
+        param0->unk_B868 = PrintStringSimple(&param0->unk_B814, 1, param0->unk_B86C, 0, 0, sub_02027AC0(param0->unk_08), NULL);
         param0->unk_B864 = 1;
         break;
     case 1:
@@ -1123,7 +1123,7 @@ static void ov92_021D1DEC (UnkStruct_ov92_021D1B24 * param0)
     MessageLoader_GetStrbuf(param0->unk_B860, 13, v1);
     sub_0200C388(param0->unk_B870, v0, v1);
 
-    sub_0201D738(&param0->unk_B844, 0, v0, 0, 0, 0, NULL);
+    PrintStringSimple(&param0->unk_B844, 0, v0, 0, 0, 0, NULL);
 
     Strbuf_Free(v1);
     Strbuf_Free(v0);
@@ -1143,10 +1143,10 @@ static void ov92_021D1EBC (UnkStruct_ov92_021D1B24 * param0, int param1, int par
     ov92_021D27E8(param1, param2, v0, v1, param0->unk_00);
 
     if (param2 != 0) {
-        sub_0201D738(&param0->unk_B844, 0, v1, 0, 16, 0xff, NULL);
+        PrintStringSimple(&param0->unk_B844, 0, v1, 0, 16, 0xff, NULL);
     }
 
-    sub_0201D738(&param0->unk_B844, 0, v0, 0, 0, 0, NULL);
+    PrintStringSimple(&param0->unk_B844, 0, v0, 0, 0, 0, NULL);
     Strbuf_Free(v1);
     Strbuf_Free(v0);
     sub_0201A954(&param0->unk_B844);
@@ -1166,7 +1166,7 @@ static void ov92_021D1F90 (UnkStruct_ov92_021D1B24 * param0)
 
             BGL_WindowColor(&param0->unk_B814, 15, 0, 0, 27 * 8, 6 * 8);
             MessageLoader_GetStrbuf(param0->unk_B860, 14, v0);
-            sub_0201D738(&param0->unk_B814, 1, v0, 0, 0, 0, NULL);
+            PrintStringSimple(&param0->unk_B814, 1, v0, 0, 0, 0, NULL);
             Strbuf_Free(v0);
         }
     } else {
@@ -1211,10 +1211,10 @@ static void ov92_021D1F90 (UnkStruct_ov92_021D1B24 * param0)
                 ov92_021D27E8(param0->unk_0C.unk_04[v8].unk_2A, param0->unk_0C.unk_04[v8].unk_2C, v12, v13, param0->unk_00);
 
                 if (param0->unk_0C.unk_04[v8].unk_2C != 0) {
-                    sub_0201D738(&param0->unk_B814, 1, v13, 0, 16, 0xff, NULL);
+                    PrintStringSimple(&param0->unk_B814, 1, v13, 0, 16, 0xff, NULL);
                 }
 
-                sub_0201D738(&param0->unk_B814, 1, v12, 0, 0, 0, NULL);
+                PrintStringSimple(&param0->unk_B814, 1, v12, 0, 0, 0, NULL);
                 Strbuf_Free(v13);
                 Strbuf_Free(v12);
 

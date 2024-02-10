@@ -1752,7 +1752,7 @@ static void ov16_0223D10C (UnkStruct_020067E8 * param0, BattleParams * param1)
         v6 = Strbuf_Init(0x100, 5);
 
         MessageLoader_GetStrbuf(v5, 923, v6);
-        sub_0201D738(v0->unk_08, 1, v6, 0, 0, NULL, NULL);
+        PrintStringSimple(v0->unk_08, 1, v6, 0, 0, NULL, NULL);
 
         Strbuf_Free(v6);
         MessageLoader_Free(v5);

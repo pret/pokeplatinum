@@ -327,7 +327,7 @@ int ov119_021D1158 (Window * param0, int param1, Pokemon * param2, int param3)
     sub_0200B538(v3, 0, v4);
     sub_0200C388(v3, v2, v1);
 
-    v0 = sub_0201D738(param0, 1, v2, 0, 0, param3, NULL);
+    v0 = PrintStringSimple(param0, 1, v2, 0, 0, param3, NULL);
 
     MessageLoader_Free(v5);
     Strbuf_Free(v2);

@@ -309,7 +309,7 @@ static void sub_0209B12C (UnkStruct_0209AD84 * param0)
 
         for (v1 = 0; v1 < 5; v1++) {
             MessageLoader_GetStrbuf(param0->unk_10, 9 + v1, param0->unk_08);
-            sub_0201D738(v0, 0, param0->unk_08, 12, v1 * 16, 0xff, NULL);
+            PrintStringSimple(v0, 0, param0->unk_08, 12, v1 * 16, 0xff, NULL);
         }
 
         sub_02014A58(param0->unk_14, v0, 0, 0);
@@ -341,7 +341,7 @@ static void sub_0209B1D8 (UnkStruct_0209AD84 * param0)
 
         for (v1 = 0; v1 < 2; v1++) {
             MessageLoader_GetStrbuf(param0->unk_10, v1 + 14, param0->unk_08);
-            sub_0201D738(v0, 0, param0->unk_08, 12, v1 * 16, 0xff, NULL);
+            PrintStringSimple(v0, 0, param0->unk_08, 12, v1 * 16, 0xff, NULL);
         }
 
         sub_02014A58(param0->unk_14, v0, 0, 0);

@@ -453,7 +453,7 @@ void ov84_0223FB70 (UnkStruct_ov84_0223B5A0 * param0, u8 * param1, u8 param2)
 
         ov84_0223F4E8(param0, v1->unk_06 + v1->unk_04 - 1, 0);
         sub_0200C388(param0->unk_118, v3, v2);
-        sub_0201D738(&param0->unk_04[v5], 1, v3, 0, 0, 0xff, NULL);
+        PrintStringSimple(&param0->unk_04[v5], 1, v3, 0, 0, 0xff, NULL);
         Strbuf_Free(v3);
         Strbuf_Free(v2);
         sub_0201A9A4(&param0->unk_04[v5]);
@@ -527,7 +527,7 @@ void ov84_0223FE94 (UnkStruct_ov84_0223B5A0 * param0)
     ov84_0223F4E8(param0, v0->unk_06 + v0->unk_04 - 1, 0);
 
     sub_0200C388(param0->unk_118, v2, v1);
-    sub_0201D738(&param0->unk_04[3], 1, v2, 0, 0, 0xff, NULL);
+    PrintStringSimple(&param0->unk_04[3], 1, v2, 0, 0, 0xff, NULL);
     sub_0201A9A4(&param0->unk_04[3]);
     Strbuf_Free(v2);
     Strbuf_Free(v1);
@@ -545,7 +545,7 @@ void ov84_0223FF44 (UnkStruct_ov84_0223B5A0 * param0)
 
     sub_0200B60C(param0->unk_118, 0, param0->unk_488, 3, 2, 1);
     sub_0200C388(param0->unk_118, param0->unk_3F8, v1);
-    sub_0201D738(v0, 0, param0->unk_3F8, 16, 8, 0xff, NULL);
+    PrintStringSimple(v0, 0, param0->unk_3F8, 16, 8, 0xff, NULL);
     sub_0201A9A4(v0);
     Strbuf_Free(v1);
 }
@@ -590,7 +590,7 @@ u8 ov84_022400A0 (UnkStruct_ov84_0223B5A0 * param0)
 
     sub_02002AC8(1);
     sub_02002AE4(0);
-    v0 = sub_0201D738(&param0->unk_04[6], 1, param0->unk_3F8, 0, 0, sub_02027AC0(param0->unk_D0), ov84_022400E0);
+    v0 = PrintStringSimple(&param0->unk_04[6], 1, param0->unk_3F8, 0, 0, sub_02027AC0(param0->unk_D0), ov84_022400E0);
 
     return v0;
 }
@@ -635,7 +635,7 @@ void ov84_02240148 (UnkStruct_ov84_0223B5A0 * param0, u8 param1)
 
     sub_0200B60C(param0->unk_118, 0, param0->unk_488, 2, 2, 1);
     sub_0200C388(param0->unk_118, param0->unk_3F8, v1);
-    sub_0201D738(v0, 0, param0->unk_3F8, 0, 8, 0xff, NULL);
+    PrintStringSimple(v0, 0, param0->unk_3F8, 0, 8, 0xff, NULL);
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 81);
@@ -645,7 +645,7 @@ void ov84_02240148 (UnkStruct_ov84_0223B5A0 * param0, u8 param1)
 
     v2 = sub_02002D7C(0, param0->unk_3F8, 0);
 
-    sub_0201D738(v0, 0, param0->unk_3F8, (12 * 8) - v2, 8, 0xff, NULL);
+    PrintStringSimple(v0, 0, param0->unk_3F8, (12 * 8) - v2, 8, 0xff, NULL);
     sub_0201A9A4(v0);
     Strbuf_Free(v1);
 }
@@ -664,7 +664,7 @@ void ov84_02240248 (UnkStruct_ov84_0223B5A0 * param0, u8 param1)
 
         v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 78);
 
-        sub_0201D738(v0, 0, v1, 0, 0, 0xff, NULL);
+        PrintStringSimple(v0, 0, v1, 0, 0, 0xff, NULL);
         Strbuf_Free(v1);
     } else {
         BGL_WindowColor(v0, 15, 0, 16, (10 * 8), 16);
@@ -677,7 +677,7 @@ void ov84_02240248 (UnkStruct_ov84_0223B5A0 * param0, u8 param1)
 
     v2 = sub_02002D7C(0, param0->unk_3F8, 0);
 
-    sub_0201D738(v0, 0, param0->unk_3F8, (10 * 8) - v2, 16, 0xff, NULL);
+    PrintStringSimple(v0, 0, param0->unk_3F8, (10 * 8) - v2, 16, 0xff, NULL);
     sub_0201A9A4(v0);
     Strbuf_Free(v1);
 }
@@ -693,7 +693,7 @@ void ov84_02240328 (UnkStruct_ov84_0223B5A0 * param0)
     Window_Show(v0, 1, 1024 - 9, 14);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 108);
-    sub_0201D738(v0, 0, v1, 0, 0, 0xff, NULL);
+    PrintStringSimple(v0, 0, v1, 0, 0, 0xff, NULL);
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 109);
@@ -702,6 +702,6 @@ void ov84_02240328 (UnkStruct_ov84_0223B5A0 * param0)
     Strbuf_Free(v1);
 
     v2 = sub_02002D7C(0, param0->unk_3F8, 0);
-    sub_0201D738(v0, 0, param0->unk_3F8, 11 * 8 - v2, 16, 0xff, NULL);
+    PrintStringSimple(v0, 0, param0->unk_3F8, 11 * 8 - v2, 16, 0xff, NULL);
     sub_0201A9A4(v0);
 }

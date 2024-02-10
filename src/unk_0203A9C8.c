@@ -673,7 +673,7 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
         v5 = MessageLoader_GetNewStrbuf(v2, 10);
     }
 
-    sub_0201D738(&v1->unk_10, 0, v5, 0, 0, 0xff, NULL);
+    PrintStringSimple(&v1->unk_10, 0, v5, 0, 0, 0xff, NULL);
     Strbuf_Free(v5);
 
     v3 = sub_0200B358(11);
@@ -691,7 +691,7 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
     }
 
     sub_0200C388(v3, v4, v5);
-    sub_0201D738(&v1->unk_10, 0, v4, 0, 16, 0xff, NULL);
+    PrintStringSimple(&v1->unk_10, 0, v4, 0, 16, 0xff, NULL);
     Strbuf_Free(v4);
     Strbuf_Free(v5);
     sub_0200B3F0(v3);

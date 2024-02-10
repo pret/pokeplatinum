@@ -1109,7 +1109,7 @@ static void ov72_0223E930 (UnkStruct_ov72_0223DB98 * param0, int param1)
     BGL_FillWindow(&param0->unk_338, 0xf0f);
     sub_0200E060(&param0->unk_338, 0, 1, 10);
 
-    param0->unk_38 = sub_0201D738(&param0->unk_338, 1, param0->unk_34, 0, 0, sub_02027AC0(param0->unk_0C), NULL);
+    param0->unk_38 = PrintStringSimple(&param0->unk_338, 1, param0->unk_34, 0, 0, sub_02027AC0(param0->unk_0C), NULL);
 }
 
 static int ov72_0223E99C (int param0)

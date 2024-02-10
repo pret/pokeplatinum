@@ -1168,7 +1168,7 @@ static void ov91_021D1DF8 (UnkStruct_ov91_021D0ED8 * param0, u32 param1)
     sub_02002AC8(1);
     sub_02002AE4(0);
 
-    param0->unk_185 = sub_0201D738(&param0->unk_08[12], 1, param0->unk_100, 0, 0, sub_02027AC0(param0->unk_00->unk_08), ov91_021D1E50);
+    param0->unk_185 = PrintStringSimple(&param0->unk_08[12], 1, param0->unk_100, 0, 0, sub_02027AC0(param0->unk_00->unk_08), ov91_021D1E50);
 }
 
 static BOOL ov91_021D1E50 (UnkStruct_0201D738 * param0, u16 param1)

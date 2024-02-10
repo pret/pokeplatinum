@@ -385,5 +385,5 @@ void ov13_022279F4 (UnkStruct_ov13_02227244 * param0)
 void ov13_02227A1C (UnkStruct_ov13_02227244 * param0)
 {
     sub_02002AC8(1);
-    param0->unk_32 = sub_0201D738(&param0->unk_1C, 1, param0->unk_18, 0, 0, BattleSystem_TextSpeed(param0->unk_00->unk_00), NULL);
+    param0->unk_32 = PrintStringSimple(&param0->unk_1C, 1, param0->unk_18, 0, 0, BattleSystem_TextSpeed(param0->unk_00->unk_00), NULL);
 }

@@ -1030,7 +1030,7 @@ static void ov94_02240D58 (UnkStruct_ov94_0223FD4C * param0, int param1, int par
     BGL_FillWindow(v0, 0xf0f);
     sub_0200E060(v0, 0, 1, 10);
 
-    param0->unk_BE0 = sub_0201D738(v0, 1, param0->unk_BAC, 0, 0, param2, NULL);
+    param0->unk_BE0 = PrintStringSimple(v0, 1, param0->unk_BAC, 0, 0, param2, NULL);
 
     Strbuf_Free(v1);
 }

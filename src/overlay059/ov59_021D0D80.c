@@ -1583,9 +1583,9 @@ static void ov59_021D2628 (UnkStruct_020961E8 * param0, int param1, int param2)
     sub_0200E060(&param0->unk_34C, 0, 1, 10);
 
     if (param2 == 0) {
-        param0->unk_4C = sub_0201D738(&param0->unk_34C, 1, param0->unk_44, 0, 0, ov59_021D28D4(param0), NULL);
+        param0->unk_4C = PrintStringSimple(&param0->unk_34C, 1, param0->unk_44, 0, 0, ov59_021D28D4(param0), NULL);
     } else {
-        sub_0201D738(&param0->unk_34C, 1, param0->unk_44, 0, 0, 0, NULL);
+        PrintStringSimple(&param0->unk_34C, 1, param0->unk_44, 0, 0, 0, NULL);
         param0->unk_4C = 0xff;
     }
 }

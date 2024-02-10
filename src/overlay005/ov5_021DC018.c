@@ -615,7 +615,7 @@ static void ov5_021DCA90 (UnkStruct_ov5_021DC1A4 * param0, u16 param1, u32 param
     BGL_FillWindow(param0->unk_18, 15);
     MessageLoader_GetStrbuf(param0->unk_8C, param1, v0);
     sub_0200C388(param0->unk_90, v1, v0);
-    sub_0201D738(param0->unk_18, 1, v1, 0, 0, param2, NULL);
+    PrintStringSimple(param0->unk_18, 1, v1, 0, 0, param2, NULL);
     Strbuf_Free(v0);
     Strbuf_Free(v1);
 
@@ -670,7 +670,7 @@ static void ov5_021DCC00 (UnkStruct_ov5_021DC1A4 * param0, u16 param1, u8 param2
 
     MessageLoader_GetStrbuf(param0->unk_8C, param1, v0);
     sub_0200C388(param0->unk_90, v1, v0);
-    sub_0201D738(&param0->unk_08, 0, v1, param2, param3, 0xff, NULL);
+    PrintStringSimple(&param0->unk_08, 0, v1, param2, param3, 0xff, NULL);
     Strbuf_Free(v0);
     Strbuf_Free(v1);
 
@@ -829,7 +829,7 @@ Window * ov5_021DCEB0 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2)
         v1 = MessageLoader_Init(0, 26, 543, 4);
         v2 = MessageLoader_GetNewStrbuf(v1, 18);
 
-        sub_0201D738(v0, 0, v2, 0, 0, 0xff, NULL);
+        PrintStringSimple(v0, 0, v2, 0, 0, 0xff, NULL);
         MessageLoader_Free(v1);
         Strbuf_Free(v2);
     }
@@ -867,7 +867,7 @@ void ov5_021DCF6C (UnkStruct_0203CDB0 * param0, Window * param1)
 
     v5 = (10 * 8) - sub_02002D7C(0, v2, 0);
 
-    sub_0201D738(param1, 0, v2, v5, 16, 0xff, NULL);
+    PrintStringSimple(param1, 0, v2, v5, 16, 0xff, NULL);
     Strbuf_Free(v3);
     Strbuf_Free(v2);
     sub_0200B3F0(v1);
@@ -916,7 +916,7 @@ void ov5_021DD098 (UnkStruct_0203CDB0 * param0, Window * param1)
 
     v5 = (10 * 8) - sub_02002D7C(0, v2, 0);
 
-    sub_0201D738(param1, 0, v2, v5, 0, 0xff, NULL);
+    PrintStringSimple(param1, 0, v2, v5, 0, 0xff, NULL);
     Strbuf_Free(v3);
     Strbuf_Free(v2);
     sub_0200B3F0(v1);
@@ -959,7 +959,7 @@ void ov5_021DD1A4 (UnkStruct_0203CDB0 * param0, Window * param1)
 
     v5 = (10 * 8) - sub_02002D7C(0, v2, 0);
 
-    sub_0201D738(param1, 0, v2, v5, 0, 0xff, NULL);
+    PrintStringSimple(param1, 0, v2, v5, 0, 0xff, NULL);
     Strbuf_Free(v3);
     Strbuf_Free(v2);
     sub_0200B3F0(v1);

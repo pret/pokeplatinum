@@ -520,7 +520,7 @@ int ov113_0225CA04 (UnkStruct_020067E8 * param0, int * param1)
         BGL_FillWindow(&v0->unk_B4, 0xf);
         sub_0200E060(&v0->unk_B4, 0, 1, 14);
         MessageLoader_GetStrbuf(v0->unk_30, 2, v0->unk_C4);
-        v0->unk_C8 = sub_0201D738(&v0->unk_B4, 1, v0->unk_C4, 0, 0, sub_02027AC0(sub_02025E44(v0->unk_04)), NULL);
+        v0->unk_C8 = PrintStringSimple(&v0->unk_B4, 1, v0->unk_C4, 0, 0, sub_02027AC0(sub_02025E44(v0->unk_04)), NULL);
         (*param1)++;
         break;
     case 4:
@@ -570,7 +570,7 @@ int ov113_0225CA04 (UnkStruct_020067E8 * param0, int * param1)
         BGL_FillWindow(&v0->unk_B4, 0xf);
         sub_0200E060(&v0->unk_B4, 0, 1, 14);
         MessageLoader_GetStrbuf(v0->unk_30, 3, v0->unk_C4);
-        v0->unk_C8 = sub_0201D738(&v0->unk_B4, 1, v0->unk_C4, 0, 0, sub_02027AC0(sub_02025E44(v0->unk_04)), NULL);
+        v0->unk_C8 = PrintStringSimple(&v0->unk_B4, 1, v0->unk_C4, 0, 0, sub_02027AC0(sub_02025E44(v0->unk_04)), NULL);
         (*param1)++;
         break;
     case 7:

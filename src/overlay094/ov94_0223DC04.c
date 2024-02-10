@@ -442,7 +442,7 @@ static void ov94_0223E300 (UnkStruct_ov94_0223FD4C * param0, int param1, int par
     BGL_FillWindow(&param0->unk_F5C, 0xf0f);
     sub_0200E060(&param0->unk_F5C, 0, 1, 10);
 
-    param0->unk_BE0 = sub_0201D738(&param0->unk_F5C, 1, param0->unk_BAC, 0, 0, param2, NULL);
+    param0->unk_BE0 = PrintStringSimple(&param0->unk_F5C, 1, param0->unk_BAC, 0, 0, param2, NULL);
 }
 
 static void ov94_0223E358 (MessageLoader * param0, Window param1[])

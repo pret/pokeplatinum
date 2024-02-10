@@ -1571,7 +1571,7 @@ static void ov96_0223D750 (UnkStruct_ov96_0223BF40 * param0, MessageLoader * par
     BGL_FillWindow(&param0->unk_E38, 0xf0f);
     sub_0200E060(&param0->unk_E38, 0, 1, 14);
 
-    param0->unk_BF0 = sub_0201D738(&param0->unk_E38, 1, param0->unk_BDC, 0, 0, param3, NULL);
+    param0->unk_BF0 = PrintStringSimple(&param0->unk_E38, 1, param0->unk_BDC, 0, 0, param3, NULL);
 
     Strbuf_Free(v0);
 }
@@ -1604,7 +1604,7 @@ static void ov96_0223D814 (UnkStruct_ov96_0223BF40 * param0, MessageLoader * par
     BGL_FillWindow(&param0->unk_E38, 0xf0f);
     sub_0200E060(&param0->unk_E38, 0, 1, 14);
 
-    param0->unk_BF0 = sub_0201D738(&param0->unk_E38, 1, param0->unk_BDC, 0, 0, param3, NULL);
+    param0->unk_BF0 = PrintStringSimple(&param0->unk_E38, 1, param0->unk_BDC, 0, 0, param3, NULL);
 }
 
 static int ov96_0223D86C (Window * param0, Strbuf *param1, int param2, int param3, u32 param4, int param5)
@@ -1681,7 +1681,7 @@ static void ov96_0223D9B8 (UnkStruct_ov96_0223BF40 * param0, int param1)
     BGL_FillWindow(&param0->unk_E78, 15);
     Window_Show(&param0->unk_E78, 1, (1 + (18 + 12)), 11);
 
-    param0->unk_BF0 = sub_0201D738(&param0->unk_E78, 1, param0->unk_BEC, 0, 0, 0, NULL);
+    param0->unk_BF0 = PrintStringSimple(&param0->unk_E78, 1, param0->unk_BEC, 0, 0, 0, NULL);
 
     Strbuf_Free(v0);
 }

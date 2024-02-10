@@ -1728,7 +1728,7 @@ static void ov58_021D2A98 (UnkStruct_02095EAC * param0, int param1, int param2)
         param2 = 0;
     }
 
-    param0->unk_30 = sub_0201D738(&param0->unk_33C, 1, param0->unk_2C, 0, 0, param2, NULL);
+    param0->unk_30 = PrintStringSimple(&param0->unk_33C, 1, param0->unk_2C, 0, 0, param2, NULL);
 
     if (param2 == 0) {
         param0->unk_30 = 0xff;

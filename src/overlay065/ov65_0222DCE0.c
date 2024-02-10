@@ -4773,7 +4773,7 @@ static void ov65_02232B58 (UnkStruct_ov65_0222EBE0 * param0, int param1, BOOL pa
     sub_02002AC8(1);
     sub_02002AE4(0);
 
-    param0->unk_180 = sub_0201D738(&param0->unk_330, 1, param0->unk_174, 0, 0, v0, NULL);
+    param0->unk_180 = PrintStringSimple(&param0->unk_330, 1, param0->unk_174, 0, 0, v0, NULL);
 
     sub_0201A9A4(&param0->unk_330);
 }
@@ -4806,7 +4806,7 @@ static void ov65_02232CA8 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     BGL_FillWindow(&param0->unk_360, 15);
     Window_Show(&param0->unk_360, 1, ((512 - (18 + 12)) - 9), 11);
 
-    param0->unk_180 = sub_0201D738(&param0->unk_360, 1, param0->unk_174, 0, 0, 0xff, NULL);
+    param0->unk_180 = PrintStringSimple(&param0->unk_360, 1, param0->unk_174, 0, 0, 0xff, NULL);
     sub_0201A9A4(&param0->unk_360);
 }
 

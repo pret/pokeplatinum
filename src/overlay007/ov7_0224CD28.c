@@ -790,7 +790,7 @@ static void ov7_0224DAF8 (UnkStruct_ov7_0224D008 * param0, u8 param1)
 
         v3 = sub_02002D7C(0, v0, 0);
 
-        sub_0201D738(&param0->unk_08[2], 0, v0, (9 * 8) - v3 - 8, 0, 0xff, NULL);
+        PrintStringSimple(&param0->unk_08[2], 0, v0, (9 * 8) - v3 - 8, 0, 0xff, NULL);
     } else {
         if (param1 == 0) {
             BGL_FillWindow(&param0->unk_08[2], 15);
@@ -798,7 +798,7 @@ static void ov7_0224DAF8 (UnkStruct_ov7_0224D008 * param0, u8 param1)
 
             v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 18);
 
-            sub_0201D738(&param0->unk_08[2], 0, v1, 0, 0, 0xff, NULL);
+            PrintStringSimple(&param0->unk_08[2], 0, v1, 0, 0, 0xff, NULL);
             Strbuf_Free(v1);
         } else {
             BGL_WindowColor(&param0->unk_08[2], 15, 0, 16, (9 * 8), 16);
@@ -813,7 +813,7 @@ static void ov7_0224DAF8 (UnkStruct_ov7_0224D008 * param0, u8 param1)
 
         v3 = sub_02002D7C(0, v0, 0);
 
-        sub_0201D738(&param0->unk_08[2], 0, v0, (9 * 8) - v3, 16, 0xff, NULL);
+        PrintStringSimple(&param0->unk_08[2], 0, v0, (9 * 8) - v3, 16, 0xff, NULL);
     }
 
     Strbuf_Free(v1);
@@ -957,7 +957,7 @@ static void ov7_0224DED4 (UnkStruct_ov7_0224D008 * param0)
 
     sub_0200B60C(param0->unk_8C, 0, v2, 3, 1, 1);
     sub_0200C388(param0->unk_8C, v0, v1);
-    sub_0201D738(&param0->unk_08[4], 0, v0, 0, 0, 0xff, NULL);
+    PrintStringSimple(&param0->unk_08[4], 0, v0, 0, 0, 0xff, NULL);
     Strbuf_Free(v1);
     Strbuf_Free(v0);
     sub_0201A9A4(&param0->unk_08[4]);
@@ -1089,7 +1089,7 @@ static void ov7_0224E28C (UnkStruct_ov7_0224D008 * param0, u8 param1)
 
     sub_0200B60C(param0->unk_8C, 0, param0->unk_2AC, 2, 2, 1);
     sub_0200C388(param0->unk_8C, v0, v1);
-    sub_0201D738(&param0->unk_08[3], 0, v0, 0, 8, 0xff, NULL);
+    PrintStringSimple(&param0->unk_08[3], 0, v0, 0, 8, 0xff, NULL);
     Strbuf_Free(v1);
 
     if (param0->unk_2A9 == 3) {
@@ -1103,7 +1103,7 @@ static void ov7_0224E28C (UnkStruct_ov7_0224D008 * param0, u8 param1)
 
     v2 = sub_02002D7C(0, v0, 0);
 
-    sub_0201D738(&param0->unk_08[3], 0, v0, (12 * 8) - v2, 8, 0xff, NULL);
+    PrintStringSimple(&param0->unk_08[3], 0, v0, (12 * 8) - v2, 8, 0xff, NULL);
     Strbuf_Free(v1);
     Strbuf_Free(v0);
     sub_0201A9A4(&param0->unk_08[3]);

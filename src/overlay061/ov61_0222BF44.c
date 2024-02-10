@@ -514,7 +514,7 @@ static void ov61_0222C794 (UnkStruct_ov61_0222C664 * param0, int param1)
     BGL_FillWindow(&param0->unk_64, 15);
     Window_Show(&param0->unk_64, 1, (1 + (18 + 12)), 11);
 
-    param0->unk_40 = sub_0201D738(&param0->unk_64, 1, param0->unk_3C, 0, 0, 0, NULL);
+    param0->unk_40 = PrintStringSimple(&param0->unk_64, 1, param0->unk_3C, 0, 0, 0, NULL);
     param0->unk_40 = 0xff;
 
     Strbuf_Free(v0);
@@ -582,7 +582,7 @@ static void ov61_0222C8B8 (UnkStruct_ov61_0222C664 * param0, MessageLoader * par
     BGL_FillWindow(&param0->unk_44, 0xf0f);
     sub_0200E060(&param0->unk_44, 0, 1, 10);
 
-    param0->unk_40 = sub_0201D738(&param0->unk_44, 1, param0->unk_34, 0, 0, param3, NULL);
+    param0->unk_40 = PrintStringSimple(&param0->unk_44, 1, param0->unk_34, 0, 0, param3, NULL);
     param0->unk_8C = 0;
 
     if ((param3 == 0xff) || (param3 == 0)) {

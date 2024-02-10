@@ -731,7 +731,7 @@ static BOOL ov73_021D1510 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
             Strbuf_Free(v1);
         }
 
-        param0->unk_58 = sub_0201D738(&param0->unk_1C, 1, param0->unk_5C, 0, 0, (sub_02027AC0(param0->unk_08)), NULL);
+        param0->unk_58 = PrintStringSimple(&param0->unk_1C, 1, param0->unk_5C, 0, 0, (sub_02027AC0(param0->unk_08)), NULL);
         param0->unk_50 = 1;
         break;
     case 1:

@@ -469,7 +469,7 @@ void ov101_021D148C (UnkStruct_ov101_021D13C8 * param0, u32 param1)
     sub_0200E060(&v0->unk_08[0], 1, (1 + (18 + 12)), 14);
     BGL_FillWindow(&v0->unk_08[0], 15);
     MessageLoader_GetStrbuf(v0->unk_00, param1, v0->unk_18);
-    sub_0201D738(&v0->unk_08[0], 1, v0->unk_18, 0, 0, 0xff, NULL);
+    PrintStringSimple(&v0->unk_08[0], 1, v0->unk_18, 0, 0, 0xff, NULL);
     sub_0201A9A4(&v0->unk_08[0]);
 }
 

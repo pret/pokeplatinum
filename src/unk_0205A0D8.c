@@ -890,11 +890,11 @@ static void sub_0205ADF8 (UnkStruct_0205A0D8 * param0, int param1)
             v2 = Pokemon_GetValue((Pokemon *)(&param0->unk_48[v1 * v3]), MON_DATA_SPECIES, NULL);
 
             MessageLoader_GetStrbuf(v4, v2, param0->unk_0C);
-            sub_0201D738(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
+            PrintStringSimple(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
         }
 
         MessageLoader_GetStrbuf(param0->unk_2C, 21, param0->unk_0C);
-        sub_0201D738(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
+        PrintStringSimple(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
         MessageLoader_Free(v4);
     }
 
@@ -920,7 +920,7 @@ static void sub_0205AF18 (UnkStruct_0205A0D8 * param0, int param1)
 
         for (v1 = 0; v1 < 3; v1++) {
             MessageLoader_GetStrbuf(param0->unk_2C, 22 + v1, param0->unk_0C);
-            sub_0201D738(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
+            PrintStringSimple(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
         }
     }
 
