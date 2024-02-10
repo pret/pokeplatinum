@@ -216,7 +216,7 @@ u8 BattleMessage_Print(BattleSystem * param0, MessageLoader * param1, BattleMess
 u8 BattleMessage_PrintToWindow(BattleSystem * param0, Window * param1, MessageLoader * param2, BattleMessage * param3, int param4, int param5, int param6, int param7, int param8);
 static void BattleMessage_CheckSide(BattleSystem *battleSys, BattleMessage *battleMsg);
 static void BattleMessage_FillFormatBuffers(BattleSystem *battleSys, BattleMessage *battleMsg);
-static void BattleMessage_Format(BattleSystem * param0, MessageLoader * param1, BattleMessage * param2);
+static void BattleMessage_Format(BattleSystem *battleSys, MessageLoader *msgLoader, BattleMessage *battleMsg);
 static BOOL BattleMessage_Callback(UnkStruct_0201D738 * param0, u16 param1);
 static void BattleMessage_Nickname(BattleSystem * param0, u32 param1, int param2);
 static void BattleMessage_MoveName(BattleSystem * param0, u32 param1, int param2);
@@ -420,7 +420,7 @@ UnkStruct_ov16_0223E0C8 * ov16_0223E0C8 (BattleSystem * param0)
 
 UnkStruct_0200B358 * ov16_0223E0D0 (BattleSystem * param0)
 {
-    return param0->unk_14;
+    return param0->strFormatter;
 }
 
 Strbuf* ov16_0223E0D4 (BattleSystem * param0)
@@ -2343,51 +2343,51 @@ static void BattleMessage_Nickname (BattleSystem * param0, u32 param1, int param
     Pokemon * v0;
 
     v0 = BattleSystem_PartyPokemon(param0, param2 & 0xff, (param2 & 0xff00) >> 8);
-    sub_0200B5CC(param0->unk_14, param1, &v0->box);
+    sub_0200B5CC(param0->strFormatter, param1, &v0->box);
 }
 
 static void BattleMessage_MoveName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B630(param0->unk_14, param1, param2);
+    sub_0200B630(param0->strFormatter, param1, param2);
 }
 
 static void BattleMessage_ItemName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B70C(param0->unk_14, param1, param2);
+    sub_0200B70C(param0->strFormatter, param1, param2);
 }
 
 static void BattleMessage_Number (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B60C(param0->unk_14, param1, param2, 5, 0, 1);
+    sub_0200B60C(param0->strFormatter, param1, param2, 5, 0, 1);
 }
 
 static void BattleMessage_NumberDigits (BattleSystem * param0, u32 param1, int param2, int param3)
 {
     if (param3) {
-        sub_0200B60C(param0->unk_14, param1, param2, param3, 1, 1);
+        sub_0200B60C(param0->strFormatter, param1, param2, param3, 1, 1);
     } else {
-        sub_0200B60C(param0->unk_14, param1, param2, 5, 1, 1);
+        sub_0200B60C(param0->strFormatter, param1, param2, 5, 1, 1);
     }
 }
 
 static void BattleMessage_TypeName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B7EC(param0->unk_14, param1, param2);
+    sub_0200B7EC(param0->strFormatter, param1, param2);
 }
 
 static void BattleMessage_AbilityName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B6A0(param0->unk_14, param1, param2);
+    sub_0200B6A0(param0->strFormatter, param1, param2);
 }
 
 static void BattleMessage_StatName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B824(param0->unk_14, param1, param2);
+    sub_0200B824(param0->strFormatter, param1, param2);
 }
 
 static void BattleMessage_StatusName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B85C(param0->unk_14, param1, param2);
+    sub_0200B85C(param0->strFormatter, param1, param2);
 }
 
 static void BattleMessage_PokemonName (BattleSystem * param0, u32 param1, int param2)
@@ -2395,7 +2395,7 @@ static void BattleMessage_PokemonName (BattleSystem * param0, u32 param1, int pa
     Pokemon * v0;
 
     v0 = BattleSystem_PartyPokemon(param0, param2 & 0xff, (param2 & 0xff00) >> 8);
-    sub_0200B538(param0->unk_14, param1, &v0->box);
+    sub_0200B538(param0->strFormatter, param1, &v0->box);
 }
 
 static void BattleMessage_PoffinName (BattleSystem * param0, u32 param1, int param2)
@@ -2405,7 +2405,7 @@ static void BattleMessage_PoffinName (BattleSystem * param0, u32 param1, int par
 
 static void BattleMessage_FlavorName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B890(param0->unk_14, param1, param2);
+    sub_0200B890(param0->strFormatter, param1, param2);
 }
 
 static void BattleMessage_TrainerClassName (BattleSystem * param0, u32 param1, int param2)
@@ -2413,7 +2413,7 @@ static void BattleMessage_TrainerClassName (BattleSystem * param0, u32 param1, i
     TrainerData * v0;
 
     v0 = BattleSystem_TrainerData(param0, param2);
-    sub_0200B9D0(param0->unk_14, param1, v0);
+    sub_0200B9D0(param0->strFormatter, param1, v0);
 }
 
 static void BattleMessage_TrainerName (BattleSystem * param0, u32 param1, int param2)
@@ -2421,22 +2421,26 @@ static void BattleMessage_TrainerName (BattleSystem * param0, u32 param1, int pa
     TrainerData * v0;
 
     v0 = BattleSystem_TrainerData(param0, param2);
-    sub_0200BA74(param0->unk_14, param1, v0);
+    sub_0200BA74(param0->strFormatter, param1, v0);
 }
 
 static void BattleMessage_PCBoxName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200BD40(param0->unk_14, param1, param0->pcBoxes, param2);
+    sub_0200BD40(param0->strFormatter, param1, param0->pcBoxes, param2);
 }
 
-static void BattleMessage_Format(BattleSystem * param0, MessageLoader * param1, BattleMessage * param2)
+/**
+ * @brief Load the requested message and format it into a string to be printed to the screen.
+ * 
+ * @param battleSys 
+ * @param msgLoader 
+ * @param battleMsg 
+ */
+static void BattleMessage_Format(BattleSystem *battleSys, MessageLoader *msgLoader, BattleMessage *battleMsg)
 {
-    Strbuf* v0;
-
-    v0 = MessageLoader_GetNewStrbuf(param1, param2->id);
-
-    StringFormatter_Format(param0->unk_14, param0->msgBuffer, v0);
-    Strbuf_Free(v0);
+    Strbuf *strbuf = MessageLoader_GetNewStrbuf(msgLoader, battleMsg->id);
+    StringFormatter_Format(battleSys->strFormatter, battleSys->msgBuffer, strbuf);
+    Strbuf_Free(strbuf);
 }
 
 static BOOL BattleMessage_Callback (UnkStruct_0201D738 * param0, u16 param1)
