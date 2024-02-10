@@ -24,6 +24,7 @@ otherpoke_shared = files(
     '.shared/shadows.png',
 )
 
+sinnoh_pokedex = files('sinnoh_pokedex.json')
 
 # Process mons in national dex order
 pokemon_subdirs = [
@@ -735,7 +736,7 @@ pl_pokezukan_narc = custom_target('pl_pokezukan.narc',
         '--source-dir', '@CURRENT_SOURCE_DIR@',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
-        pokemon_subdirs
+        sinnoh_pokedex
     ]
 )
 
@@ -749,7 +750,7 @@ shinzukan_narc = custom_target('shinzukan.narc',
         '--source-dir', '@CURRENT_SOURCE_DIR@',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
-        pokemon_subdirs
+        sinnoh_pokedex
     ]
 )
 

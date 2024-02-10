@@ -23,9 +23,8 @@ argparser.add_argument('-p', '--private-dir',
 argparser.add_argument('-o', '--output-dir',
                        required=True,
                        help='Path to the output directory (where the NARC will be made)')
-argparser.add_argument('subdirs',
-                       nargs='+',
-                       help='List of subdirectories to process in-order')
+argparser.add_argument('pokedex',
+                       help='List of pokemon in the Sinnoh Pokedex')
 args = argparser.parse_args()
 
 source_dir = pathlib.Path(args.source_dir)
@@ -38,7 +37,7 @@ NUM_POKEMON = 494
 
 pokedex = [0 for i in range(NUM_POKEMON)]
 
-with open(source_dir / 'sinnoh_pokedex.json') as data_file:
+with open(args.pokedex) as data_file:
     dex_data = json.load(data_file)
     for i, mon in enumerate(dex_data):
         pokedex[PokemonSpecies[mon].value] = i
