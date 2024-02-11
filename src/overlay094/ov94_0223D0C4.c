@@ -522,7 +522,7 @@ static u32 Unk_ov94_022467FC[] = {
     (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0))
 };
 
-void ov94_0223D910 (MessageLoader * param0, MessageLoader * param1, UnkStruct_0200B358 * param2, Window param3[], BoxPokemon * param4, UnkStruct_ov94_0223BA88_sub2 * param5)
+void ov94_0223D910 (MessageLoader * param0, MessageLoader * param1, StringFormatter * param2, Window param3[], BoxPokemon * param4, UnkStruct_ov94_0223BA88_sub2 * param5)
 {
     Strbuf* v0, * v1, * v2, * v3;
     Strbuf* v4 = Strbuf_Init((10 + 1) * 2, 62);

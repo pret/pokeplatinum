@@ -993,7 +993,7 @@ static void ov97_0222E080 (UnkStruct_020067E8 * param0, int * param1)
 
 void ov97_0222E13C (UnkStruct_ov97_0222D04C * param0)
 {
-    UnkStruct_0200B358 * v0;
+    StringFormatter * v0;
     UnkStruct_ov97_02237808 v1;
     int v2;
 
@@ -1043,7 +1043,7 @@ static int ov97_0222E1D8 (UnkStruct_020067E8 * param0)
 
 static int ov97_0222E228 (UnkStruct_020067E8 * param0, Window * param1, int param2, int param3)
 {
-    UnkStruct_0200B358 * v0;
+    StringFormatter * v0;
     MessageLoader * v1;
     UnkStruct_ov97_0222D04C * v2 = sub_0200682C(param0);
 

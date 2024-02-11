@@ -1081,7 +1081,7 @@ static void ov99_021D2AAC (UnkStruct_ov99_021D2CB0 * param0)
         v1 = MessageLoader_GetNewStrbuf(param0->unk_20, ov99_021D4130());
         v2 = (256 - sub_02002D7C(0, v1, 0)) / 2;
 
-        sub_0201D7E0(param0->unk_24, 0, v1, v2, 80, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), 3, 0, NULL);
+        PrintStringWithColorAndMargins(param0->unk_24, 0, v1, v2, 80, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), 3, 0, NULL);
         sub_0201ACCC(param0->unk_24);
         Strbuf_Free(v1);
     }

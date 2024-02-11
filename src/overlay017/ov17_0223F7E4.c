@@ -977,8 +977,8 @@ static void ov17_02240138 (UnkStruct_ov17_0223F7E4 * param0, UnkStruct_ov17_0224
 
     if (param10 == NULL) {
         sub_0201A7A0(&v1);
-        sub_0201A870(v5, &v1, v8, 16 / 8, 0, 0);
-        sub_0201D7E0(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
+        BGL_AddFramelessWindow(v5, &v1, v8, 16 / 8, 0, 0);
+        PrintStringWithColorAndMargins(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
     } else {
         v1 = param10->unk_00;
     }
@@ -1509,8 +1509,8 @@ static void ov17_02240BF4 (UnkStruct_ov17_0223F7E4 * param0, const Strbuf *param
     }
 
     sub_0201A7A0(&param3->unk_00);
-    sub_0201A870(param0->unk_04->unk_24, &param3->unk_00, v1, 16 / 8, 0, 0);
-    sub_0201D7E0(&param3->unk_00, param2, param1, 0, 0, 0xff, param4, 0, 0, NULL);
+    BGL_AddFramelessWindow(param0->unk_04->unk_24, &param3->unk_00, v1, 16 / 8, 0, 0);
+    PrintStringWithColorAndMargins(&param3->unk_00, param2, param1, 0, 0, 0xff, param4, 0, 0, NULL);
 }
 
 static void ov17_02240C60 (const Strbuf *param0, int param1, int * param2, int * param3)

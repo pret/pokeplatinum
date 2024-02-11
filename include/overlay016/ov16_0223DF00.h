@@ -111,7 +111,7 @@ u16 * ov16_0223E0A4(BattleSystem * param0);
 u16 * ov16_0223E0B0(BattleSystem * param0);
 u16 * ov16_0223E0BC(BattleSystem * param0);
 UnkStruct_ov16_0223E0C8 * ov16_0223E0C8(BattleSystem * param0);
-UnkStruct_0200B358 * ov16_0223E0D0(BattleSystem * param0);
+StringFormatter * BattleSystem_StringFormatter(BattleSystem * param0);
 Strbuf* ov16_0223E0D4(BattleSystem * param0);
 
 /**

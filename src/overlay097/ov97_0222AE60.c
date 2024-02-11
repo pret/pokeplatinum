@@ -540,7 +540,7 @@ static void ov97_0222B4FC (UnkStruct_0222AE60 * param0, int param1, int param2)
     sub_02019448(param0->unk_00, 2);
 }
 
-static void ov97_0222B53C (Window * param0, MessageLoader * param1, UnkStruct_0200B358 * param2, u32 param3, u32 param4, int param5)
+static void ov97_0222B53C (Window * param0, MessageLoader * param1, StringFormatter * param2, u32 param3, u32 param4, int param5)
 {
     int v0, v1;
     Strbuf* v2;
@@ -553,7 +553,7 @@ static void ov97_0222B53C (Window * param0, MessageLoader * param1, UnkStruct_02
     Strbuf_Free(v2);
 }
 
-static void ov97_0222B590 (UnkStruct_0200B358 * param0, int param1)
+static void ov97_0222B590 (StringFormatter * param0, int param1)
 {
     int v0, v1;
 
@@ -572,7 +572,7 @@ static BOOL ov97_0222B5C0 (void * param0, int param1, UnkStruct_ov97_02237808 * 
 {
     int v0, v1, v2;
     Strbuf* v3;
-    UnkStruct_0200B358 * v4;
+    StringFormatter * v4;
     MessageLoader * v5;
     UnkStruct_0222AE60 * v6 = (UnkStruct_0222AE60 *)param0;
     u32 v7;

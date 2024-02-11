@@ -225,7 +225,7 @@ static void sub_02084E58 (GameWindowLayout * param0, u16 param1, u32 param2)
     Strbuf* v1;
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
-    sub_0200B5CC(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
+    StringFormatter_BufferNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
 
     switch (sub_02084B70(param1)) {
     case 4:
@@ -495,7 +495,7 @@ static int sub_020855C4 (void * param0)
         v2 = MessageLoader_GetNewStrbuf(v0->unk_69C, 64);
     }
 
-    sub_0200B5CC(v0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
+    StringFormatter_BufferNickname(v0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
     sub_0200B60C(v0->unk_6A0, 1, v3 - v0->unk_704[v0->unk_B11].unk_06, 3, 0, 1);
     StringFormatter_Format(v0->unk_6A0, v0->unk_6A4, v2);
     Strbuf_Free(v2);
@@ -599,7 +599,7 @@ int sub_02085804 (GameWindowLayout * param0)
         v2 = Pokemon_GetValue(v0, MON_DATA_CURRENT_HP, NULL);
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 70);
 
-        sub_0200B5CC(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
+        StringFormatter_BufferNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
         StringFormatter_Format(param0->unk_6A0, param0->unk_6A4, v1);
         Strbuf_Free(v1);
 
@@ -682,7 +682,7 @@ static int sub_02085A70 (void * param0)
 
     v2 = MessageLoader_GetNewStrbuf(v0->unk_69C, 193);
 
-    sub_0200B5CC(v0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
+    StringFormatter_BufferNickname(v0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
     sub_0200B60C(v0->unk_6A0, 1, v0->unk_704[v0->unk_B11].unk_0A, 3, 0, 1);
     StringFormatter_Format(v0->unk_6A0, v0->unk_6A4, v2);
     Strbuf_Free(v2);
@@ -750,7 +750,7 @@ static int sub_02085C50 (void * param0)
             v0->unk_B13 = 6;
             break;
         case 0xffff:
-            sub_0200B5CC(v0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
+            StringFormatter_BufferNickname(v0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
             sub_0200B630(v0->unk_6A0, 1, v0->unk_5A4->unk_26);
 
             v2 = MessageLoader_GetNewStrbuf(v0->unk_69C, 52);
@@ -767,7 +767,7 @@ static int sub_02085C50 (void * param0)
         case 0xfffe:
             break;
         default:
-            sub_0200B5CC(v0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
+            StringFormatter_BufferNickname(v0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
             sub_0200B630(v0->unk_6A0, 1, v0->unk_5A4->unk_26);
 
             v2 = MessageLoader_GetNewStrbuf(v0->unk_69C, 194);
@@ -833,7 +833,7 @@ int sub_02085EF4 (GameWindowLayout * param0)
     param0->unk_B13 = 3;
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
-    sub_0200B5CC(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
+    StringFormatter_BufferNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
 
     if (param0->unk_5A4->unk_28 == 4) {
         sub_0200B630(param0->unk_6A0, 1, param0->unk_5A4->unk_26);
@@ -963,7 +963,7 @@ int sub_0208615C (GameWindowLayout * param0)
     v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
     v2 = sub_02086104(param0, v0);
 
-    sub_0200B5CC(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
+    StringFormatter_BufferNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
     sub_0200B630(param0->unk_6A0, 1, param0->unk_5A4->unk_26);
 
     switch (v2) {
@@ -1017,7 +1017,7 @@ int sub_020862F8 (GameWindowLayout * param0)
     Strbuf* v1;
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
-    sub_0200B5CC(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
+    StringFormatter_BufferNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
 
     if (param0->unk_5A4->unk_28 == 4) {
         sub_0200B630(param0->unk_6A0, 1, param0->unk_5A4->unk_26);

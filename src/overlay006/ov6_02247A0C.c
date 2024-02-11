@@ -30,7 +30,7 @@
 typedef struct {
     Window unk_00;
     MessageLoader * unk_10;
-    UnkStruct_0200B358 * unk_14;
+    StringFormatter * unk_14;
 } UnkStruct_ov6_02247A90;
 
 typedef struct {

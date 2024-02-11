@@ -2033,8 +2033,8 @@ void ov117_02265DB8 (BGL * param0, SpriteGfxHandler * param1, UnkStruct_02012744
 
     {
         sub_0201A7A0(&v1);
-        sub_0201A870(param0, &v1, v6, param14, 0, 0);
-        sub_0201D7E0(&v1, param5, param4, 0, 0, 0xff, param6, v7, 0, NULL);
+        BGL_AddFramelessWindow(param0, &v1, v6, param14, 0, 0);
+        PrintStringWithColorAndMargins(&v1, param5, param4, 0, 0, 0xff, param6, v7, 0, NULL);
     }
 
     v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DMAIN, 110);

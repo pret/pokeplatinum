@@ -120,7 +120,7 @@ typedef struct {
 
 typedef struct {
     MessageLoader * unk_00[9];
-    UnkStruct_0200B358 * unk_24;
+    StringFormatter * unk_24;
     Strbuf* unk_28;
     Strbuf* unk_2C;
     UnkStruct_ov66_0222DFF8 * unk_30;

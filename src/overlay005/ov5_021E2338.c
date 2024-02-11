@@ -2620,7 +2620,7 @@ static BOOL ov5_021E51B4 (UnkStruct_ov5_021E5128 * param0)
 
 static Strbuf* ov5_021E5240 (u32 param0, u32 param1)
 {
-    UnkStruct_0200B358 * v0;
+    StringFormatter * v0;
     MessageLoader * v1;
     Strbuf* v2;
     Strbuf* v3;

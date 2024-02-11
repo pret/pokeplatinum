@@ -106,7 +106,7 @@ struct UnkStruct_ov105_02241FF4_t {
     u8 unk_1A;
     u8 unk_1B;
     MessageLoader * unk_1C;
-    UnkStruct_0200B358 * unk_20;
+    StringFormatter * unk_20;
     Strbuf* unk_24;
     Strbuf* unk_28;
     Strbuf* unk_2C[4];

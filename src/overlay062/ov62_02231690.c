@@ -73,9 +73,9 @@
 
 static void ov62_022349E4(Strbuf *param0, int param1);
 
-UnkStruct_0200B358 * ov62_02231690 (u32 param0)
+StringFormatter * ov62_02231690 (u32 param0)
 {
-    UnkStruct_0200B358 * v0 = sub_0200B368(4, 64, param0);
+    StringFormatter * v0 = sub_0200B368(4, 64, param0);
     return v0;
 }
 
@@ -1029,7 +1029,7 @@ static void ov62_022323CC (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C 
 {
     Strbuf* v0;
     Strbuf* v1;
-    UnkStruct_0200B358 * v2;
+    StringFormatter * v2;
     Window * v3;
     int v4 = sub_02030BFC(param1->unk_88C[0]);
     int v5 = sub_02030C08(param1->unk_88C[0]);
@@ -2840,7 +2840,7 @@ static void ov62_02233B50 (UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C 
         Strbuf* v6;
         Strbuf* v7;
         Strbuf* v8;
-        UnkStruct_0200B358 * v9;
+        StringFormatter * v9;
         Window * v10;
         UnkStruct_02030A80 * v11;
 

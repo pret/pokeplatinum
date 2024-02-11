@@ -707,7 +707,7 @@ static void ov62_022419D4 (UnkStruct_0208C06C * param0, int param1, int param2)
     Window * v1;
     Strbuf* v2;
     Strbuf* v3;
-    UnkStruct_0200B358 * v4;
+    StringFormatter * v4;
 
     v1 = &v0->unk_614[5];
     BGL_FillWindow(v1, 0x0);
@@ -3122,7 +3122,7 @@ static void ov62_022448E0 (UnkStruct_ov62_022312B0 * param0, UnkStruct_0208C06C 
     Strbuf* v0;
     MessageLoader * v1;
     Window v2;
-    UnkStruct_0200B358 * v3;
+    StringFormatter * v3;
     Strbuf* v4;
     Strbuf* v5;
 
@@ -3144,7 +3144,7 @@ static void ov62_022448E0 (UnkStruct_ov62_022312B0 * param0, UnkStruct_0208C06C 
     }
 
     sub_0201A7A0(&v2);
-    sub_0201A870(param1->unk_14.unk_10, &v2, 20, 2, 0, 0);
+    BGL_AddFramelessWindow(param1->unk_14.unk_10, &v2, 20, 2, 0, 0);
     sub_0201D78C(&v2, 0, v0, 0, 0, 0xff, ((u32)(((14 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_02012BE0(param0->unk_0C, param0->unk_10, &v2, 102);
     Strbuf_Free(v0);
@@ -3163,7 +3163,7 @@ static void ov62_022449B8 (UnkStruct_0208C06C * param0, int param1, BOOL param2)
     BGL_AddWindow(param0->unk_14.unk_10, v1, 2, 1, 19, 30, 4, 14, 300);
 
     if (param1 == 100) {
-        UnkStruct_0200B358 * v3;
+        StringFormatter * v3;
         Strbuf* v4;
         Strbuf* v5;
         UnkStruct_02030A80 * v6 = v2->unk_80.unk_00;
@@ -3195,7 +3195,7 @@ static void ov62_02244AB4 (UnkStruct_0208C06C * param0, int param1, int param2)
     UnkStruct_ov62_02241204 * v2 = param0->unk_860;
 
     if (param1 == 100) {
-        UnkStruct_0200B358 * v3;
+        StringFormatter * v3;
         Strbuf* v4;
         Strbuf* v5;
         UnkStruct_02030A80 * v6 = v2->unk_80.unk_00;
@@ -3211,7 +3211,7 @@ static void ov62_02244AB4 (UnkStruct_0208C06C * param0, int param1, int param2)
         Strbuf_Free(v5);
         sub_0200B3F0(v3);
     } else if (param1 == 102) {
-        UnkStruct_0200B358 * v7;
+        StringFormatter * v7;
         Strbuf* v8;
         Strbuf* v9;
         UnkStruct_02030A80 * v10 = param0->unk_88C[param2];
@@ -4695,7 +4695,7 @@ static void ov62_022469A0 (UnkStruct_ov62_02241204 * param0, UnkStruct_0208C06C 
     Strbuf* v0;
     Strbuf* v1;
     Strbuf* v2;
-    UnkStruct_0200B358 * v3;
+    StringFormatter * v3;
     Window * v4;
 
     v3 = ov62_02231690(102);

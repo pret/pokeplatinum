@@ -408,7 +408,7 @@ void sub_02012BE0 (FontOAM * param0, const UnkStruct_02012B20 * param1, const Wi
     sub_02012F98(param2, v1, &param1->unk_00, v4, param3);
     DC_FlushRange(v1, v0);
 
-    v2 = sub_02021F98(v3);
+    v2 = SpriteActor_ImageProxy(v3);
 
     if (v4 == NNS_G2D_VRAM_TYPE_2DMAIN) {
         GX_LoadOBJ(v1, NNS_G2dGetImageLocation(v2, NNS_G2D_VRAM_TYPE_2DMAIN), v0);

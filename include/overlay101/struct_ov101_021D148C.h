@@ -7,7 +7,7 @@
 
 typedef struct {
     MessageLoader * unk_00;
-    UnkStruct_0200B358 * unk_04;
+    StringFormatter * unk_04;
     Window unk_08[1];
     void * unk_18;
 } UnkStruct_ov101_021D148C;

@@ -1381,13 +1381,13 @@ static void ov17_0224290C (UnkStruct_ov17_02246F24 * param0, int param1, const U
     case 0:
         break;
     case 1:
-        sub_0200B5CC(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param0->unk_304.unk_00]));
+        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param0->unk_304.unk_00]));
         break;
     case 2:
-        sub_0200B5CC(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         break;
     case 3:
-        sub_0200B5CC(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
         break;
     case 4:
         sub_0200B630(param0->unk_0C.unk_48, 0, param2->unk_02);
@@ -1399,44 +1399,44 @@ static void ov17_0224290C (UnkStruct_ov17_02246F24 * param0, int param1, const U
         sub_0200BB74(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
         break;
     case 7:
-        sub_0200B5CC(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
-        sub_0200B5CC(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
         break;
     case 8:
-        sub_0200B5CC(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         sub_0200B630(param0->unk_0C.unk_48, 1, param2->unk_02);
         break;
     case 9:
-        sub_0200B5CC(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         sub_0200B60C(param0->unk_0C.unk_48, 1, param2->unk_04, 1, 0, 1);
         break;
     case 10:
-        sub_0200B5CC(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         sub_0200BB74(param0->unk_0C.unk_48, 1, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
         break;
     case 11:
-        sub_0200B5CC(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
-        sub_0200B5CC(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         break;
     case 12:
-        sub_0200B5CC(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
         sub_0200B630(param0->unk_0C.unk_48, 1, param2->unk_02);
         break;
     case 13:
-        sub_0200B5CC(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
         sub_0200B60C(param0->unk_0C.unk_48, 1, param2->unk_04, 1, 0, 1);
         break;
     case 14:
-        sub_0200B5CC(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
-        sub_0200B5CC(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         break;
     case 15:
         sub_0200B630(param0->unk_0C.unk_48, 0, param2->unk_02);
-        sub_0200B5CC(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         break;
     case 16:
         sub_0200B630(param0->unk_0C.unk_48, 0, param2->unk_02);
-        sub_0200B5CC(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
         break;
     case 17:
         sub_0200B630(param0->unk_0C.unk_48, 0, param2->unk_02);
@@ -1444,15 +1444,15 @@ static void ov17_0224290C (UnkStruct_ov17_02246F24 * param0, int param1, const U
         break;
     case 18:
         sub_0200B630(param0->unk_0C.unk_48, 0, param2->unk_02);
-        sub_0200B5CC(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         break;
     case 19:
         sub_0200B60C(param0->unk_0C.unk_48, 0, param2->unk_04, 1, 0, 1);
-        sub_0200B5CC(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         break;
     case 20:
         sub_0200B60C(param0->unk_0C.unk_48, 0, param2->unk_04, 1, 0, 1);
-        sub_0200B5CC(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
         break;
     case 21:
         sub_0200B60C(param0->unk_0C.unk_48, 0, param2->unk_04, 1, 0, 1);
@@ -1460,15 +1460,15 @@ static void ov17_0224290C (UnkStruct_ov17_02246F24 * param0, int param1, const U
         break;
     case 22:
         sub_0200B60C(param0->unk_0C.unk_48, 0, param2->unk_04, 1, 0, 1);
-        sub_0200B5CC(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         break;
     case 23:
         sub_0200BB74(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
-        sub_0200B5CC(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         break;
     case 24:
         sub_0200BB74(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
-        sub_0200B5CC(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
         break;
     case 25:
         sub_0200BB74(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
@@ -1479,7 +1479,7 @@ static void ov17_0224290C (UnkStruct_ov17_02246F24 * param0, int param1, const U
         sub_0200B60C(param0->unk_0C.unk_48, 1, param2->unk_04, 1, 0, 1);
         break;
     case 27:
-        sub_0200B5CC(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         sub_0200BB74(param0->unk_0C.unk_48, 1, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
         sub_0200B630(param0->unk_0C.unk_48, 2, param2->unk_02);
         break;
@@ -1495,7 +1495,7 @@ static void ov17_0224290C (UnkStruct_ov17_02246F24 * param0, int param1, const U
                 break;
             }
 
-            sub_0200B5CC(param0->unk_0C.unk_48, 1 + v1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[v0->unk_01[v1]]));
+            StringFormatter_BufferNickname(param0->unk_0C.unk_48, 1 + v1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[v0->unk_01[v1]]));
         }
     }
     break;

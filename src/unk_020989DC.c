@@ -100,7 +100,7 @@ UnkStruct_0203D9B8 * sub_020989DC (SaveData * param0, int param1)
     UnkStruct_0203D9B8 * v0;
     Poffin * v1;
     UnkStruct_020989DC * v2;
-    UnkStruct_0200B358 * v3;
+    StringFormatter * v3;
     u8 v4[7];
     u8 v5 = 0, v6 = 0, v7 = 0;
     u8 v8 = 0;

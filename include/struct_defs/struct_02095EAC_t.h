@@ -23,7 +23,7 @@ struct UnkStruct_02095EAC_t {
     BGL * unk_00;
     BOOL unk_04;
     UnkStruct_0203DDFC * unk_08;
-    UnkStruct_0200B358 * unk_0C;
+    StringFormatter * unk_0C;
     MessageLoader * unk_10;
     Strbuf* unk_14[5];
     Strbuf* unk_28;

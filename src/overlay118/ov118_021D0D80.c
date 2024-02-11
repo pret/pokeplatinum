@@ -146,7 +146,7 @@ int ov118_021D0DBC (GameWindowLayout * param0)
 
         v2 = MessageLoader_GetNewStrbuf(param0->unk_69C, 202);
 
-        sub_0200B5CC(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
+        StringFormatter_BufferNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
         StringFormatter_Format(param0->unk_6A0, param0->unk_6A4, v2);
         Strbuf_Free(v2);
         sub_02082708(param0, 0xffffffff, 1);

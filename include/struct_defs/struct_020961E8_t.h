@@ -29,7 +29,7 @@ struct UnkStruct_020961E8_t {
     UnkStruct_0203DE34 * unk_08;
     UnkStruct_ov59_021D109C unk_0C;
     SysTask * unk_20;
-    UnkStruct_0200B358 * unk_24;
+    StringFormatter * unk_24;
     MessageLoader * unk_28;
     Strbuf* unk_2C[5];
     Strbuf* unk_40;

@@ -44,7 +44,7 @@ static Strbuf* sub_02047998(u16 param0, u32 param1);
 BOOL sub_020474B8 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u8 v3 = inline_02049538(param0);
 
@@ -55,7 +55,7 @@ BOOL sub_020474B8 (UnkStruct_0203E724 * param0)
 BOOL sub_020474F4 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
 
     sub_0200B498(*v1, v2, sub_02025E38(sub_0203D174(v0)));
@@ -65,7 +65,7 @@ BOOL sub_020474F4 (UnkStruct_0203E724 * param0)
 BOOL sub_02047528 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
 
     sub_0200B4BC(*v1, v2, v0->unk_0C);
@@ -75,7 +75,7 @@ BOOL sub_02047528 (UnkStruct_0203E724 * param0)
 BOOL sub_0204754C (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
 
     sub_0200B4E4(*v1, v2, v0->unk_0C);
@@ -86,7 +86,7 @@ BOOL sub_02047570 (UnkStruct_0203E724 * param0)
 {
     Pokemon * v0;
     UnkStruct_0203CDB0 * v1 = param0->unk_34;
-    UnkStruct_0200B358 ** v2 = sub_0203F098(v1, 15);
+    StringFormatter ** v2 = sub_0203F098(v1, 15);
     u8 v3 = (*((param0)->unk_08++));
     u16 v4 = inline_02049538(param0);
 
@@ -99,7 +99,7 @@ BOOL sub_02047570 (UnkStruct_0203E724 * param0)
 BOOL sub_020475B8 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
 
@@ -110,7 +110,7 @@ BOOL sub_020475B8 (UnkStruct_0203E724 * param0)
 BOOL sub_020475F0 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
 
@@ -121,7 +121,7 @@ BOOL sub_020475F0 (UnkStruct_0203E724 * param0)
 BOOL sub_02047628 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
 
@@ -133,7 +133,7 @@ BOOL sub_02047628 (UnkStruct_0203E724 * param0)
 BOOL sub_02047660 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
     u16 v4;
@@ -147,7 +147,7 @@ BOOL sub_02047660 (UnkStruct_0203E724 * param0)
 BOOL sub_0204769C (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
 
@@ -158,7 +158,7 @@ BOOL sub_0204769C (UnkStruct_0203E724 * param0)
 BOOL sub_020476D4 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
 
@@ -169,7 +169,7 @@ BOOL sub_020476D4 (UnkStruct_0203E724 * param0)
 BOOL sub_0204771C (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
     u8 v4 = (*((param0)->unk_08++));
@@ -186,7 +186,7 @@ BOOL sub_0204771C (UnkStruct_0203E724 * param0)
 BOOL sub_0204777C (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u32 v3 = sub_0203E850(param0);
     u8 v4 = (*((param0)->unk_08++));
@@ -204,12 +204,12 @@ BOOL sub_020477D0 (UnkStruct_0203E724 * param0)
 {
     Pokemon * v0;
     UnkStruct_0203CDB0 * v1 = param0->unk_34;
-    UnkStruct_0200B358 ** v2 = sub_0203F098(v1, 15);
+    StringFormatter ** v2 = sub_0203F098(v1, 15);
     u8 v3 = (*((param0)->unk_08++));
     u16 v4 = inline_02049538(param0);
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v1->unk_0C), v4);
-    sub_0200B5CC(*v2, v3, (BoxPokemon *)v0);
+    StringFormatter_BufferNickname(*v2, v3, (BoxPokemon *)v0);
 
     return 0;
 }
@@ -219,7 +219,7 @@ BOOL sub_02047818 (UnkStruct_0203E724 * param0)
     BoxPokemon * v0;
     UnkStruct_0203CDB0 * v1 = param0->unk_34;
     PCBoxes * v2 = SaveData_PCBoxes(v1->unk_0C);
-    UnkStruct_0200B358 ** v3 = sub_0203F098(v1, 15);
+    StringFormatter ** v3 = sub_0203F098(v1, 15);
     u8 v4 = (*((param0)->unk_08++));
     u16 v5 = inline_02049538(param0);
     u32 v6, v7;
@@ -228,7 +228,7 @@ BOOL sub_02047818 (UnkStruct_0203E724 * param0)
     v7 = v5 / (5 * 6);
     v0 = sub_02079C9C(v2, v7, v6);
 
-    sub_0200B5CC(*v3, v4, v0);
+    StringFormatter_BufferNickname(*v3, v4, v0);
     return 0;
 }
 
@@ -236,7 +236,7 @@ BOOL sub_02047874 (UnkStruct_0203E724 * param0)
 {
     Pokemon * v0;
     UnkStruct_0203CDB0 * v1 = param0->unk_34;
-    UnkStruct_0200B358 ** v2 = sub_0203F098(v1, 15);
+    StringFormatter ** v2 = sub_0203F098(v1, 15);
     u8 v3 = (*((param0)->unk_08++));
     u16 v4 = inline_02049538(param0);
 
@@ -247,7 +247,7 @@ BOOL sub_02047874 (UnkStruct_0203E724 * param0)
 BOOL sub_020478AC (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
 
@@ -260,7 +260,7 @@ BOOL sub_020478E4 (UnkStruct_0203E724 * param0)
     int v0;
     UnkStruct_0203CDB0 * v1 = param0->unk_34;
     TrainerInfo * v2 = sub_02025E38(sub_0203D174(param0->unk_34));
-    UnkStruct_0200B358 ** v3 = sub_0203F098(v1, 15);
+    StringFormatter ** v3 = sub_0203F098(v1, 15);
     u8 v4 = (*((param0)->unk_08++));
 
     v0 = sub_0205CA14(TrainerInfo_Gender(v2), TrainerInfo_Appearance(v2), 2);
@@ -272,7 +272,7 @@ BOOL sub_020478E4 (UnkStruct_0203E724 * param0)
 BOOL sub_02047930 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
     u16 v4 = sub_0203E838(param0);
@@ -299,7 +299,7 @@ static Strbuf* sub_02047998 (u16 param0, u32 param1)
 
 BOOL sub_020479C0 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0200B358 ** v0 = sub_0203F098(param0->unk_34, 15);
+    StringFormatter ** v0 = sub_0203F098(param0->unk_34, 15);
     u8 v1 = (*((param0)->unk_08++));
     u16 v2 = sub_0206B054(sub_020507E4(param0->unk_34->unk_0C));
     Strbuf* v3 = sub_02047998(v2, 4);
@@ -312,7 +312,7 @@ BOOL sub_020479C0 (UnkStruct_0203E724 * param0)
 
 BOOL sub_02047A10 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0200B358 ** v0 = sub_0203F098(param0->unk_34, 15);
+    StringFormatter ** v0 = sub_0203F098(param0->unk_34, 15);
     u8 v1 = (*((param0)->unk_08++));
     u16 v2 = sub_0206B064(sub_020507E4(param0->unk_34->unk_0C));
     Strbuf* v3 = sub_02047998(v2, 4);
@@ -325,7 +325,7 @@ BOOL sub_02047A10 (UnkStruct_0203E724 * param0)
 
 BOOL sub_02047A60 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0200B358 ** v0 = sub_0203F098(param0->unk_34, 15);
+    StringFormatter ** v0 = sub_0203F098(param0->unk_34, 15);
     u8 v1 = (*((param0)->unk_08++));
     u16 v2 = sub_0206B08C(sub_020507E4(param0->unk_34->unk_0C));
     Strbuf* v3 = sub_02047998(v2, 4);
@@ -339,7 +339,7 @@ BOOL sub_02047A60 (UnkStruct_0203E724 * param0)
 BOOL sub_02047AB0 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
 
@@ -350,7 +350,7 @@ BOOL sub_02047AB0 (UnkStruct_0203E724 * param0)
 BOOL sub_02047AE8 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
 
@@ -361,7 +361,7 @@ BOOL sub_02047AE8 (UnkStruct_0203E724 * param0)
 BOOL sub_02047B20 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
 
@@ -372,7 +372,7 @@ BOOL sub_02047B20 (UnkStruct_0203E724 * param0)
 BOOL sub_02047B58 (UnkStruct_0203E724 * param0)
 {
     Strbuf* v0 = Strbuf_Init(22, 4);
-    UnkStruct_0200B358 ** v1 = sub_0203F098(param0->unk_34, 15);
+    StringFormatter ** v1 = sub_0203F098(param0->unk_34, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
 
@@ -385,7 +385,7 @@ BOOL sub_02047B58 (UnkStruct_0203E724 * param0)
 
 BOOL sub_02047BB8 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0200B358 ** v0 = sub_0203F098(param0->unk_34, 15);
+    StringFormatter ** v0 = sub_0203F098(param0->unk_34, 15);
     u8 v1 = (*((param0)->unk_08++));
     u16 v2 = inline_02049538(param0);
     u16 v3 = inline_02049538(param0);
@@ -399,7 +399,7 @@ BOOL sub_02047BB8 (UnkStruct_0203E724 * param0)
 
 BOOL sub_02047C30 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0200B358 ** v0 = sub_0203F098(param0->unk_34, 15);
+    StringFormatter ** v0 = sub_0203F098(param0->unk_34, 15);
     u8 v1 = (*((param0)->unk_08++));
     u16 v2 = inline_02049538(param0);
 
@@ -410,7 +410,7 @@ BOOL sub_02047C30 (UnkStruct_0203E724 * param0)
 BOOL sub_02047C68 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
 
@@ -422,7 +422,7 @@ BOOL sub_02047CA0 (UnkStruct_0203E724 * param0)
 {
     Strbuf* v0;
     UnkStruct_0203CDB0 * v1 = param0->unk_34;
-    UnkStruct_0200B358 ** v2 = sub_0203F098(v1, 15);
+    StringFormatter ** v2 = sub_0203F098(v1, 15);
     u8 v3 = (*((param0)->unk_08++));
 
     v0 = Strbuf_Init(10 + 1, 11);
@@ -438,7 +438,7 @@ BOOL sub_02047D00 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
     Pokemon * v1;
-    UnkStruct_0200B358 ** v2 = sub_0203F098(v0, 15);
+    StringFormatter ** v2 = sub_0203F098(v0, 15);
     u8 v3 = (*((param0)->unk_08++));
     u16 v4 = inline_02049538(param0);
     u16 v5 = inline_02049538(param0);
@@ -454,7 +454,7 @@ BOOL sub_02047D00 (UnkStruct_0203E724 * param0)
 BOOL sub_02047D68 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
     u16 v4;
@@ -468,7 +468,7 @@ BOOL sub_02047D68 (UnkStruct_0203E724 * param0)
 BOOL sub_02047DAC (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
 
@@ -481,7 +481,7 @@ BOOL sub_02047DAC (UnkStruct_0203E724 * param0)
 BOOL sub_02047DE8 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
 
@@ -492,7 +492,7 @@ BOOL sub_02047DE8 (UnkStruct_0203E724 * param0)
 BOOL sub_02047E20 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
 
@@ -503,7 +503,7 @@ BOOL sub_02047E20 (UnkStruct_0203E724 * param0)
 BOOL sub_02047E58 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
 
@@ -514,7 +514,7 @@ BOOL sub_02047E58 (UnkStruct_0203E724 * param0)
 BOOL sub_02047E90 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
 
@@ -525,7 +525,7 @@ BOOL sub_02047E90 (UnkStruct_0203E724 * param0)
 BOOL sub_02047EC8 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
 
@@ -536,7 +536,7 @@ BOOL sub_02047EC8 (UnkStruct_0203E724 * param0)
 BOOL sub_02047F00 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
 
@@ -547,7 +547,7 @@ BOOL sub_02047F00 (UnkStruct_0203E724 * param0)
 BOOL sub_02047F38 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
     u16 v4 = sub_0203E838(param0);
@@ -559,7 +559,7 @@ BOOL sub_02047F38 (UnkStruct_0203E724 * param0)
 
 BOOL sub_02047F80 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0200B358 ** v0 = sub_0203F098(param0->unk_34, 15);
+    StringFormatter ** v0 = sub_0203F098(param0->unk_34, 15);
     u8 v1 = (*((param0)->unk_08++));
     u16 v2 = sub_0206B08C(sub_020507E4(param0->unk_34->unk_0C));
 
@@ -570,7 +570,7 @@ BOOL sub_02047F80 (UnkStruct_0203E724 * param0)
 BOOL sub_02047FB4 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
 
@@ -581,7 +581,7 @@ BOOL sub_02047FB4 (UnkStruct_0203E724 * param0)
 BOOL sub_02047FEC (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
 
@@ -592,7 +592,7 @@ BOOL sub_02047FEC (UnkStruct_0203E724 * param0)
 BOOL sub_02048024 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
 
@@ -605,7 +605,7 @@ BOOL sub_02048024 (UnkStruct_0203E724 * param0)
 BOOL sub_02048060 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
 
     sub_0200C324(*v1, v2);
@@ -615,7 +615,7 @@ BOOL sub_02048060 (UnkStruct_0203E724 * param0)
 BOOL sub_02048080 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(v0, 15);
+    StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u8 v3 = (*((param0)->unk_08++));
 

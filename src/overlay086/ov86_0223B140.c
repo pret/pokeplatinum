@@ -93,7 +93,7 @@ typedef struct {
     SysTask * unk_1C2C;
     SysTask * unk_1C30;
     SysTask * unk_1C34[4];
-    UnkStruct_0200B358 * unk_1C44;
+    StringFormatter * unk_1C44;
     Strbuf* unk_1C48;
     Strbuf* unk_1C4C;
     MessageLoader * unk_1C50;
@@ -185,7 +185,7 @@ typedef struct {
     UnkStruct_ov86_0223B3C8 * unk_08;
     BGL * unk_0C;
     Window * unk_10;
-    UnkStruct_0200B358 * unk_14;
+    StringFormatter * unk_14;
     Strbuf* unk_18;
     Strbuf* unk_1C;
     MessageLoader * unk_20;
@@ -1231,7 +1231,7 @@ static void ov86_0223C2CC (UnkStruct_ov86_0223B3C8 * param0, int param1, BOOL pa
     v0->unk_6C = param2;
     v0->unk_70 = param0->unk_2E0[param1];
     v0->unk_74 = param0->unk_2F8[param1];
-    v0->unk_24[0] = *sub_02021F98(v0->unk_08);
+    v0->unk_24[0] = *SpriteActor_ImageProxy(v0->unk_08);
     v0->unk_24[1] = v0->unk_24[0];
 
     NNS_G2dInitImageProxy(&v0->unk_24[1]);

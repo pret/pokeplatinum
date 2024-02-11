@@ -66,7 +66,7 @@ static void ov62_02247DD8 (UnkStruct_0208C06C * param0, int param1, int param2)
     Window * v1 = &param0->unk_8A4;
 
     if (param1 == 282) {
-        UnkStruct_0200B358 * v2;
+        StringFormatter * v2;
         Strbuf* v3;
         Strbuf* v4;
         UnkStruct_02030A80 * v5 = param0->unk_88C[param2];

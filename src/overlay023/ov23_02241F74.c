@@ -220,7 +220,7 @@ void ov23_022421EC (void)
 
 BOOL ov23_0224223C (TrainerInfo * param0, TrainerInfo * param1, int param2, Strbuf *param3)
 {
-    UnkStruct_0200B358 * v0;
+    StringFormatter * v0;
     Strbuf* v1;
 
     if (param0 && param1) {
@@ -242,7 +242,7 @@ BOOL ov23_0224223C (TrainerInfo * param0, TrainerInfo * param1, int param2, Strb
 
 BOOL ov23_022422A8 (TrainerInfo * param0, int param1, int param2, Strbuf *param3)
 {
-    UnkStruct_0200B358 * v0;
+    StringFormatter * v0;
     Strbuf* v1;
 
     if (param0) {
@@ -264,7 +264,7 @@ BOOL ov23_022422A8 (TrainerInfo * param0, int param1, int param2, Strbuf *param3
 static BOOL ov23_02242308 (Strbuf *param0)
 {
     int v0;
-    UnkStruct_0200B358 * v1;
+    StringFormatter * v1;
     Strbuf* v2;
     TrainerInfo * v3;
     TrainerInfo * v4;
@@ -1053,7 +1053,7 @@ void ov23_02243020 (int param0)
 
 void ov23_02243038 (int param0)
 {
-    UnkStruct_0200B358 * v0;
+    StringFormatter * v0;
     Strbuf* v1;
 
     if (Unk_ov23_02257748) {

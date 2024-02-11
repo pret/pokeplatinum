@@ -160,7 +160,7 @@ void ov76_0223B98C (UnkStruct_ov76_0223DE00 * param0, int param1, int param2, in
 
     {
         sub_0201A7A0(&v5);
-        sub_0201A870(param0->unk_D4.unk_10, &v5, 10, 2, 0, 0);
+        BGL_AddFramelessWindow(param0->unk_D4.unk_10, &v5, 10, 2, 0, 0);
         sub_0201D78C(&v5, 2, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((2 & 0xff) << 0))), NULL);
     }
 

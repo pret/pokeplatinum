@@ -40,7 +40,7 @@ typedef struct {
     int unk_3EC;
     int unk_3F0;
     MessageLoader * unk_3F4;
-    UnkStruct_0200B358 * unk_3F8;
+    StringFormatter * unk_3F8;
     Strbuf* unk_3FC;
     UnkStruct_ov61_0222B920 unk_400;
     u8 unk_40D;

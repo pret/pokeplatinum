@@ -91,7 +91,7 @@ void sub_02014AC4 (Sentence * param0, int param1)
 Strbuf* sub_02014B34 (const Sentence * param0, u32 param1)
 {
     Strbuf* v0;
-    UnkStruct_0200B358 * v1;
+    StringFormatter * v1;
     MessageLoader * v2;
     int v3;
 

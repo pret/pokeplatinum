@@ -631,7 +631,7 @@ static void ov97_0222C578 (UnkStruct_ov97_0222C388 * param0)
     u32 v0, v1, v2, v3;
     u8 v4[6];
     UnkStruct_ov97_022335A8 v5;
-    UnkStruct_0200B358 * v6;
+    StringFormatter * v6;
 
     v6 = sub_0200B358(param0->unk_00);
 
@@ -807,7 +807,7 @@ static void ov97_0222C974 (UnkStruct_ov97_0222C388 * param0)
 {
     RTCDate v0;
     Strbuf* v1;
-    UnkStruct_0200B358 * v2;
+    StringFormatter * v2;
     MessageLoader * v3;
     UnkStruct_0202DBAC * v4 = &param0->unk_3180;
 

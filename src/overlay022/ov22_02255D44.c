@@ -113,7 +113,7 @@ typedef struct {
     const AnimationControlFlags * unk_738;
     u32 unk_73C;
     Strbuf* unk_740;
-    UnkStruct_0200B358 * unk_744;
+    StringFormatter * unk_744;
 } UnkStruct_ov22_02255D44;
 
 typedef struct {

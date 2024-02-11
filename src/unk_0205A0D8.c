@@ -65,7 +65,7 @@ typedef struct {
     Strbuf* unk_10;
     Window unk_14;
     UnkStruct_0203CDB0 * unk_24;
-    UnkStruct_0200B358 * unk_28;
+    StringFormatter * unk_28;
     MessageLoader * unk_2C;
     int unk_30;
     int unk_34;
@@ -101,7 +101,7 @@ typedef struct {
     Strbuf* unk_00;
     Strbuf* unk_04;
     Window unk_08;
-    UnkStruct_0200B358 * unk_18;
+    StringFormatter * unk_18;
     MessageLoader * unk_1C;
     int unk_20;
     int unk_24;

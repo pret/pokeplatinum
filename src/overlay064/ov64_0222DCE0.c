@@ -144,7 +144,7 @@ typedef struct {
     NNSG2dRenderSurface unk_08;
     UnkStruct_0200C738 unk_78;
     UnkStruct_02009714 * unk_204[4];
-    UnkStruct_0200B358 * unk_214;
+    StringFormatter * unk_214;
     MessageLoader * unk_218;
     NARC * unk_21C;
     Window unk_220;

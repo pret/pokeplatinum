@@ -102,7 +102,7 @@ typedef struct {
     int unk_34;
     u16 * unk_38;
     Strbuf* unk_3C;
-    UnkStruct_0200B358 * unk_40;
+    StringFormatter * unk_40;
     int unk_44;
     int unk_48;
 } UnkStruct_ov97_02233DAC;
@@ -436,7 +436,7 @@ static int ov97_02233DAC (UnkStruct_ov97_02233DAC * param0, Strbuf *param1, int 
 static void ov97_02233DD0 (UnkStruct_ov97_02234A2C * param0, UnkStruct_ov97_02233DAC * param1, int param2)
 {
     Strbuf* v0;
-    UnkStruct_0200B358 * v1;
+    StringFormatter * v1;
     MessageLoader * v2;
     int v3, v4, v5;
     Strbuf* v6;
@@ -1622,7 +1622,7 @@ static void ov97_02235310 (UnkStruct_ov97_02234A2C * param0)
 static void ov97_02235344 (UnkStruct_ov97_02234A2C * param0)
 {
     UnkStruct_ov97_02233DAC v0;
-    UnkStruct_0200B358 * v1;
+    StringFormatter * v1;
     Strbuf* v2;
     u16 v3[7 + 1];
 

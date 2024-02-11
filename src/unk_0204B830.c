@@ -48,7 +48,7 @@
 
 typedef struct {
     UnkStruct_0203CDB0 * unk_00;
-    UnkStruct_0200B358 * unk_04;
+    StringFormatter * unk_04;
     void * unk_08;
 } UnkStruct_0204B830;
 
@@ -66,7 +66,7 @@ typedef struct {
 
 static const UnkStruct_020EBE94 Unk_020EBE94[13];
 
-static void sub_0204B830 (UnkStruct_0204B830 * param0, UnkStruct_0203CDB0 * param1, UnkStruct_0200B358 * param2, void * param3)
+static void sub_0204B830 (UnkStruct_0204B830 * param0, UnkStruct_0203CDB0 * param1, StringFormatter * param2, void * param3)
 {
     param0->unk_00 = param1;
     param0->unk_04 = param2;
@@ -137,7 +137,7 @@ BOOL sub_0204B85C (UnkStruct_0203E724 * param0)
     {
         UnkStruct_0204B830 v5;
         const UnkStruct_020EBE94 * v6 = &Unk_020EBE94[sub_0204B838(param0->unk_34) - 1];
-        UnkStruct_0200B358 ** v7 = sub_0203F098(param0->unk_34, 15);
+        StringFormatter ** v7 = sub_0203F098(param0->unk_34, 15);
         u16 * v8 = inline_0204FCAC(param0);
         u16 * v9 = inline_0204FCAC(param0);
 
@@ -149,7 +149,7 @@ BOOL sub_0204B85C (UnkStruct_0203E724 * param0)
     {
         UnkStruct_0204B830 v10;
         const UnkStruct_020EBE94 * v11 = &Unk_020EBE94[sub_0204B838(param0->unk_34) - 1];
-        UnkStruct_0200B358 ** v12 = sub_0203F098(param0->unk_34, 15);
+        StringFormatter ** v12 = sub_0203F098(param0->unk_34, 15);
         u16 * v13 = inline_0204FCAC(param0);
         u16 * v14 = inline_0204FCAC(param0);
 

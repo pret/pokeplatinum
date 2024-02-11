@@ -87,7 +87,7 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     UnkStruct_ov94_0223BA88_sub3 unk_B7A;
     UnkStruct_ov94_0223BA88_sub3 unk_B80;
     int unk_B88;
-    UnkStruct_0200B358 * unk_B8C;
+    StringFormatter * unk_B8C;
     MessageLoader * unk_B90;
     MessageLoader * unk_B94;
     MessageLoader * unk_B98;

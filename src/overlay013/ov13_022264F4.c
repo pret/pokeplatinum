@@ -415,7 +415,7 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
             v3 = BattleSystem_PartyPokemon(v0->unk_00, v0->unk_10, v1);
             v4 = MessageLoader_GetNewStrbuf(param0->unk_10, 46);
 
-            sub_0200B5CC(param0->unk_14, 0, Pokemon_GetBoxPokemon(v3));
+            StringFormatter_BufferNickname(param0->unk_14, 0, Pokemon_GetBoxPokemon(v3));
             sub_0200B630(param0->unk_14, 1, 373);
             StringFormatter_Format(param0->unk_14, param0->unk_18, v4);
             Strbuf_Free(v4);

@@ -52,7 +52,7 @@ typedef struct {
     Window unk_20;
     UnkStruct_0203CDB0 * unk_30;
     SaveData * unk_34;
-    UnkStruct_0200B358 * unk_38;
+    StringFormatter * unk_38;
     MessageLoader * unk_3C;
     int unk_40;
     UIControlData * unk_44;

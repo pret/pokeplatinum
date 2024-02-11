@@ -69,7 +69,7 @@ typedef struct {
     BGL * unk_04;
     Window unk_08[15];
     MessageLoader * unk_F8;
-    UnkStruct_0200B358 * unk_FC;
+    StringFormatter * unk_FC;
     Strbuf* unk_100;
     UnkStruct_0200112C * unk_104;
     ResourceMetadata * unk_108;
@@ -1107,35 +1107,35 @@ static void ov91_021D1C10 (UnkStruct_ov91_021D0ED8 * param0, u32 param1)
 
     switch (param1) {
     case 0:
-        sub_0200B5CC(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringFormatter_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
         break;
     case 1:
         sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 2:
-        sub_0200B5CC(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringFormatter_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
         break;
     case 3:
-        sub_0200B5CC(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringFormatter_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
         sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 4:
-        sub_0200B5CC(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringFormatter_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
         sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 5:
-        sub_0200B5CC(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringFormatter_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
         sub_0200B630(param0->unk_FC, 1, ov91_021D1DE0(param0));
         break;
     case 6:
-        sub_0200B5CC(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringFormatter_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
         sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 7:
         sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 8:
-        sub_0200B5CC(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringFormatter_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
         sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 9:

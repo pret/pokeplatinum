@@ -533,7 +533,7 @@ BOOL sub_0204F6D8 (UnkStruct_0203E724 * param0)
     u32 v4, v5, v6;
     u16 v7, v8;
     UnkStruct_0203CDB0 * v9 = param0->unk_34;
-    UnkStruct_0200B358 ** v10 = sub_0203F098(v9, 15);
+    StringFormatter ** v10 = sub_0203F098(v9, 15);
     u8 v11 = (*((param0)->unk_08++));
     u8 v12 = (*((param0)->unk_08++));
     u8 v13 = (*((param0)->unk_08++));

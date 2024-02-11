@@ -49,7 +49,7 @@ struct UnkStruct_ov5_021E1FF4_t {
     u8 unk_08;
     BGL * unk_0C;
     Window * unk_10;
-    UnkStruct_0200B358 * unk_14;
+    StringFormatter * unk_14;
     MessageLoader * unk_18;
     UnkStruct_ov5_021E1D20 unk_1C;
     int unk_2C;
@@ -91,7 +91,7 @@ static void ov5_021E1D20 (UnkStruct_ov5_021E1D20 * param0, const UnkStruct_0203C
     param0->unk_0C = sub_02025E5C(v0);
 }
 
-static void ov5_021E1D6C (UnkStruct_0200B358 * param0, const UnkStruct_ov5_021E1D20 * param1)
+static void ov5_021E1D6C (StringFormatter * param0, const UnkStruct_ov5_021E1D20 * param1)
 {
     int v0, v1, v2;
 

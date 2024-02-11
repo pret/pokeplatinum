@@ -19,7 +19,7 @@ struct UnkStruct_ov104_022320B4_t {
     u8 unk_38;
     MessageLoader * unk_3C;
     u8 * unk_40;
-    UnkStruct_0200B358 * unk_44;
+    StringFormatter * unk_44;
     Strbuf* unk_48;
     Strbuf* unk_4C;
     u8 unk_50;

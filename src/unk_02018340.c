@@ -1670,7 +1670,7 @@ void BGL_AddWindow (BGL * param0, Window * param1, u8 param2, u8 param3, u8 para
     param1->unk_0A_15 = (param0->unk_08[param2].unk_16 == GX_BG_COLORMODE_16) ? UnkEnum_00 : UnkEnum_01;
 }
 
-void sub_0201A870 (BGL * param0, Window * param1, u8 param2, u8 param3, u16 param4, u8 param5)
+void BGL_AddFramelessWindow (BGL * param0, Window * param1, u8 param2, u8 param3, u16 param4, u8 param5)
 {
     void * v0;
     u32 v1;

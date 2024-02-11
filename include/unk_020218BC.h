@@ -55,7 +55,7 @@ u32 sub_02021F48(const GraphicElementData * param0);
 void sub_02021F58(GraphicElementData * param0, u32 param1);
 u32 sub_02021F74(const GraphicElementData * param0);
 void sub_02021F7C(GraphicElementData * param0, const NNSG2dImageProxy * param1);
-NNSG2dImageProxy * sub_02021F98(GraphicElementData * param0);
+NNSG2dImageProxy * SpriteActor_ImageProxy(GraphicElementData * param0);
 NNSG2dImagePaletteProxy * sub_02021F9C(GraphicElementData * param0);
 void sub_02021FA0(GraphicElementData * param0, BOOL param1);
 NNS_G2D_VRAM_TYPE sub_02021FC8(const GraphicElementData * param0);

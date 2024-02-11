@@ -2005,12 +2005,12 @@ static void ov16_02269DB0 (UnkStruct_ov16_02268A14 * param0, int param1, int par
 {
     MessageLoader * v0;
     Strbuf* v1, * v2, * v3, * v4;
-    UnkStruct_0200B358 * v5;
+    StringFormatter * v5;
     UnkStruct_ov16_022623F0 * v6;
 
     v6 = &param0->unk_1A.val4;
     v0 = BattleSystem_MessageLoader(param0->unk_00);
-    v5 = ov16_0223E0D0(param0->unk_00);
+    v5 = BattleSystem_StringFormatter(param0->unk_00);
     v1 = MessageLoader_GetNewStrbuf(v0, 1186);
     v2 = MessageLoader_GetNewStrbuf(v0, 1187);
     v3 = Strbuf_Init(100, 5);
@@ -2069,12 +2069,12 @@ static void ov16_02269F68 (UnkStruct_ov16_02268A14 * param0, int param1, int par
 {
     MessageLoader * v0;
     Strbuf* v1, * v2, * v3, * v4;
-    UnkStruct_0200B358 * v5;
+    StringFormatter * v5;
     UnkStruct_ov16_022623F0 * v6;
 
     v6 = &param0->unk_1A.val4;
     v0 = BattleSystem_MessageLoader(param0->unk_00);
-    v5 = ov16_0223E0D0(param0->unk_00);
+    v5 = BattleSystem_StringFormatter(param0->unk_00);
     v1 = MessageLoader_GetNewStrbuf(v0, 1217);
     v2 = MessageLoader_GetNewStrbuf(v0, 1218);
     v3 = Strbuf_Init(100, 5);
@@ -2097,12 +2097,12 @@ static void ov16_0226A04C (UnkStruct_ov16_02268A14 * param0, int param1, int par
 {
     MessageLoader * v0;
     Strbuf* v1, * v2, * v3, * v4;
-    UnkStruct_0200B358 * v5;
+    StringFormatter * v5;
     UnkStruct_ov16_022623F0 * v6;
 
     v6 = &param0->unk_1A.val4;
     v0 = BattleSystem_MessageLoader(param0->unk_00);
-    v5 = ov16_0223E0D0(param0->unk_00);
+    v5 = BattleSystem_StringFormatter(param0->unk_00);
     v1 = MessageLoader_GetNewStrbuf(v0, 1215);
     v2 = MessageLoader_GetNewStrbuf(v0, 1216);
     v3 = Strbuf_Init(100, 5);
@@ -2130,7 +2130,7 @@ static void ov16_0226A12C (UnkStruct_ov16_02268A14 * param0, int param1, int par
     Strbuf* v4, * v5;
     Pokemon * v6;
     BoxPokemon * v7;
-    UnkStruct_0200B358 * v8;
+    StringFormatter * v8;
     u32 v9;
     u8 v10[6];
     u8 v11[6];
@@ -2142,7 +2142,7 @@ static void ov16_0226A12C (UnkStruct_ov16_02268A14 * param0, int param1, int par
     param0->unk_66A = v0->unk_20;
 
     v2 = BattleSystem_MessageLoader(param0->unk_00);
-    v8 = ov16_0223E0D0(param0->unk_00);
+    v8 = BattleSystem_StringFormatter(param0->unk_00);
 
     ov16_0226B20C(param0, v3, 0);
     ov16_0226A698(param0);
@@ -2167,7 +2167,7 @@ static void ov16_0226A12C (UnkStruct_ov16_02268A14 * param0, int param1, int par
             v6 = BattleSystem_PartyPokemon(param0->unk_00, v12, v0->unk_00[v12].unk_00);
             v7 = Pokemon_GetBoxPokemon(v6);
 
-            sub_0200B5CC(v8, 0, v7);
+            StringFormatter_BufferNickname(v8, 0, v7);
             StringFormatter_Format(v8, v4, v5);
 
             if (v1 & 1) {
@@ -2637,8 +2637,8 @@ static void ov16_0226A98C (UnkStruct_ov16_02268A14 * param0, UnkStruct_ov16_0226
 
     if (param10 == NULL) {
         sub_0201A7A0(&v1);
-        sub_0201A870(v5, &v1, v8, 16 / 8, 0, 0);
-        sub_0201D7E0(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
+        BGL_AddFramelessWindow(v5, &v1, v8, 16 / 8, 0, 0);
+        PrintStringWithColorAndMargins(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
     } else {
         v1 = param10->unk_00;
     }
@@ -2795,7 +2795,7 @@ void ov16_0226AC98 (UnkStruct_ov16_02268A14 * param0, int param1, const UnkStruc
     Strbuf* v7;
     Strbuf* v8;
     Strbuf* v9;
-    UnkStruct_0200B358 * v10;
+    StringFormatter * v10;
     u32 v11;
     MessageLoader * v12;
 
@@ -2803,7 +2803,7 @@ void ov16_0226AC98 (UnkStruct_ov16_02268A14 * param0, int param1, const UnkStruc
     v0 = ov16_0226ABD4(param0, param1);
     v3 = sub_0208C098(6);
     v9 = MessageLoader_GetNewStrbuf(v12, 938);
-    v10 = ov16_0223E0D0(param0->unk_00);
+    v10 = BattleSystem_StringFormatter(param0->unk_00);
     v7 = Strbuf_Init(((2 + 2 + 1 + 2) * 2 + 2), 5);
     v8 = MessageLoader_GetNewStrbuf(v12, 937);
 
@@ -2859,8 +2859,8 @@ static void ov16_0226AEA0 (UnkStruct_ov16_02268A14 * param0, const Strbuf *param
     }
 
     sub_0201A7A0(&param3->unk_00);
-    sub_0201A870(BattleSystem_BGL(param0->unk_00), &param3->unk_00, v1, 16 / 8, 0, 0);
-    sub_0201D7E0(&param3->unk_00, param2, param1, 0, 0, 0xff, param4, 0, 0, NULL);
+    BGL_AddFramelessWindow(BattleSystem_BGL(param0->unk_00), &param3->unk_00, v1, 16 / 8, 0, 0);
+    PrintStringWithColorAndMargins(&param3->unk_00, param2, param1, 0, 0, 0xff, param4, 0, 0, NULL);
 }
 
 static void ov16_0226AF0C (UnkStruct_ov16_02268A14 * param0)
@@ -2898,7 +2898,7 @@ static void ov16_0226AF0C (UnkStruct_ov16_02268A14 * param0)
                 NNSG2dImageProxy * v9;
 
                 v8 = G2S_GetOBJCharPtr();
-                v9 = sub_02021F98(param0->unk_5EC[v0]->unk_00);
+                v9 = SpriteActor_ImageProxy(param0->unk_5EC[v0]->unk_00);
 
                 MI_CpuCopy16(v7->unk_18[v0], (void *)((u32)v8 + v9->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DSUB]), sub_0208C098(6));
             }

@@ -141,7 +141,7 @@ typedef struct UnkStruct_ov19_021D5DF8_t {
     MessageLoader * unk_190;
     MessageLoader * unk_194;
     MessageLoader * unk_198;
-    UnkStruct_0200B358 * unk_19C;
+    StringFormatter * unk_19C;
     Pokemon * unk_1A0;
     AnimationControlFlags * unk_1A4;
     int (* unk_1A8)(struct UnkStruct_ov19_021D5DF8_t * param0);
@@ -1036,7 +1036,7 @@ static void ov19_021D20A4 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
 {
     switch ((*param1)) {
     case 0:
-        sub_0200B5CC(param0->unk_19C, 0, ov19_021D5E9C(&param0->unk_00));
+        StringFormatter_BufferNickname(param0->unk_19C, 0, ov19_021D5E9C(&param0->unk_00));
         ov19_021D5408(&param0->unk_00, 0);
         ov19_021DF990(&param0->unk_00);
 
@@ -2278,7 +2278,7 @@ static void ov19_021D35F8 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
         break;
     case 2:
         if (ov19_021D6600(param0->unk_114, 26)) {
-            sub_0200B5CC(param0->unk_19C, 0, ov19_021D5E9C(&param0->unk_00));
+            StringFormatter_BufferNickname(param0->unk_19C, 0, ov19_021D5E9C(&param0->unk_00));
             ov19_021D38E0(param0);
 
             if (ov19_021D5E38(&param0->unk_00) == 2) {
@@ -4425,7 +4425,7 @@ MessageLoader * ov19_021D5DE8 (const UnkStruct_ov19_021D5DF8 * param0)
     return param0->unk_18C;
 }
 
-const UnkStruct_0200B358 * ov19_021D5DF0 (const UnkStruct_ov19_021D5DF8 * param0)
+const StringFormatter * ov19_021D5DF0 (const UnkStruct_ov19_021D5DF8 * param0)
 {
     return param0->unk_19C;
 }

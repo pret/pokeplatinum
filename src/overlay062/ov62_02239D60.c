@@ -976,7 +976,7 @@ static void ov62_0223AC58 (UnkStruct_0208C06C * param0, int param1)
     Strbuf* v2;
     Strbuf* v3;
     Strbuf* v4;
-    UnkStruct_0200B358 * v5;
+    StringFormatter * v5;
     int v6 = 28 + v0->unk_380.unk_00;
 
     v1 = &v0->unk_1B4[2];

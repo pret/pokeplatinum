@@ -49,7 +49,7 @@ struct BattleSystem {
     Window *windows;
     MessageLoader * unk_0C;
     MessageLoader * unk_10;
-    UnkStruct_0200B358 *strFormatter;
+    StringFormatter *strFormatter;
     Strbuf *msgBuffer;
     SysTask * unk_1C;
     SysTask * unk_20;

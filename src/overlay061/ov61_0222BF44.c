@@ -64,7 +64,7 @@ typedef struct {
     int unk_14;
     int unk_18;
     int unk_1C;
-    UnkStruct_0200B358 * unk_20;
+    StringFormatter * unk_20;
     MessageLoader * unk_24;
     MessageLoader * unk_28;
     MessageLoader * unk_2C;

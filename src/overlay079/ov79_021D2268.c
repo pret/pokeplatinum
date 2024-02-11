@@ -62,7 +62,7 @@
 #include "overlay079/ov79_021D3768.h"
 
 typedef struct {
-    UnkStruct_0200B358 * unk_00;
+    StringFormatter * unk_00;
     Strbuf* unk_04;
     Strbuf* unk_08[3];
 } UnkStruct_ov79_021D2928_sub1;

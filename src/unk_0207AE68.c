@@ -295,7 +295,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
             }
 
             sub_0200590C(param0->unk_60, param0->unk_84, param0->unk_86);
-            sub_0200B5CC(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+            StringFormatter_BufferNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
 
             if (param0->unk_7C & 0x2) {
                 param0->unk_65 = sub_0207C584(param0, 917);
@@ -407,7 +407,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
             Pokemon_SetValue(param0->unk_28, 5, (u8 *)&param0->unk_62);
             Pokemon_CalcAbility(param0->unk_28);
             Pokemon_CalcLevelAndStats(param0->unk_28);
-            sub_0200B5CC(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+            StringFormatter_BufferNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
             sub_0200B538(param0->unk_0C, 1, Pokemon_GetBoxPokemon(param0->unk_28));
             param0->unk_65 = sub_0207C584(param0, 918);
             param0->unk_66 = 40;
@@ -445,7 +445,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
             param0->unk_64 = 14;
             break;
         default:
-            sub_0200B5CC(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+            StringFormatter_BufferNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
             sub_0200B630(param0->unk_0C, 1, v3);
             param0->unk_65 = sub_0207C584(param0, 4);
             param0->unk_66 = 30;
@@ -455,14 +455,14 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
     }
     break;
     case 14:
-        sub_0200B5CC(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+        StringFormatter_BufferNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
         sub_0200B630(param0->unk_0C, 1, param0->unk_6C);
         param0->unk_65 = sub_0207C584(param0, 1193);
         param0->unk_66 = 30;
         param0->unk_64++;
         break;
     case 16:
-        sub_0200B5CC(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+        StringFormatter_BufferNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
         param0->unk_65 = sub_0207C584(param0, 1194);
         param0->unk_66 = 30;
         param0->unk_64++;
@@ -562,7 +562,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
     case 35:
         switch (sub_02002114(param0->unk_40, param0->unk_5C)) {
         case 0:
-            sub_0200B5CC(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+            StringFormatter_BufferNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
             sub_0200B630(param0->unk_0C, 1, param0->unk_6C);
             param0->unk_65 = sub_0207C584(param0, 1198);
             param0->unk_66 = 30;
@@ -587,7 +587,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
         param0->unk_64++;
         break;
     case 27:
-        sub_0200B5CC(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+        StringFormatter_BufferNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
         sub_0200B630(param0->unk_0C, 1, Pokemon_GetValue(param0->unk_28, 54 + param0->unk_6E, NULL));
         param0->unk_65 = sub_0207C584(param0, 1200);
         param0->unk_66 = 30;
@@ -599,7 +599,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
         param0->unk_64++;
         break;
     case 31:
-        sub_0200B5CC(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+        StringFormatter_BufferNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
         sub_0200B630(param0->unk_0C, 1, param0->unk_6C);
         param0->unk_65 = sub_0207C584(param0, 1202);
         param0->unk_66 = 0;
@@ -668,7 +668,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
         break;
     case 43:
         if ((sub_0200598C() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (sub_02007C24(param0->unk_1C[0]) == 0)) {
-            sub_0200B5CC(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+            StringFormatter_BufferNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
             param0->unk_65 = sub_0207C584(param0, 919);
             param0->unk_66 = 20;
             param0->unk_64++;

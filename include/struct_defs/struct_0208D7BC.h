@@ -36,7 +36,7 @@ typedef struct {
     UnkStruct_0200C440 * unk_684;
     MessageLoader * unk_688;
     MessageLoader * unk_68C;
-    UnkStruct_0200B358 * unk_690;
+    StringFormatter * unk_690;
     Strbuf* unk_694;
     Strbuf* unk_698;
     MessageLoader * unk_69C;

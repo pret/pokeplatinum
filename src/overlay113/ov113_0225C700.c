@@ -116,7 +116,7 @@ typedef struct UnkStruct_ov113_0225DBCC_t {
     UnkStruct_02015920 * unk_24;
     u8 unk_28;
     u8 unk_29;
-    UnkStruct_0200B358 * unk_2C;
+    StringFormatter * unk_2C;
     MessageLoader * unk_30;
     Window unk_34[8];
     Window unk_B4;
@@ -1161,7 +1161,7 @@ static BOOL ov113_0225D938 (int param0, int param1, CellActorData * param2, NARC
         v0 = G2S_GetOBJCharPtr();
     }
 
-    v1 = sub_02021F98(param2->unk_00);
+    v1 = SpriteActor_ImageProxy(param2->unk_00);
 
     MI_CpuCopy16(v4, (void *)((u32)v0 + v1->vramLocation.baseAddrOfVram[param5]), 0x20 * 2);
     MI_CpuCopy16(v5, (void *)((u32)v0 + 0x20 * 2 + v1->vramLocation.baseAddrOfVram[param5]), 0x20 * 2);
@@ -1534,8 +1534,8 @@ static void ov113_0225E15C (UnkStruct_ov113_0225DBCC * param0, UnkStruct_ov113_0
     ov113_0225E264(param2, param3, &v7, &v8);
 
     sub_0201A7A0(&v1);
-    sub_0201A870(v5, &v1, v8, 16 / 8, 0, 0);
-    sub_0201D7E0(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
+    BGL_AddFramelessWindow(v5, &v1, v8, 16 / 8, 0, 0);
+    PrintStringWithColorAndMargins(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
 
     v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DMAIN, 118);
     sub_0201ED94(v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);

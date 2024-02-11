@@ -51,7 +51,7 @@ typedef struct {
     BGL * unk_08;
     Window unk_0C;
     MessageLoader * unk_1C;
-    UnkStruct_0200B358 * unk_20;
+    StringFormatter * unk_20;
 } UnkStruct_02052AA4;
 
 static void sub_02052914(UnkStruct_0203CDB0 * param0, UnkStruct_020508D4 * param1);

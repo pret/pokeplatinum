@@ -6714,7 +6714,7 @@ static void ov65_02234A68 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1, u32 
 
     sub_02002BB8(2, param2);
     sub_0201A7A0(&v3);
-    sub_0201A870(param0->unk_15C, &v3, 8, 2, 0, 0);
+    BGL_AddFramelessWindow(param0->unk_15C, &v3, 8, 2, 0, 0);
 
     v4 = Strbuf_Init(64, param2);
     MessageLoader_GetStrbuf(param0->unk_168, 73, v4);

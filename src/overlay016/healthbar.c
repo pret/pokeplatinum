@@ -780,7 +780,7 @@ void ov16_0226737C (Healthbar * param0)
     param0->numberMode ^= 1;
 
     v2 = G2_GetOBJCharPtr();
-    v1 = sub_02021F98(param0->mainActor->unk_00);
+    v1 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
 
     if (param0->numberMode == 1) {
         v0 = ov16_02268250(70);
@@ -1076,20 +1076,20 @@ static void Healthbar_DrawBattlerName (Healthbar * param0)
     Strbuf* v5, * v6;
     Pokemon * v7;
     BoxPokemon * v8;
-    UnkStruct_0200B358 * v9;
+    StringFormatter * v9;
 
     v0 = BattleSystem_BGL(param0->battleSys);
     v4 = BattleSystem_MessageLoader(param0->battleSys);
-    v9 = ov16_0223E0D0(param0->battleSys);
+    v9 = BattleSystem_StringFormatter(param0->battleSys);
     v5 = Strbuf_Init((12 + (5 * 2)), 5);
     v6 = MessageLoader_GetNewStrbuf(v4, 964);
     v7 = BattleSystem_PartyPokemon(param0->battleSys, param0->unk_24, param0->unk_26);
     v8 = Pokemon_GetBoxPokemon(v7);
 
-    sub_0200B5CC(v9, 0, v8);
+    StringFormatter_BufferNickname(v9, 0, v8);
     StringFormatter_Format(v9, v5, v6);
-    sub_0201A870(v0, &v3, 8, 2, 0, 0xf);
-    sub_0201D7E0(&v3, 0, v5, 0, 0, 0xff, ((u32)(((0xe & 0xff) << 16) | ((2 & 0xff) << 8) | (((0xf & 0xff) << 0)))), 0, 0, NULL);
+    BGL_AddFramelessWindow(v0, &v3, 8, 2, 0, 0xf);
+    PrintStringWithColorAndMargins(&v3, 0, v5, 0, 0, 0xff, ((u32)(((0xe & 0xff) << 16) | ((2 & 0xff) << 8) | (((0xf & 0xff) << 0)))), 0, 0, NULL);
 
     v1 = v3.unk_0C;
 
@@ -1098,7 +1098,7 @@ static void Healthbar_DrawBattlerName (Healthbar * param0)
         u8 * v11, * v12;
 
         v10 = G2_GetOBJCharPtr();
-        v2 = sub_02021F98(param0->mainActor->unk_00);
+        v2 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
         v11 = v1;
         v12 = &v1[8 * 0x20];
 
@@ -1139,7 +1139,7 @@ static void Healthbar_DrawLevelText (Healthbar * param0)
         void * v5;
 
         v5 = G2_GetOBJCharPtr();
-        v0 = sub_02021F98(param0->mainActor->unk_00);
+        v0 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
 
         MI_CpuCopy16(v2, (void *)((u32)v5 + Unk_ov16_0226F47C[param0->type][0].unk_00 + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F47C[param0->type][0].unk_02);
         MI_CpuCopy16(v1, (void *)((u32)v5 + Unk_ov16_0226F47C[param0->type][1].unk_00 + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F47C[param0->type][1].unk_02);
@@ -1164,7 +1164,7 @@ static void Healthbar_DrawLevelNumber (Healthbar * param0)
         u8 * v8, * v9;
 
         v7 = G2_GetOBJCharPtr();
-        v2 = sub_02021F98(param0->mainActor->unk_00);
+        v2 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
 
         MI_CpuCopy16((void *)((u32)v7 + Unk_ov16_0226F3EC[param0->type][0].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), v1, Unk_ov16_0226F3EC[param0->type][0].unk_02);
         MI_CpuCopy16((void *)((u32)v7 + Unk_ov16_0226F3EC[param0->type][1].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), &v1[v3], Unk_ov16_0226F3EC[param0->type][1].unk_02);
@@ -1207,7 +1207,7 @@ static void Healthbar_DrawCurrentHP (Healthbar * param0, u32 param1)
         u8 * v3;
 
         v2 = G2_GetOBJCharPtr();
-        v1 = sub_02021F98(param0->mainActor->unk_00);
+        v1 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
         v3 = v0;
 
         MI_CpuCopy16(v3, (void *)((u32)v2 + Unk_ov16_0226F41C[param0->type][0].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F41C[param0->type][0].unk_02);
@@ -1232,7 +1232,7 @@ static void Healthbar_DrawMaxHP (Healthbar * param0)
         u8 * v3;
 
         v2 = G2_GetOBJCharPtr();
-        v1 = sub_02021F98(param0->mainActor->unk_00);
+        v1 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
         v3 = v0;
 
         MI_CpuCopy16(v3, (void *)((u32)v2 + Unk_ov16_0226F3BC[param0->type].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3BC[param0->type].unk_02);
@@ -1256,7 +1256,7 @@ static void Healthbar_DrawCaughtIcon (Healthbar * param0)
         void * v2;
 
         v2 = G2_GetOBJCharPtr();
-        v0 = sub_02021F98(param0->mainActor->unk_00);
+        v0 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
 
         MI_CpuCopy16(v1, (void *)((u32)v2 + Unk_ov16_0226F38C[param0->type].unk_00 + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F38C[param0->type].unk_02);
     }
@@ -1273,7 +1273,7 @@ static void Healthbar_DrawStatusIcon (Healthbar * param0, int param1)
         void * v2;
 
         v2 = G2_GetOBJCharPtr();
-        v0 = sub_02021F98(param0->mainActor->unk_00);
+        v0 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
 
         MI_CpuCopy16(v1, (void *)((u32)v2 + Unk_ov16_0226F35C[param0->type].unk_00 + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F35C[param0->type].unk_02);
     }
@@ -1297,8 +1297,8 @@ static void Healthbar_DrawBallCount (Healthbar * param0, u32 param1)
         v5 = MessageLoader_GetNewStrbuf(v4, 1220);
     }
 
-    sub_0201A870(v0, &v3, 13, 2, 0, 0xf);
-    sub_0201D7E0(&v3, 0, v5, 0, 0, 0xff, ((u32)(((0xe & 0xff) << 16) | ((2 & 0xff) << 8) | (((0xf & 0xff) << 0)))), 0, 0, NULL);
+    BGL_AddFramelessWindow(v0, &v3, 13, 2, 0, 0xf);
+    PrintStringWithColorAndMargins(&v3, 0, v5, 0, 0, 0xff, ((u32)(((0xe & 0xff) << 16) | ((2 & 0xff) << 8) | (((0xf & 0xff) << 0)))), 0, 0, NULL);
 
     v1 = v3.unk_0C;
 
@@ -1307,7 +1307,7 @@ static void Healthbar_DrawBallCount (Healthbar * param0, u32 param1)
         u8 * v7, * v8;
 
         v6 = G2_GetOBJCharPtr();
-        v2 = sub_02021F98(param0->mainActor->unk_00);
+        v2 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
         v7 = v1;
         v8 = &v1[13 * 0x20];
 
@@ -1330,11 +1330,11 @@ static void Healthbar_DrawBallsLeftMessage (Healthbar * param0, u32 param1)
     Window v3;
     MessageLoader * v4;
     Strbuf* v5, * v6;
-    UnkStruct_0200B358 * v7;
+    StringFormatter * v7;
 
     v0 = BattleSystem_BGL(param0->battleSys);
     v4 = BattleSystem_MessageLoader(param0->battleSys);
-    v7 = ov16_0223E0D0(param0->battleSys);
+    v7 = BattleSystem_StringFormatter(param0->battleSys);
     v5 = Strbuf_Init(30, 5);
 
     if (param1 & (1 << 10)) {
@@ -1345,8 +1345,8 @@ static void Healthbar_DrawBallsLeftMessage (Healthbar * param0, u32 param1)
 
     sub_0200B60C(v7, 0, param0->unk_27, 2, 1, 1);
     StringFormatter_Format(v7, v5, v6);
-    sub_0201A870(v0, &v3, 13, 2, 0, 0xf);
-    sub_0201D7E0(&v3, 0, v5, 0, 0, 0xff, ((u32)(((0xe & 0xff) << 16) | ((2 & 0xff) << 8) | (((0xf & 0xff) << 0)))), 0, 0, NULL);
+    BGL_AddFramelessWindow(v0, &v3, 13, 2, 0, 0xf);
+    PrintStringWithColorAndMargins(&v3, 0, v5, 0, 0, 0xff, ((u32)(((0xe & 0xff) << 16) | ((2 & 0xff) << 8) | (((0xf & 0xff) << 0)))), 0, 0, NULL);
 
     v1 = v3.unk_0C;
 
@@ -1355,7 +1355,7 @@ static void Healthbar_DrawBallsLeftMessage (Healthbar * param0, u32 param1)
         u8 * v9, * v10;
 
         v8 = G2_GetOBJCharPtr();
-        v2 = sub_02021F98(param0->mainActor->unk_00);
+        v2 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
         v9 = v1;
         v10 = &v1[13 * 0x20];
 
@@ -1416,7 +1416,7 @@ static void DrawGauge (Healthbar * param0, u8 param1)
     int v9;
 
     v7 = G2_GetOBJCharPtr();
-    v8 = sub_02021F98(param0->mainActor->unk_00);
+    v8 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
 
     switch (param1) {
     case 0:

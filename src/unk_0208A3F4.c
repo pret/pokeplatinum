@@ -714,7 +714,7 @@ void sub_0208B090 (UnkStruct_02089688 * param0, int param1, int param2, int para
 
     {
         sub_0201A7A0(&v7);
-        sub_0201A870(param0->unk_2C0.unk_0C, &v7, 10, 2, 0, 0);
+        BGL_AddFramelessWindow(param0->unk_2C0.unk_0C, &v7, 10, 2, 0, 0);
         sub_0201D78C(&v7, 2, v3, sub_02002EEC(2, v3, 0, 80), 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((2 & 0xff) << 0))), NULL);
     }
 

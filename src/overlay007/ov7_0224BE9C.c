@@ -95,7 +95,7 @@ typedef struct {
 typedef struct {
     u32 unk_00;
     Window * unk_04;
-    UnkStruct_0200B358 * unk_08;
+    StringFormatter * unk_08;
     Strbuf* unk_0C;
     Strbuf* unk_10[3];
 } UnkStruct_ov7_0224C620;
@@ -107,7 +107,7 @@ typedef struct {
     ResourceMetadata unk_0C[23];
     Strbuf* unk_C4[23];
     s32 unk_120;
-    UnkStruct_0200B358 * unk_124;
+    StringFormatter * unk_124;
     Strbuf* unk_128;
     u16 unk_12C;
     u16 unk_12E;
@@ -462,7 +462,7 @@ static void ov7_0224C4E0 (UnkStruct_ov7_0224C3EC * param0, MessageLoader * param
 {
     Strbuf* v0;
     Strbuf* v1;
-    UnkStruct_0200B358 * v2;
+    StringFormatter * v2;
 
     v2 = sub_0200B358(param2);
     v1 = Strbuf_Init(200, param2);
@@ -489,7 +489,7 @@ static void ov7_0224C580 (UnkStruct_ov7_0224C3EC * param0, MessageLoader * param
 {
     Strbuf* v0;
     Strbuf* v1;
-    UnkStruct_0200B358 * v2;
+    StringFormatter * v2;
 
     v2 = sub_0200B358(param2);
     v1 = Strbuf_Init(200, param2);

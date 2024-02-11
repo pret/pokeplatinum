@@ -110,7 +110,7 @@ u16 * ov16_0223E0A4(BattleSystem * param0);
 u16 * ov16_0223E0B0(BattleSystem * param0);
 u16 * ov16_0223E0BC(BattleSystem * param0);
 UnkStruct_ov16_0223E0C8 * ov16_0223E0C8(BattleSystem * param0);
-UnkStruct_0200B358 * ov16_0223E0D0(BattleSystem * param0);
+StringFormatter * BattleSystem_StringFormatter(BattleSystem * param0);
 Strbuf* ov16_0223E0D4(BattleSystem * param0);
 u16 Battler_TrainerID(BattleSystem * param0, int param1);
 TrainerData * BattleSystem_TrainerData(BattleSystem * param0, int param1);
@@ -416,7 +416,7 @@ UnkStruct_ov16_0223E0C8 * ov16_0223E0C8 (BattleSystem * param0)
     return &param0->unk_1CC[0];
 }
 
-UnkStruct_0200B358 * ov16_0223E0D0 (BattleSystem * param0)
+StringFormatter * BattleSystem_StringFormatter (BattleSystem * param0)
 {
     return param0->strFormatter;
 }
@@ -1146,7 +1146,7 @@ void ov16_0223EF8C (BattleSystem * param0)
     MI_CpuCopy32(sub_02003164(param0->unk_28, 0), param0->unk_220, HW_BG_PLTT_SIZE);
 
     v7 = G2_GetOBJCharPtr();
-    v0 = sub_02021F98(param0->unk_17C[1].unk_00->unk_00);
+    v0 = SpriteActor_ImageProxy(param0->unk_17C[1].unk_00->unk_00);
     v7 += v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN];
 
     for (v2 = 20; v2 < 20 + 8; v2++) {
@@ -1177,7 +1177,7 @@ void ov16_0223EF8C (BattleSystem * param0)
     }
 
     v7 = G2_GetOBJCharPtr();
-    v0 = sub_02021F98(param0->unk_17C[0].unk_00->unk_00);
+    v0 = SpriteActor_ImageProxy(param0->unk_17C[0].unk_00->unk_00);
     v7 += v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN];
 
     for (v6 = 0; v6 < 0x40 * 32; v6++) {
@@ -2341,7 +2341,7 @@ static void BattleMessage_Nickname (BattleSystem * param0, u32 param1, int param
     Pokemon * v0;
 
     v0 = BattleSystem_PartyPokemon(param0, param2 & 0xff, (param2 & 0xff00) >> 8);
-    sub_0200B5CC(param0->strFormatter, param1, &v0->box);
+    StringFormatter_BufferNickname(param0->strFormatter, param1, &v0->box);
 }
 
 static void BattleMessage_MoveName (BattleSystem * param0, u32 param1, int param2)

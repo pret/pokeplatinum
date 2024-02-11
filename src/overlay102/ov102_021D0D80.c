@@ -44,7 +44,7 @@ typedef struct {
     Window unk_14;
     Window unk_24;
     MessageLoader * unk_34;
-    UnkStruct_0200B358 * unk_38;
+    StringFormatter * unk_38;
     s16 unk_3C;
     int unk_40;
 } UnkStruct_ov102_021D0F8C;

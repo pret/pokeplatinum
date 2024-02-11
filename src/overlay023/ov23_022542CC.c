@@ -428,7 +428,7 @@ static void ov23_022546E0 (UnkStruct_ov23_02254594 * param0)
             Strbuf* v13;
             Strbuf* v14;
             Strbuf* v15;
-            UnkStruct_0200B358 * v16;
+            StringFormatter * v16;
 
             v12 = MessageLoader_Init(0, 26, 637, 4);
 

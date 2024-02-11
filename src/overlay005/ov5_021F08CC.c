@@ -68,7 +68,7 @@ typedef struct {
     u8 unk_28;
     Strbuf* unk_2C;
     Strbuf* unk_30;
-    UnkStruct_0200B358 * unk_34;
+    StringFormatter * unk_34;
     Window unk_38;
     MessageLoader * unk_48;
 } UnkStruct_ov5_021F0D6C;

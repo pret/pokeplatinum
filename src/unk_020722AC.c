@@ -79,7 +79,7 @@ typedef struct {
 } UnkStruct_020F0524;
 
 typedef struct {
-    UnkStruct_0200B358 * unk_00;
+    StringFormatter * unk_00;
     Strbuf* unk_04;
     Strbuf* unk_08;
     Strbuf* unk_0C;

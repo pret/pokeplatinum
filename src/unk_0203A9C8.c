@@ -531,7 +531,7 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
 
     for (v4 = 0; v4 < v5; v4++) {
         if (v1->unk_30[v4] == 3) {
-            UnkStruct_0200B358 * v6;
+            StringFormatter * v6;
             Strbuf* v7;
             Strbuf* v8;
 
@@ -644,7 +644,7 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
     UnkStruct_0203CDB0 * v0;
     UnkStruct_020708E0 * v1;
     MessageLoader * v2;
-    UnkStruct_0200B358 * v3;
+    StringFormatter * v3;
     Strbuf* v4;
     Strbuf* v5;
     u8 v6;

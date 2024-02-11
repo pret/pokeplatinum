@@ -89,7 +89,7 @@ void sub_02039834 (int param0, int param1, int param2)
     MessageLoader * v2;
     Strbuf* v3;
     Strbuf* v4;
-    UnkStruct_0200B358 * v5;
+    StringFormatter * v5;
     int v6;
 
     switch (param1) {

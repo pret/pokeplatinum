@@ -1034,7 +1034,7 @@ static void sub_0208D200 (UnkStruct_0208D7BC * param0, Pokemon * param1, UnkStru
     StringFormatter_Format(param0->unk_690, param0->unk_250.unk_00, param0->unk_694);
 
     MessageLoader_GetStrbuf(param0->unk_688, 0, param0->unk_694);
-    sub_0200B5CC(param0->unk_690, 0, v0);
+    StringFormatter_BufferNickname(param0->unk_690, 0, v0);
     StringFormatter_Format(param0->unk_690, param0->unk_250.unk_04, param0->unk_694);
 
     MessageLoader_GetStrbuf(param0->unk_688, 14, param0->unk_694);

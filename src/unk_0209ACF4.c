@@ -38,7 +38,7 @@ typedef struct {
     UnkStruct_0203CDB0 * unk_00;
     Strbuf* unk_04;
     Strbuf* unk_08;
-    UnkStruct_0200B358 * unk_0C;
+    StringFormatter * unk_0C;
     MessageLoader * unk_10;
     UnkStruct_020149F0 * unk_14;
     Window unk_18;

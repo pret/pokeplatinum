@@ -54,7 +54,7 @@
 #include "overlay067/ov67_0225C700.h"
 
 typedef struct {
-    UnkStruct_0200B358 * unk_00;
+    StringFormatter * unk_00;
     MessageLoader * unk_04;
     Window unk_08;
     Strbuf* unk_18;

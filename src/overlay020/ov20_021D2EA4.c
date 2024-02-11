@@ -435,7 +435,7 @@ void ov20_021D3578 (UnkStruct_ov20_021D30F8 * param0, u32 param1)
     case 0:
 
     {
-        UnkStruct_0200B358 * v0 = sub_0200B368(2, 60, 0);
+        StringFormatter * v0 = sub_0200B368(2, 60, 0);
         Strbuf* v1 = Strbuf_Init(300, 0);
 
         sub_0200B7B4(v0, 0, 0);
