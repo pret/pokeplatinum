@@ -39,6 +39,22 @@
 #include "overlay016/ov16_0223DF00.h"
 #include "battle/healthbar.h"
 
+#define HEALTHBAR_SCROLL_SPEED  24
+#define HEALTHBAR_SCROLL_OUT_OFFSET 160
+
+#define HEALTHBAR_X_OFFSET_SOLO_PLAYER      192
+#define HEALTHBAR_Y_OFFSET_SOLO_PLAYER      116
+#define HEALTHBAR_X_OFFSET_SOLO_ENEMY       58
+#define HEALTHBAR_Y_OFFSET_SOLO_ENEMY       36
+#define HEALTHBAR_X_OFFSET_PLAYER_SLOT_1    HEALTHBAR_X_OFFSET_SOLO_PLAYER
+#define HEALTHBAR_Y_OFFSET_PLAYER_SLOT_1    HEALTHBAR_Y_OFFSET_SOLO_PLAYER - 13
+#define HEALTHBAR_X_OFFSET_PLAYER_SLOT_2    HEALTHBAR_X_OFFSET_SOLO_PLAYER + 6
+#define HEALTHBAR_Y_OFFSET_PLAYER_SLOT_2    HEALTHBAR_Y_OFFSET_SOLO_PLAYER + 16
+#define HEALTHBAR_X_OFFSET_ENEMY_SLOT_1     HEALTHBAR_X_OFFSET_SOLO_ENEMY + 6
+#define HEALTHBAR_Y_OFFSET_ENEMY_SLOT_1     HEALTHBAR_Y_OFFSET_SOLO_ENEMY - 20
+#define HEALTHBAR_X_OFFSET_ENEMY_SLOT_2     HEALTHBAR_X_OFFSET_SOLO_ENEMY
+#define HEALTHBAR_Y_OFFSET_ENEMY_SLOT_2     HEALTHBAR_Y_OFFSET_SOLO_ENEMY + 9
+
 typedef struct {
     u16 unk_00;
     u16 unk_02;
@@ -70,22 +86,22 @@ static void ov16_02267DC4(Healthbar * param0, u32 param1);
 static void ov16_02266FE4(SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, PaletteData * param3, int param4);
 static void ov16_02267244(Healthbar * param0);
 static void ov16_0226728C(Healthbar * param0);
-static const SpriteTemplate * ov16_022682B0(u8 param0);
+static const SpriteTemplate* Healthbar_SpriteTemplate(u8 type);
 static const SpriteTemplate * ov16_02268314(u8 param0);
-static void ov16_0226774C(SysTask * param0, void * param1);
+static void ScrollHealthbarTask(SysTask *task, void *data);
 static void ov16_02268380(SysTask * param0, void * param1);
 void ov16_02268470(Healthbar * param0);
 void ov16_02268498(Healthbar * param0);
 static void ov16_022684BC(SysTask * param0, void * param1);
 static void Healthbar_EnableArrow(Healthbar * param0, int param1);
 
-__attribute__((aligned(4))) static const s8 Unk_ov16_0226F334[] = {
-    0x48,
-    0x0,
-    0x48,
-    0x0,
-    0x48,
-    0x0
+__attribute__((aligned(4))) static const s8 sArrowOffsetX[] = {
+    [HEALTHBAR_TYPE_PLAYER_SOLO]   = 72,
+    [HEALTHBAR_TYPE_ENEMY_SOLO]    = 0,
+    [HEALTHBAR_TYPE_PLAYER_SLOT_1] = 72,
+    [HEALTHBAR_TYPE_ENEMY_SLOT_1]  = 0,
+    [HEALTHBAR_TYPE_PLAYER_SLOT_2] = 72,
+    [HEALTHBAR_TYPE_ENEMY_SLOT_2]  = 0,
 };
 
 static const UnkStruct_ov16_0226F64C Unk_ov16_0226F64C[][4] = {
@@ -303,82 +319,124 @@ static const UnkStruct_ov16_0226F64C Unk_ov16_0226F3D4[] = {
     {0x0, 0x0}
 };
 
-static const SpriteTemplate Unk_ov16_0226F5B0 = {
-    0xC0,
-    0x74,
-    0x0,
-    0x0,
-    23,
-    0x0,
-    NNS_G2D_VRAM_TYPE_2DMAIN,
-    {0xBF, 0x4E26, 0xBE, 0xBD, 0xFFFFFFFF, 0xFFFFFFFF},
-    0x0,
-    0x0
+static const SpriteTemplate sHealthbarTemplate_SoloPlayer = {
+    .x = HEALTHBAR_X_OFFSET_SOLO_PLAYER,
+    .y = HEALTHBAR_Y_OFFSET_SOLO_PLAYER,
+    .z = 0,
+    .animIdx = 0,
+    .priority = 23,
+    .plttIdx = 0,
+    .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    .resources = {
+        0xBF,
+        0x4E26,
+        0xBE,
+        0xBD,
+        SPRITE_RESOURCE_NONE,
+        SPRITE_RESOURCE_NONE,
+    },
+    .bgPriority = 0,
+    .transferToVRAM = FALSE,
 };
 
-static const SpriteTemplate Unk_ov16_0226F5E4 = {
-    0x3A,
-    0x24,
-    0x0,
-    0x0,
-    24,
-    0x0,
-    NNS_G2D_VRAM_TYPE_2DMAIN,
-    {0xBC, 0x4E26, 0xBB, 0xBA, 0xFFFFFFFF, 0xFFFFFFFF},
-    0x0,
-    0x0
+static const SpriteTemplate sHealthbarTemplate_SoloEnemy = {
+    .x = HEALTHBAR_X_OFFSET_SOLO_ENEMY,
+    .y = HEALTHBAR_Y_OFFSET_SOLO_ENEMY,
+    .z = 0,
+    .animIdx = 0,
+    .priority = 24,
+    .plttIdx = 0,
+    .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    .resources = {
+        0xBC,
+        0x4E26,
+        0xBB,
+        0xBA,
+        SPRITE_RESOURCE_NONE,
+        SPRITE_RESOURCE_NONE,
+    },
+    .bgPriority = 0,
+    .transferToVRAM = FALSE,
 };
 
-static const SpriteTemplate Unk_ov16_0226F4AC = {
-    0xC0,
-    0x67,
-    0x0,
-    0x0,
-    28,
-    0x0,
-    NNS_G2D_VRAM_TYPE_2DMAIN,
-    {0xC8, 0x4E26, 0xC7, 0xC6, 0xFFFFFFFF, 0xFFFFFFFF},
-    0x0,
-    0x0
+static const SpriteTemplate sHealthbarTemplate_PlayerSlot1 = {
+    .x = HEALTHBAR_X_OFFSET_PLAYER_SLOT_1,
+    .y = HEALTHBAR_Y_OFFSET_PLAYER_SLOT_1,
+    .z = 0,
+    .animIdx = 0,
+    .priority = 28,
+    .plttIdx = 0,
+    .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    .resources = {
+        0xC8,
+        0x4E26,
+        0xC7,
+        0xC6,
+        SPRITE_RESOURCE_NONE,
+        SPRITE_RESOURCE_NONE,
+    },
+    .bgPriority = 0,
+    .transferToVRAM = FALSE,
 };
 
-static const SpriteTemplate Unk_ov16_0226F4E0 = {
-    0x40,
-    0x10,
-    0x0,
-    0x0,
-    25,
-    0x0,
-    NNS_G2D_VRAM_TYPE_2DMAIN,
-    {0xC2, 0x4E26, 0xC1, 0xC0, 0xFFFFFFFF, 0xFFFFFFFF},
-    0x0,
-    0x0
+static const SpriteTemplate sHealthbarTemplate_EnemySlot1 = {
+    .x = HEALTHBAR_X_OFFSET_ENEMY_SLOT_1,
+    .y = HEALTHBAR_Y_OFFSET_ENEMY_SLOT_1,
+    .z = 0,
+    .animIdx = 0,
+    .priority = 25,
+    .plttIdx = 0,
+    .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    .resources = {
+        0xC2,
+        0x4E26,
+        0xC1,
+        0xC0,
+        SPRITE_RESOURCE_NONE,
+        SPRITE_RESOURCE_NONE,
+    },
+    .bgPriority = 0,
+    .transferToVRAM = FALSE,
 };
 
-static const SpriteTemplate Unk_ov16_0226F548 = {
-    0xC6,
-    0x84,
-    0x0,
-    0x0,
-    26,
-    0x0,
-    NNS_G2D_VRAM_TYPE_2DMAIN,
-    {0xCB, 0x4E26, 0xCA, 0xC9, 0xFFFFFFFF, 0xFFFFFFFF},
-    0x0,
-    0x0
+static const SpriteTemplate sHealthbarTemplate_PlayerSlot2 = {
+    .x = HEALTHBAR_X_OFFSET_PLAYER_SLOT_2,
+    .y = HEALTHBAR_Y_OFFSET_PLAYER_SLOT_2,
+    .z = 0,
+    .animIdx = 0,
+    .priority = 26,
+    .plttIdx = 0,
+    .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    .resources = {
+        0xCB,
+        0x4E26,
+        0xCA,
+        0xC9,
+        SPRITE_RESOURCE_NONE,
+        SPRITE_RESOURCE_NONE,
+    },
+    .bgPriority = 0,
+    .transferToVRAM = FALSE,
 };
 
-static const SpriteTemplate Unk_ov16_0226F618 = {
-    0x3A,
-    0x2D,
-    0x0,
-    0x0,
-    27,
-    0x0,
-    NNS_G2D_VRAM_TYPE_2DMAIN,
-    {0xC5, 0x4E26, 0xC4, 0xC3, 0xFFFFFFFF, 0xFFFFFFFF},
-    0x0,
-    0x0
+static const SpriteTemplate sHealthbarTemplate_EnemySlot2 = {
+    .x = HEALTHBAR_X_OFFSET_ENEMY_SLOT_2,
+    .y = HEALTHBAR_Y_OFFSET_ENEMY_SLOT_2,
+    .z = 0,
+    .animIdx = 0,
+    .priority = 27,
+    .plttIdx = 0,
+    .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    .resources = {
+        0xC5,
+        0x4E26,
+        0xC4,
+        0xC3,
+        SPRITE_RESOURCE_NONE,
+        SPRITE_RESOURCE_NONE,
+    },
+    .bgPriority = 0,
+    .transferToVRAM = FALSE,
 };
 
 static const SpriteTemplate Unk_ov16_0226F514 = {
@@ -394,17 +452,24 @@ static const SpriteTemplate Unk_ov16_0226F514 = {
     0x0
 };
 
-static const SpriteTemplate Unk_ov16_0226F57C = {
-    0xC0,
-    0x74,
-    0x0,
-    0x0,
-    23,
-    0x0,
-    NNS_G2D_VRAM_TYPE_2DMAIN,
-    {0xFD, 0x4E28, 0xFE, 0xFF, 0xFFFFFFFF, 0xFFFFFFFF},
-    0x0,
-    0x0
+static const SpriteTemplate sHealthbarTemplate_NoPlayerMon = {
+    .x = HEALTHBAR_X_OFFSET_SOLO_PLAYER,
+    .y = HEALTHBAR_Y_OFFSET_SOLO_PLAYER,
+    .z = 0,
+    .animIdx = 0,
+    .priority = 23,
+    .plttIdx = 0,
+    .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    .resources = {
+        0xFD,
+        0x4E28,
+        0xFE,
+        0xFF,
+        SPRITE_RESOURCE_NONE,
+        SPRITE_RESOURCE_NONE,
+    },
+    .bgPriority = 0,
+    .transferToVRAM = FALSE,
 };
 
 #include "overlay016/rodata_ov16_0226F6AC.h"
@@ -413,7 +478,7 @@ void ov16_02266F1C (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * p
 {
     const SpriteTemplate * v0;
 
-    v0 = ov16_022682B0(param4);
+    v0 = Healthbar_SpriteTemplate(param4);
 
     SpriteRenderer_LoadCharResObjFromOpenNarc(param0, param1, param2, v0->resources[0], 1, NNS_G2D_VRAM_TYPE_2DMAIN, v0->resources[0]);
     SpriteRenderer_LoadPalette(param3, 2, param0, param1, param2, 71, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20006);
@@ -445,7 +510,7 @@ CellActorData * ov16_02267060 (SpriteRenderer * param0, SpriteGfxHandler * param
     const SpriteTemplate * v0;
     CellActorData * v1;
 
-    v0 = ov16_022682B0(param2);
+    v0 = Healthbar_SpriteTemplate(param2);
     v1 = SpriteActor_LoadResources(param0, param1, v0);
 
     SpriteActor_UpdateObject(v1->unk_00);
@@ -461,15 +526,15 @@ void Healthbar_Draw (Healthbar * param0, u32 param1, u32 param2)
 
     v1 = param2;
 
-    if (param0->unk_25 == 6) {
+    if (param0->type == 6) {
         param2 &= ((1 << 10) | (1 << 11));
-    } else if (param0->unk_25 == 7) {
+    } else if (param0->type == 7) {
         param2 &= ((1 << 12) | (1 << 13));
     } else {
         param2 &= 0xffffffff ^ (((1 << 10) | (1 << 11)) | ((1 << 12) | (1 << 13)));
     }
 
-    switch (param0->unk_25) {
+    switch (param0->type) {
     case 1:
     case 3:
     case 5:
@@ -596,7 +661,7 @@ void ov16_02267258 (Healthbar * param0)
     SpriteGfxHandler * v1;
     const SpriteTemplate * v2;
 
-    v2 = ov16_022682B0(param0->unk_25);
+    v2 = Healthbar_SpriteTemplate(param0->type);
     v0 = ov16_0223E010(param0->battleSys);
     v1 = ov16_0223E018(param0->battleSys);
 
@@ -611,7 +676,7 @@ static void ov16_0226728C (Healthbar * param0)
     SpriteGfxHandler * v1;
     const SpriteTemplate * v2;
 
-    v2 = ov16_02268314(param0->unk_25);
+    v2 = ov16_02268314(param0->type);
 
     if (v2 == NULL) {
         return;
@@ -637,15 +702,15 @@ void ov16_022672C4 (Healthbar * param0)
     v1 = ov16_0223E010(param0->battleSys);
     v2 = ov16_0223E018(param0->battleSys);
     v3 = BattleSystem_PaletteSys(param0->battleSys);
-    v0 = ov16_022682B0(param0->unk_25);
+    v0 = Healthbar_SpriteTemplate(param0->type);
 
-    ov16_02266F1C(v1, v2, v4, v3, param0->unk_25);
-    param0->mainActor = ov16_02267060(v1, v2, param0->unk_25);
+    ov16_02266F1C(v1, v2, v4, v3, param0->type);
+    param0->mainActor = ov16_02267060(v1, v2, param0->type);
 
-    ov16_02266FE4(v1, v2, v4, v3, param0->unk_25);
+    ov16_02266FE4(v1, v2, v4, v3, param0->type);
 
     if (param0->arrowActor != NULL) {
-        SpriteActor_SetPositionXY(param0->arrowActor->unk_00, v0->x - Unk_ov16_0226F334[param0->unk_25], v0->y + 0);
+        SpriteActor_SetPositionXY(param0->arrowActor->unk_00, v0->x - sArrowOffsetX[param0->type], v0->y + 0);
     }
 
     NARC_dtor(v4);
@@ -665,7 +730,7 @@ void ov16_0226737C (Healthbar * param0)
     NNSG2dImageProxy * v1;
     void * v2;
 
-    switch (param0->unk_25) {
+    switch (param0->type) {
     case 2:
     case 4:
         break;
@@ -680,23 +745,23 @@ void ov16_0226737C (Healthbar * param0)
 
     if (param0->unk_4F_3 == 1) {
         v0 = ov16_02268250(70);
-        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F374[param0->unk_25].unk_00 + 0x20 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
+        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F374[param0->type].unk_00 + 0x20 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
         v0 = ov16_02268250(71);
-        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3A4[param0->unk_25].unk_00 + 0x20 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
+        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3A4[param0->type].unk_00 + 0x20 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
 
         v0 = ov16_02268250(69);
-        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3D4[param0->unk_25].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3D4[param0->unk_25].unk_02);
+        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3D4[param0->type].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3D4[param0->type].unk_02);
 
         Healthbar_Draw(param0, param0->unk_28, (1 << 1) | (1 << 2));
     } else {
         v0 = ov16_02268250(66);
-        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F374[param0->unk_25].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F374[param0->unk_25].unk_02);
+        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F374[param0->type].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F374[param0->type].unk_02);
 
         v0 = ov16_02268250(68);
-        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3A4[param0->unk_25].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3A4[param0->unk_25].unk_02);
+        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3A4[param0->type].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3A4[param0->type].unk_02);
 
         v0 = ov16_02268250(38);
-        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3A4[param0->unk_25].unk_00 + 0x20 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
+        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3A4[param0->type].unk_00 + 0x20 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
 
         Healthbar_Draw(param0, param0->unk_28, (1 << 0));
     }
@@ -844,111 +909,120 @@ void Healthbar_Enable(Healthbar *battleSys, BOOL enable)
     Healthbar_EnableArrow(battleSys, enable);
 }
 
-void ov16_0226763C (Healthbar * param0, int param1, int param2)
+void Healthbar_OffsetPositionXY(Healthbar *healthbar, int x, int y)
 {
-    const SpriteTemplate * v0;
+    GF_ASSERT(healthbar->mainActor != NULL);
+    const SpriteTemplate *template = Healthbar_SpriteTemplate(healthbar->type);
 
-    GF_ASSERT(param0->mainActor != NULL);
-    v0 = ov16_022682B0(param0->unk_25);
-
-    SpriteActor_SetPositionXY(param0->mainActor->unk_00, v0->x + param1, v0->y + param2);
-
-    if (param0->arrowActor != NULL) {
-        SpriteActor_SetPositionXY(param0->arrowActor->unk_00, v0->x + param1 - Unk_ov16_0226F334[param0->unk_25], v0->y + param2 + 0);
+    SpriteActor_SetPositionXY(healthbar->mainActor->unk_00, template->x + x, template->y + y);
+    if (healthbar->arrowActor != NULL) {
+        SpriteActor_SetPositionXY(healthbar->arrowActor->unk_00,
+            template->x + x - sArrowOffsetX[healthbar->type],
+            template->y + y + 0);
     }
 }
 
-void Healthbar_SetScrollEffect (Healthbar * param0, int param1)
+void Healthbar_Scroll(Healthbar *healthbar, enum HealthbarScrollDirection direction)
 {
-    GF_ASSERT(param0 != NULL);
-    GF_ASSERT(param0->mainActor != NULL);
+    GF_ASSERT(healthbar != NULL);
+    GF_ASSERT(healthbar->mainActor != NULL);
 
-    param0->unk_4F_1 = 0;
-    param0->unk_4F_0 = param1;
+    healthbar->doneScrolling = 0;
+    healthbar->scrollDirection = direction;
 
-    if (param1 == 0) {
-        switch (param0->unk_25) {
-        case 0:
-        case 2:
-        case 4:
-        case 6:
-        case 7:
-            ov16_0226763C(param0, 160, 0);
+    if (direction == HEALTHBAR_SCROLL_IN) {
+        switch (healthbar->type) {
+        case HEALTHBAR_TYPE_PLAYER_SOLO:
+        case HEALTHBAR_TYPE_PLAYER_SLOT_1:
+        case HEALTHBAR_TYPE_PLAYER_SLOT_2:
+        case HEALTHBAR_TYPE_SAFARI_ZONE:
+        case HEALTHBAR_TYPE_PAL_PARK:
+            // Player-side healthbar
+            Healthbar_OffsetPositionXY(healthbar, HEALTHBAR_SCROLL_OUT_OFFSET, 0);
             break;
+
         default:
-            ov16_0226763C(param0, -160, 0);
+            // Enemy-side healthbar
+            Healthbar_OffsetPositionXY(healthbar, -HEALTHBAR_SCROLL_OUT_OFFSET, 0);
             break;
         }
     } else {
-        ov16_0226763C(param0, 0, 0);
+        Healthbar_OffsetPositionXY(healthbar, 0, 0);
     }
 
-    SysTask_Start(ov16_0226774C, param0, 990);
+    SysTask_Start(ScrollHealthbarTask, healthbar, 990);
 }
 
-static void ov16_0226774C (SysTask * param0, void * param1)
+/**
+ * @brief Scroll the healthbar in or out by the configured scroll-speed value.
+ * 
+ * @param task 
+ * @param data 
+ */
+static void ScrollHealthbarTask(SysTask *task, void *data)
 {
-    Healthbar * v0 = param1;
-    s16 v1, v2;
-    const SpriteTemplate * v3;
-    int v4;
+    Healthbar *healthbar = data;
+    int done = 0;
+    const SpriteTemplate *template = Healthbar_SpriteTemplate(healthbar->type);
 
-    v4 = 0;
-    v3 = ov16_022682B0(v0->unk_25);
+    s16 x, y;
+    SpriteActor_GetSpritePositionXY(healthbar->mainActor, &x, &y);
 
-    SpriteActor_GetSpritePositionXY(v0->mainActor, &v1, &v2);
+    // Determine new X and Y based on the type of healthbar
+    switch (healthbar->type) {
+    case HEALTHBAR_TYPE_PLAYER_SOLO:
+    case HEALTHBAR_TYPE_PLAYER_SLOT_1:
+    case HEALTHBAR_TYPE_PLAYER_SLOT_2:
+    case HEALTHBAR_TYPE_SAFARI_ZONE:
+    case HEALTHBAR_TYPE_PAL_PARK:
+        // Player-side healthbar
+        if (healthbar->scrollDirection == HEALTHBAR_SCROLL_IN) {
+            x -= HEALTHBAR_SCROLL_SPEED;
 
-    switch (v0->unk_25) {
-    case 0:
-    case 2:
-    case 4:
-    case 6:
-    case 7:
-        if (v0->unk_4F_0 == 0) {
-            v1 -= 24;
-
-            if (v1 < v3->x) {
-                v1 = v3->x;
-                v4++;
+            if (x < template->x) {
+                x = template->x;
+                done++;
             }
         } else {
-            v1 += 24;
+            x += HEALTHBAR_SCROLL_SPEED;
 
-            if (v1 > v3->x + 160) {
-                v1 = v3->x + 160;
-                v4++;
+            if (x > template->x + HEALTHBAR_SCROLL_OUT_OFFSET) {
+                x = template->x + HEALTHBAR_SCROLL_OUT_OFFSET;
+                done++;
             }
         }
         break;
+
     default:
-        if (v0->unk_4F_0 == 0) {
-            v1 += 24;
+        // Enemy-side healthbar
+        if (healthbar->scrollDirection == HEALTHBAR_SCROLL_IN) {
+            x += HEALTHBAR_SCROLL_SPEED;
 
-            if (v1 > v3->x) {
-                v1 = v3->x;
-                v4++;
+            if (x > template->x) {
+                x = template->x;
+                done++;
             }
         } else {
-            v1 -= 24;
+            x -= HEALTHBAR_SCROLL_SPEED;
 
-            if (v1 < v3->x - 24) {
-                v1 = v3->x - 24;
-                v4++;
+            if (x < template->x - HEALTHBAR_SCROLL_SPEED) {
+                x = template->x - HEALTHBAR_SCROLL_SPEED;
+                done++;
             }
         }
         break;
     }
 
-    SpriteActor_SetSpritePositionXY(v0->mainActor, v1, v2);
-
-    if (v0->arrowActor != NULL) {
-        SpriteActor_SetSpritePositionXY(v0->arrowActor, v1 - Unk_ov16_0226F334[v0->unk_25], v2 + 0);
+    // Update positions of the sprites on the screen
+    SpriteActor_SetSpritePositionXY(healthbar->mainActor, x, y);
+    if (healthbar->arrowActor != NULL) {
+        SpriteActor_SetSpritePositionXY(healthbar->arrowActor, x - sArrowOffsetX[healthbar->type], y + 0);
     }
 
-    if (v4 > 0) {
-        v0->unk_4F_1 = 1;
-        SysTask_Done(param0);
-        return;
+    // If the sprites are now in position, we're done
+    if (done > 0) {
+        healthbar->doneScrolling = TRUE;
+        SysTask_Done(task);
     }
 }
 
@@ -988,11 +1062,11 @@ static void ov16_02267864 (Healthbar * param0)
         v11 = v1;
         v12 = &v1[8 * 0x20];
 
-        MI_CpuCopy16(v11, (void *)((u32)v10 + Unk_ov16_0226F64C[param0->unk_25][0].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F64C[param0->unk_25][0].unk_02);
-        MI_CpuCopy16(v12, (void *)((u32)v10 + Unk_ov16_0226F64C[param0->unk_25][1].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F64C[param0->unk_25][1].unk_02);
+        MI_CpuCopy16(v11, (void *)((u32)v10 + Unk_ov16_0226F64C[param0->type][0].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F64C[param0->type][0].unk_02);
+        MI_CpuCopy16(v12, (void *)((u32)v10 + Unk_ov16_0226F64C[param0->type][1].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F64C[param0->type][1].unk_02);
 
-        MI_CpuCopy16(&v11[Unk_ov16_0226F64C[param0->unk_25][0].unk_02], (void *)((u32)v10 + Unk_ov16_0226F64C[param0->unk_25][2].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F64C[param0->unk_25][2].unk_02);
-        MI_CpuCopy16(&v12[Unk_ov16_0226F64C[param0->unk_25][1].unk_02], (void *)((u32)v10 + Unk_ov16_0226F64C[param0->unk_25][3].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F64C[param0->unk_25][3].unk_02);
+        MI_CpuCopy16(&v11[Unk_ov16_0226F64C[param0->type][0].unk_02], (void *)((u32)v10 + Unk_ov16_0226F64C[param0->type][2].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F64C[param0->type][2].unk_02);
+        MI_CpuCopy16(&v12[Unk_ov16_0226F64C[param0->type][1].unk_02], (void *)((u32)v10 + Unk_ov16_0226F64C[param0->type][3].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F64C[param0->type][3].unk_02);
     }
 
     BGL_DeleteWindow(&v3);
@@ -1027,8 +1101,8 @@ static void ov16_022679C8 (Healthbar * param0)
         v5 = G2_GetOBJCharPtr();
         v0 = sub_02021F98(param0->mainActor->unk_00);
 
-        MI_CpuCopy16(v2, (void *)((u32)v5 + Unk_ov16_0226F47C[param0->unk_25][0].unk_00 + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F47C[param0->unk_25][0].unk_02);
-        MI_CpuCopy16(v1, (void *)((u32)v5 + Unk_ov16_0226F47C[param0->unk_25][1].unk_00 + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F47C[param0->unk_25][1].unk_02);
+        MI_CpuCopy16(v2, (void *)((u32)v5 + Unk_ov16_0226F47C[param0->type][0].unk_00 + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F47C[param0->type][0].unk_02);
+        MI_CpuCopy16(v1, (void *)((u32)v5 + Unk_ov16_0226F47C[param0->type][1].unk_00 + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F47C[param0->type][1].unk_02);
     }
 }
 
@@ -1052,8 +1126,8 @@ static void ov16_02267A4C (Healthbar * param0)
         v7 = G2_GetOBJCharPtr();
         v2 = sub_02021F98(param0->mainActor->unk_00);
 
-        MI_CpuCopy16((void *)((u32)v7 + Unk_ov16_0226F3EC[param0->unk_25][0].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), v1, Unk_ov16_0226F3EC[param0->unk_25][0].unk_02);
-        MI_CpuCopy16((void *)((u32)v7 + Unk_ov16_0226F3EC[param0->unk_25][1].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), &v1[v3], Unk_ov16_0226F3EC[param0->unk_25][1].unk_02);
+        MI_CpuCopy16((void *)((u32)v7 + Unk_ov16_0226F3EC[param0->type][0].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), v1, Unk_ov16_0226F3EC[param0->type][0].unk_02);
+        MI_CpuCopy16((void *)((u32)v7 + Unk_ov16_0226F3EC[param0->type][1].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), &v1[v3], Unk_ov16_0226F3EC[param0->type][1].unk_02);
 
         v6 = 0;
 
@@ -1070,8 +1144,8 @@ static void ov16_02267A4C (Healthbar * param0)
         v8 = v1;
         v9 = &v1[v3];
 
-        MI_CpuCopy16(v8, (void *)((u32)v7 + Unk_ov16_0226F3EC[param0->unk_25][0].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3EC[param0->unk_25][0].unk_02);
-        MI_CpuCopy16(v9, (void *)((u32)v7 + Unk_ov16_0226F3EC[param0->unk_25][1].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3EC[param0->unk_25][1].unk_02);
+        MI_CpuCopy16(v8, (void *)((u32)v7 + Unk_ov16_0226F3EC[param0->type][0].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3EC[param0->type][0].unk_02);
+        MI_CpuCopy16(v9, (void *)((u32)v7 + Unk_ov16_0226F3EC[param0->type][1].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3EC[param0->type][1].unk_02);
     }
 
     Heap_FreeToHeap(v0);
@@ -1096,8 +1170,8 @@ static void ov16_02267B6C (Healthbar * param0, u32 param1)
         v1 = sub_02021F98(param0->mainActor->unk_00);
         v3 = v0;
 
-        MI_CpuCopy16(v3, (void *)((u32)v2 + Unk_ov16_0226F41C[param0->unk_25][0].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F41C[param0->unk_25][0].unk_02);
-        MI_CpuCopy16(&v3[Unk_ov16_0226F41C[param0->unk_25][0].unk_02], (void *)((u32)v2 + Unk_ov16_0226F41C[param0->unk_25][1].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F41C[param0->unk_25][1].unk_02);
+        MI_CpuCopy16(v3, (void *)((u32)v2 + Unk_ov16_0226F41C[param0->type][0].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F41C[param0->type][0].unk_02);
+        MI_CpuCopy16(&v3[Unk_ov16_0226F41C[param0->type][0].unk_02], (void *)((u32)v2 + Unk_ov16_0226F41C[param0->type][1].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F41C[param0->type][1].unk_02);
     }
 
     Heap_FreeToHeap(v0);
@@ -1121,7 +1195,7 @@ static void ov16_02267BF8 (Healthbar * param0)
         v1 = sub_02021F98(param0->mainActor->unk_00);
         v3 = v0;
 
-        MI_CpuCopy16(v3, (void *)((u32)v2 + Unk_ov16_0226F3BC[param0->unk_25].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3BC[param0->unk_25].unk_02);
+        MI_CpuCopy16(v3, (void *)((u32)v2 + Unk_ov16_0226F3BC[param0->type].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3BC[param0->type].unk_02);
     }
 
     Heap_FreeToHeap(v0);
@@ -1144,7 +1218,7 @@ static void ov16_02267C58 (Healthbar * param0)
         v2 = G2_GetOBJCharPtr();
         v0 = sub_02021F98(param0->mainActor->unk_00);
 
-        MI_CpuCopy16(v1, (void *)((u32)v2 + Unk_ov16_0226F38C[param0->unk_25].unk_00 + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F38C[param0->unk_25].unk_02);
+        MI_CpuCopy16(v1, (void *)((u32)v2 + Unk_ov16_0226F38C[param0->type].unk_00 + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F38C[param0->type].unk_02);
     }
 }
 
@@ -1161,7 +1235,7 @@ static void ov16_02267CA8 (Healthbar * param0, int param1)
         v2 = G2_GetOBJCharPtr();
         v0 = sub_02021F98(param0->mainActor->unk_00);
 
-        MI_CpuCopy16(v1, (void *)((u32)v2 + Unk_ov16_0226F35C[param0->unk_25].unk_00 + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F35C[param0->unk_25].unk_02);
+        MI_CpuCopy16(v1, (void *)((u32)v2 + Unk_ov16_0226F35C[param0->type].unk_00 + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F35C[param0->type].unk_02);
     }
 }
 
@@ -1330,13 +1404,13 @@ static void ov16_02267F70 (Healthbar * param0, u8 param1)
         }
 
         v6 = ov16_02268250(v3);
-        v9 = Unk_ov16_0226F44C[param0->unk_25][0].unk_02 / 0x20;
+        v9 = Unk_ov16_0226F44C[param0->type][0].unk_02 / 0x20;
 
         for (v0 = 0; v0 < 6; v0++) {
             if (v0 < v9) {
-                MI_CpuCopy16(v6 + (v1[v0] << 5), (void *)((u32)v7 + Unk_ov16_0226F44C[param0->unk_25][0].unk_00 + (v0 * 0x20) + v8->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
+                MI_CpuCopy16(v6 + (v1[v0] << 5), (void *)((u32)v7 + Unk_ov16_0226F44C[param0->type][0].unk_00 + (v0 * 0x20) + v8->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
             } else {
-                MI_CpuCopy16(v6 + (v1[v0] << 5), (void *)((u32)v7 + Unk_ov16_0226F44C[param0->unk_25][1].unk_00 + ((v0 - v9) * 0x20) + v8->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
+                MI_CpuCopy16(v6 + (v1[v0] << 5), (void *)((u32)v7 + Unk_ov16_0226F44C[param0->type][1].unk_00 + ((v0 - v9) * 0x20) + v8->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
             }
         }
         break;
@@ -1551,39 +1625,42 @@ u8 Healthbar_Type(int battlerType, u32 battleType)
     }
 }
 
-static const SpriteTemplate * ov16_022682B0 (u8 param0)
+/**
+ * @brief Grab the sprite template that applies to a given healthbar type.
+ * 
+ * @param type  The healthbar type. See enum HealthbarType for accepted values.
+ * @return      Address of the SpriteTemplate struct which applies to this
+ *              healthbar type.
+ */
+static const SpriteTemplate* Healthbar_SpriteTemplate(u8 type)
 {
-    const SpriteTemplate * v0;
+    switch (type) {
+    case HEALTHBAR_TYPE_PLAYER_SOLO:
+        return &sHealthbarTemplate_SoloPlayer;
 
-    switch (param0) {
-    case 0:
-        v0 = &Unk_ov16_0226F5B0;
-        break;
-    case 1:
-        v0 = &Unk_ov16_0226F5E4;
-        break;
-    case 2:
-        v0 = &Unk_ov16_0226F4AC;
-        break;
-    case 3:
-        v0 = &Unk_ov16_0226F4E0;
-        break;
-    case 4:
-        v0 = &Unk_ov16_0226F548;
-        break;
-    case 5:
-        v0 = &Unk_ov16_0226F618;
-        break;
-    case 6:
-    case 7:
-        v0 = &Unk_ov16_0226F57C;
-        break;
+    case HEALTHBAR_TYPE_ENEMY_SOLO:
+        return &sHealthbarTemplate_SoloEnemy;
+
+    case HEALTHBAR_TYPE_PLAYER_SLOT_1:
+        return &sHealthbarTemplate_PlayerSlot1;
+
+    case HEALTHBAR_TYPE_ENEMY_SLOT_1:
+        return &sHealthbarTemplate_EnemySlot1;
+
+    case HEALTHBAR_TYPE_PLAYER_SLOT_2:
+        return &sHealthbarTemplate_PlayerSlot2;
+
+    case HEALTHBAR_TYPE_ENEMY_SLOT_2:
+        return &sHealthbarTemplate_EnemySlot2;
+
+    case HEALTHBAR_TYPE_SAFARI_ZONE:
+    case HEALTHBAR_TYPE_PAL_PARK:
+        return &sHealthbarTemplate_NoPlayerMon;
+
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return NULL;
     }
-
-    return v0;
 }
 
 static const SpriteTemplate * ov16_02268314 (u8 param0)
@@ -1702,7 +1779,7 @@ void ov16_02268498 (Healthbar * param0)
     }
 
     param0->unk_54 = 0;
-    ov16_0226763C(param0, 0, 0);
+    Healthbar_OffsetPositionXY(param0, 0, 0);
 }
 
 static void ov16_022684BC (SysTask * param0, void * param1)
@@ -1717,5 +1794,5 @@ static void ov16_022684BC (SysTask * param0, void * param1)
     }
 
     v1 = FX_Mul(sub_0201D15C(v0->unk_54), 0x1800) / FX32_ONE;
-    ov16_0226763C(v0, 0, v1);
+    Healthbar_OffsetPositionXY(v0, 0, v1);
 }

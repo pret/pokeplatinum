@@ -1373,7 +1373,7 @@ void ov16_0223F36C (BattleSystem * param0)
         v1 = ov16_02263B08(param0->battlers[v0]);
 
         v1->battleSys = param0;
-        v1->unk_25 = Healthbar_Type(Battler_Type(param0->battlers[v0]), BattleSystem_BattleType(param0));
+        v1->type = Healthbar_Type(Battler_Type(param0->battlers[v0]), BattleSystem_BattleType(param0));
 
         ov16_022672C4(v1);
         Healthbar_Enable(v1, 0);

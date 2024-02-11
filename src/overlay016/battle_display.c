@@ -627,7 +627,7 @@ void BattleDisplay_SlideHealthbarIn(BattleSystem *battleSys, BattlerData *battle
 
     healthbar->battleSys = battleSys;
     healthbar->unk_24 = battlerData->battler;
-    healthbar->unk_25 = Healthbar_Type(battlerData->battlerType, BattleSystem_BattleType(battleSys));
+    healthbar->type = Healthbar_Type(battlerData->battlerType, BattleSystem_BattleType(battleSys));
     healthbar->unk_4C = healthbarData->command;
     healthbar->unk_28 = healthbarData->curHP;
     healthbar->unk_2C = healthbarData->maxHP;
@@ -657,7 +657,7 @@ void BattleDisplay_SlideHealthbarOut(BattleSystem *battleSys, BattlerData *battl
     healthbar->unk_24 = battlerData->battler;
     healthbar->unk_4C = battlerData->data[0];
 
-    Healthbar_SetScrollEffect(healthbar, TRUE);
+    Healthbar_Scroll(healthbar, HEALTHBAR_SCROLL_OUT);
 
     healthbar->unk_10 = SysTask_Start(SlideHealthbarOutTask, healthbar, 1000);
 }
@@ -941,7 +941,7 @@ void ov16_0225DA74 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     v0->battleSys = param0;
     v0->unk_4C = param2->unk_00;
     v0->unk_24 = param1->battler;
-    v0->unk_25 = Healthbar_Type(param1->battlerType, BattleSystem_BattleType(param0));
+    v0->type = Healthbar_Type(param1->battlerType, BattleSystem_BattleType(param0));
     v0->unk_28 = param2->unk_02;
     v0->unk_2C = param2->unk_04;
     v0->unk_30 = param2->unk_08;
@@ -1226,7 +1226,7 @@ void ov16_0225E008 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 
     v0->battleSys = param0;
     v0->unk_24 = param1->battler;
-    v0->unk_25 = Healthbar_Type(param1->battlerType, BattleSystem_BattleType(param0));
+    v0->type = Healthbar_Type(param1->battlerType, BattleSystem_BattleType(param0));
     v0->unk_4C = param2->unk_00;
     v0->unk_28 = param2->unk_02;
     v0->unk_2C = param2->unk_04;
@@ -2832,13 +2832,13 @@ static void SlideHealthbarInTask(SysTask *task, void *data)
             break;
         }
 
-        Healthbar_SetScrollEffect(healthbar, 0);
+        Healthbar_Scroll(healthbar, HEALTHBAR_SCROLL_IN);
         Healthbar_Enable(healthbar, TRUE);
         healthbar->state++;
         break;
 
     case SLIDE_HEALTHBAR_IN_STATE_WAIT:
-        if (healthbar->unk_4F_1 == 1) {
+        if (healthbar->doneScrolling == TRUE) {
             healthbar->state++;
         }
         break;
@@ -2868,7 +2868,7 @@ static void SlideHealthbarOutTask(SysTask *task, void *data)
 
     switch (healthbar->state) {
     case SLIDE_HEALTHBAR_OUT_STATE_WAIT:
-        if (healthbar->unk_4F_1 == TRUE) {
+        if (healthbar->doneScrolling == TRUE) {
             healthbar->state++;
         }
         break;
@@ -3966,7 +3966,7 @@ static void ov16_022611DC (SysTask * param0, void * param1)
 
         v18 = ov16_0223F35C(v0->unk_00, v20);
         MI_CpuClear8(&v18->state, sizeof(u8));
-        v18->unk_25 = Healthbar_Type(BattleSystem_BattlerSlot(v0->unk_00, v20), BattleSystem_BattleType(v0->unk_00));
+        v18->type = Healthbar_Type(BattleSystem_BattlerSlot(v0->unk_00, v20), BattleSystem_BattleType(v0->unk_00));
 
         v19 = BattleSystem_PartyPokemon(v0->unk_00, v20, v21);
         v18->unk_28 = Pokemon_GetValue(v19, MON_DATA_CURRENT_HP, NULL) - v0->unk_08->unk_04->unk_20;

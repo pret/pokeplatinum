@@ -14,7 +14,7 @@ typedef struct {
     SysTask * unk_10;
     Window unk_14;
     u8 unk_24;
-    u8 unk_25;
+    u8 type;
     u8 unk_26;
     u8 unk_27;
     s32 unk_28;
@@ -32,8 +32,8 @@ typedef struct {
     u8 unk_4C;
     u8 unk_4D;
     u8 unk_4E;
-    u8 unk_4F_0 : 1;
-    u8 unk_4F_1 : 1;
+    u8 scrollDirection : 1;
+    u8 doneScrolling : 1;
     u8 unk_4F_2 : 1;
     u8 unk_4F_3 : 1;
     u8  : 4;

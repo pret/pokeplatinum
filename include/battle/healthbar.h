@@ -19,6 +19,11 @@ enum HealthbarType {
     HEALTHBAR_TYPE_PAL_PARK,
 };
 
+enum HealthbarScrollDirection {
+    HEALTHBAR_SCROLL_IN = 0,
+    HEALTHBAR_SCROLL_OUT,
+};
+
 void ov16_02266F1C(SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, PaletteData * param3, int param4);
 CellActorData * ov16_02267060(SpriteRenderer * param0, SpriteGfxHandler * param1, int param2);
 void Healthbar_Draw(Healthbar * param0, u32 param1, u32 param2);
@@ -42,8 +47,23 @@ void ov16_022675D8(Healthbar * param0, int param1);
  * @param enable    If TRUE, enable the healthbar; otherwise, disable it.
  */
 void Healthbar_Enable(Healthbar *battleSys, BOOL enable);
-void ov16_0226763C(Healthbar * param0, int param1, int param2);
-void Healthbar_SetScrollEffect(Healthbar * param0, int param1);
+
+/**
+ * @brief Offset the healthbar's position by a given value along the X and Y axes.
+ * 
+ * @param healthbar 
+ * @param x         X-axis offset for the healthbar from its current position.
+ * @param y         Y-axis offset for the healthbar from its current position.
+ */
+void Healthbar_OffsetPositionXY(Healthbar *healthbar, int x, int y);
+
+/**
+ * @brief Scroll the healthbar in or out.
+ * 
+ * @param healthbar 
+ * @param direction The direction to scroll the healthbar.
+ */
+void Healthbar_Scroll(Healthbar *healthbar, enum HealthbarScrollDirection direction);
 
 /**
  * @brief Determine the type of healthbar to be displayed for a given battler type
