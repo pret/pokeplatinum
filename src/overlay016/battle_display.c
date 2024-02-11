@@ -637,13 +637,13 @@ void BattleDisplay_SlideHealthbarIn(BattleSystem *battleSys, BattlerData *battle
     healthbar->unk_38 = healthbarData->expFromLastLevel;
     healthbar->unk_3C = healthbarData->expToNextLevel;
     healthbar->unk_26 = healthbarData->selectedPartySlot;
-    healthbar->unk_4A = healthbarData->status;
+    healthbar->status = healthbarData->status;
     healthbar->unk_4B = healthbarData->speciesCaught;
     healthbar->unk_4D = healthbarData->delay;
     healthbar->unk_27 = healthbarData->numSafariBalls;
 
     Healthbar_Enable(healthbar, FALSE);
-    Healthbar_Draw(healthbar, healthbar->unk_28, 0xffffffff);
+    Healthbar_DrawInfo(healthbar, healthbar->unk_28, HEALTHBAR_INFO_ALL);
 
     healthbar->unk_10 = SysTask_Start(SlideHealthbarInTask, healthbar, 1000);
 }
@@ -1075,9 +1075,9 @@ void ov16_0225DD44 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 {
     GF_ASSERT(param1->healthbar.mainActor != NULL);
 
-    param1->healthbar.unk_4A = param2->unk_01;
+    param1->healthbar.status = param2->unk_01;
 
-    Healthbar_Draw(&param1->healthbar, param1->healthbar.unk_28, (1 << 8));
+    Healthbar_DrawInfo(&param1->healthbar, param1->healthbar.unk_28, HEALTHBAR_INFO_STATUS);
     ClearCommand(param0, param1->battler, param2->unk_00);
 }
 
@@ -1236,11 +1236,11 @@ void ov16_0225E008 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     v0->unk_38 = param2->unk_08;
     v0->unk_3C = param2->unk_0C;
     v0->unk_26 = param2->unk_06;
-    v0->unk_4A = param2->unk_07_0;
+    v0->status = param2->unk_07_0;
     v0->unk_4B = param2->unk_07_7;
     v0->unk_27 = param2->unk_10;
 
-    Healthbar_Draw(v0, v0->unk_28, 0xffffffff ^ (1 << 5));
+    Healthbar_DrawInfo(v0, v0->unk_28, ~HEALTHBAR_INFO_EXP_GAUGE);
     ClearCommand(v0->battleSys, v0->unk_24, v0->unk_4C);
 }
 
@@ -3974,7 +3974,7 @@ static void ov16_022611DC (SysTask * param0, void * param1)
         v18->unk_30 = v0->unk_08->unk_04->unk_20;
 
         if (Pokemon_GetValue(v19, MON_DATA_STATUS_CONDITION, NULL) == 0) {
-            v18->unk_4A = 0;
+            v18->status = 0;
         }
 
         ov16_022674C4(v18, v18->unk_30);
@@ -3990,7 +3990,7 @@ static void ov16_022611DC (SysTask * param0, void * param1)
         v22 = ov16_0223F35C(v0->unk_00, v23);
 
         if (ov16_022674F8(v22) == -1) {
-            Healthbar_Draw(v22, NULL, (1 << 8));
+            Healthbar_DrawInfo(v22, NULL, HEALTHBAR_INFO_STATUS);
             v0->unk_0E++;
         }
     }
@@ -4038,10 +4038,10 @@ static void ov16_022611DC (SysTask * param0, void * param1)
         v33 = BattleSystem_PartyPokemon(v0->unk_00, v28, v34);
 
         if (Pokemon_GetValue(v33, MON_DATA_STATUS_CONDITION, NULL) == 0) {
-            v27->unk_4A = 0;
+            v27->status = 0;
         }
 
-        Healthbar_Draw(v27, v27->unk_28, (1 << 8));
+        Healthbar_DrawInfo(v27, v27->unk_28, HEALTHBAR_INFO_STATUS);
 
         v30.tags = 2;
         v30.params[0] = v28 | (v0->unk_08->unk_0C[v28] << 8);

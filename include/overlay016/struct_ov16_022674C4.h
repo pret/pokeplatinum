@@ -27,7 +27,7 @@ typedef struct {
     s32 unk_44;
     u8 unk_48;
     u8 unk_49;
-    u8 unk_4A;
+    u8 status;
     u8 unk_4B;
     u8 unk_4C;
     u8 unk_4D;
@@ -35,7 +35,7 @@ typedef struct {
     u8 scrollDirection : 1;
     u8 doneScrolling : 1;
     u8 unk_4F_2 : 1;
-    u8 unk_4F_3 : 1;
+    u8 numberMode : 1;
     u8  : 4;
     SysTask * unk_50;
     u16 unk_54;

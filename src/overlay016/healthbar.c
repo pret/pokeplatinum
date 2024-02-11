@@ -517,116 +517,123 @@ CellActorData * ov16_02267060 (SpriteRenderer * param0, SpriteGfxHandler * param
     return v1;
 }
 
-void Healthbar_Draw (Healthbar * param0, u32 param1, u32 param2)
+void Healthbar_DrawInfo(Healthbar *healthbar, u32 hp, u32 flags)
 {
-    int v0 = 0;
-    u32 v1;
+    BOOL caughtSpecies = FALSE;
 
-    GF_ASSERT(param0->mainActor != NULL);
+    GF_ASSERT(healthbar->mainActor != NULL);
 
-    v1 = param2;
+    u32 flagsCopy = flags;
 
-    if (param0->type == 6) {
-        param2 &= ((1 << 10) | (1 << 11));
-    } else if (param0->type == 7) {
-        param2 &= ((1 << 12) | (1 << 13));
+    if (healthbar->type == HEALTHBAR_TYPE_SAFARI_ZONE) {
+        flags &= HEALTHBAR_INFO_ALL_SAFARI;
+    } else if (healthbar->type == HEALTHBAR_TYPE_PAL_PARK) {
+        flags &= HEALTHBAR_INFO_ALL_PARK;
     } else {
-        param2 &= 0xffffffff ^ (((1 << 10) | (1 << 11)) | ((1 << 12) | (1 << 13)));
+        flags &= ~(HEALTHBAR_INFO_ALL_SAFARI | HEALTHBAR_INFO_ALL_PARK);
     }
 
-    switch (param0->type) {
-    case 1:
-    case 3:
-    case 5:
-        param2 &= 0xffffffff ^ ((1 << 1) | (1 << 2) | (1 << 5));
-        v0 = 1;
+    switch (healthbar->type) {
+    case HEALTHBAR_TYPE_ENEMY_SOLO:
+    case HEALTHBAR_TYPE_ENEMY_SLOT_1:
+    case HEALTHBAR_TYPE_ENEMY_SLOT_2:
+        // Never display current HP, max HP, or the EXP bar on an enemy healthbar
+        flags &= ~HEALTHBAR_INFO_NOT_ON_ENEMY;
+        caughtSpecies = TRUE;
         break;
-    case 2:
-    case 4:
-        param2 &= 0xffffffff ^ ((1 << 5) | (1 << 9));
 
-        if (param0->unk_4F_3 == 0) {
-            param2 &= 0xffffffff ^ ((1 << 1) | (1 << 2));
+    case HEALTHBAR_TYPE_PLAYER_SLOT_1:
+    case HEALTHBAR_TYPE_PLAYER_SLOT_2:
+        // Never display the EXP bar in doubles
+        flags &= ~(HEALTHBAR_INFO_EXP_GAUGE | HEALTHBAR_INFO_CAUGHT_SPECIES);
+
+        // Allow toggling between showing the HP bar and raw current/max numbers
+        if (healthbar->numberMode == FALSE) {
+            flags &= ~(HEALTHBAR_INFO_CURRENT_HP | HEALTHBAR_INFO_MAX_HP);
         } else {
-            param2 &= 0xffffffff ^ ((1 << 0));
+            flags &= ~HEALTHBAR_INFO_HP_GAUGE;
         }
         break;
-    case 0:
-        param2 &= 0xffffffff ^ ((1 << 9));
+
+    case HEALTHBAR_TYPE_PLAYER_SOLO:
+        // Never show the pokeball icon on a player's healthbar for a captured species
+        flags &= ~HEALTHBAR_INFO_CAUGHT_SPECIES;
         break;
-    case 6:
-    case 7:
+
+    case HEALTHBAR_TYPE_SAFARI_ZONE:
+    case HEALTHBAR_TYPE_PAL_PARK:
         break;
     }
 
-    if (BattleSystem_BattleType(param0->battleSys) & 0x1) {
-        param2 &= 0xffffffff ^ ((1 << 9));
+    if (BattleSystem_BattleType(healthbar->battleSys) & BATTLE_TYPE_TRAINER) {
+        // Never show the pokeball icon on an enemy trainer's healthbar
+        flags &= ~HEALTHBAR_INFO_CAUGHT_SPECIES;
     }
 
-    if (param2 & (1 << 0)) {
-        ov16_022674C4(param0, 0);
-        ov16_02267EDC(param0, 0);
+    if (flags & HEALTHBAR_INFO_HP_GAUGE) {
+        ov16_022674C4(healthbar, 0);
+        ov16_02267EDC(healthbar, 0);
     }
 
-    if (param2 & (1 << 1)) {
-        ov16_02267B6C(param0, param1);
+    if (flags & HEALTHBAR_INFO_CURRENT_HP) {
+        ov16_02267B6C(healthbar, hp);
     }
 
-    if (param2 & (1 << 2)) {
-        ov16_02267BF8(param0);
+    if (flags & HEALTHBAR_INFO_MAX_HP) {
+        ov16_02267BF8(healthbar);
     }
 
-    if ((param2 & (1 << 7)) || (param2 & (1 << 6))) {
-        ov16_022679C8(param0);
+    if ((flags & HEALTHBAR_INFO_LEVEL_TEXT) || (flags & HEALTHBAR_INFO_GENDER)) {
+        ov16_022679C8(healthbar);
     }
 
-    if (param2 & (1 << 3)) {
-        ov16_02267A4C(param0);
+    if (flags & HEALTHBAR_INFO_LEVEL) {
+        ov16_02267A4C(healthbar);
     }
 
-    if (param2 & (1 << 4)) {
-        ov16_02267864(param0);
+    if (flags & HEALTHBAR_INFO_NAME) {
+        ov16_02267864(healthbar);
     }
 
-    if (param2 & (1 << 5)) {
-        ov16_0226752C(param0, 0);
-        ov16_02267EDC(param0, 1);
+    if (flags & HEALTHBAR_INFO_EXP_GAUGE) {
+        ov16_0226752C(healthbar, 0);
+        ov16_02267EDC(healthbar, 1);
     }
 
-    if (param2 & (1 << 9)) {
-        ov16_02267C58(param0);
+    if (flags & HEALTHBAR_INFO_CAUGHT_SPECIES) {
+        ov16_02267C58(healthbar);
     }
 
-    if (param2 & (1 << 8)) {
-        switch (param0->unk_4A) {
+    if (flags & HEALTHBAR_INFO_STATUS) {
+        switch (healthbar->status) {
         default:
         case 0:
-            ov16_02267CA8(param0, 38);
+            ov16_02267CA8(healthbar, 38);
             break;
         case 1:
-            ov16_02267CA8(param0, 47);
+            ov16_02267CA8(healthbar, 47);
             break;
         case 2:
-            ov16_02267CA8(param0, 50);
+            ov16_02267CA8(healthbar, 50);
             break;
         case 3:
-            ov16_02267CA8(param0, 53);
+            ov16_02267CA8(healthbar, 53);
             break;
         case 4:
-            ov16_02267CA8(param0, 44);
+            ov16_02267CA8(healthbar, 44);
             break;
         case 5:
-            ov16_02267CA8(param0, 41);
+            ov16_02267CA8(healthbar, 41);
             break;
         }
     }
 
-    if (param2 & ((1 << 10) | (1 << 12))) {
-        ov16_02267CE8(param0, param2);
+    if (flags & (HEALTHBAR_INFO_COUNT_SAFARI_BALLS | HEALTHBAR_INFO_COUNT_PARK_BALLS)) {
+        ov16_02267CE8(healthbar, flags);
     }
 
-    if (param2 & ((1 << 11) | (1 << 13))) {
-        ov16_02267DC4(param0, param2);
+    if (flags & (HEALTHBAR_INFO_REMAINING_SAFARI_BALLS | HEALTHBAR_INFO_REMAINING_PARK_BALLS)) {
+        ov16_02267DC4(healthbar, flags);
     }
 }
 
@@ -738,12 +745,12 @@ void ov16_0226737C (Healthbar * param0)
         return;
     }
 
-    param0->unk_4F_3 ^= 1;
+    param0->numberMode ^= 1;
 
     v2 = G2_GetOBJCharPtr();
     v1 = sub_02021F98(param0->mainActor->unk_00);
 
-    if (param0->unk_4F_3 == 1) {
+    if (param0->numberMode == 1) {
         v0 = ov16_02268250(70);
         MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F374[param0->type].unk_00 + 0x20 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
         v0 = ov16_02268250(71);
@@ -752,7 +759,7 @@ void ov16_0226737C (Healthbar * param0)
         v0 = ov16_02268250(69);
         MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3D4[param0->type].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3D4[param0->type].unk_02);
 
-        Healthbar_Draw(param0, param0->unk_28, (1 << 1) | (1 << 2));
+        Healthbar_DrawInfo(param0, param0->unk_28, HEALTHBAR_INFO_CURRENT_HP | HEALTHBAR_INFO_MAX_HP);
     } else {
         v0 = ov16_02268250(66);
         MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F374[param0->type].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F374[param0->type].unk_02);
@@ -763,7 +770,7 @@ void ov16_0226737C (Healthbar * param0)
         v0 = ov16_02268250(38);
         MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3A4[param0->type].unk_00 + 0x20 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
 
-        Healthbar_Draw(param0, param0->unk_28, (1 << 0));
+        Healthbar_DrawInfo(param0, param0->unk_28, HEALTHBAR_INFO_HP_GAUGE);
     }
 }
 
@@ -798,9 +805,9 @@ s32 ov16_022674F8 (Healthbar * param0)
 
     if (v0 == -1) {
         param0->unk_28 -= param0->unk_30;
-        Healthbar_Draw(param0, param0->unk_28, (1 << 1));
+        Healthbar_DrawInfo(param0, param0->unk_28, HEALTHBAR_INFO_CURRENT_HP);
     } else {
-        Healthbar_Draw(param0, v0, (1 << 1));
+        Healthbar_DrawInfo(param0, v0, HEALTHBAR_INFO_CURRENT_HP);
     }
 
     return v0;
@@ -1348,7 +1355,7 @@ static s32 ov16_02267EDC (Healthbar * param0, int param1)
         v0 = ov16_022680D8(param0->unk_3C, param0->unk_38, param0->unk_40, &param0->unk_44, 12, v1);
     }
 
-    if ((param1 == 0) && (param0->unk_4F_3 == 1)) {
+    if ((param1 == 0) && (param0->numberMode == 1)) {
         (void)0;
     } else {
         ov16_02267F70(param0, param1);

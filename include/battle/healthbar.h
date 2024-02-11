@@ -8,6 +8,28 @@
 #include "struct_decls/cell_actor_data.h"
 #include "overlay016/struct_ov16_022674C4.h"
 
+#define HEALTHBAR_INFO_NONE                     0
+#define HEALTHBAR_INFO_HP_GAUGE                 (1 << 0)
+#define HEALTHBAR_INFO_CURRENT_HP               (1 << 1)
+#define HEALTHBAR_INFO_MAX_HP                   (1 << 2)
+#define HEALTHBAR_INFO_LEVEL                    (1 << 3)
+#define HEALTHBAR_INFO_NAME                     (1 << 4)
+#define HEALTHBAR_INFO_EXP_GAUGE                (1 << 5)
+#define HEALTHBAR_INFO_GENDER                   (1 << 6)
+#define HEALTHBAR_INFO_LEVEL_TEXT               (1 << 7)
+#define HEALTHBAR_INFO_STATUS                   (1 << 8)
+#define HEALTHBAR_INFO_CAUGHT_SPECIES           (1 << 9)
+#define HEALTHBAR_INFO_COUNT_SAFARI_BALLS       (1 << 10)
+#define HEALTHBAR_INFO_REMAINING_SAFARI_BALLS   (1 << 11)
+#define HEALTHBAR_INFO_COUNT_PARK_BALLS         (1 << 12)
+#define HEALTHBAR_INFO_REMAINING_PARK_BALLS     (1 << 13)
+
+#define HEALTHBAR_INFO_ALL ~0
+
+#define HEALTHBAR_INFO_ALL_SAFARI       (HEALTHBAR_INFO_COUNT_SAFARI_BALLS | HEALTHBAR_INFO_REMAINING_SAFARI_BALLS)
+#define HEALTHBAR_INFO_ALL_PARK         (HEALTHBAR_INFO_COUNT_PARK_BALLS | HEALTHBAR_INFO_REMAINING_PARK_BALLS)
+#define HEALTHBAR_INFO_NOT_ON_ENEMY     (HEALTHBAR_INFO_CURRENT_HP | HEALTHBAR_INFO_MAX_HP | HEALTHBAR_INFO_EXP_GAUGE)
+
 enum HealthbarType {
     HEALTHBAR_TYPE_PLAYER_SOLO = 0,
     HEALTHBAR_TYPE_ENEMY_SOLO,
@@ -26,7 +48,16 @@ enum HealthbarScrollDirection {
 
 void ov16_02266F1C(SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, PaletteData * param3, int param4);
 CellActorData * ov16_02267060(SpriteRenderer * param0, SpriteGfxHandler * param1, int param2);
-void Healthbar_Draw(Healthbar * param0, u32 param1, u32 param2);
+
+/**
+ * @brief Draw the informational parts of the healthbar, according to a set
+ * of input flags which control exactly what components to draw.
+ * 
+ * @param healthbar 
+ * @param hp 
+ * @param flags     The components to be drawn, as a bitmask.
+ */
+void Healthbar_DrawInfo(Healthbar *healthbar, u32 hp, u32 flags);
 void ov16_02267220(Healthbar * param0);
 void ov16_02267258(Healthbar * param0);
 void ov16_022672C4(Healthbar * param0);
