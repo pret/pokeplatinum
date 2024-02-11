@@ -5,6 +5,11 @@
 
 #include "assert.h"
 
+#include "constants/font.h"
+#include "constants/heap.h"
+
+#include "gmm/pl_msg_0368.h"
+
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
@@ -55,12 +60,25 @@
 #define HEALTHBAR_X_OFFSET_ENEMY_SLOT_2     HEALTHBAR_X_OFFSET_SOLO_ENEMY
 #define HEALTHBAR_Y_OFFSET_ENEMY_SLOT_2     HEALTHBAR_Y_OFFSET_SOLO_ENEMY + 9
 
+#define HEALTHBAR_WINDOW_BLOCK_SIZE     32
+
+#define HEALTHBAR_NAME_BLOCK_COUNT_X    8
+#define HEALTHBAR_NAME_BLOCK_COUNT_Y    2
+#define HEALTHBAR_NAME_WINDOW_OFFSET    0
+#define HEALTHBAR_NAME_BYTE_SIZE        (HEALTHBAR_NAME_BLOCK_COUNT_X * HEALTHBAR_NAME_BLOCK_COUNT_Y * HEALTHBAR_WINDOW_BLOCK_SIZE)
+#define HEALTHBAR_NAME_BACKGROUND_COLOR 0xF
+#define HEALTHBAR_NAME_FONT_COLOR       MAKE_FONT_COLOR(14, 2, HEALTHBAR_NAME_BACKGROUND_COLOR)
+
+#define VRAM_TRANSFER_DST(vram, transferTable, index_0, index_1, imgProxy) (\
+    (void *)((u32)vram + transferTable[index_0][index_1].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN])\
+)
+
 #define S32_MIN -2147483648
 
-typedef struct {
-    u16 unk_00;
-    u16 unk_02;
-} UnkStruct_ov16_0226F64C;
+typedef struct VRAMTransfer {
+    u16 pos;
+    u16 size;
+} VRAMTransfer;
 
 typedef struct {
     Healthbar * unk_00;
@@ -106,46 +124,46 @@ __attribute__((aligned(4))) static const s8 sArrowOffsetX[] = {
     [HEALTHBAR_TYPE_ENEMY_SLOT_2]  = 0,
 };
 
-static const UnkStruct_ov16_0226F64C Unk_ov16_0226F64C[][4] = {
-    {
-        {0x260, 0xA0},
-        {0x360, 0xA0},
-        {0xA00, 0x60},
-        {0xB00, 0x60}
+static const VRAMTransfer sBattlerNameVRAMTransfer[][4] = {
+    [HEALTHBAR_TYPE_PLAYER_SOLO] = {
+        {19 * HEALTHBAR_WINDOW_BLOCK_SIZE, 5 * HEALTHBAR_WINDOW_BLOCK_SIZE},
+        {27 * HEALTHBAR_WINDOW_BLOCK_SIZE, 5 * HEALTHBAR_WINDOW_BLOCK_SIZE},
+        {80 * HEALTHBAR_WINDOW_BLOCK_SIZE, 3 * HEALTHBAR_WINDOW_BLOCK_SIZE},
+        {88 * HEALTHBAR_WINDOW_BLOCK_SIZE, 3 * HEALTHBAR_WINDOW_BLOCK_SIZE},
     },
-    {
-        {0x220, 0xE0},
-        {0x320, 0xE0},
-        {0xA00, 0x20},
-        {0xB00, 0x20}
+    [HEALTHBAR_TYPE_ENEMY_SOLO] = {
+        {17 * HEALTHBAR_WINDOW_BLOCK_SIZE, 7 * HEALTHBAR_WINDOW_BLOCK_SIZE},
+        {25 * HEALTHBAR_WINDOW_BLOCK_SIZE, 7 * HEALTHBAR_WINDOW_BLOCK_SIZE},
+        {80 * HEALTHBAR_WINDOW_BLOCK_SIZE, 1 * HEALTHBAR_WINDOW_BLOCK_SIZE},
+        {88 * HEALTHBAR_WINDOW_BLOCK_SIZE, 1 * HEALTHBAR_WINDOW_BLOCK_SIZE},
     },
-    {
-        {0x240, 0xC0},
-        {0x340, 0xC0},
-        {0xA00, 0x40},
-        {0xB00, 0x40}
+    [HEALTHBAR_TYPE_PLAYER_SLOT_1] = {
+        {18 * HEALTHBAR_WINDOW_BLOCK_SIZE, 6 * HEALTHBAR_WINDOW_BLOCK_SIZE},
+        {26 * HEALTHBAR_WINDOW_BLOCK_SIZE, 6 * HEALTHBAR_WINDOW_BLOCK_SIZE},
+        {80 * HEALTHBAR_WINDOW_BLOCK_SIZE, 2 * HEALTHBAR_WINDOW_BLOCK_SIZE},
+        {88 * HEALTHBAR_WINDOW_BLOCK_SIZE, 2 * HEALTHBAR_WINDOW_BLOCK_SIZE},
     },
-    {
-        {0x220, 0xE0},
-        {0x320, 0xE0},
-        {0xA00, 0x20},
-        {0xB00, 0x20}
+    [HEALTHBAR_TYPE_ENEMY_SLOT_1] = {
+        {17 * HEALTHBAR_WINDOW_BLOCK_SIZE, 7 * HEALTHBAR_WINDOW_BLOCK_SIZE},
+        {25 * HEALTHBAR_WINDOW_BLOCK_SIZE, 7 * HEALTHBAR_WINDOW_BLOCK_SIZE},
+        {80 * HEALTHBAR_WINDOW_BLOCK_SIZE, 1 * HEALTHBAR_WINDOW_BLOCK_SIZE},
+        {88 * HEALTHBAR_WINDOW_BLOCK_SIZE, 1 * HEALTHBAR_WINDOW_BLOCK_SIZE},
     },
-    {
-        {0x240, 0xC0},
-        {0x340, 0xC0},
-        {0xA00, 0x40},
-        {0xB00, 0x40}
+    [HEALTHBAR_TYPE_PLAYER_SLOT_2] = {
+        {18 * HEALTHBAR_WINDOW_BLOCK_SIZE, 6 * HEALTHBAR_WINDOW_BLOCK_SIZE},
+        {26 * HEALTHBAR_WINDOW_BLOCK_SIZE, 6 * HEALTHBAR_WINDOW_BLOCK_SIZE},
+        {80 * HEALTHBAR_WINDOW_BLOCK_SIZE, 2 * HEALTHBAR_WINDOW_BLOCK_SIZE},
+        {88 * HEALTHBAR_WINDOW_BLOCK_SIZE, 2 * HEALTHBAR_WINDOW_BLOCK_SIZE},
     },
-    {
-        {0x220, 0xE0},
-        {0x320, 0xE0},
-        {0xA00, 0x20},
-        {0xB00, 0x20}
+    [HEALTHBAR_TYPE_ENEMY_SLOT_2] = {
+        {17 * HEALTHBAR_WINDOW_BLOCK_SIZE, 7 * HEALTHBAR_WINDOW_BLOCK_SIZE},
+        {25 * HEALTHBAR_WINDOW_BLOCK_SIZE, 7 * HEALTHBAR_WINDOW_BLOCK_SIZE},
+        {80 * HEALTHBAR_WINDOW_BLOCK_SIZE, 1 * HEALTHBAR_WINDOW_BLOCK_SIZE},
+        {88 * HEALTHBAR_WINDOW_BLOCK_SIZE, 1 * HEALTHBAR_WINDOW_BLOCK_SIZE},
     }
 };
 
-static const UnkStruct_ov16_0226F64C Unk_ov16_0226F47C[][2] = {
+static const VRAMTransfer Unk_ov16_0226F47C[][2] = {
     {
         {0xA60, 0x40},
         {0xB60, 0x40}
@@ -172,7 +190,7 @@ static const UnkStruct_ov16_0226F64C Unk_ov16_0226F47C[][2] = {
     }
 };
 
-static const UnkStruct_ov16_0226F64C Unk_ov16_0226F3EC[][2] = {
+static const VRAMTransfer Unk_ov16_0226F3EC[][2] = {
     {
         {0xAA0, 0x60},
         {0xBA0, 0x60}
@@ -199,7 +217,7 @@ static const UnkStruct_ov16_0226F64C Unk_ov16_0226F3EC[][2] = {
     }
 };
 
-static const UnkStruct_ov16_0226F64C Unk_ov16_0226F41C[][2] = {
+static const VRAMTransfer Unk_ov16_0226F41C[][2] = {
     {
         {0x0, 0x0},
         {0xD00, 0x60}
@@ -226,7 +244,7 @@ static const UnkStruct_ov16_0226F64C Unk_ov16_0226F41C[][2] = {
     }
 };
 
-static const UnkStruct_ov16_0226F64C Unk_ov16_0226F3BC[] = {
+static const VRAMTransfer Unk_ov16_0226F3BC[] = {
     {0xD80, 0x60},
     {0x6A0, 0x60},
     {0xC80, 0x60},
@@ -235,7 +253,7 @@ static const UnkStruct_ov16_0226F64C Unk_ov16_0226F3BC[] = {
     {0x6A0, 0x60}
 };
 
-static const UnkStruct_ov16_0226F64C Unk_ov16_0226F44C[][2] = {
+static const VRAMTransfer Unk_ov16_0226F44C[][2] = {
     {
         {0x4E0, 0x0},
         {0xC20, 0xC0}
@@ -262,7 +280,7 @@ static const UnkStruct_ov16_0226F64C Unk_ov16_0226F44C[][2] = {
     }
 };
 
-static const UnkStruct_ov16_0226F64C Unk_ov16_0226F38C[] = {
+static const VRAMTransfer Unk_ov16_0226F38C[] = {
     {0x460, 0x20},
     {0x420, 0x20},
     {0x440, 0x20},
@@ -271,7 +289,7 @@ static const UnkStruct_ov16_0226F64C Unk_ov16_0226F38C[] = {
     {0x420, 0x20}
 };
 
-static const UnkStruct_ov16_0226F64C Unk_ov16_0226F35C[] = {
+static const VRAMTransfer Unk_ov16_0226F35C[] = {
     {0x480, 0x60},
     {0x440, 0x60},
     {0x460, 0x60},
@@ -280,21 +298,21 @@ static const UnkStruct_ov16_0226F64C Unk_ov16_0226F35C[] = {
     {0x440, 0x60}
 };
 
-static const UnkStruct_ov16_0226F64C Unk_ov16_0226F33C[4] = {
+static const VRAMTransfer Unk_ov16_0226F33C[4] = {
     {0x240, 0xC0},
     {0x340, 0xC0},
     {0xA00, 0xE0},
     {0xB00, 0xE0}
 };
 
-static const UnkStruct_ov16_0226F64C Unk_ov16_0226F34C[4] = {
+static const VRAMTransfer Unk_ov16_0226F34C[4] = {
     {0x440, 0xC0},
     {0x540, 0xC0},
     {0xC00, 0xE0},
     {0xD00, 0xE0}
 };
 
-static const UnkStruct_ov16_0226F64C Unk_ov16_0226F374[] = {
+static const VRAMTransfer Unk_ov16_0226F374[] = {
     {0x0, 0x0},
     {0x0, 0x0},
     {0x4C0, 0x40},
@@ -303,7 +321,7 @@ static const UnkStruct_ov16_0226F64C Unk_ov16_0226F374[] = {
     {0x0, 0x0}
 };
 
-static const UnkStruct_ov16_0226F64C Unk_ov16_0226F3A4[] = {
+static const VRAMTransfer Unk_ov16_0226F3A4[] = {
     {0x0, 0x0},
     {0x0, 0x0},
     {0xCC0, 0x20},
@@ -312,7 +330,7 @@ static const UnkStruct_ov16_0226F64C Unk_ov16_0226F3A4[] = {
     {0x0, 0x0}
 };
 
-static const UnkStruct_ov16_0226F64C Unk_ov16_0226F3D4[] = {
+static const VRAMTransfer Unk_ov16_0226F3D4[] = {
     {0x0, 0x0},
     {0x0, 0x0},
     {0xC60, 0x20},
@@ -784,23 +802,23 @@ void ov16_0226737C (Healthbar * param0)
 
     if (param0->numberMode == 1) {
         v0 = ov16_02268250(70);
-        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F374[param0->type].unk_00 + 0x20 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
+        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F374[param0->type].pos + 0x20 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
         v0 = ov16_02268250(71);
-        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3A4[param0->type].unk_00 + 0x20 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
+        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3A4[param0->type].pos + 0x20 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
 
         v0 = ov16_02268250(69);
-        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3D4[param0->type].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3D4[param0->type].unk_02);
+        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3D4[param0->type].pos + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3D4[param0->type].size);
 
         Healthbar_DrawInfo(param0, param0->curHP, HEALTHBAR_INFO_CURRENT_HP | HEALTHBAR_INFO_MAX_HP);
     } else {
         v0 = ov16_02268250(66);
-        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F374[param0->type].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F374[param0->type].unk_02);
+        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F374[param0->type].pos + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F374[param0->type].size);
 
         v0 = ov16_02268250(68);
-        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3A4[param0->type].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3A4[param0->type].unk_02);
+        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3A4[param0->type].pos + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3A4[param0->type].size);
 
         v0 = ov16_02268250(38);
-        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3A4[param0->type].unk_00 + 0x20 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
+        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3A4[param0->type].pos + 0x20 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
 
         Healthbar_DrawInfo(param0, param0->curHP, HEALTHBAR_INFO_HP_GAUGE);
     }
@@ -1066,52 +1084,68 @@ static void ScrollHealthbarTask(SysTask *task, void *data)
     }
 }
 
-static void Healthbar_DrawBattlerName (Healthbar * param0)
+/**
+ * @brief Draw the battler's name onto the healthbar.
+ * 
+ * @param healthbar 
+ */
+static void Healthbar_DrawBattlerName(Healthbar *healthbar)
 {
-    BGL * v0;
-    u8 * v1;
-    NNSG2dImageProxy * v2;
-    Window v3;
-    MessageLoader * v4;
-    Strbuf* v5, * v6;
-    Pokemon * v7;
-    BoxPokemon * v8;
-    StringFormatter * v9;
+    BGL *bgl;
+    u8 *buf;
+    NNSG2dImageProxy *imgProxy;
+    Window window;
+    MessageLoader *msgLoader;
+    Strbuf *nickname, *template;
+    Pokemon *mon;
+    BoxPokemon *boxMon;
+    StringFormatter *strFormatter;
 
-    v0 = BattleSystem_BGL(param0->battleSys);
-    v4 = BattleSystem_MessageLoader(param0->battleSys);
-    v9 = BattleSystem_StringFormatter(param0->battleSys);
-    v5 = Strbuf_Init((12 + (5 * 2)), 5);
-    v6 = MessageLoader_GetNewStrbuf(v4, 964);
-    v7 = BattleSystem_PartyPokemon(param0->battleSys, param0->unk_24, param0->unk_26);
-    v8 = Pokemon_GetBoxPokemon(v7);
+    bgl = BattleSystem_BGL(healthbar->battleSys);
+    msgLoader = BattleSystem_MessageLoader(healthbar->battleSys);
+    strFormatter = BattleSystem_StringFormatter(healthbar->battleSys);
 
-    StringFormatter_BufferNickname(v9, 0, v8);
-    StringFormatter_Format(v9, v5, v6);
-    BGL_AddFramelessWindow(v0, &v3, 8, 2, 0, 0xf);
-    PrintStringWithColorAndMargins(&v3, 0, v5, 0, 0, 0xff, ((u32)(((0xe & 0xff) << 16) | ((2 & 0xff) << 8) | (((0xf & 0xff) << 0)))), 0, 0, NULL);
+    nickname = Strbuf_Init(MON_NAME_LEN + 12, HEAP_ID_BATTLE); // TODO: not sure why there is a +12 here
+    template = MessageLoader_GetNewStrbuf(msgLoader, pl_msg_00000368_00964);
 
-    v1 = v3.unk_0C;
+    mon = BattleSystem_PartyPokemon(healthbar->battleSys, healthbar->battler, healthbar->selectedPartySlot);
+    boxMon = Pokemon_GetBoxPokemon(mon);
 
+    StringFormatter_BufferNickname(strFormatter, 0, boxMon);
+    StringFormatter_Format(strFormatter, nickname, template);
+
+    BGL_AddFramelessWindow(bgl, &window,
+        HEALTHBAR_NAME_BLOCK_COUNT_X,
+        HEALTHBAR_NAME_BLOCK_COUNT_Y,
+        HEALTHBAR_NAME_WINDOW_OFFSET,
+        HEALTHBAR_NAME_BACKGROUND_COLOR);
+    PrintStringWithColorAndMargins(&window, FONT_SYSTEM, nickname, 0, 0, 0xFF, HEALTHBAR_NAME_FONT_COLOR, 0, 0, NULL);
+    buf = window.unk_0C;
+
+    // copy the window's data into VRAM over the painted healthbar
     {
-        void * v10;
-        u8 * v11, * v12;
+        void *vram = G2_GetOBJCharPtr();
+        imgProxy = SpriteActor_ImageProxy(healthbar->mainActor->unk_00);
+        u8 *hiHalf = buf;
+        u8 *loHalf = &buf[HEALTHBAR_NAME_BLOCK_COUNT_X * HEALTHBAR_WINDOW_BLOCK_SIZE];
 
-        v10 = G2_GetOBJCharPtr();
-        v2 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
-        v11 = v1;
-        v12 = &v1[8 * 0x20];
-
-        MI_CpuCopy16(v11, (void *)((u32)v10 + Unk_ov16_0226F64C[param0->type][0].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F64C[param0->type][0].unk_02);
-        MI_CpuCopy16(v12, (void *)((u32)v10 + Unk_ov16_0226F64C[param0->type][1].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F64C[param0->type][1].unk_02);
-
-        MI_CpuCopy16(&v11[Unk_ov16_0226F64C[param0->type][0].unk_02], (void *)((u32)v10 + Unk_ov16_0226F64C[param0->type][2].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F64C[param0->type][2].unk_02);
-        MI_CpuCopy16(&v12[Unk_ov16_0226F64C[param0->type][1].unk_02], (void *)((u32)v10 + Unk_ov16_0226F64C[param0->type][3].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F64C[param0->type][3].unk_02);
+        MI_CpuCopy16(hiHalf,
+            VRAM_TRANSFER_DST(vram, sBattlerNameVRAMTransfer, healthbar->type, 0, imgProxy),
+            sBattlerNameVRAMTransfer[healthbar->type][0].size);
+        MI_CpuCopy16(loHalf,
+            VRAM_TRANSFER_DST(vram, sBattlerNameVRAMTransfer, healthbar->type, 1, imgProxy),
+            sBattlerNameVRAMTransfer[healthbar->type][1].size);
+        MI_CpuCopy16(&hiHalf[sBattlerNameVRAMTransfer[healthbar->type][0].size],
+            VRAM_TRANSFER_DST(vram, sBattlerNameVRAMTransfer, healthbar->type, 2, imgProxy),
+            sBattlerNameVRAMTransfer[healthbar->type][2].size);
+        MI_CpuCopy16(&loHalf[sBattlerNameVRAMTransfer[healthbar->type][1].size],
+            VRAM_TRANSFER_DST(vram, sBattlerNameVRAMTransfer, healthbar->type, 3, imgProxy),
+            sBattlerNameVRAMTransfer[healthbar->type][3].size);
     }
 
-    BGL_DeleteWindow(&v3);
-    Strbuf_Free(v5);
-    Strbuf_Free(v6);
+    BGL_DeleteWindow(&window);
+    Strbuf_Free(nickname);
+    Strbuf_Free(template);
 }
 
 static void Healthbar_DrawLevelText (Healthbar * param0)
@@ -1141,8 +1175,8 @@ static void Healthbar_DrawLevelText (Healthbar * param0)
         v5 = G2_GetOBJCharPtr();
         v0 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
 
-        MI_CpuCopy16(v2, (void *)((u32)v5 + Unk_ov16_0226F47C[param0->type][0].unk_00 + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F47C[param0->type][0].unk_02);
-        MI_CpuCopy16(v1, (void *)((u32)v5 + Unk_ov16_0226F47C[param0->type][1].unk_00 + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F47C[param0->type][1].unk_02);
+        MI_CpuCopy16(v2, (void *)((u32)v5 + Unk_ov16_0226F47C[param0->type][0].pos + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F47C[param0->type][0].size);
+        MI_CpuCopy16(v1, (void *)((u32)v5 + Unk_ov16_0226F47C[param0->type][1].pos + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F47C[param0->type][1].size);
     }
 }
 
@@ -1166,8 +1200,8 @@ static void Healthbar_DrawLevelNumber (Healthbar * param0)
         v7 = G2_GetOBJCharPtr();
         v2 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
 
-        MI_CpuCopy16((void *)((u32)v7 + Unk_ov16_0226F3EC[param0->type][0].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), v1, Unk_ov16_0226F3EC[param0->type][0].unk_02);
-        MI_CpuCopy16((void *)((u32)v7 + Unk_ov16_0226F3EC[param0->type][1].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), &v1[v3], Unk_ov16_0226F3EC[param0->type][1].unk_02);
+        MI_CpuCopy16((void *)((u32)v7 + Unk_ov16_0226F3EC[param0->type][0].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), v1, Unk_ov16_0226F3EC[param0->type][0].size);
+        MI_CpuCopy16((void *)((u32)v7 + Unk_ov16_0226F3EC[param0->type][1].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), &v1[v3], Unk_ov16_0226F3EC[param0->type][1].size);
 
         v6 = 0;
 
@@ -1184,8 +1218,8 @@ static void Healthbar_DrawLevelNumber (Healthbar * param0)
         v8 = v1;
         v9 = &v1[v3];
 
-        MI_CpuCopy16(v8, (void *)((u32)v7 + Unk_ov16_0226F3EC[param0->type][0].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3EC[param0->type][0].unk_02);
-        MI_CpuCopy16(v9, (void *)((u32)v7 + Unk_ov16_0226F3EC[param0->type][1].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3EC[param0->type][1].unk_02);
+        MI_CpuCopy16(v8, (void *)((u32)v7 + Unk_ov16_0226F3EC[param0->type][0].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3EC[param0->type][0].size);
+        MI_CpuCopy16(v9, (void *)((u32)v7 + Unk_ov16_0226F3EC[param0->type][1].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3EC[param0->type][1].size);
     }
 
     Heap_FreeToHeap(v0);
@@ -1210,8 +1244,8 @@ static void Healthbar_DrawCurrentHP (Healthbar * param0, u32 param1)
         v1 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
         v3 = v0;
 
-        MI_CpuCopy16(v3, (void *)((u32)v2 + Unk_ov16_0226F41C[param0->type][0].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F41C[param0->type][0].unk_02);
-        MI_CpuCopy16(&v3[Unk_ov16_0226F41C[param0->type][0].unk_02], (void *)((u32)v2 + Unk_ov16_0226F41C[param0->type][1].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F41C[param0->type][1].unk_02);
+        MI_CpuCopy16(v3, (void *)((u32)v2 + Unk_ov16_0226F41C[param0->type][0].pos + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F41C[param0->type][0].size);
+        MI_CpuCopy16(&v3[Unk_ov16_0226F41C[param0->type][0].size], (void *)((u32)v2 + Unk_ov16_0226F41C[param0->type][1].pos + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F41C[param0->type][1].size);
     }
 
     Heap_FreeToHeap(v0);
@@ -1235,7 +1269,7 @@ static void Healthbar_DrawMaxHP (Healthbar * param0)
         v1 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
         v3 = v0;
 
-        MI_CpuCopy16(v3, (void *)((u32)v2 + Unk_ov16_0226F3BC[param0->type].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3BC[param0->type].unk_02);
+        MI_CpuCopy16(v3, (void *)((u32)v2 + Unk_ov16_0226F3BC[param0->type].pos + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3BC[param0->type].size);
     }
 
     Heap_FreeToHeap(v0);
@@ -1258,7 +1292,7 @@ static void Healthbar_DrawCaughtIcon (Healthbar * param0)
         v2 = G2_GetOBJCharPtr();
         v0 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
 
-        MI_CpuCopy16(v1, (void *)((u32)v2 + Unk_ov16_0226F38C[param0->type].unk_00 + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F38C[param0->type].unk_02);
+        MI_CpuCopy16(v1, (void *)((u32)v2 + Unk_ov16_0226F38C[param0->type].pos + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F38C[param0->type].size);
     }
 }
 
@@ -1275,7 +1309,7 @@ static void Healthbar_DrawStatusIcon (Healthbar * param0, int param1)
         v2 = G2_GetOBJCharPtr();
         v0 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
 
-        MI_CpuCopy16(v1, (void *)((u32)v2 + Unk_ov16_0226F35C[param0->type].unk_00 + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F35C[param0->type].unk_02);
+        MI_CpuCopy16(v1, (void *)((u32)v2 + Unk_ov16_0226F35C[param0->type].pos + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F35C[param0->type].size);
     }
 }
 
@@ -1311,11 +1345,11 @@ static void Healthbar_DrawBallCount (Healthbar * param0, u32 param1)
         v7 = v1;
         v8 = &v1[13 * 0x20];
 
-        MI_CpuCopy16(v7, (void *)((u32)v6 + Unk_ov16_0226F33C[0].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F33C[0].unk_02);
-        MI_CpuCopy16(v8, (void *)((u32)v6 + Unk_ov16_0226F33C[1].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F33C[1].unk_02);
+        MI_CpuCopy16(v7, (void *)((u32)v6 + Unk_ov16_0226F33C[0].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F33C[0].size);
+        MI_CpuCopy16(v8, (void *)((u32)v6 + Unk_ov16_0226F33C[1].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F33C[1].size);
 
-        MI_CpuCopy16(&v7[Unk_ov16_0226F33C[0].unk_02], (void *)((u32)v6 + Unk_ov16_0226F33C[2].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F33C[2].unk_02);
-        MI_CpuCopy16(&v8[Unk_ov16_0226F33C[1].unk_02], (void *)((u32)v6 + Unk_ov16_0226F33C[3].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F33C[3].unk_02);
+        MI_CpuCopy16(&v7[Unk_ov16_0226F33C[0].size], (void *)((u32)v6 + Unk_ov16_0226F33C[2].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F33C[2].size);
+        MI_CpuCopy16(&v8[Unk_ov16_0226F33C[1].size], (void *)((u32)v6 + Unk_ov16_0226F33C[3].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F33C[3].size);
     }
 
     BGL_DeleteWindow(&v3);
@@ -1359,10 +1393,10 @@ static void Healthbar_DrawBallsLeftMessage (Healthbar * param0, u32 param1)
         v9 = v1;
         v10 = &v1[13 * 0x20];
 
-        MI_CpuCopy16(v9, (void *)((u32)v8 + Unk_ov16_0226F34C[0].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F34C[0].unk_02);
-        MI_CpuCopy16(v10, (void *)((u32)v8 + Unk_ov16_0226F34C[1].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F34C[1].unk_02);
-        MI_CpuCopy16(&v9[Unk_ov16_0226F34C[0].unk_02], (void *)((u32)v8 + Unk_ov16_0226F34C[2].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F34C[2].unk_02);
-        MI_CpuCopy16(&v10[Unk_ov16_0226F34C[1].unk_02], (void *)((u32)v8 + Unk_ov16_0226F34C[3].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F34C[3].unk_02);
+        MI_CpuCopy16(v9, (void *)((u32)v8 + Unk_ov16_0226F34C[0].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F34C[0].size);
+        MI_CpuCopy16(v10, (void *)((u32)v8 + Unk_ov16_0226F34C[1].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F34C[1].size);
+        MI_CpuCopy16(&v9[Unk_ov16_0226F34C[0].size], (void *)((u32)v8 + Unk_ov16_0226F34C[2].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F34C[2].size);
+        MI_CpuCopy16(&v10[Unk_ov16_0226F34C[1].size], (void *)((u32)v8 + Unk_ov16_0226F34C[3].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F34C[3].size);
     }
 
     BGL_DeleteWindow(&v3);
@@ -1442,13 +1476,13 @@ static void DrawGauge (Healthbar * param0, u8 param1)
         }
 
         v6 = ov16_02268250(v3);
-        v9 = Unk_ov16_0226F44C[param0->type][0].unk_02 / 0x20;
+        v9 = Unk_ov16_0226F44C[param0->type][0].size / 0x20;
 
         for (v0 = 0; v0 < 6; v0++) {
             if (v0 < v9) {
-                MI_CpuCopy16(v6 + (v1[v0] << 5), (void *)((u32)v7 + Unk_ov16_0226F44C[param0->type][0].unk_00 + (v0 * 0x20) + v8->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
+                MI_CpuCopy16(v6 + (v1[v0] << 5), (void *)((u32)v7 + Unk_ov16_0226F44C[param0->type][0].pos + (v0 * 0x20) + v8->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
             } else {
-                MI_CpuCopy16(v6 + (v1[v0] << 5), (void *)((u32)v7 + Unk_ov16_0226F44C[param0->type][1].unk_00 + ((v0 - v9) * 0x20) + v8->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
+                MI_CpuCopy16(v6 + (v1[v0] << 5), (void *)((u32)v7 + Unk_ov16_0226F44C[param0->type][1].pos + ((v0 - v9) * 0x20) + v8->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
             }
         }
         break;

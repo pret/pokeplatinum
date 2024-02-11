@@ -13,9 +13,9 @@ typedef struct {
     BattleSystem *battleSys;
     SysTask * unk_10;
     Window unk_14;
-    u8 unk_24;
+    u8 battler;
     u8 type;
-    u8 unk_26;
+    u8 selectedPartySlot;
     u8 unk_27;
     s32 curHP;
     s32 maxHP;

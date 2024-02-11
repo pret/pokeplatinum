@@ -626,7 +626,7 @@ void BattleDisplay_SlideHealthbarIn(BattleSystem *battleSys, BattlerData *battle
     MI_CpuClearFast(&healthbar->state, sizeof(u8));
 
     healthbar->battleSys = battleSys;
-    healthbar->unk_24 = battlerData->battler;
+    healthbar->battler = battlerData->battler;
     healthbar->type = Healthbar_Type(battlerData->battlerType, BattleSystem_BattleType(battleSys));
     healthbar->unk_4C = healthbarData->command;
     healthbar->curHP = healthbarData->curHP;
@@ -636,7 +636,7 @@ void BattleDisplay_SlideHealthbarIn(BattleSystem *battleSys, BattlerData *battle
     healthbar->damage = 0;
     healthbar->curExp = healthbarData->expFromLastLevel;
     healthbar->maxExp = healthbarData->expToNextLevel;
-    healthbar->unk_26 = healthbarData->selectedPartySlot;
+    healthbar->selectedPartySlot = healthbarData->selectedPartySlot;
     healthbar->status = healthbarData->status;
     healthbar->unk_4B = healthbarData->speciesCaught;
     healthbar->unk_4D = healthbarData->delay;
@@ -654,7 +654,7 @@ void BattleDisplay_SlideHealthbarOut(BattleSystem *battleSys, BattlerData *battl
     MI_CpuClearFast(&healthbar->state, sizeof(u8));
 
     healthbar->battleSys = battleSys;
-    healthbar->unk_24 = battlerData->battler;
+    healthbar->battler = battlerData->battler;
     healthbar->unk_4C = battlerData->data[0];
 
     Healthbar_Scroll(healthbar, HEALTHBAR_SCROLL_OUT);
@@ -940,7 +940,7 @@ void ov16_0225DA74 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 
     v0->battleSys = param0;
     v0->unk_4C = param2->unk_00;
-    v0->unk_24 = param1->battler;
+    v0->battler = param1->battler;
     v0->type = Healthbar_Type(param1->battlerType, BattleSystem_BattleType(param0));
     v0->curHP = param2->unk_02;
     v0->maxHP = param2->unk_04;
@@ -967,7 +967,7 @@ void    ov16_0225DB00 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov
 
     v0->battleSys = param0;
     v0->unk_4C = param2->unk_00;
-    v0->unk_24 = param1->battler;
+    v0->battler = param1->battler;
     v0->curExp = param2->unk_04;
     v0->maxExp = param2->unk_0C;
     v0->expReward = param2->unk_08 - v0->curExp;
@@ -976,7 +976,7 @@ void    ov16_0225DB00 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov
         v0->unk_10 = SysTask_Start(ov16_022629DC, v0, 1000);
         return;
     } else {
-        ClearCommand(v0->battleSys, v0->unk_24, v0->unk_4C);
+        ClearCommand(v0->battleSys, v0->battler, v0->unk_4C);
     }
 }
 
@@ -1225,7 +1225,7 @@ void ov16_0225E008 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     MI_CpuClearFast(&v0->state, sizeof(u8));
 
     v0->battleSys = param0;
-    v0->unk_24 = param1->battler;
+    v0->battler = param1->battler;
     v0->type = Healthbar_Type(param1->battlerType, BattleSystem_BattleType(param0));
     v0->unk_4C = param2->unk_00;
     v0->curHP = param2->unk_02;
@@ -1235,13 +1235,13 @@ void ov16_0225E008 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     v0->damage = 0;
     v0->curExp = param2->unk_08;
     v0->maxExp = param2->unk_0C;
-    v0->unk_26 = param2->unk_06;
+    v0->selectedPartySlot = param2->unk_06;
     v0->status = param2->unk_07_0;
     v0->unk_4B = param2->unk_07_7;
     v0->unk_27 = param2->unk_10;
 
     Healthbar_DrawInfo(v0, v0->curHP, ~HEALTHBAR_INFO_EXP_GAUGE);
-    ClearCommand(v0->battleSys, v0->unk_24, v0->unk_4C);
+    ClearCommand(v0->battleSys, v0->battler, v0->unk_4C);
 }
 
 void ov16_0225E0BC (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C65C * param2)
@@ -2844,7 +2844,7 @@ static void SlideHealthbarInTask(SysTask *task, void *data)
         break;
 
     default:
-        ClearCommand(healthbar->battleSys, healthbar->unk_24, healthbar->unk_4C);
+        ClearCommand(healthbar->battleSys, healthbar->battler, healthbar->unk_4C);
         healthbar->unk_10 = NULL;
         SysTask_Done(task);
         break;
@@ -2874,7 +2874,7 @@ static void SlideHealthbarOutTask(SysTask *task, void *data)
         break;
 
     default:
-        ClearCommand(healthbar->battleSys, healthbar->unk_24, healthbar->unk_4C);
+        ClearCommand(healthbar->battleSys, healthbar->battler, healthbar->unk_4C);
         healthbar->unk_10 = NULL;
         SysTask_Done(task);
         Healthbar_Enable(healthbar, FALSE);
@@ -4770,7 +4770,7 @@ static void ov16_02262988 (SysTask * param0, void * param1)
         }
         break;
     default:
-        ClearCommand(v0->battleSys, v0->unk_24, v0->unk_4C);
+        ClearCommand(v0->battleSys, v0->battler, v0->unk_4C);
         v0->unk_10 = NULL;
         SysTask_Done(param0);
         return;
@@ -4813,7 +4813,7 @@ static void ov16_022629DC (SysTask * param0, void * param1)
         }
         break;
     default:
-        ClearCommand(v0->battleSys, v0->unk_24, v0->unk_4C);
+        ClearCommand(v0->battleSys, v0->battler, v0->unk_4C);
         v0->unk_10 = NULL;
         SysTask_Done(param0);
         break;
