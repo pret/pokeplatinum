@@ -133,17 +133,17 @@ static inline BOOL inline_ov21_021D5764_1 (int param0, int param1)
 
 static Strbuf* LoadMessage (int bankID, int entryID, int heapID)
 {
-    MessageLoader *v0 = MessageLoader_Init(1, NARC_INDEX_MSGDATA__PL_MSG, bankID, heapID);
+    MessageLoader *messageLoader = MessageLoader_Init(1, NARC_INDEX_MSGDATA__PL_MSG, bankID, heapID);
 
-    if (v0) {
-        Strbuf* v1 = Strbuf_Init(256, heapID);
+    if (messageLoader) {
+        Strbuf* strbuf = Strbuf_Init(256, heapID);
 
-        if (v1) {
-            MessageLoader_GetStrbuf(v0, entryID, v1);
+        if (strbuf) {
+            MessageLoader_GetStrbuf(messageLoader, entryID, strbuf);
         }
 
-        MessageLoader_Free(v0);
-        return v1;
+        MessageLoader_Free(messageLoader);
+        return strbuf;
     }
 
     return NULL;
