@@ -51,7 +51,19 @@ enum HealthbarGaugeType {
     HEALTHBAR_GAUGE_EXP,
 };
 
-void ov16_02266F1C(SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, PaletteData * param3, int param4);
+/**
+ * @brief Load the resources required to display a healthbar.
+ * 
+ * Though a NARC handle is required as a parameter, it is assumed to always be
+ * an open handle to pl_batt_obj.narc.
+ * 
+ * @param renderer 
+ * @param gfxHandler 
+ * @param narc 
+ * @param palette 
+ * @param healthbarType 
+ */
+void Healthbar_LoadResources(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, NARC *narc, PaletteData *palette, enum HealthbarType healthbarType);
 CellActorData * ov16_02267060(SpriteRenderer * param0, SpriteGfxHandler * param1, int param2);
 
 /**
