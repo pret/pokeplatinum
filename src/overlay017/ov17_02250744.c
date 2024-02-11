@@ -226,12 +226,12 @@ static void ov17_022507F0 (UnkStruct_ov17_0224FCA0 * param0, int param1, const U
         break;
     case 2:
         sub_0200B48C(param0->unk_10.unk_B8, 0, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
-        sub_0200B5CC(param0->unk_10.unk_B8, 1, Pokemon_GetBoxPokemon(param0->unk_10.unk_00->unk_00[param2->unk_00]));
+        StringFormatter_BufferNickname(param0->unk_10.unk_B8, 1, Pokemon_GetBoxPokemon(param0->unk_10.unk_00->unk_00[param2->unk_00]));
         break;
     case 3:
         sub_0200B60C(param0->unk_10.unk_B8, 0, param2->unk_04, 1, 0, 1);
         sub_0200B48C(param0->unk_10.unk_B8, 1, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
-        sub_0200B5CC(param0->unk_10.unk_B8, 2, Pokemon_GetBoxPokemon(param0->unk_10.unk_00->unk_00[param2->unk_00]));
+        StringFormatter_BufferNickname(param0->unk_10.unk_B8, 2, Pokemon_GetBoxPokemon(param0->unk_10.unk_00->unk_00[param2->unk_00]));
         break;
     default:
         GF_ASSERT(FALSE);
@@ -585,7 +585,7 @@ void ov17_0225122C (UnkStruct_ov17_0224FCA0 * param0, NARC * param1)
         for (v0 = 0; v0 < 4; v0++) {
             param0->unk_10.unk_138[v0] = SpriteActor_LoadResources(param0->unk_10.unk_18, param0->unk_10.unk_1C, &Unk_ov17_02254C90);
             sub_0200D330(param0->unk_10.unk_138[v0]);
-            sub_0200D3F4(param0->unk_10.unk_138[v0], 0);
+            SpriteActor_EnableObject(param0->unk_10.unk_138[v0], 0);
         }
 
         for (v0 = 0; v0 < 4; v0++) {
@@ -613,7 +613,7 @@ void ov17_022512E0 (UnkStruct_ov17_0224FCA0 * param0)
 void ov17_0225131C (UnkStruct_ov17_0224FCA0 * param0, int param1, int param2)
 {
     sub_0200D364(param0->unk_10.unk_138[param1], param2);
-    sub_0200D3F4(param0->unk_10.unk_138[param1], 1);
+    SpriteActor_EnableObject(param0->unk_10.unk_138[param1], 1);
     Sound_PlayEffect(1501);
 }
 

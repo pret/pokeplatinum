@@ -258,7 +258,7 @@ typedef struct {
 
 typedef struct {
     MessageLoader * unk_00;
-    UnkStruct_0200B358 * unk_04;
+    StringFormatter * unk_04;
     Strbuf* unk_08;
     Strbuf* unk_0C;
 } UnkStruct_ov69_0225EF54;

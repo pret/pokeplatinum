@@ -85,7 +85,7 @@ typedef struct {
     int unk_58;
     Strbuf* unk_5C;
     void * unk_60;
-    UnkStruct_0200B358 * unk_64;
+    StringFormatter * unk_64;
     UnkStruct_02015920 * unk_68;
     SysTask * unk_6C;
     UnkStruct_0208737C * unk_70;

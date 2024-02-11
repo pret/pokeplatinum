@@ -616,7 +616,7 @@ void sub_02021F7C (GraphicElementData * param0, const NNSG2dImageProxy * param1)
     param0->unk_B4 = *param1;
 }
 
-NNSG2dImageProxy * sub_02021F98 (GraphicElementData * param0)
+NNSG2dImageProxy * SpriteActor_ImageProxy (GraphicElementData * param0)
 {
     return &param0->unk_B4;
 }

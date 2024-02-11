@@ -146,7 +146,7 @@ void ov5_021EE9BC (UnkStruct_0203CDB0 * param0, u16 param1)
 static void ov5_021EE9E8 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u16 param3, vu16 param4)
 {
     u32 v0;
-    UnkStruct_0200B358 ** v1 = sub_0203F098(param0, 15);
+    StringFormatter ** v1 = sub_0203F098(param0, 15);
 
     v0 = ov5_021EE8A8(param3, param4);
 

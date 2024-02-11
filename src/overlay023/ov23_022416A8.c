@@ -489,7 +489,7 @@ int ov23_02241D38 (int param0)
 BOOL ov23_02241D58 (Strbuf *param0)
 {
     int v0;
-    UnkStruct_0200B358 * v1 = NULL;
+    StringFormatter * v1 = NULL;
     Strbuf* v2 = NULL;
     BOOL v3 = 0;
 

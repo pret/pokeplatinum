@@ -310,19 +310,19 @@ static void ov12_0222AC70 (SysTask * param0, void * param1)
                     v1->unk_01[v0] = 0;
 
                     if (sub_0200D408(v1->unk_14[v0]) == 1) {
-                        sub_0200D3F4(v1->unk_14[v0], 0);
+                        SpriteActor_EnableObject(v1->unk_14[v0], 0);
                     } else {
-                        sub_0200D3F4(v1->unk_14[v0], 1);
+                        SpriteActor_EnableObject(v1->unk_14[v0], 1);
                     }
                 }
             } else {
-                sub_0200D3F4(v1->unk_14[v0], 0);
+                SpriteActor_EnableObject(v1->unk_14[v0], 0);
             }
         }
 
         if (v1->unk_04 >= 45) {
             for (v0 = 0; v0 < ov12_02220280(v1->unk_08, 0); v0++) {
-                sub_0200D3F4(v1->unk_14[v0], 1);
+                SpriteActor_EnableObject(v1->unk_14[v0], 1);
             }
 
             v1->unk_04 = 0;
@@ -1095,8 +1095,8 @@ static void ov12_0222BFF4 (SysTask * param0, void * param1)
         }
         break;
     case 1:
-        sub_0200D3F4(v0->unk_0C, 1);
-        sub_0200D3F4(v0->unk_10, 1);
+        SpriteActor_EnableObject(v0->unk_0C, 1);
+        SpriteActor_EnableObject(v0->unk_10, 1);
         SpriteActor_SetOAMMode(v0->unk_10, GX_OAM_MODE_OBJWND);
         v0->unk_00++;
         break;
@@ -1104,8 +1104,8 @@ static void ov12_0222BFF4 (SysTask * param0, void * param1)
         if ((++v0->unk_01) >= 10) {
             G2_SetWndOutsidePlane((GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ), 0);
             G2_SetWndOBJInsidePlane((GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ), 0);
-            sub_0200D3F4(v0->unk_0C, 0);
-            sub_0200D3F4(v0->unk_10, 0);
+            SpriteActor_EnableObject(v0->unk_0C, 0);
+            SpriteActor_EnableObject(v0->unk_10, 0);
             v0->unk_01 = 0;
             v0->unk_00++;
         }
@@ -1146,8 +1146,8 @@ void ov12_0222C0C0 (UnkStruct_ov12_0221FCDC * param0)
         sub_02003B08(ov12_0222332C(v0->unk_04), v3, v2, ov12_0221FDE4(param0), 2, 0x20, v1 * 16, 256, 256, 256);
     }
 
-    sub_0200D3F4(v0->unk_0C, 0);
-    sub_0200D3F4(v0->unk_10, 0);
+    SpriteActor_EnableObject(v0->unk_0C, 0);
+    SpriteActor_EnableObject(v0->unk_10, 0);
     ov12_022201E8(v0->unk_04, ov12_0222BFF4, v0);
 }
 
@@ -1888,7 +1888,7 @@ void ov12_0222CFA0 (UnkStruct_ov12_0221FCDC * param0)
 
     if (ov12_0221FDD4(param0) == 1) {
         v0->unk_40 = v0->unk_44[0];
-        sub_0200D3F4(v0->unk_44[1], 0);
+        SpriteActor_EnableObject(v0->unk_44[1], 0);
         sub_0200D364(v0->unk_40, 0);
         v0->unk_14.unk_00 = 255 - 76;
         v0->unk_14.unk_02 = 120;
@@ -1897,13 +1897,13 @@ void ov12_0222CFA0 (UnkStruct_ov12_0221FCDC * param0)
     } else {
         if (ov12_0223525C(param0, ov12_02220240(param0)) == 0x4) {
             v0->unk_40 = v0->unk_44[1];
-            sub_0200D3F4(v0->unk_44[0], 0);
+            SpriteActor_EnableObject(v0->unk_44[0], 0);
             sub_0200D364(v0->unk_40, 1);
             v0->unk_14.unk_00 = 144;
             v0->unk_14.unk_02 = 64;
         } else {
             v0->unk_40 = v0->unk_44[0];
-            sub_0200D3F4(v0->unk_44[1], 0);
+            SpriteActor_EnableObject(v0->unk_44[1], 0);
             sub_0200D364(v0->unk_40, 0);
             v0->unk_14.unk_00 = 76;
             v0->unk_14.unk_02 = 120;

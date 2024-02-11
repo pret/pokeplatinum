@@ -91,7 +91,7 @@ UnkStruct_ov16_0226DEEC * ov16_0226DEEC (SpriteRenderer * param0, SpriteGfxHandl
     MI_CpuClear8(v0, sizeof(UnkStruct_ov16_0226DEEC));
 
     v0->unk_00 = SpriteActor_LoadResources(param0, param1, &v1);
-    sub_0200D3F4(v0->unk_00, 0);
+    SpriteActor_EnableObject(v0->unk_00, 0);
 
     v0->unk_14 = (192 << FX32_SHIFT);
     v0->unk_04 = SysTask_Start(ov16_0226DFD8, v0, 999);
@@ -115,7 +115,7 @@ void ov16_0226DF80 (UnkStruct_ov16_0226DEEC * param0, int param1, int param2, fx
     param0->unk_14 = param3;
 
     sub_0200D500(param0->unk_00, param1, param2, param3);
-    sub_0200D3F4(param0->unk_00, 1);
+    SpriteActor_EnableObject(param0->unk_00, 1);
 }
 
 void ov16_0226DFB0 (UnkStruct_ov16_0226DEEC * param0, int param1, int param2)
@@ -125,7 +125,7 @@ void ov16_0226DFB0 (UnkStruct_ov16_0226DEEC * param0, int param1, int param2)
 
 void ov16_0226DFBC (UnkStruct_ov16_0226DEEC * param0)
 {
-    sub_0200D3F4(param0->unk_00, 0);
+    SpriteActor_EnableObject(param0->unk_00, 0);
     ov16_0226E13C(param0);
 }
 

@@ -24,7 +24,7 @@ typedef struct {
     int unk_20;
     void * unk_24;
     NNSG2dCharacterData * unk_28;
-    const UnkStruct_0200B358 * unk_2C;
+    const StringFormatter * unk_2C;
     Strbuf* unk_30;
     Strbuf* unk_34;
 } UnkStruct_ov19_021DB6F0;

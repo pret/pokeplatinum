@@ -116,7 +116,7 @@ void sub_02082DA8 (GameWindowLayout * param0, u8 param1)
     v2 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
     v3 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
     v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
-    v4 = NNS_G2dGetImageLocation(sub_02021F98(param0->unk_704[param1].unk_24), NNS_G2D_VRAM_TYPE_2DMAIN);
+    v4 = NNS_G2dGetImageLocation(SpriteActor_ImageProxy(param0->unk_704[param1].unk_24), NNS_G2D_VRAM_TYPE_2DMAIN);
     v5 = sub_0200723C(v1, Pokemon_IconSpriteIndex(v0), 0, 12, 1);
     v7 = NNS_G2dGetUnpackedCharacterData(v5, &v6);
 
@@ -251,12 +251,12 @@ void sub_020830A0 (GameWindowLayout * param0, u8 param1, s16 param2, s16 param3)
     param0->unk_704[param1].unk_1E = param2 + 8;
     param0->unk_704[param1].unk_20 = param3 + 8;
 
-    sub_0200D494(*v0, param0->unk_704[param1].unk_1E, param0->unk_704[param1].unk_20);
+    SpriteActor_SetPositionXY(*v0, param0->unk_704[param1].unk_1E, param0->unk_704[param1].unk_20);
 }
 
 void sub_020830D4 (GameWindowLayout * param0, u8 param1)
 {
-    sub_0200D494(param0->unk_5B0[22 + param1], param0->unk_704[param1].unk_1E + 8, param0->unk_704[param1].unk_20);
+    SpriteActor_SetPositionXY(param0->unk_5B0[22 + param1], param0->unk_704[param1].unk_1E + 8, param0->unk_704[param1].unk_20);
 }
 
 void sub_02083104 (GameWindowLayout * param0, u8 param1)
@@ -329,15 +329,15 @@ void sub_020831B4 (GameWindowLayout * param0)
 
         if ((param0->unk_B11 == v1) && (v2 != 0) && (v2 != 5)) {
             if (sub_02021E74(v0->unk_24) == 0) {
-                sub_0200D494(v0->unk_24, v0->unk_16, v0->unk_18 - 3);
+                SpriteActor_SetPositionXY(v0->unk_24, v0->unk_16, v0->unk_18 - 3);
             } else {
-                sub_0200D494(v0->unk_24, v0->unk_16, v0->unk_18 + 1);
+                SpriteActor_SetPositionXY(v0->unk_24, v0->unk_16, v0->unk_18 + 1);
             }
 
             continue;
         }
 
-        sub_0200D494(v0->unk_24, v0->unk_16, v0->unk_18);
+        SpriteActor_SetPositionXY(v0->unk_24, v0->unk_16, v0->unk_18);
     }
 }
 
@@ -348,7 +348,7 @@ void sub_0208327C (GameWindowLayout * param0, u8 param1, u8 param2)
     sub_0201E010(&param0->unk_7F4[param1], &v0, &v1);
     SpriteActor_SetSpriteAnimActive(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, param1));
     sub_02021CAC(param0->unk_5B0[6], 1);
-    sub_0200D494(param0->unk_5B0[6], v0, v1);
+    SpriteActor_SetPositionXY(param0->unk_5B0[6], v0, v1);
     sub_0200D414(param0->unk_5B0[6], param2);
 }
 

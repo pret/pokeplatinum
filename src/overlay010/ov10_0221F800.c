@@ -140,7 +140,7 @@ typedef struct UnkStruct_ov10_0221FB28_t {
     Window unk_B8C;
     GXBG0As unk_B9C;
     MessageLoader * unk_BA0;
-    UnkStruct_0200B358 * unk_BA4;
+    StringFormatter * unk_BA4;
     Strbuf* unk_BA8;
     int unk_BAC;
     int unk_BB0;
@@ -989,8 +989,8 @@ static u8 ov10_02220604 (UnkStruct_ov10_0221FB28 * param0)
 static u8 ov10_02220698 (UnkStruct_ov10_0221FB28 * param0)
 {
     Sound_PlayEffect(1818);
-    sub_0200D3F4(param0->unk_198[12], 1);
-    sub_0200D3F4(param0->unk_198[13], 1);
+    SpriteActor_EnableObject(param0->unk_198[12], 1);
+    SpriteActor_EnableObject(param0->unk_198[13], 1);
     sub_0200D364(param0->unk_198[12], 0);
     param0->unk_B75 = 32;
     return 1;
@@ -999,7 +999,7 @@ static u8 ov10_02220698 (UnkStruct_ov10_0221FB28 * param0)
 static u8 ov10_022206D8 (UnkStruct_ov10_0221FB28 * param0)
 {
     Sound_PlayEffect(1818);
-    sub_0200D3F4(param0->unk_198[12], 1);
+    SpriteActor_EnableObject(param0->unk_198[12], 1);
     param0->unk_B75 = 64;
     return 1;
 }
@@ -1576,7 +1576,7 @@ static void ov10_0222130C (UnkStruct_ov10_0221FB28 * param0, u32 param1, Strbuf 
 
     v0 = &param0->unk_10[0];
 
-    sub_0201A870(param0->unk_0C, v0, 8, 2, 0, 0);
+    BGL_AddFramelessWindow(param0->unk_0C, v0, 8, 2, 0, 0);
     sub_0201D78C(v0, 0, param2, 0, 0, 0xff, (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
 
     v1.unk_00 = param0->unk_B38;
@@ -1716,8 +1716,8 @@ static void ov10_0222166C (UnkStruct_ov10_0221FB28 * param0)
 
 static void ov10_022216E0 (UnkStruct_ov10_0221FB28 * param0)
 {
-    sub_0200D3F4(param0->unk_198[12], 0);
-    sub_0200D3F4(param0->unk_198[13], 0);
+    SpriteActor_EnableObject(param0->unk_198[12], 0);
+    SpriteActor_EnableObject(param0->unk_198[13], 0);
 
     if (param0->unk_00->unk_2A == 3) {
         SpriteActor_SetSpritePositionXY(param0->unk_198[12], 128, (96 - 24));
@@ -2108,14 +2108,14 @@ static void ov10_02221EEC (UnkStruct_ov10_0221FB28 * param0, u32 param1)
 
     if (param0->unk_214[param1].unk_04 == 0) {
         for (v0 = 0; v0 < 5; v0++) {
-            sub_0200D3F4(param0->unk_198[param1 * 5 + v0], 0);
+            SpriteActor_EnableObject(param0->unk_198[param1 * 5 + v0], 0);
         }
     } else {
         sub_0200D41C(param0->unk_198[param1 * 5 + 0], PokeIconPaletteIndex(param0->unk_214[param1].unk_04, param0->unk_214[param1].unk_11, param0->unk_214[param1].unk_0F));
         sub_0200D364(param0->unk_198[param1 * 5 + 0], ov10_02221E84(param0, param1));
 
         if (param0->unk_214[param1].unk_0A == 0) {
-            sub_0200D3F4(param0->unk_198[param1 * 5 + 1], 0);
+            SpriteActor_EnableObject(param0->unk_198[param1 * 5 + 1], 0);
         } else if (Item_IsMail(param0->unk_214[param1].unk_0A) == 1) {
             sub_0200D364(param0->unk_198[param1 * 5 + 1], 1);
         } else {
@@ -2123,13 +2123,13 @@ static void ov10_02221EEC (UnkStruct_ov10_0221FB28 * param0, u32 param1)
         }
 
         if (param0->unk_214[param1].unk_10 == 0) {
-            sub_0200D3F4(param0->unk_198[param1 * 5 + 2], 0);
+            SpriteActor_EnableObject(param0->unk_198[param1 * 5 + 2], 0);
         } else {
             sub_0200D364(param0->unk_198[param1 * 5 + 2], 2);
         }
 
         if (param0->unk_214[param1].unk_14 == 7) {
-            sub_0200D3F4(param0->unk_198[param1 * 5 + 3], 0);
+            SpriteActor_EnableObject(param0->unk_198[param1 * 5 + 3], 0);
         } else {
             sub_0200D364(param0->unk_198[param1 * 5 + 3], param0->unk_214[v0].unk_14);
         }
@@ -2253,7 +2253,7 @@ static void ov10_022223E8 (UnkStruct_ov10_0221FB28 * param0)
     }
 }
 
-static void ov10_02222400 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * param1, UnkStruct_0200C440 * param2, UnkStruct_0200B358 * param3, Strbuf *param4, u32 param5)
+static void ov10_02222400 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * param1, UnkStruct_0200C440 * param2, StringFormatter * param3, Strbuf *param4, u32 param5)
 {
     Pokemon * v0;
     Window * v1;
@@ -2269,7 +2269,7 @@ static void ov10_02222400 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * par
 
     v2 = MessageLoader_GetNewStrbuf(param1, 8 + param5);
 
-    sub_0200B5CC(param3, 0, Pokemon_GetBoxPokemon(v0));
+    StringFormatter_BufferNickname(param3, 0, Pokemon_GetBoxPokemon(v0));
     StringFormatter_Format(param3, param4, v2);
     Strbuf_Free(v2);
     sub_0201D78C(v1, 0, param4, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -2285,7 +2285,7 @@ static void ov10_02222400 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * par
     }
 }
 
-static void ov10_022224F0 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * param1, UnkStruct_0200C440 * param2, UnkStruct_0200B358 * param3, Strbuf *param4, u32 param5)
+static void ov10_022224F0 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * param1, UnkStruct_0200C440 * param2, StringFormatter * param3, Strbuf *param4, u32 param5)
 {
     Window * v0;
     Strbuf* v1;
@@ -2295,7 +2295,7 @@ static void ov10_022224F0 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * par
     sub_0200C648(param2, 1, param0->unk_214[param5].unk_0C, 3, 0, v0, 0, 5 - 3);
 }
 
-static void ov10_02222528 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * param1, UnkStruct_0200C440 * param2, UnkStruct_0200B358 * param3, Strbuf *param4, u32 param5)
+static void ov10_02222528 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * param1, UnkStruct_0200C440 * param2, StringFormatter * param3, Strbuf *param4, u32 param5)
 {
     Window * v0;
     Strbuf* v1;
@@ -2344,7 +2344,7 @@ static void ov10_02222594 (UnkStruct_ov10_0221FB28 * param0, u32 param1)
     BGL_WindowColor(v0, 10, 0, 5, v1, 1);
 }
 
-static void ov10_02222684 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * param1, UnkStruct_0200C440 * param2, UnkStruct_0200B358 * param3, Strbuf *param4, u32 param5)
+static void ov10_02222684 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * param1, UnkStruct_0200C440 * param2, StringFormatter * param3, Strbuf *param4, u32 param5)
 {
     Pokemon * v0;
     Window * v1;
@@ -2373,7 +2373,7 @@ static void ov10_02222720 (UnkStruct_ov10_0221FB28 * param0)
 {
     MessageLoader * v0;
     UnkStruct_0200C440 * v1;
-    UnkStruct_0200B358 * v2;
+    StringFormatter * v2;
     Strbuf* v3;
     u32 v4;
 

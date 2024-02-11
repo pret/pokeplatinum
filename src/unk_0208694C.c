@@ -96,7 +96,7 @@ struct UnkStruct_02087A10_t {
     u16 unk_15A[3];
     BGL * unk_160;
     BOOL unk_164;
-    UnkStruct_0200B358 * unk_168;
+    StringFormatter * unk_168;
     MessageLoader * unk_16C;
     MessageLoader * unk_170;
     MessageLoader * unk_174;

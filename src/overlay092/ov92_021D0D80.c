@@ -99,7 +99,7 @@ typedef struct {
     int unk_B864;
     int unk_B868;
     Strbuf* unk_B86C;
-    UnkStruct_0200B358 * unk_B870;
+    StringFormatter * unk_B870;
     NNSG3dRenderObj unk_B874;
     NNSG3dResMdl * unk_B8C8;
     NNSG3dResFileHeader * unk_B8CC;

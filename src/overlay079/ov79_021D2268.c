@@ -62,7 +62,7 @@
 #include "overlay079/ov79_021D3768.h"
 
 typedef struct {
-    UnkStruct_0200B358 * unk_00;
+    StringFormatter * unk_00;
     Strbuf* unk_04;
     Strbuf* unk_08[3];
 } UnkStruct_ov79_021D2928_sub1;
@@ -564,7 +564,7 @@ static void ov79_021D2864 (UnkStruct_ov79_021D2928 * param0)
     param0->unk_5C = sub_02098FFC(param0->unk_00, 2, 2, (NNS_G2D_VRAM_TYPE_2DMAIN), 0);
     param0->unk_60[0] = sub_0209916C(param0->unk_5C, param0->unk_10->unk_08, 100, 90, 0, 1, 0, 0);
 
-    sub_0200D3F4(param0->unk_60[0]->unk_04, 0);
+    SpriteActor_EnableObject(param0->unk_60[0]->unk_04, 0);
 
     if (sub_02035E38()) {
         sub_02039734();

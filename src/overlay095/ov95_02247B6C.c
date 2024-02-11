@@ -329,7 +329,7 @@ static int ov95_02247F04 (UnkStruct_ov95_02247C6C * param0, int * param1)
     case 1:
         if (++(param0->unk_08) > 10) {
             MessageLoader * v0 = ov95_02247630(param0->unk_00);
-            UnkStruct_0200B358 * v1 = ov95_0224762C(param0->unk_00);
+            StringFormatter * v1 = ov95_0224762C(param0->unk_00);
             int v2, v3;
 
             if (ov95_02247680(param0->unk_00) == 1) {
@@ -352,7 +352,7 @@ static int ov95_02247F04 (UnkStruct_ov95_02247C6C * param0, int * param1)
     case 2:
         if (++(param0->unk_08) > 60) {
             MessageLoader * v4 = ov95_02247630(param0->unk_00);
-            UnkStruct_0200B358 * v5 = ov95_0224762C(param0->unk_00);
+            StringFormatter * v5 = ov95_0224762C(param0->unk_00);
 
             MessageLoader_GetStrbuf(v4, 1, param0->unk_68);
             StringFormatter_Format(v5, param0->unk_6C, param0->unk_68);

@@ -201,7 +201,7 @@ struct UnkStruct_ov108_02241DB0_t {
     u8 unk_44[32];
     u8 unk_64;
     MessageLoader * unk_68;
-    UnkStruct_0200B358 * unk_6C;
+    StringFormatter * unk_6C;
     Strbuf* unk_70;
     Strbuf* unk_74;
     Strbuf* unk_78[2];

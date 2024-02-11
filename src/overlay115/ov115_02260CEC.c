@@ -291,7 +291,7 @@ typedef struct {
 
 typedef struct {
     BGL * unk_00;
-    UnkStruct_0200B358 * unk_04;
+    StringFormatter * unk_04;
     MessageLoader * unk_08;
     Strbuf* unk_0C;
     Strbuf* unk_10;
@@ -4426,7 +4426,7 @@ static void ov115_02265478 (UnkStruct_ov115_02265788 * param0, UnkStruct_ov115_0
         UnkStruct_020127E8 v4;
 
         param0->unk_5C = Strbuf_Init(16, param3);
-        sub_0201A870(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
+        BGL_AddFramelessWindow(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
         param0->unk_4C = sub_02012B20(&param0->unk_38, param3);
 
         v2 = sub_02012B58(param0->unk_4C, NNS_G2D_VRAM_TYPE_2DMAIN);
@@ -4492,7 +4492,7 @@ static void ov115_02265700 (UnkStruct_ov115_02265788 * param0, UnkStruct_ov115_0
 {
     {
         Strbuf_FormatInt(param0->unk_5C, param2, 2, 2, 1);
-        sub_0201A870(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
+        BGL_AddFramelessWindow(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
         sub_0201D78C(&param0->unk_38, 0, param0->unk_5C, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         sub_02012BE0(param0->unk_48, param0->unk_4C, &param0->unk_38, param0->unk_9C);
         BGL_DeleteWindow(&param0->unk_38);
@@ -4521,7 +4521,7 @@ static void ov115_022657A8 (UnkStruct_ov115_02265788 * param0, UnkStruct_ov115_0
     if (param0->unk_98 != 3) {
         {
             Strbuf_FormatInt(param0->unk_5C, param2, 2, 2, 1);
-            sub_0201A870(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
+            BGL_AddFramelessWindow(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
             sub_0201D78C(&param0->unk_38, 0, param0->unk_5C, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
             sub_02012BE0(param0->unk_48, param0->unk_4C, &param0->unk_38, param0->unk_9C);
             BGL_DeleteWindow(&param0->unk_38);

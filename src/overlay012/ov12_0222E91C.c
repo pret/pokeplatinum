@@ -209,7 +209,7 @@ static void ov12_0222EC18 (SysTask * param0, void * param1)
             ov12_0222E248(v0->unk_30[v1]);
 
             if (v0->unk_1E[v1] >= 160) {
-                sub_0200D3F4(v0->unk_30[v1], 0);
+                SpriteActor_EnableObject(v0->unk_30[v1], 0);
                 v2++;
             }
         }
@@ -344,7 +344,7 @@ static void ov12_0222EE50 (SysTask * param0, void * param1)
 
             if (v0->unk_30 <= 0.2) {
                 v0->unk_00.unk_00++;
-                sub_0200D3F4(v0->unk_1C[0], 0);
+                SpriteActor_EnableObject(v0->unk_1C[0], 0);
             } else {
                 sub_0200D6E8(v0->unk_1C[0], v0->unk_2C * v0->unk_36, v0->unk_30);
             }
@@ -466,7 +466,7 @@ void ov12_0222EFB0 (UnkStruct_ov12_0221FCDC * param0)
         SpriteActor_SetSpritePositionXY(v0->unk_1C[0], v12.unk_00, v11.unk_02 + v7);
     }
 
-    sub_0200D3F4(v0->unk_1C[0], 1);
+    SpriteActor_EnableObject(v0->unk_1C[0], 1);
 
     v0->unk_34 = 0;
     v0->unk_35 = 15;

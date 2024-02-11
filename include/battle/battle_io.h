@@ -19,8 +19,24 @@ void BattleIO_SetTrainerEncounter(BattleSystem * param0, int param1);
 void BattleIO_ThrowTrainerBall(BattleSystem * param0, int param1, int param2);
 void BattleIO_SlideTrainerOut(BattleSystem * param0, int param1);
 void BattleIO_SlideTrainerIn(BattleSystem * param0, int param1, int param2);
-void BattleIO_SlideHPGaugeIn(BattleSystem * param0, BattleContext * param1, int param2, int param3);
-void BattleIO_SlideHPGaugeOut(BattleSystem * param0, int param1);
+
+/**
+ * @brief Slide the healthbar into the screen for a given battler.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler 
+ * @param delay     Optional frame-delay to wait until execution.
+ */
+void BattleIO_SlideHealthbarIn(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int delay);
+
+/**
+ * @brief Slide the healthbar out of the screen for a given battler.
+ * 
+ * @param battleSys 
+ * @param battler 
+ */
+void BattleIO_SlideHealthbarOut(BattleSystem *battleSys, int battler);
 void BattleIO_SetCommandSelection(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot);
 void ov16_022656D4(BattleSystem * param0, int param1, int param2);
 void BattleIO_ShowMoveSelectScreen(BattleSystem *battleSys, BattleContext *battleCtx, int battler);

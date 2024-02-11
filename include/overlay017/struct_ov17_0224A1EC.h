@@ -37,7 +37,7 @@ typedef struct {
     BGL * unk_60;
     Window unk_64[2];
     MessageLoader * unk_84;
-    UnkStruct_0200B358 * unk_88;
+    StringFormatter * unk_88;
     Strbuf* unk_8C;
     PaletteData * unk_90;
     UnkStruct_02012744 * unk_94;

@@ -58,7 +58,7 @@
 
 typedef struct {
     MessageLoader * unk_00;
-    UnkStruct_0200B358 * unk_04;
+    StringFormatter * unk_04;
     Strbuf* unk_08;
     Strbuf* unk_0C;
     Strbuf* unk_10;
@@ -1002,5 +1002,5 @@ static void ov90_021D1C90 (UnkStruct_ov90_021D0ECC * param0, u8 param1, u8 param
         break;
     }
 
-    sub_0200D494(param0->unk_2A4[0], param2 * 72 + 54, param3 * 24 + 68);
+    SpriteActor_SetPositionXY(param0->unk_2A4[0], param2 * 72 + 54, param3 * 24 + 68);
 }

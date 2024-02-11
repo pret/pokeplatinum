@@ -883,7 +883,7 @@ void SpriteActor_DrawSprite (GraphicElementData * param0, int param1)
     sub_02021CAC(param0, param1);
 }
 
-void sub_0200D3F4 (CellActorData * param0, int param1)
+void SpriteActor_EnableObject (CellActorData * param0, int param1)
 {
     SpriteActor_DrawSprite(param0->unk_00, param1);
 }
@@ -958,7 +958,7 @@ u32 sub_0200D488 (CellActorData * param0)
     return sub_0200D480(param0->unk_00);
 }
 
-void sub_0200D494 (GraphicElementData * param0, s16 param1, s16 param2)
+void SpriteActor_SetPositionXY (GraphicElementData * param0, s16 param1, s16 param2)
 {
     VecFx32 v0;
 
@@ -976,7 +976,7 @@ void sub_0200D494 (GraphicElementData * param0, s16 param1, s16 param2)
 
 void SpriteActor_SetSpritePositionXY (CellActorData * param0, s16 param1, s16 param2)
 {
-    sub_0200D494(param0->unk_00, param1, param2);
+    SpriteActor_SetPositionXY(param0->unk_00, param1, param2);
 }
 
 void sub_0200D4D0 (GraphicElementData * param0, s16 param1, s16 param2, fx32 param3)

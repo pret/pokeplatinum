@@ -97,7 +97,7 @@ void ov71_0223C6F0 (Window * param0, const UnkStruct_02072014 * param1)
 
     {
         Strbuf* v3 = Strbuf_Init(32, 25);
-        UnkStruct_0200B358 * v4 = sub_0200B368(6, 32, 25);
+        StringFormatter * v4 = sub_0200B368(6, 32, 25);
 
         ov71_0223CD64(&param0[0], (8 * 17), 0, 0, v2, param1->unk_28, 5, 2);
         Strbuf_CopyChars(v2, param1->unk_08);
@@ -568,7 +568,7 @@ void ov71_0223CDE8 (Window * param0, const UnkStruct_02072014 * param1, Strbuf *
         MessageLoader * v2 = MessageLoader_Init(0, 26, 616, 25);
         Strbuf* v3 = Strbuf_Init(32, 25);
         Strbuf* v4 = Strbuf_Init(32, 25);
-        UnkStruct_0200B358 * v5 = sub_0200B368((1 + 1), 32, 25);
+        StringFormatter * v5 = sub_0200B368((1 + 1), 32, 25);
 
         sub_0200B60C(v5, 0, sub_0202CC58(param1->unk_18), 3, 1, 1);
         sub_0200B60C(v5, 1, sub_0202CC5C(param1->unk_18), 2, 2, 1);

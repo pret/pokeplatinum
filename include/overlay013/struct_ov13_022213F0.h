@@ -39,7 +39,7 @@ typedef struct {
     u8 unk_1F9F_7 : 1;
     UnkStruct_0200C440 * unk_1FA0;
     MessageLoader * unk_1FA4;
-    UnkStruct_0200B358 * unk_1FA8;
+    StringFormatter * unk_1FA8;
     Strbuf* unk_1FAC;
     SpriteGfxHandler * unk_1FB0;
     CellActorData * unk_1FB4[38];

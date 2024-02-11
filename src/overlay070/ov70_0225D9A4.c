@@ -161,7 +161,7 @@ typedef struct {
 } UnkStruct_ov70_0225EFD4;
 
 typedef struct {
-    UnkStruct_0200B358 * unk_00;
+    StringFormatter * unk_00;
     MessageLoader * unk_04[4];
     Strbuf* unk_14;
     Strbuf* unk_18;
@@ -2832,7 +2832,7 @@ static void ov70_02260080 (UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225
 
 static void ov70_02260228 (UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225E4EC * param1)
 {
-    sub_0201ED1C(sub_02021F98(param0->unk_68));
+    sub_0201ED1C(SpriteActor_ImageProxy(param0->unk_68));
     sub_02021BD4(param0->unk_68);
 
     param0->unk_68 = NULL;

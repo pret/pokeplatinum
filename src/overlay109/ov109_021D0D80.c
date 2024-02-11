@@ -148,7 +148,7 @@ typedef struct {
 typedef struct {
     int unk_00;
     MessageLoader * unk_04;
-    UnkStruct_0200B358 * unk_08;
+    StringFormatter * unk_08;
     Window unk_0C[1];
     Window unk_1C[5];
     void * unk_6C;

@@ -831,7 +831,7 @@ static u8 ov7_0224DC84 (UnkStruct_ov7_0224D008 * param0)
     sub_020014DC(param0->unk_78, NULL, &v2);
 
     if (v1 != v2) {
-        sub_0200D494(param0->unk_25C[2], (176 - 4), 24 + v2 * 16);
+        SpriteActor_SetPositionXY(param0->unk_25C[2], (176 - 4), 24 + v2 * 16);
     }
 
     switch (v0) {
@@ -1492,11 +1492,11 @@ static void ov7_0224EB14 (UnkStruct_ov7_0224D008 * param0)
 static void ov7_0224EB38 (UnkStruct_ov7_0224D008 * param0, u8 param1)
 {
     if (param1 == 0) {
-        sub_0200D494(param0->unk_25C[0], 177, 8);
-        sub_0200D494(param0->unk_25C[1], 177, 132);
+        SpriteActor_SetPositionXY(param0->unk_25C[0], 177, 8);
+        SpriteActor_SetPositionXY(param0->unk_25C[1], 177, 132);
     } else {
-        sub_0200D494(param0->unk_25C[0], 162, 108);
-        sub_0200D494(param0->unk_25C[1], 162, 132);
+        SpriteActor_SetPositionXY(param0->unk_25C[0], 162, 108);
+        SpriteActor_SetPositionXY(param0->unk_25C[1], 162, 132);
     }
 }
 

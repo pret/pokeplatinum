@@ -74,7 +74,7 @@ UnkStruct_ov17_02252B48 * ov17_02252B48 (SpriteRenderer * param0, SpriteGfxHandl
 
     for (v2 = 0; v2 < 5; v2++) {
         v0->unk_00[v2] = SpriteActor_LoadResources(param0, param1, &v1);
-        sub_0200D3F4(v0->unk_00[v2], 0);
+        SpriteActor_EnableObject(v0->unk_00[v2], 0);
     }
 
     v0->unk_14 = SysTask_Start(ov17_02252CB8, v0, 40000);
@@ -108,7 +108,7 @@ void ov17_02252BF0 (UnkStruct_ov17_02252B48 * param0, int param1, int param2, in
     sub_0200D364(param0->unk_00[3], 3);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0200D3F4(param0->unk_00[v0], 1);
+        SpriteActor_EnableObject(param0->unk_00[v0], 1);
     }
 }
 
@@ -122,7 +122,7 @@ void ov17_02252C9C (UnkStruct_ov17_02252B48 * param0)
     int v0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        sub_0200D3F4(param0->unk_00[v0], 0);
+        SpriteActor_EnableObject(param0->unk_00[v0], 0);
     }
 }
 

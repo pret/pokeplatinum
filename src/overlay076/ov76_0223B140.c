@@ -390,7 +390,7 @@ void ov76_0223B69C (UnkStruct_ov76_0223DE00 * param0, int param1)
             continue;
         }
 
-        sub_0200D3F4(param0->unk_324[v0].unk_08, param1);
+        SpriteActor_EnableObject(param0->unk_324[v0].unk_08, param1);
     }
 }
 

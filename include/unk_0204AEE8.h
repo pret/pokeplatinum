@@ -8,7 +8,7 @@
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay104/struct_ov104_0223A348.h"
 
-UnkStruct_0200B358 * sub_0204AEE8(SaveData * param0, u16 param1, u16 param2, u8 param3, u8 * param4);
+StringFormatter * sub_0204AEE8(SaveData * param0, u16 param1, u16 param2, u8 param3, u8 * param4);
 u16 sub_0204AF9C(u8 param0);
 u16 sub_0204AFC4(UnkStruct_0203CDB0 * param0, const u16 * param1);
 u16 sub_0204B020(UnkStruct_0203CDB0 * param0, const u16 * param1);

@@ -303,7 +303,7 @@ static BOOL ov104_0223DDE4 (UnkStruct_ov104_0223DD30 * param0, u32 param1, const
 
         v0->unk_90 = SpriteActor_LoadResources(param0->unk_14, param0->unk_18, &Unk_ov104_022418B4);
 
-        sub_0200D3F4(v0->unk_90, 0);
+        SpriteActor_EnableObject(v0->unk_90, 0);
         SpriteActor_UpdateObject(v0->unk_90->unk_00);
         ov104_0223E3FC(param0, &v0->unk_14, (FX32_CONST(72)) + FX32_CONST(param0->unk_28), (FX32_CONST(82)) + FX32_CONST(param0->unk_2A), param1);
         param0->unk_00++;
@@ -452,8 +452,8 @@ static void ov104_0223E29C (UnkStruct_ov104_0223DD30 * param0, UnkStruct_ov104_0
 
     if (param10 == NULL) {
         sub_0201A7A0(&v1);
-        sub_0201A870(v5, &v1, v8, 16 / 8, 0, 0);
-        sub_0201D7E0(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
+        BGL_AddFramelessWindow(v5, &v1, v8, 16 / 8, 0, 0);
+        PrintStringWithColorAndMargins(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
     } else {
         v1 = param10->unk_00;
     }
@@ -528,7 +528,7 @@ static void ov104_0223E3FC (UnkStruct_ov104_0223DD30 * param0, UnkStruct_ov104_0
 
     for (v0 = 0; v0 < 4; v0++) {
         param1->unk_04[v0] = SpriteActor_LoadResources(param0->unk_14, param0->unk_18, &v1);
-        sub_0200D3F4(param1->unk_04[v0], 0);
+        SpriteActor_EnableObject(param1->unk_04[v0], 0);
 
         if (v0 != 3) {
             sub_02021CF8(param1->unk_04[v0]->unk_00, 2);
@@ -756,7 +756,7 @@ static BOOL ov104_0223E804 (UnkStruct_ov104_0223DD30 * param0, UnkStruct_ov104_0
     switch (param2->unk_04) {
     case 0:
         sub_0200D500(param1->unk_90, 256 + param0->unk_28, 80 + param0->unk_2A, (512 * FX32_ONE));
-        sub_0200D3F4(param1->unk_90, 1);
+        SpriteActor_EnableObject(param1->unk_90, 1);
         param2->unk_00 = 256 << 8;
         param2->unk_04++;
         break;

@@ -86,7 +86,7 @@ typedef struct {
     int unk_00;
     UnkStruct_ov97_0222D04C unk_04;
     BGL * unk_2A5C;
-    UnkStruct_0200B358 * unk_2A60;
+    StringFormatter * unk_2A60;
     MessageLoader * unk_2A64;
     Window unk_2A68[20];
     int unk_2BA8[20];
@@ -338,7 +338,7 @@ static void ov97_022305EC (Window * param0, int param1)
 {
     Strbuf* v0;
     MessageLoader * v1 = MessageLoader_Init(1, 26, 421, 87);
-    UnkStruct_0200B358 * v2 = sub_0200B358(87);
+    StringFormatter * v2 = sub_0200B358(87);
 
     BGL_FillWindow(param0, sub_02002DF8(1, 6));
 
@@ -1335,7 +1335,7 @@ static int ov97_02231CA0 (UnkStruct_ov97_02230868 * param0, Window * param1)
     u32 v4;
     TrainerInfo * v5;
     Strbuf* v6;
-    UnkStruct_0200B358 * v7;
+    StringFormatter * v7;
     MessageLoader * v8;
     int v9[4];
     int v10[4];

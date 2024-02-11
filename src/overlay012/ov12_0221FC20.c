@@ -2216,12 +2216,12 @@ static void ov12_02221580 (UnkStruct_ov12_0221FCDC * param0)
         v1 = SpriteActor_LoadResources(param0->unk_BC->unk_AC, param0->unk_134, &v11);
 
         if (v12 == NULL) {
-            sub_0200D3F4(v1, 0);
+            SpriteActor_EnableObject(v1, 0);
         } else {
             int v17 = sub_020080C0(v12, 6);
 
             if (v17 == 1) {
-                sub_0200D3F4(v1, 0);
+                SpriteActor_EnableObject(v1, 0);
             }
         }
 
@@ -2233,7 +2233,7 @@ static void ov12_02221580 (UnkStruct_ov12_0221FCDC * param0)
     if (ov12_022232FC(param0, v7) != NULL) {
         NNSG2dImageProxy * v18;
 
-        v18 = sub_02021F98(v1->unk_00);
+        v18 = SpriteActor_ImageProxy(v1->unk_00);
         sub_0201DC68(NNS_GFD_DST_2D_OBJ_CHAR_MAIN, v18->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN], v0, (10 * 10 * ((8 / 2) * 8)));
     }
 
@@ -2335,7 +2335,7 @@ static void ov12_02221834 (UnkStruct_ov12_0221FCDC * param0)
     param0->unk_48[v1].unk_08 = param0->unk_138[v2];
     param0->unk_48[v1].unk_0C = 1;
 
-    sub_0200D3F4(param0->unk_48[v1].unk_08, 0);
+    SpriteActor_EnableObject(param0->unk_48[v1].unk_08, 0);
 
     if (ov12_02223364(param0) == 1) {
         int v3, v4;
@@ -2358,9 +2358,9 @@ static void ov12_02221834 (UnkStruct_ov12_0221FCDC * param0)
             }
 
             if (v5 == 1) {
-                sub_0200D3F4(param0->unk_48[v1].unk_08, 0);
+                SpriteActor_EnableObject(param0->unk_48[v1].unk_08, 0);
             } else {
-                sub_0200D3F4(param0->unk_48[v1].unk_08, 1);
+                SpriteActor_EnableObject(param0->unk_48[v1].unk_08, 1);
             }
         }
 
@@ -2369,7 +2369,7 @@ static void ov12_02221834 (UnkStruct_ov12_0221FCDC * param0)
             if ((v3 == 3) || (v3 == 4)) {
                 sub_0200D474(param0->unk_48[v1].unk_08, 1);
             } else {
-                sub_0200D3F4(param0->unk_48[v1].unk_08, 0);
+                SpriteActor_EnableObject(param0->unk_48[v1].unk_08, 0);
                 sub_0200D474(param0->unk_48[v1].unk_08, 255);
             }
             break;
@@ -2377,7 +2377,7 @@ static void ov12_02221834 (UnkStruct_ov12_0221FCDC * param0)
             if ((v3 == 5) || (v3 == 2)) {
                 sub_0200D474(param0->unk_48[v1].unk_08, 1);
             } else {
-                sub_0200D3F4(param0->unk_48[v1].unk_08, 0);
+                SpriteActor_EnableObject(param0->unk_48[v1].unk_08, 0);
                 sub_0200D474(param0->unk_48[v1].unk_08, 255);
             }
             break;
@@ -3805,7 +3805,7 @@ static void ov12_022230A8 (UnkStruct_ov12_0221FCDC * param0)
     v1 = inline_ov12_022204C4(param0->unk_18);
     param0->unk_18 += 1;
 
-    sub_0200D3F4(param0->unk_138[v0], v1);
+    SpriteActor_EnableObject(param0->unk_138[v0], v1);
 }
 
 static void ov12_022230CC (UnkStruct_ov12_0221FCDC * param0)
@@ -4311,21 +4311,21 @@ UnkStruct_ov12_02223764 * ov12_022234F8 (BattleSystem * param0, int param1, int 
                 v2->unk_24[v5] = v10;
 
                 if (v13 == NULL) {
-                    sub_0200D3F4(v10, 0);
+                    SpriteActor_EnableObject(v10, 0);
                 } else if (sub_02008B38(v13) == 0) {
-                    sub_0200D3F4(v10, 0);
+                    SpriteActor_EnableObject(v10, 0);
                 } else {
                     int v16 = sub_020080C0(v13, 6);
 
                     if (v16 == 1) {
-                        sub_0200D3F4(v10, 0);
+                        SpriteActor_EnableObject(v10, 0);
                     }
                 }
 
                 if (v13 != NULL) {
                     NNSG2dImageProxy * v17;
 
-                    v17 = sub_02021F98(v10->unk_00);
+                    v17 = SpriteActor_ImageProxy(v10->unk_00);
                     sub_0201DC68(NNS_GFD_DST_2D_OBJ_CHAR_MAIN, v17->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN], v8, (10 * 10 * ((8 / 2) * 8)));
                 }
 

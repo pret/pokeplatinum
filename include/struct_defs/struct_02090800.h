@@ -9,7 +9,7 @@
 typedef struct {
     int unk_00;
     MessageLoader * unk_04;
-    UnkStruct_0200B358 * unk_08;
+    StringFormatter * unk_08;
     Pokemon * unk_0C;
     BOOL unk_10;
     PokemonInfoDisplayStruct_sub1 unk_14;

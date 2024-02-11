@@ -312,7 +312,7 @@ int ov119_021D1158 (Window * param0, int param1, Pokemon * param2, int param3)
     int v0;
     Strbuf* v1;
     Strbuf* v2;
-    UnkStruct_0200B358 * v3;
+    StringFormatter * v3;
     BoxPokemon * v4;
     MessageLoader * v5;
 

@@ -86,7 +86,7 @@ struct UnkStruct_ov111_021D0F7C_t {
     VecFx32 unk_28;
     void * unk_34;
     MessageLoader * unk_38;
-    UnkStruct_0200B358 * unk_3C;
+    StringFormatter * unk_3C;
     Strbuf* unk_40;
     Strbuf* unk_44;
     u16 unk_48[8];

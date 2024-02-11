@@ -943,7 +943,7 @@ static CellActorData * ov117_02263A00 (UnkStruct_ov117_02261280 * param0)
     v1 = Unk_ov117_02266B38;
     v0 = SpriteActor_LoadResources(param0->unk_24, param0->unk_28, &v1);
 
-    sub_0200D3F4(v0, 0);
+    SpriteActor_EnableObject(v0, 0);
     SpriteActor_UpdateObject(v0->unk_00);
 
     return v0;

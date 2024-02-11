@@ -39,7 +39,7 @@ typedef struct {
     UnkFuncPtr_ov23_022515D8 unk_64;
     Strbuf* unk_68;
     Strbuf* unk_6C;
-    UnkStruct_0200B358 * unk_70;
+    StringFormatter * unk_70;
     UnkStruct_ov5_021D30A8 unk_74;
     CellActorData * unk_23C[8];
     u32 unk_25C;

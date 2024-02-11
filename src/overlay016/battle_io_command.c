@@ -20,7 +20,6 @@
 #include "overlay016/struct_ov16_0225BFFC_t.h"
 #include "overlay016/struct_ov16_0225C168.h"
 #include "overlay016/struct_ov16_0225C17C.h"
-#include "overlay016/struct_ov16_0225C23C.h"
 #include "overlay016/struct_ov16_0225C260.h"
 #include "overlay016/struct_ov16_0225C29C.h"
 #include "overlay016/struct_ov16_0225C2B0.h"
@@ -79,7 +78,7 @@
 #include "battle/battle_display.h"
 #include "overlay016/ov16_02264798.h"
 #include "battle/battle_io.h"
-#include "overlay016/ov16_02266F1C.h"
+#include "battle/healthbar.h"
 #include "overlay016/ov16_0226871C.h"
 #include "battle/party_gauge.h"
 
@@ -101,8 +100,8 @@ static void ov16_0225C1F0(BattleSystem * param0, BattlerData * param1);
 static void ov16_0225C204(BattleSystem * param0, BattlerData * param1);
 static void ov16_0225C218(BattleSystem * param0, BattlerData * param1);
 static void ov16_0225C228(BattleSystem * param0, BattlerData * param1);
-static void ov16_0225C23C(BattleSystem * param0, BattlerData * param1);
-static void ov16_0225C250(BattleSystem * param0, BattlerData * param1);
+static void BtlIOCmd_SlideHealthbarIn(BattleSystem *battleSys, BattlerData *battlerData);
+static void BtlIOCmd_SlideHealthbarOut(BattleSystem *battleSys, BattlerData *battlerData);
 static void ov16_0225C260(BattleSystem * param0, BattlerData * param1);
 static void ov16_0225C288(BattleSystem * param0, BattlerData * param1);
 static void ov16_0225C29C(BattleSystem * param0, BattlerData * param1);
@@ -219,8 +218,8 @@ static const UnkFuncPtr_ov16_0226F068 Unk_ov16_0226F068[] = {
     ov16_0225C204,
     ov16_0225C218,
     ov16_0225C228,
-    ov16_0225C23C,
-    ov16_0225C250,
+    [BTLIOCMD_SLIDE_HEALTHBAR_IN]  = BtlIOCmd_SlideHealthbarIn,
+    [BTLIOCMD_SLIDE_HEALTHBAR_OUT] = BtlIOCmd_SlideHealthbarOut,
     ov16_0225C260,
     ov16_0225C288,
     ov16_0225C29C,
@@ -287,7 +286,7 @@ void ov16_0225C0DC (BattleSystem * param0, BattlerData * param1)
 void ov16_0225C104 (BattleSystem * param0, BattlerData * param1, int param2)
 {
     if (param2 != 2) {
-        ov16_02267360(&param1->unk_28);
+        ov16_02267360(&param1->healthbar);
     }
 
     if (param1->unk_18) {
@@ -392,18 +391,30 @@ static void ov16_0225C228 (BattleSystem * param0, BattlerData * param1)
     ZeroDataBuffer(param1);
 }
 
-static void ov16_0225C23C (BattleSystem * param0, BattlerData * param1)
+/**
+ * @brief Slide a healthbar in on the screen.
+ * 
+ * @param battleSys 
+ * @param battlerData 
+ */
+static void BtlIOCmd_SlideHealthbarIn(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    UnkStruct_ov16_0225C23C * v0 = (UnkStruct_ov16_0225C23C *)&param1->data[0];
+    HealthbarData *healthbar = (HealthbarData *)&battlerData->data[0];
 
-    ov16_0225D4A8(param0, param1, v0);
-    ZeroDataBuffer(param1);
+    BattleDisplay_SlideHealthbarIn(battleSys, battlerData, healthbar);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C250 (BattleSystem * param0, BattlerData * param1)
+/**
+ * @brief Slide a healthbar out of the screen.
+ * 
+ * @param battleSys 
+ * @param battlerData 
+ */
+static void BtlIOCmd_SlideHealthbarOut(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    ov16_0225D570(param0, param1);
-    ZeroDataBuffer(param1);
+    BattleDisplay_SlideHealthbarOut(battleSys, battlerData);
+    ZeroDataBuffer(battlerData);
 }
 
 static void ov16_0225C260 (BattleSystem * param0, BattlerData * param1)
@@ -667,7 +678,7 @@ static void ov16_0225C558 (BattleSystem * param0, BattlerData * param1)
 
 static void ov16_0225C5B0 (BattleSystem * param0, BattlerData * param1)
 {
-    ov16_022675AC(&param1->unk_28);
+    ov16_022675AC(&param1->healthbar);
     ov16_022647D8(param1);
     ClearCommand(param0, param1->battler, param1->data[0]);
     ZeroDataBuffer(param1);
@@ -765,7 +776,7 @@ static void ov16_0225C79C (BattleSystem * param0, BattlerData * param1)
         {
             UnkStruct_ov16_02268A14 * v0;
             int v1;
-            UnkStruct_ov16_022674C4 * v2;
+            Healthbar * v2;
             NARC * v3;
             NARC * v4;
 
@@ -786,7 +797,7 @@ static void ov16_0225C79C (BattleSystem * param0, BattlerData * param1)
                 ov16_0226846C(v2);
             }
 
-            ov16_022675AC(&param1->unk_28);
+            ov16_022675AC(&param1->healthbar);
             ov16_02269218(v0);
             ov16_022647D8(param1);
         }

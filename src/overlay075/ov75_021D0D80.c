@@ -934,7 +934,7 @@ static void ov75_021D1ADC (UnkStruct_ov75_021D1184 * param0)
         param0->unk_B0[v0] = SpriteActor_LoadResources(param0->unk_A8, param0->unk_AC, &v2);
 
         if (param0->unk_1C->unk_14[v0].val1_0 == 7) {
-            sub_0200D3F4(param0->unk_B0[v0], 0);
+            SpriteActor_EnableObject(param0->unk_B0[v0], 0);
         }
     }
 }

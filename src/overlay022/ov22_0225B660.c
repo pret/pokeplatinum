@@ -280,7 +280,7 @@ static void ov22_0225BB00 (UnkStruct_ov22_0225B85C * param0)
     int v1, v2;
     int v3;
     u16 v4;
-    UnkStruct_0200B358 * v5;
+    StringFormatter * v5;
     Strbuf* v6;
     Strbuf* v7;
     MessageLoader * v8;
@@ -326,7 +326,7 @@ static void ov22_0225BB00 (UnkStruct_ov22_0225B85C * param0)
 static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
 {
     int v0;
-    UnkStruct_0200B358 * v1;
+    StringFormatter * v1;
     Strbuf* v2;
     Strbuf* v3;
     int v4;
@@ -352,7 +352,7 @@ static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
     v5 = Pokemon_New(13);
     sub_0202A560(param0->unk_04, v5);
     v6 = Pokemon_GetBoxPokemon(v5);
-    sub_0200B5CC(v1, 4, v6);
+    StringFormatter_BufferNickname(v1, 4, v6);
     Heap_FreeToHeap(v5);
 
     v7 = MessageLoader_Init(0, 26, 385, 13);

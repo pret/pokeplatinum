@@ -282,7 +282,7 @@ void ov116_02261E0C (UnkStruct_ov116_02262A8C * param0, BOOL param1, int param2)
     int v0;
 
     for (v0 = 0; v0 < (3 * 12); v0++) {
-        sub_0200D3F4(param0->unk_28[v0], param1);
+        SpriteActor_EnableObject(param0->unk_28[v0], param1);
     }
 }
 
@@ -536,9 +536,9 @@ void ov116_022620AC (UnkStruct_ov116_0226139C * param0, UnkStruct_ov116_02262A8C
             v12 = ov116_0226208C(v3, v11);
 
             if (v10) {
-                sub_0201D7E0(v3, 0, v11, v12, 0, 0, ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((15 & 0xff) << 0))), 0, 0, NULL);
+                PrintStringWithColorAndMargins(v3, 0, v11, v12, 0, 0, ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((15 & 0xff) << 0))), 0, 0, NULL);
             } else {
-                sub_0201D7E0(v3, 0, v11, v12, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), 0, 0, NULL);
+                PrintStringWithColorAndMargins(v3, 0, v11, v12, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), 0, 0, NULL);
             }
 
             Strbuf_Free(v11);
@@ -758,7 +758,7 @@ void ov116_02262724 (UnkStruct_ov116_02262A8C * param0)
         sub_0200D330(param0->unk_D0[v0]);
         sub_0200D430(param0->unk_D0[v0], 4);
         SpriteActor_SetOAMMode(param0->unk_D0[v0], GX_OAM_MODE_XLU);
-        sub_0200D3F4(param0->unk_D0[v0], 0);
+        SpriteActor_EnableObject(param0->unk_D0[v0], 0);
 
         ov116_02261CD8(&v2, 0, 0, 2, 0, 9000);
 
@@ -770,7 +770,7 @@ void ov116_02262724 (UnkStruct_ov116_02262A8C * param0)
         sub_0200D330(param0->unk_C8[v0]);
         sub_0200D430(param0->unk_C8[v0], 0);
         SpriteActor_SetOAMMode(param0->unk_C8[v0], GX_OAM_MODE_XLU);
-        sub_0200D3F4(param0->unk_C8[v0], 0);
+        SpriteActor_EnableObject(param0->unk_C8[v0], 0);
     }
 }
 
@@ -800,7 +800,7 @@ void ov116_02262840 (UnkStruct_ov116_02262A8C * param0)
     param0->unk_D8 = SpriteActor_LoadResources(v3, v4, &v2);
 
     sub_0200D364(param0->unk_D8, 1);
-    sub_0200D3F4(param0->unk_D8, 1);
+    SpriteActor_EnableObject(param0->unk_D8, 1);
     sub_0200D330(param0->unk_D8);
     sub_0200D430(param0->unk_D8, 7);
 }

@@ -52,9 +52,9 @@ typedef struct UnkStruct_ov7_02249C2C_t {
     Window unk_20;
     Window unk_30;
     Window unk_40;
-    UnkStruct_0200B358 * unk_50;
-    UnkStruct_0200B358 * unk_54;
-    UnkStruct_0200B358 * unk_58;
+    StringFormatter * unk_50;
+    StringFormatter * unk_54;
+    StringFormatter * unk_58;
     UnkStruct_0200112C * unk_5C;
     UIControlData * unk_60;
     ResourceMetadata * unk_64;

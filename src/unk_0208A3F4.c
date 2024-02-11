@@ -409,9 +409,9 @@ void sub_0208A9BC (UnkStruct_02089688 * param0)
 void sub_0208AAB4 (UnkStruct_02089688 * param0, int param1, BOOL param2)
 {
     if (param2 == 1) {
-        sub_0200D3F4(param0->unk_1F0[param1].unk_0C, 1);
+        SpriteActor_EnableObject(param0->unk_1F0[param1].unk_0C, 1);
     } else {
-        sub_0200D3F4(param0->unk_1F0[param1].unk_0C, 0);
+        SpriteActor_EnableObject(param0->unk_1F0[param1].unk_0C, 0);
     }
 }
 
@@ -714,7 +714,7 @@ void sub_0208B090 (UnkStruct_02089688 * param0, int param1, int param2, int para
 
     {
         sub_0201A7A0(&v7);
-        sub_0201A870(param0->unk_2C0.unk_0C, &v7, 10, 2, 0, 0);
+        BGL_AddFramelessWindow(param0->unk_2C0.unk_0C, &v7, 10, 2, 0, 0);
         sub_0201D78C(&v7, 2, v3, sub_02002EEC(2, v3, 0, 80), 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((2 & 0xff) << 0))), NULL);
     }
 

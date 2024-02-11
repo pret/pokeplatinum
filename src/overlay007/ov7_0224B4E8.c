@@ -52,7 +52,7 @@ typedef struct {
     Window unk_34;
     Window unk_44;
     Window unk_54;
-    UnkStruct_0200B358 * unk_64;
+    StringFormatter * unk_64;
     MessageLoader * unk_68;
     HeightWeightData * unk_6C;
     u16 * unk_70;
@@ -323,7 +323,7 @@ static u8 Unk_ov7_0224F4CC[] = {
 static void ov7_0224B8DC (UnkStruct_ov7_0224B4E8 * param0)
 {
     MessageLoader * v0;
-    UnkStruct_0200B358 * v1 = param0->unk_64;
+    StringFormatter * v1 = param0->unk_64;
     Strbuf* v2;
     Strbuf* v3;
     Window * v4;

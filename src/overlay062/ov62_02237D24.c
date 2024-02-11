@@ -1305,11 +1305,11 @@ static void ov62_0223958C (UnkStruct_0208C06C * param0, int param1)
     UnkStruct_ov62_02237D24 * v0 = param0->unk_860;
 
     if (param1 == 0) {
-        sub_0200D3F4(v0->unk_198[1].unk_08, 1);
+        SpriteActor_EnableObject(v0->unk_198[1].unk_08, 1);
         sub_020129D0(v0->unk_198[1].unk_0C, 1);
         SpriteActor_SetSpritePositionXY(v0->unk_198[0].unk_08, 32, 232);
     } else {
-        sub_0200D3F4(v0->unk_198[1].unk_08, 0);
+        SpriteActor_EnableObject(v0->unk_198[1].unk_08, 0);
         sub_020129D0(v0->unk_198[1].unk_0C, 0);
         SpriteActor_SetSpritePositionXY(v0->unk_198[0].unk_08, 80, 232);
     }

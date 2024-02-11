@@ -160,7 +160,7 @@ void ov76_0223B98C (UnkStruct_ov76_0223DE00 * param0, int param1, int param2, in
 
     {
         sub_0201A7A0(&v5);
-        sub_0201A870(param0->unk_D4.unk_10, &v5, 10, 2, 0, 0);
+        BGL_AddFramelessWindow(param0->unk_D4.unk_10, &v5, 10, 2, 0, 0);
         sub_0201D78C(&v5, 2, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((2 & 0xff) << 0))), NULL);
     }
 
@@ -612,7 +612,7 @@ void ov76_0223C288 (UnkStruct_ov76_0223DE00 * param0)
     s16 v2, v3;
 
     for (v0 = 0; v0 < param0->unk_00->unk_00; v0++) {
-        sub_0200D3F4(param0->unk_2FC[v0], 0);
+        SpriteActor_EnableObject(param0->unk_2FC[v0], 0);
     }
 
     for (v0 = 0; v0 < 12; v0++) {
@@ -621,7 +621,7 @@ void ov76_0223C288 (UnkStruct_ov76_0223DE00 * param0)
         if (v1 != 0xff) {
             ov76_0223C0EC(v0, &v2, &v3);
             SpriteActor_SetSpritePositionXY(param0->unk_2FC[v1], v2 + -16, v3 + (+12));
-            sub_0200D3F4(param0->unk_2FC[v1], 1);
+            SpriteActor_EnableObject(param0->unk_2FC[v1], 1);
         }
     }
 }
@@ -756,7 +756,7 @@ void ov76_0223C568 (UnkStruct_ov76_0223DE00 * param0, int param1)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0200D3F4(param0->unk_314[v0], param1);
+        SpriteActor_EnableObject(param0->unk_314[v0], param1);
     }
 }
 
@@ -1273,7 +1273,7 @@ void ov76_0223D2F4 (UnkStruct_ov76_0223DE00 * param0, int param1)
             continue;
         }
 
-        sub_0200D3F4(param0->unk_3E4.unk_00[v0], param1);
+        SpriteActor_EnableObject(param0->unk_3E4.unk_00[v0], param1);
     }
 }
 

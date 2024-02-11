@@ -522,7 +522,7 @@ static Window * ov22_0225A348 (UnkStruct_ov22_0225A0E4 * param0, u32 param1, u32
 
     v2 = sub_0201A778(14, 1);
     sub_0201A7A0(v2);
-    sub_0201A870(param0->unk_40, v2, param4, param5, 0, 0);
+    BGL_AddFramelessWindow(param0->unk_40, v2, param4, param5, 0, 0);
 
     {
         u32 v3 = sub_02002EEC(2, v1, 0, param4 * 8);

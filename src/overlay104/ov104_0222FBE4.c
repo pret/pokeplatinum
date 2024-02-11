@@ -1333,7 +1333,7 @@ static BOOL ov104_0223066C (UnkStruct_ov104_0222E930 * param0)
         v10 = ov104_0223D2FC(v1, v9, v4);
 
         SpriteActor_SetSpritePositionXY(v10, v5, v6);
-        sub_0200D3F4(v10, v7);
+        SpriteActor_EnableObject(v10, v7);
 
         ov104_0223D378(v1, v9, v8);
     }
@@ -1365,7 +1365,7 @@ static BOOL ov104_02230728 (UnkStruct_ov104_0222E930 * param0)
     v4 = ov104_0223D370(v1, v2);
 
     GF_ASSERT(v4 != NULL);
-    sub_0200D3F4(v4, v3);
+    SpriteActor_EnableObject(v4, v3);
 
     return 0;
 }

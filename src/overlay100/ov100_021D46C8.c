@@ -43,7 +43,7 @@ int ov100_021D46C8 (UnkStruct_ov100_021D46C8 * param0, UnkStruct_020985E4 * para
 
     if (param2 == 22) {
         Strbuf* v5 = TrainerInfo_NameNewStrbuf(param1->unk_08, 111);
-        UnkStruct_0200B358 * v6 = sub_0200B358(111);
+        StringFormatter * v6 = sub_0200B358(111);
 
         sub_0200B48C(v6, 0, v5, 0, 1, GAME_LANGUAGE);
         StringFormatter_Format(v6, v3, v2);

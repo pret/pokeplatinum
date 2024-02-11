@@ -225,7 +225,7 @@ static int ov97_02237870 (UnkStruct_ov97_02237808 * param0, int param1)
 {
     int v0;
     Strbuf* v1;
-    UnkStruct_0200B358 * v2;
+    StringFormatter * v2;
     MessageLoader * v3;
     UnkStruct_ov97_0223F550 * v4 = &Unk_ov97_0223F550;
 
@@ -591,7 +591,7 @@ static void ov97_02237EF8 (GraphicElementData * param0, Pokemon * param1, int pa
     DC_FlushRange(param4, 0x20 * 10 * 10);
 
     {
-        NNSG2dImageProxy * v4 = sub_02021F98(param0);
+        NNSG2dImageProxy * v4 = SpriteActor_ImageProxy(param0);
         u32 v5 = NNS_G2dGetImageLocation(v4, NNS_G2D_VRAM_TYPE_2DSUB);
 
         GXS_LoadOBJ(param4, v5 + 1 * (0x20 * 10 * 10), (0x20 * 10 * 10));

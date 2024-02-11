@@ -147,7 +147,7 @@ u8 sub_0201D78C (Window * param0, u32 param1, const Strbuf *param2, u32 param3, 
     return sub_0201D834(&v0, param5, param7);
 }
 
-u8 sub_0201D7E0 (Window * param0, u32 param1, const Strbuf *param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, UnkFuncPtr_0201D834 param9)
+u8 PrintStringWithColorAndMargins (Window * param0, u32 param1, const Strbuf *param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, UnkFuncPtr_0201D834 param9)
 {
     UnkStruct_0201D738 v0;
 

@@ -33,7 +33,7 @@ typedef struct UnkStruct_ov23_02253E2C_t {
     UnkStruct_ov23_02253F60 unk_1C;
     SysTask * unk_20;
     MessageLoader * unk_24;
-    UnkStruct_0200B358 * unk_28;
+    StringFormatter * unk_28;
     int unk_2C;
     int unk_30;
     int unk_34;

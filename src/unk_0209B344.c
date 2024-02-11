@@ -22,7 +22,7 @@
 
 typedef struct {
     UnkStruct_0203CDB0 * unk_00;
-    UnkStruct_0200B358 * unk_04;
+    StringFormatter * unk_04;
     Sentence unk_08;
     UnkStruct_0209747C * unk_10;
     UnkStruct_0202783C * unk_14;

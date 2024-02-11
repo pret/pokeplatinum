@@ -69,7 +69,7 @@ typedef struct {
     BGL * unk_04;
     Window unk_08[15];
     MessageLoader * unk_F8;
-    UnkStruct_0200B358 * unk_FC;
+    StringFormatter * unk_FC;
     Strbuf* unk_100;
     UnkStruct_0200112C * unk_104;
     ResourceMetadata * unk_108;
@@ -835,7 +835,7 @@ static void ov91_021D1498 (UnkStruct_ov91_021D0ED8 * param0)
             ov91_021D1A68(param0, 0xfffffffe);
         }
 
-        sub_0200D3F4(param0->unk_118[5], 0);
+        SpriteActor_EnableObject(param0->unk_118[5], 0);
     }
 
     ov91_021D2314(param0);
@@ -983,7 +983,7 @@ static void ov91_021D18C8 (UnkStruct_ov91_021D0ED8 * param0, u32 param1)
     BGL_FillWindow(&param0->unk_08[7], 0);
     BGL_FillWindow(&param0->unk_08[8], 0);
     BGL_FillWindow(&param0->unk_08[9], 0);
-    sub_0200D3F4(param0->unk_118[5], 0);
+    SpriteActor_EnableObject(param0->unk_118[5], 0);
 
     if (param1 != 0xfffffffe) {
         MessageLoader * v0;
@@ -1018,7 +1018,7 @@ static void ov91_021D18C8 (UnkStruct_ov91_021D0ED8 * param0, u32 param1)
         ov91_021D1580(param0, 10, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
         MessageLoader_Free(v0);
         ov91_021D24B4(param0, param1);
-        sub_0200D3F4(param0->unk_118[5], 1);
+        SpriteActor_EnableObject(param0->unk_118[5], 1);
         sub_0201A9A4(&param0->unk_08[2]);
         sub_0201A9A4(&param0->unk_08[3]);
         sub_0201A9A4(&param0->unk_08[4]);
@@ -1107,35 +1107,35 @@ static void ov91_021D1C10 (UnkStruct_ov91_021D0ED8 * param0, u32 param1)
 
     switch (param1) {
     case 0:
-        sub_0200B5CC(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringFormatter_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
         break;
     case 1:
         sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 2:
-        sub_0200B5CC(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringFormatter_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
         break;
     case 3:
-        sub_0200B5CC(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringFormatter_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
         sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 4:
-        sub_0200B5CC(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringFormatter_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
         sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 5:
-        sub_0200B5CC(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringFormatter_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
         sub_0200B630(param0->unk_FC, 1, ov91_021D1DE0(param0));
         break;
     case 6:
-        sub_0200B5CC(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringFormatter_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
         sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 7:
         sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 8:
-        sub_0200B5CC(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringFormatter_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
         sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 9:
@@ -1388,9 +1388,9 @@ static void ov91_021D2314 (UnkStruct_ov91_021D0ED8 * param0)
             param0->unk_118[6 + v0], 152, 32 + 16 * v0);
 
         if (param0->unk_00->unk_12 + v0 >= param0->unk_184 - 1) {
-            sub_0200D3F4(param0->unk_118[6 + v0], 0);
+            SpriteActor_EnableObject(param0->unk_118[6 + v0], 0);
         } else {
-            sub_0200D3F4(param0->unk_118[6 + v0], 1);
+            SpriteActor_EnableObject(param0->unk_118[6 + v0], 1);
             ov91_021D22A0(param0, param0->unk_00->unk_0C[param0->unk_00->unk_12 + v0], v0);
         }
     }
@@ -1442,9 +1442,9 @@ static void ov91_021D237C (UnkStruct_ov91_021D0ED8 * param0, u16 param1, u16 par
         v2 = (v2 - 32) / 16;
 
         if (param2 + v2 >= param0->unk_184 - 1) {
-            sub_0200D3F4(param0->unk_118[6 + v0], 0);
+            SpriteActor_EnableObject(param0->unk_118[6 + v0], 0);
         } else {
-            sub_0200D3F4(param0->unk_118[6 + v0], 1);
+            SpriteActor_EnableObject(param0->unk_118[6 + v0], 1);
         }
     }
 }
@@ -1477,29 +1477,29 @@ static void ov91_021D2548 (UnkStruct_ov91_021D0ED8 * param0, u8 param1, u8 param
 
 static void ov91_021D2574 (UnkStruct_ov91_021D0ED8 * param0, u8 param1)
 {
-    sub_0200D3F4(param0->unk_118[0], param1);
-    sub_0200D3F4(param0->unk_118[1], param1);
+    SpriteActor_EnableObject(param0->unk_118[0], param1);
+    SpriteActor_EnableObject(param0->unk_118[1], param1);
 }
 
 static void ov91_021D2594 (UnkStruct_ov91_021D0ED8 * param0)
 {
     if (param0->unk_00->unk_12 != 0) {
-        sub_0200D3F4(param0->unk_118[2], 1);
+        SpriteActor_EnableObject(param0->unk_118[2], 1);
     } else {
-        sub_0200D3F4(param0->unk_118[2], 0);
+        SpriteActor_EnableObject(param0->unk_118[2], 0);
     }
 
     if (param0->unk_00->unk_12 + 7 < param0->unk_184) {
-        sub_0200D3F4(param0->unk_118[3], 1);
+        SpriteActor_EnableObject(param0->unk_118[3], 1);
     } else {
-        sub_0200D3F4(param0->unk_118[3], 0);
+        SpriteActor_EnableObject(param0->unk_118[3], 0);
     }
 }
 
 static void ov91_021D25E4 (UnkStruct_ov91_021D0ED8 * param0)
 {
-    sub_0200D3F4(param0->unk_118[2], 0);
-    sub_0200D3F4(param0->unk_118[3], 0);
+    SpriteActor_EnableObject(param0->unk_118[2], 0);
+    SpriteActor_EnableObject(param0->unk_118[3], 0);
 }
 
 static int ov91_021D2604 (UnkStruct_ov91_021D0ED8 * param0)

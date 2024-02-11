@@ -270,18 +270,18 @@ static void ov84_02240950 (UnkStruct_ov84_0223B5A0 * param0)
         param0->unk_E0[v0] = SpriteActor_LoadResources(param0->unk_D8, param0->unk_DC, &Unk_ov84_022411B0[v0]);
     }
 
-    sub_0200D3F4(param0->unk_E0[5], 0);
-    sub_0200D3F4(param0->unk_E0[6], 0);
-    sub_0200D3F4(param0->unk_E0[10], 0);
-    sub_0200D3F4(param0->unk_E0[11], 0);
+    SpriteActor_EnableObject(param0->unk_E0[5], 0);
+    SpriteActor_EnableObject(param0->unk_E0[6], 0);
+    SpriteActor_EnableObject(param0->unk_E0[10], 0);
+    SpriteActor_EnableObject(param0->unk_E0[11], 0);
 
     if ((param0->unk_C4->unk_65 == 4) || (param0->unk_C4->unk_65 == 5)) {
-        sub_0200D3F4(param0->unk_E0[1], 0);
+        SpriteActor_EnableObject(param0->unk_E0[1], 0);
     }
 
     if (param0->unk_424 == 1) {
-        sub_0200D3F4(param0->unk_E0[2], 0);
-        sub_0200D3F4(param0->unk_E0[3], 0);
+        SpriteActor_EnableObject(param0->unk_E0[2], 0);
+        SpriteActor_EnableObject(param0->unk_E0[3], 0);
     }
 
     ov84_02240D3C(param0, 0);
@@ -425,8 +425,8 @@ void ov84_02240CF0 (UnkStruct_ov84_0223B5A0 * param0, u8 param1)
 
 void ov84_02240D3C (UnkStruct_ov84_0223B5A0 * param0, u8 param1)
 {
-    sub_0200D3F4(param0->unk_E0[8], param1);
-    sub_0200D3F4(param0->unk_E0[9], param1);
+    SpriteActor_EnableObject(param0->unk_E0[8], param1);
+    SpriteActor_EnableObject(param0->unk_E0[9], param1);
 }
 
 void ov84_02240D5C (UnkStruct_ov84_0223B5A0 * param0, u16 param1, u8 param2)
@@ -435,8 +435,8 @@ void ov84_02240D5C (UnkStruct_ov84_0223B5A0 * param0, u16 param1, u8 param2)
     u16 v1;
     u16 v2;
 
-    sub_0200D3F4(param0->unk_E0[10], param2);
-    sub_0200D3F4(param0->unk_E0[11], param2);
+    SpriteActor_EnableObject(param0->unk_E0[10], param2);
+    SpriteActor_EnableObject(param0->unk_E0[11], param2);
 
     if (param2 == 0) {
         return;
@@ -454,7 +454,7 @@ void ov84_02240D5C (UnkStruct_ov84_0223B5A0 * param0, u16 param1, u8 param2)
 
 void ov84_02240E24 (UnkStruct_ov84_0223B5A0 * param0, s16 param1, s16 param2)
 {
-    sub_0200D3F4(param0->unk_E0[6], 1);
+    SpriteActor_EnableObject(param0->unk_E0[6], 1);
     SpriteActor_SetSpritePositionXY(param0->unk_E0[6], param1, param2);
     sub_0200D3CC(param0->unk_E0[6], 0);
     sub_0200D364(param0->unk_E0[6], 0);
@@ -466,7 +466,7 @@ void ov84_02240E5C (UnkStruct_ov84_0223B5A0 * param0)
         sub_0200D34C(param0->unk_E0[6], FX32_ONE);
 
         if (sub_0200D3E0(param0->unk_E0[6]) == 2) {
-            sub_0200D3F4(param0->unk_E0[6], 0);
+            SpriteActor_EnableObject(param0->unk_E0[6], 0);
         }
     }
 }

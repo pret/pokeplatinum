@@ -27,7 +27,7 @@ BOOL sub_0204CA84 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
     SaveData * v1 = v0->unk_0C;
-    UnkStruct_0200B358 ** v2 = sub_0203F098(v0, 15);
+    StringFormatter ** v2 = sub_0203F098(v0, 15);
 
     ov5_021E72BC(sub_02026310(v1), *v2);
 
@@ -77,7 +77,7 @@ BOOL sub_0204CB20 (UnkStruct_0203E724 * param0)
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
     UnkStruct_02026310 * v1;
     Party * v2;
-    UnkStruct_0200B358 ** v3 = sub_0203F098(v0, 15);
+    StringFormatter ** v3 = sub_0203F098(v0, 15);
     SaveData * v4 = v0->unk_0C;
     u16 * v5 = inline_0204FCAC(param0);
     u8 v6 = inline_02049538(param0);
@@ -93,7 +93,7 @@ BOOL sub_0204CB80 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
     UnkStruct_02026310 * v1;
-    UnkStruct_0200B358 ** v2 = sub_0203F098(v0, 15);
+    StringFormatter ** v2 = sub_0203F098(v0, 15);
     SaveData * v3 = v0->unk_0C;
     u16 * v4 = inline_0204FCAC(param0);
     u8 v5 = inline_02049538(param0);
@@ -109,7 +109,7 @@ BOOL sub_0204CBD4 (UnkStruct_0203E724 * param0)
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
     SaveData * v1 = v0->unk_0C;
     UnkStruct_02026310 * v2;
-    UnkStruct_0200B358 ** v3 = sub_0203F098(param0->unk_34, 15);
+    StringFormatter ** v3 = sub_0203F098(param0->unk_34, 15);
     u16 * v4 = inline_0204FCAC(param0);
     u16 v5 = inline_02049538(param0);
 
@@ -123,7 +123,7 @@ BOOL sub_0204CC24 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
     Party * v1;
-    UnkStruct_0200B358 ** v2 = sub_0203F098(param0->unk_34, 15);
+    StringFormatter ** v2 = sub_0203F098(param0->unk_34, 15);
     u16 v3 = sub_0203E838(param0);
     u16 v4 = inline_02049538(param0);
     u16 * v5 = inline_0204FCAC(param0);
@@ -154,7 +154,7 @@ BOOL sub_0204CCB8 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
     SaveData * v1 = v0->unk_0C;
-    UnkStruct_0200B358 ** v2 = sub_0203F098(param0->unk_34, 15);
+    StringFormatter ** v2 = sub_0203F098(param0->unk_34, 15);
     u8 v3 = inline_02049538(param0);
     u8 v4 = inline_02049538(param0);
     u8 v5 = inline_02049538(param0);

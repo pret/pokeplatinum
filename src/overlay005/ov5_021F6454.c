@@ -75,7 +75,7 @@ struct UnkStruct_ov5_021F6704_t {
     Window * unk_18;
     Strbuf* unk_1C[120];
     MessageLoader * unk_1FC;
-    UnkStruct_0200B358 * unk_200;
+    StringFormatter * unk_200;
     u8 unk_204;
     u8 unk_205;
     u8 unk_206;
@@ -109,8 +109,8 @@ BOOL ov5_021F72B8(UnkStruct_0203E724 * param0);
 BOOL ov5_021F6B3C(UnkStruct_0203E724 * param0);
 BOOL ov5_021F6E50(UnkStruct_0203E724 * param0);
 static void ov5_021F661C(UnkStruct_ov5_021F6704 * param0, MessageLoader * param1);
-static void ov5_021F6624(UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021F6704 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, UnkStruct_0200B358 * param7, Window * param8, MessageLoader * param9, u16 * param10, u16 * param11);
-UnkStruct_ov5_021F6704 * ov5_021F6704(UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, UnkStruct_0200B358 * param6, Window * param7, MessageLoader * param8, u16 * param9, u16 * param10);
+static void ov5_021F6624(UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021F6704 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, StringFormatter * param7, Window * param8, MessageLoader * param9, u16 * param10, u16 * param11);
+UnkStruct_ov5_021F6704 * ov5_021F6704(UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringFormatter * param6, Window * param7, MessageLoader * param8, u16 * param9, u16 * param10);
 void ov5_021F6760(UnkStruct_ov5_021F6704 * param0, u32 param1, u32 param2, u32 param3);
 static void ov5_021F6768(UnkStruct_ov5_021F6704 * param0);
 static void ov5_021F6830(UnkStruct_ov5_021F6704 * param0, u32 param1, u32 param2, u32 param3);
@@ -143,7 +143,7 @@ BOOL ov5_021F6454 (UnkStruct_0203E724 * param0)
     MessageLoader * v7;
     UnkStruct_0203CDB0 * v8 = param0->unk_34;
     UnkStruct_ov5_021F6704 * v9;
-    UnkStruct_0200B358 ** v10 = sub_0203F098(v8, 15);
+    StringFormatter ** v10 = sub_0203F098(v8, 15);
     u16 v11 = inline_02049538(param0);
     u16 v12 = inline_02049538(param0);
     u16 v13 = sub_0203E838(param0);
@@ -219,7 +219,7 @@ static void ov5_021F661C (UnkStruct_ov5_021F6704 * param0, MessageLoader * param
     return;
 }
 
-static void ov5_021F6624 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021F6704 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, UnkStruct_0200B358 * param7, Window * param8, MessageLoader * param9, u16 * param10, u16 * param11)
+static void ov5_021F6624 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021F6704 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, StringFormatter * param7, Window * param8, MessageLoader * param9, u16 * param10, u16 * param11)
 {
     int v0;
 
@@ -256,7 +256,7 @@ static void ov5_021F6624 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021F6704 * 
     return;
 }
 
-UnkStruct_ov5_021F6704 * ov5_021F6704 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, UnkStruct_0200B358 * param6, Window * param7, MessageLoader * param8, u16 * param9, u16 * param10)
+UnkStruct_ov5_021F6704 * ov5_021F6704 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringFormatter * param6, Window * param7, MessageLoader * param8, u16 * param9, u16 * param10)
 {
     UnkStruct_ov5_021F6704 * v0;
     int v1;

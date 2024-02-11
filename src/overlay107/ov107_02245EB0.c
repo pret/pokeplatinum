@@ -110,7 +110,7 @@ struct UnkStruct_ov107_02246170_t {
     u16 unk_1C;
     u16 unk_1E;
     MessageLoader * unk_20;
-    UnkStruct_0200B358 * unk_24;
+    StringFormatter * unk_24;
     Strbuf* unk_28;
     Strbuf* unk_2C;
     Strbuf* unk_30[3];

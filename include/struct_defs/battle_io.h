@@ -17,4 +17,19 @@ typedef struct PartyGaugeData {
     u8 status[MAX_PARTY_SIZE];
 } PartyGaugeData;
 
+typedef struct HealthbarData {
+    u8 command;
+    u8 level;
+    s16 curHP;
+    u16 maxHP;
+    u8 selectedPartySlot;
+    u8 status : 5;
+    u8 gender : 2;
+    u8 speciesCaught : 1;
+    u32 expFromLastLevel;
+    u32 expToNextLevel;
+    int numSafariBalls;
+    u8 delay;
+} HealthbarData;
+
 #endif // POKEPLATINUM_STRUCT_BATTLE_IO_H

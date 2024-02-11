@@ -60,7 +60,7 @@ typedef struct UnkStruct_ov87_021D106C_t {
     MessageLoader * unk_1E4;
     MessageLoader * unk_1E8;
     MessageLoader * unk_1EC;
-    UnkStruct_0200B358 * unk_1F0;
+    StringFormatter * unk_1F0;
     Strbuf* unk_1F4;
     Strbuf* unk_1F8;
     Pokemon * unk_1FC;

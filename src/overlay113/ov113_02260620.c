@@ -547,7 +547,7 @@ static const UnkUnion_02022594 Unk_ov113_02260D4C[] = {
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-void ov113_02260620 (MessageLoader * param0, UnkStruct_0200B358 * param1, Window param2[], UnkStruct_ov66_0222DFF8 * param3, s32 param4)
+void ov113_02260620 (MessageLoader * param0, StringFormatter * param1, Window param2[], UnkStruct_ov66_0222DFF8 * param3, s32 param4)
 {
     const UnkStruct_ov66_0222E71C * v0;
     TrainerInfo * v1;

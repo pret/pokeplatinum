@@ -1,6 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/generated/c/gender.h"
+
 #include "constants/pokemon.h"
 #include "constants/species.h"
 #include "constants/battle/battle_io.h"
@@ -18,7 +20,6 @@
 #include "overlay016/struct_ov16_0225BFFC_t.h"
 #include "overlay016/struct_ov16_0225C168.h"
 #include "overlay016/struct_ov16_0225C17C.h"
-#include "overlay016/struct_ov16_0225C23C.h"
 #include "overlay016/struct_ov16_0225C260.h"
 #include "overlay016/struct_ov16_0225C29C.h"
 #include "overlay016/struct_ov16_0225C2B0.h"
@@ -458,43 +459,41 @@ void BattleIO_SlideTrainerIn (BattleSystem * param0, int param1, int param2)
     SendMessage(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_022651A8));
 }
 
-void BattleIO_SlideHPGaugeIn (BattleSystem * param0, BattleContext * param1, int param2, int param3)
+void BattleIO_SlideHealthbarIn(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int delay)
 {
-    UnkStruct_ov16_0225C23C v0;
-    Pokemon * v1;
-    int v2;
-    int v3;
+    HealthbarData healthbar;
 
-    v1 = BattleSystem_PartyPokemon(param0, param2, param1->selectedPartySlot[param2]);
-    v2 = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
-    v3 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
+    Pokemon *mon = BattleSystem_PartyPokemon(battleSys, battler, battleCtx->selectedPartySlot[battler]);
+    int species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    int level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
 
-    v0.unk_00 = 12;
-    v0.unk_01 = param1->battleMons[param2].level;
-    v0.unk_02 = param1->battleMons[param2].curHP;
-    v0.unk_04 = param1->battleMons[param2].maxHP;
-    v0.unk_06 = param1->selectedPartySlot[param2];
-    v0.unk_07_0 = Battler_StatusCondition(param1, param2);
+    healthbar.command = BTLIOCMD_SLIDE_HEALTHBAR_IN;
+    healthbar.level = battleCtx->battleMons[battler].level;
+    healthbar.curHP = battleCtx->battleMons[battler].curHP;
+    healthbar.maxHP = battleCtx->battleMons[battler].maxHP;
+    healthbar.selectedPartySlot = battleCtx->selectedPartySlot[battler];
+    healthbar.status = Battler_StatusCondition(battleCtx, battler);
 
-    if (((param1->battleMons[param2].species == 29) || (param1->battleMons[param2].species == 32)) && (param1->battleMons[param2].hasNickname == 0)) {
-        v0.unk_07_5 = 2;
+    if ((battleCtx->battleMons[battler].species == SPECIES_NIDORAN_F || battleCtx->battleMons[battler].species == SPECIES_NIDORAN_M)
+            && battleCtx->battleMons[battler].hasNickname == FALSE) {
+        healthbar.gender = GENDER_NONE; // don't show the Gender marker for base-Nidoran forms
     } else {
-        v0.unk_07_5 = param1->battleMons[param2].gender;
+        healthbar.gender = battleCtx->battleMons[battler].gender;
     }
 
-    v0.unk_08 = param1->battleMons[param2].exp - Pokemon_GetSpeciesBaseExpAt(v2, v3);
-    v0.unk_0C = Pokemon_GetSpeciesBaseExpAt(v2, v3 + 1) - Pokemon_GetSpeciesBaseExpAt(v2, v3);
-    v0.unk_07_7 = BattleSystem_CaughtSpecies(param0, param1->battleMons[param2].species);
-    v0.unk_10 = BattleSystem_NumSafariBalls(param0);
-    v0.unk_14 = param3;
+    healthbar.expFromLastLevel = battleCtx->battleMons[battler].exp - Pokemon_GetSpeciesBaseExpAt(species, level);
+    healthbar.expToNextLevel = Pokemon_GetSpeciesBaseExpAt(species, level + 1) - Pokemon_GetSpeciesBaseExpAt(species, level);
+    healthbar.speciesCaught = BattleSystem_CaughtSpecies(battleSys, battleCtx->battleMons[battler].species);
+    healthbar.numSafariBalls = BattleSystem_NumSafariBalls(battleSys);
+    healthbar.delay = delay;
 
-    SendMessage(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C23C));
+    SendMessage(battleSys, BTLIO_RECIPIENT_ENQUEUE, battler, &healthbar, sizeof(HealthbarData));
 }
 
-void BattleIO_SlideHPGaugeOut (BattleSystem * param0, int param1)
+void BattleIO_SlideHealthbarOut(BattleSystem *battleSys, int battler)
 {
-    int v0 = 13;
-    SendMessage(param0, 1, param1, &v0, 4);
+    int command = BTLIOCMD_SLIDE_HEALTHBAR_OUT;
+    SendMessage(battleSys, BTLIO_RECIPIENT_ENQUEUE, battler, &command, sizeof(int));
 }
 
 void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot)

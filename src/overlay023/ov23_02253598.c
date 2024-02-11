@@ -476,7 +476,7 @@ void ov23_02253A00 (UnkStruct_0202855C * param0, int param1)
 
 static void ov23_02253A78 (Window * param0, MessageLoader * param1, TrainerInfo * param2, const UnkStruct_0202855C * param3, const UnkStruct_020298B0 * param4)
 {
-    UnkStruct_0200B358 * v0;
+    StringFormatter * v0;
     Strbuf* v1;
     Strbuf* v2;
     int v3, v4;

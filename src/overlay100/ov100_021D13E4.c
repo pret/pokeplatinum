@@ -316,7 +316,7 @@ static void ov100_021D1A54 (UnkStruct_ov100_021D1808 * param0)
         param0->unk_0C.unk_D4[v0].unk_00 = SpriteActor_LoadResources(v3, v4, &v6);
 
         sub_0200D330(param0->unk_0C.unk_D4[v0].unk_00);
-        sub_0200D3F4(param0->unk_0C.unk_D4[v0].unk_00, 0);
+        SpriteActor_EnableObject(param0->unk_0C.unk_D4[v0].unk_00, 0);
         sub_0200D430(param0->unk_0C.unk_D4[v0].unk_00, v0);
         SpriteActor_SetSpritePositionXY(param0->unk_0C.unk_D4[v0].unk_00, 0, 0);
 

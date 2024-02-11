@@ -19,7 +19,7 @@ u8 ov107_02249C98(u8 param0, u8 param1);
 u8 ov107_02249C9C(u8 param0, u8 param1);
 u8 ov107_02249CAC(SaveData * param0, u8 param1, u8 param2);
 void ov107_02249CE0(u32 param0, u16 param1);
-void ov107_02249CF4(UnkStruct_0200B358 * param0, u32 param1);
+void ov107_02249CF4(StringFormatter * param0, u32 param1);
 
 u8 ov107_02249C98 (u8 param0, u8 param1)
 {
@@ -49,7 +49,7 @@ void ov107_02249CE0 (u32 param0, u16 param1)
     return;
 }
 
-void ov107_02249CF4 (UnkStruct_0200B358 * param0, u32 param1)
+void ov107_02249CF4 (StringFormatter * param0, u32 param1)
 {
     TrainerInfo * v0;
     u32 v1;
