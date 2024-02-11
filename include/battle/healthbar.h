@@ -46,6 +46,11 @@ enum HealthbarScrollDirection {
     HEALTHBAR_SCROLL_OUT,
 };
 
+enum HealthbarGaugeType {
+    HEALTHBAR_GAUGE_HP = 0,
+    HEALTHBAR_GAUGE_EXP,
+};
+
 void ov16_02266F1C(SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, PaletteData * param3, int param4);
 CellActorData * ov16_02267060(SpriteRenderer * param0, SpriteGfxHandler * param1, int param2);
 
@@ -54,7 +59,7 @@ CellActorData * ov16_02267060(SpriteRenderer * param0, SpriteGfxHandler * param1
  * of input flags which control exactly what components to draw.
  * 
  * @param healthbar 
- * @param hp 
+ * @param hp        The battler's current HP
  * @param flags     The components to be drawn, as a bitmask.
  */
 void Healthbar_DrawInfo(Healthbar *healthbar, u32 hp, u32 flags);
@@ -63,7 +68,18 @@ void ov16_02267258(Healthbar * param0);
 void ov16_022672C4(Healthbar * param0);
 void ov16_02267360(Healthbar * param0);
 void ov16_0226737C(Healthbar * param0);
-void ov16_022674C4(Healthbar * param0, int param1);
+
+/**
+ * @brief Compute the battler's new HP after taking a given amount of
+ * damage or restoring a certain amount of health. Additionally, cache
+ * this difference, flooring it to the bounds of the battler's current
+ * and maximum HP.
+ * 
+ * @param healthbar 
+ * @param damage    The amount of damage dealt to a battler. Negative
+ *                  values are damage, positive values are recovery.
+ */
+void Healthbar_CalcHP(Healthbar *healthbar, int damage);
 s32 ov16_022674F8(Healthbar * param0);
 void ov16_0226752C(Healthbar * param0, int param1);
 s32 ov16_02267560(Healthbar * param0);

@@ -1603,7 +1603,7 @@ static void ov16_0223CF8C (SysTask * param0, void * param1)
             v2 = ov16_02263B08(v1);
 
             if (v2 != NULL) {
-                if (HealthBar_Color(v2->unk_28, v2->unk_2C, (8 * 6)) == 1) {
+                if (HealthBar_Color(v2->curHP, v2->maxHP, (8 * 6)) == 1) {
                     v5 |= FlagIndex(v3);
                 }
             }

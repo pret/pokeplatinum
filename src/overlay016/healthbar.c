@@ -55,6 +55,8 @@
 #define HEALTHBAR_X_OFFSET_ENEMY_SLOT_2     HEALTHBAR_X_OFFSET_SOLO_ENEMY
 #define HEALTHBAR_Y_OFFSET_ENEMY_SLOT_2     HEALTHBAR_Y_OFFSET_SOLO_ENEMY + 9
 
+#define S32_MIN -2147483648
+
 typedef struct {
     u16 unk_00;
     u16 unk_02;
@@ -68,12 +70,12 @@ typedef struct {
     s8 unk_0A;
 } UnkStruct_ov16_0226834C;
 
-static s32 ov16_02267EDC(Healthbar * param0, int param1);
-static s32 ov16_022680D8(s32 param0, s32 param1, s32 param2, s32 * param3, u8 param4, u16 param5);
+static s32 Healthbar_DrawGauge(Healthbar *healthbar, enum HealthbarGaugeType gaugeType);
+static s32 UpdateGauge(s32 param0, s32 param1, s32 param2, s32 * param3, u8 param4, u16 param5);
 static u8 ov16_02268194(s32 param0, s32 param1, s32 param2, s32 * param3, u8 * param4, u8 param5);
-static u32 ov16_02268210(s32 param0, s32 param1, s32 param2, u8 param3);
+static u32 CalcGaugeFill(s32 param0, s32 param1, s32 param2, u8 param3);
 static const u8 * ov16_02268250(int param0);
-static void ov16_02267F70(Healthbar * param0, u8 param1);
+static void DrawGauge(Healthbar * param0, u8 param1);
 static void ov16_02267864(Healthbar * param0);
 static void ov16_022679C8(Healthbar * param0);
 static void ov16_02267A4C(Healthbar * param0);
@@ -571,8 +573,8 @@ void Healthbar_DrawInfo(Healthbar *healthbar, u32 hp, u32 flags)
     }
 
     if (flags & HEALTHBAR_INFO_HP_GAUGE) {
-        ov16_022674C4(healthbar, 0);
-        ov16_02267EDC(healthbar, 0);
+        Healthbar_CalcHP(healthbar, 0);
+        Healthbar_DrawGauge(healthbar, 0);
     }
 
     if (flags & HEALTHBAR_INFO_CURRENT_HP) {
@@ -597,7 +599,7 @@ void Healthbar_DrawInfo(Healthbar *healthbar, u32 hp, u32 flags)
 
     if (flags & HEALTHBAR_INFO_EXP_GAUGE) {
         ov16_0226752C(healthbar, 0);
-        ov16_02267EDC(healthbar, 1);
+        Healthbar_DrawGauge(healthbar, 1);
     }
 
     if (flags & HEALTHBAR_INFO_CAUGHT_SPECIES) {
@@ -759,7 +761,7 @@ void ov16_0226737C (Healthbar * param0)
         v0 = ov16_02268250(69);
         MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3D4[param0->type].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3D4[param0->type].unk_02);
 
-        Healthbar_DrawInfo(param0, param0->unk_28, HEALTHBAR_INFO_CURRENT_HP | HEALTHBAR_INFO_MAX_HP);
+        Healthbar_DrawInfo(param0, param0->curHP, HEALTHBAR_INFO_CURRENT_HP | HEALTHBAR_INFO_MAX_HP);
     } else {
         v0 = ov16_02268250(66);
         MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F374[param0->type].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F374[param0->type].unk_02);
@@ -770,30 +772,31 @@ void ov16_0226737C (Healthbar * param0)
         v0 = ov16_02268250(38);
         MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3A4[param0->type].unk_00 + 0x20 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
 
-        Healthbar_DrawInfo(param0, param0->unk_28, HEALTHBAR_INFO_HP_GAUGE);
+        Healthbar_DrawInfo(param0, param0->curHP, HEALTHBAR_INFO_HP_GAUGE);
     }
 }
 
-void ov16_022674C4 (Healthbar * param0, int param1)
+void Healthbar_CalcHP(Healthbar *healthbar, int damage)
 {
-    param0->unk_34 = -2147483648;
+    healthbar->hpTemp = S32_MIN;
 
-    if (param0->unk_28 + param1 < 0) {
-        param1 -= param0->unk_28 + param1;
+    // bound the damage input to [0, maxHP]
+    if (healthbar->curHP + damage < 0) {
+        damage -= healthbar->curHP + damage;
+    }
+    if (healthbar->curHP + damage > healthbar->maxHP) {
+        damage -= (healthbar->curHP + damage) - healthbar->maxHP;
     }
 
-    if (param0->unk_28 + param1 > param0->unk_2C) {
-        param1 -= (param0->unk_28 + param1) - param0->unk_2C;
+    // update cached values
+    healthbar->damage = -damage;
+
+    if (healthbar->curHP < 0) {
+        healthbar->curHP = 0;
     }
 
-    param0->unk_30 = -param1;
-
-    if (param0->unk_28 < 0) {
-        param0->unk_28 = 0;
-    }
-
-    if (param0->unk_28 > param0->unk_2C) {
-        param0->unk_28 = param0->unk_2C;
+    if (healthbar->curHP > healthbar->maxHP) {
+        healthbar->curHP = healthbar->maxHP;
     }
 }
 
@@ -801,11 +804,11 @@ s32 ov16_022674F8 (Healthbar * param0)
 {
     s32 v0;
 
-    v0 = ov16_02267EDC(param0, 0);
+    v0 = Healthbar_DrawGauge(param0, 0);
 
     if (v0 == -1) {
-        param0->unk_28 -= param0->unk_30;
-        Healthbar_DrawInfo(param0, param0->unk_28, HEALTHBAR_INFO_CURRENT_HP);
+        param0->curHP -= param0->damage;
+        Healthbar_DrawInfo(param0, param0->curHP, HEALTHBAR_INFO_CURRENT_HP);
     } else {
         Healthbar_DrawInfo(param0, v0, HEALTHBAR_INFO_CURRENT_HP);
     }
@@ -815,24 +818,24 @@ s32 ov16_022674F8 (Healthbar * param0)
 
 void ov16_0226752C (Healthbar * param0, int param1)
 {
-    param0->unk_44 = -2147483648;
+    param0->expTemp = -2147483648;
 
-    if (param0->unk_38 + param1 < 0) {
-        param1 -= param0->unk_38 + param1;
+    if (param0->curExp + param1 < 0) {
+        param1 -= param0->curExp + param1;
     }
 
-    if (param0->unk_38 + param1 > param0->unk_3C) {
-        param1 -= (param0->unk_38 + param1) - param0->unk_3C;
+    if (param0->curExp + param1 > param0->maxExp) {
+        param1 -= (param0->curExp + param1) - param0->maxExp;
     }
 
-    param0->unk_40 = -param1;
+    param0->expReward = -param1;
 
-    if (param0->unk_38 < 0) {
-        param0->unk_38 = 0;
+    if (param0->curExp < 0) {
+        param0->curExp = 0;
     }
 
-    if (param0->unk_38 > param0->unk_3C) {
-        param0->unk_38 = param0->unk_3C;
+    if (param0->curExp > param0->maxExp) {
+        param0->curExp = param0->maxExp;
     }
 }
 
@@ -840,10 +843,10 @@ s32 ov16_02267560 (Healthbar * param0)
 {
     s32 v0;
 
-    v0 = ov16_02267EDC(param0, 1);
+    v0 = Healthbar_DrawGauge(param0, 1);
 
     if (v0 == -1) {
-        param0->unk_38 -= param0->unk_40;
+        param0->curExp -= param0->expReward;
     }
 
     return v0;
@@ -1192,7 +1195,7 @@ static void ov16_02267BF8 (Healthbar * param0)
     v0 = Heap_AllocFromHeap(5, 3 * 0x20);
 
     MI_CpuFill8(v0, 0xf | (0xf << 4), 3 * 0x20);
-    sub_0200C67C(ov16_0223E04C(param0->battleSys), param0->unk_2C, 3, 0, v0);
+    sub_0200C67C(ov16_0223E04C(param0->battleSys), param0->maxHP, 3, 0, v0);
 
     {
         void * v2;
@@ -1337,42 +1340,40 @@ static void ov16_02267DC4 (Healthbar * param0, u32 param1)
     Strbuf_Free(v6);
 }
 
-static s32 ov16_02267EDC (Healthbar * param0, int param1)
+static s32 Healthbar_DrawGauge(Healthbar *healthbar, enum HealthbarGaugeType gaugeType)
 {
-    s32 v0;
-    s32 v1;
+    s32 result;
+    s32 fillOffset;
 
-    if (param1 == 0) {
-        v0 = ov16_022680D8(param0->unk_2C, param0->unk_28, param0->unk_30, &param0->unk_34, 6, 1);
+    if (gaugeType == HEALTHBAR_GAUGE_HP) {
+        result = UpdateGauge(healthbar->maxHP, healthbar->curHP, healthbar->damage, &healthbar->hpTemp, 6, 1);
     } else {
-        v1 = ov16_02268210(param0->unk_38, param0->unk_40, param0->unk_3C, 12);
+        fillOffset = CalcGaugeFill(healthbar->curExp, healthbar->expReward, healthbar->maxExp, 12);
 
-        if (v1 == 0) {
-            v1 = 1;
+        if (fillOffset == 0) {
+            fillOffset = 1;
         }
 
-        v1 = abs(param0->unk_40 / v1);
-        v0 = ov16_022680D8(param0->unk_3C, param0->unk_38, param0->unk_40, &param0->unk_44, 12, v1);
+        fillOffset = abs(healthbar->expReward / fillOffset);
+        result = UpdateGauge(healthbar->maxExp, healthbar->curExp, healthbar->expReward, &healthbar->expTemp, 12, fillOffset);
     }
 
-    if ((param1 == 0) && (param0->numberMode == 1)) {
-        (void)0;
-    } else {
-        ov16_02267F70(param0, param1);
+    if (gaugeType != HEALTHBAR_GAUGE_HP || healthbar->numberMode != TRUE) {
+        DrawGauge(healthbar, gaugeType);
     }
 
-    if (v0 == -1) {
-        if (param1 == 0) {
-            param0->unk_34 = 0;
+    if (result == -1) {
+        if (gaugeType == HEALTHBAR_GAUGE_HP) {
+            healthbar->hpTemp = 0;
         } else {
-            param0->unk_44 = 0;
+            healthbar->expTemp = 0;
         }
     }
 
-    return v0;
+    return result;
 }
 
-static void ov16_02267F70 (Healthbar * param0, u8 param1)
+static void DrawGauge (Healthbar * param0, u8 param1)
 {
     u8 v0;
     u8 v1[12];
@@ -1389,7 +1390,7 @@ static void ov16_02267F70 (Healthbar * param0, u8 param1)
 
     switch (param1) {
     case 0:
-        v4 = ov16_02268194(param0->unk_2C, param0->unk_28, param0->unk_30, &param0->unk_34, v1, 6);
+        v4 = ov16_02268194(param0->maxHP, param0->curHP, param0->damage, &param0->hpTemp, v1, 6);
 
         {
             int v10;
@@ -1422,7 +1423,7 @@ static void ov16_02267F70 (Healthbar * param0, u8 param1)
         }
         break;
     case 1:
-        ov16_02268194(param0->unk_3C, param0->unk_38, param0->unk_40, &param0->unk_44, v1, 12);
+        ov16_02268194(param0->maxExp, param0->curExp, param0->expReward, &param0->expTemp, v1, 12);
         v5 = param0->unk_48;
 
         if (v5 == 100) {
@@ -1444,7 +1445,7 @@ static void ov16_02267F70 (Healthbar * param0, u8 param1)
     }
 }
 
-static s32 ov16_022680D8 (s32 param0, s32 param1, s32 param2, s32 * param3, u8 param4, u16 param5)
+static s32 UpdateGauge (s32 param0, s32 param1, s32 param2, s32 * param3, u8 param4, u16 param5)
 {
     s32 v0;
     s32 v1;
@@ -1571,25 +1572,31 @@ static u8 ov16_02268194 (s32 param0, s32 param1, s32 param2, s32 * param3, u8 * 
     return v3;
 }
 
-static u32 ov16_02268210 (s32 param0, s32 param1, s32 param2, u8 param3)
+/**
+ * @brief Calculate the number of pixels that will need to be filled to account
+ * for a change in the current value of a gauge.
+ * 
+ * @param curVal    Current value of the gauge
+ * @param diff      Change to be applied to the current value
+ * @param maxVal    Max value of the gauge
+ * @param gaugeSize Size of the gauge, in squares of fill
+ * @return          Number of pixels to be filled
+ */
+static u32 CalcGaugeFill(s32 curVal, s32 diff, s32 maxVal, u8 gaugeSize)
 {
-    s8 v0, v1;
-    u8 v2;
-    s32 v3;
+    u8 gaugeSizePixels = gaugeSize * 8; // gauges have 8 pixels per "square" of fill
+    s32 newVal = curVal - diff;
 
-    v2 = param3 * 8;
-    v3 = param0 - param1;
-
-    if (v3 < 0) {
-        v3 = 0;
-    } else if (v3 > param2) {
-        v3 = param2;
+    if (newVal < 0) {
+        newVal = 0;
+    } else if (newVal > maxVal) {
+        newVal = maxVal;
     }
 
-    v0 = param0 * v2 / param2;
-    v1 = v3 * v2 / param2;
+    s8 curPixels = curVal * gaugeSizePixels / maxVal;
+    s8 newPixels = newVal * gaugeSizePixels / maxVal;
 
-    return abs(v0 - v1);
+    return abs(curPixels - newPixels);
 }
 
 static const u8 * ov16_02268250 (int param0)

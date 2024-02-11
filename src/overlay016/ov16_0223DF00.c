@@ -1388,7 +1388,7 @@ void ov16_0223F3BC (BattleSystem * param0)
     for (v0 = 0; v0 < param0->maxBattlers; v0++) {
         v1 = ov16_02263B08(param0->battlers[v0]);
 
-        if (v1->unk_28) {
+        if (v1->curHP) {
             Healthbar_Enable(v1, 1);
         }
     }
