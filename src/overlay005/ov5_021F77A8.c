@@ -52,7 +52,7 @@ typedef struct {
     u32 shardColor; // the type of underground shard you use to trade to the move tutors
 } TeachableMove;
 
-static const TeachableMove TeachableMoves[] = {
+static const TeachableMove sTeachableMoves[] = {
     { MOVE_DIVE,          0x2, 0x4, 0x2, 0x0, 0x0 },
     { MOVE_MUD_SLAP,      0x4, 0x4, 0x0, 0x0, 0x1 },
     { MOVE_FURY_CUTTER,   0x0, 0x8, 0x0, 0x0, 0x0 },
@@ -93,16 +93,16 @@ static const TeachableMove TeachableMoves[] = {
     { MOVE_UPROAR,        0x0, 0x0, 0x6, 0x2, 0x2 }
 };
 
-#define MOVESET_MASK_SIZE (NELEMS(TeachableMoves) + 7) / 8
+#define MOVESET_MASK_SIZE (s32)((NELEMS(sTeachableMoves) + 7) / 8)
 
-// Each of the bits in this array correspond to a move in TeachableMoves
+// Each of the bits in this array correspond to a move in sTeachableMoves
 // Therefore the size is dependent on how many teachable moves exist
 
 typedef struct {
     u8 maskData[MOVESET_MASK_SIZE];
 } MovesetMask;
 
-const MovesetMask TeachableMovesets[MOVESET_MAX] = {
+const MovesetMask sTeachableMovesets[MOVESET_MAX] = {
     { 0x6,  0x20, 0x10, 0x8,  0x4  },
     { 0x6,  0x20, 0x10, 0x8,  0x4  },
     { 0x6,  0x20, 0x14, 0x8,  0x4  },
@@ -703,17 +703,17 @@ BOOL ov5_021F789C (UnkStruct_0203E724 * param0)
 
     v5 = sub_0207D990(param0->unk_34->unk_0C);
 
-    for (v0 = 0; v0 < (NELEMS(TeachableMoves)); v0++) {
-        if (v6 == TeachableMoves[v0].moveID) {
-            v1 = TeachableMoves[v0].unk_02;
-            v2 = TeachableMoves[v0].unk_03;
-            v3 = TeachableMoves[v0].unk_04;
-            v4 = TeachableMoves[v0].unk_05;
+    for (v0 = 0; v0 < (NELEMS(sTeachableMoves)); v0++) {
+        if (v6 == sTeachableMoves[v0].moveID) {
+            v1 = sTeachableMoves[v0].unk_02;
+            v2 = sTeachableMoves[v0].unk_03;
+            v3 = sTeachableMoves[v0].unk_04;
+            v4 = sTeachableMoves[v0].unk_05;
             break;
         }
     }
 
-    if (v0 == (NELEMS(TeachableMoves))) {
+    if (v0 == (NELEMS(sTeachableMoves))) {
         GF_ASSERT(0);
         *v7 = 0;
         return 0;
@@ -757,17 +757,17 @@ BOOL ov5_021F7998 (UnkStruct_0203E724 * param0)
 
     v5 = sub_0207D990(param0->unk_34->unk_0C);
 
-    for (v0 = 0; v0 < (NELEMS(TeachableMoves)); v0++) {
-        if (v6 == TeachableMoves[v0].moveID) {
-            v1 = TeachableMoves[v0].unk_02;
-            v2 = TeachableMoves[v0].unk_03;
-            v3 = TeachableMoves[v0].unk_04;
-            v4 = TeachableMoves[v0].unk_05;
+    for (v0 = 0; v0 < (NELEMS(sTeachableMoves)); v0++) {
+        if (v6 == sTeachableMoves[v0].moveID) {
+            v1 = sTeachableMoves[v0].unk_02;
+            v2 = sTeachableMoves[v0].unk_03;
+            v3 = sTeachableMoves[v0].unk_04;
+            v4 = sTeachableMoves[v0].unk_05;
             break;
         }
     }
 
-    if (v0 == (NELEMS(TeachableMoves))) {
+    if (v0 == (NELEMS(sTeachableMoves))) {
         GF_ASSERT(0);
     }
 
@@ -781,15 +781,15 @@ BOOL ov5_021F7998 (UnkStruct_0203E724 * param0)
 
 static u16 ov5_021F7A3C (u16 param0)
 {
-    return TeachableMoves[param0].moveID;
+    return sTeachableMoves[param0].moveID;
 }
 
 static u16 ov5_021F7A4C (u16 param0)
 {
     int v0;
 
-    for (v0 = 0; v0 < (NELEMS(TeachableMoves)); v0++) {
-        if (TeachableMoves[v0].moveID == param0) {
+    for (v0 = 0; v0 < (NELEMS(sTeachableMoves)); v0++) {
+        if (sTeachableMoves[v0].moveID == param0) {
             return v0;
         }
     }
@@ -846,7 +846,7 @@ static u8 ReadMovesetMaskByte (Pokemon * pokemon, u8 offset)
         break;
     }
 
-    return TeachableMovesets[moveset - 1].maskData[offset];
+    return sTeachableMovesets[moveset - 1].maskData[offset];
 }
 
 static u16 ov5_021F7B60 (Pokemon * param0, u16 param1)
@@ -862,15 +862,15 @@ static u16 ov5_021F7B60 (Pokemon * param0, u16 param1)
         v6[v2] = Pokemon_GetValue(param0, MON_DATA_MOVE1 + v2, NULL);
     }
 
-    for (v0 = 0; v0 < 5; v0++) {
+    for (v0 = 0; v0 < MOVESET_MASK_SIZE; v0++) {
         v3 = ReadMovesetMaskByte(param0, v0);
 
         for (v1 = 0; v1 < 8; v1++) {
             v4 = ((v3 >> v1) & 0x1);
 
-            if ((v4 == 1) && (param1 == TeachableMoves[v0 * 8 + v1].shardColor)) {
+            if ((v4 == 1) && (param1 == sTeachableMoves[v0 * 8 + v1].shardColor)) {
                 for (v2 = 0; v2 < 4; v2++) {
-                    if (v6[v2] == TeachableMoves[v0 * 8 + v1].moveID) {
+                    if (v6[v2] == sTeachableMoves[v0 * 8 + v1].moveID) {
                         break;
                     }
                 }
@@ -895,7 +895,7 @@ BOOL ov5_021F7C04 (UnkStruct_0203E724 * param0)
     UnkStruct_0203CDB0 * v9 = param0->unk_34;
     UnkStruct_ov5_021F7ED8 * v10;
     u16 v11[4];
-    u16 v12[(NELEMS(TeachableMoves))];
+    u16 v12[(NELEMS(sTeachableMoves))];
     UnkStruct_0200B358 ** v13 = sub_0203F098(v9, 15);
     u16 v14 = inline_02049538(param0);
     u16 v15 = inline_02049538(param0);
@@ -910,7 +910,7 @@ BOOL ov5_021F7C04 (UnkStruct_0203E724 * param0)
     v7 = MessageLoader_Init(0, 26, 647, 32);
     v10 = ov5_021F7ED8(v9, 20, 1, 0, 1, sub_0203F118(v9, v16), *v13, sub_0203F098(param0->unk_34, 1), v7);
 
-    for (v2 = 0; v2 < (NELEMS(TeachableMoves)); v2++) {
+    for (v2 = 0; v2 < (NELEMS(sTeachableMoves)); v2++) {
         v12[v2] = 0;
     }
 
@@ -921,29 +921,29 @@ BOOL ov5_021F7C04 (UnkStruct_0203E724 * param0)
             v11[v5] = Pokemon_GetValue(v6, (54 + v5), NULL);
         }
 
-        for (v2 = 0; v2 < 5; v2++) {
+        for (v2 = 0; v2 < MOVESET_MASK_SIZE; v2++) {
             v0 = ReadMovesetMaskByte(v6, v2);
 
             for (v4 = 0; v4 < 8; v4++) {
                 v1 = ((v0 >> v4) & 0x1);
 
-                if ((v1 == 1) && (v15 == TeachableMoves[v2 * 8 + v4].shardColor)) {
+                if ((v1 == 1) && (v15 == sTeachableMoves[v2 * 8 + v4].shardColor)) {
                     for (v5 = 0; v5 < 4; v5++) {
-                        if (v11[v5] == TeachableMoves[v2 * 8 + v4].moveID) {
+                        if (v11[v5] == sTeachableMoves[v2 * 8 + v4].moveID) {
                             break;
                         }
                     }
 
                     if (v5 == 4) {
-                        v12[v3] = TeachableMoves[v2 * 8 + v4].moveID;
+                        v12[v3] = sTeachableMoves[v2 * 8 + v4].moveID;
                         v3++;
                     }
                 }
             }
         }
     } else {
-        for (v2 = 0; v2 < (NELEMS(TeachableMoves)); v2++) {
-            if (v15 == TeachableMoves[v2].shardColor) {
+        for (v2 = 0; v2 < (NELEMS(sTeachableMoves)); v2++) {
+            if (v15 == sTeachableMoves[v2].shardColor) {
                 v12[v3] = ov5_021F7A3C(v2);
                 v3++;
             }
@@ -1004,13 +1004,13 @@ static void ov5_021F7E18 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021F7ED8 * 
     param1->unk_C0 = 3;
     param1->unk_27E = param4;
 
-    for (v0 = 0; v0 < ((NELEMS(TeachableMoves)) + 1); v0++) {
+    for (v0 = 0; v0 < ((NELEMS(sTeachableMoves)) + 1); v0++) {
         param1->unk_F8[v0].unk_00 = NULL;
         param1->unk_F8[v0].unk_04 = 0;
         param1->unk_230[v0] = 0xff;
     }
 
-    for (v0 = 0; v0 < ((NELEMS(TeachableMoves)) + 1); v0++) {
+    for (v0 = 0; v0 < ((NELEMS(sTeachableMoves)) + 1); v0++) {
         param1->unk_1C[v0] = Strbuf_Init((40 * 2), 4);
     }
 
@@ -1177,7 +1177,7 @@ static void ov5_021F8250 (UnkStruct_ov5_021F7ED8 * param0)
     Window_Clear(param0->unk_D0.unk_0C, 0);
     BGL_DeleteWindow(&param0->unk_08);
 
-    for (v0 = 0; v0 < ((NELEMS(TeachableMoves)) + 1); v0++) {
+    for (v0 = 0; v0 < ((NELEMS(sTeachableMoves)) + 1); v0++) {
         Strbuf_Free(param0->unk_1C[v0]);
     }
 
@@ -1202,7 +1202,7 @@ BOOL ov5_021F82B8 (UnkStruct_0203E724 * param0)
     u16 * v6 = inline_0204FCAC(param0);
 
     v5 = ov5_021F7A4C(v5);
-    *v2 = ov5_021DD250(v0, v3, v4, v6, *v1, TeachableMoves[v5].unk_02, TeachableMoves[v5].unk_03, TeachableMoves[v5].unk_04, TeachableMoves[v5].unk_05);
+    *v2 = ov5_021DD250(v0, v3, v4, v6, *v1, sTeachableMoves[v5].unk_02, sTeachableMoves[v5].unk_03, sTeachableMoves[v5].unk_04, sTeachableMoves[v5].unk_05);
 
     return 0;
 }
