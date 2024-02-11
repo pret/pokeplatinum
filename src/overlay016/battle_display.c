@@ -4786,7 +4786,7 @@ static void ov16_022629DC (SysTask * param0, void * param1)
     case 0:
         v0->unk_4E = 0;
         Sound_PlayEffect(1803);
-        ov16_0226752C(v0, v0->expReward);
+        Healthbar_CalcExp(v0, v0->expReward);
         v0->state++;
     case 1:
         if (v0->unk_4E < 8) {

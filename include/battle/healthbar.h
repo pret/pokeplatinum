@@ -81,7 +81,7 @@ void ov16_0226737C(Healthbar * param0);
  */
 void Healthbar_CalcHP(Healthbar *healthbar, int damage);
 s32 ov16_022674F8(Healthbar * param0);
-void ov16_0226752C(Healthbar * param0, int param1);
+void Healthbar_CalcExp(Healthbar * param0, int param1);
 s32 ov16_02267560(Healthbar * param0);
 void ov16_0226757C(Healthbar * param0);
 void ov16_022675AC(Healthbar * param0);

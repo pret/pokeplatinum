@@ -76,15 +76,15 @@ static u8 ov16_02268194(s32 param0, s32 param1, s32 param2, s32 * param3, u8 * p
 static u32 CalcGaugeFill(s32 param0, s32 param1, s32 param2, u8 param3);
 static const u8 * ov16_02268250(int param0);
 static void DrawGauge(Healthbar * param0, u8 param1);
-static void ov16_02267864(Healthbar * param0);
-static void ov16_022679C8(Healthbar * param0);
-static void ov16_02267A4C(Healthbar * param0);
-static void ov16_02267B6C(Healthbar * param0, u32 param1);
-static void ov16_02267BF8(Healthbar * param0);
-static void ov16_02267C58(Healthbar * param0);
-static void ov16_02267CA8(Healthbar * param0, int param1);
-static void ov16_02267CE8(Healthbar * param0, u32 param1);
-static void ov16_02267DC4(Healthbar * param0, u32 param1);
+static void Healthbar_DrawBattlerName(Healthbar * param0);
+static void Healthbar_DrawLevelText(Healthbar * param0);
+static void Healthbar_DrawLevelNumber(Healthbar * param0);
+static void Healthbar_DrawCurrentHP(Healthbar * param0, u32 param1);
+static void Healthbar_DrawMaxHP(Healthbar * param0);
+static void Healthbar_DrawCaughtIcon(Healthbar * param0);
+static void Healthbar_DrawStatusIcon(Healthbar * param0, int param1);
+static void Healthbar_DrawBallCount(Healthbar * param0, u32 param1);
+static void Healthbar_DrawBallsLeftMessage(Healthbar * param0, u32 param1);
 static void ov16_02266FE4(SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, PaletteData * param3, int param4);
 static void ov16_02267244(Healthbar * param0);
 static void ov16_0226728C(Healthbar * param0);
@@ -578,64 +578,64 @@ void Healthbar_DrawInfo(Healthbar *healthbar, u32 hp, u32 flags)
     }
 
     if (flags & HEALTHBAR_INFO_CURRENT_HP) {
-        ov16_02267B6C(healthbar, hp);
+        Healthbar_DrawCurrentHP(healthbar, hp);
     }
 
     if (flags & HEALTHBAR_INFO_MAX_HP) {
-        ov16_02267BF8(healthbar);
+        Healthbar_DrawMaxHP(healthbar);
     }
 
     if ((flags & HEALTHBAR_INFO_LEVEL_TEXT) || (flags & HEALTHBAR_INFO_GENDER)) {
-        ov16_022679C8(healthbar);
+        Healthbar_DrawLevelText(healthbar);
     }
 
     if (flags & HEALTHBAR_INFO_LEVEL) {
-        ov16_02267A4C(healthbar);
+        Healthbar_DrawLevelNumber(healthbar);
     }
 
     if (flags & HEALTHBAR_INFO_NAME) {
-        ov16_02267864(healthbar);
+        Healthbar_DrawBattlerName(healthbar);
     }
 
     if (flags & HEALTHBAR_INFO_EXP_GAUGE) {
-        ov16_0226752C(healthbar, 0);
+        Healthbar_CalcExp(healthbar, 0);
         Healthbar_DrawGauge(healthbar, 1);
     }
 
     if (flags & HEALTHBAR_INFO_CAUGHT_SPECIES) {
-        ov16_02267C58(healthbar);
+        Healthbar_DrawCaughtIcon(healthbar);
     }
 
     if (flags & HEALTHBAR_INFO_STATUS) {
         switch (healthbar->status) {
         default:
         case 0:
-            ov16_02267CA8(healthbar, 38);
+            Healthbar_DrawStatusIcon(healthbar, 38);
             break;
         case 1:
-            ov16_02267CA8(healthbar, 47);
+            Healthbar_DrawStatusIcon(healthbar, 47);
             break;
         case 2:
-            ov16_02267CA8(healthbar, 50);
+            Healthbar_DrawStatusIcon(healthbar, 50);
             break;
         case 3:
-            ov16_02267CA8(healthbar, 53);
+            Healthbar_DrawStatusIcon(healthbar, 53);
             break;
         case 4:
-            ov16_02267CA8(healthbar, 44);
+            Healthbar_DrawStatusIcon(healthbar, 44);
             break;
         case 5:
-            ov16_02267CA8(healthbar, 41);
+            Healthbar_DrawStatusIcon(healthbar, 41);
             break;
         }
     }
 
     if (flags & (HEALTHBAR_INFO_COUNT_SAFARI_BALLS | HEALTHBAR_INFO_COUNT_PARK_BALLS)) {
-        ov16_02267CE8(healthbar, flags);
+        Healthbar_DrawBallCount(healthbar, flags);
     }
 
     if (flags & (HEALTHBAR_INFO_REMAINING_SAFARI_BALLS | HEALTHBAR_INFO_REMAINING_PARK_BALLS)) {
-        ov16_02267DC4(healthbar, flags);
+        Healthbar_DrawBallsLeftMessage(healthbar, flags);
     }
 }
 
@@ -816,7 +816,7 @@ s32 ov16_022674F8 (Healthbar * param0)
     return v0;
 }
 
-void ov16_0226752C (Healthbar * param0, int param1)
+void Healthbar_CalcExp (Healthbar * param0, int param1)
 {
     param0->expTemp = -2147483648;
 
@@ -1036,7 +1036,7 @@ static void ScrollHealthbarTask(SysTask *task, void *data)
     }
 }
 
-static void ov16_02267864 (Healthbar * param0)
+static void Healthbar_DrawBattlerName (Healthbar * param0)
 {
     BGL * v0;
     u8 * v1;
@@ -1084,7 +1084,7 @@ static void ov16_02267864 (Healthbar * param0)
     Strbuf_Free(v6);
 }
 
-static void ov16_022679C8 (Healthbar * param0)
+static void Healthbar_DrawLevelText (Healthbar * param0)
 {
     NNSG2dImageProxy * v0;
     const u8 * v1;
@@ -1116,7 +1116,7 @@ static void ov16_022679C8 (Healthbar * param0)
     }
 }
 
-static void ov16_02267A4C (Healthbar * param0)
+static void Healthbar_DrawLevelNumber (Healthbar * param0)
 {
     u8 * v0, * v1;
     NNSG2dImageProxy * v2;
@@ -1162,7 +1162,7 @@ static void ov16_02267A4C (Healthbar * param0)
     Heap_FreeToHeap(v1);
 }
 
-static void ov16_02267B6C (Healthbar * param0, u32 param1)
+static void Healthbar_DrawCurrentHP (Healthbar * param0, u32 param1)
 {
     u8 * v0;
     NNSG2dImageProxy * v1;
@@ -1187,7 +1187,7 @@ static void ov16_02267B6C (Healthbar * param0, u32 param1)
     Heap_FreeToHeap(v0);
 }
 
-static void ov16_02267BF8 (Healthbar * param0)
+static void Healthbar_DrawMaxHP (Healthbar * param0)
 {
     u8 * v0;
     NNSG2dImageProxy * v1;
@@ -1211,7 +1211,7 @@ static void ov16_02267BF8 (Healthbar * param0)
     Heap_FreeToHeap(v0);
 }
 
-static void ov16_02267C58 (Healthbar * param0)
+static void Healthbar_DrawCaughtIcon (Healthbar * param0)
 {
     NNSG2dImageProxy * v0;
     const u8 * v1;
@@ -1232,7 +1232,7 @@ static void ov16_02267C58 (Healthbar * param0)
     }
 }
 
-static void ov16_02267CA8 (Healthbar * param0, int param1)
+static void Healthbar_DrawStatusIcon (Healthbar * param0, int param1)
 {
     NNSG2dImageProxy * v0;
     const u8 * v1;
@@ -1249,7 +1249,7 @@ static void ov16_02267CA8 (Healthbar * param0, int param1)
     }
 }
 
-static void ov16_02267CE8 (Healthbar * param0, u32 param1)
+static void Healthbar_DrawBallCount (Healthbar * param0, u32 param1)
 {
     BGL * v0;
     u8 * v1;
@@ -1292,7 +1292,7 @@ static void ov16_02267CE8 (Healthbar * param0, u32 param1)
     Strbuf_Free(v5);
 }
 
-static void ov16_02267DC4 (Healthbar * param0, u32 param1)
+static void Healthbar_DrawBallsLeftMessage (Healthbar * param0, u32 param1)
 {
     BGL * v0;
     u8 * v1;
