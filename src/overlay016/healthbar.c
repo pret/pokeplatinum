@@ -645,7 +645,7 @@ void ov16_022672C4 (Healthbar * param0)
     ov16_02266FE4(v1, v2, v4, v3, param0->unk_25);
 
     if (param0->arrowActor != NULL) {
-        sub_0200D494(param0->arrowActor->unk_00, v0->x - Unk_ov16_0226F334[param0->unk_25], v0->y + 0);
+        SpriteActor_SetPositionXY(param0->arrowActor->unk_00, v0->x - Unk_ov16_0226F334[param0->unk_25], v0->y + 0);
     }
 
     NARC_dtor(v4);
@@ -851,10 +851,10 @@ void ov16_0226763C (Healthbar * param0, int param1, int param2)
     GF_ASSERT(param0->mainActor != NULL);
     v0 = ov16_022682B0(param0->unk_25);
 
-    sub_0200D494(param0->mainActor->unk_00, v0->x + param1, v0->y + param2);
+    SpriteActor_SetPositionXY(param0->mainActor->unk_00, v0->x + param1, v0->y + param2);
 
     if (param0->arrowActor != NULL) {
-        sub_0200D494(param0->arrowActor->unk_00, v0->x + param1 - Unk_ov16_0226F334[param0->unk_25], v0->y + param2 + 0);
+        SpriteActor_SetPositionXY(param0->arrowActor->unk_00, v0->x + param1 - Unk_ov16_0226F334[param0->unk_25], v0->y + param2 + 0);
     }
 }
 

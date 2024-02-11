@@ -279,7 +279,7 @@ void sub_0208ECF4 (UnkStruct_0208D7BC * param0)
             v1 = v3 + 24 + (v6 - 1) * 16;
         }
 
-        sub_0200D494(param0->unk_41C[v5], v1, v2);
+        SpriteActor_SetPositionXY(param0->unk_41C[v5], v1, v2);
         sub_02021CAC(v0[v5], 1);
 
         v6++;
@@ -296,8 +296,8 @@ void sub_0208EDC4 (UnkStruct_0208D7BC * param0)
 
     v0 = sub_0208ECB8(param0);
 
-    sub_0200D494(param0->unk_41C[21], v0 + -12, 24);
-    sub_0200D494(param0->unk_41C[22], (23 * 8 + 4) + ((23 * 8 + 4) - v0) + -4, 24);
+    SpriteActor_SetPositionXY(param0->unk_41C[21], v0 + -12, 24);
+    SpriteActor_SetPositionXY(param0->unk_41C[22], (23 * 8 + 4) + ((23 * 8 + 4) - v0) + -4, 24);
 }
 
 void sub_0208EE10 (UnkStruct_0208D7BC * param0, u8 param1)
@@ -369,11 +369,11 @@ void sub_0208EF58 (UnkStruct_0208D7BC * param0)
         SpriteActor_DrawSprite(param0->unk_41C[11], 1);
 
         if (param0->unk_250.unk_10 == param0->unk_250.unk_11) {
-            sub_0200D494(param0->unk_41C[11], 216, 80);
+            SpriteActor_SetPositionXY(param0->unk_41C[11], 216, 80);
         } else {
-            sub_0200D494(param0->unk_41C[11], 199, 80);
+            SpriteActor_SetPositionXY(param0->unk_41C[11], 199, 80);
             SpriteActor_DrawSprite(param0->unk_41C[12], 1);
-            sub_0200D494(
+            SpriteActor_SetPositionXY(
                 param0->unk_41C[12], 233, 80);
         }
         break;
@@ -385,18 +385,18 @@ void sub_0208EF58 (UnkStruct_0208D7BC * param0)
 
             sub_0208F194(param0, 13 + v0, 5 + v0, MoveTable_LoadParam(param0->unk_250.unk_34[v0], MOVEATTRIBUTE_TYPE));
             SpriteActor_DrawSprite(param0->unk_41C[13 + v0], 1);
-            sub_0200D494(param0->unk_41C[13 + v0], 151, 42 + v0 * 32);
+            SpriteActor_SetPositionXY(param0->unk_41C[13 + v0], 151, 42 + v0 * 32);
         }
 
         if (param0->unk_24C->unk_18 != 0) {
             sub_0208F194(param0, 13 + 4, 5 + 4, MoveTable_LoadParam(param0->unk_24C->unk_18, MOVEATTRIBUTE_TYPE));
             SpriteActor_DrawSprite(param0->unk_41C[13 + 4], 1);
-            sub_0200D494(param0->unk_41C[13 + 4], 151, 42 + 4 * 32);
+            SpriteActor_SetPositionXY(param0->unk_41C[13 + 4], 151, 42 + 4 * 32);
         }
 
-        sub_0200D494(param0->unk_41C[11], 63, 52);
-        sub_0200D494(param0->unk_41C[12], 63 + 34, 52);
-        sub_0200D494(param0->unk_41C[18], (92 + 16), 72);
+        SpriteActor_SetPositionXY(param0->unk_41C[11], 63, 52);
+        SpriteActor_SetPositionXY(param0->unk_41C[12], 63 + 34, 52);
+        SpriteActor_SetPositionXY(param0->unk_41C[18], (92 + 16), 72);
         break;
     case 5:
         for (v0 = 0; v0 < 4; v0++) {
@@ -406,18 +406,18 @@ void sub_0208EF58 (UnkStruct_0208D7BC * param0)
 
             sub_0208F194(param0, 13 + v0, 5 + v0, MoveTable_LoadParam(param0->unk_250.unk_34[v0], MOVEATTRIBUTE_CONTEST_TYPE) + 18);
             SpriteActor_DrawSprite(param0->unk_41C[13 + v0], 1);
-            sub_0200D494(param0->unk_41C[13 + v0], 151, 42 + v0 * 32);
+            SpriteActor_SetPositionXY(param0->unk_41C[13 + v0], 151, 42 + v0 * 32);
         }
 
         if (param0->unk_24C->unk_18 != 0) {
             sub_0208F194(param0, 13 + 4, 5 + 4, MoveTable_LoadParam(param0->unk_24C->unk_18, MOVEATTRIBUTE_CONTEST_TYPE) + 18);
             SpriteActor_DrawSprite(param0->unk_41C[13 + 4], 1);
-            sub_0200D494(param0->unk_41C[13 + 4], 151, 42 + 4 * 32);
+            SpriteActor_SetPositionXY(param0->unk_41C[13 + 4], 151, 42 + 4 * 32);
         }
 
-        sub_0200D494(param0->unk_41C[11], 63, 52);
-        sub_0200D494(param0->unk_41C[12], 63 + 34, 52);
-        sub_0200D494(param0->unk_41C[18], (92 + 16), 72);
+        SpriteActor_SetPositionXY(param0->unk_41C[11], 63, 52);
+        SpriteActor_SetPositionXY(param0->unk_41C[12], 63 + 34, 52);
+        SpriteActor_SetPositionXY(param0->unk_41C[18], (92 + 16), 72);
         break;
     }
 }
@@ -457,8 +457,8 @@ void sub_0208F22C (UnkStruct_0208D7BC * param0, u8 param1, u8 param2)
     sub_0208F1E4(param0, &param1, &v0, &v1);
     sub_0208F1E4(param0, &param2, &v2, &v3);
 
-    sub_0200D494(param0->unk_41C[13 + param1], v2, v3);
-    sub_0200D494(param0->unk_41C[13 + param2], v0, v1);
+    SpriteActor_SetPositionXY(param0->unk_41C[13 + param1], v2, v3);
+    SpriteActor_SetPositionXY(param0->unk_41C[13 + param2], v0, v1);
 }
 
 void sub_0208F294 (UnkStruct_0208D7BC * param0, u32 param1)
@@ -471,7 +471,7 @@ void sub_0208F294 (UnkStruct_0208D7BC * param0, u32 param1)
 
 void sub_0208F2E8 (UnkStruct_0208D7BC * param0)
 {
-    sub_0200D494(param0->unk_41C[9], 194, 48 + param0->unk_6A5_0 * 32);
+    SpriteActor_SetPositionXY(param0->unk_41C[9], 194, 48 + param0->unk_6A5_0 * 32);
 }
 
 void sub_0208F310 (UnkStruct_0208D7BC * param0)
@@ -479,7 +479,7 @@ void sub_0208F310 (UnkStruct_0208D7BC * param0)
     s16 v0, v1;
 
     sub_0200D50C(param0->unk_41C[9], &v0, &v1);
-    sub_0200D494(param0->unk_41C[10], v0, v1);
+    SpriteActor_SetPositionXY(param0->unk_41C[10], v0, v1);
     sub_02021CAC(param0->unk_41C[10], 1);
 }
 
@@ -624,9 +624,9 @@ void sub_0208F600 (UnkStruct_0208D7BC * param0)
     sub_02092368(param0, &v0, &v1);
 
     if (param0->unk_6A7_0 == 0) {
-        sub_0200D494(param0->unk_41C[41], v0, v1 + 192);
+        SpriteActor_SetPositionXY(param0->unk_41C[41], v0, v1 + 192);
     } else {
-        sub_0200D494(param0->unk_41C[41], v0 - 4, v1 + 192);
+        SpriteActor_SetPositionXY(param0->unk_41C[41], v0 - 4, v1 + 192);
     }
 }
 
@@ -655,7 +655,7 @@ void sub_0208F6DC (UnkStruct_0208D7BC * param0, Window * param1)
         return;
     }
 
-    sub_0200D494(param0->unk_41C[47], sub_0201C29C(param1) * 8 - 10, 8);
+    SpriteActor_SetPositionXY(param0->unk_41C[47], sub_0201C29C(param1) * 8 - 10, 8);
     sub_02021CAC(param0->unk_41C[47], 1);
 }
 
@@ -680,9 +680,9 @@ void sub_0208F7A4 (UnkStruct_0208D7BC * param0)
     sub_0200D97C(param0->unk_414, param0->unk_418, 19, PokeIconPalettesFileIndex(), 0, 5);
 
     if (param0->unk_6A4 == 3) {
-        sub_0200D494(param0->unk_41C[19], 24, 48);
+        SpriteActor_SetPositionXY(param0->unk_41C[19], 24, 48);
     } else {
-        sub_0200D494(param0->unk_41C[19], 32, 68);
+        SpriteActor_SetPositionXY(param0->unk_41C[19], 32, 68);
     }
 
     SpriteActor_DrawSprite(param0->unk_41C[19], 1);
@@ -709,11 +709,11 @@ static s16 sub_0208F800 (u32 param0, s16 param1, s16 param2)
 
 void sub_0208F844 (UnkStruct_0208D7BC * param0)
 {
-    sub_0200D494(param0->unk_41C[48], sub_0208F800(param0->unk_250.unk_45, 88, 88), sub_0208F800(param0->unk_250.unk_45, 49, 73));
-    sub_0200D494(param0->unk_41C[49], sub_0208F800(param0->unk_250.unk_46, 110, 88), sub_0208F800(param0->unk_250.unk_46, 65, 73));
-    sub_0200D494(param0->unk_41C[50], sub_0208F800(param0->unk_250.unk_47, 103, 88), sub_0208F800(param0->unk_250.unk_47, 92, 73));
-    sub_0200D494(param0->unk_41C[51], sub_0208F800(param0->unk_250.unk_48, 72, 87), sub_0208F800(param0->unk_250.unk_48, 92, 73));
-    sub_0200D494(param0->unk_41C[52], sub_0208F800(param0->unk_250.unk_49, 65, 87), sub_0208F800(param0->unk_250.unk_49, 65, 73));
+    SpriteActor_SetPositionXY(param0->unk_41C[48], sub_0208F800(param0->unk_250.unk_45, 88, 88), sub_0208F800(param0->unk_250.unk_45, 49, 73));
+    SpriteActor_SetPositionXY(param0->unk_41C[49], sub_0208F800(param0->unk_250.unk_46, 110, 88), sub_0208F800(param0->unk_250.unk_46, 65, 73));
+    SpriteActor_SetPositionXY(param0->unk_41C[50], sub_0208F800(param0->unk_250.unk_47, 103, 88), sub_0208F800(param0->unk_250.unk_47, 92, 73));
+    SpriteActor_SetPositionXY(param0->unk_41C[51], sub_0208F800(param0->unk_250.unk_48, 72, 87), sub_0208F800(param0->unk_250.unk_48, 92, 73));
+    SpriteActor_SetPositionXY(param0->unk_41C[52], sub_0208F800(param0->unk_250.unk_49, 65, 87), sub_0208F800(param0->unk_250.unk_49, 65, 73));
 
     sub_02021CAC(param0->unk_41C[48], 1);
     sub_02021CAC(param0->unk_41C[49], 1);
@@ -777,7 +777,7 @@ void sub_0208FAA4 (UnkStruct_0208D7BC * param0)
 
 void sub_0208FB00 (UnkStruct_0208D7BC * param0)
 {
-    sub_0200D494(
+    SpriteActor_SetPositionXY(
         param0->unk_41C[67], 132 + (param0->unk_6AF & 3) * 32, 56 + (param0->unk_6AF / 4) * 40);
 }
 
@@ -854,7 +854,7 @@ static void sub_0208FC30 (GraphicElementData * param0, u32 param1, u32 param2, c
         v1 = param3[3] - (((((param3[3] - param3[1]) << 8) / 256) * param1) >> 8);
     }
 
-    sub_0200D494(param0, v0, v1);
+    SpriteActor_SetPositionXY(param0, v0, v1);
     SpriteActor_SetAnimFrame(param0, 0);
     SpriteActor_SetSpriteAnimActive(param0, 0);
 }

@@ -327,7 +327,7 @@ static void ov79_021D1D94 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     }
 
     sub_020014DC(param0, &v2, &v3);
-    sub_0200D494(v0->unk_1C0[0], 105, v3 * 16 + 40);
+    SpriteActor_SetPositionXY(v0->unk_1C0[0], 105, v3 * 16 + 40);
 
     if (v2 == 0) {
         sub_02021CAC(v0->unk_1C0[1], 0);

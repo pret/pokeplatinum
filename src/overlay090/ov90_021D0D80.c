@@ -1002,5 +1002,5 @@ static void ov90_021D1C90 (UnkStruct_ov90_021D0ECC * param0, u8 param1, u8 param
         break;
     }
 
-    sub_0200D494(param0->unk_2A4[0], param2 * 72 + 54, param3 * 24 + 68);
+    SpriteActor_SetPositionXY(param0->unk_2A4[0], param2 * 72 + 54, param3 * 24 + 68);
 }
