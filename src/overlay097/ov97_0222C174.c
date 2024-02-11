@@ -364,7 +364,7 @@ typedef struct {
     int unk_00;
     BGL * unk_04;
     SaveData * unk_08;
-    UnkStruct_02026324 * unk_0C;
+    PokedexData * unk_0C;
     TrainerInfo * unk_10;
     AnimationControlFlags * unk_14;
     Window unk_18;

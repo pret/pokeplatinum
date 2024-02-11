@@ -24,7 +24,7 @@
 
 BOOL sub_0204E3CC (UnkStruct_0203E724 * param0)
 {
-    const UnkStruct_02026324 * v0 = sub_02027560(param0->unk_34->unk_0C);
+    const PokedexData * v0 = sub_02027560(param0->unk_34->unk_0C);
     u16 * v1 = inline_0204FCAC(param0);
 
     *v1 = sub_02027520(v0);
@@ -33,7 +33,7 @@ BOOL sub_0204E3CC (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204E3FC (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02026324 * v0 = sub_02027560(param0->unk_34->unk_0C);
+    PokedexData * v0 = sub_02027560(param0->unk_34->unk_0C);
 
     sub_02027540(v0);
     return 0;

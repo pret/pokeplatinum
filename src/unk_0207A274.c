@@ -10,13 +10,13 @@
 
 u32 sub_0207A274 (SaveData * param0)
 {
-    UnkStruct_02026324 * v0;
+    PokedexData * v0;
 
     v0 = sub_02027560(param0);
     return sub_0207A280(v0);
 }
 
-u32 sub_0207A280 (const UnkStruct_02026324 * param0)
+u32 sub_0207A280 (const PokedexData * param0)
 {
     BOOL v0;
 

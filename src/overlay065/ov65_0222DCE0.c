@@ -1808,7 +1808,7 @@ static int ov65_0222F490 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 static void ov65_0222F4C4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     TrainerInfo * v0 = sub_02025E38(param0->unk_160);
-    UnkStruct_02026324 * v1 = sub_02027560(param0->unk_160);
+    PokedexData * v1 = sub_02027560(param0->unk_160);
     Party * v2 = Party_GetFromSavedata(param0->unk_160);
     UnkStruct_0202C878 * v3 = sub_0202C878(param0->unk_160);
     int v4, v5;

@@ -20,17 +20,17 @@
 #include "unk_02098988.h"
 #include "overlay021/ov21_021D3208.h"
 
-static void ov21_021D39A4(u16 * param0, int * param1, const UnkStruct_02026324 * param2, const u16 * param3, int param4);
-static void ov21_021D39E4(u16 * param0, int * param1, const u16 * param2, int param3, const u16 * param4, int param5, BOOL param6, const UnkStruct_02026324 * param7);
-static void ov21_021D3A60(UnkStruct_ov21_021D3A60 * param0, const UnkStruct_02026324 * param1, const u16 * param2, int param3);
+static void ov21_021D39A4(u16 * param0, int * param1, const PokedexData * param2, const u16 * param3, int param4);
+static void ov21_021D39E4(u16 * param0, int * param1, const u16 * param2, int param3, const u16 * param4, int param5, BOOL param6, const PokedexData * param7);
+static void ov21_021D3A60(UnkStruct_ov21_021D3A60 * param0, const PokedexData * param1, const u16 * param2, int param3);
 static void ov21_021D3AB8(UnkStruct_ov21_021D3A60 * param0, const u16 * param1, int param2);
 static void ov21_021D3B28(UnkStruct_ov21_021D3A60 * param0);
 static void ov21_021D3FA8(UnkStruct_ov21_021D3A60 * param0, int * param1, int * param2);
 static u16 * ov21_021D3B64(int param0, int param1, int * param2);
-static void ov21_021D3B98(int param0, u16 * param1, int * param2, const u16 * param3, int param4, int param5, const UnkStruct_02026324 * param6);
-static void ov21_021D3C48(int param0, u16 * param1, int * param2, const u16 * param3, int param4, int param5, const UnkStruct_02026324 * param6);
-static void ov21_021D3D2C(int param0, u16 * param1, int * param2, const u16 * param3, int param4, int param5, const UnkStruct_02026324 * param6);
-static void ov21_021D3E80(int param0, u16 * param1, int * param2, const u16 * param3, int param4, int param5, const UnkStruct_02026324 * param6);
+static void ov21_021D3B98(int param0, u16 * param1, int * param2, const u16 * param3, int param4, int param5, const PokedexData * param6);
+static void ov21_021D3C48(int param0, u16 * param1, int * param2, const u16 * param3, int param4, int param5, const PokedexData * param6);
+static void ov21_021D3D2C(int param0, u16 * param1, int * param2, const u16 * param3, int param4, int param5, const PokedexData * param6);
+static void ov21_021D3E80(int param0, u16 * param1, int * param2, const u16 * param3, int param4, int param5, const PokedexData * param6);
 
 void ov21_021D3208 (UnkStruct_ov21_021D3320 * param0, UnkStruct_ov21_021D3208 * param1, int param2)
 {
@@ -603,7 +603,7 @@ u32 ov21_021D3998 (const UnkStruct_ov21_021D3320 * param0)
     return param0->unk_1758;
 }
 
-static void ov21_021D39A4 (u16 * param0, int * param1, const UnkStruct_02026324 * param2, const u16 * param3, int param4)
+static void ov21_021D39A4 (u16 * param0, int * param1, const PokedexData * param2, const u16 * param3, int param4)
 {
     int v0;
 
@@ -617,7 +617,7 @@ static void ov21_021D39A4 (u16 * param0, int * param1, const UnkStruct_02026324 
     }
 }
 
-static void ov21_021D39E4 (u16 * param0, int * param1, const u16 * param2, int param3, const u16 * param4, int param5, BOOL param6, const UnkStruct_02026324 * param7)
+static void ov21_021D39E4 (u16 * param0, int * param1, const u16 * param2, int param3, const u16 * param4, int param5, BOOL param6, const PokedexData * param7)
 {
     int v0, v1;
 
@@ -643,7 +643,7 @@ static void ov21_021D39E4 (u16 * param0, int * param1, const u16 * param2, int p
     }
 }
 
-static void ov21_021D3A60 (UnkStruct_ov21_021D3A60 * param0, const UnkStruct_02026324 * param1, const u16 * param2, int param3)
+static void ov21_021D3A60 (UnkStruct_ov21_021D3A60 * param0, const PokedexData * param1, const u16 * param2, int param3)
 {
     int v0;
 
@@ -710,7 +710,7 @@ static u16 * ov21_021D3B64 (int param0, int param1, int * param2)
     return v1;
 }
 
-static void ov21_021D3B98 (int param0, u16 * param1, int * param2, const u16 * param3, int param4, int param5, const UnkStruct_02026324 * param6)
+static void ov21_021D3B98 (int param0, u16 * param1, int * param2, const u16 * param3, int param4, int param5, const PokedexData * param6)
 {
     u16 * v0;
     int v1;
@@ -750,7 +750,7 @@ static void ov21_021D3B98 (int param0, u16 * param1, int * param2, const u16 * p
     }
 }
 
-static void ov21_021D3C48 (int param0, u16 * param1, int * param2, const u16 * param3, int param4, int param5, const UnkStruct_02026324 * param6)
+static void ov21_021D3C48 (int param0, u16 * param1, int * param2, const u16 * param3, int param4, int param5, const PokedexData * param6)
 {
     u16 * v0;
     int v1;
@@ -800,7 +800,7 @@ static void ov21_021D3C48 (int param0, u16 * param1, int * param2, const u16 * p
     }
 }
 
-static void ov21_021D3D2C (int param0, u16 * param1, int * param2, const u16 * param3, int param4, int param5, const UnkStruct_02026324 * param6)
+static void ov21_021D3D2C (int param0, u16 * param1, int * param2, const u16 * param3, int param4, int param5, const PokedexData * param6)
 {
     u16 * v0;
     int v1;
@@ -874,7 +874,7 @@ static void ov21_021D3D2C (int param0, u16 * param1, int * param2, const u16 * p
     }
 }
 
-static void ov21_021D3E80 (int param0, u16 * param1, int * param2, const u16 * param3, int param4, int param5, const UnkStruct_02026324 * param6)
+static void ov21_021D3E80 (int param0, u16 * param1, int * param2, const u16 * param3, int param4, int param5, const PokedexData * param6)
 {
     u16 * v0;
     int v1;

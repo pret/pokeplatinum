@@ -29,7 +29,7 @@ typedef struct {
     TrainerInfo * unk_D0[4];
     UnkStruct_0207D3C0 * unk_E0;
     UnkStruct_0207D99C * unk_E4;
-    UnkStruct_02026324 * unk_E8;
+    PokedexData * unk_E8;
     PCBoxes * unk_EC;
     ChatotCry * unk_F0[4];
     UnkStruct_02056B24 * unk_100;

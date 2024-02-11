@@ -3231,7 +3231,7 @@ static inline BOOL inline_02099BF4 (const UnkStruct_020998EC * param0, u32 param
 
 static u32 sub_02099980 (UnkStruct_020998EC * param0, const u16 * param1, u32 param2, u16 * param3)
 {
-    const UnkStruct_02026324 * v0;
+    const PokedexData * v0;
     u32 v1, v2;
 
     v2 = 0;

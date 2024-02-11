@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_02026324_DECL_H
 #define POKEPLATINUM_STRUCT_02026324_DECL_H
 
-typedef struct PokedexData UnkStruct_02026324;
+typedef struct PokedexData PokedexData;
 
 #endif // POKEPLATINUM_STRUCT_02026324_DECL_H

@@ -633,7 +633,7 @@ static void ov28_02256914 (UnkStruct_ov28_02256210 * param0, const UnkStruct_ov2
     s64 v0 = ov28_02257468(param1);
 
     if ((v0 > 0) && (v0 <= NATIONAL_DEX_COUNT)) {
-        UnkStruct_02026324 * v1;
+        PokedexData * v1;
         u16 v2;
 
         v1 = sub_02027560(ov25_02254544(param0->unk_10));

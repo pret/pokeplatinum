@@ -664,7 +664,7 @@ BOOL ov5_021F77A8 (UnkStruct_0203E724 * param0)
 {
     u16 v0 = sub_0203F150(param0->unk_34, sub_0203E838(param0));
     u16 * v1 = sub_0203F118(param0->unk_34, sub_0203E838(param0));
-    UnkStruct_02026324 * v2 = sub_02027560(param0->unk_34->unk_0C);
+    PokedexData * v2 = sub_02027560(param0->unk_34->unk_0C);
 
     *v1 = sub_02026FE8(v2, v0);
     return 0;

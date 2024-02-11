@@ -41,7 +41,7 @@ struct UnkStruct_0207AE68_t {
     UnkStruct_02098D38 * unk_3C;
     void * unk_40;
     PokemonAnimationSys * unk_44;
-    UnkStruct_02026324 * unk_48;
+    PokedexData * unk_48;
     UnkStruct_0207D3C0 * unk_4C;
     UnkStruct_0202CD88 * unk_50;
     UnkStruct_02056B24 * unk_54;

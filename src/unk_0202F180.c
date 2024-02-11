@@ -14,7 +14,7 @@
 void sub_0202F180 (SaveData * param0, const Pokemon * param1)
 {
     if (Pokemon_GetValue((Pokemon *)param1, MON_DATA_IS_EGG, NULL) == 0) {
-        UnkStruct_02026324 * v0 = sub_02027560(param0);
+        PokedexData * v0 = sub_02027560(param0);
 
         sub_0202D040(sub_0202CD88(param0), v0, Pokemon_GetValue((Pokemon *)param1, MON_DATA_SPECIES, NULL));
         sub_0202736C(v0, (Pokemon *)param1);

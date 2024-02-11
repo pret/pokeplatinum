@@ -101,7 +101,7 @@ UnkStruct_0200C440 * ov16_0223E054(BattleSystem * param0);
 MessageLoader * BattleSystem_MessageLoader(BattleSystem * param0);
 MessageLoader * ov16_0223E060(BattleSystem * param0);
 PaletteData * BattleSystem_PaletteSys(BattleSystem * param0);
-UnkStruct_02026324 * ov16_0223E068(BattleSystem * param0);
+PokedexData * ov16_0223E068(BattleSystem * param0);
 u8 * ov16_0223E06C(BattleSystem * param0);
 u8 * ov16_0223E074(BattleSystem * param0);
 u16 * ov16_0223E080(BattleSystem * param0);

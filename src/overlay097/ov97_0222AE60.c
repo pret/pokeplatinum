@@ -96,7 +96,7 @@ typedef struct {
 typedef struct {
     BGL * unk_00;
     SaveData * unk_04;
-    UnkStruct_02026324 * unk_08;
+    PokedexData * unk_08;
     TrainerInfo * unk_0C;
     UnkStruct_02025E5C * unk_10;
     MysteryGift * unk_14;

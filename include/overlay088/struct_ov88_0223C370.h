@@ -23,7 +23,7 @@ typedef struct {
     AnimationControlFlags * unk_18;
     UnkStruct_0202B628 * unk_1C;
     UnkStruct_0202CD88 * unk_20;
-    UnkStruct_02026324 * unk_24;
+    PokedexData * unk_24;
     int unk_28;
     int unk_2C;
     int unk_30;
