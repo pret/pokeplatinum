@@ -1066,7 +1066,7 @@ static void ov113_0225D6F8 (UnkStruct_ov113_0225DBCC * param0)
     param0->unk_96C = SpriteActor_LoadResources(param0->unk_1C, param0->unk_20, &Unk_ov113_0226099C);
 
     SpriteActor_UpdateObject(param0->unk_96C->unk_00);
-    sub_0200D3F4(param0->unk_96C, 0);
+    SpriteActor_EnableObject(param0->unk_96C, 0);
 
     v1 = Unk_ov113_022609D0;
 
@@ -1076,7 +1076,7 @@ static void ov113_0225D6F8 (UnkStruct_ov113_0225DBCC * param0)
 
         sub_0200D500(param0->unk_970[v0], Unk_ov113_02260934[v0][0], Unk_ov113_02260934[v0][1], ((192 + 80) << FX32_SHIFT));
         SpriteActor_UpdateObject(param0->unk_970[v0]->unk_00);
-        sub_0200D3F4(param0->unk_970[v0], 0);
+        SpriteActor_EnableObject(param0->unk_970[v0], 0);
     }
 }
 
@@ -1102,9 +1102,9 @@ static void ov113_0225D7CC (UnkStruct_ov113_0225DBCC * param0)
 
     for (v0 = 0; v0 < 6; v0++) {
         if ((param0->unk_8D8[v0].unk_02 == 0) || (param0->unk_8D8[v0].unk_02 > NATIONAL_DEX_COUNT)) {
-            sub_0200D3F4(param0->unk_924[v0], 0);
-            sub_0200D3F4(param0->unk_93C[v0], 0);
-            sub_0200D3F4(param0->unk_954[v0], 0);
+            SpriteActor_EnableObject(param0->unk_924[v0], 0);
+            SpriteActor_EnableObject(param0->unk_93C[v0], 0);
+            SpriteActor_EnableObject(param0->unk_954[v0], 0);
 
             for (v1 = 0; v1 < 4; v1++) {
                 sub_02019CB8(param0->unk_08, 2, Unk_ov113_022608AC[v1], 0 + 4 * v0, 0x14 + v1, 4, 1, 17);
@@ -1375,7 +1375,7 @@ BOOL ov113_0225DDC0 (UnkStruct_ov113_0225DBCC * param0, const UnkStruct_ov113_02
                 param0->unk_99C[v1] = param1->unk_02;
                 param0->unk_9AC[v1] = param1->unk_00;
                 ov113_0225D938(param1->unk_02, param1->unk_08, param0->unk_970[v1], param0->unk_160, param0->unk_164, NNS_G2D_VRAM_TYPE_2DSUB, param0->unk_19E0);
-                sub_0200D3F4(param0->unk_970[v1], 1);
+                SpriteActor_EnableObject(param0->unk_970[v1], 1);
                 sub_020038B0(param0->unk_0C, 1, 2, param1->unk_00, (2 * 16 + 1) + v1, (2 * 16 + 1) + v1 + 1);
             }
         }
@@ -1421,7 +1421,7 @@ static int ov113_0225DE98 (UnkStruct_ov113_0225DBCC * param0)
                 param0->unk_99C[v1] = 0;
                 param0->unk_9AC[v1] = 0;
 
-                sub_0200D3F4(param0->unk_970[v1], 0);
+                SpriteActor_EnableObject(param0->unk_970[v1], 0);
                 sub_02019CB8(param0->unk_08, 6, 0, Unk_ov113_02260AD4[v1][0], Unk_ov113_02260AD4[v1][1], Unk_ov113_02260AD4[v1][2], Unk_ov113_02260AD4[v1][3], 16);
                 sub_0201C3C0(param0->unk_08, 6);
                 v3++;
@@ -1429,7 +1429,7 @@ static int ov113_0225DE98 (UnkStruct_ov113_0225DBCC * param0)
 
             if (v0.unk_04[v1] == param0->unk_168.unk_04) {
                 sub_0200D500(param0->unk_96C, Unk_ov113_02260914[v1][0], Unk_ov113_02260914[v1][1], ((192 + 80) << FX32_SHIFT));
-                sub_0200D3F4(param0->unk_96C, 1);
+                SpriteActor_EnableObject(param0->unk_96C, 1);
             }
         }
 

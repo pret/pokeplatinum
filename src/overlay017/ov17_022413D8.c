@@ -698,7 +698,7 @@ void ov17_02241A24 (UnkStruct_ov17_0223F88C * param0)
     v1 = Unk_ov17_022537B8;
     v0 = SpriteActor_LoadResources(param0->unk_18, param0->unk_1C, &v1);
 
-    sub_0200D3F4(v0, 0);
+    SpriteActor_EnableObject(v0, 0);
     SpriteActor_UpdateObject(v0->unk_00);
 
     param0->unk_17C = v0;
@@ -718,7 +718,7 @@ void ov17_02241A8C (UnkStruct_ov17_0223F88C * param0, int param1, int param2)
 
     SpriteActor_SetSpritePositionXY(param0->unk_17C, Unk_ov17_022536E4[param1].unk_00, Unk_ov17_022536E4[param1].unk_02);
     sub_0200D364(param0->unk_17C, param2);
-    sub_0200D3F4(param0->unk_17C, 1);
+    SpriteActor_EnableObject(param0->unk_17C, 1);
 
     switch (param2) {
     case 0:
@@ -739,7 +739,7 @@ void ov17_02241A8C (UnkStruct_ov17_0223F88C * param0, int param1, int param2)
 void ov17_02241B1C (UnkStruct_ov17_0223F88C * param0)
 {
     GF_ASSERT(param0->unk_17C != NULL);
-    sub_0200D3F4(param0->unk_17C, 0);
+    SpriteActor_EnableObject(param0->unk_17C, 0);
 }
 
 void ov17_02241B3C (UnkStruct_ov17_02246F24 * param0, int param1, int param2, u8 * param3)
@@ -984,7 +984,7 @@ static void ov17_02242048 (CellActorData * param0)
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_02242048));
     v0->unk_00 = param0;
 
-    sub_0200D3F4(param0, 0);
+    SpriteActor_EnableObject(param0, 0);
     SysTask_Start(ov17_0224207C, v0, 40000);
 }
 
@@ -997,7 +997,7 @@ static void ov17_0224207C (SysTask * param0, void * param1)
         sub_0200D6A4(v0->unk_00, 2);
         v0->unk_04 = (0.1f);
         v0->unk_08 = (0.1f);
-        sub_0200D3F4(v0->unk_00, 1);
+        SpriteActor_EnableObject(v0->unk_00, 1);
         v0->unk_0C++;
     case 1:
         v0->unk_04 += (0.3f);
@@ -1156,7 +1156,7 @@ static void ov17_022422B8 (SysTask * param0, void * param1)
         break;
     default:
         sub_0200D0F4(v0->unk_04);
-        sub_0200D3F4(v0->unk_08, 1);
+        SpriteActor_EnableObject(v0->unk_08, 1);
         Sound_PlayEffect(1760);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
@@ -1193,7 +1193,7 @@ void ov17_022424D4 (UnkStruct_ov17_0223F88C * param0, int param1, int param2)
     for (v1 = 0; v1 < v0; v1++) {
         if (param0->unk_124[param1][v1] == NULL) {
             param0->unk_124[param1][v1] = ov17_02242260(param0->unk_18, param0->unk_1C, Unk_ov17_022536D8[param1][0] + v1 * 5, Unk_ov17_022536D8[param1][1]);
-            sub_0200D3F4(param0->unk_124[param1][v1], 0);
+            SpriteActor_EnableObject(param0->unk_124[param1][v1], 0);
 
             v2 = Heap_AllocFromHeap(21, sizeof(UnkStruct_ov17_022422B8));
             MI_CpuClear8(v2, sizeof(UnkStruct_ov17_022422B8));
@@ -1236,13 +1236,13 @@ static void ov17_0224262C (UnkStruct_ov17_02246F24 * param0, GXOamMode param1, i
         for (v1 = 0; v1 < 6; v1++) {
             if (param0->unk_0C.unk_C4[v0][v1] != NULL) {
                 SpriteActor_SetOAMMode(param0->unk_0C.unk_C4[v0][v1], param1);
-                sub_0200D3F4(param0->unk_0C.unk_C4[v0][v1], v2);
+                SpriteActor_EnableObject(param0->unk_0C.unk_C4[v0][v1], v2);
             }
         }
 
         if (param0->unk_0C.unk_160[v0] != NULL) {
             SpriteActor_SetOAMMode(param0->unk_0C.unk_160[v0], param1);
-            sub_0200D3F4(param0->unk_0C.unk_160[v0], v2);
+            SpriteActor_EnableObject(param0->unk_0C.unk_160[v0], v2);
         }
 
         sub_02012AF0(param0->unk_0C.unk_180[v0].unk_00, param1);
@@ -1922,7 +1922,7 @@ static void ov17_022434E0 (SysTask * param0, void * param1)
         SpriteActor_SetSpritePositionXY(v0->unk_08, v0->unk_21 + v1, v0->unk_22 + v2);
         break;
     default:
-        sub_0200D3F4(v0->unk_08, 0);
+        SpriteActor_EnableObject(v0->unk_08, 0);
         Sound_PlayEffect(1505);
         ov17_022414B0(v0->unk_04);
 
@@ -2068,7 +2068,7 @@ static void ov17_02243750 (SysTask * param0, void * param1)
         SpriteActor_SetSpritePositionXY(v0->unk_04, v0->unk_1C >> 8, v0->unk_20 >> 8);
         break;
     default:
-        sub_0200D3F4(v0->unk_04, 0);
+        SpriteActor_EnableObject(v0->unk_04, 0);
         Sound_PlayEffect(1505);
         (*(v0->unk_08))--;
         Heap_FreeToHeap(param1);

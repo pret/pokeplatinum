@@ -893,7 +893,7 @@ static u8 ov13_022208A4 (UnkStruct_ov13_022213F0 * param0)
             param0->unk_04[v0->unk_11].unk_17_3 = sub_0208E9F0(param0->unk_04[v0->unk_11].unk_00);
 
             if (param0->unk_04[v0->unk_11].unk_17_3 == 7) {
-                sub_0200D3F4(param0->unk_1FB4[13 + v0->unk_11], 0);
+                SpriteActor_EnableObject(param0->unk_1FB4[13 + v0->unk_11], 0);
                 ov13_022234A8(param0, v0->unk_11);
             }
 
@@ -1725,7 +1725,7 @@ static u8 ov13_022219DC (UnkStruct_ov13_022213F0 * param0)
 
 static void ov13_02221A04 (UnkStruct_ov13_022213F0 * param0)
 {
-    sub_0200D3F4(param0->unk_1FB4[26], 0);
+    SpriteActor_EnableObject(param0->unk_1FB4[26], 0);
     sub_0201AD10(&param0->unk_206C[10]);
     sub_0201AD10(&param0->unk_206C[6]);
     sub_0201AD10(&param0->unk_206C[7]);

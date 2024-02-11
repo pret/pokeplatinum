@@ -79,7 +79,7 @@ void sub_0200D3CC(CellActorData * param0, u16 param1);
 u16 sub_0200D3D8(GraphicElementData * param0);
 u16 sub_0200D3E0(CellActorData * param0);
 void SpriteActor_DrawSprite(GraphicElementData * param0, int param1);
-void sub_0200D3F4(CellActorData * param0, int param1);
+void SpriteActor_EnableObject(CellActorData * param0, int param1);
 int sub_0200D400(GraphicElementData * param0);
 int sub_0200D408(CellActorData * param0);
 void sub_0200D414(GraphicElementData * param0, int param1);

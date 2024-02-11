@@ -117,7 +117,7 @@ static void ov62_02236D48 (UnkStruct_0208C06C * param0)
 
     SpriteActor_SetSpritePositionXY(v0->unk_94[1], 220, 160 + 64);
     sub_0200D364(v0->unk_94[1], 2);
-    sub_0200D3F4(v0->unk_94[1], 0);
+    SpriteActor_EnableObject(v0->unk_94[1], 0);
 
     ov62_02236CBC(param0, 1);
 }
@@ -341,8 +341,8 @@ static void ov62_022371CC (UnkStruct_0208C06C * param0)
         if (v3[v0] == 0) {
             sub_0200D364(v4->unk_68[v0], 5);
             sub_0200D41C(v4->unk_68[v0], 4 + 5);
-            sub_0200D3F4(v4->unk_54[v0], 0);
-            sub_0200D3F4(v4->unk_40[v0], 0);
+            SpriteActor_EnableObject(v4->unk_54[v0], 0);
+            SpriteActor_EnableObject(v4->unk_40[v0], 0);
         } else {
             int v11[] = {0, 1, 4, 3, 2};
 
@@ -388,7 +388,7 @@ static void ov62_022371CC (UnkStruct_0208C06C * param0)
 
         if (v2[v0] == 0) {
             if (v0 < v1) {
-                sub_0200D3F4(v4->unk_7C[v0], 0);
+                SpriteActor_EnableObject(v4->unk_7C[v0], 0);
             }
         }
 
@@ -397,8 +397,8 @@ static void ov62_022371CC (UnkStruct_0208C06C * param0)
         sub_0200D330(v4->unk_7C[v0]);
     }
 
-    sub_0200D3F4(v4->unk_7C[4 - 1], 1);
-    sub_0200D3F4(v4->unk_7C[4 - 0], 1);
+    SpriteActor_EnableObject(v4->unk_7C[4 - 1], 1);
+    SpriteActor_EnableObject(v4->unk_7C[4 - 0], 1);
 
     for (v0 = 0; v0 < 5; v0++) {
         sub_0200D6A4(v4->unk_40[v0], 2);
@@ -520,9 +520,9 @@ static BOOL ov62_022376C4 (UnkStruct_0208C06C * param0)
         if (v0->unk_2C[0] != 0) {
             v0->unk_04[v1] -= 0.05f;
         } else {
-            sub_0200D3F4(v0->unk_68[v1], 0);
-            sub_0200D3F4(v0->unk_40[v1], 0);
-            sub_0200D3F4(v0->unk_54[v1], 0);
+            SpriteActor_EnableObject(v0->unk_68[v1], 0);
+            SpriteActor_EnableObject(v0->unk_40[v1], 0);
+            SpriteActor_EnableObject(v0->unk_54[v1], 0);
         }
 
         v4 = (128 << FX32_SHIFT) - sub_0201D250(v0->unk_2C[v1]) * v0->unk_18[v1];

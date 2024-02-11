@@ -416,7 +416,7 @@ static BOOL ov116_02260B6C (UnkStruct_ov116_02262A8C * param0)
         param0->unk_08 = 0;
         param0->unk_0C = 0;
 
-        sub_0200D3F4(param0->unk_D8, 0);
+        SpriteActor_EnableObject(param0->unk_D8, 0);
 
         ov116_02266FEC(&param0->unk_FC.unk_190);
         ov116_02266FEC(&param0->unk_FC.unk_1A0);

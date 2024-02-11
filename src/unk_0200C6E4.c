@@ -883,7 +883,7 @@ void SpriteActor_DrawSprite (GraphicElementData * param0, int param1)
     sub_02021CAC(param0, param1);
 }
 
-void sub_0200D3F4 (CellActorData * param0, int param1)
+void SpriteActor_EnableObject (CellActorData * param0, int param1)
 {
     SpriteActor_DrawSprite(param0->unk_00, param1);
 }

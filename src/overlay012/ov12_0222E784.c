@@ -32,9 +32,9 @@ static void ov12_0222E784 (SysTask * param0, void * param1)
     switch (v0->unk_00.unk_00) {
     case 0:
         if (ov12_02225F6C(&v0->unk_60) == 0) {
-            sub_0200D3F4(v0->unk_1C.unk_0C, 0);
-            sub_0200D3F4(v0->unk_30[0].unk_0C, 0);
-            sub_0200D3F4(v0->unk_30[0].unk_0C, 0);
+            SpriteActor_EnableObject(v0->unk_1C.unk_0C, 0);
+            SpriteActor_EnableObject(v0->unk_30[0].unk_0C, 0);
+            SpriteActor_EnableObject(v0->unk_30[0].unk_0C, 0);
 
             ov12_02220220(v0->unk_00.unk_04, param0);
             ov12_02235E80(v0);

@@ -346,7 +346,7 @@ static void ov79_021D1D94 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     if (param1 == 0xFF) {
         ov79_021D1D20(v0, NULL);
         sub_0201A954(&v0->unk_E8[1]);
-        sub_0200D3F4(v0->unk_1FC->unk_04, 0);
+        SpriteActor_EnableObject(v0->unk_1FC->unk_04, 0);
         return;
     }
 
@@ -363,7 +363,7 @@ static void ov79_021D1D94 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     StringFormatter_Format(v0->unk_30.unk_00, v0->unk_30.unk_04, v0->unk_30.unk_10);
     sub_0201D78C(&v0->unk_E8[1], 0, v0->unk_30.unk_04, 8, 0, 0, v1, NULL);
     sub_0209933C(v0->unk_1F8, v0->unk_1FC, v0->unk_20->unk_1C[param1].unk_02);
-    sub_0200D3F4(v0->unk_1FC->unk_04, 1);
+    SpriteActor_EnableObject(v0->unk_1FC->unk_04, 1);
 }
 
 void ov79_021D1ED8 (UnkStruct_ov79_021D0E1C * param0)

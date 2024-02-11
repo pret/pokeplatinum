@@ -282,7 +282,7 @@ void ov116_02261E0C (UnkStruct_ov116_02262A8C * param0, BOOL param1, int param2)
     int v0;
 
     for (v0 = 0; v0 < (3 * 12); v0++) {
-        sub_0200D3F4(param0->unk_28[v0], param1);
+        SpriteActor_EnableObject(param0->unk_28[v0], param1);
     }
 }
 
@@ -758,7 +758,7 @@ void ov116_02262724 (UnkStruct_ov116_02262A8C * param0)
         sub_0200D330(param0->unk_D0[v0]);
         sub_0200D430(param0->unk_D0[v0], 4);
         SpriteActor_SetOAMMode(param0->unk_D0[v0], GX_OAM_MODE_XLU);
-        sub_0200D3F4(param0->unk_D0[v0], 0);
+        SpriteActor_EnableObject(param0->unk_D0[v0], 0);
 
         ov116_02261CD8(&v2, 0, 0, 2, 0, 9000);
 
@@ -770,7 +770,7 @@ void ov116_02262724 (UnkStruct_ov116_02262A8C * param0)
         sub_0200D330(param0->unk_C8[v0]);
         sub_0200D430(param0->unk_C8[v0], 0);
         SpriteActor_SetOAMMode(param0->unk_C8[v0], GX_OAM_MODE_XLU);
-        sub_0200D3F4(param0->unk_C8[v0], 0);
+        SpriteActor_EnableObject(param0->unk_C8[v0], 0);
     }
 }
 
@@ -800,7 +800,7 @@ void ov116_02262840 (UnkStruct_ov116_02262A8C * param0)
     param0->unk_D8 = SpriteActor_LoadResources(v3, v4, &v2);
 
     sub_0200D364(param0->unk_D8, 1);
-    sub_0200D3F4(param0->unk_D8, 1);
+    SpriteActor_EnableObject(param0->unk_D8, 1);
     sub_0200D330(param0->unk_D8);
     sub_0200D430(param0->unk_D8, 7);
 }

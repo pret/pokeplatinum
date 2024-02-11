@@ -740,9 +740,9 @@ void ov62_0224784C (UnkStruct_ov62_02246BF4 * param0)
 void ov62_02247968 (UnkStruct_ov62_02246BF4 * param0, int param1, BOOL param2)
 {
     if (param2 == 1) {
-        sub_0200D3F4(param0->unk_188[param1].unk_0C, 1);
+        SpriteActor_EnableObject(param0->unk_188[param1].unk_0C, 1);
     } else {
-        sub_0200D3F4(param0->unk_188[param1].unk_0C, 0);
+        SpriteActor_EnableObject(param0->unk_188[param1].unk_0C, 0);
     }
 }
 

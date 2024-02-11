@@ -109,5 +109,5 @@ void sub_0206A8C4 (UnkStruct_0206A844 * param0, u16 param1, BOOL param2)
         return;
     }
 
-    sub_0200D3F4(param0->unk_1C8[param1], param2);
+    SpriteActor_EnableObject(param0->unk_1C8[param1], param2);
 }

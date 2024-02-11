@@ -819,7 +819,7 @@ static void ov16_022675F8 (Healthbar * param0, int param1)
         if ((BattleSystem_BattleType(param0->unk_0C) & (0x20 | 0x200)) && (param1 == 1)) {
             (void)0;
         } else {
-            sub_0200D3F4(param0->unk_08, param1);
+            SpriteActor_EnableObject(param0->unk_08, param1);
         }
     }
 }
@@ -830,7 +830,7 @@ void Healthbar_Enable (Healthbar * param0, int param1)
         return;
     }
 
-    sub_0200D3F4(param0->unk_04, param1);
+    SpriteActor_EnableObject(param0->unk_04, param1);
     ov16_022675F8(param0, param1);
 }
 
@@ -1506,35 +1506,39 @@ static const u8 * ov16_02268250 (int param0)
     return &Unk_ov16_0226F6AC[param0 * 0x20];
 }
 
-u8 Healthbar_Type (int param0, u32 param1)
+u8 Healthbar_Type(int battlerType, u32 battleType)
 {
-    switch (param0) {
-    case 0:
-        if (param1 & 0x200) {
-            return 7;
+    switch (battlerType) {
+    case BATTLER_TYPE_SOLO_PLAYER:
+        if (battleType & BATTLE_TYPE_PAL_PARK) {
+            return HEALTHBAR_TYPE_PAL_PARK;
         }
 
-        if (param1 & 0x20) {
-            return 6;
+        if (battleType & BATTLE_TYPE_SAFARI) {
+            return HEALTHBAR_TYPE_SAFARI_ZONE;
         }
 
-        return 0;
-    case 1:
-        return 1;
-    case 2:
-        return 2;
-    case 3:
-        return 3;
-    case 4:
-        return 4;
-    case 5:
-        return 5;
+        return HEALTHBAR_TYPE_PLAYER_SOLO;
+
+    case BATTLER_TYPE_SOLO_ENEMY:
+        return HEALTHBAR_TYPE_ENEMY_SOLO;
+
+    case BATTLER_TYPE_PLAYER_SIDE_SLOT_1:
+        return HEALTHBAR_TYPE_PLAYER_SLOT_1;
+
+    case BATTLER_TYPE_ENEMY_SIDE_SLOT_1:
+        return HEALTHBAR_TYPE_ENEMY_SLOT_1;
+
+    case BATTLER_TYPE_PLAYER_SIDE_SLOT_2:
+        return HEALTHBAR_TYPE_PLAYER_SLOT_2;
+
+    case BATTLER_TYPE_ENEMY_SIDE_SLOT_2:
+        return HEALTHBAR_TYPE_ENEMY_SLOT_2;
+
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return NULL;
     }
-
-    return 0;
 }
 
 static const SpriteTemplate * ov16_022682B0 (u8 param0)

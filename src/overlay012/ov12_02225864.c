@@ -749,7 +749,7 @@ void ov12_022261C4 (UnkStruct_ov12_02226274 * param0, UnkStruct_ov12_02225F6C * 
     param0->unk_98[3] = param11;
 
     for (v0 = 0; v0 < param0->unk_AC; v0++) {
-        sub_0200D3F4(param0->unk_98[v0], 0);
+        SpriteActor_EnableObject(param0->unk_98[v0], 0);
     }
 }
 
@@ -764,7 +764,7 @@ BOOL ov12_02226274 (UnkStruct_ov12_02226274 * param0)
     }
 
     if (param0->unk_A8 <= param0->unk_AA) {
-        sub_0200D3F4(param0->unk_98[param0->unk_AD], 1);
+        SpriteActor_EnableObject(param0->unk_98[param0->unk_AD], 1);
         param0->unk_AD++;
         param0->unk_AA = 0;
     }
@@ -784,7 +784,7 @@ BOOL ov12_02226274 (UnkStruct_ov12_02226274 * param0)
                 sub_0200D6E8(param0->unk_98[v0], v2, v3);
             }
         } else {
-            sub_0200D3F4(param0->unk_98[v0], 0);
+            SpriteActor_EnableObject(param0->unk_98[v0], 0);
         }
     }
 

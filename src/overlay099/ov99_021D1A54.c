@@ -873,7 +873,7 @@ static void ov99_021D2714 (UnkStruct_ov99_021D2CB0 * param0)
     param0->unk_10E0[3] = SpriteActor_LoadResources(param0->unk_18, param0->unk_1C, &Unk_ov99_021D49D0);
 
     sub_0200D390(param0->unk_10E0[3], 1);
-    sub_0200D3F4(param0->unk_10E0[3], 0);
+    SpriteActor_EnableObject(param0->unk_10E0[3], 0);
     SpriteActor_UpdateObject(param0->unk_10E0[3]->unk_00);
 }
 
@@ -912,7 +912,7 @@ static void ov99_021D2828 (UnkStruct_ov99_021D2CB0 * param0)
     param0->unk_10E0[4] = SpriteActor_LoadResources(param0->unk_18, param0->unk_1C, &Unk_ov99_021D48CC);
 
     sub_0200D390(param0->unk_10E0[4], 1);
-    sub_0200D3F4(param0->unk_10E0[4], 0);
+    SpriteActor_EnableObject(param0->unk_10E0[4], 0);
     SpriteActor_UpdateObject(param0->unk_10E0[4]->unk_00);
 }
 

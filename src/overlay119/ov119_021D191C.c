@@ -251,7 +251,7 @@ static BOOL ov119_021D1BD0 (UnkStruct_ov119_021D0FD0 * param0)
         ov119_021D1514(param0);
         ov119_021D161C(param0);
 
-        sub_0200D3F4(param0->unk_74, 0);
+        SpriteActor_EnableObject(param0->unk_74, 0);
 
         ov119_021D1858(param0);
         ov119_021D190C(param0, 1);
@@ -558,7 +558,7 @@ static BOOL ov119_021D1FAC (UnkStruct_ov119_021D0FD0 * param0)
         }
 
         if (v0 == 2) {
-            sub_0200D3F4(param0->unk_74, 0);
+            SpriteActor_EnableObject(param0->unk_74, 0);
             param0->unk_64 = 0;
             param0->unk_68++;
         }
@@ -611,9 +611,9 @@ static BOOL ov119_021D1FAC (UnkStruct_ov119_021D0FD0 * param0)
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
         ov119_021D190C(param0, 0);
-        sub_0200D3F4(param0->unk_74, 0);
-        sub_0200D3F4(param0->unk_78, 0);
-        sub_0200D3F4(param0->unk_7C, 0);
+        SpriteActor_EnableObject(param0->unk_74, 0);
+        SpriteActor_EnableObject(param0->unk_78, 0);
+        SpriteActor_EnableObject(param0->unk_7C, 0);
 
         param0->unk_68++;
     }
@@ -720,9 +720,9 @@ static BOOL ov119_021D21BC (UnkStruct_ov119_021D0FD0 * param0)
         ov119_021D190C(param0, 0);
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
-        sub_0200D3F4(param0->unk_74, 0);
-        sub_0200D3F4(param0->unk_78, 0);
-        sub_0200D3F4(param0->unk_7C, 0);
+        SpriteActor_EnableObject(param0->unk_74, 0);
+        SpriteActor_EnableObject(param0->unk_78, 0);
+        SpriteActor_EnableObject(param0->unk_7C, 0);
 
         param0->unk_68++;
     }

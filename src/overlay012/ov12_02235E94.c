@@ -1554,7 +1554,7 @@ static BOOL ov12_02236E7C (BallRotation * param0)
         } else {
             param0->unk_20 = 0;
             param0->unk_21 = 15;
-            sub_0200D3F4(param0->unk_30, 0);
+            SpriteActor_EnableObject(param0->unk_30, 0);
             param0->unk_08++;
         }
 
@@ -2335,7 +2335,7 @@ static void ov12_02237D8C (BallRotation * param0)
 
     param0->unk_30 = SpriteActor_LoadResources(param0->unk_90.cellActorSys, param0->unk_2C, &v1);
 
-    sub_0200D3F4(param0->unk_30, 1);
+    SpriteActor_EnableObject(param0->unk_30, 1);
     sub_0200D6A4(param0->unk_30, 2);
     sub_0200D3CC(param0->unk_30, 0);
     sub_0200D364(param0->unk_30, 0);
@@ -2346,7 +2346,7 @@ static void ov12_02237D8C (BallRotation * param0)
 
 void ov12_02237E0C (BallRotation * param0, int param1)
 {
-    sub_0200D3F4(param0->unk_30, param1);
+    SpriteActor_EnableObject(param0->unk_30, param1);
 }
 
 void ov12_02237E18 (BallRotation * param0, s16 param1, s16 param2)

@@ -803,7 +803,7 @@ static void ov79_021D167C (UnkStruct_ov79_021D0E1C * param0)
 
     param0->unk_1FC = sub_0209916C(param0->unk_1F8, 0, 231, 76, 0, 1, 0, 0);
 
-    sub_0200D3F4(param0->unk_1FC->unk_04, 0);
+    SpriteActor_EnableObject(param0->unk_1FC->unk_04, 0);
 }
 
 static void ov79_021D17E8 (UnkStruct_ov79_021D0E1C * param0)

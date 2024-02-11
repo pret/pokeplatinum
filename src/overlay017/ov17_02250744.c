@@ -585,7 +585,7 @@ void ov17_0225122C (UnkStruct_ov17_0224FCA0 * param0, NARC * param1)
         for (v0 = 0; v0 < 4; v0++) {
             param0->unk_10.unk_138[v0] = SpriteActor_LoadResources(param0->unk_10.unk_18, param0->unk_10.unk_1C, &Unk_ov17_02254C90);
             sub_0200D330(param0->unk_10.unk_138[v0]);
-            sub_0200D3F4(param0->unk_10.unk_138[v0], 0);
+            SpriteActor_EnableObject(param0->unk_10.unk_138[v0], 0);
         }
 
         for (v0 = 0; v0 < 4; v0++) {
@@ -613,7 +613,7 @@ void ov17_022512E0 (UnkStruct_ov17_0224FCA0 * param0)
 void ov17_0225131C (UnkStruct_ov17_0224FCA0 * param0, int param1, int param2)
 {
     sub_0200D364(param0->unk_10.unk_138[param1], param2);
-    sub_0200D3F4(param0->unk_10.unk_138[param1], 1);
+    SpriteActor_EnableObject(param0->unk_10.unk_138[param1], 1);
     Sound_PlayEffect(1501);
 }
 

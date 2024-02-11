@@ -1113,7 +1113,7 @@ static void ov104_0223D498 (UnkStruct_ov104_0223C4CC * param0)
         if (v2->unk_10[v0].unk_06_15 == 1) {
             v3 = ov104_0223D2FC(param0, v0, v2->unk_10[v0].unk_04);
             SpriteActor_SetSpritePositionXY(v3, v2->unk_10[v0].unk_00, v2->unk_10[v0].unk_02);
-            sub_0200D3F4(v3, v2->unk_10[v0].unk_06_14);
+            SpriteActor_EnableObject(v3, v2->unk_10[v0].unk_06_14);
 
             ov104_0223D378(param0, v0, v2->unk_10[v0].unk_06_13);
 

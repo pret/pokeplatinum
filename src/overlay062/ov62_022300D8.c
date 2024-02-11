@@ -388,7 +388,7 @@ void ov62_0223088C (UnkStruct_0208C06C * param0)
         v1->unk_00[v0].unk_00 = SpriteActor_LoadResources(v3, v4, &v2);
 
         sub_0200D330(v1->unk_00[v0].unk_00);
-        sub_0200D3F4(v1->unk_00[v0].unk_00, 1);
+        SpriteActor_EnableObject(v1->unk_00[v0].unk_00, 1);
         ov62_02230E68(v1->unk_00[v0].unk_00, v2.x + 8, v2.y);
 
         v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
@@ -401,7 +401,7 @@ void ov62_0223088C (UnkStruct_0208C06C * param0)
 
         sub_0200D330(v1->unk_C8[v0].unk_00);
         ov62_02230E68(v1->unk_C8[v0].unk_00, v2.x, v2.y);
-        sub_0200D3F4(v1->unk_C8[v0].unk_00, param0->unk_818[v0].unk_00);
+        SpriteActor_EnableObject(v1->unk_C8[v0].unk_00, param0->unk_818[v0].unk_00);
     }
 
     v0 = 0;
@@ -438,7 +438,7 @@ void ov62_02230A5C (UnkStruct_0208C06C * param0)
     int v0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        sub_0200D3F4(param0->unk_534.unk_C8[v0].unk_00, param0->unk_818[v0].unk_00);
+        SpriteActor_EnableObject(param0->unk_534.unk_C8[v0].unk_00, param0->unk_818[v0].unk_00);
 
         if (param0->unk_818[v0].unk_00 == 0) {
             continue;
@@ -472,7 +472,7 @@ void ov62_02230AF0 (UnkStruct_0208C06C * param0)
         ov62_02230FC8(param0, &param0->unk_534.unk_00[v0], param0->unk_534.unk_190[v0]->unk_08, param0->unk_534.unk_190[v0]);
         sub_020128C4(param0->unk_534.unk_00[v0].unk_14, 36, -8);
         sub_020129D0(param0->unk_534.unk_00[v0].unk_14, 1);
-        sub_0200D3F4(param0->unk_534.unk_00[v0].unk_00, 1);
+        SpriteActor_EnableObject(param0->unk_534.unk_00[v0].unk_00, 1);
     }
 }
 
@@ -494,18 +494,18 @@ void ov62_02230B9C (UnkStruct_0208C06C * param0, BOOL param1)
     for (v0 = 0; v0 < 5; v0++) {
         if (param0->unk_534.unk_00[v0].unk_0C == 0) {
             sub_020129D0(param0->unk_534.unk_00[v0].unk_14, 0);
-            sub_0200D3F4(param0->unk_534.unk_00[v0].unk_00, 0);
+            SpriteActor_EnableObject(param0->unk_534.unk_00[v0].unk_00, 0);
         } else {
             sub_020129D0(param0->unk_534.unk_00[v0].unk_14, param1);
-            sub_0200D3F4(param0->unk_534.unk_00[v0].unk_00, param1);
+            SpriteActor_EnableObject(param0->unk_534.unk_00[v0].unk_00, param1);
         }
 
         if (param0->unk_534.unk_C8[v0].unk_0C == 0) {
             sub_020129D0(param0->unk_534.unk_C8[v0].unk_14, 0);
-            sub_0200D3F4(param0->unk_534.unk_C8[v0].unk_00, 0);
+            SpriteActor_EnableObject(param0->unk_534.unk_C8[v0].unk_00, 0);
         } else {
             sub_020129D0(param0->unk_534.unk_C8[v0].unk_14, param1);
-            sub_0200D3F4(param0->unk_534.unk_C8[v0].unk_00, param1);
+            SpriteActor_EnableObject(param0->unk_534.unk_C8[v0].unk_00, param1);
         }
     }
 }

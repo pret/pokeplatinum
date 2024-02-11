@@ -5745,7 +5745,7 @@ void ov16_02263B20 (BattlerData * param0, int param1)
         return;
     }
 
-    sub_0200D3F4(param0->unk_18, param1);
+    SpriteActor_EnableObject(param0->unk_18, param1);
 }
 
 static Sprite * ov16_02263B30 (BattleSystem * param0, UnkStruct_02007768 * param1, ArchivedSprite * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, int param10, SpriteAnimationFrame * param11, UnkFuncPtr_02007C34 * param12)

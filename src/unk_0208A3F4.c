@@ -409,9 +409,9 @@ void sub_0208A9BC (UnkStruct_02089688 * param0)
 void sub_0208AAB4 (UnkStruct_02089688 * param0, int param1, BOOL param2)
 {
     if (param2 == 1) {
-        sub_0200D3F4(param0->unk_1F0[param1].unk_0C, 1);
+        SpriteActor_EnableObject(param0->unk_1F0[param1].unk_0C, 1);
     } else {
-        sub_0200D3F4(param0->unk_1F0[param1].unk_0C, 0);
+        SpriteActor_EnableObject(param0->unk_1F0[param1].unk_0C, 0);
     }
 }
 

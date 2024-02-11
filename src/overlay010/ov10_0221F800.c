@@ -989,8 +989,8 @@ static u8 ov10_02220604 (UnkStruct_ov10_0221FB28 * param0)
 static u8 ov10_02220698 (UnkStruct_ov10_0221FB28 * param0)
 {
     Sound_PlayEffect(1818);
-    sub_0200D3F4(param0->unk_198[12], 1);
-    sub_0200D3F4(param0->unk_198[13], 1);
+    SpriteActor_EnableObject(param0->unk_198[12], 1);
+    SpriteActor_EnableObject(param0->unk_198[13], 1);
     sub_0200D364(param0->unk_198[12], 0);
     param0->unk_B75 = 32;
     return 1;
@@ -999,7 +999,7 @@ static u8 ov10_02220698 (UnkStruct_ov10_0221FB28 * param0)
 static u8 ov10_022206D8 (UnkStruct_ov10_0221FB28 * param0)
 {
     Sound_PlayEffect(1818);
-    sub_0200D3F4(param0->unk_198[12], 1);
+    SpriteActor_EnableObject(param0->unk_198[12], 1);
     param0->unk_B75 = 64;
     return 1;
 }
@@ -1716,8 +1716,8 @@ static void ov10_0222166C (UnkStruct_ov10_0221FB28 * param0)
 
 static void ov10_022216E0 (UnkStruct_ov10_0221FB28 * param0)
 {
-    sub_0200D3F4(param0->unk_198[12], 0);
-    sub_0200D3F4(param0->unk_198[13], 0);
+    SpriteActor_EnableObject(param0->unk_198[12], 0);
+    SpriteActor_EnableObject(param0->unk_198[13], 0);
 
     if (param0->unk_00->unk_2A == 3) {
         SpriteActor_SetSpritePositionXY(param0->unk_198[12], 128, (96 - 24));
@@ -2108,14 +2108,14 @@ static void ov10_02221EEC (UnkStruct_ov10_0221FB28 * param0, u32 param1)
 
     if (param0->unk_214[param1].unk_04 == 0) {
         for (v0 = 0; v0 < 5; v0++) {
-            sub_0200D3F4(param0->unk_198[param1 * 5 + v0], 0);
+            SpriteActor_EnableObject(param0->unk_198[param1 * 5 + v0], 0);
         }
     } else {
         sub_0200D41C(param0->unk_198[param1 * 5 + 0], PokeIconPaletteIndex(param0->unk_214[param1].unk_04, param0->unk_214[param1].unk_11, param0->unk_214[param1].unk_0F));
         sub_0200D364(param0->unk_198[param1 * 5 + 0], ov10_02221E84(param0, param1));
 
         if (param0->unk_214[param1].unk_0A == 0) {
-            sub_0200D3F4(param0->unk_198[param1 * 5 + 1], 0);
+            SpriteActor_EnableObject(param0->unk_198[param1 * 5 + 1], 0);
         } else if (Item_IsMail(param0->unk_214[param1].unk_0A) == 1) {
             sub_0200D364(param0->unk_198[param1 * 5 + 1], 1);
         } else {
@@ -2123,13 +2123,13 @@ static void ov10_02221EEC (UnkStruct_ov10_0221FB28 * param0, u32 param1)
         }
 
         if (param0->unk_214[param1].unk_10 == 0) {
-            sub_0200D3F4(param0->unk_198[param1 * 5 + 2], 0);
+            SpriteActor_EnableObject(param0->unk_198[param1 * 5 + 2], 0);
         } else {
             sub_0200D364(param0->unk_198[param1 * 5 + 2], 2);
         }
 
         if (param0->unk_214[param1].unk_14 == 7) {
-            sub_0200D3F4(param0->unk_198[param1 * 5 + 3], 0);
+            SpriteActor_EnableObject(param0->unk_198[param1 * 5 + 3], 0);
         } else {
             sub_0200D364(param0->unk_198[param1 * 5 + 3], param0->unk_214[v0].unk_14);
         }

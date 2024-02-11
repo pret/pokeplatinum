@@ -521,7 +521,7 @@ static void ov116_022649E4 (SysTask * param0, void * param1)
                         }
                     }
 
-                    sub_0200D3F4(v0->unk_14[v6].unk_00, v0->unk_14[v6].unk_25);
+                    SpriteActor_EnableObject(v0->unk_14[v6].unk_00, v0->unk_14[v6].unk_25);
 
                     switch (v0->unk_14[v6].unk_27) {
                     case 0:
@@ -1249,7 +1249,7 @@ static void ov116_02265AA4 (SysTask * param0, void * param1)
         v1->unk_00[0].unk_18 = 64;
         v1->unk_00[0].unk_1C = 24;
 
-        sub_0200D3F4(v1->unk_00[0].unk_00, 1);
+        SpriteActor_EnableObject(v1->unk_00[0].unk_00, 1);
 
         v1->unk_A0[0].unk_08 = 0;
         v1->unk_A0[0].unk_14 = 128;
@@ -1257,7 +1257,7 @@ static void ov116_02265AA4 (SysTask * param0, void * param1)
         v1->unk_A0[0].unk_18 = 64;
         v1->unk_A0[0].unk_1C = 24;
 
-        sub_0200D3F4(v1->unk_A0[0].unk_00, 1);
+        SpriteActor_EnableObject(v1->unk_A0[0].unk_00, 1);
 
         {
             sub_0200D67C(v1->unk_00[0].unk_00, &v5, &v6, ((192 + 64) << FX32_SHIFT));
@@ -1515,7 +1515,7 @@ static void ov116_022660A8 (SysTask * param0, void * param1)
             v2->unk_00[v0].unk_18 = 64;
             v2->unk_00[v0].unk_1C = 24;
 
-            sub_0200D3F4(v2->unk_00[v0].unk_00, 1);
+            SpriteActor_EnableObject(v2->unk_00[v0].unk_00, 1);
 
             v2->unk_A0[v0].unk_08 = 0;
             v2->unk_A0[v0].unk_14 = 128;
@@ -1523,7 +1523,7 @@ static void ov116_022660A8 (SysTask * param0, void * param1)
             v2->unk_A0[v0].unk_18 = 64;
             v2->unk_A0[v0].unk_1C = 24;
 
-            sub_0200D3F4(v2->unk_A0[v0].unk_00, 1);
+            SpriteActor_EnableObject(v2->unk_A0[v0].unk_00, 1);
 
             sub_0200D67C(v2->unk_00[v0].unk_00, &v6, &v7, ((192 + 64) << FX32_SHIFT));
             v4 = (v2->unk_00[v0].unk_14 << FX32_SHIFT) + (sub_0201D250(v2->unk_00[v0].unk_08) * v2->unk_00[v0].unk_18);
@@ -1540,7 +1540,7 @@ static void ov116_022660A8 (SysTask * param0, void * param1)
         ov116_02265D84(&v2->unk_A0[1]);
         ov116_02265D84(&v2->unk_00[0]);
         ov116_02265D84(&v2->unk_00[1]);
-        sub_0200D3F4(v2->unk_00[1].unk_00, 0);
+        SpriteActor_EnableObject(v2->unk_00[1].unk_00, 0);
         v1->unk_1C++;
     case 1:
         v3[0] = ov116_02265D8C(&v2->unk_A0[0], v2->unk_144, 0, 3);
@@ -1553,7 +1553,7 @@ static void ov116_022660A8 (SysTask * param0, void * param1)
             ov116_02265D84(&v2->unk_A0[1]);
             ov116_02265D84(&v2->unk_00[0]);
             ov116_02265D84(&v2->unk_00[1]);
-            sub_0200D3F4(v2->unk_00[1].unk_00, 1);
+            SpriteActor_EnableObject(v2->unk_00[1].unk_00, 1);
             v1->unk_1C++;
         } else {
             break;
@@ -1642,7 +1642,7 @@ static void ov116_0226644C (SysTask * param0, void * param1)
             v2->unk_00[v0].unk_18 = 64;
             v2->unk_00[v0].unk_1C = 24;
 
-            sub_0200D3F4(v2->unk_00[v0].unk_00, 1);
+            SpriteActor_EnableObject(v2->unk_00[v0].unk_00, 1);
 
             v2->unk_A0[v0].unk_08 = 0;
             v2->unk_A0[v0].unk_14 = 128;
@@ -1650,7 +1650,7 @@ static void ov116_0226644C (SysTask * param0, void * param1)
             v2->unk_A0[v0].unk_18 = 64;
             v2->unk_A0[v0].unk_1C = 24;
 
-            sub_0200D3F4(v2->unk_A0[v0].unk_00, 1);
+            SpriteActor_EnableObject(v2->unk_A0[v0].unk_00, 1);
 
             sub_0200D67C(v2->unk_00[v0].unk_00, &v6, &v7, ((192 + 64) << FX32_SHIFT));
             v4 = (v2->unk_00[v0].unk_14 << FX32_SHIFT) + (sub_0201D250(v2->unk_00[v0].unk_08) * v2->unk_00[v0].unk_18);
@@ -1667,7 +1667,7 @@ static void ov116_0226644C (SysTask * param0, void * param1)
         ov116_02265D84(&v2->unk_A0[1]);
         ov116_02265D84(&v2->unk_00[0]);
         ov116_02265D84(&v2->unk_00[1]);
-        sub_0200D3F4(v2->unk_00[1].unk_00, 0);
+        SpriteActor_EnableObject(v2->unk_00[1].unk_00, 0);
         v1->unk_1C++;
     case 1:
         v3[0] = ov116_02265D8C(&v2->unk_A0[0], v2->unk_144, 0, 3);
@@ -1679,7 +1679,7 @@ static void ov116_0226644C (SysTask * param0, void * param1)
             ov116_02265D84(&v2->unk_A0[1]);
             ov116_02265D84(&v2->unk_00[0]);
             ov116_02265D84(&v2->unk_00[1]);
-            sub_0200D3F4(v2->unk_00[1].unk_00, 1);
+            SpriteActor_EnableObject(v2->unk_00[1].unk_00, 1);
             v1->unk_1C++;
         } else {
             break;
@@ -1760,7 +1760,7 @@ static void ov116_022667F4 (SysTask * param0, void * param1)
             v2->unk_00[v0].unk_18 = 64;
             v2->unk_00[v0].unk_1C = 24;
 
-            sub_0200D3F4(v2->unk_00[v0].unk_00, 1);
+            SpriteActor_EnableObject(v2->unk_00[v0].unk_00, 1);
 
             v2->unk_A0[v0].unk_08 = 0;
             v2->unk_A0[v0].unk_14 = 128;
@@ -1768,7 +1768,7 @@ static void ov116_022667F4 (SysTask * param0, void * param1)
             v2->unk_A0[v0].unk_18 = 64;
             v2->unk_A0[v0].unk_1C = 24;
 
-            sub_0200D3F4(v2->unk_A0[v0].unk_00, 1);
+            SpriteActor_EnableObject(v2->unk_A0[v0].unk_00, 1);
 
             sub_0200D67C(v2->unk_00[v0].unk_00, &v6, &v7, ((192 + 64) << FX32_SHIFT));
             v4 = (v2->unk_00[v0].unk_14 << FX32_SHIFT) + (sub_0201D250(v2->unk_00[v0].unk_08) * v2->unk_00[v0].unk_18);
@@ -1785,7 +1785,7 @@ static void ov116_022667F4 (SysTask * param0, void * param1)
         ov116_02265D84(&v2->unk_A0[1]);
         ov116_02265D84(&v2->unk_00[0]);
         ov116_02265D84(&v2->unk_00[1]);
-        sub_0200D3F4(v2->unk_00[1].unk_00, 0);
+        SpriteActor_EnableObject(v2->unk_00[1].unk_00, 0);
         v1->unk_1C++;
 
     case 1:
@@ -1799,7 +1799,7 @@ static void ov116_022667F4 (SysTask * param0, void * param1)
             ov116_02265D84(&v2->unk_A0[1]);
             ov116_02265D84(&v2->unk_00[0]);
             ov116_02265D84(&v2->unk_00[1]);
-            sub_0200D3F4(v2->unk_00[1].unk_00, 1);
+            SpriteActor_EnableObject(v2->unk_00[1].unk_00, 1);
             v1->unk_1C++;
         } else {
             break;
@@ -1906,7 +1906,7 @@ static void ov116_02266BF0 (SysTask * param0, void * param1)
             v2->unk_00[v0].unk_18 = 64;
             v2->unk_00[v0].unk_1C = 24;
 
-            sub_0200D3F4(v2->unk_00[v0].unk_00, 1);
+            SpriteActor_EnableObject(v2->unk_00[v0].unk_00, 1);
 
             v2->unk_A0[v0].unk_08 = 0;
             v2->unk_A0[v0].unk_14 = 128;
@@ -1914,7 +1914,7 @@ static void ov116_02266BF0 (SysTask * param0, void * param1)
             v2->unk_A0[v0].unk_18 = 64;
             v2->unk_A0[v0].unk_1C = 24;
 
-            sub_0200D3F4(v2->unk_A0[v0].unk_00, 1);
+            SpriteActor_EnableObject(v2->unk_A0[v0].unk_00, 1);
 
             sub_0200D67C(v2->unk_00[v0].unk_00, &v6, &v7, ((192 + 64) << FX32_SHIFT));
             v4 = (v2->unk_00[v0].unk_14 << FX32_SHIFT) + (sub_0201D250(v2->unk_00[v0].unk_08) * v2->unk_00[v0].unk_18);
@@ -1931,7 +1931,7 @@ static void ov116_02266BF0 (SysTask * param0, void * param1)
         ov116_02265D84(&v2->unk_A0[1]);
         ov116_02265D84(&v2->unk_00[0]);
         ov116_02265D84(&v2->unk_00[1]);
-        sub_0200D3F4(v2->unk_00[1].unk_00, 0);
+        SpriteActor_EnableObject(v2->unk_00[1].unk_00, 0);
         v1->unk_1C++;
     case 1:
         v3[0] = ov116_02265D8C(&v2->unk_A0[0], v2->unk_144, 0, 3);
@@ -1944,7 +1944,7 @@ static void ov116_02266BF0 (SysTask * param0, void * param1)
             ov116_02265D84(&v2->unk_A0[1]);
             ov116_02265D84(&v2->unk_00[0]);
             ov116_02265D84(&v2->unk_00[1]);
-            sub_0200D3F4(v2->unk_00[1].unk_00, 1);
+            SpriteActor_EnableObject(v2->unk_00[1].unk_00, 1);
             v1->unk_1C++;
         } else {
             break;

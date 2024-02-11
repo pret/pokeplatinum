@@ -626,7 +626,7 @@ void ov17_0224A61C (UnkStruct_ov17_0224A1EC * param0, SpriteRenderer * param1, S
 
     for (v1 = 0; v1 < 3; v1++) {
         param0->unk_960[v1] = SpriteActor_LoadResources(param1, param2, &Unk_ov17_02254794);
-        sub_0200D3F4(param0->unk_960[v1], 0);
+        SpriteActor_EnableObject(param0->unk_960[v1], 0);
     }
 }
 
@@ -700,7 +700,7 @@ void ov17_0224A7E0 (UnkStruct_ov17_0224A1EC * param0, SpriteRenderer * param1, S
     sub_0200D364(v5->unk_00, param3);
     sub_0200D500(v5->unk_00, v2, v3, (256 * FX32_ONE));
     SpriteActor_UpdateObject(v5->unk_00->unk_00);
-    sub_0200D3F4(v5->unk_00, 1);
+    SpriteActor_EnableObject(v5->unk_00, 1);
 
     for (v1 = 0; v1 < 3; v1++) {
         sub_020129D0(param0->unk_96C[v1][v4].unk_00, 0);
@@ -743,7 +743,7 @@ static void ov17_0224A8D4 (SysTask * param0, void * param1)
         break;
     default:
         sub_020129D0(v0->unk_04->unk_00, 0);
-        sub_0200D3F4(v0->unk_00, 0);
+        SpriteActor_EnableObject(v0->unk_00, 0);
         v0->unk_08 = NULL;
         SysTask_Done(param0);
         return;
@@ -866,7 +866,7 @@ void ov17_0224ABDC (UnkStruct_ov17_0224A1EC * param0, int param1)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0200D3F4(param0->unk_200[v0].unk_04, param1);
+        SpriteActor_EnableObject(param0->unk_200[v0].unk_04, param1);
     }
 }
 
@@ -1089,7 +1089,7 @@ BOOL ov17_0224B01C (UnkStruct_ov17_0224DF54 * param0)
 
     sub_0200D500(v0, -1, (0x16 * 8), (256 * FX32_ONE));
     SpriteActor_UpdateObject(v0->unk_00);
-    sub_0200D3F4(v0, 0);
+    SpriteActor_EnableObject(v0, 0);
 
     v1->unk_04 = v0;
     return 1;
@@ -1997,7 +1997,7 @@ void ov17_0224C384 (UnkStruct_ov17_0224DF54 * param0, SpriteRenderer * param1, S
     v0->unk_04 = SpriteActor_LoadResources(param0->unk_14.unk_58, param0->unk_14.unk_5C, &Unk_ov17_022547FC);
 
     SpriteActor_UpdateObject(v0->unk_04->unk_00);
-    sub_0200D3F4(v0->unk_04, 0);
+    SpriteActor_EnableObject(v0->unk_04, 0);
 
     v0->unk_00 = SysTask_Start(ov17_0224C414, v0, ((30000 + 10000) + 15));
 }
@@ -2038,13 +2038,13 @@ void ov17_0224C434 (UnkStruct_ov17_0224B058 * param0, u32 param1, u32 param2, in
     v0 = param1 * v1 / param2;
 
     sub_0200D500(param0->unk_04, v0 - 1 + v2, (0x16 * 8), (256 * FX32_ONE));
-    sub_0200D3F4(param0->unk_04, 1);
+    SpriteActor_EnableObject(param0->unk_04, 1);
 }
 
 void ov17_0224C47C (UnkStruct_ov17_0224B058 * param0, int param1)
 {
     sub_0200D500(param0->unk_04, -1, (0x16 * 8), (256 * FX32_ONE));
-    sub_0200D3F4(param0->unk_04, param1);
+    SpriteActor_EnableObject(param0->unk_04, param1);
 }
 
 void ov17_0224C49C (UnkStruct_ov17_0224C384 * param0, u32 param1, u32 param2, int param3)
@@ -2070,12 +2070,12 @@ void ov17_0224C49C (UnkStruct_ov17_0224C384 * param0, u32 param1, u32 param2, in
     v4 -= sub_0201D15C(v5) * 10 / FX32_ONE;
 
     sub_0200D500(param0->unk_04, v3, v4, (256 * FX32_ONE));
-    sub_0200D3F4(param0->unk_04, 1);
+    SpriteActor_EnableObject(param0->unk_04, 1);
 }
 
 void ov17_0224C540 (UnkStruct_ov17_0224C384 * param0)
 {
-    sub_0200D3F4(param0->unk_04, 0);
+    SpriteActor_EnableObject(param0->unk_04, 0);
 }
 
 void ov17_0224C54C (UnkStruct_ov17_0224C384 * param0, int param1)
@@ -2085,7 +2085,7 @@ void ov17_0224C54C (UnkStruct_ov17_0224C384 * param0, int param1)
     v0 = ov17_0223F0BC(param1, 3);
     v1 = (256 - v0) / 2;
 
-    sub_0200D3F4(param0->unk_04, 1);
+    SpriteActor_EnableObject(param0->unk_04, 1);
     sub_0200D500(param0->unk_04, v1, (0x12 * 8), (256 * FX32_ONE));
 }
 

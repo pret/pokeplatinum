@@ -385,7 +385,7 @@ BOOL sub_0208B9E0 (UnkStruct_0208B878 * param0, BOOL param1)
         int v0;
 
         for (v0 = 0; v0 < param0->unk_10.unk_00; v0++) {
-            sub_0200D3F4(param0->unk_24[v0].unk_00, param1);
+            SpriteActor_EnableObject(param0->unk_24[v0].unk_00, param1);
         }
     }
 

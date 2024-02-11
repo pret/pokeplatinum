@@ -808,7 +808,7 @@ static void ov62_02232080 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C06C 
 static void ov62_022320A0 (UnkStruct_ov62_022323B8 * param0, int param1)
 {
     if (param0->unk_04) {
-        sub_0200D3F4(param0->unk_04, param1);
+        SpriteActor_EnableObject(param0->unk_04, param1);
     }
 }
 
@@ -894,7 +894,7 @@ static void ov62_022320EC (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C06C 
 
 static void ov62_022321F4 (UnkStruct_ov62_022323B8 * param0, int param1)
 {
-    sub_0200D3F4(param0->unk_08, param1);
+    SpriteActor_EnableObject(param0->unk_08, param1);
 }
 
 static void ov62_02232200 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C06C * param1)
@@ -2310,15 +2310,15 @@ void ov62_02233434 (UnkStruct_ov62_02233310 * param0, s16 param1, s16 param2)
 
 void ov62_02233454 (UnkStruct_ov62_02233310 * param0)
 {
-    sub_0200D3F4(param0->unk_2C[0], 1);
-    sub_0200D3F4(param0->unk_2C[1], 1);
+    SpriteActor_EnableObject(param0->unk_2C[0], 1);
+    SpriteActor_EnableObject(param0->unk_2C[1], 1);
 
     if (param0->unk_08 == 0) {
-        sub_0200D3F4(param0->unk_2C[0], 0);
+        SpriteActor_EnableObject(param0->unk_2C[0], 0);
     }
 
     if (param0->unk_08 + param0->unk_10 >= param0->unk_04) {
-        sub_0200D3F4(param0->unk_2C[1], 0);
+        SpriteActor_EnableObject(param0->unk_2C[1], 0);
     }
 
     sub_0200D33C(param0->unk_2C[0]);
@@ -2327,20 +2327,20 @@ void ov62_02233454 (UnkStruct_ov62_02233310 * param0)
 
 void ov62_0223349C (UnkStruct_ov62_02233310 * param0)
 {
-    sub_0200D3F4(param0->unk_2C[0], 1);
-    sub_0200D3F4(param0->unk_2C[1], 1);
+    SpriteActor_EnableObject(param0->unk_2C[0], 1);
+    SpriteActor_EnableObject(param0->unk_2C[1], 1);
 
     if (param0->unk_08 == 0) {
-        sub_0200D3F4(param0->unk_2C[0], 0);
+        SpriteActor_EnableObject(param0->unk_2C[0], 0);
     }
 
     if (param0->unk_08 + param0->unk_10 >= param0->unk_04) {
-        sub_0200D3F4(param0->unk_2C[1], 0);
+        SpriteActor_EnableObject(param0->unk_2C[1], 0);
     }
 
     if (param0->unk_10 >= param0->unk_04) {
-        sub_0200D3F4(param0->unk_2C[0], 0);
-        sub_0200D3F4(param0->unk_2C[1], 0);
+        SpriteActor_EnableObject(param0->unk_2C[0], 0);
+        SpriteActor_EnableObject(param0->unk_2C[1], 0);
     }
 
     sub_0200D33C(param0->unk_2C[0]);
@@ -3176,7 +3176,7 @@ void ov62_0223427C (UnkStruct_ov62_02233F74 * param0, int param1)
 
     for (v0 = 0; v0 < 12; v0++) {
         if (param0->unk_0C[v0]) {
-            sub_0200D3F4(param0->unk_0C[v0], param1);
+            SpriteActor_EnableObject(param0->unk_0C[v0], param1);
         }
     }
 }
