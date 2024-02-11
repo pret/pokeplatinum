@@ -8,9 +8,7 @@ subdir('trmsg')
 subdir('waza')
 
 prebuilt_files = [
-    'pl_pokezukan.narc',
     'pokezukan.narc',
-    'shinzukan.narc'
 ]
 
 foreach f : prebuilt_files

@@ -390,8 +390,14 @@ RomSpec
 	File arc/tv.narc
 	File fielddata/maptable/mapname.bin
 	File poketool/pokezukan.narc
-	File poketool/pl_pokezukan.narc
-	File poketool/shinzukan.narc
+
+	Root /poketool
+	HostRoot res/pokemon
+	File pl_pokezukan.narc
+	File shinzukan.narc
+	
+	Root /
+	HostRoot res/prebuilt
 	File poketool/pokeanm/pokeanm.narc
 	File poketool/pokeanm/pl_pokeanm.narc
 	File demo/shinka/data/particle/shinka_demo_particle.narc

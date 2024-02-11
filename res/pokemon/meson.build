@@ -24,6 +24,7 @@ otherpoke_shared = files(
     '.shared/shadows.png',
 )
 
+sinnoh_pokedex = files('sinnoh_pokedex.json')
 
 # Process mons in national dex order
 pokemon_subdirs = [
@@ -725,6 +726,34 @@ pl_poke_data_narc = custom_target('pl_poke_data.narc',
     ]
 )
 
+pl_pokezukan_narc = custom_target('pl_pokezukan.narc',
+    output: 'pl_pokezukan.narc',
+    input: personal_files,
+    env: json2bin_env,
+    command: [
+        make_pl_pokezukan_py,
+        '--knarc', knarc_exe,
+        '--source-dir', '@CURRENT_SOURCE_DIR@',
+        '--private-dir', '@PRIVATE_DIR@',
+        '--output-dir', '@OUTDIR@',
+        sinnoh_pokedex
+    ]
+)
+
+shinzukan_narc = custom_target('shinzukan.narc',
+    output: 'shinzukan.narc',
+    input: personal_files,
+    env: json2bin_env,
+    command: [
+        make_shinzukan_py,
+        '--knarc', knarc_exe,
+        '--source-dir', '@CURRENT_SOURCE_DIR@',
+        '--private-dir', '@PRIVATE_DIR@',
+        '--output-dir', '@OUTDIR@',
+        sinnoh_pokedex
+    ]
+)
+
 nitrofs_files += pl_personal_narc
 nitrofs_files += evo_narc
 nitrofs_files += pl_poke_icon_narc
@@ -733,3 +762,5 @@ nitrofs_files += pl_otherpoke_narc
 nitrofs_files += wotbl_narc
 nitrofs_files += height_narc
 nitrofs_files += pl_poke_data_narc
+nitrofs_files += pl_pokezukan_narc
+nitrofs_files += shinzukan_narc
