@@ -1572,7 +1572,7 @@ static void ov16_0223CF8C (SysTask * param0, void * param1)
 {
     BattleSystem * v0 = param1;
     BattlerData * v1;
-    UnkStruct_ov16_022674C4 * v2;
+    Healthbar * v2;
     int v3;
     int v4;
     int v5;

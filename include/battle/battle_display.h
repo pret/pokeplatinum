@@ -51,8 +51,23 @@ void ov16_0225D228(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0
 void ov16_0225D360(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_02265154 * param2);
 void ov16_0225D3CC(BattleSystem * param0, BattlerData * param1);
 void ov16_0225D414(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_022651A8 * param2);
-void BattleDisplay_SlideHealthbarIn(BattleSystem * param0, BattlerData * param1, HealthbarData * param2);
-void BattleDisplay_SlideHealthbarOut(BattleSystem * param0, BattlerData * param1);
+
+/**
+ * @brief Slide the healthbar into the screen.
+ * 
+ * @param battleSys 
+ * @param battlerData 
+ * @param healthbarData 
+ */
+void BattleDisplay_SlideHealthbarIn(BattleSystem *battleSys, BattlerData *battlerData, HealthbarData *healthbarData);
+
+/**
+ * @brief Slide the healthbar out of the screen.
+ * 
+ * @param battleSys 
+ * @param battlerData 
+ */
+void BattleDisplay_SlideHealthbarOut(BattleSystem *battleSys, BattlerData *battlerData);
 void ov16_0225D5B8(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C260 * param2);
 void ov16_0225D698(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_022656F0 * param2);
 void ov16_0225D708(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C29C * param2);
@@ -138,7 +153,7 @@ void ov16_02263730(BattleSystem * param0, BattlerData * param1);
 u8 Battler_Type(BattlerData * param0);
 u8 Battler_BootState(BattlerData * param0);
 Sprite * ov16_02263AFC(BattlerData * param0);
-UnkStruct_ov16_022674C4 * ov16_02263B08(BattlerData * param0);
+Healthbar * ov16_02263B08(BattlerData * param0);
 UnkStruct_ov16_0226C378 * ov16_02263B0C(BattlerData * param0);
 void ov16_02263B10(BattlerData * param0);
 void ov16_02263B20(BattlerData * param0, int param1);

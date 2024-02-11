@@ -45,39 +45,39 @@ typedef struct {
 } UnkStruct_ov16_0226F64C;
 
 typedef struct {
-    UnkStruct_ov16_022674C4 * unk_00;
+    Healthbar * unk_00;
     u8 * unk_04;
     u8 unk_08;
     u8 unk_09;
     s8 unk_0A;
 } UnkStruct_ov16_0226834C;
 
-static s32 ov16_02267EDC(UnkStruct_ov16_022674C4 * param0, int param1);
+static s32 ov16_02267EDC(Healthbar * param0, int param1);
 static s32 ov16_022680D8(s32 param0, s32 param1, s32 param2, s32 * param3, u8 param4, u16 param5);
 static u8 ov16_02268194(s32 param0, s32 param1, s32 param2, s32 * param3, u8 * param4, u8 param5);
 static u32 ov16_02268210(s32 param0, s32 param1, s32 param2, u8 param3);
 static const u8 * ov16_02268250(int param0);
-static void ov16_02267F70(UnkStruct_ov16_022674C4 * param0, u8 param1);
-static void ov16_02267864(UnkStruct_ov16_022674C4 * param0);
-static void ov16_022679C8(UnkStruct_ov16_022674C4 * param0);
-static void ov16_02267A4C(UnkStruct_ov16_022674C4 * param0);
-static void ov16_02267B6C(UnkStruct_ov16_022674C4 * param0, u32 param1);
-static void ov16_02267BF8(UnkStruct_ov16_022674C4 * param0);
-static void ov16_02267C58(UnkStruct_ov16_022674C4 * param0);
-static void ov16_02267CA8(UnkStruct_ov16_022674C4 * param0, int param1);
-static void ov16_02267CE8(UnkStruct_ov16_022674C4 * param0, u32 param1);
-static void ov16_02267DC4(UnkStruct_ov16_022674C4 * param0, u32 param1);
+static void ov16_02267F70(Healthbar * param0, u8 param1);
+static void ov16_02267864(Healthbar * param0);
+static void ov16_022679C8(Healthbar * param0);
+static void ov16_02267A4C(Healthbar * param0);
+static void ov16_02267B6C(Healthbar * param0, u32 param1);
+static void ov16_02267BF8(Healthbar * param0);
+static void ov16_02267C58(Healthbar * param0);
+static void ov16_02267CA8(Healthbar * param0, int param1);
+static void ov16_02267CE8(Healthbar * param0, u32 param1);
+static void ov16_02267DC4(Healthbar * param0, u32 param1);
 static void ov16_02266FE4(SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, PaletteData * param3, int param4);
-static void ov16_02267244(UnkStruct_ov16_022674C4 * param0);
-static void ov16_0226728C(UnkStruct_ov16_022674C4 * param0);
+static void ov16_02267244(Healthbar * param0);
+static void ov16_0226728C(Healthbar * param0);
 static const SpriteTemplate * ov16_022682B0(u8 param0);
 static const SpriteTemplate * ov16_02268314(u8 param0);
 static void ov16_0226774C(SysTask * param0, void * param1);
 static void ov16_02268380(SysTask * param0, void * param1);
-void ov16_02268470(UnkStruct_ov16_022674C4 * param0);
-void ov16_02268498(UnkStruct_ov16_022674C4 * param0);
+void ov16_02268470(Healthbar * param0);
+void ov16_02268498(Healthbar * param0);
 static void ov16_022684BC(SysTask * param0, void * param1);
-static void ov16_022675F8(UnkStruct_ov16_022674C4 * param0, int param1);
+static void ov16_022675F8(Healthbar * param0, int param1);
 
 __attribute__((aligned(4))) static const s8 Unk_ov16_0226F334[] = {
     0x48,
@@ -452,7 +452,7 @@ CellActorData * ov16_02267060 (SpriteRenderer * param0, SpriteGfxHandler * param
     return v1;
 }
 
-void ov16_02267084 (UnkStruct_ov16_022674C4 * param0, u32 param1, u32 param2)
+void Healthbar_Draw (Healthbar * param0, u32 param1, u32 param2)
 {
     int v0 = 0;
     u32 v1;
@@ -565,7 +565,7 @@ void ov16_02267084 (UnkStruct_ov16_022674C4 * param0, u32 param1, u32 param2)
     }
 }
 
-void ov16_02267220 (UnkStruct_ov16_022674C4 * param0)
+void ov16_02267220 (Healthbar * param0)
 {
     if (param0->unk_50 != NULL) {
         SysTask_Done(param0->unk_50);
@@ -580,7 +580,7 @@ void ov16_02267220 (UnkStruct_ov16_022674C4 * param0)
     param0->unk_04 = NULL;
 }
 
-static void ov16_02267244 (UnkStruct_ov16_022674C4 * param0)
+static void ov16_02267244 (Healthbar * param0)
 {
     if (param0->unk_08 == NULL) {
         return;
@@ -590,7 +590,7 @@ static void ov16_02267244 (UnkStruct_ov16_022674C4 * param0)
     param0->unk_08 = NULL;
 }
 
-void ov16_02267258 (UnkStruct_ov16_022674C4 * param0)
+void ov16_02267258 (Healthbar * param0)
 {
     SpriteRenderer * v0;
     SpriteGfxHandler * v1;
@@ -605,7 +605,7 @@ void ov16_02267258 (UnkStruct_ov16_022674C4 * param0)
     SpriteGfxHandler_UnloadAnimObjById(v1, v2->resources[3]);
 }
 
-static void ov16_0226728C (UnkStruct_ov16_022674C4 * param0)
+static void ov16_0226728C (Healthbar * param0)
 {
     SpriteRenderer * v0;
     SpriteGfxHandler * v1;
@@ -625,7 +625,7 @@ static void ov16_0226728C (UnkStruct_ov16_022674C4 * param0)
     SpriteGfxHandler_UnloadAnimObjById(v1, v2->resources[3]);
 }
 
-void ov16_022672C4 (UnkStruct_ov16_022674C4 * param0)
+void ov16_022672C4 (Healthbar * param0)
 {
     const SpriteTemplate * v0;
     SpriteRenderer * v1;
@@ -651,7 +651,7 @@ void ov16_022672C4 (UnkStruct_ov16_022674C4 * param0)
     NARC_dtor(v4);
 }
 
-void ov16_02267360 (UnkStruct_ov16_022674C4 * param0)
+void ov16_02267360 (Healthbar * param0)
 {
     ov16_02267220(param0);
     ov16_02267258(param0);
@@ -659,7 +659,7 @@ void ov16_02267360 (UnkStruct_ov16_022674C4 * param0)
     ov16_0226728C(param0);
 }
 
-void ov16_0226737C (UnkStruct_ov16_022674C4 * param0)
+void ov16_0226737C (Healthbar * param0)
 {
     const u8 * v0;
     NNSG2dImageProxy * v1;
@@ -687,7 +687,7 @@ void ov16_0226737C (UnkStruct_ov16_022674C4 * param0)
         v0 = ov16_02268250(69);
         MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3D4[param0->unk_25].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3D4[param0->unk_25].unk_02);
 
-        ov16_02267084(param0, param0->unk_28, (1 << 1) | (1 << 2));
+        Healthbar_Draw(param0, param0->unk_28, (1 << 1) | (1 << 2));
     } else {
         v0 = ov16_02268250(66);
         MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F374[param0->unk_25].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F374[param0->unk_25].unk_02);
@@ -698,11 +698,11 @@ void ov16_0226737C (UnkStruct_ov16_022674C4 * param0)
         v0 = ov16_02268250(38);
         MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3A4[param0->unk_25].unk_00 + 0x20 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
 
-        ov16_02267084(param0, param0->unk_28, (1 << 0));
+        Healthbar_Draw(param0, param0->unk_28, (1 << 0));
     }
 }
 
-void ov16_022674C4 (UnkStruct_ov16_022674C4 * param0, int param1)
+void ov16_022674C4 (Healthbar * param0, int param1)
 {
     param0->unk_34 = -2147483648;
 
@@ -725,7 +725,7 @@ void ov16_022674C4 (UnkStruct_ov16_022674C4 * param0, int param1)
     }
 }
 
-s32 ov16_022674F8 (UnkStruct_ov16_022674C4 * param0)
+s32 ov16_022674F8 (Healthbar * param0)
 {
     s32 v0;
 
@@ -733,15 +733,15 @@ s32 ov16_022674F8 (UnkStruct_ov16_022674C4 * param0)
 
     if (v0 == -1) {
         param0->unk_28 -= param0->unk_30;
-        ov16_02267084(param0, param0->unk_28, (1 << 1));
+        Healthbar_Draw(param0, param0->unk_28, (1 << 1));
     } else {
-        ov16_02267084(param0, v0, (1 << 1));
+        Healthbar_Draw(param0, v0, (1 << 1));
     }
 
     return v0;
 }
 
-void ov16_0226752C (UnkStruct_ov16_022674C4 * param0, int param1)
+void ov16_0226752C (Healthbar * param0, int param1)
 {
     param0->unk_44 = -2147483648;
 
@@ -764,7 +764,7 @@ void ov16_0226752C (UnkStruct_ov16_022674C4 * param0, int param1)
     }
 }
 
-s32 ov16_02267560 (UnkStruct_ov16_022674C4 * param0)
+s32 ov16_02267560 (Healthbar * param0)
 {
     s32 v0;
 
@@ -777,7 +777,7 @@ s32 ov16_02267560 (UnkStruct_ov16_022674C4 * param0)
     return v0;
 }
 
-void ov16_0226757C (UnkStruct_ov16_022674C4 * param0)
+void ov16_0226757C (Healthbar * param0)
 {
     if (param0->unk_08 != NULL) {
         sub_02021CC8(param0->unk_08->unk_00, 1);
@@ -789,7 +789,7 @@ void ov16_0226757C (UnkStruct_ov16_022674C4 * param0)
     }
 }
 
-void ov16_022675AC (UnkStruct_ov16_022674C4 * param0)
+void ov16_022675AC (Healthbar * param0)
 {
     if (param0->unk_08 != NULL) {
         sub_02021CC8(param0->unk_08->unk_00, 0);
@@ -800,7 +800,7 @@ void ov16_022675AC (UnkStruct_ov16_022674C4 * param0)
     ov16_02268498(param0);
 }
 
-void ov16_022675D8 (UnkStruct_ov16_022674C4 * param0, int param1)
+void ov16_022675D8 (Healthbar * param0, int param1)
 {
     if (param0->unk_04 == NULL) {
         return;
@@ -813,7 +813,7 @@ void ov16_022675D8 (UnkStruct_ov16_022674C4 * param0, int param1)
     }
 }
 
-static void ov16_022675F8 (UnkStruct_ov16_022674C4 * param0, int param1)
+static void ov16_022675F8 (Healthbar * param0, int param1)
 {
     if (param0->unk_08 != NULL) {
         if ((BattleSystem_BattleType(param0->unk_0C) & (0x20 | 0x200)) && (param1 == 1)) {
@@ -824,7 +824,7 @@ static void ov16_022675F8 (UnkStruct_ov16_022674C4 * param0, int param1)
     }
 }
 
-void ov16_02267620 (UnkStruct_ov16_022674C4 * param0, int param1)
+void Healthbar_Enable (Healthbar * param0, int param1)
 {
     if (param0->unk_04 == NULL) {
         return;
@@ -834,7 +834,7 @@ void ov16_02267620 (UnkStruct_ov16_022674C4 * param0, int param1)
     ov16_022675F8(param0, param1);
 }
 
-void ov16_0226763C (UnkStruct_ov16_022674C4 * param0, int param1, int param2)
+void ov16_0226763C (Healthbar * param0, int param1, int param2)
 {
     const SpriteTemplate * v0;
 
@@ -848,7 +848,7 @@ void ov16_0226763C (UnkStruct_ov16_022674C4 * param0, int param1, int param2)
     }
 }
 
-void ov16_022676A8 (UnkStruct_ov16_022674C4 * param0, int param1)
+void Healthbar_SetScrollEffect (Healthbar * param0, int param1)
 {
     GF_ASSERT(param0 != NULL);
     GF_ASSERT(param0->unk_04 != NULL);
@@ -878,7 +878,7 @@ void ov16_022676A8 (UnkStruct_ov16_022674C4 * param0, int param1)
 
 static void ov16_0226774C (SysTask * param0, void * param1)
 {
-    UnkStruct_ov16_022674C4 * v0 = param1;
+    Healthbar * v0 = param1;
     s16 v1, v2;
     const SpriteTemplate * v3;
     int v4;
@@ -942,7 +942,7 @@ static void ov16_0226774C (SysTask * param0, void * param1)
     }
 }
 
-static void ov16_02267864 (UnkStruct_ov16_022674C4 * param0)
+static void ov16_02267864 (Healthbar * param0)
 {
     BGL * v0;
     u8 * v1;
@@ -990,7 +990,7 @@ static void ov16_02267864 (UnkStruct_ov16_022674C4 * param0)
     Strbuf_Free(v6);
 }
 
-static void ov16_022679C8 (UnkStruct_ov16_022674C4 * param0)
+static void ov16_022679C8 (Healthbar * param0)
 {
     NNSG2dImageProxy * v0;
     const u8 * v1;
@@ -1022,7 +1022,7 @@ static void ov16_022679C8 (UnkStruct_ov16_022674C4 * param0)
     }
 }
 
-static void ov16_02267A4C (UnkStruct_ov16_022674C4 * param0)
+static void ov16_02267A4C (Healthbar * param0)
 {
     u8 * v0, * v1;
     NNSG2dImageProxy * v2;
@@ -1068,7 +1068,7 @@ static void ov16_02267A4C (UnkStruct_ov16_022674C4 * param0)
     Heap_FreeToHeap(v1);
 }
 
-static void ov16_02267B6C (UnkStruct_ov16_022674C4 * param0, u32 param1)
+static void ov16_02267B6C (Healthbar * param0, u32 param1)
 {
     u8 * v0;
     NNSG2dImageProxy * v1;
@@ -1093,7 +1093,7 @@ static void ov16_02267B6C (UnkStruct_ov16_022674C4 * param0, u32 param1)
     Heap_FreeToHeap(v0);
 }
 
-static void ov16_02267BF8 (UnkStruct_ov16_022674C4 * param0)
+static void ov16_02267BF8 (Healthbar * param0)
 {
     u8 * v0;
     NNSG2dImageProxy * v1;
@@ -1117,7 +1117,7 @@ static void ov16_02267BF8 (UnkStruct_ov16_022674C4 * param0)
     Heap_FreeToHeap(v0);
 }
 
-static void ov16_02267C58 (UnkStruct_ov16_022674C4 * param0)
+static void ov16_02267C58 (Healthbar * param0)
 {
     NNSG2dImageProxy * v0;
     const u8 * v1;
@@ -1138,7 +1138,7 @@ static void ov16_02267C58 (UnkStruct_ov16_022674C4 * param0)
     }
 }
 
-static void ov16_02267CA8 (UnkStruct_ov16_022674C4 * param0, int param1)
+static void ov16_02267CA8 (Healthbar * param0, int param1)
 {
     NNSG2dImageProxy * v0;
     const u8 * v1;
@@ -1155,7 +1155,7 @@ static void ov16_02267CA8 (UnkStruct_ov16_022674C4 * param0, int param1)
     }
 }
 
-static void ov16_02267CE8 (UnkStruct_ov16_022674C4 * param0, u32 param1)
+static void ov16_02267CE8 (Healthbar * param0, u32 param1)
 {
     BGL * v0;
     u8 * v1;
@@ -1198,7 +1198,7 @@ static void ov16_02267CE8 (UnkStruct_ov16_022674C4 * param0, u32 param1)
     Strbuf_Free(v5);
 }
 
-static void ov16_02267DC4 (UnkStruct_ov16_022674C4 * param0, u32 param1)
+static void ov16_02267DC4 (Healthbar * param0, u32 param1)
 {
     BGL * v0;
     u8 * v1;
@@ -1246,7 +1246,7 @@ static void ov16_02267DC4 (UnkStruct_ov16_022674C4 * param0, u32 param1)
     Strbuf_Free(v6);
 }
 
-static s32 ov16_02267EDC (UnkStruct_ov16_022674C4 * param0, int param1)
+static s32 ov16_02267EDC (Healthbar * param0, int param1)
 {
     s32 v0;
     s32 v1;
@@ -1281,7 +1281,7 @@ static s32 ov16_02267EDC (UnkStruct_ov16_022674C4 * param0, int param1)
     return v0;
 }
 
-static void ov16_02267F70 (UnkStruct_ov16_022674C4 * param0, u8 param1)
+static void ov16_02267F70 (Healthbar * param0, u8 param1)
 {
     u8 v0;
     u8 v1[12];
@@ -1506,7 +1506,7 @@ static const u8 * ov16_02268250 (int param0)
     return &Unk_ov16_0226F6AC[param0 * 0x20];
 }
 
-u8 ov16_0226825C (int param0, u32 param1)
+u8 Healthbar_Type (int param0, u32 param1)
 {
     switch (param0) {
     case 0:
@@ -1596,7 +1596,7 @@ static const SpriteTemplate * ov16_02268314 (u8 param0)
     return v0;
 }
 
-void ov16_0226834C (UnkStruct_ov16_022674C4 * param0, u8 * param1)
+void ov16_0226834C (Healthbar * param0, u8 * param1)
 {
     UnkStruct_ov16_0226834C * v0;
 
@@ -1660,17 +1660,17 @@ static void ov16_02268380 (SysTask * param0, void * param1)
     }
 }
 
-void ov16_02268468 (UnkStruct_ov16_022674C4 * param0)
+void ov16_02268468 (Healthbar * param0)
 {
     return;
 }
 
-void ov16_0226846C (UnkStruct_ov16_022674C4 * param0)
+void ov16_0226846C (Healthbar * param0)
 {
     return;
 }
 
-void ov16_02268470 (UnkStruct_ov16_022674C4 * param0)
+void ov16_02268470 (Healthbar * param0)
 {
     if (param0->unk_50 != NULL) {
         return;
@@ -1680,7 +1680,7 @@ void ov16_02268470 (UnkStruct_ov16_022674C4 * param0)
     param0->unk_50 = SysTask_Start(ov16_022684BC, param0, 1010);
 }
 
-void ov16_02268498 (UnkStruct_ov16_022674C4 * param0)
+void ov16_02268498 (Healthbar * param0)
 {
     if (param0->unk_50 != NULL) {
         SysTask_Done(param0->unk_50);
@@ -1693,7 +1693,7 @@ void ov16_02268498 (UnkStruct_ov16_022674C4 * param0)
 
 static void ov16_022684BC (SysTask * param0, void * param1)
 {
-    UnkStruct_ov16_022674C4 * v0 = param1;
+    Healthbar * v0 = param1;
     int v1;
 
     v0->unk_54 += 20;

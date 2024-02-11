@@ -1367,29 +1367,29 @@ void * ov16_0223F35C (BattleSystem * param0, int param1)
 void ov16_0223F36C (BattleSystem * param0)
 {
     int v0;
-    UnkStruct_ov16_022674C4 * v1;
+    Healthbar * v1;
 
     for (v0 = 0; v0 < param0->maxBattlers; v0++) {
         v1 = ov16_02263B08(param0->battlers[v0]);
 
         v1->unk_0C = param0;
-        v1->unk_25 = ov16_0226825C(Battler_Type(param0->battlers[v0]), BattleSystem_BattleType(param0));
+        v1->unk_25 = Healthbar_Type(Battler_Type(param0->battlers[v0]), BattleSystem_BattleType(param0));
 
         ov16_022672C4(v1);
-        ov16_02267620(v1, 0);
+        Healthbar_Enable(v1, 0);
     }
 }
 
 void ov16_0223F3BC (BattleSystem * param0)
 {
     int v0;
-    UnkStruct_ov16_022674C4 * v1;
+    Healthbar * v1;
 
     for (v0 = 0; v0 < param0->maxBattlers; v0++) {
         v1 = ov16_02263B08(param0->battlers[v0]);
 
         if (v1->unk_28) {
-            ov16_02267620(v1, 1);
+            Healthbar_Enable(v1, 1);
         }
     }
 }
@@ -1397,18 +1397,18 @@ void ov16_0223F3BC (BattleSystem * param0)
 void ov16_0223F3EC (BattleSystem * param0)
 {
     int v0;
-    UnkStruct_ov16_022674C4 * v1;
+    Healthbar * v1;
 
     for (v0 = 0; v0 < param0->maxBattlers; v0++) {
         v1 = ov16_02263B08(param0->battlers[v0]);
-        ov16_02267620(v1, 0);
+        Healthbar_Enable(v1, 0);
     }
 }
 
 void ov16_0223F414 (BattleSystem * param0)
 {
     int v0;
-    UnkStruct_ov16_022674C4 * v1;
+    Healthbar * v1;
 
     for (v0 = 0; v0 < param0->maxBattlers; v0++) {
         v1 = ov16_02263B08(param0->battlers[v0]);
@@ -1653,7 +1653,7 @@ void ov16_0223F8AC (BattleSystem * param0, Sprite ** param1)
 void BattleSystem_SetGaugePriority (BattleSystem * param0, int param1)
 {
     int v0;
-    UnkStruct_ov16_022674C4 * v1;
+    Healthbar * v1;
 
     for (v0 = 0; v0 < param0->maxBattlers; v0++) {
         v1 = ov16_02263B08(param0->battlers[v0]);

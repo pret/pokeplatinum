@@ -776,7 +776,7 @@ static void ov16_0225C79C (BattleSystem * param0, BattlerData * param1)
         {
             UnkStruct_ov16_02268A14 * v0;
             int v1;
-            UnkStruct_ov16_022674C4 * v2;
+            Healthbar * v2;
             NARC * v3;
             NARC * v4;
 

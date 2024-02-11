@@ -110,7 +110,6 @@
 #include "overlay016/struct_ov16_02265BBC.h"
 #include "overlay016/struct_ov16_022664F8.h"
 #include "overlay016/struct_ov16_022674C4.h"
-#include "overlay016/struct_ov16_022674C4_sub1.h"
 #include "overlay016/struct_ov16_02269668.h"
 #include "overlay016/struct_ov16_0226AC98.h"
 #include "overlay016/struct_ov16_0226C378.h"
@@ -165,8 +164,8 @@ static void ov16_0225FA70(SysTask * param0, void * param1);
 static void ov16_0225FD5C(SysTask * param0, void * param1);
 static void ov16_02260384(SysTask * param0, void * param1);
 static void ov16_02260284(SysTask * param0, void * param1);
-static void ov16_0226040C(SysTask * param0, void * param1);
-static void ov16_02260480(SysTask * param0, void * param1);
+static void SlideHealthbarInTask(SysTask *task, void *data);
+static void SlideHealthbarOutTask(SysTask *task, void *data);
 static void ov16_022604C8(SysTask * param0, void * param1);
 static void ov16_02260AB4(SysTask * param0, void * param1);
 static void ov16_02260AE4(SysTask * param0, void * param1);
@@ -621,48 +620,46 @@ void ov16_0225D414 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     SysTask_Start(ov16_02260384, v3, 0);
 }
 
-void BattleDisplay_SlideHealthbarIn (BattleSystem * param0, BattlerData * param1, HealthbarData * param2)
+void BattleDisplay_SlideHealthbarIn(BattleSystem *battleSys, BattlerData *battlerData, HealthbarData *healthbarData)
 {
-    UnkStruct_ov16_022674C4 * v0;
+    Healthbar *healthbar = &battlerData->unk_28;
+    MI_CpuClearFast(&healthbar->unk_00, sizeof(u8));
 
-    v0 = &param1->unk_28;
-    MI_CpuClearFast(&v0->unk_00, sizeof(UnkStruct_ov16_022674C4_sub1));
+    healthbar->unk_0C = battleSys;
+    healthbar->unk_24 = battlerData->battler;
+    healthbar->unk_25 = Healthbar_Type(battlerData->battlerType, BattleSystem_BattleType(battleSys));
+    healthbar->unk_4C = healthbarData->command;
+    healthbar->unk_28 = healthbarData->curHP;
+    healthbar->unk_2C = healthbarData->maxHP;
+    healthbar->unk_48 = healthbarData->level;
+    healthbar->unk_49 = healthbarData->gender;
+    healthbar->unk_30 = 0;
+    healthbar->unk_38 = healthbarData->expFromLastLevel;
+    healthbar->unk_3C = healthbarData->expToNextLevel;
+    healthbar->unk_26 = healthbarData->selectedPartySlot;
+    healthbar->unk_4A = healthbarData->status;
+    healthbar->unk_4B = healthbarData->speciesCaught;
+    healthbar->unk_4D = healthbarData->delay;
+    healthbar->unk_27 = healthbarData->numSafariBalls;
 
-    v0->unk_0C = param0;
-    v0->unk_24 = param1->battler;
-    v0->unk_25 = ov16_0226825C(param1->battlerType, BattleSystem_BattleType(param0));
-    v0->unk_4C = param2->command;
-    v0->unk_28 = param2->curHP;
-    v0->unk_2C = param2->maxHP;
-    v0->unk_48 = param2->level;
-    v0->unk_49 = param2->gender;
-    v0->unk_30 = 0;
-    v0->unk_38 = param2->expFromLastLevel;
-    v0->unk_3C = param2->expToNextLevel;
-    v0->unk_26 = param2->selectedPartySlot;
-    v0->unk_4A = param2->status;
-    v0->unk_4B = param2->speciesCaught;
-    v0->unk_4D = param2->delay;
-    v0->unk_27 = param2->numSafariBalls;
+    Healthbar_Enable(healthbar, FALSE);
+    Healthbar_Draw(healthbar, healthbar->unk_28, 0xffffffff);
 
-    ov16_02267620(v0, 0);
-    ov16_02267084(v0, v0->unk_28, 0xffffffff);
-
-    v0->unk_10 = SysTask_Start(ov16_0226040C, v0, 1000);
+    healthbar->unk_10 = SysTask_Start(SlideHealthbarInTask, healthbar, 1000);
 }
 
-void BattleDisplay_SlideHealthbarOut (BattleSystem * param0, BattlerData * param1)
+void BattleDisplay_SlideHealthbarOut(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    UnkStruct_ov16_022674C4 * v0;
+    Healthbar * healthbar = &battlerData->unk_28;
+    MI_CpuClearFast(&healthbar->unk_00, sizeof(u8));
 
-    v0 = &param1->unk_28;
-    MI_CpuClearFast(&v0->unk_00, sizeof(UnkStruct_ov16_022674C4_sub1));
-    v0->unk_0C = param0;
-    v0->unk_24 = param1->battler;
-    v0->unk_4C = param1->data[0];
+    healthbar->unk_0C = battleSys;
+    healthbar->unk_24 = battlerData->battler;
+    healthbar->unk_4C = battlerData->data[0];
 
-    ov16_022676A8(v0, 1);
-    v0->unk_10 = SysTask_Start(ov16_02260480, v0, 1000);
+    Healthbar_SetScrollEffect(healthbar, TRUE);
+
+    healthbar->unk_10 = SysTask_Start(SlideHealthbarOutTask, healthbar, 1000);
 }
 
 void ov16_0225D5B8 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C260 * param2)
@@ -934,17 +931,17 @@ void ov16_0225DA44 (BattleSystem * param0, BattlerData * param1)
 
 void ov16_0225DA74 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C35C * param2)
 {
-    UnkStruct_ov16_022674C4 * v0;
+    Healthbar * v0;
 
     GF_ASSERT(param1->unk_28.unk_04 != NULL);
 
     v0 = &param1->unk_28;
-    MI_CpuClear8(&v0->unk_00, sizeof(UnkStruct_ov16_022674C4_sub1));
+    MI_CpuClear8(&v0->unk_00, sizeof(u8));
 
     v0->unk_0C = param0;
     v0->unk_4C = param2->unk_00;
     v0->unk_24 = param1->battler;
-    v0->unk_25 = ov16_0226825C(param1->battlerType, BattleSystem_BattleType(param0));
+    v0->unk_25 = Healthbar_Type(param1->battlerType, BattleSystem_BattleType(param0));
     v0->unk_28 = param2->unk_02;
     v0->unk_2C = param2->unk_04;
     v0->unk_30 = param2->unk_08;
@@ -960,13 +957,13 @@ void ov16_0225DA74 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 
 void    ov16_0225DB00 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C370 * param2)
 {
-    UnkStruct_ov16_022674C4 * v0;
+    Healthbar * v0;
 
     GF_ASSERT(param1->unk_28.unk_04 != NULL);
 
     v0 = &param1->unk_28;
 
-    MI_CpuClear8(&v0->unk_00, sizeof(UnkStruct_ov16_022674C4_sub1));
+    MI_CpuClear8(&v0->unk_00, sizeof(u8));
 
     v0->unk_0C = param0;
     v0->unk_4C = param2->unk_00;
@@ -1080,7 +1077,7 @@ void ov16_0225DD44 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 
     param1->unk_28.unk_4A = param2->unk_01;
 
-    ov16_02267084(&param1->unk_28, param1->unk_28.unk_28, (1 << 8));
+    Healthbar_Draw(&param1->unk_28, param1->unk_28.unk_28, (1 << 8));
     ClearCommand(param0, param1->battler, param2->unk_00);
 }
 
@@ -1221,15 +1218,15 @@ void ov16_0225DF6C (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 
 void ov16_0225E008 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C468 * param2)
 {
-    UnkStruct_ov16_022674C4 * v0;
+    Healthbar * v0;
 
     v0 = &param1->unk_28;
 
-    MI_CpuClearFast(&v0->unk_00, sizeof(UnkStruct_ov16_022674C4_sub1));
+    MI_CpuClearFast(&v0->unk_00, sizeof(u8));
 
     v0->unk_0C = param0;
     v0->unk_24 = param1->battler;
-    v0->unk_25 = ov16_0226825C(param1->battlerType, BattleSystem_BattleType(param0));
+    v0->unk_25 = Healthbar_Type(param1->battlerType, BattleSystem_BattleType(param0));
     v0->unk_4C = param2->unk_00;
     v0->unk_28 = param2->unk_02;
     v0->unk_2C = param2->unk_04;
@@ -1243,7 +1240,7 @@ void ov16_0225E008 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     v0->unk_4B = param2->unk_07_7;
     v0->unk_27 = param2->unk_10;
 
-    ov16_02267084(v0, v0->unk_28, 0xffffffff ^ (1 << 5));
+    Healthbar_Draw(v0, v0->unk_28, 0xffffffff ^ (1 << 5));
     ClearCommand(v0->unk_0C, v0->unk_24, v0->unk_4C);
 }
 
@@ -2812,49 +2809,75 @@ static void ov16_02260384 (SysTask * param0, void * param1)
     }
 }
 
-static void ov16_0226040C (SysTask * param0, void * param1)
-{
-    UnkStruct_ov16_022674C4 * v0 = param1;
+enum {
+    SLIDE_HEALTHBAR_IN_STATE_ENABLE = 0,
+    SLIDE_HEALTHBAR_IN_STATE_WAIT,
+    SLIDE_HEALTHBAR_IN_STATE_DONE,
+};
 
-    switch (v0->unk_00.unk_00) {
-    case 0:
-        if (v0->unk_4D > 0) {
-            v0->unk_4D--;
+/**
+ * @brief Slide the healthbar in, then wait until it is done.
+ * 
+ * @param task 
+ * @param data 
+ */
+static void SlideHealthbarInTask(SysTask *task, void *data)
+{
+    Healthbar *healthbar = data;
+
+    switch (healthbar->unk_00) {
+    case SLIDE_HEALTHBAR_IN_STATE_ENABLE:
+        if (healthbar->unk_4D > 0) {
+            healthbar->unk_4D--;
             break;
         }
 
-        ov16_022676A8(v0, 0);
-        ov16_02267620(v0, 1);
-        v0->unk_00.unk_00++;
+        Healthbar_SetScrollEffect(healthbar, 0);
+        Healthbar_Enable(healthbar, TRUE);
+        healthbar->unk_00++;
         break;
-    case 1:
-        if (v0->unk_4F_1 == 1) {
-            v0->unk_00.unk_00++;
+
+    case SLIDE_HEALTHBAR_IN_STATE_WAIT:
+        if (healthbar->unk_4F_1 == 1) {
+            healthbar->unk_00++;
         }
         break;
+
     default:
-        ClearCommand(v0->unk_0C, v0->unk_24, v0->unk_4C);
-        v0->unk_10 = NULL;
-        SysTask_Done(param0);
+        ClearCommand(healthbar->unk_0C, healthbar->unk_24, healthbar->unk_4C);
+        healthbar->unk_10 = NULL;
+        SysTask_Done(task);
         break;
     }
 }
 
-static void ov16_02260480 (SysTask * param0, void * param1)
-{
-    UnkStruct_ov16_022674C4 * v0 = param1;
+enum {
+    SLIDE_HEALTHBAR_OUT_STATE_WAIT = 0,
+    SLIDE_HEALTHBAR_OUT_STATE_DONE,
+};
 
-    switch (v0->unk_00.unk_00) {
-    case 0:
-        if (v0->unk_4F_1 == 1) {
-            v0->unk_00.unk_00++;
+/**
+ * @brief Wait until the healthbar has slid out.
+ * 
+ * @param task 
+ * @param data 
+ */
+static void SlideHealthbarOutTask(SysTask *task, void *data)
+{
+    Healthbar *healthbar = data;
+
+    switch (healthbar->unk_00) {
+    case SLIDE_HEALTHBAR_OUT_STATE_WAIT:
+        if (healthbar->unk_4F_1 == TRUE) {
+            healthbar->unk_00++;
         }
         break;
+
     default:
-        ClearCommand(v0->unk_0C, v0->unk_24, v0->unk_4C);
-        v0->unk_10 = NULL;
-        SysTask_Done(param0);
-        ov16_02267620(v0, 0);
+        ClearCommand(healthbar->unk_0C, healthbar->unk_24, healthbar->unk_4C);
+        healthbar->unk_10 = NULL;
+        SysTask_Done(task);
+        Healthbar_Enable(healthbar, FALSE);
         break;
     }
 }
@@ -2867,7 +2890,7 @@ static void ov16_022604C8 (SysTask * param0, void * param1)
     BattlerData * v3;
     u32 v4;
     int v5;
-    UnkStruct_ov16_022674C4 * v6;
+    Healthbar * v6;
 
     v0 = (UnkStruct_ov16_0225D5B8 *)param1;
     v1 = BattleSystem_BGL(v0->unk_00);
@@ -3225,7 +3248,7 @@ static void ov16_02260C00 (SysTask * param0, void * param1)
     BGL * v1 = BattleSystem_BGL(v0->unk_00);
     UnkStruct_ov16_02268A14 * v2;
     int v3;
-    UnkStruct_ov16_022674C4 * v4;
+    Healthbar * v4;
     BattlerData * v5;
 
     v2 = ov16_0223E02C(v0->unk_00);
@@ -3408,7 +3431,7 @@ static void ov16_02260F14 (SysTask * param0, void * param1)
     BGL * v1 = BattleSystem_BGL(v0->unk_00);
     UnkStruct_ov16_02268A14 * v2;
     int v3;
-    UnkStruct_ov16_022674C4 * v4;
+    Healthbar * v4;
     BattlerData * v5;
 
     v5 = BattleSystem_BattlerData(v0->unk_00, v0->unk_0D);
@@ -3933,7 +3956,7 @@ static void ov16_022611DC (SysTask * param0, void * param1)
         break;
     case 21:
     {
-        UnkStruct_ov16_022674C4 * v18;
+        Healthbar * v18;
         Pokemon * v19;
         int v20;
         int v21;
@@ -3942,8 +3965,8 @@ static void ov16_022611DC (SysTask * param0, void * param1)
         v21 = v0->unk_08->unk_04->unk_2C[v0->unk_08->unk_04->unk_11];
 
         v18 = ov16_0223F35C(v0->unk_00, v20);
-        MI_CpuClear8(&v18->unk_00, sizeof(UnkStruct_ov16_022674C4_sub1));
-        v18->unk_25 = ov16_0226825C(BattleSystem_BattlerSlot(v0->unk_00, v20), BattleSystem_BattleType(v0->unk_00));
+        MI_CpuClear8(&v18->unk_00, sizeof(u8));
+        v18->unk_25 = Healthbar_Type(BattleSystem_BattlerSlot(v0->unk_00, v20), BattleSystem_BattleType(v0->unk_00));
 
         v19 = BattleSystem_PartyPokemon(v0->unk_00, v20, v21);
         v18->unk_28 = Pokemon_GetValue(v19, MON_DATA_CURRENT_HP, NULL) - v0->unk_08->unk_04->unk_20;
@@ -3960,14 +3983,14 @@ static void ov16_022611DC (SysTask * param0, void * param1)
         break;
     case 22:
     {
-        UnkStruct_ov16_022674C4 * v22;
+        Healthbar * v22;
         int v23;
 
         v23 = v0->unk_08->unk_04->unk_11 * 2;
         v22 = ov16_0223F35C(v0->unk_00, v23);
 
         if (ov16_022674F8(v22) == -1) {
-            ov16_02267084(v22, NULL, (1 << 8));
+            Healthbar_Draw(v22, NULL, (1 << 8));
             v0->unk_0E++;
         }
     }
@@ -4000,7 +4023,7 @@ static void ov16_022611DC (SysTask * param0, void * param1)
     break;
     case 29:
     {
-        UnkStruct_ov16_022674C4 * v27;
+        Healthbar * v27;
         int v28;
         MessageLoader * v29;
         BattleMessage v30;
@@ -4018,7 +4041,7 @@ static void ov16_022611DC (SysTask * param0, void * param1)
             v27->unk_4A = 0;
         }
 
-        ov16_02267084(v27, v27->unk_28, (1 << 8));
+        Healthbar_Draw(v27, v27->unk_28, (1 << 8));
 
         v30.tags = 2;
         v30.params[0] = v28 | (v0->unk_08->unk_0C[v28] << 8);
@@ -4441,7 +4464,7 @@ static void ov16_022623F0 (SysTask * param0, void * param1)
     BGL * v1 = BattleSystem_BGL(v0->unk_00);
     UnkStruct_ov16_02268A14 * v2 = ov16_0223E02C(v0->unk_00);
     int v3;
-    UnkStruct_ov16_022674C4 * v4;
+    Healthbar * v4;
     BattlerData * v5;
 
     v5 = BattleSystem_BattlerData(v0->unk_00, v0->unk_0D);
@@ -4732,18 +4755,18 @@ static void ov16_0226292C (SysTask * param0, void * param1)
 
 static void ov16_02262988 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov16_022674C4 * v0 = param1;
+    Healthbar * v0 = param1;
     int v1;
 
-    switch (v0->unk_00.unk_00) {
+    switch (v0->unk_00) {
     case 0:
         ov16_022674C4(v0, v0->unk_30);
-        v0->unk_00.unk_00++;
+        v0->unk_00++;
     case 1:
         v1 = ov16_022674F8(v0);
 
         if (v1 == -1) {
-            v0->unk_00.unk_00++;
+            v0->unk_00++;
         }
         break;
     default:
@@ -4756,15 +4779,15 @@ static void ov16_02262988 (SysTask * param0, void * param1)
 
 static void ov16_022629DC (SysTask * param0, void * param1)
 {
-    UnkStruct_ov16_022674C4 * v0 = param1;
+    Healthbar * v0 = param1;
     int v1;
 
-    switch (v0->unk_00.unk_00) {
+    switch (v0->unk_00) {
     case 0:
         v0->unk_4E = 0;
         Sound_PlayEffect(1803);
         ov16_0226752C(v0, v0->unk_40);
-        v0->unk_00.unk_00++;
+        v0->unk_00++;
     case 1:
         if (v0->unk_4E < 8) {
             v0->unk_4E++;
@@ -4775,9 +4798,9 @@ static void ov16_022629DC (SysTask * param0, void * param1)
         if (v1 == -1) {
             if (v0->unk_4E >= 8) {
                 sub_020057A4(1803, 0);
-                v0->unk_00.unk_00 = 100;
+                v0->unk_00 = 100;
             } else {
-                v0->unk_00.unk_00++;
+                v0->unk_00++;
             }
         }
         break;
@@ -4786,7 +4809,7 @@ static void ov16_022629DC (SysTask * param0, void * param1)
 
         if (v0->unk_4E >= 8) {
             sub_020057A4(1803, 0);
-            v0->unk_00.unk_00 = 100;
+            v0->unk_00 = 100;
         }
         break;
     default:
@@ -5701,7 +5724,7 @@ Sprite * ov16_02263AFC (BattlerData * param0)
     }
 }
 
-UnkStruct_ov16_022674C4 * ov16_02263B08 (BattlerData * param0)
+Healthbar * ov16_02263B08 (BattlerData * param0)
 {
     return &param0->unk_28;
 }
