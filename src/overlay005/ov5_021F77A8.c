@@ -48,7 +48,7 @@ typedef struct {
 } UnkStruct_ov5_02200EAC;
 
 // I've got next to zero clue what this horseshit does. All I know is that there's one for every species + form, so it's important when increasing the pokedex size
-const UnkStruct_ov5_02200EAC Unk_ov5_02200EAC[FORMS_MAX] = {
+const UnkStruct_ov5_02200EAC Unk_ov5_02200EAC[MOVESET_MAX] = {
 	{ 0x6, 0x20, 0x10, 0x8, 0x4 },	    // 1
 	{ 0x6, 0x20, 0x10, 0x8, 0x4 },	    // 2
 	{ 0x6, 0x20, 0x14, 0x8, 0x4 },	    // 3
@@ -804,44 +804,44 @@ static u8 ov5_021F7A74 (Pokemon * param0, u8 param1)
     v0 = v2;
 
     switch (v2) {
-	case SPECIES_DEOXYS:
-		if (v1 == 1) {
-			v0 = FORM_DEOXYS_ATTACK;
-		} else if (v1 == 2) {
-			v0 = FORM_DEOXYS_DEFENSE;
-		} else if (v1 == 3) {
-			v0 = FORM_DEOXYS_SPEED;
-		}
-        break;
-	case SPECIES_WORMADAM:
-		if (v1 == 1) {
-            v0 = FORM_WORMADAM_SANDY;
+    case SPECIES_DEOXYS:
+        if (v1 == 1) {
+            v0 = MOVESET_FORM_DEOXYS_ATTACK;
         } else if (v1 == 2) {
-			v0 = FORM_WORMADAM_TRASH;
-		}
-        break;
-	case SPECIES_GIRATINA:
-		if (v1 == 1) {
-            v0 = FORM_GIRATINA_ORIGIN;
+            v0 = MOVESET_FORM_DEOXYS_DEFENSE;
+        } else if (v1 == 3) {
+            v0 = MOVESET_FORM_DEOXYS_SPEED;
         }
         break;
-	case SPECIES_SHAYMIN:
-		if (v1 == 1) {
-            v0 = FORM_SHAYMIN_SKY;
+    case SPECIES_WORMADAM:
+        if (v1 == 1) {
+            v0 = MOVESET_FORM_WORMADAM_SANDY;
+        } else if (v1 == 2) {
+            v0 = MOVESET_FORM_WORMADAM_TRASH;
         }
         break;
-	case SPECIES_ROTOM:
-		if (v1 == 1) {
-            v0 = FORM_ROTOM_HEAT;
+    case SPECIES_GIRATINA:
+        if (v1 == 1) {
+            v0 = MOVESET_FORM_GIRATINA_ORIGIN;
+        }
+        break;
+    case SPECIES_SHAYMIN:
+        if (v1 == 1) {
+            v0 = MOVESET_FORM_SHAYMIN_SKY;
+        }
+        break;
+    case SPECIES_ROTOM:
+        if (v1 == 1) {
+            v0 = MOVESET_FORM_ROTOM_HEAT;
         } else if (v1 == 2) {
-			v0 = FORM_ROTOM_WASH;
-		} else if (v1 == 3) {
-			v0 = FORM_ROTOM_FROST;
-		} else if (v1 == 4) {
-			v0 = FORM_ROTOM_FAN;
-		} else if (v1 == 5) {
-			v0 = FORM_ROTOM_MOW;
-		}
+            v0 = MOVESET_FORM_ROTOM_WASH;
+        } else if (v1 == 3) {
+            v0 = MOVESET_FORM_ROTOM_FROST;
+        } else if (v1 == 4) {
+            v0 = MOVESET_FORM_ROTOM_FAN;
+        } else if (v1 == 5) {
+            v0 = MOVESET_FORM_ROTOM_MOW;
+        }
         break;
     }
 

@@ -36,7 +36,6 @@ SCHEMA = j2b.Parser() \
 
 NATIONAL_DEX_COUNT = 493
 
-# I'm not sure if this is correct? The form indices in-game are offset at NATIONAL_DEX_COUNT, not SPECIES_BAD_EGG
 FORM_INDICES = {
     'DEOXYS' : {
         'ATTACK': NATIONAL_DEX_COUNT + 3,
