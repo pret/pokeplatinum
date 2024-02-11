@@ -3804,21 +3804,21 @@ u8 Party_GetMaxLevel(Party *party)
     return result;
 }
 
-u16 Pokemon_GetSinnohDexNumber(u16 monNatDexNumber)
+u16 Pokemon_SinnohDexNumber(u16 species)
 {
     u16 result;
 
-    NARC_ReadFromMemberByIndexPair(&result, NARC_INDEX_POKETOOL__PL_POKEZUKAN, 0, monNatDexNumber * 2, 2);
+    NARC_ReadFromMemberByIndexPair(&result, NARC_INDEX_POKETOOL__PL_POKEZUKAN, 0, species * 2, 2);
 
     return result;
 }
 
-u16 Pokemon_GetNationalDexNumber(u16 monSinnohDexNumber)
+u16 Pokemon_NationalDexNumber(u16 sinnohDexNumber)
 {
     u16 result = 0;
 
-    if (monSinnohDexNumber <= 210) {
-        NARC_ReadFromMemberByIndexPair(&result, NARC_INDEX_POKETOOL__SHINZUKAN, 0, monSinnohDexNumber * 2, 2);
+    if (sinnohDexNumber <= 210) {
+        NARC_ReadFromMemberByIndexPair(&result, NARC_INDEX_POKETOOL__SHINZUKAN, 0, sinnohDexNumber * 2, 2);
     }
 
     return result;

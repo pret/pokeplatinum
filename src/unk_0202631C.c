@@ -816,7 +816,7 @@ u16 sub_02026E64 (const UnkStruct_02026324 * param0)
 
     for (v0 = 1; v0 <= 493; v0++) {
         if (Pokedex_CaughtSpecies(param0, v0) == 1) {
-            if (Pokemon_GetSinnohDexNumber(v0) != 0) {
+            if (Pokemon_SinnohDexNumber(v0) != 0) {
                 v1++;
             }
         }
@@ -835,7 +835,7 @@ u16 sub_02026EAC (const UnkStruct_02026324 * param0)
 
     for (v0 = 1; v0 <= 493; v0++) {
         if (sub_02026FE8(param0, v0) == 1) {
-            if (Pokemon_GetSinnohDexNumber(v0) != 0) {
+            if (Pokemon_SinnohDexNumber(v0) != 0) {
                 v1++;
             }
         }
@@ -898,7 +898,7 @@ u16 sub_02026F58 (const UnkStruct_02026324 * param0)
 
     for (v0 = 1; v0 <= 493; v0++) {
         if (sub_02026FE8(param0, v0) == 1) {
-            v2 = Pokemon_GetSinnohDexNumber(v0);
+            v2 = Pokemon_SinnohDexNumber(v0);
 
             if (v2 != 0) {
                 if (sub_02026D68(v0) == 1) {

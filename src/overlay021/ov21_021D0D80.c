@@ -707,7 +707,7 @@ Window * ov21_021D172C (UnkStruct_ov21_021D4C0C * param0, int param1, int param2
     Window * v0;
     int v1;
 
-    v1 = Pokemon_GetSinnohDexNumber(param2);
+    v1 = Pokemon_SinnohDexNumber(param2);
 
     if ((param2 != 377) && (param2 != 378) && (param2 != 379)) {
         GF_ASSERT(v1 > 0);

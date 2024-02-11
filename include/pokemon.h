@@ -787,19 +787,19 @@ u8 Party_GetMaxLevel(Party *party);
 /**
  * @brief Gets the Sinnoh Pokedex number of a pokemon from its National Pokedex number
  * 
- * @param monNatDexNumber The National Pokedex number of a pokemon
+ * @param species The National Pokedex number of a pokemon
  * @return The Sinnoh Pokedex number of that pokemon (or zero if none exists)
  */
-u16 Pokemon_GetSinnohDexNumber(u16 monNatDexNumber);
+u16 Pokemon_SinnohDexNumber(u16 species);
 
 /**
  * @brief Gets the National Pokedex number of a pokemon from its Sinnoh Pokedex number
  * (Note: Inputting 0 here will return 493 (Arceus))
  * 
- * @param monSinnohDexNumber The Sinnoh Pokedex number of a pokemon
+ * @param sinnohDexNumber The Sinnoh Pokedex number of a pokemon
  * @return The National Pokedex number of that pokemon (or zero if none exists)
  */
-u16 Pokemon_GetNationalDexNumber(u16 monSinnohDexNumber);
+u16 Pokemon_NationalDexNumber(u16 sinnohDexNumber);
 
 void Pokemon_Copy(Pokemon *src, Pokemon *dest);
 void BoxPokemon_Copy(BoxPokemon *src, BoxPokemon *dest);
