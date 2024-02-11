@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include <cstdlib>
+#include <stdlib.h>
 
 #include "assert.h"
 
@@ -37,7 +37,7 @@
 #include "pokemon.h"
 #include "unk_0208C098.h"
 #include "overlay016/ov16_0223DF00.h"
-#include "overlay016/ov16_02266F1C.h"
+#include "battle/healthbar.h"
 
 typedef struct {
     u16 unk_00;

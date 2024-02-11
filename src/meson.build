@@ -537,7 +537,7 @@ pokeplatinum_c = files(
     'overlay016/battle_display.c',
     'overlay016/ov16_02264798.c',
     'overlay016/battle_io.c',
-    'overlay016/ov16_02266F1C.c',
+    'overlay016/healthbar.c',
     'overlay016/ov16_02268520.c',
     'overlay016/ov16_0226871C.c',
     'overlay016/party_gauge.c',

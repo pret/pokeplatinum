@@ -150,7 +150,7 @@
 #include "battle/battle_display.h"
 #include "overlay016/ov16_02264798.h"
 #include "battle/battle_io.h"
-#include "overlay016/ov16_02266F1C.h"
+#include "battle/healthbar.h"
 #include "overlay016/ov16_0226871C.h"
 #include "battle/party_gauge.h"
 
