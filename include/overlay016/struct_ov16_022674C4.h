@@ -7,10 +7,10 @@
 #include "struct_decls/battle_system.h"
 
 typedef struct {
-    u8 unk_00;
-    CellActorData * unk_04;
-    CellActorData * unk_08;
-    BattleSystem * unk_0C;
+    u8 state;
+    CellActorData *mainActor;
+    CellActorData *arrowActor;
+    BattleSystem *battleSys;
     SysTask * unk_10;
     Window unk_14;
     u8 unk_24;

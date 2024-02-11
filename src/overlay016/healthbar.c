@@ -457,7 +457,7 @@ void Healthbar_Draw (Healthbar * param0, u32 param1, u32 param2)
     int v0 = 0;
     u32 v1;
 
-    GF_ASSERT(param0->unk_04 != NULL);
+    GF_ASSERT(param0->mainActor != NULL);
 
     v1 = param2;
 
@@ -494,7 +494,7 @@ void Healthbar_Draw (Healthbar * param0, u32 param1, u32 param2)
         break;
     }
 
-    if (BattleSystem_BattleType(param0->unk_0C) & 0x1) {
+    if (BattleSystem_BattleType(param0->battleSys) & 0x1) {
         param2 &= 0xffffffff ^ ((1 << 9));
     }
 
@@ -572,22 +572,22 @@ void ov16_02267220 (Healthbar * param0)
         param0->unk_50 = NULL;
     }
 
-    if (param0->unk_04 == NULL) {
+    if (param0->mainActor == NULL) {
         return;
     }
 
-    sub_0200D0F4(param0->unk_04);
-    param0->unk_04 = NULL;
+    sub_0200D0F4(param0->mainActor);
+    param0->mainActor = NULL;
 }
 
 static void ov16_02267244 (Healthbar * param0)
 {
-    if (param0->unk_08 == NULL) {
+    if (param0->arrowActor == NULL) {
         return;
     }
 
-    sub_0200D0F4(param0->unk_08);
-    param0->unk_08 = NULL;
+    sub_0200D0F4(param0->arrowActor);
+    param0->arrowActor = NULL;
 }
 
 void ov16_02267258 (Healthbar * param0)
@@ -597,8 +597,8 @@ void ov16_02267258 (Healthbar * param0)
     const SpriteTemplate * v2;
 
     v2 = ov16_022682B0(param0->unk_25);
-    v0 = ov16_0223E010(param0->unk_0C);
-    v1 = ov16_0223E018(param0->unk_0C);
+    v0 = ov16_0223E010(param0->battleSys);
+    v1 = ov16_0223E018(param0->battleSys);
 
     SpriteGfxHandler_UnloadCharObjById(v1, v2->resources[0]);
     SpriteGfxHandler_UnloadCellObjById(v1, v2->resources[2]);
@@ -617,8 +617,8 @@ static void ov16_0226728C (Healthbar * param0)
         return;
     }
 
-    v0 = ov16_0223E010(param0->unk_0C);
-    v1 = ov16_0223E018(param0->unk_0C);
+    v0 = ov16_0223E010(param0->battleSys);
+    v1 = ov16_0223E018(param0->battleSys);
 
     SpriteGfxHandler_UnloadCharObjById(v1, v2->resources[0]);
     SpriteGfxHandler_UnloadCellObjById(v1, v2->resources[2]);
@@ -634,18 +634,18 @@ void ov16_022672C4 (Healthbar * param0)
     NARC * v4;
 
     v4 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
-    v1 = ov16_0223E010(param0->unk_0C);
-    v2 = ov16_0223E018(param0->unk_0C);
-    v3 = BattleSystem_PaletteSys(param0->unk_0C);
+    v1 = ov16_0223E010(param0->battleSys);
+    v2 = ov16_0223E018(param0->battleSys);
+    v3 = BattleSystem_PaletteSys(param0->battleSys);
     v0 = ov16_022682B0(param0->unk_25);
 
     ov16_02266F1C(v1, v2, v4, v3, param0->unk_25);
-    param0->unk_04 = ov16_02267060(v1, v2, param0->unk_25);
+    param0->mainActor = ov16_02267060(v1, v2, param0->unk_25);
 
     ov16_02266FE4(v1, v2, v4, v3, param0->unk_25);
 
-    if (param0->unk_08 != NULL) {
-        sub_0200D494(param0->unk_08->unk_00, v0->x - Unk_ov16_0226F334[param0->unk_25], v0->y + 0);
+    if (param0->arrowActor != NULL) {
+        sub_0200D494(param0->arrowActor->unk_00, v0->x - Unk_ov16_0226F334[param0->unk_25], v0->y + 0);
     }
 
     NARC_dtor(v4);
@@ -676,7 +676,7 @@ void ov16_0226737C (Healthbar * param0)
     param0->unk_4F_3 ^= 1;
 
     v2 = G2_GetOBJCharPtr();
-    v1 = sub_02021F98(param0->unk_04->unk_00);
+    v1 = sub_02021F98(param0->mainActor->unk_00);
 
     if (param0->unk_4F_3 == 1) {
         v0 = ov16_02268250(70);
@@ -779,21 +779,21 @@ s32 ov16_02267560 (Healthbar * param0)
 
 void ov16_0226757C (Healthbar * param0)
 {
-    if (param0->unk_08 != NULL) {
-        sub_02021CC8(param0->unk_08->unk_00, 1);
+    if (param0->arrowActor != NULL) {
+        sub_02021CC8(param0->arrowActor->unk_00, 1);
         ov16_022675F8(param0, 1);
     }
 
-    if ((BattleSystem_BattleType(param0->unk_0C) & (0x20 | 0x200)) == 0) {
+    if ((BattleSystem_BattleType(param0->battleSys) & (0x20 | 0x200)) == 0) {
         ov16_02268470(param0);
     }
 }
 
 void ov16_022675AC (Healthbar * param0)
 {
-    if (param0->unk_08 != NULL) {
-        sub_02021CC8(param0->unk_08->unk_00, 0);
-        SpriteActor_SetAnimFrame(param0->unk_08->unk_00, 0);
+    if (param0->arrowActor != NULL) {
+        sub_02021CC8(param0->arrowActor->unk_00, 0);
+        SpriteActor_SetAnimFrame(param0->arrowActor->unk_00, 0);
         ov16_022675F8(param0, 0);
     }
 
@@ -802,35 +802,35 @@ void ov16_022675AC (Healthbar * param0)
 
 void ov16_022675D8 (Healthbar * param0, int param1)
 {
-    if (param0->unk_04 == NULL) {
+    if (param0->mainActor == NULL) {
         return;
     }
 
-    sub_0200D460(param0->unk_04, param1);
+    sub_0200D460(param0->mainActor, param1);
 
-    if (param0->unk_08 != NULL) {
-        sub_0200D460(param0->unk_08, param1);
+    if (param0->arrowActor != NULL) {
+        sub_0200D460(param0->arrowActor, param1);
     }
 }
 
 static void ov16_022675F8 (Healthbar * param0, int param1)
 {
-    if (param0->unk_08 != NULL) {
-        if ((BattleSystem_BattleType(param0->unk_0C) & (0x20 | 0x200)) && (param1 == 1)) {
+    if (param0->arrowActor != NULL) {
+        if ((BattleSystem_BattleType(param0->battleSys) & (0x20 | 0x200)) && (param1 == 1)) {
             (void)0;
         } else {
-            SpriteActor_EnableObject(param0->unk_08, param1);
+            SpriteActor_EnableObject(param0->arrowActor, param1);
         }
     }
 }
 
 void Healthbar_Enable (Healthbar * param0, int param1)
 {
-    if (param0->unk_04 == NULL) {
+    if (param0->mainActor == NULL) {
         return;
     }
 
-    SpriteActor_EnableObject(param0->unk_04, param1);
+    SpriteActor_EnableObject(param0->mainActor, param1);
     ov16_022675F8(param0, param1);
 }
 
@@ -838,20 +838,20 @@ void ov16_0226763C (Healthbar * param0, int param1, int param2)
 {
     const SpriteTemplate * v0;
 
-    GF_ASSERT(param0->unk_04 != NULL);
+    GF_ASSERT(param0->mainActor != NULL);
     v0 = ov16_022682B0(param0->unk_25);
 
-    sub_0200D494(param0->unk_04->unk_00, v0->x + param1, v0->y + param2);
+    sub_0200D494(param0->mainActor->unk_00, v0->x + param1, v0->y + param2);
 
-    if (param0->unk_08 != NULL) {
-        sub_0200D494(param0->unk_08->unk_00, v0->x + param1 - Unk_ov16_0226F334[param0->unk_25], v0->y + param2 + 0);
+    if (param0->arrowActor != NULL) {
+        sub_0200D494(param0->arrowActor->unk_00, v0->x + param1 - Unk_ov16_0226F334[param0->unk_25], v0->y + param2 + 0);
     }
 }
 
 void Healthbar_SetScrollEffect (Healthbar * param0, int param1)
 {
     GF_ASSERT(param0 != NULL);
-    GF_ASSERT(param0->unk_04 != NULL);
+    GF_ASSERT(param0->mainActor != NULL);
 
     param0->unk_4F_1 = 0;
     param0->unk_4F_0 = param1;
@@ -886,7 +886,7 @@ static void ov16_0226774C (SysTask * param0, void * param1)
     v4 = 0;
     v3 = ov16_022682B0(v0->unk_25);
 
-    SpriteActor_GetSpritePositionXY(v0->unk_04, &v1, &v2);
+    SpriteActor_GetSpritePositionXY(v0->mainActor, &v1, &v2);
 
     switch (v0->unk_25) {
     case 0:
@@ -929,10 +929,10 @@ static void ov16_0226774C (SysTask * param0, void * param1)
         break;
     }
 
-    SpriteActor_SetSpritePositionXY(v0->unk_04, v1, v2);
+    SpriteActor_SetSpritePositionXY(v0->mainActor, v1, v2);
 
-    if (v0->unk_08 != NULL) {
-        SpriteActor_SetSpritePositionXY(v0->unk_08, v1 - Unk_ov16_0226F334[v0->unk_25], v2 + 0);
+    if (v0->arrowActor != NULL) {
+        SpriteActor_SetSpritePositionXY(v0->arrowActor, v1 - Unk_ov16_0226F334[v0->unk_25], v2 + 0);
     }
 
     if (v4 > 0) {
@@ -954,12 +954,12 @@ static void ov16_02267864 (Healthbar * param0)
     BoxPokemon * v8;
     UnkStruct_0200B358 * v9;
 
-    v0 = BattleSystem_BGL(param0->unk_0C);
-    v4 = BattleSystem_MessageLoader(param0->unk_0C);
-    v9 = ov16_0223E0D0(param0->unk_0C);
+    v0 = BattleSystem_BGL(param0->battleSys);
+    v4 = BattleSystem_MessageLoader(param0->battleSys);
+    v9 = ov16_0223E0D0(param0->battleSys);
     v5 = Strbuf_Init((12 + (5 * 2)), 5);
     v6 = MessageLoader_GetNewStrbuf(v4, 964);
-    v7 = BattleSystem_PartyPokemon(param0->unk_0C, param0->unk_24, param0->unk_26);
+    v7 = BattleSystem_PartyPokemon(param0->battleSys, param0->unk_24, param0->unk_26);
     v8 = Pokemon_GetBoxPokemon(v7);
 
     sub_0200B5CC(v9, 0, v8);
@@ -974,7 +974,7 @@ static void ov16_02267864 (Healthbar * param0)
         u8 * v11, * v12;
 
         v10 = G2_GetOBJCharPtr();
-        v2 = sub_02021F98(param0->unk_04->unk_00);
+        v2 = sub_02021F98(param0->mainActor->unk_00);
         v11 = v1;
         v12 = &v1[8 * 0x20];
 
@@ -1015,7 +1015,7 @@ static void ov16_022679C8 (Healthbar * param0)
         void * v5;
 
         v5 = G2_GetOBJCharPtr();
-        v0 = sub_02021F98(param0->unk_04->unk_00);
+        v0 = sub_02021F98(param0->mainActor->unk_00);
 
         MI_CpuCopy16(v2, (void *)((u32)v5 + Unk_ov16_0226F47C[param0->unk_25][0].unk_00 + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F47C[param0->unk_25][0].unk_02);
         MI_CpuCopy16(v1, (void *)((u32)v5 + Unk_ov16_0226F47C[param0->unk_25][1].unk_00 + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F47C[param0->unk_25][1].unk_02);
@@ -1033,14 +1033,14 @@ static void ov16_02267A4C (Healthbar * param0)
     v1 = Heap_AllocFromHeap(5, v3 * 2);
 
     MI_CpuFill8(v0, 0xf | (0xf << 4), v3);
-    sub_0200C67C(ov16_0223E054(param0->unk_0C), param0->unk_48, 3, 0, v0);
+    sub_0200C67C(ov16_0223E054(param0->battleSys), param0->unk_48, 3, 0, v0);
 
     {
         void * v7;
         u8 * v8, * v9;
 
         v7 = G2_GetOBJCharPtr();
-        v2 = sub_02021F98(param0->unk_04->unk_00);
+        v2 = sub_02021F98(param0->mainActor->unk_00);
 
         MI_CpuCopy16((void *)((u32)v7 + Unk_ov16_0226F3EC[param0->unk_25][0].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), v1, Unk_ov16_0226F3EC[param0->unk_25][0].unk_02);
         MI_CpuCopy16((void *)((u32)v7 + Unk_ov16_0226F3EC[param0->unk_25][1].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), &v1[v3], Unk_ov16_0226F3EC[param0->unk_25][1].unk_02);
@@ -1076,14 +1076,14 @@ static void ov16_02267B6C (Healthbar * param0, u32 param1)
     v0 = Heap_AllocFromHeap(5, 3 * 0x20);
 
     MI_CpuFill8(v0, 0xf | (0xf << 4), 3 * 0x20);
-    sub_0200C67C(ov16_0223E04C(param0->unk_0C), param1, 3, 1, v0);
+    sub_0200C67C(ov16_0223E04C(param0->battleSys), param1, 3, 1, v0);
 
     {
         void * v2;
         u8 * v3;
 
         v2 = G2_GetOBJCharPtr();
-        v1 = sub_02021F98(param0->unk_04->unk_00);
+        v1 = sub_02021F98(param0->mainActor->unk_00);
         v3 = v0;
 
         MI_CpuCopy16(v3, (void *)((u32)v2 + Unk_ov16_0226F41C[param0->unk_25][0].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F41C[param0->unk_25][0].unk_02);
@@ -1101,14 +1101,14 @@ static void ov16_02267BF8 (Healthbar * param0)
     v0 = Heap_AllocFromHeap(5, 3 * 0x20);
 
     MI_CpuFill8(v0, 0xf | (0xf << 4), 3 * 0x20);
-    sub_0200C67C(ov16_0223E04C(param0->unk_0C), param0->unk_2C, 3, 0, v0);
+    sub_0200C67C(ov16_0223E04C(param0->battleSys), param0->unk_2C, 3, 0, v0);
 
     {
         void * v2;
         u8 * v3;
 
         v2 = G2_GetOBJCharPtr();
-        v1 = sub_02021F98(param0->unk_04->unk_00);
+        v1 = sub_02021F98(param0->mainActor->unk_00);
         v3 = v0;
 
         MI_CpuCopy16(v3, (void *)((u32)v2 + Unk_ov16_0226F3BC[param0->unk_25].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3BC[param0->unk_25].unk_02);
@@ -1132,7 +1132,7 @@ static void ov16_02267C58 (Healthbar * param0)
         void * v2;
 
         v2 = G2_GetOBJCharPtr();
-        v0 = sub_02021F98(param0->unk_04->unk_00);
+        v0 = sub_02021F98(param0->mainActor->unk_00);
 
         MI_CpuCopy16(v1, (void *)((u32)v2 + Unk_ov16_0226F38C[param0->unk_25].unk_00 + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F38C[param0->unk_25].unk_02);
     }
@@ -1149,7 +1149,7 @@ static void ov16_02267CA8 (Healthbar * param0, int param1)
         void * v2;
 
         v2 = G2_GetOBJCharPtr();
-        v0 = sub_02021F98(param0->unk_04->unk_00);
+        v0 = sub_02021F98(param0->mainActor->unk_00);
 
         MI_CpuCopy16(v1, (void *)((u32)v2 + Unk_ov16_0226F35C[param0->unk_25].unk_00 + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F35C[param0->unk_25].unk_02);
     }
@@ -1164,8 +1164,8 @@ static void ov16_02267CE8 (Healthbar * param0, u32 param1)
     MessageLoader * v4;
     Strbuf* v5;
 
-    v0 = BattleSystem_BGL(param0->unk_0C);
-    v4 = BattleSystem_MessageLoader(param0->unk_0C);
+    v0 = BattleSystem_BGL(param0->battleSys);
+    v4 = BattleSystem_MessageLoader(param0->battleSys);
 
     if (param1 & (1 << 10)) {
         v5 = MessageLoader_GetNewStrbuf(v4, 950);
@@ -1183,7 +1183,7 @@ static void ov16_02267CE8 (Healthbar * param0, u32 param1)
         u8 * v7, * v8;
 
         v6 = G2_GetOBJCharPtr();
-        v2 = sub_02021F98(param0->unk_04->unk_00);
+        v2 = sub_02021F98(param0->mainActor->unk_00);
         v7 = v1;
         v8 = &v1[13 * 0x20];
 
@@ -1208,9 +1208,9 @@ static void ov16_02267DC4 (Healthbar * param0, u32 param1)
     Strbuf* v5, * v6;
     UnkStruct_0200B358 * v7;
 
-    v0 = BattleSystem_BGL(param0->unk_0C);
-    v4 = BattleSystem_MessageLoader(param0->unk_0C);
-    v7 = ov16_0223E0D0(param0->unk_0C);
+    v0 = BattleSystem_BGL(param0->battleSys);
+    v4 = BattleSystem_MessageLoader(param0->battleSys);
+    v7 = ov16_0223E0D0(param0->battleSys);
     v5 = Strbuf_Init(30, 5);
 
     if (param1 & (1 << 10)) {
@@ -1231,7 +1231,7 @@ static void ov16_02267DC4 (Healthbar * param0, u32 param1)
         u8 * v9, * v10;
 
         v8 = G2_GetOBJCharPtr();
-        v2 = sub_02021F98(param0->unk_04->unk_00);
+        v2 = sub_02021F98(param0->mainActor->unk_00);
         v9 = v1;
         v10 = &v1[13 * 0x20];
 
@@ -1294,7 +1294,7 @@ static void ov16_02267F70 (Healthbar * param0, u8 param1)
     int v9;
 
     v7 = G2_GetOBJCharPtr();
-    v8 = sub_02021F98(param0->unk_04->unk_00);
+    v8 = sub_02021F98(param0->mainActor->unk_00);
 
     switch (param1) {
     case 0:
@@ -1622,13 +1622,13 @@ static void ov16_02268380 (SysTask * param0, void * param1)
     int v2;
     PaletteData * v3;
 
-    v1 = ov16_0223E018(v0->unk_00->unk_0C);
-    v3 = BattleSystem_PaletteSys(v0->unk_00->unk_0C);
+    v1 = ov16_0223E018(v0->unk_00->battleSys);
+    v3 = BattleSystem_PaletteSys(v0->unk_00->battleSys);
 
     switch (v0->unk_08) {
     case 0:
         v2 = sub_0200D05C(v1, 20007, NNS_G2D_VRAM_TYPE_2DMAIN);
-        sub_0200D41C(v0->unk_00->unk_04, v2);
+        sub_0200D41C(v0->unk_00->mainActor, v2);
         v0->unk_09 = v2;
         v0->unk_08++;
     case 1:
@@ -1653,7 +1653,7 @@ static void ov16_02268380 (SysTask * param0, void * param1)
         break;
     default:
         v2 = sub_0200D05C(v1, 20006, NNS_G2D_VRAM_TYPE_2DMAIN);
-        sub_0200D41C(v0->unk_00->unk_04, v2);
+        sub_0200D41C(v0->unk_00->mainActor, v2);
 
         (*(v0->unk_04)) = 1;
 
