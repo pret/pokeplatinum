@@ -34,7 +34,14 @@ s32 ov16_02267560(Healthbar * param0);
 void ov16_0226757C(Healthbar * param0);
 void ov16_022675AC(Healthbar * param0);
 void ov16_022675D8(Healthbar * param0, int param1);
-void Healthbar_Enable(Healthbar * param0, int param1);
+
+/**
+ * @brief Enable (or disable) the healthbar.
+ * 
+ * @param battleSys 
+ * @param enable    If TRUE, enable the healthbar; otherwise, disable it.
+ */
+void Healthbar_Enable(Healthbar *battleSys, BOOL enable);
 void ov16_0226763C(Healthbar * param0, int param1, int param2);
 void Healthbar_SetScrollEffect(Healthbar * param0, int param1);
 

@@ -77,7 +77,7 @@ static void ov16_02268380(SysTask * param0, void * param1);
 void ov16_02268470(Healthbar * param0);
 void ov16_02268498(Healthbar * param0);
 static void ov16_022684BC(SysTask * param0, void * param1);
-static void ov16_022675F8(Healthbar * param0, int param1);
+static void Healthbar_EnableArrow(Healthbar * param0, int param1);
 
 __attribute__((aligned(4))) static const s8 Unk_ov16_0226F334[] = {
     0x48,
@@ -781,7 +781,7 @@ void ov16_0226757C (Healthbar * param0)
 {
     if (param0->arrowActor != NULL) {
         sub_02021CC8(param0->arrowActor->unk_00, 1);
-        ov16_022675F8(param0, 1);
+        Healthbar_EnableArrow(param0, 1);
     }
 
     if ((BattleSystem_BattleType(param0->battleSys) & (0x20 | 0x200)) == 0) {
@@ -794,7 +794,7 @@ void ov16_022675AC (Healthbar * param0)
     if (param0->arrowActor != NULL) {
         sub_02021CC8(param0->arrowActor->unk_00, 0);
         SpriteActor_SetAnimFrame(param0->arrowActor->unk_00, 0);
-        ov16_022675F8(param0, 0);
+        Healthbar_EnableArrow(param0, 0);
     }
 
     ov16_02268498(param0);
@@ -813,25 +813,35 @@ void ov16_022675D8 (Healthbar * param0, int param1)
     }
 }
 
-static void ov16_022675F8 (Healthbar * param0, int param1)
+/**
+ * @brief Enable the extended arrow-graphic used by the healthbar for Pokemon battlers.
+ * 
+ * @param battleSys 
+ * @param enable 
+ */
+static void Healthbar_EnableArrow(Healthbar *battleSys, BOOL enable)
 {
-    if (param0->arrowActor != NULL) {
-        if ((BattleSystem_BattleType(param0->battleSys) & (0x20 | 0x200)) && (param1 == 1)) {
-            (void)0;
-        } else {
-            SpriteActor_EnableObject(param0->arrowActor, param1);
-        }
-    }
-}
-
-void Healthbar_Enable (Healthbar * param0, int param1)
-{
-    if (param0->mainActor == NULL) {
+    if (battleSys->arrowActor == NULL) {
         return;
     }
 
-    SpriteActor_EnableObject(param0->mainActor, param1);
-    ov16_022675F8(param0, param1);
+    // Safari battles don't get an arrow.
+    if ((BattleSystem_BattleType(battleSys->battleSys) & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK))
+            && enable == TRUE) {
+        return;
+    }
+
+    SpriteActor_EnableObject(battleSys->arrowActor, enable);
+}
+
+void Healthbar_Enable(Healthbar *battleSys, BOOL enable)
+{
+    if (battleSys->mainActor == NULL) {
+        return;
+    }
+
+    SpriteActor_EnableObject(battleSys->mainActor, enable);
+    Healthbar_EnableArrow(battleSys, enable);
 }
 
 void ov16_0226763C (Healthbar * param0, int param1, int param2)
