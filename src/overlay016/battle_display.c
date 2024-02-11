@@ -622,7 +622,7 @@ void ov16_0225D414 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 
 void BattleDisplay_SlideHealthbarIn(BattleSystem *battleSys, BattlerData *battlerData, HealthbarData *healthbarData)
 {
-    Healthbar *healthbar = &battlerData->unk_28;
+    Healthbar *healthbar = &battlerData->healthbar;
     MI_CpuClearFast(&healthbar->unk_00, sizeof(u8));
 
     healthbar->unk_0C = battleSys;
@@ -650,7 +650,7 @@ void BattleDisplay_SlideHealthbarIn(BattleSystem *battleSys, BattlerData *battle
 
 void BattleDisplay_SlideHealthbarOut(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    Healthbar * healthbar = &battlerData->unk_28;
+    Healthbar * healthbar = &battlerData->healthbar;
     MI_CpuClearFast(&healthbar->unk_00, sizeof(u8));
 
     healthbar->unk_0C = battleSys;
@@ -676,7 +676,7 @@ void ov16_0225D5B8 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     v0->unk_08 = param2->unk_00;
     v0->unk_09 = param1->battler;
     v0->unk_34 = param1->battlerType;
-    v0->unk_04 = &param1->unk_28;
+    v0->unk_04 = &param1->healthbar;
     v0->unk_23 = param2->unk_01;
     v0->unk_36 = param2->unk_24;
     v0->unk_38 = param2->unk_26;
@@ -722,7 +722,7 @@ void ov16_0225D698 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     v0->unk_1C = param1->data[0];
     v0->unk_1D = param1->battler;
     v0->unk_1E = param1->battlerType;
-    v0->unk_04 = &param1->unk_28;
+    v0->unk_04 = &param1->healthbar;
     v0->unk_1F = param2->unk_01;
 
     for (v1 = 0; v1 < 4; v1++) {
@@ -751,7 +751,7 @@ void ov16_0225D708 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     v0->unk_0D = param1->battler;
     v0->unk_0E = param1->battlerType;
     v0->unk_30 = param2->unk_02;
-    v0->unk_04 = &param1->unk_28;
+    v0->unk_04 = &param1->healthbar;
     v0->unk_32 = param2->unk_01;
 
     ov16_0223F87C(param0, &v4[0]);
@@ -836,7 +836,7 @@ void ov16_0225D8AC (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
     v0->unk_00 = param0;
     v0->unk_0C = param2->unk_00;
     v0->unk_0D = param1->battler;
-    v0->unk_04 = &param1->unk_28;
+    v0->unk_04 = &param1->healthbar;
     v0->unk_10 = param2->unk_02;
     v0->unk_0F = param2->unk_01;
     v0->unk_18 = param2->unk_04;
@@ -933,9 +933,9 @@ void ov16_0225DA74 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 {
     Healthbar * v0;
 
-    GF_ASSERT(param1->unk_28.unk_04 != NULL);
+    GF_ASSERT(param1->healthbar.unk_04 != NULL);
 
-    v0 = &param1->unk_28;
+    v0 = &param1->healthbar;
     MI_CpuClear8(&v0->unk_00, sizeof(u8));
 
     v0->unk_0C = param0;
@@ -959,9 +959,9 @@ void    ov16_0225DB00 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov
 {
     Healthbar * v0;
 
-    GF_ASSERT(param1->unk_28.unk_04 != NULL);
+    GF_ASSERT(param1->healthbar.unk_04 != NULL);
 
-    v0 = &param1->unk_28;
+    v0 = &param1->healthbar;
 
     MI_CpuClear8(&v0->unk_00, sizeof(u8));
 
@@ -1073,11 +1073,11 @@ void ov16_0225DCB0 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 
 void ov16_0225DD44 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C3D0 * param2)
 {
-    GF_ASSERT(param1->unk_28.unk_04 != NULL);
+    GF_ASSERT(param1->healthbar.unk_04 != NULL);
 
-    param1->unk_28.unk_4A = param2->unk_01;
+    param1->healthbar.unk_4A = param2->unk_01;
 
-    Healthbar_Draw(&param1->unk_28, param1->unk_28.unk_28, (1 << 8));
+    Healthbar_Draw(&param1->healthbar, param1->healthbar.unk_28, (1 << 8));
     ClearCommand(param0, param1->battler, param2->unk_00);
 }
 
@@ -1183,7 +1183,7 @@ void ov16_0225DF34 (BattleSystem * param0, BattlerData * param1)
     v0->unk_08 = param1->data[0];
     v0->unk_09 = param1->battler;
     v0->unk_0A = 0;
-    v0->unk_04 = &param1->unk_28;
+    v0->unk_04 = &param1->healthbar;
 
     SysTask_Start(ov16_02262F30, v0, 0);
 }
@@ -1220,7 +1220,7 @@ void ov16_0225E008 (BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_
 {
     Healthbar * v0;
 
-    v0 = &param1->unk_28;
+    v0 = &param1->healthbar;
 
     MI_CpuClearFast(&v0->unk_00, sizeof(u8));
 
@@ -3047,7 +3047,7 @@ static void ov16_022604C8 (SysTask * param0, void * param1)
 
             for (v15 = 0; v15 < BattleSystem_MaxBattlers(v0->unk_00); v15++) {
                 v14 = BattleSystem_BattlerData(v0->unk_00, v15);
-                ov16_0226737C(&v14->unk_28);
+                ov16_0226737C(&v14->healthbar);
             }
         }
 
@@ -5726,7 +5726,7 @@ Sprite * ov16_02263AFC (BattlerData * param0)
 
 Healthbar * ov16_02263B08 (BattlerData * param0)
 {
-    return &param0->unk_28;
+    return &param0->healthbar;
 }
 
 UnkStruct_ov16_0226C378 * ov16_02263B0C (BattlerData * param0)

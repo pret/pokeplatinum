@@ -286,7 +286,7 @@ void ov16_0225C0DC (BattleSystem * param0, BattlerData * param1)
 void ov16_0225C104 (BattleSystem * param0, BattlerData * param1, int param2)
 {
     if (param2 != 2) {
-        ov16_02267360(&param1->unk_28);
+        ov16_02267360(&param1->healthbar);
     }
 
     if (param1->unk_18) {
@@ -678,7 +678,7 @@ static void ov16_0225C558 (BattleSystem * param0, BattlerData * param1)
 
 static void ov16_0225C5B0 (BattleSystem * param0, BattlerData * param1)
 {
-    ov16_022675AC(&param1->unk_28);
+    ov16_022675AC(&param1->healthbar);
     ov16_022647D8(param1);
     ClearCommand(param0, param1->battler, param1->data[0]);
     ZeroDataBuffer(param1);
@@ -797,7 +797,7 @@ static void ov16_0225C79C (BattleSystem * param0, BattlerData * param1)
                 ov16_0226846C(v2);
             }
 
-            ov16_022675AC(&param1->unk_28);
+            ov16_022675AC(&param1->healthbar);
             ov16_02269218(v0);
             ov16_022647D8(param1);
         }
