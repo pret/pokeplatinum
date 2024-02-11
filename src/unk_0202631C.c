@@ -1260,28 +1260,28 @@ u32 sub_0202756C (const UnkStruct_02026324 * param0, int param1, int param2)
     return 0;
 }
 
-u32 sub_020276C8 (const UnkStruct_02026324 * pokedex, int param1)
+u32 sub_020276C8 (const UnkStruct_02026324 *pokedex, int species)
 {
     CheckPokedexIntegrity(pokedex);
 
-    switch (param1) {
-    case 201:
+    switch (species) {
+    case SPECIES_UNOWN:
         return sub_020270DC(pokedex);
-    case 422:
+    case SPECIES_SHELLOS:
         return sub_02027130(pokedex);
-    case 423:
+    case SPECIES_GASTRODON:
         return sub_0202718C(pokedex);
-    case 412:
+    case SPECIES_BURMY:
         return sub_020271E8(pokedex);
-    case 413:
+    case SPECIES_WORMADAM:
         return sub_02027240(pokedex);
-    case 386:
+    case SPECIES_DEOXYS:
         return sub_02027288(pokedex);
-    case 492:
+    case SPECIES_SHAYMIN:
         return sub_02026464(pokedex, 492);
-    case 487:
+    case SPECIES_GIRATINA:
         return sub_02026464(pokedex, 487);
-    case 479:
+    case SPECIES_ROTOM:
         return sub_02026958(pokedex, 479);
     default:
         break;
