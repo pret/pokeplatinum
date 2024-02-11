@@ -7,7 +7,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_02025E5C_decl.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay005/struct_ov5_021E1FF4_decl.h"
 
@@ -77,7 +77,7 @@ static void ov5_021E1D20 (UnkStruct_ov5_021E1D20 * param0, const UnkStruct_0203C
 {
     SaveData * v0 = param1->unk_0C;
     UnkStruct_02049FA8 * v1 = sub_0203A720(sub_0203A790(v0));
-    UnkStruct_02026324 * v2 = sub_02027560(v0);
+    PokedexData * v2 = sub_02027560(v0);
 
     param0->unk_04 = sub_0203A138(v1->unk_00);
 

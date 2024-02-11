@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02023FCC_decl.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202F41C_decl.h"
 
 #include "overlay062/const_ov62_022491F0.h"
@@ -1521,7 +1521,7 @@ static BOOL ov62_02242748 (UnkStruct_0208C06C * param0, int param1)
         int v7;
         int v8 = 0;
         BOOL v9;
-        UnkStruct_02026324 * v10 = sub_02027560(param0->unk_830);
+        PokedexData * v10 = sub_02027560(param0->unk_830);
 
         for (v7 = v3; v7 < v4; v7++) {
             v9 = sub_02026FE8(v10, v1[v7]);
@@ -1565,7 +1565,7 @@ static void ov62_022427D0 (UnkStruct_0208C06C * param0, int param1)
         int v5;
         int v6 = 0;
         BOOL v7;
-        UnkStruct_02026324 * v8 = sub_02027560(param0->unk_830);
+        PokedexData * v8 = sub_02027560(param0->unk_830);
 
         v4->unk_4C8.unk_00 = 0;
 

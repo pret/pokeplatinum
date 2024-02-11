@@ -10,6 +10,7 @@
 #include "battle/battle_context.h"
 
 #include "pokemon.h"
+#include "constants/species.h"
 #include "struct_defs/struct_0207A81C.h"
 #include "struct_defs/battle_system.h"
 #include "battle/battle_context.h"
@@ -539,7 +540,7 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
         v8 = Party_GetPokemonBySlotIndex(v7, battleCtx->partyOrder[v2][v1]);
         v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_EGG, NULL);
 
-        if ((v5) && (v5 != 494)) {
+        if ((v5) && (v5 != SPECIES_EGG)) {
             if (Pokemon_GetValue(v8, MON_DATA_CURRENT_HP, NULL)) {
                 if (Pokemon_GetValue(v8, MON_DATA_STATUS_CONDITION, NULL)) {
                     v0.unk_08[0][v6] = 3;
@@ -574,7 +575,7 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
             v8 = Party_GetPokemonBySlotIndex(v7, battleCtx->partyOrder[v2][v1]);
             v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_EGG, NULL);
 
-            if ((v5) && (v5 != 494)) {
+            if ((v5) && (v5 != SPECIES_EGG)) {
                 if (Pokemon_GetValue(v8, MON_DATA_CURRENT_HP, NULL)) {
                     if (Pokemon_GetValue(v8, MON_DATA_STATUS_CONDITION, NULL)) {
                         v0.unk_08[1][v6] = 3;
@@ -602,7 +603,7 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
             v8 = Party_GetPokemonBySlotIndex(v7, battleCtx->partyOrder[v2][v1]);
             v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_EGG, NULL);
 
-            if ((v5) && (v5 != 494)) {
+            if ((v5) && (v5 != SPECIES_EGG)) {
                 if (Pokemon_GetValue(v8, MON_DATA_CURRENT_HP, NULL)) {
                     if (Pokemon_GetValue(v8, MON_DATA_STATUS_CONDITION, NULL)) {
                         v0.unk_08[1][v6] = 3;
@@ -625,7 +626,7 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
             v8 = Party_GetPokemonBySlotIndex(v7, battleCtx->partyOrder[v2][v1]);
             v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_EGG, NULL);
 
-            if ((v5) && (v5 != 494)) {
+            if ((v5) && (v5 != SPECIES_EGG)) {
                 if (Pokemon_GetValue(v8, MON_DATA_CURRENT_HP, NULL)) {
                     if (Pokemon_GetValue(v8, MON_DATA_STATUS_CONDITION, NULL)) {
                         v0.unk_08[1][v6] = 3;

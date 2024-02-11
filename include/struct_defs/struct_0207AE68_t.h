@@ -11,7 +11,7 @@
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_02056B24_decl.h"
@@ -41,7 +41,7 @@ struct UnkStruct_0207AE68_t {
     UnkStruct_02098D38 * unk_3C;
     void * unk_40;
     PokemonAnimationSys * unk_44;
-    UnkStruct_02026324 * unk_48;
+    PokedexData * unk_48;
     UnkStruct_0207D3C0 * unk_4C;
     UnkStruct_0202CD88 * unk_50;
     UnkStruct_02056B24 * unk_54;

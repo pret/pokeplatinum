@@ -8,7 +8,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02027854_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
@@ -60,6 +60,7 @@
 #include "roaming_pokemon.h"
 #include "unk_0206CCB0.h"
 #include "unk_02071CFC.h"
+#include "constants/species.h"
 #include "pokemon.h"
 #include "party.h"
 #include "unk_0207D3B8.h"
@@ -775,7 +776,7 @@ static int sub_0206D2E0 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
 
 static BOOL sub_0206D320 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    UnkStruct_02026324 * v0 = sub_02027560(param0->unk_0C);
+    PokedexData * v0 = sub_02027560(param0->unk_0C);
     UnkStruct_0206D140 * v1 = ov6_02246498(param1);
 
     return sub_02026FE8(v0, v1->unk_06);
@@ -966,7 +967,7 @@ static int sub_0206D644 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
 
 static BOOL sub_0206D6A8 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    UnkStruct_02026324 * v0 = sub_02027560(param0->unk_0C);
+    PokedexData * v0 = sub_02027560(param0->unk_0C);
     UnkStruct_0206D644 * v1 = (UnkStruct_0206D644 *)ov6_02246498(param1);
 
     return sub_02026FE8(v0, v1->unk_00);
@@ -1027,7 +1028,7 @@ static int sub_0206D75C (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
 
 static BOOL sub_0206D7A4 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    UnkStruct_02026324 * v0 = sub_02027560(param0->unk_0C);
+    PokedexData * v0 = sub_02027560(param0->unk_0C);
     UnkStruct_0206D75C * v1 = (UnkStruct_0206D75C *)ov6_02246498(param1);
 
     return sub_02026FE8(v0, v1->unk_00);
@@ -2759,11 +2760,11 @@ static int sub_0206F01C (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
 {
     Strbuf* v0;
     u16 v1, v2, v3;
-    const UnkStruct_02026324 * v4 = sub_02027560(param0->unk_0C);
+    const PokedexData * v4 = sub_02027560(param0->unk_0C);
 
-    v1 = (LCRNG_Next() % (493 - 1)) + 1;
+    v1 = (LCRNG_Next() % (NATIONAL_DEX_COUNT - 1)) + 1;
 
-    for (v2 = 1; v2 <= 493; v2++) {
+    for (v2 = 1; v2 <= NATIONAL_DEX_COUNT; v2++) {
         if (sub_02026FE8(v4, v1) == 1) {
             v3 = v1;
             break;
@@ -2771,7 +2772,7 @@ static int sub_0206F01C (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
 
         v1++;
 
-        if (v1 == 493) {
+        if (v1 == NATIONAL_DEX_COUNT) {
             v1 = 1;
         }
     }
@@ -2808,7 +2809,7 @@ static Strbuf* sub_0206F0D8 (u16 param0, u32 param1)
 
 static BOOL sub_0206F100 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    const UnkStruct_02026324 * v0 = sub_02027560(param0->unk_0C);
+    const PokedexData * v0 = sub_02027560(param0->unk_0C);
 
     if (sub_02027520(v0) == 1) {
         return 1;
@@ -2854,7 +2855,7 @@ static int sub_0206F160 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     Pokemon * v3;
     Party * v4;
     TrainerInfo * v5 = sub_02025E38(param0->unk_0C);
-    UnkStruct_02026324 * v6 = sub_02027560(param0->unk_0C);
+    PokedexData * v6 = sub_02027560(param0->unk_0C);
 
     v4 = Party_GetFromSavedata(param0->unk_0C);
     v3 = Party_GetPokemonBySlotIndex(v4, sub_0205E1B4(param0->unk_0C));
@@ -2862,9 +2863,9 @@ static int sub_0206F160 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     sub_0206CE74(param1, 0, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), Pokemon_GetValue(v3, MON_DATA_GENDER, NULL), TrainerInfo_RegionCode(v5), TrainerInfo_GameCode(v5));
     sub_0200BFAC(param1, 1, (LCRNG_Next() % 100));
 
-    v1 = (LCRNG_Next() % (493 - 2) + 1);
+    v1 = (LCRNG_Next() % (NATIONAL_DEX_COUNT - 2) + 1);
 
-    for (v2 = 1; v2 <= 493; v2++) {
+    for (v2 = 1; v2 <= NATIONAL_DEX_COUNT; v2++) {
         if (sub_02026FE8(v6, v1) == 1) {
             v0 = sub_0206F0D8(v1, 4);
             sub_0200B48C(param1, 2, v0, 0, 1, GAME_LANGUAGE);
@@ -2874,7 +2875,7 @@ static int sub_0206F160 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
 
         v1++;
 
-        if (v1 >= 493) {
+        if (v1 >= NATIONAL_DEX_COUNT) {
             v1 = 1;
         }
     }
@@ -2886,7 +2887,7 @@ static int sub_0206F160 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
 
 static BOOL sub_0206F260 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    const UnkStruct_02026324 * v0 = sub_02027560(param0->unk_0C);
+    const PokedexData * v0 = sub_02027560(param0->unk_0C);
 
     if (sub_02027520(v0) == 1) {
         return 1;

@@ -1,6 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/species.h"
+
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_0202D060_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
@@ -519,7 +521,7 @@ u32 sub_0206C068 (SaveData * param0)
 
 BOOL sub_0206C0D0 (UnkStruct_0203CDB0 * param0)
 {
-    if (param0->unk_1C->unk_00 == 493) {
+    if (param0->unk_1C->unk_00 == SPECIES_ARCEUS) {
         return 1;
     }
 

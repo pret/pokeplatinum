@@ -15,7 +15,7 @@
 #include "trainer_info.h"
 #include "struct_decls/struct_02026218_decl.h"
 #include "struct_decls/struct_02026310_decl.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02028430_decl.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
@@ -184,6 +184,7 @@
 #include "unk_02071CD0.h"
 #include "unk_02071D40.h"
 #include "unk_020722AC.h"
+#include "constants/species.h"
 #include "pokemon.h"
 #include "trainer_data.h"
 #include "unk_020797C8.h"
@@ -5097,7 +5098,7 @@ static BOOL sub_02043130 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043190 (UnkStruct_0203E724 * param0)
 {
-    const UnkStruct_02026324 * v0 = sub_02027560(param0->unk_34->unk_0C);
+    const PokedexData * v0 = sub_02027560(param0->unk_34->unk_0C);
     u16 * v1 = inline_0204FCAC(param0);
 
     *v1 = sub_02026EAC(v0);
@@ -5106,7 +5107,7 @@ static BOOL sub_02043190 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_020431C0 (UnkStruct_0203E724 * param0)
 {
-    const UnkStruct_02026324 * v0 = sub_02027560(param0->unk_34->unk_0C);
+    const PokedexData * v0 = sub_02027560(param0->unk_34->unk_0C);
     u16 * v1 = inline_0204FCAC(param0);
 
     *v1 = sub_02026E64(v0);
@@ -5115,7 +5116,7 @@ static BOOL sub_020431C0 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_020431F0 (UnkStruct_0203E724 * param0)
 {
-    const UnkStruct_02026324 * v0 = sub_02027560(param0->unk_34->unk_0C);
+    const PokedexData * v0 = sub_02027560(param0->unk_34->unk_0C);
     u16 * v1 = inline_0204FCAC(param0);
 
     *v1 = sub_02026E0C(v0);
@@ -5124,7 +5125,7 @@ static BOOL sub_020431F0 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043220 (UnkStruct_0203E724 * param0)
 {
-    const UnkStruct_02026324 * v0 = sub_02027560(param0->unk_34->unk_0C);
+    const PokedexData * v0 = sub_02027560(param0->unk_34->unk_0C);
     u16 * v1 = inline_0204FCAC(param0);
 
     *v1 = sub_02026DD0(v0);
@@ -5140,7 +5141,7 @@ static BOOL sub_02043250 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043254 (UnkStruct_0203E724 * param0)
 {
-    const UnkStruct_02026324 * v0 = sub_02027560(param0->unk_34->unk_0C);
+    const PokedexData * v0 = sub_02027560(param0->unk_34->unk_0C);
     const TrainerInfo * v1 = sub_02025E38(param0->unk_34->unk_0C);
     u8 v2 = (*((param0)->unk_08++));
     u16 * v3 = inline_0204FCAC(param0);
@@ -6367,7 +6368,7 @@ static BOOL sub_020447A4 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_020447E8 (UnkStruct_0203E724 * param0)
 {
-    const UnkStruct_02026324 * v0 = sub_02027560(param0->unk_34->unk_0C);
+    const PokedexData * v0 = sub_02027560(param0->unk_34->unk_0C);
     u16 * v1 = inline_0204FCAC(param0);
 
     *v1 = 0;
@@ -6381,7 +6382,7 @@ static BOOL sub_020447E8 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02044820 (UnkStruct_0203E724 * param0)
 {
-    const UnkStruct_02026324 * v0 = sub_02027560(param0->unk_34->unk_0C);
+    const PokedexData * v0 = sub_02027560(param0->unk_34->unk_0C);
     u16 * v1 = inline_0204FCAC(param0);
 
     *v1 = 0;
@@ -6597,7 +6598,7 @@ static BOOL sub_02044BB8 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02044BE8 (UnkStruct_0203E724 * param0)
 {
-    const UnkStruct_02026324 * v0 = sub_02027560(param0->unk_34->unk_0C);
+    const PokedexData * v0 = sub_02027560(param0->unk_34->unk_0C);
     u16 * v1 = inline_0204FCAC(param0);
     u16 v2, v3, v4, v5;
 
@@ -6605,7 +6606,7 @@ static BOOL sub_02044BE8 (UnkStruct_0203E724 * param0)
     v3 = LCRNG_Next() % v2;
     *v1 = 25;
 
-    for (v4 = 1, v5 = 0; v4 <= 493; v4++) {
+    for (v4 = 1, v5 = 0; v4 <= NATIONAL_DEX_COUNT; v4++) {
         if ((sub_02026FE8(v0, v4) == 1) && (Pokemon_SinnohDexNumber(v4) != 0)) {
             if (v5 == v3) {
                 *v1 = v4;
@@ -6899,7 +6900,7 @@ static BOOL sub_02045198 (UnkStruct_0203E724 * param0)
 
 static void sub_020451B4 (UnkStruct_0203CDB0 * param0, u16 param1)
 {
-    UnkStruct_02026324 * v0 = sub_02027560(param0->unk_0C);
+    PokedexData * v0 = sub_02027560(param0->unk_0C);
     Pokemon * v1 = Pokemon_New(32);
 
     Pokemon_Init(v1);
@@ -7018,7 +7019,7 @@ static BOOL sub_02045384 (UnkStruct_0203E724 * param0)
     int v3;
     int v4 = Party_GetCurrentCount(v1);
     Pokemon * v5;
-    UnkStruct_02026324 * v6 = sub_02027560(param0->unk_34->unk_0C);
+    PokedexData * v6 = sub_02027560(param0->unk_34->unk_0C);
 
     for (v2 = 0; v2 < v4; v2++) {
         v5 = Party_GetPokemonBySlotIndex(v1, v2);
@@ -7373,7 +7374,7 @@ static BOOL sub_02045938 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_0204598C (UnkStruct_0203E724 * param0)
 {
-    const UnkStruct_02026324 * v0 = sub_02027560(param0->unk_34->unk_0C);
+    const PokedexData * v0 = sub_02027560(param0->unk_34->unk_0C);
     u16 * v1 = inline_0204FCAC(param0);
 
     *v1 = sub_020270DC(v0);

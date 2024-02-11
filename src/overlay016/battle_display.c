@@ -132,6 +132,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "trainer_info.h"
+#include "constants/species.h"
 #include "pokemon.h"
 #include "move_table.h"
 #include "party.h"
@@ -4421,7 +4422,7 @@ static void  ov16_0226232C (SysTask * param0, void * param1)
                     ov16_02264730(v0->unk_00);
                 }
 
-                if (Pokemon_GetValue(v3, MON_DATA_SPECIES_EGG, NULL) == 494) {
+                if (Pokemon_GetValue(v3, MON_DATA_SPECIES_EGG, NULL) == SPECIES_EGG) {
                     ov16_02264730(v0->unk_00);
                 }
             }

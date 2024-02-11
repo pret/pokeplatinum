@@ -9,6 +9,8 @@
 #include "strbuf.h"
 #include "unk_020986CC.h"
 #include "overlay021/ov21_021D5600.h"
+#include "constants/species.h"
+#include "constants/narc.h"
 
 static const u8 Unk_ov21_021E9CC4[6] = {
     0x1,
@@ -21,7 +23,7 @@ static const u8 Unk_ov21_021E9CC4[6] = {
 
 static inline int inline_ov21_021D5764(int param0);
 static inline BOOL inline_ov21_021D5764_1(int param0, int param1);
-static Strbuf* ov21_021D5724(int param0, int param1, int param2);
+static Strbuf* LoadMessage(int param0, int param1, int param2);
 static void ov21_021D5764(int param0, int param1, int * param2, int * param3, int * param4);
 
 void ov21_021D5600 (Strbuf *param0)
@@ -59,7 +61,7 @@ Strbuf* ov21_021D561C (int param0, int param1, int param2)
         v2 = v0;
     }
  
-    return ov21_021D5724(v3, v2, param2);
+    return LoadMessage(v3, v2, param2);
 }
 
 Strbuf* ov21_021D566C (int param0, int param1, int param2)
@@ -87,7 +89,7 @@ Strbuf* ov21_021D566C (int param0, int param1, int param2)
         v2 = v0;
     }
  
-    return ov21_021D5724(v3, v2, param2);
+    return LoadMessage(v3, v2, param2);
 }
  
 Strbuf* ov21_021D56BC (int param0, int param1, int param2, int param3)
@@ -117,31 +119,31 @@ Strbuf* ov21_021D56BC (int param0, int param1, int param2, int param3)
         v2 = v0 * 1 + param2;
     }
  
-    return ov21_021D5724(v3, v2, param3);
+    return LoadMessage(v3, v2, param3);
 }
 
 static inline BOOL inline_ov21_021D5764_1 (int param0, int param1)
 {
-    if ((param0 > 493) && (param1 != 6)) {
+    if ((param0 > NATIONAL_DEX_COUNT) && (param1 != 6)) {
         return 0;
     }
 
     return 1;
 }
 
-static Strbuf* ov21_021D5724 (int param0, int param1, int param2)
+static Strbuf* LoadMessage (int bankID, int entryID, int heapID)
 {
-    MessageLoader * v0 = MessageLoader_Init(1, 26, param0, param2);
+    MessageLoader *messageLoader = MessageLoader_Init(1, NARC_INDEX_MSGDATA__PL_MSG, bankID, heapID);
 
-    if (v0) {
-        Strbuf* v1 = Strbuf_Init(256, param2);
+    if (messageLoader) {
+        Strbuf* strbuf = Strbuf_Init(256, heapID);
 
-        if (v1) {
-            MessageLoader_GetStrbuf(v0, param1, v1);
+        if (strbuf) {
+            MessageLoader_GetStrbuf(messageLoader, entryID, strbuf);
         }
 
-        MessageLoader_Free(v0);
-        return v1;
+        MessageLoader_Free(messageLoader);
+        return strbuf;
     }
 
     return NULL;

@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02014EC4_decl.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -26,7 +26,7 @@ struct UnkStruct_0209747C_t {
     u8 unk_04;
     u8 unk_05;
     int unk_08;
-    const UnkStruct_02026324 * unk_0C;
+    const PokedexData * unk_0C;
     const UnkStruct_02014EC4 * unk_10;
     Sentence unk_14;
     u16 unk_1C[2];
@@ -133,7 +133,7 @@ int sub_02097558 (const UnkStruct_0209747C * param0)
     return param0->unk_08;
 }
 
-const UnkStruct_02026324 * sub_0209755C (const UnkStruct_0209747C * param0)
+const PokedexData * sub_0209755C (const UnkStruct_0209747C * param0)
 {
     return param0->unk_0C;
 }

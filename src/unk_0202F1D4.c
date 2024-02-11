@@ -12,6 +12,7 @@
 #include "struct_defs/struct_0202FAA8.h"
 #include "struct_defs/struct_0202FD30.h"
 #include "struct_defs/struct_02030A80.h"
+#include "constants/species.h"
 #include "pokemon.h"
 #include "struct_defs/struct_02078B40.h"
 #include "struct_defs/struct_party.h"
@@ -393,7 +394,7 @@ static BOOL sub_0202F794 (SaveData * param0, const BattleRecording * param1)
             for (v4 = 0; v4 < 6; v4++) {
                 v6 = &(v0->unk_1150[v3].unk_04[v4]);
 
-                if (v6->species > 495) {
+                if (v6->species > MAX_SPECIES) {
                     return 0;
                 }
 
@@ -673,7 +674,7 @@ u64 sub_0202FE98 (UnkStruct_0202F41C * param0, int param1, int param2)
     case 0:
         GF_ASSERT(param2 < 12);
 
-        if (param0->unk_00[param2] > 493) {
+        if (param0->unk_00[param2] > NATIONAL_DEX_COUNT) {
             return 0;
         }
 

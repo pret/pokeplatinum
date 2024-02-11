@@ -18,6 +18,7 @@
 #include "unk_020298BC.h"
 #include "unk_020797C8.h"
 #include "overlay061/ov61_0222AE60.h"
+#include "constants/species.h"
 
 void ov61_0222AE60 (SaveData * param0, const UnkStruct_02029C68 * param1, UnkStruct_ov61_0222AE80 * param2)
 {
@@ -47,7 +48,7 @@ void ov61_0222AE88 (SaveData * param0, const PCBoxes * param1, int param2, UnkSt
         param3->unk_64[v1] = sub_02079C08(param1, param2, v1, 0, NULL);
         param3->unk_DC[v1] = sub_02079C08(param1, param2, v1, 7, NULL);
 
-        if (sub_02079C08(param1, param2, v1, 174, NULL) == 494) {
+        if (sub_02079C08(param1, param2, v1, 174, NULL) == SPECIES_EGG) {
             param3->unk_154 |= 1 << v1;
         }
 

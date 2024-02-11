@@ -7,7 +7,7 @@
 #include "struct_decls/sys_task.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
@@ -1650,7 +1650,7 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, U
 
         {
             int v6;
-            UnkStruct_02026324 * v7;
+            PokedexData * v7;
 
             v7 = sub_02027560(param0->unk_1970);
 

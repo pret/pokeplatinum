@@ -2,12 +2,12 @@
 #define POKEPLATINUM_STRUCT_OV21_021D3320_H
 
 #include "strbuf.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02098700_decl.h"
 #include "overlay021/struct_ov21_021D3A60.h"
 
 typedef struct {
-    const UnkStruct_02026324 * unk_00;
+    const PokedexData * unk_00;
     UnkStruct_ov21_021D3A60 unk_04;
     int unk_1730;
     BOOL unk_1734;

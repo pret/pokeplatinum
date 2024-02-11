@@ -57,6 +57,7 @@
 #include "overlay062/ov62_02231690.h"
 #include "overlay062/ov62_02239D60.h"
 #include "overlay062/ov62_0224112C.h"
+#include "constants/species.h"
 
 typedef struct {
     int unk_00;
@@ -1057,7 +1058,7 @@ static void ov62_0223ADC0 (UnkStruct_0208C06C * param0, int param1)
     v2 = Strbuf_Init(255, 102);
 
     if (ov62_0223ADB0(v0->unk_04.unk_154, (1 << v0->unk_1B0)) == 1) {
-        v4 = 494;
+        v4 = SPECIES_EGG;
     }
 
     MessageLoader_GetSpeciesName(v4, 102, v5);
@@ -1200,7 +1201,7 @@ static void ov62_0223B050 (UnkStruct_0208C06C * param0)
             v6 = 0;
         }
 
-        v7 = 494;
+        v7 = SPECIES_EGG;
     }
 
     v1 = PokemonPersonalData_FromMonSpecies(v7, 102);

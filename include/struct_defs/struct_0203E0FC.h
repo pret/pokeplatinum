@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02025CCC_decl.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
@@ -20,7 +20,7 @@ typedef struct {
     UnkStruct_02025CCC * unk_04;
     Party * unk_08;
     PCBoxes * unk_0C;
-    UnkStruct_02026324 * unk_10;
+    PokedexData * unk_10;
     UnkStruct_0202B370 * unk_14;
     UnkStruct_0202C878 * unk_18;
     TrainerInfo * unk_1C;

@@ -16,7 +16,7 @@
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_defs/chatot_cry.h"
@@ -62,7 +62,7 @@ struct BattleSystem {
     TrainerInfo *trainerInfo[4];
     UnkStruct_0207D3C0 * unk_58;
     UnkStruct_0207D99C * unk_5C;
-    UnkStruct_02026324 *pokedex;
+    PokedexData *pokedex;
     PCBoxes *pcBoxes;
     Party *parties[4];
     ChatotCry * unk_78[4];

@@ -4,6 +4,8 @@
 #include "inlines.h"
 #include "core_sys.h"
 
+#include "constants/species.h"
+
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
@@ -2502,7 +2504,7 @@ static void ov88_0223E694 (Party * param0, Party * param1, int param2, int param
     Pokemon_Copy(Party_GetPokemonBySlotIndex(param0, param2), v0);
     Pokemon_Copy(Party_GetPokemonBySlotIndex(param1, param3), v1);
 
-    if (Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL) == 493) {
+    if (Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
         if (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(v1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
             UnkStruct_020507E4 * v2 = sub_020507E4(param4->unk_10);
 

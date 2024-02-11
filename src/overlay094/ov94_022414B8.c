@@ -4,13 +4,15 @@
 
 #include "core_sys.h"
 
+#include "constants/species.h"
+
 #include "struct_decls/struct_0200112C_decl.h"
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "pokemon.h"
 
 #include "overlay094/const_ov94_02245FD8.h"
@@ -87,7 +89,7 @@ static int ov94_02242040(UnkStruct_ov94_0223FD4C * param0);
 static int ov94_02242068(UnkStruct_ov94_0223FD4C * param0);
 static int ov94_0224208C(UnkStruct_ov94_0223FD4C * param0);
 static void ov94_02242668(UnkStruct_ov94_0223BA88 * param0, UnkStruct_ov94_0223FD4C * param1);
-static int ov94_02242718(ResourceMetadata ** param0, MessageLoader * param1, MessageLoader * param2, u16 * param3, u8 * param4, int param5, int param6, UnkStruct_02026324 * param7);
+static int ov94_02242718(ResourceMetadata ** param0, MessageLoader * param1, MessageLoader * param2, u16 * param3, u8 * param4, int param5, int param6, PokedexData * param7);
 static u32 ov94_022421E8(int param0, u32 param1);
 
 static int (* Unk_ov94_0224695C[])(UnkStruct_ov94_0223FD4C *) = {
@@ -1028,15 +1030,15 @@ u8 * ov94_02242548 (int param0)
 {
     u32 v0, v1, v2;
     u16 * v3;
-    u8 * v4 = Heap_AllocFromHeap(62, 493 + 1);
+    u8 *v4 = Heap_AllocFromHeap(62, NATIONAL_DEX_COUNT + 1);
 
-    MI_CpuClearFast(v4, 493 + 1);
+    MI_CpuClearFast(v4, NATIONAL_DEX_COUNT + 1);
 
     v3 = sub_02007068(75, 12, 0, param0, 0, &v0);
     v1 = v0 / (sizeof(u16));
 
     for (v2 = 0; v2 < v1; v2++) {
-        if (v3[v2] < 493 + 1) {
+        if (v3[v2] < NATIONAL_DEX_COUNT + 1) {
             v4[v3[v2]] = 1;
         }
     }
@@ -1133,7 +1135,7 @@ static u16 Unk_ov94_02246928[] = {
     0x1ED
 };
 
-static int ov94_02242718 (ResourceMetadata ** param0, MessageLoader * param1, MessageLoader * param2, u16 * param3, u8 * param4, int param5, int param6, UnkStruct_02026324 * param7)
+static int ov94_02242718 (ResourceMetadata ** param0, MessageLoader * param1, MessageLoader * param2, u16 * param3, u8 * param4, int param5, int param6, PokedexData * param7)
 {
     int v0, v1, v2 = 0;
     int v3 = Unk_ov94_02246928[param6 + 1] - Unk_ov94_02246928[param6];
@@ -1176,7 +1178,7 @@ static int ov94_02242718 (ResourceMetadata ** param0, MessageLoader * param1, Me
     return v2 + 1;
 }
 
-UnkStruct_0200112C * ov94_022427C0 (UnkStruct_ov94_0223FD4C * param0, ResourceMetadata ** param1, Window * param2, MessageLoader * param3, MessageLoader * param4, UnkStruct_ov94_0223FD4C_sub3 * param5, UnkStruct_02026324 * param6)
+UnkStruct_0200112C * ov94_022427C0 (UnkStruct_ov94_0223FD4C * param0, ResourceMetadata ** param1, Window * param2, MessageLoader * param3, MessageLoader * param4, UnkStruct_ov94_0223FD4C_sub3 * param5, PokedexData * param6)
 {
     UnkStruct_ov84_02240FA8 v0;
     int v1, v2, v3;

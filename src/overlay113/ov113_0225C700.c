@@ -4,6 +4,8 @@
 
 #include "core_sys.h"
 
+#include "constants/species.h"
+
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
@@ -1099,7 +1101,7 @@ static void ov113_0225D7CC (UnkStruct_ov113_0225DBCC * param0)
     v3 = sub_0200316C(param0->unk_0C, 2);
 
     for (v0 = 0; v0 < 6; v0++) {
-        if ((param0->unk_8D8[v0].unk_02 == 0) || (param0->unk_8D8[v0].unk_02 > 493)) {
+        if ((param0->unk_8D8[v0].unk_02 == 0) || (param0->unk_8D8[v0].unk_02 > NATIONAL_DEX_COUNT)) {
             sub_0200D3F4(param0->unk_924[v0], 0);
             sub_0200D3F4(param0->unk_93C[v0], 0);
             sub_0200D3F4(param0->unk_954[v0], 0);
@@ -1135,7 +1137,7 @@ static BOOL ov113_0225D938 (int param0, int param1, CellActorData * param2, NARC
     NNSG2dCharacterData * v3;
     u8 * v4, * v5;
 
-    if ((param0 == 0) || (param0 > 493)) {
+    if ((param0 == 0) || (param0 > NATIONAL_DEX_COUNT)) {
         return 0;
     }
 

@@ -7,7 +7,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -111,7 +111,7 @@ UnkStruct_0200B358 * sub_0204AEE8 (SaveData * param0, u16 param1, u16 param2, u8
     u8 v0;
     u16 v1;
     Strbuf* v2, * v3;
-    UnkStruct_02026324 * v4;
+    PokedexData * v4;
     UnkStruct_0200B358 * v5;
     MessageLoader * v6;
 

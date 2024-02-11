@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "trainer_info.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
@@ -144,13 +144,13 @@ static BOOL ov6_02246AB0 (UnkStruct_0203CDB0 * param0)
 
 static BOOL ov6_02246AC8 (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_02026324 * v0 = sub_02027560(param0->unk_0C);
+    PokedexData * v0 = sub_02027560(param0->unk_0C);
     return sub_02026F0C(v0);
 }
 
 static BOOL ov6_02246AD8 (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_02026324 * v0 = sub_02027560(param0->unk_0C);
+    PokedexData * v0 = sub_02027560(param0->unk_0C);
     return sub_02027520(v0);
 }
 

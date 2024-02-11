@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV88_0223C370_H
 
 #include "trainer_info.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
@@ -23,7 +23,7 @@ typedef struct {
     AnimationControlFlags * unk_18;
     UnkStruct_0202B628 * unk_1C;
     UnkStruct_0202CD88 * unk_20;
-    UnkStruct_02026324 * unk_24;
+    PokedexData * unk_24;
     int unk_28;
     int unk_2C;
     int unk_30;

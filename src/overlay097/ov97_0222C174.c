@@ -13,7 +13,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_0202442C_decl.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "overlay077/const_ov77_021D742C.h"
@@ -364,7 +364,7 @@ typedef struct {
     int unk_00;
     BGL * unk_04;
     SaveData * unk_08;
-    UnkStruct_02026324 * unk_0C;
+    PokedexData * unk_0C;
     TrainerInfo * unk_10;
     AnimationControlFlags * unk_14;
     Window unk_18;

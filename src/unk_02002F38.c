@@ -87,12 +87,12 @@ void sub_02002FBC (PaletteData * param0, const void * param1, int param2, u16 pa
     MI_CpuCopy16(param1, (void *)&param0->unk_00[param2].unk_04[param3], (u32)param4);
 }
 
-void sub_02002FEC (PaletteData * param0, u32 param1, u32 param2, u32 param3, int param4, u32 param5, u16 param6, u16 param7)
+void sub_02002FEC (PaletteData * param0, u32 bankID, u32 memberIndex, u32 param3, int param4, u32 param5, u16 param6, u16 param7)
 {
     NNSG2dPaletteData * v0;
     void * v1;
 
-    v1 = sub_02006F88(param1, param2, &v0, param3);
+    v1 = sub_02006F88(bankID, memberIndex, &v0, param3);
     GF_ASSERT(v1 != NULL);
 
     if (param5 == 0) {
@@ -105,9 +105,9 @@ void sub_02002FEC (PaletteData * param0, u32 param1, u32 param2, u32 param3, int
     Heap_FreeToHeap(v1);
 }
 
-void PaletteSys_LoadPalette (PaletteData * param0, u32 param1, u32 param2, u32 param3, int param4, u32 param5, u16 param6)
+void PaletteSys_LoadPalette (PaletteData * param0, u32 bankID, u32 memberIndex, u32 param3, int param4, u32 param5, u16 param6)
 {
-    sub_02002FEC(param0, param1, param2, param3, param4, param5, param6, 0);
+    sub_02002FEC(param0, bankID, memberIndex, param3, param4, param5, param6, 0);
 }
 
 void sub_02003070 (PaletteData * param0, int param1, u16 param2, u32 param3)

@@ -48,7 +48,7 @@ BOOL sub_02005844(u16 param0, u8 param1);
 BOOL sub_0200590C(u16 param0, u8 param1, u8 param2);
 void sub_0200592C(int param0);
 int sub_0200598C(void);
-BOOL Sound_PlayPokemonCry(int param0, u16 param1, int param2, int param3, int param4, u8 param5);
+BOOL Sound_PlayPokemonCry(int param0, u16 species, int param2, int param3, int param4, u8 param5);
 void sub_02005E64(int param0, int param1);
 static void sub_02005EB0(SysTask * param0, void * param1);
 void sub_02005F24(void);
@@ -415,11 +415,11 @@ BOOL sub_02005844 (u16 param0, u8 param1)
     v0 = param0;
 
     if (sub_02006038(v0, param1) == 1) {
-        v0 = 494;
+        v0 = SPECIES_EGG;
     }
 
-    if (v0 != 494) {
-        if ((v0 > 495) || (v0 == 0)) {
+    if (v0 != SPECIES_EGG) {
+        if ((v0 > MAX_SPECIES) || (v0 == 0)) {
             v0 = 1;
         }
     }
@@ -501,7 +501,7 @@ int sub_0200598C (void)
     return sub_02004B04(0);
 }
 
-BOOL Sound_PlayPokemonCry (int param0, u16 param1, int param2, int param3, int param4, u8 param5)
+BOOL Sound_PlayPokemonCry (int param0, u16 species, int param2, int param3, int param4, u8 param5)
 {
     int v0, v1;
     u16 v2;
@@ -517,13 +517,13 @@ BOOL Sound_PlayPokemonCry (int param0, u16 param1, int param2, int param3, int p
     v5 = 0;
     v6 = 0;
     v7 = 0;
-    v2 = param1;
+    v2 = species;
 
     if (sub_02006038(v2, param5) == 1) {
-        v2 = 494;
+        v2 = SPECIES_EGG;
     }
 
-    if (v2 != 494) {
+    if (v2 != SPECIES_EGG) {
         if ((v2 > MAX_SPECIES) || (v2 == 0)) {
             v2 = SPECIES_BULBASAUR;
         }
@@ -816,7 +816,7 @@ void Sound_PlayDelayedPokemonCry (int param0, u16 param1, int param2, int param3
     v0 = param1;
 
     if (sub_02006038(v0, param6) == 1) {
-        v0 = 494;
+        v0 = SPECIES_EGG;
     }
 
     if (v0 == 0) {
@@ -846,7 +846,7 @@ static BOOL sub_02006038 (u16 param0, u8 param1)
         }
     }
 
-    if (param0 == 494) {
+    if (param0 == SPECIES_EGG) {
         return 1;
     }
 

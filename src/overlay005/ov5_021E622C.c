@@ -28,6 +28,7 @@
 #include "unk_0202CC64.h"
 #include "unk_0202CD50.h"
 #include "unk_020559DC.h"
+#include "constants/species.h"
 #include "pokemon.h"
 #include "party.h"
 #include "item.h"
@@ -2620,7 +2621,7 @@ void ov5_021E6CF0 (Pokemon * param0, u16 param1, u8 param2, TrainerInfo * param3
     v2 = 1;
     Pokemon_SetValue(param0, 76, &v2);
 
-    v5 = sub_0200B32C(494, 4);
+    v5 = sub_0200B32C(SPECIES_EGG, 4);
     Pokemon_SetValue(param0, 119, v5);
     Strbuf_Free(v5);
 
@@ -2674,7 +2675,7 @@ void ov5_021E6DE8 (Pokemon * param0, u16 param1, UnkStruct_02026310 * param2, u3
     Pokemon_SetValue(param0, 156, &v0);
     Pokemon_SetValue(param0, 112, &param4);
 
-    v3 = sub_0200B32C(494, 4);
+    v3 = sub_0200B32C(SPECIES_EGG, 4);
 
     Pokemon_SetValue(param0, 119, v3);
     Strbuf_Free(v3);

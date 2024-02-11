@@ -6,6 +6,8 @@
 #include "inlines.h"
 #include "core_sys.h"
 
+#include "constants/species.h"
+
 #include "struct_decls/struct_020067E8_decl.h"
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
@@ -4294,7 +4296,7 @@ static void ov19_021D5BE8 (UnkStruct_ov19_021D4DF0 * param0, u16 param1, UnkStru
     {
         int v2 = BoxPokemon_GetValue(v0->unk_00, MON_DATA_SPECIES, NULL);
 
-        if (v2 == 493) {
+        if (v2 == SPECIES_ARCEUS) {
             BoxPokemon_SetArceusForm(v0->unk_00);
             v0->unk_0C = BoxPokemon_GetValue(v0->unk_00, MON_DATA_TYPE_1, NULL);
             v0->unk_0D = BoxPokemon_GetValue(v0->unk_00, MON_DATA_TYPE_2, NULL);

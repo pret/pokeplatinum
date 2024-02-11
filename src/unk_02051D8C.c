@@ -6,7 +6,7 @@
 #include "core_sys.h"
 
 #include "trainer_info.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_decls/struct_0203A790_decl.h"
@@ -255,7 +255,7 @@ void sub_020521B8 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, Sav
     TrainerInfo * v0 = sub_02025E38(param2);
     Party * v1 = Party_GetFromSavedata(param2);
     UnkStruct_0207D3C0 * v2 = sub_0207D990(param2);
-    UnkStruct_02026324 * v3 = sub_02027560(param2);
+    PokedexData * v3 = sub_02027560(param2);
     ChatotCry * v4 = GetChatotCryDataFromSave(param2);
     AnimationControlFlags * v5 = sub_02025E44(param2);
     UnkStruct_0203A790 * v6 = sub_0203A790(param2);
@@ -310,7 +310,7 @@ void sub_02052348 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, int
     TrainerInfo * v2 = sub_02025E38(param1->unk_0C);
     Party * v3 = Party_GetFromSavedata(param1->unk_0C);
     UnkStruct_0207D3C0 * v4 = sub_0207D990(param1->unk_0C);
-    UnkStruct_02026324 * v5 = sub_02027560(param1->unk_0C);
+    PokedexData * v5 = sub_02027560(param1->unk_0C);
     ChatotCry * v6 = GetChatotCryDataFromSave(param1->unk_0C);
     AnimationControlFlags * v7 = sub_02025E44(param1->unk_0C);
     Pokemon * v8;
@@ -360,7 +360,7 @@ void sub_020524E4 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, con
 {
     TrainerInfo * v0 = sub_02025E38(param1->unk_0C);
     UnkStruct_0207D3C0 * v1 = sub_0207D990(param1->unk_0C);
-    UnkStruct_02026324 * v2 = sub_02027560(param1->unk_0C);
+    PokedexData * v2 = sub_02027560(param1->unk_0C);
     ChatotCry * v3 = GetChatotCryDataFromSave(param1->unk_0C);
     AnimationControlFlags * v4 = sub_02025E44(param1->unk_0C);
     const UnkStruct_0202610C * v5 = param1->unk_B0;
@@ -444,7 +444,7 @@ void sub_020526E8 (const BattleParams * param0, UnkStruct_0203CDB0 * param1)
     TrainerInfo * v0 = sub_02025E38(param1->unk_0C);
     Party * v1 = Party_GetFromSavedata(param1->unk_0C);
     UnkStruct_0207D3C0 * v2 = sub_0207D990(param1->unk_0C);
-    UnkStruct_02026324 * v3 = sub_02027560(param1->unk_0C);
+    PokedexData * v3 = sub_02027560(param1->unk_0C);
     u16 * v4 = sub_0203A784(sub_0203A790(param1->unk_0C));
 
     TrainerInfo_Copy(param0->unk_D0[0], v0);
@@ -460,7 +460,7 @@ void sub_02052754 (const BattleParams * param0, UnkStruct_0203CDB0 * param1)
     TrainerInfo * v0 = sub_02025E38(param1->unk_0C);
     Party * v1 = Party_GetFromSavedata(param1->unk_0C);
     UnkStruct_0207D3C0 * v2 = sub_0207D990(param1->unk_0C);
-    UnkStruct_02026324 * v3 = sub_02027560(param1->unk_0C);
+    PokedexData * v3 = sub_02027560(param1->unk_0C);
 
     sub_02026338(param0->unk_E8, v3);
 }
