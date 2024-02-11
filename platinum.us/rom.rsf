@@ -171,7 +171,10 @@ RomSpec
 	File data/wm.ncgr
 	File data/wm.nclr
 	File data/sound/sound_data.sdat
-	File data/sound/pl_sound_data.sdat
+
+	Root /data
+	HostRoot res
+	File sound/pl_sound_data.sdat
 
 	Root /msgdata
 	HostRoot res/text
