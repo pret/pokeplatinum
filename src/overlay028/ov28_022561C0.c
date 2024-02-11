@@ -4,7 +4,7 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "overlay025/struct_ov25_0225424C_decl.h"
 #include "overlay025/struct_ov25_02255B34_decl.h"
 #include "overlay028/struct_ov28_0225697C_decl.h"

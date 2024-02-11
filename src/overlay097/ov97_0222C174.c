@@ -13,7 +13,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_0202442C_decl.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "overlay077/const_ov77_021D742C.h"

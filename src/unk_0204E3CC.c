@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"

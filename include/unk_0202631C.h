@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0202631C_H
 #define POKEPLATINUM_UNK_0202631C_H
 
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 

@@ -16,7 +16,7 @@
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_defs/chatot_cry.h"

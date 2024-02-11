@@ -4,7 +4,7 @@
 #include "core_sys.h"
 
 #include "strbuf.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 
 #include "overlay021/struct_ov21_021D3208.h"
 #include "overlay021/struct_ov21_021D3320.h"

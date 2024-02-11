@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02023FCC_decl.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "overlay022/struct_ov22_0225B1BC_decl.h"
 

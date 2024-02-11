@@ -2,7 +2,7 @@
 #define POKEPLATINUM_BATTLE_PARAMS_H
 
 #include "trainer_info.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"

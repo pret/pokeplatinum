@@ -7,7 +7,7 @@
 #include "struct_decls/sys_task.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"

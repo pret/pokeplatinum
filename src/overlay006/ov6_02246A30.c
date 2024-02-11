@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "trainer_info.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"

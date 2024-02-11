@@ -12,7 +12,7 @@
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "pokemon.h"
 
 #include "overlay094/const_ov94_02245FD8.h"

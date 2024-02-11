@@ -7,7 +7,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"

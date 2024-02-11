@@ -1,0 +1,6 @@
+#ifndef POKEPLATINUM_POKEDEXDATA_DECL_H
+#define POKEPLATINUM_POKEDEXDATA_DECL_H
+
+typedef struct PokedexData PokedexData;
+
+#endif // POKEPLATINUM_POKEDEXDATA_DECL_H

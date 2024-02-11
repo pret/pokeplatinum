@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_02056B24_decl.h"
 #include "pokemon.h"

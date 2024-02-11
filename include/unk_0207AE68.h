@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0207AE68_H
 #define POKEPLATINUM_UNK_0207AE68_H
 
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_02056B24_decl.h"

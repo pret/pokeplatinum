@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02023FCC_decl.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202F41C_decl.h"
 
 #include "overlay062/const_ov62_022491F0.h"

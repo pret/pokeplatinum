@@ -3,7 +3,7 @@
 
 #include "struct_defs/sentence.h"
 #include "struct_decls/struct_02014EC4_decl.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
