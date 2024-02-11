@@ -1,20 +1,13 @@
-sdat_files = [
-    'pl_sound_data.sdat'
-]
+sdat_folder = 'pl_sound_data'
+sdat_file = 'pl_sound_data.sdat'
 
-foreach f : sdat_files
-    sdat_root = meson.current_source_dir() / f
-    generated_sdat = meson.current_build_dir() / f
-
-    custom_target('generated_sdat',
-        build_by_default: true,
-        capture: true,
-        output: 'generated_sdat',
-        command: [
-            SDATTool_py,
-            '-b', sdat_root
-        ]
-    )
-
-    nitrofs_files += fs.copyfile(f)
-endforeach
+sdat_root = meson.current_source_dir() / sdat_folder
+generated_sdat = meson.current_build_dir() / sdat_file
+custom_target(sdat_file,
+    build_by_default: true,
+    output: sdat_file,
+    command: [
+        SDATTool_py,
+        '-b', generated_sdat, sdat_root
+    ]
+)
