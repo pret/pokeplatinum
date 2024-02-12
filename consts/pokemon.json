@@ -166,6 +166,15 @@
                 "GENDER_RATIO_FEMALE_ONLY": 254,
                 "GENDER_RATIO_NO_GENDER": 255
             }
+        },
+        "@PokemonFootprintSize": {
+            "type": "enum",
+            "as_preproc": true,
+            "values": [
+                "FOOTPRINT_SMALL",
+                "FOOTPRINT_MEDIUM",
+                "FOOTPRINT_LARGE"
+            ]
         }
     }
 }

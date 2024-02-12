@@ -5,6 +5,7 @@ import pathlib
 import sys
 from consts.moves import Move
 from consts.species import PokemonSpecies
+from consts.pokemon import PokemonFootprintSize
 
 
 argparser = argparse.ArgumentParser(
@@ -90,7 +91,10 @@ FORM_INDICES = {
     },
 }
 
-species_sets = {}
+species_movesets = {}
+species_footprints = {
+    0: { "has_footprint": False, "footprint_size": "FOOTPRINT_SMALL" }
+}
 
 for file_path in source_dir.glob("**/data.json"):
     with open(file_path, 'r') as data_file:
@@ -101,12 +105,16 @@ for file_path in source_dir.glob("**/data.json"):
     if species_name in ["000", "EGG", "BAD_EGG"]:
         continue
 
+    isForm = False
+
     if file_path.parent.parent.stem == "forms":
         
         form_name = species_name
         species_name = file_path.parent.parent.parent.stem.upper()
 
         species_id = FORM_INDICES[species_name][form_name]
+
+        isForm = True
     else:
         species_id = PokemonSpecies[f"SPECIES_{species_name}"].value
 
@@ -124,7 +132,10 @@ for file_path in source_dir.glob("**/data.json"):
     for tutor_move in species_data["learnset"]["tutor"]:
         set_bit(moveset.index(Move[tutor_move]))
 
-    species_sets[species_id] = byte_array
+    species_movesets[species_id] = byte_array
+
+    if not isForm:
+        species_footprints[species_id] = species_data["footprint"]
 
 
 generated_disclaimer = [
@@ -132,6 +143,7 @@ generated_disclaimer = [
     "// Check make_species_tables.py for reference\n",
 ]
  
+# write moveset table header
 output_path = output_dir / "tutor_movesets.h"
 
 with open(output_path, "w") as output_file:
@@ -143,12 +155,37 @@ with open(output_path, "w") as output_file:
     output_file.write("\n")
     output_file.write("const MovesetMask sTeachableMovesets[MOVESET_MAX] = {\n")
 
-    sorted_array = sorted(species_sets.items())
+    sorted_array = sorted(species_movesets.items())
 
     for key, value in sorted_array:
         struct = ''.join([f" 0x{i:X},".ljust(6) for i in value])
 
         output_file.write(f"    {{{struct.rstrip(' ,').ljust(29)} }},\n")
+
+    output_file.write("};\n")
+    output_file.write("\n#endif\n")
+
+
+# write footprint table header
+output_path = output_dir / "footprint_data.h"
+
+with open(output_path, "w") as output_file:
+    output_file.writelines(generated_disclaimer)
+    output_file.write("#ifndef POKEPLATINUM_GENERATED_FOOTPRINT_DATA_H\n")
+    output_file.write("#define POKEPLATINUM_GENERATED_FOOTPRINT_DATA_H\n")
+    output_file.write("#include \"overlay113/FootprintSizeData.h\"\n")
+    output_file.write("#include \"constants/species.h\"\n")
+    output_file.write("\n")
+    output_file.write("static const FootprintSizeData sSpeciesFootprintData[NATIONAL_DEX_COUNT + 1] = {\n")
+
+    sorted_array = sorted(species_footprints.items())
+
+    for key, value in sorted_array:
+
+        has_footprint = "TRUE" if species_footprints[key]["has_footprint"] else "FALSE"
+        footprint_size = PokemonFootprintSize[species_footprints[key]["footprint_size"]].value
+
+        output_file.write(f"    {{ {has_footprint}, {footprint_size} }},\n")
 
     output_file.write("};\n")
     output_file.write("\n#endif\n")

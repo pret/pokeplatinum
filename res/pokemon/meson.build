@@ -778,6 +778,7 @@ gen_species_headers = custom_target('auto-generated species headers',
     output: 'gen_species_headers',
     input: personal_files,
     env: json2bin_env,
+    depends: [ py_consts_generators ],
     command: [
         make_species_tables_py,
         '--source-dir', '@CURRENT_SOURCE_DIR@',
