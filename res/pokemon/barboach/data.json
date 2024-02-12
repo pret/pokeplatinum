@@ -91,7 +91,16 @@
             "39": "MOVE_EARTHQUAKE",
             "43": "MOVE_FUTURE_SIGHT",
             "47": "MOVE_FISSURE"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_AQUA_TAIL",
+            "MOVE_SNORE",
+            "MOVE_EARTH_POWER",
+            "MOVE_BOUNCE"
+        ]
     },
     "evolutions": [
         [

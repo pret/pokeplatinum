@@ -101,6 +101,18 @@
             "43": "MOVE_IMPRISON",
             "49": "MOVE_CAPTIVATE",
             "53": "MOVE_ME_FIRST"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_LAST_RESORT",
+            "MOVE_BOUNCE",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ]
     }
 }

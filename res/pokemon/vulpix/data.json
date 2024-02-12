@@ -90,7 +90,15 @@
             "41": "MOVE_GRUDGE",
             "44": "MOVE_EXTRASENSORY",
             "47": "MOVE_FIRE_BLAST"
-        }
+        },
+        "tutor": [
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [

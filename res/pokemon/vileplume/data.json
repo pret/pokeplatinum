@@ -85,6 +85,12 @@
             ],
             "53": "MOVE_PETAL_DANCE",
             "65": "MOVE_SOLAR_BEAM"
-        }
+        },
+        "tutor": [
+            "MOVE_GASTRO_ACID",
+            "MOVE_SNORE",
+            "MOVE_SYNTHESIS",
+            "MOVE_SEED_BOMB"
+        ]
     }
 }

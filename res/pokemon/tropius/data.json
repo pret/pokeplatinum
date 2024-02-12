@@ -101,6 +101,16 @@
             "51": "MOVE_SOLAR_BEAM",
             "57": "MOVE_NATURAL_GIFT",
             "61": "MOVE_LEAF_STORM"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_OUTRAGE",
+            "MOVE_SYNTHESIS",
+            "MOVE_TWISTER"
+        ]
     }
 }

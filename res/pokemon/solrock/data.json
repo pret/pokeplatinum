@@ -108,6 +108,18 @@
             "45": "MOVE_ROCK_SLIDE",
             "53": "MOVE_SOLAR_BEAM",
             "56": "MOVE_EXPLOSION"
-        }
+        },
+        "tutor": [
+            "MOVE_ROLLOUT",
+            "MOVE_IRON_HEAD",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_EARTH_POWER",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_SWIFT"
+        ]
     }
 }

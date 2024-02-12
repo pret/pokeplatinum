@@ -97,6 +97,12 @@
             "42": "MOVE_SCREECH",
             "49": "MOVE_HYDRO_PUMP",
             "55": "MOVE_WRING_OUT"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_ICY_WIND",
+            "MOVE_SNORE",
+            "MOVE_KNOCK_OFF"
+        ]
     }
 }

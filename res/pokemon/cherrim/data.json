@@ -88,6 +88,13 @@
             "35": "MOVE_TAKE_DOWN",
             "43": "MOVE_SOLAR_BEAM",
             "48": "MOVE_LUCKY_CHANT"
-        }
+        },
+        "tutor": [
+            "MOVE_ROLLOUT",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_SYNTHESIS",
+            "MOVE_SEED_BOMB"
+        ]
     }
 }

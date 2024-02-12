@@ -86,7 +86,14 @@
             "40": "MOVE_ROLLOUT",
             "46": "MOVE_DOUBLE_EDGE",
             "49": "MOVE_ERUPTION"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ROLLOUT",
+            "MOVE_SNORE",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [

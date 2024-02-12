@@ -93,6 +93,16 @@
             "41": "MOVE_ATTRACT",
             "45": "MOVE_SAFEGUARD",
             "49": "MOVE_AQUA_RING"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_IRON_HEAD",
+            "MOVE_AQUA_TAIL",
+            "MOVE_SNORE",
+            "MOVE_TWISTER",
+            "MOVE_SWIFT"
+        ]
     }
 }

@@ -104,7 +104,20 @@
             "33": "MOVE_BATON_PASS",
             "38": "MOVE_SHADOW_BALL",
             "43": "MOVE_EXPLOSION"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_ROLLOUT",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_TRICK",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [

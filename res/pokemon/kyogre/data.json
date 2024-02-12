@@ -98,6 +98,18 @@
             "65": "MOVE_DOUBLE_EDGE",
             "75": "MOVE_AQUA_TAIL",
             "80": "MOVE_WATER_SPOUT"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_IRON_HEAD",
+            "MOVE_AQUA_TAIL",
+            "MOVE_SNORE",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ]
     }
 }

@@ -97,7 +97,18 @@
             "37": "MOVE_ENDURE",
             "40": "MOVE_CLOSE_COMBAT",
             "43": "MOVE_REVERSAL"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_SUPERPOWER",
+            "MOVE_ICE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_VACUUM_WAVE",
+            "MOVE_KNOCK_OFF"
+        ]
     },
     "evolutions": [
         [

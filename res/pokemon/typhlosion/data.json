@@ -105,6 +105,16 @@
             "46": "MOVE_ROLLOUT",
             "53": "MOVE_DOUBLE_EDGE",
             "57": "MOVE_ERUPTION"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_ROLLOUT",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SWIFT"
+        ]
     }
 }

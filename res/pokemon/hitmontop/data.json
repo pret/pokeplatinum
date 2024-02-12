@@ -93,6 +93,17 @@
             "46": "MOVE_DETECT",
             "51": "MOVE_CLOSE_COMBAT",
             "55": "MOVE_ENDEAVOR"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ROLLOUT",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_VACUUM_WAVE",
+            "MOVE_TWISTER",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT"
+        ]
     }
 }

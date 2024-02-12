@@ -100,7 +100,16 @@
             "51": "MOVE_TRI_ATTACK",
             "56": "MOVE_MAGIC_COAT",
             "62": "MOVE_ZAP_CANNON"
-        }
+        },
+        "tutor": [
+            "MOVE_ICY_WIND",
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_LAST_RESORT",
+            "MOVE_TRICK",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [

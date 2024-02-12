@@ -1,5 +1,5 @@
 {
-    "name": "Farfetch\u2019d",
+    "name": "Farfetch’d",
     "base_stats": {
         "hp": 52,
         "attack": 65,
@@ -96,6 +96,19 @@
             "37": "MOVE_AIR_SLASH",
             "43": "MOVE_FEINT",
             "45": "MOVE_FALSE_SWIPE"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_TWISTER",
+            "MOVE_LAST_RESORT",
+            "MOVE_HEAT_WAVE",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ]
     }
 }

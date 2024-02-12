@@ -102,6 +102,17 @@
             "39": "MOVE_AIR_SLASH",
             "42": "MOVE_SLASH",
             "45": "MOVE_NIGHT_SLASH"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_ICY_WIND",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_TWISTER",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_SWIFT"
+        ]
     }
 }

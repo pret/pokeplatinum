@@ -109,6 +109,15 @@
             "36": "MOVE_WOOD_HAMMER",
             "47": "MOVE_BLIZZARD",
             "58": "MOVE_SHEER_COLD"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_ICE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_OUTRAGE",
+            "MOVE_SYNTHESIS",
+            "MOVE_SEED_BOMB"
+        ]
     }
 }

@@ -92,7 +92,16 @@
             "49": "MOVE_ROCK_BLAST",
             "55": "MOVE_CRUSH_CLAW",
             "61": "MOVE_X_SCISSOR"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_SNORE",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_EARTH_POWER",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_KNOCK_OFF"
+        ]
     },
     "evolutions": [
         [

@@ -100,7 +100,15 @@
             "39": "MOVE_ACID_ARMOR",
             "44": "MOVE_GUNK_SHOT",
             "49": "MOVE_MEMENTO"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_GUNK_SHOT"
+        ]
     },
     "evolutions": [
         [

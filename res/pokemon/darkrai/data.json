@@ -117,6 +117,18 @@
             "75": "MOVE_NASTY_PLOT",
             "84": "MOVE_DREAM_EATER",
             "93": "MOVE_DARK_PULSE"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_LAST_RESORT",
+            "MOVE_TRICK",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT"
+        ]
     }
 }

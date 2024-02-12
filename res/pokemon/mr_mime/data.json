@@ -122,6 +122,18 @@
             "43": "MOVE_ROLE_PLAY",
             "46": "MOVE_BATON_PASS",
             "50": "MOVE_SAFEGUARD"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_TRICK"
+        ]
     }
 }

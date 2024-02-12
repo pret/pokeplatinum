@@ -87,7 +87,17 @@
             "40": "MOVE_BOUNCE",
             "46": "MOVE_AQUA_RING",
             "49": "MOVE_HYDRO_PUMP"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_SNORE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_HELPING_HAND",
+            "MOVE_BOUNCE",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [

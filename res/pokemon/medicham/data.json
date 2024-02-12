@@ -111,6 +111,19 @@
             "42": "MOVE_POWER_TRICK",
             "49": "MOVE_REVERSAL",
             "55": "MOVE_RECOVER"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_VACUUM_WAVE",
+            "MOVE_TRICK",
+            "MOVE_SWIFT"
+        ]
     }
 }

@@ -102,7 +102,14 @@
             "41": "MOVE_FAINT_ATTACK",
             "49": "MOVE_PAYBACK",
             "52": "MOVE_HEAL_BLOCK"
-        }
+        },
+        "tutor": [
+            "MOVE_ROLLOUT",
+            "MOVE_SNORE",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_TRICK"
+        ]
     },
     "evolutions": [
         [

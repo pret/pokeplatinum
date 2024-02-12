@@ -106,6 +106,16 @@
             "34": "MOVE_SUPER_FANG",
             "39": "MOVE_DOUBLE_EDGE",
             "44": "MOVE_ENDEAVOR"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_SNORE",
+            "MOVE_ENDEAVOR",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_LAST_RESORT",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT"
+        ]
     }
 }

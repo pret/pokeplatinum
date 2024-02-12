@@ -96,6 +96,15 @@
             "41": "MOVE_AIR_SLASH",
             "44": "MOVE_PSYCHIC",
             "47": "MOVE_BUG_BUZZ"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_TWISTER",
+            "MOVE_SWIFT"
+        ]
     }
 }

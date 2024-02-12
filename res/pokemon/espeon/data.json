@@ -97,6 +97,16 @@
             "64": "MOVE_PSYCHIC",
             "71": "MOVE_MORNING_SUN",
             "78": "MOVE_POWER_SWAP"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_LAST_RESORT",
+            "MOVE_TRICK",
+            "MOVE_SWIFT"
+        ]
     }
 }

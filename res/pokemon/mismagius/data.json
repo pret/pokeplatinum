@@ -98,6 +98,16 @@
                 "MOVE_SPITE",
                 "MOVE_ASTONISH"
             ]
-        }
+        },
+        "tutor": [
+            "MOVE_ICY_WIND",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_TRICK",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ]
     }
 }

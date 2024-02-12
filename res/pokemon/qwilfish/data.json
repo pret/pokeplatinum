@@ -104,6 +104,16 @@
             "49": "MOVE_POISON_JAB",
             "53": "MOVE_DESTINY_BOND",
             "57": "MOVE_HYDRO_PUMP"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_ICY_WIND",
+            "MOVE_ROLLOUT",
+            "MOVE_AQUA_TAIL",
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_BOUNCE",
+            "MOVE_SWIFT"
+        ]
     }
 }

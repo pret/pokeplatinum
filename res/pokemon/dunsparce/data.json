@@ -106,6 +106,17 @@
             "45": "MOVE_DIG",
             "49": "MOVE_ENDEAVOR",
             "53": "MOVE_FLAIL"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ROLLOUT",
+            "MOVE_AQUA_TAIL",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_ENDEAVOR",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_LAST_RESORT"
+        ]
     }
 }

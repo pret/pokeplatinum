@@ -108,7 +108,21 @@
             "41": "MOVE_MIMIC",
             "45": "MOVE_HYPER_VOICE",
             "49": "MOVE_DOUBLE_EDGE"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_ROLLOUT",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_LAST_RESORT",
+            "MOVE_BOUNCE",
+            "MOVE_KNOCK_OFF"
+        ]
     },
     "evolutions": [
         [

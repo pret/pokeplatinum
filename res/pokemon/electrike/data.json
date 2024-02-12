@@ -89,7 +89,14 @@
             "41": "MOVE_DISCHARGE",
             "44": "MOVE_CHARGE",
             "49": "MOVE_THUNDER"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_MAGNET_RISE",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [

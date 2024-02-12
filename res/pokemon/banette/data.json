@@ -109,6 +109,15 @@
             "51": "MOVE_SNATCH",
             "58": "MOVE_GRUDGE",
             "66": "MOVE_TRICK"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SPITE",
+            "MOVE_TRICK",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SUCKER_PUNCH"
+        ]
     }
 }

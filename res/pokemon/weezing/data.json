@@ -100,6 +100,12 @@
             "48": "MOVE_SLUDGE_BOMB",
             "55": "MOVE_DESTINY_BOND",
             "63": "MOVE_MEMENTO"
-        }
+        },
+        "tutor": [
+            "MOVE_ROLLOUT",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_UPROAR"
+        ]
     }
 }

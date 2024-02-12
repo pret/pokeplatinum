@@ -85,7 +85,14 @@
             "40": "MOVE_IRON_DEFENSE",
             "44": "MOVE_BRINE",
             "49": "MOVE_ICE_BEAM"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_ICY_WIND",
+            "MOVE_SNORE",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [

@@ -102,7 +102,22 @@
             "38": "MOVE_POISON_JAB",
             "43": "MOVE_SLUDGE_BOMB",
             "45": "MOVE_FLATTER"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_ICY_WIND",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_HELPING_HAND",
+            "MOVE_VACUUM_WAVE",
+            "MOVE_GUNK_SHOT",
+            "MOVE_BOUNCE",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SUCKER_PUNCH"
+        ]
     },
     "evolutions": [
         [

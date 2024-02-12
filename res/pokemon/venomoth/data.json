@@ -99,6 +99,15 @@
             "47": "MOVE_POISON_FANG",
             "55": "MOVE_PSYCHIC",
             "59": "MOVE_BUG_BUZZ"
-        }
+        },
+        "tutor": [
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_TWISTER",
+            "MOVE_SWIFT"
+        ]
     }
 }

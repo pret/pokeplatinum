@@ -105,7 +105,20 @@
             "45": "MOVE_CHARM",
             "50": "MOVE_HYPNOSIS",
             "53": "MOVE_DREAM_EATER"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_TRICK",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [

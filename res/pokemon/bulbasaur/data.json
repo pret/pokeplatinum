@@ -91,7 +91,15 @@
             "31": "MOVE_WORRY_SEED",
             "33": "MOVE_SYNTHESIS",
             "37": "MOVE_SEED_BOMB"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_SNORE",
+            "MOVE_SYNTHESIS",
+            "MOVE_SEED_BOMB",
+            "MOVE_KNOCK_OFF"
+        ]
     },
     "evolutions": [
         [

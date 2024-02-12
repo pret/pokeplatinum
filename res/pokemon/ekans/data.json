@@ -97,7 +97,15 @@
             "33": "MOVE_GASTRO_ACID",
             "36": "MOVE_HAZE",
             "41": "MOVE_GUNK_SHOT"
-        }
+        },
+        "tutor": [
+            "MOVE_AQUA_TAIL",
+            "MOVE_GASTRO_ACID",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_GUNK_SHOT",
+            "MOVE_SEED_BOMB"
+        ]
     },
     "evolutions": [
         [

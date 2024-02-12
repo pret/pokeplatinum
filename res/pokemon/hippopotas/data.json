@@ -86,7 +86,13 @@
             "37": "MOVE_EARTHQUAKE",
             "44": "MOVE_DOUBLE_EDGE",
             "50": "MOVE_FISSURE"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SUPERPOWER",
+            "MOVE_SNORE",
+            "MOVE_EARTH_POWER"
+        ]
     },
     "evolutions": [
         [

@@ -51,7 +51,13 @@
                 "MOVE_BIDE"
             ],
             "16": "MOVE_BUG_BITE"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SNORE",
+            "MOVE_ENDEAVOR",
+            "MOVE_UPROAR"
+        ]
     },
     "evolutions": [
         [

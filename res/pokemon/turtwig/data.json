@@ -92,7 +92,15 @@
             "37": "MOVE_CRUNCH",
             "41": "MOVE_GIGA_DRAIN",
             "45": "MOVE_LEAF_STORM"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SUPERPOWER",
+            "MOVE_SNORE",
+            "MOVE_SYNTHESIS",
+            "MOVE_EARTH_POWER",
+            "MOVE_SEED_BOMB"
+        ]
     },
     "evolutions": [
         [

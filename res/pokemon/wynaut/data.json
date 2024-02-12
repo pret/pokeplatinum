@@ -57,7 +57,8 @@
                 "MOVE_SAFEGUARD",
                 "MOVE_DESTINY_BOND"
             ]
-        }
+        },
+        "tutor": []
     },
     "evolutions": [
         [

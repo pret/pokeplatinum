@@ -90,7 +90,18 @@
             "36": "MOVE_SIGNAL_BEAM",
             "40": "MOVE_ICE_BEAM",
             "45": "MOVE_HYPER_BEAM"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_GUNK_SHOT",
+            "MOVE_SEED_BOMB",
+            "MOVE_BOUNCE",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [

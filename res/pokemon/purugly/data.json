@@ -104,6 +104,16 @@
             "38": "MOVE_SWAGGER",
             "45": "MOVE_BODY_SLAM",
             "53": "MOVE_ATTRACT"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_ROLLOUT",
+            "MOVE_SNORE",
+            "MOVE_LAST_RESORT",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT"
+        ]
     }
 }

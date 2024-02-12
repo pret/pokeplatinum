@@ -90,6 +90,19 @@
             "29": "MOVE_DISCHARGE",
             "33": "MOVE_SUPER_FANG",
             "37": "MOVE_LAST_RESORT"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ROLLOUT",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_GUNK_SHOT",
+            "MOVE_SEED_BOMB",
+            "MOVE_MAGNET_RISE",
+            "MOVE_LAST_RESORT",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ]
     }
 }

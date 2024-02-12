@@ -88,7 +88,12 @@
             "36": "MOVE_PIN_MISSILE",
             "40": "MOVE_PSYCHIC",
             "43": "MOVE_POISON_JAB"
-        }
+        },
+        "tutor": [
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_BOUNCE",
+            "MOVE_SUCKER_PUNCH"
+        ]
     },
     "evolutions": [
         [

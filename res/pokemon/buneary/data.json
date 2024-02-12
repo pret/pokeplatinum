@@ -97,7 +97,17 @@
             "43": "MOVE_CHARM",
             "46": "MOVE_BOUNCE",
             "53": "MOVE_HEALING_WISH"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_LAST_RESORT",
+            "MOVE_BOUNCE",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ]
     },
     "evolutions": [
         [

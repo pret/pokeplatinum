@@ -99,6 +99,15 @@
             "51": "MOVE_LIGHT_SCREEN",
             "59": "MOVE_POWER_GEM",
             "68": "MOVE_THUNDER"
-        }
+        },
+        "tutor": [
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_OUTRAGE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_MAGNET_RISE",
+            "MOVE_SWIFT"
+        ]
     }
 }

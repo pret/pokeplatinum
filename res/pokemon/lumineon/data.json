@@ -97,6 +97,17 @@
             "48": "MOVE_U_TURN",
             "53": "MOVE_BOUNCE",
             "59": "MOVE_SILVER_WIND"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_ICY_WIND",
+            "MOVE_AQUA_TAIL",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_TWISTER",
+            "MOVE_BOUNCE",
+            "MOVE_SWIFT"
+        ]
     }
 }

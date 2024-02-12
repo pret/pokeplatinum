@@ -79,6 +79,16 @@
         ],
         "level_up": {
             "1": "MOVE_PRESENT"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_ROLLOUT",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_GUNK_SHOT",
+            "MOVE_SEED_BOMB",
+            "MOVE_BOUNCE",
+            "MOVE_SWIFT"
+        ]
     }
 }

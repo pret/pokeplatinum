@@ -112,6 +112,15 @@
             "50": "MOVE_FAINT_ATTACK",
             "61": "MOVE_PAYBACK",
             "67": "MOVE_HEAL_BLOCK"
-        }
+        },
+        "tutor": [
+            "MOVE_ROLLOUT",
+            "MOVE_IRON_HEAD",
+            "MOVE_SNORE",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_TRICK"
+        ]
     }
 }

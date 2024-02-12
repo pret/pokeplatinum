@@ -99,6 +99,14 @@
             "34": "MOVE_SAFEGUARD",
             "36": "MOVE_CAPTIVATE",
             "40": "MOVE_BUG_BUZZ"
-        }
+        },
+        "tutor": [
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_TWISTER",
+            "MOVE_SWIFT"
+        ]
     }
 }

@@ -90,6 +90,15 @@
             "35": "MOVE_GASTRO_ACID",
             "40": "MOVE_BUG_BITE",
             "48": "MOVE_POWER_TRICK"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ROLLOUT",
+            "MOVE_GASTRO_ACID",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_EARTH_POWER"
+        ]
     }
 }

@@ -73,7 +73,13 @@
             "1": "MOVE_SPLASH",
             "15": "MOVE_TACKLE",
             "30": "MOVE_FLAIL"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_ICY_WIND",
+            "MOVE_SNORE",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [

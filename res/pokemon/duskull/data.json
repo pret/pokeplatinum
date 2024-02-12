@@ -100,7 +100,15 @@
             "38": "MOVE_MEAN_LOOK",
             "41": "MOVE_PAYBACK",
             "46": "MOVE_FUTURE_SIGHT"
-        }
+        },
+        "tutor": [
+            "MOVE_ICY_WIND",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_TRICK",
+            "MOVE_SUCKER_PUNCH"
+        ]
     },
     "evolutions": [
         [

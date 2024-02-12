@@ -106,6 +106,17 @@
             "59": "MOVE_COTTON_SPORE",
             "65": "MOVE_SANDSTORM",
             "71": "MOVE_DESTINY_BOND"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_SUPERPOWER",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_SYNTHESIS",
+            "MOVE_SEED_BOMB",
+            "MOVE_SUCKER_PUNCH"
+        ]
     }
 }

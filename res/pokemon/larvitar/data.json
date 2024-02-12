@@ -95,7 +95,17 @@
             "41": "MOVE_EARTHQUAKE",
             "46": "MOVE_STONE_EDGE",
             "50": "MOVE_HYPER_BEAM"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SUPERPOWER",
+            "MOVE_IRON_HEAD",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_EARTH_POWER",
+            "MOVE_UPROAR"
+        ]
     },
     "evolutions": [
         [

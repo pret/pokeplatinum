@@ -96,7 +96,17 @@
             "41": "MOVE_PSYCHO_SHIFT",
             "45": "MOVE_ROOST",
             "49": "MOVE_DREAM_EATER"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_AIR_CUTTER",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_TWISTER",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ]
     },
     "evolutions": [
         [

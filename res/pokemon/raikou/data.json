@@ -100,6 +100,14 @@
             "71": "MOVE_RAIN_DANCE",
             "78": "MOVE_CALM_MIND",
             "85": "MOVE_THUNDER"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_IRON_HEAD",
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_MAGNET_RISE",
+            "MOVE_SWIFT"
+        ]
     }
 }

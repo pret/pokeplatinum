@@ -87,7 +87,13 @@
             "37": "MOVE_ICE_SHARD",
             "40": "MOVE_HAIL",
             "46": "MOVE_BLIZZARD"
-        }
+        },
+        "tutor": [
+            "MOVE_ICY_WIND",
+            "MOVE_ROLLOUT",
+            "MOVE_SNORE",
+            "MOVE_SPITE"
+        ]
     },
     "evolutions": [
         [

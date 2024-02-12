@@ -97,6 +97,16 @@
             "71": "MOVE_SOLAR_BEAM",
             "78": "MOVE_SKY_ATTACK",
             "85": "MOVE_SUNNY_DAY"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_TWISTER",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SWIFT"
+        ]
     }
 }
