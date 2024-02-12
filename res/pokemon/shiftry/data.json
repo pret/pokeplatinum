@@ -101,6 +101,27 @@
                 "MOVE_RAZOR_LEAF"
             ],
             "49": "MOVE_LEAF_STORM"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_ICY_WIND",
+            "MOVE_ROLLOUT",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_SYNTHESIS",
+            "MOVE_TWISTER",
+            "MOVE_SEED_BOMB",
+            "MOVE_BOUNCE",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

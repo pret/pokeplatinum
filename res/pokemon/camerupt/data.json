@@ -101,6 +101,18 @@
             "49": "MOVE_EARTHQUAKE",
             "57": "MOVE_ERUPTION",
             "67": "MOVE_FISSURE"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ROLLOUT",
+            "MOVE_IRON_HEAD",
+            "MOVE_SNORE",
+            "MOVE_EARTH_POWER",
+            "MOVE_HEAT_WAVE"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

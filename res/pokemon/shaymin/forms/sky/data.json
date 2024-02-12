@@ -86,6 +86,17 @@
             "82": "MOVE_SWEET_KISS",
             "91": "MOVE_LEAF_STORM",
             "100": "MOVE_SEED_FLARE"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_SYNTHESIS",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_SEED_BOMB",
+            "MOVE_LAST_RESORT",
+            "MOVE_SWIFT"
+        ]
     }
 }

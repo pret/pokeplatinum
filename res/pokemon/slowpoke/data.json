@@ -107,7 +107,18 @@
             "48": "MOVE_PSYCHIC",
             "53": "MOVE_RAIN_DANCE",
             "57": "MOVE_PSYCH_UP"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_AQUA_TAIL",
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_TRICK",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -120,5 +131,9 @@
             "ITEM_KINGS_ROCK",
             "SPECIES_SLOWKING"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

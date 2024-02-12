@@ -105,6 +105,17 @@
             "55": "MOVE_DOUBLE_EDGE",
             "62": "MOVE_MAGNET_RISE",
             "67": "MOVE_ZAP_CANNON"
-        }
+        },
+        "tutor": [
+            "MOVE_ROLLOUT",
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_MAGNET_RISE"
+        ]
+    },
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

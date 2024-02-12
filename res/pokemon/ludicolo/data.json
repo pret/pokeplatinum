@@ -95,6 +95,23 @@
                 "MOVE_MEGA_DRAIN",
                 "MOVE_NATURE_POWER"
             ]
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_SYNTHESIS",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_SEED_BOMB",
+            "MOVE_UPROAR"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

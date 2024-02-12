@@ -85,7 +85,17 @@
             "34": "MOVE_AERIAL_ACE",
             "43": "MOVE_AGILITY",
             "53": "MOVE_AIR_SLASH"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_ENDEAVOR",
+            "MOVE_TWISTER",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -93,5 +103,9 @@
             22,
             "SPECIES_SWELLOW"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

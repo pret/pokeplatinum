@@ -127,6 +127,15 @@
                 "MOVE_COUNTER",
                 "MOVE_MIRROR_COAT"
             ]
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_TRICK",
+            "MOVE_KNOCK_OFF"
+        ]
     }
 }

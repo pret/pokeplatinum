@@ -83,7 +83,13 @@
             "37": "MOVE_LIGHT_SCREEN",
             "41": "MOVE_POWER_GEM",
             "46": "MOVE_THUNDER"
-        }
+        },
+        "tutor": [
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_MAGNET_RISE",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -91,5 +97,9 @@
             15,
             "SPECIES_FLAAFFY"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

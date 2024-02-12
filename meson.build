@@ -142,7 +142,8 @@ subdir('asm')
 main = executable('main',
     sources: [
         pokeplatinum_c,
-        pokeplatinum_asm
+        pokeplatinum_asm,
+        gen_species_headers
     ],
     c_args: [
         pokeplatinum_args,

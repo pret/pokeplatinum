@@ -96,6 +96,19 @@
             "64": "MOVE_SCREECH",
             "71": "MOVE_MOONLIGHT",
             "78": "MOVE_GUARD_SWAP"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_HELPING_HAND",
+            "MOVE_LAST_RESORT",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

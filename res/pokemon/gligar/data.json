@@ -107,7 +107,15 @@
             "38": "MOVE_U_TURN",
             "42": "MOVE_X_SCISSOR",
             "45": "MOVE_GUILLOTINE"
-        }
+        },
+        "tutor": [
+            "MOVE_FURY_CUTTER",
+            "MOVE_AQUA_TAIL",
+            "MOVE_SNORE",
+            "MOVE_EARTH_POWER",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -115,5 +123,9 @@
             "ITEM_RAZOR_FANG",
             "SPECIES_GLISCOR"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

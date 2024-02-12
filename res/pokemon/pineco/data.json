@@ -95,7 +95,12 @@
             "39": "MOVE_IRON_DEFENSE",
             "42": "MOVE_GYRO_BALL",
             "45": "MOVE_DOUBLE_EDGE"
-        }
+        },
+        "tutor": [
+            "MOVE_ROLLOUT",
+            "MOVE_SNORE",
+            "MOVE_IRON_DEFENSE"
+        ]
     },
     "evolutions": [
         [
@@ -103,5 +108,9 @@
             31,
             "SPECIES_FORRETRESS"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

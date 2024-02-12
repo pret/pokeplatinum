@@ -88,7 +88,16 @@
             "46": "MOVE_BODY_SLAM",
             "53": "MOVE_FLAMETHROWER",
             "56": "MOVE_EARTH_POWER"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ROLLOUT",
+            "MOVE_SNORE",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_EARTH_POWER",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_HEAT_WAVE"
+        ]
     },
     "evolutions": [
         [
@@ -96,5 +105,9 @@
             38,
             "SPECIES_MAGCARGO"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

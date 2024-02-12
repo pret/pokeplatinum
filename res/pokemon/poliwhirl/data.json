@@ -96,7 +96,15 @@
             "43": "MOVE_WAKE_UP_SLAP",
             "48": "MOVE_HYDRO_PUMP",
             "53": "MOVE_MUD_BOMB"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_ICE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND"
+        ]
     },
     "evolutions": [
         [
@@ -109,5 +117,9 @@
             "ITEM_KINGS_ROCK",
             "SPECIES_POLITOED"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

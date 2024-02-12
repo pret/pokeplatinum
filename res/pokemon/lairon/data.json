@@ -101,7 +101,22 @@
             "45": "MOVE_IRON_TAIL",
             "51": "MOVE_DOUBLE_EDGE",
             "56": "MOVE_METAL_BURST"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_ROLLOUT",
+            "MOVE_SUPERPOWER",
+            "MOVE_IRON_HEAD",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_ENDEAVOR",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_EARTH_POWER",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_MAGNET_RISE",
+            "MOVE_UPROAR"
+        ]
     },
     "evolutions": [
         [
@@ -109,5 +124,9 @@
             42,
             "SPECIES_AGGRON"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

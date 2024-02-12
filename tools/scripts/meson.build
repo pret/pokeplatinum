@@ -5,3 +5,5 @@ make_height_py = find_program('make_height.py', native: true)
 make_script_bin_sh = find_program('make_script_bin.sh', native: true)
 make_pl_pokezukan_py = find_program('make_pl_pokezukan.py', native: true)
 make_shinzukan_py = find_program('make_shinzukan.py', native: true)
+make_species_tables_py = find_program('make_species_tables.py', native: true)
+

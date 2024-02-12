@@ -90,7 +90,14 @@
             "41": "MOVE_EARTHQUAKE",
             "45": "MOVE_FLAMETHROWER",
             "51": "MOVE_DOUBLE_EDGE"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ROLLOUT",
+            "MOVE_SNORE",
+            "MOVE_EARTH_POWER",
+            "MOVE_HEAT_WAVE"
+        ]
     },
     "evolutions": [
         [
@@ -98,5 +105,9 @@
             33,
             "SPECIES_CAMERUPT"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

@@ -100,7 +100,14 @@
             "39": "MOVE_POISON_FANG",
             "45": "MOVE_CRUNCH",
             "50": "MOVE_CROSS_POISON"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_AQUA_TAIL",
+            "MOVE_SNORE",
+            "MOVE_KNOCK_OFF"
+        ]
     },
     "evolutions": [
         [
@@ -108,5 +115,9 @@
             40,
             "SPECIES_DRAPION"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

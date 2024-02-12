@@ -103,7 +103,20 @@
             "45": "MOVE_STONE_EDGE",
             "49": "MOVE_EARTHQUAKE",
             "57": "MOVE_MEGAHORN"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_ROLLOUT",
+            "MOVE_SUPERPOWER",
+            "MOVE_AQUA_TAIL",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_ENDEAVOR",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_EARTH_POWER",
+            "MOVE_UPROAR"
+        ]
     },
     "evolutions": [
         [
@@ -111,5 +124,9 @@
             42,
             "SPECIES_RHYDON"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

@@ -96,7 +96,17 @@
             "50": "MOVE_CRUNCH",
             "55": "MOVE_DRAGON_CLAW",
             "61": "MOVE_DOUBLE_EDGE"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_ROLLOUT",
+            "MOVE_SNORE",
+            "MOVE_OUTRAGE",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_TWISTER",
+            "MOVE_IRON_DEFENSE"
+        ]
     },
     "evolutions": [
         [
@@ -104,5 +114,9 @@
             50,
             "SPECIES_SALAMENCE"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

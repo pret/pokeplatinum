@@ -57,7 +57,8 @@
                 "MOVE_SAFEGUARD",
                 "MOVE_DESTINY_BOND"
             ]
-        }
+        },
+        "tutor": []
     },
     "evolutions": [
         [
@@ -65,5 +66,9 @@
             15,
             "SPECIES_WOBBUFFET"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

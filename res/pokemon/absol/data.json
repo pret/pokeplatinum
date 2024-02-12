@@ -123,6 +123,23 @@
             "57": "MOVE_ME_FIRST",
             "60": "MOVE_PSYCHO_CUT",
             "65": "MOVE_PERISH_SONG"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_ICY_WIND",
+            "MOVE_SUPERPOWER",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_BOUNCE",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

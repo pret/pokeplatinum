@@ -95,7 +95,16 @@
             "32": "MOVE_SLASH",
             "39": "MOVE_FLAMETHROWER",
             "43": "MOVE_FIRE_SPIN"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -103,5 +112,9 @@
             36,
             "SPECIES_CHARIZARD"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

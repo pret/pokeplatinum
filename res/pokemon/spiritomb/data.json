@@ -99,6 +99,19 @@
             "37": "MOVE_NASTY_PLOT",
             "43": "MOVE_MEMENTO",
             "49": "MOVE_DARK_PULSE"
-        }
+        },
+        "tutor": [
+            "MOVE_ICY_WIND",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_TRICK",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_UPROAR"
+        ]
+    },
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

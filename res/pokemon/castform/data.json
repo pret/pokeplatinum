@@ -95,6 +95,17 @@
                 "MOVE_HAIL"
             ],
             "30": "MOVE_WEATHER_BALL"
-        }
+        },
+        "tutor": [
+            "MOVE_ICY_WIND",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_LAST_RESORT",
+            "MOVE_SWIFT"
+        ]
+    },
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

@@ -110,6 +110,21 @@
             "49": "MOVE_FLING",
             "55": "MOVE_PUNISHMENT",
             "61": "MOVE_HAMMER_ARM"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_ICY_WIND",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_GUNK_SHOT",
+            "MOVE_SUCKER_PUNCH"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

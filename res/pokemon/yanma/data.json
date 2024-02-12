@@ -95,7 +95,16 @@
             "49": "MOVE_U_TURN",
             "54": "MOVE_AIR_SLASH",
             "57": "MOVE_BUG_BUZZ"
-        }
+        },
+        "tutor": [
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ]
     },
     "evolutions": [
         [
@@ -103,5 +112,9 @@
             "MOVE_ANCIENT_POWER",
             "SPECIES_YANMEGA"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

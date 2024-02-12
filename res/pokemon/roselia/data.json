@@ -93,7 +93,15 @@
             "40": "MOVE_PETAL_DANCE",
             "43": "MOVE_AROMATHERAPY",
             "46": "MOVE_SYNTHESIS"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_SNORE",
+            "MOVE_SYNTHESIS",
+            "MOVE_SEED_BOMB",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -101,5 +109,9 @@
             "ITEM_SHINY_STONE",
             "SPECIES_ROSERADE"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

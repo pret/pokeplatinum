@@ -93,6 +93,16 @@
             "40": "MOVE_FURY_ATTACK",
             "47": "MOVE_BOUNCE",
             "56": "MOVE_FLARE_BLITZ"
-        }
+        },
+        "tutor": [
+            "MOVE_SNORE",
+            "MOVE_BOUNCE",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SWIFT"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

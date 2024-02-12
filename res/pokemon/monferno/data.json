@@ -106,7 +106,20 @@
             "39": "MOVE_FIRE_SPIN",
             "46": "MOVE_SLACK_OFF",
             "49": "MOVE_FLARE_BLITZ"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ROLLOUT",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_VACUUM_WAVE",
+            "MOVE_GUNK_SHOT",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -114,5 +127,9 @@
             36,
             "SPECIES_INFERNAPE"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

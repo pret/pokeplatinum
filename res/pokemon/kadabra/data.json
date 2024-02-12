@@ -107,12 +107,26 @@
             "40": "MOVE_PSYCHIC",
             "42": "MOVE_FUTURE_SIGHT",
             "46": "MOVE_TRICK"
-        }
+        },
+        "tutor": [
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_TRICK",
+            "MOVE_KNOCK_OFF"
+        ]
     },
     "evolutions": [
         [
             "EVO_TRADE",
             "SPECIES_ALAKAZAM"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

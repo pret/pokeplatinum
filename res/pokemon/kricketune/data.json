@@ -92,6 +92,18 @@
             "42": "MOVE_NIGHT_SLASH",
             "46": "MOVE_BUG_BUZZ",
             "50": "MOVE_PERISH_SONG"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_SNORE",
+            "MOVE_ENDEAVOR",
+            "MOVE_KNOCK_OFF",
+            "MOVE_UPROAR"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
     }
 }

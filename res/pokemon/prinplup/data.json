@@ -101,7 +101,14 @@
             "42": "MOVE_MIST",
             "46": "MOVE_DRILL_PECK",
             "51": "MOVE_HYDRO_PUMP"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM"
+        ]
     },
     "evolutions": [
         [
@@ -109,5 +116,9 @@
             36,
             "SPECIES_EMPOLEON"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

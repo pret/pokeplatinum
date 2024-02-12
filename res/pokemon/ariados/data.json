@@ -93,6 +93,15 @@
             "41": "MOVE_PIN_MISSILE",
             "46": "MOVE_PSYCHIC",
             "50": "MOVE_POISON_JAB"
-        }
+        },
+        "tutor": [
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_BOUNCE",
+            "MOVE_SUCKER_PUNCH"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
     }
 }

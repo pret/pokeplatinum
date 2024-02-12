@@ -96,7 +96,16 @@
             ],
             "47": "MOVE_BLIZZARD",
             "55": "MOVE_SHEER_COLD"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_ROLLOUT",
+            "MOVE_AQUA_TAIL",
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM"
+        ]
     },
     "evolutions": [
         [
@@ -104,5 +113,9 @@
             44,
             "SPECIES_WALREIN"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

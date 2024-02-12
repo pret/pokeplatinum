@@ -86,7 +86,18 @@
             "41": "MOVE_HORN_DRILL",
             "47": "MOVE_AGILITY",
             "51": "MOVE_MEGAHORN"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_ICY_WIND",
+            "MOVE_AQUA_TAIL",
+            "MOVE_SNORE",
+            "MOVE_BOUNCE",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -94,5 +105,9 @@
             33,
             "SPECIES_SEAKING"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

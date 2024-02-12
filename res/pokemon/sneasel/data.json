@@ -110,7 +110,17 @@
             "38": "MOVE_BEAT_UP",
             "42": "MOVE_METAL_CLAW",
             "49": "MOVE_ICE_SHARD"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_ICY_WIND",
+            "MOVE_ICE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -118,5 +128,9 @@
             "ITEM_RAZOR_CLAW",
             "SPECIES_WEAVILE"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

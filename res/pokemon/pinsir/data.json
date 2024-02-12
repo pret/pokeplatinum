@@ -102,6 +102,17 @@
             "42": "MOVE_SUBMISSION",
             "47": "MOVE_GUILLOTINE",
             "52": "MOVE_SUPERPOWER"
-        }
+        },
+        "tutor": [
+            "MOVE_FURY_CUTTER",
+            "MOVE_SUPERPOWER",
+            "MOVE_SNORE",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_KNOCK_OFF"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

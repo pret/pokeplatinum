@@ -1,5 +1,5 @@
 {
-    "name": "Nidoran\u2642",
+    "name": "Nidoran♂",
     "base_stats": {
         "hp": 46,
         "attack": 57,
@@ -95,7 +95,13 @@
             "37": "MOVE_POISON_JAB",
             "43": "MOVE_CAPTIVATE",
             "45": "MOVE_HORN_DRILL"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_SUCKER_PUNCH"
+        ]
     },
     "evolutions": [
         [
@@ -103,5 +109,9 @@
             16,
             "SPECIES_NIDORINO"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

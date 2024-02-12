@@ -91,7 +91,13 @@
             "34": "MOVE_SLASH",
             "37": "MOVE_EARTHQUAKE",
             "40": "MOVE_FISSURE"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SNORE",
+            "MOVE_EARTH_POWER",
+            "MOVE_SUCKER_PUNCH"
+        ]
     },
     "evolutions": [
         [
@@ -99,5 +105,9 @@
             26,
             "SPECIES_DUGTRIO"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

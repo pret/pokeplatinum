@@ -101,6 +101,22 @@
             "41": "MOVE_HYDRO_PUMP",
             "44": "MOVE_DRAGON_DANCE",
             "47": "MOVE_HYPER_BEAM"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_ICY_WIND",
+            "MOVE_IRON_HEAD",
+            "MOVE_AQUA_TAIL",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_OUTRAGE",
+            "MOVE_TWISTER",
+            "MOVE_BOUNCE",
+            "MOVE_UPROAR"
+        ]
+    },
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

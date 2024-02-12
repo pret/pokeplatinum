@@ -97,6 +97,21 @@
             "49": "MOVE_MEGA_KICK",
             "53": "MOVE_CLOSE_COMBAT",
             "57": "MOVE_REVERSAL"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SUPERPOWER",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_VACUUM_WAVE",
+            "MOVE_BOUNCE",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

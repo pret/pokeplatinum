@@ -94,6 +94,17 @@
             "40": "MOVE_EARTHQUAKE",
             "50": "MOVE_DOUBLE_EDGE",
             "60": "MOVE_FISSURE"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SUPERPOWER",
+            "MOVE_IRON_HEAD",
+            "MOVE_SNORE",
+            "MOVE_EARTH_POWER"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

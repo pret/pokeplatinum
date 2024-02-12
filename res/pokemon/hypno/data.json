@@ -111,6 +111,18 @@
             "55": "MOVE_NASTY_PLOT",
             "64": "MOVE_ZEN_HEADBUTT",
             "69": "MOVE_FUTURE_SIGHT"
-        }
+        },
+        "tutor": [
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_TRICK"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

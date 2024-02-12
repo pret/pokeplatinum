@@ -90,7 +90,15 @@
             "46": "MOVE_CRUNCH",
             "50": "MOVE_DRAGON_CLAW",
             "55": "MOVE_DOUBLE_EDGE"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_SNORE",
+            "MOVE_OUTRAGE",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_TWISTER"
+        ]
     },
     "evolutions": [
         [
@@ -98,5 +106,9 @@
             30,
             "SPECIES_SHELGON"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

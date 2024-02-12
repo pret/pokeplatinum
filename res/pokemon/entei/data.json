@@ -100,6 +100,17 @@
             "71": "MOVE_FIRE_BLAST",
             "78": "MOVE_CALM_MIND",
             "85": "MOVE_ERUPTION"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_IRON_HEAD",
+            "MOVE_SNORE",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SWIFT"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

@@ -90,7 +90,16 @@
             "34": "MOVE_SLASH",
             "37": "MOVE_MIRROR_MOVE",
             "43": "MOVE_FLAMETHROWER"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_LAST_RESORT",
+            "MOVE_BOUNCE",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -98,5 +107,9 @@
             16,
             "SPECIES_COMBUSKEN"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

@@ -106,7 +106,16 @@
             "37": "MOVE_TAKE_DOWN",
             "43": "MOVE_PAYBACK",
             "49": "MOVE_CRUNCH"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_SUPERPOWER",
+            "MOVE_ICE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_LAST_RESORT"
+        ]
     },
     "evolutions": [
         [
@@ -114,5 +123,9 @@
             23,
             "SPECIES_GRANBULL"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

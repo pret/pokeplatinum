@@ -56,6 +56,11 @@
             "71": "MOVE_SKETCH",
             "81": "MOVE_SKETCH",
             "91": "MOVE_SKETCH"
-        }
+        },
+        "tutor": []
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

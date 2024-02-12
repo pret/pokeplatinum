@@ -86,7 +86,13 @@
             "73": "MOVE_EARTHQUAKE",
             "81": "MOVE_FEINT",
             "89": "MOVE_FISSURE"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_SNORE",
+            "MOVE_EARTH_POWER"
+        ]
     },
     "evolutions": [
         [
@@ -94,5 +100,9 @@
             35,
             "SPECIES_VIBRAVA"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

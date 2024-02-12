@@ -99,6 +99,17 @@
             "43": "MOVE_AQUA_TAIL",
             "47": "MOVE_ICE_BEAM",
             "51": "MOVE_SAFEGUARD"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_ICY_WIND",
+            "MOVE_AQUA_TAIL",
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM"
+        ]
+    },
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

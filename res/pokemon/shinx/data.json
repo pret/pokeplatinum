@@ -86,7 +86,15 @@
             "33": "MOVE_CRUNCH",
             "37": "MOVE_SCARY_FACE",
             "41": "MOVE_DISCHARGE"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_MAGNET_RISE",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -94,5 +102,9 @@
             15,
             "SPECIES_LUXIO"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

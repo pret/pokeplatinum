@@ -99,6 +99,18 @@
             "46": "MOVE_DIVE",
             "54": "MOVE_BOUNCE",
             "62": "MOVE_HYDRO_PUMP"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_ICY_WIND",
+            "MOVE_ROLLOUT",
+            "MOVE_IRON_HEAD",
+            "MOVE_SNORE",
+            "MOVE_BOUNCE"
+        ]
+    },
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

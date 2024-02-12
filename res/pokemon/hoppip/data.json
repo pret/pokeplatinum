@@ -90,7 +90,14 @@
             "37": "MOVE_GIGA_DRAIN",
             "40": "MOVE_BOUNCE",
             "43": "MOVE_MEMENTO"
-        }
+        },
+        "tutor": [
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_SYNTHESIS",
+            "MOVE_SEED_BOMB",
+            "MOVE_BOUNCE"
+        ]
     },
     "evolutions": [
         [
@@ -98,5 +105,9 @@
             18,
             "SPECIES_SKIPLOOM"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

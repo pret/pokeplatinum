@@ -77,7 +77,13 @@
                 "MOVE_WHIRLPOOL",
                 "MOVE_IRON_DEFENSE"
             ]
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_ICY_WIND",
+            "MOVE_SNORE",
+            "MOVE_IRON_DEFENSE"
+        ]
     },
     "evolutions": [
         [
@@ -90,5 +96,9 @@
             "ITEM_DEEPSEASCALE",
             "SPECIES_GOREBYSS"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

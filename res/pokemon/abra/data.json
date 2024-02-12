@@ -92,7 +92,17 @@
         ],
         "level_up": {
             "1": "MOVE_TELEPORT"
-        }
+        },
+        "tutor": [
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_TRICK",
+            "MOVE_KNOCK_OFF"
+        ]
     },
     "evolutions": [
         [
@@ -100,5 +110,9 @@
             16,
             "SPECIES_KADABRA"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

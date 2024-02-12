@@ -121,6 +121,14 @@
             "81": "MOVE_ZAP_CANNON",
             "89": "MOVE_PSYCHO_BOOST",
             "97": "MOVE_HYPER_BEAM"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SUPERPOWER",
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_TRICK"
+        ]
     }
 }

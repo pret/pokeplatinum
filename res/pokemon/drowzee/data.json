@@ -104,7 +104,15 @@
             "43": "MOVE_NASTY_PLOT",
             "50": "MOVE_ZEN_HEADBUTT",
             "53": "MOVE_FUTURE_SIGHT"
-        }
+        },
+        "tutor": [
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_TRICK"
+        ]
     },
     "evolutions": [
         [
@@ -112,5 +120,9 @@
             26,
             "SPECIES_HYPNO"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

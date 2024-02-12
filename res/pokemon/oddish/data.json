@@ -85,7 +85,13 @@
             "33": "MOVE_MOONLIGHT",
             "37": "MOVE_GIGA_DRAIN",
             "41": "MOVE_PETAL_DANCE"
-        }
+        },
+        "tutor": [
+            "MOVE_GASTRO_ACID",
+            "MOVE_SNORE",
+            "MOVE_SYNTHESIS",
+            "MOVE_SEED_BOMB"
+        ]
     },
     "evolutions": [
         [
@@ -93,5 +99,9 @@
             21,
             "SPECIES_GLOOM"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

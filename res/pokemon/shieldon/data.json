@@ -100,7 +100,16 @@
             "33": "MOVE_ENDURE",
             "37": "MOVE_METAL_BURST",
             "43": "MOVE_IRON_HEAD"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_IRON_HEAD",
+            "MOVE_SNORE",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_EARTH_POWER",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_MAGNET_RISE"
+        ]
     },
     "evolutions": [
         [
@@ -108,5 +117,9 @@
             30,
             "SPECIES_BASTIODON"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

@@ -89,7 +89,20 @@
             "32": "MOVE_RAIN_DANCE",
             "37": "MOVE_AQUA_TAIL",
             "42": "MOVE_HYDRO_PUMP"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_ROLLOUT",
+            "MOVE_SUPERPOWER",
+            "MOVE_ICE_PUNCH",
+            "MOVE_AQUA_TAIL",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -97,5 +110,9 @@
             18,
             "SPECIES_AZUMARILL"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }
