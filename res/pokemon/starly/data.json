@@ -104,5 +104,9 @@
             14,
             "SPECIES_STARAVIA"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

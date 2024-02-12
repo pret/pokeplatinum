@@ -116,5 +116,9 @@
             55,
             "SPECIES_TYRANITAR"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

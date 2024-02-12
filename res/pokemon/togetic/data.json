@@ -135,5 +135,9 @@
             "ITEM_SHINY_STONE",
             "SPECIES_TOGEKISS"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

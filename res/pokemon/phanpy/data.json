@@ -108,5 +108,9 @@
             25,
             "SPECIES_DONPHAN"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

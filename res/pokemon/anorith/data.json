@@ -109,5 +109,9 @@
             40,
             "SPECIES_ARMALDO"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

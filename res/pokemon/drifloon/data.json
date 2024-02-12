@@ -125,5 +125,9 @@
             28,
             "SPECIES_DRIFBLIM"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

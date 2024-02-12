@@ -106,5 +106,9 @@
             "ITEM_SUN_STONE",
             "SPECIES_SUNFLORA"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

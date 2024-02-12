@@ -97,5 +97,9 @@
             "EVO_HAPPINESS_DAY",
             "SPECIES_ROSELIA"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

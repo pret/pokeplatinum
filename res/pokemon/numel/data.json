@@ -105,5 +105,9 @@
             33,
             "SPECIES_CAMERUPT"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

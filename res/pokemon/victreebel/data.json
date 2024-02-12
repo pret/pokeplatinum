@@ -98,5 +98,9 @@
             "MOVE_KNOCK_OFF",
             "MOVE_SUCKER_PUNCH"
         ]
+    },
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

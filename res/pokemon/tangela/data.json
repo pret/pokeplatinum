@@ -114,5 +114,9 @@
             "MOVE_ANCIENT_POWER",
             "SPECIES_TANGROWTH"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

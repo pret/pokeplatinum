@@ -119,5 +119,9 @@
             "ITEM_LEAF_STONE",
             "SPECIES_SHIFTRY"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

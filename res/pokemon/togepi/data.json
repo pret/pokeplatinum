@@ -117,5 +117,9 @@
             "EVO_HAPPINESS",
             "SPECIES_TOGETIC"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

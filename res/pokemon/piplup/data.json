@@ -109,5 +109,9 @@
             16,
             "SPECIES_PRINPLUP"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

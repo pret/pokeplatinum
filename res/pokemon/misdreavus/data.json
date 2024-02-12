@@ -120,5 +120,9 @@
             "ITEM_DUSK_STONE",
             "SPECIES_MISMAGIUS"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

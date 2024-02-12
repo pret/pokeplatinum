@@ -103,5 +103,9 @@
             32,
             "SPECIES_SEADRA"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

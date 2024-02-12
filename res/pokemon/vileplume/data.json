@@ -92,5 +92,9 @@
             "MOVE_SYNTHESIS",
             "MOVE_SEED_BOMB"
         ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

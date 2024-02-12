@@ -108,5 +108,9 @@
             26,
             "SPECIES_FLOATZEL"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

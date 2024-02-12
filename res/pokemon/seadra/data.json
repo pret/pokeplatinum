@@ -110,5 +110,9 @@
             "ITEM_DRAGON_SCALE",
             "SPECIES_KINGDRA"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

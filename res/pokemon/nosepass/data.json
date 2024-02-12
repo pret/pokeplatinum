@@ -113,5 +113,9 @@
             "EVO_ELECTRIC_FIELD",
             "SPECIES_PROBOPASS"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

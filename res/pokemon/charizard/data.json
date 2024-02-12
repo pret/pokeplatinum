@@ -127,5 +127,9 @@
             "MOVE_HEAT_WAVE",
             "MOVE_SWIFT"
         ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

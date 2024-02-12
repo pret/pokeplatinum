@@ -124,5 +124,9 @@
             42,
             "SPECIES_AGGRON"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

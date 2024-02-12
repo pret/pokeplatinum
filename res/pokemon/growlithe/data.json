@@ -107,5 +107,9 @@
             "ITEM_FIRE_STONE",
             "SPECIES_ARCANINE"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

@@ -124,5 +124,9 @@
             "EVO_TRADE",
             "SPECIES_ALAKAZAM"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

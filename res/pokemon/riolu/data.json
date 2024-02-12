@@ -114,5 +114,9 @@
             "EVO_HAPPINESS_DAY",
             "SPECIES_LUCARIO"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

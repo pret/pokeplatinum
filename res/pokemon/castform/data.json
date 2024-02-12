@@ -103,5 +103,9 @@
             "MOVE_LAST_RESORT",
             "MOVE_SWIFT"
         ]
+    },
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

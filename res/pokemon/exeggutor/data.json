@@ -104,5 +104,9 @@
             "MOVE_ZEN_HEADBUTT",
             "MOVE_SEED_BOMB"
         ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

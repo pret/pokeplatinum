@@ -110,5 +110,9 @@
             16,
             "SPECIES_MARSHTOMP"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

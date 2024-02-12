@@ -114,5 +114,9 @@
             50,
             "SPECIES_SALAMENCE"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

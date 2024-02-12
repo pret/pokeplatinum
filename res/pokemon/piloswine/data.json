@@ -119,5 +119,9 @@
             "MOVE_ANCIENT_POWER",
             "SPECIES_MAMOSWINE"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

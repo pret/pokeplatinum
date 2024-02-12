@@ -103,5 +103,9 @@
             21,
             "SPECIES_WEEPINBELL"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

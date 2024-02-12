@@ -112,5 +112,9 @@
             "MOVE_HELPING_HAND",
             "MOVE_VACUUM_WAVE"
         ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

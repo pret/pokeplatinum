@@ -107,5 +107,9 @@
             24,
             "SPECIES_PARASECT"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

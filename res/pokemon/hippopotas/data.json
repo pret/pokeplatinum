@@ -100,5 +100,9 @@
             34,
             "SPECIES_HIPPOWDON"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

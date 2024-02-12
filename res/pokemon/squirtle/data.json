@@ -113,5 +113,9 @@
             16,
             "SPECIES_WARTORTLE"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

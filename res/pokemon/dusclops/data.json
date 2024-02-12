@@ -136,5 +136,9 @@
             "ITEM_REAPER_CLOTH",
             "SPECIES_DUSKNOIR"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

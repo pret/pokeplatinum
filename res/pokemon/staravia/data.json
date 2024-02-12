@@ -105,5 +105,9 @@
             34,
             "SPECIES_STARAPTOR"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

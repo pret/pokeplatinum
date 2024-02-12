@@ -111,5 +111,9 @@
             32,
             "SPECIES_SEALEO"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

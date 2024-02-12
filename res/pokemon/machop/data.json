@@ -115,5 +115,9 @@
             28,
             "SPECIES_MACHOKE"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

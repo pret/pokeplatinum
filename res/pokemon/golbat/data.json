@@ -115,5 +115,9 @@
             "EVO_HAPPINESS",
             "SPECIES_CROBAT"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

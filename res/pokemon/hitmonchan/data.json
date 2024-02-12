@@ -112,5 +112,9 @@
             "MOVE_VACUUM_WAVE",
             "MOVE_SWIFT"
         ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

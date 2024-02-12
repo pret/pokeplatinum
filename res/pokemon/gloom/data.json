@@ -110,5 +110,9 @@
             "ITEM_SUN_STONE",
             "SPECIES_BELLOSSOM"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

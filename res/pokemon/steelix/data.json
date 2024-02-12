@@ -123,5 +123,9 @@
             "MOVE_TWISTER",
             "MOVE_MAGNET_RISE"
         ]
+    },
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

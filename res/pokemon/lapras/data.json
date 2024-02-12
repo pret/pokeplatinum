@@ -114,5 +114,9 @@
             "MOVE_SIGNAL_BEAM",
             "MOVE_ZEN_HEADBUTT"
         ]
+    },
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

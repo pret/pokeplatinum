@@ -113,5 +113,9 @@
             "ITEM_THUNDERSTONE",
             "SPECIES_RAICHU"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

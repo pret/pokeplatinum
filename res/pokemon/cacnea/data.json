@@ -116,5 +116,9 @@
             32,
             "SPECIES_CACTURNE"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

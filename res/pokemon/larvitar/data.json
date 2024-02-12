@@ -113,5 +113,9 @@
             30,
             "SPECIES_PUPITAR"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

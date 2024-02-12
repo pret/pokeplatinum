@@ -119,5 +119,9 @@
             32,
             "SPECIES_GRUMPIG"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

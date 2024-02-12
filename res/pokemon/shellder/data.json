@@ -100,5 +100,9 @@
             "ITEM_WATER_STONE",
             "SPECIES_CLOYSTER"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

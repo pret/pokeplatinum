@@ -112,5 +112,9 @@
             40,
             "SPECIES_KABUTOPS"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

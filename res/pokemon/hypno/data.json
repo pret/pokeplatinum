@@ -120,5 +120,9 @@
             "MOVE_ZEN_HEADBUTT",
             "MOVE_TRICK"
         ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

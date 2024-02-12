@@ -128,5 +128,9 @@
             "ITEM_RAZOR_CLAW",
             "SPECIES_WEAVILE"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

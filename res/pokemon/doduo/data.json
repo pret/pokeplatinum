@@ -101,5 +101,9 @@
             31,
             "SPECIES_DODRIO"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

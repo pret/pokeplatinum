@@ -114,5 +114,9 @@
             20,
             "SPECIES_NOCTOWL"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

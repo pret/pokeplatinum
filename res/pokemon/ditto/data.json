@@ -49,5 +49,9 @@
             "1": "MOVE_TRANSFORM"
         },
         "tutor": []
+    },
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

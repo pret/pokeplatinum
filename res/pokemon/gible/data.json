@@ -111,5 +111,9 @@
             24,
             "SPECIES_GABITE"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

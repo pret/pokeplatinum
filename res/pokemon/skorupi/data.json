@@ -115,5 +115,9 @@
             40,
             "SPECIES_DRAPION"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

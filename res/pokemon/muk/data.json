@@ -118,5 +118,9 @@
             "MOVE_SNORE",
             "MOVE_GUNK_SHOT"
         ]
+    },
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

@@ -103,5 +103,9 @@
             22,
             "SPECIES_SWELLOW"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

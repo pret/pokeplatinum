@@ -100,5 +100,9 @@
             23,
             "SPECIES_BRELOOM"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

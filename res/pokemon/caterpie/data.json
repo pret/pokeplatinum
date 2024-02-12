@@ -62,5 +62,9 @@
             7,
             "SPECIES_METAPOD"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

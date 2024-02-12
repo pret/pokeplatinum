@@ -101,5 +101,9 @@
             14,
             "SPECIES_QUILAVA"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

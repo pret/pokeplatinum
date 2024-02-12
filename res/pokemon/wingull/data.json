@@ -111,5 +111,9 @@
             25,
             "SPECIES_PELIPPER"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

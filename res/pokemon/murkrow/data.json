@@ -117,5 +117,9 @@
             "ITEM_DUSK_STONE",
             "SPECIES_HONCHKROW"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

@@ -111,5 +111,9 @@
             16,
             "SPECIES_CHARMELEON"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

@@ -117,5 +117,9 @@
             "MOVE_ANCIENT_POWER",
             "MOVE_EARTH_POWER"
         ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

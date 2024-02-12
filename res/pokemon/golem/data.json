@@ -117,5 +117,9 @@
             "MOVE_EARTH_POWER",
             "MOVE_SUCKER_PUNCH"
         ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

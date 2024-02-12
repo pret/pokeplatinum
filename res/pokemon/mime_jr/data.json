@@ -130,5 +130,9 @@
             "MOVE_MIMIC",
             "SPECIES_MR_MIME"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

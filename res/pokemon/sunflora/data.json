@@ -102,5 +102,9 @@
             "MOVE_SEED_BOMB",
             "MOVE_UPROAR"
         ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

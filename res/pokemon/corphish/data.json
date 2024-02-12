@@ -118,5 +118,9 @@
             30,
             "SPECIES_CRAWDAUNT"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }
