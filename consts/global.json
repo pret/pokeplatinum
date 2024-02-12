@@ -16,7 +16,8 @@
             "@PokemonExpRate",
             "@PokemonContestType",
             "@PokemonGenderRatio",
-            "@PokemonEggGroup"
+            "@PokemonEggGroup",
+            "@PokemonFootprintSize"
         ],
         "items": [
             "@Item",
@@ -2063,6 +2064,15 @@
                 "GENDER_RATIO_FEMALE_87_5": 223,
                 "GENDER_RATIO_FEMALE_ONLY": 254,
                 "GENDER_RATIO_NO_GENDER": 255
+            }
+        },
+        "@PokemonFootprintSize": {
+            "type": "aliases",
+            "as_preproc": true,
+            "values": {
+                "FOOTPRINT_SMALL": 0,
+                "FOOTPRINT_MEDIUM": 1,
+                "FOOTPRINT_LARGE": 2
             }
         },
         "@MoveClass": {
