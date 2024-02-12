@@ -118,5 +118,9 @@
             32,
             "SPECIES_LAIRON"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

@@ -106,5 +106,9 @@
             18,
             "SPECIES_MIGHTYENA"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

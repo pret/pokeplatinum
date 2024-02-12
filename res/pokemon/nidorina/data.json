@@ -109,5 +109,9 @@
             "ITEM_MOON_STONE",
             "SPECIES_NIDOQUEEN"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

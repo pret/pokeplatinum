@@ -120,5 +120,9 @@
             28,
             "SPECIES_MAROWAK"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

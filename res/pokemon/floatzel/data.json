@@ -112,5 +112,9 @@
             "MOVE_SNORE",
             "MOVE_SWIFT"
         ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

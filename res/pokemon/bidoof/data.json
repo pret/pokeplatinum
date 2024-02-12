@@ -113,5 +113,9 @@
             15,
             "SPECIES_BIBAREL"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

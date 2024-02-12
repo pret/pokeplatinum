@@ -117,5 +117,9 @@
             "ITEM_UPGRADE",
             "SPECIES_PORYGON2"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

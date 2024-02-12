@@ -119,5 +119,9 @@
             36,
             "SPECIES_CLAYDOL"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

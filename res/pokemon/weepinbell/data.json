@@ -107,5 +107,9 @@
             "ITEM_LEAF_STONE",
             "SPECIES_VICTREEBEL"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

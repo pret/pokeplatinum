@@ -129,5 +129,9 @@
             "MOVE_DOUBLE_HIT",
             "SPECIES_AMBIPOM"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

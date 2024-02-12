@@ -96,5 +96,9 @@
             30,
             "SPECIES_GASTRODON"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

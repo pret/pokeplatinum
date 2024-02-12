@@ -140,5 +140,9 @@
             "EVO_HAPPINESS",
             "SPECIES_BLISSEY"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

@@ -105,5 +105,9 @@
             38,
             "SPECIES_MAGCARGO"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

@@ -104,5 +104,9 @@
             "MOVE_TWISTER",
             "MOVE_SWIFT"
         ]
+    },
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

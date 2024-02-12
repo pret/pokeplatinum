@@ -118,5 +118,9 @@
             "ITEM_DUBIOUS_DISC",
             "SPECIES_PORYGON_Z"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

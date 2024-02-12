@@ -112,5 +112,9 @@
             "MOVE_SYNTHESIS",
             "MOVE_TWISTER"
         ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

@@ -113,5 +113,9 @@
             38,
             "SPECIES_PURUGLY"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

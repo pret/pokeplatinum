@@ -97,5 +97,9 @@
             15,
             "SPECIES_FLAAFFY"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

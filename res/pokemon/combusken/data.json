@@ -121,5 +121,9 @@
             36,
             "SPECIES_BLAZIKEN"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

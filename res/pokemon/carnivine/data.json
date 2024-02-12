@@ -105,5 +105,9 @@
             "MOVE_SEED_BOMB",
             "MOVE_KNOCK_OFF"
         ]
+    },
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

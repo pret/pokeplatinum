@@ -114,5 +114,9 @@
             "MOVE_GUNK_SHOT",
             "MOVE_SEED_BOMB"
         ]
+    },
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

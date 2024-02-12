@@ -106,5 +106,9 @@
             "ITEM_FIRE_STONE",
             "SPECIES_NINETALES"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

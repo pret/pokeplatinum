@@ -108,5 +108,9 @@
             16,
             "SPECIES_BAYLEEF"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

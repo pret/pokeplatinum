@@ -66,5 +66,9 @@
             20,
             "SPECIES_MOTHIM"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

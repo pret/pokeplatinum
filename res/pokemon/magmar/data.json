@@ -111,5 +111,9 @@
             "ITEM_MAGMARIZER",
             "SPECIES_MAGMORTAR"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

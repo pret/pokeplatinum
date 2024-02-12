@@ -123,5 +123,9 @@
             "MOVE_ZEN_HEADBUTT",
             "MOVE_IRON_DEFENSE"
         ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

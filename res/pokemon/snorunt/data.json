@@ -106,5 +106,9 @@
             "ITEM_DAWN_STONE",
             "SPECIES_FROSLASS"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

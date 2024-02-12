@@ -116,5 +116,9 @@
             24,
             "SPECIES_HARIYAMA"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

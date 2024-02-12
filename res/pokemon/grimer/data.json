@@ -116,5 +116,9 @@
             38,
             "SPECIES_MUK"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

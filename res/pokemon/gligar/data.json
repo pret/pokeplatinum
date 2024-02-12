@@ -123,5 +123,9 @@
             "ITEM_RAZOR_FANG",
             "SPECIES_GLISCOR"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

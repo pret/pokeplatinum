@@ -108,5 +108,9 @@
             36,
             "SPECIES_TYPHLOSION"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

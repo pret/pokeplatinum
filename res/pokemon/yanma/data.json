@@ -112,5 +112,9 @@
             "MOVE_ANCIENT_POWER",
             "SPECIES_YANMEGA"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

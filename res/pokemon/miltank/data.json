@@ -117,5 +117,9 @@
             "MOVE_HELPING_HAND",
             "MOVE_ZEN_HEADBUTT"
         ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
     }
 }

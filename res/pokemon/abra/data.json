@@ -110,5 +110,9 @@
             16,
             "SPECIES_KADABRA"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

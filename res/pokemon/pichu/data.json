@@ -99,5 +99,9 @@
             "EVO_HAPPINESS",
             "SPECIES_PIKACHU"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

@@ -68,5 +68,9 @@
             7,
             "SPECIES_CASCOON"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

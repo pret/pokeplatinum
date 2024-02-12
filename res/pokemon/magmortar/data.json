@@ -114,5 +114,9 @@
             "MOVE_HELPING_HAND",
             "MOVE_HEAT_WAVE"
         ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

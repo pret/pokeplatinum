@@ -109,5 +109,9 @@
             30,
             "SPECIES_MAGNETON"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

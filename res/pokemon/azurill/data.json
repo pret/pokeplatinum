@@ -94,5 +94,9 @@
             "EVO_HAPPINESS",
             "SPECIES_MARILL"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

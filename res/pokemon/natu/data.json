@@ -125,5 +125,9 @@
             25,
             "SPECIES_XATU"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

@@ -112,5 +112,9 @@
             34,
             "SPECIES_SKUNTANK"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

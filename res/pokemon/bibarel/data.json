@@ -120,5 +120,9 @@
             "MOVE_LAST_RESORT",
             "MOVE_SWIFT"
         ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

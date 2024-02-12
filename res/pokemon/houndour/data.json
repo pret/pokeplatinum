@@ -115,5 +115,9 @@
             24,
             "SPECIES_HOUNDOOM"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

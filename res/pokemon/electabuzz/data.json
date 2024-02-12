@@ -117,5 +117,9 @@
             "ITEM_ELECTIRIZER",
             "SPECIES_ELECTIVIRE"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

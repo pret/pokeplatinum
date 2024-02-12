@@ -135,5 +135,9 @@
             "MOVE_IRON_DEFENSE",
             "MOVE_TRICK"
         ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

@@ -114,5 +114,9 @@
             55,
             "SPECIES_DRAGONITE"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

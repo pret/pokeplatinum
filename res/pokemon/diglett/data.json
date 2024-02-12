@@ -105,5 +105,9 @@
             26,
             "SPECIES_DUGTRIO"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

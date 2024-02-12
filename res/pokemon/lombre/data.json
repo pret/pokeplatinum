@@ -116,5 +116,9 @@
             "ITEM_WATER_STONE",
             "SPECIES_LUDICOLO"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

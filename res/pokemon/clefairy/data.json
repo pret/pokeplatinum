@@ -141,5 +141,9 @@
             "ITEM_MOON_STONE",
             "SPECIES_CLEFABLE"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

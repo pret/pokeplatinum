@@ -118,5 +118,9 @@
             "MOVE_VACUUM_WAVE",
             "MOVE_KNOCK_OFF"
         ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

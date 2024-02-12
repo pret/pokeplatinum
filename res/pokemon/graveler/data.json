@@ -117,5 +117,9 @@
             "EVO_TRADE",
             "SPECIES_GOLEM"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

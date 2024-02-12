@@ -106,5 +106,9 @@
             30,
             "SPECIES_SHELGON"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

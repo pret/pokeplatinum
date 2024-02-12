@@ -119,5 +119,9 @@
             "MOVE_EARTH_POWER",
             "MOVE_SEED_BOMB"
         ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

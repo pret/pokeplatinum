@@ -119,5 +119,9 @@
             "MOVE_BOUNCE",
             "MOVE_KNOCK_OFF"
         ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

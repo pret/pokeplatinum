@@ -66,5 +66,9 @@
             15,
             "SPECIES_WOBBUFFET"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

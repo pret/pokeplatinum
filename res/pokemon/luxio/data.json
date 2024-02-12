@@ -105,5 +105,9 @@
             30,
             "SPECIES_LUXRAY"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

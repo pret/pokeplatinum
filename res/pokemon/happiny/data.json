@@ -109,5 +109,9 @@
             "ITEM_OVAL_STONE",
             "SPECIES_CHANSEY"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

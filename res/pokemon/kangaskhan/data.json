@@ -132,5 +132,9 @@
             "MOVE_SUCKER_PUNCH",
             "MOVE_UPROAR"
         ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

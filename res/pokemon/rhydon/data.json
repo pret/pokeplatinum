@@ -142,5 +142,9 @@
             "ITEM_PROTECTOR",
             "SPECIES_RHYPERIOR"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

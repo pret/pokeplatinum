@@ -112,5 +112,9 @@
             40,
             "SPECIES_OMASTAR"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }
