@@ -146,6 +146,7 @@ main = executable('main',
         c_consts_generators,
         asm_consts_generators,
         naix_headers,
+        gen_species_headers
     ],
     c_args: [
         pokeplatinum_args,
