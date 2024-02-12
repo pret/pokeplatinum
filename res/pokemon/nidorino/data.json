@@ -95,7 +95,13 @@
             "43": "MOVE_POISON_JAB",
             "50": "MOVE_CAPTIVATE",
             "58": "MOVE_HORN_DRILL"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_SUCKER_PUNCH"
+        ]
     },
     "evolutions": [
         [

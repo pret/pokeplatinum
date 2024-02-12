@@ -113,6 +113,16 @@
             "46": "MOVE_MIST",
             "52": "MOVE_DRILL_PECK",
             "59": "MOVE_HYDRO_PUMP"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_ICY_WIND",
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_KNOCK_OFF"
+        ]
     }
 }

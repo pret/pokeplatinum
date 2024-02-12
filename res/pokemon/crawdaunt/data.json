@@ -108,6 +108,20 @@
             "52": "MOVE_SWORDS_DANCE",
             "57": "MOVE_CRUNCH",
             "65": "MOVE_GUILLOTINE"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_ICY_WIND",
+            "MOVE_SUPERPOWER",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_ENDEAVOR",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT"
+        ]
     }
 }

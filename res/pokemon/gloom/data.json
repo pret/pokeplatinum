@@ -91,7 +91,13 @@
             "41": "MOVE_MOONLIGHT",
             "47": "MOVE_GIGA_DRAIN",
             "53": "MOVE_PETAL_DANCE"
-        }
+        },
+        "tutor": [
+            "MOVE_GASTRO_ACID",
+            "MOVE_SNORE",
+            "MOVE_SYNTHESIS",
+            "MOVE_SEED_BOMB"
+        ]
     },
     "evolutions": [
         [

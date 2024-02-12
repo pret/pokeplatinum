@@ -97,7 +97,14 @@
             "32": "MOVE_NIGHT_SLASH",
             "38": "MOVE_MEMENTO",
             "44": "MOVE_EXPLOSION"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_SNORE",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [

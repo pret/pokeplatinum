@@ -97,7 +97,19 @@
             "35": "MOVE_FAINT_ATTACK",
             "41": "MOVE_MEAN_LOOK",
             "45": "MOVE_SUCKER_PUNCH"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SPITE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_TWISTER",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ]
     },
     "evolutions": [
         [

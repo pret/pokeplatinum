@@ -92,6 +92,15 @@
             "42": "MOVE_CRUNCH",
             "49": "MOVE_SCARY_FACE",
             "56": "MOVE_DISCHARGE"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_SUPERPOWER",
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_MAGNET_RISE",
+            "MOVE_SWIFT"
+        ]
     }
 }

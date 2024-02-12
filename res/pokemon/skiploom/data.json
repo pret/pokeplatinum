@@ -95,7 +95,14 @@
             "44": "MOVE_GIGA_DRAIN",
             "48": "MOVE_BOUNCE",
             "52": "MOVE_MEMENTO"
-        }
+        },
+        "tutor": [
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_SYNTHESIS",
+            "MOVE_SEED_BOMB",
+            "MOVE_BOUNCE"
+        ]
     },
     "evolutions": [
         [

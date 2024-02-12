@@ -114,7 +114,15 @@
             "43": "MOVE_ROLE_PLAY",
             "46": "MOVE_BATON_PASS",
             "50": "MOVE_SAFEGUARD"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_TRICK",
+            "MOVE_UPROAR"
+        ]
     },
     "evolutions": [
         [

@@ -100,7 +100,21 @@
             "33": "MOVE_FIRE_SPIN",
             "39": "MOVE_SLACK_OFF",
             "41": "MOVE_FLAMETHROWER"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ROLLOUT",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_VACUUM_WAVE",
+            "MOVE_GUNK_SHOT",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ]
     },
     "evolutions": [
         [

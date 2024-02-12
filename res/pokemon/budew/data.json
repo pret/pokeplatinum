@@ -82,7 +82,15 @@
             "10": "MOVE_STUN_SPORE",
             "13": "MOVE_MEGA_DRAIN",
             "16": "MOVE_WORRY_SEED"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SNORE",
+            "MOVE_SYNTHESIS",
+            "MOVE_SEED_BOMB",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ]
     },
     "evolutions": [
         [

@@ -103,6 +103,13 @@
             "34": "MOVE_FLAMETHROWER",
             "42": "MOVE_MEMENTO",
             "52": "MOVE_EXPLOSION"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_SNORE",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT"
+        ]
     }
 }

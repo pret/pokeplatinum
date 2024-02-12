@@ -103,6 +103,16 @@
             "38": "MOVE_AGILITY",
             "45": "MOVE_BATON_PASS",
             "52": "MOVE_X_SCISSOR"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ]
     }
 }

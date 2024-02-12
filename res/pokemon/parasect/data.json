@@ -100,6 +100,13 @@
             "39": "MOVE_GIGA_DRAIN",
             "47": "MOVE_AROMATHERAPY",
             "55": "MOVE_X_SCISSOR"
-        }
+        },
+        "tutor": [
+            "MOVE_FURY_CUTTER",
+            "MOVE_SNORE",
+            "MOVE_SYNTHESIS",
+            "MOVE_SEED_BOMB",
+            "MOVE_KNOCK_OFF"
+        ]
     }
 }

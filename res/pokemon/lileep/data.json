@@ -94,7 +94,16 @@
                 "MOVE_SWALLOW"
             ],
             "64": "MOVE_WRING_OUT"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_GASTRO_ACID",
+            "MOVE_SNORE",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_SYNTHESIS",
+            "MOVE_EARTH_POWER",
+            "MOVE_SEED_BOMB"
+        ]
     },
     "evolutions": [
         [

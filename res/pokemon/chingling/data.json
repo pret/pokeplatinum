@@ -90,7 +90,20 @@
             "14": "MOVE_CONFUSION",
             "17": "MOVE_UPROAR",
             "22": "MOVE_LAST_RESORT"
-        }
+        },
+        "tutor": [
+            "MOVE_ICY_WIND",
+            "MOVE_ROLLOUT",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_LAST_RESORT",
+            "MOVE_TRICK",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ]
     },
     "evolutions": [
         [

@@ -99,7 +99,18 @@
             "40": "MOVE_ZEN_HEADBUTT",
             "44": "MOVE_AMNESIA",
             "48": "MOVE_HYDRO_PUMP"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_ICE_PUNCH",
+            "MOVE_AQUA_TAIL",
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [

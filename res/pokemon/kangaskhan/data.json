@@ -115,6 +115,22 @@
             "43": "MOVE_DOUBLE_HIT",
             "46": "MOVE_SUCKER_PUNCH",
             "49": "MOVE_REVERSAL"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_ICY_WIND",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_AQUA_TAIL",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_OUTRAGE",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_UPROAR"
+        ]
     }
 }

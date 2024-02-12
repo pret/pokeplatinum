@@ -100,7 +100,23 @@
             "39": "MOVE_BATON_PASS",
             "42": "MOVE_ME_FIRST",
             "47": "MOVE_HYPER_VOICE"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_ROLLOUT",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_AQUA_TAIL",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_LAST_RESORT",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ]
     },
     "evolutions": [
         [

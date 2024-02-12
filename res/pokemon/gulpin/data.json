@@ -94,7 +94,18 @@
             "44": "MOVE_GASTRO_ACID",
             "49": "MOVE_WRING_OUT",
             "54": "MOVE_GUNK_SHOT"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ROLLOUT",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_GASTRO_ACID",
+            "MOVE_SNORE",
+            "MOVE_GUNK_SHOT",
+            "MOVE_SEED_BOMB"
+        ]
     },
     "evolutions": [
         [

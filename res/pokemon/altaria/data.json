@@ -106,6 +106,17 @@
             "54": "MOVE_DRAGON_PULSE",
             "62": "MOVE_PERISH_SONG",
             "70": "MOVE_SKY_ATTACK"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_OUTRAGE",
+            "MOVE_TWISTER",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ]
     }
 }

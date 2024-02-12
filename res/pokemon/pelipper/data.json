@@ -104,6 +104,19 @@
             "43": "MOVE_FLING",
             "50": "MOVE_TAILWIND",
             "57": "MOVE_HYDRO_PUMP"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_GUNK_SHOT",
+            "MOVE_TWISTER",
+            "MOVE_SEED_BOMB",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ]
     }
 }

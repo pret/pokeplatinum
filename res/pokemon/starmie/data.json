@@ -94,6 +94,16 @@
                 "MOVE_SWIFT"
             ],
             "28": "MOVE_CONFUSE_RAY"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_ICY_WIND",
+            "MOVE_ROLLOUT",
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_TWISTER",
+            "MOVE_TRICK",
+            "MOVE_SWIFT"
+        ]
     }
 }

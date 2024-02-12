@@ -47,6 +47,7 @@
         "tms": [],
         "level_up": {
             "1": "MOVE_TRANSFORM"
-        }
+        },
+        "tutor": []
     }
 }

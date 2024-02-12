@@ -106,6 +106,19 @@
             "61": "MOVE_COPYCAT",
             "66": "MOVE_NATURAL_GIFT",
             "76": "MOVE_HEALING_WISH"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_TRICK",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT"
+        ]
     }
 }

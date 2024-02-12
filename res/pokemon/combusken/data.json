@@ -100,7 +100,20 @@
             "43": "MOVE_MIRROR_MOVE",
             "50": "MOVE_SKY_UPPERCUT",
             "54": "MOVE_FLARE_BLITZ"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_VACUUM_WAVE",
+            "MOVE_LAST_RESORT",
+            "MOVE_BOUNCE",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [

@@ -86,6 +86,14 @@
             ],
             "28": "MOVE_SPIKES",
             "40": "MOVE_SPIKE_CANNON"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_ICY_WIND",
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_SWIFT"
+        ]
     }
 }

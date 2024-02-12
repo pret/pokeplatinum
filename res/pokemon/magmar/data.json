@@ -95,7 +95,15 @@
             "41": "MOVE_FLAMETHROWER",
             "49": "MOVE_SUNNY_DAY",
             "54": "MOVE_FIRE_BLAST"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_HEAT_WAVE"
+        ]
     },
     "evolutions": [
         [

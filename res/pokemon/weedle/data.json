@@ -51,7 +51,8 @@
                 "MOVE_STRING_SHOT"
             ],
             "15": "MOVE_BUG_BITE"
-        }
+        },
+        "tutor": []
     },
     "evolutions": [
         [

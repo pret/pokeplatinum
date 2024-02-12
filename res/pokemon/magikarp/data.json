@@ -49,7 +49,10 @@
             "1": "MOVE_SPLASH",
             "15": "MOVE_TACKLE",
             "30": "MOVE_FLAIL"
-        }
+        },
+        "tutor": [
+            "MOVE_BOUNCE"
+        ]
     },
     "evolutions": [
         [

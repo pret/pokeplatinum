@@ -52,7 +52,10 @@
             ],
             "5": "MOVE_POISON_STING",
             "15": "MOVE_BUG_BITE"
-        }
+        },
+        "tutor": [
+            "MOVE_SNORE"
+        ]
     },
     "evolutions": [
         [

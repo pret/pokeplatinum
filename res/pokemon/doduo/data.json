@@ -84,7 +84,16 @@
             "37": "MOVE_AGILITY",
             "41": "MOVE_DRILL_PECK",
             "46": "MOVE_ENDEAVOR"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SNORE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_ENDEAVOR",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ]
     },
     "evolutions": [
         [

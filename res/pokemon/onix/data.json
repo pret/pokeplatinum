@@ -104,7 +104,16 @@
             "46": "MOVE_SAND_TOMB",
             "49": "MOVE_DOUBLE_EDGE",
             "54": "MOVE_STONE_EDGE"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ROLLOUT",
+            "MOVE_IRON_HEAD",
+            "MOVE_SNORE",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_EARTH_POWER",
+            "MOVE_TWISTER"
+        ]
     },
     "evolutions": [
         [

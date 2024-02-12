@@ -98,6 +98,13 @@
             "49": "MOVE_DISCHARGE",
             "54": "MOVE_CHARGE",
             "61": "MOVE_THUNDER"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_MAGNET_RISE",
+            "MOVE_SWIFT"
+        ]
     }
 }

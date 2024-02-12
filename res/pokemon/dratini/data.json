@@ -96,7 +96,15 @@
             "45": "MOVE_DRAGON_DANCE",
             "51": "MOVE_OUTRAGE",
             "55": "MOVE_HYPER_BEAM"
-        }
+        },
+        "tutor": [
+            "MOVE_ICY_WIND",
+            "MOVE_AQUA_TAIL",
+            "MOVE_SNORE",
+            "MOVE_OUTRAGE",
+            "MOVE_TWISTER",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [

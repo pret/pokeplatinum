@@ -105,6 +105,18 @@
             "40": "MOVE_HAIL",
             "51": "MOVE_BLIZZARD",
             "59": "MOVE_DESTINY_BOND"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_ROLLOUT",
+            "MOVE_ICE_PUNCH",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_TRICK",
+            "MOVE_SUCKER_PUNCH"
+        ]
     }
 }

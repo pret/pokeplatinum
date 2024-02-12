@@ -90,6 +90,17 @@
             "47": "MOVE_HORN_DRILL",
             "56": "MOVE_AGILITY",
             "63": "MOVE_MEGAHORN"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_ICY_WIND",
+            "MOVE_AQUA_TAIL",
+            "MOVE_SNORE",
+            "MOVE_BOUNCE",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT"
+        ]
     }
 }

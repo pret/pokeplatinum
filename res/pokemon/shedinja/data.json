@@ -92,6 +92,14 @@
             "45": "MOVE_GRUDGE",
             "52": "MOVE_HEAL_BLOCK",
             "59": "MOVE_SHADOW_BALL"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_TRICK",
+            "MOVE_SUCKER_PUNCH"
+        ]
     }
 }

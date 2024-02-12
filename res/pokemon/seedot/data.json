@@ -82,7 +82,14 @@
             "21": "MOVE_SYNTHESIS",
             "31": "MOVE_SUNNY_DAY",
             "43": "MOVE_EXPLOSION"
-        }
+        },
+        "tutor": [
+            "MOVE_ROLLOUT",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_SYNTHESIS",
+            "MOVE_SEED_BOMB"
+        ]
     },
     "evolutions": [
         [

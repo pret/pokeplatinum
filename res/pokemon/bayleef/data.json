@@ -96,7 +96,15 @@
             "46": "MOVE_SAFEGUARD",
             "50": "MOVE_AROMATHERAPY",
             "54": "MOVE_SOLAR_BEAM"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_SNORE",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_SYNTHESIS",
+            "MOVE_SEED_BOMB"
+        ]
     },
     "evolutions": [
         [

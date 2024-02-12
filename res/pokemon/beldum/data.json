@@ -47,7 +47,12 @@
         "tms": [],
         "level_up": {
             "1": "MOVE_TAKE_DOWN"
-        }
+        },
+        "tutor": [
+            "MOVE_IRON_HEAD",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_IRON_DEFENSE"
+        ]
     },
     "evolutions": [
         [

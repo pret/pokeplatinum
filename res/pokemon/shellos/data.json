@@ -80,7 +80,15 @@
             "29": "MOVE_BODY_SLAM",
             "37": "MOVE_MUDDY_WATER",
             "46": "MOVE_RECOVER"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_SNORE",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_EARTH_POWER"
+        ]
     },
     "evolutions": [
         [

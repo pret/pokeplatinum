@@ -89,7 +89,15 @@
             "38": "MOVE_CRUNCH",
             "43": "MOVE_SCARY_FACE",
             "48": "MOVE_DISCHARGE"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_MAGNET_RISE",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [

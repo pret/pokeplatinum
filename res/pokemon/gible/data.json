@@ -93,7 +93,17 @@
             "27": "MOVE_DRAGON_CLAW",
             "31": "MOVE_DIG",
             "37": "MOVE_DRAGON_RUSH"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_IRON_HEAD",
+            "MOVE_SNORE",
+            "MOVE_OUTRAGE",
+            "MOVE_EARTH_POWER",
+            "MOVE_TWISTER",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [

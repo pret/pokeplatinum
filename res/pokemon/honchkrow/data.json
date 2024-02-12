@@ -96,6 +96,18 @@
             "35": "MOVE_NASTY_PLOT",
             "45": "MOVE_NIGHT_SLASH",
             "55": "MOVE_DARK_PULSE"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SUPERPOWER",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SPITE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_TWISTER",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ]
     }
 }

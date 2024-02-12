@@ -95,6 +95,15 @@
             "37": "MOVE_CRUNCH",
             "41": "MOVE_WRING_OUT",
             "47": "MOVE_POWER_WHIP"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_GASTRO_ACID",
+            "MOVE_SNORE",
+            "MOVE_SYNTHESIS",
+            "MOVE_SEED_BOMB",
+            "MOVE_KNOCK_OFF"
+        ]
     }
 }

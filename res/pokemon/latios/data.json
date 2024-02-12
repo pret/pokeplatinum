@@ -115,6 +115,20 @@
             "60": "MOVE_MEMENTO",
             "65": "MOVE_PSYCHIC",
             "70": "MOVE_DRAGON_PULSE"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_ICY_WIND",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_OUTRAGE",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_TWISTER",
+            "MOVE_LAST_RESORT",
+            "MOVE_TRICK",
+            "MOVE_SWIFT"
+        ]
     }
 }

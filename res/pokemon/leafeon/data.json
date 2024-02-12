@@ -98,6 +98,17 @@
             "64": "MOVE_SUNNY_DAY",
             "71": "MOVE_LEAF_BLADE",
             "78": "MOVE_SWORDS_DANCE"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_SYNTHESIS",
+            "MOVE_SEED_BOMB",
+            "MOVE_LAST_RESORT",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT"
+        ]
     }
 }

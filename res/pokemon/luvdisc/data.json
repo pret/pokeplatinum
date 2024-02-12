@@ -86,6 +86,13 @@
             "40": "MOVE_CAPTIVATE",
             "46": "MOVE_FLAIL",
             "51": "MOVE_SAFEGUARD"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_ICY_WIND",
+            "MOVE_SNORE",
+            "MOVE_BOUNCE",
+            "MOVE_SWIFT"
+        ]
     }
 }

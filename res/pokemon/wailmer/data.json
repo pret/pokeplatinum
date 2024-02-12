@@ -92,7 +92,14 @@
             "41": "MOVE_DIVE",
             "44": "MOVE_BOUNCE",
             "47": "MOVE_HYDRO_PUMP"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_ICY_WIND",
+            "MOVE_ROLLOUT",
+            "MOVE_SNORE",
+            "MOVE_BOUNCE"
+        ]
     },
     "evolutions": [
         [

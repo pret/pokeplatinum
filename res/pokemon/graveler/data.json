@@ -99,7 +99,18 @@
             "38": "MOVE_EXPLOSION",
             "44": "MOVE_DOUBLE_EDGE",
             "49": "MOVE_STONE_EDGE"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ROLLOUT",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_SUPERPOWER",
+            "MOVE_SNORE",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_EARTH_POWER",
+            "MOVE_SUCKER_PUNCH"
+        ]
     },
     "evolutions": [
         [

@@ -103,6 +103,17 @@
             "52": "MOVE_GASTRO_ACID",
             "59": "MOVE_WRING_OUT",
             "66": "MOVE_GUNK_SHOT"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ROLLOUT",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_GASTRO_ACID",
+            "MOVE_SNORE",
+            "MOVE_GUNK_SHOT",
+            "MOVE_SEED_BOMB"
+        ]
     }
 }

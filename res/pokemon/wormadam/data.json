@@ -93,6 +93,15 @@
             "41": "MOVE_ATTRACT",
             "44": "MOVE_PSYCHIC",
             "47": "MOVE_LEAF_STORM"
-        }
+        },
+        "tutor": [
+            "MOVE_SNORE",
+            "MOVE_ENDEAVOR",
+            "MOVE_SYNTHESIS",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_SEED_BOMB",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_UPROAR"
+        ]
     }
 }

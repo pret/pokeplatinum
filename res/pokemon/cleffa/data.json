@@ -93,7 +93,20 @@
             "10": "MOVE_SWEET_KISS",
             "13": "MOVE_COPYCAT",
             "16": "MOVE_MAGICAL_LEAF"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_ROLLOUT",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_LAST_RESORT",
+            "MOVE_TRICK",
+            "MOVE_UPROAR"
+        ]
     },
     "evolutions": [
         [

@@ -109,7 +109,19 @@
             "45": "MOVE_SCREECH",
             "49": "MOVE_POWER_WHIP",
             "53": "MOVE_WRING_OUT"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_ROLLOUT",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_AQUA_TAIL",
+            "MOVE_SNORE",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_KNOCK_OFF"
+        ]
     },
     "evolutions": [
         [

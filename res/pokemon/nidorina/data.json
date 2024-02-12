@@ -96,7 +96,12 @@
             "43": "MOVE_CRUNCH",
             "50": "MOVE_CAPTIVATE",
             "58": "MOVE_POISON_FANG"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND"
+        ]
     },
     "evolutions": [
         [
