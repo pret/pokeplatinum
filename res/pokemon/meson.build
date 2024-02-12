@@ -754,6 +754,20 @@ shinzukan_narc = custom_target('shinzukan.narc',
     ]
 )
 
+species_header_target = meson.current_build_dir()
+species_headers_includes = include_directories('.')
+
+gen_species_headers = custom_target('auto-generated species headers',
+    output: 'gen_species_headers',
+    input: personal_files,
+    env: json2bin_env,
+    command: [
+        make_species_tables_py,
+        '--source-dir', '@CURRENT_SOURCE_DIR@',
+        '--output-dir', species_header_target
+    ]
+)
+
 nitrofs_files += pl_personal_narc
 nitrofs_files += evo_narc
 nitrofs_files += pl_poke_icon_narc
