@@ -216,7 +216,13 @@ RomSpec
 	Root /
 	HostRoot res/prebuilt
 	File poketool/personal/growtbl.narc
-	File poketool/personal/pl_growtbl.narc
+
+	Root /poketool/personal
+	HostRoot res/pokemon
+	File pl_growtbl.narc
+	
+	Root /
+	HostRoot res/prebuilt
 	File poketool/personal/pms.narc
 
 	Root /poketool/personal
