@@ -118,8 +118,8 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
 static void Pokemon_IncreaseDataInternal(Pokemon *mon, enum PokemonDataParam param, int value);
 static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonDataParam param, int value);
 static u32 BoxPokemon_GetExpToNextLevel(BoxPokemon *boxMon);
-static void Pokemon_LoadExperienceTableOf(int monExpRate, u32 *monExpTable);
-static u32 Pokemon_GetExpRateBaseExpAt(int monExpRate, int monLevel);
+static void Pokemon_LoadExperienceTableOf(enum PokemonExpRate monExpRate, u32 *monExpTable);
+static u32 Pokemon_GetExpRateBaseExpAt(enum PokemonExpRate monExpRate, int monLevel);
 static u16 Pokemon_GetNatureStatValue(u8 monNature, u16 monStatValue, u8 statType);
 static u8 BoxPokemon_IsShiny(BoxPokemon *boxMon);
 static inline BOOL Pokemon_InlineIsPersonalityShiny(u32 monOTID, u32 monPersonality);
@@ -2201,16 +2201,16 @@ u32 Pokemon_GetSpeciesBaseExpAt(int monSpecies, int monLevel)
     return Pokemon_GetExpRateBaseExpAt(PokemonPersonalData_GetSpeciesValue(monSpecies, MON_DATA_PERSONAL_EXP_RATE), monLevel);
 }
 
-static void Pokemon_LoadExperienceTableOf(int monExpRate, u32 *monExpTable)
+static void Pokemon_LoadExperienceTableOf(enum PokemonExpRate monExpRate, u32 *monExpTable)
 {
-    // TODO const for table size, enum for exp rate types
+    // TODO const for table size
     GF_ASSERT(monExpRate < 8);
     NARC_ReadWholeMemberByIndexPair(monExpTable, NARC_INDEX_POKETOOL__PERSONAL__PL_GROWTBL, monExpRate);
 }
 
-static u32 Pokemon_GetExpRateBaseExpAt(int monExpRate, int monLevel)
+static u32 Pokemon_GetExpRateBaseExpAt(enum PokemonExpRate monExpRate, int monLevel)
 {
-    // TODO const for table size, enum for exp rate types
+    // TODO const for table size
     GF_ASSERT(monExpRate < 8);
     GF_ASSERT(monLevel <= 101);
 
@@ -2251,10 +2251,10 @@ u32 Pokemon_GetSpeciesLevelAt(u16 monSpecies, u32 monExp)
 
 u32 PokemonPersonalData_GetLevelAt(PokemonPersonalData *monPersonalData, u16 unused_monSpecies, u32 monExp)
 {
-    // TODO const for table size, enum for exp rate types
+    // TODO const for table size
     static u32 monExpTable[101];
 
-    int monExpRate = PokemonPersonalData_GetValue(monPersonalData, MON_DATA_PERSONAL_EXP_RATE);
+    enum PokemonExpRate monExpRate = PokemonPersonalData_GetValue(monPersonalData, MON_DATA_PERSONAL_EXP_RATE);
     Pokemon_LoadExperienceTableOf(monExpRate, monExpTable);
 
     int i;
