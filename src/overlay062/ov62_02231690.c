@@ -323,472 +323,186 @@ static void ov62_022321F4(UnkStruct_ov62_022323B8 * param0, int param1);
 static void ov62_02232200(UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C06C * param1);
 static void ov62_0223226C(UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C06C * param1);
 
-const s16 Unk_ov62_02248A28[][4] = {
-    {0x4, 0x4, 0x18, 0x2},
-    {0xF, 0x8, 0x5, 0x2},
-    {0x10, 0x8, 0xD, 0x2},
-    {0x4, 0xB, 0xB, 0x2},
-    {0x4, 0xD, 0x18, 0x2},
-    {0x4, 0xF, 0x18, 0x2},
-    {0x4, 0x11, 0xB, 0x2},
-    {0x4, 0x13, 0x18, 0x4},
-    {0xFF, 0x0, 0x0, 0x0},
-    {0x4, 0x15, 0x18, 0x2}
-};
-
-const int Unk_ov62_022489F8[] = {
-    0x14,
-    0x14,
-    0x14,
-    0x14,
-    0x14,
-    0x14,
-    0x14,
-    0x14,
-    0x14,
-    0x14,
-    0x14,
-    0x14
-};
-
-// clang-format off
-asm static void ov62_02231C78 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C06C * param1)
+static void ov62_02231C78(UnkStruct_ov62_022323B8 *param0, UnkStruct_0208C06C *param1)
 {
-    push {r3, r4, r5, r6, r7, lr}
-    sub sp, #0xd8
-    ldr r3, = Unk_ov62_02248A28
-    add r7, r1, #0
-    str r0, [sp, #0x14]
-    add r2, sp, #0x88
-    mov r1, #0x28
- _02231C86:
-    ldrh r0, [r3]
-    add r3, r3, #2
-    strh r0, [r2]
-    add r2, r2, #2
-    sub r1, r1, #1
-    bne _02231C86
-    ldr r4, = Unk_ov62_022489F8
-    add r3, sp, #0x58
-    mov r2, #6
- _02231C98:
-    ldmia r4 !, {r0, r1}
-    stmia r3 !, {r0, r1}
-    sub r2, r2, #1
-    bne _02231C98
-    mov r0, #1
-    str r0, [sp, #0x24]
-    mov r0, #0
-    ldr r4, [sp, #0x14]
-    str r0, [sp, #0x28]
-    add r0, sp, #0x58
-    add r4, #0xc
-    str r0, [sp, #0x1c]
-    add r5, sp, #0x88
- _02231CB2:
-    ldr r1, [sp, #0x1c]
-    ldr r0, [r7, #0x48]
-    ldr r1, [r1, #0]
-    bl MessageLoader_GetNewStrbuf
-    add r6, r0, #0
-    add r0, r4, #0
-    bl Window_Init
-    mov r0, #2
-    ldrsh r0, [r5, r0]
-    mov r3, #0
-    add r1, r4, #0
-    lsl r0, r0, #0x18
-    lsr r0, r0, #0x18
-    str r0, [sp]
-    mov r0, #4
-    ldrsh r0, [r5, r0]
-    mov r2, #2
-    lsl r0, r0, #0x18
-    lsr r0, r0, #0x18
-    str r0, [sp, #4]
-    mov r0, #6
-    ldrsh r0, [r5, r0]
-    lsl r0, r0, #0x18
-    lsr r0, r0, #0x18
-    str r0, [sp, #8]
-    mov r0, #0xe
-    str r0, [sp, #0xc]
-    ldr r0, [sp, #0x24]
-    lsl r0, r0, #0x10
-    lsr r0, r0, #0x10
-    str r0, [sp, #0x10]
-    ldrsh r3, [r5, r3]
-    ldr r0, [r7, #0x24]
-    lsl r3, r3, #0x18
-    lsr r3, r3, #0x18
-    bl BGL_AddWindow
-    add r0, r4, #0
-    mov r1, #0
-    bl BGL_FillWindow
-    add r0, r4, #0
-    add r1, r6, #0
-    bl ov62_0223429C
-    add r3, r0, #0
-    mov r0, #0
-    str r0, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    ldr r0, = 0xF0D00
-    mov r1, #0
-    str r0, [sp, #8]
-    mov r0, #0
-    str r0, [sp, #0xc]
-    add r0, r4, #0
-    add r2, r6, #0
-    bl Text_AddPrinterWithParamsAndColor
-    add r0, r4, #0
-    bl sub_0201A9A4
-    mov r0, #4
-    ldrsh r1, [r5, r0]
-    mov r0, #6
-    ldrsh r0, [r5, r0]
-    add r2, r1, #0
-    mul r2, r0
-    ldr r0, [sp, #0x24]
-    add r0, r0, r2
-    str r0, [sp, #0x24]
-    add r0, r6, #0
-    bl Strbuf_Free
-    ldr r0, [sp, #0x1c]
-    add r4, #0x10
-    add r0, r0, #4
-    str r0, [sp, #0x1c]
-    ldr r0, [sp, #0x28]
-    add r5, #8
-    add r0, r0, #1
-    str r0, [sp, #0x28]
-    cmp r0, #8
-    blt _02231CB2
-    ldr r0, [sp, #0x14]
-    ldr r0, [r0, #0]
-    str r0, [sp, #0x20]
-    mov r0, #0x66
-    bl ov62_02231690
-    add r4, r0, #0
-    ldr r5, [sp, #0x14]
-    ldr r0, [sp, #0x20]
-    mov r1, #0x66
-    add r5, #0xc
-    bl sub_02030B94
-    str r0, [sp, #0x2c]
-    ldr r1, [sp, #0x2c]
-    add r0, r7, #0
-    bl ov62_022349A8
-    ldr r0, [r7, #0x48]
-    mov r1, #0xd
-    bl MessageLoader_GetNewStrbuf
-    str r0, [sp, #0x30]
-    mov r0, #0xff
-    mov r1, #0x66
-    bl Strbuf_Init
-    add r6, r0, #0
-    mov r0, #1
-    str r0, [sp]
-    mov r0, #2
-    mov r1, #0
-    str r0, [sp, #4]
-    ldr r2, [sp, #0x2c]
-    add r0, r4, #0
-    add r3, r1, #0
-    bl StringTemplate_SetStrbuf
-    ldr r2, [sp, #0x30]
-    add r0, r4, #0
-    add r1, r6, #0
-    bl StringTemplate_Format
-    add r0, r5, #0
-    mov r1, #0
-    bl BGL_FillWindow
-    add r0, r5, #0
-    add r1, r6, #0
-    bl ov62_0223429C
-    mov r1, #0
-    add r3, r0, #0
-    str r1, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    ldr r0, = 0xF0D00
-    add r2, r6, #0
-    str r0, [sp, #8]
-    add r0, r5, #0
-    str r1, [sp, #0xc]
-    bl Text_AddPrinterWithParamsAndColor
-    add r0, r5, #0
-    bl sub_0201A9A4
-    ldr r0, [sp, #0x2c]
-    bl Strbuf_Free
-    ldr r0, [sp, #0x30]
-    bl Strbuf_Free
-    add r0, r6, #0
-    bl Strbuf_Free
-    add r0, r4, #0
-    bl StringTemplate_ClearArgs
-    ldr r0, [sp, #0x20]
-    bl sub_02030CCC
-    str r0, [sp, #0x34]
-    ldr r5, [sp, #0x14]
-    ldr r0, [r7, #0x48]
-    mov r1, #0xf
-    add r5, #0x2c
-    bl MessageLoader_GetNewStrbuf
-    str r0, [sp, #0x38]
-    ldr r0, [sp, #0x20]
-    mov r1, #0x66
-    bl sub_02030B94
-    str r0, [sp, #0x3c]
-    ldr r1, [sp, #0x3c]
-    add r0, r7, #0
-    bl ov62_022349A8
-    mov r0, #0xff
-    mov r1, #0x66
-    bl Strbuf_Init
-    add r6, r0, #0
-    ldr r2, [sp, #0x34]
-    add r0, r4, #0
-    mov r1, #0
-    bl StringTemplate_SetMonthName
-    ldr r2, [sp, #0x38]
-    add r0, r4, #0
-    add r1, r6, #0
-    bl StringTemplate_Format
-    add r0, r5, #0
-    mov r1, #0
-    bl BGL_FillWindow
-    add r0, r5, #0
-    add r1, r6, #0
-    bl ov62_0223429C
-    mov r1, #0
-    add r3, r0, #0
-    str r1, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    ldr r0, = 0xF0D00
-    add r2, r6, #0
-    str r0, [sp, #8]
-    add r0, r5, #0
-    str r1, [sp, #0xc]
-    bl Text_AddPrinterWithParamsAndColor
-    add r0, r5, #0
-    bl sub_0201A9A4
-    ldr r0, [sp, #0x38]
-    bl Strbuf_Free
-    ldr r0, [sp, #0x3c]
-    bl Strbuf_Free
-    add r0, r6, #0
-    bl Strbuf_Free
-    add r0, r4, #0
-    bl StringTemplate_ClearArgs
-    ldr r5, [sp, #0x14]
-    ldr r0, [r7, #0x48]
-    add r5, #0x3c
-    mov r1, #0x10
-    bl MessageLoader_GetNewStrbuf
-    add r6, r0, #0
-    add r0, r5, #0
-    mov r1, #0
-    bl BGL_FillWindow
-    add r0, r5, #0
-    add r1, r6, #0
-    bl ov62_0223429C
-    mov r1, #0
-    add r3, r0, #0
-    str r1, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    ldr r0, = 0xF0D00
-    add r2, r6, #0
-    str r0, [sp, #8]
-    add r0, r5, #0
-    str r1, [sp, #0xc]
-    bl Text_AddPrinterWithParamsAndColor
-    add r0, r5, #0
-    bl sub_0201A9A4
-    add r0, r6, #0
-    bl Strbuf_Free
-    ldr r0, [sp, #0x20]
-    bl sub_02030BFC
-    add r6, r0, #0
-    ldr r0, [sp, #0x20]
-    bl sub_02030C08
-    ldr r5, [sp, #0x14]
-    str r0, [sp, #0x40]
-    add r5, #0x4c
-    add r0, r5, #0
-    mov r1, #0
-    bl BGL_FillWindow
-    cmp r6, #0
-    bne _02231F18
-    ldr r0, [r7, #0x48]
-    mov r1, #0x15
-    bl MessageLoader_GetNewStrbuf
-    mov r1, #0
-    add r6, r0, #0
-    str r1, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    ldr r0, = 0xF0D00
-    add r2, r6, #0
-    str r0, [sp, #8]
-    add r0, r5, #0
-    add r3, r1, #0
-    str r1, [sp, #0xc]
-    bl Text_AddPrinterWithParamsAndColor
-    add r0, r5, #0
-    bl sub_0201A9A4
-    add r0, r6, #0
-    bl Strbuf_Free
-    b _02231FD2
- _02231F18:
-    mov r0, #0xff
-    mov r1, #0x66
-    bl Strbuf_Init
-    str r0, [sp, #0x44]
-    ldr r0, [r7, #0x48]
-    mov r1, #0x16
-    bl MessageLoader_GetNewStrbuf
-    str r0, [sp, #0x48]
-    add r0, r4, #0
-    mov r1, #0
-    add r2, r6, #0
-    bl StringTemplate_SetCountryName
-    ldr r1, [sp, #0x44]
-    ldr r2, [sp, #0x48]
-    add r0, r4, #0
-    bl StringTemplate_Format
-    mov r1, #0
-    str r1, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    ldr r0, = 0xF0D00
-    ldr r2, [sp, #0x44]
-    str r0, [sp, #8]
-    add r0, r5, #0
-    add r3, r1, #0
-    str r1, [sp, #0xc]
-    bl Text_AddPrinterWithParamsAndColor
-    add r0, r5, #0
-    bl sub_0201A9A4
-    ldr r0, [sp, #0x44]
-    bl Strbuf_Free
-    ldr r0, [sp, #0x48]
-    bl Strbuf_Free
-    ldr r0, [sp, #0x40]
-    cmp r0, #0
-    beq _02231FD2
-    ldr r0, [sp, #0x14]
-    mov r1, #0
-    str r0, [sp, #0x18]
-    add r0, #0x5c
-    str r0, [sp, #0x18]
-    bl BGL_FillWindow
-    mov r0, #0xff
-    mov r1, #0x66
-    bl Strbuf_Init
-    add r5, r0, #0
-    ldr r0, [r7, #0x48]
-    mov r1, #0x17
-    bl MessageLoader_GetNewStrbuf
-    str r0, [sp, #0x4c]
-    ldr r3, [sp, #0x40]
-    add r0, r4, #0
-    mov r1, #0
-    add r2, r6, #0
-    bl StringTemplate_SetCityName
-    ldr r2, [sp, #0x4c]
-    add r0, r4, #0
-    add r1, r5, #0
-    bl StringTemplate_Format
-    mov r1, #0
-    str r1, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    ldr r0, = 0xF0D00
-    add r2, r5, #0
-    str r0, [sp, #8]
-    ldr r0, [sp, #0x18]
-    mov r3, #4
-    str r1, [sp, #0xc]
-    bl Text_AddPrinterWithParamsAndColor
-    ldr r0, [sp, #0x18]
-    bl sub_0201A9A4
-    add r0, r5, #0
-    bl Strbuf_Free
-    ldr r0, [sp, #0x4c]
-    bl Strbuf_Free
- _02231FD2:
-    add r0, r4, #0
-    bl StringTemplate_ClearArgs
-    ldr r5, [sp, #0x14]
-    ldr r0, [r7, #0x48]
-    add r5, #0x6c
-    mov r1, #0x11
-    bl MessageLoader_GetNewStrbuf
-    add r6, r0, #0
-    add r0, r5, #0
-    mov r1, #0
-    bl BGL_FillWindow
-    add r0, r5, #0
-    add r1, r6, #0
-    bl ov62_0223429C
-    mov r1, #0
-    add r3, r0, #0
-    str r1, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    ldr r0, = 0xF0D00
-    b _02232010
- _02232010:
-    add r2, r6, #0
-    str r0, [sp, #8]
-    add r0, r5, #0
-    str r1, [sp, #0xc]
-    bl Text_AddPrinterWithParamsAndColor
-    add r0, r5, #0
-    bl sub_0201A9A4
-    add r0, r6, #0
-    bl Strbuf_Free
-    ldr r0, [sp, #0x14]
-    add r1, sp, #0x50
-    add r0, #0x7c
-    str r0, [sp, #0x14]
-    ldr r0, [sp, #0x20]
-    mov r2, #0x66
-    bl sub_02030C28
-    add r5, r0, #0
-    bne _02232046
-    add r0, sp, #0x50
-    mov r1, #0x66
-    bl sub_02014B34
-    add r5, r0, #0
- _02232046:
-    ldr r0, [sp, #0x14]
-    mov r1, #0
-    bl BGL_FillWindow
-    mov r1, #0
-    str r1, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    ldr r0, = 0xF0D00
-    add r2, r5, #0
-    str r0, [sp, #8]
-    ldr r0, [sp, #0x14]
-    add r3, r1, #0
-    str r1, [sp, #0xc]
-    bl Text_AddPrinterWithParamsAndColor
-    ldr r0, [sp, #0x14]
-    bl sub_0201A9A4
-    add r0, r5, #0
-    bl Strbuf_Free
-    add r0, r4, #0
-    bl StringTemplate_Free
-    add sp, #0xd8
-    pop {r3, r4, r5, r6, r7, pc}
+    int v0;
+    int v1;
+    Window *v2;
+    Strbuf *v3;
+
+    {
+        const s16 Unk_ov62_02248A28[][4] = {
+            { 0x4, 0x4, 0x18, 0x2 },
+            { 0xF, 0x8, 0x5, 0x2 },
+            { 0x10, 0x8, 0xD, 0x2 },
+            { 0x4, 0xB, 0xB, 0x2 },
+            { 0x4, 0xD, 0x18, 0x2 },
+            { 0x4, 0xF, 0x18, 0x2 },
+            { 0x4, 0x11, 0xB, 0x2 },
+            { 0x4, 0x13, 0x18, 0x4 },
+            { 0xFF, 0x0, 0x0, 0x0 },
+            { 0x4, 0x15, 0x18, 0x2 }
+        };
+
+        const int Unk_ov62_022489F8[] = {
+            0x14,
+            0x14,
+            0x14,
+            0x14,
+            0x14,
+            0x14,
+            0x14,
+            0x14,
+            0x14,
+            0x14,
+            0x14,
+            0x14
+        };
+
+        v1 = 1;
+
+        for (v0 = 0; v0 < 8; v0++) {
+            v2 = &param0->unk_0C[v0];
+            v3 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, Unk_ov62_022489F8[v0]);
+            Window_Init(v2);
+            BGL_AddWindow(param1->unk_14.unk_10, v2, 2, Unk_ov62_02248A28[v0][0], Unk_ov62_02248A28[v0][1], Unk_ov62_02248A28[v0][2], Unk_ov62_02248A28[v0][3], 14, v1);
+            BGL_FillWindow(v2, 0x00);
+            Text_AddPrinterWithParamsAndColor(v2, 0, v3, ov62_0223429C(v2, v3), 0, (0xff), ((u32)(((15 & (0xff)) << 16) | ((13 & (0xff)) << 8) | ((0 & (0xff)) << 0))), NULL);
+            sub_0201A9A4(v2);
+            v1 += (Unk_ov62_02248A28[v0][2] * Unk_ov62_02248A28[v0][3]);
+            Strbuf_Free(v3);
+        }
+    }
+
+    {
+        Strbuf *v6;
+        Strbuf *v7;
+        Strbuf *v8;
+        StringTemplate *v9;
+        Window *v10;
+        UnkStruct_02030A80 *v11;
+
+        v11 = param0->unk_00;
+        v9 = ov62_02231690(102);
+
+        v10 = &param0->unk_0C[0];
+        v6 = sub_02030B94(v11, 102);
+        ov62_022349A8(param1, v6);
+        v7 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 13);
+        v8 = Strbuf_Init(255, 102);
+
+        StringTemplate_SetStrbuf(v9, 0, v6, 0, 1, 2);
+        StringTemplate_Format(v9, v8, v7);
+
+        BGL_FillWindow(v10, 0x00);
+        Text_AddPrinterWithParamsAndColor(v10, 0, v8, ov62_0223429C(v10, v8), 0, (0xff), ((u32)(((15 & (0xff)) << 16) | ((13 & (0xff)) << 8) | ((0 & (0xff)) << 0))), NULL);
+        sub_0201A9A4(v10);
+
+        Strbuf_Free(v6);
+        Strbuf_Free(v7);
+        Strbuf_Free(v8);
+        StringTemplate_ClearArgs(v9);
+
+        {
+            int v12 = sub_02030CCC(v11);
+
+            v10 = &param0->unk_0C[2];
+            v6 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 15);
+            v7 = sub_02030B94(v11, 102);
+            ov62_022349A8(param1, v7);
+            v8 = Strbuf_Init(255, 102);
+
+            StringTemplate_SetMonthName(v9, 0, v12);
+            StringTemplate_Format(v9, v8, v6);
+
+            BGL_FillWindow(v10, 0x00);
+            Text_AddPrinterWithParamsAndColor(v10, 0, v8, ov62_0223429C(v10, v8), 0, (0xff), ((u32)(((15 & (0xff)) << 16) | ((13 & (0xff)) << 8) | ((0 & (0xff)) << 0))), NULL);
+            sub_0201A9A4(v10);
+
+            Strbuf_Free(v6);
+            Strbuf_Free(v7);
+            Strbuf_Free(v8);
+            StringTemplate_ClearArgs(v9);
+        }
+
+        {
+            v10 = &param0->unk_0C[3];
+            v8 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 16);
+            BGL_FillWindow(v10, 0x00);
+            Text_AddPrinterWithParamsAndColor(v10, 0, v8, ov62_0223429C(v10, v8), 0, (0xff), ((u32)(((15 & (0xff)) << 16) | ((13 & (0xff)) << 8) | ((0 & (0xff)) << 0))), NULL);
+            sub_0201A9A4(v10);
+            Strbuf_Free(v8);
+
+            {
+                int v13 = sub_02030BFC(v11);
+                int v14 = sub_02030C08(v11);
+
+                v10 = &param0->unk_0C[4];
+                BGL_FillWindow(v10, 0x00);
+                if (v13 == 0) {
+                    v8 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 21);
+
+                    Text_AddPrinterWithParamsAndColor(v10, 0, v8, 0, 0, (0xff), ((u32)(((15 & (0xff)) << 16) | ((13 & (0xff)) << 8) | ((0 & (0xff)) << 0))), NULL);
+                    sub_0201A9A4(v10);
+                    Strbuf_Free(v8);
+                } else {
+                    v8 = Strbuf_Init(255, 102);
+                    v6 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 22);
+                    StringTemplate_SetCountryName(v9, 0, v13);
+                    StringTemplate_Format(v9, v8, v6);
+
+                    Text_AddPrinterWithParamsAndColor(v10, 0, v8, 0, 0, (0xff), ((u32)(((15 & (0xff)) << 16) | ((13 & (0xff)) << 8) | ((0 & (0xff)) << 0))), NULL);
+                    sub_0201A9A4(v10);
+                    Strbuf_Free(v8);
+                    Strbuf_Free(v6);
+                    if (v14 != 0) {
+                        v10 = &param0->unk_0C[5];
+                        BGL_FillWindow(v10, 0x00);
+                        v8 = Strbuf_Init(255, 102);
+                        v6 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 23);
+                        StringTemplate_SetCityName(v9, 0, v13, v14);
+                        StringTemplate_Format(v9, v8, v6);
+
+                        Text_AddPrinterWithParamsAndColor(v10, 0, v8, 4, 0, (0xff), ((u32)(((15 & (0xff)) << 16) | ((13 & (0xff)) << 8) | ((0 & (0xff)) << 0))), NULL);
+                        sub_0201A9A4(v10);
+                        Strbuf_Free(v8);
+                        Strbuf_Free(v6);
+                    }
+                }
+
+                StringTemplate_ClearArgs(v9);
+            }
+        }
+
+        {
+            v10 = &param0->unk_0C[6];
+            v8 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 17);
+            BGL_FillWindow(v10, 0x00);
+            Text_AddPrinterWithParamsAndColor(v10, 0, v8, ov62_0223429C(v10, v8), 0, (0xff), ((u32)(((15 & (0xff)) << 16) | ((13 & (0xff)) << 8) | ((0 & (0xff)) << 0))), NULL);
+            sub_0201A9A4(v10);
+            Strbuf_Free(v8);
+
+            {
+                Sentence v15;
+
+                v10 = &param0->unk_0C[7];
+
+                v8 = sub_02030C28(v11, &v15, 102);
+                if (v8 == NULL) {
+                    v8 = sub_02014B34(&v15, 102);
+                }
+
+                BGL_FillWindow(v10, 0x00);
+                Text_AddPrinterWithParamsAndColor(v10, 0, v8, 0, 0, (0xff), ((u32)(((15 & (0xff)) << 16) | ((13 & (0xff)) << 8) | ((0 & (0xff)) << 0))), NULL);
+                sub_0201A9A4(v10);
+
+                Strbuf_Free(v8);
+            }
+        }
+
+        StringTemplate_Free(v9);
+    }
 }
-// clang-format on
 
 static void ov62_02232080 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C06C * param1)
 {

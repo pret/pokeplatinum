@@ -3,6 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/font.h"
+#include "constants/heap.h"
+
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"
@@ -129,174 +132,63 @@ static void ov20_021D4874 (UnkStruct_ov20_021D4AD4 * param0, NARC * param1)
     }
 }
 
-// clang-format off
-asm static void ov20_021D48C4 (UnkStruct_ov20_021D4AD4 * param0, NARC * param1)
+static void ov20_021D48C4(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
 {
-    push {r3, r4, r5, r6, r7, lr}
-    sub sp, #0x18
-    add r5, r0, #0
-    add r7, r1, #0
-    mov r0, #2
-    mov r1, #0
-    bl Font_InitManager
-    ldr r1, = 0x1B5
-    mov r0, #0x1a
-    mov r2, #0xb
-    mov r3, #0x23
-    bl MessageBank_GetNewStrbufFromNARC
-    add r6, r0, #0
-    ldr r1, = 0x1B5
-    mov r0, #0x1a
-    mov r2, #0xc
-    mov r3, #0x23
-    bl MessageBank_GetNewStrbufFromNARC
-    add r4, r0, #0
-    mov r0, #0x23
-    str r0, [sp]
-    add r0, r7, #0
-    mov r1, #0x14
-    mov r2, #1
-    add r3, sp, #4
-    bl sub_020071B4
-    add r7, r0, #0
-    beq _021D496C
-    add r0, sp, #8
-    bl Window_Init
-    ldr r0, [r5, #0xc]
-    add r1, sp, #4
-    str r0, [sp, #8]
-    mov r0, #0xb
-    strb r0, [r1, #0xb]
-    mov r0, #0x39
-    strb r0, [r1, #0xc]
-    ldrh r2, [r1, #0xe]
-    ldr r0, = 0xFFFF7FFF
-    mov r3, #0
-    and r0, r2
-    strh r0, [r1, #0xe]
-    ldr r0, [sp, #4]
-    add r2, r6, #0
-    ldr r0, [r0, #0x14]
-    str r0, [sp, #0x14]
-    ldr r1, [r5, #0xc]
-    add r0, sp, #8
-    bl ov20_021D498C
-    ldr r0, [sp, #4]
-    add r2, r4, #0
-    ldr r1, [r0, #0x14]
-    mov r0, #0x9a
-    lsl r0, r0, #6
-    add r0, r1, r0
-    str r0, [sp, #0x14]
-    ldr r1, [r5, #0xc]
-    add r0, sp, #8
-    mov r3, #0
-    bl ov20_021D498C
-    ldr r1, [sp, #4]
-    ldr r0, [r1, #0x14]
-    ldr r1, [r1, #0x10]
-    bl DC_FlushRange
-    ldr r3, [sp, #4]
-    mov r0, #0
-    str r0, [sp]
-    ldr r2, [r3, #0x14]
-    ldr r0, [r5, #0xc]
-    ldr r3, [r3, #0x10]
-    mov r1, #4
-    bl sub_0201958C
-    add r0, r7, #0
-    bl Heap_FreeToHeap
- _021D496C:
-    add r0, r4, #0
-    bl Strbuf_Free
-    add r0, r6, #0
-    bl Strbuf_Free
-    mov r0, #2
-    bl Font_Free
-    add sp, #0x18
-    pop {r3, r4, r5, r6, r7, pc}
-    nop
+    Strbuf *v0, *v1;
+    void *v2;
+    NNSG2dCharacterData *v3;
+
+    Font_InitManager(FONT_SUBSCREEN, HEAP_ID_SYSTEM);
+    v0 = MessageBank_GetNewStrbufFromNARC(0x1A, 0x1B5, 0xB, 0x23);
+    v1 = MessageBank_GetNewStrbufFromNARC(0x1A, 0x1B5, 0xC, 0x23);
+    v2 = sub_020071B4(param1, 20, 1, &v3, 0x23);
+    if (v2) {
+        Window v4;
+
+        Window_Init(&v4);
+        v4.unk_00 = param0->unk_0C;
+        v4.unk_07 = 11;
+        v4.unk_08 = 57;
+        v4.unk_0A_15 = 0;
+        v4.unk_0C = v3->pRawData;
+        ov20_021D498C(&v4, param0->unk_0C, v0, 0);
+        v4.unk_0C = (u8 *)(v3->pRawData) + (11 * 7 * 4 * 0x20);
+        ov20_021D498C(&v4, param0->unk_0C, v1, 0);
+        DC_FlushRange(v3->pRawData, v3->szByte);
+        sub_0201958C(param0->unk_0C, 4, v3->pRawData, v3->szByte, 0);
+        Heap_FreeToHeap(v2);
+    }
+
+    Strbuf_Free(v1);
+    Strbuf_Free(v0);
+    Font_Free(FONT_SUBSCREEN);
 }
-// clang-format on
 
 static const s16 Unk_ov20_021D52EC[] = {
     22, (22 + 56 * 1) - 1, (22 + 56 * 2) - 2, (22 + 56 * 3) - 1,
 };
 
-// clang-format off
-asm static void ov20_021D498C (Window * param0, BGL * param1, const Strbuf *param2, int param3)
+static void ov20_021D498C(Window *param0, BGL *param1, const Strbuf *param2, int param3)
 {
-    push {r4, r5, r6, r7, lr}
-    sub sp, #0x24
-    str r0, [sp, #0x10]
-    add r0, r2, #0
-    str r2, [sp, #0x14]
-    add r7, r3, #0
-    bl Strbuf_NumLines
-    str r0, [sp, #0x1c]
-    mov r0, #0x20
-    mov r1, #0x23
-    bl Strbuf_Init
-    add r6, r0, #0
-    ldr r0, [sp, #0x1c]
-    mov r1, #2
-    sub r0, r1, r0
-    lsl r0, r0, #4
-    lsr r0, r0, #1
-    add r7, r7, r0
-    mov r0, #0
-    str r0, [sp, #0x20]
-    ldr r0, [sp, #0x1c]
-    cmp r0, #0
-    bls _021D4A10
- _021D49BE:
-    ldr r1, [sp, #0x14]
-    ldr r2, [sp, #0x20]
-    add r0, r6, #0
-    bl Strbuf_CopyLineNum
-    mov r0, #2
-    add r1, r6, #0
-    mov r2, #0
-    mov r3, #0x58
-    bl Font_CalcCenterAlignment
-    ldr r5, = Unk_ov20_021D52EC
-    str r0, [sp, #0x18]
-    mov r4, #0
- _021D49DA:
-    mov r0, #0
-    ldrsh r0, [r5, r0]
-    ldr r3, [sp, #0x18]
-    mov r1, #2
-    add r0, r7, r0
-    str r0, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    ldr r0, = 0x10203
-    add r2, r6, #0
-    str r0, [sp, #8]
-    mov r0, #0
-    str r0, [sp, #0xc]
-    ldr r0, [sp, #0x10]
-    bl Text_AddPrinterWithParamsAndColor
-    add r4, r4, #1
-    add r5, r5, #2
-    cmp r4, #4
-    blo _021D49DA
-    ldr r0, [sp, #0x20]
-    add r7, #0x10
-    add r1, r0, #1
-    ldr r0, [sp, #0x1c]
-    str r1, [sp, #0x20]
-    cmp r1, r0
-    blo _021D49BE
- _021D4A10:
-    add r0, r6, #0
-    bl Strbuf_Free
-    add sp, #0x24
-    pop {r4, r5, r6, r7, pc}
-    nop
+    int v0, v1, v2, v3;
+    u32 v4;
+    Strbuf *v5;
+
+    v4 = Strbuf_NumLines(param2);
+    v5 = Strbuf_Init(32, 35);
+    param3 += ((2 - v4) * 16) / 2;
+
+    for (v1 = 0; v1 < v4; v1++) {
+        Strbuf_CopyLineNum(v5, param2, v1);
+        v2 = Font_CalcCenterAlignment(2, v5, 0, 88);
+        for (v0 = 0; v0 < NELEMS(Unk_ov20_021D52EC); v0++) {
+            v3 = Unk_ov20_021D52EC[v0] + param3;
+            Text_AddPrinterWithParamsAndColor(param0, 2, v5, v2, v3, 0xFF, (u32)((((1) & 0xFF) << 16) | (((2) & 0xFF) << 8) | (3 & 0xFF)), NULL);
+        }
+        param3 += 16;
+    }
+    Strbuf_Free(v5);
 }
-// clang-format on
 
 static void ov20_021D4A24 (UnkStruct_ov20_021D4AD4 * param0, NARC * param1)
 {

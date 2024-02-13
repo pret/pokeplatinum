@@ -1532,290 +1532,124 @@ static void ov19_021D2A5C (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
     }
 }
 
-asm static void ov19_021D2B54 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
+static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
 {
-    push {r3, r4, r5, lr}
-    add r5, r1, #0
-    ldr r1, [r5, #0]
-    add r4, r0, #0
-    cmp r1, #5
-    bls _021D2B62
-    b _021D2DB6
- _021D2B62:
-    add r1, r1, r1
-    add r1, pc
-    ldrh r1, [r1, #6]
-    lsl r1, r1, #0x10
-    asr r1, r1, #0x10
-    add pc, r1
- _021D2B6E:
-    dcd 0x3a000a
-    dcd 0x21e00dc
-    dcd 0x1ea0232
- _021D2B7A:
-    ldr r1, = gCoreSys
-    ldr r2, [r1, #0x44]
-    mov r1, #1
-    tst r1, r2
-    beq _021D2BA2
-    add r1, r4, #0
-    bl ov19_021D5594
-    mov r0, #0x45
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    mov r1, #0x2c
-    bl ov19_021D6594
-    ldr r0, = 0x5DC
-    bl Sound_PlayEffect
-    mov r0, #1
-    str r0, [r5, #0]
-    pop {r3, r4, r5, pc}
- _021D2BA2:
-    ldr r1, = ov19_021D2E1C
-    bl ov19_021D0EB0
-    pop {r3, r4, r5, pc}
- _021D2BAA:
-    ldr r1, = gCoreSys
-    ldr r2, [r1, #0x44]
-    mov r1, #1
-    tst r1, r2
-    beq _021D2C0E
-    add r0, r2, #0
-    add r1, r4, #0
-    bl ov19_021D5150
-    cmp r0, #1
-    beq _021D2BDC
-    cmp r0, #2
-    bne _021D2CAE
-    ldr r1, = gCoreSys
-    mov r0, #0xf0
-    ldr r2, [r1, #0x44]
-    ldr r1, [r1, #0x48]
-    and r2, r0
-    and r0, r1
-    cmp r2, r0
-    bne _021D2CAE
-    ldr r0, = 0x5F3
-    bl Sound_PlayEffect
-    pop {r3, r4, r5, pc}
- _021D2BDC:
-    add r0, r4, #0
-    add r1, r4, #0
-    bl ov19_021D55B0
-    mov r0, #0x45
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    mov r1, #0x2e
-    bl ov19_021D6594
-    mov r0, #0x45
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    mov r1, #5
-    bl ov19_021D6594
-    mov r0, #0x45
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    mov r1, #6
-    bl ov19_021D6594
-    mov r0, #3
-    str r0, [r5, #0]
-    pop {r3, r4, r5, pc}
- _021D2C0E:
-    bl ov19_021D5F20
-    cmp r0, #0
-    beq _021D2C2C
-    mov r0, #0x45
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    mov r1, #0x2d
-    bl ov19_021D6594
-    ldr r1, = ov19_021D2E1C
-    add r0, r4, #0
-    bl ov19_021D0EB0
-    pop {r3, r4, r5, pc}
- _021D2C2C:
-    add r0, r4, #0
-    add r1, r4, #0
-    bl ov19_021D54A4
-    mov r0, #0x45
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    mov r1, #0x2f
-    bl ov19_021D6594
-    ldr r0, = 0x5EB
-    bl Sound_PlayEffect
-    mov r0, #2
-    str r0, [r5, #0]
-    pop {r3, r4, r5, pc}
- _021D2C4C:
-    mov r0, #0x45
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    bl ov19_021D6628
-    cmp r0, #0
-    beq _021D2CAE
-    ldr r0, = gCoreSys
-    add r1, r4, #0
-    ldr r0, [r0, #0x44]
-    bl ov19_021D5150
-    cmp r0, #4
-    bhi _021D2CAE
-    add r0, r0, r0
-    add r0, pc
-    ldrh r0, [r0, #6]
-    lsl r0, r0, #0x10
-    asr r0, r0, #0x10
-    add pc, r0
- _021D2C74:
-    lsl r2, r3, #2
-    dcd 0x80020
-    dcd 0x700046
- _021D2C7E:
-    ldr r1, = gCoreSys
-    mov r0, #0xf0
-    ldr r2, [r1, #0x44]
-    ldr r1, [r1, #0x48]
-    and r2, r0
-    and r0, r1
-    cmp r2, r0
-    bne _021D2CAE
-    ldr r0, = 0x5F3
-    bl Sound_PlayEffect
-    pop {r3, r4, r5, pc}
- _021D2C96:
-    mov r0, #0x45
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    mov r1, #5
-    bl ov19_021D6594
-    add r0, r4, #0
-    bl ov19_021D5E38
-    mov r1, #6
-    tst r0, r1
-    beq _021D2CB0
- _021D2CAE:
-    b _021D2DB6
- _021D2CB0:
-    mov r0, #0x45
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    bl ov19_021D6594
-    pop {r3, r4, r5, pc}
- _021D2CBC:
-    add r0, r4, #0
-    bl ov19_021D5CE8
-    add r0, r4, #0
-    bl ov19_021D5E68
-    add r1, r0, #0
-    mov r0, #0x12
-    lsl r0, r0, #4
-    ldr r0, [r4, r0]
-    bl sub_02079A94
-    mov r0, #0x45
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    mov r1, #4
-    bl ov19_021D6594
-    mov r0, #5
-    str r0, [r5, #0]
-    pop {r3, r4, r5, pc}
- _021D2CE6:
-    add r0, r4, #0
-    bl ov19_021D5CBC
-    add r0, r4, #0
-    bl ov19_021D5E68
-    add r1, r0, #0
-    mov r0, #0x12
-    lsl r0, r0, #4
-    ldr r0, [r4, r0]
-    bl sub_02079A94
-    mov r0, #0x45
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    mov r1, #4
-    bl ov19_021D6594
-    mov r0, #5
-    str r0, [r5, #0]
-    pop {r3, r4, r5, pc}
- _021D2D10:
-    ldr r0, = gCoreSys
-    ldr r1, [r0, #0x48]
-    mov r0, #1
-    tst r0, r1
-    beq _021D2D4C
-    add r0, r4, #0
-    bl ov19_021D2DD0
-    cmp r0, #0
-    beq _021D2D44
-    add r0, r4, #0
-    add r1, r4, #0
-    bl ov19_021D56AC
-    mov r0, #0x45
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    mov r1, #0xa
-    bl ov19_021D6594
-    ldr r0, = 0x5EA
-    bl Sound_PlayEffect
-    mov r0, #4
-    str r0, [r5, #0]
-    pop {r3, r4, r5, pc}
- _021D2D44:
-    ldr r0, = 0x5F3
-    bl Sound_PlayEffect
-    pop {r3, r4, r5, pc}
- _021D2D4C:
-    mov r0, #2
-    tst r0, r1
-    beq _021D2DB6
-    ldr r0, = 0x5F3
-    bl Sound_PlayEffect
-    pop {r3, r4, r5, pc}
- _021D2D5A:
-    mov r0, #0x45
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    mov r1, #4
-    bl ov19_021D6600
-    cmp r0, #0
-    beq _021D2DB6
-    add r0, r4, #0
-    bl ov19_021D5E38
-    mov r1, #6
-    tst r0, r1
-    bne _021D2D88
-    add r0, r4, #0
-    bl ov19_021D52F4
-    mov r0, #0x45
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    mov r1, #6
-    bl ov19_021D6594
- _021D2D88:
-    mov r0, #2
-    str r0, [r5, #0]
-    pop {r3, r4, r5, pc}
- _021D2D8E:
-    mov r0, #0x45
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    bl ov19_021D6628
-    cmp r0, #0
-    beq _021D2DB6
-    mov r0, #1
-    str r0, [r5, #0]
-    pop {r3, r4, r5, pc}
- _021D2DA2:
-    mov r0, #0x45
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    bl ov19_021D6628
-    cmp r0, #0
-    beq _021D2DB6
-    add r0, r4, #0
-    bl ov19_021D0EC0
- _021D2DB6:
-    pop {r3, r4, r5, pc}
+    switch (*param1) {
+    case 0:
+        if (gCoreSys.heldKeys & PAD_BUTTON_A) {
+            ov19_021D5594(param0, &param0->unk_00);
+            ov19_021D6594(param0->unk_114, 44);
+            Sound_PlayEffect(1500);
+            *param1 = 1;
+        } else {
+            ov19_021D0EB0(param0, ov19_021D2E1C);
+        }
+        break;
+
+    case 1:
+        if (gCoreSys.heldKeys & PAD_BUTTON_A) {
+            switch (ov19_021D5150(gCoreSys.heldKeys, param0)) {
+            case 2:
+                if ((gCoreSys.heldKeys & PAD_PLUS_KEY_MASK) == (gCoreSys.pressedKeys & PAD_PLUS_KEY_MASK)) {
+                    Sound_PlayEffect(1523);
+                }
+                break;
+
+            case 1:
+                ov19_021D55B0(param0, &param0->unk_00);
+                ov19_021D6594(param0->unk_114, 46);
+                ov19_021D6594(param0->unk_114, 5);
+                ov19_021D6594(param0->unk_114, 6);
+                *param1 = 3;
+                break;
+            }
+        } else {
+            if (ov19_021D5F20(&param0->unk_00)) {
+                ov19_021D6594(param0->unk_114, 45);
+                ov19_021D0EB0(param0, ov19_021D2E1C);
+            } else {
+                ov19_021D54A4(param0, &param0->unk_00);
+                ov19_021D6594(param0->unk_114, 47);
+                Sound_PlayEffect(1515);
+                *param1 = 2;
+            }
+        }
+        break;
+
+    case 2:
+        if (ov19_021D6628(param0->unk_114) == FALSE) {
+            break;
+        }
+
+        switch (ov19_021D5150(gCoreSys.heldKeys, param0)) {
+        case 2:
+            if ((gCoreSys.heldKeys & PAD_PLUS_KEY_MASK) == (gCoreSys.pressedKeys & PAD_PLUS_KEY_MASK)) {
+                Sound_PlayEffect(1523);
+            }
+            break;
+
+        case 1:
+            ov19_021D6594(param0->unk_114, 5);
+            if ((ov19_021D5E38(&param0->unk_00) & 6) == 0) {
+                ov19_021D6594(param0->unk_114, 6);
+            }
+            break;
+
+        case 3:
+            ov19_021D5CE8(&param0->unk_00);
+            sub_02079A94(param0->unk_120, ov19_021D5E68(&param0->unk_00));
+            ov19_021D6594(param0->unk_114, 4);
+            *param1 = 5;
+            break;
+
+        case 4:
+            ov19_021D5CBC(&(param0->unk_00));
+            sub_02079A94(param0->unk_120, ov19_021D5E68(&param0->unk_00));
+            ov19_021D6594(param0->unk_114, 4);
+            *param1 = 5;
+            break;
+
+        case 0:
+            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+                if (ov19_021D2DD0(&param0->unk_00)) {
+                    ov19_021D56AC(param0, &param0->unk_00);
+                    ov19_021D6594(param0->unk_114, 10);
+                    Sound_PlayEffect(1514);
+                    *param1 = 4;
+                } else {
+                    Sound_PlayEffect(1523);
+                }
+                break;
+            }
+            if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+                Sound_PlayEffect(1523);
+            }
+            break;
+        }
+        break;
+
+    case 5:
+        if (ov19_021D6600(param0->unk_114, 4)) {
+            if (!(ov19_021D5E38(&param0->unk_00) & 6)) {
+                ov19_021D52F4(param0);
+                ov19_021D6594(param0->unk_114, 6);
+            }
+            *param1 = 2;
+        }
+        break;
+
+    case 3:
+        if (ov19_021D6628(param0->unk_114)) {
+            *param1 = 1;
+        }
+        break;
+
+    case 4:
+        if (ov19_021D6628(param0->unk_114)) {
+            ov19_021D0EC0(param0);
+        }
+        break;
+    }
 }
 
 static BOOL ov19_021D2DD0 (const UnkStruct_ov19_021D4DF0 * param0)

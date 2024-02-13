@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -116,209 +118,67 @@ static UnkFuncPtr_ov23_022576EC Unk_ov23_022576EC[] = {
     sub_020295B8
 };
 
-// clang-format off
-asm static void ov23_0225360C (Window * param0, MessageLoader * param1, TrainerInfo * param2, const SecretBaseRecord * param3)
+static void ov23_0225360C(Window *param0, MessageLoader *param1, TrainerInfo *param2, const SecretBaseRecord *param3)
 {
-    push {r3, r4, r5, r6, r7, lr}
-    sub sp, #0x20
-    add r7, r0, #0
-    mov r0, #4
-    str r1, [sp, #0xc]
-    add r5, r2, #0
-    str r3, [sp, #0x10]
-    bl StringTemplate_Default
-    str r0, [sp, #0x1c]
-    mov r0, #0x1e
-    mov r1, #4
-    bl Strbuf_Init
-    add r4, r0, #0
-    mov r0, #0x1e
-    mov r1, #4
-    bl Strbuf_Init
-    str r0, [sp, #0x18]
-    ldr r0, [sp, #0xc]
-    mov r1, #0
-    add r2, r4, #0
-    bl MessageLoader_GetStrbuf
-    mov r0, #1
-    str r0, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    mov r1, #0
-    add r0, r7, #0
-    add r2, r4, #0
-    mov r3, #2
-    str r1, [sp, #8]
-    bl Text_AddPrinterWithParams
-    ldr r0, [sp, #0xc]
-    mov r1, #1
-    add r2, r4, #0
-    bl MessageLoader_GetStrbuf
-    mov r0, #0x11
-    str r0, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    mov r1, #0
-    add r0, r7, #0
-    add r2, r4, #0
-    mov r3, #2
-    str r1, [sp, #8]
-    bl Text_AddPrinterWithParams
-    ldr r0, [sp, #0xc]
-    mov r1, #2
-    add r2, r4, #0
-    bl MessageLoader_GetStrbuf
-    mov r0, #1
-    str r0, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    mov r1, #0
-    add r0, r7, #0
-    add r2, r4, #0
-    mov r3, #0x84
-    str r1, [sp, #8]
-    bl Text_AddPrinterWithParams
-    add r0, r5, #0
-    bl TrainerInfo_ID_LowHalf
-    add r2, r0, #0
-    mov r0, #2
-    str r0, [sp]
-    mov r0, #1
-    str r0, [sp, #4]
-    ldr r0, [sp, #0x1c]
-    mov r1, #6
-    mov r3, #5
-    bl StringTemplate_SetNumber
-    ldr r0, [sp, #0xc]
-    mov r1, #5
-    add r2, r4, #0
-    bl MessageLoader_GetStrbuf
-    ldr r0, [sp, #0x1c]
-    ldr r1, [sp, #0x18]
-    add r2, r4, #0
-    bl StringTemplate_Format
-    mov r0, #1
-    str r0, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    mov r1, #0
-    ldr r2, [sp, #0x18]
-    add r0, r7, #0
-    mov r3, #0x94
-    str r1, [sp, #8]
-    bl Text_AddPrinterWithParams
-    ldr r0, [sp, #0x1c]
-    mov r1, #0
-    add r2, r5, #0
-    bl StringTemplate_SetPlayerName
-    ldr r0, [sp, #0xc]
-    mov r1, #4
-    add r2, r4, #0
-    bl MessageLoader_GetStrbuf
-    ldr r0, [sp, #0x1c]
-    ldr r1, [sp, #0x18]
-    add r2, r4, #0
-    bl StringTemplate_Format
-    mov r0, #1
-    str r0, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    mov r1, #0
-    ldr r2, [sp, #0x18]
-    add r0, r7, #0
-    mov r3, #0x39
-    str r1, [sp, #8]
-    bl Text_AddPrinterWithParams
-    ldr r0, [sp, #0x10]
-    bl sub_0202958C
-    add r1, r0, #0
-    ldr r0, [sp, #0xc]
-    add r1, #0x14
-    add r2, r4, #0
-    bl MessageLoader_GetStrbuf
-    mov r0, #0x11
-    str r0, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    mov r1, #0
-    add r0, r7, #0
-    add r2, r4, #0
-    mov r3, #0x39
-    str r1, [sp, #8]
-    bl Text_AddPrinterWithParams
-    mov r5, #0
-    mov r6, #0x27
- _02253738:
-    ldr r0, [sp, #0xc]
-    add r1, r5, #6
-    add r2, r4, #0
-    bl MessageLoader_GetStrbuf
-    str r6, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    mov r0, #0
-    str r0, [sp, #8]
-    add r0, r7, #0
-    mov r1, #0
-    add r2, r4, #0
-    mov r3, #2
-    bl Text_AddPrinterWithParams
-    add r5, r5, #1
-    add r6, #0x10
-    cmp r5, #7
-    blt _02253738
-    mov r0, #0
-    ldr r6, = Unk_ov23_022576EC
-              str r0, [sp, #0x14]
-    mov r5, #0x27
- _02253768:
-    ldr r0, [sp, #0x10]
-    ldr r1, [r6, #0]
-    blx r1
-    add r2, r0, #0
-    mov r0, #1
-    str r0, [sp]
-    str r0, [sp, #4]
-    mov r1, #6
-    ldr r0, [sp, #0x1c]
-    add r3, r1, #0
-    bl StringTemplate_SetNumber
-    ldr r0, [sp, #0xc]
-    mov r1, #0xd
-    add r2, r4, #0
-    bl MessageLoader_GetStrbuf
-    ldr r0, [sp, #0x1c]
-    ldr r1, [sp, #0x18]
-    add r2, r4, #0
-    bl StringTemplate_Format
-    str r5, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    mov r0, #0
-    str r0, [sp, #8]
-    ldr r2, [sp, #0x18]
-    add r0, r7, #0
-    mov r1, #0
-    mov r3, #0x94
-    bl Text_AddPrinterWithParams
-    ldr r0, [sp, #0x14]
-    add r6, r6, #4
-    add r0, r0, #1
-    add r5, #0x10
-    str r0, [sp, #0x14]
-    cmp r0, #7
-    blt _02253768
-    add r0, r4, #0
-    bl Strbuf_Free
-    ldr r0, [sp, #0x18]
-    bl Strbuf_Free
-    ldr r0, [sp, #0x1c]
-    bl StringTemplate_Free
-    add sp, #0x20
-    pop {r3, r4, r5, r6, r7, pc}
-    nop
+    StringTemplate *v0;
+    Strbuf *v1;
+    Strbuf *v2;
+    int v3, v4;
+    const int v5 = 17;
+    const int v6 = 39;
+    const int v7 = 2;
+    const int v8 = 16;
+    const int v9 = 55;
+    const int v10 = 130;
+    const int v11 = 146;
+    const int v12 = 146;
+
+    v0 = StringTemplate_Default(HEAP_ID_FIELD);
+    v1 = Strbuf_Init(30, HEAP_ID_FIELD);
+    v2 = Strbuf_Init(30, HEAP_ID_FIELD);
+
+    MessageLoader_GetStrbuf(param1, 0, v1);
+    Text_AddPrinterWithParams(param0, 0, v1, v7, 1, 0xFF, NULL);
+
+    MessageLoader_GetStrbuf(param1, 1, v1);
+    Text_AddPrinterWithParams(param0, 0, v1, v7, v5, 0xFF, NULL);
+
+    MessageLoader_GetStrbuf(param1, 2, v1);
+    Text_AddPrinterWithParams(param0, 0, v1, v7 + v10, 1, 0xFF, NULL);
+
+    StringTemplate_SetNumber(v0, 6, TrainerInfo_ID_LowHalf(param2), 5, 2, 1);
+    MessageLoader_GetStrbuf(param1, 5, v1);
+    StringTemplate_Format(v0, v2, v1);
+    Text_AddPrinterWithParams(param0, 0, v2, v7 + v12, 1, 0xFF, NULL);
+
+    StringTemplate_SetPlayerName(v0, 0, param2);
+    MessageLoader_GetStrbuf(param1, 4, v1);
+    StringTemplate_Format(v0, v2, v1);
+    Text_AddPrinterWithParams(param0, 0, v2, v7 + v9, 1, 0xFF, NULL);
+
+    v3 = sub_0202958C(param3);
+    MessageLoader_GetStrbuf(param1, 20 + v3, v1);
+    Text_AddPrinterWithParams(param0, 0, v1, v7 + v9, v5, 0xFF, NULL);
+
+    for (v3 = 0; v3 < 7; v3++) {
+        MessageLoader_GetStrbuf(param1, 6 + v3, v1);
+        Text_AddPrinterWithParams(param0, 0, v1, v7, v6 + v8 * v3, 0xFF, NULL);
+    }
+
+    for (v3 = 0; v3 < 7; v3++) {
+        UnkFuncPtr_ov23_022576EC v13 = Unk_ov23_022576EC[v3];
+
+        v4 = v13(param3);
+        StringTemplate_SetNumber(v0, 6, v4, 6, 1, 1);
+        MessageLoader_GetStrbuf(param1, 13, v1);
+        StringTemplate_Format(v0, v2, v1);
+        Text_AddPrinterWithParams(param0, 0, v2, v7 + v12, v6 + v8 * v3, 0xFF, NULL);
+    }
+
+    Strbuf_Free(v1);
+    Strbuf_Free(v2);
+    StringTemplate_Free(v0);
 }
-// clang-format on
 
 static void ov23_022537D4 (SysTask * param0, void * param1)
 {

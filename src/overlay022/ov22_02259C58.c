@@ -295,145 +295,66 @@ static void ov22_0225A02C (u32 param0, u32 param1, void * param2)
     }
 }
 
-asm static void ov22_0225A0E4 (UnkStruct_ov22_02259C58 * param0, int param1, UnkStruct_ov22_0225A0E4 * param2, int param3, int param4, int param5, int param6)
+static void ov22_0225A0E4(UnkStruct_ov22_02259C58 *param0, int param1, UnkStruct_ov22_0225A0E4 *param2, int param3, int param4, int param5, int param6)
 {
-    push {r4, r5, r6, lr}
-    sub sp, #0x90
-    add r6, r0, #0
-    mov r0, #0
-    str r1, [sp]
-    mvn r0, r0
-    str r0, [sp, #4]
-    add r5, r2, #0
-    str r0, [sp, #8]
-    mov r2, #0
-    str r2, [sp, #0xc]
-    str r2, [sp, #0x10]
-    ldr r0, [r5, #0x48]
-    add r4, r3, #0
-    str r0, [sp, #0x14]
-    ldr r0, [r5, #0x4c]
-    add r3, r1, #0
-    str r0, [sp, #0x18]
-    ldr r0, [r5, #0x50]
-    str r0, [sp, #0x1c]
-    ldr r0, [r5, #0x54]
-    str r0, [sp, #0x20]
-    str r2, [sp, #0x24]
-    str r2, [sp, #0x28]
-    add r0, sp, #0x5c
-    bl sub_020093B4
-    ldr r0, [r5, #0x44]
-    mov r2, #0
-    mov r1, #1
-    str r0, [sp, #0x2c]
-    add r0, sp, #0x5c
-    str r0, [sp, #0x30]
-    lsl r0, r4, #0xc
-    str r0, [sp, #0x34]
-    ldr r0, [sp, #0xa0]
-    str r1, [sp, #0x54]
-    lsl r0, r0, #0xc
-    str r0, [sp, #0x38]
-    mov r0, #2
-    str r0, [sp, #0x50]
-    mov r0, #0xe
-    str r0, [sp, #0x58]
-    add r0, sp, #0x2c
-    str r0, [sp, #0x80]
-    str r1, [sp, #0x8c]
-    add r0, r6, #0
-    add r1, sp, #0x80
-    str r2, [sp, #0x3c]
-    str r2, [sp, #0x84]
-    str r2, [sp, #0x88]
-    bl ov22_02259C58
-    add sp, #0x90
-    pop {r4, r5, r6, pc}
+    UnkStruct_ov22_02259C58_1 v0;
+    CellActorResourceData v1;
+    CellActorInitParamsEx v2;
+
+    sub_020093B4(&v1, param1, 0, param1, param1, 0xFFFFFFFF, 0xFFFFFFFF, 0, 0, param2->unk_48[0], param2->unk_48[1], param2->unk_48[2], param2->unk_48[3], NULL, NULL);
+
+    v2.collection = param2->unk_44;
+    v2.resourceData = &v1;
+    v2.position.x = param3 << 12;
+    v2.position.y = param4 << 12;
+    v2.position.z = 0;
+    v2.priority = 2;
+    v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v2.heapID = 14;
+
+    v0.unk_00 = &v2;
+    v0.unk_04 = NULL;
+    v0.unk_08 = NULL;
+    v0.unk_0C = 1;
+
+    ov22_02259C58(param0, &v0);
 }
 
-asm static void ov22_0225A154 (UnkStruct_ov22_0225A154 * param0, int param1, UnkStruct_ov22_0225A0E4 * param2, const UnkStruct_02012744 * param3, const Window * param4, int param5, int param6, int param7, int param8)
+static void ov22_0225A154(UnkStruct_ov22_0225A154 *param0, int param1, UnkStruct_ov22_0225A0E4 *param2, const UnkStruct_02012744 *param3, const Window *param4, int param5, int param6, int param7, int param8)
 {
-    push {r4, r5, r6, lr}
-    sub sp, #0xa8
-    add r5, r0, #0
-    mov r0, #0
-    str r1, [sp]
-    mvn r0, r0
-    str r0, [sp, #4]
-    add r4, r2, #0
-    str r0, [sp, #8]
-    mov r2, #0
-    str r2, [sp, #0xc]
-    str r2, [sp, #0x10]
-    ldr r0, [r4, #0x48]
-    add r6, r3, #0
-    str r0, [sp, #0x14]
-    ldr r0, [r4, #0x4c]
-    add r3, r1, #0
-    str r0, [sp, #0x18]
-    ldr r0, [r4, #0x50]
-    str r0, [sp, #0x1c]
-    ldr r0, [r4, #0x54]
-    str r0, [sp, #0x20]
-    str r2, [sp, #0x24]
-    str r2, [sp, #0x28]
-    add r0, sp, #0x5c
-    bl sub_020093B4
-    ldr r0, [r4, #0x44]
-    mov r2, #0xe
-    str r0, [sp, #0x2c]
-    add r0, sp, #0x5c
-    str r0, [sp, #0x30]
-    ldr r0, [sp, #0xbc]
-    str r2, [sp, #0x58]
-    lsl r0, r0, #0xc
-    str r0, [sp, #0x34]
-    ldr r0, [sp, #0xc0]
-    add r2, sp, #0x2c
-    lsl r0, r0, #0xc
-    mov r1, #2
-    str r2, [sp, #0x80]
-    ldr r2, [sp, #0xb8]
-    str r0, [sp, #0x38]
-    mov r0, #0
-    str r1, [sp, #0x50]
-    mov r1, #1
-    str r0, [sp, #0x3c]
-    str r1, [sp, #0x54]
-    str r0, [sp, #0x84]
-    str r0, [sp, #0x88]
-    str r0, [sp, #0x9c]
-    mov r0, #0x13
-    str r1, [sp, #0x8c]
-    str r6, [sp, #0x94]
-    str r2, [sp, #0x90]
-    str r0, [sp, #0xa0]
-    ldr r0, [r4, #0x4c]
-    bl SpriteResourceCollection_Find
-    mov r1, #0
-    bl sub_0200A72C
-    str r0, [sp, #0x98]
-    ldr r0, [sp, #0xb8]
-    mov r1, #1
-    mov r2, #0xd
-    bl sub_02012898
-    mov r1, #1
-    add r3, r5, #0
-    add r2, r1, #0
-    add r3, #0x14
-    bl sub_0201ED94
-    cmp r0, #0
-    bne _0225A1F0
-    bl ErrorHandling_AssertFail
- _0225A1F0:
-    ldr r0, [r5, #0x18]
-    add r1, sp, #0x80
-    str r0, [sp, #0xa4]
-    add r0, r5, #0
-    bl ov22_02259C9C
-    add sp, #0xa8
-    pop {r4, r5, r6, pc}
+    UnkStruct_ov22_02259C9C v0;
+    CellActorResourceData v1;
+    CellActorInitParamsEx v2;
+    SpriteResource *v3;
+
+    sub_020093B4(&v1, param1, 0, param1, param1, 0xFFFFFFFF, 0xFFFFFFFF, 0, 0, param2->unk_48[0], param2->unk_48[1], param2->unk_48[2], param2->unk_48[3], NULL, NULL);
+
+    v2.collection = param2->unk_44;
+    v2.resourceData = &v1;
+    v2.position.x = param5 << 12;
+    v2.position.y = param6 << 12;
+    v2.position.z = 0;
+    v2.priority = 2;
+    v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v2.heapID = 14;
+
+    v0.unk_00.unk_00 = &v2;
+    v0.unk_00.unk_04 = NULL;
+    v0.unk_00.unk_08 = NULL;
+    v0.unk_00.unk_0C = 1;
+    v0.unk_14 = param3;
+    v0.unk_10 = param4;
+    v0.unk_1C = 0;
+    v0.unk_20 = 19;
+
+    v3 = SpriteResourceCollection_Find(param2->unk_48[1], 1);
+    v0.unk_18 = sub_0200A72C(v3, NULL);
+
+    GF_ASSERT(sub_0201ED94(sub_02012898(param4, NNS_G2D_VRAM_TYPE_2DMAIN, 13), 1, NNS_G2D_VRAM_TYPE_2DMAIN, &param0->unk_14));
+
+    v0.unk_24 = param0->unk_14.unk_04;
+
+    ov22_02259C9C(param0, &v0);
 }
 
 static void ov22_0225A200 (TouchScreenHitTable *hitTable, int param1, int param2, int param3, int param4, int param5)

@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/communication/comm_type.h"
+#include "constants/font.h"
 #include "consts/sdat.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
@@ -173,6 +174,30 @@ static void CommClubMan_PrintMessage(int msgId, BOOL format)
 
     FieldMessage_DrawWindow(&sCommClubMan->msgWindow, SaveData_Options(sCommClubMan->fieldSystem->saveData));
     sCommClubMan->printMsgIndex = FieldMessage_Print(&sCommClubMan->msgWindow, sCommClubMan->strBuff[5], SaveData_Options(sCommClubMan->fieldSystem->saveData), 1);
+}
+
+static inline void CommClubMan_PrintMessageFastSpeed(int msgId, BOOL format)
+{
+    if (!FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
+        Text_RemovePrinter(sCommClubMan->printMsgIndex);
+    }
+
+    if (format) {
+        MessageLoader_GetStrbuf(sCommClubMan->msgLoader, msgId, sCommClubMan->strBuff[4]);
+        StringTemplate_Format(sCommClubMan->strTempMsg, sCommClubMan->strBuff[5], sCommClubMan->strBuff[4]);
+    } else {
+        MessageLoader_GetStrbuf(sCommClubMan->msgLoader, msgId, sCommClubMan->strBuff[5]);
+    }
+
+    if (!BGL_WindowAdded(&sCommClubMan->msgWindow)) {
+        FieldMessage_AddWindow(sCommClubMan->fieldSystem->unk_08, &sCommClubMan->msgWindow, 3);
+    }
+
+    FieldMessage_DrawWindow(&sCommClubMan->msgWindow, SaveData_Options(sCommClubMan->fieldSystem->saveData));
+    RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
+    RenderControlFlags_SetAutoScrollFlags(0);
+    RenderControlFlags_SetSpeedUpOnTouch(FALSE);
+    sCommClubMan->printMsgIndex = Text_AddPrinterWithParams(&sCommClubMan->msgWindow, FONT_MESSAGE, sCommClubMan->strBuff[5], 0, 0, 1, NULL);
 }
 
 static void CommClubMan_CreateList(UnkStruct_ov84_02240FA8 param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 param5)
@@ -484,131 +509,32 @@ static void ov7_0224A0C8(CommClubManager *commClubMan)
     }
 }
 
-// clang-format off
-asm static void CommClubTask_SelectServerList (SysTask * task, void * param1)
+static void CommClubTask_SelectServerList(SysTask *task, void *param1)
 {
-    push {r4, r5, lr}
-    sub sp, #0xc
-    add r5, r0, #0
-    add r4, r1, #0
-    bl CommSys_CheckError
-    cmp r0, #0
-    beq _0224A152
-    add r0, r5, #0
-    add r1, r4, #0
-    bl CommClubMan_DestroyList
-    mov r0, #0
-    add r1, r0, #0
-    bl CommClubMan_PrintMessage
-    add r0, r4, #0
-    bl ov7_0224B348
-    add sp, #0xc
-    pop {r4, r5, pc}
- _0224A152:
-    bl CommSys_CurNetId
-    bl CommInfo_TrainerInfo
-    cmp r0, #0
-    beq _0224A238
-    bl CommList_Refresh
-    ldr r1, = sCommClubMan
-              add r0, r4, #0
-    add r0, #0x8e
-    ldr r1, [r1, #0]
-    ldrh r0, [r0]
-    ldr r1, [r1, #0x7c]
-    bl sub_020339AC
-    ldr r2, = sCommClubMan
-              ldr r0, [r4, #0x58]
-    ldr r2, [r2, #0]
-    mov r1, #1
-    ldr r2, [r2, #0x7c]
-    bl StringTemplate_SetPlayerName
-    bl CommClubMan_MinPlayers
-    cmp r0, #2
-    bgt _0224A192
-    mov r0, #1
-    add r1, r0, #0
-    bl CommClubMan_PrintMessage
-    b _0224A232
- _0224A192:
-    ldr r0, = sCommClubMan
-              ldr r0, [r0, #0]
-    add r0, #0x94
-    ldrb r0, [r0]
-    bl FieldMessage_FinishedPrinting
-    cmp r0, #0
-    bne _0224A1AE
-    ldr r0, = sCommClubMan
-              ldr r0, [r0, #0]
-    add r0, #0x94
-    ldrb r0, [r0]
-    bl Text_RemovePrinter
- _0224A1AE:
-    ldr r0, = sCommClubMan
-              mov r1, #2
-    ldr r2, [r0, #0]
-    ldr r0, [r2, #0x74]
-    ldr r2, [r2, #0x10]
-    bl MessageLoader_GetStrbuf
-    ldr r0, = sCommClubMan
-              ldr r2, [r0, #0]
-    ldr r0, [r2, #0x58]
-    ldr r1, [r2, #0x14]
-    ldr r2, [r2, #0x10]
-    bl StringTemplate_Format
-    ldr r0, = sCommClubMan
-              ldr r0, [r0, #0]
-    add r0, #0x40
-    bl BGL_WindowAdded
-    cmp r0, #0
-    bne _0224A1E8
-    ldr r0, = sCommClubMan
-              mov r2, #3
-    ldr r1, [r0, #0]
-    ldr r0, [r1, #0x68]
-    add r1, #0x40
-    ldr r0, [r0, #8]
-    bl FieldMessage_AddWindow
- _0224A1E8:
-    ldr r0, = sCommClubMan
-              ldr r0, [r0, #0]
-    ldr r0, [r0, #0x68]
-    ldr r0, [r0, #0xc]
-    bl SaveData_Options
-    add r1, r0, #0
-    ldr r0, = sCommClubMan
-              ldr r0, [r0, #0]
-    add r0, #0x40
-    bl FieldMessage_DrawWindow
-    mov r0, #1
-    bl RenderControlFlags_SetCanABSpeedUpPrint
-    mov r0, #0
-    bl RenderControlFlags_SetAutoScrollFlags
-    mov r0, #0
-    bl RenderControlFlags_SetSpeedUpOnTouch
-    ldr r0, = sCommClubMan
-              mov r3, #0
-    ldr r2, [r0, #0]
-    mov r1, #1
-    str r3, [sp]
-    str r1, [sp, #4]
-    add r0, r2, #0
-    str r3, [sp, #8]
-    ldr r2, [r2, #0x14]
-    add r0, #0x40
-    bl Text_AddPrinterWithParams
-    ldr r1, = sCommClubMan
-              ldr r1, [r1, #0]
-    add r1, #0x94
-    strb r0, [r1]
- _0224A232:
-    ldr r0, = ov7_0224A34C
-              bl CommClubMan_SetTask
- _0224A238:
-              add sp, #0xc
-    pop {r4, r5, pc}
+    CommClubManager *v0 = (CommClubManager *)param1;
+
+    if (CommSys_CheckError()) {
+        CommClubMan_DestroyList(task, v0);
+        CommClubMan_PrintMessage(0, FALSE);
+        ov7_0224B348(v0);
+        return;
+    }
+
+    if (CommInfo_TrainerInfo(CommSys_CurNetId()) == NULL) {
+        return;
+    }
+
+    CommList_Refresh();
+
+    sub_020339AC(v0->connectIndex, sCommClubMan->unk_7C);
+    StringTemplate_SetPlayerName(v0->strTempMsg, 1, sCommClubMan->unk_7C);
+    if (CommClubMan_MinPlayers() <= 2) {
+        CommClubMan_PrintMessage(1, TRUE);
+    } else {
+        CommClubMan_PrintMessageFastSpeed(2, TRUE);
+    }
+    CommClubMan_SetTask(ov7_0224A34C);
 }
-// clang-format on
 
 static BOOL ov7_0224A244(SysTask *task, void *data)
 {
