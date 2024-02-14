@@ -26,16 +26,7 @@ otherpoke_shared = files(
 
 sinnoh_pokedex = files('sinnoh_pokedex.json')
 
-pl_growtbl_files = files(
-    '.shared/exp_tables/medium_fast.json',
-    '.shared/exp_tables/erratic.json',
-    '.shared/exp_tables/fluctuating.json',
-    '.shared/exp_tables/medium_slow.json',
-    '.shared/exp_tables/fast.json',
-    '.shared/exp_tables/slow.json',
-    '.shared/exp_tables/medium_fast.json', # Unused
-    '.shared/exp_tables/medium_fast.json', # Unused
-)
+pl_growtbl_files = files('.shared/exp_tables.csv')
 
 # Process mons in national dex order
 pokemon_subdirs = [

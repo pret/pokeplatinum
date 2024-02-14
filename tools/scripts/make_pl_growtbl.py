@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import argparse
-import json
+import csv
 import pathlib
 import subprocess
 
@@ -21,9 +21,8 @@ argparser.add_argument('-p', '--private-dir',
 argparser.add_argument('-o', '--output-dir',
                        required=True,
                        help='Path to the output directory (where the NARC will be made)')
-argparser.add_argument('files',
-                       nargs='+',
-                       help='List of files to process in-order')
+argparser.add_argument('table',
+                       help='Experience tables in csv format')
 args = argparser.parse_args()
 
 source_dir = pathlib.Path(args.source_dir)
@@ -32,15 +31,21 @@ output_dir = pathlib.Path(args.output_dir)
 
 private_dir.mkdir(parents=True, exist_ok=True)
 
-for i, file in enumerate(args.files):
-    with open(file) as data_file:
-        curve_data = json.load(data_file)
+with open(args.table) as data_file:
+    file_reader = csv.reader(data_file)
+    table_data = list(file_reader)
+    transpose = list(zip(*table_data))
+    count = 0
+    for table in transpose:
+        if table[0] == 'level':
+            continue
         out = bytes()
-        for n in curve_data:
-            out = out + n.to_bytes(4, byteorder='little')
+        for n in table[1:]:
+            out = out + int(n).to_bytes(4, byteorder='little')
 
-        target_fname = private_dir / f'pl_growtbl_{i}.bin'
+        target_fname = private_dir / f'pl_growtbl_{count}.bin'
         with open(target_fname, 'wb+') as target_file:
             target_file.write(out)
+        count += 1
 
 subprocess.run([args.knarc, '-d', private_dir, '-p', output_dir / 'pl_growtbl.narc'])
