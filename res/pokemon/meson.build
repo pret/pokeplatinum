@@ -26,6 +26,8 @@ otherpoke_shared = files(
 
 sinnoh_pokedex = files('sinnoh_pokedex.json')
 
+pl_growtbl_files = files('.shared/exp_tables.csv')
+
 # Process mons in national dex order
 pokemon_subdirs = [
     '000',  # Glitch pokemon "-----" aka DPBox, Invisible Shiny Bulbasau
@@ -754,6 +756,19 @@ shinzukan_narc = custom_target('shinzukan.narc',
     ]
 )
 
+pl_growtbl_narc = custom_target('pl_growtbl.narc',
+    output: 'pl_growtbl.narc',
+    input: pl_growtbl_files,
+    command: [
+        make_pl_growtbl_py,
+        '--knarc', knarc_exe,
+        '--source-dir', '@CURRENT_SOURCE_DIR@',
+        '--private-dir', '@PRIVATE_DIR@',
+        '--output-dir', '@OUTDIR@',
+        pl_growtbl_files
+    ]
+)
+
 nitrofs_files += pl_personal_narc
 nitrofs_files += evo_narc
 nitrofs_files += pl_poke_icon_narc
@@ -764,3 +779,4 @@ nitrofs_files += height_narc
 nitrofs_files += pl_poke_data_narc
 nitrofs_files += pl_pokezukan_narc
 nitrofs_files += shinzukan_narc
+nitrofs_files += pl_growtbl_narc
