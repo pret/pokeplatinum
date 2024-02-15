@@ -138,7 +138,7 @@ b3eb598efc61f42b4541a1d93364520258c1a4b4 *res/prebuilt/data/wifip2pmatch.narc
 e8982c6379fcc2dbd01e2a3626fa1e11477c77c9 *res/prebuilt/data/wm.ncgr
 b65f8a707781ecede813f948cbc8c9154d4b623f *res/prebuilt/data/wm.nclr
 ea0bcdd85b625239fc4c3cbb08f312ff24446991 *res/prebuilt/data/sound/sound_data.sdat
-a4160e55ee085f23df76a1c2b7b9427520b994fe *res/prebuilt/data/sound/pl_sound_data.sdat
+a4160e55ee085f23df76a1c2b7b9427520b994fe *res/sound/pl_sound_data.sdat
 3614557aa04eb1ad7e5f260578de925f73da584d *res/text/pl_msg.narc
 1ad55f1a6d2ad34116b9e9502a330bf054e2f2d3 *res/prebuilt/msgdata/msg.narc
 c995669c61058be149d6282036397ebee3a3b1b8 *res/prebuilt/msgdata/scenario/scr_msg.narc
