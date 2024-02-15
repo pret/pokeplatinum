@@ -6,14 +6,14 @@
     "accuracy": 0,
     "pp": 10,
     "effect": {
-        "type": "MOVE_EFFECT_RESTORE_HALF_HP",
+        "type": "BATTLE_EFFECT_RESTORE_HALF_HP",
         "chance": 0
     },
     "range": "RANGE_USER",
     "priority": 0,
     "flags": [
-        "MOVE_FLAG_SNATCH",
-        "MOVE_FLAG_HIDE_HP_BARS"
+        "MOVE_FLAG_CAN_SNATCH",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
     ],
     "contest": {
         "effect": 8,

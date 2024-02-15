@@ -417,8 +417,8 @@ void ov17_02249640 (UnkStruct_ov17_022492DC * param0, int param1, int param2, vo
     const UnkStruct_ov17_02254578 * v0, * v1;
     int v2;
     BGL * v3;
-    CellTransferStateData * v4;
-    AnimationResourceCollection * v5;
+    SpriteRenderer * v4;
+    SpriteGfxHandler * v5;
 
     param0->unk_08 = param3;
 
@@ -688,7 +688,7 @@ static void ov17_02249BC4 (UnkStruct_ov17_022492DC * param0, UnkStruct_ov17_0224
     int v3;
     FontOAM * v4;
     BGL * v5;
-    AnimationResourceCollection * v6;
+    SpriteGfxHandler * v6;
     int v7, v8;
 
     GF_ASSERT(param1->unk_00 == NULL);
@@ -707,8 +707,8 @@ static void ov17_02249BC4 (UnkStruct_ov17_022492DC * param0, UnkStruct_ov17_0224
 
     {
         sub_0201A7A0(&v1);
-        sub_0201A870(v5, &v1, v8, 16 / 8, 0, 0);
-        sub_0201D7E0(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
+        BGL_AddFramelessWindow(v5, &v1, v8, 16 / 8, 0, 0);
+        PrintStringWithColorAndMargins(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
     }
 
     v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DSUB, 23);
@@ -759,7 +759,7 @@ static void ov17_02249CD0 (UnkStruct_ov17_022492DC * param0)
 
 static void ov17_02249CFC (UnkStruct_ov17_022492DC * param0, int param1)
 {
-    AnimationResourceCollection * v0;
+    SpriteGfxHandler * v0;
     int v1;
     int v2, v3;
 

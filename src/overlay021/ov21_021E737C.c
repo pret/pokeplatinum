@@ -650,9 +650,9 @@ static void ov21_021E7B34 (UnkStruct_ov21_021E7714 * param0, UnkStruct_ov21_021E
     param0->unk_00 = sub_02021B90(&v1);
 
     if (ov21_021D3920(param2->unk_00) == 0) {
-        sub_02021D6C(param0->unk_00, 3);
+        SpriteActor_SetSpriteAnimActive(param0->unk_00, 3);
     } else {
-        sub_02021D6C(param0->unk_00, 4);
+        SpriteActor_SetSpriteAnimActive(param0->unk_00, 4);
     }
 
     v1.unk_08.x = 128 << FX32_SHIFT;
@@ -660,21 +660,21 @@ static void ov21_021E7B34 (UnkStruct_ov21_021E7714 * param0, UnkStruct_ov21_021E
 
     param0->unk_08 = sub_02021B90(&v1);
 
-    sub_02021D6C(param0->unk_08, 1);
+    SpriteActor_SetSpriteAnimActive(param0->unk_08, 1);
     sub_02021E80(param0->unk_08, 1);
 
     v1.unk_08.x = 184 << FX32_SHIFT;
     v1.unk_08.y = (64 + 24) << FX32_SHIFT;
 
     param0->unk_0C[0] = sub_02021B90(&v1);
-    sub_02021D6C(param0->unk_0C[0], 0);
+    SpriteActor_SetSpriteAnimActive(param0->unk_0C[0], 0);
 
     v1.unk_08.x = 72 << FX32_SHIFT;
     v1.unk_08.y = (64 + 24) << FX32_SHIFT;
 
     param0->unk_0C[1] = sub_02021B90(&v1);
 
-    sub_02021D6C(param0->unk_0C[1], 0);
+    SpriteActor_SetSpriteAnimActive(param0->unk_0C[1], 0);
     sub_020093B4(&v0, sub_02009E08(param0->unk_14[0]), sub_02009E08(param0->unk_14[1]), sub_02009E08(param0->unk_14[2]), sub_02009E08(param0->unk_14[3]), 0xffffffff, 0xffffffff, 0, 3, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
     v1.unk_00 = v2->unk_138;

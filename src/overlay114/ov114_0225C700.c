@@ -114,7 +114,7 @@ typedef struct {
 
 typedef struct {
     MessageLoader * unk_00;
-    UnkStruct_0200B358 * unk_04;
+    StringFormatter * unk_04;
     Strbuf* unk_08;
     Strbuf* unk_0C;
 } UnkStruct_ov114_0225D084;
@@ -1493,7 +1493,7 @@ static void ov114_0225D180 (UnkStruct_ov114_0225D084 * param0, u32 param1)
 static void ov114_0225D190 (UnkStruct_ov114_0225D084 * param0, Strbuf *param1, u32 param2)
 {
     MessageLoader_GetStrbuf(param0->unk_00, param2, param0->unk_0C);
-    sub_0200C388(param0->unk_04, param1, param0->unk_0C);
+    StringFormatter_Format(param0->unk_04, param1, param0->unk_0C);
 }
 
 static void ov114_0225D1AC (UnkStruct_ov114_0225D084 * param0, u32 param1, Window * param2, u8 param3, u8 param4)
@@ -1507,7 +1507,7 @@ static void ov114_0225D1C8 (UnkStruct_ov114_0225D084 * param0, u32 param1, Windo
     s32 v1;
 
     MessageLoader_GetStrbuf(param0->unk_00, param1, param0->unk_0C);
-    sub_0200C388(param0->unk_04, param0->unk_08, param0->unk_0C);
+    StringFormatter_Format(param0->unk_04, param0->unk_08, param0->unk_0C);
 
     v0 = sub_02002D7C(0, param0->unk_08, 0);
     v1 = param3 - v0;
@@ -1522,7 +1522,7 @@ static void ov114_0225D1C8 (UnkStruct_ov114_0225D084 * param0, u32 param1, Windo
 static u32 ov114_0225D218 (UnkStruct_ov114_0225D084 * param0, u32 param1, Window * param2, Strbuf *param3, u32 param4)
 {
     MessageLoader_GetStrbuf(param0->unk_00, param1, param0->unk_0C);
-    sub_0200C388(param0->unk_04, param3, param0->unk_0C);
+    StringFormatter_Format(param0->unk_04, param3, param0->unk_0C);
 
     return sub_0201D78C(param2, 1, param3, 0, 0, param4, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
 }
@@ -1530,7 +1530,7 @@ static u32 ov114_0225D218 (UnkStruct_ov114_0225D084 * param0, u32 param1, Window
 static void ov114_0225D254 (UnkStruct_ov114_0225D084 * param0, u32 param1, Window * param2, u8 param3, u8 param4, u32 param5)
 {
     MessageLoader_GetStrbuf(param0->unk_00, param1, param0->unk_0C);
-    sub_0200C388(param0->unk_04, param0->unk_08, param0->unk_0C);
+    StringFormatter_Format(param0->unk_04, param0->unk_08, param0->unk_0C);
     sub_0201D78C(param2, 0, param0->unk_08, param3, param4, 0xff, param5, NULL);
 }
 
@@ -1986,7 +1986,7 @@ static void ov114_0225DAC0 (UnkStruct_ov114_0225DAC0 * param0, u32 param1, u32 p
 
         param0->unk_10 = ov114_0225CDB4(param8, param7->unk_00, v2, v3, 0, param9);
 
-        sub_02021D6C(param0->unk_10, v1);
+        SpriteActor_SetSpriteAnimActive(param0->unk_10, v1);
         sub_02021EF0(param0->unk_10, param5);
         sub_02021CAC(param0->unk_10, 0);
         sub_02021CC8(param0->unk_10, 1);
@@ -2000,7 +2000,7 @@ static void ov114_0225DAC0 (UnkStruct_ov114_0225DAC0 * param0, u32 param1, u32 p
 
         param0->unk_14 = ov114_0225CDB4(param8, param7->unk_00, v4, v5, 0, param9);
 
-        sub_02021D6C(param0->unk_14, 0);
+        SpriteActor_SetSpriteAnimActive(param0->unk_14, 0);
         sub_02021CAC(param0->unk_14, 0);
     }
 
@@ -2040,7 +2040,7 @@ static void ov114_0225DCA0 (UnkStruct_ov114_0225DAC0 * param0, UnkStruct_ov114_0
 static void ov114_0225DD0C (UnkStruct_ov114_0225DAC0 * param0, u32 param1)
 {
     sub_02021CAC(param0->unk_14, 1);
-    sub_02021D6C(param0->unk_14, 4 + param1);
+    SpriteActor_SetSpriteAnimActive(param0->unk_14, 4 + param1);
     sub_02021CC8(param0->unk_14, 1);
 }
 
@@ -3416,7 +3416,7 @@ static void ov114_0225F484 (UnkStruct_ov114_0225F578 * param0, UnkStruct_ov114_0
                 v2 = (v0 * 5) + v1;
                 param0->unk_08[v2] = ov114_0225CDB4(param0->unk_44, param2->unk_00, v3, v4, 0, param5);
                 sub_02021CAC(param0->unk_08[v2], 0);
-                sub_02021D6C(param0->unk_08[v2], v0);
+                SpriteActor_SetSpriteAnimActive(param0->unk_08[v2], v0);
                 sub_02021E80(param0->unk_08[v2], 0);
 
                 v3 += 24;
@@ -3483,7 +3483,7 @@ static BOOL ov114_0225F5AC (UnkStruct_ov114_0225F578 * param0, UnkStruct_ov114_0
                 if (param0->unk_4A != param0->unk_4B) {
                     for (v0 = 0; v0 < (5 * 3); v0++) {
                         sub_02021CAC(param0->unk_08[v0], 0);
-                        sub_02021D6C(param0->unk_08[v0], 2);
+                        SpriteActor_SetSpriteAnimActive(param0->unk_08[v0], 2);
                     }
                 }
             }
@@ -3668,7 +3668,7 @@ static void ov114_0225F9B8 (UnkStruct_ov114_0225FAB8 * param0, UnkStruct_ov114_0
 
     for (v0 = 0; v0 < 2; v0++) {
         param0->unk_00[v0] = ov114_0225CDB4(param1, param2, Unk_ov114_0226019C[v0].x >> FX32_SHIFT, Unk_ov114_0226019C[v0].y >> FX32_SHIFT, 0, param3);
-        sub_02021D6C(param0->unk_00[v0], 5);
+        SpriteActor_SetSpriteAnimActive(param0->unk_00[v0], 5);
         sub_02021E80(param0->unk_00[v0], 0);
     }
 
@@ -3944,7 +3944,7 @@ static void ov114_0225FF54 (SysTask * param0, void * param1)
     case 1:
         ov114_0225F9B8(&v0->unk_34, v0->unk_28, v0->unk_08, v0->unk_00);
         v0->unk_30 = ov114_0225CDB4(v0->unk_28, v0->unk_08, 128, 97, 64, v0->unk_00);
-        sub_02021D6C(v0->unk_30, 1);
+        SpriteActor_SetSpriteAnimActive(v0->unk_30, 1);
         sub_02021E80(v0->unk_30, 0);
         v0->unk_04++;
         break;

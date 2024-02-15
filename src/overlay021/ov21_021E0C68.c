@@ -543,7 +543,7 @@ static void ov21_021E136C (UnkStruct_ov21_021E14D4 * param0, UnkStruct_ov21_021E
 
     param0->unk_00 = sub_02021B90(&v1);
 
-    sub_02021D6C(param0->unk_00, 0x11);
+    SpriteActor_SetSpriteAnimActive(param0->unk_00, 0x11);
 
     if (ov21_021D37CC(param2->unk_04) != 2) {
         v3 = 0;

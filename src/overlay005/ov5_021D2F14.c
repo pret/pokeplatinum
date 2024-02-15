@@ -13,7 +13,7 @@
 #include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay007/struct_ov7_0224F358.h"
 #include "overlay019/struct_ov19_021DA864.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay115/struct_ov115_02261520.h"
 
@@ -122,7 +122,7 @@ GraphicElementData * ov5_021D3104 (UnkStruct_ov5_021D30A8 * param0, const UnkStr
     v1 = sub_02021AA0(&v0);
     GF_ASSERT(v1);
 
-    sub_02021D6C(v1, param1->unk_0A);
+    SpriteActor_SetSpriteAnimActive(v1, param1->unk_0A);
     sub_02021EC4(v1, param1->unk_10);
 
     return v1;
@@ -334,7 +334,7 @@ static void ov5_021D3518 (UnkStruct_ov5_021D30A8 * param0, NARC * param1, int pa
     GF_ASSERT(0);
 }
 
-CellActorData * ov5_021D3584 (UnkStruct_ov5_021D30A8 * param0, const UnkStruct_ov104_0223F9E0 * param1)
+CellActorData * ov5_021D3584 (UnkStruct_ov5_021D30A8 * param0, const SpriteTemplate * param1)
 {
     int v0;
     int v1;
@@ -349,7 +349,7 @@ CellActorData * ov5_021D3584 (UnkStruct_ov5_021D30A8 * param0, const UnkStruct_o
     v2->unk_04 = v2->unk_08->unk_00;
 
     for (v0 = 0; v0 < 6; v0++) {
-        v4[v0] = param1->unk_14[v0];
+        v4[v0] = param1->resources[v0];
     }
 
     if ((param0->unk_194[4] == NULL) || (param0->unk_194[5] == NULL)) {
@@ -365,15 +365,15 @@ CellActorData * ov5_021D3584 (UnkStruct_ov5_021D30A8 * param0, const UnkStruct_o
         }
     }
 
-    sub_020093B4(v2->unk_04, v4[0], v4[1], v4[2], v4[3], v4[4], v4[5], param1->unk_30, param1->unk_2C, param0->unk_194[0], param0->unk_194[1], param0->unk_194[2], param0->unk_194[3], param0->unk_194[4], param0->unk_194[5]);
+    sub_020093B4(v2->unk_04, v4[0], v4[1], v4[2], v4[3], v4[4], v4[5], param1->transferToVRAM, param1->bgPriority, param0->unk_194[0], param0->unk_194[1], param0->unk_194[2], param0->unk_194[3], param0->unk_194[4], param0->unk_194[5]);
 
     v3.unk_00 = param0->unk_00;
     v3.unk_04 = v2->unk_04;
-    v3.unk_08.x = FX32_CONST(param1->unk_00);
-    v3.unk_08.y = FX32_CONST(param1->unk_02);
-    v3.unk_08.z = FX32_CONST(param1->unk_04);
+    v3.unk_08.x = FX32_CONST(param1->x);
+    v3.unk_08.y = FX32_CONST(param1->y);
+    v3.unk_08.z = FX32_CONST(param1->z);
 
-    if (param1->unk_10 == NNS_G2D_VRAM_TYPE_2DSUB) {
+    if (param1->vramType == NNS_G2D_VRAM_TYPE_2DSUB) {
         v3.unk_08.y += (192 << FX32_SHIFT);
     }
 
@@ -381,16 +381,16 @@ CellActorData * ov5_021D3584 (UnkStruct_ov5_021D30A8 * param0, const UnkStruct_o
     v3.unk_14.y = FX32_ONE;
     v3.unk_14.z = FX32_ONE;
     v3.unk_20 = 0;
-    v3.unk_24 = param1->unk_08;
-    v3.unk_28 = param1->unk_10;
+    v3.unk_24 = param1->priority;
+    v3.unk_28 = param1->vramType;
     v3.unk_2C = param0->unk_1C6;
 
     v2->unk_00 = sub_02021AA0(&v3);
 
     if (v2->unk_00 != NULL) {
         v1 = sub_02021EE8(v2->unk_00);
-        sub_02021D6C(v2->unk_00, param1->unk_06);
-        sub_02021E90(v2->unk_00, v1 + param1->unk_0C);
+        SpriteActor_SetSpriteAnimActive(v2->unk_00, param1->animIdx);
+        sub_02021E90(v2->unk_00, v1 + param1->plttIdx);
     } else {
         GF_ASSERT(FALSE);
     }

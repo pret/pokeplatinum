@@ -6,7 +6,7 @@
     "accuracy": 0,
     "pp": 5,
     "effect": {
-        "type": "MOVE_EFFECT_WEATHER_RAIN",
+        "type": "BATTLE_EFFECT_WEATHER_RAIN",
         "chance": 0
     },
     "range": "RANGE_FIELD",

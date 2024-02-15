@@ -25,7 +25,7 @@ typedef struct {
     BGL * unk_00;
     SaveData * unk_04;
     AnimationControlFlags * unk_08;
-    UnkStruct_0200B358 * unk_0C;
+    StringFormatter * unk_0C;
     MessageLoader * unk_10;
     Strbuf* unk_14;
     Window unk_18;

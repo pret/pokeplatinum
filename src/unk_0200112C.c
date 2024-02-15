@@ -321,9 +321,9 @@ static void sub_020015D0 (UnkStruct_0200112C * param0, void * param1, u8 param2,
     }
 
     if (param0->unk_1F.unk_04_7) {
-        sub_0201D7E0(param0->unk_00.unk_0C, param0->unk_1F.unk_04_0, param1, param2, param3, 0xff, (u32)((((param0->unk_1F.unk_00_0) & 0xff) << 16) | (((param0->unk_1F.unk_01_0) & 0xff) << 8) | (((param0->unk_1F.unk_00_4) & 0xff) << 0)), param0->unk_1F.unk_02_0, 0, NULL);
+        PrintStringWithColorAndMargins(param0->unk_00.unk_0C, param0->unk_1F.unk_04_0, param1, param2, param3, 0xff, (u32)((((param0->unk_1F.unk_00_0) & 0xff) << 16) | (((param0->unk_1F.unk_01_0) & 0xff) << 8) | (((param0->unk_1F.unk_00_4) & 0xff) << 0)), param0->unk_1F.unk_02_0, 0, NULL);
     } else {
-        sub_0201D7E0(param0->unk_00.unk_0C, param0->unk_00.unk_1A_9, param1, param2, param3, 0xff, (u32)((((param0->unk_00.unk_17_4) & 0xff) << 16) | (((param0->unk_00.unk_18_4) & 0xff) << 8) | (((param0->unk_00.unk_18_0) & 0xff) << 0)), param0->unk_00.unk_1A_0, 0, NULL);
+        PrintStringWithColorAndMargins(param0->unk_00.unk_0C, param0->unk_00.unk_1A_9, param1, param2, param3, 0xff, (u32)((((param0->unk_00.unk_17_4) & 0xff) << 16) | (((param0->unk_00.unk_18_4) & 0xff) << 8) | (((param0->unk_00.unk_18_0) & 0xff) << 0)), param0->unk_00.unk_1A_0, 0, NULL);
     }
 }
 

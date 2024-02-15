@@ -6,13 +6,13 @@
     "accuracy": 0,
     "pp": 20,
     "effect": {
-        "type": "MOVE_EFFECT_NATURE_POWER",
+        "type": "BATTLE_EFFECT_NATURE_POWER",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET_SPECIAL",
     "priority": 0,
     "flags": [
-        "MOVE_FLAG_HIDE_HP_BARS"
+        "MOVE_FLAG_HIDES_HP_GAUGES"
     ],
     "contest": {
         "effect": 14,

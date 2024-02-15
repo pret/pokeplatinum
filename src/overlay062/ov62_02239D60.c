@@ -25,7 +25,7 @@
 #include "overlay062/struct_ov62_02239DA4.h"
 #include "overlay062/struct_ov62_0223CAA4.h"
 #include "overlay062/struct_ov62_02248CDC.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
@@ -57,6 +57,7 @@
 #include "overlay062/ov62_02231690.h"
 #include "overlay062/ov62_02239D60.h"
 #include "overlay062/ov62_0224112C.h"
+#include "constants/species.h"
 
 typedef struct {
     int unk_00;
@@ -582,13 +583,13 @@ static void ov62_0223A4C8 (UnkStruct_0208C06C * param0, int param1)
     UnkStruct_ov62_02239DBC * v0 = param0->unk_860;
 
     if (param1 == 0) {
-        sub_0200D3F4(v0->unk_348[1].unk_08, 1);
+        SpriteActor_EnableObject(v0->unk_348[1].unk_08, 1);
         sub_020129D0(v0->unk_348[1].unk_0C, 1);
-        sub_0200D4C4(v0->unk_348[0].unk_08, 32, 232);
+        SpriteActor_SetSpritePositionXY(v0->unk_348[0].unk_08, 32, 232);
     } else {
-        sub_0200D3F4(v0->unk_348[1].unk_08, 0);
+        SpriteActor_EnableObject(v0->unk_348[1].unk_08, 0);
         sub_020129D0(v0->unk_348[1].unk_0C, 0);
-        sub_0200D4C4(v0->unk_348[0].unk_08, 80, 232);
+        SpriteActor_SetSpritePositionXY(v0->unk_348[0].unk_08, 80, 232);
     }
 
     sub_020128C4(v0->unk_348[0].unk_0C, 36, -8);
@@ -975,7 +976,7 @@ static void ov62_0223AC58 (UnkStruct_0208C06C * param0, int param1)
     Strbuf* v2;
     Strbuf* v3;
     Strbuf* v4;
-    UnkStruct_0200B358 * v5;
+    StringFormatter * v5;
     int v6 = 28 + v0->unk_380.unk_00;
 
     v1 = &v0->unk_1B4[2];
@@ -987,7 +988,7 @@ static void ov62_0223AC58 (UnkStruct_0208C06C * param0, int param1)
     Strbuf_CopyChars(v3, v0->unk_38C[param0->unk_14.unk_48C.unk_38.unk_00]->unk_00.unk_00);
     ov62_022349A8(param0, v3);
     sub_0200B48C(v5, 0, v3, 0, 1, GAME_LANGUAGE);
-    sub_0200C388(v5, v4, v2);
+    StringFormatter_Format(v5, v4, v2);
     BGL_FillWindow(v1, Unk_ov62_02248D78[2]);
     sub_0201D78C(v1, 0, v4, 0, Unk_ov62_02248DA8[2], 0xff, Unk_ov62_02248D90[2], NULL);
     sub_0201A9A4(v1);
@@ -1057,7 +1058,7 @@ static void ov62_0223ADC0 (UnkStruct_0208C06C * param0, int param1)
     v2 = Strbuf_Init(255, 102);
 
     if (ov62_0223ADB0(v0->unk_04.unk_154, (1 << v0->unk_1B0)) == 1) {
-        v4 = 494;
+        v4 = SPECIES_EGG;
     }
 
     MessageLoader_GetSpeciesName(v4, 102, v5);
@@ -1073,10 +1074,10 @@ static void ov62_0223ADC0 (UnkStruct_0208C06C * param0, int param1)
 static void ov62_0223AE60 (UnkStruct_0208C06C * param0)
 {
     UnkStruct_ov62_02239DBC * v0 = param0->unk_860;
-    CellTransferStateData * v1;
-    AnimationResourceCollection * v2;
-    PaletteSys * v3;
-    UnkStruct_ov104_0223F9E0 v4;
+    SpriteRenderer * v1;
+    SpriteGfxHandler * v2;
+    PaletteData * v3;
+    SpriteTemplate v4;
 
     v1 = param0->unk_14.unk_04;
     v2 = param0->unk_14.unk_08;
@@ -1104,23 +1105,23 @@ static void ov62_0223AE60 (UnkStruct_0208C06C * param0)
 
             sub_0200D888(v1, v2, 19, PokeIconSpriteIndex(v7, v9, v6), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 100000 + v5);
 
-            v4.unk_00 = 110 + ((v5 % 6) * 24);
-            v4.unk_02 = 48 + ((v5 / 6) * 22);
-            v4.unk_04 = 0;
-            v4.unk_06 = 0;
-            v4.unk_08 = 0;
-            v4.unk_0C = 0;
-            v4.unk_10 = 1;
-            v4.unk_2C = 0;
-            v4.unk_30 = 0;
-            v4.unk_14[0] = 100000 + v5;
-            v4.unk_14[1] = 100000;
-            v4.unk_14[2] = 100000;
-            v4.unk_14[3] = 100000;
-            v4.unk_14[4] = 0xffffffff;
-            v4.unk_14[5] = 0xffffffff;
+            v4.x = 110 + ((v5 % 6) * 24);
+            v4.y = 48 + ((v5 / 6) * 22);
+            v4.z = 0;
+            v4.animIdx = 0;
+            v4.priority = 0;
+            v4.plttIdx = 0;
+            v4.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+            v4.bgPriority = 0;
+            v4.transferToVRAM = FALSE;
+            v4.resources[0] = 100000 + v5;
+            v4.resources[1] = 100000;
+            v4.resources[2] = 100000;
+            v4.resources[3] = 100000;
+            v4.resources[4] = SPRITE_RESOURCE_NONE;
+            v4.resources[5] = SPRITE_RESOURCE_NONE;
 
-            v0->unk_2B4[v5] = sub_0200CE6C(v1, v2, &v4);
+            v0->unk_2B4[v5] = SpriteActor_LoadResources(v1, v2, &v4);
             v8 = PokeIconPaletteIndex(v7, v6, v9);
 
             sub_0200D430(v0->unk_2B4[v5], 4 + v8);
@@ -1143,7 +1144,7 @@ static void ov62_0223AFC0 (UnkStruct_0208C06C * param0, int param1)
             continue;
         }
 
-        sub_0200D3F4(v0->unk_2B4[v1], param1);
+        SpriteActor_EnableObject(v0->unk_2B4[v1], param1);
     }
 }
 
@@ -1153,9 +1154,9 @@ static void ov62_0223AFEC (UnkStruct_0208C06C * param0)
     int v1;
     int v2;
 
-    sub_0200D080(param0->unk_14.unk_08, 100000);
-    sub_0200D090(param0->unk_14.unk_08, 100000);
-    sub_0200D0A0(param0->unk_14.unk_08, 100000);
+    SpriteGfxHandler_UnloadPlttObjById(param0->unk_14.unk_08, 100000);
+    SpriteGfxHandler_UnloadCellObjById(param0->unk_14.unk_08, 100000);
+    SpriteGfxHandler_UnloadAnimObjById(param0->unk_14.unk_08, 100000);
 
     for (v1 = 0; v1 < 30; v1++) {
         v2 = v0->unk_04.unk_28[v1];
@@ -1168,7 +1169,7 @@ static void ov62_0223AFEC (UnkStruct_0208C06C * param0)
             continue;
         }
 
-        sub_0200D070(param0->unk_14.unk_08, 100000 + v1);
+        SpriteGfxHandler_UnloadCharObjById(param0->unk_14.unk_08, 100000 + v1);
         sub_0200D0F4(v0->unk_2B4[v1]);
         v0->unk_2B4[v1] = NULL;
     }
@@ -1200,7 +1201,7 @@ static void ov62_0223B050 (UnkStruct_0208C06C * param0)
             v6 = 0;
         }
 
-        v7 = 494;
+        v7 = SPECIES_EGG;
     }
 
     v1 = PokemonPersonalData_FromMonSpecies(v7, 102);

@@ -132,7 +132,7 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
                 sub_02021CAC(v0->unk_390[v2], 0);
 
                 if (v2 == 0) {
-                    sub_02021D6C(v0->unk_390[v2], 1);
+                    SpriteActor_SetSpriteAnimActive(v0->unk_390[v2], 1);
                 }
             }
 
@@ -140,7 +140,7 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
                 v0->unk_3B0[v2] = sub_02021AA0(&v3);
                 sub_02021CC8(v0->unk_3B0[v2], 1);
                 sub_02021CAC(v0->unk_3B0[v2], 0);
-                sub_02021D6C(v0->unk_3B0[v2], 2);
+                SpriteActor_SetSpriteAnimActive(v0->unk_3B0[v2], 2);
             }
         }
 
@@ -311,7 +311,7 @@ static void ov23_0224937C (int param0[][4], GraphicElementData * param1[])
 
             if (param0[v0][2] != param0[v0][3]) {
                 if (param0[v0][2] != 0) {
-                    sub_02021D6C(param1[v0], param0[v0][2]);
+                    SpriteActor_SetSpriteAnimActive(param1[v0], param0[v0][2]);
                     sub_02021CAC(param1[v0], 1);
                 } else {
                     sub_02021CAC(param1[v0], 0);
@@ -478,7 +478,7 @@ static void ov23_0224966C (BGL * param0, Window * param1, int * param2, int * pa
     switch (*param3) {
     case 0:
         if ((v0 = ov23_022498C4(param5)) != NULL) {
-            *param2 = sub_0201D738(
+            *param2 = PrintStringSimple(
                 param1, 1, v0, 0, 16, 1, NULL);
             *param3 = 1;
         }

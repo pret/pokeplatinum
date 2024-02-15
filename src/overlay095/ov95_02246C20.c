@@ -56,7 +56,7 @@ struct UnkStruct_ov95_02247628_t {
     const UnkStruct_ov6_02246254 * unk_00;
     int unk_04;
     BGL * unk_08;
-    UnkStruct_0200B358 * unk_0C;
+    StringFormatter * unk_0C;
     MessageLoader * unk_10;
     Strbuf* unk_14;
     GraphicElementManager * unk_18;
@@ -157,16 +157,16 @@ int ov95_02246C20 (UnkStruct_020067E8 * param0, int * param1)
 
             switch (v0->unk_00->unk_10) {
             case 1:
-                sub_0200B5CC(v0->unk_0C, 0, (BoxPokemon *)(v0->unk_00->unk_00));
-                sub_0200B5CC(v0->unk_0C, 1, (BoxPokemon *)(v0->unk_00->unk_04));
+                StringFormatter_BufferNickname(v0->unk_0C, 0, (BoxPokemon *)(v0->unk_00->unk_00));
+                StringFormatter_BufferNickname(v0->unk_0C, 1, (BoxPokemon *)(v0->unk_00->unk_04));
                 sub_0200B498(v0->unk_0C, 2, v0->unk_00->unk_08);
                 v0->unk_1AC = ov95_02246DEC((BoxPokemon *)(v0->unk_00->unk_04));
                 break;
             case 2:
-                sub_0200B5CC(v0->unk_0C, 0, (BoxPokemon *)(v0->unk_00->unk_00));
+                StringFormatter_BufferNickname(v0->unk_0C, 0, (BoxPokemon *)(v0->unk_00->unk_00));
                 break;
             case 4:
-                sub_0200B5CC(v0->unk_0C, 1, (BoxPokemon *)(v0->unk_00->unk_04));
+                StringFormatter_BufferNickname(v0->unk_0C, 1, (BoxPokemon *)(v0->unk_00->unk_04));
                 v0->unk_1AC = ov95_02246DEC((BoxPokemon *)(v0->unk_00->unk_04));
                 break;
             }
@@ -679,7 +679,7 @@ BGL * ov95_02247628 (UnkStruct_ov95_02247628 * param0)
     return param0->unk_08;
 }
 
-UnkStruct_0200B358 * ov95_0224762C (UnkStruct_ov95_02247628 * param0)
+StringFormatter * ov95_0224762C (UnkStruct_ov95_02247628 * param0)
 {
     return param0->unk_0C;
 }

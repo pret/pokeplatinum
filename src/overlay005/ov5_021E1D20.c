@@ -7,7 +7,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_02025E5C_decl.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay005/struct_ov5_021E1FF4_decl.h"
 
@@ -49,7 +49,7 @@ struct UnkStruct_ov5_021E1FF4_t {
     u8 unk_08;
     BGL * unk_0C;
     Window * unk_10;
-    UnkStruct_0200B358 * unk_14;
+    StringFormatter * unk_14;
     MessageLoader * unk_18;
     UnkStruct_ov5_021E1D20 unk_1C;
     int unk_2C;
@@ -77,7 +77,7 @@ static void ov5_021E1D20 (UnkStruct_ov5_021E1D20 * param0, const UnkStruct_0203C
 {
     SaveData * v0 = param1->unk_0C;
     UnkStruct_02049FA8 * v1 = sub_0203A720(sub_0203A790(v0));
-    UnkStruct_02026324 * v2 = sub_02027560(v0);
+    PokedexData * v2 = sub_02027560(v0);
 
     param0->unk_04 = sub_0203A138(v1->unk_00);
 
@@ -91,7 +91,7 @@ static void ov5_021E1D20 (UnkStruct_ov5_021E1D20 * param0, const UnkStruct_0203C
     param0->unk_0C = sub_02025E5C(v0);
 }
 
-static void ov5_021E1D6C (UnkStruct_0200B358 * param0, const UnkStruct_ov5_021E1D20 * param1)
+static void ov5_021E1D6C (StringFormatter * param0, const UnkStruct_ov5_021E1D20 * param1)
 {
     int v0, v1, v2;
 
@@ -148,7 +148,7 @@ static void ov5_021E1E20 (const UnkStruct_ov5_021E1FF4 * param0)
     v2 = 0;
     v0 = sub_0200B29C(param0->unk_14, param0->unk_18, Unk_ov5_021F9CCC[0], param0->unk_04);
 
-    sub_0201D738(param0->unk_10, 0, v0, 0, v2, 0xff, NULL);
+    PrintStringSimple(param0->unk_10, 0, v0, 0, v2, 0xff, NULL);
     Strbuf_Free(v0);
 
     for (v4 = 1; v4 < NELEMS(Unk_ov5_021F9CCC); v4++) {
@@ -159,13 +159,13 @@ static void ov5_021E1E20 (const UnkStruct_ov5_021E1FF4 * param0)
         v2 += v3;
         v0 = MessageLoader_GetNewStrbuf(param0->unk_18, Unk_ov5_021F9CCC[v4]);
 
-        sub_0201D738(param0->unk_10, 0, v0, 0, v2, 0xff, NULL);
+        PrintStringSimple(param0->unk_10, 0, v0, 0, v2, 0xff, NULL);
         Strbuf_Free(v0);
 
         v0 = sub_0200B29C(param0->unk_14, param0->unk_18, Unk_ov5_021F9CBC[v4 - 1], param0->unk_04);
         v1 = 13 * 8 - sub_02002D7C(0, v0, sub_02002DF8(0, 2));
 
-        sub_0201D738(param0->unk_10, 0, v0, v1, v2, 0xff, NULL);
+        PrintStringSimple(param0->unk_10, 0, v0, v1, v2, 0xff, NULL);
         Strbuf_Free(v0);
     }
 }

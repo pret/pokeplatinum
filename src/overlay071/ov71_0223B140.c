@@ -284,7 +284,7 @@ int ov71_0223B388 (UnkStruct_020067E8 * param0, int * param1)
 
                 sub_02021CAC(v0->unk_30E4.unk_1C0[((8 + 8) + 8)], 1);
                 sub_02021CC8(v0->unk_30E4.unk_1C0[((8 + 8) + 8)], 1);
-                sub_02021D6C(v0->unk_30E4.unk_1C0[((8 + 8) + 8)], 10);
+                SpriteActor_SetSpriteAnimActive(v0->unk_30E4.unk_1C0[((8 + 8) + 8)], 10);
 
                 v0->unk_337E = 0;
                 v0->unk_3380 = 0;

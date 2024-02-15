@@ -658,13 +658,13 @@ static void ov21_021DF098 (UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021D
 
     param0->unk_00[1] = sub_02021B90(&v1);
 
-    sub_02021D6C(param0->unk_00[1], 0 + v4);
+    SpriteActor_SetSpriteAnimActive(param0->unk_00[1], 0 + v4);
 
     if (v4 != v5) {
         v1.unk_08.x = (220 * FX32_ONE);
         v1.unk_08.y = (72 * FX32_ONE);
         param0->unk_00[2] = sub_02021B90(&v1);
-        sub_02021D6C(param0->unk_00[2], 0 + v5);
+        SpriteActor_SetSpriteAnimActive(param0->unk_00[2], 0 + v5);
     } else {
         param0->unk_00[2] = NULL;
     }
@@ -765,7 +765,7 @@ static void ov21_021DF214 (UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021D
 
     param0->unk_0C = sub_02021B90(&v1);
 
-    sub_02021D6C(param0->unk_0C, 0x11);
+    SpriteActor_SetSpriteAnimActive(param0->unk_0C, 0x11);
 
     if (ov21_021D37CC(param2->unk_04) != 2) {
         v3 = 0;

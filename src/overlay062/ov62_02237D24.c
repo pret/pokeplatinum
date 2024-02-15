@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02023FCC_decl.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "overlay022/struct_ov22_0225B1BC_decl.h"
 
@@ -1305,13 +1305,13 @@ static void ov62_0223958C (UnkStruct_0208C06C * param0, int param1)
     UnkStruct_ov62_02237D24 * v0 = param0->unk_860;
 
     if (param1 == 0) {
-        sub_0200D3F4(v0->unk_198[1].unk_08, 1);
+        SpriteActor_EnableObject(v0->unk_198[1].unk_08, 1);
         sub_020129D0(v0->unk_198[1].unk_0C, 1);
-        sub_0200D4C4(v0->unk_198[0].unk_08, 32, 232);
+        SpriteActor_SetSpritePositionXY(v0->unk_198[0].unk_08, 32, 232);
     } else {
-        sub_0200D3F4(v0->unk_198[1].unk_08, 0);
+        SpriteActor_EnableObject(v0->unk_198[1].unk_08, 0);
         sub_020129D0(v0->unk_198[1].unk_0C, 0);
-        sub_0200D4C4(v0->unk_198[0].unk_08, 80, 232);
+        SpriteActor_SetSpritePositionXY(v0->unk_198[0].unk_08, 80, 232);
     }
 
     sub_020128C4(v0->unk_198[0].unk_0C, 36, -8);
@@ -1334,8 +1334,8 @@ static void ov62_02239608 (UnkStruct_0208C06C * param0)
 
     sub_0200D364(v0->unk_198[0].unk_08, 0);
     sub_0200D364(v0->unk_198[1].unk_08, 4);
-    sub_0200D4C4(v0->unk_198[0].unk_08, 32, 232);
-    sub_0200D4C4(v0->unk_198[1].unk_08, 128, 232);
+    SpriteActor_SetSpritePositionXY(v0->unk_198[0].unk_08, 32, 232);
+    SpriteActor_SetSpritePositionXY(v0->unk_198[1].unk_08, 128, 232);
     sub_020128C4(v0->unk_198[0].unk_0C, 36, -8);
     sub_020128C4(v0->unk_198[1].unk_0C, 36, -8);
     sub_020129D0(v0->unk_198[0].unk_0C, 1);
@@ -1439,7 +1439,7 @@ asm static void ov62_02239724 (UnkStruct_0208C06C * param0)
     ldr r0, [sp, #0x18]
     ldr r2, [sp, #0x1c]
     add r1, r7, #0
-    bl sub_0200C388
+    bl StringFormatter_Format
     add r0, r7, #0
     bl Strbuf_NumLines
     mov r5, #0
@@ -1574,7 +1574,7 @@ asm static void ov62_02239854 (UnkStruct_0208C06C * param0, int param1)
     ldr r0, [sp, #0x18]
     ldr r2, [sp, #0x1c]
     add r1, r7, #0
-    bl sub_0200C388
+    bl StringFormatter_Format
     add r0, r7, #0
     bl Strbuf_NumLines
     mov r5, #0
@@ -1646,7 +1646,7 @@ static BOOL ov62_02239984 (UnkStruct_0208C06C * param0, int param1)
         int v7;
         int v8 = 0;
         BOOL v9;
-        UnkStruct_02026324 * v10 = sub_02027560(param0->unk_830);
+        PokedexData * v10 = sub_02027560(param0->unk_830);
 
         for (v7 = v3; v7 < v4; v7++) {
             v9 = sub_02026FE8(v10, v1[v7]);
@@ -1690,7 +1690,7 @@ static void ov62_02239A0C (UnkStruct_0208C06C * param0, int param1)
         int v5;
         int v6 = 0;
         BOOL v7;
-        UnkStruct_02026324 * v8 = sub_02027560(param0->unk_830);
+        PokedexData * v8 = sub_02027560(param0->unk_830);
 
         v4->unk_1D4.unk_00 = 0;
 

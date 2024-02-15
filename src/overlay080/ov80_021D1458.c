@@ -371,7 +371,7 @@ int ov80_021D1758 (UnkStruct_ov80_021D2A08 * param0)
 
     sub_0200E69C(v1, 1, (((((1023 - (21 * 4)) - (28 * 4)) - (28 * 14)) - (10 * 2)) - 100), (15 - 1), v2->unk_04);
     BGL_FillWindow(v1, 15);
-    sub_0201D738(v1, 1, param0->unk_88, 0, 0, 0xff, NULL);
+    PrintStringSimple(v1, 1, param0->unk_88, 0, 0, 0xff, NULL);
     sub_0201A954(v1);
     sub_0201A954(&v0->unk_28[3]);
 
@@ -627,7 +627,7 @@ static void ov80_021D1C24 (UnkStruct_ov80_021D2A08 * param0)
     }
 
     if (v1->unk_13-- == 3) {
-        sub_0200D494(v1->unk_104, v1->unk_18 * 7 + (48 - 23), v1->unk_1C * 7 + (6 - 40));
+        SpriteActor_SetPositionXY(v1->unk_104, v1->unk_18 * 7 + (48 - 23), v1->unk_1C * 7 + (6 - 40));
         sub_02021E2C(v1->unk_104, FX32_ONE);
 
         ov80_021D1A30(param0);
@@ -919,14 +919,14 @@ static void ov80_021D2398 (UnkStruct_ov80_021D2A08 * param0)
 
     sub_02021CAC(v0->unk_100, 0);
     sub_02021CE4(v0->unk_100, FX32_ONE);
-    sub_0200D494(v0->unk_100, 128, 108);
+    SpriteActor_SetPositionXY(v0->unk_100, 128, 108);
 
     v0->unk_104 = sub_0200CA08(param0->unk_D8, param0->unk_DC, &Unk_ov80_021D30E8[1]);
 
     sub_02021CAC(v0->unk_104, 1);
     sub_02021CE4(v0->unk_104, FX32_CONST(2));
     sub_02021CC8(v0->unk_104, 1);
-    sub_0200D494(v0->unk_104, v0->unk_18 * 7 + (48 - 23), v0->unk_1C * 7 + (6 - 40));
+    SpriteActor_SetPositionXY(v0->unk_104, v0->unk_18 * 7 + (48 - 23), v0->unk_1C * 7 + (6 - 40));
 
     if (param0->unk_2C->unk_0C == 0) {
         v1.unk_10 = 1;
@@ -937,8 +937,8 @@ static void ov80_021D2398 (UnkStruct_ov80_021D2A08 * param0)
     v0->unk_108 = sub_0200CA08(param0->unk_D8, param0->unk_DC, &v1);
 
     sub_02021CAC(v0->unk_108, 1);
-    sub_02021E50(v0->unk_108, param0->unk_2C->unk_0C);
-    sub_0200D494(v0->unk_108, v0->unk_18 * 7 + (48 - 23), v0->unk_1C * 7 + (6 - 40));
+    SpriteActor_SetAnimFrame(v0->unk_108, param0->unk_2C->unk_0C);
+    SpriteActor_SetPositionXY(v0->unk_108, v0->unk_18 * 7 + (48 - 23), v0->unk_1C * 7 + (6 - 40));
 }
 
 static void ov80_021D24BC (UnkStruct_ov80_021D2A08 * param0, int param1, int param2)
@@ -1027,7 +1027,7 @@ static void ov80_021D259C (UnkStruct_ov80_021D2A08 * param0)
 
         v2->unk_0C = sub_0200CA08(param0->unk_D8, param0->unk_DC, &(Unk_ov80_021D30E8));
 
-        sub_0200D494(v2->unk_0C, v2->unk_00 * 7 + 25, v2->unk_04 * 7 + -34);
+        SpriteActor_SetPositionXY(v2->unk_0C, v2->unk_00 * 7 + 25, v2->unk_04 * 7 + -34);
         sub_02021F58(v2->unk_0C, 2);
         sub_02021CAC(v2->unk_0C, 0);
     }
@@ -1099,7 +1099,7 @@ static void ov80_021D2774 (SysTask * param0, void * param1)
     case 0:
         sub_02021CAC(v1->unk_100, 1);
         sub_02021CC8(v1->unk_100, 1);
-        sub_02021E50(v1->unk_100, 1);
+        SpriteActor_SetAnimFrame(v1->unk_100, 1);
         Sound_PlayEffect(1508);
         v1->unk_04++;
         break;

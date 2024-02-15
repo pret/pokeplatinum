@@ -44,7 +44,7 @@ struct UnkStruct_ov5_021DC1A4_t {
     Window * unk_18;
     Strbuf* unk_1C[28];
     MessageLoader * unk_8C;
-    UnkStruct_0200B358 * unk_90;
+    StringFormatter * unk_90;
     u8 unk_94;
     u8 unk_95;
     u8 unk_96;
@@ -73,8 +73,8 @@ struct UnkStruct_ov5_021DC1A4_t {
     u16 unk_2DC;
 };
 
-static void ov5_021DC018(UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021DC1A4 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, UnkStruct_0200B358 * param7, Window * param8, MessageLoader * param9);
-UnkStruct_ov5_021DC1A4 * ov5_021DC150(UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, UnkStruct_0200B358 * param6, Window * param7, MessageLoader * param8);
+static void ov5_021DC018(UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021DC1A4 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, StringFormatter * param7, Window * param8, MessageLoader * param9);
+UnkStruct_ov5_021DC1A4 * ov5_021DC150(UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringFormatter * param6, Window * param7, MessageLoader * param8);
 void ov5_021DC1A4(UnkStruct_ov5_021DC1A4 * param0, u32 param1, u32 param2);
 void ov5_021DC1AC(UnkStruct_ov5_021DC1A4 * param0);
 void ov5_021DCD94(UnkStruct_ov5_021DC1A4 * param0, u8 param1);
@@ -83,7 +83,7 @@ static void ov5_021DC290(UnkStruct_ov5_021DC1A4 * param0, u32 param1, u32 param2
 static u32 ov5_021DC300(UnkStruct_ov5_021DC1A4 * param0);
 static void ov5_021DC33C(UnkStruct_ov5_021DC1A4 * param0);
 static void ov5_021DC3B0(SysTask * param0, void * param1);
-UnkStruct_ov5_021DC1A4 * ov5_021DC48C(UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, UnkStruct_0200B358 * param6, Window * param7, MessageLoader * param8);
+UnkStruct_ov5_021DC1A4 * ov5_021DC48C(UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringFormatter * param6, Window * param7, MessageLoader * param8);
 void ov5_021DC4B0(UnkStruct_ov5_021DC1A4 * param0, u32 param1, u32 param2, u32 param3);
 void ov5_021DC4B8(UnkStruct_ov5_021DC1A4 * param0);
 void ov5_021DC528(UnkStruct_ov5_021DC1A4 * param0, u16 param1);
@@ -98,13 +98,13 @@ static void ov5_021DCA28(UnkStruct_ov5_021DC1A4 * param0);
 static void ov5_021DCA90(UnkStruct_ov5_021DC1A4 * param0, u16 param1, u32 param2);
 static void ov5_021DCAF4(UnkStruct_ov5_021DC1A4 * param0);
 static void ov5_021DCC64(SysTask * param0, void * param1);
-void ov5_021DCB24(UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u16 * param3, UnkStruct_0200B358 * param4, u16 param5);
+void ov5_021DCB24(UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u16 * param3, StringFormatter * param4, u16 param5);
 static void ov5_021DCC00(UnkStruct_ov5_021DC1A4 * param0, u16 param1, u8 param2, u8 param3);
 u16 ov5_021DCCC8(int param0);
-UnkStruct_ov5_021DC1A4 * ov5_021DD250(UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u16 * param3, UnkStruct_0200B358 * param4, u8 param5, u8 param6, u8 param7, u8 param8);
+UnkStruct_ov5_021DC1A4 * ov5_021DD250(UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u16 * param3, StringFormatter * param4, u8 param5, u8 param6, u8 param7, u8 param8);
 void ov5_021DD3A8(UnkStruct_ov5_021DC1A4 * param0);
 
-static void ov5_021DC018 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021DC1A4 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, UnkStruct_0200B358 * param7, Window * param8, MessageLoader * param9)
+static void ov5_021DC018 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021DC1A4 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, StringFormatter * param7, Window * param8, MessageLoader * param9)
 {
     int v0;
 
@@ -155,7 +155,7 @@ static void ov5_021DC018 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021DC1A4 * 
     return;
 }
 
-UnkStruct_ov5_021DC1A4 * ov5_021DC150 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, UnkStruct_0200B358 * param6, Window * param7, MessageLoader * param8)
+UnkStruct_ov5_021DC1A4 * ov5_021DC150 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringFormatter * param6, Window * param7, MessageLoader * param8)
 {
     UnkStruct_ov5_021DC1A4 * v0;
     int v1;
@@ -219,7 +219,7 @@ static void ov5_021DC290 (UnkStruct_ov5_021DC1A4 * param0, u32 param1, u32 param
         Strbuf* v2 = Strbuf_Init((40 * 2), 4);
 
         MessageLoader_GetStrbuf(param0->unk_8C, param1, v2);
-        sub_0200C388(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
+        StringFormatter_Format(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
         param0->unk_BC[param0->unk_9B].unk_00 = (const void *)param0->unk_1C[param0->unk_9B];
         Strbuf_Free(v2);
     }
@@ -331,7 +331,7 @@ void ov5_021DC424 (UnkStruct_ov5_021DC1A4 * param0)
     return;
 }
 
-UnkStruct_ov5_021DC1A4 * ov5_021DC48C (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, UnkStruct_0200B358 * param6, Window * param7, MessageLoader * param8)
+UnkStruct_ov5_021DC1A4 * ov5_021DC48C (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringFormatter * param6, Window * param7, MessageLoader * param8)
 {
     return ov5_021DC150(param0, param1, param2, param3, param4, param5, param6, param7, param8);
 }
@@ -443,7 +443,7 @@ static void ov5_021DC708 (UnkStruct_ov5_021DC1A4 * param0, u32 param1, u32 param
         Strbuf* v2 = Strbuf_Init((40 * 2), 4);
 
         MessageLoader_GetStrbuf(param0->unk_8C, param1, v2);
-        sub_0200C388(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
+        StringFormatter_Format(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
         param0->unk_1C4[param0->unk_9B].unk_00 = (const void *)param0->unk_1C[param0->unk_9B];
         Strbuf_Free(v2);
     }
@@ -614,8 +614,8 @@ static void ov5_021DCA90 (UnkStruct_ov5_021DC1A4 * param0, u16 param1, u32 param
 
     BGL_FillWindow(param0->unk_18, 15);
     MessageLoader_GetStrbuf(param0->unk_8C, param1, v0);
-    sub_0200C388(param0->unk_90, v1, v0);
-    sub_0201D738(param0->unk_18, 1, v1, 0, 0, param2, NULL);
+    StringFormatter_Format(param0->unk_90, v1, v0);
+    PrintStringSimple(param0->unk_18, 1, v1, 0, 0, param2, NULL);
     Strbuf_Free(v0);
     Strbuf_Free(v1);
 
@@ -633,7 +633,7 @@ static void ov5_021DCAF4 (UnkStruct_ov5_021DC1A4 * param0)
     return;
 }
 
-void ov5_021DCB24 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u16 * param3, UnkStruct_0200B358 * param4, u16 param5)
+void ov5_021DCB24 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u16 * param3, StringFormatter * param4, u16 param5)
 {
     u8 v0;
     u32 v1, v2;
@@ -669,8 +669,8 @@ static void ov5_021DCC00 (UnkStruct_ov5_021DC1A4 * param0, u16 param1, u8 param2
     Strbuf* v1 = Strbuf_Init((40 * 2), 4);
 
     MessageLoader_GetStrbuf(param0->unk_8C, param1, v0);
-    sub_0200C388(param0->unk_90, v1, v0);
-    sub_0201D738(&param0->unk_08, 0, v1, param2, param3, 0xff, NULL);
+    StringFormatter_Format(param0->unk_90, v1, v0);
+    PrintStringSimple(&param0->unk_08, 0, v1, param2, param3, 0xff, NULL);
     Strbuf_Free(v0);
     Strbuf_Free(v1);
 
@@ -829,7 +829,7 @@ Window * ov5_021DCEB0 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2)
         v1 = MessageLoader_Init(0, 26, 543, 4);
         v2 = MessageLoader_GetNewStrbuf(v1, 18);
 
-        sub_0201D738(v0, 0, v2, 0, 0, 0xff, NULL);
+        PrintStringSimple(v0, 0, v2, 0, 0, 0xff, NULL);
         MessageLoader_Free(v1);
         Strbuf_Free(v2);
     }
@@ -848,7 +848,7 @@ void ov5_021DCF58 (Window * param0)
 void ov5_021DCF6C (UnkStruct_0203CDB0 * param0, Window * param1)
 {
     MessageLoader * v0;
-    UnkStruct_0200B358 * v1;
+    StringFormatter * v1;
     Strbuf* v2;
     Strbuf* v3;
     u32 v4;
@@ -863,11 +863,11 @@ void ov5_021DCF6C (UnkStruct_0203CDB0 * param0, Window * param1)
     v4 = TrainerInfo_Money(sub_02025E38(param0->unk_0C));
 
     sub_0200B60C(v1, 0, v4, 6, 1, 1);
-    sub_0200C388(v1, v2, v3);
+    StringFormatter_Format(v1, v2, v3);
 
     v5 = (10 * 8) - sub_02002D7C(0, v2, 0);
 
-    sub_0201D738(param1, 0, v2, v5, 16, 0xff, NULL);
+    PrintStringSimple(param1, 0, v2, v5, 16, 0xff, NULL);
     Strbuf_Free(v3);
     Strbuf_Free(v2);
     sub_0200B3F0(v1);
@@ -897,7 +897,7 @@ void ov5_021DD084 (Window * param0)
 void ov5_021DD098 (UnkStruct_0203CDB0 * param0, Window * param1)
 {
     MessageLoader * v0;
-    UnkStruct_0200B358 * v1;
+    StringFormatter * v1;
     Strbuf* v2;
     Strbuf* v3;
     u32 v4;
@@ -912,11 +912,11 @@ void ov5_021DD098 (UnkStruct_0203CDB0 * param0, Window * param1)
     v4 = Coins_GetValue(sub_02025E50(param0->unk_0C));
 
     sub_0200B60C(v1, 0, v4, 5, 1, 1);
-    sub_0200C388(v1, v2, v3);
+    StringFormatter_Format(v1, v2, v3);
 
     v5 = (10 * 8) - sub_02002D7C(0, v2, 0);
 
-    sub_0201D738(param1, 0, v2, v5, 0, 0xff, NULL);
+    PrintStringSimple(param1, 0, v2, v5, 0, 0xff, NULL);
     Strbuf_Free(v3);
     Strbuf_Free(v2);
     sub_0200B3F0(v1);
@@ -940,7 +940,7 @@ Window * ov5_021DD140 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2)
 void ov5_021DD1A4 (UnkStruct_0203CDB0 * param0, Window * param1)
 {
     MessageLoader * v0;
-    UnkStruct_0200B358 * v1;
+    StringFormatter * v1;
     Strbuf* v2;
     Strbuf* v3;
     u16 v4;
@@ -955,11 +955,11 @@ void ov5_021DD1A4 (UnkStruct_0203CDB0 * param0, Window * param1)
     v4 = sub_0202D230(sub_0202D750(param0->unk_0C), 0, 0);
 
     sub_0200B60C(v1, 0, v4, 5, 1, 1);
-    sub_0200C388(v1, v2, v3);
+    StringFormatter_Format(v1, v2, v3);
 
     v5 = (10 * 8) - sub_02002D7C(0, v2, 0);
 
-    sub_0201D738(param1, 0, v2, v5, 0, 0xff, NULL);
+    PrintStringSimple(param1, 0, v2, v5, 0, 0xff, NULL);
     Strbuf_Free(v3);
     Strbuf_Free(v2);
     sub_0200B3F0(v1);
@@ -967,7 +967,7 @@ void ov5_021DD1A4 (UnkStruct_0203CDB0 * param0, Window * param1)
     sub_0201A9A4(param1);
 }
 
-UnkStruct_ov5_021DC1A4 * ov5_021DD250 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u16 * param3, UnkStruct_0200B358 * param4, u8 param5, u8 param6, u8 param7, u8 param8)
+UnkStruct_ov5_021DC1A4 * ov5_021DD250 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u16 * param3, StringFormatter * param4, u8 param5, u8 param6, u8 param7, u8 param8)
 {
     UnkStruct_ov5_021DC1A4 * v0;
 

@@ -7,12 +7,12 @@
 #include "struct_decls/struct_0200C704_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_0200C6E4.h"
 #include "overlay104/ov104_0223D768.h"
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov104_022417D8[] = {
+static const SpriteTemplate Unk_ov104_022417D8[] = {
     {
         0x0,
         0x0,
@@ -63,40 +63,40 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov104_022417D8[] = {
     }
 };
 
-void ov104_0223D768 (CellTransferStateData * param0, AnimationResourceCollection * param1, NARC * param2, PaletteSys * param3, u16 param4)
+void ov104_0223D768 (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, PaletteData * param3, u16 param4)
 {
-    const UnkStruct_ov104_0223F9E0 * v0;
+    const SpriteTemplate * v0;
 
     GF_ASSERT(param4 < NELEMS(Unk_ov104_022417D8));
     v0 = &Unk_ov104_022417D8[param4];
 
-    sub_0200CC3C(param0, param1, param2, v0->unk_14[0], 1, NNS_G2D_VRAM_TYPE_2DMAIN, v0->unk_14[0]);
-    sub_0200CDC4(param3, 2, param0, param1, param2, v0->unk_14[1], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, v0->unk_14[1]);
-    sub_0200CE24(param0, param1, param2, v0->unk_14[2], 1, v0->unk_14[2]);
-    sub_0200CE54(param0, param1, param2, v0->unk_14[3], 1, v0->unk_14[3]);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(param0, param1, param2, v0->resources[0], 1, NNS_G2D_VRAM_TYPE_2DMAIN, v0->resources[0]);
+    SpriteRenderer_LoadPalette(param3, 2, param0, param1, param2, v0->resources[1], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, v0->resources[1]);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(param0, param1, param2, v0->resources[2], 1, v0->resources[2]);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0, param1, param2, v0->resources[3], 1, v0->resources[3]);
 }
 
-void ov104_0223D7EC (AnimationResourceCollection * param0, u16 param1)
+void ov104_0223D7EC (SpriteGfxHandler * param0, u16 param1)
 {
-    const UnkStruct_ov104_0223F9E0 * v0;
+    const SpriteTemplate * v0;
 
     GF_ASSERT(param1 < NELEMS(Unk_ov104_022417D8));
     v0 = &Unk_ov104_022417D8[param1];
 
-    sub_0200D070(param0, v0->unk_14[0]);
-    sub_0200D080(param0, v0->unk_14[1]);
-    sub_0200D090(param0, v0->unk_14[2]);
-    sub_0200D0A0(param0, v0->unk_14[3]);
+    SpriteGfxHandler_UnloadCharObjById(param0, v0->resources[0]);
+    SpriteGfxHandler_UnloadPlttObjById(param0, v0->resources[1]);
+    SpriteGfxHandler_UnloadCellObjById(param0, v0->resources[2]);
+    SpriteGfxHandler_UnloadAnimObjById(param0, v0->resources[3]);
 }
 
-CellActorData * ov104_0223D828 (CellTransferStateData * param0, AnimationResourceCollection * param1, u16 param2)
+CellActorData * ov104_0223D828 (SpriteRenderer * param0, SpriteGfxHandler * param1, u16 param2)
 {
     CellActorData * v0;
 
     GF_ASSERT(param2 < NELEMS(Unk_ov104_022417D8));
 
-    v0 = sub_0200CE6C(param0, param1, &Unk_ov104_022417D8[param2]);
-    sub_0200D324(v0->unk_00);
+    v0 = SpriteActor_LoadResources(param0, param1, &Unk_ov104_022417D8[param2]);
+    SpriteActor_UpdateObject(v0->unk_00);
     return v0;
 }
 

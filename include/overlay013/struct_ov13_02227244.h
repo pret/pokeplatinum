@@ -18,10 +18,10 @@
 typedef struct {
     UnkStruct_ov13_022264F4 * unk_00;
     BGL * unk_04;
-    PaletteSys * unk_08;
+    PaletteData * unk_08;
     UnkStruct_0200C440 * unk_0C;
     MessageLoader * unk_10;
-    UnkStruct_0200B358 * unk_14;
+    StringFormatter * unk_14;
     Strbuf* unk_18;
     Window unk_1C;
     Window * unk_2C;
@@ -31,7 +31,7 @@ typedef struct {
     UnkStruct_ov13_02228A50 * unk_34;
     UnkStruct_ov16_0226DEEC * unk_38;
     BagItem unk_3C[5][36];
-    AnimationResourceCollection * unk_30C;
+    SpriteGfxHandler * unk_30C;
     CellActorData * unk_310[6];
     u16 unk_328[3][144];
     u16 unk_688[4][130];

@@ -25,7 +25,7 @@
 #include "overlay017/struct_ov17_0223F88C.h"
 #include "overlay017/struct_ov17_022472F8.h"
 #include "overlay097/struct_ov97_0222DB78.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
@@ -473,7 +473,7 @@ static const UnkStruct_ov17_02253558 Unk_ov17_02253558[] = {
     }
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov17_02253354 = {
+static const SpriteTemplate Unk_ov17_02253354 = {
     0x0,
     0x0,
     0x0,
@@ -597,7 +597,7 @@ void * ov17_0223F88C (UnkStruct_02095C48 * param0, UnkStruct_ov17_0223F88C * par
 
     {
         u16 * v5;
-        PaletteSys * v6;
+        PaletteData * v6;
         int v7;
 
         v6 = v0->unk_04->unk_50;
@@ -641,8 +641,8 @@ void ov17_0223F9C4 (UnkStruct_ov17_0223F7E4 * param0, int param1, int param2, vo
     const UnkStruct_ov17_02253558 * v0, * v1;
     int v2;
     BGL * v3;
-    CellTransferStateData * v4;
-    AnimationResourceCollection * v5;
+    SpriteRenderer * v4;
+    SpriteGfxHandler * v5;
 
     param0->unk_0C = param3;
 
@@ -960,7 +960,7 @@ static void ov17_02240138 (UnkStruct_ov17_0223F7E4 * param0, UnkStruct_ov17_0224
     int v3;
     FontOAM * v4;
     BGL * v5;
-    AnimationResourceCollection * v6;
+    SpriteGfxHandler * v6;
     int v7, v8;
 
     GF_ASSERT(param1->unk_00 == NULL);
@@ -977,8 +977,8 @@ static void ov17_02240138 (UnkStruct_ov17_0223F7E4 * param0, UnkStruct_ov17_0224
 
     if (param10 == NULL) {
         sub_0201A7A0(&v1);
-        sub_0201A870(v5, &v1, v8, 16 / 8, 0, 0);
-        sub_0201D7E0(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
+        BGL_AddFramelessWindow(v5, &v1, v8, 16 / 8, 0, 0);
+        PrintStringWithColorAndMargins(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
     } else {
         v1 = param10->unk_00;
     }
@@ -1057,9 +1057,9 @@ static void ov17_022402A8 (UnkStruct_ov17_0223F7E4 * param0)
 static void ov17_022402E8 (UnkStruct_ov17_0223F7E4 * param0, u16 param1[])
 {
     int v0;
-    CellTransferStateData * v1;
-    AnimationResourceCollection * v2;
-    UnkStruct_ov104_0223F9E0 v3;
+    SpriteRenderer * v1;
+    SpriteGfxHandler * v2;
+    SpriteTemplate v3;
     int v4;
 
     v1 = param0->unk_04->unk_18;
@@ -1072,12 +1072,12 @@ static void ov17_022402E8 (UnkStruct_ov17_0223F7E4 * param0, u16 param1[])
         if (param1[v0] != 0) {
             v4 = param0->unk_18C.unk_130[v0];
 
-            v3.unk_14[0] = 33014 + v0;
-            v3.unk_00 = Unk_ov17_02253298[v0][0];
-            v3.unk_02 = Unk_ov17_02253298[v0][1];
+            v3.resources[0] = 33014 + v0;
+            v3.x = Unk_ov17_02253298[v0][0];
+            v3.y = Unk_ov17_02253298[v0][1];
 
             param0->unk_118[v0] = ov17_0224F154(v1, v2, v4, &v3);
-            sub_0200D500(param0->unk_118[v0], v3.unk_00, v3.unk_02, (((192 + 80) << FX32_SHIFT)));
+            sub_0200D500(param0->unk_118[v0], v3.x, v3.y, (((192 + 80) << FX32_SHIFT)));
         }
     }
 }
@@ -1085,8 +1085,8 @@ static void ov17_022402E8 (UnkStruct_ov17_0223F7E4 * param0, u16 param1[])
 static void ov17_02240388 (UnkStruct_ov17_0223F7E4 * param0)
 {
     int v0;
-    CellTransferStateData * v1;
-    AnimationResourceCollection * v2;
+    SpriteRenderer * v1;
+    SpriteGfxHandler * v2;
 
     v1 = param0->unk_04->unk_18;
     v2 = param0->unk_04->unk_1C;
@@ -1389,7 +1389,7 @@ static void ov17_02240950 (SysTask * param0, void * param1)
 {
     UnkStruct_ov17_0223F7E4 * v0 = param1;
     UnkStruct_ov17_02240950 * v1;
-    PaletteSys * v2;
+    PaletteData * v2;
     int v3, v4;
 
     v1 = &v0->unk_2EC;
@@ -1509,8 +1509,8 @@ static void ov17_02240BF4 (UnkStruct_ov17_0223F7E4 * param0, const Strbuf *param
     }
 
     sub_0201A7A0(&param3->unk_00);
-    sub_0201A870(param0->unk_04->unk_24, &param3->unk_00, v1, 16 / 8, 0, 0);
-    sub_0201D7E0(&param3->unk_00, param2, param1, 0, 0, 0xff, param4, 0, 0, NULL);
+    BGL_AddFramelessWindow(param0->unk_04->unk_24, &param3->unk_00, v1, 16 / 8, 0, 0);
+    PrintStringWithColorAndMargins(&param3->unk_00, param2, param1, 0, 0, 0xff, param4, 0, 0, NULL);
 }
 
 static void ov17_02240C60 (const Strbuf *param0, int param1, int * param2, int * param3)

@@ -16,7 +16,7 @@
 
 typedef struct {
     BGL * unk_00;
-    PaletteSys * unk_04;
+    PaletteData * unk_04;
     int unk_08;
     int unk_0C;
     int unk_10;
@@ -27,8 +27,8 @@ typedef struct {
     UnkStruct_ov119_021D14DC * unk_40;
     ResourceMetadata * unk_44;
     UIControlData * unk_48;
-    AnimationResourceCollection * unk_4C;
-    CellTransferStateData * unk_50;
+    SpriteGfxHandler * unk_4C;
+    SpriteRenderer * unk_50;
     PokemonAnimationSys * unk_54;
 } UnkStruct_ov119_021D17B8;
 

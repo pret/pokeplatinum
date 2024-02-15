@@ -61,13 +61,13 @@ void ov19_021DA8FC (UnkStruct_ov19_021DA8D8 * param0, int param1)
 {
     switch (param1) {
     case 0:
-        sub_02021D6C(param0->unk_04, 0);
+        SpriteActor_SetSpriteAnimActive(param0->unk_04, 0);
         break;
     case 1:
-        sub_02021D6C(param0->unk_04, 1);
+        SpriteActor_SetSpriteAnimActive(param0->unk_04, 1);
         break;
     case 2:
-        sub_02021D6C(param0->unk_04, 2);
+        SpriteActor_SetSpriteAnimActive(param0->unk_04, 2);
         break;
     }
 }

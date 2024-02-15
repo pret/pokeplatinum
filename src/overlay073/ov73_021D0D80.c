@@ -85,7 +85,7 @@ typedef struct {
     int unk_58;
     Strbuf* unk_5C;
     void * unk_60;
-    UnkStruct_0200B358 * unk_64;
+    StringFormatter * unk_64;
     UnkStruct_02015920 * unk_68;
     SysTask * unk_6C;
     UnkStruct_0208737C * unk_70;
@@ -727,11 +727,11 @@ static BOOL ov73_021D1510 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
             MessageLoader_GetStrbuf(param0->unk_4C, param1, v1);
             sub_0200B48C(param0->unk_64, 0, param0->unk_70->unk_18, param0->unk_84, 1, GAME_LANGUAGE);
             sub_0200B48C(param0->unk_64, 1, param0->unk_74->unk_18, 0, 1, GAME_LANGUAGE);
-            sub_0200C388(param0->unk_64, param0->unk_5C, v1);
+            StringFormatter_Format(param0->unk_64, param0->unk_5C, v1);
             Strbuf_Free(v1);
         }
 
-        param0->unk_58 = sub_0201D738(&param0->unk_1C, 1, param0->unk_5C, 0, 0, (sub_02027AC0(param0->unk_08)), NULL);
+        param0->unk_58 = PrintStringSimple(&param0->unk_1C, 1, param0->unk_5C, 0, 0, (sub_02027AC0(param0->unk_08)), NULL);
         param0->unk_50 = 1;
         break;
     case 1:

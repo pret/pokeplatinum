@@ -661,14 +661,14 @@ static void ov21_021D8D0C (UnkStruct_ov21_021D9320 * param0, UnkStruct_ov21_021D
     v1.unk_08.y = 164 << FX32_SHIFT;
     param0->unk_20 = sub_02021B90(&v1);
 
-    sub_02021D6C(param0->unk_20, 3);
+    SpriteActor_SetSpriteAnimActive(param0->unk_20, 3);
 
     v1.unk_08.x = 128 << FX32_SHIFT;
     v1.unk_08.y = 96 << FX32_SHIFT;
 
     param0->unk_58 = sub_02021B90(&v1);
 
-    sub_02021D6C(param0->unk_58, 17);
+    SpriteActor_SetSpriteAnimActive(param0->unk_58, 17);
     sub_02021CAC(param0->unk_58, 0);
     sub_02021CF8(param0->unk_58, 1);
     sub_02021E80(param0->unk_58, 0);
@@ -992,46 +992,46 @@ static void ov21_021D924C (UnkStruct_ov21_021D9320 * param0, int param1)
 
         switch (param1) {
         case 1:
-            sub_02021D6C(param0->unk_20, 3);
+            SpriteActor_SetSpriteAnimActive(param0->unk_20, 3);
             break;
         case 2:
-            sub_02021D6C(param0->unk_20, 4);
+            SpriteActor_SetSpriteAnimActive(param0->unk_20, 4);
             break;
         case 3:
-            sub_02021D6C(param0->unk_20, 5);
+            SpriteActor_SetSpriteAnimActive(param0->unk_20, 5);
             break;
         case 4:
-            sub_02021D6C(param0->unk_20, 6);
+            SpriteActor_SetSpriteAnimActive(param0->unk_20, 6);
             break;
         case 5:
-            sub_02021D6C(param0->unk_20, 7);
+            SpriteActor_SetSpriteAnimActive(param0->unk_20, 7);
             break;
         case 6:
-            sub_02021D6C(param0->unk_20, 8);
+            SpriteActor_SetSpriteAnimActive(param0->unk_20, 8);
             break;
         case 7:
-            sub_02021D6C(param0->unk_20, 9);
+            SpriteActor_SetSpriteAnimActive(param0->unk_20, 9);
             break;
         case 8:
-            sub_02021D6C(param0->unk_20, 10);
+            SpriteActor_SetSpriteAnimActive(param0->unk_20, 10);
             break;
         case 9:
-            sub_02021D6C(param0->unk_20, 11);
+            SpriteActor_SetSpriteAnimActive(param0->unk_20, 11);
             break;
         case 10:
-            sub_02021D6C(param0->unk_20, 12);
+            SpriteActor_SetSpriteAnimActive(param0->unk_20, 12);
             break;
         case 11:
-            sub_02021D6C(param0->unk_20, 13);
+            SpriteActor_SetSpriteAnimActive(param0->unk_20, 13);
             break;
         case 12:
-            sub_02021D6C(param0->unk_20, 14);
+            SpriteActor_SetSpriteAnimActive(param0->unk_20, 14);
             break;
         case 13:
-            sub_02021D6C(param0->unk_20, 15);
+            SpriteActor_SetSpriteAnimActive(param0->unk_20, 15);
             break;
         case 14:
-            sub_02021D6C(param0->unk_20, 16);
+            SpriteActor_SetSpriteAnimActive(param0->unk_20, 16);
             break;
         default:
             break;

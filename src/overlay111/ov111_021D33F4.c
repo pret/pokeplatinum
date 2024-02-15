@@ -143,7 +143,7 @@ void ov111_021D350C (UnkStruct_ov111_021D33F4 * param0, int param1)
 {
     sub_02021CC8(param0->unk_0C, param1);
     sub_02021CE4(param0->unk_0C, FX32_ONE);
-    sub_02021D6C(param0->unk_0C, sub_02021E24(param0->unk_0C));
+    SpriteActor_SetSpriteAnimActive(param0->unk_0C, sub_02021E24(param0->unk_0C));
     return;
 }
 

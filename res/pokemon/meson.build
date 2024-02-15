@@ -24,6 +24,9 @@ otherpoke_shared = files(
     '.shared/shadows.png',
 )
 
+sinnoh_pokedex = files('sinnoh_pokedex.json')
+
+pl_growtbl_files = files('.shared/exp_tables.csv')
 
 # Process mons in national dex order
 pokemon_subdirs = [
@@ -607,6 +610,8 @@ endforeach
 wotbl_narc = custom_target('wotbl.narc',
     output: 'wotbl.narc',
     input: personal_files,
+    env: json2bin_env,
+    depends: [ generated_consts_py ],
     command: [
         pokemon_wotbl_data_py,
         '--knarc', knarc_exe,
@@ -619,6 +624,8 @@ wotbl_narc = custom_target('wotbl.narc',
 pl_personal_narc = custom_target('pl_personal.narc',
     output: 'pl_personal.narc',
     input: personal_files,
+    env: json2bin_env,
+    depends: [ generated_consts_py ],
     command: [
         pokemon_personal_data_py,
         '--knarc', knarc_exe,
@@ -631,6 +638,8 @@ pl_personal_narc = custom_target('pl_personal.narc',
 evo_narc = custom_target('evo.narc',
     output: 'evo.narc',
     input: personal_files,
+    env: json2bin_env,
+    depends: [ generated_consts_py ],
     command: [
         evo_py,
         '--knarc', knarc_exe,
@@ -693,6 +702,8 @@ pl_otherpoke_narc = custom_target('pl_otherpoke.narc',
 height_narc = custom_target('height.narc',
     output: 'height.narc',
     input: personal_files,
+    env: json2bin_env,
+    depends: [ generated_consts_py ],
     command: [
         make_height_py,
         '--knarc', knarc_exe,
@@ -706,12 +717,55 @@ height_narc = custom_target('height.narc',
 pl_poke_data_narc = custom_target('pl_poke_data.narc',
     output: 'pl_poke_data.narc',
     input: personal_files,
+    env: json2bin_env,
+    depends: [ generated_consts_py ],
     command: [
         pl_poke_data_py,
         '--knarc', knarc_exe,
         '--source-dir', '@CURRENT_SOURCE_DIR@',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
+    ]
+)
+
+pl_pokezukan_narc = custom_target('pl_pokezukan.narc',
+    output: 'pl_pokezukan.narc',
+    input: personal_files,
+    env: json2bin_env,
+    command: [
+        make_pl_pokezukan_py,
+        '--knarc', knarc_exe,
+        '--source-dir', '@CURRENT_SOURCE_DIR@',
+        '--private-dir', '@PRIVATE_DIR@',
+        '--output-dir', '@OUTDIR@',
+        sinnoh_pokedex
+    ]
+)
+
+shinzukan_narc = custom_target('shinzukan.narc',
+    output: 'shinzukan.narc',
+    input: personal_files,
+    env: json2bin_env,
+    command: [
+        make_shinzukan_py,
+        '--knarc', knarc_exe,
+        '--source-dir', '@CURRENT_SOURCE_DIR@',
+        '--private-dir', '@PRIVATE_DIR@',
+        '--output-dir', '@OUTDIR@',
+        sinnoh_pokedex
+    ]
+)
+
+pl_growtbl_narc = custom_target('pl_growtbl.narc',
+    output: 'pl_growtbl.narc',
+    input: pl_growtbl_files,
+    command: [
+        make_pl_growtbl_py,
+        '--knarc', knarc_exe,
+        '--source-dir', '@CURRENT_SOURCE_DIR@',
+        '--private-dir', '@PRIVATE_DIR@',
+        '--output-dir', '@OUTDIR@',
+        pl_growtbl_files
     ]
 )
 
@@ -723,3 +777,6 @@ nitrofs_files += pl_otherpoke_narc
 nitrofs_files += wotbl_narc
 nitrofs_files += height_narc
 nitrofs_files += pl_poke_data_narc
+nitrofs_files += pl_pokezukan_narc
+nitrofs_files += shinzukan_narc
+nitrofs_files += pl_growtbl_narc

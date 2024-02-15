@@ -218,8 +218,8 @@ static void ov99_021D35E8 (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D
 
 static void ov99_021D36B0 (UnkStruct_ov99_021D2CB0 * param0)
 {
-    sub_0200D810(param0->unk_10E0[3], GX_OAM_MODE_XLU);
-    sub_0200D810(param0->unk_10E0[4], GX_OAM_MODE_XLU);
+    SpriteActor_SetOAMMode(param0->unk_10E0[3], GX_OAM_MODE_XLU);
+    SpriteActor_SetOAMMode(param0->unk_10E0[4], GX_OAM_MODE_XLU);
 }
 
 static void ov99_021D36D4 (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D340C * param1)
@@ -250,8 +250,8 @@ static void ov99_021D372C (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D
     param1->unk_11F = 31;
 
     sub_0200D500(param0->unk_10E0[4], Unk_ov99_021D4C84[param2].unk_00, Unk_ov99_021D4C84[param2].unk_02, ((192 + 80) << FX32_SHIFT));
-    sub_0200D3F4(param0->unk_10E0[4], 1);
-    sub_0200D3F4(param0->unk_10E0[3], 0);
+    SpriteActor_EnableObject(param0->unk_10E0[4], 1);
+    SpriteActor_EnableObject(param0->unk_10E0[3], 0);
 
     G2S_SetBlendAlpha(0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ, param1->unk_11E, param1->unk_11F);
     G2_SetBlendAlpha(0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ, param1->unk_11F, param1->unk_11E);
@@ -283,8 +283,8 @@ static void ov99_021D37E0 (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D
         sub_0200D5A0(param0->unk_10E0[4], &v0, &v1, ((192 + 80) << FX32_SHIFT));
 
         if (v1 > 192 + 32) {
-            sub_0200D3F4(param0->unk_10E0[4], 0);
-            sub_0200D3F4(param0->unk_10E0[3], 1);
+            SpriteActor_EnableObject(param0->unk_10E0[4], 0);
+            SpriteActor_EnableObject(param0->unk_10E0[3], 1);
             sub_0200D500(param0->unk_10E0[3], v0, -32, ((192 + 80) << FX32_SHIFT));
             param1->unk_11D = 1;
         }
@@ -306,7 +306,7 @@ static void ov99_021D37E0 (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D
         sub_0200D5A0(param0->unk_10E0[3], &v0, &v1, ((192 + 80) << FX32_SHIFT));
 
         if (v1 > 192 + 32) {
-            sub_0200D3F4(param0->unk_10E0[3], 0);
+            SpriteActor_EnableObject(param0->unk_10E0[3], 0);
             param1->unk_11D = 0;
             param1->unk_11C = 0;
         }

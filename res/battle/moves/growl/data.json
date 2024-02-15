@@ -6,16 +6,16 @@
     "accuracy": 100,
     "pp": 40,
     "effect": {
-        "type": "MOVE_EFFECT_ATK_DOWN",
+        "type": "BATTLE_EFFECT_ATK_DOWN",
         "chance": 0
     },
     "range": "RANGE_ADJACENT_OPPONENTS",
     "priority": 0,
     "flags": [
-        "MOVE_FLAG_PROTECT",
-        "MOVE_FLAG_MAGIC_COAT",
-        "MOVE_FLAG_MIRROR_MOVE",
-        "MOVE_FLAG_HIDE_HP_BARS"
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MAGIC_COAT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
     ],
     "contest": {
         "effect": 19,

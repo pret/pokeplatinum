@@ -6,15 +6,15 @@
     "accuracy": 70,
     "pp": 10,
     "effect": {
-        "type": "MOVE_EFFECT_THUNDER",
+        "type": "BATTLE_EFFECT_THUNDER",
         "chance": 30
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,
     "flags": [
-        "MOVE_FLAG_PROTECT",
-        "MOVE_FLAG_MIRROR_MOVE",
-        "MOVE_FLAG_HIDE_SHADOWS"
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_HIDES_SHADOWS"
     ],
     "contest": {
         "effect": 17,

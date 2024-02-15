@@ -13,8 +13,8 @@ typedef struct BallThrow {
     int ballID;
     int bgPrio;
     int surface;
-    CellTransferStateData *cellActorSys;
-    PaletteSys *paletteSys;
+    SpriteRenderer *cellActorSys;
+    PaletteData *paletteSys;
     BattleSystem *battleSys;
 } BallThrow;
 

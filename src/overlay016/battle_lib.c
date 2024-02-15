@@ -43,8 +43,8 @@
 #include "flags.h"
 #include "overlay016/ov16_0223DF00.h"
 #include "battle/battle_lib.h"
-#include "overlay016/ov16_0225CBB8.h"
-#include "overlay016/ov16_0226485C.h"
+#include "battle/battle_display.h"
+#include "battle/battle_io.h"
 
 static BOOL BasicTypeMulApplies(BattleContext *battleCtx, int attacker, int defender, int chartEntry);
 static int MapSideEffectToSubscript(BattleContext *battleCtx, enum SideEffectType type, u32 effect);

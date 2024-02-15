@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "unk_0201D15C.h"
@@ -411,7 +411,7 @@ u32 sub_0202D034 (UnkStruct_0202CD88 * param0)
     return sub_0202CFB8(param0, (0 + 1));
 }
 
-void sub_0202D040 (UnkStruct_0202CD88 * param0, const UnkStruct_02026324 * param1, u16 const param2)
+void sub_0202D040 (UnkStruct_0202CD88 * param0, const PokedexData * param1, u16 const param2)
 {
     if (!Pokedex_CaughtSpecies(param1, param2)) {
         sub_0202CFEC(param0, 22);

@@ -450,7 +450,7 @@ static void ov21_021DE258 (UnkStruct_ov21_021DDEC8 * param0, UnkStruct_ov21_021D
 
     param0->unk_00 = sub_02021B90(&v1);
 
-    sub_02021D6C(param0->unk_00, 0);
+    SpriteActor_SetSpriteAnimActive(param0->unk_00, 0);
 }
 
 static void ov21_021DE2E0 (UnkStruct_ov21_021DDEC8 * param0)
@@ -595,7 +595,7 @@ static void ov21_021DE49C (UnkStruct_ov21_021DDEC8 * param0, const UnkStruct_ov2
     v0.y += (192 << FX32_SHIFT);
 
     sub_02021C50(param0->unk_00, &v0);
-    sub_02021D6C(param0->unk_00, ov21_021DCA28(param1->unk_00));
+    SpriteActor_SetSpriteAnimActive(param0->unk_00, ov21_021DCA28(param1->unk_00));
 }
 
 static void ov21_021DE4D4 (UnkStruct_ov21_021DDEC8 * param0, UnkStruct_ov21_021DDDF0 * param1, const UnkStruct_ov21_021DDDA4 * param2, int param3)

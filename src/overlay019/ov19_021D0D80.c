@@ -6,6 +6,8 @@
 #include "inlines.h"
 #include "core_sys.h"
 
+#include "constants/species.h"
+
 #include "struct_decls/struct_020067E8_decl.h"
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
@@ -139,7 +141,7 @@ typedef struct UnkStruct_ov19_021D5DF8_t {
     MessageLoader * unk_190;
     MessageLoader * unk_194;
     MessageLoader * unk_198;
-    UnkStruct_0200B358 * unk_19C;
+    StringFormatter * unk_19C;
     Pokemon * unk_1A0;
     AnimationControlFlags * unk_1A4;
     int (* unk_1A8)(struct UnkStruct_ov19_021D5DF8_t * param0);
@@ -1034,7 +1036,7 @@ static void ov19_021D20A4 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
 {
     switch ((*param1)) {
     case 0:
-        sub_0200B5CC(param0->unk_19C, 0, ov19_021D5E9C(&param0->unk_00));
+        StringFormatter_BufferNickname(param0->unk_19C, 0, ov19_021D5E9C(&param0->unk_00));
         ov19_021D5408(&param0->unk_00, 0);
         ov19_021DF990(&param0->unk_00);
 
@@ -1833,7 +1835,7 @@ static BOOL ov19_021D2DD0 (const UnkStruct_ov19_021D4DF0 * param0)
         v4 = v3 + (v6->unk_0C[v1] - v2);
         v0 = sub_02079C9C(param0->unk_00, 0xffffffff, v4);
 
-        if (BoxPokemon_GetValue(v0, MON_DATA_172, NULL)) {
+        if (BoxPokemon_GetValue(v0, MON_DATA_SPECIES_EXISTS, NULL)) {
             return 0;
         }
     }
@@ -2177,7 +2179,7 @@ static BOOL ov19_021D34E4 (UnkStruct_ov19_021D5DF8 * param0)
         v0 = Party_GetPokemonBySlotIndex(param0->unk_124, v1);
         v4 = Pokemon_EnterDecryptionContext(v0);
 
-        if ((Pokemon_GetValue(v0, MON_DATA_173, NULL) == 0) && (Pokemon_GetValue(v0, MON_DATA_CURRENT_HP, NULL) != 0)) {
+        if ((Pokemon_GetValue(v0, MON_DATA_EGG_EXISTS, NULL) == 0) && (Pokemon_GetValue(v0, MON_DATA_CURRENT_HP, NULL) != 0)) {
             v2++;
         }
 
@@ -2276,7 +2278,7 @@ static void ov19_021D35F8 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
         break;
     case 2:
         if (ov19_021D6600(param0->unk_114, 26)) {
-            sub_0200B5CC(param0->unk_19C, 0, ov19_021D5E9C(&param0->unk_00));
+            StringFormatter_BufferNickname(param0->unk_19C, 0, ov19_021D5E9C(&param0->unk_00));
             ov19_021D38E0(param0);
 
             if (ov19_021D5E38(&param0->unk_00) == 2) {
@@ -2429,7 +2431,7 @@ static void ov19_021D3978 (SysTask * param0, void * param1)
         for (v2 = v0->unk_03; v2 < v4; v2++) {
             v1 = sub_02079C9C(v0->unk_14, v0->unk_02, v2);
 
-            if (BoxPokemon_GetValue(v1, MON_DATA_172, NULL)) {
+            if (BoxPokemon_GetValue(v1, MON_DATA_SPECIES_EXISTS, NULL)) {
                 for (v3 = 0; v3 < (NELEMS(Unk_ov19_021DFDF0)); v3++) {
                     if (ov19_021D3AC8(v1, Unk_ov19_021DFDF0[v3])) {
                         v0->unk_08[v3]++;
@@ -2486,7 +2488,7 @@ static BOOL ov19_021D3AC8 (BoxPokemon * param0, u16 param1)
     v0 = 0;
     v1 = BoxPokemon_EnterDecryptionContext(param0);
 
-    if (BoxPokemon_GetValue(param0, MON_DATA_173, NULL) == 0) {
+    if (BoxPokemon_GetValue(param0, MON_DATA_EGG_EXISTS, NULL) == 0) {
         int v2;
 
         for (v2 = 0; v2 < 4; v2++) {
@@ -3824,7 +3826,7 @@ static BOOL ov19_021D52F4 (UnkStruct_ov19_021D5DF8 * param0)
     }
 
     if (v2->unk_00) {
-        if (BoxPokemon_GetValue(v2->unk_00, MON_DATA_172, NULL)) {
+        if (BoxPokemon_GetValue(v2->unk_00, MON_DATA_SPECIES_EXISTS, NULL)) {
             v2->unk_0A = 1;
 
             if (!(ov19_021D5E38(v0) & 6)) {
@@ -3929,7 +3931,7 @@ static void ov19_021D54A4 (UnkStruct_ov19_021D5DF8 * param0, UnkStruct_ov19_021D
         for (v0 = v2; v0 <= v3; v0++) {
             v10 = sub_02079C9C(param0->unk_120, 0xffffffff, v6);
 
-            if (BoxPokemon_GetValue(v10, MON_DATA_172, NULL)) {
+            if (BoxPokemon_GetValue(v10, MON_DATA_SPECIES_EXISTS, NULL)) {
                 MI_CpuCopy32(v10, v12, v9);
                 sub_02079968(param0->unk_120, 0xffffffff, v6);
                 (u8 *)v12 += v9;
@@ -4149,20 +4151,20 @@ static void ov19_021D58AC (UnkStruct_ov19_021D4DF0 * param0, BoxPokemon * param1
     v0->unk_04 = BoxPokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
     v0->unk_06 = BoxPokemon_GetValue(param1, MON_DATA_HELD_ITEM, NULL);
     v0->unk_08 = sub_0207A294(sub_0207A274(param2->unk_11C), v0->unk_04);
-    v0->unk_0F = BoxPokemon_GetValue(param1, MON_DATA_173, NULL);
+    v0->unk_0F = BoxPokemon_GetValue(param1, MON_DATA_EGG_EXISTS, NULL);
     v2 = PokemonPersonalData_FromMonSpecies(v0->unk_04, 9);
     v0->unk_0A = PokemonPersonalData_GetLevelAt(v2, v0->unk_04, BoxPokemon_GetValue(param1, MON_DATA_EXP, NULL));
-    v0->unk_0B = BoxPokemon_GetValue(param1, MON_DATA_11, NULL);
+    v0->unk_0B = BoxPokemon_GetValue(param1, MON_DATA_MARKS, NULL);
     v0->unk_0C = BoxPokemon_GetValue(param1, MON_DATA_TYPE_1, NULL);
     v0->unk_0D = BoxPokemon_GetValue(param1, MON_DATA_TYPE_2, NULL);
 
-    if ((v0->unk_0F == 0) && BoxPokemon_GetValue(param1, MON_DATA_176, NULL)) {
+    if ((v0->unk_0F == 0) && BoxPokemon_GetValue(param1, MON_DATA_NIDORAN_HAS_NICKNAME, NULL)) {
         v0->unk_0E = PokemonPersonalData_GetGenderOf(v2, v0->unk_04, BoxPokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL));
     } else {
         v0->unk_0E = 255;
     }
 
-    BoxPokemon_GetValue(param1, MON_DATA_119, v0->unk_14);
+    BoxPokemon_GetValue(param1, MON_DATA_NICKNAME_STRBUF, v0->unk_14);
 
     if (v0->unk_0F == 0) {
         MessageLoader_GetStrbuf(param2->unk_190, v0->unk_04, v0->unk_18);
@@ -4294,7 +4296,7 @@ static void ov19_021D5BE8 (UnkStruct_ov19_021D4DF0 * param0, u16 param1, UnkStru
     {
         int v2 = BoxPokemon_GetValue(v0->unk_00, MON_DATA_SPECIES, NULL);
 
-        if (v2 == 493) {
+        if (v2 == SPECIES_ARCEUS) {
             BoxPokemon_SetArceusForm(v0->unk_00);
             v0->unk_0C = BoxPokemon_GetValue(v0->unk_00, MON_DATA_TYPE_1, NULL);
             v0->unk_0D = BoxPokemon_GetValue(v0->unk_00, MON_DATA_TYPE_2, NULL);
@@ -4423,7 +4425,7 @@ MessageLoader * ov19_021D5DE8 (const UnkStruct_ov19_021D5DF8 * param0)
     return param0->unk_18C;
 }
 
-const UnkStruct_0200B358 * ov19_021D5DF0 (const UnkStruct_ov19_021D5DF8 * param0)
+const StringFormatter * ov19_021D5DF0 (const UnkStruct_ov19_021D5DF8 * param0)
 {
     return param0->unk_19C;
 }

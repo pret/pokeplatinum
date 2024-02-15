@@ -6,7 +6,7 @@
     "accuracy": 0,
     "pp": 20,
     "effect": {
-        "type": "MOVE_EFFECT_FLEE_FROM_WILD_BATTLE",
+        "type": "BATTLE_EFFECT_FLEE_FROM_WILD_BATTLE",
         "chance": 0
     },
     "range": "RANGE_USER",

@@ -17,7 +17,7 @@ typedef struct {
     TrainerInfo * unk_48;
     SaveData * unk_4C;
     MessageLoader * unk_50;
-    UnkStruct_0200B358 * unk_54;
+    StringFormatter * unk_54;
     Strbuf* unk_58;
     u16 unk_5C[1024];
     u16 unk_85C[1024];

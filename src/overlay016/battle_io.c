@@ -1,13 +1,18 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/generated/c/gender.h"
+
 #include "constants/pokemon.h"
+#include "constants/species.h"
+#include "constants/battle/battle_io.h"
 
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/battle_system.h"
 #include "battle/battle_context.h"
 
 #include "pokemon.h"
+#include "constants/species.h"
 #include "struct_defs/struct_0207A81C.h"
 #include "struct_defs/battle_system.h"
 #include "battle/battle_context.h"
@@ -15,7 +20,6 @@
 #include "overlay016/struct_ov16_0225BFFC_t.h"
 #include "overlay016/struct_ov16_0225C168.h"
 #include "overlay016/struct_ov16_0225C17C.h"
-#include "overlay016/struct_ov16_0225C23C.h"
 #include "overlay016/struct_ov16_0225C260.h"
 #include "overlay016/struct_ov16_0225C29C.h"
 #include "overlay016/struct_ov16_0225C2B0.h"
@@ -37,7 +41,7 @@
 #include "overlay016/struct_ov16_0225C468.h"
 #include "overlay016/struct_ov16_0225C65C.h"
 #include "overlay016/struct_ov16_0225C684.h"
-#include "overlay016/struct_ov16_0225C840.h"
+#include "struct_defs/battle_io.h"
 #include "overlay016/struct_ov16_0225C988.h"
 #include "overlay016/struct_ov16_0225C9F0.h"
 #include "overlay016/struct_ov16_0225CA14.h"
@@ -67,89 +71,11 @@
 #include "unk_0207A6DC.h"
 #include "overlay016/ov16_0223DF00.h"
 #include "battle/battle_lib.h"
-#include "overlay016/ov16_0226485C.h"
+#include "battle/battle_io.h"
 
-void BattleIO_SetupBattleUI(BattleSystem * param0, int param1);
-void BattleIO_SetEncounter(BattleSystem * param0, int param1);
-void BattleIO_ShowEncounter(BattleSystem * param0, int param1);
-void BattleIO_ShowPokemon(BattleSystem * param0, int param1, int param2, int param3);
-void BattleIO_ReturnPokemon(BattleSystem * param0, BattleContext * param1, int param2);
-void ov16_02265050(BattleSystem * param0, int param1, int param2);
-void BattleIO_DeletePokemon(BattleSystem * param0, int param1);
-void BattleIO_SetTrainerEncounter(BattleSystem * param0, int param1);
-void BattleIO_ThrowTrainerBall(BattleSystem * param0, int param1, int param2);
-void BattleIO_SlideTrainerOut(BattleSystem * param0, int param1);
-void BattleIO_SlideTrainerIn(BattleSystem * param0, int param1, int param2);
-void BattleIO_SlideHPGaugeIn(BattleSystem * param0, BattleContext * param1, int param2, int param3);
-void BattleIO_SlideHPGaugeOut(BattleSystem * param0, int param1);
-void BattleIO_SetCommandSelection(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot);
-void ov16_022656D4(BattleSystem * param0, int param1, int param2);
-void BattleIO_ShowMoveSelectScreen(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
-void ov16_02265790(BattleSystem * param0, int param1, int param2);
-void BattleIO_ShowTargetSelection(BattleSystem *battleSys, BattleContext *battleCtx, int range, int battler);
-void ov16_022658CC(BattleSystem * param0, int param1, int param2);
-void BattleIO_ShowBagScreen(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
-void ov16_02265A70(BattleSystem * param0, int param1, BattleItemUse param2);
-void BattleIO_ShowPartyScreen(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int listMode, int canSwitch, int doubles);
-void ov16_02265B10(BattleSystem * param0, int param1, int param2);
-void BattleIO_ShowYesNoScreen(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int promptMsg, int yesnoType, int move, int nickname);
-void BattleIO_PrintAttackMessage(BattleSystem * param0, BattleContext * param1);
-void BattleIO_PrintMessage(BattleSystem * param0, BattleContext * param1, BattleMessage * param2);
-void BattleIO_PlayMoveAnimation(BattleSystem * param0, BattleContext * param1, u16 param2);
-void BattleIO_PlayMoveAnimationA2D(BattleSystem * param0, BattleContext * param1, u16 param2, int param3, int param4);
-void BattleIO_FlickerBattler(BattleSystem * param0, int param1, u32 param2);
-void BattleIO_UpdateHPGauge(BattleSystem * param0, BattleContext * param1, int param2);
-void BattleIO_UpdateExpGauge(BattleSystem * param0, BattleContext * param1, int param2, int param3);
-void BattleIO_PlayFaintingSequence(BattleSystem * param0, BattleContext * param1, int param2);
-void BattleIO_PlaySound(BattleSystem * param0, BattleContext * param1, int param2, int param3);
-void BattleIO_FadeOut(BattleSystem * param0, BattleContext * param1);
-void BattleIO_ToggleVanish(BattleSystem * param0, int param1, int param2);
-void BattleIO_SetStatusIcon(BattleSystem * param0, int param1, int param2);
-void BattleIO_TrainerMessage(BattleSystem * param0, int param1, int param2);
-void BattleIO_PlayStatusEffect(BattleSystem * param0, BattleContext * param1, int param2, int param3);
-void BattleIO_PlayStatusEffectAToD(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
-void BattleIO_PrintRecallMessage(BattleSystem * param0, BattleContext * param1, int param2, int param3);
-void BattleIO_PrintSendOutMessage(BattleSystem * param0, BattleContext * param1, int param2, int param3);
-void BattleIO_PrintBattleStartMessage(BattleSystem * param0, BattleContext * param1, int param2);
-void BattleIO_PrintLeadMonMessage(BattleSystem * param0, BattleContext * param1, int param2);
-void BattleIO_PlayLevelUpAnimation(BattleSystem * param0, int param1);
-void BattleIO_SetAlertMessage(BattleSystem *battleSys, int battler, BattleMessage msg);
-void ov16_022661B0(BattleSystem * param0, int param1);
-void BattleIO_RefreshHPGauge(BattleSystem * param0, BattleContext * param1, int param2);
-void BattleIO_UpdatePartyMon(BattleSystem * param0, BattleContext * param1, int param2);
-void ov16_02266460(BattleSystem * param0, int param1);
-void BattleIO_StopGaugeAnimation(BattleSystem *battleSys, int battler);
-void BattleIO_RefreshPartyStatus(BattleSystem * param0, BattleContext * param1, int param2, int param3);
-void BattleIO_ForgetMove(BattleSystem * param0, int param1, int param2, int param3);
-void BattleIO_SetMosaic(BattleSystem * param0, int param1, int param2, int param3);
-void BattleIO_ChangeWeatherForm(BattleSystem * param0, int param1);
-void BattleIO_UpdateBG(BattleSystem * param0, int param1);
-void BattleIO_ClearTouchScreen(BattleSystem * param0, int param1);
-void BattleIO_ShowBattleStartPartyGauge(BattleSystem * param0, int param1);
-void BattleIO_HideBattleStartPartyGauge(BattleSystem * param0, int param1);
-void BattleIO_ShowPartyGauge(BattleSystem * param0, int param1);
-void BattleIO_HidePartyGauge(BattleSystem * param0, int param1);
-void BattleIO_LoadPartyGaugeGraphics(BattleSystem * param0);
-void BattleIO_FreePartyGaugeGraphics(BattleSystem * param0);
-void BattleIO_IncrementRecord(BattleSystem * param0, int param1, int param2, int param3);
-void BattleIO_LinkWaitMessage(BattleSystem *battleSys, int battler);
-void BattleIO_RestoreSprite(BattleSystem * param0, BattleContext * param1, int param2);
-void BattleIO_SpriteToOAM(BattleSystem * param0, int param1);
-void BattleIO_OAMToSprite(BattleSystem * param0, int param1);
-void BattleIO_ResultMessage(BattleSystem * param0);
-void BattleIO_EscapeMessage(BattleSystem * param0, BattleContext * param1);
-void BattleIO_ForfeitMessage(BattleSystem * param0);
-void BattleIO_RefreshSprite(BattleSystem * param0, BattleContext * param1, int param2);
-void BattleIO_PlayMoveHitSoundEffect(BattleSystem * param0, BattleContext * param1, int param2);
-void BattleIO_PlayMusic(BattleSystem * param0, int param1, int param2);
-void BattleIO_SubmitResult(BattleSystem * param0);
-void ov16_02266ABC(BattleSystem * param0, int param1, int param2);
-BOOL ov16_02266AE4(BattleSystem * param0, void * param1);
-void ov16_02266B78(BattleSystem * param0, BattleContext * param1, UnkStruct_ov16_02265BBC * param2, int param3, int param4, int param5, int param6, u16 param7);
-void ov16_02264988(BattleSystem * param0, int param1);
 static void ov16_0226485C(BattleSystem * param0, int param1, int param2, void * param3, u8 param4);
-static void ov16_02264A04(BattleSystem * param0, int param1, int param2, void * param3, u8 param4);
-static void ov16_02266CF0(BattleSystem * param0, BattleContext * param1, UnkStruct_ov16_0225C840 * param2, int param3, int param4);
+static void SendMessage(BattleSystem *battleSys, int recipient, int message, void *body, u8 bodySize);
+static void PartyGaugeData_New(BattleSystem *battleSys, BattleContext *battleCtx, PartyGaugeData *partyGauge, int command, int battler);
 
 static void ov16_0226485C (BattleSystem * param0, int param1, int param2, void * param3, u8 param4)
 {
@@ -218,9 +144,9 @@ static BOOL ov16_022648F4 (BattleSystem * param0, void * param1)
             v5 = 1;
         }
     } else if (v1 == 1) {
-        if (param0->battlers[v2]->unk_90[0] == 0) {
+        if (param0->battlers[v2]->data[0] == 0) {
             for (v4 = 0; v4 < v3; v4++) {
-                param0->battlers[v2]->unk_90[v4] = v0[v4];
+                param0->battlers[v2]->data[v4] = v0[v4];
             }
 
             v5 = 1;
@@ -280,29 +206,24 @@ void ov16_02264988 (BattleSystem * param0, int param1)
     }
 }
 
-static void ov16_02264A04 (BattleSystem * param0, int param1, int param2, void * param3, u8 param4)
+static void SendMessage(BattleSystem *battleSys, int recipient, int message, void *body, u8 bodySize)
 {
-    int v0;
-    u8 * v1 = (u8 *)param3;
+    u8 *data = body;
 
-    if ((param0->battleType & 0x4) && ((param0->battleStatusMask & 0x10) == 0)) {
-        if (param1 == 1) {
-            {
-                int v2;
-
-                for (v2 = 0; v2 < sub_02035E18(); v2++) {
-                    BattleIO_EnqueueVal(param0->battleCtx, v2, param2, v1[0]);
-                }
+    if ((battleSys->battleType & BATTLE_TYPE_LINK) && (battleSys->battleStatusMask & BATTLE_TYPE_TAG) == FALSE) {
+        if (recipient == 1) {
+            for (int i = 0; i < sub_02035E18(); i++) {
+                BattleIO_EnqueueVal(battleSys->battleCtx, i, message, *data);
             }
         }
 
-        sub_0207A81C(param0, param1, param2, param3, param4);
+        sub_0207A81C(battleSys, recipient, message, body, bodySize);
     } else {
-        if (param1 == 1) {
-            BattleIO_EnqueueVal(param0->battleCtx, 0, param2, v1[0]);
+        if (recipient == 1) {
+            BattleIO_EnqueueVal(battleSys->battleCtx, 0, message, *data);
         }
 
-        ov16_0226485C(param0, param1, param2, param3, param4);
+        ov16_0226485C(battleSys, recipient, message, body, bodySize);
     }
 }
 
@@ -313,7 +234,7 @@ void BattleIO_SetupBattleUI (BattleSystem * param0, int param1)
     v0.unk_00 = 1;
     v0.unk_04 = ov16_0223F4E8(param0);
 
-    ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_02264A8C));
+    SendMessage(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_02264A8C));
 }
 
 void BattleIO_SetEncounter (BattleSystem * param0, int param1)
@@ -336,7 +257,7 @@ void BattleIO_SetEncounter (BattleSystem * param0, int param1)
     }
 
     BattleMon_Get(param0->battleCtx, param1, 45, &v0.unk_24);
-    ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C168));
+    SendMessage(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C168));
 }
 
 void BattleIO_ShowEncounter (BattleSystem * param0, int param1)
@@ -364,7 +285,7 @@ void BattleIO_ShowEncounter (BattleSystem * param0, int param1)
     }
 
     BattleMon_Get(param0->battleCtx, param1, 45, &v0.unk_30);
-    ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C17C));
+    SendMessage(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C17C));
 }
 
 void BattleIO_ShowPokemon (BattleSystem * param0, int param1, int param2, int param3)
@@ -421,7 +342,7 @@ void BattleIO_ShowPokemon (BattleSystem * param0, int param1, int param2, int pa
         }
     }
 
-    ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C17C));
+    SendMessage(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C17C));
 }
 
 void BattleIO_ReturnPokemon (BattleSystem * param0, BattleContext * param1, int param2)
@@ -463,7 +384,7 @@ void BattleIO_ReturnPokemon (BattleSystem * param0, BattleContext * param1, int 
         }
     }
 
-    ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_02264EF8));
+    SendMessage(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_02264EF8));
 }
 
 void ov16_02265050 (BattleSystem * param0, int param1, int param2)
@@ -488,13 +409,13 @@ void ov16_02265050 (BattleSystem * param0, int param1, int param2)
     }
 
     v0.unk_02 = param2;
-    ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_02265050));
+    SendMessage(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_02265050));
 }
 
 void BattleIO_DeletePokemon (BattleSystem * param0, int param1)
 {
     int v0 = 7;
-    ov16_02264A04(param0, 1, param1, &v0, 4);
+    SendMessage(param0, 1, param1, &v0, 4);
 }
 
 void BattleIO_SetTrainerEncounter (BattleSystem * param0, int param1)
@@ -505,7 +426,7 @@ void BattleIO_SetTrainerEncounter (BattleSystem * param0, int param1)
     v0.unk_02 = param0->trainers[param1].class;
     v0.unk_01 = param0->unk_A8[param1];
 
-    ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_02265124));
+    SendMessage(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_02265124));
 }
 
 void BattleIO_ThrowTrainerBall (BattleSystem * param0, int param1, int param2)
@@ -516,14 +437,14 @@ void BattleIO_ThrowTrainerBall (BattleSystem * param0, int param1, int param2)
     v0.unk_01 = param2;
     v0.unk_02 = param0->battleCtx->selectedPartySlot[BattleSystem_Partner(param0, param1)];
 
-    ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_02265154));
+    SendMessage(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_02265154));
 }
 
 void BattleIO_SlideTrainerOut (BattleSystem * param0, int param1)
 {
     int v0 = 10;
 
-    ov16_02264A04(param0, 1, param1, &v0, 4);
+    SendMessage(param0, 1, param1, &v0, 4);
 }
 
 void BattleIO_SlideTrainerIn (BattleSystem * param0, int param1, int param2)
@@ -535,46 +456,44 @@ void BattleIO_SlideTrainerIn (BattleSystem * param0, int param1, int param2)
     v0.unk_01 = param0->unk_A8[param1];
     v0.unk_04 = param2;
 
-    ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_022651A8));
+    SendMessage(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_022651A8));
 }
 
-void BattleIO_SlideHPGaugeIn (BattleSystem * param0, BattleContext * param1, int param2, int param3)
+void BattleIO_SlideHealthbarIn(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int delay)
 {
-    UnkStruct_ov16_0225C23C v0;
-    Pokemon * v1;
-    int v2;
-    int v3;
+    HealthbarData healthbar;
 
-    v1 = BattleSystem_PartyPokemon(param0, param2, param1->selectedPartySlot[param2]);
-    v2 = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
-    v3 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
+    Pokemon *mon = BattleSystem_PartyPokemon(battleSys, battler, battleCtx->selectedPartySlot[battler]);
+    int species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    int level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
 
-    v0.unk_00 = 12;
-    v0.unk_01 = param1->battleMons[param2].level;
-    v0.unk_02 = param1->battleMons[param2].curHP;
-    v0.unk_04 = param1->battleMons[param2].maxHP;
-    v0.unk_06 = param1->selectedPartySlot[param2];
-    v0.unk_07_0 = Battler_StatusCondition(param1, param2);
+    healthbar.command = BTLIOCMD_SLIDE_HEALTHBAR_IN;
+    healthbar.level = battleCtx->battleMons[battler].level;
+    healthbar.curHP = battleCtx->battleMons[battler].curHP;
+    healthbar.maxHP = battleCtx->battleMons[battler].maxHP;
+    healthbar.selectedPartySlot = battleCtx->selectedPartySlot[battler];
+    healthbar.status = Battler_StatusCondition(battleCtx, battler);
 
-    if (((param1->battleMons[param2].species == 29) || (param1->battleMons[param2].species == 32)) && (param1->battleMons[param2].hasNickname == 0)) {
-        v0.unk_07_5 = 2;
+    if ((battleCtx->battleMons[battler].species == SPECIES_NIDORAN_F || battleCtx->battleMons[battler].species == SPECIES_NIDORAN_M)
+            && battleCtx->battleMons[battler].hasNickname == FALSE) {
+        healthbar.gender = GENDER_NONE; // don't show the Gender marker for base-Nidoran forms
     } else {
-        v0.unk_07_5 = param1->battleMons[param2].gender;
+        healthbar.gender = battleCtx->battleMons[battler].gender;
     }
 
-    v0.unk_08 = param1->battleMons[param2].exp - Pokemon_GetSpeciesBaseExpAt(v2, v3);
-    v0.unk_0C = Pokemon_GetSpeciesBaseExpAt(v2, v3 + 1) - Pokemon_GetSpeciesBaseExpAt(v2, v3);
-    v0.unk_07_7 = BattleSystem_CaughtSpecies(param0, param1->battleMons[param2].species);
-    v0.unk_10 = BattleSystem_NumSafariBalls(param0);
-    v0.unk_14 = param3;
+    healthbar.expFromLastLevel = battleCtx->battleMons[battler].exp - Pokemon_GetSpeciesBaseExpAt(species, level);
+    healthbar.expToNextLevel = Pokemon_GetSpeciesBaseExpAt(species, level + 1) - Pokemon_GetSpeciesBaseExpAt(species, level);
+    healthbar.speciesCaught = BattleSystem_CaughtSpecies(battleSys, battleCtx->battleMons[battler].species);
+    healthbar.numSafariBalls = BattleSystem_NumSafariBalls(battleSys);
+    healthbar.delay = delay;
 
-    ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C23C));
+    SendMessage(battleSys, BTLIO_RECIPIENT_ENQUEUE, battler, &healthbar, sizeof(HealthbarData));
 }
 
-void BattleIO_SlideHPGaugeOut (BattleSystem * param0, int param1)
+void BattleIO_SlideHealthbarOut(BattleSystem *battleSys, int battler)
 {
-    int v0 = 13;
-    ov16_02264A04(param0, 1, param1, &v0, 4);
+    int command = BTLIOCMD_SLIDE_HEALTHBAR_OUT;
+    SendMessage(battleSys, BTLIO_RECIPIENT_ENQUEUE, battler, &command, sizeof(int));
 }
 
 void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot)
@@ -620,7 +539,7 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
         v8 = Party_GetPokemonBySlotIndex(v7, battleCtx->partyOrder[v2][v1]);
         v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_EGG, NULL);
 
-        if ((v5) && (v5 != 494)) {
+        if ((v5) && (v5 != SPECIES_EGG)) {
             if (Pokemon_GetValue(v8, MON_DATA_CURRENT_HP, NULL)) {
                 if (Pokemon_GetValue(v8, MON_DATA_STATUS_CONDITION, NULL)) {
                     v0.unk_08[0][v6] = 3;
@@ -655,7 +574,7 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
             v8 = Party_GetPokemonBySlotIndex(v7, battleCtx->partyOrder[v2][v1]);
             v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_EGG, NULL);
 
-            if ((v5) && (v5 != 494)) {
+            if ((v5) && (v5 != SPECIES_EGG)) {
                 if (Pokemon_GetValue(v8, MON_DATA_CURRENT_HP, NULL)) {
                     if (Pokemon_GetValue(v8, MON_DATA_STATUS_CONDITION, NULL)) {
                         v0.unk_08[1][v6] = 3;
@@ -683,7 +602,7 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
             v8 = Party_GetPokemonBySlotIndex(v7, battleCtx->partyOrder[v2][v1]);
             v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_EGG, NULL);
 
-            if ((v5) && (v5 != 494)) {
+            if ((v5) && (v5 != SPECIES_EGG)) {
                 if (Pokemon_GetValue(v8, MON_DATA_CURRENT_HP, NULL)) {
                     if (Pokemon_GetValue(v8, MON_DATA_STATUS_CONDITION, NULL)) {
                         v0.unk_08[1][v6] = 3;
@@ -706,7 +625,7 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
             v8 = Party_GetPokemonBySlotIndex(v7, battleCtx->partyOrder[v2][v1]);
             v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_EGG, NULL);
 
-            if ((v5) && (v5 != 494)) {
+            if ((v5) && (v5 != SPECIES_EGG)) {
                 if (Pokemon_GetValue(v8, MON_DATA_CURRENT_HP, NULL)) {
                     if (Pokemon_GetValue(v8, MON_DATA_STATUS_CONDITION, NULL)) {
                         v0.unk_08[1][v6] = 3;
@@ -741,12 +660,12 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
         v0.unk_28 = 2;
     }
 
-    ov16_02264A04(battleSys, 1, battler, &v0, sizeof(UnkStruct_ov16_0225C260));
+    SendMessage(battleSys, 1, battler, &v0, sizeof(UnkStruct_ov16_0225C260));
 }
 
 void ov16_022656D4 (BattleSystem * param0, int param1, int param2)
 {
-    ov16_02264A04(param0, 0, param1, &param2, 4);
+    SendMessage(param0, 0, param1, &param2, 4);
 }
 
 void BattleIO_ShowMoveSelectScreen (BattleSystem *battleSys, BattleContext *battleCtx, int battler)
@@ -765,12 +684,12 @@ void BattleIO_ShowMoveSelectScreen (BattleSystem *battleSys, BattleContext *batt
 
     v0.unk_02 = BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_ALL);
 
-    ov16_02264A04(battleSys, 1, battler, &v0, sizeof(UnkStruct_ov16_022656F0));
+    SendMessage(battleSys, 1, battler, &v0, sizeof(UnkStruct_ov16_022656F0));
 }
 
 void ov16_02265790 (BattleSystem * param0, int param1, int param2)
 {
-    ov16_02264A04(param0, 0, param1, &param2, 4);
+    SendMessage(param0, 0, param1, &param2, 4);
 }
 
 void BattleIO_ShowTargetSelection (BattleSystem *battleSys, BattleContext *battleCtx, int range, int battler)
@@ -817,12 +736,12 @@ void BattleIO_ShowTargetSelection (BattleSystem *battleSys, BattleContext *battl
         }
     }
 
-    ov16_02264A04(battleSys, 1, battler, &v0, sizeof(UnkStruct_ov16_0225C29C));
+    SendMessage(battleSys, 1, battler, &v0, sizeof(UnkStruct_ov16_0225C29C));
 }
 
 void ov16_022658CC (BattleSystem * param0, int param1, int param2)
 {
-    ov16_02264A04(param0, 0, param1, &param2, 4);
+    SendMessage(param0, 0, param1, &param2, 4);
 }
 
 void BattleIO_ShowBagScreen (BattleSystem *battleSys, BattleContext *battleCtx, int battler)
@@ -895,12 +814,12 @@ void BattleIO_ShowBagScreen (BattleSystem *battleSys, BattleContext *battleCtx, 
         v0.unk_03 = 0;
     }
 
-    ov16_02264A04(battleSys, 1, battler, &v0, sizeof(UnkStruct_ov16_0225C2B0));
+    SendMessage(battleSys, 1, battler, &v0, sizeof(UnkStruct_ov16_0225C2B0));
 }
 
 void ov16_02265A70 (BattleSystem * param0, int param1, BattleItemUse param2)
 {
-    ov16_02264A04(param0, 0, param1, &param2, sizeof(BattleItemUse));
+    SendMessage(param0, 0, param1, &param2, sizeof(BattleItemUse));
 }
 
 void BattleIO_ShowPartyScreen (BattleSystem *battleSys, BattleContext *battleCtx, int battler, int listMode, int canSwitch, int doubles)
@@ -925,12 +844,12 @@ void BattleIO_ShowPartyScreen (BattleSystem *battleSys, BattleContext *battleCtx
         }
     }
 
-    ov16_02264A04(battleSys, 1, battler, &v0, sizeof(UnkStruct_ov16_0225C2C4));
+    SendMessage(battleSys, 1, battler, &v0, sizeof(UnkStruct_ov16_0225C2C4));
 }
 
 void ov16_02265B10 (BattleSystem * param0, int param1, int param2)
 {
-    ov16_02264A04(param0, 0, param1, &param2, 4);
+    SendMessage(param0, 0, param1, &param2, 4);
 }
 
 void BattleIO_ShowYesNoScreen (BattleSystem *battleSys, BattleContext *battleCtx, int battler, int promptMsg, int yesnoType, int move, int nickname)
@@ -945,7 +864,7 @@ void BattleIO_ShowYesNoScreen (BattleSystem *battleSys, BattleContext *battleCtx
     v0.unk_04 = move;
     v0.unk_08 = nickname;
 
-    ov16_02264A04(battleSys, 1, battler, &v0, sizeof(UnkStruct_ov16_0225C2D8));
+    SendMessage(battleSys, 1, battler, &v0, sizeof(UnkStruct_ov16_0225C2D8));
 }
 
 void BattleIO_PrintAttackMessage (BattleSystem * param0, BattleContext * param1)
@@ -956,13 +875,13 @@ void BattleIO_PrintAttackMessage (BattleSystem * param0, BattleContext * param1)
     v0.unk_01 = param1->selectedPartySlot[param1->attacker];
     v0.unk_02 = param1->moveCur;
 
-    ov16_02264A04(param0, 1, param1->attacker, &v0, sizeof(UnkStruct_ov16_0225C2EC));
+    SendMessage(param0, 1, param1->attacker, &v0, sizeof(UnkStruct_ov16_0225C2EC));
 }
 
-void BattleIO_PrintMessage (BattleSystem * param0, BattleContext * param1, BattleMessage * param2)
+void BattleIO_PrintMessage(BattleSystem *battleSys, BattleContext *battleCtx, BattleMessage *battleMsg)
 {
-    param2->commandCode = 21;
-    ov16_02264A04(param0, 1, param1->attacker, param2, sizeof(BattleMessage));
+    battleMsg->commandCode = BTLIOCMD_PRINT_MESSAGE;
+    SendMessage(battleSys, BTLIO_RECIPIENT_ENQUEUE, battleCtx->attacker, battleMsg, sizeof(BattleMessage));
 }
 
 void BattleIO_PlayMoveAnimation (BattleSystem * param0, BattleContext * param1, u16 param2)
@@ -970,7 +889,7 @@ void BattleIO_PlayMoveAnimation (BattleSystem * param0, BattleContext * param1, 
     UnkStruct_ov16_02265BBC v0;
 
     ov16_02266B78(param0, param1, &v0, 0, NULL, param1->attacker, param1->defender, param2);
-    ov16_02264A04(param0, 1, param1->attacker, &v0, sizeof(UnkStruct_ov16_02265BBC));
+    SendMessage(param0, 1, param1->attacker, &v0, sizeof(UnkStruct_ov16_02265BBC));
 }
 
 void BattleIO_PlayMoveAnimationA2D (BattleSystem * param0, BattleContext * param1, u16 param2, int param3, int param4)
@@ -978,13 +897,13 @@ void BattleIO_PlayMoveAnimationA2D (BattleSystem * param0, BattleContext * param
     UnkStruct_ov16_02265BBC v0;
 
     ov16_02266B78(param0, param1, &v0, 0, NULL, param3, param4, param2);
-    ov16_02264A04(param0, 1, param3, &v0, sizeof(UnkStruct_ov16_02265BBC));
+    SendMessage(param0, 1, param3, &v0, sizeof(UnkStruct_ov16_02265BBC));
 }
 
 void BattleIO_FlickerBattler (BattleSystem * param0, int param1, u32 param2)
 {
     int v0 = 23;
-    ov16_02264A04(param0, 1, param1, &v0, 4);
+    SendMessage(param0, 1, param1, &v0, 4);
 }
 
 void BattleIO_UpdateHPGauge (BattleSystem * param0, BattleContext * param1, int param2)
@@ -1013,7 +932,7 @@ void BattleIO_UpdateHPGauge (BattleSystem * param0, BattleContext * param1, int 
     v0.unk_0C = param1->battleMons[param2].exp - Pokemon_GetSpeciesBaseExpAt(v2, v3);
     v0.unk_10 = Pokemon_GetSpeciesBaseExpAt(v2, v3 + 1) - Pokemon_GetSpeciesBaseExpAt(v2, v3);
 
-    ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C35C));
+    SendMessage(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C35C));
 }
 
 void BattleIO_UpdateExpGauge (BattleSystem * param0, BattleContext * param1, int param2, int param3)
@@ -1032,7 +951,7 @@ void BattleIO_UpdateExpGauge (BattleSystem * param0, BattleContext * param1, int
     v0.unk_08 = param1->battleMons[param2].exp - Pokemon_GetSpeciesBaseExpAt(v2, v3);
     v0.unk_0C = Pokemon_GetSpeciesBaseExpAt(v2, v3 + 1) - Pokemon_GetSpeciesBaseExpAt(v2, v3);
 
-    ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C370));
+    SendMessage(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C370));
 }
 
 void BattleIO_PlayFaintingSequence (BattleSystem * param0, BattleContext * param1, int param2)
@@ -1068,7 +987,7 @@ void BattleIO_PlayFaintingSequence (BattleSystem * param0, BattleContext * param
         }
     }
 
-    ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C384));
+    SendMessage(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C384));
 }
 
 void BattleIO_PlaySound (BattleSystem * param0, BattleContext * param1, int param2, int param3)
@@ -1078,14 +997,14 @@ void BattleIO_PlaySound (BattleSystem * param0, BattleContext * param1, int para
     v0.unk_00 = 27;
     v0.unk_04 = param2;
 
-    ov16_02264A04(param0, 1, param3, &v0, sizeof(UnkStruct_ov16_0225C398));
+    SendMessage(param0, 1, param3, &v0, sizeof(UnkStruct_ov16_0225C398));
 }
 
 void BattleIO_FadeOut (BattleSystem * param0, BattleContext * param1)
 {
     int v0 = 28;
 
-    ov16_02264A04(param0, 1, 0, &v0, 4);
+    SendMessage(param0, 1, 0, &v0, 4);
 }
 
 void BattleIO_ToggleVanish (BattleSystem * param0, int param1, int param2)
@@ -1111,7 +1030,7 @@ void BattleIO_ToggleVanish (BattleSystem * param0, int param1, int param2)
         }
     }
 
-    ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C3BC));
+    SendMessage(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C3BC));
 }
 
 void BattleIO_SetStatusIcon (BattleSystem * param0, int param1, int param2)
@@ -1121,7 +1040,7 @@ void BattleIO_SetStatusIcon (BattleSystem * param0, int param1, int param2)
     v0.unk_00 = 30;
     v0.unk_01 = param2;
 
-    ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C3D0));
+    SendMessage(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C3D0));
 }
 
 void BattleIO_TrainerMessage (BattleSystem * param0, int param1, int param2)
@@ -1131,7 +1050,7 @@ void BattleIO_TrainerMessage (BattleSystem * param0, int param1, int param2)
     v0.unk_00 = 31;
     v0.unk_01 = param2;
 
-    ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C3E4));
+    SendMessage(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C3E4));
 }
 
 void BattleIO_PlayStatusEffect (BattleSystem * param0, BattleContext * param1, int param2, int param3)
@@ -1139,7 +1058,7 @@ void BattleIO_PlayStatusEffect (BattleSystem * param0, BattleContext * param1, i
     UnkStruct_ov16_02265BBC v0;
 
     ov16_02266B78(param0, param1, &v0, 1, param3, param2, param2, NULL);
-    ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_02265BBC));
+    SendMessage(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_02265BBC));
 }
 
 void BattleIO_PlayStatusEffectAToD (BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4)
@@ -1147,7 +1066,7 @@ void BattleIO_PlayStatusEffectAToD (BattleSystem * param0, BattleContext * param
     UnkStruct_ov16_02265BBC v0;
 
     ov16_02266B78(param0, param1, &v0, 1, param4, param2, param3, NULL);
-    ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_02265BBC));
+    SendMessage(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_02265BBC));
 }
 
 void BattleIO_PrintRecallMessage (BattleSystem * param0, BattleContext * param1, int param2, int param3)
@@ -1158,7 +1077,7 @@ void BattleIO_PrintRecallMessage (BattleSystem * param0, BattleContext * param1,
     v0.unk_01 = param3;
     v0.unk_02 = (param1->hpTemp - param1->battleMons[1].curHP) * 100 / param1->hpTemp;
 
-    ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C3F8));
+    SendMessage(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C3F8));
 }
 
 void BattleIO_PrintSendOutMessage (BattleSystem * param0, BattleContext * param1, int param2, int param3)
@@ -1174,14 +1093,14 @@ void BattleIO_PrintSendOutMessage (BattleSystem * param0, BattleContext * param1
         v0.unk_02 = param1->battleMons[1].curHP * 1000 / param1->battleMons[1].maxHP;
     }
 
-    ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C40C));
+    SendMessage(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C40C));
 }
 
 void BattleIO_PrintBattleStartMessage (BattleSystem * param0, BattleContext * param1, int param2)
 {
     int v0 = 34;
 
-    ov16_02264A04(param0, 1, param2, &v0, 4);
+    SendMessage(param0, 1, param2, &v0, 4);
 }
 
 void BattleIO_PrintLeadMonMessage (BattleSystem * param0, BattleContext * param1, int param2)
@@ -1195,14 +1114,14 @@ void BattleIO_PrintLeadMonMessage (BattleSystem * param0, BattleContext * param1
         v0.unk_04[v1] = param1->selectedPartySlot[v1];
     }
 
-    ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C430));
+    SendMessage(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C430));
 }
 
 void BattleIO_PlayLevelUpAnimation (BattleSystem * param0, int param1)
 {
     int v0 = 36;
 
-    ov16_02264A04(param0, 1, param1, &v0, 4);
+    SendMessage(param0, 1, param1, &v0, 4);
 }
 
 void BattleIO_SetAlertMessage (BattleSystem *battleSys, int battler, BattleMessage msg)
@@ -1214,7 +1133,7 @@ void BattleIO_SetAlertMessage (BattleSystem *battleSys, int battler, BattleMessa
     v0.unk_00 = 37;
     v0.unk_04 = msg;
 
-    ov16_02264A04(battleSys, 1, battler, &v0, sizeof(UnkStruct_ov16_0225C454));
+    SendMessage(battleSys, 1, battler, &v0, sizeof(UnkStruct_ov16_0225C454));
 }
 
 void ov16_022661B0 (BattleSystem * param0, int param1)
@@ -1222,7 +1141,7 @@ void ov16_022661B0 (BattleSystem * param0, int param1)
     int v0;
 
     v0 = 1;
-    ov16_02264A04(param0, 0, param1, &v0, 4);
+    SendMessage(param0, 0, param1, &v0, 4);
 }
 
 void BattleIO_RefreshHPGauge (BattleSystem * param0, BattleContext * param1, int param2)
@@ -1254,7 +1173,7 @@ void BattleIO_RefreshHPGauge (BattleSystem * param0, BattleContext * param1, int
     v0.unk_07_7 = BattleSystem_CaughtSpecies(param0, param1->battleMons[param2].species);
     v0.unk_10 = BattleSystem_NumSafariBalls(param0);
 
-    ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C468));
+    SendMessage(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C468));
 }
 
 void BattleIO_UpdatePartyMon (BattleSystem * param0, BattleContext * param1, int param2)
@@ -1299,19 +1218,19 @@ void BattleIO_UpdatePartyMon (BattleSystem * param0, BattleContext * param1, int
         v0.unk_24 = 0;
     }
 
-    ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_022662FC));
+    SendMessage(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_022662FC));
 }
 
 void ov16_02266460 (BattleSystem * param0, int param1)
 {
     int v0 = 40;
-    ov16_02264A04(param0, 1, param1, &v0, 4);
+    SendMessage(param0, 1, param1, &v0, 4);
 }
 
 void BattleIO_StopGaugeAnimation (BattleSystem *battleSys, int battler)
 {
     int v0 = 41;
-    ov16_02264A04(battleSys, 1, battler, &v0, 4);
+    SendMessage(battleSys, 1, battler, &v0, 4);
 }
 
 void BattleIO_RefreshPartyStatus (BattleSystem * param0, BattleContext * param1, int param2, int param3)
@@ -1322,7 +1241,7 @@ void BattleIO_RefreshPartyStatus (BattleSystem * param0, BattleContext * param1,
     v0.unk_02 = param3;
     v0.unk_01 = param1->battleMons[param2].ability;
 
-    ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_02266498));
+    SendMessage(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_02266498));
 }
 
 void BattleIO_ForgetMove (BattleSystem * param0, int param1, int param2, int param3)
@@ -1335,7 +1254,7 @@ void BattleIO_ForgetMove (BattleSystem * param0, int param1, int param2, int par
     v0.unk_02 = param2;
     v0.unk_01 = param3;
 
-    ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_02266498));
+    SendMessage(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_02266498));
 }
 
 void BattleIO_SetMosaic (BattleSystem * param0, int param1, int param2, int param3)
@@ -1346,7 +1265,7 @@ void BattleIO_SetMosaic (BattleSystem * param0, int param1, int param2, int para
     v0.unk_01 = param2;
     v0.unk_02 = param3;
 
-    ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_022664F8));
+    SendMessage(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_022664F8));
 }
 
 void BattleIO_ChangeWeatherForm (BattleSystem * param0, int param1)
@@ -1367,63 +1286,59 @@ void BattleIO_ChangeWeatherForm (BattleSystem * param0, int param1)
 
     v0.unk_01 = param0->battleCtx->battleMons[param1].formNum;
 
-    ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C684));
+    SendMessage(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C684));
 }
 
 void BattleIO_UpdateBG (BattleSystem * param0, int param1)
 {
     int v0 = 46;
-    ov16_02264A04(param0, 1, param1, &v0, 4);
+    SendMessage(param0, 1, param1, &v0, 4);
 }
 
 void BattleIO_ClearTouchScreen (BattleSystem *battleSys, int battler)
 {
     int v0 = 47;
-    ov16_02264A04(battleSys, 1, battler, &v0, 4);
+    SendMessage(battleSys, 1, battler, &v0, 4);
 }
 
-void BattleIO_ShowBattleStartPartyGauge (BattleSystem * param0, int param1)
+void BattleIO_ShowBattleStartPartyGauge(BattleSystem *battleSys, int battler)
 {
-    UnkStruct_ov16_0225C840 v0;
-
-    ov16_02266CF0(param0, param0->battleCtx, &v0, 48, param1);
-    ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C840));
+    PartyGaugeData gauge;
+    PartyGaugeData_New(battleSys, battleSys->battleCtx, &gauge, BTLIOCMD_SHOW_BATTLE_START_PARTY_GAUGE, battler);
+    SendMessage(battleSys, BTLIO_RECIPIENT_ENQUEUE, battler, &gauge, sizeof(PartyGaugeData));
 }
 
-void BattleIO_HideBattleStartPartyGauge (BattleSystem * param0, int param1)
+void BattleIO_HideBattleStartPartyGauge(BattleSystem *battleSys, int battler)
 {
-    UnkStruct_ov16_0225C840 v0;
-
-    ov16_02266CF0(param0, param0->battleCtx, &v0, 49, param1);
-    ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C840));
+    PartyGaugeData gauge;
+    PartyGaugeData_New(battleSys, battleSys->battleCtx, &gauge, BTLIOCMD_HIDE_BATTLE_START_PARTY_GAUGE, battler);
+    SendMessage(battleSys, BTLIO_RECIPIENT_ENQUEUE, battler, &gauge, sizeof(PartyGaugeData));
 }
 
-void BattleIO_ShowPartyGauge (BattleSystem * param0, int param1)
+void BattleIO_ShowPartyGauge(BattleSystem *battleSys, int battler)
 {
-    UnkStruct_ov16_0225C840 v0;
-
-    ov16_02266CF0(param0, param0->battleCtx, &v0, 50, param1);
-    ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C840));
+    PartyGaugeData gauge;
+    PartyGaugeData_New(battleSys, battleSys->battleCtx, &gauge, BTLIOCMD_SHOW_PARTY_GAUGE, battler);
+    SendMessage(battleSys, BTLIO_RECIPIENT_ENQUEUE, battler, &gauge, sizeof(PartyGaugeData));
 }
 
-void BattleIO_HidePartyGauge (BattleSystem * param0, int param1)
+void BattleIO_HidePartyGauge(BattleSystem *battleSys, int battler)
 {
-    UnkStruct_ov16_0225C840 v0;
-
-    ov16_02266CF0(param0, param0->battleCtx, &v0, 51, param1);
-    ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C840));
+    PartyGaugeData gauge;
+    PartyGaugeData_New(battleSys, battleSys->battleCtx, &gauge, BTLIOCMD_HIDE_PARTY_GAUGE, battler);
+    SendMessage(battleSys, BTLIO_RECIPIENT_ENQUEUE, battler, &gauge, sizeof(PartyGaugeData));
 }
 
-void BattleIO_LoadPartyGaugeGraphics (BattleSystem * param0)
+void BattleIO_LoadPartyGaugeGraphics(BattleSystem *battleSys)
 {
-    int v0 = 52;
-    ov16_02264A04(param0, 1, 0, &v0, 4);
+    int command = BTLIOCMD_LOAD_PARTY_GAUGE_GRAPHICS;
+    SendMessage(battleSys, BTLIO_RECIPIENT_ENQUEUE, NULL, &command, sizeof(int));
 }
 
-void BattleIO_FreePartyGaugeGraphics (BattleSystem * param0)
+void BattleIO_FreePartyGaugeGraphics(BattleSystem *battleSys)
 {
-    int v0 = 53;
-    ov16_02264A04(param0, 1, 0, &v0, 4);
+    int command = BTLIOCMD_FREE_PARTY_GAUGE_GRAPHICS;
+    SendMessage(battleSys, BTLIO_RECIPIENT_ENQUEUE, NULL, &command, sizeof(int));
 }
 
 void BattleIO_IncrementRecord (BattleSystem * param0, int param1, int param2, int param3)
@@ -1434,7 +1349,7 @@ void BattleIO_IncrementRecord (BattleSystem * param0, int param1, int param2, in
     v0.unk_01 = param2;
     v0.unk_02 = param3;
 
-    ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_022666BC));
+    SendMessage(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_022666BC));
 }
 
 void BattleIO_LinkWaitMessage (BattleSystem *battleSys, int battler)
@@ -1448,7 +1363,7 @@ void BattleIO_LinkWaitMessage (BattleSystem *battleSys, int battler)
     if ((v1 & 0x4) && (sub_0202F250() == 1) && ((battleSys->battleStatusMask & 0x10) == 0)) {
         v0.unk_02 = ov16_0223F58C(battleSys, &v0.unk_04[0]);
         GF_ASSERT(v0.unk_02 < 28);
-        ov16_02264A04(battleSys, 1, battler, &v0, sizeof(UnkStruct_ov16_0225C988));
+        SendMessage(battleSys, 1, battler, &v0, sizeof(UnkStruct_ov16_0225C988));
     }
 }
 
@@ -1473,25 +1388,25 @@ void BattleIO_RestoreSprite (BattleSystem * param0, BattleContext * param1, int 
         }
     }
 
-    ov16_02264A04(param0, 1, param2, &v1, sizeof(UnkStruct_ov16_02265BBC));
+    SendMessage(param0, 1, param2, &v1, sizeof(UnkStruct_ov16_02265BBC));
 }
 
 void BattleIO_SpriteToOAM (BattleSystem * param0, int param1)
 {
     int v0 = 57;
-    ov16_02264A04(param0, 1, param1, &v0, 4);
+    SendMessage(param0, 1, param1, &v0, 4);
 }
 
 void BattleIO_OAMToSprite (BattleSystem * param0, int param1)
 {
     int v0 = 58;
-    ov16_02264A04(param0, 1, param1, &v0, 4);
+    SendMessage(param0, 1, param1, &v0, 4);
 }
 
 void BattleIO_ResultMessage (BattleSystem * param0)
 {
     int v0 = 59;
-    ov16_02264A04(param0, 1, 0, &v0, 4);
+    SendMessage(param0, 1, 0, &v0, 4);
 }
 
 void BattleIO_EscapeMessage (BattleSystem * param0, BattleContext * param1)
@@ -1515,7 +1430,7 @@ void BattleIO_EscapeMessage (BattleSystem * param0, BattleContext * param1)
         GF_ASSERT(v0.unk_02 < 28);
     }
 
-    ov16_02264A04(param0, 1, 0, &v0, sizeof(UnkStruct_ov16_0225C9F0));
+    SendMessage(param0, 1, 0, &v0, sizeof(UnkStruct_ov16_0225C9F0));
 }
 
 void BattleIO_ForfeitMessage (BattleSystem * param0)
@@ -1531,7 +1446,7 @@ void BattleIO_ForfeitMessage (BattleSystem * param0)
         GF_ASSERT(v0.unk_02 < 28);
     }
 
-    ov16_02264A04(param0, 1, 0, &v0, sizeof(UnkStruct_ov16_0225CA14));
+    SendMessage(param0, 1, 0, &v0, sizeof(UnkStruct_ov16_0225CA14));
 }
 
 void BattleIO_RefreshSprite (BattleSystem * param0, BattleContext * param1, int param2)
@@ -1555,7 +1470,7 @@ void BattleIO_RefreshSprite (BattleSystem * param0, BattleContext * param1, int 
         }
     }
 
-    ov16_02264A04(param0, 1, param2, &v1, sizeof(UnkStruct_ov16_02265BBC));
+    SendMessage(param0, 1, param2, &v1, sizeof(UnkStruct_ov16_02265BBC));
 }
 
 void BattleIO_PlayMoveHitSoundEffect (BattleSystem * param0, BattleContext * param1, int param2)
@@ -1572,7 +1487,7 @@ void BattleIO_PlayMoveHitSoundEffect (BattleSystem * param0, BattleContext * par
         v0.unk_01 = 0;
     }
 
-    ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225CA4C));
+    SendMessage(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225CA4C));
 }
 
 void BattleIO_PlayMusic (BattleSystem * param0, int param1, int param2)
@@ -1582,7 +1497,7 @@ void BattleIO_PlayMusic (BattleSystem * param0, int param1, int param2)
     v0.unk_00 = 64;
     v0.unk_02 = param2;
 
-    ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225CA60));
+    SendMessage(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225CA60));
 }
 
 void BattleIO_SubmitResult (BattleSystem * param0)
@@ -1599,23 +1514,23 @@ void BattleIO_SubmitResult (BattleSystem * param0)
         GF_ASSERT(v0.unk_02 <= 28);
     }
 
-    ov16_02264A04(param0, 1, 0, &v0, sizeof(UnkStruct_ov16_02266A38));
+    SendMessage(param0, 1, 0, &v0, sizeof(UnkStruct_ov16_02266A38));
 }
 
 void BattleIO_ClearMessageBox (BattleSystem * param0)
 {
     int v0 = 66;
-    ov16_02264A04(param0, 1, 0, &v0, 4);
+    SendMessage(param0, 1, 0, &v0, 4);
 }
 
-void ov16_02266ABC (BattleSystem * param0, int param1, int param2)
+void ClearCommand (BattleSystem * param0, int param1, int param2)
 {
     UnkStruct_ov16_02266ABC v0;
 
     v0.unk_00 = param2;
     v0.unk_01 = sub_0203608C();
 
-    ov16_02264A04(param0, 2, param1, &v0, sizeof(UnkStruct_ov16_02266ABC));
+    SendMessage(param0, 2, param1, &v0, sizeof(UnkStruct_ov16_02266ABC));
 }
 
 BOOL ov16_02266AE4 (BattleSystem * param0, void * param1)
@@ -1642,7 +1557,7 @@ BOOL ov16_02266AE4 (BattleSystem * param0, void * param1)
             param0->battlers[v2]->unk_1A4 = 1;
 
             for (v4 = 0; v4 < v3; v4++) {
-                param0->battlers[v2]->unk_90[v4] = v0[v4];
+                param0->battlers[v2]->data[v4] = v0[v4];
             }
         } else {
             v5 = 0;
@@ -1716,100 +1631,64 @@ void ov16_02266B78 (BattleSystem * param0, BattleContext * param1, UnkStruct_ov1
     }
 }
 
-static void ov16_02266CF0 (BattleSystem * param0, BattleContext * param1, UnkStruct_ov16_0225C840 * param2, int param3, int param4)
+static inline void PartyGaugeData_Fill(BattleContext *battleCtx, PartyGaugeData *partyGauge, Party *party, int battler, int slot)
 {
-    int v0;
-    int v1, v2;
-    int v3;
-    int v4;
-    u32 v5;
-    Party * v6;
-    Pokemon * v7;
+    for (int i = 0; i < Party_GetCurrentCount(party); i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, battleCtx->partyOrder[battler][i]);
+        int species = Pokemon_GetValue(mon, MON_DATA_SPECIES_EGG, NULL);
 
-    MI_CpuClearFast(param2, sizeof(UnkStruct_ov16_0225C840));
+        if (species && species != SPECIES_EGG) {
+            if (Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL)) {
+                if (Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL)) {
+                    partyGauge->status[slot] = BALL_STATUS_HAS_STATUS_CONDITION;
+                } else {
+                    partyGauge->status[slot] = BALL_STATUS_MON_ALIVE;
+                }
+            } else {
+                partyGauge->status[slot] = BALL_STATUS_MON_FAINTED;
+            }
 
-    v5 = BattleSystem_BattleType(param0);
-    param2->unk_00 = param3;
+            slot++;
+        }
+    }
+}
 
-    if (((v5 & (0x4 | 0x8)) == (0x4 | 0x8)) || ((v5 & 0x10) && (Battler_Side(param0, param4))) || ((v5 == ((0x2 | 0x1) | 0x8 | 0x40)) && (Battler_Side(param0, param4))) || ((v5 == (((0x2 | 0x1) | 0x8 | 0x40) | 0x80)))) {
-        if ((BattleSystem_BattlerSlot(param0, param4) == 2) || (BattleSystem_BattlerSlot(param0, param4) == 3)) {
-            v1 = param4;
-            v2 = BattleSystem_Partner(param0, param4);
+static void PartyGaugeData_New(BattleSystem *battleSys, BattleContext *battleCtx, PartyGaugeData *partyGauge, int command, int battler)
+{
+    MI_CpuClearFast(partyGauge, sizeof(PartyGaugeData));
+    u32 battleType = BattleSystem_BattleType(battleSys);
+    partyGauge->command = command;
+
+    // must make declarations here to match
+    int battler1, battler2;
+    Party *party;
+    
+    if ((battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_2vs2)) == (BATTLE_TYPE_LINK | BATTLE_TYPE_2vs2) // 2vs2 link battle
+            || ((battleType & BATTLE_TYPE_TAG) && Battler_Side(battleSys, battler)) // either of the two opponents on the enemy side
+            || ((battleType == BATTLE_TYPE_TRAINER_WITH_AI_PARTNER) && Battler_Side(battleSys, battler)) // either of the two opponents on the enemy side
+            || battleType == BATTLE_TYPE_FRONTIER_WITH_AI_PARTNER) { // frontier, AI partner
+        if (BattleSystem_BattlerSlot(battleSys, battler) == BATTLER_PLAYER_SLOT_2
+                || BattleSystem_BattlerSlot(battleSys, battler) == BATTLER_ENEMY_SLOT_2) {
+            battler1 = battler;
+            battler2 = BattleSystem_Partner(battleSys, battler);
         } else {
-            v1 = BattleSystem_Partner(param0, param4);
-            v2 = param4;
+            battler1 = BattleSystem_Partner(battleSys, battler);
+            battler2 = battler;
         }
 
-        v6 = BattleSystem_Party(param0, v1);
-        v4 = 0;
+        party = BattleSystem_Party(battleSys, battler1);
+        PartyGaugeData_Fill(battleCtx, partyGauge, party, battler1, 0);
 
-        for (v0 = 0; v0 < Party_GetCurrentCount(v6); v0++) {
-            v7 = Party_GetPokemonBySlotIndex(v6, param1->partyOrder[v1][v0]);
-            v3 = Pokemon_GetValue(v7, MON_DATA_SPECIES_EGG, NULL);
-
-            if ((v3) && (v3 != 494)) {
-                if (Pokemon_GetValue(v7, MON_DATA_CURRENT_HP, NULL)) {
-                    if (Pokemon_GetValue(v7, MON_DATA_STATUS_CONDITION, NULL)) {
-                        param2->unk_02[v4] = 3;
-                    } else {
-                        param2->unk_02[v4] = 1;
-                    }
-                } else {
-                    param2->unk_02[v4] = 2;
-                }
-
-                v4++;
-            }
-        }
-
-        v6 = BattleSystem_Party(param0, v2);
-        v4 = 3;
-
-        for (v0 = 0; v0 < Party_GetCurrentCount(v6); v0++) {
-            v7 = Party_GetPokemonBySlotIndex(v6, param1->partyOrder[v2][v0]);
-            v3 = Pokemon_GetValue(v7, MON_DATA_SPECIES_EGG, NULL);
-
-            if ((v3) && (v3 != 494)) {
-                if (Pokemon_GetValue(v7, MON_DATA_CURRENT_HP, NULL)) {
-                    if (Pokemon_GetValue(v7, MON_DATA_STATUS_CONDITION, NULL)) {
-                        param2->unk_02[v4] = 3;
-                    } else {
-                        param2->unk_02[v4] = 1;
-                    }
-                } else {
-                    param2->unk_02[v4] = 2;
-                }
-
-                v4++;
-            }
-        }
+        party = BattleSystem_Party(battleSys, battler2);
+        PartyGaugeData_Fill(battleCtx, partyGauge, party, battler2, 3);
     } else {
-        if ((v5 & 0x2) && ((v5 & 0x8) == 0)) {
-            param4 = param4 & 1;
+        if ((battleType & BATTLE_TYPE_DOUBLES) && (battleType & BATTLE_TYPE_2vs2) == FALSE) {
+            battler = battler & 1;
         } else {
-            param4 = param4;
+            battler = battler;
         }
 
-        v6 = BattleSystem_Party(param0, param4);
-        v4 = 0;
-
-        for (v0 = 0; v0 < Party_GetCurrentCount(v6); v0++) {
-            v7 = Party_GetPokemonBySlotIndex(v6, param1->partyOrder[param4][v0]);
-            v3 = Pokemon_GetValue(v7, MON_DATA_SPECIES_EGG, NULL);
-
-            if ((v3) && (v3 != 494)) {
-                if (Pokemon_GetValue(v7, MON_DATA_CURRENT_HP, NULL)) {
-                    if (Pokemon_GetValue(v7, MON_DATA_STATUS_CONDITION, NULL)) {
-                        param2->unk_02[v4] = 3;
-                    } else {
-                        param2->unk_02[v4] = 1;
-                    }
-                } else {
-                    param2->unk_02[v4] = 2;
-                }
-
-                v4++;
-            }
-        }
+        party = BattleSystem_Party(battleSys, battler);
+        PartyGaugeData_Fill(battleCtx, partyGauge, party, battler, 0);
     }
 }

@@ -391,8 +391,8 @@ void ov104_0222E1D8 (GraphicElementData * param0, u8 param1)
         return;
     }
 
-    sub_02021E50(param0, 0);
-    sub_02021D6C(param0, param1);
+    SpriteActor_SetAnimFrame(param0, 0);
+    SpriteActor_SetSpriteAnimActive(param0, param1);
     sub_02021E2C(param0, FX32_ONE);
     return;
 }
@@ -613,7 +613,7 @@ void ov104_0222E4BC (u8 param0, u16 param1, u16 param2, u16 * param3, UnkStruct_
     return;
 }
 
-void ov104_0222E5D0 (UnkStruct_0200B358 * param0, u32 param1)
+void ov104_0222E5D0 (StringFormatter * param0, u32 param1)
 {
     sub_0200B498(param0, param1, sub_02032EE8((sub_0203608C() ^ 1)));
     return;

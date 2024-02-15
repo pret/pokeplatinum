@@ -6,16 +6,16 @@
     "accuracy": 50,
     "pp": 5,
     "effect": {
-        "type": "MOVE_EFFECT_CONFUSE_HIT",
+        "type": "BATTLE_EFFECT_CONFUSE_HIT",
         "chance": 100
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,
     "flags": [
-        "MOVE_FLAG_CONTACT",
-        "MOVE_FLAG_PROTECT",
-        "MOVE_FLAG_MIRROR_MOVE",
-        "MOVE_FLAG_HIDE_SHADOWS"
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_HIDES_SHADOWS"
     ],
     "contest": {
         "effect": 18,

@@ -15,10 +15,10 @@
 
 typedef struct {
     NARC * unk_00;
-    CellTransferStateData * unk_04;
-    AnimationResourceCollection * unk_08;
+    SpriteRenderer * unk_04;
+    SpriteGfxHandler * unk_08;
     BGL * unk_0C;
-    PaletteSys * unk_10;
+    PaletteData * unk_10;
     UnkStruct_02023FCC * unk_14;
     UnkUnion_02022594 unk_18[28];
     BOOL unk_88;

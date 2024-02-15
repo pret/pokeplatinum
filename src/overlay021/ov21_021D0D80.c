@@ -545,13 +545,13 @@ void ov21_021D144C (GraphicElementData * param0, int param1)
 {
     switch (param1) {
     case 0:
-        sub_02021E50(param0, 1);
+        SpriteActor_SetAnimFrame(param0, 1);
         break;
     case 2:
-        sub_02021E50(param0, 2);
+        SpriteActor_SetAnimFrame(param0, 2);
         break;
     case 1:
-        sub_02021E50(param0, 3);
+        SpriteActor_SetAnimFrame(param0, 3);
         break;
     case 3:
     case (3 + 1):
@@ -707,7 +707,7 @@ Window * ov21_021D172C (UnkStruct_ov21_021D4C0C * param0, int param1, int param2
     Window * v0;
     int v1;
 
-    v1 = sub_020775A4(param2);
+    v1 = Pokemon_SinnohDexNumber(param2);
 
     if ((param2 != 377) && (param2 != 378) && (param2 != 379)) {
         GF_ASSERT(v1 > 0);

@@ -6,13 +6,13 @@
     "accuracy": 0,
     "pp": 10,
     "effect": {
-        "type": "MOVE_EFFECT_FAINT_FULL_RESTORE_NEXT_MON",
+        "type": "BATTLE_EFFECT_FAINT_FULL_RESTORE_NEXT_MON",
         "chance": 0
     },
     "range": "RANGE_USER",
     "priority": 0,
     "flags": [
-        "MOVE_FLAG_HIDE_SHADOWS"
+        "MOVE_FLAG_HIDES_SHADOWS"
     ],
     "contest": {
         "effect": 8,

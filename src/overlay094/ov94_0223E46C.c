@@ -304,7 +304,7 @@ static void ov94_0223E770 (UnkStruct_ov94_0223FD4C * param0)
     param0->unk_E20 = sub_02021AA0(&v0);
 
     sub_02021CC8(param0->unk_E20, 1);
-    sub_02021D6C(param0->unk_E20, 0);
+    SpriteActor_SetSpriteAnimActive(param0->unk_E20, 0);
     sub_02021E80(param0->unk_E20, 1);
     sub_02039734();
 }
@@ -464,7 +464,7 @@ static int ov94_0223EA84 (UnkStruct_ov94_0223FD4C * param0)
 
         if (param0->unk_10F2) {
             if (v1 >= 0) {
-                sub_02021D6C(param0->unk_F34[v1 + 1], 16 + v1 * 4);
+                SpriteActor_SetSpriteAnimActive(param0->unk_F34[v1 + 1], 16 + v1 * 4);
                 param0->unk_2C = 2;
                 ov94_0223C4C0(param0, 3, 0);
                 param0->unk_11C = v1;
@@ -1088,7 +1088,7 @@ static void ov94_0223F9A4 (UnkStruct_ov94_0223FD4C * param0, int param1, int par
     BGL_FillWindow(&param0->unk_F5C, 0xf0f);
     sub_0200E060(&param0->unk_F5C, 0, 1, 10);
 
-    param0->unk_BE0 = sub_0201D738(&param0->unk_F5C, 1, param0->unk_BAC, 0, 0, param2, NULL);
+    param0->unk_BE0 = PrintStringSimple(&param0->unk_F5C, 1, param0->unk_BAC, 0, 0, param2, NULL);
 }
 
 static void ov94_0223F9FC (Window * param0, Window * param1, MessageLoader * param2)

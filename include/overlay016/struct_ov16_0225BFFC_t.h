@@ -12,19 +12,21 @@
 #include "overlay016/struct_ov16_022674C4.h"
 #include "overlay016/struct_ov16_0226C378.h"
 
+#define DATA_BUF_SIZE 256
+
 struct BattlerData {
     UnkStruct_ov16_0225BFFC_sub1 unk_00;
     CellActorData * unk_18;
     Sprite * unk_1C;
     Sprite * unk_20;
     Window * unk_24;
-    UnkStruct_ov16_022674C4 unk_28;
+    Healthbar healthbar;
     UnkStruct_ov16_0226C378 unk_7B;
     BallRotation * unk_84;
     UnkStruct_ov12_02223764 * unk_88;
     void * unk_8C;
-    u8 unk_90[256];
-    u8 unk_190;
+    u8 data[DATA_BUF_SIZE];
+    u8 battler;
     u8 battlerType;
     u8 bootState;
     u8 unk_193;

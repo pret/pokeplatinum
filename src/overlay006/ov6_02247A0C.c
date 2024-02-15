@@ -30,7 +30,7 @@
 typedef struct {
     Window unk_00;
     MessageLoader * unk_10;
-    UnkStruct_0200B358 * unk_14;
+    StringFormatter * unk_14;
 } UnkStruct_ov6_02247A90;
 
 typedef struct {
@@ -155,30 +155,30 @@ void * ov6_02247A90 (void * param0)
     v2 = MessageLoader_GetNewStrbuf(v0->unk_10, 0);
 
     sub_0200B498(v0->unk_14, 0, sub_02025E38(v8));
-    sub_0200C388(v0->unk_14, v3, v2);
+    StringFormatter_Format(v0->unk_14, v3, v2);
 
     v4 = ov6_02247CF4(v3, 0, 1, (15 * 8));
 
-    sub_0201D738(&v0->unk_00, 0, v3, v4, (8 * 0), 0xff, NULL);
+    PrintStringSimple(&v0->unk_00, 0, v3, v4, (8 * 0), 0xff, NULL);
     Strbuf_Free(v2);
 
     v2 = MessageLoader_GetNewStrbuf(v0->unk_10, 1);
     v4 = ov6_02247CF4(v2, 0, 1, ((15 * 8)));
 
-    sub_0201D738(&v0->unk_00, 0, v2, v4, (8 * 2), 0xff, NULL);
+    PrintStringSimple(&v0->unk_00, 0, v2, v4, (8 * 2), 0xff, NULL);
     Strbuf_Free(v2);
 
     for (v6 = 0; v6 < 5; v6++) {
         v2 = MessageLoader_GetNewStrbuf(v0->unk_10, Unk_ov6_022496F4[v6].unk_00);
         v4 = ov6_02247CF4(v2, 0, 0, Unk_ov6_022496F4[v6].unk_04);
-        sub_0201D738(&v0->unk_00, 0, v2, v4, Unk_ov6_022496F4[v6].unk_06, 0xff, NULL);
+        PrintStringSimple(&v0->unk_00, 0, v2, v4, Unk_ov6_022496F4[v6].unk_06, 0xff, NULL);
         Strbuf_Free(v2);
     }
 
     for (v6 = 0; v6 < 4; v6++) {
         v2 = MessageLoader_GetNewStrbuf(v0->unk_10, Unk_ov6_022496D4[v6].unk_00);
         v4 = ov6_02247CF4(v2, 0, 2, Unk_ov6_022496D4[v6].unk_04);
-        sub_0201D738(&v0->unk_00, 0, v2, v4, Unk_ov6_022496D4[v6].unk_06, 0xff, NULL);
+        PrintStringSimple(&v0->unk_00, 0, v2, v4, Unk_ov6_022496D4[v6].unk_06, 0xff, NULL);
         Strbuf_Free(v2);
     }
 
@@ -187,9 +187,9 @@ void * ov6_02247A90 (void * param0)
             v5 = sub_0202F160(v8, v7, v6);
             v2 = MessageLoader_GetNewStrbuf(v0->unk_10, Unk_ov6_0224971C[v7][v6].unk_00);
             sub_0200B60C(v0->unk_14, 0, v5, 4, 1, 1);
-            sub_0200C388(v0->unk_14, v3, v2);
+            StringFormatter_Format(v0->unk_14, v3, v2);
             v4 = ov6_02247CF4(v3, 0, 2, Unk_ov6_0224971C[v7][v6].unk_04);
-            sub_0201D738(&v0->unk_00, 0, v3, v4, Unk_ov6_0224971C[v7][v6].unk_06, 0xff, NULL);
+            PrintStringSimple(&v0->unk_00, 0, v3, v4, Unk_ov6_0224971C[v7][v6].unk_06, 0xff, NULL);
             Strbuf_Free(v2);
         }
     }

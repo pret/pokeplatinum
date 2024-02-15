@@ -14,6 +14,7 @@
 #include "overlay113/struct_ov113_02260D90.h"
 
 #include "message.h"
+#include "constants/species.h"
 #include "unk_0200B358.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -36,7 +37,9 @@ __attribute__((aligned(4))) static const u16 Unk_ov113_02260D6C[][2] = {
 	{ 0x3A80, 0x5400 },
 	{ 0x2D4A, 0x5651 }
 };
-static const UnkStruct_ov113_02260D90 Unk_ov113_02260D90[] = {
+
+// footprint data, but apparently only affects overworld
+static const UnkStruct_ov113_02260D90 Unk_ov113_02260D90[NATIONAL_DEX_COUNT + 1] = {
 	{ 0x0, 0x0 },
 	{ 0x1, 0x1 },
 	{ 0x1, 0x1 },
@@ -544,7 +547,7 @@ static const UnkUnion_02022594 Unk_ov113_02260D4C[] = {
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-void ov113_02260620 (MessageLoader * param0, UnkStruct_0200B358 * param1, Window param2[], UnkStruct_ov66_0222DFF8 * param3, s32 param4)
+void ov113_02260620 (MessageLoader * param0, StringFormatter * param1, Window param2[], UnkStruct_ov66_0222DFF8 * param3, s32 param4)
 {
     const UnkStruct_ov66_0222E71C * v0;
     TrainerInfo * v1;
@@ -590,7 +593,7 @@ void ov113_02260620 (MessageLoader * param0, UnkStruct_0200B358 * param1, Window
     v2 = MessageLoader_GetNewStrbuf(param0, 0);
     v3 = Strbuf_Init(v5, 118);
 
-    sub_0200C388(param1, v3, v2);
+    StringFormatter_Format(param1, v3, v2);
     BGL_FillWindow(&param2[v7], 0x0);
 
     if (ov66_0222E924(param3, v8) == 1) {
@@ -630,7 +633,7 @@ int ov113_02260748 (UnkStruct_ov113_02260818 * param0, int param1)
     v0 = sub_02022664(Unk_ov113_02260D4C);
 
     if (v0 < 6) {
-        if ((param1 != v0) && (param0[v0].unk_02 != 0) && (param0[v0].unk_02 <= 493)) {
+        if ((param1 != v0) && (param0[v0].unk_02 != 0) && (param0[v0].unk_02 <= NATIONAL_DEX_COUNT)) {
             v1 = v0;
         }
     } else if (v0 == 6) {
@@ -648,7 +651,7 @@ BOOL ov113_02260788 (int param0, int param1, BOOL param2)
         return 0;
     }
 
-    if ((param0 == 493) && (param2 == 0)) {
+    if ((param0 == SPECIES_ARCEUS) && (param2 == 0)) {
         return 0;
     }
 

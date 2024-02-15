@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "pokemon.h"
@@ -36,7 +36,7 @@
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_02098D38.h"
 #include "overlay021/struct_ov21_021D0D80.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 #include "overlay104/struct_ov104_02241308.h"
 
 #include "unk_02001AF4.h"
@@ -194,7 +194,7 @@ static const u32 Unk_020EA05C[][2] = {
     {0x8, (u32)sub_0203C164}
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_020EA0A4[] = {
+static const SpriteTemplate Unk_020EA0A4[] = {
     {
         0xCC,
         0x14,
@@ -531,7 +531,7 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
 
     for (v4 = 0; v4 < v5; v4++) {
         if (v1->unk_30[v4] == 3) {
-            UnkStruct_0200B358 * v6;
+            StringFormatter * v6;
             Strbuf* v7;
             Strbuf* v8;
 
@@ -540,7 +540,7 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
             v8 = MessageLoader_GetNewStrbuf(v2, Unk_020EA05C[v1->unk_30[v4]][0]);
 
             sub_0200B498(v6, 0, sub_02025E38(v0->unk_0C));
-            sub_0200C388(v6, v7, v8);
+            StringFormatter_Format(v6, v7, v8);
             sub_02013A6C(v1->unk_24, v7, v1->unk_30[v4]);
             Strbuf_Free(v8);
             Strbuf_Free(v7);
@@ -644,7 +644,7 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
     UnkStruct_0203CDB0 * v0;
     UnkStruct_020708E0 * v1;
     MessageLoader * v2;
-    UnkStruct_0200B358 * v3;
+    StringFormatter * v3;
     Strbuf* v4;
     Strbuf* v5;
     u8 v6;
@@ -673,7 +673,7 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
         v5 = MessageLoader_GetNewStrbuf(v2, 10);
     }
 
-    sub_0201D738(&v1->unk_10, 0, v5, 0, 0, 0xff, NULL);
+    PrintStringSimple(&v1->unk_10, 0, v5, 0, 0, 0xff, NULL);
     Strbuf_Free(v5);
 
     v3 = sub_0200B358(11);
@@ -690,8 +690,8 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
         sub_0200B60C(v3, 0, v8, 2, 0, 1);
     }
 
-    sub_0200C388(v3, v4, v5);
-    sub_0201D738(&v1->unk_10, 0, v4, 0, 16, 0xff, NULL);
+    StringFormatter_Format(v3, v4, v5);
+    PrintStringSimple(&v1->unk_10, 0, v4, 0, 16, 0xff, NULL);
     Strbuf_Free(v4);
     Strbuf_Free(v5);
     sub_0200B3F0(v3);
@@ -793,15 +793,15 @@ static void sub_0203B318 (UnkStruct_020708E0 * param0, u8 * param1, u32 param2, 
     ov5_021D3414(&param0->unk_38, v2, 6, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 13529);
 
     for (v1 = 0; v1 < param2; v1++) {
-        UnkStruct_ov104_0223F9E0 v3;
+        SpriteTemplate v3;
 
         v3 = Unk_020EA0A4[1];
-        v3.unk_02 += 24 * v1;
+        v3.y += 24 * v1;
 
         if ((param1[v1] == 2) && (param3 == 1)) {
-            v3.unk_06 = 9 * 3;
+            v3.animIdx = 9 * 3;
         } else {
-            v3.unk_06 = param1[v1] * 3;
+            v3.animIdx = param1[v1] * 3;
         }
 
         param0->unk_200[1 + v1] = ov5_021D3584(&param0->unk_38, &v3);
@@ -854,7 +854,7 @@ static void sub_0203B588 (GraphicElementData * param0, u16 param1, u16 param2)
 {
     u32 v0 = sub_02021E24(param0);
 
-    sub_02021D6C(param0, (v0 / 3) * 3 + param1);
+    SpriteActor_SetSpriteAnimActive(param0, (v0 / 3) * 3 + param1);
     sub_02021EC4(param0, param2);
 }
 
@@ -935,7 +935,7 @@ static BOOL sub_0203B6A4 (UnkStruct_020508D4 * param0)
     UnkStruct_0203CDB0 * v0;
     UnkStruct_020708E0 * v1;
     UnkStruct_ov21_021D0D80 * v2;
-    UnkStruct_02026324 * v3;
+    PokedexData * v3;
     TrainerInfo * v4;
     UnkStruct_020507E4 * v5;
 

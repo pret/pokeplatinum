@@ -2,7 +2,7 @@
 #define POKEPLATINUM_BATTLE_PARAMS_H
 
 #include "trainer_info.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
@@ -29,7 +29,7 @@ typedef struct {
     TrainerInfo * unk_D0[4];
     UnkStruct_0207D3C0 * unk_E0;
     UnkStruct_0207D99C * unk_E4;
-    UnkStruct_02026324 * unk_E8;
+    PokedexData * unk_E8;
     PCBoxes * unk_EC;
     ChatotCry * unk_F0[4];
     UnkStruct_02056B24 * unk_100;

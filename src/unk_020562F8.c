@@ -22,6 +22,7 @@
 #include "unk_020562F8.h"
 #include "unk_0205DAC8.h"
 #include "pokemon.h"
+#include "constants/species.h"
 
 typedef struct {
     u16 unk_00;
@@ -126,7 +127,7 @@ static void sub_02056400 (u32 param0, u8 * param1)
 {
     int v0;
 
-    GF_ASSERT(0 < param0 && param0 <= 493);
+    GF_ASSERT(0 < param0 && param0 <= NATIONAL_DEX_COUNT);
     v0 = (param0 - 1) * 6;
 
     NARC_ReadFromMemberByIndexPair(param1, NARC_INDEX_ARC__PPARK, 0, v0, sizeof(u8) * 6);

@@ -41,7 +41,7 @@ typedef struct {
     u16 unk_110;
     u16 unk_112;
     u16 * unk_114;
-    UnkStruct_0200B358 * unk_118;
+    StringFormatter * unk_118;
     SysTask * unk_11C;
 } UnkStruct_ov5_021DBA58;
 
@@ -51,7 +51,7 @@ typedef struct {
     UnkStruct_ov5_021DBA58 * unk_08;
 } UnkStruct_ov5_021DBC64;
 
-void ov5_021DB888(UnkStruct_020508D4 * param0, UnkStruct_0200B358 * param1, u16 * param2);
+void ov5_021DB888(UnkStruct_020508D4 * param0, StringFormatter * param1, u16 * param2);
 u16 ov5_021DBD98(UnkStruct_0203CDB0 * param0, UnkStruct_02061AB4 * param1, u16 param2);
 BOOL ov5_021DBB94(UnkStruct_0203CDB0 * param0);
 static BOOL ov5_021DBB70(u32 param0);
@@ -331,7 +331,7 @@ static const UnkStruct_ov5_021F8E3C Unk_ov5_021F8E34[] = {
     {0xfe, 0x0}
 };
 
-void ov5_021DB888 (UnkStruct_020508D4 * param0, UnkStruct_0200B358 * param1, u16 * param2)
+void ov5_021DB888 (UnkStruct_020508D4 * param0, StringFormatter * param1, u16 * param2)
 {
     UnkStruct_ov5_021DBA58 * v0;
     UnkStruct_0203CDB0 * v1 = sub_02050A60(param0);

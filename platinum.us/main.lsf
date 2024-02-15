@@ -695,14 +695,14 @@ Overlay overlay16
 	Object main.nef.p/src_overlay016_battle_script.c.o
 	Object main.nef.p/src_overlay016_battle_controller.c.o
 	Object main.nef.p/src_overlay016_battle_lib.c.o
-	Object main.nef.p/src_overlay016_ov16_0225BFFC.c.o
-	Object main.nef.p/src_overlay016_ov16_0225CBB8.c.o
+	Object main.nef.p/src_overlay016_battle_io_command.c.o
+	Object main.nef.p/src_overlay016_battle_display.c.o
 	Object main.nef.p/src_overlay016_ov16_02264798.c.o
-	Object main.nef.p/src_overlay016_ov16_0226485C.c.o
-	Object main.nef.p/src_overlay016_ov16_02266F1C.c.o
+	Object main.nef.p/src_overlay016_battle_io.c.o
+	Object main.nef.p/src_overlay016_healthbar.c.o
 	Object main.nef.p/src_overlay016_ov16_02268520.c.o
 	Object main.nef.p/src_overlay016_ov16_0226871C.c.o
-	Object main.nef.p/src_overlay016_ov16_0226D094.c.o
+	Object main.nef.p/src_overlay016_party_gauge.c.o
 	Object main.nef.p/src_overlay016_ov16_0226DB7C.c.o
 	Object main.nef.p/src_overlay016_ov16_0226DE44.c.o
 	Object main.nef.p/src_overlay016_ov16_0226E148.c.o

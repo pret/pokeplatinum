@@ -101,9 +101,9 @@ static void ov12_02234EF0 (SysTask * param0, void * param1)
 
         if ((v0->unk_00.unk_14 == 0) && (v0->unk_00.unk_16 == 16)) {
             sub_02019EBC(v0->unk_18.unk_14, 2);
-            sub_0200D3F4(v0->unk_34, 0);
-            sub_0200D3F4(v0->unk_38, 0);
-            sub_0200D3F4(v0->unk_3C, 0);
+            SpriteActor_EnableObject(v0->unk_34, 0);
+            SpriteActor_EnableObject(v0->unk_38, 0);
+            SpriteActor_EnableObject(v0->unk_3C, 0);
             v0->unk_18.unk_00++;
         }
 
@@ -173,13 +173,13 @@ static void ov12_0223507C (UnkStruct_ov12_0221FCDC * param0, UnkStruct_ov12_0223
             v2 = ov12_02235254(param0, v3);
 
             if (ov12_0221FDD4(param0) == 1) {
-                sub_0200D3F4(v0->unk_3C, 0);
+                SpriteActor_EnableObject(v0->unk_3C, 0);
                 v1 = ov12_02223428(v0->unk_18.unk_04, 2);
                 sub_0200D460(v0->unk_34, v1);
                 sub_0200D460(v0->unk_38, v1);
             } else {
                 if ((v2 == 0) || (v2 == 1)) {
-                    sub_0200D3F4(v0->unk_3C, 0);
+                    SpriteActor_EnableObject(v0->unk_3C, 0);
                 } else if ((v2 == 4) || (v2 == 3)) {
                     if (v0->unk_00.unk_08 == 0) {
                         sub_0200D460(v0->unk_3C, v1 + 1);
@@ -202,7 +202,7 @@ static void ov12_0223507C (UnkStruct_ov12_0221FCDC * param0, UnkStruct_ov12_0223
         G2_SetWndOutsidePlane((GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ), 1);
         GX_SetVisibleWnd(GX_WNDMASK_OW);
 
-        sub_0200D810(v0->unk_38, GX_OAM_MODE_OBJWND);
+        SpriteActor_SetOAMMode(v0->unk_38, GX_OAM_MODE_OBJWND);
     }
 
     v0->unk_00.unk_10 = 0;

@@ -291,7 +291,7 @@ typedef struct {
 
 typedef struct {
     BGL * unk_00;
-    UnkStruct_0200B358 * unk_04;
+    StringFormatter * unk_04;
     MessageLoader * unk_08;
     Strbuf* unk_0C;
     Strbuf* unk_10;
@@ -1315,7 +1315,7 @@ static void ov115_022615B0 (UnkStruct_ov115_022615B0 * param0, UnkStruct_ov115_0
         param0->unk_18[v0] = param1->unk_08;
         param0->unk_00[v0] = sub_02021AA0(param1);
 
-        sub_02021D6C(param0->unk_00[v0], 2);
+        SpriteActor_SetSpriteAnimActive(param0->unk_00[v0], 2);
         sub_02021CAC(param0->unk_00[v0], 0);
         sub_02021CC8(param0->unk_00[v0], 1);
         sub_02021CE4(param0->unk_00[v0], FX32_CONST(1.5));
@@ -1393,7 +1393,7 @@ static void ov115_02261660 (UnkStruct_ov115_022615B0 * param0, u32 param1, u32 p
         v6 = 7;
     }
 
-    sub_02021D6C(param0->unk_00[v1], v5);
+    SpriteActor_SetSpriteAnimActive(param0->unk_00[v1], v5);
     param0->unk_0C[v1] = 0;
     sub_02021CAC(param0->unk_00[v1], 1);
     ov115_0226177C(param0, v1);
@@ -2740,7 +2740,7 @@ static BOOL ov115_02263150 (UnkStruct_ov115_02263130 * param0, UnkStruct_ov115_0
 {
     switch (param0->unk_3A) {
     case 0:
-        sub_02021E50(param0->unk_34, 0);
+        SpriteActor_SetAnimFrame(param0->unk_34, 0);
         ov115_02264BAC(&param1->unk_1AB4.unk_6A34);
         ov115_02264BD8(&param1->unk_1AB4.unk_6A34, 128, Unk_ov115_02265B7C[0]);
 
@@ -4426,7 +4426,7 @@ static void ov115_02265478 (UnkStruct_ov115_02265788 * param0, UnkStruct_ov115_0
         UnkStruct_020127E8 v4;
 
         param0->unk_5C = Strbuf_Init(16, param3);
-        sub_0201A870(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
+        BGL_AddFramelessWindow(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
         param0->unk_4C = sub_02012B20(&param0->unk_38, param3);
 
         v2 = sub_02012B58(param0->unk_4C, NNS_G2D_VRAM_TYPE_2DMAIN);
@@ -4492,7 +4492,7 @@ static void ov115_02265700 (UnkStruct_ov115_02265788 * param0, UnkStruct_ov115_0
 {
     {
         Strbuf_FormatInt(param0->unk_5C, param2, 2, 2, 1);
-        sub_0201A870(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
+        BGL_AddFramelessWindow(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
         sub_0201D78C(&param0->unk_38, 0, param0->unk_5C, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         sub_02012BE0(param0->unk_48, param0->unk_4C, &param0->unk_38, param0->unk_9C);
         BGL_DeleteWindow(&param0->unk_38);
@@ -4521,7 +4521,7 @@ static void ov115_022657A8 (UnkStruct_ov115_02265788 * param0, UnkStruct_ov115_0
     if (param0->unk_98 != 3) {
         {
             Strbuf_FormatInt(param0->unk_5C, param2, 2, 2, 1);
-            sub_0201A870(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
+            BGL_AddFramelessWindow(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
             sub_0201D78C(&param0->unk_38, 0, param0->unk_5C, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
             sub_02012BE0(param0->unk_48, param0->unk_4C, &param0->unk_38, param0->unk_9C);
             BGL_DeleteWindow(&param0->unk_38);

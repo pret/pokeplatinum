@@ -6,7 +6,7 @@
     "accuracy": 0,
     "pp": 15,
     "effect": {
-        "type": "MOVE_EFFECT_APPLY_MAGIC_COAT",
+        "type": "BATTLE_EFFECT_APPLY_MAGIC_COAT",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET_SPECIAL",

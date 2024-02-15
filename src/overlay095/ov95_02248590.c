@@ -627,8 +627,8 @@ static void ov95_02248CA8 (UnkStruct_ov95_02248688 * param0)
         param0->unk_1C[v3][0] = ov95_022475E4(param0->unk_00, &v2, v4, v5, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
         param0->unk_1C[v3][1] = ov95_022475E4(param0->unk_00, &v2, v4, v5 + 56, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-        sub_02021D6C(param0->unk_1C[v3][0], 0);
-        sub_02021D6C(param0->unk_1C[v3][1], 1);
+        SpriteActor_SetSpriteAnimActive(param0->unk_1C[v3][0], 0);
+        SpriteActor_SetSpriteAnimActive(param0->unk_1C[v3][1], 1);
         sub_02021CAC(param0->unk_1C[v3][0], 0);
         sub_02021CAC(param0->unk_1C[v3][1], 0);
     }

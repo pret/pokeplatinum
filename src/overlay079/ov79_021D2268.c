@@ -62,7 +62,7 @@
 #include "overlay079/ov79_021D3768.h"
 
 typedef struct {
-    UnkStruct_0200B358 * unk_00;
+    StringFormatter * unk_00;
     Strbuf* unk_04;
     Strbuf* unk_08[3];
 } UnkStruct_ov79_021D2928_sub1;
@@ -121,7 +121,7 @@ typedef struct {
     UnkStruct_0209916C * unk_60[2];
     BGL * unk_68;
     Window unk_6C;
-    CellTransferStateData * unk_7C;
+    SpriteRenderer * unk_7C;
     UnkStruct_ov79_021D29B4 unk_80;
 } UnkStruct_ov79_021D2928;
 
@@ -533,7 +533,7 @@ static void ov79_021D27D8 (UnkStruct_ov79_021D2928 * param0)
     param0->unk_30.unk_08 = PokemonPersonalData_GetFormValue(param0->unk_30.unk_04, Pokemon_GetValue(param0->unk_10->unk_00, MON_DATA_FORM, NULL), 28) ^ 1;
     param0->unk_30.unk_0C = Strbuf_Init(12, param0->unk_00);
 
-    Pokemon_GetValue(param0->unk_10->unk_00, MON_DATA_119, param0->unk_30.unk_0C);
+    Pokemon_GetValue(param0->unk_10->unk_00, MON_DATA_NICKNAME_STRBUF, param0->unk_30.unk_0C);
 
     param0->unk_30.unk_09 = sub_02098EAC(param0->unk_10->unk_04, param0->unk_30.unk_06);
 }
@@ -564,7 +564,7 @@ static void ov79_021D2864 (UnkStruct_ov79_021D2928 * param0)
     param0->unk_5C = sub_02098FFC(param0->unk_00, 2, 2, (NNS_G2D_VRAM_TYPE_2DMAIN), 0);
     param0->unk_60[0] = sub_0209916C(param0->unk_5C, param0->unk_10->unk_08, 100, 90, 0, 1, 0, 0);
 
-    sub_0200D3F4(param0->unk_60[0]->unk_04, 0);
+    SpriteActor_EnableObject(param0->unk_60[0]->unk_04, 0);
 
     if (sub_02035E38()) {
         sub_02039734();
@@ -738,7 +738,7 @@ static int ov79_021D2B94 (UnkStruct_ov79_021D2928 * param0)
     BGL_FillWindow(&param0->unk_6C, ((15 << 4) | 15));
     Strbuf_Clear(param0->unk_1C.unk_04);
     sub_0200B48C(param0->unk_1C.unk_00, 0, param0->unk_30.unk_0C, 2, 1, GAME_LANGUAGE);
-    sub_0200C388(param0->unk_1C.unk_00, param0->unk_1C.unk_04, param0->unk_1C.unk_08[param0->unk_30.unk_09]);
+    StringFormatter_Format(param0->unk_1C.unk_00, param0->unk_1C.unk_04, param0->unk_1C.unk_08[param0->unk_30.unk_09]);
 
     param0->unk_0C = sub_0201D78C(&param0->unk_6C, 1, param0->unk_1C.unk_04, 0, 0, param0->unk_10->unk_0A, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((15 & 0xff) << 0)))), NULL);
     param0->unk_0E = 0;

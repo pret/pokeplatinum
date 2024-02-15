@@ -41,7 +41,7 @@ const UnkStruct_ov80_021D2C5C_sub1 Unk_ov80_021D31D8[20] = {
 	{ 0xAC, 0x44, 0x0, 0x1, 0x3, 0xB6, 0x77 }
 };
 
-UnkStruct_ov80_021D2C1C * ov80_021D2AF4 (CellTransferStateData * param0, AnimationResourceCollection * param1, u8 * param2, short param3, int param4)
+UnkStruct_ov80_021D2C1C * ov80_021D2AF4 (SpriteRenderer * param0, SpriteGfxHandler * param1, u8 * param2, short param3, int param4)
 {
     UnkStruct_ov80_021D2C1C * v0;
     UnkStruct_ov80_021D2C5C * v1;
@@ -82,7 +82,7 @@ UnkStruct_ov80_021D2C1C * ov80_021D2AF4 (CellTransferStateData * param0, Animati
         }
 
         sub_02021E2C(v1->unk_18, FX32_CONST(v1->unk_00.unk_08));
-        sub_0200D494(v1->unk_18, v1->unk_00.unk_0C + 25, v1->unk_00.unk_10 + -34);
+        SpriteActor_SetPositionXY(v1->unk_18, v1->unk_00.unk_0C + 25, v1->unk_00.unk_10 + -34);
     }
 
     return v0;

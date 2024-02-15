@@ -883,7 +883,7 @@ static void ov21_021D2C8C (UnkStruct_ov21_021D13FC * param0, int param1)
     param0->unk_1B0.unk_04 = sub_02021B90(&v1);
 
     sub_02021CAC(param0->unk_1B0.unk_04, 0);
-    sub_02021D6C(param0->unk_1B0.unk_04, 1);
+    SpriteActor_SetSpriteAnimActive(param0->unk_1B0.unk_04, 1);
 
     param0->unk_1B0.unk_08 = NULL;
     param0->unk_1B0.unk_28 = 0;
@@ -930,7 +930,7 @@ void ov21_021D2D88 (UnkStruct_ov21_021D22F8 * param0, GraphicElementManager * pa
     param0->unk_04 = sub_02021B90(&v1);
 
     sub_02021CAC(param0->unk_04, 0);
-    sub_02021D6C(param0->unk_04, 1);
+    SpriteActor_SetSpriteAnimActive(param0->unk_04, 1);
 
     param0->unk_08 = NULL;
     param0->unk_28 = 0;
@@ -1017,7 +1017,7 @@ static void ov21_021D2F5C (UnkStruct_ov21_021D13FC * param0, int param1)
 
     for (v2 = 0; v2 < 4; v2++) {
         v3->unk_00[v2] = sub_02021B90(&v1);
-        sub_02021D6C(v3->unk_00[v2], v2);
+        SpriteActor_SetSpriteAnimActive(v3->unk_00[v2], v2);
     }
 
     ov21_021D2584(v3, 0);

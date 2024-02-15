@@ -26,13 +26,13 @@
         "common": "ITEM_NONE",
         "rare": "ITEM_NONE"
     },
-    "gender_ratio": "FEMALE_ONLY",
+    "gender_ratio": "GENDER_RATIO_FEMALE_ONLY",
     "hatch_cycles": 120,
     "base_friendship": 100,
-    "exp_rate": "SLOW",
+    "exp_rate": "EXP_RATE_SLOW",
     "egg_groups": [
-        "UNDISCOVERED",
-        "UNDISCOVERED"
+        "EGG_GROUP_UNDISCOVERED",
+        "EGG_GROUP_UNDISCOVERED"
     ],
     "abilities": [
         "ABILITY_LEVITATE",

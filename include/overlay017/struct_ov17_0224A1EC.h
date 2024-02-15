@@ -32,14 +32,14 @@ typedef struct {
     UnkStruct_ov17_0224B09C unk_04[4];
     UnkStruct_02007768 * unk_44;
     Sprite * unk_48[4];
-    CellTransferStateData * unk_58;
-    AnimationResourceCollection * unk_5C;
+    SpriteRenderer * unk_58;
+    SpriteGfxHandler * unk_5C;
     BGL * unk_60;
     Window unk_64[2];
     MessageLoader * unk_84;
-    UnkStruct_0200B358 * unk_88;
+    StringFormatter * unk_88;
     Strbuf* unk_8C;
-    PaletteSys * unk_90;
+    PaletteData * unk_90;
     UnkStruct_02012744 * unk_94;
     UnkStruct_ov16_0223E0C8 unk_98[4];
     CellActorData * unk_D8[68];

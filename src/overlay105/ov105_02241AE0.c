@@ -106,7 +106,7 @@ struct UnkStruct_ov105_02241FF4_t {
     u8 unk_1A;
     u8 unk_1B;
     MessageLoader * unk_1C;
-    UnkStruct_0200B358 * unk_20;
+    StringFormatter * unk_20;
     Strbuf* unk_24;
     Strbuf* unk_28;
     Strbuf* unk_2C[4];
@@ -116,7 +116,7 @@ struct UnkStruct_ov105_02241FF4_t {
     UnkStruct_02081CF4 unk_F0;
     UIControlData * unk_FC;
     ResourceMetadata unk_100[4];
-    PaletteSys * unk_120;
+    PaletteData * unk_120;
     GenericPointerData * unk_124;
     UnkStruct_02007768 * unk_128;
     Sprite * unk_12C[3];
@@ -2544,7 +2544,7 @@ static u8 ov105_02244C60 (UnkStruct_ov105_02241FF4 * param0, Window * param1, in
 {
     BGL_FillWindow(param1, param8);
     MessageLoader_GetStrbuf(param0->unk_1C, param2, param0->unk_28);
-    sub_0200C388(param0->unk_20, param0->unk_24, param0->unk_28);
+    StringFormatter_Format(param0->unk_20, param0->unk_24, param0->unk_28);
 
     return sub_0201D78C(param1, param9, param0->unk_24, param3, param4, param5, (u32)((((param6) & 0xff) << 16) | (((param7) & 0xff) << 8) | (((param8) & 0xff) << 0)), NULL);
 }
@@ -2552,7 +2552,7 @@ static u8 ov105_02244C60 (UnkStruct_ov105_02241FF4 * param0, Window * param1, in
 static u8 ov105_02244CC0 (UnkStruct_ov105_02241FF4 * param0, Window * param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
 {
     MessageLoader_GetStrbuf(param0->unk_1C, param2, param0->unk_28);
-    sub_0200C388(param0->unk_20, param0->unk_24, param0->unk_28);
+    StringFormatter_Format(param0->unk_20, param0->unk_24, param0->unk_28);
 
     return sub_0201D78C(param1, param9, param0->unk_24, param3, param4, param5, (u32)((((param6) & 0xff) << 16) | (((param7) & 0xff) << 8) | (((param8) & 0xff) << 0)), NULL);
 }
@@ -2705,7 +2705,7 @@ static void ov105_02244FF8 (UnkStruct_ov105_02241FF4 * param0, Window * param1, 
     u16 v6[(10 + 1)];
 
     v5 = Party_GetPokemonBySlotIndex(param9, param2);
-    Pokemon_GetValue(v5, MON_DATA_179, v6);
+    Pokemon_GetValue(v5, MON_DATA_SPECIES_NAME, v6);
     BGL_FillWindow(param1, param7);
 
     v4 = Strbuf_Init((10 + 1), 93);

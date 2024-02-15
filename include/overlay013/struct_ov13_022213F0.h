@@ -18,7 +18,7 @@ typedef struct {
     UnkStruct_ov13_0221FC20 * unk_00;
     UnkStruct_ov13_02221ED0 unk_04[6];
     BGL * unk_1E0;
-    PaletteSys * unk_1E4;
+    PaletteData * unk_1E4;
     u16 unk_1E8[4][96];
     u16 unk_4E8[4][96];
     u16 unk_7E8[4][65];
@@ -39,9 +39,9 @@ typedef struct {
     u8 unk_1F9F_7 : 1;
     UnkStruct_0200C440 * unk_1FA0;
     MessageLoader * unk_1FA4;
-    UnkStruct_0200B358 * unk_1FA8;
+    StringFormatter * unk_1FA8;
     Strbuf* unk_1FAC;
-    AnimationResourceCollection * unk_1FB0;
+    SpriteGfxHandler * unk_1FB0;
     CellActorData * unk_1FB4[38];
     Window unk_204C[2];
     Window * unk_206C;

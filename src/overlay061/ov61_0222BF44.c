@@ -64,7 +64,7 @@ typedef struct {
     int unk_14;
     int unk_18;
     int unk_1C;
-    UnkStruct_0200B358 * unk_20;
+    StringFormatter * unk_20;
     MessageLoader * unk_24;
     MessageLoader * unk_28;
     MessageLoader * unk_2C;
@@ -510,11 +510,11 @@ static void ov61_0222C794 (UnkStruct_ov61_0222C664 * param0, int param1)
     Strbuf* v0 = Strbuf_Init((16 * 8 * 2), 117);
 
     MessageLoader_GetStrbuf(param0->unk_2C, param1, v0);
-    sub_0200C388(param0->unk_20, param0->unk_3C, v0);
+    StringFormatter_Format(param0->unk_20, param0->unk_3C, v0);
     BGL_FillWindow(&param0->unk_64, 15);
     Window_Show(&param0->unk_64, 1, (1 + (18 + 12)), 11);
 
-    param0->unk_40 = sub_0201D738(&param0->unk_64, 1, param0->unk_3C, 0, 0, 0, NULL);
+    param0->unk_40 = PrintStringSimple(&param0->unk_64, 1, param0->unk_3C, 0, 0, 0, NULL);
     param0->unk_40 = 0xff;
 
     Strbuf_Free(v0);
@@ -555,7 +555,7 @@ static void ov61_0222C850 (UnkStruct_ov61_0222C664 * param0)
 static void ov61_0222C86C (UnkStruct_ov61_0222C664 * param0)
 {
     if (param0->unk_88 != NULL) {
-        sub_0200EBA0(param0->unk_88);
+        DeleteWaitDial(param0->unk_88);
         param0->unk_88 = NULL;
     }
 }
@@ -577,12 +577,12 @@ static void ov61_0222C8B8 (UnkStruct_ov61_0222C664 * param0, MessageLoader * par
 
     v0 = MessageLoader_GetNewStrbuf(param1, param2);
 
-    sub_0200C388(param0->unk_20, param0->unk_34, v0);
+    StringFormatter_Format(param0->unk_20, param0->unk_34, v0);
     Strbuf_Free(v0);
     BGL_FillWindow(&param0->unk_44, 0xf0f);
     sub_0200E060(&param0->unk_44, 0, 1, 10);
 
-    param0->unk_40 = sub_0201D738(&param0->unk_44, 1, param0->unk_34, 0, 0, param3, NULL);
+    param0->unk_40 = PrintStringSimple(&param0->unk_44, 1, param0->unk_34, 0, 0, param3, NULL);
     param0->unk_8C = 0;
 
     if ((param3 == 0xff) || (param3 == 0)) {

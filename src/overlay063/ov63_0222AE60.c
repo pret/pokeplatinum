@@ -50,7 +50,7 @@ typedef struct {
 
 typedef struct UnkStruct_ov63_0222AE60_t {
     GraphicElementManager * unk_00;
-    PaletteSys * unk_04;
+    PaletteData * unk_04;
     UnkStruct_ov63_0222BB38 * unk_08;
     u32 unk_0C;
     UnkStruct_ov63_0222BB38_sub1 unk_10[151];
@@ -302,7 +302,7 @@ static const u8 Unk_ov63_0222D904[10] = {
     0x0
 };
 
-UnkStruct_ov63_0222AE60 * ov63_0222AE60 (GraphicElementManager * param0, PaletteSys * param1, u32 param2, u32 param3)
+UnkStruct_ov63_0222AE60 * ov63_0222AE60 (GraphicElementManager * param0, PaletteData * param1, u32 param2, u32 param3)
 {
     UnkStruct_ov63_0222AE60 * v0;
     int v1;
@@ -472,9 +472,9 @@ UnkStruct_ov63_0222BB38 * ov63_0222B0C0 (UnkStruct_ov63_0222AE60 * param0, const
     sub_02021E80(v0->unk_04, param1->unk_06);
 
     if (param0->unk_10[v2].unk_10 == 1) {
-        sub_02021D6C(v0->unk_04, 5 + 1);
+        SpriteActor_SetSpriteAnimActive(v0->unk_04, 5 + 1);
     } else {
-        sub_02021D6C(v0->unk_04, 1);
+        SpriteActor_SetSpriteAnimActive(v0->unk_04, 1);
     }
 
     v0->unk_0C = 9;
@@ -580,7 +580,7 @@ int ov63_0222B2C4 (const UnkStruct_ov63_0222BB38 * param0)
 
 void ov63_0222B2C8 (UnkStruct_ov63_0222BB38 * param0, u16 param1)
 {
-    sub_02021E50(param0->unk_04, param1);
+    SpriteActor_SetAnimFrame(param0->unk_04, param1);
 }
 
 u16 ov63_0222B2D4 (const UnkStruct_ov63_0222BB38 * param0)
@@ -1080,9 +1080,9 @@ static void ov63_0222BBF0 (UnkStruct_ov63_0222BB38 * param0)
 static void ov63_0222BC00 (UnkStruct_ov63_0222BB38 * param0)
 {
     if (param0->unk_14 == 0) {
-        sub_02021E50(param0->unk_04, 1);
+        SpriteActor_SetAnimFrame(param0->unk_04, 1);
     } else {
-        sub_02021D6C(param0->unk_04, 5 + param0->unk_10);
+        SpriteActor_SetSpriteAnimActive(param0->unk_04, 5 + param0->unk_10);
     }
 }
 

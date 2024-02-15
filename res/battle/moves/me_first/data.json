@@ -6,13 +6,13 @@
     "accuracy": 0,
     "pp": 20,
     "effect": {
-        "type": "MOVE_EFFECT_USE_MOVE_FIRST",
+        "type": "BATTLE_EFFECT_USE_MOVE_FIRST",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET_ME_FIRST",
     "priority": 0,
     "flags": [
-        "MOVE_FLAG_PROTECT"
+        "MOVE_FLAG_CAN_PROTECT"
     ],
     "contest": {
         "effect": 1,

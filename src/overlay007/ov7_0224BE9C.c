@@ -95,7 +95,7 @@ typedef struct {
 typedef struct {
     u32 unk_00;
     Window * unk_04;
-    UnkStruct_0200B358 * unk_08;
+    StringFormatter * unk_08;
     Strbuf* unk_0C;
     Strbuf* unk_10[3];
 } UnkStruct_ov7_0224C620;
@@ -107,7 +107,7 @@ typedef struct {
     ResourceMetadata unk_0C[23];
     Strbuf* unk_C4[23];
     s32 unk_120;
-    UnkStruct_0200B358 * unk_124;
+    StringFormatter * unk_124;
     Strbuf* unk_128;
     u16 unk_12C;
     u16 unk_12E;
@@ -462,7 +462,7 @@ static void ov7_0224C4E0 (UnkStruct_ov7_0224C3EC * param0, MessageLoader * param
 {
     Strbuf* v0;
     Strbuf* v1;
-    UnkStruct_0200B358 * v2;
+    StringFormatter * v2;
 
     v2 = sub_0200B358(param2);
     v1 = Strbuf_Init(200, param2);
@@ -476,7 +476,7 @@ static void ov7_0224C4E0 (UnkStruct_ov7_0224C3EC * param0, MessageLoader * param
 
     sub_0200B60C(v2, 1, param3[param4].unk_08, 3, 0, 1);
     sub_0200BFAC(v2, 2, param3[param4].unk_00);
-    sub_0200C388(v2, v1, v0);
+    StringFormatter_Format(v2, v1, v0);
 
     ov7_0224C468(param0, v1, param2);
 
@@ -489,7 +489,7 @@ static void ov7_0224C580 (UnkStruct_ov7_0224C3EC * param0, MessageLoader * param
 {
     Strbuf* v0;
     Strbuf* v1;
-    UnkStruct_0200B358 * v2;
+    StringFormatter * v2;
 
     v2 = sub_0200B358(param2);
     v1 = Strbuf_Init(200, param2);
@@ -503,7 +503,7 @@ static void ov7_0224C580 (UnkStruct_ov7_0224C3EC * param0, MessageLoader * param
 
     sub_0200B60C(v2, 1, param3[param4].unk_08, 3, 0, 1);
     sub_0200BFAC(v2, 2, param3[param4].unk_00);
-    sub_0200C388(v2, v1, v0);
+    StringFormatter_Format(v2, v1, v0);
 
     ov7_0224C468(param0, v1, param2);
 
@@ -564,7 +564,7 @@ static void ov7_0224C6DC (UnkStruct_ov7_0224C620 * param0, u32 param1, u32 param
     BGL_FillWindow(param0->unk_04, 15);
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_0200C388(param0->unk_08, param0->unk_0C, param0->unk_10[v0]);
+        StringFormatter_Format(param0->unk_08, param0->unk_0C, param0->unk_10[v0]);
         sub_0201D78C(param0->unk_04, 0, param0->unk_0C, 0, 16 * v0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     }
 
@@ -621,7 +621,7 @@ static void ov7_0224C768 (UnkStruct_ov7_0224C768 * param0, BGL * param1, u32 par
 
     for (v0 = 0; v0 < param4; v0++) {
         sub_0200BFAC(param0->unk_124, 0, param3[v0].unk_00);
-        sub_0200C388(param0->unk_124, param0->unk_128, v1);
+        StringFormatter_Format(param0->unk_124, param0->unk_128, v1);
 
         param0->unk_C4[v0] = Strbuf_Clone(param0->unk_128, param2);
         param0->unk_0C[v0].unk_00 = param0->unk_C4[v0];
@@ -661,7 +661,7 @@ static void ov7_0224C768 (UnkStruct_ov7_0224C768 * param0, BGL * param1, u32 par
         v3.unk_08.y = v4[v0] * FX32_ONE;
         param0->unk_158[v0] = sub_02021B90(&v3);
 
-        sub_02021D6C(param0->unk_158[v0], v0);
+        SpriteActor_SetSpriteAnimActive(param0->unk_158[v0], v0);
         sub_02021CC8(param0->unk_158[v0], 1);
     }
 }

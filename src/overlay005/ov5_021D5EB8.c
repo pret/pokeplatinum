@@ -2245,7 +2245,7 @@ static void ov5_021D78A4 (UnkStruct_ov5_021DB4B8 * param0, int param1)
         v3[0] = 0;
         v4 = v6 % 3;
 
-        sub_02021E50(v1->unk_04, v4);
+        SpriteActor_SetAnimFrame(v1->unk_04, v4);
 
         v2 = (v6 % 20);
         v3[2] = 10 * (v4 + 1) + v2;
@@ -2294,7 +2294,7 @@ static void ov5_021D7960 (UnkStruct_ov5_021D6FA8 * param0)
             } else {
                 v2[3] = 1;
                 v2[0] = 4;
-                sub_02021E50(v1->unk_04, 3);
+                SpriteActor_SetAnimFrame(v1->unk_04, 3);
             }
         }
 
@@ -2444,7 +2444,7 @@ static void ov5_021D7C40 (UnkStruct_ov5_021DB4B8 * param0, int param1)
         v4 = (s32 *)v2->unk_08;
         v5 = MTRNG_Next() % 4;
 
-        sub_02021E50(v2->unk_04, v5);
+        SpriteActor_SetAnimFrame(v2->unk_04, v5);
 
         v4[4] = 10;
         v4[5] = 0;
@@ -2685,7 +2685,7 @@ static void ov5_021D8098 (UnkStruct_ov5_021DB4B8 * param0, int param1)
         v4[1] = 4 + (MTRNG_Next() % (46 - 4));
 
         v7 = (v4[1] - 4) / (((46 - 4) / 3) + 1);
-        sub_02021E50(v1->unk_04, v7);
+        SpriteActor_SetAnimFrame(v1->unk_04, v7);
 
         v4[4] = -1 * (v7 + 1);
         v4[2] = v6[v2] * (v7 + 1);
@@ -3230,7 +3230,7 @@ static void ov5_021D8B88 (UnkStruct_ov5_021DB4B8 * param0, int param1)
             v5[2] += v5[2] / 2;
         }
 
-        sub_02021E50(v1->unk_04, v6);
+        SpriteActor_SetAnimFrame(v1->unk_04, v6);
 
         {
             VecFx32 v9;
@@ -3548,7 +3548,7 @@ static void ov5_021D92C4 (UnkStruct_ov5_021DB4B8 * param0, int param1)
         v4[1] = 18 + (MTRNG_Next() % (24 - 18));
         v5 = MTRNG_Next() % 4;
 
-        sub_02021E50(v1->unk_04, v5);
+        SpriteActor_SetAnimFrame(v1->unk_04, v5);
 
         v4[4] = Unk_ov5_021F8CDC[v2] * ((v5) + 1);
         v4[2] = Unk_ov5_021F8CEC[v2] * ((v5) + 1);
@@ -3768,7 +3768,7 @@ static void ov5_021D9690 (UnkStruct_ov5_021DB4B8 * param0, int param1)
             v5 = MTRNG_Next() % 4;
         }
 
-        sub_02021E50(v1->unk_04, v5);
+        SpriteActor_SetAnimFrame(v1->unk_04, v5);
     }
 }
 
@@ -4288,7 +4288,7 @@ static void ov5_021DA0A8 (UnkStruct_ov5_021DB4B8 * param0, int param1)
         v3[0] = 0;
         v6 = v8 % 3;
 
-        sub_02021E50(v1->unk_04, v6);
+        SpriteActor_SetAnimFrame(v1->unk_04, v6);
 
         v3[4] = -24 * (v6 + 1);
         v3[2] = 24 * (v6 + 1);
@@ -4331,7 +4331,7 @@ static void ov5_021DA1A8 (UnkStruct_ov5_021D6FA8 * param0)
             } else {
                 v2[3] = 1;
                 v2[0] = 4;
-                sub_02021E50(v1->unk_04, 3);
+                SpriteActor_SetAnimFrame(v1->unk_04, 3);
             }
         }
 
@@ -4524,7 +4524,7 @@ static void ov5_021DA5A0 (UnkStruct_ov5_021DB4B8 * param0, int param1)
         v5 = (s32 *)v2->unk_08;
         v4 = MTRNG_Next() % 4;
 
-        sub_02021E50(v2->unk_04, v4);
+        SpriteActor_SetAnimFrame(v2->unk_04, v4);
 
         v5[4] = 10;
         v5[5] = 0;
@@ -4770,7 +4770,7 @@ static void ov5_021DA9DC (UnkStruct_ov5_021DB4B8 * param0, int param1)
         v2 = (s32 *)v1->unk_08;
         v4 = MTRNG_Next() % 0xe;
 
-        sub_02021E50(v1->unk_04, v4);
+        SpriteActor_SetAnimFrame(v1->unk_04, v4);
 
         v3 = v4 / 4;
         v3++;

@@ -86,7 +86,7 @@ typedef struct {
     int unk_00;
     UnkStruct_ov97_0222D04C unk_04;
     BGL * unk_2A5C;
-    UnkStruct_0200B358 * unk_2A60;
+    StringFormatter * unk_2A60;
     MessageLoader * unk_2A64;
     Window unk_2A68[20];
     int unk_2BA8[20];
@@ -338,7 +338,7 @@ static void ov97_022305EC (Window * param0, int param1)
 {
     Strbuf* v0;
     MessageLoader * v1 = MessageLoader_Init(1, 26, 421, 87);
-    UnkStruct_0200B358 * v2 = sub_0200B358(87);
+    StringFormatter * v2 = sub_0200B358(87);
 
     BGL_FillWindow(param0, sub_02002DF8(1, 6));
 
@@ -404,7 +404,7 @@ static int ov97_02230778 (UnkStruct_020067E8 * param0)
     }
 
     sub_020246E0(v0->unk_2C04);
-    sub_0200EBA0(v0->unk_3E14);
+    DeleteWaitDial(v0->unk_3E14);
 
     if (sub_0202DD88(v0->unk_2C00) == 0) {
         return 26;
@@ -1002,8 +1002,8 @@ static void ov97_022314FC (UnkStruct_ov97_02230868 * param0, int param1, int * p
     }
 
     if (v1 != param0->unk_3E10) {
-        sub_02021D6C(param0->unk_2E88[0], param0->unk_3E10 == 0 ? 1 : 0);
-        sub_02021D6C(param0->unk_2E88[1], param0->unk_3E10 == 0 ? 0 : 1);
+        SpriteActor_SetSpriteAnimActive(param0->unk_2E88[0], param0->unk_3E10 == 0 ? 1 : 0);
+        SpriteActor_SetSpriteAnimActive(param0->unk_2E88[1], param0->unk_3E10 == 0 ? 0 : 1);
     }
 
     v0 = 0;
@@ -1236,7 +1236,7 @@ static int ov97_0223161C (UnkStruct_020067E8 * param0, int * param1)
         if ((ov97_02231C84(v4) == 0) || (sub_02036540(0x93) == 1)) {
             ov97_022384F4();
             ov97_02230E04(v4, &v4->unk_2C30, 17 + 1, 640);
-            sub_0200EBA0(v4->unk_3E14);
+            DeleteWaitDial(v4->unk_3E14);
             ov97_02231F1C(v4, param1, 25);
         }
         break;
@@ -1335,7 +1335,7 @@ static int ov97_02231CA0 (UnkStruct_ov97_02230868 * param0, Window * param1)
     u32 v4;
     TrainerInfo * v5;
     Strbuf* v6;
-    UnkStruct_0200B358 * v7;
+    StringFormatter * v7;
     MessageLoader * v8;
     int v9[4];
     int v10[4];

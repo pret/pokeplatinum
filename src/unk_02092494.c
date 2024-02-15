@@ -332,16 +332,16 @@ static void InitializePokemonMetInfoStrBuf (PokemonInfoDisplayStruct * param0, i
     param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 8), param0->unk_00);
 
     MessageLoader_GetStrbuf(param0->unk_04, param1, v0);
-    sub_0200B60C(param0->unk_08, 0, Pokemon_GetValue(param0->unk_0C, MON_DATA_149, NULL), 2, 2, 1);
-    sub_0200C2E0(param0->unk_08, 1, Pokemon_GetValue(param0->unk_0C, MON_DATA_150, NULL));
-    sub_0200B60C(param0->unk_08, 2, Pokemon_GetValue(param0->unk_0C, MON_DATA_151, NULL), 2, 0, 1);
+    sub_0200B60C(param0->unk_08, 0, Pokemon_GetValue(param0->unk_0C, MON_DATA_HATCH_YEAR, NULL), 2, 2, 1);
+    sub_0200C2E0(param0->unk_08, 1, Pokemon_GetValue(param0->unk_0C, MON_DATA_HATCH_MONTH, NULL));
+    sub_0200B60C(param0->unk_08, 2, Pokemon_GetValue(param0->unk_0C, MON_DATA_HATCH_DAY, NULL), 2, 0, 1);
     sub_0200B60C(param0->unk_08, 3, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_LEVEL, NULL), 3, 0, 1);
-    sub_0200BECC(param0->unk_08, 4, Pokemon_GetValue(param0->unk_0C, MON_DATA_153, NULL));
-    sub_0200B60C(param0->unk_08, 5, Pokemon_GetValue(param0->unk_0C, MON_DATA_146, NULL), 2, 2, 1);
-    sub_0200C2E0(param0->unk_08, 6, Pokemon_GetValue(param0->unk_0C, MON_DATA_147, NULL));
-    sub_0200B60C(param0->unk_08, 7, Pokemon_GetValue(param0->unk_0C, MON_DATA_148, NULL), 2, 0, 1);
+    sub_0200BECC(param0->unk_08, 4, Pokemon_GetValue(param0->unk_0C, MON_DATA_HATCH_LOCATION, NULL));
+    sub_0200B60C(param0->unk_08, 5, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_YEAR, NULL), 2, 2, 1);
+    sub_0200C2E0(param0->unk_08, 6, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_MONTH, NULL));
+    sub_0200B60C(param0->unk_08, 7, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_DAY, NULL), 2, 0, 1);
     sub_0200BECC(param0->unk_08, 8, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_LOCATION, NULL));
-    sub_0200C388(param0->unk_08, param0->unk_1C.unk_04, v0);
+    StringFormatter_Format(param0->unk_08, param0->unk_1C.unk_04, v0);
     Strbuf_Free(v0);
 }
 
@@ -352,9 +352,9 @@ static void InitializeAlternateMetInfoStrBuf (PokemonInfoDisplayStruct * param0,
     param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 4), param0->unk_00);
 
     MessageLoader_GetStrbuf(param0->unk_04, param1, v0);
-    sub_0200B60C(param0->unk_08, 0, Pokemon_GetValue(param0->unk_0C, MON_DATA_149, NULL), 2, 2, 1);
-    sub_0200C2E0(param0->unk_08, 1, Pokemon_GetValue(param0->unk_0C, MON_DATA_150, NULL));
-    sub_0200B60C(param0->unk_08, 2, Pokemon_GetValue(param0->unk_0C, MON_DATA_151, NULL), 2, 0, 1);
+    sub_0200B60C(param0->unk_08, 0, Pokemon_GetValue(param0->unk_0C, MON_DATA_HATCH_YEAR, NULL), 2, 2, 1);
+    sub_0200C2E0(param0->unk_08, 1, Pokemon_GetValue(param0->unk_0C, MON_DATA_HATCH_MONTH, NULL));
+    sub_0200B60C(param0->unk_08, 2, Pokemon_GetValue(param0->unk_0C, MON_DATA_HATCH_DAY, NULL), 2, 0, 1);
     sub_0200B60C(param0->unk_08, 3, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_LEVEL, NULL), 3, 0, 1);
 
     switch (Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_GAME, NULL)) {
@@ -384,7 +384,7 @@ static void InitializeAlternateMetInfoStrBuf (PokemonInfoDisplayStruct * param0,
         break;
     }
 
-    sub_0200C388(param0->unk_08, param0->unk_1C.unk_04, v0);
+    StringFormatter_Format(param0->unk_08, param0->unk_1C.unk_04, v0);
     Strbuf_Free(v0);
 }
 
@@ -397,18 +397,18 @@ static void InitializeSpecialMetInfoStrBuf (PokemonInfoDisplayStruct * param0, i
     MessageLoader_GetStrbuf(param0->unk_04, param1, v0);
 
     if (param2 == 0) {
-        sub_0200B60C(param0->unk_08, 5, Pokemon_GetValue(param0->unk_0C, MON_DATA_146, NULL), 2, 2, 1);
-        sub_0200C2E0(param0->unk_08, 6, Pokemon_GetValue(param0->unk_0C, MON_DATA_147, NULL));
-        sub_0200B60C(param0->unk_08, 7, Pokemon_GetValue(param0->unk_0C, MON_DATA_148, NULL), 2, 0, 1);
+        sub_0200B60C(param0->unk_08, 5, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_YEAR, NULL), 2, 2, 1);
+        sub_0200C2E0(param0->unk_08, 6, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_MONTH, NULL));
+        sub_0200B60C(param0->unk_08, 7, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_DAY, NULL), 2, 0, 1);
         sub_0200BECC(param0->unk_08, 8, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_LOCATION, NULL));
     } else {
-        sub_0200B60C(param0->unk_08, 5, Pokemon_GetValue(param0->unk_0C, MON_DATA_149, NULL), 2, 2, 1);
-        sub_0200C2E0(param0->unk_08, 6, Pokemon_GetValue(param0->unk_0C, MON_DATA_150, NULL));
-        sub_0200B60C(param0->unk_08, 7, Pokemon_GetValue(param0->unk_0C, MON_DATA_151, NULL), 2, 0, 1);
-        sub_0200BECC(param0->unk_08, 8, Pokemon_GetValue(param0->unk_0C, MON_DATA_153, NULL));
+        sub_0200B60C(param0->unk_08, 5, Pokemon_GetValue(param0->unk_0C, MON_DATA_HATCH_YEAR, NULL), 2, 2, 1);
+        sub_0200C2E0(param0->unk_08, 6, Pokemon_GetValue(param0->unk_0C, MON_DATA_HATCH_MONTH, NULL));
+        sub_0200B60C(param0->unk_08, 7, Pokemon_GetValue(param0->unk_0C, MON_DATA_HATCH_DAY, NULL), 2, 0, 1);
+        sub_0200BECC(param0->unk_08, 8, Pokemon_GetValue(param0->unk_0C, MON_DATA_HATCH_LOCATION, NULL));
     }
 
-    sub_0200C388(param0->unk_08, param0->unk_1C.unk_04, v0);
+    StringFormatter_Format(param0->unk_08, param0->unk_1C.unk_04, v0);
     Strbuf_Free(v0);
 }
 
@@ -639,7 +639,7 @@ static int DeterminePokemonStatus (Pokemon * param0, BOOL param1, int param2)
 
     if (Pokemon_GetValue(param0, MON_DATA_IS_EGG, NULL) == 0) {
         if ((Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == 0)) {
-            if (Pokemon_GetValue(param0, MON_DATA_153, NULL) == (sub_02017070(0, 55))) {
+            if (Pokemon_GetValue(param0, MON_DATA_HATCH_LOCATION, NULL) == (sub_02017070(0, 55))) {
                 v0 = 15;
             } else if ((Pokemon_GetValue(param0, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1)) {
                 if (param1 == 1) {
@@ -647,7 +647,7 @@ static int DeterminePokemonStatus (Pokemon * param0, BOOL param1, int param2)
                 } else {
                     v0 = 8;
                 }
-            } else if (Pokemon_GetValue(param0, MON_DATA_153, NULL) == (sub_02017070(1, 1))) {
+            } else if (Pokemon_GetValue(param0, MON_DATA_HATCH_LOCATION, NULL) == (sub_02017070(1, 1))) {
                 v0 = 2;
             } else {
                 if (param1 == 1) {
@@ -799,16 +799,16 @@ void UpdateBoxMonStatusAndTrainerInfo (BoxPokemon * boxMon, TrainerInfo * traine
             {
                 int v0;
 
-                v0 = BoxPokemon_GetValue(boxMon, MON_DATA_153, NULL);
+                v0 = BoxPokemon_GetValue(boxMon, MON_DATA_HATCH_LOCATION, NULL);
                 BoxPokemon_SetValue(boxMon, 152, &v0);
 
-                v0 = BoxPokemon_GetValue(boxMon, MON_DATA_149, NULL);
+                v0 = BoxPokemon_GetValue(boxMon, MON_DATA_HATCH_YEAR, NULL);
                 BoxPokemon_SetValue(boxMon, 146, &v0);
 
-                v0 = BoxPokemon_GetValue(boxMon, MON_DATA_150, NULL);
+                v0 = BoxPokemon_GetValue(boxMon, MON_DATA_HATCH_MONTH, NULL);
                 BoxPokemon_SetValue(boxMon, 147, &v0);
 
-                v0 = BoxPokemon_GetValue(boxMon, MON_DATA_151, NULL);
+                v0 = BoxPokemon_GetValue(boxMon, MON_DATA_HATCH_DAY, NULL);
                 BoxPokemon_SetValue(boxMon, 148, &v0);
             }
         }

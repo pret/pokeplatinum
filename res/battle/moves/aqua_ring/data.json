@@ -6,7 +6,7 @@
     "accuracy": 0,
     "pp": 20,
     "effect": {
-        "type": "MOVE_EFFECT_RESTORE_HP_EVERY_TURN",
+        "type": "BATTLE_EFFECT_RESTORE_HP_EVERY_TURN",
         "chance": 0
     },
     "range": "RANGE_USER",

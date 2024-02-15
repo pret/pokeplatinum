@@ -1,8 +1,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/generated/c/abilities.h"
 #include "consts/generated/c/gender.h"
 
+#include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/narc.h"
@@ -31,7 +33,7 @@
 #include "struct_defs/poke_animation_settings.h"
 #include "struct_defs/struct_02078B40.h"
 #include "overlay005/struct_ov5_021DE5D0.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_020021B0.h"
 #include "unk_02005474.h"
@@ -56,7 +58,10 @@
 #include "party.h"
 #include "item.h"
 #include "unk_02092494.h"
+#include "charcode.h"
 #include "flags.h"
+
+#define FATEFUL_ENCOUNTER_LOCATION 3002
 
 // Columns: Spicy, Dry, Sweet, Bitter, Sour
 // TODO enum here?
@@ -113,8 +118,8 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
 static void Pokemon_IncreaseDataInternal(Pokemon *mon, enum PokemonDataParam param, int value);
 static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonDataParam param, int value);
 static u32 BoxPokemon_GetExpToNextLevel(BoxPokemon *boxMon);
-static void Pokemon_LoadExperienceTableOf(int monExpRate, u32 *monExpTable);
-static u32 Pokemon_GetExpRateBaseExpAt(int monExpRate, int monLevel);
+static void Pokemon_LoadExperienceTableOf(enum PokemonExpRate monExpRate, u32 *monExpTable);
+static u32 Pokemon_GetExpRateBaseExpAt(enum PokemonExpRate monExpRate, int monLevel);
 static u16 Pokemon_GetNatureStatValue(u8 monNature, u16 monStatValue, u8 statType);
 static u8 BoxPokemon_IsShiny(BoxPokemon *boxMon);
 static inline BOOL Pokemon_InlineIsPersonalityShiny(u32 monOTID, u32 monPersonality);
@@ -246,7 +251,7 @@ void Pokemon_InitWith(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BO
     Heap_FreeToHeap(v1);
 
     u32 zero = 0;
-    Pokemon_SetValue(mon, MON_DATA_162, &zero);
+    Pokemon_SetValue(mon, MON_DATA_MAIL_ID, &zero);
 
     UnkStruct_0202CA28 v2;
     MI_CpuClearFast(&v2, sizeof(UnkStruct_0202CA28));
@@ -279,7 +284,7 @@ static void sub_02073E18(BoxPokemon *boxMon, int monSpecies, int monLevel, int m
     BoxPokemon_SetValue(boxMon, MON_DATA_OT_ID, &monOTID);
     BoxPokemon_SetValue(boxMon, MON_DATA_LANGUAGE, &Unk_020E4C44);
     BoxPokemon_SetValue(boxMon, MON_DATA_SPECIES, &monSpecies);
-    BoxPokemon_SetValue(boxMon, MON_DATA_179, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_SPECIES_NAME, NULL);
 
     u32 v1, v2; // TODO rename, these are used/reused as temp vars through the whole function.
 
@@ -543,41 +548,53 @@ static u32 Pokemon_GetDataInternal(Pokemon *mon, enum PokemonDataParam param, vo
     case MON_DATA_STATUS_CONDITION:
         result = mon->party.status;
         break;
+
     case MON_DATA_LEVEL:
         result = mon->party.level;
         break;
-    case MON_DATA_162:
+
+    case MON_DATA_MAIL_ID:
         result = mon->party.mail;
         break;
+
     case MON_DATA_CURRENT_HP:
         result = mon->party.hp;
         break;
+
     case MON_DATA_MAX_HP:
         result = mon->party.maxHP;
         break;
+
     case MON_DATA_ATK:
         result = mon->party.attack;
         break;
+
     case MON_DATA_DEF:
         result = mon->party.defense;
         break;
+
     case MON_DATA_SPEED:
         result = mon->party.speed;
         break;
+
     case MON_DATA_SP_ATK:
         result = mon->party.spAtk;
         break;
+
     case MON_DATA_SP_DEF:
         result = mon->party.spDef;
         break;
+
     case MON_DATA_170:
         sub_020281A0(&mon->party.unk_14, dest);
-        result = 1;
+        result = TRUE;
         break;
+
     case MON_DATA_171:
         sub_0202CA10(&mon->party.unk_4C, dest);
-        result = 1;
+        result = TRUE;
         break;
+
     default:
         result = BoxPokemon_GetDataInternal(&mon->box, param, dest);
         break;
@@ -607,6 +624,12 @@ u32 BoxPokemon_GetValue(BoxPokemon *boxMon, enum PokemonDataParam param, void *d
     return result;
 }
 
+static inline u32 GetRibbon(u64 mask, enum PokemonDataParam param, enum PokemonDataParam ribbonStart)
+{
+    u64 bit = 1; // need to force a u64 to match
+    return (mask & (bit << (param - ribbonStart))) != 0;
+}
+
 static u32 BoxPokemon_GetDataInternal (BoxPokemon *boxMon, enum PokemonDataParam param, void *dest)
 {
     u32 result = 0;
@@ -620,184 +643,221 @@ static u32 BoxPokemon_GetDataInternal (BoxPokemon *boxMon, enum PokemonDataParam
     default:
         result = 0;
         break;
+
     case MON_DATA_PERSONALITY:
         result = boxMon->personality;
         break;
-    case MON_DATA_1:
+
+    case MON_DATA_IS_PARTY_DECRYPTED:
         result = boxMon->partyDecrypted;
         break;
-    case MON_DATA_2:
+
+    case MON_DATA_IS_BOX_DECRYPTED:
         result = boxMon->boxDecrypted;
         break;
-    case MON_DATA_3:
+
+    case MON_DATA_IS_DATA_INVALID:
         result = boxMon->invalidData;
         break;
-    case MON_DATA_4:
+
+    case MON_DATA_CHECKSUM:
         result = boxMon->checksum;
         break;
-    case MON_DATA_172:
+
+    case MON_DATA_SPECIES_EXISTS:
         result = (monDataBlockA->species != SPECIES_NONE);
         break;
-    case MON_DATA_173:
+
+    case MON_DATA_EGG_EXISTS:
         if (boxMon->invalidData) {
             result = boxMon->invalidData;
         } else {
             result = monDataBlockB->isEgg;
         }
+
         break;
+
     case MON_DATA_SPECIES_EGG:
         result = monDataBlockA->species;
-
-        if (result == SPECIES_NONE) {
-            break;
-        } else if (monDataBlockB->isEgg || boxMon->invalidData) {
+        if (result != SPECIES_NONE && (monDataBlockB->isEgg || boxMon->invalidData)) {
             result = SPECIES_EGG;
         }
+        
         break;
+
     case MON_DATA_LEVEL:
         result = Pokemon_GetSpeciesLevelAt(monDataBlockA->species, monDataBlockA->exp);
         break;
+
     case MON_DATA_SPECIES:
         if (boxMon->invalidData) {
             result = SPECIES_EGG;
         } else {
             result = monDataBlockA->species;
         }
+
         break;
+
     case MON_DATA_HELD_ITEM:
         result = monDataBlockA->heldItem;
         break;
+
     case MON_DATA_OT_ID:
         result = monDataBlockA->otID;
         break;
+
     case MON_DATA_EXP:
         result = monDataBlockA->exp;
         break;
+
     case MON_DATA_FRIENDSHIP:
         result = monDataBlockA->friendship;
         break;
+
     case MON_DATA_ABILITY:
         result = monDataBlockA->ability;
         break;
-    case MON_DATA_11:
-        result = monDataBlockA->unk_0E;
+
+    case MON_DATA_MARKS:
+        result = monDataBlockA->marks;
         break;
+
     case MON_DATA_LANGUAGE:
         result = monDataBlockA->originLanguage;
         break;
+
     case MON_DATA_HP_EV:
         result = monDataBlockA->hpEV;
         break;
+
     case MON_DATA_ATK_EV:
         result = monDataBlockA->atkEV;
         break;
+
     case MON_DATA_DEF_EV:
         result = monDataBlockA->defEV;
         break;
+
     case MON_DATA_SPEED_EV:
         result = monDataBlockA->speedEV;
         break;
+
     case MON_DATA_SPATK_EV:
         result = monDataBlockA->spAtkEV;
         break;
+
     case MON_DATA_SPDEF_EV:
         result = monDataBlockA->spDefEV;
         break;
+
     case MON_DATA_COOL:
         result = monDataBlockA->cool;
         break;
+
     case MON_DATA_BEAUTY:
         result = monDataBlockA->beauty;
         break;
+
     case MON_DATA_CUTE:
         result = monDataBlockA->cute;
         break;
+
     case MON_DATA_SMART:
         result = monDataBlockA->smart;
         break;
+
     case MON_DATA_TOUGH:
         result = monDataBlockA->tough;
         break;
+
     case MON_DATA_SHEEN:
         result = monDataBlockA->sheen;
         break;
-    case MON_DATA_25:
-    case MON_DATA_26:
-    case MON_DATA_27:
-    case MON_DATA_28:
-    case MON_DATA_29:
-    case MON_DATA_30:
-    case MON_DATA_31:
-    case MON_DATA_32:
-    case MON_DATA_33:
-    case MON_DATA_34:
-    case MON_DATA_35:
-    case MON_DATA_36:
-    case MON_DATA_37:
-    case MON_DATA_38:
-    case MON_DATA_39:
-    case MON_DATA_40:
-    case MON_DATA_41:
-    case MON_DATA_42:
-    case MON_DATA_43:
-    case MON_DATA_44:
-    case MON_DATA_45:
-    case MON_DATA_46:
-    case MON_DATA_47:
-    case MON_DATA_48:
-    case MON_DATA_49:
-    case MON_DATA_50:
-    case MON_DATA_51:
-    case MON_DATA_52:
-    case MON_DATA_53:
-    {
-        // TODO is there a way to make this more intuitave?
-        u64 bitMask = 1;
-        result = ((monDataBlockA->unk_1C & (bitMask << param - MON_DATA_25)) != 0);
+
+    case MON_DATA_SINNOH_CHAMP_RIBBON:
+    case MON_DATA_SINNOH_ABILITY_RIBBON:
+    case MON_DATA_SINNOH_GREAT_ABILITY_RIBBON:
+    case MON_DATA_SINNOH_DOUBLE_ABILITY_RIBBON:
+    case MON_DATA_SINNOH_MULTI_ABILITY_RIBBON:
+    case MON_DATA_SINNOH_PAIR_ABILITY_RIBBON:
+    case MON_DATA_SINNOH_WORLD_ABILITY_RIBBON:
+    case MON_DATA_SINNOH_ALERT_RIBBON:
+    case MON_DATA_SINNOH_SHOCK_RIBBON:
+    case MON_DATA_SINNOH_DOWNCAST_RIBBON:
+    case MON_DATA_SINNOH_CARELESS_RIBBON:
+    case MON_DATA_SINNOH_RELAX_RIBBON:
+    case MON_DATA_SINNOH_SNOOZE_RIBBON:
+    case MON_DATA_SINNOH_SMILE_RIBBON:
+    case MON_DATA_SINNOH_GORGEOUS_RIBBON:
+    case MON_DATA_SINNOH_ROYAL_RIBBON:
+    case MON_DATA_SINNOH_GORGEOUS_ROYAL_RIBBON:
+    case MON_DATA_SINNOH_FOOTPRINT_RIBBON:
+    case MON_DATA_SINNOH_RECORD_RIBBON:
+    case MON_DATA_SINNOH_HISTORY_RIBBON:
+    case MON_DATA_SINNOH_LEGEND_RIBBON:
+    case MON_DATA_SINNOH_RED_RIBBON:
+    case MON_DATA_SINNOH_GREEN_RIBBON:
+    case MON_DATA_SINNOH_BLUE_RIBBON:
+    case MON_DATA_SINNOH_FESTIVAL_RIBBON:
+    case MON_DATA_SINNOH_CARNIVAL_RIBBON:
+    case MON_DATA_SINNOH_CLASSIC_RIBBON:
+    case MON_DATA_SINNOH_PREMIER_RIBBON:
+    case MON_DATA_SINNOH_RIBBON_DUMMY:
+        result = GetRibbon(monDataBlockA->sinnohRibbons, param, MON_DATA_SINNOH_CHAMP_RIBBON);
         break;
-    }
+
     case MON_DATA_MOVE1:
     case MON_DATA_MOVE2:
     case MON_DATA_MOVE3:
     case MON_DATA_MOVE4:
         result = monDataBlockB->moves[param - MON_DATA_MOVE1];
         break;
+
     case MON_DATA_MOVE1_CUR_PP:
     case MON_DATA_MOVE2_CUR_PP:
     case MON_DATA_MOVE3_CUR_PP:
     case MON_DATA_MOVE4_CUR_PP:
         result = monDataBlockB->moveCurrentPPs[param - MON_DATA_MOVE1_CUR_PP];
         break;
+
     case MON_DATA_MOVE1_PP_UPS:
     case MON_DATA_MOVE2_PP_UPS:
     case MON_DATA_MOVE3_PP_UPS:
     case MON_DATA_MOVE4_PP_UPS:
         result = monDataBlockB->movePPUps[param - MON_DATA_MOVE1_PP_UPS];
         break;
+
     case MON_DATA_MOVE1_MAX_PP:
     case MON_DATA_MOVE2_MAX_PP:
     case MON_DATA_MOVE3_MAX_PP:
     case MON_DATA_MOVE4_MAX_PP:
         result = MoveTable_CalcMaxPP(monDataBlockB->moves[param - MON_DATA_MOVE1_MAX_PP], monDataBlockB->movePPUps[param - MON_DATA_MOVE1_MAX_PP]);
         break;
+
     case MON_DATA_HP_IV:
         result = monDataBlockB->hpIV;
         break;
+
     case MON_DATA_ATK_IV:
         result = monDataBlockB->atkIV;
         break;
+
     case MON_DATA_DEF_IV:
         result = monDataBlockB->defIV;
         break;
+
     case MON_DATA_SPEED_IV:
         result = monDataBlockB->speedIV;
         break;
+
     case MON_DATA_SPATK_IV:
         result = monDataBlockB->spAtkIV;
         break;
+
     case MON_DATA_SPDEF_IV:
         result = monDataBlockB->spDefIV;
         break;
+
     case MON_DATA_IS_EGG:
         if (boxMon->invalidData) {
             result = boxMon->invalidData;
@@ -805,211 +865,239 @@ static u32 BoxPokemon_GetDataInternal (BoxPokemon *boxMon, enum PokemonDataParam
             result = monDataBlockB->isEgg;
         }
         break;
+
     case MON_DATA_HAS_NICKNAME:
-        result = monDataBlockB->unk_10_31;
+        result = monDataBlockB->hasNickname;
         break;
-    case MON_DATA_78:
-    case MON_DATA_79:
-    case MON_DATA_80:
-    case MON_DATA_81:
-    case MON_DATA_82:
-    case MON_DATA_83:
-    case MON_DATA_84:
-    case MON_DATA_85:
-    case MON_DATA_86:
-    case MON_DATA_87:
-    case MON_DATA_88:
-    case MON_DATA_89:
-    case MON_DATA_90:
-    case MON_DATA_91:
-    case MON_DATA_92:
-    case MON_DATA_93:
-    case MON_DATA_94:
-    case MON_DATA_95:
-    case MON_DATA_96:
-    case MON_DATA_97:
-    case MON_DATA_CHAMPION_RIBBON:
-    case MON_DATA_WINNING_RIBBON:
-    case MON_DATA_VICTORY_RIBBON:
-    case MON_DATA_ARTIST_RIBBON:
-    case MON_DATA_EFFORT_RIBBON:
-    case MON_DATA_MARINE_RIBBON:
-    case MON_DATA_LAND_RIBBON:
-    case MON_DATA_SKY_RIBBON:
-    case MON_DATA_COUNTRY_RIBBON:
-    case MON_DATA_NATIONAL_RIBBON:
-    case MON_DATA_EARTH_RIBBON:
-    case MON_DATA_WORLD_RIBBON:
-    {
-        // TODO is there a way to make this more intuitave?
-        u64 bitMask = 1;
-        result = ((monDataBlockB->unk_14 & (bitMask << param - MON_DATA_78)) != 0);
+
+    case MON_DATA_HOENN_COOL_RIBBON:
+    case MON_DATA_HOENN_COOL_RIBBON_SUPER:
+    case MON_DATA_HOENN_COOL_RIBBON_HYPER:
+    case MON_DATA_HOENN_COOL_RIBBON_MASTER:
+    case MON_DATA_HOENN_BEAUTY_RIBBON:
+    case MON_DATA_HOENN_BEAUTY_RIBBON_SUPER:
+    case MON_DATA_HOENN_BEAUTY_RIBBON_HYPER:
+    case MON_DATA_HOENN_BEAUTY_RIBBON_MASTER:
+    case MON_DATA_HOENN_CUTE_RIBBON:
+    case MON_DATA_HOENN_CUTE_RIBBON_SUPER:
+    case MON_DATA_HOENN_CUTE_RIBBON_HYPER:
+    case MON_DATA_HOENN_CUTE_RIBBON_MASTER:
+    case MON_DATA_HOENN_SMART_RIBBON:
+    case MON_DATA_HOENN_SMART_RIBBON_SUPER:
+    case MON_DATA_HOENN_SMART_RIBBON_HYPER:
+    case MON_DATA_HOENN_SMART_RIBBON_MASTER:
+    case MON_DATA_HOENN_TOUGH_RIBBON:
+    case MON_DATA_HOENN_TOUGH_RIBBON_SUPER:
+    case MON_DATA_HOENN_TOUGH_RIBBON_HYPER:
+    case MON_DATA_HOENN_TOUGH_RIBBON_MASTER:
+    case MON_DATA_HOENN_CHAMPION_RIBBON:
+    case MON_DATA_HOENN_WINNING_RIBBON:
+    case MON_DATA_HOENN_VICTORY_RIBBON:
+    case MON_DATA_HOENN_ARTIST_RIBBON:
+    case MON_DATA_HOENN_EFFORT_RIBBON:
+    case MON_DATA_HOENN_MARINE_RIBBON:
+    case MON_DATA_HOENN_LAND_RIBBON:
+    case MON_DATA_HOENN_SKY_RIBBON:
+    case MON_DATA_HOENN_COUNTRY_RIBBON:
+    case MON_DATA_HOENN_NATIONAL_RIBBON:
+    case MON_DATA_HOENN_EARTH_RIBBON:
+    case MON_DATA_HOENN_WORLD_RIBBON:
+        result = GetRibbon(monDataBlockB->hoennRibbons, param, MON_DATA_HOENN_COOL_RIBBON);
         break;
-    }
+
     case MON_DATA_FATEFUL_ENCOUNTER:
         result = monDataBlockB->fatefulEncounter;
         break;
+
     case MON_DATA_GENDER:
         result = Pokemon_GetGenderOf(monDataBlockA->species, boxMon->personality);
         monDataBlockB->gender = result;
         boxMon->checksum = Pokemon_GetDataChecksum(&boxMon->dataBlocks, sizeof(PokemonDataBlock) * 4);
         break;
+
     case MON_DATA_FORM:
         result = monDataBlockB->form;
         break;
-    case MON_DATA_113:
-        result = monDataBlockB->unk_19;
+
+    case MON_DATA_DUMMY_B_1:
+        result = monDataBlockB->dummy_19;
         break;
-    case MON_DATA_114:
-        result = monDataBlockB->unk_1A;
+
+    case MON_DATA_DUMMY_B_2:
+        result = monDataBlockB->dummy_1A;
         break;
+
     case MON_DATA_NICKNAME:
         if (boxMon->invalidData) {
             // TODO confirm this should be SPECIES_BAD_EGG (lines up with checksum failure check but not throughly checked this call tree)
             MessageLoader_GetSpeciesName(SPECIES_BAD_EGG, 0, dest);
         } else {
-            u16 *v6 = dest;
+            charcode_t *buf = dest;
 
-            for (result = 0; result < 10; result++) {
-                v6[result] = monDataBlockC->unk_00[result];
+            for (result = 0; result < MON_NAME_LEN; result++) {
+                buf[result] = monDataBlockC->nickname[result];
             }
 
-            v6[result] = 0xffff;
+            buf[result] = CHAR_EOS;
         }
         break;
-    case MON_DATA_120:
-        result = monDataBlockB->unk_10_31;
-    case MON_DATA_119:
+    case MON_DATA_NICKNAME_STRBUF_AND_FLAG:
+        result = monDataBlockB->hasNickname;
+        // fall-through
+    case MON_DATA_NICKNAME_STRBUF:
         if (boxMon->invalidData) {
-            // TODO confirm this should be SPECIES_BAD_EGG (lines up with checksum failure check but not throughly checked this call tree)
             Strbuf *strbuf = sub_0200B32C(SPECIES_BAD_EGG, 0);
 
             Strbuf_Copy(dest, strbuf);
             Strbuf_Free(strbuf);
         } else {
-            Strbuf_CopyChars(dest, monDataBlockC->unk_00);
+            Strbuf_CopyChars(dest, monDataBlockC->nickname);
         }
         break;
-    case MON_DATA_121:
-        result = monDataBlockC->unk_16;
+
+    case MON_DATA_MET_GAME_REGION_CODE:
+        result = monDataBlockC->originCode;
         break;
+
     case MON_DATA_MET_GAME:
         result = monDataBlockC->originGame;
         break;
-    case MON_DATA_123:
-    case MON_DATA_124:
-    case MON_DATA_125:
-    case MON_DATA_126:
-    case MON_DATA_127:
-    case MON_DATA_128:
-    case MON_DATA_129:
-    case MON_DATA_130:
-    case MON_DATA_131:
-    case MON_DATA_132:
-    case MON_DATA_133:
-    case MON_DATA_134:
-    case MON_DATA_135:
-    case MON_DATA_136:
-    case MON_DATA_137:
-    case MON_DATA_138:
-    case MON_DATA_139:
-    case MON_DATA_140:
-    case MON_DATA_141:
-    case MON_DATA_142:
-    case MON_DATA_143:
-    {
-        // TODO is there a way to make this more intuitave?
-        u64 bitMask = 1;
-        result = ((monDataBlockC->unk_18 & (bitMask << param - MON_DATA_123)) != 0);
+
+    case MON_DATA_SINNOH_SUPER_COOL_RIBBON:
+    case MON_DATA_SINNOH_SUPER_COOL_RIBBON_GREAT:
+    case MON_DATA_SINNOH_SUPER_COOL_RIBBON_ULTRA:
+    case MON_DATA_SINNOH_SUPER_COOL_RIBBON_MASTER:
+    case MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON:
+    case MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON_GREAT:
+    case MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON_ULTRA:
+    case MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON_MASTER:
+    case MON_DATA_SINNOH_SUPER_CUTE_RIBBON:
+    case MON_DATA_SINNOH_SUPER_CUTE_RIBBON_GREAT:
+    case MON_DATA_SINNOH_SUPER_CUTE_RIBBON_ULTRA:
+    case MON_DATA_SINNOH_SUPER_CUTE_RIBBON_MASTER:
+    case MON_DATA_SINNOH_SUPER_SMART_RIBBON:
+    case MON_DATA_SINNOH_SUPER_SMART_RIBBON_GREAT:
+    case MON_DATA_SINNOH_SUPER_SMART_RIBBON_ULTRA:
+    case MON_DATA_SINNOH_SUPER_SMART_RIBBON_MASTER:
+    case MON_DATA_SINNOH_SUPER_TOUGH_RIBBON:
+    case MON_DATA_SINNOH_SUPER_TOUGH_RIBBON_GREAT:
+    case MON_DATA_SINNOH_SUPER_TOUGH_RIBBON_ULTRA:
+    case MON_DATA_SINNOH_SUPER_TOUGH_RIBBON_MASTER:
+    case MON_DATA_CONTEST_RIBBON_DUMMY:
+        result = GetRibbon(monDataBlockC->contestRibbons, param, MON_DATA_SINNOH_SUPER_COOL_RIBBON);
         break;
-    }
+
     case MON_DATA_OTNAME:
-        u16 *v8 = dest;
+        u16 *otName = dest;
 
-        for (result = 0; result < 7; result++) {
-            v8[result] = monDataBlockD->unk_00[result];
+        for (result = 0; result < TRAINER_NAME_LEN; result++) {
+            otName[result] = monDataBlockD->otName[result];
         }
 
-        v8[result] = 0xffff;
+        otName[result] = CHAR_EOS;
         break;
-    case MON_DATA_145:
-        Strbuf_CopyChars(dest, monDataBlockD->unk_00);
+
+    case MON_DATA_OTNAME_STRBUF:
+        Strbuf_CopyChars(dest, monDataBlockD->otName);
         break;
-    case MON_DATA_146:
-        result = monDataBlockD->unk_10;
+
+    case MON_DATA_MET_YEAR:
+        result = monDataBlockD->metYear;
         break;
-    case MON_DATA_147:
-        result = monDataBlockD->unk_11;
+
+    case MON_DATA_MET_MONTH:
+        result = monDataBlockD->metMonth;
         break;
-    case MON_DATA_148:
-        result = monDataBlockD->unk_12;
+
+    case MON_DATA_MET_DAY:
+        result = monDataBlockD->metDay;
         break;
-    case MON_DATA_149:
-        result = monDataBlockD->unk_13;
+
+    case MON_DATA_HATCH_YEAR:
+        result = monDataBlockD->hatchYear;
         break;
-    case MON_DATA_150:
-        result = monDataBlockD->unk_14;
+
+    case MON_DATA_HATCH_MONTH:
+        result = monDataBlockD->hatchMonth;
         break;
-    case MON_DATA_151:
-        result = monDataBlockD->unk_15;
+
+    case MON_DATA_HATCH_DAY:
+        result = monDataBlockD->hatchDay;
         break;
+
     case MON_DATA_MET_LOCATION:
-    case MON_DATA_115:
+    case MON_DATA_FATEFUL_MET_LOCATION:
         // TODO enum value?
-        if (monDataBlockD->unk_16 == 3002 && monDataBlockB->unk_1C) {
-            result = monDataBlockB->unk_1C;
+        if (monDataBlockD->metLocation == FATEFUL_ENCOUNTER_LOCATION && monDataBlockB->fatefulMetLocation) {
+            result = monDataBlockB->fatefulMetLocation;
         } else {
-            result = monDataBlockD->unk_16;
+            result = monDataBlockD->metLocation;
         }
         break;
-    case MON_DATA_153:
-    case MON_DATA_116:
+
+    case MON_DATA_HATCH_LOCATION:
+    case MON_DATA_FATEFUL_HATCH_LOCATION:
         // TODO enum value?
-        if (monDataBlockD->unk_18 == 3002 && monDataBlockB->unk_1E) {
-            result = monDataBlockB->unk_1E;
+        if (monDataBlockD->hatchLocation == FATEFUL_ENCOUNTER_LOCATION && monDataBlockB->fatefulHatchLocation) {
+            result = monDataBlockB->fatefulHatchLocation;
         } else {
-            result = monDataBlockD->unk_18;
+            result = monDataBlockD->hatchLocation;
         }
         break;
+
     case MON_DATA_POKERUS:
         result = monDataBlockD->pokerus;
         break;
+
     case MON_DATA_POKEBALL:
         result = monDataBlockD->pokeball;
         break;
+
     case MON_DATA_MET_LEVEL:
         result = monDataBlockD->metLevel;
         break;
+
     case MON_DATA_OT_GENDER:
         result = monDataBlockD->otGender;
         break;
-    case MON_DATA_158:
-        result = monDataBlockD->unk_1D;
+
+    case MON_DATA_MET_TERRAIN:
+        result = monDataBlockD->metTerrain;
         break;
-    case MON_DATA_159:
-        result = monDataBlockD->unk_1E;
+
+    case MON_DATA_DUMMY_D_1:
+        result = monDataBlockD->dummy_1E;
         break;
+
     case MON_DATA_COMBINED_IVS:
-        result = (monDataBlockB->hpIV << 0) | (monDataBlockB->atkIV << 5) | (monDataBlockB->defIV << 10) | (monDataBlockB->speedIV << 15) | (monDataBlockB->spAtkIV << 20) | (monDataBlockB->spDefIV << 25);
+        result = (monDataBlockB->hpIV << 0)
+            | (monDataBlockB->atkIV << 5)
+            | (monDataBlockB->defIV << 10)
+            | (monDataBlockB->speedIV << 15)
+            | (monDataBlockB->spAtkIV << 20)
+            | (monDataBlockB->spDefIV << 25);
         break;
-    case MON_DATA_176:
-        if ((monDataBlockA->species == SPECIES_NIDORAN_F || monDataBlockA->species == SPECIES_NIDORAN_M) && monDataBlockB->unk_10_31 == FALSE) {
-            result = 0;
+
+    case MON_DATA_NIDORAN_HAS_NICKNAME:
+        if ((monDataBlockA->species == SPECIES_NIDORAN_F || monDataBlockA->species == SPECIES_NIDORAN_M)
+                && monDataBlockB->hasNickname == FALSE) {
+            result = FALSE;
         } else {
-            result = 1;
+            result = TRUE;
         }
         break;
+
     case MON_DATA_TYPE_1:
     case MON_DATA_TYPE_2:
-        // TODO enum values
-        if (monDataBlockA->species == SPECIES_ARCEUS && monDataBlockA->ability == 121) {
-            result = Pokemon_GetArceusTypeOf(Item_LoadParam(monDataBlockA->heldItem, 1, 0));
+        if (monDataBlockA->species == SPECIES_ARCEUS && monDataBlockA->ability == ABILITY_MULTITYPE) {
+            result = Pokemon_GetArceusTypeOf(Item_LoadParam(monDataBlockA->heldItem, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_SYSTEM));
         } else {
-            result = PokemonPersonalData_GetFormValue(monDataBlockA->species, monDataBlockB->form, 6 + (param - 177));
+            result = PokemonPersonalData_GetFormValue(monDataBlockA->species, monDataBlockB->form, MON_DATA_PERSONAL_TYPE_1 + (param - MON_DATA_TYPE_1));
         }
         break;
-    case MON_DATA_179:
-        MessageLoader_GetSpeciesName(monDataBlockA->species, 0, dest);
+
+    case MON_DATA_SPECIES_NAME:
+        MessageLoader_GetSpeciesName(monDataBlockA->species, HEAP_ID_SYSTEM, dest);
         break;
     }
 
@@ -1042,48 +1130,59 @@ void Pokemon_SetValue(Pokemon *mon, enum PokemonDataParam param, const void *val
 
 static void Pokemon_SetDataInternal(Pokemon *mon, enum PokemonDataParam param, const void *value)
 {
-    // TODO can this be restructured better?
     u32 *u32Value = value;
     u16 *u16Value = value;
     u8 *u8Value = value;
 
     switch (param) {
     case MON_DATA_STATUS_CONDITION:
-        mon->party.status = u32Value[0];
+        mon->party.status = *u32Value;
         break;
+
     case MON_DATA_LEVEL:
-        mon->party.level = u8Value[0];
+        mon->party.level = *u8Value;
         break;
-    case MON_DATA_162:
-        mon->party.mail = u8Value[0];
+
+    case MON_DATA_MAIL_ID:
+        mon->party.mail = *u8Value;
         break;
+
     case MON_DATA_CURRENT_HP:
-        mon->party.hp = u16Value[0];
+        mon->party.hp = *u16Value;
         break;
+
     case MON_DATA_MAX_HP:
-        mon->party.maxHP = u16Value[0];
+        mon->party.maxHP = *u16Value;
         break;
+
     case MON_DATA_ATK:
-        mon->party.attack = u16Value[0];
+        mon->party.attack = *u16Value;
         break;
+
     case MON_DATA_DEF:
-        mon->party.defense = u16Value[0];
+        mon->party.defense = *u16Value;
         break;
+
     case MON_DATA_SPEED:
-        mon->party.speed = u16Value[0];
+        mon->party.speed = *u16Value;
         break;
+
     case MON_DATA_SP_ATK:
-        mon->party.spAtk = u16Value[0];
+        mon->party.spAtk = *u16Value;
         break;
+
     case MON_DATA_SP_DEF:
-        mon->party.spDef = u16Value[0];
+        mon->party.spDef = *u16Value;
         break;
+
     case MON_DATA_170:
         sub_020281A0(value, &mon->party.unk_14);
         break;
+
     case MON_DATA_171:
         sub_0202CA10(value, &mon->party.unk_4C);
         break;
+
     default:
         BoxPokemon_SetDataInternal(&mon->box, param, value);
         break;
@@ -1126,373 +1225,438 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
 
     switch (param) {
     case MON_DATA_PERSONALITY:
-        boxMon->personality = u32Value[0];
+        boxMon->personality = *u32Value;
         break;
-    case MON_DATA_1:
-        GF_ASSERT(0);
-        boxMon->partyDecrypted = u8Value[0];
-        break;
-    case MON_DATA_2:
-        GF_ASSERT(0);
-        boxMon->boxDecrypted = u8Value[0];
-        break;
-    case MON_DATA_3:
-        boxMon->invalidData = u8Value[0];
-        break;
-    case MON_DATA_4:
-        boxMon->checksum = u16Value[0];
-        break;
-    case MON_DATA_SPECIES:
-        monDataBlockA->species = u16Value[0];
-        break;
-    case MON_DATA_HELD_ITEM:
-        monDataBlockA->heldItem = u16Value[0];
-        break;
-    case MON_DATA_OT_ID:
-        monDataBlockA->otID = u32Value[0];
-        break;
-    case MON_DATA_EXP:
-        monDataBlockA->exp = u32Value[0];
-        break;
-    case MON_DATA_FRIENDSHIP:
-        monDataBlockA->friendship = u8Value[0];
-        break;
-    case MON_DATA_ABILITY:
-        monDataBlockA->ability = u8Value[0];
-        break;
-    case MON_DATA_11:
-        monDataBlockA->unk_0E = u8Value[0];
-        break;
-    case MON_DATA_LANGUAGE:
-        monDataBlockA->originLanguage = u8Value[0];
-        break;
-    case MON_DATA_HP_EV:
-        monDataBlockA->hpEV = u8Value[0];
-        break;
-    case MON_DATA_ATK_EV:
-        monDataBlockA->atkEV = u8Value[0];
-        break;
-    case MON_DATA_DEF_EV:
-        monDataBlockA->defEV = u8Value[0];
-        break;
-    case MON_DATA_SPEED_EV:
-        monDataBlockA->speedEV = u8Value[0];
-        break;
-    case MON_DATA_SPATK_EV:
-        monDataBlockA->spAtkEV = u8Value[0];
-        break;
-    case MON_DATA_SPDEF_EV:
-        monDataBlockA->spDefEV = u8Value[0];
-        break;
-    case MON_DATA_COOL:
-        monDataBlockA->cool = u8Value[0];
-        break;
-    case MON_DATA_BEAUTY:
-        monDataBlockA->beauty = u8Value[0];
-        break;
-    case MON_DATA_CUTE:
-        monDataBlockA->cute = u8Value[0];
-        break;
-    case MON_DATA_SMART:
-        monDataBlockA->smart = u8Value[0];
-        break;
-    case MON_DATA_TOUGH:
-        monDataBlockA->tough = u8Value[0];
-        break;
-    case MON_DATA_SHEEN:
-        monDataBlockA->sheen = u8Value[0];
-        break;
-    case MON_DATA_25:
-    case MON_DATA_26:
-    case MON_DATA_27:
-    case MON_DATA_28:
-    case MON_DATA_29:
-    case MON_DATA_30:
-    case MON_DATA_31:
-    case MON_DATA_32:
-    case MON_DATA_33:
-    case MON_DATA_34:
-    case MON_DATA_35:
-    case MON_DATA_36:
-    case MON_DATA_37:
-    case MON_DATA_38:
-    case MON_DATA_39:
-    case MON_DATA_40:
-    case MON_DATA_41:
-    case MON_DATA_42:
-    case MON_DATA_43:
-    case MON_DATA_44:
-    case MON_DATA_45:
-    case MON_DATA_46:
-    case MON_DATA_47:
-    case MON_DATA_48:
-    case MON_DATA_49:
-    case MON_DATA_50:
-    case MON_DATA_51:
-    case MON_DATA_52:
-    case MON_DATA_53:
-    {
-        u64 bitMask = 1 << (param - MON_DATA_25);
 
-        if (u8Value[0]) {
-            monDataBlockA->unk_1C |= bitMask;
+    case MON_DATA_IS_PARTY_DECRYPTED:
+        GF_ASSERT(FALSE);
+        boxMon->partyDecrypted = *u8Value;
+        break;
+
+    case MON_DATA_IS_BOX_DECRYPTED:
+        GF_ASSERT(FALSE);
+        boxMon->boxDecrypted = *u8Value;
+        break;
+
+    case MON_DATA_IS_DATA_INVALID:
+        boxMon->invalidData = *u8Value;
+        break;
+
+    case MON_DATA_CHECKSUM:
+        boxMon->checksum = *u16Value;
+        break;
+
+    case MON_DATA_SPECIES:
+        monDataBlockA->species = *u16Value;
+        break;
+
+    case MON_DATA_HELD_ITEM:
+        monDataBlockA->heldItem = *u16Value;
+        break;
+
+    case MON_DATA_OT_ID:
+        monDataBlockA->otID = *u32Value;
+        break;
+
+    case MON_DATA_EXP:
+        monDataBlockA->exp = *u32Value;
+        break;
+
+    case MON_DATA_FRIENDSHIP:
+        monDataBlockA->friendship = *u8Value;
+        break;
+        
+    case MON_DATA_ABILITY:
+        monDataBlockA->ability = *u8Value;
+        break;
+
+    case MON_DATA_MARKS:
+        monDataBlockA->marks = *u8Value;
+        break;
+
+    case MON_DATA_LANGUAGE:
+        monDataBlockA->originLanguage = *u8Value;
+        break;
+
+    case MON_DATA_HP_EV:
+        monDataBlockA->hpEV = *u8Value;
+        break;
+
+    case MON_DATA_ATK_EV:
+        monDataBlockA->atkEV = *u8Value;
+        break;
+
+    case MON_DATA_DEF_EV:
+        monDataBlockA->defEV = *u8Value;
+        break;
+
+    case MON_DATA_SPEED_EV:
+        monDataBlockA->speedEV = *u8Value;
+        break;
+
+    case MON_DATA_SPATK_EV:
+        monDataBlockA->spAtkEV = *u8Value;
+        break;
+
+    case MON_DATA_SPDEF_EV:
+        monDataBlockA->spDefEV = *u8Value;
+        break;
+
+    case MON_DATA_COOL:
+        monDataBlockA->cool = *u8Value;
+        break;
+
+    case MON_DATA_BEAUTY:
+        monDataBlockA->beauty = *u8Value;
+        break;
+
+    case MON_DATA_CUTE:
+        monDataBlockA->cute = *u8Value;
+        break;
+
+    case MON_DATA_SMART:
+        monDataBlockA->smart = *u8Value;
+        break;
+
+    case MON_DATA_TOUGH:
+        monDataBlockA->tough = *u8Value;
+        break;
+
+    case MON_DATA_SHEEN:
+        monDataBlockA->sheen = *u8Value;
+        break;
+
+    case MON_DATA_SINNOH_CHAMP_RIBBON:
+    case MON_DATA_SINNOH_ABILITY_RIBBON:
+    case MON_DATA_SINNOH_GREAT_ABILITY_RIBBON:
+    case MON_DATA_SINNOH_DOUBLE_ABILITY_RIBBON:
+    case MON_DATA_SINNOH_MULTI_ABILITY_RIBBON:
+    case MON_DATA_SINNOH_PAIR_ABILITY_RIBBON:
+    case MON_DATA_SINNOH_WORLD_ABILITY_RIBBON:
+    case MON_DATA_SINNOH_ALERT_RIBBON:
+    case MON_DATA_SINNOH_SHOCK_RIBBON:
+    case MON_DATA_SINNOH_DOWNCAST_RIBBON:
+    case MON_DATA_SINNOH_CARELESS_RIBBON:
+    case MON_DATA_SINNOH_RELAX_RIBBON:
+    case MON_DATA_SINNOH_SNOOZE_RIBBON:
+    case MON_DATA_SINNOH_SMILE_RIBBON:
+    case MON_DATA_SINNOH_GORGEOUS_RIBBON:
+    case MON_DATA_SINNOH_ROYAL_RIBBON:
+    case MON_DATA_SINNOH_GORGEOUS_ROYAL_RIBBON:
+    case MON_DATA_SINNOH_FOOTPRINT_RIBBON:
+    case MON_DATA_SINNOH_RECORD_RIBBON:
+    case MON_DATA_SINNOH_HISTORY_RIBBON:
+    case MON_DATA_SINNOH_LEGEND_RIBBON:
+    case MON_DATA_SINNOH_RED_RIBBON:
+    case MON_DATA_SINNOH_GREEN_RIBBON:
+    case MON_DATA_SINNOH_BLUE_RIBBON:
+    case MON_DATA_SINNOH_FESTIVAL_RIBBON:
+    case MON_DATA_SINNOH_CARNIVAL_RIBBON:
+    case MON_DATA_SINNOH_CLASSIC_RIBBON:
+    case MON_DATA_SINNOH_PREMIER_RIBBON:
+    case MON_DATA_SINNOH_RIBBON_DUMMY: {
+        u64 bit = 1 << (param - MON_DATA_SINNOH_CHAMP_RIBBON);
+
+        if (*u8Value) {
+            monDataBlockA->sinnohRibbons |= bit;
         } else {
-            monDataBlockA->unk_1C &= (bitMask ^ 0xffffffff);
+            monDataBlockA->sinnohRibbons &= (bit ^ 0xFFFFFFFF);
         }
+
         break;
     }
+
     case MON_DATA_MOVE1:
     case MON_DATA_MOVE2:
     case MON_DATA_MOVE3:
     case MON_DATA_MOVE4:
-        monDataBlockB->moves[param - MON_DATA_MOVE1] = u16Value[0];
+        monDataBlockB->moves[param - MON_DATA_MOVE1] = *u16Value;
         break;
+
     case MON_DATA_MOVE1_CUR_PP:
     case MON_DATA_MOVE2_CUR_PP:
     case MON_DATA_MOVE3_CUR_PP:
     case MON_DATA_MOVE4_CUR_PP:
-        monDataBlockB->moveCurrentPPs[param - MON_DATA_MOVE1_CUR_PP] = u8Value[0];
+        monDataBlockB->moveCurrentPPs[param - MON_DATA_MOVE1_CUR_PP] = *u8Value;
         break;
+
     case MON_DATA_MOVE1_PP_UPS:
     case MON_DATA_MOVE2_PP_UPS:
     case MON_DATA_MOVE3_PP_UPS:
     case MON_DATA_MOVE4_PP_UPS:
-        monDataBlockB->movePPUps[param - MON_DATA_MOVE1_PP_UPS] = u8Value[0];
+        monDataBlockB->movePPUps[param - MON_DATA_MOVE1_PP_UPS] = *u8Value;
         break;
+
     case MON_DATA_MOVE1_MAX_PP:
     case MON_DATA_MOVE2_MAX_PP:
     case MON_DATA_MOVE3_MAX_PP:
     case MON_DATA_MOVE4_MAX_PP:
         break;
-    case MON_DATA_HP_IV:
-        monDataBlockB->hpIV = u8Value[0];
-        break;
-    case MON_DATA_ATK_IV:
-        monDataBlockB->atkIV = u8Value[0];
-        break;
-    case MON_DATA_DEF_IV:
-        monDataBlockB->defIV = u8Value[0];
-        break;
-    case MON_DATA_SPEED_IV:
-        monDataBlockB->speedIV = u8Value[0];
-        break;
-    case MON_DATA_SPATK_IV:
-        monDataBlockB->spAtkIV = u8Value[0];
-        break;
-    case MON_DATA_SPDEF_IV:
-        monDataBlockB->spDefIV = u8Value[0];
-        break;
-    case MON_DATA_IS_EGG:
-        monDataBlockB->isEgg = u8Value[0];
-        break;
-    case MON_DATA_HAS_NICKNAME:
-        monDataBlockB->unk_10_31 = u8Value[0];
-        break;
-    case MON_DATA_78:
-    case MON_DATA_79:
-    case MON_DATA_80:
-    case MON_DATA_81:
-    case MON_DATA_82:
-    case MON_DATA_83:
-    case MON_DATA_84:
-    case MON_DATA_85:
-    case MON_DATA_86:
-    case MON_DATA_87:
-    case MON_DATA_88:
-    case MON_DATA_89:
-    case MON_DATA_90:
-    case MON_DATA_91:
-    case MON_DATA_92:
-    case MON_DATA_93:
-    case MON_DATA_94:
-    case MON_DATA_95:
-    case MON_DATA_96:
-    case MON_DATA_97:
-    case MON_DATA_CHAMPION_RIBBON:
-    case MON_DATA_WINNING_RIBBON:
-    case MON_DATA_VICTORY_RIBBON:
-    case MON_DATA_ARTIST_RIBBON:
-    case MON_DATA_EFFORT_RIBBON:
-    case MON_DATA_MARINE_RIBBON:
-    case MON_DATA_LAND_RIBBON:
-    case MON_DATA_SKY_RIBBON:
-    case MON_DATA_COUNTRY_RIBBON:
-    case MON_DATA_NATIONAL_RIBBON:
-    case MON_DATA_EARTH_RIBBON:
-    case MON_DATA_WORLD_RIBBON:
-    {
-        u64 bitMask = 1 << (param - MON_DATA_78);
 
-        if (u8Value[0]) {
-            monDataBlockB->unk_14 |= bitMask;
+    case MON_DATA_HP_IV:
+        monDataBlockB->hpIV = *u8Value;
+        break;
+
+    case MON_DATA_ATK_IV:
+        monDataBlockB->atkIV = *u8Value;
+        break;
+
+    case MON_DATA_DEF_IV:
+        monDataBlockB->defIV = *u8Value;
+        break;
+
+    case MON_DATA_SPEED_IV:
+        monDataBlockB->speedIV = *u8Value;
+        break;
+
+    case MON_DATA_SPATK_IV:
+        monDataBlockB->spAtkIV = *u8Value;
+        break;
+
+    case MON_DATA_SPDEF_IV:
+        monDataBlockB->spDefIV = *u8Value;
+        break;
+
+    case MON_DATA_IS_EGG:
+        monDataBlockB->isEgg = *u8Value;
+        break;
+
+    case MON_DATA_HAS_NICKNAME:
+        monDataBlockB->hasNickname = *u8Value;
+        break;
+
+    case MON_DATA_HOENN_COOL_RIBBON:
+    case MON_DATA_HOENN_COOL_RIBBON_SUPER:
+    case MON_DATA_HOENN_COOL_RIBBON_HYPER:
+    case MON_DATA_HOENN_COOL_RIBBON_MASTER:
+    case MON_DATA_HOENN_BEAUTY_RIBBON:
+    case MON_DATA_HOENN_BEAUTY_RIBBON_SUPER:
+    case MON_DATA_HOENN_BEAUTY_RIBBON_HYPER:
+    case MON_DATA_HOENN_BEAUTY_RIBBON_MASTER:
+    case MON_DATA_HOENN_CUTE_RIBBON:
+    case MON_DATA_HOENN_CUTE_RIBBON_SUPER:
+    case MON_DATA_HOENN_CUTE_RIBBON_HYPER:
+    case MON_DATA_HOENN_CUTE_RIBBON_MASTER:
+    case MON_DATA_HOENN_SMART_RIBBON:
+    case MON_DATA_HOENN_SMART_RIBBON_SUPER:
+    case MON_DATA_HOENN_SMART_RIBBON_HYPER:
+    case MON_DATA_HOENN_SMART_RIBBON_MASTER:
+    case MON_DATA_HOENN_TOUGH_RIBBON:
+    case MON_DATA_HOENN_TOUGH_RIBBON_SUPER:
+    case MON_DATA_HOENN_TOUGH_RIBBON_HYPER:
+    case MON_DATA_HOENN_TOUGH_RIBBON_MASTER:
+    case MON_DATA_HOENN_CHAMPION_RIBBON:
+    case MON_DATA_HOENN_WINNING_RIBBON:
+    case MON_DATA_HOENN_VICTORY_RIBBON:
+    case MON_DATA_HOENN_ARTIST_RIBBON:
+    case MON_DATA_HOENN_EFFORT_RIBBON:
+    case MON_DATA_HOENN_MARINE_RIBBON:
+    case MON_DATA_HOENN_LAND_RIBBON:
+    case MON_DATA_HOENN_SKY_RIBBON:
+    case MON_DATA_HOENN_COUNTRY_RIBBON:
+    case MON_DATA_HOENN_NATIONAL_RIBBON:
+    case MON_DATA_HOENN_EARTH_RIBBON:
+    case MON_DATA_HOENN_WORLD_RIBBON: {
+        u64 bit = 1 << (param - MON_DATA_HOENN_COOL_RIBBON);
+
+        if (*u8Value) {
+            monDataBlockB->hoennRibbons |= bit;
         } else {
-            monDataBlockB->unk_14 &= (bitMask ^ 0xffffffff);
+            monDataBlockB->hoennRibbons &= (bit ^ 0xFFFFFFFF);
         }
+
         break;
     }
+
     case MON_DATA_FATEFUL_ENCOUNTER:
-        monDataBlockB->fatefulEncounter = u8Value[0];
+        monDataBlockB->fatefulEncounter = *u8Value;
         break;
+
     case MON_DATA_GENDER:
         monDataBlockB->gender = Pokemon_GetGenderOf(monDataBlockA->species, boxMon->personality);
         break;
+
     case MON_DATA_FORM:
-        monDataBlockB->form = u8Value[0];
+        monDataBlockB->form = *u8Value;
         break;
-    case MON_DATA_113:
-        monDataBlockB->unk_19 = u8Value[0];
-        break;
-    case MON_DATA_114:
-        monDataBlockB->unk_1A = u16Value[0];
-        break;
-    case MON_DATA_118:
-    {
-        u16 v10[10 + 1];
 
-        MessageLoader_GetSpeciesName(monDataBlockA->species, 0, &v10[0]);
-        monDataBlockB->unk_10_31 = sub_0200220C(v10, &u16Value[0]);
+    case MON_DATA_DUMMY_B_1:
+        monDataBlockB->dummy_19 = *u8Value;
+        break;
+
+    case MON_DATA_DUMMY_B_2:
+        monDataBlockB->dummy_1A = *u16Value;
+        break;
+
+    case MON_DATA_NICKNAME_AND_FLAG: {
+        charcode_t baseName[MON_NAME_LEN + 1];
+
+        MessageLoader_GetSpeciesName(monDataBlockA->species, HEAP_ID_SYSTEM, baseName);
+        monDataBlockB->hasNickname = GF_strcmp(baseName, u16Value);
     }
+        // fall-through
     case MON_DATA_NICKNAME:
-        for (int i = 0; i < NELEMS(monDataBlockC->unk_00); i++) {
-            monDataBlockC->unk_00[i] = u16Value[i];
+        for (int i = 0; i < NELEMS(monDataBlockC->nickname); i++) {
+            monDataBlockC->nickname[i] = u16Value[i];
         }
         break;
-    case MON_DATA_120:
-    {
-        u16 v11[10 + 1];
-        u16 v12[10 + 1];
 
-        MessageLoader_GetSpeciesName(monDataBlockA->species, 0, &v11[0]);
-        Strbuf_ToChars(value, &v12[0], NELEMS(v12));
+    case MON_DATA_NICKNAME_STRBUF_AND_FLAG: {
+        charcode_t baseName[MON_NAME_LEN + 1];
+        charcode_t nickname[MON_NAME_LEN + 1];
 
-        monDataBlockB->unk_10_31 = sub_0200220C(v11, v12);
+        MessageLoader_GetSpeciesName(monDataBlockA->species, HEAP_ID_SYSTEM, baseName);
+        Strbuf_ToChars(value, nickname, NELEMS(nickname));
+
+        monDataBlockB->hasNickname = GF_strcmp(baseName, nickname);
     }
-    case MON_DATA_119:
-        Strbuf_ToChars(value, monDataBlockC->unk_00, NELEMS(monDataBlockC->unk_00));
+        // fall-through
+    case MON_DATA_NICKNAME_STRBUF:
+        Strbuf_ToChars(value, monDataBlockC->nickname, NELEMS(monDataBlockC->nickname));
         break;
-    case MON_DATA_121:
-        monDataBlockC->unk_16 = u8Value[0];
+
+    case MON_DATA_MET_GAME_REGION_CODE:
+        monDataBlockC->originCode = *u8Value;
         break;
+
     case MON_DATA_MET_GAME:
-        monDataBlockC->originGame = u8Value[0];
+        monDataBlockC->originGame = *u8Value;
         break;
-    case MON_DATA_123:
-    case MON_DATA_124:
-    case MON_DATA_125:
-    case MON_DATA_126:
-    case MON_DATA_127:
-    case MON_DATA_128:
-    case MON_DATA_129:
-    case MON_DATA_130:
-    case MON_DATA_131:
-    case MON_DATA_132:
-    case MON_DATA_133:
-    case MON_DATA_134:
-    case MON_DATA_135:
-    case MON_DATA_136:
-    case MON_DATA_137:
-    case MON_DATA_138:
-    case MON_DATA_139:
-    case MON_DATA_140:
-    case MON_DATA_141:
-    case MON_DATA_142:
-    case MON_DATA_143:
-    {
-        u64 bitMask = 1 << (param - MON_DATA_123);
 
-        if (u8Value[0]) {
-            monDataBlockC->unk_18 |= bitMask;
+    case MON_DATA_SINNOH_SUPER_COOL_RIBBON:
+    case MON_DATA_SINNOH_SUPER_COOL_RIBBON_GREAT:
+    case MON_DATA_SINNOH_SUPER_COOL_RIBBON_ULTRA:
+    case MON_DATA_SINNOH_SUPER_COOL_RIBBON_MASTER:
+    case MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON:
+    case MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON_GREAT:
+    case MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON_ULTRA:
+    case MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON_MASTER:
+    case MON_DATA_SINNOH_SUPER_CUTE_RIBBON:
+    case MON_DATA_SINNOH_SUPER_CUTE_RIBBON_GREAT:
+    case MON_DATA_SINNOH_SUPER_CUTE_RIBBON_ULTRA:
+    case MON_DATA_SINNOH_SUPER_CUTE_RIBBON_MASTER:
+    case MON_DATA_SINNOH_SUPER_SMART_RIBBON:
+    case MON_DATA_SINNOH_SUPER_SMART_RIBBON_GREAT:
+    case MON_DATA_SINNOH_SUPER_SMART_RIBBON_ULTRA:
+    case MON_DATA_SINNOH_SUPER_SMART_RIBBON_MASTER:
+    case MON_DATA_SINNOH_SUPER_TOUGH_RIBBON:
+    case MON_DATA_SINNOH_SUPER_TOUGH_RIBBON_GREAT:
+    case MON_DATA_SINNOH_SUPER_TOUGH_RIBBON_ULTRA:
+    case MON_DATA_SINNOH_SUPER_TOUGH_RIBBON_MASTER:
+    case MON_DATA_CONTEST_RIBBON_DUMMY: {
+        u64 bit = 1 << (param - MON_DATA_SINNOH_SUPER_COOL_RIBBON);
+
+        if (*u8Value) {
+            monDataBlockC->contestRibbons |= bit;
         } else {
-            monDataBlockC->unk_18 &= (bitMask ^ 0xffffffffffffffff);
+            monDataBlockC->contestRibbons &= (bit ^ 0xFFFFFFFFFFFFFFFF);
         }
+
         break;
     }
+
     case MON_DATA_OTNAME:
-        for (int i = 0; i < NELEMS(monDataBlockD->unk_00); i++) {
-            monDataBlockD->unk_00[i] = u16Value[i];
+        for (int i = 0; i < NELEMS(monDataBlockD->otName); i++) {
+            monDataBlockD->otName[i] = u16Value[i];
         }
         break;
-    case MON_DATA_145:
-        Strbuf_ToChars(value, monDataBlockD->unk_00, NELEMS(monDataBlockD->unk_00));
+
+    case MON_DATA_OTNAME_STRBUF:
+        Strbuf_ToChars(value, monDataBlockD->otName, NELEMS(monDataBlockD->otName));
         break;
-    case MON_DATA_146:
-        monDataBlockD->unk_10 = u8Value[0];
+
+    case MON_DATA_MET_YEAR:
+        monDataBlockD->metYear = *u8Value;
         break;
-    case MON_DATA_147:
-        monDataBlockD->unk_11 = u8Value[0];
+
+    case MON_DATA_MET_MONTH:
+        monDataBlockD->metMonth = *u8Value;
         break;
-    case MON_DATA_148:
-        monDataBlockD->unk_12 = u8Value[0];
+
+    case MON_DATA_MET_DAY:
+        monDataBlockD->metDay = *u8Value;
         break;
-    case MON_DATA_149:
-        monDataBlockD->unk_13 = u8Value[0];
+
+    case MON_DATA_HATCH_YEAR:
+        monDataBlockD->hatchYear = *u8Value;
         break;
-    case MON_DATA_150:
-        monDataBlockD->unk_14 = u8Value[0];
+
+    case MON_DATA_HATCH_MONTH:
+        monDataBlockD->hatchMonth = *u8Value;
         break;
-    case MON_DATA_151:
-        monDataBlockD->unk_15 = u8Value[0];
+
+    case MON_DATA_HATCH_DAY:
+        monDataBlockD->hatchDay = *u8Value;
         break;
+
     case MON_DATA_MET_LOCATION:
-    case MON_DATA_115:
-        if (u16Value[0] == 0 || sub_0201708C(u16Value[0]) == 1) {
-            monDataBlockD->unk_16 = u16Value[0];
-            monDataBlockB->unk_1C = u16Value[0];
+    case MON_DATA_FATEFUL_MET_LOCATION:
+        if (*u16Value == 0 || sub_0201708C(*u16Value) == TRUE) {
+            monDataBlockD->metLocation = *u16Value;
+            monDataBlockB->fatefulMetLocation = *u16Value;
         } else {
-            monDataBlockD->unk_16 = 3002;
-            monDataBlockB->unk_1C = u16Value[0];
+            monDataBlockD->metLocation = FATEFUL_ENCOUNTER_LOCATION;
+            monDataBlockB->fatefulMetLocation = *u16Value;
         }
         break;
-    case MON_DATA_153:
-    case MON_DATA_116:
-        if (u16Value[0] == 0 || sub_0201708C(u16Value[0]) == 1) {
-            monDataBlockD->unk_18 = u16Value[0];
-            monDataBlockB->unk_1E = u16Value[0];
+
+    case MON_DATA_HATCH_LOCATION:
+    case MON_DATA_FATEFUL_HATCH_LOCATION:
+        if (*u16Value == 0 || sub_0201708C(*u16Value) == TRUE) {
+            monDataBlockD->hatchLocation = *u16Value;
+            monDataBlockB->fatefulHatchLocation = *u16Value;
         } else {
-            monDataBlockD->unk_18 = 3002;
-            monDataBlockB->unk_1E = u16Value[0];
+            monDataBlockD->hatchLocation = FATEFUL_ENCOUNTER_LOCATION;
+            monDataBlockB->fatefulHatchLocation = *u16Value;
         }
         break;
+
     case MON_DATA_POKERUS:
-        monDataBlockD->pokerus = u8Value[0];
+        monDataBlockD->pokerus = *u8Value;
         break;
+
     case MON_DATA_POKEBALL:
-        monDataBlockD->pokeball = u8Value[0];
+        monDataBlockD->pokeball = *u8Value;
         break;
+
     case MON_DATA_MET_LEVEL:
-        monDataBlockD->metLevel = u8Value[0];
+        monDataBlockD->metLevel = *u8Value;
         break;
+
     case MON_DATA_OT_GENDER:
-        monDataBlockD->otGender = u8Value[0];
+        monDataBlockD->otGender = *u8Value;
         break;
-    case MON_DATA_158:
-        monDataBlockD->unk_1D = u8Value[0];
+
+    case MON_DATA_MET_TERRAIN:
+        monDataBlockD->metTerrain = *u8Value;
         break;
-    case MON_DATA_159:
-        monDataBlockD->unk_1E = u16Value[0];
+
+    case MON_DATA_DUMMY_D_1:
+        monDataBlockD->dummy_1E = *u16Value;
         break;
+
     case MON_DATA_COMBINED_IVS:
-        monDataBlockB->hpIV = (u32Value[0] >> 0) & 0x1f;
-        monDataBlockB->atkIV = (u32Value[0] >> 5) & 0x1f;
-        monDataBlockB->defIV = (u32Value[0] >> 10) & 0x1f;
-        monDataBlockB->speedIV = (u32Value[0] >> 15) & 0x1f;
-        monDataBlockB->spAtkIV = (u32Value[0] >> 20) & 0x1f;
-        monDataBlockB->spDefIV = (u32Value[0] >> 25) & 0x1f;
+        monDataBlockB->hpIV = (*u32Value >> 0) & 0x1F;
+        monDataBlockB->atkIV = (*u32Value >> 5) & 0x1F;
+        monDataBlockB->defIV = (*u32Value >> 10) & 0x1F;
+        monDataBlockB->speedIV = (*u32Value >> 15) & 0x1F;
+        monDataBlockB->spAtkIV = (*u32Value >> 20) & 0x1F;
+        monDataBlockB->spDefIV = (*u32Value >> 25) & 0x1F;
         break;
-    case MON_DATA_176:
+
+    case MON_DATA_NIDORAN_HAS_NICKNAME:
     case MON_DATA_TYPE_1:
     case MON_DATA_TYPE_2:
         break;
-    case MON_DATA_179:
-    {
-        Strbuf *strbuf;
 
-        strbuf = sub_0200B32C(monDataBlockA->species, 0);
+    case MON_DATA_SPECIES_NAME: {
+        Strbuf *strbuf = sub_0200B32C(monDataBlockA->species, HEAP_ID_SYSTEM);
 
-        Strbuf_ToChars(strbuf, monDataBlockC->unk_00, NELEMS(monDataBlockC->unk_00));
+        Strbuf_ToChars(strbuf, monDataBlockC->nickname, NELEMS(monDataBlockC->nickname));
         Strbuf_Free(strbuf);
+
+        break;
     }
-    break;
     }
 }
 
@@ -1532,7 +1696,7 @@ static void Pokemon_IncreaseDataInternal(Pokemon *mon, enum PokemonDataParam par
         break;
     case MON_DATA_STATUS_CONDITION:
     case MON_DATA_LEVEL:
-    case MON_DATA_162:
+    case MON_DATA_MAIL_ID:
     case MON_DATA_MAX_HP:
     case MON_DATA_ATK:
     case MON_DATA_DEF:
@@ -1709,134 +1873,134 @@ static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonData
         }
         break;
     case MON_DATA_PERSONALITY:
-    case MON_DATA_1:
-    case MON_DATA_2:
-    case MON_DATA_4:
+    case MON_DATA_IS_PARTY_DECRYPTED:
+    case MON_DATA_IS_BOX_DECRYPTED:
+    case MON_DATA_CHECKSUM:
     case MON_DATA_SPECIES:
     case MON_DATA_HELD_ITEM:
     case MON_DATA_OT_ID:
     case MON_DATA_ABILITY:
-    case MON_DATA_11:
+    case MON_DATA_MARKS:
     case MON_DATA_LANGUAGE:
-    case MON_DATA_25:
-    case MON_DATA_26:
-    case MON_DATA_27:
-    case MON_DATA_28:
-    case MON_DATA_29:
-    case MON_DATA_30:
-    case MON_DATA_31:
-    case MON_DATA_32:
-    case MON_DATA_33:
-    case MON_DATA_34:
-    case MON_DATA_35:
-    case MON_DATA_36:
-    case MON_DATA_37:
-    case MON_DATA_38:
-    case MON_DATA_39:
-    case MON_DATA_40:
-    case MON_DATA_41:
-    case MON_DATA_42:
-    case MON_DATA_43:
-    case MON_DATA_44:
-    case MON_DATA_45:
-    case MON_DATA_46:
-    case MON_DATA_47:
-    case MON_DATA_48:
-    case MON_DATA_49:
-    case MON_DATA_50:
-    case MON_DATA_51:
-    case MON_DATA_52:
-    case MON_DATA_53:
+    case MON_DATA_SINNOH_CHAMP_RIBBON:
+    case MON_DATA_SINNOH_ABILITY_RIBBON:
+    case MON_DATA_SINNOH_GREAT_ABILITY_RIBBON:
+    case MON_DATA_SINNOH_DOUBLE_ABILITY_RIBBON:
+    case MON_DATA_SINNOH_MULTI_ABILITY_RIBBON:
+    case MON_DATA_SINNOH_PAIR_ABILITY_RIBBON:
+    case MON_DATA_SINNOH_WORLD_ABILITY_RIBBON:
+    case MON_DATA_SINNOH_ALERT_RIBBON:
+    case MON_DATA_SINNOH_SHOCK_RIBBON:
+    case MON_DATA_SINNOH_DOWNCAST_RIBBON:
+    case MON_DATA_SINNOH_CARELESS_RIBBON:
+    case MON_DATA_SINNOH_RELAX_RIBBON:
+    case MON_DATA_SINNOH_SNOOZE_RIBBON:
+    case MON_DATA_SINNOH_SMILE_RIBBON:
+    case MON_DATA_SINNOH_GORGEOUS_RIBBON:
+    case MON_DATA_SINNOH_ROYAL_RIBBON:
+    case MON_DATA_SINNOH_GORGEOUS_ROYAL_RIBBON:
+    case MON_DATA_SINNOH_FOOTPRINT_RIBBON:
+    case MON_DATA_SINNOH_RECORD_RIBBON:
+    case MON_DATA_SINNOH_HISTORY_RIBBON:
+    case MON_DATA_SINNOH_LEGEND_RIBBON:
+    case MON_DATA_SINNOH_RED_RIBBON:
+    case MON_DATA_SINNOH_GREEN_RIBBON:
+    case MON_DATA_SINNOH_BLUE_RIBBON:
+    case MON_DATA_SINNOH_FESTIVAL_RIBBON:
+    case MON_DATA_SINNOH_CARNIVAL_RIBBON:
+    case MON_DATA_SINNOH_CLASSIC_RIBBON:
+    case MON_DATA_SINNOH_PREMIER_RIBBON:
+    case MON_DATA_SINNOH_RIBBON_DUMMY:
     case MON_DATA_MOVE1:
     case MON_DATA_MOVE2:
     case MON_DATA_MOVE3:
     case MON_DATA_MOVE4:
     case MON_DATA_IS_EGG:
     case MON_DATA_HAS_NICKNAME:
-    case MON_DATA_78:
-    case MON_DATA_79:
-    case MON_DATA_80:
-    case MON_DATA_81:
-    case MON_DATA_82:
-    case MON_DATA_83:
-    case MON_DATA_84:
-    case MON_DATA_85:
-    case MON_DATA_86:
-    case MON_DATA_87:
-    case MON_DATA_88:
-    case MON_DATA_89:
-    case MON_DATA_90:
-    case MON_DATA_91:
-    case MON_DATA_92:
-    case MON_DATA_93:
-    case MON_DATA_94:
-    case MON_DATA_95:
-    case MON_DATA_96:
-    case MON_DATA_97:
-    case MON_DATA_CHAMPION_RIBBON:
-    case MON_DATA_WINNING_RIBBON:
-    case MON_DATA_VICTORY_RIBBON:
-    case MON_DATA_ARTIST_RIBBON:
-    case MON_DATA_EFFORT_RIBBON:
-    case MON_DATA_MARINE_RIBBON:
-    case MON_DATA_LAND_RIBBON:
-    case MON_DATA_SKY_RIBBON:
-    case MON_DATA_COUNTRY_RIBBON:
-    case MON_DATA_NATIONAL_RIBBON:
-    case MON_DATA_EARTH_RIBBON:
-    case MON_DATA_WORLD_RIBBON:
+    case MON_DATA_HOENN_COOL_RIBBON:
+    case MON_DATA_HOENN_COOL_RIBBON_SUPER:
+    case MON_DATA_HOENN_COOL_RIBBON_HYPER:
+    case MON_DATA_HOENN_COOL_RIBBON_MASTER:
+    case MON_DATA_HOENN_BEAUTY_RIBBON:
+    case MON_DATA_HOENN_BEAUTY_RIBBON_SUPER:
+    case MON_DATA_HOENN_BEAUTY_RIBBON_HYPER:
+    case MON_DATA_HOENN_BEAUTY_RIBBON_MASTER:
+    case MON_DATA_HOENN_CUTE_RIBBON:
+    case MON_DATA_HOENN_CUTE_RIBBON_SUPER:
+    case MON_DATA_HOENN_CUTE_RIBBON_HYPER:
+    case MON_DATA_HOENN_CUTE_RIBBON_MASTER:
+    case MON_DATA_HOENN_SMART_RIBBON:
+    case MON_DATA_HOENN_SMART_RIBBON_SUPER:
+    case MON_DATA_HOENN_SMART_RIBBON_HYPER:
+    case MON_DATA_HOENN_SMART_RIBBON_MASTER:
+    case MON_DATA_HOENN_TOUGH_RIBBON:
+    case MON_DATA_HOENN_TOUGH_RIBBON_SUPER:
+    case MON_DATA_HOENN_TOUGH_RIBBON_HYPER:
+    case MON_DATA_HOENN_TOUGH_RIBBON_MASTER:
+    case MON_DATA_HOENN_CHAMPION_RIBBON:
+    case MON_DATA_HOENN_WINNING_RIBBON:
+    case MON_DATA_HOENN_VICTORY_RIBBON:
+    case MON_DATA_HOENN_ARTIST_RIBBON:
+    case MON_DATA_HOENN_EFFORT_RIBBON:
+    case MON_DATA_HOENN_MARINE_RIBBON:
+    case MON_DATA_HOENN_LAND_RIBBON:
+    case MON_DATA_HOENN_SKY_RIBBON:
+    case MON_DATA_HOENN_COUNTRY_RIBBON:
+    case MON_DATA_HOENN_NATIONAL_RIBBON:
+    case MON_DATA_HOENN_EARTH_RIBBON:
+    case MON_DATA_HOENN_WORLD_RIBBON:
     case MON_DATA_FATEFUL_ENCOUNTER:
     case MON_DATA_GENDER:
     case MON_DATA_FORM:
-    case MON_DATA_113:
-    case MON_DATA_114:
+    case MON_DATA_DUMMY_B_1:
+    case MON_DATA_DUMMY_B_2:
     case MON_DATA_NICKNAME:
-    case MON_DATA_119:
-    case MON_DATA_120:
-    case MON_DATA_121:
+    case MON_DATA_NICKNAME_STRBUF:
+    case MON_DATA_NICKNAME_STRBUF_AND_FLAG:
+    case MON_DATA_MET_GAME_REGION_CODE:
     case MON_DATA_MET_GAME:
-    case MON_DATA_123:
-    case MON_DATA_124:
-    case MON_DATA_125:
-    case MON_DATA_126:
-    case MON_DATA_127:
-    case MON_DATA_128:
-    case MON_DATA_129:
-    case MON_DATA_130:
-    case MON_DATA_131:
-    case MON_DATA_132:
-    case MON_DATA_133:
-    case MON_DATA_134:
-    case MON_DATA_135:
-    case MON_DATA_136:
-    case MON_DATA_137:
-    case MON_DATA_138:
-    case MON_DATA_139:
-    case MON_DATA_140:
-    case MON_DATA_141:
-    case MON_DATA_142:
-    case MON_DATA_143:
+    case MON_DATA_SINNOH_SUPER_COOL_RIBBON:
+    case MON_DATA_SINNOH_SUPER_COOL_RIBBON_GREAT:
+    case MON_DATA_SINNOH_SUPER_COOL_RIBBON_ULTRA:
+    case MON_DATA_SINNOH_SUPER_COOL_RIBBON_MASTER:
+    case MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON:
+    case MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON_GREAT:
+    case MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON_ULTRA:
+    case MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON_MASTER:
+    case MON_DATA_SINNOH_SUPER_CUTE_RIBBON:
+    case MON_DATA_SINNOH_SUPER_CUTE_RIBBON_GREAT:
+    case MON_DATA_SINNOH_SUPER_CUTE_RIBBON_ULTRA:
+    case MON_DATA_SINNOH_SUPER_CUTE_RIBBON_MASTER:
+    case MON_DATA_SINNOH_SUPER_SMART_RIBBON:
+    case MON_DATA_SINNOH_SUPER_SMART_RIBBON_GREAT:
+    case MON_DATA_SINNOH_SUPER_SMART_RIBBON_ULTRA:
+    case MON_DATA_SINNOH_SUPER_SMART_RIBBON_MASTER:
+    case MON_DATA_SINNOH_SUPER_TOUGH_RIBBON:
+    case MON_DATA_SINNOH_SUPER_TOUGH_RIBBON_GREAT:
+    case MON_DATA_SINNOH_SUPER_TOUGH_RIBBON_ULTRA:
+    case MON_DATA_SINNOH_SUPER_TOUGH_RIBBON_MASTER:
+    case MON_DATA_CONTEST_RIBBON_DUMMY:
     case MON_DATA_OTNAME:
-    case MON_DATA_145:
-    case MON_DATA_146:
-    case MON_DATA_147:
-    case MON_DATA_148:
-    case MON_DATA_149:
-    case MON_DATA_150:
-    case MON_DATA_151:
+    case MON_DATA_OTNAME_STRBUF:
+    case MON_DATA_MET_YEAR:
+    case MON_DATA_MET_MONTH:
+    case MON_DATA_MET_DAY:
+    case MON_DATA_HATCH_YEAR:
+    case MON_DATA_HATCH_MONTH:
+    case MON_DATA_HATCH_DAY:
     case MON_DATA_MET_LOCATION:
-    case MON_DATA_153:
+    case MON_DATA_HATCH_LOCATION:
     case MON_DATA_POKERUS:
     case MON_DATA_POKEBALL:
     case MON_DATA_MET_LEVEL:
     case MON_DATA_OT_GENDER:
-    case MON_DATA_158:
-    case MON_DATA_159:
+    case MON_DATA_MET_TERRAIN:
+    case MON_DATA_DUMMY_D_1:
     case MON_DATA_COMBINED_IVS:
-    case MON_DATA_176:
+    case MON_DATA_NIDORAN_HAS_NICKNAME:
     case MON_DATA_TYPE_1:
     case MON_DATA_TYPE_2:
-    case MON_DATA_179:
+    case MON_DATA_SPECIES_NAME:
     default:
         GF_ASSERT(0);
         break;
@@ -2037,16 +2201,16 @@ u32 Pokemon_GetSpeciesBaseExpAt(int monSpecies, int monLevel)
     return Pokemon_GetExpRateBaseExpAt(PokemonPersonalData_GetSpeciesValue(monSpecies, MON_DATA_PERSONAL_EXP_RATE), monLevel);
 }
 
-static void Pokemon_LoadExperienceTableOf(int monExpRate, u32 *monExpTable)
+static void Pokemon_LoadExperienceTableOf(enum PokemonExpRate monExpRate, u32 *monExpTable)
 {
-    // TODO const for table size, enum for exp rate types
+    // TODO const for table size
     GF_ASSERT(monExpRate < 8);
     NARC_ReadWholeMemberByIndexPair(monExpTable, NARC_INDEX_POKETOOL__PERSONAL__PL_GROWTBL, monExpRate);
 }
 
-static u32 Pokemon_GetExpRateBaseExpAt(int monExpRate, int monLevel)
+static u32 Pokemon_GetExpRateBaseExpAt(enum PokemonExpRate monExpRate, int monLevel)
 {
-    // TODO const for table size, enum for exp rate types
+    // TODO const for table size
     GF_ASSERT(monExpRate < 8);
     GF_ASSERT(monLevel <= 101);
 
@@ -2087,10 +2251,10 @@ u32 Pokemon_GetSpeciesLevelAt(u16 monSpecies, u32 monExp)
 
 u32 PokemonPersonalData_GetLevelAt(PokemonPersonalData *monPersonalData, u16 unused_monSpecies, u32 monExp)
 {
-    // TODO const for table size, enum for exp rate types
+    // TODO const for table size
     static u32 monExpTable[101];
 
-    int monExpRate = PokemonPersonalData_GetValue(monPersonalData, MON_DATA_PERSONAL_EXP_RATE);
+    enum PokemonExpRate monExpRate = PokemonPersonalData_GetValue(monPersonalData, MON_DATA_PERSONAL_EXP_RATE);
     Pokemon_LoadExperienceTableOf(monExpRate, monExpTable);
 
     int i;
@@ -2955,7 +3119,7 @@ void sub_0207697C(ArchivedSprite *param0, u16 param1)
     param0->personality = 0;
 }
 
-static const UnkStruct_ov104_0223F9E0 Unk_020F05E4 = {
+static const SpriteTemplate Unk_020F05E4 = {
     0x0,
     0x0,
     0x0,
@@ -2977,9 +3141,9 @@ static const int Unk_020F0588[] = {
     0x1
 };
 
-CellActorData *sub_02076994(CellTransferStateData *param0, AnimationResourceCollection *param1, PaletteSys *param2, int param3, int param4, int param5, int param6, int param7, int heapID)
+CellActorData *sub_02076994(SpriteRenderer *param0, SpriteGfxHandler *param1, PaletteData *param2, int param3, int param4, int param5, int param6, int param7, int heapID)
 {
-    UnkStruct_ov104_0223F9E0 v0;
+    SpriteTemplate v0;
     CellActorData *v1;
     NARC *narc;
     UnkStruct_ov5_021DE5D0 v3;
@@ -2994,25 +3158,25 @@ CellActorData *sub_02076994(CellTransferStateData *param0, AnimationResourceColl
 
     narc = NARC_ctor(v3.unk_00, heapID);
 
-    sub_0200CC3C(param0, param1, narc, v3.unk_04, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 20015 + param7);
-    sub_0200CDC4(param2, 2, param0, param1, narc, v3.unk_08, 0, v4, NNS_G2D_VRAM_TYPE_2DMAIN, 20010 + param7);
-    sub_0200CE24(param0, param1, narc, v3.unk_0C, 0, 20007 + param7);
-    sub_0200CE54(param0, param1, narc, v3.unk_10, 0, 20007 + param7);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(param0, param1, narc, v3.unk_04, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 20015 + param7);
+    SpriteRenderer_LoadPalette(param2, 2, param0, param1, narc, v3.unk_08, 0, v4, NNS_G2D_VRAM_TYPE_2DMAIN, 20010 + param7);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(param0, param1, narc, v3.unk_0C, 0, 20007 + param7);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0, param1, narc, v3.unk_10, 0, 20007 + param7);
     NARC_dtor(narc);
 
     v0 = Unk_020F05E4;
 
     // TODO enum values?
-    v0.unk_14[0] = 20015 + param7;
-    v0.unk_14[1] = 20010 + param7;
-    v0.unk_14[2] = 20007 + param7;
-    v0.unk_14[3] = 20007 + param7;
-    v0.unk_08 = Unk_020F0588[param7];
+    v0.resources[0] = 20015 + param7;
+    v0.resources[1] = 20010 + param7;
+    v0.resources[2] = 20007 + param7;
+    v0.resources[3] = 20007 + param7;
+    v0.priority = Unk_020F0588[param7];
 
-    v1 = sub_0200CE6C(param0, param1, &v0);
+    v1 = SpriteActor_LoadResources(param0, param1, &v0);
 
     sub_02021F24(v1->unk_00, 0);
-    sub_0200D4C4(v1, param3, param4);
+    SpriteActor_SetSpritePositionXY(v1, param3, param4);
     sub_0200D330(v1);
     sub_0200D390(v1, 1);
 
@@ -3610,7 +3774,7 @@ void Pokemon_FromBoxPokemon(BoxPokemon *boxMon, Pokemon *mon)
     Pokemon_SetValue(mon, MON_DATA_170, v1);
     Heap_FreeToHeap(v1);
 
-    Pokemon_SetValue(mon, MON_DATA_162, &zero);
+    Pokemon_SetValue(mon, MON_DATA_MAIL_ID, &zero);
 
     UnkStruct_0202CA28 v2;
     MI_CpuClearFast(&v2, sizeof(UnkStruct_0202CA28));
@@ -3640,22 +3804,21 @@ u8 Party_GetMaxLevel(Party *party)
     return result;
 }
 
-u16 sub_020775A4(u16 param0)
+u16 Pokemon_SinnohDexNumber(u16 species)
 {
     u16 result;
 
-    NARC_ReadFromMemberByIndexPair(&result, NARC_INDEX_POKETOOL__PL_POKEZUKAN, 0, param0 * 2, 2);
+    NARC_ReadFromMemberByIndexPair(&result, NARC_INDEX_POKETOOL__PL_POKEZUKAN, 0, species * 2, 2);
 
     return result;
 }
 
-u16 sub_020775C4(u16 param0)
+u16 Pokemon_NationalDexNumber(u16 sinnohDexNumber)
 {
     u16 result = 0;
 
-    // TODO enum value?
-    if (param0 <= 210) {
-        NARC_ReadFromMemberByIndexPair(&result, NARC_INDEX_POKETOOL__SHINZUKAN, 0, param0 * 2, 2);
+    if (sinnohDexNumber <= LOCAL_DEX_COUNT) {
+        NARC_ReadFromMemberByIndexPair(&result, NARC_INDEX_POKETOOL__SHINZUKAN, 0, sinnohDexNumber * 2, 2);
     }
 
     return result;
@@ -4241,7 +4404,7 @@ static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *pa
     UpdateBoxMonStatusAndTrainerInfo(boxMon, param1, 0, param3, param5);
     BoxPokemon_SetValue(boxMon, MON_DATA_MET_GAME, &Unk_020E4C40);
     BoxPokemon_SetValue(boxMon, MON_DATA_POKEBALL, &monPokeball);
-    BoxPokemon_SetValue(boxMon, MON_DATA_158, &param4);
+    BoxPokemon_SetValue(boxMon, MON_DATA_MET_TERRAIN, &param4);
 }
 
 void Pokemon_UpdateAfterCatch(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5)
@@ -4637,7 +4800,7 @@ BOOL sub_0207884C(BoxPokemon *boxMon, TrainerInfo *param1, int heapID)
     Strbuf *v5 = Strbuf_Init(8, heapID);
     BOOL v6 = FALSE;
 
-    BoxPokemon_GetValue(boxMon, MON_DATA_145, v5);
+    BoxPokemon_GetValue(boxMon, MON_DATA_OTNAME_STRBUF, v5);
 
     if (v0 == monOTID && v2 == monOtGender && Strbuf_Compare(v4, v5) == 0) {
         v6 = TRUE;
@@ -4689,7 +4852,7 @@ void sub_0207893C(Pokemon *mon)
     UnkStruct_0202CA28 v1;
     MI_CpuClearFast(&v1, sizeof(UnkStruct_0202CA28));
 
-    Pokemon_SetValue(mon, MON_DATA_162, &zero);
+    Pokemon_SetValue(mon, MON_DATA_MAIL_ID, &zero);
     Pokemon_SetValue(mon, MON_DATA_171, &v1);
 }
 
@@ -4785,7 +4948,7 @@ BOOL Pokemon_SetBallSeal(int param0, Pokemon *mon, int heapID)
 
     UnkStruct_0202CA28 v2;
     NARC_ReadFromMember(narc, 0, v0 * sizeof(UnkStruct_0202CA28), sizeof(UnkStruct_0202CA28), &v2);
-    Pokemon_SetValue(mon, MON_DATA_162, &one);
+    Pokemon_SetValue(mon, MON_DATA_MAIL_ID, &one);
     Pokemon_SetValue(mon, MON_DATA_171, &v2);
     NARC_dtor(narc);
 
@@ -4838,17 +5001,17 @@ void sub_02078B40(Pokemon *mon, UnkStruct_02078B40 *param1)
     param1->spAtkIV = monDataBlockB->spAtkIV;
     param1->spDefIV = monDataBlockB->spDefIV;
     param1->isEgg = monDataBlockB->isEgg;
-    param1->unk_2C_31 = monDataBlockB->unk_10_31;
+    param1->unk_2C_31 = monDataBlockB->hasNickname;
     param1->fatefulEncounter = monDataBlockB->fatefulEncounter;
     param1->gender = monDataBlockB->gender;
     param1->form = monDataBlockB->form;
 
     for (i = 0; i < 10 + 1; i++) {
-        param1->unk_32[i] = monDataBlockC->unk_00[i];
+        param1->unk_32[i] = monDataBlockC->nickname[i];
     }
 
     for (i = 0; i < 7 + 1; i++) {
-        param1->unk_48[i] = monDataBlockD->unk_00[i];
+        param1->unk_48[i] = monDataBlockD->otName[i];
     }
 
     param1->pokeball = monDataBlockD->pokeball;
@@ -4914,17 +5077,17 @@ void sub_02078E0C(UnkStruct_02078B40 *param0, Pokemon *mon)
     monDataBlockB->spAtkIV = param0->spAtkIV;
     monDataBlockB->spDefIV = param0->spDefIV;
     monDataBlockB->isEgg = param0->isEgg;
-    monDataBlockB->unk_10_31 = param0->unk_2C_31;
+    monDataBlockB->hasNickname = param0->unk_2C_31;
     monDataBlockB->fatefulEncounter = param0->fatefulEncounter;
     monDataBlockB->gender = param0->gender;
     monDataBlockB->form = param0->form;
 
     for (i = 0; i < 10 + 1; i++) {
-        monDataBlockC->unk_00[i] = param0->unk_32[i];
+        monDataBlockC->nickname[i] = param0->unk_32[i];
     }
 
     for (i = 0; i < 7 + 1; i++) {
-        monDataBlockD->unk_00[i] = param0->unk_48[i];
+        monDataBlockD->otName[i] = param0->unk_48[i];
     }
 
     monDataBlockD->pokeball = param0->pokeball;

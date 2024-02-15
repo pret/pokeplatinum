@@ -58,10 +58,10 @@ typedef struct {
     BGL * unk_0C;
     Window unk_10[16];
     MessageLoader * unk_110;
-    UnkStruct_0200B358 * unk_114;
+    StringFormatter * unk_114;
     Strbuf* unk_118;
     Strbuf* unk_11C;
-    PaletteSys * unk_120;
+    PaletteData * unk_120;
     const AnimationControlFlags * unk_124;
     SaveData * unk_128;
     UnkStruct_0203068C * unk_12C;
@@ -487,7 +487,7 @@ static u8 ov110_021D1324 (UnkStruct_ov110_021D0F78 * param0, Window * param1, in
     if (param9)
         BGL_FillWindow(param1, param7);
     MessageLoader_GetStrbuf(param0->unk_110, param2, param0->unk_11C);
-    sub_0200C388(param0->unk_114, param0->unk_118, param0->unk_11C);
+    StringFormatter_Format(param0->unk_114, param0->unk_118, param0->unk_11C);
     
     switch(param10) {
     case 1:

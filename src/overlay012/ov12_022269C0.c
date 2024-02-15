@@ -8,7 +8,7 @@
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
@@ -34,8 +34,8 @@ typedef struct {
 typedef struct {
     u8 unk_00;
     UnkStruct_ov12_0221FCDC * unk_04;
-    CellTransferStateData * unk_08;
-    AnimationResourceCollection * unk_0C;
+    SpriteRenderer * unk_08;
+    SpriteGfxHandler * unk_0C;
     CellActorData * unk_10;
     CellActorData * unk_14[100];
     GraphicElementData * unk_1A4[10];
@@ -133,9 +133,9 @@ static void ov12_02226AAC (SysTask * param0, void * param1)
 
     switch (v0->unk_00) {
     case 0:
-        sub_0200D324(v0->unk_14[0]->unk_00);
-        sub_0200D324(v0->unk_14[1]->unk_00);
-        sub_0200D324(v0->unk_14[2]->unk_00);
+        SpriteActor_UpdateObject(v0->unk_14[0]->unk_00);
+        SpriteActor_UpdateObject(v0->unk_14[1]->unk_00);
+        SpriteActor_UpdateObject(v0->unk_14[2]->unk_00);
 
         sub_0200D5AC(v0->unk_14[0]->unk_00, 1, 0);
         sub_0200D5AC(v0->unk_14[1]->unk_00, -1, 0);
@@ -155,10 +155,10 @@ static void ov12_02226AAC (SysTask * param0, void * param1)
     }
 }
 
-void ov12_02226B1C (UnkStruct_ov12_0221FCDC * param0, CellTransferStateData * param1, AnimationResourceCollection * param2, CellActorData * param3)
+void ov12_02226B1C (UnkStruct_ov12_0221FCDC * param0, SpriteRenderer * param1, SpriteGfxHandler * param2, CellActorData * param3)
 {
     UnkStruct_ov12_02226AAC * v0;
-    UnkStruct_ov104_0223F9E0 v1;
+    SpriteTemplate v1;
 
     v0 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov12_02226AAC));
 
@@ -177,7 +177,7 @@ void ov12_02226B1C (UnkStruct_ov12_0221FCDC * param0, CellTransferStateData * pa
         int v2;
 
         for (v2 = 1; v2 < 3; v2++) {
-            v0->unk_14[v2] = sub_0200CE6C(v0->unk_08, v0->unk_0C, &v1);
+            v0->unk_14[v2] = SpriteActor_LoadResources(v0->unk_08, v0->unk_0C, &v1);
         }
     }
 

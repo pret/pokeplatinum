@@ -86,13 +86,13 @@ struct UnkStruct_ov111_021D0F7C_t {
     VecFx32 unk_28;
     void * unk_34;
     MessageLoader * unk_38;
-    UnkStruct_0200B358 * unk_3C;
+    StringFormatter * unk_3C;
     Strbuf* unk_40;
     Strbuf* unk_44;
     u16 unk_48[8];
     BGL * unk_58;
     Window unk_5C[16];
-    PaletteSys * unk_15C;
+    PaletteData * unk_15C;
     UnkStruct_0200C440 * unk_160;
     AnimationControlFlags * unk_164;
     SaveData * unk_168;
@@ -1533,7 +1533,7 @@ static u8 ov111_021D23C4 (UnkStruct_ov111_021D0F7C * param0, Window * param1, in
 {
     BGL_FillWindow(param1, param8);
     MessageLoader_GetStrbuf(param0->unk_38, param2, param0->unk_44);
-    sub_0200C388(param0->unk_3C, param0->unk_40, param0->unk_44);
+    StringFormatter_Format(param0->unk_3C, param0->unk_40, param0->unk_44);
 
     return sub_0201D78C(param1, param9, param0->unk_40, param3, param4, param5, (u32)((((param6) & 0xff) << 16) | (((param7) & 0xff) << 8) | (((param8) & 0xff) << 0)), NULL);
 }
@@ -1542,7 +1542,7 @@ static u8 ov111_021D2424 (UnkStruct_ov111_021D0F7C * param0, Window * param1, in
 {
     BGL_FillWindow(param1, param8);
     MessageLoader_GetStrbuf(param0->unk_38, param2, param0->unk_44);
-    sub_0200C388(param0->unk_3C, param0->unk_40, param0->unk_44);
+    StringFormatter_Format(param0->unk_3C, param0->unk_40, param0->unk_44);
     param3 -= (sub_02002D7C(param9, param0->unk_40, 0) + 1) / 2;
     return sub_0201D78C(param1, param9, param0->unk_40, param3, param4, param5, (u32)((((param6) & 0xff) << 16) | (((param7) & 0xff) << 8) | (((param8) & 0xff) << 0)), NULL);
 }

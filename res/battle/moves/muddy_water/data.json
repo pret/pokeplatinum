@@ -6,15 +6,15 @@
     "accuracy": 85,
     "pp": 10,
     "effect": {
-        "type": "MOVE_EFFECT_LOWER_ACCURACY_HIT",
+        "type": "BATTLE_EFFECT_LOWER_ACCURACY_HIT",
         "chance": 30
     },
     "range": "RANGE_ADJACENT_OPPONENTS",
     "priority": 0,
     "flags": [
-        "MOVE_FLAG_PROTECT",
-        "MOVE_FLAG_MIRROR_MOVE",
-        "MOVE_FLAG_KINGS_ROCK"
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
     ],
     "contest": {
         "effect": 18,

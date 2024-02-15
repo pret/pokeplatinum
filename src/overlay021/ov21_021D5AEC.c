@@ -581,7 +581,7 @@ static BOOL ov21_021D601C (UnkStruct_ov21_021D5B68 * param0, UnkStruct_ov21_021D
     if (param0->unk_2C) {
         int v0 = ov21_021D3898(param0->unk_04);
 
-        if (ov21_021D38B0(param0->unk_04, v0) != (493 + 1)) {
+        if (ov21_021D38B0(param0->unk_04, v0) != (NATIONAL_DEX_COUNT + 1)) {
             ov21_021D7464(param1, param0);
             Sound_PlayEffect(1501);
             return 1;
@@ -845,20 +845,20 @@ static void ov21_021D6744 (UnkStruct_ov21_021D71A8 * param0, UnkStruct_ov21_021D
 
     for (v1 = 0; v1 < 9; v1++) {
         param0->unk_00[v1] = sub_02021B90(&v0);
-        sub_02021D6C(param0->unk_00[v1], 0);
+        SpriteActor_SetSpriteAnimActive(param0->unk_00[v1], 0);
     }
 
     v0.unk_14 = 0;
 
     for (v1 = 0; v1 < 9; v1++) {
         param0->unk_50[v1] = sub_02021B90(&v0);
-        sub_02021D6C(param0->unk_50[v1], 1);
+        SpriteActor_SetSpriteAnimActive(param0->unk_50[v1], 1);
     }
 
     v0.unk_14 = 0;
     param0->unk_74 = sub_02021B90(&v0);
 
-    sub_02021D6C(param0->unk_74, 2);
+    SpriteActor_SetSpriteAnimActive(param0->unk_74, 2);
 
     v0.unk_14 = 0;
     v0.unk_08.x = 56 << FX32_SHIFT;
@@ -905,7 +905,7 @@ static void ov21_021D67EC (UnkStruct_ov21_021D71A8 * param0, UnkStruct_ov21_021D
         if ((v1 >= 0) && (v1 < v3)) {
             v7 = ov21_021D38B0(param2->unk_04, v1);
 
-            if (v7 != (493 + 1)) {
+            if (v7 != (NATIONAL_DEX_COUNT + 1)) {
                 v6 = ov21_021D37DC(param2->unk_04, v7);
                 v5 = ov21_021D16D8(param1, param2->unk_04, param3, v6->unk_00);
                 v4.unk_04 = v5;
@@ -933,7 +933,7 @@ static void ov21_021D68C8 (UnkStruct_ov21_021D71A8 * param0, UnkStruct_ov21_021D
     v0 = ov21_021D375C(param2->unk_04);
     v2 = ov21_021D37DC(param2->unk_04, v0);
 
-    if (ov21_021D38B0(param2->unk_04, v1) == (493 + 1)) {
+    if (ov21_021D38B0(param2->unk_04, v1) == (NATIONAL_DEX_COUNT + 1)) {
         ov21_021D217C(param1, 0);
 
         if (param0->unk_7C) {
@@ -1110,7 +1110,7 @@ static void ov21_021D6AE4 (UnkStruct_ov21_021D71A8 * param0, const UnkStruct_ov2
         if ((v5 >= 0) && (v5 < v7)) {
             v11 = ov21_021D38B0(param1->unk_04, v5);
 
-            if (v11 != (493 + 1)) {
+            if (v11 != (NATIONAL_DEX_COUNT + 1)) {
                 v8 = ov21_021D37DC(param1->unk_04, v11);
 
                 if (v8->unk_04 == 2) {
@@ -1246,7 +1246,7 @@ static void ov21_021D6CC8 (UnkStruct_ov21_021D71A8 * param0, UnkStruct_ov21_021D
         if ((v3 < v1) && (v3 >= 0)) {
             v4 = ov21_021D38B0(param2->unk_04, v3);
 
-            if (v4 != (493 + 1)) {
+            if (v4 != (NATIONAL_DEX_COUNT + 1)) {
                 ov21_021D6D78(param0, param1, param2, param3, v2, v4);
             } else {
                 ov21_021D6DF4(param0, param1, param3, v2, v3 + 1);

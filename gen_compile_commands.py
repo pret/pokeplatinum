@@ -207,6 +207,8 @@ c_commands = [
             f'-I{homedir}/lib/spl/include',
             f'-iquote{homedir}',
             f'-iquote{homedir}/include',
+            f'-iquote{homedir}/build', # Meson includes this implicitly
+            f'-iquote{homedir}/build/res/text', # GMM-generated headers
             f'-include{homedir}/include/pch/global_pch.h',
             '-mthumb',
             '-o',

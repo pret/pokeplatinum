@@ -582,7 +582,7 @@ int ov104_02236D10 (UnkStruct_ov104_0223BA10 * param0)
     for (v5 = v2; v5 < (v0 + v2); v5++) {
         v9 = Party_GetPokemonBySlotIndex(param0->unk_28, v5);
 
-        if (Pokemon_GetValue(v9, MON_DATA_172, NULL) == 0) {
+        if (Pokemon_GetValue(v9, MON_DATA_SPECIES_EXISTS, NULL) == 0) {
             continue;
         }
 
@@ -809,14 +809,14 @@ static void ov104_02237284 (UnkStruct_ov104_022320B4 * param0, Window * param1, 
     sub_0200B60C(param0->unk_44, 0, param3, 4, 1, 1);
     MessageLoader_GetStrbuf(v0, 2, v1);
 
-    sub_0200C388(param0->unk_44, v2, v1);
-    sub_0201D738(param1, 0, v2, 16, 2 * 8, 0xff, NULL);
+    StringFormatter_Format(param0->unk_44, v2, v1);
+    PrintStringSimple(param1, 0, v2, 16, 2 * 8, 0xff, NULL);
     sub_0200B498(param0->unk_44, 0, param2);
 
     MessageLoader_GetStrbuf(v0, 0, v1);
 
-    sub_0200C388(param0->unk_44, v2, v1);
-    sub_0201D738(param1, 0, v2, 0, 0, 0, NULL);
+    StringFormatter_Format(param0->unk_44, v2, v1);
+    PrintStringSimple(param1, 0, v2, 0, 0, 0, NULL);
 
     Strbuf_Free(v1);
     Strbuf_Free(v2);

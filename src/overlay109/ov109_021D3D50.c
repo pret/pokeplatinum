@@ -663,7 +663,7 @@ static void ov109_021D4518 (UnkStruct_ov109_021D5140 * param0)
             param0->unk_29C[v0 + 1] = sub_02021AA0(&v1);
 
             sub_02021CC8(param0->unk_29C[v0 + 1], 1);
-            sub_02021D6C(param0->unk_29C[v0 + 1], 27 + (v0 - 1) * 2);
+            SpriteActor_SetSpriteAnimActive(param0->unk_29C[v0 + 1], 27 + (v0 - 1) * 2);
             sub_02021CAC(param0->unk_29C[v0 + 1], 0);
         }
 
@@ -1579,15 +1579,15 @@ static void ov109_021D55A8 (UnkStruct_ov109_021D5140 * param0, int param1, int p
     v0 = Strbuf_Init((90 * 2), 95);
 
     MessageLoader_GetStrbuf(param0->unk_38, param1, v0);
-    sub_0200C388(param0->unk_34, param0->unk_54, v0);
+    StringFormatter_Format(param0->unk_34, param0->unk_54, v0);
     Strbuf_Free(v0);
     BGL_FillWindow(&param0->unk_35C, 0xf0f);
     sub_0200E060(&param0->unk_35C, 0, 1, 10);
 
     if (param2 == 0) {
-        param0->unk_5C = sub_0201D738(&param0->unk_35C, 1, param0->unk_54, 0, 0, ov109_021D5854(param0), NULL);
+        param0->unk_5C = PrintStringSimple(&param0->unk_35C, 1, param0->unk_54, 0, 0, ov109_021D5854(param0), NULL);
     } else {
-        sub_0201D738(&param0->unk_35C, 1, param0->unk_54, 0, 0, 0, NULL);
+        PrintStringSimple(&param0->unk_35C, 1, param0->unk_54, 0, 0, 0, NULL);
         param0->unk_5C = 0xff;
     }
 }
@@ -1628,10 +1628,10 @@ static void ov109_021D5668 (UnkStruct_ov109_021D5140 * param0)
             v2 = TrainerInfo_Appearance(param0->unk_3D8[v0][0]);
 
             if (sub_0203608C() == v0) {
-                sub_02021D6C(param0->unk_29C[v0 + 1], 38 + v3 * 2);
+                SpriteActor_SetSpriteAnimActive(param0->unk_29C[v0 + 1], 38 + v3 * 2);
             } else {
                 ov109_021D57E0(param0->unk_3A0, param0->unk_3B0, v0, v2, v3);
-                sub_02021D6C(param0->unk_29C[v0 + 1], 27 + v0 * 2);
+                SpriteActor_SetSpriteAnimActive(param0->unk_29C[v0 + 1], 27 + v0 * 2);
             }
         }
             sub_02021CAC(param0->unk_29C[v0 + 1], 1);
@@ -1644,9 +1644,9 @@ static void ov109_021D5668 (UnkStruct_ov109_021D5140 * param0)
             if (sub_0203608C() == v0) {
                 int v4 = TrainerInfo_Gender(param0->unk_3D8[v0][0]);
 
-                sub_02021D6C(param0->unk_29C[v0 + 1], 38 + v4 * 2 + 1);
+                SpriteActor_SetSpriteAnimActive(param0->unk_29C[v0 + 1], 38 + v4 * 2 + 1);
             } else {
-                sub_02021D6C(param0->unk_29C[v0 + 1], 27 + v0 * 2 + 1);
+                SpriteActor_SetSpriteAnimActive(param0->unk_29C[v0 + 1], 27 + v0 * 2 + 1);
             }
 
             param0->unk_400[v0] = 0;

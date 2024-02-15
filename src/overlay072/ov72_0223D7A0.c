@@ -543,7 +543,7 @@ static void ov72_0223DF58 (UnkStruct_ov72_0223DB98 * param0)
             param0->unk_2B4[v0] = sub_02021AA0(&v1);
 
             sub_02021CC8(param0->unk_2B4[v0], 1);
-            sub_02021D6C(param0->unk_2B4[v0], Unk_ov72_0223EB3C[v0][2]);
+            SpriteActor_SetSpriteAnimActive(param0->unk_2B4[v0], Unk_ov72_0223EB3C[v0][2]);
             sub_02021E90(param0->unk_2B4[v0], 0);
 
             if (v0 == 0) {
@@ -703,9 +703,9 @@ static void ov72_0223E388 (GraphicElementData ** param0, int param1)
 
     for (v0 = 0; v0 < 1; v0++) {
         if (v0 == param1) {
-            sub_02021D6C(param0[v0], Unk_ov72_0223EB3C[v0][2] + 1);
+            SpriteActor_SetSpriteAnimActive(param0[v0], Unk_ov72_0223EB3C[v0][2] + 1);
         } else {
-            sub_02021D6C(param0[v0], Unk_ov72_0223EB3C[v0][2]);
+            SpriteActor_SetSpriteAnimActive(param0[v0], Unk_ov72_0223EB3C[v0][2]);
         }
     }
 }
@@ -713,9 +713,9 @@ static void ov72_0223E388 (GraphicElementData ** param0, int param1)
 static void ov72_0223E3A8 (GraphicElementData ** param0, BOOL param1)
 {
     if (param1 == 1) {
-        sub_02021D6C(param0[0], Unk_ov72_0223EB3C[0][2] + 1);
+        SpriteActor_SetSpriteAnimActive(param0[0], Unk_ov72_0223EB3C[0][2] + 1);
     } else {
-        sub_02021D6C(param0[0], Unk_ov72_0223EB3C[0][2]);
+        SpriteActor_SetSpriteAnimActive(param0[0], Unk_ov72_0223EB3C[0][2]);
     }
 }
 
@@ -1104,12 +1104,12 @@ static void ov72_0223E930 (UnkStruct_ov72_0223DB98 * param0, int param1)
     v0 = Strbuf_Init((40 * 2), 39);
 
     MessageLoader_GetStrbuf(param0->unk_14, param1, v0);
-    sub_0200C388(param0->unk_10, param0->unk_34, v0);
+    StringFormatter_Format(param0->unk_10, param0->unk_34, v0);
     Strbuf_Free(v0);
     BGL_FillWindow(&param0->unk_338, 0xf0f);
     sub_0200E060(&param0->unk_338, 0, 1, 10);
 
-    param0->unk_38 = sub_0201D738(&param0->unk_338, 1, param0->unk_34, 0, 0, sub_02027AC0(param0->unk_0C), NULL);
+    param0->unk_38 = PrintStringSimple(&param0->unk_338, 1, param0->unk_34, 0, 0, sub_02027AC0(param0->unk_0C), NULL);
 }
 
 static int ov72_0223E99C (int param0)

@@ -299,12 +299,12 @@ static void ov76_0223D600 (UnkStruct_ov76_0223DE00 * param0, int param1, BOOL pa
     }
 
     ov76_0223C0EC(param0->unk_3C4[param1], &v0, &v1);
-    sub_0200D4C4(param0->unk_2F4[param1], v0, v1);
+    SpriteActor_SetSpritePositionXY(param0->unk_2F4[param1], v0, v1);
 
     if (param2 == 1) {
         param0->unk_3C4[v2] = param0->unk_3C4[param1];
         ov76_0223C0EC(param0->unk_3C4[v2], &v0, &v1);
-        sub_0200D4C4(param0->unk_2F4[v2], v0, v1);
+        SpriteActor_SetSpritePositionXY(param0->unk_2F4[v2], v0, v1);
     }
 }
 
@@ -1151,7 +1151,7 @@ static BOOL ov76_0223DF94 (UnkStruct_ov76_0223DE00 * param0)
             break;
         }
 
-        sub_0200D3F4(param0->unk_2F4[1], 0);
+        SpriteActor_EnableObject(param0->unk_2F4[1], 0);
         ov76_0223D494(param0, 0, 0xff, 0);
         ov76_0223CA30(&param0->unk_D4.unk_18[0], 7);
         ov76_0223CDA4(param0);
@@ -1174,7 +1174,7 @@ static BOOL ov76_0223DF94 (UnkStruct_ov76_0223DE00 * param0)
 
             v15 = sub_02098164(param0->unk_324[v13].unk_04);
             ov76_0223CDC4(&param0->unk_D4.unk_18[0], v15);
-            sub_0200D4C4(param0->unk_324[v13].unk_08, v11, v12);
+            SpriteActor_SetSpritePositionXY(param0->unk_324[v13].unk_08, v11, v12);
             ov76_0223B758(param0, v13);
             ov76_0223B7D4(param0, v13);
         } else {
@@ -1284,7 +1284,7 @@ static BOOL ov76_0223E9C4 (UnkStruct_ov76_0223DE00 * param0)
         sub_0200D474(param0->unk_2F4[1], 20);
         sub_0200D364(param0->unk_2F4[0], 1);
         ov76_0223CA30(&param0->unk_D4.unk_18[0], 10);
-        sub_0200D3F4(param0->unk_2F4[1], 1);
+        SpriteActor_EnableObject(param0->unk_2F4[1], 1);
         param0->unk_3D4++;
     case 1:
     {
@@ -1303,7 +1303,7 @@ static BOOL ov76_0223E9C4 (UnkStruct_ov76_0223DE00 * param0)
             param0->unk_3D4 = 2;
             Sound_PlayEffect(1500);
         } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
-            sub_0200D3F4(param0->unk_2F4[1], 0);
+            SpriteActor_EnableObject(param0->unk_2F4[1], 0);
             ov76_0223D600(param0, 0, 1);
             param0->unk_3D4 = 3;
             Sound_PlayEffect(1501);

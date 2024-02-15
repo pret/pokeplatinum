@@ -71,7 +71,7 @@ void ov62_02248408 (BattleRecording * param0, BattleParams * param1, int param2)
         for (v11 = 0; v11 < v12; v11++) {
             v13 = Party_GetPokemonBySlotIndex(param1->parties[v4], v11);
 
-            if (Pokemon_GetValue(v13, MON_DATA_172, NULL) == 0) {
+            if (Pokemon_GetValue(v13, MON_DATA_SPECIES_EXISTS, NULL) == 0) {
                 break;
             }
 

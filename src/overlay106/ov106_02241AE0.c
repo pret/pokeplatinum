@@ -97,7 +97,7 @@ struct UnkStruct_ov106_02243118_t {
     u8 unk_1E;
     u8 unk_1F;
     MessageLoader * unk_20;
-    UnkStruct_0200B358 * unk_24;
+    StringFormatter * unk_24;
     Strbuf* unk_28;
     Strbuf* unk_2C;
     Strbuf* unk_30[2];
@@ -107,7 +107,7 @@ struct UnkStruct_ov106_02243118_t {
     UnkStruct_02081CF4 unk_8C;
     UIControlData * unk_98;
     ResourceMetadata unk_9C[2];
-    PaletteSys * unk_AC;
+    PaletteData * unk_AC;
     UnkStruct_0200C440 * unk_B0;
     AnimationControlFlags * unk_B4;
     SaveData * unk_B8;
@@ -1068,7 +1068,7 @@ static u8 ov106_02242918 (UnkStruct_ov106_02243118 * param0, Window * param1, in
 {
     BGL_FillWindow(param1, param8);
     MessageLoader_GetStrbuf(param0->unk_20, param2, param0->unk_2C);
-    sub_0200C388(param0->unk_24, param0->unk_28, param0->unk_2C);
+    StringFormatter_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
 
     return sub_0201D78C(param1, param9, param0->unk_28, param3, param4, param5, (u32)((((param6) & 0xff) << 16) | (((param7) & 0xff) << 8) | (((param8) & 0xff) << 0)), NULL);
 }
@@ -1145,7 +1145,7 @@ static void ov106_02242AC4 (UnkStruct_ov106_02243118 * param0, Window * param1, 
     u16 v6[(10 + 1)];
 
     v5 = Party_GetPokemonBySlotIndex(param0->unk_290, 0);
-    Pokemon_GetValue(v5, MON_DATA_179, v6);
+    Pokemon_GetValue(v5, MON_DATA_SPECIES_NAME, v6);
     BGL_FillWindow(param1, param6);
 
     v4 = Strbuf_Init((10 + 1), 98);

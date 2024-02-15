@@ -87,7 +87,7 @@ void ov107_02249BB8 (UnkStruct_ov107_02249B8C * param0, u16 param1, u16 param2)
 void ov107_02249BEC (UnkStruct_ov107_02249B8C * param0, u32 param1)
 {
     sub_02021CE4(param0->unk_04, FX32_ONE);
-    sub_02021D6C(param0->unk_04, param1);
+    SpriteActor_SetSpriteAnimActive(param0->unk_04, param1);
 
     return;
 }

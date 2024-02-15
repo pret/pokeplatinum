@@ -16,7 +16,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -37,13 +37,23 @@
 #include "overlay016/struct_ov16_02268A14_decl.h"
 #include "overlay016/struct_ov16_0226D160_decl.h"
 
+#include "battle/party_gauge.h"
+
 #include "enums.h"
 
 #define ENEMY_IN_SLOT_RIGHT 0
 #define ENEMY_IN_SLOT_LEFT  2
 
 BGL * BattleSystem_BGL(BattleSystem * param0);
-Window * BattleSystem_Window(BattleSystem * param0, int param1);
+
+/**
+ * @brief Get one of the allocated windows for the battle display.
+ * 
+ * @param battleSys 
+ * @param idx 
+ * @return 
+ */
+Window* BattleSystem_Window(BattleSystem *battleSys, int idx);
 u32 BattleSystem_BattleType(BattleSystem * param0);
 BattleContext * BattleSystem_Context(BattleSystem * param0);
 BattlerData * BattleSystem_BattlerData(BattleSystem * param0, int param1);
@@ -80,18 +90,18 @@ int BattleSystem_PartyCount(BattleSystem *battleSys, int battler);
 Pokemon* BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slot);
 UnkStruct_02007768 * ov16_0223E000(BattleSystem * param0);
 UnkStruct_ov12_0221FCDC * ov16_0223E008(BattleSystem * param0);
-CellTransferStateData * ov16_0223E010(BattleSystem * param0);
-AnimationResourceCollection * ov16_0223E018(BattleSystem * param0);
+SpriteRenderer * ov16_0223E010(BattleSystem * param0);
+SpriteGfxHandler * ov16_0223E018(BattleSystem * param0);
 UnkStruct_ov16_02268520 * ov16_0223E020(BattleSystem * param0, int param1);
 UnkStruct_ov16_02268A14 * ov16_0223E02C(BattleSystem * param0);
-UnkStruct_ov16_0226D160 * ov16_0223E034(BattleSystem * param0, UnkEnum_ov16_0226D194 param1);
-void ov16_0223E040(BattleSystem * param0, UnkEnum_ov16_0226D194 param1, UnkStruct_ov16_0226D160 * param2);
+PartyGauge * ov16_0223E034(BattleSystem * param0, enum PartyGaugeSide param1);
+void ov16_0223E040(BattleSystem * param0, enum PartyGaugeSide param1, PartyGauge * param2);
 UnkStruct_0200C440 * ov16_0223E04C(BattleSystem * param0);
 UnkStruct_0200C440 * ov16_0223E054(BattleSystem * param0);
 MessageLoader * BattleSystem_MessageLoader(BattleSystem * param0);
 MessageLoader * ov16_0223E060(BattleSystem * param0);
-PaletteSys * BattleSystem_PaletteSys(BattleSystem * param0);
-UnkStruct_02026324 * ov16_0223E068(BattleSystem * param0);
+PaletteData * BattleSystem_PaletteSys(BattleSystem * param0);
+PokedexData * ov16_0223E068(BattleSystem * param0);
 u8 * ov16_0223E06C(BattleSystem * param0);
 u8 * ov16_0223E074(BattleSystem * param0);
 u16 * ov16_0223E080(BattleSystem * param0);
@@ -101,7 +111,7 @@ u16 * ov16_0223E0A4(BattleSystem * param0);
 u16 * ov16_0223E0B0(BattleSystem * param0);
 u16 * ov16_0223E0BC(BattleSystem * param0);
 UnkStruct_ov16_0223E0C8 * ov16_0223E0C8(BattleSystem * param0);
-UnkStruct_0200B358 * ov16_0223E0D0(BattleSystem * param0);
+StringFormatter * BattleSystem_StringFormatter(BattleSystem * param0);
 Strbuf* ov16_0223E0D4(BattleSystem * param0);
 
 /**
@@ -223,8 +233,8 @@ void ov16_0223F24C(BattleSystem * param0, int param1);
 void ov16_0223F268(BattleSystem * param0);
 void BattleSystem_SetCommandSelectionFlags(BattleSystem *battleSys, int flags);
 void ov16_0223F290(BattleSystem * param0, int param1);
-void * ov16_0223F29C(BattleSystem * param0);
-void ov16_0223F2A4(BattleSystem * param0, void * param1);
+void * Battle_WaitDial(BattleSystem * param0);
+void Battle_SetWaitDial(BattleSystem * param0, void * param1);
 UnkStruct_ov16_0223E0C8 * ov16_0223F2AC(BattleSystem * param0, int param1);
 u8 * ov16_0223F2B8(UnkStruct_ov16_0223E0C8 * param0, int param1);
 void ov16_0223F2CC(UnkStruct_ov16_0223E0C8 * param0, int param1, int param2);
@@ -290,9 +300,19 @@ void ov16_0223F9A0(BattleSystem * param0, int param1);
  * FALSE if not.
  */
 BOOL BattleSystem_CaughtSpecies(BattleSystem *battleSys, int species);
-void ov16_0223F9F0(void);
+void Battle_SetDefaultBlend(void);
 u8 ov16_0223F9FC(BattleSystem * param0, int param1, int param2, int param3, int param4);
-u8 BattleMessage_Print(BattleSystem * param0, MessageLoader * param1, BattleMessage * param2, int param3);
+
+/**
+ * @brief Print a BattleMessage to the main text display window.
+ * 
+ * @param battleSys 
+ * @param msgLoader 
+ * @param battleMsg 
+ * @param renderDelay   Delay in flames applied to rendering between each character of the string.
+ * @return 
+ */
+u8 BattleMessage_Print(BattleSystem *battleSys, MessageLoader *msgLoader, BattleMessage *battleMsg, int renderDelay);
 u8 BattleMessage_PrintToWindow(BattleSystem * param0, Window * param1, MessageLoader * param2, BattleMessage * param3, int param4, int param5, int param6, int param7, int param8);
 
 #endif // POKEPLATINUM_OV16_0223DF00_H

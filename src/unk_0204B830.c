@@ -2,6 +2,7 @@
 #include <string.h>
 
 #include "inlines.h"
+#include "constants/species.h"
 
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
@@ -47,7 +48,7 @@
 
 typedef struct {
     UnkStruct_0203CDB0 * unk_00;
-    UnkStruct_0200B358 * unk_04;
+    StringFormatter * unk_04;
     void * unk_08;
 } UnkStruct_0204B830;
 
@@ -65,7 +66,7 @@ typedef struct {
 
 static const UnkStruct_020EBE94 Unk_020EBE94[13];
 
-static void sub_0204B830 (UnkStruct_0204B830 * param0, UnkStruct_0203CDB0 * param1, UnkStruct_0200B358 * param2, void * param3)
+static void sub_0204B830 (UnkStruct_0204B830 * param0, UnkStruct_0203CDB0 * param1, StringFormatter * param2, void * param3)
 {
     param0->unk_00 = param1;
     param0->unk_04 = param2;
@@ -136,7 +137,7 @@ BOOL sub_0204B85C (UnkStruct_0203E724 * param0)
     {
         UnkStruct_0204B830 v5;
         const UnkStruct_020EBE94 * v6 = &Unk_020EBE94[sub_0204B838(param0->unk_34) - 1];
-        UnkStruct_0200B358 ** v7 = sub_0203F098(param0->unk_34, 15);
+        StringFormatter ** v7 = sub_0203F098(param0->unk_34, 15);
         u16 * v8 = inline_0204FCAC(param0);
         u16 * v9 = inline_0204FCAC(param0);
 
@@ -148,7 +149,7 @@ BOOL sub_0204B85C (UnkStruct_0203E724 * param0)
     {
         UnkStruct_0204B830 v10;
         const UnkStruct_020EBE94 * v11 = &Unk_020EBE94[sub_0204B838(param0->unk_34) - 1];
-        UnkStruct_0200B358 ** v12 = sub_0203F098(param0->unk_34, 15);
+        StringFormatter ** v12 = sub_0203F098(param0->unk_34, 15);
         u16 * v13 = inline_0204FCAC(param0);
         u16 * v14 = inline_0204FCAC(param0);
 
@@ -248,43 +249,43 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
 
     v13 = sub_0202D79C(param0->unk_0C);
 
-    if (Pokemon_GetValue(v4, MON_DATA_46, 0)) {
+    if (Pokemon_GetValue(v4, MON_DATA_SINNOH_RED_RIBBON, 0)) {
         v13[sub_02092444(73)] = v14[0];
     }
 
-    if (Pokemon_GetValue(v4, MON_DATA_47, 0)) {
+    if (Pokemon_GetValue(v4, MON_DATA_SINNOH_GREEN_RIBBON, 0)) {
         v13[sub_02092444(74)] = v14[1];
     }
 
-    if (Pokemon_GetValue(v4, MON_DATA_48, 0)) {
+    if (Pokemon_GetValue(v4, MON_DATA_SINNOH_BLUE_RIBBON, 0)) {
         v13[sub_02092444(75)] = v14[2];
     }
 
-    if (Pokemon_GetValue(v4, MON_DATA_49, 0)) {
+    if (Pokemon_GetValue(v4, MON_DATA_SINNOH_FESTIVAL_RIBBON, 0)) {
         v13[sub_02092444(76)] = v14[3];
     }
 
-    if (Pokemon_GetValue(v4, MON_DATA_50, 0)) {
+    if (Pokemon_GetValue(v4, MON_DATA_SINNOH_CARNIVAL_RIBBON, 0)) {
         v13[sub_02092444(77)] = v14[4];
     }
 
-    if (Pokemon_GetValue(v4, MON_DATA_51, 0)) {
+    if (Pokemon_GetValue(v4, MON_DATA_SINNOH_CLASSIC_RIBBON, 0)) {
         v13[sub_02092444(78)] = v14[5];
     }
 
-    if (Pokemon_GetValue(v4, MON_DATA_52, 0)) {
+    if (Pokemon_GetValue(v4, MON_DATA_SINNOH_PREMIER_RIBBON, 0)) {
         v13[sub_02092444(79)] = v14[6];
     }
 
-    if (Pokemon_GetValue(v4, MON_DATA_MARINE_RIBBON, 0)) {
+    if (Pokemon_GetValue(v4, MON_DATA_HOENN_MARINE_RIBBON, 0)) {
         v13[sub_02092444(25)] = v14[7];
     }
 
-    if (Pokemon_GetValue(v4, MON_DATA_LAND_RIBBON, 0)) {
+    if (Pokemon_GetValue(v4, MON_DATA_HOENN_LAND_RIBBON, 0)) {
         v13[sub_02092444(26)] = v14[8];
     }
 
-    if (Pokemon_GetValue(v4, MON_DATA_SKY_RIBBON, 0)) {
+    if (Pokemon_GetValue(v4, MON_DATA_HOENN_SKY_RIBBON, 0)) {
         v13[sub_02092444(27)] = v14[9];
     }
 
@@ -306,7 +307,7 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
 
     sub_0209304C(v4, v1, 4, sub_02017070(2, v12), 32);
 
-    if (Pokemon_GetValue(v4, MON_DATA_SPECIES, NULL) == 493) {
+    if (Pokemon_GetValue(v4, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
         if (Pokemon_GetValue(v4, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1) {
             if (sub_0206B5F8(v2) == 0) {
                 sub_0206B608(v2, 1);

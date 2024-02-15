@@ -141,7 +141,7 @@ typedef struct {
     UnkStruct_ov104_0223EBD0 * unk_2C;
 } UnkStruct_ov104_02231148;
 
-void ov104_0223DC7C(int param0, BGL * param1, CellTransferStateData * param2, AnimationResourceCollection * param3, PaletteSys * param4, u16 * param5, s16 param6, s16 param7);
+void ov104_0223DC7C(int param0, BGL * param1, SpriteRenderer * param2, SpriteGfxHandler * param3, PaletteData * param4, u16 * param5, s16 param6, s16 param7);
 u16 ov104_0222FC8C(UnkStruct_ov104_0222E930 * param0, u16 param1);
 u16 * ov104_0222FC14(UnkStruct_ov104_0222E930 * param0, u16 param1);
 static BOOL ov104_0222FCA0(UnkStruct_ov104_0222E930 * param0);
@@ -1332,8 +1332,8 @@ static BOOL ov104_0223066C (UnkStruct_ov104_0222E930 * param0)
         v9 = (*((param0)->unk_1C++));
         v10 = ov104_0223D2FC(v1, v9, v4);
 
-        sub_0200D4C4(v10, v5, v6);
-        sub_0200D3F4(v10, v7);
+        SpriteActor_SetSpritePositionXY(v10, v5, v6);
+        SpriteActor_EnableObject(v10, v7);
 
         ov104_0223D378(v1, v9, v8);
     }
@@ -1365,7 +1365,7 @@ static BOOL ov104_02230728 (UnkStruct_ov104_0222E930 * param0)
     v4 = ov104_0223D370(v1, v2);
 
     GF_ASSERT(v4 != NULL);
-    sub_0200D3F4(v4, v3);
+    SpriteActor_EnableObject(v4, v3);
 
     return 0;
 }
@@ -1789,7 +1789,7 @@ static BOOL ov104_02230CC4 (UnkStruct_ov104_0222E930 * param0)
 {
     UnkStruct_ov104_022320B4 * v0 = param0->unk_00;
 
-    sub_0200EBA0(v0->unk_7C);
+    DeleteWaitDial(v0->unk_7C);
     return 0;
 }
 

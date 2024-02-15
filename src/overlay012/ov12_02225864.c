@@ -72,7 +72,7 @@ typedef struct UnkStruct_ov12_022267D4_t {
     s8 unk_15;
     s8 unk_16;
     s8 unk_17;
-    PaletteSys * unk_18;
+    PaletteData * unk_18;
 } UnkStruct_ov12_022267D4;
 
 static void ov12_022268DC(u16 * param0, u16 param1);
@@ -217,7 +217,7 @@ u32 ov12_022259AC (fx32 param0, fx32 param1, fx32 param2)
 
 void ov12_022259DC (UnkStruct_ov12_02225F6C * param0, CellActorData * param1, s16 param2, s16 param3)
 {
-    sub_0200D4C4(param1, param2 + param0->unk_00, param3 + param0->unk_02);
+    SpriteActor_SetSpritePositionXY(param1, param2 + param0->unk_00, param3 + param0->unk_02);
 }
 
 void ov12_022259FC (UnkStruct_ov12_02225F6C * param0, CellActorData * param1)
@@ -620,8 +620,8 @@ void ov12_0222605C (CellActorData * param0, s16 param1, s16 param2, fx32 param3,
         v1 = param1 - param2;
     }
 
-    sub_0200D550(param0, &v2, &v3);
-    sub_0200D4C4(param0, v2, v1 + v0);
+    SpriteActor_GetSpritePositionXY(param0, &v2, &v3);
+    SpriteActor_SetSpritePositionXY(param0, v2, v1 + v0);
 }
 
 BOOL ov12_022260A8 (UnkStruct_ov12_02225F6C * param0, CellActorData * param1)
@@ -749,7 +749,7 @@ void ov12_022261C4 (UnkStruct_ov12_02226274 * param0, UnkStruct_ov12_02225F6C * 
     param0->unk_98[3] = param11;
 
     for (v0 = 0; v0 < param0->unk_AC; v0++) {
-        sub_0200D3F4(param0->unk_98[v0], 0);
+        SpriteActor_EnableObject(param0->unk_98[v0], 0);
     }
 }
 
@@ -764,7 +764,7 @@ BOOL ov12_02226274 (UnkStruct_ov12_02226274 * param0)
     }
 
     if (param0->unk_A8 <= param0->unk_AA) {
-        sub_0200D3F4(param0->unk_98[param0->unk_AD], 1);
+        SpriteActor_EnableObject(param0->unk_98[param0->unk_AD], 1);
         param0->unk_AD++;
         param0->unk_AA = 0;
     }
@@ -778,13 +778,13 @@ BOOL ov12_02226274 (UnkStruct_ov12_02226274 * param0)
 
         if (v1[v0]) {
             if (param0->unk_AE == 0) {
-                sub_0200D4C4(param0->unk_98[v0], param0->unk_00 + param0->unk_04[v0].unk_00, param0->unk_02 + param0->unk_04[v0].unk_02);
+                SpriteActor_SetSpritePositionXY(param0->unk_98[v0], param0->unk_00 + param0->unk_04[v0].unk_00, param0->unk_02 + param0->unk_04[v0].unk_02);
             } else {
                 ov12_02225FA4(&param0->unk_04[v0], &v2, &v3);
                 sub_0200D6E8(param0->unk_98[v0], v2, v3);
             }
         } else {
-            sub_0200D3F4(param0->unk_98[v0], 0);
+            SpriteActor_EnableObject(param0->unk_98[v0], 0);
         }
     }
 
@@ -1154,7 +1154,7 @@ void ov12_02226858 (UnkStruct_ov12_022267D4 * param0)
     Heap_FreeToHeap(param0);
 }
 
-UnkStruct_ov12_022267D4 * ov12_02226870 (PaletteSys * param0, int param1, int param2, u16 param3, u16 param4, s8 param5, s8 param6, u8 param7, u8 param8, u16 param9, int param10)
+UnkStruct_ov12_022267D4 * ov12_02226870 (PaletteData * param0, int param1, int param2, u16 param3, u16 param4, s8 param5, s8 param6, u8 param7, u8 param8, u16 param9, int param10)
 {
     UnkStruct_ov12_022267D4 * v0 = NULL;
 
@@ -1203,7 +1203,7 @@ static void ov12_022268DC (u16 * param0, u16 param1)
 
 void ov12_02226924 (UnkStruct_ov12_0221FCDC * param0)
 {
-    PaletteSys * v0;
+    PaletteData * v0;
     u16 * v1;
 
     v0 = ov12_0222332C(param0);
@@ -1218,7 +1218,7 @@ void ov12_02226924 (UnkStruct_ov12_0221FCDC * param0)
 
 void ov12_02226954 (UnkStruct_ov12_0221FCDC * param0)
 {
-    PaletteSys * v0;
+    PaletteData * v0;
 
     v0 = ov12_0222332C(param0);
 

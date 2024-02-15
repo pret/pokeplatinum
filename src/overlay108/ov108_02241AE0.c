@@ -201,7 +201,7 @@ struct UnkStruct_ov108_02241DB0_t {
     u8 unk_44[32];
     u8 unk_64;
     MessageLoader * unk_68;
-    UnkStruct_0200B358 * unk_6C;
+    StringFormatter * unk_6C;
     Strbuf* unk_70;
     Strbuf* unk_74;
     Strbuf* unk_78[2];
@@ -211,7 +211,7 @@ struct UnkStruct_ov108_02241DB0_t {
     UnkStruct_02081CF4 unk_B4;
     UIControlData * unk_C0;
     ResourceMetadata unk_C4[2];
-    PaletteSys * unk_D4;
+    PaletteData * unk_D4;
     AnimationControlFlags * unk_D8;
     SaveData * unk_DC;
     UnkStruct_020304A0 * unk_E0;

@@ -6,7 +6,7 @@
     "accuracy": 0,
     "pp": 20,
     "effect": {
-        "type": "MOVE_EFFECT_MAKE_GLOBAL_TARGET",
+        "type": "BATTLE_EFFECT_MAKE_GLOBAL_TARGET",
         "chance": 0
     },
     "range": "RANGE_USER",

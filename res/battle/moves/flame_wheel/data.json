@@ -6,15 +6,15 @@
     "accuracy": 100,
     "pp": 25,
     "effect": {
-        "type": "MOVE_EFFECT_THAW_AND_BURN_HIT",
+        "type": "BATTLE_EFFECT_THAW_AND_BURN_HIT",
         "chance": 10
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,
     "flags": [
-        "MOVE_FLAG_CONTACT",
-        "MOVE_FLAG_PROTECT",
-        "MOVE_FLAG_MIRROR_MOVE"
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
     ],
     "contest": {
         "effect": 7,

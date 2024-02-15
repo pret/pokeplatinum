@@ -6,7 +6,7 @@
 
 typedef struct {
     SysTask * unk_00;
-    PaletteSys * unk_04;
+    PaletteData * unk_04;
     s32 unk_08;
     const u16 * unk_0C;
     u8 unk_10;

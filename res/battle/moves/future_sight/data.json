@@ -6,7 +6,7 @@
     "accuracy": 90,
     "pp": 15,
     "effect": {
-        "type": "MOVE_EFFECT_HIT_IN_3_TURNS",
+        "type": "BATTLE_EFFECT_HIT_IN_3_TURNS",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

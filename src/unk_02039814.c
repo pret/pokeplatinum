@@ -89,7 +89,7 @@ void sub_02039834 (int param0, int param1, int param2)
     MessageLoader * v2;
     Strbuf* v3;
     Strbuf* v4;
-    UnkStruct_0200B358 * v5;
+    StringFormatter * v5;
     int v6;
 
     switch (param1) {
@@ -165,9 +165,9 @@ void sub_02039834 (int param0, int param1, int param2)
 
     sub_0200B60C(v5, 0, param2, 5, 2, 1);
     MessageLoader_GetStrbuf(v2, v6, v4);
-    sub_0200C388(v5, v3, v4);
+    StringFormatter_Format(v5, v3, v4);
 
-    sub_0201D738(&v1, 0, v3, 0, 0, 0, NULL);
+    PrintStringSimple(&v1, 0, v3, 0, 0, 0, NULL);
     Strbuf_Free(v3);
 
     GXLayers_TurnBothDispOn();

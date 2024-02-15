@@ -21,7 +21,7 @@ void sub_0200E2A4(BGL * param0, u8 param1, u16 param2, u8 param3, u8 param4, u16
 void sub_0200E69C(Window * param0, u8 param1, u16 param2, u8 param3, u8 param4);
 void sub_0200E744(Window * param0, u8 param1, u8 param2);
 void * sub_0200E7FC(Window * param0, u32 param1);
-void sub_0200EBA0(void * param0);
+void DeleteWaitDial(void * param0);
 void sub_0200EBC8(void * param0);
 u8 * sub_0200EBF0(BGL * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 param5, u16 param6, u8 param7, int param8);
 u8 * sub_0200EC48(BGL * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 param5, Pokemon * param6, int param7);

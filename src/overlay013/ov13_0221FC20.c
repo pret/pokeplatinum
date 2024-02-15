@@ -893,7 +893,7 @@ static u8 ov13_022208A4 (UnkStruct_ov13_022213F0 * param0)
             param0->unk_04[v0->unk_11].unk_17_3 = sub_0208E9F0(param0->unk_04[v0->unk_11].unk_00);
 
             if (param0->unk_04[v0->unk_11].unk_17_3 == 7) {
-                sub_0200D3F4(param0->unk_1FB4[13 + v0->unk_11], 0);
+                SpriteActor_EnableObject(param0->unk_1FB4[13 + v0->unk_11], 0);
                 ov13_022234A8(param0, v0->unk_11);
             }
 
@@ -1223,7 +1223,7 @@ static void ov13_02220F98 (UnkStruct_ov13_022213F0 * param0)
         param0->unk_04[v0].unk_15 = (u8)Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_TYPE_2, NULL);
         param0->unk_04[v0].unk_16_0 = (u8)Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_LEVEL, NULL);
 
-        if (Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_176, NULL) == 1) {
+        if (Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_NIDORAN_HAS_NICKNAME, NULL) == 1) {
             param0->unk_04[v0].unk_16_7 = 0;
         } else {
             param0->unk_04[v0].unk_16_7 = 1;
@@ -1248,7 +1248,7 @@ static void ov13_02220F98 (UnkStruct_ov13_022213F0 * param0)
         param0->unk_04[v0].unk_2A = (u8)Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_CUTE, NULL);
         param0->unk_04[v0].unk_2B = (u8)Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_SMART, NULL);
         param0->unk_04[v0].unk_2C = (u8)Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_TOUGH, NULL);
-        param0->unk_04[v0].unk_2D = (u16)Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_162, NULL);
+        param0->unk_04[v0].unk_2D = (u16)Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_MAIL_ID, NULL);
         param0->unk_04[v0].unk_2E = (u8)Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_FORM, NULL);
 
         for (v1 = 0; v1 < 4; v1++) {
@@ -1613,23 +1613,23 @@ static u8 ov13_022217A4 (UnkStruct_ov13_022213F0 * param0)
             v2 = BattleSystem_Partner(param0->unk_00->unk_08, param0->unk_00->unk_28);
             sub_0200BA74(param0->unk_1FA8, 0, BattleSystem_TrainerData(param0->unk_00->unk_08, v2));
         }
-        sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v1);
+        StringFormatter_Format(param0->unk_1FA8, param0->unk_1FAC, v1);
         Strbuf_Free(v1);
         return 0;
     }
 
     if (v0->unk_10 == 0) {
         v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 77);
-        sub_0200B5CC(param0->unk_1FA8, 0, Pokemon_GetBoxPokemon(v0->unk_00));
-        sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v1);
+        StringFormatter_BufferNickname(param0->unk_1FA8, 0, Pokemon_GetBoxPokemon(v0->unk_00));
+        StringFormatter_Format(param0->unk_1FA8, param0->unk_1FAC, v1);
         Strbuf_Free(v1);
         return 0;
     }
 
     if ((param0->unk_00->unk_2C[param0->unk_00->unk_11] == param0->unk_00->unk_14) || (param0->unk_00->unk_2C[param0->unk_00->unk_11] == param0->unk_00->unk_15)) {
         v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 76);
-        sub_0200B5CC(param0->unk_1FA8, 0, Pokemon_GetBoxPokemon(v0->unk_00));
-        sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v1);
+        StringFormatter_BufferNickname(param0->unk_1FA8, 0, Pokemon_GetBoxPokemon(v0->unk_00));
+        StringFormatter_Format(param0->unk_1FA8, param0->unk_1FAC, v1);
         Strbuf_Free(v1);
         return 0;
     }
@@ -1643,8 +1643,8 @@ static u8 ov13_022217A4 (UnkStruct_ov13_022213F0 * param0)
         v0 = &param0->unk_04[param0->unk_00->unk_11];
         v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 93);
 
-        sub_0200B5CC(param0->unk_1FA8, 0, Pokemon_GetBoxPokemon(v0->unk_00));
-        sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v1);
+        StringFormatter_BufferNickname(param0->unk_1FA8, 0, Pokemon_GetBoxPokemon(v0->unk_00));
+        StringFormatter_Format(param0->unk_1FA8, param0->unk_1FAC, v1);
         Strbuf_Free(v1);
         return 0;
     }
@@ -1653,8 +1653,8 @@ static u8 ov13_022217A4 (UnkStruct_ov13_022213F0 * param0)
         v0 = &param0->unk_04[param0->unk_2072];
         v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 78);
 
-        sub_0200B5CC(param0->unk_1FA8, 0, Pokemon_GetBoxPokemon(v0->unk_00));
-        sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v1);
+        StringFormatter_BufferNickname(param0->unk_1FA8, 0, Pokemon_GetBoxPokemon(v0->unk_00));
+        StringFormatter_Format(param0->unk_1FA8, param0->unk_1FAC, v1);
         Strbuf_Free(v1);
         return 0;
     }
@@ -1725,7 +1725,7 @@ static u8 ov13_022219DC (UnkStruct_ov13_022213F0 * param0)
 
 static void ov13_02221A04 (UnkStruct_ov13_022213F0 * param0)
 {
-    sub_0200D3F4(param0->unk_1FB4[26], 0);
+    SpriteActor_EnableObject(param0->unk_1FB4[26], 0);
     sub_0201AD10(&param0->unk_206C[10]);
     sub_0201AD10(&param0->unk_206C[6]);
     sub_0201AD10(&param0->unk_206C[7]);

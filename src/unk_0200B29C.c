@@ -10,7 +10,7 @@
 #include "unk_0200B358.h"
 #include "strbuf.h"
 
-Strbuf* sub_0200B29C (UnkStruct_0200B358 * param0, MessageLoader * param1, u32 param2, u32 param3)
+Strbuf* sub_0200B29C (StringFormatter * param0, MessageLoader * param1, u32 param2, u32 param3)
 {
     Strbuf* v0 = NULL;
     Strbuf* v1;
@@ -21,7 +21,7 @@ Strbuf* sub_0200B29C (UnkStruct_0200B358 * param0, MessageLoader * param1, u32 p
         Strbuf* v2 = MessageLoader_GetNewStrbuf(param1, param2);
 
         if (v2) {
-            sub_0200C388(param0, v1, v2);
+            StringFormatter_Format(param0, v1, v2);
             v0 = Strbuf_Clone(v1, param3);
             Strbuf_Free(v2);
         }

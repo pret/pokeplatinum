@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_02056B24_decl.h"
 #include "pokemon.h"
@@ -68,7 +68,7 @@
 #include "unk_0207D3B8.h"
 #include "unk_0208C324.h"
 
-UnkStruct_0207AE68 * sub_0207AE68(Party * param0, Pokemon * param1, int param2, AnimationControlFlags * param3, int param4, UnkStruct_02026324 * param5, UnkStruct_0207D3C0 * param6, UnkStruct_0202CD88 * param7, UnkStruct_02056B24 * param8, int param9, int param10, int param11);
+UnkStruct_0207AE68 * sub_0207AE68(Party * param0, Pokemon * param1, int param2, AnimationControlFlags * param3, int param4, PokedexData * param5, UnkStruct_0207D3C0 * param6, UnkStruct_0202CD88 * param7, UnkStruct_02056B24 * param8, int param9, int param10, int param11);
 static void sub_0207B0A0(SysTask * param0, void * param1);
 BOOL sub_0207B0D0(UnkStruct_0207AE68 * param0);
 void sub_0207B0E0(UnkStruct_0207AE68 * param0);
@@ -98,7 +98,7 @@ static const u8 Unk_020F0A2C[] = {
     0x8
 };
 
-UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon * param1, int param2, AnimationControlFlags * param3, int param4, UnkStruct_02026324 * param5, UnkStruct_0207D3C0 * param6, UnkStruct_0202CD88 * param7, UnkStruct_02056B24 * param8, int param9, int param10, int param11)
+UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon * param1, int param2, AnimationControlFlags * param3, int param4, PokedexData * param5, UnkStruct_0207D3C0 * param6, UnkStruct_0202CD88 * param7, UnkStruct_02056B24 * param8, int param9, int param10, int param11)
 {
     UnkStruct_0207AE68 * v0;
     ArchivedSprite v1;
@@ -295,7 +295,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
             }
 
             sub_0200590C(param0->unk_60, param0->unk_84, param0->unk_86);
-            sub_0200B5CC(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+            StringFormatter_BufferNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
 
             if (param0->unk_7C & 0x2) {
                 param0->unk_65 = sub_0207C584(param0, 917);
@@ -407,7 +407,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
             Pokemon_SetValue(param0->unk_28, 5, (u8 *)&param0->unk_62);
             Pokemon_CalcAbility(param0->unk_28);
             Pokemon_CalcLevelAndStats(param0->unk_28);
-            sub_0200B5CC(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+            StringFormatter_BufferNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
             sub_0200B538(param0->unk_0C, 1, Pokemon_GetBoxPokemon(param0->unk_28));
             param0->unk_65 = sub_0207C584(param0, 918);
             param0->unk_66 = 40;
@@ -445,7 +445,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
             param0->unk_64 = 14;
             break;
         default:
-            sub_0200B5CC(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+            StringFormatter_BufferNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
             sub_0200B630(param0->unk_0C, 1, v3);
             param0->unk_65 = sub_0207C584(param0, 4);
             param0->unk_66 = 30;
@@ -455,14 +455,14 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
     }
     break;
     case 14:
-        sub_0200B5CC(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+        StringFormatter_BufferNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
         sub_0200B630(param0->unk_0C, 1, param0->unk_6C);
         param0->unk_65 = sub_0207C584(param0, 1193);
         param0->unk_66 = 30;
         param0->unk_64++;
         break;
     case 16:
-        sub_0200B5CC(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+        StringFormatter_BufferNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
         param0->unk_65 = sub_0207C584(param0, 1194);
         param0->unk_66 = 30;
         param0->unk_64++;
@@ -562,7 +562,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
     case 35:
         switch (sub_02002114(param0->unk_40, param0->unk_5C)) {
         case 0:
-            sub_0200B5CC(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+            StringFormatter_BufferNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
             sub_0200B630(param0->unk_0C, 1, param0->unk_6C);
             param0->unk_65 = sub_0207C584(param0, 1198);
             param0->unk_66 = 30;
@@ -587,7 +587,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
         param0->unk_64++;
         break;
     case 27:
-        sub_0200B5CC(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+        StringFormatter_BufferNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
         sub_0200B630(param0->unk_0C, 1, Pokemon_GetValue(param0->unk_28, 54 + param0->unk_6E, NULL));
         param0->unk_65 = sub_0207C584(param0, 1200);
         param0->unk_66 = 30;
@@ -599,7 +599,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
         param0->unk_64++;
         break;
     case 31:
-        sub_0200B5CC(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+        StringFormatter_BufferNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
         sub_0200B630(param0->unk_0C, 1, param0->unk_6C);
         param0->unk_65 = sub_0207C584(param0, 1202);
         param0->unk_66 = 0;
@@ -668,7 +668,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
         break;
     case 43:
         if ((sub_0200598C() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (sub_02007C24(param0->unk_1C[0]) == 0)) {
-            sub_0200B5CC(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+            StringFormatter_BufferNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
             param0->unk_65 = sub_0207C584(param0, 919);
             param0->unk_66 = 20;
             param0->unk_64++;
@@ -986,11 +986,11 @@ static u8 sub_0207C584 (UnkStruct_0207AE68 * param0, int param1)
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_08, param1);
 
-    sub_0200C388(param0->unk_0C, param0->unk_10, v0);
+    StringFormatter_Format(param0->unk_0C, param0->unk_10, v0);
     Heap_FreeToHeap(v0);
     BGL_FillWindow(param0->unk_04, 0xff);
 
-    return sub_0201D738(param0->unk_04, 1, param0->unk_10, 0, 0, sub_02027AC0(param0->unk_2C), sub_0207C5CC);
+    return PrintStringSimple(param0->unk_04, 1, param0->unk_10, 0, 0, sub_02027AC0(param0->unk_2C), sub_0207C5CC);
 }
 
 static BOOL sub_0207C5CC (UnkStruct_0201D738 * param0, u16 param1)

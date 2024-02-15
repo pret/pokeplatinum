@@ -322,7 +322,7 @@ int ov6_02246978 (UnkStruct_0203CDB0 * param0, int param1)
     }
 }
 
-BOOL ov6_022469E0 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param1, int param2, u16 * param3, u16 * param4)
+BOOL ov6_022469E0 (UnkStruct_0203CDB0 * param0, StringFormatter * param1, int param2, u16 * param3, u16 * param4)
 {
     int v0 = ov6_0224663C(param0);
     int v1 = ov6_0224669C(v0);

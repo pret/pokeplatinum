@@ -66,10 +66,10 @@ void sub_0202DFA8 (HallOfFame * param0, const Party * param1, const RTCDate * pa
             v0->unk_00[v5].unk_32[3] = Pokemon_GetValue(v1, MON_DATA_MOVE4, NULL);
 
             if (v2) {
-                Pokemon_GetValue(v1, MON_DATA_119, v2);
+                Pokemon_GetValue(v1, MON_DATA_NICKNAME_STRBUF, v2);
                 Strbuf_ToChars(v2, v0->unk_00[v5].unk_0C, 11);
 
-                Pokemon_GetValue(v1, MON_DATA_145, v2);
+                Pokemon_GetValue(v1, MON_DATA_OTNAME_STRBUF, v2);
                 Strbuf_ToChars(v2, v0->unk_00[v5].unk_22, 8);
             } else {
                 v0->unk_00[v5].unk_0C[0] = 0xffff;

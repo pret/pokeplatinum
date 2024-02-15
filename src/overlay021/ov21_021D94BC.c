@@ -2451,16 +2451,16 @@ static void ov21_021DB858 (UnkStruct_ov21_021DC96C * param0, UnkStruct_ov83_0223
 
         switch (v0) {
         case 0:
-            sub_02021D6C(param0->unk_00[v0], 3);
+            SpriteActor_SetSpriteAnimActive(param0->unk_00[v0], 3);
             break;
         case 1:
         case 2:
         case 3:
         case 4:
-            sub_02021D6C(param0->unk_00[v0], 2);
+            SpriteActor_SetSpriteAnimActive(param0->unk_00[v0], 2);
             break;
         case 5:
-            sub_02021D6C(param0->unk_00[v0], 1);
+            SpriteActor_SetSpriteAnimActive(param0->unk_00[v0], 1);
             break;
         }
     }
@@ -2499,7 +2499,7 @@ static void ov21_021DB944 (UnkStruct_ov21_021DC96C * param0, UnkStruct_ov83_0223
             param1->unk_08.x = 48 + (v1 * (128 - 48));
             param1->unk_08.x <<= FX32_SHIFT;
             param0->unk_30[(v0 * 2) + v1] = sub_02021B90(param1);
-            sub_02021D6C(param0->unk_30[(v0 * 2) + v1], 0);
+            SpriteActor_SetSpriteAnimActive(param0->unk_30[(v0 * 2) + v1], 0);
         }
     }
 }
@@ -2516,7 +2516,7 @@ static void ov21_021DB9B4 (UnkStruct_ov21_021DC96C * param0, UnkStruct_ov83_0223
             param1->unk_08.x = 48 + (v1 * (128 - 48));
             param1->unk_08.x <<= FX32_SHIFT;
             param0->unk_30[(v0 * 2) + v1] = sub_02021B90(param1);
-            sub_02021D6C(param0->unk_30[(v0 * 2) + v1], 0);
+            SpriteActor_SetSpriteAnimActive(param0->unk_30[(v0 * 2) + v1], 0);
         }
     }
 }
@@ -2533,7 +2533,7 @@ static void ov21_021DBA24 (UnkStruct_ov21_021DC96C * param0, UnkStruct_ov83_0223
             param1->unk_08.x = 48 + (v1 * (128 - 48));
             param1->unk_08.x <<= FX32_SHIFT;
             param0->unk_30[(v0 * 2) + v1] = sub_02021B90(param1);
-            sub_02021D6C(param0->unk_30[(v0 * 2) + v1], 0);
+            SpriteActor_SetSpriteAnimActive(param0->unk_30[(v0 * 2) + v1], 0);
         }
     }
 
@@ -2543,7 +2543,7 @@ static void ov21_021DBA24 (UnkStruct_ov21_021DC96C * param0, UnkStruct_ov83_0223
     param1->unk_08.y = (param1->unk_08.y << FX32_SHIFT) + (192 << FX32_SHIFT);
     param0->unk_30[10] = sub_02021B90(param1);
 
-    sub_02021D6C(param0->unk_30[10], 5);
+    SpriteActor_SetSpriteAnimActive(param0->unk_30[10], 5);
 }
 
 static void ov21_021DBAB8 (UnkStruct_ov21_021DC96C * param0, UnkStruct_ov83_0223D9A8 * param1)
@@ -2558,7 +2558,7 @@ static void ov21_021DBAB8 (UnkStruct_ov21_021DC96C * param0, UnkStruct_ov83_0223
             param1->unk_08.x = 48 + (v1 * (128 - 48));
             param1->unk_08.x <<= FX32_SHIFT;
             param0->unk_30[(v0 * 2) + v1] = sub_02021B90(param1);
-            sub_02021D6C(param0->unk_30[(v0 * 2) + v1], 0);
+            SpriteActor_SetSpriteAnimActive(param0->unk_30[(v0 * 2) + v1], 0);
         }
     }
 
@@ -2568,7 +2568,7 @@ static void ov21_021DBAB8 (UnkStruct_ov21_021DC96C * param0, UnkStruct_ov83_0223
     param1->unk_08.y = (param1->unk_08.y << FX32_SHIFT) + (192 << FX32_SHIFT);
     param0->unk_30[8] = sub_02021B90(param1);
 
-    sub_02021D6C(param0->unk_30[8], 0);
+    SpriteActor_SetSpriteAnimActive(param0->unk_30[8], 0);
 
     param1->unk_08.y = 176;
     param1->unk_08.x = (48 - 24);
@@ -2576,7 +2576,7 @@ static void ov21_021DBAB8 (UnkStruct_ov21_021DC96C * param0, UnkStruct_ov83_0223
     param1->unk_08.y = (param1->unk_08.y << FX32_SHIFT) + (192 << FX32_SHIFT);
     param0->unk_30[9] = sub_02021B90(param1);
 
-    sub_02021D6C(param0->unk_30[9], 4);
+    SpriteActor_SetSpriteAnimActive(param0->unk_30[9], 4);
 }
 
 static void ov21_021DBB74 (UnkStruct_ov21_021DC96C * param0, UnkStruct_ov83_0223D9A8 * param1)
@@ -2592,7 +2592,7 @@ static void ov21_021DBB74 (UnkStruct_ov21_021DC96C * param0, UnkStruct_ov83_0223
             param1->unk_08.x <<= FX32_SHIFT;
             param0->unk_30[(v0 * 3) + v1] = sub_02021B90(param1);
 
-            sub_02021D6C(param0->unk_30[(v0 * 3) + v1], 6);
+            SpriteActor_SetSpriteAnimActive(param0->unk_30[(v0 * 3) + v1], 6);
         }
     }
 }
@@ -2623,46 +2623,46 @@ static void ov21_021DBBE4 (UnkStruct_ov21_021DC96C * param0, UnkStruct_ov21_021D
 
             switch ((v3 * 3) + v4) {
             case 0:
-                sub_02021D6C(param0->unk_A8[(v3 * 3) + v4], 0);
+                SpriteActor_SetSpriteAnimActive(param0->unk_A8[(v3 * 3) + v4], 0);
                 break;
             case 1:
-                sub_02021D6C(param0->unk_A8[(v3 * 3) + v4], 5);
+                SpriteActor_SetSpriteAnimActive(param0->unk_A8[(v3 * 3) + v4], 5);
                 break;
             case 2:
-                sub_02021D6C(param0->unk_A8[(v3 * 3) + v4], 10);
+                SpriteActor_SetSpriteAnimActive(param0->unk_A8[(v3 * 3) + v4], 10);
                 break;
             case 3:
-                sub_02021D6C(param0->unk_A8[(v3 * 3) + v4], 1);
+                SpriteActor_SetSpriteAnimActive(param0->unk_A8[(v3 * 3) + v4], 1);
                 break;
             case 4:
-                sub_02021D6C(param0->unk_A8[(v3 * 3) + v4], 6);
+                SpriteActor_SetSpriteAnimActive(param0->unk_A8[(v3 * 3) + v4], 6);
                 break;
             case 5:
-                sub_02021D6C(param0->unk_A8[(v3 * 3) + v4], 11);
+                SpriteActor_SetSpriteAnimActive(param0->unk_A8[(v3 * 3) + v4], 11);
                 break;
             case 6:
-                sub_02021D6C(param0->unk_A8[(v3 * 3) + v4], 2);
+                SpriteActor_SetSpriteAnimActive(param0->unk_A8[(v3 * 3) + v4], 2);
                 break;
             case 7:
-                sub_02021D6C(param0->unk_A8[(v3 * 3) + v4], 9);
+                SpriteActor_SetSpriteAnimActive(param0->unk_A8[(v3 * 3) + v4], 9);
                 break;
             case 8:
-                sub_02021D6C(param0->unk_A8[(v3 * 3) + v4], 12);
+                SpriteActor_SetSpriteAnimActive(param0->unk_A8[(v3 * 3) + v4], 12);
                 break;
             case 9:
-                sub_02021D6C(param0->unk_A8[(v3 * 3) + v4], 3);
+                SpriteActor_SetSpriteAnimActive(param0->unk_A8[(v3 * 3) + v4], 3);
                 break;
             case 10:
-                sub_02021D6C(param0->unk_A8[(v3 * 3) + v4], 8);
+                SpriteActor_SetSpriteAnimActive(param0->unk_A8[(v3 * 3) + v4], 8);
                 break;
             case 11:
-                sub_02021D6C(param0->unk_A8[(v3 * 3) + v4], 13);
+                SpriteActor_SetSpriteAnimActive(param0->unk_A8[(v3 * 3) + v4], 13);
                 break;
             case 12:
-                sub_02021D6C(param0->unk_A8[(v3 * 3) + v4], 4);
+                SpriteActor_SetSpriteAnimActive(param0->unk_A8[(v3 * 3) + v4], 4);
                 break;
             case 13:
-                sub_02021D6C(param0->unk_A8[(v3 * 3) + v4], 7);
+                SpriteActor_SetSpriteAnimActive(param0->unk_A8[(v3 * 3) + v4], 7);
                 break;
             case 14:
                 sub_02021CAC(param0->unk_A8[(v3 * 3) + v4], 0);

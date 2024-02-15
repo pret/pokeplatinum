@@ -32,13 +32,13 @@ typedef struct {
     u16 unk_3E4[96];
     u16 unk_4A4[128];
     PartyManagementData * unk_5A4;
-    CellTransferStateData * unk_5A8;
-    AnimationResourceCollection * unk_5AC;
+    SpriteRenderer * unk_5A8;
+    SpriteGfxHandler * unk_5AC;
     GraphicElementData * unk_5B0[29];
     CellActorData * unk_624[29];
     UnkStruct_0200C440 * unk_698;
     MessageLoader * unk_69C;
-    UnkStruct_0200B358 * unk_6A0;
+    StringFormatter * unk_6A0;
     Strbuf* unk_6A4;
     Strbuf* unk_6A8;
     Strbuf* unk_6AC[20];

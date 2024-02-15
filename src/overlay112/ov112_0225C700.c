@@ -1081,7 +1081,7 @@ static void ov112_0225D460 (UnkStruct_ov112_0225D44C * param0, const Strbuf *par
     GF_ASSERT((180 * 8) >= param0->unk_06);
 
     BGL_FillWindow(&param0->unk_0C, 0);
-    sub_0201D738(&param0->unk_0C, 1, param0->unk_08, 0, 0, 0xff, NULL);
+    PrintStringSimple(&param0->unk_0C, 1, param0->unk_08, 0, 0, 0xff, NULL);
 
     param0->unk_1C = *param3;
 

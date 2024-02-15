@@ -760,7 +760,7 @@ static void ov21_021E4B30 (UnkStruct_ov21_021E4B30 * param0, int param1)
 
         v1.y += -8 << FX32_SHIFT;
 
-        sub_02021D6C(param0->unk_00[v0].unk_00, 1);
+        SpriteActor_SetSpriteAnimActive(param0->unk_00[v0].unk_00, 1);
     }
 
     v1.y = 96 << FX32_SHIFT;

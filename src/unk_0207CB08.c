@@ -139,7 +139,7 @@ static u32 sub_0207CC00 (SaveData * param0)
 BOOL sub_0207CC10 (SaveData * param0, Strbuf *param1, u16 param2, u32 param3)
 {
     MessageLoader * v0;
-    UnkStruct_0200B358 * v1;
+    StringFormatter * v1;
     Strbuf* v2;
 
     v0 = MessageLoader_Init(0, 26, 7, param3);
@@ -166,7 +166,7 @@ BOOL sub_0207CC10 (SaveData * param0, Strbuf *param1, u16 param2, u32 param3)
         return 0;
     }
 
-    sub_0200C388(v1, param1, v2);
+    StringFormatter_Format(v1, param1, v2);
     Strbuf_Free(v2);
     sub_0200B3F0(v1);
     MessageLoader_Free(v0);
@@ -177,7 +177,7 @@ BOOL sub_0207CC10 (SaveData * param0, Strbuf *param1, u16 param2, u32 param3)
 void sub_0207CD34 (void * param0, Strbuf *param1, u16 param2, u32 param3, u32 param4)
 {
     MessageLoader * v0;
-    UnkStruct_0200B358 * v1;
+    StringFormatter * v1;
     Strbuf* v2;
 
     switch (param3) {
@@ -201,7 +201,7 @@ void sub_0207CD34 (void * param0, Strbuf *param1, u16 param2, u32 param3, u32 pa
         v1 = sub_0200B358(param4);
         v2 = MessageLoader_GetNewStrbuf(v0, 36);
         sub_0200B498(v1, 0, param0);
-        sub_0200C388(v1, param1, v2);
+        StringFormatter_Format(v1, param1, v2);
         Strbuf_Free(v2);
         sub_0200B3F0(v1);
         MessageLoader_Free(v0);

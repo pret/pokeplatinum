@@ -102,7 +102,7 @@ static void sub_0205B694(UnkStruct_0205B43C * param0);
 static void sub_0205C160(UnkStruct_0205B43C * param0);
 static int sub_0205B4D4(void);
 static int sub_0205BAE8(UnkStruct_0205B43C * param0, int param1);
-static int sub_0205BCD4(int param0, int param1, UnkStruct_0200B358 * param2);
+static int sub_0205BCD4(int param0, int param1, StringFormatter * param2);
 static void sub_0205B408(UnkStruct_0205B43C * param0);
 static void sub_0205BFF0(UnkStruct_0205B4F8 * param0);
 
@@ -962,7 +962,7 @@ static int sub_0205BAE8 (UnkStruct_0205B43C * param0, int param1)
     return 40;
 }
 
-int sub_0205BC50 (UnkStruct_0200B358 * param0)
+int sub_0205BC50 (StringFormatter * param0)
 {
     u8 v0, v1;
     u8 v2, v3;
@@ -1003,7 +1003,7 @@ int sub_0205BC50 (UnkStruct_0200B358 * param0)
     return 15;
 }
 
-static int sub_0205BCD4 (int param0, int param1, UnkStruct_0200B358 * param2)
+static int sub_0205BCD4 (int param0, int param1, StringFormatter * param2)
 {
     if (param0 != (1 - 1)) {
         return Unk_020ED6E8[param0][param1];
@@ -1012,7 +1012,7 @@ static int sub_0205BCD4 (int param0, int param1, UnkStruct_0200B358 * param2)
     return sub_0205BC50(param2);
 }
 
-int sub_0205BCF4 (UnkStruct_0205B43C * param0, int param1, int param2, UnkStruct_0200B358 * param3)
+int sub_0205BCF4 (UnkStruct_0205B43C * param0, int param1, int param2, StringFormatter * param3)
 {
     int v0;
     TrainerInfo * v1;
@@ -1199,7 +1199,7 @@ static const int Unk_020ED720[] = {
     0xBC
 };
 
-int sub_0205BF44 (UnkStruct_0205B43C * param0, UnkStruct_0200B358 * param1)
+int sub_0205BF44 (UnkStruct_0205B43C * param0, StringFormatter * param1)
 {
     int v0, v1 = 0, v2;
     u16 v3;
@@ -1270,7 +1270,7 @@ Sentence * sub_0205C028 (UnkStruct_0205B43C * param0)
     return &param0->unk_178;
 }
 
-void sub_0205C040 (UnkStruct_0200B358 * param0, int param1, int param2, TrainerInfo * param3, UnkStruct_02014EC4 * param4)
+void sub_0205C040 (StringFormatter * param0, int param1, int param2, TrainerInfo * param3, UnkStruct_02014EC4 * param4)
 {
     TrainerInfo * v0;
     Strbuf* v1;

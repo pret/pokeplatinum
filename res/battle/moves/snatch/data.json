@@ -6,7 +6,7 @@
     "accuracy": 0,
     "pp": 10,
     "effect": {
-        "type": "MOVE_EFFECT_STEAL_STATUS_MOVE",
+        "type": "BATTLE_EFFECT_STEAL_STATUS_MOVE",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET_SPECIAL",

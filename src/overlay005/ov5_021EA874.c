@@ -52,7 +52,7 @@ typedef struct {
     Window unk_20;
     UnkStruct_0203CDB0 * unk_30;
     SaveData * unk_34;
-    UnkStruct_0200B358 * unk_38;
+    StringFormatter * unk_38;
     MessageLoader * unk_3C;
     int unk_40;
     UIControlData * unk_44;
@@ -444,7 +444,7 @@ static void ov5_021EAE78 (UnkStruct_ov5_021EAE78 * param0, int param1)
     }
 
     MessageLoader_GetStrbuf(param0->unk_3C, param1, param0->unk_08);
-    sub_0200C388(param0->unk_38, param0->unk_0C, param0->unk_08);
+    StringFormatter_Format(param0->unk_38, param0->unk_0C, param0->unk_08);
     sub_0205D8F4(param0->unk_30->unk_08, &param0->unk_10, 3);
     sub_0205D944(&param0->unk_10, sub_02025E44(param0->unk_30->unk_0C));
 

@@ -14,7 +14,7 @@
 #include "overlay012/struct_ov12_0223595C.h"
 #include "overlay012/struct_ov12_02235998.h"
 #include "overlay012/struct_ov12_022380DC.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_02002F38.h"
 #include "unk_0200762C.h"
@@ -178,14 +178,14 @@ void ov12_0222EAA0 (UnkStruct_ov12_0221FCDC * param0)
         v2 = sub_0201FAB4(sub_02021F9C(v1->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
 
         sub_02003B08(ov12_0222332C(v0->unk_00.unk_04), v4, v3, ov12_0221FDE4(v0->unk_00.unk_04), 2, 0x20, v2 * 16, 196, 196, 196);
-        sub_0200D810(v1, GX_OAM_MODE_XLU);
+        SpriteActor_SetOAMMode(v1, GX_OAM_MODE_XLU);
 
         v1 = v0->unk_30;
         sub_0200D460(v1, ov12_0222339C(v0->unk_00.unk_04) + 1);
         v2 = sub_0201FAB4(sub_02021F9C(v1->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
 
         sub_02003B08(ov12_0222332C(v0->unk_00.unk_04), v4, v3, ov12_0221FDE4(v0->unk_00.unk_04), 2, 0x20, v2 * 16, 196, 196, 196);
-        sub_0200D810(v1, GX_OAM_MODE_XLU);
+        SpriteActor_SetOAMMode(v1, GX_OAM_MODE_XLU);
     }
 
     ov12_022201E8(v0->unk_00.unk_04, ov12_0222E91C, v0);
@@ -209,7 +209,7 @@ static void ov12_0222EC18 (SysTask * param0, void * param1)
             ov12_0222E248(v0->unk_30[v1]);
 
             if (v0->unk_1E[v1] >= 160) {
-                sub_0200D3F4(v0->unk_30[v1], 0);
+                SpriteActor_EnableObject(v0->unk_30[v1], 0);
                 v2++;
             }
         }
@@ -228,7 +228,7 @@ static void ov12_0222EC18 (SysTask * param0, void * param1)
     sub_0200C7EC(v0->unk_00.unk_10);
 }
 
-void ov12_0222EC90 (UnkStruct_ov12_0221FCDC * param0, CellTransferStateData * param1, AnimationResourceCollection * param2, CellActorData * param3)
+void ov12_0222EC90 (UnkStruct_ov12_0221FCDC * param0, SpriteRenderer * param1, SpriteGfxHandler * param2, CellActorData * param3)
 {
     UnkStruct_ov12_0222EC18 * v0 = NULL;
 
@@ -242,13 +242,13 @@ void ov12_0222EC90 (UnkStruct_ov12_0221FCDC * param0, CellTransferStateData * pa
 
         {
             s16 v2, v3;
-            UnkStruct_ov104_0223F9E0 v4;
+            SpriteTemplate v4;
 
             v4 = ov12_0222329C(v0->unk_00.unk_04);
             v0->unk_30[0] = param3;
 
             for (v1 = 1; v1 < 8; v1++) {
-                v0->unk_30[v1] = sub_0200CE6C(v0->unk_00.unk_08, v0->unk_00.unk_10, &v4);
+                v0->unk_30[v1] = SpriteActor_LoadResources(v0->unk_00.unk_08, v0->unk_00.unk_10, &v4);
 
                 if (v1 % 2) {
                     sub_0200D7D4(v0->unk_30[v1], 1);
@@ -286,7 +286,7 @@ void ov12_0222EC90 (UnkStruct_ov12_0221FCDC * param0, CellTransferStateData * pa
                 if (v11 % 2) {
                     if (v13 == 0) {
                         if (v12 < 8) {
-                            sub_0200D4C4(v0->unk_30[v12], v0->unk_50.unk_00, v0->unk_50.unk_02);
+                            SpriteActor_SetSpritePositionXY(v0->unk_30[v12], v0->unk_50.unk_00, v0->unk_50.unk_02);
                             v12++;
                         }
                     } else {
@@ -344,7 +344,7 @@ static void ov12_0222EE50 (SysTask * param0, void * param1)
 
             if (v0->unk_30 <= 0.2) {
                 v0->unk_00.unk_00++;
-                sub_0200D3F4(v0->unk_1C[0], 0);
+                SpriteActor_EnableObject(v0->unk_1C[0], 0);
             } else {
                 sub_0200D6E8(v0->unk_1C[0], v0->unk_2C * v0->unk_36, v0->unk_30);
             }
@@ -416,8 +416,8 @@ void ov12_0222EFB0 (UnkStruct_ov12_0221FCDC * param0)
             v0->unk_36 = +1;
         }
 
-        sub_0200D550(v0->unk_1C[1], &v2, &v3);
-        sub_0200D4C4(v0->unk_1C[0], v2 + v4, v3);
+        SpriteActor_GetSpritePositionXY(v0->unk_1C[1], &v2, &v3);
+        SpriteActor_SetSpritePositionXY(v0->unk_1C[0], v2 + v4, v3);
         sub_0200D6A4(v0->unk_1C[0], 2);
         sub_0200D6E8(v0->unk_1C[0], v0->unk_2C * v0->unk_36, v0->unk_30);
     }
@@ -444,7 +444,7 @@ void ov12_0222EFB0 (UnkStruct_ov12_0221FCDC * param0)
         v9 = ov12_02235254(v0->unk_00.unk_04, v8);
 
         ov12_02235350(v9, ov12_0221FDD4(v0->unk_00.unk_04), &v11);
-        sub_0200D550(v0->unk_1C[0], &v12.unk_00, &v12.unk_02);
+        SpriteActor_GetSpritePositionXY(v0->unk_1C[0], &v12.unk_00, &v12.unk_02);
 
         {
             int v13;
@@ -463,10 +463,10 @@ void ov12_0222EFB0 (UnkStruct_ov12_0221FCDC * param0)
             v7 = LoadPokemonSpriteYOffset(ov12_022232D0(v0->unk_00.unk_04, v8), ov12_022232C4(v0->unk_00.unk_04, v8), v13, ov12_022232E0(v0->unk_00.unk_04, v8), ov12_022232EC(v0->unk_00.unk_04, v8));
         }
 
-        sub_0200D4C4(v0->unk_1C[0], v12.unk_00, v11.unk_02 + v7);
+        SpriteActor_SetSpritePositionXY(v0->unk_1C[0], v12.unk_00, v11.unk_02 + v7);
     }
 
-    sub_0200D3F4(v0->unk_1C[0], 1);
+    SpriteActor_EnableObject(v0->unk_1C[0], 1);
 
     v0->unk_34 = 0;
     v0->unk_35 = 15;

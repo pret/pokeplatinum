@@ -309,7 +309,7 @@ static int ov95_02247ED8 (UnkStruct_ov95_02247C6C * param0, int * param1)
     switch (*param1) {
     case 0:
         if (ScreenWipe_Done()) {
-            sub_02021D6C(param0->unk_3C[0], 1);
+            SpriteActor_SetSpriteAnimActive(param0->unk_3C[0], 1);
             sub_02021CAC(param0->unk_3C[0], 1);
             return 1;
         }
@@ -329,7 +329,7 @@ static int ov95_02247F04 (UnkStruct_ov95_02247C6C * param0, int * param1)
     case 1:
         if (++(param0->unk_08) > 10) {
             MessageLoader * v0 = ov95_02247630(param0->unk_00);
-            UnkStruct_0200B358 * v1 = ov95_0224762C(param0->unk_00);
+            StringFormatter * v1 = ov95_0224762C(param0->unk_00);
             int v2, v3;
 
             if (ov95_02247680(param0->unk_00) == 1) {
@@ -341,8 +341,8 @@ static int ov95_02247F04 (UnkStruct_ov95_02247C6C * param0, int * param1)
             }
 
             MessageLoader_GetStrbuf(v0, v2, param0->unk_68);
-            sub_0200C388(v1, param0->unk_6C, param0->unk_68);
-            sub_0201D738(&(param0->unk_58), 1, param0->unk_6C, 0, 0, 0xff, NULL);
+            StringFormatter_Format(v1, param0->unk_6C, param0->unk_68);
+            PrintStringSimple(&(param0->unk_58), 1, param0->unk_6C, 0, 0, 0xff, NULL);
             sub_0200E010(&(param0->unk_58), 109, 2);
             sub_0201A954(&(param0->unk_58));
             param0->unk_08 = 0;
@@ -352,10 +352,10 @@ static int ov95_02247F04 (UnkStruct_ov95_02247C6C * param0, int * param1)
     case 2:
         if (++(param0->unk_08) > 60) {
             MessageLoader * v4 = ov95_02247630(param0->unk_00);
-            UnkStruct_0200B358 * v5 = ov95_0224762C(param0->unk_00);
+            StringFormatter * v5 = ov95_0224762C(param0->unk_00);
 
             MessageLoader_GetStrbuf(v4, 1, param0->unk_68);
-            sub_0200C388(v5, param0->unk_6C, param0->unk_68);
+            StringFormatter_Format(v5, param0->unk_6C, param0->unk_68);
 
             {
                 const BoxPokemon * v6 = ov95_02247634(param0->unk_00);
@@ -369,7 +369,7 @@ static int ov95_02247F04 (UnkStruct_ov95_02247C6C * param0, int * param1)
                 }
 
                 BGL_FillWindow(&(param0->unk_58), 0xf);
-                sub_0201D738(&(param0->unk_58), 1, param0->unk_6C, 0, 0, 0xff, NULL);
+                PrintStringSimple(&(param0->unk_58), 1, param0->unk_6C, 0, 0, 0xff, NULL);
                 sub_0201ACCC(&(param0->unk_58));
                 param0->unk_08 = 0;
                 (*param1)++;
@@ -404,7 +404,7 @@ static int ov95_02248090 (UnkStruct_ov95_02247C6C * param0, int * param1)
     case 1:
         if (ov95_022483B4(param0)) {
             sub_02007DC8(param0->unk_10);
-            sub_02021D6C(param0->unk_3C[1], 0);
+            SpriteActor_SetSpriteAnimActive(param0->unk_3C[1], 0);
             sub_02021CAC(param0->unk_3C[1], 1);
             (*param1)++;
         }

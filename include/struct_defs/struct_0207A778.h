@@ -11,7 +11,7 @@ typedef struct {
     BattleParams * unk_00;
     BGL * unk_04;
     Window * unk_08;
-    PaletteSys * unk_0C;
+    PaletteData * unk_0C;
     UnkStruct_02027F8C * unk_10[4];
     u8 unk_20[0x1000];
     u8 unk_1020;

@@ -775,8 +775,8 @@ static void ov79_021D167C (UnkStruct_ov79_021D0E1C * param0)
         param0->unk_1CC[v0] = sub_0200CA08(param0->unk_1B8, param0->unk_1BC, &v1[3]);
 
         sub_02021CAC(param0->unk_1CC[v0], 1);
-        sub_02021D6C(param0->unk_1CC[v0], v0 + 3);
-        sub_0200D494(param0->unk_1CC[v0], v2[v0].unk_00, v2[v0].unk_02);
+        SpriteActor_SetSpriteAnimActive(param0->unk_1CC[v0], v0 + 3);
+        SpriteActor_SetPositionXY(param0->unk_1CC[v0], v2[v0].unk_00, v2[v0].unk_02);
     }
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -794,16 +794,16 @@ static void ov79_021D167C (UnkStruct_ov79_021D0E1C * param0)
         param0->unk_1E0[v0] = sub_0200CA08(param0->unk_1B8, param0->unk_1BC, &v1[4]);
 
         sub_02021CAC(param0->unk_1E0[v0], 1);
-        sub_02021D6C(param0->unk_1E0[v0], v0 * 3);
+        SpriteActor_SetSpriteAnimActive(param0->unk_1E0[v0], v0 * 3);
         sub_02021CE4(param0->unk_1E0[v0], FX32_CONST(2));
         sub_02021E90(param0->unk_1E0[v0], v0 + 2);
         sub_02021CC8(param0->unk_1E0[v0], 0);
-        sub_0200D494(param0->unk_1E0[v0], v3[v0].unk_00, v3[v0].unk_02);
+        SpriteActor_SetPositionXY(param0->unk_1E0[v0], v3[v0].unk_00, v3[v0].unk_02);
     }
 
     param0->unk_1FC = sub_0209916C(param0->unk_1F8, 0, 231, 76, 0, 1, 0, 0);
 
-    sub_0200D3F4(param0->unk_1FC->unk_04, 0);
+    SpriteActor_EnableObject(param0->unk_1FC->unk_04, 0);
 }
 
 static void ov79_021D17E8 (UnkStruct_ov79_021D0E1C * param0)

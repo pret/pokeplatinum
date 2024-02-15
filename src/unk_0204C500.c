@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_02024440_decl.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
@@ -66,7 +66,7 @@ BOOL sub_0204C59C (UnkStruct_0203E724 * param0)
     PCBoxes * v1 = SaveData_PCBoxes(param0->unk_34->unk_0C);
     Pokemon * v2 = Pokemon_New(32);
     TrainerInfo * v3 = sub_02025E38(param0->unk_34->unk_0C);
-    UnkStruct_02026324 * v4 = sub_02027560(param0->unk_34->unk_0C);
+    PokedexData * v4 = sub_02027560(param0->unk_34->unk_0C);
     BOOL v5;
     int v6;
 

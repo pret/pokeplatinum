@@ -296,7 +296,7 @@ static BOOL sub_02052FFC (UnkStruct_0205300C * param0)
 static void sub_0205300C (UnkStruct_0205300C * param0)
 {
     Strbuf_Free(param0->unk_2C);
-    sub_0200EBA0(param0->unk_30);
+    DeleteWaitDial(param0->unk_30);
     sub_0205D988(&param0->unk_1C);
 }
 
@@ -305,7 +305,7 @@ static void sub_02053028 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * para
     MessageLoader * v0 = MessageLoader_Init(1, 26, 213, 4);
 
     if (param2 == 2) {
-        UnkStruct_0200B358 * v1;
+        StringFormatter * v1;
 
         v1 = sub_0200B358(4);
         sub_0200B498(v1, 0, sub_02025E38(param0->unk_0C));

@@ -161,7 +161,7 @@ typedef struct {
 } UnkStruct_ov70_0225EFD4;
 
 typedef struct {
-    UnkStruct_0200B358 * unk_00;
+    StringFormatter * unk_00;
     MessageLoader * unk_04[4];
     Strbuf* unk_14;
     Strbuf* unk_18;
@@ -1604,7 +1604,7 @@ static void ov70_0225EB08 (UnkStruct_ov70_0225E9C8 * param0)
 static void ov70_0225EB24 (UnkStruct_ov70_0225E9C8 * param0)
 {
     if (param0->unk_1C != NULL) {
-        sub_0200EBA0(param0->unk_1C);
+        DeleteWaitDial(param0->unk_1C);
         param0->unk_1C = NULL;
     }
 }
@@ -1667,7 +1667,7 @@ static void ov70_0225EBC4 (UnkStruct_ov70_0225E9C8 * param0, const Strbuf *param
     BGL_FillWindow(&param0->unk_00, 15);
     Strbuf_Copy(param0->unk_18, param1);
 
-    param0->unk_10 = sub_0201D738(&param0->unk_00, 1, param0->unk_18, 0, 0, param0->unk_14, NULL);
+    param0->unk_10 = PrintStringSimple(&param0->unk_00, 1, param0->unk_18, 0, 0, param0->unk_14, NULL);
 
     sub_0200E69C(&param0->unk_00, 1, (1 + (18 + 12)), 2, 3);
 }
@@ -1700,7 +1700,7 @@ static void ov70_0225EC20 (UnkStruct_ov70_0225EC20 * param0, UnkStruct_ov70_0225
         v1.unk_08.y = Unk_ov70_0226D580[v2] * FX32_ONE;
         param0->unk_50[v2] = sub_02021B90(&v1);
 
-        sub_02021D6C(param0->unk_50[v2], v2);
+        SpriteActor_SetSpriteAnimActive(param0->unk_50[v2], v2);
         sub_02021CC8(param0->unk_50[v2], 1);
         sub_02021CAC(param0->unk_50[v2], 0);
     }
@@ -2028,7 +2028,7 @@ static void ov70_0225F25C (UnkStruct_ov70_0225F208 * param0)
 static Strbuf* ov70_0225F288 (UnkStruct_ov70_0225F208 * param0, int param1, u32 param2)
 {
     MessageLoader_GetStrbuf(param0->unk_04[param1], param2, param0->unk_18);
-    sub_0200C388(param0->unk_00, param0->unk_14, param0->unk_18);
+    StringFormatter_Format(param0->unk_00, param0->unk_14, param0->unk_18);
     return param0->unk_14;
 }
 
@@ -2753,7 +2753,7 @@ static void ov70_0225FEF0 (UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225
         v4.unk_08.y = (FX32_CONST(152) + (256 * FX32_ONE));
         param0->unk_54 = sub_02021B90(&v4);
 
-        sub_02021D6C(param0->unk_54, v1);
+        SpriteActor_SetSpriteAnimActive(param0->unk_54, v1);
         sub_02021CAC(param0->unk_54, param5);
     }
 }
@@ -2832,7 +2832,7 @@ static void ov70_02260080 (UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225
 
 static void ov70_02260228 (UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225E4EC * param1)
 {
-    sub_0201ED1C(sub_02021F98(param0->unk_68));
+    sub_0201ED1C(SpriteActor_ImageProxy(param0->unk_68));
     sub_02021BD4(param0->unk_68);
 
     param0->unk_68 = NULL;

@@ -35,7 +35,7 @@
 #include "overlay104/struct_ov104_0223319C.h"
 #include "overlay104/struct_ov104_022331E8.h"
 #include "overlay104/struct_ov104_0223C4CC.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
@@ -78,7 +78,7 @@ typedef struct UnkStruct_ov104_02232B5C_t {
     Window * unk_18;
     Strbuf* unk_1C[28];
     MessageLoader * unk_8C;
-    UnkStruct_0200B358 * unk_90;
+    StringFormatter * unk_90;
     u8 unk_94;
     u8 unk_95;
     u8 unk_96;
@@ -113,8 +113,8 @@ typedef struct {
 static void ov104_02231FC4(UnkStruct_ov104_022320B4 * param0);
 static void ov104_02232034(UnkStruct_ov104_022320B4 * param0, const MessageLoader * param1, u32 param2);
 static void ov104_02232050(UnkStruct_ov104_022320B4 * param0, int param1, int param2, int param3, int param4);
-static void ov104_0223214C(UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_02232B5C * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, UnkStruct_0200B358 * param7, MessageLoader * param8);
-UnkStruct_ov104_02232B5C * ov104_02232258(UnkStruct_ov104_022320B4 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, UnkStruct_0200B358 * param6, MessageLoader * param7);
+static void ov104_0223214C(UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_02232B5C * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, StringFormatter * param7, MessageLoader * param8);
+UnkStruct_ov104_02232B5C * ov104_02232258(UnkStruct_ov104_022320B4 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringFormatter * param6, MessageLoader * param7);
 void ov104_022322A8(UnkStruct_ov104_02232B5C * param0, u32 param1, u32 param2, u32 param3);
 void ov104_022322B0(UnkStruct_ov104_02232B5C * param0);
 static void ov104_02232390(UnkStruct_ov104_02232B5C * param0, u32 param1, u32 param2, u32 param3);
@@ -127,7 +127,7 @@ static void ov104_02232AC4(UnkStruct_ov104_02232B5C * param0, u16 param1, u32 pa
 void ov104_022320B4(UnkStruct_ov104_022320B4 * param0, u8 param1, u16 param2, u16 param3, u16 param4, s16 param5, u8 param6);
 static void ov104_022320FC(Strbuf *param0, u16 param1, u16 param2, u16 param3, u16 param4);
 static BOOL ov104_02233184(UnkStruct_ov104_0222E930 * param0);
-UnkStruct_ov104_02232B5C * ov104_022325FC(UnkStruct_ov104_022320B4 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, UnkStruct_0200B358 * param6, MessageLoader * param7);
+UnkStruct_ov104_02232B5C * ov104_022325FC(UnkStruct_ov104_022320B4 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringFormatter * param6, MessageLoader * param7);
 void ov104_0223261C(UnkStruct_ov104_02232B5C * param0, u32 param1, u32 param2, u32 param3);
 void ov104_02232624(UnkStruct_ov104_02232B5C * param0);
 static void ov104_02232750(UnkStruct_ov104_02232B5C * param0, u32 param1, u32 param2, u32 param3);
@@ -190,7 +190,7 @@ static void ov104_02231FC4 (UnkStruct_ov104_022320B4 * param0)
 static void ov104_02232034 (UnkStruct_ov104_022320B4 * param0, const MessageLoader * param1, u32 param2)
 {
     MessageLoader_GetStrbuf(param1, param2, param0->unk_4C);
-    sub_0200C388(param0->unk_44, param0->unk_48, param0->unk_4C);
+    StringFormatter_Format(param0->unk_44, param0->unk_48, param0->unk_4C);
 }
 
 static void ov104_02232050 (UnkStruct_ov104_022320B4 * param0, int param1, int param2, int param3, int param4)
@@ -198,7 +198,7 @@ static void ov104_02232050 (UnkStruct_ov104_022320B4 * param0, int param1, int p
     sub_02002AC8(param3);
     sub_02002AE4(param4);
     sub_02002B20(0);
-    param0->unk_50 = sub_0201D738(&param0->unk_64, param1, param0->unk_48, 0, 0, param2, NULL);
+    param0->unk_50 = PrintStringSimple(&param0->unk_64, param1, param0->unk_48, 0, 0, param2, NULL);
 }
 
 void ov104_02232088 (UnkStruct_ov104_022320B4 * param0)
@@ -241,7 +241,7 @@ static void ov104_022320FC (Strbuf *param0, u16 param1, u16 param2, u16 param3, 
     Strbuf_Free(v1);
 }
 
-static void ov104_0223214C (UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_02232B5C * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, UnkStruct_0200B358 * param7, MessageLoader * param8)
+static void ov104_0223214C (UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_02232B5C * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, StringFormatter * param7, MessageLoader * param8)
 {
     int v0;
 
@@ -289,7 +289,7 @@ static void ov104_0223214C (UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0
     return;
 }
 
-UnkStruct_ov104_02232B5C * ov104_02232258 (UnkStruct_ov104_022320B4 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, UnkStruct_0200B358 * param6, MessageLoader * param7)
+UnkStruct_ov104_02232B5C * ov104_02232258 (UnkStruct_ov104_022320B4 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringFormatter * param6, MessageLoader * param7)
 {
     UnkStruct_ov104_02232B5C * v0;
     int v1;
@@ -346,7 +346,7 @@ static void ov104_02232390 (UnkStruct_ov104_02232B5C * param0, u32 param1, u32 p
         Strbuf* v2 = Strbuf_Init((40 * 2), param0->unk_00->unk_34);
 
         MessageLoader_GetStrbuf(param0->unk_8C, param1, v2);
-        sub_0200C388(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
+        StringFormatter_Format(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
         param0->unk_B4[param0->unk_9B].unk_00 = (const void *)param0->unk_1C[param0->unk_9B];
         Strbuf_Free(v2);
     }
@@ -478,7 +478,7 @@ static void ov104_022325D8 (UnkStruct_ov104_02232B5C * param0)
     return;
 }
 
-UnkStruct_ov104_02232B5C * ov104_022325FC (UnkStruct_ov104_022320B4 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, UnkStruct_0200B358 * param6, MessageLoader * param7)
+UnkStruct_ov104_02232B5C * ov104_022325FC (UnkStruct_ov104_022320B4 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringFormatter * param6, MessageLoader * param7)
 {
     return ov104_02232258(param0, param1, param2, param3, param4, param5, param6, param7);
 }
@@ -528,7 +528,7 @@ static void ov104_02232750 (UnkStruct_ov104_02232B5C * param0, u32 param1, u32 p
         Strbuf* v2 = Strbuf_Init((40 * 2), param0->unk_00->unk_34);
 
         MessageLoader_GetStrbuf(param0->unk_8C, param1, v2);
-        sub_0200C388(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
+        StringFormatter_Format(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
         param0->unk_1BC[param0->unk_9B].unk_00 = (const void *)param0->unk_1C[param0->unk_9B];
 
         Strbuf_Free(v2);
@@ -710,9 +710,9 @@ static void ov104_02232AC4 (UnkStruct_ov104_02232B5C * param0, u16 param1, u32 p
 
     MessageLoader_GetStrbuf(param0->unk_8C, param1, v0);
 
-    sub_0200C388(param0->unk_90, v1, v0);
+    StringFormatter_Format(param0->unk_90, v1, v0);
 
-    sub_0201D738(param0->unk_18, 1, v1, 0, 0, param2, NULL);
+    PrintStringSimple(param0->unk_18, 1, v1, 0, 0, param2, NULL);
 
     Strbuf_Free(v0);
     Strbuf_Free(v1);
@@ -873,9 +873,9 @@ void ov104_02232C80 (UnkStruct_ov63_0222CCB8 * param0, UnkStruct_ov63_0222BEC0 *
 
 void ov104_02232CE0 (UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, u16 param9)
 {
-    CellTransferStateData * v0 = param0->unk_34.unk_00;
-    AnimationResourceCollection * v1 = param0->unk_34.unk_04;
-    PaletteSys * v2 = param0->unk_04;
+    SpriteRenderer * v0 = param0->unk_34.unk_00;
+    SpriteGfxHandler * v1 = param0->unk_34.unk_04;
+    PaletteData * v2 = param0->unk_04;
     ArchivedSprite v3;
     void * v4;
     CellActorData * v5;
@@ -885,34 +885,34 @@ void ov104_02232CE0 (UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int pa
 
         v6 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, param2);
 
-        sub_0200CC3C(v0, v1, v6, 112, 0, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
-        sub_0200CDC4(v2, 2, v0, v1, v6, 111, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param3);
-        sub_0200CE24(v0, v1, v6, 113, 0, param3);
-        sub_0200CE54(v0, v1, v6, 114, 0, param3);
+        SpriteRenderer_LoadCharResObjFromOpenNarc(v0, v1, v6, 112, 0, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
+        SpriteRenderer_LoadPalette(v2, 2, v0, v1, v6, 111, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param3);
+        SpriteRenderer_LoadCellResObjFromOpenNarc(v0, v1, v6, 113, 0, param3);
+        SpriteRenderer_LoadAnimResObjFromOpenNarc(v0, v1, v6, 114, 0, param3);
         NARC_dtor(v6);
     }
 
     {
         int v7;
-        UnkStruct_ov104_0223F9E0 v8;
+        SpriteTemplate v8;
 
-        MI_CpuClear8(&v8, sizeof(UnkStruct_ov104_0223F9E0));
+        MI_CpuClear8(&v8, sizeof(SpriteTemplate));
 
-        v8.unk_00 = param4;
-        v8.unk_02 = param5;
-        v8.unk_04 = 0;
-        v8.unk_06 = 0;
-        v8.unk_08 = param6;
-        v8.unk_0C = 0;
-        v8.unk_10 = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v8.unk_2C = param7;
-        v8.unk_30 = 0;
+        v8.x = param4;
+        v8.y = param5;
+        v8.z = 0;
+        v8.animIdx = 0;
+        v8.priority = param6;
+        v8.plttIdx = 0;
+        v8.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+        v8.bgPriority = param7;
+        v8.transferToVRAM = FALSE;
 
         for (v7 = 0; v7 < 6; v7++) {
-            v8.unk_14[v7] = param3;
+            v8.resources[v7] = param3;
         }
 
-        v5 = sub_0200CE6C(v0, v1, &v8);
+        v5 = SpriteActor_LoadResources(v0, v1, &v8);
         sub_0200D330(v5);
     }
 
@@ -932,7 +932,7 @@ void ov104_02232CE0 (UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int pa
         NNSG2dImagePaletteProxy * v12;
         int v13;
 
-        v11 = sub_02021F98(v5->unk_00);
+        v11 = SpriteActor_ImageProxy(v5->unk_00);
         DC_FlushRange(v4, sizeof((10 * 10 * ((8 / 2) * 8))));
         GX_LoadOBJ(v4, v11->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN], (10 * 10 * ((8 / 2) * 8)));
 
@@ -958,13 +958,13 @@ void ov104_02232E80 (UnkStruct_ov104_0223C4CC * param0, int param1)
 
     param0->unk_80[param1 - 50000] = NULL;
 
-    sub_0200D070(param0->unk_34.unk_04, param1);
-    sub_0200D080(param0->unk_34.unk_04, param1);
-    sub_0200D090(param0->unk_34.unk_04, param1);
-    sub_0200D0A0(param0->unk_34.unk_04, param1);
+    SpriteGfxHandler_UnloadCharObjById(param0->unk_34.unk_04, param1);
+    SpriteGfxHandler_UnloadPlttObjById(param0->unk_34.unk_04, param1);
+    SpriteGfxHandler_UnloadCellObjById(param0->unk_34.unk_04, param1);
+    SpriteGfxHandler_UnloadAnimObjById(param0->unk_34.unk_04, param1);
 }
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov104_0223F9E0 = {
+static const SpriteTemplate Unk_ov104_0223F9E0 = {
     0x0,
     0x0,
     0x0,
@@ -977,7 +977,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov104_0223F9E0 = {
     0x0
 };
 
-static const UnkStruct_ov104_0223F9E0 Unk_ov104_0223F9AC = {
+static const SpriteTemplate Unk_ov104_0223F9AC = {
     0x0,
     0x0,
     0x0,
@@ -999,15 +999,15 @@ void ov104_02232EC0 (UnkStruct_ov104_0223C4CC * param0)
 
 void ov104_02232F28 (UnkStruct_ov104_0223C4CC * param0)
 {
-    sub_0200D090(param0->unk_34.unk_04, 2000);
-    sub_0200D0A0(param0->unk_34.unk_04, 2000);
-    sub_0200D080(param0->unk_34.unk_04, 2000);
+    SpriteGfxHandler_UnloadCellObjById(param0->unk_34.unk_04, 2000);
+    SpriteGfxHandler_UnloadAnimObjById(param0->unk_34.unk_04, 2000);
+    SpriteGfxHandler_UnloadPlttObjById(param0->unk_34.unk_04, 2000);
 }
 
 CellActorData * ov104_02232F4C (UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int param2, int param3, int param4)
 {
     CellActorData * v0;
-    UnkStruct_ov104_0223F9E0 v1;
+    SpriteTemplate v1;
 
     GF_ASSERT(param2 < (2008 - 2000));
 
@@ -1016,12 +1016,12 @@ CellActorData * ov104_02232F4C (UnkStruct_ov104_0223C4CC * param0, Pokemon * par
 
     v1 = Unk_ov104_0223F9E0;
 
-    v1.unk_14[0] += param2;
-    v1.unk_00 = param3;
-    v1.unk_02 = param4;
-    v1.unk_08 = 200;
+    v1.resources[0] += param2;
+    v1.x = param3;
+    v1.y = param4;
+    v1.priority = 200;
 
-    v0 = sub_0200CE6C(param0->unk_34.unk_00, param0->unk_34.unk_04, &v1);
+    v0 = SpriteActor_LoadResources(param0->unk_34.unk_00, param0->unk_34.unk_04, &v1);
 
     sub_02021F24(v0->unk_00, Pokemon_IconPaletteIndex(param1));
     sub_0200D330(v0);
@@ -1031,7 +1031,7 @@ CellActorData * ov104_02232F4C (UnkStruct_ov104_0223C4CC * param0, Pokemon * par
 
 void ov104_02232FD4 (UnkStruct_ov104_0223C4CC * param0, CellActorData * param1, int param2)
 {
-    sub_0200D070(param0->unk_34.unk_04, 2000 + param2);
+    SpriteGfxHandler_UnloadCharObjById(param0->unk_34.unk_04, 2000 + param2);
     sub_0200D0F4(param1);
 }
 
@@ -1041,33 +1041,33 @@ void ov104_02232FEC (UnkStruct_ov104_0223C4CC * param0)
 
     v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, 94);
 
-    sub_0200CDC4(param0->unk_04, 2, param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_02081934(), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2001);
-    sub_0200CE24(param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_02081938(), 0, 2001);
-    sub_0200CE54(param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_0208193C(), 0, 2001);
+    SpriteRenderer_LoadPalette(param0->unk_04, 2, param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_02081934(), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2001);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_02081938(), 0, 2001);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_0208193C(), 0, 2001);
     sub_0200D888(param0->unk_34.unk_00, param0->unk_34.unk_04, 20, sub_02081930(), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 2009);
     NARC_dtor(v0);
 }
 
 void ov104_0223307C (UnkStruct_ov104_0223C4CC * param0)
 {
-    sub_0200D070(param0->unk_34.unk_04, 2009);
-    sub_0200D090(param0->unk_34.unk_04, 2001);
-    sub_0200D0A0(param0->unk_34.unk_04, 2001);
-    sub_0200D080(param0->unk_34.unk_04, 2001);
+    SpriteGfxHandler_UnloadCharObjById(param0->unk_34.unk_04, 2009);
+    SpriteGfxHandler_UnloadCellObjById(param0->unk_34.unk_04, 2001);
+    SpriteGfxHandler_UnloadAnimObjById(param0->unk_34.unk_04, 2001);
+    SpriteGfxHandler_UnloadPlttObjById(param0->unk_34.unk_04, 2001);
 }
 
 CellActorData * ov104_022330AC (UnkStruct_ov104_0223C4CC * param0, int param1, int param2)
 {
     CellActorData * v0;
-    UnkStruct_ov104_0223F9E0 v1;
+    SpriteTemplate v1;
 
     v1 = Unk_ov104_0223F9AC;
 
-    v1.unk_00 = param1;
-    v1.unk_02 = param2;
-    v1.unk_08 = 300;
+    v1.x = param1;
+    v1.y = param2;
+    v1.priority = 300;
 
-    v0 = sub_0200CE6C(param0->unk_34.unk_00, param0->unk_34.unk_04, &v1);
+    v0 = SpriteActor_LoadResources(param0->unk_34.unk_00, param0->unk_34.unk_04, &v1);
     sub_0200D330(v0);
 
     return v0;

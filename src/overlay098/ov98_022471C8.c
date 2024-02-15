@@ -75,7 +75,7 @@ typedef struct {
     int unk_14;
     int unk_18;
     int unk_1C;
-    UnkStruct_0200B358 * unk_20;
+    StringFormatter * unk_20;
     MessageLoader * unk_24;
     MessageLoader * unk_28;
     MessageLoader * unk_2C;
@@ -717,7 +717,7 @@ static void ov98_02247AF0 (UnkStruct_ov98_02247704 * param0)
 static void ov98_02247B0C (UnkStruct_ov98_02247704 * param0)
 {
     if (param0->unk_8C != NULL) {
-        sub_0200EBA0(param0->unk_8C);
+        DeleteWaitDial(param0->unk_8C);
         param0->unk_8C = NULL;
     }
 }
@@ -933,11 +933,11 @@ static void ov98_02247F08 (UnkStruct_ov98_02247704 * param0)
     BGL_FillWindow(&param0->unk_D4, 0xf0f);
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_34, 42);
-    sub_0201D738(&param0->unk_D4, 0, v0, Unk_ov98_02249D60[0][0] + 12, Unk_ov98_02249D60[0][1], 0xff, NULL);
+    PrintStringSimple(&param0->unk_D4, 0, v0, Unk_ov98_02249D60[0][0] + 12, Unk_ov98_02249D60[0][1], 0xff, NULL);
     Strbuf_Free(v0);
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_34, 43);
-    sub_0201D738(&param0->unk_D4, 0, v0, Unk_ov98_02249D60[1][0] + 12, Unk_ov98_02249D60[1][1], 0xff, NULL);
+    PrintStringSimple(&param0->unk_D4, 0, v0, Unk_ov98_02249D60[1][0] + 12, Unk_ov98_02249D60[1][1], 0xff, NULL);
     Strbuf_Free(v0);
     sub_02014A58(param0->unk_E4, &param0->unk_D4, Unk_ov98_02249D60[param0->unk_B0][0], Unk_ov98_02249D60[param0->unk_B0][1]);
     sub_0201A954(&param0->unk_D4);
@@ -997,7 +997,7 @@ static void ov98_022482CC (UnkStruct_ov98_02247704 * param0)
     v3 = Strbuf_Init(Strbuf_Length(v2), 109);
     for (v0 = param0->unk_AC; v0 < param0->unk_AC + 6; v0++) {
         Strbuf_CopyLineNum(v3, v2, v0);
-        sub_0201D738(&param0->unk_C4, 0, v3, 4, v1 * 16, 0xFF, NULL);
+        PrintStringSimple(&param0->unk_C4, 0, v3, 4, v1 * 16, 0xFF, NULL);
         v1++;
     }
     Strbuf_Free(v2);
@@ -1105,7 +1105,7 @@ asm static int ov98_02248350 (UnkStruct_ov98_02247704 * param0)
     mov r1, #0
     add r2, r7, #0
     mov r3, #4
-    bl sub_0201D738
+    bl PrintStringSimple
     add r6, r6, #1
     add r4, #0x10
     cmp r6, #6
@@ -2407,12 +2407,12 @@ static void ov98_02249714 (UnkStruct_ov98_02247704 * param0, MessageLoader * par
 
     v0 = MessageLoader_GetNewStrbuf(param1, param2);
 
-    sub_0200C388(param0->unk_20, param0->unk_38, v0);
+    StringFormatter_Format(param0->unk_20, param0->unk_38, v0);
     Strbuf_Free(v0);
     BGL_FillWindow(&param0->unk_48, 0xf0f);
     sub_0200E060(&param0->unk_48, 0, 1, 10);
 
-    param0->unk_44 = sub_0201D738(&param0->unk_48, 1, param0->unk_38, 0, 0, param3, NULL);
+    param0->unk_44 = PrintStringSimple(&param0->unk_48, 1, param0->unk_38, 0, 0, param3, NULL);
     param0->unk_90 = 0;
 
     if ((param3 == 0xff) || (param3 == 0)) {
@@ -2508,12 +2508,12 @@ static void ov98_02249900 (UnkStruct_ov98_02247704 * param0, int param1)
     Strbuf* v0 = Strbuf_Init((16 * 8 * 2), 109);
 
     MessageLoader_GetStrbuf(param0->unk_30, param1, v0);
-    sub_0200C388(param0->unk_20, param0->unk_40, v0);
+    StringFormatter_Format(param0->unk_20, param0->unk_40, v0);
 
     BGL_FillWindow(&param0->unk_68, 15);
     Window_Show(&param0->unk_68, 1, (1 + (18 + 12)), 11);
 
-    param0->unk_44 = sub_0201D738(&param0->unk_68, 1, param0->unk_40, 0, 0, 0, NULL);
+    param0->unk_44 = PrintStringSimple(&param0->unk_68, 1, param0->unk_40, 0, 0, 0, NULL);
     param0->unk_44 = 0xff;
 
     Strbuf_Free(v0);

@@ -24,7 +24,7 @@
 #include "overlay005/struct_ov5_021D30A8.h"
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_02240FA8.h"
-#include "overlay104/struct_ov104_0223F9E0.h"
+#include "struct_defs/sprite_template.h"
 #include "overlay104/struct_ov104_02241308.h"
 
 #include "unk_0200112C.h"
@@ -51,7 +51,7 @@
 
 typedef struct {
     MessageLoader * unk_00;
-    UnkStruct_0200B358 * unk_04;
+    StringFormatter * unk_04;
     Strbuf* unk_08;
     Strbuf* unk_0C;
     Strbuf* unk_10;
@@ -361,7 +361,7 @@ static int sub_0206F554 (UnkStruct_0206F7F8 * param0)
         if (param0->unk_28 > 0) {
             Sound_PlayEffect(1500);
             --param0->unk_28;
-            sub_0200D4C4(param0->unk_2FC[0], 126, 16 + 16 * param0->unk_28);
+            SpriteActor_SetSpritePositionXY(param0->unk_2FC[0], 126, 16 + 16 * param0->unk_28);
         }
     }
 
@@ -369,7 +369,7 @@ static int sub_0206F554 (UnkStruct_0206F7F8 * param0)
         if (param0->unk_28 < (param0->unk_21 - 1)) {
             Sound_PlayEffect(1500);
             ++param0->unk_28;
-            sub_0200D4C4(param0->unk_2FC[0], 126, 16 + 16 * param0->unk_28);
+            SpriteActor_SetSpritePositionXY(param0->unk_2FC[0], 126, 16 + 16 * param0->unk_28);
         }
     }
 
@@ -625,7 +625,7 @@ static void sub_0206FCC4 (UnkStruct_0206F7F8 * param0)
     UnkStruct_ov104_02241308 v1 = {
         1, 1, 1, 1, 0, 0
     };
-    static const UnkStruct_ov104_0223F9E0 v2[] = {
+    static const SpriteTemplate v2[] = {
         {
             0x7E,
             0x10,
@@ -671,7 +671,7 @@ static void sub_0206FCC4 (UnkStruct_0206F7F8 * param0)
         param0->unk_2FC[v0] = ov5_021D3584(&param0->unk_134, &v2[v0]);
     }
 
-    sub_0200D3F4(param0->unk_2FC[1], 0);
+    SpriteActor_EnableObject(param0->unk_2FC[1], 0);
 }
 
 static void sub_0206FD94 (UnkStruct_0206F7F8 * param0)
@@ -718,7 +718,7 @@ static void sub_0206FDC0 (UnkStruct_0206F7F8 * param0, u16 param1, u16 param2)
     sub_0200E060(&param0->unk_E4, 1, (1024 - (18 + 12)), 10);
     BGL_FillWindow(&param0->unk_E4, (((15 << 4) | 15)));
     sub_0201D78C(&param0->unk_E4, 1, param0->unk_2C.unk_10, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((15 & 0xff) << 0)))), NULL);
-    sub_0200D3F4(param0->unk_2FC[0], 1);
+    SpriteActor_EnableObject(param0->unk_2FC[0], 1);
     sub_0201C3C0(param0->unk_D0, 3);
 }
 
@@ -729,7 +729,7 @@ static void sub_0206FF10 (UnkStruct_0206F7F8 * param0)
     sub_0201ACF4(&(param0->unk_D4));
     Window_Clear(&(param0->unk_D4), 0);
     BGL_DeleteWindow(&(param0->unk_D4));
-    sub_0200D3F4(param0->unk_2FC[0], 0);
+    SpriteActor_EnableObject(param0->unk_2FC[0], 0);
     sub_0201C3C0(param0->unk_D0, 3);
 }
 
@@ -745,7 +745,7 @@ static void sub_0206FF60 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     sub_020014DC(param0, &v0, &v1);
     v2 = sub_02001504(param0, 2);
 
-    sub_0200D4C4(v3->unk_2FC[0], 126, 16 + 16 * (v1 + v0));
+    SpriteActor_SetSpritePositionXY(v3->unk_2FC[0], 126, 16 + 16 * (v1 + v0));
 }
 
 static void sub_0206FFB4 (UnkStruct_0206F7F8 * param0)
@@ -757,15 +757,15 @@ static void sub_0206FFB4 (UnkStruct_0206F7F8 * param0)
 static void sub_0206FFE4 (UnkStruct_0206F7F8 * param0)
 {
     sub_0206FFB4(param0);
-    sub_0200D4C4(param0->unk_2FC[0], 126, 16 + param0->unk_28 * 16);
-    sub_0200D3F4(param0->unk_2FC[0], 1);
+    SpriteActor_SetSpritePositionXY(param0->unk_2FC[0], 126, 16 + param0->unk_28 * 16);
+    SpriteActor_EnableObject(param0->unk_2FC[0], 1);
 }
 
 static void sub_02070010 (UnkStruct_0206F7F8 * param0)
 {
     BGL_FillWindow(&param0->unk_E4, (((15 << 4) | 15)));
     sub_0201D78C(&param0->unk_E4, 1, param0->unk_2C.unk_50[param0->unk_1F], 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((15 & 0xff) << 0)))), NULL);
-    sub_0200D3F4(param0->unk_2FC[0], 0);
+    SpriteActor_EnableObject(param0->unk_2FC[0], 0);
 }
 
 static void sub_02070050 (UnkStruct_0206F7F8 * param0, BOOL param1)
@@ -801,10 +801,10 @@ static void sub_02070050 (UnkStruct_0206F7F8 * param0, BOOL param1)
 
         sub_0200B60C(param0->unk_2C.unk_04, 0, v2, 1, 1, 1);
         sub_0200B48C(param0->unk_2C.unk_04, 1, v6->unk_04[v0].unk_00->unk_08, 2, 1, GAME_LANGUAGE);
-        sub_0200C388(param0->unk_2C.unk_04, param0->unk_2C.unk_08, param0->unk_2C.unk_18);
+        StringFormatter_Format(param0->unk_2C.unk_04, param0->unk_2C.unk_08, param0->unk_2C.unk_18);
         sub_0201D78C(&param0->unk_D4, 0, param0->unk_2C.unk_08, 8, v3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((15 & 0xff) << 0)))), NULL);
         sub_0200B60C(param0->unk_2C.unk_04, 0, v4, v7->unk_04, 1, 1);
-        sub_0200C388(param0->unk_2C.unk_04, param0->unk_2C.unk_08, param0->unk_2C.unk_1C[v7->unk_06 - 15]);
+        StringFormatter_Format(param0->unk_2C.unk_04, param0->unk_2C.unk_08, param0->unk_2C.unk_1C[v7->unk_06 - 15]);
         sub_0201D78C(&param0->unk_D4, 0, param0->unk_2C.unk_08, (24 * 8) - sub_02002D7C(0, param0->unk_2C.unk_08, 0) - 8, v3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((15 & 0xff) << 0)))), NULL);
 
         param0->unk_32C[v3] = v0;
@@ -835,7 +835,7 @@ static void sub_020701DC (UnkStruct_0206F7F8 * param0, u16 param1)
     BGL_AddWindow(param0->unk_D0, &param0->unk_D4, 1, 4, 1, 24, 12, 13, 1);
     Window_Show(&param0->unk_D4, 1, (1024 - (18 + 12) - 9), 11);
     sub_02070050(param0, 0);
-    sub_0200D3F4(param0->unk_2FC[1], 1);
+    SpriteActor_EnableObject(param0->unk_2FC[1], 1);
     BGL_AddWindow(param0->unk_D0, &param0->unk_F4, 3, 8, 14, 8, 2, 13, (((((1024 - (18 + 12) - 9) - 27 * 4) - 6 * 4)) - (8 * 2)));
     BGL_FillWindow(&param0->unk_F4, (((0 << 4) | 0)));
     sub_0201D78C(&param0->unk_F4, 0, param0->unk_2C.unk_14, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
@@ -849,8 +849,8 @@ static void sub_02070288 (UnkStruct_0206F7F8 * param0)
     BGL_DeleteWindow(&param0->unk_D4);
     sub_0201ACF4(&param0->unk_F4);
     BGL_DeleteWindow(&param0->unk_F4);
-    sub_0200D3F4(param0->unk_2FC[0], 0);
-    sub_0200D3F4(param0->unk_2FC[1], 0);
+    SpriteActor_EnableObject(param0->unk_2FC[0], 0);
+    SpriteActor_EnableObject(param0->unk_2FC[1], 0);
 }
 
 static BOOL sub_020702D0 (UnkStruct_020508D4 * param0)

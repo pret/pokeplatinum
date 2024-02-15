@@ -52,6 +52,7 @@
 #include "strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_02033200.h"
+#include "constants/species.h"
 #include "pokemon.h"
 #include "item.h"
 #include "overlay097/ov97_02237694.h"
@@ -224,7 +225,7 @@ static int ov97_02237870 (UnkStruct_ov97_02237808 * param0, int param1)
 {
     int v0;
     Strbuf* v1;
-    UnkStruct_0200B358 * v2;
+    StringFormatter * v2;
     MessageLoader * v3;
     UnkStruct_ov97_0223F550 * v4 = &Unk_ov97_0223F550;
 
@@ -468,7 +469,7 @@ GraphicElementData * ov97_02237D14 (int param0, GraphicElementData * param1, int
 
     sub_02021CC8(param1, 1);
     sub_02021E80(param1, 0);
-    sub_02021D6C(param1, param4);
+    SpriteActor_SetSpriteAnimActive(param1, param4);
     sub_02021CAC(param1, 1);
 
     return param1;
@@ -590,7 +591,7 @@ static void ov97_02237EF8 (GraphicElementData * param0, Pokemon * param1, int pa
     DC_FlushRange(param4, 0x20 * 10 * 10);
 
     {
-        NNSG2dImageProxy * v4 = sub_02021F98(param0);
+        NNSG2dImageProxy * v4 = SpriteActor_ImageProxy(param0);
         u32 v5 = NNS_G2dGetImageLocation(v4, NNS_G2D_VRAM_TYPE_2DSUB);
 
         GXS_LoadOBJ(param4, v5 + 1 * (0x20 * 10 * 10), (0x20 * 10 * 10));
@@ -628,10 +629,10 @@ static void ov97_02237FF4 (UnkStruct_ov97_0223F550 * param0, int param1, UnkStru
         ov97_02237EF8(param0->unk_26C, v0, Pokemon_GetValue(v0, MON_DATA_SPECIES, 0), Pokemon_GetValue(v0, MON_DATA_FORM, 0), param0->unk_278, &param0->unk_EF8);
         break;
     case 2:
-        ov97_02237EF8(param0->unk_26C, v0, 494, 0, param0->unk_278, &param0->unk_EF8);
+        ov97_02237EF8(param0->unk_26C, v0, SPECIES_EGG, 0, param0->unk_278, &param0->unk_EF8);
         break;
     case 7:
-        ov97_02237EF8(param0->unk_26C, v0, 494, 1, param0->unk_278, &param0->unk_EF8);
+        ov97_02237EF8(param0->unk_26C, v0, SPECIES_EGG, 1, param0->unk_278, &param0->unk_EF8);
         break;
     }
 }

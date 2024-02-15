@@ -144,7 +144,7 @@ typedef struct {
     NNSG2dRenderSurface unk_08;
     UnkStruct_0200C738 unk_78;
     UnkStruct_02009714 * unk_204[4];
-    UnkStruct_0200B358 * unk_214;
+    StringFormatter * unk_214;
     MessageLoader * unk_218;
     NARC * unk_21C;
     Window unk_220;
@@ -1125,7 +1125,7 @@ static void ov64_0222E738 (UnkStruct_ov64_0222E21C * param0, u32 param1)
 
     BGL_FillWindow(&param0->unk_220, 0);
     MessageLoader_GetStrbuf(param0->unk_218, param1, param0->unk_234);
-    sub_0200C388(param0->unk_214, param0->unk_230, param0->unk_234);
+    StringFormatter_Format(param0->unk_214, param0->unk_230, param0->unk_234);
 
     param0->unk_238 = sub_0201D78C(&param0->unk_220, 1, param0->unk_230, 0, 4, 2, ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
@@ -1246,7 +1246,7 @@ static void ov64_0222E9A4 (UnkStruct_ov64_0222E21C * param0, u32 param1)
 
         sub_02021CC8(param0->unk_270[v1], 1);
         sub_02021CAC(param0->unk_270[v1], 0);
-        sub_02021D6C(param0->unk_270[v1], v1);
+        SpriteActor_SetSpriteAnimActive(param0->unk_270[v1], v1);
     }
 }
 
@@ -1543,7 +1543,7 @@ asm static void ov64_0222EC94 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_
     ldr r0, [r1, r0]
     ldr r2, [sp, #0x24]
     add r1, r4, #0
-    bl sub_0200C388
+    bl StringFormatter_Format
     mov r0, #0
     add r1, r4, #0
     add r2, r0, #0
@@ -1707,7 +1707,7 @@ static void ov64_0222EFBC (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222
 
     BGL_FillWindow(&param0->unk_1C, 15);
     MessageLoader_GetStrbuf(param1->unk_218, param2, v0);
-    sub_0200C388(param1->unk_214, param0->unk_38, v0);
+    StringFormatter_Format(param1->unk_214, param0->unk_38, v0);
 
     param0->unk_30 = sub_0201D78C(&param0->unk_1C, 1, param0->unk_38, 0, 0, param0->unk_34, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
@@ -2600,7 +2600,7 @@ static void ov64_0222FE70 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
     v0 = Strbuf_Init(128, param3);
 
     MessageLoader_GetStrbuf(param1->unk_218, param2, v0);
-    sub_0200C388(param1->unk_214, param0->unk_D4, v0);
+    StringFormatter_Format(param1->unk_214, param0->unk_D4, v0);
 
     param0->unk_D8 = sub_0201D78C(&param0->unk_C4, 1, param0->unk_D4, 0, 0, param0->unk_DC, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
@@ -2648,7 +2648,7 @@ static void ov64_0222FF5C (UnkStruct_ov64_0222F0C4 * param0)
     u32 v1;
 
     sub_02021CAC(param0->unk_104, 1);
-    sub_02021D6C(param0->unk_104, 2);
+    SpriteActor_SetSpriteAnimActive(param0->unk_104, 2);
 
     param0->unk_108 = 0;
 
@@ -3080,7 +3080,7 @@ asm static void ov64_02230680 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_
     ldr r0, [r4, r0]
     ldr r2, [sp, #0x20]
     add r1, r6, #0
-    bl sub_0200C388
+    bl StringFormatter_Format
     mov r0, #0
     add r1, r6, #0
     add r2, r0, #0
@@ -5378,7 +5378,7 @@ asm static void ov64_022320B8 (UnkStruct_ov64_02230F98 * param0, u32 param1, u32
     ldr r0, [r6, r0]
     ldr r2, [sp, #0x48]
     add r1, r4, #0
-    bl sub_0200C388
+    bl StringFormatter_Format
     ldr r0, [sp, #0x4c]
     cmp r0, #1
     beq _022320F0

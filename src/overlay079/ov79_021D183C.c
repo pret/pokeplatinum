@@ -160,7 +160,7 @@ void ov79_021D196C (UnkStruct_ov79_021D0E1C * param0)
 
         sub_0200B48C(param0->unk_30.unk_00, 0, sub_02015918(param0->unk_28, v2->unk_02), 0, 0, GAME_LANGUAGE);
         sub_0200B60C(param0->unk_30.unk_00, 1, v2->unk_01, 2, 2, 1);
-        sub_0200C388(param0->unk_30.unk_00, param0->unk_30.unk_04, param0->unk_30.unk_0C);
+        StringFormatter_Format(param0->unk_30.unk_00, param0->unk_30.unk_04, param0->unk_30.unk_0C);
         sub_02013A6C(param0->unk_CC, param0->unk_30.unk_04, v2->unk_05);
     }
 
@@ -215,7 +215,7 @@ void ov79_021D1B24 (UnkStruct_ov79_021D0E1C * param0, u8 param1, u8 param2)
 {
     switch (param2) {
     case 0:
-        sub_02021D6C(param0->unk_1E0[param1], param1 * 3);
+        SpriteActor_SetSpriteAnimActive(param0->unk_1E0[param1], param1 * 3);
         sub_02021CC8(param0->unk_1E0[param1], 0);
         sub_0201C04C(
             &param0->unk_E8[7 + param1], 1, 2, ((0 << 4) | 0));
@@ -227,17 +227,17 @@ void ov79_021D1B24 (UnkStruct_ov79_021D0E1C * param0, u8 param1, u8 param2)
         param0->unk_14 = 1;
         break;
     case 2:
-        sub_02021D6C(param0->unk_1E0[param1], param1 * 3 + 1);
+        SpriteActor_SetSpriteAnimActive(param0->unk_1E0[param1], param1 * 3 + 1);
         sub_0201C04C(&param0->unk_E8[7 + param1], 1, 2, ((0 << 4) | 0));
         param0->unk_14 = 0;
         break;
     case 3:
-        sub_02021D6C(param0->unk_1E0[param1], param1 * 3 + 2);
+        SpriteActor_SetSpriteAnimActive(param0->unk_1E0[param1], param1 * 3 + 2);
         sub_0201C04C(&param0->unk_E8[7 + param1], 0, 2, ((0 << 4) | 0));
         param0->unk_14 = 1;
         break;
     case 4:
-        sub_02021D6C(param0->unk_1E0[param1], param1 * 3 + 1);
+        SpriteActor_SetSpriteAnimActive(param0->unk_1E0[param1], param1 * 3 + 1);
         sub_02021CC8(param0->unk_1E0[param1], 1);
         sub_0201C04C(&param0->unk_E8[7 + param1], 0, 2, ((0 << 4) | 0));
         param0->unk_14 = 0;
@@ -327,7 +327,7 @@ static void ov79_021D1D94 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     }
 
     sub_020014DC(param0, &v2, &v3);
-    sub_0200D494(v0->unk_1C0[0], 105, v3 * 16 + 40);
+    SpriteActor_SetPositionXY(v0->unk_1C0[0], 105, v3 * 16 + 40);
 
     if (v2 == 0) {
         sub_02021CAC(v0->unk_1C0[1], 0);
@@ -346,7 +346,7 @@ static void ov79_021D1D94 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     if (param1 == 0xFF) {
         ov79_021D1D20(v0, NULL);
         sub_0201A954(&v0->unk_E8[1]);
-        sub_0200D3F4(v0->unk_1FC->unk_04, 0);
+        SpriteActor_EnableObject(v0->unk_1FC->unk_04, 0);
         return;
     }
 
@@ -360,10 +360,10 @@ static void ov79_021D1D94 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     }
 
     sub_0200B60C(v0->unk_30.unk_00, 0, v4, 2, 0, 1);
-    sub_0200C388(v0->unk_30.unk_00, v0->unk_30.unk_04, v0->unk_30.unk_10);
+    StringFormatter_Format(v0->unk_30.unk_00, v0->unk_30.unk_04, v0->unk_30.unk_10);
     sub_0201D78C(&v0->unk_E8[1], 0, v0->unk_30.unk_04, 8, 0, 0, v1, NULL);
     sub_0209933C(v0->unk_1F8, v0->unk_1FC, v0->unk_20->unk_1C[param1].unk_02);
-    sub_0200D3F4(v0->unk_1FC->unk_04, 1);
+    SpriteActor_EnableObject(v0->unk_1FC->unk_04, 1);
 }
 
 void ov79_021D1ED8 (UnkStruct_ov79_021D0E1C * param0)
@@ -413,7 +413,7 @@ void ov79_021D1FBC (UnkStruct_ov79_021D0E1C * param0)
 {
     Strbuf_Clear(param0->unk_30.unk_04);
     sub_0200B48C(param0->unk_30.unk_00, 0, sub_02015918(param0->unk_28, param0->unk_20->unk_1C[param0->unk_1A].unk_02), 2, 1, GAME_LANGUAGE);
-    sub_0200C388(param0->unk_30.unk_00, param0->unk_30.unk_04, param0->unk_30.unk_14);
+    StringFormatter_Format(param0->unk_30.unk_00, param0->unk_30.unk_04, param0->unk_30.unk_14);
 
     ov79_021D1850(param0, param0->unk_30.unk_04, param0->unk_30.unk_4C, 1);
 }
@@ -422,7 +422,7 @@ void ov79_021D2008 (UnkStruct_ov79_021D0E1C * param0)
 {
     Strbuf_Clear(param0->unk_30.unk_04);
     sub_0200B48C(param0->unk_30.unk_00, 0, sub_02015918(param0->unk_28, param0->unk_20->unk_1C[param0->unk_1A].unk_02), 2, 1, GAME_LANGUAGE);
-    sub_0200C388(param0->unk_30.unk_00, param0->unk_30.unk_04, param0->unk_30.unk_18);
+    StringFormatter_Format(param0->unk_30.unk_00, param0->unk_30.unk_04, param0->unk_30.unk_18);
 
     ov79_021D1850(param0, param0->unk_30.unk_04, param0->unk_30.unk_4C, 0);
 }

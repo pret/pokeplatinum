@@ -16,7 +16,7 @@
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_02026324_decl.h"
+#include "struct_decls/pokedexdata_decl.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_defs/chatot_cry.h"
@@ -46,15 +46,15 @@
 struct BattleSystem {
     GenericPointerData * unk_00;
     BGL * unk_04;
-    Window * unk_08;
+    Window *windows;
     MessageLoader * unk_0C;
     MessageLoader * unk_10;
-    UnkStruct_0200B358 * unk_14;
+    StringFormatter *strFormatter;
     Strbuf *msgBuffer;
     SysTask * unk_1C;
     SysTask * unk_20;
     SysTask * unk_24;
-    PaletteSys * unk_28;
+    PaletteData * unk_28;
     u32 battleType;
     BattleContext *battleCtx;
     BattlerData *battlers[MAX_BATTLERS];
@@ -62,14 +62,14 @@ struct BattleSystem {
     TrainerInfo *trainerInfo[4];
     UnkStruct_0207D3C0 * unk_58;
     UnkStruct_0207D99C * unk_5C;
-    UnkStruct_02026324 *pokedex;
+    PokedexData *pokedex;
     PCBoxes *pcBoxes;
     Party *parties[4];
     ChatotCry * unk_78[4];
     UnkStruct_02007768 * unk_88;
     UnkStruct_ov12_0221FCDC * unk_8C;
-    CellTransferStateData * unk_90;
-    AnimationResourceCollection * unk_94;
+    SpriteRenderer * unk_90;
+    SpriteGfxHandler * unk_94;
     UnkStruct_02056B24 * unk_98;
     UnkStruct_0206D140 * unk_9C;
     u16 trainerIDs[4];
@@ -77,7 +77,7 @@ struct BattleSystem {
     TrainerData trainers[4];
     UnkStruct_ov16_02268520 unk_17C[2];
     UnkStruct_ov16_02268A14 * unk_198;
-    UnkStruct_ov16_0226D160 * unk_19C[2];
+    PartyGauge * unk_19C[2];
     UnkStruct_0200C440 * unk_1A4;
     UnkStruct_0200C440 * unk_1A8;
     void * unk_1AC;

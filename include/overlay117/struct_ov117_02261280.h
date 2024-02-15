@@ -42,14 +42,14 @@ typedef struct UnkStruct_ov117_02261280_t {
     u32 unk_0C[4];
     UnkStruct_ov114_0225CAD4 * unk_1C;
     int unk_20;
-    CellTransferStateData * unk_24;
-    AnimationResourceCollection * unk_28;
+    SpriteRenderer * unk_24;
+    SpriteGfxHandler * unk_28;
     BGL * unk_2C;
     Window unk_30[5];
     MessageLoader * unk_80;
-    UnkStruct_0200B358 * unk_84;
+    StringFormatter * unk_84;
     Strbuf* unk_88;
-    PaletteSys * unk_8C;
+    PaletteData * unk_8C;
     UnkStruct_02012744 * unk_90;
     SysTask * unk_94;
     GenericPointerData * unk_98;

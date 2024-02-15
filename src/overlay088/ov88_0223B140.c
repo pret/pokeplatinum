@@ -4,6 +4,8 @@
 #include "inlines.h"
 #include "core_sys.h"
 
+#include "constants/species.h"
+
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
@@ -129,8 +131,8 @@ static int ov88_0223E8D0(UnkStruct_02095E80 * param0);
 static int ov88_0223E914(UnkStruct_02095E80 * param0);
 static void ov88_0223E984(UnkStruct_02095E80 * param0);
 static void ov88_0223E998(UnkStruct_02095E80 * param0);
-static void ov88_0223B710(UnkStruct_0200B358 * param0, Party * param1, int param2);
-static void ov88_0223B748(Window * param0, UnkStruct_0200B358 * param1, MessageLoader * param2, Party * param3, int param4);
+static void ov88_0223B710(StringFormatter * param0, Party * param1, int param2);
+static void ov88_0223B748(Window * param0, StringFormatter * param1, MessageLoader * param2, Party * param3, int param4);
 static void ov88_0223C8D8(Window * param0, int param1, Party * param2, int param3, UnkStruct_02095E80 * param4);
 static void ov88_0223E694(Party * param0, Party * param1, int param2, int param3, UnkStruct_ov88_0223C370 * param4);
 static void ov88_0223BF7C(UnkStruct_02095E80 * param0);
@@ -511,16 +513,16 @@ int ov88_0223B57C (UnkStruct_020067E8 * param0, int * param1)
     return v1;
 }
 
-static void ov88_0223B710 (UnkStruct_0200B358 * param0, Party * param1, int param2)
+static void ov88_0223B710 (StringFormatter * param0, Party * param1, int param2)
 {
     int v0;
 
     for (v0 = 0; v0 < Party_GetCurrentCount(param1); v0++) {
-        sub_0200B5CC(param0, v0 + param2, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param1, v0)));
+        StringFormatter_BufferNickname(param0, v0 + param2, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param1, v0)));
     }
 }
 
-static void ov88_0223B748 (Window * param0, UnkStruct_0200B358 * param1, MessageLoader * param2, Party * param3, int param4)
+static void ov88_0223B748 (Window * param0, StringFormatter * param1, MessageLoader * param2, Party * param3, int param4)
 {
     int v0;
 
@@ -551,14 +553,14 @@ static void ov88_0223B7A0 (Party * param0, int param1, UnkStruct_02095E80 * para
             sub_02021CAC(param2->unk_404[v1], 0);
         } else {
             sub_02021CAC(param2->unk_404[v1], 1);
-            sub_02021D6C(param2->unk_404[v1], 3 + param2->unk_6F4[v1].unk_02 - 1);
+            SpriteActor_SetSpriteAnimActive(param2->unk_404[v1], 3 + param2->unk_6F4[v1].unk_02 - 1);
         }
 
         if (param2->unk_6F4[v1].unk_0C == 0) {
             sub_02021CAC(param2->unk_434[v1], 0);
         } else {
             sub_02021CAC(param2->unk_434[v1], 1);
-            sub_02021D6C(param2->unk_434[v1], 21);
+            SpriteActor_SetSpriteAnimActive(param2->unk_434[v1], 21);
         }
     }
 
@@ -775,7 +777,7 @@ static void ov88_0223BD18 (Pokemon * param0, UnkStruct_ov88_0223C8AC * param1)
     param1->unk_06 = Pokemon_GetValue(param0, MON_DATA_FORM, NULL);
     param1->unk_05 = Pokemon_GetValue(param0, MON_DATA_IS_EGG, NULL);
     param1->unk_08 = Pokemon_GetValue(param0, MON_DATA_GENDER, NULL);
-    param1->unk_0C = Pokemon_GetValue(param0, MON_DATA_162, NULL);
+    param1->unk_0C = Pokemon_GetValue(param0, MON_DATA_MAIL_ID, NULL);
 
     v1 = Pokemon_GetValue(param0, MON_DATA_HELD_ITEM, NULL);
 
@@ -797,7 +799,7 @@ static void ov88_0223BDA4 (UnkStruct_02095E80 * param0, int param1)
     param0->unk_2168 = ov88_0223C800(1, v0, param0->unk_848[param1 / 6], &param0->unk_2148[param1 / 6]);
 
     ov88_0223C8D8(param0->unk_49C, 1, param0->unk_2274, param1 % 6, param0);
-    sub_02021D6C(param0->unk_464[3], param0->unk_6F4[param1].unk_04 + 6 - 1);
+    SpriteActor_SetSpriteAnimActive(param0->unk_464[3], param0->unk_6F4[param1].unk_04 + 6 - 1);
 }
 
 static void ov88_0223BE28 (UnkStruct_02095E80 * param0)
@@ -1302,7 +1304,7 @@ static void ov88_0223C860 (Window * param0, Party * param1, int param2, int para
 
     v0 = Strbuf_Init(20, 26);
 
-    Pokemon_GetValue(Party_GetPokemonBySlotIndex(param1, param2), MON_DATA_119, v0);
+    Pokemon_GetValue(Party_GetPokemonBySlotIndex(param1, param2), MON_DATA_NICKNAME_STRBUF, v0);
     BGL_FillWindow(param0, 0);
     ov88_0223EC78(param0, v0, param3, 0, param4, 1);
     Strbuf_Free(v0);
@@ -1339,7 +1341,7 @@ static void ov88_0223C8D8 (Window * param0, int param1, Party * param2, int para
         sub_02021D0C(param4->unk_464[param1], param4->unk_6F4[param3].unk_0A);
     }
 
-    sub_02021D6C(param4->unk_464[2 + param1], param4->unk_6F4[param3].unk_04 + 6 - 1);
+    SpriteActor_SetSpriteAnimActive(param4->unk_464[2 + param1], param4->unk_6F4[param3].unk_04 + 6 - 1);
     sub_02021CAC(param4->unk_464[2 + param1], 1);
     ov88_0223C860(&param0[26 + param1], param2, param3, 9, 6);
 
@@ -1358,11 +1360,11 @@ static void ov88_0223C8D8 (Window * param0, int param1, Party * param2, int para
             break;
         case 0:
             sub_02021CAC(param4->unk_464[4 + param1], 1);
-            sub_02021D6C(param4->unk_464[4 + param1], 22 + 1);
+            SpriteActor_SetSpriteAnimActive(param4->unk_464[4 + param1], 22 + 1);
             break;
         case 1:
             sub_02021CAC(param4->unk_464[4 + param1], 1);
-            sub_02021D6C(param4->unk_464[4 + param1], 22);
+            SpriteActor_SetSpriteAnimActive(param4->unk_464[4 + param1], 22);
             break;
         }
     }
@@ -1440,7 +1442,7 @@ static void ov88_0223CBA0 (UnkStruct_02095E80 * param0)
             v0.unk_08.y = FX32_ONE * (Unk_ov88_0223EF9C[v1][1] - 6);
             param0->unk_3D4[v1] = sub_02021AA0(&v0);
             sub_02021CC8(param0->unk_3D4[v1], 1);
-            sub_02021D6C(param0->unk_3D4[v1], 5 + v1);
+            SpriteActor_SetSpriteAnimActive(param0->unk_3D4[v1], 5 + v1);
             sub_02021F58(param0->unk_3D4[v1], 5);
             sub_02021CAC(param0->unk_3D4[v1], 0);
         }
@@ -1467,7 +1469,7 @@ static void ov88_0223CBA0 (UnkStruct_02095E80 * param0)
         v0.unk_08.y = FX32_ONE * (8 * 8 + 2);
         param0->unk_47C = sub_02021AA0(&v0);
         sub_02021CC8(param0->unk_47C, 1);
-        sub_02021D6C(param0->unk_47C, 20);
+        SpriteActor_SetSpriteAnimActive(param0->unk_47C, 20);
         sub_02021CAC(param0->unk_47C, 0);
 
         for (v1 = 0; v1 < 6; v1++) {
@@ -1478,7 +1480,7 @@ static void ov88_0223CBA0 (UnkStruct_02095E80 * param0)
             param0->unk_464[v1] = sub_02021AA0(&v0);
             sub_02021CAC(param0->unk_464[v1], 0);
             sub_02021CC8(param0->unk_464[v1], 0);
-            sub_02021D6C(param0->unk_464[v1], Unk_ov88_0223EF54[v1][2]);
+            SpriteActor_SetSpriteAnimActive(param0->unk_464[v1], Unk_ov88_0223EF54[v1][2]);
         }
     }
 }
@@ -1544,7 +1546,7 @@ static void ov88_0223CE74 (UnkStruct_02095E80 * param0)
         }
 
         sub_02021CC8(param0->unk_464[v2], 1);
-        sub_02021D6C(param0->unk_464[v2], 4 + v2);
+        SpriteActor_SetSpriteAnimActive(param0->unk_464[v2], 4 + v2);
     }
 }
 
@@ -1599,14 +1601,14 @@ static void ov88_0223CF68 (int param0, GraphicElementData * param1, int param2)
 
     if (param0 == 12) {
         sub_02021C50(param1, &v0);
-        sub_02021D6C(param1, Unk_ov88_0223EE50[param2][2]);
+        SpriteActor_SetSpriteAnimActive(param1, Unk_ov88_0223EE50[param2][2]);
     } else {
         sub_02021C50(param1, &v0);
 
         if (param0 < 6) {
-            sub_02021D6C(param1, Unk_ov88_0223EE50[param2][0]);
+            SpriteActor_SetSpriteAnimActive(param1, Unk_ov88_0223EE50[param2][0]);
         } else {
-            sub_02021D6C(param1, Unk_ov88_0223EE50[param2][1]);
+            SpriteActor_SetSpriteAnimActive(param1, Unk_ov88_0223EE50[param2][1]);
         }
     }
 }
@@ -2099,7 +2101,7 @@ static int ov88_0223DA3C (UnkStruct_02095E80 * param0)
     v0.unk_0B_4 = 0;
     v0.unk_0B_6 = 0;
 
-    sub_0200B5CC(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2270, param0->unk_88[0])));
+    StringFormatter_BufferNickname(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2270, param0->unk_88[0])));
     sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
     ov88_0223ECBC(&param0->unk_49C[22], 16, 1, param0->unk_184, param0->unk_17C);
 
@@ -2309,8 +2311,8 @@ static void ov88_0223DFF4 (UnkStruct_02095E80 * param0)
 static int ov88_0223E110 (UnkStruct_02095E80 * param0)
 {
     sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-    sub_0200B5CC(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2270, param0->unk_88[0])));
-    sub_0200B5CC(param0->unk_17C, 1, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2274, param0->unk_88[1] - 6)));
+    StringFormatter_BufferNickname(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2270, param0->unk_88[0])));
+    StringFormatter_BufferNickname(param0->unk_17C, 1, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2274, param0->unk_88[1] - 6)));
 
     ov88_0223ECBC(&param0->unk_49C[23], 21, 1, param0->unk_184, param0->unk_17C);
     param0->unk_226C = ov88_0223E20C;
@@ -2447,7 +2449,7 @@ static int ov88_0223E4BC (UnkStruct_02095E80 * param0)
     v0.unk_0B_4 = 0;
     v0.unk_0B_6 = 0;
 
-    sub_0200B5CC(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2274, param0->unk_88[0] - 6)));
+    StringFormatter_BufferNickname(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2274, param0->unk_88[0] - 6)));
     sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
     ov88_0223ECBC(&param0->unk_49C[22], 16, 1, param0->unk_184, param0->unk_17C);
 
@@ -2502,8 +2504,8 @@ static void ov88_0223E694 (Party * param0, Party * param1, int param2, int param
     Pokemon_Copy(Party_GetPokemonBySlotIndex(param0, param2), v0);
     Pokemon_Copy(Party_GetPokemonBySlotIndex(param1, param3), v1);
 
-    if (Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL) == 493) {
-        if (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(v1, MON_DATA_153, NULL) == 86) && (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
+    if (Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
+        if (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(v1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
             UnkStruct_020507E4 * v2 = sub_020507E4(param4->unk_10);
 
             if (sub_0206B5F8(v2) == 0) {
@@ -2577,7 +2579,7 @@ static void ov88_0223E894 (UnkStruct_02095E80 * param0)
 static void ov88_0223E8B4 (UnkStruct_02095E80 * param0)
 {
     if (param0->unk_3700 != NULL) {
-        sub_0200EBA0(param0->unk_3700);
+        DeleteWaitDial(param0->unk_3700);
         param0->unk_3700 = NULL;
     }
 }
@@ -2611,7 +2613,7 @@ static int ov88_0223E914 (UnkStruct_02095E80 * param0)
     for (v0 = 0; v0 < v1; v0++) {
         v2 = Party_GetPokemonBySlotIndex(param0->unk_2270, v0);
 
-        if (Pokemon_GetValue(v2, MON_DATA_3, NULL)) {
+        if (Pokemon_GetValue(v2, MON_DATA_IS_DATA_INVALID, NULL)) {
             return 1;
         }
     }
@@ -2621,7 +2623,7 @@ static int ov88_0223E914 (UnkStruct_02095E80 * param0)
     for (v0 = 0; v0 < v1; v0++) {
         v2 = Party_GetPokemonBySlotIndex(param0->unk_2274, v0);
 
-        if (Pokemon_GetValue(v2, MON_DATA_3, NULL)) {
+        if (Pokemon_GetValue(v2, MON_DATA_IS_DATA_INVALID, NULL)) {
             return 2;
         }
     }

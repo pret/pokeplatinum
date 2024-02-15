@@ -765,7 +765,7 @@ void HealAllPokemonInParty (Party * party)
         mon = Party_GetPokemonBySlotIndex(party, i);
 
         // data sanity?
-        if (Pokemon_GetValue(mon, MON_DATA_172, NULL) == 0) {
+        if (Pokemon_GetValue(mon, MON_DATA_SPECIES_EXISTS, NULL) == 0) {
             continue;
         }
 
