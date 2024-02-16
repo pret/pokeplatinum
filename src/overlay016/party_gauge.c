@@ -336,7 +336,7 @@ static void ShowArrow(PartyGaugeArrow *arrow, enum PartyGaugeSide side, enum Par
     arrow->state = SHOW_ARROW_INIT;
     arrow->task = SysTask_Start(ShowArrowTask, arrow, ARROW_TASK_PRIORITY);
 
-    Sound_PlayEffect(SEQ_PARTY_GAUGE_ARROW_IN);
+    Sound_PlayEffect(SEQ_SE_PARTY_GAUGE_ARROW_IN);
 }
 
 static void ShowArrowTask(SysTask *task, void *data)
@@ -487,7 +487,7 @@ static void ShowPokeballs(PartyGaugePokeballs *pokeballs, s8 *numBalls, enum Par
     pokeballs->position = pos;
     pokeballs->flipAnimation = FlippedAnimationFrame(frame);
     pokeballs->pokeballCount = numBalls;
-    pokeballs->sdatID = frame == PGANM_POKEBALL_EMPTY_SLOT ? SEQ_PARTY_GAUGE_BALL_EMPTY : SEQ_PARTY_GAUGE_BALL_IN;
+    pokeballs->sdatID = frame == PGANM_POKEBALL_EMPTY_SLOT ? SEQ_SE_PARTY_GAUGE_BALL_EMPTY : SEQ_SE_PARTY_GAUGE_BALL_IN;
 
     if (side == PARTY_GAUGE_OURS) {
         pokeballs->xEnd = POKEBALL_X_END_OURS + slot * POKEBALL_SPACING;

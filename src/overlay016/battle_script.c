@@ -10216,7 +10216,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
     case SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_DIFF_WAIT:
     case SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_TRUE_WAIT:
         if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || TouchScreen_Tapped()) {
-            Sound_PlayEffect(SEQ_CONFIRM);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             data->seqNum++;
         }
         break;

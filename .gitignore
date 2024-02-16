@@ -15,6 +15,7 @@
 /subprojects/zlib-*/
 /subprojects/packagecache
 /subprojects/constgen/
+/subprojects/SDATTool/
 
 # CLion folders
 .idea/
@@ -51,6 +52,12 @@ symbols.csv
 # NARCs
 res/**/*.c
 *.o
+
+# SDAT Files
+res/sound/*.sdat
+res/sound/*/Files/BANK/*.sbnk
+res/sound/*/Files/SEQ/*.sseq
+res/sound/*/Files/WAVARC/*.swar
 
 # Utilities
 ntruncompbw

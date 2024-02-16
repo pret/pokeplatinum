@@ -28,3 +28,9 @@ if not constgen_py.found()
     subproject('constgen')
     constgen_py = find_program('constgen_py', native: true)
 endif
+
+SDATTool_py = find_program('SDATTool_py', native: true, required: false)
+if not SDATTool_py.found()
+    subproject('SDATTool')
+    SDATTool_py = find_program('SDATTool_py', native: true)
+endif
