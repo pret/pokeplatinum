@@ -1,6 +1,6 @@
 project('pokeplatinum', ['c', 'cpp', 'nasm'],
     version: '1.0',
-    meson_version: '>=1.2.0',
+    meson_version: '>=1.3.0',
     default_options : [
         'buildtype=plain',
         'warning_level=0'
