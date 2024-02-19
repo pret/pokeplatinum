@@ -5,42 +5,42 @@
 
 #include "struct_decls/struct_021C0794_decl.h"
 
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 
 #include "heap.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 
-AnimationControlFlags * sub_020279FC (u32 param0)
+Options * sub_020279FC (u32 param0)
 {
-    AnimationControlFlags * v0;
+    Options * v0;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(AnimationControlFlags));
+    v0 = Heap_AllocFromHeap(param0, sizeof(Options));
     sub_02027A1C(v0);
 
     return v0;
 }
 
-void sub_02027A10 (const AnimationControlFlags * param0, AnimationControlFlags * param1)
+void sub_02027A10 (const Options * param0, Options * param1)
 {
-    MI_CpuCopy8(param0, param1, sizeof(AnimationControlFlags));
+    MI_CpuCopy8(param0, param1, sizeof(Options));
 }
 
-void sub_02027A1C (AnimationControlFlags * param0)
+void sub_02027A1C (Options * param0)
 {
-    MI_CpuFill8(param0, 0, sizeof(AnimationControlFlags));
+    MI_CpuFill8(param0, 0, sizeof(Options));
 
-    param0->unk_00_0 = 1;
-    param0->unk_00_4 = 0;
-    param0->unk_00_6 = 0;
-    param0->unk_00_7 = 0;
-    param0->unk_02_0 = 0;
-    param0->unk_02_2 = 0;
+    param0->textSpeed = 1;
+    param0->soundMethod = 0;
+    param0->battleStyle = 0;
+    param0->battleScene = 0;
+    param0->buttonMode = 0;
+    param0->frame = 0;
 }
 
 void sub_02027A68 (SaveData * param0, int param1)
 {
-    AnimationControlFlags * v0;
+    Options * v0;
 
     if (param0 != NULL) {
         param1 = sub_02027B30(sub_02025E44(param0));
@@ -60,17 +60,17 @@ void sub_02027A68 (SaveData * param0, int param1)
     }
 }
 
-int sub_02027AA4 (const AnimationControlFlags * param0)
+int sub_02027AA4 (const Options * param0)
 {
-    return param0->unk_00_0;
+    return param0->textSpeed;
 }
 
-void sub_02027AAC (AnimationControlFlags * param0, int param1)
+void sub_02027AAC (Options * param0, int param1)
 {
-    param0->unk_00_0 = param1;
+    param0->textSpeed = param1;
 }
 
-u8 sub_02027AC0 (const AnimationControlFlags * param0)
+u8 sub_02027AC0 (const Options * param0)
 {
     int v0 = sub_02027AA4(param0);
 
@@ -83,52 +83,52 @@ u8 sub_02027AC0 (const AnimationControlFlags * param0)
     }
 }
 
-int sub_02027ADC (const AnimationControlFlags * param0)
+int sub_02027ADC (const Options * param0)
 {
-    return param0->unk_00_4;
+    return param0->soundMethod;
 }
 
-void sub_02027AE4 (AnimationControlFlags * param0, int param1)
+void sub_02027AE4 (Options * param0, int param1)
 {
-    param0->unk_00_4 = param1;
+    param0->soundMethod = param1;
 }
 
-int GameConfig_BattleAnimations (const AnimationControlFlags * param0)
+int GameConfig_BattleAnimations (const Options * param0)
 {
-    return param0->unk_00_7;
+    return param0->battleScene;
 }
 
-void sub_02027B00 (AnimationControlFlags * param0, int param1)
+void sub_02027B00 (Options * param0, int param1)
 {
-    param0->unk_00_7 = param1;
+    param0->battleScene = param1;
 }
 
-int sub_02027B14 (const AnimationControlFlags * param0)
+int sub_02027B14 (const Options * param0)
 {
-    return param0->unk_00_6;
+    return param0->battleStyle;
 }
 
-void sub_02027B1C (AnimationControlFlags * param0, int param1)
+void sub_02027B1C (Options * param0, int param1)
 {
-    param0->unk_00_6 = param1;
+    param0->battleStyle = param1;
 }
 
-int sub_02027B30 (const AnimationControlFlags * param0)
+int sub_02027B30 (const Options * param0)
 {
-    return param0->unk_02_0;
+    return param0->buttonMode;
 }
 
-void sub_02027B38 (AnimationControlFlags * param0, int param1)
+void sub_02027B38 (Options * param0, int param1)
 {
-    param0->unk_02_0 = param1;
+    param0->buttonMode = param1;
 }
 
-int sub_02027B50 (const AnimationControlFlags * param0)
+int sub_02027B50 (const Options * param0)
 {
-    return param0->unk_02_2;
+    return param0->frame;
 }
 
-void sub_02027B58 (AnimationControlFlags * param0, int param1)
+void sub_02027B58 (Options * param0, int param1)
 {
-    param0->unk_02_2 = param1;
+    param0->frame = param1;
 }

@@ -15,7 +15,7 @@
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay066/struct_ov66_0222E71C_decl.h"
 
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
@@ -591,7 +591,7 @@ static void ov67_0225CE30 (UnkStruct_ov67_0225D154 * param0, u32 param1)
     }
 
     {
-        AnimationControlFlags * v1;
+        Options * v1;
         u8 v2;
 
         v1 = sub_02025E44(param0->unk_00);

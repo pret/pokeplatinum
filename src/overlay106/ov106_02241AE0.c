@@ -19,7 +19,7 @@
 #include "constdata/const_020F410C.h"
 
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_02098D38.h"
@@ -109,7 +109,7 @@ struct UnkStruct_ov106_02243118_t {
     ResourceMetadata unk_9C[2];
     PaletteData * unk_AC;
     UnkStruct_0200C440 * unk_B0;
-    AnimationControlFlags * unk_B4;
+    Options * unk_B4;
     SaveData * unk_B8;
     UnkStruct_02098D38 * unk_BC;
     UnkStruct_ov106_02243310 unk_C0;

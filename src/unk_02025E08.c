@@ -5,7 +5,7 @@
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_02025E5C.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
@@ -15,7 +15,7 @@
 #include "unk_0202CBE4.h"
 
 struct UnkStruct_02025E0C_t {
-    AnimationControlFlags unk_00;
+    Options unk_00;
     TrainerInfo unk_04;
     u16 unk_24;
     UnkStruct_02025E5C unk_26;
@@ -44,7 +44,7 @@ TrainerInfo * sub_02025E38 (SaveData * param0)
     return &v0->unk_04;
 }
 
-AnimationControlFlags * sub_02025E44 (SaveData * param0)
+Options * sub_02025E44 (SaveData * param0)
 {
     UnkStruct_02025E0C * v0;
 

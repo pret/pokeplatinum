@@ -35,7 +35,7 @@
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/union_02022594_020225E0.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -1314,7 +1314,7 @@ static void ov70_0225E4EC (UnkStruct_ov70_0225E4EC * param0, SaveData * param1, 
     }
 
     {
-        AnimationControlFlags * v1;
+        Options * v1;
         u8 v2;
 
         v1 = sub_02025E44(param1);
@@ -1549,7 +1549,7 @@ static void ov70_0225E9C8 (UnkStruct_ov70_0225E9C8 * param0, UnkStruct_ov70_0225
     param0->unk_18 = Strbuf_Init(384, param3);
 
     {
-        AnimationControlFlags * v0;
+        Options * v0;
 
         v0 = sub_02025E44(param2);
         param0->unk_14 = sub_02027AC0(v0);

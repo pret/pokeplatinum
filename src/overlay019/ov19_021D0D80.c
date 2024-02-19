@@ -27,7 +27,7 @@
 #include "constdata/const_020F2DAC.h"
 
 #include "struct_defs/union_02022594_020225E0.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_02042434.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02098D38.h"
@@ -143,7 +143,7 @@ typedef struct UnkStruct_ov19_021D5DF8_t {
     MessageLoader * unk_198;
     StringFormatter * unk_19C;
     Pokemon * unk_1A0;
-    AnimationControlFlags * unk_1A4;
+    Options * unk_1A4;
     int (* unk_1A8)(struct UnkStruct_ov19_021D5DF8_t * param0);
     void (* unk_1AC)(struct UnkStruct_ov19_021D5DF8_t * param0, u32 * param1);
     u32 unk_1B0;

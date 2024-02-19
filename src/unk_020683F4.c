@@ -11,7 +11,7 @@
 
 #include "constdata/const_020F1E88.h"
 
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "functypes/funcptr_0203BC5C.h"
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_0203D9B8.h"
@@ -956,7 +956,7 @@ static BOOL sub_02068F48 (UnkStruct_020508D4 * param0)
         sub_0205D8F4(v0->unk_08, &v1->unk_00, 3);
 
         {
-            const AnimationControlFlags * v2 = sub_02025E44(v0->unk_0C);
+            const Options * v2 = sub_02025E44(v0->unk_0C);
 
             sub_0205D944(&v1->unk_00, v2);
             v1->unk_14 = sub_0205D994(&v1->unk_00, v1->unk_10, v2, 1);

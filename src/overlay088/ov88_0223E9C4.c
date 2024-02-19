@@ -10,7 +10,7 @@
 #include "strbuf.h"
 
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_02240FA8.h"
@@ -57,7 +57,7 @@ static const u16 Unk_ov88_0223F170[][2] = {
     {0x14, 0xA}
 };
 
-void ov88_0223E9C4 (BGL * param0, Window * param1, AnimationControlFlags * param2)
+void ov88_0223E9C4 (BGL * param0, Window * param1, Options * param2)
 {
     int v0;
 

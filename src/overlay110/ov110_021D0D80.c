@@ -15,7 +15,7 @@
 #include "struct_decls/struct_020308A0_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0203E564.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
@@ -62,7 +62,7 @@ typedef struct {
     Strbuf* unk_118;
     Strbuf* unk_11C;
     PaletteData * unk_120;
-    const AnimationControlFlags * unk_124;
+    const Options * unk_124;
     SaveData * unk_128;
     UnkStruct_0203068C * unk_12C;
 } UnkStruct_ov110_021D0F78;

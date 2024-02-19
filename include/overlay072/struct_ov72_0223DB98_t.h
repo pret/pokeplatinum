@@ -11,7 +11,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay019/struct_ov19_021DA864.h"
@@ -23,7 +23,7 @@ struct UnkStruct_ov72_0223DB98_t {
     BGL * unk_00;
     BOOL unk_04;
     UnkStruct_0202CD88 * unk_08;
-    AnimationControlFlags * unk_0C;
+    Options * unk_0C;
     StringFormatter * unk_10;
     MessageLoader * unk_14;
     Strbuf* unk_18[5];

@@ -25,7 +25,7 @@
 #include "overlay107/struct_ov107_02249B8C_decl.h"
 
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_02099F80.h"
@@ -270,7 +270,7 @@ struct UnkStruct_ov107_02241D6C_t {
     UnkStruct_ov84_02240FA8 unk_1A0;
     PaletteData * unk_1C0;
     UnkStruct_0200C440 * unk_1C4;
-    AnimationControlFlags * unk_1C8;
+    Options * unk_1C8;
     SaveData * unk_1CC;
     UnkStruct_020302DC * unk_1D0;
     UnkStruct_0203041C * unk_1D4;

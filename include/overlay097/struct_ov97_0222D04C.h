@@ -12,7 +12,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay019/struct_ov19_021DA864.h"
@@ -24,7 +24,7 @@
 typedef struct {
     BGL * unk_00;
     SaveData * unk_04;
-    AnimationControlFlags * unk_08;
+    Options * unk_08;
     StringFormatter * unk_0C;
     MessageLoader * unk_10;
     Strbuf* unk_14;

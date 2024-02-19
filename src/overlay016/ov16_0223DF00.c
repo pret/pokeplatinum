@@ -37,7 +37,7 @@
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0201D738.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "pokemon.h"
 #include "struct_defs/trainer_data.h"
@@ -138,7 +138,7 @@ u8 ov16_0223ED60(BattleSystem * param0);
 u8 ov16_0223ED6C(BattleSystem * param0);
 int BattleSystem_NumSafariBalls(BattleSystem * param0);
 void BattleSystem_SetSafariBalls(BattleSystem * param0, int param1);
-AnimationControlFlags * ov16_0223EDA4(BattleSystem * param0);
+Options * ov16_0223EDA4(BattleSystem * param0);
 BOOL BattleSystem_AnimationsOn(BattleSystem *battleSys);
 int ov16_0223EDE0(BattleSystem * param0);
 u8 BattleSystem_TextSpeed(BattleSystem * param0);
@@ -1017,7 +1017,7 @@ void BattleSystem_SetSafariBalls (BattleSystem * param0, int param1)
     param0->safariBalls = param1;
 }
 
-AnimationControlFlags * ov16_0223EDA4 (BattleSystem * param0)
+Options * ov16_0223EDA4 (BattleSystem * param0)
 {
     return param0->unk_1B0;
 }

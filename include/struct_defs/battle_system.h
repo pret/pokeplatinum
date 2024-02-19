@@ -17,7 +17,7 @@
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_decls/struct_0202CD88_decl.h"
@@ -81,7 +81,7 @@ struct BattleSystem {
     UnkStruct_0200C440 * unk_1A4;
     UnkStruct_0200C440 * unk_1A8;
     void * unk_1AC;
-    AnimationControlFlags * unk_1B0;
+    Options * unk_1B0;
     UnkStruct_02027F8C * unk_1B4;
     void * unk_1B8;
     UnkStruct_0209C370 * unk_1BC;

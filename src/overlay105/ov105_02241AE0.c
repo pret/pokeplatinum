@@ -22,7 +22,7 @@
 #include "constdata/const_020F410C.h"
 
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02081CF4.h"
@@ -120,7 +120,7 @@ struct UnkStruct_ov105_02241FF4_t {
     GenericPointerData * unk_124;
     UnkStruct_02007768 * unk_128;
     Sprite * unk_12C[3];
-    AnimationControlFlags * unk_138;
+    Options * unk_138;
     SaveData * unk_13C;
     UnkStruct_02098D38 * unk_140;
     UnkStruct_ov105_02245AAC unk_144;

@@ -3,7 +3,7 @@
 
 #include "struct_decls/sys_task.h"
 #include "trainer_info.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_decls/struct_0202A750_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -30,7 +30,7 @@ typedef struct {
     u8 unk_569[1024];
     u8 unk_969[4][1024];
     u8 padding_1969[3];
-    const AnimationControlFlags * unk_196C;
+    const Options * unk_196C;
     SaveData * unk_1970;
     Pokemon * unk_1974;
     const TrainerInfo * unk_1978;

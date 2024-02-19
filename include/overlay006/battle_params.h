@@ -3,7 +3,7 @@
 
 #include "trainer_info.h"
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
@@ -34,7 +34,7 @@ typedef struct {
     ChatotCry * unk_F0[4];
     UnkStruct_02056B24 * unk_100;
     UnkStruct_0202C878 * unk_104;
-    AnimationControlFlags * unk_108;
+    Options * unk_108;
     UnkStruct_0206D140 * unk_10C;
     BattleParams_sub1 unk_110;
     UnkStruct_0202CD88 * unk_11C;

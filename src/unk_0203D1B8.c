@@ -31,7 +31,7 @@
 #include "overlay084/const_ov84_02241130.h"
 #include "constdata/const_020F2DAC.h"
 
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_0203D8AC.h"
@@ -773,7 +773,7 @@ void * sub_0203D8AC (UnkStruct_0203CDB0 * param0)
     return v0;
 }
 
-static void sub_0203D8DC (UnkStruct_0203CDB0 * param0, AnimationControlFlags * param1)
+static void sub_0203D8DC (UnkStruct_0203CDB0 * param0, Options * param1)
 {
     FS_EXTERN_OVERLAY(overlay74);
 
@@ -790,7 +790,7 @@ static void sub_0203D8DC (UnkStruct_0203CDB0 * param0, AnimationControlFlags * p
 void * sub_0203D8EC (UnkStruct_0203CDB0 * param0)
 {
     UnkStruct_0203D8EC * v0;
-    AnimationControlFlags * v1;
+    Options * v1;
 
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0203D8EC));
     v1 = sub_02025E44(sub_0203D174(param0));
@@ -1617,7 +1617,7 @@ static BOOL sub_0203E35C (UnkStruct_020508D4 * param0)
 void sub_0203E414 (UnkStruct_020508D4 * param0, int param1)
 {
     UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
-    AnimationControlFlags * v1 = sub_02025E44(v0->unk_0C);
+    Options * v1 = sub_02025E44(v0->unk_0C);
     UnkStruct_0203E35C * v2 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0203E35C));
 
     v2->unk_0C.unk_00 = &v2->unk_00;

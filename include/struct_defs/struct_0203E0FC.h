@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02025CCC_decl.h"
 #include "trainer_info.h"
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
@@ -25,7 +25,7 @@ typedef struct {
     UnkStruct_0202C878 * unk_18;
     TrainerInfo * unk_1C;
     SaveData * unk_20;
-    AnimationControlFlags * unk_24;
+    Options * unk_24;
     UnkStruct_0202CD88 * unk_28;
     UnkStruct_0202B628 * unk_2C;
     UnkStruct_0207D3C0 * unk_30;

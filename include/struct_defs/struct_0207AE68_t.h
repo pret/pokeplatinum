@@ -12,7 +12,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_02056B24_decl.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -34,7 +34,7 @@ struct UnkStruct_0207AE68_t {
     Sprite * unk_1C[2];
     Party * unk_24;
     Pokemon * unk_28;
-    AnimationControlFlags * unk_2C;
+    Options * unk_2C;
     UnkStruct_0207C8C4 * unk_30;
     GenericPointerData * unk_34;
     UnkStruct_020067E8 * unk_38;

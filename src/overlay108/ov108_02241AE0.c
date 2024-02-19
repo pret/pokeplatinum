@@ -24,7 +24,7 @@
 
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/union_02022594_020225E0.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_02099F80.h"
@@ -212,7 +212,7 @@ struct UnkStruct_ov108_02241DB0_t {
     UIControlData * unk_C0;
     ResourceMetadata unk_C4[2];
     PaletteData * unk_D4;
-    AnimationControlFlags * unk_D8;
+    Options * unk_D8;
     SaveData * unk_DC;
     UnkStruct_020304A0 * unk_E0;
     UnkStruct_020305B8 * unk_E4;

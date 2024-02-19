@@ -23,7 +23,7 @@
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/union_02022594_020225E0.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "pokemon.h"
@@ -139,7 +139,7 @@ typedef struct {
     int unk_0C;
     SaveData * unk_10;
     TrainerInfo * unk_14;
-    AnimationControlFlags * unk_18;
+    Options * unk_18;
     int unk_1C;
     BGL * unk_20;
     int unk_24;

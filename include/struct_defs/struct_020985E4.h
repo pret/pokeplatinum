@@ -2,11 +2,11 @@
 #define POKEPLATINUM_STRUCT_020985E4_H
 
 #include "trainer_info.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 
 typedef struct {
     int unk_00;
-    AnimationControlFlags * unk_04;
+    Options * unk_04;
     const TrainerInfo * unk_08;
 } UnkStruct_020985E4;
 

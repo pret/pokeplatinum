@@ -23,7 +23,7 @@
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_020170F4.h"
 #include "struct_defs/struct_02017294.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -268,7 +268,7 @@ typedef struct {
     u16 unk_02;
     UnkStruct_ov69_0225DA74 unk_04;
     UnkStruct_0202C878 * unk_0C;
-    AnimationControlFlags * unk_10;
+    Options * unk_10;
     int unk_14;
     int unk_18;
     UnkStruct_ov66_02231428 unk_1C;
@@ -301,11 +301,11 @@ static u32 ov69_0225D194(const VecFx32 * param0, const VecFx32 * param1);
 static u32 ov69_0225D1E0(const UnkStruct_ov69_0225CE64 * param0, u32 param1, UnkStruct_ov66_02231428 param2);
 static BOOL ov69_0225D268(UnkStruct_ov69_0225CE64 * param0, u8 param1, u8 param2);
 static void ov69_0225D2A8(UnkStruct_ov69_0225CE64 * param0, const UnkStruct_ov66_02230F50 * param1);
-static void ov69_0225D318(UnkStruct_ov69_0225D35C * param0, AnimationControlFlags * param1, u32 param2);
+static void ov69_0225D318(UnkStruct_ov69_0225D35C * param0, Options * param1, u32 param2);
 static void ov69_0225D35C(UnkStruct_ov69_0225D35C * param0);
 static void ov69_0225D384(UnkStruct_ov69_0225D35C * param0);
 static void ov69_0225D390(UnkStruct_ov69_0225D35C * param0);
-static void ov69_0225D3A4(UnkStruct_ov69_0225D35C * param0, AnimationControlFlags * param1, u32 param2);
+static void ov69_0225D3A4(UnkStruct_ov69_0225D35C * param0, Options * param1, u32 param2);
 static void ov69_0225D504(UnkStruct_ov69_0225D35C * param0);
 static void ov69_0225D53C(UnkStruct_ov69_0225D35C * param0, u32 param1);
 static void ov69_0225D5D8(UnkStruct_ov69_0225D35C * param0);
@@ -1391,7 +1391,7 @@ static void ov69_0225D2A8 (UnkStruct_ov69_0225CE64 * param0, const UnkStruct_ov6
     }
 }
 
-static void ov69_0225D318 (UnkStruct_ov69_0225D35C * param0, AnimationControlFlags * param1, u32 param2)
+static void ov69_0225D318 (UnkStruct_ov69_0225D35C * param0, Options * param1, u32 param2)
 {
     param0->unk_1A8 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTIMER, param2);
 
@@ -1425,7 +1425,7 @@ static void ov69_0225D390 (UnkStruct_ov69_0225D35C * param0)
     sub_0201DCAC();
 }
 
-static void ov69_0225D3A4 (UnkStruct_ov69_0225D35C * param0, AnimationControlFlags * param1, u32 param2)
+static void ov69_0225D3A4 (UnkStruct_ov69_0225D35C * param0, Options * param1, u32 param2)
 {
     sub_02018368(&Unk_ov69_0225F040);
 
@@ -1962,7 +1962,7 @@ static void ov69_0225DD60 (UnkStruct_ov69_0225DDC8 * param0, UnkStruct_ov69_0225
     memset(param0, 0, sizeof(UnkStruct_ov69_0225DC48));
 
     {
-        AnimationControlFlags * v0;
+        Options * v0;
 
         v0 = sub_02025E44(param3);
         param0->unk_08 = sub_02027AC0(v0);

@@ -6,7 +6,7 @@
 #include "struct_defs/chatot_cry.h"
 
 #include "struct_defs/struct_020052C8.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 
 #include "unk_02003B60.h"
 #include "unk_020041CC.h"
@@ -73,7 +73,7 @@ static UnkStruct_02003D54 Unk_02101DF8;
 static int Unk_02101DF0;
 static NNSSndCaptureOutputEffectType Unk_02101DF4;
 
-void sub_02003B60 (ChatotCry * param0, AnimationControlFlags * param1)
+void sub_02003B60 (ChatotCry * param0, Options * param1)
 {
     UnkStruct_02003D54 * v0 = sub_02003D54();
 
@@ -93,7 +93,7 @@ void sub_02003B60 (ChatotCry * param0, AnimationControlFlags * param1)
     Unk_02101DF4 = NNS_SND_CAPTURE_OUTPUT_EFFECT_NORMAL;
     v0->unk_BCD98 = param0;
 
-    sub_02004FB8(param1->unk_00_4);
+    sub_02004FB8(param1->soundMethod);
 
     return;
 }

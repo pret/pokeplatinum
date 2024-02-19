@@ -1,12 +1,12 @@
 #ifndef POKEPLATINUM_STRUCT_02098D38_H
 #define POKEPLATINUM_STRUCT_02098D38_H
 
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/chatot_cry.h"
 
 typedef struct {
     void * unk_00;
-    AnimationControlFlags * unk_04;
+    Options * unk_04;
     const u16 * unk_08;
     u32 unk_0C;
     u8 unk_10;

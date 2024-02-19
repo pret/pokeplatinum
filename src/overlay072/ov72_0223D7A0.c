@@ -17,7 +17,7 @@
 
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/union_02022594_020225E0.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay022/struct_ov22_022559F8.h"
@@ -151,7 +151,7 @@ int ov72_0223D7A0 (UnkStruct_020067E8 * param0, int * param1)
 
             v0->unk_5BFC = (u8 *)sub_0202C840(sub_0202C834(v2));
             v0->unk_08 = (UnkStruct_0202CD88 *)sub_0202CD88((SaveData *)sub_02006840(param0));
-            v0->unk_0C = (AnimationControlFlags *)sub_02025E44((SaveData *)sub_02006840(param0));
+            v0->unk_0C = (Options *)sub_02025E44((SaveData *)sub_02006840(param0));
         }
 
         ov72_0223DCA8(v0, v1);
