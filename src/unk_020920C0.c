@@ -225,7 +225,7 @@ u8 sub_0209228C (PokemonSummaryApp * param0)
         sub_0208F684(param0);
 
         if (sub_02092224(param0) != param0->buttonPos) {
-            if ((param0->monData.unk_50_28 != 0) && (v0[param0->buttonPos].unk_00 != 1) && (v0[param0->buttonPos].unk_00 != 7)) {
+            if ((param0->monData.isEgg != 0) && (v0[param0->buttonPos].unk_00 != 1) && (v0[param0->buttonPos].unk_00 != 7)) {
                 sub_0209212C(param0, &v0[param0->buttonPos], 0);
             } else {
                 sub_0209212C(param0, &v0[param0->buttonPos], 1);

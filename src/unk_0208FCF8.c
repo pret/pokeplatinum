@@ -243,13 +243,13 @@ void sub_0208FEA4 (PokemonSummaryApp * param0)
     v0 = &param0->staticWindows[34];
 
     BGL_FillWindow(v0, 0);
-    sub_0201D78C(v0, 0, param0->monData.unk_04, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    sub_0201D78C(v0, 0, param0->monData.nickname, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
-    if (param0->monData.unk_12_7 == 0) {
-        if (param0->monData.unk_13_0 == 0) {
+    if (param0->monData.showGender == 0) {
+        if (param0->monData.gender == 0) {
             MessageLoader_GetStrbuf(param0->msgLoader, 1, param0->strbuf);
             sub_020900D8(param0, v0, ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0))), 1);
-        } else if (param0->monData.unk_13_0 == 1) {
+        } else if (param0->monData.gender == 1) {
             MessageLoader_GetStrbuf(param0->msgLoader, 2, param0->strbuf);
             sub_020900D8(param0, v0, ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0))), 1);
         }
@@ -267,12 +267,12 @@ void sub_0208FF3C (PokemonSummaryApp * param0)
 
     BGL_FillWindow(v0, 0);
 
-    if (param0->monData.unk_50_28 == 0) {
+    if (param0->monData.isEgg == 0) {
         sub_0200C578(param0->unk_684, 1, v0, 0, 5);
 
         v1 = MessageLoader_GetNewStrbuf(param0->msgLoader, 3);
 
-        sub_0200B60C(param0->strFormatter, 0, param0->monData.unk_12_0, 3, 0, 1);
+        sub_0200B60C(param0->strFormatter, 0, param0->monData.level, 3, 0, 1);
         StringFormatter_Format(param0->strFormatter, param0->strbuf, v1);
         Strbuf_Free(v1);
         sub_0201D78C(v0, 0, param0->strbuf, 16, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -287,8 +287,8 @@ void sub_0208FFE0 (PokemonSummaryApp * param0)
 
     BGL_FillWindow(&param0->staticWindows[32], 0);
 
-    if (param0->monData.unk_0E != 0) {
-        sub_0200B70C(param0->strFormatter, 0, param0->monData.unk_0E);
+    if (param0->monData.heldItem != 0) {
+        sub_0200B70C(param0->strFormatter, 0, param0->monData.heldItem);
         v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, 5);
         StringFormatter_Format(param0->strFormatter, param0->strbuf, v0);
         Strbuf_Free(v0);
@@ -310,7 +310,7 @@ void sub_02090064 (PokemonSummaryApp * param0, u32 param1)
 
 static BOOL sub_02090098 (PokemonSummaryApp * param0)
 {
-    if ((param0->monData.unk_14 == param0->data->OTID) && (param0->monData.unk_44 == param0->data->OTGender) && (Strbuf_Compare(param0->monData.unk_08, param0->playerName) == 0)) {
+    if ((param0->monData.OTID == param0->data->OTID) && (param0->monData.OTGender == param0->data->OTGender) && (Strbuf_Compare(param0->monData.OTName, param0->playerName) == 0)) {
         return 1;
     }
 
@@ -478,7 +478,7 @@ static void sub_02090578 (PokemonSummaryApp * param0)
     BGL_FillWindow(&param0->extraWindows[5], 0);
 
     {
-        u32 v0 = sub_0207A294(param0->data->dexMode, param0->monData.unk_0C);
+        u32 v0 = sub_0207A294(param0->data->dexMode, param0->monData.species);
 
         if (v0 != 0) {
             sub_02090184(param0, 9, v0, 3, 2);
@@ -487,39 +487,39 @@ static void sub_02090578 (PokemonSummaryApp * param0)
         }
     }
 
-    if (param0->monData.unk_50_29 == 0) {
+    if (param0->monData.isShiny == 0) {
         sub_020900D8(param0, &param0->extraWindows[0], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
     } else {
         sub_020900D8(param0, &param0->extraWindows[0], ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
     }
 
     {
-        u32 v1 = sub_02002D7C(0, param0->monData.unk_00, 0);
+        u32 v1 = sub_02002D7C(0, param0->monData.speciesName, 0);
         u32 v2 = (param0->extraWindows[1].unk_07 * 8 - v1) / 2;
 
-        sub_0201D78C(&param0->extraWindows[1], 0, param0->monData.unk_00, v2, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        sub_0201D78C(&param0->extraWindows[1], 0, param0->monData.speciesName, v2, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
     {
-        u32 v3 = sub_02002D7C(0, param0->monData.unk_08, 0);
+        u32 v3 = sub_02002D7C(0, param0->monData.OTName, 0);
         u32 v4 = (param0->extraWindows[2].unk_07 * 8 - v3) / 2;
 
-        if (param0->monData.unk_44 == 0) {
+        if (param0->monData.OTGender == 0) {
             sub_0201D78C(
-                &param0->extraWindows[2], 0, param0->monData.unk_08, v4, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+                &param0->extraWindows[2], 0, param0->monData.OTName, v4, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         } else {
             sub_0201D78C(
-                &param0->extraWindows[2], 0, param0->monData.unk_08, v4, 0, 0xff, ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+                &param0->extraWindows[2], 0, param0->monData.OTName, v4, 0, 0xff, ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         }
     }
 
-    sub_02090184(param0, 16, (param0->monData.unk_14 & 0xffff), 5, 2);
+    sub_02090184(param0, 16, (param0->monData.OTID & 0xffff), 5, 2);
     sub_020900D8(param0, &param0->extraWindows[3], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
-    sub_02090184(param0, 18, param0->monData.unk_18, 7, 1);
+    sub_02090184(param0, 18, param0->monData.curExp, 7, 1);
     sub_020900D8(param0, &param0->extraWindows[4], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
 
-    if (param0->monData.unk_12_0 < 100) {
-        sub_02090184(param0, 21, param0->monData.unk_20 - param0->monData.unk_18, 7, 1);
+    if (param0->monData.level < 100) {
+        sub_02090184(param0, 21, param0->monData.nextLevelExp - param0->monData.curExp, 7, 1);
     } else {
         sub_02090184(param0, 21, 0, 7, 1);
     }
@@ -611,23 +611,23 @@ static void sub_0209093C (PokemonSummaryApp * param0)
 
     v0 = sub_0201C294(&param0->extraWindows[0]) * 8;
 
-    sub_020901D0(param0, 0, 117, 119, 118, param0->monData.unk_24, param0->monData.unk_26, 3, v0 / 2, 0);
-    sub_02090184(param0, 120, param0->monData.unk_28, 3, 0);
+    sub_020901D0(param0, 0, 117, 119, 118, param0->monData.curHP, param0->monData.maxHP, 3, v0 / 2, 0);
+    sub_02090184(param0, 120, param0->monData.attack, 3, 0);
     sub_020900D8(param0, &param0->extraWindows[1], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 1);
-    sub_02090184(param0, 121, param0->monData.unk_2A, 3, 0);
+    sub_02090184(param0, 121, param0->monData.defense, 3, 0);
     sub_020900D8(param0, &param0->extraWindows[2], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 1);
-    sub_02090184(param0, 122, param0->monData.unk_2C, 3, 0);
+    sub_02090184(param0, 122, param0->monData.spAttack, 3, 0);
     sub_020900D8(param0, &param0->extraWindows[3], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 1);
-    sub_02090184(param0, 123, param0->monData.unk_2E, 3, 0);
+    sub_02090184(param0, 123, param0->monData.spDefense, 3, 0);
     sub_020900D8(param0, &param0->extraWindows[4], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 1);
-    sub_02090184(param0, 124, param0->monData.unk_30, 3, 0);
+    sub_02090184(param0, 124, param0->monData.speed, 3, 0);
     sub_020900D8(param0, &param0->extraWindows[5], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 1);
 
     {
         MessageLoader * v1;
         Strbuf* v2;
 
-        sub_0200B6A0(param0->strFormatter, 0, param0->monData.unk_32);
+        sub_0200B6A0(param0->strFormatter, 0, param0->monData.ability);
 
         v2 = MessageLoader_GetNewStrbuf(param0->msgLoader, 125);
         StringFormatter_Format(param0->strFormatter, param0->strbuf, v2);
@@ -635,7 +635,7 @@ static void sub_0209093C (PokemonSummaryApp * param0)
         sub_020900D8(param0, &param0->extraWindows[6], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
 
         v1 = MessageLoader_Init(1, 26, 612, 19);
-        MessageLoader_GetStrbuf(v1, param0->monData.unk_32, param0->strbuf);
+        MessageLoader_GetStrbuf(v1, param0->monData.ability, param0->strbuf);
         MessageLoader_Free(v1);
         sub_020900D8(param0, &param0->extraWindows[7], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
     }
@@ -662,7 +662,7 @@ static void sub_02090BDC (PokemonSummaryApp * param0)
     BGL_FillWindow(&param0->extraWindows[1], 0);
     MessageLoader_GetStrbuf(param0->msgLoader, 165, param0->strbuf);
     sub_020900D8(param0, &param0->extraWindows[1], ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
-    MessageLoader_GetStrbuf(param0->msgLoader, 166 + param0->monData.unk_4B, param0->strbuf);
+    MessageLoader_GetStrbuf(param0->msgLoader, 166 + param0->monData.preferredFlavor, param0->strbuf);
     sub_0201D78C(&param0->extraWindows[1], 0, param0->strbuf, 0, 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_0201A9A4(&param0->extraWindows[1]);
 
@@ -762,7 +762,7 @@ static void sub_02090EC8 (PokemonSummaryApp * param0)
     MessageLoader_GetStrbuf(param0->msgLoader, 165, param0->strbuf);
     sub_020900D8(param0, &param0->extraWindows[1], ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
 
-    MessageLoader_GetStrbuf(param0->msgLoader, 166 + param0->monData.unk_4B, param0->strbuf);
+    MessageLoader_GetStrbuf(param0->msgLoader, 166 + param0->monData.preferredFlavor, param0->strbuf);
     sub_0201D78C(&param0->extraWindows[1], 0, param0->strbuf, 0, 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     sub_0201A9A4(&param0->extraWindows[1]);
@@ -833,9 +833,9 @@ static void sub_02091188 (PokemonSummaryApp * param0, u32 param1)
     v0 = &param0->extraWindows[0 + param1];
 
     if (param1 != 4) {
-        v3 = param0->monData.unk_34[param1];
-        v4 = param0->monData.unk_3C[param1];
-        v5 = param0->monData.unk_40[param1];
+        v3 = param0->monData.moves[param1];
+        v4 = param0->monData.curPP[param1];
+        v5 = param0->monData.maxPP[param1];
     } else {
         v3 = param0->data->move;
         v4 = MoveTable_CalcMaxPP(v3, 0);

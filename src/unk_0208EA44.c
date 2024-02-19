@@ -314,25 +314,25 @@ void sub_0208EE3C (PokemonSummaryApp * param0)
 {
     u32 v0;
 
-    if (param0->monData.unk_13_2 == 0) {
+    if (param0->monData.caughtBall == 0) {
         v0 = 21;
     } else {
-        v0 = 21 + param0->monData.unk_13_2 - 1;
+        v0 = 21 + param0->monData.caughtBall - 1;
     }
 
     sub_0200D948(param0->renderer, param0->gfxHandler, 39, v0, 0, 0);
-    sub_0200D97C(param0->renderer, param0->gfxHandler, 39, 37 + Unk_020F411C[param0->monData.unk_13_2], 0, 6);
+    sub_0200D97C(param0->renderer, param0->gfxHandler, 39, 37 + Unk_020F411C[param0->monData.caughtBall], 0, 6);
 }
 
 void sub_0208EE9C (PokemonSummaryApp * param0)
 {
-    if (param0->monData.unk_50_0 == 7) {
+    if (param0->monData.status == 7) {
         sub_02021CAC(param0->unk_41C[20], 0);
         sub_02021CAC(param0->unk_41C[76], 0);
-    } else if (param0->monData.unk_50_0 != 0) {
+    } else if (param0->monData.status != 0) {
         sub_02021CAC(param0->unk_41C[76], 0);
         sub_02021CAC(param0->unk_41C[20], 1);
-        SpriteActor_SetSpriteAnimActive(param0->unk_41C[20], param0->monData.unk_50_0);
+        SpriteActor_SetSpriteAnimActive(param0->unk_41C[20], param0->monData.status);
     } else {
         sub_02021CAC(param0->unk_41C[76], 1);
         sub_02021CAC(param0->unk_41C[20], 0);
@@ -346,11 +346,11 @@ static void sub_0208EF0C (PokemonSummaryApp * param0)
     sub_0208F16C(param0);
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param0->monData.unk_34[v0] == 0) {
+        if (param0->monData.moves[v0] == 0) {
             continue;
         }
 
-        sub_0208F194(param0, 13 + v0, 5 + v0, MoveTable_LoadParam(param0->monData.unk_34[v0], MOVEATTRIBUTE_TYPE));
+        sub_0208F194(param0, 13 + v0, 5 + v0, MoveTable_LoadParam(param0->monData.moves[v0], MOVEATTRIBUTE_TYPE));
     }
 
     sub_0208F71C(param0);
@@ -368,7 +368,7 @@ void sub_0208EF58 (PokemonSummaryApp * param0)
     case 0:
         SpriteActor_DrawSprite(param0->unk_41C[11], 1);
 
-        if (param0->monData.unk_10 == param0->monData.unk_11) {
+        if (param0->monData.type1 == param0->monData.type2) {
             SpriteActor_SetPositionXY(param0->unk_41C[11], 216, 80);
         } else {
             SpriteActor_SetPositionXY(param0->unk_41C[11], 199, 80);
@@ -379,11 +379,11 @@ void sub_0208EF58 (PokemonSummaryApp * param0)
         break;
     case 3:
         for (v0 = 0; v0 < 4; v0++) {
-            if (param0->monData.unk_34[v0] == 0) {
+            if (param0->monData.moves[v0] == 0) {
                 continue;
             }
 
-            sub_0208F194(param0, 13 + v0, 5 + v0, MoveTable_LoadParam(param0->monData.unk_34[v0], MOVEATTRIBUTE_TYPE));
+            sub_0208F194(param0, 13 + v0, 5 + v0, MoveTable_LoadParam(param0->monData.moves[v0], MOVEATTRIBUTE_TYPE));
             SpriteActor_DrawSprite(param0->unk_41C[13 + v0], 1);
             SpriteActor_SetPositionXY(param0->unk_41C[13 + v0], 151, 42 + v0 * 32);
         }
@@ -400,11 +400,11 @@ void sub_0208EF58 (PokemonSummaryApp * param0)
         break;
     case 5:
         for (v0 = 0; v0 < 4; v0++) {
-            if (param0->monData.unk_34[v0] == 0) {
+            if (param0->monData.moves[v0] == 0) {
                 continue;
             }
 
-            sub_0208F194(param0, 13 + v0, 5 + v0, MoveTable_LoadParam(param0->monData.unk_34[v0], MOVEATTRIBUTE_CONTEST_TYPE) + 18);
+            sub_0208F194(param0, 13 + v0, 5 + v0, MoveTable_LoadParam(param0->monData.moves[v0], MOVEATTRIBUTE_CONTEST_TYPE) + 18);
             SpriteActor_DrawSprite(param0->unk_41C[13 + v0], 1);
             SpriteActor_SetPositionXY(param0->unk_41C[13 + v0], 151, 42 + v0 * 32);
         }
@@ -424,8 +424,8 @@ void sub_0208EF58 (PokemonSummaryApp * param0)
 
 void sub_0208F16C (PokemonSummaryApp * param0)
 {
-    sub_0208F194(param0, 11, 3, param0->monData.unk_10);
-    sub_0208F194(param0, 12, 4, param0->monData.unk_11);
+    sub_0208F194(param0, 11, 3, param0->monData.type1);
+    sub_0208F194(param0, 12, 4, param0->monData.type2);
 }
 
 static void sub_0208F194 (PokemonSummaryApp * param0, u8 param1, u8 param2, u8 param3)
@@ -491,12 +491,12 @@ void sub_0208F34C (PokemonSummaryApp * param0)
     param0->sheenCount = 0;
     param0->sheenPos = 0;
 
-    if (param0->monData.unk_4A == 0) {
+    if (param0->monData.sheen == 0) {
         param0->sheenMax = 0;
-    } else if (param0->monData.unk_4A == 255) {
+    } else if (param0->monData.sheen == 255) {
         param0->sheenMax = 12;
     } else {
-        param0->sheenMax = (((12 << 8) / 255) * param0->monData.unk_4A) >> 8;
+        param0->sheenMax = (((12 << 8) / 255) * param0->monData.sheen) >> 8;
     }
 
     for (v0 = 29; v0 <= 40; v0++) {
@@ -593,20 +593,20 @@ void sub_0208F574 (PokemonSummaryApp * param0)
     u32 v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (param0->monData.unk_4C & (1 << v0)) {
+        if (param0->monData.markings & (1 << v0)) {
             SpriteActor_SetSpriteAnimActive(param0->unk_41C[23 + v0], 1);
         } else {
             SpriteActor_SetSpriteAnimActive(param0->unk_41C[23 + v0], 0);
         }
     }
 
-    if ((param0->monData.unk_50_29 == 1) && (param0->monData.unk_50_28 == 0)) {
+    if ((param0->monData.isShiny == 1) && (param0->monData.isEgg == 0)) {
         SpriteActor_DrawSprite(param0->unk_41C[53], 1);
     } else {
         SpriteActor_DrawSprite(param0->unk_41C[53], 0);
     }
 
-    if (param0->monData.unk_50_30 == 2) {
+    if (param0->monData.pokerus == 2) {
         SpriteActor_DrawSprite(param0->unk_41C[54], 1);
     } else {
         SpriteActor_DrawSprite(param0->unk_41C[54], 0);
@@ -671,8 +671,8 @@ void sub_0208F71C (PokemonSummaryApp * param0)
     }
 
     sub_0200D948(param0->renderer, param0->gfxHandler, 19, v1, 0, 11);
-    sub_0200D414(param0->unk_41C[19], PokeIconPaletteIndex(param0->monData.unk_0C, param0->monData.unk_4E, param0->monData.unk_50_28) + 7);
-    sub_02021D0C(param0->unk_41C[19], (PokemonPersonalData_GetFormValue(param0->monData.unk_0C, param0->monData.unk_4E, 28) ^ 1));
+    sub_0200D414(param0->unk_41C[19], PokeIconPaletteIndex(param0->monData.species, param0->monData.form, param0->monData.isEgg) + 7);
+    sub_02021D0C(param0->unk_41C[19], (PokemonPersonalData_GetFormValue(param0->monData.species, param0->monData.form, 28) ^ 1));
 }
 
 void sub_0208F7A4 (PokemonSummaryApp * param0)
@@ -709,11 +709,11 @@ static s16 sub_0208F800 (u32 param0, s16 param1, s16 param2)
 
 void sub_0208F844 (PokemonSummaryApp * param0)
 {
-    SpriteActor_SetPositionXY(param0->unk_41C[48], sub_0208F800(param0->monData.unk_45, 88, 88), sub_0208F800(param0->monData.unk_45, 49, 73));
-    SpriteActor_SetPositionXY(param0->unk_41C[49], sub_0208F800(param0->monData.unk_46, 110, 88), sub_0208F800(param0->monData.unk_46, 65, 73));
-    SpriteActor_SetPositionXY(param0->unk_41C[50], sub_0208F800(param0->monData.unk_47, 103, 88), sub_0208F800(param0->monData.unk_47, 92, 73));
-    SpriteActor_SetPositionXY(param0->unk_41C[51], sub_0208F800(param0->monData.unk_48, 72, 87), sub_0208F800(param0->monData.unk_48, 92, 73));
-    SpriteActor_SetPositionXY(param0->unk_41C[52], sub_0208F800(param0->monData.unk_49, 65, 87), sub_0208F800(param0->monData.unk_49, 65, 73));
+    SpriteActor_SetPositionXY(param0->unk_41C[48], sub_0208F800(param0->monData.cool, 88, 88), sub_0208F800(param0->monData.cool, 49, 73));
+    SpriteActor_SetPositionXY(param0->unk_41C[49], sub_0208F800(param0->monData.beauty, 110, 88), sub_0208F800(param0->monData.beauty, 65, 73));
+    SpriteActor_SetPositionXY(param0->unk_41C[50], sub_0208F800(param0->monData.cute, 103, 88), sub_0208F800(param0->monData.cute, 92, 73));
+    SpriteActor_SetPositionXY(param0->unk_41C[51], sub_0208F800(param0->monData.smart, 72, 87), sub_0208F800(param0->monData.smart, 92, 73));
+    SpriteActor_SetPositionXY(param0->unk_41C[52], sub_0208F800(param0->monData.tough, 65, 87), sub_0208F800(param0->monData.tough, 65, 73));
 
     sub_02021CAC(param0->unk_41C[48], 1);
     sub_02021CAC(param0->unk_41C[49], 1);
@@ -805,29 +805,29 @@ void sub_0208FB54 (PokemonSummaryApp * param0, u8 param1)
             sub_02021CAC(param0->unk_41C[71 + v0], 0);
         }
     } else {
-        v1 = param0->monData.unk_45;
+        v1 = param0->monData.cool;
 
-        if (v1 < param0->monData.unk_46) {
-            v1 = param0->monData.unk_46;
+        if (v1 < param0->monData.beauty) {
+            v1 = param0->monData.beauty;
         }
 
-        if (v1 < param0->monData.unk_47) {
-            v1 = param0->monData.unk_47;
+        if (v1 < param0->monData.cute) {
+            v1 = param0->monData.cute;
         }
 
-        if (v1 < param0->monData.unk_48) {
-            v1 = param0->monData.unk_48;
+        if (v1 < param0->monData.smart) {
+            v1 = param0->monData.smart;
         }
 
-        if (v1 < param0->monData.unk_49) {
-            v1 = param0->monData.unk_49;
+        if (v1 < param0->monData.tough) {
+            v1 = param0->monData.tough;
         }
 
-        sub_0208FC30(param0->unk_41C[71], param0->monData.unk_45, v1, Unk_020F4180[0]);
-        sub_0208FC30(param0->unk_41C[72], param0->monData.unk_46, v1, Unk_020F4180[1]);
-        sub_0208FC30(param0->unk_41C[73], param0->monData.unk_47, v1, Unk_020F4180[2]);
-        sub_0208FC30(param0->unk_41C[74], param0->monData.unk_48, v1, Unk_020F4180[3]);
-        sub_0208FC30(param0->unk_41C[75], param0->monData.unk_49, v1, Unk_020F4180[4]);
+        sub_0208FC30(param0->unk_41C[71], param0->monData.cool, v1, Unk_020F4180[0]);
+        sub_0208FC30(param0->unk_41C[72], param0->monData.beauty, v1, Unk_020F4180[1]);
+        sub_0208FC30(param0->unk_41C[73], param0->monData.cute, v1, Unk_020F4180[2]);
+        sub_0208FC30(param0->unk_41C[74], param0->monData.smart, v1, Unk_020F4180[3]);
+        sub_0208FC30(param0->unk_41C[75], param0->monData.tough, v1, Unk_020F4180[4]);
     }
 }
 

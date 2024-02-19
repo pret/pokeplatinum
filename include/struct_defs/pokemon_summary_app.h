@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_STRUCT_POKEMON_SUMMARY_APP_H
 #define POKEPLATINUM_STRUCT_POKEMON_SUMMARY_APP_H
 
+#include "constants/moves.h"
+
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
@@ -14,63 +16,73 @@
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
+#include "struct_defs/archived_poke_sprite_data.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02091850.h"
 #include "struct_defs/pokemon_summary.h"
 
 typedef struct PokemonSummaryAppData {
-    Strbuf* unk_00;
-    Strbuf* unk_04;
-    Strbuf* unk_08;
-    u16 unk_0C;
-    u16 unk_0E;
-    u8 unk_10;
-    u8 unk_11;
-    u8 unk_12_0 : 7;
-    u8 unk_12_7 : 1;
-    u8 unk_13_0 : 2;
-    u8 unk_13_2 : 6;
-    u32 unk_14;
-    u32 unk_18;
-    u32 unk_1C;
-    u32 unk_20;
-    u16 unk_24;
-    u16 unk_26;
-    u16 unk_28;
-    u16 unk_2A;
-    u16 unk_2C;
-    u16 unk_2E;
-    u16 unk_30;
-    u8 unk_32;
-    u8 unk_33;
-    u16 unk_34[4];
-    u8 unk_3C[4];
-    u8 unk_40[4];
-    u8 unk_44;
-    u8 unk_45;
-    u8 unk_46;
-    u8 unk_47;
-    u8 unk_48;
-    u8 unk_49;
-    u8 unk_4A;
-    u8 unk_4B;
-    u16 unk_4C;
-    u16 unk_4E;
-    u32 unk_50_0 : 28;
-    u32 unk_50_28 : 1;
-    u32 unk_50_29 : 1;
-    u32 unk_50_30 : 2;
-    u32 unk_54[4];
+    Strbuf *speciesName;
+    Strbuf *nickname;
+    Strbuf *OTName;
+
+    u16 species;
+    u16 heldItem;
+
+    u8 type1;
+    u8 type2;
+    u8 level : 7;
+    u8 showGender : 1;
+    u8 gender : 2;
+    u8 caughtBall : 6;
+
+    u32 OTID;
+    u32 curExp;
+    u32 curLevelExp;
+    u32 nextLevelExp;
+    
+    u16 curHP;
+    u16 maxHP;
+    u16 attack;
+    u16 defense;
+    u16 spAttack;
+    u16 spDefense;
+    u16 speed;
+    u8 ability;
+    u8 nature;
+
+    u16 moves[LEARNED_MOVES_MAX];
+    u8 curPP[LEARNED_MOVES_MAX];
+    u8 maxPP[LEARNED_MOVES_MAX];
+
+    u8 OTGender;
+    u8 cool;
+    u8 beauty;
+    u8 cute;
+    u8 smart;
+    u8 tough;
+    u8 sheen;
+    u8 preferredFlavor;
+
+    u16 markings;
+    u16 form;
+
+    u32 status : 28;
+    u32 isEgg : 1;
+    u32 isShiny : 1;
+    u32 pokerus : 2;
+
+    u32 ribbons[4];
 } PokemonSummaryAppData;
 
 typedef struct PokemonSummaryAppSpriteData {
     UnkStruct_020203AC * unk_00;
-    void * unk_04;
-    SpriteAnimationFrame unk_08[10];
-    PokemonAnimationSys * unk_30;
-    Sprite * unk_34;
-    u32 unk_38;
+    void *spriteManager;
+    SpriteAnimationFrame frames[MAX_ANIMATION_FRAMES];
+    PokemonAnimationSys *animationSys;
+    Sprite *sprite;
+    BOOL flip;
 } PokemonSummaryAppSpriteData;
 
 typedef struct PokemonSummaryApp {

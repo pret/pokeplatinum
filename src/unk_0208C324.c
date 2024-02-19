@@ -167,7 +167,7 @@ static int sub_0208C330 (UnkStruct_020067E8 * param0, int * param1)
 
     v0->data = sub_02006840(param0);
     v0->bgl = sub_02018340(19);
-    v0->monSpriteData.unk_30 = sub_02015F84(19, 1, 1);
+    v0->monSpriteData.animationSys = sub_02015F84(19, 1, 1);
     v0->narcPlPokeData = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 19);
 
     sub_02002BEC(0, 19);
@@ -306,7 +306,7 @@ static void sub_0208C604 (void * param0)
     PokemonSummaryApp * v0 = param0;
 
     sub_0201C2B8(v0->bgl);
-    sub_02008A94(v0->monSpriteData.unk_04);
+    sub_02008A94(v0->monSpriteData.spriteManager);
     sub_0201DCAC();
     sub_0200C800();
 
@@ -490,9 +490,9 @@ static void sub_0208C884 (PokemonSummaryApp * param0)
     param0->ribbonLoader = MessageLoader_Init(1, 26, 535, 19);
     param0->unk_684 = sub_0200C440(1, 2, 0, 19);
     param0->strFormatter = sub_0200B358(19);
-    param0->monData.unk_00 = Strbuf_Init(12, 19);
-    param0->monData.unk_04 = Strbuf_Init(12, 19);
-    param0->monData.unk_08 = Strbuf_Init(8, 19);
+    param0->monData.speciesName = Strbuf_Init(12, 19);
+    param0->monData.nickname = Strbuf_Init(12, 19);
+    param0->monData.OTName = Strbuf_Init(8, 19);
     param0->strbuf = Strbuf_Init(128, 19);
     param0->moveNameLoader = MessageLoader_Init(0, 26, 647, 19);
     param0->playerName = Strbuf_Init(7 + 1, 19);
@@ -509,9 +509,9 @@ static void sub_0208C950 (PokemonSummaryApp * param0)
     MessageLoader_Free(param0->msgLoader);
     sub_0200C560(param0->unk_684);
     sub_0200B3F0(param0->strFormatter);
-    Strbuf_Free(param0->monData.unk_00);
-    Strbuf_Free(param0->monData.unk_04);
-    Strbuf_Free(param0->monData.unk_08);
+    Strbuf_Free(param0->monData.speciesName);
+    Strbuf_Free(param0->monData.nickname);
+    Strbuf_Free(param0->monData.OTName);
     Strbuf_Free(param0->strbuf);
     Strbuf_Free(param0->playerName);
 }
@@ -769,7 +769,7 @@ static int sub_0208CD44 (PokemonSummaryApp * param0)
         Sound_PlayEffect(1501);
 
         if (param0->cursor != 4) {
-            if ((Item_IsHMMove(param0->monData.unk_34[param0->cursor]) == 1) && (param0->data->move != 0)) {
+            if ((Item_IsHMMove(param0->monData.moves[param0->cursor]) == 1) && (param0->data->move != 0)) {
                 SpriteActor_DrawSprite(param0->unk_41C[18], 0);
                 sub_0208E46C(param0);
                 sub_020914F8(param0);
@@ -864,7 +864,7 @@ static int sub_0208CF0C (PokemonSummaryApp * param0)
             param0->subscreenExit = 1;
         }
 
-        if (param0->monData.unk_50_28 == 1) {
+        if (param0->monData.isEgg == 1) {
             if ((v0 == 1) || (v0 == 7)) {
                 sub_0208D7EC(param0, v0);
             }
@@ -894,42 +894,42 @@ static int sub_0208CF78 (PokemonSummaryApp * param0)
         sub_02098EF8(param0->data->poffin, v1);
 
         param0->subscreen = 0;
-        v2 = param0->monData.unk_45;
-        param0->monData.unk_45 = (u8)Pokemon_GetValue(v1, MON_DATA_COOL, NULL);
+        v2 = param0->monData.cool;
+        param0->monData.cool = (u8)Pokemon_GetValue(v1, MON_DATA_COOL, NULL);
 
-        if (v2 != param0->monData.unk_45) {
+        if (v2 != param0->monData.cool) {
             param0->subscreen |= 1;
         }
 
-        v2 = param0->monData.unk_46;
-        param0->monData.unk_46 = (u8)Pokemon_GetValue(v1, MON_DATA_BEAUTY, NULL);
+        v2 = param0->monData.beauty;
+        param0->monData.beauty = (u8)Pokemon_GetValue(v1, MON_DATA_BEAUTY, NULL);
 
-        if (v2 != param0->monData.unk_46) {
+        if (v2 != param0->monData.beauty) {
             param0->subscreen |= 2;
         }
 
-        v2 = param0->monData.unk_47;
-        param0->monData.unk_47 = (u8)Pokemon_GetValue(v1, MON_DATA_CUTE, NULL);
+        v2 = param0->monData.cute;
+        param0->monData.cute = (u8)Pokemon_GetValue(v1, MON_DATA_CUTE, NULL);
 
-        if (v2 != param0->monData.unk_47) {
+        if (v2 != param0->monData.cute) {
             param0->subscreen |= 4;
         }
 
-        v2 = param0->monData.unk_48;
-        param0->monData.unk_48 = (u8)Pokemon_GetValue(v1, MON_DATA_SMART, NULL);
+        v2 = param0->monData.smart;
+        param0->monData.smart = (u8)Pokemon_GetValue(v1, MON_DATA_SMART, NULL);
 
-        if (v2 != param0->monData.unk_48) {
+        if (v2 != param0->monData.smart) {
             param0->subscreen |= 8;
         }
 
-        v2 = param0->monData.unk_49;
-        param0->monData.unk_49 = (u8)Pokemon_GetValue(v1, MON_DATA_TOUGH, NULL);
+        v2 = param0->monData.tough;
+        param0->monData.tough = (u8)Pokemon_GetValue(v1, MON_DATA_TOUGH, NULL);
 
-        if (v2 != param0->monData.unk_49) {
+        if (v2 != param0->monData.tough) {
             param0->subscreen |= 16;
         }
 
-        param0->monData.unk_4A = (u8)Pokemon_GetValue(v1, MON_DATA_SHEEN, NULL);
+        param0->monData.sheen = (u8)Pokemon_GetValue(v1, MON_DATA_SHEEN, NULL);
 
         if (param0->data->dataType == 2) {
             Heap_FreeToHeap(v1);
@@ -1026,110 +1026,110 @@ static void sub_0208D200 (PokemonSummaryApp * param0, Pokemon * param1, PokemonS
 
     v3 = Pokemon_EnterDecryptionContext(param1);
 
-    param2->unk_0C = (u16)Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
+    param2->species = (u16)Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
 
     v0 = Pokemon_GetBoxPokemon(param1);
 
     MessageLoader_GetStrbuf(param0->msgLoader, 11, param0->strbuf);
     sub_0200B538(param0->strFormatter, 0, v0);
-    StringFormatter_Format(param0->strFormatter, param0->monData.unk_00, param0->strbuf);
+    StringFormatter_Format(param0->strFormatter, param0->monData.speciesName, param0->strbuf);
 
     MessageLoader_GetStrbuf(param0->msgLoader, 0, param0->strbuf);
     StringFormatter_BufferNickname(param0->strFormatter, 0, v0);
-    StringFormatter_Format(param0->strFormatter, param0->monData.unk_04, param0->strbuf);
+    StringFormatter_Format(param0->strFormatter, param0->monData.nickname, param0->strbuf);
 
     MessageLoader_GetStrbuf(param0->msgLoader, 14, param0->strbuf);
     sub_0200B5EC(param0->strFormatter, 0, v0);
-    StringFormatter_Format(param0->strFormatter, param0->monData.unk_08, param0->strbuf);
+    StringFormatter_Format(param0->strFormatter, param0->monData.OTName, param0->strbuf);
 
-    param2->unk_0E = (u16)Pokemon_GetValue(param1, MON_DATA_HELD_ITEM, NULL);
-    param2->unk_12_0 = (u8)Pokemon_GetValue(param1, MON_DATA_LEVEL, NULL);
-    param2->unk_50_28 = Pokemon_GetValue(param1, MON_DATA_IS_EGG, NULL);
+    param2->heldItem = (u16)Pokemon_GetValue(param1, MON_DATA_HELD_ITEM, NULL);
+    param2->level = (u8)Pokemon_GetValue(param1, MON_DATA_LEVEL, NULL);
+    param2->isEgg = Pokemon_GetValue(param1, MON_DATA_IS_EGG, NULL);
 
-    if ((Pokemon_GetValue(param1, MON_DATA_NIDORAN_HAS_NICKNAME, NULL) == 1) && (param2->unk_50_28 == 0)) {
-        param2->unk_12_7 = 0;
+    if ((Pokemon_GetValue(param1, MON_DATA_NIDORAN_HAS_NICKNAME, NULL) == 1) && (param2->isEgg == 0)) {
+        param2->showGender = 0;
     } else {
-        param2->unk_12_7 = 1;
+        param2->showGender = 1;
     }
 
-    param2->unk_13_0 = Pokemon_GetGender(param1);
-    param2->unk_13_2 = (u8)Pokemon_GetValue(param1, MON_DATA_POKEBALL, NULL);
-    param2->unk_10 = (u8)Pokemon_GetValue(param1, MON_DATA_TYPE_1, NULL);
-    param2->unk_11 = (u8)Pokemon_GetValue(param1, MON_DATA_TYPE_2, NULL);
-    param2->unk_14 = Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL);
-    param2->unk_18 = Pokemon_GetValue(param1, MON_DATA_EXP, NULL);
-    param2->unk_44 = (u8)Pokemon_GetValue(param1, MON_DATA_OT_GENDER, NULL);
-    param2->unk_1C = Pokemon_GetSpeciesBaseExpAt(param2->unk_0C, param2->unk_12_0);
+    param2->gender = Pokemon_GetGender(param1);
+    param2->caughtBall = (u8)Pokemon_GetValue(param1, MON_DATA_POKEBALL, NULL);
+    param2->type1 = (u8)Pokemon_GetValue(param1, MON_DATA_TYPE_1, NULL);
+    param2->type2 = (u8)Pokemon_GetValue(param1, MON_DATA_TYPE_2, NULL);
+    param2->OTID = Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL);
+    param2->curExp = Pokemon_GetValue(param1, MON_DATA_EXP, NULL);
+    param2->OTGender = (u8)Pokemon_GetValue(param1, MON_DATA_OT_GENDER, NULL);
+    param2->curLevelExp = Pokemon_GetSpeciesBaseExpAt(param2->species, param2->level);
 
-    if (param2->unk_12_0 == 100) {
-        param2->unk_20 = param2->unk_1C;
+    if (param2->level == 100) {
+        param2->nextLevelExp = param2->curLevelExp;
     } else {
-        param2->unk_20 = Pokemon_GetSpeciesBaseExpAt(param2->unk_0C, param2->unk_12_0 + 1);
+        param2->nextLevelExp = Pokemon_GetSpeciesBaseExpAt(param2->species, param2->level + 1);
     }
 
-    param2->unk_24 = (u16)Pokemon_GetValue(param1, MON_DATA_CURRENT_HP, NULL);
-    param2->unk_26 = (u16)Pokemon_GetValue(param1, MON_DATA_MAX_HP, NULL);
-    param2->unk_28 = (u16)Pokemon_GetValue(param1, MON_DATA_ATK, NULL);
-    param2->unk_2A = (u16)Pokemon_GetValue(param1, MON_DATA_DEF, NULL);
-    param2->unk_2C = (u16)Pokemon_GetValue(param1, MON_DATA_SP_ATK, NULL);
-    param2->unk_2E = (u16)Pokemon_GetValue(param1, MON_DATA_SP_DEF, NULL);
-    param2->unk_30 = (u16)Pokemon_GetValue(param1, MON_DATA_SPEED, NULL);
-    param2->unk_32 = (u8)Pokemon_GetValue(param1, MON_DATA_ABILITY, NULL);
-    param2->unk_33 = Pokemon_GetNature(param1);
+    param2->curHP = (u16)Pokemon_GetValue(param1, MON_DATA_CURRENT_HP, NULL);
+    param2->maxHP = (u16)Pokemon_GetValue(param1, MON_DATA_MAX_HP, NULL);
+    param2->attack = (u16)Pokemon_GetValue(param1, MON_DATA_ATK, NULL);
+    param2->defense = (u16)Pokemon_GetValue(param1, MON_DATA_DEF, NULL);
+    param2->spAttack = (u16)Pokemon_GetValue(param1, MON_DATA_SP_ATK, NULL);
+    param2->spDefense = (u16)Pokemon_GetValue(param1, MON_DATA_SP_DEF, NULL);
+    param2->speed = (u16)Pokemon_GetValue(param1, MON_DATA_SPEED, NULL);
+    param2->ability = (u8)Pokemon_GetValue(param1, MON_DATA_ABILITY, NULL);
+    param2->nature = Pokemon_GetNature(param1);
 
     for (v1 = 0; v1 < 4; v1++) {
-        param2->unk_34[v1] = (u16)Pokemon_GetValue(param1, MON_DATA_MOVE1 + v1, NULL);
-        param2->unk_3C[v1] = (u8)Pokemon_GetValue(param1, MON_DATA_MOVE1_CUR_PP + v1, NULL);
+        param2->moves[v1] = (u16)Pokemon_GetValue(param1, MON_DATA_MOVE1 + v1, NULL);
+        param2->curPP[v1] = (u8)Pokemon_GetValue(param1, MON_DATA_MOVE1_CUR_PP + v1, NULL);
         v2 = (u8)Pokemon_GetValue(param1, MON_DATA_MOVE1_PP_UPS + v1, NULL);
-        param2->unk_40[v1] = MoveTable_CalcMaxPP(param2->unk_34[v1], v2);
+        param2->maxPP[v1] = MoveTable_CalcMaxPP(param2->moves[v1], v2);
     }
 
-    param2->unk_45 = (u8)Pokemon_GetValue(param1, MON_DATA_COOL, NULL);
-    param2->unk_46 = (u8)Pokemon_GetValue(param1, MON_DATA_BEAUTY, NULL);
-    param2->unk_47 = (u8)Pokemon_GetValue(param1, MON_DATA_CUTE, NULL);
-    param2->unk_48 = (u8)Pokemon_GetValue(param1, MON_DATA_SMART, NULL);
-    param2->unk_49 = (u8)Pokemon_GetValue(param1, MON_DATA_TOUGH, NULL);
-    param2->unk_4A = (u8)Pokemon_GetValue(param1, MON_DATA_SHEEN, NULL);
-    param2->unk_4B = 5;
+    param2->cool = (u8)Pokemon_GetValue(param1, MON_DATA_COOL, NULL);
+    param2->beauty = (u8)Pokemon_GetValue(param1, MON_DATA_BEAUTY, NULL);
+    param2->cute = (u8)Pokemon_GetValue(param1, MON_DATA_CUTE, NULL);
+    param2->smart = (u8)Pokemon_GetValue(param1, MON_DATA_SMART, NULL);
+    param2->tough = (u8)Pokemon_GetValue(param1, MON_DATA_TOUGH, NULL);
+    param2->sheen = (u8)Pokemon_GetValue(param1, MON_DATA_SHEEN, NULL);
+    param2->preferredFlavor = 5;
 
     for (v1 = 0; v1 < 5; v1++) {
         if (Pokemon_GetFlavorAffinity(param1, v1) == 1) {
-            param2->unk_4B = v1;
+            param2->preferredFlavor = v1;
             break;
         }
     }
 
-    param2->unk_4C = Pokemon_GetValue(param1, MON_DATA_MARKS, NULL);
-    param2->unk_4E = Pokemon_GetValue(param1, MON_DATA_FORM, NULL);
-    param2->unk_50_0 = sub_0208E9F0(param1);
+    param2->markings = Pokemon_GetValue(param1, MON_DATA_MARKS, NULL);
+    param2->form = Pokemon_GetValue(param1, MON_DATA_FORM, NULL);
+    param2->status = sub_0208E9F0(param1);
 
     if (Pokemon_CanSpreadPokerus(param1) == 1) {
-        param2->unk_50_30 = 2;
+        param2->pokerus = 2;
     } else if (Pokemon_InfectedWithPokerus(param1) == 1) {
-        param2->unk_50_30 = 1;
+        param2->pokerus = 1;
 
-        if (param2->unk_50_0 == 7) {
-            param2->unk_50_0 = 0;
+        if (param2->status == 7) {
+            param2->status = 0;
         }
     } else {
-        param2->unk_50_30 = 0;
+        param2->pokerus = 0;
     }
 
     if (Pokemon_IsShiny(param1) == 1) {
-        param2->unk_50_29 = 1;
+        param2->isShiny = 1;
     } else {
-        param2->unk_50_29 = 0;
+        param2->isShiny = 0;
     }
 
-    param2->unk_54[0] = 0;
-    param2->unk_54[1] = 0;
-    param2->unk_54[2] = 0;
-    param2->unk_54[3] = 0;
+    param2->ribbons[0] = 0;
+    param2->ribbons[1] = 0;
+    param2->ribbons[2] = 0;
+    param2->ribbons[3] = 0;
     param0->ribbonMax = 0;
 
     for (v1 = 0; v1 < 80; v1++) {
         if (Pokemon_GetValue(param1, sub_020923C0(v1, 0), NULL) != 0) {
-            param2->unk_54[v1 / 32] |= (1 << (v1 & 0x1f));
+            param2->ribbons[v1 / 32] |= (1 << (v1 & 0x1f));
             param0->ribbonMax++;
         }
     }
@@ -1141,16 +1141,16 @@ static void sub_0208D618 (PokemonSummaryApp * param0)
 {
     u8 v0;
 
-    if (param0->monData.unk_50_28 != 0) {
+    if (param0->monData.isEgg != 0) {
         return;
     }
 
-    PokeSprite_LoadCryDelay(param0->narcPlPokeData, &v0, param0->monData.unk_0C, 1);
+    PokeSprite_LoadCryDelay(param0->narcPlPokeData, &v0, param0->monData.species, 1);
 
-    if (param0->monData.unk_0C == 441) {
+    if (param0->monData.species == 441) {
         Sound_PlayDelayedChatotCry(param0->data->chatotCry, 0, 100, 0, v0);
     } else {
-        sub_0200590C(param0->monData.unk_0C, v0, param0->monData.unk_4E);
+        sub_0200590C(param0->monData.species, v0, param0->monData.form);
     }
 }
 
@@ -1159,7 +1159,7 @@ static void sub_0208D678 (PokemonSummaryApp * param0)
     switch (param0->data->mode) {
     case 0:
     case 1:
-        if (param0->monData.unk_50_28 == 0) {
+        if (param0->monData.isEgg == 0) {
             param0->page = 0;
         } else {
             param0->page = 1;
@@ -1227,7 +1227,7 @@ static void sub_0208D748 (PokemonSummaryApp * param0)
 
 u8 sub_0208D790 (PokemonSummaryApp * param0, u32 param1)
 {
-    if ((param0->monData.unk_50_28 != 0) && (param1 != 1) && (param1 != 7)) {
+    if ((param0->monData.isEgg != 0) && (param1 != 1) && (param1 != 7)) {
         return 0;
     }
 
@@ -1295,7 +1295,7 @@ static void sub_0208D898 (PokemonSummaryApp * param0, s8 param1)
             v0 = 0;
         }
 
-        if (param0->monData.unk_50_28 == 0) {
+        if (param0->monData.isEgg == 0) {
             if ((param0->data->pageFlag & (1 << v0)) != 0) {
                 break;
             }
@@ -1370,7 +1370,7 @@ static void sub_0208D9D0 (PokemonSummaryApp * param0)
     u8 v2;
     u8 v3;
 
-    switch (HealthBar_Color(param0->monData.unk_24, param0->monData.unk_26, 48)) {
+    switch (HealthBar_Color(param0->monData.curHP, param0->monData.maxHP, 48)) {
     case 4:
     case 3:
     case 0:
@@ -1384,7 +1384,7 @@ static void sub_0208D9D0 (PokemonSummaryApp * param0)
         break;
     }
 
-    v2 = App_PixelCount(param0->monData.unk_24, param0->monData.unk_26, 48);
+    v2 = App_PixelCount(param0->monData.curHP, param0->monData.maxHP, 48);
 
     for (v3 = 0; v3 < 6; v3++) {
         if (v2 >= 8) {
@@ -1413,9 +1413,9 @@ static void sub_0208DA84 (PokemonSummaryApp * param0)
     u8 v3;
     u8 v4;
 
-    if (param0->monData.unk_12_0 < 100) {
-        v0 = param0->monData.unk_20 - param0->monData.unk_1C;
-        v1 = param0->monData.unk_18 - param0->monData.unk_1C;
+    if (param0->monData.level < 100) {
+        v0 = param0->monData.nextLevelExp - param0->monData.curLevelExp;
+        v1 = param0->monData.curExp - param0->monData.curLevelExp;
     } else {
         v0 = 0;
         v1 = 0;
@@ -1654,7 +1654,7 @@ static u8 sub_0208DD8C (PokemonSummaryApp * param0)
         SpriteActor_DrawSprite(param0->unk_41C[11], 1);
         sub_0208F7A4(param0);
 
-        if (param0->monData.unk_10 != param0->monData.unk_11) {
+        if (param0->monData.type1 != param0->monData.type2) {
             SpriteActor_DrawSprite(param0->unk_41C[12], 1);
         }
 
@@ -1718,7 +1718,7 @@ static u8 sub_0208DF94 (PokemonSummaryApp * param0, s8 param1)
             v0 = 0;
         }
 
-        if ((param0->monData.unk_34[v0] != 0) || (v0 == 4)) {
+        if ((param0->monData.moves[v0] != 0) || (v0 == 4)) {
             break;
         }
     }
@@ -1751,9 +1751,9 @@ static void sub_0208DFF4 (PokemonSummaryApp * param0)
         }
     } else {
         if (param0->page == 3) {
-            sub_0208E07C(param0, param0->monData.unk_34[param0->cursor]);
+            sub_0208E07C(param0, param0->monData.moves[param0->cursor]);
         } else {
-            sub_0208E0B8(param0, param0->monData.unk_34[param0->cursor]);
+            sub_0208E0B8(param0, param0->monData.moves[param0->cursor]);
         }
     }
 }
@@ -1796,17 +1796,17 @@ static void sub_0208E0DC (PokemonSummaryApp * param0)
         Pokemon_SwapMoveSlots(v0, param0->cursor, param0->cursorTmp);
     }
 
-    v1 = param0->monData.unk_34[param0->cursor];
-    param0->monData.unk_34[param0->cursor] = param0->monData.unk_34[param0->cursorTmp];
-    param0->monData.unk_34[param0->cursorTmp] = v1;
+    v1 = param0->monData.moves[param0->cursor];
+    param0->monData.moves[param0->cursor] = param0->monData.moves[param0->cursorTmp];
+    param0->monData.moves[param0->cursorTmp] = v1;
 
-    v2 = param0->monData.unk_3C[param0->cursor];
-    param0->monData.unk_3C[param0->cursor] = param0->monData.unk_3C[param0->cursorTmp];
-    param0->monData.unk_3C[param0->cursorTmp] = v2;
+    v2 = param0->monData.curPP[param0->cursor];
+    param0->monData.curPP[param0->cursor] = param0->monData.curPP[param0->cursorTmp];
+    param0->monData.curPP[param0->cursorTmp] = v2;
 
-    v3 = param0->monData.unk_40[param0->cursor];
-    param0->monData.unk_40[param0->cursor] = param0->monData.unk_40[param0->cursorTmp];
-    param0->monData.unk_40[param0->cursorTmp] = v3;
+    v3 = param0->monData.maxPP[param0->cursor];
+    param0->monData.maxPP[param0->cursor] = param0->monData.maxPP[param0->cursorTmp];
+    param0->monData.maxPP[param0->cursorTmp] = v3;
 }
 
 static void sub_0208E190 (PokemonSummaryApp * param0)
@@ -1823,7 +1823,7 @@ static void sub_0208E190 (PokemonSummaryApp * param0)
     SpriteActor_DrawSprite(param0->unk_41C[11], 1);
     sub_0208F7A4(param0);
 
-    if (param0->monData.unk_10 != param0->monData.unk_11) {
+    if (param0->monData.type1 != param0->monData.type2) {
         SpriteActor_DrawSprite(param0->unk_41C[12], 1);
     }
 
@@ -1974,7 +1974,7 @@ static void sub_0208E508 (PokemonSummaryApp * param0)
         sub_0208F964(param0);
         SpriteActor_DrawSprite(param0->unk_41C[11], 1);
 
-        if (param0->monData.unk_10 != param0->monData.unk_11) {
+        if (param0->monData.type1 != param0->monData.type2) {
             SpriteActor_DrawSprite(param0->unk_41C[12], 1);
         }
 
@@ -2160,7 +2160,7 @@ u8 sub_0208E904 (PokemonSummaryApp * param0, u8 param1)
     v2 = 0;
 
     for (v0 = 0; v0 < 80; v0++) {
-        if ((param0->monData.unk_54[v0 / 32] & (1 << (v0 & 0x1f))) != 0) {
+        if ((param0->monData.ribbons[v0 / 32] & (1 << (v0 & 0x1f))) != 0) {
             if (v1 == v2) {
                 return (u8)v0;
             }
@@ -2174,7 +2174,7 @@ u8 sub_0208E904 (PokemonSummaryApp * param0, u8 param1)
 
 static int sub_0208E958 (PokemonSummaryApp * param0)
 {
-    if (param0->monData.unk_4A == 255) {
+    if (param0->monData.sheen == 255) {
         sub_02002E98(0, 14 * 32, 19);
         sub_0200DD0C(param0->bgl, 1, (1024 - (18 + 12)), 13, sub_02027B50(param0->data->options), 19);
         sub_02091610(param0, 0xff);
