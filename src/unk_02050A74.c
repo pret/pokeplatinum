@@ -186,13 +186,13 @@ static BOOL sub_02050B30 (UnkStruct_020508D4 * param0)
             return 1;
         }
 
-        if (sub_0206A984(sub_020507E4(v0->unk_0C))) {
+        if (sub_0206A984(SaveData_Events(v0->unk_0C))) {
             HealAllPokemonInParty(Party_GetFromSavedata(v0->unk_0C));
         }
 
         sub_020518B0(v0, v1->unk_10);
         sub_02051988(v0, v1->unk_10);
-        sub_0206B48C(sub_020507E4(v0->unk_0C), v1->unk_10->unk_18C);
+        sub_0206B48C(SaveData_Events(v0->unk_0C), v1->unk_10->unk_18C);
         sub_02055868(param0);
         (*v2)++;
         break;
@@ -342,7 +342,7 @@ static void sub_02050DFC (UnkStruct_02050DD4 * param0)
 
 void sub_02050E10 (UnkStruct_0203CDB0 * param0, BattleParams * param1)
 {
-    if (sub_0206AE5C(sub_020507E4(param0->unk_0C))) {
+    if (sub_0206AE5C(SaveData_Events(param0->unk_0C))) {
         UnkStruct_02050ACC * v0;
 
         v0 = sub_02050ACC(param1, EncEffects_CutInEffect(param1), EncEffects_BGM(param1), NULL);
@@ -357,7 +357,7 @@ void sub_02050E10 (UnkStruct_0203CDB0 * param0, BattleParams * param1)
 
 void sub_02050E78 (UnkStruct_0203CDB0 * param0, UnkStruct_020508D4 * param1, BattleParams * param2)
 {
-    if (sub_0206AE5C(sub_020507E4(param0->unk_0C))) {
+    if (sub_0206AE5C(SaveData_Events(param0->unk_0C))) {
         UnkStruct_02050ACC * v0;
 
         v0 = sub_02050ACC(param2, EncEffects_CutInEffect(param2), EncEffects_BGM(param2), NULL);
@@ -404,7 +404,7 @@ static BOOL sub_02050EE0 (UnkStruct_020508D4 * param0)
             return 0;
         }
 
-        if (sub_0206A984(sub_020507E4(v0->unk_0C))) {
+        if (sub_0206A984(SaveData_Events(v0->unk_0C))) {
             HealAllPokemonInParty(Party_GetFromSavedata(v0->unk_0C));
         }
 

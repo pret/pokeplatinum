@@ -135,9 +135,9 @@ const UnkStruct_0208BE5C Unk_020F410C = {
     0xFFFFFFFF
 };
 
-BOOL PokemonSummary_ShowContestData (SaveData * param0)
+BOOL PokemonSummary_ShowContestData(SaveData * param0)
 {
-    return sub_0206ADCC(sub_020507E4(param0));
+    return EventFlag_VisitedContestHall(SaveData_Events(param0));
 }
 
 static int sub_0208C330 (UnkStruct_020067E8 * param0, int * param1)

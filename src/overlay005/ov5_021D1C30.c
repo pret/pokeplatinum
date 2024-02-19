@@ -183,7 +183,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * pa
         if (param0->unk_00_11 == 0) {
             BOOL v0 = sub_02054AB0(Party_GetFromSavedata(param1->unk_0C));
 
-            if (sub_0206A984(sub_020507E4(param1->unk_0C)) == 1) {
+            if (sub_0206A984(SaveData_Events(param1->unk_0C)) == 1) {
                 v0 = 1;
             }
 
@@ -196,7 +196,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * pa
     }
 
     if (param0->unk_00_6) {
-        sub_0206A9A4(sub_020507E4(param1->unk_0C));
+        sub_0206A9A4(SaveData_Events(param1->unk_0C));
 
         if (ov5_021D2884(param1) == 1) {
             return 1;
@@ -207,7 +207,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * pa
         int v1 = 0;
         int v2 = sub_02061308(param1->unk_3C, param0->unk_04, param0->unk_06);
 
-        if (inline_0204E650_2(sub_020507E4(param1->unk_0C))) {
+        if (inline_0204E650_2(SaveData_Events(param1->unk_0C))) {
             v1 |= 1 << 0;
         }
 
@@ -599,7 +599,7 @@ static BOOL ov5_021D249C (UnkStruct_0203CDB0 * param0)
 
     ov5_021D2C7C(param0, &v0, &v1);
 
-    if (sub_0206AE8C(sub_020507E4(param0->unk_0C)) == 1) {
+    if (sub_0206AE8C(SaveData_Events(param0->unk_0C)) == 1) {
         if (sub_02056374(param0, v0, v1) == 1) {
             sub_02051450(param0, sub_0205639C(param0));
             return 1;
@@ -829,7 +829,7 @@ static BOOL ov5_021D2884 (UnkStruct_0203CDB0 * param0)
         ov5_021D2B54(param0);
     }
 
-    sub_0206B238(sub_020507E4(param0->unk_0C));
+    sub_0206B238(SaveData_Events(param0->unk_0C));
     return 0;
 }
 
@@ -935,7 +935,7 @@ static BOOL ov5_021D2B2C (UnkStruct_0203CDB0 * param0)
     UnkStruct_020507E4 * v1;
     BOOL v2 = 0;
 
-    v1 = sub_020507E4(param0->unk_0C);
+    v1 = SaveData_Events(param0->unk_0C);
     v0 = sub_0206B44C(v1);
 
     v0++;
@@ -997,7 +997,7 @@ static BOOL ov5_021D2C14 (UnkStruct_0203CDB0 * param0)
     u16 * v0;
     u16 * v1;
 
-    if (sub_0206AE5C(sub_020507E4(param0->unk_0C)) == 0) {
+    if (sub_0206AE5C(SaveData_Events(param0->unk_0C)) == 0) {
         return 0;
     }
 

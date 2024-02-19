@@ -218,7 +218,7 @@ void sub_0206842C (UnkStruct_0203CDB0 * param0, UnkStruct_020684D0 * param1)
 
     param1->unk_18 = param0;
     param1->unk_00 = param0->unk_1C->unk_00;
-    param1->unk_04 = sub_0206A984(sub_020507E4(param0->unk_0C));
+    param1->unk_04 = sub_0206A984(SaveData_Events(param0->unk_0C));
     param1->unk_08 = sub_0205EB74(param0->unk_3C);
 
     v0 = sub_0205EABC(param0->unk_3C);
@@ -254,7 +254,7 @@ static void sub_020684D0 (UnkStruct_0203CDB0 * param0, UnkStruct_020684D0 * para
 {
     param1->unk_18 = param0;
     param1->unk_00 = param0->unk_1C->unk_00;
-    param1->unk_04 = sub_0206A984(sub_020507E4(param0->unk_0C));
+    param1->unk_04 = sub_0206A984(SaveData_Events(param0->unk_0C));
     param1->unk_08 = sub_0205EB74(param0->unk_3C);
     param1->unk_0E = sub_02061760(param0->unk_3C);
 
@@ -424,7 +424,7 @@ static u32 sub_0206877C (const UnkStruct_020684D0 * param0)
         return -1;
     }
 
-    if ((sub_0206AE5C(sub_020507E4(param0->unk_18->unk_0C)) == 1) || (sub_0206AE8C(sub_020507E4(param0->unk_18->unk_0C)) == 1)) {
+    if ((sub_0206AE5C(SaveData_Events(param0->unk_18->unk_0C)) == 1) || (sub_0206AE8C(SaveData_Events(param0->unk_18->unk_0C)) == 1)) {
         return -1;
     }
 
@@ -522,7 +522,7 @@ static BOOL sub_02068884 (UnkStruct_020508D4 * param0)
 
 static u32 sub_02068948 (const UnkStruct_020684D0 * param0)
 {
-    UnkStruct_020507E4 * v0 = sub_020507E4(param0->unk_18->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_18->unk_0C);
 
     if (param0->unk_04 == 1) {
         return 2;
@@ -1063,7 +1063,7 @@ static BOOL sub_02069120 (UnkStruct_02068870 * param0)
 
 static u32 sub_02069130 (const UnkStruct_020684D0 * param0)
 {
-    UnkStruct_020507E4 * v0 = sub_020507E4(param0->unk_18->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_18->unk_0C);
 
     if (sub_0206A954(v0) == 0) {
         return -1;
@@ -1149,7 +1149,7 @@ BOOL sub_02069238 (UnkStruct_0203CDB0 * param0)
         return 0;
     }
 
-    if (sub_0206AE8C(sub_020507E4(param0->unk_0C)) == 1) {
+    if (sub_0206AE8C(SaveData_Events(param0->unk_0C)) == 1) {
         return 0;
     }
 

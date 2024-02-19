@@ -191,7 +191,7 @@ void sub_02052E58 (UnkStruct_020508D4 * param0)
 
     v0 = sub_02050A60(param0);
     v5 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0205300C));
-    v3 = sub_020507E4(v0->unk_0C);
+    v3 = SaveData_Events(v0->unk_0C);
     v4 = sub_02025E38(v0->unk_0C);
     v1 = sub_0203A730(sub_0203A790(v0->unk_0C));
     v2 = sub_0203A72C(sub_0203A790(v0->unk_0C));

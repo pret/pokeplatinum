@@ -112,7 +112,7 @@ BOOL sub_02046CFC (UnkStruct_0203E724 * param0)
     v8.unk_00 = v5;
     v8.unk_01 = v4;
     v8.unk_02 = v6;
-    v8.unk_03 = sub_0206A954(sub_020507E4(param0->unk_34->unk_0C));
+    v8.unk_03 = sub_0206A954(SaveData_Events(param0->unk_34->unk_0C));
     v8.unk_04 = sub_02027474(sub_02027560(param0->unk_34->unk_0C));
     v8.unk_05 = v7;
     v8.unk_08 = v1;

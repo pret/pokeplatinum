@@ -1581,7 +1581,7 @@ BOOL sub_0203E348 (UnkStruct_0203CDB0 * param0, UnkStruct_0203E348 * param1)
 static BOOL sub_0203E35C (UnkStruct_020508D4 * param0)
 {
     UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
-    UnkStruct_020507E4 * v1 = sub_020507E4(v0->unk_0C);
+    UnkStruct_020507E4 * v1 = SaveData_Events(v0->unk_0C);
     UnkStruct_0203E35C * v2 = sub_02050A64(param0);
     int * v3 = sub_02050A68(param0);
     int v4;
@@ -1791,7 +1791,7 @@ void * sub_0203E63C (int param0, UnkStruct_0203CDB0 * param1, u16 param2, u16 pa
     v0->mode = 2;
     v0->ribbons = sub_0202D79C(param1->unk_0C);
     v0->dexMode = sub_0207A274(param1->unk_0C);
-    v0->contest = sub_0206ADCC(sub_020507E4(param1->unk_0C));
+    v0->contest = EventFlag_VisitedContestHall(SaveData_Events(param1->unk_0C));
     v0->chatotCry = NULL;
 
     PokemonSummary_FlagVisiblePages(v0, Unk_020EA15C);

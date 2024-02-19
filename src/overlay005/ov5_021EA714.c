@@ -30,7 +30,7 @@ void ov5_021EA714 (UnkStruct_0203CDB0 * param0, int param1, u32 param2)
 void ov5_021EA728 (UnkStruct_0203CDB0 * param0)
 {
     UnkStruct_02056B24 * v0 = sub_02056B24(param0->unk_0C);
-    UnkStruct_020507E4 * v1 = sub_020507E4(param0->unk_0C);
+    UnkStruct_020507E4 * v1 = SaveData_Events(param0->unk_0C);
 
     if (sub_020567E0(v0)
         && (sub_0206AE2C(v1) == 0)) {
@@ -45,7 +45,7 @@ void ov5_021EA728 (UnkStruct_0203CDB0 * param0)
 void ov5_021EA790 (UnkStruct_0203CDB0 * param0)
 {
     UnkStruct_02056B24 * v0 = sub_02056B24(param0->unk_0C);
-    UnkStruct_020507E4 * v1 = sub_020507E4(param0->unk_0C);
+    UnkStruct_020507E4 * v1 = SaveData_Events(param0->unk_0C);
 
     if (sub_020567E0(v0)
         && (sub_0206AE2C(v1) == 0)) {
@@ -58,7 +58,7 @@ void ov5_021EA790 (UnkStruct_0203CDB0 * param0)
 u8 ov5_021EA7CC (UnkStruct_0203CDB0 * param0)
 {
     UnkStruct_02056B24 * v0 = sub_02056B24(param0->unk_0C);
-    UnkStruct_020507E4 * v1 = sub_020507E4(param0->unk_0C);
+    UnkStruct_020507E4 * v1 = SaveData_Events(param0->unk_0C);
 
     if (sub_020567E0(v0)
         && (sub_0206AE2C(v1) == 0)) {

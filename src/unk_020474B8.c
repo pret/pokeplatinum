@@ -301,7 +301,7 @@ BOOL sub_020479C0 (UnkStruct_0203E724 * param0)
 {
     StringFormatter ** v0 = sub_0203F098(param0->unk_34, 15);
     u8 v1 = (*((param0)->unk_08++));
-    u16 v2 = sub_0206B054(sub_020507E4(param0->unk_34->unk_0C));
+    u16 v2 = sub_0206B054(SaveData_Events(param0->unk_34->unk_0C));
     Strbuf* v3 = sub_02047998(v2, 4);
 
     sub_0200B48C(*v0, v1, v3, 0, 1, GAME_LANGUAGE);
@@ -314,7 +314,7 @@ BOOL sub_02047A10 (UnkStruct_0203E724 * param0)
 {
     StringFormatter ** v0 = sub_0203F098(param0->unk_34, 15);
     u8 v1 = (*((param0)->unk_08++));
-    u16 v2 = sub_0206B064(sub_020507E4(param0->unk_34->unk_0C));
+    u16 v2 = sub_0206B064(SaveData_Events(param0->unk_34->unk_0C));
     Strbuf* v3 = sub_02047998(v2, 4);
 
     sub_0200B48C(*v0, v1, v3, 0, 1, GAME_LANGUAGE);
@@ -327,7 +327,7 @@ BOOL sub_02047A60 (UnkStruct_0203E724 * param0)
 {
     StringFormatter ** v0 = sub_0203F098(param0->unk_34, 15);
     u8 v1 = (*((param0)->unk_08++));
-    u16 v2 = sub_0206B08C(sub_020507E4(param0->unk_34->unk_0C));
+    u16 v2 = sub_0206B08C(SaveData_Events(param0->unk_34->unk_0C));
     Strbuf* v3 = sub_02047998(v2, 4);
 
     sub_0200B48C(*v0, v1, v3, 0, 1, GAME_LANGUAGE);
@@ -561,7 +561,7 @@ BOOL sub_02047F80 (UnkStruct_0203E724 * param0)
 {
     StringFormatter ** v0 = sub_0203F098(param0->unk_34, 15);
     u8 v1 = (*((param0)->unk_08++));
-    u16 v2 = sub_0206B08C(sub_020507E4(param0->unk_34->unk_0C));
+    u16 v2 = sub_0206B08C(SaveData_Events(param0->unk_34->unk_0C));
 
     sub_0200B594(*v0, v1, v2);
     return 0;

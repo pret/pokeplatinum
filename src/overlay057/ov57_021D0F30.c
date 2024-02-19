@@ -28,5 +28,5 @@ void ov57_021D0F44 (int param0, SaveData * param1)
 
     v0 = sub_02025E38(param1);
     TrainerInfo_SetMoney(v0, 3000);
-    sub_0206A92C(sub_020507E4(param1));
+    sub_0206A92C(SaveData_Events(param1));
 }

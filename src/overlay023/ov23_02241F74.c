@@ -155,7 +155,7 @@ static void ov23_02241F74 (UnkStruct_ov23_02257748 * param0, UnkStruct_0203CDB0 
         Unk_ov23_02257748->unk_DC[v1] = NULL;
     }
 
-    sub_0206A9F4(sub_020507E4(Unk_ov23_02257748->unk_0C->unk_0C));
+    sub_0206A9F4(SaveData_Events(Unk_ov23_02257748->unk_0C->unk_0C));
     Unk_ov23_02257748->unk_14 = SysTask_Start(ov23_02243310, NULL, 0);
     sub_02032110(ov23_022433F4);
 }

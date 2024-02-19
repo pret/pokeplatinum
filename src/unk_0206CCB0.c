@@ -1250,7 +1250,7 @@ static int sub_0206DB38 (UnkStruct_0203CDB0 * param0, StringFormatter * param1, 
 
 static BOOL sub_0206DB48 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(sub_020507E4(param0->unk_0C), 6);
+    return inline_0208BE68(SaveData_Events(param0->unk_0C), 6);
 }
 
 void sub_0206DB5C (UnkStruct_0203CDB0 * param0, u8 param1)
@@ -1275,7 +1275,7 @@ static int sub_0206DB74 (UnkStruct_0203CDB0 * param0, StringFormatter * param1, 
 
 static BOOL sub_0206DB9C (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(sub_020507E4(param0->unk_0C), 6);
+    return inline_0208BE68(SaveData_Events(param0->unk_0C), 6);
 }
 
 void sub_0206DBB0 (SaveData * param0, u32 param1, Pokemon * param2, BOOL param3)
@@ -1314,7 +1314,7 @@ static BOOL sub_0206DC3C (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * 
         return 0;
     }
 
-    return inline_0208BE68(sub_020507E4(param0->unk_0C), 17);
+    return inline_0208BE68(SaveData_Events(param0->unk_0C), 17);
 }
 
 void sub_0206DC6C (UnkStruct_0203CDB0 * param0, u32 param1, Pokemon * param2)
@@ -1583,7 +1583,7 @@ static int sub_0206E018 (UnkStruct_0203CDB0 * param0, StringFormatter * param1, 
 
 static BOOL sub_0206E04C (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(sub_020507E4(param0->unk_0C), 17);
+    return inline_0208BE68(SaveData_Events(param0->unk_0C), 17);
 }
 
 void sub_0206E060 (SaveData * param0)
@@ -1613,7 +1613,7 @@ static int sub_0206E098 (UnkStruct_0203CDB0 * param0, StringFormatter * param1, 
 
 static BOOL sub_0206E0CC (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(sub_020507E4(param0->unk_0C), 9);
+    return inline_0208BE68(SaveData_Events(param0->unk_0C), 9);
 }
 
 void sub_0206E0E0 (UnkStruct_0203CDB0 * param0, u16 param1)
@@ -1647,7 +1647,7 @@ static int sub_0206E118 (UnkStruct_0203CDB0 * param0, StringFormatter * param1, 
 
 static BOOL sub_0206E160 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(sub_020507E4(param0->unk_0C), 17);
+    return inline_0208BE68(SaveData_Events(param0->unk_0C), 17);
 }
 
 void sub_0206E174 (UnkStruct_0203CDB0 * param0, u16 param1)
@@ -1909,7 +1909,7 @@ static int sub_0206E5E4 (UnkStruct_0203CDB0 * param0, StringFormatter * param1, 
 
 static BOOL sub_0206E654 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(sub_020507E4(param0->unk_0C), 17);
+    return inline_0208BE68(SaveData_Events(param0->unk_0C), 17);
 }
 
 void sub_0206E668 (UnkStruct_0203CDB0 * param0, u16 param1)
@@ -2038,7 +2038,7 @@ static int sub_0206E7AC (UnkStruct_0203CDB0 * param0, StringFormatter * param1, 
 
 static BOOL sub_0206E834 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(sub_020507E4(param0->unk_0C), 17);
+    return inline_0208BE68(SaveData_Events(param0->unk_0C), 17);
 }
 
 static const u8 Unk_020EFD34[] = {
@@ -2528,7 +2528,7 @@ static int sub_0206EBE8 (UnkStruct_0203CDB0 * param0)
     u8 v0[NELEMS(Unk_020EFD3C)];
     u8 v1[NELEMS(Unk_020F0074) / 2];
     int v2, v3;
-    UnkStruct_020507E4 * v4 = sub_020507E4(param0->unk_0C);
+    UnkStruct_020507E4 * v4 = SaveData_Events(param0->unk_0C);
 
     for (v2 = 0; v2 < NELEMS(Unk_020EFD3C); v2++) {
         v0[v2] = inline_0208BE68(v4, Unk_020EFD3C[v2]);
@@ -2571,7 +2571,7 @@ static int sub_0206EC90 (UnkStruct_0203CDB0 * param0, StringFormatter * param1, 
 
 static BOOL sub_0206ECFC (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    UnkStruct_020507E4 * v0 = sub_020507E4(param0->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
     return inline_0208BE68(v0, 9);
 }
 
@@ -2743,13 +2743,13 @@ static int sub_0206EF7C (UnkStruct_0203CDB0 * param0, StringFormatter * param1, 
 
     v0 = 0;
 
-    if (sub_0206A954(sub_020507E4(param0->unk_0C)) == 1) {
+    if (sub_0206A954(SaveData_Events(param0->unk_0C)) == 1) {
         v0 = (LCRNG_Next() % 8);
-    } else if (inline_0208BE68(sub_020507E4(param0->unk_0C), 11) == 1) {
+    } else if (inline_0208BE68(SaveData_Events(param0->unk_0C), 11) == 1) {
         v0 = (LCRNG_Next() % 5);
-    } else if (inline_0208BE68(sub_020507E4(param0->unk_0C), 10) == 1) {
+    } else if (inline_0208BE68(SaveData_Events(param0->unk_0C), 10) == 1) {
         v0 = (LCRNG_Next() % 4);
-    } else if (inline_0208BE68(sub_020507E4(param0->unk_0C), 18) == 1) {
+    } else if (inline_0208BE68(SaveData_Events(param0->unk_0C), 18) == 1) {
         v0 = (LCRNG_Next() % 2);
     }
 

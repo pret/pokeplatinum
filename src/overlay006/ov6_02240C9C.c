@@ -299,7 +299,7 @@ BOOL ov6_02240D5C (UnkStruct_0203CDB0 * param0)
         return 0;
     }
 
-    if (!sub_0206A984(sub_020507E4(param0->unk_0C))) {
+    if (!sub_0206A984(SaveData_Events(param0->unk_0C))) {
         v8 = 0;
     } else {
         v8 = 1;
@@ -324,7 +324,7 @@ BOOL ov6_02240D5C (UnkStruct_0203CDB0 * param0)
     }
 
     if (!v8) {
-        v9 = sub_0206AE5C(sub_020507E4(param0->unk_0C));
+        v9 = sub_0206AE5C(SaveData_Events(param0->unk_0C));
         ov6_02242328(param0, v9, &v0);
     } else {
         v0 = sub_02051D8C(11, (0x2 | 0x8 | 0x40));
@@ -355,7 +355,7 @@ BOOL ov6_02240D5C (UnkStruct_0203CDB0 * param0)
             v7 = ov6_02241674(param0, v1, v0, v12, v13, &v14, &v10);
         } else {
             {
-                v0->trainerIDs[2] = sub_0206B034(sub_020507E4(param0->unk_0C));
+                v0->trainerIDs[2] = sub_0206B034(SaveData_Events(param0->unk_0C));
                 TrainerData_Encounter(v0, param0->unk_0C, 11);
             }
             v7 = ov6_0224174C(param0, v1, v0, v13, &v14);
@@ -421,7 +421,7 @@ BOOL ov6_0224106C (UnkStruct_0203CDB0 * param0, const int param1, BattleParams *
         }
     }
 
-    v2 = sub_0206AE5C(sub_020507E4(param0->unk_0C));
+    v2 = sub_0206AE5C(SaveData_Events(param0->unk_0C));
 
     ov6_02242328(param0, v2, param2);
 
@@ -523,7 +523,7 @@ BOOL ov6_022411C8 (UnkStruct_0203CDB0 * param0, UnkStruct_020508D4 * param1)
 
     memset(&v9, 0, sizeof(UnkStruct_ov6_02241674));
 
-    if (!sub_0206A984(sub_020507E4(param0->unk_0C))) {
+    if (!sub_0206A984(SaveData_Events(param0->unk_0C))) {
         v6 = 0;
     } else {
         v6 = 1;
@@ -544,7 +544,7 @@ BOOL ov6_022411C8 (UnkStruct_0203CDB0 * param0, UnkStruct_020508D4 * param1)
     }
 
     if (!v6) {
-        v7 = sub_0206AE5C(sub_020507E4(param0->unk_0C));
+        v7 = sub_0206AE5C(SaveData_Events(param0->unk_0C));
         ov6_02242328(param0, v7, &v0);
     } else {
         v0 = sub_02051D8C(11, (0x2 | 0x8 | 0x40));
@@ -575,7 +575,7 @@ BOOL ov6_022411C8 (UnkStruct_0203CDB0 * param0, UnkStruct_020508D4 * param1)
             v8 = ov6_02241674(param0, v1, v0, v11, v12, &v13, &v9);
         } else {
             {
-                v0->trainerIDs[2] = sub_0206B034(sub_020507E4(param0->unk_0C));
+                v0->trainerIDs[2] = sub_0206B034(SaveData_Events(param0->unk_0C));
                 TrainerData_Encounter(v0, param0->unk_0C, 11);
             }
             v8 = ov6_0224174C(param0, v1, v0, v12, &v13);
@@ -668,7 +668,7 @@ BOOL ov6_022413E4 (UnkStruct_0203CDB0 * param0, BattleParams ** param1)
     memset(&v9, 0, sizeof(UnkStruct_ov6_02241674));
     v9.unk_0C = 0;
 
-    if (!sub_0206A984(sub_020507E4(param0->unk_0C))) {
+    if (!sub_0206A984(SaveData_Events(param0->unk_0C))) {
         v7 = 0;
     } else {
         v7 = 1;
@@ -692,7 +692,7 @@ BOOL ov6_022413E4 (UnkStruct_0203CDB0 * param0, BattleParams ** param1)
     }
 
     if (!v7) {
-        v8 = sub_0206AE5C(sub_020507E4(param0->unk_0C));
+        v8 = sub_0206AE5C(SaveData_Events(param0->unk_0C));
         ov6_02242328(param0, v8, param1);
     } else {
         *param1 = sub_02051D8C(11, (0x2 | 0x8 | 0x40));
@@ -723,7 +723,7 @@ BOOL ov6_022413E4 (UnkStruct_0203CDB0 * param0, BattleParams ** param1)
             v6 = ov6_02241674(param0, v0, *param1, v11, v12, &v13, &v9);
         } else {
             {
-                (*param1)->trainerIDs[2] = sub_0206B034(sub_020507E4(param0->unk_0C));
+                (*param1)->trainerIDs[2] = sub_0206B034(SaveData_Events(param0->unk_0C));
                 TrainerData_Encounter(*param1, param0->unk_0C, 11);
             }
             v6 = ov6_0224174C(param0, v0, *param1, v12, &v13);

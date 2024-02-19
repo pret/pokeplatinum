@@ -652,7 +652,7 @@ static BOOL ov23_02251ACC (UnkStruct_020508D4 * param0)
     case 5:
         if (ScreenWipe_Done()) {
             ov23_0224B2C8(v0);
-            sub_0206AA30(sub_020507E4(v0->unk_0C));
+            sub_0206AA30(SaveData_Events(v0->unk_0C));
             ov23_02251F94(v0);
             Heap_FreeToHeap(v1);
             return 1;

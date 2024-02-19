@@ -816,7 +816,7 @@ BOOL ov5_021F72B8 (UnkStruct_0203E724 * param0)
     u16 v3 = inline_02049538(param0);
     u16 * v4 = inline_0204FCAC(param0);
 
-    v0 = sub_020507E4(v2->unk_0C);
+    v0 = SaveData_Events(v2->unk_0C);
     v1 = sub_0202CD88(v2->unk_0C);
     *v4 = 1;
 

@@ -229,14 +229,14 @@ void sub_02049FA8 (UnkStruct_0203CDB0 * param0)
     UnkStruct_02049FA8 * v0 = sub_0203A730(sub_0203A790(param0->unk_0C));
 
     inline_02049FA8(v0, param0->unk_1C->unk_00, -1, sub_0205EABC(param0->unk_3C), sub_0205EAC8(param0->unk_3C), 0);
-    sub_0206AD9C(sub_020507E4(param0->unk_0C));
+    sub_0206AD9C(SaveData_Events(param0->unk_0C));
 
     return;
 }
 
 void sub_02049FE8 (UnkStruct_0203CDB0 * param0)
 {
-    sub_0206ADAC(sub_020507E4(param0->unk_0C));
+    sub_0206ADAC(SaveData_Events(param0->unk_0C));
 }
 
 u16 sub_02049FF8 (SaveData * param0, u16 param1)
@@ -380,7 +380,7 @@ UnkStruct_0204AFC4 * sub_0204A124 (SaveData * param0, u16 param1, u16 param2)
         v5 = sub_0202CD88(param0);
 
         if (v3->unk_0F == 6) {
-            v2 = sub_0206B6FC(sub_020507E4(param0));
+            v2 = sub_0206B6FC(SaveData_Events(param0));
         } else {
             v2 = sub_0202D414(v3->unk_74, 8 + v3->unk_0F, 0);
         }

@@ -109,7 +109,7 @@ static BOOL sub_0207DA28 (UnkStruct_020508D4 * param0)
         break;
     case 3:
         if (sub_02039074(v1->unk_0C)) {
-            sub_0206AF5C(sub_020507E4(v1->unk_0C));
+            sub_0206AF5C(SaveData_Events(v1->unk_0C));
         }
 
         switch (v2->unk_00->unk_04) {

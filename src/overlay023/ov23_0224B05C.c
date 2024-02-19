@@ -2171,7 +2171,7 @@ static void ov23_0224D238 (void)
     v16[0][0] = 16;
     v16[0][1] = 12;
 
-    sub_0206AA20(sub_020507E4(Unk_ov23_022577AC->unk_00->unk_0C));
+    sub_0206AA20(SaveData_Events(Unk_ov23_022577AC->unk_00->unk_0C));
     sub_020292CC(v0);
     sub_02028B34(v1);
     sub_020361BC(&v15);

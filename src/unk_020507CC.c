@@ -23,7 +23,7 @@ void FieldEvents_Init (UnkStruct_020507E4 * param0)
     memset(param0, 0, sizeof(UnkStruct_020507E4));
 }
 
-UnkStruct_020507E4 * sub_020507E4 (SaveData * param0)
+UnkStruct_020507E4 * SaveData_Events (SaveData * param0)
 {
     UnkStruct_020507E4 * v0;
 

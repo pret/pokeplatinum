@@ -417,7 +417,7 @@ BOOL sub_0208BE68 (UnkStruct_0208C06C * param0)
 {
     UnkStruct_020507E4 * v0;
 
-    v0 = sub_020507E4(param0->unk_830);
+    v0 = SaveData_Events(param0->unk_830);
     return inline_0208BE68(v0, 53);
 }
 

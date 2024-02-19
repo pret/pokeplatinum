@@ -264,9 +264,9 @@ void sub_0203A9E0 (UnkStruct_0203CDB0 * param0)
 {
     UnkStruct_020708E0 * v0 = sub_0203ABB4();
 
-    if (sub_0206AE5C(sub_020507E4(param0->unk_0C)) == 1) {
+    if (sub_0206AE5C(SaveData_Events(param0->unk_0C)) == 1) {
         v0->unk_224 = sub_0203AC24(param0);
-    } else if (sub_0206AE8C(sub_020507E4(param0->unk_0C)) == 1) {
+    } else if (sub_0206AE8C(SaveData_Events(param0->unk_0C)) == 1) {
         v0->unk_224 = sub_0203AC28(param0);
     } else if (sub_0206C0D0(param0) == 1) {
         v0->unk_224 = sub_0203AC2C(param0);
@@ -320,9 +320,9 @@ void sub_0203AB00 (UnkStruct_0203CDB0 * param0)
 
     v0->unk_228 = 0;
 
-    if (sub_0206AE5C(sub_020507E4(param0->unk_0C)) == 1) {
+    if (sub_0206AE5C(SaveData_Events(param0->unk_0C)) == 1) {
         v0->unk_224 = sub_0203AC24(param0);
-    } else if (sub_0206AE8C(sub_020507E4(param0->unk_0C)) == 1) {
+    } else if (sub_0206AE8C(SaveData_Events(param0->unk_0C)) == 1) {
         v0->unk_224 = sub_0203AC28(param0);
     } else if (sub_0206C0D0(param0) == 1) {
         v0->unk_224 = sub_0203AC2C(param0);
@@ -359,11 +359,11 @@ static u32 sub_0203ABD0 (UnkStruct_0203CDB0 * param0)
         v0 |= 0x1;
     }
 
-    if (sub_0206B054(sub_020507E4(param0->unk_0C)) == 0) {
+    if (sub_0206B054(SaveData_Events(param0->unk_0C)) == 0) {
         v0 |= 0x2;
     }
 
-    if (sub_0206A938(sub_020507E4(param0->unk_0C)) == 0) {
+    if (sub_0206A938(SaveData_Events(param0->unk_0C)) == 0) {
         v0 |= 0x4;
     }
 
@@ -652,9 +652,9 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
     v0 = sub_02050A60(param0);
     v1 = sub_02050A64(param0);
 
-    if (sub_0206AE5C(sub_020507E4(v0->unk_0C)) == 1) {
+    if (sub_0206AE5C(SaveData_Events(v0->unk_0C)) == 1) {
         v6 = 0;
-    } else if (sub_0206AE8C(sub_020507E4(v0->unk_0C)) == 1) {
+    } else if (sub_0206AE8C(SaveData_Events(v0->unk_0C)) == 1) {
         v6 = 1;
     } else {
         return;
@@ -707,7 +707,7 @@ static void sub_0203B200 (UnkStruct_020508D4 * param0)
     v0 = sub_02050A60(param0);
     v1 = sub_02050A64(param0);
 
-    if ((sub_0206AE5C(sub_020507E4(v0->unk_0C)) == 0) && (sub_0206AE8C(sub_020507E4(v0->unk_0C)) == 0)) {
+    if ((sub_0206AE5C(SaveData_Events(v0->unk_0C)) == 0) && (sub_0206AE8C(SaveData_Events(v0->unk_0C)) == 0)) {
         return;
     }
 
@@ -944,7 +944,7 @@ static BOOL sub_0203B6A4 (UnkStruct_020508D4 * param0)
     v2 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov21_021D0D80));
     v3 = sub_02027560(v0->unk_0C);
     v4 = sub_02025E38(v0->unk_0C);
-    v5 = sub_020507E4(v0->unk_0C);
+    v5 = SaveData_Events(v0->unk_0C);
 
     v2->unk_00 = v3;
     v2->unk_04 = v4;
@@ -1610,7 +1610,7 @@ static BOOL sub_0203C164 (UnkStruct_020508D4 * param0)
     BGL_DeleteWindow(&v1->unk_00);
     sub_0203B200(param0);
 
-    if (sub_0206AE5C(sub_020507E4(v0->unk_0C)) == 1) {
+    if (sub_0206AE5C(SaveData_Events(v0->unk_0C)) == 1) {
         sub_0203E918(param0, 8821, NULL);
     } else {
         sub_0203E918(param0, 4, NULL);

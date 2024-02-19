@@ -2451,13 +2451,13 @@ static __attribute__((aligned(4))) const u8 Unk_ov8_0224CA5C[5][21] = {
 
 static void ov8_0224AEDC (UnkStruct_0203CDB0 * param0, u16 param1)
 {
-    UnkStruct_020507E4 * v0 = sub_020507E4(param0->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
     sub_0206B46C(v0, param1);
 }
 
 static u32 ov8_0224AEF0 (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_020507E4 * v0 = sub_020507E4(param0->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
     return sub_0206B47C(v0);
 }
 

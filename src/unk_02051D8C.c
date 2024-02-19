@@ -180,7 +180,7 @@ BattleParams * sub_02051F4C (int param0, const UnkStruct_0203CDB0 * param1)
     sub_0207D570(v4->unk_E0, 4, 20, param0);
     v5 = Pokemon_New(param0);
 
-    Pokemon_InitWith(v5, sub_0206B08C(sub_020507E4(param1->unk_0C)), 5, 32, 0, 0, 2, 0);
+    Pokemon_InitWith(v5, sub_0206B08C(SaveData_Events(param1->unk_0C)), 5, 32, 0, 0, 2, 0);
     Party_AddPokemon(v4->parties[0], v5);
     Pokemon_InitWith(v5, 399, 2, 32, 0, 0, 2, 0);
     Party_AddPokemon(v4->parties[1], v5);
@@ -284,7 +284,7 @@ void sub_020521B8 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, Sav
     param0->unk_130 = sub_0203A138(param3);
     param0->unk_13C = MapHeader_GetMapEvolutionMethod(param3);
     param0->unk_140 = PokemonSummary_ShowContestData(param2);
-    param0->unk_144 = sub_0206ADFC(sub_020507E4(param2));
+    param0->unk_144 = sub_0206ADFC(SaveData_Events(param2));
     param0->unk_14C = sub_0203A74C(v6);
     param0->unk_E4 = param5;
     param0->unk_190 = param6;

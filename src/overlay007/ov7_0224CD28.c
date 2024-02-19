@@ -197,7 +197,7 @@ void ov7_0224CDA4 (UnkStruct_020508D4 * param0, UnkStruct_0203CDB0 * param1, u16
     v0->unk_270 = sub_02025E38(param1->unk_0C);
     v0->unk_278 = sub_02025E44(param1->unk_0C);
     v0->unk_280 = sub_0202CD88(param1->unk_0C);
-    v0->unk_288 = sub_020507E4(param1->unk_0C);
+    v0->unk_288 = SaveData_Events(param1->unk_0C);
     v0->unk_28C = param4;
     v0->unk_2A6 = ov7_0224CE90(param1);
     v0->unk_27C = param1->unk_9C;

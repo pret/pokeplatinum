@@ -28,7 +28,7 @@
 
 BOOL sub_0204C500 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_020507E4 * v0 = sub_020507E4(param0->unk_34->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_34->unk_0C);
     u16 v1 = inline_02049538(param0);
 
     if (v1 == 0) {
