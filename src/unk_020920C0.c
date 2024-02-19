@@ -90,10 +90,10 @@ static const UnkUnion_02022594 * Unk_02100D78[] = {
 
 void sub_020920C0 (UnkStruct_0208D7BC * param0)
 {
-    switch (param0->unk_24C->unk_12) {
+    switch (param0->unk_24C->mode) {
     case 0:
     case 1:
-        if (param0->unk_24C->unk_2C != 0) {
+        if (param0->unk_24C->contest != FALSE) {
             param0->unk_6A7_0 = 0;
         } else {
             param0->unk_6A7_0 = 1;

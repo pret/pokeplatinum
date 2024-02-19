@@ -17,7 +17,7 @@
 #include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_020989DC.h"
 #include "struct_defs/struct_02098C44.h"
-#include "struct_defs/struct_02098D38.h"
+#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_02098DE8.h"
 
 #include "unk_020067E8.h"
@@ -307,7 +307,7 @@ static int sub_02098CB0 (UnkStruct_02098BE4 * param0)
 {
     u8 v0;
     PartyManagementData * v1;
-    UnkStruct_02098D38 * v2;
+    PokemonSummary * v2;
     static const u8 v3[] = {
         4, 7, 8
     };
@@ -325,17 +325,17 @@ static int sub_02098CB0 (UnkStruct_02098BE4 * param0)
         return 0;
     }
 
-    v2 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02098D38));
+    v2 = Heap_AllocFromHeap(param0->unk_00, sizeof(PokemonSummary));
 
-    v2->unk_00 = param0->unk_0C->unk_10;
-    v2->unk_04 = param0->unk_0C->unk_18;
-    v2->unk_11 = 1;
-    v2->unk_14 = v0;
-    v2->unk_13 = (u8)Party_GetCurrentCount(v2->unk_00);
-    v2->unk_18 = 0;
-    v2->unk_12 = 3;
-    v2->unk_2C = 1;
-    v2->unk_28 = NULL;
+    v2->monData = param0->unk_0C->unk_10;
+    v2->options = param0->unk_0C->unk_18;
+    v2->dataType = 1;
+    v2->pos = v0;
+    v2->max = (u8)Party_GetCurrentCount(v2->monData);
+    v2->move = 0;
+    v2->mode = 3;
+    v2->contest = 1;
+    v2->chatotCry = NULL;
 
     sub_0208D720(v2, v3);
     sub_0208E9C0(v2, param0->unk_0C->unk_0C);
@@ -348,17 +348,17 @@ static int sub_02098CB0 (UnkStruct_02098BE4 * param0)
 
 static int sub_02098D38 (UnkStruct_02098BE4 * param0)
 {
-    UnkStruct_02098D38 * v0;
+    PokemonSummary * v0;
     u8 v1;
 
     if (!sub_02098AF8(&param0->unk_14)) {
         return 3;
     }
 
-    v0 = (UnkStruct_02098D38 *)param0->unk_10;
-    v1 = v0->unk_17;
+    v0 = (PokemonSummary *)param0->unk_10;
+    v1 = v0->returnMode;
 
-    param0->unk_08 = v0->unk_14;
+    param0->unk_08 = v0->pos;
 
     Heap_FreeToHeap(param0->unk_10);
 
@@ -418,25 +418,25 @@ static int sub_02098DE8 (UnkStruct_02098BE4 * param0)
 static int sub_02098E0C (UnkStruct_02098BE4 * param0)
 {
     u8 v0;
-    UnkStruct_02098D38 * v1;
+    PokemonSummary * v1;
     Poffin * v2;
     static const u8 v3[] = {
         4, 8
     };
 
-    v1 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02098D38));
+    v1 = Heap_AllocFromHeap(param0->unk_00, sizeof(PokemonSummary));
     v2 = sub_0202AC70(param0->unk_0C->unk_08, param0->unk_0C->unk_1C[param0->unk_0C->unk_01].unk_00, param0->unk_00);
 
-    v1->unk_00 = param0->unk_0C->unk_10;
-    v1->unk_04 = param0->unk_0C->unk_18;
-    v1->unk_11 = 1;
-    v1->unk_14 = param0->unk_08;
-    v1->unk_13 = (u8)Party_GetCurrentCount(v1->unk_00);
-    v1->unk_18 = 0;
-    v1->unk_12 = 4;
-    v1->unk_24 = v2;
-    v1->unk_2C = 1;
-    v1->unk_28 = NULL;
+    v1->monData = param0->unk_0C->unk_10;
+    v1->options = param0->unk_0C->unk_18;
+    v1->dataType = 1;
+    v1->pos = param0->unk_08;
+    v1->max = (u8)Party_GetCurrentCount(v1->monData);
+    v1->move = 0;
+    v1->mode = 4;
+    v1->poffin = v2;
+    v1->contest = 1;
+    v1->chatotCry = NULL;
 
     sub_0208D720(v1, v3);
     sub_0208E9C0(v1, param0->unk_0C->unk_0C);
@@ -450,15 +450,15 @@ static int sub_02098E0C (UnkStruct_02098BE4 * param0)
 static int sub_02098E88 (UnkStruct_02098BE4 * param0)
 {
     u8 v0;
-    UnkStruct_02098D38 * v1;
+    PokemonSummary * v1;
     Poffin * v2;
 
     if (!sub_02098AF8(&param0->unk_14)) {
         return 7;
     }
 
-    v1 = (UnkStruct_02098D38 *)param0->unk_10;
-    Heap_FreeToHeap(v1->unk_24);
+    v1 = (PokemonSummary *)param0->unk_10;
+    Heap_FreeToHeap(v1->poffin);
     Heap_FreeToHeap(param0->unk_10);
 
     return 0;

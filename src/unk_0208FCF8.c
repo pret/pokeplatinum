@@ -183,7 +183,7 @@ void sub_0208FD40 (UnkStruct_0208D7BC * param0)
         break;
     case 4:
     case 7:
-        if ((param0->unk_24C->unk_12 != 3) && (param0->unk_24C->unk_12 != 4)) {
+        if ((param0->unk_24C->mode != 3) && (param0->unk_24C->mode != 4)) {
             return;
         }
 
@@ -213,7 +213,7 @@ void sub_0208FE34 (UnkStruct_0208D7BC * param0)
         break;
     case 4:
     case 7:
-        if ((param0->unk_24C->unk_12 != 3) && (param0->unk_24C->unk_12 != 4)) {
+        if ((param0->unk_24C->mode != 3) && (param0->unk_24C->mode != 4)) {
             return;
         }
         break;
@@ -310,7 +310,7 @@ void sub_02090064 (UnkStruct_0208D7BC * param0, u32 param1)
 
 static BOOL sub_02090098 (UnkStruct_0208D7BC * param0)
 {
-    if ((param0->unk_250.unk_14 == param0->unk_24C->unk_0C) && (param0->unk_250.unk_44 == param0->unk_24C->unk_10) && (Strbuf_Compare(param0->unk_250.unk_08, param0->unk_698) == 0)) {
+    if ((param0->unk_250.unk_14 == param0->unk_24C->OTID) && (param0->unk_250.unk_44 == param0->unk_24C->OTGender) && (Strbuf_Compare(param0->unk_250.unk_08, param0->unk_698) == 0)) {
         return 1;
     }
 
@@ -478,7 +478,7 @@ static void sub_02090578 (UnkStruct_0208D7BC * param0)
     BGL_FillWindow(&param0->unk_244[5], 0);
 
     {
-        u32 v0 = sub_0207A294(param0->unk_24C->unk_1C, param0->unk_250.unk_0C);
+        u32 v0 = sub_0207A294(param0->unk_24C->dexMode, param0->unk_250.unk_0C);
 
         if (v0 != 0) {
             sub_02090184(param0, 9, v0, 3, 2);
@@ -571,7 +571,7 @@ static void sub_020908CC (UnkStruct_0208D7BC * param0)
         void * v1 = sub_0208DD48(param0);
         BOOL v2 = sub_02090098(param0);
 
-        if (param0->unk_24C->unk_11 == 2) {
+        if (param0->unk_24C->dataType == 2) {
             {
                 Pokemon * v3 = Pokemon_New(19);
 
@@ -655,7 +655,7 @@ static void sub_02090BDC (UnkStruct_0208D7BC * param0)
     sub_0201A9A4(&param0->unk_04[3]);
     sub_0201A9A4(&param0->unk_04[22]);
 
-    if ((param0->unk_24C->unk_12 != 3) && (param0->unk_24C->unk_12 != 4)) {
+    if ((param0->unk_24C->mode != 3) && (param0->unk_24C->mode != 4)) {
         return;
     }
 
@@ -666,7 +666,7 @@ static void sub_02090BDC (UnkStruct_0208D7BC * param0)
     sub_0201D78C(&param0->unk_244[1], 0, param0->unk_694, 0, 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_0201A9A4(&param0->unk_244[1]);
 
-    if (param0->unk_24C->unk_12 == 3) {
+    if (param0->unk_24C->mode == 3) {
         BGL_FillWindow(&param0->unk_244[0], 0);
         MessageLoader_GetStrbuf(param0->unk_688, 163, param0->unk_694);
         sub_020900D8(param0, &param0->unk_244[0], ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
@@ -679,7 +679,7 @@ static void sub_02090CD4 (UnkStruct_0208D7BC * param0)
 {
     sub_0201A9A4(&param0->unk_04[4]);
 
-    if (param0->unk_24C->unk_12 == 2) {
+    if (param0->unk_24C->mode == 2) {
         sub_02090064(param0, 155);
     } else {
         sub_02090064(param0, 129);
@@ -707,7 +707,7 @@ static void sub_02090D90 (UnkStruct_0208D7BC * param0)
 {
     sub_0201A9A4(&param0->unk_04[5]);
 
-    if (param0->unk_24C->unk_12 == 2) {
+    if (param0->unk_24C->mode == 2) {
         sub_02090064(param0, 159);
     } else {
         sub_02090064(param0, 158);
@@ -753,7 +753,7 @@ static void sub_02090EC8 (UnkStruct_0208D7BC * param0)
     sub_02090064(param0, 161);
     sub_0208F6DC(param0, &param0->unk_04[35]);
 
-    if ((param0->unk_24C->unk_12 != 3) && (param0->unk_24C->unk_12 != 4)) {
+    if ((param0->unk_24C->mode != 3) && (param0->unk_24C->mode != 4)) {
         return;
     }
 
@@ -815,7 +815,7 @@ void sub_020910E4 (UnkStruct_0208D7BC * param0)
     MessageLoader_GetStrbuf(param0->unk_68C, sub_020923C0(param0->unk_6B2, 3), param0->unk_694);
     sub_020900D8(param0, &param0->unk_244[2], ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
 
-    MessageLoader_GetStrbuf(param0->unk_68C, sub_02092424(param0->unk_24C->unk_20, param0->unk_6B2), param0->unk_694);
+    MessageLoader_GetStrbuf(param0->unk_68C, sub_02092424(param0->unk_24C->ribbons, param0->unk_6B2), param0->unk_694);
     sub_020900D8(param0, &param0->unk_244[3], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
 
     sub_0201A9A4(&param0->unk_244[2]);
@@ -837,7 +837,7 @@ static void sub_02091188 (UnkStruct_0208D7BC * param0, u32 param1)
         v4 = param0->unk_250.unk_3C[param1];
         v5 = param0->unk_250.unk_40[param1];
     } else {
-        v3 = param0->unk_24C->unk_18;
+        v3 = param0->unk_24C->move;
         v4 = MoveTable_CalcMaxPP(v3, 0);
         v5 = v4;
     }
@@ -913,7 +913,7 @@ void sub_020913D8 (UnkStruct_0208D7BC * param0)
 
 void sub_02091420 (UnkStruct_0208D7BC * param0)
 {
-    if (param0->unk_24C->unk_18 != 0) {
+    if (param0->unk_24C->move != 0) {
         BGL_FillWindow(&param0->unk_244[4], 0);
         sub_02091188(param0, 4);
         sub_0201A9A4(&param0->unk_244[4]);

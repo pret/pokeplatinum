@@ -17,7 +17,7 @@
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_02098C44.h"
-#include "struct_defs/struct_02098D38.h"
+#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_020997B8.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay006/battle_params.h"
@@ -42,7 +42,7 @@ void * sub_0203D50C(UnkStruct_020508D4 * param0, int param1);
 void * sub_0203D578(int param0, UnkStruct_0203CDB0 * param1, int param2, int param3, int param4, int param5);
 void * sub_0203D5C8(int param0, UnkStruct_0203CDB0 * param1, int param2);
 void * sub_0203D644(UnkStruct_0203CDB0 * param0, int param1);
-UnkStruct_02098D38 * sub_0203D670(UnkStruct_0203CDB0 * param0, int param1, int param2);
+PokemonSummary * sub_0203D670(UnkStruct_0203CDB0 * param0, int param1, int param2);
 void * sub_0203D6E4(int param0, UnkStruct_0203CDB0 * param1, u8 param2);
 int sub_0203D750(void * param0);
 void sub_0203D754(UnkStruct_0203CDB0 * param0, UnkStruct_02042434 * param1);

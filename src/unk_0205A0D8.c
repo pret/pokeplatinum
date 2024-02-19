@@ -21,7 +21,7 @@
 #include "functypes/funcptr_0205AB10.h"
 #include "struct_defs/struct_02072014.h"
 #include "struct_defs/struct_02098C44.h"
-#include "struct_defs/struct_02098D38.h"
+#include "struct_defs/pokemon_summary.h"
 
 #include "unk_02005474.h"
 #include "message.h"
@@ -58,7 +58,7 @@
 #include "overlay005/ov5_021D0D80.h"
 
 typedef struct {
-    UnkStruct_02098D38 * unk_00;
+    PokemonSummary * unk_00;
     PartyManagementData * unk_04;
     UnkFuncPtr_0205AB10 * unk_08;
     Strbuf* unk_0C;
@@ -126,28 +126,28 @@ static BOOL sub_0205AD20(UnkStruct_0205A0D8 * param0);
 
 static void sub_0205A0D8 (UnkStruct_0205A0D8 * param0, UnkStruct_0203CDB0 * param1, Party * param2, int param3, int param4, int param5)
 {
-    UnkStruct_02098D38 * v0;
+    PokemonSummary * v0;
     SaveData * v1;
     static const u8 v2[] = {
         0, 1, 2, 4, 3, 5, 6, 7, 8
     };
 
     v1 = param1->unk_0C;
-    v0 = Heap_AllocFromHeapAtEnd(param5, sizeof(UnkStruct_02098D38));
+    v0 = Heap_AllocFromHeapAtEnd(param5, sizeof(PokemonSummary));
 
-    MI_CpuClear8(v0, sizeof(UnkStruct_02098D38));
+    MI_CpuClear8(v0, sizeof(PokemonSummary));
     sub_0208E9C0(v0, sub_02025E38(param1->unk_0C));
 
-    v0->unk_1C = sub_0207A274(v1);
-    v0->unk_2C = sub_0208C324(v1);
-    v0->unk_04 = sub_02025E44(v1);
-    v0->unk_00 = param2;
-    v0->unk_11 = 1;
-    v0->unk_14 = param3;
-    v0->unk_13 = (u8)Party_GetCurrentCount(v0->unk_00);
-    v0->unk_18 = 0;
-    v0->unk_12 = param4;
-    v0->unk_20 = sub_0202D79C(v1);
+    v0->dexMode = sub_0207A274(v1);
+    v0->contest = sub_0208C324(v1);
+    v0->options = sub_02025E44(v1);
+    v0->monData = param2;
+    v0->dataType = 1;
+    v0->pos = param3;
+    v0->max = (u8)Party_GetCurrentCount(v0->monData);
+    v0->move = 0;
+    v0->mode = param4;
+    v0->ribbons = sub_0202D79C(v1);
 
     sub_0208D720(v0, v2);
     sub_0203CD84(param1, &Unk_020F410C, v0);
@@ -219,13 +219,13 @@ static BOOL sub_0205A258 (UnkStruct_0205A0D8 * param0, UnkStruct_0203CDB0 * para
 
 static BOOL sub_0205A2B0 (UnkStruct_0205A0D8 * param0, UnkStruct_0203CDB0 * param1)
 {
-    UnkStruct_02098D38 * v0;
+    PokemonSummary * v0;
 
     if (sub_020509B4(param1)) {
         return 0;
     }
 
-    param0->unk_3C = param0->unk_00->unk_14;
+    param0->unk_3C = param0->unk_00->pos;
     Heap_FreeToHeap(param0->unk_00);
     param0->unk_00 = NULL;
 

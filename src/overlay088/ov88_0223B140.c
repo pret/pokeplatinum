@@ -476,7 +476,7 @@ int ov88_0223B57C (UnkStruct_020067E8 * param0, int * param1)
                 ov88_0223B3C0(v0);
 
                 v0->unk_44 = 0;
-                v0->unk_88[0] = v0->unk_0C.unk_14 + v0->unk_3C * 6;
+                v0->unk_88[0] = v0->unk_0C.pos + v0->unk_3C * 6;
 
                 ov88_0223BE28(v0);
                 ov88_0223CF68(v0->unk_88[0], v0->unk_39C[0], 0);
@@ -1745,26 +1745,26 @@ static const u8 Unk_ov88_0223F13C[] = {
 static void ov88_0223D1EC (UnkStruct_02095E80 * param0, int param1)
 {
     if (param1 == 0) {
-        param0->unk_0C.unk_00 = param0->unk_2270;
-        param0->unk_0C.unk_13 = Party_GetCurrentCount(param0->unk_08->unk_08);
+        param0->unk_0C.monData = param0->unk_2270;
+        param0->unk_0C.max = Party_GetCurrentCount(param0->unk_08->unk_08);
 
-        param0->unk_0C.unk_28 = NULL;
+        param0->unk_0C.chatotCry = NULL;
         sub_0208E9C0(&param0->unk_0C, sub_02032EE8(sub_0203608C()));
     } else {
-        param0->unk_0C.unk_00 = param0->unk_2274;
-        param0->unk_0C.unk_13 = Party_GetCurrentCount(param0->unk_2274);
-        param0->unk_0C.unk_28 = (ChatotCry *)param0->unk_2E6C[sub_0203608C() ^ 1];
+        param0->unk_0C.monData = param0->unk_2274;
+        param0->unk_0C.max = Party_GetCurrentCount(param0->unk_2274);
+        param0->unk_0C.chatotCry = (ChatotCry *)param0->unk_2E6C[sub_0203608C() ^ 1];
         sub_0208E9C0(&param0->unk_0C, sub_02032EE8(sub_0203608C() ^ 1));
     }
 
-    param0->unk_0C.unk_11 = 1;
-    param0->unk_0C.unk_14 = param0->unk_88[0] % 6;
-    param0->unk_0C.unk_12 = 1;
-    param0->unk_0C.unk_18 = 0;
-    param0->unk_0C.unk_2C = sub_0208C324(param0->unk_08->unk_10);
-    param0->unk_0C.unk_1C = param0->unk_08->unk_30;
-    param0->unk_0C.unk_04 = param0->unk_08->unk_18;
-    param0->unk_0C.unk_20 = sub_0202D79C(param0->unk_08->unk_10);
+    param0->unk_0C.dataType = 1;
+    param0->unk_0C.pos = param0->unk_88[0] % 6;
+    param0->unk_0C.mode = 1;
+    param0->unk_0C.move = 0;
+    param0->unk_0C.contest = sub_0208C324(param0->unk_08->unk_10);
+    param0->unk_0C.dexMode = param0->unk_08->unk_30;
+    param0->unk_0C.options = param0->unk_08->unk_18;
+    param0->unk_0C.ribbons = sub_0202D79C(param0->unk_08->unk_10);
 
     sub_0208D720(&param0->unk_0C, Unk_ov88_0223F13C);
 

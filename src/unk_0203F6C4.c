@@ -61,7 +61,7 @@
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02098C44.h"
-#include "struct_defs/struct_02098D38.h"
+#include "struct_defs/pokemon_summary.h"
 #include "overlay005/struct_ov5_021DD42C.h"
 #include "overlay005/struct_ov5_021F8E3C.h"
 #include "overlay061/struct_ov61_0222C884.h"
@@ -3903,7 +3903,7 @@ static BOOL sub_02041C00 (UnkStruct_0203E724 * param0)
 {
     void ** v0;
     u16 * v1;
-    UnkStruct_02098D38 * v2;
+    PokemonSummary * v2;
 
     v1 = inline_0204FCAC(param0);
     v0 = sub_0203F098(param0->unk_34, 19);
@@ -3911,7 +3911,7 @@ static BOOL sub_02041C00 (UnkStruct_0203E724 * param0)
     GF_ASSERT(*v0 != 0);
 
     v2 = *v0;
-    *v1 = v2->unk_16;
+    *v1 = v2->selectedSlot;
 
     Heap_FreeToHeap(*v0);
     *v0 = NULL;

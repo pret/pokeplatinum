@@ -22,7 +22,7 @@
 #include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02081CF4.h"
-#include "struct_defs/struct_02098D38.h"
+#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
@@ -111,7 +111,7 @@ struct UnkStruct_ov106_02243118_t {
     UnkStruct_0200C440 * unk_B0;
     Options * unk_B4;
     SaveData * unk_B8;
-    UnkStruct_02098D38 * unk_BC;
+    PokemonSummary * unk_BC;
     UnkStruct_ov106_02243310 unk_C0;
     UnkStruct_ov106_02243650 * unk_280;
     UnkStruct_ov106_02243650 * unk_284;
@@ -393,7 +393,7 @@ static BOOL ov106_02241E14 (UnkStruct_ov106_02243118 * param0)
     case 0:
 
         if (sub_02006844(param0->unk_04) == 1) {
-            param0->unk_288 = param0->unk_BC->unk_14;
+            param0->unk_288 = param0->unk_BC->pos;
             Heap_FreeToHeap(param0->unk_BC);
             Heap_FreeToHeap(param0->unk_04);
             param0->unk_04 = NULL;
@@ -1221,18 +1221,18 @@ static void ov106_02242C2C (UnkStruct_ov106_02243118 * param0, Window * param1)
 
 static void ov106_02242CA4 (UnkStruct_ov106_02243118 * param0)
 {
-    param0->unk_BC = Heap_AllocFromHeap(98, sizeof(UnkStruct_02098D38));
-    memset(param0->unk_BC, 0, sizeof(UnkStruct_02098D38));
+    param0->unk_BC = Heap_AllocFromHeap(98, sizeof(PokemonSummary));
+    memset(param0->unk_BC, 0, sizeof(PokemonSummary));
 
-    param0->unk_BC->unk_00 = param0->unk_290;
-    param0->unk_BC->unk_11 = 1;
-    param0->unk_BC->unk_04 = param0->unk_B4;
-    param0->unk_BC->unk_12 = 1;
-    param0->unk_BC->unk_13 = Party_GetCurrentCount(param0->unk_290);
-    param0->unk_BC->unk_14 = 0;
-    param0->unk_BC->unk_18 = 0;
-    param0->unk_BC->unk_1C = sub_0207A274(param0->unk_B8);
-    param0->unk_BC->unk_2C = sub_0208C324(param0->unk_B8);
+    param0->unk_BC->monData = param0->unk_290;
+    param0->unk_BC->dataType = 1;
+    param0->unk_BC->options = param0->unk_B4;
+    param0->unk_BC->mode = 1;
+    param0->unk_BC->max = Party_GetCurrentCount(param0->unk_290);
+    param0->unk_BC->pos = 0;
+    param0->unk_BC->move = 0;
+    param0->unk_BC->dexMode = sub_0207A274(param0->unk_B8);
+    param0->unk_BC->contest = sub_0208C324(param0->unk_B8);
 
     sub_0208D720(param0->unk_BC, Unk_ov106_02243798);
     sub_0208E9C0(param0->unk_BC, sub_02025E38(param0->unk_B8));

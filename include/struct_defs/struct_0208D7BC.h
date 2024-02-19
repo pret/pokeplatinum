@@ -15,14 +15,14 @@
 #include "struct_defs/struct_0208D1D4.h"
 #include "struct_defs/struct_0208D7BC_sub1.h"
 #include "struct_defs/struct_02091850.h"
-#include "struct_defs/struct_02098D38.h"
+#include "struct_defs/pokemon_summary.h"
 
 typedef struct {
     BGL * unk_00;
     Window unk_04[36];
     Window * unk_244;
     u32 unk_248;
-    UnkStruct_02098D38 * unk_24C;
+    PokemonSummary * unk_24C;
     UnkStruct_0208D1D4 unk_250;
     UnkStruct_0208D7BC_sub1 unk_2B4;
     UnkStruct_02091850 unk_2F0[4];

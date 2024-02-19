@@ -21,7 +21,7 @@
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_0207C8C4.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
-#include "struct_defs/struct_02098D38.h"
+#include "struct_defs/pokemon_summary.h"
 
 struct UnkStruct_0207AE68_t {
     BGL * unk_00;
@@ -38,7 +38,7 @@ struct UnkStruct_0207AE68_t {
     UnkStruct_0207C8C4 * unk_30;
     GenericPointerData * unk_34;
     UnkStruct_020067E8 * unk_38;
-    UnkStruct_02098D38 * unk_3C;
+    PokemonSummary * unk_3C;
     void * unk_40;
     PokemonAnimationSys * unk_44;
     PokedexData * unk_48;

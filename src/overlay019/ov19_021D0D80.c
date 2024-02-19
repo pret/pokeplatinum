@@ -30,7 +30,7 @@
 #include "struct_defs/options.h"
 #include "struct_defs/struct_02042434.h"
 #include "struct_defs/struct_0208737C.h"
-#include "struct_defs/struct_02098D38.h"
+#include "struct_defs/pokemon_summary.h"
 #include "overlay019/struct_ov19_021D3CFC.h"
 #include "overlay019/struct_ov19_021D4DE4.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
@@ -131,7 +131,7 @@ typedef struct UnkStruct_ov19_021D5DF8_t {
     PCBoxes * unk_120;
     Party * unk_124;
     UnkStruct_0208737C * unk_128;
-    UnkStruct_02098D38 unk_12C;
+    PokemonSummary unk_12C;
     UnkStruct_ov19_021D38E0 unk_15C;
     UnkStruct_02023FCC * unk_17C;
     UnkStruct_02023FCC * unk_180;
@@ -861,33 +861,33 @@ static void ov19_021D1C84 (UnkStruct_ov19_021D5DF8 * param0)
     if (ov19_021D5E38(&param0->unk_00) == 2) {
         UnkStruct_ov19_021D5594 * v1 = &param0->unk_00.unk_14;
 
-        param0->unk_12C.unk_00 = param0->unk_00.unk_14.unk_00;
-        param0->unk_12C.unk_11 = (v1->unk_0B) ? 0 : 2;
-        param0->unk_12C.unk_13 = 1;
-        param0->unk_12C.unk_14 = 0;
-        param0->unk_12C.unk_12 = 0;
-        param0->unk_12C.unk_18 = 0;
-        param0->unk_12C.unk_04 = param0->unk_1A4;
+        param0->unk_12C.monData = param0->unk_00.unk_14.unk_00;
+        param0->unk_12C.dataType = (v1->unk_0B) ? 0 : 2;
+        param0->unk_12C.max = 1;
+        param0->unk_12C.pos = 0;
+        param0->unk_12C.mode = 0;
+        param0->unk_12C.move = 0;
+        param0->unk_12C.options = param0->unk_1A4;
     } else if (ov19_021D5E10(&param0->unk_00) == 0) {
-        param0->unk_12C.unk_00 = sub_02079C9C(param0->unk_120, sub_0207999C(param0->unk_120), 0);
-        param0->unk_12C.unk_11 = 2;
-        param0->unk_12C.unk_13 = (5 * 6);
-        param0->unk_12C.unk_14 = ov19_021D5E24(&param0->unk_00);
-        param0->unk_12C.unk_12 = 0;
-        param0->unk_12C.unk_18 = 0;
+        param0->unk_12C.monData = sub_02079C9C(param0->unk_120, sub_0207999C(param0->unk_120), 0);
+        param0->unk_12C.dataType = 2;
+        param0->unk_12C.max = (5 * 6);
+        param0->unk_12C.pos = ov19_021D5E24(&param0->unk_00);
+        param0->unk_12C.mode = 0;
+        param0->unk_12C.move = 0;
     } else {
-        param0->unk_12C.unk_00 = param0->unk_124;
-        param0->unk_12C.unk_11 = 1;
-        param0->unk_12C.unk_13 = Party_GetCurrentCount(param0->unk_124);
-        param0->unk_12C.unk_14 = ov19_021D5E2C(&param0->unk_00);
-        param0->unk_12C.unk_12 = 0;
-        param0->unk_12C.unk_18 = 0;
+        param0->unk_12C.monData = param0->unk_124;
+        param0->unk_12C.dataType = 1;
+        param0->unk_12C.max = Party_GetCurrentCount(param0->unk_124);
+        param0->unk_12C.pos = ov19_021D5E2C(&param0->unk_00);
+        param0->unk_12C.mode = 0;
+        param0->unk_12C.move = 0;
     }
 
-    param0->unk_12C.unk_28 = NULL;
-    param0->unk_12C.unk_1C = sub_0207A274(param0->unk_11C);
-    param0->unk_12C.unk_2C = sub_0208C324(param0->unk_11C);
-    param0->unk_12C.unk_20 = sub_0202D79C(param0->unk_11C);
+    param0->unk_12C.chatotCry = NULL;
+    param0->unk_12C.dexMode = sub_0207A274(param0->unk_11C);
+    param0->unk_12C.contest = sub_0208C324(param0->unk_11C);
+    param0->unk_12C.ribbons = sub_0202D79C(param0->unk_11C);
 
     sub_0208D720(&(param0->unk_12C), v0);
     sub_0208E9C0(&(param0->unk_12C), sub_02025E38(param0->unk_11C));
@@ -2592,12 +2592,12 @@ static void ov19_021D3CFC (UnkStruct_ov19_021D4DF0 * param0, UnkStruct_ov19_021D
 
     switch (v0->unk_04) {
     case 0:
-        v0->unk_07 = param1->unk_12C.unk_14;
+        v0->unk_07 = param1->unk_12C.pos;
         v0->unk_05 = v0->unk_07 % 6;
         v0->unk_06 = v0->unk_07 / 6;
         break;
     case 1:
-        v0->unk_08 = param1->unk_12C.unk_14;
+        v0->unk_08 = param1->unk_12C.pos;
         break;
     default:
         return;

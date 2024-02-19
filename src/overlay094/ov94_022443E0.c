@@ -27,16 +27,16 @@ static const u8 Unk_ov94_02246360[] = {
 
 int ov94_022443E0 (UnkStruct_ov94_0223FD4C * param0, int param1)
 {
-    param0->unk_B8.unk_00 = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112);
-    param0->unk_B8.unk_11 = 2;
-    param0->unk_B8.unk_13 = 1;
-    param0->unk_B8.unk_14 = 0;
-    param0->unk_B8.unk_12 = 1;
-    param0->unk_B8.unk_18 = 0;
-    param0->unk_B8.unk_2C = sub_0208C324(param0->unk_00->unk_20);
-    param0->unk_B8.unk_1C = param0->unk_00->unk_34;
-    param0->unk_B8.unk_04 = param0->unk_00->unk_24;
-    param0->unk_B8.unk_20 = sub_0202D79C(param0->unk_00->unk_20);
+    param0->unk_B8.monData = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112);
+    param0->unk_B8.dataType = 2;
+    param0->unk_B8.max = 1;
+    param0->unk_B8.pos = 0;
+    param0->unk_B8.mode = 1;
+    param0->unk_B8.move = 0;
+    param0->unk_B8.contest = sub_0208C324(param0->unk_00->unk_20);
+    param0->unk_B8.dexMode = param0->unk_00->unk_34;
+    param0->unk_B8.options = param0->unk_00->unk_24;
+    param0->unk_B8.ribbons = sub_0202D79C(param0->unk_00->unk_20);
 
     sub_0208D720(&param0->unk_B8, Unk_ov94_02246360);
     sub_0208E9C0(&param0->unk_B8, param0->unk_00->unk_1C);

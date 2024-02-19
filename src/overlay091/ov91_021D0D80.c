@@ -21,7 +21,7 @@
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0201D738.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "struct_defs/struct_02098D38.h"
+#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_020997B8.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay061/struct_ov61_0222C884.h"
@@ -77,7 +77,7 @@ typedef struct {
     SpriteRenderer * unk_110;
     SpriteGfxHandler * unk_114;
     CellActorData * unk_118[13];
-    UnkStruct_02098D38 unk_14C;
+    PokemonSummary unk_14C;
     UnkStruct_020067E8 * unk_17C;
     int unk_180;
     u8 unk_184;
@@ -1517,15 +1517,15 @@ static int ov91_021D261C (UnkStruct_ov91_021D0ED8 * param0)
 
     ov91_021D0F6C(param0);
 
-    param0->unk_14C.unk_00 = param0->unk_00->unk_00;
-    param0->unk_14C.unk_04 = param0->unk_00->unk_08;
-    param0->unk_14C.unk_11 = 0;
-    param0->unk_14C.unk_14 = 0;
-    param0->unk_14C.unk_13 = 1;
-    param0->unk_14C.unk_18 = ov91_021D1DD0(param0);
-    param0->unk_14C.unk_12 = 2;
-    param0->unk_14C.unk_2C = 1;
-    param0->unk_14C.unk_28 = NULL;
+    param0->unk_14C.monData = param0->unk_00->unk_00;
+    param0->unk_14C.options = param0->unk_00->unk_08;
+    param0->unk_14C.dataType = 0;
+    param0->unk_14C.pos = 0;
+    param0->unk_14C.max = 1;
+    param0->unk_14C.move = ov91_021D1DD0(param0);
+    param0->unk_14C.mode = 2;
+    param0->unk_14C.contest = 1;
+    param0->unk_14C.chatotCry = NULL;
 
     sub_0208D720(&param0->unk_14C, v0);
 
@@ -1541,7 +1541,7 @@ static int ov91_021D26AC (UnkStruct_ov91_021D0ED8 * param0)
         ov91_021D2548(param0, param0->unk_00->unk_10, 1);
         ov91_021D2574(param0, 0);
         ov91_021D25E4(param0);
-        param0->unk_00->unk_17 = param0->unk_14C.unk_16;
+        param0->unk_00->unk_17 = param0->unk_14C.selectedSlot;
         param0->unk_180 = 7;
         return 0;
     }

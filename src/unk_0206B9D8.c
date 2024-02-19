@@ -16,7 +16,7 @@
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_0206BC70.h"
 #include "struct_defs/struct_02098C44.h"
-#include "struct_defs/struct_02098D38.h"
+#include "struct_defs/pokemon_summary.h"
 
 #include "heap.h"
 #include "unk_02025E08.h"
@@ -128,26 +128,26 @@ static int sub_0206BA84 (UnkStruct_0206B9D8 * param0, UnkStruct_0203CDB0 * param
 
 static int sub_0206BAE0 (UnkStruct_0206B9D8 * param0, UnkStruct_0203CDB0 * param1, int param2)
 {
-    UnkStruct_02098D38 * v0;
+    PokemonSummary * v0;
     SaveData * v1;
     static const u8 v2[] = {
         0, 1, 2, 4, 3, 5, 6, 7, 8
     };
 
     v1 = param1->unk_0C;
-    v0 = Heap_AllocFromHeapAtEnd(param2, sizeof(UnkStruct_02098D38));
-    MI_CpuClear8(v0, sizeof(UnkStruct_02098D38));
+    v0 = Heap_AllocFromHeapAtEnd(param2, sizeof(PokemonSummary));
+    MI_CpuClear8(v0, sizeof(PokemonSummary));
 
-    v0->unk_04 = sub_02025E44(v1);
-    v0->unk_00 = Party_GetFromSavedata(v1);
-    v0->unk_1C = sub_0207A274(v1);
-    v0->unk_2C = sub_0208C324(v1);
-    v0->unk_11 = 1;
-    v0->unk_14 = param0->unk_0D;
-    v0->unk_13 = (u8)Party_GetCurrentCount(v0->unk_00);
-    v0->unk_18 = 0;
-    v0->unk_12 = param0->unk_09;
-    v0->unk_20 = sub_0202D79C(v1);
+    v0->options = sub_02025E44(v1);
+    v0->monData = Party_GetFromSavedata(v1);
+    v0->dexMode = sub_0207A274(v1);
+    v0->contest = sub_0208C324(v1);
+    v0->dataType = 1;
+    v0->pos = param0->unk_0D;
+    v0->max = (u8)Party_GetCurrentCount(v0->monData);
+    v0->move = 0;
+    v0->mode = param0->unk_09;
+    v0->ribbons = sub_0202D79C(v1);
 
     sub_0208D720(v0, v2);
     sub_0208E9C0(v0, sub_02025E38(v1));
@@ -159,14 +159,14 @@ static int sub_0206BAE0 (UnkStruct_0206B9D8 * param0, UnkStruct_0203CDB0 * param
 
 static int sub_0206BB6C (UnkStruct_0206B9D8 * param0, UnkStruct_0203CDB0 * param1)
 {
-    UnkStruct_02098D38 * v0;
+    PokemonSummary * v0;
 
     if (sub_020509B4(param1)) {
         return 3;
     }
 
     v0 = *(param0->unk_14);
-    param0->unk_0D = v0->unk_14;
+    param0->unk_0D = v0->pos;
     Heap_FreeToHeap(v0);
     *(param0->unk_14) = NULL;
 

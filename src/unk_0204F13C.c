@@ -22,7 +22,7 @@
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0204F3D0.h"
 #include "struct_defs/struct_02098C44.h"
-#include "struct_defs/struct_02098D38.h"
+#include "struct_defs/pokemon_summary.h"
 
 #include "unk_0200B358.h"
 #include "heap.h"
@@ -409,7 +409,7 @@ static int sub_0204F5D8 (UnkStruct_0204F470 * param0, UnkStruct_0203CDB0 * param
 
 static int sub_0204F628 (UnkStruct_0204F470 * param0, UnkStruct_0203CDB0 * param1, int param2)
 {
-    UnkStruct_02098D38 * v0;
+    PokemonSummary * v0;
     SaveData * v1;
 
     static const u8 v2[] = {
@@ -426,19 +426,19 @@ static int sub_0204F628 (UnkStruct_0204F470 * param0, UnkStruct_0203CDB0 * param
 
     v1 = param1->unk_0C;
 
-    v0 = Heap_AllocFromHeapAtEnd(param2, sizeof(UnkStruct_02098D38));
-    MI_CpuClear8(v0, sizeof(UnkStruct_02098D38));
+    v0 = Heap_AllocFromHeapAtEnd(param2, sizeof(PokemonSummary));
+    MI_CpuClear8(v0, sizeof(PokemonSummary));
 
-    v0->unk_04 = sub_02025E44(v1);
-    v0->unk_00 = Party_GetFromSavedata(v1);
-    v0->unk_1C = sub_0207A274(v1);
-    v0->unk_2C = sub_0208C324(v1);
-    v0->unk_11 = 1;
-    v0->unk_14 = param0->unk_05;
-    v0->unk_13 = (u8)Party_GetCurrentCount(v0->unk_00);
-    v0->unk_18 = 0;
-    v0->unk_12 = 0;
-    v0->unk_20 = sub_0202D79C(v1);
+    v0->options = sub_02025E44(v1);
+    v0->monData = Party_GetFromSavedata(v1);
+    v0->dexMode = sub_0207A274(v1);
+    v0->contest = sub_0208C324(v1);
+    v0->dataType = 1;
+    v0->pos = param0->unk_05;
+    v0->max = (u8)Party_GetCurrentCount(v0->monData);
+    v0->move = 0;
+    v0->mode = 0;
+    v0->ribbons = sub_0202D79C(v1);
 
     sub_0208D720(v0, v2);
     sub_0208E9C0(v0, sub_02025E38(v1));
@@ -451,7 +451,7 @@ static int sub_0204F628 (UnkStruct_0204F470 * param0, UnkStruct_0203CDB0 * param
 
 static int sub_0204F6B0 (UnkStruct_0204F470 * param0, UnkStruct_0203CDB0 * param1)
 {
-    UnkStruct_02098D38 * v0;
+    PokemonSummary * v0;
 
     if (sub_020509B4(param1)) {
         return UnkEnum_0204F13C_4;
@@ -459,7 +459,7 @@ static int sub_0204F6B0 (UnkStruct_0204F470 * param0, UnkStruct_0203CDB0 * param
 
     v0 = *(param0->unk_08);
 
-    param0->unk_05 = v0->unk_14;
+    param0->unk_05 = v0->pos;
 
     Heap_FreeToHeap(v0);
     *(param0->unk_08) = NULL;

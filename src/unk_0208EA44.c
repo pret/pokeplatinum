@@ -388,8 +388,8 @@ void sub_0208EF58 (UnkStruct_0208D7BC * param0)
             SpriteActor_SetPositionXY(param0->unk_41C[13 + v0], 151, 42 + v0 * 32);
         }
 
-        if (param0->unk_24C->unk_18 != 0) {
-            sub_0208F194(param0, 13 + 4, 5 + 4, MoveTable_LoadParam(param0->unk_24C->unk_18, MOVEATTRIBUTE_TYPE));
+        if (param0->unk_24C->move != 0) {
+            sub_0208F194(param0, 13 + 4, 5 + 4, MoveTable_LoadParam(param0->unk_24C->move, MOVEATTRIBUTE_TYPE));
             SpriteActor_DrawSprite(param0->unk_41C[13 + 4], 1);
             SpriteActor_SetPositionXY(param0->unk_41C[13 + 4], 151, 42 + 4 * 32);
         }
@@ -409,8 +409,8 @@ void sub_0208EF58 (UnkStruct_0208D7BC * param0)
             SpriteActor_SetPositionXY(param0->unk_41C[13 + v0], 151, 42 + v0 * 32);
         }
 
-        if (param0->unk_24C->unk_18 != 0) {
-            sub_0208F194(param0, 13 + 4, 5 + 4, MoveTable_LoadParam(param0->unk_24C->unk_18, MOVEATTRIBUTE_CONTEST_TYPE) + 18);
+        if (param0->unk_24C->move != 0) {
+            sub_0208F194(param0, 13 + 4, 5 + 4, MoveTable_LoadParam(param0->unk_24C->move, MOVEATTRIBUTE_CONTEST_TYPE) + 18);
             SpriteActor_DrawSprite(param0->unk_41C[13 + 4], 1);
             SpriteActor_SetPositionXY(param0->unk_41C[13 + 4], 151, 42 + 4 * 32);
         }
@@ -664,7 +664,7 @@ void sub_0208F71C (UnkStruct_0208D7BC * param0)
     void * v0 = sub_0208DD48(param0);
     u32 v1;
 
-    if (param0->unk_24C->unk_11 == 2) {
+    if (param0->unk_24C->dataType == 2) {
         v1 = BoxPokemon_IconSpriteIndex(v0);
     } else {
         v1 = Pokemon_IconSpriteIndex(v0);

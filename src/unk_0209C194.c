@@ -4,7 +4,7 @@
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_02098C44.h"
-#include "struct_defs/struct_02098D38.h"
+#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_0209C194.h"
 #include "struct_defs/struct_0209C194_1.h"
 
@@ -31,7 +31,7 @@ typedef struct {
     UnkStruct_0209C194 * unk_28;
     UnkStruct_0203CDB0 * unk_2C;
     PartyManagementData * unk_30;
-    UnkStruct_02098D38 * unk_34;
+    PokemonSummary * unk_34;
 } UnkStruct_0209C1EC;
 
 static BOOL(*const Unk_020F951C[6])(UnkStruct_0209C1EC *);
@@ -128,7 +128,7 @@ static BOOL sub_0209C2C0 (UnkStruct_0209C1EC * param0)
         if (param0->unk_30->unk_23 == 1) {
             param0->unk_34 = sub_0203D670(param0->unk_2C, 3, 0);
             param0->unk_04 = v0;
-            param0->unk_34->unk_14 = v0;
+            param0->unk_34->pos = v0;
             sub_0203D334(param0->unk_2C, param0->unk_34);
             param0->unk_00 = 3;
         } else {

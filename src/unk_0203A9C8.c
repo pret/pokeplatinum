@@ -34,7 +34,7 @@
 #include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_02098C44.h"
-#include "struct_defs/struct_02098D38.h"
+#include "struct_defs/pokemon_summary.h"
 #include "overlay021/struct_ov21_021D0D80.h"
 #include "struct_defs/sprite_template.h"
 #include "overlay104/struct_ov104_02241308.h"
@@ -1026,19 +1026,19 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
     switch (v2->unk_23) {
     case 1:
     {
-        UnkStruct_02098D38 * v3 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02098D38));
+        PokemonSummary * v3 = Heap_AllocFromHeap(11, sizeof(PokemonSummary));
 
-        v3->unk_00 = Party_GetFromSavedata(v0->unk_0C);
-        v3->unk_04 = sub_02025E44(v0->unk_0C);
-        v3->unk_11 = 1;
-        v3->unk_14 = v2->unk_22;
-        v3->unk_13 = (u8)Party_GetCurrentCount(v3->unk_00);
-        v3->unk_18 = 0;
-        v3->unk_12 = 0;
-        v3->unk_20 = sub_0202D79C(v0->unk_0C);
-        v3->unk_1C = sub_0207A274(v0->unk_0C);
-        v3->unk_2C = sub_0208C324(v0->unk_0C);
-        v3->unk_28 = NULL;
+        v3->monData = Party_GetFromSavedata(v0->unk_0C);
+        v3->options = sub_02025E44(v0->unk_0C);
+        v3->dataType = 1;
+        v3->pos = v2->unk_22;
+        v3->max = (u8)Party_GetCurrentCount(v3->monData);
+        v3->move = 0;
+        v3->mode = 0;
+        v3->ribbons = sub_0202D79C(v0->unk_0C);
+        v3->dexMode = sub_0207A274(v0->unk_0C);
+        v3->contest = sub_0208C324(v0->unk_0C);
+        v3->chatotCry = NULL;
 
         sub_0208D720(v3, Unk_020EA02C);
         sub_0208E9C0(v3, sub_02025E38(v0->unk_0C));
@@ -1050,18 +1050,18 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
     break;
     case 4:
     {
-        UnkStruct_02098D38 * v4 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02098D38));
+        PokemonSummary * v4 = Heap_AllocFromHeap(11, sizeof(PokemonSummary));
 
-        v4->unk_00 = Party_GetFromSavedata(v0->unk_0C);
-        v4->unk_04 = sub_02025E44(v0->unk_0C);
-        v4->unk_11 = 1;
-        v4->unk_14 = v2->unk_22;
-        v4->unk_13 = 1;
-        v4->unk_18 = v2->unk_26;
-        v4->unk_12 = 2;
-        v4->unk_1C = sub_0207A274(v0->unk_0C);
-        v4->unk_2C = sub_0208C324(v0->unk_0C);
-        v4->unk_28 = NULL;
+        v4->monData = Party_GetFromSavedata(v0->unk_0C);
+        v4->options = sub_02025E44(v0->unk_0C);
+        v4->dataType = 1;
+        v4->pos = v2->unk_22;
+        v4->max = 1;
+        v4->move = v2->unk_26;
+        v4->mode = 2;
+        v4->dexMode = sub_0207A274(v0->unk_0C);
+        v4->contest = sub_0208C324(v0->unk_0C);
+        v4->chatotCry = NULL;
 
         sub_0208D720(v4, Unk_020EA01C);
         sub_0208E9C0(v4, sub_02025E38(v0->unk_0C));
@@ -1081,18 +1081,18 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
     break;
     case 5:
     {
-        UnkStruct_02098D38 * v6 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02098D38));
+        PokemonSummary * v6 = Heap_AllocFromHeap(11, sizeof(PokemonSummary));
 
-        v6->unk_00 = Party_GetFromSavedata(v0->unk_0C);
-        v6->unk_04 = sub_02025E44(v0->unk_0C);
-        v6->unk_11 = 1;
-        v6->unk_14 = v2->unk_22;
-        v6->unk_13 = 1;
-        v6->unk_18 = v2->unk_26;
-        v6->unk_12 = 2;
-        v6->unk_1C = sub_0207A274(v0->unk_0C);
-        v6->unk_2C = sub_0208C324(v0->unk_0C);
-        v6->unk_28 = NULL;
+        v6->monData = Party_GetFromSavedata(v0->unk_0C);
+        v6->options = sub_02025E44(v0->unk_0C);
+        v6->dataType = 1;
+        v6->pos = v2->unk_22;
+        v6->max = 1;
+        v6->move = v2->unk_26;
+        v6->mode = 2;
+        v6->dexMode = sub_0207A274(v0->unk_0C);
+        v6->contest = sub_0208C324(v0->unk_0C);
+        v6->chatotCry = NULL;
 
         sub_0208D720(v6, Unk_020EA01C);
         sub_0208E9C0(v6, sub_02025E38(v0->unk_0C));
@@ -1624,16 +1624,16 @@ static BOOL sub_0203C1C8 (UnkStruct_020508D4 * param0)
 {
     UnkStruct_0203CDB0 * v0;
     UnkStruct_020708E0 * v1;
-    UnkStruct_02098D38 * v2;
+    PokemonSummary * v2;
 
     v0 = sub_02050A60(param0);
     v1 = sub_02050A64(param0);
-    v2 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02098D38));
+    v2 = Heap_AllocFromHeap(11, sizeof(PokemonSummary));
 
-    memcpy(v2, v1->unk_25C, sizeof(UnkStruct_02098D38));
+    memcpy(v2, v1->unk_25C, sizeof(PokemonSummary));
     Heap_FreeToHeap(v1->unk_25C);
 
-    switch (v2->unk_12) {
+    switch (v2->mode) {
     case 2:
     {
         PartyManagementData * v3;
@@ -1661,9 +1661,9 @@ static BOOL sub_0203C1C8 (UnkStruct_020508D4 * param0)
         }
 
         v3->unk_24 = v4->unk_00;
-        v3->unk_22 = v2->unk_14;
-        v3->unk_26 = v2->unk_18;
-        v3->unk_28 = v2->unk_16;
+        v3->unk_22 = v2->pos;
+        v3->unk_26 = v2->move;
+        v3->unk_28 = v2->selectedSlot;
 
         sub_0203CD84(v0, &Unk_020F1E88, v3);
         Heap_FreeToHeap(v1->unk_260);
@@ -1672,7 +1672,7 @@ static BOOL sub_0203C1C8 (UnkStruct_020508D4 * param0)
     }
     break;
     default:
-        v1->unk_25C = sub_0203D390(v0, &v1->unk_24C, v2->unk_14);
+        v1->unk_25C = sub_0203D390(v0, &v1->unk_24C, v2->pos);
         sub_0203B674(v1, sub_0203B7C0);
     }
 

@@ -26,7 +26,7 @@
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02081CF4.h"
-#include "struct_defs/struct_02098D38.h"
+#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
@@ -122,7 +122,7 @@ struct UnkStruct_ov105_02241FF4_t {
     Sprite * unk_12C[3];
     Options * unk_138;
     SaveData * unk_13C;
-    UnkStruct_02098D38 * unk_140;
+    PokemonSummary * unk_140;
     UnkStruct_ov105_02245AAC unk_144;
     UnkStruct_ov105_02245EA8 * unk_2F4[6];
     UnkStruct_ov105_02246060 * unk_30C;
@@ -875,7 +875,7 @@ static BOOL ov105_02242698 (UnkStruct_ov105_02241FF4 * param0)
     case 0:
 
         if (sub_02006844(param0->unk_04) == 1) {
-            param0->unk_334 = param0->unk_140->unk_14;
+            param0->unk_334 = param0->unk_140->pos;
             Heap_FreeToHeap(param0->unk_140);
             Heap_FreeToHeap(param0->unk_04);
             param0->unk_04 = NULL;
@@ -2900,18 +2900,18 @@ static void ov105_022453F8 (UnkStruct_ov105_02241FF4 * param0, u8 param1, u8 par
 
 static void ov105_02245464 (UnkStruct_ov105_02241FF4 * param0)
 {
-    param0->unk_140 = Heap_AllocFromHeap(93, sizeof(UnkStruct_02098D38));
-    memset(param0->unk_140, 0, sizeof(UnkStruct_02098D38));
+    param0->unk_140 = Heap_AllocFromHeap(93, sizeof(PokemonSummary));
+    memset(param0->unk_140, 0, sizeof(PokemonSummary));
 
-    param0->unk_140->unk_00 = param0->unk_31C;
-    param0->unk_140->unk_04 = param0->unk_138;
-    param0->unk_140->unk_11 = 1;
-    param0->unk_140->unk_12 = 1;
-    param0->unk_140->unk_13 = param0->unk_12;
-    param0->unk_140->unk_14 = ov105_022461A0(param0->unk_30C);
-    param0->unk_140->unk_18 = 0;
-    param0->unk_140->unk_1C = sub_0207A274(param0->unk_13C);
-    param0->unk_140->unk_2C = 0;
+    param0->unk_140->monData = param0->unk_31C;
+    param0->unk_140->options = param0->unk_138;
+    param0->unk_140->dataType = 1;
+    param0->unk_140->mode = 1;
+    param0->unk_140->max = param0->unk_12;
+    param0->unk_140->pos = ov105_022461A0(param0->unk_30C);
+    param0->unk_140->move = 0;
+    param0->unk_140->dexMode = sub_0207A274(param0->unk_13C);
+    param0->unk_140->contest = 0;
 
     sub_0208D720(param0->unk_140, Unk_ov105_022462DC);
     sub_0208E9C0(param0->unk_140, sub_02025E38(param0->unk_13C));

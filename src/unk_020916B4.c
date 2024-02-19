@@ -341,7 +341,7 @@ void sub_02091F8C (UnkStruct_0208D7BC * param0)
 
     v1 = sub_0208DD48(param0);
 
-    if (param0->unk_24C->unk_11 == 2) {
+    if (param0->unk_24C->dataType == 2) {
         BoxPokemon_BuildArchivedSprite(&v0, v1, 2, 0);
     } else {
         Pokemon_BuildArchivedSprite(&v0, v1, 2);
