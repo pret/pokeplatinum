@@ -62,7 +62,7 @@
 #include "pokemon.h"
 #include "party.h"
 #include "unk_0207A274.h"
-#include "unk_0208C324.h"
+#include "pokemon_summary_app.h"
 #include "unk_0209BA80.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0223AF58.h"
@@ -1232,10 +1232,10 @@ static void ov106_02242CA4 (UnkStruct_ov106_02243118 * param0)
     param0->unk_BC->pos = 0;
     param0->unk_BC->move = 0;
     param0->unk_BC->dexMode = sub_0207A274(param0->unk_B8);
-    param0->unk_BC->contest = sub_0208C324(param0->unk_B8);
+    param0->unk_BC->contest = PokemonSummary_ShowContestData(param0->unk_B8);
 
-    sub_0208D720(param0->unk_BC, Unk_ov106_02243798);
-    sub_0208E9C0(param0->unk_BC, sub_02025E38(param0->unk_B8));
+    PokemonSummary_FlagVisiblePages(param0->unk_BC, Unk_ov106_02243798);
+    PokemonSummary_SetPlayerProfile(param0->unk_BC, sub_02025E38(param0->unk_B8));
 
     return;
 }

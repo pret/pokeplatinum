@@ -98,7 +98,7 @@
 #include "party.h"
 #include "item.h"
 #include "unk_0207D3B8.h"
-#include "unk_0208C324.h"
+#include "pokemon_summary_app.h"
 #include "unk_02092494.h"
 #include "unk_02095CD4.h"
 #include "overlay088/ov88_0223B140.h"
@@ -1749,24 +1749,24 @@ static void ov88_0223D1EC (UnkStruct_02095E80 * param0, int param1)
         param0->unk_0C.max = Party_GetCurrentCount(param0->unk_08->unk_08);
 
         param0->unk_0C.chatotCry = NULL;
-        sub_0208E9C0(&param0->unk_0C, sub_02032EE8(sub_0203608C()));
+        PokemonSummary_SetPlayerProfile(&param0->unk_0C, sub_02032EE8(sub_0203608C()));
     } else {
         param0->unk_0C.monData = param0->unk_2274;
         param0->unk_0C.max = Party_GetCurrentCount(param0->unk_2274);
         param0->unk_0C.chatotCry = (ChatotCry *)param0->unk_2E6C[sub_0203608C() ^ 1];
-        sub_0208E9C0(&param0->unk_0C, sub_02032EE8(sub_0203608C() ^ 1));
+        PokemonSummary_SetPlayerProfile(&param0->unk_0C, sub_02032EE8(sub_0203608C() ^ 1));
     }
 
     param0->unk_0C.dataType = 1;
     param0->unk_0C.pos = param0->unk_88[0] % 6;
     param0->unk_0C.mode = 1;
     param0->unk_0C.move = 0;
-    param0->unk_0C.contest = sub_0208C324(param0->unk_08->unk_10);
+    param0->unk_0C.contest = PokemonSummary_ShowContestData(param0->unk_08->unk_10);
     param0->unk_0C.dexMode = param0->unk_08->unk_30;
     param0->unk_0C.options = param0->unk_08->unk_18;
     param0->unk_0C.ribbons = sub_0202D79C(param0->unk_08->unk_10);
 
-    sub_0208D720(&param0->unk_0C, Unk_ov88_0223F13C);
+    PokemonSummary_FlagVisiblePages(&param0->unk_0C, Unk_ov88_0223F13C);
 
     param0->unk_40 = sub_020067E8(&Unk_020F410C, &param0->unk_0C, 26);
     param0->unk_3C = param1;

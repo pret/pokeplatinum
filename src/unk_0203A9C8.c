@@ -97,7 +97,7 @@
 #include "unk_0207CB08.h"
 #include "item.h"
 #include "unk_0207D3B8.h"
-#include "unk_0208C324.h"
+#include "pokemon_summary_app.h"
 #include "unk_020972FC.h"
 #include "unk_0209747C.h"
 #include "unk_02097624.h"
@@ -1037,11 +1037,11 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
         v3->mode = 0;
         v3->ribbons = sub_0202D79C(v0->unk_0C);
         v3->dexMode = sub_0207A274(v0->unk_0C);
-        v3->contest = sub_0208C324(v0->unk_0C);
+        v3->contest = PokemonSummary_ShowContestData(v0->unk_0C);
         v3->chatotCry = NULL;
 
-        sub_0208D720(v3, Unk_020EA02C);
-        sub_0208E9C0(v3, sub_02025E38(v0->unk_0C));
+        PokemonSummary_FlagVisiblePages(v3, Unk_020EA02C);
+        PokemonSummary_SetPlayerProfile(v3, sub_02025E38(v0->unk_0C));
         sub_0203D334(v0, v3);
 
         v1->unk_25C = v3;
@@ -1060,11 +1060,11 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
         v4->move = v2->unk_26;
         v4->mode = 2;
         v4->dexMode = sub_0207A274(v0->unk_0C);
-        v4->contest = sub_0208C324(v0->unk_0C);
+        v4->contest = PokemonSummary_ShowContestData(v0->unk_0C);
         v4->chatotCry = NULL;
 
-        sub_0208D720(v4, Unk_020EA01C);
-        sub_0208E9C0(v4, sub_02025E38(v0->unk_0C));
+        PokemonSummary_FlagVisiblePages(v4, Unk_020EA01C);
+        PokemonSummary_SetPlayerProfile(v4, sub_02025E38(v0->unk_0C));
         sub_0203D334(v0, v4);
 
         {
@@ -1091,11 +1091,11 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
         v6->move = v2->unk_26;
         v6->mode = 2;
         v6->dexMode = sub_0207A274(v0->unk_0C);
-        v6->contest = sub_0208C324(v0->unk_0C);
+        v6->contest = PokemonSummary_ShowContestData(v0->unk_0C);
         v6->chatotCry = NULL;
 
-        sub_0208D720(v6, Unk_020EA01C);
-        sub_0208E9C0(v6, sub_02025E38(v0->unk_0C));
+        PokemonSummary_FlagVisiblePages(v6, Unk_020EA01C);
+        PokemonSummary_SetPlayerProfile(v6, sub_02025E38(v0->unk_0C));
         sub_0203D334(v0, v6);
 
         {
@@ -1951,9 +1951,9 @@ static void sub_0203C7B8 (UnkStruct_020508D4 * param0)
     v4 = Party_GetPokemonBySlotIndex(v3, v2->unk_00);
 
     if (v2->unk_01 == 0) {
-        v5 = sub_0207AE68(v3, v4, v2->unk_04, sub_02025E44(v0->unk_0C), sub_0208C324(v0->unk_0C), sub_02027560(v0->unk_0C), sub_0207D990(v0->unk_0C), sub_0202CD88(v0->unk_0C), sub_02056B24(v0->unk_0C), v2->unk_08, 0x1, 73);
+        v5 = sub_0207AE68(v3, v4, v2->unk_04, sub_02025E44(v0->unk_0C), PokemonSummary_ShowContestData(v0->unk_0C), sub_02027560(v0->unk_0C), sub_0207D990(v0->unk_0C), sub_0202CD88(v0->unk_0C), sub_02056B24(v0->unk_0C), v2->unk_08, 0x1, 73);
     } else {
-        v5 = sub_0207AE68(v3, v4, v2->unk_04, sub_02025E44(v0->unk_0C), sub_0208C324(v0->unk_0C), sub_02027560(v0->unk_0C), sub_0207D990(v0->unk_0C), sub_0202CD88(v0->unk_0C), sub_02056B24(v0->unk_0C), v2->unk_08, NULL, 73);
+        v5 = sub_0207AE68(v3, v4, v2->unk_04, sub_02025E44(v0->unk_0C), PokemonSummary_ShowContestData(v0->unk_0C), sub_02027560(v0->unk_0C), sub_0207D990(v0->unk_0C), sub_0202CD88(v0->unk_0C), sub_02056B24(v0->unk_0C), v2->unk_08, NULL, 73);
     }
 
     {

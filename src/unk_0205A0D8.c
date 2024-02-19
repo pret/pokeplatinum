@@ -54,7 +54,7 @@
 #include "party.h"
 #include "unk_0207A274.h"
 #include "unk_0207D3B8.h"
-#include "unk_0208C324.h"
+#include "pokemon_summary_app.h"
 #include "overlay005/ov5_021D0D80.h"
 
 typedef struct {
@@ -136,10 +136,10 @@ static void sub_0205A0D8 (UnkStruct_0205A0D8 * param0, UnkStruct_0203CDB0 * para
     v0 = Heap_AllocFromHeapAtEnd(param5, sizeof(PokemonSummary));
 
     MI_CpuClear8(v0, sizeof(PokemonSummary));
-    sub_0208E9C0(v0, sub_02025E38(param1->unk_0C));
+    PokemonSummary_SetPlayerProfile(v0, sub_02025E38(param1->unk_0C));
 
     v0->dexMode = sub_0207A274(v1);
-    v0->contest = sub_0208C324(v1);
+    v0->contest = PokemonSummary_ShowContestData(v1);
     v0->options = sub_02025E44(v1);
     v0->monData = param2;
     v0->dataType = 1;
@@ -149,7 +149,7 @@ static void sub_0205A0D8 (UnkStruct_0205A0D8 * param0, UnkStruct_0203CDB0 * para
     v0->mode = param4;
     v0->ribbons = sub_0202D79C(v1);
 
-    sub_0208D720(v0, v2);
+    PokemonSummary_FlagVisiblePages(v0, v2);
     sub_0203CD84(param1, &Unk_020F410C, v0);
 
     param0->unk_00 = v0;

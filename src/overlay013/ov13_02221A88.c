@@ -24,7 +24,7 @@
 #include "party.h"
 #include "item.h"
 #include "unk_0208C098.h"
-#include "unk_0208C324.h"
+#include "pokemon_summary_app.h"
 #include "unk_02094EDC.h"
 #include "overlay013/ov13_02221A88.h"
 #include "overlay016/ov16_0223DF00.h"
@@ -1138,7 +1138,7 @@ static void ov13_0222339C (UnkStruct_ov13_022213F0 * param0)
             ov13_02223448(param0, v0);
         }
 
-        if (sub_0208E9F0(param0->unk_04[v0].unk_00) != 7) {
+        if (PokemonSummary_StatusIconAnimIdx(param0->unk_04[v0].unk_00) != 7) {
             continue;
         }
 

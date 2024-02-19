@@ -60,7 +60,7 @@
 #include "move_table.h"
 #include "unk_0207C908.h"
 #include "unk_0208C098.h"
-#include "unk_0208C324.h"
+#include "pokemon_summary_app.h"
 #include "unk_02094EDC.h"
 #include "overlay091/ov91_021D0D80.h"
 
@@ -1527,7 +1527,7 @@ static int ov91_021D261C (UnkStruct_ov91_021D0ED8 * param0)
     param0->unk_14C.contest = 1;
     param0->unk_14C.chatotCry = NULL;
 
-    sub_0208D720(&param0->unk_14C, v0);
+    PokemonSummary_FlagVisiblePages(&param0->unk_14C, v0);
 
     param0->unk_17C = sub_020067E8(&Unk_020F410C, &param0->unk_14C, 67);
     return 12;

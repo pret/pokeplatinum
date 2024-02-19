@@ -12,7 +12,7 @@
 #include "unk_02020020.h"
 #include "unk_0202419C.h"
 #include "pokemon.h"
-#include "unk_0208C324.h"
+#include "pokemon_summary_app.h"
 #include "unk_0208EA44.h"
 #include "unk_020916B4.h"
 
@@ -339,7 +339,7 @@ void sub_02091F8C (PokemonSummaryApp * param0)
 
     param0->monSpriteData.spriteManager = sub_0200762C(19);
 
-    v1 = sub_0208DD48(param0);
+    v1 = PokemonSummary_MonData(param0);
 
     if (param0->data->dataType == 2) {
         BoxPokemon_BuildArchivedSprite(&v0, v1, 2, 0);

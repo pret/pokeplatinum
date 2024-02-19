@@ -20,7 +20,7 @@
 #include "pokemon.h"
 #include "move_table.h"
 #include "unk_0207A274.h"
-#include "unk_0208C324.h"
+#include "pokemon_summary_app.h"
 #include "unk_0208EA44.h"
 #include "unk_0208FCF8.h"
 #include "unk_020923C0.h"
@@ -568,7 +568,7 @@ static void sub_020908CC (PokemonSummaryApp * param0)
     BGL_FillWindow(&param0->extraWindows[0], 0);
 
     {
-        void * v1 = sub_0208DD48(param0);
+        void * v1 = PokemonSummary_MonData(param0);
         BOOL v2 = sub_02090098(param0);
 
         if (param0->data->dataType == 2) {

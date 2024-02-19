@@ -19,7 +19,7 @@
 #include "move_table.h"
 #include "pokemon_icon.h"
 #include "unk_0207C908.h"
-#include "unk_0208C324.h"
+#include "pokemon_summary_app.h"
 #include "unk_0208EA44.h"
 #include "unk_020920C0.h"
 #include "unk_020923C0.h"
@@ -232,7 +232,7 @@ static u8 sub_0208ECB8 (PokemonSummaryApp * param0)
     u8 v0, v1 = 0;
 
     for (v0 = 0; v0 < 8; v0++) {
-        if (sub_0208D790(param0, v0) != 0) {
+        if (PokemonSummary_PageIsVisble(param0, v0) != 0) {
             v1++;
         }
     }
@@ -254,7 +254,7 @@ void sub_0208ECF4 (PokemonSummaryApp * param0)
     v6 = 0;
 
     for (v5 = 0; v5 < 8; v5++) {
-        if (sub_0208D790(param0, v5) == 0) {
+        if (PokemonSummary_PageIsVisble(param0, v5) == 0) {
             sub_02021CAC(v0[v5], 0);
             continue;
         }
@@ -290,7 +290,7 @@ void sub_0208EDC4 (PokemonSummaryApp * param0)
 {
     u8 v0;
 
-    if (sub_0208D7BC(param0) <= 1) {
+    if (PokemonSummary_CountVisiblePages(param0) <= 1) {
         sub_0208EE10(param0, 0);
     }
 
@@ -302,7 +302,7 @@ void sub_0208EDC4 (PokemonSummaryApp * param0)
 
 void sub_0208EE10 (PokemonSummaryApp * param0, u8 param1)
 {
-    if (sub_0208D7BC(param0) <= 1) {
+    if (PokemonSummary_CountVisiblePages(param0) <= 1) {
         param1 = 0;
     }
 
@@ -661,7 +661,7 @@ void sub_0208F6DC (PokemonSummaryApp * param0, Window * param1)
 
 void sub_0208F71C (PokemonSummaryApp * param0)
 {
-    void * v0 = sub_0208DD48(param0);
+    void * v0 = PokemonSummary_MonData(param0);
     u32 v1;
 
     if (param0->data->dataType == 2) {
@@ -754,7 +754,7 @@ void sub_0208FA04 (PokemonSummaryApp * param0)
     for (v0 = 0; v0 < 12; v0++) {
         if (v0 < param0->ribbonMax) {
             sub_02021CAC(param0->unk_41C[55 + v0], 1);
-            sub_0208F9B0(param0, sub_0208E904(param0, v0), v0);
+            sub_0208F9B0(param0, PokemonSummary_RibbonAt(param0, v0), v0);
         }
     }
 
@@ -768,7 +768,7 @@ void sub_0208FAA4 (PokemonSummaryApp * param0)
     for (v0 = 0; v0 < 8; v0++) {
         if ((param0->ribbonState * 4 + v0) < param0->ribbonMax) {
             sub_02021CAC(param0->unk_41C[55 + v0], 1);
-            sub_0208F9B0(param0, sub_0208E904(param0, v0), v0);
+            sub_0208F9B0(param0, PokemonSummary_RibbonAt(param0, v0), v0);
         } else {
             sub_02021CAC(param0->unk_41C[55 + v0], 0);
         }

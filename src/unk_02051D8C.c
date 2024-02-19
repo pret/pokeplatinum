@@ -60,7 +60,7 @@
 #include "pokemon.h"
 #include "party.h"
 #include "unk_0207D3B8.h"
-#include "unk_0208C324.h"
+#include "pokemon_summary_app.h"
 
 static void sub_0205281C(BattleParams * param0, const UnkStruct_0203CDB0 * param1);
 void sub_02052894(BattleParams * param0);
@@ -283,7 +283,7 @@ void sub_020521B8 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, Sav
     param0->unk_EC = SaveData_PCBoxes(param2);
     param0->unk_130 = sub_0203A138(param3);
     param0->unk_13C = MapHeader_GetMapEvolutionMethod(param3);
-    param0->unk_140 = sub_0208C324(param2);
+    param0->unk_140 = PokemonSummary_ShowContestData(param2);
     param0->unk_144 = sub_0206ADFC(sub_020507E4(param2));
     param0->unk_14C = sub_0203A74C(v6);
     param0->unk_E4 = param5;

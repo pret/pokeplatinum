@@ -29,7 +29,7 @@
 #include "pokemon.h"
 #include "party.h"
 #include "unk_0207D3B8.h"
-#include "unk_0208C324.h"
+#include "pokemon_summary_app.h"
 #include "unk_020989DC.h"
 #include "overlay079/ov79_021D0D80.h"
 #include "overlay079/ov79_021D2268.h"
@@ -337,8 +337,8 @@ static int sub_02098CB0 (UnkStruct_02098BE4 * param0)
     v2->contest = 1;
     v2->chatotCry = NULL;
 
-    sub_0208D720(v2, v3);
-    sub_0208E9C0(v2, param0->unk_0C->unk_0C);
+    PokemonSummary_FlagVisiblePages(v2, v3);
+    PokemonSummary_SetPlayerProfile(v2, param0->unk_0C->unk_0C);
 
     param0->unk_14 = sub_020067E8(&Unk_020F410C, v1, param0->unk_00);
     param0->unk_10 = (void *)v2;
@@ -438,8 +438,8 @@ static int sub_02098E0C (UnkStruct_02098BE4 * param0)
     v1->contest = 1;
     v1->chatotCry = NULL;
 
-    sub_0208D720(v1, v3);
-    sub_0208E9C0(v1, param0->unk_0C->unk_0C);
+    PokemonSummary_FlagVisiblePages(v1, v3);
+    PokemonSummary_SetPlayerProfile(v1, param0->unk_0C->unk_0C);
 
     param0->unk_14 = sub_020067E8(&Unk_020F410C, v1, param0->unk_00);
     param0->unk_10 = (void *)v1;

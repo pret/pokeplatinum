@@ -66,7 +66,7 @@
 #include "item.h"
 #include "unk_0207D3B8.h"
 #include "unk_0208694C.h"
-#include "unk_0208C324.h"
+#include "pokemon_summary_app.h"
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D603C.h"
 #include "overlay019/ov19_021D61B0.h"
@@ -886,11 +886,11 @@ static void ov19_021D1C84 (UnkStruct_ov19_021D5DF8 * param0)
 
     param0->unk_12C.chatotCry = NULL;
     param0->unk_12C.dexMode = sub_0207A274(param0->unk_11C);
-    param0->unk_12C.contest = sub_0208C324(param0->unk_11C);
+    param0->unk_12C.contest = PokemonSummary_ShowContestData(param0->unk_11C);
     param0->unk_12C.ribbons = sub_0202D79C(param0->unk_11C);
 
-    sub_0208D720(&(param0->unk_12C), v0);
-    sub_0208E9C0(&(param0->unk_12C), sub_02025E38(param0->unk_11C));
+    PokemonSummary_FlagVisiblePages(&(param0->unk_12C), v0);
+    PokemonSummary_SetPlayerProfile(&(param0->unk_12C), sub_02025E38(param0->unk_11C));
 }
 
 static int ov19_021D1DAC (UnkStruct_ov19_021D5DF8 * param0)

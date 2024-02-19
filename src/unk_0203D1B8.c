@@ -115,7 +115,7 @@
 #include "unk_0207CB08.h"
 #include "unk_0207D3B8.h"
 #include "unk_0208694C.h"
-#include "unk_0208C324.h"
+#include "pokemon_summary_app.h"
 #include "unk_0209747C.h"
 #include "unk_02097624.h"
 #include "unk_02098218.h"
@@ -568,11 +568,11 @@ void * sub_0203D5C8 (int param0, UnkStruct_0203CDB0 * param1, int param2)
     v0->mode = 0;
     v0->ribbons = sub_0202D79C(param1->unk_0C);
     v0->dexMode = sub_0207A274(param1->unk_0C);
-    v0->contest = sub_0208C324(param1->unk_0C);
+    v0->contest = PokemonSummary_ShowContestData(param1->unk_0C);
     v0->chatotCry = NULL;
 
-    sub_0208D720(v0, Unk_020EA02C);
-    sub_0208E9C0(v0, sub_02025E38(param1->unk_0C));
+    PokemonSummary_FlagVisiblePages(v0, Unk_020EA02C);
+    PokemonSummary_SetPlayerProfile(v0, sub_02025E38(param1->unk_0C));
     sub_0203CD84(param1, &Unk_020F410C, v0);
 
     return v0;
@@ -609,11 +609,11 @@ PokemonSummary * sub_0203D670 (UnkStruct_0203CDB0 * param0, int param1, int para
     v0->move = 0;
     v0->mode = param2;
     v0->dexMode = sub_0207A274(v1);
-    v0->contest = sub_0208C324(v1);
+    v0->contest = PokemonSummary_ShowContestData(v1);
     v0->ribbons = sub_0202D79C(v1);
 
-    sub_0208D720(v0, v2);
-    sub_0208E9C0(v0, sub_02025E38(v1));
+    PokemonSummary_FlagVisiblePages(v0, v2);
+    PokemonSummary_SetPlayerProfile(v0, sub_02025E38(v1));
 
     return v0;
 }
@@ -638,10 +638,10 @@ void * sub_0203D6E4 (int param0, UnkStruct_0203CDB0 * param1, u8 param2)
     v0->move = 0;
     v0->mode = 2;
     v0->dexMode = sub_0207A274(param1->unk_0C);
-    v0->contest = sub_0208C324(param1->unk_0C);
+    v0->contest = PokemonSummary_ShowContestData(param1->unk_0C);
 
-    sub_0208D720(v0, Unk_020EA160);
-    sub_0208E9C0(v0, sub_02025E38(param1->unk_0C));
+    PokemonSummary_FlagVisiblePages(v0, Unk_020EA160);
+    PokemonSummary_SetPlayerProfile(v0, sub_02025E38(param1->unk_0C));
     sub_0203D334(param1, v0);
 
     return v0;
@@ -1095,7 +1095,7 @@ BOOL sub_0203DBF0 (UnkStruct_020508D4 * param0)
 
         if ((v4 = sub_02076B94(NULL, v2->unk_04.unk_40, 1, v3, &v5)) != 0) {
             Heap_Create(3, 26, 0x30000);
-            v2->unk_60 = sub_0207AE68(NULL, v2->unk_04.unk_40, v4, sub_02025E44(v1->unk_0C), sub_0208C324(v1->unk_0C), sub_02027560(v1->unk_0C), sub_0207D990(v1->unk_0C), sub_0202CD88(v1->unk_0C), sub_02056B24(v1->unk_0C), v5, 0x4, 26);
+            v2->unk_60 = sub_0207AE68(NULL, v2->unk_04.unk_40, v4, sub_02025E44(v1->unk_0C), PokemonSummary_ShowContestData(v1->unk_0C), sub_02027560(v1->unk_0C), sub_0207D990(v1->unk_0C), sub_0202CD88(v1->unk_0C), sub_02056B24(v1->unk_0C), v5, 0x4, 26);
             v2->unk_00 = 6;
         } else {
             v2->unk_00 = 7;
@@ -1405,7 +1405,7 @@ void sub_0203E0FC (UnkStruct_0203CDB0 * param0, int param1)
     v0->unk_24 = sub_02025E44(param0->unk_0C);
     v0->unk_28 = sub_0202CD88(param0->unk_0C);
     v0->unk_2C = param0->unk_9C;
-    v0->unk_3C = sub_0208C324(param0->unk_0C);
+    v0->unk_3C = PokemonSummary_ShowContestData(param0->unk_0C);
     v0->unk_20 = param0->unk_0C;
     v0->unk_34 = sub_0207A274(param0->unk_0C);
     v0->unk_38 = sub_02039058(v0->unk_14);
@@ -1794,8 +1794,8 @@ void * sub_0203E63C (int param0, UnkStruct_0203CDB0 * param1, u16 param2, u16 pa
     v0->contest = sub_0206ADCC(sub_020507E4(param1->unk_0C));
     v0->chatotCry = NULL;
 
-    sub_0208D720(v0, Unk_020EA15C);
-    sub_0208E9C0(v0, sub_02025E38(param1->unk_0C));
+    PokemonSummary_FlagVisiblePages(v0, Unk_020EA15C);
+    PokemonSummary_SetPlayerProfile(v0, sub_02025E38(param1->unk_0C));
     sub_0203CD84(param1, &Unk_020F410C, v0);
 
     return v0;

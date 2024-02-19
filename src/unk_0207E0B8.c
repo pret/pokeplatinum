@@ -67,7 +67,7 @@
 #include "unk_02083370.h"
 #include "unk_02084B70.h"
 #include "unk_0208C098.h"
-#include "unk_0208C324.h"
+#include "pokemon_summary_app.h"
 #include "unk_02096420.h"
 #include "overlay118/ov118_021D0D80.h"
 
@@ -1080,7 +1080,7 @@ u8 sub_0207EF14 (GameWindowLayout * param0, u8 param1)
 
     param0->unk_704[param1].unk_0E_13 = Pokemon_GetGender(v0);
     param0->unk_704[param1].unk_29 = 1;
-    param0->unk_704[param1].unk_0E_0 = (u8)sub_0208E9F0(v0);
+    param0->unk_704[param1].unk_0E_0 = (u8)PokemonSummary_StatusIconAnimIdx(v0);
 
     sub_0207F094(param0, v0, param1);
 

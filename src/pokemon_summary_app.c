@@ -52,7 +52,7 @@
 #include "party.h"
 #include "item.h"
 #include "unk_0208C098.h"
-#include "unk_0208C324.h"
+#include "pokemon_summary_app.h"
 #include "unk_0208EA44.h"
 #include "unk_0208FCF8.h"
 #include "unk_020916B4.h"
@@ -125,7 +125,7 @@ static void sub_0208E46C(PokemonSummaryApp * param0);
 static u8 sub_0208E57C(PokemonSummaryApp * param0);
 static u8 sub_0208E6A8(PokemonSummaryApp * param0);
 static void sub_0208E794(PokemonSummaryApp * param0, s8 param1);
-u8 sub_0208E904(PokemonSummaryApp * param0, u8 param1);
+u8 PokemonSummary_RibbonAt(PokemonSummaryApp * param0, u8 param1);
 static int sub_0208E958(PokemonSummaryApp * param0);
 
 const UnkStruct_0208BE5C Unk_020F410C = {
@@ -135,7 +135,7 @@ const UnkStruct_0208BE5C Unk_020F410C = {
     0xFFFFFFFF
 };
 
-BOOL sub_0208C324 (SaveData * param0)
+BOOL PokemonSummary_ShowContestData (SaveData * param0)
 {
     return sub_0206ADCC(sub_020507E4(param0));
 }
@@ -884,11 +884,11 @@ static int sub_0208CF78 (PokemonSummaryApp * param0)
         u8 v2;
 
         if (param0->data->dataType == 2) {
-            v0 = sub_0208DD48(param0);
+            v0 = PokemonSummary_MonData(param0);
             v1 = Pokemon_New(19);
             Pokemon_FromBoxPokemon(v0, v1);
         } else {
-            v1 = sub_0208DD48(param0);
+            v1 = PokemonSummary_MonData(param0);
         }
 
         sub_02098EF8(param0->data->poffin, v1);
@@ -999,7 +999,7 @@ static u8 sub_0208D18C (PokemonSummaryApp * param0)
 
 static void sub_0208D1A4 (PokemonSummaryApp * param0)
 {
-    void * v0 = sub_0208DD48(param0);
+    void * v0 = PokemonSummary_MonData(param0);
 
     if (param0->data->dataType == 2) {
         sub_0208D1D4(param0, v0, &param0->monData);
@@ -1101,7 +1101,7 @@ static void sub_0208D200 (PokemonSummaryApp * param0, Pokemon * param1, PokemonS
 
     param2->markings = Pokemon_GetValue(param1, MON_DATA_MARKS, NULL);
     param2->form = Pokemon_GetValue(param1, MON_DATA_FORM, NULL);
-    param2->status = sub_0208E9F0(param1);
+    param2->status = PokemonSummary_StatusIconAnimIdx(param1);
 
     if (Pokemon_CanSpreadPokerus(param1) == 1) {
         param2->pokerus = 2;
@@ -1191,7 +1191,7 @@ static void sub_0208D678 (PokemonSummaryApp * param0)
     }
 }
 
-void sub_0208D720 (PokemonSummary * param0, const u8 * param1)
+void PokemonSummary_FlagVisiblePages (PokemonSummary * param0, const u8 * param1)
 {
     u8 v0;
 
@@ -1225,7 +1225,7 @@ static void sub_0208D748 (PokemonSummaryApp * param0)
     }
 }
 
-u8 sub_0208D790 (PokemonSummaryApp * param0, u32 param1)
+u8 PokemonSummary_PageIsVisble (PokemonSummaryApp * param0, u32 param1)
 {
     if ((param0->monData.isEgg != 0) && (param1 != 1) && (param1 != 7)) {
         return 0;
@@ -1234,7 +1234,7 @@ u8 sub_0208D790 (PokemonSummaryApp * param0, u32 param1)
     return param0->data->pageFlag & (1 << param1);
 }
 
-u8 sub_0208D7BC (PokemonSummaryApp * param0)
+u8 PokemonSummary_CountVisiblePages (PokemonSummaryApp * param0)
 {
     u8 v0, v1;
 
@@ -1600,7 +1600,7 @@ static s8 sub_0208DCE0 (PokemonSummaryApp * param0, s8 param1)
     return v1;
 }
 
-void * sub_0208DD48 (PokemonSummaryApp * param0)
+void * PokemonSummary_MonData (PokemonSummaryApp * param0)
 {
     switch (param0->data->dataType) {
     case 0:
@@ -1788,7 +1788,7 @@ static void sub_0208E0DC (PokemonSummaryApp * param0)
     u8 v2;
     u8 v3;
 
-    v0 = sub_0208DD48(param0);
+    v0 = PokemonSummary_MonData(param0);
 
     if (param0->data->dataType == 2) {
         BoxPokemon_SwapMoveSlots(v0, param0->cursor, param0->cursorTmp);
@@ -2127,7 +2127,7 @@ static void sub_0208E794 (PokemonSummaryApp * param0, s8 param1)
         Sound_PlayEffect(1500);
     }
 
-    param0->ribbonNum = sub_0208E904(param0, param0->ribbonPos);
+    param0->ribbonNum = PokemonSummary_RibbonAt(param0, param0->ribbonPos);
 
     sub_0208FB00(param0);
 
@@ -2151,7 +2151,7 @@ static void sub_0208E794 (PokemonSummaryApp * param0, s8 param1)
     }
 }
 
-u8 sub_0208E904 (PokemonSummaryApp * param0, u8 param1)
+u8 PokemonSummary_RibbonAt (PokemonSummaryApp * param0, u8 param1)
 {
     u16 v0;
     u8 v1, v2;
@@ -2187,34 +2187,34 @@ static int sub_0208E958 (PokemonSummaryApp * param0)
     return 18;
 }
 
-void sub_0208E9C0 (PokemonSummary * param0, const TrainerInfo * param1)
+void PokemonSummary_SetPlayerProfile (PokemonSummary * param0, const TrainerInfo * param1)
 {
     param0->OTName = TrainerInfo_Name(param1);
     param0->OTID = TrainerInfo_ID(param1);
     param0->OTGender = (u8)TrainerInfo_Gender(param1);
 }
 
-u32 sub_0208E9E0 (void)
+u32 PokemonSummary_StatusIconChar (void)
 {
     return 64;
 }
 
-u32 sub_0208E9E4 (void)
+u32 PokemonSummary_StatusIconPltt (void)
 {
     return 65;
 }
 
-u32 sub_0208E9E8 (void)
+u32 PokemonSummary_StatusIconCell (void)
 {
     return 63;
 }
 
-u32 sub_0208E9EC (void)
+u32 PokemonSummary_StatusIconAnim (void)
 {
     return 62;
 }
 
-u32 sub_0208E9F0 (Pokemon * param0)
+u32 PokemonSummary_StatusIconAnimIdx (Pokemon * param0)
 {
     u32 v0 = Pokemon_GetValue(param0, MON_DATA_STATUS_CONDITION, NULL);
 

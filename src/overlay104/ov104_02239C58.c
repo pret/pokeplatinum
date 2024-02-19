@@ -19,7 +19,7 @@
 #include "party.h"
 #include "unk_0207A274.h"
 #include "unk_0207D3B8.h"
-#include "unk_0208C324.h"
+#include "pokemon_summary_app.h"
 #include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"
 #include "overlay104/ov104_02239C58.h"
@@ -201,7 +201,7 @@ static void ov104_02239FB0 (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * pa
     param1->unk_AC->options = sub_02025E44(param1->unk_00);
     param1->unk_AC->monData = Party_GetFromSavedata(param1->unk_00);
     param1->unk_AC->dexMode = sub_0207A274(param1->unk_00);
-    param1->unk_AC->contest = sub_0208C324(param1->unk_00);
+    param1->unk_AC->contest = PokemonSummary_ShowContestData(param1->unk_00);
     param1->unk_AC->dataType = 1;
     param1->unk_AC->pos = param1->unk_9F;
     param1->unk_AC->max = (u8)Party_GetCurrentCount(param1->unk_AC->monData);
@@ -209,8 +209,8 @@ static void ov104_02239FB0 (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * pa
     param1->unk_AC->mode = 0;
     param1->unk_AC->ribbons = sub_0202D79C(param1->unk_00);
 
-    sub_0208D720(param1->unk_AC, v0);
-    sub_0208E9C0(param1->unk_AC, sub_02025E38(param1->unk_00));
+    PokemonSummary_FlagVisiblePages(param1->unk_AC, v0);
+    PokemonSummary_SetPlayerProfile(param1->unk_AC, sub_02025E38(param1->unk_00));
     sub_0209B988(param0, &Unk_020F410C, param1->unk_AC, 0, NULL);
 
     return;

@@ -66,7 +66,7 @@
 #include "unk_0207AE68.h"
 #include "unk_0207C63C.h"
 #include "unk_0207D3B8.h"
-#include "unk_0208C324.h"
+#include "pokemon_summary_app.h"
 
 UnkStruct_0207AE68 * sub_0207AE68(Party * param0, Pokemon * param1, int param2, Options * param3, int param4, PokedexData * param5, UnkStruct_0207D3C0 * param6, UnkStruct_0202CD88 * param7, UnkStruct_02056B24 * param8, int param9, int param10, int param11);
 static void sub_0207B0A0(SysTask * param0, void * param1);
@@ -516,7 +516,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
             param0->unk_3C->move = param0->unk_6C;
             param0->unk_3C->mode = 2;
             param0->unk_3C->chatotCry = NULL;
-            sub_0208D720(param0->unk_3C, Unk_020F0A2C);
+            PokemonSummary_FlagVisiblePages(param0->unk_3C, Unk_020F0A2C);
             sub_0207C624(param0);
             param0->unk_64++;
         }
