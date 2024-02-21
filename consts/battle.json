@@ -8,7 +8,9 @@
             "@Terrain",
             "@BattleAnimation",
             "@MoveRange",
-            "@MoveFlags"
+            "@MoveFlags",
+            "@BattleStat",
+            "@CompareSpeedResult"
         ],
         "btlcmd": [
             "@BattleScriptVar",
@@ -999,6 +1001,28 @@
                 "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
                 "MOVE_FLAG_HIDES_HP_GAUGES",
                 "MOVE_FLAG_HIDES_SHADOWS"
+            ]
+        },
+        "@BattleStat": {
+            "type": "enum",
+            "values": [
+                "BATTLE_STAT_HP",
+                "BATTLE_STAT_ATTACK",
+                "BATTLE_STAT_DEFENSE",
+                "BATTLE_STAT_SPEED",
+                "BATTLE_STAT_SP_ATTACK",
+                "BATTLE_STAT_SP_DEFENSE",
+                "BATTLE_STAT_ACCURACY",
+                "BATTLE_STAT_EVASION",
+                "BATTLE_STAT_MAX"
+            ]
+        },
+        "@CompareSpeedResult": {
+            "type": "enum",
+            "values": [
+                "COMPARE_SPEED_FASTER",
+                "COMPARE_SPEED_SLOWER",
+                "COMPARE_SPEED_TIE"
             ]
         }
     }

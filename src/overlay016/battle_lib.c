@@ -1184,15 +1184,9 @@ static inline int CompareSpeed_ApplySimple(BattleContext *battleCtx, int battler
     return stage;
 }
 
-enum {
-    BATTLER_1_GOES_FIRST = 0,
-    BATTLER_2_GOES_FIRST,
-    BATTLER_2_WINS_SPEED_TIE,
-};
-
 u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *battleCtx, int battler1, int battler2, BOOL ignoreQuickClaw)
 {
-    u8 result = BATTLER_1_GOES_FIRST;
+    u8 result = COMPARE_SPEED_FASTER;
     u32 battler1Speed, battler2Speed;
     u16 battler1Move = 0, battler2Move = 0;
     u8 battler1ItemEffect, battler1ItemParam;
@@ -1406,53 +1400,53 @@ u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *batt
     if (battler1Priority == battler2Priority) {
         if (battler1QuickClaw && battler2QuickClaw) {
             if (battler1Speed < battler2Speed) {
-                result = BATTLER_2_GOES_FIRST;
+                result = COMPARE_SPEED_SLOWER;
             } else if (battler1Speed == battler2Speed && (BattleSystem_RandNext(battleSys) & 1)) {
-                result = BATTLER_2_WINS_SPEED_TIE;
+                result = COMPARE_SPEED_TIE;
             }
         } else if (battler1QuickClaw == FALSE && battler2QuickClaw) {
-            result = BATTLER_2_GOES_FIRST;
+            result = COMPARE_SPEED_SLOWER;
         } else if (battler1QuickClaw && battler2QuickClaw == FALSE) {
-            result = BATTLER_1_GOES_FIRST;
+            result = COMPARE_SPEED_FASTER;
         } else if (battler1LaggingTail && battler2LaggingTail) {
             if (battler1Speed > battler2Speed) {
-                result = BATTLER_2_GOES_FIRST;
+                result = COMPARE_SPEED_SLOWER;
             } else if (battler1Speed == battler2Speed && (BattleSystem_RandNext(battleSys) & 1)) {
-                result = BATTLER_2_WINS_SPEED_TIE;
+                result = COMPARE_SPEED_TIE;
             }
         } else if (battler1LaggingTail && battler2LaggingTail == FALSE) {
-            result = BATTLER_2_GOES_FIRST;
+            result = COMPARE_SPEED_SLOWER;
         } else if (battler1LaggingTail == FALSE && battler2LaggingTail) {
-            result = BATTLER_1_GOES_FIRST;
+            result = COMPARE_SPEED_FASTER;
         } else if (battler1Ability == ABILITY_STALL && battler2Ability == ABILITY_STALL) {
             if (battler1Speed > battler2Speed) {
-                result = BATTLER_2_GOES_FIRST;
+                result = COMPARE_SPEED_SLOWER;
             } else if (battler1Speed == battler2Speed && (BattleSystem_RandNext(battleSys) & 1)) {
-                result = BATTLER_2_WINS_SPEED_TIE;
+                result = COMPARE_SPEED_TIE;
             }
         } else if (battler1Ability == ABILITY_STALL && battler2Ability != ABILITY_STALL) {
-            result = BATTLER_2_GOES_FIRST;
+            result = COMPARE_SPEED_SLOWER;
         } else if (battler1Ability != ABILITY_STALL && battler2Ability == ABILITY_STALL) {
-            result = BATTLER_1_GOES_FIRST;
+            result = COMPARE_SPEED_FASTER;
         } else if (battleCtx->fieldConditionsMask & FIELD_CONDITION_TRICK_ROOM) {
             if (battler1Speed > battler2Speed) {
-                result = BATTLER_2_GOES_FIRST;
+                result = COMPARE_SPEED_SLOWER;
             }
 
             if (battler1Speed == battler2Speed && (BattleSystem_RandNext(battleSys) & 1)) {
-                result = BATTLER_2_WINS_SPEED_TIE;
+                result = COMPARE_SPEED_TIE;
             }
         } else {
             if (battler1Speed < battler2Speed) {
-                result = BATTLER_2_GOES_FIRST;
+                result = COMPARE_SPEED_SLOWER;
             }
 
             if (battler1Speed == battler2Speed && (BattleSystem_RandNext(battleSys) & 1)) {
-                result = BATTLER_2_WINS_SPEED_TIE;
+                result = COMPARE_SPEED_TIE;
             }
         }
     } else if (battler1Priority < battler2Priority) {
-        result = BATTLER_2_GOES_FIRST;
+        result = COMPARE_SPEED_SLOWER;
     }
 
     return result;
