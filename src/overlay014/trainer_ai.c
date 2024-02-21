@@ -162,7 +162,7 @@ static void AICmd_IfCanUseLastResort(BattleSystem *battleSys, BattleContext *bat
 static void AICmd_LoadCurrentMoveClass(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_LoadDefenderLastUsedMoveClass(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_LoadBattlerSpeedRank(BattleSystem *battleSys, BattleContext *battleCtx);
-static void AICmd_LoadIsBattlerFirstTurn(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadBattlerTurnCount(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_IfPartyMemberDealsMoreDamage(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_IfHasSuperEffectiveMove(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_IfBattlerDealsMoreDamage(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -299,7 +299,7 @@ static const AICommandFunc sAICommandTable[] = {
     AICmd_LoadCurrentMoveClass,
     AICmd_LoadDefenderLastUsedMoveClass,
     AICmd_LoadBattlerSpeedRank,
-    AICmd_LoadIsBattlerFirstTurn,
+    AICmd_LoadBattlerTurnCount,
     AICmd_IfPartyMemberDealsMoreDamage,
     AICmd_IfHasSuperEffectiveMove,
     AICmd_IfBattlerDealsMoreDamage,
@@ -2199,7 +2199,7 @@ static void AICmd_LoadBattlerSpeedRank(BattleSystem *battleSys, BattleContext *b
     }
 }
 
-static void AICmd_LoadIsBattlerFirstTurn(BattleSystem *battleSys, BattleContext *battleCtx)
+static void AICmd_LoadBattlerTurnCount(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     AIScript_Iter(battleCtx, 1);
 
