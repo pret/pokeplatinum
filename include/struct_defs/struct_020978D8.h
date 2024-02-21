@@ -3,14 +3,14 @@
 
 #include "struct_defs/sentence.h"
 #include "strbuf.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/union_02028328.h"
 
 typedef struct {
     u16 unk_00;
     u8 unk_02;
     u8 unk_03;
-    AnimationControlFlags * unk_04;
+    Options * unk_04;
     u32 unk_08;
     u8 unk_0C;
     u8 unk_0D;

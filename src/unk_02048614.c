@@ -154,8 +154,8 @@ BOOL sub_020487FC (UnkStruct_0203E724 * param0)
 
     v6 = 0;
 
-    if (sub_0206A984(sub_020507E4(param0->unk_34->unk_0C)) == 1) {
-        v6 = sub_0206B034(sub_020507E4(v1->unk_0C));
+    if (sub_0206A984(SaveData_Events(param0->unk_34->unk_0C)) == 1) {
+        v6 = sub_0206B034(SaveData_Events(v1->unk_0C));
     }
 
     sub_020515CC(param0->unk_28, v4, v5, v6, 11, v3);

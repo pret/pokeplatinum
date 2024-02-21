@@ -77,7 +77,7 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
 
         sub_02055BF4(param4, &v4, &v6);
         sub_02055C10(param4, &v5, &v6);
-        sub_0207207C(sub_0206A954(sub_020507E4(param4->unk_0C)), v7, &v4, &v5, &v6, param1, param5);
+        sub_0207207C(sub_0206A954(SaveData_Events(param4->unk_0C)), v7, &v4, &v5, &v6, param1, param5);
     }
 
     {
@@ -133,7 +133,7 @@ u8 sub_02071F28 (UnkStruct_0203CDB0 * param0)
 
     v1 = sub_0203D174(param0);
     v2 = sub_0202CD88(v1);
-    v3 = sub_020507E4(v1);
+    v3 = SaveData_Events(v1);
     v4 = sub_020298A0(v1);
     v5 = sub_0203068C(v1);
     v0 = 0;

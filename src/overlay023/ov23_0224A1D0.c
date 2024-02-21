@@ -206,7 +206,7 @@ void ov23_0224A410 (int param0, int param1, void * param2, void * param3)
 {
     UnkStruct_ov23_0224A294 * v0 = sub_02057518();
     UnkStruct_ov23_0224A348 * v1 = param2;
-    UnkStruct_020507E4 * v2 = sub_020507E4(v0->unk_54->unk_0C);
+    UnkStruct_020507E4 * v2 = SaveData_Events(v0->unk_54->unk_0C);
 
     GF_ASSERT(v1->unk_01 < (7 + 1));
 
@@ -474,7 +474,7 @@ void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
             u8 v6 = sub_0202958C(v5);
 
             sub_020295C0(v5);
-            sub_0206AA40(sub_020507E4(v0->unk_54->unk_0C));
+            sub_0206AA40(SaveData_Events(v0->unk_54->unk_0C));
 
             if (v0->unk_290[v1->unk_01]) {
                 sub_0206DAB8(v0->unk_54, v0->unk_290[v1->unk_01]);

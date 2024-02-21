@@ -1687,7 +1687,7 @@ static void ov23_0223F70C (UnkStruct_0203CDB0 * param0)
     v0->unk_10 = param0;
 
     ov5_021EF3FC(param0->unk_04->unk_1C);
-    sub_0206AA04(sub_020507E4(param0->unk_0C));
+    sub_0206AA04(SaveData_Events(param0->unk_0C));
 
     Unk_ov23_02257740->unk_8CC = SysTask_Start(ov23_0223F118, v0, 100);
 }
@@ -2619,7 +2619,7 @@ static BOOL ov23_02240A90 (UnkStruct_ov23_0223EE80 * param0)
                 if ((v2 >= 23) && ((28 + 1) > v2) || (v2 == 36) || (v2 == 37)) {
                     sub_02029644(v3, 1);
                     {
-                        UnkStruct_020507E4 * v5 = sub_020507E4(Unk_ov23_02257740->unk_00->unk_0C);
+                        UnkStruct_020507E4 * v5 = SaveData_Events(Unk_ov23_02257740->unk_00->unk_0C);
 
                         sub_0206B41C(v5, sub_0206B40C(v5) + 1);
                     }

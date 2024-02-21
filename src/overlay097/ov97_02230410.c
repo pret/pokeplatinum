@@ -22,7 +22,7 @@
 
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0202DBAC.h"
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -94,7 +94,7 @@ typedef struct {
     void * unk_2BFC;
     MysteryGift * unk_2C00;
     SaveData * unk_2C04;
-    AnimationControlFlags * unk_2C08;
+    Options * unk_2C08;
     int unk_2C0C;
     int unk_2C10;
     UnkStruct_0202DBAC * unk_2C14[3];

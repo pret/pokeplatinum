@@ -13,7 +13,7 @@
 #include "strbuf.h"
 
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0203D8EC.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
@@ -63,7 +63,7 @@ typedef struct UnkStruct_ov74_021D0D80_t {
     u32 unk_10_22 : 10;
     BGL * unk_14;
     UnkStruct_0203D8EC unk_18;
-    AnimationControlFlags * unk_1C;
+    Options * unk_1C;
     MessageLoader * unk_20;
     void * unk_24;
     NNSG2dScreenData * unk_28;
@@ -103,9 +103,9 @@ static u32 ov74_021D1BD0(UnkStruct_ov74_021D0D80 * param0);
 int ov74_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov74_021D0D80 * v0 = NULL;
-    AnimationControlFlags * v1;
+    Options * v1;
 
-    v1 = (AnimationControlFlags *)sub_02006840(param0);
+    v1 = (Options *)sub_02006840(param0);
 
     Heap_Create(3, 38, 0x10000);
 

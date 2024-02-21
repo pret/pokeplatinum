@@ -9,7 +9,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "strbuf.h"
 
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02095C60.h"
 #include "overlay019/struct_ov19_021DA864.h"
@@ -41,7 +41,7 @@
 #include "overlay022/ov22_0225A428.h"
 
 static void ov22_0225A6E0(UnkStruct_ov22_022597BC * param0, BGL * param1);
-static void ov22_0225A718(BGL * param0, const AnimationControlFlags * param1);
+static void ov22_0225A718(BGL * param0, const Options * param1);
 static void ov22_0225A748(Window ** param0, BGL * param1, int param2, int param3, int param4, int param5, int param6, BOOL param7);
 static void ov22_0225A7B8(UnkStruct_ov22_022597BC * param0);
 static void ov22_0225A7C0(Window * param0);
@@ -202,7 +202,7 @@ static void ov22_0225A6E0 (UnkStruct_ov22_022597BC * param0, BGL * param1)
     ov22_022597BC(param0, &v0);
 }
 
-static void ov22_0225A718 (BGL * param0, const AnimationControlFlags * param1)
+static void ov22_0225A718 (BGL * param0, const Options * param1)
 {
     int v0 = sub_02027B50(param1);
 

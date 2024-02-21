@@ -4,7 +4,7 @@
 #include "pokemon.h"
 
 #include "struct_defs/struct_0205AA50.h"
-#include "struct_defs/struct_0208D7BC.h"
+#include "struct_defs/pokemon_summary_app.h"
 #include "struct_defs/struct_02090800.h"
 #include "overlay061/struct_ov61_0222C884.h"
 
@@ -20,25 +20,25 @@
 #include "pokemon.h"
 #include "move_table.h"
 #include "unk_0207A274.h"
-#include "unk_0208C324.h"
+#include "pokemon_summary_app.h"
 #include "unk_0208EA44.h"
 #include "unk_0208FCF8.h"
 #include "unk_020923C0.h"
 #include "unk_02092494.h"
 #include "unk_02094EDC.h"
 
-static void sub_020900D8(UnkStruct_0208D7BC * param0, Window * param1, u32 param2, u32 param3);
-static void sub_02090158(UnkStruct_0208D7BC * param0, u32 param1, u32 param2, u32 param3, u32 param4);
-static void sub_020902B0(UnkStruct_0208D7BC * param0);
-static void sub_02091188(UnkStruct_0208D7BC * param0, u32 param1);
-static void sub_02090578(UnkStruct_0208D7BC * param0);
-static void sub_020908CC(UnkStruct_0208D7BC * param0);
-static void sub_0209093C(UnkStruct_0208D7BC * param0);
-static void sub_02090BDC(UnkStruct_0208D7BC * param0);
-static void sub_02090CD4(UnkStruct_0208D7BC * param0);
-static void sub_02090D90(UnkStruct_0208D7BC * param0);
-static void sub_02090E4C(UnkStruct_0208D7BC * param0);
-static void sub_02090EC8(UnkStruct_0208D7BC * param0);
+static void sub_020900D8(PokemonSummaryApp * param0, Window * param1, u32 param2, u32 param3);
+static void sub_02090158(PokemonSummaryApp * param0, u32 param1, u32 param2, u32 param3, u32 param4);
+static void sub_020902B0(PokemonSummaryApp * param0);
+static void sub_02091188(PokemonSummaryApp * param0, u32 param1);
+static void sub_02090578(PokemonSummaryApp * param0);
+static void sub_020908CC(PokemonSummaryApp * param0);
+static void sub_0209093C(PokemonSummaryApp * param0);
+static void sub_02090BDC(PokemonSummaryApp * param0);
+static void sub_02090CD4(PokemonSummaryApp * param0);
+static void sub_02090D90(PokemonSummaryApp * param0);
+static void sub_02090E4C(PokemonSummaryApp * param0);
+static void sub_02090EC8(PokemonSummaryApp * param0);
 
 static const UnkStruct_ov61_0222C884 Unk_020F4ED0[] = {
     {0x1, 0x1, 0x0, 0xD, 0x2, 0xF, 0x1},
@@ -136,13 +136,13 @@ static const UnkStruct_ov61_0222C884 Unk_020F4DB8[] = {
     {0x1, 0x2, 0x15, 0x1B, 0x2, 0xE, 0x27D}
 };
 
-void sub_0208FCF8 (UnkStruct_0208D7BC * param0)
+void sub_0208FCF8 (PokemonSummaryApp * param0)
 {
     u16 v0;
 
     for (v0 = 0; v0 < 36; v0++) {
-        sub_0201A8D4(param0->unk_00, &param0->unk_04[v0], &Unk_020F4ED0[v0]);
-        BGL_FillWindow(&param0->unk_04[v0], 0);
+        sub_0201A8D4(param0->bgl, &param0->staticWindows[v0], &Unk_020F4ED0[v0]);
+        BGL_FillWindow(&param0->staticWindows[v0], 0);
     }
 
     sub_020902B0(param0);
@@ -151,59 +151,59 @@ void sub_0208FCF8 (UnkStruct_0208D7BC * param0)
     sub_0208FFE0(param0);
 }
 
-void sub_0208FD40 (UnkStruct_0208D7BC * param0)
+void sub_0208FD40 (PokemonSummaryApp * param0)
 {
     const UnkStruct_ov61_0222C884 * v0;
     u32 v1;
 
-    switch (param0->unk_6A4) {
+    switch (param0->page) {
     case 0:
         v0 = Unk_020F4E20;
-        param0->unk_248 = 6;
+        param0->numExtraWindows = 6;
         break;
     case 1:
         v0 = Unk_020F4DB0;
-        param0->unk_248 = 1;
+        param0->numExtraWindows = 1;
         break;
     case 2:
         v0 = Unk_020F4E50;
-        param0->unk_248 = 8;
+        param0->numExtraWindows = 8;
         break;
     case 3:
         v0 = Unk_020F4E90;
-        param0->unk_248 = 8;
+        param0->numExtraWindows = 8;
         break;
     case 5:
         v0 = Unk_020F4DF0;
-        param0->unk_248 = 6;
+        param0->numExtraWindows = 6;
         break;
     case 6:
         v0 = Unk_020F4DD0;
-        param0->unk_248 = 4;
+        param0->numExtraWindows = 4;
         break;
     case 4:
     case 7:
-        if ((param0->unk_24C->unk_12 != 3) && (param0->unk_24C->unk_12 != 4)) {
+        if ((param0->data->mode != 3) && (param0->data->mode != 4)) {
             return;
         }
 
         v0 = Unk_020F4DB8;
-        param0->unk_248 = 3;
+        param0->numExtraWindows = 3;
         break;
     default:
         return;
     }
 
-    param0->unk_244 = sub_0201A778(19, param0->unk_248);
+    param0->extraWindows = sub_0201A778(19, param0->numExtraWindows);
 
-    for (v1 = 0; v1 < param0->unk_248; v1++) {
-        sub_0201A8D4(param0->unk_00, &param0->unk_244[v1], &v0[v1]);
+    for (v1 = 0; v1 < param0->numExtraWindows; v1++) {
+        sub_0201A8D4(param0->bgl, &param0->extraWindows[v1], &v0[v1]);
     }
 }
 
-void sub_0208FE34 (UnkStruct_0208D7BC * param0)
+void sub_0208FE34 (PokemonSummaryApp * param0)
 {
-    switch (param0->unk_6A4) {
+    switch (param0->page) {
     case 0:
     case 1:
     case 2:
@@ -213,7 +213,7 @@ void sub_0208FE34 (UnkStruct_0208D7BC * param0)
         break;
     case 4:
     case 7:
-        if ((param0->unk_24C->unk_12 != 3) && (param0->unk_24C->unk_12 != 4)) {
+        if ((param0->data->mode != 3) && (param0->data->mode != 4)) {
             return;
         }
         break;
@@ -221,36 +221,36 @@ void sub_0208FE34 (UnkStruct_0208D7BC * param0)
         return;
     }
 
-    sub_0201A928(param0->unk_244, param0->unk_248);
+    sub_0201A928(param0->extraWindows, param0->numExtraWindows);
 }
 
-void sub_0208FE88 (UnkStruct_0208D7BC * param0)
+void sub_0208FE88 (PokemonSummaryApp * param0)
 {
     u32 v0;
 
     sub_0208FE34(param0);
 
     for (v0 = 0; v0 < 36; v0++) {
-        BGL_DeleteWindow(&param0->unk_04[v0]);
+        BGL_DeleteWindow(&param0->staticWindows[v0]);
     }
 }
 
-void sub_0208FEA4 (UnkStruct_0208D7BC * param0)
+void sub_0208FEA4 (PokemonSummaryApp * param0)
 {
     Window * v0;
     u32 v1;
 
-    v0 = &param0->unk_04[34];
+    v0 = &param0->staticWindows[34];
 
     BGL_FillWindow(v0, 0);
-    sub_0201D78C(v0, 0, param0->unk_250.unk_04, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    sub_0201D78C(v0, 0, param0->monData.nickname, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
-    if (param0->unk_250.unk_12_7 == 0) {
-        if (param0->unk_250.unk_13_0 == 0) {
-            MessageLoader_GetStrbuf(param0->unk_688, 1, param0->unk_694);
+    if (param0->monData.showGender == 0) {
+        if (param0->monData.gender == 0) {
+            MessageLoader_GetStrbuf(param0->msgLoader, 1, param0->strbuf);
             sub_020900D8(param0, v0, ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0))), 1);
-        } else if (param0->unk_250.unk_13_0 == 1) {
-            MessageLoader_GetStrbuf(param0->unk_688, 2, param0->unk_694);
+        } else if (param0->monData.gender == 1) {
+            MessageLoader_GetStrbuf(param0->msgLoader, 2, param0->strbuf);
             sub_020900D8(param0, v0, ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0))), 1);
         }
     }
@@ -258,66 +258,66 @@ void sub_0208FEA4 (UnkStruct_0208D7BC * param0)
     sub_0201A9A4(v0);
 }
 
-void sub_0208FF3C (UnkStruct_0208D7BC * param0)
+void sub_0208FF3C (PokemonSummaryApp * param0)
 {
     Window * v0;
     Strbuf* v1;
 
-    v0 = &param0->unk_04[33];
+    v0 = &param0->staticWindows[33];
 
     BGL_FillWindow(v0, 0);
 
-    if (param0->unk_250.unk_50_28 == 0) {
+    if (param0->monData.isEgg == 0) {
         sub_0200C578(param0->unk_684, 1, v0, 0, 5);
 
-        v1 = MessageLoader_GetNewStrbuf(param0->unk_688, 3);
+        v1 = MessageLoader_GetNewStrbuf(param0->msgLoader, 3);
 
-        sub_0200B60C(param0->unk_690, 0, param0->unk_250.unk_12_0, 3, 0, 1);
-        StringFormatter_Format(param0->unk_690, param0->unk_694, v1);
+        sub_0200B60C(param0->strFormatter, 0, param0->monData.level, 3, 0, 1);
+        StringFormatter_Format(param0->strFormatter, param0->strbuf, v1);
         Strbuf_Free(v1);
-        sub_0201D78C(v0, 0, param0->unk_694, 16, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        sub_0201D78C(v0, 0, param0->strbuf, 16, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
     sub_0201A9A4(v0);
 }
 
-void sub_0208FFE0 (UnkStruct_0208D7BC * param0)
+void sub_0208FFE0 (PokemonSummaryApp * param0)
 {
     Strbuf* v0;
 
-    BGL_FillWindow(&param0->unk_04[32], 0);
+    BGL_FillWindow(&param0->staticWindows[32], 0);
 
-    if (param0->unk_250.unk_0E != 0) {
-        sub_0200B70C(param0->unk_690, 0, param0->unk_250.unk_0E);
-        v0 = MessageLoader_GetNewStrbuf(param0->unk_688, 5);
-        StringFormatter_Format(param0->unk_690, param0->unk_694, v0);
+    if (param0->monData.heldItem != 0) {
+        sub_0200B70C(param0->strFormatter, 0, param0->monData.heldItem);
+        v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, 5);
+        StringFormatter_Format(param0->strFormatter, param0->strbuf, v0);
         Strbuf_Free(v0);
     } else {
-        MessageLoader_GetStrbuf(param0->unk_688, 6, param0->unk_694);
+        MessageLoader_GetStrbuf(param0->msgLoader, 6, param0->strbuf);
     }
 
-    sub_020900D8(param0, &param0->unk_04[32], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
-    sub_0201A9A4(&param0->unk_04[6]);
-    sub_0201A9A4(&param0->unk_04[32]);
+    sub_020900D8(param0, &param0->staticWindows[32], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
+    sub_0201A9A4(&param0->staticWindows[6]);
+    sub_0201A9A4(&param0->staticWindows[32]);
 }
 
-void sub_02090064 (UnkStruct_0208D7BC * param0, u32 param1)
+void sub_02090064 (PokemonSummaryApp * param0, u32 param1)
 {
-    BGL_FillWindow(&param0->unk_04[35], 0);
+    BGL_FillWindow(&param0->staticWindows[35], 0);
     sub_02090158(param0, 35, param1, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
-    sub_0201A9A4(&param0->unk_04[35]);
+    sub_0201A9A4(&param0->staticWindows[35]);
 }
 
-static BOOL sub_02090098 (UnkStruct_0208D7BC * param0)
+static BOOL sub_02090098 (PokemonSummaryApp * param0)
 {
-    if ((param0->unk_250.unk_14 == param0->unk_24C->unk_0C) && (param0->unk_250.unk_44 == param0->unk_24C->unk_10) && (Strbuf_Compare(param0->unk_250.unk_08, param0->unk_698) == 0)) {
+    if ((param0->monData.OTID == param0->data->OTID) && (param0->monData.OTGender == param0->data->OTGender) && (Strbuf_Compare(param0->monData.OTName, param0->playerName) == 0)) {
         return 1;
     }
 
     return 0;
 }
 
-static void sub_020900D8 (UnkStruct_0208D7BC * param0, Window * param1, u32 param2, u32 param3)
+static void sub_020900D8 (PokemonSummaryApp * param0, Window * param1, u32 param2, u32 param3)
 {
     u8 v0;
     u8 v1;
@@ -328,65 +328,65 @@ static void sub_020900D8 (UnkStruct_0208D7BC * param0, Window * param1, u32 para
         v2 = 0;
         break;
     case 1:
-        v0 = sub_02002D7C(0, param0->unk_694, 0);
+        v0 = sub_02002D7C(0, param0->strbuf, 0);
         v1 = sub_0201C294(param1) * 8;
         v2 = v1 - v0;
         break;
     case 2:
-        v0 = sub_02002D7C(0, param0->unk_694, 0);
+        v0 = sub_02002D7C(0, param0->strbuf, 0);
         v1 = sub_0201C294(param1) * 8;
         v2 = (v1 - v0) / 2;
         break;
     }
 
-    sub_0201D78C(param1, 0, param0->unk_694, v2, 0, 0xff, param2, NULL);
+    sub_0201D78C(param1, 0, param0->strbuf, v2, 0, 0xff, param2, NULL);
 }
 
-static void sub_02090158 (UnkStruct_0208D7BC * param0, u32 param1, u32 param2, u32 param3, u32 param4)
+static void sub_02090158 (PokemonSummaryApp * param0, u32 param1, u32 param2, u32 param3, u32 param4)
 {
     u8 v0;
     u8 v1;
     u8 v2;
 
-    MessageLoader_GetStrbuf(param0->unk_688, param2, param0->unk_694);
-    sub_020900D8(param0, &param0->unk_04[param1], param3, param4);
+    MessageLoader_GetStrbuf(param0->msgLoader, param2, param0->strbuf);
+    sub_020900D8(param0, &param0->staticWindows[param1], param3, param4);
 }
 
-static void sub_02090184 (UnkStruct_0208D7BC * param0, u32 param1, u32 param2, u8 param3, u8 param4)
+static void sub_02090184 (PokemonSummaryApp * param0, u32 param1, u32 param2, u8 param3, u8 param4)
 {
     Strbuf* v0;
 
-    v0 = MessageLoader_GetNewStrbuf(param0->unk_688, param1);
-    sub_0200B60C(param0->unk_690, 0, param2, param3, param4, 1);
-    StringFormatter_Format(param0->unk_690, param0->unk_694, v0);
+    v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, param1);
+    sub_0200B60C(param0->strFormatter, 0, param2, param3, param4, 1);
+    StringFormatter_Format(param0->strFormatter, param0->strbuf, v0);
     Strbuf_Free(v0);
 }
 
-static void sub_020901D0 (UnkStruct_0208D7BC * param0, u32 param1, u32 param2, u32 param3, u32 param4, u16 param5, u16 param6, u8 param7, u8 param8, u8 param9)
+static void sub_020901D0 (PokemonSummaryApp * param0, u32 param1, u32 param2, u32 param3, u32 param4, u16 param5, u16 param6, u8 param7, u8 param8, u8 param9)
 {
     Window * v0;
     u32 v1;
     u16 v2;
     u16 v3;
 
-    v0 = &param0->unk_244[param1];
+    v0 = &param0->extraWindows[param1];
 
-    MessageLoader_GetStrbuf(param0->unk_688, param2, param0->unk_694);
-    v1 = sub_02002D7C(0, param0->unk_694, 0);
+    MessageLoader_GetStrbuf(param0->msgLoader, param2, param0->strbuf);
+    v1 = sub_02002D7C(0, param0->strbuf, 0);
     v2 = param8 - v1 / 2;
     v3 = v2 + v1;
 
-    sub_0201D78C(v0, 0, param0->unk_694, v2, param9, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    sub_0201D78C(v0, 0, param0->strbuf, v2, param9, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_02090184(param0, param3, param5, param7, 0);
 
-    v1 = sub_02002D7C(0, param0->unk_694, 0);
+    v1 = sub_02002D7C(0, param0->strbuf, 0);
 
-    sub_0201D78C(v0, 0, param0->unk_694, v2 - v1, param9, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    sub_0201D78C(v0, 0, param0->strbuf, v2 - v1, param9, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_02090184(param0, param4, param6, param7, 0);
-    sub_0201D78C(v0, 0, param0->unk_694, v3, param9, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    sub_0201D78C(v0, 0, param0->strbuf, v3, param9, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 }
 
-static void sub_020902B0 (UnkStruct_0208D7BC * param0)
+static void sub_020902B0 (PokemonSummaryApp * param0)
 {
     sub_02090158(param0, 0, 7, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
     sub_02090158(param0, 1, 23, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
@@ -412,8 +412,8 @@ static void sub_020902B0 (UnkStruct_0208D7BC * param0)
     sub_02090158(param0, 22, 127, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
 
     {
-        MessageLoader_GetStrbuf(param0->unk_688, 146, param0->unk_694);
-        sub_0201D78C(&param0->unk_04[24], 0, param0->unk_694, 0, 2, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        MessageLoader_GetStrbuf(param0->msgLoader, 146, param0->strbuf);
+        sub_0201D78C(&param0->staticWindows[24], 0, param0->strbuf, 0, 2, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
     sub_02090158(param0, 25, 149, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
@@ -425,12 +425,12 @@ static void sub_020902B0 (UnkStruct_0208D7BC * param0)
     sub_02090158(param0, 31, 179, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
 }
 
-void sub_020904C4 (UnkStruct_0208D7BC * param0)
+void sub_020904C4 (PokemonSummaryApp * param0)
 {
-    sub_02019CB8(param0->unk_00, 1, 0, 0, 0, 32, 2, 16);
-    sub_02019CB8(param0->unk_00, 1, 0, 14, 2, 18, 22, 16);
+    sub_02019CB8(param0->bgl, 1, 0, 0, 0, 32, 2, 16);
+    sub_02019CB8(param0->bgl, 1, 0, 14, 2, 18, 22, 16);
 
-    switch (param0->unk_6A4) {
+    switch (param0->page) {
     case 0:
         sub_02090578(param0);
         break;
@@ -458,79 +458,79 @@ void sub_020904C4 (UnkStruct_0208D7BC * param0)
     }
 }
 
-static void sub_02090578 (UnkStruct_0208D7BC * param0)
+static void sub_02090578 (PokemonSummaryApp * param0)
 {
-    sub_0201A9A4(&param0->unk_04[0]);
-    sub_0201A9A4(&param0->unk_04[7]);
-    sub_0201A9A4(&param0->unk_04[8]);
-    sub_0201A9A4(&param0->unk_04[9]);
-    sub_0201A9A4(&param0->unk_04[10]);
-    sub_0201A9A4(&param0->unk_04[11]);
-    sub_0201A9A4(&param0->unk_04[12]);
-    sub_0201A9A4(&param0->unk_04[13]);
-    sub_0201A9A4(&param0->unk_04[14]);
+    sub_0201A9A4(&param0->staticWindows[0]);
+    sub_0201A9A4(&param0->staticWindows[7]);
+    sub_0201A9A4(&param0->staticWindows[8]);
+    sub_0201A9A4(&param0->staticWindows[9]);
+    sub_0201A9A4(&param0->staticWindows[10]);
+    sub_0201A9A4(&param0->staticWindows[11]);
+    sub_0201A9A4(&param0->staticWindows[12]);
+    sub_0201A9A4(&param0->staticWindows[13]);
+    sub_0201A9A4(&param0->staticWindows[14]);
 
-    BGL_FillWindow(&param0->unk_244[0], 0);
-    BGL_FillWindow(&param0->unk_244[1], 0);
-    BGL_FillWindow(&param0->unk_244[2], 0);
-    BGL_FillWindow(&param0->unk_244[3], 0);
-    BGL_FillWindow(&param0->unk_244[4], 0);
-    BGL_FillWindow(&param0->unk_244[5], 0);
+    BGL_FillWindow(&param0->extraWindows[0], 0);
+    BGL_FillWindow(&param0->extraWindows[1], 0);
+    BGL_FillWindow(&param0->extraWindows[2], 0);
+    BGL_FillWindow(&param0->extraWindows[3], 0);
+    BGL_FillWindow(&param0->extraWindows[4], 0);
+    BGL_FillWindow(&param0->extraWindows[5], 0);
 
     {
-        u32 v0 = sub_0207A294(param0->unk_24C->unk_1C, param0->unk_250.unk_0C);
+        u32 v0 = sub_0207A294(param0->data->dexMode, param0->monData.species);
 
         if (v0 != 0) {
             sub_02090184(param0, 9, v0, 3, 2);
         } else {
-            MessageLoader_GetStrbuf(param0->unk_688, 22, param0->unk_694);
+            MessageLoader_GetStrbuf(param0->msgLoader, 22, param0->strbuf);
         }
     }
 
-    if (param0->unk_250.unk_50_29 == 0) {
-        sub_020900D8(param0, &param0->unk_244[0], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
+    if (param0->monData.isShiny == 0) {
+        sub_020900D8(param0, &param0->extraWindows[0], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
     } else {
-        sub_020900D8(param0, &param0->unk_244[0], ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
+        sub_020900D8(param0, &param0->extraWindows[0], ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
     }
 
     {
-        u32 v1 = sub_02002D7C(0, param0->unk_250.unk_00, 0);
-        u32 v2 = (param0->unk_244[1].unk_07 * 8 - v1) / 2;
+        u32 v1 = sub_02002D7C(0, param0->monData.speciesName, 0);
+        u32 v2 = (param0->extraWindows[1].unk_07 * 8 - v1) / 2;
 
-        sub_0201D78C(&param0->unk_244[1], 0, param0->unk_250.unk_00, v2, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        sub_0201D78C(&param0->extraWindows[1], 0, param0->monData.speciesName, v2, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
     {
-        u32 v3 = sub_02002D7C(0, param0->unk_250.unk_08, 0);
-        u32 v4 = (param0->unk_244[2].unk_07 * 8 - v3) / 2;
+        u32 v3 = sub_02002D7C(0, param0->monData.OTName, 0);
+        u32 v4 = (param0->extraWindows[2].unk_07 * 8 - v3) / 2;
 
-        if (param0->unk_250.unk_44 == 0) {
+        if (param0->monData.OTGender == 0) {
             sub_0201D78C(
-                &param0->unk_244[2], 0, param0->unk_250.unk_08, v4, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+                &param0->extraWindows[2], 0, param0->monData.OTName, v4, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         } else {
             sub_0201D78C(
-                &param0->unk_244[2], 0, param0->unk_250.unk_08, v4, 0, 0xff, ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+                &param0->extraWindows[2], 0, param0->monData.OTName, v4, 0, 0xff, ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         }
     }
 
-    sub_02090184(param0, 16, (param0->unk_250.unk_14 & 0xffff), 5, 2);
-    sub_020900D8(param0, &param0->unk_244[3], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
-    sub_02090184(param0, 18, param0->unk_250.unk_18, 7, 1);
-    sub_020900D8(param0, &param0->unk_244[4], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
+    sub_02090184(param0, 16, (param0->monData.OTID & 0xffff), 5, 2);
+    sub_020900D8(param0, &param0->extraWindows[3], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
+    sub_02090184(param0, 18, param0->monData.curExp, 7, 1);
+    sub_020900D8(param0, &param0->extraWindows[4], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
 
-    if (param0->unk_250.unk_12_0 < 100) {
-        sub_02090184(param0, 21, param0->unk_250.unk_20 - param0->unk_250.unk_18, 7, 1);
+    if (param0->monData.level < 100) {
+        sub_02090184(param0, 21, param0->monData.nextLevelExp - param0->monData.curExp, 7, 1);
     } else {
         sub_02090184(param0, 21, 0, 7, 1);
     }
 
-    sub_020900D8(param0, &param0->unk_244[5], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
-    sub_0201A9A4(&param0->unk_244[0]);
-    sub_0201A9A4(&param0->unk_244[1]);
-    sub_0201A9A4(&param0->unk_244[2]);
-    sub_0201A9A4(&param0->unk_244[3]);
-    sub_0201A9A4(&param0->unk_244[4]);
-    sub_0201A9A4(&param0->unk_244[5]);
+    sub_020900D8(param0, &param0->extraWindows[5], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
+    sub_0201A9A4(&param0->extraWindows[0]);
+    sub_0201A9A4(&param0->extraWindows[1]);
+    sub_0201A9A4(&param0->extraWindows[2]);
+    sub_0201A9A4(&param0->extraWindows[3]);
+    sub_0201A9A4(&param0->extraWindows[4]);
+    sub_0201A9A4(&param0->extraWindows[5]);
 }
 
 static void sub_02090800 (Window * param0, Pokemon * param1, BOOL param2)
@@ -560,269 +560,269 @@ static void sub_02090800 (Window * param0, Pokemon * param1, BOOL param2)
     sub_0209282C(v0);
 }
 
-static void sub_020908CC (UnkStruct_0208D7BC * param0)
+static void sub_020908CC (PokemonSummaryApp * param0)
 {
     Strbuf* v0;
 
-    sub_0201A9A4(&param0->unk_04[1]);
-    BGL_FillWindow(&param0->unk_244[0], 0);
+    sub_0201A9A4(&param0->staticWindows[1]);
+    BGL_FillWindow(&param0->extraWindows[0], 0);
 
     {
-        void * v1 = sub_0208DD48(param0);
+        void * v1 = PokemonSummary_MonData(param0);
         BOOL v2 = sub_02090098(param0);
 
-        if (param0->unk_24C->unk_11 == 2) {
+        if (param0->data->dataType == 2) {
             {
                 Pokemon * v3 = Pokemon_New(19);
 
                 Pokemon_FromBoxPokemon(v1, v3);
-                sub_02090800(&param0->unk_244[0], v3, v2);
+                sub_02090800(&param0->extraWindows[0], v3, v2);
                 Heap_FreeToHeap(v3);
             }
         } else {
-            sub_02090800(&param0->unk_244[0], v1, v2);
+            sub_02090800(&param0->extraWindows[0], v1, v2);
         }
     }
 
-    sub_0201A9A4(&param0->unk_244[0]);
+    sub_0201A9A4(&param0->extraWindows[0]);
 }
 
-static void sub_0209093C (UnkStruct_0208D7BC * param0)
+static void sub_0209093C (PokemonSummaryApp * param0)
 {
     u32 v0;
 
-    sub_0201A9A4(&param0->unk_04[2]);
-    sub_0201A9A4(&param0->unk_04[15]);
-    sub_0201A9A4(&param0->unk_04[16]);
-    sub_0201A9A4(&param0->unk_04[17]);
-    sub_0201A9A4(&param0->unk_04[18]);
-    sub_0201A9A4(&param0->unk_04[19]);
-    sub_0201A9A4(&param0->unk_04[20]);
-    sub_0201A9A4(&param0->unk_04[21]);
+    sub_0201A9A4(&param0->staticWindows[2]);
+    sub_0201A9A4(&param0->staticWindows[15]);
+    sub_0201A9A4(&param0->staticWindows[16]);
+    sub_0201A9A4(&param0->staticWindows[17]);
+    sub_0201A9A4(&param0->staticWindows[18]);
+    sub_0201A9A4(&param0->staticWindows[19]);
+    sub_0201A9A4(&param0->staticWindows[20]);
+    sub_0201A9A4(&param0->staticWindows[21]);
 
-    BGL_FillWindow(&param0->unk_244[0], 0);
-    BGL_FillWindow(&param0->unk_244[1], 0);
-    BGL_FillWindow(&param0->unk_244[2], 0);
-    BGL_FillWindow(&param0->unk_244[3], 0);
-    BGL_FillWindow(&param0->unk_244[4], 0);
-    BGL_FillWindow(&param0->unk_244[5], 0);
-    BGL_FillWindow(&param0->unk_244[6], 0);
-    BGL_FillWindow(&param0->unk_244[7], 0);
+    BGL_FillWindow(&param0->extraWindows[0], 0);
+    BGL_FillWindow(&param0->extraWindows[1], 0);
+    BGL_FillWindow(&param0->extraWindows[2], 0);
+    BGL_FillWindow(&param0->extraWindows[3], 0);
+    BGL_FillWindow(&param0->extraWindows[4], 0);
+    BGL_FillWindow(&param0->extraWindows[5], 0);
+    BGL_FillWindow(&param0->extraWindows[6], 0);
+    BGL_FillWindow(&param0->extraWindows[7], 0);
 
-    v0 = sub_0201C294(&param0->unk_244[0]) * 8;
+    v0 = sub_0201C294(&param0->extraWindows[0]) * 8;
 
-    sub_020901D0(param0, 0, 117, 119, 118, param0->unk_250.unk_24, param0->unk_250.unk_26, 3, v0 / 2, 0);
-    sub_02090184(param0, 120, param0->unk_250.unk_28, 3, 0);
-    sub_020900D8(param0, &param0->unk_244[1], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 1);
-    sub_02090184(param0, 121, param0->unk_250.unk_2A, 3, 0);
-    sub_020900D8(param0, &param0->unk_244[2], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 1);
-    sub_02090184(param0, 122, param0->unk_250.unk_2C, 3, 0);
-    sub_020900D8(param0, &param0->unk_244[3], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 1);
-    sub_02090184(param0, 123, param0->unk_250.unk_2E, 3, 0);
-    sub_020900D8(param0, &param0->unk_244[4], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 1);
-    sub_02090184(param0, 124, param0->unk_250.unk_30, 3, 0);
-    sub_020900D8(param0, &param0->unk_244[5], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 1);
+    sub_020901D0(param0, 0, 117, 119, 118, param0->monData.curHP, param0->monData.maxHP, 3, v0 / 2, 0);
+    sub_02090184(param0, 120, param0->monData.attack, 3, 0);
+    sub_020900D8(param0, &param0->extraWindows[1], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 1);
+    sub_02090184(param0, 121, param0->monData.defense, 3, 0);
+    sub_020900D8(param0, &param0->extraWindows[2], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 1);
+    sub_02090184(param0, 122, param0->monData.spAttack, 3, 0);
+    sub_020900D8(param0, &param0->extraWindows[3], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 1);
+    sub_02090184(param0, 123, param0->monData.spDefense, 3, 0);
+    sub_020900D8(param0, &param0->extraWindows[4], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 1);
+    sub_02090184(param0, 124, param0->monData.speed, 3, 0);
+    sub_020900D8(param0, &param0->extraWindows[5], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 1);
 
     {
         MessageLoader * v1;
         Strbuf* v2;
 
-        sub_0200B6A0(param0->unk_690, 0, param0->unk_250.unk_32);
+        sub_0200B6A0(param0->strFormatter, 0, param0->monData.ability);
 
-        v2 = MessageLoader_GetNewStrbuf(param0->unk_688, 125);
-        StringFormatter_Format(param0->unk_690, param0->unk_694, v2);
+        v2 = MessageLoader_GetNewStrbuf(param0->msgLoader, 125);
+        StringFormatter_Format(param0->strFormatter, param0->strbuf, v2);
         Strbuf_Free(v2);
-        sub_020900D8(param0, &param0->unk_244[6], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
+        sub_020900D8(param0, &param0->extraWindows[6], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
 
         v1 = MessageLoader_Init(1, 26, 612, 19);
-        MessageLoader_GetStrbuf(v1, param0->unk_250.unk_32, param0->unk_694);
+        MessageLoader_GetStrbuf(v1, param0->monData.ability, param0->strbuf);
         MessageLoader_Free(v1);
-        sub_020900D8(param0, &param0->unk_244[7], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
+        sub_020900D8(param0, &param0->extraWindows[7], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
     }
 
-    sub_0201A9A4(&param0->unk_244[0]);
-    sub_0201A9A4(&param0->unk_244[1]);
-    sub_0201A9A4(&param0->unk_244[2]);
-    sub_0201A9A4(&param0->unk_244[3]);
-    sub_0201A9A4(&param0->unk_244[4]);
-    sub_0201A9A4(&param0->unk_244[5]);
-    sub_0201A9A4(&param0->unk_244[6]);
-    sub_0201A9A4(&param0->unk_244[7]);
+    sub_0201A9A4(&param0->extraWindows[0]);
+    sub_0201A9A4(&param0->extraWindows[1]);
+    sub_0201A9A4(&param0->extraWindows[2]);
+    sub_0201A9A4(&param0->extraWindows[3]);
+    sub_0201A9A4(&param0->extraWindows[4]);
+    sub_0201A9A4(&param0->extraWindows[5]);
+    sub_0201A9A4(&param0->extraWindows[6]);
+    sub_0201A9A4(&param0->extraWindows[7]);
 }
 
-static void sub_02090BDC (UnkStruct_0208D7BC * param0)
+static void sub_02090BDC (PokemonSummaryApp * param0)
 {
-    sub_0201A9A4(&param0->unk_04[3]);
-    sub_0201A9A4(&param0->unk_04[22]);
+    sub_0201A9A4(&param0->staticWindows[3]);
+    sub_0201A9A4(&param0->staticWindows[22]);
 
-    if ((param0->unk_24C->unk_12 != 3) && (param0->unk_24C->unk_12 != 4)) {
+    if ((param0->data->mode != 3) && (param0->data->mode != 4)) {
         return;
     }
 
-    BGL_FillWindow(&param0->unk_244[1], 0);
-    MessageLoader_GetStrbuf(param0->unk_688, 165, param0->unk_694);
-    sub_020900D8(param0, &param0->unk_244[1], ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
-    MessageLoader_GetStrbuf(param0->unk_688, 166 + param0->unk_250.unk_4B, param0->unk_694);
-    sub_0201D78C(&param0->unk_244[1], 0, param0->unk_694, 0, 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    sub_0201A9A4(&param0->unk_244[1]);
+    BGL_FillWindow(&param0->extraWindows[1], 0);
+    MessageLoader_GetStrbuf(param0->msgLoader, 165, param0->strbuf);
+    sub_020900D8(param0, &param0->extraWindows[1], ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
+    MessageLoader_GetStrbuf(param0->msgLoader, 166 + param0->monData.preferredFlavor, param0->strbuf);
+    sub_0201D78C(&param0->extraWindows[1], 0, param0->strbuf, 0, 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    sub_0201A9A4(&param0->extraWindows[1]);
 
-    if (param0->unk_24C->unk_12 == 3) {
-        BGL_FillWindow(&param0->unk_244[0], 0);
-        MessageLoader_GetStrbuf(param0->unk_688, 163, param0->unk_694);
-        sub_020900D8(param0, &param0->unk_244[0], ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
-        sub_0201A9A4(&param0->unk_244[0]);
-        sub_0208F6DC(param0, &param0->unk_244[0]);
+    if (param0->data->mode == 3) {
+        BGL_FillWindow(&param0->extraWindows[0], 0);
+        MessageLoader_GetStrbuf(param0->msgLoader, 163, param0->strbuf);
+        sub_020900D8(param0, &param0->extraWindows[0], ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
+        sub_0201A9A4(&param0->extraWindows[0]);
+        sub_0208F6DC(param0, &param0->extraWindows[0]);
     }
 }
 
-static void sub_02090CD4 (UnkStruct_0208D7BC * param0)
+static void sub_02090CD4 (PokemonSummaryApp * param0)
 {
-    sub_0201A9A4(&param0->unk_04[4]);
+    sub_0201A9A4(&param0->staticWindows[4]);
 
-    if (param0->unk_24C->unk_12 == 2) {
+    if (param0->data->mode == 2) {
         sub_02090064(param0, 155);
     } else {
         sub_02090064(param0, 129);
     }
 
-    sub_0208F6DC(param0, &param0->unk_04[35]);
+    sub_0208F6DC(param0, &param0->staticWindows[35]);
 
-    BGL_FillWindow(&param0->unk_244[0], 0);
-    BGL_FillWindow(&param0->unk_244[1], 0);
-    BGL_FillWindow(&param0->unk_244[2], 0);
-    BGL_FillWindow(&param0->unk_244[3], 0);
+    BGL_FillWindow(&param0->extraWindows[0], 0);
+    BGL_FillWindow(&param0->extraWindows[1], 0);
+    BGL_FillWindow(&param0->extraWindows[2], 0);
+    BGL_FillWindow(&param0->extraWindows[3], 0);
 
     sub_02091188(param0, 0);
     sub_02091188(param0, 1);
     sub_02091188(param0, 2);
     sub_02091188(param0, 3);
 
-    sub_0201A9A4(&param0->unk_244[0]);
-    sub_0201A9A4(&param0->unk_244[1]);
-    sub_0201A9A4(&param0->unk_244[2]);
-    sub_0201A9A4(&param0->unk_244[3]);
+    sub_0201A9A4(&param0->extraWindows[0]);
+    sub_0201A9A4(&param0->extraWindows[1]);
+    sub_0201A9A4(&param0->extraWindows[2]);
+    sub_0201A9A4(&param0->extraWindows[3]);
 }
 
-static void sub_02090D90 (UnkStruct_0208D7BC * param0)
+static void sub_02090D90 (PokemonSummaryApp * param0)
 {
-    sub_0201A9A4(&param0->unk_04[5]);
+    sub_0201A9A4(&param0->staticWindows[5]);
 
-    if (param0->unk_24C->unk_12 == 2) {
+    if (param0->data->mode == 2) {
         sub_02090064(param0, 159);
     } else {
         sub_02090064(param0, 158);
     }
 
-    sub_0208F6DC(param0, &param0->unk_04[35]);
+    sub_0208F6DC(param0, &param0->staticWindows[35]);
 
-    BGL_FillWindow(&param0->unk_244[0], 0);
-    BGL_FillWindow(&param0->unk_244[1], 0);
-    BGL_FillWindow(&param0->unk_244[2], 0);
-    BGL_FillWindow(&param0->unk_244[3], 0);
+    BGL_FillWindow(&param0->extraWindows[0], 0);
+    BGL_FillWindow(&param0->extraWindows[1], 0);
+    BGL_FillWindow(&param0->extraWindows[2], 0);
+    BGL_FillWindow(&param0->extraWindows[3], 0);
 
     sub_02091188(param0, 0);
     sub_02091188(param0, 1);
     sub_02091188(param0, 2);
     sub_02091188(param0, 3);
 
-    sub_0201A9A4(&param0->unk_244[0]);
-    sub_0201A9A4(&param0->unk_244[1]);
-    sub_0201A9A4(&param0->unk_244[2]);
-    sub_0201A9A4(&param0->unk_244[3]);
+    sub_0201A9A4(&param0->extraWindows[0]);
+    sub_0201A9A4(&param0->extraWindows[1]);
+    sub_0201A9A4(&param0->extraWindows[2]);
+    sub_0201A9A4(&param0->extraWindows[3]);
 }
 
-static void sub_02090E4C (UnkStruct_0208D7BC * param0)
+static void sub_02090E4C (PokemonSummaryApp * param0)
 {
-    sub_0201A9A4(&param0->unk_04[31]);
-    sub_0201A9A4(&param0->unk_04[30]);
+    sub_0201A9A4(&param0->staticWindows[31]);
+    sub_0201A9A4(&param0->staticWindows[30]);
 
-    BGL_FillWindow(&param0->unk_244[0], 0);
-    sub_02090184(param0, 183, param0->unk_6B1, 3, 0);
-    sub_020900D8(param0, &param0->unk_244[0], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
-    sub_0201A9A4(&param0->unk_244[0]);
+    BGL_FillWindow(&param0->extraWindows[0], 0);
+    sub_02090184(param0, 183, param0->ribbonMax, 3, 0);
+    sub_020900D8(param0, &param0->extraWindows[0], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
+    sub_0201A9A4(&param0->extraWindows[0]);
 
-    if (param0->unk_6B1 != 0) {
+    if (param0->ribbonMax != 0) {
         sub_02090064(param0, 180);
-        sub_0208F6DC(param0, &param0->unk_04[35]);
+        sub_0208F6DC(param0, &param0->staticWindows[35]);
     }
 }
 
-static void sub_02090EC8 (UnkStruct_0208D7BC * param0)
+static void sub_02090EC8 (PokemonSummaryApp * param0)
 {
-    sub_0201A9A4(&param0->unk_04[28]);
+    sub_0201A9A4(&param0->staticWindows[28]);
     sub_02090064(param0, 161);
-    sub_0208F6DC(param0, &param0->unk_04[35]);
+    sub_0208F6DC(param0, &param0->staticWindows[35]);
 
-    if ((param0->unk_24C->unk_12 != 3) && (param0->unk_24C->unk_12 != 4)) {
+    if ((param0->data->mode != 3) && (param0->data->mode != 4)) {
         return;
     }
 
-    BGL_FillWindow(&param0->unk_244[1], 0);
+    BGL_FillWindow(&param0->extraWindows[1], 0);
 
-    MessageLoader_GetStrbuf(param0->unk_688, 165, param0->unk_694);
-    sub_020900D8(param0, &param0->unk_244[1], ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
+    MessageLoader_GetStrbuf(param0->msgLoader, 165, param0->strbuf);
+    sub_020900D8(param0, &param0->extraWindows[1], ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
 
-    MessageLoader_GetStrbuf(param0->unk_688, 166 + param0->unk_250.unk_4B, param0->unk_694);
-    sub_0201D78C(&param0->unk_244[1], 0, param0->unk_694, 0, 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    MessageLoader_GetStrbuf(param0->msgLoader, 166 + param0->monData.preferredFlavor, param0->strbuf);
+    sub_0201D78C(&param0->extraWindows[1], 0, param0->strbuf, 0, 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
-    sub_0201A9A4(&param0->unk_244[1]);
+    sub_0201A9A4(&param0->extraWindows[1]);
 }
 
-void sub_02090F84 (UnkStruct_0208D7BC * param0)
+void sub_02090F84 (PokemonSummaryApp * param0)
 {
     Strbuf* v0;
     u8 v1;
     u8 v2;
 
-    BGL_FillWindow(&param0->unk_244[1], 0);
+    BGL_FillWindow(&param0->extraWindows[1], 0);
 
-    v0 = MessageLoader_GetNewStrbuf(param0->unk_688, 186);
+    v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, 186);
 
-    sub_0200B60C(param0->unk_690, 0, param0->unk_6B1, 3, 0, 1);
-    StringFormatter_Format(param0->unk_690, param0->unk_694, v0);
+    sub_0200B60C(param0->strFormatter, 0, param0->ribbonMax, 3, 0, 1);
+    StringFormatter_Format(param0->strFormatter, param0->strbuf, v0);
     Strbuf_Free(v0);
 
-    v2 = sub_02002D7C(0, param0->unk_694, 0);
+    v2 = sub_02002D7C(0, param0->strbuf, 0);
     v1 = 7 * 8 - v2;
 
-    sub_0201D78C(&param0->unk_244[1], 0, param0->unk_694, v1, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    sub_0201D78C(&param0->extraWindows[1], 0, param0->strbuf, v1, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
-    v0 = MessageLoader_GetNewStrbuf(param0->unk_688, 185);
+    v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, 185);
     v2 = sub_02002D7C(0, v0, 0);
     v1 -= v2;
 
-    sub_0201D78C(&param0->unk_244[1], 0, v0, v1, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    sub_0201D78C(&param0->extraWindows[1], 0, v0, v1, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
 
-    v0 = MessageLoader_GetNewStrbuf(param0->unk_688, 184);
+    v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, 184);
 
-    sub_0200B60C(param0->unk_690, 0, param0->unk_6AF + param0->unk_6B0 * 4 + 1, 3, 0, 1);
-    StringFormatter_Format(param0->unk_690, param0->unk_694, v0);
+    sub_0200B60C(param0->strFormatter, 0, param0->ribbonPos + param0->ribbonState * 4 + 1, 3, 0, 1);
+    StringFormatter_Format(param0->strFormatter, param0->strbuf, v0);
     Strbuf_Free(v0);
 
-    v2 = sub_02002D7C(0, param0->unk_694, 0);
+    v2 = sub_02002D7C(0, param0->strbuf, 0);
     v1 -= v2;
 
-    sub_0201D78C(&param0->unk_244[1], 0, param0->unk_694, v1, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    sub_0201A9A4(&param0->unk_244[1]);
+    sub_0201D78C(&param0->extraWindows[1], 0, param0->strbuf, v1, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    sub_0201A9A4(&param0->extraWindows[1]);
 }
 
-void sub_020910E4 (UnkStruct_0208D7BC * param0)
+void sub_020910E4 (PokemonSummaryApp * param0)
 {
-    BGL_FillWindow(&param0->unk_244[2], 0);
-    BGL_FillWindow(&param0->unk_244[3], 0);
+    BGL_FillWindow(&param0->extraWindows[2], 0);
+    BGL_FillWindow(&param0->extraWindows[3], 0);
 
-    MessageLoader_GetStrbuf(param0->unk_68C, sub_020923C0(param0->unk_6B2, 3), param0->unk_694);
-    sub_020900D8(param0, &param0->unk_244[2], ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
+    MessageLoader_GetStrbuf(param0->ribbonLoader, sub_020923C0(param0->ribbonNum, 3), param0->strbuf);
+    sub_020900D8(param0, &param0->extraWindows[2], ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
 
-    MessageLoader_GetStrbuf(param0->unk_68C, sub_02092424(param0->unk_24C->unk_20, param0->unk_6B2), param0->unk_694);
-    sub_020900D8(param0, &param0->unk_244[3], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
+    MessageLoader_GetStrbuf(param0->ribbonLoader, sub_02092424(param0->data->ribbons, param0->ribbonNum), param0->strbuf);
+    sub_020900D8(param0, &param0->extraWindows[3], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
 
-    sub_0201A9A4(&param0->unk_244[2]);
-    sub_0201A9A4(&param0->unk_244[3]);
+    sub_0201A9A4(&param0->extraWindows[2]);
+    sub_0201A9A4(&param0->extraWindows[3]);
 }
 
-static void sub_02091188 (UnkStruct_0208D7BC * param0, u32 param1)
+static void sub_02091188 (PokemonSummaryApp * param0, u32 param1)
 {
     Window * v0;
     Strbuf* v1;
@@ -830,163 +830,163 @@ static void sub_02091188 (UnkStruct_0208D7BC * param0, u32 param1)
     u16 v3;
     u8 v4, v5;
 
-    v0 = &param0->unk_244[0 + param1];
+    v0 = &param0->extraWindows[0 + param1];
 
     if (param1 != 4) {
-        v3 = param0->unk_250.unk_34[param1];
-        v4 = param0->unk_250.unk_3C[param1];
-        v5 = param0->unk_250.unk_40[param1];
+        v3 = param0->monData.moves[param1];
+        v4 = param0->monData.curPP[param1];
+        v5 = param0->monData.maxPP[param1];
     } else {
-        v3 = param0->unk_24C->unk_18;
+        v3 = param0->data->move;
         v4 = MoveTable_CalcMaxPP(v3, 0);
         v5 = v4;
     }
 
-    MessageLoader_GetStrbuf(param0->unk_69C, v3, param0->unk_694);
-    sub_0201D78C(v0, 0, param0->unk_694, 1, 2, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    MessageLoader_GetStrbuf(param0->moveNameLoader, v3, param0->strbuf);
+    sub_0201D78C(v0, 0, param0->strbuf, 1, 2, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     if (v3 != 0) {
-        MessageLoader_GetStrbuf(param0->unk_688, 135, param0->unk_694);
-        sub_0201D78C(v0, 0, param0->unk_694, 16, 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        MessageLoader_GetStrbuf(param0->msgLoader, 135, param0->strbuf);
+        sub_0201D78C(v0, 0, param0->strbuf, 16, 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         sub_020901D0(param0, 0 + param1, 117, 136 + param1, 141 + param1, v4, v5, 2, (40 + 20), 16);
     } else {
-        MessageLoader_GetStrbuf(param0->unk_688, 153, param0->unk_694);
-        v2 = sub_02002D7C(0, param0->unk_694, 0);
-        sub_0201D78C(v0, 0, param0->unk_694, (40 + 20) - v2 / 2, 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        MessageLoader_GetStrbuf(param0->msgLoader, 153, param0->strbuf);
+        v2 = sub_02002D7C(0, param0->strbuf, 0);
+        sub_0201D78C(v0, 0, param0->strbuf, (40 + 20) - v2 / 2, 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 }
 
-void sub_020912A4 (UnkStruct_0208D7BC * param0, u32 param1)
+void sub_020912A4 (PokemonSummaryApp * param0, u32 param1)
 {
     MessageLoader * v0;
     u32 v1;
     u32 v2;
 
-    sub_0201A9A4(&param0->unk_04[25]);
-    sub_0201A9A4(&param0->unk_04[26]);
-    sub_0201A9A4(&param0->unk_04[27]);
+    sub_0201A9A4(&param0->staticWindows[25]);
+    sub_0201A9A4(&param0->staticWindows[26]);
+    sub_0201A9A4(&param0->staticWindows[27]);
 
-    BGL_FillWindow(&param0->unk_244[5], 0);
-    BGL_FillWindow(&param0->unk_244[6], 0);
-    BGL_FillWindow(&param0->unk_244[7], 0);
+    BGL_FillWindow(&param0->extraWindows[5], 0);
+    BGL_FillWindow(&param0->extraWindows[6], 0);
+    BGL_FillWindow(&param0->extraWindows[7], 0);
 
     v2 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_POWER);
 
     if (v2 <= 1) {
-        MessageLoader_GetStrbuf(param0->unk_688, 154, param0->unk_694);
+        MessageLoader_GetStrbuf(param0->msgLoader, 154, param0->strbuf);
     } else {
         sub_02090184(param0, 150, v2, 3, 1);
     }
 
-    sub_020900D8(param0, &param0->unk_244[5], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
+    sub_020900D8(param0, &param0->extraWindows[5], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
 
     v2 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_ACCURACY);
 
     if (v2 == 0) {
-        MessageLoader_GetStrbuf(param0->unk_688, 154, param0->unk_694);
+        MessageLoader_GetStrbuf(param0->msgLoader, 154, param0->strbuf);
     } else {
         sub_02090184(param0, 151, v2, 3, 1);
     }
 
-    sub_020900D8(param0, &param0->unk_244[6], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
+    sub_020900D8(param0, &param0->extraWindows[6], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
 
     v0 = MessageLoader_Init(1, 26, 646, 19);
 
-    MessageLoader_GetStrbuf(v0, param1, param0->unk_694);
-    sub_020900D8(param0, &param0->unk_244[7], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
+    MessageLoader_GetStrbuf(v0, param1, param0->strbuf);
+    sub_020900D8(param0, &param0->extraWindows[7], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
     MessageLoader_Free(v0);
 
-    sub_0201A9A4(&param0->unk_244[5]);
-    sub_0201A9A4(&param0->unk_244[6]);
-    sub_0201A9A4(&param0->unk_244[7]);
+    sub_0201A9A4(&param0->extraWindows[5]);
+    sub_0201A9A4(&param0->extraWindows[6]);
+    sub_0201A9A4(&param0->extraWindows[7]);
 }
 
-void sub_020913D8 (UnkStruct_0208D7BC * param0)
+void sub_020913D8 (PokemonSummaryApp * param0)
 {
-    sub_0201AD10(&param0->unk_04[25]);
-    sub_0201AD10(&param0->unk_04[26]);
-    sub_0201AD10(&param0->unk_04[27]);
-    sub_0201AD10(&param0->unk_244[5]);
-    sub_0201AD10(&param0->unk_244[6]);
-    sub_0201AD10(&param0->unk_244[7]);
+    sub_0201AD10(&param0->staticWindows[25]);
+    sub_0201AD10(&param0->staticWindows[26]);
+    sub_0201AD10(&param0->staticWindows[27]);
+    sub_0201AD10(&param0->extraWindows[5]);
+    sub_0201AD10(&param0->extraWindows[6]);
+    sub_0201AD10(&param0->extraWindows[7]);
 }
 
-void sub_02091420 (UnkStruct_0208D7BC * param0)
+void sub_02091420 (PokemonSummaryApp * param0)
 {
-    if (param0->unk_24C->unk_18 != 0) {
-        BGL_FillWindow(&param0->unk_244[4], 0);
+    if (param0->data->move != 0) {
+        BGL_FillWindow(&param0->extraWindows[4], 0);
         sub_02091188(param0, 4);
-        sub_0201A9A4(&param0->unk_244[4]);
+        sub_0201A9A4(&param0->extraWindows[4]);
     } else {
-        sub_0201A9A4(&param0->unk_04[24]);
+        sub_0201A9A4(&param0->staticWindows[24]);
     }
 }
 
-void sub_0209145C (UnkStruct_0208D7BC * param0)
+void sub_0209145C (PokemonSummaryApp * param0)
 {
-    sub_0201AD10(&param0->unk_04[24]);
-    sub_0201C3C0(param0->unk_00, 1);
+    sub_0201AD10(&param0->staticWindows[24]);
+    sub_0201C3C0(param0->bgl, 1);
 }
 
-void sub_02091474 (UnkStruct_0208D7BC * param0)
+void sub_02091474 (PokemonSummaryApp * param0)
 {
-    BGL_FillWindow(&param0->unk_244[0 + param0->unk_6A5_0], 0);
-    BGL_FillWindow(&param0->unk_244[0 + param0->unk_6A5_4], 0);
+    BGL_FillWindow(&param0->extraWindows[0 + param0->cursor], 0);
+    BGL_FillWindow(&param0->extraWindows[0 + param0->cursorTmp], 0);
 
-    sub_02091188(param0, param0->unk_6A5_0);
-    sub_02091188(param0, param0->unk_6A5_4);
+    sub_02091188(param0, param0->cursor);
+    sub_02091188(param0, param0->cursorTmp);
 
-    sub_0201A9A4(&param0->unk_244[0 + param0->unk_6A5_0]);
-    sub_0201A9A4(&param0->unk_244[0 + param0->unk_6A5_4]);
+    sub_0201A9A4(&param0->extraWindows[0 + param0->cursor]);
+    sub_0201A9A4(&param0->extraWindows[0 + param0->cursorTmp]);
 }
 
-void sub_020914F8 (UnkStruct_0208D7BC * param0)
+void sub_020914F8 (PokemonSummaryApp * param0)
 {
     Window * v0;
 
-    if (param0->unk_6A4 == 3) {
-        sub_0201AD10(&param0->unk_244[5]);
-        sub_0201AD10(&param0->unk_244[6]);
-        sub_0201AD10(&param0->unk_244[7]);
-        v0 = &param0->unk_244[7];
+    if (param0->page == 3) {
+        sub_0201AD10(&param0->extraWindows[5]);
+        sub_0201AD10(&param0->extraWindows[6]);
+        sub_0201AD10(&param0->extraWindows[7]);
+        v0 = &param0->extraWindows[7];
     } else {
-        v0 = &param0->unk_244[5];
+        v0 = &param0->extraWindows[5];
     }
 
     BGL_FillWindow(v0, 0);
-    MessageLoader_GetStrbuf(param0->unk_688, 156, param0->unk_694);
+    MessageLoader_GetStrbuf(param0->msgLoader, 156, param0->strbuf);
     sub_020900D8(param0, v0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
     sub_0201A9A4(v0);
 }
 
-void sub_02091570 (UnkStruct_0208D7BC * param0, u32 param1)
+void sub_02091570 (PokemonSummaryApp * param0, u32 param1)
 {
     MessageLoader * v0;
     u32 v1;
     u32 v2;
 
-    BGL_FillWindow(&param0->unk_244[5], 0);
+    BGL_FillWindow(&param0->extraWindows[5], 0);
 
     v1 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CONTEST_EFFECT);
     v2 = sub_0209577C(v1);
     v0 = MessageLoader_Init(0, 26, 210, 19);
 
-    MessageLoader_GetStrbuf(v0, v2, param0->unk_694);
-    sub_0201D78C(&param0->unk_244[5], 0, param0->unk_694, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    MessageLoader_GetStrbuf(v0, v2, param0->strbuf);
+    sub_0201D78C(&param0->extraWindows[5], 0, param0->strbuf, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     MessageLoader_Free(v0);
 
-    sub_0201A9A4(&param0->unk_04[29]);
-    sub_0201A9A4(&param0->unk_244[5]);
+    sub_0201A9A4(&param0->staticWindows[29]);
+    sub_0201A9A4(&param0->extraWindows[5]);
 }
 
-void sub_020915F4 (UnkStruct_0208D7BC * param0)
+void sub_020915F4 (PokemonSummaryApp * param0)
 {
-    sub_0201AD10(&param0->unk_04[29]);
-    sub_0201AD10(&param0->unk_244[5]);
+    sub_0201AD10(&param0->staticWindows[29]);
+    sub_0201AD10(&param0->extraWindows[5]);
 }
 
-void sub_02091610 (UnkStruct_0208D7BC * param0, u8 param1)
+void sub_02091610 (PokemonSummaryApp * param0, u8 param1)
 {
     Window * v0;
     u32 v1;
@@ -1014,11 +1014,11 @@ void sub_02091610 (UnkStruct_0208D7BC * param0, u8 param1)
         v1 = 178;
     }
 
-    v0 = &param0->unk_244[2];
+    v0 = &param0->extraWindows[2];
 
     sub_0200E060(v0, 1, (1024 - (18 + 12)), 13);
     BGL_FillWindow(v0, 15);
-    MessageLoader_GetStrbuf(param0->unk_688, v1, param0->unk_694);
-    sub_0201D78C(v0, 1, param0->unk_694, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    MessageLoader_GetStrbuf(param0->msgLoader, v1, param0->strbuf);
+    sub_0201D78C(v0, 1, param0->strbuf, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     sub_0201A9A4(v0);
 }

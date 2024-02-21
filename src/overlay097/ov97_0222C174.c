@@ -18,7 +18,7 @@
 
 #include "overlay077/const_ov77_021D742C.h"
 
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0202DBAC.h"
 #include "struct_defs/struct_0202DF40.h"
 #include "struct_defs/struct_0203CC84.h"
@@ -366,7 +366,7 @@ typedef struct {
     SaveData * unk_08;
     PokedexData * unk_0C;
     TrainerInfo * unk_10;
-    AnimationControlFlags * unk_14;
+    Options * unk_14;
     Window unk_18;
     Window unk_28;
     Window unk_38;

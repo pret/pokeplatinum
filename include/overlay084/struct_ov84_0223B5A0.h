@@ -14,7 +14,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_decls/struct_0207CB08_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
@@ -28,7 +28,7 @@ typedef struct {
     UnkStruct_0207CB08 * unk_C4;
     UnkStruct_0207D3C0 * unk_C8;
     TrainerInfo * unk_CC;
-    AnimationControlFlags * unk_D0;
+    Options * unk_D0;
     NARC * unk_D4;
     SpriteRenderer * unk_D8;
     SpriteGfxHandler * unk_DC;

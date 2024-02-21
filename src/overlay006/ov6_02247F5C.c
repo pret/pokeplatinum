@@ -18,7 +18,7 @@ void ov6_02247F5C (UnkStruct_0203CDB0 * param0)
 {
     UnkStruct_ov5_021D3CE4 * v0;
 
-    if (!sub_0206ADEC(sub_020507E4(param0->unk_0C))) {
+    if (!sub_0206ADEC(SaveData_Events(param0->unk_0C))) {
         v0 = ov5_021D3DE4(496, 1, param0->unk_50);
         ov5_021D3F08(v0, 1);
         ov5_021D3E40(v0, 1);

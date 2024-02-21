@@ -97,37 +97,37 @@ static BOOL ov6_02246A34 (UnkStruct_0203CDB0 * param0)
 
 static BOOL ov6_02246A38 (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_020507E4 * v0 = sub_020507E4(param0->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
     return inline_0208BE68(v0, 7);
 }
 
 static BOOL ov6_02246A4C (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_020507E4 * v0 = sub_020507E4(param0->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
     return inline_0208BE68(v0, 2);
 }
 
 static BOOL ov6_02246A60 (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_020507E4 * v0 = sub_020507E4(param0->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
     return inline_0208BE68(v0, 9);
 }
 
 static BOOL ov6_02246A74 (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_020507E4 * v0 = sub_020507E4(param0->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
     return inline_0208BE68(v0, 10);
 }
 
 static BOOL ov6_02246A88 (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_020507E4 * v0 = sub_020507E4(param0->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
     return inline_0208BE68(v0, 11);
 }
 
 static BOOL ov6_02246A9C (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_020507E4 * v0 = sub_020507E4(param0->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
     return inline_0208BE68(v0, 17);
 }
 
@@ -156,7 +156,7 @@ static BOOL ov6_02246AD8 (UnkStruct_0203CDB0 * param0)
 
 static BOOL ov6_02246AE8 (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_020507E4 * v0 = sub_020507E4(param0->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
     return sub_0206A954(v0);
 }
 

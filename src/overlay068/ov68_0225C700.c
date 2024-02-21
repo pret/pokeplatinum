@@ -23,7 +23,7 @@
 #include "overlay066/struct_ov66_0222E71C_decl.h"
 
 #include "struct_defs/struct_0200C738.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay019/struct_ov19_021DA864.h"
@@ -146,7 +146,7 @@ static void ov68_0225C91C(UnkStruct_ov68_0225C91C * param0, SaveData * param1, u
 static void ov68_0225C960(UnkStruct_ov68_0225C91C * param0);
 static void ov68_0225C980(UnkStruct_ov68_0225C91C * param0);
 static void ov68_0225C98C(UnkStruct_ov68_0225C91C * param0);
-static void ov68_0225C9A0(UnkStruct_ov68_0225C91C * param0, AnimationControlFlags * param1, u32 param2);
+static void ov68_0225C9A0(UnkStruct_ov68_0225C91C * param0, Options * param1, u32 param2);
 static void ov68_0225CA8C(UnkStruct_ov68_0225C91C * param0);
 static void ov68_0225CAB4(UnkStruct_ov68_0225C91C * param0, u32 param1);
 static void ov68_0225CB44(UnkStruct_ov68_0225C91C * param0);
@@ -453,7 +453,7 @@ static void ov68_0225C914 (void * param0)
 
 static void ov68_0225C91C (UnkStruct_ov68_0225C91C * param0, SaveData * param1, u32 param2)
 {
-    AnimationControlFlags * v0;
+    Options * v0;
 
     v0 = sub_02025E44(param1);
     param0->unk_1A4 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, param2);
@@ -485,7 +485,7 @@ static void ov68_0225C98C (UnkStruct_ov68_0225C91C * param0)
     sub_0201DCAC();
 }
 
-static void ov68_0225C9A0 (UnkStruct_ov68_0225C91C * param0, AnimationControlFlags * param1, u32 param2)
+static void ov68_0225C9A0 (UnkStruct_ov68_0225C91C * param0, Options * param1, u32 param2)
 {
     sub_02018368(&Unk_ov68_0225DD48);
 
@@ -921,7 +921,7 @@ static void ov68_0225D128 (UnkStruct_ov68_0225D128 * param0, UnkStruct_ov68_0225
     param0->unk_18 = Strbuf_Init(256, param3);
 
     {
-        AnimationControlFlags * v0;
+        Options * v0;
 
         v0 = sub_02025E44(param2);
         param0->unk_04 = sub_02027AC0(v0);

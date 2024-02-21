@@ -18,7 +18,7 @@
 #include "struct_decls/struct_0203068C_decl.h"
 
 #include "struct_defs/sentence.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_02049A68.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
@@ -91,7 +91,7 @@ typedef struct {
     u8 unk_0F;
     BGL * unk_10;
     UnkStruct_ov90_021D0D80 * unk_14;
-    AnimationControlFlags * unk_18;
+    Options * unk_18;
     UnkStruct_0203068C * unk_1C;
     UnkStruct_0202D750 * unk_20;
     UnkStruct_0202D764 * unk_24;

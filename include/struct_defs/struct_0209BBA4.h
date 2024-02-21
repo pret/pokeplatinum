@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_defs/struct_02098C44.h"
-#include "struct_defs/struct_02098D38.h"
+#include "struct_defs/pokemon_summary.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 typedef struct {
@@ -32,7 +32,7 @@ typedef struct {
     u8 unk_A0;
     u8 unk_A1[4];
     PartyManagementData * unk_A8;
-    UnkStruct_02098D38 * unk_AC;
+    PokemonSummary * unk_AC;
     u16 * unk_B0;
 } UnkStruct_0209BBA4;
 

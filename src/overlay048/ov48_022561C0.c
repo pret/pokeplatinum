@@ -356,7 +356,7 @@ static BOOL ov48_02256478 (UnkStruct_ov48_0225621C * param0)
 
 static void ov48_022564E0 (UnkStruct_ov48_0225621C * param0, UnkStruct_ov25_0225424C * param1)
 {
-    UnkStruct_020507E4 * v0 = sub_020507E4(ov25_02254544(param1));
+    UnkStruct_020507E4 * v0 = SaveData_Events(ov25_02254544(param1));
     int v1;
 
     for (v1 = 0; v1 < 4; v1++) {

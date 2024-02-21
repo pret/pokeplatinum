@@ -17,7 +17,7 @@
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0202610C.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_02055BA8.h"
 #include "struct_defs/struct_0205EC34.h"
@@ -60,7 +60,7 @@
 #include "pokemon.h"
 #include "party.h"
 #include "unk_0207D3B8.h"
-#include "unk_0208C324.h"
+#include "pokemon_summary_app.h"
 
 static void sub_0205281C(BattleParams * param0, const UnkStruct_0203CDB0 * param1);
 void sub_02052894(BattleParams * param0);
@@ -158,7 +158,7 @@ BattleParams * sub_02051F38 (int param0, int param1)
 BattleParams * sub_02051F4C (int param0, const UnkStruct_0203CDB0 * param1)
 {
     TrainerInfo * v0 = sub_02025E38(param1->unk_0C);
-    AnimationControlFlags * v1 = sub_02025E44(param1->unk_0C);
+    Options * v1 = sub_02025E44(param1->unk_0C);
     MessageLoader * v2;
     Strbuf* v3;
     BattleParams * v4;
@@ -180,7 +180,7 @@ BattleParams * sub_02051F4C (int param0, const UnkStruct_0203CDB0 * param1)
     sub_0207D570(v4->unk_E0, 4, 20, param0);
     v5 = Pokemon_New(param0);
 
-    Pokemon_InitWith(v5, sub_0206B08C(sub_020507E4(param1->unk_0C)), 5, 32, 0, 0, 2, 0);
+    Pokemon_InitWith(v5, sub_0206B08C(SaveData_Events(param1->unk_0C)), 5, 32, 0, 0, 2, 0);
     Party_AddPokemon(v4->parties[0], v5);
     Pokemon_InitWith(v5, 399, 2, 32, 0, 0, 2, 0);
     Party_AddPokemon(v4->parties[1], v5);
@@ -257,7 +257,7 @@ void sub_020521B8 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, Sav
     UnkStruct_0207D3C0 * v2 = sub_0207D990(param2);
     PokedexData * v3 = sub_02027560(param2);
     ChatotCry * v4 = GetChatotCryDataFromSave(param2);
-    AnimationControlFlags * v5 = sub_02025E44(param2);
+    Options * v5 = sub_02025E44(param2);
     UnkStruct_0203A790 * v6 = sub_0203A790(param2);
 
     if (param1 != NULL) {
@@ -283,8 +283,8 @@ void sub_020521B8 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, Sav
     param0->unk_EC = SaveData_PCBoxes(param2);
     param0->unk_130 = sub_0203A138(param3);
     param0->unk_13C = MapHeader_GetMapEvolutionMethod(param3);
-    param0->unk_140 = sub_0208C324(param2);
-    param0->unk_144 = sub_0206ADFC(sub_020507E4(param2));
+    param0->unk_140 = PokemonSummary_ShowContestData(param2);
+    param0->unk_144 = sub_0206ADFC(SaveData_Events(param2));
     param0->unk_14C = sub_0203A74C(v6);
     param0->unk_E4 = param5;
     param0->unk_190 = param6;
@@ -312,7 +312,7 @@ void sub_02052348 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, int
     UnkStruct_0207D3C0 * v4 = sub_0207D990(param1->unk_0C);
     PokedexData * v5 = sub_02027560(param1->unk_0C);
     ChatotCry * v6 = GetChatotCryDataFromSave(param1->unk_0C);
-    AnimationControlFlags * v7 = sub_02025E44(param1->unk_0C);
+    Options * v7 = sub_02025E44(param1->unk_0C);
     Pokemon * v8;
 
     param0->unk_128 = 6;
@@ -362,7 +362,7 @@ void sub_020524E4 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, con
     UnkStruct_0207D3C0 * v1 = sub_0207D990(param1->unk_0C);
     PokedexData * v2 = sub_02027560(param1->unk_0C);
     ChatotCry * v3 = GetChatotCryDataFromSave(param1->unk_0C);
-    AnimationControlFlags * v4 = sub_02025E44(param1->unk_0C);
+    Options * v4 = sub_02025E44(param1->unk_0C);
     const UnkStruct_0202610C * v5 = param1->unk_B0;
     int v6, v7, v8;
     Pokemon * v9;

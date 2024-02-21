@@ -78,7 +78,7 @@
 #include "unk_0207D3B8.h"
 #include "unk_0207E0B8.h"
 #include "unk_0208C098.h"
-#include "unk_0208C324.h"
+#include "pokemon_summary_app.h"
 #include "overlay010/ov10_0221F800.h"
 
 typedef struct UnkStruct_ov10_0221FB28_t UnkStruct_ov10_0221FB28;
@@ -1541,7 +1541,7 @@ static void ov10_022211F0 (UnkStruct_ov10_0221FB28 * param0, Party * param1, u16
                 continue;
             }
 
-            v2 = sub_0208E9F0(v0);
+            v2 = PokemonSummary_StatusIconAnimIdx(v0);
 
             if (v2 == 6) {
                 sub_0200D364(param0->unk_198[v4 + param3], 3);
@@ -2061,7 +2061,7 @@ static void ov10_02221D14 (UnkStruct_ov10_0221FB28 * param0, Party * param1, u8 
         }
 
         param0->unk_214[v1 + param2].unk_0D = Pokemon_GetGender(v0);
-        param0->unk_214[v1 + param2].unk_14 = (u8)sub_0208E9F0(v0);
+        param0->unk_214[v1 + param2].unk_14 = (u8)PokemonSummary_StatusIconAnimIdx(v0);
     }
 }
 

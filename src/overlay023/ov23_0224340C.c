@@ -1597,7 +1597,7 @@ void ov23_0224448C (int param0, int param1, void * param2, void * param3)
         }
 
         {
-            UnkStruct_020507E4 * v2 = sub_020507E4(Unk_ov23_02257764->unk_40->unk_0C);
+            UnkStruct_020507E4 * v2 = SaveData_Events(Unk_ov23_02257764->unk_40->unk_0C);
             sub_0206B43C(v2, sub_0206B42C(v2) + 1);
         }
 

@@ -21,7 +21,7 @@
 #include "struct_defs/struct_0205AA50.h"
 #include "pokemon.h"
 #include "struct_decls/struct_0207AE68_decl.h"
-#include "struct_defs/struct_02098D38.h"
+#include "struct_defs/pokemon_summary.h"
 #include "overlay006/struct_ov6_02246254.h"
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
@@ -64,7 +64,7 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     NNSFndHeapHandle unk_50;
     DWCInetControl unk_54;
     UnkStruct_020067E8 * unk_B4;
-    UnkStruct_02098D38 unk_B8;
+    PokemonSummary unk_B8;
     UnkStruct_ov6_02246254 unk_E8;
     UnkStruct_0207AE68 * unk_100;
     int unk_104;

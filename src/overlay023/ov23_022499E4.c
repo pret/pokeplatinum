@@ -78,7 +78,7 @@ void ov23_022499E8 (UnkStruct_0203CDB0 * param0)
     v0 = sub_0205964C();
     Heap_Create(3, 33, 0xe800);
 
-    if (!sub_0206ADDC(sub_020507E4(v0->unk_18->unk_0C))) {
+    if (!sub_0206ADDC(SaveData_Events(v0->unk_18->unk_0C))) {
         sub_02036894();
     }
 }
@@ -270,7 +270,7 @@ static void ov23_02249C34 (void)
     ov23_02243AF0();
     ov23_0224C21C();
 
-    if (!sub_0206ADDC(sub_020507E4(v0->unk_18->unk_0C))) {
+    if (!sub_0206ADDC(SaveData_Events(v0->unk_18->unk_0C))) {
         ov23_02249C24(ov23_02249C98, 0);
     } else {
         sub_02059524();
@@ -282,7 +282,7 @@ static void ov23_02249C98 (void)
 {
     UnkStruct_0205964C * v0 = sub_0205964C();
 
-    if (!sub_0206ADDC(sub_020507E4(v0->unk_18->unk_0C))) {
+    if (!sub_0206ADDC(SaveData_Events(v0->unk_18->unk_0C))) {
         return;
     }
 

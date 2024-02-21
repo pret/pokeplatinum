@@ -19,12 +19,12 @@
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0201D738.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0202818C.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0207AE68_t.h"
 #include "struct_defs/struct_0207C894.h"
-#include "struct_defs/struct_02098D38.h"
+#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
@@ -66,9 +66,9 @@
 #include "unk_0207AE68.h"
 #include "unk_0207C63C.h"
 #include "unk_0207D3B8.h"
-#include "unk_0208C324.h"
+#include "pokemon_summary_app.h"
 
-UnkStruct_0207AE68 * sub_0207AE68(Party * param0, Pokemon * param1, int param2, AnimationControlFlags * param3, int param4, PokedexData * param5, UnkStruct_0207D3C0 * param6, UnkStruct_0202CD88 * param7, UnkStruct_02056B24 * param8, int param9, int param10, int param11);
+UnkStruct_0207AE68 * sub_0207AE68(Party * param0, Pokemon * param1, int param2, Options * param3, int param4, PokedexData * param5, UnkStruct_0207D3C0 * param6, UnkStruct_0202CD88 * param7, UnkStruct_02056B24 * param8, int param9, int param10, int param11);
 static void sub_0207B0A0(SysTask * param0, void * param1);
 BOOL sub_0207B0D0(UnkStruct_0207AE68 * param0);
 void sub_0207B0E0(UnkStruct_0207AE68 * param0);
@@ -98,7 +98,7 @@ static const u8 Unk_020F0A2C[] = {
     0x8
 };
 
-UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon * param1, int param2, AnimationControlFlags * param3, int param4, PokedexData * param5, UnkStruct_0207D3C0 * param6, UnkStruct_0202CD88 * param7, UnkStruct_02056B24 * param8, int param9, int param10, int param11)
+UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon * param1, int param2, Options * param3, int param4, PokedexData * param5, UnkStruct_0207D3C0 * param6, UnkStruct_0202CD88 * param7, UnkStruct_02056B24 * param8, int param9, int param10, int param11)
 {
     UnkStruct_0207AE68 * v0;
     ArchivedSprite v1;
@@ -149,11 +149,11 @@ UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon * param1, int param2,
     v0->unk_08 = MessageLoader_Init(1, 26, 368, param11);
     v0->unk_0C = sub_0200B358(param11);
     v0->unk_10 = Strbuf_Init((2 * 160), param11);
-    v0->unk_3C = Heap_AllocFromHeap(param11, sizeof(UnkStruct_02098D38));
+    v0->unk_3C = Heap_AllocFromHeap(param11, sizeof(PokemonSummary));
 
-    MI_CpuClearFast(v0->unk_3C, sizeof(UnkStruct_02098D38));
+    MI_CpuClearFast(v0->unk_3C, sizeof(PokemonSummary));
 
-    v0->unk_3C->unk_2C = param4;
+    v0->unk_3C->contest = param4;
     v0->unk_48 = param5;
     v0->unk_4C = param6;
     v0->unk_50 = param7;
@@ -508,15 +508,15 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
             sub_0207C460(param0->unk_00);
             sub_02007DEC(param0->unk_1C[0], 6, 1);
             sub_02007DEC(param0->unk_1C[1], 6, 1);
-            param0->unk_3C->unk_00 = param0->unk_28;
-            param0->unk_3C->unk_04 = param0->unk_2C;
-            param0->unk_3C->unk_11 = 0;
-            param0->unk_3C->unk_14 = 0;
-            param0->unk_3C->unk_13 = 1;
-            param0->unk_3C->unk_18 = param0->unk_6C;
-            param0->unk_3C->unk_12 = 2;
-            param0->unk_3C->unk_28 = NULL;
-            sub_0208D720(param0->unk_3C, Unk_020F0A2C);
+            param0->unk_3C->monData = param0->unk_28;
+            param0->unk_3C->options = param0->unk_2C;
+            param0->unk_3C->dataType = 0;
+            param0->unk_3C->pos = 0;
+            param0->unk_3C->max = 1;
+            param0->unk_3C->move = param0->unk_6C;
+            param0->unk_3C->mode = 2;
+            param0->unk_3C->chatotCry = NULL;
+            PokemonSummary_FlagVisiblePages(param0->unk_3C, Unk_020F0A2C);
             sub_0207C624(param0);
             param0->unk_64++;
         }
@@ -541,10 +541,10 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
         sub_0200F338(1);
 
         if (sub_0200384C(param0->unk_14) == 0) {
-            if (param0->unk_3C->unk_16 == 4) {
+            if (param0->unk_3C->selectedSlot == 4) {
                 param0->unk_64 = 32;
             } else {
-                param0->unk_6E = param0->unk_3C->unk_16;
+                param0->unk_6E = param0->unk_3C->selectedSlot;
                 param0->unk_64 = 25;
             }
         }

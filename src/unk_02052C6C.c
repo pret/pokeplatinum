@@ -10,7 +10,7 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_0203E234.h"
@@ -191,7 +191,7 @@ void sub_02052E58 (UnkStruct_020508D4 * param0)
 
     v0 = sub_02050A60(param0);
     v5 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0205300C));
-    v3 = sub_020507E4(v0->unk_0C);
+    v3 = SaveData_Events(v0->unk_0C);
     v4 = sub_02025E38(v0->unk_0C);
     v1 = sub_0203A730(sub_0203A790(v0->unk_0C));
     v2 = sub_0203A72C(sub_0203A790(v0->unk_0C));
@@ -277,7 +277,7 @@ static void sub_02052F28 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * para
 
 static void sub_02052FA8 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * param1)
 {
-    AnimationControlFlags * v0 = sub_02025E44(param0->unk_0C);
+    Options * v0 = sub_02025E44(param0->unk_0C);
 
     param1->unk_2C = MessageBank_GetNewStrbufFromNARC(26, 213, 15, 32);
 

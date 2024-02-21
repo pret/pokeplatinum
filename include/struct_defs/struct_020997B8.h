@@ -2,13 +2,13 @@
 #define POKEPLATINUM_STRUCT_020997B8_H
 
 #include "trainer_info.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "pokemon.h"
 
 typedef struct {
     Pokemon * unk_00;
     TrainerInfo * unk_04;
-    AnimationControlFlags * unk_08;
+    Options * unk_08;
     u16 * unk_0C;
     u16 unk_10;
     u16 unk_12;

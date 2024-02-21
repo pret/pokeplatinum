@@ -9,7 +9,7 @@
 
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_02098C44.h"
-#include "struct_defs/struct_02098D38.h"
+#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_0209BBA4.h"
 
 #include "heap.h"
@@ -19,7 +19,7 @@
 #include "party.h"
 #include "unk_0207A274.h"
 #include "unk_0207D3B8.h"
-#include "unk_0208C324.h"
+#include "pokemon_summary_app.h"
 #include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"
 #include "overlay104/ov104_02239C58.h"
@@ -195,22 +195,22 @@ static void ov104_02239FB0 (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * pa
         0, 1, 2, 4, 3, 5, 6, 7, 8
     };
 
-    param1->unk_AC = Heap_AllocFromHeapAtEnd(param3, sizeof(UnkStruct_02098D38));
-    MI_CpuClear8(param1->unk_AC, sizeof(UnkStruct_02098D38));
+    param1->unk_AC = Heap_AllocFromHeapAtEnd(param3, sizeof(PokemonSummary));
+    MI_CpuClear8(param1->unk_AC, sizeof(PokemonSummary));
 
-    param1->unk_AC->unk_04 = sub_02025E44(param1->unk_00);
-    param1->unk_AC->unk_00 = Party_GetFromSavedata(param1->unk_00);
-    param1->unk_AC->unk_1C = sub_0207A274(param1->unk_00);
-    param1->unk_AC->unk_2C = sub_0208C324(param1->unk_00);
-    param1->unk_AC->unk_11 = 1;
-    param1->unk_AC->unk_14 = param1->unk_9F;
-    param1->unk_AC->unk_13 = (u8)Party_GetCurrentCount(param1->unk_AC->unk_00);
-    param1->unk_AC->unk_18 = 0;
-    param1->unk_AC->unk_12 = 0;
-    param1->unk_AC->unk_20 = sub_0202D79C(param1->unk_00);
+    param1->unk_AC->options = sub_02025E44(param1->unk_00);
+    param1->unk_AC->monData = Party_GetFromSavedata(param1->unk_00);
+    param1->unk_AC->dexMode = sub_0207A274(param1->unk_00);
+    param1->unk_AC->contest = PokemonSummary_ShowContestData(param1->unk_00);
+    param1->unk_AC->dataType = 1;
+    param1->unk_AC->pos = param1->unk_9F;
+    param1->unk_AC->max = (u8)Party_GetCurrentCount(param1->unk_AC->monData);
+    param1->unk_AC->move = 0;
+    param1->unk_AC->mode = 0;
+    param1->unk_AC->ribbons = sub_0202D79C(param1->unk_00);
 
-    sub_0208D720(param1->unk_AC, v0);
-    sub_0208E9C0(param1->unk_AC, sub_02025E38(param1->unk_00));
+    PokemonSummary_FlagVisiblePages(param1->unk_AC, v0);
+    PokemonSummary_SetPlayerProfile(param1->unk_AC, sub_02025E38(param1->unk_00));
     sub_0209B988(param0, &Unk_020F410C, param1->unk_AC, 0, NULL);
 
     return;
@@ -218,7 +218,7 @@ static void ov104_02239FB0 (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * pa
 
 static void ov104_0223A090 (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * param1, UnkStruct_0203CDB0 * param2, int param3)
 {
-    param1->unk_9F = param1->unk_AC->unk_14;
+    param1->unk_9F = param1->unk_AC->pos;
     Heap_FreeToHeap(param1->unk_AC);
     param1->unk_AC = NULL;
     *param1->unk_B0 = 0;

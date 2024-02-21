@@ -25,7 +25,7 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
 #include "struct_defs/struct_02095E80_sub1.h"
-#include "struct_defs/struct_02098D38.h"
+#include "struct_defs/pokemon_summary.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay088/struct_ov88_0223C370.h"
@@ -38,7 +38,7 @@ struct UnkStruct_02095E80_t {
     UnkStruct_0203CDB0 * unk_00;
     SaveData * unk_04;
     UnkStruct_ov88_0223C370 * unk_08;
-    UnkStruct_02098D38 unk_0C;
+    PokemonSummary unk_0C;
     int unk_3C;
     UnkStruct_020067E8 * unk_40;
     int unk_44;

@@ -78,7 +78,7 @@ void sub_0206B70C (UnkStruct_0203CDB0 * param0, UnkStruct_0203D8AC * param1, int
     int v1 = 0, v2 = 0, v3 = 0;
     int v4, v5, v6;
     UnkStruct_020556C4 * v7;
-    UnkStruct_020507E4 * v8 = sub_020507E4(param0->unk_0C);
+    UnkStruct_020507E4 * v8 = SaveData_Events(param0->unk_0C);
     UnkStruct_0203A790 * v9 = sub_0203A790(param0->unk_0C);
     UnkStruct_02049FA8 * v10 = sub_0203A72C(v9);
 
@@ -159,7 +159,7 @@ static void sub_0206B878 (UnkStruct_0203CDB0 * param0, UnkStruct_0203D8AC * para
     int v3;
     UnkStruct_0206B878 * v4;
     UnkUnion_0206B878 * v5;
-    UnkStruct_020507E4 * v6 = sub_020507E4(param0->unk_0C);
+    UnkStruct_020507E4 * v6 = SaveData_Events(param0->unk_0C);
 
     FS_InitFile(&v0);
 

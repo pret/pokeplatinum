@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_defs/archived_sprite.h"
-#include "struct_defs/struct_0208D7BC.h"
+#include "struct_defs/pokemon_summary_app.h"
 #include "struct_defs/struct_02091850.h"
 #include "overlay115/struct_ov115_0226527C.h"
 
@@ -12,7 +12,7 @@
 #include "unk_02020020.h"
 #include "unk_0202419C.h"
 #include "pokemon.h"
-#include "unk_0208C324.h"
+#include "pokemon_summary_app.h"
 #include "unk_0208EA44.h"
 #include "unk_020916B4.h"
 
@@ -24,7 +24,7 @@ typedef struct {
 
 static void sub_02091850(UnkStruct_02091850 * param0);
 static void sub_020918CC(VecFx16 * param0, VecFx16 * param1);
-static void sub_020918EC(UnkStruct_0208D7BC * param0);
+static void sub_020918EC(PokemonSummaryApp * param0);
 static void sub_02091B78(const UnkStruct_02091B78 * param0, VecFx16 * param1, u8 param2);
 static void sub_02091BD4(VecFx16 * param0, VecFx16 * param1, VecFx16 * param2);
 
@@ -119,7 +119,7 @@ static const UnkStruct_02091B78 Unk_020F4FFC[][4] = {
     }
 };
 
-void sub_020916B4 (UnkStruct_0208D7BC * param0)
+void sub_020916B4 (PokemonSummaryApp * param0)
 {
     NNS_G3dInit();
 
@@ -140,9 +140,9 @@ void sub_020916B4 (UnkStruct_0208D7BC * param0)
     G2_SetBG0Priority(2);
 }
 
-void sub_02091750 (UnkStruct_0208D7BC * param0)
+void sub_02091750 (PokemonSummaryApp * param0)
 {
-    if (param0->unk_6A4 == 4) {
+    if (param0->page == 4) {
         sub_020241B4();
         sub_020203EC();
 
@@ -158,32 +158,32 @@ void sub_02091750 (UnkStruct_0208D7BC * param0)
     }
 
     NNS_G2dSetupSoftwareSpriteCamera();
-    sub_02007768(param0->unk_2B4.unk_04);
+    sub_02007768(param0->monSpriteData.spriteManager);
 
     G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 }
 
-void sub_020917B0 (UnkStruct_0208D7BC * param0)
+void sub_020917B0 (PokemonSummaryApp * param0)
 {
-    sub_020203B8(param0->unk_2B4.unk_00);
-    sub_02016114(param0->unk_2B4.unk_30, 0);
-    sub_02015FB8(param0->unk_2B4.unk_30);
-    sub_02007B6C(param0->unk_2B4.unk_04);
+    sub_020203B8(param0->monSpriteData.unk_00);
+    sub_02016114(param0->monSpriteData.animationSys, 0);
+    sub_02015FB8(param0->monSpriteData.animationSys);
+    sub_02007B6C(param0->monSpriteData.spriteManager);
 }
 
-void sub_020917E0 (UnkStruct_0208D7BC * param0)
+void sub_020917E0 (PokemonSummaryApp * param0)
 {
     VecFx32 v0 = {0, 0, 0x10000};
     UnkStruct_ov115_0226527C v1 = {0, 0, 0};
     fx32 v2 = 0x10000;
     u16 v3 = 0x5c1;
 
-    param0->unk_2B4.unk_00 = sub_020203AC(19);
+    param0->monSpriteData.unk_00 = sub_020203AC(19);
 
-    sub_02020738(&v0, v2, &v1, v3, 1, param0->unk_2B4.unk_00);
-    sub_020206BC(0, FX32_CONST(100), param0->unk_2B4.unk_00);
-    sub_020206B0(param0->unk_2B4.unk_00);
-    sub_020203D4(param0->unk_2B4.unk_00);
+    sub_02020738(&v0, v2, &v1, v3, 1, param0->monSpriteData.unk_00);
+    sub_020206BC(0, FX32_CONST(100), param0->monSpriteData.unk_00);
+    sub_020206B0(param0->monSpriteData.unk_00);
+    sub_020203D4(param0->monSpriteData.unk_00);
 }
 
 static void sub_02091850 (UnkStruct_02091850 * param0)
@@ -216,7 +216,7 @@ static void sub_020918CC (VecFx16 * param0, VecFx16 * param1)
     param0->z += param1->z;
 }
 
-static void sub_020918EC (UnkStruct_0208D7BC * param0)
+static void sub_020918EC (PokemonSummaryApp * param0)
 {
     u32 v0;
 
@@ -247,11 +247,11 @@ static void sub_020918EC (UnkStruct_0208D7BC * param0)
     }
 }
 
-void sub_020919E8 (UnkStruct_0208D7BC * param0)
+void sub_020919E8 (PokemonSummaryApp * param0)
 {
     u32 v0;
 
-    if (param0->unk_6A4 != 4) {
+    if (param0->page != 4) {
         return;
     }
 
@@ -298,29 +298,29 @@ static void sub_02091BD4 (VecFx16 * param0, VecFx16 * param1, VecFx16 * param2)
     param2->z = FX_F32_TO_FX16(FX_FX16_TO_F32(param1->z - param0->z) / 4);
 }
 
-void sub_02091D50 (UnkStruct_0208D7BC * param0)
+void sub_02091D50 (PokemonSummaryApp * param0)
 {
     u32 v0;
 
-    sub_02091B78(&Unk_020F4FFC[0][0], &param0->unk_3B0[0].unk_00, param0->unk_250.unk_45);
-    sub_02091B78(&Unk_020F4FFC[0][1], &param0->unk_3B0[0].unk_06, param0->unk_250.unk_46);
-    sub_02091B78(&Unk_020F4FFC[0][2], &param0->unk_3B0[0].unk_12, param0->unk_250.unk_47);
+    sub_02091B78(&Unk_020F4FFC[0][0], &param0->unk_3B0[0].unk_00, param0->monData.cool);
+    sub_02091B78(&Unk_020F4FFC[0][1], &param0->unk_3B0[0].unk_06, param0->monData.beauty);
+    sub_02091B78(&Unk_020F4FFC[0][2], &param0->unk_3B0[0].unk_12, param0->monData.cute);
     sub_02091B78(&Unk_020F4FFC[0][3], &param0->unk_3B0[0].unk_0C, 0);
 
-    sub_02091B78(&Unk_020F4FFC[1][0], &param0->unk_3B0[1].unk_00, param0->unk_250.unk_49);
-    sub_02091B78(&Unk_020F4FFC[1][1], &param0->unk_3B0[1].unk_06, param0->unk_250.unk_45);
+    sub_02091B78(&Unk_020F4FFC[1][0], &param0->unk_3B0[1].unk_00, param0->monData.tough);
+    sub_02091B78(&Unk_020F4FFC[1][1], &param0->unk_3B0[1].unk_06, param0->monData.cool);
     sub_02091B78(&Unk_020F4FFC[1][2], &param0->unk_3B0[1].unk_12, 0);
-    sub_02091B78(&Unk_020F4FFC[1][3], &param0->unk_3B0[1].unk_0C, param0->unk_250.unk_48);
+    sub_02091B78(&Unk_020F4FFC[1][3], &param0->unk_3B0[1].unk_0C, param0->monData.smart);
 
-    sub_02091B78(&Unk_020F4FFC[2][0], &param0->unk_3B0[2].unk_00, param0->unk_250.unk_49);
+    sub_02091B78(&Unk_020F4FFC[2][0], &param0->unk_3B0[2].unk_00, param0->monData.tough);
     sub_02091B78(&Unk_020F4FFC[2][1], &param0->unk_3B0[2].unk_06, 0);
-    sub_02091B78(&Unk_020F4FFC[2][2], &param0->unk_3B0[2].unk_12, param0->unk_250.unk_47);
-    sub_02091B78(&Unk_020F4FFC[2][3], &param0->unk_3B0[2].unk_0C, param0->unk_250.unk_48);
+    sub_02091B78(&Unk_020F4FFC[2][2], &param0->unk_3B0[2].unk_12, param0->monData.cute);
+    sub_02091B78(&Unk_020F4FFC[2][3], &param0->unk_3B0[2].unk_0C, param0->monData.smart);
 
     sub_02091B78(&Unk_020F4FFC[3][0], &param0->unk_3B0[3].unk_00, 0);
-    sub_02091B78(&Unk_020F4FFC[3][1], &param0->unk_3B0[3].unk_06, param0->unk_250.unk_46);
-    sub_02091B78(&Unk_020F4FFC[3][2], &param0->unk_3B0[3].unk_12, param0->unk_250.unk_47);
-    sub_02091B78(&Unk_020F4FFC[3][3], &param0->unk_3B0[3].unk_0C, param0->unk_250.unk_48);
+    sub_02091B78(&Unk_020F4FFC[3][1], &param0->unk_3B0[3].unk_06, param0->monData.beauty);
+    sub_02091B78(&Unk_020F4FFC[3][2], &param0->unk_3B0[3].unk_12, param0->monData.cute);
+    sub_02091B78(&Unk_020F4FFC[3][3], &param0->unk_3B0[3].unk_0C, param0->monData.smart);
 
     for (v0 = 0; v0 < 4; v0++) {
         sub_02091BD4(&param0->unk_2F0[v0].unk_00, &param0->unk_3B0[v0].unk_00, &param0->unk_350[v0].unk_00);
@@ -332,43 +332,43 @@ void sub_02091D50 (UnkStruct_0208D7BC * param0)
     param0->unk_410 = 0;
 }
 
-void sub_02091F8C (UnkStruct_0208D7BC * param0)
+void sub_02091F8C (PokemonSummaryApp * param0)
 {
     ArchivedSprite v0;
     void * v1;
 
-    param0->unk_2B4.unk_04 = sub_0200762C(19);
+    param0->monSpriteData.spriteManager = sub_0200762C(19);
 
-    v1 = sub_0208DD48(param0);
+    v1 = PokemonSummary_MonData(param0);
 
-    if (param0->unk_24C->unk_11 == 2) {
+    if (param0->data->dataType == 2) {
         BoxPokemon_BuildArchivedSprite(&v0, v1, 2, 0);
     } else {
         Pokemon_BuildArchivedSprite(&v0, v1, 2);
     }
 
-    PokeSprite_LoadAnimationFrames(param0->unk_6A0, param0->unk_2B4.unk_08, param0->unk_250.unk_0C, 1);
+    PokeSprite_LoadAnimationFrames(param0->narcPlPokeData, param0->monSpriteData.frames, param0->monData.species, 1);
 
-    param0->unk_2B4.unk_38 = PokemonPersonalData_GetFormValue(param0->unk_250.unk_0C, param0->unk_250.unk_4E, 28) ^ 1;
-    param0->unk_2B4.unk_34 = sub_02007C34(param0->unk_2B4.unk_04, &v0, 52, 104, 0, 0, param0->unk_2B4.unk_08, NULL);
+    param0->monSpriteData.flip = PokemonPersonalData_GetFormValue(param0->monData.species, param0->monData.form, 28) ^ 1;
+    param0->monSpriteData.sprite = sub_02007C34(param0->monSpriteData.spriteManager, &v0, 52, 104, 0, 0, param0->monSpriteData.frames, NULL);
 
-    sub_02007DEC(param0->unk_2B4.unk_34, 35, param0->unk_2B4.unk_38);
+    sub_02007DEC(param0->monSpriteData.sprite, 35, param0->monSpriteData.flip);
 }
 
-void sub_02092028 (UnkStruct_0208D7BC * param0)
+void sub_02092028 (PokemonSummaryApp * param0)
 {
-    if (param0->unk_250.unk_50_28 != 0) {
-        PokeSprite_LoadAnimation(param0->unk_6A0, param0->unk_2B4.unk_30, param0->unk_2B4.unk_34, 0, 2, param0->unk_2B4.unk_38, 0);
+    if (param0->monData.isEgg != 0) {
+        PokeSprite_LoadAnimation(param0->narcPlPokeData, param0->monSpriteData.animationSys, param0->monSpriteData.sprite, 0, 2, param0->monSpriteData.flip, 0);
     } else {
-        sub_02007B98(param0->unk_2B4.unk_34, 1);
-        PokeSprite_LoadAnimation(param0->unk_6A0, param0->unk_2B4.unk_30, param0->unk_2B4.unk_34, param0->unk_250.unk_0C, 2, param0->unk_2B4.unk_38, 0);
+        sub_02007B98(param0->monSpriteData.sprite, 1);
+        PokeSprite_LoadAnimation(param0->narcPlPokeData, param0->monSpriteData.animationSys, param0->monSpriteData.sprite, param0->monData.species, 2, param0->monSpriteData.flip, 0);
     }
 }
 
-void sub_02092098 (UnkStruct_0208D7BC * param0)
+void sub_02092098 (PokemonSummaryApp * param0)
 {
-    sub_02016114(param0->unk_2B4.unk_30, 0);
-    sub_02007B6C(param0->unk_2B4.unk_04);
+    sub_02016114(param0->monSpriteData.animationSys, 0);
+    sub_02007B6C(param0->monSpriteData.spriteManager);
     sub_02091F8C(param0);
     sub_02092028(param0);
 }

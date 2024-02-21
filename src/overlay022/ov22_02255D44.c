@@ -16,7 +16,7 @@
 
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0203DA00.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02093BBC.h"
@@ -110,7 +110,7 @@ typedef struct {
     int unk_72C;
     int unk_730;
     UnkStruct_02095C60 * unk_734;
-    const AnimationControlFlags * unk_738;
+    const Options * unk_738;
     u32 unk_73C;
     Strbuf* unk_740;
     StringFormatter * unk_744;
@@ -155,8 +155,8 @@ static void ov22_02256B04(UnkStruct_ov22_02259C58 * param0, void * param1);
 static void ov22_02256B24(UnkStruct_ov22_02259C58 * param0, void * param1);
 static void ov22_02256B44(UnkStruct_ov22_02259C58 * param0, void * param1);
 static void ov22_02256B78(UnkStruct_ov22_02259C58 * param0, void * param1);
-static void ov22_02256BAC(UnkStruct_ov22_02255D44 * param0, const AnimationControlFlags * param1);
-static void ov22_02256BF4(UnkStruct_ov22_02255D44 * param0, int param1, int param2, UnkStruct_02095C60 * param3, const AnimationControlFlags * param4);
+static void ov22_02256BAC(UnkStruct_ov22_02255D44 * param0, const Options * param1);
+static void ov22_02256BF4(UnkStruct_ov22_02255D44 * param0, int param1, int param2, UnkStruct_02095C60 * param3, const Options * param4);
 static void ov22_02256C38(UnkStruct_ov22_02255D44 * param0);
 static void ov22_02256C48(UnkStruct_ov22_02255D44 * param0, BOOL * param1);
 static void ov22_02256C70(SysTask * param0, void * param1);
@@ -935,7 +935,7 @@ static void ov22_02256B78 (UnkStruct_ov22_02259C58 * param0, void * param1)
     }
 }
 
-static void ov22_02256BAC (UnkStruct_ov22_02255D44 * param0, const AnimationControlFlags * param1)
+static void ov22_02256BAC (UnkStruct_ov22_02255D44 * param0, const Options * param1)
 {
     UnkStruct_ov22_02256BAC v0;
 
@@ -951,7 +951,7 @@ static void ov22_02256BAC (UnkStruct_ov22_02255D44 * param0, const AnimationCont
     ov22_0225A428(&param0->unk_5C4, &v0, (1 | 2 | 4 | 8));
 }
 
-static void ov22_02256BF4 (UnkStruct_ov22_02255D44 * param0, int param1, int param2, UnkStruct_02095C60 * param3, const AnimationControlFlags * param4)
+static void ov22_02256BF4 (UnkStruct_ov22_02255D44 * param0, int param1, int param2, UnkStruct_02095C60 * param3, const Options * param4)
 {
     UnkStruct_ov22_02256BAC v0;
     BOOL v1;

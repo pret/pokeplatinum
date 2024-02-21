@@ -2,12 +2,12 @@
 #define POKEPLATINUM_UNK_02003B60_H
 
 #include "struct_decls/struct_02003D54_decl.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/chatot_cry.h"
 
 #include <nnsys.h>
 
-void sub_02003B60(ChatotCry * param0, AnimationControlFlags * param1);
+void sub_02003B60(ChatotCry * param0, Options * param1);
 void UpdateSound(void);
 void sub_02003D0C(int param0);
 UnkStruct_02003D54 * sub_02003D54(void);

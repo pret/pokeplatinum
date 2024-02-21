@@ -17,7 +17,7 @@
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "pokemon.h"
@@ -201,7 +201,7 @@ u8 ov16_0223ED60(BattleSystem * param0);
 u8 ov16_0223ED6C(BattleSystem * param0);
 int BattleSystem_NumSafariBalls(BattleSystem * param0);
 void BattleSystem_SetSafariBalls(BattleSystem * param0, int param1);
-AnimationControlFlags * ov16_0223EDA4(BattleSystem * param0);
+Options * ov16_0223EDA4(BattleSystem * param0);
 
 /**
  * @brief Check if battle animations are turned on.

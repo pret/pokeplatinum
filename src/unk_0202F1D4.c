@@ -573,10 +573,10 @@ void sub_0202FAFC (BattleParams * param0, SaveData * param1)
     }
 
     sub_02027A10(sub_02025E44(param1), param0->unk_108);
-    param0->unk_108->unk_02_2 = v1->unk_1BE8.unk_02_2;
+    param0->unk_108->frame = v1->unk_1BE8.frame;
 
-    if (param0->unk_108->unk_02_2 >= 20) {
-        param0->unk_108->unk_02_2 = 0;
+    if (param0->unk_108->frame >= 20) {
+        param0->unk_108->frame = 0;
     }
 }
 

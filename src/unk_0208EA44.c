@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02022550_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"
-#include "struct_defs/struct_0208D7BC.h"
+#include "struct_defs/pokemon_summary_app.h"
 #include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay007/struct_ov7_0224F358.h"
 #include "overlay104/struct_ov104_022412F4.h"
@@ -19,13 +19,13 @@
 #include "move_table.h"
 #include "pokemon_icon.h"
 #include "unk_0207C908.h"
-#include "unk_0208C324.h"
+#include "pokemon_summary_app.h"
 #include "unk_0208EA44.h"
 #include "unk_020920C0.h"
 #include "unk_020923C0.h"
 
-static void sub_0208F194(UnkStruct_0208D7BC * param0, u8 param1, u8 param2, u8 param3);
-static void sub_0208EF0C(UnkStruct_0208D7BC * param0);
+static void sub_0208F194(PokemonSummaryApp * param0, u8 param1, u8 param2, u8 param3);
+static void sub_0208EF0C(PokemonSummaryApp * param0);
 static void sub_0208FC30(GraphicElementData * param0, u32 param1, u32 param2, const s16 * param3);
 
 static const UnkStruct_ov7_0224F358 Unk_020F41A8[] = {
@@ -128,14 +128,14 @@ static const u8 Unk_020F411C[] = {
     0x0
 };
 
-void sub_0208EA44 (UnkStruct_0208D7BC * param0)
+void sub_0208EA44 (PokemonSummaryApp * param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_0201DBEC(32, 19);
 
-    param0->unk_414 = sub_0200C6E4(19);
-    param0->unk_418 = sub_0200C704(param0->unk_414);
+    param0->renderer = sub_0200C6E4(19);
+    param0->gfxHandler = sub_0200C704(param0->renderer);
 
     {
         UnkStruct_ov104_0224133C v0 = {
@@ -156,8 +156,8 @@ void sub_0208EA44 (UnkStruct_0208D7BC * param0)
             GX_OBJVRAMMODE_CHAR_1D_32K
         };
 
-        sub_0200C73C(param0->unk_414, &v0, &v1, 32);
-        sub_0200C7C0(param0->unk_414, param0->unk_418, 77);
+        sub_0200C73C(param0->renderer, &v0, &v1, 32);
+        sub_0200C7C0(param0->renderer, param0->gfxHandler, 77);
     }
 
     {
@@ -171,17 +171,17 @@ void sub_0208EA44 (UnkStruct_0208D7BC * param0)
             "data/pst_h.cldat"
         };
 
-        sub_0200C8F0(param0->unk_414, param0->unk_418, &v2);
+        sub_0200C8F0(param0->renderer, param0->gfxHandler, &v2);
     }
 }
 
-void sub_0208EAF4 (UnkStruct_0208D7BC * param0)
+void sub_0208EAF4 (PokemonSummaryApp * param0)
 {
-    sub_0200C8B0(param0->unk_414, param0->unk_418);
-    sub_0200C8D4(param0->unk_414);
+    sub_0200C8B0(param0->renderer, param0->gfxHandler);
+    sub_0200C8D4(param0->renderer);
 }
 
-void sub_0208EB14 (UnkStruct_0208D7BC * param0)
+void sub_0208EB14 (PokemonSummaryApp * param0)
 {
     sub_02021E2C(param0->unk_41C[21], FX32_ONE);
     sub_02021E2C(param0->unk_41C[22], FX32_ONE);
@@ -190,12 +190,12 @@ void sub_0208EB14 (UnkStruct_0208D7BC * param0)
     sub_02021E2C(param0->unk_41C[69], FX32_ONE);
 }
 
-void sub_0208EB64 (UnkStruct_0208D7BC * param0)
+void sub_0208EB64 (PokemonSummaryApp * param0)
 {
     u16 v0;
 
     for (v0 = 0; v0 < 77; v0++) {
-        param0->unk_41C[v0] = sub_0200CA08(param0->unk_414, param0->unk_418, &Unk_020F41A8[v0]);
+        param0->unk_41C[v0] = sub_0200CA08(param0->renderer, param0->gfxHandler, &Unk_020F41A8[v0]);
     }
 
     sub_0208EF0C(param0);
@@ -227,12 +227,12 @@ void sub_0208EB64 (UnkStruct_0208D7BC * param0)
     sub_02021CAC(param0->unk_41C[76], 0);
 }
 
-static u8 sub_0208ECB8 (UnkStruct_0208D7BC * param0)
+static u8 sub_0208ECB8 (PokemonSummaryApp * param0)
 {
     u8 v0, v1 = 0;
 
     for (v0 = 0; v0 < 8; v0++) {
-        if (sub_0208D790(param0, v0) != 0) {
+        if (PokemonSummary_PageIsVisble(param0, v0) != 0) {
             v1++;
         }
     }
@@ -240,7 +240,7 @@ static u8 sub_0208ECB8 (UnkStruct_0208D7BC * param0)
     return (23 * 8 + 4) - (24 + (v1 - 1) * 16) / 2;
 }
 
-void sub_0208ECF4 (UnkStruct_0208D7BC * param0)
+void sub_0208ECF4 (PokemonSummaryApp * param0)
 {
     GraphicElementData ** v0;
     s16 v1, v2;
@@ -254,14 +254,14 @@ void sub_0208ECF4 (UnkStruct_0208D7BC * param0)
     v6 = 0;
 
     for (v5 = 0; v5 < 8; v5++) {
-        if (sub_0208D790(param0, v5) == 0) {
+        if (PokemonSummary_PageIsVisble(param0, v5) == 0) {
             sub_02021CAC(v0[v5], 0);
             continue;
         }
 
         v4 = sub_02021E24(v0[v5]);
 
-        if (param0->unk_6A4 == v5) {
+        if (param0->page == v5) {
             if (v4 < 8) {
                 SpriteActor_SetSpriteAnimActive(v0[v5], v4 + 8);
             }
@@ -273,7 +273,7 @@ void sub_0208ECF4 (UnkStruct_0208D7BC * param0)
 
         sub_0200D50C(v0[v5], &v1, &v2);
 
-        if (param0->unk_6A4 >= v5) {
+        if (param0->page >= v5) {
             v1 = v3 + v6 * 16;
         } else {
             v1 = v3 + 24 + (v6 - 1) * 16;
@@ -286,11 +286,11 @@ void sub_0208ECF4 (UnkStruct_0208D7BC * param0)
     }
 }
 
-void sub_0208EDC4 (UnkStruct_0208D7BC * param0)
+void sub_0208EDC4 (PokemonSummaryApp * param0)
 {
     u8 v0;
 
-    if (sub_0208D7BC(param0) <= 1) {
+    if (PokemonSummary_CountVisiblePages(param0) <= 1) {
         sub_0208EE10(param0, 0);
     }
 
@@ -300,9 +300,9 @@ void sub_0208EDC4 (UnkStruct_0208D7BC * param0)
     SpriteActor_SetPositionXY(param0->unk_41C[22], (23 * 8 + 4) + ((23 * 8 + 4) - v0) + -4, 24);
 }
 
-void sub_0208EE10 (UnkStruct_0208D7BC * param0, u8 param1)
+void sub_0208EE10 (PokemonSummaryApp * param0, u8 param1)
 {
-    if (sub_0208D7BC(param0) <= 1) {
+    if (PokemonSummary_CountVisiblePages(param0) <= 1) {
         param1 = 0;
     }
 
@@ -310,53 +310,53 @@ void sub_0208EE10 (UnkStruct_0208D7BC * param0, u8 param1)
     sub_02021CAC(param0->unk_41C[22], param1);
 }
 
-void sub_0208EE3C (UnkStruct_0208D7BC * param0)
+void sub_0208EE3C (PokemonSummaryApp * param0)
 {
     u32 v0;
 
-    if (param0->unk_250.unk_13_2 == 0) {
+    if (param0->monData.caughtBall == 0) {
         v0 = 21;
     } else {
-        v0 = 21 + param0->unk_250.unk_13_2 - 1;
+        v0 = 21 + param0->monData.caughtBall - 1;
     }
 
-    sub_0200D948(param0->unk_414, param0->unk_418, 39, v0, 0, 0);
-    sub_0200D97C(param0->unk_414, param0->unk_418, 39, 37 + Unk_020F411C[param0->unk_250.unk_13_2], 0, 6);
+    sub_0200D948(param0->renderer, param0->gfxHandler, 39, v0, 0, 0);
+    sub_0200D97C(param0->renderer, param0->gfxHandler, 39, 37 + Unk_020F411C[param0->monData.caughtBall], 0, 6);
 }
 
-void sub_0208EE9C (UnkStruct_0208D7BC * param0)
+void sub_0208EE9C (PokemonSummaryApp * param0)
 {
-    if (param0->unk_250.unk_50_0 == 7) {
+    if (param0->monData.status == 7) {
         sub_02021CAC(param0->unk_41C[20], 0);
         sub_02021CAC(param0->unk_41C[76], 0);
-    } else if (param0->unk_250.unk_50_0 != 0) {
+    } else if (param0->monData.status != 0) {
         sub_02021CAC(param0->unk_41C[76], 0);
         sub_02021CAC(param0->unk_41C[20], 1);
-        SpriteActor_SetSpriteAnimActive(param0->unk_41C[20], param0->unk_250.unk_50_0);
+        SpriteActor_SetSpriteAnimActive(param0->unk_41C[20], param0->monData.status);
     } else {
         sub_02021CAC(param0->unk_41C[76], 1);
         sub_02021CAC(param0->unk_41C[20], 0);
     }
 }
 
-static void sub_0208EF0C (UnkStruct_0208D7BC * param0)
+static void sub_0208EF0C (PokemonSummaryApp * param0)
 {
     u16 v0;
 
     sub_0208F16C(param0);
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param0->unk_250.unk_34[v0] == 0) {
+        if (param0->monData.moves[v0] == 0) {
             continue;
         }
 
-        sub_0208F194(param0, 13 + v0, 5 + v0, MoveTable_LoadParam(param0->unk_250.unk_34[v0], MOVEATTRIBUTE_TYPE));
+        sub_0208F194(param0, 13 + v0, 5 + v0, MoveTable_LoadParam(param0->monData.moves[v0], MOVEATTRIBUTE_TYPE));
     }
 
     sub_0208F71C(param0);
 }
 
-void sub_0208EF58 (UnkStruct_0208D7BC * param0)
+void sub_0208EF58 (PokemonSummaryApp * param0)
 {
     u16 v0;
 
@@ -364,11 +364,11 @@ void sub_0208EF58 (UnkStruct_0208D7BC * param0)
         SpriteActor_DrawSprite(param0->unk_41C[v0], 0);
     }
 
-    switch (param0->unk_6A4) {
+    switch (param0->page) {
     case 0:
         SpriteActor_DrawSprite(param0->unk_41C[11], 1);
 
-        if (param0->unk_250.unk_10 == param0->unk_250.unk_11) {
+        if (param0->monData.type1 == param0->monData.type2) {
             SpriteActor_SetPositionXY(param0->unk_41C[11], 216, 80);
         } else {
             SpriteActor_SetPositionXY(param0->unk_41C[11], 199, 80);
@@ -379,17 +379,17 @@ void sub_0208EF58 (UnkStruct_0208D7BC * param0)
         break;
     case 3:
         for (v0 = 0; v0 < 4; v0++) {
-            if (param0->unk_250.unk_34[v0] == 0) {
+            if (param0->monData.moves[v0] == 0) {
                 continue;
             }
 
-            sub_0208F194(param0, 13 + v0, 5 + v0, MoveTable_LoadParam(param0->unk_250.unk_34[v0], MOVEATTRIBUTE_TYPE));
+            sub_0208F194(param0, 13 + v0, 5 + v0, MoveTable_LoadParam(param0->monData.moves[v0], MOVEATTRIBUTE_TYPE));
             SpriteActor_DrawSprite(param0->unk_41C[13 + v0], 1);
             SpriteActor_SetPositionXY(param0->unk_41C[13 + v0], 151, 42 + v0 * 32);
         }
 
-        if (param0->unk_24C->unk_18 != 0) {
-            sub_0208F194(param0, 13 + 4, 5 + 4, MoveTable_LoadParam(param0->unk_24C->unk_18, MOVEATTRIBUTE_TYPE));
+        if (param0->data->move != 0) {
+            sub_0208F194(param0, 13 + 4, 5 + 4, MoveTable_LoadParam(param0->data->move, MOVEATTRIBUTE_TYPE));
             SpriteActor_DrawSprite(param0->unk_41C[13 + 4], 1);
             SpriteActor_SetPositionXY(param0->unk_41C[13 + 4], 151, 42 + 4 * 32);
         }
@@ -400,17 +400,17 @@ void sub_0208EF58 (UnkStruct_0208D7BC * param0)
         break;
     case 5:
         for (v0 = 0; v0 < 4; v0++) {
-            if (param0->unk_250.unk_34[v0] == 0) {
+            if (param0->monData.moves[v0] == 0) {
                 continue;
             }
 
-            sub_0208F194(param0, 13 + v0, 5 + v0, MoveTable_LoadParam(param0->unk_250.unk_34[v0], MOVEATTRIBUTE_CONTEST_TYPE) + 18);
+            sub_0208F194(param0, 13 + v0, 5 + v0, MoveTable_LoadParam(param0->monData.moves[v0], MOVEATTRIBUTE_CONTEST_TYPE) + 18);
             SpriteActor_DrawSprite(param0->unk_41C[13 + v0], 1);
             SpriteActor_SetPositionXY(param0->unk_41C[13 + v0], 151, 42 + v0 * 32);
         }
 
-        if (param0->unk_24C->unk_18 != 0) {
-            sub_0208F194(param0, 13 + 4, 5 + 4, MoveTable_LoadParam(param0->unk_24C->unk_18, MOVEATTRIBUTE_CONTEST_TYPE) + 18);
+        if (param0->data->move != 0) {
+            sub_0208F194(param0, 13 + 4, 5 + 4, MoveTable_LoadParam(param0->data->move, MOVEATTRIBUTE_CONTEST_TYPE) + 18);
             SpriteActor_DrawSprite(param0->unk_41C[13 + 4], 1);
             SpriteActor_SetPositionXY(param0->unk_41C[13 + 4], 151, 42 + 4 * 32);
         }
@@ -422,19 +422,19 @@ void sub_0208EF58 (UnkStruct_0208D7BC * param0)
     }
 }
 
-void sub_0208F16C (UnkStruct_0208D7BC * param0)
+void sub_0208F16C (PokemonSummaryApp * param0)
 {
-    sub_0208F194(param0, 11, 3, param0->unk_250.unk_10);
-    sub_0208F194(param0, 12, 4, param0->unk_250.unk_11);
+    sub_0208F194(param0, 11, 3, param0->monData.type1);
+    sub_0208F194(param0, 12, 4, param0->monData.type2);
 }
 
-static void sub_0208F194 (UnkStruct_0208D7BC * param0, u8 param1, u8 param2, u8 param3)
+static void sub_0208F194 (PokemonSummaryApp * param0, u8 param1, u8 param2, u8 param3)
 {
-    sub_0200D948(param0->unk_414, param0->unk_418, sub_0207C944(), sub_0207C908(param3), 1, param2);
+    sub_0200D948(param0->renderer, param0->gfxHandler, sub_0207C944(), sub_0207C908(param3), 1, param2);
     sub_0200D414(param0->unk_41C[param1], sub_0207C92C(param3) + 3);
 }
 
-static void sub_0208F1E4 (UnkStruct_0208D7BC * param0, u8 * param1, s16 * param2, s16 * param3)
+static void sub_0208F1E4 (PokemonSummaryApp * param0, u8 * param1, s16 * param2, s16 * param3)
 {
     s16 v0, v1;
 
@@ -450,7 +450,7 @@ static void sub_0208F1E4 (UnkStruct_0208D7BC * param0, u8 * param1, s16 * param2
     }
 }
 
-void sub_0208F22C (UnkStruct_0208D7BC * param0, u8 param1, u8 param2)
+void sub_0208F22C (PokemonSummaryApp * param0, u8 param1, u8 param2)
 {
     s16 v0, v1, v2, v3;
 
@@ -461,20 +461,20 @@ void sub_0208F22C (UnkStruct_0208D7BC * param0, u8 param1, u8 param2)
     SpriteActor_SetPositionXY(param0->unk_41C[13 + param2], v0, v1);
 }
 
-void sub_0208F294 (UnkStruct_0208D7BC * param0, u32 param1)
+void sub_0208F294 (PokemonSummaryApp * param0, u32 param1)
 {
     u32 v0 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CLASS);
 
-    sub_0200D948(param0->unk_414, param0->unk_418, sub_0207CAC0(), sub_0207CA90(v0), 1, 10);
+    sub_0200D948(param0->renderer, param0->gfxHandler, sub_0207CAC0(), sub_0207CA90(v0), 1, 10);
     sub_0200D414(param0->unk_41C[18], sub_0207CAA8(v0) + 3);
 }
 
-void sub_0208F2E8 (UnkStruct_0208D7BC * param0)
+void sub_0208F2E8 (PokemonSummaryApp * param0)
 {
-    SpriteActor_SetPositionXY(param0->unk_41C[9], 194, 48 + param0->unk_6A5_0 * 32);
+    SpriteActor_SetPositionXY(param0->unk_41C[9], 194, 48 + param0->cursor * 32);
 }
 
-void sub_0208F310 (UnkStruct_0208D7BC * param0)
+void sub_0208F310 (PokemonSummaryApp * param0)
 {
     s16 v0, v1;
 
@@ -483,20 +483,20 @@ void sub_0208F310 (UnkStruct_0208D7BC * param0)
     sub_02021CAC(param0->unk_41C[10], 1);
 }
 
-void sub_0208F34C (UnkStruct_0208D7BC * param0)
+void sub_0208F34C (PokemonSummaryApp * param0)
 {
     u32 v0;
 
-    param0->unk_6A8 = 0;
-    param0->unk_6AB = 0;
-    param0->unk_6AA = 0;
+    param0->sheenState = 0;
+    param0->sheenCount = 0;
+    param0->sheenPos = 0;
 
-    if (param0->unk_250.unk_4A == 0) {
-        param0->unk_6A9 = 0;
-    } else if (param0->unk_250.unk_4A == 255) {
-        param0->unk_6A9 = 12;
+    if (param0->monData.sheen == 0) {
+        param0->sheenMax = 0;
+    } else if (param0->monData.sheen == 255) {
+        param0->sheenMax = 12;
     } else {
-        param0->unk_6A9 = (((12 << 8) / 255) * param0->unk_250.unk_4A) >> 8;
+        param0->sheenMax = (((12 << 8) / 255) * param0->monData.sheen) >> 8;
     }
 
     for (v0 = 29; v0 <= 40; v0++) {
@@ -505,77 +505,77 @@ void sub_0208F34C (UnkStruct_0208D7BC * param0)
     }
 }
 
-void sub_0208F3B0 (UnkStruct_0208D7BC * param0)
+void sub_0208F3B0 (PokemonSummaryApp * param0)
 {
     u32 v0;
 
-    if (param0->unk_6A4 != 4) {
+    if (param0->page != 4) {
         return;
     }
 
-    if (param0->unk_6A9 == 0) {
+    if (param0->sheenMax == 0) {
         return;
     }
 
-    switch (param0->unk_6A8) {
+    switch (param0->sheenState) {
     case 0:
-        param0->unk_6AB++;
+        param0->sheenCount++;
 
-        if (param0->unk_6AB == 8) {
-            param0->unk_6A8 = 1;
-            param0->unk_6AB = 0;
-            param0->unk_6AA = 0;
+        if (param0->sheenCount == 8) {
+            param0->sheenState = 1;
+            param0->sheenCount = 0;
+            param0->sheenPos = 0;
         }
         break;
     case 1:
-        if (param0->unk_6AB == 0) {
-            sub_02021CAC(param0->unk_41C[29 + param0->unk_6AA], 1);
-            SpriteActor_SetAnimFrame(param0->unk_41C[29 + param0->unk_6AA], 0);
-            SpriteActor_SetSpriteAnimActive(param0->unk_41C[29 + param0->unk_6AA], 0);
+        if (param0->sheenCount == 0) {
+            sub_02021CAC(param0->unk_41C[29 + param0->sheenPos], 1);
+            SpriteActor_SetAnimFrame(param0->unk_41C[29 + param0->sheenPos], 0);
+            SpriteActor_SetSpriteAnimActive(param0->unk_41C[29 + param0->sheenPos], 0);
 
-            param0->unk_6AA++;
+            param0->sheenPos++;
 
-            if (param0->unk_6AA == param0->unk_6A9) {
-                param0->unk_6A8 = 2;
+            if (param0->sheenPos == param0->sheenMax) {
+                param0->sheenState = 2;
                 break;
             }
         }
 
-        param0->unk_6AB = (param0->unk_6AB + 1) % 10;
+        param0->sheenCount = (param0->sheenCount + 1) % 10;
         break;
     case 2:
-        if (sub_02021D34(param0->unk_41C[29 + param0->unk_6A9 - 1]) == 0) {
-            param0->unk_6AB = 0;
-            param0->unk_6A8 = 3;
+        if (sub_02021D34(param0->unk_41C[29 + param0->sheenMax - 1]) == 0) {
+            param0->sheenCount = 0;
+            param0->sheenState = 3;
             break;
         }
         break;
     case 3:
-        param0->unk_6AB++;
+        param0->sheenCount++;
 
-        if (param0->unk_6AB == 32) {
-            for (v0 = 29; v0 < 29 + param0->unk_6A9; v0++) {
+        if (param0->sheenCount == 32) {
+            for (v0 = 29; v0 < 29 + param0->sheenMax; v0++) {
                 sub_02021CAC(param0->unk_41C[v0], 1);
                 SpriteActor_SetAnimFrame(param0->unk_41C[v0], 0);
                 SpriteActor_SetSpriteAnimActive(param0->unk_41C[v0], 0);
             }
 
-            param0->unk_6AB = 0;
-            param0->unk_6A8 = 4;
+            param0->sheenCount = 0;
+            param0->sheenState = 4;
         }
         break;
     case 4:
-        param0->unk_6AB++;
+        param0->sheenCount++;
 
-        if (param0->unk_6AB == 32) {
-            param0->unk_6A8 = 0;
-            param0->unk_6AB = 0;
-            param0->unk_6AA = 0;
+        if (param0->sheenCount == 32) {
+            param0->sheenState = 0;
+            param0->sheenCount = 0;
+            param0->sheenPos = 0;
         }
         break;
     }
 
-    for (v0 = 29; v0 < 29 + param0->unk_6A9; v0++) {
+    for (v0 = 29; v0 < 29 + param0->sheenMax; v0++) {
         if (sub_02021D34(param0->unk_41C[v0]) == 0) {
             continue;
         }
@@ -588,32 +588,32 @@ void sub_0208F3B0 (UnkStruct_0208D7BC * param0)
     }
 }
 
-void sub_0208F574 (UnkStruct_0208D7BC * param0)
+void sub_0208F574 (PokemonSummaryApp * param0)
 {
     u32 v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (param0->unk_250.unk_4C & (1 << v0)) {
+        if (param0->monData.markings & (1 << v0)) {
             SpriteActor_SetSpriteAnimActive(param0->unk_41C[23 + v0], 1);
         } else {
             SpriteActor_SetSpriteAnimActive(param0->unk_41C[23 + v0], 0);
         }
     }
 
-    if ((param0->unk_250.unk_50_29 == 1) && (param0->unk_250.unk_50_28 == 0)) {
+    if ((param0->monData.isShiny == 1) && (param0->monData.isEgg == 0)) {
         SpriteActor_DrawSprite(param0->unk_41C[53], 1);
     } else {
         SpriteActor_DrawSprite(param0->unk_41C[53], 0);
     }
 
-    if (param0->unk_250.unk_50_30 == 2) {
+    if (param0->monData.pokerus == 2) {
         SpriteActor_DrawSprite(param0->unk_41C[54], 1);
     } else {
         SpriteActor_DrawSprite(param0->unk_41C[54], 0);
     }
 }
 
-void sub_0208F600 (UnkStruct_0208D7BC * param0)
+void sub_0208F600 (PokemonSummaryApp * param0)
 {
     s16 v0, v1;
 
@@ -623,32 +623,32 @@ void sub_0208F600 (UnkStruct_0208D7BC * param0)
 
     sub_02092368(param0, &v0, &v1);
 
-    if (param0->unk_6A7_0 == 0) {
+    if (param0->subscreenType == 0) {
         SpriteActor_SetPositionXY(param0->unk_41C[41], v0, v1 + 192);
     } else {
         SpriteActor_SetPositionXY(param0->unk_41C[41], v0 - 4, v1 + 192);
     }
 }
 
-void sub_0208F684 (UnkStruct_0208D7BC * param0)
+void sub_0208F684 (PokemonSummaryApp * param0)
 {
     if (sub_02021E74(param0->unk_41C[41]) == 2) {
         sub_02021CAC(param0->unk_41C[41], 0);
     }
 }
 
-void sub_0208F6A4 (UnkStruct_0208D7BC * param0)
+void sub_0208F6A4 (PokemonSummaryApp * param0)
 {
     u8 v0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        if ((param0->unk_6A6 & (1 << v0))) {
+        if ((param0->subscreen & (1 << v0))) {
             sub_02021CAC(param0->unk_41C[42 + v0], 1);
         }
     }
 }
 
-void sub_0208F6DC (UnkStruct_0208D7BC * param0, Window * param1)
+void sub_0208F6DC (PokemonSummaryApp * param0, Window * param1)
 {
     if (param1 == NULL) {
         sub_02021CAC(param0->unk_41C[47], 0);
@@ -659,27 +659,27 @@ void sub_0208F6DC (UnkStruct_0208D7BC * param0, Window * param1)
     sub_02021CAC(param0->unk_41C[47], 1);
 }
 
-void sub_0208F71C (UnkStruct_0208D7BC * param0)
+void sub_0208F71C (PokemonSummaryApp * param0)
 {
-    void * v0 = sub_0208DD48(param0);
+    void * v0 = PokemonSummary_MonData(param0);
     u32 v1;
 
-    if (param0->unk_24C->unk_11 == 2) {
+    if (param0->data->dataType == 2) {
         v1 = BoxPokemon_IconSpriteIndex(v0);
     } else {
         v1 = Pokemon_IconSpriteIndex(v0);
     }
 
-    sub_0200D948(param0->unk_414, param0->unk_418, 19, v1, 0, 11);
-    sub_0200D414(param0->unk_41C[19], PokeIconPaletteIndex(param0->unk_250.unk_0C, param0->unk_250.unk_4E, param0->unk_250.unk_50_28) + 7);
-    sub_02021D0C(param0->unk_41C[19], (PokemonPersonalData_GetFormValue(param0->unk_250.unk_0C, param0->unk_250.unk_4E, 28) ^ 1));
+    sub_0200D948(param0->renderer, param0->gfxHandler, 19, v1, 0, 11);
+    sub_0200D414(param0->unk_41C[19], PokeIconPaletteIndex(param0->monData.species, param0->monData.form, param0->monData.isEgg) + 7);
+    sub_02021D0C(param0->unk_41C[19], (PokemonPersonalData_GetFormValue(param0->monData.species, param0->monData.form, 28) ^ 1));
 }
 
-void sub_0208F7A4 (UnkStruct_0208D7BC * param0)
+void sub_0208F7A4 (PokemonSummaryApp * param0)
 {
-    sub_0200D97C(param0->unk_414, param0->unk_418, 19, PokeIconPalettesFileIndex(), 0, 5);
+    sub_0200D97C(param0->renderer, param0->gfxHandler, 19, PokeIconPalettesFileIndex(), 0, 5);
 
-    if (param0->unk_6A4 == 3) {
+    if (param0->page == 3) {
         SpriteActor_SetPositionXY(param0->unk_41C[19], 24, 48);
     } else {
         SpriteActor_SetPositionXY(param0->unk_41C[19], 32, 68);
@@ -707,13 +707,13 @@ static s16 sub_0208F800 (u32 param0, s16 param1, s16 param2)
     return param2 + (s16)v0;
 }
 
-void sub_0208F844 (UnkStruct_0208D7BC * param0)
+void sub_0208F844 (PokemonSummaryApp * param0)
 {
-    SpriteActor_SetPositionXY(param0->unk_41C[48], sub_0208F800(param0->unk_250.unk_45, 88, 88), sub_0208F800(param0->unk_250.unk_45, 49, 73));
-    SpriteActor_SetPositionXY(param0->unk_41C[49], sub_0208F800(param0->unk_250.unk_46, 110, 88), sub_0208F800(param0->unk_250.unk_46, 65, 73));
-    SpriteActor_SetPositionXY(param0->unk_41C[50], sub_0208F800(param0->unk_250.unk_47, 103, 88), sub_0208F800(param0->unk_250.unk_47, 92, 73));
-    SpriteActor_SetPositionXY(param0->unk_41C[51], sub_0208F800(param0->unk_250.unk_48, 72, 87), sub_0208F800(param0->unk_250.unk_48, 92, 73));
-    SpriteActor_SetPositionXY(param0->unk_41C[52], sub_0208F800(param0->unk_250.unk_49, 65, 87), sub_0208F800(param0->unk_250.unk_49, 65, 73));
+    SpriteActor_SetPositionXY(param0->unk_41C[48], sub_0208F800(param0->monData.cool, 88, 88), sub_0208F800(param0->monData.cool, 49, 73));
+    SpriteActor_SetPositionXY(param0->unk_41C[49], sub_0208F800(param0->monData.beauty, 110, 88), sub_0208F800(param0->monData.beauty, 65, 73));
+    SpriteActor_SetPositionXY(param0->unk_41C[50], sub_0208F800(param0->monData.cute, 103, 88), sub_0208F800(param0->monData.cute, 92, 73));
+    SpriteActor_SetPositionXY(param0->unk_41C[51], sub_0208F800(param0->monData.smart, 72, 87), sub_0208F800(param0->monData.smart, 92, 73));
+    SpriteActor_SetPositionXY(param0->unk_41C[52], sub_0208F800(param0->monData.tough, 65, 87), sub_0208F800(param0->monData.tough, 65, 73));
 
     sub_02021CAC(param0->unk_41C[48], 1);
     sub_02021CAC(param0->unk_41C[49], 1);
@@ -722,7 +722,7 @@ void sub_0208F844 (UnkStruct_0208D7BC * param0)
     sub_02021CAC(param0->unk_41C[52], 1);
 }
 
-void sub_0208F964 (UnkStruct_0208D7BC * param0)
+void sub_0208F964 (PokemonSummaryApp * param0)
 {
     sub_02021CAC(param0->unk_41C[48], 0);
     sub_02021CAC(param0->unk_41C[49], 0);
@@ -731,13 +731,13 @@ void sub_0208F964 (UnkStruct_0208D7BC * param0)
     sub_02021CAC(param0->unk_41C[52], 0);
 }
 
-static void sub_0208F9B0 (UnkStruct_0208D7BC * param0, u8 param1, u8 param2)
+static void sub_0208F9B0 (PokemonSummaryApp * param0, u8 param1, u8 param2)
 {
-    sub_0200D948(param0->unk_414, param0->unk_418, 39, sub_020923C0(param1, 1), 0, 26 + param2);
+    sub_0200D948(param0->renderer, param0->gfxHandler, 39, sub_020923C0(param1, 1), 0, 26 + param2);
     sub_0200D414(param0->unk_41C[55 + param2], sub_020923C0(param1, 2) + 7);
 }
 
-void sub_0208FA04 (UnkStruct_0208D7BC * param0)
+void sub_0208FA04 (PokemonSummaryApp * param0)
 {
     u16 v0;
 
@@ -745,43 +745,43 @@ void sub_0208FA04 (UnkStruct_0208D7BC * param0)
         sub_02021CAC(param0->unk_41C[v0], 0);
     }
 
-    if (param0->unk_6A4 != 6) {
+    if (param0->page != 6) {
         return;
     }
 
-    sub_0200D97C(param0->unk_414, param0->unk_418, 39, 136, 0, 5);
+    sub_0200D97C(param0->renderer, param0->gfxHandler, 39, 136, 0, 5);
 
     for (v0 = 0; v0 < 12; v0++) {
-        if (v0 < param0->unk_6B1) {
+        if (v0 < param0->ribbonMax) {
             sub_02021CAC(param0->unk_41C[55 + v0], 1);
-            sub_0208F9B0(param0, sub_0208E904(param0, v0), v0);
+            sub_0208F9B0(param0, PokemonSummary_RibbonAt(param0, v0), v0);
         }
     }
 
     SpriteActor_SetSpriteAnimActive(param0->unk_41C[70], 0);
 }
 
-void sub_0208FAA4 (UnkStruct_0208D7BC * param0)
+void sub_0208FAA4 (PokemonSummaryApp * param0)
 {
     u16 v0;
 
     for (v0 = 0; v0 < 8; v0++) {
-        if ((param0->unk_6B0 * 4 + v0) < param0->unk_6B1) {
+        if ((param0->ribbonState * 4 + v0) < param0->ribbonMax) {
             sub_02021CAC(param0->unk_41C[55 + v0], 1);
-            sub_0208F9B0(param0, sub_0208E904(param0, v0), v0);
+            sub_0208F9B0(param0, PokemonSummary_RibbonAt(param0, v0), v0);
         } else {
             sub_02021CAC(param0->unk_41C[55 + v0], 0);
         }
     }
 }
 
-void sub_0208FB00 (UnkStruct_0208D7BC * param0)
+void sub_0208FB00 (PokemonSummaryApp * param0)
 {
     SpriteActor_SetPositionXY(
-        param0->unk_41C[67], 132 + (param0->unk_6AF & 3) * 32, 56 + (param0->unk_6AF / 4) * 40);
+        param0->unk_41C[67], 132 + (param0->ribbonPos & 3) * 32, 56 + (param0->ribbonPos / 4) * 40);
 }
 
-void sub_0208FB30 (UnkStruct_0208D7BC * param0)
+void sub_0208FB30 (PokemonSummaryApp * param0)
 {
     if (sub_02021D34(param0->unk_41C[70]) == 1) {
         sub_02021E2C(param0->unk_41C[70], FX32_ONE);
@@ -796,7 +796,7 @@ static const s16 Unk_020F4180[][4] = {
     {0x92, 0x55, 0xB0, 0x5D}
 };
 
-void sub_0208FB54 (UnkStruct_0208D7BC * param0, u8 param1)
+void sub_0208FB54 (PokemonSummaryApp * param0, u8 param1)
 {
     u16 v0, v1;
 
@@ -805,29 +805,29 @@ void sub_0208FB54 (UnkStruct_0208D7BC * param0, u8 param1)
             sub_02021CAC(param0->unk_41C[71 + v0], 0);
         }
     } else {
-        v1 = param0->unk_250.unk_45;
+        v1 = param0->monData.cool;
 
-        if (v1 < param0->unk_250.unk_46) {
-            v1 = param0->unk_250.unk_46;
+        if (v1 < param0->monData.beauty) {
+            v1 = param0->monData.beauty;
         }
 
-        if (v1 < param0->unk_250.unk_47) {
-            v1 = param0->unk_250.unk_47;
+        if (v1 < param0->monData.cute) {
+            v1 = param0->monData.cute;
         }
 
-        if (v1 < param0->unk_250.unk_48) {
-            v1 = param0->unk_250.unk_48;
+        if (v1 < param0->monData.smart) {
+            v1 = param0->monData.smart;
         }
 
-        if (v1 < param0->unk_250.unk_49) {
-            v1 = param0->unk_250.unk_49;
+        if (v1 < param0->monData.tough) {
+            v1 = param0->monData.tough;
         }
 
-        sub_0208FC30(param0->unk_41C[71], param0->unk_250.unk_45, v1, Unk_020F4180[0]);
-        sub_0208FC30(param0->unk_41C[72], param0->unk_250.unk_46, v1, Unk_020F4180[1]);
-        sub_0208FC30(param0->unk_41C[73], param0->unk_250.unk_47, v1, Unk_020F4180[2]);
-        sub_0208FC30(param0->unk_41C[74], param0->unk_250.unk_48, v1, Unk_020F4180[3]);
-        sub_0208FC30(param0->unk_41C[75], param0->unk_250.unk_49, v1, Unk_020F4180[4]);
+        sub_0208FC30(param0->unk_41C[71], param0->monData.cool, v1, Unk_020F4180[0]);
+        sub_0208FC30(param0->unk_41C[72], param0->monData.beauty, v1, Unk_020F4180[1]);
+        sub_0208FC30(param0->unk_41C[73], param0->monData.cute, v1, Unk_020F4180[2]);
+        sub_0208FC30(param0->unk_41C[74], param0->monData.smart, v1, Unk_020F4180[3]);
+        sub_0208FC30(param0->unk_41C[75], param0->monData.tough, v1, Unk_020F4180[4]);
     }
 }
 
@@ -859,7 +859,7 @@ static void sub_0208FC30 (GraphicElementData * param0, u32 param1, u32 param2, c
     SpriteActor_SetSpriteAnimActive(param0, 0);
 }
 
-void sub_0208FCD4 (UnkStruct_0208D7BC * param0)
+void sub_0208FCD4 (PokemonSummaryApp * param0)
 {
     u32 v0;
 

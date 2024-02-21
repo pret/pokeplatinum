@@ -736,7 +736,7 @@ static void ov23_0224E2D8 (SysTask * param0, void * param1)
     case 22:
         ov23_0224E124(v0);
         {
-            UnkStruct_020507E4 * v2 = sub_020507E4(v0->unk_08->unk_0C);
+            UnkStruct_020507E4 * v2 = SaveData_Events(v0->unk_08->unk_0C);
             sub_0206B3FC(v2, sub_0206B3EC(v2) + 1);
         }
 

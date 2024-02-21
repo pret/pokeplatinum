@@ -52,7 +52,7 @@ static BOOL sub_020505A0 (UnkStruct_020508D4 * param0)
 {
     UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
     UnkStruct_02050568 * v1 = sub_02050A64(param0);
-    UnkStruct_020507E4 * v2 = sub_020507E4(v0->unk_0C);
+    UnkStruct_020507E4 * v2 = SaveData_Events(v0->unk_0C);
 
     switch (v1->unk_08) {
     case 0:

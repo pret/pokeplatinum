@@ -22,7 +22,7 @@
 
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay061/struct_ov61_0222C884.h"
@@ -372,7 +372,7 @@ BOOL ov7_0224BF2C (UnkStruct_ov7_0224BEFC * param0)
 
 static void ov7_0224C338 (UnkStruct_ov7_0224BEFC * param0)
 {
-    AnimationControlFlags * v0 = sub_02025E44(param0->unk_08);
+    Options * v0 = sub_02025E44(param0->unk_08);
 
     param0->unk_1B0 = sub_02027B50(v0);
     param0->unk_1B4 = sub_02027AC0(v0);

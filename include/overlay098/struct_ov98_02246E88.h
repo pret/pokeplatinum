@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "strbuf.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay096/struct_ov96_0223B574.h"
 #include "overlay096/struct_ov96_0223B574_1.h"
@@ -14,7 +14,7 @@
 typedef struct {
     UnkStruct_020067E8 * unk_00;
     SaveData * unk_04;
-    AnimationControlFlags * unk_08;
+    Options * unk_08;
     void * unk_0C;
     NNSFndHeapHandle unk_10;
     DWCInetControl unk_14;

@@ -303,7 +303,7 @@ pokeplatinum_c = files(
     'unk_0208BEBC.c',
     'unk_0208C010.c',
     'unk_0208C098.c',
-    'unk_0208C324.c',
+    'pokemon_summary_app.c',
     'unk_0208EA44.c',
     'unk_0208FCF8.c',
     'unk_020916B4.c',

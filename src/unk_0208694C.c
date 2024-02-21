@@ -20,7 +20,7 @@
 #include "constdata/const_020F2DAC.h"
 
 #include "struct_defs/struct_0200C738.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_0208BE5C.h"
@@ -85,7 +85,7 @@ struct UnkStruct_02087A10_t {
     int unk_0C;
     int unk_10;
     int unk_14;
-    AnimationControlFlags * unk_18;
+    Options * unk_18;
     UnkStruct_02087A10_sub1 unk_1C;
     u16 unk_38;
     u16 unk_3A[6][13];
@@ -1210,7 +1210,7 @@ static int sub_02086F3C (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-UnkStruct_0208737C * sub_0208712C (int param0, int param1, int param2, int param3, AnimationControlFlags * param4)
+UnkStruct_0208737C * sub_0208712C (int param0, int param1, int param2, int param3, Options * param4)
 {
     UnkStruct_0208737C * v0;
 

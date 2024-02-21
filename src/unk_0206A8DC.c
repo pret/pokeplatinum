@@ -353,7 +353,7 @@ BOOL sub_0206ADBC (UnkStruct_020507E4 * param0)
     return sub_0206A8EC(param0, (2400 + 6));
 }
 
-BOOL sub_0206ADCC (UnkStruct_020507E4 * param0)
+BOOL EventFlag_VisitedContestHall (UnkStruct_020507E4 * param0)
 {
     return sub_0206A8EC(param0, (2400 + 24));
 }

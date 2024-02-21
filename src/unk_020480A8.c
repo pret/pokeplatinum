@@ -23,7 +23,7 @@ static u8 sub_02048268(u16 param0, u16 param1);
 
 BOOL sub_020480A8 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_020507E4 * v0 = sub_020507E4(param0->unk_34->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_34->unk_0C);
     u16 * v1 = inline_0204FCAC(param0);
     u32 v2;
 
@@ -108,7 +108,7 @@ BOOL sub_020480D8 (UnkStruct_0203E724 * param0)
 
 BOOL sub_02048254 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_020507E4 * v0 = sub_020507E4(param0->unk_34->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_34->unk_0C);
 
     sub_0206B2C8(v0);
     return 0;

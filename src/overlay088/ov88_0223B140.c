@@ -98,7 +98,7 @@
 #include "party.h"
 #include "item.h"
 #include "unk_0207D3B8.h"
-#include "unk_0208C324.h"
+#include "pokemon_summary_app.h"
 #include "unk_02092494.h"
 #include "unk_02095CD4.h"
 #include "overlay088/ov88_0223B140.h"
@@ -476,7 +476,7 @@ int ov88_0223B57C (UnkStruct_020067E8 * param0, int * param1)
                 ov88_0223B3C0(v0);
 
                 v0->unk_44 = 0;
-                v0->unk_88[0] = v0->unk_0C.unk_14 + v0->unk_3C * 6;
+                v0->unk_88[0] = v0->unk_0C.pos + v0->unk_3C * 6;
 
                 ov88_0223BE28(v0);
                 ov88_0223CF68(v0->unk_88[0], v0->unk_39C[0], 0);
@@ -1745,28 +1745,28 @@ static const u8 Unk_ov88_0223F13C[] = {
 static void ov88_0223D1EC (UnkStruct_02095E80 * param0, int param1)
 {
     if (param1 == 0) {
-        param0->unk_0C.unk_00 = param0->unk_2270;
-        param0->unk_0C.unk_13 = Party_GetCurrentCount(param0->unk_08->unk_08);
+        param0->unk_0C.monData = param0->unk_2270;
+        param0->unk_0C.max = Party_GetCurrentCount(param0->unk_08->unk_08);
 
-        param0->unk_0C.unk_28 = NULL;
-        sub_0208E9C0(&param0->unk_0C, sub_02032EE8(sub_0203608C()));
+        param0->unk_0C.chatotCry = NULL;
+        PokemonSummary_SetPlayerProfile(&param0->unk_0C, sub_02032EE8(sub_0203608C()));
     } else {
-        param0->unk_0C.unk_00 = param0->unk_2274;
-        param0->unk_0C.unk_13 = Party_GetCurrentCount(param0->unk_2274);
-        param0->unk_0C.unk_28 = (ChatotCry *)param0->unk_2E6C[sub_0203608C() ^ 1];
-        sub_0208E9C0(&param0->unk_0C, sub_02032EE8(sub_0203608C() ^ 1));
+        param0->unk_0C.monData = param0->unk_2274;
+        param0->unk_0C.max = Party_GetCurrentCount(param0->unk_2274);
+        param0->unk_0C.chatotCry = (ChatotCry *)param0->unk_2E6C[sub_0203608C() ^ 1];
+        PokemonSummary_SetPlayerProfile(&param0->unk_0C, sub_02032EE8(sub_0203608C() ^ 1));
     }
 
-    param0->unk_0C.unk_11 = 1;
-    param0->unk_0C.unk_14 = param0->unk_88[0] % 6;
-    param0->unk_0C.unk_12 = 1;
-    param0->unk_0C.unk_18 = 0;
-    param0->unk_0C.unk_2C = sub_0208C324(param0->unk_08->unk_10);
-    param0->unk_0C.unk_1C = param0->unk_08->unk_30;
-    param0->unk_0C.unk_04 = param0->unk_08->unk_18;
-    param0->unk_0C.unk_20 = sub_0202D79C(param0->unk_08->unk_10);
+    param0->unk_0C.dataType = 1;
+    param0->unk_0C.pos = param0->unk_88[0] % 6;
+    param0->unk_0C.mode = 1;
+    param0->unk_0C.move = 0;
+    param0->unk_0C.contest = PokemonSummary_ShowContestData(param0->unk_08->unk_10);
+    param0->unk_0C.dexMode = param0->unk_08->unk_30;
+    param0->unk_0C.options = param0->unk_08->unk_18;
+    param0->unk_0C.ribbons = sub_0202D79C(param0->unk_08->unk_10);
 
-    sub_0208D720(&param0->unk_0C, Unk_ov88_0223F13C);
+    PokemonSummary_FlagVisiblePages(&param0->unk_0C, Unk_ov88_0223F13C);
 
     param0->unk_40 = sub_020067E8(&Unk_020F410C, &param0->unk_0C, 26);
     param0->unk_3C = param1;
@@ -2506,7 +2506,7 @@ static void ov88_0223E694 (Party * param0, Party * param1, int param2, int param
 
     if (Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
         if (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(v1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
-            UnkStruct_020507E4 * v2 = sub_020507E4(param4->unk_10);
+            UnkStruct_020507E4 * v2 = SaveData_Events(param4->unk_10);
 
             if (sub_0206B5F8(v2) == 0) {
                 sub_0206B608(v2, 1);

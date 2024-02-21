@@ -112,7 +112,7 @@ u8 ov5_021EE920 (UnkStruct_0203CDB0 * param0, u16 param1)
     v3 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
     v1 = ov5_021EE7D4(v0);
     v4 = ov5_021EE8A8(v3, v1);
-    v2 = sub_0206B0B4(sub_020507E4(param0->unk_0C));
+    v2 = sub_0206B0B4(SaveData_Events(param0->unk_0C));
     v5 = ov5_021EE8A8(v3, v2);
 
     {
@@ -140,7 +140,7 @@ void ov5_021EE9BC (UnkStruct_0203CDB0 * param0, u16 param1)
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->unk_0C), param1);
     v1 = ov5_021EE7D4(v0);
 
-    sub_0206B0C4(sub_020507E4(param0->unk_0C), v1);
+    sub_0206B0C4(SaveData_Events(param0->unk_0C), v1);
 }
 
 static void ov5_021EE9E8 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u16 param3, vu16 param4)
@@ -163,7 +163,7 @@ void ov5_021EEA54 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u16 param3
 {
     vu16 v0;
 
-    v0 = sub_0206B0B4(sub_020507E4(param0->unk_0C));
+    v0 = sub_0206B0B4(SaveData_Events(param0->unk_0C));
     ov5_021EE9E8(param0, param1, param2, param3, v0);
 }
 

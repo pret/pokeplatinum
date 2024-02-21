@@ -105,7 +105,7 @@ static void sub_02055AC0 (UnkStruct_0203CDB0 * param0, s32 param1)
     }
 
     {
-        UnkStruct_020507E4 * v1 = sub_020507E4(param0->unk_0C);
+        UnkStruct_020507E4 * v1 = SaveData_Events(param0->unk_0C);
         u16 v2 = sub_0206B260(v1);
 
         if (v2 > param1) {

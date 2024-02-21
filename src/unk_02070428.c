@@ -35,16 +35,16 @@ void sub_02070428 (UnkStruct_0203CDB0 * param0, BOOL param1)
 void sub_02070430 (UnkStruct_0203CDB0 * param0)
 {
     sub_020705DC(param0);
-    sub_0206AF1C(sub_020507E4(param0->unk_0C), 0);
+    sub_0206AF1C(SaveData_Events(param0->unk_0C), 0);
 
-    inline_0204E650_1(sub_020507E4(param0->unk_0C));
+    inline_0204E650_1(SaveData_Events(param0->unk_0C));
 
     sub_0203A8E8(param0, param0->unk_1C->unk_00);
     sub_0202D9EC(sub_0202D834(param0->unk_0C), 0);
 
     param0->unk_78.unk_00 = 0;
 
-    if (!sub_0206AE5C(sub_020507E4(param0->unk_0C))) {
+    if (!sub_0206AE5C(SaveData_Events(param0->unk_0C))) {
         UnkStruct_0202D7B0 * v0;
 
         v0 = sub_0202D834(param0->unk_0C);
@@ -63,10 +63,10 @@ void sub_02070494 (UnkStruct_0203CDB0 * param0)
         sub_02070610(param0);
     }
 
-    sub_0206AF1C(sub_020507E4(param0->unk_0C), 0);
-    sub_0206AE9C(sub_020507E4(param0->unk_0C));
+    sub_0206AF1C(SaveData_Events(param0->unk_0C), 0);
+    sub_0206AE9C(SaveData_Events(param0->unk_0C));
 
-    inline_0204E650_1(sub_020507E4(param0->unk_0C));
+    inline_0204E650_1(SaveData_Events(param0->unk_0C));
 
     sub_0203A8E8(param0, param0->unk_1C->unk_00);
     sub_0202D9EC(sub_0202D834(param0->unk_0C), 0);
@@ -81,7 +81,7 @@ void sub_02070494 (UnkStruct_0203CDB0 * param0)
     }
 
     if (!MapHeader_IsCave(param0->unk_1C->unk_00)) {
-        UnkStruct_020507E4 * v1 = sub_020507E4(param0->unk_0C);
+        UnkStruct_020507E4 * v1 = SaveData_Events(param0->unk_0C);
 
         sub_0206AECC(v1);
         sub_0206AEFC(v1);
@@ -107,24 +107,24 @@ void sub_02070494 (UnkStruct_0203CDB0 * param0)
 
 void sub_0207056C (UnkStruct_0203CDB0 * param0)
 {
-    sub_0206AE4C(sub_020507E4(param0->unk_0C));
+    sub_0206AE4C(SaveData_Events(param0->unk_0C));
     sub_0206C354(sub_0202D834(param0->unk_0C));
 }
 
 void sub_02070588 (UnkStruct_0203CDB0 * param0)
 {
-    sub_0206AE4C(sub_020507E4(param0->unk_0C));
+    sub_0206AE4C(SaveData_Events(param0->unk_0C));
     sub_0206C354(sub_0202D834(param0->unk_0C));
 }
 
 void sub_020705A4 (UnkStruct_0203CDB0 * param0)
 {
-    sub_0206AE4C(sub_020507E4(param0->unk_0C));
+    sub_0206AE4C(SaveData_Events(param0->unk_0C));
 }
 
 void sub_020705B4 (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_020507E4 * v0 = sub_020507E4(param0->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
 
     sub_0206A974(v0);
     sub_0206B024(v0, 0);

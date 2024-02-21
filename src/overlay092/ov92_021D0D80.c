@@ -17,7 +17,7 @@
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_02099F80.h"
@@ -85,7 +85,7 @@ typedef struct {
 typedef struct {
     int unk_00;
     UnkStruct_0202C878 * unk_04;
-    AnimationControlFlags * unk_08;
+    Options * unk_08;
     UnkStruct_ov92_021D1B24_sub1 unk_0C;
     BGL * unk_B810;
     Window unk_B814;

@@ -21,7 +21,7 @@
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208737C.h"
@@ -68,7 +68,7 @@ FS_EXTERN_OVERLAY(overlay57);
 typedef struct {
     int unk_00;
     SaveData * unk_04;
-    AnimationControlFlags * unk_08;
+    Options * unk_08;
     int unk_0C;
     int unk_10;
     UnkStruct_020067E8 * unk_14;

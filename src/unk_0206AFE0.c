@@ -261,7 +261,7 @@ void sub_0206B2C8 (UnkStruct_020507E4 * param0)
 
 void sub_0206B2E4 (SaveData * param0, u16 param1)
 {
-    UnkStruct_020507E4 * v0 = sub_020507E4(param0);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0);
     u32 v1;
 
     v1 = sub_0202B428(sub_0202B4A0(param0));
@@ -282,7 +282,7 @@ BOOL sub_0206B324 (UnkStruct_020507E4 * param0, u16 param1)
 
 void sub_0206B334 (SaveData * param0)
 {
-    UnkStruct_020507E4 * v0 = sub_020507E4(param0);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0);
     u32 v1;
 
     v1 = (LCRNG_Next() % 98) + 2;
@@ -449,7 +449,7 @@ static u8 sub_0206B4A4 (UnkStruct_020507E4 * param0)
 void sub_0206B514 (SaveData * param0)
 {
     u32 v0;
-    UnkStruct_020507E4 * v1 = sub_020507E4(param0);
+    UnkStruct_020507E4 * v1 = SaveData_Events(param0);
     UnkStruct_0203A790 * v2 = sub_0203A790(param0);
     UnkStruct_02049FA8 * v3 = sub_0203A720(v2);
 

@@ -30,7 +30,7 @@
 #include "unk_020819DC.h"
 #include "unk_02082C2C.h"
 #include "unk_02084B70.h"
-#include "unk_0208C324.h"
+#include "pokemon_summary_app.h"
 #include "unk_02096420.h"
 
 static int sub_02085384(void * param0);
@@ -500,7 +500,7 @@ static int sub_020855C4 (void * param0)
     StringFormatter_Format(v0->unk_6A0, v0->unk_6A4, v2);
     Strbuf_Free(v2);
 
-    v4 = sub_0208E9F0(v1);
+    v4 = PokemonSummary_StatusIconAnimIdx(v1);
     sub_02083014(v0, v0->unk_B11, v4);
 
     if (v4 == 7) {
@@ -687,7 +687,7 @@ static int sub_02085A70 (void * param0)
     StringFormatter_Format(v0->unk_6A0, v0->unk_6A4, v2);
     Strbuf_Free(v2);
 
-    v4 = sub_0208E9F0(v1);
+    v4 = PokemonSummary_StatusIconAnimIdx(v1);
     sub_02083014(v0, v0->unk_B11, v4);
 
     if (v4 == 7) {

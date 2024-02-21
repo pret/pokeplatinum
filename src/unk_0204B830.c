@@ -190,7 +190,7 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
 {
     UnkUnion_0204C4D0 * v0 = sub_0204B844(param0);
     TrainerInfo * v1 = sub_02025E38(param0->unk_0C);
-    UnkStruct_020507E4 * v2 = sub_020507E4(param0->unk_0C);
+    UnkStruct_020507E4 * v2 = SaveData_Events(param0->unk_0C);
     Party * v3;
     Pokemon * v4;
     BOOL v5;
@@ -561,7 +561,7 @@ static void sub_0204C15C (UnkStruct_0203CDB0 * param0, void * param1)
 {
     UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_0C);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
-    UnkStruct_020507E4 * v2 = sub_020507E4(param0->unk_0C);
+    UnkStruct_020507E4 * v2 = SaveData_Events(param0->unk_0C);
     u16 v3;
     u16 v4 = 454;
 
@@ -605,7 +605,7 @@ static void sub_0204C220 (UnkStruct_0203CDB0 * param0, void * param1)
 {
     UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_0C);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
-    UnkStruct_020507E4 * v2 = sub_020507E4(param0->unk_0C);
+    UnkStruct_020507E4 * v2 = SaveData_Events(param0->unk_0C);
     u16 v3;
     u16 v4 = 452;
 
@@ -653,7 +653,7 @@ static void sub_0204C2F4 (UnkStruct_0203CDB0 * param0, void * param1)
 {
     UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_0C);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
-    UnkStruct_020507E4 * v2 = sub_020507E4(param0->unk_0C);
+    UnkStruct_020507E4 * v2 = SaveData_Events(param0->unk_0C);
     u16 v3;
     u16 v4 = 467;
 
@@ -697,7 +697,7 @@ static void sub_0204C3B8 (UnkStruct_0203CDB0 * param0, void * param1)
 {
     UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_0C);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
-    UnkStruct_020507E4 * v2 = sub_020507E4(param0->unk_0C);
+    UnkStruct_020507E4 * v2 = SaveData_Events(param0->unk_0C);
     u16 v3;
     u16 v4 = 455;
 

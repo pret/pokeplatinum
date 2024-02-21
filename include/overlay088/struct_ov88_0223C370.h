@@ -3,7 +3,7 @@
 
 #include "trainer_info.h"
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
@@ -20,7 +20,7 @@ typedef struct {
     UnkStruct_02027F8C * unk_0C;
     SaveData * unk_10;
     UnkStruct_0202C878 * unk_14;
-    AnimationControlFlags * unk_18;
+    Options * unk_18;
     UnkStruct_0202B628 * unk_1C;
     UnkStruct_0202CD88 * unk_20;
     PokedexData * unk_24;

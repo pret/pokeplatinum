@@ -61,7 +61,7 @@
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02098C44.h"
-#include "struct_defs/struct_02098D38.h"
+#include "struct_defs/pokemon_summary.h"
 #include "overlay005/struct_ov5_021DD42C.h"
 #include "overlay005/struct_ov5_021F8E3C.h"
 #include "overlay061/struct_ov61_0222C884.h"
@@ -3197,7 +3197,7 @@ static BOOL sub_02040FA4 (UnkStruct_0203E724 * param0)
             UnkStruct_02061AB4 * v3 = sub_02062570(v1->unk_38, 0x30);
 
             if (v3) {
-                if ((sub_0206A984(sub_020507E4(v1->unk_0C)) == 1) && (sub_02062D1C(v3) != 0)) {
+                if ((sub_0206A984(SaveData_Events(v1->unk_0C)) == 1) && (sub_02062D1C(v3) != 0)) {
                     sub_02062DDC(v3);
                     sub_0203E764(param0, sub_020410CC);
                     return 1;
@@ -3312,7 +3312,7 @@ static BOOL sub_020410F4 (UnkStruct_0203E724 * param0)
     }
 
     if (v3) {
-        if ((sub_0206A984(sub_020507E4(v0->unk_0C)) == 1) && (sub_02062D1C(v3) != 0)) {
+        if ((sub_0206A984(SaveData_Events(v0->unk_0C)) == 1) && (sub_02062D1C(v3) != 0)) {
             inline_020410F4_2((1 << 1));
             sub_02062DDC(v3);
         }
@@ -3903,7 +3903,7 @@ static BOOL sub_02041C00 (UnkStruct_0203E724 * param0)
 {
     void ** v0;
     u16 * v1;
-    UnkStruct_02098D38 * v2;
+    PokemonSummary * v2;
 
     v1 = inline_0204FCAC(param0);
     v0 = sub_0203F098(param0->unk_34, 19);
@@ -3911,7 +3911,7 @@ static BOOL sub_02041C00 (UnkStruct_0203E724 * param0)
     GF_ASSERT(*v0 != 0);
 
     v2 = *v0;
-    *v1 = v2->unk_16;
+    *v1 = v2->selectedSlot;
 
     Heap_FreeToHeap(*v0);
     *v0 = NULL;
@@ -4539,7 +4539,7 @@ static BOOL sub_02042628 (UnkStruct_0203E724 * param0)
 
     v0 = (*v1);
 
-    sub_0206B044(sub_020507E4(param0->unk_34->unk_0C), v0->unk_00);
+    sub_0206B044(SaveData_Events(param0->unk_34->unk_0C), v0->unk_00);
     Heap_FreeToHeap(*v1);
 
     return 0;
@@ -4936,7 +4936,7 @@ static BOOL sub_02042E38 (UnkStruct_0203E724 * param0)
 {
     u16 * v0 = inline_0204FCAC(param0);
 
-    *v0 = sub_0206B054(sub_020507E4(param0->unk_34->unk_0C));
+    *v0 = sub_0206B054(SaveData_Events(param0->unk_34->unk_0C));
     return 0;
 }
 
@@ -5149,7 +5149,7 @@ static BOOL sub_02043254 (UnkStruct_0203E724 * param0)
 
     if (v2 == 0) {
         v4 = sub_02026F58(v0);
-        *v3 = sub_0205E078(v4, inline_0208BE68(sub_020507E4(param0->unk_34->unk_0C), 10));
+        *v3 = sub_0205E078(v4, inline_0208BE68(SaveData_Events(param0->unk_34->unk_0C), 10));
     } else {
         v4 = sub_02026F20(v0);
         *v3 = sub_0205E0E4(v4, TrainerInfo_Gender(v1));
@@ -6221,7 +6221,7 @@ static BOOL sub_02044510 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
 
-    sub_0206B0C4(sub_020507E4(v0->unk_0C), 0x8200);
+    sub_0206B0C4(SaveData_Events(v0->unk_0C), 0x8200);
     return 0;
 }
 
@@ -6229,7 +6229,7 @@ static BOOL sub_02044528 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
 
-    inline_02044528(sub_020507E4(v0->unk_0C));
+    inline_02044528(SaveData_Events(v0->unk_0C));
     v0->unk_9C = sub_0202B634(sub_0202B628(v0->unk_0C), 1);
     sub_02053494(v0);
 
@@ -6508,7 +6508,7 @@ static BOOL sub_02044A50 (UnkStruct_0203E724 * param0)
     u16 * v0;
     u16 * v1;
     UnkStruct_0203A790 * v2 = sub_0203A790(param0->unk_34->unk_0C);
-    UnkStruct_020507E4 * v3 = sub_020507E4(param0->unk_34->unk_0C);
+    UnkStruct_020507E4 * v3 = SaveData_Events(param0->unk_34->unk_0C);
     TVBroadcast * v4 = SaveData_TVBroadcast(param0->unk_34->unk_0C);
     int v5 = (*((param0)->unk_08++));
 
@@ -6589,7 +6589,7 @@ static BOOL sub_02044BA0 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02044BB8 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_020507E4 * v0 = sub_020507E4(param0->unk_34->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_34->unk_0C);
     u16 * v1 = inline_0204FCAC(param0);
 
     *v1 = sub_0206B354(v0);
@@ -6624,7 +6624,7 @@ static BOOL sub_02044C64 (UnkStruct_0203E724 * param0)
 {
     u16 v0 = inline_02049538(param0);
 
-    sub_0206B270(sub_020507E4(param0->unk_34->unk_0C), v0);
+    sub_0206B270(SaveData_Events(param0->unk_34->unk_0C), v0);
     return 0;
 }
 
@@ -6632,7 +6632,7 @@ static BOOL sub_02044C90 (UnkStruct_0203E724 * param0)
 {
     u16 * v0 = inline_0204FCAC(param0);
 
-    *v0 = sub_0206B260(sub_020507E4(param0->unk_34->unk_0C));
+    *v0 = sub_0206B260(SaveData_Events(param0->unk_34->unk_0C));
     return 0;
 }
 
@@ -7076,7 +7076,7 @@ static BOOL sub_02045404 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_020454C0 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_020507E4 * v0 = sub_020507E4(param0->unk_34->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_34->unk_0C);
 
     sub_0206AE0C(v0);
     return 0;
@@ -7084,7 +7084,7 @@ static BOOL sub_020454C0 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_020454D4 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_020507E4 * v0 = sub_020507E4(param0->unk_34->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_34->unk_0C);
 
     sub_0206AE1C(v0);
     return 0;
@@ -7205,7 +7205,7 @@ static BOOL sub_020456E8 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02045708 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_020507E4 * v0 = sub_020507E4(param0->unk_34->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_34->unk_0C);
 
     sub_0206B364(v0, 0);
     return 0;
@@ -7215,7 +7215,7 @@ static BOOL sub_02045720 (UnkStruct_0203E724 * param0)
 {
     u16 v0 = inline_02049538(param0);
     u8 v1 = (*((param0)->unk_08++));
-    UnkStruct_020507E4 * v2 = sub_020507E4(param0->unk_34->unk_0C);
+    UnkStruct_020507E4 * v2 = SaveData_Events(param0->unk_34->unk_0C);
 
     if (v1) {
         sub_0206B1B0(v2, v0);
@@ -7239,7 +7239,7 @@ static BOOL sub_02045760 (UnkStruct_0203E724 * param0)
 static BOOL sub_02045798 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_020507E4 * v1 = sub_020507E4(param0->unk_34->unk_0C);
+    UnkStruct_020507E4 * v1 = SaveData_Events(param0->unk_34->unk_0C);
     u16 * v2 = inline_0204FCAC(param0);
     u32 v3;
 
@@ -7258,7 +7258,7 @@ static BOOL sub_020457D0 (UnkStruct_0203E724 * param0)
 {
     u16 * v0 = inline_0204FCAC(param0);
 
-    *v0 = sub_0206B314(sub_020507E4(param0->unk_34->unk_0C));
+    *v0 = sub_0206B314(SaveData_Events(param0->unk_34->unk_0C));
     return 0;
 }
 
@@ -7340,7 +7340,7 @@ static BOOL sub_020458CC (UnkStruct_0203E724 * param0)
 static BOOL sub_02045900 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_020507E4 * v1 = sub_020507E4(param0->unk_34->unk_0C);
+    UnkStruct_020507E4 * v1 = SaveData_Events(param0->unk_34->unk_0C);
     u16 * v2 = inline_0204FCAC(param0);
     u16 v3;
 
@@ -7474,7 +7474,7 @@ static BOOL sub_020459BC (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02045A88 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_020507E4 * v0 = sub_020507E4(param0->unk_34->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_34->unk_0C);
     u16 * v1 = inline_0204FCAC(param0);
 
     *v1 = sub_0206B3EC(v0);
@@ -7483,7 +7483,7 @@ static BOOL sub_02045A88 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02045AB8 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_020507E4 * v0 = sub_020507E4(param0->unk_34->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_34->unk_0C);
     u16 * v1 = inline_0204FCAC(param0);
 
     *v1 = sub_0206B40C(v0);
@@ -7492,7 +7492,7 @@ static BOOL sub_02045AB8 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02045AE8 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_020507E4 * v0 = sub_020507E4(param0->unk_34->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_34->unk_0C);
     u16 * v1 = inline_0204FCAC(param0);
 
     *v1 = sub_0206B42C(v0);
@@ -7566,7 +7566,7 @@ static BOOL sub_02045C10 (UnkStruct_0203E724 * param0)
 {
     u8 v0 = (*((param0)->unk_08++));
     u16 * v1 = inline_0204FCAC(param0);
-    UnkStruct_020507E4 * v2 = sub_020507E4(param0->unk_34->unk_0C);
+    UnkStruct_020507E4 * v2 = SaveData_Events(param0->unk_34->unk_0C);
 
     GF_ASSERT((v0 <= 4));
 
@@ -7690,7 +7690,7 @@ static BOOL sub_02045DB0 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02045E14 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_020507E4 * v0 = sub_020507E4(param0->unk_34->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_34->unk_0C);
     u16 * v1 = inline_0204FCAC(param0);
 
     *v1 = sub_0206B374(v0);

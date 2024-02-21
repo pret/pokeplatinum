@@ -16,7 +16,7 @@
 
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/union_02022594_020225E0.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
@@ -94,7 +94,7 @@ struct UnkStruct_ov111_021D0F7C_t {
     Window unk_5C[16];
     PaletteData * unk_15C;
     UnkStruct_0200C440 * unk_160;
-    AnimationControlFlags * unk_164;
+    Options * unk_164;
     SaveData * unk_168;
     UnkStruct_ov111_021D2F80 unk_16C;
     UnkStruct_ov111_021D33F4 * unk_35C[4];
