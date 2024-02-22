@@ -6680,15 +6680,20 @@ TrainerAI_Weather_Terminate:
 
 TrainerAI_Harrassment_Main:
     IfTargetIsPartner TrainerAI_Terminate
+
+    ; If the move is not judged to be a Harrassment move within the context
+    ; of this routine, break.
     LoadCurrentMoveEffect 
-    IfLoadedNotInTable _10532, _10531
-    IfRandomLessThan 128, _10531
+    IfLoadedNotInTable TrainerAI_Harrassment_Effects, TrainerAI_Harrassment_Terminate
+
+    ; 50% of the time, score +2.
+    IfRandomLessThan 128, TrainerAI_Harrassment_Terminate
     AddToMoveScore 2
 
-_10531:
+TrainerAI_Harrassment_Terminate:
     PopOrEnd 
 
-_10532:
+TrainerAI_Harrassment_Effects:
     TableEntry BATTLE_EFFECT_STATUS_SLEEP
     TableEntry BATTLE_EFFECT_ATK_DOWN
     TableEntry BATTLE_EFFECT_DEF_DOWN
