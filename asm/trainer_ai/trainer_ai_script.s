@@ -5270,47 +5270,64 @@ _08354:
     PopOrEnd 
 
 TrainerAI_EvalAttack_Main:
+    ; Never target the partner.
     IfTargetIsPartner TrainerAI_Terminate
-    IfCurrentMoveKills USE_MAX_DAMAGE, _08391
+
+    IfCurrentMoveKills USE_MAX_DAMAGE, TrainerAI_EvalAttack_CheckForKill
+
+    ; If this move does not out-damage all other moves, score -1.
     FlagMoveDamageScore FALSE
     IfLoadedEqualTo AI_NOT_HIGHEST_DAMAGE, TrainerAI_ScoreMinus1
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_DEFENSE, _08376
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_LAST_WHIFF_IF_HIT, _08376
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_FIRST_IF_TARGET_ATTACKING, _08376
-    GoTo _08381
 
-_08376:
-    IfRandomLessThan 51, _08381
+    ; Explosion, Focus Punch, and Sucker Punch are judged as Risky by this routine.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_DEFENSE, TrainerAI_EvalAttack_RiskyAttack
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_LAST_WHIFF_IF_HIT, TrainerAI_EvalAttack_RiskyAttack
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_FIRST_IF_TARGET_ATTACKING, TrainerAI_EvalAttack_RiskyAttack
+
+    ; Check for quad-effectiveness.
+    GoTo TrainerAI_EvalAttack_CheckQuadEffective
+
+TrainerAI_EvalAttack_RiskyAttack:
+    ; ~80% chance of score -2.
+    IfRandomLessThan 51, TrainerAI_EvalAttack_CheckQuadEffective
     AddToMoveScore -2
 
-_08381:
-    IfMoveEffectivenessEquals TYPE_MULTI_QUADRUPLE_DAMAGE, _08385
+TrainerAI_EvalAttack_CheckQuadEffective:
+    ; If quad-effective, 31.25% chance of score +2.
+    IfMoveEffectivenessEquals TYPE_MULTI_QUADRUPLE_DAMAGE, TrainerAI_EvalAttack_TryScorePlus2
     PopOrEnd 
 
-_08385:
-    IfRandomLessThan 80, _08417
+TrainerAI_EvalAttack_TryScorePlus2:
+    IfRandomLessThan 80, TrainerAI_EvalAttack_Terminate
     AddToMoveScore 2
     PopOrEnd 
 
-_08391:
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_DEFENSE, _08417
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_LAST_WHIFF_IF_HIT, _08408
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_FIRST_IF_TARGET_ATTACKING, _08408
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_IN_3_TURNS, _08408
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PRIORITY_1, _08413
-    GoTo _08415
+TrainerAI_EvalAttack_CheckForKill:
+    ; Do not evaluate kills with Explosion or Self-Destruct for this routine.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_DEFENSE, TrainerAI_EvalAttack_Terminate
 
-_08408:
-    IfRandomLessThan 170, _08417
-    GoTo _08415
+    ; Randomly increase the score of a move that kills.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_LAST_WHIFF_IF_HIT, TrainerAI_EvalAttack_TryScorePlus4
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_FIRST_IF_TARGET_ATTACKING, TrainerAI_EvalAttack_TryScorePlus4
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_IN_3_TURNS, TrainerAI_EvalAttack_TryScorePlus4
 
-_08413:
+    ; Priority kill is score +2. This is because priorty moves are low-power, and this routine prioritizes
+    ; raw damage output.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PRIORITY_1, TrainerAI_EvalAttack_ScorePlus2
+    GoTo TrainerAI_EvalAttack_ScorePlus4
+
+TrainerAI_EvalAttack_TryScorePlus4:
+    ; ~33.6% of the time, score +4.
+    IfRandomLessThan 170, TrainerAI_EvalAttack_Terminate
+    GoTo TrainerAI_EvalAttack_ScorePlus4
+
+TrainerAI_EvalAttack_ScorePlus2:
     AddToMoveScore 2
 
-_08415:
+TrainerAI_EvalAttack_ScorePlus4:
     AddToMoveScore 4
 
-_08417:
+TrainerAI_EvalAttack_Terminate:
     PopOrEnd 
 
 TrainerAI_SetupFirstTurn_Main:
