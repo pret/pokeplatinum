@@ -5416,7 +5416,7 @@ TrainerAI_DamagePriority_Main:
     ; Do not target your partner.
     IfTargetIsPartner TrainerAI_Terminate
 
-    ; If the current move is not variable power or Risky, break.
+    ; If the current move is not variable power or is Risky, break.
     FlagMoveDamageScore FALSE
     IfLoadedNotEqualTo AI_NO_COMPARISON_MADE, TrainerAI_DamagePriority_Terminate
 
@@ -5472,43 +5472,66 @@ TrainerAI_Risky_RiskyEffects:
 
 TrainerAI_BatonPass_Main:
     IfTargetIsPartner TrainerAI_Terminate
+
+    ; If there are no other party members alive, break.
     CountAlivePartyBattlers AI_BATTLER_ATTACKER
-    IfLoadedEqualTo 0, _08645
+    IfLoadedEqualTo 0, TrainerAI_BatonPass_Terminate
+
+    ; If the move deals damage, ignore it for this flag.
     FlagMoveDamageScore FALSE
-    IfLoadedNotEqualTo AI_NO_COMPARISON_MADE, _08645
-    IfMoveEffectKnown AI_BATTLER_ATTACKER, BATTLE_EFFECT_PASS_STATS_AND_STATUS, _08566
+    IfLoadedNotEqualTo AI_NO_COMPARISON_MADE, TrainerAI_BatonPass_Terminate
+
+    ; If the attacker does not know Baton Pass, 31.25% chance of no score changes.
+    IfMoveEffectKnown AI_BATTLER_ATTACKER, BATTLE_EFFECT_PASS_STATS_AND_STATUS, TrainerAI_BatonPass_EvalMove
     IfRandomLessThan 80, TrainerAI_Risky_Terminate
 
-_08566:
-    IfMoveEqualTo MOVE_SWORDS_DANCE, _08589
-    IfMoveEqualTo MOVE_DRAGON_DANCE, _08589
-    IfMoveEqualTo MOVE_CALM_MIND, _08589
-    IfMoveEqualTo MOVE_NASTY_PLOT, _08589
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PROTECT, _08599
-    IfMoveEqualTo MOVE_BATON_PASS, _08610
+TrainerAI_BatonPass_EvalMove:
+    ; Handle these +2 boosting moves separately.
+    IfMoveEqualTo MOVE_SWORDS_DANCE, TrainerAI_BatonPass_SetupAtHighHP
+    IfMoveEqualTo MOVE_DRAGON_DANCE, TrainerAI_BatonPass_SetupAtHighHP
+    IfMoveEqualTo MOVE_CALM_MIND, TrainerAI_BatonPass_SetupAtHighHP
+    IfMoveEqualTo MOVE_NASTY_PLOT, TrainerAI_BatonPass_SetupAtHighHP
+
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PROTECT, TrainerAI_BatonPass_EvalProtect
+
+    IfMoveEqualTo MOVE_BATON_PASS, TrainerAI_BatonPass_EvalBatonPass
+
+    ; ~92% of the time, score +3.
     IfRandomLessThan 20, TrainerAI_Risky_Terminate
     AddToMoveScore 3
 
-_08589:
+TrainerAI_BatonPass_SetupAtHighHP:
+    ; On turn 1 of the entire battle, score +5.
     LoadTurnCount 
     IfLoadedEqualTo 0, TrainerAI_ScorePlus5
+
+    ; If the attacker is at < 60% HP, score -10.
     IfHPPercentLessThan AI_BATTLER_ATTACKER, 60, TrainerAI_ScoreMinus10
+
+    ; Otherwise, score +1.
     GoTo TrainerAI_ScorePlus1
 
-_08599:
+TrainerAI_BatonPass_EvalProtect:
+    ; If the current move's effect is Protect and the last move that we used
+    ; is either Detect or Protect, score -2.
     LoadBattlerPreviousMove AI_BATTLER_ATTACKER
-    IfLoadedInTable _08607, TrainerAI_ScoreMinus2
+    IfLoadedInTable TrainerAI_BatonPass_ProtectDetect, TrainerAI_ScoreMinus2
+
+    ; Else, score +2.
     AddToMoveScore 2
     PopOrEnd 
 
-_08607:
+TrainerAI_BatonPass_ProtectDetect:
     TableEntry MOVE_PROTECT
     TableEntry MOVE_DETECT
     TableEntry TABLE_END
 
-_08610:
+TrainerAI_BatonPass_EvalBatonPass:
+    ; On turn 1 of the entire battle, score -2.
     LoadTurnCount 
     IfLoadedEqualTo 0, TrainerAI_ScoreMinus2
+
+    ; Score +1 for each positive stat stage for Attack or Special Attack
     IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, TrainerAI_ScorePlus3
     IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 7, TrainerAI_ScorePlus2
     IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 6, TrainerAI_ScorePlus1
@@ -5517,7 +5540,7 @@ _08610:
     IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 6, TrainerAI_ScorePlus1
     PopOrEnd 
 
-_08645:
+TrainerAI_BatonPass_Terminate:
     PopOrEnd 
 
 TrainerAI_TagStrategy_Main:
