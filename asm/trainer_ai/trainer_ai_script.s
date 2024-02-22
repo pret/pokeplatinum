@@ -22,900 +22,1050 @@
     .global gTrainerAITable
 gTrainerAITable:
 
-_00000:
-    LabelDistance _00032, _00000
-    LabelDistance _08355, _00000
-    LabelDistance _02546, _00000
-    LabelDistance _08418, _00000
-    LabelDistance _08509, _00000
-    LabelDistance _08496, _00000
-    LabelDistance _08547, _00000
-    LabelDistance _08646, _00000
-    LabelDistance _10186, _00000
-    LabelDistance _10470, _00000
-    LabelDistance _10520, _00000
-    LabelDistance _10606, _00000
-    LabelDistance _10606, _00000
-    LabelDistance _10606, _00000
-    LabelDistance _10606, _00000
-    LabelDistance _10606, _00000
-    LabelDistance _10606, _00000
-    LabelDistance _10606, _00000
-    LabelDistance _10606, _00000
-    LabelDistance _10606, _00000
-    LabelDistance _10606, _00000
-    LabelDistance _10606, _00000
-    LabelDistance _10606, _00000
-    LabelDistance _10606, _00000
-    LabelDistance _10606, _00000
-    LabelDistance _10606, _00000
-    LabelDistance _10606, _00000
-    LabelDistance _10606, _00000
-    LabelDistance _10606, _00000
-    LabelDistance _10567, _00000
-    LabelDistance _10592, _00000
-    LabelDistance _10596, _00000
+TrainerAI_FlagTable:
+    LabelDistance TrainerAI_Basic_Main,          TrainerAI_FlagTable ; AI_FLAG_BASIC
+    LabelDistance TrainerAI_EvalAttack_Main,     TrainerAI_FlagTable ; AI_FLAG_EVAL_ATTACK
+    LabelDistance TrainerAI_Expert_Main,         TrainerAI_FlagTable ; AI_FLAG_EXPERT
+    LabelDistance TrainerAI_SetupFirstTurn_Main, TrainerAI_FlagTable ; AI_FLAG_SETUP_FIRST_TURN
+    LabelDistance TrainerAI_Risky_Main,          TrainerAI_FlagTable ; AI_FLAG_RISKY
+    LabelDistance TrainerAI_DamagePriority_Main, TrainerAI_FlagTable ; AI_FLAG_DAMAGE_PRIORITY
+    LabelDistance TrainerAI_BatonPass_Main,      TrainerAI_FlagTable ; AI_FLAG_BATON_PASS
+    LabelDistance TrainerAI_TagStrategy_Main,    TrainerAI_FlagTable ; AI_FLAG_TAG_STRATEGY
+    LabelDistance TrainerAI_CheckHP_Main,        TrainerAI_FlagTable ; AI_FLAG_CHECK_HP
+    LabelDistance TrainerAI_Weather_Main,        TrainerAI_FlagTable ; AI_FLAG_WEATHER
+    LabelDistance TrainerAI_Harrassment_Main,    TrainerAI_FlagTable ; AI_FLAG_HARRASSMENT
+    LabelDistance TrainerAI_Terminate,           TrainerAI_FlagTable ; AI_FLAG_UNUSED_11
+    LabelDistance TrainerAI_Terminate,           TrainerAI_FlagTable ; AI_FLAG_UNUSED_12
+    LabelDistance TrainerAI_Terminate,           TrainerAI_FlagTable ; AI_FLAG_UNUSED_13
+    LabelDistance TrainerAI_Terminate,           TrainerAI_FlagTable ; AI_FLAG_UNUSED_14
+    LabelDistance TrainerAI_Terminate,           TrainerAI_FlagTable ; AI_FLAG_UNUSED_15
+    LabelDistance TrainerAI_Terminate,           TrainerAI_FlagTable ; AI_FLAG_UNUSED_16
+    LabelDistance TrainerAI_Terminate,           TrainerAI_FlagTable ; AI_FLAG_UNUSED_17
+    LabelDistance TrainerAI_Terminate,           TrainerAI_FlagTable ; AI_FLAG_UNUSED_18
+    LabelDistance TrainerAI_Terminate,           TrainerAI_FlagTable ; AI_FLAG_UNUSED_19
+    LabelDistance TrainerAI_Terminate,           TrainerAI_FlagTable ; AI_FLAG_UNUSED_20
+    LabelDistance TrainerAI_Terminate,           TrainerAI_FlagTable ; AI_FLAG_UNUSED_21
+    LabelDistance TrainerAI_Terminate,           TrainerAI_FlagTable ; AI_FLAG_UNUSED_22
+    LabelDistance TrainerAI_Terminate,           TrainerAI_FlagTable ; AI_FLAG_UNUSED_23
+    LabelDistance TrainerAI_Terminate,           TrainerAI_FlagTable ; AI_FLAG_UNUSED_24
+    LabelDistance TrainerAI_Terminate,           TrainerAI_FlagTable ; AI_FLAG_UNUSED_25
+    LabelDistance TrainerAI_Terminate,           TrainerAI_FlagTable ; AI_FLAG_UNUSED_26
+    LabelDistance TrainerAI_Terminate,           TrainerAI_FlagTable ; AI_FLAG_UNUSED_27
+    LabelDistance TrainerAI_Terminate,           TrainerAI_FlagTable ; AI_FLAG_UNUSED_28
+    LabelDistance TrainerAI_RoamingPokemon_Main, TrainerAI_FlagTable ; AI_FLAG_ROAMING_POKEMON
+    LabelDistance TrainerAI_Safari_Main,         TrainerAI_FlagTable ; AI_FLAG_SAFARI
+    LabelDistance TrainerAI_CatchTutorial_Main,  TrainerAI_FlagTable ; AI_FLAG_CATCH_TUTORIAL
 
-_00032:
-    IfTargetIsPartner _10606
-    IfMoveEqualTo MOVE_FISSURE, _00045
-    IfMoveEqualTo MOVE_HORN_DRILL, _00045
+TrainerAI_Basic_Main:
+    ; Ignore this flag on partner battlers.
+    IfTargetIsPartner TrainerAI_Terminate
+
+    ; Skip damage scoring for OHKO moves (only Fissure and Horn Drill)
+    IfMoveEqualTo MOVE_FISSURE, TrainerAI_Basic_CheckForImmunity
+    IfMoveEqualTo MOVE_HORN_DRILL, TrainerAI_Basic_CheckForImmunity
+
+    ; Score the move according to its damage. If the AI does not know any
+    ; moves which are eligible for scoring, skip ahead.
     FlagMoveDamageScore FALSE
-    IfLoadedEqualTo AI_NO_COMPARISON_MADE, _00126
+    IfLoadedEqualTo AI_NO_COMPARISON_MADE, TrainerAI_Basic_CheckSoundproof
 
-_00045:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _02522
+TrainerAI_Basic_CheckForImmunity:
+    ; Check for any immunity to the current move based on move type and what
+    ; we know the battler's ability to be (if we do at all).
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_ScoreMinus10
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, _00121
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TrainerAI_Basic_NoImmunityAbility
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_VOLT_ABSORB, _00078
-    IfLoadedEqualTo ABILITY_MOTOR_DRIVE, _00078
-    IfLoadedEqualTo ABILITY_WATER_ABSORB, _00085
-    IfLoadedEqualTo ABILITY_FLASH_FIRE, _00092
-    IfLoadedEqualTo ABILITY_WONDER_GUARD, _00099
-    IfLoadedEqualTo ABILITY_LEVITATE, _00107
-    IfLoadedEqualTo ABILITY_LEVITATE, _00114
-    GoTo _00121
+    IfLoadedEqualTo ABILITY_VOLT_ABSORB, TrainerAI_Basic_CheckElectricAbsorption
+    IfLoadedEqualTo ABILITY_MOTOR_DRIVE, TrainerAI_Basic_CheckElectricAbsorption
+    IfLoadedEqualTo ABILITY_WATER_ABSORB, TrainerAI_Basic_CheckWaterAbsorption
+    IfLoadedEqualTo ABILITY_FLASH_FIRE, TrainerAI_Basic_CheckFireAbsorption
+    IfLoadedEqualTo ABILITY_WONDER_GUARD, TrainerAI_Basic_CheckWonderGuard
+    IfLoadedEqualTo ABILITY_LEVITATE, TrainerAI_Basic_CheckGroundAbsorption
+    IfLoadedEqualTo ABILITY_LEVITATE, TrainerAI_Basic_CheckWaterAbsorption2 ; BUG: This line should branch on Dry Skin rather than Levitate
+    GoTo TrainerAI_Basic_NoImmunityAbility
 
-_00078:
+TrainerAI_Basic_CheckElectricAbsorption:
     LoadTypeFrom LOAD_MOVE_TYPE
-    IfTempEqualTo TYPE_ELECTRIC, _02525
-    GoTo _00121
+    IfTempEqualTo TYPE_ELECTRIC, TrainerAI_ScoreMinus12
+    GoTo TrainerAI_Basic_NoImmunityAbility
 
-_00085:
+TrainerAI_Basic_CheckWaterAbsorption:
     LoadTypeFrom LOAD_MOVE_TYPE
-    IfTempEqualTo TYPE_WATER, _02525
-    GoTo _00121
+    IfTempEqualTo TYPE_WATER, TrainerAI_ScoreMinus12
+    GoTo TrainerAI_Basic_NoImmunityAbility
 
-_00092:
+TrainerAI_Basic_CheckFireAbsorption:
     LoadTypeFrom LOAD_MOVE_TYPE
-    IfTempEqualTo TYPE_FIRE, _02525
-    GoTo _00121
+    IfTempEqualTo TYPE_FIRE, TrainerAI_ScoreMinus12
+    GoTo TrainerAI_Basic_NoImmunityAbility
 
-_00099:
-    IfMoveEffectivenessEquals TYPE_MULTI_DOUBLE_DAMAGE, _00121
-    IfMoveEffectivenessEquals TYPE_MULTI_QUADRUPLE_DAMAGE, _00121
-    GoTo _02525
+TrainerAI_Basic_CheckWonderGuard:
+    IfMoveEffectivenessEquals TYPE_MULTI_DOUBLE_DAMAGE, TrainerAI_Basic_NoImmunityAbility
+    IfMoveEffectivenessEquals TYPE_MULTI_QUADRUPLE_DAMAGE, TrainerAI_Basic_NoImmunityAbility
+    GoTo TrainerAI_ScoreMinus12
 
-_00107:
+TrainerAI_Basic_CheckGroundAbsorption:
     LoadTypeFrom LOAD_MOVE_TYPE
-    IfTempEqualTo TYPE_GROUND, _02525
-    GoTo _00121
+    IfTempEqualTo TYPE_GROUND, TrainerAI_ScoreMinus12
+    GoTo TrainerAI_Basic_NoImmunityAbility
 
-_00114:
+TrainerAI_Basic_CheckWaterAbsorption2:
     LoadTypeFrom LOAD_MOVE_TYPE
-    IfTempEqualTo TYPE_WATER, _02525
-    GoTo _00121
+    IfTempEqualTo TYPE_WATER, TrainerAI_ScoreMinus12
+    GoTo TrainerAI_Basic_NoImmunityAbility
 
-_00121:
+TrainerAI_Basic_NoImmunityAbility:
     FlagMoveDamageScore FALSE
-    IfLoadedEqualTo AI_NO_COMPARISON_MADE, _00126
+    IfLoadedEqualTo AI_NO_COMPARISON_MADE, TrainerAI_Basic_CheckSoundproof
 
-_00126:
+TrainerAI_Basic_CheckSoundproof:
+    ; Check for immunity to sound-based moves
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedNotEqualTo ABILITY_SOUNDPROOF, _00169
+    IfLoadedNotEqualTo ABILITY_SOUNDPROOF, TrainerAI_Basic_ScoreMoveEffect
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, _00169
-    IfMoveEqualTo MOVE_GROWL, _02522
-    IfMoveEqualTo MOVE_ROAR, _02522
-    IfMoveEqualTo MOVE_SING, _02522
-    IfMoveEqualTo MOVE_SUPERSONIC, _02522
-    IfMoveEqualTo MOVE_SCREECH, _02522
-    IfMoveEqualTo MOVE_SNORE, _02522
-    IfMoveEqualTo MOVE_UPROAR, _02522
-    IfMoveEqualTo MOVE_METAL_SOUND, _02522
-    IfMoveEqualTo MOVE_GRASS_WHISTLE, _02522
-    IfMoveEqualTo MOVE_BUG_BUZZ, _02522
-    IfMoveEqualTo MOVE_CHATTER, _02522
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TrainerAI_Basic_ScoreMoveEffect
+    IfMoveEqualTo MOVE_GROWL, TrainerAI_ScoreMinus10
+    IfMoveEqualTo MOVE_ROAR, TrainerAI_ScoreMinus10
+    IfMoveEqualTo MOVE_SING, TrainerAI_ScoreMinus10
+    IfMoveEqualTo MOVE_SUPERSONIC, TrainerAI_ScoreMinus10
+    IfMoveEqualTo MOVE_SCREECH, TrainerAI_ScoreMinus10
+    IfMoveEqualTo MOVE_SNORE, TrainerAI_ScoreMinus10
+    IfMoveEqualTo MOVE_UPROAR, TrainerAI_ScoreMinus10
+    IfMoveEqualTo MOVE_METAL_SOUND, TrainerAI_ScoreMinus10
+    IfMoveEqualTo MOVE_GRASS_WHISTLE, TrainerAI_ScoreMinus10
+    IfMoveEqualTo MOVE_BUG_BUZZ, TrainerAI_ScoreMinus10
+    IfMoveEqualTo MOVE_CHATTER, TrainerAI_ScoreMinus10
 
-_00169:
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_SLEEP, _00626
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_DEFENSE, _00643
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOVER_DAMAGE_SLEEP, _00683
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_UP, _00695
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_UP, _00712
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPEED_UP, _00729
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_UP, _00749
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_DEF_UP, _00766
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ACC_UP, _00783
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_EVA_UP, _00808
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DOWN, _00833
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_DOWN, _00845
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPEED_DOWN, _00852
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_DOWN, _00868
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_DEF_DOWN, _00875
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ACC_DOWN, _00882
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_EVA_DOWN, _00902
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RESET_STAT_CHANGES, _00926
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_BIDE, _01104
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FORCE_SWITCH, _00999
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RESTORE_HALF_HP, _01015
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_BADLY_POISON, _01022
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_LIGHT_SCREEN, _01074
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ONE_HIT_KO, _01079
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CHARGE_TURN_HIGH_CRIT, _01104
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_HP, _01104
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_40_DAMAGE_FLAT, _01104
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_STAT_REDUCTION, _01126
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CRIT_UP_2, _01131
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_CONFUSE, _01136
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_UP_2, _00695
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_UP_2, _00712
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPEED_UP_2, _00729
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_UP_2, _00749
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_DEF_UP_2, _00766
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ACC_UP_2, _00783
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_EVA_UP_2, _00808
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DOWN_2, _00833
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_DOWN_2, _00845
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPEED_DOWN_2, _00852
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_DOWN_2, _00868
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_DEF_DOWN_2, _00875
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_EVA_DOWN_2, _00882
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ACC_DOWN_2, _00902
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_REFLECT, _01150
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_POISON, _01022
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_PARALYZE, _01155
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_SUBSTITUTE, _01193
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECHARGE_AFTER, _01104
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_LEECH_SEED, _01202
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DISABLE, _01222
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LEVEL_DAMAGE_FLAT, _01104
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RANDOM_DAMAGE_1_TO_150_LEVEL, _01104
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_COUNTER, _01104
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ENCORE, _01227
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DAMAGE_WHILE_ASLEEP, _01232
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_NEXT_ATTACK_ALWAYS_HITS, _01237
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_USE_RANDOM_LEARNED_MOVE_SLEEP, _01232
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_INCREASE_POWER_WITH_LESS_HP, _01104
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_ESCAPE, _01252
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_NIGHTMARE, _00669
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_EVA_UP_2_MINIMIZE, _00808
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CURSE, _01257
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_SPIKES, _01304
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_IGNORE_EVASION_REMOVE_GHOST_IMMUNE, _01316
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ALL_FAINT_3_TURNS, _01321
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_SANDSTORM, _01326
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_UP_2_STATUS_CONFUSION, _01136
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_INFATUATE, _01331
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_POWER_BASED_ON_FRIENDSHIP, _01104
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RANDOM_POWER_MAYBE_HEAL, _01104
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_POWER_BASED_ON_LOW_FRIENDSHIP, _01104
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_STATUS, _01365
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RANDOM_POWER_10_CASES, _01096
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PASS_STATS_AND_STATUS, _01399
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_10_DAMAGE_FLAT, _01104
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HEAL_HALF_MORE_IN_SUN, _01015
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_UNUSED_133, _01015
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_UNUSED_134, _01015
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RANDOM_POWER_BASED_ON_IVS, _01104
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_RAIN, _01405
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_SUN, _01427
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_MAX_ATK_LOSE_HALF_MAX_HP, _00691
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_COPY_STAT_CHANGES, _00926
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_MIRROR_COAT, _01104
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CHARGE_TURN_DEF_UP, _01104
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_IN_3_TURNS, _01452
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FLEE_FROM_WILD_BATTLE, _02522
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_UP_DOUBLE_ROLLOUT_POWER, _00712
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_UNUSED_157, _01015
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ALWAYS_FLINCH_FIRST_TURN_ONLY, _01461
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STOCKPILE, _01467
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPIT_UP, _01473
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWALLOW, _01473
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_HAIL, _01485
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TORMENT, _01504
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_UP_CAUSE_CONFUSION, _01136
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_BURN, _01509
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FAINT_AND_ATK_SP_ATK_DOWN_2, _01370
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_LAST_WHIFF_IF_HIT, _01104
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_BOOST_ALLY_POWER_BY_50_PERCENT, _01536
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWITCH_HELD_ITEMS, _01541
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_GROUND_TRAP_USER_CONTINUOUS_HEAL, _01552
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LOWER_OWN_ATK_AND_DEF, _01104
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECYCLE, _01557
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_SLEEP_NEXT_TURN, _00626
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_REMOVE_HELD_ITEM, _01541
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_HP_EQUAL_TO_USER, _01104
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_MAKE_SHARED_MOVES_UNUSEABLE, _01563
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HEAL_STATUS, _01572
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_INCREASE_POWER_WITH_WEIGHT, _01104
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_ELECTRIC_DAMAGE, _01577
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DEF_DOWN, _01582
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_SPD_UP, _01606
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DEF_UP, _01633
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_FIRE_DAMAGE, _01660
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_SP_DEF_UP, _01665
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_SPD_UP, _01692
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CAMOUFLAGE, _01722
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HEAL_HALF_REMOVE_FLYING_TYPE, _01015
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_GRAVITY, _01727
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_IGNORE_EVATION_REMOVE_DARK_IMMUNE, _01731
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_POWER_BASED_ON_LOW_SPEED, _01104
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FAINT_AND_FULL_HEAL_NEXT_MON, _01736
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_NATURAL_GIFT, _01753
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_SPEED_3_TURNS, _01827
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RANDOM_STAT_UP_2, _01835
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_METAL_BURST, _01912
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_ITEM_USE, _01937
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FLING, _01951
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TRANSFER_STATUS, _02144
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIGHER_POWER_WHEN_LOW_PP, _01104
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_HEALING, _02230
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_INCREASE_POWER_WITH_MORE_HP, _01104
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWAP_ATK_DEF, _02235
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SUPRESS_ABILITY, _02240
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_CRITS, _02268
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_USE_LAST_USED_MOVE, _02273
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWAP_ATK_SP_ATK_STAT_CHANGES, _02281
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWAP_DEF_SP_DEF_STAT_CHANGES, _02296
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_INCREASE_POWER_WITH_MORE_STAT_UP, _01104
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FAIL_IF_NOT_USED_ALL_OTHER_MOVES, _02311
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_ABILITY_TO_INSOMNIA, _02317
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TOXIC_SPIKES, _02346
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWAP_STAT_CHANGES, _00926
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RESTORE_HP_EVERY_TURN, _02359
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_GIVE_GROUND_IMMUNITY, _02364
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_REMOVE_HAZARDS_SCREENS_EVA_DOWN, _02384
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TRICK_ROOM, _02421
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_DOWN_2_OPPOSITE_GENDER, _02428
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STEALTH_ROCK, _02474
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FAINT_FULL_RESTORE_NEXT_MON, _02484
+TrainerAI_Basic_ScoreMoveEffect:
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_SLEEP, TrainerAI_Basic_CheckCannotSleep
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_DEFENSE, TrainerAI_Basic_CheckCannotExplode
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOVER_DAMAGE_SLEEP, TrainerAI_Basic_CheckDreamEater
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_UP, TrainerAI_Basic_CheckHighStatStage_Attack
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_UP, TrainerAI_Basic_CheckHighStatStage_Defense
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPEED_UP, TrainerAI_Basic_CheckHighStatStage_Speed
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_UP, TrainerAI_Basic_CheckHighStatStage_SpAttack
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_DEF_UP, TrainerAI_Basic_CheckHighStatStage_SpDefense
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ACC_UP, TrainerAI_Basic_CheckHighStatStage_Accuracy
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_EVA_UP, TrainerAI_Basic_CheckHighStatStage_Evasion
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DOWN, TrainerAI_Basic_CheckLowStatStage_Attack
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_DOWN, TrainerAI_Basic_CheckLowStatStage_Defense
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPEED_DOWN, TrainerAI_Basic_CheckLowStatStage_Speed
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_DOWN, TrainerAI_Basic_CheckLowStatStage_SpAttack
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_DEF_DOWN, TrainerAI_Basic_CheckLowStatStage_SpDefense
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ACC_DOWN, TrainerAI_Basic_CheckLowStatStage_Accuracy
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_EVA_DOWN, TrainerAI_Basic_CheckLowStatStage_Evasion
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RESET_STAT_CHANGES, TrainerAI_Basic_CheckStatStageImbalance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_BIDE, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FORCE_SWITCH, TrainerAI_Basic_CheckCanForceSwitch
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RESTORE_HALF_HP, TrainerAI_Basic_CheckCanRecoverHP
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_BADLY_POISON, TrainerAI_Basic_CheckCannotPoison
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_LIGHT_SCREEN, TrainerAI_Basic_CheckAlreadyUnderLightScreen
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ONE_HIT_KO, TrainerAI_Basic_CheckOHKOWouldFail
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CHARGE_TURN_HIGH_CRIT, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_HP, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_40_DAMAGE_FLAT, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_STAT_REDUCTION, TrainerAI_Basic_CheckAlreadyUnderMist
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CRIT_UP_2, TrainerAI_Basic_CheckAlreadyPumpedUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_CONFUSE, TrainerAI_Basic_CheckCannotConfuse
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_UP_2, TrainerAI_Basic_CheckHighStatStage_Attack
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_UP_2, TrainerAI_Basic_CheckHighStatStage_Defense
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPEED_UP_2, TrainerAI_Basic_CheckHighStatStage_Speed
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_UP_2, TrainerAI_Basic_CheckHighStatStage_SpAttack
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_DEF_UP_2, TrainerAI_Basic_CheckHighStatStage_SpDefense
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ACC_UP_2, TrainerAI_Basic_CheckHighStatStage_Accuracy
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_EVA_UP_2, TrainerAI_Basic_CheckHighStatStage_Evasion
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DOWN_2, TrainerAI_Basic_CheckLowStatStage_Attack
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_DOWN_2, TrainerAI_Basic_CheckLowStatStage_Defense
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPEED_DOWN_2, TrainerAI_Basic_CheckLowStatStage_Speed
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_DOWN_2, TrainerAI_Basic_CheckLowStatStage_SpAttack
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_DEF_DOWN_2, TrainerAI_Basic_CheckLowStatStage_SpDefense
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_EVA_DOWN_2, TrainerAI_Basic_CheckLowStatStage_Accuracy
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ACC_DOWN_2, TrainerAI_Basic_CheckLowStatStage_Evasion
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_REFLECT, TrainerAI_Basic_CheckAlreadyUnderReflect
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_POISON, TrainerAI_Basic_CheckCannotPoison
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_PARALYZE, TrainerAI_Basic_CheckCannotParalyze
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_SUBSTITUTE, TrainerAI_Basic_CheckCannotSubstitute
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECHARGE_AFTER, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_LEECH_SEED, TrainerAI_Basic_CheckCannotLeechSeed
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DISABLE, TrainerAI_Basic_CheckCannotDisable
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LEVEL_DAMAGE_FLAT, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RANDOM_DAMAGE_1_TO_150_LEVEL, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_COUNTER, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ENCORE, TrainerAI_Basic_CheckCannotEncore
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DAMAGE_WHILE_ASLEEP, TrainerAI_Basic_CheckAttackerAsleep
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_NEXT_ATTACK_ALWAYS_HITS, TrainerAI_Basic_CheckLockOn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_USE_RANDOM_LEARNED_MOVE_SLEEP, TrainerAI_Basic_CheckAttackerAsleep
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_INCREASE_POWER_WITH_LESS_HP, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_ESCAPE, TrainerAI_Basic_CheckMeanLook
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_NIGHTMARE, TrainerAI_Basic_CheckNightmare
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_EVA_UP_2_MINIMIZE, TrainerAI_Basic_CheckHighStatStage_Evasion
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CURSE, TrainerAI_Basic_CheckCurse
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_SPIKES, TrainerAI_Basic_CheckSpikes
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_IGNORE_EVASION_REMOVE_GHOST_IMMUNE, TrainerAI_Basic_CheckForesight
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ALL_FAINT_3_TURNS, TrainerAI_Basic_CheckPerishSong
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_SANDSTORM, TrainerAI_Basic_CheckSandstorm
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_UP_2_STATUS_CONFUSION, TrainerAI_Basic_CheckCannotConfuse
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_INFATUATE, TrainerAI_Basic_CheckCannotAttract
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_POWER_BASED_ON_FRIENDSHIP, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RANDOM_POWER_MAYBE_HEAL, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_POWER_BASED_ON_LOW_FRIENDSHIP, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_STATUS, TrainerAI_Basic_CheckAlreadyUnderSafeguard
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RANDOM_POWER_10_CASES, TrainerAI_Basic_CheckMagnitude
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PASS_STATS_AND_STATUS, TrainerAI_Basic_CheckBatonPass
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_10_DAMAGE_FLAT, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HEAL_HALF_MORE_IN_SUN, TrainerAI_Basic_CheckCanRecoverHP
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_UNUSED_133, TrainerAI_Basic_CheckCanRecoverHP
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_UNUSED_134, TrainerAI_Basic_CheckCanRecoverHP
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RANDOM_POWER_BASED_ON_IVS, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_RAIN, TrainerAI_Basic_CheckRainDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_SUN, TrainerAI_Basic_CheckSunnyDay
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_MAX_ATK_LOSE_HALF_MAX_HP, TrainerAI_Basic_CheckBellyDrum
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_COPY_STAT_CHANGES, TrainerAI_Basic_CheckStatStageImbalance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_MIRROR_COAT, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CHARGE_TURN_DEF_UP, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_IN_3_TURNS, TrainerAI_Basic_CheckFutureSight
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FLEE_FROM_WILD_BATTLE, TrainerAI_ScoreMinus10
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_UP_DOUBLE_ROLLOUT_POWER, TrainerAI_Basic_CheckHighStatStage_Defense
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_UNUSED_157, TrainerAI_Basic_CheckCanRecoverHP
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ALWAYS_FLINCH_FIRST_TURN_ONLY, TrainerAI_Basic_CheckFirstTurnInBattle
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STOCKPILE, TrainerAI_Basic_CheckMaxStockpile
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPIT_UP, TrainerAI_Basic_CheckCanSpitUpOrSwallow
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWALLOW, TrainerAI_Basic_CheckCanSpitUpOrSwallow
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_HAIL, TrainerAI_Basic_CheckHail
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TORMENT, TrainerAI_Basic_CheckTorment
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_UP_CAUSE_CONFUSION, TrainerAI_Basic_CheckCannotConfuse
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_BURN, TrainerAI_Basic_CheckCannotBurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FAINT_AND_ATK_SP_ATK_DOWN_2, TrainerAI_Basic_CheckMemento
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_LAST_WHIFF_IF_HIT, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_BOOST_ALLY_POWER_BY_50_PERCENT, TrainerAI_Basic_CheckHelpingHand
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWITCH_HELD_ITEMS, TrainerAI_Basic_CheckCanRemoveItem
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_GROUND_TRAP_USER_CONTINUOUS_HEAL, TrainerAI_Basic_CheckAlreadyIngrained
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LOWER_OWN_ATK_AND_DEF, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECYCLE, TrainerAI_Basic_CheckCanRecycle
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_SLEEP_NEXT_TURN, TrainerAI_Basic_CheckCannotSleep
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_REMOVE_HELD_ITEM, TrainerAI_Basic_CheckCanRemoveItem
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_HP_EQUAL_TO_USER, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_MAKE_SHARED_MOVES_UNUSEABLE, TrainerAI_Basic_CheckCanImprison
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HEAL_STATUS, TrainerAI_Basic_CheckCanRefreshStatus
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_INCREASE_POWER_WITH_WEIGHT, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_ELECTRIC_DAMAGE, TrainerAI_Basic_CheckCanMudSport
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DEF_DOWN, TrainerAI_Basic_CheckTickle
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_SPD_UP, TrainerAI_Basic_CheckCosmicPower
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DEF_UP, TrainerAI_Basic_CheckBulkUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_FIRE_DAMAGE, TrainerAI_Basic_CheckWaterSport
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_SP_DEF_UP, TrainerAI_Basic_CheckCalmMind
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_SPD_UP, TrainerAI_Basic_CheckDragonDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CAMOUFLAGE, TrainerAI_Basic_CheckCamouflage
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HEAL_HALF_REMOVE_FLYING_TYPE, TrainerAI_Basic_CheckCanRecoverHP
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_GRAVITY, TrainerAI_Basic_CheckGravityActive
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_IGNORE_EVATION_REMOVE_DARK_IMMUNE, TrainerAI_Basic_CheckMiracleEye
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_POWER_BASED_ON_LOW_SPEED, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FAINT_AND_FULL_HEAL_NEXT_MON, TrainerAI_Basic_CheckHealingWish
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_NATURAL_GIFT, TrainerAI_Basic_CheckNaturalGift
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_SPEED_3_TURNS, TrainerAI_Basic_CheckTailwind
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RANDOM_STAT_UP_2, TrainerAI_Basic_CheckAcupressure
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_METAL_BURST, TrainerAI_Basic_CheckMetalBurst
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_ITEM_USE, TrainerAI_Basic_CheckEmbargo
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FLING, TrainerAI_Basic_CheckFling
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TRANSFER_STATUS, TrainerAI_Basic_CheckCanPsychoShift
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIGHER_POWER_WHEN_LOW_PP, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_HEALING, TrainerAI_Basic_CheckHealBlock
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_INCREASE_POWER_WITH_MORE_HP, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWAP_ATK_DEF, TrainerAI_Basic_CheckPowerTrick
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SUPRESS_ABILITY, TrainerAI_Basic_CheckGastroAcid
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_CRITS, TrainerAI_Basic_CheckLuckyChant
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_USE_LAST_USED_MOVE, TrainerAI_Basic_CheckCopycat
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWAP_ATK_SP_ATK_STAT_CHANGES, TrainerAI_Basic_CheckPowerSwap
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWAP_DEF_SP_DEF_STAT_CHANGES, TrainerAI_Basic_CheckGuardSwap
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_INCREASE_POWER_WITH_MORE_STAT_UP, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FAIL_IF_NOT_USED_ALL_OTHER_MOVES, TrainerAI_Basic_CheckLastResort
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_ABILITY_TO_INSOMNIA, TrainerAI_Basic_CheckWorrySeed
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TOXIC_SPIKES, TrainerAI_Basic_CheckToxicSpikes
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWAP_STAT_CHANGES, TrainerAI_Basic_CheckStatStageImbalance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RESTORE_HP_EVERY_TURN, TrainerAI_Basic_CheckAquaRing
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_GIVE_GROUND_IMMUNITY, TrainerAI_Basic_CheckMagnetRise
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_REMOVE_HAZARDS_SCREENS_EVA_DOWN, TrainerAI_Basic_CheckDefog
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TRICK_ROOM, TrainerAI_Basic_CheckTrickRoom
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_DOWN_2_OPPOSITE_GENDER, TrainerAI_Basic_CheckCaptivate
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STEALTH_ROCK, TrainerAI_Basic_CheckStealthRock
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FAINT_FULL_RESTORE_NEXT_MON, TrainerAI_Basic_CheckLunarDance
     PopOrEnd 
 
-_00626:
-    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, _02522
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, _02522
+TrainerAI_Basic_CheckCannotSleep:
+    ; If the target cannot be put to sleep for any reason, score -10.
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, TrainerAI_ScoreMinus10
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, TrainerAI_ScoreMinus10
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_INSOMNIA, _02522
-    IfLoadedEqualTo ABILITY_VITAL_SPIRIT, _02522
+    IfLoadedEqualTo ABILITY_INSOMNIA, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo ABILITY_VITAL_SPIRIT, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_00643:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _02522
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, _00656
-    LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_DAMP, _02522
+TrainerAI_Basic_CheckCannotExplode:
+    ; If the target is immune, score -10.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_ScoreMinus10
 
-_00656:
+    ; If the target has Damp and we do not have Mold Breaker, score -10.
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TrainerAI_Basic_CheckLastMon
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ABILITY_DAMP, TrainerAI_ScoreMinus10
+
+TrainerAI_Basic_CheckLastMon:
+    ; If we are on our last Pokemon and the target is not also on their last Pokemon,
+    ; score -10.
     CountAlivePartyBattlers AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo 0, _00668
+    IfLoadedNotEqualTo 0, TrainerAI_Basic_Explode_Terminate
     CountAlivePartyBattlers AI_BATTLER_DEFENDER
-    IfLoadedNotEqualTo 0, _02522
-    GoTo _02504
+    IfLoadedNotEqualTo 0, TrainerAI_ScoreMinus10
 
-_00668:
+    ; If the target is also on their last Pokemon, score -1 instead of -10.
+    GoTo TrainerAI_ScoreMinus1
+
+TrainerAI_Basic_Explode_Terminate:
     PopOrEnd 
 
-_00669:
-    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_NIGHTMARE, _02522
-    IfNotStatus AI_BATTLER_DEFENDER, MON_CONDITION_SLEEP, _02519
+TrainerAI_Basic_CheckNightmare:
+    ; If the target is immune to the effect of Nightmare for any reason, score -8/-10.
+    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_NIGHTMARE, TrainerAI_ScoreMinus10
+    IfNotStatus AI_BATTLER_DEFENDER, MON_CONDITION_SLEEP, TrainerAI_ScoreMinus8
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_MAGIC_GUARD, _02522
+    IfLoadedEqualTo ABILITY_MAGIC_GUARD, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_00683:
-    IfNotStatus AI_BATTLER_DEFENDER, MON_CONDITION_SLEEP, _02519
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _02522
+TrainerAI_Basic_CheckDreamEater:
+    ; If the target is immune to Dream Eater for any reason, score -8/-10.
+    IfNotStatus AI_BATTLER_DEFENDER, MON_CONDITION_SLEEP, TrainerAI_ScoreMinus8
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_00691:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 51, _02522
+TrainerAI_Basic_CheckBellyDrum:
+    ; If the attacker is at half HP or less, score -10.
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 51, TrainerAI_ScoreMinus10
 
-_00695:
+    ; General comments on stat-boosting Status moves below:
+    ;   - If the attacker has Simple and is already at +2, score -10.
+    ;   - If the attacker is already at +6, score -10.
+    ;   - Special cases for Speed (Trick Room active -> -10) and Accuracy/Evasion (attacker has No Guard -> -10)
+TrainerAI_Basic_CheckHighStatStage_Attack:
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, _00706
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, _02522
+    IfLoadedNotEqualTo ABILITY_SIMPLE, TrainerAI_Basic_CheckHighStatStage_Attack_NoSimple
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_00706:
-    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, _02522
+TrainerAI_Basic_CheckHighStatStage_Attack_NoSimple:
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_00712:
+TrainerAI_Basic_CheckHighStatStage_Defense:
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, _00723
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 8, _02522
+    IfLoadedNotEqualTo ABILITY_SIMPLE, TrainerAI_Basic_CheckHighStatStage_Defense_NoSimple
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 8, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_00723:
-    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 12, _02522
+TrainerAI_Basic_CheckHighStatStage_Defense_NoSimple:
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 12, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_00729:
-    IfFieldConditionsMask FIELD_CONDITION_TRICK_ROOM, _02522
+TrainerAI_Basic_CheckHighStatStage_Speed:
+    IfFieldConditionsMask FIELD_CONDITION_TRICK_ROOM, TrainerAI_ScoreMinus10
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, _00743
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 8, _02522
+    IfLoadedNotEqualTo ABILITY_SIMPLE, TrainerAI_Basic_CheckHighStatStage_Speed_NoSimple
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 8, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_00743:
-    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, _02522
+TrainerAI_Basic_CheckHighStatStage_Speed_NoSimple:
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_00749:
+TrainerAI_Basic_CheckHighStatStage_SpAttack:
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, _00760
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 8, _02522
+    IfLoadedNotEqualTo ABILITY_SIMPLE, TrainerAI_Basic_CheckHighStatStage_SpAttack_NoSimple
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 8, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_00760:
-    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, _02522
+TrainerAI_Basic_CheckHighStatStage_SpAttack_NoSimple:
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_00766:
+TrainerAI_Basic_CheckHighStatStage_SpDefense:
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, _00777
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 8, _02522
+    IfLoadedNotEqualTo ABILITY_SIMPLE, TrainerAI_Basic_CheckHighStatStage_SpDefense_NoSimple
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 8, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_00777:
-    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, _02522
+TrainerAI_Basic_CheckHighStatStage_SpDefense_NoSimple:
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_00783:
+TrainerAI_Basic_CheckHighStatStage_Accuracy:
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_NO_GUARD, _02522
+    IfLoadedEqualTo ABILITY_NO_GUARD, TrainerAI_ScoreMinus10
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_NO_GUARD, _02522
-    IfLoadedNotEqualTo ABILITY_SIMPLE, _00802
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 8, _02522
+    IfLoadedEqualTo ABILITY_NO_GUARD, TrainerAI_ScoreMinus10
+    IfLoadedNotEqualTo ABILITY_SIMPLE, TrainerAI_Basic_CheckHighStatStage_Accuracy_NoSimple
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 8, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_00802:
-    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 12, _02522
+TrainerAI_Basic_CheckHighStatStage_Accuracy_NoSimple:
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 12, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_00808:
+TrainerAI_Basic_CheckHighStatStage_Evasion:
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_NO_GUARD, _02522
+    IfLoadedEqualTo ABILITY_NO_GUARD, TrainerAI_ScoreMinus10
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_NO_GUARD, _02522
-    IfLoadedNotEqualTo ABILITY_SIMPLE, _00827
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 8, _02522
+    IfLoadedEqualTo ABILITY_NO_GUARD, TrainerAI_ScoreMinus10
+    IfLoadedNotEqualTo ABILITY_SIMPLE, TrainerAI_Basic_CheckHighStatStage_Evasion_NoSimple
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 8, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_00827:
-    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 12, _02522
+TrainerAI_Basic_CheckHighStatStage_Evasion_NoSimple:
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 12, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_00833:
-    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 0, _02522
+    ; General comments on stat-reducing Status moves below:
+    ;   - If the target is already at -6, score -10.
+    ;   - If the target has White Smoke or Clear Body, score -10.
+    ;   - If reducing Attack -> -10 if the target has Hyper Cutter
+    ;   - If reducing Speed -> -10 if Trick Room is currently active
+    ;   - If reducing Speed -> -10 if the target has Speed Boost
+    ;   - If reducing Accuracy or Evasion -> -10 if either battler has No Guard
+    ;   - If reducing Accuracy -> -10 if the target has Keen Eye
+TrainerAI_Basic_CheckLowStatStage_Attack:
+    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 0, TrainerAI_ScoreMinus10
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_HYPER_CUTTER, _02522
-    GoTo _00917
+    IfLoadedEqualTo ABILITY_HYPER_CUTTER, TrainerAI_ScoreMinus10
+    GoTo TrainerAI_Basic_CheckClearBodyEffect
 
-_00845:
-    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE, 0, _02522
-    GoTo _00917
+TrainerAI_Basic_CheckLowStatStage_Defense:
+    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE, 0, TrainerAI_ScoreMinus10
+    GoTo TrainerAI_Basic_CheckClearBodyEffect
 
-_00852:
-    IfFieldConditionsMask FIELD_CONDITION_TRICK_ROOM, _02522
-    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_SPEED, 0, _02522
+TrainerAI_Basic_CheckLowStatStage_Speed:
+    IfFieldConditionsMask FIELD_CONDITION_TRICK_ROOM, TrainerAI_ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_SPEED, 0, TrainerAI_ScoreMinus10
     CheckBattlerAbility AI_BATTLER_DEFENDER, ABILITY_SPEED_BOOST
-    IfLoadedEqualTo AI_HAVE, _02522
-    GoTo _00917
+    IfLoadedEqualTo AI_HAVE, TrainerAI_ScoreMinus10
+    GoTo TrainerAI_Basic_CheckClearBodyEffect
 
-_00868:
-    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 0, _02522
-    GoTo _00917
+TrainerAI_Basic_CheckLowStatStage_SpAttack:
+    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 0, TrainerAI_ScoreMinus10
+    GoTo TrainerAI_Basic_CheckClearBodyEffect
 
-_00875:
-    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_SP_DEFENSE, 0, _02522
-    GoTo _00917
+TrainerAI_Basic_CheckLowStatStage_SpDefense:
+    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_SP_DEFENSE, 0, TrainerAI_ScoreMinus10
+    GoTo TrainerAI_Basic_CheckClearBodyEffect
 
-_00882:
-    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_ACCURACY, 0, _02522
+TrainerAI_Basic_CheckLowStatStage_Accuracy:
+    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_ACCURACY, 0, TrainerAI_ScoreMinus10
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_NO_GUARD, _02522
+    IfLoadedEqualTo ABILITY_NO_GUARD, TrainerAI_ScoreMinus10
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_KEEN_EYE, _02522
-    IfLoadedEqualTo ABILITY_NO_GUARD, _02522
-    GoTo _00917
+    IfLoadedEqualTo ABILITY_KEEN_EYE, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo ABILITY_NO_GUARD, TrainerAI_ScoreMinus10
+    GoTo TrainerAI_Basic_CheckClearBodyEffect
 
-_00902:
-    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 0, _02522
+TrainerAI_Basic_CheckLowStatStage_Evasion:
+    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 0, TrainerAI_ScoreMinus10
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_NO_GUARD, _02522
+    IfLoadedEqualTo ABILITY_NO_GUARD, TrainerAI_ScoreMinus10
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_NO_GUARD, _02522
+    IfLoadedEqualTo ABILITY_NO_GUARD, TrainerAI_ScoreMinus10
 
-_00917:
+TrainerAI_Basic_CheckClearBodyEffect:
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_CLEAR_BODY, _02522
-    IfLoadedEqualTo ABILITY_WHITE_SMOKE, _02522
+    IfLoadedEqualTo ABILITY_CLEAR_BODY, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo ABILITY_WHITE_SMOKE, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_00926:
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 6, _00998
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 6, _00998
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 6, _00998
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 6, _00998
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 6, _00998
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 6, _00998
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 6, _00998
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 6, _00998
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE, 6, _00998
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SPEED, 6, _00998
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 6, _00998
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_DEFENSE, 6, _00998
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_ACCURACY, 6, _00998
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 6, _00998
-    GoTo _02522
+TrainerAI_Basic_CheckStatStageImbalance:
+    ; The name is a little esoteric; an "imbalance" is regarded as the attacker
+    ; having any reduced stat stage or the target having any increased stat stage.
+    ;
+    ; If neither of those are true, score -10.
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 6, TrainerAI_Basic_CheckStatStageImbalance_Terminate
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 6, TrainerAI_Basic_CheckStatStageImbalance_Terminate
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 6, TrainerAI_Basic_CheckStatStageImbalance_Terminate
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 6, TrainerAI_Basic_CheckStatStageImbalance_Terminate
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 6, TrainerAI_Basic_CheckStatStageImbalance_Terminate
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 6, TrainerAI_Basic_CheckStatStageImbalance_Terminate
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 6, TrainerAI_Basic_CheckStatStageImbalance_Terminate
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 6, TrainerAI_Basic_CheckStatStageImbalance_Terminate
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE, 6, TrainerAI_Basic_CheckStatStageImbalance_Terminate
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SPEED, 6, TrainerAI_Basic_CheckStatStageImbalance_Terminate
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 6, TrainerAI_Basic_CheckStatStageImbalance_Terminate
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_DEFENSE, 6, TrainerAI_Basic_CheckStatStageImbalance_Terminate
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_ACCURACY, 6, TrainerAI_Basic_CheckStatStageImbalance_Terminate
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 6, TrainerAI_Basic_CheckStatStageImbalance_Terminate
+    GoTo TrainerAI_ScoreMinus10
 
-_00998:
+TrainerAI_Basic_CheckStatStageImbalance_Terminate:
     PopOrEnd 
 
-_00999:
+TrainerAI_Basic_CheckCanForceSwitch:
+    ; If the target cannot be forced out for any reason, score -10.
     CountAlivePartyBattlers AI_BATTLER_DEFENDER
-    IfLoadedEqualTo 0, _02522
+    IfLoadedEqualTo 0, TrainerAI_ScoreMinus10
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, _01014
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TrainerAI_Basic_CheckCanForceSwitch_Terminate
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_SUCTION_CUPS, _02522
+    IfLoadedEqualTo ABILITY_SUCTION_CUPS, TrainerAI_ScoreMinus10
 
-_01014:
+TrainerAI_Basic_CheckCanForceSwitch_Terminate:
     PopOrEnd 
 
-_01015:
-    IfHPPercentNotEqualTo AI_BATTLER_ATTACKER, 100, _01021
+TrainerAI_Basic_CheckCanRecoverHP:
+    ; If at 100% HP, score -8.
+    IfHPPercentNotEqualTo AI_BATTLER_ATTACKER, 100, TrainerAI_Basic_CheckCanRecoverHP_Terminate
     AddToMoveScore -8
 
-_01021:
+TrainerAI_Basic_CheckCanRecoverHP_Terminate:
     PopOrEnd 
 
-_01022:
+TrainerAI_Basic_CheckCannotPoison:
+    ; If the target is immune to the usual effects of Poison for any reason, score -10.
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
-    IfLoadedEqualTo TYPE_STEEL, _02522
-    IfLoadedEqualTo TYPE_POISON, _02522
+    IfLoadedEqualTo TYPE_STEEL, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo TYPE_POISON, TrainerAI_ScoreMinus10
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
-    IfLoadedEqualTo TYPE_STEEL, _02522
-    IfLoadedEqualTo TYPE_POISON, _02522
+    IfLoadedEqualTo TYPE_STEEL, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo TYPE_POISON, TrainerAI_ScoreMinus10
+
+    ; Check for immunity by ability
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_IMMUNITY, _02522
-    IfLoadedEqualTo ABILITY_MAGIC_GUARD, _02522
-    IfLoadedEqualTo ABILITY_POISON_HEAL, _02522
-    IfLoadedNotEqualTo ABILITY_LEAF_GUARD, _01056
+    IfLoadedEqualTo ABILITY_IMMUNITY, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo ABILITY_MAGIC_GUARD, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo ABILITY_POISON_HEAL, TrainerAI_ScoreMinus10
+
+    IfLoadedNotEqualTo ABILITY_LEAF_GUARD, TrainerAI_Basic_CheckCannotPoison_Hydration
     LoadCurrentWeather 
-    IfLoadedEqualTo AI_WEATHER_SUNNY, _02522
+    IfLoadedEqualTo AI_WEATHER_SUNNY, TrainerAI_ScoreMinus10
 
-_01056:
+TrainerAI_Basic_CheckCannotPoison_Hydration:
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedNotEqualTo ABILITY_HYDRATION, _01065
+    IfLoadedNotEqualTo ABILITY_HYDRATION, TrainerAI_Basic_CheckCannotPoison_StatusOrSafeguard
     LoadCurrentWeather 
-    IfLoadedEqualTo AI_WEATHER_RAINING, _02522
+    IfLoadedEqualTo AI_WEATHER_RAINING, TrainerAI_ScoreMinus10
 
-_01065:
-    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, _02522
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, _02522
+TrainerAI_Basic_CheckCannotPoison_StatusOrSafeguard:
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, TrainerAI_ScoreMinus10
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01074:
-    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_LIGHT_SCREEN, _02519
+TrainerAI_Basic_CheckAlreadyUnderLightScreen:
+    ; If already under the effect of Light Screen, score -8.
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_LIGHT_SCREEN, TrainerAI_ScoreMinus8
     PopOrEnd 
 
-_01079:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _02522
+TrainerAI_Basic_CheckOHKOWouldFail:
+    ; If the OHKO move would always fail for any reason, score -10.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_ScoreMinus10
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, _01092
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TrainerAI_Basic_CheckOHKOWouldFail_Levels
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_STURDY, _02522
+    IfLoadedEqualTo ABILITY_STURDY, TrainerAI_ScoreMinus10
 
-_01092:
-    IfLevel CHECK_LOWER_THAN_TARGET, _02522
+TrainerAI_Basic_CheckOHKOWouldFail_Levels:
+    IfLevel CHECK_LOWER_THAN_TARGET, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01096:
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, _01104
+TrainerAI_Basic_CheckMagnitude:
+    ; If the target's ability is Levitate and the attacker's ability is not Mold Breaker, score -10.
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_LEVITATE, _02522
+    IfLoadedEqualTo ABILITY_LEVITATE, TrainerAI_ScoreMinus10
 
-_01104:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _02522
+TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn:
+    ; If the target is immune to this move by its typing or due to the target's ability being
+    ; Wonder Guard, score -10.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_ScoreMinus10
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedNotEqualTo ABILITY_WONDER_GUARD, _01125
+    IfLoadedNotEqualTo ABILITY_WONDER_GUARD, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn_Terminate
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, _01125
-    IfMoveEffectivenessEquals TYPE_MULTI_DOUBLE_DAMAGE, _01125
-    IfMoveEffectivenessEquals TYPE_MULTI_QUADRUPLE_DAMAGE, _01125
-    GoTo _02522
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn_Terminate
+    IfMoveEffectivenessEquals TYPE_MULTI_DOUBLE_DAMAGE, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn_Terminate
+    IfMoveEffectivenessEquals TYPE_MULTI_QUADRUPLE_DAMAGE, TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn_Terminate
+    GoTo TrainerAI_ScoreMinus10
 
-_01125:
+TrainerAI_Basic_CheckNonStandardDamageOrChargeTurn_Terminate:
     PopOrEnd 
 
-_01126:
-    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_MIST, _02519
+TrainerAI_Basic_CheckAlreadyUnderMist:
+    ; If already under the effect of Mist, score -8.
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_MIST, TrainerAI_ScoreMinus8
     PopOrEnd 
 
-_01131:
-    IfVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_FOCUS_ENERGY, _02522
+TrainerAI_Basic_CheckAlreadyPumpedUp:
+    ; If already under the effect of Focus Energy, score -10.
+    IfVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_FOCUS_ENERGY, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01136:
-    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_CONFUSION, _02513
+TrainerAI_Basic_CheckCannotConfuse:
+    ; If the target is already confused, score -5.
+    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_CONFUSION, TrainerAI_ScoreMinus5
+
+    ; If the target otherwise cannot be confused, score -10.
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_OWN_TEMPO, _02522
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, _02522
+    IfLoadedEqualTo ABILITY_OWN_TEMPO, TrainerAI_ScoreMinus10
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01150:
-    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_REFLECT, _02519
+TrainerAI_Basic_CheckAlreadyUnderReflect:
+    ; If already under the effect of Reflect, score -8.
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_REFLECT, TrainerAI_ScoreMinus8
     PopOrEnd 
 
-_01155:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _02522
+TrainerAI_Basic_CheckCannotParalyze:
+    ; If the target cannot be paralyzed for any reason, score -10.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_ScoreMinus10
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_LIMBER, _02522
-    IfLoadedEqualTo ABILITY_MAGIC_GUARD, _02522
+    IfLoadedEqualTo ABILITY_LIMBER, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo ABILITY_MAGIC_GUARD, TrainerAI_ScoreMinus10
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, _01184
-    IfMoveEqualTo MOVE_THUNDER_WAVE, _01176
-    GoTo _01184
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TrainerAI_Basic_CheckCannotParalyze_ImmuneToStatus
+    IfMoveEqualTo MOVE_THUNDER_WAVE, TrainerAI_Basic_CheckCannotParalyze_ThunderWave
+    GoTo TrainerAI_Basic_CheckCannotParalyze_ImmuneToStatus
 
-_01176:
+TrainerAI_Basic_CheckCannotParalyze_ThunderWave:
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_MOTOR_DRIVE, _02522
-    IfLoadedEqualTo ABILITY_VOLT_ABSORB, _02522
+    IfLoadedEqualTo ABILITY_MOTOR_DRIVE, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo ABILITY_VOLT_ABSORB, TrainerAI_ScoreMinus10
 
-_01184:
-    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, _02522
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, _02522
+TrainerAI_Basic_CheckCannotParalyze_ImmuneToStatus:
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, TrainerAI_ScoreMinus10
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01193:
-    IfVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_SUBSTITUTE, _02519
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 26, _02522
+TrainerAI_Basic_CheckCannotSubstitute:
+    ; If the attacker's Substitute would fail, score -8/-10.
+    IfVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_SUBSTITUTE, TrainerAI_ScoreMinus8
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 26, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01202:
-    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_LEECH_SEED, _02522
+TrainerAI_Basic_CheckCannotLeechSeed:
+    ; If the target is already Seeded or immune to the effects of Leech Seed, score -10.
+    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_LEECH_SEED, TrainerAI_ScoreMinus10
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
-    IfLoadedEqualTo TYPE_GRASS, _02522
+    IfLoadedEqualTo TYPE_GRASS, TrainerAI_ScoreMinus10
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
-    IfLoadedEqualTo TYPE_GRASS, _02522
+    IfLoadedEqualTo TYPE_GRASS, TrainerAI_ScoreMinus10
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_MAGIC_GUARD, _02522
+    IfLoadedEqualTo ABILITY_MAGIC_GUARD, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01222:
-    IfBattlerUnderEffect AI_BATTLER_DEFENDER, CHECK_DISABLE, _02519
+TrainerAI_Basic_CheckCannotDisable:
+    ; If the target is already Disabled, score -8.
+    IfBattlerUnderEffect AI_BATTLER_DEFENDER, CHECK_DISABLE, TrainerAI_ScoreMinus8
     PopOrEnd 
 
-_01227:
-    IfBattlerUnderEffect AI_BATTLER_DEFENDER, CHECK_ENCORE, _02519
+TrainerAI_Basic_CheckCannotEncore:
+    ; If the target is already Encored, score -8.
+    IfBattlerUnderEffect AI_BATTLER_DEFENDER, CHECK_ENCORE, TrainerAI_ScoreMinus8
     PopOrEnd 
 
-_01232:
-    IfNotStatus AI_BATTLER_ATTACKER, MON_CONDITION_SLEEP, _02519
+TrainerAI_Basic_CheckAttackerAsleep:
+    ; If the attacker is not currently asleep, score -8.
+    IfNotStatus AI_BATTLER_ATTACKER, MON_CONDITION_SLEEP, TrainerAI_ScoreMinus8
     PopOrEnd 
 
-_01237:
-    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_LOCK_ON, _02522
+TrainerAI_Basic_CheckLockOn:
+    ; If the target is already Locked On, or either battler has No Guard, score -10.
+    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_LOCK_ON, TrainerAI_ScoreMinus10
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_NO_GUARD, _02522
+    IfLoadedEqualTo ABILITY_NO_GUARD, TrainerAI_ScoreMinus10
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_NO_GUARD, _02522
+    IfLoadedEqualTo ABILITY_NO_GUARD, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01252:
-    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_MEAN_LOOK, _02522
+TrainerAI_Basic_CheckMeanLook:
+    ; If the target is already under the effect of Mean Look, score -10.
+    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_MEAN_LOOK, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01257:
+TrainerAI_Basic_CheckCurse:
+    ; Branch for a Ghost-type using Curse
     LoadTypeFrom LOAD_ATTACKER_TYPE_1
-    IfLoadedEqualTo TYPE_GHOST, _01294
+    IfLoadedEqualTo TYPE_GHOST, TrainerAI_Basic_CheckCurse_GhostType
     LoadTypeFrom LOAD_ATTACKER_TYPE_2
-    IfLoadedEqualTo TYPE_GHOST, _01294
+    IfLoadedEqualTo TYPE_GHOST, TrainerAI_Basic_CheckCurse_GhostType
+
+    ; If the attacker has Simple, treat it like a boosting move for both Attack and Defense.
+    ; That is, if either Attack or Defense are already +2, score -10.
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, _01283
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, _02522
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 8, _02522
+    IfLoadedNotEqualTo ABILITY_SIMPLE, TrainerAI_Basic_CheckCurse_NoSimple
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, TrainerAI_ScoreMinus10
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 8, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01283:
-    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, _02522
-    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 12, _02519
+TrainerAI_Basic_CheckCurse_NoSimple:
+    ; If the attacker does not have Simple and either Attack or Defense are already +6, score -10.
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, TrainerAI_ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 12, TrainerAI_ScoreMinus8
     PopOrEnd 
 
-_01294:
-    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_CURSE, _02522
+TrainerAI_Basic_CheckCurse_GhostType:
+    ; If the target is immune to the effect, score -10.
+    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_CURSE, TrainerAI_ScoreMinus10
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_MAGIC_GUARD, _02522
+    IfLoadedEqualTo ABILITY_MAGIC_GUARD, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01304:
+TrainerAI_Basic_CheckSpikes:
+    ; If the target already has 3 layers of Spikes or is on their last Pokemon, score -10.
     LoadSpikesLayers AI_BATTLER_DEFENDER, SIDE_CONDITION_SPIKES
-    IfLoadedEqualTo 3, _02522
+    IfLoadedEqualTo 3, TrainerAI_ScoreMinus10
     CountAlivePartyBattlers AI_BATTLER_DEFENDER
-    IfLoadedEqualTo 0, _02522
+    IfLoadedEqualTo 0, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01316:
-    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_FORESIGHT, _02522
+TrainerAI_Basic_CheckForesight:
+    ; If the target is already under the effect, score -10.
+    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_FORESIGHT, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01321:
-    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_PERISH_SONG, _02522
+TrainerAI_Basic_CheckPerishSong:
+    ; If the target is already under the effect, score -10.
+    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_PERISH_SONG, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01326:
+TrainerAI_Basic_CheckSandstorm:
+    ; If the current weather is Sand, score -8.
     LoadCurrentWeather 
-    IfLoadedEqualTo AI_WEATHER_SANDSTORM, _02519
+    IfLoadedEqualTo AI_WEATHER_SANDSTORM, TrainerAI_ScoreMinus8
     PopOrEnd 
 
-_01331:
-    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_ATTRACT, _02522
+TrainerAI_Basic_CheckCannotAttract:
+    ; If the target cannot be Infatuated for any reason, score -10.
+    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_ATTRACT, TrainerAI_ScoreMinus10
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_OBLIVIOUS, _02522
+    IfLoadedEqualTo ABILITY_OBLIVIOUS, TrainerAI_ScoreMinus10
     LoadGender AI_BATTLER_ATTACKER
-    IfLoadedEqualTo GENDER_MALE, _01350
-    IfLoadedEqualTo GENDER_FEMALE, _01357
-    GoTo _02522
+    IfLoadedEqualTo GENDER_MALE, TrainerAI_Basic_CheckCannotAttract_BothMale
+    IfLoadedEqualTo GENDER_FEMALE, TrainerAI_Basic_CheckCannotAttract_BothFemale
+    GoTo TrainerAI_ScoreMinus10
 
-_01350:
+TrainerAI_Basic_CheckCannotAttract_BothMale:
     LoadGender AI_BATTLER_DEFENDER
-    IfLoadedEqualTo GENDER_FEMALE, _01364
-    GoTo _02522
+    IfLoadedEqualTo GENDER_FEMALE, TrainerAI_Basic_CheckCannotAttract_Terminate
+    GoTo TrainerAI_ScoreMinus10
 
-_01357:
+TrainerAI_Basic_CheckCannotAttract_BothFemale:
     LoadGender AI_BATTLER_DEFENDER
-    IfLoadedEqualTo GENDER_MALE, _01364
-    GoTo _02522
+    IfLoadedEqualTo GENDER_MALE, TrainerAI_Basic_CheckCannotAttract_Terminate
+    GoTo TrainerAI_ScoreMinus10
 
-_01364:
+TrainerAI_Basic_CheckCannotAttract_Terminate:
     PopOrEnd 
 
-_01365:
-    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_SAFEGUARD, _02519
+TrainerAI_Basic_CheckAlreadyUnderSafeguard:
+    ; If already under the effect of Safeguard, score -8.
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_SAFEGUARD, TrainerAI_ScoreMinus8
     PopOrEnd 
 
-_01370:
+TrainerAI_Basic_CheckMemento:
+    ; If the target's ability blocks the stat drop and the attacker does not have Mold Breaker,
+    ; score -10.
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, _01383
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TrainerAI_Basic_CheckMemento_CheckStatStages
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_CLEAR_BODY, _02522
-    IfLoadedEqualTo ABILITY_WHITE_SMOKE, _02522
+    IfLoadedEqualTo ABILITY_CLEAR_BODY, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo ABILITY_WHITE_SMOKE, TrainerAI_ScoreMinus10
 
-_01383:
-    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 0, _02522
-    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 0, _02519
+TrainerAI_Basic_CheckMemento_CheckStatStages:
+    ; If the target's Attack is already at -6, score -10.
+    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 0, TrainerAI_ScoreMinus10
+
+    ; If the target's SpAttack is already at -6, score -8.
+    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 0, TrainerAI_ScoreMinus8
+
+    ; If the attacker is on their last Pokemon, score -10.
     CountAlivePartyBattlers AI_BATTLER_ATTACKER
-    IfLoadedEqualTo 0, _02522
+    IfLoadedEqualTo 0, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01399:
+TrainerAI_Basic_CheckBatonPass:
+    ; If the attacker is on its last Pokemon, score -10.
     CountAlivePartyBattlers AI_BATTLER_ATTACKER
-    IfLoadedEqualTo 0, _02522
+    IfLoadedEqualTo 0, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01405:
+TrainerAI_Basic_CheckRainDance:
+    ; If the attacker's ability is Swift Swim or Hydration, skip the defender-Hydration check below.
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_SWIFT_SWIM, _01422
-    IfLoadedEqualTo ABILITY_HYDRATION, _01422
-    LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedNotEqualTo ABILITY_HYDRATION, _01422
-    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, _02519
+    IfLoadedEqualTo ABILITY_SWIFT_SWIM, TrainerAI_Basic_CheckCurrentWeatherIsRain
+    IfLoadedEqualTo ABILITY_HYDRATION, TrainerAI_Basic_CheckCurrentWeatherIsRain
 
-_01422:
+    ; If the target's ability is Hydration and they are currently statused, score -8.
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedNotEqualTo ABILITY_HYDRATION, TrainerAI_Basic_CheckCurrentWeatherIsRain
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, TrainerAI_ScoreMinus8
+
+TrainerAI_Basic_CheckCurrentWeatherIsRain:
+    ; If the weather is currently Rain, score -8.
     LoadCurrentWeather 
-    IfLoadedEqualTo AI_WEATHER_RAINING, _02519
+    IfLoadedEqualTo AI_WEATHER_RAINING, TrainerAI_ScoreMinus8
     PopOrEnd 
 
-_01427:
+TrainerAI_Basic_CheckSunnyDay:
+    ; If the attacker's ability is any of Flower Gift, Leaf Guard, or Solar Power, skip the defender-
+    ; Hydration check below.
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_FLOWER_GIFT, _01447
-    IfLoadedEqualTo ABILITY_LEAF_GUARD, _01447
-    IfLoadedEqualTo ABILITY_SOLAR_POWER, _01447
+    IfLoadedEqualTo ABILITY_FLOWER_GIFT, TrainerAI_Basic_CheckCurrentWeatherIsSun
+    IfLoadedEqualTo ABILITY_LEAF_GUARD, TrainerAI_Basic_CheckCurrentWeatherIsSun
+    IfLoadedEqualTo ABILITY_SOLAR_POWER, TrainerAI_Basic_CheckCurrentWeatherIsSun
+
+    ; If the target's ability is Hydration and they are currently statused, score -10.
+    ; Why does this consider Hydration? This is clearly a bug, but what was the intention?
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedNotEqualTo ABILITY_HYDRATION, _01447
-    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, _02522
+    IfLoadedNotEqualTo ABILITY_HYDRATION, TrainerAI_Basic_CheckCurrentWeatherIsSun
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, TrainerAI_ScoreMinus10
 
-_01447:
+TrainerAI_Basic_CheckCurrentWeatherIsSun:
+    ; If the weather is currently Sun, score -8.
     LoadCurrentWeather 
-    IfLoadedEqualTo AI_WEATHER_SUNNY, _02519
+    IfLoadedEqualTo AI_WEATHER_SUNNY, TrainerAI_ScoreMinus8
     PopOrEnd 
 
-_01452:
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_FUTURE_SIGHT, _02525
-    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_FUTURE_SIGHT, _02525
+TrainerAI_Basic_CheckFutureSight:
+    ; If either the attacker or the target are currently under the effect of Future Sight, score -12.
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_FUTURE_SIGHT, TrainerAI_ScoreMinus12
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_FUTURE_SIGHT, TrainerAI_ScoreMinus12
     PopOrEnd 
 
-_01461:
+TrainerAI_Basic_CheckFirstTurnInBattle:
+    ; If it is not the attacker's first turn in battle, score -10.
     LoadIsFirstTurnInBattle AI_BATTLER_ATTACKER
-    IfLoadedEqualTo FALSE, _02522
+    IfLoadedEqualTo FALSE, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01467:
+TrainerAI_Basic_CheckMaxStockpile:
+    ; If the Stockpile count is already at 3, score -10.
     LoadStockpileCount AI_BATTLER_ATTACKER
-    IfLoadedEqualTo 3, _02522
+    IfLoadedEqualTo 3, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01473:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _02522
+TrainerAI_Basic_CheckCanSpitUpOrSwallow:
+    ; If the target is immune to the move by its typing or the Stockpile count is 0, score -10.
+    ; Note that this means that Swallow will never be used against a Ghost-type Pokemon, even though
+    ; it would still have an effect.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_ScoreMinus10
     LoadStockpileCount AI_BATTLER_ATTACKER
-    IfLoadedEqualTo 0, _02522
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWALLOW, _01015
+    IfLoadedEqualTo 0, TrainerAI_ScoreMinus10
+
+    ; Treat Swallow like a standard recovery move.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWALLOW, TrainerAI_Basic_CheckCanRecoverHP
     PopOrEnd 
 
-_01485:
+TrainerAI_Basic_CheckHail:
+    ; If the current weather is Hail, score -8.
     LoadCurrentWeather 
-    IfLoadedEqualTo AI_WEATHER_HAILING, _02519
+    IfLoadedEqualTo AI_WEATHER_HAILING, TrainerAI_ScoreMinus8
+
+    ; If any opposing battler's ability is Ice Body, score -8.
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedNotEqualTo ABILITY_ICE_BODY, _01503
+    IfLoadedNotEqualTo ABILITY_ICE_BODY, TrainerAI_Basic_CheckHail_Terminate
     AddToMoveScore -8
+
+    ; If an attacker's ability is also Ice Body, score +8 (undo the previous modifier).
+    ; This feels like a bug of misintention; the intention here seems to be for an attacker with
+    ; Ice Body to have an incentive to use Hail, but that is not realized. Instead, such an
+    ; attacker can only have a disincentive undone.
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_ICE_BODY, _01503
+    IfLoadedNotEqualTo ABILITY_ICE_BODY, TrainerAI_Basic_CheckHail_Terminate
     AddToMoveScore 8
 
-_01503:
+TrainerAI_Basic_CheckHail_Terminate:
     PopOrEnd 
 
-_01504:
-    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_TORMENT, _02522
+TrainerAI_Basic_CheckTorment:
+    ; If the target is already under the effect, score -10.
+    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_TORMENT, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01509:
+TrainerAI_Basic_CheckCannotBurn:
+    ; If the target cannot be burned for any reason, score -10.
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_WATER_VEIL, _02522
-    IfLoadedEqualTo ABILITY_MAGIC_GUARD, _02522
-    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, _02522
+    IfLoadedEqualTo ABILITY_WATER_VEIL, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo ABILITY_MAGIC_GUARD, TrainerAI_ScoreMinus10
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, TrainerAI_ScoreMinus10
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
-    IfLoadedEqualTo TYPE_FIRE, _02522
+    IfLoadedEqualTo TYPE_FIRE, TrainerAI_ScoreMinus10
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
-    IfLoadedEqualTo TYPE_FIRE, _02522
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, _02522
+    IfLoadedEqualTo TYPE_FIRE, TrainerAI_ScoreMinus10
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01536:
+TrainerAI_Basic_CheckHelpingHand:
+    ; If the battle type is not Doubles, score -10.
     LoadBattleType 
-    IfLoadedNotMask BATTLE_TYPE_DOUBLES, _02522
+    IfLoadedNotMask BATTLE_TYPE_DOUBLES, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01541:
+TrainerAI_Basic_CheckCanRemoveItem:
+    ; If the defender's ability is Sticky Hold or they do not have a held item, score -10.
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_STICKY_HOLD, _02522
+    IfLoadedEqualTo ABILITY_STICKY_HOLD, TrainerAI_ScoreMinus10
     LoadHeldItem AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ITEM_NONE, _02522
+    IfLoadedEqualTo ITEM_NONE, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01552:
-    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_INGRAIN, _02522
+TrainerAI_Basic_CheckAlreadyIngrained:
+    ; If the attacker is already under the effect, score -10.
+    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_INGRAIN, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01557:
+TrainerAI_Basic_CheckCanRecycle:
+    ; If there is no item to be recycled, score -10.
     LoadRecycleItem AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ITEM_NONE, _02522
+    IfLoadedEqualTo ITEM_NONE, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01563:
-    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_IMPRISON, _02522
-    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_IMPRISONED, _02522
+TrainerAI_Basic_CheckCanImprison:
+    ; If either the attacker or a target are under the effect of Imprison, score -10.
+    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_IMPRISON, TrainerAI_ScoreMinus10
+    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_IMPRISONED, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01572:
-    IfNotStatus AI_BATTLER_ATTACKER, MON_CONDITION_FACADE_BOOST, _02522
+TrainerAI_Basic_CheckCanRefreshStatus:
+    ; If the attacker is not Burned, Poisoned, or Paralyzed, score -10.
+    IfNotStatus AI_BATTLER_ATTACKER, MON_CONDITION_FACADE_BOOST, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01577:
-    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_MUD_SPORT, _02522
+TrainerAI_Basic_CheckCanMudSport:
+    ; If the attacker is already under the respective effect, score -10.
+    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_MUD_SPORT, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01582:
+TrainerAI_Basic_CheckTickle:
+    ; If the target's ability is Clear Body or White Smoke and the attacker's ability is not
+    ; Mold Breaker, score -10.
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, _01595
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TrainerAI_Basic_CheckTickle_CheckStatStages
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_CLEAR_BODY, _02522
-    IfLoadedEqualTo ABILITY_WHITE_SMOKE, _02522
+    IfLoadedEqualTo ABILITY_CLEAR_BODY, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo ABILITY_WHITE_SMOKE, TrainerAI_ScoreMinus10
 
-_01595:
-    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 0, _02522
-    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE, 0, _02519
+TrainerAI_Basic_CheckTickle_CheckStatStages:
+    ; If the target's Attack is at -6, score -10.
+    ; If the target's Defense is at -6, score -8.
+    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 0, TrainerAI_ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE, 0, TrainerAI_ScoreMinus8
     PopOrEnd 
 
-_01606:
+TrainerAI_Basic_CheckCosmicPower:
+    ; If the attacker's ability is Simple and either Defense or SpDefense are already at
+    ; +3, score -10.
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, _01622
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 8, _02522
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 8, _02522
+    IfLoadedNotEqualTo ABILITY_SIMPLE, TrainerAI_Basic_CheckCosmicPower_NoSimple
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 8, TrainerAI_ScoreMinus10
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 8, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01622:
-    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 12, _02522
-    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, _02519
+TrainerAI_Basic_CheckCosmicPower_NoSimple:
+    ; If the attacker's Defense is already at +6, score -10.
+    ; If the attacker's SpDefense is already at +6, score -8.
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 12, TrainerAI_ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, TrainerAI_ScoreMinus8
     PopOrEnd 
 
-_01633:
+TrainerAI_Basic_CheckBulkUp:
+    ; If the attacker's ability is Simple and either Attack or Defense are already at
+    ; +3, score -10.
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, _01649
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, _02522
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 8, _02522
+    IfLoadedNotEqualTo ABILITY_SIMPLE, TrainerAI_Basic_CheckBulkUp_NoSimple
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, TrainerAI_ScoreMinus10
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 8, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01649:
-    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, _02522
-    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 12, _02519
+TrainerAI_Basic_CheckBulkUp_NoSimple:
+    ; If the attacker's Attack is already at +6, score -10.
+    ; If the attacker's Defense is already at +6, score -8.
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, TrainerAI_ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 12, TrainerAI_ScoreMinus8
     PopOrEnd 
 
-_01660:
-    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_WATER_SPORT, _02522
+TrainerAI_Basic_CheckWaterSport:
+    ; If the attacker is already under the respective effect, score -10.
+    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_WATER_SPORT, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01665:
+TrainerAI_Basic_CheckCalmMind:
+    ; If the attacker's ability is Simple and either SpAttack or SpDefense are already at
+    ; +3, score -10.
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, _01681
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 8, _02522
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 8, _02522
+    IfLoadedNotEqualTo ABILITY_SIMPLE, TrainerAI_Basic_CheckCalmMind_NoSimple
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 8, TrainerAI_ScoreMinus10
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 8, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01681:
-    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, _02522
-    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, _02519
+TrainerAI_Basic_CheckCalmMind_NoSimple:
+    ; If the attacker's SpAttack is already at +6, score -10.
+    ; If the attacker's SpDefense is already at +6, score -8.
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, TrainerAI_ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, TrainerAI_ScoreMinus8
     PopOrEnd 
 
-_01692:
-    IfFieldConditionsMask FIELD_CONDITION_TRICK_ROOM, _02522
+TrainerAI_Basic_CheckDragonDance:
+    ; If Trick Room is in effect, score -10.
+    IfFieldConditionsMask FIELD_CONDITION_TRICK_ROOM, TrainerAI_ScoreMinus10
+
+    ; If the attacker's ability is Simple and either Attack or Speed are already at
+    ; +3, score -10.
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_SIMPLE, _01711
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, _02522
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 8, _02522
+    IfLoadedNotEqualTo ABILITY_SIMPLE, TrainerAI_Basic_CheckDragonDance_NoSimple
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, TrainerAI_ScoreMinus10
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 8, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01711:
-    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, _02522
-    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, _02519
+TrainerAI_Basic_CheckDragonDance_NoSimple:
+    ; If the attacker's Attack is already at +6, score -10.
+    ; If the attacker's Speed is already at +6, score -8.
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, TrainerAI_ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, TrainerAI_ScoreMinus8
     PopOrEnd 
 
-_01722:
-    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_CAMOUFLAGE, _02522
+TrainerAI_Basic_CheckCamouflage:
+    ; If the attacker is already under the respective effect, score -10.
+    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_CAMOUFLAGE, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01727:
-    IfFieldConditionsMask FIELD_CONDITION_GRAVITY, _02522
+TrainerAI_Basic_CheckGravityActive:
+    ; If Gravity is already active, score -10.
+    IfFieldConditionsMask FIELD_CONDITION_GRAVITY, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01731:
-    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_MIRACLE_EYE, _02522
+TrainerAI_Basic_CheckMiracleEye:
+    ; If the target is already under the respective effect, score -10.
+    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_MIRACLE_EYE, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01736:
+TrainerAI_Basic_CheckHealingWish:
+    ; Start at -20
     AddToMoveScore -20
+
+    ; If the attacker is on their last Pokemon, score additional -10.
     CountAlivePartyBattlers AI_BATTLER_ATTACKER
-    IfLoadedEqualTo 0, _02522
-    IfPartyMemberStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, _01752
-    IfAnyPartyMemberIsWounded AI_BATTLER_ATTACKER, _01752
-    GoTo _02522
+    IfLoadedEqualTo 0, TrainerAI_ScoreMinus10
 
-_01752:
+    ; If none of the attacker's party members are statused or at less than 100% HP,
+    ; score additional -10.
+    IfPartyMemberStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, TrainerAI_Basic_CheckHealingWish_Terminate
+    IfAnyPartyMemberIsWounded AI_BATTLER_ATTACKER, TrainerAI_Basic_CheckHealingWish_Terminate
+    GoTo TrainerAI_ScoreMinus10
+
+TrainerAI_Basic_CheckHealingWish_Terminate:
     PopOrEnd 
 
-_01753:
+TrainerAI_Basic_CheckNaturalGift:
+    ; If the attacker does not have an eligible berry or the target is immune to that berry's
+    ; Natural Gift type, score -10.
     LoadHeldItem AI_BATTLER_ATTACKER
-    IfLoadedNotInTable _01762, _02522
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _02522
+    IfLoadedNotInTable TrainerAI_Basic_NaturalGiftBerries, TrainerAI_ScoreMinus10
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01762:
+TrainerAI_Basic_NaturalGiftBerries:
     TableEntry ITEM_CHERI_BERRY
     TableEntry ITEM_CHESTO_BERRY
     TableEntry ITEM_PECHA_BERRY
@@ -982,413 +1132,503 @@ _01762:
     TableEntry ITEM_ROWAP_BERRY
     TableEntry TABLE_END
 
-_01827:
-    IfFieldConditionsMask FIELD_CONDITION_TRICK_ROOM, _02522
-    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_TAILWIND, _02522
+TrainerAI_Basic_CheckTailwind:
+    ; If Trick Room is currently active or Tailwind is already active for the attacker's side
+    ; of the field, score -10.
+    IfFieldConditionsMask FIELD_CONDITION_TRICK_ROOM, TrainerAI_ScoreMinus10
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_TAILWIND, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01835:
+TrainerAI_Basic_CheckAcupressure:
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_SIMPLE, _01876
-    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, _02522
-    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 12, _02522
-    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, _02522
-    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, _02522
-    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, _02522
-    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 12, _02522
-    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 12, _02522
+    IfLoadedEqualTo ABILITY_SIMPLE, TrainerAI_Basic_CheckAcupressure_Simple
+
+    ; If any of the attacker's stat stages are already at +6, score -10.
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 12, TrainerAI_ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 12, TrainerAI_ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 12, TrainerAI_ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 12, TrainerAI_ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 12, TrainerAI_ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 12, TrainerAI_ScoreMinus10
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 12, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01876:
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, _02522
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 8, _02522
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 8, _02522
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 8, _02522
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 8, _02522
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 8, _02522
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 8, _02522
+TrainerAI_Basic_CheckAcupressure_Simple:
+    ; If the attacker's ability is Simple and any stat stage is already at +3, score -10.
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, TrainerAI_ScoreMinus10
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 8, TrainerAI_ScoreMinus10
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SPEED, 8, TrainerAI_ScoreMinus10
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 8, TrainerAI_ScoreMinus10
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 8, TrainerAI_ScoreMinus10
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 8, TrainerAI_ScoreMinus10
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 8, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_01912:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _02522
+TrainerAI_Basic_CheckMetalBurst:
+    ; If the target is immune to Metal Burst due to its typing (?), score -10.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_ScoreMinus10
+
+    ; If the target's ability is Stall or they are holding a Shiny Stone, score -10.
+    ; BUG: This should use the command LoadHeldItemEffect to check for the Lagging Tail
+    ; effect.
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_STALL, _02522
-    IfHeldItemEqualTo AI_BATTLER_DEFENDER, ITEM_SHINY_STONE, _02522
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_STALL, _01936
-    IfHeldItemEqualTo AI_BATTLER_ATTACKER, ITEM_SHINY_STONE, _01936
-    IfSpeedCompareEqualTo COMPARE_SPEED_FASTER, _02522
+    IfLoadedEqualTo ABILITY_STALL, TrainerAI_ScoreMinus10
+    IfHeldItemEqualTo AI_BATTLER_DEFENDER, ITEM_SHINY_STONE, TrainerAI_ScoreMinus10
 
-_01936:
+    ; If the attacker's ability is Stall or they are holding a Shiny Stone, terminate.
+    ; BUG: This should use the command LoadHeldItemEffect to check for the Lagging Tail
+    ; effect.
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_STALL, TrainerAI_Basic_CheckMetalBurst_Terminate
+    IfHeldItemEqualTo AI_BATTLER_ATTACKER, ITEM_SHINY_STONE, TrainerAI_Basic_CheckMetalBurst_Terminate
+
+    ; If the attacker is faster than the target, score -10.
+    IfSpeedCompareEqualTo COMPARE_SPEED_FASTER, TrainerAI_ScoreMinus10
+
+TrainerAI_Basic_CheckMetalBurst_Terminate:
     PopOrEnd 
 
-_01937:
-    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_EMBARGO, _02522
+TrainerAI_Basic_CheckEmbargo:
+    ; If the target is already under the respective effect, score -10.
+    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_EMBARGO, TrainerAI_ScoreMinus10
+
+    ; If a recyclable item for the target's side exists, terminate.
     LoadRecycleItem AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ITEM_NONE, _01950
+    IfLoadedEqualTo ITEM_NONE, TrainerAI_Basic_CheckEmbargo_Terminate
+
+    ; If the battle is taking place in the Frontier, score -10.
     LoadBattleType 
-    IfLoadedMask BATTLE_TYPE_FRONTIER, _02522
+    IfLoadedMask BATTLE_TYPE_FRONTIER, TrainerAI_ScoreMinus10
 
-_01950:
+TrainerAI_Basic_CheckEmbargo_Terminate:
     PopOrEnd 
 
-_01951:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _02522
+TrainerAI_Basic_CheckFling:
+    ; If the target is immune to the move due to its typing (?), score -10.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_ScoreMinus10
+
+    ; If Fling would have 0 base power, score -10.
     LoadFlingPower AI_BATTLER_ATTACKER
-    IfLoadedLessThan 10, _02522
+    IfLoadedLessThan 10, TrainerAI_ScoreMinus10
+
+    ; If the attacker's ability is Multitype, score -10.
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MULTITYPE, _02522
+    IfLoadedEqualTo ABILITY_MULTITYPE, TrainerAI_ScoreMinus10
+
+    ; Branch according to possible status effects.
     LoadHeldItemEffect AI_BATTLER_ATTACKER
-    IfLoadedInTable _02137, _01976
-    IfLoadedInTable _02140, _02061
-    IfLoadedInTable _02142, _02123
+    IfLoadedInTable TrainerAI_Basic_FlingItems_Poison, TrainerAI_Basic_FlingPoison
+    IfLoadedInTable TrainerAI_Basic_FlingItems_Burn, TrainerAI_Basic_FlingBurn
+    IfLoadedInTable TrainerAI_Basic_FlingItems_Paralyze, TrainerAI_Basic_FlingParalyze
     PopOrEnd 
 
-_01976:
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, _02017
-    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, _02017
+TrainerAI_Basic_FlingPoison:
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, TrainerAI_Basic_FlingPoison_AttackerChecks
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, TrainerAI_Basic_FlingPoison_AttackerChecks
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_POISON_HEAL, _02017
+    IfLoadedEqualTo ABILITY_POISON_HEAL, TrainerAI_Basic_FlingPoison_AttackerChecks
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
-    IfLoadedEqualTo TYPE_POISON, _02017
-    IfLoadedEqualTo TYPE_STEEL, _02017
+    IfLoadedEqualTo TYPE_POISON, TrainerAI_Basic_FlingPoison_AttackerChecks
+    IfLoadedEqualTo TYPE_STEEL, TrainerAI_Basic_FlingPoison_AttackerChecks
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
-    IfLoadedEqualTo TYPE_POISON, _02017
-    IfLoadedEqualTo TYPE_STEEL, _02017
+    IfLoadedEqualTo TYPE_POISON, TrainerAI_Basic_FlingPoison_AttackerChecks
+    IfLoadedEqualTo TYPE_STEEL, TrainerAI_Basic_FlingPoison_AttackerChecks
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_IMMUNITY, _02017
-    IfLoadedEqualTo ABILITY_POISON_HEAL, _02017
-    IfLoadedEqualTo ABILITY_MAGIC_GUARD, _02017
+    IfLoadedEqualTo ABILITY_IMMUNITY, TrainerAI_Basic_FlingPoison_AttackerChecks
+    IfLoadedEqualTo ABILITY_POISON_HEAL, TrainerAI_Basic_FlingPoison_AttackerChecks
+    IfLoadedEqualTo ABILITY_MAGIC_GUARD, TrainerAI_Basic_FlingPoison_AttackerChecks
     PopOrEnd 
 
-_02017:
-    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_SAFEGUARD, _02513
-    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, _02513
+TrainerAI_Basic_FlingPoison_AttackerChecks:
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_SAFEGUARD, TrainerAI_ScoreMinus5
+    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, TrainerAI_ScoreMinus5
     LoadTypeFrom LOAD_ATTACKER_TYPE_1
-    IfLoadedEqualTo TYPE_POISON, _02513
-    IfLoadedEqualTo TYPE_STEEL, _02513
+    IfLoadedEqualTo TYPE_POISON, TrainerAI_ScoreMinus5
+    IfLoadedEqualTo TYPE_STEEL, TrainerAI_ScoreMinus5
     LoadTypeFrom LOAD_ATTACKER_TYPE_2
-    IfLoadedEqualTo TYPE_POISON, _02513
-    IfLoadedEqualTo TYPE_STEEL, _02513
+    IfLoadedEqualTo TYPE_POISON, TrainerAI_ScoreMinus5
+    IfLoadedEqualTo TYPE_STEEL, TrainerAI_ScoreMinus5
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_KLUTZ, _02513
-    IfLoadedEqualTo ABILITY_IMMUNITY, _02513
-    IfLoadedEqualTo ABILITY_POISON_HEAL, _02513
-    IfLoadedEqualTo ABILITY_MAGIC_GUARD, _02513
-    IfLoadedEqualTo ABILITY_GUTS, _02513
+    IfLoadedEqualTo ABILITY_KLUTZ, TrainerAI_ScoreMinus5
+    IfLoadedEqualTo ABILITY_IMMUNITY, TrainerAI_ScoreMinus5
+    IfLoadedEqualTo ABILITY_POISON_HEAL, TrainerAI_ScoreMinus5
+    IfLoadedEqualTo ABILITY_MAGIC_GUARD, TrainerAI_ScoreMinus5
+    IfLoadedEqualTo ABILITY_GUTS, TrainerAI_ScoreMinus5
     AddToMoveScore 3
     PopOrEnd 
 
-_02061:
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, _02088
-    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, _02088
+TrainerAI_Basic_FlingBurn:
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, TrainerAI_Basic_FlingBurn_AttackerChecks
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, TrainerAI_Basic_FlingBurn_AttackerChecks
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
-    IfLoadedEqualTo TYPE_FIRE, _02088
+    IfLoadedEqualTo TYPE_FIRE, TrainerAI_Basic_FlingBurn_AttackerChecks
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
-    IfLoadedEqualTo TYPE_FIRE, _02088
+    IfLoadedEqualTo TYPE_FIRE, TrainerAI_Basic_FlingBurn_AttackerChecks
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_MAGIC_GUARD, _02088
-    IfLoadedEqualTo ABILITY_WATER_VEIL, _02088
+    IfLoadedEqualTo ABILITY_MAGIC_GUARD, TrainerAI_Basic_FlingBurn_AttackerChecks
+    IfLoadedEqualTo ABILITY_WATER_VEIL, TrainerAI_Basic_FlingBurn_AttackerChecks
     PopOrEnd 
 
-_02088:
-    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_SAFEGUARD, _02513
-    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, _02513
+TrainerAI_Basic_FlingBurn_AttackerChecks:
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_SAFEGUARD, TrainerAI_ScoreMinus5
+    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, TrainerAI_ScoreMinus5
     LoadTypeFrom LOAD_ATTACKER_TYPE_1
-    IfLoadedEqualTo TYPE_FIRE, _02513
+    IfLoadedEqualTo TYPE_FIRE, TrainerAI_ScoreMinus5
     LoadTypeFrom LOAD_ATTACKER_TYPE_2
-    IfLoadedEqualTo TYPE_FIRE, _02513
+    IfLoadedEqualTo TYPE_FIRE, TrainerAI_ScoreMinus5
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_KLUTZ, _02513
-    IfLoadedEqualTo ABILITY_MAGIC_GUARD, _02513
-    IfLoadedEqualTo ABILITY_WATER_VEIL, _02513
-    IfLoadedEqualTo ABILITY_GUTS, _02513
+    IfLoadedEqualTo ABILITY_KLUTZ, TrainerAI_ScoreMinus5
+    IfLoadedEqualTo ABILITY_MAGIC_GUARD, TrainerAI_ScoreMinus5
+    IfLoadedEqualTo ABILITY_WATER_VEIL, TrainerAI_ScoreMinus5
+    IfLoadedEqualTo ABILITY_GUTS, TrainerAI_ScoreMinus5
     AddToMoveScore 3
     PopOrEnd 
 
-_02123:
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, _02513
-    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, _02513
+TrainerAI_Basic_FlingParalyze:
+    ; If the target cannot be Paralyzed, score -5.
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, TrainerAI_ScoreMinus5
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, TrainerAI_ScoreMinus5
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_LIMBER, _02513
+    IfLoadedEqualTo ABILITY_LIMBER, TrainerAI_ScoreMinus5
     PopOrEnd 
 
-_02137:
+TrainerAI_Basic_FlingItems_Poison:
     TableEntry HOLD_EFFECT_PSN_USER
     TableEntry HOLD_EFFECT_STRENGTHEN_POISON
     TableEntry TABLE_END
 
-_02140:
+TrainerAI_Basic_FlingItems_Burn:
     TableEntry HOLD_EFFECT_BRN_USER
     TableEntry TABLE_END
 
-_02142:
+TrainerAI_Basic_FlingItems_Paralyze:
     TableEntry HOLD_EFFECT_PIKA_SPATK_UP
     TableEntry TABLE_END
 
-_02144:
-    IfNotStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, _02522
-    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, _02522
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, _02522
-    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY_POISON, _02170
-    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_BURN, _02204
-    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_PARALYSIS, _02224
-    GoTo _02229
+TrainerAI_Basic_CheckCanPsychoShift:
+    ; If the attacker does not have a status condition or the target already has a status
+    ; condition, score -10.
+    IfNotStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, TrainerAI_ScoreMinus10
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, TrainerAI_ScoreMinus10
 
-_02170:
+    ; If the target is protected by Safeguard, score -10.
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, TrainerAI_ScoreMinus10
+
+    ; Branch according to the attacker's status condition.
+    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY_POISON, TrainerAI_Basic_PsychoShift_Poison
+    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_BURN, TrainerAI_Basic_PsychoShift_Burn
+    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_PARALYSIS, TrainerAI_Basic_PsychoShift_Paralysis
+    GoTo TrainerAI_Basic_PsychoShift_Terminate
+
+TrainerAI_Basic_PsychoShift_Poison:
+    ; If the attacker has Poison Heal, score -10.
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_POISON_HEAL, _02522
+    IfLoadedEqualTo ABILITY_POISON_HEAL, TrainerAI_ScoreMinus10
+
+    ; If the target is immune to the effects of poison for any reason, score -10.
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
-    IfLoadedEqualTo TYPE_POISON, _02522
-    IfLoadedEqualTo TYPE_STEEL, _02522
+    IfLoadedEqualTo TYPE_POISON, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo TYPE_STEEL, TrainerAI_ScoreMinus10
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
-    IfLoadedEqualTo TYPE_POISON, _02522
-    IfLoadedEqualTo TYPE_STEEL, _02522
+    IfLoadedEqualTo TYPE_POISON, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo TYPE_STEEL, TrainerAI_ScoreMinus10
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_IMMUNITY, _02522
-    IfLoadedEqualTo ABILITY_POISON_HEAL, _02522
-    IfLoadedEqualTo ABILITY_MAGIC_GUARD, _02522
-    GoTo _02229
+    IfLoadedEqualTo ABILITY_IMMUNITY, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo ABILITY_POISON_HEAL, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo ABILITY_MAGIC_GUARD, TrainerAI_ScoreMinus10
+    GoTo TrainerAI_Basic_PsychoShift_Terminate
 
-_02204:
+TrainerAI_Basic_PsychoShift_Burn:
+    ; If the target is immune to the effects of burn for any reason, score -10.
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
-    IfLoadedEqualTo TYPE_FIRE, _02522
+    IfLoadedEqualTo TYPE_FIRE, TrainerAI_ScoreMinus10
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
-    IfLoadedEqualTo TYPE_FIRE, _02522
+    IfLoadedEqualTo TYPE_FIRE, TrainerAI_ScoreMinus10
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_MAGIC_GUARD, _02522
-    IfLoadedEqualTo ABILITY_WATER_VEIL, _02522
-    GoTo _02229
+    IfLoadedEqualTo ABILITY_MAGIC_GUARD, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo ABILITY_WATER_VEIL, TrainerAI_ScoreMinus10
+    GoTo TrainerAI_Basic_PsychoShift_Terminate
 
-_02224:
+TrainerAI_Basic_PsychoShift_Paralysis:
+    ; If the target's ability is Limber, score -10.
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_LIMBER, _02522
+    IfLoadedEqualTo ABILITY_LIMBER, TrainerAI_ScoreMinus10
 
-_02229:
+TrainerAI_Basic_PsychoShift_Terminate:
     PopOrEnd 
 
-_02230:
-    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_HEAL_BLOCK, _02522
+TrainerAI_Basic_CheckHealBlock:
+    ; If the target is already under the effect, score -10.
+    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_HEAL_BLOCK, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_02235:
-    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_POWER_TRICK, _02522
+TrainerAI_Basic_CheckPowerTrick:
+    ; If the attacker is already under the effect, score -10.
+    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_POWER_TRICK, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_02240:
-    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_ABILITY_SUPPRESSED, _02522
+TrainerAI_Basic_CheckGastroAcid:
+    ; If the target is already under the effect, score -10.
+    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_ABILITY_SUPPRESSED, TrainerAI_ScoreMinus10
+
+    ; If the target has any of the following abilities, score -10.
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_MULTITYPE, _02522
-    IfLoadedEqualTo ABILITY_TRUANT, _02522
-    IfLoadedEqualTo ABILITY_SLOW_START, _02522
-    IfLoadedEqualTo ABILITY_STENCH, _02522
-    IfLoadedEqualTo ABILITY_RUN_AWAY, _02522
-    IfLoadedEqualTo ABILITY_PICKUP, _02522
-    IfLoadedEqualTo ABILITY_HONEY_GATHER, _02522
+    IfLoadedEqualTo ABILITY_MULTITYPE, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo ABILITY_TRUANT, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo ABILITY_SLOW_START, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo ABILITY_STENCH, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo ABILITY_RUN_AWAY, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo ABILITY_PICKUP, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo ABILITY_HONEY_GATHER, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_02268:
-    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_LUCKY_CHANT, _02522
+TrainerAI_Basic_CheckLuckyChant:
+    ; If the attacker is already under the effect, score -10.
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_LUCKY_CHANT, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_02273:
+TrainerAI_Basic_CheckCopycat:
+    ; If it's the first turn of the battle and the attacker is faster than its target, score -10.
     LoadTurnCount 
-    IfLoadedNotEqualTo 0, _02280
-    IfSpeedCompareEqualTo COMPARE_SPEED_FASTER, _02522
+    IfLoadedNotEqualTo 0, TrainerAI_Basic_CheckCopycat_Terminate
+    IfSpeedCompareEqualTo COMPARE_SPEED_FASTER, TrainerAI_ScoreMinus10
 
-_02280:
+TrainerAI_Basic_CheckCopycat_Terminate:
     PopOrEnd 
 
-_02281:
+TrainerAI_Basic_CheckPowerSwap:
+    ; If Power Swap would result in a net-negative change to stat stages for both Attack
+    ; and SpAttack, score -10.
     DiffStatStages AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK
-    IfLoadedLessThan 1, _02289
-    GoTo _02295
+    IfLoadedLessThan 1, TrainerAI_Basic_CheckGuardSwap_SpAttack
+    GoTo TrainerAI_Basic_CheckPowerSwap_Terminate
 
-_02289:
+TrainerAI_Basic_CheckGuardSwap_SpAttack:
     DiffStatStages AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK
-    IfLoadedLessThan 1, _02522
+    IfLoadedLessThan 1, TrainerAI_ScoreMinus10
 
-_02295:
+TrainerAI_Basic_CheckPowerSwap_Terminate:
     PopOrEnd 
 
-_02296:
+TrainerAI_Basic_CheckGuardSwap:
+    ; If Guard Swap would result in a net-negative change to stat stages for both Defense
+    ; and SpDefense, score -10.
     DiffStatStages AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE
-    IfLoadedLessThan 1, _02304
-    GoTo _02310
+    IfLoadedLessThan 1, TrainerAI_Basic_CheckGuardSwap_SpDefense
+    GoTo TrainerAI_Basic_CheckGuardSwap_Terminate
 
-_02304:
+TrainerAI_Basic_CheckGuardSwap_SpDefense:
     DiffStatStages AI_BATTLER_DEFENDER, BATTLE_STAT_SP_DEFENSE
-    IfLoadedLessThan 1, _02522
+    IfLoadedLessThan 1, TrainerAI_ScoreMinus10
 
-_02310:
+TrainerAI_Basic_CheckGuardSwap_Terminate:
     PopOrEnd 
 
-_02311:
-    IfCanUseLastResort AI_BATTLER_ATTACKER, _02316
+TrainerAI_Basic_CheckLastResort:
+    ; If the attacker has yet to use all of its other moves, score -10.
+    IfCanUseLastResort AI_BATTLER_ATTACKER, TrainerAI_Basic_CheckLastResort_Terminate
     AddToMoveScore -10
 
-_02316:
+TrainerAI_Basic_CheckLastResort_Terminate:
     PopOrEnd 
 
-_02317:
+TrainerAI_Basic_CheckWorrySeed:
+    ; If the target has any of the following abilities, score -10.
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_TRUANT, _02522
-    IfLoadedEqualTo ABILITY_INSOMNIA, _02522
-    IfLoadedEqualTo ABILITY_VITAL_SPIRIT, _02522
-    IfLoadedEqualTo ABILITY_MULTITYPE, _02522
-    IfNotStatus AI_BATTLER_DEFENDER, MON_CONDITION_SLEEP, _02345
-    IfMoveKnown AI_BATTLER_DEFENDER, MOVE_SLEEP_TALK, _02345
-    IfMoveKnown AI_BATTLER_DEFENDER, MOVE_SNORE, _02345
+    IfLoadedEqualTo ABILITY_TRUANT, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo ABILITY_INSOMNIA, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo ABILITY_VITAL_SPIRIT, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo ABILITY_MULTITYPE, TrainerAI_ScoreMinus10
+
+    ; If the target is asleep and does not know either Sleep Talk or Snore, score -10.
+    IfNotStatus AI_BATTLER_DEFENDER, MON_CONDITION_SLEEP, TrainerAI_Basic_CheckWorrySeed_Terminate
+    IfMoveKnown AI_BATTLER_DEFENDER, MOVE_SLEEP_TALK, TrainerAI_Basic_CheckWorrySeed_Terminate
+    IfMoveKnown AI_BATTLER_DEFENDER, MOVE_SNORE, TrainerAI_Basic_CheckWorrySeed_Terminate
     AddToMoveScore -10
 
-_02345:
+TrainerAI_Basic_CheckWorrySeed_Terminate:
     PopOrEnd 
 
-_02346:
+TrainerAI_Basic_CheckToxicSpikes:
+    ; If the target's side of the field already has 2 layers of Toxic Spikes, score -10.
     LoadSpikesLayers AI_BATTLER_DEFENDER, SIDE_CONDITION_TOXIC_SPIKES
-    IfLoadedEqualTo 2, _02522
+    IfLoadedEqualTo 2, TrainerAI_ScoreMinus10
+
+    ; If the target is the last battler, score -10.
     CountAlivePartyBattlers AI_BATTLER_DEFENDER
-    IfLoadedEqualTo 0, _02522
+    IfLoadedEqualTo 0, TrainerAI_ScoreMinus10
     PopOrEnd 
     PopOrEnd 
 
-_02359:
-    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_AQUA_RING, _02522
+TrainerAI_Basic_CheckAquaRing:
+    ; If the attacker is already under the effect, score -10.
+    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_AQUA_RING, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_02364:
-    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_MAGNET_RISE, _02522
+TrainerAI_Basic_CheckMagnetRise:
+    ; If the attacker is already under the effect, score -10.
+    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_MAGNET_RISE, TrainerAI_ScoreMinus10
+
+    ; If the attacker's ability is Levitate, score -10.
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_LEVITATE, _02522
+    IfLoadedEqualTo ABILITY_LEVITATE, TrainerAI_ScoreMinus10
+
+    ; If either of the attacker's types are Flying, score -10.
     LoadTypeFrom LOAD_ATTACKER_TYPE_1
-    IfLoadedEqualTo TYPE_FLYING, _02522
+    IfLoadedEqualTo TYPE_FLYING, TrainerAI_ScoreMinus10
     LoadTypeFrom LOAD_ATTACKER_TYPE_2
-    IfLoadedEqualTo TYPE_FLYING, _02522
+    IfLoadedEqualTo TYPE_FLYING, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_02384:
-    IfStatStageNotEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 0, _02420
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_LIGHT_SCREEN, _02420
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_REFLECT, _02420
+TrainerAI_Basic_CheckDefog:
+    ; If the target's Evasion is not at -6 or their side of the field has Light Screen or
+    ; Reflect, ignore all other checks.
+    IfStatStageNotEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 0, TrainerAI_Basic_CheckDefog_Terminate
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_LIGHT_SCREEN, TrainerAI_Basic_CheckDefog_Terminate
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_REFLECT, TrainerAI_Basic_CheckDefog_Terminate
+
+    ; If the current weather is Deep Fog, ignore all other checks.
     LoadCurrentWeather 
-    IfLoadedEqualTo AI_WEATHER_DEEP_FOG, _02420
+    IfLoadedEqualTo AI_WEATHER_DEEP_FOG, TrainerAI_Basic_CheckDefog_Terminate
+
+    ; If the target is on their last Pokemon, score -10.
     CountAlivePartyBattlers AI_BATTLER_DEFENDER
-    IfLoadedEqualTo 0, _02522
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SPIKES, _02420
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_STEALTH_ROCK, _02420
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_TOXIC_SPIKES, _02420
-    GoTo _02522
+    IfLoadedEqualTo 0, TrainerAI_ScoreMinus10
 
-_02420:
+    ; If the target's side of the field has none of Spikes, Stealth Rock, or Toxic Spikes
+    ; active, score -10.
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SPIKES, TrainerAI_Basic_CheckDefog_Terminate
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_STEALTH_ROCK, TrainerAI_Basic_CheckDefog_Terminate
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_TOXIC_SPIKES, TrainerAI_Basic_CheckDefog_Terminate
+    GoTo TrainerAI_ScoreMinus10
+
+TrainerAI_Basic_CheckDefog_Terminate:
     PopOrEnd 
 
-_02421:
-    IfSpeedCompareEqualTo COMPARE_SPEED_FASTER, _02522
-    IfSpeedCompareEqualTo COMPARE_SPEED_TIE, _02522
+TrainerAI_Basic_CheckTrickRoom:
+    ; If the attacker is faster than the target, score -10.
+    ; Treat speed ties as being faster than the target.
+    IfSpeedCompareEqualTo COMPARE_SPEED_FASTER, TrainerAI_ScoreMinus10
+    IfSpeedCompareEqualTo COMPARE_SPEED_TIE, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_02428:
+TrainerAI_Basic_CheckCaptivate:
+    ; If the target's ability is any of Oblivious, Clear Body, or White Smoke and the attacker's
+    ; ability is not Mold Breaker, score -10.
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, _02444
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TrainerAI_Basic_CheckCaptivate_CheckGender
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_OBLIVIOUS, _02522
-    IfLoadedEqualTo ABILITY_CLEAR_BODY, _02522
-    IfLoadedEqualTo ABILITY_WHITE_SMOKE, _02522
+    IfLoadedEqualTo ABILITY_OBLIVIOUS, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo ABILITY_CLEAR_BODY, TrainerAI_ScoreMinus10
+    IfLoadedEqualTo ABILITY_WHITE_SMOKE, TrainerAI_ScoreMinus10
 
-_02444:
+TrainerAI_Basic_CheckCaptivate_CheckGender:
+    ; If the target and the attacker share gender or the target has no gender, score -10.
     LoadGender AI_BATTLER_ATTACKER
-    IfLoadedEqualTo GENDER_MALE, _02454
-    IfLoadedEqualTo GENDER_FEMALE, _02461
-    GoTo _02522
+    IfLoadedEqualTo GENDER_MALE, TrainerAI_Basic_CheckCaptivate_CheckMale
+    IfLoadedEqualTo GENDER_FEMALE, TrainerAI_Basic_CheckCaptivate_CheckFemale
+    GoTo TrainerAI_ScoreMinus10
 
-_02454:
+TrainerAI_Basic_CheckCaptivate_CheckMale:
     LoadGender AI_BATTLER_DEFENDER
-    IfLoadedEqualTo GENDER_FEMALE, _02468
-    GoTo _02522
+    IfLoadedEqualTo GENDER_FEMALE, TrainerAI_Basic_CheckCaptivate_CheckStatStage
+    GoTo TrainerAI_ScoreMinus10
 
-_02461:
+TrainerAI_Basic_CheckCaptivate_CheckFemale:
     LoadGender AI_BATTLER_DEFENDER
-    IfLoadedEqualTo GENDER_MALE, _02468
-    GoTo _02522
+    IfLoadedEqualTo GENDER_MALE, TrainerAI_Basic_CheckCaptivate_CheckStatStage
+    GoTo TrainerAI_ScoreMinus10
 
-_02468:
-    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 1, _02522
+TrainerAI_Basic_CheckCaptivate_CheckStatStage:
+    ; If the target is already at -6, score -10.
+    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 1, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_02474:
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_STEALTH_ROCK, _02522
+TrainerAI_Basic_CheckStealthRock:
+    ; If the target's side of the field is already under the effect of Stealth Rock, score -10.
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_STEALTH_ROCK, TrainerAI_ScoreMinus10
+
+    ; If the target is on their last Pokemon, score -10.
     CountAlivePartyBattlers AI_BATTLER_DEFENDER
-    IfLoadedEqualTo 0, _02522
+    IfLoadedEqualTo 0, TrainerAI_ScoreMinus10
     PopOrEnd 
 
-_02484:
+TrainerAI_Basic_CheckLunarDance:
+    ; Start at -20
     AddToMoveScore -20
-    CountAlivePartyBattlers AI_BATTLER_ATTACKER
-    IfLoadedEqualTo 0, _02522
-    IfAnyPartyMemberIsWounded AI_BATTLER_ATTACKER, _02503
-    IfPartyMemberStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, _02503
-    IfAnyPartyMemberUsedPP AI_BATTLER_ATTACKER, _02503
-    GoTo _02522
 
-_02503:
+    ; If the attacker is on their last Pokemon, score additional -10.
+    CountAlivePartyBattlers AI_BATTLER_ATTACKER
+    IfLoadedEqualTo 0, TrainerAI_ScoreMinus10
+
+    ; If none of the attacker's party members are statused, at less than 100% HP, or at
+    ; less than full PP on all of their moves, score -10.
+    IfAnyPartyMemberIsWounded AI_BATTLER_ATTACKER, TrainerAI_Basic_CheckLunarDance_Terminate
+    IfPartyMemberStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, TrainerAI_Basic_CheckLunarDance_Terminate
+    IfAnyPartyMemberUsedPP AI_BATTLER_ATTACKER, TrainerAI_Basic_CheckLunarDance_Terminate
+    GoTo TrainerAI_ScoreMinus10
+
+TrainerAI_Basic_CheckLunarDance_Terminate:
     PopOrEnd 
 
-_02504:
+TrainerAI_ScoreMinus1:
     AddToMoveScore -1
     PopOrEnd 
 
-_02507:
+TrainerAI_ScoreMinus2:
     AddToMoveScore -2
     PopOrEnd 
 
-_02510:
+TrainerAI_ScoreMinus3:
     AddToMoveScore -3
     PopOrEnd 
 
-_02513:
+TrainerAI_ScoreMinus5:
     AddToMoveScore -5
     PopOrEnd 
+
+TrainerAI_ScoreMinus6: ; unused
     AddToMoveScore -6
     PopOrEnd 
 
-_02519:
+TrainerAI_ScoreMinus8:
     AddToMoveScore -8
     PopOrEnd 
 
-_02522:
+TrainerAI_ScoreMinus10:
     AddToMoveScore -10
     PopOrEnd 
 
-_02525:
+TrainerAI_ScoreMinus12:
     AddToMoveScore -12
     PopOrEnd 
 
-_02528:
+TrainerAI_ScoreMinus30:
     AddToMoveScore -30
     PopOrEnd 
 
-_02531:
+TrainerAI_ScorePlus1:
     AddToMoveScore 1
     PopOrEnd 
 
-_02534:
+TrainerAI_ScorePlus2:
     AddToMoveScore 2
     PopOrEnd 
 
-_02537:
+TrainerAI_ScorePlus3:
     AddToMoveScore 3
     PopOrEnd 
 
-_02540:
+TrainerAI_ScorePlus5:
     AddToMoveScore 5
     PopOrEnd 
 
-_02543:
+TrainerAI_ScorePlus10:
     AddToMoveScore 10
     PopOrEnd 
 
-_02546:
-    IfTargetIsPartner _10606
+TrainerAI_Expert_Main:
+    IfTargetIsPartner TrainerAI_Terminate
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_SLEEP, _03083
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOVER_HALF_DAMAGE_DEALT, _03099
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_DEFENSE, _03116
@@ -1605,7 +1845,7 @@ _03133:
     IfHPPercentLessThan AI_BATTLER_ATTACKER, 80, _03145
     IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _03145
     IfRandomLessThan 50, _03170
-    GoTo _02510
+    GoTo TrainerAI_ScoreMinus3
 
 _03145:
     IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, _03165
@@ -2206,7 +2446,7 @@ _04087:
 _04093:
     LoadTurnCount 
     IfLoadedEqualTo 0, _04100
-    IfRandomLessThan 200, _02507
+    IfRandomLessThan 200, TrainerAI_ScoreMinus2
 
 _04100:
     PopOrEnd 
@@ -2773,7 +3013,7 @@ _04866:
     PopOrEnd 
 
 _04867:
-    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_SLEEP, _02543
+    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_SLEEP, TrainerAI_ScorePlus10
     AddToMoveScore -5
     PopOrEnd 
 
@@ -3397,7 +3637,7 @@ _05856:
     IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _05893
     IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _05893
     IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _05893
-    IfVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_SUBSTITUTE, _02540
+    IfVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_SUBSTITUTE, TrainerAI_ScorePlus5
     IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_SLEEP, _05900
     IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_ATTRACT, _05897
     IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_CONFUSION, _05897
@@ -3502,7 +3742,7 @@ _06063:
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_WATER_VEIL, _05929
     IfLoadedEqualTo ABILITY_MAGIC_GUARD, _05929
-    IfLoadedEqualTo ABILITY_KLUTZ, _02513
+    IfLoadedEqualTo ABILITY_KLUTZ, TrainerAI_ScoreMinus5
     IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, _05929
     IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_SAFEGUARD, _05929
     LoadTypeFrom LOAD_ATTACKER_TYPE_1
@@ -4311,7 +4551,7 @@ _07193:
     TableEntry TABLE_END
 
 _07199:
-    IfNotStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, _02522
+    IfNotStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, TrainerAI_ScoreMinus10
     IfRandomLessThan 128, _07212
     IfHPPercentLessThan AI_BATTLER_DEFENDER, 30, _07212
     AddToMoveScore 1
@@ -4415,7 +4655,7 @@ _07395:
     IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 90, _07409
     IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 60, _07416
     IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 30, _07423
-    GoTo _02507
+    GoTo TrainerAI_ScoreMinus2
 
 _07409:
     IfRandomLessThan 96, _07430
@@ -4998,7 +5238,7 @@ _08300:
     IfHPPercentLessThan AI_BATTLER_ATTACKER, 80, _08312
     IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _08312
     IfRandomLessThan 192, _08354
-    GoTo _02513
+    GoTo TrainerAI_ScoreMinus5
 
 _08312:
     IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, _08349
@@ -5029,11 +5269,11 @@ _08349:
 _08354:
     PopOrEnd 
 
-_08355:
-    IfTargetIsPartner _10606
+TrainerAI_EvalAttack_Main:
+    IfTargetIsPartner TrainerAI_Terminate
     IfCurrentMoveKills USE_MAX_DAMAGE, _08391
     FlagMoveDamageScore FALSE
-    IfLoadedEqualTo AI_NOT_HIGHEST_DAMAGE, _02504
+    IfLoadedEqualTo AI_NOT_HIGHEST_DAMAGE, TrainerAI_ScoreMinus1
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_DEFENSE, _08376
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_LAST_WHIFF_IF_HIT, _08376
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_FIRST_IF_TARGET_ATTACKING, _08376
@@ -5073,8 +5313,8 @@ _08415:
 _08417:
     PopOrEnd 
 
-_08418:
-    IfTargetIsPartner _10606
+TrainerAI_SetupFirstTurn_Main:
+    IfTargetIsPartner TrainerAI_Terminate
     LoadTurnCount 
     IfLoadedNotEqualTo 0, _08433
     LoadCurrentMoveEffect 
@@ -5149,8 +5389,8 @@ _08434:
     TableEntry BATTLE_EFFECT_WHIRLPOOL
     TableEntry TABLE_END
 
-_08496:
-    IfTargetIsPartner _10606
+TrainerAI_DamagePriority_Main:
+    IfTargetIsPartner TrainerAI_Terminate
     FlagMoveDamageScore FALSE
     IfLoadedNotEqualTo AI_NO_COMPARISON_MADE, _08508
     IfRandomLessThan 100, _08508
@@ -5159,8 +5399,8 @@ _08496:
 _08508:
     PopOrEnd 
 
-_08509:
-    IfTargetIsPartner _10606
+TrainerAI_Risky_Main:
+    IfTargetIsPartner TrainerAI_Terminate
     LoadCurrentMoveEffect 
     IfLoadedNotInTable _08521, _08520
     IfRandomLessThan 128, _08520
@@ -5197,8 +5437,8 @@ _08521:
     TableEntry BATTLE_EFFECT_HIT_FIRST_IF_TARGET_ATTACKING
     TableEntry TABLE_END
 
-_08547:
-    IfTargetIsPartner _10606
+TrainerAI_BatonPass_Main:
+    IfTargetIsPartner TrainerAI_Terminate
     CountAlivePartyBattlers AI_BATTLER_ATTACKER
     IfLoadedEqualTo 0, _08645
     FlagMoveDamageScore FALSE
@@ -5218,13 +5458,13 @@ _08566:
 
 _08589:
     LoadTurnCount 
-    IfLoadedEqualTo 0, _02540
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 60, _02522
-    GoTo _02531
+    IfLoadedEqualTo 0, TrainerAI_ScorePlus5
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 60, TrainerAI_ScoreMinus10
+    GoTo TrainerAI_ScorePlus1
 
 _08599:
     LoadBattlerPreviousMove AI_BATTLER_ATTACKER
-    IfLoadedInTable _08607, _02507
+    IfLoadedInTable _08607, TrainerAI_ScoreMinus2
     AddToMoveScore 2
     PopOrEnd 
 
@@ -5235,19 +5475,19 @@ _08607:
 
 _08610:
     LoadTurnCount 
-    IfLoadedEqualTo 0, _02507
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, _02537
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 7, _02534
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 6, _02531
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 8, _02537
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 7, _02534
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 6, _02531
+    IfLoadedEqualTo 0, TrainerAI_ScoreMinus2
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, TrainerAI_ScorePlus3
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 7, TrainerAI_ScorePlus2
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 6, TrainerAI_ScorePlus1
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 8, TrainerAI_ScorePlus3
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 7, TrainerAI_ScorePlus2
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 6, TrainerAI_ScorePlus1
     PopOrEnd 
 
 _08645:
     PopOrEnd 
 
-_08646:
+TrainerAI_TagStrategy_Main:
     IfTargetIsPartner _09658
     FlagMoveDamageScore FALSE
     IfLoadedEqualTo AI_NO_COMPARISON_MADE, _08766
@@ -5528,9 +5768,9 @@ _09134:
     PopOrEnd 
 
 _09135:
-    IfHPPercentEqualTo AI_BATTLER_ATTACKER_PARTNER, 0, _02528
-    IfHPPercentEqualTo AI_BATTLER_DEFENDER_PARTNER, 0, _02528
-    IfHPPercentEqualTo AI_BATTLER_DEFENDER, 0, _02528
+    IfHPPercentEqualTo AI_BATTLER_ATTACKER_PARTNER, 0, TrainerAI_ScoreMinus30
+    IfHPPercentEqualTo AI_BATTLER_DEFENDER_PARTNER, 0, TrainerAI_ScoreMinus30
+    IfHPPercentEqualTo AI_BATTLER_DEFENDER, 0, TrainerAI_ScoreMinus30
     LoadBattlerSpeedRank AI_BATTLER_ATTACKER
     IfLoadedEqualTo 0, _09163
     IfLoadedEqualTo 1, _09173
@@ -5540,13 +5780,13 @@ _09135:
 
 _09163:
     LoadBattlerSpeedRank AI_BATTLER_ATTACKER_PARTNER
-    IfLoadedEqualTo 1, _02528
-    IfLoadedEqualTo 0, _02528
+    IfLoadedEqualTo 1, TrainerAI_ScoreMinus30
+    IfLoadedEqualTo 0, TrainerAI_ScoreMinus30
     GoTo _09204
 
 _09173:
     LoadBattlerSpeedRank AI_BATTLER_ATTACKER_PARTNER
-    IfLoadedEqualTo 0, _02528
+    IfLoadedEqualTo 0, TrainerAI_ScoreMinus30
     GoTo _09204
 
 _09180:
@@ -5574,7 +5814,7 @@ _09207:
     IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, _09238
     IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 30, _09252
     IfRandomLessThan 64, _09301
-    GoTo _02513
+    GoTo TrainerAI_ScoreMinus5
 
 _09224:
     IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 90, _09266
@@ -5629,7 +5869,7 @@ _09302:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RANDOM_DAMAGE_1_TO_150_LEVEL, _09322
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_10_DAMAGE_FLAT, _09322
     FlagMoveDamageScore FALSE
-    IfLoadedNotEqualTo AI_NO_COMPARISON_MADE, _02531
+    IfLoadedNotEqualTo AI_NO_COMPARISON_MADE, TrainerAI_ScorePlus1
 
 _09322:
     PopOrEnd 
@@ -5638,26 +5878,26 @@ _09322:
 
 _09328:
     FlagMoveDamageScore FALSE
-    IfLoadedEqualTo AI_NO_COMPARISON_MADE, _02513
+    IfLoadedEqualTo AI_NO_COMPARISON_MADE, TrainerAI_ScoreMinus5
     AddToMoveScore 1
-    IfLoadedEqualTo AI_MOVE_IS_HIGHEST_DAMAGE, _02534
+    IfLoadedEqualTo AI_MOVE_IS_HIGHEST_DAMAGE, TrainerAI_ScorePlus2
     PopOrEnd 
 
 _09339:
-    IfMoveEffect AI_BATTLER_ATTACKER_PARTNER, MOVE_EFFECT_MAGNET_RISE, _02534
+    IfMoveEffect AI_BATTLER_ATTACKER_PARTNER, MOVE_EFFECT_MAGNET_RISE, TrainerAI_ScorePlus2
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_LEVITATE
-    IfLoadedEqualTo AI_HAVE, _02534
+    IfLoadedEqualTo AI_HAVE, TrainerAI_ScorePlus2
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_FLYING
-    IfLoadedEqualTo AI_HAVE, _02534
+    IfLoadedEqualTo AI_HAVE, TrainerAI_ScorePlus2
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_FIRE
-    IfLoadedEqualTo AI_HAVE, _02522
+    IfLoadedEqualTo AI_HAVE, TrainerAI_ScoreMinus10
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_ELECTRIC
-    IfLoadedEqualTo AI_HAVE, _02522
+    IfLoadedEqualTo AI_HAVE, TrainerAI_ScoreMinus10
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_POISON
-    IfLoadedEqualTo AI_HAVE, _02522
+    IfLoadedEqualTo AI_HAVE, TrainerAI_ScoreMinus10
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_ROCK
-    IfLoadedEqualTo AI_HAVE, _02522
-    GoTo _02510
+    IfLoadedEqualTo AI_HAVE, TrainerAI_ScoreMinus10
+    GoTo TrainerAI_ScoreMinus3
 
 _09381:
     IfHPPercentEqualTo AI_BATTLER_ATTACKER_PARTNER, 0, _09454
@@ -5667,7 +5907,7 @@ _09381:
 
 _09395:
     LoadBattlerSpeedRank AI_BATTLER_ATTACKER
-    IfLoadedEqualTo 3, _02510
+    IfLoadedEqualTo 3, TrainerAI_ScoreMinus3
     IfLoadedEqualTo 2, _09411
     IfLoadedEqualTo 1, _09429
     IfLoadedEqualTo 0, _09444
@@ -5675,25 +5915,25 @@ _09395:
 
 _09411:
     LoadBattlerSpeedRank AI_BATTLER_ATTACKER_PARTNER
-    IfLoadedEqualTo 0, _02510
-    IfLoadedEqualTo 1, _02510
+    IfLoadedEqualTo 0, TrainerAI_ScoreMinus3
+    IfLoadedEqualTo 1, TrainerAI_ScoreMinus3
     IfRandomLessThan 128, _09454
     LoadBattlerSpeedRank AI_BATTLER_ATTACKER_PARTNER
-    IfLoadedEqualTo 2, _02510
+    IfLoadedEqualTo 2, TrainerAI_ScoreMinus3
     GoTo _09454
 
 _09429:
     LoadBattlerSpeedRank AI_BATTLER_ATTACKER_PARTNER
-    IfLoadedEqualTo 0, _02510
+    IfLoadedEqualTo 0, TrainerAI_ScoreMinus3
     IfRandomLessThan 128, _09454
     LoadBattlerSpeedRank AI_BATTLER_ATTACKER_PARTNER
-    IfLoadedEqualTo 1, _02510
+    IfLoadedEqualTo 1, TrainerAI_ScoreMinus3
     GoTo _09454
 
 _09444:
     IfRandomLessThan 128, _09454
     LoadBattlerSpeedRank AI_BATTLER_ATTACKER_PARTNER
-    IfLoadedEqualTo 0, _02510
+    IfLoadedEqualTo 0, TrainerAI_ScoreMinus3
     GoTo _09454
 
 _09454:
@@ -5701,18 +5941,18 @@ _09454:
 
 _09455:
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_TRUANT, _02540
-    IfLoadedEqualTo ABILITY_SLOW_START, _02540
-    IfLoadedEqualTo ABILITY_STALL, _02540
-    IfLoadedEqualTo ABILITY_KLUTZ, _02540
+    IfLoadedEqualTo ABILITY_TRUANT, TrainerAI_ScorePlus5
+    IfLoadedEqualTo ABILITY_SLOW_START, TrainerAI_ScorePlus5
+    IfLoadedEqualTo ABILITY_STALL, TrainerAI_ScorePlus5
+    IfLoadedEqualTo ABILITY_KLUTZ, TrainerAI_ScorePlus5
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_SHADOW_TAG, _02534
-    IfLoadedEqualTo ABILITY_PURE_POWER, _02534
-    IfLoadedEqualTo ABILITY_HUGE_POWER, _02534
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, _02534
-    IfLoadedEqualTo ABILITY_SOLID_ROCK, _02534
-    IfLoadedEqualTo ABILITY_FILTER, _02534
-    IfLoadedEqualTo ABILITY_FLOWER_GIFT, _02534
+    IfLoadedEqualTo ABILITY_SHADOW_TAG, TrainerAI_ScorePlus2
+    IfLoadedEqualTo ABILITY_PURE_POWER, TrainerAI_ScorePlus2
+    IfLoadedEqualTo ABILITY_HUGE_POWER, TrainerAI_ScorePlus2
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TrainerAI_ScorePlus2
+    IfLoadedEqualTo ABILITY_SOLID_ROCK, TrainerAI_ScorePlus2
+    IfLoadedEqualTo ABILITY_FILTER, TrainerAI_ScorePlus2
+    IfLoadedEqualTo ABILITY_FLOWER_GIFT, TrainerAI_ScorePlus2
     PopOrEnd 
 
 _09493:
@@ -5729,21 +5969,21 @@ _09504:
 
 _09514:
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_LIGHTNING_ROD
-    IfLoadedEqualTo AI_HAVE, _02522
+    IfLoadedEqualTo AI_HAVE, TrainerAI_ScoreMinus10
     IfMoveEqualTo MOVE_DISCHARGE, _09525
     GoTo _09557
 
 _09525:
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_MOTOR_DRIVE
-    IfLoadedEqualTo AI_HAVE, _02537
+    IfLoadedEqualTo AI_HAVE, TrainerAI_ScorePlus3
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_VOLT_ABSORB
-    IfLoadedEqualTo AI_HAVE, _02537
+    IfLoadedEqualTo AI_HAVE, TrainerAI_ScorePlus3
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_WATER
-    IfLoadedEqualTo AI_HAVE, _02522
+    IfLoadedEqualTo AI_HAVE, TrainerAI_ScoreMinus10
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_FLYING
-    IfLoadedEqualTo AI_HAVE, _02522
+    IfLoadedEqualTo AI_HAVE, TrainerAI_ScoreMinus10
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GROUND
-    IfLoadedEqualTo AI_HAVE, _02537
+    IfLoadedEqualTo AI_HAVE, TrainerAI_ScorePlus3
     AddToMoveScore -3
 
 _09557:
@@ -5757,19 +5997,19 @@ _09558:
 
 _09569:
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_STORM_DRAIN
-    IfLoadedEqualTo AI_HAVE, _02522
+    IfLoadedEqualTo AI_HAVE, TrainerAI_ScoreMinus10
     IfMoveEqualTo MOVE_SURF, _09580
     GoTo _09606
 
 _09580:
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_DRY_SKIN
-    IfLoadedEqualTo AI_HAVE, _02537
+    IfLoadedEqualTo AI_HAVE, TrainerAI_ScorePlus3
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_WATER_ABSORB
-    IfLoadedEqualTo AI_HAVE, _02537
+    IfLoadedEqualTo AI_HAVE, TrainerAI_ScorePlus3
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GROUND
-    IfLoadedEqualTo AI_HAVE, _02522
+    IfLoadedEqualTo AI_HAVE, TrainerAI_ScoreMinus10
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_FIRE
-    IfLoadedEqualTo AI_HAVE, _02522
+    IfLoadedEqualTo AI_HAVE, TrainerAI_ScoreMinus10
     AddToMoveScore -3
 
 _09606:
@@ -5788,17 +6028,17 @@ _09614:
 
 _09619:
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_DRY_SKIN
-    IfLoadedEqualTo AI_HAVE, _02510
+    IfLoadedEqualTo AI_HAVE, TrainerAI_ScoreMinus3
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_FLASH_FIRE
-    IfLoadedEqualTo AI_HAVE, _02537
+    IfLoadedEqualTo AI_HAVE, TrainerAI_ScorePlus3
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GRASS
-    IfLoadedEqualTo AI_HAVE, _02522
+    IfLoadedEqualTo AI_HAVE, TrainerAI_ScoreMinus10
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_STEEL
-    IfLoadedEqualTo AI_HAVE, _02522
+    IfLoadedEqualTo AI_HAVE, TrainerAI_ScoreMinus10
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_ICE
-    IfLoadedEqualTo AI_HAVE, _02522
+    IfLoadedEqualTo AI_HAVE, TrainerAI_ScoreMinus10
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_BUG
-    IfLoadedEqualTo AI_HAVE, _02522
+    IfLoadedEqualTo AI_HAVE, TrainerAI_ScoreMinus10
     AddToMoveScore -3
 
 _09657:
@@ -5815,7 +6055,7 @@ _09658:
     IfMoveEqualTo MOVE_FLING, _10062
 
 _09680:
-    GoTo _02528
+    GoTo TrainerAI_ScoreMinus30
 
 _09682:
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_FLASH_FIRE
@@ -5824,7 +6064,7 @@ _09682:
 
 _09690:
     IfActivatedFlashFire AI_BATTLER_ATTACKER_PARTNER, _09680
-    GoTo _02537
+    GoTo TrainerAI_ScorePlus3
 
 _09695:
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_MOTOR_DRIVE
@@ -5836,25 +6076,25 @@ _09695:
 _09709:
     IfRandomLessThan 160, _09752
     IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_SPEED, 12, _09680
-    GoTo _02537
+    GoTo TrainerAI_ScorePlus3
 
 _09719:
-    IfHPPercentEqualTo AI_BATTLER_ATTACKER_PARTNER, 100, _02522
+    IfHPPercentEqualTo AI_BATTLER_ATTACKER_PARTNER, 100, TrainerAI_ScoreMinus10
     IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 90, _09752
     IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 75, _09737
     IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 50, _09742
     GoTo _09747
 
 _09737:
-    IfRandomLessThan 64, _02537
+    IfRandomLessThan 64, TrainerAI_ScorePlus3
     GoTo _09752
 
 _09742:
-    IfRandomLessThan 128, _02537
+    IfRandomLessThan 128, TrainerAI_ScorePlus3
     GoTo _09752
 
 _09747:
-    IfRandomLessThan 192, _02537
+    IfRandomLessThan 192, TrainerAI_ScorePlus3
     GoTo _09752
 
 _09752:
@@ -5868,22 +6108,22 @@ _09753:
     GoTo _09680
 
 _09767:
-    IfHPPercentEqualTo AI_BATTLER_ATTACKER_PARTNER, 100, _02522
+    IfHPPercentEqualTo AI_BATTLER_ATTACKER_PARTNER, 100, TrainerAI_ScoreMinus10
     IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 90, _09800
     IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 75, _09785
     IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 50, _09790
     GoTo _09795
 
 _09785:
-    IfRandomLessThan 64, _02537
+    IfRandomLessThan 64, TrainerAI_ScorePlus3
     GoTo _09800
 
 _09790:
-    IfRandomLessThan 128, _02537
+    IfRandomLessThan 128, TrainerAI_ScorePlus3
     GoTo _09800
 
 _09795:
-    IfRandomLessThan 192, _02537
+    IfRandomLessThan 192, TrainerAI_ScorePlus3
     GoTo _09800
 
 _09800:
@@ -5905,8 +6145,8 @@ _09801:
 
 _09836:
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_TRUANT, _02543
-    IfLoadedEqualTo ABILITY_SLOW_START, _02543
+    IfLoadedEqualTo ABILITY_TRUANT, TrainerAI_ScorePlus10
+    IfLoadedEqualTo ABILITY_SLOW_START, TrainerAI_ScorePlus10
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedNotEqualTo ABILITY_LEVITATE, _09869
     LoadBattlerAbility AI_BATTLER_DEFENDER
@@ -5943,7 +6183,7 @@ _09879:
     GoTo _10183
 
 _09937:
-    GoTo _02537
+    GoTo TrainerAI_ScorePlus3
 
 _09939:
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_FLASH_FIRE
@@ -5958,7 +6198,7 @@ _09939:
     IfHeldItemEqualTo AI_BATTLER_ATTACKER_PARTNER, ITEM_FLAME_ORB, _10183
     IfHeldItemEqualTo AI_BATTLER_ATTACKER_PARTNER, ITEM_TOXIC_ORB, _10183
     IfHPPercentLessThan AI_BATTLER_ATTACKER_PARTNER, 81, _10183
-    GoTo _02540
+    GoTo TrainerAI_ScorePlus5
 
 _09979:
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
@@ -5977,17 +6217,17 @@ _10003:
     IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, _10183
     IfHeldItemEqualTo AI_BATTLER_ATTACKER_PARTNER, ITEM_TOXIC_ORB, _10183
     IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 91, _10183
-    GoTo _02540
+    GoTo TrainerAI_ScorePlus5
 
 _10023:
-    IfHPPercentEqualTo AI_BATTLER_ATTACKER_PARTNER, 0, _02528
+    IfHPPercentEqualTo AI_BATTLER_ATTACKER_PARTNER, 0, TrainerAI_ScoreMinus30
     IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 50, _10038
     LoadBattlerSpeedRank AI_BATTLER_ATTACKER_PARTNER
     IfLoadedLessThan 1, _10038
     GoTo _10043
 
 _10038:
-    IfRandomLessThan 64, _02504
+    IfRandomLessThan 64, TrainerAI_ScoreMinus1
     AddToMoveScore 2
 
 _10043:
@@ -6035,13 +6275,13 @@ _10084:
     GoTo _10162
 
 _10127:
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_ATTACK, 8, _02522
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_DEFENSE, 8, _02522
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_SPEED, 8, _02522
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_SP_ATTACK, 8, _02522
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_SP_DEFENSE, 8, _02522
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_EVASION, 8, _02522
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_ACCURACY, 8, _02522
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_ATTACK, 8, TrainerAI_ScoreMinus10
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_DEFENSE, 8, TrainerAI_ScoreMinus10
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_SPEED, 8, TrainerAI_ScoreMinus10
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_SP_ATTACK, 8, TrainerAI_ScoreMinus10
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_SP_DEFENSE, 8, TrainerAI_ScoreMinus10
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_EVASION, 8, TrainerAI_ScoreMinus10
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_ACCURACY, 8, TrainerAI_ScoreMinus10
 
 _10162:
     IfHPPercentLessThan AI_BATTLER_ATTACKER_PARTNER, 51, _10180
@@ -6063,7 +6303,7 @@ _10183:
     AddToMoveScore -30
     PopOrEnd 
 
-_10186:
+TrainerAI_CheckHP_Main:
     IfTargetIsPartner _09658
     IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 70, _10202
     IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 30, _10208
@@ -6340,8 +6580,8 @@ _10407:
     TableEntry BATTLE_EFFECT_SP_ATK_DOWN_2_OPPOSITE_GENDER
     TableEntry TABLE_END
 
-_10470:
-    IfTargetIsPartner _10606
+TrainerAI_Weather_Main:
+    IfTargetIsPartner TrainerAI_Terminate
     LoadTurnCount 
     IfLoadedNotEqualTo 0, _10519
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_SUN, _10488
@@ -6377,8 +6617,8 @@ _10512:
 _10519:
     PopOrEnd 
 
-_10520:
-    IfTargetIsPartner _10606
+TrainerAI_Harrassment_Main:
+    IfTargetIsPartner TrainerAI_Terminate
     LoadCurrentMoveEffect 
     IfLoadedNotInTable _10532, _10531
     IfRandomLessThan 128, _10531
@@ -6424,7 +6664,7 @@ _10532:
     TableEntry BATTLE_EFFECT_SP_ATK_DOWN_2_OPPOSITE_GENDER
     TableEntry TABLE_END
 
-_10567:
+TrainerAI_RoamingPokemon_Main:
     IfVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_BIND, _10591
     IfVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_MEAN_LOOK, _10591
     LoadAbility AI_BATTLER_DEFENDER
@@ -6440,12 +6680,12 @@ _10590:
 _10591:
     PopOrEnd 
 
-_10592:
+TrainerAI_Safari_Main:
     Dummy3E 1
     Dummy3F 
     Escape 
 
-_10596:
+TrainerAI_CatchTutorial_Main:
     IfHPPercentEqualTo AI_BATTLER_DEFENDER, 20, _10605
     IfHPPercentLessThan AI_BATTLER_DEFENDER, 20, _10605
     PopOrEnd 
@@ -6453,7 +6693,7 @@ _10596:
 _10605:
     Escape 
 
-_10606:
+TrainerAI_Terminate:
     PopOrEnd 
 
     .endif
