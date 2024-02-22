@@ -1,3 +1,3 @@
 pokeplatinum_asm = files(
-    'overlay014/ov14_022248A4.s'
+    'trainer_ai/trainer_ai_script.s'
 )

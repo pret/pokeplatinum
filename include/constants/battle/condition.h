@@ -82,6 +82,7 @@
 #define VOLATILE_CONDITION_BIND_SHIFT       13
 #define VOLATILE_CONDITION_ATTRACT_SHIFT    16
 
+#define SIDE_CONDITION_NONE             0
 #define SIDE_CONDITION_REFLECT          (1 << 0)
 #define SIDE_CONDITION_LIGHT_SCREEN     (1 << 1)
 #define SIDE_CONDITION_SPIKES           (1 << 2)

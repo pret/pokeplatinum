@@ -191,8 +191,8 @@ void BattleMon_AddVal(BattleMon *mon, enum BattleMonParam paramID, int val);
  * @param ignoreQuickClaw   If set to TRUE, the Quick Claw and Custap Berry
  *                          flags will NOT be set after determining if they
  *                          should activate.
- * @return 0 if battler 1 should move first, 1 if battler 2 should move first,
- * 2 if battler 2 should move first and won a speed tie.
+ * @return A value representing the speed-ordering of the two battlers,
+ * relative to the first of the two. See enum CompareSpeedResult.
  */
 u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *battleCtx, int battler1, int battler2, BOOL ignoreQuickClaw);
 
