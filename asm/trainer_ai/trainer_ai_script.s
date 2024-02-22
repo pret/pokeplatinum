@@ -6638,39 +6638,44 @@ _10407:
 
 TrainerAI_Weather_Main:
     IfTargetIsPartner TrainerAI_Terminate
+
+    ; If it is not the first turn of the battle, break.
     LoadTurnCount 
-    IfLoadedNotEqualTo 0, _10519
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_SUN, _10488
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_RAIN, _10494
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_SANDSTORM, _10500
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_HAIL, _10506
+    IfLoadedNotEqualTo 0, TrainerAI_Weather_Terminate
 
-_10488:
+    ; For each weather, don't try to set it if it's already active from the field.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_SUN, TrainerAI_Weather_Sun
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_RAIN, TrainerAI_Weather_Rain
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_SANDSTORM, TrainerAI_Weather_Sand
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_HAIL, TrainerAI_Weather_Hail
+
+TrainerAI_Weather_Sun:
     LoadCurrentWeather 
-    IfLoadedEqualTo AI_WEATHER_SUNNY, _10519
-    GoTo _10512
+    IfLoadedEqualTo AI_WEATHER_SUNNY, TrainerAI_Weather_Terminate
+    GoTo TrainerAI_Weather_ScorePlus5
 
-_10494:
+TrainerAI_Weather_Rain:
     LoadCurrentWeather 
-    IfLoadedEqualTo AI_WEATHER_RAINING, _10519
-    GoTo _10512
+    IfLoadedEqualTo AI_WEATHER_RAINING, TrainerAI_Weather_Terminate
+    GoTo TrainerAI_Weather_ScorePlus5
 
-_10500:
+TrainerAI_Weather_Sand:
     LoadCurrentWeather 
-    IfLoadedEqualTo AI_WEATHER_SANDSTORM, _10519
-    GoTo _10512
+    IfLoadedEqualTo AI_WEATHER_SANDSTORM, TrainerAI_Weather_Terminate
+    GoTo TrainerAI_Weather_ScorePlus5
 
-_10506:
+TrainerAI_Weather_Hail:
     LoadCurrentWeather 
-    IfLoadedEqualTo AI_WEATHER_HAILING, _10519
-    GoTo _10512
+    IfLoadedEqualTo AI_WEATHER_HAILING, TrainerAI_Weather_Terminate
+    GoTo TrainerAI_Weather_ScorePlus5
 
-_10512:
+TrainerAI_Weather_ScorePlus5:
+    ; On the attacker's first turn only, score +5.
     LoadIsFirstTurnInBattle AI_BATTLER_ATTACKER
-    IfLoadedEqualTo FALSE, _10519
+    IfLoadedEqualTo FALSE, TrainerAI_Weather_Terminate
     AddToMoveScore 5
 
-_10519:
+TrainerAI_Weather_Terminate:
     PopOrEnd 
 
 TrainerAI_Harrassment_Main:
