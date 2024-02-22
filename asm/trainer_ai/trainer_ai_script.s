@@ -5332,17 +5332,23 @@ TrainerAI_EvalAttack_Terminate:
 
 TrainerAI_SetupFirstTurn_Main:
     IfTargetIsPartner TrainerAI_Terminate
+
+    ; If this is not the first turn, terminate.
     LoadTurnCount 
-    IfLoadedNotEqualTo 0, _08433
+    IfLoadedNotEqualTo 0, TrainerAI_SetupFirstTurn_Terminate
+
+    ; If the current move's effect is not known tobe a setup move, break.
     LoadCurrentMoveEffect 
-    IfLoadedNotInTable _08434, _08433
-    IfRandomLessThan 80, _08433
+    IfLoadedNotInTable TrainerAI_SetupFirstTurn_SetupEffects, TrainerAI_SetupFirstTurn_Terminate
+
+    ; 68.75% of the time, score +2.
+    IfRandomLessThan 80, TrainerAI_SetupFirstTurn_Terminate
     AddToMoveScore 2
 
-_08433:
+TrainerAI_SetupFirstTurn_Terminate:
     PopOrEnd 
 
-_08434:
+TrainerAI_SetupFirstTurn_SetupEffects:
     TableEntry BATTLE_EFFECT_ATK_UP
     TableEntry BATTLE_EFFECT_DEF_UP
     TableEntry BATTLE_EFFECT_SPEED_UP
