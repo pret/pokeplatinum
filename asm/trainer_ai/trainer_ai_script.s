@@ -5413,26 +5413,36 @@ TrainerAI_SetupFirstTurn_SetupEffects:
     TableEntry TABLE_END
 
 TrainerAI_DamagePriority_Main:
+    ; Do not target your partner.
     IfTargetIsPartner TrainerAI_Terminate
+
+    ; If the current move is not variable power or Risky, break.
     FlagMoveDamageScore FALSE
-    IfLoadedNotEqualTo AI_NO_COMPARISON_MADE, _08508
-    IfRandomLessThan 100, _08508
+    IfLoadedNotEqualTo AI_NO_COMPARISON_MADE, TrainerAI_DamagePriority_Terminate
+
+    ; ~61% of the time, score +2.
+    IfRandomLessThan 100, TrainerAI_DamagePriority_Terminate
     AddToMoveScore 2
 
-_08508:
+TrainerAI_DamagePriority_Terminate:
     PopOrEnd 
 
 TrainerAI_Risky_Main:
+    ; Do not target your partner.
     IfTargetIsPartner TrainerAI_Terminate
+
+    ; If the current move effect is judged to not be Risky, break;
     LoadCurrentMoveEffect 
-    IfLoadedNotInTable _08521, _08520
-    IfRandomLessThan 128, _08520
+    IfLoadedNotInTable TrainerAI_Risky_RiskyEffects, TrainerAI_Risky_Terminate
+
+    ; 50% of the time, score +2.
+    IfRandomLessThan 128, TrainerAI_Risky_Terminate
     AddToMoveScore 2
 
-_08520:
+TrainerAI_Risky_Terminate:
     PopOrEnd 
 
-_08521:
+TrainerAI_Risky_RiskyEffects:
     TableEntry BATTLE_EFFECT_STATUS_SLEEP
     TableEntry BATTLE_EFFECT_HALVE_DEFENSE
     TableEntry BATTLE_EFFECT_COPY_MOVE
@@ -5467,7 +5477,7 @@ TrainerAI_BatonPass_Main:
     FlagMoveDamageScore FALSE
     IfLoadedNotEqualTo AI_NO_COMPARISON_MADE, _08645
     IfMoveEffectKnown AI_BATTLER_ATTACKER, BATTLE_EFFECT_PASS_STATS_AND_STATUS, _08566
-    IfRandomLessThan 80, _08520
+    IfRandomLessThan 80, TrainerAI_Risky_Terminate
 
 _08566:
     IfMoveEqualTo MOVE_SWORDS_DANCE, _08589
@@ -5476,7 +5486,7 @@ _08566:
     IfMoveEqualTo MOVE_NASTY_PLOT, _08589
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PROTECT, _08599
     IfMoveEqualTo MOVE_BATON_PASS, _08610
-    IfRandomLessThan 20, _08520
+    IfRandomLessThan 20, TrainerAI_Risky_Terminate
     AddToMoveScore 3
 
 _08589:
