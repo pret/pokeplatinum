@@ -5544,402 +5544,503 @@ TrainerAI_BatonPass_Terminate:
     PopOrEnd 
 
 TrainerAI_TagStrategy_Main:
-    IfTargetIsPartner TrainerAI_TagStrategy_Terminate
+    IfTargetIsPartner TrainerAI_TagStrategy_Partner
+
+    ; If the move does not deal damage, skip ahead
     FlagMoveDamageScore FALSE
-    IfLoadedEqualTo AI_NO_COMPARISON_MADE, _08766
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ONE_HIT_KO, _08704
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_40_DAMAGE_FLAT, _08704
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LEVEL_DAMAGE_FLAT, _08704
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RANDOM_DAMAGE_1_TO_150_LEVEL, _08704
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_10_DAMAGE_FLAT, _08704
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _08676
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _08690
-    GoTo _08704
+    IfLoadedEqualTo AI_NO_COMPARISON_MADE, TrainerAI_TagStrategy_CheckSpecialScoring
 
-_08676:
-    IfCurrentMoveKills USE_MAX_DAMAGE, _08704
-    IfHPPercentEqualTo AI_BATTLER_DEFENDER_PARTNER, 0, _08704
-    IfRandomLessThan 64, _08704
+    ; Flat-damage move effects have a special handler; this includes OHKO moves
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ONE_HIT_KO, TrainerAI_TagStrategy_ScoreMove
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_40_DAMAGE_FLAT, TrainerAI_TagStrategy_ScoreMove
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LEVEL_DAMAGE_FLAT, TrainerAI_TagStrategy_ScoreMove
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RANDOM_DAMAGE_1_TO_150_LEVEL, TrainerAI_TagStrategy_ScoreMove
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_10_DAMAGE_FLAT, TrainerAI_TagStrategy_ScoreMove
+
+    ; If the move is not-very-effective, try to reduce its score
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_TagStrategy_TryScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_TagStrategy_TryScoreMinus2
+
+    ; All other moves
+    GoTo TrainerAI_TagStrategy_ScoreMove
+
+TrainerAI_TagStrategy_TryScoreMinus1:
+    ; If the maximum roll would kill, do not reduce the score
+    IfCurrentMoveKills USE_MAX_DAMAGE, TrainerAI_TagStrategy_ScoreMove
+
+    ; If the target is on their last Pokemon, do not reduce the score
+    IfHPPercentEqualTo AI_BATTLER_DEFENDER_PARTNER, 0, TrainerAI_TagStrategy_ScoreMove
+
+    ; 75% of the time, reduce score by 1
+    IfRandomLessThan 64, TrainerAI_TagStrategy_ScoreMove
     AddToMoveScore -1
-    GoTo _08704
+    GoTo TrainerAI_TagStrategy_ScoreMove
 
-_08690:
-    IfCurrentMoveKills USE_MAX_DAMAGE, _08704
-    IfHPPercentEqualTo AI_BATTLER_DEFENDER_PARTNER, 0, _08704
-    IfRandomLessThan 64, _08704
+TrainerAI_TagStrategy_TryScoreMinus2:
+    ; If the maximum roll would kill, do not reduce the score
+    IfCurrentMoveKills USE_MAX_DAMAGE, TrainerAI_TagStrategy_ScoreMove
+
+    ; If the target is on their last Pokemon, do not reduce the score
+    IfHPPercentEqualTo AI_BATTLER_DEFENDER_PARTNER, 0, TrainerAI_TagStrategy_ScoreMove
+
+    ; 75% of the time, reduce score by 2
+    IfRandomLessThan 64, TrainerAI_TagStrategy_ScoreMove
     AddToMoveScore -2
-    GoTo _08704
+    GoTo TrainerAI_TagStrategy_ScoreMove
 
-_08704:
+TrainerAI_TagStrategy_ScoreMove:
+    ; If this is not a highest-damage move for the attacking side, handle the move "normally"
     CheckIfHighestDamageWithPartner USE_MAX_DAMAGE
-    IfLoadedNotEqualTo AI_MOVE_IS_HIGHEST_DAMAGE, _08729
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_DEFENSE, _08766
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PRIORITY_1, _08722
-    IfRandomLessThan 128, _08729
+    IfLoadedNotEqualTo AI_MOVE_IS_HIGHEST_DAMAGE, TrainerAI_TagStrategy_CheckBeforeScoring
+
+    ; Handle Explosion and Self-Destruct like "normal" moves
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_DEFENSE, TrainerAI_TagStrategy_CheckSpecialScoring
+
+    ; Sometimes prioritize using priority +1 moves
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PRIORITY_1, TrainerAI_TagStrategy_TryScorePlus1
+
+    ; 50% of the time, increase score by 1
+    IfRandomLessThan 128, TrainerAI_TagStrategy_CheckBeforeScoring
     AddToMoveScore 1
-    GoTo _08766
 
-_08722:
-    IfRandomLessThan 50, _08729
+    ; Proceed to "normal" handling
+    GoTo TrainerAI_TagStrategy_CheckSpecialScoring
+
+TrainerAI_TagStrategy_TryScorePlus1:
+    ; ~80.5% of the time, increase score by 1
+    IfRandomLessThan 50, TrainerAI_TagStrategy_CheckBeforeScoring
     AddToMoveScore 1
-    GoTo _08766
+    GoTo TrainerAI_TagStrategy_CheckSpecialScoring
 
-_08729:
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ONE_HIT_KO, _08766
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_40_DAMAGE_FLAT, _08766
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LEVEL_DAMAGE_FLAT, _08766
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RANDOM_DAMAGE_1_TO_150_LEVEL, _08766
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_10_DAMAGE_FLAT, _08766
-    IfMoveEffectivenessEquals TYPE_MULTI_DOUBLE_DAMAGE, _08752
-    IfMoveEffectivenessEquals TYPE_MULTI_QUADRUPLE_DAMAGE, _08759
-    GoTo _08766
+TrainerAI_TagStrategy_CheckBeforeScoring:
+    ; Flat-damage move effects have a special handler; this includes OHKO moves
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ONE_HIT_KO, TrainerAI_TagStrategy_CheckSpecialScoring
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_40_DAMAGE_FLAT, TrainerAI_TagStrategy_CheckSpecialScoring
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LEVEL_DAMAGE_FLAT, TrainerAI_TagStrategy_CheckSpecialScoring
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RANDOM_DAMAGE_1_TO_150_LEVEL, TrainerAI_TagStrategy_CheckSpecialScoring
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_10_DAMAGE_FLAT, TrainerAI_TagStrategy_CheckSpecialScoring
 
-_08752:
-    IfRandomLessThan 100, _08766
+    ; If the move is not-very-effective, try to reduce its score
+    IfMoveEffectivenessEquals TYPE_MULTI_DOUBLE_DAMAGE, TrainerAI_TagStrategy_TryPrioritizingDoubleEffective
+    IfMoveEffectivenessEquals TYPE_MULTI_QUADRUPLE_DAMAGE, TrainerAI_TagStrategy_TryPrioritizingQuadEffective
+
+    GoTo TrainerAI_TagStrategy_CheckSpecialScoring
+
+TrainerAI_TagStrategy_TryPrioritizingDoubleEffective:
+    ; ~61% of the time, score +1
+    IfRandomLessThan 100, TrainerAI_TagStrategy_CheckSpecialScoring
     AddToMoveScore 1
-    GoTo _08766
+    GoTo TrainerAI_TagStrategy_CheckSpecialScoring
 
-_08759:
-    IfRandomLessThan 64, _08766
+TrainerAI_TagStrategy_TryPrioritizingQuadEffective:
+    ; 75% of the time, score +1
+    IfRandomLessThan 64, TrainerAI_TagStrategy_CheckSpecialScoring
     AddToMoveScore 1
-    GoTo _08766
+    GoTo TrainerAI_TagStrategy_CheckSpecialScoring
 
-_08766:
-    IfMoveEqualTo MOVE_SKILL_SWAP, _09455
+TrainerAI_TagStrategy_CheckSpecialScoring:
+    ; Handle each of these moves with their own routine
+    IfMoveEqualTo MOVE_SKILL_SWAP, TrainerAI_TagStrategy_SkillSwap
     LoadTypeFrom LOAD_MOVE_TYPE
-    IfMoveEqualTo MOVE_EARTHQUAKE, _09339
-    IfMoveEqualTo MOVE_MAGNITUDE, _09339
-    IfMoveEqualTo MOVE_FUTURE_SIGHT, _09381
-    IfMoveEqualTo MOVE_DOOM_DESIRE, _09381
-    IfMoveEqualTo MOVE_RAIN_DANCE, _08820
-    IfMoveEqualTo MOVE_SUNNY_DAY, _08861
-    IfMoveEqualTo MOVE_HAIL, _08958
-    IfMoveEqualTo MOVE_SANDSTORM, _08995
-    IfMoveEqualTo MOVE_GRAVITY, _09037
-    IfMoveEqualTo MOVE_TRICK_ROOM, _09135
-    IfMoveEqualTo MOVE_FOLLOW_ME, _09207
+    IfMoveEqualTo MOVE_EARTHQUAKE, TrainerAI_TagStrategy_Earthquake
+    IfMoveEqualTo MOVE_MAGNITUDE, TrainerAI_TagStrategy_Earthquake
+    IfMoveEqualTo MOVE_FUTURE_SIGHT, TrainerAI_TagStrategy_FutureSight
+    IfMoveEqualTo MOVE_DOOM_DESIRE, TrainerAI_TagStrategy_FutureSight
+    IfMoveEqualTo MOVE_RAIN_DANCE, TrainerAI_TagStrategy_RainDance
+    IfMoveEqualTo MOVE_SUNNY_DAY, TrainerAI_TagStrategy_SunnyDay
+    IfMoveEqualTo MOVE_HAIL, TrainerAI_TagStrategy_Hail
+    IfMoveEqualTo MOVE_SANDSTORM, TrainerAI_TagStrategy_Sandstorm
+    IfMoveEqualTo MOVE_GRAVITY, TrainerAI_TagStrategy_Gravity
+    IfMoveEqualTo MOVE_TRICK_ROOM, TrainerAI_TagStrategy_TrickRoom
+    IfMoveEqualTo MOVE_FOLLOW_ME, TrainerAI_TagStrategy_FollowMe
     LoadTypeFrom LOAD_MOVE_TYPE
-    IfLoadedEqualTo TYPE_ELECTRIC, _09493
-    IfLoadedEqualTo TYPE_FIRE, _09607
-    IfLoadedEqualTo TYPE_WATER, _09558
-    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_HELPING_HAND, _09302
+    IfLoadedEqualTo TYPE_ELECTRIC, TrainerAI_TagStrategy_CheckElectricMove
+    IfLoadedEqualTo TYPE_FIRE, TrainerAI_TagStrategy_CheckFireMove
+    IfLoadedEqualTo TYPE_WATER, TrainerAI_TagStrategy_CheckWaterMove
+    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_HELPING_HAND, TrainerAI_TagStrategy_PartnerKnowsHelpingHand
     PopOrEnd 
 
-_08820:
+TrainerAI_TagStrategy_RainDance:
+    ; If the move is Rain Dance, apply modifiers for each of the attacker and partner which meet the
+    ; following conditions:
+    ;  - The battler has Hydration and is currently statused -> score +2
+    ;  - The battler has Dry Skin -> score +2
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_HYDRATION, _08830
-    IfLoadedEqualTo ABILITY_DRY_SKIN, _08834
-    GoTo _08838
+    IfLoadedEqualTo ABILITY_HYDRATION, TrainerAI_TagStrategy_RainDance_SelfHasHydration
+    IfLoadedEqualTo ABILITY_DRY_SKIN, TrainerAI_TagStrategy_RainDance_SelfScorePlus2
+    GoTo TrainerAI_TagStrategy_RainDance_CheckPartner
 
-_08830:
-    IfNotStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, _08838
+TrainerAI_TagStrategy_RainDance_SelfHasHydration:
+    IfNotStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, TrainerAI_TagStrategy_RainDance_CheckPartner
 
-_08834:
+TrainerAI_TagStrategy_RainDance_SelfScorePlus2:
     AddToMoveScore 2
-    GoTo _08838
+    GoTo TrainerAI_TagStrategy_RainDance_CheckPartner
 
-_08838:
+TrainerAI_TagStrategy_RainDance_CheckPartner:
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_HYDRATION
-    IfLoadedEqualTo AI_HAVE, _08852
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_RainDance_PartnerHasHydration
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_DRY_SKIN
-    IfLoadedEqualTo AI_HAVE, _08856
-    GoTo _08860
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_RainDance_PartnerScorePlus2
+    GoTo TrainerAI_TagStrategy_RainDance_End
 
-_08852:
-    IfNotStatus AI_BATTLER_ATTACKER_PARTNER, MON_CONDITION_ANY, _08860
+TrainerAI_TagStrategy_RainDance_PartnerHasHydration:
+    IfNotStatus AI_BATTLER_ATTACKER_PARTNER, MON_CONDITION_ANY, TrainerAI_TagStrategy_RainDance_End
 
-_08856:
+TrainerAI_TagStrategy_RainDance_PartnerScorePlus2:
     AddToMoveScore 2
-    GoTo _08860
+    GoTo TrainerAI_TagStrategy_RainDance_End
 
-_08860:
+TrainerAI_TagStrategy_RainDance_End:
     PopOrEnd 
 
-_08861:
+TrainerAI_TagStrategy_SunnyDay:
+    ; If the move is Sunny Day, apply modifiers for each of the attacker and partner which meet the
+    ; following conditions:
+    ;  - The battler has Leaf Guard, is not currently statused, and is at 30% HP or higher -> score +2
+    ;  - The battler has Flower Gift -> score +2
+    ;  - The battler has Dry Skin -> score -2
+    ;  - The battler has Solar Power and is at 50% HP or higher -> score +1
+    ;  - The battler has Solar Power, is at less than 50% HP -> 50% chance of score -2
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_LEAF_GUARD, _08877
-    IfLoadedEqualTo ABILITY_FLOWER_GIFT, _08885
-    IfLoadedEqualTo ABILITY_DRY_SKIN, _08889
-    IfLoadedEqualTo ABILITY_SOLAR_POWER, _08893
-    GoTo _08904
+    IfLoadedEqualTo ABILITY_LEAF_GUARD, TrainerAI_TagStrategy_SunnyDay_SelfHasLeafGuard
+    IfLoadedEqualTo ABILITY_FLOWER_GIFT, TrainerAI_TagStrategy_SunnyDay_SelfScorePlus2
+    IfLoadedEqualTo ABILITY_DRY_SKIN, TrainerAI_TagStrategy_SunnyDay_SelfScoreMinus2
+    IfLoadedEqualTo ABILITY_SOLAR_POWER, TrainerAI_TagStrategy_SunnyDay_SelfHasSolarPower
+    GoTo TrainerAI_TagStrategy_SunnyDay_CheckPartner
 
-_08877:
-    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, _08904
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 30, _08904
+TrainerAI_TagStrategy_SunnyDay_SelfHasLeafGuard:
+    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, TrainerAI_TagStrategy_SunnyDay_CheckPartner
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 30, TrainerAI_TagStrategy_SunnyDay_CheckPartner
 
-_08885:
+TrainerAI_TagStrategy_SunnyDay_SelfScorePlus2:
     AddToMoveScore 2
-    GoTo _08904
+    GoTo TrainerAI_TagStrategy_SunnyDay_CheckPartner
 
-_08889:
+TrainerAI_TagStrategy_SunnyDay_SelfScoreMinus2:
     AddToMoveScore -2
-    GoTo _08904
+    GoTo TrainerAI_TagStrategy_SunnyDay_CheckPartner
 
-_08893:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 50, _08899
+TrainerAI_TagStrategy_SunnyDay_SelfHasSolarPower:
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 50, TrainerAI_TagStrategy_SunnyDay_SelfTryScoreMinus2
     AddToMoveScore 1
 
-_08899:
-    IfRandomLessThan 128, _08904
+TrainerAI_TagStrategy_SunnyDay_SelfTryScoreMinus2:
+    IfRandomLessThan 128, TrainerAI_TagStrategy_SunnyDay_CheckPartner
     AddToMoveScore -2
 
-_08904:
+TrainerAI_TagStrategy_SunnyDay_CheckPartner:
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_LEAF_GUARD
-    IfLoadedEqualTo AI_HAVE, _08930
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_SunnyDay_PartnerHasLeafGuard
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_FLOWER_GIFT
-    IfLoadedEqualTo AI_HAVE, _08938
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_SunnyDay_PartnerScorePlus2
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_DRY_SKIN
-    IfLoadedEqualTo AI_HAVE, _08942
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_SunnyDay_PartnerScoreMinus2
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_SOLAR_POWER
-    IfLoadedEqualTo AI_HAVE, _08946
-    GoTo _08957
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_SunnyDay_PartnerHasSolarPower
+    GoTo TrainerAI_TagStrategy_SunnyDay_End
 
-_08930:
-    IfStatus AI_BATTLER_ATTACKER_PARTNER, MON_CONDITION_ANY, _08957
-    IfHPPercentLessThan AI_BATTLER_ATTACKER_PARTNER, 30, _08957
+TrainerAI_TagStrategy_SunnyDay_PartnerHasLeafGuard:
+    IfStatus AI_BATTLER_ATTACKER_PARTNER, MON_CONDITION_ANY, TrainerAI_TagStrategy_SunnyDay_End
+    IfHPPercentLessThan AI_BATTLER_ATTACKER_PARTNER, 30, TrainerAI_TagStrategy_SunnyDay_End
 
-_08938:
+TrainerAI_TagStrategy_SunnyDay_PartnerScorePlus2:
     AddToMoveScore 2
-    GoTo _08957
+    GoTo TrainerAI_TagStrategy_SunnyDay_End
 
-_08942:
+TrainerAI_TagStrategy_SunnyDay_PartnerScoreMinus2:
     AddToMoveScore -2
-    GoTo _08957
+    GoTo TrainerAI_TagStrategy_SunnyDay_End
 
-_08946:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER_PARTNER, 50, _08952
+TrainerAI_TagStrategy_SunnyDay_PartnerHasSolarPower:
+    IfHPPercentLessThan AI_BATTLER_ATTACKER_PARTNER, 50, TrainerAI_TagStrategy_SunnyDay_PartnerTryScoreMinus2
     AddToMoveScore 1
 
-_08952:
-    IfRandomLessThan 128, _08957
+TrainerAI_TagStrategy_SunnyDay_PartnerTryScoreMinus2:
+    IfRandomLessThan 128, TrainerAI_TagStrategy_SunnyDay_End
     AddToMoveScore -2
 
-_08957:
+TrainerAI_TagStrategy_SunnyDay_End:
     PopOrEnd 
 
-_08958:
+TrainerAI_TagStrategy_Hail:
+    ; If the move is Hail, apply modifiers for each of the attacker and partner which meet the
+    ; following conditions:
+    ;  - The battler has Ice Body -> score +2
+    ;  - The battler has Snow Cloak -> score +2
+    ;  - The battler's partner knows Blizzard -> score +2
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_ICE_BODY, _08972
-    IfLoadedEqualTo ABILITY_SNOW_CLOAK, _08972
-    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_BLIZZARD, _08972
-    GoTo _08974
+    IfLoadedEqualTo ABILITY_ICE_BODY, TrainerAI_TagStrategy_Hail_SelfScorePlus2
+    IfLoadedEqualTo ABILITY_SNOW_CLOAK, TrainerAI_TagStrategy_Hail_SelfScorePlus2
+    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_BLIZZARD, TrainerAI_TagStrategy_Hail_SelfScorePlus2
+    GoTo TrainerAI_TagStrategy_Hail_CheckPartner
 
-_08972:
+TrainerAI_TagStrategy_Hail_SelfScorePlus2:
     AddToMoveScore 2
 
-_08974:
+TrainerAI_TagStrategy_Hail_CheckPartner:
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_ICE_BODY
-    IfLoadedEqualTo AI_HAVE, _08992
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_Hail_PartnerScorePlus2
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_SNOW_CLOAK
-    IfLoadedEqualTo AI_HAVE, _08992
-    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_BLIZZARD, _08992
-    GoTo _08994
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_Hail_PartnerScorePlus2
+    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_BLIZZARD, TrainerAI_TagStrategy_Hail_PartnerScorePlus2
+    GoTo TrainerAI_TagStrategy_Hail_End
 
-_08992:
+TrainerAI_TagStrategy_Hail_PartnerScorePlus2:
     AddToMoveScore 2
 
-_08994:
+TrainerAI_TagStrategy_Hail_End:
     PopOrEnd 
 
-_08995:
+TrainerAI_TagStrategy_Sandstorm:
+    ; If the move is Sandstorm, apply modifiers for each of the attacker and partner which meet the
+    ; following conditions:
+    ;  - The battler has Sand Veil -> score +2
+    ;  - The battler has a Rock typing -> score +2
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_SAND_VEIL, _09012
+    IfLoadedEqualTo ABILITY_SAND_VEIL, TrainerAI_TagStrategy_Sandstorm_SelfScorePlus2
     LoadTypeFrom LOAD_ATTACKER_TYPE_1
-    IfLoadedEqualTo TYPE_ROCK, _09012
+    IfLoadedEqualTo TYPE_ROCK, TrainerAI_TagStrategy_Sandstorm_SelfScorePlus2
     LoadTypeFrom LOAD_ATTACKER_TYPE_2
-    IfLoadedEqualTo TYPE_ROCK, _09012
-    GoTo _09016
+    IfLoadedEqualTo TYPE_ROCK, TrainerAI_TagStrategy_Sandstorm_SelfScorePlus2
+    GoTo TrainerAI_TagStrategy_Sandstorm_CheckPartner
 
-_09012:
+TrainerAI_TagStrategy_Sandstorm_SelfScorePlus2:
     AddToMoveScore 2
-    GoTo _09016
+    GoTo TrainerAI_TagStrategy_Sandstorm_CheckPartner
 
-_09016:
+TrainerAI_TagStrategy_Sandstorm_CheckPartner:
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_SAND_VEIL
-    IfLoadedEqualTo AI_HAVE, _09034
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_Sandstorm_PartnerScorePlus2
     LoadTypeFrom LOAD_ATTACKER_PARTNER_TYPE_1
-    IfLoadedEqualTo TYPE_ROCK, _09034
+    IfLoadedEqualTo TYPE_ROCK, TrainerAI_TagStrategy_Sandstorm_PartnerScorePlus2
     LoadTypeFrom LOAD_ATTACKER_PARTNER_TYPE_2
-    IfLoadedEqualTo TYPE_ROCK, _09034
-    GoTo _09036
+    IfLoadedEqualTo TYPE_ROCK, TrainerAI_TagStrategy_Sandstorm_PartnerScorePlus2
+    GoTo TrainerAI_TagStrategy_Sandstorm_End
 
-_09034:
+TrainerAI_TagStrategy_Sandstorm_PartnerScorePlus2:
     AddToMoveScore 2
 
-_09036:
+TrainerAI_TagStrategy_Sandstorm_End:
     PopOrEnd 
 
-_09037:
-    IfFieldConditionsMask FIELD_CONDITION_GRAVITY, _10183
+TrainerAI_TagStrategy_Gravity:
+    ; If Gravity is currently active, score -30
+    IfFieldConditionsMask FIELD_CONDITION_GRAVITY, TrainerAI_TagStrategy_PartnerScoreMinus30
+
+    ; Apply the following score modifiers:
+    ;  - For each allied battler which has Levitate, a Flying typing, or is under the effect of
+    ;    Magnet Rise -> score -5
+    ;  - For each enemy battler which has Levitate, a Flying typing, or is under the effect of
+    ;    Magnet Rise -> 75% chance of score +3
     CheckBattlerAbility AI_BATTLER_ATTACKER, ABILITY_LEVITATE
-    IfLoadedEqualTo AI_HAVE, _09058
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_Gravity_SelfScoreMinus5
     FlagBattlerIsType AI_BATTLER_ATTACKER, TYPE_FLYING
-    IfLoadedEqualTo AI_HAVE, _09058
-    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_MAGNET_RISE, _09058
-    GoTo _09062
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_Gravity_SelfScoreMinus5
+    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_MAGNET_RISE, TrainerAI_TagStrategy_Gravity_SelfScoreMinus5
+    GoTo TrainerAI_TagStrategy_Gravity_CheckPartner
 
-_09058:
+TrainerAI_TagStrategy_Gravity_SelfScoreMinus5:
     AddToMoveScore -5
-    GoTo _09062
+    GoTo TrainerAI_TagStrategy_Gravity_CheckPartner
 
-_09062:
+TrainerAI_TagStrategy_Gravity_CheckPartner:
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_LEVITATE
-    IfLoadedEqualTo AI_HAVE, _09080
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_Gravity_PartnerScoreMinus5
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_FLYING
-    IfLoadedEqualTo AI_HAVE, _09080
-    IfMoveEffect AI_BATTLER_ATTACKER_PARTNER, MOVE_EFFECT_MAGNET_RISE, _09080
-    GoTo _09084
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_Gravity_PartnerScoreMinus5
+    IfMoveEffect AI_BATTLER_ATTACKER_PARTNER, MOVE_EFFECT_MAGNET_RISE, TrainerAI_TagStrategy_Gravity_PartnerScoreMinus5
+    GoTo TrainerAI_TagStrategy_Gravity_CheckTarget
 
-_09080:
+TrainerAI_TagStrategy_Gravity_PartnerScoreMinus5:
     AddToMoveScore -5
-    GoTo _09084
+    GoTo TrainerAI_TagStrategy_Gravity_CheckTarget
 
-_09084:
+TrainerAI_TagStrategy_Gravity_CheckTarget:
     CheckBattlerAbility AI_BATTLER_DEFENDER, ABILITY_LEVITATE
-    IfLoadedEqualTo AI_HAVE, _09102
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_Gravity_TargetTryScorePlus3
     FlagBattlerIsType AI_BATTLER_DEFENDER, TYPE_FLYING
-    IfLoadedEqualTo AI_HAVE, _09102
-    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_MAGNET_RISE, _09102
-    GoTo _09109
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_Gravity_TargetTryScorePlus3
+    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_MAGNET_RISE, TrainerAI_TagStrategy_Gravity_TargetTryScorePlus3
+    GoTo TrainerAI_TagStrategy_Gravity_CheckTargetPartner
 
-_09102:
-    IfRandomLessThan 64, _09109
+TrainerAI_TagStrategy_Gravity_TargetTryScorePlus3:
+    IfRandomLessThan 64, TrainerAI_TagStrategy_Gravity_CheckTargetPartner
     AddToMoveScore 3
-    GoTo _09109
+    GoTo TrainerAI_TagStrategy_Gravity_CheckTargetPartner
 
-_09109:
+TrainerAI_TagStrategy_Gravity_CheckTargetPartner:
     CheckBattlerAbility AI_BATTLER_DEFENDER_PARTNER, ABILITY_LEVITATE
-    IfLoadedEqualTo AI_HAVE, _09127
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_Gravity_TargetPartnerTryScorePlus3
     FlagBattlerIsType AI_BATTLER_DEFENDER_PARTNER, TYPE_FLYING
-    IfLoadedEqualTo AI_HAVE, _09127
-    IfMoveEffect AI_BATTLER_DEFENDER_PARTNER, MOVE_EFFECT_MAGNET_RISE, _09127
-    GoTo _09134
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_Gravity_TargetPartnerTryScorePlus3
+    IfMoveEffect AI_BATTLER_DEFENDER_PARTNER, MOVE_EFFECT_MAGNET_RISE, TrainerAI_TagStrategy_Gravity_TargetPartnerTryScorePlus3
+    GoTo TrainerAI_TagStrategy_Gravity_End
 
-_09127:
-    IfRandomLessThan 64, _09134
+TrainerAI_TagStrategy_Gravity_TargetPartnerTryScorePlus3:
+    IfRandomLessThan 64, TrainerAI_TagStrategy_Gravity_End
     AddToMoveScore 3
-    GoTo _09134
+    GoTo TrainerAI_TagStrategy_Gravity_End
 
-_09134:
+TrainerAI_TagStrategy_Gravity_End:
     PopOrEnd 
 
-_09135:
+TrainerAI_TagStrategy_TrickRoom:
+    ; If the battle has been reduced to either side having only one active Pokemon, score -30
     IfHPPercentEqualTo AI_BATTLER_ATTACKER_PARTNER, 0, TrainerAI_ScoreMinus30
     IfHPPercentEqualTo AI_BATTLER_DEFENDER_PARTNER, 0, TrainerAI_ScoreMinus30
     IfHPPercentEqualTo AI_BATTLER_DEFENDER, 0, TrainerAI_ScoreMinus30
-    LoadBattlerSpeedRank AI_BATTLER_ATTACKER
-    IfLoadedEqualTo 0, _09163
-    IfLoadedEqualTo 1, _09173
-    IfLoadedEqualTo 2, _09180
-    IfLoadedEqualTo 3, _09192
-    GoTo _09206
 
-_09163:
+    ; Branch according to the attacker's Speed-ordering in battle
+    LoadBattlerSpeedRank AI_BATTLER_ATTACKER
+    IfLoadedEqualTo 0, TrainerAI_TagStrategy_TrickRoom_SelfMovesFirst
+    IfLoadedEqualTo 1, TrainerAI_TagStrategy_TrickRoom_SelfMovesSecond
+    IfLoadedEqualTo 2, TrainerAI_TagStrategy_TrickRoom_SelfMovesThird
+    IfLoadedEqualTo 3, TrainerAI_TagStrategy_TrickRoom_SelfMovesLast
+    GoTo TrainerAI_TagStrategy_TrickRoom_End
+
+TrainerAI_TagStrategy_TrickRoom_SelfMovesFirst:
+    ; If our partner moves second, score -30
     LoadBattlerSpeedRank AI_BATTLER_ATTACKER_PARTNER
     IfLoadedEqualTo 1, TrainerAI_ScoreMinus30
     IfLoadedEqualTo 0, TrainerAI_ScoreMinus30
-    GoTo _09204
+    GoTo TrainerAI_TagStrategy_TrickRoom_ScoreMinus5
 
-_09173:
+TrainerAI_TagStrategy_TrickRoom_SelfMovesSecond:
+    ; If our partner moves before us, score -30
     LoadBattlerSpeedRank AI_BATTLER_ATTACKER_PARTNER
     IfLoadedEqualTo 0, TrainerAI_ScoreMinus30
-    GoTo _09204
+    GoTo TrainerAI_TagStrategy_TrickRoom_ScoreMinus5
 
-_09180:
+TrainerAI_TagStrategy_TrickRoom_SelfMovesThird:
+    ; If our partner does not move last in turn-order, score -5
     LoadBattlerSpeedRank AI_BATTLER_ATTACKER_PARTNER
-    IfLoadedNotEqualTo 3, _09204
-    IfRandomLessThan 64, _09204
-    AddToMoveScore 5
-    GoTo _09206
+    IfLoadedNotEqualTo 3, TrainerAI_TagStrategy_TrickRoom_ScoreMinus5
 
-_09192:
+    ; 75% chance of score +5, 25% chance of score -5
+    IfRandomLessThan 64, TrainerAI_TagStrategy_TrickRoom_ScoreMinus5
+    AddToMoveScore 5
+    GoTo TrainerAI_TagStrategy_TrickRoom_End
+
+TrainerAI_TagStrategy_TrickRoom_SelfMovesLast:
+    ; If our partner does not move third in turn-order, score -5
     LoadBattlerSpeedRank AI_BATTLER_ATTACKER_PARTNER
-    IfLoadedNotEqualTo 2, _09204
-    IfRandomLessThan 64, _09204
-    AddToMoveScore 5
-    GoTo _09206
+    IfLoadedNotEqualTo 2, TrainerAI_TagStrategy_TrickRoom_ScoreMinus5
 
-_09204:
+    ; 75% chance of score +5, 25% chance of score -5
+    IfRandomLessThan 64, TrainerAI_TagStrategy_TrickRoom_ScoreMinus5
+    AddToMoveScore 5
+    GoTo TrainerAI_TagStrategy_TrickRoom_End
+
+TrainerAI_TagStrategy_TrickRoom_ScoreMinus5:
     AddToMoveScore -5
 
-_09206:
+TrainerAI_TagStrategy_TrickRoom_End:
     PopOrEnd 
 
-_09207:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 90, _09224
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, _09238
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 30, _09252
-    IfRandomLessThan 64, _09301
+TrainerAI_TagStrategy_FollowMe:
+    ; If the move is Follow Me, apply a score modifier according to the following conditional tree:
+    ;  - If the attacker's HP > 90%, and:
+    ;    - If the partner's HP > 90%, 75% chance of score -1
+    ;    - If the partner's HP is between 50% and 90%, 75% chance of score +1
+    ;    - If the partner's HP is between 30% and 50%, 75% chance of score +2
+    ;    - If the partner's HP is < 30%, 75% chance of score +3
+    ;  - If the attacker's HP is between 50% and 90%, and:
+    ;    - If the partner's HP > 90%, 75% chance of score -2
+    ;    - If the partner's HP is between 50% and 90%, 75% chance of score -1
+    ;    - If the partner's HP is between 30% and 50%, 75% chance of score +1
+    ;    - If the partner's HP is < 30%, 75% chance of score +2
+    ;  - If the attacker's HP is between 30% and 50%, and:
+    ;    - If the partner's HP > 90%, 75% chance of score -2
+    ;    - If the partner's HP is between 50% and 90%, 75% chance of score -2
+    ;    - If the partner's HP is between 30% and 50%, 75% chance of score +1
+    ;    - If the partner's HP is < 30%, 75% chance of score +2
+    ;  - If the attacker's HP < 30%, 75% chance of score -5
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 90, TrainerAI_TagStrategy_FollowMe_SelfHighHP
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, TrainerAI_TagStrategy_FollowMe_SelfMediumHP
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 30, TrainerAI_TagStrategy_FollowMe_SelfLowHP
+    IfRandomLessThan 64, TrainerAI_TagStrategy_FollowMe_End
     GoTo TrainerAI_ScoreMinus5
 
-_09224:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 90, _09266
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 50, _09280
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 30, _09287
-    GoTo _09294
+TrainerAI_TagStrategy_FollowMe_SelfHighHP:
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 90, TrainerAI_TagStrategy_FollowMe_TryScoreMinus1
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 50, TrainerAI_TagStrategy_FollowMe_TryScorePlus1
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 30, TrainerAI_TagStrategy_FollowMe_TryScorePlus2
+    GoTo TrainerAI_TagStrategy_FollowMe_TryScorePlus3
 
-_09238:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 90, _09273
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 50, _09266
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 30, _09280
-    GoTo _09287
+TrainerAI_TagStrategy_FollowMe_SelfMediumHP:
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 90, TrainerAI_TagStrategy_FollowMe_TryScoreMinus2
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 50, TrainerAI_TagStrategy_FollowMe_TryScoreMinus1
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 30, TrainerAI_TagStrategy_FollowMe_TryScorePlus1
+    GoTo TrainerAI_TagStrategy_FollowMe_TryScorePlus2
 
-_09252:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 90, _09273
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 50, _09273
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 30, _09280
-    GoTo _09287
+TrainerAI_TagStrategy_FollowMe_SelfLowHP:
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 90, TrainerAI_TagStrategy_FollowMe_TryScoreMinus2
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 50, TrainerAI_TagStrategy_FollowMe_TryScoreMinus2
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 30, TrainerAI_TagStrategy_FollowMe_TryScorePlus1
+    GoTo TrainerAI_TagStrategy_FollowMe_TryScorePlus2
 
-_09266:
-    IfRandomLessThan 64, _09301
+TrainerAI_TagStrategy_FollowMe_TryScoreMinus1:
+    IfRandomLessThan 64, TrainerAI_TagStrategy_FollowMe_End
     AddToMoveScore -1
-    GoTo _09301
+    GoTo TrainerAI_TagStrategy_FollowMe_End
 
-_09273:
-    IfRandomLessThan 64, _09301
+TrainerAI_TagStrategy_FollowMe_TryScoreMinus2:
+    IfRandomLessThan 64, TrainerAI_TagStrategy_FollowMe_End
     AddToMoveScore -2
-    GoTo _09301
+    GoTo TrainerAI_TagStrategy_FollowMe_End
 
-_09280:
-    IfRandomLessThan 64, _09301
+TrainerAI_TagStrategy_FollowMe_TryScorePlus1:
+    IfRandomLessThan 64, TrainerAI_TagStrategy_FollowMe_End
     AddToMoveScore 1
-    GoTo _09301
+    GoTo TrainerAI_TagStrategy_FollowMe_End
 
-_09287:
-    IfRandomLessThan 64, _09301
+TrainerAI_TagStrategy_FollowMe_TryScorePlus2:
+    IfRandomLessThan 64, TrainerAI_TagStrategy_FollowMe_End
     AddToMoveScore 2
-    GoTo _09301
+    GoTo TrainerAI_TagStrategy_FollowMe_End
 
-_09294:
-    IfRandomLessThan 64, _09301
+TrainerAI_TagStrategy_FollowMe_TryScorePlus3:
+    IfRandomLessThan 64, TrainerAI_TagStrategy_FollowMe_End
     AddToMoveScore 3
-    GoTo _09301
+    GoTo TrainerAI_TagStrategy_FollowMe_End
 
-_09301:
+TrainerAI_TagStrategy_FollowMe_End:
     PopOrEnd 
 
-_09302:
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ONE_HIT_KO, _09322
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_40_DAMAGE_FLAT, _09322
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LEVEL_DAMAGE_FLAT, _09322
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RANDOM_DAMAGE_1_TO_150_LEVEL, _09322
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_10_DAMAGE_FLAT, _09322
+TrainerAI_TagStrategy_PartnerKnowsHelpingHand:
+    ; If our partner knows Helping Hand, then damaging moves (aside from flat-damage moves)
+    ; get score +1
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ONE_HIT_KO, TrainerAI_TagStrategy_PartnerHelpingHand_End
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_40_DAMAGE_FLAT, TrainerAI_TagStrategy_PartnerHelpingHand_End
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LEVEL_DAMAGE_FLAT, TrainerAI_TagStrategy_PartnerHelpingHand_End
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RANDOM_DAMAGE_1_TO_150_LEVEL, TrainerAI_TagStrategy_PartnerHelpingHand_End
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_10_DAMAGE_FLAT, TrainerAI_TagStrategy_PartnerHelpingHand_End
     FlagMoveDamageScore FALSE
     IfLoadedNotEqualTo AI_NO_COMPARISON_MADE, TrainerAI_ScorePlus1
 
-_09322:
-    PopOrEnd 
-    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, _09328
+TrainerAI_TagStrategy_PartnerHelpingHand_End:
     PopOrEnd 
 
-_09328:
+TrainerAI_TagStrategy_Unused_1:
+    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, TrainerAI_TagStrategy_Unused_2
+    PopOrEnd 
+
+TrainerAI_TagStrategy_Unused_2:
     FlagMoveDamageScore FALSE
     IfLoadedEqualTo AI_NO_COMPARISON_MADE, TrainerAI_ScoreMinus5
     AddToMoveScore 1
     IfLoadedEqualTo AI_MOVE_IS_HIGHEST_DAMAGE, TrainerAI_ScorePlus2
     PopOrEnd 
 
-_09339:
+TrainerAI_TagStrategy_Earthquake:
+    ; If the move is Earthquake and our partner:
+    ;  - Is immune to Earthquake (has Levitate, a Flying typing, or Magnet Rise), score +2
+    ;  - Is weak to Earthquake (has Fire, Electric, Poison, or Rock typing), score -10
+    ;  - Otherwise, score -3
+    ;
+    ; Note that this does not check for if the partner is alive; this means that a solo
+    ; battler will score Earthquake and Magnitude an additional -3
     IfMoveEffect AI_BATTLER_ATTACKER_PARTNER, MOVE_EFFECT_MAGNET_RISE, TrainerAI_ScorePlus2
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_LEVITATE
     IfLoadedEqualTo AI_HAVE, TrainerAI_ScorePlus2
@@ -5955,47 +6056,56 @@ _09339:
     IfLoadedEqualTo AI_HAVE, TrainerAI_ScoreMinus10
     GoTo TrainerAI_ScoreMinus3
 
-_09381:
-    IfHPPercentEqualTo AI_BATTLER_ATTACKER_PARTNER, 0, _09454
-    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_FUTURE_SIGHT, _09395
-    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_DOOM_DESIRE, _09395
-    GoTo _09454
+TrainerAI_TagStrategy_FutureSight:
+    ; If the move is Future Sight or Doom Desire:
+    ;  - If we have no partner, apply no additional modifiers
+    ;  - If our partner knows Future Sight or Doom Desire and:
+    ;    - They would move before us, score -3
+    ;    - They speed-tie us, 50% chance of score -3
+    IfHPPercentEqualTo AI_BATTLER_ATTACKER_PARTNER, 0, TrainerAI_TagStrategy_FutureSight_End
+    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_FUTURE_SIGHT, TrainerAI_TagStrategy_FutureSight_CheckSelfSpeed
+    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_DOOM_DESIRE, TrainerAI_TagStrategy_FutureSight_CheckSelfSpeed
+    GoTo TrainerAI_TagStrategy_FutureSight_End
 
-_09395:
+TrainerAI_TagStrategy_FutureSight_CheckSelfSpeed:
     LoadBattlerSpeedRank AI_BATTLER_ATTACKER
     IfLoadedEqualTo 3, TrainerAI_ScoreMinus3
-    IfLoadedEqualTo 2, _09411
-    IfLoadedEqualTo 1, _09429
-    IfLoadedEqualTo 0, _09444
-    GoTo _09454
+    IfLoadedEqualTo 2, TrainerAI_TagStrategy_FutureSight_SelfMovesThird
+    IfLoadedEqualTo 1, TrainerAI_TagStrategy_FutureSight_SelfMovesSecond
+    IfLoadedEqualTo 0, TrainerAI_TagStrategy_FutureSight_SelfMovesFirst
+    GoTo TrainerAI_TagStrategy_FutureSight_End
 
-_09411:
+TrainerAI_TagStrategy_FutureSight_SelfMovesThird:
     LoadBattlerSpeedRank AI_BATTLER_ATTACKER_PARTNER
     IfLoadedEqualTo 0, TrainerAI_ScoreMinus3
     IfLoadedEqualTo 1, TrainerAI_ScoreMinus3
-    IfRandomLessThan 128, _09454
+    IfRandomLessThan 128, TrainerAI_TagStrategy_FutureSight_End
     LoadBattlerSpeedRank AI_BATTLER_ATTACKER_PARTNER
     IfLoadedEqualTo 2, TrainerAI_ScoreMinus3
-    GoTo _09454
+    GoTo TrainerAI_TagStrategy_FutureSight_End
 
-_09429:
+TrainerAI_TagStrategy_FutureSight_SelfMovesSecond:
     LoadBattlerSpeedRank AI_BATTLER_ATTACKER_PARTNER
     IfLoadedEqualTo 0, TrainerAI_ScoreMinus3
-    IfRandomLessThan 128, _09454
+    IfRandomLessThan 128, TrainerAI_TagStrategy_FutureSight_End
     LoadBattlerSpeedRank AI_BATTLER_ATTACKER_PARTNER
     IfLoadedEqualTo 1, TrainerAI_ScoreMinus3
-    GoTo _09454
+    GoTo TrainerAI_TagStrategy_FutureSight_End
 
-_09444:
-    IfRandomLessThan 128, _09454
+TrainerAI_TagStrategy_FutureSight_SelfMovesFirst:
+    IfRandomLessThan 128, TrainerAI_TagStrategy_FutureSight_End
     LoadBattlerSpeedRank AI_BATTLER_ATTACKER_PARTNER
     IfLoadedEqualTo 0, TrainerAI_ScoreMinus3
-    GoTo _09454
+    GoTo TrainerAI_TagStrategy_FutureSight_End
 
-_09454:
+TrainerAI_TagStrategy_FutureSight_End:
     PopOrEnd 
 
-_09455:
+TrainerAI_TagStrategy_SkillSwap:
+    ; If the move is Skill Swap and:
+    ;  - The attacker has Truant, Slow Start, Stall, or Klutz, score +5
+    ;  - The target has Shadow Tag, Pure Power, Huge Power, Mold Breaker, Solid Rock, Filter, or
+    ;    Flower Gift, score +2
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_TRUANT, TrainerAI_ScorePlus5
     IfLoadedEqualTo ABILITY_SLOW_START, TrainerAI_ScorePlus5
@@ -6011,25 +6121,37 @@ _09455:
     IfLoadedEqualTo ABILITY_FLOWER_GIFT, TrainerAI_ScorePlus2
     PopOrEnd 
 
-_09493:
-    IfMoveEqualTo MOVE_DISCHARGE, _09525
+TrainerAI_TagStrategy_CheckElectricMove:
+    ; If the move is Discharge, handle it similarly to Earthquake. Otherwise, apply all of the
+    ; following which are met:
+    ;  - The target's partner would redirect the move with Lightning Rod, score -1; additional
+    ;    score -8 if the target's partner is also a Ground type
+    ;  - The attacker's partner has Lightning Rod, score -10
+    IfMoveEqualTo MOVE_DISCHARGE, TrainerAI_TagStrategy_SpreadElectricMove
     CheckBattlerAbility AI_BATTLER_DEFENDER_PARTNER, ABILITY_LIGHTNING_ROD
-    IfLoadedEqualTo AI_HAVE, _09504
-    GoTo _09514
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_TargetProtectedByLightningRod
+    GoTo TrainerAI_TagStrategy_PartnerHasLightningRod
 
-_09504:
+TrainerAI_TagStrategy_TargetProtectedByLightningRod:
     AddToMoveScore -1
     FlagBattlerIsType AI_BATTLER_DEFENDER_PARTNER, TYPE_GROUND
-    IfLoadedEqualTo AI_NOT_HAVE, _09514
+    IfLoadedEqualTo AI_NOT_HAVE, TrainerAI_TagStrategy_PartnerHasLightningRod
     AddToMoveScore -8
 
-_09514:
+TrainerAI_TagStrategy_PartnerHasLightningRod:
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_LIGHTNING_ROD
     IfLoadedEqualTo AI_HAVE, TrainerAI_ScoreMinus10
-    IfMoveEqualTo MOVE_DISCHARGE, _09525
-    GoTo _09557
+    IfMoveEqualTo MOVE_DISCHARGE, TrainerAI_TagStrategy_SpreadElectricMove
+    GoTo TrainerAI_TagStrategy_CheckElectric_End
 
-_09525:
+TrainerAI_TagStrategy_SpreadElectricMove:
+    ; If our partner has Volt Absorb or Motor Drive, score +3
+    ;
+    ; If our partner otherwise has a Water or Flying typing, score -10
+    ;
+    ; If our partner otherwise has a Ground typing, score +3
+    ;
+    ; Else, score -3
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_MOTOR_DRIVE
     IfLoadedEqualTo AI_HAVE, TrainerAI_ScorePlus3
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_VOLT_ABSORB
@@ -6038,51 +6160,74 @@ _09525:
     IfLoadedEqualTo AI_HAVE, TrainerAI_ScoreMinus10
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_FLYING
     IfLoadedEqualTo AI_HAVE, TrainerAI_ScoreMinus10
+
+    ; BUG: This should be before the checks for all other types; in its present position, the
+    ; vanilla trainer AI will never use Discharge if their partner is, e.g., Swampert or Gliscor
+    ; (which should be treated as Immune to the move, but are not).
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GROUND
     IfLoadedEqualTo AI_HAVE, TrainerAI_ScorePlus3
     AddToMoveScore -3
 
-_09557:
+TrainerAI_TagStrategy_CheckElectric_End:
     PopOrEnd 
 
-_09558:
-    IfMoveEqualTo MOVE_SURF, _09580
+TrainerAI_TagStrategy_CheckWaterMove:
+    ; If the move is Surf, handle it similarly to Earthquake. Otherwise, apply all of the
+    ; following which are met:
+    ;  - The target's partner would redirect the move with Storm Drain, score -1
+    ;  - The attacker's partner has Storm Drain, score -10
+    IfMoveEqualTo MOVE_SURF, TrainerAI_TagStrategy_SpreadWaterMove
     CheckBattlerAbility AI_BATTLER_DEFENDER_PARTNER, ABILITY_STORM_DRAIN
-    IfLoadedEqualTo AI_NOT_HAVE, _09569
+    IfLoadedEqualTo AI_NOT_HAVE, TrainerAI_TagStrategy_CheckPartnerStormDrain
     AddToMoveScore -1
 
-_09569:
+TrainerAI_TagStrategy_CheckPartnerStormDrain:
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_STORM_DRAIN
     IfLoadedEqualTo AI_HAVE, TrainerAI_ScoreMinus10
-    IfMoveEqualTo MOVE_SURF, _09580
-    GoTo _09606
 
-_09580:
+    ; This line should never result in a branch
+    IfMoveEqualTo MOVE_SURF, TrainerAI_TagStrategy_SpreadWaterMove
+    GoTo TrainerAI_TagStrategy_CheckWater_End
+
+TrainerAI_TagStrategy_SpreadWaterMove:
+    ; If our partner has Dry Skin or Water Absorb, score +3
+    ;
+    ; If our partner otherwise has a Ground or Fire typing, score -10
+    ;
+    ; Else, score -3
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_DRY_SKIN
     IfLoadedEqualTo AI_HAVE, TrainerAI_ScorePlus3
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_WATER_ABSORB
     IfLoadedEqualTo AI_HAVE, TrainerAI_ScorePlus3
+
+    ; BUG: This should also include a similar check for the Rock type
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GROUND
     IfLoadedEqualTo AI_HAVE, TrainerAI_ScoreMinus10
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_FIRE
     IfLoadedEqualTo AI_HAVE, TrainerAI_ScoreMinus10
     AddToMoveScore -3
 
-_09606:
+TrainerAI_TagStrategy_CheckWater_End:
     PopOrEnd 
 
-_09607:
-    IfActivatedFlashFire AI_BATTLER_ATTACKER, _09612
-    GoTo _09614
+TrainerAI_TagStrategy_CheckFireMove:
+    ; If the AI's Flash Fire has been activated, score additional +1 on top of all further modifiers
+    ;
+    ; If the move is Lava Plume, then:
+    ;  - If our partner has Dry Skin or Flash Fire, score +3
+    ;  - If our partner has a Grass, Steel, Ice, or Bug typing, score -10
+    ;  - Otherwise, score -3
+    IfActivatedFlashFire AI_BATTLER_ATTACKER, TrainerAI_TagStrategy_FlashFireScorePlus1
+    GoTo TrainerAI_TagStrategy_CheckLavaPlume
 
-_09612:
+TrainerAI_TagStrategy_FlashFireScorePlus1:
     AddToMoveScore 1
 
-_09614:
-    IfMoveEqualTo MOVE_LAVA_PLUME, _09619
-    GoTo _09657
+TrainerAI_TagStrategy_CheckLavaPlume:
+    IfMoveEqualTo MOVE_LAVA_PLUME, TrainerAI_TagStrategy_SpreadFireMove
+    GoTo TrainerAI_TagStrategy_CheckFire_End
 
-_09619:
+TrainerAI_TagStrategy_SpreadFireMove:
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_DRY_SKIN
     IfLoadedEqualTo AI_HAVE, TrainerAI_ScoreMinus3
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_FLASH_FIRE
@@ -6097,240 +6242,338 @@ _09619:
     IfLoadedEqualTo AI_HAVE, TrainerAI_ScoreMinus10
     AddToMoveScore -3
 
-_09657:
+TrainerAI_TagStrategy_CheckFire_End:
     PopOrEnd 
 
-TrainerAI_TagStrategy_Terminate:
-    IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, _10183
+TrainerAI_TagStrategy_Partner:
+    IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, TrainerAI_TagStrategy_PartnerScoreMinus30
     FlagMoveDamageScore FALSE
-    IfLoadedEqualTo AI_NO_COMPARISON_MADE, _09801
+    IfLoadedEqualTo AI_NO_COMPARISON_MADE, TrainerAI_TagStrategy_PartnerStatusMove
     LoadTypeFrom LOAD_MOVE_TYPE
-    IfLoadedEqualTo TYPE_FIRE, _09682
-    IfLoadedEqualTo TYPE_ELECTRIC, _09695
-    IfLoadedEqualTo TYPE_WATER, _09753
-    IfMoveEqualTo MOVE_FLING, _10062
+    IfLoadedEqualTo TYPE_FIRE, TrainerAI_TagStrategy_CheckPartnerFireAbsorption
+    IfLoadedEqualTo TYPE_ELECTRIC, TrainerAI_TagStrategy_CheckPartnerElectricAbsorption
+    IfLoadedEqualTo TYPE_WATER, TrainerAI_TagStrategy_CheckPartnerWaterAbsorption
+    IfMoveEqualTo MOVE_FLING, TrainerAI_TagStrategy_PartnerTrick
 
-_09680:
+TrainerAI_TagStrategy_ScoreMinus30:
     GoTo TrainerAI_ScoreMinus30
 
-_09682:
+TrainerAI_TagStrategy_CheckPartnerFireAbsorption:
+    ; If our partner has Flash Fire and has not yet activated Flash Fire, score +3
+    ;
+    ; Otherwise, score -30
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_FLASH_FIRE
-    IfLoadedEqualTo AI_HAVE, _09690
-    GoTo _09680
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_CheckPartnerFlashFireActive
+    GoTo TrainerAI_TagStrategy_ScoreMinus30
 
-_09690:
-    IfActivatedFlashFire AI_BATTLER_ATTACKER_PARTNER, _09680
+TrainerAI_TagStrategy_CheckPartnerFlashFireActive:
+    IfActivatedFlashFire AI_BATTLER_ATTACKER_PARTNER, TrainerAI_TagStrategy_ScoreMinus30
     GoTo TrainerAI_ScorePlus3
 
-_09695:
+TrainerAI_TagStrategy_CheckPartnerElectricAbsorption:
+    ; If our partner has Motor Drive:
+    ;  - 62.5% chance of no score change
+    ;  - If our partner is at +6 speed, score -30
+    ;  - Else, score +3
+    ;
+    ; If our partner has Volt Absorb:
+    ;  - If our partner is at 100% HP, score -10
+    ;  - If our partner's HP >90%, no score change
+    ;  - If our partner's HP >75%, 25% chance of score +3, 75% chance of no change
+    ;  - If our partner's HP >50%, 50% chance of score +3, 50% chance of no change
+    ;  - Else, 75% chance of score +3, 25% chance of no change
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_MOTOR_DRIVE
-    IfLoadedEqualTo AI_HAVE, _09709
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_CheckPartnerMotorDrive
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_VOLT_ABSORB
-    IfLoadedEqualTo AI_HAVE, _09719
-    GoTo _09680
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_CheckPartnerVoltAbsorb
+    GoTo TrainerAI_TagStrategy_ScoreMinus30
 
-_09709:
-    IfRandomLessThan 160, _09752
-    IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_SPEED, 12, _09680
+TrainerAI_TagStrategy_CheckPartnerMotorDrive:
+    IfRandomLessThan 160, TrainerAI_TagStrategy_CheckElectricAbsorption_End
+    IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_SPEED, 12, TrainerAI_TagStrategy_ScoreMinus30
     GoTo TrainerAI_ScorePlus3
 
-_09719:
+TrainerAI_TagStrategy_CheckPartnerVoltAbsorb:
     IfHPPercentEqualTo AI_BATTLER_ATTACKER_PARTNER, 100, TrainerAI_ScoreMinus10
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 90, _09752
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 75, _09737
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 50, _09742
-    GoTo _09747
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 90, TrainerAI_TagStrategy_CheckElectricAbsorption_End
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 75, TrainerAI_TagStrategy_PartnerVoltAbsorb_75PercentHP
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 50, TrainerAI_TagStrategy_PartnerVoltAbsorb_50PercentHP
+    GoTo TrainerAI_TagStrategy_PartnerVoltAbsorb_LessThan50PercentHP
 
-_09737:
+TrainerAI_TagStrategy_PartnerVoltAbsorb_75PercentHP:
     IfRandomLessThan 64, TrainerAI_ScorePlus3
-    GoTo _09752
+    GoTo TrainerAI_TagStrategy_CheckElectricAbsorption_End
 
-_09742:
+TrainerAI_TagStrategy_PartnerVoltAbsorb_50PercentHP:
     IfRandomLessThan 128, TrainerAI_ScorePlus3
-    GoTo _09752
+    GoTo TrainerAI_TagStrategy_CheckElectricAbsorption_End
 
-_09747:
+TrainerAI_TagStrategy_PartnerVoltAbsorb_LessThan50PercentHP:
     IfRandomLessThan 192, TrainerAI_ScorePlus3
-    GoTo _09752
+    GoTo TrainerAI_TagStrategy_CheckElectricAbsorption_End
 
-_09752:
+TrainerAI_TagStrategy_CheckElectricAbsorption_End:
     PopOrEnd 
 
-_09753:
+TrainerAI_TagStrategy_CheckPartnerWaterAbsorption:
+    ; If our partner has Water Absorb or Dry Skin:
+    ;  - If our partner is at 100% HP, score -10
+    ;  - If our partner's HP >90%, no score change
+    ;  - If our partner's HP >75%, 25% chance of score +3, 75% chance of no change
+    ;  - If our partner's HP >50%, 50% chance of score +3, 50% chance of no change
+    ;  - Else, 75% chance of score +3, 25% chance of no change
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_WATER_ABSORB
-    IfLoadedEqualTo AI_HAVE, _09767
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_PartnerWaterAbsorb
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_DRY_SKIN
-    IfLoadedEqualTo AI_HAVE, _09767
-    GoTo _09680
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_PartnerWaterAbsorb
+    GoTo TrainerAI_TagStrategy_ScoreMinus30
 
-_09767:
+TrainerAI_TagStrategy_PartnerWaterAbsorb:
     IfHPPercentEqualTo AI_BATTLER_ATTACKER_PARTNER, 100, TrainerAI_ScoreMinus10
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 90, _09800
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 75, _09785
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 50, _09790
-    GoTo _09795
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 90, TrainerAI_TagStrategy_CheckWaterAbsorption_End
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 75, TrainerAI_TagStrategy_PartnerWaterAbsorb_75PercentHP
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 50, TrainerAI_TagStrategy_PartnerWaterAbsorb_50PercentHP
+    GoTo TrainerAI_TagStrategy_PartnerWaterAbsorb_LessThan50PercentHP
 
-_09785:
+TrainerAI_TagStrategy_PartnerWaterAbsorb_75PercentHP:
     IfRandomLessThan 64, TrainerAI_ScorePlus3
-    GoTo _09800
+    GoTo TrainerAI_TagStrategy_CheckWaterAbsorption_End
 
-_09790:
+TrainerAI_TagStrategy_PartnerWaterAbsorb_50PercentHP:
     IfRandomLessThan 128, TrainerAI_ScorePlus3
-    GoTo _09800
+    GoTo TrainerAI_TagStrategy_CheckWaterAbsorption_End
 
-_09795:
+TrainerAI_TagStrategy_PartnerWaterAbsorb_LessThan50PercentHP:
     IfRandomLessThan 192, TrainerAI_ScorePlus3
-    GoTo _09800
+    GoTo TrainerAI_TagStrategy_CheckWaterAbsorption_End
 
-_09800:
+TrainerAI_TagStrategy_CheckWaterAbsorption_End:
     PopOrEnd 
 
-_09801:
-    IfMoveEqualTo MOVE_SKILL_SWAP, _09836
-    IfMoveEqualTo MOVE_WILL_O_WISP, _09939
-    IfMoveEqualTo MOVE_THUNDER_WAVE, _09979
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_BADLY_POISON, _10003
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_POISON, _10003
-    IfMoveEqualTo MOVE_HELPING_HAND, _10023
-    IfMoveEqualTo MOVE_SWAGGER, _10044
-    IfMoveEqualTo MOVE_TRICK, _10062
-    IfMoveEqualTo MOVE_SWITCHEROO, _10062
-    IfMoveEqualTo MOVE_GASTRO_ACID, _10063
-    IfMoveEqualTo MOVE_ACUPRESSURE, _10084
-    GoTo _10183
+TrainerAI_TagStrategy_PartnerStatusMove:
+    IfMoveEqualTo MOVE_SKILL_SWAP, TrainerAI_TagStrategy_PartnerSkillSwap
+    IfMoveEqualTo MOVE_WILL_O_WISP, TrainerAI_TagStrategy_PartnerWillOWisp
+    IfMoveEqualTo MOVE_THUNDER_WAVE, TrainerAI_TagStrategy_PartnerThunderWave
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_BADLY_POISON, TrainerAI_TagStrategy_PartnerPoisonStatus
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_POISON, TrainerAI_TagStrategy_PartnerPoisonStatus
+    IfMoveEqualTo MOVE_HELPING_HAND, TrainerAI_TagStrategy_PartnerUsingHelpingHand
+    IfMoveEqualTo MOVE_SWAGGER, TrainerAI_TagStrategy_PartnerSwagger
+    IfMoveEqualTo MOVE_TRICK, TrainerAI_TagStrategy_PartnerTrick
+    IfMoveEqualTo MOVE_SWITCHEROO, TrainerAI_TagStrategy_PartnerTrick
+    IfMoveEqualTo MOVE_GASTRO_ACID, TrainerAI_TagStrategy_PartnerGastroAcid
+    IfMoveEqualTo MOVE_ACUPRESSURE, TrainerAI_TagStrategy_PartnerAcupressure
+    GoTo TrainerAI_TagStrategy_PartnerScoreMinus30
 
-_09836:
+TrainerAI_TagStrategy_PartnerSkillSwap:
+    ; If our partner has Truant or Slow Start, score +10.
+    ;
+    ; If we can give Levitate to an Electric-type partner, score +1; additional +1 if our partner
+    ; is mono-Electric.
+    ;
+    ; If we can give an Accuracy-increasing ability and our partner has an inaccurate move, score +3.
+    ;
+    ; Otherwise, score -30.
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_TRUANT, TrainerAI_ScorePlus10
     IfLoadedEqualTo ABILITY_SLOW_START, TrainerAI_ScorePlus10
+
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_LEVITATE, _09869
+    IfLoadedNotEqualTo ABILITY_LEVITATE, TrainerAI_TagStrategy_PartnerSkillSwap_GiveAccuracyIncrease
+
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_LEVITATE, _10183
+    IfLoadedEqualTo ABILITY_LEVITATE, TrainerAI_TagStrategy_PartnerScoreMinus30
+
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
-    IfLoadedNotEqualTo TYPE_ELECTRIC, _09869
+    IfLoadedNotEqualTo TYPE_ELECTRIC, TrainerAI_TagStrategy_PartnerSkillSwap_GiveAccuracyIncrease
     AddToMoveScore 1
+
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
-    IfLoadedNotEqualTo TYPE_ELECTRIC, _09869
+    IfLoadedNotEqualTo TYPE_ELECTRIC, TrainerAI_TagStrategy_PartnerSkillSwap_GiveAccuracyIncrease
     AddToMoveScore 1
+
     PopOrEnd 
 
-_09869:
+TrainerAI_TagStrategy_PartnerSkillSwap_GiveAccuracyIncrease:
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_COMPOUND_EYES, _09879
-    IfLoadedEqualTo ABILITY_NO_GUARD, _09879
-    GoTo _10183
+    IfLoadedEqualTo ABILITY_COMPOUND_EYES, TrainerAI_TagStrategy_PartnerSkillSwap_PartnerHasInaccurateMove
+    IfLoadedEqualTo ABILITY_NO_GUARD, TrainerAI_TagStrategy_PartnerSkillSwap_PartnerHasInaccurateMove
+    GoTo TrainerAI_TagStrategy_PartnerScoreMinus30
 
-_09879:
-    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_FIRE_BLAST, _09937
-    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_THUNDER, _09937
-    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_CROSS_CHOP, _09937
-    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_HYDRO_PUMP, _09937
-    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_DYNAMIC_PUNCH, _09937
-    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_BLIZZARD, _09937
-    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_ZAP_CANNON, _09937
-    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_MEGAHORN, _09937
-    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_FOCUS_BLAST, _09937
-    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_GUNK_SHOT, _09937
-    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_MAGMA_STORM, _09937
-    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_POWER_WHIP, _09937
-    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_SEED_FLARE, _09937
-    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_HEAD_SMASH, _09937
-    GoTo _10183
+TrainerAI_TagStrategy_PartnerSkillSwap_PartnerHasInaccurateMove:
+    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_FIRE_BLAST, TrainerAI_TagStrategy_PartnerSkillSwap_ScorePlus3
+    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_THUNDER, TrainerAI_TagStrategy_PartnerSkillSwap_ScorePlus3
+    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_CROSS_CHOP, TrainerAI_TagStrategy_PartnerSkillSwap_ScorePlus3
+    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_HYDRO_PUMP, TrainerAI_TagStrategy_PartnerSkillSwap_ScorePlus3
+    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_DYNAMIC_PUNCH, TrainerAI_TagStrategy_PartnerSkillSwap_ScorePlus3
+    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_BLIZZARD, TrainerAI_TagStrategy_PartnerSkillSwap_ScorePlus3
+    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_ZAP_CANNON, TrainerAI_TagStrategy_PartnerSkillSwap_ScorePlus3
+    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_MEGAHORN, TrainerAI_TagStrategy_PartnerSkillSwap_ScorePlus3
+    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_FOCUS_BLAST, TrainerAI_TagStrategy_PartnerSkillSwap_ScorePlus3
+    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_GUNK_SHOT, TrainerAI_TagStrategy_PartnerSkillSwap_ScorePlus3
+    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_MAGMA_STORM, TrainerAI_TagStrategy_PartnerSkillSwap_ScorePlus3
+    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_POWER_WHIP, TrainerAI_TagStrategy_PartnerSkillSwap_ScorePlus3
+    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_SEED_FLARE, TrainerAI_TagStrategy_PartnerSkillSwap_ScorePlus3
+    IfMoveKnown AI_BATTLER_ATTACKER_PARTNER, MOVE_HEAD_SMASH, TrainerAI_TagStrategy_PartnerSkillSwap_ScorePlus3
+    GoTo TrainerAI_TagStrategy_PartnerScoreMinus30
 
-_09937:
+TrainerAI_TagStrategy_PartnerSkillSwap_ScorePlus3:
     GoTo TrainerAI_ScorePlus3
 
-_09939:
+TrainerAI_TagStrategy_PartnerWillOWisp:
+    ; If our partner has Flash Fire, handle it identically to the earlier Fire Absorption routine
+    ;
+    ; If our partner meets all of the following conditions, score +5:
+    ;  - Has the Guts ability
+    ;  - Is not currently statused
+    ;  - Does not have a Fire typing
+    ;  - Is not holding a Flame Orb or Toxic Orb
+    ;  - Is at 81% HP or greater
+    ;
+    ; Otherwise, score -30
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_FLASH_FIRE
-    IfLoadedEqualTo AI_HAVE, _09682
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_CheckPartnerFireAbsorption
+
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_GUTS
-    IfLoadedNotEqualTo AI_HAVE, _10183
-    IfStatus AI_BATTLER_ATTACKER_PARTNER, MON_CONDITION_ANY, _10183
+    IfLoadedNotEqualTo AI_HAVE, TrainerAI_TagStrategy_PartnerScoreMinus30
+
+    IfStatus AI_BATTLER_ATTACKER_PARTNER, MON_CONDITION_ANY, TrainerAI_TagStrategy_PartnerScoreMinus30
+
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
-    IfLoadedEqualTo TYPE_FIRE, _10183
+    IfLoadedEqualTo TYPE_FIRE, TrainerAI_TagStrategy_PartnerScoreMinus30
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
-    IfLoadedEqualTo TYPE_FIRE, _10183
-    IfHeldItemEqualTo AI_BATTLER_ATTACKER_PARTNER, ITEM_FLAME_ORB, _10183
-    IfHeldItemEqualTo AI_BATTLER_ATTACKER_PARTNER, ITEM_TOXIC_ORB, _10183
-    IfHPPercentLessThan AI_BATTLER_ATTACKER_PARTNER, 81, _10183
+    IfLoadedEqualTo TYPE_FIRE, TrainerAI_TagStrategy_PartnerScoreMinus30
+
+    IfHeldItemEqualTo AI_BATTLER_ATTACKER_PARTNER, ITEM_FLAME_ORB, TrainerAI_TagStrategy_PartnerScoreMinus30
+    IfHeldItemEqualTo AI_BATTLER_ATTACKER_PARTNER, ITEM_TOXIC_ORB, TrainerAI_TagStrategy_PartnerScoreMinus30
+
+    IfHPPercentLessThan AI_BATTLER_ATTACKER_PARTNER, 81, TrainerAI_TagStrategy_PartnerScoreMinus30
+
     GoTo TrainerAI_ScorePlus5
 
-_09979:
+TrainerAI_TagStrategy_PartnerThunderWave:
+    ; If our partner has a Ground typing or has an ability other than Motor Drive or Volt Absorb, score -30
+    ;
+    ; Otherwise, handle the move identically to other Electric moves
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
-    IfLoadedEqualTo TYPE_GROUND, _10183
+    IfLoadedEqualTo TYPE_GROUND, TrainerAI_TagStrategy_PartnerScoreMinus30
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
-    IfLoadedEqualTo TYPE_GROUND, _10183
+    IfLoadedEqualTo TYPE_GROUND, TrainerAI_TagStrategy_PartnerScoreMinus30
+
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_MOTOR_DRIVE
-    IfLoadedEqualTo AI_HAVE, _09695
-    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_VOLT_ABSORB
-    IfLoadedEqualTo AI_HAVE, _09695
-    GoTo _10183
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_CheckPartnerElectricAbsorption
 
-_10003:
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_VOLT_ABSORB
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_CheckPartnerElectricAbsorption
+
+    GoTo TrainerAI_TagStrategy_PartnerScoreMinus30
+
+TrainerAI_TagStrategy_PartnerPoisonStatus:
+    ; If our partner meets all of the following conditions, score +5:
+    ;  - Has the Poison Heal ability
+    ;  - Is not currently statused
+    ;  - Is not holding a Toxic Orb
+    ;  - Is at 81% HP or greater
+    ;
+    ; Otherwise, score -30
+    ;
+    ; BUG: This routine should also consider if the partner has a Poison or Steel typing.
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_POISON_HEAL
-    IfLoadedNotEqualTo AI_HAVE, _10183
-    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, _10183
-    IfHeldItemEqualTo AI_BATTLER_ATTACKER_PARTNER, ITEM_TOXIC_ORB, _10183
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 91, _10183
+    IfLoadedNotEqualTo AI_HAVE, TrainerAI_TagStrategy_PartnerScoreMinus30
+
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, TrainerAI_TagStrategy_PartnerScoreMinus30
+
+    IfHeldItemEqualTo AI_BATTLER_ATTACKER_PARTNER, ITEM_TOXIC_ORB, TrainerAI_TagStrategy_PartnerScoreMinus30
+
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 91, TrainerAI_TagStrategy_PartnerScoreMinus30
+
     GoTo TrainerAI_ScorePlus5
 
-_10023:
+TrainerAI_TagStrategy_PartnerUsingHelpingHand:
+    ; If we do not have a partner, score -30
+    ;
+    ; If our partner has more than 50% HP or would move first in the turn, 75% chance of score +2,
+    ; 25% chance of score -1
+    ;
+    ; Else, no score changes
     IfHPPercentEqualTo AI_BATTLER_ATTACKER_PARTNER, 0, TrainerAI_ScoreMinus30
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 50, _10038
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 50, TrainerAI_TagStrategy_PartnerUsingHelpingHand_TryScorePlus2
     LoadBattlerSpeedRank AI_BATTLER_ATTACKER_PARTNER
-    IfLoadedLessThan 1, _10038
-    GoTo _10043
+    IfLoadedLessThan 1, TrainerAI_TagStrategy_PartnerUsingHelpingHand_TryScorePlus2
+    GoTo TrainerAI_TagStrategy_PartnerUsingHelpingHand_End
 
-_10038:
+TrainerAI_TagStrategy_PartnerUsingHelpingHand_TryScorePlus2:
     IfRandomLessThan 64, TrainerAI_ScoreMinus1
     AddToMoveScore 2
 
-_10043:
+TrainerAI_TagStrategy_PartnerUsingHelpingHand_End:
     PopOrEnd 
 
-_10044:
-    IfHeldItemEqualTo AI_BATTLER_DEFENDER, ITEM_PERSIM_BERRY, _10054
-    IfHeldItemEqualTo AI_BATTLER_DEFENDER, ITEM_LUM_BERRY, _10054
-    GoTo _10183
+TrainerAI_TagStrategy_PartnerSwagger:
+    ; If our partner is holding neither a Persim Berry nor a Lum Berry, score -30
+    ;
+    ; If our partner is at less than +2 Attack, score +3
+    ;
+    ; Otherwise, no score changes
+    ;
+    ; Curiously, this does not consider if our partner's ability is Own Tempo.
+    IfHeldItemEqualTo AI_BATTLER_DEFENDER, ITEM_PERSIM_BERRY, TrainerAI_TagStrategy_PartnerSwagger_TryScorePlus3
+    IfHeldItemEqualTo AI_BATTLER_DEFENDER, ITEM_LUM_BERRY, TrainerAI_TagStrategy_PartnerSwagger_TryScorePlus3
+    GoTo TrainerAI_TagStrategy_PartnerScoreMinus30
 
-_10054:
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 7, _10061
+TrainerAI_TagStrategy_PartnerSwagger_TryScorePlus3:
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 7, TrainerAI_TagStrategy_PartnerSwagger_End
     AddToMoveScore 3
 
-_10061:
+TrainerAI_TagStrategy_PartnerSwagger_End:
     PopOrEnd 
 
-_10062:
+TrainerAI_TagStrategy_PartnerTrick:
     PopOrEnd 
 
-_10063:
-    IfMoveEffect AI_BATTLER_ATTACKER_PARTNER, MOVE_EFFECT_ABILITY_SUPPRESSED, _10183
+TrainerAI_TagStrategy_PartnerGastroAcid:
+    ; If our partner's ability is already suppressed, score -30
+    ;
+    ; If our partner has Truant or Slow Start, score +5
+    ;
+    ; Otherwise, no score changes
+    IfMoveEffect AI_BATTLER_ATTACKER_PARTNER, MOVE_EFFECT_ABILITY_SUPPRESSED, TrainerAI_TagStrategy_PartnerScoreMinus30
+
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_TRUANT
-    IfLoadedEqualTo AI_HAVE, _10081
-    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_SLOW_START
-    IfLoadedEqualTo AI_HAVE, _10081
-    GoTo _10083
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_PartnerGastroAcid_ScorePlus5
 
-_10081:
+    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_SLOW_START
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_PartnerGastroAcid_ScorePlus5
+
+    GoTo TrainerAI_TagStrategy_PartnerGastroAcid_End
+
+TrainerAI_TagStrategy_PartnerGastroAcid_ScorePlus5:
     AddToMoveScore 5
 
-_10083:
+TrainerAI_TagStrategy_PartnerGastroAcid_End:
     PopOrEnd 
 
-_10084:
+TrainerAI_TagStrategy_PartnerAcupressure:
+    ; If our partner has Simple and any stat at +3 stages, score -10
+    ;
+    ; Else if our partner has any stat at +6 stages, score -30
+    ;
+    ; Else if our partner's HP is 50% or lower, score -1
+    ;
+    ; Else if our partner's HP is 91% or higher, 68.75% chance of score +2, 31.25% chance of no score change
+    ;
+    ; Else 50% chance of score +2, 31.25% chance of score +2, 68.75% chance of no score change
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_SIMPLE
-    IfLoadedEqualTo AI_HAVE, _10127
-    IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_ATTACK, 12, _10183
-    IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_DEFENSE, 12, _10183
-    IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_SPEED, 12, _10183
-    IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_SP_ATTACK, 12, _10183
-    IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_SP_DEFENSE, 12, _10183
-    IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_EVASION, 12, _10183
-    IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_ACCURACY, 12, _10183
-    GoTo _10162
+    IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_PartnerAcupressureSimple
+    IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_ATTACK, 12, TrainerAI_TagStrategy_PartnerScoreMinus30
+    IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_DEFENSE, 12, TrainerAI_TagStrategy_PartnerScoreMinus30
+    IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_SPEED, 12, TrainerAI_TagStrategy_PartnerScoreMinus30
+    IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_SP_ATTACK, 12, TrainerAI_TagStrategy_PartnerScoreMinus30
+    IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_SP_DEFENSE, 12, TrainerAI_TagStrategy_PartnerScoreMinus30
+    IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_EVASION, 12, TrainerAI_TagStrategy_PartnerScoreMinus30
+    IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_ACCURACY, 12, TrainerAI_TagStrategy_PartnerScoreMinus30
+    GoTo TrainerAI_TagStrategy_PartnerAcupressure_CheckHP
 
-_10127:
+TrainerAI_TagStrategy_PartnerAcupressureSimple:
     IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_ATTACK, 8, TrainerAI_ScoreMinus10
     IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_DEFENSE, 8, TrainerAI_ScoreMinus10
     IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_SPEED, 8, TrainerAI_ScoreMinus10
@@ -6339,28 +6582,28 @@ _10127:
     IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_EVASION, 8, TrainerAI_ScoreMinus10
     IfStatStageGreaterThan AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_ACCURACY, 8, TrainerAI_ScoreMinus10
 
-_10162:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER_PARTNER, 51, _10180
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 90, _10173
-    IfRandomLessThan 128, _10182
+TrainerAI_TagStrategy_PartnerAcupressure_CheckHP:
+    IfHPPercentLessThan AI_BATTLER_ATTACKER_PARTNER, 51, TrainerAI_TagStrategy_PartnerAcupressure_ScoreMinus1
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER_PARTNER, 90, TrainerAI_TagStrategy_PartnerAcupressure_TryScorePlus2
+    IfRandomLessThan 128, TrainerAI_TagStrategy_PartnerAcupressure_End
 
-_10173:
-    IfRandomLessThan 80, _10182
+TrainerAI_TagStrategy_PartnerAcupressure_TryScorePlus2:
+    IfRandomLessThan 80, TrainerAI_TagStrategy_PartnerAcupressure_End
     AddToMoveScore 2
-    GoTo _10182
+    GoTo TrainerAI_TagStrategy_PartnerAcupressure_End
 
-_10180:
+TrainerAI_TagStrategy_PartnerAcupressure_ScoreMinus1:
     AddToMoveScore -1
 
-_10182:
+TrainerAI_TagStrategy_PartnerAcupressure_End:
     PopOrEnd 
 
-_10183:
+TrainerAI_TagStrategy_PartnerScoreMinus30:
     AddToMoveScore -30
     PopOrEnd 
 
 TrainerAI_CheckHP_Main:
-    IfTargetIsPartner TrainerAI_TagStrategy_Terminate
+    IfTargetIsPartner TrainerAI_TagStrategy_Partner
 
     ; Which moves apply to the routine depends on the attacker's HP percentage
     IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 70, TrainerAI_CheckHP_GT70Percent ; >70%
