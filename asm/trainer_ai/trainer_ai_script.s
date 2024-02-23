@@ -5544,7 +5544,7 @@ TrainerAI_BatonPass_Terminate:
     PopOrEnd 
 
 TrainerAI_TagStrategy_Main:
-    IfTargetIsPartner _09658
+    IfTargetIsPartner TrainerAI_TagStrategy_Terminate
     FlagMoveDamageScore FALSE
     IfLoadedEqualTo AI_NO_COMPARISON_MADE, _08766
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ONE_HIT_KO, _08704
@@ -6100,7 +6100,7 @@ _09619:
 _09657:
     PopOrEnd 
 
-_09658:
+TrainerAI_TagStrategy_Terminate:
     IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, _10183
     FlagMoveDamageScore FALSE
     IfLoadedEqualTo AI_NO_COMPARISON_MADE, _09801
@@ -6360,52 +6360,58 @@ _10183:
     PopOrEnd 
 
 TrainerAI_CheckHP_Main:
-    IfTargetIsPartner _09658
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 70, _10202
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 30, _10208
-    LoadCurrentMoveEffect 
-    IfLoadedInTable _10311, _10214
-    GoTo _10219
+    IfTargetIsPartner TrainerAI_TagStrategy_Terminate
 
-_10202:
+    ; Which moves apply to the routine depends on the attacker's HP percentage
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 70, TrainerAI_CheckHP_GT70Percent ; >70%
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 30, TrainerAI_CheckHP_31To70Percent ; 31-70%
     LoadCurrentMoveEffect 
-    IfLoadedInTable _10251, _10214
-    GoTo _10219
+    IfLoadedInTable TrainerAI_CheckHP_DiscourageAtLowHP, TrainerAI_CheckHP_TryScoreMinus2 ; 1-30%
+    GoTo TrainerAI_CheckHP_Target
 
-_10208:
+TrainerAI_CheckHP_GT70Percent:
     LoadCurrentMoveEffect 
-    IfLoadedInTable _10264, _10214
-    GoTo _10219
+    IfLoadedInTable TrainerAI_CheckHP_DiscourageAtHighHP, TrainerAI_CheckHP_TryScoreMinus2
+    GoTo TrainerAI_CheckHP_Target
 
-_10214:
-    IfRandomLessThan 50, _10219
+TrainerAI_CheckHP_31To70Percent:
+    LoadCurrentMoveEffect 
+    IfLoadedInTable TrainerAI_CheckHP_DiscourageAtMediumHP, TrainerAI_CheckHP_TryScoreMinus2
+    GoTo TrainerAI_CheckHP_Target
+
+TrainerAI_CheckHP_TryScoreMinus2:
+    ; ~80.5% of the time, score -2
+    IfRandomLessThan 50, TrainerAI_CheckHP_Target
     AddToMoveScore -2
 
-_10219:
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, _10233
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 30, _10239
+TrainerAI_CheckHP_Target:
+    ; The second round is similar to the first, but looks at the target's HP instead of
+    ; the attacker's.
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, TrainerAI_CheckHP_Target_GT70Percent
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 30, TrainerAI_CheckHP_Target_31To70Percent
     LoadCurrentMoveEffect 
-    IfLoadedInTable _10407, _10245
-    GoTo _10250
+    IfLoadedInTable TrainerAI_CheckHP_Target_DiscourageAtLowHP, TrainerAI_CheckHP_Target_TryScoreMinus2
+    GoTo TrainerAI_CheckHP_Terminate
 
-_10233:
+TrainerAI_CheckHP_Target_GT70Percent:
     LoadCurrentMoveEffect 
-    IfLoadedInTable _10363, _10245
-    GoTo _10250
+    IfLoadedInTable TrainerAI_CheckHP_Target_DiscourageAtHighHP, TrainerAI_CheckHP_Target_TryScoreMinus2
+    GoTo TrainerAI_CheckHP_Terminate
 
-_10239:
+TrainerAI_CheckHP_Target_31To70Percent:
     LoadCurrentMoveEffect 
-    IfLoadedInTable _10364, _10245
-    GoTo _10250
+    IfLoadedInTable TrainerAI_CheckHP_Target_DiscourageAtMediumHP, TrainerAI_CheckHP_Target_TryScoreMinus2
+    GoTo TrainerAI_CheckHP_Terminate
 
-_10245:
-    IfRandomLessThan 50, _10250
+TrainerAI_CheckHP_Target_TryScoreMinus2:
+    ; ~80.5% of the time, score -2
+    IfRandomLessThan 50, TrainerAI_CheckHP_Terminate
     AddToMoveScore -2
 
-_10250:
+TrainerAI_CheckHP_Terminate:
     PopOrEnd 
 
-_10251:
+TrainerAI_CheckHP_DiscourageAtHighHP:
     TableEntry BATTLE_EFFECT_HALVE_DEFENSE
     TableEntry BATTLE_EFFECT_RESTORE_HALF_HP
     TableEntry BATTLE_EFFECT_REST
@@ -6420,7 +6426,7 @@ _10251:
     TableEntry BATTLE_EFFECT_FAINT_FULL_RESTORE_NEXT_MON
     TableEntry TABLE_END
 
-_10264:
+TrainerAI_CheckHP_DiscourageAtMediumHP:
     TableEntry BATTLE_EFFECT_HALVE_DEFENSE
     TableEntry BATTLE_EFFECT_ATK_UP
     TableEntry BATTLE_EFFECT_DEF_UP
@@ -6469,7 +6475,7 @@ _10264:
     TableEntry BATTLE_EFFECT_SP_ATK_DOWN_2_OPPOSITE_GENDER
     TableEntry TABLE_END
 
-_10311:
+TrainerAI_CheckHP_DiscourageAtLowHP:
     TableEntry BATTLE_EFFECT_ATK_UP
     TableEntry BATTLE_EFFECT_DEF_UP
     TableEntry BATTLE_EFFECT_SPEED_UP
@@ -6523,10 +6529,10 @@ _10311:
     TableEntry BATTLE_EFFECT_SP_ATK_DOWN_2_OPPOSITE_GENDER
     TableEntry TABLE_END
 
-_10363:
+TrainerAI_CheckHP_Target_DiscourageAtHighHP:
     TableEntry TABLE_END
 
-_10364:
+TrainerAI_CheckHP_Target_DiscourageAtMediumHP:
     TableEntry BATTLE_EFFECT_ATK_UP
     TableEntry BATTLE_EFFECT_DEF_UP
     TableEntry BATTLE_EFFECT_SPEED_UP
@@ -6571,9 +6577,9 @@ _10364:
     TableEntry BATTLE_EFFECT_SP_ATK_DOWN_2_OPPOSITE_GENDER
     TableEntry TABLE_END
 
-_10407:
+TrainerAI_CheckHP_Target_DiscourageAtLowHP:
     TableEntry BATTLE_EFFECT_STATUS_SLEEP
-    TableEntry BATTLE_EFFECT_HALVE_DEFENSE
+    TableEntry BATTLE_EFFECT_HALVE_DEFENSE ; done
     TableEntry BATTLE_EFFECT_ATK_UP
     TableEntry BATTLE_EFFECT_DEF_UP
     TableEntry BATTLE_EFFECT_SPEED_UP
