@@ -17,7 +17,7 @@ extern char **environ;
 
 #define DEFAULT_VER "2.0/sp2p2"
 #define DEFAULT_CFG_FILE ".mwconfig"
-#define VER_CFG 0
+#define VER_CFG 1
 
 #ifdef _UNICODE
 #define FMT_TS "%ls"
@@ -154,6 +154,8 @@ struct config {
     char *wine;
     char *path_unx;
     char *path_win;
+    char *path_build_unx;
+    char *path_build_win;
 };
 
 const _TCHAR *cfg_file(void)
@@ -182,6 +184,8 @@ void cfg_save(struct config cfg)
     cfg_save_writestr(f, cfg.wine);
     cfg_save_writestr(f, cfg.path_unx);
     cfg_save_writestr(f, cfg.path_win);
+    cfg_save_writestr(f, cfg.path_build_unx);
+    cfg_save_writestr(f, cfg.path_build_win);
     fclose(f);
 }
 
@@ -211,6 +215,8 @@ struct config cfg_load(void)
     cfg.wine = NULL;
     cfg.path_unx = NULL;
     cfg.path_win = NULL;
+    cfg.path_build_unx = NULL;
+    cfg.path_build_win = NULL;
 
     size_t file_len = 0;
     char *file = file_read(cfg_file(), &file_len);
@@ -225,6 +231,8 @@ struct config cfg_load(void)
     cfg.wine = cfg_load_readstr(file, &file_pos, file_len);
     cfg.path_unx = cfg_load_readstr(file, &file_pos, file_len);
     cfg.path_win = cfg_load_readstr(file, &file_pos, file_len);
+    cfg.path_build_unx = cfg_load_readstr(file, &file_pos, file_len);
+    cfg.path_build_win = cfg_load_readstr(file, &file_pos, file_len);
 
     free(file);
     return cfg;
@@ -234,6 +242,8 @@ void cfg_free(struct config cfg)
 {
     free(cfg.path_win);
     free(cfg.path_unx);
+    free(cfg.path_build_win);
+    free(cfg.path_build_unx);
     free(cfg.wine);
 }
 
@@ -242,6 +252,8 @@ void configure(int argc, _TCHAR *argv[])
     _TCHAR *wine = NULL;
     _TCHAR *path_unx = NULL;
     _TCHAR *path_win = NULL;
+    _TCHAR *path_build_unx = NULL;
+    _TCHAR *path_build_win = NULL;
 
     while (argc >= 1) {
         if (_tcscmp(argv[0], _T("-wine")) == 0) {
@@ -252,6 +264,12 @@ void configure(int argc, _TCHAR *argv[])
             argv += 2; argc -= 2;
         } else if (_tcscmp(argv[0], _T("-path_win")) == 0) {
             path_win = argv[1];
+            argv += 2; argc -= 2;
+        } else if (_tcscmp(argv[0], _T("-path_build_unx")) == 0) {
+            path_build_unx = argv[1];
+            argv += 2; argc -= 2;
+        } else if (_tcscmp(argv[0], _T("-path_build_win")) == 0) {
+            path_build_win = argv[1];
             argv += 2; argc -= 2;
         } else {
             fprintf(stderr,
@@ -265,9 +283,13 @@ void configure(int argc, _TCHAR *argv[])
     cfg.wine = tctoutf(wine);
     cfg.path_unx = tctoutf(path_unx);
     cfg.path_win = tctoutf(path_win);
+    cfg.path_build_unx = tctoutf(path_build_unx);
+    cfg.path_build_win = tctoutf(path_build_win);
     if ((wine && !cfg.wine) ||
             (path_unx && !cfg.path_unx) ||
-            (path_win && !cfg.path_win)) {
+            (path_win && !cfg.path_win) ||
+            (path_build_unx && !cfg.path_build_unx) ||
+            (path_build_win && !cfg.path_build_win)) {
         fprintf(stderr, PROGRAM_NAME ": configure: Conversion failed\n");
         exit(EXIT_FAILURE);
     }
@@ -373,7 +395,7 @@ _TCHAR *win_argv_build(const _TCHAR *const *argv)
     return args;
 }
 
-void fix_depfile(_TCHAR *fname, const char *path_unx, const char *path_win)
+void fix_depfile(_TCHAR *fname, const char *path_unx, const char *path_win, const char *path_build_unx, const char *path_build_win)
 {
     size_t file_size;
     char *file = file_read(fname, &file_size);
@@ -386,15 +408,26 @@ void fix_depfile(_TCHAR *fname, const char *path_unx, const char *path_win)
     }
 
     size_t size_win = strlen(path_win);
+    size_t size_build_win = 0;
+    if (path_build_win && path_build_unx) {
+        size_build_win = strlen(path_build_win);
+    }
+
     bool blankline = false;
 
     // Replace any instances of path_win at the beginning of a line with
     // path_unx, and backslashes with forward slashes.
     for (size_t x = 0; x < file_size;) {
-        if (blankline && file_size - x > size_win &&
+        if (blankline &&
+                file_size - x > size_win &&
                 memcmp(file + x, path_win, size_win) == 0) {
             fputs(path_unx, f);
             x += size_win;
+        } else if (blankline && size_build_win &&
+                file_size - x > size_build_win &&
+                memcmp(file + x, path_build_win, size_build_win) == 0) {
+            fputs(path_build_unx, f);
+            x += size_build_win;
         } else if (file_size - x > 2 && file[x] == '\\' &&
                 file[x + 1] != '\r' && file[x + 1] != '\n') {
             fputc('/', f);
@@ -474,30 +507,37 @@ int _tmain(int argc, _TCHAR *argv[])
         new_argv[0] = wine;
     }
 
-    _TCHAR *pathsep = malloc(sizeof(_TCHAR));
-
 #ifdef _WIN32
-    pathsep = _T(";");
+#define PATHSEP ";"
 #else
-    pathsep = ":";
+#define PATHSEP ":"
 #endif
 
     // Build standard library paths for environment variables
     size_t mwcincludes_size = _tcslen(tool_dir) * 3  + 46;
     _TCHAR *MWCIncludes = malloc(sizeof(_TCHAR) * mwcincludes_size);
     _sntprintf(MWCIncludes, mwcincludes_size, _T(
-        FMT_TS "/" FMT_TS FMT_TS FMT_TS "/" FMT_TS FMT_TS FMT_TS "/" FMT_TS),
-        tool_dir, _T("include"), pathsep, tool_dir, _T("include/MSL_C"), pathsep, tool_dir, _T("include/MSL_Extras"));
+        FMT_TS "/" FMT_TS PATHSEP
+        FMT_TS "/" FMT_TS PATHSEP
+        FMT_TS "/" FMT_TS),
+        tool_dir, _T("include"),
+        tool_dir, _T("include/MSL_C"),
+        tool_dir, _T("include/MSL_Extras"));
 
     size_t mwclibraries_size = _tcslen(tool_dir) + 5;
     _TCHAR *MWLibraries = malloc(sizeof(_TCHAR) * mwclibraries_size);
-    _sntprintf(MWLibraries, mwclibraries_size, _T(FMT_TS "/" FMT_TS), tool_dir, _T("lib"));
+    _sntprintf(MWLibraries, mwclibraries_size, _T(
+        FMT_TS "/" FMT_TS),
+        tool_dir, _T("lib"));
 
     size_t mwclibraryfiles_size = 107;
     _TCHAR *MWLibraryFiles = malloc(sizeof(_TCHAR) * mwclibraryfiles_size);
     _sntprintf(MWLibraryFiles, mwclibraryfiles_size, _T(
-        "MSL_C_NITRO_Ai_LE.a"FMT_TS"MSL_Extras_NITRO_Ai_LE.a"FMT_TS"MSL_CPP_NITRO_Ai_LE.a"FMT_TS"FP_fastI_v5t_LE.a"FMT_TS"NITRO_Runtime_Ai_LE.a"),
-        pathsep, pathsep, pathsep, pathsep);
+        "MSL_C_NITRO_Ai_LE.a" PATHSEP
+        "MSL_Extras_NITRO_Ai_LE.a" PATHSEP
+        "MSL_CPP_NITRO_Ai_LE.a" PATHSEP
+        "FP_fastI_v5t_LE.a" PATHSEP
+        "NITRO_Runtime_Ai_LE.a"));
 
 #ifdef _WIN32
     // Set up the environment
@@ -593,8 +633,14 @@ int _tmain(int argc, _TCHAR *argv[])
                 fprintf(stderr, "dep: " FMT_TS "\n", depfile);
                 fprintf(stderr, "path_unx: %s\n", cfg.path_unx);
                 fprintf(stderr, "path_win: %s\n", cfg.path_win);
+                if (cfg.path_build_unx && cfg.path_build_win) {
+                    fprintf(stderr, "path_build_unx: %s\n", cfg.path_build_unx);
+                    fprintf(stderr, "path_build_win: %s\n", cfg.path_build_win);
+                }
             }
-            fix_depfile(depfile, cfg.path_unx, cfg.path_win);
+            fix_depfile(depfile,
+                cfg.path_unx, cfg.path_win,
+                cfg.path_build_unx, cfg.path_build_win);
             free(depfile);
         }
     }

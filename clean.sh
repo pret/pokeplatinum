@@ -1,3 +1,2 @@
 #!/bin/sh
-
-ninja -C build clean
+"${MESON:-meson}" compile -C build --clean

@@ -63,13 +63,23 @@ if [ "$native_file" = "native_unix.ini" ]; then
     wrap_wine="$(command -v "${WINELOADER:-wine}")"
     wrap_path_unx="$PWD"
     wrap_path_win="$("$wrap_wine" winepath -w "$wrap_path_unx")"
+    wrap_path_build_unx="$build"
+    wrap_path_build_win="$("$wrap_wine" winepath -w "$wrap_path_build_unx")"
     "$wrap/mwrap" -conf -wine "$wrap_wine" \
-        -path_unx "$wrap_path_unx" -path_win "$wrap_path_win"
+        -path_unx "$wrap_path_unx" \
+        -path_win "$wrap_path_win" \
+        -path_build_unx "$wrap_path_build_unx" \
+        -path_build_win "$wrap_path_build_win"
 elif is_wsl_accessing_windows; then
     wrap_path_unx="$PWD"
     wrap_path_win="$(wslpath -w "$wrap_path_unx")"
-    "$wrap/mwrap" -conf \
-        -path_unx "$wrap_path_unx" -path_win "$wrap_path_win"
+    wrap_path_build_unx="$build"
+    wrap_path_build_win="$(wslpath -w "$wrap_path_build_unx")"
+    "$wrap/mwrap" -conf -wine "$wrap_wine" \
+        -path_unx "$wrap_path_unx" \
+        -path_win "$wrap_path_win" \
+        -path_build_unx "$wrap_path_build_unx" \
+        -path_build_win "$wrap_path_build_win"
 fi
 
 # Launch meson
