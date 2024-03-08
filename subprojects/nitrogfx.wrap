@@ -3,3 +3,6 @@ url = https://github.com/red031000/nitrogfx.git
 revision = head
 depth = 1
 patch_directory = nitrogfx_patch
+
+[provide]
+program_names = nitrogfx

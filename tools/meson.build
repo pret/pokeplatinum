@@ -16,22 +16,7 @@ makerom_exe = find_program('makerom', native: true)
 arm_none_eabi_objcopy_exe = find_program('arm-none-eabi-objcopy', native: true)
 
 # External tools
-nitrogfx_exe = find_program('nitrogfx', native: true, required: false)
-if not nitrogfx_exe.found()
-    subproject('nitrogfx', default_options: 'native=true')
-    nitrogfx_exe = find_program('nitrogfx', native: true)
-endif
-
+nitrogfx_exe = find_program('nitrogfx', native: true)
 knarc_exe = find_program('knarc', native: true)
-
-constgen_py = find_program('constgen_py', native: true, required: false)
-if not constgen_py.found()
-    subproject('constgen')
-    constgen_py = find_program('constgen_py', native: true)
-endif
-
-SDATTool_py = find_program('SDATTool_py', native: true, required: false)
-if not SDATTool_py.found()
-    subproject('SDATTool')
-    SDATTool_py = find_program('SDATTool_py', native: true)
-endif
+constgen_py = find_program('constgen_py', native: true)
+SDATTool_py = find_program('SDATTool_py', native: true)
