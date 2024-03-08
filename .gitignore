@@ -16,6 +16,7 @@
 /subprojects/packagecache
 /subprojects/constgen/
 /subprojects/SDATTool/
+/subprojects/knarc/
 
 # CLion folders
 .idea/

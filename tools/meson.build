@@ -2,7 +2,6 @@
 subdir('csv2bin')
 subdir('fixrom')
 subdir('json2bin')
-subdir('knarc')
 subdir('msgenc')
 subdir('postconf')
 subdir('scripts')
@@ -22,6 +21,8 @@ if not nitrogfx_exe.found()
     subproject('nitrogfx', default_options: 'native=true')
     nitrogfx_exe = find_program('nitrogfx', native: true)
 endif
+
+knarc_exe = find_program('knarc', native: true)
 
 constgen_py = find_program('constgen_py', native: true, required: false)
 if not constgen_py.found()
