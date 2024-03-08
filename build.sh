@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 target="test"
 if [ "$#" -ge 1 ]; then
@@ -10,4 +11,8 @@ fi
 export NINJA_STATUS="[%p %f/%t] "
 
 # Build the project
-ninja -C build "$target" "$@"
+if [ "$target" = test ]; then
+    "${MESON:-meson}" test -C build "$@"
+else
+    "${MESON:-meson}" compile -C build "$target" "$@"
+fi
