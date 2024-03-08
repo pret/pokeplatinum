@@ -474,30 +474,37 @@ int _tmain(int argc, _TCHAR *argv[])
         new_argv[0] = wine;
     }
 
-    _TCHAR *pathsep = malloc(sizeof(_TCHAR));
-
 #ifdef _WIN32
-    pathsep = _T(";");
+#define PATHSEP ";"
 #else
-    pathsep = ":";
+#define PATHSEP ":"
 #endif
 
     // Build standard library paths for environment variables
     size_t mwcincludes_size = _tcslen(tool_dir) * 3  + 46;
     _TCHAR *MWCIncludes = malloc(sizeof(_TCHAR) * mwcincludes_size);
     _sntprintf(MWCIncludes, mwcincludes_size, _T(
-        FMT_TS "/" FMT_TS FMT_TS FMT_TS "/" FMT_TS FMT_TS FMT_TS "/" FMT_TS),
-        tool_dir, _T("include"), pathsep, tool_dir, _T("include/MSL_C"), pathsep, tool_dir, _T("include/MSL_Extras"));
+        FMT_TS "/" FMT_TS PATHSEP
+        FMT_TS "/" FMT_TS PATHSEP
+        FMT_TS "/" FMT_TS),
+        tool_dir, _T("include"),
+        tool_dir, _T("include/MSL_C"),
+        tool_dir, _T("include/MSL_Extras"));
 
     size_t mwclibraries_size = _tcslen(tool_dir) + 5;
     _TCHAR *MWLibraries = malloc(sizeof(_TCHAR) * mwclibraries_size);
-    _sntprintf(MWLibraries, mwclibraries_size, _T(FMT_TS "/" FMT_TS), tool_dir, _T("lib"));
+    _sntprintf(MWLibraries, mwclibraries_size, _T(
+        FMT_TS "/" FMT_TS),
+        tool_dir, _T("lib"));
 
     size_t mwclibraryfiles_size = 107;
     _TCHAR *MWLibraryFiles = malloc(sizeof(_TCHAR) * mwclibraryfiles_size);
     _sntprintf(MWLibraryFiles, mwclibraryfiles_size, _T(
-        "MSL_C_NITRO_Ai_LE.a"FMT_TS"MSL_Extras_NITRO_Ai_LE.a"FMT_TS"MSL_CPP_NITRO_Ai_LE.a"FMT_TS"FP_fastI_v5t_LE.a"FMT_TS"NITRO_Runtime_Ai_LE.a"),
-        pathsep, pathsep, pathsep, pathsep);
+        "MSL_C_NITRO_Ai_LE.a" PATHSEP
+        "MSL_Extras_NITRO_Ai_LE.a" PATHSEP
+        "MSL_CPP_NITRO_Ai_LE.a" PATHSEP
+        "FP_fastI_v5t_LE.a" PATHSEP
+        "NITRO_Runtime_Ai_LE.a"));
 
 #ifdef _WIN32
     // Set up the environment
