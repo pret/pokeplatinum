@@ -28,6 +28,7 @@ meson.build text eol=lf
 lib/msl/include/MSL_C/* text eol=lf
 
 *.bin binary
+*.key binary
 
 *.h linguist-language=C
 *.inc linguist-language=Assembly
