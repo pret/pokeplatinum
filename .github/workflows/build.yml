@@ -30,10 +30,10 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Configure Repo
-        run: ./config.sh
+        run: ./config.sh /var/tmp/pokeplatinum
 
       - name: Build Repo
-        run: ./build.sh test
+        run: meson test -C /var/tmp/pokeplatinum
 
       - name: Webhook
         if: ${{ github.event_name == 'push' }}
