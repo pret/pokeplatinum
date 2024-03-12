@@ -1,3 +1,11 @@
+    .include "macros/scrcmd.inc"
+
     .data
 
-    .byte 0x02, 0x0a, 0x00, 0x00, 0x00, 0x03, 0x0b, 0x00, 0x00, 0x00, 0x00, 0x00
+    .byte 2
+    .short 10, 0
+    .byte 3
+    .short 11, 0
+    .byte 0
+
+    .balign 4, 0

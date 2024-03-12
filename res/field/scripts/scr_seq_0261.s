@@ -1,3 +1,9 @@
+    .include "macros/scrcmd.inc"
+
     .data
 
-    .byte 0x02, 0x00, 0x00, 0x00, 0x13, 0xfd, 0x02, 0x00
+    .long _0006-.-4
+    .short 0xFD13
+
+_0006:
+    ScrCmd_002
