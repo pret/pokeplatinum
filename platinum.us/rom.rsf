@@ -272,7 +272,13 @@ RomSpec
 	Root /
 	HostRoot res/prebuilt
 	File poketool/waza/waza_tbl.narc
-	File fielddata/script/scr_seq.narc
+
+	Root /fielddata/script
+	HostRoot res/field/scripts
+	File scr_seq.narc
+
+	Root /
+	HostRoot res/prebuilt
 	File graphic/bag_gra.narc
 	File graphic/box.narc
 	File graphic/btower.narc
