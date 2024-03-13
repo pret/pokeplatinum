@@ -1,0 +1,128 @@
+    .include "macros/scrcmd.inc"
+
+    .data
+
+    .long _0022-.-4
+    .long _0035-.-4
+    .long _0048-.-4
+    .long _005B-.-4
+    .long _0071-.-4
+    .long _0087-.-4
+    .long _0098-.-4
+    .long _00A9-.-4
+    .short 0xFD13
+
+_0022:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_02C 0
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_0035:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_02C 1
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_0048:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_02C 2
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_005B:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_014 0x7E3
+    ScrCmd_035
+    ScrCmd_148 8
+    ScrCmd_061
+    ScrCmd_002
+
+_0071:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_014 0x7E3
+    ScrCmd_035
+    ScrCmd_148 9
+    ScrCmd_061
+    ScrCmd_002
+
+_0087:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_02C 5
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_0098:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_02C 6
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_00A9:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_020 0x129
+    ScrCmd_01C 1, _0109
+    ScrCmd_0DE 0x800C
+    ScrCmd_011 0x800C, 0x183
+    ScrCmd_01D 1, _0119
+    ScrCmd_011 0x800C, 0x186
+    ScrCmd_01D 1, _0121
+    ScrCmd_011 0x800C, 0x189
+    ScrCmd_01D 1, _0129
+    ScrCmd_029 0x4107, 0x8004
+    ScrCmd_343 0, 0x8004
+    ScrCmd_02C 3
+    ScrCmd_028 0x8005, 1
+    ScrCmd_014 0x7DF
+    ScrCmd_01E 0x129
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_0109:
+    ScrCmd_261 0, 0x4107
+    ScrCmd_02C 4
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_0119:
+    ScrCmd_028 0x8004, 94
+    ScrCmd_01B
+
+_0121:
+    ScrCmd_028 0x8004, 92
+    ScrCmd_01B
+
+_0129:
+    ScrCmd_028 0x8004, 93
+    ScrCmd_01B
+
+    .byte 0
+    .byte 0
+    .byte 0

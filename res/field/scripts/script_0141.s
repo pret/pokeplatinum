@@ -1,0 +1,416 @@
+    .include "macros/scrcmd.inc"
+
+    .data
+
+    .long _005A-.-4
+    .long _0066-.-4
+    .long _0072-.-4
+    .long _007E-.-4
+    .long _008A-.-4
+    .long _0096-.-4
+    .long _00A2-.-4
+    .long _00AE-.-4
+    .long _00BA-.-4
+    .long _00C6-.-4
+    .long _00D2-.-4
+    .long _00DE-.-4
+    .long _013E-.-4
+    .long _0333-.-4
+    .long _0346-.-4
+    .long _03B7-.-4
+    .long _0428-.-4
+    .long _043B-.-4
+    .long _044E-.-4
+    .long _0461-.-4
+    .long _0474-.-4
+    .long _04AD-.-4
+    .short 0xFD13
+
+_005A:
+    ScrCmd_028 0x8004, 0
+    ScrCmd_016 _00EA
+
+_0066:
+    ScrCmd_028 0x8004, 1
+    ScrCmd_016 _00EA
+
+_0072:
+    ScrCmd_028 0x8004, 2
+    ScrCmd_016 _00EA
+
+_007E:
+    ScrCmd_028 0x8004, 3
+    ScrCmd_016 _00EA
+
+_008A:
+    ScrCmd_028 0x8004, 4
+    ScrCmd_016 _00EA
+
+_0096:
+    ScrCmd_028 0x8004, 5
+    ScrCmd_016 _00EA
+
+_00A2:
+    ScrCmd_028 0x8004, 6
+    ScrCmd_016 _00EA
+
+_00AE:
+    ScrCmd_028 0x8004, 7
+    ScrCmd_016 _00EA
+
+_00BA:
+    ScrCmd_028 0x8004, 8
+    ScrCmd_016 _00EA
+
+_00C6:
+    ScrCmd_028 0x8004, 9
+    ScrCmd_016 _00EA
+
+_00D2:
+    ScrCmd_028 0x8004, 10
+    ScrCmd_016 _00EA
+
+_00DE:
+    ScrCmd_028 0x8004, 11
+    ScrCmd_016 _00EA
+
+_00EA:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_07E 0x1BC, 1, 0x800C
+    ScrCmd_011 0x800C, 0
+    ScrCmd_01C 1, _0133
+    ScrCmd_0BC 6, 1, 0, 0
+    ScrCmd_0BD
+    ScrCmd_1CD 16, 0, 0, 0, 0
+    ScrCmd_267 0x8004
+    ScrCmd_0A1
+    ScrCmd_0BC 6, 1, 1, 0
+    ScrCmd_0BD
+    ScrCmd_061
+    ScrCmd_002
+
+_0133:
+    ScrCmd_02C 11
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_013E:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_02C 0
+    ScrCmd_07E 0x1BC, 1, 0x800C
+    ScrCmd_011 0x800C, 0
+    ScrCmd_01C 1, _018D
+    ScrCmd_020 0x130
+    ScrCmd_01C 1, _0198
+    ScrCmd_020 0x165
+    ScrCmd_01C 1, _02CA
+    ScrCmd_275 0x800C
+    ScrCmd_011 0x800C, 0
+    ScrCmd_01C 1, _0198
+    ScrCmd_016 _02CA
+    ScrCmd_002
+
+_018D:
+    ScrCmd_02C 1
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_0198:
+    ScrCmd_075 20, 2
+    ScrCmd_072 20, 7
+_01A4:
+    ScrCmd_02C 2
+    ScrCmd_040 1, 1, 0, 1, 0x800C
+    ScrCmd_042 125, 0
+    ScrCmd_042 126, 1
+    ScrCmd_042 127, 2
+    ScrCmd_043
+    ScrCmd_029 0x8008, 0x800C
+    ScrCmd_011 0x8008, 0
+    ScrCmd_01C 1, _01E3
+    ScrCmd_011 0x8008, 1
+    ScrCmd_01C 1, _0240
+    ScrCmd_016 _02BB
+
+_01E3:
+    ScrCmd_071 0x800C, 0x3E8
+    ScrCmd_011 0x800C, 0
+    ScrCmd_01C 1, _029D
+    ScrCmd_276 0x800C, 50
+    ScrCmd_000
+    ScrCmd_011 0x800C, 0
+    ScrCmd_01C 1, _02AC
+    ScrCmd_049 0x644
+    ScrCmd_334 35, 0x3E8
+    ScrCmd_070 0x3E8
+    ScrCmd_074
+    ScrCmd_04B 0x644
+    ScrCmd_049 0x5D5
+    ScrCmd_079 50
+    ScrCmd_077
+    ScrCmd_04B 0x5D5
+    ScrCmd_02C 3
+    ScrCmd_003 30, 0x800C
+    ScrCmd_016 _01A4
+
+_0240:
+    ScrCmd_071 0x800C, 0x2710
+    ScrCmd_011 0x800C, 0
+    ScrCmd_01C 1, _029D
+    ScrCmd_276 0x800C, 0x1F4
+    ScrCmd_000
+    ScrCmd_011 0x800C, 0
+    ScrCmd_01C 1, _02AC
+    ScrCmd_049 0x644
+    ScrCmd_334 35, 0x2710
+    ScrCmd_070 0x2710
+    ScrCmd_074
+    ScrCmd_04B 0x644
+    ScrCmd_049 0x5D5
+    ScrCmd_079 0x1F4
+    ScrCmd_077
+    ScrCmd_04B 0x5D5
+    ScrCmd_02C 3
+    ScrCmd_003 30, 0x800C
+    ScrCmd_016 _01A4
+
+_029D:
+    ScrCmd_02C 4
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_076
+    ScrCmd_073
+    ScrCmd_061
+    ScrCmd_002
+
+_02AC:
+    ScrCmd_02C 5
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_076
+    ScrCmd_073
+    ScrCmd_061
+    ScrCmd_002
+
+_02BB:
+    ScrCmd_02C 6
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_076
+    ScrCmd_073
+    ScrCmd_061
+    ScrCmd_002
+
+_02CA:
+    ScrCmd_028 0x8004, 0x187
+    ScrCmd_028 0x8005, 1
+    ScrCmd_07D 0x8004, 0x8005, 0x800C
+    ScrCmd_011 0x800C, 0
+    ScrCmd_01C 1, _0327
+    ScrCmd_016 _02F3
+    ScrCmd_002
+
+_02F3:
+    ScrCmd_020 0x165
+    ScrCmd_01C 1, _0309
+    ScrCmd_02C 7
+    ScrCmd_016 _0314
+    ScrCmd_002
+
+_0309:
+    ScrCmd_02C 10
+    ScrCmd_016 _0314
+    ScrCmd_002
+
+_0314:
+    ScrCmd_014 0x7FC
+    ScrCmd_01E 0x130
+    ScrCmd_02C 8
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_0327:
+    ScrCmd_01E 0x165
+    ScrCmd_016 _0198
+    ScrCmd_002
+
+_0333:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_02C 12
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_0346:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_07E 0x1BC, 1, 0x800C
+    ScrCmd_011 0x800C, 0
+    ScrCmd_01C 1, _03A1
+    ScrCmd_020 0x12E
+    ScrCmd_01C 1, _03AC
+    ScrCmd_276 0x800C, 20
+    ScrCmd_000
+    ScrCmd_011 0x800C, 0
+    ScrCmd_01C 1, _03AC
+    ScrCmd_01E 0x12E
+    ScrCmd_0CD 0
+    ScrCmd_02C 14
+    ScrCmd_031
+    ScrCmd_049 0x5D5
+    ScrCmd_079 20
+    ScrCmd_04B 0x5D5
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_03A1:
+    ScrCmd_02C 13
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_03AC:
+    ScrCmd_02C 15
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_03B7:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_07E 0x1BC, 1, 0x800C
+    ScrCmd_011 0x800C, 0
+    ScrCmd_01C 1, _0412
+    ScrCmd_020 0x12F
+    ScrCmd_01C 1, _041D
+    ScrCmd_276 0x800C, 50
+    ScrCmd_000
+    ScrCmd_011 0x800C, 0
+    ScrCmd_01C 1, _041D
+    ScrCmd_01E 0x12F
+    ScrCmd_0CD 0
+    ScrCmd_02C 17
+    ScrCmd_031
+    ScrCmd_049 0x5D5
+    ScrCmd_079 50
+    ScrCmd_04B 0x5D5
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_0412:
+    ScrCmd_02C 16
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_041D:
+    ScrCmd_02C 18
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_0428:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_02C 19
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_043B:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_02C 20
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_044E:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_02C 21
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_0461:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_02C 22
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_0474:
+    ScrCmd_011 0x4040, 0x3E7
+    ScrCmd_01C 2, _0497
+    ScrCmd_0D5 0, 0x4040
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_02C 25
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_0497:
+    ScrCmd_0D5 0, 0x3E7
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_02C 25
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_04AD:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_020 214
+    ScrCmd_01C 1, _04CB
+    ScrCmd_02C 23
+    ScrCmd_016 _04D6
+    ScrCmd_002
+
+_04CB:
+    ScrCmd_02C 24
+    ScrCmd_016 _04D6
+    ScrCmd_002
+
+_04D6:
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+    .byte 0
+    .byte 0

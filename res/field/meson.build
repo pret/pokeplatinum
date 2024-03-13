@@ -1,1 +1,2 @@
 subdir('encounters')
+subdir('scripts')

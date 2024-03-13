@@ -1,0 +1,1459 @@
+    .include "macros/scrcmd.inc"
+
+    .data
+
+    .long _01BF-.-4
+    .long _04FC-.-4
+    .long _050F-.-4
+    .long _0522-.-4
+    .long _00BF-.-4
+    .long _00E5-.-4
+    .long _00D2-.-4
+    .long _010E-.-4
+    .long _0535-.-4
+    .long _0548-.-4
+    .long _055B-.-4
+    .long _0137-.-4
+    .long _014E-.-4
+    .long _0163-.-4
+    .long _017A-.-4
+    .long _0191-.-4
+    .long _01A8-.-4
+    .long _056E-.-4
+    .long _057F-.-4
+    .long _05B0-.-4
+    .long _0072-.-4
+    .long _0770-.-4
+    .long _07BA-.-4
+    .long _08FC-.-4
+    .long _0954-.-4
+    .long _0D00-.-4
+    .long _0FDC-.-4
+    .long _0EB4-.-4
+    .short 0xFD13
+
+_0072:
+    ScrCmd_011 0x407A, 4
+    ScrCmd_01D 1, _00B5
+    ScrCmd_07E 0x1C2, 1, 0x4000
+    ScrCmd_011 0x4000, 1
+    ScrCmd_01C 1, _0096
+    ScrCmd_002
+
+_0096:
+    ScrCmd_07E 0x1AC, 1, 0x4000
+    ScrCmd_011 0x4000, 1
+    ScrCmd_01C 1, _00AD
+    ScrCmd_002
+
+_00AD:
+    ScrCmd_028 0x4114, 0
+    ScrCmd_002
+
+_00B5:
+    ScrCmd_186 12, 0x133, 0x21D
+    ScrCmd_01B
+
+_00BF:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_02C 25
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_00D2:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_02C 26
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_00E5:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_020 129
+    ScrCmd_01C 1, _0103
+    ScrCmd_02C 21
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_0103:
+    ScrCmd_02C 22
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_010E:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_020 129
+    ScrCmd_01C 1, _012C
+    ScrCmd_02C 23
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_012C:
+    ScrCmd_02C 24
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_0137:
+    ScrCmd_036 36, 0, 0, 0x800C
+    ScrCmd_038 3
+    ScrCmd_039
+    ScrCmd_03B 0x800C
+    ScrCmd_014 0x7D0
+    ScrCmd_002
+
+_014E:
+    ScrCmd_037 3, 0
+    ScrCmd_038 3
+    ScrCmd_039
+    ScrCmd_03A 37, 0x800C
+    ScrCmd_014 0x7D0
+    ScrCmd_002
+
+_0163:
+    ScrCmd_036 38, 2, 0, 0x800C
+    ScrCmd_038 3
+    ScrCmd_039
+    ScrCmd_03B 0x800C
+    ScrCmd_014 0x7D0
+    ScrCmd_002
+
+_017A:
+    ScrCmd_036 39, 2, 0, 0x800C
+    ScrCmd_038 3
+    ScrCmd_039
+    ScrCmd_03B 0x800C
+    ScrCmd_014 0x7D0
+    ScrCmd_002
+
+_0191:
+    ScrCmd_036 40, 2, 0, 0x800C
+    ScrCmd_038 3
+    ScrCmd_039
+    ScrCmd_03B 0x800C
+    ScrCmd_014 0x7D0
+    ScrCmd_002
+
+_01A8:
+    ScrCmd_036 41, 2, 0, 0x800C
+    ScrCmd_038 3
+    ScrCmd_039
+    ScrCmd_03B 0x800C
+    ScrCmd_014 0x7D0
+    ScrCmd_002
+
+_01BF:
+    ScrCmd_060
+    ScrCmd_069 0x8004, 0x8005
+    ScrCmd_011 0x8005, 0x20A
+    ScrCmd_01C 1, _01FD
+    ScrCmd_011 0x8005, 0x20B
+    ScrCmd_01C 1, _0256
+    ScrCmd_011 0x8005, 0x20C
+    ScrCmd_01C 1, _0266
+    ScrCmd_011 0x8005, 0x20D
+    ScrCmd_01C 1, _0276
+    ScrCmd_002
+
+_01FD:
+    ScrCmd_011 0x8004, 0x130
+    ScrCmd_01C 1, _0226
+    ScrCmd_011 0x8004, 0x131
+    ScrCmd_01C 1, _0236
+    ScrCmd_011 0x8004, 0x132
+    ScrCmd_01C 1, _0246
+    ScrCmd_002
+
+_0226:
+    ScrCmd_186 12, 0x139, 0x20C
+    ScrCmd_016 _0286
+    ScrCmd_002
+
+_0236:
+    ScrCmd_186 12, 0x13A, 0x20C
+    ScrCmd_016 _0286
+    ScrCmd_002
+
+_0246:
+    ScrCmd_186 12, 0x13B, 0x20C
+    ScrCmd_016 _0286
+    ScrCmd_002
+
+_0256:
+    ScrCmd_186 12, 0x139, 0x20B
+    ScrCmd_016 _0286
+    ScrCmd_002
+
+_0266:
+    ScrCmd_186 12, 0x139, 0x20C
+    ScrCmd_016 _0286
+    ScrCmd_002
+
+_0276:
+    ScrCmd_186 12, 0x139, 0x20D
+    ScrCmd_016 _0286
+    ScrCmd_002
+
+_0286:
+    ScrCmd_01F 0x180
+    ScrCmd_064 12
+    ScrCmd_062 12
+    ScrCmd_011 0x8005, 0x20A
+    ScrCmd_01D 1, _034B
+    ScrCmd_011 0x8005, 0x20A
+    ScrCmd_01D 5, _0361
+    ScrCmd_0CD 0
+    ScrCmd_02C 6
+    ScrCmd_034
+    ScrCmd_011 0x8005, 0x20A
+    ScrCmd_01D 1, _0377
+    ScrCmd_011 0x8005, 0x20A
+    ScrCmd_01D 5, _0383
+    ScrCmd_02C 7
+    ScrCmd_028 0x8004, 0x1A4
+    ScrCmd_028 0x8005, 1
+    ScrCmd_014 0x7FC
+    ScrCmd_02C 8
+    ScrCmd_034
+    ScrCmd_069 0x8004, 0x8005
+    ScrCmd_011 0x8005, 0x20A
+    ScrCmd_01C 1, _0322
+    ScrCmd_011 0x8005, 0x20B
+    ScrCmd_01C 1, _03DD
+    ScrCmd_011 0x8005, 0x20C
+    ScrCmd_01C 1, _03F7
+    ScrCmd_011 0x8005, 0x20D
+    ScrCmd_01C 1, _0411
+    ScrCmd_002
+
+_0322:
+    ScrCmd_011 0x8004, 0x130
+    ScrCmd_01C 1, _038F
+    ScrCmd_011 0x8004, 0x131
+    ScrCmd_01C 1, _03A9
+    ScrCmd_011 0x8004, 0x132
+    ScrCmd_01C 1, _03C3
+    ScrCmd_002
+
+_034B:
+    ScrCmd_05E 12, _043C
+    ScrCmd_05F
+    ScrCmd_05E 0xFF, _04D4
+    ScrCmd_05F
+    ScrCmd_01B
+
+_0361:
+    ScrCmd_05E 12, _0450
+    ScrCmd_05F
+    ScrCmd_05E 0xFF, _04DC
+    ScrCmd_05F
+    ScrCmd_01B
+
+_0377:
+    ScrCmd_05E 12, _0460
+    ScrCmd_05F
+    ScrCmd_01B
+
+_0383:
+    ScrCmd_05E 12, _0470
+    ScrCmd_05F
+    ScrCmd_01B
+
+_038F:
+    ScrCmd_05E 12, _0480
+    ScrCmd_05E 0xFF, _04E4
+    ScrCmd_05F
+    ScrCmd_016 _042B
+    ScrCmd_002
+
+_03A9:
+    ScrCmd_05E 12, _048C
+    ScrCmd_05E 0xFF, _04E4
+    ScrCmd_05F
+    ScrCmd_016 _042B
+    ScrCmd_002
+
+_03C3:
+    ScrCmd_05E 12, _0498
+    ScrCmd_05E 0xFF, _04E4
+    ScrCmd_05F
+    ScrCmd_016 _042B
+    ScrCmd_002
+
+_03DD:
+    ScrCmd_05E 12, _04A4
+    ScrCmd_05E 0xFF, _04F0
+    ScrCmd_05F
+    ScrCmd_016 _042B
+    ScrCmd_002
+
+_03F7:
+    ScrCmd_05E 12, _04B4
+    ScrCmd_05E 0xFF, _04F0
+    ScrCmd_05F
+    ScrCmd_016 _042B
+    ScrCmd_002
+
+_0411:
+    ScrCmd_05E 12, _04C4
+    ScrCmd_05E 0xFF, _04F0
+    ScrCmd_05F
+    ScrCmd_016 _042B
+    ScrCmd_002
+
+_042B:
+    ScrCmd_065 12
+    ScrCmd_028 0x407A, 2
+    ScrCmd_061
+    ScrCmd_002
+
+    .balign 4, 0
+_043C:
+    .short 14, 4
+    .short 75, 1
+    .short 14, 5
+    .short 12, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0450:
+    .short 14, 4
+    .short 75, 1
+    .short 14, 4
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0460:
+    .short 35, 1
+    .short 63, 2
+    .short 32, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0470:
+    .short 35, 1
+    .short 63, 2
+    .short 34, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0480:
+    .short 14, 5
+    .short 13, 10
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_048C:
+    .short 14, 6
+    .short 13, 10
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0498:
+    .short 14, 7
+    .short 13, 10
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_04A4:
+    .short 13, 1
+    .short 14, 6
+    .short 13, 10
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_04B4:
+    .short 13, 1
+    .short 14, 6
+    .short 13, 10
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_04C4:
+    .short 12, 1
+    .short 14, 6
+    .short 13, 11
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_04D4:
+    .short 33, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_04DC:
+    .short 35, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_04E4:
+    .short 63, 1
+    .short 34, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_04F0:
+    .short 63, 2
+    .short 34, 1
+    .short 0xFE, 0x00
+
+_04FC:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_02C 18
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_050F:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_02C 19
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_0522:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_02C 20
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_0535:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_02C 27
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_0548:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_02C 28
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_055B:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_02C 29
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_056E:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_02C 42
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_057F:
+    ScrCmd_020 121
+    ScrCmd_01C 1, _059D
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_02C 31
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_059D:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_02C 32
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_061
+    ScrCmd_002
+
+_05B0:
+    ScrCmd_060
+    ScrCmd_069 0x8004, 0x8005
+    ScrCmd_011 0x8004, 0x12F
+    ScrCmd_01D 1, _0657
+    ScrCmd_011 0x8004, 0x130
+    ScrCmd_01D 1, _0663
+    ScrCmd_011 0x8004, 0x131
+    ScrCmd_01D 1, _066F
+    ScrCmd_011 0x8004, 0x132
+    ScrCmd_01D 1, _067B
+    ScrCmd_011 0x8004, 0x133
+    ScrCmd_01D 1, _0687
+    ScrCmd_05E 0xFF, _0760
+    ScrCmd_05F
+    ScrCmd_02C 30
+    ScrCmd_034
+    ScrCmd_011 0x8004, 0x12F
+    ScrCmd_01D 1, _0693
+    ScrCmd_011 0x8004, 0x130
+    ScrCmd_01D 1, _0695
+    ScrCmd_011 0x8004, 0x131
+    ScrCmd_01D 1, _06A1
+    ScrCmd_011 0x8004, 0x132
+    ScrCmd_01D 1, _06AD
+    ScrCmd_011 0x8004, 0x133
+    ScrCmd_01D 1, _06B9
+    ScrCmd_05E 0xFF, _0768
+    ScrCmd_05F
+    ScrCmd_061
+    ScrCmd_002
+
+_0657:
+    ScrCmd_05E 28, _06C8
+    ScrCmd_05F
+    ScrCmd_01B
+
+_0663:
+    ScrCmd_05E 28, _06D8
+    ScrCmd_05F
+    ScrCmd_01B
+
+_066F:
+    ScrCmd_05E 28, _06EC
+    ScrCmd_05F
+    ScrCmd_01B
+
+_067B:
+    ScrCmd_05E 28, _0700
+    ScrCmd_05F
+    ScrCmd_01B
+
+_0687:
+    ScrCmd_05E 28, _0714
+    ScrCmd_05F
+    ScrCmd_01B
+
+_0693:
+    ScrCmd_01B
+
+_0695:
+    ScrCmd_05E 28, _0730
+    ScrCmd_05F
+    ScrCmd_01B
+
+_06A1:
+    ScrCmd_05E 28, _073C
+    ScrCmd_05F
+    ScrCmd_01B
+
+_06AD:
+    ScrCmd_05E 28, _0748
+    ScrCmd_05F
+    ScrCmd_01B
+
+_06B9:
+    ScrCmd_05E 28, _0754
+    ScrCmd_05F
+    ScrCmd_01B
+
+    .balign 4, 0
+_06C8:
+    .short 39, 1
+    .short 75, 1
+    .short 62, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_06D8:
+    .short 39, 1
+    .short 75, 1
+    .short 62, 1
+    .short 15, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_06EC:
+    .short 39, 1
+    .short 75, 1
+    .short 62, 1
+    .short 15, 2
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0700:
+    .short 39, 1
+    .short 75, 1
+    .short 62, 1
+    .short 15, 3
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0714:
+    .short 39, 1
+    .short 75, 1
+    .short 62, 1
+    .short 15, 4
+    .short 0xFE, 0x00
+
+    .byte 39
+    .byte 0
+    .byte 1
+    .byte 0
+    .byte 254
+    .byte 0
+    .byte 0
+    .byte 0
+
+    .balign 4, 0
+_0730:
+    .short 14, 1
+    .short 39, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_073C:
+    .short 14, 2
+    .short 39, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0748:
+    .short 14, 3
+    .short 39, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0754:
+    .short 14, 4
+    .short 39, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0760:
+    .short 34, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0768:
+    .short 12, 1
+    .short 0xFE, 0x00
+
+_0770:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_020 130
+    ScrCmd_01C 0, _07A5
+    ScrCmd_011 0x408C, 1
+    ScrCmd_01C 4, _07A5
+    ScrCmd_02C 34
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_05E 30, _0898
+    ScrCmd_05F
+    ScrCmd_061
+    ScrCmd_002
+
+_07A5:
+    ScrCmd_02C 35
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_05E 30, _0898
+    ScrCmd_05F
+    ScrCmd_061
+    ScrCmd_002
+
+_07BA:
+    ScrCmd_060
+    ScrCmd_069 0x8004, 0x8005
+    ScrCmd_011 0x8005, 0x214
+    ScrCmd_01D 1, _0823
+    ScrCmd_011 0x8005, 0x215
+    ScrCmd_01D 1, _082F
+    ScrCmd_011 0x8005, 0x216
+    ScrCmd_01D 1, _083B
+    ScrCmd_05E 0xFF, _0890
+    ScrCmd_05F
+    ScrCmd_02C 33
+    ScrCmd_034
+    ScrCmd_011 0x8005, 0x214
+    ScrCmd_01D 1, _0847
+    ScrCmd_011 0x8005, 0x215
+    ScrCmd_01D 1, _085B
+    ScrCmd_011 0x8005, 0x216
+    ScrCmd_01D 1, _086F
+    ScrCmd_061
+    ScrCmd_002
+
+_0823:
+    ScrCmd_05E 30, _08A0
+    ScrCmd_05F
+    ScrCmd_01B
+
+_082F:
+    ScrCmd_05E 30, _08AC
+    ScrCmd_05F
+    ScrCmd_01B
+
+_083B:
+    ScrCmd_05E 30, _08BC
+    ScrCmd_05F
+    ScrCmd_01B
+
+_0847:
+    ScrCmd_05E 30, _08CC
+    ScrCmd_05E 0xFF, _0884
+    ScrCmd_05F
+    ScrCmd_01B
+
+_085B:
+    ScrCmd_05E 30, _08DC
+    ScrCmd_05E 0xFF, _0884
+    ScrCmd_05F
+    ScrCmd_01B
+
+_086F:
+    ScrCmd_05E 30, _08EC
+    ScrCmd_05E 0xFF, _0884
+    ScrCmd_05F
+    ScrCmd_01B
+
+    .balign 4, 0
+_0884:
+    .short 15, 1
+    .short 34, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0890:
+    .short 0, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0898:
+    .short 1, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_08A0:
+    .short 1, 1
+    .short 75, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_08AC:
+    .short 1, 1
+    .short 75, 1
+    .short 13, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_08BC:
+    .short 1, 1
+    .short 75, 1
+    .short 13, 2
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_08CC:
+    .short 13, 1
+    .short 12, 1
+    .short 33, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_08DC:
+    .short 13, 1
+    .short 12, 2
+    .short 33, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_08EC:
+    .short 13, 1
+    .short 12, 3
+    .short 33, 1
+    .short 0xFE, 0x00
+
+_08FC:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_0CE 0
+    ScrCmd_02C 17
+    ScrCmd_034
+    ScrCmd_05E 31, _0944
+    ScrCmd_05F
+    ScrCmd_168 9, 17, 24, 18, 77
+    ScrCmd_16B 77
+    ScrCmd_169 77
+    ScrCmd_05E 31, _094C
+    ScrCmd_05F
+    ScrCmd_065 31
+    ScrCmd_16C 77
+    ScrCmd_169 77
+    ScrCmd_16A 77
+    ScrCmd_061
+    ScrCmd_002
+
+    .balign 4, 0
+_0944:
+    .short 32, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_094C:
+    .short 12, 1
+    .short 0xFE, 0x00
+
+_0954:
+    ScrCmd_060
+    ScrCmd_32D
+    ScrCmd_331
+    ScrCmd_186 33, 0x12B, 0x215
+    ScrCmd_01F 0x18C
+    ScrCmd_064 33
+    ScrCmd_062 33
+    ScrCmd_069 0x8004, 0x8005
+    ScrCmd_011 0x8005, 0x20B
+    ScrCmd_01C 1, _099D
+    ScrCmd_011 0x8005, 0x20C
+    ScrCmd_01C 1, _09B7
+    ScrCmd_011 0x8005, 0x20D
+    ScrCmd_01C 1, _09D1
+    ScrCmd_002
+
+_099D:
+    ScrCmd_05E 33, _0B58
+    ScrCmd_05E 0xFF, _0BDC
+    ScrCmd_05F
+    ScrCmd_016 _09EB
+    ScrCmd_002
+
+_09B7:
+    ScrCmd_05E 33, _0B64
+    ScrCmd_05E 0xFF, _0BFC
+    ScrCmd_05F
+    ScrCmd_016 _09EB
+    ScrCmd_002
+
+_09D1:
+    ScrCmd_05E 33, _0B70
+    ScrCmd_05E 0xFF, _0C1C
+    ScrCmd_05F
+    ScrCmd_016 _09EB
+    ScrCmd_002
+
+_09EB:
+    ScrCmd_049 0x602
+    ScrCmd_02C 0
+    ScrCmd_034
+    ScrCmd_014 0x7FA
+    ScrCmd_0CE 0
+    ScrCmd_0CD 1
+    ScrCmd_02C 1
+    ScrCmd_034
+    ScrCmd_069 0x8004, 0x8005
+    ScrCmd_011 0x8005, 0x20B
+    ScrCmd_01C 1, _0A32
+    ScrCmd_011 0x8005, 0x20C
+    ScrCmd_01C 1, _0A5E
+    ScrCmd_011 0x8005, 0x20D
+    ScrCmd_01C 1, _0A8A
+    ScrCmd_002
+
+_0A32:
+    ScrCmd_05E 33, _0B7C
+    ScrCmd_05E 0xFF, _0C3C
+    ScrCmd_05F
+    ScrCmd_05E 33, _0BB0
+    ScrCmd_05E 0xFF, _0C74
+    ScrCmd_05F
+    ScrCmd_016 _0AB6
+    ScrCmd_002
+
+_0A5E:
+    ScrCmd_05E 33, _0B8C
+    ScrCmd_05E 0xFF, _0C4C
+    ScrCmd_05F
+    ScrCmd_05E 33, _0BB8
+    ScrCmd_05E 0xFF, _0C88
+    ScrCmd_05F
+    ScrCmd_016 _0AB6
+    ScrCmd_002
+
+_0A8A:
+    ScrCmd_05E 33, _0BA0
+    ScrCmd_05E 0xFF, _0C64
+    ScrCmd_05F
+    ScrCmd_05E 33, _0BB0
+    ScrCmd_05E 0xFF, _0C98
+    ScrCmd_05F
+    ScrCmd_016 _0AB6
+    ScrCmd_002
+
+_0AB6:
+    ScrCmd_0CE 0
+    ScrCmd_02C 2
+    ScrCmd_034
+    ScrCmd_014 0x7FB
+    ScrCmd_32E
+    ScrCmd_332
+    ScrCmd_066 0x143, 0x20C
+    ScrCmd_05E 241, _0CD4
+    ScrCmd_05F
+    ScrCmd_02C 3
+    ScrCmd_034
+    ScrCmd_003 15, 0x800C
+    ScrCmd_05E 32, _0CE4
+    ScrCmd_05E 241, _0CDC
+    ScrCmd_05F
+    ScrCmd_067
+    ScrCmd_02C 4
+    ScrCmd_034
+    ScrCmd_05E 32, _0CF4
+    ScrCmd_05E 33, _0BC0
+    ScrCmd_05E 0xFF, _0CAC
+    ScrCmd_05F
+    ScrCmd_065 32
+    ScrCmd_003 35, 0x800C
+    ScrCmd_05E 33, _0BD4
+    ScrCmd_05E 0xFF, _0CC0
+    ScrCmd_05F
+    ScrCmd_0CE 0
+    ScrCmd_02C 5
+    ScrCmd_034
+    ScrCmd_05E 33, _0BCC
+    ScrCmd_05E 0xFF, _0CC8
+    ScrCmd_05F
+    ScrCmd_065 33
+    ScrCmd_028 0x407A, 1
+    ScrCmd_061
+    ScrCmd_002
+
+    .balign 4, 0
+_0B58:
+    .short 16, 10
+    .short 19, 4
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0B64:
+    .short 16, 9
+    .short 19, 4
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0B70:
+    .short 16, 8
+    .short 19, 4
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0B7C:
+    .short 13, 1
+    .short 15, 1
+    .short 32, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0B8C:
+    .short 13, 1
+    .short 15, 2
+    .short 12, 1
+    .short 34, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0BA0:
+    .short 12, 1
+    .short 15, 1
+    .short 33, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0BB0:
+    .short 15, 19
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0BB8:
+    .short 15, 18
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0BC0:
+    .short 63, 3
+    .short 38, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0BCC:
+    .short 18, 12
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0BD4:
+    .short 17, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0BDC:
+    .short 62, 10
+    .short 61, 1
+    .short 60, 1
+    .short 71, 1
+    .short 19, 1
+    .short 72, 1
+    .short 2, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0BFC:
+    .short 62, 9
+    .short 61, 1
+    .short 60, 1
+    .short 71, 1
+    .short 19, 1
+    .short 72, 1
+    .short 2, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0C1C:
+    .short 62, 8
+    .short 61, 1
+    .short 60, 1
+    .short 71, 1
+    .short 19, 1
+    .short 72, 1
+    .short 2, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0C3C:
+    .short 63, 1
+    .short 62, 1
+    .short 33, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0C4C:
+    .short 63, 1
+    .short 62, 1
+    .short 33, 1
+    .short 62, 1
+    .short 35, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0C64:
+    .short 63, 1
+    .short 62, 1
+    .short 32, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0C74:
+    .short 13, 1
+    .short 15, 18
+    .short 13, 1
+    .short 15, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0C88:
+    .short 15, 18
+    .short 13, 1
+    .short 15, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0C98:
+    .short 12, 1
+    .short 15, 18
+    .short 13, 1
+    .short 15, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0CAC:
+    .short 13, 1
+    .short 35, 1
+    .short 63, 2
+    .short 34, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0CC0:
+    .short 32, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0CC8:
+    .short 63, 1
+    .short 34, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0CD4:
+    .short 15, 4
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0CDC:
+    .short 14, 4
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0CE4:
+    .short 14, 3
+    .short 12, 1
+    .short 34, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0CF4:
+    .short 63, 2
+    .short 14, 14
+    .short 0xFE, 0x00
+
+_0D00:
+    ScrCmd_060
+    ScrCmd_189 12, 3
+    ScrCmd_188 12, 17
+    ScrCmd_069 0x8004, 0x8005
+    ScrCmd_011 0x8005, 0x21C
+    ScrCmd_01C 1, _0D64
+    ScrCmd_011 0x8005, 0x21D
+    ScrCmd_01C 1, _0D7A
+    ScrCmd_011 0x8005, 0x21E
+    ScrCmd_01C 1, _0D90
+    ScrCmd_011 0x8005, 0x21F
+    ScrCmd_01C 1, _0DA6
+    ScrCmd_011 0x8005, 0x220
+    ScrCmd_01C 1, _0DBC
+    ScrCmd_011 0x8005, 0x221
+    ScrCmd_01C 1, _0DD2
+    ScrCmd_002
+
+_0D64:
+    ScrCmd_186 12, 0x130, 0x224
+    ScrCmd_01A _0DE8
+    ScrCmd_016 _0DF6
+    ScrCmd_002
+
+_0D7A:
+    ScrCmd_186 12, 0x130, 0x225
+    ScrCmd_01A _0DE8
+    ScrCmd_016 _0DF6
+    ScrCmd_002
+
+_0D90:
+    ScrCmd_186 12, 0x130, 0x226
+    ScrCmd_01A _0DE8
+    ScrCmd_016 _0DF6
+    ScrCmd_002
+
+_0DA6:
+    ScrCmd_186 12, 0x130, 0x227
+    ScrCmd_01A _0DE8
+    ScrCmd_016 _0DF6
+    ScrCmd_002
+
+_0DBC:
+    ScrCmd_186 12, 0x130, 0x228
+    ScrCmd_01A _0DE8
+    ScrCmd_016 _0DF6
+    ScrCmd_002
+
+_0DD2:
+    ScrCmd_186 12, 0x130, 0x229
+    ScrCmd_01A _0DE8
+    ScrCmd_016 _0DF6
+    ScrCmd_002
+
+_0DE8:
+    ScrCmd_01F 0x180
+    ScrCmd_064 12
+    ScrCmd_062 12
+    ScrCmd_01B
+
+_0DF6:
+    ScrCmd_05E 12, _0E88
+    ScrCmd_05F
+    ScrCmd_05E 0xFF, _0EAC
+    ScrCmd_05F
+    ScrCmd_02C 9
+    ScrCmd_03E 0x800C
+    ScrCmd_011 0x800C, 1
+    ScrCmd_01C 1, _0E75
+    ScrCmd_177 0x800C
+    ScrCmd_011 0x800C, 6
+    ScrCmd_01C 4, _0E67
+    ScrCmd_01A _0E4B
+    ScrCmd_05E 12, _0EA0
+    ScrCmd_05F
+    ScrCmd_065 12
+    ScrCmd_016 _0E83
+    ScrCmd_002
+
+_0E4B:
+    ScrCmd_04E 0x486
+    ScrCmd_04F
+    ScrCmd_02C 10
+    ScrCmd_02C 16
+    ScrCmd_034
+    ScrCmd_097 175, 11
+    ScrCmd_028 0x407A, 5
+    ScrCmd_01B
+
+_0E67:
+    ScrCmd_01A _0FBE
+    ScrCmd_016 _0E83
+    ScrCmd_002
+
+_0E75:
+    ScrCmd_01A _0FCD
+    ScrCmd_016 _0E83
+    ScrCmd_002
+
+_0E83:
+    ScrCmd_061
+    ScrCmd_002
+
+    .balign 4, 0
+_0E88:
+    .short 12, 3
+    .short 75, 1
+    .short 12, 5
+    .short 15, 2
+    .short 15, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0EA0:
+    .short 14, 3
+    .short 13, 9
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_0EAC:
+    .short 34, 1
+    .short 0xFE, 0x00
+
+_0EB4:
+    ScrCmd_049 0x5DC
+    ScrCmd_060
+    ScrCmd_068
+    ScrCmd_011 0x407A, 4
+    ScrCmd_01C 1, _0ECD
+    ScrCmd_061
+    ScrCmd_002
+
+_0ECD:
+    ScrCmd_02C 14
+    ScrCmd_03E 0x800C
+    ScrCmd_011 0x800C, 1
+    ScrCmd_01C 1, _0FAC
+    ScrCmd_177 0x800C
+    ScrCmd_011 0x800C, 6
+    ScrCmd_01C 4, _0F9E
+    ScrCmd_01A _0E4B
+    ScrCmd_1BD 0x800C
+    ScrCmd_011 0x800C, 0
+    ScrCmd_01C 1, _0F32
+    ScrCmd_011 0x800C, 1
+    ScrCmd_01C 1, _0F4C
+    ScrCmd_011 0x800C, 2
+    ScrCmd_01C 1, _0F66
+    ScrCmd_011 0x800C, 3
+    ScrCmd_01C 1, _0F78
+    ScrCmd_002
+
+_0F32:
+    ScrCmd_05E 12, _10BC
+    ScrCmd_05E 0xFF, _10E0
+    ScrCmd_05F
+    ScrCmd_016 _0F92
+    ScrCmd_002
+
+_0F4C:
+    ScrCmd_05E 12, _10BC
+    ScrCmd_05E 0xFF, _10E0
+    ScrCmd_05F
+    ScrCmd_016 _0F92
+    ScrCmd_002
+
+_0F66:
+    ScrCmd_05E 12, _10BC
+    ScrCmd_05F
+    ScrCmd_016 _0F92
+    ScrCmd_002
+
+_0F78:
+    ScrCmd_05E 12, _10C8
+    ScrCmd_05E 0xFF, _10EC
+    ScrCmd_05F
+    ScrCmd_016 _0F92
+    ScrCmd_002
+
+_0F92:
+    ScrCmd_065 12
+    ScrCmd_016 _0FBA
+    ScrCmd_002
+
+_0F9E:
+    ScrCmd_01A _0FBE
+    ScrCmd_016 _0FBA
+    ScrCmd_002
+
+_0FAC:
+    ScrCmd_01A _0FCD
+    ScrCmd_016 _0FBA
+    ScrCmd_002
+
+_0FBA:
+    ScrCmd_061
+    ScrCmd_002
+
+_0FBE:
+    ScrCmd_028 0x407A, 4
+    ScrCmd_02C 11
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_01B
+
+_0FCD:
+    ScrCmd_02C 12
+    ScrCmd_031
+    ScrCmd_034
+    ScrCmd_028 0x407A, 4
+    ScrCmd_01B
+
+_0FDC:
+    ScrCmd_060
+    ScrCmd_069 0x8004, 0x8005
+    ScrCmd_011 0x8005, 0x21C
+    ScrCmd_01C 1, _1034
+    ScrCmd_011 0x8005, 0x21D
+    ScrCmd_01C 1, _1046
+    ScrCmd_011 0x8005, 0x21E
+    ScrCmd_01C 1, _1058
+    ScrCmd_011 0x8005, 0x21F
+    ScrCmd_01C 1, _106A
+    ScrCmd_011 0x8005, 0x220
+    ScrCmd_01C 1, _107C
+    ScrCmd_011 0x8005, 0x221
+    ScrCmd_01C 1, _108E
+    ScrCmd_002
+
+_1034:
+    ScrCmd_05E 12, _10B4
+    ScrCmd_05F
+    ScrCmd_016 _10A0
+    ScrCmd_002
+
+_1046:
+    ScrCmd_05E 12, _10B4
+    ScrCmd_05F
+    ScrCmd_016 _10A0
+    ScrCmd_002
+
+_1058:
+    ScrCmd_05E 12, _10B4
+    ScrCmd_05F
+    ScrCmd_016 _10A0
+    ScrCmd_002
+
+_106A:
+    ScrCmd_05E 12, _10B4
+    ScrCmd_05F
+    ScrCmd_016 _10A0
+    ScrCmd_002
+
+_107C:
+    ScrCmd_05E 12, _10B4
+    ScrCmd_05F
+    ScrCmd_016 _10A0
+    ScrCmd_002
+
+_108E:
+    ScrCmd_05E 12, _10B4
+    ScrCmd_05F
+    ScrCmd_016 _10A0
+    ScrCmd_002
+
+_10A0:
+    ScrCmd_02C 13
+    ScrCmd_034
+    ScrCmd_05E 0xFF, _10D8
+    ScrCmd_05F
+    ScrCmd_061
+    ScrCmd_002
+
+    .balign 4, 0
+_10B4:
+    .short 35, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_10BC:
+    .short 14, 3
+    .short 13, 9
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_10C8:
+    .short 13, 1
+    .short 14, 3
+    .short 13, 8
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_10D8:
+    .short 14, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_10E0:
+    .short 63, 1
+    .short 34, 1
+    .short 0xFE, 0x00
+
+    .balign 4, 0
+_10EC:
+    .short 63, 2
+    .short 62, 1
+    .short 34, 1
+    .short 0xFE, 0x00
