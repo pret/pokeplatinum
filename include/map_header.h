@@ -1,9 +1,18 @@
 #ifndef POKEPLATINUM_UNK_0203A024_H
 #define POKEPLATINUM_UNK_0203A024_H
 
+#define MAP_HEADER_BIKE_ALLOWED 1
+#define MAP_HEADER_BIKE_NOT_ALLOWED 0
+#define MAP_HEADER_RUNNING_ALLOWED 1
+#define MAP_HEADER_RUNNING_NOT_ALLOWED 0
+#define MAP_HEADER_ESCAPE_ROPE_ALLOWED 1
+#define MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED 0
+#define MAP_HEADER_FLY_ALLOWED 1
+#define MAP_HEADER_FLY_NOT_ALLOWED 0
+
 typedef struct {
     u8 unk_00;
-    u8 unk_01;
+    u8 unk_01; //3d model of map?
     u16 mapMatrixID;
     u16 scriptsArchiveID;
     u16 mapScriptArchiveID;
@@ -12,8 +21,8 @@ typedef struct {
     u16 nightMusicID;
     u16 wildEncountersArchiveID;
     u16 eventsArchiveID;
-    u16 unk_12_0 : 8;
-    u16 unk_12_8 : 8;
+    u16 unk_12_0 : 8; //mapLabelTextID
+    u16 unk_12_8 : 8; //mapLabelWindowID
     u8 weather;
     u8 cameraType;
     u16 mapType : 7;
@@ -36,8 +45,8 @@ u16 MapHeader_GetNightMusicID(u32 param0);
 BOOL MapHeader_HasWildEncounters(u32 param0);
 u32 MapHeader_GetWildEncountersArchiveID(u32 param0);
 u32 MapHeader_GetEventsArchiveID(u32 param0);
-u32 sub_0203A138(u32 param0);
-u8 sub_0203A154(u32 param0);
+u32 sub_0203A138(u32 param0); //MapHeader_GetMapLabelTextID
+u8 sub_0203A154(u32 param0); //MapHeader_GetMapLabelWindowID
 u32 MapHeader_GetWeatherType(u32 param0);
 u32 MapHeader_GetCameraType(u32 param0);
 u32 MapHeader_GetBattleBG(u32 param0);

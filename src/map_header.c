@@ -7,13048 +7,13048 @@ static const MapHeader mapHeaders[] = {
 	{
 		0x0,
 		0x0,
-		0x0,
-		0x191,
-		0x381,	
-		0x17,
-		0x3E8,
-		0x3E8,
-		0xFFFF,
-		0x0,
-		0x0,
-		0x6,
-		0x0,
-		0x0,
-		0x2,
-		0x3,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0x0,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x3E8,      //Day Music ID
+		0x3E8,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x3,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x0,
 		0x0,
-		0x0,
-		0x191,
-		0x381,	
-		0x17,
-		0x3E8,
-		0x3E8,
-		0xFFFF,
-		0x0,
-		0x0,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x3,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x0,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x3E8,      //Day Music ID
+		0x3E8,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x0,      //Map Type
+		0x3,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x2,
 		0x2,
-		0x2,
-		0x45D,
-		1044,	
-		0x271,
-		0x424,
-		0x424,
-		0xFFFF,
-		0x1,
-		0x0,
-		0x6,
-		0x0,
-		0x0,
-		0x6,
-		0x3,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x2,      //Map Matrix ID
+		0x45D,      //Scripts Archive ID
+		1044,	      //Map Scripts Archive ID
+		0x271,      //Message Archive ID
+		0x424,      //Day Music ID
+		0x424,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x1,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x6,      //Map Type
+		0x3,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x6,
 		0x0,
-		0x0,
-		0x2,
-		0x1F6,	
-		0x17,
-		0x3F2,
-		0x40F,
-		0xFFFF,
-		0x2,
-		0x6,
-		0x1,
-		0x0,
-		0x0,
-		0x1,
-		0x2,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		0x2,      //Scripts Archive ID
+		0x1F6,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x3F2,      //Day Music ID
+		0x40F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x2,      //Events Archive ID
+		0x6,      //Map Label Text ID
+		0x1,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x1,      //Map Type
+		0x2,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x16,
 		0xF,
-		122,
-		0x3,
-		503,	
-		0x18,
-		0x442,
-		0x442,
-		0xFFFF,
-		0x3,
-		0x6,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		122,      //Map Matrix ID
+		0x3,      //Scripts Archive ID
+		503,	      //Map Scripts Archive ID
+		0x18,      //Message Archive ID
+		0x442,      //Day Music ID
+		0x442,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x3,      //Events Archive ID
+		0x6,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0x14,
-		0x7B,
-		0x4,
-		0x1F8,	
-		0x19,
-		0x43F,
-		0x43F,
-		0xFFFF,
-		0x4,
-		0x6,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x7B,      //Map Matrix ID
+		0x4,      //Scripts Archive ID
+		0x1F8,	      //Map Scripts Archive ID
+		0x19,      //Message Archive ID
+		0x43F,      //Day Music ID
+		0x43F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x4,      //Events Archive ID
+		0x6,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		0x74,
-		0x5,
-		0x1F9,	
-		0x1A,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		0x5,
-		0x6,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x74,      //Map Matrix ID
+		0x5,      //Scripts Archive ID
+		0x1F9,	      //Map Scripts Archive ID
+		0x1A,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x5,      //Events Archive ID
+		0x6,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		0x75,
-		0x6,
-		0x1FA,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		0x6,
-		0x6,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x75,      //Map Matrix ID
+		0x6,      //Scripts Archive ID
+		0x1FA,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x6,      //Events Archive ID
+		0x6,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x1F,
 		0xF,
-		0x8D,
-		0x8,
-		0x1FC,	
-		0x1B,
-		0x3F2,
-		0x40F,
-		0xFFFF,
-		0x7,
-		0x5B,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x8D,      //Map Matrix ID
+		0x8,      //Scripts Archive ID
+		0x1FC,	      //Map Scripts Archive ID
+		0x1B,      //Message Archive ID
+		0x3F2,      //Day Music ID
+		0x40F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x7,      //Events Archive ID
+		0x5B,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x1F,
 		0xF,
-		0x8E,
+		0x8E,      //Map Matrix ID
+		0x9,      //Scripts Archive ID
+		0x1FD,	      //Map Scripts Archive ID
+		0x1C,      //Message Archive ID
+		0x3F2,      //Day Music ID
+		0x40F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x8,      //Events Archive ID
+		0x5B,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		143,      //Map Matrix ID
+		0xA,      //Scripts Archive ID
+		510,	      //Map Scripts Archive ID
+		29,      //Message Archive ID
+		0x3F2,      //Day Music ID
+		0x40F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x9,      //Events Archive ID
+		0x5B,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		34,
+		0xF,
+		148,      //Map Matrix ID
+		11,      //Scripts Archive ID
+		511,	      //Map Scripts Archive ID
+		30,      //Message Archive ID
+		1093,      //Day Music ID
+		1093,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0xA,      //Events Archive ID
+		90,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		34,
+		0xF,
+		149,      //Map Matrix ID
+		0xC,      //Scripts Archive ID
+		512,	      //Map Scripts Archive ID
+		0x1F,      //Message Archive ID
+		1093,      //Day Music ID
+		1093,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		11,      //Events Archive ID
+		0x5A,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		34,
+		0xF,
+		150,      //Map Matrix ID
+		0xD,      //Scripts Archive ID
+		513,	      //Map Scripts Archive ID
+		32,      //Message Archive ID
+		1093,      //Day Music ID
+		1093,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0xC,      //Events Archive ID
+		0x5A,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		34,
+		0xF,
+		151,      //Map Matrix ID
+		0xE,      //Scripts Archive ID
+		514,	      //Map Scripts Archive ID
+		33,      //Message Archive ID
+		1093,      //Day Music ID
+		1093,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0xD,      //Events Archive ID
+		0x5A,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		34,
+		0xF,
+		152,      //Map Matrix ID
+		0xF,      //Scripts Archive ID
+		515,	      //Map Scripts Archive ID
+		34,      //Message Archive ID
+		1093,      //Day Music ID
+		1093,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0xE,      //Events Archive ID
+		0x5A,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		34,
+		0xF,
+		153,      //Map Matrix ID
+		0x10,      //Scripts Archive ID
+		516,	      //Map Scripts Archive ID
+		35,      //Message Archive ID
+		1093,      //Day Music ID
+		1093,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0xF,      //Events Archive ID
+		0x5A,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		34,
+		0xF,
+		154,      //Map Matrix ID
+		0x11,      //Scripts Archive ID
+		517,	      //Map Scripts Archive ID
+		36,      //Message Archive ID
+		1093,      //Day Music ID
+		1093,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x10,      //Events Archive ID
+		0x5A,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x15,
+		0xF,
+		207,      //Map Matrix ID
+		0x12,      //Scripts Archive ID
+		518,	      //Map Scripts Archive ID
+		37,      //Message Archive ID
+		1093,      //Day Music ID
+		1093,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x11,      //Events Archive ID
+		0x5A,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		132,      //Map Matrix ID
+		0x13,      //Scripts Archive ID
+		519,	      //Map Scripts Archive ID
+		38,      //Message Archive ID
+		0x3F2,      //Day Music ID
+		0x40F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x12,      //Events Archive ID
+		0x6,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		208,      //Map Matrix ID
+		0x14,      //Scripts Archive ID
+		520,	      //Map Scripts Archive ID
+		39,      //Message Archive ID
+		0x3F2,      //Day Music ID
+		0x40F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x13,      //Events Archive ID
+		0x6,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		208,      //Map Matrix ID
+		0x15,      //Scripts Archive ID
+		521,	      //Map Scripts Archive ID
+		40,      //Message Archive ID
+		0x3F2,      //Day Music ID
+		0x40F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x14,      //Events Archive ID
+		0x6,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		208,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x3F2,      //Day Music ID
+		0x40F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x15,      //Events Archive ID
+		0x6,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x14,
+		0x14,
+		125,      //Map Matrix ID
+		0x17,      //Scripts Archive ID
+		523,	      //Map Scripts Archive ID
+		41,      //Message Archive ID
+		0x3E8,      //Day Music ID
+		0x3E8,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x16,      //Events Archive ID
+		0x6,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		132,      //Map Matrix ID
+		0x18,      //Scripts Archive ID
+		524,	      //Map Scripts Archive ID
+		42,      //Message Archive ID
+		0x3F2,      //Day Music ID
+		0x40F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x17,      //Events Archive ID
+		0x6,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		208,      //Map Matrix ID
+		0x19,      //Scripts Archive ID
+		0x20D,	      //Map Scripts Archive ID
+		43,      //Message Archive ID
+		0x3F2,      //Day Music ID
+		0x40F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x18,      //Events Archive ID
+		0x6,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		208,      //Map Matrix ID
+		0x1A,      //Scripts Archive ID
+		0x20E,	      //Map Scripts Archive ID
+		44,      //Message Archive ID
+		0x3F2,      //Day Music ID
+		0x40F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x19,      //Events Archive ID
+		0x6,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		208,      //Map Matrix ID
+		0x1B,      //Scripts Archive ID
+		0x20F,	      //Map Scripts Archive ID
+		45,      //Message Archive ID
+		0x43F,      //Day Music ID
+		0x43F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x1A,      //Events Archive ID
+		0x6,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		40,
+		0xF,
+		205,      //Map Matrix ID
+		0x1C,      //Scripts Archive ID
+		0x210,	      //Map Scripts Archive ID
+		46,      //Message Archive ID
+		1196,      //Day Music ID
+		1196,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x1B,      //Events Archive ID
+		118,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		140,      //Map Matrix ID
+		0x1F,      //Scripts Archive ID
+		0x213,	      //Map Scripts Archive ID
+		49,      //Message Archive ID
+		0x3F2,      //Day Music ID
+		0x40F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x1C,      //Events Archive ID
+		93,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		132,      //Map Matrix ID
+		32,      //Scripts Archive ID
+		0x214,	      //Map Scripts Archive ID
+		50,      //Message Archive ID
+		0x3F2,      //Day Music ID
+		0x40F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		29,      //Events Archive ID
+		0x6,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x14,
+		0x14,
+		125,      //Map Matrix ID
+		34,      //Scripts Archive ID
+		534,	      //Map Scripts Archive ID
+		52,      //Message Archive ID
+		0x3E8,      //Day Music ID
+		0x3E8,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		30,      //Events Archive ID
+		0x6,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x14,
+		0x14,
+		125,      //Map Matrix ID
+		35,      //Scripts Archive ID
+		535,	      //Map Scripts Archive ID
+		53,      //Message Archive ID
+		0x3E8,      //Day Music ID
+		0x3E8,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x1F,      //Events Archive ID
+		0x6,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0xF,
 		0x9,
-		0x1FD,	
-		0x1C,
-		0x3F2,
-		0x40F,
-		0xFFFF,
-		0x8,
-		0x5B,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x0,      //Map Matrix ID
+		36,      //Scripts Archive ID
+		536,	      //Map Scripts Archive ID
+		54,      //Message Archive ID
+		1011,      //Day Music ID
+		1040,      //Night Music ID
+		0x0,      //Wild Encounters Archive ID
+		32,      //Events Archive ID
+		0x7,      //Map Label Text ID
+		0x1,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x1,      //Map Type
+		0x2,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x16,
+		0xF,
+		122,      //Map Matrix ID
+		37,      //Scripts Archive ID
+		537,	      //Map Scripts Archive ID
+		55,      //Message Archive ID
+		0x442,      //Day Music ID
+		0x442,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		33,      //Events Archive ID
+		0x7,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x18,
+		0xF,
+		112,      //Map Matrix ID
+		38,      //Scripts Archive ID
+		538,	      //Map Scripts Archive ID
+		56,      //Message Archive ID
+		0x43F,      //Day Music ID
+		0x43F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		34,      //Events Archive ID
+		0x7,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x3,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x15,
+		0xF,
+		0x74,      //Map Matrix ID
+		39,      //Scripts Archive ID
+		539,	      //Map Scripts Archive ID
+		0x39,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		35,      //Events Archive ID
+		0x7,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x15,
+		0xF,
+		0x75,      //Map Matrix ID
+		40,      //Scripts Archive ID
+		540,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		36,      //Events Archive ID
+		0x7,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x1F,
 		0xF,
-		143,
-		0xA,
-		510,	
+		217,      //Map Matrix ID
+		42,      //Scripts Archive ID
+		542,	      //Map Scripts Archive ID
+		58,      //Message Archive ID
+		1011,      //Day Music ID
+		1040,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		37,      //Events Archive ID
+		103,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		218,      //Map Matrix ID
+		43,      //Scripts Archive ID
+		543,	      //Map Scripts Archive ID
+		59,      //Message Archive ID
+		1011,      //Day Music ID
+		1040,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		38,      //Events Archive ID
+		103,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		219,      //Map Matrix ID
+		44,      //Scripts Archive ID
+		544,	      //Map Scripts Archive ID
+		0x3C,      //Message Archive ID
+		1011,      //Day Music ID
+		1040,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		39,      //Events Archive ID
+		103,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x14,
+		0xF,
+		0x7B,      //Map Matrix ID
+		45,      //Scripts Archive ID
+		545,	      //Map Scripts Archive ID
+		61,      //Message Archive ID
+		1011,      //Day Music ID
+		1040,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		40,      //Events Archive ID
+		0x7,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x14,
+		0xF,
+		0x7B,      //Map Matrix ID
+		46,      //Scripts Archive ID
+		546,	      //Map Scripts Archive ID
+		62,      //Message Archive ID
+		1011,      //Day Music ID
+		1040,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		41,      //Events Archive ID
+		0x7,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x14,
+		0xF,
+		243,      //Map Matrix ID
+		47,      //Scripts Archive ID
+		547,	      //Map Scripts Archive ID
+		63,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		42,      //Events Archive ID
+		0x7,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x14,
+		0xF,
+		243,      //Map Matrix ID
+		48,      //Scripts Archive ID
+		548,	      //Map Scripts Archive ID
+		64,      //Message Archive ID
+		1011,      //Day Music ID
+		1040,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		43,      //Events Archive ID
+		0x7,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x7,
+		0x1,
+		0x0,      //Map Matrix ID
+		50,      //Scripts Archive ID
+		550,	      //Map Scripts Archive ID
+		65,      //Message Archive ID
+		1012,      //Day Music ID
+		1041,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		44,      //Events Archive ID
+		0x8,      //Map Label Text ID
+		0x1,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x1,      //Map Type
+		0x2,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x16,
+		0xF,
+		122,      //Map Matrix ID
+		51,      //Scripts Archive ID
+		551,	      //Map Scripts Archive ID
+		66,      //Message Archive ID
+		0x442,      //Day Music ID
+		0x442,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		45,      //Events Archive ID
+		0x8,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x19,
+		0xF,
+		113,      //Map Matrix ID
+		52,      //Scripts Archive ID
+		552,	      //Map Scripts Archive ID
+		67,      //Message Archive ID
+		0x43F,      //Day Music ID
+		0x43F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		46,      //Events Archive ID
+		0x8,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x9,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x15,
+		0xF,
+		0x74,      //Map Matrix ID
+		53,      //Scripts Archive ID
+		553,	      //Map Scripts Archive ID
+		68,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		47,      //Events Archive ID
+		0x8,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x15,
+		0xF,
+		0x75,      //Map Matrix ID
+		54,      //Scripts Archive ID
+		554,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		48,      //Events Archive ID
+		0x8,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		132,      //Map Matrix ID
+		56,      //Scripts Archive ID
+		556,	      //Map Scripts Archive ID
+		70,      //Message Archive ID
+		1012,      //Day Music ID
+		1041,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		49,      //Events Archive ID
+		0x8,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		208,      //Map Matrix ID
+		0x39,      //Scripts Archive ID
+		557,	      //Map Scripts Archive ID
+		71,      //Message Archive ID
+		1012,      //Day Music ID
+		1041,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		50,      //Events Archive ID
+		0x8,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		136,      //Map Matrix ID
+		58,      //Scripts Archive ID
+		558,	      //Map Scripts Archive ID
+		0x48,      //Message Archive ID
+		1012,      //Day Music ID
+		1041,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		51,      //Events Archive ID
+		0x8,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		208,      //Map Matrix ID
+		59,      //Scripts Archive ID
+		559,	      //Map Scripts Archive ID
+		73,      //Message Archive ID
+		1012,      //Day Music ID
+		1041,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		52,      //Events Archive ID
+		0x8,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		132,      //Map Matrix ID
+		0x3C,      //Scripts Archive ID
+		560,	      //Map Scripts Archive ID
+		0x4A,      //Message Archive ID
+		1012,      //Day Music ID
+		1041,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		53,      //Events Archive ID
+		0x8,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		208,      //Map Matrix ID
+		61,      //Scripts Archive ID
+		561,	      //Map Scripts Archive ID
+		75,      //Message Archive ID
+		1012,      //Day Music ID
+		1041,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		54,      //Events Archive ID
+		0x8,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		136,      //Map Matrix ID
+		62,      //Scripts Archive ID
+		562,	      //Map Scripts Archive ID
+		76,      //Message Archive ID
+		1012,      //Day Music ID
+		1041,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		55,      //Events Archive ID
+		0x8,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		208,      //Map Matrix ID
+		63,      //Scripts Archive ID
+		563,	      //Map Scripts Archive ID
+		77,      //Message Archive ID
+		1012,      //Day Music ID
+		1041,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		56,      //Events Archive ID
+		0x8,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x14,
+		0xF,
+		0x7B,      //Map Matrix ID
+		64,      //Scripts Archive ID
+		564,	      //Map Scripts Archive ID
+		78,      //Message Archive ID
+		1012,      //Day Music ID
+		1041,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x39,      //Events Archive ID
+		0x8,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		155,      //Map Matrix ID
+		65,      //Scripts Archive ID
+		565,	      //Map Scripts Archive ID
+		79,      //Message Archive ID
+		1012,      //Day Music ID
+		1041,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		58,      //Events Archive ID
+		94,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x14,
+		0xF,
+		0x7B,      //Map Matrix ID
+		66,      //Scripts Archive ID
+		566,	      //Map Scripts Archive ID
+		80,      //Message Archive ID
+		1012,      //Day Music ID
+		1041,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		59,      //Events Archive ID
+		0x8,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		132,      //Map Matrix ID
+		67,      //Scripts Archive ID
+		567,	      //Map Scripts Archive ID
+		81,      //Message Archive ID
+		1012,      //Day Music ID
+		1041,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x3C,      //Events Archive ID
+		0x8,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		208,      //Map Matrix ID
+		68,      //Scripts Archive ID
+		568,	      //Map Scripts Archive ID
+		82,      //Message Archive ID
+		1012,      //Day Music ID
+		1041,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		61,      //Events Archive ID
+		0x8,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		208,      //Map Matrix ID
+		0x45,      //Scripts Archive ID
+		569,	      //Map Scripts Archive ID
+		83,      //Message Archive ID
+		1012,      //Day Music ID
+		1041,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		62,      //Events Archive ID
+		0x8,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x14,
+		0xF,
+		0x7B,      //Map Matrix ID
+		70,      //Scripts Archive ID
+		570,	      //Map Scripts Archive ID
+		84,      //Message Archive ID
+		1012,      //Day Music ID
+		1041,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		63,      //Events Archive ID
+		0x8,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x8,
+		0x2,
+		0x0,      //Map Matrix ID
+		71,      //Scripts Archive ID
+		571,	      //Map Scripts Archive ID
+		85,      //Message Archive ID
+		1013,      //Day Music ID
+		1042,      //Night Music ID
+		0x1,      //Wild Encounters Archive ID
+		64,      //Events Archive ID
+		0x9,      //Map Label Text ID
+		0x1,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x1,      //Map Type
+		0x2,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x16,
+		0xF,
+		122,      //Map Matrix ID
+		0x48,      //Scripts Archive ID
+		572,	      //Map Scripts Archive ID
+		86,      //Message Archive ID
+		0x442,      //Day Music ID
+		0x442,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		65,      //Events Archive ID
+		0x9,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1A,
+		0xF,
+		220,      //Map Matrix ID
+		73,      //Scripts Archive ID
+		573,	      //Map Scripts Archive ID
+		87,      //Message Archive ID
+		0x43F,      //Day Music ID
+		0x43F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		66,      //Events Archive ID
+		0x9,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1A,
+		0xF,
+		221,      //Map Matrix ID
+		0x4A,      //Scripts Archive ID
+		574,	      //Map Scripts Archive ID
+		88,      //Message Archive ID
+		0x43F,      //Day Music ID
+		0x43F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		67,      //Events Archive ID
+		0x9,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x9,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x15,
+		0xF,
+		0x74,      //Map Matrix ID
+		75,      //Scripts Archive ID
+		575,	      //Map Scripts Archive ID
+		89,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		68,      //Events Archive ID
+		0x9,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x15,
+		0xF,
+		0x75,      //Map Matrix ID
+		76,      //Scripts Archive ID
+		576,	      //Map Scripts Archive ID
+		90,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x45,      //Events Archive ID
+		0x9,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x16,
+		0xF,
+		138,      //Map Matrix ID
+		78,      //Scripts Archive ID
+		578,	      //Map Scripts Archive ID
+		91,      //Message Archive ID
+		1013,      //Day Music ID
+		1042,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		70,      //Events Archive ID
+		96,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		58,
+		0xF,
+		266,      //Map Matrix ID
+		79,      //Scripts Archive ID
+		579,	      //Map Scripts Archive ID
+		92,      //Message Archive ID
+		1068,      //Day Music ID
+		1068,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		71,      //Events Archive ID
+		122,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		58,
+		0xF,
+		162,      //Map Matrix ID
+		80,      //Scripts Archive ID
+		580,	      //Map Scripts Archive ID
+		93,      //Message Archive ID
+		1068,      //Day Music ID
+		1068,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x48,      //Events Archive ID
+		122,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		58,
+		0xF,
+		163,      //Map Matrix ID
+		81,      //Scripts Archive ID
+		581,	      //Map Scripts Archive ID
+		94,      //Message Archive ID
+		1068,      //Day Music ID
+		1068,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		73,      //Events Archive ID
+		122,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		58,
+		0xF,
+		164,      //Map Matrix ID
+		82,      //Scripts Archive ID
+		582,	      //Map Scripts Archive ID
+		95,      //Message Archive ID
+		1068,      //Day Music ID
+		1068,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x4A,      //Events Archive ID
+		122,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		132,      //Map Matrix ID
+		84,      //Scripts Archive ID
+		584,	      //Map Scripts Archive ID
+		97,      //Message Archive ID
+		1013,      //Day Music ID
+		1042,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		75,      //Events Archive ID
+		0x9,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		135,      //Map Matrix ID
+		85,      //Scripts Archive ID
+		585,	      //Map Scripts Archive ID
+		98,      //Message Archive ID
+		1013,      //Day Music ID
+		1042,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		76,      //Events Archive ID
+		0x9,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		208,      //Map Matrix ID
+		86,      //Scripts Archive ID
+		586,	      //Map Scripts Archive ID
+		99,      //Message Archive ID
+		1013,      //Day Music ID
+		1042,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		77,      //Events Archive ID
+		0x9,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		208,      //Map Matrix ID
+		87,      //Scripts Archive ID
+		587,	      //Map Scripts Archive ID
+		100,      //Message Archive ID
+		1013,      //Day Music ID
+		1042,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		78,      //Events Archive ID
+		0x9,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		50,
+		0xF,
+		259,      //Map Matrix ID
+		88,      //Scripts Archive ID
+		588,	      //Map Scripts Archive ID
+		101,      //Message Archive ID
+		1024,      //Day Music ID
+		1053,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		79,      //Events Archive ID
+		0x15,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x14,
+		0xF,
+		170,      //Map Matrix ID
+		89,      //Scripts Archive ID
+		589,	      //Map Scripts Archive ID
+		102,      //Message Archive ID
+		1013,      //Day Music ID
+		1042,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		80,      //Events Archive ID
+		0x9,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x14,
+		0xF,
+		124,      //Map Matrix ID
+		90,      //Scripts Archive ID
+		590,	      //Map Scripts Archive ID
+		103,      //Message Archive ID
+		1013,      //Day Music ID
+		1042,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		81,      //Events Archive ID
+		0x9,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x14,
+		0xF,
+		124,      //Map Matrix ID
+		91,      //Scripts Archive ID
+		591,	      //Map Scripts Archive ID
+		104,      //Message Archive ID
+		1013,      //Day Music ID
+		1042,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		82,      //Events Archive ID
+		0x9,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		43,
+		0xF,
+		248,      //Map Matrix ID
+		92,      //Scripts Archive ID
+		592,	      //Map Scripts Archive ID
+		105,      //Message Archive ID
+		1013,      //Day Music ID
+		1042,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		83,      //Events Archive ID
+		0x9,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x14,
+		0x14,
+		0x7B,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x3E8,      //Day Music ID
+		0x3E8,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		84,      //Events Archive ID
+		0x9,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x9,
+		0x3,
+		0x0,      //Map Matrix ID
+		93,      //Scripts Archive ID
+		593,	      //Map Scripts Archive ID
+		106,      //Message Archive ID
+		1014,      //Day Music ID
+		1043,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		85,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x1,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x1,      //Map Type
+		0x2,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x16,
+		0xF,
+		122,      //Map Matrix ID
+		94,      //Scripts Archive ID
+		594,	      //Map Scripts Archive ID
+		107,      //Message Archive ID
+		0x442,      //Day Music ID
+		0x442,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		86,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1B,
+		0xF,
+		222,      //Map Matrix ID
+		95,      //Scripts Archive ID
+		595,	      //Map Scripts Archive ID
+		108,      //Message Archive ID
+		0x43F,      //Day Music ID
+		0x43F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		87,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1B,
+		0xF,
+		223,      //Map Matrix ID
+		96,      //Scripts Archive ID
+		596,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43F,      //Day Music ID
+		0x43F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		88,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1B,
+		0xF,
+		224,      //Map Matrix ID
+		97,      //Scripts Archive ID
+		597,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43F,      //Day Music ID
+		0x43F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		89,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1B,
+		0xF,
+		225,      //Map Matrix ID
+		98,      //Scripts Archive ID
+		598,	      //Map Scripts Archive ID
+		109,      //Message Archive ID
+		0x43F,      //Day Music ID
+		0x43F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		90,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1B,
+		0xF,
+		223,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43F,      //Day Music ID
+		0x43F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		91,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1B,
+		0xF,
+		224,      //Map Matrix ID
+		99,      //Scripts Archive ID
+		599,	      //Map Scripts Archive ID
+		110,      //Message Archive ID
+		0x43F,      //Day Music ID
+		0x43F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		92,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1B,
+		0xF,
+		223,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43F,      //Day Music ID
+		0x43F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		93,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1B,
+		0xF,
+		224,      //Map Matrix ID
+		100,      //Scripts Archive ID
+		600,	      //Map Scripts Archive ID
+		111,      //Message Archive ID
+		0x43F,      //Day Music ID
+		0x43F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		94,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1B,
+		0xF,
+		223,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43F,      //Day Music ID
+		0x43F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		95,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1B,
+		0xF,
+		223,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43F,      //Day Music ID
+		0x43F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		96,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1B,
+		0xF,
+		223,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43F,      //Day Music ID
+		0x43F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		97,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1B,
+		0xF,
+		223,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43F,      //Day Music ID
+		0x43F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		98,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1B,
+		0xF,
+		225,      //Map Matrix ID
+		101,      //Scripts Archive ID
+		601,	      //Map Scripts Archive ID
+		112,      //Message Archive ID
+		0x43F,      //Day Music ID
+		0x43F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		99,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x15,
+		0xF,
+		0x74,      //Map Matrix ID
+		102,      //Scripts Archive ID
+		602,	      //Map Scripts Archive ID
+		113,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		100,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x15,
+		0xF,
+		0x75,      //Map Matrix ID
+		103,      //Scripts Archive ID
+		603,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		101,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		209,      //Map Matrix ID
+		105,      //Scripts Archive ID
+		605,	      //Map Scripts Archive ID
+		114,      //Message Archive ID
+		1014,      //Day Music ID
+		1043,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		102,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		210,      //Map Matrix ID
+		106,      //Scripts Archive ID
+		606,	      //Map Scripts Archive ID
+		115,      //Message Archive ID
+		1014,      //Day Music ID
+		1043,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		103,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x15,
+		0xF,
+		207,      //Map Matrix ID
+		107,      //Scripts Archive ID
+		607,	      //Map Scripts Archive ID
+		0x74,      //Message Archive ID
+		1014,      //Day Music ID
+		1043,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		104,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x14,
+		0xF,
+		156,      //Map Matrix ID
+		108,      //Scripts Archive ID
+		608,	      //Map Scripts Archive ID
+		0x75,      //Message Archive ID
+		1014,      //Day Music ID
+		1043,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		105,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		157,      //Map Matrix ID
+		109,      //Scripts Archive ID
+		609,	      //Map Scripts Archive ID
+		118,      //Message Archive ID
+		1014,      //Day Music ID
+		1043,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		106,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		157,      //Map Matrix ID
+		110,      //Scripts Archive ID
+		610,	      //Map Scripts Archive ID
+		119,      //Message Archive ID
+		1014,      //Day Music ID
+		1043,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		107,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		50,
+		0xF,
+		258,      //Map Matrix ID
+		111,      //Scripts Archive ID
+		611,	      //Map Scripts Archive ID
+		120,      //Message Archive ID
+		1024,      //Day Music ID
+		1053,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		108,      //Events Archive ID
+		0x17,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		50,
+		0xF,
+		258,      //Map Matrix ID
+		112,      //Scripts Archive ID
+		612,	      //Map Scripts Archive ID
+		121,      //Message Archive ID
+		1025,      //Day Music ID
+		1054,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		109,      //Events Archive ID
+		0x18,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		50,
+		0xF,
+		257,      //Map Matrix ID
+		113,      //Scripts Archive ID
+		613,	      //Map Scripts Archive ID
+		122,      //Message Archive ID
+		1025,      //Day Music ID
+		1054,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		110,      //Events Archive ID
+		(0x1B),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		209,      //Map Matrix ID
+		114,      //Scripts Archive ID
+		614,	      //Map Scripts Archive ID
+		0x7B,      //Message Archive ID
+		1014,      //Day Music ID
+		1043,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		111,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x1F,
+		0xF,
+		210,      //Map Matrix ID
+		115,      //Scripts Archive ID
+		615,	      //Map Scripts Archive ID
+		124,      //Message Archive ID
+		1014,      //Day Music ID
+		1043,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		112,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x15,
+		0xF,
+		207,      //Map Matrix ID
+		0x74,      //Scripts Archive ID
+		616,	      //Map Scripts Archive ID
+		125,      //Message Archive ID
+		1014,      //Day Music ID
+		1043,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		113,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		43,
+		0xF,
+		245,      //Map Matrix ID
+		0x75,      //Scripts Archive ID
+		617,	      //Map Scripts Archive ID
+		126,      //Message Archive ID
+		1014,      //Day Music ID
+		1043,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		114,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		37,
+		0xF,
+		0xED,      //Map Matrix ID
+		118,      //Scripts Archive ID
+		618,	      //Map Scripts Archive ID
+		127,      //Message Archive ID
+		1089,      //Day Music ID
+		1089,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		115,      //Events Archive ID
+		98,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		32,
+		0xF,
+		165,      //Map Matrix ID
+		119,      //Scripts Archive ID
+		619,	      //Map Scripts Archive ID
+		128,      //Message Archive ID
+		1089,      //Day Music ID
+		1089,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x74,      //Events Archive ID
+		97,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		32,
+		0xF,
+		166,      //Map Matrix ID
+		120,      //Scripts Archive ID
+		620,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1089,      //Day Music ID
+		1089,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x75,      //Events Archive ID
+		97,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		35,
+		0xF,
+		167,      //Map Matrix ID
+		122,      //Scripts Archive ID
+		622,	      //Map Scripts Archive ID
+		130,      //Message Archive ID
+		1001,      //Day Music ID
+		1001,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		118,      //Events Archive ID
+		99,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0xC,
+		0x6,
+		0x0,      //Map Matrix ID
+		0x7B,      //Scripts Archive ID
+		623,	      //Map Scripts Archive ID
+		131,      //Message Archive ID
+		1015,      //Day Music ID
+		1044,      //Night Music ID
+		0x2,      //Wild Encounters Archive ID
+		119,      //Events Archive ID
+		0xB,      //Map Label Text ID
+		0x1,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x1,      //Map Type
+		0x2,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x16,
+		0xF,
+		206,      //Map Matrix ID
+		124,      //Scripts Archive ID
+		624,	      //Map Scripts Archive ID
+		132,      //Message Archive ID
+		0x442,      //Day Music ID
+		0x442,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		120,      //Events Archive ID
+		0xB,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x17,
+		0xF,
+		111,      //Map Matrix ID
+		125,      //Scripts Archive ID
+		0x271,	      //Map Scripts Archive ID
+		133,      //Message Archive ID
+		0x43F,      //Day Music ID
+		0x43F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		121,      //Events Archive ID
+		0xB,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x1,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x15,
+		0xF,
+		0x74,      //Map Matrix ID
+		126,      //Scripts Archive ID
+		626,	      //Map Scripts Archive ID
+		134,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		122,      //Events Archive ID
+		0xB,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x15,
+		0xF,
+		0x75,      //Map Matrix ID
+		127,      //Scripts Archive ID
+		627,	      //Map Scripts Archive ID
+		135,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x7B,      //Events Archive ID
+		0xB,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		39,
+		0xF,
+		181,      //Map Matrix ID
+		129,      //Scripts Archive ID
+		629,	      //Map Scripts Archive ID
+		136,      //Message Archive ID
+		1015,      //Day Music ID
+		1044,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		124,      //Events Archive ID
+		0xB,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		39,
+		0xF,
+		182,      //Map Matrix ID
+		130,      //Scripts Archive ID
+		630,	      //Map Scripts Archive ID
+		137,      //Message Archive ID
+		1015,      //Day Music ID
+		1044,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		125,      //Events Archive ID
+		0xB,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x14,
+		0xF,
+		0x7B,      //Map Matrix ID
+		131,      //Scripts Archive ID
+		631,	      //Map Scripts Archive ID
+		138,      //Message Archive ID
+		1015,      //Day Music ID
+		1044,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		126,      //Events Archive ID
+		0xB,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x14,
+		0xF,
+		0x7B,      //Map Matrix ID
+		132,      //Scripts Archive ID
+		632,	      //Map Scripts Archive ID
+		139,      //Message Archive ID
+		1015,      //Day Music ID
+		1044,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		127,      //Events Archive ID
+		0xB,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x14,
+		0xF,
+		125,      //Map Matrix ID
+		133,      //Scripts Archive ID
+		633,	      //Map Scripts Archive ID
+		140,      //Message Archive ID
+		1015,      //Day Music ID
+		1044,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		128,      //Events Archive ID
+		0xB,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x14,
+		0xF,
+		0x7B,      //Map Matrix ID
+		134,      //Scripts Archive ID
+		634,	      //Map Scripts Archive ID
+		0x8D,      //Message Archive ID
+		1015,      //Day Music ID
+		1044,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		129,      //Events Archive ID
+		0xB,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x14,
+		0xF,
+		0x7B,      //Map Matrix ID
+		135,      //Scripts Archive ID
+		635,	      //Map Scripts Archive ID
+		0x8E,      //Message Archive ID
+		1015,      //Day Music ID
+		1044,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		130,      //Events Archive ID
+		0xB,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		11,
+		0x5,
+		0x0,      //Map Matrix ID
+		136,      //Scripts Archive ID
+		636,	      //Map Scripts Archive ID
+		143,      //Message Archive ID
+		1016,      //Day Music ID
+		1045,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		131,      //Events Archive ID
+		(0xC),      //Map Label Text ID
+		0x1,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x1,      //Map Type
+		0x2,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
+	},
+	{
 		29,
-		0x3F2,
-		0x40F,
-		0xFFFF,
-		0x9,
-		0x5B,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		34,
 		0xF,
-		148,
-		11,
-		511,	
-		30,
-		1093,
-		1093,
-		0xFFFF,
-		0xA,
-		90,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		34,
-		0xF,
-		149,
-		0xC,
-		512,	
-		0x1F,
-		1093,
-		1093,
-		0xFFFF,
-		11,
-		0x5A,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		34,
-		0xF,
-		150,
-		0xD,
-		513,	
-		32,
-		1093,
-		1093,
-		0xFFFF,
-		0xC,
-		0x5A,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		34,
-		0xF,
-		151,
-		0xE,
-		514,	
-		33,
-		1093,
-		1093,
-		0xFFFF,
-		0xD,
-		0x5A,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		34,
-		0xF,
-		152,
-		0xF,
-		515,	
-		34,
-		1093,
-		1093,
-		0xFFFF,
-		0xE,
-		0x5A,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		34,
-		0xF,
-		153,
-		0x10,
-		516,	
-		35,
-		1093,
-		1093,
-		0xFFFF,
-		0xF,
-		0x5A,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		34,
-		0xF,
-		154,
-		0x11,
-		517,	
-		36,
-		1093,
-		1093,
-		0xFFFF,
-		0x10,
-		0x5A,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		115,      //Map Matrix ID
+		137,      //Scripts Archive ID
+		637,	      //Map Scripts Archive ID
+		144,      //Message Archive ID
+		0x43F,      //Day Music ID
+		0x43F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		132,      //Events Archive ID
+		(0xC),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0xA,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		207,
-		0x12,
-		518,	
-		37,
-		1093,
-		1093,
-		0xFFFF,
-		0x11,
-		0x5A,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x74,      //Map Matrix ID
+		138,      //Scripts Archive ID
+		638,	      //Map Scripts Archive ID
+		145,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		133,      //Events Archive ID
+		(0xC),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
-		0x1F,
-		0xF,
-		132,
-		0x13,
-		519,	
-		38,
-		0x3F2,
-		0x40F,
-		0xFFFF,
-		0x12,
-		0x6,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		208,
-		0x14,
-		520,	
-		39,
-		0x3F2,
-		0x40F,
-		0xFFFF,
-		0x13,
-		0x6,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		208,
 		0x15,
-		521,	
-		40,
-		0x3F2,
-		0x40F,
-		0xFFFF,
-		0x14,
-		0x6,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
 		0xF,
-		208,
-		0x191,
-		0x381,	
-		0x17,
-		0x3F2,
-		0x40F,
-		0xFFFF,
-		0x15,
-		0x6,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x14,
-		0x14,
-		125,
-		0x17,
-		523,	
-		41,
-		0x3E8,
-		0x3E8,
-		0xFFFF,
-		0x16,
-		0x6,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		132,
-		0x18,
-		524,	
-		42,
-		0x3F2,
-		0x40F,
-		0xFFFF,
-		0x17,
-		0x6,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		208,
-		0x19,
-		0x20D,	
-		43,
-		0x3F2,
-		0x40F,
-		0xFFFF,
-		0x18,
-		0x6,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		208,
-		0x1A,
-		0x20E,	
-		44,
-		0x3F2,
-		0x40F,
-		0xFFFF,
-		0x19,
-		0x6,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		208,
-		0x1B,
-		0x20F,	
-		45,
-		0x43F,
-		0x43F,
-		0xFFFF,
-		0x1A,
-		0x6,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		40,
-		0xF,
-		205,
-		0x1C,
-		0x210,	
-		46,
-		1196,
-		1196,
-		0xFFFF,
-		0x1B,
-		118,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		140,
-		0x1F,
-		0x213,	
-		49,
-		0x3F2,
-		0x40F,
-		0xFFFF,
-		0x1C,
-		93,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		132,
-		32,
-		0x214,	
-		50,
-		0x3F2,
-		0x40F,
-		0xFFFF,
-		29,
-		0x6,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x14,
-		0x14,
-		125,
-		34,
-		534,	
-		52,
-		0x3E8,
-		0x3E8,
-		0xFFFF,
-		30,
-		0x6,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x14,
-		0x14,
-		125,
-		35,
-		535,	
-		53,
-		0x3E8,
-		0x3E8,
-		0xFFFF,
-		0x1F,
-		0x6,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0xF,
-		0x9,
-		0x0,
-		36,
-		536,	
-		54,
-		1011,
-		1040,
-		0x0,
-		32,
-		0x7,
-		0x1,
-		0x0,
-		0x0,
-		0x1,
-		0x2,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x75,      //Map Matrix ID
+		139,      //Scripts Archive ID
+		639,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		134,      //Events Archive ID
+		(0xC),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x16,
 		0xF,
-		122,
-		37,
-		537,	
-		55,
-		0x442,
-		0x442,
-		0xFFFF,
-		33,
-		0x7,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x18,
-		0xF,
-		112,
-		38,
-		538,	
-		56,
-		0x43F,
-		0x43F,
-		0xFFFF,
-		34,
-		0x7,
-		0x6,
-		0x0,
-		0x3,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x15,
-		0xF,
-		0x74,
-		39,
-		539,	
-		0x39,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		35,
-		0x7,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x15,
-		0xF,
-		0x75,
-		40,
-		540,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		36,
-		0x7,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		217,
-		42,
-		542,	
-		58,
-		1011,
-		1040,
-		0xFFFF,
-		37,
-		103,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		218,
-		43,
-		543,	
-		59,
-		1011,
-		1040,
-		0xFFFF,
-		38,
-		103,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		219,
-		44,
-		544,	
-		0x3C,
-		1011,
-		1040,
-		0xFFFF,
-		39,
-		103,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x14,
-		0xF,
-		0x7B,
-		45,
-		545,	
-		61,
-		1011,
-		1040,
-		0xFFFF,
-		40,
-		0x7,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x14,
-		0xF,
-		0x7B,
-		46,
-		546,	
-		62,
-		1011,
-		1040,
-		0xFFFF,
-		41,
-		0x7,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x14,
-		0xF,
-		243,
-		47,
-		547,	
-		63,
-		1064,
-		1064,
-		0xFFFF,
-		42,
-		0x7,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x14,
-		0xF,
-		243,
-		48,
-		548,	
-		64,
-		1011,
-		1040,
-		0xFFFF,
-		43,
-		0x7,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x7,
-		0x1,
-		0x0,
-		50,
-		550,	
-		65,
-		1012,
-		1041,
-		0xFFFF,
-		44,
-		0x8,
-		0x1,
-		0x0,
-		0x0,
-		0x1,
-		0x2,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		139,      //Map Matrix ID
+		0x8D,      //Scripts Archive ID
+		641,	      //Map Scripts Archive ID
+		147,      //Message Archive ID
+		1091,      //Day Music ID
+		1091,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		135,      //Events Archive ID
+		102,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x16,
 		0xF,
-		122,
-		51,
-		551,	
-		66,
-		0x442,
-		0x442,
-		0xFFFF,
-		45,
-		0x8,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x19,
-		0xF,
-		113,
-		52,
-		552,	
-		67,
-		0x43F,
-		0x43F,
-		0xFFFF,
-		46,
-		0x8,
-		0x6,
-		0x0,
-		0x9,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x15,
-		0xF,
-		0x74,
-		53,
-		553,	
-		68,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		47,
-		0x8,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x15,
-		0xF,
-		0x75,
-		54,
-		554,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		48,
-		0x8,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		132,
-		56,
-		556,	
-		70,
-		1012,
-		1041,
-		0xFFFF,
-		49,
-		0x8,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		208,
-		0x39,
-		557,	
-		71,
-		1012,
-		1041,
-		0xFFFF,
-		50,
-		0x8,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		136,
-		58,
-		558,	
-		0x48,
-		1012,
-		1041,
-		0xFFFF,
-		51,
-		0x8,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		208,
-		59,
-		559,	
-		73,
-		1012,
-		1041,
-		0xFFFF,
-		52,
-		0x8,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		132,
-		0x3C,
-		560,	
-		0x4A,
-		1012,
-		1041,
-		0xFFFF,
-		53,
-		0x8,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		208,
-		61,
-		561,	
-		75,
-		1012,
-		1041,
-		0xFFFF,
-		54,
-		0x8,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		136,
-		62,
-		562,	
-		76,
-		1012,
-		1041,
-		0xFFFF,
-		55,
-		0x8,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		208,
-		63,
-		563,	
-		77,
-		1012,
-		1041,
-		0xFFFF,
-		56,
-		0x8,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x14,
-		0xF,
-		0x7B,
-		64,
-		564,	
-		78,
-		1012,
-		1041,
-		0xFFFF,
-		0x39,
-		0x8,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		155,
-		65,
-		565,	
-		79,
-		1012,
-		1041,
-		0xFFFF,
-		58,
-		94,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x14,
-		0xF,
-		0x7B,
-		66,
-		566,	
-		80,
-		1012,
-		1041,
-		0xFFFF,
-		59,
-		0x8,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		132,
-		67,
-		567,	
-		81,
-		1012,
-		1041,
-		0xFFFF,
-		0x3C,
-		0x8,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		208,
-		68,
-		568,	
-		82,
-		1012,
-		1041,
-		0xFFFF,
-		61,
-		0x8,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		208,
-		0x45,
-		569,	
-		83,
-		1012,
-		1041,
-		0xFFFF,
-		62,
-		0x8,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x14,
-		0xF,
-		0x7B,
-		70,
-		570,	
-		84,
-		1012,
-		1041,
-		0xFFFF,
-		63,
-		0x8,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x8,
-		0x2,
-		0x0,
-		71,
-		571,	
-		85,
-		1013,
-		1042,
-		0x1,
-		64,
-		0x9,
-		0x1,
-		0x0,
-		0x0,
-		0x1,
-		0x2,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		172,      //Map Matrix ID
+		0x8E,      //Scripts Archive ID
+		642,	      //Map Scripts Archive ID
+		148,      //Message Archive ID
+		0x442,      //Day Music ID
+		0x442,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		136,      //Events Archive ID
+		101,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x16,
 		0xF,
-		122,
-		0x48,
-		572,	
-		86,
-		0x442,
-		0x442,
-		0xFFFF,
-		65,
-		0x9,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1A,
-		0xF,
-		220,
-		73,
-		573,	
-		87,
-		0x43F,
-		0x43F,
-		0xFFFF,
-		66,
-		0x9,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1A,
-		0xF,
-		221,
-		0x4A,
-		574,	
-		88,
-		0x43F,
-		0x43F,
-		0xFFFF,
-		67,
-		0x9,
-		0x6,
-		0x0,
-		0x9,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x15,
-		0xF,
-		0x74,
-		75,
-		575,	
-		89,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		68,
-		0x9,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x15,
-		0xF,
-		0x75,
-		76,
-		576,	
-		90,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		0x45,
-		0x9,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		173,      //Map Matrix ID
+		143,      //Scripts Archive ID
+		643,	      //Map Scripts Archive ID
+		149,      //Message Archive ID
+		0x442,      //Day Music ID
+		0x442,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		137,      //Events Archive ID
+		101,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x16,
 		0xF,
-		138,
-		78,
-		578,	
-		91,
-		1013,
-		1042,
-		0xFFFF,
-		70,
-		96,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		174,      //Map Matrix ID
+		144,      //Scripts Archive ID
+		644,	      //Map Scripts Archive ID
+		150,      //Message Archive ID
+		0x442,      //Day Music ID
+		0x442,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		138,      //Events Archive ID
+		101,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
-		58,
+		0x16,
 		0xF,
-		266,
-		79,
-		579,	
-		92,
-		1068,
-		1068,
-		0xFFFF,
-		71,
-		122,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		175,      //Map Matrix ID
+		145,      //Scripts Archive ID
+		645,	      //Map Scripts Archive ID
+		151,      //Message Archive ID
+		0x442,      //Day Music ID
+		0x442,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		139,      //Events Archive ID
+		101,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
-		58,
+		0x16,
 		0xF,
-		162,
-		80,
-		580,	
-		93,
-		1068,
-		1068,
-		0xFFFF,
-		0x48,
-		122,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		176,      //Map Matrix ID
+		146,      //Scripts Archive ID
+		646,	      //Map Scripts Archive ID
+		152,      //Message Archive ID
+		0x442,      //Day Music ID
+		0x442,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		140,      //Events Archive ID
+		101,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
-		58,
+		0x15,
 		0xF,
-		163,
-		81,
-		581,	
-		94,
-		1068,
-		1068,
-		0xFFFF,
-		73,
-		122,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		58,
-		0xF,
-		164,
-		82,
-		582,	
-		95,
-		1068,
-		1068,
-		0xFFFF,
-		0x4A,
-		122,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		207,      //Map Matrix ID
+		147,      //Scripts Archive ID
+		647,	      //Map Scripts Archive ID
+		153,      //Message Archive ID
+		0x442,      //Day Music ID
+		0x442,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x8D,      //Events Archive ID
+		101,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x1F,
 		0xF,
-		132,
-		84,
-		584,	
-		97,
-		1013,
-		1042,
-		0xFFFF,
-		75,
-		0x9,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		177,      //Map Matrix ID
+		149,      //Scripts Archive ID
+		649,	      //Map Scripts Archive ID
+		155,      //Message Archive ID
+		1016,      //Day Music ID
+		1045,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x8E,      //Events Archive ID
+		(0xC),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
-		0x1F,
+		0x16,
 		0xF,
-		135,
-		85,
-		585,	
-		98,
-		1013,
-		1042,
-		0xFFFF,
-		76,
-		0x9,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		204,      //Map Matrix ID
+		150,      //Scripts Archive ID
+		650,	      //Map Scripts Archive ID
+		156,      //Message Archive ID
+		1016,      //Day Music ID
+		1045,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		143,      //Events Archive ID
+		(0xC),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
-		0x1F,
+		0x14,
 		0xF,
-		208,
-		86,
-		586,	
-		99,
-		1013,
-		1042,
-		0xFFFF,
-		77,
-		0x9,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		125,      //Map Matrix ID
+		151,      //Scripts Archive ID
+		651,	      //Map Scripts Archive ID
+		157,      //Message Archive ID
+		1016,      //Day Music ID
+		1045,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		144,      //Events Archive ID
+		(0xC),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
-		0x1F,
+		0x14,
 		0xF,
-		208,
-		87,
-		587,	
-		100,
-		1013,
-		1042,
-		0xFFFF,
-		78,
-		0x9,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		125,      //Map Matrix ID
+		152,      //Scripts Archive ID
+		652,	      //Map Scripts Archive ID
+		158,      //Message Archive ID
+		1016,      //Day Music ID
+		1045,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		145,      //Events Archive ID
+		(0xC),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x14,
+		0xF,
+		0x7B,      //Map Matrix ID
+		153,      //Scripts Archive ID
+		653,	      //Map Scripts Archive ID
+		159,      //Message Archive ID
+		1016,      //Day Music ID
+		1045,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		146,      //Events Archive ID
+		(0xC),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x14,
+		0xF,
+		0x7B,      //Map Matrix ID
+		154,      //Scripts Archive ID
+		654,	      //Map Scripts Archive ID
+		160,      //Message Archive ID
+		1016,      //Day Music ID
+		1045,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		147,      //Events Archive ID
+		(0xC),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		50,
 		0xF,
-		259,
-		88,
-		588,	
-		101,
-		1024,
-		1053,
-		0xFFFF,
-		79,
-		0x15,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x1,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x14,
-		0xF,
-		170,
-		89,
-		589,	
-		102,
-		1013,
-		1042,
-		0xFFFF,
-		80,
-		0x9,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x14,
-		0xF,
-		124,
-		90,
-		590,	
-		103,
-		1013,
-		1042,
-		0xFFFF,
-		81,
-		0x9,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x14,
-		0xF,
-		124,
-		91,
-		591,	
-		104,
-		1013,
-		1042,
-		0xFFFF,
-		82,
-		0x9,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		43,
-		0xF,
-		248,
-		92,
-		592,	
-		105,
-		1013,
-		1042,
-		0xFFFF,
-		83,
-		0x9,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x14,
-		0x14,
-		0x7B,
-		0x191,
-		0x381,	
-		0x17,
-		0x3E8,
-		0x3E8,
-		0xFFFF,
-		84,
-		0x9,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x9,
-		0x3,
-		0x0,
-		93,
-		593,	
-		106,
-		1014,
-		1043,
-		0xFFFF,
-		85,
-		0xA,
-		0x1,
-		0x0,
-		0x0,
-		0x1,
-		0x2,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
-	},
-	{
-		0x16,
-		0xF,
-		122,
-		94,
-		594,	
-		107,
-		0x442,
-		0x442,
-		0xFFFF,
-		86,
-		0xA,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1B,
-		0xF,
-		222,
-		95,
-		595,	
-		108,
-		0x43F,
-		0x43F,
-		0xFFFF,
-		87,
-		0xA,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1B,
-		0xF,
-		223,
-		96,
-		596,	
-		0x17,
-		0x43F,
-		0x43F,
-		0xFFFF,
-		88,
-		0xA,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1B,
-		0xF,
-		224,
-		97,
-		597,	
-		0x17,
-		0x43F,
-		0x43F,
-		0xFFFF,
-		89,
-		0xA,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1B,
-		0xF,
-		225,
-		98,
-		598,	
-		109,
-		0x43F,
-		0x43F,
-		0xFFFF,
-		90,
-		0xA,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1B,
-		0xF,
-		223,
-		0x191,
-		0x381,	
-		0x17,
-		0x43F,
-		0x43F,
-		0xFFFF,
-		91,
-		0xA,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1B,
-		0xF,
-		224,
-		99,
-		599,	
-		110,
-		0x43F,
-		0x43F,
-		0xFFFF,
-		92,
-		0xA,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1B,
-		0xF,
-		223,
-		0x191,
-		0x381,	
-		0x17,
-		0x43F,
-		0x43F,
-		0xFFFF,
-		93,
-		0xA,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1B,
-		0xF,
-		224,
-		100,
-		600,	
-		111,
-		0x43F,
-		0x43F,
-		0xFFFF,
-		94,
-		0xA,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1B,
-		0xF,
-		223,
-		0x191,
-		0x381,	
-		0x17,
-		0x43F,
-		0x43F,
-		0xFFFF,
-		95,
-		0xA,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1B,
-		0xF,
-		223,
-		0x191,
-		0x381,	
-		0x17,
-		0x43F,
-		0x43F,
-		0xFFFF,
-		96,
-		0xA,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1B,
-		0xF,
-		223,
-		0x191,
-		0x381,	
-		0x17,
-		0x43F,
-		0x43F,
-		0xFFFF,
-		97,
-		0xA,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1B,
-		0xF,
-		223,
-		0x191,
-		0x381,	
-		0x17,
-		0x43F,
-		0x43F,
-		0xFFFF,
-		98,
-		0xA,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1B,
-		0xF,
-		225,
-		101,
-		601,	
-		112,
-		0x43F,
-		0x43F,
-		0xFFFF,
-		99,
-		0xA,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x15,
-		0xF,
-		0x74,
-		102,
-		602,	
-		113,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		100,
-		0xA,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x15,
-		0xF,
-		0x75,
-		103,
-		603,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		101,
-		0xA,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		209,
-		105,
-		605,	
-		114,
-		1014,
-		1043,
-		0xFFFF,
-		102,
-		0xA,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		210,
-		106,
-		606,	
-		115,
-		1014,
-		1043,
-		0xFFFF,
-		103,
-		0xA,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x15,
-		0xF,
-		207,
-		107,
-		607,	
-		0x74,
-		1014,
-		1043,
-		0xFFFF,
-		104,
-		0xA,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x14,
-		0xF,
-		156,
-		108,
-		608,	
-		0x75,
-		1014,
-		1043,
-		0xFFFF,
-		105,
-		0xA,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		157,
-		109,
-		609,	
-		118,
-		1014,
-		1043,
-		0xFFFF,
-		106,
-		0xA,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		157,
-		110,
-		610,	
-		119,
-		1014,
-		1043,
-		0xFFFF,
-		107,
-		0xA,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		50,
-		0xF,
-		258,
-		111,
-		611,	
-		120,
-		1024,
-		1053,
-		0xFFFF,
-		108,
-		0x17,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x1,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		50,
-		0xF,
-		258,
-		112,
-		612,	
-		121,
-		1025,
-		1054,
-		0xFFFF,
-		109,
-		0x18,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x1,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		50,
-		0xF,
-		257,
-		113,
-		613,	
-		122,
-		1025,
-		1054,
-		0xFFFF,
-		110,
-		(0x1B),
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x1,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		209,
-		114,
-		614,	
-		0x7B,
-		1014,
-		1043,
-		0xFFFF,
-		111,
-		0xA,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		210,
-		115,
-		615,	
-		124,
-		1014,
-		1043,
-		0xFFFF,
-		112,
-		0xA,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x15,
-		0xF,
-		207,
-		0x74,
-		616,	
-		125,
-		1014,
-		1043,
-		0xFFFF,
-		113,
-		0xA,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		43,
-		0xF,
-		245,
-		0x75,
-		617,	
-		126,
-		1014,
-		1043,
-		0xFFFF,
-		114,
-		0xA,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		37,
-		0xF,
-		0xED,
-		118,
-		618,	
-		127,
-		1089,
-		1089,
-		0xFFFF,
-		115,
-		98,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		32,
-		0xF,
-		165,
-		119,
-		619,	
-		128,
-		1089,
-		1089,
-		0xFFFF,
-		0x74,
-		97,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		32,
-		0xF,
-		166,
-		120,
-		620,	
-		0x17,
-		1089,
-		1089,
-		0xFFFF,
-		0x75,
-		97,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		35,
-		0xF,
-		167,
-		122,
-		622,	
-		130,
-		1001,
-		1001,
-		0xFFFF,
-		118,
-		99,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0xC,
-		0x6,
-		0x0,
-		0x7B,
-		623,	
-		131,
-		1015,
-		1044,
-		0x2,
-		119,
-		0xB,
-		0x1,
-		0x0,
-		0x0,
-		0x1,
-		0x2,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
-	},
-	{
-		0x16,
-		0xF,
-		206,
-		124,
-		624,	
-		132,
-		0x442,
-		0x442,
-		0xFFFF,
-		120,
-		0xB,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x17,
-		0xF,
-		111,
-		125,
-		0x271,	
-		133,
-		0x43F,
-		0x43F,
-		0xFFFF,
-		121,
-		0xB,
-		0x6,
-		0x0,
-		0x1,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x15,
-		0xF,
-		0x74,
-		126,
-		626,	
-		134,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		122,
-		0xB,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x15,
-		0xF,
-		0x75,
-		127,
-		627,	
-		135,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		0x7B,
-		0xB,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		39,
-		0xF,
-		181,
-		129,
-		629,	
-		136,
-		1015,
-		1044,
-		0xFFFF,
-		124,
-		0xB,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		39,
-		0xF,
-		182,
-		130,
-		630,	
-		137,
-		1015,
-		1044,
-		0xFFFF,
-		125,
-		0xB,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x14,
-		0xF,
-		0x7B,
-		131,
-		631,	
-		138,
-		1015,
-		1044,
-		0xFFFF,
-		126,
-		0xB,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x14,
-		0xF,
-		0x7B,
-		132,
-		632,	
-		139,
-		1015,
-		1044,
-		0xFFFF,
-		127,
-		0xB,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x14,
-		0xF,
-		125,
-		133,
-		633,	
-		140,
-		1015,
-		1044,
-		0xFFFF,
-		128,
-		0xB,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x14,
-		0xF,
-		0x7B,
-		134,
-		634,	
-		0x8D,
-		1015,
-		1044,
-		0xFFFF,
-		129,
-		0xB,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x14,
-		0xF,
-		0x7B,
-		135,
-		635,	
-		0x8E,
-		1015,
-		1044,
-		0xFFFF,
-		130,
-		0xB,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		11,
-		0x5,
-		0x0,
-		136,
-		636,	
-		143,
-		1016,
-		1045,
-		0xFFFF,
-		131,
-		(0xC),
-		0x1,
-		0x0,
-		0x0,
-		0x1,
-		0x2,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
-	},
-	{
-		29,
-		0xF,
-		115,
-		137,
-		637,	
-		144,
-		0x43F,
-		0x43F,
-		0xFFFF,
-		132,
-		(0xC),
-		0x6,
-		0x0,
-		0xA,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x15,
-		0xF,
-		0x74,
-		138,
-		638,	
-		145,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		133,
-		(0xC),
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x15,
-		0xF,
-		0x75,
-		139,
-		639,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		134,
-		(0xC),
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x16,
-		0xF,
-		139,
-		0x8D,
-		641,	
-		147,
-		1091,
-		1091,
-		0xFFFF,
-		135,
-		102,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x16,
-		0xF,
-		172,
-		0x8E,
-		642,	
-		148,
-		0x442,
-		0x442,
-		0xFFFF,
-		136,
-		101,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x16,
-		0xF,
-		173,
-		143,
-		643,	
-		149,
-		0x442,
-		0x442,
-		0xFFFF,
-		137,
-		101,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x16,
-		0xF,
-		174,
-		144,
-		644,	
-		150,
-		0x442,
-		0x442,
-		0xFFFF,
-		138,
-		101,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x16,
-		0xF,
-		175,
-		145,
-		645,	
-		151,
-		0x442,
-		0x442,
-		0xFFFF,
-		139,
-		101,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x16,
-		0xF,
-		176,
-		146,
-		646,	
-		152,
-		0x442,
-		0x442,
-		0xFFFF,
-		140,
-		101,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x15,
-		0xF,
-		207,
-		147,
-		647,	
-		153,
-		0x442,
-		0x442,
-		0xFFFF,
-		0x8D,
-		101,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x1F,
-		0xF,
-		177,
-		149,
-		649,	
-		155,
-		1016,
-		1045,
-		0xFFFF,
-		0x8E,
-		(0xC),
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x16,
-		0xF,
-		204,
-		150,
-		650,	
-		156,
-		1016,
-		1045,
-		0xFFFF,
-		143,
-		(0xC),
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x14,
-		0xF,
-		125,
-		151,
-		651,	
-		157,
-		1016,
-		1045,
-		0xFFFF,
-		144,
-		(0xC),
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x14,
-		0xF,
-		125,
-		152,
-		652,	
-		158,
-		1016,
-		1045,
-		0xFFFF,
-		145,
-		(0xC),
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x14,
-		0xF,
-		0x7B,
-		153,
-		653,	
-		159,
-		1016,
-		1045,
-		0xFFFF,
-		146,
-		(0xC),
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		0x14,
-		0xF,
-		0x7B,
-		154,
-		654,	
-		160,
-		1016,
-		1045,
-		0xFFFF,
-		147,
-		(0xC),
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
-	},
-	{
-		50,
-		0xF,
-		258,
-		155,
-		655,	
-		161,
-		1026,
-		1055,
-		0xFFFF,
-		148,
-		30,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x1,
-		0x0,
-		0x0,
-		0x0,
+		258,      //Map Matrix ID
+		155,      //Scripts Archive ID
+		655,	      //Map Scripts Archive ID
+		161,      //Message Archive ID
+		1026,      //Day Music ID
+		1055,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		148,      //Events Archive ID
+		30,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xD,
 		0x7,
-		0x0,
-		156,
-		656,	
-		162,
-		1017,
-		1046,
-		0x3,
-		149,
-		0xD,
-		0x1,
-		0x0,
-		11,
-		0x1,
-		0x2,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		156,      //Scripts Archive ID
+		656,	      //Map Scripts Archive ID
+		162,      //Message Archive ID
+		1017,      //Day Music ID
+		1046,      //Night Music ID
+		0x3,      //Wild Encounters Archive ID
+		149,      //Events Archive ID
+		0xD,      //Map Label Text ID
+		0x1,      //Map Label Window ID
+		0x0,      //Weather
+		11,      //Camera Type
+		0x1,      //Map Type
+		0x2,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		0x74,
-		161,
-		661,	
-		166,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		150,
-		0xD,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x74,      //Map Matrix ID
+		161,      //Scripts Archive ID
+		661,	      //Map Scripts Archive ID
+		166,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		150,      //Events Archive ID
+		0xD,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		0x75,
-		162,
-		662,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		151,
-		0xD,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x75,      //Map Matrix ID
+		162,      //Scripts Archive ID
+		662,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		151,      //Events Archive ID
+		0xD,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x16,
 		0xF,
-		122,
-		157,
-		657,	
-		163,
-		0x442,
-		0x442,
-		0xFFFF,
-		152,
-		0xD,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		122,      //Map Matrix ID
+		157,      //Scripts Archive ID
+		657,	      //Map Scripts Archive ID
+		163,      //Message Archive ID
+		0x442,      //Day Music ID
+		0x442,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		152,      //Events Archive ID
+		0xD,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		30,
 		0xF,
-		226,
-		158,
-		658,	
-		164,
-		0x43F,
-		0x43F,
-		0xFFFF,
-		153,
-		0xD,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		226,      //Map Matrix ID
+		158,      //Scripts Archive ID
+		658,	      //Map Scripts Archive ID
+		164,      //Message Archive ID
+		0x43F,      //Day Music ID
+		0x43F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		153,      //Events Archive ID
+		0xD,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		30,
 		0xF,
-		227,
-		159,
-		659,	
-		0x17,
-		0x43F,
-		0x43F,
-		0xFFFF,
-		154,
-		0xD,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		227,      //Map Matrix ID
+		159,      //Scripts Archive ID
+		659,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43F,      //Day Music ID
+		0x43F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		154,      //Events Archive ID
+		0xD,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		30,
 		0xF,
-		228,
-		160,
-		660,	
-		165,
-		0x43F,
-		0x43F,
-		0xFFFF,
-		155,
-		0xD,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		228,      //Map Matrix ID
+		160,      //Scripts Archive ID
+		660,	      //Map Scripts Archive ID
+		165,      //Message Archive ID
+		0x43F,      //Day Music ID
+		0x43F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		155,      //Events Archive ID
+		0xD,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		38,
 		0xF,
-		203,
-		164,
-		664,	
-		167,
-		1017,
-		1046,
-		0xFFFF,
-		156,
-		105,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		203,      //Map Matrix ID
+		164,      //Scripts Archive ID
+		664,	      //Map Scripts Archive ID
+		167,      //Message Archive ID
+		1017,      //Day Music ID
+		1046,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		156,      //Events Archive ID
+		105,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		243,
-		165,
-		665,	
-		168,
-		1017,
-		1046,
-		0xFFFF,
-		157,
-		0xD,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		243,      //Map Matrix ID
+		165,      //Scripts Archive ID
+		665,	      //Map Scripts Archive ID
+		168,      //Message Archive ID
+		1017,      //Day Music ID
+		1046,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		157,      //Events Archive ID
+		0xD,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		43,
 		0xF,
-		248,
-		166,
-		666,	
-		169,
-		1017,
-		1046,
-		0xFFFF,
-		158,
-		0xD,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		248,      //Map Matrix ID
+		166,      //Scripts Archive ID
+		666,	      //Map Scripts Archive ID
+		169,      //Message Archive ID
+		1017,      //Day Music ID
+		1046,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		158,      //Events Archive ID
+		0xD,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		243,
-		167,
-		667,	
-		170,
-		1017,
-		1046,
-		0xFFFF,
-		159,
-		0xD,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		243,      //Map Matrix ID
+		167,      //Scripts Archive ID
+		667,	      //Map Scripts Archive ID
+		170,      //Message Archive ID
+		1017,      //Day Music ID
+		1046,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		159,      //Events Archive ID
+		0xD,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		243,
-		168,
-		668,	
-		171,
-		1017,
-		1046,
-		0xFFFF,
-		160,
-		0xD,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		243,      //Map Matrix ID
+		168,      //Scripts Archive ID
+		668,	      //Map Scripts Archive ID
+		171,      //Message Archive ID
+		1017,      //Day Music ID
+		1046,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		160,      //Events Archive ID
+		0xD,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		243,
-		169,
-		669,	
-		172,
-		1017,
-		1046,
-		0xFFFF,
-		161,
-		0xD,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		243,      //Map Matrix ID
+		169,      //Scripts Archive ID
+		669,	      //Map Scripts Archive ID
+		172,      //Message Archive ID
+		1017,      //Day Music ID
+		1046,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		161,      //Events Archive ID
+		0xD,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		125,
-		170,
-		670,	
-		173,
-		1017,
-		1046,
-		0xFFFF,
-		162,
-		0xD,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		125,      //Map Matrix ID
+		170,      //Scripts Archive ID
+		670,	      //Map Scripts Archive ID
+		173,      //Message Archive ID
+		1017,      //Day Music ID
+		1046,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		162,      //Events Archive ID
+		0xD,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		39,
 		0xF,
-		230,
-		171,
-		671,	
-		174,
-		1017,
-		1046,
-		0xFFFF,
-		163,
-		104,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		230,      //Map Matrix ID
+		171,      //Scripts Archive ID
+		671,	      //Map Scripts Archive ID
+		174,      //Message Archive ID
+		1017,      //Day Music ID
+		1046,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		163,      //Events Archive ID
+		104,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xE,
 		0x8,
-		0x0,
-		174,
-		674,	
-		176,
-		1018,
-		1047,
-		0xFFFF,
-		164,
-		(0xE),
-		0x1,
-		36,
-		0x0,
-		0x1,
-		0x5,
-		0x0,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		174,      //Scripts Archive ID
+		674,	      //Map Scripts Archive ID
+		176,      //Message Archive ID
+		1018,      //Day Music ID
+		1047,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		164,      //Events Archive ID
+		(0xE),      //Map Label Text ID
+		0x1,      //Map Label Window ID
+		36,      //Weather
+		0x0,      //Camera Type
+		0x1,      //Map Type
+		0x5,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x16,
 		0xF,
-		122,
-		175,
-		675,	
-		177,
-		0x442,
-		0x442,
-		0xFFFF,
-		165,
-		(0xE),
-		0x1,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		122,      //Map Matrix ID
+		175,      //Scripts Archive ID
+		675,	      //Map Scripts Archive ID
+		177,      //Message Archive ID
+		0x442,      //Day Music ID
+		0x442,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		165,      //Events Archive ID
+		(0xE),      //Map Label Text ID
+		0x1,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x1C,
 		0xF,
-		114,
-		176,
-		676,	
-		178,
-		0x43F,
-		0x43F,
-		0xFFFF,
-		166,
-		(0xE),
-		0x1,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		114,      //Map Matrix ID
+		176,      //Scripts Archive ID
+		676,	      //Map Scripts Archive ID
+		178,      //Message Archive ID
+		0x43F,      //Day Music ID
+		0x43F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		166,      //Events Archive ID
+		(0xE),      //Map Label Text ID
+		0x1,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		0x74,
-		177,
-		677,	
-		179,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		167,
-		(0xE),
-		0x1,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x74,      //Map Matrix ID
+		177,      //Scripts Archive ID
+		677,	      //Map Scripts Archive ID
+		179,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		167,      //Events Archive ID
+		(0xE),      //Map Label Text ID
+		0x1,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		0x75,
-		178,
-		678,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		168,
-		(0xE),
-		0x1,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x75,      //Map Matrix ID
+		178,      //Scripts Archive ID
+		678,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		168,      //Events Archive ID
+		(0xE),      //Map Label Text ID
+		0x1,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		0x7B,
-		180,
-		680,	
-		180,
-		1018,
-		1047,
-		0xFFFF,
-		169,
-		(0xE),
-		0x1,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x7B,      //Map Matrix ID
+		180,      //Scripts Archive ID
+		680,	      //Map Scripts Archive ID
+		180,      //Message Archive ID
+		1018,      //Day Music ID
+		1047,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		169,      //Events Archive ID
+		(0xE),      //Map Label Text ID
+		0x1,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		244,
-		181,
-		681,	
-		181,
-		1018,
-		1047,
-		0xFFFF,
-		170,
-		(0xE),
-		0x1,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		244,      //Map Matrix ID
+		181,      //Scripts Archive ID
+		681,	      //Map Scripts Archive ID
+		181,      //Message Archive ID
+		1018,      //Day Music ID
+		1047,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		170,      //Events Archive ID
+		(0xE),      //Map Label Text ID
+		0x1,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xD,
 		0xA,
-		0x0,
-		182,
-		682,	
-		182,
-		1019,
-		1048,
-		0x4,
-		171,
-		(0xF),
-		0x1,
-		0x8,
-		11,
-		0x1,
-		0x2,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		182,      //Scripts Archive ID
+		682,	      //Map Scripts Archive ID
+		182,      //Message Archive ID
+		1019,      //Day Music ID
+		1048,      //Night Music ID
+		0x4,      //Wild Encounters Archive ID
+		171,      //Events Archive ID
+		(0xF),      //Map Label Text ID
+		0x1,      //Map Label Window ID
+		0x8,      //Weather
+		11,      //Camera Type
+		0x1,      //Map Type
+		0x2,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		0x74,
-		183,
-		683,	
-		183,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		172,
-		(0xF),
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x74,      //Map Matrix ID
+		183,      //Scripts Archive ID
+		683,	      //Map Scripts Archive ID
+		183,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		172,      //Events Archive ID
+		(0xF),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		0x75,
-		184,
-		684,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		173,
-		(0xF),
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x75,      //Map Matrix ID
+		184,      //Scripts Archive ID
+		684,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		173,      //Events Archive ID
+		(0xF),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		144,
-		186,
-		686,	
-		184,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		174,
-		(0xF),
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		144,      //Map Matrix ID
+		186,      //Scripts Archive ID
+		686,	      //Map Scripts Archive ID
+		184,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		174,      //Events Archive ID
+		(0xF),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		36,
 		0xF,
-		187,
-		187,
-		687,	
-		0x17,
-		1076,
-		1076,
-		0xFFFF,
-		175,
-		(0xF),
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		187,      //Map Matrix ID
+		187,      //Scripts Archive ID
+		687,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1076,      //Day Music ID
+		1076,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		175,      //Events Archive ID
+		(0xF),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		36,
 		0xF,
-		183,
-		188,
-		688,	
-		185,
-		1076,
-		1076,
-		0xFFFF,
-		176,
-		(0xF),
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		(0xC),
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		183,      //Map Matrix ID
+		188,      //Scripts Archive ID
+		688,	      //Map Scripts Archive ID
+		185,      //Message Archive ID
+		1076,      //Day Music ID
+		1076,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		176,      //Events Archive ID
+		(0xF),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		(0xC),      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		36,
 		0xF,
-		188,
-		189,
-		689,	
-		0x17,
-		1076,
-		1076,
-		0xFFFF,
-		177,
-		(0xF),
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		188,      //Map Matrix ID
+		189,      //Scripts Archive ID
+		689,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1076,      //Day Music ID
+		1076,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		177,      //Events Archive ID
+		(0xF),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		36,
 		0xF,
-		184,
-		190,
-		690,	
-		186,
-		1076,
-		1076,
-		0xFFFF,
-		178,
-		(0xF),
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0xD,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		184,      //Map Matrix ID
+		190,      //Scripts Archive ID
+		690,	      //Map Scripts Archive ID
+		186,      //Message Archive ID
+		1076,      //Day Music ID
+		1076,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		178,      //Events Archive ID
+		(0xF),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0xD,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		36,
 		0xF,
-		188,
-		191,
-		691,	
-		0x17,
-		1076,
-		1076,
-		0xFFFF,
-		179,
-		(0xF),
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		188,      //Map Matrix ID
+		191,      //Scripts Archive ID
+		691,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1076,      //Day Music ID
+		1076,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		179,      //Events Archive ID
+		(0xF),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		36,
 		0xF,
-		185,
-		192,
-		692,	
-		187,
-		1076,
-		1076,
-		0xFFFF,
-		180,
-		(0xF),
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		(0xE),
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		185,      //Map Matrix ID
+		192,      //Scripts Archive ID
+		692,	      //Map Scripts Archive ID
+		187,      //Message Archive ID
+		1076,      //Day Music ID
+		1076,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		180,      //Events Archive ID
+		(0xF),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		(0xE),      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		36,
 		0xF,
-		188,
-		193,
-		693,	
-		0x17,
-		1076,
-		1076,
-		0xFFFF,
-		181,
-		(0xF),
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		188,      //Map Matrix ID
+		193,      //Scripts Archive ID
+		693,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1076,      //Day Music ID
+		1076,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		181,      //Events Archive ID
+		(0xF),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		36,
 		0xF,
-		186,
-		194,
-		694,	
-		188,
-		1076,
-		1076,
-		0xFFFF,
-		182,
-		(0xF),
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		(0xF),
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		186,      //Map Matrix ID
+		194,      //Scripts Archive ID
+		694,	      //Map Scripts Archive ID
+		188,      //Message Archive ID
+		1076,      //Day Music ID
+		1076,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		182,      //Events Archive ID
+		(0xF),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		(0xF),      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		36,
 		0xF,
-		189,
-		195,
-		695,	
-		0x17,
-		1076,
-		1076,
-		0xFFFF,
-		183,
-		(0xF),
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		189,      //Map Matrix ID
+		195,      //Scripts Archive ID
+		695,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1076,      //Day Music ID
+		1076,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		183,      //Events Archive ID
+		(0xF),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		36,
 		0xF,
-		190,
-		196,
-		696,	
-		189,
-		1076,
-		1076,
-		0xFFFF,
-		184,
-		(0xF),
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x10,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		190,      //Map Matrix ID
+		196,      //Scripts Archive ID
+		696,	      //Map Scripts Archive ID
+		189,      //Message Archive ID
+		1076,      //Day Music ID
+		1076,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		184,      //Events Archive ID
+		(0xF),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x10,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		36,
 		0xF,
-		192,
-		197,
-		697,	
-		190,
-		1077,
-		1077,
-		0xFFFF,
-		185,
-		(0xF),
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		192,      //Map Matrix ID
+		197,      //Scripts Archive ID
+		697,	      //Map Scripts Archive ID
+		190,      //Message Archive ID
+		1077,      //Day Music ID
+		1077,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		185,      //Events Archive ID
+		(0xF),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		36,
 		0xF,
-		191,
-		198,
-		698,	
-		191,
-		1077,
-		1077,
-		0xFFFF,
-		186,
-		(0xF),
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		191,      //Map Matrix ID
+		198,      //Scripts Archive ID
+		698,	      //Map Scripts Archive ID
+		191,      //Message Archive ID
+		1077,      //Day Music ID
+		1077,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		186,      //Events Archive ID
+		(0xF),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x13,
 		0xD,
-		0x0,
-		201,
-		701,	
-		192,
-		1020,
-		1049,
-		0xFFFF,
-		187,
-		81,
-		0x1,
-		0x0,
-		0x0,
-		0x1,
-		0x2,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		201,      //Scripts Archive ID
+		701,	      //Map Scripts Archive ID
+		192,      //Message Archive ID
+		1020,      //Day Music ID
+		1049,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		187,      //Events Archive ID
+		81,      //Map Label Text ID
+		0x1,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x1,      //Map Type
+		0x2,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		0x74,
-		203,
-		703,	
-		194,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		188,
-		81,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x74,      //Map Matrix ID
+		203,      //Scripts Archive ID
+		703,	      //Map Scripts Archive ID
+		194,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		188,      //Events Archive ID
+		81,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		0x75,
-		204,
-		704,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		189,
-		81,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x75,      //Map Matrix ID
+		204,      //Scripts Archive ID
+		704,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		189,      //Events Archive ID
+		81,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x16,
 		0xF,
-		122,
-		202,
-		702,	
-		193,
-		0x442,
-		0x442,
-		0xFFFF,
-		190,
-		81,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		122,      //Map Matrix ID
+		202,      //Scripts Archive ID
+		702,	      //Map Scripts Archive ID
+		193,      //Message Archive ID
+		0x442,      //Day Music ID
+		0x442,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		190,      //Events Archive ID
+		81,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		44,
 		0xF,
-		250,
-		206,
-		706,	
-		195,
-		1020,
-		1049,
-		0xFFFF,
-		191,
-		111,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		250,      //Map Matrix ID
+		206,      //Scripts Archive ID
+		706,	      //Map Scripts Archive ID
+		195,      //Message Archive ID
+		1020,      //Day Music ID
+		1049,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		191,      //Events Archive ID
+		111,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		50,
 		0xF,
-		257,
-		207,
-		707,	
-		196,
-		1008,
-		1037,
-		0xFFFF,
-		192,
-		40,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x1,
-		0x0,
-		0x0,
-		0x0,
+		257,      //Map Matrix ID
+		207,      //Scripts Archive ID
+		707,	      //Map Scripts Archive ID
+		196,      //Message Archive ID
+		1008,      //Day Music ID
+		1037,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		192,      //Events Archive ID
+		40,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		0x7B,
-		208,
-		708,	
-		197,
-		1020,
-		1049,
-		0xFFFF,
-		193,
-		81,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x7B,      //Map Matrix ID
+		208,      //Scripts Archive ID
+		708,	      //Map Scripts Archive ID
+		197,      //Message Archive ID
+		1020,      //Day Music ID
+		1049,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		193,      //Events Archive ID
+		81,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		0x7B,
-		209,
-		709,	
-		198,
-		1020,
-		1049,
-		0xFFFF,
-		194,
-		81,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x7B,      //Map Matrix ID
+		209,      //Scripts Archive ID
+		709,	      //Map Scripts Archive ID
+		198,      //Message Archive ID
+		1020,      //Day Music ID
+		1049,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		194,      //Events Archive ID
+		81,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		0x7B,
-		0x191,
-		0x381,	
-		0x17,
-		1020,
-		1049,
-		0xFFFF,
-		0x0,
-		0x0,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x7B,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1020,      //Day Music ID
+		1049,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		55,
 		55,
-		0x5,
-		0x191,
-		0x381,	
-		0x17,
-		1062,
-		1062,
-		0xFFFF,
-		195,
-		46,
-		0x6,
-		0x0,
-		0x0,
-		0x3,
-		0x9,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
-	},
-	{
-		55,
-		0xF,
-		0x5,
-		214,
-		711,	
-		222,
-		0x433,
-		0x433,
-		0x5,
-		196,
-		46,
-		0x4,
-		0x0,
-		0xC,
-		0x3,
-		0x9,
-		0x1,
-		0x0,
-		0x1,
-		0x0,
+		0x5,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1062,      //Day Music ID
+		1062,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		195,      //Events Archive ID
+		46,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0x9,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		55,
 		0xF,
-		0x6,
-		215,
-		712,	
-		223,
-		0x433,
-		0x433,
-		0x6,
-		197,
-		46,
-		0x4,
-		0x0,
-		0xC,
-		0x3,
-		0x9,
-		0x1,
-		0x0,
-		0x1,
-		0x0,
+		0x5,      //Map Matrix ID
+		214,      //Scripts Archive ID
+		711,	      //Map Scripts Archive ID
+		222,      //Message Archive ID
+		0x433,      //Day Music ID
+		0x433,      //Night Music ID
+		0x5,      //Wild Encounters Archive ID
+		196,      //Events Archive ID
+		46,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0x9,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		55,
+		0xF,
+		0x6,      //Map Matrix ID
+		215,      //Scripts Archive ID
+		712,	      //Map Scripts Archive ID
+		223,      //Message Archive ID
+		0x433,      //Day Music ID
+		0x433,      //Night Music ID
+		0x6,      //Wild Encounters Archive ID
+		197,      //Events Archive ID
+		46,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0x9,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x8,
 		0x2,
-		0x0,
-		216,
-		713,	
-		224,
-		1023,
-		1052,
-		0x7,
-		198,
-		47,
-		0x3,
-		0x0,
-		0x0,
-		0x2,
-		0x0,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		216,      //Scripts Archive ID
+		713,	      //Map Scripts Archive ID
+		224,      //Message Archive ID
+		1023,      //Day Music ID
+		1052,      //Night Music ID
+		0x7,      //Wild Encounters Archive ID
+		198,      //Events Archive ID
+		47,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x1F,
 		0xF,
-		234,
-		217,
-		714,	
-		225,
-		1068,
-		1068,
-		0xFFFF,
-		199,
-		47,
-		0x9,
-		0x0,
-		0x4,
-		0x3,
-		0x7,
-		0x0,
-		0x1,
-		0x0,
-		0x0,
+		234,      //Map Matrix ID
+		217,      //Scripts Archive ID
+		714,	      //Map Scripts Archive ID
+		225,      //Message Archive ID
+		1068,      //Day Music ID
+		1068,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		199,      //Events Archive ID
+		47,      //Map Label Text ID
+		0x9,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x3,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x8,
 		0x2,
-		0x0,
-		218,
-		715,	
-		226,
-		1023,
-		1052,
-		0xFFFF,
-		200,
-		48,
-		0x3,
-		0x0,
-		0x0,
-		0x2,
-		0x0,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		218,      //Scripts Archive ID
+		715,	      //Map Scripts Archive ID
+		226,      //Message Archive ID
+		1023,      //Day Music ID
+		1052,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		200,      //Events Archive ID
+		48,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		54,
 		0xF,
-		0x7,
-		219,
-		716,	
-		227,
-		0x427,
-		0x427,
-		0x8,
-		201,
-		48,
-		0x5,
-		0x17,
-		0x2,
-		0x3,
-		0x3,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x7,      //Map Matrix ID
+		219,      //Scripts Archive ID
+		716,	      //Map Scripts Archive ID
+		227,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		0x8,      //Wild Encounters Archive ID
+		201,      //Events Archive ID
+		48,      //Map Label Text ID
+		0x5,      //Map Label Window ID
+		0x17,      //Weather
+		0x2,      //Camera Type
+		0x3,      //Map Type
+		0x3,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x8,
 		0x2,
-		0x0,
-		220,
-		717,	
-		228,
-		1023,
-		1052,
-		0x9,
-		202,
-		49,
-		0x3,
-		0x0,
-		0x0,
-		0x2,
-		0x0,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		220,      //Scripts Archive ID
+		717,	      //Map Scripts Archive ID
+		228,      //Message Archive ID
+		1023,      //Day Music ID
+		1052,      //Night Music ID
+		0x9,      //Wild Encounters Archive ID
+		202,      //Events Archive ID
+		49,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		67,
 		0xF,
-		0x8,
-		221,
-		718,	
-		229,
-		0x433,
-		0x433,
-		0xFFFF,
-		203,
-		49,
-		0x9,
-		0x0,
-		0x4,
-		0x3,
-		0x7,
-		0x0,
-		0x1,
-		0x0,
-		0x0,
+		0x8,      //Map Matrix ID
+		221,      //Scripts Archive ID
+		718,	      //Map Scripts Archive ID
+		229,      //Message Archive ID
+		0x433,      //Day Music ID
+		0x433,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		203,      //Events Archive ID
+		49,      //Map Label Text ID
+		0x9,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x3,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x6,
 		0x0,
-		0x0,
-		0x191,
-		0x381,	
-		0x17,
-		0x3E8,
-		0x3E8,
-		0xFFFF,
-		0x0,
-		0x0,
-		0x6,
-		0x0,
-		0x0,
-		0x3,
-		0x9,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		0x0,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x3E8,      //Day Music ID
+		0x3E8,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0x9,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x45,
 		0xF,
-		0x9,
-		223,
-		720,	
-		230,
-		0x432,
-		0x432,
-		0xA,
-		204,
-		0x32,
-		0x4,
-		0x0,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0x9,      //Map Matrix ID
+		223,      //Scripts Archive ID
+		720,	      //Map Scripts Archive ID
+		230,      //Message Archive ID
+		0x432,      //Day Music ID
+		0x432,      //Night Music ID
+		0xA,      //Wild Encounters Archive ID
+		204,      //Events Archive ID
+		0x32,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x45,
 		0xF,
-		0xA,
-		224,
-		721,	
-		231,
-		0x432,
-		0x432,
-		11,
-		205,
-		0x32,
-		0x4,
-		0x0,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0xA,      //Map Matrix ID
+		224,      //Scripts Archive ID
+		721,	      //Map Scripts Archive ID
+		231,      //Message Archive ID
+		0x432,      //Day Music ID
+		0x432,      //Night Music ID
+		11,      //Wild Encounters Archive ID
+		205,      //Events Archive ID
+		0x32,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x45,
 		0xF,
-		11,
-		0x191,
-		0x381,	
-		0x17,
-		0x432,
-		0x432,
-		0xC,
-		206,
-		0x32,
-		0x4,
-		0x0,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		11,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x432,      //Day Music ID
+		0x432,      //Night Music ID
+		0xC,      //Wild Encounters Archive ID
+		206,      //Events Archive ID
+		0x32,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xE,
 		0x8,
-		0xC,
-		0x191,
-		0x381,	
-		0x17,
-		1071,
-		1071,
-		0xD,
-		207,
-		0x32,
-		0x4,
-		0x6,
-		0x7,
-		0x2,
-		0x5,
-		0x0,
-		0x1,
-		0x0,
-		0x1,
+		0xC,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1071,      //Day Music ID
+		1071,      //Night Music ID
+		0xD,      //Wild Encounters Archive ID
+		207,      //Events Archive ID
+		0x32,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x6,      //Weather
+		0x7,      //Camera Type
+		0x2,      //Map Type
+		0x5,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xE,
 		0x8,
-		0xD,
-		0x191,
-		0x381,	
-		0x17,
-		1071,
-		1071,
-		0xE,
-		208,
-		0x32,
-		0x4,
-		0x6,
-		0x6,
-		0x2,
-		0x5,
-		0x0,
-		0x1,
-		0x0,
-		0x1,
+		0xD,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1071,      //Day Music ID
+		1071,      //Night Music ID
+		0xE,      //Wild Encounters Archive ID
+		208,      //Events Archive ID
+		0x32,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x6,      //Weather
+		0x6,      //Camera Type
+		0x2,      //Map Type
+		0x5,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		70,
 		0xF,
-		0xE,
-		0x191,
-		0x381,	
-		0x17,
-		1071,
-		1071,
-		0xF,
-		209,
-		0x32,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0xE,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1071,      //Day Music ID
+		1071,      //Night Music ID
+		0xF,      //Wild Encounters Archive ID
+		209,      //Events Archive ID
+		0x32,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		70,
 		0xF,
-		0xF,
-		0x191,
-		0x381,	
-		0x17,
-		1071,
-		1071,
-		0x10,
-		210,
-		0x32,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0xF,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1071,      //Day Music ID
+		1071,      //Night Music ID
+		0x10,      //Wild Encounters Archive ID
+		210,      //Events Archive ID
+		0x32,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		70,
 		0xF,
-		0x10,
-		0x191,
-		0x381,	
-		0x17,
-		1071,
-		1071,
-		0x11,
-		211,
-		0x32,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0x10,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1071,      //Day Music ID
+		1071,      //Night Music ID
+		0x11,      //Wild Encounters Archive ID
+		211,      //Events Archive ID
+		0x32,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		70,
 		0xF,
-		0x11,
-		231,
-		728,	
-		0x17,
-		1071,
-		1071,
-		0x12,
-		212,
-		0x32,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0x11,      //Map Matrix ID
+		231,      //Scripts Archive ID
+		728,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1071,      //Day Music ID
+		1071,      //Night Music ID
+		0x12,      //Wild Encounters Archive ID
+		212,      //Events Archive ID
+		0x32,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x45,
 		0xF,
-		0x12,
-		232,
-		729,	
-		232,
-		1071,
-		1071,
-		0x13,
-		213,
-		0x32,
-		0x4,
-		0x0,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0x12,      //Map Matrix ID
+		232,      //Scripts Archive ID
+		729,	      //Map Scripts Archive ID
+		232,      //Message Archive ID
+		1071,      //Day Music ID
+		1071,      //Night Music ID
+		0x13,      //Wild Encounters Archive ID
+		213,      //Events Archive ID
+		0x32,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x45,
 		0xF,
-		0x13,
-		233,
-		730,	
-		0x17,
-		0x432,
-		0x432,
-		0x14,
-		214,
-		0x32,
-		0x4,
-		0x0,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0x13,      //Map Matrix ID
+		233,      //Scripts Archive ID
+		730,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x432,      //Day Music ID
+		0x432,      //Night Music ID
+		0x14,      //Wild Encounters Archive ID
+		214,      //Events Archive ID
+		0x32,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x45,
 		0xF,
-		0x14,
-		234,
-		731,	
-		233,
-		0x432,
-		0x432,
-		0x15,
-		215,
-		0x32,
-		0x4,
-		0x0,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0x14,      //Map Matrix ID
+		234,      //Scripts Archive ID
+		731,	      //Map Scripts Archive ID
+		233,      //Message Archive ID
+		0x432,      //Day Music ID
+		0x432,      //Night Music ID
+		0x15,      //Wild Encounters Archive ID
+		215,      //Events Archive ID
+		0x32,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x45,
 		0xF,
-		0x15,
-		0x191,
-		0x381,	
-		0x17,
-		0x432,
-		0x432,
-		0x16,
-		216,
-		0x32,
-		0x4,
-		(0xE),
-		0x0,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0x15,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x432,      //Day Music ID
+		0x432,      //Night Music ID
+		0x16,      //Wild Encounters Archive ID
+		216,      //Events Archive ID
+		0x32,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x3C,
 		0xF,
-		0x16,
-		236,
-		733,	
-		234,
-		0x430,
-		0x430,
-		0xFFFF,
-		217,
-		0x33,
-		0x4,
-		0xD,
-		0x5,
-		0x2,
-		0x4,
-		0x0,
-		0x1,
-		0x0,
-		0x0,
+		0x16,      //Map Matrix ID
+		236,      //Scripts Archive ID
+		733,	      //Map Scripts Archive ID
+		234,      //Message Archive ID
+		0x430,      //Day Music ID
+		0x430,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		217,      //Events Archive ID
+		0x33,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0xD,      //Weather
+		0x5,      //Camera Type
+		0x2,      //Map Type
+		0x4,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x3C,
 		0xF,
-		0x17,
-		0xED,
-		734,	
-		235,
-		0x430,
-		0x430,
-		0xFFFF,
-		218,
-		0x33,
-		0x4,
-		0xD,
-		0x5,
-		0x2,
-		0x4,
-		0x0,
-		0x1,
-		0x0,
-		0x0,
+		0x17,      //Map Matrix ID
+		0xED,      //Scripts Archive ID
+		734,	      //Map Scripts Archive ID
+		235,      //Message Archive ID
+		0x430,      //Day Music ID
+		0x430,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		218,      //Events Archive ID
+		0x33,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0xD,      //Weather
+		0x5,      //Camera Type
+		0x2,      //Map Type
+		0x4,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xC,
 		0x6,
-		0x0,
-		0x191,
-		0x381,	
-		0x17,
-		0x3E8,
-		0x3E8,
-		0xFFFF,
-		0x0,
-		0x0,
-		0x6,
-		0x0,
-		0x0,
-		0x3,
-		0x9,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		0x0,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x3E8,      //Day Music ID
+		0x3E8,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0x9,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		63,
 		0xF,
-		0x18,
-		0x191,
-		0x381,	
-		0x17,
-		0x3E8,
-		0x3E8,
-		0xFFFF,
-		219,
-		0xB,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x18,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x3E8,      //Day Music ID
+		0x3E8,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		219,      //Events Archive ID
+		0xB,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xA,
 		0x4,
-		0x0,
-		0x191,
-		0x381,	
-		0x17,
-		0x3E8,
-		0x3E8,
-		0xFFFF,
-		0x0,
-		0x0,
-		0x6,
-		0x0,
-		0x0,
-		0x3,
-		0x9,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
-	},
-	{
-		56,
-		0xF,
-		0x19,
-		249,
-		746,	
-		246,
-		0x427,
-		0x427,
-		29,
-		220,
-		53,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0x0,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x3E8,      //Day Music ID
+		0x3E8,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0x9,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		0x1A,
-		250,
-		747,	
-		247,
-		0x427,
-		0x427,
-		0xFFFF,
-		221,
-		53,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0x19,      //Map Matrix ID
+		249,      //Scripts Archive ID
+		746,	      //Map Scripts Archive ID
+		246,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		29,      //Wild Encounters Archive ID
+		220,      //Events Archive ID
+		53,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		40,
-		0x191,
-		0x381,	
-		0x17,
-		0x427,
-		0x427,
-		30,
-		222,
-		53,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0x1A,      //Map Matrix ID
+		250,      //Scripts Archive ID
+		747,	      //Map Scripts Archive ID
+		247,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		221,      //Events Archive ID
+		53,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		35,
-		0x191,
-		0x381,	
-		0x17,
-		0x427,
-		0x427,
-		0x1F,
-		223,
-		53,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		40,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		30,      //Wild Encounters Archive ID
+		222,      //Events Archive ID
+		53,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		39,
-		253,
-		750,	
-		248,
-		0x427,
-		0x427,
-		32,
-		224,
-		53,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		35,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		0x1F,      //Wild Encounters Archive ID
+		223,      //Events Archive ID
+		53,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		0x1F,
-		0x191,
-		0x381,	
-		0x17,
-		0x427,
-		0x427,
-		33,
-		225,
-		53,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		39,      //Map Matrix ID
+		253,      //Scripts Archive ID
+		750,	      //Map Scripts Archive ID
+		248,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		32,      //Wild Encounters Archive ID
+		224,      //Events Archive ID
+		53,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		34,
-		0x191,
-		0x381,	
-		0x17,
-		0x427,
-		0x427,
-		34,
-		226,
-		53,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0x1F,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		33,      //Wild Encounters Archive ID
+		225,      //Events Archive ID
+		53,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		0x1F,
-		0x191,
-		0x381,	
-		0x17,
-		0x427,
-		0x427,
-		35,
-		227,
-		53,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		34,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		34,      //Wild Encounters Archive ID
+		226,      //Events Archive ID
+		53,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		40,
-		0x191,
-		0x381,	
-		0x17,
-		0x427,
-		0x427,
-		36,
-		228,
-		53,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0x1F,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		35,      //Wild Encounters Archive ID
+		227,      //Events Archive ID
+		53,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		42,
-		0x191,
-		0x381,	
-		0x17,
-		0x427,
-		0x427,
-		37,
-		229,
-		53,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		40,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		36,      //Wild Encounters Archive ID
+		228,      //Events Archive ID
+		53,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		35,
-		0x191,
-		0x381,	
-		0x17,
-		0x427,
-		0x427,
-		38,
-		230,
-		53,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		42,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		37,      //Wild Encounters Archive ID
+		229,      //Events Archive ID
+		53,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		35,
-		0x191,
-		0x381,	
-		0x17,
-		0x427,
-		0x427,
-		39,
-		231,
-		53,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		35,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		38,      //Wild Encounters Archive ID
+		230,      //Events Archive ID
+		53,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		36,
-		0x191,
-		0x381,	
-		0x17,
-		0x427,
-		0x427,
-		40,
-		232,
-		53,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		35,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		39,      //Wild Encounters Archive ID
+		231,      //Events Archive ID
+		53,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		34,
-		0x191,
-		0x381,	
-		0x17,
-		0x427,
-		0x427,
-		41,
-		233,
-		53,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		36,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		40,      //Wild Encounters Archive ID
+		232,      //Events Archive ID
+		53,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		30,
-		0x191,
-		0x381,	
-		0x17,
-		0x427,
-		0x427,
-		42,
-		234,
-		53,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		34,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		41,      //Wild Encounters Archive ID
+		233,      //Events Archive ID
+		53,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		41,
-		264,
-		761,	
-		249,
-		0x427,
-		0x427,
-		43,
-		235,
-		53,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		30,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		42,      //Wild Encounters Archive ID
+		234,      //Events Archive ID
+		53,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		0x1F,
-		0x191,
-		0x381,	
-		0x17,
-		0x427,
-		0x427,
-		44,
-		236,
-		53,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		41,      //Map Matrix ID
+		264,      //Scripts Archive ID
+		761,	      //Map Scripts Archive ID
+		249,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		43,      //Wild Encounters Archive ID
+		235,      //Events Archive ID
+		53,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		35,
-		0x191,
-		0x381,	
-		0x17,
-		0x427,
-		0x427,
-		45,
-		0xED,
-		53,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0x1F,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		44,      //Wild Encounters Archive ID
+		236,      //Events Archive ID
+		53,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		56,
+		0xF,
+		35,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		45,      //Wild Encounters Archive ID
+		0xED,      //Events Archive ID
+		53,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xE,
 		0x8,
-		0x0,
-		0x191,
-		0x381,	
-		0x17,
-		0x3E8,
-		0x3E8,
-		0xFFFF,
-		0x0,
-		0x0,
-		0x6,
-		0x0,
-		0x0,
-		0x3,
-		0x9,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		0x0,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x3E8,      //Day Music ID
+		0x3E8,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0x9,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		71,
 		0xF,
-		43,
-		267,
-		764,	
-		250,
-		1062,
-		1062,
-		47,
-		0xEE,
-		54,
-		0x4,
-		0x0,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		43,      //Map Matrix ID
+		267,      //Scripts Archive ID
+		764,	      //Map Scripts Archive ID
+		250,      //Message Archive ID
+		1062,      //Day Music ID
+		1062,      //Night Music ID
+		47,      //Wild Encounters Archive ID
+		0xEE,      //Events Archive ID
+		54,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		71,
 		0xF,
-		44,
-		0x191,
-		0x381,	
-		0x17,
-		1062,
-		1062,
-		48,
-		0xEF,
-		54,
-		0x4,
-		0x0,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		44,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1062,      //Day Music ID
+		1062,      //Night Music ID
+		48,      //Wild Encounters Archive ID
+		0xEF,      //Events Archive ID
+		54,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		71,
 		0xF,
-		45,
-		0x191,
-		0x381,	
-		0x17,
-		1062,
-		1062,
-		49,
-		0xF0,
-		54,
-		0x4,
-		0x0,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		45,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1062,      //Day Music ID
+		1062,      //Night Music ID
+		49,      //Wild Encounters Archive ID
+		0xF0,      //Events Archive ID
+		54,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		71,
 		0xF,
-		46,
-		270,
-		767,	
-		251,
-		1062,
-		1062,
-		50,
-		241,
-		54,
-		0x4,
-		(0xE),
-		0x0,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		46,      //Map Matrix ID
+		270,      //Scripts Archive ID
+		767,	      //Map Scripts Archive ID
+		251,      //Message Archive ID
+		1062,      //Day Music ID
+		1062,      //Night Music ID
+		50,      //Wild Encounters Archive ID
+		241,      //Events Archive ID
+		54,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		71,
 		0xF,
-		47,
-		0x191,
-		0x381,	
-		0x17,
-		1062,
-		1062,
-		51,
-		242,
-		54,
-		0x4,
-		0x0,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		47,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1062,      //Day Music ID
+		1062,      //Night Music ID
+		51,      //Wild Encounters Archive ID
+		242,      //Events Archive ID
+		54,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		71,
 		0xF,
-		48,
-		0x191,
-		0x381,	
-		0x17,
-		1062,
-		1062,
-		52,
-		243,
-		54,
-		0x4,
-		0x0,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		48,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1062,      //Day Music ID
+		1062,      //Night Music ID
+		52,      //Wild Encounters Archive ID
+		243,      //Events Archive ID
+		54,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x4,
 		0x4,
-		49,
-		0x191,
-		0x381,	
-		0x17,
-		0x3E8,
-		0x3E8,
-		0xFFFF,
-		244,
-		0x0,
-		0x6,
-		0x0,
-		0x0,
-		0x3,
-		0x9,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		49,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x3E8,      //Day Music ID
+		0x3E8,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		244,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0x9,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		61,
 		0xF,
-		49,
-		273,
-		770,	
-		252,
-		1002,
-		1002,
-		0xFFFF,
-		245,
-		55,
-		0x7,
-		0x0,
-		0x2,
-		0x2,
-		0x0,
-		0x1,
-		0x0,
-		0x0,
-		0x0,
+		49,      //Map Matrix ID
+		273,      //Scripts Archive ID
+		770,	      //Map Scripts Archive ID
+		252,      //Message Archive ID
+		1002,      //Day Music ID
+		1002,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		245,      //Events Archive ID
+		55,      //Map Label Text ID
+		0x7,      //Map Label Window ID
+		0x0,      //Weather
+		0x2,      //Camera Type
+		0x2,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x9,
 		0x3,
-		0x0,
-		0x191,
-		0x381,	
-		0x17,
-		1062,
-		1062,
-		0xFFFF,
-		0x0,
-		0x0,
-		0x6,
-		0x0,
-		0x0,
-		0x3,
-		0x9,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		0x0,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1062,      //Day Music ID
+		1062,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0x9,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		59,
 		0xF,
-		50,
-		274,
-		771,	
-		253,
-		1066,
-		1066,
-		0xFFFF,
-		246,
-		56,
-		0x7,
-		0x0,
-		0x2,
-		0x2,
-		0x0,
-		0x0,
-		0x1,
-		0x0,
-		0x0,
+		50,      //Map Matrix ID
+		274,      //Scripts Archive ID
+		771,	      //Map Scripts Archive ID
+		253,      //Message Archive ID
+		1066,      //Day Music ID
+		1066,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		246,      //Events Archive ID
+		56,      //Map Label Text ID
+		0x7,      //Map Label Window ID
+		0x0,      //Weather
+		0x2,      //Camera Type
+		0x2,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		53,
 		0xF,
-		51,
-		275,
-		772,	
-		0x17,
-		0x432,
-		0x432,
-		53,
-		247,
-		0x39,
-		0x4,
-		0x0,
-		0xC,
-		0x3,
-		0x9,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		51,      //Map Matrix ID
+		275,      //Scripts Archive ID
+		772,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x432,      //Day Music ID
+		0x432,      //Night Music ID
+		53,      //Wild Encounters Archive ID
+		247,      //Events Archive ID
+		0x39,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0x9,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		54,
 		54,
-		52,
-		0x191,
-		0x381,	
-		0x17,
-		0x3E8,
-		0x3E8,
-		0xFFFF,
-		248,
-		0x0,
-		0x6,
-		0x0,
-		0x0,
-		0x3,
-		0x9,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		52,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x3E8,      //Day Music ID
+		0x3E8,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		248,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0x9,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x8,
 		0x2,
-		52,
-		0x115,
-		774,	
-		255,
-		1006,
-		1035,
-		0xFFFF,
-		249,
-		58,
-		0x7,
-		0x0,
-		0x2,
-		0x3,
-		0x3,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		52,      //Map Matrix ID
+		0x115,      //Scripts Archive ID
+		774,	      //Map Scripts Archive ID
+		255,      //Message Archive ID
+		1006,      //Day Music ID
+		1035,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		249,      //Events Archive ID
+		58,      //Map Label Text ID
+		0x7,      //Map Label Window ID
+		0x0,      //Weather
+		0x2,      //Camera Type
+		0x3,      //Map Type
+		0x3,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		0x7B,
-		0x116,
-		775,	
-		256,
-		1006,
-		1035,
-		0xFFFF,
-		250,
-		58,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x7B,      //Map Matrix ID
+		0x116,      //Scripts Archive ID
+		775,	      //Map Scripts Archive ID
+		256,      //Message Archive ID
+		1006,      //Day Music ID
+		1035,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		250,      //Events Archive ID
+		58,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		53,
 		0xF,
-		0x3,
-		0x117,
-		776,	
-		257,
-		0x432,
-		0x432,
+		0x3,      //Map Matrix ID
+		0x117,      //Scripts Archive ID
+		776,	      //Map Scripts Archive ID
+		257,      //Message Archive ID
+		0x432,      //Day Music ID
+		0x432,      //Night Music ID
+		54,      //Wild Encounters Archive ID
+		251,      //Events Archive ID
+		59,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0x9,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		53,
+		0xF,
+		0x4,      //Map Matrix ID
+		0x118,      //Scripts Archive ID
+		777,	      //Map Scripts Archive ID
+		258,      //Message Archive ID
+		0x432,      //Day Music ID
+		0x432,      //Night Music ID
+		55,      //Wild Encounters Archive ID
+		252,      //Events Archive ID
+		59,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0x9,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0xF,
+		0xF,
+		0x0,      //Map Matrix ID
+		0x119,      //Scripts Archive ID
+		778,	      //Map Scripts Archive ID
+		259,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		253,      //Events Archive ID
+		(0x3C),      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
 		54,
-		251,
-		59,
-		0x4,
-		0x0,
-		0xC,
-		0x3,
-		0x9,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
-	},
-	{
-		53,
 		0xF,
-		0x4,
-		0x118,
-		777,	
-		258,
-		0x432,
-		0x432,
-		55,
-		252,
-		59,
-		0x4,
-		0x1,
-		0xC,
-		0x3,
-		0x9,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
-	},
-	{
-		0xF,
-		0xF,
-		0x0,
-		0x119,
-		778,	
-		259,
-		0x427,
-		0x427,
-		0xFFFF,
-		253,
-		(0x3C),
-		0x4,
-		0x0,
-		0x0,
-		0x2,
-		0x0,
-		0x0,
-		0x1,
-		0x0,
-		0x0,
-	},
-	{
-		54,
-		0xF,
-		53,
-		0x11A,
-		779,	
-		260,
-		0x427,
-		0x427,
-		0xFFFF,
-		254,
-		(0x3C),
-		0x5,
-		0x17,
-		0x2,
-		0x3,
-		0x3,
-		0x0,
-		0x1,
-		0x0,
-		0x0,
+		53,      //Map Matrix ID
+		0x11A,      //Scripts Archive ID
+		779,	      //Map Scripts Archive ID
+		260,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		254,      //Events Archive ID
+		(0x3C),      //Map Label Text ID
+		0x5,      //Map Label Window ID
+		0x17,      //Weather
+		0x2,      //Camera Type
+		0x3,      //Map Type
+		0x3,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x11,
 		0xF,
-		0x0,
-		0x11B,
-		780,	
-		261,
-		1008,
-		1037,
-		56,
-		255,
-		84,
-		0x3,
-		0x9,
-		0x0,
-		0x2,
-		0x4,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		0x11B,      //Scripts Archive ID
+		780,	      //Map Scripts Archive ID
+		261,      //Message Archive ID
+		1008,      //Day Music ID
+		1037,      //Night Music ID
+		56,      //Wild Encounters Archive ID
+		255,      //Events Archive ID
+		84,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x9,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x4,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x39,
 		0xF,
-		0x39,
-		0x11C,
-		781,	
-		262,
-		1073,
-		1073,
-		0x39,
-		256,
-		84,
-		0x4,
-		(0x1C),
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0x39,      //Map Matrix ID
+		0x11C,      //Scripts Archive ID
+		781,	      //Map Scripts Archive ID
+		262,      //Message Archive ID
+		1073,      //Day Music ID
+		1073,      //Night Music ID
+		0x39,      //Wild Encounters Archive ID
+		256,      //Events Archive ID
+		84,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		(0x1C),      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x39,
 		0xF,
-		58,
-		0x11D,
-		782,	
-		263,
-		1073,
-		1073,
-		58,
-		257,
-		84,
-		0x4,
-		(0x1C),
-		0x8,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		58,      //Map Matrix ID
+		0x11D,      //Scripts Archive ID
+		782,	      //Map Scripts Archive ID
+		263,      //Message Archive ID
+		1073,      //Day Music ID
+		1073,      //Night Music ID
+		58,      //Wild Encounters Archive ID
+		257,      //Events Archive ID
+		84,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		(0x1C),      //Weather
+		0x8,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x39,
 		0xF,
-		59,
-		0x11E,
-		783,	
-		264,
-		1073,
-		1073,
-		0xFFFF,
-		258,
-		84,
-		0x4,
-		(0x1C),
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		59,      //Map Matrix ID
+		0x11E,      //Scripts Archive ID
+		783,	      //Map Scripts Archive ID
+		264,      //Message Archive ID
+		1073,      //Day Music ID
+		1073,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		258,      //Events Archive ID
+		84,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		(0x1C),      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x12,
 		0xC,
-		0x0,
-		0x191,
-		0x381,	
-		0x17,
-		0x3E8,
-		0x3E8,
-		0xFFFF,
-		0x0,
-		0x0,
-		0x6,
-		0x0,
-		0x0,
-		0x3,
-		0x9,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		0x0,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x3E8,      //Day Music ID
+		0x3E8,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0x9,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		62,
 		0xF,
-		0x3C,
-		288,
-		785,	
-		265,
-		1026,
-		1055,
-		59,
-		259,
-		61,
-		0x8,
-		0x8,
-		0x0,
-		0x3,
-		0x3,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
-	},
-	{
-		56,
-		0xF,
-		61,
-		289,
-		786,	
-		266,
-		1064,
-		1064,
-		0xFFFF,
-		260,
-		62,
-		0x4,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		0x3C,      //Map Matrix ID
+		288,      //Scripts Archive ID
+		785,	      //Map Scripts Archive ID
+		265,      //Message Archive ID
+		1026,      //Day Music ID
+		1055,      //Night Music ID
+		59,      //Wild Encounters Archive ID
+		259,      //Events Archive ID
+		61,      //Map Label Text ID
+		0x8,      //Map Label Window ID
+		0x8,      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0x3,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		62,
-		290,
-		787,	
-		267,
-		1064,
-		1064,
-		0xFFFF,
-		261,
-		62,
-		0x4,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		61,      //Map Matrix ID
+		289,      //Scripts Archive ID
+		786,	      //Map Scripts Archive ID
+		266,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		260,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		63,
-		291,
-		788,	
-		268,
-		1064,
-		1064,
-		0xFFFF,
-		262,
-		62,
-		0x4,
-		(0x1B),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		62,      //Map Matrix ID
+		290,      //Scripts Archive ID
+		787,	      //Map Scripts Archive ID
+		267,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		261,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		64,
-		292,
-		789,	
-		0x17,
-		1064,
-		1064,
-		63,
-		263,
-		62,
-		0x4,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		63,      //Map Matrix ID
+		291,      //Scripts Archive ID
+		788,	      //Map Scripts Archive ID
+		268,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		262,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		(0x1B),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		64,
-		293,
-		790,	
-		0x17,
-		1064,
-		1064,
-		64,
-		264,
-		62,
-		0x4,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		64,      //Map Matrix ID
+		292,      //Scripts Archive ID
+		789,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		63,      //Wild Encounters Archive ID
+		263,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		65,
-		294,
-		791,	
-		0x17,
-		1064,
-		1064,
-		65,
-		265,
-		62,
-		0x4,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		64,      //Map Matrix ID
+		293,      //Scripts Archive ID
+		790,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		64,      //Wild Encounters Archive ID
+		264,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		56,
+		0xF,
+		65,      //Map Matrix ID
+		294,      //Scripts Archive ID
+		791,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		65,      //Wild Encounters Archive ID
+		265,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xD,
 		0xA,
-		0x0,
-		310,
-		807,	
-		269,
-		1006,
-		1035,
-		0xFFFF,
-		266,
-		63,
-		0x7,
-		0x0,
-		0x0,
-		0x2,
-		0x0,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		310,      //Scripts Archive ID
+		807,	      //Map Scripts Archive ID
+		269,      //Message Archive ID
+		1006,      //Day Music ID
+		1035,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		266,      //Events Archive ID
+		63,      //Map Label Text ID
+		0x7,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		0x7B,
-		0x191,
-		0x381,	
-		0x17,
-		0x3E8,
-		0x3E8,
-		0xFFFF,
-		0x0,
-		0x0,
-		0x6,
-		0x0,
-		0x0,
-		0x3,
-		0x9,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x7B,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x3E8,      //Day Music ID
+		0x3E8,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0x9,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		11,
 		0x5,
-		0x0,
-		0x191,
-		0x381,	
-		0x17,
-		1062,
-		1062,
-		0xFFFF,
-		0x0,
-		0x0,
-		0x6,
-		0x0,
-		0x0,
-		0x3,
-		0x9,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		0x0,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1062,      //Day Music ID
+		1062,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0x9,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		11,
 		0x5,
-		0x0,
-		0x191,
-		0x381,	
-		0x17,
-		1062,
-		1062,
-		0xFFFF,
-		0x0,
-		0x0,
-		0x6,
-		0x0,
-		0x0,
-		0x3,
-		0x9,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		0x0,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1062,      //Day Music ID
+		1062,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0x9,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		65,
 		0xF,
-		68,
-		312,
-		809,	
-		270,
-		0x427,
-		0x427,
-		106,
-		267,
-		64,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		68,      //Map Matrix ID
+		312,      //Scripts Archive ID
+		809,	      //Map Scripts Archive ID
+		270,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		106,      //Wild Encounters Archive ID
+		267,      //Events Archive ID
+		64,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		65,
 		0xF,
-		0x45,
-		0x191,
-		0x381,	
-		0x17,
-		0x427,
-		0x427,
-		107,
-		268,
-		64,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0x45,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		107,      //Wild Encounters Archive ID
+		268,      //Events Archive ID
+		64,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		65,
 		0xF,
-		70,
-		0x191,
-		0x381,	
-		0x17,
-		0x427,
-		0x427,
-		108,
-		269,
-		64,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		70,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		108,      //Wild Encounters Archive ID
+		269,      //Events Archive ID
+		64,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		65,
 		0xF,
-		71,
-		0x191,
-		0x381,	
-		0x17,
-		0x427,
-		0x427,
-		109,
-		270,
-		64,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		71,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		109,      //Wild Encounters Archive ID
+		270,      //Events Archive ID
+		64,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		65,
 		0xF,
-		0x48,
-		0x191,
-		0x381,	
-		0x17,
-		0x427,
-		0x427,
-		110,
-		271,
-		64,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0x48,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		110,      //Wild Encounters Archive ID
+		271,      //Events Archive ID
+		64,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		65,
 		0xF,
-		73,
-		317,
-		814,	
-		271,
-		0x427,
-		0x427,
-		111,
-		272,
-		64,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		73,      //Map Matrix ID
+		317,      //Scripts Archive ID
+		814,	      //Map Scripts Archive ID
+		271,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		111,      //Wild Encounters Archive ID
+		272,      //Events Archive ID
+		64,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		53,
 		0xF,
-		0x4A,
-		0x13E,
-		815,	
-		272,
-		0x432,
-		0x432,
-		112,
-		273,
-		65,
-		0x4,
-		0x10,
-		0xC,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0x4A,      //Map Matrix ID
+		0x13E,      //Scripts Archive ID
+		815,	      //Map Scripts Archive ID
+		272,      //Message Archive ID
+		0x432,      //Day Music ID
+		0x432,      //Night Music ID
+		112,      //Wild Encounters Archive ID
+		273,      //Events Archive ID
+		65,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x10,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		53,
 		0xF,
-		75,
-		0x191,
-		0x381,	
-		0x17,
-		0x432,
-		0x432,
-		113,
-		274,
-		65,
-		0x4,
-		0x0,
-		0xC,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		75,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x432,      //Day Music ID
+		0x432,      //Night Music ID
+		113,      //Wild Encounters Archive ID
+		274,      //Events Archive ID
+		65,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		53,
 		0xF,
-		76,
-		0x140,
-		817,	
-		273,
-		0x433,
-		0x433,
-		114,
-		275,
-		66,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		76,      //Map Matrix ID
+		0x140,      //Scripts Archive ID
+		817,	      //Map Scripts Archive ID
+		273,      //Message Archive ID
+		0x433,      //Day Music ID
+		0x433,      //Night Music ID
+		114,      //Wild Encounters Archive ID
+		275,      //Events Archive ID
+		66,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xC,
 		0xF,
-		79,
-		0x191,
-		0x381,	
-		0x17,
-		1025,
-		1054,
-		0x75,
-		0x114,
-		68,
-		0x7,
-		0x0,
-		0x2,
-		0x2,
-		0x3,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		79,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1025,      //Day Music ID
+		1054,      //Night Music ID
+		0x75,      //Wild Encounters Archive ID
+		0x114,      //Events Archive ID
+		68,      //Map Label Text ID
+		0x7,      //Map Label Window ID
+		0x0,      //Weather
+		0x2,      //Camera Type
+		0x2,      //Map Type
+		0x3,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xF,
 		0xF,
-		0x0,
-		0x144,
-		821,	
-		0x114,
-		1022,
-		1051,
-		118,
-		0x115,
-		0x45,
-		0x4,
-		0x8,
-		0x0,
-		0x2,
-		0x0,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
-	},
-	{
-		0x48,
-		0xF,
-		80,
-		325,
-		822,	
-		0x17,
-		0x433,
-		0x433,
-		119,
-		0x116,
-		0x45,
-		0x4,
-		0x0,
-		0xD,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0x0,      //Map Matrix ID
+		0x144,      //Scripts Archive ID
+		821,	      //Map Scripts Archive ID
+		0x114,      //Message Archive ID
+		1022,      //Day Music ID
+		1051,      //Night Music ID
+		118,      //Wild Encounters Archive ID
+		0x115,      //Events Archive ID
+		0x45,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x8,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x48,
 		0xF,
-		81,
-		0x191,
-		0x381,	
-		0x17,
-		0x433,
-		0x433,
-		120,
-		0x117,
-		0x45,
-		0x4,
-		0x0,
-		0xD,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		80,      //Map Matrix ID
+		325,      //Scripts Archive ID
+		822,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x433,      //Day Music ID
+		0x433,      //Night Music ID
+		119,      //Wild Encounters Archive ID
+		0x116,      //Events Archive ID
+		0x45,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xD,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x48,
 		0xF,
-		82,
-		327,
-		824,	
-		0x17,
-		0x433,
-		0x433,
-		121,
-		0x118,
-		0x45,
-		0x4,
-		0x0,
-		0xD,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		81,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x433,      //Day Music ID
+		0x433,      //Night Music ID
+		120,      //Wild Encounters Archive ID
+		0x117,      //Events Archive ID
+		0x45,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xD,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x48,
 		0xF,
-		83,
-		0x191,
-		0x381,	
-		0x17,
-		0x433,
-		0x433,
-		122,
-		0x119,
-		0x45,
-		0x4,
-		0x0,
-		0xD,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		82,      //Map Matrix ID
+		327,      //Scripts Archive ID
+		824,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x433,      //Day Music ID
+		0x433,      //Night Music ID
+		121,      //Wild Encounters Archive ID
+		0x118,      //Events Archive ID
+		0x45,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xD,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x48,
 		0xF,
-		84,
-		329,
-		826,	
-		0x115,
-		0x433,
-		0x433,
-		0x7B,
-		0x11A,
-		0x45,
-		0x4,
-		0x0,
-		0xD,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		83,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x433,      //Day Music ID
+		0x433,      //Night Music ID
+		122,      //Wild Encounters Archive ID
+		0x119,      //Events Archive ID
+		0x45,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xD,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x48,
 		0xF,
-		85,
-		330,
-		827,	
-		0x17,
-		0x433,
-		0x433,
-		124,
-		0x11B,
-		0x45,
-		0x4,
-		0x0,
-		0xD,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		84,      //Map Matrix ID
+		329,      //Scripts Archive ID
+		826,	      //Map Scripts Archive ID
+		0x115,      //Message Archive ID
+		0x433,      //Day Music ID
+		0x433,      //Night Music ID
+		0x7B,      //Wild Encounters Archive ID
+		0x11A,      //Events Archive ID
+		0x45,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xD,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x48,
+		0xF,
+		85,      //Map Matrix ID
+		330,      //Scripts Archive ID
+		827,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x433,      //Day Music ID
+		0x433,      //Night Music ID
+		124,      //Wild Encounters Archive ID
+		0x11B,      //Events Archive ID
+		0x45,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xD,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		66,
 		0xF,
-		86,
-		332,
-		829,	
-		0x117,
-		1064,
-		1064,
-		125,
-		0x11C,
-		70,
-		0x9,
-		(0x1B),
-		0x4,
-		0x3,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		86,      //Map Matrix ID
+		332,      //Scripts Archive ID
+		829,	      //Map Scripts Archive ID
+		0x117,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		125,      //Wild Encounters Archive ID
+		0x11C,      //Events Archive ID
+		70,      //Map Label Text ID
+		0x9,      //Map Label Window ID
+		(0x1B),      //Weather
+		0x4,      //Camera Type
+		0x3,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		66,
 		0xF,
-		87,
-		333,
-		830,	
-		0x17,
-		1064,
-		1064,
-		126,
-		0x11D,
-		70,
-		0x9,
-		(0x1B),
-		0x4,
-		0x3,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		87,      //Map Matrix ID
+		333,      //Scripts Archive ID
+		830,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		126,      //Wild Encounters Archive ID
+		0x11D,      //Events Archive ID
+		70,      //Map Label Text ID
+		0x9,      //Map Label Window ID
+		(0x1B),      //Weather
+		0x4,      //Camera Type
+		0x3,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		66,
 		0xF,
-		88,
-		334,
-		831,	
-		0x118,
-		1064,
-		1064,
-		127,
-		0x11E,
-		70,
-		0x9,
-		(0x1B),
-		0x4,
-		0x3,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		88,      //Map Matrix ID
+		334,      //Scripts Archive ID
+		831,	      //Map Scripts Archive ID
+		0x118,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		127,      //Wild Encounters Archive ID
+		0x11E,      //Events Archive ID
+		70,      //Map Label Text ID
+		0x9,      //Map Label Window ID
+		(0x1B),      //Weather
+		0x4,      //Camera Type
+		0x3,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		66,
 		0xF,
-		89,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		128,
-		0x11F,
-		70,
-		0x9,
-		(0x1B),
-		0x4,
-		0x3,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		89,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		128,      //Wild Encounters Archive ID
+		0x11F,      //Events Archive ID
+		70,      //Map Label Text ID
+		0x9,      //Map Label Window ID
+		(0x1B),      //Weather
+		0x4,      //Camera Type
+		0x3,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		66,
 		0xF,
-		90,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		129,
-		288,
-		70,
-		0x9,
-		(0x1B),
-		0x4,
-		0x3,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		90,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		129,      //Wild Encounters Archive ID
+		288,      //Events Archive ID
+		70,      //Map Label Text ID
+		0x9,      //Map Label Window ID
+		(0x1B),      //Weather
+		0x4,      //Camera Type
+		0x3,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		66,
 		0xF,
-		91,
-		337,
-		834,	
-		0x119,
-		1064,
-		1064,
-		130,
-		289,
-		70,
-		0x9,
-		(0x1B),
-		0x4,
-		0x3,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		91,      //Map Matrix ID
+		337,      //Scripts Archive ID
+		834,	      //Map Scripts Archive ID
+		0x119,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		130,      //Wild Encounters Archive ID
+		289,      //Events Archive ID
+		70,      //Map Label Text ID
+		0x9,      //Map Label Window ID
+		(0x1B),      //Weather
+		0x4,      //Camera Type
+		0x3,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		66,
 		0xF,
-		92,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		131,
-		290,
-		70,
-		0x9,
-		(0x1B),
-		0x4,
-		0x3,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		92,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		131,      //Wild Encounters Archive ID
+		290,      //Events Archive ID
+		70,      //Map Label Text ID
+		0x9,      //Map Label Window ID
+		(0x1B),      //Weather
+		0x4,      //Camera Type
+		0x3,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		66,
 		0xF,
-		93,
-		339,
-		836,	
-		0x17,
-		1064,
-		1064,
-		132,
-		291,
-		70,
-		0x9,
-		(0x1B),
-		0x4,
-		0x3,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		93,      //Map Matrix ID
+		339,      //Scripts Archive ID
+		836,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		132,      //Wild Encounters Archive ID
+		291,      //Events Archive ID
+		70,      //Map Label Text ID
+		0x9,      //Map Label Window ID
+		(0x1B),      //Weather
+		0x4,      //Camera Type
+		0x3,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		66,
 		0xF,
-		94,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		133,
-		292,
-		70,
-		0x9,
-		(0x1B),
-		0x4,
-		0x3,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		94,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		133,      //Wild Encounters Archive ID
+		292,      //Events Archive ID
+		70,      //Map Label Text ID
+		0x9,      //Map Label Window ID
+		(0x1B),      //Weather
+		0x4,      //Camera Type
+		0x3,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x1F,
 		0x1F,
-		157,
-		0x191,
-		0x381,	
-		0x17,
-		0x3E8,
-		0x3E8,
-		0xFFFF,
-		0x0,
-		0x0,
-		0x6,
-		0x0,
-		0x0,
-		0x3,
-		0x9,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		157,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x3E8,      //Day Music ID
+		0x3E8,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0x9,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		58,
 		0xF,
-		95,
-		341,
-		838,	
-		0x11A,
-		1068,
-		1068,
-		0xFFFF,
-		293,
-		71,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		95,      //Map Matrix ID
+		341,      //Scripts Archive ID
+		838,	      //Map Scripts Archive ID
+		0x11A,      //Message Archive ID
+		1068,      //Day Music ID
+		1068,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		293,      //Events Archive ID
+		71,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		58,
 		0xF,
-		96,
-		342,
-		839,	
-		0x11B,
-		1067,
-		1067,
-		0xFFFF,
-		294,
-		71,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		96,      //Map Matrix ID
+		342,      //Scripts Archive ID
+		839,	      //Map Scripts Archive ID
+		0x11B,      //Message Archive ID
+		1067,      //Day Music ID
+		1067,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		294,      //Events Archive ID
+		71,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		58,
 		0xF,
-		97,
-		343,
-		840,	
-		0x11C,
-		1067,
-		1067,
-		0xFFFF,
-		295,
-		71,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		97,      //Map Matrix ID
+		343,      //Scripts Archive ID
+		840,	      //Map Scripts Archive ID
+		0x11C,      //Message Archive ID
+		1067,      //Day Music ID
+		1067,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		295,      //Events Archive ID
+		71,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		58,
 		0xF,
-		98,
-		344,
-		841,	
-		0x11D,
-		1067,
-		1067,
-		0xFFFF,
-		296,
-		71,
-		0x6,
-		(0x1A),
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		98,      //Map Matrix ID
+		344,      //Scripts Archive ID
+		841,	      //Map Scripts Archive ID
+		0x11D,      //Message Archive ID
+		1067,      //Day Music ID
+		1067,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		296,      //Events Archive ID
+		71,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0x1A),      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		58,
 		0xF,
-		100,
-		345,
-		842,	
-		0x11E,
-		1067,
-		1067,
-		0xFFFF,
-		297,
-		71,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		100,      //Map Matrix ID
+		345,      //Scripts Archive ID
+		842,	      //Map Scripts Archive ID
+		0x11E,      //Message Archive ID
+		1067,      //Day Music ID
+		1067,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		297,      //Events Archive ID
+		71,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		58,
 		0xF,
-		99,
-		346,
-		843,	
-		0x11F,
-		1067,
-		1067,
-		0xFFFF,
-		298,
-		71,
-		0x6,
-		(0x1A),
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		99,      //Map Matrix ID
+		346,      //Scripts Archive ID
+		843,	      //Map Scripts Archive ID
+		0x11F,      //Message Archive ID
+		1067,      //Day Music ID
+		1067,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		298,      //Events Archive ID
+		71,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0x1A),      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		62,
 		0xF,
-		101,
-		351,
-		848,	
-		291,
-		1070,
-		1070,
-		134,
-		299,
-		76,
-		0x8,
-		0x0,
-		0x2,
-		0x3,
-		0x3,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		101,      //Map Matrix ID
+		351,      //Scripts Archive ID
+		848,	      //Map Scripts Archive ID
+		291,      //Message Archive ID
+		1070,      //Day Music ID
+		1070,      //Night Music ID
+		134,      //Wild Encounters Archive ID
+		299,      //Events Archive ID
+		76,      //Map Label Text ID
+		0x8,      //Map Label Window ID
+		0x0,      //Weather
+		0x2,      //Camera Type
+		0x3,      //Map Type
+		0x3,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		62,
 		0xF,
-		102,
-		352,
-		849,	
-		292,
-		1068,
-		1068,
-		135,
-		300,
-		76,
-		0x8,
-		0x0,
-		0x2,
-		0x3,
-		0x3,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		102,      //Map Matrix ID
+		352,      //Scripts Archive ID
+		849,	      //Map Scripts Archive ID
+		292,      //Message Archive ID
+		1068,      //Day Music ID
+		1068,      //Night Music ID
+		135,      //Wild Encounters Archive ID
+		300,      //Events Archive ID
+		76,      //Map Label Text ID
+		0x8,      //Map Label Window ID
+		0x0,      //Weather
+		0x2,      //Camera Type
+		0x3,      //Map Type
+		0x3,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		53,
 		0xF,
-		103,
-		353,
-		850,	
-		293,
-		1065,
-		1065,
-		0xFFFF,
-		301,
-		87,
-		0x4,
-		0x0,
-		0xC,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		103,      //Map Matrix ID
+		353,      //Scripts Archive ID
+		850,	      //Map Scripts Archive ID
+		293,      //Message Archive ID
+		1065,      //Day Music ID
+		1065,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		301,      //Events Archive ID
+		87,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		62,
 		0xF,
-		104,
-		355,
-		852,	
-		294,
-		1068,
-		1068,
-		0xFFFF,
-		302,
-		77,
-		0x8,
-		0x0,
-		0x2,
-		0x3,
-		0x4,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		104,      //Map Matrix ID
+		355,      //Scripts Archive ID
+		852,	      //Map Scripts Archive ID
+		294,      //Message Archive ID
+		1068,      //Day Music ID
+		1068,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		302,      //Events Archive ID
+		77,      //Map Label Text ID
+		0x8,      //Map Label Window ID
+		0x0,      //Weather
+		0x2,      //Camera Type
+		0x3,      //Map Type
+		0x4,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		62,
 		0xF,
-		105,
-		356,
-		853,	
-		295,
-		1070,
-		1070,
-		136,
-		303,
-		77,
-		0x8,
-		0x0,
-		0x2,
-		0x3,
-		0x3,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		105,      //Map Matrix ID
+		356,      //Scripts Archive ID
+		853,	      //Map Scripts Archive ID
+		295,      //Message Archive ID
+		1070,      //Day Music ID
+		1070,      //Night Music ID
+		136,      //Wild Encounters Archive ID
+		303,      //Events Archive ID
+		77,      //Map Label Text ID
+		0x8,      //Map Label Window ID
+		0x0,      //Weather
+		0x2,      //Camera Type
+		0x3,      //Map Type
+		0x3,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		53,
 		0xF,
-		106,
-		357,
-		854,	
-		296,
-		1068,
-		1068,
-		0xFFFF,
-		304,
-		88,
-		0x4,
-		0x0,
-		0xC,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		106,      //Map Matrix ID
+		357,      //Scripts Archive ID
+		854,	      //Map Scripts Archive ID
+		296,      //Message Archive ID
+		1068,      //Day Music ID
+		1068,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		304,      //Events Archive ID
+		88,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xE,
 		0xF,
-		107,
-		359,
-		856,	
-		297,
-		1070,
-		1070,
-		0xFFFF,
-		305,
-		78,
-		0x8,
-		0x0,
-		0xF,
-		0x3,
-		0x5,
-		0x0,
-		0x1,
-		0x0,
-		0x1,
+		107,      //Map Matrix ID
+		359,      //Scripts Archive ID
+		856,	      //Map Scripts Archive ID
+		297,      //Message Archive ID
+		1070,      //Day Music ID
+		1070,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		305,      //Events Archive ID
+		78,      //Map Label Text ID
+		0x8,      //Map Label Window ID
+		0x0,      //Weather
+		0xF,      //Camera Type
+		0x3,      //Map Type
+		0x5,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xE,
 		0xF,
-		108,
-		360,
-		857,	
-		298,
-		1068,
-		1068,
-		137,
-		306,
-		78,
-		0x8,
-		0x0,
-		0xF,
-		0x3,
-		0x5,
-		0x0,
-		0x1,
-		0x0,
-		0x1,
+		108,      //Map Matrix ID
+		360,      //Scripts Archive ID
+		857,	      //Map Scripts Archive ID
+		298,      //Message Archive ID
+		1068,      //Day Music ID
+		1068,      //Night Music ID
+		137,      //Wild Encounters Archive ID
+		306,      //Events Archive ID
+		78,      //Map Label Text ID
+		0x8,      //Map Label Window ID
+		0x0,      //Weather
+		0xF,      //Camera Type
+		0x3,      //Map Type
+		0x5,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		53,
 		0xF,
-		109,
-		361,
-		858,	
-		299,
-		1065,
-		1065,
-		0xFFFF,
-		307,
-		89,
-		0x4,
-		0x0,
-		0xC,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		109,      //Map Matrix ID
+		361,      //Scripts Archive ID
+		858,	      //Map Scripts Archive ID
+		299,      //Message Archive ID
+		1065,      //Day Music ID
+		1065,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		307,      //Events Archive ID
+		89,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xF,
 		0x9,
-		0x0,
-		362,
-		859,	
-		300,
-		1064,
-		1064,
-		0xFFFF,
-		308,
-		79,
-		0x4,
-		0x0,
-		0x0,
-		0x3,
-		0x0,
-		0x0,
-		0x1,
-		0x0,
-		0x0,
+		0x0,      //Map Matrix ID
+		362,      //Scripts Archive ID
+		859,	      //Map Scripts Archive ID
+		300,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		308,      //Events Archive ID
+		79,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		54,
 		0xF,
-		110,
-		363,
-		860,	
-		301,
-		1064,
-		1064,
-		0xFFFF,
-		309,
-		79,
-		0x5,
-		0x17,
-		0x2,
-		0x3,
-		0x3,
-		0x0,
-		0x1,
-		0x0,
-		0x0,
+		110,      //Map Matrix ID
+		363,      //Scripts Archive ID
+		860,	      //Map Scripts Archive ID
+		301,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		309,      //Events Archive ID
+		79,      //Map Label Text ID
+		0x5,      //Map Label Window ID
+		0x17,      //Weather
+		0x2,      //Camera Type
+		0x3,      //Map Type
+		0x3,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		64,
 		0xF,
-		229,
-		364,
-		861,	
-		302,
-		1020,
-		1049,
-		0xFFFF,
-		310,
-		111,
-		0x7,
-		0x0,
-		0x2,
-		0x1,
-		0x2,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		229,      //Map Matrix ID
+		364,      //Scripts Archive ID
+		861,	      //Map Scripts Archive ID
+		302,      //Message Archive ID
+		1020,      //Day Music ID
+		1049,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		310,      //Events Archive ID
+		111,      //Map Label Text ID
+		0x7,      //Map Label Window ID
+		0x0,      //Weather
+		0x2,      //Camera Type
+		0x1,      //Map Type
+		0x2,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		41,
 		0xF,
-		231,
-		365,
-		862,	
-		303,
-		1020,
-		1049,
-		0xFFFF,
-		311,
-		111,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		231,      //Map Matrix ID
+		365,      //Scripts Archive ID
+		862,	      //Map Scripts Archive ID
+		303,      //Message Archive ID
+		1020,      //Day Music ID
+		1049,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		311,      //Events Archive ID
+		111,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		33,
 		0xF,
-		232,
-		0x191,
-		0x381,	
-		0x17,
-		0x3E8,
-		0x3E8,
-		0xFFFF,
-		0x0,
-		0x0,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		232,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x3E8,      //Day Music ID
+		0x3E8,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		33,
 		0xF,
-		233,
-		0x191,
-		0x381,	
-		0x17,
-		0x3E8,
-		0x3E8,
-		0xFFFF,
-		0x0,
-		0x0,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		233,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x3E8,      //Day Music ID
+		0x3E8,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		33,
 		0xF,
-		193,
-		367,
-		864,	
-		304,
-		1092,
-		1092,
-		0xFFFF,
-		312,
-		80,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		193,      //Map Matrix ID
+		367,      //Scripts Archive ID
+		864,	      //Map Scripts Archive ID
+		304,      //Message Archive ID
+		1092,      //Day Music ID
+		1092,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		312,      //Events Archive ID
+		80,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		207,
-		368,
-		865,	
-		0x17,
-		1092,
-		1092,
-		0xFFFF,
-		313,
-		80,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		207,      //Map Matrix ID
+		368,      //Scripts Archive ID
+		865,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1092,      //Day Music ID
+		1092,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		313,      //Events Archive ID
+		80,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		33,
 		0xF,
-		194,
-		369,
-		866,	
-		0x17,
-		1092,
-		1092,
-		0xFFFF,
-		314,
-		80,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		194,      //Map Matrix ID
+		369,      //Scripts Archive ID
+		866,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1092,      //Day Music ID
+		1092,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		314,      //Events Archive ID
+		80,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		33,
 		0xF,
-		195,
-		370,
-		867,	
-		0x17,
-		1092,
-		1092,
-		0xFFFF,
-		315,
-		80,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		195,      //Map Matrix ID
+		370,      //Scripts Archive ID
+		867,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1092,      //Day Music ID
+		1092,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		315,      //Events Archive ID
+		80,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		33,
 		0xF,
-		197,
-		371,
-		868,	
-		305,
-		1092,
-		1092,
-		0xFFFF,
-		316,
-		80,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		197,      //Map Matrix ID
+		371,      //Scripts Archive ID
+		868,	      //Map Scripts Archive ID
+		305,      //Message Archive ID
+		1092,      //Day Music ID
+		1092,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		316,      //Events Archive ID
+		80,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		33,
 		0xF,
-		198,
-		372,
-		869,	
-		306,
-		1092,
-		1092,
-		0xFFFF,
-		317,
-		80,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		198,      //Map Matrix ID
+		372,      //Scripts Archive ID
+		869,	      //Map Scripts Archive ID
+		306,      //Message Archive ID
+		1092,      //Day Music ID
+		1092,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		317,      //Events Archive ID
+		80,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x5,
 		0xE,
-		118,
-		398,
-		894,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		0x13E,
-		0x0,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		118,      //Map Matrix ID
+		398,      //Scripts Archive ID
+		894,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x13E,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x5,
 		0xE,
-		121,
-		399,
-		895,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		0x13F,
-		0x0,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		121,      //Map Matrix ID
+		399,      //Scripts Archive ID
+		895,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x13F,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x6,
 		0x0,
-		0x0,
-		414,
-		901,	
-		399,
-		1021,
-		1050,
-		0xFFFF,
-		0x140,
-		0x48,
-		0x3,
-		0x0,
-		0x0,
-		0x2,
-		0x0,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		414,      //Scripts Archive ID
+		901,	      //Map Scripts Archive ID
+		399,      //Message Archive ID
+		1021,      //Day Music ID
+		1050,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x140,      //Events Archive ID
+		0x48,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0x14,
-		0x7B,
-		415,
-		902,	
-		400,
-		1021,
-		1050,
-		0xFFFF,
-		0x141,
-		0x48,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x7B,      //Map Matrix ID
+		415,      //Scripts Archive ID
+		902,	      //Map Scripts Archive ID
+		400,      //Message Archive ID
+		1021,      //Day Music ID
+		1050,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x141,      //Events Archive ID
+		0x48,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x12,
 		0xC,
-		0x0,
-		416,
-		903,	
-		0x191,
-		1009,
-		1038,
-		138,
-		0x142,
-		73,
-		0x3,
-		0x0,
-		0x0,
-		0x2,
-		0x0,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		416,      //Scripts Archive ID
+		903,	      //Map Scripts Archive ID
+		0x191,      //Message Archive ID
+		1009,      //Day Music ID
+		1038,      //Night Music ID
+		138,      //Wild Encounters Archive ID
+		0x142,      //Events Archive ID
+		73,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		35,
 		0xF,
-		147,
-		417,
-		904,	
-		402,
-		1009,
-		1038,
-		0xFFFF,
-		0x143,
-		110,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		147,      //Map Matrix ID
+		417,      //Scripts Archive ID
+		904,	      //Map Scripts Archive ID
+		402,      //Message Archive ID
+		1009,      //Day Music ID
+		1038,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x143,      //Events Archive ID
+		110,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		35,
 		0xF,
-		146,
-		418,
-		905,	
-		403,
-		1009,
-		1038,
-		0xFFFF,
-		0x144,
-		109,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		146,      //Map Matrix ID
+		418,      //Scripts Archive ID
+		905,	      //Map Scripts Archive ID
+		403,      //Message Archive ID
+		1009,      //Day Music ID
+		1038,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x144,      //Events Archive ID
+		109,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		35,
 		0xF,
-		146,
-		419,
-		906,	
-		404,
-		1009,
-		1038,
-		0xFFFF,
-		325,
-		109,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		146,      //Map Matrix ID
+		419,      //Scripts Archive ID
+		906,	      //Map Scripts Archive ID
+		404,      //Message Archive ID
+		1009,      //Day Music ID
+		1038,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		325,      //Events Archive ID
+		109,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xE,
 		0x8,
-		0x0,
-		420,
-		907,	
-		405,
-		1027,
-		1056,
-		139,
-		326,
-		(0x4A),
-		0x3,
-		35,
-		0x0,
-		0x2,
-		0x5,
-		0x0,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		420,      //Scripts Archive ID
+		907,	      //Map Scripts Archive ID
+		405,      //Message Archive ID
+		1027,      //Day Music ID
+		1056,      //Night Music ID
+		139,      //Wild Encounters Archive ID
+		326,      //Events Archive ID
+		(0x4A),      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		35,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x5,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x12,
 		0xC,
-		0x0,
-		0x191,
-		0x381,	
-		0x17,
-		1026,
-		1055,
-		0xFFFF,
-		327,
-		75,
-		0x3,
-		0x0,
-		0x0,
-		0x2,
-		0x0,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1026,      //Day Music ID
+		1055,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		327,      //Events Archive ID
+		75,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x6,
 		0x0,
-		0x0,
-		427,
-		909,	
-		466,
-		1021,
-		1050,
-		140,
-		328,
-		0x10,
-		0x3,
-		0x0,
-		0x0,
-		0x2,
-		0x0,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		427,      //Scripts Archive ID
+		909,	      //Map Scripts Archive ID
+		466,      //Message Archive ID
+		1021,      //Day Music ID
+		1050,      //Night Music ID
+		140,      //Wild Encounters Archive ID
+		328,      //Events Archive ID
+		0x10,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x6,
 		0x0,
-		0x0,
-		428,
-		910,	
-		467,
-		1021,
-		1050,
-		0x8D,
-		329,
-		0x11,
-		0x3,
-		0x0,
-		0x0,
-		0x2,
-		0x0,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		428,      //Scripts Archive ID
+		910,	      //Map Scripts Archive ID
+		467,      //Message Archive ID
+		1021,      //Day Music ID
+		1050,      //Night Music ID
+		0x8D,      //Wild Encounters Archive ID
+		329,      //Events Archive ID
+		0x11,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x6,
 		0x0,
-		0x0,
-		429,
-		911,	
-		468,
-		1022,
-		1051,
-		0x8E,
-		330,
-		0x12,
-		0x3,
-		0x0,
-		0x0,
-		0x2,
-		0x0,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		429,      //Scripts Archive ID
+		911,	      //Map Scripts Archive ID
+		468,      //Message Archive ID
+		1022,      //Day Music ID
+		1051,      //Night Music ID
+		0x8E,      //Wild Encounters Archive ID
+		330,      //Events Archive ID
+		0x12,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x6,
 		0x0,
-		0x0,
-		430,
-		912,	
-		469,
-		1022,
-		1051,
-		143,
-		331,
-		0x13,
-		0x3,
-		0x0,
-		0x0,
-		0x2,
-		0x0,
-		0x1,
-		0x1,
-		0x1,
-		0x1,
+		0x0,      //Map Matrix ID
+		430,      //Scripts Archive ID
+		912,	      //Map Scripts Archive ID
+		469,      //Message Archive ID
+		1022,      //Day Music ID
+		1051,      //Night Music ID
+		143,      //Wild Encounters Archive ID
+		331,      //Events Archive ID
+		0x13,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x8,
 		0x2,
-		0x0,
-		431,
-		913,	
-		470,
-		1022,
-		1051,
-		144,
-		332,
-		0x13,
-		0x3,
-		0x0,
-		0x0,
-		0x2,
-		0x0,
-		0x1,
-		0x1,
-		0x1,
-		0x1,
+		0x0,      //Map Matrix ID
+		431,      //Scripts Archive ID
+		913,	      //Map Scripts Archive ID
+		470,      //Message Archive ID
+		1022,      //Day Music ID
+		1051,      //Night Music ID
+		144,      //Wild Encounters Archive ID
+		332,      //Events Archive ID
+		0x13,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x8,
 		0x2,
-		0x0,
-		432,
-		914,	
-		471,
-		1023,
-		1052,
-		145,
-		333,
-		0x14,
-		0x3,
-		0x0,
-		0x0,
-		0x2,
-		0x4,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		432,      //Scripts Archive ID
+		914,	      //Map Scripts Archive ID
+		471,      //Message Archive ID
+		1023,      //Day Music ID
+		1052,      //Night Music ID
+		145,      //Wild Encounters Archive ID
+		333,      //Events Archive ID
+		0x14,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x4,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		243,
-		433,
-		915,	
-		472,
-		1023,
-		1052,
-		0xFFFF,
-		334,
-		0x14,
-		0x3,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		243,      //Map Matrix ID
+		433,      //Scripts Archive ID
+		915,	      //Map Scripts Archive ID
+		472,      //Message Archive ID
+		1023,      //Day Music ID
+		1052,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		334,      //Events Archive ID
+		0x14,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x8,
 		0x2,
-		0x0,
-		434,
-		916,	
-		473,
-		1023,
-		1052,
-		146,
-		335,
-		0x14,
-		0x3,
-		0x0,
-		0x0,
-		0x2,
-		0x0,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		434,      //Scripts Archive ID
+		916,	      //Map Scripts Archive ID
+		473,      //Message Archive ID
+		1023,      //Day Music ID
+		1052,      //Night Music ID
+		146,      //Wild Encounters Archive ID
+		335,      //Events Archive ID
+		0x14,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x7,
 		0x1,
-		0x0,
-		435,
-		917,	
-		474,
-		1024,
-		1053,
-		147,
-		336,
-		0x15,
-		0x3,
-		0x8,
-		0x0,
-		0x2,
-		0x0,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		435,      //Scripts Archive ID
+		917,	      //Map Scripts Archive ID
+		474,      //Message Archive ID
+		1024,      //Day Music ID
+		1053,      //Night Music ID
+		147,      //Wild Encounters Archive ID
+		336,      //Events Archive ID
+		0x15,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x8,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		50,
 		0xF,
-		260,
-		436,
-		918,	
-		475,
-		1024,
-		1053,
-		0xFFFF,
-		337,
-		0x15,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x1,
-		0x0,
-		0x0,
-		0x0,
+		260,      //Map Matrix ID
+		436,      //Scripts Archive ID
+		918,	      //Map Scripts Archive ID
+		475,      //Message Archive ID
+		1024,      //Day Music ID
+		1053,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		337,      //Events Archive ID
+		0x15,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x1F,
 		0x1F,
-		157,
-		437,
-		919,	
-		476,
-		0x3E8,
-		0x3E8,
-		0xFFFF,
-		338,
-		0x0,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		157,      //Map Matrix ID
+		437,      //Scripts Archive ID
+		919,	      //Map Scripts Archive ID
+		476,      //Message Archive ID
+		0x3E8,      //Day Music ID
+		0x3E8,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		338,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x7,
 		0x1,
-		0x0,
-		438,
-		920,	
-		477,
-		1024,
-		1053,
-		148,
-		339,
-		0x16,
-		0x3,
-		0x0,
-		0x0,
-		0x2,
-		0x4,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		438,      //Scripts Archive ID
+		920,	      //Map Scripts Archive ID
+		477,      //Message Archive ID
+		1024,      //Day Music ID
+		1053,      //Night Music ID
+		148,      //Wild Encounters Archive ID
+		339,      //Events Archive ID
+		0x16,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x4,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x9,
 		0x3,
-		0x0,
-		439,
-		921,	
-		478,
-		1024,
-		1053,
-		149,
-		340,
-		0x17,
-		0x3,
-		0x8,
-		0x0,
-		0x2,
-		0x4,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		439,      //Scripts Archive ID
+		921,	      //Map Scripts Archive ID
+		478,      //Message Archive ID
+		1024,      //Day Music ID
+		1053,      //Night Music ID
+		149,      //Wild Encounters Archive ID
+		340,      //Events Archive ID
+		0x17,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x8,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x4,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		43,
 		0xF,
-		249,
-		440,
-		922,	
-		479,
-		1024,
-		1053,
-		0xFFFF,
-		341,
-		0x17,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		249,      //Map Matrix ID
+		440,      //Scripts Archive ID
+		922,	      //Map Scripts Archive ID
+		479,      //Message Archive ID
+		1024,      //Day Music ID
+		1053,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		341,      //Events Archive ID
+		0x17,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xA,
 		0x4,
-		0x0,
-		441,
-		923,	
-		480,
-		1025,
-		1054,
-		150,
-		342,
-		0x18,
-		0x3,
-		0x0,
-		0x0,
-		0x2,
-		0x0,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		441,      //Scripts Archive ID
+		923,	      //Map Scripts Archive ID
+		480,      //Message Archive ID
+		1025,      //Day Music ID
+		1054,      //Night Music ID
+		150,      //Wild Encounters Archive ID
+		342,      //Events Archive ID
+		0x18,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		42,
 		0xF,
-		212,
-		442,
-		924,	
-		481,
-		0x427,
-		0x427,
-		151,
-		343,
-		0x18,
-		0x3,
-		(0x1B),
-		0x4,
-		0x4,
-		0x8,
-		0x0,
-		0x0,
-		0x1,
-		0x0,
+		212,      //Map Matrix ID
+		442,      //Scripts Archive ID
+		924,	      //Map Scripts Archive ID
+		481,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		151,      //Wild Encounters Archive ID
+		343,      //Events Archive ID
+		0x18,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		(0x1B),      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		42,
 		0xF,
-		213,
-		0x191,
-		0x381,	
-		0x17,
-		0x427,
-		0x427,
-		152,
-		344,
-		0x18,
-		0x3,
-		(0x1B),
-		0x4,
-		0x4,
-		0x8,
-		0x0,
-		0x0,
-		0x1,
-		0x0,
+		213,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		152,      //Wild Encounters Archive ID
+		344,      //Events Archive ID
+		0x18,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		(0x1B),      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		42,
 		0xF,
-		214,
-		0x191,
-		0x381,	
-		0x17,
-		0x427,
-		0x427,
-		153,
-		345,
-		0x18,
-		0x3,
-		(0xE),
-		0x4,
-		0x4,
-		0x8,
-		0x0,
-		0x0,
-		0x1,
-		0x0,
+		214,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		153,      //Wild Encounters Archive ID
+		345,      //Events Archive ID
+		0x18,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		(0xE),      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		42,
 		0xF,
-		215,
-		0x191,
-		0x381,	
-		0x17,
-		0x427,
-		0x427,
-		154,
-		346,
-		0x18,
-		0x3,
-		(0xE),
-		0x4,
-		0x4,
-		0x8,
-		0x0,
-		0x0,
-		0x1,
-		0x0,
+		215,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		154,      //Wild Encounters Archive ID
+		346,      //Events Archive ID
+		0x18,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		(0xE),      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		42,
 		0xF,
-		216,
-		446,
-		928,	
-		482,
-		0x427,
-		0x427,
-		155,
-		347,
-		0x18,
-		0x3,
-		(0xE),
-		0x4,
-		0x4,
-		0x8,
-		0x0,
-		0x0,
-		0x1,
-		0x0,
+		216,      //Map Matrix ID
+		446,      //Scripts Archive ID
+		928,	      //Map Scripts Archive ID
+		482,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		155,      //Wild Encounters Archive ID
+		347,      //Events Archive ID
+		0x18,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		(0xE),      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xA,
 		0x4,
-		0x0,
-		447,
-		929,	
-		483,
-		1026,
-		1055,
-		156,
-		348,
-		0x19,
-		0x3,
-		0x0,
-		0x0,
-		0x2,
-		0x0,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		447,      //Scripts Archive ID
+		929,	      //Map Scripts Archive ID
+		483,      //Message Archive ID
+		1026,      //Day Music ID
+		1055,      //Night Music ID
+		156,      //Wild Encounters Archive ID
+		348,      //Events Archive ID
+		0x19,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xA,
 		0x4,
-		0x0,
-		449,
-		931,	
-		485,
-		1026,
-		1055,
-		157,
-		349,
-		0x19,
-		0x3,
-		(0xE),
-		0x0,
-		0x2,
-		0x4,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		449,      //Scripts Archive ID
+		931,	      //Map Scripts Archive ID
+		485,      //Message Archive ID
+		1026,      //Day Music ID
+		1055,      //Night Music ID
+		157,      //Wild Encounters Archive ID
+		349,      //Events Archive ID
+		0x19,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x4,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		0x7B,
-		450,
-		932,	
-		486,
-		1026,
-		1055,
-		0xFFFF,
-		350,
-		0x19,
-		0x3,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x7B,      //Map Matrix ID
+		450,      //Scripts Archive ID
+		932,	      //Map Scripts Archive ID
+		486,      //Message Archive ID
+		1026,      //Day Music ID
+		1055,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		350,      //Events Archive ID
+		0x19,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x8,
 		0x2,
-		0x0,
-		451,
-		933,	
-		487,
-		1023,
-		1052,
-		158,
-		351,
-		(0x1A),
-		0x3,
-		0x0,
-		0x0,
-		0x2,
-		0x4,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		451,      //Scripts Archive ID
+		933,	      //Map Scripts Archive ID
+		487,      //Message Archive ID
+		1023,      //Day Music ID
+		1052,      //Night Music ID
+		158,      //Wild Encounters Archive ID
+		351,      //Events Archive ID
+		(0x1A),      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x4,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xA,
 		0x4,
-		0x0,
-		452,
-		934,	
-		488,
-		1026,
-		1055,
-		159,
-		352,
-		(0x1A),
-		0x3,
-		0x0,
-		0x0,
-		0x2,
-		0x4,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		452,      //Scripts Archive ID
+		934,	      //Map Scripts Archive ID
+		488,      //Message Archive ID
+		1026,      //Day Music ID
+		1055,      //Night Music ID
+		159,      //Wild Encounters Archive ID
+		352,      //Events Archive ID
+		(0x1A),      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x4,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xC,
 		0x6,
-		0x0,
-		453,
-		935,	
-		489,
-		1025,
-		1054,
-		160,
-		353,
-		(0x1B),
-		0x3,
-		0x0,
-		0x0,
-		0x2,
-		0x0,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		453,      //Scripts Archive ID
+		935,	      //Map Scripts Archive ID
+		489,      //Message Archive ID
+		1025,      //Day Music ID
+		1054,      //Night Music ID
+		160,      //Wild Encounters Archive ID
+		353,      //Events Archive ID
+		(0x1B),      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		35,
 		0xF,
-		178,
-		454,
-		936,	
-		490,
-		1025,
-		1054,
-		0xFFFF,
-		354,
-		106,
-		0x3,
-		0x0,
-		0x4,
-		0x4,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		178,      //Map Matrix ID
+		454,      //Scripts Archive ID
+		936,	      //Map Scripts Archive ID
+		490,      //Message Archive ID
+		1025,      //Day Music ID
+		1054,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		354,      //Events Archive ID
+		106,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		35,
 		0xF,
-		179,
-		455,
-		937,	
-		491,
-		1025,
-		1054,
-		0xFFFF,
-		355,
-		106,
-		0x3,
-		0x0,
-		0x4,
-		0x4,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		179,      //Map Matrix ID
+		455,      //Scripts Archive ID
+		937,	      //Map Scripts Archive ID
+		491,      //Message Archive ID
+		1025,      //Day Music ID
+		1054,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		355,      //Events Archive ID
+		106,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		35,
 		0xF,
-		180,
-		456,
-		938,	
-		492,
-		1025,
-		1054,
-		0xFFFF,
-		356,
-		106,
-		0x3,
-		0x0,
-		0x4,
-		0x4,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		180,      //Map Matrix ID
+		456,      //Scripts Archive ID
+		938,	      //Map Scripts Archive ID
+		492,      //Message Archive ID
+		1025,      //Day Music ID
+		1054,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		356,      //Events Archive ID
+		106,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xC,
 		0x6,
-		0x0,
-		457,
-		939,	
-		493,
-		1025,
-		1054,
-		161,
-		357,
-		(0x1B),
-		0x3,
-		32,
-		0x0,
-		0x2,
-		0x0,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		457,      //Scripts Archive ID
+		939,	      //Map Scripts Archive ID
+		493,      //Message Archive ID
+		1025,      //Day Music ID
+		1054,      //Night Music ID
+		161,      //Wild Encounters Archive ID
+		357,      //Events Archive ID
+		(0x1B),      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		32,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		244,
-		458,
-		940,	
-		494,
-		1025,
-		1054,
-		0xFFFF,
-		358,
-		(0x1B),
-		0x3,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		244,      //Map Matrix ID
+		458,      //Scripts Archive ID
+		940,	      //Map Scripts Archive ID
+		494,      //Message Archive ID
+		1025,      //Day Music ID
+		1054,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		358,      //Events Archive ID
+		(0x1B),      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x12,
 		0xC,
-		0x0,
-		459,
-		941,	
-		495,
-		1009,
-		1038,
-		162,
-		359,
-		(0x1C),
-		0x3,
-		33,
-		0x0,
-		0x2,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		459,      //Scripts Archive ID
+		941,	      //Map Scripts Archive ID
+		495,      //Message Archive ID
+		1009,      //Day Music ID
+		1038,      //Night Music ID
+		162,      //Wild Encounters Archive ID
+		359,      //Events Archive ID
+		(0x1C),      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		33,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x1,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		50,
 		0xF,
-		258,
-		460,
-		942,	
-		496,
-		1009,
-		1038,
-		0xFFFF,
-		360,
-		(0x1C),
-		0x3,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x1,
-		0x0,
-		0x0,
-		0x0,
+		258,      //Map Matrix ID
+		460,      //Scripts Archive ID
+		942,	      //Map Scripts Archive ID
+		496,      //Message Archive ID
+		1009,      //Day Music ID
+		1038,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		360,      //Events Archive ID
+		(0x1C),      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		43,
 		0xF,
-		247,
-		461,
-		943,	
-		497,
-		1009,
-		1038,
-		0xFFFF,
-		361,
-		107,
-		0x3,
-		0x0,
-		0x4,
-		0x4,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		247,      //Map Matrix ID
+		461,      //Scripts Archive ID
+		943,	      //Map Scripts Archive ID
+		497,      //Message Archive ID
+		1009,      //Day Music ID
+		1038,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		361,      //Events Archive ID
+		107,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		35,
 		0xF,
-		145,
-		462,
-		944,	
-		498,
-		1009,
-		1038,
-		0xFFFF,
-		362,
-		109,
-		0x3,
-		0x0,
-		0x4,
-		0x4,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		145,      //Map Matrix ID
+		462,      //Scripts Archive ID
+		944,	      //Map Scripts Archive ID
+		498,      //Message Archive ID
+		1009,      //Day Music ID
+		1038,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		362,      //Events Archive ID
+		109,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		35,
 		0xF,
-		146,
-		463,
-		945,	
-		499,
-		1009,
-		1038,
-		0xFFFF,
-		363,
-		109,
-		0x3,
-		0x0,
-		0x4,
-		0x4,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		146,      //Map Matrix ID
+		463,      //Scripts Archive ID
+		945,	      //Map Scripts Archive ID
+		499,      //Message Archive ID
+		1009,      //Day Music ID
+		1038,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		363,      //Events Archive ID
+		109,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		35,
 		0xF,
-		146,
-		464,
-		946,	
-		500,
-		1009,
-		1038,
-		0xFFFF,
-		364,
-		109,
-		0x3,
-		0x0,
-		0x4,
-		0x4,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		146,      //Map Matrix ID
+		464,      //Scripts Archive ID
+		946,	      //Map Scripts Archive ID
+		500,      //Message Archive ID
+		1009,      //Day Music ID
+		1038,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		364,      //Events Archive ID
+		109,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		35,
 		0xF,
-		146,
-		465,
-		947,	
-		501,
-		1009,
-		1038,
-		0xFFFF,
-		365,
-		109,
-		0x3,
-		0x0,
-		0x4,
-		0x4,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		146,      //Map Matrix ID
+		465,      //Scripts Archive ID
+		947,	      //Map Scripts Archive ID
+		501,      //Message Archive ID
+		1009,      //Day Music ID
+		1038,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		365,      //Events Archive ID
+		109,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x12,
 		0xC,
-		0x0,
-		466,
-		948,	
-		0x1F6,
-		1026,
-		1055,
-		163,
-		366,
-		0x1D,
-		0x3,
-		0x0,
-		0x0,
-		0x2,
-		0x4,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		466,      //Scripts Archive ID
+		948,	      //Map Scripts Archive ID
+		0x1F6,      //Message Archive ID
+		1026,      //Day Music ID
+		1055,      //Night Music ID
+		163,      //Wild Encounters Archive ID
+		366,      //Events Archive ID
+		0x1D,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x4,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		50,
 		0xF,
-		257,
-		467,
-		949,	
-		503,
-		1026,
-		1055,
-		0xFFFF,
-		367,
-		0x1D,
-		0x3,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x1,
-		0x0,
-		0x0,
-		0x0,
+		257,      //Map Matrix ID
+		467,      //Scripts Archive ID
+		949,	      //Map Scripts Archive ID
+		503,      //Message Archive ID
+		1026,      //Day Music ID
+		1055,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		367,      //Events Archive ID
+		0x1D,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xA,
 		0x4,
-		0x0,
-		468,
-		950,	
-		0x1F8,
-		1026,
-		1055,
-		164,
-		368,
-		30,
-		0x3,
-		0x2,
-		0x0,
-		0x2,
-		0x3,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		468,      //Scripts Archive ID
+		950,	      //Map Scripts Archive ID
+		0x1F8,      //Message Archive ID
+		1026,      //Day Music ID
+		1055,      //Night Music ID
+		164,      //Wild Encounters Archive ID
+		368,      //Events Archive ID
+		30,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x2,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x3,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xE,
 		0x8,
-		0x0,
-		469,
-		951,	
-		0x1F9,
-		1027,
-		1056,
-		165,
-		369,
-		(0x1F),
-		0x3,
-		34,
-		0x0,
-		0x2,
-		0x5,
-		0x0,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		469,      //Scripts Archive ID
+		951,	      //Map Scripts Archive ID
+		0x1F9,      //Message Archive ID
+		1027,      //Day Music ID
+		1056,      //Night Music ID
+		165,      //Wild Encounters Archive ID
+		369,      //Events Archive ID
+		(0x1F),      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		34,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x5,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		243,
-		470,
-		952,	
-		0x1FA,
-		1027,
-		1056,
-		0xFFFF,
-		370,
-		(0x1F),
-		0x3,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		243,      //Map Matrix ID
+		470,      //Scripts Archive ID
+		952,	      //Map Scripts Archive ID
+		0x1FA,      //Message Archive ID
+		1027,      //Day Music ID
+		1056,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		370,      //Events Archive ID
+		(0x1F),      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xE,
 		0x8,
-		0x0,
-		471,
-		953,	
-		507,
-		1027,
-		1056,
-		166,
-		371,
-		32,
-		0x3,
-		0x7,
-		0x0,
-		0x2,
-		0x5,
-		0x0,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		471,      //Scripts Archive ID
+		953,	      //Map Scripts Archive ID
+		507,      //Message Archive ID
+		1027,      //Day Music ID
+		1056,      //Night Music ID
+		166,      //Wild Encounters Archive ID
+		371,      //Events Archive ID
+		32,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x7,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x5,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		124,
-		472,
-		954,	
-		0x1FC,
-		1027,
-		1056,
-		0xFFFF,
-		372,
-		32,
-		0x3,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		124,      //Map Matrix ID
+		472,      //Scripts Archive ID
+		954,	      //Map Scripts Archive ID
+		0x1FC,      //Message Archive ID
+		1027,      //Day Music ID
+		1056,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		372,      //Events Archive ID
+		32,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		124,
-		473,
-		955,	
-		0x1FD,
-		1027,
-		1056,
-		0xFFFF,
-		373,
-		32,
-		0x3,
-		30,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		124,      //Map Matrix ID
+		473,      //Scripts Archive ID
+		955,	      //Map Scripts Archive ID
+		0x1FD,      //Message Archive ID
+		1027,      //Day Music ID
+		1056,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		373,      //Events Archive ID
+		32,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		30,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xF,
 		0x9,
-		0x0,
-		474,
-		956,	
-		510,
-		1022,
-		1051,
-		167,
-		374,
-		33,
-		0x3,
-		0x0,
-		0x0,
-		0x2,
-		0x0,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		474,      //Scripts Archive ID
+		956,	      //Map Scripts Archive ID
+		510,      //Message Archive ID
+		1022,      //Day Music ID
+		1051,      //Night Music ID
+		167,      //Wild Encounters Archive ID
+		374,      //Events Archive ID
+		33,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		50,
 		0xF,
-		258,
-		475,
-		957,	
-		511,
-		1022,
-		1051,
-		0xFFFF,
-		375,
-		33,
-		0x3,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x1,
-		0x0,
-		0x0,
-		0x0,
+		258,      //Map Matrix ID
+		475,      //Scripts Archive ID
+		957,	      //Map Scripts Archive ID
+		511,      //Message Archive ID
+		1022,      //Day Music ID
+		1051,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		375,      //Events Archive ID
+		33,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		50,
 		0xF,
-		258,
-		476,
-		958,	
-		512,
-		1022,
-		1051,
-		0xFFFF,
-		376,
-		33,
-		0x3,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x1,
-		0x0,
-		0x0,
-		0x0,
+		258,      //Map Matrix ID
+		476,      //Scripts Archive ID
+		958,	      //Map Scripts Archive ID
+		512,      //Message Archive ID
+		1022,      //Day Music ID
+		1051,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		376,      //Events Archive ID
+		33,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x6,
 		0x0,
-		0x0,
-		477,
-		959,	
-		513,
-		1021,
-		1050,
-		168,
-		377,
-		34,
-		0x3,
-		0x0,
-		0x0,
-		0x2,
-		0x0,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		477,      //Scripts Archive ID
+		959,	      //Map Scripts Archive ID
+		513,      //Message Archive ID
+		1021,      //Day Music ID
+		1050,      //Night Music ID
+		168,      //Wild Encounters Archive ID
+		377,      //Events Archive ID
+		34,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x6,
 		0x0,
-		0x0,
-		478,
-		960,	
-		514,
-		1024,
-		1053,
-		169,
-		378,
-		36,
-		0x3,
-		0x0,
-		0x0,
-		0x2,
-		0x0,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		478,      //Scripts Archive ID
+		960,	      //Map Scripts Archive ID
+		514,      //Message Archive ID
+		1024,      //Day Music ID
+		1053,      //Night Music ID
+		169,      //Wild Encounters Archive ID
+		378,      //Events Archive ID
+		36,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		39,
 		0xF,
-		201,
-		479,
-		961,	
-		515,
-		1024,
-		1053,
-		0xFFFF,
-		379,
-		55,
-		0x3,
-		0x0,
-		0x4,
-		0x4,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		201,      //Map Matrix ID
+		479,      //Scripts Archive ID
+		961,	      //Map Scripts Archive ID
+		515,      //Message Archive ID
+		1024,      //Day Music ID
+		1053,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		379,      //Events Archive ID
+		55,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		244,
-		480,
-		962,	
-		516,
-		1024,
-		1053,
-		0xFFFF,
-		380,
-		36,
-		0x3,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		244,      //Map Matrix ID
+		480,      //Scripts Archive ID
+		962,	      //Map Scripts Archive ID
+		516,      //Message Archive ID
+		1024,      //Day Music ID
+		1053,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		380,      //Events Archive ID
+		36,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x12,
 		0xC,
-		0x0,
-		481,
-		963,	
-		517,
-		1025,
-		1054,
-		170,
-		381,
-		37,
-		0x3,
-		0x0,
-		0x0,
-		0x2,
-		0x0,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		481,      //Scripts Archive ID
+		963,	      //Map Scripts Archive ID
+		517,      //Message Archive ID
+		1025,      //Day Music ID
+		1054,      //Night Music ID
+		170,      //Wild Encounters Archive ID
+		381,      //Events Archive ID
+		37,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		0x7B,
-		482,
-		964,	
-		518,
-		1025,
-		1054,
-		0xFFFF,
-		0x17E,
-		37,
-		0x3,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x7B,      //Map Matrix ID
+		482,      //Scripts Archive ID
+		964,	      //Map Scripts Archive ID
+		518,      //Message Archive ID
+		1025,      //Day Music ID
+		1054,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x17E,      //Events Archive ID
+		37,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		0x7B,
-		483,
-		965,	
-		519,
-		1025,
-		1054,
-		0xFFFF,
-		383,
-		37,
-		0x3,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x7B,      //Map Matrix ID
+		483,      //Scripts Archive ID
+		965,	      //Map Scripts Archive ID
+		519,      //Message Archive ID
+		1025,      //Day Music ID
+		1054,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		383,      //Events Archive ID
+		37,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		50,
 		0xF,
-		258,
-		484,
-		966,	
-		520,
-		1025,
-		1054,
-		0xFFFF,
-		384,
-		37,
-		0x3,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x1,
-		0x0,
-		0x0,
-		0x0,
+		258,      //Map Matrix ID
+		484,      //Scripts Archive ID
+		966,	      //Map Scripts Archive ID
+		520,      //Message Archive ID
+		1025,      //Day Music ID
+		1054,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		384,      //Events Archive ID
+		37,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xD,
 		0xA,
-		0x0,
-		485,
-		967,	
-		521,
-		1026,
-		1055,
-		171,
-		385,
-		39,
-		0x3,
-		0x0,
-		0x0,
-		0x2,
-		0x0,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		485,      //Scripts Archive ID
+		967,	      //Map Scripts Archive ID
+		521,      //Message Archive ID
+		1026,      //Day Music ID
+		1055,      //Night Music ID
+		171,      //Wild Encounters Archive ID
+		385,      //Events Archive ID
+		39,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x0,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x11,
 		11,
-		0x0,
-		486,
-		968,	
-		522,
-		1008,
-		1037,
-		172,
-		386,
-		40,
-		0x3,
-		0x0,
-		0x0,
-		0x2,
-		0x4,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		486,      //Scripts Archive ID
+		968,	      //Map Scripts Archive ID
+		522,      //Message Archive ID
+		1008,      //Day Music ID
+		1037,      //Night Music ID
+		172,      //Wild Encounters Archive ID
+		386,      //Events Archive ID
+		40,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x4,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x11,
 		11,
-		0x0,
-		0x191,
-		0x381,	
-		0x17,
-		1024,
-		1053,
-		0xFFFF,
-		0x0,
-		0x0,
-		0x6,
-		0x0,
-		0x0,
-		0x2,
-		0x3,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		0x0,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1024,      //Day Music ID
+		1053,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x3,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x11,
 		11,
-		0x0,
-		0x191,
-		0x381,	
-		0x17,
-		1024,
-		1053,
-		0xFFFF,
-		0x0,
-		0x0,
-		0x6,
-		0x0,
-		0x0,
-		0x2,
-		0x3,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		0x0,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1024,      //Day Music ID
+		1053,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x3,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x11,
 		11,
-		0x0,
-		489,
-		971,	
-		0x20D,
-		1008,
-		1037,
-		173,
-		0x183,
-		42,
-		0x3,
-		0x9,
-		0x0,
-		0x2,
-		0x4,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		489,      //Scripts Archive ID
+		971,	      //Map Scripts Archive ID
+		0x20D,      //Message Archive ID
+		1008,      //Day Music ID
+		1037,      //Night Music ID
+		173,      //Wild Encounters Archive ID
+		0x183,      //Events Archive ID
+		42,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x9,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x4,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x11,
 		11,
-		0x0,
-		0x191,
-		0x381,	
-		0x17,
-		1024,
-		1053,
-		0xFFFF,
-		0x0,
-		0x0,
-		0x6,
-		0x0,
-		0x0,
-		0x2,
-		0x3,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		0x0,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1024,      //Day Music ID
+		1053,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x3,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x11,
 		11,
-		0x0,
-		0x191,
-		0x381,	
-		0x17,
-		1024,
-		1053,
-		0xFFFF,
-		0x0,
-		0x0,
-		0x6,
-		0x0,
-		0x0,
-		0x2,
-		0x3,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		0x0,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1024,      //Day Music ID
+		1053,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x3,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x13,
 		0xD,
-		0x0,
-		491,
-		973,	
-		0x20F,
-		0x404,
-		0x421,
-		174,
-		0x184,
-		0x2B,
-		0x3,
-		0xA,
-		0x0,
-		0x2,
-		0x4,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		491,      //Scripts Archive ID
+		973,	      //Map Scripts Archive ID
+		0x20F,      //Message Archive ID
+		0x404,      //Day Music ID
+		0x421,      //Night Music ID
+		174,      //Wild Encounters Archive ID
+		0x184,      //Events Archive ID
+		0x2B,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0xA,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x4,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x13,
 		0xD,
-		0x0,
-		495,
-		977,	
-		0x213,
-		0x404,
-		0x421,
-		175,
-		0x185,
-		44,
-		0x3,
-		0x0,
-		0x0,
-		0x2,
-		0x3,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		495,      //Scripts Archive ID
+		977,	      //Map Scripts Archive ID
+		0x213,      //Message Archive ID
+		0x404,      //Day Music ID
+		0x421,      //Night Music ID
+		175,      //Wild Encounters Archive ID
+		0x185,      //Events Archive ID
+		44,      //Map Label Text ID
+		0x3,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x3,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x13,
 		0xD,
-		0x0,
-		0x191,
-		0x381,	
-		0x17,
-		0x3E8,
-		0x3E8,
-		0xFFFF,
-		0x0,
-		0x0,
-		0x6,
-		0x0,
-		0x0,
-		0x2,
-		0x3,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		0x0,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x3E8,      //Day Music ID
+		0x3E8,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x3,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x13,
 		0xD,
-		0x0,
-		0x191,
-		0x381,	
-		0x17,
-		1024,
-		1053,
-		0xFFFF,
-		0x0,
-		0x0,
-		0x6,
-		0x0,
-		0x0,
-		0x2,
-		0x3,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		0x0,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1024,      //Day Music ID
+		1053,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x3,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x5,
 		0xE,
-		119,
-		0x191,
-		0x381,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		0x0,
-		0x0,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		119,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x6,
 		0x0,
-		0x0,
-		1052,
-		982,	
-		554,
-		1004,
-		1033,
-		176,
-		0x186,
-		0x1,
-		0x2,
-		0x0,
-		0x0,
-		0x1,
-		0x2,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
-	},
-	{
-		0x14,
-		0xF,
-		126,
-		1053,
-		983,	
-		555,
-		1004,
-		1033,
-		0xFFFF,
-		391,
-		0x1,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x0,      //Map Matrix ID
+		1052,      //Scripts Archive ID
+		982,	      //Map Scripts Archive ID
+		554,      //Message Archive ID
+		1004,      //Day Music ID
+		1033,      //Night Music ID
+		176,      //Wild Encounters Archive ID
+		0x186,      //Events Archive ID
+		0x1,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x1,      //Map Type
+		0x2,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		127,
-		1054,
-		984,	
-		556,
-		1004,
-		1033,
-		0xFFFF,
-		0x188,
-		0x1,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		126,      //Map Matrix ID
+		1053,      //Scripts Archive ID
+		983,	      //Map Scripts Archive ID
+		555,      //Message Archive ID
+		1004,      //Day Music ID
+		1033,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		391,      //Events Archive ID
+		0x1,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		128,
-		1055,
-		985,	
-		557,
-		1004,
-		1033,
-		0xFFFF,
-		393,
-		0x1,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		127,      //Map Matrix ID
+		1054,      //Scripts Archive ID
+		984,	      //Map Scripts Archive ID
+		556,      //Message Archive ID
+		1004,      //Day Music ID
+		1033,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x188,      //Events Archive ID
+		0x1,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		129,
-		1056,
-		986,	
-		558,
-		1004,
-		1033,
-		0xFFFF,
-		0x18A,
-		0x1,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		128,      //Map Matrix ID
+		1055,      //Scripts Archive ID
+		985,	      //Map Scripts Archive ID
+		557,      //Message Archive ID
+		1004,      //Day Music ID
+		1033,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		393,      //Events Archive ID
+		0x1,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		0x7B,
-		0x421,
-		987,	
-		559,
-		1004,
-		1033,
-		0xFFFF,
-		395,
-		0x1,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		129,      //Map Matrix ID
+		1056,      //Scripts Archive ID
+		986,	      //Map Scripts Archive ID
+		558,      //Message Archive ID
+		1004,      //Day Music ID
+		1033,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x18A,      //Events Archive ID
+		0x1,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		0x7B,
-		1058,
-		988,	
-		560,
-		1004,
-		1033,
-		0xFFFF,
-		396,
-		0x1,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x7B,      //Map Matrix ID
+		0x421,      //Scripts Archive ID
+		987,	      //Map Scripts Archive ID
+		559,      //Message Archive ID
+		1004,      //Day Music ID
+		1033,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		395,      //Events Archive ID
+		0x1,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
+	},
+	{
+		0x14,
+		0xF,
+		0x7B,      //Map Matrix ID
+		1058,      //Scripts Archive ID
+		988,	      //Map Scripts Archive ID
+		560,      //Message Archive ID
+		1004,      //Day Music ID
+		1033,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		396,      //Events Archive ID
+		0x1,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x6,
 		0x0,
-		0x0,
-		1059,
-		989,	
-		561,
-		1005,
-		1034,
-		0xFFFF,
-		397,
-		0x2,
-		0x2,
-		0x0,
-		0x0,
-		0x1,
-		0x2,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		1059,      //Scripts Archive ID
+		989,	      //Map Scripts Archive ID
+		561,      //Message Archive ID
+		1005,      //Day Music ID
+		1034,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		397,      //Events Archive ID
+		0x2,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x1,      //Map Type
+		0x2,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x16,
 		0xF,
-		122,
-		0x424,
-		990,	
-		562,
-		0x442,
-		0x442,
-		0xFFFF,
-		398,
-		0x2,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		122,      //Map Matrix ID
+		0x424,      //Scripts Archive ID
+		990,	      //Map Scripts Archive ID
+		562,      //Message Archive ID
+		0x442,      //Day Music ID
+		0x442,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		398,      //Events Archive ID
+		0x2,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		0x74,
-		1061,
-		991,	
-		563,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		399,
-		0x2,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x74,      //Map Matrix ID
+		1061,      //Scripts Archive ID
+		991,	      //Map Scripts Archive ID
+		563,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		399,      //Events Archive ID
+		0x2,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		0x75,
-		1062,
-		992,	
-		564,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		400,
-		0x2,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x75,      //Map Matrix ID
+		1062,      //Scripts Archive ID
+		992,	      //Map Scripts Archive ID
+		564,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		400,      //Events Archive ID
+		0x2,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		160,
-		1064,
-		994,	
-		565,
-		1088,
-		1088,
-		0xFFFF,
-		0x191,
-		0x2,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		160,      //Map Matrix ID
+		1064,      //Scripts Archive ID
+		994,	      //Map Scripts Archive ID
+		565,      //Message Archive ID
+		1088,      //Day Music ID
+		1088,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x191,      //Events Archive ID
+		0x2,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		130,
-		1065,
-		995,	
-		566,
-		1005,
-		1034,
-		0xFFFF,
-		402,
-		0x2,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		130,      //Map Matrix ID
+		1065,      //Scripts Archive ID
+		995,	      //Map Scripts Archive ID
+		566,      //Message Archive ID
+		1005,      //Day Music ID
+		1034,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		402,      //Events Archive ID
+		0x2,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		131,
-		1066,
-		996,	
-		567,
-		1005,
-		1034,
-		0xFFFF,
-		403,
-		0x2,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		131,      //Map Matrix ID
+		1066,      //Scripts Archive ID
+		996,	      //Map Scripts Archive ID
+		567,      //Message Archive ID
+		1005,      //Day Music ID
+		1034,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		403,      //Events Archive ID
+		0x2,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		0x7B,
-		1067,
-		997,	
-		568,
-		1005,
-		1034,
-		0xFFFF,
-		404,
-		0x2,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x7B,      //Map Matrix ID
+		1067,      //Scripts Archive ID
+		997,	      //Map Scripts Archive ID
+		568,      //Message Archive ID
+		1005,      //Day Music ID
+		1034,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		404,      //Events Archive ID
+		0x2,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x8,
 		0x2,
-		0x0,
-		1068,
-		998,	
-		569,
-		1006,
-		1035,
-		0xFFFF,
-		405,
-		0x3,
-		0x2,
-		0x0,
-		0x0,
-		0x1,
-		0x2,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		1068,      //Scripts Archive ID
+		998,	      //Map Scripts Archive ID
+		569,      //Message Archive ID
+		1006,      //Day Music ID
+		1035,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		405,      //Events Archive ID
+		0x3,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x1,      //Map Type
+		0x2,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x16,
 		0xF,
-		122,
-		1069,
-		999,	
-		570,
-		0x442,
-		0x442,
-		0xFFFF,
-		406,
-		0x3,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		122,      //Map Matrix ID
+		1069,      //Scripts Archive ID
+		999,	      //Map Scripts Archive ID
+		570,      //Message Archive ID
+		0x442,      //Day Music ID
+		0x442,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		406,      //Events Archive ID
+		0x3,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		0x74,
-		1070,
-		0x3E8,	
-		571,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		407,
-		0x3,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x74,      //Map Matrix ID
+		1070,      //Scripts Archive ID
+		0x3E8,	      //Map Scripts Archive ID
+		571,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		407,      //Events Archive ID
+		0x3,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		0x75,
-		1071,
-		1001,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		408,
-		0x3,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x75,      //Map Matrix ID
+		1071,      //Scripts Archive ID
+		1001,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		408,      //Events Archive ID
+		0x3,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x16,
 		0xF,
-		236,
-		1073,
-		1003,	
-		572,
-		1006,
-		1035,
-		0xFFFF,
-		409,
-		95,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		236,      //Map Matrix ID
+		1073,      //Scripts Archive ID
+		1003,	      //Map Scripts Archive ID
+		572,      //Message Archive ID
+		1006,      //Day Music ID
+		1035,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		409,      //Events Archive ID
+		95,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		0x7B,
-		0x432,
-		1004,	
-		573,
-		1006,
-		1035,
-		0xFFFF,
-		0x19A,
-		0x3,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x7B,      //Map Matrix ID
+		0x432,      //Scripts Archive ID
+		1004,	      //Map Scripts Archive ID
+		573,      //Message Archive ID
+		1006,      //Day Music ID
+		1035,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x19A,      //Events Archive ID
+		0x3,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		0x7B,
-		0x433,
-		1005,	
-		574,
-		1006,
-		1035,
-		0xFFFF,
-		411,
-		0x3,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x7B,      //Map Matrix ID
+		0x433,      //Scripts Archive ID
+		1005,	      //Map Scripts Archive ID
+		574,      //Message Archive ID
+		1006,      //Day Music ID
+		1035,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		411,      //Events Archive ID
+		0x3,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xA,
 		0x4,
-		0x0,
-		1076,
-		1006,	
-		575,
-		1015,
-		1044,
-		0xFFFF,
-		412,
-		0x4,
-		0x2,
-		0x0,
-		0x0,
-		0x1,
-		0x2,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		1076,      //Scripts Archive ID
+		1006,	      //Map Scripts Archive ID
+		575,      //Message Archive ID
+		1015,      //Day Music ID
+		1044,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		412,      //Events Archive ID
+		0x4,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x1,      //Map Type
+		0x2,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x16,
 		0xF,
-		122,
-		1077,
-		1007,	
-		576,
-		0x442,
-		0x442,
-		0xFFFF,
-		413,
-		0x4,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		122,      //Map Matrix ID
+		1077,      //Scripts Archive ID
+		1007,	      //Map Scripts Archive ID
+		576,      //Message Archive ID
+		0x442,      //Day Music ID
+		0x442,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		413,      //Events Archive ID
+		0x4,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		0x74,
-		1078,
-		1008,	
-		577,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		414,
-		0x4,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x74,      //Map Matrix ID
+		1078,      //Scripts Archive ID
+		1008,	      //Map Scripts Archive ID
+		577,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		414,      //Events Archive ID
+		0x4,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		0x75,
-		1079,
-		1009,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		415,
-		0x4,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x75,      //Map Matrix ID
+		1079,      //Scripts Archive ID
+		1009,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		415,      //Events Archive ID
+		0x4,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x16,
 		0xF,
-		137,
-		1081,
-		1011,	
-		578,
-		1015,
-		1044,
-		0xFFFF,
-		416,
-		100,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		137,      //Map Matrix ID
+		1081,      //Scripts Archive ID
+		1011,	      //Map Scripts Archive ID
+		578,      //Message Archive ID
+		1015,      //Day Music ID
+		1044,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		416,      //Events Archive ID
+		100,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		0x7B,
-		1082,
-		1012,	
-		579,
-		1015,
-		1044,
-		0xFFFF,
-		417,
-		0x4,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x7B,      //Map Matrix ID
+		1082,      //Scripts Archive ID
+		1012,	      //Map Scripts Archive ID
+		579,      //Message Archive ID
+		1015,      //Day Music ID
+		1044,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		417,      //Events Archive ID
+		0x4,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		244,
-		1083,
-		1013,	
-		580,
-		1015,
-		1044,
-		0xFFFF,
-		418,
-		0x4,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		244,      //Map Matrix ID
+		1083,      //Scripts Archive ID
+		1013,	      //Map Scripts Archive ID
+		580,      //Message Archive ID
+		1015,      //Day Music ID
+		1044,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		418,      //Events Archive ID
+		0x4,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		0x7B,
-		1084,
-		1014,	
-		581,
-		1015,
-		1044,
-		0xFFFF,
-		419,
-		0x4,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x7B,      //Map Matrix ID
+		1084,      //Scripts Archive ID
+		1014,	      //Map Scripts Archive ID
+		581,      //Message Archive ID
+		1015,      //Day Music ID
+		1044,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		419,      //Events Archive ID
+		0x4,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		0x7B,
-		0x43D,
-		1015,	
-		582,
-		1015,
-		1044,
-		0xFFFF,
-		420,
-		0x4,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x7B,      //Map Matrix ID
+		0x43D,      //Scripts Archive ID
+		1015,	      //Map Scripts Archive ID
+		582,      //Message Archive ID
+		1015,      //Day Music ID
+		1044,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		420,      //Events Archive ID
+		0x4,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xA,
 		0x4,
-		0x0,
-		0x43E,
-		1016,	
-		583,
-		1013,
-		1042,
-		177,
-		421,
-		0x5,
-		0x2,
-		0x0,
-		0x0,
-		0x1,
-		0x2,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		0x43E,      //Scripts Archive ID
+		1016,	      //Map Scripts Archive ID
+		583,      //Message Archive ID
+		1013,      //Day Music ID
+		1042,      //Night Music ID
+		177,      //Wild Encounters Archive ID
+		421,      //Events Archive ID
+		0x5,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x1,      //Map Type
+		0x2,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		0x74,
-		1088,
-		1018,	
-		584,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		422,
-		0x5,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x74,      //Map Matrix ID
+		1088,      //Scripts Archive ID
+		1018,	      //Map Scripts Archive ID
+		584,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		422,      //Events Archive ID
+		0x5,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		0x75,
-		1089,
-		1019,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		423,
-		0x5,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x75,      //Map Matrix ID
+		1089,      //Scripts Archive ID
+		1019,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		423,      //Events Archive ID
+		0x5,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		168,
-		1091,
-		1021,	
-		585,
-		1013,
-		1042,
-		0xFFFF,
-		424,
-		0x5,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		168,      //Map Matrix ID
+		1091,      //Scripts Archive ID
+		1021,	      //Map Scripts Archive ID
+		585,      //Message Archive ID
+		1013,      //Day Music ID
+		1042,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		424,      //Events Archive ID
+		0x5,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		170,
-		1092,
-		1022,	
-		586,
-		1013,
-		1042,
-		0xFFFF,
-		425,
-		0x5,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		170,      //Map Matrix ID
+		1092,      //Scripts Archive ID
+		1022,	      //Map Scripts Archive ID
+		586,      //Message Archive ID
+		1013,      //Day Music ID
+		1042,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		425,      //Events Archive ID
+		0x5,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		124,
-		1093,
-		1023,	
-		587,
-		1013,
-		1042,
-		0xFFFF,
-		426,
-		0x5,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		124,      //Map Matrix ID
+		1093,      //Scripts Archive ID
+		1023,	      //Map Scripts Archive ID
+		587,      //Message Archive ID
+		1013,      //Day Music ID
+		1042,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		426,      //Events Archive ID
+		0x5,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		124,
-		1094,
-		1024,	
-		588,
-		1013,
-		1042,
-		0xFFFF,
-		427,
-		0x5,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		124,      //Map Matrix ID
+		1094,      //Scripts Archive ID
+		1024,	      //Map Scripts Archive ID
+		588,      //Message Archive ID
+		1013,      //Day Music ID
+		1042,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		427,      //Events Archive ID
+		0x5,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		169,
-		1095,
-		1025,	
-		589,
-		1013,
-		1042,
-		0xFFFF,
-		428,
-		0x5,
-		0x2,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		169,      //Map Matrix ID
+		1095,      //Scripts Archive ID
+		1025,	      //Map Scripts Archive ID
+		589,      //Message Archive ID
+		1013,      //Day Music ID
+		1042,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		428,      //Events Archive ID
+		0x5,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x11,
 		11,
-		0x0,
-		1096,
-		1026,	
-		590,
-		1020,
-		1049,
-		0xFFFF,
-		429,
-		82,
-		0x2,
-		0x0,
-		0x0,
-		0x1,
-		0x4,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		1096,      //Scripts Archive ID
+		1026,	      //Map Scripts Archive ID
+		590,      //Message Archive ID
+		1020,      //Day Music ID
+		1049,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		429,      //Events Archive ID
+		82,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x1,      //Map Type
+		0x4,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x16,
 		0xF,
-		122,
-		1097,
-		1027,	
-		591,
-		0x442,
-		0x442,
-		0xFFFF,
-		430,
-		82,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		122,      //Map Matrix ID
+		1097,      //Scripts Archive ID
+		1027,	      //Map Scripts Archive ID
+		591,      //Message Archive ID
+		0x442,      //Day Music ID
+		0x442,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		430,      //Events Archive ID
+		82,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		0x74,
-		1098,
-		0x404,	
-		592,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		431,
-		82,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x74,      //Map Matrix ID
+		1098,      //Scripts Archive ID
+		0x404,	      //Map Scripts Archive ID
+		592,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		431,      //Events Archive ID
+		82,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		0x75,
-		1099,
-		1029,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		432,
-		82,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x75,      //Map Matrix ID
+		1099,      //Scripts Archive ID
+		1029,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		432,      //Events Archive ID
+		82,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		52,
 		0xF,
-		265,
-		1101,
-		1031,	
-		593,
-		1020,
-		1049,
-		0xFFFF,
-		433,
-		120,
-		0x2,
-		(0x1A),
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		265,      //Map Matrix ID
+		1101,      //Scripts Archive ID
+		1031,	      //Map Scripts Archive ID
+		593,      //Message Archive ID
+		1020,      //Day Music ID
+		1049,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		433,      //Events Archive ID
+		120,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		(0x1A),      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		125,
-		1102,
-		1032,	
-		594,
-		1020,
-		1049,
-		0xFFFF,
-		434,
-		82,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		125,      //Map Matrix ID
+		1102,      //Scripts Archive ID
+		1032,	      //Map Scripts Archive ID
+		594,      //Message Archive ID
+		1020,      //Day Music ID
+		1049,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		434,      //Events Archive ID
+		82,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		244,
-		1103,
-		1033,	
-		595,
-		1020,
-		1049,
-		0xFFFF,
-		435,
-		82,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		244,      //Map Matrix ID
+		1103,      //Scripts Archive ID
+		1033,	      //Map Scripts Archive ID
+		595,      //Message Archive ID
+		1020,      //Day Music ID
+		1049,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		435,      //Events Archive ID
+		82,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x13,
 		0xD,
-		0x0,
-		1104,
-		1034,	
-		596,
-		1009,
-		1038,
-		178,
-		436,
-		83,
-		0x2,
-		0x0,
-		0x0,
-		0x1,
-		0x2,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		1104,      //Scripts Archive ID
+		1034,	      //Map Scripts Archive ID
+		596,      //Message Archive ID
+		1009,      //Day Music ID
+		1038,      //Night Music ID
+		178,      //Wild Encounters Archive ID
+		436,      //Events Archive ID
+		83,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x1,      //Map Type
+		0x2,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x16,
 		0xF,
-		122,
-		1105,
-		1035,	
-		597,
-		0x442,
-		0x442,
-		0xFFFF,
-		437,
-		83,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		122,      //Map Matrix ID
+		1105,      //Scripts Archive ID
+		1035,	      //Map Scripts Archive ID
+		597,      //Message Archive ID
+		0x442,      //Day Music ID
+		0x442,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		437,      //Events Archive ID
+		83,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		0x74,
-		1106,
-		1036,	
-		598,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		438,
-		83,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x74,      //Map Matrix ID
+		1106,      //Scripts Archive ID
+		1036,	      //Map Scripts Archive ID
+		598,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		438,      //Events Archive ID
+		83,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		0x75,
-		1107,
-		1037,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		439,
-		83,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x75,      //Map Matrix ID
+		1107,      //Scripts Archive ID
+		1037,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		439,      //Events Archive ID
+		83,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		38,
 		0xF,
-		199,
-		1109,
-		0x40F,	
-		599,
-		1009,
-		1038,
-		0xFFFF,
-		440,
-		83,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		199,      //Map Matrix ID
+		1109,      //Scripts Archive ID
+		0x40F,	      //Map Scripts Archive ID
+		599,      //Message Archive ID
+		1009,      //Day Music ID
+		1038,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		440,      //Events Archive ID
+		83,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		38,
 		0xF,
-		200,
-		1110,
-		1040,	
-		600,
-		1009,
-		1038,
-		0xFFFF,
-		441,
-		83,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		200,      //Map Matrix ID
+		1110,      //Scripts Archive ID
+		1040,	      //Map Scripts Archive ID
+		600,      //Message Archive ID
+		1009,      //Day Music ID
+		1038,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		441,      //Events Archive ID
+		83,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		207,
-		1111,
-		1041,	
-		601,
-		1009,
-		1038,
-		0xFFFF,
-		442,
-		83,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		207,      //Map Matrix ID
+		1111,      //Scripts Archive ID
+		1041,	      //Map Scripts Archive ID
+		601,      //Message Archive ID
+		1009,      //Day Music ID
+		1038,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		442,      //Events Archive ID
+		83,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		51,
 		0xF,
-		264,
-		1112,
-		1042,	
-		602,
-		1009,
-		1038,
-		0xFFFF,
-		443,
-		119,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		264,      //Map Matrix ID
+		1112,      //Scripts Archive ID
+		1042,	      //Map Scripts Archive ID
+		602,      //Message Archive ID
+		1009,      //Day Music ID
+		1038,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		443,      //Events Archive ID
+		119,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		0x7B,
-		1113,
-		1043,	
-		604,
-		1009,
-		1038,
-		0xFFFF,
-		444,
-		83,
-		0x2,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x7B,      //Map Matrix ID
+		1113,      //Scripts Archive ID
+		1043,	      //Map Scripts Archive ID
+		604,      //Message Archive ID
+		1009,      //Day Music ID
+		1038,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		444,      //Events Archive ID
+		83,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x5,
 		0xE,
-		120,
-		1118,
-		1045,	
-		635,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		445,
-		0x0,
-		0x2,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		120,      //Map Matrix ID
+		1118,      //Scripts Archive ID
+		1045,	      //Map Scripts Archive ID
+		635,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		445,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x2,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x6,
 		0x0,
-		0x0,
-		0x191,
-		0x381,	
-		0x17,
-		1024,
-		1053,
-		179,
-		446,
-		35,
-		0x6,
-		0x0,
-		0x0,
-		0x2,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1024,      //Day Music ID
+		1053,      //Night Music ID
+		179,      //Wild Encounters Archive ID
+		446,      //Events Archive ID
+		35,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x1,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xD,
 		0x7,
-		0x0,
-		0x191,
-		0x381,	
-		0x17,
-		1026,
-		1055,
-		180,
-		447,
-		38,
-		0x6,
-		0x0,
-		11,
-		0x2,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1026,      //Day Music ID
+		1055,      //Night Music ID
+		180,      //Wild Encounters Archive ID
+		447,      //Events Archive ID
+		38,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		11,      //Camera Type
+		0x2,      //Map Type
+		0x1,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x11,
 		11,
-		0x0,
-		1121,
-		1048,	
-		642,
-		1008,
-		1037,
-		181,
-		448,
-		41,
-		0x6,
-		0x0,
-		0x0,
-		0x2,
-		0x4,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		1121,      //Scripts Archive ID
+		1048,	      //Map Scripts Archive ID
+		642,      //Message Archive ID
+		1008,      //Day Music ID
+		1037,      //Night Music ID
+		181,      //Wild Encounters Archive ID
+		448,      //Events Archive ID
+		41,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x4,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x13,
 		0xD,
-		0x0,
-		0x191,
-		0x381,	
-		0x17,
-		0x3E8,
-		0x3E8,
-		0xFFFF,
-		0x0,
-		0x0,
-		0x6,
-		0x0,
-		0x0,
-		0x2,
-		0x3,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		0x0,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x3E8,      //Day Music ID
+		0x3E8,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x3,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x13,
 		0xD,
-		0x0,
-		1123,
-		1050,	
-		644,
-		0x404,
-		0x421,
-		182,
-		449,
-		45,
-		0x6,
-		0x0,
-		0x0,
-		0x2,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		1123,      //Scripts Archive ID
+		1050,	      //Map Scripts Archive ID
+		644,      //Message Archive ID
+		0x404,      //Day Music ID
+		0x421,      //Night Music ID
+		182,      //Wild Encounters Archive ID
+		449,      //Events Archive ID
+		45,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x1,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0xD,
 		0xD,
-		0x0,
-		0x191,
-		0x381,	
-		0x17,
-		1006,
-		1035,
-		0xFFFF,
-		450,
-		85,
-		0x6,
-		0x0,
-		0x0,
-		0x2,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		0x0,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1006,      //Day Music ID
+		1035,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		450,      //Events Archive ID
+		85,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x1,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x13,
 		0xD,
-		0x0,
-		0x191,
-		0x381,	
-		0x17,
-		0x3E8,
-		0x3E8,
-		0xFFFF,
-		0x0,
-		0x0,
-		0x6,
-		0x0,
-		0x0,
-		0x2,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		0x0,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x3E8,      //Day Music ID
+		0x3E8,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x0,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x2,      //Map Type
+		0x1,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		235,
-		0x7,
-		507,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		451,
-		0x6,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		235,      //Map Matrix ID
+		0x7,      //Scripts Archive ID
+		507,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		451,      //Events Archive ID
+		0x6,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		235,
-		41,
-		541,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		452,
-		0x7,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		235,      //Map Matrix ID
+		41,      //Scripts Archive ID
+		541,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		452,      //Events Archive ID
+		0x7,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		235,
-		55,
-		555,	
-		0x45,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		453,
-		0x8,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		235,      //Map Matrix ID
+		55,      //Scripts Archive ID
+		555,	      //Map Scripts Archive ID
+		0x45,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		453,      //Events Archive ID
+		0x8,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		235,
-		77,
-		577,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		454,
-		0x9,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		235,      //Map Matrix ID
+		77,      //Scripts Archive ID
+		577,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		454,      //Events Archive ID
+		0x9,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		235,
-		104,
-		604,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		455,
-		0xA,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		235,      //Map Matrix ID
+		104,      //Scripts Archive ID
+		604,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		455,      //Events Archive ID
+		0xA,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		235,
-		128,
-		628,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		456,
-		0xB,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		235,      //Map Matrix ID
+		128,      //Scripts Archive ID
+		628,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		456,      //Events Archive ID
+		0xB,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		235,
-		140,
-		640,	
-		146,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		457,
-		(0xC),
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		235,      //Map Matrix ID
+		140,      //Scripts Archive ID
+		640,	      //Map Scripts Archive ID
+		146,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		457,      //Events Archive ID
+		(0xC),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		235,
-		163,
-		663,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		458,
-		0xD,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		235,      //Map Matrix ID
+		163,      //Scripts Archive ID
+		663,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		458,      //Events Archive ID
+		0xD,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		235,
-		179,
-		679,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		459,
-		(0xE),
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		235,      //Map Matrix ID
+		179,      //Scripts Archive ID
+		679,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		459,      //Events Archive ID
+		(0xE),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		235,
-		185,
-		685,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		460,
-		(0xF),
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		235,      //Map Matrix ID
+		185,      //Scripts Archive ID
+		685,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		460,      //Events Archive ID
+		(0xF),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		235,
-		205,
-		705,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		461,
-		81,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		235,      //Map Matrix ID
+		205,      //Scripts Archive ID
+		705,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		461,      //Events Archive ID
+		81,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		235,
-		0x427,
-		993,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		462,
-		0x2,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		235,      //Map Matrix ID
+		0x427,      //Scripts Archive ID
+		993,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		462,      //Events Archive ID
+		0x2,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		235,
-		0x430,
-		1002,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		463,
-		0x3,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		235,      //Map Matrix ID
+		0x430,      //Scripts Archive ID
+		1002,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		463,      //Events Archive ID
+		0x3,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		235,
-		1080,
-		0x3F2,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		464,
-		0x4,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		235,      //Map Matrix ID
+		1080,      //Scripts Archive ID
+		0x3F2,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		464,      //Events Archive ID
+		0x4,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		235,
-		0x442,
-		1020,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		465,
-		0x5,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		235,      //Map Matrix ID
+		0x442,      //Scripts Archive ID
+		1020,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		465,      //Events Archive ID
+		0x5,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		235,
-		1100,
-		1030,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		466,
-		82,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		235,      //Map Matrix ID
+		1100,      //Scripts Archive ID
+		1030,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		466,      //Events Archive ID
+		82,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		235,
-		1108,
-		1038,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		467,
-		83,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		235,      //Map Matrix ID
+		1108,      //Scripts Archive ID
+		1038,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		467,      //Events Archive ID
+		83,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		124,
-		49,
-		549,	
-		0x17,
-		1011,
-		1040,
-		0xFFFF,
-		468,
-		0x7,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		124,      //Map Matrix ID
+		49,      //Scripts Archive ID
+		549,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1011,      //Day Music ID
+		1040,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		468,      //Events Archive ID
+		0x7,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		35,
 		0xF,
-		171,
-		448,
-		930,	
-		484,
-		1026,
-		1055,
-		0xFFFF,
-		469,
-		108,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		171,      //Map Matrix ID
+		448,      //Scripts Archive ID
+		930,	      //Map Scripts Archive ID
+		484,      //Message Archive ID
+		1026,      //Day Music ID
+		1055,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		469,      //Events Archive ID
+		108,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		33,
 		0xF,
-		196,
-		373,
-		870,	
-		307,
-		1092,
-		1092,
-		0xFFFF,
-		470,
-		80,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		196,      //Map Matrix ID
+		373,      //Scripts Archive ID
+		870,	      //Map Scripts Archive ID
+		307,      //Message Archive ID
+		1092,      //Day Music ID
+		1092,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		470,      //Events Archive ID
+		80,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		68,
 		0xF,
-		0xEE,
-		347,
-		844,	
-		288,
-		1094,
-		1094,
-		0xFFFF,
-		471,
-		71,
-		0x6,
-		(0x1A),
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0xEE,      //Map Matrix ID
+		347,      //Scripts Archive ID
+		844,	      //Map Scripts Archive ID
+		288,      //Message Archive ID
+		1094,      //Day Music ID
+		1094,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		471,      //Events Archive ID
+		71,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0x1A),      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		0x75,
-		199,
-		699,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		472,
-		(0xF),
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x75,      //Map Matrix ID
+		199,      //Scripts Archive ID
+		699,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		472,      //Events Archive ID
+		(0xF),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		235,
-		200,
-		700,	
-		0x17,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		473,
-		(0xF),
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		235,      //Map Matrix ID
+		200,      //Scripts Archive ID
+		700,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		473,      //Events Archive ID
+		(0xF),      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		68,
 		0xF,
-		0xEF,
-		348,
-		845,	
-		289,
-		1094,
-		1094,
-		0xFFFF,
-		474,
-		71,
-		0x6,
-		(0x1A),
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0xEF,      //Map Matrix ID
+		348,      //Scripts Archive ID
+		845,	      //Map Scripts Archive ID
+		289,      //Message Archive ID
+		1094,      //Day Music ID
+		1094,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		474,      //Events Archive ID
+		71,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0x1A),      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		0x7B,
-		487,
-		969,	
-		523,
-		1008,
-		1037,
-		0xFFFF,
-		475,
-		40,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x7B,      //Map Matrix ID
+		487,      //Scripts Archive ID
+		969,	      //Map Scripts Archive ID
+		523,      //Message Archive ID
+		1008,      //Day Music ID
+		1037,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		475,      //Events Archive ID
+		40,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		244,
-		1122,
-		1049,	
-		643,
-		1008,
-		1037,
-		0xFFFF,
-		476,
-		41,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		244,      //Map Matrix ID
+		1122,      //Scripts Archive ID
+		1049,	      //Map Scripts Archive ID
+		643,      //Message Archive ID
+		1008,      //Day Music ID
+		1037,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		476,      //Events Archive ID
+		41,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		243,
-		490,
-		972,	
-		0x20E,
-		1008,
-		1037,
-		0xFFFF,
-		477,
-		42,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		243,      //Map Matrix ID
+		490,      //Scripts Archive ID
+		972,	      //Map Scripts Archive ID
+		0x20E,      //Message Archive ID
+		1008,      //Day Music ID
+		1037,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		477,      //Events Archive ID
+		42,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		50,
 		0xF,
-		258,
-		492,
-		974,	
-		0x210,
-		0x404,
-		0x421,
-		0xFFFF,
-		478,
-		0x2B,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x1,
-		0x0,
-		0x0,
-		0x0,
+		258,      //Map Matrix ID
+		492,      //Scripts Archive ID
+		974,	      //Map Scripts Archive ID
+		0x210,      //Message Archive ID
+		0x404,      //Day Music ID
+		0x421,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		478,      //Events Archive ID
+		0x2B,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		244,
-		493,
-		975,	
-		0x211,
-		0x404,
-		0x421,
-		0xFFFF,
-		479,
-		0x2B,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		244,      //Map Matrix ID
+		493,      //Scripts Archive ID
+		975,	      //Map Scripts Archive ID
+		0x211,      //Message Archive ID
+		0x404,      //Day Music ID
+		0x421,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		479,      //Events Archive ID
+		0x2B,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		125,
-		494,
-		976,	
-		530,
-		0x404,
-		0x421,
-		0xFFFF,
-		480,
-		0x2B,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		125,      //Map Matrix ID
+		494,      //Scripts Archive ID
+		976,	      //Map Scripts Archive ID
+		530,      //Message Archive ID
+		0x404,      //Day Music ID
+		0x421,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		480,      //Events Archive ID
+		0x2B,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		63,
 		0xF,
-		0xF0,
-		243,
-		740,	
-		0xF0,
-		1069,
-		1069,
-		0x17,
-		481,
-		52,
-		0x5,
-		0x0,
-		0x2,
-		0x2,
-		0x3,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		0xF0,      //Map Matrix ID
+		243,      //Scripts Archive ID
+		740,	      //Map Scripts Archive ID
+		0xF0,      //Message Archive ID
+		1069,      //Day Music ID
+		1069,      //Night Music ID
+		0x17,      //Wild Encounters Archive ID
+		481,      //Events Archive ID
+		52,      //Map Label Text ID
+		0x5,      //Map Label Window ID
+		0x0,      //Weather
+		0x2,      //Camera Type
+		0x2,      //Map Type
+		0x3,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		63,
 		0xF,
-		0xF0,
-		244,
-		741,	
-		241,
-		1069,
-		1069,
-		0x18,
-		482,
-		52,
-		0x5,
-		0x0,
-		0x2,
-		0x2,
-		0x3,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		0xF0,      //Map Matrix ID
+		244,      //Scripts Archive ID
+		741,	      //Map Scripts Archive ID
+		241,      //Message Archive ID
+		1069,      //Day Music ID
+		1069,      //Night Music ID
+		0x18,      //Wild Encounters Archive ID
+		482,      //Events Archive ID
+		52,      //Map Label Text ID
+		0x5,      //Map Label Window ID
+		0x0,      //Weather
+		0x2,      //Camera Type
+		0x2,      //Map Type
+		0x3,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		63,
 		0xF,
-		0xF0,
-		245,
-		742,	
-		242,
-		1069,
-		1069,
-		0x19,
-		483,
-		52,
-		0x5,
-		0x0,
-		0x2,
-		0x2,
-		0x3,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		0xF0,      //Map Matrix ID
+		245,      //Scripts Archive ID
+		742,	      //Map Scripts Archive ID
+		242,      //Message Archive ID
+		1069,      //Day Music ID
+		1069,      //Night Music ID
+		0x19,      //Wild Encounters Archive ID
+		483,      //Events Archive ID
+		52,      //Map Label Text ID
+		0x5,      //Map Label Window ID
+		0x0,      //Weather
+		0x2,      //Camera Type
+		0x2,      //Map Type
+		0x3,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		63,
 		0xF,
-		0xF0,
-		246,
-		743,	
-		243,
-		1069,
-		1069,
-		0x1A,
-		484,
-		52,
-		0x5,
-		0x0,
-		0x2,
-		0x2,
-		0x3,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		0xF0,      //Map Matrix ID
+		246,      //Scripts Archive ID
+		743,	      //Map Scripts Archive ID
+		243,      //Message Archive ID
+		1069,      //Day Music ID
+		1069,      //Night Music ID
+		0x1A,      //Wild Encounters Archive ID
+		484,      //Events Archive ID
+		52,      //Map Label Text ID
+		0x5,      //Map Label Window ID
+		0x0,      //Weather
+		0x2,      //Camera Type
+		0x2,      //Map Type
+		0x3,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		63,
 		0xF,
-		0xF0,
-		247,
-		744,	
-		244,
-		1069,
-		1069,
-		0x1B,
-		485,
-		52,
-		0x5,
-		0x0,
-		0x2,
-		0x2,
-		0x3,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		0xF0,      //Map Matrix ID
+		247,      //Scripts Archive ID
+		744,	      //Map Scripts Archive ID
+		244,      //Message Archive ID
+		1069,      //Day Music ID
+		1069,      //Night Music ID
+		0x1B,      //Wild Encounters Archive ID
+		485,      //Events Archive ID
+		52,      //Map Label Text ID
+		0x5,      //Map Label Window ID
+		0x0,      //Weather
+		0x2,      //Camera Type
+		0x2,      //Map Type
+		0x3,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		63,
 		0xF,
-		0xF0,
-		248,
-		745,	
-		245,
-		1069,
-		1069,
-		0x1C,
-		486,
-		52,
-		0x5,
-		0x0,
-		0x2,
-		0x2,
-		0x3,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		0xF0,      //Map Matrix ID
+		248,      //Scripts Archive ID
+		745,	      //Map Scripts Archive ID
+		245,      //Message Archive ID
+		1069,      //Day Music ID
+		1069,      //Night Music ID
+		0x1C,      //Wild Encounters Archive ID
+		486,      //Events Archive ID
+		52,      //Map Label Text ID
+		0x5,      //Map Label Window ID
+		0x0,      //Weather
+		0x2,      //Camera Type
+		0x2,      //Map Type
+		0x3,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x3C,
 		0xF,
-		241,
-		0xEE,
-		735,	
-		236,
-		1096,
-		1096,
-		0xFFFF,
-		487,
-		86,
-		0x4,
-		0xD,
-		0xE,
-		0x2,
-		0x9,
-		0x0,
-		0x1,
-		0x0,
-		0x0,
+		241,      //Map Matrix ID
+		0xEE,      //Scripts Archive ID
+		735,	      //Map Scripts Archive ID
+		236,      //Message Archive ID
+		1096,      //Day Music ID
+		1096,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		487,      //Events Archive ID
+		86,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0xD,      //Weather
+		0xE,      //Camera Type
+		0x2,      //Map Type
+		0x9,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x3C,
 		0xF,
-		242,
-		0x191,
-		0x381,	
-		0x17,
-		0x430,
-		0x430,
-		0xFFFF,
-		0x0,
-		86,
-		0x6,
-		0xD,
-		0xE,
-		0x2,
-		0x9,
-		0x0,
-		0x1,
-		0x0,
-		0x0,
+		242,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x430,      //Day Music ID
+		0x430,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		86,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0xD,      //Weather
+		0xE,      //Camera Type
+		0x2,      //Map Type
+		0x9,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		53,
 		0xF,
-		77,
-		0x141,
-		818,	
-		274,
-		0x433,
-		0x433,
-		115,
-		488,
-		66,
-		0x4,
-		0x0,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		77,      //Map Matrix ID
+		0x141,      //Scripts Archive ID
+		818,	      //Map Scripts Archive ID
+		274,      //Message Archive ID
+		0x433,      //Day Music ID
+		0x433,      //Night Music ID
+		115,      //Wild Encounters Archive ID
+		488,      //Events Archive ID
+		66,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		53,
 		0xF,
-		78,
-		0x142,
-		819,	
-		275,
-		0x427,
-		0x427,
-		0x74,
-		489,
-		67,
-		0x4,
-		0x0,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		78,      //Map Matrix ID
+		0x142,      //Scripts Archive ID
+		819,	      //Map Scripts Archive ID
+		275,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		0x74,      //Wild Encounters Archive ID
+		489,      //Events Archive ID
+		67,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x14,
 		0xF,
-		243,
-		331,
-		828,	
-		0x116,
-		1022,
-		1051,
-		0xFFFF,
-		490,
-		0x45,
-		0x4,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		243,      //Map Matrix ID
+		331,      //Scripts Archive ID
+		828,	      //Map Scripts Archive ID
+		0x116,      //Message Archive ID
+		1022,      //Day Music ID
+		1051,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		490,      //Events Archive ID
+		0x45,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		0x1F,
-		0x191,
-		0x381,	
-		0x17,
-		0x427,
-		0x427,
-		46,
-		491,
-		53,
-		0x4,
-		0x1D,
-		0x0,
-		0x3,
-		0x9,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0x1F,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		46,      //Wild Encounters Archive ID
+		491,      //Events Archive ID
+		53,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0x9,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		207,
-		172,
-		672,	
-		0x17,
-		1017,
-		1046,
-		0xFFFF,
-		492,
-		104,
-		0x4,
-		0x0,
-		0x4,
-		0x4,
-		0x8,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		207,      //Map Matrix ID
+		172,      //Scripts Archive ID
+		672,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1017,      //Day Music ID
+		1046,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		492,      //Events Archive ID
+		104,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x8,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x1F,
 		0xF,
-		208,
-		33,
-		0x215,	
-		51,
-		0x3F2,
-		0x40F,
-		0xFFFF,
-		493,
-		0x6,
-		0x4,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		208,      //Map Matrix ID
+		33,      //Scripts Archive ID
+		0x215,	      //Map Scripts Archive ID
+		51,      //Message Archive ID
+		0x3F2,      //Day Music ID
+		0x40F,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		493,      //Events Archive ID
+		0x6,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		65,
-		295,
-		792,	
-		0x17,
-		1064,
-		1064,
-		66,
-		494,
-		62,
-		0x4,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		65,      //Map Matrix ID
+		295,      //Scripts Archive ID
+		792,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		66,      //Wild Encounters Archive ID
+		494,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		66,
-		296,
-		793,	
-		0x17,
-		1064,
-		1064,
-		67,
-		495,
-		62,
-		0x4,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		66,      //Map Matrix ID
+		296,      //Scripts Archive ID
+		793,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		67,      //Wild Encounters Archive ID
+		495,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		66,
-		297,
-		794,	
-		0x17,
-		1064,
-		1064,
-		68,
-		496,
-		62,
-		0x4,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		66,      //Map Matrix ID
+		297,      //Scripts Archive ID
+		794,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		68,      //Wild Encounters Archive ID
+		496,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		64,
-		298,
-		795,	
-		0x17,
-		1064,
-		1064,
-		0x45,
-		497,
-		62,
-		0x4,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		64,      //Map Matrix ID
+		298,      //Scripts Archive ID
+		795,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0x45,      //Wild Encounters Archive ID
+		497,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		64,
-		299,
-		796,	
-		0x17,
-		1064,
-		1064,
-		70,
-		498,
-		62,
-		0x4,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		64,      //Map Matrix ID
+		299,      //Scripts Archive ID
+		796,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		70,      //Wild Encounters Archive ID
+		498,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		65,
-		300,
-		797,	
-		0x17,
-		1064,
-		1064,
-		71,
-		499,
-		62,
-		0x4,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		65,      //Map Matrix ID
+		300,      //Scripts Archive ID
+		797,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		71,      //Wild Encounters Archive ID
+		499,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		65,
-		301,
-		798,	
-		0x17,
-		1064,
-		1064,
-		0x48,
-		500,
-		62,
-		0x4,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		65,      //Map Matrix ID
+		301,      //Scripts Archive ID
+		798,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0x48,      //Wild Encounters Archive ID
+		500,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		66,
-		302,
-		799,	
-		0x17,
-		1064,
-		1064,
-		73,
-		501,
-		62,
-		0x4,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		66,      //Map Matrix ID
+		302,      //Scripts Archive ID
+		799,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		73,      //Wild Encounters Archive ID
+		501,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		66,
-		303,
-		800,	
-		0x17,
-		1064,
-		1064,
-		0x4A,
-		0x1F6,
-		62,
-		0x4,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		66,      //Map Matrix ID
+		303,      //Scripts Archive ID
+		800,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0x4A,      //Wild Encounters Archive ID
+		0x1F6,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		64,
-		304,
-		801,	
-		0x17,
-		1064,
-		1064,
-		75,
-		503,
-		62,
-		0x4,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		64,      //Map Matrix ID
+		304,      //Scripts Archive ID
+		801,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		75,      //Wild Encounters Archive ID
+		503,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		64,
-		305,
-		802,	
-		0x17,
-		1064,
-		1064,
-		76,
-		0x1F8,
-		62,
-		0x4,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		64,      //Map Matrix ID
+		305,      //Scripts Archive ID
+		802,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		76,      //Wild Encounters Archive ID
+		0x1F8,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		65,
-		306,
-		803,	
-		0x17,
-		1064,
-		1064,
-		77,
-		0x1F9,
-		62,
-		0x4,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		65,      //Map Matrix ID
+		306,      //Scripts Archive ID
+		803,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		77,      //Wild Encounters Archive ID
+		0x1F9,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		65,
-		307,
-		804,	
-		0x17,
-		1064,
-		1064,
-		78,
-		0x1FA,
-		62,
-		0x4,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		65,      //Map Matrix ID
+		307,      //Scripts Archive ID
+		804,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		78,      //Wild Encounters Archive ID
+		0x1FA,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		66,
-		308,
-		805,	
-		0x17,
-		1064,
-		1064,
-		79,
-		507,
-		62,
-		0x4,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		66,      //Map Matrix ID
+		308,      //Scripts Archive ID
+		805,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		79,      //Wild Encounters Archive ID
+		507,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		66,
-		309,
-		806,	
-		0x17,
-		1064,
-		1064,
-		0xFFFF,
-		0x1FC,
-		62,
-		0x4,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x0,
-		0x0,
+		66,      //Map Matrix ID
+		309,      //Scripts Archive ID
+		806,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x1FC,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		64,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		0xFFFF,
-		0x0,
-		62,
-		0x6,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		64,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		64,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		0xFFFF,
-		0x0,
-		62,
-		0x6,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		64,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		65,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		0xFFFF,
-		0x1FD,
-		62,
-		0x6,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		65,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x1FD,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		65,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		0xFFFF,
-		0x0,
-		62,
-		0x6,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		65,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		66,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		0xFFFF,
-		0x0,
-		62,
-		0x6,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		66,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		66,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		0xFFFF,
-		0x0,
-		62,
-		0x6,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		66,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		64,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		0xFFFF,
-		0x0,
-		62,
-		0x6,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		64,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		64,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		0xFFFF,
-		510,
-		62,
-		0x6,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		64,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		510,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		65,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		0xFFFF,
-		0x0,
-		62,
-		0x6,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		65,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		65,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		0xFFFF,
-		0x0,
-		62,
-		0x6,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		65,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		66,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		0xFFFF,
-		0x0,
-		62,
-		0x6,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		66,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		66,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		0xFFFF,
-		0x0,
-		62,
-		0x6,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		66,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		64,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		0xFFFF,
-		0x0,
-		62,
-		0x6,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		64,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		64,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		0xFFFF,
-		511,
-		62,
-		0x6,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		64,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		511,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		65,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		0xFFFF,
-		0x0,
-		62,
-		0x6,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		65,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		65,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		0xFFFF,
-		0x0,
-		62,
-		0x6,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		65,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		66,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		0xFFFF,
-		0x0,
-		62,
-		0x6,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		66,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		66,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		0xFFFF,
-		0x0,
-		62,
-		0x6,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		66,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		64,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		0xFFFF,
-		0x0,
-		62,
-		0x6,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		64,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		64,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		0xFFFF,
-		0x0,
-		62,
-		0x6,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		64,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		65,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		0xFFFF,
-		0x0,
-		62,
-		0x6,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		65,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		65,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		0xFFFF,
-		0x0,
-		62,
-		0x6,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		65,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		66,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		0xFFFF,
-		0x0,
-		62,
-		0x6,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		66,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		66,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		0xFFFF,
-		0x0,
-		62,
-		0x6,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		66,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		56,
 		0xF,
-		66,
-		0x191,
-		0x381,	
-		0x17,
-		1064,
-		1064,
-		0xFFFF,
-		0x0,
-		62,
-		0x6,
-		(0xE),
-		0x0,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		66,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1064,      //Day Music ID
+		1064,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		62,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		(0xE),      //Weather
+		0x0,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		32,
 		0xF,
-		166,
-		121,
-		621,	
-		129,
-		1089,
-		1089,
-		0xFFFF,
-		512,
-		97,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		166,      //Map Matrix ID
+		121,      //Scripts Archive ID
+		621,	      //Map Scripts Archive ID
+		129,      //Message Archive ID
+		1089,      //Day Music ID
+		1089,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		512,      //Events Archive ID
+		97,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		73,
 		0xF,
-		256,
-		374,
-		871,	
-		308,
-		1020,
-		1049,
-		0xFFFF,
-		513,
-		112,
-		0x7,
-		0x0,
-		0x2,
-		0x1,
-		0x2,
-		0x1,
-		0x1,
-		0x0,
-		0x1,
+		256,      //Map Matrix ID
+		374,      //Scripts Archive ID
+		871,	      //Map Scripts Archive ID
+		308,      //Message Archive ID
+		1020,      //Day Music ID
+		1049,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		513,      //Events Archive ID
+		112,      //Map Label Text ID
+		0x7,      //Map Label Window ID
+		0x0,      //Weather
+		0x2,      //Camera Type
+		0x1,      //Map Type
+		0x2,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		44,
 		0xF,
-		250,
-		375,
-		872,	
-		309,
-		1020,
-		1049,
-		0xFFFF,
-		514,
-		112,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		250,      //Map Matrix ID
+		375,      //Scripts Archive ID
+		872,	      //Map Scripts Archive ID
+		309,      //Message Archive ID
+		1020,      //Day Music ID
+		1049,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		514,      //Events Archive ID
+		112,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		45,
 		0xF,
-		251,
-		0x191,
-		0x381,	
-		0x17,
-		1092,
-		1092,
-		0xFFFF,
-		0x0,
-		80,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		251,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1092,      //Day Music ID
+		1092,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		80,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		46,
 		0xF,
-		252,
-		376,
-		873,	
-		310,
-		1195,
-		1195,
-		0xFFFF,
-		515,
-		113,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		252,      //Map Matrix ID
+		376,      //Scripts Archive ID
+		873,	      //Map Scripts Archive ID
+		310,      //Message Archive ID
+		1195,      //Day Music ID
+		1195,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		515,      //Events Archive ID
+		113,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		47,
 		0xF,
-		253,
-		377,
-		874,	
-		311,
-		1192,
-		1192,
-		0xFFFF,
-		516,
-		0x74,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		253,      //Map Matrix ID
+		377,      //Scripts Archive ID
+		874,	      //Map Scripts Archive ID
+		311,      //Message Archive ID
+		1192,      //Day Music ID
+		1192,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		516,      //Events Archive ID
+		0x74,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		48,
 		0xF,
-		254,
-		378,
-		875,	
-		312,
-		1193,
-		1193,
-		0xFFFF,
-		517,
-		114,
-		0x6,
-		0x0,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		254,      //Map Matrix ID
+		378,      //Scripts Archive ID
+		875,	      //Map Scripts Archive ID
+		312,      //Message Archive ID
+		1193,      //Day Music ID
+		1193,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		517,      //Events Archive ID
+		114,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		49,
 		0xF,
-		255,
-		379,
-		876,	
-		313,
-		1191,
-		1191,
-		0xFFFF,
-		518,
-		115,
-		0x6,
-		30,
-		0x0,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		255,      //Map Matrix ID
+		379,      //Scripts Archive ID
+		876,	      //Map Scripts Archive ID
+		313,      //Message Archive ID
+		1191,      //Day Music ID
+		1191,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		518,      //Events Archive ID
+		115,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		30,      //Weather
+		0x0,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x16,
 		0xF,
-		246,
-		148,
-		648,	
-		154,
-		0x442,
-		0x442,
-		0xFFFF,
-		519,
-		101,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		246,      //Map Matrix ID
+		148,      //Scripts Archive ID
+		648,	      //Map Scripts Archive ID
+		154,      //Message Archive ID
+		0x442,      //Day Music ID
+		0x442,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		519,      //Events Archive ID
+		101,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		40,
 		0xF,
-		262,
-		29,
-		0x211,	
-		47,
-		1196,
-		1196,
-		0xFFFF,
-		520,
-		118,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		262,      //Map Matrix ID
+		29,      //Scripts Archive ID
+		0x211,	      //Map Scripts Archive ID
+		47,      //Message Archive ID
+		1196,      //Day Music ID
+		1196,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		520,      //Events Archive ID
+		118,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		40,
 		0xF,
-		263,
-		30,
-		530,	
-		48,
-		1196,
-		1196,
-		0xFFFF,
-		521,
-		118,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		263,      //Map Matrix ID
+		30,      //Scripts Archive ID
+		530,	      //Map Scripts Archive ID
+		48,      //Message Archive ID
+		1196,      //Day Music ID
+		1196,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		521,      //Events Archive ID
+		118,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		58,
 		0xF,
-		261,
-		349,
-		846,	
-		290,
-		1067,
-		1067,
-		0xFFFF,
-		522,
-		71,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		261,      //Map Matrix ID
+		349,      //Scripts Archive ID
+		846,	      //Map Scripts Archive ID
+		290,      //Message Archive ID
+		1067,      //Day Music ID
+		1067,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		522,      //Events Archive ID
+		71,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x4A,
 		0xF,
-		268,
-		0x191,
-		0x381,	
-		0x17,
-		0x4A6,
-		0x4A6,
-		0xFFFF,
-		0x0,
-		0x75,
-		0x4,
-		0x0,
-		0x4,
-		0x3,
-		0x11,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		268,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x4A6,      //Day Music ID
+		0x4A6,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x75,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x3,      //Map Type
+		0x11,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		58,
 		0xF,
-		267,
-		83,
-		583,	
-		96,
-		1013,
-		1042,
-		0xFFFF,
-		523,
-		121,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		267,      //Map Matrix ID
+		83,      //Scripts Archive ID
+		583,	      //Map Scripts Archive ID
+		96,      //Message Archive ID
+		1013,      //Day Music ID
+		1042,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		523,      //Events Archive ID
+		121,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		58,
 		0xF,
-		266,
-		0x191,
-		0x381,	
-		0x17,
-		1013,
-		1042,
-		0xFFFF,
-		0x0,
-		122,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x7,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		266,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		1013,      //Day Music ID
+		1042,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		122,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x7,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x4A,
 		0xF,
-		269,
-		380,
-		877,	
-		314,
-		0x4A6,
-		0x4A6,
-		0xFFFF,
-		524,
-		0x75,
-		0x4,
-		0x0,
-		0x4,
-		0x3,
-		0x11,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		269,      //Map Matrix ID
+		380,      //Scripts Archive ID
+		877,	      //Map Scripts Archive ID
+		314,      //Message Archive ID
+		0x4A6,      //Day Music ID
+		0x4A6,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		524,      //Events Archive ID
+		0x75,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x3,      //Map Type
+		0x11,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x4A,
 		0xF,
-		270,
-		381,
-		878,	
-		315,
-		0x4A6,
-		0x4A6,
-		0xFFFF,
-		0x0,
-		0x75,
-		0x4,
-		0x0,
-		0x4,
-		0x3,
-		0x11,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		270,      //Map Matrix ID
+		381,      //Scripts Archive ID
+		878,	      //Map Scripts Archive ID
+		315,      //Message Archive ID
+		0x4A6,      //Day Music ID
+		0x4A6,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x75,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x3,      //Map Type
+		0x11,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x4A,
 		0xF,
-		271,
-		0x17E,
-		879,	
-		316,
-		0x4A6,
-		0x4A6,
-		0xFFFF,
-		0x0,
-		0x75,
-		0x4,
-		0x0,
-		0x4,
-		0x3,
-		0x11,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		271,      //Map Matrix ID
+		0x17E,      //Scripts Archive ID
+		879,	      //Map Scripts Archive ID
+		316,      //Message Archive ID
+		0x4A6,      //Day Music ID
+		0x4A6,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x75,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x3,      //Map Type
+		0x11,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x4A,
 		0xF,
-		272,
-		383,
-		880,	
-		317,
-		0x4A6,
-		0x4A6,
-		0xFFFF,
-		0x0,
-		0x75,
-		0x4,
-		0x0,
-		0x4,
-		0x3,
-		0x11,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		272,      //Map Matrix ID
+		383,      //Scripts Archive ID
+		880,	      //Map Scripts Archive ID
+		317,      //Message Archive ID
+		0x4A6,      //Day Music ID
+		0x4A6,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x75,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x3,      //Map Type
+		0x11,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x4A,
 		0xF,
-		273,
-		384,
-		881,	
-		0x17,
-		0x4A6,
-		0x4A6,
-		0xFFFF,
-		0x0,
-		0x75,
-		0x4,
-		0x0,
-		0x4,
-		0x3,
-		0x11,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		273,      //Map Matrix ID
+		384,      //Scripts Archive ID
+		881,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x4A6,      //Day Music ID
+		0x4A6,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x75,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x3,      //Map Type
+		0x11,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x4A,
 		0xF,
-		274,
-		385,
-		882,	
-		0x17,
-		0x4A6,
-		0x4A6,
-		0xFFFF,
-		0x0,
-		0x75,
-		0x4,
-		0x0,
-		0x4,
-		0x3,
-		0x11,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		274,      //Map Matrix ID
+		385,      //Scripts Archive ID
+		882,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x4A6,      //Day Music ID
+		0x4A6,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x75,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x3,      //Map Type
+		0x11,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x4A,
 		0xF,
-		275,
-		386,
-		883,	
-		0x17,
-		0x4A6,
-		0x4A6,
-		0xFFFF,
-		0x0,
-		0x75,
-		0x4,
-		0x0,
-		0x4,
-		0x3,
-		0x11,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		275,      //Map Matrix ID
+		386,      //Scripts Archive ID
+		883,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x4A6,      //Day Music ID
+		0x4A6,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x75,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x3,      //Map Type
+		0x11,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x4A,
 		0xF,
-		0x114,
-		0x183,
-		0x374,	
-		0x13E,
-		0x4A6,
-		0x4A6,
-		0xFFFF,
-		0x0,
-		0x75,
-		0x4,
-		0x0,
-		0x4,
-		0x3,
-		0x11,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x114,      //Map Matrix ID
+		0x183,      //Scripts Archive ID
+		0x374,	      //Map Scripts Archive ID
+		0x13E,      //Message Archive ID
+		0x4A6,      //Day Music ID
+		0x4A6,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x75,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x3,      //Map Type
+		0x11,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x4A,
 		0xF,
-		0x115,
-		0x184,
-		0x375,	
-		0x13F,
-		0x4A6,
-		0x4A6,
-		0xFFFF,
-		0x0,
-		0x75,
-		0x4,
-		0x0,
-		0x4,
-		0x3,
-		0x11,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x115,      //Map Matrix ID
+		0x184,      //Scripts Archive ID
+		0x375,	      //Map Scripts Archive ID
+		0x13F,      //Message Archive ID
+		0x4A6,      //Day Music ID
+		0x4A6,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x75,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x3,      //Map Type
+		0x11,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x4A,
 		0xF,
-		0x116,
-		0x185,
-		0x376,	
-		0x140,
-		0x4A6,
-		0x4A6,
-		0xFFFF,
-		0x0,
-		0x75,
-		0x4,
-		0x0,
-		0x4,
-		0x3,
-		0x11,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x116,      //Map Matrix ID
+		0x185,      //Scripts Archive ID
+		0x376,	      //Map Scripts Archive ID
+		0x140,      //Message Archive ID
+		0x4A6,      //Day Music ID
+		0x4A6,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x75,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x3,      //Map Type
+		0x11,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x4A,
 		0xF,
-		0x117,
-		0x186,
-		0x377,	
-		0x141,
-		0x4A6,
-		0x4A6,
-		0xFFFF,
-		0x0,
-		0x75,
-		0x4,
-		0x0,
-		0x4,
-		0x3,
-		0x11,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x117,      //Map Matrix ID
+		0x186,      //Scripts Archive ID
+		0x377,	      //Map Scripts Archive ID
+		0x141,      //Message Archive ID
+		0x4A6,      //Day Music ID
+		0x4A6,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x0,      //Events Archive ID
+		0x75,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x3,      //Map Type
+		0x11,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x3C,
 		0xF,
-		0x118,
-		0xEF,
-		0x2E0,	
-		0xED,
-		0x430,
-		0x430,
-		0xFFFF,
-		0x20D,
-		0x33,
-		0x4,
-		0xD,
-		0x5,
-		0x3,
-		0x4,
-		0x0,
-		0x1,
-		0x0,
-		0x0,
+		0x118,      //Map Matrix ID
+		0xEF,      //Scripts Archive ID
+		0x2E0,	      //Map Scripts Archive ID
+		0xED,      //Message Archive ID
+		0x430,      //Day Music ID
+		0x430,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x20D,      //Events Archive ID
+		0x33,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0xD,      //Weather
+		0x5,      //Camera Type
+		0x3,      //Map Type
+		0x4,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x3C,
 		0xF,
-		0x119,
-		0xF0,
-		0x2E1,	
-		0xEE,
-		0x430,
-		0x430,
-		0xFFFF,
-		0x20E,
-		0x33,
-		0x4,
-		0xD,
-		0x5,
-		0x3,
-		0x4,
-		0x0,
-		0x1,
-		0x0,
-		0x0,
+		0x119,      //Map Matrix ID
+		0xF0,      //Scripts Archive ID
+		0x2E1,	      //Map Scripts Archive ID
+		0xEE,      //Message Archive ID
+		0x430,      //Day Music ID
+		0x430,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x20E,      //Events Archive ID
+		0x33,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0xD,      //Weather
+		0x5,      //Camera Type
+		0x3,      //Map Type
+		0x4,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x15,
 		0xF,
-		0x11A,
-		0x19A,
-		0x383,	
-		0x17E,
-		0x43D,
-		0x43E,
-		0xFFFF,
-		0x20F,
-		0x6,
-		0x6,
-		0x0,
-		0x4,
-		0x4,
-		0x6,
-		0x0,
-		0x0,
-		0x0,
-		0x0,
+		0x11A,      //Map Matrix ID
+		0x19A,      //Scripts Archive ID
+		0x383,	      //Map Scripts Archive ID
+		0x17E,      //Message Archive ID
+		0x43D,      //Day Music ID
+		0x43E,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x20F,      //Events Archive ID
+		0x6,      //Map Label Text ID
+		0x6,      //Map Label Window ID
+		0x0,      //Weather
+		0x4,      //Camera Type
+		0x4,      //Map Type
+		0x6,      //Battle BG
+		MAP_HEADER_BIKE_NOT_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_NOT_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x48,
 		0xF,
-		0x11B,
-		0x191,
-		0x381,	
-		0x17,
-		0x433,
-		0x433,
-		0xFFFF,
-		0x210,
-		0x45,
-		0x4,
-		0x0,
-		0xC,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0x11B,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x433,      //Day Music ID
+		0x433,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x210,      //Events Archive ID
+		0x45,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x48,
 		0xF,
-		0x11C,
-		0x188,
-		0x379,	
-		0x142,
-		0x427,
-		0x427,
-		0xFFFF,
-		0x211,
-		0x7B,
-		0x4,
-		0x0,
-		0xC,
-		0x3,
-		0xB,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0x11C,      //Map Matrix ID
+		0x188,      //Scripts Archive ID
+		0x379,	      //Map Scripts Archive ID
+		0x142,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x211,      //Events Archive ID
+		0x7B,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xB,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x45,
 		0xF,
-		0x11D,
-		0x191,
-		0x381,	
-		0x17,
-		0x432,
-		0x432,
-		0xFFFF,
-		530,
-		0x32,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0x11D,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x432,      //Day Music ID
+		0x432,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		530,      //Events Archive ID
+		0x32,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x45,
 		0xF,
-		0x11E,
-		0x18A,
-		0x37B,	
-		0x143,
-		0x427,
-		0x427,
-		0xFFFF,
-		0x213,
-		0x7C,
-		0x4,
-		0x1D,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0x11E,      //Map Matrix ID
+		0x18A,      //Scripts Archive ID
+		0x37B,	      //Map Scripts Archive ID
+		0x143,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x213,      //Events Archive ID
+		0x7C,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x1D,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x39,
 		0xF,
-		0x11F,
-		0x191,
-		0x381,	
-		0x17,
-		0x404,
-		0x421,
-		0xFFFF,
-		0x214,
-		0x2B,
-		0x4,
-		0x0,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		0x11F,      //Map Matrix ID
+		0x191,      //Scripts Archive ID
+		0x381,	      //Map Scripts Archive ID
+		0x17,      //Message Archive ID
+		0x404,      //Day Music ID
+		0x421,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x214,      //Events Archive ID
+		0x2B,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 	{
 		0x39,
 		0xF,
-		288,
-		396,
-		0x37D,	
-		0x144,
-		0x427,
-		0x427,
-		0xFFFF,
-		0x215,
-		0x7D,
-		0x4,
-		0x0,
-		0xC,
-		0x3,
-		0xA,
-		0x1,
-		0x1,
-		0x1,
-		0x0,
+		288,      //Map Matrix ID
+		396,      //Scripts Archive ID
+		0x37D,	      //Map Scripts Archive ID
+		0x144,      //Message Archive ID
+		0x427,      //Day Music ID
+		0x427,      //Night Music ID
+		0xFFFF,      //Wild Encounters Archive ID
+		0x215,      //Events Archive ID
+		0x7D,      //Map Label Text ID
+		0x4,      //Map Label Window ID
+		0x0,      //Weather
+		0xC,      //Camera Type
+		0x3,      //Map Type
+		0xA,      //Battle BG
+		MAP_HEADER_BIKE_ALLOWED,      //Bike Allowed Flag
+		MAP_HEADER_RUNNING_ALLOWED,      //Running Allowed Flag
+		MAP_HEADER_ESCAPE_ROPE_ALLOWED,      //Escape Rope Allowed Flag
+		MAP_HEADER_FLY_NOT_ALLOWED,      //Fly Allowed Flag
 	},
 };
 
