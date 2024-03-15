@@ -872,7 +872,7 @@ void sub_0206D4AC (UnkStruct_0203CDB0 * param0, u16 param1)
     UnkStruct_0206D4D4 * v1 = &v0.val5;
 
     v1->unk_00 = param1;
-    v1->unk_02 = sub_0203A138(param0->unk_1C->unk_00);
+    v1->unk_02 = MapHeader_GetMapLabelTextID(param0->unk_1C->unk_00);
 
     sub_0206CD70(param0, 2, 6, v1);
 }
@@ -923,7 +923,7 @@ void sub_0206D578 (UnkStruct_0203CDB0 * param0, Pokemon * param1)
     UnkStruct_0206D5B0 * v1 = &v0.val7;
 
     sub_0206CE38(param1, &v1->unk_00, &v1->unk_02, &v1->unk_03, &v1->unk_04);
-    v1->unk_06 = sub_0203A138(param0->unk_1C->unk_00);
+    v1->unk_06 = MapHeader_GetMapLabelTextID(param0->unk_1C->unk_00);
     sub_0206CD70(param0, 2, 8, v1);
 }
 
@@ -2128,7 +2128,7 @@ static int sub_0206E940 (UnkStruct_0203CDB0 * param0, StringFormatter * param1, 
 
     v0 = Unk_02100BA4[inline_020564D0(NELEMS(Unk_02100BA4))];
     v1 = sub_0203A944(param0, v0);
-    sub_0200B8C8(param1, 0, sub_0203A138(v0));
+    sub_0200B8C8(param1, 0, MapHeader_GetMapLabelTextID(v0));
 
     switch (v1) {
     case 0:
@@ -2246,7 +2246,7 @@ static int sub_0206EB94 (UnkStruct_0203CDB0 * param0, StringFormatter * param1, 
     UnkStruct_0202D7B0 * v2 = sub_0202D834(param0->unk_0C);
 
     ov6_0224322C(sub_0202D814(v2, 2), &v0, &v1);
-    sub_0200B8C8(param1, 0, sub_0203A138(v0));
+    sub_0200B8C8(param1, 0, MapHeader_GetMapLabelTextID(v0));
     sub_0206CEA4(param1, 1, v1);
 
     return 29;
@@ -2551,7 +2551,7 @@ static int sub_0206EC90 (UnkStruct_0203CDB0 * param0, StringFormatter * param1, 
 
     v1 = sub_0206EBE8(param0);
     v2 = Unk_020F0074[v1 * 2 + 1];
-    sub_0200B8C8(param1, 0, sub_0203A138(v2));
+    sub_0200B8C8(param1, 0, MapHeader_GetMapLabelTextID(v2));
 
     switch (sub_02027D04(v0, v1)) {
     case 5:

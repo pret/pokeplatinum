@@ -253,7 +253,7 @@ static const u8 Unk_020EA01C[] = {
 
 BOOL sub_0203A9C8 (UnkStruct_0203CDB0 * param0)
 {
-    if (sub_0203A138(param0->unk_1C->unk_00) == 0) {
+    if (MapHeader_GetMapLabelTextID(param0->unk_1C->unk_00) == 0) {
         return 0;
     }
 

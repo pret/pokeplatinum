@@ -13138,16 +13138,16 @@ u32 MapHeader_GetEventsArchiveID (u32 headerID)
     return mapHeaders[headerID].eventsArchiveID;
 }
 
-u32 sub_0203A138 (u32 headerID)
+u32 MapHeader_GetMapLabelTextID (u32 headerID)
 {
     headerID = MapHeader_IDBoundsCheck(headerID);
-    return mapHeaders[headerID].unk_12_0;
+    return mapHeaders[headerID].mapLabelTextID;
 }
 
-u8 sub_0203A154 (u32 headerID)
+u8 MapHeader_GetMapLabelWindowID (u32 headerID)
 {
     headerID = MapHeader_IDBoundsCheck(headerID);
-    return mapHeaders[headerID].unk_12_8;
+    return mapHeaders[headerID].mapLabelWindowID;
 }
 
 u32 MapHeader_GetWeatherType (u32 headerID)

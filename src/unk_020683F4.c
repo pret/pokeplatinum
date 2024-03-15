@@ -412,7 +412,7 @@ static BOOL sub_02068750 (UnkStruct_02068870 * param0)
 
 static u32 sub_0206877C (const UnkStruct_020684D0 * param0)
 {
-    if (sub_0203A138(param0->unk_00) == 0) {
+    if (MapHeader_GetMapLabelTextID(param0->unk_00) == 0) {
         return -1;
     }
 

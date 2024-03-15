@@ -1274,5 +1274,5 @@ void sub_020868B0 (GameWindowLayout * param0)
 static u16 sub_02086930 (GameWindowLayout * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_5A4->unk_1C;
-    return (u16)sub_0203A138(v0->unk_1C->unk_00);
+    return (u16)MapHeader_GetMapLabelTextID(v0->unk_1C->unk_00);
 }

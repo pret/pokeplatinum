@@ -32,7 +32,7 @@
 
 BOOL sub_0204CFFC (UnkStruct_0203E724 * param0)
 {
-    int v0 = sub_0203A138(param0->unk_34->unk_1C->unk_00);
+    int v0 = MapHeader_GetMapLabelTextID(param0->unk_34->unk_1C->unk_00);
     int v1 = 24;
     Party * v2;
     UnkStruct_0203CDB0 * v3 = param0->unk_34;
@@ -307,7 +307,7 @@ BOOL sub_0204D614 (UnkStruct_0203E724 * param0)
     u16 v2 = inline_02049538(param0);
     u16 v3 = inline_02049538(param0);
     u16 v4;
-    u32 v5 = sub_0203A138(param0->unk_34->unk_1C->unk_00);
+    u32 v5 = MapHeader_GetMapLabelTextID(param0->unk_34->unk_1C->unk_00);
 
     v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v0->unk_0C), v3);
     v4 = Pokemon_GetValue(v1, MON_DATA_FRIENDSHIP, NULL);

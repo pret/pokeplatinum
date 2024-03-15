@@ -410,7 +410,7 @@ static u8 ov7_0224D250 (UnkStruct_0203CDB0 * param0, UnkStruct_ov7_0224D008 * pa
         Strbuf_Free(param1->unk_298);
 
         if (param1->unk_2A9 == 0) {
-            if ((sub_0203A138(param0->unk_1C->unk_00) != 101) && (param0->unk_1C->unk_00 != 81) && (param0->unk_1C->unk_00 != 446)) {
+            if ((MapHeader_GetMapLabelTextID(param0->unk_1C->unk_00) != 101) && (param0->unk_1C->unk_00 != 81) && (param0->unk_1C->unk_00 != 446)) {
                 if ((param1->unk_2A7 != 0) && (param1->unk_2A8 != 0)) {
                     v0 = sub_0202BD38(11);
                     sub_0202B758(param1->unk_27C, v0, 1);

@@ -21,8 +21,8 @@ typedef struct {
     u16 nightMusicID;
     u16 wildEncountersArchiveID;
     u16 eventsArchiveID;
-    u16 unk_12_0 : 8; //mapLabelTextID
-    u16 unk_12_8 : 8; //mapLabelWindowID
+    u16 mapLabelTextID : 8;
+    u16 mapLabelWindowID : 8;
     u8 weather;
     u8 cameraType;
     u16 mapType : 7;
@@ -45,8 +45,8 @@ u16 MapHeader_GetNightMusicID(u32 param0);
 BOOL MapHeader_HasWildEncounters(u32 param0);
 u32 MapHeader_GetWildEncountersArchiveID(u32 param0);
 u32 MapHeader_GetEventsArchiveID(u32 param0);
-u32 sub_0203A138(u32 param0); //MapHeader_GetMapLabelTextID
-u8 sub_0203A154(u32 param0); //MapHeader_GetMapLabelWindowID
+u32 MapHeader_GetMapLabelTextID(u32 param0);
+u8 MapHeader_GetMapLabelWindowID(u32 param0);
 u32 MapHeader_GetWeatherType(u32 param0);
 u32 MapHeader_GetCameraType(u32 param0);
 u32 MapHeader_GetBattleBG(u32 param0);

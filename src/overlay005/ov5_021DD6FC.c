@@ -309,13 +309,13 @@ void ov5_021DDAA4 (UnkStruct_0203CDB0 * param0)
     int v0;
     int v1;
 
-    if (sub_0203A154(param0->unk_1C->unk_00) == 0) {
+    if (MapHeader_GetMapLabelWindowID(param0->unk_1C->unk_00) == 0) {
         return;
     }
 
     if (!sub_0203A288(param0->unk_1C->unk_00)) {
-        v0 = sub_0203A138(param0->unk_1C->unk_00);
-        v1 = sub_0203A154(param0->unk_1C->unk_00);
+        v0 = MapHeader_GetMapLabelTextID(param0->unk_1C->unk_00);
+        v1 = MapHeader_GetMapLabelWindowID(param0->unk_1C->unk_00);
 
         if (v1 != 0) {
             v1--;

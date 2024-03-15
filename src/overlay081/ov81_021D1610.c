@@ -170,7 +170,7 @@ static u8 ov81_021D16B0 (UnkStruct_ov81_021D1610 * param0, Window * param1, Wind
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_50, 0);
-    sub_0200B8C8(param0->unk_54, 0, sub_0203A138(v0.unk_00_19));
+    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(v0.unk_00_19));
 
     StringFormatter_Format(param0->unk_54, param0->unk_58, v1);
     sub_0201D78C(param2, 0, param0->unk_58, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -338,7 +338,7 @@ static void ov81_021D1AD4 (UnkStruct_ov81_021D1610 * param0, Window * param1)
     {
         Strbuf* v3;
 
-        v3 = MessageBank_GetNewStrbufFromNARC(26, 433, sub_0203A138(v0.unk_02), 42);
+        v3 = MessageBank_GetNewStrbufFromNARC(26, 433, MapHeader_GetMapLabelTextID(v0.unk_02), 42);
         v2 = Strbuf_Length(v3);
         Strbuf_Free(v3);
 
@@ -366,7 +366,7 @@ static void ov81_021D1AD4 (UnkStruct_ov81_021D1610 * param0, Window * param1)
         v1 = MessageLoader_GetNewStrbuf(param0->unk_50, 60);
     }
 
-    sub_0200B8C8(param0->unk_54, 0, sub_0203A138(v0.unk_02));
+    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(v0.unk_02));
     StringFormatter_Format(param0->unk_54, param0->unk_58, v1);
     sub_0201D78C(param1, 0, param0->unk_58, 0, ((16 * 4 + 16) + 16), 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
@@ -571,7 +571,7 @@ static void ov81_021D2140 (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 21);
 
-    sub_0200B8C8(param0->unk_54, 0, sub_0203A138(param2->unk_02));
+    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringFormatter_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -645,7 +645,7 @@ static void ov81_021D233C (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 40);
 
-    sub_0200B8C8(param0->unk_54, 0, sub_0203A138(param2->unk_02));
+    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringFormatter_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -655,7 +655,7 @@ static void ov81_021D2398 (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 35);
 
-    sub_0200B8C8(param0->unk_54, 0, sub_0203A138(param2->unk_02));
+    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringFormatter_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -665,7 +665,7 @@ static void ov81_021D23F4 (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 36);
 
-    sub_0200B8C8(param0->unk_54, 0, sub_0203A138(param2->unk_02));
+    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringFormatter_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -675,7 +675,7 @@ static void ov81_021D2450 (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 43);
 
-    sub_0200B8C8(param0->unk_54, 0, sub_0203A138(param2->unk_02));
+    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringFormatter_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -685,7 +685,7 @@ static void ov81_021D24AC (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 38);
 
-    sub_0200B8C8(param0->unk_54, 0, sub_0203A138(param2->unk_02));
+    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringFormatter_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -695,7 +695,7 @@ static void ov81_021D2508 (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 37);
 
-    sub_0200B8C8(param0->unk_54, 0, sub_0203A138(param2->unk_02));
+    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringFormatter_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -705,7 +705,7 @@ static void ov81_021D2564 (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 42);
 
-    sub_0200B8C8(param0->unk_54, 0, sub_0203A138(param2->unk_02));
+    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringFormatter_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -715,7 +715,7 @@ static void ov81_021D25C0 (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 41);
 
-    sub_0200B8C8(param0->unk_54, 0, sub_0203A138(param2->unk_02));
+    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringFormatter_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -725,7 +725,7 @@ static void ov81_021D261C (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 39);
 
-    sub_0200B8C8(param0->unk_54, 0, sub_0203A138(param2->unk_02));
+    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringFormatter_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -735,7 +735,7 @@ static void ov81_021D2678 (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 46);
 
-    sub_0200B8C8(param0->unk_54, 0, sub_0203A138(param2->unk_02));
+    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringFormatter_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -745,7 +745,7 @@ static void ov81_021D26D4 (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 44);
 
-    sub_0200B8C8(param0->unk_54, 0, sub_0203A138(param2->unk_02));
+    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringFormatter_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
