@@ -6,7 +6,7 @@
 
 u32 MapHeader_IDBoundsCheck (u32 headerID)
 {
-    if (headerID >= NELEMS(mapHeaders)) {
+    if (headerID >= NELEMS(sMapHeaders)) {
         GF_ASSERT(0);
         return 3;
     }
@@ -17,13 +17,13 @@ u32 MapHeader_IDBoundsCheck (u32 headerID)
 const u16 sub_0203A038 (u32 headerID)
 {
     headerID = MapHeader_IDBoundsCheck(headerID);
-    return mapHeaders[headerID].unk_00;
+    return sMapHeaders[headerID].unk_00;
 }
 
 const u16 sub_0203A04C (u32 headerID)
 {
     headerID = MapHeader_IDBoundsCheck(headerID);
-    return mapHeaders[headerID].unk_01;
+    return sMapHeaders[headerID].unk_01;
 }
 
 const u16 MapHeader_GetMapMatrixID (u32 headerID)
@@ -31,7 +31,7 @@ const u16 MapHeader_GetMapMatrixID (u32 headerID)
     u16 mapMatrixID;
 
     headerID = MapHeader_IDBoundsCheck(headerID);
-    mapMatrixID = mapHeaders[headerID].mapMatrixID;
+    mapMatrixID = sMapHeaders[headerID].mapMatrixID;
 
     if (mapMatrixID == 22) {
         if (Unk_020E4C40 == 11) {
@@ -45,103 +45,103 @@ const u16 MapHeader_GetMapMatrixID (u32 headerID)
 u32 MapHeader_GetMsgArchiveID (u32 headerID)
 {
     headerID = MapHeader_IDBoundsCheck(headerID);
-    return mapHeaders[headerID].msgArchiveID;
+    return sMapHeaders[headerID].msgArchiveID;
 }
 
 u32 MapHeader_GetScriptsArchiveID (u32 headerID)
 {
     headerID = MapHeader_IDBoundsCheck(headerID);
-    return mapHeaders[headerID].scriptsArchiveID;
+    return sMapHeaders[headerID].scriptsArchiveID;
 }
 
 u32 MapHeader_GetMapScriptArchiveID (u32 headerID)
 {
     headerID = MapHeader_IDBoundsCheck(headerID);
-    return mapHeaders[headerID].mapScriptArchiveID;
+    return sMapHeaders[headerID].mapScriptArchiveID;
 }
 
 u16 MapHeader_GetDayMusicID (u32 headerID)
 {
     headerID = MapHeader_IDBoundsCheck(headerID);
-    return mapHeaders[headerID].dayMusicID;
+    return sMapHeaders[headerID].dayMusicID;
 }
 
 u16 MapHeader_GetNightMusicID (u32 headerID)
 {
     headerID = MapHeader_IDBoundsCheck(headerID);
-    return mapHeaders[headerID].nightMusicID;
+    return sMapHeaders[headerID].nightMusicID;
 }
 
 BOOL MapHeader_HasWildEncounters (u32 headerID)
 {
     headerID = MapHeader_IDBoundsCheck(headerID);
-    return mapHeaders[headerID].wildEncountersArchiveID != 65535;
+    return sMapHeaders[headerID].wildEncountersArchiveID != 65535;
 }
 
 u32 MapHeader_GetWildEncountersArchiveID (u32 headerID)
 {
     headerID = MapHeader_IDBoundsCheck(headerID);
-    return mapHeaders[headerID].wildEncountersArchiveID;
+    return sMapHeaders[headerID].wildEncountersArchiveID;
 }
 
 u32 MapHeader_GetEventsArchiveID (u32 headerID)
 {
     headerID = MapHeader_IDBoundsCheck(headerID);
-    return mapHeaders[headerID].eventsArchiveID;
+    return sMapHeaders[headerID].eventsArchiveID;
 }
 
 u32 MapHeader_GetMapLabelTextID (u32 headerID)
 {
     headerID = MapHeader_IDBoundsCheck(headerID);
-    return mapHeaders[headerID].mapLabelTextID;
+    return sMapHeaders[headerID].mapLabelTextID;
 }
 
 u8 MapHeader_GetMapLabelWindowID (u32 headerID)
 {
     headerID = MapHeader_IDBoundsCheck(headerID);
-    return mapHeaders[headerID].mapLabelWindowID;
+    return sMapHeaders[headerID].mapLabelWindowID;
 }
 
 u32 MapHeader_GetWeatherType (u32 headerID)
 {
     headerID = MapHeader_IDBoundsCheck(headerID);
-    return mapHeaders[headerID].weather;
+    return sMapHeaders[headerID].weather;
 }
 
 u32 MapHeader_GetCameraType (u32 headerID)
 {
     headerID = MapHeader_IDBoundsCheck(headerID);
-    return mapHeaders[headerID].cameraType;
+    return sMapHeaders[headerID].cameraType;
 }
 
 u32 MapHeader_GetBattleBG (u32 headerID)
 {
     headerID = MapHeader_IDBoundsCheck(headerID);
-    return mapHeaders[headerID].battleBG;
+    return sMapHeaders[headerID].battleBG;
 }
 
 BOOL MapHeader_IsEscapeRopeAllowed (u32 headerID)
 {
     headerID = MapHeader_IDBoundsCheck(headerID);
-    return mapHeaders[headerID].isEscapeRopeAllowed;
+    return sMapHeaders[headerID].isEscapeRopeAllowed;
 }
 
 BOOL MapHeader_IsFlyAllowed (u32 headerID)
 {
     headerID = MapHeader_IDBoundsCheck(headerID);
-    return mapHeaders[headerID].isFlyAllowed;
+    return sMapHeaders[headerID].isFlyAllowed;
 }
 
 BOOL MapHeader_IsBikeAllowed (u32 headerID)
 {
     headerID = MapHeader_IDBoundsCheck(headerID);
-    return mapHeaders[headerID].isBikeAllowed;
+    return sMapHeaders[headerID].isBikeAllowed;
 }
 
 u32 MapHeader_GetMapType (u32 headerID)
 {
     headerID = MapHeader_IDBoundsCheck(headerID);
-    return mapHeaders[headerID].mapType;
+    return sMapHeaders[headerID].mapType;
 }
 
 BOOL MapHeader_IsTeleportAllowed (u32 headerID)

@@ -1,4 +1,4 @@
-static const MapHeader mapHeaders[] = {
+static const MapHeader sMapHeaders[] = {
 	{
      .unk_00 = 0x0,
      .unk_01 = 0x0,
