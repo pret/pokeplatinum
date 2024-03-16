@@ -1,18 +1,9 @@
 #ifndef POKEPLATINUM_UNK_0203A024_H
 #define POKEPLATINUM_UNK_0203A024_H
 
-#define MAP_HEADER_BIKE_ALLOWED 1
-#define MAP_HEADER_BIKE_NOT_ALLOWED 0
-#define MAP_HEADER_RUNNING_ALLOWED 1
-#define MAP_HEADER_RUNNING_NOT_ALLOWED 0
-#define MAP_HEADER_ESCAPE_ROPE_ALLOWED 1
-#define MAP_HEADER_ESCAPE_ROPE_NOT_ALLOWED 0
-#define MAP_HEADER_FLY_ALLOWED 1
-#define MAP_HEADER_FLY_NOT_ALLOWED 0
-
 typedef struct {
     u8 unk_00;
-    u8 unk_01; //3d model of map?
+    u8 unk_01;
     u16 mapMatrixID;
     u16 scriptsArchiveID;
     u16 mapScriptArchiveID;
