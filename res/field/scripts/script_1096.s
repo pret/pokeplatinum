@@ -113,14 +113,14 @@ _00D5:
 
     .balign 4, 0
 _011C:
-    .short 32, 1
-    .short 0xFE, 0x00
+    MoveAction_020
+    EndMovement
 
     .balign 4, 0
 _0124:
-    .short 12, 1
-    .short 69, 1
-    .short 0xFE, 0x00
+    MoveAction_00C
+    MoveAction_045
+    EndMovement
 
 _0130:
     ScrCmd_049 0x5DC

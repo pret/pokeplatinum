@@ -2684,10 +2684,10 @@ _2125:
 
     .balign 4, 0
 _212C:
-    .short 3, 1
-    .short 0xFE, 0x00
+    MoveAction_003
+    EndMovement
 
     .balign 4, 0
 _2134:
-    .short 2, 1
-    .short 0xFE, 0x00
+    MoveAction_002
+    EndMovement

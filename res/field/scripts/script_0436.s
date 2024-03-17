@@ -56,13 +56,13 @@ _0080:
 
     .balign 4, 0
 _0090:
-    .short 75, 1
-    .short 0xFE, 0x00
+    MoveAction_04B
+    EndMovement
 
     .balign 4, 0
 _0098:
-    .short 13, 1
-    .short 0xFE, 0x00
+    MoveAction_00D
+    EndMovement
 
 _00A0:
     ScrCmd_060

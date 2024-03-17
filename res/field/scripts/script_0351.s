@@ -119,14 +119,14 @@ _01A1:
 
     .balign 4, 0
 _01B4:
-    .short 63, 1
-    .short 12, 9
-    .short 0xFE, 0x00
+    MoveAction_03F
+    MoveAction_00C 9
+    EndMovement
 
     .balign 4, 0
 _01C0:
-    .short 13, 9
-    .short 0xFE, 0x00
+    MoveAction_00D 9
+    EndMovement
 
     .byte 35
     .byte 0
@@ -155,16 +155,16 @@ _01C0:
 
     .balign 4, 0
 _01E0:
-    .short 13, 5
-    .short 14, 1
-    .short 13, 4
-    .short 0xFE, 0x00
+    MoveAction_00D 5
+    MoveAction_00E
+    MoveAction_00D 4
+    EndMovement
 
     .balign 4, 0
 _01F0:
-    .short 13, 3
-    .short 69, 1
-    .short 0xFE, 0x00
+    MoveAction_00D 3
+    MoveAction_045
+    EndMovement
 
     .byte 63
     .byte 0
@@ -325,53 +325,53 @@ _01F0:
 
     .balign 4, 0
 _0298:
-    .short 16, 1
-    .short 0xFE, 0x00
+    MoveAction_010
+    EndMovement
 
     .balign 4, 0
 _02A0:
-    .short 15, 1
-    .short 34, 1
-    .short 0xFE, 0x00
+    MoveAction_00F
+    MoveAction_022
+    EndMovement
 
     .balign 4, 0
 _02AC:
-    .short 14, 1
-    .short 33, 1
-    .short 0xFE, 0x00
+    MoveAction_00E
+    MoveAction_021
+    EndMovement
 
     .balign 4, 0
 _02B8:
-    .short 38, 1
-    .short 0xFE, 0x00
+    MoveAction_026
+    EndMovement
 
     .balign 4, 0
 _02C0:
-    .short 75, 1
-    .short 16, 3
-    .short 63, 3
-    .short 38, 1
-    .short 63, 1
-    .short 36, 1
-    .short 63, 2
-    .short 17, 3
-    .short 38, 1
-    .short 0xFE, 0x00
+    MoveAction_04B
+    MoveAction_010 3
+    MoveAction_03F 3
+    MoveAction_026
+    MoveAction_03F
+    MoveAction_024
+    MoveAction_03F 2
+    MoveAction_011 3
+    MoveAction_026
+    EndMovement
 
     .balign 4, 0
 _02E8:
-    .short 75, 1
-    .short 0xFE, 0x00
+    MoveAction_04B
+    EndMovement
 
     .balign 4, 0
 _02F0:
-    .short 38, 4
-    .short 0xFE, 0x00
+    MoveAction_026 4
+    EndMovement
 
     .balign 4, 0
 _02F8:
-    .short 17, 2
-    .short 0xFE, 0x00
+    MoveAction_011 2
+    EndMovement
 
     .byte 35
     .byte 0
@@ -480,36 +480,36 @@ _02F8:
 
     .balign 4, 0
 _0368:
-    .short 12, 1
-    .short 0xFE, 0x00
+    MoveAction_00C
+    EndMovement
 
     .balign 4, 0
 _0370:
-    .short 35, 1
-    .short 0xFE, 0x00
+    MoveAction_023
+    EndMovement
 
     .balign 4, 0
 _0378:
-    .short 33, 1
-    .short 0xFE, 0x00
+    MoveAction_021
+    EndMovement
 
     .balign 4, 0
 _0380:
-    .short 35, 1
-    .short 0xFE, 0x00
+    MoveAction_023
+    EndMovement
 
     .balign 4, 0
 _0388:
-    .short 63, 4
-    .short 32, 1
-    .short 63, 9
-    .short 35, 1
-    .short 0xFE, 0x00
+    MoveAction_03F 4
+    MoveAction_020
+    MoveAction_03F 9
+    MoveAction_023
+    EndMovement
 
     .balign 4, 0
 _039C:
-    .short 33, 1
-    .short 0xFE, 0x00
+    MoveAction_021
+    EndMovement
 
     .byte 33
     .byte 0

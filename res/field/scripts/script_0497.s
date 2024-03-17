@@ -440,36 +440,36 @@ _070C:
 
     .balign 4, 0
 _0718:
-    .short 15, 3
-    .short 69, 1
-    .short 0xFE, 0x00
+    MoveAction_00F 3
+    MoveAction_045
+    EndMovement
 
     .balign 4, 0
 _0724:
-    .short 15, 4
-    .short 69, 1
-    .short 0xFE, 0x00
+    MoveAction_00F 4
+    MoveAction_045
+    EndMovement
 
     .balign 4, 0
 _0730:
-    .short 14, 3
-    .short 69, 1
-    .short 0xFE, 0x00
+    MoveAction_00E 3
+    MoveAction_045
+    EndMovement
 
     .balign 4, 0
 _073C:
-    .short 14, 4
-    .short 69, 1
-    .short 0xFE, 0x00
+    MoveAction_00E 4
+    MoveAction_045
+    EndMovement
 
     .balign 4, 0
 _0748:
-    .short 70, 1
-    .short 15, 3
-    .short 0xFE, 0x00
+    MoveAction_046
+    MoveAction_00F 3
+    EndMovement
 
     .balign 4, 0
 _0754:
-    .short 70, 1
-    .short 14, 3
-    .short 0xFE, 0x00
+    MoveAction_046
+    MoveAction_00E 3
+    EndMovement

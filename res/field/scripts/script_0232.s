@@ -19,5 +19,5 @@ _0006:
 
     .balign 4, 0
 _0024:
-    .short 0, 1
-    .short 0xFE, 0x00
+    MoveAction_000
+    EndMovement

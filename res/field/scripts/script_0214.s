@@ -115,11 +115,11 @@ _012B:
 
     .balign 4, 0
 _0138:
-    .short 14, 1
-    .short 12, 3
-    .short 0xFE, 0x00
+    MoveAction_00E
+    MoveAction_00C 3
+    EndMovement
 
     .balign 4, 0
 _0144:
-    .short 12, 3
-    .short 0xFE, 0x00
+    MoveAction_00C 3
+    EndMovement

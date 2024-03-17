@@ -274,24 +274,24 @@ _02F5:
 
     .balign 4, 0
 _0334:
-    .short 1, 1
-    .short 0xFE, 0x00
+    MoveAction_001
+    EndMovement
 
     .balign 4, 0
 _033C:
-    .short 3, 1
-    .short 0xFE, 0x00
+    MoveAction_003
+    EndMovement
 
     .balign 4, 0
 _0344:
-    .short 2, 1
-    .short 0xFE, 0x00
+    MoveAction_002
+    EndMovement
 
     .balign 4, 0
 _034C:
-    .short 12, 3
-    .short 34, 1
-    .short 0xFE, 0x00
+    MoveAction_00C 3
+    MoveAction_022
+    EndMovement
 
 _0358:
     ScrCmd_049 0x5DC

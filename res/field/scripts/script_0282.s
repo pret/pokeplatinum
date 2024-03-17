@@ -50,7 +50,7 @@ _007E:
 
     .balign 4, 0
 _0094:
-    .short 71, 1
-    .short 12, 1
-    .short 72, 1
-    .short 0xFE, 0x00
+    MoveAction_047
+    MoveAction_00C
+    MoveAction_048
+    EndMovement

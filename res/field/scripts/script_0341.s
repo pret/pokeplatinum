@@ -147,13 +147,13 @@ _015E:
 
     .balign 4, 0
 _0164:
-    .short 18, 1
-    .short 0xFE, 0x00
+    MoveAction_012
+    EndMovement
 
     .balign 4, 0
 _016C:
-    .short 19, 1
-    .short 0xFE, 0x00
+    MoveAction_013
+    EndMovement
 
 _0174:
     ScrCmd_049 0x5DC

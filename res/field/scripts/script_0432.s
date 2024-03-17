@@ -36,13 +36,13 @@ _002C:
 
     .balign 4, 0
 _0060:
-    .short 33, 1
-    .short 0xFE, 0x00
+    MoveAction_021
+    EndMovement
 
     .balign 4, 0
 _0068:
-    .short 33, 1
-    .short 0xFE, 0x00
+    MoveAction_021
+    EndMovement
 
 _0070:
     ScrCmd_060
@@ -69,33 +69,33 @@ _00B6:
 
     .balign 4, 0
 _00BC:
-    .short 35, 1
-    .short 0xFE, 0x00
+    MoveAction_023
+    EndMovement
 
     .balign 4, 0
 _00C4:
-    .short 34, 1
-    .short 0xFE, 0x00
+    MoveAction_022
+    EndMovement
 
     .balign 4, 0
 _00CC:
-    .short 19, 1
-    .short 37, 1
-    .short 63, 2
-    .short 14, 1
-    .short 33, 1
-    .short 0xFE, 0x00
+    MoveAction_013
+    MoveAction_025
+    MoveAction_03F 2
+    MoveAction_00E
+    MoveAction_021
+    EndMovement
 
     .balign 4, 0
 _00E4:
-    .short 33, 1
-    .short 0xFE, 0x00
+    MoveAction_021
+    EndMovement
 
     .balign 4, 0
 _00EC:
-    .short 13, 1
-    .short 36, 1
-    .short 0xFE, 0x00
+    MoveAction_00D
+    MoveAction_024
+    EndMovement
 
 _00F8:
     ScrCmd_049 0x5DC
@@ -199,43 +199,43 @@ _0216:
 
     .balign 4, 0
 _0228:
-    .short 33, 1
-    .short 0xFE, 0x00
+    MoveAction_021
+    EndMovement
 
     .balign 4, 0
 _0230:
-    .short 32, 1
-    .short 0xFE, 0x00
+    MoveAction_020
+    EndMovement
 
     .balign 4, 0
 _0238:
-    .short 32, 1
-    .short 75, 1
-    .short 63, 1
-    .short 12, 1
-    .short 0xFE, 0x00
+    MoveAction_020
+    MoveAction_04B
+    MoveAction_03F
+    MoveAction_00C
+    EndMovement
 
     .balign 4, 0
 _024C:
-    .short 32, 1
-    .short 75, 1
-    .short 63, 1
-    .short 0xFE, 0x00
+    MoveAction_020
+    MoveAction_04B
+    MoveAction_03F
+    EndMovement
 
     .balign 4, 0
 _025C:
-    .short 33, 1
-    .short 75, 1
-    .short 63, 1
-    .short 0xFE, 0x00
+    MoveAction_021
+    MoveAction_04B
+    MoveAction_03F
+    EndMovement
 
     .balign 4, 0
 _026C:
-    .short 33, 1
-    .short 75, 1
-    .short 63, 1
-    .short 13, 1
-    .short 0xFE, 0x00
+    MoveAction_021
+    MoveAction_04B
+    MoveAction_03F
+    MoveAction_00D
+    EndMovement
 
 _0280:
     ScrCmd_036 7, 1, 0, 0x800C

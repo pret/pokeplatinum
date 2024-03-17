@@ -31,18 +31,18 @@ _002E:
 
     .balign 4, 0
 _0054:
-    .short 12, 1
-    .short 66, 1
-    .short 2, 1
-    .short 0xFE, 0x00
+    MoveAction_00C
+    MoveAction_042
+    MoveAction_002
+    EndMovement
 
     .balign 4, 0
 _0064:
-    .short 63, 1
-    .short 2, 1
-    .short 65, 1
-    .short 73, 1
-    .short 14, 10
-    .short 74, 1
-    .short 69, 1
-    .short 0xFE, 0x00
+    MoveAction_03F
+    MoveAction_002
+    MoveAction_041
+    MoveAction_049
+    MoveAction_00E 10
+    MoveAction_04A
+    MoveAction_045
+    EndMovement

@@ -86,29 +86,29 @@ _006A:
 
     .balign 4, 0
 _00F0:
-    .short 63, 9
-    .short 35, 1
-    .short 0xFE, 0x00
+    MoveAction_03F 9
+    MoveAction_023
+    EndMovement
 
     .balign 4, 0
 _00FC:
-    .short 38, 1
-    .short 75, 1
-    .short 63, 2
-    .short 14, 2
-    .short 0xFE, 0x00
+    MoveAction_026
+    MoveAction_04B
+    MoveAction_03F 2
+    MoveAction_00E 2
+    EndMovement
 
     .balign 4, 0
 _0110:
-    .short 1, 1
-    .short 61, 1
-    .short 3, 1
-    .short 62, 1
-    .short 0, 1
-    .short 62, 1
-    .short 2, 1
-    .short 61, 1
-    .short 0xFE, 0x00
+    MoveAction_001
+    MoveAction_03D
+    MoveAction_003
+    MoveAction_03E
+    MoveAction_000
+    MoveAction_03E
+    MoveAction_002
+    MoveAction_03D
+    EndMovement
 
 _0134:
     ScrCmd_07E 0x1D3, 1, 0x800C

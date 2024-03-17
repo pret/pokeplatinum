@@ -52,11 +52,11 @@ _0078:
 
     .balign 4, 0
 _00AC:
-    .short 2, 1
-    .short 71, 1
-    .short 15, 1
-    .short 72, 1
-    .short 0xFE, 0x00
+    MoveAction_002
+    MoveAction_047
+    MoveAction_00F
+    MoveAction_048
+    EndMovement
 
 _00C0:
     ScrCmd_0CD 0

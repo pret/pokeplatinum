@@ -102,21 +102,21 @@ _00F6:
 
     .balign 4, 0
 _0108:
-    .short 66, 1
-    .short 33, 1
-    .short 75, 1
-    .short 66, 1
-    .short 0xFE, 0x00
+    MoveAction_042
+    MoveAction_021
+    MoveAction_04B
+    MoveAction_042
+    EndMovement
 
     .balign 4, 0
 _011C:
-    .short 13, 1
-    .short 118, 1
-    .short 14, 1
-    .short 35, 1
-    .short 0xFE, 0x00
+    MoveAction_00D
+    MoveAction_076
+    MoveAction_00E
+    MoveAction_023
+    EndMovement
 
     .balign 4, 0
 _0130:
-    .short 67, 1
-    .short 0xFE, 0x00
+    MoveAction_043
+    EndMovement

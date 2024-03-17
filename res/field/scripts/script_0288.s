@@ -50,22 +50,22 @@ _0021:
 
     .balign 4, 0
 _0098:
-    .short 34, 1
-    .short 0xFE, 0x00
+    MoveAction_022
+    EndMovement
 
     .balign 4, 0
 _00A0:
-    .short 38, 1
-    .short 63, 1
-    .short 39, 1
-    .short 63, 2
-    .short 36, 1
-    .short 0xFE, 0x00
+    MoveAction_026
+    MoveAction_03F
+    MoveAction_027
+    MoveAction_03F 2
+    MoveAction_024
+    EndMovement
 
     .balign 4, 0
 _00B8:
-    .short 35, 1
-    .short 0xFE, 0x00
+    MoveAction_023
+    EndMovement
 
 _00C0:
     ScrCmd_049 0x5DC

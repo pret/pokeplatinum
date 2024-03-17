@@ -1207,32 +1207,32 @@ _1205:
 
     .balign 4, 0
 _1248:
-    .short 62, 1
-    .short 12, 2
-    .short 0xFE, 0x00
+    MoveAction_03E
+    MoveAction_00C 2
+    EndMovement
 
     .balign 4, 0
 _1254:
-    .short 12, 1
-    .short 69, 1
-    .short 0xFE, 0x00
+    MoveAction_00C
+    MoveAction_045
+    EndMovement
 
     .balign 4, 0
 _1260:
-    .short 62, 1
-    .short 12, 2
-    .short 0xFE, 0x00
+    MoveAction_03E
+    MoveAction_00C 2
+    EndMovement
 
     .balign 4, 0
 _126C:
-    .short 12, 2
-    .short 69, 1
-    .short 0xFE, 0x00
+    MoveAction_00C 2
+    MoveAction_045
+    EndMovement
 
     .balign 4, 0
 _1278:
-    .short 3, 1
-    .short 0xFE, 0x00
+    MoveAction_003
+    EndMovement
 
 _1280:
     ScrCmd_049 0x5DC

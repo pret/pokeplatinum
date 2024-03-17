@@ -1060,8 +1060,8 @@ _1043:
 
     .balign 4, 0
 _104C:
-    .short 101, 1
-    .short 0xFE, 0x00
+    MoveAction_065
+    EndMovement
 
 _1054:
     ScrCmd_060

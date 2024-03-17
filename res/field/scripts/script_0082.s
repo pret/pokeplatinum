@@ -96,13 +96,13 @@ _0135:
 
     .balign 4, 0
 _013C:
-    .short 32, 1
-    .short 0xFE, 0x00
+    MoveAction_020
+    EndMovement
 
     .balign 4, 0
 _0144:
-    .short 12, 1
-    .short 0xFE, 0x00
+    MoveAction_00C
+    EndMovement
 
     .byte 63
     .byte 0
@@ -123,21 +123,21 @@ _0144:
 
     .balign 4, 0
 _015C:
-    .short 12, 3
-    .short 35, 1
-    .short 0xFE, 0x00
+    MoveAction_00C 3
+    MoveAction_023
+    EndMovement
 
     .balign 4, 0
 _0168:
-    .short 12, 3
-    .short 34, 1
-    .short 0xFE, 0x00
+    MoveAction_00C 3
+    MoveAction_022
+    EndMovement
 
     .balign 4, 0
 _0174:
-    .short 63, 1
-    .short 33, 1
-    .short 0xFE, 0x00
+    MoveAction_03F
+    MoveAction_021
+    EndMovement
 
     .byte 34
     .byte 0

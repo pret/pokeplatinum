@@ -4,6 +4,7 @@ consts_manifests = files(
     'narc_files.json',
     'trainer.json',
     'sprites.json',
+    'movement.json',
 )
 
 gen_consts_root = meson.current_build_dir() / 'generated'

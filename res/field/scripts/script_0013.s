@@ -27,13 +27,13 @@ _0012:
 
     .balign 4, 0
 _0044:
-    .short 3, 1
-    .short 0xFE, 0x00
+    MoveAction_003
+    EndMovement
 
     .balign 4, 0
 _004C:
-    .short 2, 1
-    .short 0xFE, 0x00
+    MoveAction_002
+    EndMovement
 
 _0054:
     ScrCmd_049 0x5DC

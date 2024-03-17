@@ -252,5 +252,5 @@ _03F6:
 
     .balign 4, 0
 _0410:
-    .short 33, 1
-    .short 0xFE, 0x00
+    MoveAction_021
+    EndMovement

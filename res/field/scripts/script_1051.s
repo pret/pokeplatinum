@@ -366,27 +366,27 @@ _046C:
 
     .balign 4, 0
 _0474:
-    .short 15, 10
-    .short 0xFE, 0x00
+    MoveAction_00F 10
+    EndMovement
 
     .balign 4, 0
 _047C:
-    .short 12, 1
-    .short 15, 10
-    .short 0xFE, 0x00
+    MoveAction_00C
+    MoveAction_00F 10
+    EndMovement
 
     .balign 4, 0
 _0488:
-    .short 63, 1
-    .short 35, 1
-    .short 0xFE, 0x00
+    MoveAction_03F
+    MoveAction_023
+    EndMovement
 
     .balign 4, 0
 _0494:
-    .short 63, 1
-    .short 32, 1
-    .short 35, 1
-    .short 0xFE, 0x00
+    MoveAction_03F
+    MoveAction_020
+    MoveAction_023
+    EndMovement
 
 _04A4:
     ScrCmd_011 0x40C4, 1
