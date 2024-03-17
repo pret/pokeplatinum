@@ -82,15 +82,15 @@ _00B6:
 
     .balign 4, 0
 _00DC:
-    .short 75, 1
-    .short 63, 1
-    .short 14, 1
-    .short 13, 1
-    .short 0xFE, 0x00
+    MoveAction_04B
+    MoveAction_03F
+    MoveAction_00E
+    MoveAction_00D
+    EndMovement
 
     .balign 4, 0
 _00F0:
-    .short 12, 1
-    .short 15, 1
-    .short 33, 1
-    .short 0xFE, 0x00
+    MoveAction_00C
+    MoveAction_00F
+    MoveAction_021
+    EndMovement

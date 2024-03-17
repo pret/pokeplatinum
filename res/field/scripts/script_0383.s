@@ -37,10 +37,10 @@ _003E:
 
     .balign 4, 0
 _0060:
-    .short 12, 7
-    .short 0xFE, 0x00
+    MoveAction_00C 7
+    EndMovement
 
     .balign 4, 0
 _0068:
-    .short 13, 7
-    .short 0xFE, 0x00
+    MoveAction_00D 7
+    EndMovement

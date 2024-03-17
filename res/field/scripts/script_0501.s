@@ -347,19 +347,19 @@ _045E:
 
     .balign 4, 0
 _046C:
-    .short 62, 3
-    .short 2, 1
-    .short 62, 3
-    .short 3, 1
-    .short 62, 3
-    .short 0, 1
-    .short 12, 2
-    .short 69, 1
-    .short 63, 3
-    .short 1, 1
-    .short 70, 1
-    .short 13, 2
-    .short 0xFE, 0x00
+    MoveAction_03E 3
+    MoveAction_002
+    MoveAction_03E 3
+    MoveAction_003
+    MoveAction_03E 3
+    MoveAction_000
+    MoveAction_00C 2
+    MoveAction_045
+    MoveAction_03F 3
+    MoveAction_001
+    MoveAction_046
+    MoveAction_00D 2
+    EndMovement
 
 _04A0:
     ScrCmd_02C 24

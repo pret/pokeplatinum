@@ -72,10 +72,10 @@ _00B3:
 
     .balign 4, 0
 _00BC:
-    .short 18, 1
-    .short 0xFE, 0x00
+    MoveAction_012
+    EndMovement
 
     .balign 4, 0
 _00C4:
-    .short 19, 1
-    .short 0xFE, 0x00
+    MoveAction_013
+    EndMovement

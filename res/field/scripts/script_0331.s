@@ -75,13 +75,13 @@ _00D0:
 
     .balign 4, 0
 _00F0:
-    .short 14, 1
-    .short 13, 3
-    .short 0xFE, 0x00
+    MoveAction_00E
+    MoveAction_00D 3
+    EndMovement
 
     .balign 4, 0
 _00FC:
-    .short 13, 2
-    .short 14, 1
-    .short 13, 1
-    .short 0xFE, 0x00
+    MoveAction_00D 2
+    MoveAction_00E
+    MoveAction_00D
+    EndMovement

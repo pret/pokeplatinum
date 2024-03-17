@@ -64,13 +64,13 @@ _007B:
 
     .balign 4, 0
 _00B4:
-    .short 63, 1
-    .short 32, 1
-    .short 0xFE, 0x00
+    MoveAction_03F
+    MoveAction_020
+    EndMovement
 
     .balign 4, 0
 _00C0:
-    .short 33, 1
-    .short 75, 1
-    .short 13, 1
-    .short 0xFE, 0x00
+    MoveAction_021
+    MoveAction_04B
+    MoveAction_00D
+    EndMovement

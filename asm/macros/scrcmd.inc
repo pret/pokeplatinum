@@ -1,3 +1,5 @@
+    .include "macros/movement.inc"
+
     .option alignment off
 
     .macro ScrCmd_000

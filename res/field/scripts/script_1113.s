@@ -21,8 +21,8 @@ _000E:
 
     .balign 4, 0
 _002C:
-    .short 32, 1
-    .short 0xFE, 0x00
+    MoveAction_020
+    EndMovement
 
 _0034:
     ScrCmd_049 0x5DC

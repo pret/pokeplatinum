@@ -101,8 +101,8 @@ _00D3:
 
     .balign 4, 0
 _013C:
-    .short 75, 1
-    .short 0xFE, 0x00
+    MoveAction_04B
+    EndMovement
 
 _0144:
     ScrCmd_0EB

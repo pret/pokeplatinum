@@ -76,5 +76,5 @@ _00B7:
 
     .balign 4, 0
 _00DC:
-    .short 12, 2
-    .short 0xFE, 0x00
+    MoveAction_00C 2
+    EndMovement

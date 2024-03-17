@@ -212,34 +212,34 @@ _0289:
 
     .balign 4, 0
 _02D4:
-    .short 34, 1
-    .short 75, 1
-    .short 63, 1
-    .short 0xFE, 0x00
+    MoveAction_022
+    MoveAction_04B
+    MoveAction_03F
+    EndMovement
 
     .balign 4, 0
 _02E4:
-    .short 33, 1
-    .short 63, 2
-    .short 0xFE, 0x00
+    MoveAction_021
+    MoveAction_03F 2
+    EndMovement
 
     .balign 4, 0
 _02F0:
-    .short 3, 1
-    .short 61, 1
-    .short 0, 1
-    .short 61, 1
-    .short 2, 1
-    .short 61, 1
-    .short 1, 1
-    .short 61, 1
-    .short 3, 1
-    .short 60, 1
-    .short 0, 1
-    .short 60, 1
-    .short 2, 1
-    .short 60, 1
-    .short 1, 1
-    .short 67, 1
-    .short 63, 2
-    .short 0xFE, 0x00
+    MoveAction_003
+    MoveAction_03D
+    MoveAction_000
+    MoveAction_03D
+    MoveAction_002
+    MoveAction_03D
+    MoveAction_001
+    MoveAction_03D
+    MoveAction_003
+    MoveAction_03C
+    MoveAction_000
+    MoveAction_03C
+    MoveAction_002
+    MoveAction_03C
+    MoveAction_001
+    MoveAction_043
+    MoveAction_03F 2
+    EndMovement

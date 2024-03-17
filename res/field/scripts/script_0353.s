@@ -114,22 +114,22 @@ _0184:
 
     .balign 4, 0
 _0190:
-    .short 12, 7
-    .short 0xFE, 0x00
+    MoveAction_00C 7
+    EndMovement
 
     .balign 4, 0
 _0198:
-    .short 33, 1
-    .short 63, 2
-    .short 32, 1
-    .short 0xFE, 0x00
+    MoveAction_021
+    MoveAction_03F 2
+    MoveAction_020
+    EndMovement
 
     .balign 4, 0
 _01A8:
-    .short 13, 9
-    .short 0xFE, 0x00
+    MoveAction_00D 9
+    EndMovement
 
     .balign 4, 0
 _01B0:
-    .short 1, 1
-    .short 0xFE, 0x00
+    MoveAction_001
+    EndMovement

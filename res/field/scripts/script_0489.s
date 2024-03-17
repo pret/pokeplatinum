@@ -64,27 +64,27 @@ _00E7:
 
     .balign 4, 0
 _00F4:
-    .short 14, 1
-    .short 32, 1
-    .short 0xFE, 0x00
+    MoveAction_00E
+    MoveAction_020
+    EndMovement
 
     .balign 4, 0
 _0100:
-    .short 0, 1
-    .short 0xFE, 0x00
+    MoveAction_000
+    EndMovement
 
     .balign 4, 0
 _0108:
-    .short 15, 1
-    .short 12, 1
-    .short 35, 1
-    .short 0xFE, 0x00
+    MoveAction_00F
+    MoveAction_00C
+    MoveAction_023
+    EndMovement
 
     .balign 4, 0
 _0118:
-    .short 63, 1
-    .short 33, 1
-    .short 0xFE, 0x00
+    MoveAction_03F
+    MoveAction_021
+    EndMovement
 
     .byte 32
     .byte 0
@@ -97,11 +97,11 @@ _0118:
 
     .balign 4, 0
 _012C:
-    .short 14, 1
-    .short 35, 1
-    .short 62, 1
-    .short 33, 1
-    .short 0xFE, 0x00
+    MoveAction_00E
+    MoveAction_023
+    MoveAction_03E
+    MoveAction_021
+    EndMovement
 
     .byte 63
     .byte 0
@@ -126,29 +126,29 @@ _012C:
 
     .balign 4, 0
 _0154:
-    .short 33, 1
-    .short 75, 1
-    .short 0xFE, 0x00
+    MoveAction_021
+    MoveAction_04B
+    EndMovement
 
     .balign 4, 0
 _0160:
-    .short 34, 1
-    .short 0xFE, 0x00
+    MoveAction_022
+    EndMovement
 
     .balign 4, 0
 _0168:
-    .short 33, 1
-    .short 0xFE, 0x00
+    MoveAction_021
+    EndMovement
 
     .balign 4, 0
 _0170:
-    .short 33, 1
-    .short 0xFE, 0x00
+    MoveAction_021
+    EndMovement
 
     .balign 4, 0
 _0178:
-    .short 17, 9
-    .short 0xFE, 0x00
+    MoveAction_011 9
+    EndMovement
 
     .byte 17
     .byte 0
@@ -161,19 +161,19 @@ _0178:
 
     .balign 4, 0
 _0188:
-    .short 33, 1
-    .short 75, 1
-    .short 0xFE, 0x00
+    MoveAction_021
+    MoveAction_04B
+    EndMovement
 
     .balign 4, 0
 _0194:
-    .short 35, 1
-    .short 0xFE, 0x00
+    MoveAction_023
+    EndMovement
 
     .balign 4, 0
 _019C:
-    .short 33, 1
-    .short 0xFE, 0x00
+    MoveAction_021
+    EndMovement
 
     .byte 63
     .byte 0
@@ -198,9 +198,9 @@ _019C:
 
     .balign 4, 0
 _01B8:
-    .short 63, 2
-    .short 13, 9
-    .short 0xFE, 0x00
+    MoveAction_03F 2
+    MoveAction_00D 9
+    EndMovement
 
     .byte 13
     .byte 0
@@ -266,8 +266,8 @@ _0243:
 
     .balign 4, 0
 _026C:
-    .short 0, 1
-    .short 0xFE, 0x00
+    MoveAction_000
+    EndMovement
 
     .byte 63
     .byte 0
@@ -284,17 +284,17 @@ _026C:
 
     .balign 4, 0
 _0280:
-    .short 33, 1
-    .short 75, 1
-    .short 13, 1
-    .short 0xFE, 0x00
+    MoveAction_021
+    MoveAction_04B
+    MoveAction_00D
+    EndMovement
 
     .balign 4, 0
 _0290:
-    .short 32, 1
-    .short 0xFE, 0x00
+    MoveAction_020
+    EndMovement
 
     .balign 4, 0
 _0298:
-    .short 33, 1
-    .short 0xFE, 0x00
+    MoveAction_021
+    EndMovement

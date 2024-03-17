@@ -108,5 +108,5 @@ _0164:
 
     .balign 4, 0
 _017C:
-    .short 33, 1
-    .short 0xFE, 0x00
+    MoveAction_021
+    EndMovement

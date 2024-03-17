@@ -107,8 +107,8 @@ _00A1:
 
     .balign 4, 0
 _00C0:
-    .short 15, 10
-    .short 0xFE, 0x00
+    MoveAction_00F 10
+    EndMovement
 
     .byte 63
     .byte 0
@@ -129,10 +129,10 @@ _00C0:
 
     .balign 4, 0
 _00D8:
-    .short 63, 2
-    .short 35, 1
-    .short 63, 4
-    .short 0xFE, 0x00
+    MoveAction_03F 2
+    MoveAction_023
+    MoveAction_03F 4
+    EndMovement
 
     .byte 63
     .byte 0

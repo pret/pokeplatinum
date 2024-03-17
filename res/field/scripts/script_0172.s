@@ -47,12 +47,12 @@ _009C:
 
     .balign 4, 0
 _00B8:
-    .short 12, 2
-    .short 33, 1
-    .short 0xFE, 0x00
+    MoveAction_00C 2
+    MoveAction_021
+    EndMovement
 
     .balign 4, 0
 _00C4:
-    .short 13, 2
-    .short 33, 1
-    .short 0xFE, 0x00
+    MoveAction_00D 2
+    MoveAction_021
+    EndMovement

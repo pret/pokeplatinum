@@ -87,31 +87,31 @@ _00F6:
 
     .balign 4, 0
 _0110:
-    .short 14, 1
-    .short 64, 1
-    .short 0xFE, 0x00
+    MoveAction_00E
+    MoveAction_040
+    EndMovement
 
     .balign 4, 0
 _011C:
-    .short 69, 1
-    .short 0xFE, 0x00
+    MoveAction_045
+    EndMovement
 
     .balign 4, 0
 _0124:
-    .short 13, 1
-    .short 14, 2
-    .short 64, 1
-    .short 0xFE, 0x00
+    MoveAction_00D
+    MoveAction_00E 2
+    MoveAction_040
+    EndMovement
 
     .balign 4, 0
 _0134:
-    .short 14, 2
-    .short 64, 1
-    .short 0xFE, 0x00
+    MoveAction_00E 2
+    MoveAction_040
+    EndMovement
 
     .balign 4, 0
 _0140:
-    .short 12, 1
-    .short 14, 2
-    .short 64, 1
-    .short 0xFE, 0x00
+    MoveAction_00C
+    MoveAction_00E 2
+    MoveAction_040
+    EndMovement

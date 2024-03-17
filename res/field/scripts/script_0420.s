@@ -71,17 +71,17 @@ _009A:
 
     .balign 4, 0
 _00E8:
-    .short 12, 6
-    .short 0xFE, 0x00
+    MoveAction_00C 6
+    EndMovement
 
     .balign 4, 0
 _00F0:
-    .short 13, 6
-    .short 0xFE, 0x00
+    MoveAction_00D 6
+    EndMovement
 
     .balign 4, 0
 _00F8:
-    .short 12, 3
-    .short 14, 1
-    .short 12, 4
-    .short 0xFE, 0x00
+    MoveAction_00C 3
+    MoveAction_00E
+    MoveAction_00C 4
+    EndMovement

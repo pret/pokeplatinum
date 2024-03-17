@@ -30,11 +30,11 @@ _002E:
 
     .balign 4, 0
 _004C:
-    .short 65, 1
-    .short 1, 1
-    .short 65, 1
-    .short 73, 1
-    .short 13, 2
-    .short 74, 1
-    .short 69, 1
-    .short 0xFE, 0x00
+    MoveAction_041
+    MoveAction_001
+    MoveAction_041
+    MoveAction_049
+    MoveAction_00D 2
+    MoveAction_04A
+    MoveAction_045
+    EndMovement

@@ -95,15 +95,15 @@ _00EC:
 
     .balign 4, 0
 _00FC:
-    .short 41, 2
-    .short 0xFE, 0x00
+    MoveAction_029 2
+    EndMovement
 
     .balign 4, 0
 _0104:
-    .short 43, 2
-    .short 0xFE, 0x00
+    MoveAction_02B 2
+    EndMovement
 
     .balign 4, 0
 _010C:
-    .short 42, 2
-    .short 0xFE, 0x00
+    MoveAction_02A 2
+    EndMovement

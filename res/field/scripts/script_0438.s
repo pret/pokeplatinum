@@ -109,8 +109,8 @@ _0156:
 
     .balign 4, 0
 _0174:
-    .short 34, 1
-    .short 0xFE, 0x00
+    MoveAction_022
+    EndMovement
 
     .byte 63
     .byte 0
@@ -139,19 +139,19 @@ _0174:
 
     .balign 4, 0
 _0194:
-    .short 15, 3
-    .short 75, 1
-    .short 0xFE, 0x00
+    MoveAction_00F 3
+    MoveAction_04B
+    EndMovement
 
     .balign 4, 0
 _01A0:
-    .short 15, 5
-    .short 0xFE, 0x00
+    MoveAction_00F 5
+    EndMovement
 
     .balign 4, 0
 _01A8:
-    .short 14, 8
-    .short 0xFE, 0x00
+    MoveAction_00E 8
+    EndMovement
 
 _01B0:
     ScrCmd_049 0x5DC

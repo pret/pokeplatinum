@@ -89,26 +89,26 @@ _0121:
 
     .balign 4, 0
 _012C:
-    .short 12, 4
-    .short 0xFE, 0x00
+    MoveAction_00C 4
+    EndMovement
 
     .balign 4, 0
 _0134:
-    .short 12, 6
-    .short 0xFE, 0x00
+    MoveAction_00C 6
+    EndMovement
 
     .balign 4, 0
 _013C:
-    .short 12, 6
-    .short 0xFE, 0x00
+    MoveAction_00C 6
+    EndMovement
 
     .balign 4, 0
 _0144:
-    .short 14, 1
-    .short 33, 1
-    .short 0xFE, 0x00
+    MoveAction_00E
+    MoveAction_021
+    EndMovement
 
     .balign 4, 0
 _0150:
-    .short 32, 1
-    .short 0xFE, 0x00
+    MoveAction_020
+    EndMovement

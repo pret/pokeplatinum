@@ -3,9 +3,9 @@
     .data
 
     .byte 2
-    .short 1, 0
+    MoveAction_001 0
     .byte 3
-    .short 2, 0
+    MoveAction_002 0
     .byte 1
     .long _0010-.-4
     .byte 0

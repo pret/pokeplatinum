@@ -451,35 +451,35 @@ _05D6:
 
     .balign 4, 0
 _05E4:
-    .short 8, 1
-    .short 9, 2
-    .short 8, 1
-    .short 38, 1
-    .short 0xFE, 0x00
+    MoveAction_008
+    MoveAction_009 2
+    MoveAction_008
+    MoveAction_026
+    EndMovement
 
     .balign 4, 0
 _05F8:
-    .short 8, 1
-    .short 9, 2
-    .short 8, 1
-    .short 39, 1
-    .short 0xFE, 0x00
+    MoveAction_008
+    MoveAction_009 2
+    MoveAction_008
+    MoveAction_027
+    EndMovement
 
     .balign 4, 0
 _060C:
-    .short 10, 1
-    .short 11, 2
-    .short 10, 1
-    .short 36, 1
-    .short 0xFE, 0x00
+    MoveAction_00A
+    MoveAction_00B 2
+    MoveAction_00A
+    MoveAction_024
+    EndMovement
 
     .balign 4, 0
 _0620:
-    .short 10, 1
-    .short 11, 2
-    .short 10, 1
-    .short 37, 1
-    .short 0xFE, 0x00
+    MoveAction_00A
+    MoveAction_00B 2
+    MoveAction_00A
+    MoveAction_025
+    EndMovement
 
 _0634:
     ScrCmd_049 0x5DC

@@ -68,8 +68,8 @@ _00CD:
 
     .balign 4, 0
 _00D8:
-    .short 13, 1
-    .short 0xFE, 0x00
+    MoveAction_00D
+    EndMovement
 
     .byte 13
     .byte 0
@@ -82,8 +82,8 @@ _00D8:
 
     .balign 4, 0
 _00E8:
-    .short 13, 2
-    .short 0xFE, 0x00
+    MoveAction_00D 2
+    EndMovement
 
 _00F0:
     ScrCmd_002
@@ -254,24 +254,24 @@ _0338:
 
     .balign 4, 0
 _0344:
-    .short 15, 1
-    .short 32, 1
-    .short 0xFE, 0x00
+    MoveAction_00F
+    MoveAction_020
+    EndMovement
 
     .balign 4, 0
 _0350:
-    .short 12, 1
-    .short 0xFE, 0x00
+    MoveAction_00C
+    EndMovement
 
     .balign 4, 0
 _0358:
-    .short 12, 2
-    .short 0xFE, 0x00
+    MoveAction_00C 2
+    EndMovement
 
     .balign 4, 0
 _0360:
-    .short 1, 1
-    .short 0xFE, 0x00
+    MoveAction_001
+    EndMovement
 
 _0368:
     ScrCmd_014 0x2338
