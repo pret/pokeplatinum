@@ -6980,19 +6980,21 @@ TrainerAI_Harrassment_Effects:
     TableEntry TABLE_END
 
 TrainerAI_RoamingPokemon_Main:
-    IfVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_BIND, _10591
-    IfVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_MEAN_LOOK, _10591
+    ; If the Roamer is trapped, break from this routine
+    ; Otherwise, override all other possible moves and Escape
+    IfVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_BIND, TrainerAI_RoamingPokemon_Trapped
+    IfVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_MEAN_LOOK, TrainerAI_RoamingPokemon_Trapped
     LoadAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_SHADOW_TAG, _10591
+    IfLoadedEqualTo ABILITY_SHADOW_TAG, TrainerAI_RoamingPokemon_Trapped
     LoadAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_LEVITATE, _10590
+    IfLoadedEqualTo ABILITY_LEVITATE, TrainerAI_RoamingPokemon_NotTrapped
     LoadAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_ARENA_TRAP, _10591
+    IfLoadedEqualTo ABILITY_ARENA_TRAP, TrainerAI_RoamingPokemon_Trapped
 
-_10590:
+TrainerAI_RoamingPokemon_NotTrapped:
     Escape 
 
-_10591:
+TrainerAI_RoamingPokemon_Trapped:
     PopOrEnd 
 
 TrainerAI_Safari_Main:
@@ -7001,11 +7003,12 @@ TrainerAI_Safari_Main:
     Escape 
 
 TrainerAI_CatchTutorial_Main:
-    IfHPPercentEqualTo AI_BATTLER_DEFENDER, 20, _10605
-    IfHPPercentLessThan AI_BATTLER_DEFENDER, 20, _10605
+    ; If the target is at 20% or less HP, flee from the battle
+    IfHPPercentEqualTo AI_BATTLER_DEFENDER, 20, TrainerAI_CatchTutorial_Escape
+    IfHPPercentLessThan AI_BATTLER_DEFENDER, 20, TrainerAI_CatchTutorial_Escape
     PopOrEnd 
 
-_10605:
+TrainerAI_CatchTutorial_Escape:
     Escape 
 
 TrainerAI_Terminate:
