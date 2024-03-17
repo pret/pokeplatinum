@@ -25,7 +25,7 @@ void sub_02071D10 (const int param0, const u32 param1, Strbuf *param2)
     MessageLoader * v1;
 
     v1 = MessageLoader_Init(1, 26, 433, param1);
-    v0 = sub_0203A138(param0);
+    v0 = MapHeader_GetMapLabelTextID(param0);
 
     sub_02071CFC(v1, v0, param2);
     MessageLoader_Free(v1);

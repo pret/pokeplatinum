@@ -79,7 +79,7 @@ static void ov5_021E1D20 (UnkStruct_ov5_021E1D20 * param0, const UnkStruct_0203C
     UnkStruct_02049FA8 * v1 = sub_0203A720(sub_0203A790(v0));
     PokedexData * v2 = sub_02027560(v0);
 
-    param0->unk_04 = sub_0203A138(v1->unk_00);
+    param0->unk_04 = MapHeader_GetMapLabelTextID(v1->unk_00);
 
     if (sub_02027520(v2)) {
         param0->unk_00 = sub_02026E48(v2);

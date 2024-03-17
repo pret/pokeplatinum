@@ -188,7 +188,7 @@ static void ov6_0224630C (Pokemon * param0, UnkStruct_ov6_0224630C * param1, u32
     Pokemon_SetValue(param0, 157, &param1->unk_40);
     Pokemon_SetValue(param0, 12, &param1->unk_48);
 
-    v2 = sub_0203A138(param5);
+    v2 = MapHeader_GetMapLabelTextID(param5);
 
     sub_0209304C(param0, NULL, 1, v2, param4);
     Pokemon_CalcLevelAndStats(param0);

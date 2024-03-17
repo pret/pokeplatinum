@@ -1288,7 +1288,7 @@ void sub_0202C5C4 (TrainerInfo * param0, UnkStruct_0202B628 * param1, u32 param2
 
     if (MapHeader_IsCave(param3) == 1) {
         if (MapHeader_IsOutdoors(param2) == 1) {
-            v0 = sub_0202BDAC((u16)sub_0203A138(param3), param4);
+            v0 = sub_0202BDAC((u16)MapHeader_GetMapLabelTextID(param3), param4);
         }
     } else if (sub_0203A288(param3) == 1) {
         if (MapHeader_IsOutdoors(param2) == 1) {
@@ -1297,7 +1297,7 @@ void sub_0202C5C4 (TrainerInfo * param0, UnkStruct_0202B628 * param1, u32 param2
             } else if (param3 == 422) {
                 v0 = sub_0202BCF0(param4);
             } else {
-                u32 v2 = sub_0203A138(param3);
+                u32 v2 = MapHeader_GetMapLabelTextID(param3);
 
                 for (v1 = 0; v1 < NELEMS(Unk_020E5B90); v1++) {
                     if (v2 != Unk_020E5B90[v1].unk_00) {

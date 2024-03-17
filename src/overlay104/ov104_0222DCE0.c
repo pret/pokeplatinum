@@ -363,7 +363,7 @@ void ov104_0222E134 (SaveData * param0, Pokemon * param1)
     v0 = Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL);
     Pokemon_UpdateAfterCatch(param1, sub_02025E38(param0), 4, 0, 0, 11);
 
-    v3 = sub_0203A138(562);
+    v3 = MapHeader_GetMapLabelTextID(562);
     sub_0209304C(param1, v5, v4, v3, 11);
 
     v2 = MessageLoader_Init(0, 26, 363, 11);

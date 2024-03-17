@@ -462,9 +462,9 @@ static BOOL ov5_021D11CC (UnkStruct_0203CDB0 * param0)
         int v7, v8;
         int v9;
 
-        v7 = sub_0203A138(v1);
-        v8 = sub_0203A138(v0);
-        v9 = sub_0203A154(v0);
+        v7 = MapHeader_GetMapLabelTextID(v1);
+        v8 = MapHeader_GetMapLabelTextID(v0);
+        v9 = MapHeader_GetMapLabelWindowID(v0);
 
         if (v7 != v8) {
             if (v9 != 0) {

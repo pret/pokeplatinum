@@ -135,7 +135,7 @@ BOOL sub_02046E14 (UnkStruct_0203E724 * param0)
     Pokemon * v0;
     void ** v1 = sub_0203F098(param0->unk_34, 20);
     u16 v2 = inline_02049538(param0);
-    u32 v3 = sub_0203A138(param0->unk_34->unk_1C->unk_00);
+    u32 v3 = MapHeader_GetMapLabelTextID(param0->unk_34->unk_1C->unk_00);
 
     sub_02094C44(*v1, param0->unk_34->unk_0C, v3, param0->unk_34->unk_9C);
     sub_02093AD4(*v1);

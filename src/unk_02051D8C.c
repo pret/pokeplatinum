@@ -281,7 +281,7 @@ void sub_020521B8 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, Sav
     sub_020521A4(param0, v4, 0);
 
     param0->unk_EC = SaveData_PCBoxes(param2);
-    param0->unk_130 = sub_0203A138(param3);
+    param0->unk_130 = MapHeader_GetMapLabelTextID(param3);
     param0->unk_13C = MapHeader_GetMapEvolutionMethod(param3);
     param0->unk_140 = PokemonSummary_ShowContestData(param2);
     param0->unk_144 = sub_0206ADFC(SaveData_Events(param2));
