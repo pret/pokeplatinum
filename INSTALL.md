@@ -158,6 +158,13 @@ To build the rom, run:
 If everything works, then the following ROM should be built:
 - [build/pokeplatinum.us.nds](https://datomatic.no-intro.org/index.php?page=show_record&s=28&n=3541) `sha1: ce81046eda7d232513069519cb2085349896dec7`
 
+If you want to make modifications to the ROM, you can instead run:
+```
+./build.sh rom
+```
+
+After which, you should see the built ROM `pokeplatinum.us.nds` in the `build` folder.
+
 # 4. Docker
 
 A Dockerfile is provided for your convenience. To begin, setup docker on your local machine following the instructions at https://docs.docker.com/desktop/. Then, run
