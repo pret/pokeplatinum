@@ -3,6 +3,8 @@
 
 #include "struct_decls/struct_021C0794_decl.h"
 
+#define SECTOR_SIGNATURE 0x20060623
+
 SaveData * sub_020244AC(void);
 SaveData * sub_020245A4(void);
 void * SaveData_Get(SaveData * param0, int param1);

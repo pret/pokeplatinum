@@ -16,21 +16,21 @@
 #include "unk_0209AA74.h"
 
 typedef struct {
-    u32 unk_00;
-    u32 unk_04;
-    u32 unk_08;
-    u32 unk_0C;
-    u8 unk_10;
-    u16 unk_12;
-} UnkStruct_02024920;
+    u32 globalCount;
+    u32 blockCount;
+    u32 size;
+    u32 signature;
+    u8 saveBlockID;
+    u16 checksum;
+} SaveBlockFooter;
 
 typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    u32 unk_04;
-    u32 unk_08;
-} UnkStruct_02025258;
+    u8 saveBlockID;
+    u8 sectorStartPos;
+    u8 sectorsInUse;
+    u32 offset;
+    u32 size;
+} SaveBlockInfo;
 
 typedef struct {
     int unk_00;
@@ -67,7 +67,7 @@ typedef struct SaveData {
     u32 unk_20018[2];
     u8 unk_20020[2];
     UnkStruct_020251DC unk_20024[38];
-    UnkStruct_02025258 unk_20284[2];
+    SaveBlockInfo unk_20284[2];
     UnkStruct_020250DC unk_2029C;
     int unk_202C4;
     u32 unk_202C8;
@@ -89,7 +89,7 @@ typedef struct {
 
 static void sub_020252EC(UnkStruct_020252EC * param0, const UnkStruct_020251DC * param1);
 static void sub_020251DC(UnkStruct_020251DC * param0);
-static void sub_02025258(UnkStruct_02025258 * param0, const UnkStruct_020251DC * param1);
+static void sub_02025258(SaveBlockInfo * param0, const UnkStruct_020251DC * param1);
 static BOOL sub_0202513C(SaveData * param0);
 static BOOL sub_02024DBC(SaveData * param0);
 static int sub_02024ABC(SaveData * param0);
@@ -388,10 +388,10 @@ u16 sub_0202486C (const SaveData * param0, const void * param1, u32 param2)
 
 static u16 sub_02024878 (const SaveData * param0, void * param1, u32 param2)
 {
-    return sub_0201D628(param1, param2 - sizeof(UnkStruct_02024920));
+    return sub_0201D628(param1, param2 - sizeof(SaveBlockFooter));
 }
 
-static u32 sub_02024888 (int param0, const UnkStruct_02025258 * param1)
+static u32 sub_02024888 (int param0, const SaveBlockInfo * param1)
 {
     u32 v0;
 
@@ -401,43 +401,43 @@ static u32 sub_02024888 (int param0, const UnkStruct_02025258 * param1)
         v0 = 64 * 0x1000;
     }
 
-    v0 += param1->unk_04;
+    v0 += param1->offset;
     return v0;
 }
 
-static UnkStruct_02024920 * sub_0202489C (SaveData * param0, u32 param1, int param2)
+static SaveBlockFooter * sub_0202489C (SaveData * param0, u32 param1, int param2)
 {
     u32 v0;
-    const UnkStruct_02025258 * v1 = &param0->unk_20284[param2];
+    const SaveBlockInfo * v1 = &param0->unk_20284[param2];
 
-    v0 = param1 + v1->unk_04;
-    GF_ASSERT(v1->unk_08);
+    v0 = param1 + v1->offset;
+    GF_ASSERT(v1->size);
 
-    v0 += v1->unk_08;
-    v0 -= sizeof(UnkStruct_02024920);
+    v0 += v1->size;
+    v0 -= sizeof(SaveBlockFooter);
 
-    return (UnkStruct_02024920 *)v0;
+    return (SaveBlockFooter *)v0;
 }
 
 static BOOL sub_020248C4 (SaveData * param0, u32 param1, int param2)
 {
-    const UnkStruct_02025258 * v0 = &param0->unk_20284[param2];
-    UnkStruct_02024920 * v1 = sub_0202489C(param0, param1, param2);
-    u32 v2 = param1 + v0->unk_04;
+    const SaveBlockInfo * v0 = &param0->unk_20284[param2];
+    SaveBlockFooter * v1 = sub_0202489C(param0, param1, param2);
+    u32 v2 = param1 + v0->offset;
 
-    if (v1->unk_08 != v0->unk_08) {
+    if (v1->size != v0->size) {
         return 0;
     }
 
-    if (v1->unk_0C != 0x20060623) {
+    if (v1->signature != SECTOR_SIGNATURE) {
         return 0;
     }
 
-    if (v1->unk_10 != param2) {
+    if (v1->saveBlockID != param2) {
         return 0;
     }
 
-    if (v1->unk_12 != sub_02024878(param0, (void *)v2, v0->unk_08)) {
+    if (v1->checksum != sub_02024878(param0, (void *)v2, v0->size)) {
         return 0;
     }
 
@@ -446,25 +446,25 @@ static BOOL sub_020248C4 (SaveData * param0, u32 param1, int param2)
 
 static void sub_02024920 (UnkStruct_02024860 * param0, SaveData * param1, u32 param2, int param3)
 {
-    UnkStruct_02024920 * v0 = sub_0202489C(param1, param2, param3);
+    SaveBlockFooter * v0 = sub_0202489C(param1, param2, param3);
 
     param0->unk_00 = sub_020248C4(param1, param2, param3);
-    param0->unk_04 = v0->unk_00;
-    param0->unk_08 = v0->unk_04;
+    param0->unk_04 = v0->globalCount;
+    param0->unk_08 = v0->blockCount;
 }
 
 static void sub_0202494C (SaveData * param0, u32 param1, int param2)
 {
-    const UnkStruct_02025258 * v0 = &param0->unk_20284[param2];
-    UnkStruct_02024920 * v1 = sub_0202489C(param0, param1, param2);
-    u32 v2 = param1 + v0->unk_04;
+    const SaveBlockInfo * v0 = &param0->unk_20284[param2];
+    SaveBlockFooter * v1 = sub_0202489C(param0, param1, param2);
+    u32 v2 = param1 + v0->offset;
 
-    v1->unk_00 = param0->unk_20014;
-    v1->unk_04 = param0->unk_20018[param2];
-    v1->unk_08 = v0->unk_08;
-    v1->unk_0C = 0x20060623;
-    v1->unk_10 = param2;
-    v1->unk_12 = sub_02024878(param0, (void *)v2, v0->unk_08);
+    v1->globalCount = param0->unk_20014;
+    v1->blockCount = param0->unk_20018[param2];
+    v1->size = v0->size;
+    v1->signature = SECTOR_SIGNATURE;
+    v1->saveBlockID = param2;
+    v1->checksum = sub_02024878(param0, (void *)v2, v0->size);
 }
 
 static int sub_0202499C (u32 param0, u32 param1)
@@ -671,21 +671,21 @@ static void sub_02024CD4 (SaveData * param0, int * param1, int * param2)
     }
 }
 
-static BOOL sub_02024DA4 (int param0, const UnkStruct_02025258 * param1, u8 * param2)
+static BOOL sub_02024DA4 (int param0, const SaveBlockInfo * param1, u8 * param2)
 {
     u32 v0;
 
     v0 = sub_02024888(param0, param1);
-    param2 += param1->unk_04;
+    param2 += param1->offset;
 
-    return sub_02025AC0(v0, param2, param1->unk_08);
+    return sub_02025AC0(v0, param2, param1->size);
 }
 
 static BOOL sub_02024DBC (SaveData * param0)
 {
     int v0;
     u32 v1;
-    const UnkStruct_02025258 * v2 = param0->unk_20284;
+    const SaveBlockInfo * v2 = param0->unk_20284;
 
     for (v0 = 0; v0 < 2; v0++) {
         if (sub_02024DA4(param0->unk_20020[v0], &param0->unk_20284[v0], param0->unk_14.unk_00) == 0) {
@@ -709,14 +709,14 @@ static s32 sub_02024E30 (SaveData * param0, int param1, u8 param2)
     u32 v0;
     BOOL v1;
     u8 * v2;
-    const UnkStruct_02025258 * v3 = &param0->unk_20284[param1];
+    const SaveBlockInfo * v3 = &param0->unk_20284[param1];
 
     sub_0202494C(param0, (u32)param0->unk_14.unk_00, param1);
 
     v0 = sub_02024888(param2, v3);
-    v2 = param0->unk_14.unk_00 + v3->unk_04;
+    v2 = param0->unk_14.unk_00 + v3->offset;
 
-    return sub_02025B3C(v0, v2, v3->unk_08 - sizeof(UnkStruct_02024920));
+    return sub_02025B3C(v0, v2, v3->size - sizeof(SaveBlockFooter));
 }
 
 static s32 sub_02024E68 (SaveData * param0, int param1, u8 param2)
@@ -724,12 +724,12 @@ static s32 sub_02024E68 (SaveData * param0, int param1, u8 param2)
     u32 v0;
     BOOL v1;
     u8 * v2;
-    const UnkStruct_02025258 * v3 = &param0->unk_20284[param1];
+    const SaveBlockInfo * v3 = &param0->unk_20284[param1];
 
-    v0 = sub_02024888(param2, v3) + v3->unk_08 - sizeof(UnkStruct_02024920);
-    v2 = param0->unk_14.unk_00 + v3->unk_04 + v3->unk_08 - sizeof(UnkStruct_02024920);
+    v0 = sub_02024888(param2, v3) + v3->size - sizeof(SaveBlockFooter);
+    v2 = param0->unk_14.unk_00 + v3->offset + v3->size - sizeof(SaveBlockFooter);
 
-    return sub_02025B3C(v0, v2, sizeof(UnkStruct_02024920));
+    return sub_02025B3C(v0, v2, sizeof(SaveBlockFooter));
 }
 
 static s32 sub_02024E98 (SaveData * param0, int param1, u8 param2)
@@ -737,10 +737,10 @@ static s32 sub_02024E98 (SaveData * param0, int param1, u8 param2)
     u32 v0;
     BOOL v1;
     u8 * v2;
-    const UnkStruct_02025258 * v3 = &param0->unk_20284[param1];
+    const SaveBlockInfo * v3 = &param0->unk_20284[param1];
 
-    v0 = sub_02024888(param2, v3) + v3->unk_08 - sizeof(UnkStruct_02024920) + 8;
-    v2 = param0->unk_14.unk_00 + v3->unk_04 + v3->unk_08 - sizeof(UnkStruct_02024920) + 8;
+    v0 = sub_02024888(param2, v3) + v3->size - sizeof(SaveBlockFooter) + 8;
+    v2 = param0->unk_14.unk_00 + v3->offset + v3->size - sizeof(SaveBlockFooter) + 8;
 
     return sub_02025B3C(v0, v2, 8);
 }
@@ -918,13 +918,13 @@ BOOL sub_0202513C (SaveData * param0)
 static BOOL sub_0202516C (const SaveData * param0, int param1, int param2)
 {
     u32 v0;
-    UnkStruct_02024920 v1;
-    const UnkStruct_02025258 * v2 = &param0->unk_20284[param1];
+    SaveBlockFooter v1;
+    const SaveBlockInfo * v2 = &param0->unk_20284[param1];
 
-    MI_CpuFill8(&v1, 0xff, sizeof(UnkStruct_02024920));
-    v0 = sub_02024888(param2, v2) + v2->unk_08 - sizeof(UnkStruct_02024920);
+    MI_CpuFill8(&v1, 0xff, sizeof(SaveBlockFooter));
+    v0 = sub_02024888(param2, v2) + v2->size - sizeof(SaveBlockFooter);
 
-    return sub_02025A9C(v0, &v1, sizeof(UnkStruct_02024920));
+    return sub_02025A9C(v0, &v1, sizeof(SaveBlockFooter));
 }
 
 int sub_020251A4 (int param0)
@@ -961,7 +961,7 @@ static void sub_020251DC (UnkStruct_020251DC * param0)
         v2 += param0[v1].unk_04;
 
         if ((v1 == gSaveTableSize - 1) || (v0[v1].blockID != v0[v1 + 1].blockID)) {
-            v2 += sizeof(UnkStruct_02024920);
+            v2 += sizeof(SaveBlockFooter);
         }
     }
 
@@ -971,7 +971,7 @@ static void sub_020251DC (UnkStruct_020251DC * param0)
     GF_ASSERT(v2 <= 0x1000 * 32);
 }
 
-static void sub_02025258 (UnkStruct_02025258 * param0, const UnkStruct_020251DC * param1)
+static void sub_02025258 (SaveBlockInfo * param0, const UnkStruct_020251DC * param1)
 {
     int v0 = 0;
     int v1, v2;
@@ -982,23 +982,23 @@ static void sub_02025258 (UnkStruct_02025258 * param0, const UnkStruct_020251DC 
     v4 = 0;
 
     for (v3 = 0; v3 < 2; v3++) {
-        param0[v3].unk_00 = v3;
-        param0[v3].unk_08 = 0;
+        param0[v3].saveBlockID = v3;
+        param0[v3].size = 0;
 
         for (; param1[v4].unk_0E == v3 && v4 < gSaveTableSize; v4++) {
-            param0[v3].unk_08 += param1[v4].unk_04;
+            param0[v3].size += param1[v4].unk_04;
         }
 
-        param0[v3].unk_08 += sizeof(UnkStruct_02024920);
-        param0[v3].unk_01 = v1;
-        param0[v3].unk_04 = v2;
-        param0[v3].unk_02 = (param0[v3].unk_08 + 0x1000 - 1) / 0x1000;
+        param0[v3].size += sizeof(SaveBlockFooter);
+        param0[v3].sectorStartPos = v1;
+        param0[v3].offset = v2;
+        param0[v3].sectorsInUse = (param0[v3].size + 0x1000 - 1) / 0x1000;
 
-        v1 += param0[v3].unk_02;
-        v2 += param0[v3].unk_08;
+        v1 += param0[v3].sectorsInUse;
+        v2 += param0[v3].size;
     }
 
-    GF_ASSERT(v1 == param0[2 - 1].unk_01 + param0[2 - 1].unk_02);
+    GF_ASSERT(v1 == param0[2 - 1].sectorStartPos + param0[2 - 1].sectorsInUse);
     GF_ASSERT(v1 <= 32);
 }
 
@@ -1057,7 +1057,7 @@ static void sub_020253B4 (const SaveData * param0, void * param1, int param2, u3
 
     v0 = (UnkStruct_020253B4 *)((u8 *)param1 + param3);
 
-    v0->unk_00 = 0x20060623;
+    v0->unk_00 = SECTOR_SIGNATURE;
     v0->unk_04 = param0->unk_202C8 + 1;
     v0->unk_08 = param3;
     v0->unk_0C = param2;
@@ -1070,7 +1070,7 @@ static BOOL sub_020253E0 (const SaveData * param0, void * param1, int param2, u3
 
     v0 = (const UnkStruct_020253B4 *)((u8 *)param1 + param3);
 
-    if (v0->unk_00 != 0x20060623) {
+    if (v0->unk_00 != SECTOR_SIGNATURE) {
         return 0;
     }
 
