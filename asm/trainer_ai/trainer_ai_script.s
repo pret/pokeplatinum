@@ -1628,279 +1628,308 @@ TrainerAI_ScorePlus10:
     PopOrEnd 
 
 TrainerAI_Expert_Main:
+    ; This flag will never target its partner.
     IfTargetIsPartner TrainerAI_Terminate
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_SLEEP, _03083
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOVER_HALF_DAMAGE_DEALT, _03099
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_DEFENSE, _03116
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOVER_DAMAGE_SLEEP, _03171
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_COPY_MOVE, _03196
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_UP, _03270
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_UP, _03305
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPEED_UP, _03366
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_UP, _03379
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_DEF_UP, _03414
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ACC_UP, _03475
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_EVA_UP, _03492
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_BYPASS_ACCURACY, _03590
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DOWN, _03620
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_DOWN, _03666
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPEED_DOWN, _03707
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_DOWN, _03720
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_DEF_DOWN, _03768
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ACC_DOWN, _03789
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_EVA_DOWN, _03882
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RESET_STAT_CHANGES, _03903
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_BIDE, _04023
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FORCE_SWITCH, _04030
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CONVERSION, _04087
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RESTORE_HALF_HP, _04115
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_BADLY_POISON, _04165
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_LIGHT_SCREEN, _04201
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_REST, _04237
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ONE_HIT_KO, _04291
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CHARGE_TURN_HIGH_CRIT, _05626
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_HP, _04297
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_BIND_HIT, _04304
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIGH_CRITICAL, _04328
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOIL_QUARTER, _08278
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_CONFUSE, _04361
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_UP_2, _03270
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_UP_2, _03305
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPEED_UP_2, _03366
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_UP_2, _03379
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_DEF_UP_2, _03414
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ACC_UP_2, _03475
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_EVA_UP_2, _03492
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DOWN_2, _03620
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_DOWN_2, _03666
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPEED_DOWN_2, _03707
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_DOWN_2, _03720
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_DEF_DOWN_2, _03768
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_EVA_DOWN_2, _03789
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ACC_DOWN_2, _03882
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_REFLECT, _04401
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_POISON, _04438
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_PARALYZE, _04449
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_UP_2_STATUS_CONFUSION, _04352
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LOWER_SPEED_HIT, _03687
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CHARGE_TURN_HIGH_CRIT_FLINCH, _05626
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PRIORITY_NEG_1_BYPASS_ACCURACY, _04466
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_SUBSTITUTE, _04486
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECHARGE_AFTER, _04573
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_LEECH_SEED, _04165
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DISABLE, _04610
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_COUNTER, _04629
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ENCORE, _04726
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_AVERAGE_HP, _04832
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DAMAGE_WHILE_ASLEEP, _04858
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_NEXT_ATTACK_ALWAYS_HITS, _04861
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_USE_RANDOM_LEARNED_MOVE_SLEEP, _04867
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_KO_MON_THAT_DEFEATED_USER, _04874
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_INCREASE_POWER_WITH_LESS_HP, _04907
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CURE_PARTY_STATUS, _04946
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STEAL_HELD_ITEM, _04957
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_ESCAPE, _04304
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_EVA_UP_2_MINIMIZE, _03492
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CURSE, _04998
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PROTECT, _05062
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_SPIKES, _05179
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_IGNORE_EVASION_REMOVE_GHOST_IMMUNE, _05200
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SURVIVE_WITH_1_HP, _05228
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PASS_STATS_AND_STATUS, _05246
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_BEFORE_SWITCH, _05336
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HEAL_HALF_MORE_IN_SUN, _04101
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_UNUSED_133, _04101
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_UNUSED_134, _04101
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_RAIN, _05378
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_SUN, _05421
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_MAX_ATK_LOSE_HALF_MAX_HP, _05456
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_COPY_STAT_CHANGES, _05465
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_MIRROR_COAT, _05530
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CHARGE_TURN_DEF_UP, _05626
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN, _05626
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN, _05673
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FLY, _05699
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_UNUSED_157, _04115
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ALWAYS_FLINCH_FIRST_TURN_ONLY, _05799
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPIT_UP, _05802
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWALLOW, _04115
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_HAIL, _05813
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_UP_CAUSE_CONFUSION, _04356
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FAINT_AND_ATK_SP_ATK_DOWN_2, _03116
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_POWER_WHEN_STATUSED, _05849
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_LAST_WHIFF_IF_HIT, _05856
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_POWER_AND_CURE_PARALYSIS, _05903
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWITCH_HELD_ITEMS, _05912
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_COPY_ABILITY, _06218
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_GROUND_TRAP_USER_CONTINUOUS_HEAL, _06264
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LOWER_OWN_ATK_AND_DEF, _06265
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_APPLY_MAGIC_COAT, _06295
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECYCLE, _06325
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_POWER_IF_HIT, _06344
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_REMOVE_SCREENS, _06366
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_REMOVE_HELD_ITEM, _06379
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_HP_EQUAL_TO_USER, _06394
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DECREASE_POWER_WITH_LESS_USER_HP, _06420
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWITCH_ABILITIES, _06218
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_MAKE_SHARED_MOVES_UNUSEABLE, _06445
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HEAL_STATUS, _06456
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STEAL_STATUS_MOVE, _06465
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOIL_THIRD, _08278
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIGH_CRITICAL_BURN_HIT, _04328
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_ELECTRIC_DAMAGE, _06523
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_USER_SP_ATK_DOWN_2, _06546
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DEF_DOWN, _03666
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_SPD_UP, _03414
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DEF_UP, _03305
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIGH_CRITICAL_POISON_HIT, _04328
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_FIRE_DAMAGE, _06571
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_SP_DEF_UP, _03414
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_SPD_UP, _06594
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HEAL_HALF_REMOVE_FLYING_TYPE, _04115
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_GRAVITY, _06614
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_IGNORE_EVATION_REMOVE_DARK_IMMUNE, _06648
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_POWER_HEAL_SLEEP, _06675
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPEED_DOWN_HIT, _06697
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_POWER_BASED_ON_LOW_SPEED, _06717
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FAINT_AND_FULL_HEAL_NEXT_MON, _08300
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_POWER_WHEN_BELOW_HALF, _06718
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_REMOVE_PROTECT, _06743
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_EAT_BERRY, _06821
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_SPEED_3_TURNS, _06850
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RANDOM_STAT_UP_2, _06874
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_METAL_BURST, _06895
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWITCH_HIT, _06967
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_SPD_DOWN_HIT, _07036
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_POWER_IF_MOVING_SECOND, _07061
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_POWER_IF_TARGET_HIT, _07086
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_ITEM_USE, _07126
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FLING, _07132
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TRANSFER_STATUS, _07199
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIGHER_POWER_WHEN_LOW_PP, _07213
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_HEALING, _07280
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_INCREASE_POWER_WITH_MORE_HP, _07355
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWAP_ATK_DEF, _07395
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SUPRESS_ABILITY, _07431
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_CRITS, _07458
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_USE_MOVE_FIRST, _07486
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_USE_LAST_USED_MOVE, _07519
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWAP_ATK_SP_ATK_STAT_CHANGES, _07608
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWAP_DEF_SP_DEF_STAT_CHANGES, _07717
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_INCREASE_POWER_WITH_MORE_STAT_UP, _07826
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FAIL_IF_NOT_USED_ALL_OTHER_MOVES, _07875
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_ABILITY_TO_INSOMNIA, _07896
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_FIRST_IF_TARGET_ATTACKING, _07919
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TOXIC_SPIKES, _07938
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWAP_STAT_CHANGES, _07959
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RESTORE_HP_EVERY_TURN, _08032
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_GIVE_GROUND_IMMUNITY, _08042
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOIL_BURN_HIT, _08278
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DIVE, _05699
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DIG, _05699
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_REMOVE_HAZARDS_SCREENS_EVA_DOWN, _08082
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TRICK_ROOM, _08166
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_BLIZZARD, _08192
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOIL_PARALYZE_HIT, _08278
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_BOUNCE, _05699
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_DOWN_2_OPPOSITE_GENDER, _08216
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STEALTH_ROCK, _08255
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOIL_HALF, _08278
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FAINT_FULL_RESTORE_NEXT_MON, _08300
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SHADOW_FORCE, _05711
+
+    ; Evaluate moves which match a known effect according to this jump table.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_SLEEP, TrainerAI_Expert_StatusSleep
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOVER_HALF_DAMAGE_DEALT, TrainerAI_Expert_DrainMove
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_DEFENSE, TrainerAI_Expert_Explosion
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOVER_DAMAGE_SLEEP, TrainerAI_Expert_DreamEater
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_COPY_MOVE, TrainerAI_Expert_MirrorMove
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_UP, TrainerAI_Expert_StatusAttackUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_UP, TrainerAI_Expert_StatusDefenseUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPEED_UP, TrainerAI_Expert_StatusSpeedUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_UP, TrainerAI_Expert_StatusSpAttackUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_DEF_UP, TrainerAI_Expert_StatusSpDefenseUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ACC_UP, TrainerAI_Expert_StatusAccuracyUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_EVA_UP, TrainerAI_Expert_StatusEvasionUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_BYPASS_ACCURACY, TrainerAI_Expert_BypassAccuracyMove
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DOWN, TrainerAI_Expert_StatusAttackDown
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_DOWN, TrainerAI_Expert_StatusDefenseDown
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPEED_DOWN, TrainerAI_Expert_StatusSpeedDown
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_DOWN, TrainerAI_Expert_StatusSpAttackDown
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_DEF_DOWN, TrainerAI_Expert_StatusSpDefenseDown
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ACC_DOWN, TrainerAI_Expert_StatusAccuracyDown
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_EVA_DOWN, TrainerAI_Expert_StatusEvasionDown
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RESET_STAT_CHANGES, TrainerAI_Expert_Haze
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_BIDE, TrainerAI_Expert_Bide
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FORCE_SWITCH, TrainerAI_Expert_ForceSwitch
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CONVERSION, TrainerAI_Expert_Conversion
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RESTORE_HALF_HP, TrainerAI_Expert_Recovery
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_BADLY_POISON, TrainerAI_Expert_ToxicLeechSeed
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_LIGHT_SCREEN, TrainerAI_Expert_LightScreen
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_REST, TrainerAI_Expert_Rest
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ONE_HIT_KO, TrainerAI_Expert_OHKOMove
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CHARGE_TURN_HIGH_CRIT, TrainerAI_Expert_ChargeTurnNoInvuln
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_HP, TrainerAI_Expert_SuperFang
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_BIND_HIT, TrainerAI_Expert_BindingMove
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIGH_CRITICAL, TrainerAI_Expert_HighCritical
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOIL_QUARTER, TrainerAI_Expert_RecoilMove
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_CONFUSE, TrainerAI_Expert_StatusConfuse
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_UP_2, TrainerAI_Expert_StatusAttackUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_UP_2, TrainerAI_Expert_StatusDefenseUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPEED_UP_2, TrainerAI_Expert_StatusSpeedUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_UP_2, TrainerAI_Expert_StatusSpAttackUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_DEF_UP_2, TrainerAI_Expert_StatusSpDefenseUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ACC_UP_2, TrainerAI_Expert_StatusAccuracyUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_EVA_UP_2, TrainerAI_Expert_StatusEvasionUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DOWN_2, TrainerAI_Expert_StatusAttackDown
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_DOWN_2, TrainerAI_Expert_StatusDefenseDown
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPEED_DOWN_2, TrainerAI_Expert_StatusSpeedDown
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_DOWN_2, TrainerAI_Expert_StatusSpAttackDown
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_DEF_DOWN_2, TrainerAI_Expert_StatusSpDefenseDown
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_EVA_DOWN_2, TrainerAI_Expert_StatusAccuracyDown
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ACC_DOWN_2, TrainerAI_Expert_StatusEvasionDown
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_REFLECT, TrainerAI_Expert_Reflect
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_POISON, TrainerAI_Expert_StatusPoison
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_PARALYZE, TrainerAI_Expert_StatusParalyze
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_UP_2_STATUS_CONFUSION, TrainerAI_Expert_Swagger
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LOWER_SPEED_HIT, TrainerAI_Expert_SpeedDownOnHit
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CHARGE_TURN_HIGH_CRIT_FLINCH, TrainerAI_Expert_ChargeTurnNoInvuln
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PRIORITY_NEG_1_BYPASS_ACCURACY, TrainerAI_Expert_VitalThrow
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_SUBSTITUTE, TrainerAI_Expert_Substitute
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECHARGE_AFTER, TrainerAI_Expert_RechargeTurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_LEECH_SEED, TrainerAI_Expert_ToxicLeechSeed
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DISABLE, TrainerAI_Expert_Disable
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_COUNTER, TrainerAI_Expert_Counter
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ENCORE, TrainerAI_Expert_Encore
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_AVERAGE_HP, TrainerAI_Expert_PainSplit
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DAMAGE_WHILE_ASLEEP, TrainerAI_Expert_Nightmare
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_NEXT_ATTACK_ALWAYS_HITS, TrainerAI_Expert_LockOn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_USE_RANDOM_LEARNED_MOVE_SLEEP, TrainerAI_Expert_SleepTalk
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_KO_MON_THAT_DEFEATED_USER, TrainerAI_Expert_DestinyBond
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_INCREASE_POWER_WITH_LESS_HP, TrainerAI_Expert_Reversal
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CURE_PARTY_STATUS, TrainerAI_Expert_HealBell
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STEAL_HELD_ITEM, TrainerAI_Expert_Thief
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_ESCAPE, TrainerAI_Expert_BindingMove
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_EVA_UP_2_MINIMIZE, TrainerAI_Expert_StatusEvasionUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CURSE, TrainerAI_Expert_Curse
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PROTECT, TrainerAI_Expert_Protect
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_SPIKES, TrainerAI_Expert_Spikes
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_IGNORE_EVASION_REMOVE_GHOST_IMMUNE, TrainerAI_Expert_Foresight
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SURVIVE_WITH_1_HP, TrainerAI_Expert_Endure
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PASS_STATS_AND_STATUS, TrainerAI_Expert_BatonPass
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_BEFORE_SWITCH, TrainerAI_Expert_Pursuit
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HEAL_HALF_MORE_IN_SUN, TrainerAI_Expert_Synthesis
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_UNUSED_133, TrainerAI_Expert_Synthesis
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_UNUSED_134, TrainerAI_Expert_Synthesis
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_RAIN, TrainerAI_Expert_RainDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_SUN, TrainerAI_Expert_SunnyDay
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_MAX_ATK_LOSE_HALF_MAX_HP, TrainerAI_Expert_BellyDrum
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_COPY_STAT_CHANGES, TrainerAI_Expert_PsychUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_MIRROR_COAT, TrainerAI_Expert_MirrorCoat
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CHARGE_TURN_DEF_UP, TrainerAI_Expert_ChargeTurnNoInvuln
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN, TrainerAI_Expert_ChargeTurnNoInvuln
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN, TrainerAI_Expert_UnusedSolarbeam
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FLY, TrainerAI_Expert_ChargeTurnWithInvuln
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_UNUSED_157, TrainerAI_Expert_Recovery
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ALWAYS_FLINCH_FIRST_TURN_ONLY, TrainerAI_Expert_FakeOut
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPIT_UP, TrainerAI_Expert_SpitUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWALLOW, TrainerAI_Expert_Recovery
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WEATHER_HAIL, TrainerAI_Expert_Hail
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_UP_CAUSE_CONFUSION, TrainerAI_Expert_Flatter
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FAINT_AND_ATK_SP_ATK_DOWN_2, TrainerAI_Expert_Explosion
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_POWER_WHEN_STATUSED, TrainerAI_Expert_Facade
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_LAST_WHIFF_IF_HIT, TrainerAI_Expert_FocusPunch
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_POWER_AND_CURE_PARALYSIS, TrainerAI_Expert_SmellingSalts
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWITCH_HELD_ITEMS, TrainerAI_Expert_Trick
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_COPY_ABILITY, TrainerAI_Expert_ChangeUserAbility
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_GROUND_TRAP_USER_CONTINUOUS_HEAL, TrainerAI_Expert_Ingrain
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LOWER_OWN_ATK_AND_DEF, TrainerAI_Expert_Superpower
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_APPLY_MAGIC_COAT, TrainerAI_Expert_MagicCoat
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECYCLE, TrainerAI_Expert_Recycle
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_POWER_IF_HIT, TrainerAI_Expert_Revenge
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_REMOVE_SCREENS, TrainerAI_Expert_BrickBreak
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_REMOVE_HELD_ITEM, TrainerAI_Expert_KnockOff
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_HP_EQUAL_TO_USER, TrainerAI_Expert_Endeavor
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DECREASE_POWER_WITH_LESS_USER_HP, TrainerAI_Expert_WaterSpout
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWITCH_ABILITIES, TrainerAI_Expert_ChangeUserAbility
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_MAKE_SHARED_MOVES_UNUSEABLE, TrainerAI_Expert_Imprison
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HEAL_STATUS, TrainerAI_Expert_Refresh
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STEAL_STATUS_MOVE, TrainerAI_Expert_Snatch
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOIL_THIRD, TrainerAI_Expert_RecoilMove
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIGH_CRITICAL_BURN_HIT, TrainerAI_Expert_HighCritical
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_ELECTRIC_DAMAGE, TrainerAI_Expert_MudSport
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_USER_SP_ATK_DOWN_2, TrainerAI_Expert_Overheat
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DEF_DOWN, TrainerAI_Expert_StatusDefenseDown
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_SPD_UP, TrainerAI_Expert_StatusSpDefenseUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_DEF_UP, TrainerAI_Expert_StatusDefenseUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIGH_CRITICAL_POISON_HIT, TrainerAI_Expert_HighCritical
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_FIRE_DAMAGE, TrainerAI_Expert_WaterSport
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_SP_DEF_UP, TrainerAI_Expert_StatusSpDefenseUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_SPD_UP, TrainerAI_Expert_DragonDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HEAL_HALF_REMOVE_FLYING_TYPE, TrainerAI_Expert_Recovery
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_GRAVITY, TrainerAI_Expert_Gravity
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_IGNORE_EVATION_REMOVE_DARK_IMMUNE, TrainerAI_Expert_MiracleEye
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_POWER_HEAL_SLEEP, TrainerAI_Expert_WakeUpSlap
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPEED_DOWN_HIT, TrainerAI_Expert_HammerArm
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_POWER_BASED_ON_LOW_SPEED, TrainerAI_Expert_GyroBall
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FAINT_AND_FULL_HEAL_NEXT_MON, TrainerAI_Expert_HealingWish
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_POWER_WHEN_BELOW_HALF, TrainerAI_Expert_Brine
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_REMOVE_PROTECT, TrainerAI_Expert_Feint
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_EAT_BERRY, TrainerAI_Expert_Pluck
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_SPEED_3_TURNS, TrainerAI_Expert_Tailwind
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RANDOM_STAT_UP_2, TrainerAI_Expert_Acupressure
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_METAL_BURST, TrainerAI_Expert_MetalBurst
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWITCH_HIT, TrainerAI_Expert_UTurn
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_SPD_DOWN_HIT, TrainerAI_Expert_CloseCombat
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_POWER_IF_MOVING_SECOND, TrainerAI_Expert_Payback
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_POWER_IF_TARGET_HIT, TrainerAI_Expert_Assurance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_ITEM_USE, TrainerAI_Expert_Embargo
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FLING, TrainerAI_Expert_Fling
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TRANSFER_STATUS, TrainerAI_Expert_PsychoShift
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIGHER_POWER_WHEN_LOW_PP, TrainerAI_Expert_TrumpCard
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_HEALING, TrainerAI_Expert_HealBlock
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_INCREASE_POWER_WITH_MORE_HP, TrainerAI_Expert_WringOut
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWAP_ATK_DEF, TrainerAI_Expert_PowerTrick
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SUPRESS_ABILITY, TrainerAI_Expert_GastroAcid
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_CRITS, TrainerAI_Expert_LuckyChant
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_USE_MOVE_FIRST, TrainerAI_Expert_MeFirst
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_USE_LAST_USED_MOVE, TrainerAI_Expert_Copycat
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWAP_ATK_SP_ATK_STAT_CHANGES, TrainerAI_Expert_PowerSwap
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWAP_DEF_SP_DEF_STAT_CHANGES, TrainerAI_Expert_GuardSwap
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_INCREASE_POWER_WITH_MORE_STAT_UP, TrainerAI_Expert_Punishment
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FAIL_IF_NOT_USED_ALL_OTHER_MOVES, TrainerAI_Expert_LastResort
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_ABILITY_TO_INSOMNIA, TrainerAI_Expert_WorrySeed
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_FIRST_IF_TARGET_ATTACKING, TrainerAI_Expert_SuckerPunch
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TOXIC_SPIKES, TrainerAI_Expert_ToxicSpikes
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWAP_STAT_CHANGES, TrainerAI_Expert_HeartSwap
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RESTORE_HP_EVERY_TURN, TrainerAI_Expert_AquaRing
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_GIVE_GROUND_IMMUNITY, TrainerAI_Expert_MagnetRise
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOIL_BURN_HIT, TrainerAI_Expert_RecoilMove
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DIVE, TrainerAI_Expert_ChargeTurnWithInvuln
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DIG, TrainerAI_Expert_ChargeTurnWithInvuln
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_REMOVE_HAZARDS_SCREENS_EVA_DOWN, TrainerAI_Expert_Defog
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TRICK_ROOM, TrainerAI_Expert_TrickRoom
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_BLIZZARD, TrainerAI_Expert_Blizzard
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOIL_PARALYZE_HIT, TrainerAI_Expert_RecoilMove
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_BOUNCE, TrainerAI_Expert_ChargeTurnWithInvuln
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_DOWN_2_OPPOSITE_GENDER, TrainerAI_Expert_Captivate
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STEALTH_ROCK, TrainerAI_Expert_StealthRock
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOIL_HALF, TrainerAI_Expert_RecoilMove
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FAINT_FULL_RESTORE_NEXT_MON, TrainerAI_Expert_HealingWish
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SHADOW_FORCE, TrainerAI_Expert_ShadowForce
+
+    ; All other moves have no additional logic.
     PopOrEnd 
 
-_03083:
-    IfMoveEffectKnown AI_BATTLER_ATTACKER, BATTLE_EFFECT_RECOVER_DAMAGE_SLEEP, _03093
-    IfMoveEffectKnown AI_BATTLER_ATTACKER, BATTLE_EFFECT_STATUS_NIGHTMARE, _03093
-    GoTo _03098
+TrainerAI_Expert_StatusSleep:
+    ; If the attacker knows a move which requires the target to be asleep (Dream Eater or Nightmare
+    ; effects), 50% chance of score +1.
+    IfMoveEffectKnown AI_BATTLER_ATTACKER, BATTLE_EFFECT_RECOVER_DAMAGE_SLEEP, TrainerAI_Expert_StatusSleep_TryScorePlus1
+    IfMoveEffectKnown AI_BATTLER_ATTACKER, BATTLE_EFFECT_STATUS_NIGHTMARE, TrainerAI_Expert_StatusSleep_TryScorePlus1
+    GoTo TrainerAI_Expert_StatusSleep_End
 
-_03093:
-    IfRandomLessThan 128, _03098
+TrainerAI_Expert_StatusSleep_TryScorePlus1:
+    IfRandomLessThan 128, TrainerAI_Expert_StatusSleep_End
     AddToMoveScore 1
 
-_03098:
+TrainerAI_Expert_StatusSleep_End:
     PopOrEnd 
 
-_03099:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _03110
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _03110
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _03110
-    GoTo _03115
+TrainerAI_Expert_DrainMove:
+    ; If the target is immune to or resists the move, ~80.5% chance of score -3.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_DrainMove_TryScoreMinus3
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_DrainMove_TryScoreMinus3
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_DrainMove_TryScoreMinus3
+    GoTo TrainerAI_Expert_DrainMove_End
 
-_03110:
-    IfRandomLessThan 50, _03115
+TrainerAI_Expert_DrainMove_TryScoreMinus3:
+    IfRandomLessThan 50, TrainerAI_Expert_DrainMove_End
     AddToMoveScore -3
 
-_03115:
+TrainerAI_Expert_DrainMove_End:
     PopOrEnd 
 
-_03116:
-    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 7, _03133
+TrainerAI_Expert_Explosion:
+    ; If the target's Evasion is at +1 stage or higher, additional score -1 to all further modifiers.
+    ;
+    ; If the target's Evasion is at +3 stages or higher, 50% chance of additional score -1 to all further modifiers.
+    ;
+    ; Apply an additional modifier according to the user's current HP (as a percentage):
+    ;
+    ; | User HP (%)   | Additional Qualifier | Modifier                 |
+    ; | ------------: | -------------------- | ------------------------ |
+    ; |        >= 80% | Faster than target   | 80.5% chance of score -3 |
+    ; |        >= 80% | Slower than target   | 80.5% chance of score -1 |
+    ; |         > 50% | N/A                  | 80.5% chance of score -1 |
+    ; | <= 50%, > 30% | N/A                  | 50% chance of score +1   |
+    ; |        <= 30% | N/A                  | 80.5% chance of score +1 |
+    ;
+    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 7, TrainerAI_Expert_Explosion_CheckUserHighHP
     AddToMoveScore -1
-    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 10, _03133
-    IfRandomLessThan 128, _03133
+    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 10, TrainerAI_Expert_Explosion_CheckUserHighHP
+    IfRandomLessThan 128, TrainerAI_Expert_Explosion_CheckUserHighHP
     AddToMoveScore -1
 
-_03133:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 80, _03145
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _03145
-    IfRandomLessThan 50, _03170
+TrainerAI_Expert_Explosion_CheckUserHighHP:
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 80, TrainerAI_Expert_Explosion_CheckUserMediumHP
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_Explosion_CheckUserMediumHP
+    IfRandomLessThan 50, TrainerAI_Expert_Explosion_End
     GoTo TrainerAI_ScoreMinus3
 
-_03145:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, _03165
-    IfRandomLessThan 128, _03154
+TrainerAI_Expert_Explosion_CheckUserMediumHP:
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, TrainerAI_Expert_Explosion_TryScoreMinus1
+    IfRandomLessThan 128, TrainerAI_Expert_Explosion_CheckUserLowHP
     AddToMoveScore 1
 
-_03154:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 30, _03170
-    IfRandomLessThan 50, _03170
+TrainerAI_Expert_Explosion_CheckUserLowHP:
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 30, TrainerAI_Expert_Explosion_End
+    IfRandomLessThan 50, TrainerAI_Expert_Explosion_End
     AddToMoveScore 1
-    GoTo _03170
+    GoTo TrainerAI_Expert_Explosion_End
 
-_03165:
-    IfRandomLessThan 50, _03170
+TrainerAI_Expert_Explosion_TryScoreMinus1:
+    IfRandomLessThan 50, TrainerAI_Expert_Explosion_End
     AddToMoveScore -1
 
-_03170:
+TrainerAI_Expert_Explosion_End:
     PopOrEnd 
 
-_03171:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _03193
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _03193
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _03193
-    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_SLEEP, _03186
-    GoTo _03195
+TrainerAI_Expert_DreamEater:
+    ; If the target is immune to or resists the move, always score -1 instead of the above.
+    ;
+    ; If the target does not resist the move and is asleep, 80.1% chance of score +3.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_DreamEater_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_DreamEater_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_DreamEater_ScoreMinus1
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_SLEEP, TrainerAI_Expert_DreamEater_TryScorePlus3
+    GoTo TrainerAI_Expert_DreamEater_End
 
-_03186:
-    IfRandomLessThan 51, _03195
+TrainerAI_Expert_DreamEater_TryScorePlus3:
+    IfRandomLessThan 51, TrainerAI_Expert_DreamEater_End
     AddToMoveScore 3
-    GoTo _03195
+    GoTo TrainerAI_Expert_DreamEater_End
 
-_03193:
+TrainerAI_Expert_DreamEater_ScoreMinus1:
     AddToMoveScore -1
 
-_03195:
+TrainerAI_Expert_DreamEater_End:
     PopOrEnd 
 
-_03196:
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _03211
+TrainerAI_Expert_MirrorMove:
+    ; If the attacker is faster than its target and the last-used move by that target is in the below
+    ; list, 50% chance of score +2.
+    ;
+    ; Otherwise, if the last-used move by the target is *not* in the table, 68.75% chance of score -1.
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_MirrorMove_TryScoreMinus1
     LoadBattlerPreviousMove AI_BATTLER_DEFENDER
-    IfLoadedNotInTable _03222, _03211
-    IfRandomLessThan 128, _03221
+    IfLoadedNotInTable TrainerAI_Expert_MirrorMove_MoveTable, TrainerAI_Expert_MirrorMove_TryScoreMinus1
+    IfRandomLessThan 128, TrainerAI_Expert_MirrorMove_End
     AddToMoveScore 2
-    GoTo _03221
+    GoTo TrainerAI_Expert_MirrorMove_End
 
-_03211:
+TrainerAI_Expert_MirrorMove_TryScoreMinus1:
     LoadBattlerPreviousMove AI_BATTLER_DEFENDER
-    IfLoadedInTable _03222, _03221
-    IfRandomLessThan 80, _03221
+    IfLoadedInTable TrainerAI_Expert_MirrorMove_MoveTable, TrainerAI_Expert_MirrorMove_End
+    IfRandomLessThan 80, TrainerAI_Expert_MirrorMove_End
     AddToMoveScore -1
 
-_03221:
+TrainerAI_Expert_MirrorMove_End:
     PopOrEnd 
 
-_03222:
+TrainerAI_Expert_MirrorMove_MoveTable:
     TableEntry MOVE_SLEEP_POWDER
     TableEntry MOVE_LOVELY_KISS
     TableEntry MOVE_SPORE
@@ -1950,62 +1979,83 @@ _03222:
     TableEntry MOVE_DARK_VOID
     TableEntry TABLE_END
 
-_03270:
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 9, _03282
-    IfRandomLessThan 100, _03291
+TrainerAI_Expert_StatusAttackUp:
+    ; If the attacker is at +3 stat stage or higher, ~60.9% chance of additional score -1.
+    ;
+    ; If the attacker is at 100% HP, 50% chance of additional score +2.
+    ;
+    ; If the attacker's HP is > 70%, no further score changes.
+    ;
+    ; If the attacker's HP is < 40%, additional score -2.
+    ;
+    ; Otherwise, ~84.4% chance of additional score -2.
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 9, TrainerAI_Expert_StatusAttackUp_CheckUserAtMaxHP
+    IfRandomLessThan 100, TrainerAI_Expert_StatusAttackUp_CheckUserHPRange
     AddToMoveScore -1
-    GoTo _03291
+    GoTo TrainerAI_Expert_StatusAttackUp_CheckUserHPRange
 
-_03282:
-    IfHPPercentNotEqualTo AI_BATTLER_ATTACKER, 100, _03291
-    IfRandomLessThan 128, _03291
+TrainerAI_Expert_StatusAttackUp_CheckUserAtMaxHP:
+    IfHPPercentNotEqualTo AI_BATTLER_ATTACKER, 100, TrainerAI_Expert_StatusAttackUp_CheckUserHPRange
+    IfRandomLessThan 128, TrainerAI_Expert_StatusAttackUp_CheckUserHPRange
     AddToMoveScore 2
 
-_03291:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 70, _03304
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 40, _03302
-    IfRandomLessThan 40, _03304
+TrainerAI_Expert_StatusAttackUp_CheckUserHPRange:
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 70, TrainerAI_Expert_StatusAttackUp_End
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 40, TrainerAI_Expert_StatusAttackUp_ScoreMinus2
+    IfRandomLessThan 40, TrainerAI_Expert_StatusAttackUp_End
 
-_03302:
+TrainerAI_Expert_StatusAttackUp_ScoreMinus2:
     AddToMoveScore -2
 
-_03304:
+TrainerAI_Expert_StatusAttackUp_End:
     PopOrEnd 
 
-_03305:
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 9, _03317
-    IfRandomLessThan 100, _03326
+TrainerAI_Expert_StatusDefenseUp:
+    ; If the attacker is at +3 stat stage or higher, ~60.9% chance of additional score -1.
+    ;
+    ; If the attacker is at 100% HP, 50% chance of additional score +2.
+    ;
+    ; If the attacker's HP is >= 70%, ~78.1% chance to suppress all further score modifiers.
+    ;
+    ; If the attacker's HP is < 40%, additional score -2.
+    ;
+    ; Otherwise:
+    ; - If the target's last-used move was a Status move, ~76.6% chance of score -2.
+    ; - If the target's last-used move was a Special move, 58.6% chance of score -2.
+    ; - Otherwise, score -2.
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 9, TrainerAI_Expert_StatusDefenseUp_CheckUserAtMaxHP
+    IfRandomLessThan 100, TrainerAI_Expert_StatusDefenseUp_CheckUserHighHP
     AddToMoveScore -1
-    GoTo _03326
+    GoTo TrainerAI_Expert_StatusDefenseUp_CheckUserHighHP
 
-_03317:
-    IfHPPercentNotEqualTo AI_BATTLER_ATTACKER, 100, _03326
-    IfRandomLessThan 128, _03326
+TrainerAI_Expert_StatusDefenseUp_CheckUserAtMaxHP:
+    IfHPPercentNotEqualTo AI_BATTLER_ATTACKER, 100, TrainerAI_Expert_StatusDefenseUp_CheckUserHighHP
+    IfRandomLessThan 128, TrainerAI_Expert_StatusDefenseUp_CheckUserHighHP
     AddToMoveScore 2
 
-_03326:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 70, _03333
-    IfRandomLessThan 200, _03355
+TrainerAI_Expert_StatusDefenseUp_CheckUserHighHP:
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 70, TrainerAI_Expert_StatusDefenseUp_CheckUserMediumHP
+    IfRandomLessThan 200, TrainerAI_Expert_StatusDefenseUp_End
 
-_03333:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 40, _03353
+TrainerAI_Expert_StatusDefenseUp_CheckUserMediumHP:
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 40, TrainerAI_Expert_StatusDefenseUp_ScoreMinus2
     LoadBattlerPreviousMove AI_BATTLER_DEFENDER
     LoadPowerOfLoadedMove 
-    IfLoadedEqualTo 0, _03350
+    IfLoadedEqualTo 0, TrainerAI_Expert_StatusDefenseUp_UserAtLowHP
     LoadDefenderLastUsedMoveClass 
-    IfLoadedEqualTo CLASS_SPECIAL, _03353
-    IfRandomLessThan 60, _03355
+    IfLoadedEqualTo CLASS_SPECIAL, TrainerAI_Expert_StatusDefenseUp_ScoreMinus2
+    IfRandomLessThan 60, TrainerAI_Expert_StatusDefenseUp_End
 
-_03350:
-    IfRandomLessThan 60, _03355
+TrainerAI_Expert_StatusDefenseUp_UserAtLowHP:
+    IfRandomLessThan 60, TrainerAI_Expert_StatusDefenseUp_End
 
-_03353:
+TrainerAI_Expert_StatusDefenseUp_ScoreMinus2:
     AddToMoveScore -2
 
-_03355:
+TrainerAI_Expert_StatusDefenseUp_End:
     PopOrEnd 
 
-_03356:
+TrainerAI_Expert_StatusDefenseUp_PreSplitPhysicalTypes:
     TableEntry TYPE_NORMAL
     TableEntry TYPE_FIGHTING
     TableEntry TYPE_POISON
@@ -2017,74 +2067,98 @@ _03356:
     TableEntry TYPE_STEEL
     TableEntry TABLE_END
 
-_03366:
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _03373
+TrainerAI_Expert_StatusSpeedUp:
+    ; If the AI is faster than its target, score -3.
+    ;
+    ; If the AI is slower than its target, 72.7% chance of score +3.
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_StatusSpeedUp_TryScorePlus3
     AddToMoveScore -3
-    GoTo _03378
+    GoTo TrainerAI_Expert_StatusSpeedUp_End
 
-_03373:
-    IfRandomLessThan 70, _03378
+TrainerAI_Expert_StatusSpeedUp_TryScorePlus3:
+    IfRandomLessThan 70, TrainerAI_Expert_StatusSpeedUp_End
     AddToMoveScore 3
 
-_03378:
+TrainerAI_Expert_StatusSpeedUp_End:
     PopOrEnd 
 
-_03379:
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 9, _03391
-    IfRandomLessThan 100, _03400
+TrainerAI_Expert_StatusSpAttackUp:
+    ; If the attacker is at +3 stat stage or higher, ~60.9% chance of additional score -1.
+    ;
+    ; If the attacker is at 100% HP, 50% chance of additional score +2.
+    ;
+    ; If the attacker's HP is > 70%, no further score changes.
+    ;
+    ; If the attacker's HP is < 40%, additional score -2.
+    ;
+    ; Otherwise, ~84.4% chance of additional score -2.
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 9, TrainerAI_Expert_StatusSpAttackUp_CheckUserAtMaxHP
+    IfRandomLessThan 100, TrainerAI_Expert_StatusSpAttackUp_CheckUserHPRange
     AddToMoveScore -1
-    GoTo _03400
+    GoTo TrainerAI_Expert_StatusSpAttackUp_CheckUserHPRange
 
-_03391:
-    IfHPPercentNotEqualTo AI_BATTLER_ATTACKER, 100, _03400
-    IfRandomLessThan 128, _03400
+TrainerAI_Expert_StatusSpAttackUp_CheckUserAtMaxHP:
+    IfHPPercentNotEqualTo AI_BATTLER_ATTACKER, 100, TrainerAI_Expert_StatusSpAttackUp_CheckUserHPRange
+    IfRandomLessThan 128, TrainerAI_Expert_StatusSpAttackUp_CheckUserHPRange
     AddToMoveScore 2
 
-_03400:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 70, _03413
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 40, _03411
-    IfRandomLessThan 70, _03413
+TrainerAI_Expert_StatusSpAttackUp_CheckUserHPRange:
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 70, TrainerAI_Expert_StatusSpAttackUp_End
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 40, TrainerAI_Expert_StatusSpAttackUp_ScoreMinus2
+    IfRandomLessThan 70, TrainerAI_Expert_StatusSpAttackUp_End
 
-_03411:
+TrainerAI_Expert_StatusSpAttackUp_ScoreMinus2:
     AddToMoveScore -2
 
-_03413:
+TrainerAI_Expert_StatusSpAttackUp_End:
     PopOrEnd 
 
-_03414:
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 9, _03426
-    IfRandomLessThan 100, _03435
+TrainerAI_Expert_StatusSpDefenseUp:
+    ; If the attacker is at +3 stat stage or higher, ~60.9% chance of additional score -1.
+    ;
+    ; If the attacker is at 100% HP, 50% chance of additional score +2.
+    ;
+    ; If the attacker's HP is >= 70%, ~78.1% chance to suppress all further score modifiers.
+    ;
+    ; If the attacker's HP is < 40%, additional score -2.
+    ;
+    ; Otherwise:
+    ; - If the target's last-used move was a Status move, ~76.6% chance of score -2.
+    ; - If the target's last-used move was a Physical move, 58.6% chance of score -2.
+    ; - Otherwise, score -2.
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 9, TrainerAI_Expert_StatusSpDefenseUp_CheckUserAtMaxHP
+    IfRandomLessThan 100, TrainerAI_Expert_StatusSpDefenseUp_CheckUserHighHP
     AddToMoveScore -1
-    GoTo _03435
+    GoTo TrainerAI_Expert_StatusSpDefenseUp_CheckUserHighHP
 
-_03426:
-    IfHPPercentNotEqualTo AI_BATTLER_ATTACKER, 100, _03435
-    IfRandomLessThan 128, _03435
+TrainerAI_Expert_StatusSpDefenseUp_CheckUserAtMaxHP:
+    IfHPPercentNotEqualTo AI_BATTLER_ATTACKER, 100, TrainerAI_Expert_StatusSpDefenseUp_CheckUserHighHP
+    IfRandomLessThan 128, TrainerAI_Expert_StatusSpDefenseUp_CheckUserHighHP
     AddToMoveScore 2
 
-_03435:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 70, _03442
-    IfRandomLessThan 200, _03464
+TrainerAI_Expert_StatusSpDefenseUp_CheckUserHighHP:
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 70, TrainerAI_Expert_StatusSpDefenseUp_CheckUserMediumHP
+    IfRandomLessThan 200, TrainerAI_Expert_StatusSpDefenseUp_End
 
-_03442:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 40, _03462
+TrainerAI_Expert_StatusSpDefenseUp_CheckUserMediumHP:
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 40, TrainerAI_Expert_StatusSpDefenseUp_TryScoreMinus2
     LoadBattlerPreviousMove AI_BATTLER_DEFENDER
     LoadPowerOfLoadedMove 
-    IfLoadedEqualTo 0, _03459
+    IfLoadedEqualTo 0, TrainerAI_Expert_StatusSpDefenseUp_UserAtLowHP
     LoadDefenderLastUsedMoveClass 
-    IfLoadedEqualTo CLASS_PHYSICAL, _03462
-    IfRandomLessThan 60, _03464
+    IfLoadedEqualTo CLASS_PHYSICAL, TrainerAI_Expert_StatusSpDefenseUp_TryScoreMinus2
+    IfRandomLessThan 60, TrainerAI_Expert_StatusSpDefenseUp_End
 
-_03459:
-    IfRandomLessThan 60, _03464
+TrainerAI_Expert_StatusSpDefenseUp_UserAtLowHP:
+    IfRandomLessThan 60, TrainerAI_Expert_StatusSpDefenseUp_End
 
-_03462:
+TrainerAI_Expert_StatusSpDefenseUp_TryScoreMinus2:
     AddToMoveScore -2
 
-_03464:
+TrainerAI_Expert_StatusSpDefenseUp_End:
     PopOrEnd 
 
-_03465:
+TrainerAI_Expert_StatusSpDefenseUp_PreSplitPhysicalTypes:
     TableEntry TYPE_NORMAL
     TableEntry TYPE_FIGHTING
     TableEntry TYPE_POISON
@@ -2096,114 +2170,147 @@ _03465:
     TableEntry TYPE_STEEL
     TableEntry TABLE_END
 
-_03475:
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 9, _03485
-    IfRandomLessThan 50, _03485
+TrainerAI_Expert_StatusAccuracyUp:
+    ; If the attacker is at +3 stat stage or higher, ~80.5% chance of additional score -2.
+    ;
+    ; If the attacker's HP is at < 70%, score -2.
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 9, TrainerAI_Expert_StatusAccuracyUp_TryScoreMinus2
+    IfRandomLessThan 50, TrainerAI_Expert_StatusAccuracyUp_TryScoreMinus2
     AddToMoveScore -2
 
-_03485:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 70, _03491
+TrainerAI_Expert_StatusAccuracyUp_TryScoreMinus2:
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 70, TrainerAI_Expert_StatusAccuracyUp_End
     AddToMoveScore -2
 
-_03491:
+TrainerAI_Expert_StatusAccuracyUp_End:
     PopOrEnd 
 
-_03492:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 90, _03501
-    IfRandomLessThan 100, _03501
+TrainerAI_Expert_StatusEvasionUp:
+    ; If the attacker's HP is >= 90%, ~60.9% chance of additional score +3.
+    ;
+    ; If the attacker is at +3 stat stage or higher, 50% chance of additional score -1.
+    ;
+    ; If the target is Badly Poisoned:
+    ; - If the attacker's HP is > 50%, ~80.5% chance of additional score +3.
+    ; - If the attacker's HP is <= 50%, ~55.3% chance of additional score +3.
+    ;
+    ; If the target is affected by Leech Seed, ~72.7% chance of additional score +3.
+    ;
+    ; If the attacker is affected by Ingrain or Aqua Ring, 50% chance of additional score +2.
+    ;
+    ; If the target is affected by Curse, ~72.7% chance of additional score +3.
+    ;
+    ; If the attacker's HP is > 70%, suppress all further modifiers. Otherwise:
+    ; - If the attacker is at exactly +0 stat stage, no further score modifiers.
+    ; - If either the attacker's HP or the target's HP are < 40%, score -2.
+    ; - Otherwise, ~72.7% chance of score -2.
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 90, TrainerAI_Expert_StatusEvasionUp_CheckUserStatStage
+    IfRandomLessThan 100, TrainerAI_Expert_StatusEvasionUp_CheckUserStatStage
     AddToMoveScore 3
 
-_03501:
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 9, _03511
-    IfRandomLessThan 128, _03511
+TrainerAI_Expert_StatusEvasionUp_CheckUserStatStage:
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 9, TrainerAI_Expert_StatusEvasionUp_CheckEnemyBadlyPoisoned
+    IfRandomLessThan 128, TrainerAI_Expert_StatusEvasionUp_CheckEnemyBadlyPoisoned
     AddToMoveScore -1
 
-_03511:
-    IfNotStatus AI_BATTLER_DEFENDER, MON_CONDITION_TOXIC, _03527
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, _03522
-    IfRandomLessThan 80, _03527
+TrainerAI_Expert_StatusEvasionUp_CheckEnemyBadlyPoisoned:
+    IfNotStatus AI_BATTLER_DEFENDER, MON_CONDITION_TOXIC, TrainerAI_Expert_StatusEvasionUp_CheckEnemySeeded
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, TrainerAI_Expert_StatusEvasionUp_TryScorePlus3
+    IfRandomLessThan 80, TrainerAI_Expert_StatusEvasionUp_CheckEnemySeeded
 
-_03522:
-    IfRandomLessThan 50, _03527
+TrainerAI_Expert_StatusEvasionUp_TryScorePlus3:
+    IfRandomLessThan 50, TrainerAI_Expert_StatusEvasionUp_CheckEnemySeeded
     AddToMoveScore 3
 
-_03527:
-    IfNotMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_LEECH_SEED, _03536
-    IfRandomLessThan 70, _03536
+TrainerAI_Expert_StatusEvasionUp_CheckEnemySeeded:
+    IfNotMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_LEECH_SEED, TrainerAI_Expert_StatusEvasionUp_CheckUserIngrained
+    IfRandomLessThan 70, TrainerAI_Expert_StatusEvasionUp_CheckUserIngrained
     AddToMoveScore 3
 
-_03536:
-    IfNotMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_INGRAIN, _03547
-    IfRandomLessThan 128, _03558
+TrainerAI_Expert_StatusEvasionUp_CheckUserIngrained:
+    IfNotMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_INGRAIN, TrainerAI_Expert_StatusEvasionUp_CheckUserHasAquaRing
+    IfRandomLessThan 128, TrainerAI_Expert_StatusEvasionUp_CheckEnemyCursed
     AddToMoveScore 2
-    GoTo _03558
+    GoTo TrainerAI_Expert_StatusEvasionUp_CheckEnemyCursed
 
-_03547:
-    IfNotMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_AQUA_RING, _03558
-    IfRandomLessThan 128, _03558
+TrainerAI_Expert_StatusEvasionUp_CheckUserHasAquaRing:
+    IfNotMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_AQUA_RING, TrainerAI_Expert_StatusEvasionUp_CheckEnemyCursed
+    IfRandomLessThan 128, TrainerAI_Expert_StatusEvasionUp_CheckEnemyCursed
     AddToMoveScore 2
-    GoTo _03558
+    GoTo TrainerAI_Expert_StatusEvasionUp_CheckEnemyCursed
 
-_03558:
-    IfNotVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_CURSE, _03567
-    IfRandomLessThan 70, _03567
+TrainerAI_Expert_StatusEvasionUp_CheckEnemyCursed:
+    IfNotVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_CURSE, TrainerAI_Expert_StatusEvasionUp_CheckHPRanges
+    IfRandomLessThan 70, TrainerAI_Expert_StatusEvasionUp_CheckHPRanges
     AddToMoveScore 3
 
-_03567:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 70, _03589
-    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 6, _03589
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 40, _03587
-    IfHPPercentLessThan AI_BATTLER_DEFENDER, 40, _03587
-    IfRandomLessThan 70, _03589
+TrainerAI_Expert_StatusEvasionUp_CheckHPRanges:
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 70, TrainerAI_Expert_StatusEvasionUp_End
+    IfStatStageEqualTo AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 6, TrainerAI_Expert_StatusEvasionUp_End
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 40, TrainerAI_Expert_StatusEvasionUp_ScoreMinus2
+    IfHPPercentLessThan AI_BATTLER_DEFENDER, 40, TrainerAI_Expert_StatusEvasionUp_ScoreMinus2
+    IfRandomLessThan 70, TrainerAI_Expert_StatusEvasionUp_End
 
-_03587:
+TrainerAI_Expert_StatusEvasionUp_ScoreMinus2:
     AddToMoveScore -2
 
-_03589:
+TrainerAI_Expert_StatusEvasionUp_End:
     PopOrEnd 
 
-_03590:
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 10, _03612
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 2, _03612
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 8, _03614
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 4, _03614
-    GoTo _03619
+TrainerAI_Expert_BypassAccuracyMove:
+    ; If the target is at +5 Evasion or higher, or the attacker is at -5 Accuracy or lower, 60.9%
+    ; chance of score +2, 39.1% chance of score +1.
+    ;
+    ; If the target is at +3 Evasion or higher, or the attacker is at -3 Accuracy or lower, score +1.
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 10, TrainerAI_Expert_BypassAccuracyMove_ScorePlus1
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 2, TrainerAI_Expert_BypassAccuracyMove_ScorePlus1
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 8, TrainerAI_Expert_BypassAccuracyMove_TryScorePlus1
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 4, TrainerAI_Expert_BypassAccuracyMove_TryScorePlus1
+    GoTo TrainerAI_Expert_BypassAccuracyMove_End
 
-_03612:
+TrainerAI_Expert_BypassAccuracyMove_ScorePlus1:
     AddToMoveScore 1
 
-_03614:
-    IfRandomLessThan 100, _03619
+TrainerAI_Expert_BypassAccuracyMove_TryScorePlus1:
+    IfRandomLessThan 100, TrainerAI_Expert_BypassAccuracyMove_End
     AddToMoveScore 1
 
-_03619:
+TrainerAI_Expert_BypassAccuracyMove_End:
     PopOrEnd 
 
-_03620:
-    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 6, _03643
+TrainerAI_Expert_StatusAttackDown:
+    ; If the target is at any stat stage other than +0, additional score -1. Also, further modify
+    ; the score according to all of the following which apply:
+    ; - If the attacker's HP is at 90% or lower, additional score -1.
+    ; - If the target is at -3 stat stage or lower, 80.5% chance of additional score -2.
+    ;
+    ; If the target's HP is at 70% or lower, additional score -2.
+    ;
+    ; If the move last used by the target was not a Special move, 50% chance of score -2.
+    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 6, TrainerAI_Expert_StatusAttackDown_CheckTargetHP
     AddToMoveScore -1
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 90, _03633
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 90, TrainerAI_Expert_StatusAttackDown_CheckTargetStatStage
     AddToMoveScore -1
 
-_03633:
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 3, _03643
-    IfRandomLessThan 50, _03643
+TrainerAI_Expert_StatusAttackDown_CheckTargetStatStage:
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 3, TrainerAI_Expert_StatusAttackDown_CheckTargetHP
+    IfRandomLessThan 50, TrainerAI_Expert_StatusAttackDown_CheckTargetHP
     AddToMoveScore -2
 
-_03643:
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, _03649
+TrainerAI_Expert_StatusAttackDown_CheckTargetHP:
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, TrainerAI_Expert_StatusAttackDown_CheckLastUsedMove
     AddToMoveScore -2
 
-_03649:
+TrainerAI_Expert_StatusAttackDown_CheckLastUsedMove:
     LoadDefenderLastUsedMoveClass 
-    IfLoadedNotEqualTo CLASS_SPECIAL, _03658
-    IfRandomLessThan 128, _03658
+    IfLoadedNotEqualTo CLASS_SPECIAL, TrainerAI_Expert_StatusAttackDown_End
+    IfRandomLessThan 128, TrainerAI_Expert_StatusAttackDown_End
     AddToMoveScore -2
 
-_03658:
+TrainerAI_Expert_StatusAttackDown_End:
     PopOrEnd 
 
-_03659:
+TrainerAI_Expert_StatusAttackDown_PreSplitPhysicalTypes:
     TableEntry TYPE_NORMAL
     TableEntry TYPE_FIGHTING
     TableEntry TYPE_GROUND
@@ -2212,70 +2319,89 @@ _03659:
     TableEntry TYPE_STEEL
     TableEntry TABLE_END
 
-_03666:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 70, _03675
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE, 3, _03680
+TrainerAI_Expert_StatusDefenseDown:
+    ; If the attacker's HP is < 70%, 80.5% chance of additional score -2.
+    ;
+    ; If the target's stat stage is otherwise at -3 or lower, 80.5% chance of additional score -2.
+    ;
+    ; If the target's HP is < 70%, score -2.
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 70, TrainerAI_Expert_StatusDefenseDown_TryScoreMinus2
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE, 3, TrainerAI_Expert_StatusDefenseDown_CheckTargetHP
 
-_03675:
-    IfRandomLessThan 50, _03680
+TrainerAI_Expert_StatusDefenseDown_TryScoreMinus2:
+    IfRandomLessThan 50, TrainerAI_Expert_StatusDefenseDown_CheckTargetHP
     AddToMoveScore -2
 
-_03680:
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, _03686
+TrainerAI_Expert_StatusDefenseDown_CheckTargetHP:
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, TrainerAI_Expert_StatusDefenseDown_End
     AddToMoveScore -2
 
-_03686:
+TrainerAI_Expert_StatusDefenseDown_End:
     PopOrEnd 
 
-_03687:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _03706
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _03706
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _03706
-    IfMoveEqualTo MOVE_ICY_WIND, _03707
-    IfMoveEqualTo MOVE_ROCK_TOMB, _03707
-    IfMoveEqualTo MOVE_MUD_SHOT, _03707
+TrainerAI_Expert_SpeedDownOnHit:
+    ; If the target is immune to or would resist the move, do not apply any further modifiers.
+    ;
+    ; Treat the exact moves Icy Wind, Rock Tomb, and Mud Shot as Speed-reducing status moves.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_SpeedDownOnHit_End
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_SpeedDownOnHit_End
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_SpeedDownOnHit_End
+    IfMoveEqualTo MOVE_ICY_WIND, TrainerAI_Expert_StatusSpeedDown
+    IfMoveEqualTo MOVE_ROCK_TOMB, TrainerAI_Expert_StatusSpeedDown
+    IfMoveEqualTo MOVE_MUD_SHOT, TrainerAI_Expert_StatusSpeedDown
     PopOrEnd 
 
-_03706:
+TrainerAI_Expert_SpeedDownOnHit_End:
     PopOrEnd 
 
-_03707:
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _03714
+TrainerAI_Expert_StatusSpeedDown:
+    ; If the attacker is slower than its target, 72.7% chance of score +2.
+    ;
+    ; If the attacker is faster than its target, score -3.
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_StatusSpeedDown_TryScorePlus2
     AddToMoveScore -3
-    GoTo _03719
+    GoTo TrainerAI_Expert_StatusSpeedDown_End
 
-_03714:
-    IfRandomLessThan 70, _03719
+TrainerAI_Expert_StatusSpeedDown_TryScorePlus2:
+    IfRandomLessThan 70, TrainerAI_Expert_StatusSpeedDown_End
     AddToMoveScore 2
 
-_03719:
+TrainerAI_Expert_StatusSpeedDown_End:
     PopOrEnd 
 
-_03720:
-    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 6, _03743
+TrainerAI_Expert_StatusSpAttackDown:
+    ; If the target is at any stat stage other than +0, additional score -1. Also, further modify
+    ; the score according to all of the following which apply:
+    ; - If the attacker's HP is at 90% or lower, additional score -1.
+    ; - If the target is at -3 stat stage or lower, 80.5% chance of additional score -2.
+    ;
+    ; If the target's HP is at 70% or lower, additional score -2.
+    ;
+    ; If the move last used by the target was not a Physical move, 50% chance of score -2.
+    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 6, TrainerAI_Expert_StatusSpAttackDown_CheckTargetHP
     AddToMoveScore -1
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 90, _03733
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 90, TrainerAI_Expert_StatusSpAttackDown_CheckTargetStatStage
     AddToMoveScore -1
 
-_03733:
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 3, _03743
-    IfRandomLessThan 50, _03743
+TrainerAI_Expert_StatusSpAttackDown_CheckTargetStatStage:
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 3, TrainerAI_Expert_StatusSpAttackDown_CheckTargetHP
+    IfRandomLessThan 50, TrainerAI_Expert_StatusSpAttackDown_CheckTargetHP
     AddToMoveScore -2
 
-_03743:
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, _03749
+TrainerAI_Expert_StatusSpAttackDown_CheckTargetHP:
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, TrainerAI_Expert_StatusSpAttackDown_CheckLastUsedMove
     AddToMoveScore -2
 
-_03749:
+TrainerAI_Expert_StatusSpAttackDown_CheckLastUsedMove:
     LoadDefenderLastUsedMoveClass 
-    IfLoadedNotEqualTo CLASS_PHYSICAL, _03758
-    IfRandomLessThan 128, _03758
+    IfLoadedNotEqualTo CLASS_PHYSICAL, TrainerAI_Expert_StatusSpAttackDown_End
+    IfRandomLessThan 128, TrainerAI_Expert_StatusSpAttackDown_End
     AddToMoveScore -2
 
-_03758:
+TrainerAI_Expert_StatusSpAttackDown_End:
     PopOrEnd 
 
-_03759:
+TrainerAI_Expert_StatusSpAttackDown_PreSplitSpecialTypes:
     TableEntry TYPE_FIRE
     TableEntry TYPE_WATER
     TableEntry TYPE_GRASS
@@ -2286,254 +2412,330 @@ _03759:
     TableEntry TYPE_DARK
     TableEntry TABLE_END
 
-_03768:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 70, _03777
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_DEFENSE, 3, _03782
+TrainerAI_Expert_StatusSpDefenseDown:
+    ; If the attacker's HP is < 70%, 80.5% chance of additional score -2.
+    ;
+    ; If the target's stat stage is otherwise at -3 or lower, 80.5% chance of additional score -2.
+    ;
+    ; If the target's HP is < 70%, score -2.
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 70, TrainerAI_Expert_StatusSpDefenseDown_TryScoreMinus2
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_DEFENSE, 3, TrainerAI_Expert_StatusSpDefenseDown_CheckTargetHP
 
-_03777:
-    IfRandomLessThan 50, _03782
+TrainerAI_Expert_StatusSpDefenseDown_TryScoreMinus2:
+    IfRandomLessThan 50, TrainerAI_Expert_StatusSpDefenseDown_CheckTargetHP
     AddToMoveScore -2
 
-_03782:
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, _03788
+TrainerAI_Expert_StatusSpDefenseDown_CheckTargetHP:
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, TrainerAI_Expert_StatusSpDefenseDown_End
     AddToMoveScore -2
 
-_03788:
+TrainerAI_Expert_StatusSpDefenseDown_End:
     PopOrEnd 
 
-_03789:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 70, _03797
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, _03802
+TrainerAI_Expert_StatusAccuracyDown:
+    ; If the target's HP is <= 70% and the attacker's HP is NOT >= 70%, 60.9% chance of additional
+    ; score -1.
+    ;
+    ; If the attacker is at -2 accuracy or lower, 68.75% chance of additional score -2.
+    ;
+    ; If the target is Badly Poisoned, ~72.7% chance of additional score +2.
+    ;
+    ; If the target is affected by Leech Seed, ~72.7% chance of additional score +2.
+    ;
+    ; If the attacker is affected by Ingrain or Aqua Ring, 50% chance of additional score +1.
+    ;
+    ; If the target is affected by Curse, ~72.7% chance of additional score +2.
+    ;
+    ; If the attacker's HP is > 70%, suppress all further modifiers. Otherwise:
+    ; - If the attacker is at exactly +0 stat stage, no further score modifiers.
+    ; - If either the attacker's HP or the target's HP are < 40%, score -2.
+    ; - Otherwise, ~72.7% chance of score -2.
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 70, TrainerAI_Expert_StatusAccuracyDown_TryScoreMinus1
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, TrainerAI_Expert_StatusAccuracyDown_CheckUserAccuracy
 
-_03797:
-    IfRandomLessThan 100, _03802
+TrainerAI_Expert_StatusAccuracyDown_TryScoreMinus1:
+    IfRandomLessThan 100, TrainerAI_Expert_StatusAccuracyDown_CheckUserAccuracy
     AddToMoveScore -1
 
-_03802:
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 4, _03812
-    IfRandomLessThan 80, _03812
+TrainerAI_Expert_StatusAccuracyDown_CheckUserAccuracy:
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 4, TrainerAI_Expert_StatusAccuracyDown_CheckTargetBadlyPoisoned
+    IfRandomLessThan 80, TrainerAI_Expert_StatusAccuracyDown_CheckTargetBadlyPoisoned
     AddToMoveScore -2
 
-_03812:
-    IfNotStatus AI_BATTLER_DEFENDER, MON_CONDITION_TOXIC, _03821
-    IfRandomLessThan 70, _03821
+TrainerAI_Expert_StatusAccuracyDown_CheckTargetBadlyPoisoned:
+    IfNotStatus AI_BATTLER_DEFENDER, MON_CONDITION_TOXIC, TrainerAI_Expert_StatusAccuracyDown_CheckTargetSeeded
+    IfRandomLessThan 70, TrainerAI_Expert_StatusAccuracyDown_CheckTargetSeeded
     AddToMoveScore 2
 
-_03821:
-    IfNotMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_LEECH_SEED, _03830
-    IfRandomLessThan 70, _03830
+TrainerAI_Expert_StatusAccuracyDown_CheckTargetSeeded:
+    IfNotMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_LEECH_SEED, TrainerAI_Expert_StatusAccuracyDown_CheckUserIngrained
+    IfRandomLessThan 70, TrainerAI_Expert_StatusAccuracyDown_CheckUserIngrained
     AddToMoveScore 2
 
-_03830:
-    IfNotMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_INGRAIN, _03841
-    IfRandomLessThan 128, _03850
+TrainerAI_Expert_StatusAccuracyDown_CheckUserIngrained:
+    IfNotMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_INGRAIN, TrainerAI_Expert_StatusAccuracyDown_CheckUserHasAquaRing
+    IfRandomLessThan 128, TrainerAI_Expert_StatusAccuracyDown_CheckTargetCursed
     AddToMoveScore 1
-    GoTo _03850
+    GoTo TrainerAI_Expert_StatusAccuracyDown_CheckTargetCursed
 
-_03841:
-    IfNotMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_AQUA_RING, _03850
-    IfRandomLessThan 128, _03850
+TrainerAI_Expert_StatusAccuracyDown_CheckUserHasAquaRing:
+    IfNotMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_AQUA_RING, TrainerAI_Expert_StatusAccuracyDown_CheckTargetCursed
+    IfRandomLessThan 128, TrainerAI_Expert_StatusAccuracyDown_CheckTargetCursed
     AddToMoveScore 1
 
-_03850:
-    IfNotVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_CURSE, _03859
-    IfRandomLessThan 70, _03859
+TrainerAI_Expert_StatusAccuracyDown_CheckTargetCursed:
+    IfNotVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_CURSE, TrainerAI_Expert_StatusAccuracyDown_CheckHPRanges
+    IfRandomLessThan 70, TrainerAI_Expert_StatusAccuracyDown_CheckHPRanges
     AddToMoveScore 2
 
-_03859:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 70, _03881
-    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_ACCURACY, 6, _03881
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 40, _03879
-    IfHPPercentLessThan AI_BATTLER_DEFENDER, 40, _03879
-    IfRandomLessThan 70, _03881
+TrainerAI_Expert_StatusAccuracyDown_CheckHPRanges:
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 70, TrainerAI_Expert_StatusAccuracyDown_End
+    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_ACCURACY, 6, TrainerAI_Expert_StatusAccuracyDown_End
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 40, TrainerAI_Expert_StatusAccuracyDown_ScoreMinus2
+    IfHPPercentLessThan AI_BATTLER_DEFENDER, 40, TrainerAI_Expert_StatusAccuracyDown_ScoreMinus2
+    IfRandomLessThan 70, TrainerAI_Expert_StatusAccuracyDown_End
 
-_03879:
+TrainerAI_Expert_StatusAccuracyDown_ScoreMinus2:
     AddToMoveScore -2
 
-_03881:
+TrainerAI_Expert_StatusAccuracyDown_End:
     PopOrEnd 
 
-_03882:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 70, _03891
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 3, _03896
+TrainerAI_Expert_StatusEvasionDown:
+    ; If the attacker's HP is < 70%, 80.5% chance of additional score -2.
+    ;
+    ; Otherwise, if the target's stat stage is -3 or lower, 80.5% chance of additional score -2.
+    ;
+    ; If the target's HP is <= 70%, score -2.
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 70, TrainerAI_Expert_StatusEvasionDown_TryScoreMinus2
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 3, TrainerAI_Expert_StatusEvasionDown_CheckTargetHP
 
-_03891:
-    IfRandomLessThan 50, _03896
+TrainerAI_Expert_StatusEvasionDown_TryScoreMinus2:
+    IfRandomLessThan 50, TrainerAI_Expert_StatusEvasionDown_CheckTargetHP
     AddToMoveScore -2
 
-_03896:
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, _03902
+TrainerAI_Expert_StatusEvasionDown_CheckTargetHP:
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, TrainerAI_Expert_StatusEvasionDown_End
     AddToMoveScore -2
 
-_03902:
+TrainerAI_Expert_StatusEvasionDown_End:
     PopOrEnd 
 
-_03903:
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, _03955
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 8, _03955
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 8, _03955
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 8, _03955
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 8, _03955
-    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 4, _03955
-    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE, 4, _03955
-    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 4, _03955
-    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_DEFENSE, 4, _03955
-    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_ACCURACY, 4, _03955
-    GoTo _03960
+TrainerAI_Expert_Haze:
+    ; If any of the attacker's stat stages are at +3 or higher, or any of the target's stat stages
+    ; are at -3 or lower, 80.4% chance of additional score -3.
+    ;
+    ; If any of the attacker's stat stages are at -3 or lower, or any of the target's stat stages
+    ; are at +3 or higher, 80.4% chance of additional score +3.
+    ;
+    ; Otherwise, score -1.
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, TrainerAI_Expert_Haze_TryScoreMinus3
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 8, TrainerAI_Expert_Haze_TryScoreMinus3
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 8, TrainerAI_Expert_Haze_TryScoreMinus3
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 8, TrainerAI_Expert_Haze_TryScoreMinus3
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 8, TrainerAI_Expert_Haze_TryScoreMinus3
+    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 4, TrainerAI_Expert_Haze_TryScoreMinus3
+    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE, 4, TrainerAI_Expert_Haze_TryScoreMinus3
+    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 4, TrainerAI_Expert_Haze_TryScoreMinus3
+    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_DEFENSE, 4, TrainerAI_Expert_Haze_TryScoreMinus3
+    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_ACCURACY, 4, TrainerAI_Expert_Haze_TryScoreMinus3
+    GoTo TrainerAI_Expert_Haze_CheckToEncourage
 
-_03955:
-    IfRandomLessThan 50, _03960
+TrainerAI_Expert_Haze_TryScoreMinus3:
+    IfRandomLessThan 50, TrainerAI_Expert_Haze_CheckToEncourage
     AddToMoveScore -3
 
-_03960:
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 8, _04017
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE, 8, _04017
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 8, _04017
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_DEFENSE, 8, _04017
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 8, _04017
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 4, _04017
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 4, _04017
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 4, _04017
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 4, _04017
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 4, _04017
-    IfRandomLessThan 50, _04022
+TrainerAI_Expert_Haze_CheckToEncourage:
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 8, TrainerAI_Expert_Haze_TryScorePlus3
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE, 8, TrainerAI_Expert_Haze_TryScorePlus3
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 8, TrainerAI_Expert_Haze_TryScorePlus3
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_DEFENSE, 8, TrainerAI_Expert_Haze_TryScorePlus3
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 8, TrainerAI_Expert_Haze_TryScorePlus3
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 4, TrainerAI_Expert_Haze_TryScorePlus3
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 4, TrainerAI_Expert_Haze_TryScorePlus3
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 4, TrainerAI_Expert_Haze_TryScorePlus3
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 4, TrainerAI_Expert_Haze_TryScorePlus3
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 4, TrainerAI_Expert_Haze_TryScorePlus3
+    IfRandomLessThan 50, TrainerAI_Expert_Haze_End
     AddToMoveScore -1
-    GoTo _04022
+    GoTo TrainerAI_Expert_Haze_End
 
-_04017:
-    IfRandomLessThan 50, _04022
+TrainerAI_Expert_Haze_TryScorePlus3:
+    IfRandomLessThan 50, TrainerAI_Expert_Haze_End
     AddToMoveScore 3
 
-_04022:
+TrainerAI_Expert_Haze_End:
     PopOrEnd 
 
-_04023:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 90, _04029
+TrainerAI_Expert_Bide:
+    ; If the attacker's HP is <= 90%, score -2.
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 90, TrainerAI_Expert_Bide_End
     AddToMoveScore -2
 
-_04029:
+TrainerAI_Expert_Bide_End:
     PopOrEnd 
 
-_04030:
+TrainerAI_Expert_ForceSwitch:
+    ; If the target has been in battle for longer than more than 3 turns, 75% chance of score +2.
+    ;
+    ; If the target's side of the field has Spikes, Stealth Rock, or Toxic Spikes set, 50% chance of
+    ; score +2.
+    ;
+    ; If the target has a stat stage of +3 or higher in any of the following stats, 50% chance of
+    ; score +2:
+    ; - Attack
+    ; - Defense
+    ; - SpAttack
+    ; - SpDefense
+    ; - Evasion
+    ;
+    ; Otherwise, score -3.
     LoadBattlerTurnCount AI_BATTLER_DEFENDER
-    IfLoadedGreaterThan 3, _04076
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SPIKES, _04081
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_STEALTH_ROCK, _04081
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_TOXIC_SPIKES, _04081
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 8, _04081
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE, 8, _04081
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 8, _04081
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_DEFENSE, 8, _04081
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 8, _04081
+    IfLoadedGreaterThan 3, TrainerAI_Expert_ForceSwitch_75PercentScorePlus2
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SPIKES, TrainerAI_Expert_ForceSwitch_50PercentScorePlus2
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_STEALTH_ROCK, TrainerAI_Expert_ForceSwitch_50PercentScorePlus2
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_TOXIC_SPIKES, TrainerAI_Expert_ForceSwitch_50PercentScorePlus2
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 8, TrainerAI_Expert_ForceSwitch_50PercentScorePlus2
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE, 8, TrainerAI_Expert_ForceSwitch_50PercentScorePlus2
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 8, TrainerAI_Expert_ForceSwitch_50PercentScorePlus2
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_DEFENSE, 8, TrainerAI_Expert_ForceSwitch_50PercentScorePlus2
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 8, TrainerAI_Expert_ForceSwitch_50PercentScorePlus2
     AddToMoveScore -3
-    GoTo _04086
+    GoTo TrainerAI_Expert_ForceSwitch_End
 
-_04076:
-    IfRandomLessThan 64, _04081
+TrainerAI_Expert_ForceSwitch_75PercentScorePlus2:
+    IfRandomLessThan 64, TrainerAI_Expert_ForceSwitch_50PercentScorePlus2
     AddToMoveScore 2
 
-_04081:
-    IfRandomLessThan 128, _04086
+TrainerAI_Expert_ForceSwitch_50PercentScorePlus2:
+    IfRandomLessThan 128, TrainerAI_Expert_ForceSwitch_End
     AddToMoveScore 2
 
-_04086:
+TrainerAI_Expert_ForceSwitch_End:
     PopOrEnd 
 
-_04087:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 90, _04093
+TrainerAI_Expert_Conversion:
+    ; If the attacker's HP is <= 90%, additional score -2.
+    ;
+    ; If it is NOT the first global turn of the battle, ~78.1% chance of score -2.
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 90, TrainerAI_Expert_Conversion_CheckTurnCount
     AddToMoveScore -2
 
-_04093:
+TrainerAI_Expert_Conversion_CheckTurnCount:
     LoadTurnCount 
-    IfLoadedEqualTo 0, _04100
+    IfLoadedEqualTo 0, TrainerAI_Expert_Conversion_End
     IfRandomLessThan 200, TrainerAI_ScoreMinus2
 
-_04100:
+TrainerAI_Expert_Conversion_End:
     PopOrEnd 
 
-_04101:
+TrainerAI_Expert_Synthesis:
+    ; Treat Synthesis-type effects like any other recovery move, but additional score -2 if the
+    ; weather is Hail, Rain, or Sand.
     LoadCurrentWeather 
-    IfLoadedEqualTo AI_WEATHER_HAILING, _04113
-    IfLoadedEqualTo AI_WEATHER_RAINING, _04113
-    IfLoadedEqualTo AI_WEATHER_SANDSTORM, _04113
-    GoTo _04115
+    IfLoadedEqualTo AI_WEATHER_HAILING, TrainerAI_Expert_Synthesis_ScoreMinus2
+    IfLoadedEqualTo AI_WEATHER_RAINING, TrainerAI_Expert_Synthesis_ScoreMinus2
+    IfLoadedEqualTo AI_WEATHER_SANDSTORM, TrainerAI_Expert_Synthesis_ScoreMinus2
+    GoTo TrainerAI_Expert_Recovery
 
-_04113:
+TrainerAI_Expert_Synthesis_ScoreMinus2:
     AddToMoveScore -2
 
-_04115:
-    IfHPPercentEqualTo AI_BATTLER_ATTACKER, 100, _04137
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _04141
+TrainerAI_Expert_Recovery:
+    ; If the attacker is at full HP, score -3 and terminate.
+    ;
+    ; If the attacker is faster than its opponent, score -8 and terminate.
+    ;
+    ; If the attacker is at 70% HP or more, ~88.3% chance of score -3 and terminate.
+    ;
+    ; If the opponent does not know Snatch, ~92.2% chance of score +2.
+    ; If the opponent does know Snatch, ~56.2% chance of score +2.
+    IfHPPercentEqualTo AI_BATTLER_ATTACKER, 100, TrainerAI_Expert_Recovery_ScoreMinus3AndEnd
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_Recovery_CheckHP
     AddToMoveScore -8
-    GoTo _04164
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 50, _04152
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 80, _04137
-    IfRandomLessThan 70, _04152
+    GoTo TrainerAI_Expert_Recovery_End
 
-_04137:
+TrainerAI_Expert_Recovery_Unused:
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 50, TrainerAI_Expert_Recovery_CheckForSnatch
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 80, TrainerAI_Expert_Recovery_ScoreMinus3AndEnd
+    IfRandomLessThan 70, TrainerAI_Expert_Recovery_CheckForSnatch
+
+TrainerAI_Expert_Recovery_ScoreMinus3AndEnd:
     AddToMoveScore -3
-    GoTo _04164
+    GoTo TrainerAI_Expert_Recovery_End
 
-_04141:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 70, _04152
-    IfRandomLessThan 30, _04152
+TrainerAI_Expert_Recovery_CheckHP:
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 70, TrainerAI_Expert_Recovery_CheckForSnatch
+    IfRandomLessThan 30, TrainerAI_Expert_Recovery_CheckForSnatch
     AddToMoveScore -3
-    GoTo _04164
+    GoTo TrainerAI_Expert_Recovery_End
 
-_04152:
-    IfMoveEffectNotKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_STEAL_STATUS_MOVE, _04159
-    IfRandomLessThan 100, _04164
+TrainerAI_Expert_Recovery_CheckForSnatch:
+    IfMoveEffectNotKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_STEAL_STATUS_MOVE, TrainerAI_Expert_Recovery_TryScorePlus2
+    IfRandomLessThan 100, TrainerAI_Expert_Recovery_End
 
-_04159:
-    IfRandomLessThan 20, _04164
+TrainerAI_Expert_Recovery_TryScorePlus2:
+    IfRandomLessThan 20, TrainerAI_Expert_Recovery_End
     AddToMoveScore 2
 
-_04164:
+TrainerAI_Expert_Recovery_End:
     PopOrEnd 
 
-_04165:
-    IfAttackerHasNoDamagingMoves _04185
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, _04176
-    IfRandomLessThan 50, _04176
+TrainerAI_Expert_ToxicLeechSeed:
+    ; If the attacker has at least one damaging move, apply all of the following which apply:
+    ; - If the attacker's HP <= 50%, 80.5% chance of additional score -3.
+    ; - If the defender's HP <= 50%, 80.5% chance of additional score -3.
+    ;
+    ; If the attacker knows a move that either increases its Special Defense by 1 stage or acts as
+    ; Protect, 76.6% chance of score +2. (Note: no such move exists in Vanilla that only raises
+    ; Special Defense by 1 stage.)
+    IfAttackerHasNoDamagingMoves TrainerAI_Expert_ToxicLeechSeed_CheckMoveEffectsKnown
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, TrainerAI_Expert_ToxicLeechSeed_CheckTargetHP
+    IfRandomLessThan 50, TrainerAI_Expert_ToxicLeechSeed_CheckTargetHP
     AddToMoveScore -3
 
-_04176:
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 50, _04185
-    IfRandomLessThan 50, _04185
+TrainerAI_Expert_ToxicLeechSeed_CheckTargetHP:
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 50, TrainerAI_Expert_ToxicLeechSeed_CheckMoveEffectsKnown
+    IfRandomLessThan 50, TrainerAI_Expert_ToxicLeechSeed_CheckMoveEffectsKnown
     AddToMoveScore -3
 
-_04185:
-    IfMoveEffectKnown AI_BATTLER_ATTACKER, BATTLE_EFFECT_SP_DEF_UP, _04195
-    IfMoveEffectKnown AI_BATTLER_ATTACKER, BATTLE_EFFECT_PROTECT, _04195
-    GoTo _04200
+TrainerAI_Expert_ToxicLeechSeed_CheckMoveEffectsKnown:
+    IfMoveEffectKnown AI_BATTLER_ATTACKER, BATTLE_EFFECT_SP_DEF_UP, TrainerAI_Expert_ToxicLeechSeed_TryScorePlus2
+    IfMoveEffectKnown AI_BATTLER_ATTACKER, BATTLE_EFFECT_PROTECT, TrainerAI_Expert_ToxicLeechSeed_TryScorePlus2
+    GoTo TrainerAI_Expert_ToxicLeechSeed_End
 
-_04195:
-    IfRandomLessThan 60, _04200
+TrainerAI_Expert_ToxicLeechSeed_TryScorePlus2:
+    IfRandomLessThan 60, TrainerAI_Expert_ToxicLeechSeed_End
     AddToMoveScore 2
 
-_04200:
+TrainerAI_Expert_ToxicLeechSeed_End:
     PopOrEnd 
 
-_04201:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 50, _04225
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 90, _04214
-    IfRandomLessThan 128, _04214
+TrainerAI_Expert_LightScreen:
+    ; If the attacker's HP is < 50%, score -2.
+    ;
+    ; If the attacker's HP is >= 90%, 50% of additional score +1.
+    ;
+    ; If the opponent's last-used move was a Special move, 75% chance of score +1.
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 50, TrainerAI_Expert_LightScreen_ScoreMinus2
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 90, TrainerAI_Expert_LightScreen_CheckLastUsedMove
+    IfRandomLessThan 128, TrainerAI_Expert_LightScreen_CheckLastUsedMove
     AddToMoveScore 1
 
-_04214:
+TrainerAI_Expert_LightScreen_CheckLastUsedMove:
     LoadDefenderLastUsedMoveClass 
-    IfLoadedNotEqualTo CLASS_SPECIAL, _04227
-    IfRandomLessThan 64, _04227
+    IfLoadedNotEqualTo CLASS_SPECIAL, TrainerAI_Expert_LightScreen_End
+    IfRandomLessThan 64, TrainerAI_Expert_LightScreen_End
     AddToMoveScore 1
-    GoTo _04227
+    GoTo TrainerAI_Expert_LightScreen_End
 
-_04225:
+TrainerAI_Expert_LightScreen_ScoreMinus2:
     AddToMoveScore -2
 
-_04227:
+TrainerAI_Expert_LightScreen_End:
     PopOrEnd 
 
-_04228:
+TrainerAI_Expert_LightScreen_PreSplitSpecialTypes:
     TableEntry TYPE_FIRE
     TableEntry TYPE_WATER
     TableEntry TYPE_GRASS
@@ -2544,139 +2746,179 @@ _04228:
     TableEntry TYPE_DARK
     TableEntry TABLE_END
 
-_04237:
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _04263
-    IfHPPercentNotEqualTo AI_BATTLER_ATTACKER, 100, _04248
+TrainerAI_Expert_Rest:
+    ; If the attacker is faster than its target:
+    ; - If the attacker is at full HP, 60.9% chance of score -8 and terminate.
+    ; - If the attacker's HP is > 50%, score -3 and terminate.
+    ; - If the attacker's HP is >= 40%, 72.7% chance of score -3 and terminate.
+    ;
+    ; If the attacker is slower than its target:
+    ; - If the attacker's HP > 70%, score -3 and terminate.
+    ; - If the attacker's HP >= 60%, 80.5% chance of score -3 and terminate.
+    ;
+    ; If the opponent does not know Snatch, 96.1% chance of score +3.
+    ;
+    ; If the opponent knows Snatch, 77.3% chance of score +3.
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_Rest_SlowerCheckHP
+    IfHPPercentNotEqualTo AI_BATTLER_ATTACKER, 100, TrainerAI_Expert_Rest_FasterCheckHP
     AddToMoveScore -8
-    GoTo _04290
+    GoTo TrainerAI_Expert_Rest_End
 
-_04248:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 40, _04278
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, _04259
-    IfRandomLessThan 70, _04278
+TrainerAI_Expert_Rest_FasterCheckHP:
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 40, TrainerAI_Expert_Rest_CheckForSnatch
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, TrainerAI_Expert_Rest_FasterScoreMinus3
+    IfRandomLessThan 70, TrainerAI_Expert_Rest_CheckForSnatch
 
-_04259:
+TrainerAI_Expert_Rest_FasterScoreMinus3:
     AddToMoveScore -3
-    GoTo _04290
+    GoTo TrainerAI_Expert_Rest_End
 
-_04263:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 60, _04278
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 70, _04274
-    IfRandomLessThan 50, _04278
+TrainerAI_Expert_Rest_SlowerCheckHP:
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 60, TrainerAI_Expert_Rest_CheckForSnatch
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 70, TrainerAI_Expert_Rest_SlowerScoreMinus3
+    IfRandomLessThan 50, TrainerAI_Expert_Rest_CheckForSnatch
 
-_04274:
+TrainerAI_Expert_Rest_SlowerScoreMinus3:
     AddToMoveScore -3
-    GoTo _04290
+    GoTo TrainerAI_Expert_Rest_End
 
-_04278:
-    IfMoveEffectNotKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_STEAL_STATUS_MOVE, _04285
-    IfRandomLessThan 50, _04290
+TrainerAI_Expert_Rest_CheckForSnatch:
+    IfMoveEffectNotKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_STEAL_STATUS_MOVE, TrainerAI_Expert_Rest_TryScorePlus3
+    IfRandomLessThan 50, TrainerAI_Expert_Rest_End
 
-_04285:
-    IfRandomLessThan 10, _04290
+TrainerAI_Expert_Rest_TryScorePlus3:
+    IfRandomLessThan 10, TrainerAI_Expert_Rest_End
     AddToMoveScore 3
 
-_04290:
+TrainerAI_Expert_Rest_End:
     PopOrEnd 
 
-_04291:
-    IfRandomLessThan 192, _04296
+TrainerAI_Expert_OHKOMove:
+    ; 25% chance of score +1.
+    IfRandomLessThan 192, TrainerAI_Expert_OHKOMove_End
     AddToMoveScore 1
 
-_04296:
+TrainerAI_Expert_OHKOMove_End:
     PopOrEnd 
 
-_04297:
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 50, _04303
+TrainerAI_Expert_SuperFang:
+    ; If the target is at 50% HP or less, score -1.
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 50, TrainerAI_Expert_SuperFang_End
     AddToMoveScore -1
 
-_04303:
+TrainerAI_Expert_SuperFang_End:
     PopOrEnd 
 
-_04304:
-    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_TOXIC, _04322
-    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_CURSE, _04322
-    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_PERISH_SONG, _04322
-    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_ATTRACT, _04322
-    GoTo _04327
+TrainerAI_Expert_BindingMove:
+    ; If the target is under any of the following conditions or effects, 50% chance of score +1:
+    ; - Toxic
+    ; - Curse
+    ; - Perish Song
+    ; - Attract
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_TOXIC, TrainerAI_Expert_BindingMove_TryScorePlus1
+    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_CURSE, TrainerAI_Expert_BindingMove_TryScorePlus1
+    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_PERISH_SONG, TrainerAI_Expert_BindingMove_TryScorePlus1
+    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_ATTRACT, TrainerAI_Expert_BindingMove_TryScorePlus1
+    GoTo TrainerAI_Expert_BindingMove_End
 
-_04322:
-    IfRandomLessThan 128, _04327
+TrainerAI_Expert_BindingMove_TryScorePlus1:
+    IfRandomLessThan 128, TrainerAI_Expert_BindingMove_End
     AddToMoveScore 1
 
-_04327:
+TrainerAI_Expert_BindingMove_End:
     PopOrEnd 
 
-_04328:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _04351
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _04351
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _04351
-    IfMoveEffectivenessEquals TYPE_MULTI_DOUBLE_DAMAGE, _04346
-    IfMoveEffectivenessEquals TYPE_MULTI_QUADRUPLE_DAMAGE, _04346
-    IfRandomLessThan 128, _04351
+TrainerAI_Expert_HighCritical:
+    ; If the move is super-effective against the target, 50% chance of score +1.
+    ;
+    ; If the move would deal normal damage against the target, 25% chance of score +1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_HighCritical_End
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_HighCritical_End
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_HighCritical_End
+    IfMoveEffectivenessEquals TYPE_MULTI_DOUBLE_DAMAGE, TrainerAI_Expert_HighCritical_TryScorePlus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUADRUPLE_DAMAGE, TrainerAI_Expert_HighCritical_TryScorePlus1
+    IfRandomLessThan 128, TrainerAI_Expert_HighCritical_End
 
-_04346:
-    IfRandomLessThan 128, _04351
+TrainerAI_Expert_HighCritical_TryScorePlus1:
+    IfRandomLessThan 128, TrainerAI_Expert_HighCritical_End
     AddToMoveScore 1
 
-_04351:
+TrainerAI_Expert_HighCritical_End:
     PopOrEnd 
 
-_04352:
-    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_PSYCH_UP, _04383
+TrainerAI_Expert_Swagger:
+    ; If the attacker knows Psych Up:
+    ; - If the target's attack stat is -3 or higher, score -5 and terminate.
+    ; - If it is the first turn of the battle, score +5.
+    ; - Otherwise, score +3.
+    ;
+    ; Otherwise, act identically to Flatter.
+    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_PSYCH_UP, TrainerAI_Expert_Swagger_PsychUp
 
-_04356:
-    IfRandomLessThan 128, _04361
+TrainerAI_Expert_Flatter:
+    ; 50% chance of additional score +1.
+    ;
+    ; Otherwise, act identically to any other Confusion-inducing Status move.
+    IfRandomLessThan 128, TrainerAI_Expert_StatusConfuse
     AddToMoveScore 1
 
-_04361:
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, _04382
-    IfRandomLessThan 128, _04370
+TrainerAI_Expert_StatusConfuse:
+    ; If the target's HP is <= 70%, 50% chance of additional score -1.
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, TrainerAI_Expert_StatusConfuse_End
+    IfRandomLessThan 128, TrainerAI_Expert_StatusConfuse_CheckHP
     AddToMoveScore -1
 
-_04370:
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 50, _04382
+TrainerAI_Expert_StatusConfuse_CheckHP:
+    ; If the target's HP is <= 50%, additional score -1.
+    ;
+    ; If the target's HP is also <= 30%, additional score -1.
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 50, TrainerAI_Expert_StatusConfuse_End
     AddToMoveScore -1
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 30, _04382
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 30, TrainerAI_Expert_StatusConfuse_End
     AddToMoveScore -1
 
-_04382:
+TrainerAI_Expert_StatusConfuse_End:
     PopOrEnd 
 
-_04383:
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 3, _04398
+TrainerAI_Expert_Swagger_PsychUp:
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 3, TrainerAI_Expert_Swagger_ScoreMinus5
     AddToMoveScore 3
     LoadTurnCount 
-    IfLoadedNotEqualTo 0, _04400
+    IfLoadedNotEqualTo 0, TrainerAI_Expert_Swagger_End
     AddToMoveScore 2
-    GoTo _04400
+    GoTo TrainerAI_Expert_Swagger_End
 
-_04398:
+TrainerAI_Expert_Swagger_ScoreMinus5:
     AddToMoveScore -5
 
-_04400:
+TrainerAI_Expert_Swagger_End:
     PopOrEnd 
 
-_04401:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 50, _04425
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 90, _04414
-    IfRandomLessThan 128, _04414
+TrainerAI_Expert_Reflect:
+    ; If the attacker's HP is < 50%, score -2.
+    ;
+    ; If the attacker's HP is >= 90%, 50% of additional score +1.
+    ;
+    ; If the opponent's last-used move was a Physical move, 75% chance of score +1.
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 50, TrainerAI_Expert_Reflect_ScoreMinus2
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 90, TrainerAI_Expert_Reflect_CheckLastUsedMove
+    IfRandomLessThan 128, TrainerAI_Expert_Reflect_CheckLastUsedMove
     AddToMoveScore 1
 
-_04414:
+TrainerAI_Expert_Reflect_CheckLastUsedMove:
     LoadDefenderLastUsedMoveClass 
-    IfLoadedNotEqualTo CLASS_PHYSICAL, _04427
-    IfRandomLessThan 64, _04427
+    IfLoadedNotEqualTo CLASS_PHYSICAL, TrainerAI_Expert_Reflect_End
+    IfRandomLessThan 64, TrainerAI_Expert_Reflect_End
     AddToMoveScore 1
-    GoTo _04427
+    GoTo TrainerAI_Expert_Reflect_End
 
-_04425:
+TrainerAI_Expert_Reflect_ScoreMinus2:
     AddToMoveScore -2
 
-_04427:
+TrainerAI_Expert_Reflect_End:
     PopOrEnd 
 
-_04428:
+TrainerAI_Expert_Reflect_PreSplitPhysicalTypes:
     TableEntry TYPE_NORMAL
     TableEntry TYPE_FIGHTING
     TableEntry TYPE_FLYING
@@ -2688,187 +2930,243 @@ _04428:
     TableEntry TYPE_STEEL
     TableEntry TABLE_END
 
-_04438:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 50, _04446
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 50, _04448
+TrainerAI_Expert_StatusPoison:
+    ; If the attacker's HP is < 50% or the defender's HP is <= 50%, score -1.
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 50, TrainerAI_Expert_StatusPoison_ScoreMinus1
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 50, TrainerAI_Expert_StatusPoison_End
 
-_04446:
+TrainerAI_Expert_StatusPoison_ScoreMinus1:
     AddToMoveScore -1
 
-_04448:
+TrainerAI_Expert_StatusPoison_End:
     PopOrEnd 
 
-_04449:
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _04460
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 70, _04465
+TrainerAI_Expert_StatusParalyze:
+    ; If the attacker is slower than its target, 92.2% chance of score +3.
+    ;
+    ; If the attacker's HP is <= 70%, score -1.
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_StatusParalyze_TryScorePlus3
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 70, TrainerAI_Expert_StatusParalyze_End
     AddToMoveScore -1
-    GoTo _04465
+    GoTo TrainerAI_Expert_StatusParalyze_End
 
-_04460:
-    IfRandomLessThan 20, _04465
+TrainerAI_Expert_StatusParalyze_TryScorePlus3:
+    IfRandomLessThan 20, TrainerAI_Expert_StatusParalyze_End
     AddToMoveScore 3
 
-_04465:
+TrainerAI_Expert_StatusParalyze_End:
     PopOrEnd 
 
-_04466:
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _04485
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 60, _04485
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 40, _04480
-    IfRandomLessThan 180, _04485
+TrainerAI_Expert_VitalThrow:
+    ; If the attacker is slower than its target, no change.
+    ;
+    ; If the attacker's HP > 60%, no change.
+    ;
+    ; If the attacker's HP < 40%, 80.5% chance of score -1.
+    ;
+    ; Otherwise, 23.9% chance of score -1.
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_VitalThrow_End
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 60, TrainerAI_Expert_VitalThrow_End
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 40, TrainerAI_Expert_VitalThrow_TryScoreMinus1
+    IfRandomLessThan 180, TrainerAI_Expert_VitalThrow_End
 
-_04480:
-    IfRandomLessThan 50, _04485
+TrainerAI_Expert_VitalThrow_TryScoreMinus1:
+    IfRandomLessThan 50, TrainerAI_Expert_VitalThrow_End
     AddToMoveScore -1
 
-_04485:
+TrainerAI_Expert_VitalThrow_End:
     PopOrEnd 
 
-_04486:
-    IfMoveNotKnown AI_BATTLER_ATTACKER, MOVE_FOCUS_PUNCH, _04495
-    IfRandomLessThan 96, _04495
+TrainerAI_Expert_Substitute:
+    ; If the attacker knows specifically Focus Punch, 62.5% chance of additional score +1.
+    ;
+    ; If the attacker's HP <= 90%, roll for a 60.9% chance of additional score -1 a number of times
+    ; corresponding to the attacker's HP:
+    ; - > 70%: roll once
+    ; - > 50%: roll twice
+    ; - <= 50%: roll thrice
+    ; These rolls are cumulative; e.g., an attacker at 53% HP can receive additional score -2.
+    ;
+    ; If the attacker is faster than its opponent, consider the move that the opponent last used:
+    ; - If it was a Status move that induces a non-volatile status condition and the opponent is
+    ; currently Asleep, Poisoned, Paralyzed, Burned, or Frozen, 60.9% chance of score +1.
+    ; - If it was a Status move that induces Confusion and the opponent is currently Confused, 60.9%
+    ; chance of score +1.
+    ; - If it was Leech Seed and the opponent is currently Seeded, 60.9% chance of score +1.
+    ;
+    ; Otherwise, no further score modifications.
+    IfMoveNotKnown AI_BATTLER_ATTACKER, MOVE_FOCUS_PUNCH, TrainerAI_Expert_Substitute_CheckUserHP
+    IfRandomLessThan 96, TrainerAI_Expert_Substitute_CheckUserHP
     AddToMoveScore 1
 
-_04495:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 90, _04522
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 70, _04517
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, _04512
-    IfRandomLessThan 100, _04512
+TrainerAI_Expert_Substitute_CheckUserHP:
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 90, TrainerAI_Expert_Substitute_CheckTargetLastMove
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 70, TrainerAI_Expert_Substitute_TryScoreMinus1_FinalRound
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, TrainerAI_Expert_Substitute_TryScoreMinus1_SecondRound
+    IfRandomLessThan 100, TrainerAI_Expert_Substitute_TryScoreMinus1_SecondRound
     AddToMoveScore -1
 
-_04512:
-    IfRandomLessThan 100, _04517
+TrainerAI_Expert_Substitute_TryScoreMinus1_SecondRound:
+    IfRandomLessThan 100, TrainerAI_Expert_Substitute_TryScoreMinus1_FinalRound
     AddToMoveScore -1
 
-_04517:
-    IfRandomLessThan 100, _04522
+TrainerAI_Expert_Substitute_TryScoreMinus1_FinalRound:
+    IfRandomLessThan 100, TrainerAI_Expert_Substitute_CheckTargetLastMove
     AddToMoveScore -1
 
-_04522:
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _04572
+TrainerAI_Expert_Substitute_CheckTargetLastMove:
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_Substitute_End
     LoadBattlerPreviousMove AI_BATTLER_DEFENDER
     LoadEffectOfLoadedMove 
-    IfLoadedEqualTo BATTLE_EFFECT_STATUS_SLEEP, _04551
-    IfLoadedEqualTo BATTLE_EFFECT_STATUS_BADLY_POISON, _04551
-    IfLoadedEqualTo BATTLE_EFFECT_STATUS_POISON, _04551
-    IfLoadedEqualTo BATTLE_EFFECT_STATUS_PARALYZE, _04551
-    IfLoadedEqualTo BATTLE_EFFECT_STATUS_BURN, _04551
-    IfLoadedEqualTo BATTLE_EFFECT_STATUS_CONFUSE, _04557
-    IfLoadedEqualTo BATTLE_EFFECT_STATUS_LEECH_SEED, _04563
-    GoTo _04572
+    IfLoadedEqualTo BATTLE_EFFECT_STATUS_SLEEP, TrainerAI_Expert_Substitute_CheckTargetStatus
+    IfLoadedEqualTo BATTLE_EFFECT_STATUS_BADLY_POISON, TrainerAI_Expert_Substitute_CheckTargetStatus
+    IfLoadedEqualTo BATTLE_EFFECT_STATUS_POISON, TrainerAI_Expert_Substitute_CheckTargetStatus
+    IfLoadedEqualTo BATTLE_EFFECT_STATUS_PARALYZE, TrainerAI_Expert_Substitute_CheckTargetStatus
+    IfLoadedEqualTo BATTLE_EFFECT_STATUS_BURN, TrainerAI_Expert_Substitute_CheckTargetStatus
+    IfLoadedEqualTo BATTLE_EFFECT_STATUS_CONFUSE, TrainerAI_Expert_Substitute_CheckTargetConfused
+    IfLoadedEqualTo BATTLE_EFFECT_STATUS_LEECH_SEED, TrainerAI_Expert_Substitute_CheckTargetSeeded
+    GoTo TrainerAI_Expert_Substitute_End
 
-_04551:
-    IfNotStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, _04567
-    GoTo _04572
+TrainerAI_Expert_Substitute_CheckTargetStatus:
+    IfNotStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, TrainerAI_Expert_Substitute_TryScorePlus1
+    GoTo TrainerAI_Expert_Substitute_End
 
-_04557:
-    IfNotVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_CONFUSION, _04567
-    GoTo _04572
+TrainerAI_Expert_Substitute_CheckTargetConfused:
+    IfNotVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_CONFUSION, TrainerAI_Expert_Substitute_TryScorePlus1
+    GoTo TrainerAI_Expert_Substitute_End
 
-_04563:
-    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_LEECH_SEED, _04572
+TrainerAI_Expert_Substitute_CheckTargetSeeded:
+    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_LEECH_SEED, TrainerAI_Expert_Substitute_End
 
-_04567:
-    IfRandomLessThan 100, _04572
+TrainerAI_Expert_Substitute_TryScorePlus1:
+    IfRandomLessThan 100, TrainerAI_Expert_Substitute_End
     AddToMoveScore 1
 
-_04572:
+TrainerAI_Expert_Substitute_End:
     PopOrEnd 
 
-_04573:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _04607
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _04607
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _04607
+TrainerAI_Expert_RechargeTurn:
+    ; If the opponent would resist or is immune to the move, score -1.
+    ;
+    ; If the attacker's ability is Truant, 68.75% chance of score +1.
+    ;
+    ; If the attacker is slower than the opponent and the attacker's HP is >= 60%, score -1.
+    ;
+    ; If the attacker is faster than the opponent and the attacker's HP is > 40%, score -1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_RechargeTurn_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_RechargeTurn_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_RechargeTurn_ScoreMinus1
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_TRUANT, _04596
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _04603
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 40, _04607
-    GoTo _04609
+    IfLoadedEqualTo ABILITY_TRUANT, TrainerAI_Expert_RechargeTurn_TryScorePlus1
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_RechargeTurn_CheckUserHP
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 40, TrainerAI_Expert_RechargeTurn_ScoreMinus1
+    GoTo TrainerAI_Expert_RechargeTurn_End
 
-_04596:
-    IfRandomLessThan 80, _04609
+TrainerAI_Expert_RechargeTurn_TryScorePlus1:
+    IfRandomLessThan 80, TrainerAI_Expert_RechargeTurn_End
     AddToMoveScore 1
-    GoTo _04609
+    GoTo TrainerAI_Expert_RechargeTurn_End
 
-_04603:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 60, _04609
+TrainerAI_Expert_RechargeTurn_CheckUserHP:
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 60, TrainerAI_Expert_RechargeTurn_End
 
-_04607:
+TrainerAI_Expert_RechargeTurn_ScoreMinus1:
     AddToMoveScore -1
 
-_04609:
+TrainerAI_Expert_RechargeTurn_End:
     PopOrEnd 
 
-_04610:
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _04628
+TrainerAI_Expert_Disable:
+    ; If the attacker is slower than the opponent, score +0 and terminate.
+    ;
+    ; If the opponent's last-used move was a Status move, 60.9% chance of score -1.
+    ;
+    ; If the opponent's last-used move was a Damaging move, score +1.
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_Disable_End
     LoadBattlerPreviousMove AI_BATTLER_DEFENDER
     LoadPowerOfLoadedMove 
-    IfLoadedEqualTo 0, _04623
+    IfLoadedEqualTo 0, TrainerAI_Expert_Disable_TryScoreMinus1
     AddToMoveScore 1
-    GoTo _04628
+    GoTo TrainerAI_Expert_Disable_End
 
-_04623:
-    IfRandomLessThan 100, _04628
+TrainerAI_Expert_Disable_TryScoreMinus1:
+    IfRandomLessThan 100, TrainerAI_Expert_Disable_End
     AddToMoveScore -1
 
-_04628:
+TrainerAI_Expert_Disable_End:
     PopOrEnd 
 
-_04629:
-    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_SLEEP, _04713
-    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_ATTRACT, _04713
-    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_CONFUSION, _04713
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 30, _04650
-    IfRandomLessThan 10, _04650
+TrainerAI_Expert_Counter:
+    ; If the opponent is asleep, confused, or infatuated, score -1 and terminate.
+    ;
+    ; If the attacker's HP <= 30%, 96.1% chance of additional score -1.
+    ;
+    ; If the attacker's HP <= 50%, 60.9% chance of additional score -1. (This stacks with the above condition.)
+    ;
+    ; If the attacker knows specifically Mirror Coat, 60.9% chance of score +4.
+    ;
+    ; If the opponent's last-used move was a Status move:
+    ; - If the opponent is Taunted, 60.9% chance of additional score +1.
+    ; - If the opponent does NOT have a type which is considered a Physical type, 49% chance of score +4.
+    ;
+    ; If the opponent's last-used move was a Damaging move:
+    ; - If the opponent is Taunted, 60.9% chance of additional score +1.
+    ; - If the last-used move was a Special move, score -1.
+    ; - If the last-used move was a Physical move, 60.9% chance of score +1.
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_SLEEP, TrainerAI_Expert_Counter_ScoreMinus1
+    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_ATTRACT, TrainerAI_Expert_Counter_ScoreMinus1
+    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_CONFUSION, TrainerAI_Expert_Counter_ScoreMinus1
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 30, TrainerAI_Expert_Counter_CheckAboveHalfHP
+    IfRandomLessThan 10, TrainerAI_Expert_Counter_CheckAboveHalfHP
     AddToMoveScore -1
 
-_04650:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, _04659
-    IfRandomLessThan 100, _04659
+TrainerAI_Expert_Counter_CheckAboveHalfHP:
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, TrainerAI_Expert_Counter_CheckLastUsedMove
+    IfRandomLessThan 100, TrainerAI_Expert_Counter_CheckLastUsedMove
     AddToMoveScore -1
 
-_04659:
-    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_MIRROR_COAT, _04707
+TrainerAI_Expert_Counter_CheckLastUsedMove:
+    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_MIRROR_COAT, TrainerAI_Expert_Counter_TryScorePlus4
     LoadBattlerPreviousMove AI_BATTLER_DEFENDER
     LoadPowerOfLoadedMove 
-    IfLoadedEqualTo 0, _04687
-    IfTargetIsNotTaunted _04676
-    IfRandomLessThan 100, _04676
+    IfLoadedEqualTo 0, TrainerAI_Expert_Counter_TryScorePlus1
+    IfTargetIsNotTaunted TrainerAI_Expert_Counter_CheckPhysicalMove
+    IfRandomLessThan 100, TrainerAI_Expert_Counter_CheckPhysicalMove
     AddToMoveScore 1
 
-_04676:
+TrainerAI_Expert_Counter_CheckPhysicalMove:
     LoadDefenderLastUsedMoveClass 
-    IfLoadedNotEqualTo CLASS_PHYSICAL, _04713
-    IfRandomLessThan 100, _04715
+    IfLoadedNotEqualTo CLASS_PHYSICAL, TrainerAI_Expert_Counter_ScoreMinus1
+    IfRandomLessThan 100, TrainerAI_Expert_Counter_End2
     AddToMoveScore 1
-    GoTo _04715
+    GoTo TrainerAI_Expert_Counter_End2
 
-_04687:
-    IfTargetIsNotTaunted _04694
-    IfRandomLessThan 100, _04694
+TrainerAI_Expert_Counter_TryScorePlus1:
+    IfTargetIsNotTaunted TrainerAI_Expert_Counter_CheckOpponentTypes
+    IfRandomLessThan 100, TrainerAI_Expert_Counter_CheckOpponentTypes
     AddToMoveScore 1
 
-_04694:
+TrainerAI_Expert_Counter_CheckOpponentTypes:
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
-    IfLoadedInTable _04716, _04715
+    IfLoadedInTable TrainerAI_Expert_Counter_PhysicalTypes, TrainerAI_Expert_Counter_End2
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
-    IfLoadedInTable _04716, _04715
-    IfRandomLessThan 50, _04715
+    IfLoadedInTable TrainerAI_Expert_Counter_PhysicalTypes, TrainerAI_Expert_Counter_End2
+    IfRandomLessThan 50, TrainerAI_Expert_Counter_End2
 
-_04707:
-    IfRandomLessThan 100, _04712
+TrainerAI_Expert_Counter_TryScorePlus4:
+    IfRandomLessThan 100, TrainerAI_Expert_Counter_End
     AddToMoveScore 4
 
-_04712:
+TrainerAI_Expert_Counter_End:
     PopOrEnd 
 
-_04713:
+TrainerAI_Expert_Counter_ScoreMinus1:
     AddToMoveScore -1
 
-_04715:
+TrainerAI_Expert_Counter_End2:
     PopOrEnd 
 
-_04716:
+TrainerAI_Expert_Counter_PhysicalTypes:
     TableEntry TYPE_NORMAL
     TableEntry TYPE_FIGHTING
     TableEntry TYPE_FLYING
@@ -2880,25 +3178,32 @@ _04716:
     TableEntry TYPE_STEEL
     TableEntry TABLE_END
 
-_04726:
-    IfBattlerUnderEffect AI_BATTLER_DEFENDER, CHECK_DISABLE, _04739
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _04746
+TrainerAI_Expert_Encore:
+    ; If the opponent is Disabled, 88.3% chance of score +3.
+    ;
+    ; If the attacker is slower than the opponent, score -2.
+    ;
+    ; If the opponent's last-used move is not one of a specific set of effects, score -2.
+    ;
+    ; Otherwise, 88.3% chance of score +3.
+    IfBattlerUnderEffect AI_BATTLER_DEFENDER, CHECK_DISABLE, TrainerAI_Expert_Encore_TryScorePlus3
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_Encore_ScoreMinus2
     LoadBattlerPreviousMove AI_BATTLER_DEFENDER
     LoadEffectOfLoadedMove 
-    IfLoadedNotInTable _04749, _04746
+    IfLoadedNotInTable TrainerAI_Expert_Encore_EncouragedMoveEffects, TrainerAI_Expert_Encore_ScoreMinus2
 
-_04739:
-    IfRandomLessThan 30, _04748
+TrainerAI_Expert_Encore_TryScorePlus3:
+    IfRandomLessThan 30, TrainerAI_Expert_Encore_End
     AddToMoveScore 3
-    GoTo _04748
+    GoTo TrainerAI_Expert_Encore_End
 
-_04746:
+TrainerAI_Expert_Encore_ScoreMinus2:
     AddToMoveScore -2
 
-_04748:
+TrainerAI_Expert_Encore_End:
     PopOrEnd 
 
-_04749:
+TrainerAI_Expert_Encore_EncouragedMoveEffects:
     TableEntry BATTLE_EFFECT_RECOVER_DAMAGE_SLEEP
     TableEntry BATTLE_EFFECT_ATK_UP
     TableEntry BATTLE_EFFECT_DEF_UP
@@ -2983,108 +3288,144 @@ _04749:
     TableEntry BATTLE_EFFECT_TRICK_ROOM
     TableEntry TABLE_END
 
-_04832:
-    IfHPPercentLessThan AI_BATTLER_DEFENDER, 80, _04855
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _04847
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 40, _04855
+TrainerAI_Expert_PainSplit:
+    ; If the opponent's HP < 80%, score -1.
+    ;
+    ; If the attacker is slower than its opponent:
+    ; - If the attacker's HP > 60%, score -1.
+    ; - Otherwise, score +1.
+    ;
+    ; If the attacker's HP > 40%, score -1.
+    ;
+    ; Otherwise, score -1.
+    IfHPPercentLessThan AI_BATTLER_DEFENDER, 80, TrainerAI_Expert_PainSplit_ScoreMinus1
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_PainSplit_CheckUserHP
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 40, TrainerAI_Expert_PainSplit_ScoreMinus1
     AddToMoveScore 1
-    GoTo _04857
+    GoTo TrainerAI_Expert_PainSplit_End
 
-_04847:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 60, _04855
+TrainerAI_Expert_PainSplit_CheckUserHP:
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 60, TrainerAI_Expert_PainSplit_ScoreMinus1
     AddToMoveScore 1
-    GoTo _04857
+    GoTo TrainerAI_Expert_PainSplit_End
 
-_04855:
+TrainerAI_Expert_PainSplit_ScoreMinus1:
     AddToMoveScore -1
 
-_04857:
+TrainerAI_Expert_PainSplit_End:
     PopOrEnd 
 
-_04858:
+TrainerAI_Expert_Nightmare:
+    ; Score +2.
     AddToMoveScore 2
     PopOrEnd 
 
-_04861:
-    IfRandomLessThan 128, _04866
+TrainerAI_Expert_LockOn:
+    ; 50% chance of score +2.
+    IfRandomLessThan 128, TrainerAI_Expert_LockOn_End
     AddToMoveScore 2
 
-_04866:
+TrainerAI_Expert_LockOn_End:
     PopOrEnd 
 
-_04867:
+TrainerAI_Expert_SleepTalk:
+    ; If the attacker is asleep, score +10.
+    ;
+    ; Otherwise, score -5.
     IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_SLEEP, TrainerAI_ScorePlus10
     AddToMoveScore -5
     PopOrEnd 
 
-_04874:
+TrainerAI_Expert_DestinyBond:
+    ; Start at score -1. If the attacker is slower than its opponent, terminate.
+    ;
+    ; If the attacker's HP > 70%, terminate. Otherwise, 50% chance of additional score +1.
+    ;
+    ; If the attacker's HP > 50%, terminate. Otherwise, 50% chance of additional score +1.
+    ;
+    ; If the attacker's HP > 30%, terminate. Otherwise, 60.9% chance of additional score +2.
     AddToMoveScore -1
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _04906
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 70, _04906
-    IfRandomLessThan 128, _04888
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_DestinyBond_End
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 70, TrainerAI_Expert_DestinyBond_End
+    IfRandomLessThan 128, TrainerAI_Expert_DestinyBond_CheckUserMediumHP
     AddToMoveScore 1
 
-_04888:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, _04906
-    IfRandomLessThan 128, _04897
+TrainerAI_Expert_DestinyBond_CheckUserMediumHP:
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, TrainerAI_Expert_DestinyBond_End
+    IfRandomLessThan 128, TrainerAI_Expert_DestinyBond_CheckUserLowHP
     AddToMoveScore 1
 
-_04897:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 30, _04906
-    IfRandomLessThan 100, _04906
+TrainerAI_Expert_DestinyBond_CheckUserLowHP:
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 30, TrainerAI_Expert_DestinyBond_End
+    IfRandomLessThan 100, TrainerAI_Expert_DestinyBond_End
     AddToMoveScore 2
 
-_04906:
+TrainerAI_Expert_DestinyBond_End:
     PopOrEnd 
 
-_04907:
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _04924
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 33, _04943
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 20, _04945
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 8, _04934
-    GoTo _04936
+TrainerAI_Expert_Reversal:
+    ; If the attacker is slower than its opponent:
+    ; - If the attacker's HP > 60%, score -1.
+    ; - If the attacker's HP > 40%, score +0.
+    ; - Otherwise, 60.9% chance of score +1.
+    ;
+    ; If the attacker is faster than its opponent:
+    ; - If the attacker's HP > 33%, score -1.
+    ; - If the attacker's HP > 20%, score +0.
+    ; - If the attacker's HP >= 8%, 60.9% chance of score +1.
+    ; - If the attacker's HP < 8%, 60.9% chance of score +2, 39.1% chance of score +1.
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_Reversal_SlowerCheckHP
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 33, TrainerAI_Expert_Reversal_ScoreMinus1
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 20, TrainerAI_Expert_Reversal_End
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 8, TrainerAI_Expert_Reversal_ScorePlus1
+    GoTo TrainerAI_Expert_Reversal_TryScorePlus1
 
-_04924:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 60, _04943
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 40, _04945
-    GoTo _04936
+TrainerAI_Expert_Reversal_SlowerCheckHP:
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 60, TrainerAI_Expert_Reversal_ScoreMinus1
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 40, TrainerAI_Expert_Reversal_End
+    GoTo TrainerAI_Expert_Reversal_TryScorePlus1
 
-_04934:
+TrainerAI_Expert_Reversal_ScorePlus1:
     AddToMoveScore 1
 
-_04936:
-    IfRandomLessThan 100, _04945
+TrainerAI_Expert_Reversal_TryScorePlus1:
+    IfRandomLessThan 100, TrainerAI_Expert_Reversal_End
     AddToMoveScore 1
-    GoTo _04945
+    GoTo TrainerAI_Expert_Reversal_End
 
-_04943:
+TrainerAI_Expert_Reversal_ScoreMinus1:
     AddToMoveScore -1
 
-_04945:
+TrainerAI_Expert_Reversal_End:
     PopOrEnd 
 
-_04946:
-    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, _04956
-    IfPartyMemberStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, _04956
+TrainerAI_Expert_HealBell:
+    ; If neither the attacker nor any of its party members have a non-volatile status condition,
+    ; score -5.
+    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, TrainerAI_Expert_HealBell_End
+    IfPartyMemberStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, TrainerAI_Expert_HealBell_End
     AddToMoveScore -5
 
-_04956:
+TrainerAI_Expert_HealBell_End:
     PopOrEnd 
 
-_04957:
+TrainerAI_Expert_Thief:
+    ; If the opponent's held item does NOT have one of the encouraged effects, score -2.
+    ;
+    ; Otherwise, 80.5% chance of score +1.
     LoadHeldItemEffect AI_BATTLER_DEFENDER
-    IfLoadedNotInTable _04972, _04969
-    IfRandomLessThan 50, _04971
+    IfLoadedNotInTable TrainerAI_Expert_Thief_EncouragedItemEffects, TrainerAI_Expert_Thief_ScoreMinus2
+    IfRandomLessThan 50, TrainerAI_Expert_Thief_End
     AddToMoveScore 1
-    GoTo _04971
+    GoTo TrainerAI_Expert_Thief_End
 
-_04969:
+TrainerAI_Expert_Thief_ScoreMinus2:
     AddToMoveScore -2
 
-_04971:
+TrainerAI_Expert_Thief_End:
     PopOrEnd 
 
-_04972:
+TrainerAI_Expert_Thief_EncouragedItemEffects:
     TableEntry HOLD_EFFECT_SLP_RESTORE
     TableEntry HOLD_EFFECT_STATUS_RESTORE
     TableEntry HOLD_EFFECT_HP_RESTORE
@@ -3112,358 +3453,477 @@ _04972:
     TableEntry HOLD_EFFECT_HP_RESTORE_PSN_TYPE
     TableEntry TABLE_END
 
-_04998:
+TrainerAI_Expert_Curse:
+    ; If the attacker has a Ghost typing:
+    ; - If the attacker's HP > 80%, score +0.
+    ; - Otherwise, score -1.
+    ;
+    ; If the attacker's Defense stat stage is at +3 or higher, score +0 and terminate.
+    ;
+    ; If the attacker knows the move Gyro Ball or Trick Room, 87.5% chance of additional score +1.
+    ;
+    ; 50% chance from here-on of additional score +1.
+    ;
+    ; If the attacker's Defense stat stage is at +1 or lower, 50% chance of additional score +1.
+    ;
+    ; If the attacker's Defense stat stage is at +0 or lower, 50% chance of additional score +1.
+    ; (This is cumulative with the previous check.)
     LoadTypeFrom LOAD_ATTACKER_TYPE_1
-    IfLoadedEqualTo TYPE_GHOST, _05055
+    IfLoadedEqualTo TYPE_GHOST, TrainerAI_Expert_Curse_GhostCheckHP
     LoadTypeFrom LOAD_ATTACKER_TYPE_2
-    IfLoadedEqualTo TYPE_GHOST, _05055
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 9, _05061
-    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_GYRO_BALL, _05023
-    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_TRICK_ROOM, _05023
-    GoTo _05028
+    IfLoadedEqualTo TYPE_GHOST, TrainerAI_Expert_Curse_GhostCheckHP
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 9, TrainerAI_Expert_Curse_End
+    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_GYRO_BALL, TrainerAI_Expert_Curse_HighChanceScorePlus1
+    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_TRICK_ROOM, TrainerAI_Expert_Curse_HighChanceScorePlus1
+    GoTo TrainerAI_Expert_Curse_FlipCoinScorePlus1
 
-_05023:
-    IfRandomLessThan 32, _05033
+TrainerAI_Expert_Curse_HighChanceScorePlus1:
+    IfRandomLessThan 32, TrainerAI_Expert_Curse_CheckDefenseStage
     AddToMoveScore 1
 
-_05028:
-    IfRandomLessThan 128, _05033
+TrainerAI_Expert_Curse_FlipCoinScorePlus1:
+    IfRandomLessThan 128, TrainerAI_Expert_Curse_CheckDefenseStage
     AddToMoveScore 1
 
-_05033:
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 7, _05061
-    IfRandomLessThan 128, _05043
+TrainerAI_Expert_Curse_CheckDefenseStage:
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 7, TrainerAI_Expert_Curse_End
+    IfRandomLessThan 128, TrainerAI_Expert_Curse_CheckDefenseStageAnyBoosts
     AddToMoveScore 1
 
-_05043:
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 6, _05061
-    IfRandomLessThan 128, _05061
+TrainerAI_Expert_Curse_CheckDefenseStageAnyBoosts:
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 6, TrainerAI_Expert_Curse_End
+    IfRandomLessThan 128, TrainerAI_Expert_Curse_End
     AddToMoveScore 1
-    GoTo _05061
+    GoTo TrainerAI_Expert_Curse_End
 
-_05055:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 80, _05061
+TrainerAI_Expert_Curse_GhostCheckHP:
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 80, TrainerAI_Expert_Curse_End
     AddToMoveScore -1
 
-_05061:
+TrainerAI_Expert_Curse_End:
     PopOrEnd 
 
-_05062:
-    IfMoveKnown AI_BATTLER_DEFENDER, MOVE_FEINT, _05072
-    IfMoveKnown AI_BATTLER_DEFENDER, MOVE_SHADOW_FORCE, _05072
-    GoTo _05077
+TrainerAI_Expert_Protect:
+    ; If the opponent knows either Feint or Shadow Force, 50% chance of additional score -2.
+    ;
+    ; If the attacker has used Protect more than once already, score -2 and terminate.
+    ;
+    ; If the attacker is under any of the following effects and is also not Locked Onto by an
+    ; opponent, score -2 and terminate:
+    ; - Toxic
+    ; - Curse
+    ; - Perish Song
+    ; - Attract
+    ; - Leech Seed
+    ; - Yawn
+    ;
+    ; If the opponent knows a Recovery move (not weather-based or Rest) or Defense Curl and the
+    ; attacker is not Locked On to a target, score -2 and terminate.
+    ;
+    ; If the opponent is under any of the following effects, additional score +2:
+    ; - Toxic
+    ; - Curse
+    ; - Perish Song
+    ; - Attract
+    ; - Leech Seed
+    ; - Yawn
+    ;
+    ; Otherwise, if the battle is doubles, additional score +2.
+    ;
+    ; Otherwise, if the attacker is Locked Onto by an opponent, additional score +2.
+    ;
+    ; Otherwise, 33.2% chance of additional score +2.
+    ;
+    ; 50% of additional score -1 from here-on.
+    ;
+    ; If the attacker used Protect last turn, score -1 and 50% chance of additional score -1.
+    IfMoveKnown AI_BATTLER_DEFENDER, MOVE_FEINT, TrainerAI_Expert_Protect_TryScoreMinus2
+    IfMoveKnown AI_BATTLER_DEFENDER, MOVE_SHADOW_FORCE, TrainerAI_Expert_Protect_TryScoreMinus2
+    GoTo TrainerAI_Expert_Protect_CheckStatusConditions
 
-_05072:
-    IfRandomLessThan 128, _05077
+TrainerAI_Expert_Protect_TryScoreMinus2:
+    IfRandomLessThan 128, TrainerAI_Expert_Protect_CheckStatusConditions
     AddToMoveScore -2
 
-_05077:
+TrainerAI_Expert_Protect_CheckStatusConditions:
     LoadProtectChain AI_BATTLER_ATTACKER
-    IfLoadedGreaterThan 1, _05176
-    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_TOXIC, _05172
-    IfVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_CURSE, _05172
-    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_PERISH_SONG, _05172
-    IfVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_ATTRACT, _05172
-    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_LEECH_SEED, _05172
-    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_YAWN, _05172
-    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_RESTORE_HALF_HP, _05172
-    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_DEF_UP_DOUBLE_ROLLOUT_POWER, _05172
-    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_TOXIC, _05151
-    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_CURSE, _05151
-    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_PERISH_SONG, _05151
-    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_ATTRACT, _05151
-    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_LEECH_SEED, _05151
-    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_YAWN, _05151
+    IfLoadedGreaterThan 1, TrainerAI_Expert_Protect_ScoreMinus2
+    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_TOXIC, TrainerAI_Expert_Protect_CheckAttackerLockedOnto
+    IfVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_CURSE, TrainerAI_Expert_Protect_CheckAttackerLockedOnto
+    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_PERISH_SONG, TrainerAI_Expert_Protect_CheckAttackerLockedOnto
+    IfVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_ATTRACT, TrainerAI_Expert_Protect_CheckAttackerLockedOnto
+    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_LEECH_SEED, TrainerAI_Expert_Protect_CheckAttackerLockedOnto
+    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_YAWN, TrainerAI_Expert_Protect_CheckAttackerLockedOnto
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_RESTORE_HALF_HP, TrainerAI_Expert_Protect_CheckAttackerLockedOnto
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_DEF_UP_DOUBLE_ROLLOUT_POWER, TrainerAI_Expert_Protect_CheckAttackerLockedOnto
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_TOXIC, TrainerAI_Expert_Protect_ScorePlus2
+    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_CURSE, TrainerAI_Expert_Protect_ScorePlus2
+    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_PERISH_SONG, TrainerAI_Expert_Protect_ScorePlus2
+    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_ATTRACT, TrainerAI_Expert_Protect_ScorePlus2
+    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_LEECH_SEED, TrainerAI_Expert_Protect_ScorePlus2
+    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_YAWN, TrainerAI_Expert_Protect_ScorePlus2
     LoadBattleType 
-    IfLoadedMask BATTLE_TYPE_DOUBLES, _05151
-    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_LOCK_ON, _05151
-    IfRandomLessThan 85, _05151
-    GoTo _05153
+    IfLoadedMask BATTLE_TYPE_DOUBLES, TrainerAI_Expert_Protect_ScorePlus2
+    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_LOCK_ON, TrainerAI_Expert_Protect_ScorePlus2
+    IfRandomLessThan 85, TrainerAI_Expert_Protect_ScorePlus2
+    GoTo TrainerAI_Expert_Protect_TryScoreMinus1
 
-_05151:
+TrainerAI_Expert_Protect_ScorePlus2:
     AddToMoveScore 2
 
-_05153:
-    IfRandomLessThan 128, _05158
+TrainerAI_Expert_Protect_TryScoreMinus1:
+    IfRandomLessThan 128, TrainerAI_Expert_Protect_CheckEmptyChain
     AddToMoveScore -1
 
-_05158:
+TrainerAI_Expert_Protect_CheckEmptyChain:
     LoadProtectChain AI_BATTLER_ATTACKER
-    IfLoadedEqualTo 0, _05178
+    IfLoadedEqualTo 0, TrainerAI_Expert_Protect_End
     AddToMoveScore -1
-    IfRandomLessThan 128, _05178
+    IfRandomLessThan 128, TrainerAI_Expert_Protect_End
     AddToMoveScore -1
-    GoTo _05178
+    GoTo TrainerAI_Expert_Protect_End
 
-_05172:
-    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_LOCK_ON, _05178
+TrainerAI_Expert_Protect_CheckAttackerLockedOnto:
+    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_LOCK_ON, TrainerAI_Expert_Protect_End
 
-_05176:
+TrainerAI_Expert_Protect_ScoreMinus2:
     AddToMoveScore -2
 
-_05178:
+TrainerAI_Expert_Protect_End:
     PopOrEnd 
 
-_05179:
-    IfRandomLessThan 128, _05199
+TrainerAI_Expert_Spikes:
+    ; 50% chance of score +0 and terminate. Otherwise, start at score +1.
+    ;
+    ; If the attacker knows either Roar or Whirlwind, 75% chance of additional score +1.
+    IfRandomLessThan 128, TrainerAI_Expert_Spikes_End
     AddToMoveScore 1
-    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_ROAR, _05194
-    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_WHIRLWIND, _05194
-    GoTo _05199
+    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_ROAR, TrainerAI_Expert_Spikes_TryScorePlus1
+    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_WHIRLWIND, TrainerAI_Expert_Spikes_TryScorePlus1
+    GoTo TrainerAI_Expert_Spikes_End
 
-_05194:
-    IfRandomLessThan 64, _05199
+TrainerAI_Expert_Spikes_TryScorePlus1:
+    IfRandomLessThan 64, TrainerAI_Expert_Spikes_End
     AddToMoveScore 1
 
-_05199:
+TrainerAI_Expert_Spikes_End:
     PopOrEnd 
 
-_05200:
+TrainerAI_Expert_Foresight:
+    ; If the attacker has a Ghost typing, 47.3% chance of score +2.
+    ; BUG: This should instead check the opponent's typing.
+    ;
+    ; If the target's Evasion stat stage is at +3 or higher, 68.75% chance of score +2.
+    ;
+    ; Otherwise, score -2.
     LoadTypeFrom LOAD_ATTACKER_TYPE_1
-    IfLoadedEqualTo TYPE_GHOST, _05219
+    IfLoadedEqualTo TYPE_GHOST, TrainerAI_Expert_Foresight_FirstRoll
     LoadTypeFrom LOAD_ATTACKER_TYPE_2
-    IfLoadedEqualTo TYPE_GHOST, _05219
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 8, _05222
+    IfLoadedEqualTo TYPE_GHOST, TrainerAI_Expert_Foresight_FirstRoll
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 8, TrainerAI_Expert_Foresight_SecondRoll
     AddToMoveScore -2
-    GoTo _05227
+    GoTo TrainerAI_Expert_Foresight_End
 
-_05219:
-    IfRandomLessThan 80, _05227
+TrainerAI_Expert_Foresight_FirstRoll:
+    IfRandomLessThan 80, TrainerAI_Expert_Foresight_End
 
-_05222:
-    IfRandomLessThan 80, _05227
+TrainerAI_Expert_Foresight_SecondRoll:
+    IfRandomLessThan 80, TrainerAI_Expert_Foresight_End
     AddToMoveScore 2
 
-_05227:
+TrainerAI_Expert_Foresight_End:
     PopOrEnd 
 
-_05228:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 4, _05236
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 35, _05240
+TrainerAI_Expert_Endure:
+    ; If the attacker's HP < 4%, score -1.
+    ;
+    ; If the attacker's HP < 35%, 72.7% chance of score +1.
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 4, TrainerAI_Expert_Endure_ScoreMinus1
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 35, TrainerAI_Expert_Endure_TryScorePlus1
 
-_05236:
+TrainerAI_Expert_Endure_ScoreMinus1:
     AddToMoveScore -1
-    GoTo _05245
+    GoTo TrainerAI_Expert_Endure_End
 
-_05240:
-    IfRandomLessThan 70, _05245
+TrainerAI_Expert_Endure_TryScorePlus1:
+    IfRandomLessThan 70, TrainerAI_Expert_Endure_End
     AddToMoveScore 1
 
-_05245:
+TrainerAI_Expert_Endure_End:
     PopOrEnd 
 
-_05246:
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, _05273
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 8, _05273
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 8, _05273
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 8, _05273
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 8, _05273
-    GoTo _05293
+TrainerAI_Expert_BatonPass:
+    ; If any of the attacker's stat stages are at +3 or higher, 68.75% chance of score +2 if either
+    ; of the following is true:
+    ; - The attacker is slower than its target and has HP <= 70%
+    ; - The attacker is faster than its target and has HP <= 60%
+    ; If neither are true, score +0.
+    ;
+    ; If any of the attacker's stat stages are at +2, score -2 if either of the following is true:
+    ; - The attacker is slower than its target and has HP <= 70%
+    ; - The attacker is faster than its target and has HP <= 60%
+    ; If neither are true, score +0.
+    ;
+    ; Otherwise, score -2.
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, TrainerAI_Expert_BatonPass_HighStatStage_CheckSpeedAndHP
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 8, TrainerAI_Expert_BatonPass_HighStatStage_CheckSpeedAndHP
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 8, TrainerAI_Expert_BatonPass_HighStatStage_CheckSpeedAndHP
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 8, TrainerAI_Expert_BatonPass_HighStatStage_CheckSpeedAndHP
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 8, TrainerAI_Expert_BatonPass_HighStatStage_CheckSpeedAndHP
+    GoTo TrainerAI_Expert_BatonPass_CheckMediumStatStage
 
-_05273:
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _05282
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 60, _05335
-    GoTo _05286
+TrainerAI_Expert_BatonPass_HighStatStage_CheckSpeedAndHP:
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_BatonPass_HighStatStage_SlowerCheckHP
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 60, TrainerAI_Expert_BatonPass_End
+    GoTo TrainerAI_Expert_BatonPass_HighStatStage_TryScorePlus2
 
-_05282:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 70, _05335
+TrainerAI_Expert_BatonPass_HighStatStage_SlowerCheckHP:
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 70, TrainerAI_Expert_BatonPass_End
 
-_05286:
-    IfRandomLessThan 80, _05335
+TrainerAI_Expert_BatonPass_HighStatStage_TryScorePlus2:
+    IfRandomLessThan 80, TrainerAI_Expert_BatonPass_End
     AddToMoveScore 2
-    GoTo _05335
+    GoTo TrainerAI_Expert_BatonPass_End
 
-_05293:
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 7, _05320
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 7, _05320
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 7, _05320
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 7, _05320
-    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 7, _05320
-    GoTo _05333
+TrainerAI_Expert_BatonPass_CheckMediumStatStage:
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 7, TrainerAI_Expert_BatonPass_MediumStatStage_CheckSpeedAndHP
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 7, TrainerAI_Expert_BatonPass_MediumStatStage_CheckSpeedAndHP
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 7, TrainerAI_Expert_BatonPass_MediumStatStage_CheckSpeedAndHP
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 7, TrainerAI_Expert_BatonPass_MediumStatStage_CheckSpeedAndHP
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 7, TrainerAI_Expert_BatonPass_MediumStatStage_CheckSpeedAndHP
+    GoTo TrainerAI_Expert_BatonPass_ScoreMinus2
 
-_05320:
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _05329
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 60, _05333
-    GoTo _05335
+TrainerAI_Expert_BatonPass_MediumStatStage_CheckSpeedAndHP:
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_BatonPass_MediumStatStage_SlowerCheckHP
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 60, TrainerAI_Expert_BatonPass_ScoreMinus2
+    GoTo TrainerAI_Expert_BatonPass_End
 
-_05329:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 70, _05335
+TrainerAI_Expert_BatonPass_MediumStatStage_SlowerCheckHP:
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 70, TrainerAI_Expert_BatonPass_End
 
-_05333:
+TrainerAI_Expert_BatonPass_ScoreMinus2:
     AddToMoveScore -2
 
-_05335:
+TrainerAI_Expert_BatonPass_End:
     PopOrEnd 
 
-_05336:
+TrainerAI_Expert_Pursuit:
+    ; If it is the attacker's first turn in battle, 50% chance of additional score +1.
+    ;
+    ; If it is NOT the attacker's first turn in battle and the opponent has a Ghost or Psychic
+    ; typing, 50% chance of additional score +1.
+    ;
+    ; If the opponent knows specifically the move U-turn, 50% chance of additional score +1.
     LoadIsFirstTurnInBattle AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo FALSE, _05363
+    IfLoadedNotEqualTo FALSE, TrainerAI_Expert_Pursuit_TryScorePlus1
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
-    IfLoadedEqualTo TYPE_GHOST, _05363
+    IfLoadedEqualTo TYPE_GHOST, TrainerAI_Expert_Pursuit_TryScorePlus1
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
-    IfLoadedEqualTo TYPE_PSYCHIC, _05363
+    IfLoadedEqualTo TYPE_PSYCHIC, TrainerAI_Expert_Pursuit_TryScorePlus1
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
-    IfLoadedEqualTo TYPE_GHOST, _05363
+    IfLoadedEqualTo TYPE_GHOST, TrainerAI_Expert_Pursuit_TryScorePlus1
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
-    IfLoadedEqualTo TYPE_PSYCHIC, _05363
-    GoTo _05368
+    IfLoadedEqualTo TYPE_PSYCHIC, TrainerAI_Expert_Pursuit_TryScorePlus1
+    GoTo TrainerAI_Expert_Pursuit_CheckUturn
 
-_05363:
-    IfRandomLessThan 128, _05368
+TrainerAI_Expert_Pursuit_TryScorePlus1:
+    IfRandomLessThan 128, TrainerAI_Expert_Pursuit_CheckUturn
     AddToMoveScore 1
 
-_05368:
-    IfMoveNotKnown AI_BATTLER_DEFENDER, MOVE_U_TURN, _05377
-    IfRandomLessThan 128, _05377
+TrainerAI_Expert_Pursuit_CheckUturn:
+    IfMoveNotKnown AI_BATTLER_DEFENDER, MOVE_U_TURN, TrainerAI_Expert_Pursuit_End
+    IfRandomLessThan 128, TrainerAI_Expert_Pursuit_End
     AddToMoveScore 1
 
-_05377:
+TrainerAI_Expert_Pursuit_End:
     PopOrEnd 
 
-_05378:
-    IfSpeedCompareEqualTo COMPARE_SPEED_FASTER, _05386
+TrainerAI_Expert_RainDance:
+    ; If the attacker is slower than its opponent and has the ability Swift Swim, score +1 and
+    ; terminate.
+    ;
+    ; If the attacker's HP < 40%, score -1.
+    ;
+    ; If the current weather is Hail, Sun, or Sandstorm, score +1.
+    ;
+    ; If the attacker has the ability Rain Dish or is statused and has the ability Hydration,
+    ; score +1.
+    IfSpeedCompareEqualTo COMPARE_SPEED_FASTER, TrainerAI_Expert_RainDance_OtherChecks
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_SWIFT_SWIM, _05414
+    IfLoadedEqualTo ABILITY_SWIFT_SWIM, TrainerAI_Expert_RainDance_ScorePlus1
 
-_05386:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 40, _05418
+TrainerAI_Expert_RainDance_OtherChecks:
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 40, TrainerAI_Expert_RainDance_ScoreMinus1
     LoadCurrentWeather 
-    IfLoadedEqualTo AI_WEATHER_HAILING, _05414
-    IfLoadedEqualTo AI_WEATHER_SUNNY, _05414
-    IfLoadedEqualTo AI_WEATHER_SANDSTORM, _05414
+    IfLoadedEqualTo AI_WEATHER_HAILING, TrainerAI_Expert_RainDance_ScorePlus1
+    IfLoadedEqualTo AI_WEATHER_SUNNY, TrainerAI_Expert_RainDance_ScorePlus1
+    IfLoadedEqualTo AI_WEATHER_SANDSTORM, TrainerAI_Expert_RainDance_ScorePlus1
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_RAIN_DISH, _05414
-    IfLoadedNotEqualTo ABILITY_HYDRATION, _05420
-    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, _05414
-    GoTo _05420
+    IfLoadedEqualTo ABILITY_RAIN_DISH, TrainerAI_Expert_RainDance_ScorePlus1
+    IfLoadedNotEqualTo ABILITY_HYDRATION, TrainerAI_Expert_RainDance_End
+    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, TrainerAI_Expert_RainDance_ScorePlus1
+    GoTo TrainerAI_Expert_RainDance_End
 
-_05414:
+TrainerAI_Expert_RainDance_ScorePlus1:
     AddToMoveScore 1
-    GoTo _05420
+    GoTo TrainerAI_Expert_RainDance_End
 
-_05418:
+TrainerAI_Expert_RainDance_ScoreMinus1:
     AddToMoveScore -1
 
-_05420:
+TrainerAI_Expert_RainDance_End:
     PopOrEnd 
 
-_05421:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 40, _05453
+TrainerAI_Expert_SunnyDay:
+    ; If the attacker's HP < 40%, score -1.
+    ;
+    ; If the current weather is Hail, Rain, or Sandstorm, score +1.
+    ;
+    ; If the attacker has the ability Flower Gift or is statused and has the ability Leaf Guard,
+    ; score +1.
+    ; BUG: This should check instead if the attacker is NOT statused, as Leaf Guard has no
+    ; effect on existing status conditions.
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 40, TrainerAI_Expert_SunnyDay_ScoreMinus1
     LoadCurrentWeather 
-    IfLoadedEqualTo AI_WEATHER_HAILING, _05449
-    IfLoadedEqualTo AI_WEATHER_RAINING, _05449
-    IfLoadedEqualTo AI_WEATHER_SANDSTORM, _05449
+    IfLoadedEqualTo AI_WEATHER_HAILING, TrainerAI_Expert_SunnyDay_ScorePlus1
+    IfLoadedEqualTo AI_WEATHER_RAINING, TrainerAI_Expert_SunnyDay_ScorePlus1
+    IfLoadedEqualTo AI_WEATHER_SANDSTORM, TrainerAI_Expert_SunnyDay_ScorePlus1
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_FLOWER_GIFT, _05449
-    IfLoadedNotEqualTo ABILITY_LEAF_GUARD, _05455
-    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, _05449
-    GoTo _05455
+    IfLoadedEqualTo ABILITY_FLOWER_GIFT, TrainerAI_Expert_SunnyDay_ScorePlus1
+    IfLoadedNotEqualTo ABILITY_LEAF_GUARD, TrainerAI_Expert_SunnyDay_End
+    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, TrainerAI_Expert_SunnyDay_ScorePlus1
+    GoTo TrainerAI_Expert_SunnyDay_End
 
-_05449:
+TrainerAI_Expert_SunnyDay_ScorePlus1:
     AddToMoveScore 1
-    GoTo _05455
+    GoTo TrainerAI_Expert_SunnyDay_End
 
-_05453:
+TrainerAI_Expert_SunnyDay_ScoreMinus1:
     AddToMoveScore -1
 
-_05455:
+TrainerAI_Expert_SunnyDay_End:
     PopOrEnd 
 
-_05456:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 90, _05462
-    GoTo _05464
+TrainerAI_Expert_BellyDrum:
+    ; If the attacker is at less than 90% HP, score -2.
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 90, TrainerAI_Expert_BellyDrum_ScoreMinus2
+    GoTo TrainerAI_Expert_BellyDrum_End
 
-_05462:
+TrainerAI_Expert_BellyDrum_ScoreMinus2:
     AddToMoveScore -2
 
-_05464:
+TrainerAI_Expert_BellyDrum_End:
     PopOrEnd 
 
-_05465:
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 8, _05492
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE, 8, _05492
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 8, _05492
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_DEFENSE, 8, _05492
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 8, _05492
-    GoTo _05527
+TrainerAI_Expert_PsychUp:
+    ; If the opponent has any of Attack, Defense, SpAttack, SpDefense, or Evasion at +3 stages or
+    ; higher:
+    ; - If the attacker's Evasion stat is at +0 stages or lower, score +2.
+    ; - If the attacker has any of Attack, Defense, SpAttack, or SpDefense at +0 stages or lower,
+    ; score +1.
+    ; - Otherwise, 80.4% chance of score -2.
+    ;
+    ; Otherwise, score -2.
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 8, TrainerAI_Expert_PsychUp_CheckUserStatStages
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE, 8, TrainerAI_Expert_PsychUp_CheckUserStatStages
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 8, TrainerAI_Expert_PsychUp_CheckUserStatStages
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_DEFENSE, 8, TrainerAI_Expert_PsychUp_CheckUserStatStages
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 8, TrainerAI_Expert_PsychUp_CheckUserStatStages
+    GoTo TrainerAI_Expert_PsychUp_ScoreMinus2
 
-_05492:
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 7, _05524
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 7, _05524
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 7, _05524
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 7, _05524
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 7, _05522
-    IfRandomLessThan 50, _05529
-    GoTo _05527
+TrainerAI_Expert_PsychUp_CheckUserStatStages:
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 7, TrainerAI_Expert_PsychUp_ScorePlus1
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 7, TrainerAI_Expert_PsychUp_ScorePlus1
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 7, TrainerAI_Expert_PsychUp_ScorePlus1
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 7, TrainerAI_Expert_PsychUp_ScorePlus1
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 7, TrainerAI_Expert_PsychUp_ScorePlus2
+    IfRandomLessThan 50, TrainerAI_Expert_PsychUp_End
+    GoTo TrainerAI_Expert_PsychUp_ScoreMinus2
 
-_05522:
+TrainerAI_Expert_PsychUp_ScorePlus2:
     AddToMoveScore 1
 
-_05524:
+TrainerAI_Expert_PsychUp_ScorePlus1:
     AddToMoveScore 1
     PopOrEnd 
 
-_05527:
+TrainerAI_Expert_PsychUp_ScoreMinus2:
     AddToMoveScore -2
 
-_05529:
+TrainerAI_Expert_PsychUp_End:
     PopOrEnd 
 
-_05530:
-    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_SLEEP, _05614
-    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_ATTRACT, _05614
-    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_CONFUSION, _05614
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 30, _05551
-    IfRandomLessThan 10, _05551
+TrainerAI_Expert_MirrorCoat:
+    ; If the opponent is asleep, confused, or infatuated, score -1 and terminate.
+    ;
+    ; If the attacker's HP <= 30%, 96.1% chance of additional score -1.
+    ;
+    ; If the attacker's HP <= 50%, 60.9% chance of additional score -1. (This stacks with the above condition.)
+    ;
+    ; If the attacker knows specifically Counter, 60.9% chance of score +4.
+    ;
+    ; If the opponent's last-used move was a Status move:
+    ; - If the opponent is Taunted, 60.9% chance of additional score +1.
+    ; - If the opponent does NOT have a type which is considered a Special type, 49% chance of score +4.
+    ;
+    ; If the opponent's last-used move was a Damaging move:
+    ; - If the opponent is Taunted, 60.9% chance of additional score +1.
+    ; - If the last-used move was a Physical move, score -1.
+    ; - If the last-used move was a Special move, 60.9% chance of score +1.
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_SLEEP, TrainerAI_Expert_MirrorCoat_ScoreMinus1
+    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_ATTRACT, TrainerAI_Expert_MirrorCoat_ScoreMinus1
+    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_CONFUSION, TrainerAI_Expert_MirrorCoat_ScoreMinus1
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 30, TrainerAI_Expert_MirrorCoat_CheckAboveHalfHP
+    IfRandomLessThan 10, TrainerAI_Expert_MirrorCoat_CheckAboveHalfHP
     AddToMoveScore -1
 
-_05551:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, _05560
-    IfRandomLessThan 100, _05560
+TrainerAI_Expert_MirrorCoat_CheckAboveHalfHP:
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, TrainerAI_Expert_MirrorCoat_CheckLastUsedMove
+    IfRandomLessThan 100, TrainerAI_Expert_MirrorCoat_CheckLastUsedMove
     AddToMoveScore -1
 
-_05560:
-    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_COUNTER, _05608
+TrainerAI_Expert_MirrorCoat_CheckLastUsedMove:
+    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_COUNTER, TrainerAI_Expert_MirrorCoat_TryScorePlus4
     LoadBattlerPreviousMove AI_BATTLER_DEFENDER
     LoadPowerOfLoadedMove 
-    IfLoadedEqualTo 0, _05588
-    IfTargetIsNotTaunted _05577
-    IfRandomLessThan 100, _05577
+    IfLoadedEqualTo 0, TrainerAI_Expert_MirrorCoat_TryScorePlus1
+    IfTargetIsNotTaunted TrainerAI_Expert_MirrorCoat_CheckSpecialMove
+    IfRandomLessThan 100, TrainerAI_Expert_MirrorCoat_CheckSpecialMove
     AddToMoveScore 1
 
-_05577:
+TrainerAI_Expert_MirrorCoat_CheckSpecialMove:
     LoadDefenderLastUsedMoveClass 
-    IfLoadedNotEqualTo CLASS_SPECIAL, _05614
-    IfRandomLessThan 100, _05616
+    IfLoadedNotEqualTo CLASS_SPECIAL, TrainerAI_Expert_MirrorCoat_ScoreMinus1
+    IfRandomLessThan 100, TrainerAI_Expert_MirrorCoat_End2
     AddToMoveScore 1
-    GoTo _05616
+    GoTo TrainerAI_Expert_MirrorCoat_End2
 
-_05588:
-    IfTargetIsNotTaunted _05595
-    IfRandomLessThan 100, _05595
+TrainerAI_Expert_MirrorCoat_TryScorePlus1:
+    IfTargetIsNotTaunted TrainerAI_Expert_MirrorCoat_CheckOpponentTypes
+    IfRandomLessThan 100, TrainerAI_Expert_MirrorCoat_CheckOpponentTypes
     AddToMoveScore 1
 
-_05595:
+TrainerAI_Expert_MirrorCoat_CheckOpponentTypes:
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
-    IfLoadedInTable _05617, _05616
+    IfLoadedInTable TrainerAI_Expert_MirrorCoat_SpecialTypes, TrainerAI_Expert_MirrorCoat_End2
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
-    IfLoadedInTable _05617, _05616
-    IfRandomLessThan 50, _05616
+    IfLoadedInTable TrainerAI_Expert_MirrorCoat_SpecialTypes, TrainerAI_Expert_MirrorCoat_End2
+    IfRandomLessThan 50, TrainerAI_Expert_MirrorCoat_End2
 
-_05608:
-    IfRandomLessThan 100, _05613
+TrainerAI_Expert_MirrorCoat_TryScorePlus4:
+    IfRandomLessThan 100, TrainerAI_Expert_MirrorCoat_End
     AddToMoveScore 4
 
-_05613:
+TrainerAI_Expert_MirrorCoat_End:
     PopOrEnd 
 
-_05614:
+TrainerAI_Expert_MirrorCoat_ScoreMinus1:
     AddToMoveScore -1
 
-_05616:
+TrainerAI_Expert_MirrorCoat_End2:
     PopOrEnd 
 
-_05617:
+TrainerAI_Expert_MirrorCoat_SpecialTypes:
     TableEntry TYPE_FIRE
     TableEntry TYPE_WATER
     TableEntry TYPE_GRASS
@@ -3474,317 +3934,409 @@ _05617:
     TableEntry TYPE_DARK
     TableEntry TABLE_END
 
-_05626:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _05670
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _05670
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _05670
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN, _05640
-    GoTo _05648
+TrainerAI_Expert_ChargeTurnNoInvuln:
+    ; If the opponent resists or is immune to the move, score -2 and terminate.
+    ;
+    ; If the move would skip its charge turn in Sun and the current weather is Sun, score +2.
+    ;
+    ; If the attacker is holding a Power Herb, score +2.
+    ;
+    ; If the opponent knows the move Protect, score -2.
+    ;
+    ; If the attacker's HP <= 38%, score -1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_ChargeTurnNoInvuln_ScoreMinus2
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_ChargeTurnNoInvuln_ScoreMinus2
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_ChargeTurnNoInvuln_ScoreMinus2
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN, TrainerAI_Expert_ChargeTurnNoInvuln_CheckForSunnyWeather
+    GoTo TrainerAI_Expert_ChargeTurnNoInvuln_CheckForPowerHerb
 
-_05640:
+TrainerAI_Expert_ChargeTurnNoInvuln_CheckForSunnyWeather:
     LoadCurrentWeather 
-    IfLoadedNotEqualTo AI_WEATHER_SUNNY, _05648
+    IfLoadedNotEqualTo AI_WEATHER_SUNNY, TrainerAI_Expert_ChargeTurnNoInvuln_CheckForPowerHerb
     AddToMoveScore 2
-    GoTo _05672
+    GoTo TrainerAI_Expert_ChargeTurnNoInvuln_End
 
-_05648:
-    IfHeldItemEqualTo AI_BATTLER_ATTACKER, ITEM_POWER_HERB, _05654
-    GoTo _05658
+TrainerAI_Expert_ChargeTurnNoInvuln_CheckForPowerHerb:
+    IfHeldItemEqualTo AI_BATTLER_ATTACKER, ITEM_POWER_HERB, TrainerAI_Expert_ChargeTurnNoInvuln_ScorePlus2
+    GoTo TrainerAI_Expert_ChargeTurnNoInvuln_CheckForProtectAndHP
 
-_05654:
+TrainerAI_Expert_ChargeTurnNoInvuln_ScorePlus2:
     AddToMoveScore 2
-    GoTo _05672
+    GoTo TrainerAI_Expert_ChargeTurnNoInvuln_End
 
-_05658:
-    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_PROTECT, _05670
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 38, _05672
+TrainerAI_Expert_ChargeTurnNoInvuln_CheckForProtectAndHP:
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_PROTECT, TrainerAI_Expert_ChargeTurnNoInvuln_ScoreMinus2
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 38, TrainerAI_Expert_ChargeTurnNoInvuln_End
     AddToMoveScore -1
-    GoTo _05672
+    GoTo TrainerAI_Expert_ChargeTurnNoInvuln_End
 
-_05670:
+TrainerAI_Expert_ChargeTurnNoInvuln_ScoreMinus2:
     AddToMoveScore -2
 
-_05672:
+TrainerAI_Expert_ChargeTurnNoInvuln_End:
     PopOrEnd 
 
-_05673:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _05693
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _05693
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _05693
+TrainerAI_Expert_UnusedSolarbeam:
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_UnusedSolarbeam_TryScoreMinus3
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_UnusedSolarbeam_TryScoreMinus3
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_UnusedSolarbeam_TryScoreMinus3
     LoadCurrentWeather 
-    IfLoadedEqualTo AI_WEATHER_SUNNY, _05693
-    IfLoadedNotEqualTo AI_WEATHER_RAINING, _05698
+    IfLoadedEqualTo AI_WEATHER_SUNNY, TrainerAI_Expert_UnusedSolarbeam_TryScoreMinus3
+    IfLoadedNotEqualTo AI_WEATHER_RAINING, TrainerAI_Expert_UnusedSolarbeam_End
     AddToMoveScore 1
-    GoTo _05698
+    GoTo TrainerAI_Expert_UnusedSolarbeam_End
 
-_05693:
-    IfRandomLessThan 50, _05698
+TrainerAI_Expert_UnusedSolarbeam_TryScoreMinus3:
+    IfRandomLessThan 50, TrainerAI_Expert_UnusedSolarbeam_End
     AddToMoveScore -3
 
-_05698:
+TrainerAI_Expert_UnusedSolarbeam_End:
     PopOrEnd 
 
-_05699:
-    IfHeldItemEqualTo AI_BATTLER_ATTACKER, ITEM_POWER_HERB, _05654
-    IfMoveEffectNotKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_PROTECT, _05711
+TrainerAI_Expert_ChargeTurnWithInvuln:
+    ; If the attacker is holding a Power Herb, score +2.
+    ;
+    ; If the opponent knows a Protect move, score -1.
+    ;
+    ; If the opponent is immune to or would resist the move, score +1. (Bug?)
+    ;
+    ; If the opponent is under any of the following conditions, score +1:
+    ; - Toxic
+    ; - Curse
+    ; - Leech Seed
+    ;
+    ; If the current weather is Sand or Hail and the attacker's type makes them immune to the
+    ; corresponding damage effect, 68.75% chance of score +1.
+    ;
+    ; If the attacker is faster than its opponent and the opponent's last-used move is not an
+    ; always-hit effect (e.g. Aerial Ace), 68.75% chance of score +1.
+    IfHeldItemEqualTo AI_BATTLER_ATTACKER, ITEM_POWER_HERB, TrainerAI_Expert_ChargeTurnNoInvuln_ScorePlus2
+    IfMoveEffectNotKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_PROTECT, TrainerAI_Expert_ShadowForce
     AddToMoveScore -1
-    GoTo _05791
+    GoTo TrainerAI_Expert_ChargeTurnWithInvuln_End
 
-_05711:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _05792
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _05792
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _05792
-    IfHeldItemEqualTo AI_BATTLER_ATTACKER, ITEM_POWER_HERB, _05726
-    GoTo _05730
+TrainerAI_Expert_ShadowForce:
+    ; Shadow Force is handled identically to ChargeTurnWithInvuln, but only gets score +1 for Power Herb
+    ; and does not consider if the opponent knows a Protect move (which it would bypass).
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_ChargeTurnWithInvuln_ScorePlus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_ChargeTurnWithInvuln_ScorePlus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_ChargeTurnWithInvuln_ScorePlus1
+    IfHeldItemEqualTo AI_BATTLER_ATTACKER, ITEM_POWER_HERB, TrainerAI_Expert_ChargeTurnWithInvuln_ScorePlus1AndEnd
+    GoTo TrainerAI_Expert_ChargeTurnWithInvuln_CheckConditions
 
-_05726:
+TrainerAI_Expert_ChargeTurnWithInvuln_ScorePlus1AndEnd:
     AddToMoveScore 1
-    GoTo _05791
+    GoTo TrainerAI_Expert_ChargeTurnWithInvuln_End
 
-_05730:
-    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_TOXIC, _05786
-    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_CURSE, _05786
-    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_LEECH_SEED, _05786
+TrainerAI_Expert_ChargeTurnWithInvuln_CheckConditions:
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_TOXIC, TrainerAI_Expert_ChargeTurnWithInvuln_TryScorePlus1
+    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_CURSE, TrainerAI_Expert_ChargeTurnWithInvuln_TryScorePlus1
+    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_LEECH_SEED, TrainerAI_Expert_ChargeTurnWithInvuln_TryScorePlus1
     LoadCurrentWeather 
-    IfLoadedEqualTo AI_WEATHER_SANDSTORM, _05751
-    IfLoadedEqualTo AI_WEATHER_HAILING, _05763
-    GoTo _05775
+    IfLoadedEqualTo AI_WEATHER_SANDSTORM, TrainerAI_Expert_ChargeTurnWithInvuln_CheckSandImmuneType
+    IfLoadedEqualTo AI_WEATHER_HAILING, TrainerAI_Expert_ChargeTurnWithInvuln_CheckHailImmuneType
+    GoTo TrainerAI_Expert_ChargeTurnWithInvuln_CompareSpeed
 
-_05751:
+TrainerAI_Expert_ChargeTurnWithInvuln_CheckSandImmuneType:
     LoadTypeFrom LOAD_ATTACKER_TYPE_1
-    IfLoadedInTable _05795, _05786
+    IfLoadedInTable TrainerAI_Expert_ChargeTurnWithInvuln_SandImmuneTypes, TrainerAI_Expert_ChargeTurnWithInvuln_TryScorePlus1
     LoadTypeFrom LOAD_ATTACKER_TYPE_2
-    IfLoadedInTable _05795, _05786
-    GoTo _05775
+    IfLoadedInTable TrainerAI_Expert_ChargeTurnWithInvuln_SandImmuneTypes, TrainerAI_Expert_ChargeTurnWithInvuln_TryScorePlus1
+    GoTo TrainerAI_Expert_ChargeTurnWithInvuln_CompareSpeed
 
-_05763:
+TrainerAI_Expert_ChargeTurnWithInvuln_CheckHailImmuneType:
     LoadTypeFrom LOAD_ATTACKER_TYPE_1
-    IfLoadedEqualTo TYPE_ICE, _05786
+    IfLoadedEqualTo TYPE_ICE, TrainerAI_Expert_ChargeTurnWithInvuln_TryScorePlus1
     LoadTypeFrom LOAD_ATTACKER_TYPE_2
-    IfLoadedEqualTo TYPE_ICE, _05786
-    GoTo _05775
+    IfLoadedEqualTo TYPE_ICE, TrainerAI_Expert_ChargeTurnWithInvuln_TryScorePlus1
+    GoTo TrainerAI_Expert_ChargeTurnWithInvuln_CompareSpeed
 
-_05775:
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _05791
+TrainerAI_Expert_ChargeTurnWithInvuln_CompareSpeed:
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_ChargeTurnWithInvuln_End
     LoadBattlerPreviousMove AI_BATTLER_DEFENDER
     LoadEffectOfLoadedMove 
-    IfLoadedNotEqualTo BATTLE_EFFECT_NEXT_ATTACK_ALWAYS_HITS, _05786
-    GoTo _05791
+    IfLoadedNotEqualTo BATTLE_EFFECT_NEXT_ATTACK_ALWAYS_HITS, TrainerAI_Expert_ChargeTurnWithInvuln_TryScorePlus1
+    GoTo TrainerAI_Expert_ChargeTurnWithInvuln_End
 
-_05786:
-    IfRandomLessThan 80, _05791
+TrainerAI_Expert_ChargeTurnWithInvuln_TryScorePlus1:
+    IfRandomLessThan 80, TrainerAI_Expert_ChargeTurnWithInvuln_End
     AddToMoveScore 1
 
-_05791:
+TrainerAI_Expert_ChargeTurnWithInvuln_End:
     PopOrEnd 
 
-_05792:
+TrainerAI_Expert_ChargeTurnWithInvuln_ScorePlus1:
     AddToMoveScore 1
     PopOrEnd 
 
-_05795:
+TrainerAI_Expert_ChargeTurnWithInvuln_SandImmuneTypes:
     TableEntry TYPE_GROUND
     TableEntry TYPE_ROCK
     TableEntry TYPE_STEEL
     TableEntry TABLE_END
 
-_05799:
+TrainerAI_Expert_FakeOut:
+    ; Score +2.
     AddToMoveScore 2
     PopOrEnd 
 
-_05802:
+TrainerAI_Expert_SpitUp:
+    ; If the attacker's Stockpile count is 2 or higher, 68.75% chance of score +2.
     LoadStockpileCount AI_BATTLER_ATTACKER
-    IfLoadedLessThan 2, _05812
-    IfRandomLessThan 80, _05812
+    IfLoadedLessThan 2, TrainerAI_Expert_SpitUp_End
+    IfRandomLessThan 80, TrainerAI_Expert_SpitUp_End
     AddToMoveScore 2
 
-_05812:
+TrainerAI_Expert_SpitUp_End:
     PopOrEnd 
 
-_05813:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 40, _05846
+TrainerAI_Expert_Hail:
+    ; If the attacker's HP < 40%, score -1 and terminate.
+    ;
+    ; If the current weather is Sun, Rain, or Sand, additional score +1. If the attacker also knows
+    ; the move Blizzard, additional score +2.
+    ;
+    ; If the attacker has the ability Ice Body, additional score +2.
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 40, TrainerAI_Expert_Hail_ScoreMinus1
     LoadCurrentWeather 
-    IfLoadedEqualTo AI_WEATHER_SUNNY, _05829
-    IfLoadedEqualTo AI_WEATHER_RAINING, _05829
-    IfLoadedEqualTo AI_WEATHER_SANDSTORM, _05829
-    GoTo _05848
+    IfLoadedEqualTo AI_WEATHER_SUNNY, TrainerAI_Expert_Hail_ScorePlus1AndCheckBlizzard
+    IfLoadedEqualTo AI_WEATHER_RAINING, TrainerAI_Expert_Hail_ScorePlus1AndCheckBlizzard
+    IfLoadedEqualTo AI_WEATHER_SANDSTORM, TrainerAI_Expert_Hail_ScorePlus1AndCheckBlizzard
+    GoTo TrainerAI_Expert_Hail_End
 
-_05829:
+TrainerAI_Expert_Hail_ScorePlus1AndCheckBlizzard:
     AddToMoveScore 1
-    IfMoveNotKnown AI_BATTLER_ATTACKER, MOVE_BLIZZARD, _05837
+    IfMoveNotKnown AI_BATTLER_ATTACKER, MOVE_BLIZZARD, TrainerAI_Expert_Hail_CheckIceBody
     AddToMoveScore 2
 
-_05837:
+TrainerAI_Expert_Hail_CheckIceBody:
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_ICE_BODY, _05848
+    IfLoadedNotEqualTo ABILITY_ICE_BODY, TrainerAI_Expert_Hail_End
     AddToMoveScore 2
-    GoTo _05848
+    GoTo TrainerAI_Expert_Hail_End
 
-_05846:
+TrainerAI_Expert_Hail_ScoreMinus1:
     AddToMoveScore -1
 
-_05848:
+TrainerAI_Expert_Hail_End:
     PopOrEnd 
 
-_05849:
-    IfNotStatus AI_BATTLER_DEFENDER, MON_CONDITION_FACADE_BOOST, _05855
+TrainerAI_Expert_Facade:
+    ; If the opponent has a status condition which would boost Facade, score +1.
+    ; BUG: This should instead check if the attacker has such a status condition.
+    IfNotStatus AI_BATTLER_DEFENDER, MON_CONDITION_FACADE_BOOST, TrainerAI_Expert_Facade_End
     AddToMoveScore 1
 
-_05855:
+TrainerAI_Expert_Facade_End:
     PopOrEnd 
 
-_05856:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _05893
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _05893
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _05893
+TrainerAI_Expert_FocusPunch:
+    ; If the opponent is immune to or would resist the move, score -1.
+    ;
+    ; If the attacker is behind a Substitute, score +5.
+    ;
+    ; If the opponent is asleep, score +1.
+    ;
+    ; If the opponent is confused or infatuated, 60.9% chance of score +1.
+    ;
+    ; If it is not the attacker's first turn in battle, 21.875% chance of score +1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_FocusPunch_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_FocusPunch_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_FocusPunch_ScoreMinus1
     IfVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_SUBSTITUTE, TrainerAI_ScorePlus5
-    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_SLEEP, _05900
-    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_ATTRACT, _05897
-    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_CONFUSION, _05897
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_SLEEP, TrainerAI_Expert_FocusPunch_ScorePlus1
+    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_ATTRACT, TrainerAI_Expert_FocusPunch_TryScorePlus1
+    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_CONFUSION, TrainerAI_Expert_FocusPunch_TryScorePlus1
     LoadIsFirstTurnInBattle AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo FALSE, _05902
-    IfRandomLessThan 200, _05902
+    IfLoadedNotEqualTo FALSE, TrainerAI_Expert_FocusPunch_End
+    IfRandomLessThan 200, TrainerAI_Expert_FocusPunch_End
     AddToMoveScore 1
-    GoTo _05902
+    GoTo TrainerAI_Expert_FocusPunch_End
 
-_05893:
+TrainerAI_Expert_FocusPunch_ScoreMinus1:
     AddToMoveScore -1
-    GoTo _05902
+    GoTo TrainerAI_Expert_FocusPunch_End
 
-_05897:
-    IfRandomLessThan 100, _05902
+TrainerAI_Expert_FocusPunch_TryScorePlus1:
+    IfRandomLessThan 100, TrainerAI_Expert_FocusPunch_End
 
-_05900:
+TrainerAI_Expert_FocusPunch_ScorePlus1:
     AddToMoveScore 1
 
-_05902:
+TrainerAI_Expert_FocusPunch_End:
     PopOrEnd 
 
-_05903:
-    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_PARALYSIS, _05909
-    GoTo _05911
+TrainerAI_Expert_SmellingSalts:
+    ; If the opponent is paralyzed, score +1.
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_PARALYSIS, TrainerAI_Expert_SmellingSalts_ScorePlus1
+    GoTo TrainerAI_Expert_SmellingSalts_End
 
-_05909:
+TrainerAI_Expert_SmellingSalts_ScorePlus1:
     AddToMoveScore 1
 
-_05911:
+TrainerAI_Expert_SmellingSalts_End:
     PopOrEnd 
 
-_05912:
+TrainerAI_Expert_Trick:
+    ; If the attacker is holding a Disruptive item:
+    ; - If the opponent is holding a bad item to trade with, score -3.
+    ; - Otherwise, score +5.
+    ;
+    ; If the attacker is holding an item that poisons its bearer:
+    ; - If the opponent is holding a bad item to trade with, score -3.
+    ; - If the opponent does not meet any of the following criteria, score +5:
+    ;   - Has a non-volatile status condition.
+    ;   - Is protected by Safeguard.
+    ;   - Has a Steel or Poison typing.
+    ;   - Has the ability Immunity, Magic Guard, or Poison Heal.
+    ; - If the attacker meets any of the following criteria, score -3:
+    ;   - Has a non-volatile status condition.
+    ;   - Is protected by Safeguard.
+    ;   - Has a Steel or Poison typing.
+    ;   - Has the ability Immunity, Magic Guard, Poison Heal, or Klutz.
+    ; - Otherwise, score +5.
+    ;
+    ; If the attacker is holding an item that burns its bearer:
+    ; - If the opponent is holding a bad item to trade with, score -3.
+    ; - If the opponent does not meet any of the following criteria, score +5:
+    ;   - Has a non-volatile status condition.
+    ;   - Is protected by Safeguard.
+    ;   - Has a Fire typing.
+    ;   - Has the ability Water Veil or Magic Guard.
+    ; - If the attacker meets any of the following criteria, score -3:
+    ;   - Has a non-volatile status condition.
+    ;   - Is protected by Safeguard.
+    ;   - Has a Fire typing.
+    ;   - Has the ability Water Veil, Magic Guard, or Klutz.
+    ; - Otherwise, score +5.
+    ;
+    ; If the attacker is holding Black Sludge:
+    ; - If the opponent is holding a bad item to trade with, score -3.
+    ; - If the opponent does not meet any of the following criteria, score +5:
+    ;   - Has a Poison typing.
+    ;   - Has the ability Magic Guard.
+    ; - If the attacker meets any of the following criteria, score -3:
+    ;   - Has a Poison typing.
+    ;   - Has the ability Magic Guard or Klutz.
+    ; - Otherwise, score +5.
+    ;
+    ; If the attacker is holding a Flavor Berry:
+    ; - If the opponent is holding a bad item to trade with or a flavor berry, score -3.
+    ; - Otherwise, 80.5% chance of score +2.
     LoadHeldItemEffect AI_BATTLER_ATTACKER
-    IfLoadedInTable _06159, _05933
-    IfLoadedInTable _06173, _05942
-    IfLoadedInTable _06175, _06028
-    IfLoadedInTable _06177, _06096
-    IfLoadedInTable _06153, _06142
+    IfLoadedInTable TrainerAI_Expert_Trick_DisruptiveItems, TrainerAI_Expert_Trick_CheckOpponentItem
+    IfLoadedInTable TrainerAI_Expert_Trick_PoisoningItems, TrainerAI_Expert_Trick_CheckOpponentForPoison
+    IfLoadedInTable TrainerAI_Expert_Trick_BurningItems, TrainerAI_Expert_Trick_CheckOpponentForBurn
+    IfLoadedInTable TrainerAI_Expert_Trick_BlackSludge, TrainerAI_Expert_Trick_CheckOpponentForSludge
+    IfLoadedInTable TrainerAI_Expert_Trick_FlavorBerries, TrainerAI_Expert_Trick_CheckOpponentForFlavorBerry
 
-_05929:
+TrainerAI_Expert_Trick_ScoreMinus3:
     AddToMoveScore -3
-    GoTo _06152
+    GoTo TrainerAI_Expert_Trick_End
 
-_05933:
+TrainerAI_Expert_Trick_CheckOpponentItem:
     LoadHeldItemEffect AI_BATTLER_DEFENDER
-    IfLoadedInTable _06201, _05929
+    IfLoadedInTable TrainerAI_Expert_Trick_BadOpponentItems, TrainerAI_Expert_Trick_ScoreMinus3
     AddToMoveScore 5
-    GoTo _06152
+    GoTo TrainerAI_Expert_Trick_End
 
-_05942:
+TrainerAI_Expert_Trick_CheckOpponentForPoison:
     LoadHeldItemEffect AI_BATTLER_DEFENDER
-    IfLoadedInTable _06201, _05929
-    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, _05986
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, _05986
+    IfLoadedInTable TrainerAI_Expert_Trick_BadOpponentItems, TrainerAI_Expert_Trick_ScoreMinus3
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, TrainerAI_Expert_Trick_CheckAttackerForPoison
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, TrainerAI_Expert_Trick_CheckAttackerForPoison
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
-    IfLoadedEqualTo TYPE_STEEL, _05986
-    IfLoadedEqualTo TYPE_POISON, _05986
+    IfLoadedEqualTo TYPE_STEEL, TrainerAI_Expert_Trick_CheckAttackerForPoison
+    IfLoadedEqualTo TYPE_POISON, TrainerAI_Expert_Trick_CheckAttackerForPoison
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
-    IfLoadedEqualTo TYPE_STEEL, _05986
-    IfLoadedEqualTo TYPE_POISON, _05986
+    IfLoadedEqualTo TYPE_STEEL, TrainerAI_Expert_Trick_CheckAttackerForPoison
+    IfLoadedEqualTo TYPE_POISON, TrainerAI_Expert_Trick_CheckAttackerForPoison
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_IMMUNITY, _05986
-    IfLoadedEqualTo ABILITY_MAGIC_GUARD, _05986
-    IfLoadedEqualTo ABILITY_POISON_HEAL, _05986
+    IfLoadedEqualTo ABILITY_IMMUNITY, TrainerAI_Expert_Trick_CheckAttackerForPoison
+    IfLoadedEqualTo ABILITY_MAGIC_GUARD, TrainerAI_Expert_Trick_CheckAttackerForPoison
+    IfLoadedEqualTo ABILITY_POISON_HEAL, TrainerAI_Expert_Trick_CheckAttackerForPoison
     AddToMoveScore 5
-    GoTo _06152
+    GoTo TrainerAI_Expert_Trick_End
 
-_05986:
-    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, _05929
-    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_SAFEGUARD, _05929
+TrainerAI_Expert_Trick_CheckAttackerForPoison:
+    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, TrainerAI_Expert_Trick_ScoreMinus3
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_SAFEGUARD, TrainerAI_Expert_Trick_ScoreMinus3
     LoadTypeFrom LOAD_ATTACKER_TYPE_1
-    IfLoadedEqualTo TYPE_STEEL, _05929
-    IfLoadedEqualTo TYPE_POISON, _05929
+    IfLoadedEqualTo TYPE_STEEL, TrainerAI_Expert_Trick_ScoreMinus3
+    IfLoadedEqualTo TYPE_POISON, TrainerAI_Expert_Trick_ScoreMinus3
     LoadTypeFrom LOAD_ATTACKER_TYPE_2
-    IfLoadedEqualTo TYPE_STEEL, _05929
-    IfLoadedEqualTo TYPE_POISON, _05929
+    IfLoadedEqualTo TYPE_STEEL, TrainerAI_Expert_Trick_ScoreMinus3
+    IfLoadedEqualTo TYPE_POISON, TrainerAI_Expert_Trick_ScoreMinus3
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_IMMUNITY, _05929
-    IfLoadedEqualTo ABILITY_MAGIC_GUARD, _05929
-    IfLoadedEqualTo ABILITY_POISON_HEAL, _05929
-    IfLoadedEqualTo ABILITY_KLUTZ, _05929
+    IfLoadedEqualTo ABILITY_IMMUNITY, TrainerAI_Expert_Trick_ScoreMinus3
+    IfLoadedEqualTo ABILITY_MAGIC_GUARD, TrainerAI_Expert_Trick_ScoreMinus3
+    IfLoadedEqualTo ABILITY_POISON_HEAL, TrainerAI_Expert_Trick_ScoreMinus3
+    IfLoadedEqualTo ABILITY_KLUTZ, TrainerAI_Expert_Trick_ScoreMinus3
     AddToMoveScore 5
-    GoTo _06152
+    GoTo TrainerAI_Expert_Trick_End
 
-_06028:
+TrainerAI_Expert_Trick_CheckOpponentForBurn:
     LoadHeldItemEffect AI_BATTLER_DEFENDER
-    IfLoadedInTable _06201, _05929
+    IfLoadedInTable TrainerAI_Expert_Trick_BadOpponentItems, TrainerAI_Expert_Trick_ScoreMinus3
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_WATER_VEIL, _06063
-    IfLoadedEqualTo ABILITY_MAGIC_GUARD, _06063
-    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, _06063
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, _06063
+    IfLoadedEqualTo ABILITY_WATER_VEIL, TrainerAI_Expert_Trick_CheckAttackerForBurn
+    IfLoadedEqualTo ABILITY_MAGIC_GUARD, TrainerAI_Expert_Trick_CheckAttackerForBurn
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, TrainerAI_Expert_Trick_CheckAttackerForBurn
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, TrainerAI_Expert_Trick_CheckAttackerForBurn
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
-    IfLoadedEqualTo TYPE_FIRE, _06063
+    IfLoadedEqualTo TYPE_FIRE, TrainerAI_Expert_Trick_CheckAttackerForBurn
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
-    IfLoadedEqualTo TYPE_FIRE, _06063
+    IfLoadedEqualTo TYPE_FIRE, TrainerAI_Expert_Trick_CheckAttackerForBurn
     AddToMoveScore 5
-    GoTo _06152
+    GoTo TrainerAI_Expert_Trick_End
 
-_06063:
+TrainerAI_Expert_Trick_CheckAttackerForBurn:
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_WATER_VEIL, _05929
-    IfLoadedEqualTo ABILITY_MAGIC_GUARD, _05929
+    IfLoadedEqualTo ABILITY_WATER_VEIL, TrainerAI_Expert_Trick_ScoreMinus3
+    IfLoadedEqualTo ABILITY_MAGIC_GUARD, TrainerAI_Expert_Trick_ScoreMinus3
     IfLoadedEqualTo ABILITY_KLUTZ, TrainerAI_ScoreMinus5
-    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, _05929
-    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_SAFEGUARD, _05929
+    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, TrainerAI_Expert_Trick_ScoreMinus3
+    IfSideCondition AI_BATTLER_ATTACKER, SIDE_CONDITION_SAFEGUARD, TrainerAI_Expert_Trick_ScoreMinus3
     LoadTypeFrom LOAD_ATTACKER_TYPE_1
-    IfLoadedEqualTo TYPE_FIRE, _05929
+    IfLoadedEqualTo TYPE_FIRE, TrainerAI_Expert_Trick_ScoreMinus3
     LoadTypeFrom LOAD_ATTACKER_TYPE_2
-    IfLoadedEqualTo TYPE_FIRE, _05929
+    IfLoadedEqualTo TYPE_FIRE, TrainerAI_Expert_Trick_ScoreMinus3
     AddToMoveScore 5
-    GoTo _06152
+    GoTo TrainerAI_Expert_Trick_End
 
-_06096:
+TrainerAI_Expert_Trick_CheckOpponentForSludge:
     LoadHeldItemEffect AI_BATTLER_DEFENDER
-    IfLoadedInTable _06201, _05929
+    IfLoadedInTable TrainerAI_Expert_Trick_BadOpponentItems, TrainerAI_Expert_Trick_ScoreMinus3
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
-    IfLoadedEqualTo TYPE_POISON, _06120
+    IfLoadedEqualTo TYPE_POISON, TrainerAI_Expert_Trick_CheckAttackerForSludge
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
-    IfLoadedEqualTo TYPE_POISON, _06120
+    IfLoadedEqualTo TYPE_POISON, TrainerAI_Expert_Trick_CheckAttackerForSludge
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_MAGIC_GUARD, _05986
+    IfLoadedEqualTo ABILITY_MAGIC_GUARD, TrainerAI_Expert_Trick_CheckAttackerForPoison
     AddToMoveScore 5
-    GoTo _06152
+    GoTo TrainerAI_Expert_Trick_End
 
-_06120:
+TrainerAI_Expert_Trick_CheckAttackerForSludge:
     LoadTypeFrom LOAD_ATTACKER_TYPE_1
-    IfLoadedEqualTo TYPE_POISON, _05929
+    IfLoadedEqualTo TYPE_POISON, TrainerAI_Expert_Trick_ScoreMinus3
     LoadTypeFrom LOAD_ATTACKER_TYPE_2
-    IfLoadedEqualTo TYPE_POISON, _05929
+    IfLoadedEqualTo TYPE_POISON, TrainerAI_Expert_Trick_ScoreMinus3
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MAGIC_GUARD, _05929
-    IfLoadedEqualTo ABILITY_KLUTZ, _05929
+    IfLoadedEqualTo ABILITY_MAGIC_GUARD, TrainerAI_Expert_Trick_ScoreMinus3
+    IfLoadedEqualTo ABILITY_KLUTZ, TrainerAI_Expert_Trick_ScoreMinus3
     AddToMoveScore 5
-    GoTo _06152
+    GoTo TrainerAI_Expert_Trick_End
 
-_06142:
+TrainerAI_Expert_Trick_CheckOpponentForFlavorBerry:
     LoadHeldItemEffect AI_BATTLER_DEFENDER
-    IfLoadedInTable _06179, _05929
-    IfRandomLessThan 50, _06152
+    IfLoadedInTable TrainerAI_Expert_Trick_BadOpponentItemsAndFlavorBerries, TrainerAI_Expert_Trick_ScoreMinus3
+    IfRandomLessThan 50, TrainerAI_Expert_Trick_End
     AddToMoveScore 2
 
-_06152:
+TrainerAI_Expert_Trick_End:
     PopOrEnd 
 
-_06153:
+TrainerAI_Expert_Trick_FlavorBerries:
     TableEntry HOLD_EFFECT_HP_RESTORE_SPICY
     TableEntry HOLD_EFFECT_HP_RESTORE_DRY
     TableEntry HOLD_EFFECT_HP_RESTORE_SWEET
@@ -3792,7 +4344,8 @@ _06153:
     TableEntry HOLD_EFFECT_HP_RESTORE_SOUR
     TableEntry TABLE_END
 
-_06159:
+TrainerAI_Expert_Trick_DisruptiveItems:
+    ; BUG: This list does not include Macho Brace.
     TableEntry HOLD_EFFECT_CHOICE_ATK
     TableEntry HOLD_EFFECT_CHOICE_SPATK
     TableEntry HOLD_EFFECT_CHOICE_SPEED
@@ -3808,19 +4361,19 @@ _06159:
     TableEntry HOLD_EFFECT_LVLUP_HP_EV_UP
     TableEntry TABLE_END
 
-_06173:
+TrainerAI_Expert_Trick_PoisoningItems:
     TableEntry HOLD_EFFECT_PSN_USER
     TableEntry TABLE_END
 
-_06175:
+TrainerAI_Expert_Trick_BurningItems:
     TableEntry HOLD_EFFECT_BRN_USER
     TableEntry TABLE_END
 
-_06177:
+TrainerAI_Expert_Trick_BlackSludge:
     TableEntry HOLD_EFFECT_HP_RESTORE_PSN_TYPE
     TableEntry TABLE_END
 
-_06179:
+TrainerAI_Expert_Trick_BadOpponentItemsAndFlavorBerries:
     TableEntry HOLD_EFFECT_HP_RESTORE_SPICY
     TableEntry HOLD_EFFECT_HP_RESTORE_DRY
     TableEntry HOLD_EFFECT_HP_RESTORE_SWEET
@@ -3844,7 +4397,7 @@ _06179:
     TableEntry HOLD_EFFECT_HP_RESTORE_PSN_TYPE
     TableEntry TABLE_END
 
-_06201:
+TrainerAI_Expert_Trick_BadOpponentItems:
     TableEntry HOLD_EFFECT_EVS_UP_SPEED_DOWN
     TableEntry HOLD_EFFECT_CHOICE_ATK
     TableEntry HOLD_EFFECT_CHOICE_SPATK
@@ -3863,24 +4416,27 @@ _06201:
     TableEntry HOLD_EFFECT_HP_RESTORE_PSN_TYPE
     TableEntry TABLE_END
 
-_06218:
+TrainerAI_Expert_ChangeUserAbility:
+    ; If the attacker has a desirable ability, score -1.
+    ;
+    ; If the opponent has a desirable ability, 80.5% chance of score +2.
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedInTable _06238, _06228
+    IfLoadedInTable TrainerAI_Expert_ChangeUserAbility_DesirableAbilities, TrainerAI_Expert_ChangeUserAbility_ScoreMinus1
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedInTable _06238, _06232
+    IfLoadedInTable TrainerAI_Expert_ChangeUserAbility_DesirableAbilities, TrainerAI_Expert_ChangeUserAbility_TryScorePlus2
 
-_06228:
+TrainerAI_Expert_ChangeUserAbility_ScoreMinus1:
     AddToMoveScore -1
-    GoTo _06237
+    GoTo TrainerAI_Expert_ChangeUserAbility_End
 
-_06232:
-    IfRandomLessThan 50, _06237
+TrainerAI_Expert_ChangeUserAbility_TryScorePlus2:
+    IfRandomLessThan 50, TrainerAI_Expert_ChangeUserAbility_End
     AddToMoveScore 2
 
-_06237:
+TrainerAI_Expert_ChangeUserAbility_End:
     PopOrEnd 
 
-_06238:
+TrainerAI_Expert_ChangeUserAbility_DesirableAbilities:
     TableEntry ABILITY_SPEED_BOOST
     TableEntry ABILITY_BATTLE_ARMOR
     TableEntry ABILITY_SAND_VEIL
@@ -3908,641 +4464,832 @@ _06238:
     TableEntry ABILITY_RECKLESS
     TableEntry TABLE_END
 
-_06264:
+TrainerAI_Expert_Ingrain:
+    ; No score change.
     PopOrEnd 
 
-_06265:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _06292
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _06292
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _06292
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 6, _06292
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _06288
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 40, _06292
-    GoTo _06294
+TrainerAI_Expert_Superpower:
+    ; If the opponent would resist or is immune to the move, score -1.
+    ;
+    ; If the attacker's Attack stat stage is at -1 or lower, score -1.
+    ;
+    ; If the attacker is slower than its opponent and has HP >= 60%, score -1.
+    ;
+    ; If the attacker is faster than its opponent and has HP > 40%, score -1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_Superpower_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_Superpower_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_Superpower_ScoreMinus1
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 6, TrainerAI_Expert_Superpower_ScoreMinus1
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_Superpower_CheckUserHP
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 40, TrainerAI_Expert_Superpower_ScoreMinus1
+    GoTo TrainerAI_Expert_Superpower_End
 
-_06288:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 60, _06294
+TrainerAI_Expert_Superpower_CheckUserHP:
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 60, TrainerAI_Expert_Superpower_End
 
-_06292:
+TrainerAI_Expert_Superpower_ScoreMinus1:
     AddToMoveScore -1
 
-_06294:
+TrainerAI_Expert_Superpower_End:
     PopOrEnd 
 
-_06295:
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 30, _06304
-    IfRandomLessThan 100, _06304
+TrainerAI_Expert_MagicCoat:
+    ; If the opponent's HP <= 30%, 60.9% chance of additional score -1.
+    ;
+    ; If it is the attacker's first turn in battle, 41.4% chance of score +1.
+    ;
+    ; If it is not the attacker's first turn in battle, 88.3% chance of score -1.
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 30, TrainerAI_Expert_MagicCoat_CheckUserFirstTurn
+    IfRandomLessThan 100, TrainerAI_Expert_MagicCoat_CheckUserFirstTurn
     AddToMoveScore -1
 
-_06304:
+TrainerAI_Expert_MagicCoat_CheckUserFirstTurn:
     LoadIsFirstTurnInBattle AI_BATTLER_ATTACKER
-    IfLoadedEqualTo FALSE, _06319
-    IfRandomLessThan 150, _06324
+    IfLoadedEqualTo FALSE, TrainerAI_Expert_MagicCoat_TryScoreMinus1
+    IfRandomLessThan 150, TrainerAI_Expert_MagicCoat_End
     AddToMoveScore 1
-    GoTo _06324
-    IfRandomLessThan 50, _06324
+    GoTo TrainerAI_Expert_MagicCoat_End
+    IfRandomLessThan 50, TrainerAI_Expert_MagicCoat_End
 
-_06319:
-    IfRandomLessThan 30, _06324
+TrainerAI_Expert_MagicCoat_TryScoreMinus1:
+    IfRandomLessThan 30, TrainerAI_Expert_MagicCoat_End
     AddToMoveScore -1
 
-_06324:
+TrainerAI_Expert_MagicCoat_End:
     PopOrEnd 
 
-_06325:
+TrainerAI_Expert_Recycle:
+    ; If the attacker's Recyclable item is *not* any of the following, score -2:
+    ; - Chesto Berry
+    ; - Lum Berry
+    ; - Starf Berry
+    ;
+    ; Otherwise, 80.5% chance of score +1.
     LoadRecycleItem AI_BATTLER_ATTACKER
-    IfLoadedNotInTable _06340, _06337
-    IfRandomLessThan 50, _06339
+    IfLoadedNotInTable TrainerAI_Expert_Recycle_DesirableItems, TrainerAI_Expert_Recycle_ScoreMinus2
+    IfRandomLessThan 50, TrainerAI_Expert_Recycle_End
     AddToMoveScore 1
-    GoTo _06339
+    GoTo TrainerAI_Expert_Recycle_End
 
-_06337:
+TrainerAI_Expert_Recycle_ScoreMinus2:
     AddToMoveScore -2
 
-_06339:
+TrainerAI_Expert_Recycle_End:
     PopOrEnd 
 
-_06340:
+TrainerAI_Expert_Recycle_DesirableItems:
     TableEntry ITEM_CHESTO_BERRY
     TableEntry ITEM_LUM_BERRY
     TableEntry ITEM_STARF_BERRY
     TableEntry TABLE_END
 
-_06344:
-    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_SLEEP, _06363
-    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_ATTRACT, _06363
-    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_CONFUSION, _06363
-    IfRandomLessThan 180, _06363
+TrainerAI_Expert_Revenge:
+    ; If the opponent is asleep, infatuated, or confused, score -2.
+    ;
+    ; Otherwise, 70.3% chance of score -2, 29.7% chance of score +2.
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_SLEEP, TrainerAI_Expert_Revenge_ScoreMinus2
+    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_ATTRACT, TrainerAI_Expert_Revenge_ScoreMinus2
+    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_CONFUSION, TrainerAI_Expert_Revenge_ScoreMinus2
+    IfRandomLessThan 180, TrainerAI_Expert_Revenge_ScoreMinus2
     AddToMoveScore 2
-    GoTo _06365
+    GoTo TrainerAI_Expert_Revenge_End
 
-_06363:
+TrainerAI_Expert_Revenge_ScoreMinus2:
     AddToMoveScore -2
 
-_06365:
+TrainerAI_Expert_Revenge_End:
     PopOrEnd 
 
-_06366:
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_REFLECT, _06376
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_LIGHT_SCREEN, _06376
-    GoTo _06378
+TrainerAI_Expert_BrickBreak:
+    ; If the opponent's side of the field is under the effect of Reflect or Light Screen, score +1.
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_REFLECT, TrainerAI_Expert_BrickBreak_ScorePlus1
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_LIGHT_SCREEN, TrainerAI_Expert_BrickBreak_ScorePlus1
+    GoTo TrainerAI_Expert_BrickBreak_End
 
-_06376:
+TrainerAI_Expert_BrickBreak_ScorePlus1:
     AddToMoveScore 1
 
-_06378:
+TrainerAI_Expert_BrickBreak_End:
     PopOrEnd 
 
-_06379:
-    IfHPPercentLessThan AI_BATTLER_DEFENDER, 30, _06393
+TrainerAI_Expert_KnockOff:
+    ; If the opponent's HP >= 30% and it is not the attacker's first turn in battle, 29.7% chance of
+    ; score +1.
+    IfHPPercentLessThan AI_BATTLER_DEFENDER, 30, TrainerAI_Expert_KnockOff_End
     LoadIsFirstTurnInBattle AI_BATTLER_ATTACKER
-    IfLoadedGreaterThan FALSE, _06393
-    IfRandomLessThan 180, _06393
+    IfLoadedGreaterThan FALSE, TrainerAI_Expert_KnockOff_End
+    IfRandomLessThan 180, TrainerAI_Expert_KnockOff_End
     AddToMoveScore 1
 
-_06393:
+TrainerAI_Expert_KnockOff_End:
     PopOrEnd 
 
-_06394:
-    IfHPPercentLessThan AI_BATTLER_DEFENDER, 70, _06417
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _06409
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 40, _06417
+TrainerAI_Expert_Endeavor:
+    ; If the opponent's HP < 70%, score -1 and terminate.
+    ;
+    ; If the attacker is slower than its opponent:
+    ; - If the attacker's HP > 50%, score -1.
+    ; - Otherwise, score +1.
+    ;
+    ; If the attacker is faster than its opponent:
+    ; - If the attacker's HP > 40%, score -1.
+    ; - Otherwise, score +1.
+    IfHPPercentLessThan AI_BATTLER_DEFENDER, 70, TrainerAI_Expert_Endeavor_ScoreMinus1
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_Endeavor_SlowerCheckHP
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 40, TrainerAI_Expert_Endeavor_ScoreMinus1
     AddToMoveScore 1
-    GoTo _06419
+    GoTo TrainerAI_Expert_Endeavor_End
 
-_06409:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, _06417
+TrainerAI_Expert_Endeavor_SlowerCheckHP:
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, TrainerAI_Expert_Endeavor_ScoreMinus1
     AddToMoveScore 1
-    GoTo _06419
+    GoTo TrainerAI_Expert_Endeavor_End
 
-_06417:
+TrainerAI_Expert_Endeavor_ScoreMinus1:
     AddToMoveScore -1
 
-_06419:
+TrainerAI_Expert_Endeavor_End:
     PopOrEnd 
 
-_06420:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _06442
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _06442
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _06442
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _06438
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 50, _06444
-    GoTo _06442
+TrainerAI_Expert_WaterSpout:
+    ; If the opponent resists or is immune to the move, score -1.
+    ;
+    ; If the attacker is slower than its opponent and the opponent's HP <= 70%, score -1.
+    ;
+    ; If the attacker is faster than its opponent and the opponent's HP <= 50%, score -1.
+    ;
+    ; BUG: This should instead check for the user's HP.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_WaterSpout_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_WaterSpout_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_WaterSpout_ScoreMinus1
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_WaterSpout_SlowerCheckHP
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 50, TrainerAI_Expert_WaterSpout_End
+    GoTo TrainerAI_Expert_WaterSpout_ScoreMinus1
 
-_06438:
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, _06444
+TrainerAI_Expert_WaterSpout_SlowerCheckHP:
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, TrainerAI_Expert_WaterSpout_End
 
-_06442:
+TrainerAI_Expert_WaterSpout_ScoreMinus1:
     AddToMoveScore -1
 
-_06444:
+TrainerAI_Expert_WaterSpout_End:
     PopOrEnd 
 
-_06445:
+TrainerAI_Expert_Imprison:
+    ; If it is not the attacker's first turn in battle, 60.9% chance of score +2.
     LoadIsFirstTurnInBattle AI_BATTLER_ATTACKER
-    IfLoadedGreaterThan FALSE, _06455
-    IfRandomLessThan 100, _06455
+    IfLoadedGreaterThan FALSE, TrainerAI_Expert_Imprison_End
+    IfRandomLessThan 100, TrainerAI_Expert_Imprison_End
     AddToMoveScore 2
 
-_06455:
+TrainerAI_Expert_Imprison_End:
     PopOrEnd 
 
-_06456:
-    IfHPPercentLessThan AI_BATTLER_DEFENDER, 50, _06462
-    GoTo _06464
+TrainerAI_Expert_Refresh:
+    ; If the opponent's HP < 50%, score -1.
+    IfHPPercentLessThan AI_BATTLER_DEFENDER, 50, TrainerAI_Expert_Refresh_ScoreMinus1
+    GoTo TrainerAI_Expert_Refresh_End
 
-_06462:
+TrainerAI_Expert_Refresh_ScoreMinus1:
     AddToMoveScore -1
 
-_06464:
+TrainerAI_Expert_Refresh_End:
     PopOrEnd 
 
-_06465:
+TrainerAI_Expert_Snatch:
+    ; If it is the attacker's first turn in battle, 41.4% chance of score +2.
+    ;
+    ; 11.7% chance of score +0 and terminate.
+    ;
+    ; If the attacker is slower than its opponent:
+    ; - If the opponent's HP > 25%, 88.3% chance of score -2.
+    ; - If the opponent knows a flat-Recovery move or Defense Curl, 41.4% chance of score +2.
+    ; - Otherwise, 10.2% chance of score +1.
+    ;
+    ; If the attacker is faster than its opponent:
+    ; - If the attacker is not at full HP, 88.3% chance of score -2.
+    ; - If the opponent's HP < 70%, 88.3% chance of score -2.
+    ; - Otherwise, 67.6% chance of score -2.
     LoadIsFirstTurnInBattle AI_BATTLER_ATTACKER
-    IfLoadedEqualTo TRUE, _06503
-    IfRandomLessThan 30, _06522
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _06489
-    IfHPPercentNotEqualTo AI_BATTLER_ATTACKER, 100, _06517
-    IfHPPercentLessThan AI_BATTLER_DEFENDER, 70, _06517
-    IfRandomLessThan 60, _06522
-    GoTo _06517
+    IfLoadedEqualTo TRUE, TrainerAI_Expert_Snatch_TryScorePlus2
+    IfRandomLessThan 30, TrainerAI_Expert_Snatch_End
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_Snatch_UserIsSlower
+    IfHPPercentNotEqualTo AI_BATTLER_ATTACKER, 100, TrainerAI_Expert_Snatch_TryScoreMinus2
+    IfHPPercentLessThan AI_BATTLER_DEFENDER, 70, TrainerAI_Expert_Snatch_TryScoreMinus2
+    IfRandomLessThan 60, TrainerAI_Expert_Snatch_End
+    GoTo TrainerAI_Expert_Snatch_TryScoreMinus2
 
-_06489:
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 25, _06517
-    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_RESTORE_HALF_HP, _06503
-    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_DEF_UP_DOUBLE_ROLLOUT_POWER, _06503
-    GoTo _06510
+TrainerAI_Expert_Snatch_UserIsSlower:
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 25, TrainerAI_Expert_Snatch_TryScoreMinus2
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_RESTORE_HALF_HP, TrainerAI_Expert_Snatch_TryScorePlus2
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_DEF_UP_DOUBLE_ROLLOUT_POWER, TrainerAI_Expert_Snatch_TryScorePlus2
+    GoTo TrainerAI_Expert_Snatch_TryScorePlus1
 
-_06503:
-    IfRandomLessThan 150, _06522
+TrainerAI_Expert_Snatch_TryScorePlus2:
+    IfRandomLessThan 150, TrainerAI_Expert_Snatch_End
     AddToMoveScore 2
-    GoTo _06522
+    GoTo TrainerAI_Expert_Snatch_End
 
-_06510:
-    IfRandomLessThan 230, _06517
+TrainerAI_Expert_Snatch_TryScorePlus1:
+    IfRandomLessThan 230, TrainerAI_Expert_Snatch_TryScoreMinus2
     AddToMoveScore 1
-    GoTo _06522
+    GoTo TrainerAI_Expert_Snatch_End
 
-_06517:
-    IfRandomLessThan 30, _06522
+TrainerAI_Expert_Snatch_TryScoreMinus2:
+    IfRandomLessThan 30, TrainerAI_Expert_Snatch_End
     AddToMoveScore -2
 
-_06522:
+TrainerAI_Expert_Snatch_End:
     PopOrEnd 
 
-_06523:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 50, _06543
+TrainerAI_Expert_MudSport:
+    ; If the attacker's HP < 50%, score -1.
+    ;
+    ; If the opponent has an Electric typing, score +1.
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 50, TrainerAI_Expert_MudSport_ScoreMinus1
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
-    IfLoadedEqualTo TYPE_ELECTRIC, _06539
+    IfLoadedEqualTo TYPE_ELECTRIC, TrainerAI_Expert_MudSport_ScorePlus1
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
-    IfLoadedEqualTo TYPE_ELECTRIC, _06539
-    GoTo _06543
+    IfLoadedEqualTo TYPE_ELECTRIC, TrainerAI_Expert_MudSport_ScorePlus1
+    GoTo TrainerAI_Expert_MudSport_ScoreMinus1
 
-_06539:
+TrainerAI_Expert_MudSport_ScorePlus1:
     AddToMoveScore 1
-    GoTo _06545
+    GoTo TrainerAI_Expert_MudSport_End
 
-_06543:
+TrainerAI_Expert_MudSport_ScoreMinus1:
     AddToMoveScore -1
 
-_06545:
+TrainerAI_Expert_MudSport_End:
     PopOrEnd 
 
-_06546:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _06568
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _06568
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _06568
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _06564
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 60, _06570
-    GoTo _06568
+TrainerAI_Expert_Overheat:
+    ; If the opponent resists or is immune to the move, score -1.
+    ;
+    ; If the attacker is faster than its opponent and the attacker's HP is <= 60%, score -1.
+    ;
+    ; If the attacker is slower than its opponent and the attacker's HP is <= 80%, score -1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_Overheat_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_Overheat_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_Overheat_ScoreMinus1
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_Overheat_SlowerCheckHP
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 60, TrainerAI_Expert_Overheat_End
+    GoTo TrainerAI_Expert_Overheat_ScoreMinus1
 
-_06564:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 80, _06570
+TrainerAI_Expert_Overheat_SlowerCheckHP:
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 80, TrainerAI_Expert_Overheat_End
 
-_06568:
+TrainerAI_Expert_Overheat_ScoreMinus1:
     AddToMoveScore -1
 
-_06570:
+TrainerAI_Expert_Overheat_End:
     PopOrEnd 
 
-_06571:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 50, _06591
+TrainerAI_Expert_WaterSport:
+    ; If the attacker's HP < 50%, score -1.
+    ;
+    ; If the opponent has a Fire typing, score +1.
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 50, TrainerAI_Expert_WaterSport_ScoreMinus1
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
-    IfLoadedEqualTo TYPE_FIRE, _06587
+    IfLoadedEqualTo TYPE_FIRE, TrainerAI_Expert_WaterSport_ScorePlus1
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
-    IfLoadedEqualTo TYPE_FIRE, _06587
-    GoTo _06591
+    IfLoadedEqualTo TYPE_FIRE, TrainerAI_Expert_WaterSport_ScorePlus1
+    GoTo TrainerAI_Expert_WaterSport_ScoreMinus1
 
-_06587:
+TrainerAI_Expert_WaterSport_ScorePlus1:
     AddToMoveScore 1
-    GoTo _06593
+    GoTo TrainerAI_Expert_WaterSport_End
 
-_06591:
+TrainerAI_Expert_WaterSport_ScoreMinus1:
     AddToMoveScore -1
 
-_06593:
+TrainerAI_Expert_WaterSport_End:
     PopOrEnd 
 
-_06594:
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _06608
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, _06613
-    IfRandomLessThan 70, _06613
+TrainerAI_Expert_DragonDance:
+    ; If the attacker is slower than its opponent, 50% chance of score +1.
+    ;
+    ; If the attacker's HP <= 50%, 72.7% chance of score -1.
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_DragonDance_TryScorePlus1
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, TrainerAI_Expert_DragonDance_End
+    IfRandomLessThan 70, TrainerAI_Expert_DragonDance_End
     AddToMoveScore -1
-    GoTo _06613
+    GoTo TrainerAI_Expert_DragonDance_End
 
-_06608:
-    IfRandomLessThan 128, _06613
+TrainerAI_Expert_DragonDance_TryScorePlus1:
+    IfRandomLessThan 128, TrainerAI_Expert_DragonDance_End
     AddToMoveScore 1
 
-_06613:
+TrainerAI_Expert_DragonDance_End:
     PopOrEnd 
 
-_06614:
+TrainerAI_Expert_Gravity:
+    ; If the opponent has Levitate, is under the effect of Magnet Rise, or has a Flying typing, 75%
+    ; chance of score +1.
+    ;
+    ; If the attacker's HP >= 60%, 37.5% chance of score +1.
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedEqualTo ABILITY_LEVITATE, _06642
-    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_MAGNET_RISE, _06642
+    IfLoadedEqualTo ABILITY_LEVITATE, TrainerAI_Expert_Gravity_TryScorePlus1
+    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_MAGNET_RISE, TrainerAI_Expert_Gravity_TryScorePlus1
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
-    IfLoadedEqualTo TYPE_FLYING, _06642
+    IfLoadedEqualTo TYPE_FLYING, TrainerAI_Expert_Gravity_TryScorePlus1
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
-    IfLoadedEqualTo TYPE_FLYING, _06642
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 60, _06647
-    IfRandomLessThan 128, _06642
-    GoTo _06647
+    IfLoadedEqualTo TYPE_FLYING, TrainerAI_Expert_Gravity_TryScorePlus1
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 60, TrainerAI_Expert_Gravity_End
+    IfRandomLessThan 128, TrainerAI_Expert_Gravity_TryScorePlus1
+    GoTo TrainerAI_Expert_Gravity_End
 
-_06642:
-    IfRandomLessThan 64, _06647
+TrainerAI_Expert_Gravity_TryScorePlus1:
+    IfRandomLessThan 64, TrainerAI_Expert_Gravity_End
     AddToMoveScore 1
 
-_06647:
+TrainerAI_Expert_Gravity_End:
     PopOrEnd 
 
-_06648:
+TrainerAI_Expert_MiracleEye:
+    ; If the opponent has a Dark typing, 47.3% chance of score +2.
+    ;
+    ; If the opponent's Evasion stat stage is at +3 or higher, 68.75% chance of score +2.
+    ;
+    ; Otherwise, score -2.
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
-    IfLoadedEqualTo TYPE_DARK, _06666
+    IfLoadedEqualTo TYPE_DARK, TrainerAI_Expert_MiracleEye_ExtraRandomGate
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
-    IfLoadedEqualTo TYPE_DARK, _06666
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 8, _06669
+    IfLoadedEqualTo TYPE_DARK, TrainerAI_Expert_MiracleEye_ExtraRandomGate
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 8, TrainerAI_Expert_MiracleEye_ScorePlus2
     AddToMoveScore -2
     PopOrEnd 
 
-_06666:
-    IfRandomLessThan 80, _06674
+TrainerAI_Expert_MiracleEye_ExtraRandomGate:
+    IfRandomLessThan 80, TrainerAI_Expert_MiracleEye_End
 
-_06669:
-    IfRandomLessThan 80, _06674
+TrainerAI_Expert_MiracleEye_ScorePlus2:
+    IfRandomLessThan 80, TrainerAI_Expert_MiracleEye_End
     AddToMoveScore 2
 
-_06674:
+TrainerAI_Expert_MiracleEye_End:
     PopOrEnd 
 
-_06675:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _06690
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _06690
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _06690
-    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_SLEEP, _06694
-    GoTo _06696
+TrainerAI_Expert_WakeUpSlap:
+    ; If the opponent resists or is immune to the move, score -1.
+    ;
+    ; If the opponent is asleep, score +1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_WakeUpSlap_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_WakeUpSlap_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_WakeUpSlap_ScoreMinus1
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_SLEEP, TrainerAI_Expert_WakeUpSlap_ScorePlus1
+    GoTo TrainerAI_Expert_WakeUpSlap_End
 
-_06690:
+TrainerAI_Expert_WakeUpSlap_ScoreMinus1:
     AddToMoveScore -1
-    GoTo _06696
+    GoTo TrainerAI_Expert_WakeUpSlap_End
 
-_06694:
+TrainerAI_Expert_WakeUpSlap_ScorePlus1:
     AddToMoveScore 1
 
-_06696:
+TrainerAI_Expert_WakeUpSlap_End:
     PopOrEnd 
 
-_06697:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _06711
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _06711
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _06711
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _06714
-    GoTo _06716
+TrainerAI_Expert_HammerArm:
+    ; If the opponent resists or is immune to the move, score -1.
+    ;
+    ; If the attacker is slower than its opponent, score +1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_HammerArm_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_HammerArm_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_HammerArm_ScoreMinus1
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_HammerArm_ScorePlus1
+    GoTo TrainerAI_Expert_HammerArm_End
 
-_06711:
+TrainerAI_Expert_HammerArm_ScoreMinus1:
     AddToMoveScore -1
     PopOrEnd 
 
-_06714:
+TrainerAI_Expert_HammerArm_ScorePlus1:
     AddToMoveScore 1
 
-_06716:
+TrainerAI_Expert_HammerArm_End:
     PopOrEnd 
 
-_06717:
+TrainerAI_Expert_GyroBall:
+    ; No score changes.
     PopOrEnd 
 
-_06718:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _06740
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _06740
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _06740
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 50, _06742
+TrainerAI_Expert_Brine:
+    ; If the opponent resists or is immune to the move, score -1.
+    ;
+    ; If the opponent's HP <= 50%, 50% chance of score +1, 50% chance of score +2.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_Brine_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_Brine_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_Brine_ScoreMinus1
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 50, TrainerAI_Expert_Brine_End
     AddToMoveScore 1
-    IfRandomLessThan 128, _06742
+    IfRandomLessThan 128, TrainerAI_Expert_Brine_End
     AddToMoveScore 1
-    GoTo _06742
+    GoTo TrainerAI_Expert_Brine_End
 
-_06740:
+TrainerAI_Expert_Brine_ScoreMinus1:
     AddToMoveScore -1
 
-_06742:
+TrainerAI_Expert_Brine_End:
     PopOrEnd 
 
-_06743:
-    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_PROTECT, _06752
-    IfRandomLessThan 64, _06752
-    GoTo _06817
+TrainerAI_Expert_Feint:
+    ; If the opponent does not know Protect, 75% chance of score +0.
+    ;
+    ; If the attacker is under any of the following conditions, 50% chance of additional score +1:
+    ; - Toxic
+    ; - Curse
+    ; - Perish Song
+    ; - Attract
+    ; - Leech Seed
+    ; - Yawn
+    ;
+    ; Otherwise, if the opponent is not at maximum HP and is holding Leftovers or Black Sludge, 50%
+    ; chance of additional score +1.
+    ;
+    ; If the opponent's Protect chain is 0, 50% chance of score +1.
+    ;
+    ; If the opponent's Protect chain is 1, 25% chance of score +1.
+    ;
+    ; Otherwise, score -2.
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_PROTECT, TrainerAI_Expert_Feint_CheckConditions
+    IfRandomLessThan 64, TrainerAI_Expert_Feint_CheckConditions
+    GoTo TrainerAI_Expert_Feint_End
 
-_06752:
-    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_TOXIC, _06785
-    IfVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_CURSE, _06785
-    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_PERISH_SONG, _06785
-    IfVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_ATTRACT, _06785
-    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_LEECH_SEED, _06785
-    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_YAWN, _06785
-    IfHPPercentEqualTo AI_BATTLER_DEFENDER, 100, _06790
+TrainerAI_Expert_Feint_CheckConditions:
+    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_TOXIC, TrainerAI_Expert_Feint_TryScorePlus1
+    IfVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_CURSE, TrainerAI_Expert_Feint_TryScorePlus1
+    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_PERISH_SONG, TrainerAI_Expert_Feint_TryScorePlus1
+    IfVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_ATTRACT, TrainerAI_Expert_Feint_TryScorePlus1
+    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_LEECH_SEED, TrainerAI_Expert_Feint_TryScorePlus1
+    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_YAWN, TrainerAI_Expert_Feint_TryScorePlus1
+    IfHPPercentEqualTo AI_BATTLER_DEFENDER, 100, TrainerAI_Expert_Feint_CheckProtectChain
     LoadHeldItemEffect AI_BATTLER_DEFENDER
-    IfLoadedNotInTable _06818, _06790
+    IfLoadedNotInTable TrainerAI_Expert_Feint_GradualRecoveryItems, TrainerAI_Expert_Feint_CheckProtectChain
 
-_06785:
-    IfRandomLessThan 128, _06790
+TrainerAI_Expert_Feint_TryScorePlus1:
+    IfRandomLessThan 128, TrainerAI_Expert_Feint_CheckProtectChain
     AddToMoveScore 1
 
-_06790:
+TrainerAI_Expert_Feint_CheckProtectChain:
     LoadProtectChain AI_BATTLER_DEFENDER
-    IfLoadedEqualTo 0, _06801
-    IfLoadedEqualTo 1, _06808
-    IfLoadedGreaterThan 2, _06815
+    IfLoadedEqualTo 0, TrainerAI_Expert_Feint_NoProtectChain
+    IfLoadedEqualTo 1, TrainerAI_Expert_Feint_ProtectChain1
+    IfLoadedGreaterThan 2, TrainerAI_Expert_Feint_ProtectChain2OrMore
 
-_06801:
-    IfRandomLessThan 128, _06817
+TrainerAI_Expert_Feint_NoProtectChain:
+    IfRandomLessThan 128, TrainerAI_Expert_Feint_End
     AddToMoveScore 1
-    GoTo _06817
+    GoTo TrainerAI_Expert_Feint_End
 
-_06808:
-    IfRandomLessThan 192, _06817
+TrainerAI_Expert_Feint_ProtectChain1:
+    IfRandomLessThan 192, TrainerAI_Expert_Feint_End
     AddToMoveScore 1
-    GoTo _06817
+    GoTo TrainerAI_Expert_Feint_End
 
-_06815:
+TrainerAI_Expert_Feint_ProtectChain2OrMore:
     AddToMoveScore -2
 
-_06817:
+TrainerAI_Expert_Feint_End:
     PopOrEnd 
 
-_06818:
+TrainerAI_Expert_Feint_GradualRecoveryItems:
     TableEntry HOLD_EFFECT_HP_RESTORE_GRADUAL
     TableEntry HOLD_EFFECT_HP_RESTORE_PSN_TYPE
     TableEntry TABLE_END
 
-_06821:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _06847
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _06847
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _06847
+TrainerAI_Expert_Pluck:
+    ; If the opponent resists or is immune to the move, score -1.
+    ;
+    ; If it is the attacker's first turn in battle, 75% chance of additional score +1.
+    ;
+    ; 50% chance of score +1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_Pluck_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_Pluck_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_Pluck_ScoreMinus1
     LoadIsFirstTurnInBattle AI_BATTLER_ATTACKER
-    IfLoadedEqualTo FALSE, _06840
-    IfRandomLessThan 64, _06840
+    IfLoadedEqualTo FALSE, TrainerAI_Expert_Pluck_TryScorePlus1
+    IfRandomLessThan 64, TrainerAI_Expert_Pluck_TryScorePlus1
     AddToMoveScore 1
 
-_06840:
-    IfRandomLessThan 128, _06849
+TrainerAI_Expert_Pluck_TryScorePlus1:
+    IfRandomLessThan 128, TrainerAI_Expert_Pluck_End
     AddToMoveScore 1
-    GoTo _06849
+    GoTo TrainerAI_Expert_Pluck_End
 
-_06847:
+TrainerAI_Expert_Pluck_ScoreMinus1:
     AddToMoveScore -1
 
-_06849:
+TrainerAI_Expert_Pluck_End:
     PopOrEnd 
 
-_06850:
-    IfRandomLessThan 64, _06873
-    IfSpeedCompareEqualTo COMPARE_SPEED_FASTER, _06871
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 31, _06871
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 75, _06867
-    IfRandomLessThan 64, _06873
+TrainerAI_Expert_Tailwind:
+    ; 25% chance of flat score +0.
+    ;
+    ; If the attacker is faster than its opponent, score -1.
+    ;
+    ; If the attacker's HP <= 30%, score -1.
+    ;
+    ; If the attacker's HP > 75%, score +1.
+    ;
+    ; Otherwise, 75% chance of score +1.
+    IfRandomLessThan 64, TrainerAI_Expert_Tailwind_End
+    IfSpeedCompareEqualTo COMPARE_SPEED_FASTER, TrainerAI_Expert_Tailwind_ScoreMinus1
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 31, TrainerAI_Expert_Tailwind_ScoreMinus1
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 75, TrainerAI_Expert_Tailwind_ScorePlus1
+    IfRandomLessThan 64, TrainerAI_Expert_Tailwind_End
 
-_06867:
+TrainerAI_Expert_Tailwind_ScorePlus1:
     AddToMoveScore 1
-    GoTo _06873
+    GoTo TrainerAI_Expert_Tailwind_End
 
-_06871:
+TrainerAI_Expert_Tailwind_ScoreMinus1:
     AddToMoveScore -1
 
-_06873:
+TrainerAI_Expert_Tailwind_End:
     PopOrEnd 
 
-_06874:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 51, _06892
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 90, _06885
-    IfRandomLessThan 128, _06894
+TrainerAI_Expert_Acupressure:
+    ; If the attacker's HP <= 50%, score -1.
+    ;
+    ; If the attacker's HP > 90%, 75% chance of score +1.
+    ;
+    ; Otherwise, 37.5% chance of score +1.
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 51, TrainerAI_Expert_Acupressure_ScoreMinus1
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 90, TrainerAI_Expert_Acupressure_TryScorePlus1
+    IfRandomLessThan 128, TrainerAI_Expert_Acupressure_End
 
-_06885:
-    IfRandomLessThan 64, _06894
+TrainerAI_Expert_Acupressure_TryScorePlus1:
+    IfRandomLessThan 64, TrainerAI_Expert_Acupressure_End
     AddToMoveScore 1
-    GoTo _06894
+    GoTo TrainerAI_Expert_Acupressure_End
 
-_06892:
+TrainerAI_Expert_Acupressure_ScoreMinus1:
     AddToMoveScore -1
 
-_06894:
+TrainerAI_Expert_Acupressure_End:
     PopOrEnd 
 
-_06895:
-    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_SLEEP, _06964
-    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_ATTRACT, _06964
-    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_CONFUSION, _06964
-    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_DOUBLE_POWER_IF_HIT, _06964
-    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_HIT_LAST_WHIFF_IF_HIT, _06964
-    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_PRIORITY_NEG_1_BYPASS_ACCURACY, _06964
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 30, _06928
-    IfRandomLessThan 10, _06928
+TrainerAI_Expert_MetalBurst:
+    ; If the opponent is asleep, infatuated, or confused or they know any of the following move
+    ; effects, score -1 and terminate:
+    ; - Avalanche / Revenge
+    ; - Focus Punch
+    ; - Vital Throw
+    ;
+    ; If the attacker's HP <= 30%, 96% chance of additional score -1.
+    ;
+    ; If the attacker's HP <= 50%, 60.9% chance of additional score -1.
+    ;
+    ; If the attacker's HP > 50%, 25% chance of additional score +1.
+    ;
+    ; If the opponent's last-used move was not a Status move and they are not Taunted, 60.9% chance
+    ; of additional score +1.
+    ;
+    ; If the opponent is not Taunted, 60.9% chance of score +1.
+    IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_SLEEP, TrainerAI_Expert_MetalBurst_ScoreMinus1
+    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_ATTRACT, TrainerAI_Expert_MetalBurst_ScoreMinus1
+    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_CONFUSION, TrainerAI_Expert_MetalBurst_ScoreMinus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_DOUBLE_POWER_IF_HIT, TrainerAI_Expert_MetalBurst_ScoreMinus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_HIT_LAST_WHIFF_IF_HIT, TrainerAI_Expert_MetalBurst_ScoreMinus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_PRIORITY_NEG_1_BYPASS_ACCURACY, TrainerAI_Expert_MetalBurst_ScoreMinus1
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 30, TrainerAI_Expert_MetalBurst_MediumHPTryScoreMinus1
+    IfRandomLessThan 10, TrainerAI_Expert_MetalBurst_MediumHPTryScoreMinus1
     AddToMoveScore -1
 
-_06928:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, _06937
-    IfRandomLessThan 100, _06937
+TrainerAI_Expert_MetalBurst_MediumHPTryScoreMinus1:
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, TrainerAI_Expert_MetalBurst_HighHPTryScorePlus1
+    IfRandomLessThan 100, TrainerAI_Expert_MetalBurst_HighHPTryScorePlus1
     AddToMoveScore -1
 
-_06937:
-    IfRandomLessThan 192, _06942
+TrainerAI_Expert_MetalBurst_HighHPTryScorePlus1:
+    IfRandomLessThan 192, TrainerAI_Expert_MetalBurst_CheckLastUsedMove
     AddToMoveScore 1
 
-_06942:
+TrainerAI_Expert_MetalBurst_CheckLastUsedMove:
     LoadBattlerPreviousMove AI_BATTLER_DEFENDER
     LoadPowerOfLoadedMove 
-    IfLoadedEqualTo 0, _06955
-    IfTargetIsNotTaunted _06955
-    IfRandomLessThan 100, _06955
+    IfLoadedEqualTo 0, TrainerAI_Expert_MetalBurst_TryScorePlus1
+    IfTargetIsNotTaunted TrainerAI_Expert_MetalBurst_TryScorePlus1
+    IfRandomLessThan 100, TrainerAI_Expert_MetalBurst_TryScorePlus1
     AddToMoveScore 1
 
-_06955:
-    IfTargetIsNotTaunted _06966
-    IfRandomLessThan 100, _06966
+TrainerAI_Expert_MetalBurst_TryScorePlus1:
+    IfTargetIsNotTaunted TrainerAI_Expert_MetalBurst_End
+    IfRandomLessThan 100, TrainerAI_Expert_MetalBurst_End
     AddToMoveScore 1
-    GoTo _06966
+    GoTo TrainerAI_Expert_MetalBurst_End
 
-_06964:
+TrainerAI_Expert_MetalBurst_ScoreMinus1:
     AddToMoveScore -1
 
-_06966:
+TrainerAI_Expert_MetalBurst_End:
     PopOrEnd 
 
-_06967:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _06985
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _06985
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _06985
+TrainerAI_Expert_UTurn:
+    ; If the opponent resists or is immune to the move, score -1 and terminate.
+    ;
+    ; If the attacker is the last living party member, score +2 and terminate.
+    ;
+    ; If the attacker has a super-effective move on its opponent, 75% chance of additional score -2.
+    ;
+    ; If no party member deals more damage than the attacker, 75% chance of score -2 and terminate.
+    ;
+    ; If the opponent's HP > 70%, 75% chance of additional score +1.
+    ;
+    ; If the opponent's HP > 30%, 50% chance of additional score +1. (Cumulative with the prior check)
+    ;
+    ; Otherwise, 25% chance of additional score +1.
+    ;
+    ; If the attacker is faster than its opponent, score +1. Otherwise, 50% chance of score +1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_UTurn_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_UTurn_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_UTurn_ScoreMinus1
     CountAlivePartyBattlers AI_BATTLER_ATTACKER
-    IfLoadedEqualTo 0, _07035
-    IfHasSuperEffectiveMove _06989
-    GoTo _06994
+    IfLoadedEqualTo 0, TrainerAI_Expert_UTurn_End
+    IfHasSuperEffectiveMove TrainerAI_Expert_UTurn_TryScoreMinus2
+    GoTo TrainerAI_Expert_UTurn_CheckPartyDamage
 
-_06985:
+TrainerAI_Expert_UTurn_ScoreMinus1:
     AddToMoveScore -1
-    GoTo _07035
+    GoTo TrainerAI_Expert_UTurn_End
 
-_06989:
-    IfRandomLessThan 64, _06994
+TrainerAI_Expert_UTurn_TryScoreMinus2:
+    IfRandomLessThan 64, TrainerAI_Expert_UTurn_CheckPartyDamage
     AddToMoveScore -2
 
-_06994:
-    IfPartyMemberDealsMoreDamage USE_MAX_DAMAGE, _07004
-    IfRandomLessThan 64, _07004
+TrainerAI_Expert_UTurn_CheckPartyDamage:
+    IfPartyMemberDealsMoreDamage USE_MAX_DAMAGE, TrainerAI_Expert_UTurn_CheckTargetHP
+    IfRandomLessThan 64, TrainerAI_Expert_UTurn_CheckTargetHP
     AddToMoveScore -2
-    GoTo _07035
+    GoTo TrainerAI_Expert_UTurn_End
 
-_07004:
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, _07017
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 30, _07022
-    IfRandomLessThan 128, _07027
-    GoTo _07022
+TrainerAI_Expert_UTurn_CheckTargetHP:
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, TrainerAI_Expert_UTurn_75PercentScorePlus1
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 30, TrainerAI_Expert_UTurn_50PercentScorePlus1
+    IfRandomLessThan 128, TrainerAI_Expert_UTurn_CheckSpeed
+    GoTo TrainerAI_Expert_UTurn_50PercentScorePlus1
 
-_07017:
-    IfRandomLessThan 64, _07022
+TrainerAI_Expert_UTurn_75PercentScorePlus1:
+    IfRandomLessThan 64, TrainerAI_Expert_UTurn_50PercentScorePlus1
     AddToMoveScore 1
 
-_07022:
-    IfRandomLessThan 128, _07027
+TrainerAI_Expert_UTurn_50PercentScorePlus1:
+    IfRandomLessThan 128, TrainerAI_Expert_UTurn_CheckSpeed
     AddToMoveScore 1
 
-_07027:
-    IfSpeedCompareEqualTo COMPARE_SPEED_FASTER, _07033
-    IfRandomLessThan 128, _07035
+TrainerAI_Expert_UTurn_CheckSpeed:
+    IfSpeedCompareEqualTo COMPARE_SPEED_FASTER, TrainerAI_Expert_UTurn_ScorePlus1
+    IfRandomLessThan 128, TrainerAI_Expert_UTurn_End
 
-_07033:
+TrainerAI_Expert_UTurn_ScorePlus1:
     AddToMoveScore 1
 
-_07035:
+TrainerAI_Expert_UTurn_End:
     PopOrEnd 
 
-_07036:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _07058
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _07058
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _07058
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _07054
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 60, _07060
-    GoTo _07058
+TrainerAI_Expert_CloseCombat:
+    ; If the opponent resists or is immune to the move, score -1.
+    ;
+    ; If the attacker is slower than its opponent and its HP <= 80%, score -1.
+    ;
+    ; If the attacker is faster than its opponent and its HP <= 60%, score -1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_CloseCombat_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_CloseCombat_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_CloseCombat_ScoreMinus1
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_CloseCombat_SlowerCheckHP
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 60, TrainerAI_Expert_CloseCombat_End
+    GoTo TrainerAI_Expert_CloseCombat_ScoreMinus1
 
-_07054:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 80, _07060
+TrainerAI_Expert_CloseCombat_SlowerCheckHP:
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 80, TrainerAI_Expert_CloseCombat_End
 
-_07058:
+TrainerAI_Expert_CloseCombat_ScoreMinus1:
     AddToMoveScore -1
 
-_07060:
+TrainerAI_Expert_CloseCombat_End:
     PopOrEnd 
 
-_07061:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _07083
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _07083
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _07083
-    IfSpeedCompareEqualTo COMPARE_SPEED_FASTER, _07085
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 30, _07085
-    IfRandomLessThan 64, _07085
+TrainerAI_Expert_Payback:
+    ; If the opponent resists or is immune to the move, score -1.
+    ;
+    ; If the attacker is slower than its opponent and the attacker's HP >= 30%, 75% chance of
+    ; score +1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_Payback_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_Payback_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_Payback_ScoreMinus1
+    IfSpeedCompareEqualTo COMPARE_SPEED_FASTER, TrainerAI_Expert_Payback_End
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 30, TrainerAI_Expert_Payback_End
+    IfRandomLessThan 64, TrainerAI_Expert_Payback_End
     AddToMoveScore 1
     PopOrEnd 
 
-_07083:
+TrainerAI_Expert_Payback_ScoreMinus1:
     AddToMoveScore -1
 
-_07085:
+TrainerAI_Expert_Payback_End:
     PopOrEnd 
 
-_07086:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _07113
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _07113
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _07113
-    IfSpeedCompareEqualTo COMPARE_SPEED_FASTER, _07122
+TrainerAI_Expert_Assurance:
+    ; If the opponent resists or is immune to the move, score -1.
+    ;
+    ; If the attacker is slower than its opponent:
+    ; - If the attacker's ability is Rough Skin, 50% chance of score +1.
+    ; - If the attacker is holding a Jaboca Berry or Rowap Berry, 50% chance of score +1.
+    ; - Otherwise, 25% chance of score +1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_Assurance_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_Assurance_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_Assurance_ScoreMinus1
+    IfSpeedCompareEqualTo COMPARE_SPEED_FASTER, TrainerAI_Expert_Assurance_End
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_ROUGH_SKIN, _07117
+    IfLoadedEqualTo ABILITY_ROUGH_SKIN, TrainerAI_Expert_Assurance_TryScorePlus1
     LoadHeldItemEffect AI_BATTLER_ATTACKER
-    IfLoadedInTable _07123, _07117
-    IfRandomLessThan 128, _07117
-    GoTo _07122
+    IfLoadedInTable TrainerAI_Expert_Assurance_RecoilBerries, TrainerAI_Expert_Assurance_TryScorePlus1
+    IfRandomLessThan 128, TrainerAI_Expert_Assurance_TryScorePlus1
+    GoTo TrainerAI_Expert_Assurance_End
 
-_07113:
+TrainerAI_Expert_Assurance_ScoreMinus1:
     AddToMoveScore -1
-    GoTo _07122
+    GoTo TrainerAI_Expert_Assurance_End
 
-_07117:
-    IfRandomLessThan 128, _07122
+TrainerAI_Expert_Assurance_TryScorePlus1:
+    IfRandomLessThan 128, TrainerAI_Expert_Assurance_End
     AddToMoveScore 1
 
-_07122:
+TrainerAI_Expert_Assurance_End:
     PopOrEnd 
 
-_07123:
+TrainerAI_Expert_Assurance_RecoilBerries:
     TableEntry ITEM_JABOCA_BERRY
     TableEntry ITEM_ROWAP_BERRY
     TableEntry TABLE_END
 
-_07126:
-    IfRandomLessThan 128, _07131
+TrainerAI_Expert_Embargo:
+    ; 50% chance of score +1.
+    IfRandomLessThan 128, TrainerAI_Expert_Embargo_End
     AddToMoveScore 1
 
-_07131:
+TrainerAI_Expert_Embargo_End:
     PopOrEnd 
 
-_07132:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _07185
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _07185
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _07185
+TrainerAI_Expert_Fling:
+    ; If the opponent resists or is immune to the move and the attacker is holding an item other than
+    ; any of the following, score -1:
+    ; - King's Rock
+    ; - Razor Fang
+    ; - Poison Barb
+    ; - Toxic Orb
+    ; - Flame Orb
+    ; - Light Ball
+    ;
+    ; If the attacker's item would grant Fling < 30 base power, score -2.
+    ;
+    ; If the attacker's item would grant Fling > 90 base power, 75% chance of score +1, and:
+    ; - If the opponent is weak to the move, additional score +4.
+    ; - Otherwise, 50% chance of additional score +1.
+    ;
+    ; If the attacker's item would grant Fling > 60 base power, 75% chance of score +1.
+    ;
+    ; Otherwise, 50% chance of score -1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_Fling_CheckAttackerItem
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_Fling_CheckAttackerItem
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_Fling_CheckAttackerItem
     LoadFlingPower AI_BATTLER_ATTACKER
-    IfLoadedLessThan 30, _07159
-    IfLoadedGreaterThan 90, _07163
-    IfLoadedGreaterThan 60, _07178
-    IfRandomLessThan 128, _07192
+    IfLoadedLessThan 30, TrainerAI_Expert_Fling_ScoreMinus2
+    IfLoadedGreaterThan 90, TrainerAI_Expert_Fling_CheckWeakness
+    IfLoadedGreaterThan 60, TrainerAI_Expert_Fling_TryScorePlus1
+    IfRandomLessThan 128, TrainerAI_Expert_Fling_End
     AddToMoveScore -1
-    GoTo _07192
+    GoTo TrainerAI_Expert_Fling_End
 
-_07159:
+TrainerAI_Expert_Fling_ScoreMinus2:
     AddToMoveScore -2
-    GoTo _07192
+    GoTo TrainerAI_Expert_Fling_End
 
-_07163:
-    IfMoveEffectivenessEquals TYPE_MULTI_DOUBLE_DAMAGE, _07176
-    IfMoveEffectivenessEquals TYPE_MULTI_QUADRUPLE_DAMAGE, _07176
-    IfRandomLessThan 128, _07178
+TrainerAI_Expert_Fling_CheckWeakness:
+    IfMoveEffectivenessEquals TYPE_MULTI_DOUBLE_DAMAGE, TrainerAI_Expert_Fling_ScorePlus4
+    IfMoveEffectivenessEquals TYPE_MULTI_QUADRUPLE_DAMAGE, TrainerAI_Expert_Fling_ScorePlus4
+    IfRandomLessThan 128, TrainerAI_Expert_Fling_TryScorePlus1
     AddToMoveScore 1
-    GoTo _07178
+    GoTo TrainerAI_Expert_Fling_TryScorePlus1
 
-_07176:
+TrainerAI_Expert_Fling_ScorePlus4:
     AddToMoveScore 4
 
-_07178:
-    IfRandomLessThan 64, _07192
+TrainerAI_Expert_Fling_TryScorePlus1:
+    IfRandomLessThan 64, TrainerAI_Expert_Fling_End
     AddToMoveScore 1
-    GoTo _07192
+    GoTo TrainerAI_Expert_Fling_End
 
-_07185:
+TrainerAI_Expert_Fling_CheckAttackerItem:
     LoadHeldItemEffect AI_BATTLER_ATTACKER
-    IfLoadedInTable _07193, _07192
+    IfLoadedInTable TrainerAI_Expert_Fling_DesirableFlingEffects, TrainerAI_Expert_Fling_End
     AddToMoveScore -1
 
-_07192:
+TrainerAI_Expert_Fling_End:
     PopOrEnd 
 
-_07193:
+TrainerAI_Expert_Fling_DesirableFlingEffects:
     TableEntry HOLD_EFFECT_SOMETIMES_FLINCH
     TableEntry HOLD_EFFECT_STRENGTHEN_POISON
     TableEntry HOLD_EFFECT_PSN_USER
@@ -4550,216 +5297,293 @@ _07193:
     TableEntry HOLD_EFFECT_PIKA_SPATK_UP
     TableEntry TABLE_END
 
-_07199:
+TrainerAI_Expert_PsychoShift:
+    ; If the attacker does not have any status condition, score -10.
+    ;
+    ; If the opponent's HP >= 30%, 50% chance of score +1.
     IfNotStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, TrainerAI_ScoreMinus10
-    IfRandomLessThan 128, _07212
-    IfHPPercentLessThan AI_BATTLER_DEFENDER, 30, _07212
+    IfRandomLessThan 128, TrainerAI_Expert_PsychoShift_End
+    IfHPPercentLessThan AI_BATTLER_DEFENDER, 30, TrainerAI_Expert_PsychoShift_End
     AddToMoveScore 1
 
-_07212:
+TrainerAI_Expert_PsychoShift_End:
     PopOrEnd 
 
-_07213:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _07277
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _07277
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _07277
+TrainerAI_Expert_TrumpCard:
+    ; If the opponent resists or is immune to the move, score -1.
+    ;
+    ; If the move has 1 PP remaining, score +3.
+    ;
+    ; If the move has 2 PP remaining, 60.9% chance of score +2, 39.1% chance of score +1.
+    ;
+    ; If the move has 3 PP remaining, 60.9% chance of score +1.
+    ;
+    ; If the opponent's ability is Pressure, 88.3% chance of additional score +1.
+    ;
+    ; If the opponent's Evasion stat stage is +5 or higher or the attacker's Accuracy stat stage is
+    ; -5 or lower, 60.9% chance of score +2, 39.1% chance of score +1.
+    ;
+    ; If the opponent's Evasion stat stage is +3 or higher or the attacker's Accuracy stat stage is
+    ; -3 or lower, 60.9% chance of score +1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_TrumpCard_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_TrumpCard_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_TrumpCard_ScoreMinus1
     LoadCurrentMovePP 
-    IfLoadedEqualTo 1, _07273
-    IfLoadedEqualTo 2, _07264
-    IfLoadedEqualTo 3, _07266
+    IfLoadedEqualTo 1, TrainerAI_Expert_TrumpCard_ScorePlus3
+    IfLoadedEqualTo 2, TrainerAI_Expert_TrumpCard_ScorePlus1Maybe2
+    IfLoadedEqualTo 3, TrainerAI_Expert_TrumpCard_ScorePlus1
     LoadBattlerAbility AI_BATTLER_DEFENDER
-    IfLoadedNotEqualTo ABILITY_PRESSURE, _07242
-    IfRandomLessThan 30, _07242
+    IfLoadedNotEqualTo ABILITY_PRESSURE, TrainerAI_Expert_TrumpCard_CheckStats
+    IfRandomLessThan 30, TrainerAI_Expert_TrumpCard_CheckStats
     AddToMoveScore 1
 
-_07242:
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 10, _07264
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 2, _07264
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 8, _07266
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 4, _07266
-    GoTo _07279
+TrainerAI_Expert_TrumpCard_CheckStats:
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 10, TrainerAI_Expert_TrumpCard_ScorePlus1Maybe2
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 2, TrainerAI_Expert_TrumpCard_ScorePlus1Maybe2
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 8, TrainerAI_Expert_TrumpCard_ScorePlus1
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 4, TrainerAI_Expert_TrumpCard_ScorePlus1
+    GoTo TrainerAI_Expert_TrumpCard_End
 
-_07264:
+TrainerAI_Expert_TrumpCard_ScorePlus1Maybe2:
     AddToMoveScore 1
 
-_07266:
-    IfRandomLessThan 100, _07279
+TrainerAI_Expert_TrumpCard_ScorePlus1:
+    IfRandomLessThan 100, TrainerAI_Expert_TrumpCard_End
     AddToMoveScore 1
-    GoTo _07279
+    GoTo TrainerAI_Expert_TrumpCard_End
 
-_07273:
+TrainerAI_Expert_TrumpCard_ScorePlus3:
     AddToMoveScore 3
-    GoTo _07279
+    GoTo TrainerAI_Expert_TrumpCard_End
 
-_07277:
+TrainerAI_Expert_TrumpCard_ScoreMinus1:
     AddToMoveScore -1
 
-_07279:
+TrainerAI_Expert_TrumpCard_End:
     PopOrEnd 
 
-_07280:
-    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_RECOVER_DAMAGE_SLEEP, _07349
-    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_RESTORE_HALF_HP, _07349
-    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_HEAL_HALF_REMOVE_FLYING_TYPE, _07349
-    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_UNUSED_157, _07349
-    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_HEAL_HALF_MORE_IN_SUN, _07349
-    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_REST, _07349
-    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_SWALLOW, _07349
-    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_RECOVER_HALF_DAMAGE_DEALT, _07349
-    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_GROUND_TRAP_USER_CONTINUOUS_HEAL, _07349
-    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_RESTORE_HP_EVERY_TURN, _07349
-    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_STATUS_LEECH_SEED, _07349
-    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_FAINT_AND_FULL_HEAL_NEXT_MON, _07349
-    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_FAINT_FULL_RESTORE_NEXT_MON, _07349
-    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_LEECH_SEED, _07349
-    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_AQUA_RING, _07349
-    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_INGRAIN, _07349
-    IfRandomLessThan 96, _07349
-    GoTo _07354
+TrainerAI_Expert_HealBlock:
+    ; If the opponent knows a move with any of the following effects, 90.2% chance of score +1:
+    ; - Dream Eater
+    ; - Restore half HP
+    ; - Roost
+    ; - Sun-boosted recovery
+    ; - Rest
+    ; - Swallow
+    ; - Draining moves
+    ; - Ingrain
+    ; - Aqua Ring
+    ; - Leech Seed
+    ; - Lunar Dance, Healing Wish
+    ;
+    ; If the attacker is under the effect of Leech Seed or the opponent is under the effect of Ingrain
+    ; or Aqua Ring, 90.2% chance of score +1.
+    ;
+    ; Otherwise, 56.4% chance of score +1.
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_RECOVER_DAMAGE_SLEEP, TrainerAI_Expert_HealBlock_TryScorePlus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_RESTORE_HALF_HP, TrainerAI_Expert_HealBlock_TryScorePlus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_HEAL_HALF_REMOVE_FLYING_TYPE, TrainerAI_Expert_HealBlock_TryScorePlus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_UNUSED_157, TrainerAI_Expert_HealBlock_TryScorePlus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_HEAL_HALF_MORE_IN_SUN, TrainerAI_Expert_HealBlock_TryScorePlus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_REST, TrainerAI_Expert_HealBlock_TryScorePlus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_SWALLOW, TrainerAI_Expert_HealBlock_TryScorePlus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_RECOVER_HALF_DAMAGE_DEALT, TrainerAI_Expert_HealBlock_TryScorePlus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_GROUND_TRAP_USER_CONTINUOUS_HEAL, TrainerAI_Expert_HealBlock_TryScorePlus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_RESTORE_HP_EVERY_TURN, TrainerAI_Expert_HealBlock_TryScorePlus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_STATUS_LEECH_SEED, TrainerAI_Expert_HealBlock_TryScorePlus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_FAINT_AND_FULL_HEAL_NEXT_MON, TrainerAI_Expert_HealBlock_TryScorePlus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_FAINT_FULL_RESTORE_NEXT_MON, TrainerAI_Expert_HealBlock_TryScorePlus1
+    IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_LEECH_SEED, TrainerAI_Expert_HealBlock_TryScorePlus1
+    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_AQUA_RING, TrainerAI_Expert_HealBlock_TryScorePlus1
+    IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_INGRAIN, TrainerAI_Expert_HealBlock_TryScorePlus1
+    IfRandomLessThan 96, TrainerAI_Expert_HealBlock_TryScorePlus1
+    GoTo TrainerAI_Expert_HealBlock_End
 
-_07349:
-    IfRandomLessThan 25, _07354
+TrainerAI_Expert_HealBlock_TryScorePlus1:
+    IfRandomLessThan 25, TrainerAI_Expert_HealBlock_End
     AddToMoveScore 1
 
-_07354:
+TrainerAI_Expert_HealBlock_End:
     PopOrEnd 
 
-_07355:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _07392
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _07392
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _07392
-    IfHPPercentLessThan AI_BATTLER_DEFENDER, 50, _07392
-    IfHPPercentEqualTo AI_BATTLER_DEFENDER, 100, _07378
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 85, _07385
-    GoTo _07394
+TrainerAI_Expert_WringOut:
+    ; If the opponent resists or is immune to the move, score -1.
+    ;
+    ; If the opponent's HP < 50%, score -1.
+    ;
+    ; If the opponent is at full HP:
+    ; - Start with 90.2% chance of score +1.
+    ; - If the attacker is faster than its opponent, additional score +2.
+    ; - If the attacker is slower than its opponent, additional score +1.
+    ;
+    ; If the opponent's HP > 85%, 90.2% chance of score +1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_WringOut_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_WringOut_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_WringOut_ScoreMinus1
+    IfHPPercentLessThan AI_BATTLER_DEFENDER, 50, TrainerAI_Expert_WringOut_ScoreMinus1
+    IfHPPercentEqualTo AI_BATTLER_DEFENDER, 100, TrainerAI_Expert_WringOut_CheckSpeed
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 85, TrainerAI_Expert_WringOut_TryScorePlus1
+    GoTo TrainerAI_Expert_WringOut_End
 
-_07378:
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _07383
+TrainerAI_Expert_WringOut_CheckSpeed:
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_WringOut_ScorePlus1
     AddToMoveScore 1
 
-_07383:
+TrainerAI_Expert_WringOut_ScorePlus1:
     AddToMoveScore 1
 
-_07385:
-    IfRandomLessThan 25, _07394
+TrainerAI_Expert_WringOut_TryScorePlus1:
+    IfRandomLessThan 25, TrainerAI_Expert_WringOut_End
     AddToMoveScore 1
-    GoTo _07394
+    GoTo TrainerAI_Expert_WringOut_End
 
-_07392:
+TrainerAI_Expert_WringOut_ScoreMinus1:
     AddToMoveScore -1
 
-_07394:
+TrainerAI_Expert_WringOut_End:
     PopOrEnd 
 
-_07395:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 90, _07409
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 60, _07416
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 30, _07423
+TrainerAI_Expert_PowerTrick:
+    ; If the attacker's HP > 90%, 62.5% chance of score +1.
+    ;
+    ; If the attacker's HP > 60%, 50% chance of score +1.
+    ;
+    ; If the attacker's HP > 30%, 35.9% chance of score +1.
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 90, TrainerAI_Expert_PowerTrick_LikelyScorePlus1
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 60, TrainerAI_Expert_PowerTrick_CoinFlipScorePlus1
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 30, TrainerAI_Expert_PowerTrick_UnlikelyScorePlus1
     GoTo TrainerAI_ScoreMinus2
 
-_07409:
-    IfRandomLessThan 96, _07430
+TrainerAI_Expert_PowerTrick_LikelyScorePlus1:
+    IfRandomLessThan 96, TrainerAI_Expert_PowerTrick_End
     AddToMoveScore 1
-    GoTo _07430
+    GoTo TrainerAI_Expert_PowerTrick_End
 
-_07416:
-    IfRandomLessThan 128, _07430
+TrainerAI_Expert_PowerTrick_CoinFlipScorePlus1:
+    IfRandomLessThan 128, TrainerAI_Expert_PowerTrick_End
     AddToMoveScore 1
-    GoTo _07430
+    GoTo TrainerAI_Expert_PowerTrick_End
 
-_07423:
-    IfRandomLessThan 164, _07430
+TrainerAI_Expert_PowerTrick_UnlikelyScorePlus1:
+    IfRandomLessThan 164, TrainerAI_Expert_PowerTrick_End
     AddToMoveScore 1
-    GoTo _07430
+    GoTo TrainerAI_Expert_PowerTrick_End
 
-_07430:
+TrainerAI_Expert_PowerTrick_End:
     PopOrEnd 
 
-_07431:
-    IfRandomLessThan 64, _07457
+TrainerAI_Expert_GastroAcid:
+    ; 25% chance of score +0 and terminate.
+    ;
+    ; If the opponent's HP > 70%, score +1.
+    ;
+    ; If the opponent's HP <= 70%, 50% chance of score +0, 50% chance of score -1.
+    ;
+    ; If the opponent's HP <= 50%, 50% chance of score -1, 50% chance of score -2.
+    ;
+    ; If the opponent's HP <= 30%, 50% chance of score -2, 50% chance of score -3.
+    IfRandomLessThan 64, TrainerAI_Expert_GastroAcid_End
     AddToMoveScore 1
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, _07457
-    IfRandomLessThan 128, _07445
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, TrainerAI_Expert_GastroAcid_End
+    IfRandomLessThan 128, TrainerAI_Expert_GastroAcid_ContinueHPCheck
     AddToMoveScore -1
 
-_07445:
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 50, _07457
+TrainerAI_Expert_GastroAcid_ContinueHPCheck:
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 50, TrainerAI_Expert_GastroAcid_End
     AddToMoveScore -1
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 30, _07457
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 30, TrainerAI_Expert_GastroAcid_End
     AddToMoveScore -1
 
-_07457:
+TrainerAI_Expert_GastroAcid_End:
     PopOrEnd 
 
-_07458:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 70, _07483
-    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_HIGH_CRITICAL, _07479
-    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_HIGH_CRITICAL_BURN_HIT, _07479
-    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_HIGH_CRITICAL_POISON_HIT, _07479
-    IfRandomLessThan 64, _07479
-    GoTo _07485
+TrainerAI_Expert_LuckyChant:
+    ; If the attacker's HP < 70%, score -1.
+    ;
+    ; If the opponent knows a move with a high critical-hit ratio, score +1.
+    ;
+    ; Otherwise, 25% chance of score +1.
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 70, TrainerAI_Expert_LuckyChant_ScoreMinus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_HIGH_CRITICAL, TrainerAI_Expert_LuckyChant_ScorePlus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_HIGH_CRITICAL_BURN_HIT, TrainerAI_Expert_LuckyChant_ScorePlus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_HIGH_CRITICAL_POISON_HIT, TrainerAI_Expert_LuckyChant_ScorePlus1
+    IfRandomLessThan 64, TrainerAI_Expert_LuckyChant_ScorePlus1
+    GoTo TrainerAI_Expert_LuckyChant_End
 
-_07479:
+TrainerAI_Expert_LuckyChant_ScorePlus1:
     AddToMoveScore 1
-    GoTo _07485
+    GoTo TrainerAI_Expert_LuckyChant_End
 
-_07483:
+TrainerAI_Expert_LuckyChant_ScoreMinus1:
     AddToMoveScore -1
 
-_07485:
+TrainerAI_Expert_LuckyChant_End:
     PopOrEnd 
 
-_07486:
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _07516
-    IfBattlerDealsMoreDamage AI_BATTLER_DEFENDER, USE_MAX_DAMAGE, _07495
-    GoTo _07500
+TrainerAI_Expert_MeFirst:
+    ; If the attacker is slower than its opponent, score -2.
+    ;
+    ; If the attacker deals more damage than its opponent, 87.5% chance of additional score +1.
+    ;
+    ; If the opponent's last-used move was a Damaging move, 50% chance of additional score +1.
+    ;
+    ; 75% chance of score +1.
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_MeFirst_ScoreMinus2
+    IfBattlerDealsMoreDamage AI_BATTLER_DEFENDER, USE_MAX_DAMAGE, TrainerAI_Expert_MeFirst_TryScorePlus1
+    GoTo TrainerAI_Expert_MeFirst_CheckLastUsedMove
 
-_07495:
-    IfRandomLessThan 32, _07500
+TrainerAI_Expert_MeFirst_TryScorePlus1:
+    IfRandomLessThan 32, TrainerAI_Expert_MeFirst_CheckLastUsedMove
     AddToMoveScore 1
 
-_07500:
+TrainerAI_Expert_MeFirst_CheckLastUsedMove:
     LoadDefenderLastUsedMoveClass 
-    IfLoadedEqualTo CLASS_STATUS, _07509
-    IfRandomLessThan 128, _07518
+    IfLoadedEqualTo CLASS_STATUS, TrainerAI_Expert_MeFirst_TryScorePlus1AndEnd
+    IfRandomLessThan 128, TrainerAI_Expert_MeFirst_End
     AddToMoveScore 1
 
-_07509:
-    IfRandomLessThan 64, _07518
+TrainerAI_Expert_MeFirst_TryScorePlus1AndEnd:
+    IfRandomLessThan 64, TrainerAI_Expert_MeFirst_End
     AddToMoveScore 1
-    GoTo _07518
+    GoTo TrainerAI_Expert_MeFirst_End
 
-_07516:
+TrainerAI_Expert_MeFirst_ScoreMinus2:
     AddToMoveScore -2
 
-_07518:
+TrainerAI_Expert_MeFirst_End:
     PopOrEnd 
 
-_07519:
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _07545
-    IfBattlerDealsMoreDamage AI_BATTLER_DEFENDER, USE_MAX_DAMAGE, _07538
+TrainerAI_Expert_Copycat:
+    ; If the attacker is slower than its opponent, deals less damage than its opponent, and the
+    ; opponent's last-used move is not an encouraged move, 68.75% chance of score -1.
+    ;
+    ; If the attacker is faster than its opponent:
+    ; - If the attacker deals more damage than its opponent, 87.5% chance of score +2.
+    ; - If the opponent's last-used move is an encouraged move, 50% chance of score +2.
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_Copycat_CheckMoveEncouraged
+    IfBattlerDealsMoreDamage AI_BATTLER_DEFENDER, USE_MAX_DAMAGE, TrainerAI_Expert_Copycat_TryScorePlus2
     LoadBattlerPreviousMove AI_BATTLER_DEFENDER
-    IfLoadedNotInTable _07560, _07545
-    IfRandomLessThan 128, _07559
+    IfLoadedNotInTable TrainerAI_Expert_Copycat_EncouragedMoves, TrainerAI_Expert_Copycat_CheckMoveEncouraged
+    IfRandomLessThan 128, TrainerAI_Expert_Copycat_End
     AddToMoveScore 2
-    GoTo _07559
+    GoTo TrainerAI_Expert_Copycat_End
 
-_07538:
-    IfRandomLessThan 32, _07559
+TrainerAI_Expert_Copycat_TryScorePlus2:
+    IfRandomLessThan 32, TrainerAI_Expert_Copycat_End
     AddToMoveScore 2
-    GoTo _07559
+    GoTo TrainerAI_Expert_Copycat_End
 
-_07545:
-    IfBattlerDealsMoreDamage AI_BATTLER_DEFENDER, USE_MAX_DAMAGE, _07559
+TrainerAI_Expert_Copycat_CheckMoveEncouraged:
+    IfBattlerDealsMoreDamage AI_BATTLER_DEFENDER, USE_MAX_DAMAGE, TrainerAI_Expert_Copycat_End
     LoadBattlerPreviousMove AI_BATTLER_DEFENDER
-    IfLoadedInTable _07560, _07559
-    IfRandomLessThan 80, _07559
+    IfLoadedInTable TrainerAI_Expert_Copycat_EncouragedMoves, TrainerAI_Expert_Copycat_End
+    IfRandomLessThan 80, TrainerAI_Expert_Copycat_End
     AddToMoveScore -1
 
-_07559:
+TrainerAI_Expert_Copycat_End:
     PopOrEnd 
 
-_07560:
+TrainerAI_Expert_Copycat_EncouragedMoves:
     TableEntry MOVE_SLEEP_POWDER
     TableEntry MOVE_LOVELY_KISS
     TableEntry MOVE_SPORE
@@ -4809,464 +5633,725 @@ _07560:
     TableEntry MOVE_DARK_VOID
     TableEntry TABLE_END
 
-_07608:
+TrainerAI_Expert_PowerSwap:
+    ; Find the difference in stat stages between the attacker and its opponent for the Attack stat.
+    ;
+    ; If the difference is > 3:
+    ; - If the difference in SpAttack stages > 3:
+    ;   - 50% chance of score +5.
+    ;   - 25% chance of score +4.
+    ;   - 12.5% chance of score +3.
+    ;   - 6.25% chance of score +2.
+    ;   - 3.125% chance of score +1.
+    ;   - 3.125% chance of score +0.
+    ; - If the difference in SpAttack stages > 1:
+    ;   - 50% chance of score +4.
+    ;   - 25% chance of score +3.
+    ;   - 12.5% chance of score +2.
+    ;   - 6.25% chance of score +1.
+    ;   - 6.25% chance of score +0.
+    ; - If the difference in SpAttack stages = 0:
+    ;   - 50% chance of score +3.
+    ;   - 25% chance of score +2.
+    ;   - 12.5% chance of score +1.
+    ;   - 12.5% chance of score +0.
+    ; - Otherwise, no score change.
+    ;
+    ; If the difference is > 1:
+    ; - If the difference in SpAttack stages > 3:
+    ;   - 50% chance of score +4.
+    ;   - 25% chance of score +3.
+    ;   - 12.5% chance of score +2.
+    ;   - 6.25% chance of score +1.
+    ;   - 6.25% chance of score +0.
+    ; - If the difference in SpAttack stages > 1:
+    ;   - 50% chance of score +3.
+    ;   - 25% chance of score +2.
+    ;   - 12.5% chance of score +1.
+    ;   - 12.5% chance of score +0.
+    ; - If the difference in SpAttack stages = 0:
+    ;   - 50% chance of score +2.
+    ;   - 25% chance of score +1.
+    ;   - 25% chance of score +0.
+    ; - Otherwise, no score change.
+    ;
+    ; If the difference is > 0:
+    ; - If the difference in SpAttack stages > 3:
+    ;   - 50% chance of score +3.
+    ;   - 25% chance of score +2.
+    ;   - 12.5% chance of score +1.
+    ;   - 12.5% chance of score +0.
+    ; - If the difference in SpAttack stages > 1:
+    ;   - 50% chance of score +2.
+    ;   - 25% chance of score +1.
+    ;   - 25% chance of score +0.
+    ; - If the difference in SpAttack stages = 0:
+    ;   - 50% chance of score +1.
+    ;   - 50% chance of score +0.
+    ; - Otherwise, no score change.
+    ;
+    ; If the difference = 0:
+    ; - If the difference in SpAttack stages > 3:
+    ;   - 50% chance of score +3.
+    ;   - 25% chance of score +2.
+    ;   - 12.5% chance of score +1.
+    ;   - 12.5% chance of score +0.
+    ; - If the difference in SpAttack stages > 1:
+    ;   - 50% chance of score +2.
+    ;   - 25% chance of score +1.
+    ;   - 25% chance of score +0.
+    ; - If the difference in SpAttack stages > 0:
+    ;   - 50% chance of score +1.
+    ;   - 50% chance of score +0.
+    ; - Otherwise, no score change.
     DiffStatStages AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK
-    IfLoadedGreaterThan MOVE_DOUBLE_SLAP, _07625
-    IfLoadedGreaterThan MOVE_POUND, _07639
-    IfLoadedGreaterThan MOVE_NONE, _07653
-    IfLoadedEqualTo MOVE_NONE, _07667
-    GoTo _07716
+    IfLoadedGreaterThan 3, TrainerAI_Expert_PowerSwap_CheckSpAttack_HighDiff
+    IfLoadedGreaterThan 1, TrainerAI_Expert_PowerSwap_CheckSpAttack_MediumDiff
+    IfLoadedGreaterThan 0, TrainerAI_Expert_PowerSwap_CheckSpAttack_LowDiff
+    IfLoadedEqualTo 0, TrainerAI_Expert_PowerSwap_CheckSpAttack_NoDiff
+    GoTo TrainerAI_Expert_PowerSwap_CheckSpAttack_End
 
-_07625:
+TrainerAI_Expert_PowerSwap_CheckSpAttack_HighDiff:
     DiffStatStages AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK
-    IfLoadedGreaterThan MOVE_DOUBLE_SLAP, _07681
-    IfLoadedGreaterThan MOVE_POUND, _07688
-    IfLoadedEqualTo MOVE_NONE, _07695
-    GoTo _07716
+    IfLoadedGreaterThan 3, TrainerAI_Expert_PowerSwap_TryScorePlus5
+    IfLoadedGreaterThan 1, TrainerAI_Expert_PowerSwap_TryScorePlus4
+    IfLoadedEqualTo 0, TrainerAI_Expert_PowerSwap_TryScorePlus3
+    GoTo TrainerAI_Expert_PowerSwap_CheckSpAttack_End
 
-_07639:
+TrainerAI_Expert_PowerSwap_CheckSpAttack_MediumDiff:
     DiffStatStages AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK
-    IfLoadedGreaterThan MOVE_DOUBLE_SLAP, _07688
-    IfLoadedGreaterThan MOVE_POUND, _07695
-    IfLoadedEqualTo MOVE_NONE, _07702
-    GoTo _07716
+    IfLoadedGreaterThan 3, TrainerAI_Expert_PowerSwap_TryScorePlus4
+    IfLoadedGreaterThan 1, TrainerAI_Expert_PowerSwap_TryScorePlus3
+    IfLoadedEqualTo 0, TrainerAI_Expert_PowerSwap_TryScorePlus2
+    GoTo TrainerAI_Expert_PowerSwap_CheckSpAttack_End
 
-_07653:
+TrainerAI_Expert_PowerSwap_CheckSpAttack_LowDiff:
     DiffStatStages AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK
-    IfLoadedGreaterThan MOVE_DOUBLE_SLAP, _07695
-    IfLoadedGreaterThan MOVE_POUND, _07702
-    IfLoadedEqualTo MOVE_NONE, _07709
-    GoTo _07716
+    IfLoadedGreaterThan 3, TrainerAI_Expert_PowerSwap_TryScorePlus3
+    IfLoadedGreaterThan 1, TrainerAI_Expert_PowerSwap_TryScorePlus2
+    IfLoadedEqualTo 0, TrainerAI_Expert_PowerSwap_TryScorePlus1
+    GoTo TrainerAI_Expert_PowerSwap_CheckSpAttack_End
 
-_07667:
+TrainerAI_Expert_PowerSwap_CheckSpAttack_NoDiff:
     DiffStatStages AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK
-    IfLoadedGreaterThan MOVE_DOUBLE_SLAP, _07695
-    IfLoadedGreaterThan MOVE_POUND, _07702
-    IfLoadedGreaterThan MOVE_NONE, _07709
-    GoTo _07716
+    IfLoadedGreaterThan 3, TrainerAI_Expert_PowerSwap_TryScorePlus3
+    IfLoadedGreaterThan 1, TrainerAI_Expert_PowerSwap_TryScorePlus2
+    IfLoadedGreaterThan 0, TrainerAI_Expert_PowerSwap_TryScorePlus1
+    GoTo TrainerAI_Expert_PowerSwap_CheckSpAttack_End
 
-_07681:
-    IfRandomLessThan 128, _07688
+TrainerAI_Expert_PowerSwap_TryScorePlus5:
+    IfRandomLessThan 128, TrainerAI_Expert_PowerSwap_TryScorePlus4
     AddToMoveScore 5
-    GoTo _07716
+    GoTo TrainerAI_Expert_PowerSwap_CheckSpAttack_End
 
-_07688:
-    IfRandomLessThan 128, _07695
+TrainerAI_Expert_PowerSwap_TryScorePlus4:
+    IfRandomLessThan 128, TrainerAI_Expert_PowerSwap_TryScorePlus3
     AddToMoveScore 4
-    GoTo _07716
+    GoTo TrainerAI_Expert_PowerSwap_CheckSpAttack_End
 
-_07695:
-    IfRandomLessThan 128, _07702
+TrainerAI_Expert_PowerSwap_TryScorePlus3:
+    IfRandomLessThan 128, TrainerAI_Expert_PowerSwap_TryScorePlus2
     AddToMoveScore 3
-    GoTo _07716
+    GoTo TrainerAI_Expert_PowerSwap_CheckSpAttack_End
 
-_07702:
-    IfRandomLessThan 128, _07709
+TrainerAI_Expert_PowerSwap_TryScorePlus2:
+    IfRandomLessThan 128, TrainerAI_Expert_PowerSwap_TryScorePlus1
     AddToMoveScore 2
-    GoTo _07716
+    GoTo TrainerAI_Expert_PowerSwap_CheckSpAttack_End
 
-_07709:
-    IfRandomLessThan 128, _07716
+TrainerAI_Expert_PowerSwap_TryScorePlus1:
+    IfRandomLessThan 128, TrainerAI_Expert_PowerSwap_CheckSpAttack_End
     AddToMoveScore 1
-    GoTo _07716
+    GoTo TrainerAI_Expert_PowerSwap_CheckSpAttack_End
 
-_07716:
+TrainerAI_Expert_PowerSwap_CheckSpAttack_End:
     PopOrEnd 
 
-_07717:
+TrainerAI_Expert_GuardSwap:
+    ; Find the difference in stat stages between the attacker and its opponent for the Defense stat.
+    ;
+    ; If the difference is > 3:
+    ; - If the difference in SpDefense stages > 3:
+    ;   - 50% chance of score +5.
+    ;   - 25% chance of score +4.
+    ;   - 12.5% chance of score +3.
+    ;   - 6.25% chance of score +2.
+    ;   - 3.125% chance of score +1.
+    ;   - 3.125% chance of score +0.
+    ; - If the difference in SpDefense stages > 1:
+    ;   - 50% chance of score +4.
+    ;   - 25% chance of score +3.
+    ;   - 12.5% chance of score +2.
+    ;   - 6.25% chance of score +1.
+    ;   - 6.25% chance of score +0.
+    ; - If the difference in SpDefense stages = 0:
+    ;   - 50% chance of score +3.
+    ;   - 25% chance of score +2.
+    ;   - 12.5% chance of score +1.
+    ;   - 12.5% chance of score +0.
+    ; - Otherwise, no score change.
+    ;
+    ; If the difference is > 1:
+    ; - If the difference in SpDefense stages > 3:
+    ;   - 50% chance of score +4.
+    ;   - 25% chance of score +3.
+    ;   - 12.5% chance of score +2.
+    ;   - 6.25% chance of score +1.
+    ;   - 6.25% chance of score +0.
+    ; - If the difference in SpDefense stages > 1:
+    ;   - 50% chance of score +3.
+    ;   - 25% chance of score +2.
+    ;   - 12.5% chance of score +1.
+    ;   - 12.5% chance of score +0.
+    ; - If the difference in SpDefense stages = 0:
+    ;   - 50% chance of score +2.
+    ;   - 25% chance of score +1.
+    ;   - 25% chance of score +0.
+    ; - Otherwise, no score change.
+    ;
+    ; If the difference is > 0:
+    ; - If the difference in SpDefense stages > 3:
+    ;   - 50% chance of score +3.
+    ;   - 25% chance of score +2.
+    ;   - 12.5% chance of score +1.
+    ;   - 12.5% chance of score +0.
+    ; - If the difference in SpDefense stages > 1:
+    ;   - 50% chance of score +2.
+    ;   - 25% chance of score +1.
+    ;   - 25% chance of score +0.
+    ; - If the difference in SpDefense stages = 0:
+    ;   - 50% chance of score +1.
+    ;   - 50% chance of score +0.
+    ; - Otherwise, no score change.
+    ;
+    ; If the difference = 0:
+    ; - If the difference in SpDefense stages > 3:
+    ;   - 50% chance of score +3.
+    ;   - 25% chance of score +2.
+    ;   - 12.5% chance of score +1.
+    ;   - 12.5% chance of score +0.
+    ; - If the difference in SpDefense stages > 1:
+    ;   - 50% chance of score +2.
+    ;   - 25% chance of score +1.
+    ;   - 25% chance of score +0.
+    ; - If the difference in SpDefense stages > 0:
+    ;   - 50% chance of score +1.
+    ;   - 50% chance of score +0.
+    ; - Otherwise, no score change.
     DiffStatStages AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE
-    IfLoadedGreaterThan MOVE_DOUBLE_SLAP, _07734
-    IfLoadedGreaterThan MOVE_POUND, _07748
-    IfLoadedGreaterThan MOVE_NONE, _07762
-    IfLoadedEqualTo MOVE_NONE, _07776
-    GoTo _07825
+    IfLoadedGreaterThan 3, TrainerAI_Expert_GuardSwap_CheckSpDefense_HighDiff
+    IfLoadedGreaterThan 1, TrainerAI_Expert_GuardSwap_CheckSpDefense_MediumDiff
+    IfLoadedGreaterThan 0, TrainerAI_Expert_GuardSwap_CheckSpDefense_LowDiff
+    IfLoadedEqualTo 0, TrainerAI_Expert_GuardSwap_CheckSpDefense_NoDiff
+    GoTo TrainerAI_Expert_GuardSwap_End
 
-_07734:
+TrainerAI_Expert_GuardSwap_CheckSpDefense_HighDiff:
     DiffStatStages AI_BATTLER_DEFENDER, BATTLE_STAT_SP_DEFENSE
-    IfLoadedGreaterThan MOVE_DOUBLE_SLAP, _07790
-    IfLoadedGreaterThan MOVE_POUND, _07797
-    IfLoadedEqualTo MOVE_NONE, _07804
-    GoTo _07825
+    IfLoadedGreaterThan 3, TrainerAI_Expert_GuardSwap_TryScorePlus5
+    IfLoadedGreaterThan 1, TrainerAI_Expert_GuardSwap_TryScorePlus4
+    IfLoadedEqualTo 0, TrainerAI_Expert_GuardSwap_TryScorePlus3
+    GoTo TrainerAI_Expert_GuardSwap_End
 
-_07748:
+TrainerAI_Expert_GuardSwap_CheckSpDefense_MediumDiff:
     DiffStatStages AI_BATTLER_DEFENDER, BATTLE_STAT_SP_DEFENSE
-    IfLoadedGreaterThan MOVE_DOUBLE_SLAP, _07797
-    IfLoadedGreaterThan MOVE_POUND, _07804
-    IfLoadedEqualTo MOVE_NONE, _07811
-    GoTo _07825
+    IfLoadedGreaterThan 3, TrainerAI_Expert_GuardSwap_TryScorePlus4
+    IfLoadedGreaterThan 1, TrainerAI_Expert_GuardSwap_TryScorePlus3
+    IfLoadedEqualTo 0, TrainerAI_Expert_GuardSwap_TryScorePlus2
+    GoTo TrainerAI_Expert_GuardSwap_End
 
-_07762:
+TrainerAI_Expert_GuardSwap_CheckSpDefense_LowDiff:
     DiffStatStages AI_BATTLER_DEFENDER, BATTLE_STAT_SP_DEFENSE
-    IfLoadedGreaterThan MOVE_DOUBLE_SLAP, _07804
-    IfLoadedGreaterThan MOVE_POUND, _07811
-    IfLoadedEqualTo MOVE_NONE, _07818
-    GoTo _07825
+    IfLoadedGreaterThan 3, TrainerAI_Expert_GuardSwap_TryScorePlus3
+    IfLoadedGreaterThan 1, TrainerAI_Expert_GuardSwap_TryScorePlus2
+    IfLoadedEqualTo 0, TrainerAI_Expert_GuardSwap_TryScorePlus1
+    GoTo TrainerAI_Expert_GuardSwap_End
 
-_07776:
+TrainerAI_Expert_GuardSwap_CheckSpDefense_NoDiff:
     DiffStatStages AI_BATTLER_DEFENDER, BATTLE_STAT_SP_DEFENSE
-    IfLoadedGreaterThan MOVE_DOUBLE_SLAP, _07804
-    IfLoadedGreaterThan MOVE_POUND, _07811
-    IfLoadedGreaterThan MOVE_NONE, _07818
-    GoTo _07825
+    IfLoadedGreaterThan 3, TrainerAI_Expert_GuardSwap_TryScorePlus3
+    IfLoadedGreaterThan 1, TrainerAI_Expert_GuardSwap_TryScorePlus2
+    IfLoadedGreaterThan 0, TrainerAI_Expert_GuardSwap_TryScorePlus1
+    GoTo TrainerAI_Expert_GuardSwap_End
 
-_07790:
-    IfRandomLessThan 128, _07797
+TrainerAI_Expert_GuardSwap_TryScorePlus5:
+    IfRandomLessThan 128, TrainerAI_Expert_GuardSwap_TryScorePlus4
     AddToMoveScore 5
-    GoTo _07825
+    GoTo TrainerAI_Expert_GuardSwap_End
 
-_07797:
-    IfRandomLessThan 128, _07804
+TrainerAI_Expert_GuardSwap_TryScorePlus4:
+    IfRandomLessThan 128, TrainerAI_Expert_GuardSwap_TryScorePlus3
     AddToMoveScore 4
-    GoTo _07825
+    GoTo TrainerAI_Expert_GuardSwap_End
 
-_07804:
-    IfRandomLessThan 128, _07811
+TrainerAI_Expert_GuardSwap_TryScorePlus3:
+    IfRandomLessThan 128, TrainerAI_Expert_GuardSwap_TryScorePlus2
     AddToMoveScore 3
-    GoTo _07825
+    GoTo TrainerAI_Expert_GuardSwap_End
 
-_07811:
-    IfRandomLessThan 128, _07818
+TrainerAI_Expert_GuardSwap_TryScorePlus2:
+    IfRandomLessThan 128, TrainerAI_Expert_GuardSwap_TryScorePlus1
     AddToMoveScore 2
-    GoTo _07825
+    GoTo TrainerAI_Expert_GuardSwap_End
 
-_07818:
-    IfRandomLessThan 128, _07825
+TrainerAI_Expert_GuardSwap_TryScorePlus1:
+    IfRandomLessThan 128, TrainerAI_Expert_GuardSwap_End
     AddToMoveScore 1
-    GoTo _07825
+    GoTo TrainerAI_Expert_GuardSwap_End
 
-_07825:
+TrainerAI_Expert_GuardSwap_End:
     PopOrEnd 
 
-_07826:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _07874
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _07874
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _07874
+TrainerAI_Expert_Punishment:
+    ; If the opponent resists or is immune to the move, score +0.
+    ;
+    ; Sum the total positive stat stages for the opponent:
+    ; - If > 6:
+    ;     - 50% chance of score +4
+    ;     - 25% chance of score +3
+    ;     - 12.5% chance of score +2
+    ;     - 6.25% chance of score +1
+    ;     - 6.25% chance of score +0
+    ; - If = 6:
+    ;     - 50% chance of score +3
+    ;     - 25% chance of score +2
+    ;     - 12.5% chance of score +1
+    ;     - 12.5% chance of score +0
+    ; - If = 5:
+    ;     - 50% chance of score +2
+    ;     - 25% chance of score +1
+    ;     - 25% chance of score +0
+    ; - If > 2:
+    ;     - 50% chance of score +1
+    ;     - 50% chance of score +0
+    ; - Otherwise, score +0.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_Punishment_End
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_Punishment_End
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_Punishment_End
     SumPositiveStatStages AI_BATTLER_DEFENDER
-    IfLoadedGreaterThan MOVE_PAY_DAY, _07854
-    IfLoadedGreaterThan MOVE_MEGA_PUNCH, _07859
-    IfLoadedGreaterThan MOVE_COMET_PUNCH, _07864
-    IfLoadedGreaterThan MOVE_DOUBLE_SLAP, _07869
-    IfLoadedGreaterThan MOVE_KARATE_CHOP, _07869
-    GoTo _07874
+    IfLoadedGreaterThan 6, TrainerAI_Expert_Punishment_TryScorePlus4
+    IfLoadedGreaterThan 5, TrainerAI_Expert_Punishment_TryScorePlus3
+    IfLoadedGreaterThan 4, TrainerAI_Expert_Punishment_TryScorePlus2
+    IfLoadedGreaterThan 3, TrainerAI_Expert_Punishment_TryScorePlus1
+    IfLoadedGreaterThan 2, TrainerAI_Expert_Punishment_TryScorePlus1
+    GoTo TrainerAI_Expert_Punishment_End
 
-_07854:
-    IfRandomLessThan 128, _07859
+TrainerAI_Expert_Punishment_TryScorePlus4:
+    IfRandomLessThan 128, TrainerAI_Expert_Punishment_TryScorePlus3
     AddToMoveScore 4
 
-_07859:
-    IfRandomLessThan 128, _07864
+TrainerAI_Expert_Punishment_TryScorePlus3:
+    IfRandomLessThan 128, TrainerAI_Expert_Punishment_TryScorePlus2
     AddToMoveScore 3
 
-_07864:
-    IfRandomLessThan 128, _07869
+TrainerAI_Expert_Punishment_TryScorePlus2:
+    IfRandomLessThan 128, TrainerAI_Expert_Punishment_TryScorePlus1
     AddToMoveScore 2
 
-_07869:
-    IfRandomLessThan 128, _07874
+TrainerAI_Expert_Punishment_TryScorePlus1:
+    IfRandomLessThan 128, TrainerAI_Expert_Punishment_End
     AddToMoveScore 1
 
-_07874:
+TrainerAI_Expert_Punishment_End:
     PopOrEnd 
 
-_07875:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _07889
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _07889
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _07889
-    IfCanUseLastResort AI_BATTLER_ATTACKER, _07893
-    GoTo _07895
+TrainerAI_Expert_LastResort:
+    ; If the opponent resists or is immune to the move, score -1.
+    ;
+    ; If the attacker can use Last Resort, score +1. Otherwise, score +0.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_LastResort_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_LastResort_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_LastResort_ScoreMinus1
+    IfCanUseLastResort AI_BATTLER_ATTACKER, TrainerAI_Expert_LastResort_ScorePlus1
+    GoTo TrainerAI_Expert_LastResort_End
 
-_07889:
+TrainerAI_Expert_LastResort_ScoreMinus1:
     AddToMoveScore -1
-    GoTo _07895
+    GoTo TrainerAI_Expert_LastResort_End
 
-_07893:
+TrainerAI_Expert_LastResort_ScorePlus1:
     AddToMoveScore 1
 
-_07895:
+TrainerAI_Expert_LastResort_End:
     PopOrEnd 
 
-_07896:
-    IfMoveNotKnown AI_BATTLER_DEFENDER, MOVE_REST, _07902
+TrainerAI_Expert_WorrySeed:
+    ; If the opponent knows the move Rest, additional score +1.
+    ;
+    ; If the attacker's HP >= 50%, 50% chance of additional score +1.
+    ;
+    ; 75% chance of score +1.
+    IfMoveNotKnown AI_BATTLER_DEFENDER, MOVE_REST, TrainerAI_Expert_WorrySeed_CheckUserHP
     AddToMoveScore 1
 
-_07902:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 50, _07911
-    IfRandomLessThan 128, _07911
+TrainerAI_Expert_WorrySeed_CheckUserHP:
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 50, TrainerAI_Expert_WorrySeed_TryScorePlus1
+    IfRandomLessThan 128, TrainerAI_Expert_WorrySeed_TryScorePlus1
     AddToMoveScore 1
 
-_07911:
-    IfRandomLessThan 64, _07918
+TrainerAI_Expert_WorrySeed_TryScorePlus1:
+    IfRandomLessThan 64, TrainerAI_Expert_WorrySeed_End
     AddToMoveScore 1
-    GoTo _07918
+    GoTo TrainerAI_Expert_WorrySeed_End
 
-_07918:
+TrainerAI_Expert_WorrySeed_End:
     PopOrEnd 
 
-_07919:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _07935
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _07935
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _07935
-    IfRandomLessThan 64, _07937
+TrainerAI_Expert_SuckerPunch:
+    ; If the opponent resists or is immune to the move, score -1.
+    ;
+    ; 75% chance of score +1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_SuckerPunch_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_SuckerPunch_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_SuckerPunch_ScoreMinus1
+    IfRandomLessThan 64, TrainerAI_Expert_SuckerPunch_End
     AddToMoveScore 1
-    GoTo _07937
+    GoTo TrainerAI_Expert_SuckerPunch_End
 
-_07935:
+TrainerAI_Expert_SuckerPunch_ScoreMinus1:
     AddToMoveScore -1
 
-_07937:
+TrainerAI_Expert_SuckerPunch_End:
     PopOrEnd 
 
-_07938:
-    IfRandomLessThan 128, _07958
+TrainerAI_Expert_ToxicSpikes:
+    ; 50% chance to ignore all further scoring.
+    ;
+    ; Start at score +1.
+    ;
+    ; If the attacker knows specifically the moves Roar or Whirlwind, 75% chance of additional score +1.
+    IfRandomLessThan 128, TrainerAI_Expert_ToxicSpikes_End
     AddToMoveScore 1
-    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_ROAR, _07953
-    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_WHIRLWIND, _07953
-    GoTo _07958
+    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_ROAR, TrainerAI_Expert_ToxicSpikes_TryScorePlus1
+    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_WHIRLWIND, TrainerAI_Expert_ToxicSpikes_TryScorePlus1
+    GoTo TrainerAI_Expert_ToxicSpikes_End
 
-_07953:
-    IfRandomLessThan 64, _07958
+TrainerAI_Expert_ToxicSpikes_TryScorePlus1:
+    IfRandomLessThan 64, TrainerAI_Expert_ToxicSpikes_End
     AddToMoveScore 1
 
-_07958:
+TrainerAI_Expert_ToxicSpikes_End:
     PopOrEnd 
 
-_07959:
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 7, _07990
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE, 7, _07990
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 7, _07990
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_DEFENSE, 7, _07990
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 7, _07990
-    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_FOCUS_ENERGY, _07990
-    GoTo _08029
+TrainerAI_Expert_HeartSwap:
+    ; If the opponent does not have any of the following stats at +2 stage or greater and is not
+    ; under the effect of Focus Energy, score -2 and terminate:
+    ; - Attack
+    ; - Defense
+    ; - SpAttack
+    ; - SpDefense
+    ; - Evasion
+    ;
+    ; If the attacker has any of the following stats at +0 stage or lower or is not under the
+    ; effect of Focus Energy, score +1:
+    ; - Attack
+    ; - Defense
+    ; - SpAttack
+    ; - SpDefense
+    ;
+    ; If the attacker's Evasion stat is at +0 stage or lower, score +2.
+    ;
+    ; Otherwise, 80.5% chance of score -2.
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 7, TrainerAI_Expert_HeartSwap_CheckUserStages
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE, 7, TrainerAI_Expert_HeartSwap_CheckUserStages
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 7, TrainerAI_Expert_HeartSwap_CheckUserStages
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_DEFENSE, 7, TrainerAI_Expert_HeartSwap_CheckUserStages
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 7, TrainerAI_Expert_HeartSwap_CheckUserStages
+    IfVolatileStatus AI_BATTLER_DEFENDER, VOLATILE_CONDITION_FOCUS_ENERGY, TrainerAI_Expert_HeartSwap_CheckUserStages
+    GoTo TrainerAI_Expert_HeartSwap_ScoreMinus2
 
-_07990:
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 7, _08026
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 7, _08026
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 7, _08026
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 7, _08026
-    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 7, _08024
-    IfNotVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_FOCUS_ENERGY, _08026
-    IfRandomLessThan 50, _08031
-    GoTo _08029
+TrainerAI_Expert_HeartSwap_CheckUserStages:
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 7, TrainerAI_Expert_HeartSwap_ScorePlus1
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 7, TrainerAI_Expert_HeartSwap_ScorePlus1
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 7, TrainerAI_Expert_HeartSwap_ScorePlus1
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 7, TrainerAI_Expert_HeartSwap_ScorePlus1
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 7, TrainerAI_Expert_HeartSwap_ScorePlus2
+    IfNotVolatileStatus AI_BATTLER_ATTACKER, VOLATILE_CONDITION_FOCUS_ENERGY, TrainerAI_Expert_HeartSwap_ScorePlus1
+    IfRandomLessThan 50, TrainerAI_Expert_HeartSwap_End
+    GoTo TrainerAI_Expert_HeartSwap_ScoreMinus2
 
-_08024:
+TrainerAI_Expert_HeartSwap_ScorePlus2:
     AddToMoveScore 1
 
-_08026:
+TrainerAI_Expert_HeartSwap_ScorePlus1:
     AddToMoveScore 1
     PopOrEnd 
 
-_08029:
+TrainerAI_Expert_HeartSwap_ScoreMinus2:
     AddToMoveScore -2
 
-_08031:
+TrainerAI_Expert_HeartSwap_End:
     PopOrEnd 
 
-_08032:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 30, _08041
-    IfRandomLessThan 128, _08041
+TrainerAI_Expert_AquaRing:
+    ; If the attacker's HP >= 30%, 50% chance of score +1.
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 30, TrainerAI_Expert_AquaRing_End
+    IfRandomLessThan 128, TrainerAI_Expert_AquaRing_End
     AddToMoveScore 1
 
-_08041:
+TrainerAI_Expert_AquaRing_End:
     PopOrEnd 
 
-_08042:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 50, _08077
-    IfMoveKnown AI_BATTLER_DEFENDER, MOVE_EARTHQUAKE, _08060
-    IfMoveKnown AI_BATTLER_DEFENDER, MOVE_EARTH_POWER, _08060
-    IfMoveKnown AI_BATTLER_DEFENDER, MOVE_FISSURE, _08060
-    GoTo _08062
+TrainerAI_Expert_MagnetRise:
+    ; If the attacker's HP < 50%, ignore all further score changes.
+    ;
+    ; If the opponent knows one of the following moves, additional score +1:
+    ; - Earthquake
+    ; - Earth Power
+    ; - Fissure
+    ;
+    ; If the opponent has a Ground typing, score +1. Otherwise, 50% chance of score +1.
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 50, TrainerAI_Expert_MagnetRise_End
+    IfMoveKnown AI_BATTLER_DEFENDER, MOVE_EARTHQUAKE, TrainerAI_Expert_MagnetRise_InitialScorePlus1
+    IfMoveKnown AI_BATTLER_DEFENDER, MOVE_EARTH_POWER, TrainerAI_Expert_MagnetRise_InitialScorePlus1
+    IfMoveKnown AI_BATTLER_DEFENDER, MOVE_FISSURE, TrainerAI_Expert_MagnetRise_InitialScorePlus1
+    GoTo TrainerAI_Expert_MagnetRise_CheckOpponentTyping
 
-_08060:
+TrainerAI_Expert_MagnetRise_InitialScorePlus1:
     AddToMoveScore 1
 
-_08062:
+TrainerAI_Expert_MagnetRise_CheckOpponentTyping:
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
-    IfLoadedEqualTo TYPE_GROUND, _08075
+    IfLoadedEqualTo TYPE_GROUND, TrainerAI_Expert_MagnetRise_ScorePlus1
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
-    IfLoadedEqualTo TYPE_GROUND, _08075
-    IfRandomLessThan 128, _08077
+    IfLoadedEqualTo TYPE_GROUND, TrainerAI_Expert_MagnetRise_ScorePlus1
+    IfRandomLessThan 128, TrainerAI_Expert_MagnetRise_End
 
-_08075:
+TrainerAI_Expert_MagnetRise_ScorePlus1:
     AddToMoveScore 1
 
-_08077:
+TrainerAI_Expert_MagnetRise_End:
     PopOrEnd 
     PopOrEnd 
     PopOrEnd 
     PopOrEnd 
     PopOrEnd 
 
-_08082:
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_LIGHT_SCREEN, _08104
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_REFLECT, _08104
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SPIKES, _08134
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_STEALTH_ROCK, _08134
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_TOXIC_SPIKES, _08134
-    GoTo _08145
+TrainerAI_Expert_Defog:
+    ; If the opponent's side of the field is under the effect of Light Screen or Reflect:
+    ; - If the attacker's HP < 30% and there are no remaining party members:
+    ;   - 80.5% chance of additional score -2.
+    ;   - If the opponent's HP > 70%, score -2.
+    ; - Start at score +1.
+    ; - If the opponent has at least one remaining party member and their side of the field is
+    ; under the effect of Spikes, Stealth Rock, or Toxic Spikes, 50% chance of score -1.
+    ; - Proceed to the final if-block below.
+    ;
+    ; If the opponent's side of the field is under the effect of Spikes, Stealth Rock, or Toxic
+    ; Spikes, additional score -2.
+    ;
+    ; If all of the following conditions are met, score -2:
+    ; - The attacker's HP >= 70%
+    ; - The opponent's Evasion stat is at -2 stage or greater
+    ; - The opponent's HP <= 70%
+    ; Otherwise:
+    ; - 80.5% chance of additional score -2.
+    ; - If the opponent's HP <= 70% score -2.
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_LIGHT_SCREEN, TrainerAI_Expert_Defog_ScreenScrubbing
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_REFLECT, TrainerAI_Expert_Defog_ScreenScrubbing
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SPIKES, TrainerAI_Expert_Defog_ScoreMinus2AndEnd
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_STEALTH_ROCK, TrainerAI_Expert_Defog_ScoreMinus2AndEnd
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_TOXIC_SPIKES, TrainerAI_Expert_Defog_ScoreMinus2AndEnd
+    GoTo TrainerAI_Expert_Defog_CheckUserHPAndOpponentEvasion
 
-_08104:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 30, _08113
+TrainerAI_Expert_Defog_ScreenScrubbing:
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 30, TrainerAI_Expert_Defog_ScreenScrubbingCheckHazards
     CountAlivePartyBattlers AI_BATTLER_ATTACKER
-    IfLoadedEqualTo 0, _08154
+    IfLoadedEqualTo 0, TrainerAI_Expert_Defog_TryScoreMinus2
 
-_08113:
+TrainerAI_Expert_Defog_ScreenScrubbingCheckHazards:
     AddToMoveScore 1
     CountAlivePartyBattlers AI_BATTLER_DEFENDER
-    IfLoadedEqualTo 0, _08165
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SPIKES, _08138
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_STEALTH_ROCK, _08138
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_TOXIC_SPIKES, _08138
-    GoTo _08145
+    IfLoadedEqualTo 0, TrainerAI_Expert_Defog_End
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SPIKES, TrainerAI_Expert_Defog_TryScoreMinus1
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_STEALTH_ROCK, TrainerAI_Expert_Defog_TryScoreMinus1
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_TOXIC_SPIKES, TrainerAI_Expert_Defog_TryScoreMinus1
+    GoTo TrainerAI_Expert_Defog_CheckUserHPAndOpponentEvasion
 
-_08134:
+TrainerAI_Expert_Defog_ScoreMinus2AndEnd:
     AddToMoveScore -2
-    GoTo _08145
+    GoTo TrainerAI_Expert_Defog_CheckUserHPAndOpponentEvasion
 
-_08138:
-    IfRandomLessThan 128, _08145
+TrainerAI_Expert_Defog_TryScoreMinus1:
+    IfRandomLessThan 128, TrainerAI_Expert_Defog_CheckUserHPAndOpponentEvasion
     AddToMoveScore -1
-    GoTo _08145
+    GoTo TrainerAI_Expert_Defog_CheckUserHPAndOpponentEvasion
 
-_08145:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 70, _08154
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 3, _08159
+TrainerAI_Expert_Defog_CheckUserHPAndOpponentEvasion:
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 70, TrainerAI_Expert_Defog_TryScoreMinus2
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 3, TrainerAI_Expert_Defog_CheckOpponentHP
 
-_08154:
-    IfRandomLessThan 50, _08159
+TrainerAI_Expert_Defog_TryScoreMinus2:
+    IfRandomLessThan 50, TrainerAI_Expert_Defog_CheckOpponentHP
     AddToMoveScore -2
 
-_08159:
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, _08165
+TrainerAI_Expert_Defog_CheckOpponentHP:
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, TrainerAI_Expert_Defog_End
     AddToMoveScore -2
 
-_08165:
+TrainerAI_Expert_Defog_End:
     PopOrEnd 
 
-_08166:
+TrainerAI_Expert_TrickRoom:
+    ; If the battle is a Double Battle, ignore all further score modifiers.
+    ;
+    ; If the attacker's HP <= 30% and there are no remaining party members, score +0.
+    ;
+    ; If the attacker is faster than its opponent, score -1.
+    ;
+    ; If the attacker is slower than its opponent, 75% chance of score +3.
     LoadBattleType 
-    IfLoadedMask BATTLE_TYPE_DOUBLES, _08191
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 30, _08179
+    IfLoadedMask BATTLE_TYPE_DOUBLES, TrainerAI_Expert_TrickRoom_End
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 30, TrainerAI_Expert_TrickRoom_CheckSpeed
     CountAlivePartyBattlers AI_BATTLER_ATTACKER
-    IfLoadedEqualTo 0, _08191
+    IfLoadedEqualTo 0, TrainerAI_Expert_TrickRoom_End
 
-_08179:
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _08186
+TrainerAI_Expert_TrickRoom_CheckSpeed:
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_TrickRoom_TryScorePlus3
     AddToMoveScore -1
-    GoTo _08191
+    GoTo TrainerAI_Expert_TrickRoom_End
 
-_08186:
-    IfRandomLessThan 64, _08191
+TrainerAI_Expert_TrickRoom_TryScorePlus3:
+    IfRandomLessThan 64, TrainerAI_Expert_TrickRoom_End
     AddToMoveScore 3
 
-_08191:
+TrainerAI_Expert_TrickRoom_End:
     PopOrEnd 
 
-_08192:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _08209
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _08209
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _08209
+TrainerAI_Expert_Blizzard:
+    ; If the opponent resists or is immune to the move, 80.5% chance of score -3.
+    ;
+    ; If the current weather is Hail, score +1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_Blizzard_TryScoreMinus3
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_Blizzard_TryScoreMinus3
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_Blizzard_TryScoreMinus3
     LoadCurrentWeather 
-    IfLoadedNotEqualTo AI_WEATHER_HAILING, _08214
+    IfLoadedNotEqualTo AI_WEATHER_HAILING, TrainerAI_Expert_Blizzard_End
     AddToMoveScore 1
-    GoTo _08214
+    GoTo TrainerAI_Expert_Blizzard_End
 
-_08209:
-    IfRandomLessThan 50, _08214
+TrainerAI_Expert_Blizzard_TryScoreMinus3:
+    IfRandomLessThan 50, TrainerAI_Expert_Blizzard_End
     AddToMoveScore -3
 
-_08214:
+TrainerAI_Expert_Blizzard_End:
     PopOrEnd 
     PopOrEnd 
 
-_08216:
-    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 6, _08239
+TrainerAI_Expert_Captivate:
+    ; If the opponent's SpAttack stat stage is at any value other than +0:
+    ; - Start at score -1.
+    ; - If the attacker's HP <= 90%, additional score -1.
+    ; - If the opponent's SpAttack stat stage is at -3 or lower, 80.5% chance of additional score -2.
+    ;
+    ; If the opponent's HP <= 70%, additional score -2.
+    ;
+    ; If the opponent's last-used move was a Physical move, 75% chance of score -1.
+    IfStatStageEqualTo AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 6, TrainerAI_Expert_Captivate_CheckOpponentHP
     AddToMoveScore -1
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 90, _08229
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 90, TrainerAI_Expert_Captivate_CheckLowStatStage
     AddToMoveScore -1
 
-_08229:
-    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 3, _08239
-    IfRandomLessThan 50, _08239
+TrainerAI_Expert_Captivate_CheckLowStatStage:
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 3, TrainerAI_Expert_Captivate_CheckOpponentHP
+    IfRandomLessThan 50, TrainerAI_Expert_Captivate_CheckOpponentHP
     AddToMoveScore -2
 
-_08239:
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, _08245
+TrainerAI_Expert_Captivate_CheckOpponentHP:
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, TrainerAI_Expert_Captivate_CheckOpponentLastMove
     AddToMoveScore -2
 
-_08245:
+TrainerAI_Expert_Captivate_CheckOpponentLastMove:
     LoadDefenderLastUsedMoveClass 
-    IfLoadedNotEqualTo CLASS_PHYSICAL, _08254
-    IfRandomLessThan 64, _08254
+    IfLoadedNotEqualTo CLASS_PHYSICAL, TrainerAI_Expert_Captivate_End
+    IfRandomLessThan 64, TrainerAI_Expert_Captivate_End
     AddToMoveScore -1
 
-_08254:
+TrainerAI_Expert_Captivate_End:
     PopOrEnd 
 
-_08255:
-    IfRandomLessThan 128, _08275
+TrainerAI_Expert_StealthRock:
+    ; 50% chance to ignore all further score modifiers.
+    ;
+    ; Start at score +1.
+    ;
+    ; If the attacker knows either of the moves Roar or Whirlwind, 75% chance of additional score +1.
+    IfRandomLessThan 128, TrainerAI_Expert_StealthRock_End
     AddToMoveScore 1
-    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_ROAR, _08270
-    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_WHIRLWIND, _08270
-    GoTo _08275
+    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_ROAR, TrainerAI_Expert_StealthRock_TryScorePlus1
+    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_WHIRLWIND, TrainerAI_Expert_StealthRock_TryScorePlus1
+    GoTo TrainerAI_Expert_StealthRock_End
 
-_08270:
-    IfRandomLessThan 64, _08275
+TrainerAI_Expert_StealthRock_TryScorePlus1:
+    IfRandomLessThan 64, TrainerAI_Expert_StealthRock_End
     AddToMoveScore 1
 
-_08275:
+TrainerAI_Expert_StealthRock_End:
     PopOrEnd 
     PopOrEnd 
     PopOrEnd 
 
-_08278:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, _08299
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, _08299
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, _08299
+TrainerAI_Expert_RecoilMove:
+    ; If the opponent resists or is immune to the move, ignore all further score modifiers.
+    ;
+    ; If the attacker has either of the abilities Rock Head or Magic Guard, score +1.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, TrainerAI_Expert_RecoilMove_End
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, TrainerAI_Expert_RecoilMove_End
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, TrainerAI_Expert_RecoilMove_End
     LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_ROCK_HEAD, _08297
-    IfLoadedEqualTo ABILITY_MAGIC_GUARD, _08297
-    GoTo _08299
+    IfLoadedEqualTo ABILITY_ROCK_HEAD, TrainerAI_Expert_RecoilMove_ScorePlus1
+    IfLoadedEqualTo ABILITY_MAGIC_GUARD, TrainerAI_Expert_RecoilMove_ScorePlus1
+    GoTo TrainerAI_Expert_RecoilMove_End
 
-_08297:
+TrainerAI_Expert_RecoilMove_ScorePlus1:
     AddToMoveScore 1
 
-_08299:
+TrainerAI_Expert_RecoilMove_End:
     PopOrEnd 
 
-_08300:
-    IfHPPercentLessThan AI_BATTLER_ATTACKER, 80, _08312
-    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, _08312
-    IfRandomLessThan 192, _08354
+TrainerAI_Expert_HealingWish:
+    ; If the attacker's HP >= 80% and the attacker is faster than its opponent, 25% of score -5.
+    ;
+    ; If the attacker's HP > 50%, 80.5% chance of score -1.
+    ;
+    ; 75% chance to ignore this section of modifiers:
+    ; - Start at score +1.
+    ; - If the attacker does not have a super-effective move against its opponent, 25% chance of
+    ; additional score +1.
+    ; - If a party member deals more damage than the attacker, 50% chance of additional score +1.
+    ;
+    ; If the attacker's HP <= 30%, 50% chance of score +1.
+    IfHPPercentLessThan AI_BATTLER_ATTACKER, 80, TrainerAI_Expert_HealingWish_HappyPath
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, TrainerAI_Expert_HealingWish_HappyPath
+    IfRandomLessThan 192, TrainerAI_Expert_HealingWish_End
     GoTo TrainerAI_ScoreMinus5
 
-_08312:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, _08349
-    IfRandomLessThan 192, _08338
+TrainerAI_Expert_HealingWish_HappyPath:
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, TrainerAI_Expert_HealingWish_TryScoreMinus1
+    IfRandomLessThan 192, TrainerAI_Expert_HealingWish_CheckUserAtLowHP
     AddToMoveScore 1
-    IfHasSuperEffectiveMove _08328
-    IfRandomLessThan 192, _08328
-    AddToMoveScore 1
-
-_08328:
-    IfPartyMemberDealsMoreDamage USE_MAX_DAMAGE, _08333
-    GoTo _08338
-
-_08333:
-    IfRandomLessThan 128, _08338
+    IfHasSuperEffectiveMove TrainerAI_Expert_HealingWish_CheckPartyMemberDamage
+    IfRandomLessThan 192, TrainerAI_Expert_HealingWish_CheckPartyMemberDamage
     AddToMoveScore 1
 
-_08338:
-    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 30, _08354
-    IfRandomLessThan 128, _08354
-    AddToMoveScore 1
-    GoTo _08354
+TrainerAI_Expert_HealingWish_CheckPartyMemberDamage:
+    IfPartyMemberDealsMoreDamage USE_MAX_DAMAGE, TrainerAI_Expert_HealingWish_TryScorePlus1
+    GoTo TrainerAI_Expert_HealingWish_CheckUserAtLowHP
 
-_08349:
-    IfRandomLessThan 50, _08354
+TrainerAI_Expert_HealingWish_TryScorePlus1:
+    IfRandomLessThan 128, TrainerAI_Expert_HealingWish_CheckUserAtLowHP
+    AddToMoveScore 1
+
+TrainerAI_Expert_HealingWish_CheckUserAtLowHP:
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 30, TrainerAI_Expert_HealingWish_End
+    IfRandomLessThan 128, TrainerAI_Expert_HealingWish_End
+    AddToMoveScore 1
+    GoTo TrainerAI_Expert_HealingWish_End
+
+TrainerAI_Expert_HealingWish_TryScoreMinus1:
+    IfRandomLessThan 50, TrainerAI_Expert_HealingWish_End
     AddToMoveScore -1
 
-_08354:
+TrainerAI_Expert_HealingWish_End:
     PopOrEnd 
 
 TrainerAI_EvalAttack_Main:
@@ -5620,7 +6705,7 @@ TrainerAI_TagStrategy_CheckBeforeScoring:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RANDOM_DAMAGE_1_TO_150_LEVEL, TrainerAI_TagStrategy_CheckSpecialScoring
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_10_DAMAGE_FLAT, TrainerAI_TagStrategy_CheckSpecialScoring
 
-    ; If the move is not-very-effective, try to reduce its score
+    ; If the move is super-effective, try to increase its score
     IfMoveEffectivenessEquals TYPE_MULTI_DOUBLE_DAMAGE, TrainerAI_TagStrategy_TryPrioritizingDoubleEffective
     IfMoveEffectivenessEquals TYPE_MULTI_QUADRUPLE_DAMAGE, TrainerAI_TagStrategy_TryPrioritizingQuadEffective
 
@@ -5768,7 +6853,7 @@ TrainerAI_TagStrategy_Hail:
     ; following conditions:
     ;  - The battler has Ice Body -> score +2
     ;  - The battler has Snow Cloak -> score +2
-    ;  - The battler's partner knows Blizzard -> score +2
+    ;  - The battler knows Blizzard -> score +2
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_ICE_BODY, TrainerAI_TagStrategy_Hail_SelfScorePlus2
     IfLoadedEqualTo ABILITY_SNOW_CLOAK, TrainerAI_TagStrategy_Hail_SelfScorePlus2
@@ -6561,7 +7646,7 @@ TrainerAI_TagStrategy_PartnerAcupressure:
     ;
     ; Else if our partner's HP is 91% or higher, 68.75% chance of score +2, 31.25% chance of no score change
     ;
-    ; Else 50% chance of score +2, 31.25% chance of score +2, 68.75% chance of no score change
+    ; Else 31.25% chance of score +2, 68.75% chance of no score change
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_SIMPLE
     IfLoadedEqualTo AI_HAVE, TrainerAI_TagStrategy_PartnerAcupressureSimple
     IfStatStageEqualTo AI_BATTLER_ATTACKER_PARTNER, BATTLE_STAT_ATTACK, 12, TrainerAI_TagStrategy_PartnerScoreMinus30
