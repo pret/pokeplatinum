@@ -51,7 +51,7 @@ int sub_020308A8 (SaveData * param0, BattleFrontierStage * param1)
     int v0;
 
     v0 = SaveData_SaveBattleFrontierStage(param0, param1);
-    v0 |= sub_020246E0(param0);
+    v0 |= SaveSaveData(param0);
 
     return v0;
 }

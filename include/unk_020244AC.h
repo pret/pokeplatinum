@@ -5,27 +5,27 @@
 
 #define SECTOR_SIGNATURE 0x20060623
 
-SaveData * sub_020244AC(void);
-SaveData * sub_020245A4(void);
-void * SaveData_Get(SaveData * param0, int param1);
-const void * sub_020245E0(const SaveData * param0, int param1);
-BOOL sub_020245E8(SaveData * param0);
-BOOL sub_020246A8(SaveData * param0);
-int sub_020246E0(SaveData * param0);
-int sub_02024760(SaveData * param0, int param1);
-void sub_0202479C(SaveData * param0);
-BOOL sub_020247B8(const SaveData * param0);
-u32 sub_020247BC(const SaveData * param0);
-BOOL sub_020247C0(const SaveData * param0);
-BOOL sub_020247C4(const SaveData * param0);
-BOOL sub_020247C8(SaveData * param0);
-BOOL sub_020247E0(const SaveData * param0);
-BOOL sub_02024800(const SaveData * param0);
-void sub_02024804(void);
+SaveData* InitializeSaveData(void);
+SaveData* GetSaveDataPtr(void);
+void* SaveData_Get(SaveData *saveData, int saveTableID);
+const void* GetSaveDataConst(const SaveData *saveData, int saveTableID);
+BOOL EraseSaveData(SaveData *saveData);
+BOOL LoadSaveData(SaveData *saveData);
+int SaveSaveData(SaveData *saveData);
+int SavePartialSaveData(SaveData *saveData, int saveBlockID);
+void ClearSaveData(SaveData *saveData);
+BOOL SaveData_GetBackupExists(const SaveData *saveData);
+u32 SaveData_GetLoadCheckStatus(const SaveData *saveData);
+BOOL SaveData_GetDataExists(const SaveData *saveData);
+BOOL SaveData_GetNewGameData(const SaveData *saveData);
+BOOL sub_020247C8(SaveData *saveData);
+BOOL SaveDataOverwriteCheck(const SaveData *saveData);
+BOOL SaveData_GetFullSaveRequired(const SaveData *saveData);
+void SaveData_SetFullSaveRequired(void);
 void sub_02024814(SaveData * param0, int param1);
 int sub_02024828(SaveData * param0);
 void sub_02024850(SaveData * param0);
-u16 sub_0202486C(const SaveData * param0, const void * param1, u32 param2);
+u16 CalculateSaveDataChecksum(const SaveData *saveData, const void * param1, u32 size);
 int sub_020251A4(int param0);
 void sub_02025340(SaveData * param0);
 int SaveDataExtra_Save(const SaveData * param0, int param1, void * param2);

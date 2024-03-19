@@ -14,9 +14,11 @@
 #include "unk_020277A4.h"
 #include "unk_0209A74C.h"
 #include "unk_0209AA74.h"
+#include "constants/heap.h"
+#include "constants/savedata/savedata.h"
 
 typedef struct {
-    u32 globalCount;
+    u32 globalCount; //todo rename
     u32 blockCount;
     u32 size;
     u32 signature;
@@ -33,16 +35,16 @@ typedef struct {
 } SaveBlockInfo;
 
 typedef struct {
-    int unk_00;
-    u32 unk_04;
-    u32 unk_08;
-    u16 unk_0C;
-    u16 unk_0E;
-} UnkStruct_020251DC;
+    int pageID;
+    u32 size;
+    u32 location;
+    u16 checksum;
+    u16 blockID;
+} SavePageInfo;
 
 typedef struct {
-    u8 unk_00[131072];
-} UnkStruct_020252EC;
+    u8 data[SAVE_SECTOR_SIZE * SAVE_PAGE_MAX];
+} SaveDataBody;
 
 typedef struct {
     BOOL unk_00;
@@ -57,17 +59,17 @@ typedef struct {
 } UnkStruct_020250DC;
 
 typedef struct SaveData {
-    BOOL unk_00;
-    BOOL unk_04;
-    BOOL unk_08;
-    BOOL unk_0C;
-    u32 unk_10;
-    UnkStruct_020252EC unk_14;
+    BOOL backupExists;
+    BOOL dataExists;
+    BOOL newGameData;
+    BOOL fullSaveRequired;
+    u32 loadCheckStatus;
+    SaveDataBody body;
     u32 unk_20014;
-    u32 unk_20018[2];
-    u8 unk_20020[2];
-    UnkStruct_020251DC unk_20024[38];
-    SaveBlockInfo unk_20284[2];
+    u32 unk_20018[SAVE_BLOCK_ID_MAX];
+    u8 unk_20020[SAVE_BLOCK_ID_MAX];
+    SavePageInfo pageInfo[SAVE_TABLE_ENTRY_MAX];
+    SaveBlockInfo blockInfo[SAVE_BLOCK_ID_MAX];
     UnkStruct_020250DC unk_2029C;
     int unk_202C4;
     u32 unk_202C8;
@@ -87,12 +89,12 @@ typedef struct {
     u16 unk_0E;
 } UnkStruct_020253B4;
 
-static void sub_020252EC(UnkStruct_020252EC * param0, const UnkStruct_020251DC * param1);
-static void sub_020251DC(UnkStruct_020251DC * param0);
-static void sub_02025258(SaveBlockInfo * param0, const UnkStruct_020251DC * param1);
+static void sub_020252EC(SaveDataBody * param0, const SavePageInfo * param1);
+static void sub_020251DC(SavePageInfo * param0);
+static void sub_02025258(SaveBlockInfo * param0, const SavePageInfo * param1);
 static BOOL sub_0202513C(SaveData * param0);
 static BOOL sub_02024DBC(SaveData * param0);
-static int sub_02024ABC(SaveData * param0);
+static int LoadDataCheck(SaveData * param0);
 static void sub_02024CD4(SaveData * param0, int * param1, int * param2);
 static void sub_02024EC8(SaveData * param0, UnkStruct_020250DC * param1, int param2);
 static int sub_02024F44(SaveData * param0, UnkStruct_020250DC * param1);
@@ -105,250 +107,251 @@ static void sub_02025C1C(s32 param0, int param1);
 static void sub_020259F8(SaveData * param0, int param1, u32 * param2, u32 * param3, u8 * param4);
 static void sub_02025A18(SaveData * param0, int param1, u32 param2, u32 param3, u8 param4);
 
-static SaveData * Unk_021C0794 = NULL;
+static SaveData *sSaveDataPtr = NULL;
 
-SaveData * sub_020244AC (void)
+SaveData* InitializeSaveData (void)
 {
-    SaveData * v0;
-    int v1;
+    SaveData *saveData;
+    int loadResult;
 
-    v0 = Heap_AllocFromHeap(1, sizeof(SaveData));
-    MI_CpuClearFast(v0, sizeof(SaveData));
+    saveData = Heap_AllocFromHeap(HEAP_BASE_ID_SAVE, sizeof(SaveData));
+    MI_CpuClearFast(saveData, sizeof(SaveData));
 
-    Unk_021C0794 = v0;
+    sSaveDataPtr = saveData;
 
-    v0->unk_00 = sub_02025A3C();
-    v0->unk_04 = 0;
-    v0->unk_08 = 1;
-    v0->unk_0C = 1;
+    saveData->backupExists = sub_02025A3C();
+    saveData->dataExists = FALSE;
+    saveData->newGameData = TRUE;
+    saveData->fullSaveRequired = TRUE;
 
-    sub_020251DC(v0->unk_20024);
-    sub_02025258(v0->unk_20284, v0->unk_20024);
+    sub_020251DC(saveData->pageInfo);
+    sub_02025258(saveData->blockInfo, saveData->pageInfo);
 
-    MI_CpuClearFast(v0->unk_20018, sizeof(v0->unk_20018));
+    MI_CpuClearFast(saveData->unk_20018, sizeof(saveData->unk_20018));
 
-    v1 = sub_02024ABC(v0);
-    v0->unk_10 = 0;
+    loadResult = LoadDataCheck(saveData);
 
-    switch (v1) {
-    case 1:
-        v0->unk_0C = 0;
-    case 2:
-        sub_02024DBC(v0);
+    saveData->loadCheckStatus = 0;
 
-        v0->unk_04 = 1;
-        v0->unk_08 = 0;
+    switch (loadResult) {
+    case LOAD_RESULT_OK:
+        saveData->fullSaveRequired = FALSE;
+    case LOAD_RESULT_CORRUPT:
+        sub_02024DBC(saveData);
 
-        if (v1 == 2) {
-            v0->unk_10 |= (1 << 0);
+        saveData->dataExists = TRUE;
+        saveData->newGameData = FALSE;
+
+        if (loadResult == LOAD_RESULT_CORRUPT) {
+            saveData->loadCheckStatus |= NORMAL_LOAD_CORRUPT;
         }
 
         {
-            int v2, v3;
+            int frontierResult, videoResult;
 
-            sub_02024CD4(v0, &v2, &v3);
+            sub_02024CD4(saveData, &frontierResult, &videoResult);
 
-            if (v2 == 3) {
-                v0->unk_10 |= (1 << 3);
-            } else if (v2 == 2) {
-                v0->unk_10 |= (1 << 2);
+            if (frontierResult == LOAD_RESULT_ERROR) {
+                saveData->loadCheckStatus |= FRONTIER_LOAD_ERROR;
+            } else if (frontierResult == LOAD_RESULT_CORRUPT) {
+                saveData->loadCheckStatus |= FRONTIER_LOAD_CORRUPT;
             }
 
-            if (v3 == 3) {
-                v0->unk_10 |= (1 << 5);
-            } else if (v3 == 2) {
-                v0->unk_10 |= (1 << 4);
+            if (videoResult == LOAD_RESULT_ERROR) {
+                saveData->loadCheckStatus |= VIDEO_LOAD_ERROR;
+            } else if (videoResult == LOAD_RESULT_CORRUPT) {
+                saveData->loadCheckStatus |= VIDEO_LOAD_CORRUPT;
             }
         }
         break;
-    case 3:
-        v0->unk_10 |= (1 << 1);
-    case 0:
-        sub_0202479C(v0);
+    case LOAD_RESULT_ERROR:
+        saveData->loadCheckStatus |= NORMAL_LOAD_ERROR;
+    case LOAD_RESULT_EMPTY:
+        ClearSaveData(saveData);
         break;
     }
 
-    return v0;
+    return saveData;
 }
 
-SaveData * sub_020245A4 (void)
+SaveData* GetSaveDataPtr (void)
 {
-    GF_ASSERT(Unk_021C0794 != NULL);
-    return Unk_021C0794;
+    GF_ASSERT(sSaveDataPtr != NULL);
+    return sSaveDataPtr;
 }
 
-void * SaveData_Get (SaveData * param0, int param1)
+void* SaveData_Get (SaveData *saveData, int saveTableID)
 {
-    GF_ASSERT(param1 < 38);
-    return &(param0->unk_14.unk_00[param0->unk_20024[param1].unk_08]);
+    GF_ASSERT(saveTableID < SAVE_TABLE_ENTRY_MAX);
+    return &(saveData->body.data[saveData->pageInfo[saveTableID].location]);
 }
 
-const void * sub_020245E0 (const SaveData * param0, int param1)
+const void* GetSaveDataConst (const SaveData *saveData, int saveTableID)
 {
-    return SaveData_Get((SaveData *)param0, param1);
+    return SaveData_Get((SaveData*)saveData, saveTableID);
 }
 
-BOOL sub_020245E8 (SaveData * param0)
+BOOL EraseSaveData (SaveData *saveData)
 {
-    int v0, v1;
-    u8 * v2 = Heap_AllocFromHeapAtEnd(3, 0x1000);
+    int sectorIndex, unused;
+    u8 *saveBuffer = Heap_AllocFromHeapAtEnd(HEAP_BASE_ID_APPLICATION, SAVE_SECTOR_SIZE);
 
     SleepLock(1);
 
-    sub_0202516C(param0, 0, !param0->unk_20020[0]);
-    sub_0202516C(param0, 1, !param0->unk_20020[1]);
-    sub_0202516C(param0, 0, param0->unk_20020[0]);
-    sub_0202516C(param0, 1, param0->unk_20020[1]);
+    sub_0202516C(saveData, SAVE_BLOCK_ID_NORMAL, !saveData->unk_20020[SAVE_BLOCK_ID_NORMAL]);
+    sub_0202516C(saveData, SAVE_BLOCK_ID_BOXES, !saveData->unk_20020[SAVE_BLOCK_ID_BOXES]);
+    sub_0202516C(saveData, SAVE_BLOCK_ID_NORMAL, saveData->unk_20020[SAVE_BLOCK_ID_NORMAL]);
+    sub_0202516C(saveData, SAVE_BLOCK_ID_BOXES, saveData->unk_20020[SAVE_BLOCK_ID_BOXES]);
 
-    MI_CpuFillFast(v2, 0xffffffff, 0x1000);
+    MI_CpuFillFast(saveBuffer, 0xffffffff, SAVE_SECTOR_SIZE);
 
-    for (v0 = 0; v0 < 32 * 2; v0++) {
-        sub_02025A9C(0x1000 * (v0 + 0), v2, 0x1000);
-        sub_02025A9C(0x1000 * (v0 + 64), v2, 0x1000);
+    for (sectorIndex = 0; sectorIndex < SAVE_PAGE_MAX * 2; sectorIndex++) {
+        sub_02025A9C(SAVE_SECTOR_SIZE * (sectorIndex + 0), saveBuffer, SAVE_SECTOR_SIZE);
+        sub_02025A9C(SAVE_SECTOR_SIZE * (sectorIndex + 64), saveBuffer, SAVE_SECTOR_SIZE);
     }
 
-    Heap_FreeToHeap(v2);
-    sub_0202479C(param0);
+    Heap_FreeToHeap(saveBuffer);
+    ClearSaveData(saveData);
 
-    param0->unk_04 = 0;
+    saveData->dataExists = FALSE;
     SleepUnlock(1);
 
-    return 1;
+    return TRUE;
 }
 
-BOOL sub_020246A8 (SaveData * param0)
+BOOL LoadSaveData (SaveData *saveData)
 {
-    BOOL v0;
+    BOOL ret;
 
-    if (!param0->unk_00) {
-        return 0;
+    if (!saveData->backupExists) {
+        return FALSE;
     }
 
-    v0 = sub_02024DBC(param0);
+    ret = sub_02024DBC(saveData);
 
-    if (v0) {
-        param0->unk_04 = 1;
-        param0->unk_08 = 0;
+    if (ret) {
+        saveData->dataExists = TRUE;
+        saveData->newGameData = FALSE;
 
         {
-            int v1, v2;
+            int frontierResult, videoResult;
 
-            sub_02024CD4(param0, &v1, &v2);
+            sub_02024CD4(saveData, &frontierResult, &videoResult);
         }
 
-        return 1;
+        return TRUE;
     } else {
-        return 0;
+        return FALSE;
     }
 }
 
-int sub_020246E0 (SaveData * param0)
+int SaveSaveData (SaveData *saveData)
 {
-    int v0;
+    int ret;
 
-    if (!param0->unk_00) {
-        return 3;
+    if (!saveData->backupExists) {
+        return SAVE_RESULT_CORRUPT;
     }
 
-    if (param0->unk_08) {
+    if (saveData->newGameData) {
         SleepLock(1);
 
-        sub_0202516C(param0, 0, !param0->unk_20020[0]);
-        sub_0202516C(param0, 1, !param0->unk_20020[1]);
-        sub_0202516C(param0, 0, param0->unk_20020[0]);
-        sub_0202516C(param0, 1, param0->unk_20020[1]);
+        sub_0202516C(saveData, SAVE_BLOCK_ID_NORMAL, !saveData->unk_20020[SAVE_BLOCK_ID_NORMAL]);
+        sub_0202516C(saveData, SAVE_BLOCK_ID_BOXES, !saveData->unk_20020[SAVE_BLOCK_ID_BOXES]);
+        sub_0202516C(saveData, SAVE_BLOCK_ID_NORMAL, saveData->unk_20020[SAVE_BLOCK_ID_NORMAL]);
+        sub_0202516C(saveData, SAVE_BLOCK_ID_BOXES, saveData->unk_20020[SAVE_BLOCK_ID_BOXES]);
 
         SleepUnlock(1);
     }
 
-    v0 = sub_0202513C(param0);
+    ret = sub_0202513C(saveData);
 
-    if (v0 == 2) {
-        param0->unk_04 = 1;
-        param0->unk_08 = 0;
+    if (ret == SAVE_RESULT_OK) {
+        saveData->dataExists = TRUE;
+        saveData->newGameData = FALSE;
     }
 
-    return v0;
+    return ret;
 }
 
-int sub_02024760 (SaveData * param0, int param1)
+int SavePartialSaveData (SaveData *saveData, int saveBlockID)
 {
-    int v0;
+    int ret;
 
-    GF_ASSERT(param1 < 2);
-    GF_ASSERT(param0->unk_08 == 0);
-    GF_ASSERT(param0->unk_04 == 1);
+    GF_ASSERT(saveBlockID < SAVE_BLOCK_ID_MAX);
+    GF_ASSERT(saveData->newGameData == FALSE);
+    GF_ASSERT(saveData->dataExists == TRUE);
 
-    sub_02024814(param0, param1);
+    sub_02024814(saveData, saveBlockID);
 
     do {
-        v0 = sub_02024828(param0);
-    } while (v0 == 0 || v0 == 1);
+        ret = sub_02024828(saveData);
+    } while (ret == SAVE_RESULT_TODO1 || ret == SAVE_RESULT_TODO2);
 
-    return v0;
+    return ret;
 }
 
-void sub_0202479C (SaveData * param0)
+void ClearSaveData (SaveData *saveData)
 {
-    param0->unk_08 = 1;
-    param0->unk_0C = 1;
+    saveData->newGameData = TRUE;
+    saveData->fullSaveRequired = TRUE;
 
-    sub_020252EC(&param0->unk_14, param0->unk_20024);
+    sub_020252EC(&saveData->body, saveData->pageInfo);
 }
 
-BOOL sub_020247B8 (const SaveData * param0)
+BOOL SaveData_GetBackupExists (const SaveData *saveData)
 {
-    return param0->unk_00;
+    return saveData->backupExists;
 }
 
-u32 sub_020247BC (const SaveData * param0)
+u32 SaveData_GetLoadCheckStatus (const SaveData *saveData)
 {
-    return param0->unk_10;
+    return saveData->loadCheckStatus;
 }
 
-BOOL sub_020247C0 (const SaveData * param0)
+BOOL SaveData_GetDataExists (const SaveData *saveData)
 {
-    return param0->unk_04;
+    return saveData->dataExists;
 }
 
-BOOL sub_020247C4 (const SaveData * param0)
+BOOL SaveData_GetNewGameData (const SaveData *saveData)
 {
-    return param0->unk_08;
+    return saveData->newGameData;
 }
 
-BOOL sub_020247C8 (SaveData * param0)
+BOOL sub_020247C8 (SaveData *saveData)
 {
     UnkStruct_0202783C * v0;
 
-    v0 = sub_0202783C(param0);
+    v0 = sub_0202783C(saveData);
     return sub_020278CC(v0);
 }
 
-static void sub_020247D4 (SaveData * param0)
+static void sub_020247D4 (SaveData *saveData)
 {
     UnkStruct_0202783C * v0;
 
-    v0 = sub_0202783C(param0);
+    v0 = sub_0202783C(saveData);
     sub_020278B8(v0);
 }
 
-BOOL sub_020247E0 (const SaveData * param0)
+BOOL SaveDataOverwriteCheck (const SaveData *saveData)
 {
-    if (sub_020247C4(param0) && sub_020247C0(param0)) {
-        return 1;
+    if (SaveData_GetNewGameData(saveData) && SaveData_GetDataExists(saveData)) {
+        return TRUE;
     } else {
-        return 0;
+        return FALSE;
     }
 }
 
-BOOL sub_02024800 (const SaveData * param0)
+BOOL SaveData_GetFullSaveRequired (const SaveData *saveData)
 {
-    return param0->unk_0C;
+    return saveData->fullSaveRequired;
 }
 
-void sub_02024804 (void)
+void SaveData_SetFullSaveRequired (void)
 {
-    Unk_021C0794->unk_0C = 1;
+    sSaveDataPtr->fullSaveRequired = TRUE;
 }
 
 void sub_02024814 (SaveData * param0, int param1)
@@ -356,17 +359,17 @@ void sub_02024814 (SaveData * param0, int param1)
     sub_02024EC8(param0, &param0->unk_2029C, param1);
 }
 
-int sub_02024828 (SaveData * param0)
+int sub_02024828 (SaveData *saveData)
 {
-    int v0;
+    int ret;
 
-    v0 = sub_02024F44(param0, &param0->unk_2029C);
+    ret = sub_02024F44(saveData, &saveData->unk_2029C);
 
-    if ((v0 != 0) && (v0 != 1)) {
-        sub_0202506C(param0, &param0->unk_2029C, v0);
+    if ((ret != SAVE_RESULT_TODO1) && (ret != SAVE_RESULT_TODO2)) {
+        sub_0202506C(saveData, &saveData->unk_2029C, ret);
     }
 
-    return v0;
+    return ret;
 }
 
 void sub_02024850 (SaveData * param0)
@@ -381,14 +384,16 @@ static void sub_02024860 (UnkStruct_02024860 * param0)
     param0->unk_08 = 0;
 }
 
-u16 sub_0202486C (const SaveData * param0, const void * param1, u32 param2)
+//todo param1
+u16 CalculateSaveDataChecksum (const SaveData *saveData, const void *param1, u32 size)
 {
-    return sub_0201D628(param1, param2);
+    return sub_0201D628(param1, size);
 }
 
-static u16 sub_02024878 (const SaveData * param0, void * param1, u32 param2)
+//todo name doesn't seem right
+static u16 CalculateSaveDataChecksumFooter (const SaveData *saveData, void * param1, u32 size)
 {
-    return sub_0201D628(param1, param2 - sizeof(SaveBlockFooter));
+    return sub_0201D628(param1, size - sizeof(SaveBlockFooter));
 }
 
 static u32 sub_02024888 (int param0, const SaveBlockInfo * param1)
@@ -396,75 +401,75 @@ static u32 sub_02024888 (int param0, const SaveBlockInfo * param1)
     u32 v0;
 
     if (param0 == 0) {
-        v0 = 0 * 0x1000;
+        v0 = 0 * SAVE_SECTOR_SIZE;
     } else {
-        v0 = 64 * 0x1000;
+        v0 = 64 * SAVE_SECTOR_SIZE;
     }
 
     v0 += param1->offset;
     return v0;
 }
 
-static SaveBlockFooter * sub_0202489C (SaveData * param0, u32 param1, int param2)
+static SaveBlockFooter* GetSaveBlockFooterPtr (SaveData *saveData, u32 bodyAddress, int blockID)
 {
-    u32 v0;
-    const SaveBlockInfo * v1 = &param0->unk_20284[param2];
+    u32 footerAddress;
+    const SaveBlockInfo *blockInfo = &saveData->blockInfo[blockID];
 
-    v0 = param1 + v1->offset;
-    GF_ASSERT(v1->size);
+    footerAddress = bodyAddress + blockInfo->offset;
+    GF_ASSERT(blockInfo->size);
 
-    v0 += v1->size;
-    v0 -= sizeof(SaveBlockFooter);
+    footerAddress += blockInfo->size;
+    footerAddress -= sizeof(SaveBlockFooter);
 
-    return (SaveBlockFooter *)v0;
+    return (SaveBlockFooter *)footerAddress;
 }
 
-static BOOL sub_020248C4 (SaveData * param0, u32 param1, int param2)
+static BOOL ValidateSaveBlockFooter (SaveData *saveData, u32 bodyAddress, int blockID)
 {
-    const SaveBlockInfo * v0 = &param0->unk_20284[param2];
-    SaveBlockFooter * v1 = sub_0202489C(param0, param1, param2);
-    u32 v2 = param1 + v0->offset;
+    const SaveBlockInfo *blockInfo = &saveData->blockInfo[blockID];
+    SaveBlockFooter *footer = GetSaveBlockFooterPtr(saveData, bodyAddress, blockID);
+    u32 startAddress = bodyAddress + blockInfo->offset;
 
-    if (v1->size != v0->size) {
-        return 0;
+    if (footer->size != blockInfo->size) {
+        return FALSE;
     }
 
-    if (v1->signature != SECTOR_SIGNATURE) {
-        return 0;
+    if (footer->signature != SECTOR_SIGNATURE) {
+        return FALSE;
     }
 
-    if (v1->saveBlockID != param2) {
-        return 0;
+    if (footer->saveBlockID != blockID) {
+        return FALSE;
     }
 
-    if (v1->checksum != sub_02024878(param0, (void *)v2, v0->size)) {
-        return 0;
+    if (footer->checksum != CalculateSaveDataChecksumFooter(saveData, (void *)startAddress, blockInfo->size)) {
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static void sub_02024920 (UnkStruct_02024860 * param0, SaveData * param1, u32 param2, int param3)
+static void sub_02024920 (UnkStruct_02024860 * param0, SaveData *saveData, u32 bodyAddress, int blockID)
 {
-    SaveBlockFooter * v0 = sub_0202489C(param1, param2, param3);
+    SaveBlockFooter *footer = GetSaveBlockFooterPtr(saveData, bodyAddress, blockID);
 
-    param0->unk_00 = sub_020248C4(param1, param2, param3);
-    param0->unk_04 = v0->globalCount;
-    param0->unk_08 = v0->blockCount;
+    param0->unk_00 = ValidateSaveBlockFooter(saveData, bodyAddress, blockID);
+    param0->unk_04 = footer->globalCount;
+    param0->unk_08 = footer->blockCount;
 }
 
-static void sub_0202494C (SaveData * param0, u32 param1, int param2)
+static void SetSaveBlockFooter (SaveData *saveData, u32 bodyAddress, int blockID)
 {
-    const SaveBlockInfo * v0 = &param0->unk_20284[param2];
-    SaveBlockFooter * v1 = sub_0202489C(param0, param1, param2);
-    u32 v2 = param1 + v0->offset;
+    const SaveBlockInfo * blockInfo = &saveData->blockInfo[blockID];
+    SaveBlockFooter * footer = GetSaveBlockFooterPtr(saveData, bodyAddress, blockID);
+    u32 startAddress = bodyAddress + blockInfo->offset;
 
-    v1->globalCount = param0->unk_20014;
-    v1->blockCount = param0->unk_20018[param2];
-    v1->size = v0->size;
-    v1->signature = SECTOR_SIGNATURE;
-    v1->saveBlockID = param2;
-    v1->checksum = sub_02024878(param0, (void *)v2, v0->size);
+    footer->globalCount = saveData->unk_20014;
+    footer->blockCount = saveData->unk_20018[blockID];
+    footer->size = blockInfo->size;
+    footer->signature = SECTOR_SIGNATURE;
+    footer->saveBlockID = blockID;
+    footer->checksum = CalculateSaveDataChecksumFooter(saveData, (void *)startAddress, blockInfo->size);
 }
 
 static int sub_0202499C (u32 param0, u32 param1)
@@ -534,7 +539,7 @@ static void inline_02024ABC (SaveData * param0, const UnkStruct_02024860 * param
     param0->unk_20020[1] = param4;
 }
 
-static int sub_02024ABC (SaveData * param0)
+static int LoadDataCheck (SaveData * param0)
 {
     UnkStruct_02024860 v0[2];
     UnkStruct_02024860 v1[2];
@@ -685,20 +690,20 @@ static BOOL sub_02024DBC (SaveData * param0)
 {
     int v0;
     u32 v1;
-    const SaveBlockInfo * v2 = param0->unk_20284;
+    const SaveBlockInfo * v2 = param0->blockInfo;
 
     for (v0 = 0; v0 < 2; v0++) {
-        if (sub_02024DA4(param0->unk_20020[v0], &param0->unk_20284[v0], param0->unk_14.unk_00) == 0) {
+        if (sub_02024DA4(param0->unk_20020[v0], &param0->blockInfo[v0], param0->body.data) == 0) {
             return 0;
         }
 
-        if (sub_020248C4(param0, (u32)param0->unk_14.unk_00, v0) == 0) {
+        if (ValidateSaveBlockFooter(param0, (u32)param0->body.data, v0) == 0) {
             return 0;
         }
     }
 
     for (v0 = 0; v0 < 38; v0++) {
-        param0->unk_20024[v0].unk_0C = sub_0201D628(SaveData_Get(param0, v0), param0->unk_20024[v0].unk_04);
+        param0->pageInfo[v0].checksum = sub_0201D628(SaveData_Get(param0, v0), param0->pageInfo[v0].size);
     }
 
     return 1;
@@ -709,12 +714,12 @@ static s32 sub_02024E30 (SaveData * param0, int param1, u8 param2)
     u32 v0;
     BOOL v1;
     u8 * v2;
-    const SaveBlockInfo * v3 = &param0->unk_20284[param1];
+    const SaveBlockInfo * v3 = &param0->blockInfo[param1];
 
-    sub_0202494C(param0, (u32)param0->unk_14.unk_00, param1);
+    SetSaveBlockFooter(param0, (u32)param0->body.data, param1);
 
     v0 = sub_02024888(param2, v3);
-    v2 = param0->unk_14.unk_00 + v3->offset;
+    v2 = param0->body.data + v3->offset;
 
     return sub_02025B3C(v0, v2, v3->size - sizeof(SaveBlockFooter));
 }
@@ -724,10 +729,10 @@ static s32 sub_02024E68 (SaveData * param0, int param1, u8 param2)
     u32 v0;
     BOOL v1;
     u8 * v2;
-    const SaveBlockInfo * v3 = &param0->unk_20284[param1];
+    const SaveBlockInfo * v3 = &param0->blockInfo[param1];
 
     v0 = sub_02024888(param2, v3) + v3->size - sizeof(SaveBlockFooter);
-    v2 = param0->unk_14.unk_00 + v3->offset + v3->size - sizeof(SaveBlockFooter);
+    v2 = param0->body.data + v3->offset + v3->size - sizeof(SaveBlockFooter);
 
     return sub_02025B3C(v0, v2, sizeof(SaveBlockFooter));
 }
@@ -737,10 +742,10 @@ static s32 sub_02024E98 (SaveData * param0, int param1, u8 param2)
     u32 v0;
     BOOL v1;
     u8 * v2;
-    const SaveBlockInfo * v3 = &param0->unk_20284[param1];
+    const SaveBlockInfo * v3 = &param0->blockInfo[param1];
 
     v0 = sub_02024888(param2, v3) + v3->size - sizeof(SaveBlockFooter) + 8;
-    v2 = param0->unk_14.unk_00 + v3->offset + v3->size - sizeof(SaveBlockFooter) + 8;
+    v2 = param0->body.data + v3->offset + v3->size - sizeof(SaveBlockFooter) + 8;
 
     return sub_02025B3C(v0, v2, 8);
 }
@@ -759,7 +764,7 @@ static void sub_02024EC8 (SaveData * param0, UnkStruct_020250DC * param1, int pa
     param1->unk_24 = 0;
 
     if (param2 == 2) {
-        if (param0->unk_0C) {
+        if (param0->fullSaveRequired) {
             param1->unk_00 = 1;
             param1->unk_18 = param0->unk_20014;
             param0->unk_20014++;
@@ -867,9 +872,9 @@ static void sub_0202506C (SaveData * param0, UnkStruct_020250DC * param1, int pa
             param0->unk_20020[v0] = !param0->unk_20020[v0];
         }
 
-        param0->unk_04 = 1;
-        param0->unk_08 = 0;
-        param0->unk_0C = 0;
+        param0->dataExists = 1;
+        param0->newGameData = 0;
+        param0->fullSaveRequired = 0;
     }
 
     SleepUnlock(1);
@@ -919,7 +924,7 @@ static BOOL sub_0202516C (const SaveData * param0, int param1, int param2)
 {
     u32 v0;
     SaveBlockFooter v1;
-    const SaveBlockInfo * v2 = &param0->unk_20284[param1];
+    const SaveBlockInfo * v2 = &param0->blockInfo[param1];
 
     MI_CpuFill8(&v1, 0xff, sizeof(SaveBlockFooter));
     v0 = sub_02024888(param2, v2) + v2->size - sizeof(SaveBlockFooter);
@@ -941,7 +946,7 @@ int sub_020251A4 (int param0)
     return v0;
 }
 
-static void sub_020251DC (UnkStruct_020251DC * param0)
+static void sub_020251DC (SavePageInfo * param0)
 {
     const SaveTableEntry * v0 = gSaveTable;
     int v1;
@@ -952,13 +957,13 @@ static void sub_020251DC (UnkStruct_020251DC * param0)
     for (v1 = 0; v1 < gSaveTableSize; v1++) {
         GF_ASSERT(v0[v1].dataID == v1);
 
-        param0[v1].unk_00 = v0[v1].dataID;
-        param0[v1].unk_04 = sub_020251A4(v1);
-        param0[v1].unk_08 = v2;
-        param0[v1].unk_0C = 0;
-        param0[v1].unk_0E = v0[v1].blockID;
+        param0[v1].pageID = v0[v1].dataID;
+        param0[v1].size = sub_020251A4(v1);
+        param0[v1].location = v2;
+        param0[v1].checksum = 0;
+        param0[v1].blockID = v0[v1].blockID;
 
-        v2 += param0[v1].unk_04;
+        v2 += param0[v1].size;
 
         if ((v1 == gSaveTableSize - 1) || (v0[v1].blockID != v0[v1 + 1].blockID)) {
             v2 += sizeof(SaveBlockFooter);
@@ -971,7 +976,7 @@ static void sub_020251DC (UnkStruct_020251DC * param0)
     GF_ASSERT(v2 <= 0x1000 * 32);
 }
 
-static void sub_02025258 (SaveBlockInfo * param0, const UnkStruct_020251DC * param1)
+static void sub_02025258 (SaveBlockInfo * param0, const SavePageInfo * param1)
 {
     int v0 = 0;
     int v1, v2;
@@ -985,8 +990,8 @@ static void sub_02025258 (SaveBlockInfo * param0, const UnkStruct_020251DC * par
         param0[v3].saveBlockID = v3;
         param0[v3].size = 0;
 
-        for (; param1[v4].unk_0E == v3 && v4 < gSaveTableSize; v4++) {
-            param0[v3].size += param1[v4].unk_04;
+        for (; param1[v4].blockID == v3 && v4 < gSaveTableSize; v4++) {
+            param0[v3].size += param1[v4].size;
         }
 
         param0[v3].size += sizeof(SaveBlockFooter);
@@ -1002,7 +1007,7 @@ static void sub_02025258 (SaveBlockInfo * param0, const UnkStruct_020251DC * par
     GF_ASSERT(v1 <= 32);
 }
 
-static void sub_020252EC (UnkStruct_020252EC * param0, const UnkStruct_020251DC * param1)
+static void sub_020252EC (SaveDataBody * param0, const SavePageInfo * param1)
 {
     const SaveTableEntry * v0 = gSaveTable;
     int v1;
@@ -1010,12 +1015,12 @@ static void sub_020252EC (UnkStruct_020252EC * param0, const UnkStruct_020251DC 
     void * v3;
     u32 v4;
 
-    MI_CpuClearFast(param0->unk_00, sizeof(param0->unk_00));
+    MI_CpuClearFast(param0->data, sizeof(param0->data));
 
     for (v1 = 0; v1 < gSaveTableSize; v1++) {
-        v4 = param1[v1].unk_08;
-        v3 = &param0->unk_00[v4];
-        v2 = param1[v1].unk_04;
+        v4 = param1[v1].location;
+        v3 = &param0->data[v4];
+        v2 = param1[v1].size;
         MI_CpuClearFast(v3, v2);
         v0[v1].initFunc(v3);
     }
@@ -1408,7 +1413,7 @@ BOOL sub_02025AC0 (u32 param0, void * param1, u32 param2)
     OS_ReleaseLockID(v0);
 
     if (!v1) {
-        Heap_FreeToHeap(Unk_021C0794);
+        Heap_FreeToHeap(sSaveDataPtr);
         sub_0209A74C(1);
     }
 
@@ -1481,13 +1486,13 @@ static void sub_02025C1C (s32 param0, int param1)
     CARD_UnlockBackup(param0);
     OS_ReleaseLockID(param0);
 
-    Heap_FreeToHeap(Unk_021C0794);
+    Heap_FreeToHeap(sSaveDataPtr);
     sub_0209AA74(1, param1);
 }
 
 BOOL SaveData_CRC (int param0)
 {
-    SaveData * v0 = sub_020245A4();
+    SaveData * v0 = GetSaveDataPtr();
     void * v1 = SaveData_Get(v0, param0);
     int v2 = sub_020251A4(param0) - 4;
     int v3 = v2 / 2;
@@ -1509,7 +1514,7 @@ BOOL SaveData_CRC (int param0)
 
 void sub_02025C84 (int param0)
 {
-    SaveData * v0 = sub_020245A4();
+    SaveData * v0 = GetSaveDataPtr();
     void * v1 = SaveData_Get(v0, param0);
     u16 * v2 = v1;
     int v3, v4;

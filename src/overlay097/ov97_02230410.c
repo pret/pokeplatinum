@@ -403,7 +403,7 @@ static int ov97_02230778 (UnkStruct_020067E8 * param0)
         sub_0202DCB8(v0->unk_2C00, v0->unk_2C20);
     }
 
-    sub_020246E0(v0->unk_2C04);
+    SaveSaveData(v0->unk_2C04);
     DeleteWaitDial(v0->unk_3E14);
 
     if (sub_0202DD88(v0->unk_2C00) == 0) {

@@ -115,7 +115,7 @@ static BOOL sub_02052CBC (UnkStruct_020508D4 * param0)
         break;
     case 2:
         if (ScreenWipe_Done()) {
-            if (sub_020247E0(v2->unk_0C) == 0) {
+            if (SaveDataOverwriteCheck(v2->unk_0C) == 0) {
                 sub_02052FA8(v2, v3);
                 (*v4)++;
             } else {
@@ -133,8 +133,8 @@ static BOOL sub_02052CBC (UnkStruct_020508D4 * param0)
         int v6;
 
         HealAllPokemonInParty(Party_GetFromSavedata(v2->unk_0C));
-        sub_02024804();
-        v6 = sub_020246E0(v2->unk_0C);
+        SaveData_SetFullSaveRequired();
+        v6 = SaveSaveData(v2->unk_0C);
         sub_02052C6C(v2, v3->unk_00);
         sub_0205300C(v3);
         sub_02053028(v2, v3, v6);

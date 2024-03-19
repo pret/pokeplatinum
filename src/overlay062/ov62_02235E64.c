@@ -386,7 +386,7 @@ static BOOL ov62_022363CC (UnkStruct_0208C06C * param0)
             v0->unk_198 = 1;
             ov62_02234520(param0);
 
-            if (sub_02024800(param0->unk_830)) {
+            if (SaveData_GetFullSaveRequired(param0->unk_830)) {
                 ov62_02231B3C(param0, 298);
             } else {
                 ov62_02231B3C(param0, 299);
@@ -402,7 +402,7 @@ static BOOL ov62_022363CC (UnkStruct_0208C06C * param0)
 
         break;
     case 5:
-        sub_020246E0(param0->unk_830);
+        SaveSaveData(param0->unk_830);
         param0->unk_08++;
         break;
     case 6:

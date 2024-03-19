@@ -84,7 +84,7 @@ void NitroMain (void)
     sub_02002BB8(3, 3);
 
     Unk_02101D28.unk_10.unk_00 = -1;
-    Unk_02101D28.unk_10.unk_08 = sub_020244AC();
+    Unk_02101D28.unk_10.unk_08 = InitializeSaveData();
 
     sub_02003B60(GetChatotCryDataFromSave(Unk_02101D28.unk_10.unk_08), sub_02025E44(Unk_02101D28.unk_10.unk_08));
     sub_02022844();
@@ -93,7 +93,7 @@ void NitroMain (void)
         sub_02039A64(3, 0);
     }
 
-    if (sub_020247B8(Unk_02101D28.unk_10.unk_08) == 0) {
+    if (SaveData_GetBackupExists(Unk_02101D28.unk_10.unk_08) == 0) {
         sub_0209A74C(0);
     } else {
         switch (OS_GetResetParameter()) {
@@ -261,7 +261,7 @@ static void SoftReset (int param0)
     sub_0200F344(1, 0x7fff);
 
     if (sub_02037DB0()) {
-        sub_02024850(sub_020245A4());
+        sub_02024850(GetSaveDataPtr());
     }
 
     while (TRUE) {

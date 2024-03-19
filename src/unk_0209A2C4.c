@@ -239,7 +239,7 @@ static BOOL sub_0209A544 (UnkStruct_0209A3D0 * param0)
     switch (param0->unk_04) {
     case 0:
     {
-        param0->unk_3C = sub_020247BC(param0->unk_34);
+        param0->unk_3C = SaveData_GetLoadCheckStatus(param0->unk_34);
 
         if (param0->unk_3C == 0) {
             param0->unk_04 = 6;

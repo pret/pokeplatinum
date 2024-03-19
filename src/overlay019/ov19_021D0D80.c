@@ -4269,7 +4269,7 @@ static void ov19_021D5BAC (UnkStruct_ov19_021D4DF0 * param0)
     BoxPokemon_SetValue(v0->unk_00, 11, &(v1));
 
     if ((ov19_021D5E10(param0) == 0) && (ov19_021D5E38(param0) == 1)) {
-        sub_02024804();
+        SaveData_SetFullSaveRequired();
     }
 }
 

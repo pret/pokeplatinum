@@ -224,9 +224,9 @@ int sub_0202F41C (SaveData * param0, int param1, int param2, int param3, u16 * p
         sub_0202F510(param0, v0, v1, param1, param2);
 
         v0->unk_48 = 0xe281;
-        v0->unk_60.unk_00 = sub_0202486C(param0, v0, sizeof(UnkStruct_0202F41C) - (sizeof(UnkStruct_0202F298_sub1)) - (sizeof(u64)));
+        v0->unk_60.unk_00 = CalculateSaveDataChecksum(param0, v0, sizeof(UnkStruct_0202F41C) - (sizeof(UnkStruct_0202F298_sub1)) - (sizeof(u64)));
         v1->unk_1BEA = 0xe281;
-        v1->unk_1BEC.unk_00 = sub_0202486C(param0, v1, sizeof(UnkStruct_0202F298) - (sizeof(UnkStruct_0202F298_sub1)));
+        v1->unk_1BEC.unk_00 = CalculateSaveDataChecksum(param0, v1, sizeof(UnkStruct_0202F298) - (sizeof(UnkStruct_0202F298_sub1)));
 
         sub_0202F858(v1, sizeof(UnkStruct_0202F298) - (sizeof(UnkStruct_0202F298_sub1)), v1->unk_1BEC.unk_00 + ((v1->unk_1BEC.unk_00 ^ 0xffff) << 16));
 
@@ -374,13 +374,13 @@ static BOOL sub_0202F794 (SaveData * param0, const BattleRecording * param1)
         return 0;
     }
 
-    v2 = sub_0202486C(param0, v1, sizeof(UnkStruct_0202F41C) - (sizeof(UnkStruct_0202F298_sub1)) - (sizeof(u64)));
+    v2 = CalculateSaveDataChecksum(param0, v1, sizeof(UnkStruct_0202F41C) - (sizeof(UnkStruct_0202F298_sub1)) - (sizeof(u64)));
 
     if (v2 != v1->unk_60.unk_00) {
         return 0;
     }
 
-    v2 = sub_0202486C(param0, v0, sizeof(UnkStruct_0202F298) - (sizeof(UnkStruct_0202F298_sub1)));
+    v2 = CalculateSaveDataChecksum(param0, v0, sizeof(UnkStruct_0202F298) - (sizeof(UnkStruct_0202F298_sub1)));
 
     if (v2 != v0->unk_1BEC.unk_00) {
         return 0;

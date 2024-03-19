@@ -383,7 +383,7 @@ static void ov97_02233CE4 (UnkStruct_ov97_02234A2C * param0)
     sub_0202EFB8(v0, ov97_0223635C());
     ResetLock(4);
 
-    v1 = sub_020246E0(param0->unk_10);
+    v1 = SaveSaveData(param0->unk_10);
     ResetUnlock(4);
 }
 

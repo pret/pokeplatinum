@@ -77,7 +77,7 @@ UnkStruct_0202783C * sub_0202783C (SaveData * param0)
 
 const UnkStruct_0202783C * Save_MiscRO (const SaveData * param0)
 {
-    return sub_020245E0(param0, 10);
+    return GetSaveDataConst(param0, 10);
 }
 
 UnkStruct_02027854 * sub_02027854 (SaveData * param0)
