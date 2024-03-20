@@ -10,7 +10,7 @@
 #include "heap.h"
 #include "trainer_info.h"
 #include "unk_0202DA40.h"
-#include "unk_02056720.h"
+#include "poketch_data.h"
 #include "pokemon.h"
 #include "unk_020797C8.h"
 #include "party.h"

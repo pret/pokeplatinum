@@ -30,7 +30,7 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_020508D4.h"
-#include "unk_02056720.h"
+#include "poketch_data.h"
 #include "unk_02099D44.h"
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay025/ov25_02254560.h"
@@ -100,7 +100,7 @@ typedef struct UnkStruct_ov25_02253CE0_t {
     BGL * unk_4C;
     NNSG2dOamManagerInstance * unk_50;
     SaveData * unk_54;
-    UnkStruct_02056B24 * unk_58;
+    PoketchData * unk_58;
     UnkStruct_0203CDB0 * unk_5C;
     int unk_60;
 } UnkStruct_ov25_02253CE0;
@@ -333,7 +333,7 @@ static void ov25_02253EA4 (UnkStruct_ov25_02253CE0 * param0)
         break;
     case 1:
         if (ov25_022547F4(param0->unk_1C, 0)) {
-            u32 v0 = sub_02056830(param0->unk_58);
+            u32 v0 = PoketchData_GetCurrentAppID(param0->unk_58);
 
             ov25_02254170(param0, v0);
             ov25_022541D8(param0, v0);
@@ -380,9 +380,9 @@ static void ov25_02253F2C (UnkStruct_ov25_02253CE0 * param0)
 
         if (ov25_02254800(param0->unk_1C)) {
             if (param0->unk_60 == UnkEnum_ov25_022542E4_00) {
-                param0->unk_20.unk_00 = sub_02056860(param0->unk_58);
+                param0->unk_20.unk_00 = PoketchData_DecrementAppID(param0->unk_58);
             } else {
-                param0->unk_20.unk_00 = sub_02056838(param0->unk_58);
+                param0->unk_20.unk_00 = PoketchData_IncrementAppID(param0->unk_58);
             }
 
             if (param0->unk_0C) {
@@ -422,9 +422,9 @@ static void ov25_02253F2C (UnkStruct_ov25_02253CE0 * param0)
     case 4:
         if ((param0->unk_08 == 3) || (param0->unk_08 == 5)) {
             if (param0->unk_60 == UnkEnum_ov25_022542E4_00) {
-                param0->unk_20.unk_00 = sub_02056860(param0->unk_58);
+                param0->unk_20.unk_00 = PoketchData_DecrementAppID(param0->unk_58);
             } else {
-                param0->unk_20.unk_00 = sub_02056838(param0->unk_58);
+                param0->unk_20.unk_00 = PoketchData_IncrementAppID(param0->unk_58);
             }
 
             param0->unk_10 = 30;
@@ -451,7 +451,7 @@ static void ov25_0225406C (UnkStruct_ov25_02253CE0 * param0)
         u32 v0;
 
         param0->unk_06 = 1;
-        v0 = sub_02056830(param0->unk_58);
+        v0 = PoketchData_GetCurrentAppID(param0->unk_58);
 
         ov25_02254170(param0, v0);
         ov25_022541D8(param0, v0);
@@ -812,9 +812,9 @@ UnkStruct_0203CDB0 * ov25_0225453C (const UnkStruct_ov25_0225424C * param0)
     return param0->unk_5C;
 }
 
-UnkStruct_02056B24 * ov25_02254540 (const UnkStruct_ov25_0225424C * param0)
+PoketchData * ov25_02254540 (const UnkStruct_ov25_0225424C * param0)
 {
-    return (UnkStruct_02056B24 *)(param0->unk_58);
+    return (PoketchData *)(param0->unk_58);
 }
 
 SaveData * ov25_02254544 (const UnkStruct_ov25_0225424C * param0)

@@ -51,7 +51,7 @@
 #include "unk_02051D8C.h"
 #include "unk_02054D00.h"
 #include "unk_020559DC.h"
-#include "unk_02056720.h"
+#include "poketch_data.h"
 #include "unk_0205C980.h"
 #include "unk_0205DAC8.h"
 #include "unk_0206A8DC.h"

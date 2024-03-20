@@ -15,7 +15,7 @@
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_02022594.h"
-#include "unk_02056720.h"
+#include "poketch_data.h"
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay031/ov31_02256554.h"
 
@@ -38,8 +38,8 @@ static BOOL ov31_02256228(UnkStruct_ov31_02256228 * param0, UnkStruct_ov25_02254
 static void ov31_02256268(UnkStruct_ov31_02256228 * param0, UnkStruct_ov31_02256554_1 * param1);
 static inline u8 inline_ov31_02256298(const u8 * param0, int param1);
 static inline void inline_ov31_022562EC(u8 * param0, int param1, int param2);
-static void ov31_02256298(UnkStruct_ov31_02256228 * param0, UnkStruct_ov31_02256554_1 * param1, UnkStruct_02056B24 * param2);
-static void ov31_022562EC(UnkStruct_ov31_02256228 * param0, UnkStruct_ov31_02256554_1 * param1, UnkStruct_02056B24 * param2);
+static void ov31_02256298(UnkStruct_ov31_02256228 * param0, UnkStruct_ov31_02256554_1 * param1, PoketchData * param2);
+static void ov31_022562EC(UnkStruct_ov31_02256228 * param0, UnkStruct_ov31_02256554_1 * param1, PoketchData * param2);
 static void ov31_0225635C(UnkStruct_ov31_02256554_1 * param0);
 static void ov31_02256384(UnkStruct_ov31_02256228 * param0);
 static void ov31_022563B0(void * param0);
@@ -94,7 +94,7 @@ static BOOL ov31_02256228 (UnkStruct_ov31_02256228 * param0, UnkStruct_ov25_0225
 
 static void ov31_02256268 (UnkStruct_ov31_02256228 * param0, UnkStruct_ov31_02256554_1 * param1)
 {
-    UnkStruct_02056B24 * v0 = ov25_02254540(param0->unk_1F0);
+    PoketchData * v0 = ov25_02254540(param0->unk_1F0);
 
     if (sub_02056A10(v0)) {
         ov31_02256298(param0, param1, v0);
@@ -113,7 +113,7 @@ static inline void inline_ov31_022562EC (u8 * param0, int param1, int param2)
     param0[(param1 / 4)] |= ((param2 & 3) << ((param1 & 3) * 2));
 }
 
-static void ov31_02256298 (UnkStruct_ov31_02256228 * param0, UnkStruct_ov31_02256554_1 * param1, UnkStruct_02056B24 * param2)
+static void ov31_02256298 (UnkStruct_ov31_02256228 * param0, UnkStruct_ov31_02256554_1 * param1, PoketchData * param2)
 {
     int v0, v1, v2;
 
@@ -128,7 +128,7 @@ static void ov31_02256298 (UnkStruct_ov31_02256228 * param0, UnkStruct_ov31_0225
     }
 }
 
-static void ov31_022562EC (UnkStruct_ov31_02256228 * param0, UnkStruct_ov31_02256554_1 * param1, UnkStruct_02056B24 * param2)
+static void ov31_022562EC (UnkStruct_ov31_02256228 * param0, UnkStruct_ov31_02256554_1 * param1, PoketchData * param2)
 {
     int v0, v1, v2;
 

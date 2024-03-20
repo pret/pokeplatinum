@@ -32,7 +32,7 @@ typedef struct {
     PokedexData * unk_E8;
     PCBoxes * unk_EC;
     ChatotCry * unk_F0[4];
-    UnkStruct_02056B24 * unk_100;
+    PoketchData * unk_100;
     UnkStruct_0202C878 * unk_104;
     Options * unk_108;
     UnkStruct_0206D140 * unk_10C;

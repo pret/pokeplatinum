@@ -12,7 +12,7 @@
 #include "unk_0200A9DC.h"
 #include "heap.h"
 #include "unk_020508D4.h"
-#include "unk_02056720.h"
+#include "poketch_data.h"
 #include "overlay005/ov5_021DDAE4.h"
 #include "overlay024/ov24_02253CE0.h"
 #include "overlay025/ov25_02253CE0.h"
@@ -42,7 +42,7 @@ static BOOL ov5_021DDAE4 (UnkStruct_020508D4 * param0)
         break;
     case 2:
         if (ov24_02253DB4(v0->unk_08)) {
-            UnkStruct_02056B24 * v2 = sub_02056B24(v0->unk_0C);
+            PoketchData * v2 = sub_02056B24(v0->unk_0C);
 
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay24));
             Overlay_LoadByID(FS_OVERLAY_ID(overlay25), 2);

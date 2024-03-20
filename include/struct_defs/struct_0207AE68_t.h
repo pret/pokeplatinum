@@ -44,7 +44,7 @@ struct UnkStruct_0207AE68_t {
     PokedexData * unk_48;
     UnkStruct_0207D3C0 * unk_4C;
     UnkStruct_0202CD88 * unk_50;
-    UnkStruct_02056B24 * unk_54;
+    PoketchData * unk_54;
     void * unk_58;
     int unk_5C;
     u16 unk_60;

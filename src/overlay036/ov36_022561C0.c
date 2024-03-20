@@ -14,7 +14,7 @@
 
 #include "unk_0200D9E8.h"
 #include "heap.h"
-#include "unk_02056720.h"
+#include "poketch_data.h"
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay025/ov25_02255ACC.h"
 #include "overlay036/ov36_02256404.h"
@@ -28,7 +28,7 @@ typedef struct {
     UnkStruct_ov25_0225424C * unk_10;
     UnkStruct_ov25_02255B34 * unk_14;
     u32 unk_18;
-    UnkStruct_02056B24 * unk_1C;
+    PoketchData * unk_1C;
 } UnkStruct_ov36_0225621C;
 
 static void NitroStaticInit(void);

@@ -35,7 +35,7 @@
 #include "unk_0203E880.h"
 #include "unk_02048DD8.h"
 #include "unk_02054884.h"
-#include "unk_02056720.h"
+#include "poketch_data.h"
 #include "unk_0206CCB0.h"
 #include "pokemon.h"
 #include "party.h"
@@ -342,7 +342,7 @@ static BOOL sub_02049348 (UnkStruct_0203CDB0 * param0)
 
 static BOOL sub_02049358 (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_02056B24 * v0 = sub_02056B24(param0->unk_0C);
+    PoketchData * v0 = sub_02056B24(param0->unk_0C);
     return sub_020567E0(v0);
 }
 

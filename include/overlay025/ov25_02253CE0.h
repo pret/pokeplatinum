@@ -35,7 +35,7 @@ void ov25_02254518(const UnkStruct_ov25_0225424C * param0, UnkStruct_ov25_02255B
 BOOL ov25_02254534(const UnkStruct_ov25_0225424C * param0);
 BOOL ov25_02254538(const UnkStruct_ov25_0225424C * param0);
 UnkStruct_0203CDB0 * ov25_0225453C(const UnkStruct_ov25_0225424C * param0);
-UnkStruct_02056B24 * ov25_02254540(const UnkStruct_ov25_0225424C * param0);
+PoketchData * ov25_02254540(const UnkStruct_ov25_0225424C * param0);
 SaveData * ov25_02254544(const UnkStruct_ov25_0225424C * param0);
 int ov25_02254548(const UnkStruct_ov25_0225424C * param0);
 

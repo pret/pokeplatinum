@@ -15,7 +15,7 @@
 #include "unk_0200D9E8.h"
 #include "rtc.h"
 #include "heap.h"
-#include "unk_02056720.h"
+#include "poketch_data.h"
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay025/ov25_02255ACC.h"
 #include "overlay045/ov45_022566EC.h"
@@ -27,7 +27,7 @@ typedef struct {
     UnkStruct_ov45_022566EC_1 unk_03;
     UnkStruct_ov45_022566EC * unk_08;
     UnkStruct_ov25_0225424C * unk_0C;
-    UnkStruct_02056B24 * unk_10;
+    PoketchData * unk_10;
     UnkStruct_ov25_02255B34 * unk_14;
     u32 unk_18;
     u32 unk_1C;
@@ -92,9 +92,9 @@ static BOOL ov45_0225621C (UnkStruct_ov45_022561D4 * param0, UnkStruct_ov25_0225
     u32 v1, v2;
 
     param0->unk_10 = ov25_02254540(param1);
-    param0->unk_03.unk_00 = sub_020568D8(param0->unk_10);
+    param0->unk_03.unk_00 = PoketchData_IsAlarmSet(param0->unk_10);
 
-    sub_020568E0(param0->unk_10, &v1, &v2);
+    PoketchData_GetAlarmTime(param0->unk_10, &v1, &v2);
 
     param0->unk_03.unk_03 = v1;
     param0->unk_03.unk_04 = v2;
@@ -232,7 +232,7 @@ static BOOL ov45_022563C0 (UnkStruct_ov45_022561D4 * param0)
         if ((param0->unk_1C == 1) && (param0->unk_18 == 0)) {
             param0->unk_03.unk_00 = 1;
             ov45_022562C0(&param0->unk_03);
-            sub_020568F4(param0->unk_10, 1, param0->unk_03.unk_03, param0->unk_03.unk_04);
+            PoketchData_SetAlarm(param0->unk_10, 1, param0->unk_03.unk_03, param0->unk_03.unk_04);
             ov45_02256918(param0->unk_08, 2);
             param0->unk_1C = 0;
             param0->unk_01++;

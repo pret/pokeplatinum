@@ -14,7 +14,7 @@
 
 #include "unk_0200D9E8.h"
 #include "heap.h"
-#include "unk_02056720.h"
+#include "poketch_data.h"
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay025/ov25_02255ACC.h"
 #include "overlay054/ov54_0225642C.h"
@@ -143,7 +143,7 @@ static BOOL ov54_0225621C (UnkStruct_ov54_0225621C * param0, UnkStruct_ov25_0225
             ((48 + 40 * 0) + (48 / 2))
         }
     };
-    UnkStruct_02056B24 * v1;
+    PoketchData * v1;
     int v2;
 
     v1 = ov25_02254540(param1);

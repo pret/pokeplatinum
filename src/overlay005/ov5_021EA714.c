@@ -10,7 +10,7 @@
 #include "game_overlay.h"
 #include "unk_0200A784.h"
 #include "unk_020507CC.h"
-#include "unk_02056720.h"
+#include "poketch_data.h"
 #include "unk_0206A8DC.h"
 #include "overlay005/ov5_021EA714.h"
 #include "overlay024/ov24_02253CE0.h"
@@ -29,7 +29,7 @@ void ov5_021EA714 (UnkStruct_0203CDB0 * param0, int param1, u32 param2)
 
 void ov5_021EA728 (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_02056B24 * v0 = sub_02056B24(param0->unk_0C);
+    PoketchData * v0 = sub_02056B24(param0->unk_0C);
     UnkStruct_020507E4 * v1 = SaveData_Events(param0->unk_0C);
 
     if (sub_020567E0(v0)
@@ -44,7 +44,7 @@ void ov5_021EA728 (UnkStruct_0203CDB0 * param0)
 
 void ov5_021EA790 (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_02056B24 * v0 = sub_02056B24(param0->unk_0C);
+    PoketchData * v0 = sub_02056B24(param0->unk_0C);
     UnkStruct_020507E4 * v1 = SaveData_Events(param0->unk_0C);
 
     if (sub_020567E0(v0)
@@ -57,7 +57,7 @@ void ov5_021EA790 (UnkStruct_0203CDB0 * param0)
 
 u8 ov5_021EA7CC (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_02056B24 * v0 = sub_02056B24(param0->unk_0C);
+    PoketchData * v0 = sub_02056B24(param0->unk_0C);
     UnkStruct_020507E4 * v1 = SaveData_Events(param0->unk_0C);
 
     if (sub_020567E0(v0)

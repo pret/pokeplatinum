@@ -101,7 +101,7 @@
 #include "unk_020553DC.h"
 #include "unk_02055808.h"
 #include "unk_020559DC.h"
-#include "unk_02056720.h"
+#include "poketch_data.h"
 #include "unk_0205B33C.h"
 #include "unk_0205E7D0.h"
 #include "unk_0206A8DC.h"
