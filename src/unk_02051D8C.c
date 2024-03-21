@@ -288,7 +288,7 @@ void sub_020521B8 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, Sav
     param0->unk_14C = sub_0203A74C(v6);
     param0->unk_E4 = param5;
     param0->unk_190 = param6;
-    param0->unk_100 = sub_02056B24(param2);
+    param0->unk_100 = SaveData_GetPoketchData(param2);
     param0->unk_104 = sub_0202C878(param2);
     param0->unk_11C = sub_0202CD88(param2);
     param0->unk_120 = param4;
@@ -345,7 +345,7 @@ void sub_02052348 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, int
     param0->unk_138 = sub_02055BA8(param1);
     param0->unk_E4 = param1->unk_98;
     param0->unk_190 = param1->unk_BC;
-    param0->unk_100 = sub_02056B24(param1->unk_0C);
+    param0->unk_100 = SaveData_GetPoketchData(param1->unk_0C);
     param0->unk_104 = sub_0202C878(param1->unk_0C);
     param0->unk_11C = sub_0202CD88(param1->unk_0C);
     param0->unk_120 = param1->unk_9C;

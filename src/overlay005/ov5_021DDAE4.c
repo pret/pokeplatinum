@@ -42,7 +42,7 @@ static BOOL ov5_021DDAE4 (UnkStruct_020508D4 * param0)
         break;
     case 2:
         if (ov24_02253DB4(v0->unk_08)) {
-            PoketchData * v2 = sub_02056B24(v0->unk_0C);
+            PoketchData * v2 = SaveData_GetPoketchData(v0->unk_0C);
 
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay24));
             Overlay_LoadByID(FS_OVERLAY_ID(overlay25), 2);

@@ -5306,7 +5306,7 @@ static BOOL sub_020435A0 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_020435AC (UnkStruct_0203E724 * param0)
 {
-    PoketchData * v0 = sub_02056B24(param0->unk_34->unk_0C);
+    PoketchData * v0 = SaveData_GetPoketchData(param0->unk_34->unk_0C);
     u16 * v1 = inline_0204FCAC(param0);
 
     *v1 = sub_020567E0(v0);
@@ -5318,7 +5318,7 @@ static BOOL sub_020435DC (UnkStruct_0203E724 * param0)
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
     u16 v1 = inline_02049538(param0);
 
-    PoketchData_RegisterApp(sub_02056B24(v0->unk_0C), v1);
+    PoketchData_RegisterApp(SaveData_GetPoketchData(v0->unk_0C), v1);
     return 0;
 }
 
@@ -5328,7 +5328,7 @@ static BOOL sub_02043608 (UnkStruct_0203E724 * param0)
     u16 v1 = inline_02049538(param0);
     u16 * v2 = inline_0204FCAC(param0);
 
-    *v2 = PoketchData_CheckAppRegistered(sub_02056B24(v0->unk_0C), v1);
+    *v2 = PoketchData_CheckAppRegistered(SaveData_GetPoketchData(v0->unk_0C), v1);
     return 0;
 }
 

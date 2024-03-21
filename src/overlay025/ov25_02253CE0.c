@@ -179,7 +179,7 @@ void ov25_02253CE8 (UnkStruct_0203CDB0 * param0, UnkStruct_ov25_02253CE0 ** para
 
         v0->unk_5C = param0;
         v0->unk_54 = param2;
-        v0->unk_58 = sub_02056B24(param2);
+        v0->unk_58 = SaveData_GetPoketchData(param2);
         v0->unk_4C = param3;
         v0->unk_50 = param4;
 
@@ -217,13 +217,13 @@ void ov25_02253D7C (UnkStruct_ov25_02253CE0 * param0, int param1, u32 param2)
         break;
     case 5:
     {
-        u32 v0 = sub_020568C8(param0->unk_58);
+        u32 v0 = PoketchData_GetPedometerValue(param0->unk_58);
 
         if (++v0 > 99999) {
             v0 = 0;
         }
 
-        sub_020568CC(param0->unk_58, v0);
+        PoketchData_SetPedometerValue(param0->unk_58, v0);
         param0->unk_07 = 1;
     }
     break;

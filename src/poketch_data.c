@@ -14,27 +14,32 @@
  */
 typedef struct PoketchData {
     u8 unk_00_0 : 1;
-    u8 unk_00_1 : 1;
+    u8 pedometerEnabled : 1;
     u8 unk_00_2 : 1;
     u8 screenColor : 3;    //!< Screen palette color (valid values defined in poketch_data.h)
-    u8 unk_00_6 : 2;
+    u8 unk_00_6 : 2;       //!< unused
 
     s8 appCount;           //!< Number of currently registered apps
     s8 appIndex;           //!< Currently selected app
-    u8 appRegistry[32];    //!< Registration status of all apps. Indices 25-31 are unused.
+    u8 appRegistry[32];    //!< Registration status of all apps. Indices 0-24 correspond to 25-31 are unused.
+    
     u32 pedometer;         //!< Step counter
+
     u16 alarmSet : 1;      //!< Whether or not the alarm is currently enabled.
     u16 alarmHour : 5;     //!< Current Hour setting on the alarm clock.
     u16 alarmMinute : 6;   //!< Current Minute setting on the alarm clock.
-    u16 unk_28_12 : 4;
+    
+    u16 unk_28_12 : 4;     //!< unused
 
     u8 unk_2A[120];
     u32 unk_A4;
     u8 unk_A8;
+
     struct {
         u8 x;              //!< X coordinate of map marker
         u8 y;              //!< Y coordinate of map marker
     } markMapPositions[6]; //!< Map markers
+
     struct {
         u16 unk_00;
         u16 unk_02;
@@ -60,7 +65,7 @@ void Poketch_Init (PoketchData * poketchData)
     poketchData->appIndex = 0;
     poketchData->unk_00_0 = 0;
     poketchData->screenColor = 0;
-    poketchData->unk_00_1 = 0;
+    poketchData->pedometerEnabled = 0;
     poketchData->pedometer = 0;
     poketchData->alarmSet = 0;
     poketchData->alarmHour = 0;
@@ -94,7 +99,7 @@ void Poketch_Init (PoketchData * poketchData)
     }
 
     poketchData->unk_00_2 = 0;
-    PoketchData_RegisterApp(poketchData, 0);
+    PoketchData_RegisterApp(poketchData, POKETCH_APPID_DIGITALWATCH);
 }
 
 void sub_020567D0 (PoketchData * poketchData)
@@ -116,15 +121,15 @@ BOOL PoketchData_RegisterApp (PoketchData * poketchData, int appID)
 {
     BOOL appRegistered = 0;
 
-    GF_ASSERT(appID >= 0 && appID < 25);
+    GF_ASSERT(appID >= 0 && appID < POKETCH_APPID_MAX);
 
-    if (poketchData->appCount < 25) {
+    if (poketchData->appCount < POKETCH_APPID_MAX) {
         if (poketchData->appRegistry[appID] == 0) {
             poketchData->appRegistry[appID] = 1;
             poketchData->appCount++;
 
-            if (appID == 3) {
-                poketchData->unk_00_1 = 1;
+            if (appID == POKETCH_APPID_PEDOMETER) {
+                poketchData->pedometerEnabled = 1;
             }
 
             appRegistered = 1;
@@ -144,7 +149,7 @@ int PoketchData_IncrementAppID(PoketchData * poketchData)
     int nextIndex = poketchData->appIndex;
 
     while (TRUE) {
-        if (++nextIndex >= 25) {
+        if (++nextIndex >= POKETCH_APPID_MAX) {
             nextIndex = 0;
         }
 
@@ -168,7 +173,7 @@ int PoketchData_DecrementAppID(PoketchData * poketchData)
 
     while (TRUE) {
         if (--prevIndex < 0) {
-            prevIndex = 25 - 1;
+            prevIndex = POKETCH_APPID_MAX - 1;
         }
 
         if (prevIndex == poketchData->appIndex) {
@@ -194,20 +199,20 @@ u32 PoketchData_GetCurrentScreenColor (const PoketchData * poketchData)
 void PoketchData_SetScreenColor (PoketchData * poketchData, u32 screenColor)
 {
     GF_ASSERT(poketchData);
-    GF_ASSERT(screenColor < 8);
+    GF_ASSERT(screenColor < POKETCH_SCREEN_COLOR_MAX);
 
     poketchData->screenColor = screenColor;
 }
 
-u32 sub_020568C8 (const PoketchData * poketchData)
+u32 PoketchData_GetPedometerValue (const PoketchData * poketchData)
 {
     return poketchData->pedometer;
 }
 
-void sub_020568CC (PoketchData * poketchData, u32 param1)
+void PoketchData_SetPedometerValue (PoketchData * poketchData, u32 value)
 {
-    if (poketchData->unk_00_1) {
-        poketchData->pedometer = param1;
+    if (poketchData->pedometerEnabled) {
+        poketchData->pedometer = value;
     }
 }
 
@@ -260,7 +265,7 @@ BOOL sub_020569A8 (const PoketchData * poketchData, u32 param1, u32 param2)
 
 void PoketchData_SetMapMarker (PoketchData * poketchData, int index, u8 x, u8 y)
 {
-    GF_ASSERT(index < 6);
+    GF_ASSERT(index < POKETCH_MAPMARKER_COUNT);
 
     poketchData->markMapPositions[index].x = x;
     poketchData->markMapPositions[index].y = y;
@@ -268,7 +273,7 @@ void PoketchData_SetMapMarker (PoketchData * poketchData, int index, u8 x, u8 y)
 
 void PoketchData_GetMapMarkerPos (const PoketchData * poketchData, int index, u8 * x, u8 * y)
 {
-    GF_ASSERT(index < 6);
+    GF_ASSERT(index < POKETCH_MAPMARKER_COUNT);
 
     *x = poketchData->markMapPositions[index].x;
     *y = poketchData->markMapPositions[index].y;
@@ -343,7 +348,7 @@ u32 sub_02056AFC (const PoketchData * poketchData, int param1)
     return poketchData->unk_B8[param1].unk_04;
 }
 
-PoketchData * sub_02056B24 (SaveData * saveData)
+PoketchData * SaveData_GetPoketchData (SaveData * saveData)
 {
     PoketchData * poketchData;
 

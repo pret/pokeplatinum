@@ -81,7 +81,7 @@ static BOOL ov36_0225621C (UnkStruct_ov36_0225621C * param0, UnkStruct_ov25_0225
     param0->unk_10 = param1;
     param0->unk_1C = ov25_02254540(param1);
     param0->unk_04.unk_04 = 1;
-    param0->unk_04.unk_00 = sub_020568C8(param0->unk_1C);
+    param0->unk_04.unk_00 = PoketchData_GetPedometerValue(param0->unk_1C);
 
     if (ov36_02256404(&(param0->unk_0C), &(param0->unk_04), param2)) {
         param0->unk_00 = 0;
@@ -189,7 +189,7 @@ static BOOL ov36_02256330 (UnkStruct_ov36_0225621C * param0)
         }
 
         if (ov25_02254538(param0->unk_10)) {
-            v0->unk_00 = sub_020568C8(param0->unk_1C);
+            v0->unk_00 = PoketchData_GetPedometerValue(param0->unk_1C);
             ov36_0225653C(param0->unk_0C, 3);
             break;
         }
@@ -209,7 +209,7 @@ static BOOL ov36_02256330 (UnkStruct_ov36_0225621C * param0)
             v0->unk_04 = 1;
             v0->unk_00 = 0;
 
-            sub_020568CC(param0->unk_1C, 0);
+            PoketchData_SetPedometerValue(param0->unk_1C, 0);
 
             ov36_0225653C(param0->unk_0C, 2);
             ov36_0225653C(param0->unk_0C, 3);

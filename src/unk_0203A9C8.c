@@ -1951,9 +1951,9 @@ static void sub_0203C7B8 (UnkStruct_020508D4 * param0)
     v4 = Party_GetPokemonBySlotIndex(v3, v2->unk_00);
 
     if (v2->unk_01 == 0) {
-        v5 = sub_0207AE68(v3, v4, v2->unk_04, sub_02025E44(v0->unk_0C), PokemonSummary_ShowContestData(v0->unk_0C), sub_02027560(v0->unk_0C), sub_0207D990(v0->unk_0C), sub_0202CD88(v0->unk_0C), sub_02056B24(v0->unk_0C), v2->unk_08, 0x1, 73);
+        v5 = sub_0207AE68(v3, v4, v2->unk_04, sub_02025E44(v0->unk_0C), PokemonSummary_ShowContestData(v0->unk_0C), sub_02027560(v0->unk_0C), sub_0207D990(v0->unk_0C), sub_0202CD88(v0->unk_0C), SaveData_GetPoketchData(v0->unk_0C), v2->unk_08, 0x1, 73);
     } else {
-        v5 = sub_0207AE68(v3, v4, v2->unk_04, sub_02025E44(v0->unk_0C), PokemonSummary_ShowContestData(v0->unk_0C), sub_02027560(v0->unk_0C), sub_0207D990(v0->unk_0C), sub_0202CD88(v0->unk_0C), sub_02056B24(v0->unk_0C), v2->unk_08, NULL, 73);
+        v5 = sub_0207AE68(v3, v4, v2->unk_04, sub_02025E44(v0->unk_0C), PokemonSummary_ShowContestData(v0->unk_0C), sub_02027560(v0->unk_0C), sub_0207D990(v0->unk_0C), sub_0202CD88(v0->unk_0C), SaveData_GetPoketchData(v0->unk_0C), v2->unk_08, NULL, 73);
     }
 
     {
