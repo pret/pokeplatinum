@@ -95,5 +95,6 @@ sdk/
 
 __pycache__
 .cache
+.venv/
 
 compile_commands.json
