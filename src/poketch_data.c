@@ -17,7 +17,7 @@ int Poketch_SaveSize(void)
 static const struct {
         u8 x;
         u8 y;
-} DefaultMapMarkers[POKETCH_MAPMARKER_COUNT] = {
+} sDefaultMapMarkers[POKETCH_MAPMARKER_COUNT] = {
     {104, 152},
     {120, 152},
     {136, 152},
@@ -47,8 +47,8 @@ void Poketch_Init(PoketchData *poketchData)
     poketchData->unk_A4 = 0;
 
     for (i = 0; i < POKETCH_MAPMARKER_COUNT; i++) {
-        poketchData->markMapPositions[i].x = DefaultMapMarkers[i].x;
-        poketchData->markMapPositions[i].y = DefaultMapMarkers[i].y;
+        poketchData->markMapPositions[i].x = sDefaultMapMarkers[i].x;
+        poketchData->markMapPositions[i].y = sDefaultMapMarkers[i].y;
     }
 
     for (i = 0; i < 12; i++) {
@@ -71,14 +71,14 @@ BOOL sub_020567E0 (PoketchData *poketchData)
     return poketchData->unk_00_0;
 }
 
-BOOL PoketchData_CheckAppRegistered(PoketchData *poketchData, PoketchAppID appID)
+BOOL PoketchData_CheckAppRegistered(PoketchData *poketchData, enum PoketchAppID appID)
 {
     return poketchData->appRegistry[appID];
 }
 
-BOOL PoketchData_RegisterApp(PoketchData *poketchData, PoketchAppID appID)
+BOOL PoketchData_RegisterApp(PoketchData *poketchData, enum PoketchAppID appID)
 {
-    BOOL appRegistered = 0;
+    BOOL appRegistered = FALSE;
 
     GF_ASSERT(appID >= 0 && appID < POKETCH_APPID_MAX);
 
@@ -90,13 +90,13 @@ BOOL PoketchData_RegisterApp(PoketchData *poketchData, PoketchAppID appID)
             poketchData->pedometerEnabled = 1;
         }
 
-        appRegistered = 1;
+        appRegistered = TRUE;
     }    
 
     return appRegistered;
 }
 
-PoketchAppID PoketchData_CurrentAppID(const PoketchData *poketchData)
+enum PoketchAppID PoketchData_CurrentAppID(const PoketchData *poketchData)
 {
     return poketchData->appIndex;
 }
@@ -305,10 +305,7 @@ u32 sub_02056AFC (const PoketchData *poketchData, int param1)
     return poketchData->unk_B8[param1].unk_04;
 }
 
-PoketchData *SaveData_PoketchData(SaveData *saveData)
+PoketchData* SaveData_PoketchData(SaveData *saveData)
 {
-    PoketchData *poketchData;
-
-    poketchData = SaveData_Get(saveData, SAVE_TABLE_ENTRY_POKETCH);
-    return poketchData;
+    return SaveData_Get(saveData, SAVE_TABLE_ENTRY_POKETCH);
 }

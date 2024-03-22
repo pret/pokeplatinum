@@ -4,8 +4,8 @@
 #include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-/* Poketch app IDs, used to register and switch between apps in the Poketch */
-typedef enum PoketchAppID {
+/** Poketch app IDs, used to register and switch between apps in the Poketch */
+enum PoketchAppID {
     POKETCH_APPID_DIGITALWATCH,
     POKETCH_APPID_CALCULATOR,
     POKETCH_APPID_MEMOPAD,
@@ -33,10 +33,10 @@ typedef enum PoketchAppID {
     POKETCH_APPID_ALARMCLOCK,
 
     POKETCH_APPID_MAX
-} PoketchAppID;
+};
 
-/* Poketch Screen colors, used in PoketchData_SetScreenColor */
-typedef enum PoketchScreenColor {
+/** Poketch Screen colors, used in PoketchData_SetScreenColor */
+enum PoketchScreenColor {
     POKETCH_SCREEN_COLOR_GREEN,
     POKETCH_SCREEN_COLOR_YELLOW,
     POKETCH_SCREEN_COLOR_ORANGE,
@@ -47,7 +47,7 @@ typedef enum PoketchScreenColor {
     POKETCH_SCREEN_COLOR_WHITE,
 
     POKETCH_SCREEN_COLOR_MAX,
-} PoketchScreenColor;
+};
 
 enum {
     POKETCH_MAPMARKER_COUNT = 6,
@@ -94,14 +94,14 @@ typedef struct PoketchData {
     } unk_B8[12];
 } PoketchData;
 
-/*
+/**
  * Returns the size of the PoketchData object.
  *
- * @returns: the size of the PoketchData object.
+ * @return the size of the PoketchData object.
  */
 int Poketch_SaveSize(void);
 
-/*
+/**
  * Initializes the given PoketchData object.
  *
  * @param poketchData:      The PoketchData to initialize.
@@ -111,64 +111,64 @@ void Poketch_Init(PoketchData *poketchData);
 void sub_020567D0(PoketchData *poketchData);
 BOOL sub_020567E0(PoketchData *poketchData);
 
-/*
+/**
  * Checks whether or not the given AppID is already registered in the Poketch.
  * Valid apps are in the range 0-24.
  *
  * @param poketchData:      The Poketch data to check.
  * @param appID:            The App ID to check for.
  *
- * @returns: TRUE if the app is registered, FALSE if not.
+ * @return TRUE if the app is registered, FALSE if not.
  */
-BOOL PoketchData_CheckAppRegistered(PoketchData *poketchData, PoketchAppID appID);
+BOOL PoketchData_CheckAppRegistered(PoketchData *poketchData, enum PoketchAppID appID);
 
-/*
+/**
  * Registers the app with the given ID, making it accessible to the player.
  *
  * @param poketchData:      The Poketch data to check.
  * @param appID:            The ID of the app to register. This function asserts that the value is in the range [0, POKETCH_APPID_MAX).
  *
- * @returns: TRUE if the was successfully registered, FALSE if it was already registered.
+ * @return TRUE if the was successfully registered, FALSE if it was already registered.
  */
-BOOL PoketchData_RegisterApp(PoketchData *poketchData, PoketchAppID appID);
+BOOL PoketchData_RegisterApp(PoketchData *poketchData, enum PoketchAppID appID);
 
-/*
+/**
  * Gets the currently active Poketch app.
  *
  * @param poketchData:      The Poketch data to check.
  *
- * @returns: The ID of the current app.
+ * @return The ID of the current app.
  */
-PoketchAppID PoketchData_CurrentAppID(const PoketchData *poketchData);
+enum PoketchAppID PoketchData_CurrentAppID(const PoketchData *poketchData);
 
-/*
+/**
  * Sets the current Poketch app to the next registered app, skipping unregistered App IDs and wrapping around if necessary.
  *
  * @param poketchData:      The Poketch data to update.
  *
- * @returns: The new current app ID.
+ * @return The new current app ID.
  */
 int PoketchData_IncrementAppID(PoketchData *poketchData);
 
-/*
+/**
  * Sets the current Poketch app to the previous registered app, skipping unregistered App IDs and wrapping around if necessary.
  *
  * @param poketchData:      The Poketch data to update.
  *
- * @returns: The new current app ID.
+ * @return The new current app ID.
  */
 int PoketchData_DecrementAppID(PoketchData *poketchData);
 
-/*
+/**
  * Gets the current Poketch's color setting.
  *
  * @param poketchData:      The Poketch data to check.
  *
- * @returns: The Poketch's color setting.
+ * @return The Poketch's color setting.
  */
 u32 PoketchData_CurrentScreenColor(const PoketchData *poketchData);
 
-/*
+/**
  * Sets the Poketch's color setting.
  *
  * @param poketchData:      The Poketch data to update. This function assert checks this pointer.
@@ -176,16 +176,16 @@ u32 PoketchData_CurrentScreenColor(const PoketchData *poketchData);
  */
 void PoketchData_SetScreenColor(PoketchData *poketchData, u32 screenColor);
 
-/*
+/**
  * Gets the Pedometer's current step count value.
  *
  * @param poketchData:      The Poketch data to check.
  *
- * @returns: pedometer's step count.
+ * @return pedometer's step count.
  */
 u32  PoketchData_PedometerValue(const PoketchData *poketchData);
 
-/*
+/**
  * Sets the Poketch's pedometer value.
  *
  * @param poketchData:      The Poketch data to update.
@@ -193,16 +193,16 @@ u32  PoketchData_PedometerValue(const PoketchData *poketchData);
  */
 void PoketchData_SetPedometerValue(PoketchData *poketchData, u32 value);
 
-/*
+/**
  * Returns whether or not the Poketch Alarm Clock app's alarm is set.
  *
  * @param poketchData:      The Poketch data to check.
  *
- * @returns: TRUE if the alarm is currently set, FALSE if not.
+ * @return TRUE if the alarm is currently set, FALSE if not.
  */
 BOOL PoketchData_IsAlarmSet(const PoketchData *poketchData);
 
-/*
+/**
  * Gets the currently stored time on the Alarm Clock app.
  *
  * @param poketchData:      The Poketch data to check.
@@ -211,7 +211,7 @@ BOOL PoketchData_IsAlarmSet(const PoketchData *poketchData);
  */
 void PoketchData_AlarmTime(const PoketchData *poketchData, u32 *hour, u32 *minute);
 
-/*
+/**
  * Configures all the Alarm Clock settings, including whether the alarm is set.
  *
  * @param poketchData:      The Poketch data to update.
@@ -225,7 +225,7 @@ void sub_02056934(PoketchData *poketchData, u32 param1, u32 param2);
 void sub_02056970(PoketchData *poketchData, u32 param1, u32 param2);
 BOOL sub_020569A8(const PoketchData *poketchData, u32 param1, u32 param2);
 
-/*
+/**
  * Sets the location of a map marker.
  *
  * @param poketchData:      The Poketch data to update.
@@ -235,7 +235,7 @@ BOOL sub_020569A8(const PoketchData *poketchData, u32 param1, u32 param2);
  */
 void PoketchData_SetMapMarker(PoketchData *poketchData, int index, u8 x, u8 y);
 
-/*
+/**
  * Gets the location of a map marker.
  *
  * @param poketchData:      The Poketch data to update.
@@ -253,13 +253,13 @@ int sub_02056AAC(const PoketchData *poketchData);
 void sub_02056AC8(const PoketchData *poketchData, int param1, int *param2, int *param3);
 u32 sub_02056AFC(const PoketchData *poketchData, int param1);
 
-/*
+/**
  * Retrieves the PoketchData from the given SaveData.
  *
  * @param SaveData:         The SaveData to read from.
  *
- * @returns: The PoketchData.
+ * @return The PoketchData.
  */
-PoketchData *SaveData_PoketchData(SaveData *saveData);
+PoketchData* SaveData_PoketchData(SaveData *saveData);
 
 #endif // POKEPLATINUM_POKETCH_DATA_H
