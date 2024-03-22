@@ -8,7 +8,7 @@
 #include "unk_0202631C.h"
 #include "unk_0202CD50.h"
 #include "unk_0202F180.h"
-#include "unk_02056720.h"
+#include "poketch_data.h"
 #include "pokemon.h"
 
 void sub_0202F180 (SaveData * param0, const Pokemon * param1)
@@ -18,6 +18,6 @@ void sub_0202F180 (SaveData * param0, const Pokemon * param1)
 
         sub_0202D040(sub_0202CD88(param0), v0, Pokemon_GetValue((Pokemon *)param1, MON_DATA_SPECIES, NULL));
         sub_0202736C(v0, (Pokemon *)param1);
-        sub_02056A48(sub_02056B24(param0), (const BoxPokemon *)param1);
+        sub_02056A48(SaveData_PoketchData(param0), (const BoxPokemon *)param1);
     }
 }

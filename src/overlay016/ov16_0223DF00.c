@@ -66,7 +66,7 @@
 #include "unk_020279FC.h"
 #include "unk_0202CD50.h"
 #include "unk_0202F1D4.h"
-#include "unk_02056720.h"
+#include "poketch_data.h"
 #include "unk_0206CCB0.h"
 #include "pokemon.h"
 #include "trainer_data.h"

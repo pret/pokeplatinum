@@ -101,7 +101,7 @@
 #include "unk_020553DC.h"
 #include "unk_02055808.h"
 #include "unk_020559DC.h"
-#include "unk_02056720.h"
+#include "poketch_data.h"
 #include "unk_0205B33C.h"
 #include "unk_0205E7D0.h"
 #include "unk_0206A8DC.h"
@@ -1095,7 +1095,7 @@ BOOL sub_0203DBF0 (UnkStruct_020508D4 * param0)
 
         if ((v4 = sub_02076B94(NULL, v2->unk_04.unk_40, 1, v3, &v5)) != 0) {
             Heap_Create(3, 26, 0x30000);
-            v2->unk_60 = sub_0207AE68(NULL, v2->unk_04.unk_40, v4, sub_02025E44(v1->unk_0C), PokemonSummary_ShowContestData(v1->unk_0C), sub_02027560(v1->unk_0C), sub_0207D990(v1->unk_0C), sub_0202CD88(v1->unk_0C), sub_02056B24(v1->unk_0C), v5, 0x4, 26);
+            v2->unk_60 = sub_0207AE68(NULL, v2->unk_04.unk_40, v4, sub_02025E44(v1->unk_0C), PokemonSummary_ShowContestData(v1->unk_0C), sub_02027560(v1->unk_0C), sub_0207D990(v1->unk_0C), sub_0202CD88(v1->unk_0C), SaveData_PoketchData(v1->unk_0C), v5, 0x4, 26);
             v2->unk_00 = 6;
         } else {
             v2->unk_00 = 7;

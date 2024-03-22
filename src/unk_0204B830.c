@@ -9,7 +9,6 @@
 #include "trainer_info.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
-#include "struct_decls/struct_02056B24_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
@@ -38,7 +37,7 @@
 #include "unk_0204B830.h"
 #include "unk_020507CC.h"
 #include "unk_02054884.h"
-#include "unk_02056720.h"
+#include "poketch_data.h"
 #include "unk_0206AFE0.h"
 #include "pokemon.h"
 #include "party.h"
@@ -731,7 +730,7 @@ static void sub_0204C428 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static BOOL sub_0204C458 (UnkStruct_0203CDB0 * param0, void * param1)
 {
-    UnkStruct_02056B24 * v0 = sub_02056B24(param0->unk_0C);
+    PoketchData * v0 = SaveData_PoketchData(param0->unk_0C);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
 
     return sub_020567E0(v0);
@@ -739,10 +738,10 @@ static BOOL sub_0204C458 (UnkStruct_0203CDB0 * param0, void * param1)
 
 static void sub_0204C474 (UnkStruct_0203CDB0 * param0, void * param1)
 {
-    UnkStruct_02056B24 * v0 = sub_02056B24(param0->unk_0C);
+    PoketchData * v0 = SaveData_PoketchData(param0->unk_0C);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
 
-    sub_020567F0(v0, v1->val6.unk_00);
+    PoketchData_RegisterApp(v0, v1->val6.unk_00);
 }
 
 static void sub_0204C494 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)

@@ -14,7 +14,7 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_defs/options.h"
 #include "struct_decls/struct_0202CD88_decl.h"
-#include "struct_decls/struct_02056B24_decl.h"
+#include "poketch_data.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -44,7 +44,7 @@ struct UnkStruct_0207AE68_t {
     PokedexData * unk_48;
     UnkStruct_0207D3C0 * unk_4C;
     UnkStruct_0202CD88 * unk_50;
-    UnkStruct_02056B24 * unk_54;
+    PoketchData * unk_54;
     void * unk_58;
     int unk_5C;
     u16 unk_60;

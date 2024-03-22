@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_decls/struct_0202CD88_decl.h"
-#include "struct_decls/struct_02056B24_decl.h"
+#include "poketch_data.h"
 #include "struct_decls/struct_0206D140_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
@@ -32,7 +32,7 @@ typedef struct {
     PokedexData * unk_E8;
     PCBoxes * unk_EC;
     ChatotCry * unk_F0[4];
-    UnkStruct_02056B24 * unk_100;
+    PoketchData * unk_100;
     UnkStruct_0202C878 * unk_104;
     Options * unk_108;
     UnkStruct_0206D140 * unk_10C;

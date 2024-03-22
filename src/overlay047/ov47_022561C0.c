@@ -7,7 +7,6 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020507E4_decl.h"
-#include "struct_decls/struct_02056B24_decl.h"
 #include "overlay025/struct_ov25_0225424C_decl.h"
 #include "overlay047/struct_ov47_02256634_decl.h"
 
@@ -19,7 +18,7 @@
 #include "heap.h"
 #include "unk_0202D7A8.h"
 #include "unk_020507CC.h"
-#include "unk_02056720.h"
+#include "poketch_data.h"
 #include "unk_0206AFE0.h"
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay047/ov47_02256634.h"
@@ -31,7 +30,7 @@ typedef struct {
     UnkStruct_ov47_02256634_1 unk_04;
     UnkStruct_ov47_02256634 * unk_70;
     UnkStruct_ov25_0225424C * unk_74;
-    UnkStruct_02056B24 * unk_78;
+    PoketchData * unk_78;
     UnkStruct_0206C638 * unk_7C[6];
     u8 unk_94[6];
     u8 unk_9A;
@@ -85,7 +84,7 @@ static BOOL ov47_0225621C (UnkStruct_ov47_0225621C * param0, UnkStruct_ov25_0225
         param0->unk_04.unk_0C[v0].unk_03 = 1;
         param0->unk_04.unk_0C[v0].unk_02 = v0;
 
-        sub_020569E8(param0->unk_78, v0, &(param0->unk_04.unk_0C[v0].unk_00), &(param0->unk_04.unk_0C[v0].unk_01));
+        PoketchData_MapMarkerPos(param0->unk_78, v0, &(param0->unk_04.unk_0C[v0].unk_00), &(param0->unk_04.unk_0C[v0].unk_01));
 
         param0->unk_04.unk_0C[v0].unk_00 += 16;
         param0->unk_04.unk_0C[v0].unk_01 += 16;
@@ -133,7 +132,7 @@ static void ov47_0225634C (UnkStruct_ov47_0225621C * param0)
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        sub_020569C4(param0->unk_78, v0, (param0->unk_04.unk_0C[v0].unk_00 - 16), (param0->unk_04.unk_0C[v0].unk_01 - 16));
+        PoketchData_SetMapMarker(param0->unk_78, v0, (param0->unk_04.unk_0C[v0].unk_00 - 16), (param0->unk_04.unk_0C[v0].unk_01 - 16));
     }
 
     ov47_02256670(param0->unk_70);

@@ -21,7 +21,7 @@
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_decls/struct_0202CD88_decl.h"
-#include "struct_decls/struct_02056B24_decl.h"
+#include "poketch_data.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_decls/struct_0206D140_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
@@ -70,7 +70,7 @@ struct BattleSystem {
     UnkStruct_ov12_0221FCDC * unk_8C;
     SpriteRenderer * unk_90;
     SpriteGfxHandler * unk_94;
-    UnkStruct_02056B24 * unk_98;
+    PoketchData * unk_98;
     UnkStruct_0206D140 * unk_9C;
     u16 trainerIDs[4];
     u8 unk_A8[4];

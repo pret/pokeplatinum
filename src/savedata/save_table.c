@@ -40,7 +40,7 @@
 #include "unk_02030EA4.h"
 #include "unk_0203A6DC.h"
 #include "unk_020507CC.h"
-#include "unk_02056720.h"
+#include "poketch_data.h"
 #include "unk_020797C8.h"
 #include "party.h"
 #include "unk_0207D3B8.h"
