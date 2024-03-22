@@ -9,7 +9,6 @@
 #include "struct_decls/struct_0202A750_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
-#include "struct_decls/struct_poketch_data_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
@@ -342,7 +341,7 @@ static BOOL sub_02049348 (UnkStruct_0203CDB0 * param0)
 
 static BOOL sub_02049358 (UnkStruct_0203CDB0 * param0)
 {
-    PoketchData * v0 = SaveData_GetPoketchData(param0->unk_0C);
+    PoketchData * v0 = SaveData_PoketchData(param0->unk_0C);
     return sub_020567E0(v0);
 }
 

@@ -4,7 +4,6 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
-#include "struct_decls/struct_poketch_data_decl.h"
 #include "overlay025/struct_ov25_0225424C_decl.h"
 #include "overlay025/struct_ov25_02255B34_decl.h"
 #include "overlay036/struct_ov36_02256404_decl.h"
@@ -81,7 +80,7 @@ static BOOL ov36_0225621C (UnkStruct_ov36_0225621C * param0, UnkStruct_ov25_0225
     param0->unk_10 = param1;
     param0->unk_1C = ov25_02254540(param1);
     param0->unk_04.unk_04 = 1;
-    param0->unk_04.unk_00 = PoketchData_GetPedometerValue(param0->unk_1C);
+    param0->unk_04.unk_00 = PoketchData_PedometerValue(param0->unk_1C);
 
     if (ov36_02256404(&(param0->unk_0C), &(param0->unk_04), param2)) {
         param0->unk_00 = 0;
@@ -189,7 +188,7 @@ static BOOL ov36_02256330 (UnkStruct_ov36_0225621C * param0)
         }
 
         if (ov25_02254538(param0->unk_10)) {
-            v0->unk_00 = PoketchData_GetPedometerValue(param0->unk_1C);
+            v0->unk_00 = PoketchData_PedometerValue(param0->unk_1C);
             ov36_0225653C(param0->unk_0C, 3);
             break;
         }

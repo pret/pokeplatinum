@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
-#include "struct_decls/struct_poketch_data_decl.h"
+#include "poketch_data.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay025/struct_ov25_02253CE0_decl.h"
 #include "overlay025/funcptr_ov25_02254238.h"

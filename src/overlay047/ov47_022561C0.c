@@ -7,7 +7,6 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020507E4_decl.h"
-#include "struct_decls/struct_poketch_data_decl.h"
 #include "overlay025/struct_ov25_0225424C_decl.h"
 #include "overlay047/struct_ov47_02256634_decl.h"
 
@@ -85,7 +84,7 @@ static BOOL ov47_0225621C (UnkStruct_ov47_0225621C * param0, UnkStruct_ov25_0225
         param0->unk_04.unk_0C[v0].unk_03 = 1;
         param0->unk_04.unk_0C[v0].unk_02 = v0;
 
-        PoketchData_GetMapMarkerPos(param0->unk_78, v0, &(param0->unk_04.unk_0C[v0].unk_00), &(param0->unk_04.unk_0C[v0].unk_01));
+        PoketchData_MapMarkerPos(param0->unk_78, v0, &(param0->unk_04.unk_0C[v0].unk_00), &(param0->unk_04.unk_0C[v0].unk_01));
 
         param0->unk_04.unk_0C[v0].unk_00 += 16;
         param0->unk_04.unk_0C[v0].unk_01 += 16;

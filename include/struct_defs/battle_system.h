@@ -21,7 +21,7 @@
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_decls/struct_0202CD88_decl.h"
-#include "struct_decls/struct_poketch_data_decl.h"
+#include "poketch_data.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_decls/struct_0206D140_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"

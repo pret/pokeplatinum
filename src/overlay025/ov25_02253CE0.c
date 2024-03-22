@@ -9,7 +9,6 @@
 #include "struct_decls/sys_task.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
-#include "struct_decls/struct_poketch_data_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay025/struct_ov25_0225424C_decl.h"
 #include "overlay025/struct_ov25_02254560_decl.h"
@@ -179,7 +178,7 @@ void ov25_02253CE8 (UnkStruct_0203CDB0 * param0, UnkStruct_ov25_02253CE0 ** para
 
         v0->unk_5C = param0;
         v0->unk_54 = param2;
-        v0->unk_58 = SaveData_GetPoketchData(param2);
+        v0->unk_58 = SaveData_PoketchData(param2);
         v0->unk_4C = param3;
         v0->unk_50 = param4;
 
@@ -217,7 +216,7 @@ void ov25_02253D7C (UnkStruct_ov25_02253CE0 * param0, int param1, u32 param2)
         break;
     case 5:
     {
-        u32 v0 = PoketchData_GetPedometerValue(param0->unk_58);
+        u32 v0 = PoketchData_PedometerValue(param0->unk_58);
 
         if (++v0 > 99999) {
             v0 = 0;
@@ -333,7 +332,7 @@ static void ov25_02253EA4 (UnkStruct_ov25_02253CE0 * param0)
         break;
     case 1:
         if (ov25_022547F4(param0->unk_1C, 0)) {
-            u32 v0 = PoketchData_GetCurrentAppID(param0->unk_58);
+            u32 v0 = PoketchData_CurrentAppID(param0->unk_58);
 
             ov25_02254170(param0, v0);
             ov25_022541D8(param0, v0);
@@ -451,7 +450,7 @@ static void ov25_0225406C (UnkStruct_ov25_02253CE0 * param0)
         u32 v0;
 
         param0->unk_06 = 1;
-        v0 = PoketchData_GetCurrentAppID(param0->unk_58);
+        v0 = PoketchData_CurrentAppID(param0->unk_58);
 
         ov25_02254170(param0, v0);
         ov25_022541D8(param0, v0);

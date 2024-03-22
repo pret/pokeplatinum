@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_decls/struct_poketch_data_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_0203CDB0_sub2_t.h"
@@ -42,7 +41,7 @@ static BOOL ov5_021DDAE4 (UnkStruct_020508D4 * param0)
         break;
     case 2:
         if (ov24_02253DB4(v0->unk_08)) {
-            PoketchData * v2 = SaveData_GetPoketchData(v0->unk_0C);
+            PoketchData * v2 = SaveData_PoketchData(v0->unk_0C);
 
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay24));
             Overlay_LoadByID(FS_OVERLAY_ID(overlay25), 2);
