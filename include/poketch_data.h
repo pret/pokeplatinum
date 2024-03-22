@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_POKETCH_DATA_H
 #define POKEPLATINUM_POKETCH_DATA_H
 
-#include "struct_decls/struct_02056B24_decl.h"
+#include "struct_decls/struct_poketch_data_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 

@@ -28,7 +28,7 @@
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
-#include "struct_decls/struct_02056B24_decl.h"
+#include "struct_decls/struct_poketch_data_decl.h"
 #include "struct_decls/struct_0205C22C_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"

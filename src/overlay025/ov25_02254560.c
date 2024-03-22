@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
-#include "struct_decls/struct_02056B24_decl.h"
+#include "struct_decls/struct_poketch_data_decl.h"
 #include "overlay025/struct_ov25_0225424C_decl.h"
 #include "overlay025/struct_ov25_02254560_decl.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
