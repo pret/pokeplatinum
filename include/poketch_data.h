@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_02056720_H
-#define POKEPLATINUM_UNK_02056720_H
+#ifndef POKEPLATINUM_POKETCH_DATA_H
+#define POKEPLATINUM_POKETCH_DATA_H
 
 #include "struct_decls/struct_02056B24_decl.h"
 #include "pokemon.h"
@@ -215,4 +215,4 @@ u32 sub_02056AFC(const PoketchData * poketchData, int param1);
  */
 PoketchData * SaveData_GetPoketchData(SaveData * saveData);
 
-#endif // POKEPLATINUM_UNK_02056720_H
+#endif // POKEPLATINUM_POKETCH_DATA_H

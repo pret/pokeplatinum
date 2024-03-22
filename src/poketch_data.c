@@ -6,22 +6,25 @@
 
 #include "unk_020244AC.h"
 #include "poketch_data.h"
-#include "pokemon.h"
 #include "pokemon_icon.h"
+#include "savedata/save_table.h"
+
+#define POKETCH_REGISTRY_SIZE 32
 
 /**
  * @brief All of the Poketch's internally tracked data including settings, registered apps, and the data for some apps (eg. pedometer, alarm clock).
  */
 typedef struct PoketchData {
     u8 unk_00_0 : 1;
-    u8 pedometerEnabled : 1;
+    u8 pedometerEnabled : 1;    //!< Whether or not the pedometer is registered and will take step count updates.
     u8 unk_00_2 : 1;
-    u8 screenColor : 3;    //!< Screen palette color (valid values defined in poketch_data.h)
-    u8 unk_00_6 : 2;       //!< unused
+    u8 screenColor : 3;         //!< Screen palette color (valid values defined in poketch_data.h)
 
-    s8 appCount;           //!< Number of currently registered apps
-    s8 appIndex;           //!< Currently selected app
-    u8 appRegistry[32];    //!< Registration status of all apps. Indices 0-24 correspond to 25-31 are unused.
+    u8 unk_00_6 : 2;            //!< unused
+
+    s8 appCount;                                //!< Number of currently registered apps
+    s8 appIndex;                                //!< Currently selected app
+    u8 appRegistry[POKETCH_REGISTRY_SIZE];      //!< Registration status of all apps. Indices 0-24 correspond to the App IDs in poketch_data.h. Indices 25-31 are unused.
     
     u32 pedometer;         //!< Step counter
 
@@ -36,9 +39,9 @@ typedef struct PoketchData {
     u8 unk_A8;
 
     struct {
-        u8 x;              //!< X coordinate of map marker
-        u8 y;              //!< Y coordinate of map marker
-    } markMapPositions[6]; //!< Map markers
+        u8 x;                                       //!< X coordinate of map marker
+        u8 y;                                       //!< Y coordinate of map marker
+    } markMapPositions[POKETCH_MAPMARKER_COUNT];    //!< Map markers
 
     struct {
         u16 unk_00;
@@ -55,10 +58,10 @@ int Poketch_SaveSize (void)
 
 void Poketch_Init (PoketchData * poketchData)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < 32; v0++) {
-        poketchData->appRegistry[v0] = 0;
+    for (i = 0; i < POKETCH_REGISTRY_SIZE; i++) {
+        poketchData->appRegistry[i] = 0;
     }
 
     poketchData->appCount = 0;
@@ -77,7 +80,7 @@ void Poketch_Init (PoketchData * poketchData)
         static const struct {
             u8 x;
             u8 y;
-        } v1[6] = {
+        } v1[POKETCH_MAPMARKER_COUNT] = {
             {104, 152},
             {120, 152},
             {136, 152},
@@ -86,16 +89,16 @@ void Poketch_Init (PoketchData * poketchData)
             {184, 152}
         };
 
-        for (v0 = 0; v0 < 6; v0++) {
-            poketchData->markMapPositions[v0].x = v1[v0].x;
-            poketchData->markMapPositions[v0].y = v1[v0].y;
+        for (i = 0; i < POKETCH_MAPMARKER_COUNT; i++) {
+            poketchData->markMapPositions[i].x = v1[i].x;
+            poketchData->markMapPositions[i].y = v1[i].y;
         }
     }
 
-    for (v0 = 0; v0 < 12; v0++) {
-        poketchData->unk_B8[v0].unk_00 = 0;
-        poketchData->unk_B8[v0].unk_02 = 0;
-        poketchData->unk_B8[v0].unk_04 = 0;
+    for (i = 0; i < 12; i++) {
+        poketchData->unk_B8[i].unk_00 = 0;
+        poketchData->unk_B8[i].unk_02 = 0;
+        poketchData->unk_B8[i].unk_04 = 0;
     }
 
     poketchData->unk_00_2 = 0;
@@ -352,6 +355,6 @@ PoketchData * SaveData_GetPoketchData (SaveData * saveData)
 {
     PoketchData * poketchData;
 
-    poketchData = SaveData_Get(saveData, 5);
+    poketchData = SaveData_Get(saveData, SAVE_TABLE_ENTRY_POKETCH);
     return poketchData;
 }
