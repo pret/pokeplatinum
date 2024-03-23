@@ -30,7 +30,7 @@
 #include "gx_layers.h"
 #include "strbuf.h"
 #include "savedata/save_table.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_020279FC.h"
 #include "unk_0202B604.h"
 #include "unk_0202CC64.h"

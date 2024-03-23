@@ -1,11 +1,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0202F10C.h"
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202F108.h"
 
 int Contest_SaveSize (void)

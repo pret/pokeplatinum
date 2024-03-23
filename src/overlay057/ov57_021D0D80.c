@@ -6,7 +6,7 @@
 #include "trainer_info.h"
 #include "struct_decls/struct_02027854_decl.h"
 #include "struct_decls/struct_0202B4A0_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "overlay057/const_ov57_021D0F90.h"
 #include "constdata/const_020F6824.h"

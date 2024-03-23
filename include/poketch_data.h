@@ -2,7 +2,7 @@
 #define POKEPLATINUM_POKETCH_DATA_H
 
 #include "pokemon.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 /** Poketch app IDs, used to register and switch between apps in the Poketch */
 enum PoketchAppID {

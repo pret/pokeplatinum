@@ -2,14 +2,14 @@
 #include <string.h>
 
 #include "struct_decls/struct_02026030_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_02026030_t.h"
 #include "struct_defs/struct_0202610C.h"
 #include "struct_defs/struct_02026030_t.h"
 
 #include "message.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202602C.h"
 #include "unk_02026150.h"
 #include "strbuf.h"

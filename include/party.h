@@ -3,7 +3,7 @@
 
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 int Party_SaveSize(void);
 Party * Party_New(u32 param0);

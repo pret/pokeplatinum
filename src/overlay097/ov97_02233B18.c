@@ -16,7 +16,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_02024440_decl.h"
 #include "trainer_info.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "overlay077/const_ov77_021D742C.h"
 
@@ -66,7 +66,7 @@
 #include "unk_02022594.h"
 #include "strbuf.h"
 #include "savedata/save_table.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 #include "unk_0202EEC0.h"

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_02049FA8.h"
@@ -9,7 +9,7 @@
 #include "struct_defs/struct_0205EC34.h"
 #include "struct_defs/struct_02061D3C.h"
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0203A6DC.h"
 #include "unk_0203A7D8.h"
 #include "unk_020556C4.h"

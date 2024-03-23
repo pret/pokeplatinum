@@ -19,7 +19,7 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207CB08_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
 #include "constdata/const_020F410C.h"
@@ -53,7 +53,7 @@
 #include "strbuf.h"
 #include "unk_02023FCC.h"
 #include "savedata/save_table.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 #include "unk_0202CC64.h"

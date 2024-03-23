@@ -1,9 +1,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202D778.h"
 
 int Ribbons_SaveSize (void)

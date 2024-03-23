@@ -2,9 +2,9 @@
 #include <string.h>
 
 #include "pokemon.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "poketch_data.h"
 #include "pokemon_icon.h"
 #include "savedata/save_table.h"

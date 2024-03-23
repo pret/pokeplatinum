@@ -102,7 +102,7 @@ Static main
 	Object main.nef.p/src_unk_02024220.c.o
 	Object main.nef.p/src_unk_02024358.c.o
 	Object main.nef.p/src_savedata_save_table.c.o
-	Object main.nef.p/src_unk_020244AC.c.o
+	Object main.nef.p/src_savedata.c.o
 	Object main.nef.p/src_unk_02025CB0.c.o
 	Object main.nef.p/src_unk_02025E08.c.o
 	Object main.nef.p/src_trainer_info.c.o

@@ -5,7 +5,7 @@
 
 #include "constants/species.h"
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0202D7B0.h"
 #include "struct_defs/struct_0206C638.h"

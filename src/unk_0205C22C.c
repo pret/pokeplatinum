@@ -23,7 +23,7 @@
 #include "unk_02014A84.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "trainer_info.h"
 #include "unk_02027F84.h"
 #include "unk_020366A0.h"

@@ -6,7 +6,7 @@
 #include "struct_defs/options.h"
 #include "struct_decls/struct_0202A750_decl.h"
 #include "pokemon.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 typedef struct {
     u8 unk_00;

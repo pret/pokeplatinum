@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_02014FB0_decl.h"
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 UnkStruct_02014D38 * sub_02014D38(u32 param0);
 void sub_02014D70(UnkStruct_02014D38 * param0);

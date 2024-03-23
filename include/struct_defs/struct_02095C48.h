@@ -10,7 +10,7 @@
 #include "struct_defs/struct_02094A58.h"
 #include "struct_defs/struct_02095C48_sub1.h"
 #include "struct_defs/struct_02095C60.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 typedef struct {
     UnkStruct_02095C48_sub1 unk_00;

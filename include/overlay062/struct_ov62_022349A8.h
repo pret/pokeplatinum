@@ -4,7 +4,7 @@
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "overlay061/struct_ov61_0222B138.h"
 #include "overlay061/struct_ov61_0222B920.h"
 #include "overlay062/funcptr_ov62_022349A8.h"

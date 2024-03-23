@@ -5,7 +5,7 @@
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "strbuf.h"
 #include "trainer_info.h"

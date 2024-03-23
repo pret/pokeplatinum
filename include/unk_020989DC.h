@@ -4,7 +4,7 @@
 #include "struct_defs/struct_0202A93C.h"
 #include "struct_defs/struct_0203D9B8.h"
 #include "pokemon.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "enums.h"
 

@@ -9,7 +9,7 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207D99C_decl.h"
 #include "struct_defs/struct_0209C370.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "overlay006/battle_params.h"
 
 BattleParams * sub_02051D8C(int param0, u32 param1);

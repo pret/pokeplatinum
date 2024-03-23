@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0202A150_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
 #include "pokemon.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "overlay022/struct_ov22_02255040.h"
 #include "overlay061/struct_ov61_0222AE80.h"
 

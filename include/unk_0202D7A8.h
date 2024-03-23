@@ -6,7 +6,7 @@
 #include "struct_defs/struct_0202D84C.h"
 #include "struct_defs/struct_020698E4.h"
 #include "struct_defs/struct_0206C638.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 int SpecialEncounter_SaveSize(void);
 void SpecialEncounter_Init(UnkStruct_0202D7B0 * param0);

@@ -3,7 +3,7 @@
 
 #include "message.h"
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "pokemon.h"
 #include "unk_020797C8.h"
 

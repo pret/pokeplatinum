@@ -16,7 +16,7 @@
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "pokemon.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "constdata/const_020F55EC.h"
 #include "constdata/const_020F560C.h"

@@ -1,11 +1,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "struct_defs/chatot_cry.h"
 
 #include "heap.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202CC64.h"
 
 int ChatotCry_SaveSize (void)

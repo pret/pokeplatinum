@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_02030CE8_H
 
 #include "struct_defs/struct_02030CEC.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "overlay096/struct_ov96_0223B574.h"
 
 int Email_SaveSize(void);

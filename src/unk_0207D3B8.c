@@ -2,12 +2,12 @@
 #include <string.h>
 
 #include "struct_decls/struct_0207CB08_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0207CDEC.h"
 
 #include "heap.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0207CB08.h"
 #include "item.h"
 #include "unk_0207D3B8.h"

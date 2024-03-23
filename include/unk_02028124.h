@@ -4,7 +4,7 @@
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_0202818C.h"
 #include "struct_decls/struct_02028430_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 void sub_02028124(UnkStruct_0202818C * param0);
 BOOL sub_0202817C(UnkStruct_0202818C * param0);

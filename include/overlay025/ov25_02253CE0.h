@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "poketch_data.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "overlay025/struct_ov25_02253CE0_decl.h"
 #include "overlay025/funcptr_ov25_02254238.h"
 #include "overlay025/funcptr_ov25_02254238_1.h"

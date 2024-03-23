@@ -7,7 +7,7 @@
 #include "struct_defs/struct_02049FA8.h"
 #include "struct_defs/struct_020556C4.h"
 #include "struct_defs/struct_0205EC34.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 int FieldPlayerState_SaveSize(void);
 int FieldOWState_SaveSize(void);

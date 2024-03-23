@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0203909C_H
 #define POKEPLATINUM_UNK_0203909C_H
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include <dwc.h>
 

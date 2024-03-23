@@ -4,7 +4,7 @@
 #include "struct_defs/sentence.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02030A80_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 UnkStruct_02030A80 * sub_02030A80(int param0);
 void sub_02030A98(UnkStruct_02030A80 * param0);

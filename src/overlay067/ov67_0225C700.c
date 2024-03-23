@@ -12,7 +12,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202CD88_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "overlay066/struct_ov66_0222E71C_decl.h"
 
 #include "struct_defs/options.h"

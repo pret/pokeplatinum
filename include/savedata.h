@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_020244AC_H
-#define POKEPLATINUM_UNK_020244AC_H
+#ifndef POKEPLATINUM_SAVEDATA_H
+#define POKEPLATINUM_SAVEDATA_H
 
 #include "constants/savedata/savedata.h"
 #include "constants/savedata/save_table.h"
@@ -111,4 +111,4 @@ BOOL sub_02025AC0(u32 param0, void * param1, u32 param2);
 BOOL SaveData_CRC(int param0);
 void sub_02025C84(int param0);
 
-#endif // POKEPLATINUM_UNK_020244AC_H
+#endif // POKEPLATINUM_SAVEDATA_H

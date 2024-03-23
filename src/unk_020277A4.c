@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_02027854.h"
@@ -11,7 +11,7 @@
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_020277A4.h"
 #include "unk_02027B70.h"
 #include "unk_02027F50.h"

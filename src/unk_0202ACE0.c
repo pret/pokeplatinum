@@ -5,14 +5,14 @@
 #include "assert.h"
 
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0202B370.h"
 #include "struct_defs/struct_0202B370_sub1.h"
 
 #include "rtc.h"
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202ACE0.h"
 #include "unk_02038FFC.h"
 

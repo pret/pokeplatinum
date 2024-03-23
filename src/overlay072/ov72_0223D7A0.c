@@ -12,7 +12,7 @@
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202CD88_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "overlay072/struct_ov72_0223DB98_decl.h"
 
 #include "struct_defs/struct_02015958.h"

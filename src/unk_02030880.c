@@ -2,12 +2,12 @@
 #include <string.h>
 
 #include "struct_decls/struct_0203068C_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "heap.h"
 #include "savedata/save_table.h"
 #include "constants/species.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0203061C.h"
 #include "unk_02030880.h"
 

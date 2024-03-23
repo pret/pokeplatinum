@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_0202CC64_H
 
 #include "struct_defs/chatot_cry.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 int ChatotCry_SaveSize(void);
 void ChatotCry_Init(ChatotCry * param0);

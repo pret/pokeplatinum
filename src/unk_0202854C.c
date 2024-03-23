@@ -4,7 +4,7 @@
 #include "core_sys.h"
 
 #include "trainer_info.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0202855C.h"
 #include "struct_defs/struct_02029894.h"
@@ -15,7 +15,7 @@
 #include "rtc.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "trainer_info.h"
 #include "unk_0202854C.h"
 

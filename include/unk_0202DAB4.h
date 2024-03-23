@@ -5,7 +5,7 @@
 #include "struct_defs/struct_0202DBAC.h"
 #include "struct_defs/struct_0202DF40.h"
 #include "struct_defs/union_0204C4D0.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 int MysteryGift_SaveSize(void);
 void MysteryGift_Init(MysteryGift * param0);

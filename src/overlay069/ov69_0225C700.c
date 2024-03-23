@@ -17,7 +17,7 @@
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202C878_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02015958.h"

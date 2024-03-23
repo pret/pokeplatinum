@@ -3,7 +3,7 @@
 
 #include "struct_defs/struct_0202FF58.h"
 #include "struct_defs/struct_020300F4.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 void sub_0202FF4C(UnkStruct_0202FF58 * param0);
 UnkStruct_0202FF58 * sub_0202FF58(SaveData * param0);

@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "message.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_0202D060.h"
@@ -26,7 +26,7 @@
 #include "message.h"
 #include "unk_02014A84.h"
 #include "heap.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202D05C.h"
 
 int sub_0202D05C (void)

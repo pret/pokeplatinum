@@ -26,7 +26,7 @@
 #include "overlay062/struct_ov62_02239DA4_sub1.h"
 #include "overlay062/struct_ov62_0223DF10.h"
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "overlay061/ov61_0222BC4C.h"
 #include "gds.h"
 

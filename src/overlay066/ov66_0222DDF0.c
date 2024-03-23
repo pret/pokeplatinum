@@ -19,7 +19,7 @@
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207E060_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "overlay066/struct_ov66_0223177C_decl.h"
 
 #include "struct_defs/struct_02055BA8.h"
@@ -52,7 +52,7 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"

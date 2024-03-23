@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02028430_decl.h"
 #include "pokemon.h"
 #include "struct_defs/struct_02097728.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 UnkStruct_02097728 * sub_02097624(SaveData * param0, int param1, u8 param2, u8 param3, int param4);
 UnkStruct_02097728 * sub_0209767C(SaveData * param0, int param1, u16 param2, int param3);

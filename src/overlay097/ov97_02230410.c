@@ -18,7 +18,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_0202442C_decl.h"
 #include "trainer_info.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02013A04_t.h"
@@ -54,7 +54,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "savedata/save_table.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_020279FC.h"

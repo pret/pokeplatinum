@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV66_02230F50_H
 #define POKEPLATINUM_STRUCT_OV66_02230F50_H
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
 #include "overlay066/struct_ov66_02231428.h"
 #include "overlay066/struct_ov66_02231560.h"

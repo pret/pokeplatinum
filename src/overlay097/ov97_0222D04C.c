@@ -3,7 +3,7 @@
 
 #include "struct_decls/sys_task.h"
 #include "trainer_info.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0203CC84.h"
 #include "overlay097/struct_ov97_0222D04C.h"

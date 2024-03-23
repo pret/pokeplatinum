@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0204B404.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "overlay104/struct_ov104_0223A348.h"
 
 StringFormatter * sub_0204AEE8(SaveData * param0, u16 param1, u16 param2, u8 param3, u8 * param4);

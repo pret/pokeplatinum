@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0202D764_decl.h"
 #include "struct_defs/struct_02049A68.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "overlay090/struct_ov90_021D1750.h"
 #include "overlay096/struct_ov96_0223B450_sub1.h"
 #include "overlay096/struct_ov96_0223B450_sub2.h"

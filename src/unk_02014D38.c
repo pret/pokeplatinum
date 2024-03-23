@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "unk_02006E3C.h"
 #include "narc.h"
@@ -10,7 +10,7 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 static const u16 Unk_020E5522[] = {
 	0x1F0,

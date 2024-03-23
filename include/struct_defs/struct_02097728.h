@@ -3,7 +3,7 @@
 
 #include "struct_defs/struct_0202818C.h"
 #include "struct_decls/struct_02028430_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 typedef struct {
     u16 unk_00;

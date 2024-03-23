@@ -3,7 +3,7 @@
 #include <dwc.h>
 
 #include "struct_decls/struct_0202B370_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "heap.h"
 #include "unk_0202ACE0.h"

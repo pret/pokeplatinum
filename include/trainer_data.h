@@ -5,7 +5,7 @@
 
 #include "strbuf.h"
 #include "struct_defs/trainer_data.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "overlay006/battle_params.h"
 
 enum TrainerDataParam {

@@ -26,7 +26,7 @@
 #include "unk_02022594.h"
 #include "strbuf.h"
 #include "unk_02023FCC.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202F1D4.h"
 #include "unk_0208BA78.h"
 #include "overlay062/ov62_0222F2C0.h"

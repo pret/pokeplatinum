@@ -4,7 +4,7 @@
 #include "savedata/save_table.h"
 
 #include "unk_02014D38.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"
 #include "unk_0202602C.h"

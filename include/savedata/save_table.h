@@ -8,7 +8,7 @@
 #include "struct_defs/struct_0202F264.h"
 #include "struct_decls/struct_020308A0_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "constants/savedata/save_table.h"
 
 typedef int (*SaveEntrySizeFunc)(void);

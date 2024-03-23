@@ -9,7 +9,7 @@
 #include "struct_decls/sys_task.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "overlay025/struct_ov25_0225424C_decl.h"
 #include "overlay025/struct_ov25_02254560_decl.h"
 #include "overlay025/struct_ov25_02255B34_decl.h"

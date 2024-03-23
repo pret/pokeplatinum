@@ -9,7 +9,7 @@
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"

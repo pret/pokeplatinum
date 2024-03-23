@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0202C834_decl.h"
 #include "struct_decls/struct_0202C844_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 int TrainerCard_SaveSize(void);
 void TrainerCard_Init(UnkStruct_0202C834 * param0);

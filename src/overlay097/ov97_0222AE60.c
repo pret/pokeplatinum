@@ -13,7 +13,7 @@
 #include "struct_decls/struct_02025E5C_decl.h"
 #include "trainer_info.h"
 #include "struct_decls/pokedexdata_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "overlay097/const_ov97_0223D674.h"
 #include "overlay057/const_ov57_021D0F90.h"
@@ -50,7 +50,7 @@
 #include "strbuf.h"
 #include "unk_02024358.h"
 #include "savedata/save_table.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"

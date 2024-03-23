@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_020985E4_H
 
 #include "struct_decls/struct_020508D4_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 void sub_020985E4(UnkStruct_020508D4 * param0, SaveData * param1);
 BOOL sub_0209862C(UnkStruct_020508D4 * param0);

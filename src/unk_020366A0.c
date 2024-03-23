@@ -6,7 +6,7 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "trainer_info.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0202610C.h"
 #include "overlay065/struct_ov65_0222F6EC.h"
@@ -14,7 +14,7 @@
 #include "unk_02005474.h"
 #include "unk_02017728.h"
 #include "heap.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025E08.h"
 #include "unk_02030EE0.h"
 #include "unk_0203266C.h"

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0202D7B0.h"
 #include "struct_defs/struct_0202D844.h"
@@ -10,7 +10,7 @@
 #include "struct_defs/struct_0206C638.h"
 
 #include "unk_0201D15C.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202D7A8.h"
 
 int SpecialEncounter_SaveSize (void)

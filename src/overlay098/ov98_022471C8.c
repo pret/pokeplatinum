@@ -51,7 +51,7 @@
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"

@@ -8,7 +8,7 @@
 #include "struct_decls/struct_02025E5C_decl.h"
 #include "trainer_info.h"
 #include "struct_decls/pokedexdata_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "overlay005/struct_ov5_021E1FF4_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
@@ -24,7 +24,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"

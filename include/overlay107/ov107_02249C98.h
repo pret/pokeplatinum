@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV107_02249C98_H
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 u8 ov107_02249C98(u8 param0, u8 param1);
 u8 ov107_02249C9C(u8 param0, u8 param1);

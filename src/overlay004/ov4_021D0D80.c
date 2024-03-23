@@ -4,7 +4,7 @@
 #include <dwc.h>
 #include <ppwlobby/ppw_lobby.h>
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "overlay004/funcptr_ov4_021D1104.h"
 #include "overlay004/funcptr_ov4_021D1120.h"

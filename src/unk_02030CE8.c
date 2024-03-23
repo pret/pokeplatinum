@@ -3,14 +3,14 @@
 
 #include "trainer_info.h"
 #include "struct_decls/struct_0202C878_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_02030CEC.h"
 #include "overlay096/struct_ov96_0223B574.h"
 
 #include "unk_020021B0.h"
 #include "unk_0201D15C.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_0202C858.h"

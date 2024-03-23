@@ -4,7 +4,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "overlay023/struct_ov23_0224271C_decl.h"
 
 void ov23_0224B144(void * param0, UnkStruct_0203CDB0 * param1);

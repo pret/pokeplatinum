@@ -2,12 +2,12 @@
 #include <string.h>
 
 #include "struct_decls/struct_02025E0C_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_02025E5C.h"
 #include "struct_defs/options.h"
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_020279FC.h"

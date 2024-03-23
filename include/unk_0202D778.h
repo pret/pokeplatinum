@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0202D778_H
 #define POKEPLATINUM_UNK_0202D778_H
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 int Ribbons_SaveSize(void);
 void Ribbons_Init(u8 * param0);

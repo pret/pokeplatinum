@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV4_021D0D80_H
 #define POKEPLATINUM_OV4_021D0D80_H
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "overlay004/funcptr_ov4_021D1104.h"
 #include "overlay004/funcptr_ov4_021D1120.h"
 #include "overlay004/funcptr_ov4_021D113C.h"

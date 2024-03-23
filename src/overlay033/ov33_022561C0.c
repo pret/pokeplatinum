@@ -14,7 +14,7 @@
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_02022594.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "party.h"

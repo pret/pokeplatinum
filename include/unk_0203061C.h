@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_0203061C_H
 
 #include "struct_decls/struct_0203068C_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 int Frontier_SaveSize(void);
 void Frontier_Init(UnkStruct_0203068C * param0);

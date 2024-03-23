@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "overlay023/struct_ov23_02253598_decl.h"
 #include "overlay023/struct_ov23_02253E2C_decl.h"
 

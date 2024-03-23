@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0203E53C.h"
 #include "struct_defs/struct_0205AA50.h"

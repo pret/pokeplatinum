@@ -12,7 +12,7 @@
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "pokemon.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0202DF40.h"
@@ -50,7 +50,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02033200.h"
 #include "constants/species.h"
 #include "pokemon.h"

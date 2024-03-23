@@ -3,7 +3,7 @@
 
 #include "trainer_info.h"
 #include "struct_defs/struct_0202610C.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include <dwc.h>
 

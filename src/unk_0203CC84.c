@@ -6,7 +6,7 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0203CDB0_sub1_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "overlay025/struct_ov25_02253CE0_decl.h"
 
 #include "overlay005/const_ov5_021F89B0.h"

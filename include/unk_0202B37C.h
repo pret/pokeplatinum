@@ -4,7 +4,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_0202B4A0_decl.h"
 #include "struct_defs/struct_0202B510.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 int RandomGroup_SaveSize(void);
 void sub_0202B384(UnkStruct_0202B4A0 * param0, int param1, int param2);

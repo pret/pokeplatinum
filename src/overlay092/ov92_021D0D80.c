@@ -14,7 +14,7 @@
 #include "struct_decls/struct_020203AC_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202C878_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/options.h"

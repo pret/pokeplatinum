@@ -8,12 +8,12 @@
 #include "struct_decls/struct_02026310_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_0203E724_t.h"
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025E08.h"
 #include "unk_020261E4.h"
 #include "unk_0203CC84.h"

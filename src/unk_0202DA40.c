@@ -2,9 +2,9 @@
 #include <string.h>
 
 #include "pokemon.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202DA40.h"
 
 typedef struct UnkStruct_0202DA40_t {

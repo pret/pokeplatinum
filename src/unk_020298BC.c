@@ -5,7 +5,7 @@
 
 #include "strbuf.h"
 #include "pokemon.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_020298D8.h"
@@ -18,7 +18,7 @@
 #include "unk_02015064.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_020298BC.h"
 #include "pokemon.h"
 #include "overlay022/ov22_02259098.h"

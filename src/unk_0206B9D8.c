@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "constdata/const_020F1E88.h"
 #include "constdata/const_020F410C.h"

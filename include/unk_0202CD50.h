@@ -3,7 +3,7 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 int GameRecord_SaveSize(void);
 void GameRecord_Init(UnkStruct_0202CD88 * param0);

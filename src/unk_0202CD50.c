@@ -2,10 +2,10 @@
 #include <string.h>
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "unk_0201D15C.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202631C.h"
 #include "unk_0202CD50.h"
 

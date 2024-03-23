@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_02030EA4_H
 
 #include "struct_decls/struct_02030EC4_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 int WiFiQuestion_SaveSize(void);
 void WiFiQuestion_Init(UnkStruct_02030EC4 * param0);

@@ -12,7 +12,7 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "constdata/const_020F1E88.h"
 #include "constdata/const_020F410C.h"
@@ -26,7 +26,7 @@
 
 #include "unk_0200B358.h"
 #include "heap.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025E08.h"
 #include "unk_02028124.h"
 #include "unk_0202CD50.h"

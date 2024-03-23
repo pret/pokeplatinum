@@ -17,7 +17,7 @@
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207DFAC.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
 #include "overlay065/struct_ov65_0222E99C.h"
 #include "overlay065/struct_ov65_02234E50.h"

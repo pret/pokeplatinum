@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0202F264.h"
 #include "struct_defs/struct_0202F298.h"
@@ -16,7 +16,7 @@
 #include "heap.h"
 #include "strbuf.h"
 #include "savedata/save_table.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202F1D4.h"
 #include "pokemon.h"
 #include "party.h"

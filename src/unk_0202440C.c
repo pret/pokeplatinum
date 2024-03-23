@@ -7,14 +7,14 @@
 #include "struct_decls/struct_0202F264_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0202DF8C.h"
 
 #include "savedata/save_table.h"
 
 #include "unk_02014D38.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"
 #include "unk_0202602C.h"

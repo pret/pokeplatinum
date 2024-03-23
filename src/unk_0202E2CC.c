@@ -18,7 +18,7 @@
 #include "struct_defs/struct_0202E834.h"
 
 #include "rtc.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202E2CC.h"
 
 static void sub_0202E3AC(TVBroadcast * param0);

@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_0202C858_H
 
 #include "struct_decls/struct_0202C878_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 int WiFiHistory_SaveSize(void);
 void WiFiHistory_Init(UnkStruct_0202C878 * param0);

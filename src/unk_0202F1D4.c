@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0202F264.h"
 #include "struct_defs/struct_0202F298.h"
@@ -23,7 +23,7 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "savedata/save_table.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_02026150.h"

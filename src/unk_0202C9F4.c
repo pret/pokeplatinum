@@ -1,14 +1,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0202CA1C.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0202CA64.h"
 #include "struct_defs/struct_0202CA88.h"
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202C9F4.h"
 
 int BallSeal_SaveSize (void)

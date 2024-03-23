@@ -4,10 +4,10 @@
 #include "inlines.h"
 
 #include "pokemon.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "heap.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202631C.h"
 #include "pokemon.h"
 #include "constants/species.h"

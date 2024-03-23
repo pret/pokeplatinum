@@ -4,7 +4,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_02030A80.h"
 #include "overlay061/struct_ov61_0222AE80.h"
@@ -14,7 +14,7 @@
 #include "overlay062/struct_ov62_02239DA4_sub1.h"
 
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_020298BC.h"
 #include "unk_020797C8.h"
 #include "overlay061/ov61_0222AE60.h"
