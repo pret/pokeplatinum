@@ -15,11 +15,13 @@ enum {
 	SAVE_RESULT_CORRUPT,					
 };
 
-#define NORMAL_LOAD_CORRUPT		(1 << 0)
-#define NORMAL_LOAD_ERROR		(1 << 1)
-#define FRONTIER_LOAD_CORRUPT	(1 << 2)
-#define FRONTIER_LOAD_ERROR		(1 << 3)
-#define VIDEO_LOAD_CORRUPT		(1 << 4)
-#define VIDEO_LOAD_ERROR		(1 << 5)
+#define SECTOR_SIGNATURE			0x20060623
+
+#define NORMAL_LOAD_CORRUPT			(1 << 0)
+#define NORMAL_LOAD_ERROR			(1 << 1)
+#define FRONTIER_LOAD_CORRUPT		(1 << 2)
+#define FRONTIER_LOAD_ERROR			(1 << 3)
+#define VIDEO_LOAD_CORRUPT			(1 << 4)
+#define VIDEO_LOAD_ERROR			(1 << 5)
 
 #endif // POKEPLATINUM_CONSTANTS_SAVEDATA_H

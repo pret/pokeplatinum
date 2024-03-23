@@ -1,9 +1,80 @@
 #ifndef POKEPLATINUM_UNK_020244AC_H
 #define POKEPLATINUM_UNK_020244AC_H
 
-//#include "unk_020244AC.h"
+#include "constants/savedata/savedata.h"
+#include "constants/savedata/save_table.h"
 
-#define SECTOR_SIGNATURE 0x20060623
+typedef struct {
+    u32 saveCounter;
+    u32 blockCounter;
+    u32 size;
+    u32 signature;
+    u8 saveBlockID;
+    u16 checksum;
+} SaveBlockFooter;
+
+typedef struct {
+    u8 saveBlockID;
+    u8 sectorStartPos;
+    u8 sectorsInUse;
+    u32 offset;
+    u32 size;
+} SaveBlockInfo;
+
+typedef struct {
+    int pageID;
+    u32 size;
+    u32 location;
+    u16 checksum;
+    u16 blockID;
+} SavePageInfo;
+
+typedef struct {
+    u8 data[SAVE_SECTOR_SIZE * SAVE_PAGE_MAX];
+} SaveDataBody;
+
+typedef struct {
+    BOOL unk_00;
+    int unk_04;
+    int unk_08;
+    int unk_0C;
+    s32 unk_10;
+    int unk_14;
+    u32 unk_18;
+    u32 unk_1C[2];
+    volatile BOOL unk_24;
+} UnkStruct_020250DC;
+
+typedef struct SaveData {
+    BOOL backupExists;
+    BOOL dataExists;
+    BOOL isNewGameData;
+    BOOL fullSaveRequired;
+    u32 loadCheckStatus;
+    SaveDataBody body;
+    u32 globalCounter;
+    u32 unk_20018[SAVE_BLOCK_ID_MAX];
+    u8 unk_20020[SAVE_BLOCK_ID_MAX];
+    SavePageInfo pageInfo[SAVE_TABLE_ENTRY_MAX];
+    SaveBlockInfo blockInfo[SAVE_BLOCK_ID_MAX];
+    UnkStruct_020250DC unk_2029C;
+    int unk_202C4;
+    u32 unk_202C8;
+} SaveData;
+
+typedef struct {
+    BOOL unk_00;
+    u32 unk_04;
+    u32 unk_08;
+} UnkStruct_02024860;
+
+typedef struct {
+    u32 unk_00;
+    u32 unk_04;
+    u32 unk_08;
+    u16 unk_0C;
+    u16 unk_0E;
+} UnkStruct_020253B4;
 
 typedef struct SaveData SaveData;
 
