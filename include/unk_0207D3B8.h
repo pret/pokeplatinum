@@ -4,7 +4,7 @@
 #include "struct_defs/struct_0207CDEC.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
 #include "struct_decls/struct_0207D99C_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 int Bag_SaveSize(void);
 UnkStruct_0207D3C0 * sub_0207D3C0(int param0);

@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0202AB28_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 typedef struct {
     u8 padding_00[4];

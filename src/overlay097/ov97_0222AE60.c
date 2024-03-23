@@ -13,7 +13,7 @@
 #include "struct_decls/struct_02025E5C_decl.h"
 #include "trainer_info.h"
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 #include "overlay097/const_ov97_0223D674.h"
 #include "overlay057/const_ov57_021D0F90.h"

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV62_02241130_H
 #define POKEPLATINUM_STRUCT_OV62_02241130_H
 
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 #include "overlay062/funcptr_ov62_022349A8.h"
 #include "overlay062/struct_ov62_022349A8_sub2.h"
 

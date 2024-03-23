@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 void sub_0206BBFC(UnkStruct_020508D4 * param0, void ** param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u8 param7);
 void sub_0206BCE4(UnkStruct_020508D4 * param0, u16 param1, u16 param2, u16 param3);

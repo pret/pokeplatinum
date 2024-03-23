@@ -21,7 +21,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
 #include "overlay066/struct_ov66_0222E71C_decl.h"
 #include "overlay070/struct_ov70_0225C894_decl.h"

@@ -3,7 +3,7 @@
 
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0204B404.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 #include "overlay006/battle_params.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_0223A348.h"

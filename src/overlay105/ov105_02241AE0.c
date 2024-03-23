@@ -13,7 +13,7 @@
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 #include "overlay105/struct_ov105_02241FF4_decl.h"
 #include "overlay105/struct_ov105_02245E1C_decl.h"
 #include "overlay105/struct_ov105_02245EA8_decl.h"

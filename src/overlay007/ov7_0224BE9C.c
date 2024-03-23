@@ -17,7 +17,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 #include "overlay007/struct_ov7_0224BEFC_decl.h"
 
 #include "struct_defs/struct_0200C738.h"

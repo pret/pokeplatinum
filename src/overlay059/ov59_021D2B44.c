@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "trainer_info.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 #include "struct_defs/struct_0202440C.h"
 #include "struct_defs/struct_0202E768.h"

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0203909C_H
 #define POKEPLATINUM_UNK_0203909C_H
 
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 #include <dwc.h>
 

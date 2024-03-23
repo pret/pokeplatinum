@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_02042434_H
 #define POKEPLATINUM_STRUCT_02042434_H
 
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 typedef struct {
     SaveData * unk_00;

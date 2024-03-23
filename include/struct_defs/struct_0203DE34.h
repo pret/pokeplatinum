@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0205C22C_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 typedef struct {
     SaveData * unk_00;

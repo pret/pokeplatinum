@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0202610C.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 #include "overlay065/struct_ov65_0222F6EC.h"
 
 #include "enums.h"

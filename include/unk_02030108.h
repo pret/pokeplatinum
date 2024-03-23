@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02030114_decl.h"
 #include "struct_decls/struct_0203026C_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 void sub_02030108(UnkStruct_02030114 * param0);
 UnkStruct_02030114 * sub_02030114(SaveData * param0);

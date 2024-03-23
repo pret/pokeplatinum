@@ -10,7 +10,7 @@
 #include "struct_defs/struct_0208C06C_sub1.h"
 #include "struct_defs/struct_0208C06C_sub2.h"
 #include "struct_defs/struct_020F3DCC.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 #include "overlay062/struct_ov62_022307C0.h"
 #include "overlay062/struct_ov62_02230C28.h"
 #include "overlay062/struct_ov62_0223118C.h"

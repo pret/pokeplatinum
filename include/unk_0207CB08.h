@@ -4,7 +4,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_0207CB08_decl.h"
 #include "struct_defs/struct_0207CDEC.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 UnkStruct_0207CB08 * sub_0207CB08(u8 param0);
 u32 sub_0207CB20(void);

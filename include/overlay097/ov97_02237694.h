@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_defs/struct_0202DF40.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 #include "overlay097/union_ov97_0222D2B0.h"
 #include "overlay097/struct_ov97_02237808.h"
 #include "overlay097/struct_ov97_02237AEC.h"

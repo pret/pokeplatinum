@@ -18,7 +18,7 @@
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 #include "overlay007/struct_ov7_0224BEFC_decl.h"
 
 #include "constdata/const_020F410C.h"

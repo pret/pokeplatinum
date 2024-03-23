@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02025E5C_decl.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0202B628_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 int Journal_SaveSize(void);
 void Journal_Init(UnkStruct_0202B628 * param0);

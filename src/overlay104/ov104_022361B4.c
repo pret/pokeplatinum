@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0203068C_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 #include "overlay104/struct_ov104_022320B4_decl.h"
 
 #include "struct_defs/struct_0204B184.h"

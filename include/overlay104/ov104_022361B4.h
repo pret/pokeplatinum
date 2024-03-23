@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV104_022361B4_H
 #define POKEPLATINUM_OV104_022361B4_H
 
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 #include "overlay104/struct_ov104_022320B4_decl.h"
 #include "overlay104/struct_ov104_0223BA10.h"
 

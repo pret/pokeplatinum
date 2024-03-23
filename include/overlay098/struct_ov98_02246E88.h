@@ -4,7 +4,7 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "strbuf.h"
 #include "struct_defs/options.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 #include "overlay096/struct_ov96_0223B574.h"
 #include "overlay096/struct_ov96_0223B574_1.h"
 

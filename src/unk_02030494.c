@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 #include "struct_defs/struct_020304A0.h"
 #include "struct_defs/struct_020305B8.h"

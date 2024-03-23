@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_02099604_H
 
 #include "struct_decls/struct_0203CDB0_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 #include "overlay082/struct_ov82_0223B164.h"
 
 UnkStruct_ov82_0223B164 * sub_02099604(int param0, SaveData * param1, int param2);

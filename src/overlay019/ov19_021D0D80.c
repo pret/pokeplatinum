@@ -19,7 +19,7 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207CB08_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
 #include "constdata/const_020F410C.h"

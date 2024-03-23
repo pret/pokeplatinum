@@ -11,7 +11,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200D0F4.h"

@@ -4,7 +4,7 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "pokemon.h"
 #include "struct_defs/struct_02097F18.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 Pokemon * sub_02097F00(UnkStruct_02097F18 * param0, int param1);
 u8 sub_02097F18(UnkStruct_02097F18 * param0);

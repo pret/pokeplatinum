@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02025E5C_decl.h"
 #include "trainer_info.h"
 #include "struct_defs/options.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 int Player_SaveSize(void);
 void Player_Init(UnkStruct_02025E0C * param0);

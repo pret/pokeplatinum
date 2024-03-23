@@ -1,9 +1,11 @@
 #ifndef POKEPLATINUM_UNK_020244AC_H
 #define POKEPLATINUM_UNK_020244AC_H
 
-#include "struct_decls/struct_021C0794_decl.h"
+//#include "unk_020244AC.h"
 
 #define SECTOR_SIGNATURE 0x20060623
+
+typedef struct SaveData SaveData;
 
 SaveData* InitializeSaveData(void);
 SaveData* SaveData_Ptr(void);

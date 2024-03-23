@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02026310_decl.h"
 #include "struct_defs/struct_0202818C.h"
 #include "pokemon.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 int Daycare_SaveSize(void);
 void Daycare_Init(UnkStruct_02026310 * param0);

@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0202E858_decl.h"
 #include "struct_decls/struct_0202E8C0_decl.h"
 #include "struct_defs/struct_0202EE10.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 u8 sub_0202E840(int param0);
 u8 sub_0202E84C(int param0);

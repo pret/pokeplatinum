@@ -3,7 +3,7 @@
 
 #include "strbuf.h"
 #include "struct_defs/struct_0202610C.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 const UnkStruct_0202610C * sub_02026150(SaveData * param0, int param1);
 void sub_0202616C(SaveData * param0, int param1, Strbuf *param2, int param3);

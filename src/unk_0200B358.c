@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0202B4A0_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 #include "struct_defs/trainer_data.h"
 

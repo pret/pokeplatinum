@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "pokemon.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 #include "heap.h"
 #include "unk_020244AC.h"

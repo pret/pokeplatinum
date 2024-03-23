@@ -4,7 +4,7 @@
 #include "core_sys.h"
 
 #include "trainer_info.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 #include "struct_defs/struct_0202855C.h"
 #include "struct_defs/struct_02029894.h"

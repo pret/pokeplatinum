@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_0206AFE0_H
 
 #include "struct_decls/struct_020507E4_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 BOOL sub_0206B024(UnkStruct_020507E4 * param0, u16 param1);
 u16 sub_0206B034(UnkStruct_020507E4 * param0);

@@ -3,7 +3,7 @@
 
 #include "strbuf.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 #include <dwc.h>
 

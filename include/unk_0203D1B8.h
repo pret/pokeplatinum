@@ -19,7 +19,7 @@
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_020997B8.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 #include "overlay006/battle_params.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 

@@ -5,7 +5,7 @@
 
 #include "strbuf.h"
 #include "pokemon.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_020298D8.h"

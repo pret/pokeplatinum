@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02025E0C_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 #include "struct_defs/struct_02025E5C.h"
 #include "struct_defs/options.h"

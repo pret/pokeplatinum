@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV62_02248408_H
 
 #include "struct_decls/struct_0202F264_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 #include "overlay006/battle_params.h"
 
 void ov62_02248408(BattleRecording * param0, BattleParams * param1, int param2);

@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0202CA1C_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 typedef struct {
     int unk_00;

@@ -12,7 +12,7 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 #include "constdata/const_020F1E88.h"
 #include "constdata/const_020F410C.h"

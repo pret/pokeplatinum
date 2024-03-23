@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0202F298_decl.h"
 #include "struct_decls/struct_0202F41C_decl.h"
 #include "struct_decls/struct_02030A80_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 #include "overlay006/battle_params.h"
 
 int BattleRecording_SaveSize(void);

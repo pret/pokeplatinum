@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 u8 ov5_021E6238(UnkStruct_02026310 * param0);
 int ov5_021E6270(UnkStruct_02026310 * param0);

@@ -8,7 +8,7 @@
 #include "struct_defs/struct_0202F264.h"
 #include "struct_decls/struct_020308A0_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 #define SAVE_PAGE_MAX       32
 #define SAVE_SECTOR_SIZE    (0x1000)

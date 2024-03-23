@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0202D778_H
 #define POKEPLATINUM_UNK_0202D778_H
 
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 int Ribbons_SaveSize(void);
 void Ribbons_Init(u8 * param0);

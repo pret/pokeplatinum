@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02025CCC_decl.h"
 #include "struct_defs/struct_02055BA8.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 int SystemData_SaveSize(void);
 void SystemData_Init(UnkStruct_02025CCC * param0);

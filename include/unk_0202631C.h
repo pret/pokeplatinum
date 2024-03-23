@@ -3,7 +3,7 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "pokemon.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 int Pokedex_SaveSize(void);
 PokedexData * sub_02026324(u32 param0);

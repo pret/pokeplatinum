@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 #include "unk_0202631C.h"
 #include "pokemon.h"

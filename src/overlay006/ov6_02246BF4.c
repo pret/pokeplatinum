@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0203CDB0_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 #include "unk_0202D7A8.h"
 #include "unk_0203E880.h"

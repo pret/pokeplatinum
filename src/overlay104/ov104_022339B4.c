@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0203068C_decl.h"
 #include "pokemon.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "unk_020244AC.h"
 
 #include "struct_defs/struct_0202FF58.h"
 #include "struct_defs/struct_020300F4.h"
