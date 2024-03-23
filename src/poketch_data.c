@@ -307,5 +307,5 @@ u32 sub_02056AFC (const PoketchData *poketchData, int param1)
 
 PoketchData* SaveData_PoketchData(SaveData *saveData)
 {
-    return SaveData_Get(saveData, SAVE_TABLE_ENTRY_POKETCH);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_POKETCH);
 }
