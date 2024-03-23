@@ -159,7 +159,7 @@ UnkStruct_0203A790 * sub_0203A790 (SaveData * param0)
 {
     UnkStruct_0203A790 * v0;
 
-    v0 = SaveData_Get(param0, 6);
+    v0 = SaveData_SaveTable(param0, 6);
     return v0;
 }
 
@@ -167,7 +167,7 @@ UnkStruct_0203A79C * sub_0203A79C (SaveData * param0)
 {
     UnkStruct_0203A79C * v0;
 
-    v0 = SaveData_Get(param0, 11);
+    v0 = SaveData_SaveTable(param0, 11);
     return v0;
 }
 

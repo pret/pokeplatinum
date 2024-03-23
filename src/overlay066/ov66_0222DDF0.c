@@ -2419,14 +2419,14 @@ static void ov66_0222F964 (UnkStruct_ov66_0222DFF8 * param0)
 
 static void ov66_0222F9EC (UnkStruct_ov66_0222F6C4 * param0, const SaveData * param1)
 {
-    param0->unk_B4 = CalculateSaveDataChecksum(param1, &param0->unk_20, sizeof(UnkStruct_ov66_0222E71C));
+    param0->unk_B4 = SaveData_CalculateChecksum(param1, &param0->unk_20, sizeof(UnkStruct_ov66_0222E71C));
 }
 
 static BOOL ov66_0222FA04 (const UnkStruct_ov66_0222F6C4 * param0, const SaveData * param1)
 {
     u32 v0;
 
-    v0 = CalculateSaveDataChecksum(param1, &param0->unk_20, sizeof(UnkStruct_ov66_0222E71C));
+    v0 = SaveData_CalculateChecksum(param1, &param0->unk_20, sizeof(UnkStruct_ov66_0222E71C));
 
     if (v0 != param0->unk_B4) {
         GF_ASSERT(0);
@@ -3717,14 +3717,14 @@ static s32 ov66_02230BA4 (UnkStruct_ov66_02230A6C * param0, u32 param1)
 
 static void ov66_02230BCC (UnkStruct_ov66_02230A6C * param0)
 {
-    param0->unk_48 = CalculateSaveDataChecksum(param0->unk_44, param0, (sizeof(UnkStruct_ov66_02230A6C) - 8));
+    param0->unk_48 = SaveData_CalculateChecksum(param0->unk_44, param0, (sizeof(UnkStruct_ov66_02230A6C) - 8));
 }
 
 static void ov66_02230BE0 (UnkStruct_ov66_02230A6C * param0)
 {
     u32 v0;
 
-    v0 = CalculateSaveDataChecksum(param0->unk_44, param0, (sizeof(UnkStruct_ov66_02230A6C) - 8));
+    v0 = SaveData_CalculateChecksum(param0->unk_44, param0, (sizeof(UnkStruct_ov66_02230A6C) - 8));
 
     if (v0 != param0->unk_48) {
         GF_ASSERT(0);

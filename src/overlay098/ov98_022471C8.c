@@ -2123,7 +2123,7 @@ static int ov98_02249238 (UnkStruct_ov98_02247704 * param0)
     {
         int v0;
 
-        v0 = SaveSaveData(param0->unk_00->unk_04);
+        v0 = SaveData_Save(param0->unk_00->unk_04);
 
         if (v0 == 2) {
             sub_0200B498(param0->unk_20, 0, sub_02025E38(param0->unk_00->unk_04));

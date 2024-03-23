@@ -1006,7 +1006,7 @@ static int ov97_0222BD70 (UnkStruct_020067E8 * param0, int * param1)
 
     ov97_02237694(81);
 
-    if (!SaveData_GetDataExists(v0->unk_04)) {
+    if (!SaveData_DataExists(v0->unk_04)) {
         v0->unk_14C = 1;
     }
 

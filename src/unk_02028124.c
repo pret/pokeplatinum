@@ -236,7 +236,7 @@ void sub_0202841C (UnkStruct_0202818C * param0, Sentence * param1, u8 param2)
 
 UnkStruct_02028430 * sub_02028430 (SaveData * param0)
 {
-    return SaveData_Get(param0, 15);
+    return SaveData_SaveTable(param0, 15);
 }
 
 int Mail_SaveSize (void)

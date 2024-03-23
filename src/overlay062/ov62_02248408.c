@@ -117,7 +117,7 @@ int ov62_02248598 (SaveData * param0, int param1, u8 param2, u16 * param3, u16 *
             Unk_021C07A4->unk_84.unk_27 = param2;
 
             Unk_021C07A4->unk_84.unk_48 = 0xe281;
-            Unk_021C07A4->unk_84.unk_60.unk_00 = CalculateSaveDataChecksum(param0, &Unk_021C07A4->unk_84, sizeof(UnkStruct_0202F41C) - (sizeof(UnkStruct_0202F298_sub1)) - (sizeof(u64)));
+            Unk_021C07A4->unk_84.unk_60.unk_00 = SaveData_CalculateChecksum(param0, &Unk_021C07A4->unk_84, sizeof(UnkStruct_0202F41C) - (sizeof(UnkStruct_0202F298_sub1)) - (sizeof(u64)));
         }
 
         sub_0202F858(&Unk_021C07A4->unk_E8, sizeof(UnkStruct_0202F298) - (sizeof(UnkStruct_0202F298_sub1)), Unk_021C07A4->unk_E8.unk_1BEC.unk_00 + ((Unk_021C07A4->unk_E8.unk_1BEC.unk_00 ^ 0xffff) << 16));
@@ -164,7 +164,7 @@ int ov62_022486A4 (SaveData * param0, int param1)
 
     Unk_021C07A4->unk_84.unk_27 = 1;
     Unk_021C07A4->unk_84.unk_48 = 0xe281;
-    Unk_021C07A4->unk_84.unk_60.unk_00 = CalculateSaveDataChecksum(param0, &Unk_021C07A4->unk_84, sizeof(UnkStruct_0202F41C) - (sizeof(UnkStruct_0202F298_sub1)) - (sizeof(u64)));
+    Unk_021C07A4->unk_84.unk_60.unk_00 = SaveData_CalculateChecksum(param0, &Unk_021C07A4->unk_84, sizeof(UnkStruct_0202F41C) - (sizeof(UnkStruct_0202F298_sub1)) - (sizeof(u64)));
 
     sub_0202F858(&Unk_021C07A4->unk_E8, sizeof(UnkStruct_0202F298) - (sizeof(UnkStruct_0202F298_sub1)), Unk_021C07A4->unk_E8.unk_1BEC.unk_00 + ((Unk_021C07A4->unk_E8.unk_1BEC.unk_00 ^ 0xffff) << 16));
     ResetLock(8);
@@ -172,7 +172,7 @@ int ov62_022486A4 (SaveData * param0, int param1)
     v0 = SaveData_SaveBattleRecording(param0, Unk_021C07A4, param1);
 
     if (v0 == 2) {
-        v0 = SaveSaveData(param0);
+        v0 = SaveData_Save(param0);
     }
 
     ResetUnlock(8);

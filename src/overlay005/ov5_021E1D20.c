@@ -222,7 +222,7 @@ BOOL ov5_021E200C (UnkStruct_0203CDB0 * param0)
 {
     ov5_021E2028(param0);
 
-    if (SaveSaveData(param0->unk_0C) == 2) {
+    if (SaveData_Save(param0->unk_0C) == 2) {
         return 1;
     } else {
         return 0;

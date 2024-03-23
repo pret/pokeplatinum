@@ -1365,7 +1365,7 @@ UnkStruct_02029894 * sub_02029894 (SaveData * param0)
 {
     UnkStruct_020298B0 * v0;
 
-    v0 = SaveData_Get(param0, 12);
+    v0 = SaveData_SaveTable(param0, 12);
     return &v0->unk_00;
 }
 
@@ -1373,7 +1373,7 @@ UnkStruct_0202855C * sub_020298A0 (SaveData * param0)
 {
     UnkStruct_020298B0 * v0;
 
-    v0 = SaveData_Get(param0, 12);
+    v0 = SaveData_SaveTable(param0, 12);
     return &v0->unk_00.unk_50;
 }
 
@@ -1386,6 +1386,6 @@ UnkStruct_020298B0 * sub_020298B0 (SaveData * param0)
 {
     UnkStruct_020298B0 * v0;
 
-    v0 = SaveData_Get(param0, 12);
+    v0 = SaveData_SaveTable(param0, 12);
     return v0;
 }

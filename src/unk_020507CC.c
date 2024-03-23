@@ -27,7 +27,7 @@ UnkStruct_020507E4 * SaveData_Events (SaveData * param0)
 {
     UnkStruct_020507E4 * v0;
 
-    v0 = (UnkStruct_020507E4 *)SaveData_Get(param0, 4);
+    v0 = (UnkStruct_020507E4 *)SaveData_SaveTable(param0, 4);
     return v0;
 }
 

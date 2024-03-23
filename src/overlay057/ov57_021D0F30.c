@@ -14,7 +14,7 @@
 
 void ov57_021D0F30 (int param0, SaveData * param1)
 {
-    if (!LoadSaveData(param1)) {
+    if (!SaveData_Load(param1)) {
         OS_ResetSystem(0);
     }
 }
@@ -23,7 +23,7 @@ void ov57_021D0F44 (int param0, SaveData * param1)
 {
     TrainerInfo * v0;
 
-    ClearSaveData(param1);
+    SaveData_Clear(param1);
     sub_0203D1A8(param1);
 
     v0 = sub_02025E38(param1);

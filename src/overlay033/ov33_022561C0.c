@@ -75,7 +75,7 @@ static BOOL ov33_0225621C (UnkStruct_ov33_0225621C * param0, UnkStruct_ov25_0225
         param0->unk_60 = param1;
 
         {
-            Party * v0 = Party_GetFromSavedata(GetSaveDataPtr());
+            Party * v0 = Party_GetFromSavedata(SaveData_Ptr());
             Pokemon * v1;
             int v2;
             int v3;

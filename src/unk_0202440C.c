@@ -101,23 +101,23 @@ const int gSaveTableSize = NELEMS(gSaveTable);
 TVBroadcast * SaveData_TVBroadcast (SaveData * param0)
 {
     SaveData_CRC(27);
-    return SaveData_Get(param0, 27);
+    return SaveData_SaveTable(param0, 27);
 }
 
 PCBoxes * SaveData_PCBoxes (SaveData * param0)
 {
-    return SaveData_Get(param0, 37);
+    return SaveData_SaveTable(param0, 37);
 }
 
 MysteryGift * SaveData_MysteryGift (SaveData * param0)
 {
     SaveData_CRC(31);
-    return SaveData_Get(param0, 31);
+    return SaveData_SaveTable(param0, 31);
 }
 
 PalParkTransfer * SaveData_PalParkTransfer (SaveData * param0)
 {
-    return SaveData_Get(param0, 32);
+    return SaveData_SaveTable(param0, 32);
 }
 
 const SaveTableEntry gExtraSaveTable[] = {

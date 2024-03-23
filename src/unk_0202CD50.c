@@ -39,7 +39,7 @@ void GameRecord_Init (UnkStruct_0202CD88 * param0)
 
 UnkStruct_0202CD88 * sub_0202CD88 (SaveData * param0)
 {
-    return SaveData_Get(param0, 20);
+    return SaveData_SaveTable(param0, 20);
 }
 
 static void sub_0202CD94 (UnkStruct_0202CD88 * param0, int param1)

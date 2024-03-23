@@ -77,7 +77,7 @@ void sub_02030AA0 (UnkStruct_02030A80 * param0, SaveData * param1)
     param0->unk_16 = sub_0205CA14(TrainerInfo_Gender(v0), TrainerInfo_Appearance(v0), 0);
     param0->unk_19 = GAME_VERSION;
     param0->unk_1A = GAME_LANGUAGE;
-    param0->unk_7C.unk_00 = CalculateSaveDataChecksum(param1, param0, sizeof(UnkStruct_02030A80) - (sizeof(UnkStruct_0202F298_sub1)));
+    param0->unk_7C.unk_00 = SaveData_CalculateChecksum(param1, param0, sizeof(UnkStruct_02030A80) - (sizeof(UnkStruct_0202F298_sub1)));
 }
 
 Strbuf* sub_02030B94 (const UnkStruct_02030A80 * param0, int param1)

@@ -9,8 +9,8 @@ enum {
 };
 
 enum {
-	SAVE_RESULT_TODO1,	//	todo
-	SAVE_RESULT_TODO2,		//	todo
+	SAVE_RESULT_PROCEED,	
+	SAVE_RESULT_PROCEED_FINAL,
 	SAVE_RESULT_OK,					
 	SAVE_RESULT_CORRUPT,					
 };

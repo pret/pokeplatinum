@@ -1199,7 +1199,7 @@ PokedexData * sub_02027560 (SaveData * param0)
 {
     PokedexData * v0;
 
-    v0 = SaveData_Get(param0, 7);
+    v0 = SaveData_SaveTable(param0, 7);
     return v0;
 }
 

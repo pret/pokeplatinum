@@ -104,7 +104,7 @@ const UnkStruct_0202610C * sub_02026150 (SaveData * param0, int param1)
         return &Unk_02100880[param1];
     }
 
-    v0 = SaveData_Get(param0, 13);
+    v0 = SaveData_SaveTable(param0, 13);
     return &v0->unk_00[0];
 }
 

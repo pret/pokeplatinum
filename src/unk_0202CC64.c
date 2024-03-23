@@ -29,7 +29,7 @@ ChatotCry * AllocateAndInitializeChatotCryData (int param0)
 
 ChatotCry * GetChatotCryDataFromSave (SaveData * param0)
 {
-    return (ChatotCry *)SaveData_Get(param0, 22);
+    return (ChatotCry *)SaveData_SaveTable(param0, 22);
 }
 
 BOOL IsChatotCryDataValid (const ChatotCry * param0)

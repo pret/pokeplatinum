@@ -148,6 +148,6 @@ Party * Party_GetFromSavedata (SaveData * param0)
 {
     Party * v0;
 
-    v0 = (Party *)SaveData_Get(param0, 2);
+    v0 = (Party *)SaveData_SaveTable(param0, 2);
     return v0;
 }

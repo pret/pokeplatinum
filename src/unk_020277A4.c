@@ -72,19 +72,19 @@ void MiscSaveBlock_Init (UnkStruct_0202783C * param0)
 
 UnkStruct_0202783C * sub_0202783C (SaveData * param0)
 {
-    return SaveData_Get(param0, 10);
+    return SaveData_SaveTable(param0, 10);
 }
 
 const UnkStruct_0202783C * Save_MiscRO (const SaveData * param0)
 {
-    return GetSaveDataConst(param0, 10);
+    return SaveData_SaveTableConst(param0, 10);
 }
 
 UnkStruct_02027854 * sub_02027854 (SaveData * param0)
 {
     UnkStruct_0202783C * v0;
 
-    v0 = SaveData_Get(param0, 10);
+    v0 = SaveData_SaveTable(param0, 10);
     return v0->unk_00;
 }
 
@@ -92,7 +92,7 @@ UnkStruct_02027860 * sub_02027860 (SaveData * param0)
 {
     UnkStruct_0202783C * v0;
 
-    v0 = SaveData_Get(param0, 10);
+    v0 = SaveData_SaveTable(param0, 10);
     return &v0->unk_680;
 }
 
