@@ -36,12 +36,10 @@ static void sub_02025A18(SaveData * param0, int param1, u32 param2, u32 param3, 
 
 static SaveData *sSaveDataPtr = NULL;
 
-SaveData* InitializeSaveData (void)
+SaveData* SaveData_Init (void)
 {
-    SaveData *saveData;
-    int loadResult;
+    SaveData *saveData = Heap_AllocFromHeap(HEAP_ID_SAVE, sizeof(SaveData));;
 
-    saveData = Heap_AllocFromHeap(HEAP_BASE_ID_SAVE, sizeof(SaveData));
     MI_CpuClearFast(saveData, sizeof(SaveData));
 
     sSaveDataPtr = saveData;
@@ -56,7 +54,7 @@ SaveData* InitializeSaveData (void)
 
     MI_CpuClearFast(saveData->unk_20018, sizeof(saveData->unk_20018));
 
-    loadResult = SaveData_LoadCheck(saveData);
+    int loadResult = SaveData_LoadCheck(saveData);
 
     saveData->loadCheckStatus = 0;
 
@@ -73,22 +71,20 @@ SaveData* InitializeSaveData (void)
             saveData->loadCheckStatus |= NORMAL_LOAD_CORRUPT;
         }
 
-        {
-            int frontierResult, videoResult;
+        int frontierResult, videoResult;
 
-            SaveDataExtra_LoadCheck(saveData, &frontierResult, &videoResult);
+        SaveDataExtra_LoadCheck(saveData, &frontierResult, &videoResult);
 
-            if (frontierResult == LOAD_RESULT_ERROR) {
-                saveData->loadCheckStatus |= FRONTIER_LOAD_ERROR;
-            } else if (frontierResult == LOAD_RESULT_CORRUPT) {
-                saveData->loadCheckStatus |= FRONTIER_LOAD_CORRUPT;
-            }
+        if (frontierResult == LOAD_RESULT_ERROR) {
+            saveData->loadCheckStatus |= FRONTIER_LOAD_ERROR;
+        } else if (frontierResult == LOAD_RESULT_CORRUPT) {
+            saveData->loadCheckStatus |= FRONTIER_LOAD_CORRUPT;
+        }
 
-            if (videoResult == LOAD_RESULT_ERROR) {
-                saveData->loadCheckStatus |= VIDEO_LOAD_ERROR;
-            } else if (videoResult == LOAD_RESULT_CORRUPT) {
-                saveData->loadCheckStatus |= VIDEO_LOAD_CORRUPT;
-            }
+        if (videoResult == LOAD_RESULT_ERROR) {
+            saveData->loadCheckStatus |= VIDEO_LOAD_ERROR;
+        } else if (videoResult == LOAD_RESULT_CORRUPT) {
+            saveData->loadCheckStatus |= VIDEO_LOAD_CORRUPT;
         }
         break;
     case LOAD_RESULT_ERROR:
@@ -120,8 +116,7 @@ const void* SaveData_SaveTableConst (const SaveData *saveData, int saveTableID)
 
 BOOL SaveData_Erase (SaveData *saveData)
 {
-    int sectorIndex, unused;
-    u8 *saveBuffer = Heap_AllocFromHeapAtEnd(HEAP_BASE_ID_APPLICATION, SAVE_SECTOR_SIZE);
+    u8 *saveBuffer = Heap_AllocFromHeapAtEnd(HEAP_ID_APPLICATION, SAVE_SECTOR_SIZE);
 
     SleepLock(1);
 
@@ -132,7 +127,7 @@ BOOL SaveData_Erase (SaveData *saveData)
 
     MI_CpuFillFast(saveBuffer, 0xffffffff, SAVE_SECTOR_SIZE);
 
-    for (sectorIndex = 0; sectorIndex < SAVE_PAGE_MAX * 2; sectorIndex++) {
+    for (int sectorIndex = 0; sectorIndex < SAVE_PAGE_MAX * 2; sectorIndex++) {
         sub_02025A9C(SAVE_SECTOR_SIZE * (sectorIndex + 0), saveBuffer, SAVE_SECTOR_SIZE);
         sub_02025A9C(SAVE_SECTOR_SIZE * (sectorIndex + 64), saveBuffer, SAVE_SECTOR_SIZE);
     }
@@ -160,22 +155,16 @@ BOOL SaveData_Load (SaveData *saveData)
         saveData->dataExists = TRUE;
         saveData->isNewGameData = FALSE;
 
-        {
-            int frontierResult, videoResult;
-
-            SaveDataExtra_LoadCheck(saveData, &frontierResult, &videoResult);
-        }
-
+        int frontierResult, videoResult;
+        SaveDataExtra_LoadCheck(saveData, &frontierResult, &videoResult);
         return TRUE;
-    } else {
-        return FALSE;
     }
+    
+    return FALSE;
 }
 
 int SaveData_Save (SaveData *saveData)
 {
-    int saveResult;
-
     if (!saveData->backupExists) {
         return SAVE_RESULT_CORRUPT;
     }
@@ -191,7 +180,7 @@ int SaveData_Save (SaveData *saveData)
         SleepUnlock(1);
     }
 
-    saveResult = sub_0202513C(saveData);
+    int saveResult = sub_0202513C(saveData);
 
     if (saveResult == SAVE_RESULT_OK) {
         saveData->dataExists = TRUE;
@@ -203,14 +192,13 @@ int SaveData_Save (SaveData *saveData)
 
 int SaveData_SaveBlock (SaveData *saveData, int saveBlockID)
 {
-    int saveResult;
-
     GF_ASSERT(saveBlockID < SAVE_BLOCK_ID_MAX);
     GF_ASSERT(saveData->isNewGameData == FALSE);
     GF_ASSERT(saveData->dataExists == TRUE);
 
     sub_02024814(saveData, saveBlockID);
 
+    int saveResult;
     do {
         saveResult = sub_02024828(saveData);
     } while (saveResult == SAVE_RESULT_PROCEED || saveResult == SAVE_RESULT_PROCEED_FINAL);
@@ -284,9 +272,7 @@ void sub_02024814 (SaveData * param0, int param1)
 
 int sub_02024828 (SaveData *saveData)
 {
-    int saveResult;
-
-    saveResult = sub_02024F44(saveData, &saveData->unk_2029C);
+    int saveResult = sub_02024F44(saveData, &saveData->unk_2029C);
 
     if ((saveResult != SAVE_RESULT_PROCEED) && (saveResult != SAVE_RESULT_PROCEED_FINAL)) {
         sub_0202506C(saveData, &saveData->unk_2029C, saveResult);
@@ -547,7 +533,6 @@ static int SaveData_LoadCheck (SaveData *saveData)
 
 static void SaveDataExtra_LoadCheck (SaveData *saveData, int *frontierResult, int *videoResult)
 {
-    void *saveBuffer;
     int loadResult;
     BOOL v2;
     int extraSaveID;
@@ -564,8 +549,9 @@ static void SaveDataExtra_LoadCheck (SaveData *saveData, int *frontierResult, in
 
     sub_020279A8(v4, EXTRA_SAVE_TABLE_ENTRY_FRONTIER, &v5, &v6, &v7);
 
+    void *saveBuffer;
     if ((v5 != EXTRA_SAVE_TABLE_ENTRY_NONE) || (v6 != EXTRA_SAVE_TABLE_ENTRY_NONE)) {
-        saveBuffer = SaveDataExtra_Mirror(saveData, HEAP_BASE_ID_APPLICATION, EXTRA_SAVE_TABLE_ENTRY_FRONTIER, &loadResult, &v2);
+        saveBuffer = SaveDataExtra_Mirror(saveData, HEAP_ID_APPLICATION, EXTRA_SAVE_TABLE_ENTRY_FRONTIER, &loadResult, &v2);
         Heap_FreeToHeap(saveBuffer);
 
         if (loadResult == LOAD_RESULT_CORRUPT) {

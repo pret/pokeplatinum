@@ -84,7 +84,7 @@ void NitroMain (void)
     sub_02002BB8(3, 3);
 
     Unk_02101D28.unk_10.unk_00 = -1;
-    Unk_02101D28.unk_10.unk_08 = InitializeSaveData();
+    Unk_02101D28.unk_10.unk_08 = SaveData_Init();
 
     sub_02003B60(GetChatotCryDataFromSave(Unk_02101D28.unk_10.unk_08), sub_02025E44(Unk_02101D28.unk_10.unk_08));
     sub_02022844();

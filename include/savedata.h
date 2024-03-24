@@ -4,7 +4,7 @@
 #include "constants/savedata/savedata.h"
 #include "constants/savedata/save_table.h"
 
-typedef struct {
+typedef struct SaveBlockFooter {
     u32 saveCounter;
     u32 blockCounter;
     u32 size;
@@ -13,7 +13,7 @@ typedef struct {
     u16 checksum;
 } SaveBlockFooter;
 
-typedef struct {
+typedef struct SaveBlockInfo {
     u8 saveBlockID;
     u8 sectorStartPos;
     u8 sectorsInUse;
@@ -21,7 +21,7 @@ typedef struct {
     u32 size;
 } SaveBlockInfo;
 
-typedef struct {
+typedef struct SavePageInfo {
     int pageID;
     u32 size;
     u32 location;
@@ -29,11 +29,11 @@ typedef struct {
     u16 blockID;
 } SavePageInfo;
 
-typedef struct {
+typedef struct SaveDataBody {
     u8 data[SAVE_SECTOR_SIZE * SAVE_PAGE_MAX];
 } SaveDataBody;
 
-typedef struct {
+typedef struct UnkStruct_020250DC {
     BOOL unk_00;
     int unk_04;
     int unk_08;
@@ -62,13 +62,13 @@ typedef struct SaveData {
     u32 unk_202C8;
 } SaveData;
 
-typedef struct {
+typedef struct UnkStruct_02024860 {
     BOOL unk_00;
     u32 unk_04;
     u32 unk_08;
 } UnkStruct_02024860;
 
-typedef struct {
+typedef struct UnkStruct_020253B4 {
     u32 unk_00;
     u32 unk_04;
     u32 unk_08;
@@ -76,9 +76,7 @@ typedef struct {
     u16 unk_0E;
 } UnkStruct_020253B4;
 
-typedef struct SaveData SaveData;
-
-SaveData* InitializeSaveData(void);
+SaveData* SaveData_Init(void);
 SaveData* SaveData_Ptr(void);
 void* SaveData_SaveTable(SaveData *saveData, int saveTableID);
 const void* SaveData_SaveTableConst(const SaveData *saveData, int saveTableID);
