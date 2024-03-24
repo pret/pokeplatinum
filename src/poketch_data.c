@@ -43,8 +43,8 @@ void Poketch_Init(PoketchData *poketchData)
     poketchData->alarmSet = 0;
     poketchData->alarmHour = 0;
     poketchData->alarmMinute = 0;
-    poketchData->unk_A8 = 1;
-    poketchData->unk_A4 = 0;
+    poketchData->calendarMonth = 1;
+    poketchData->calendarMarkBitmap = 0;
 
     for (i = 0; i < POKETCH_MAPMARKER_COUNT; i++) {
         poketchData->markMapPositions[i].x = sDefaultMapMarkers[i].x;
@@ -191,33 +191,33 @@ void PoketchData_SetAlarm(PoketchData *poketchData, BOOL enable, u32 hour, u32 m
     poketchData->alarmMinute = minute;
 }
 
-void sub_02056934 (PoketchData *poketchData, u32 param1, u32 param2)
+void PoketchData_SetCalendarMark(PoketchData *poketchData, u32 month, u32 day)
 {
-    if (poketchData->unk_A8 == param1) {
-        poketchData->unk_A4 |= (1 << (param2 - 1));
+    if (poketchData->calendarMonth == month) {
+        poketchData->calendarMarkBitmap |= (1 << (day - 1));
     } else {
-        poketchData->unk_A8 = param1;
-        poketchData->unk_A4 = (1 << (param2 - 1));
+        poketchData->calendarMonth = month;
+        poketchData->calendarMarkBitmap = (1 << (day - 1));
     }
 }
 
-void sub_02056970 (PoketchData *poketchData, u32 param1, u32 param2)
+void PoketchData_ClearCalendarMark(PoketchData *poketchData, u32 month, u32 day)
 {
-    if (poketchData->unk_A8 == param1) {
-        poketchData->unk_A4 &= ~(1 << (param2 - 1));
+    if (poketchData->calendarMonth == month) {
+        poketchData->calendarMarkBitmap &= ~(1 << (day - 1));
     } else {
-        poketchData->unk_A8 = param1;
-        poketchData->unk_A4 = 0;
+        poketchData->calendarMonth = month;
+        poketchData->calendarMarkBitmap = 0;
     }
 }
 
-BOOL sub_020569A8 (const PoketchData *poketchData, u32 param1, u32 param2)
+BOOL PoketchData_CalendarMarked(const PoketchData *poketchData, u32 month, u32 day)
 {
-    if (poketchData->unk_A8 == param1) {
-        return (poketchData->unk_A4 >> (param2 - 1)) & 1;
-    } else {
-        return 0;
+    if (poketchData->calendarMonth == month) {
+        return (poketchData->calendarMarkBitmap >> (day - 1)) & 1;
     }
+
+    return FALSE;
 }
 
 void PoketchData_SetMapMarker(PoketchData *poketchData, int index, u8 x, u8 y)

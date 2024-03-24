@@ -6,7 +6,7 @@
 
 /** Poketch app IDs, used to register and switch between apps in the Poketch */
 enum PoketchAppID {
-    POKETCH_APPID_DIGITALWATCH,
+    POKETCH_APPID_DIGITALWATCH = 0,
     POKETCH_APPID_CALCULATOR,
     POKETCH_APPID_MEMOPAD,
     POKETCH_APPID_PEDOMETER,
@@ -29,15 +29,15 @@ enum PoketchAppID {
     POKETCH_APPID_KITCHENTIMER,
     POKETCH_APPID_COLORCHANGER,
     POKETCH_APPID_MATCHUPCHECKER,
-    POKETCH_APPID_STOPWATCH,
-    POKETCH_APPID_ALARMCLOCK,
+    POKETCH_APPID_STOPWATCH,            // unused: https://tcrf.net/Pok%C3%A9mon_Platinum#Unused_Pok.C3.A9tch_Apps 
+    POKETCH_APPID_ALARMCLOCK,           // unused per above
 
     POKETCH_APPID_MAX
 };
 
 /** Poketch Screen colors, used in PoketchData_SetScreenColor */
 enum PoketchScreenColor {
-    POKETCH_SCREEN_COLOR_GREEN,
+    POKETCH_SCREEN_COLOR_GREEN = 0,
     POKETCH_SCREEN_COLOR_YELLOW,
     POKETCH_SCREEN_COLOR_ORANGE,
     POKETCH_SCREEN_COLOR_RED,
@@ -76,8 +76,9 @@ typedef struct PoketchData {
     u16 unk_28_12 : 4;     //!< unused; bitfield padding
 
     u8 unk_2A[120];
-    u32 unk_A4;
-    u8 unk_A8;
+
+    u32 calendarMarkBitmap;     //!< Bitmap for every day in the calendar month and whether it's been marked
+    u8 calendarMonth;      //!< Current calendar month
 
     /**
     * @brief XY coordinates of a single Map Marker in the Marking Map app
@@ -221,9 +222,36 @@ void PoketchData_AlarmTime(const PoketchData *poketchData, u32 *hour, u32 *minut
  */
 void PoketchData_SetAlarm(PoketchData *poketchData, BOOL enabled, u32 hour, u32 minute);
 
-void sub_02056934(PoketchData *poketchData, u32 param1, u32 param2);
-void sub_02056970(PoketchData *poketchData, u32 param1, u32 param2);
-BOOL sub_020569A8(const PoketchData *poketchData, u32 param1, u32 param2);
+/**
+ * Marks the given date on the Calendar app as highlighted.
+ *
+ * @param poketchData:      The Poketch data to update.
+ * @param month:            The month of the date to mark. If this month does not match the currently stored month, 
+ *                          the month will update to this value and clear all marks on the calendar (except the one on the passed in day).
+ * @param day:              The day of the date to mark.
+ */
+void PoketchData_SetCalendarMark(PoketchData *poketchData, u32 month, u32 day);
+
+/**
+ * Clears the mark on the given date on the Calendar app.
+ *
+ * @param poketchData:      The Poketch data to update.
+ * @param month:            The month of the date to clear. If this month does not match the currently stored month, 
+ *                          the month will update to this value and clear all marks on the calendar.
+ * @param day:              The day of the date to clear.
+ */
+void PoketchData_ClearCalendarMark(PoketchData *poketchData, u32 month, u32 day);
+
+/**
+ * Checks whether the given date is currently marked on the calendar.
+ *
+ * @param poketchData:      The Poketch data to check.
+ * @param month:            The month of the date to check.
+ * @param day:              The day of the date to check.
+ * 
+ * @param return TRUE if the date is marked, FALSE if not. If the given month is not the currently stored month, returns FALSE.
+ */
+BOOL PoketchData_CalendarMarked(const PoketchData *poketchData, u32 month, u32 day);
 
 /**
  * Sets the location of a map marker.
