@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02030114_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 #include "overlay104/struct_ov104_0223A348.h"
 #include "overlay104/struct_ov104_0223A348_sub2.h"
 

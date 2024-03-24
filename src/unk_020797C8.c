@@ -3,7 +3,7 @@
 
 #include "message.h"
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "pokemon.h"
 #include "unk_020797C8.h"
 
@@ -20,7 +20,7 @@ static void sub_020797DC(PCBoxes * param0);
 void PCBoxes_Init (PCBoxes * param0)
 {
     sub_020797DC(param0);
-    sub_02024804();
+    SaveData_SetFullSaveRequired();
 }
 
 u32 PCBoxes_SaveSize (void)
@@ -71,7 +71,7 @@ BOOL sub_02079868 (PCBoxes * param0, BoxPokemon * param1)
         sub_0207896C(param1);
 
         if (sub_020798A0(param0, v0, param1)) {
-            sub_02024804();
+            SaveData_SetFullSaveRequired();
             return 1;
         }
 
@@ -97,7 +97,7 @@ BOOL sub_020798A0 (PCBoxes * param0, u32 param1, BoxPokemon * param2)
     for (v0 = 0; v0 < (5 * 6); v0++) {
         if (BoxPokemon_GetValue(&(param0->unk_04[param1][v0]), MON_DATA_SPECIES, NULL) == 0) {
             param0->unk_04[param1][v0] = *param2;
-            sub_02024804();
+            SaveData_SetFullSaveRequired();
             return 1;
         }
     }
@@ -116,7 +116,7 @@ BOOL sub_02079914 (PCBoxes * param0, u32 param1, u32 param2, BoxPokemon * param3
 
     if ((param1 < 18) && (param2 < (5 * 6))) {
         param0->unk_04[param1][param2] = *param3;
-        sub_02024804();
+        SaveData_SetFullSaveRequired();
         return 1;
     } else {
         GF_ASSERT(0);
@@ -133,7 +133,7 @@ void sub_02079968 (PCBoxes * param0, u32 param1, u32 param2)
 
     if ((param2 < (5 * 6)) && (param1 < 18)) {
         BoxPokemon_Init(&(param0->unk_04[param1][param2]));
-        sub_02024804();
+        SaveData_SetFullSaveRequired();
     } else {
         GF_ASSERT(0);
     }
@@ -225,7 +225,7 @@ void sub_02079A94 (PCBoxes * param0, u32 param1)
 {
     if (param1 < 18) {
         param0->unk_00 = param1;
-        sub_02024804();
+        SaveData_SetFullSaveRequired();
     } else {
         GF_ASSERT(0);
     }
@@ -253,7 +253,7 @@ void sub_02079AC4 (PCBoxes * param0, u32 param1, u32 param2)
         }
 
         param0->unk_13B4[param1] = param2;
-        sub_02024804();
+        SaveData_SetFullSaveRequired();
     } else {
         GF_ASSERT(0);
     }
@@ -280,7 +280,7 @@ void sub_02079B24 (PCBoxes * param0, u32 param1, const Strbuf *param2)
 
     if (param1 < 18) {
         Strbuf_ToChars(param2, param0->unk_10E4[param1], 20);
-        sub_02024804();
+        SaveData_SetFullSaveRequired();
     }
 }
 
@@ -367,7 +367,7 @@ void sub_02079C50 (PCBoxes * param0, u32 param1, u32 param2, int param3, void * 
     }
 
     BoxPokemon_SetValue((BoxPokemon *)(&param0->unk_04[param1][param2]), param3, param4);
-    sub_02024804();
+    SaveData_SetFullSaveRequired();
 }
 
 BoxPokemon * sub_02079C9C (const PCBoxes * param0, u32 param1, u32 param2)
@@ -387,7 +387,7 @@ void sub_02079CD8 (PCBoxes * param0, u32 param1)
     GF_ASSERT(param1 < 8);
 
     param0->unk_13C6 |= (1 << param1);
-    sub_02024804();
+    SaveData_SetFullSaveRequired();
 }
 
 BOOL sub_02079CFC (const PCBoxes * param0, u32 param1)

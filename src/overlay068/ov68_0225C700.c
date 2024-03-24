@@ -18,7 +18,7 @@
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_02030EC4_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
 #include "overlay066/struct_ov66_0222E71C_decl.h"
 

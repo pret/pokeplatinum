@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_defs/struct_0205964C.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 UnkStruct_0205964C * sub_0205964C(void);
 void sub_0205965C(UnkStruct_0203CDB0 * param0);

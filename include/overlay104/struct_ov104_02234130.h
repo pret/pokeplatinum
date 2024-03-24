@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV104_02234130_H
 
 #include "struct_decls/struct_party_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 typedef struct {
     SaveData * unk_00;

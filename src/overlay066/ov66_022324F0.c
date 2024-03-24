@@ -7,7 +7,7 @@
 
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "overlay066/struct_ov66_02232B20.h"
 #include "overlay066/struct_ov66_022589B4.h"

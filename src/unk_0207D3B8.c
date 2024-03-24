@@ -2,12 +2,12 @@
 #include <string.h>
 
 #include "struct_decls/struct_0207CB08_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0207CDEC.h"
 
 #include "heap.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0207CB08.h"
 #include "item.h"
 #include "unk_0207D3B8.h"
@@ -478,7 +478,7 @@ UnkStruct_0207D3C0 * sub_0207D990 (SaveData * param0)
 {
     UnkStruct_0207D3C0 * v0;
 
-    v0 = (UnkStruct_0207D3C0 *)SaveData_Get(param0, 3);
+    v0 = (UnkStruct_0207D3C0 *)SaveData_SaveTable(param0, 3);
     return v0;
 }
 

@@ -17,7 +17,7 @@
 #include "struct_decls/struct_0207D3C0_decl.h"
 #include "struct_decls/struct_0207D99C_decl.h"
 #include "struct_defs/struct_0209C370.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 #include "overlay006/struct_ov6_02240D5C_sub1.h"
 
 typedef struct {

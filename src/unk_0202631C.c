@@ -4,10 +4,10 @@
 #include "inlines.h"
 
 #include "pokemon.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "heap.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202631C.h"
 #include "pokemon.h"
 #include "constants/species.h"
@@ -1199,7 +1199,7 @@ PokedexData * sub_02027560 (SaveData * param0)
 {
     PokedexData * v0;
 
-    v0 = SaveData_Get(param0, 7);
+    v0 = SaveData_SaveTable(param0, 7);
     return v0;
 }
 

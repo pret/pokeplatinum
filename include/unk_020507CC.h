@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_020507CC_H
 
 #include "struct_decls/struct_020507E4_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 int FieldEvents_SaveSize(void);
 void FieldEvents_Init(UnkStruct_020507E4 * param0);

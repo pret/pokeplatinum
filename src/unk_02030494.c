@@ -1,13 +1,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_020304A0.h"
 #include "struct_defs/struct_020305B8.h"
 #include "struct_defs/struct_0203068C.h"
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02030494.h"
 
 void sub_02030494(UnkStruct_020304A0 * param0);
@@ -29,7 +29,7 @@ void sub_02030494 (UnkStruct_020304A0 * param0)
 
 UnkStruct_020304A0 * sub_020304A0 (SaveData * param0)
 {
-    UnkStruct_0203068C * v0 = SaveData_Get(param0, 23);
+    UnkStruct_0203068C * v0 = SaveData_SaveTable(param0, 23);
     return &v0->unk_8E0_val5;
 }
 
@@ -118,7 +118,7 @@ void sub_020305AC (UnkStruct_020305B8 * param0)
 
 UnkStruct_020305B8 * sub_020305B8 (SaveData * param0)
 {
-    UnkStruct_0203068C * v0 = SaveData_Get(param0, 23);
+    UnkStruct_0203068C * v0 = SaveData_SaveTable(param0, 23);
     return &v0->unk_1620.unk_00;
 }
 

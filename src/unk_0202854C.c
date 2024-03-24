@@ -4,7 +4,7 @@
 #include "core_sys.h"
 
 #include "trainer_info.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0202855C.h"
 #include "struct_defs/struct_02029894.h"
@@ -15,7 +15,7 @@
 #include "rtc.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "trainer_info.h"
 #include "unk_0202854C.h"
 
@@ -1365,7 +1365,7 @@ UnkStruct_02029894 * sub_02029894 (SaveData * param0)
 {
     UnkStruct_020298B0 * v0;
 
-    v0 = SaveData_Get(param0, 12);
+    v0 = SaveData_SaveTable(param0, 12);
     return &v0->unk_00;
 }
 
@@ -1373,7 +1373,7 @@ UnkStruct_0202855C * sub_020298A0 (SaveData * param0)
 {
     UnkStruct_020298B0 * v0;
 
-    v0 = SaveData_Get(param0, 12);
+    v0 = SaveData_SaveTable(param0, 12);
     return &v0->unk_00.unk_50;
 }
 
@@ -1386,6 +1386,6 @@ UnkStruct_020298B0 * sub_020298B0 (SaveData * param0)
 {
     UnkStruct_020298B0 * v0;
 
-    v0 = SaveData_Get(param0, 12);
+    v0 = SaveData_SaveTable(param0, 12);
     return v0;
 }

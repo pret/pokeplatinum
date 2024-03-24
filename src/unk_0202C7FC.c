@@ -1,9 +1,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202C7FC.h"
 
 typedef struct UnkStruct_0202C844_t {
@@ -38,7 +38,7 @@ void TrainerCard_Init (UnkStruct_0202C834 * param0)
 
 UnkStruct_0202C834 * sub_0202C834 (SaveData * param0)
 {
-    return SaveData_Get(param0, 19);
+    return SaveData_SaveTable(param0, 19);
 }
 
 u8 * sub_0202C840 (UnkStruct_0202C834 * param0)

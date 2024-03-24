@@ -1,9 +1,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202D778.h"
 
 int Ribbons_SaveSize (void)
@@ -18,5 +18,5 @@ void Ribbons_Init (u8 * param0)
 
 u8 * sub_0202D79C (SaveData * param0)
 {
-    return SaveData_Get(param0, 24);
+    return SaveData_SaveTable(param0, 24);
 }

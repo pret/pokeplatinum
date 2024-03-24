@@ -3,7 +3,7 @@
 
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 BOOL sub_02054884(Pokemon * param0);
 BOOL sub_020548B0(int param0, SaveData * param1, u16 param2, u8 param3, u16 param4, int param5, int param6);

@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_defs/struct_0208BE5C.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 #include "overlay025/struct_ov25_02253CE0_decl.h"
 
 void sub_0203CD00(UnkStruct_0203CDB0 * param0);

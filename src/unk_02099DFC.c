@@ -8,7 +8,7 @@
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -33,7 +33,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 FS_EXTERN_OVERLAY(overlay77);
 
@@ -316,7 +316,7 @@ static BOOL sub_0209A0F4 (UnkStruct_02099DFC * param0)
         }
         break;
     case 5:
-        sub_020245E8(param0->unk_30);
+        SaveData_Erase(param0->unk_30);
         DeleteWaitDial(param0->unk_34);
         param0->unk_04 = 6;
         break;

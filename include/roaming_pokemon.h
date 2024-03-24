@@ -2,7 +2,7 @@
 #define POKEPLATINUM_ROAMING_POKEMON_H
 
 #include "struct_defs/struct_0202D7B0.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #define ROAMING_SLOT_MESPRIT      (0)
 #define ROAMING_SLOT_CRESSELIA    (1)

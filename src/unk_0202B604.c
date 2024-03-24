@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02025E5C_decl.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0202BC58.h"
 #include "struct_defs/struct_0202BCC8.h"
@@ -13,7 +13,7 @@
 
 #include "rtc.h"
 #include "heap.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "trainer_info.h"
 #include "unk_0202B604.h"
 #include "unk_0202CBE4.h"
@@ -134,7 +134,7 @@ void Journal_Init (UnkStruct_0202B628 * param0)
 
 UnkStruct_0202B628 * sub_0202B628 (SaveData * param0)
 {
-    return SaveData_Get(param0, 18);
+    return SaveData_SaveTable(param0, 18);
 }
 
 UnkStruct_0202B628 * sub_0202B634 (UnkStruct_0202B628 * param0, BOOL param1)

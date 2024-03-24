@@ -1,14 +1,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0202DBAC.h"
 #include "struct_defs/struct_0202DF40.h"
 #include "struct_defs/union_0204C4D0.h"
 
 #include "savedata/save_table.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202DAB4.h"
 
 typedef struct MysteryGift {

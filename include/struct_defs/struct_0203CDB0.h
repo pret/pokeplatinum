@@ -25,7 +25,7 @@
 #include "struct_decls/struct_0209ACBC_decl.h"
 #include "struct_defs/struct_0209C370.h"
 #include "struct_defs/struct_020EC3A8.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 #include "overlay005/struct_ov5_021D1A68_decl.h"
 #include "overlay005/struct_ov5_021D3CAC_decl.h"
 #include "overlay005/struct_ov5_021D41B4_decl.h"

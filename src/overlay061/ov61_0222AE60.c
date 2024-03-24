@@ -4,7 +4,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_02030A80.h"
 #include "overlay061/struct_ov61_0222AE80.h"
@@ -14,7 +14,7 @@
 #include "overlay062/struct_ov62_02239DA4_sub1.h"
 
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_020298BC.h"
 #include "unk_020797C8.h"
 #include "overlay061/ov61_0222AE60.h"
@@ -23,7 +23,7 @@
 void ov61_0222AE60 (SaveData * param0, const UnkStruct_02029C68 * param1, UnkStruct_ov61_0222AE80 * param2)
 {
     sub_0202A75C(param1, param2);
-    param2->unk_5C.unk_00 = sub_0202486C(param0, param2, sizeof(UnkStruct_ov61_0222AE80) - (sizeof(UnkStruct_ov62_02239DA4_sub1)));
+    param2->unk_5C.unk_00 = SaveData_CalculateChecksum(param0, param2, sizeof(UnkStruct_ov61_0222AE80) - (sizeof(UnkStruct_ov62_02239DA4_sub1)));
 }
 
 void ov61_0222AE80 (const UnkStruct_ov61_0222AE80 * param0, UnkStruct_02029C68 * param1)
@@ -57,13 +57,13 @@ void ov61_0222AE88 (SaveData * param0, const PCBoxes * param1, int param2, UnkSt
 
     param3->unk_176 = sub_02079AA8(param1, param2);
     param3->unk_177 = 0;
-    param3->unk_198.unk_00 = sub_0202486C(param0, param3, sizeof(UnkStruct_ov62_02239DA4) - (sizeof(UnkStruct_ov62_02239DA4_sub1)));
+    param3->unk_198.unk_00 = SaveData_CalculateChecksum(param0, param3, sizeof(UnkStruct_ov62_02239DA4) - (sizeof(UnkStruct_ov62_02239DA4_sub1)));
 }
 
 void ov61_0222AF88 (SaveData * param0, UnkStruct_ov62_02239DA4 * param1, int param2)
 {
     param1->unk_177 = param2;
-    param1->unk_198.unk_00 = sub_0202486C(param0, param1, sizeof(UnkStruct_ov62_02239DA4) - (sizeof(UnkStruct_ov62_02239DA4_sub1)));
+    param1->unk_198.unk_00 = SaveData_CalculateChecksum(param0, param1, sizeof(UnkStruct_ov62_02239DA4) - (sizeof(UnkStruct_ov62_02239DA4_sub1)));
 }
 
 void ov61_0222AFA4 (SaveData * param0, const UnkStruct_02030A80 * param1, UnkStruct_ov61_0222AFC0 * param2)

@@ -56,7 +56,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
@@ -1457,7 +1457,7 @@ static void sub_0203BF6C (UnkStruct_020508D4 * param0)
     UnkStruct_0203CDB0 * v1 = sub_02050A60(param0);
     UnkStruct_0203BF6C * v2;
 
-    if (sub_020247E0(v1->unk_0C)) {
+    if (SaveData_OverwriteCheck(v1->unk_0C)) {
         sub_0203E8E0(param0, 2034, NULL, NULL);
     } else {
         v0->unk_25C = Heap_AllocFromHeap(32, sizeof(UnkStruct_0203BF6C));
@@ -1476,7 +1476,7 @@ static void sub_0203BFC0 (UnkStruct_020508D4 * param0)
     UnkStruct_020708E0 * v1 = sub_02050A64(param0);
     UnkStruct_0203BF6C * v2 = v1->unk_25C;
 
-    if (sub_020247E0(v0->unk_0C)) {
+    if (SaveData_OverwriteCheck(v0->unk_0C)) {
         v1->unk_2A = 0;
     } else {
         if (v2->unk_04 == 0) {

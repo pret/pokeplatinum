@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 u16 sub_02049D08(u16 param0);
 BOOL sub_02049EC4(u16 param0, SaveData * param1, u8 param2);

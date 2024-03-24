@@ -8,7 +8,7 @@
 #include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_020619DC.h"

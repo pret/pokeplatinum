@@ -2,12 +2,12 @@
 #include <string.h>
 
 #include "struct_decls/struct_0203068C_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "heap.h"
 #include "savedata/save_table.h"
 #include "constants/species.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0203061C.h"
 #include "unk_02030880.h"
 
@@ -51,7 +51,7 @@ int sub_020308A8 (SaveData * param0, BattleFrontierStage * param1)
     int v0;
 
     v0 = SaveData_SaveBattleFrontierStage(param0, param1);
-    v0 |= sub_020246E0(param0);
+    v0 |= SaveData_Save(param0);
 
     return v0;
 }

@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0202783C_decl.h"
 #include "struct_decls/struct_02027854_decl.h"
 #include "struct_decls/struct_02027860_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 int MiscSaveBlock_SaveSize(void);
 void MiscSaveBlock_Init(UnkStruct_0202783C * param0);

@@ -1,14 +1,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0202CA1C.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0202CA64.h"
 #include "struct_defs/struct_0202CA88.h"
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202C9F4.h"
 
 int BallSeal_SaveSize (void)
@@ -33,7 +33,7 @@ UnkStruct_0202CA1C * sub_0202CA1C (SaveData * param0)
 {
     UnkStruct_0202CA1C * v0 = NULL;
 
-    v0 = SaveData_Get(param0, 21);
+    v0 = SaveData_SaveTable(param0, 21);
     return v0;
 }
 

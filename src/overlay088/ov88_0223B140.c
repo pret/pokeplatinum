@@ -21,7 +21,7 @@
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "constdata/const_020F410C.h"
 

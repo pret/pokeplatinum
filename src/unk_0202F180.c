@@ -3,7 +3,7 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "pokemon.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "unk_0202631C.h"
 #include "unk_0202CD50.h"

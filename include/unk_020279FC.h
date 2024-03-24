@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_020279FC_H
 
 #include "struct_defs/options.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 Options * sub_020279FC(u32 param0);
 void sub_02027A10(const Options * param0, Options * param1);

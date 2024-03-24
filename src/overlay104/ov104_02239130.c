@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0202440C_decl.h"
 #include "pokemon.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 #include "overlay104/struct_ov104_0222E930_decl.h"
 
 #include "constdata/const_020EA358.h"

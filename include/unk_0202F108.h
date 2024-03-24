@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_0202F108_H
 
 #include "struct_defs/struct_0202F10C.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 int Contest_SaveSize(void);
 void Contest_Init(UnkStruct_0202F10C * param0);

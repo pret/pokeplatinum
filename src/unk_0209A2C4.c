@@ -8,7 +8,7 @@
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -30,7 +30,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 
 FS_EXTERN_OVERLAY(overlay97);
 
@@ -239,7 +239,7 @@ static BOOL sub_0209A544 (UnkStruct_0209A3D0 * param0)
     switch (param0->unk_04) {
     case 0:
     {
-        param0->unk_3C = sub_020247BC(param0->unk_34);
+        param0->unk_3C = SaveData_LoadCheckStatus(param0->unk_34);
 
         if (param0->unk_3C == 0) {
             param0->unk_04 = 6;

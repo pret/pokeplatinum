@@ -4,7 +4,7 @@
 #include "savedata/save_table.h"
 
 #include "unk_02014D38.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"
 #include "unk_0202602C.h"
@@ -91,23 +91,23 @@ const int gSaveTableSize = NELEMS(gSaveTable);
 TVBroadcast* SaveData_TVBroadcast(SaveData *save)
 {
     SaveData_CRC(SAVE_TABLE_ENTRY_TV_BROADCAST);
-    return SaveData_Get(save, SAVE_TABLE_ENTRY_TV_BROADCAST);
+    return SaveData_SaveTable(save, SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
 PCBoxes* SaveData_PCBoxes(SaveData *save)
 {
-    return SaveData_Get(save, SAVE_TABLE_ENTRY_PC_BOXES);
+    return SaveData_SaveTable(save, SAVE_TABLE_ENTRY_PC_BOXES);
 }
 
 MysteryGift* SaveData_MysteryGift(SaveData *save)
 {
     SaveData_CRC(SAVE_TABLE_ENTRY_MYSTERY_GIFT);
-    return SaveData_Get(save, SAVE_TABLE_ENTRY_MYSTERY_GIFT);
+    return SaveData_SaveTable(save, SAVE_TABLE_ENTRY_MYSTERY_GIFT);
 }
 
 PalParkTransfer* SaveData_PalParkTransfer(SaveData *save)
 {
-    return SaveData_Get(save, SAVE_TABLE_ENTRY_PAL_PARK_TRANSFER);
+    return SaveData_SaveTable(save, SAVE_TABLE_ENTRY_PAL_PARK_TRANSFER);
 }
 
 const SaveTableEntry gExtraSaveTable[] = {

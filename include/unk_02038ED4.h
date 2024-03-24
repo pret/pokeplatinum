@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02038ED4_H
 #define POKEPLATINUM_UNK_02038ED4_H
 
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 void sub_02038ED4(int * param0);
 int sub_02038EDC(SaveData * param0, int param1, int * param2);

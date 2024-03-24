@@ -5,7 +5,7 @@
 #include "pokemon.h"
 #include "struct_defs/pokemon_summary_app.h"
 #include "struct_defs/pokemon_summary.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 BOOL PokemonSummary_ShowContestData(SaveData * param0);
 void PokemonSummary_FlagVisiblePages(PokemonSummary * param0, const u8 * param1);

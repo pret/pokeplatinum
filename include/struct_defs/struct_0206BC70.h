@@ -5,7 +5,7 @@
 #include "struct_defs/options.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0202D764_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include <dwc.h>
 

@@ -1,9 +1,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02030EA4.h"
 
 typedef struct UnkStruct_02030EC4_t {
@@ -26,7 +26,7 @@ UnkStruct_02030EC4 * sub_02030EC4 (SaveData * param0)
 {
     UnkStruct_02030EC4 * v0;
 
-    v0 = SaveData_Get(param0, 36);
+    v0 = SaveData_SaveTable(param0, 36);
     return v0;
 }
 

@@ -26,7 +26,7 @@
 #include "struct_decls/struct_02095E80_decl.h"
 #include "struct_defs/struct_02095E80_sub1.h"
 #include "struct_defs/pokemon_summary.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay088/struct_ov88_0223C370.h"
 #include "overlay088/struct_ov88_0223C8AC.h"

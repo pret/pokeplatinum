@@ -1,11 +1,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 #include "struct_defs/struct_02055BA8.h"
 
 #include "rtc.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025CB0.h"
 
 typedef struct UnkStruct_02025CCC_t {
@@ -33,7 +33,7 @@ void SystemData_Init (UnkStruct_02025CCC * param0)
 
 UnkStruct_02025CCC * sub_02025CCC (SaveData * param0)
 {
-    return SaveData_Get(param0, 0);
+    return SaveData_SaveTable(param0, 0);
 }
 
 UnkStruct_02055BA8 * sub_02025CD8 (SaveData * param0)

@@ -3,7 +3,7 @@
 
 #include "struct_defs/struct_0202A93C.h"
 #include "struct_decls/struct_0202AB28_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 typedef enum {
     POFFIN_ATTRIBUTEID_FLAVOR,

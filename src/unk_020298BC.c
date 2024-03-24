@@ -5,7 +5,7 @@
 
 #include "strbuf.h"
 #include "pokemon.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_020298D8.h"
@@ -18,7 +18,7 @@
 #include "unk_02015064.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_020298BC.h"
 #include "pokemon.h"
 #include "overlay022/ov22_02259098.h"
@@ -988,7 +988,7 @@ UnkStruct_0202A750 * sub_0202A750 (SaveData * param0)
 {
     UnkStruct_0202A750 * v0 = NULL;
 
-    v0 = SaveData_Get(param0, 14);
+    v0 = SaveData_SaveTable(param0, 14);
     return v0;
 }
 

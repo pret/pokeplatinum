@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/pokemon_summary.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 typedef struct {
     SaveData * unk_00;

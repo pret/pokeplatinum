@@ -2,10 +2,10 @@
 #include <string.h>
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "unk_0201D15C.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202631C.h"
 #include "unk_0202CD50.h"
 
@@ -39,7 +39,7 @@ void GameRecord_Init (UnkStruct_0202CD88 * param0)
 
 UnkStruct_0202CD88 * sub_0202CD88 (SaveData * param0)
 {
-    return SaveData_Get(param0, 20);
+    return SaveData_SaveTable(param0, 20);
 }
 
 static void sub_0202CD94 (UnkStruct_0202CD88 * param0, int param1)

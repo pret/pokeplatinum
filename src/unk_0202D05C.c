@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "message.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_0202D060.h"
@@ -26,7 +26,7 @@
 #include "message.h"
 #include "unk_02014A84.h"
 #include "heap.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202D05C.h"
 
 int sub_0202D05C (void)
@@ -376,13 +376,13 @@ u32 sub_0202D474 (UnkStruct_0202D750 * param0)
 
 void sub_0202D478 (SaveData * param0, int param1, Sentence * param2)
 {
-    UnkStruct_0203068C * v0 = SaveData_Get(param0, 23);
+    UnkStruct_0203068C * v0 = SaveData_SaveTable(param0, 23);
     sub_02014CC0(&(v0->unk_950.unk_168.unk_00[param1]), param2);
 }
 
 Sentence * sub_0202D498 (SaveData * param0, int param1)
 {
-    UnkStruct_0203068C * v0 = SaveData_Get(param0, 23);
+    UnkStruct_0203068C * v0 = SaveData_SaveTable(param0, 23);
 
     return &(v0->unk_950.unk_168.unk_00[param1]);
 }
@@ -546,18 +546,18 @@ UnkStruct_ov90_021D1750 * sub_0202D71C (UnkStruct_0202D764 * param0, int param1)
 
 UnkStruct_0202D060 * sub_0202D740 (SaveData * param0)
 {
-    UnkStruct_0203068C * v0 = SaveData_Get(param0, 23);
+    UnkStruct_0203068C * v0 = SaveData_SaveTable(param0, 23);
     return &v0->unk_8E0_val1;
 }
 
 UnkStruct_0202D750 * sub_0202D750 (SaveData * param0)
 {
-    UnkStruct_0203068C * v0 = SaveData_Get(param0, 23);
+    UnkStruct_0203068C * v0 = SaveData_SaveTable(param0, 23);
     return &v0->unk_950.unk_00;
 }
 
 UnkStruct_0202D764 * sub_0202D764 (SaveData * param0)
 {
-    UnkStruct_0203068C * v0 = SaveData_Get(param0, 23);
+    UnkStruct_0203068C * v0 = SaveData_SaveTable(param0, 23);
     return &v0->unk_950.unk_188;
 }

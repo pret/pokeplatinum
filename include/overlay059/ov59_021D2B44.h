@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0202E794_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 u32 ov59_021D2B44(const SaveData * param0);
 u32 ov59_021D2B4C(const SaveData * param0);

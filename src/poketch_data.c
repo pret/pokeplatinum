@@ -2,9 +2,9 @@
 #include <string.h>
 
 #include "pokemon.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "poketch_data.h"
 #include "pokemon_icon.h"
 #include "savedata/save_table.h"
@@ -307,5 +307,5 @@ u32 sub_02056AFC (const PoketchData *poketchData, int param1)
 
 PoketchData* SaveData_PoketchData(SaveData *saveData)
 {
-    return SaveData_Get(saveData, SAVE_TABLE_ENTRY_POKETCH);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_POKETCH);
 }

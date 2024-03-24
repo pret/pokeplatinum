@@ -11,7 +11,7 @@
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 typedef struct {
     UnkStruct_0203CDB0 * unk_00;

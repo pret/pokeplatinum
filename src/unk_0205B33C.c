@@ -8,7 +8,7 @@
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0205B43C_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "constdata/const_020ED570.h"
 

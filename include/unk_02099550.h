@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02099550_H
 #define POKEPLATINUM_UNK_02099550_H
 
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 void sub_02099550(void);
 void sub_02099560(void);
