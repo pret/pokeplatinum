@@ -29,8 +29,8 @@ enum PoketchAppID {
     POKETCH_APPID_KITCHENTIMER,
     POKETCH_APPID_COLORCHANGER,
     POKETCH_APPID_MATCHUPCHECKER,
-    POKETCH_APPID_STOPWATCH,            // unused: https://tcrf.net/Pok%C3%A9mon_Platinum#Unused_Pok.C3.A9tch_Apps 
-    POKETCH_APPID_ALARMCLOCK,           // unused per above
+    POKETCH_APPID_STOPWATCH,            // unused
+    POKETCH_APPID_ALARMCLOCK,           // unused
 
     POKETCH_APPID_MAX
 };
