@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0202F264.h"
 #include "struct_defs/struct_0202F298.h"
@@ -16,7 +16,7 @@
 #include "heap.h"
 #include "strbuf.h"
 #include "savedata/save_table.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202F1D4.h"
 #include "pokemon.h"
 #include "party.h"
@@ -117,7 +117,7 @@ int ov62_02248598 (SaveData * param0, int param1, u8 param2, u16 * param3, u16 *
             Unk_021C07A4->unk_84.unk_27 = param2;
 
             Unk_021C07A4->unk_84.unk_48 = 0xe281;
-            Unk_021C07A4->unk_84.unk_60.unk_00 = sub_0202486C(param0, &Unk_021C07A4->unk_84, sizeof(UnkStruct_0202F41C) - (sizeof(UnkStruct_0202F298_sub1)) - (sizeof(u64)));
+            Unk_021C07A4->unk_84.unk_60.unk_00 = SaveData_CalculateChecksum(param0, &Unk_021C07A4->unk_84, sizeof(UnkStruct_0202F41C) - (sizeof(UnkStruct_0202F298_sub1)) - (sizeof(u64)));
         }
 
         sub_0202F858(&Unk_021C07A4->unk_E8, sizeof(UnkStruct_0202F298) - (sizeof(UnkStruct_0202F298_sub1)), Unk_021C07A4->unk_E8.unk_1BEC.unk_00 + ((Unk_021C07A4->unk_E8.unk_1BEC.unk_00 ^ 0xffff) << 16));
@@ -164,7 +164,7 @@ int ov62_022486A4 (SaveData * param0, int param1)
 
     Unk_021C07A4->unk_84.unk_27 = 1;
     Unk_021C07A4->unk_84.unk_48 = 0xe281;
-    Unk_021C07A4->unk_84.unk_60.unk_00 = sub_0202486C(param0, &Unk_021C07A4->unk_84, sizeof(UnkStruct_0202F41C) - (sizeof(UnkStruct_0202F298_sub1)) - (sizeof(u64)));
+    Unk_021C07A4->unk_84.unk_60.unk_00 = SaveData_CalculateChecksum(param0, &Unk_021C07A4->unk_84, sizeof(UnkStruct_0202F41C) - (sizeof(UnkStruct_0202F298_sub1)) - (sizeof(u64)));
 
     sub_0202F858(&Unk_021C07A4->unk_E8, sizeof(UnkStruct_0202F298) - (sizeof(UnkStruct_0202F298_sub1)), Unk_021C07A4->unk_E8.unk_1BEC.unk_00 + ((Unk_021C07A4->unk_E8.unk_1BEC.unk_00 ^ 0xffff) << 16));
     ResetLock(8);
@@ -172,7 +172,7 @@ int ov62_022486A4 (SaveData * param0, int param1)
     v0 = SaveData_SaveBattleRecording(param0, Unk_021C07A4, param1);
 
     if (v0 == 2) {
-        v0 = sub_020246E0(param0);
+        v0 = SaveData_Save(param0);
     }
 
     ResetUnlock(8);

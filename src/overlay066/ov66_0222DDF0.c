@@ -19,7 +19,7 @@
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207E060_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 #include "overlay066/struct_ov66_0223177C_decl.h"
 
 #include "struct_defs/struct_02055BA8.h"
@@ -52,7 +52,7 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
@@ -2419,14 +2419,14 @@ static void ov66_0222F964 (UnkStruct_ov66_0222DFF8 * param0)
 
 static void ov66_0222F9EC (UnkStruct_ov66_0222F6C4 * param0, const SaveData * param1)
 {
-    param0->unk_B4 = sub_0202486C(param1, &param0->unk_20, sizeof(UnkStruct_ov66_0222E71C));
+    param0->unk_B4 = SaveData_CalculateChecksum(param1, &param0->unk_20, sizeof(UnkStruct_ov66_0222E71C));
 }
 
 static BOOL ov66_0222FA04 (const UnkStruct_ov66_0222F6C4 * param0, const SaveData * param1)
 {
     u32 v0;
 
-    v0 = sub_0202486C(param1, &param0->unk_20, sizeof(UnkStruct_ov66_0222E71C));
+    v0 = SaveData_CalculateChecksum(param1, &param0->unk_20, sizeof(UnkStruct_ov66_0222E71C));
 
     if (v0 != param0->unk_B4) {
         GF_ASSERT(0);
@@ -3717,14 +3717,14 @@ static s32 ov66_02230BA4 (UnkStruct_ov66_02230A6C * param0, u32 param1)
 
 static void ov66_02230BCC (UnkStruct_ov66_02230A6C * param0)
 {
-    param0->unk_48 = sub_0202486C(param0->unk_44, param0, (sizeof(UnkStruct_ov66_02230A6C) - 8));
+    param0->unk_48 = SaveData_CalculateChecksum(param0->unk_44, param0, (sizeof(UnkStruct_ov66_02230A6C) - 8));
 }
 
 static void ov66_02230BE0 (UnkStruct_ov66_02230A6C * param0)
 {
     u32 v0;
 
-    v0 = sub_0202486C(param0->unk_44, param0, (sizeof(UnkStruct_ov66_02230A6C) - 8));
+    v0 = SaveData_CalculateChecksum(param0->unk_44, param0, (sizeof(UnkStruct_ov66_02230A6C) - 8));
 
     if (v0 != param0->unk_48) {
         GF_ASSERT(0);

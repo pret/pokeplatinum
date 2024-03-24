@@ -30,7 +30,7 @@
 #include "gx_layers.h"
 #include "strbuf.h"
 #include "savedata/save_table.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_020279FC.h"
 #include "unk_0202B604.h"
 #include "unk_0202CC64.h"
@@ -1162,7 +1162,7 @@ static int ov94_02243974 (UnkStruct_ov94_0223FD4C * param0)
 
 static int ov94_02243990 (UnkStruct_ov94_0223FD4C * param0)
 {
-    sub_02024804();
+    SaveData_SetFullSaveRequired();
     sub_02024814(param0->unk_00->unk_20, 2);
 
     param0->unk_2C = 31;
@@ -1203,7 +1203,7 @@ static int ov94_02243A04 (UnkStruct_ov94_0223FD4C * param0)
 
 static int ov94_02243A28 (UnkStruct_ov94_0223FD4C * param0)
 {
-    sub_02024804();
+    SaveData_SetFullSaveRequired();
     sub_02024814(param0->unk_00->unk_20, 2);
 
     param0->unk_2C = 35;

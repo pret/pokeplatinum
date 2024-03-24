@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "trainer_info.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0202440C.h"
 #include "struct_defs/struct_0202E768.h"
@@ -11,7 +11,7 @@
 #include "unk_020021B0.h"
 #include "heap.h"
 #include "savedata/save_table.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_020329E0.h"

@@ -3,7 +3,7 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/options.h"
 

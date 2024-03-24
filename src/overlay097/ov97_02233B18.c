@@ -16,7 +16,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_02024440_decl.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "overlay077/const_ov77_021D742C.h"
 
@@ -66,7 +66,7 @@
 #include "unk_02022594.h"
 #include "strbuf.h"
 #include "savedata/save_table.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 #include "unk_0202EEC0.h"
@@ -383,7 +383,7 @@ static void ov97_02233CE4 (UnkStruct_ov97_02234A2C * param0)
     sub_0202EFB8(v0, ov97_0223635C());
     ResetLock(4);
 
-    v1 = sub_020246E0(param0->unk_10);
+    v1 = SaveData_Save(param0->unk_10);
     ResetUnlock(4);
 }
 

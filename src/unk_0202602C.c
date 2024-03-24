@@ -3,14 +3,14 @@
 
 #include "strbuf.h"
 #include "struct_decls/struct_02026030_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_02026030_t.h"
 #include "struct_defs/struct_0202610C.h"
 #include "struct_defs/struct_02026030_t.h"
 
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202602C.h"
 
 int sub_0202602C (void)
@@ -105,7 +105,7 @@ UnkStruct_0202610C * sub_0202610C (SaveData * param0, int param1)
     UnkStruct_02026030 * v0 = NULL;
 
     GF_ASSERT(param1 < 1);
-    v0 = SaveData_Get(param0, 13);
+    v0 = SaveData_SaveTable(param0, 13);
 
     if (sub_02026074(&v0->unk_00[param1], 1) != 0) {
         return &v0->unk_00[param1];
@@ -118,6 +118,6 @@ void sub_0202613C (SaveData * param0, const UnkStruct_0202610C * param1)
 {
     UnkStruct_02026030 * v0 = NULL;
 
-    v0 = SaveData_Get(param0, 13);
+    v0 = SaveData_SaveTable(param0, 13);
     sub_02026034(param1, &v0->unk_00[0]);
 }

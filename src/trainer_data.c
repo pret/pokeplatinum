@@ -8,7 +8,7 @@
 #include "data/trainer_class_genders.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 #include "struct_defs/trainer_data.h"
 #include "overlay006/battle_params.h"
 

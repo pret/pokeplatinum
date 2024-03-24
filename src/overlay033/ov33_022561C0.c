@@ -14,7 +14,7 @@
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_02022594.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "party.h"
@@ -75,7 +75,7 @@ static BOOL ov33_0225621C (UnkStruct_ov33_0225621C * param0, UnkStruct_ov25_0225
         param0->unk_60 = param1;
 
         {
-            Party * v0 = Party_GetFromSavedata(sub_020245A4());
+            Party * v0 = Party_GetFromSavedata(SaveData_Ptr());
             Pokemon * v1;
             int v2;
             int v3;

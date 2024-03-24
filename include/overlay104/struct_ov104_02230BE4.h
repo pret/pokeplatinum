@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_decls/struct_0207D99C_decl.h"
 #include "struct_defs/struct_0209C370.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 typedef struct {
     void * unk_00;

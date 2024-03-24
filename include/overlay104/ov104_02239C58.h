@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0209B75C_decl.h"
 #include "struct_defs/struct_0209BBA4.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 UnkStruct_0209BBA4 * ov104_02239C58(SaveData * param0);
 void ov104_02239C7C(UnkStruct_0209BBA4 * param0);

@@ -23,7 +23,7 @@
 #include "unk_02014A84.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "trainer_info.h"
 #include "unk_02027F84.h"
 #include "unk_020366A0.h"
@@ -67,7 +67,7 @@ UnkStruct_0205C22C * sub_0205C22C (UnkStruct_0205B43C * param0)
     v0->unk_47C = 1;
     v0->unk_04 = SysTask_Start(sub_0205C304, v0, 11);
     v0->unk_470 = sub_0205B770(param0);
-    v0->unk_474 = SaveData_Get(v0->unk_470->unk_0C, 9);
+    v0->unk_474 = SaveData_SaveTable(v0->unk_470->unk_0C, 9);
     v0->unk_08 = v0->unk_470->unk_3C;
 
     Heap_CreateAtEnd(11, 89, 10000);

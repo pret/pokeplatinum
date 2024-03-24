@@ -1,13 +1,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_02027F8C.h"
 
 #include "unk_020021B0.h"
 #include "heap.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02027F84.h"
 
 int PalPad_SaveSize (void)
@@ -17,7 +17,7 @@ int PalPad_SaveSize (void)
 
 UnkStruct_02027F8C * sub_02027F8C (SaveData * param0)
 {
-    return SaveData_Get(param0, 9);
+    return SaveData_SaveTable(param0, 9);
 }
 
 void PalPad_Init (UnkStruct_02027F8C * param0)

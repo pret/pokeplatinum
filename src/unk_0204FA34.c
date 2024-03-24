@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0203026C_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0204F3D0.h"
 

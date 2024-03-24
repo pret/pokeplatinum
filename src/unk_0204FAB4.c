@@ -7,7 +7,7 @@
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "constdata/const_020F1E88.h"
 #include "constdata/const_020F410C.h"

@@ -33,7 +33,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025CB0.h"
 #include "unk_020279FC.h"
 #include "unk_0202D05C.h"

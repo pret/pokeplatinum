@@ -6,7 +6,7 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_02093800.h"
 #include "struct_defs/struct_02095C48.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 void sub_020933F8(UnkStruct_020508D4 * param0, UnkStruct_02095C48 * param1);
 UnkStruct_02095C48 * sub_02093800(const UnkStruct_02093800 * param0);

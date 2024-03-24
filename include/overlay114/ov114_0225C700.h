@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_020218BC_decl.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 #include "overlay066/struct_ov66_02230DBC.h"
 #include "overlay114/struct_ov114_0225C76C.h"
 #include "overlay114/struct_ov114_0225C9A8.h"

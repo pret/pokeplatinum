@@ -18,7 +18,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_0202442C_decl.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02013A04_t.h"
@@ -54,7 +54,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "savedata/save_table.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_020279FC.h"
@@ -403,7 +403,7 @@ static int ov97_02230778 (UnkStruct_020067E8 * param0)
         sub_0202DCB8(v0->unk_2C00, v0->unk_2C20);
     }
 
-    sub_020246E0(v0->unk_2C04);
+    SaveData_Save(v0->unk_2C04);
     DeleteWaitDial(v0->unk_3E14);
 
     if (sub_0202DD88(v0->unk_2C00) == 0) {

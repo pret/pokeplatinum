@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_02030880_H
 
 #include "struct_decls/struct_020308A0_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 int Frontier_Extra_SaveSize(void);
 void Frontier_Extra_Init(BattleFrontierStage * param0);

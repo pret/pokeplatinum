@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202442C_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_02099F80.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
@@ -13,7 +13,7 @@
 #include "unk_02018340.h"
 #include "gx_layers.h"
 #include "savedata/save_table.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202DAB4.h"
 #include "overlay097/ov97_02232054.h"
 
@@ -142,7 +142,7 @@ int ov97_02232148 (SaveData * param0, UnkStruct_ov97_0223829C * param1)
 
     if ((v0 == 0xFFFFFFFF) && (param1->unk_00.unk_4C == 0xFFFF)) {
         MysteryGift_Init(v1);
-        sub_02024760(param0, 0);
+        SaveData_SaveBlock(param0, 0);
 
         OS_ResetSystem(0);
     }

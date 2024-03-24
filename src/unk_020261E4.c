@@ -1,12 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0202818C.h"
 #include "pokemon.h"
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_020261E4.h"
 #include "pokemon.h"
 
@@ -156,6 +156,6 @@ UnkStruct_02026310 * sub_02026310 (SaveData * param0)
 {
     UnkStruct_02026310 * v0;
 
-    v0 = SaveData_Get(param0, 8);
+    v0 = SaveData_SaveTable(param0, 8);
     return v0;
 }

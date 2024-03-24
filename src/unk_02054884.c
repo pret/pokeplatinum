@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_party_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "unk_02017038.h"
 #include "heap.h"

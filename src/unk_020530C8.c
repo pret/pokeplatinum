@@ -33,7 +33,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_020277A4.h"
@@ -1204,7 +1204,7 @@ BOOL sub_02054084 (UnkStruct_020508D4 * param0)
         }
         break;
     case 3:
-        if (sub_020247E0(v0->unk_0C)) {
+        if (SaveData_OverwriteCheck(v0->unk_0C)) {
             sub_0203E8E0(param0, 2034, NULL, NULL);
         } else {
             sub_020287E0(v0->unk_0C);
@@ -1217,7 +1217,7 @@ BOOL sub_02054084 (UnkStruct_020508D4 * param0)
         v1->unk_00 = 4;
         break;
     case 4:
-        if (sub_020247E0(v0->unk_0C)) {
+        if (SaveData_OverwriteCheck(v0->unk_0C)) {
             v1->unk_00 = 5;
         } else {
             ov5_021E1F7C(v1->unk_20);

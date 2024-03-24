@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_02027F84_H
 
 #include "struct_decls/struct_02027F8C_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 int PalPad_SaveSize(void);
 UnkStruct_02027F8C * sub_02027F8C(SaveData * param0);

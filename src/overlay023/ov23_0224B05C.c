@@ -14,7 +14,7 @@
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 #include "overlay005/struct_ov5_021E1890_decl.h"
 
 #include "struct_defs/struct_02013A04_t.h"

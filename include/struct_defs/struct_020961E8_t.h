@@ -16,7 +16,7 @@
 #include "struct_defs/struct_0203DE34.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_020961E8_sub1.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay059/struct_ov59_021D109C.h"
 #include "overlay059/struct_ov59_021D30E0.h"

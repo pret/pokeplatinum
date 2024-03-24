@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0202DA40_decl.h"
 #include "pokemon.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 UnkStruct_0202DA40 * sub_0202DA40(SaveData * param0);
 int  GlobalTrade_SaveSize(void);

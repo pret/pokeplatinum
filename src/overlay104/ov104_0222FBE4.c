@@ -71,7 +71,7 @@
 #include "unk_0201D670.h"
 #include "strbuf.h"
 #include "savedata/save_table.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_0202ACE0.h"
@@ -1715,7 +1715,7 @@ static BOOL ov104_02230BE4 (UnkStruct_ov104_0222E930 * param0)
     UnkStruct_ov104_02230BE4 * v0 = sub_0209B970(param0->unk_00->unk_00);
     u16 * v1 = ov104_0222FBE4(param0);
 
-    if (sub_020246E0(v0->unk_08) == 2) {
+    if (SaveData_Save(v0->unk_08) == 2) {
         (void)0;
     } else {
         (void)0;

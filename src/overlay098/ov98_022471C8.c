@@ -51,7 +51,7 @@
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
@@ -2123,7 +2123,7 @@ static int ov98_02249238 (UnkStruct_ov98_02247704 * param0)
     {
         int v0;
 
-        v0 = sub_020246E0(param0->unk_00->unk_04);
+        v0 = SaveData_Save(param0->unk_00->unk_04);
 
         if (v0 == 2) {
             sub_0200B498(param0->unk_20, 0, sub_02025E38(param0->unk_00->unk_04));

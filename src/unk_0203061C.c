@@ -1,12 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0203068C.h"
 #include "struct_defs/struct_02030698.h"
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202D05C.h"
 #include "unk_0202FF4C.h"
 #include "unk_02030108.h"
@@ -36,7 +36,7 @@ void Frontier_Init (UnkStruct_0203068C * param0)
 
 UnkStruct_0203068C * sub_0203068C (SaveData * param0)
 {
-    return SaveData_Get(param0, 23);
+    return SaveData_SaveTable(param0, 23);
 }
 
 u16 sub_02030698 (UnkStruct_0203068C * param0, int param1, int param2)

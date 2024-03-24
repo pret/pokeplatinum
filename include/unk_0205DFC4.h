@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 u16 sub_0205DFC4(u32 param0);
 u16 sub_0205E060(u16 param0);

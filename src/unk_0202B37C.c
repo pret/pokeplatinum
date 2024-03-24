@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "strbuf.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0202B4A0.h"
 #include "struct_defs/struct_0202B510.h"
@@ -10,7 +10,7 @@
 #include "unk_020021B0.h"
 #include "unk_0201D15C.h"
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202B37C.h"
 
 UnkStruct_0202B4A0 * Unk_021C079C;
@@ -110,7 +110,7 @@ void sub_0202B494 (UnkStruct_0202B4A0 * param0, int param1, int param2)
 
 UnkStruct_0202B4A0 * sub_0202B4A0 (SaveData * param0)
 {
-    return (UnkStruct_0202B4A0 *)SaveData_Get(param0, 17);
+    return (UnkStruct_0202B4A0 *)SaveData_SaveTable(param0, 17);
 }
 
 BOOL sub_0202B4AC (const UnkStruct_0202B4A0 * param0, int param1)

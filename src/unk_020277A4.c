@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "strbuf.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_02027854.h"
@@ -11,7 +11,7 @@
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_020277A4.h"
 #include "unk_02027B70.h"
 #include "unk_02027F50.h"
@@ -72,19 +72,19 @@ void MiscSaveBlock_Init (UnkStruct_0202783C * param0)
 
 UnkStruct_0202783C * sub_0202783C (SaveData * param0)
 {
-    return SaveData_Get(param0, 10);
+    return SaveData_SaveTable(param0, 10);
 }
 
 const UnkStruct_0202783C * Save_MiscRO (const SaveData * param0)
 {
-    return sub_020245E0(param0, 10);
+    return SaveData_SaveTableConst(param0, 10);
 }
 
 UnkStruct_02027854 * sub_02027854 (SaveData * param0)
 {
     UnkStruct_0202783C * v0;
 
-    v0 = SaveData_Get(param0, 10);
+    v0 = SaveData_SaveTable(param0, 10);
     return v0->unk_00;
 }
 
@@ -92,7 +92,7 @@ UnkStruct_02027860 * sub_02027860 (SaveData * param0)
 {
     UnkStruct_0202783C * v0;
 
-    v0 = SaveData_Get(param0, 10);
+    v0 = SaveData_SaveTable(param0, 10);
     return &v0->unk_680;
 }
 

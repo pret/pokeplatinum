@@ -18,7 +18,7 @@
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 #include "overlay007/struct_ov7_0224BEFC_decl.h"
 
 #include "constdata/const_020F410C.h"
@@ -73,7 +73,7 @@
 #include "unk_0201D15C.h"
 #include "strbuf.h"
 #include "savedata/save_table.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
@@ -995,7 +995,7 @@ static void sub_0203DB38 (UnkStruct_ov88_0223C370 * param0, UnkStruct_0203CDB0 *
 {
     param0->unk_04 = sub_02025E38(param1->unk_0C);
     param0->unk_08 = Party_GetFromSavedata(param1->unk_0C);
-    param0->unk_0C = SaveData_Get(param1->unk_0C, 9);
+    param0->unk_0C = SaveData_SaveTable(param1->unk_0C, 9);
     param0->unk_14 = sub_0202C878(param1->unk_0C);
     param0->unk_18 = sub_02025E44(param1->unk_0C);
     param0->unk_24 = sub_02027560(param1->unk_0C);
@@ -1396,7 +1396,7 @@ void sub_0203E0FC (UnkStruct_0203CDB0 * param0, int param1)
 
     v0->unk_00 = sub_0202DA40(param0->unk_0C);
     v0->unk_04 = sub_02025CCC(param0->unk_0C);
-    v0->unk_08 = SaveData_Get(param0->unk_0C, 2);
+    v0->unk_08 = SaveData_SaveTable(param0->unk_0C, 2);
     v0->unk_0C = SaveData_PCBoxes(param0->unk_0C);
     v0->unk_10 = sub_02027560(param0->unk_0C);
     v0->unk_14 = sub_0202B370(param0->unk_0C);

@@ -2,14 +2,14 @@
 #include <string.h>
 
 #include "struct_decls/struct_02026030_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_02026030_t.h"
 #include "struct_defs/struct_0202610C.h"
 #include "struct_defs/struct_02026030_t.h"
 
 #include "message.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202602C.h"
 #include "unk_02026150.h"
 #include "strbuf.h"
@@ -104,7 +104,7 @@ const UnkStruct_0202610C * sub_02026150 (SaveData * param0, int param1)
         return &Unk_02100880[param1];
     }
 
-    v0 = SaveData_Get(param0, 13);
+    v0 = SaveData_SaveTable(param0, 13);
     return &v0->unk_00[0];
 }
 

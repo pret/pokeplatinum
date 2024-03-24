@@ -3,7 +3,10 @@
 
 enum HeapId {
     HEAP_ID_SYSTEM = 0,
-    
+    HEAP_ID_SAVE,
+    HEAP_ID_DEBUG,
+    HEAP_ID_APPLICATION,
+
     HEAP_ID_BATTLE = 5,
 };
 

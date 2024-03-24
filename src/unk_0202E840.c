@@ -5,7 +5,7 @@
 #include "trainer_info.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0202E858.h"
 #include "struct_defs/struct_0202E8C0.h"
@@ -16,7 +16,7 @@
 #include "unk_020021B0.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_0202B37C.h"
@@ -90,7 +90,7 @@ void Rankings_Init (UnkStruct_0202E8C0 * param0)
 UnkStruct_0202E8C0 * sub_0202E8C0 (SaveData * param0)
 {
     SaveData_CRC(28);
-    return SaveData_Get(param0, 28);
+    return SaveData_SaveTable(param0, 28);
 }
 
 void sub_0202E8D4 (UnkStruct_0202E8C0 * param0, int param1, u8 param2)

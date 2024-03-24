@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_0207CB08_H
 #define POKEPLATINUM_STRUCT_0207CB08_H
 
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 #include "overlay084/struct_ov84_0223BE5C.h"
 
 typedef struct UnkStruct_0207CB08_t {

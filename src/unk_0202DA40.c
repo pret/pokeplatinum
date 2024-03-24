@@ -2,9 +2,9 @@
 #include <string.h>
 
 #include "pokemon.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202DA40.h"
 
 typedef struct UnkStruct_0202DA40_t {
@@ -17,7 +17,7 @@ typedef struct UnkStruct_0202DA40_t {
 
 UnkStruct_0202DA40 * sub_0202DA40 (SaveData * param0)
 {
-    return SaveData_Get(param0, 26);
+    return SaveData_SaveTable(param0, 26);
 }
 
 int GlobalTrade_SaveSize (void)

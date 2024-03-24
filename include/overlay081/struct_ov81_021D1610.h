@@ -8,7 +8,7 @@
 #include "trainer_info.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 typedef struct {
     BGL * unk_00;

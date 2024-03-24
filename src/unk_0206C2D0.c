@@ -4,7 +4,7 @@
 #include "trainer_info.h"
 #include "struct_decls/struct_0202C834_decl.h"
 #include "struct_decls/struct_0202C844_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "unk_02025E08.h"
 #include "trainer_info.h"

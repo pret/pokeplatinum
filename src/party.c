@@ -1,13 +1,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "pokemon.h"
 #include "struct_defs/struct_party.h"
 
 #include "heap.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "pokemon.h"
 #include "party.h"
 
@@ -148,6 +148,6 @@ Party * Party_GetFromSavedata (SaveData * param0)
 {
     Party * v0;
 
-    v0 = (Party *)SaveData_Get(param0, 2);
+    v0 = (Party *)SaveData_SaveTable(param0, 2);
     return v0;
 }

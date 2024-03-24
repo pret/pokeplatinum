@@ -10,7 +10,7 @@
 #include "trainer_info.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0203CDB0.h"

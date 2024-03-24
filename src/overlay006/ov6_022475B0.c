@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "narc.h"
 #include "heap.h"

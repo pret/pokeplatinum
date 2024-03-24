@@ -7,7 +7,7 @@
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_defs/trainer_data.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "enums.h"
 

@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV97_02232054_H
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 #include "overlay097/struct_ov97_0223829C.h"
 
 void ov97_02232054(void);

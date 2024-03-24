@@ -1,11 +1,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 
 #include "struct_defs/struct_0202C878.h"
 
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_0202C858.h"
 
 int WiFiHistory_SaveSize (void)
@@ -22,7 +22,7 @@ void WiFiHistory_Init (UnkStruct_0202C878 * param0)
 UnkStruct_0202C878 * sub_0202C878 (SaveData * param0)
 {
     SaveData_CRC(30);
-    return (UnkStruct_0202C878 *)SaveData_Get(param0, 30);
+    return (UnkStruct_0202C878 *)SaveData_SaveTable(param0, 30);
 }
 
 void sub_0202C88C (UnkStruct_0202C878 * param0, int param1, int param2)

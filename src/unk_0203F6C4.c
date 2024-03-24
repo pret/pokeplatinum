@@ -35,7 +35,7 @@
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_decls/struct_021C0794_decl.h"
+#include "savedata.h"
 #include "overlay005/struct_ov5_021DC1A4_decl.h"
 #include "overlay005/struct_ov5_021E1FF4_decl.h"
 #include "overlay006/struct_ov6_02246204_decl.h"
@@ -85,7 +85,7 @@
 #include "unk_02020020.h"
 #include "strbuf.h"
 #include "savedata/save_table.h"
-#include "unk_020244AC.h"
+#include "savedata.h"
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
@@ -5261,11 +5261,11 @@ static BOOL sub_020434EC (UnkStruct_0203E724 * param0)
     SaveData * v0 = param0->unk_34->unk_0C;
     u16 * v1 = inline_0204FCAC(param0);
 
-    if (sub_020247E0(v0)) {
+    if (SaveData_OverwriteCheck(v0)) {
         *v1 = 0;
-    } else if (sub_020247C0(v0) == 0) {
+    } else if (SaveData_DataExists(v0) == 0) {
         *v1 = 1;
-    } else if (sub_02024800(v0)) {
+    } else if (SaveData_FullSaveRequired(v0)) {
         *v1 = 2;
     } else {
         *v1 = 3;
@@ -7867,7 +7867,7 @@ static BOOL sub_0204616C (UnkStruct_0203E724 * param0)
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
     UnkStruct_ov5_021E1FF4 ** v1 = sub_0203F098(v0, 40);
 
-    if (!sub_020247E0(v0->unk_0C)) {
+    if (!SaveData_OverwriteCheck(v0->unk_0C)) {
         *v1 = ov5_021E1F98(v0, 4, 3);
         ov5_021E1F04(*v1);
     }
@@ -7880,7 +7880,7 @@ static BOOL sub_0204619C (UnkStruct_0203E724 * param0)
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
     UnkStruct_ov5_021E1FF4 ** v1 = sub_0203F098(v0, 40);
 
-    if (!sub_020247E0(v0->unk_0C)) {
+    if (!SaveData_OverwriteCheck(v0->unk_0C)) {
         ov5_021E1F7C(*v1);
         ov5_021E1FF4(*v1);
     }
