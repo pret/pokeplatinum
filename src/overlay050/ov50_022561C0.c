@@ -160,7 +160,7 @@ static void ov50_022562AC (UnkStruct_ov50_02256510_1 * param0, UnkStruct_ov50_02
 
     for (v1 = 0; v1 < (param0->unk_04); v1++) {
         param0->unk_0C[v1].unk_00 = v1 + 1;
-        param0->unk_0C[v1].unk_03 = sub_020569A8(param1->unk_98, param0->unk_00, v1 + 1);
+        param0->unk_0C[v1].unk_03 = PoketchData_CalendarMarked(param1->unk_98, param0->unk_00, v1 + 1);
         param0->unk_0C[v1].unk_02 = v2 + v1;
     }
 }
@@ -252,10 +252,10 @@ static BOOL ov50_02256418 (UnkStruct_ov50_022561D4 * param0)
             if ((param0->unk_A4 >= param0->unk_A8) && (param0->unk_A4 <= param0->unk_AC)) {
                 int v0 = (param0->unk_A4 - param0->unk_A8);
 
-                if (sub_020569A8(param0->unk_98, param0->unk_04.unk_00, v0 + 1)) {
-                    sub_02056970(param0->unk_98, param0->unk_04.unk_00, v0 + 1);
+                if (PoketchData_CalendarMarked(param0->unk_98, param0->unk_04.unk_00, v0 + 1)) {
+                    PoketchData_ClearCalendarMark(param0->unk_98, param0->unk_04.unk_00, v0 + 1);
                 } else {
-                    sub_02056934(param0->unk_98, param0->unk_04.unk_00, v0 + 1);
+                    PoketchData_SetCalendarMark(param0->unk_98, param0->unk_04.unk_00, v0 + 1);
                 }
 
                 param0->unk_04.unk_0C[v0].unk_03 ^= 1;
