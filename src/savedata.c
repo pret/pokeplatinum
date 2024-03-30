@@ -128,8 +128,8 @@ BOOL SaveData_Erase (SaveData *saveData)
     MI_CpuFillFast(saveBuffer, 0xffffffff, SAVE_SECTOR_SIZE);
 
     for (int sectorIndex = 0; sectorIndex < SAVE_PAGE_MAX * 2; sectorIndex++) {
-        sub_02025A9C(SAVE_SECTOR_SIZE * (sectorIndex + 0), saveBuffer, SAVE_SECTOR_SIZE);
-        sub_02025A9C(SAVE_SECTOR_SIZE * (sectorIndex + 64), saveBuffer, SAVE_SECTOR_SIZE);
+        sub_02025A9C(SAVE_SECTOR_SIZE * (sectorIndex + PRIMARY_SECTOR_START), saveBuffer, SAVE_SECTOR_SIZE);
+        sub_02025A9C(SAVE_SECTOR_SIZE * (sectorIndex + BACKUP_SECTOR_START), saveBuffer, SAVE_SECTOR_SIZE);
     }
 
     Heap_FreeToHeap(saveBuffer);
