@@ -95,7 +95,7 @@ static void ov31_02256268 (UnkStruct_ov31_02256228 * param0, UnkStruct_ov31_0225
 {
     PoketchData * v0 = ov25_02254540(param0->unk_1F0);
 
-    if (sub_02056A10(v0)) {
+    if (PoketchData_DotArtModified(v0)) {
         ov31_02256298(param0, param1, v0);
     } else {
         ov31_0225635C(param1);
@@ -116,7 +116,7 @@ static void ov31_02256298 (UnkStruct_ov31_02256228 * param0, UnkStruct_ov31_0225
 {
     int v0, v1, v2;
 
-    sub_02056A18(param2, param0->unk_1F4);
+    PoketchData_DotArtData(param2, param0->unk_1F4);
 
     v2 = 0;
 
@@ -141,7 +141,7 @@ static void ov31_022562EC (UnkStruct_ov31_02256228 * param0, UnkStruct_ov31_0225
         }
     }
 
-    sub_02056A2C(param2, param0->unk_1F4);
+    PoketchData_SetDotArtData(param2, param0->unk_1F4);
 }
 
 static void ov31_0225635C (UnkStruct_ov31_02256554_1 * param0)

@@ -50,19 +50,21 @@ enum PoketchScreenColor {
 };
 
 enum {
-    POKETCH_MAPMARKER_COUNT = 6,
-    POKETCH_REGISTRY_SIZE = 32
+    POKETCH_MAPMARKER_COUNT = 6,        //!< Number of map markers in the Mark Map app
+    POKETCH_POKEMONHISTORY_MAX = 12,    //!< Max number of pokemon that can be displayed in the Pokemon History app
+    POKETCH_REGISTRY_SIZE = 32,         //!< Size of the Poketch Registry.
+    POKETCH_DOTART_SIZE_BYTES = 120     //!< Size of the Dot Art data in bytes (24x20 grid, 2 bits per position)
 };
 
 /**
  * @brief All of the Poketch's internally tracked data including settings, registered apps, and the data for some apps (eg. pedometer, alarm clock).
  */
 typedef struct PoketchData {
-    u8 unk_00_0 : 1;
-    u8 pedometerEnabled : 1;    //!< Whether or not the pedometer is registered and will take step count updates.
-    u8 unk_00_2 : 1;
-    u8 screenColor : 3;         //!< Screen palette color (see PoketchScreenColor enum above)
-    u8 unk_00_6 : 2;            //!< unused; bitfield padding
+    u8 poketchEnabled : 1;
+    u8 pedometerEnabled : 1;        //!< Whether or not the pedometer is registered and will take step count updates.
+    u8 dotArtModifiedByPlayer : 1;  //!< Whether or not the dot art data has ever been modified by the user. This flag can never be set to FALSE.
+    u8 screenColor : 3;             //!< Screen palette color (see PoketchScreenColor enum above)
+    // u8 padding : 2;
 
     s8 appCount;                                //!< Number of currently registered apps
     s8 appIndex;                                //!< Currently selected app
@@ -73,12 +75,12 @@ typedef struct PoketchData {
     u16 alarmSet : 1;      //!< Whether or not the alarm is currently enabled.
     u16 alarmHour : 5;     //!< Current Hour setting on the alarm clock.
     u16 alarmMinute : 6;   //!< Current Minute setting on the alarm clock.
-    u16 unk_28_12 : 4;     //!< unused; bitfield padding
+    // u16 padding : 4;
 
-    u8 unk_2A[120];
+    u8 dotArtData[POKETCH_DOTART_SIZE_BYTES];   //!< All pixel information for the Dot Art app
 
     u32 calendarMarkBitmap;     //!< Bitmap for every day in the calendar month and whether it's been marked
-    u8 calendarMonth;      //!< Current calendar month
+    u8 calendarMonth;           //!< Current calendar month
 
     /**
     * @brief XY coordinates of a single Map Marker in the Marking Map app
@@ -88,11 +90,14 @@ typedef struct PoketchData {
         u8 y;                                       //!< Y coordinate of map marker
     } markMapPositions[POKETCH_MAPMARKER_COUNT];    //!< Map markers
 
+    /**
+    * @brief Relevant data for Pokemon History app
+    */
     struct {
-        u16 unk_00;
-        u16 unk_02;
-        u32 unk_04;
-    } unk_B8[12];
+        u16 species;                                //!< Species ID
+        u16 icon;                                   //!< Icon ID
+        u32 form;                                   //!< Form ID
+    } pokemonHistory[POKETCH_POKEMONHISTORY_MAX];   //!< The (up to) 12 pokemon to display in the Pokemon History app
 } PoketchData;
 
 /**
@@ -109,8 +114,21 @@ int Poketch_SaveSize(void);
  */
 void Poketch_Init(PoketchData *poketchData);
 
-void sub_020567D0(PoketchData *poketchData);
-BOOL sub_020567E0(PoketchData *poketchData);
+/**
+ * Sets the PoketchData's Enabled flag to TRUE.
+ *
+ * @param poketchData:      The PoketchData to update.
+ */
+void PoketchData_SetEnabled(PoketchData *poketchData);
+
+/**
+ * Returns whether or not the given PoketchData is enabled.
+ *
+ * @param poketchData:      The PoketchData to check.
+ * 
+ * @return TRUE if the Enabled flag is set to TRUE, FALSE if FALSE.
+ */
+BOOL PoketchData_Enabled(PoketchData *poketchData);
 
 /**
  * Checks whether or not the given AppID is already registered in the Poketch.
@@ -273,13 +291,70 @@ void PoketchData_SetMapMarker(PoketchData *poketchData, int index, u8 x, u8 y);
  */
 void PoketchData_MapMarkerPos(const PoketchData *poketchData, int index, u8 *x, u8 *y);
 
-BOOL sub_02056A10(const PoketchData *poketchData);
-void sub_02056A18(const PoketchData *poketchData, u8 *param1);
-void sub_02056A2C(PoketchData *poketchData, const u8 *param1);
-void sub_02056A48(PoketchData *poketchData, const BoxPokemon *param1);
-int sub_02056AAC(const PoketchData *poketchData);
-void sub_02056AC8(const PoketchData *poketchData, int param1, int *param2, int *param3);
-u32 sub_02056AFC(const PoketchData *poketchData, int param1);
+/**
+ * Checks whether or not the Dot Art data has been modified at any point. 
+ * This will return FALSE until PoketchData_SetDotArtData is called, at which point it will always return TRUE.
+ *
+ * @param poketchData:      The Poketch data to check.
+ * 
+ * @return TRUE if the dot art data has been modified, FALSE if not.
+ */
+BOOL PoketchData_DotArtModified(const PoketchData *poketchData);
+
+/**
+ * Gets the current dot art data and copies it to the given dotArtData. This function will write 
+ * POKETCH_DOTART_SIZE_BYTES bytes at this pointer.
+ *
+ * @param poketchData:      The Poketch data to check.
+ * @param dotArtData:       The dot art data to copy into.
+ */
+void PoketchData_DotArtData(const PoketchData *poketchData, u8 *dotArtData);
+
+/**
+ * Updates the PoketchData's stored dotArt data and marks the Modified flag as TRUE. 
+ * The function will copy POKETCH_DOTART_SIZE_BYTES bytes of data at the given pointer.
+ *
+ * @param poketchData:      The Poketch data to update.
+ * @param dotArtData:       The dot art data to copy.
+ */
+void PoketchData_SetDotArtData(PoketchData *poketchData, const u8 *dotArtData);
+
+/**
+ * Adds a new Pokemon to the end of the Pokemon History list.
+ *
+ * @param poketchData:      The Poketch data to update.
+ * @param boxPokemon:       The new Pokemon to add.
+ */
+void PoketchData_PokemonHistoryAddEntry(PoketchData *poketchData, const BoxPokemon *boxPokemon);
+
+/**
+ * Gets the number of pokemon in the Pokemon History.
+ *
+ * @param poketchData:      The Poketch data to Check.
+ * 
+ * @return The current size of the pokemon history.
+ */
+int PoketchData_PokemonHistorySize(const PoketchData *poketchData);
+
+/**
+ * Gets the species and icon info of a given index in the Pokemon History.
+ *
+ * @param poketchData:      The Poketch data to check.
+ * @param index:            The History entry to check. This function asserts that the index is less than POKETCH_POKEMONHISTORY_MAX.
+ * @param species:          The int where the pokemon's species ID will be stored.
+ * @param icon:             The int where the pokemon's icon ID will be stored.
+ */
+void PoketchData_PokemonHistorySpeciesAndIcon(const PoketchData *poketchData, int index, int *species, int *icon);
+
+/**
+ * Gets the form info of a given index in the pokemon history.
+ *
+ * @param poketchData:      The Poketch data to check.
+ * @param index:            The History entry to check. This function asserts that the index is less than POKETCH_POKEMONHISTORY_MAX.
+ * 
+ * @return The form ID of the pokemon.
+ */
+u32 PoketchData_PokemonHistoryForm(const PoketchData *poketchData, int index);
 
 /**
  * Retrieves the PoketchData from the given SaveData.

@@ -5308,7 +5308,7 @@ static BOOL sub_020435AC (UnkStruct_0203E724 * param0)
     PoketchData * v0 = SaveData_PoketchData(param0->unk_34->unk_0C);
     u16 * v1 = inline_0204FCAC(param0);
 
-    *v1 = sub_020567E0(v0);
+    *v1 = PoketchData_Enabled(v0);
     return 0;
 }
 

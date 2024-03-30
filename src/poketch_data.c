@@ -36,7 +36,7 @@ void Poketch_Init(PoketchData *poketchData)
 
     poketchData->appCount = 0;
     poketchData->appIndex = 0;
-    poketchData->unk_00_0 = 0;
+    poketchData->poketchEnabled = 0;
     poketchData->screenColor = 0;
     poketchData->pedometerEnabled = 0;
     poketchData->pedometer = 0;
@@ -51,24 +51,24 @@ void Poketch_Init(PoketchData *poketchData)
         poketchData->markMapPositions[i].y = sDefaultMapMarkers[i].y;
     }
 
-    for (i = 0; i < 12; i++) {
-        poketchData->unk_B8[i].unk_00 = 0;
-        poketchData->unk_B8[i].unk_02 = 0;
-        poketchData->unk_B8[i].unk_04 = 0;
+    for (i = 0; i < POKETCH_POKEMONHISTORY_MAX; i++) {
+        poketchData->pokemonHistory[i].species = 0;
+        poketchData->pokemonHistory[i].icon = 0;
+        poketchData->pokemonHistory[i].form = 0;
     }
 
-    poketchData->unk_00_2 = 0;
+    poketchData->dotArtModifiedByPlayer = 0;
     PoketchData_RegisterApp(poketchData, POKETCH_APPID_DIGITALWATCH);
 }
 
-void sub_020567D0 (PoketchData *poketchData)
+void PoketchData_SetEnabled(PoketchData *poketchData)
 {
-    poketchData->unk_00_0 = 1;
+    poketchData->poketchEnabled = 1;
 }
 
-BOOL sub_020567E0 (PoketchData *poketchData)
+BOOL PoketchData_Enabled(PoketchData *poketchData)
 {
-    return poketchData->unk_00_0;
+    return poketchData->poketchEnabled;
 }
 
 BOOL PoketchData_CheckAppRegistered(PoketchData *poketchData, enum PoketchAppID appID)
@@ -236,73 +236,72 @@ void PoketchData_MapMarkerPos(const PoketchData *poketchData, int index, u8 *x, 
     *y = poketchData->markMapPositions[index].y;
 }
 
-BOOL sub_02056A10 (const PoketchData *poketchData)
+BOOL PoketchData_DotArtModified(const PoketchData *poketchData)
 {
-    return poketchData->unk_00_2;
+    return poketchData->dotArtModifiedByPlayer;
 }
 
-void sub_02056A18 (const PoketchData *poketchData, u8 *param1)
+void PoketchData_DotArtData(const PoketchData *poketchData, u8 *dotArtData)
 {
-    if (poketchData->unk_00_2) {
-        MI_CpuCopy8(poketchData->unk_2A, param1, 120);
+    if (poketchData->dotArtModifiedByPlayer) {
+        MI_CpuCopy8(poketchData->dotArtData, dotArtData, POKETCH_DOTART_SIZE_BYTES);
     }
 }
 
-void sub_02056A2C (PoketchData *poketchData, const u8 *param1)
+void PoketchData_SetDotArtData(PoketchData *poketchData, const u8 *dotArtData)
 {
-    MI_CpuCopy8(param1, poketchData->unk_2A, 120);
-    poketchData->unk_00_2 = 1;
+    MI_CpuCopy8(dotArtData, poketchData->dotArtData, POKETCH_DOTART_SIZE_BYTES);
+    poketchData->dotArtModifiedByPlayer = TRUE;
 }
 
-void sub_02056A48 (PoketchData *poketchData, const BoxPokemon * param1)
+void PoketchData_PokemonHistoryAddEntry(PoketchData *poketchData, const BoxPokemon * boxPokemon)
 {
-    int v0;
+    int new_pokemon_index = PoketchData_PokemonHistorySize(poketchData);
 
-    v0 = sub_02056AAC(poketchData);
+    // Shift all entries one index up
+    if (new_pokemon_index >= POKETCH_POKEMONHISTORY_MAX) {
 
-    if (v0 >= 12) {
-        int v1;
-
-        for (v1 = 0; v1 < (12 - 1); v1++) {
-            poketchData->unk_B8[v1] = poketchData->unk_B8[v1 + 1];
+        for (int i = 0; i < (POKETCH_POKEMONHISTORY_MAX - 1); i++) {
+            poketchData->pokemonHistory[i] = poketchData->pokemonHistory[i + 1];
         }
 
-        v0 = 12 - 1;
+        new_pokemon_index = POKETCH_POKEMONHISTORY_MAX - 1;
     }
 
-    poketchData->unk_B8[v0].unk_00 = BoxPokemon_GetValue((BoxPokemon *)param1, MON_DATA_SPECIES, NULL);
-    poketchData->unk_B8[v0].unk_02 = BoxPokemon_IconFormOffset(param1);
-    poketchData->unk_B8[v0].unk_04 = BoxPokemon_GetValue((BoxPokemon *)param1, MON_DATA_FORM, NULL);
+    // Add new entry to end of the list
+    poketchData->pokemonHistory[new_pokemon_index].species = BoxPokemon_GetValue((BoxPokemon *)boxPokemon, MON_DATA_SPECIES, NULL);
+    poketchData->pokemonHistory[new_pokemon_index].icon = BoxPokemon_IconFormOffset(boxPokemon);
+    poketchData->pokemonHistory[new_pokemon_index].form = BoxPokemon_GetValue((BoxPokemon *)boxPokemon, MON_DATA_FORM, NULL);
 }
 
-int sub_02056AAC (const PoketchData *poketchData)
+int PoketchData_PokemonHistorySize(const PoketchData *poketchData)
 {
-    int v0;
+    int size;
 
-    for (v0 = 0; v0 < 12; v0++) {
-        if (poketchData->unk_B8[v0].unk_00 == 0) {
-            return v0;
+    for (size = 0; size < POKETCH_POKEMONHISTORY_MAX; size++) {
+        if (poketchData->pokemonHistory[size].species == 0) {
+            return size;
         }
     }
 
-    return v0;
+    return size;
 }
 
-void sub_02056AC8 (const PoketchData *poketchData, int param1, int *param2, int *param3)
+void PoketchData_PokemonHistorySpeciesAndIcon(const PoketchData *poketchData, int index, int *species, int *icon)
 {
-    GF_ASSERT(param1 < 12);
-    GF_ASSERT(poketchData->unk_B8[param1].unk_00);
+    GF_ASSERT(index < POKETCH_POKEMONHISTORY_MAX);
+    GF_ASSERT(poketchData->pokemonHistory[index].species);
 
-    *param2 = poketchData->unk_B8[param1].unk_00;
-    *param3 = poketchData->unk_B8[param1].unk_02;
+    *species = poketchData->pokemonHistory[index].species;
+    *icon = poketchData->pokemonHistory[index].icon;
 }
 
-u32 sub_02056AFC (const PoketchData *poketchData, int param1)
+u32 PoketchData_PokemonHistoryForm(const PoketchData *poketchData, int index)
 {
-    GF_ASSERT(param1 < 12);
-    GF_ASSERT(poketchData->unk_B8[param1].unk_00);
+    GF_ASSERT(index < POKETCH_POKEMONHISTORY_MAX);
+    GF_ASSERT(poketchData->pokemonHistory[index].species);
 
-    return poketchData->unk_B8[param1].unk_04;
+    return poketchData->pokemonHistory[index].form;
 }
 
 PoketchData* SaveData_PoketchData(SaveData *saveData)
