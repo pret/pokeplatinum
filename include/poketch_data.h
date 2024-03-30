@@ -4,6 +4,11 @@
 #include "pokemon.h"
 #include "savedata.h"
 
+#define POKETCH_MAPMARKER_COUNT 6
+#define POKETCH_POKEMONHISTORY_MAX 12
+#define POKETCH_REGISTRY_SIZE 32
+#define POKETCH_DOTART_SIZE_BYTES 120
+
 /** Poketch app IDs, used to register and switch between apps in the Poketch */
 enum PoketchAppID {
     POKETCH_APPID_DIGITALWATCH = 0,
@@ -49,12 +54,6 @@ enum PoketchScreenColor {
     POKETCH_SCREEN_COLOR_MAX,
 };
 
-enum {
-    POKETCH_MAPMARKER_COUNT = 6,        //!< Number of map markers in the Mark Map app
-    POKETCH_POKEMONHISTORY_MAX = 12,    //!< Max number of pokemon that can be displayed in the Pokemon History app
-    POKETCH_REGISTRY_SIZE = 32,         //!< Size of the Poketch Registry.
-    POKETCH_DOTART_SIZE_BYTES = 120     //!< Size of the Dot Art data in bytes (24x20 grid, 2 bits per position)
-};
 
 /**
  * @brief All of the Poketch's internally tracked data including settings, registered apps, and the data for some apps (eg. pedometer, alarm clock).
@@ -306,18 +305,18 @@ BOOL PoketchData_DotArtModified(const PoketchData *poketchData);
  * POKETCH_DOTART_SIZE_BYTES bytes at this pointer.
  *
  * @param poketchData:      The Poketch data to check.
- * @param dotArtData:       The dot art data to copy into.
+ * @param dst:              The destination to copy into.
  */
-void PoketchData_DotArtData(const PoketchData *poketchData, u8 *dotArtData);
+void PoketchData_DotArtData(const PoketchData *poketchData, u8 *dst);
 
 /**
  * Updates the PoketchData's stored dotArt data and marks the Modified flag as TRUE. 
  * The function will copy POKETCH_DOTART_SIZE_BYTES bytes of data at the given pointer.
  *
  * @param poketchData:      The Poketch data to update.
- * @param dotArtData:       The dot art data to copy.
+ * @param src:              The source dot art data to copy.
  */
-void PoketchData_SetDotArtData(PoketchData *poketchData, const u8 *dotArtData);
+void PoketchData_SetDotArtData(PoketchData *poketchData, const u8 *src);
 
 /**
  * Adds a new Pokemon to the end of the Pokemon History list.
