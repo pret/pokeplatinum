@@ -1163,7 +1163,7 @@ static int ov94_02243974 (UnkStruct_ov94_0223FD4C * param0)
 static int ov94_02243990 (UnkStruct_ov94_0223FD4C * param0)
 {
     SaveData_SetFullSaveRequired();
-    sub_02024814(param0->unk_00->unk_20, 2);
+    SaveData_SaveStateInit(param0->unk_00->unk_20, 2);
 
     param0->unk_2C = 31;
     param0->unk_10E0 = inline_020564D0(60) + 2;
@@ -1184,7 +1184,7 @@ static int ov94_022439CC (UnkStruct_ov94_0223FD4C * param0)
 
 static int ov94_022439E4 (UnkStruct_ov94_0223FD4C * param0)
 {
-    if (sub_02024828(param0->unk_00->unk_20) == 1) {
+    if (SaveData_SaveStateMain(param0->unk_00->unk_20) == 1) {
         param0->unk_2C = param0->unk_10E8;
     }
 
@@ -1193,7 +1193,7 @@ static int ov94_022439E4 (UnkStruct_ov94_0223FD4C * param0)
 
 static int ov94_02243A04 (UnkStruct_ov94_0223FD4C * param0)
 {
-    if (sub_02024828(param0->unk_00->unk_20) == 2) {
+    if (SaveData_SaveStateMain(param0->unk_00->unk_20) == 2) {
         param0->unk_2C = param0->unk_10EA;
         ov94_0223C5F4(param0);
     }
@@ -1204,7 +1204,7 @@ static int ov94_02243A04 (UnkStruct_ov94_0223FD4C * param0)
 static int ov94_02243A28 (UnkStruct_ov94_0223FD4C * param0)
 {
     SaveData_SetFullSaveRequired();
-    sub_02024814(param0->unk_00->unk_20, 2);
+    SaveData_SaveStateInit(param0->unk_00->unk_20, 2);
 
     param0->unk_2C = 35;
 
@@ -1213,7 +1213,7 @@ static int ov94_02243A28 (UnkStruct_ov94_0223FD4C * param0)
 
 static int ov94_02243A44 (UnkStruct_ov94_0223FD4C * param0)
 {
-    if (sub_02024828(param0->unk_00->unk_20) == 2) {
+    if (SaveData_SaveStateMain(param0->unk_00->unk_20) == 2) {
         ov94_0223C4C0(param0, 1, 0);
         ov94_0223C5F4(param0);
         ov94_02245824(param0, param0->unk_B90, param0->unk_28, 1, 0xf0f);

@@ -23,12 +23,12 @@ int sub_02038EDC (SaveData * param0, int param1, int * param2)
         break;
     case 1:
         if (sub_02036540(111)) {
-            sub_02024814(param0, param1);
+            SaveData_SaveStateInit(param0, param1);
             *param2 = 2;
         }
         break;
     case 2:
-        v0 = sub_02024828(param0);
+        v0 = SaveData_SaveStateMain(param0);
 
         GF_ASSERT(v0 != 2);
         GF_ASSERT(v0 != 3);
@@ -44,7 +44,7 @@ int sub_02038EDC (SaveData * param0, int param1, int * param2)
         }
         break;
     case 4:
-        v0 = sub_02024828(param0);
+        v0 = SaveData_SaveStateMain(param0);
 
         GF_ASSERT(v0 != 3);
         GF_ASSERT(v0 != 1);

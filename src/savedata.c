@@ -196,11 +196,11 @@ int SaveData_SaveBlock (SaveData *saveData, int saveBlockID)
     GF_ASSERT(saveData->isNewGameData == FALSE);
     GF_ASSERT(saveData->dataExists == TRUE);
 
-    sub_02024814(saveData, saveBlockID);
+    SaveData_SaveStateInit(saveData, saveBlockID);
 
     int saveResult;
     do {
-        saveResult = sub_02024828(saveData);
+        saveResult = SaveData_SaveStateMain(saveData);
     } while (saveResult == SAVE_RESULT_PROCEED || saveResult == SAVE_RESULT_PROCEED_FINAL);
 
     return saveResult;
@@ -265,14 +265,12 @@ void SaveData_SetFullSaveRequired (void)
     sSaveDataPtr->fullSaveRequired = TRUE;
 }
 
-//ravetodo SaveData_SaveStateInit
-void sub_02024814 (SaveData *saveData, int blockID)
+void SaveData_SaveStateInit (SaveData *saveData, int blockID)
 {
     SaveDataState_Init(saveData, &saveData->saveState, blockID);
 }
 
-//ravetodo SaveData_SaveStateMain
-int sub_02024828 (SaveData *saveData)
+int SaveData_SaveStateMain (SaveData *saveData)
 {
     int saveResult = SaveDataState_Main(saveData, &saveData->saveState);
 
@@ -283,8 +281,7 @@ int sub_02024828 (SaveData *saveData)
     return saveResult;
 }
 
-//ravetodo SaveData_SaveStateCancel
-void sub_02024850 (SaveData *saveData)
+void SaveData_SaveStateCancel (SaveData *saveData)
 {
     SaveDataState_Cancel(saveData, &saveData->saveState);
 }

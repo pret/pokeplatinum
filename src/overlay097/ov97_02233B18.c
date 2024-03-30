@@ -298,11 +298,11 @@ static int ov97_02233B8C (UnkStruct_ov97_02234A2C * param0)
         }
         break;
     case 3:
-        sub_02024814(param0->unk_10, 2);
+        SaveData_SaveStateInit(param0->unk_10, 2);
         v4->unk_00++;
         break;
     case 4:
-        v2 = sub_02024828(param0->unk_10);
+        v2 = SaveData_SaveStateMain(param0->unk_10);
 
         if (v2 == 3) {
             return 12;
@@ -344,7 +344,7 @@ static int ov97_02233B8C (UnkStruct_ov97_02234A2C * param0)
         break;
     case 8:
         do {
-            v2 = sub_02024828(param0->unk_10);
+            v2 = SaveData_SaveStateMain(param0->unk_10);
 
             if (v2 == 3) {
                 return 12;
@@ -1832,7 +1832,7 @@ static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
         UnkStruct_ov97_02233B8C * v4 = &v3->unk_E8F0;
 
         if ((v4->unk_00 == 3) || (v4->unk_00 == 4)) {
-            sub_02024850(v3->unk_10);
+            SaveData_SaveStateCancel(v3->unk_10);
         }
 
         sub_0209A8E0(78);
