@@ -5308,7 +5308,7 @@ static BOOL sub_020435AC (UnkStruct_0203E724 * param0)
     PoketchData * v0 = SaveData_PoketchData(param0->unk_34->unk_0C);
     u16 * v1 = inline_0204FCAC(param0);
 
-    *v1 = PoketchData_Enabled(v0);
+    *v1 = PoketchData_IsEnabled(v0);
     return 0;
 }
 
@@ -5327,7 +5327,7 @@ static BOOL sub_02043608 (UnkStruct_0203E724 * param0)
     u16 v1 = inline_02049538(param0);
     u16 * v2 = inline_0204FCAC(param0);
 
-    *v2 = PoketchData_CheckAppRegistered(SaveData_PoketchData(v0->unk_0C), v1);
+    *v2 = PoketchData_IsAppRegistered(SaveData_PoketchData(v0->unk_0C), v1);
     return 0;
 }
 

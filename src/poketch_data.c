@@ -39,7 +39,7 @@ void Poketch_Init(PoketchData *poketchData)
     poketchData->poketchEnabled = 0;
     poketchData->screenColor = 0;
     poketchData->pedometerEnabled = 0;
-    poketchData->pedometer = 0;
+    poketchData->stepCount = 0;
     poketchData->alarmSet = 0;
     poketchData->alarmHour = 0;
     poketchData->alarmMinute = 0;
@@ -61,17 +61,17 @@ void Poketch_Init(PoketchData *poketchData)
     PoketchData_RegisterApp(poketchData, POKETCH_APPID_DIGITALWATCH);
 }
 
-void PoketchData_SetEnabled(PoketchData *poketchData)
+void PoketchData_Enable(PoketchData *poketchData)
 {
     poketchData->poketchEnabled = 1;
 }
 
-BOOL PoketchData_Enabled(PoketchData *poketchData)
+BOOL PoketchData_IsEnabled(PoketchData *poketchData)
 {
     return poketchData->poketchEnabled;
 }
 
-BOOL PoketchData_CheckAppRegistered(PoketchData *poketchData, enum PoketchAppID appID)
+BOOL PoketchData_IsAppRegistered(PoketchData *poketchData, enum PoketchAppID appID)
 {
     return poketchData->appRegistry[appID];
 }
@@ -163,13 +163,13 @@ void PoketchData_SetScreenColor(PoketchData *poketchData, u32 screenColor)
 
 u32 PoketchData_PedometerValue(const PoketchData *poketchData)
 {
-    return poketchData->pedometer;
+    return poketchData->stepCount;
 }
 
 void PoketchData_SetPedometerValue(PoketchData *poketchData, u32 value)
 {
     if (poketchData->pedometerEnabled) {
-        poketchData->pedometer = value;
+        poketchData->stepCount = value;
     }
 }
 
