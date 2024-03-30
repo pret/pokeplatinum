@@ -33,17 +33,17 @@ typedef struct SaveDataBody {
     u8 data[SAVE_SECTOR_SIZE * SAVE_PAGE_MAX];
 } SaveDataBody;
 
-typedef struct UnkStruct_020250DC {
-    BOOL unk_00;
-    int unk_04;
-    int unk_08;
-    int unk_0C;
-    s32 unk_10;
-    int unk_14;
-    u32 unk_18;
-    u32 unk_1C[2];
-    volatile BOOL unk_24;
-} UnkStruct_020250DC;
+typedef struct SaveDataState {
+    BOOL fullSaveMode;
+    int startBlock;
+    int currentBlock;
+    int endBlock;
+    s32 lockID;
+    int stateSequence;
+    u32 globalCounterBackup;
+    u32 blockCounterBackup[SAVE_BLOCK_ID_MAX];
+    volatile BOOL isLocked;
+} SaveDataState;
 
 typedef struct SaveData {
     BOOL backupExists;
@@ -53,20 +53,20 @@ typedef struct SaveData {
     u32 loadCheckStatus;
     SaveDataBody body;
     u32 globalCounter;
-    u32 unk_20018[SAVE_BLOCK_ID_MAX];
-    u8 unk_20020[SAVE_BLOCK_ID_MAX];
+    u32 blockCounters[SAVE_BLOCK_ID_MAX];
+    u8 blockOffsets[SAVE_BLOCK_ID_MAX];
     SavePageInfo pageInfo[SAVE_TABLE_ENTRY_MAX];
     SaveBlockInfo blockInfo[SAVE_BLOCK_ID_MAX];
-    UnkStruct_020250DC unk_2029C;
+    SaveDataState saveState;
     int unk_202C4;
     u32 unk_202C8;
 } SaveData;
 
-typedef struct UnkStruct_02024860 {
-    BOOL unk_00;
-    u32 unk_04;
-    u32 unk_08;
-} UnkStruct_02024860;
+typedef struct SaveCheckInfo {
+    BOOL isValid;
+    u32 globalCounter;
+    u32 blockCounter;
+} SaveCheckInfo;
 
 typedef struct UnkStruct_020253B4 {
     u32 unk_00;
@@ -93,11 +93,11 @@ BOOL sub_020247C8(SaveData *saveData);
 BOOL SaveData_OverwriteCheck(const SaveData *saveData);
 BOOL SaveData_FullSaveRequired(const SaveData *saveData);
 void SaveData_SetFullSaveRequired(void);
-void sub_02024814(SaveData * param0, int param1);
-int sub_02024828(SaveData * param0);
-void sub_02024850(SaveData * param0);
-u16 SaveData_CalculateChecksum(const SaveData *saveData, const void * param1, u32 size);
-int sub_020251A4(int param0);
+void sub_02024814(SaveData *saveData, int blockID);
+int sub_02024828(SaveData *saveData);
+void sub_02024850(SaveData *saveData);
+u16 SaveData_CalculateChecksum(const SaveData *saveData, const void *startAddress, u32 size);
+int SaveTableEntry_BodySize(int saveTableID);
 void sub_02025340(SaveData * param0);
 int SaveDataExtra_Save(const SaveData * param0, int param1, void * param2);
 int SaveDataExtra_SaveMirror(SaveData * param0, int param1, void * param2);
