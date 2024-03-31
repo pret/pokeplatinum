@@ -151,7 +151,7 @@ static BOOL ov59_021D2B5C (int param0, int param1)
 static void ov59_021D2B90 (SaveData * param0, UnkStruct_0202E794 * param1, UnkStruct_0202E768 * param2, int param3, int param4, int param5)
 {
     int v0;
-    TrainerInfo * v1 = sub_02025E38(param0);
+    TrainerInfo * v1 = SaveData_GetTrainerInfo(param0);
 
     for (v0 = 0; v0 < param3; v0++, param1++) {
         MI_CpuClearFast(param1, sizeof(UnkStruct_0202E794));

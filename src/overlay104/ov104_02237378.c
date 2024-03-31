@@ -492,7 +492,7 @@ BOOL ov104_02237748 (UnkStruct_ov104_0222E930 * param0)
             sub_0200BA40(param0->unk_00->unk_44, v18, v3->unk_78[ov104_02238498(v3, v19)]);
         } else {
             if (ov104_0223C000(v3->unk_10) == 0) {
-                v16 = sub_02025E38(v14->unk_08);
+                v16 = SaveData_GetTrainerInfo(v14->unk_08);
             } else {
                 v16 = sub_02032EE8(v19);
             }

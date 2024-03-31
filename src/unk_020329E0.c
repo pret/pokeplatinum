@@ -44,7 +44,7 @@ typedef struct {
 typedef struct {
     TrainerInfo * unk_00;
     const UnkStruct_0202610C * unk_04;
-    SaveData * unk_08;
+    SaveData * saveData;
     UnkStruct_02032BEC unk_0C[8];
     TrainerInfo * unk_33C[8];
     UnkStruct_021C07B4_sub1 unk_35C[8];
@@ -56,10 +56,10 @@ typedef struct {
 
 static UnkStruct_021C07B4 * Unk_021C07B4;
 
-void sub_020329E0 (SaveData * param0, const UnkStruct_0202610C * param1)
+void sub_020329E0 (SaveData * saveData, const UnkStruct_0202610C * param1)
 {
     int v0;
-    TrainerInfo * v1 = sub_02025E38(param0);
+    TrainerInfo * v1 = SaveData_GetTrainerInfo(saveData);
 
     if (Unk_021C07B4) {
         return;
@@ -76,7 +76,7 @@ void sub_020329E0 (SaveData * param0, const UnkStruct_0202610C * param1)
     Unk_021C07B4->unk_394 = 0;
     Unk_021C07B4->unk_395 = 0;
     Unk_021C07B4->unk_396 = 0;
-    Unk_021C07B4->unk_08 = param0;
+    Unk_021C07B4->saveData = saveData;
     Unk_021C07B4->unk_04 = param1;
 
     TrainerInfo_Copy(v1, Unk_021C07B4->unk_33C[0]);
@@ -109,14 +109,14 @@ void sub_02032AC0 (void)
     u16 v0 = sub_0203608C();
     TrainerInfo * v1;
     const u16 * v2;
-    UnkStruct_0202B4A0 * v3 = sub_0202B4A0(Unk_021C07B4->unk_08);
-    UnkStruct_0202B370 * v4 = sub_0202B370(Unk_021C07B4->unk_08);
-    UnkStruct_0202C878 * v5 = sub_0202C878(Unk_021C07B4->unk_08);
+    UnkStruct_0202B4A0 * v3 = sub_0202B4A0(Unk_021C07B4->saveData);
+    UnkStruct_0202B370 * v4 = sub_0202B370(Unk_021C07B4->saveData);
+    UnkStruct_0202C878 * v5 = sub_0202C878(Unk_021C07B4->saveData);
 
     if (Unk_021C07B4->unk_00) {
         v1 = Unk_021C07B4->unk_00;
     } else {
-        v1 = sub_02025E38(Unk_021C07B4->unk_08);
+        v1 = SaveData_GetTrainerInfo(Unk_021C07B4->saveData);
     }
 
     TrainerInfo_Copy(v1, Unk_021C07B4->unk_33C[v0]);
@@ -128,7 +128,7 @@ void sub_02032AC0 (void)
 
     Unk_021C07B4->unk_0C[v0].unk_63 = sub_0202C8C0(v5);
     Unk_021C07B4->unk_0C[v0].unk_64 = sub_0202C8C4(v5);
-    Unk_021C07B4->unk_0C[v0].unk_65 = sub_02028810(Unk_021C07B4->unk_08);
+    Unk_021C07B4->unk_0C[v0].unk_65 = sub_02028810(Unk_021C07B4->saveData);
     Unk_021C07B4->unk_0C[v0].unk_65 = 1 - Unk_021C07B4->unk_0C[v0].unk_65;
 
     DWC_CreateExchangeToken(sub_0202AD28(v4), &Unk_021C07B4->unk_0C[v0].unk_40);
@@ -353,7 +353,7 @@ DWCFriendData * sub_02032F1C (int param0)
 
 int sub_02032F40 (int param0)
 {
-    return sub_02039390(Unk_021C07B4->unk_08, param0);
+    return sub_02039390(Unk_021C07B4->saveData, param0);
 }
 
 u16 * sub_02032F54 (int param0)

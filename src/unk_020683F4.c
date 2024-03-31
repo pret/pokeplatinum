@@ -1198,7 +1198,7 @@ static void sub_020692E4 (UnkStruct_02068870 * param0, u32 param1)
     v0->unk_16 = 0;
     v0->unk_10 = Strbuf_Init(128, 11);
 
-    sub_0207CD34(sub_02025E38(param0->unk_00->unk_0C), v0->unk_10, param0->unk_28, param1, 11);
+    sub_0207CD34(SaveData_GetTrainerInfo(param0->unk_00->unk_0C), v0->unk_10, param0->unk_28, param1, 11);
     sub_02050904(param0->unk_00, sub_02068F48, v0);
 }
 

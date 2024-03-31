@@ -66,7 +66,7 @@ BOOL sub_0204CAEC (UnkStruct_0203E724 * param0)
     SaveData * v1 = v0->unk_0C;
     UnkStruct_02026310 * v2 = (UnkStruct_02026310 *)(SaveData_SaveTable(v1, 8));
     Party * v3 = Party_GetFromSavedata(v0->unk_0C);
-    TrainerInfo * v4 = sub_02025E38(sub_0203D174(param0->unk_34));
+    TrainerInfo * v4 = SaveData_GetTrainerInfo(sub_0203D174(param0->unk_34));
 
     ov5_021E6EA8(v2, v3, v4);
     return 0;

@@ -128,7 +128,7 @@ UnkStruct_ov104_0223C4CC * ov104_0223C2D4 (UnkStruct_0209B75C * param0)
     UnkStruct_ov104_02230BE4 * v3 = sub_0209B970(param0);
     const TrainerInfo * v4;
 
-    v4 = sub_02025E38(v3->unk_08);
+    v4 = SaveData_GetTrainerInfo(v3->unk_08);
     v2 = v3->unk_24;
 
     SetMainCallback(NULL, NULL);

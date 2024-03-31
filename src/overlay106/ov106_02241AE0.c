@@ -1235,7 +1235,7 @@ static void ov106_02242CA4 (UnkStruct_ov106_02243118 * param0)
     param0->unk_BC->contest = PokemonSummary_ShowContestData(param0->unk_B8);
 
     PokemonSummary_FlagVisiblePages(param0->unk_BC, Unk_ov106_02243798);
-    PokemonSummary_SetPlayerProfile(param0->unk_BC, sub_02025E38(param0->unk_B8));
+    PokemonSummary_SetPlayerProfile(param0->unk_BC, SaveData_GetTrainerInfo(param0->unk_B8));
 
     return;
 }
@@ -1522,7 +1522,7 @@ void ov106_02243118 (UnkStruct_ov106_02243118 * param0, u16 param1)
 {
     TrainerInfo * v0;
 
-    v0 = sub_02025E38(param0->unk_B8);
+    v0 = SaveData_GetTrainerInfo(param0->unk_B8);
     param0->unk_2A0[0] = param1;
 
     return;

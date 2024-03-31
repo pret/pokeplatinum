@@ -2970,7 +2970,7 @@ void ov5_021E585C (SysTask * param0, void * param1)
 
 static u32 ov5_021E5880 (UnkStruct_0203CDB0 * param0)
 {
-    TrainerInfo * v0 = sub_02025E38(param0->unk_0C);
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(param0->unk_0C);
 
     return TrainerInfo_Gender(v0);
 }

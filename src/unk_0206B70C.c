@@ -114,7 +114,7 @@ void sub_0206B70C (UnkStruct_0203CDB0 * param0, UnkStruct_0203D8AC * param1, int
         param1->unk_04 = v10->unk_0C;
     }
 
-    v0 = sub_02025E38(sub_0203D174(param0));
+    v0 = SaveData_GetTrainerInfo(sub_0203D174(param0));
     param1->unk_0C = TrainerInfo_Gender(v0);
     v7 = sub_0203A76C(sub_0203A790(param0->unk_0C));
     v2 = (v7->unk_00 - 2 + 6) % 6;

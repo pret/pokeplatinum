@@ -1938,7 +1938,7 @@ void ov66_0222F16C (UnkStruct_ov66_0222DFF8 * param0)
 
     GF_ASSERT(param0->unk_4B8 == NULL);
 
-    v0 = sub_02025E38(param0->unk_00);
+    v0 = SaveData_GetTrainerInfo(param0->unk_00);
     param0->unk_4B8 = sub_0207E060(v0, param0->unk_528);
 }
 
@@ -2321,7 +2321,7 @@ static void ov66_0222F7C8 (UnkStruct_ov66_0222F6C4 * param0, SaveData * param1, 
     UnkStruct_02055BA8 * v4;
 
     {
-        v0 = sub_02025E38(param1);
+        v0 = SaveData_GetTrainerInfo(param1);
         v1 = Party_GetFromSavedata(param1);
         v3 = sub_02027560(param1);
         v2 = sub_0202C878(param1);

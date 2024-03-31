@@ -769,7 +769,7 @@ static BOOL ov6_02241674 (UnkStruct_0203CDB0 * param0, Pokemon * param1, BattleP
         if (param6->unk_04 == 1) {
             TrainerInfo * v3;
 
-            v3 = sub_02025E38(sub_0203D174(param0));
+            v3 = SaveData_GetTrainerInfo(sub_0203D174(param0));
             v0 = ov6_02241F2C(v1, v2, 1, param6->unk_08, TrainerInfo_ID(v3), param5, param1, param2);
         } else {
             v0 = ov6_02241F7C(param0, param1, param5, param4, 1, param2, v1, v2);
@@ -1783,5 +1783,5 @@ static void ov6_02242634 (UnkStruct_0203CDB0 * param0, Pokemon * param1, UnkStru
         }
     }
 
-    param3->unk_00 = TrainerInfo_ID(sub_02025E38(param0->unk_0C));
+    param3->unk_00 = TrainerInfo_ID(SaveData_GetTrainerInfo(param0->unk_0C));
 }

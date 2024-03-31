@@ -860,7 +860,7 @@ void ov5_021DCF6C (UnkStruct_0203CDB0 * param0, Window * param1)
     v1 = sub_0200B358(4);
     v2 = Strbuf_Init(16, 4);
     v3 = MessageLoader_GetNewStrbuf(v0, 19);
-    v4 = TrainerInfo_Money(sub_02025E38(param0->unk_0C));
+    v4 = TrainerInfo_Money(SaveData_GetTrainerInfo(param0->unk_0C));
 
     sub_0200B60C(v1, 0, v4, 6, 1, 1);
     StringFormatter_Format(v1, v2, v3);

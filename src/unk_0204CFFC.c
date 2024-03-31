@@ -69,7 +69,7 @@ BOOL sub_0204D0E8 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
     Pokemon * v1;
-    TrainerInfo * v2 = sub_02025E38(sub_0203D174(param0->unk_34));
+    TrainerInfo * v2 = SaveData_GetTrainerInfo(sub_0203D174(param0->unk_34));
     u16 * v3 = inline_0204FCAC(param0);
     u16 * v4 = inline_0204FCAC(param0);
     u16 v5, v6;
@@ -95,7 +95,7 @@ BOOL sub_0204D154 (UnkStruct_0203E724 * param0)
     Party * v3;
     Pokemon * v4;
     UnkStruct_0203CDB0 * v5 = param0->unk_34;
-    TrainerInfo * v6 = sub_02025E38(v5->unk_0C);
+    TrainerInfo * v6 = SaveData_GetTrainerInfo(v5->unk_0C);
     u16 v7 = inline_02049538(param0);
     u16 v8 = inline_02049538(param0);
 

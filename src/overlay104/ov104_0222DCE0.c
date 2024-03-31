@@ -358,10 +358,10 @@ void ov104_0222E134 (SaveData * param0, Pokemon * param1)
     MessageLoader * v2;
     int v3;
     int v4 = 0;
-    TrainerInfo * v5 = sub_02025E38(param0);
+    TrainerInfo * v5 = SaveData_GetTrainerInfo(param0);
 
     v0 = Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL);
-    Pokemon_UpdateAfterCatch(param1, sub_02025E38(param0), 4, 0, 0, 11);
+    Pokemon_UpdateAfterCatch(param1, SaveData_GetTrainerInfo(param0), 4, 0, 0, 11);
 
     v3 = MapHeader_GetMapLabelTextID(562);
     sub_0209304C(param1, v5, v4, v3, 11);

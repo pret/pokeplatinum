@@ -2172,7 +2172,7 @@ static BOOL sub_0206EA0C (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * 
 
 static int sub_0206EA10 (UnkStruct_0203CDB0 * param0, StringFormatter * param1, UnkStruct_ov6_022465F4 * param2)
 {
-    TrainerInfo * v0 = sub_02025E38(sub_0203D174(param0));
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(sub_0203D174(param0));
     int v1 = param0->unk_1C->unk_00;
 
     if ((v1 == 411) || ((v1 >= 412) && (v1 <= 417))) {
@@ -2629,7 +2629,7 @@ static int sub_0206EDAC (UnkStruct_0203CDB0 * param0, StringFormatter * param1, 
     u16 v2, v3;
     u32 v4, v5;
     Strbuf* v6 = Strbuf_Init(22, 4);
-    TrainerInfo * v7 = sub_02025E38(sub_0203D174(param0));
+    TrainerInfo * v7 = SaveData_GetTrainerInfo(sub_0203D174(param0));
 
     v1 = sub_0202D834(param0->unk_0C);
     v2 = (LCRNG_Next() % 29);
@@ -2854,7 +2854,7 @@ static int sub_0206F160 (UnkStruct_0203CDB0 * param0, StringFormatter * param1, 
     u16 v1, v2;
     Pokemon * v3;
     Party * v4;
-    TrainerInfo * v5 = sub_02025E38(param0->unk_0C);
+    TrainerInfo * v5 = SaveData_GetTrainerInfo(param0->unk_0C);
     PokedexData * v6 = sub_02027560(param0->unk_0C);
 
     v4 = Party_GetFromSavedata(param0->unk_0C);
@@ -2908,7 +2908,7 @@ static int sub_0206F27C (UnkStruct_0203CDB0 * param0, StringFormatter * param1, 
 
 static BOOL sub_0206F280 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    if (TrainerInfo_HasBadge(sub_02025E38(param0->unk_0C), 0) == 1) {
+    if (TrainerInfo_HasBadge(SaveData_GetTrainerInfo(param0->unk_0C), 0) == 1) {
         return 1;
     } else {
         return 0;

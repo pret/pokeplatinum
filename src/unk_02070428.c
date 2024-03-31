@@ -153,7 +153,7 @@ static BOOL sub_02070610 (UnkStruct_0203CDB0 * param0)
 
     if (v0->unk_00 != param0->unk_1C->unk_00) {
         sub_0202C5C4(
-            sub_02025E38(param0->unk_0C), param0->unk_9C, param0->unk_1C->unk_00, v0->unk_00, 32);
+            SaveData_GetTrainerInfo(param0->unk_0C), param0->unk_9C, param0->unk_1C->unk_00, v0->unk_00, 32);
         return 1;
     }
 

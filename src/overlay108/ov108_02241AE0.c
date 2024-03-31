@@ -1195,7 +1195,7 @@ void ov108_02242A7C (UnkStruct_ov108_02241DB0 * param0, u16 param1)
     TrainerInfo * v2;
 
     v1 = 0;
-    v2 = sub_02025E38(param0->unk_DC);
+    v2 = SaveData_GetTrainerInfo(param0->unk_DC);
 
     param0->unk_3D4[v1] = param1;
 

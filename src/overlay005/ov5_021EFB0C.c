@@ -164,7 +164,7 @@ void ov5_021EFBDC (UnkStruct_0203CDB0 * param0)
     v2->unk_00 = (24 * 60);
 
     {
-        TrainerInfo * v4 = sub_02025E38(param0->unk_0C);
+        TrainerInfo * v4 = SaveData_GetTrainerInfo(param0->unk_0C);
         v3 = ov5_021EFF4C(TrainerInfo_ID(v4), v0);
     }
 

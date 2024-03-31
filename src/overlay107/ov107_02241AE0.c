@@ -2860,7 +2860,7 @@ static void ov107_02244A8C (UnkStruct_ov107_02241D6C * param0, u32 param1, BoxPo
 
 static void ov107_02244A98 (UnkStruct_ov107_02241D6C * param0, u32 param1)
 {
-    sub_0200B498(param0->unk_24, param1, sub_02025E38(param0->unk_1CC));
+    sub_0200B498(param0->unk_24, param1, SaveData_GetTrainerInfo(param0->unk_1CC));
     return;
 }
 
@@ -2870,7 +2870,7 @@ static void ov107_02244AB4 (UnkStruct_ov107_02241D6C * param0, Window * param1, 
     const TrainerInfo * v1;
     Strbuf* v2;
 
-    v1 = sub_02025E38(param0->unk_1CC);
+    v1 = SaveData_GetTrainerInfo(param0->unk_1CC);
     v2 = Strbuf_Init((7 + 1), 100);
 
     Strbuf_CopyChars(v2, TrainerInfo_Name(v1));
@@ -3428,7 +3428,7 @@ void ov107_022452F4 (UnkStruct_ov107_02241D6C * param0, u16 param1)
     TrainerInfo * v2;
 
     v1 = 0;
-    v2 = sub_02025E38(param0->unk_1CC);
+    v2 = SaveData_GetTrainerInfo(param0->unk_1CC);
 
     param0->unk_444[v1] = param1;
     v1 += 1;

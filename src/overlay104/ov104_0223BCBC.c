@@ -294,7 +294,7 @@ BOOL ov104_0223C000 (u8 param0)
 
 void ov104_0223C010 (UnkStruct_ov104_0223BFFC * param0, Pokemon * param1)
 {
-    Pokemon_UpdateAfterCatch(param1, sub_02025E38(param0->unk_04), 4, 0, 0, 11);
+    Pokemon_UpdateAfterCatch(param1, SaveData_GetTrainerInfo(param0->unk_04), 4, 0, 0, 11);
     return;
 }
 

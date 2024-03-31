@@ -254,8 +254,8 @@ int ov73_021D0F7C (UnkStruct_020067E8 * param0, int * param1)
     Heap_FreeToHeap(v0->unk_B8);
     Heap_FreeToHeap(v0->unk_BC);
 
-    TrainerInfo_SetNameFromStrbuf(sub_02025E38(v0->unk_04), v0->unk_70->unk_18);
-    TrainerInfo_SetGender(sub_02025E38(v0->unk_04), v0->unk_70->unk_04);
+    TrainerInfo_SetNameFromStrbuf(SaveData_GetTrainerInfo(v0->unk_04), v0->unk_70->unk_18);
+    TrainerInfo_SetGender(SaveData_GetTrainerInfo(v0->unk_04), v0->unk_70->unk_04);
 
     {
         UnkStruct_0202783C * v2 = sub_0202783C(v0->unk_04);

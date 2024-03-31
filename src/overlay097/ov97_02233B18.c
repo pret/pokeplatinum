@@ -1801,7 +1801,7 @@ static int ov97_02235624 (UnkStruct_020067E8 * param0, int * param1)
     sub_0200F344(1, 0x0);
 
     v0->unk_10 = ((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08;
-    v0->unk_14 = sub_02025E38(v0->unk_10);
+    v0->unk_14 = SaveData_GetTrainerInfo(v0->unk_10);
     v0->unk_18 = sub_02025E44(v0->unk_10);
     v0->unk_1C = sub_02027B50(v0->unk_18);
     v0->unk_12668 = Strbuf_Init(256, 78);

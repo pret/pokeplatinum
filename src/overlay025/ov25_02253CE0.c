@@ -823,7 +823,7 @@ SaveData * ov25_02254544 (const UnkStruct_ov25_0225424C * param0)
 
 int ov25_02254548 (const UnkStruct_ov25_0225424C * param0)
 {
-    TrainerInfo * v0 = sub_02025E38(param0->unk_54);
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(param0->unk_54);
 
     if (TrainerInfo_Gender(v0) == 1) {
         return 0;

@@ -725,7 +725,7 @@ u8 sub_0205E6B8 (void)
 
 u8 sub_0205E6D8 (SaveData * param0)
 {
-    if (TrainerInfo_GameCode(sub_02025E38(param0)) == 0) {
+    if (TrainerInfo_GameCode(SaveData_GetTrainerInfo(param0)) == 0) {
         return 1;
     }
 

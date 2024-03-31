@@ -154,7 +154,7 @@ void * ov6_02247A90 (void * param0)
     v3 = Strbuf_Init(100, 11);
     v2 = MessageLoader_GetNewStrbuf(v0->unk_10, 0);
 
-    sub_0200B498(v0->unk_14, 0, sub_02025E38(v8));
+    sub_0200B498(v0->unk_14, 0, SaveData_GetTrainerInfo(v8));
     StringFormatter_Format(v0->unk_14, v3, v2);
 
     v4 = ov6_02247CF4(v3, 0, 1, (15 * 8));

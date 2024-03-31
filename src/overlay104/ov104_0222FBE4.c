@@ -1072,7 +1072,7 @@ static BOOL ov104_022302E8 (UnkStruct_ov104_0222E930 * param0)
             UnkStruct_ov104_02230BE4 * v6;
 
             v6 = sub_0209B970(v0->unk_00);
-            v5 = sub_02025E38(v6->unk_08);
+            v5 = SaveData_GetTrainerInfo(v6->unk_08);
             v3.unk_00 = ov104_0222E5F0(v5);
 
             ov104_0223D0EC(v1, &v3);
@@ -1147,7 +1147,7 @@ static BOOL ov104_022303C8 (UnkStruct_ov104_0222E930 * param0)
             UnkStruct_ov104_02230BE4 * v7;
 
             v7 = sub_0209B970(v0->unk_00);
-            v6 = sub_02025E38(v7->unk_08);
+            v6 = SaveData_GetTrainerInfo(v7->unk_08);
             v4.unk_00 = ov104_0222E5F0(v6);
             v5 = (32 - 1);
         } else if (v4.unk_00 == 0xeeef) {
@@ -1839,7 +1839,7 @@ static BOOL ov104_02230DC4 (UnkStruct_ov104_0222E930 * param0)
     UnkStruct_ov104_02230BE4 * v0 = sub_0209B970(param0->unk_00->unk_00);
     u8 v1 = (*((param0)->unk_1C++));
 
-    sub_0200B498(param0->unk_00->unk_44, v1, sub_02025E38(v0->unk_08));
+    sub_0200B498(param0->unk_00->unk_44, v1, SaveData_GetTrainerInfo(v0->unk_08));
     return 0;
 }
 
@@ -2569,7 +2569,7 @@ static BOOL ov104_02231AF4 (UnkStruct_ov104_0222E930 * param0)
 
     v1 = sub_0209B970(param0->unk_00->unk_00);
 
-    if (TrainerInfo_Gender(sub_02025E38(v1->unk_08)) == 0) {
+    if (TrainerInfo_Gender(SaveData_GetTrainerInfo(v1->unk_08)) == 0) {
         v0 = 0x0;
     } else {
         v0 = 0x61;

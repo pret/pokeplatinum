@@ -36,7 +36,7 @@ void Player_Init (UnkStruct_02025E0C * param0)
     sub_0202CBE4(&param0->unk_26);
 }
 
-TrainerInfo * sub_02025E38 (SaveData * param0)
+TrainerInfo * SaveData_GetTrainerInfo (SaveData * param0)
 {
     UnkStruct_02025E0C * v0;
 

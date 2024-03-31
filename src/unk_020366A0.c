@@ -163,7 +163,7 @@ static void sub_020366A0 (SaveData * param0, int param1)
     Unk_021C07D4->unk_40 = 50;
     Unk_021C07D4->unk_4E = 1;
     Unk_021C07D4->unk_28 = param0;
-    Unk_021C07D4->unk_2C = sub_02025E38(param0);
+    Unk_021C07D4->unk_2C = SaveData_GetTrainerInfo(param0);
     Unk_021C07D4->unk_46 = 1 + 1;
     Unk_021C07D4->unk_48 = 0;
     Unk_021C07D4->unk_53 = 0;
@@ -2224,7 +2224,7 @@ static void sub_020386B4 (void)
 
 void * sub_0203871C (SaveData * param0, int param1)
 {
-    TrainerInfo * v0 = sub_02025E38(param0);
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(param0);
 
     if (sub_02035E38()) {
         return NULL;
@@ -2246,7 +2246,7 @@ void * sub_0203871C (SaveData * param0, int param1)
 
 void sub_0203878C (SaveData * param0, const void * param1)
 {
-    TrainerInfo * v0 = sub_02025E38(param0);
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(param0);
 
     if (sub_02035E38()) {
         return;

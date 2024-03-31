@@ -745,7 +745,7 @@ u16 ov5_021D271C (UnkStruct_0203CDB0 * param0, u8 param1)
     }
 
     if (sub_0205EB74(param0->unk_3C) != 0x2) {
-        TrainerInfo * v1 = sub_02025E38(param0->unk_0C);
+        TrainerInfo * v1 = SaveData_GetTrainerInfo(param0->unk_0C);
         u32 v2 = sub_02061760(param0->unk_3C);
 
         if (ov5_021E0118(param0->unk_3C, v2, param1)

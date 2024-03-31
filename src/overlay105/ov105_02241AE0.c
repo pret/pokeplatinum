@@ -2652,7 +2652,7 @@ static void ov105_02244F0C (UnkStruct_ov105_02241FF4 * param0, Window * param1, 
     const TrainerInfo * v1;
     Strbuf* v2;
 
-    v1 = sub_02025E38(param0->unk_13C);
+    v1 = SaveData_GetTrainerInfo(param0->unk_13C);
     v2 = Strbuf_Init((7 + 1), 93);
 
     BGL_FillWindow(param1, 0);
@@ -2914,7 +2914,7 @@ static void ov105_02245464 (UnkStruct_ov105_02241FF4 * param0)
     param0->unk_140->contest = 0;
 
     PokemonSummary_FlagVisiblePages(param0->unk_140, Unk_ov105_022462DC);
-    PokemonSummary_SetPlayerProfile(param0->unk_140, sub_02025E38(param0->unk_13C));
+    PokemonSummary_SetPlayerProfile(param0->unk_140, SaveData_GetTrainerInfo(param0->unk_13C));
 
     return;
 }
@@ -3069,7 +3069,7 @@ void ov105_02245684 (UnkStruct_ov105_02241FF4 * param0, u16 param1)
 {
     TrainerInfo * v0;
 
-    v0 = sub_02025E38(param0->unk_13C);
+    v0 = SaveData_GetTrainerInfo(param0->unk_13C);
     param0->unk_33C[0] = param1;
 
     return;

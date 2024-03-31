@@ -105,7 +105,7 @@ BOOL ov104_0222ED00 (UnkStruct_ov104_0223B5C0 * param0)
     v5 = 44;
     v3 = param0->unk_72C;
     v1 = 0;
-    v2 = sub_02025E38(param0->unk_6FC);
+    v2 = SaveData_GetTrainerInfo(param0->unk_6FC);
 
     v1 += 1;
     v1 += (7 + 1);
@@ -337,7 +337,7 @@ BOOL ov104_0222EEF8 (UnkStruct_ov104_0223ADA0 * param0)
     v5 = 60;
     v3 = param0->unk_504;
     v1 = 0;
-    v2 = sub_02025E38(param0->unk_4F8);
+    v2 = SaveData_GetTrainerInfo(param0->unk_4F8);
 
     v3[1] = param0->unk_08;
     v3[2] = param0->unk_0C;

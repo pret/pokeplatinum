@@ -884,7 +884,7 @@ TrainerInfo * ov114_0225C7CC (const UnkStruct_ov114_0225C76C * param0, u32 param
         v0 = ov114_0225C76C(param0, param1);
 
         if (v0 == param0->unk_09) {
-            return sub_02025E38(param0->unk_00);
+            return SaveData_GetTrainerInfo(param0->unk_00);
         }
 
         return sub_02032EE8(param1);

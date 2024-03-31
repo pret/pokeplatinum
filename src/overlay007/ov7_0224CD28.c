@@ -194,7 +194,7 @@ void ov7_0224CDA4 (UnkStruct_020508D4 * param0, UnkStruct_0203CDB0 * param1, u16
     v0->unk_00 = param1->unk_08;
 
     v0->unk_298 = Strbuf_Init((24 * 2 * 2), 11);
-    v0->unk_270 = sub_02025E38(param1->unk_0C);
+    v0->unk_270 = SaveData_GetTrainerInfo(param1->unk_0C);
     v0->unk_278 = sub_02025E44(param1->unk_0C);
     v0->unk_280 = sub_0202CD88(param1->unk_0C);
     v0->unk_288 = SaveData_Events(param1->unk_0C);
