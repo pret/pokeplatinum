@@ -7,7 +7,7 @@
 #include "overlay115/struct_ov115_02265AD4.h"
 
 #include "unk_02032798.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "overlay115/ov115_02260440.h"
 #include "overlay115/ov115_02265A18.h"
 #include "overlay115/ov115_02265A24.h"

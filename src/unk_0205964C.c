@@ -17,7 +17,7 @@
 #include "heap.h"
 #include "unk_020329E0.h"
 #include "unk_02033200.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_0203CC84.h"
@@ -91,7 +91,7 @@ void sub_0205965C (UnkStruct_0203CDB0 * param0)
     Unk_021C084C->unk_44 = NULL;
 
     sub_02059658();
-    sub_020361BC(&Unk_021C084C->unk_1C);
+    CommunicationSystem_InitRandomSeed(&Unk_021C084C->unk_1C);
 }
 
 void sub_020596BC (void)

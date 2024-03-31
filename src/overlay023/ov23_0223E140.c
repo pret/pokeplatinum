@@ -61,7 +61,7 @@
 #include "unk_0202B604.h"
 #include "unk_0202CD50.h"
 #include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020393C8.h"
 #include "unk_02039C80.h"
 #include "unk_0203CC84.h"
@@ -630,7 +630,7 @@ void ov23_0223E1E4 (void * param0, UnkStruct_0203CDB0 * param1)
     Unk_ov23_02257740 = param0;
 
     MI_CpuFill8(Unk_ov23_02257740, 0, sizeof(UnkStruct_ov23_02257740));
-    sub_020361BC(&Unk_ov23_02257740->unk_08);
+    CommunicationSystem_InitRandomSeed(&Unk_ov23_02257740->unk_08);
 
     Unk_ov23_02257740->unk_00 = param1;
 

@@ -65,7 +65,7 @@
 #include "unk_0202B604.h"
 #include "unk_0202F1D4.h"
 #include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"

@@ -29,7 +29,7 @@
 #include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_0202D05C.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_02049D08.h"
 #include "unk_0204AEE8.h"
 #include "pokemon.h"

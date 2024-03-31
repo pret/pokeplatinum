@@ -30,7 +30,7 @@
 #include "unk_0202B604.h"
 #include "unk_020329E0.h"
 #include "unk_02033200.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020366A0.h"
 #include "unk_0203CC84.h"
 #include "unk_020508D4.h"
@@ -166,7 +166,7 @@ static UnkStruct_0205B43C * sub_0205B3A0 (UnkStruct_0203CDB0 * param0)
     v2->unk_08 = sub_02025E38(v1);
 
     sub_0205C160(v2);
-    sub_020361BC(&v2->unk_150);
+    CommunicationSystem_InitRandomSeed(&v2->unk_150);
 
     return v2;
 }

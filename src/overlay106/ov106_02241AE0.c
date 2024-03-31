@@ -56,7 +56,7 @@
 #include "trainer_info.h"
 #include "unk_020279FC.h"
 #include "unk_02030108.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020393C8.h"
 #include "pokemon.h"

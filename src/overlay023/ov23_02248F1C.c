@@ -34,7 +34,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_02057518.h"
 #include "unk_0205D8CC.h"
 #include "unk_0205E7D0.h"

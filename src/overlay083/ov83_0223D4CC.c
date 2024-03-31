@@ -8,7 +8,7 @@
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_02032798.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020366A0.h"
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay083/ov83_0223D4CC.h"

@@ -10,7 +10,7 @@
 
 #include "unk_0203061C.h"
 #include "unk_02032798.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_0205DFC4.h"
 #include "pokemon.h"
 #include "party.h"

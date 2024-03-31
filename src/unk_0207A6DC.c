@@ -25,7 +25,7 @@
 #include "unk_0202CC64.h"
 #include "unk_0202F1D4.h"
 #include "unk_02032798.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "party.h"
 #include "unk_0207A6DC.h"

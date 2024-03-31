@@ -46,7 +46,7 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_0202854C.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_0203CC84.h"
 #include "unk_020530C8.h"
 #include "unk_02057518.h"

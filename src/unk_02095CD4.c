@@ -11,7 +11,7 @@
 #include "unk_02027F84.h"
 #include "unk_0202D778.h"
 #include "unk_02032798.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "party.h"
 #include "unk_02095CD4.h"
 #include "overlay088/ov88_0223B140.h"

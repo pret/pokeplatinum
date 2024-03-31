@@ -21,7 +21,7 @@
 #include "unk_02032798.h"
 #include "unk_020329E0.h"
 #include "unk_02033200.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 #include "unk_02039814.h"
@@ -169,7 +169,7 @@ static void sub_020366A0 (SaveData * param0, int param1)
     Unk_021C07D4->unk_53 = 0;
     Unk_021C07D4->unk_4A = param1;
 
-    sub_020361BC(&Unk_021C07D4->unk_0C);
+    CommunicationSystem_InitRandomSeed(&Unk_021C07D4->unk_0C);
     sub_02032798(NULL, 0, NULL);
 
     if ((param1 != 9) && (param1 != 17) && (param1 != 15)) {

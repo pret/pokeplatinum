@@ -44,7 +44,7 @@
 #include "unk_0202854C.h"
 #include "unk_0202CD50.h"
 #include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020366A0.h"
 #include "unk_0203CC84.h"
 #include "unk_020507CC.h"
@@ -3080,7 +3080,7 @@ static void ov23_02245ED4 (UnkStruct_ov23_02245ED4 * param0)
     const int v8 = 256;
     const int v9 = 192;
 
-    sub_020361BC(&v7);
+    CommunicationSystem_InitRandomSeed(&v7);
 
     v2 = 0;
 
@@ -3514,7 +3514,7 @@ static void ov23_022468DC (UnkStruct_ov23_022468DC * param0)
     const int v9 = 256;
     const int v10 = 192;
 
-    sub_020361BC(&v8);
+    CommunicationSystem_InitRandomSeed(&v8);
 
     v6 = ov23_022468C0();
 

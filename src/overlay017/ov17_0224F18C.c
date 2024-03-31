@@ -6,7 +6,7 @@
 #include "overlay017/struct_ov17_0224F30C.h"
 #include "overlay017/struct_ov17_0224F3D8.h"
 
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "overlay017/ov17_0224F18C.h"
 
 void ov17_0224F18C (UnkStruct_ov17_0224F30C * param0, const UnkStruct_ov17_02243C28 * param1)

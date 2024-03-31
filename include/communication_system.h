@@ -54,7 +54,7 @@ int sub_02036158(int param0);
 void sub_02036168(BOOL param0);
 BOOL sub_02036180(void);
 void sub_0203619C(int param0, int param1, void * param2, void * param3);
-void sub_020361BC(MATHRandContext32 * param0);
+void CommunicationSystem_InitRandomSeed(MATHRandContext32 * param0);
 BOOL sub_02036254(int param0);
 BOOL sub_0203626C(int param0);
 BOOL sub_02036284(void);

@@ -70,7 +70,7 @@
 #include "unk_0202CD50.h"
 #include "unk_0202F1D4.h"
 #include "unk_02033200.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_02038F8C.h"

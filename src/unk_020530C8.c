@@ -40,7 +40,7 @@
 #include "unk_02027F50.h"
 #include "unk_0202854C.h"
 #include "unk_0202B604.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_02039C80.h"
 #include "map_header.h"
 #include "unk_0203A378.h"

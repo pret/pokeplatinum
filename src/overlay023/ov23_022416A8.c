@@ -19,7 +19,7 @@
 #include "strbuf.h"
 #include "unk_0202854C.h"
 #include "unk_0202CD50.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_0203CC84.h"
 #include "unk_020507CC.h"
 #include "unk_02054D00.h"

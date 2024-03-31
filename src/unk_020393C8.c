@@ -11,7 +11,7 @@
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_02033200.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 

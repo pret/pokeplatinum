@@ -12,7 +12,7 @@
 #include "heap.h"
 #include "strbuf.h"
 #include "unk_0202CC64.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "pokemon.h"
 #include "overlay006/ov6_022489E4.h"
 

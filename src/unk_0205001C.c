@@ -3,7 +3,7 @@
 
 #include "struct_defs/struct_0204FCF8.h"
 
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_0205001C.h"
 
 void sub_0205001C(int param0, int param1, void * param2, void * param3);

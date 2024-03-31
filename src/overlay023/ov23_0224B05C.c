@@ -39,7 +39,7 @@
 #include "unk_02030EE0.h"
 #include "unk_020329E0.h"
 #include "unk_02033200.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020366A0.h"
 #include "unk_0203CC84.h"
 #include "unk_020507CC.h"
@@ -2174,7 +2174,7 @@ static void ov23_0224D238 (void)
     sub_0206AA20(SaveData_Events(Unk_ov23_022577AC->unk_00->unk_0C));
     sub_020292CC(v0);
     sub_02028B34(v1);
-    sub_020361BC(&v15);
+    CommunicationSystem_InitRandomSeed(&v15);
 
     for (v5 = 0; v5 < 16; v5++) {
         v6 = MATH_Rand32(&v15, v13);

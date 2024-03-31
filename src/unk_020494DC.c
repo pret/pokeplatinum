@@ -15,7 +15,7 @@
 
 #include "unk_0202CD50.h"
 #include "unk_0202D05C.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_0203CC84.h"
 #include "unk_0203E724.h"

@@ -15,7 +15,7 @@
 #include "heap.h"
 #include "unk_020329E0.h"
 #include "unk_02033200.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "overlay097/ov97_0222D04C.h"
@@ -66,7 +66,7 @@ static void ov97_0222D04C (UnkStruct_ov97_0222D04C * param0)
     Unk_ov97_0223F1A4->unk_1C = SysTask_Start(ov97_0222D19C, NULL, 10);
     Unk_ov97_0223F1A4->unk_00 = param0;
 
-    sub_020361BC(&Unk_ov97_0223F1A4->unk_04);
+    CommunicationSystem_InitRandomSeed(&Unk_ov97_0223F1A4->unk_04);
 }
 
 static void ov97_0222D0A4 (UnkFuncPtr_ov97_0222D0A4 param0, int param1)

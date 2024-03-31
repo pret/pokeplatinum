@@ -34,7 +34,7 @@
 #include "trainer_info.h"
 #include "unk_0202854C.h"
 #include "unk_0202CD50.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_02057518.h"
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_02253598.h"
@@ -75,7 +75,7 @@ void ov23_02253598 (UnkStruct_ov23_02253598 * param0, UnkStruct_0202855C * param
     Unk_ov23_022577BC->unk_0C = param1;
     Unk_ov23_022577BC->unk_10 = sub_0202855C(15);
 
-    sub_020361BC(&Unk_ov23_022577BC->unk_14);
+    CommunicationSystem_InitRandomSeed(&Unk_ov23_022577BC->unk_14);
 }
 
 void ov23_022535CC (void)

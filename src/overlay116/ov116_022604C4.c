@@ -37,7 +37,7 @@
 #include "unk_02020020.h"
 #include "unk_02024220.h"
 #include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"

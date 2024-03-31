@@ -34,7 +34,7 @@
 #include "unk_0200F174.h"
 #include "heap.h"
 #include "trainer_info.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "pokemon.h"
 #include "move_table.h"
 #include "party.h"

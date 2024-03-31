@@ -45,7 +45,7 @@
 #include "unk_0201E86C.h"
 #include "error_handling.h"
 #include "strbuf.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "overlay117/ov117_02260668.h"
 #include "overlay117/ov117_02263AF0.h"
 #include "overlay117/ov117_022666C0.h"

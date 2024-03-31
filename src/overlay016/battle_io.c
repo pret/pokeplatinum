@@ -63,7 +63,7 @@
 #include "overlay016/struct_ov16_02266ABC.h"
 
 #include "unk_0202F1D4.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "pokemon.h"
 #include "move_table.h"
 #include "party.h"

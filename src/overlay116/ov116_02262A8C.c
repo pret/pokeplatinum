@@ -22,7 +22,7 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_02022594.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "overlay116/ov116_02261870.h"
 #include "overlay116/ov116_02262A8C.h"
 #include "overlay116/ov116_0226432C.h"

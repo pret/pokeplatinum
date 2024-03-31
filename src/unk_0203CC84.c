@@ -22,7 +22,7 @@
 #include "game_overlay.h"
 #include "unk_020067E8.h"
 #include "heap.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_02039C80.h"
 #include "unk_0203A378.h"
 #include "unk_0203A6DC.h"

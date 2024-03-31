@@ -19,7 +19,7 @@
 #include "unk_0202E2CC.h"
 #include "unk_0202E840.h"
 #include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_02073700.h"
 #include "overlay059/ov59_021D2A2C.h"
 #include "overlay059/ov59_021D2B44.h"

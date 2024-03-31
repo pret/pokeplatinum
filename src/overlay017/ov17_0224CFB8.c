@@ -34,7 +34,7 @@
 #include "unk_0200DA60.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "pokemon.h"
 #include "unk_02094EDC.h"
 #include "overlay017/ov17_0223DAD0.h"

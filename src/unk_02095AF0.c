@@ -12,7 +12,7 @@
 #include "heap.h"
 #include "unk_020298BC.h"
 #include "unk_02032798.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_02095AF0.h"
 #include "overlay006/ov6_022489E4.h"
 #include "overlay017/ov17_02252CEC.h"
