@@ -7,13 +7,13 @@
 
 #include <dwc.h>
 
-void sub_020329E0(SaveData * param0, const UnkStruct_0202610C * param1);
+void sub_020329E0(SaveData * param0, const BattleRegulation * param1);
 void sub_02032A70(void);
 BOOL sub_02032AAC(void);
 void sub_02032AC0(void);
-int sub_02032BC0(void);
+int CommPlayerData_sizeof(void);
 void sub_02032BC4(int param0, int param1, void * param2, void * param3);
-BOOL sub_02032BDC(void);
+BOOL CommunicationInformation_IsDataFinishedReading(void);
 void sub_02032BEC(int param0, int param1, void * param2, void * param3);
 void sub_02032C80(int param0, int param1, void * param2, void * param3);
 BOOL sub_02032CE8(void);

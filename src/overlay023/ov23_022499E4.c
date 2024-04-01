@@ -10,7 +10,7 @@
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_0202CD50.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "unk_02033200.h"
 #include "communication_system.h"
 #include "unk_020366A0.h"
@@ -445,7 +445,7 @@ static void ov23_02249EBC (void)
         return;
     }
 
-    if (sub_02032BDC()) {
+    if (CommunicationInformation_IsDataFinishedReading()) {
         ov23_022499E4("\u0069\u006E\u0066\u006F\u0083\u0066\u0081\u005B\u0083\u005E\u008E\u00F3\u0090\u004D\u008A\u00AE\u0097\u00B9");
         ov23_0224AAB0();
         ov23_02249C24(ov23_02249F14, 200);

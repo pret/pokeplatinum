@@ -300,7 +300,7 @@ BOOL sub_0207A8F4 (UnkStruct_0207A778 * param0, u32 param1)
         return 0;
     }
 
-    return sub_020359DC(24, (void *)&param1, 4);
+    return CommunicationSystem_SendData(24, (void *)&param1, 4);
 }
 
 static void sub_0207A934 (int param0, int param1, void * param2, void * param3)
@@ -593,7 +593,7 @@ void sub_0207ACB4 (SysTask * param0, void * param1)
 
         v5 = sizeof(UnkStruct_0207A81C) + (v1[v2[0] + 2] | (v1[v2[0] + 3] << 8));
 
-        if (sub_020359DC(23, (void *)&v1[v2[0]], v5) == 1) {
+        if (CommunicationSystem_SendData(23, (void *)&v1[v2[0]], v5) == 1) {
             v2[0] += v5;
         }
         break;

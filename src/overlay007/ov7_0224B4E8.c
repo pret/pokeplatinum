@@ -127,7 +127,7 @@ static void ov7_0224B5A8 (UnkStruct_ov7_0224B4E8 * param0)
 {
     UnkStruct_ov84_02240FA8 v0;
     Window * v1 = &(param0->unk_34);
-    UnkStruct_0202610C * v2 = sub_0202610C(param0->unk_10->unk_0C, 0);
+    BattleRegulation * v2 = sub_0202610C(param0->unk_10->unk_0C, 0);
     int v3 = 5;
 
     if (v2) {

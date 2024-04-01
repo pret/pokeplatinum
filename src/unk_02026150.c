@@ -14,7 +14,7 @@
 #include "unk_02026150.h"
 #include "strbuf.h"
 
-UnkStruct_0202610C Unk_02100880[] = {
+BattleRegulation Unk_02100880[] = {
     {
         {0xffff},
         0x0,
@@ -82,7 +82,7 @@ UnkStruct_0202610C Unk_02100880[] = {
     }
 };
 
-UnkStruct_0202610C Unk_02100860 = {
+BattleRegulation Unk_02100860 = {
     {0xffff},
     0x0,
     0x6,
@@ -96,7 +96,7 @@ UnkStruct_0202610C Unk_02100860 = {
     0x0
 };
 
-const UnkStruct_0202610C * sub_02026150 (SaveData * param0, int param1)
+const BattleRegulation * sub_02026150 (SaveData * param0, int param1)
 {
     UnkStruct_02026030 * v0 = NULL;
 
@@ -122,12 +122,12 @@ void sub_0202616C (SaveData * param0, int param1, Strbuf *param2, int param3)
     }
 }
 
-const UnkStruct_0202610C * sub_020261A8 (void)
+const BattleRegulation * sub_020261A8 (void)
 {
     return &Unk_02100860;
 }
 
-int sub_020261B0 (const UnkStruct_0202610C * param0)
+int sub_020261B0 (const BattleRegulation * param0)
 {
     int v0;
 
@@ -136,7 +136,7 @@ int sub_020261B0 (const UnkStruct_0202610C * param0)
     }
 
     for (v0 = 0; v0 < NELEMS(Unk_02100880); v0++) {
-        if (memcmp(param0, &Unk_02100880[v0], sizeof(UnkStruct_0202610C)) == 0) {
+        if (memcmp(param0, &Unk_02100880[v0], sizeof(BattleRegulation)) == 0) {
             return v0;
         }
     }

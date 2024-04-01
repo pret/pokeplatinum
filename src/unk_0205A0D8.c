@@ -36,7 +36,7 @@
 #include "unk_02025E08.h"
 #include "unk_0202602C.h"
 #include "unk_0202D778.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -820,7 +820,7 @@ static BOOL sub_0205AD34 (UnkStruct_0205A0D8 * param0)
     if (param0->unk_86 == 0) {
         v0 = sub_02035AC4(107, &(param0->unk_84), 1);
     } else {
-        v0 = sub_020359DC(107, &(param0->unk_84), 1);
+        v0 = CommunicationSystem_SendData(107, &(param0->unk_84), 1);
     }
 
     if (v0) {

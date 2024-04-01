@@ -14,7 +14,7 @@
 #include "savedata.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "overlay059/ov59_021D2B44.h"
 
 __attribute__((aligned(4))) static const u8 Unk_ov59_021D33B0[] = {

@@ -89,7 +89,7 @@ typedef struct UnkStruct_0203CDB0_t {
     UnkStruct_ov5_021E1608 * unk_A4;
     UnkStruct_ov5_021EFB30 * unk_A8;
     UnkStruct_0204AFC4 * unk_AC;
-    const UnkStruct_0202610C * unk_B0;
+    const BattleRegulation * unk_B0;
     UnkStruct_0209ACBC * unk_B4;
     BOOL unk_B8;
     UnkStruct_0209C370 * unk_BC;

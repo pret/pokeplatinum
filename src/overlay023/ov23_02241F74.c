@@ -32,7 +32,7 @@
 #include "unk_020279FC.h"
 #include "unk_0202854C.h"
 #include "unk_02030EE0.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "communication_system.h"
 #include "unk_020366A0.h"
 #include "unk_0203CC84.h"
@@ -378,7 +378,7 @@ BOOL ov23_02242458 (void)
                 Unk_ov23_02257748->unk_1C.unk_00 = v2;
                 Unk_ov23_02257748->unk_1C.unk_02 = v3;
 
-                sub_020359DC(48, &v4, sizeof(UnkStruct_ov23_0224271C));
+                CommunicationSystem_SendData(48, &v4, sizeof(UnkStruct_ov23_0224271C));
 
                 return 1;
             }

@@ -64,7 +64,7 @@
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 #include "unk_0202ACE0.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -1866,7 +1866,7 @@ static void ov114_0225D688 (SysTask * param0, void * param1)
                 break;
             }
 
-            sub_020359DC(26, &v8, sizeof(u32));
+            CommunicationSystem_SendData(26, &v8, sizeof(u32));
         }
 
         v0->unk_00++;
@@ -3285,9 +3285,9 @@ static BOOL ov114_0225F27C (UnkStruct_ov114_0225F270 * param0, UnkStruct_ov114_0
 
         if ((v0 == 1) || (v0 == 2)) {
             if (v0 == 1) {
-                sub_020359DC(22, NULL, 0);
+                CommunicationSystem_SendData(22, NULL, 0);
             } else if (v0 == 2) {
-                sub_020359DC(23, NULL, 0);
+                CommunicationSystem_SendData(23, NULL, 0);
             }
 
             ov114_0225D368(param1, param2, 15, 1);
@@ -3376,9 +3376,9 @@ static void ov114_0225F424 (UnkStruct_ov114_0225F270 * param0, u32 param1, BOOL 
 
         if (v1 == param3) {
             if (param0->unk_1D) {
-                sub_020359DC(24, NULL, 0);
+                CommunicationSystem_SendData(24, NULL, 0);
             } else {
-                sub_020359DC(25, NULL, 0);
+                CommunicationSystem_SendData(25, NULL, 0);
             }
         }
     }

@@ -140,7 +140,7 @@ BOOL sub_0209BB08 (UnkStruct_0204AFC4 * param0)
 
     MI_CpuCopy8(param0->unk_3E, param0->unk_83E, v1);
 
-    if (sub_020359DC(63, param0->unk_83E, v1) == 1) {
+    if (CommunicationSystem_SendData(63, param0->unk_83E, v1) == 1) {
         v0 = 1;
     } else {
         v0 = 0;
@@ -202,7 +202,7 @@ BOOL sub_0209BBA4 (UnkStruct_0209BBA4 * param0)
     v2 = ov104_0223C264(param0->unk_A0);
     param0->unk_08[1] = sub_02030698(sub_0203068C(param0->unk_00), v2, sub_0205E6A8(v2));
 
-    if (sub_020359DC(57, param0->unk_08, v1) == 1) {
+    if (CommunicationSystem_SendData(57, param0->unk_08, v1) == 1) {
         v0 = 1;
     } else {
         v0 = 0;
@@ -236,7 +236,7 @@ BOOL sub_0209BC1C (UnkStruct_0209BBA4 * param0, u16 param1)
     v1 = 40;
     param0->unk_08[0] = param1;
 
-    if (sub_020359DC(58, param0->unk_08, v1) == 1) {
+    if (CommunicationSystem_SendData(58, param0->unk_08, v1) == 1) {
         v0 = 1;
     } else {
         v0 = 0;
@@ -296,7 +296,7 @@ BOOL sub_0209BC64 (UnkStruct_0209BBA4 * param0, u16 param1, u16 param2)
     param0->unk_08[2] = param0->unk_76[1];
     param0->unk_08[3] = param0->unk_7E[1];
 
-    if (sub_020359DC(59, param0->unk_08, v1) == 1) {
+    if (CommunicationSystem_SendData(59, param0->unk_08, v1) == 1) {
         v0 = 1;
     } else {
         v0 = 0;
@@ -332,7 +332,7 @@ BOOL sub_0209BD68 (UnkStruct_0209BBA4 * param0, u16 param1)
 
     param0->unk_08[0] = param1;
 
-    if (sub_020359DC(60, param0->unk_08, v1) == 1) {
+    if (CommunicationSystem_SendData(60, param0->unk_08, v1) == 1) {
         v0 = 1;
     } else {
         v0 = 0;
@@ -365,7 +365,7 @@ BOOL sub_0209BDB0 (UnkStruct_0209BBA4 * param0, u16 param1)
     v1 = 40;
     param0->unk_08[0] = param1;
 
-    if (sub_020359DC(61, param0->unk_08, v1) == 1) {
+    if (CommunicationSystem_SendData(61, param0->unk_08, v1) == 1) {
         v0 = 1;
     } else {
         v0 = 0;

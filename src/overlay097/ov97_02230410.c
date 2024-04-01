@@ -59,7 +59,7 @@
 #include "trainer_info.h"
 #include "unk_020279FC.h"
 #include "unk_0202DAB4.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "unk_02033200.h"
 #include "communication_system.h"
 #include "unk_020363E8.h"

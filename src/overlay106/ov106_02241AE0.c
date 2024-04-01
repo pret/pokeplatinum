@@ -1509,7 +1509,7 @@ BOOL ov106_022430B4 (UnkStruct_ov106_02243118 * param0, u16 param1, u16 param2)
         break;
     }
 
-    if (sub_020359DC(v1, param0->unk_2A0, 44) == 1) {
+    if (CommunicationSystem_SendData(v1, param0->unk_2A0, 44) == 1) {
         v0 = 1;
     } else {
         v0 = 0;

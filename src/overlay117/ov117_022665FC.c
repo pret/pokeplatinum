@@ -49,7 +49,7 @@ static void ov117_02266618 (int param0, int param1, void * param2, void * param3
 
 BOOL ov117_02266624 (UnkStruct_ov117_02261280 * param0, UnkStruct_ov117_022621D4 * param1)
 {
-    if (sub_020359DC(24, param1, sizeof(UnkStruct_ov117_022621D4)) == 1) {
+    if (CommunicationSystem_SendData(24, param1, sizeof(UnkStruct_ov117_022621D4)) == 1) {
         return 1;
     }
 
@@ -64,7 +64,7 @@ static void ov117_0226663C (int param0, int param1, void * param2, void * param3
 
 BOOL ov117_02266648 (UnkStruct_ov117_02261280 * param0)
 {
-    if (sub_020359DC(25, NULL, 0) == 1) {
+    if (CommunicationSystem_SendData(25, NULL, 0) == 1) {
         return 1;
     }
 
@@ -95,7 +95,7 @@ BOOL ov117_022666A4 (UnkStruct_ov117_02261280 * param0)
 {
     u32 v0 = 100;
 
-    if (sub_020359DC(23, &v0, sizeof(u32)) == 1) {
+    if (CommunicationSystem_SendData(23, &v0, sizeof(u32)) == 1) {
         return 1;
     }
 

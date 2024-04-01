@@ -20,7 +20,7 @@
 #include "unk_020322D8.h"
 #include "unk_0203266C.h"
 #include "unk_02032798.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "unk_02033200.h"
 #include "communication_system.h"
 #include "unk_020363E8.h"
@@ -1354,7 +1354,7 @@ BOOL sub_0203597C (int param0, const void * param1, int param2)
     return 0;
 }
 
-BOOL sub_020359DC (int param0, const void * param1, int param2)
+BOOL CommunicationSystem_SendData (int param0, const void * param1, int param2)
 {
     if (!sub_02035D78(sub_0203608C()) && !sub_02036180()) {
         return 0;
@@ -1410,7 +1410,7 @@ BOOL sub_02035AC4 (int param0, const void * param1, int param2)
     }
 
     if (sub_02034890() == 1) {
-        return sub_020359DC(param0, param1, param2);
+        return CommunicationSystem_SendData(param0, param1, param2);
     }
 
     if (sub_02032498(&sCommunicationSystem->unk_5A0, param0, (u8 *)param1, param2, 1, 1)) {
@@ -1790,12 +1790,12 @@ u16 sub_0203608C (void)
 
 BOOL sub_020360D0 (int param0, const void * param1)
 {
-    return sub_020359DC(param0, param1, 0);
+    return CommunicationSystem_SendData(param0, param1, 0);
 }
 
 BOOL Link_Message (int param0)
 {
-    return sub_020359DC(param0, NULL, 0);
+    return CommunicationSystem_SendData(param0, NULL, 0);
 }
 
 BOOL sub_020360E8 (void)

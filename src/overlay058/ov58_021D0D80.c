@@ -58,7 +58,7 @@
 #include "unk_020279FC.h"
 #include "unk_0202B604.h"
 #include "unk_02030EE0.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "unk_02033200.h"
 #include "communication_system.h"
 #include "unk_020363E8.h"
@@ -264,7 +264,7 @@ int ov58_021D0F08 (UnkStruct_020067E8 * param0, int * param1)
         if (ScreenWipe_Done()) {
             if (sub_0203608C() != 0) {
                 if ((ov58_021D2A30() >= 2)) {
-                    sub_020359DC(128, NULL, 0);
+                    CommunicationSystem_SendData(128, NULL, 0);
                     *param1 = 1;
                 }
                 break;
@@ -1059,7 +1059,7 @@ static int ov58_021D1E4C (UnkStruct_02095EAC * param0, int param1)
 
             ov58_021D2CB0(param0, 7);
 
-            sub_020359DC(126, &v1, sizeof(UnkStruct_02095FE4));
+            CommunicationSystem_SendData(126, &v1, sizeof(UnkStruct_02095FE4));
             sub_0200E084(&param0->unk_33C, 1);
         }
 
@@ -1118,7 +1118,7 @@ static int ov58_021D1FD4 (UnkStruct_02095EAC * param0, int param1)
         v0.unk_02 = 1;
         v0.unk_00 = sub_0203608C();
 
-        sub_020359DC(126, &v0, sizeof(UnkStruct_02095FE4));
+        CommunicationSystem_SendData(126, &v0, sizeof(UnkStruct_02095FE4));
         param0->unk_941E = 0;
         ov58_021D2CB0(param0, 10);
     }
@@ -1670,7 +1670,7 @@ static void ov58_021D29C8 (UnkStruct_02095EAC * param0)
         }
     } else {
         if (sub_0203629C()) {
-            sub_020359DC(119, &param0->unk_43DC, 10);
+            CommunicationSystem_SendData(119, &param0->unk_43DC, 10);
         }
     }
 }

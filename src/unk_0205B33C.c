@@ -28,7 +28,7 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_0202B604.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "unk_02033200.h"
 #include "communication_system.h"
 #include "unk_020366A0.h"
@@ -602,7 +602,7 @@ void sub_0205B930 (UnkStruct_0205B43C * param0, int param1, u32 param2)
     case 0:
         if (param0->unk_44 == 0) {
             param0->unk_34 = v0;
-            sub_020359DC(99, &v0, 1);
+            CommunicationSystem_SendData(99, &v0, 1);
         }
         break;
     case 1:
@@ -680,7 +680,7 @@ int sub_0205B9E8 (UnkStruct_0205B43C * param0)
 int sub_0205B9EC (UnkStruct_0205B43C * param0, int param1)
 {
     if (param0->unk_30 == 0) {
-        sub_020359DC(104, NULL, 0);
+        CommunicationSystem_SendData(104, NULL, 0);
         return param1;
     }
 
@@ -746,7 +746,7 @@ u16 sub_0205BA7C (UnkStruct_0205B43C * param0)
 void sub_0205BAAC (int param0)
 {
     u8 v0 = param0;
-    sub_020359DC(101, &v0, 1);
+    CommunicationSystem_SendData(101, &v0, 1);
 }
 
 static const int Unk_020ED560[2][2] = {

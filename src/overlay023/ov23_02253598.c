@@ -407,7 +407,7 @@ void ov23_022538FC (int param0)
 
     MI_CpuCopy8(Unk_ov23_022577BC->unk_0C, &v2[1], v0);
 
-    sub_020359DC(81, v2, v0 + 1);
+    CommunicationSystem_SendData(81, v2, v0 + 1);
     Heap_FreeToHeap(v2);
 }
 

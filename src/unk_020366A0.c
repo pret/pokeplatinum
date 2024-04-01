@@ -19,7 +19,7 @@
 #include "unk_02030EE0.h"
 #include "unk_0203266C.h"
 #include "unk_02032798.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "unk_02033200.h"
 #include "communication_system.h"
 #include "unk_020366A0.h"
@@ -37,7 +37,7 @@ typedef struct {
     UnkFuncPtr_02036C94 unk_24;
     SaveData * unk_28;
     TrainerInfo * unk_2C;
-    const UnkStruct_0202610C * unk_30;
+    const BattleRegulation * unk_30;
     UnkStruct_ov65_0222F6EC unk_34;
     int unk_40;
     u16 unk_44;
@@ -288,7 +288,7 @@ void sub_020368A4 (void)
     sub_02036C94(sub_02037108, 0);
 }
 
-void sub_020368B8 (SaveData * param0, int param1, int param2, const UnkStruct_0202610C * param3, BOOL param4)
+void sub_020368B8 (SaveData * param0, int param1, int param2, const BattleRegulation * param3, BOOL param4)
 {
     if (sub_02035E38()) {
         return;
@@ -303,7 +303,7 @@ void sub_020368B8 (SaveData * param0, int param1, int param2, const UnkStruct_02
     sub_02036C94(sub_02037144, 0);
 }
 
-void sub_02036900 (SaveData * param0, int param1, int param2, const UnkStruct_0202610C * param3, BOOL param4)
+void sub_02036900 (SaveData * param0, int param1, int param2, const BattleRegulation * param3, BOOL param4)
 {
     if (sub_02035E38()) {
         return;

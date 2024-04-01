@@ -18,7 +18,7 @@
 #include "overlay084/struct_ov84_02240FA8.h"
 
 #include "unk_02005474.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"

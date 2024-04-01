@@ -13,7 +13,7 @@
 #include "heap.h"
 #include "unk_02030EE0.h"
 #include "unk_02032798.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "communication_system.h"
 #include "unk_020366A0.h"
 #include "unk_0205B33C.h"
@@ -79,7 +79,7 @@ static BOOL sub_0209BE84 (UnkStruct_0209BDF8 * param0, u32 param1, const void * 
 
         v1->unk_00 = param1;
         memcpy(v1->unk_04, param2, param3);
-        v0 = sub_020359DC(130, v1, 24);
+        v0 = CommunicationSystem_SendData(130, v1, 24);
 
         return v0;
     }

@@ -417,7 +417,7 @@ static BOOL sub_0204BF48 (UnkStruct_0203CDB0 * param0, void * param1)
 static void sub_0204BF4C (UnkStruct_0203CDB0 * param0, void * param1)
 {
     UnkUnion_0204C4D0 * v0 = sub_0204B844(param0);
-    const UnkStruct_0202610C * v1 = (const UnkStruct_0202610C *)v0;
+    const BattleRegulation * v1 = (const BattleRegulation *)v0;
 
     sub_0202613C(param0->unk_0C, v1);
 }
@@ -425,7 +425,7 @@ static void sub_0204BF4C (UnkStruct_0203CDB0 * param0, void * param1)
 static void sub_0204BF60 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
 {
     UnkUnion_0204C4D0 * v0 = sub_0204B844(param0->unk_00);
-    const UnkStruct_0202610C * v1 = (const UnkStruct_0202610C *)v0;
+    const BattleRegulation * v1 = (const BattleRegulation *)v0;
     Strbuf* v2;
 
     *param1 = 379;

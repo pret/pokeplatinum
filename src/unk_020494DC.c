@@ -279,7 +279,7 @@ BOOL sub_020498D0 (UnkStruct_0203E724 * param0)
 
         v1 = 70;
 
-        if (sub_020359DC(v0, v6->unk_83E, v1) == 1) {
+        if (CommunicationSystem_SendData(v0, v6->unk_83E, v1) == 1) {
             *v5 = 1;
         }
     }

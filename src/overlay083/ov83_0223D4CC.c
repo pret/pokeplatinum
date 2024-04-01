@@ -74,7 +74,7 @@ BOOL ov83_0223D508 (int param0, const void * param1, int param2, UnkStruct_ov83_
             }
         }
 
-        return sub_020359DC(param0, param1, param2);
+        return CommunicationSystem_SendData(param0, param1, param2);
     } else {
         return ov83_0223D638(param3->unk_04, param0, param1, param2);
     }

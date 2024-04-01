@@ -78,7 +78,7 @@
 #include "unk_0202CD50.h"
 #include "unk_0202D05C.h"
 #include "unk_0202F1D4.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "unk_02033200.h"
 #include "communication_system.h"
 #include "unk_020363E8.h"

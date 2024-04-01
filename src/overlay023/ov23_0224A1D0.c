@@ -22,7 +22,7 @@
 #include "trainer_info.h"
 #include "unk_0202854C.h"
 #include "unk_0202CD50.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "communication_system.h"
 #include "unk_0203CC84.h"
 #include "unk_020507CC.h"

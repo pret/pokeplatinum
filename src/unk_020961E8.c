@@ -223,7 +223,7 @@ void sub_02096274 (int param0, int param1, void * param2, void * param3)
                 break;
             }
 
-            sub_020359DC(112, &v1, sizeof(UnkStruct_02096274));
+            CommunicationSystem_SendData(112, &v1, sizeof(UnkStruct_02096274));
         }
     } else {
         switch (v2->unk_02) {
@@ -283,7 +283,7 @@ void sub_020963A0 (int param0, int param1, void * param2, void * param3)
 
     if (sub_0203608C() == 0) {
         v0 = param0;
-        sub_020359DC(110, &v0, 1);
+        CommunicationSystem_SendData(110, &v0, 1);
     }
 }
 

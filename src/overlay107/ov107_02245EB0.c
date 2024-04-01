@@ -65,7 +65,7 @@
 #include "unk_020279FC.h"
 #include "unk_020302D0.h"
 #include "unk_0203061C.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020393C8.h"
@@ -2668,7 +2668,7 @@ BOOL ov107_02248874 (UnkStruct_ov107_02246170 * param0, u16 param1, u16 param2)
         break;
     }
 
-    if (sub_020359DC(v1, param0->unk_3E4, 40) == 1) {
+    if (CommunicationSystem_SendData(v1, param0->unk_3E4, 40) == 1) {
         v0 = 1;
     } else {
         v0 = 0;

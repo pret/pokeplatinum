@@ -187,7 +187,7 @@ static BOOL sub_0204FD38 (UnkStruct_020508D4 * param0)
 
     switch (v0->unk_00) {
     case 0:
-        if (sub_020359DC(133, v0, sizeof(UnkStruct_0204FCF8)) == 1) {
+        if (CommunicationSystem_SendData(133, v0, sizeof(UnkStruct_0204FCF8)) == 1) {
             v0->unk_00++;
         }
         break;

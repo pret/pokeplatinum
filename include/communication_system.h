@@ -24,7 +24,7 @@ void sub_0203568C(void);
 void sub_0203572C(void);
 void sub_02035938(u8 param0);
 BOOL sub_0203597C(int param0, const void * param1, int param2);
-BOOL sub_020359DC(int param0, const void * param1, int param2);
+BOOL CommunicationSystem_SendData(int param0, const void * param1, int param2);
 BOOL sub_02035A3C(int param0, const void * param1, int param2);
 BOOL sub_02035AC4(int param0, const void * param1, int param2);
 BOOL sub_02035B48(int param0, const void * param1);

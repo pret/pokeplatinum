@@ -27,7 +27,7 @@ void sub_0207A2C0 (HeightWeightData * param0)
     Pokedex_HeightWeightData_Free(param0);
 }
 
-BOOL sub_0207A2D0 (const UnkStruct_0202610C * param0, Pokemon * param1, const HeightWeightData * param2)
+BOOL sub_0207A2D0 (const BattleRegulation * param0, Pokemon * param1, const HeightWeightData * param2)
 {
     u16 v0 = (u16)Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
     int v1, v2, v3;
@@ -97,7 +97,7 @@ BOOL sub_0207A2D0 (const UnkStruct_0202610C * param0, Pokemon * param1, const He
     return 1;
 }
 
-int sub_0207A3AC (const UnkStruct_0202610C * param0, Party * param1, const HeightWeightData * param2, u8 * param3)
+int sub_0207A3AC (const BattleRegulation * param0, Party * param1, const HeightWeightData * param2, u8 * param3)
 {
     Pokemon * v0;
     int v1, v2 = 0, v3, v4, v5 = 0;
@@ -204,7 +204,7 @@ static BOOL sub_0207A514 (u16 * param0, u16 * param1, u16 * param2, int param3, 
     return 0;
 }
 
-int sub_0207A594 (const UnkStruct_0202610C * param0, Party * param1, const HeightWeightData * param2)
+int sub_0207A594 (const BattleRegulation * param0, Party * param1, const HeightWeightData * param2)
 {
     Pokemon * v0;
     int v1, v2, v3, v4, v5 = 0;

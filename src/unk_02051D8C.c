@@ -363,7 +363,7 @@ void sub_020524E4 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, con
     PokedexData * v2 = sub_02027560(param1->unk_0C);
     ChatotCry * v3 = GetChatotCryDataFromSave(param1->unk_0C);
     Options * v4 = sub_02025E44(param1->unk_0C);
-    const UnkStruct_0202610C * v5 = param1->unk_B0;
+    const BattleRegulation * v5 = param1->unk_B0;
     int v6, v7, v8;
     Pokemon * v9;
 

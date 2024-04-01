@@ -24,7 +24,7 @@
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_0201DBEC.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -208,7 +208,7 @@ int ov115_0226048C (UnkStruct_020067E8 * param0, int * param1)
 
         if (ScreenWipe_Done()) {
             if (v0->unk_44 == 0) {
-                v2 = sub_020359DC(22, NULL, 0);
+                v2 = CommunicationSystem_SendData(22, NULL, 0);
 
                 if (v2) {
                     (*param1)++;
@@ -237,7 +237,7 @@ int ov115_0226048C (UnkStruct_020067E8 * param0, int * param1)
             u32 v5;
 
             v5 = ov115_02261274(v0->unk_34);
-            v2 = sub_020359DC(25, &v5, sizeof(u32));
+            v2 = CommunicationSystem_SendData(25, &v5, sizeof(u32));
 
             if (v2) {
                 (*param1)++;
@@ -279,7 +279,7 @@ int ov115_0226048C (UnkStruct_020067E8 * param0, int * param1)
                 UnkStruct_ov115_02265AD4 v8;
 
                 ov115_02260CBC(v0->unk_30, &v8);
-                v2 = sub_020359DC(26, &v8, sizeof(UnkStruct_ov115_02265AD4));
+                v2 = CommunicationSystem_SendData(26, &v8, sizeof(UnkStruct_ov115_02265AD4));
 
                 if (v2) {
                     (*param1)++;
@@ -479,7 +479,7 @@ void ov115_022609E4 (UnkStruct_ov115_0226095C * param0, u32 param1, u32 param2)
 
         if (v2 == 1) {
             param0->unk_7C++;
-            sub_020359DC(29, NULL, 0);
+            CommunicationSystem_SendData(29, NULL, 0);
         }
     }
 }
@@ -584,5 +584,5 @@ static BOOL ov115_02260BA0 (UnkStruct_ov115_0226095C * param0, int param1, const
         return 0;
     }
 
-    return sub_020359DC(param1, param2, param3);
+    return CommunicationSystem_SendData(param1, param2, param3);
 }

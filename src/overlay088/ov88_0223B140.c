@@ -83,7 +83,7 @@
 #include "unk_0202D778.h"
 #include "unk_0202F180.h"
 #include "unk_0203061C.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -1642,7 +1642,7 @@ static int ov88_0223CFF4 (u32 * param0, int * param1, GraphicElementData * param
 void ov88_0223D044 (int param0, int param1, int param2)
 {
     u8 v0 = param2;
-    sub_020359DC(param1, &v0, 1);
+    CommunicationSystem_SendData(param1, &v0, 1);
 }
 
 void ov88_0223D058 (UnkStruct_02095E80 * param0, int param1, int param2)
@@ -1675,7 +1675,7 @@ static void ov88_0223D0C0 (SaveData * param0)
     u8 * v0 = sub_0202D79C(param0);
     int v1;
 
-    sub_020359DC(32, v0, 14);
+    CommunicationSystem_SendData(32, v0, 14);
 }
 
 static void ov88_0223D0D4 (TrainerInfo * param0, UnkStruct_02027F8C * param1, UnkStruct_02027F8C * param2)

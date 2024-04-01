@@ -19,7 +19,7 @@
 #include "heap.h"
 #include "trainer_info.h"
 #include "unk_0202D05C.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "unk_02049D08.h"
 #include "unk_02051D8C.h"
 #include "pokemon.h"

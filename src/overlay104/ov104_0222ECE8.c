@@ -110,7 +110,7 @@ BOOL ov104_0222ED00 (UnkStruct_ov104_0223B5C0 * param0)
     v1 += 1;
     v1 += (7 + 1);
 
-    if (sub_020359DC(34, v3, v5) == 1) {
+    if (CommunicationSystem_SendData(34, v3, v5) == 1) {
         v4 = 1;
     } else {
         v4 = 0;
@@ -156,7 +156,7 @@ BOOL ov104_0222ED44 (UnkStruct_ov104_0223B5C0 * param0)
 
     v3 += ((10 * 2));
 
-    if (sub_020359DC(35, v4, v6) == 1) {
+    if (CommunicationSystem_SendData(35, v4, v6) == 1) {
         v5 = 1;
     } else {
         v5 = 0;
@@ -207,7 +207,7 @@ BOOL ov104_0222EDA8 (UnkStruct_ov104_0223B5C0 * param0)
 
     v1 += (10 * 2);
 
-    if (sub_020359DC(36, v2, v4) == 1) {
+    if (CommunicationSystem_SendData(36, v2, v4) == 1) {
         v3 = 1;
     } else {
         v3 = 0;
@@ -252,7 +252,7 @@ BOOL ov104_0222EE14 (UnkStruct_ov104_0223B5C0 * param0, u8 param1)
 
     v0[0] = param1;
 
-    if (sub_020359DC(37, v0, v2) == 1) {
+    if (CommunicationSystem_SendData(37, v0, v2) == 1) {
         v1 = 1;
     } else {
         v1 = 0;
@@ -346,7 +346,7 @@ BOOL ov104_0222EEF8 (UnkStruct_ov104_0223ADA0 * param0)
     v1 += 4;
     v1 += (7 + 1);
 
-    if (sub_020359DC(22, v3, v5) == 1) {
+    if (CommunicationSystem_SendData(22, v3, v5) == 1) {
         v4 = 1;
     } else {
         v4 = 0;
@@ -394,7 +394,7 @@ BOOL ov104_0222EF64 (UnkStruct_ov104_0223ADA0 * param0)
 
     v1 += (7 * 2);
 
-    if (sub_020359DC(23, v2, v4) == 1) {
+    if (CommunicationSystem_SendData(23, v2, v4) == 1) {
         v3 = 1;
     } else {
         v3 = 0;
@@ -458,7 +458,7 @@ BOOL ov104_0222EFCC (UnkStruct_ov104_0223ADA0 * param0)
 
     v1 += (6 * 2);
 
-    if (sub_020359DC(24, v2, v4) == 1) {
+    if (CommunicationSystem_SendData(24, v2, v4) == 1) {
         v3 = 1;
     } else {
         v3 = 0;
@@ -536,7 +536,7 @@ BOOL ov104_0222F0B4 (UnkStruct_ov104_0223ADA0 * param0)
 
     v1 += (4 * 2);
 
-    if (sub_020359DC(25, v2, v4) == 1) {
+    if (CommunicationSystem_SendData(25, v2, v4) == 1) {
         v3 = 1;
     } else {
         v3 = 0;
@@ -594,7 +594,7 @@ BOOL ov104_0222F1A0 (UnkStruct_ov104_0223ADA0 * param0, u8 param1)
 
     v0[0] = param1;
 
-    if (sub_020359DC(26, v0, v2) == 1) {
+    if (CommunicationSystem_SendData(26, v0, v2) == 1) {
         v1 = 1;
     } else {
         v1 = 0;
@@ -629,7 +629,7 @@ BOOL ov104_0222F1EC (UnkStruct_ov104_0223ADA0 * param0, u8 param1)
 
     v0[0] = param1;
 
-    if (sub_020359DC(27, v0, v2) == 1) {
+    if (CommunicationSystem_SendData(27, v0, v2) == 1) {
         v1 = 1;
     } else {
         v1 = 0;
@@ -693,7 +693,7 @@ BOOL ov104_0222F238 (UnkStruct_ov104_0223ADA0 * param0)
 
     v2 += (v0 * 2);
 
-    if (sub_020359DC(28, v3, v5) == 1) {
+    if (CommunicationSystem_SendData(28, v3, v5) == 1) {
         v4 = 1;
     } else {
         v4 = 0;
@@ -761,7 +761,7 @@ BOOL ov104_0222F3B8 (UnkStruct_ov104_0223BA10 * param0)
     param0->unk_3C0[v1] = sub_02030698(sub_0203068C(param0->unk_04), sub_0205E630(param0->unk_10), sub_0205E6A8(sub_0205E630(param0->unk_10)));
     v1 += 1;
 
-    if (sub_020359DC(42, param0->unk_3C0, v3) == 1) {
+    if (CommunicationSystem_SendData(42, param0->unk_3C0, v3) == 1) {
         v2 = 1;
     } else {
         v2 = 0;
@@ -808,7 +808,7 @@ BOOL ov104_0222F44C (UnkStruct_ov104_0223BA10 * param0)
 
     v1 += (7 * 2);
 
-    if (sub_020359DC(43, param0->unk_3C0, v3) == 1) {
+    if (CommunicationSystem_SendData(43, param0->unk_3C0, v3) == 1) {
         v2 = 1;
     } else {
         v2 = 0;
@@ -873,7 +873,7 @@ BOOL ov104_0222F4B8 (UnkStruct_ov104_0223BA10 * param0)
 
     param0->unk_3C0[1] = param0->unk_A1B;
 
-    if (sub_020359DC(44, param0->unk_3C0, v3) == 1) {
+    if (CommunicationSystem_SendData(44, param0->unk_3C0, v3) == 1) {
         v2 = 1;
     } else {
         v2 = 0;
@@ -958,7 +958,7 @@ BOOL ov104_0222F5D4 (UnkStruct_ov104_0223BA10 * param0)
 
     v1 += (4 * 2);
 
-    if (sub_020359DC(45, param0->unk_3C0, v3) == 1) {
+    if (CommunicationSystem_SendData(45, param0->unk_3C0, v3) == 1) {
         v2 = 1;
     } else {
         v2 = 0;
@@ -1013,7 +1013,7 @@ BOOL ov104_0222F6C8 (UnkStruct_ov104_0223BA10 * param0, u16 param1)
     v1 = 40;
     param0->unk_3C0[0] = param1;
 
-    if (sub_020359DC(46, param0->unk_3C0, v1) == 1) {
+    if (CommunicationSystem_SendData(46, param0->unk_3C0, v1) == 1) {
         v0 = 1;
     } else {
         v0 = 0;
@@ -1046,7 +1046,7 @@ BOOL ov104_0222F710 (UnkStruct_ov104_0223BA10 * param0, u16 param1)
     v1 = 40;
     param0->unk_3C0[0] = param1;
 
-    if (sub_020359DC(47, param0->unk_3C0, v1) == 1) {
+    if (CommunicationSystem_SendData(47, param0->unk_3C0, v1) == 1) {
         v0 = 1;
     } else {
         v0 = 0;
@@ -1153,7 +1153,7 @@ BOOL ov104_0222F86C (UnkStruct_ov104_0223BFFC * param0)
 
     v1 += 3;
 
-    if (sub_020359DC(65, param0->unk_424, v3) == 1) {
+    if (CommunicationSystem_SendData(65, param0->unk_424, v3) == 1) {
         v2 = 1;
     } else {
         v2 = 0;
@@ -1196,7 +1196,7 @@ BOOL ov104_0222F8D0 (UnkStruct_ov104_0223BFFC * param0)
 
     v1 += (7 * 2);
 
-    if (sub_020359DC(66, param0->unk_424, v3) == 1) {
+    if (CommunicationSystem_SendData(66, param0->unk_424, v3) == 1) {
         v2 = 1;
     } else {
         v2 = 0;
@@ -1257,7 +1257,7 @@ BOOL ov104_0222F944 (UnkStruct_ov104_0223BFFC * param0)
 
     v1 += (4 * 2);
 
-    if (sub_020359DC(67, param0->unk_424, v3) == 1) {
+    if (CommunicationSystem_SendData(67, param0->unk_424, v3) == 1) {
         v2 = 1;
     } else {
         v2 = 0;
@@ -1312,7 +1312,7 @@ BOOL ov104_0222FA38 (UnkStruct_ov104_0223BFFC * param0, u16 param1)
     v1 = 40;
     param0->unk_424[0] = param1;
 
-    if (sub_020359DC(68, param0->unk_424, v1) == 1) {
+    if (CommunicationSystem_SendData(68, param0->unk_424, v1) == 1) {
         v0 = 1;
     } else {
         v0 = 0;
@@ -1345,7 +1345,7 @@ BOOL ov104_0222FA84 (UnkStruct_ov104_0223BFFC * param0, u16 param1)
     v1 = 40;
     param0->unk_424[0] = param1;
 
-    if (sub_020359DC(69, param0->unk_424, v1) == 1) {
+    if (CommunicationSystem_SendData(69, param0->unk_424, v1) == 1) {
         v0 = 1;
     } else {
         v0 = 0;

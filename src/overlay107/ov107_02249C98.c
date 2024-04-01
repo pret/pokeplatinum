@@ -8,7 +8,7 @@
 #include "unk_02005474.h"
 #include "unk_0200B358.h"
 #include "unk_0203061C.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "communication_system.h"
 #include "unk_0205DFC4.h"
 #include "overlay107/ov107_02249C98.h"

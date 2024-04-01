@@ -11,7 +11,7 @@
 #include "overlay083/struct_ov83_0223FCE8.h"
 #include "overlay083/struct_ov83_022401AC.h"
 
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "communication_system.h"
 #include "overlay083/ov83_0223B5A0.h"
 #include "overlay083/ov83_0223D144.h"

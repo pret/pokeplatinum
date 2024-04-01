@@ -10,7 +10,7 @@
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "unk_0202ACE0.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "communication_system.h"
 #include "unk_020366A0.h"
 #include "unk_0203909C.h"
