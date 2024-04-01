@@ -116,7 +116,7 @@ static void ov31_02256298 (UnkStruct_ov31_02256228 * param0, UnkStruct_ov31_0225
 {
     int v0, v1, v2;
 
-    PoketchData_DotArtData(param2, param0->unk_1F4);
+    PoketchData_CopyDotArtData(param2, param0->unk_1F4);
 
     v2 = 0;
 
@@ -141,7 +141,7 @@ static void ov31_022562EC (UnkStruct_ov31_02256228 * param0, UnkStruct_ov31_0225
         }
     }
 
-    PoketchData_SetDotArtData(param2, param0->unk_1F4);
+    PoketchData_ModifyDotArtData(param2, param0->unk_1F4);
 }
 
 static void ov31_0225635C (UnkStruct_ov31_02256554_1 * param0)

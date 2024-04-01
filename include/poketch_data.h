@@ -170,13 +170,13 @@ void PoketchData_MapMarkerPos(const PoketchData *poketchData, int index, u8 *x, 
 
 /**
  * Checks whether or not the Dot Art data has been modified at any point. 
- * This will return FALSE until PoketchData_SetDotArtData is called, at which point it will always return TRUE.
+ * This will return FALSE until PoketchData_ModifyDotArtData is called, at which point it will always return TRUE.
  */
 BOOL PoketchData_DotArtModified(const PoketchData *poketchData);
 
-void PoketchData_DotArtData(const PoketchData *poketchData, u8 *dst);
+void PoketchData_CopyDotArtData(const PoketchData *poketchData, u8 *dst);
 
-void PoketchData_SetDotArtData(PoketchData *poketchData, const u8 *src);
+void PoketchData_ModifyDotArtData(PoketchData *poketchData, const u8 *src);
 
 /**
  * Adds a new Pokemon to the end of the Pokemon History list.

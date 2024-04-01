@@ -241,14 +241,14 @@ BOOL PoketchData_DotArtModified(const PoketchData *poketchData)
     return poketchData->dotArtModifiedByPlayer;
 }
 
-void PoketchData_DotArtData(const PoketchData *poketchData, u8 *dst)
+void PoketchData_CopyDotArtData(const PoketchData *poketchData, u8 *dst)
 {
     if (poketchData->dotArtModifiedByPlayer) {
         MI_CpuCopy8(poketchData->dotArtData, dst, POKETCH_DOTART_SIZE_BYTES);
     }
 }
 
-void PoketchData_SetDotArtData(PoketchData *poketchData, const u8 *src)
+void PoketchData_ModifyDotArtData(PoketchData *poketchData, const u8 *src)
 {
     MI_CpuCopy8(src, poketchData->dotArtData, POKETCH_DOTART_SIZE_BYTES);
     poketchData->dotArtModifiedByPlayer = TRUE;
