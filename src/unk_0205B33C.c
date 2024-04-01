@@ -967,10 +967,10 @@ int sub_0205BC50 (StringFormatter * param0)
     u8 v0, v1;
     u8 v2, v3;
 
-    v0 = sub_02032F78(CommunicationSystem_GetCurNetId());
-    v1 = sub_02032F78(CommunicationSystem_GetCurNetId() ^ 1);
-    v2 = sub_02032F9C(CommunicationSystem_GetCurNetId());
-    v3 = sub_02032F9C(CommunicationSystem_GetCurNetId() ^ 1);
+    v0 = CommunicationInformation_GetPlayerCountry(CommunicationSystem_GetCurNetId());
+    v1 = CommunicationInformation_GetPlayerCountry(CommunicationSystem_GetCurNetId() ^ 1);
+    v2 = CommunicationInformation_GetPlayerRegion(CommunicationSystem_GetCurNetId());
+    v3 = CommunicationInformation_GetPlayerRegion(CommunicationSystem_GetCurNetId() ^ 1);
 
     if (v1 == 0) {
         return 15;

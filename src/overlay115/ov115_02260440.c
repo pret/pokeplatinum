@@ -148,7 +148,7 @@ int ov115_0226048C (UnkStruct_020067E8 * param0, int * param1)
         ov115_02265A24(v0);
 
         v0->unk_80 = 1;
-        v0->unk_74 = sub_02032E64();
+        v0->unk_74 = CommunicationInformation_GetRecvCnt();
 
         GF_ASSERT(v0->unk_74 > 1);
 
@@ -394,7 +394,7 @@ int ov115_022608E4 (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 1:
-        if (sub_02036540(4) || (sub_02035E18() < sub_02032E64())) {
+        if (sub_02036540(4) || (sub_02035E18() < CommunicationInformation_GetRecvCnt())) {
             return 1;
         }
         break;

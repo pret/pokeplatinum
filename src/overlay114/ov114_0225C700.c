@@ -802,7 +802,7 @@ void ov114_0225C700 (UnkStruct_ov114_0225C76C * param0, BOOL param1, SaveData * 
 
     memset(param0, 0, sizeof(UnkStruct_ov114_0225C76C));
 
-    param0->unk_08 = sub_02032E64();
+    param0->unk_08 = CommunicationInformation_GetRecvCnt();
     v2 = CommunicationSystem_GetCurNetId();
     v1 = 0;
 
@@ -2265,8 +2265,8 @@ static void ov114_0225E0F8 (UnkStruct_ov114_0225E0F8 * param0, const UnkStruct_o
     for (v0 = 0; v0 < param1->unk_08; v0++) {
         param0->unk_08[v0] = ov114_0225C7CC(param1, param1->unk_04[v0]);
         GF_ASSERT(param0->unk_08[v0]);
-        param0->unk_00[v0] = sub_02032F78(param1->unk_04[v0]);
-        param0->unk_04[v0] = sub_02032F9C(param1->unk_04[v0]);
+        param0->unk_00[v0] = CommunicationInformation_GetPlayerCountry(param1->unk_04[v0]);
+        param0->unk_04[v0] = CommunicationInformation_GetPlayerRegion(param1->unk_04[v0]);
     }
 }
 

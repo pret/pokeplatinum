@@ -112,7 +112,7 @@ int ov117_02260474 (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 7:
-        if ((sub_02036540(222) == 1) || (sub_02035E18() < sub_02032E64())) {
+        if ((sub_02036540(222) == 1) || (sub_02035E18() < CommunicationInformation_GetRecvCnt())) {
             (*param1)++;
         }
 

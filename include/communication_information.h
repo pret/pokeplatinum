@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_020329E0_H
-#define POKEPLATINUM_UNK_020329E0_H
+#ifndef POKEPLATINUM_COMMUNICATION_INFORMATION_H
+#define POKEPLATINUM_COMMUNICATION_INFORMATION_H
 
 #include "trainer_info.h"
 #include "struct_defs/struct_0202610C.h"
@@ -14,30 +14,30 @@ void CommunicationInformation_SendBattleRegulation(void);
 int CommPlayerData_sizeof(void);
 void CommunicatitonInformaion_FinishReading(int param0, int param1, void * param2, void * param3);
 BOOL CommunicationInformation_IsDataFinishedReading(void);
-void CommunicationInformation_RecvPlayerDataArray(int param0, int param1, void * param2, void * param3);
-void CommunicationInformation_RecvPlayerData(int param0, int param1, void * param2, void * param3);
+void CommunicationInformation_RecvPlayerDataArray(int netId, int unused1, void * src, void * unused3);
+void CommunicationInformation_RecvPlayerData(int netId, int unused1, void * src, void * unused3);
 BOOL CommunicationInformation_ServerSendArray(void);
 BOOL CommunicationInformation_IsReceivingData(void);
 void CommunicationInformation_InitPlayer(int netId);
-BOOL sub_02032DC4(int param0);
-BOOL sub_02032DE0(int param0);
-BOOL sub_02032E00(int param0);
-void sub_02032E1C(int param0);
-void sub_02032E30(int param0);
-int sub_02032E44(void);
-int sub_02032E64(void);
+BOOL sub_02032DC4(int netId);
+BOOL sub_02032DE0(int netId);
+BOOL sub_02032E00(int netId);
+void sub_02032E1C(int netId);
+void CommunicationInformation_SetReceiveEnd(int netId);
+int CommunicationInformation_GetNewNetworkId(void);
+int CommunicationInformation_GetRecvCnt(void);
 BOOL sub_02032E90(void);
-TrainerInfo * CommunicationInformation_GetTrainerInformation(int param0);
-DWCFriendData * CommunicationInformation_GetDWCFriendData(int param0);
+TrainerInfo * CommunicationInformation_GetTrainerInformation(int netId);
+DWCFriendData * CommunicationInformation_GetDWCFriendData(int netId);
 int sub_02032F40(int param0);
-u16 * sub_02032F54(int param0);
-int sub_02032F78(int param0);
-int sub_02032F9C(int param0);
+u16 * sub_02032F54(int netId);
+int CommunicationInformation_GetPlayerCountry(int netId);
+int CommunicationInformation_GetPlayerRegion(int netId);
 int sub_02032FC0(int param0);
-BOOL sub_02032FE4(void);
-void CommunicationInformation_SavePlayerRecord(SaveData * param0);
-void sub_020331B4(SaveData * param0, int param1);
-void CommunicationInformation_SetTradeResult(SaveData * param0, int param1);
-void CommunicationInformation_SetPersonalTrainerInfo(TrainerInfo * param0);
+BOOL CommunicationInformation_CheckBattleRegulation(void);
+void CommunicationInformation_SavePlayerRecord(SaveData * saveData);
+void sub_020331B4(SaveData * saveData, int param1);
+void CommunicationInformation_SetTradeResult(SaveData * saveData, int val);
+void CommunicationInformation_SetPersonalTrainerInfo(TrainerInfo * trainerInfo);
 
-#endif // POKEPLATINUM_UNK_020329E0_H
+#endif // POKEPLATINUM_COMMUNICATION_INFORMATION_H

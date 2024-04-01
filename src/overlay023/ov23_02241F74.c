@@ -276,7 +276,7 @@ static BOOL ov23_02242308 (Strbuf *param0)
     for (v0 = 0; v0 < (7 + 1); v0++) {
         if (sub_02032DE0(v0)) {
             v3 = CommunicationInformation_GetTrainerInformation(v0);
-            sub_02032E30(v0);
+            CommunicationInformation_SetReceiveEnd(v0);
 
             if (ov23_022422A8(v3, 1, 91, param0)) {
                 return 1;

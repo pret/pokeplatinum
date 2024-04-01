@@ -83,7 +83,7 @@ static void ov116_022604C4 (UnkStruct_ov116_0226139C * param0)
     }
 
     {
-        int v2 = sub_02032E64();
+        int v2 = CommunicationInformation_GetRecvCnt();
 
         param0->unk_44 = CommunicationSystem_GetCurNetId();
         ov116_022604A8(param0);
@@ -755,7 +755,7 @@ int ov116_0226126C (UnkStruct_020067E8 * param0, int * param1)
     }
     break;
     default:
-        if ((sub_02036540(999) == 1) || (sub_02035E18() < sub_02032E64())) {
+        if ((sub_02036540(999) == 1) || (sub_02035E18() < CommunicationInformation_GetRecvCnt())) {
             return 1;
         }
         break;

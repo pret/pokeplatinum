@@ -1276,9 +1276,9 @@ static void ov65_02237534 (UnkStruct_ov65_022367A8 * param0)
 static int ov65_02237548 (UnkStruct_ov65_022367A8 * param0)
 {
     if (param0->unk_00.unk_04) {
-        return sub_02032E64();
+        return CommunicationInformation_GetRecvCnt();
     } else {
-        return sub_02032E64();
+        return CommunicationInformation_GetRecvCnt();
     }
 }
 
@@ -1577,7 +1577,7 @@ static void ov65_02237970 (UnkStruct_ov65_022367A8 * param0)
         return;
     }
 
-    v1 = sub_02032E64();
+    v1 = CommunicationInformation_GetRecvCnt();
 
     if (CommunicationInformation_IsReceivingData()) {
         if (!sub_02036254(5)) {
@@ -1688,7 +1688,7 @@ static BOOL ov65_02237AC0 (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 
         UnkStruct_ov65_022366E4 v2;
         BOOL v3;
 
-        v1 = sub_02032E44();
+        v1 = CommunicationInformation_GetNewNetworkId();
 
         if (v1 != 0xff) {
             if (param0->unk_00.unk_06 != 0) {
@@ -1906,7 +1906,7 @@ static BOOL ov65_02237D98 (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 
 {
     int v0;
 
-    if (sub_02035E18() != sub_02032E64()) {
+    if (sub_02035E18() != CommunicationInformation_GetRecvCnt()) {
         ov65_0223758C(param0);
         return 0;
     }

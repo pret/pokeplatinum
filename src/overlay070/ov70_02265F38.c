@@ -469,12 +469,12 @@ BOOL ov70_02265F38 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
         {
             int v14;
 
-            while ((v14 = sub_02032E44()) != 0xff) {
+            while ((v14 = CommunicationInformation_GetNewNetworkId()) != 0xff) {
                 sub_02032E1C(v14);
             }
         }
 
-        if (sub_02032E64() >= ov66_02233224(v1->unk_01)) {
+        if (CommunicationInformation_GetRecvCnt() >= ov66_02233224(v1->unk_01)) {
             if (ov66_02233374() == 1) {
                 if (v0->unk_02 == 0) {
                     ov66_022330CC();
@@ -529,7 +529,7 @@ BOOL ov70_02265F38 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
             BOOL v21;
             s32 v22;
 
-            v17 = sub_02032E64();
+            v17 = CommunicationInformation_GetRecvCnt();
             v18 = CommunicationSystem_GetCurNetId();
             v20 = 0;
             v21 = 0;
