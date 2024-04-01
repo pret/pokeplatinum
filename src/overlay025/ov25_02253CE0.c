@@ -216,13 +216,13 @@ void ov25_02253D7C (UnkStruct_ov25_02253CE0 * param0, int param1, u32 param2)
         break;
     case 5:
     {
-        u32 v0 = PoketchData_PedometerValue(param0->unk_58);
+        u32 v0 = PoketchData_StepCount(param0->unk_58);
 
         if (++v0 > 99999) {
             v0 = 0;
         }
 
-        PoketchData_SetPedometerValue(param0->unk_58, v0);
+        PoketchData_SetStepCount(param0->unk_58, v0);
         param0->unk_07 = 1;
     }
     break;
