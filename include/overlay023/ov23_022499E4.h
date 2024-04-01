@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0203CDB0_decl.h"
 
-void ov23_022499E8(UnkStruct_0203CDB0 * param0);
+void ov23_022499E8(FieldSystem * param0);
 void ov23_02249A2C(void);
 void ov23_02249A5C(void);
 void ov23_02249A74(void);

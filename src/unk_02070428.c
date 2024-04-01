@@ -24,15 +24,15 @@
 #include "roaming_pokemon.h"
 #include "unk_02070428.h"
 
-static BOOL sub_020705DC(UnkStruct_0203CDB0 * param0);
-static BOOL sub_02070610(UnkStruct_0203CDB0 * param0);
+static BOOL sub_020705DC(FieldSystem * param0);
+static BOOL sub_02070610(FieldSystem * param0);
 
-void sub_02070428 (UnkStruct_0203CDB0 * param0, BOOL param1)
+void sub_02070428 (FieldSystem * param0, BOOL param1)
 {
     param0->unk_B8 = param1;
 }
 
-void sub_02070430 (UnkStruct_0203CDB0 * param0)
+void sub_02070430 (FieldSystem * param0)
 {
     sub_020705DC(param0);
     sub_0206AF1C(SaveData_Events(param0->unk_0C), 0);
@@ -53,7 +53,7 @@ void sub_02070430 (UnkStruct_0203CDB0 * param0)
     }
 }
 
-void sub_02070494 (UnkStruct_0203CDB0 * param0)
+void sub_02070494 (FieldSystem * param0)
 {
     if (param0->unk_B8 == 1) {
         return;
@@ -105,24 +105,24 @@ void sub_02070494 (UnkStruct_0203CDB0 * param0)
     }
 }
 
-void sub_0207056C (UnkStruct_0203CDB0 * param0)
+void sub_0207056C (FieldSystem * param0)
 {
     sub_0206AE4C(SaveData_Events(param0->unk_0C));
     sub_0206C354(sub_0202D834(param0->unk_0C));
 }
 
-void sub_02070588 (UnkStruct_0203CDB0 * param0)
+void sub_02070588 (FieldSystem * param0)
 {
     sub_0206AE4C(SaveData_Events(param0->unk_0C));
     sub_0206C354(sub_0202D834(param0->unk_0C));
 }
 
-void sub_020705A4 (UnkStruct_0203CDB0 * param0)
+void sub_020705A4 (FieldSystem * param0)
 {
     sub_0206AE4C(SaveData_Events(param0->unk_0C));
 }
 
-void sub_020705B4 (UnkStruct_0203CDB0 * param0)
+void sub_020705B4 (FieldSystem * param0)
 {
     UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
 
@@ -130,12 +130,12 @@ void sub_020705B4 (UnkStruct_0203CDB0 * param0)
     sub_0206B024(v0, 0);
 }
 
-void sub_020705CC (UnkStruct_0203CDB0 * param0)
+void sub_020705CC (FieldSystem * param0)
 {
     sub_0206C354(sub_0202D834(param0->unk_0C));
 }
 
-static BOOL sub_020705DC (UnkStruct_0203CDB0 * param0)
+static BOOL sub_020705DC (FieldSystem * param0)
 {
     int v0 = sub_0203A87C(param0->unk_1C->unk_00);
 
@@ -147,7 +147,7 @@ static BOOL sub_020705DC (UnkStruct_0203CDB0 * param0)
     return 0;
 }
 
-static BOOL sub_02070610 (UnkStruct_0203CDB0 * param0)
+static BOOL sub_02070610 (FieldSystem * param0)
 {
     UnkStruct_02049FA8 * v0 = sub_0203A728(sub_0203A790(param0->unk_0C));
 

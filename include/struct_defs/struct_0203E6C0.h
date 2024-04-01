@@ -5,7 +5,7 @@
 #include "savedata.h"
 
 typedef struct {
-    UnkStruct_0203CDB0 * unk_00;
+    FieldSystem * unk_00;
     SaveData * unk_04;
     int unk_08;
     u8 unk_0C;

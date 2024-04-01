@@ -58,7 +58,7 @@ typedef struct UnkStruct_ov7_02249C2C_t {
     UnkStruct_0200112C * unk_5C;
     UIControlData * unk_60;
     ResourceMetadata * unk_64;
-    UnkStruct_0203CDB0 * unk_68;
+    FieldSystem * unk_68;
     UnkFuncPtr_ov7_02249C2C unk_6C;
     UnkFuncPtr_ov7_02249C2C_1 unk_70;
     MessageLoader * unk_74;
@@ -185,7 +185,7 @@ static void ov7_02249A10 (UnkStruct_ov84_02240FA8 param0, u8 param1, u8 param2, 
     sub_0201A954(&Unk_ov7_0224F5A0->unk_20);
 }
 
-static void ov7_02249AB4 (UnkStruct_0203CDB0 * param0)
+static void ov7_02249AB4 (FieldSystem * param0)
 {
     int v0;
 
@@ -1668,7 +1668,7 @@ static int ov7_0224B3FC (void)
     return Unk_ov7_0224F5A0->unk_92 + (Unk_ov7_0224F5A0->unk_93 << 4);
 }
 
-void ov7_0224B414 (UnkStruct_0203CDB0 * param0, int param1, int param2, int param3)
+void ov7_0224B414 (FieldSystem * param0, int param1, int param2, int param3)
 {
     ov7_02249AB4(param0);
     Unk_ov7_0224F5A0->unk_91 = param1;
@@ -1699,7 +1699,7 @@ u32 ov7_0224B460 (void)
     return v0;
 }
 
-void ov7_0224B47C (UnkStruct_0203CDB0 * param0, int param1, int param2, int param3)
+void ov7_0224B47C (FieldSystem * param0, int param1, int param2, int param3)
 {
     ov7_02249AB4(param0);
     Unk_ov7_0224F5A0->unk_91 = param1;

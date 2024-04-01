@@ -21,7 +21,7 @@ typedef struct UnkStruct_ov5_021F600C_t {
 } UnkStruct_ov5_021F600C;
 
 typedef struct {
-    UnkStruct_0203CDB0 * unk_00;
+    FieldSystem * unk_00;
     UnkStruct_ov5_021DF47C * unk_04;
     UnkStruct_ov5_021F600C * unk_08;
     UnkStruct_02061AB4 * unk_0C;

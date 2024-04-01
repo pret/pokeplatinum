@@ -128,7 +128,7 @@ int sub_0203A8A0 (int param0, int param1, int param2)
     return v3;
 }
 
-void sub_0203A8E8 (UnkStruct_0203CDB0 * param0, int param1)
+void sub_0203A8E8 (FieldSystem * param0, int param1)
 {
     int v0;
 
@@ -140,7 +140,7 @@ void sub_0203A8E8 (UnkStruct_0203CDB0 * param0, int param1)
     }
 }
 
-BOOL sub_0203A920 (UnkStruct_0203CDB0 * param0, int param1)
+BOOL sub_0203A920 (FieldSystem * param0, int param1)
 {
     int v0 = sub_0203A7D8(param1);
     return inline_0208BE68(SaveData_Events(param0->unk_0C), Unk_020E97B4[v0].unk_0E);

@@ -3,6 +3,6 @@
 
 #include "struct_decls/struct_0203CDB0_decl.h"
 
-void ov5_021F0824(UnkStruct_0203CDB0 * param0);
+void ov5_021F0824(FieldSystem * param0);
 
 #endif // POKEPLATINUM_OV5_021F0824_H

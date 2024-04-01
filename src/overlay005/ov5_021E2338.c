@@ -2250,7 +2250,7 @@ typedef struct {
     s32 unk_34;
 } UnkStruct_ov5_021E4F7C;
 
-static void ov5_021E4DE0 (UnkStruct_0203CDB0 * param0, const UnkStruct_ov5_021F9DD4 * param1)
+static void ov5_021E4DE0 (FieldSystem * param0, const UnkStruct_ov5_021F9DD4 * param1)
 {
     UnkStruct_ov115_0226527C v0;
 
@@ -2968,7 +2968,7 @@ void ov5_021E585C (SysTask * param0, void * param1)
     }
 }
 
-static u32 ov5_021E5880 (UnkStruct_0203CDB0 * param0)
+static u32 ov5_021E5880 (FieldSystem * param0)
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(param0->unk_0C);
 

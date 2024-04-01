@@ -19,7 +19,7 @@ struct UnkStruct_0203E724_t {
     void * unk_28;
     MessageLoader * unk_2C;
     u8 * unk_30;
-    UnkStruct_0203CDB0 * unk_34;
+    FieldSystem * unk_34;
 };
 
 #endif // POKEPLATINUM_STRUCT_0203E724_T_H

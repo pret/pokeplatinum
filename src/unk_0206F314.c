@@ -107,7 +107,7 @@ typedef struct {
     UnkStruct_0200112C * unk_C0;
     ResourceMetadata * unk_C4;
     UIControlData * unk_C8;
-    UnkStruct_0203CDB0 * unk_CC;
+    FieldSystem * unk_CC;
     BGL * unk_D0;
     Window unk_D4;
     Window unk_E4;
@@ -196,7 +196,7 @@ static const UnkStruct_020F02D0 * const Unk_020F0254[] = {
     Unk_020F0278
 };
 
-static int sub_0206F314 (UnkStruct_0206F314 * param0, UnkStruct_0203CDB0 * param1, u16 param2)
+static int sub_0206F314 (UnkStruct_0206F314 * param0, FieldSystem * param1, u16 param2)
 {
     UnkStruct_0206F7F8 * v0;
     SaveData * v1 = param1->unk_0C;
@@ -855,7 +855,7 @@ static void sub_02070288 (UnkStruct_0206F7F8 * param0)
 
 static BOOL sub_020702D0 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_0206F314 * v1 = sub_02050A64(param0);
     UnkStruct_0206F7F8 * v2 = v1->unk_08;
 
@@ -917,7 +917,7 @@ static BOOL sub_020702D0 (UnkStruct_020508D4 * param0)
 
 void sub_020703FC (UnkStruct_020508D4 * param0, u16 param1)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_0206F314 * v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0206F314));
 
     v1->unk_00 = 0;

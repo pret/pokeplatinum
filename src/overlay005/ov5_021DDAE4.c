@@ -25,7 +25,7 @@ typedef struct {
 
 static BOOL ov5_021DDAE4 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_ov5_021DDBC8 * v1 = sub_02050A64(param0);
 
     switch (v1->unk_00) {

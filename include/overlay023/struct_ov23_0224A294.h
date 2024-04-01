@@ -18,7 +18,7 @@ typedef struct {
     UnkStruct_ov101_021D5D90 * unk_28[8];
     u8 unk_48[8];
     SysTask * unk_50;
-    UnkStruct_0203CDB0 * unk_54;
+    FieldSystem * unk_54;
     UnkStruct_ov23_0224A294_sub1 unk_58;
     u8 unk_5A[8];
     UnkStruct_02057B48 unk_62[8];

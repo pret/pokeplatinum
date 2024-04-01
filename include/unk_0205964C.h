@@ -7,13 +7,13 @@
 #include "savedata.h"
 
 UnkStruct_0205964C * sub_0205964C(void);
-void sub_0205965C(UnkStruct_0203CDB0 * param0);
+void sub_0205965C(FieldSystem * param0);
 void sub_020596BC(void);
-void sub_02059708(UnkStruct_0203CDB0 * param0, int param1, int param2);
-void sub_02059748(UnkStruct_0203CDB0 * param0, int param1, int param2);
+void sub_02059708(FieldSystem * param0, int param1, int param2);
+void sub_02059748(FieldSystem * param0, int param1, int param2);
 void sub_02059788(int param0);
 void sub_020597A4(void);
-void sub_020597B4(UnkStruct_0203CDB0 * param0);
+void sub_020597B4(FieldSystem * param0);
 void sub_0205987C(void);
 void sub_020598A0(void);
 void sub_02059D0C(int param0, int param1, void * param2, void * param3);

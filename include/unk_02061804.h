@@ -20,7 +20,7 @@
 
 #include <nitro/fx/fx.h>
 
-UnkStruct_02061830 * sub_02061804(UnkStruct_0203CDB0 * param0, int param1, int param2);
+UnkStruct_02061830 * sub_02061804(FieldSystem * param0, int param1, int param2);
 void sub_02061830(UnkStruct_02061830 * param0);
 void sub_0206184C(UnkStruct_02061830 * param0, int param1, int param2, int param3, const UnkStruct_020619DC * param4);
 UnkStruct_02061AB4 * sub_02061918(const UnkStruct_02061830 * param0, const UnkStruct_020619DC * param1, int param2);
@@ -34,7 +34,7 @@ void sub_02061B48(UnkStruct_02061AB4 * param0);
 void sub_02061BBC(UnkStruct_02061830 * param0);
 void sub_02061BF0(UnkStruct_02061830 * param0);
 void sub_02061C48(UnkStruct_02061830 * param0);
-void sub_02061CA8(UnkStruct_0203CDB0 * param0, const UnkStruct_02061830 * param1, UnkStruct_02061D3C * param2, int param3);
+void sub_02061CA8(FieldSystem * param0, const UnkStruct_02061830 * param1, UnkStruct_02061D3C * param2, int param3);
 void sub_02061D04(const UnkStruct_02061830 * param0, UnkStruct_02061D3C * param1, int param2);
 void sub_02062068(const UnkStruct_02061830 * param0, int param1, int param2, const UnkStruct_020619DC * param3);
 UnkStruct_02061AB4 * sub_0206251C(const UnkStruct_02061830 * param0, int param1);
@@ -56,8 +56,8 @@ void sub_02062860(UnkStruct_02061830 * param0, UnkStruct_02061AB4 * param1);
 const UnkStruct_02061AB4 * sub_02062868(const UnkStruct_02061830 * param0);
 UnkStruct_02061AB4 * sub_02062878(const UnkStruct_02061830 * param0);
 void sub_02062880(const UnkStruct_02061AB4 ** param0);
-void sub_0206288C(UnkStruct_02061830 * param0, UnkStruct_0203CDB0 * param1);
-UnkStruct_0203CDB0 * sub_02062894(const UnkStruct_02061830 * param0);
+void sub_0206288C(UnkStruct_02061830 * param0, FieldSystem * param1);
+FieldSystem * sub_02062894(const UnkStruct_02061830 * param0);
 void sub_0206289C(UnkStruct_02061830 * param0, NARC * param1);
 NARC * sub_020628A0(const UnkStruct_02061830 * param0);
 void sub_020628B4(UnkStruct_02061AB4 * param0, u32 param1);
@@ -142,7 +142,7 @@ void sub_02062BE0(UnkStruct_02061AB4 * param0, u32 param1);
 u32 sub_02062BE8(const UnkStruct_02061AB4 * param0);
 void sub_02062BF0(UnkStruct_02061AB4 * param0, u32 param1);
 u32 sub_02062BF8(const UnkStruct_02061AB4 * param0);
-UnkStruct_0203CDB0 * sub_02062C00(const UnkStruct_02061AB4 * param0);
+FieldSystem * sub_02062C00(const UnkStruct_02061AB4 * param0);
 int sub_02062C0C(const UnkStruct_02061AB4 * param0);
 int sub_02062C18(const UnkStruct_02061AB4 * param0);
 void sub_02062C30(UnkStruct_02061830 * param0);

@@ -11,10 +11,10 @@
 
 #include <nitro/wm.h>
 
-UnkStruct_0205B43C * sub_0205B33C(UnkStruct_0203CDB0 * param0);
-void sub_0205B388(UnkStruct_0203CDB0 * param0);
+UnkStruct_0205B43C * sub_0205B33C(FieldSystem * param0);
+void sub_0205B388(FieldSystem * param0);
 void sub_0205B5BC(SysTask * param0, void * param1);
-UnkStruct_0203CDB0 * sub_0205B770(UnkStruct_0205B43C * param0);
+FieldSystem * sub_0205B770(UnkStruct_0205B43C * param0);
 WMBssDesc * sub_0205B774(UnkStruct_0205B43C * param0, int param1);
 int sub_0205B780(UnkStruct_0205B43C * param0, int param1);
 int sub_0205B804(UnkStruct_0205B43C * param0, int param1, u16 param2);

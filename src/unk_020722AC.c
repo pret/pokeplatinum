@@ -115,7 +115,7 @@ typedef struct {
     UnkStruct_0200112C * unk_160;
     ResourceMetadata * unk_164;
     UIControlData * unk_168;
-    UnkStruct_0203CDB0 * unk_16C;
+    FieldSystem * unk_16C;
     BGL * unk_170;
     Window unk_174;
     Window unk_184;
@@ -220,7 +220,7 @@ void sub_020722AC (void * param0, int * param1)
 
     v1 = sub_0203D174(param0);
 
-    v0->unk_16C = (UnkStruct_0203CDB0 *)param0;
+    v0->unk_16C = (FieldSystem *)param0;
     v0->unk_00 = 43;
     v0->unk_19 = 0;
     v0->unk_1A = 0xFF;
@@ -1291,7 +1291,7 @@ static int sub_020735E8 (UnkStruct_02072334 * param0)
 
 static BOOL sub_02073694 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_020736D8 * v1 = sub_02050A64(param0);
 
     switch (v1->unk_04) {
@@ -1313,7 +1313,7 @@ static BOOL sub_02073694 (UnkStruct_020508D4 * param0)
 
 void sub_020736D8 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_020736D8 * v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_020736D8));
 
     v1->unk_00 = 0;

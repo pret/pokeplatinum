@@ -702,7 +702,7 @@ u32 sub_0205EED8 (int param0)
     return 1 << 0;
 }
 
-UnkStruct_0205E884 * sub_0205EF3C (UnkStruct_0203CDB0 * param0)
+UnkStruct_0205E884 * sub_0205EF3C (FieldSystem * param0)
 {
     return param0->unk_3C;
 }

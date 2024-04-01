@@ -74,7 +74,7 @@ static void ov5_021F407C (UnkStruct_021F416C * param0)
     sub_02073AA8(&param0->unk_3C);
 }
 
-void ov5_021F4098 (UnkStruct_0203CDB0 * param0, int param1)
+void ov5_021F4098 (FieldSystem * param0, int param1)
 {
     int v0, v1;
     VecFx32 v2 = {0, 0, 0};
@@ -121,7 +121,7 @@ void ov5_021F4098 (UnkStruct_0203CDB0 * param0, int param1)
     }
 }
 
-void ov5_021F416C (UnkStruct_0203CDB0 * param0, int param1)
+void ov5_021F416C (FieldSystem * param0, int param1)
 {
     int v0, v1;
     UnkStruct_ov5_021DF47C * v2;

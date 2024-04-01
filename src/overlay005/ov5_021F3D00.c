@@ -100,7 +100,7 @@ UnkStruct_ov101_021D5D90 * ov5_021F3D90 (UnkStruct_02061AB4 * param0, int param1
     v3 = ov5_021DF578(param0);
 
     {
-        UnkStruct_0203CDB0 * v4 = ov5_021DF574(v3);
+        FieldSystem * v4 = ov5_021DF574(v3);
         int v5 = sub_02063020(param0);
         int v6 = sub_02063040(param0);
 

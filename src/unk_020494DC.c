@@ -389,7 +389,7 @@ static u16 sub_02049AE0 (UnkStruct_0204AFC4 * param0, u8 param1)
 
 BOOL sub_02049B24 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     u8 v1 = (*((param0)->unk_08++));
     u8 v2 = (*((param0)->unk_08++));
     Window ** v3;
@@ -402,7 +402,7 @@ BOOL sub_02049B24 (UnkStruct_0203E724 * param0)
 
 BOOL sub_02049B54 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     Window ** v1 = sub_0203F098(v0, 38);
 
     ov5_021DD084(*v1);
@@ -411,7 +411,7 @@ BOOL sub_02049B54 (UnkStruct_0203E724 * param0)
 
 BOOL sub_02049B6C (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     Window ** v1 = sub_0203F098(v0, 38);
 
     ov5_021DD1A4(param0->unk_34, *v1);
@@ -420,7 +420,7 @@ BOOL sub_02049B6C (UnkStruct_0203E724 * param0)
 
 BOOL sub_02049B8C (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     SaveData * v1 = v0->unk_0C;
     u16 * v2 = inline_0204FCAC(param0);
 
@@ -430,7 +430,7 @@ BOOL sub_02049B8C (UnkStruct_0203E724 * param0)
 
 BOOL sub_02049BBC (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     SaveData * v1 = v0->unk_0C;
     u16 v2 = inline_02049538(param0);
 
@@ -442,7 +442,7 @@ BOOL sub_02049BBC (UnkStruct_0203E724 * param0)
 
 BOOL sub_02049C00 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     SaveData * v1 = v0->unk_0C;
     u16 v2 = inline_02049538(param0);
 
@@ -455,7 +455,7 @@ BOOL sub_02049C00 (UnkStruct_0203E724 * param0)
 BOOL sub_02049C44 (UnkStruct_0203E724 * param0)
 {
     u16 v0;
-    UnkStruct_0203CDB0 * v1 = param0->unk_34;
+    FieldSystem * v1 = param0->unk_34;
     SaveData * v2 = v1->unk_0C;
     u16 v3 = inline_02049538(param0);
     u16 * v4 = inline_0204FCAC(param0);

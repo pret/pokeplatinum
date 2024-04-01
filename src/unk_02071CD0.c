@@ -10,9 +10,9 @@
 #include "unk_02027F50.h"
 #include "unk_0203CC84.h"
 
-void sub_02071CD0(UnkStruct_0203CDB0 * param0);
+void sub_02071CD0(FieldSystem * param0);
 
-void sub_02071CD0 (UnkStruct_0203CDB0 * param0)
+void sub_02071CD0 (FieldSystem * param0)
 {
     int v0;
     UnkStruct_02027860 * v1;

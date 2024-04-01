@@ -572,7 +572,7 @@ u32 sub_02063E18 (const UnkStruct_02061AB4 * param0, const VecFx32 * param1, int
 
     {
         s8 v1;
-        UnkStruct_0203CDB0 * v2 = sub_02062C00(param0);
+        FieldSystem * v2 = sub_02062C00(param0);
 
         if (sub_02055024(v2, param1, param2, param4, &v1) == 1) {
             v0 |= (1 << 1);
@@ -703,7 +703,7 @@ int sub_02063FAC (const UnkStruct_02061AB4 * param0, int param1, int param2, int
 int sub_02064004 (const UnkStruct_02061AB4 * param0, int param1, int param2, int param3)
 {
     if (sub_02062FDC(param0) == 0) {
-        UnkStruct_0203CDB0 * v0 = sub_02062C00(param0);
+        FieldSystem * v0 = sub_02062C00(param0);
         u8 v1 = sub_02062BE8(param0);
         u8 v2 = sub_02054F94(v0, param1, param2);
 
@@ -871,7 +871,7 @@ u32 sub_02064238 (UnkStruct_02061AB4 * param0, int param1)
 {
     int v0 = sub_02063020(param0) + sub_0206419C(param1);
     int v1 = sub_02063040(param0) + sub_020641A8(param1);
-    UnkStruct_0203CDB0 * v2 = sub_02062C00(param0);
+    FieldSystem * v2 = sub_02062C00(param0);
     u8 v3 = sub_02054F94(v2, v0, v1);
 
     return v3;
@@ -928,7 +928,7 @@ int sub_020642F8 (UnkStruct_02061AB4 * param0)
 
     {
         int v2 = sub_02062FAC(param0);
-        UnkStruct_0203CDB0 * v3 = sub_02062C00(param0);
+        FieldSystem * v3 = sub_02062C00(param0);
         int v4 = sub_020644D0(v3, &v1, v2);
 
         if (v4 == 1) {
@@ -953,7 +953,7 @@ int sub_02064390 (UnkStruct_02061AB4 * param0)
     if (sub_02062FDC(param0) == 0) {
         int v2 = sub_02063008(param0);
         int v3 = sub_02063018(param0);
-        UnkStruct_0203CDB0 * v4 = sub_02062C00(param0);
+        FieldSystem * v4 = sub_02062C00(param0);
 
         v0 = sub_02054F94(v4, v2, v3);
         v2 = sub_02063020(param0);
@@ -1035,7 +1035,7 @@ int sub_02064488 (int param0, int param1, int param2, int param3)
     return(1);
 }
 
-int sub_020644A4 (UnkStruct_0203CDB0 * param0, VecFx32 * param1)
+int sub_020644A4 (FieldSystem * param0, VecFx32 * param1)
 {
     fx32 v0;
     u8 v1;
@@ -1050,7 +1050,7 @@ int sub_020644A4 (UnkStruct_0203CDB0 * param0, VecFx32 * param1)
     return 1;
 }
 
-int sub_020644D0 (UnkStruct_0203CDB0 * param0, VecFx32 * param1, int param2)
+int sub_020644D0 (FieldSystem * param0, VecFx32 * param1, int param2)
 {
     fx32 v0;
     u8 v1;

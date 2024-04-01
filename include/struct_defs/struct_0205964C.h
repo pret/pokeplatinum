@@ -13,7 +13,7 @@ typedef struct {
     UnkStruct_02072014 * unk_00[4];
     u8 unk_10[4];
     u8 padding_14[4];
-    UnkStruct_0203CDB0 * unk_18;
+    FieldSystem * unk_18;
     MATHRandContext32 unk_1C;
     UnkFuncPtr_020598EC unk_34;
     SysTask * unk_38;

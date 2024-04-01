@@ -71,14 +71,14 @@ typedef struct {
     BattleParams * unk_10;
 } UnkStruct_02050DD4;
 
-static void sub_020518B0(UnkStruct_0203CDB0 * param0, BattleParams * param1);
-static void sub_02051988(UnkStruct_0203CDB0 * param0, BattleParams * param1);
+static void sub_020518B0(FieldSystem * param0, BattleParams * param1);
+static void sub_02051988(FieldSystem * param0, BattleParams * param1);
 static BOOL sub_02050EE0(UnkStruct_020508D4 * param0);
 static BOOL sub_02051074(UnkStruct_020508D4 * param0);
 
 static BOOL sub_02050A74 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     BattleParams * v1 = sub_02050A64(param0);
     int * v2 = sub_02050A68(param0);
 
@@ -139,7 +139,7 @@ static BOOL sub_02050B04 (UnkStruct_02050ACC * param0)
     return v0;
 }
 
-static void sub_02050B1C (const BattleParams * param0, UnkStruct_0203CDB0 * param1)
+static void sub_02050B1C (const BattleParams * param0, FieldSystem * param1)
 {
     if (param0->battleType & BATTLE_TYPE_DEBUG) {
         return;
@@ -150,7 +150,7 @@ static void sub_02050B1C (const BattleParams * param0, UnkStruct_0203CDB0 * para
 
 static BOOL sub_02050B30 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0;
+    FieldSystem * v0;
     UnkStruct_02050ACC * v1;
     int * v2;
 
@@ -218,7 +218,7 @@ static void sub_02050C4C (UnkStruct_020508D4 * param0, BattleParams * param1, in
     sub_02050944(param0, sub_02050B30, v0);
 }
 
-static void sub_02050C6C (int param0, UnkStruct_0203CDB0 * param1)
+static void sub_02050C6C (int param0, FieldSystem * param1)
 {
     switch (param0 & 0xf) {
     case 0x1:
@@ -234,7 +234,7 @@ static void sub_02050C6C (int param0, UnkStruct_0203CDB0 * param1)
 
 static BOOL sub_02050CA8 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0;
+    FieldSystem * v0;
     UnkStruct_02050ACC * v1;
     int * v2;
 
@@ -279,7 +279,7 @@ static BOOL sub_02050CA8 (UnkStruct_020508D4 * param0)
 
 static BOOL sub_02050D4C (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0;
+    FieldSystem * v0;
     UnkStruct_02050ACC * v1;
     int * v2;
 
@@ -340,7 +340,7 @@ static void sub_02050DFC (UnkStruct_02050DD4 * param0)
     Heap_FreeToHeap(param0);
 }
 
-void sub_02050E10 (UnkStruct_0203CDB0 * param0, BattleParams * param1)
+void sub_02050E10 (FieldSystem * param0, BattleParams * param1)
 {
     if (sub_0206AE5C(SaveData_Events(param0->unk_0C))) {
         UnkStruct_02050ACC * v0;
@@ -355,7 +355,7 @@ void sub_02050E10 (UnkStruct_0203CDB0 * param0, BattleParams * param1)
     }
 }
 
-void sub_02050E78 (UnkStruct_0203CDB0 * param0, UnkStruct_020508D4 * param1, BattleParams * param2)
+void sub_02050E78 (FieldSystem * param0, UnkStruct_020508D4 * param1, BattleParams * param2)
 {
     if (sub_0206AE5C(SaveData_Events(param0->unk_0C))) {
         UnkStruct_02050ACC * v0;
@@ -372,7 +372,7 @@ void sub_02050E78 (UnkStruct_0203CDB0 * param0, UnkStruct_020508D4 * param1, Bat
 
 static BOOL sub_02050EE0 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0;
+    FieldSystem * v0;
     UnkStruct_02050DD4 * v1;
 
     v0 = sub_02050A60(param0);
@@ -451,7 +451,7 @@ static BOOL sub_02050EE0 (UnkStruct_020508D4 * param0)
 
 static BOOL sub_02051074 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0;
+    FieldSystem * v0;
     UnkStruct_02050ACC * v1;
     int * v2;
     u16 * v3;
@@ -538,7 +538,7 @@ void sub_0205120C (UnkStruct_020508D4 * param0, int * param1)
 {
     UnkStruct_02050ACC * v0;
     BattleParams * v1;
-    UnkStruct_0203CDB0 * v2;
+    FieldSystem * v2;
 
     v2 = sub_02050A60(param0);
     RadarChain_Clear(v2->chain);
@@ -559,7 +559,7 @@ void sub_02051270 (UnkStruct_020508D4 * param0, u16 param1, u8 param2, int * par
 {
     UnkStruct_02050ACC * v0;
     BattleParams * v1;
-    UnkStruct_0203CDB0 * v2;
+    FieldSystem * v2;
 
     v2 = sub_02050A60(param0);
     RadarChain_Clear(v2->chain);
@@ -581,7 +581,7 @@ void sub_020512E4 (UnkStruct_020508D4 * param0, u16 param1, u8 param2, int * par
 {
     UnkStruct_02050ACC * v0;
     BattleParams * v1;
-    UnkStruct_0203CDB0 * v2;
+    FieldSystem * v2;
     Pokemon * v3;
     int v4;
 
@@ -608,7 +608,7 @@ void sub_020512E4 (UnkStruct_020508D4 * param0, u16 param1, u8 param2, int * par
 
 static BOOL sub_0205136C (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0;
+    FieldSystem * v0;
     UnkStruct_02050ACC * v1;
     int * v2;
 
@@ -661,7 +661,7 @@ static BOOL sub_0205136C (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_02051450 (UnkStruct_0203CDB0 * param0, BattleParams * param1)
+void sub_02051450 (FieldSystem * param0, BattleParams * param1)
 {
     UnkStruct_02050ACC * v0;
 
@@ -673,7 +673,7 @@ void sub_02051480 (UnkStruct_020508D4 * param0, int param1, int param2, int * pa
 {
     UnkStruct_02050ACC * v0;
     BattleParams * v1;
-    UnkStruct_0203CDB0 * v2;
+    FieldSystem * v2;
 
     v2 = sub_02050A60(param0);
     v1 = sub_02051D8C(11, 0x1);
@@ -693,7 +693,7 @@ void sub_02051480 (UnkStruct_020508D4 * param0, int param1, int param2, int * pa
 static BOOL sub_020514E8 (UnkStruct_020508D4 * param0)
 {
     UnkStruct_02050ACC * v0 = sub_02050A64(param0);
-    UnkStruct_0203CDB0 * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = sub_02050A60(param0);
     int * v2 = sub_02050A68(param0);
 
     switch (*v2) {
@@ -735,7 +735,7 @@ void sub_02051590 (UnkStruct_020508D4 * param0)
 {
     UnkStruct_02050ACC * v0;
     BattleParams * v1;
-    UnkStruct_0203CDB0 * v2 = sub_02050A60(param0);
+    FieldSystem * v2 = sub_02050A60(param0);
 
     v1 = sub_02051F4C(11, v2);
     v0 = sub_02050ACC(v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), NULL);
@@ -748,7 +748,7 @@ void sub_020515CC (UnkStruct_020508D4 * param0, int param1, int param2, int para
     u32 v0;
     UnkStruct_02050ACC * v1;
     BattleParams * v2;
-    UnkStruct_0203CDB0 * v3;
+    FieldSystem * v3;
 
     v3 = sub_02050A60(param0);
 
@@ -783,7 +783,7 @@ void sub_020515CC (UnkStruct_020508D4 * param0, int param1, int param2, int para
 
 void sub_0205167C (UnkStruct_020508D4 * param0, const u8 * param1, int param2)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02050ACC * v1;
     BattleParams * v2;
 
@@ -817,7 +817,7 @@ static int sub_020516C8 (const BattleRegulation * param0, int param1)
 
 void sub_020516F4 (UnkStruct_020508D4 * param0, int param1, int param2, int param3)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02050ACC * v1;
     BattleParams * v2;
     int v3;
@@ -856,7 +856,7 @@ void sub_020516F4 (UnkStruct_020508D4 * param0, int param1, int param2, int para
 
 static BOOL sub_02051790 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02050ACC * v1 = sub_02050A64(param0);
     int * v2 = sub_02050A68(param0);
 
@@ -877,7 +877,7 @@ static BOOL sub_02051790 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_020517E8 (UnkStruct_0203CDB0 * param0, const u8 * param1, int param2)
+void sub_020517E8 (FieldSystem * param0, const u8 * param1, int param2)
 {
     UnkStruct_02050ACC * v0;
     BattleParams * v1;
@@ -894,7 +894,7 @@ void sub_020517E8 (UnkStruct_0203CDB0 * param0, const u8 * param1, int param2)
     sub_02050904(param0, sub_02051790, v0);
 }
 
-void sub_0205184C (UnkStruct_0203CDB0 * param0, const Party * param1, int param2)
+void sub_0205184C (FieldSystem * param0, const Party * param1, int param2)
 {
     UnkStruct_02050ACC * v0;
     BattleParams * v1;
@@ -911,7 +911,7 @@ void sub_0205184C (UnkStruct_0203CDB0 * param0, const Party * param1, int param2
     sub_02050904(param0, sub_02051790, v0);
 }
 
-static void sub_020518B0 (UnkStruct_0203CDB0 * param0, BattleParams * param1)
+static void sub_020518B0 (FieldSystem * param0, BattleParams * param1)
 {
     Pokemon * v0;
     u32 v1 = param1->battleType;
@@ -956,7 +956,7 @@ static void sub_020518B0 (UnkStruct_0203CDB0 * param0, BattleParams * param1)
     }
 }
 
-static void sub_02051988 (UnkStruct_0203CDB0 * param0, BattleParams * param1)
+static void sub_02051988 (FieldSystem * param0, BattleParams * param1)
 {
     Pokemon * v0;
     u32 v1 = param1->battleType;
@@ -1008,7 +1008,7 @@ void sub_02051ABC (UnkStruct_020508D4 * param0, u16 param1, u8 param2, int * par
 {
     UnkStruct_02050ACC * v0;
     BattleParams * v1;
-    UnkStruct_0203CDB0 * v2;
+    FieldSystem * v2;
 
     v2 = sub_02050A60(param0);
     RadarChain_Clear(v2->chain);

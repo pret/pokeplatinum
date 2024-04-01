@@ -72,7 +72,7 @@ static void sub_02059658 (void)
     return;
 }
 
-void sub_0205965C (UnkStruct_0203CDB0 * param0)
+void sub_0205965C (FieldSystem * param0)
 {
     void * v0;
 
@@ -119,7 +119,7 @@ void sub_020596BC (void)
     Unk_021C084C = NULL;
 }
 
-void sub_02059708 (UnkStruct_0203CDB0 * param0, int param1, int param2)
+void sub_02059708 (FieldSystem * param0, int param1, int param2)
 {
     if (sub_02035E38()) {
         return;
@@ -130,7 +130,7 @@ void sub_02059708 (UnkStruct_0203CDB0 * param0, int param1, int param2)
     sub_020598EC(sub_020598FC, 0);
 }
 
-void sub_02059748 (UnkStruct_0203CDB0 * param0, int param1, int param2)
+void sub_02059748 (FieldSystem * param0, int param1, int param2)
 {
     if (sub_02035E38()) {
         return;
@@ -152,7 +152,7 @@ void sub_020597A4 (void)
     sub_020598EC(sub_02059E80, 0);
 }
 
-void sub_020597B4 (UnkStruct_0203CDB0 * param0)
+void sub_020597B4 (FieldSystem * param0)
 {
     sub_0200F3B0(0, 0x0);
     sub_0200F3B0(1, 0x0);

@@ -52,7 +52,7 @@ typedef struct {
     u8 unk_454[8];
     SysTask * unk_45C;
     UnkStruct_ov23_02241E4C * unk_460;
-    UnkStruct_0203CDB0 * unk_464;
+    FieldSystem * unk_464;
     u8 unk_468[8];
     int unk_470;
     u8 unk_474;
@@ -83,7 +83,7 @@ static void ov23_022416B0 (int param0)
     }
 }
 
-void ov23_022416E0 (void * param0, UnkStruct_0203CDB0 * param1)
+void ov23_022416E0 (void * param0, FieldSystem * param1)
 {
     int v0;
     UnkStruct_020298B0 * v1;

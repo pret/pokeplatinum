@@ -41,7 +41,7 @@ void sub_020985E4 (UnkStruct_020508D4 * param0, SaveData * param1)
 
 BOOL sub_0209862C (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0;
+    FieldSystem * v0;
     UnkStruct_0209862C * v1;
 
     v0 = sub_02050A60(param0);

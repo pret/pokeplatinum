@@ -28,10 +28,10 @@ UnkStruct_0209BBA4 * ov104_02239C58(SaveData * param0);
 void ov104_02239C7C(UnkStruct_0209BBA4 * param0);
 BOOL ov104_02239C88(UnkStruct_0209BBA4 * param0, u16 param1, u16 param2, u16 param3);
 void ov104_02239CD0(UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * param1, u16 param2);
-static void ov104_02239D1C(UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * param1, UnkStruct_0203CDB0 * param2, int param3);
-static void ov104_02239F38(UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * param1, UnkStruct_0203CDB0 * param2, int param3);
-static void ov104_02239FB0(UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * param1, UnkStruct_0203CDB0 * param2, int param3);
-static void ov104_0223A090(UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * param1, UnkStruct_0203CDB0 * param2, int param3);
+static void ov104_02239D1C(UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * param1, FieldSystem * param2, int param3);
+static void ov104_02239F38(UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * param1, FieldSystem * param2, int param3);
+static void ov104_02239FB0(UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * param1, FieldSystem * param2, int param3);
+static void ov104_0223A090(UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * param1, FieldSystem * param2, int param3);
 
 UnkStruct_0209BBA4 * ov104_02239C58 (SaveData * param0)
 {
@@ -83,7 +83,7 @@ BOOL ov104_02239C88 (UnkStruct_0209BBA4 * param0, u16 param1, u16 param2, u16 pa
 
 void ov104_02239CD0 (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * param1, u16 param2)
 {
-    UnkStruct_0203CDB0 * v0 = param1->unk_98;
+    FieldSystem * v0 = param1->unk_98;
 
     switch (param2) {
     case 0:
@@ -105,7 +105,7 @@ void ov104_02239CD0 (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * param1, u
     return;
 }
 
-static void ov104_02239D1C (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * param1, UnkStruct_0203CDB0 * param2, int param3)
+static void ov104_02239D1C (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * param1, FieldSystem * param2, int param3)
 {
     u8 v0;
 
@@ -161,7 +161,7 @@ static void ov104_02239D1C (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * pa
     return;
 }
 
-static void ov104_02239F38 (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * param1, UnkStruct_0203CDB0 * param2, int param3)
+static void ov104_02239F38 (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * param1, FieldSystem * param2, int param3)
 {
     int v0;
 
@@ -189,7 +189,7 @@ static void ov104_02239F38 (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * pa
     return;
 }
 
-static void ov104_02239FB0 (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * param1, UnkStruct_0203CDB0 * param2, int param3)
+static void ov104_02239FB0 (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * param1, FieldSystem * param2, int param3)
 {
     static const u8 v0[] = {
         0, 1, 2, 4, 3, 5, 6, 7, 8
@@ -216,7 +216,7 @@ static void ov104_02239FB0 (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * pa
     return;
 }
 
-static void ov104_0223A090 (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * param1, UnkStruct_0203CDB0 * param2, int param3)
+static void ov104_0223A090 (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * param1, FieldSystem * param2, int param3)
 {
     param1->unk_9F = param1->unk_AC->pos;
     Heap_FreeToHeap(param1->unk_AC);

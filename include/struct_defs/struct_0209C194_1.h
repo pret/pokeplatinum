@@ -16,7 +16,7 @@ typedef struct {
     Options * unk_10;
     UnkStruct_0202CD88 * unk_14;
     UnkStruct_0202B628 * unk_18;
-    UnkStruct_0203CDB0 * unk_1C;
+    FieldSystem * unk_1C;
 } UnkStruct_0209C194_1;
 
 #endif // POKEPLATINUM_STRUCT_0209C194_1_H

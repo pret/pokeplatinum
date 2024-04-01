@@ -30,12 +30,12 @@
 #include "pokemon.h"
 #include "party.h"
 
-static void sub_02055AC0(UnkStruct_0203CDB0 * param0, s32 param1);
-static void sub_02055B64(UnkStruct_0203CDB0 * param0, s32 param1, const RTCTime * param2);
-static void sub_02055A14(UnkStruct_0203CDB0 * param0, UnkStruct_02055BA8 * param1, const RTCDate * param2);
-static void inline_020559DC(UnkStruct_0203CDB0 * param0, UnkStruct_02055BA8 * param1, const RTCDate * param2, const RTCTime * param3);
+static void sub_02055AC0(FieldSystem * param0, s32 param1);
+static void sub_02055B64(FieldSystem * param0, s32 param1, const RTCTime * param2);
+static void sub_02055A14(FieldSystem * param0, UnkStruct_02055BA8 * param1, const RTCDate * param2);
+static void inline_020559DC(FieldSystem * param0, UnkStruct_02055BA8 * param1, const RTCDate * param2, const RTCTime * param3);
 
-void sub_020559DC (UnkStruct_0203CDB0 * param0)
+void sub_020559DC (FieldSystem * param0)
 {
     RTCDate v0;
     RTCTime v1;
@@ -51,7 +51,7 @@ void sub_020559DC (UnkStruct_0203CDB0 * param0)
     inline_020559DC(param0, v2, &v0, &v1);
 }
 
-static void sub_02055A14 (UnkStruct_0203CDB0 * param0, UnkStruct_02055BA8 * param1, const RTCDate * param2)
+static void sub_02055A14 (FieldSystem * param0, UnkStruct_02055BA8 * param1, const RTCDate * param2)
 {
     s32 v0;
 
@@ -65,7 +65,7 @@ static void sub_02055A14 (UnkStruct_0203CDB0 * param0, UnkStruct_02055BA8 * para
     }
 }
 
-static void inline_020559DC (UnkStruct_0203CDB0 * param0, UnkStruct_02055BA8 * param1, const RTCDate * param2, const RTCTime * param3)
+static void inline_020559DC (FieldSystem * param0, UnkStruct_02055BA8 * param1, const RTCDate * param2, const RTCTime * param3)
 {
     s64 v0, v1;
     s32 v2;
@@ -89,7 +89,7 @@ static void inline_020559DC (UnkStruct_0203CDB0 * param0, UnkStruct_02055BA8 * p
     }
 }
 
-static void sub_02055AC0 (UnkStruct_0203CDB0 * param0, s32 param1)
+static void sub_02055AC0 (FieldSystem * param0, s32 param1)
 {
     sub_02028658(sub_0203D174(param0), param1);
     sub_0203F1FC(param0);
@@ -132,7 +132,7 @@ static void sub_02055AC0 (UnkStruct_0203CDB0 * param0, s32 param1)
     sub_0206F2F0(param0->unk_0C);
 }
 
-static void sub_02055B64 (UnkStruct_0203CDB0 * param0, s32 param1, const RTCTime * param2)
+static void sub_02055B64 (FieldSystem * param0, s32 param1, const RTCTime * param2)
 {
     sub_02055CD4(param0, param1);
     sub_0202D854(param0->unk_0C, param1);
@@ -151,62 +151,62 @@ static void sub_02055B64 (UnkStruct_0203CDB0 * param0, s32 param1, const RTCTime
     }
 }
 
-int sub_02055BA8 (const UnkStruct_0203CDB0 * param0)
+int sub_02055BA8 (const FieldSystem * param0)
 {
     UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->unk_0C);
     return TimeOfDayForHour(v0->unk_14.hour);
 }
 
-int sub_02055BB8 (const UnkStruct_0203CDB0 * param0)
+int sub_02055BB8 (const FieldSystem * param0)
 {
     UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->unk_0C);
     return v0->unk_04.month;
 }
 
-int sub_02055BC4 (const UnkStruct_0203CDB0 * param0)
+int sub_02055BC4 (const FieldSystem * param0)
 {
     UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->unk_0C);
     return v0->unk_04.day;
 }
 
-int sub_02055BD0 (const UnkStruct_0203CDB0 * param0)
+int sub_02055BD0 (const FieldSystem * param0)
 {
     UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->unk_0C);
     return v0->unk_04.week;
 }
 
-int sub_02055BDC (const UnkStruct_0203CDB0 * param0)
+int sub_02055BDC (const FieldSystem * param0)
 {
     UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->unk_0C);
     return v0->unk_14.hour;
 }
 
-int sub_02055BE8 (const UnkStruct_0203CDB0 * param0)
+int sub_02055BE8 (const FieldSystem * param0)
 {
     UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->unk_0C);
     return v0->unk_14.minute;
 }
 
-void sub_02055BF4 (const UnkStruct_0203CDB0 * param0, RTCDate * param1, RTCTime * param2)
+void sub_02055BF4 (const FieldSystem * param0, RTCDate * param1, RTCTime * param2)
 {
     UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->unk_0C);
     RTC_ConvertSecondToDateTime(param1, param2, v0->unk_24);
 }
 
-void sub_02055C10 (const UnkStruct_0203CDB0 * param0, RTCDate * param1, RTCTime * param2)
+void sub_02055C10 (const FieldSystem * param0, RTCDate * param1, RTCTime * param2)
 {
     UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->unk_0C);
     RTC_ConvertSecondToDateTime(param1, param2, v0->unk_2C);
 }
 
-void sub_02055C2C (const UnkStruct_0203CDB0 * param0)
+void sub_02055C2C (const FieldSystem * param0)
 {
     UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->unk_0C);
 
     v0->unk_2C = GetTimestamp();
 }
 
-BOOL sub_02055C40 (UnkStruct_0203CDB0 * param0)
+BOOL sub_02055C40 (FieldSystem * param0)
 {
     UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->unk_0C);
     return sub_02025DB8(v0);

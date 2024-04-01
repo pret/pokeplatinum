@@ -29,7 +29,7 @@ typedef struct {
     int unk_04;
     UnkStruct_0209C194_1 unk_08;
     UnkStruct_0209C194 * unk_28;
-    UnkStruct_0203CDB0 * unk_2C;
+    FieldSystem * unk_2C;
     PartyManagementData * unk_30;
     PokemonSummary * unk_34;
 } UnkStruct_0209C1EC;
@@ -62,7 +62,7 @@ BOOL sub_0209C1E8 (UnkStruct_0209C194 * param0)
     return param0->unk_10;
 }
 
-void * sub_0209C1EC (UnkStruct_0203CDB0 * param0)
+void * sub_0209C1EC (FieldSystem * param0)
 {
     UnkStruct_0209C1EC * v0;
 

@@ -196,7 +196,7 @@ static BOOL sub_020484B0 (UnkStruct_0203E724 * param0)
 
 BOOL sub_020484C4 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
 
     sub_02006150(sub_0203E838(param0));
     return 0;
@@ -210,7 +210,7 @@ BOOL sub_020484D4 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_020484E4 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
 
     if (sub_020061E4() == 0) {
         return 1;

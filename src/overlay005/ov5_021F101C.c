@@ -22,7 +22,7 @@ typedef struct {
 
 BOOL ov5_021F101C (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_020711C8 * v1 = sub_02050A64(param0);
     int * v2 = sub_02050A68(param0);
     UnkStruct_ov5_021F101C * v3 = v1->unk_04;

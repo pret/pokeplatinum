@@ -8,11 +8,11 @@
 
 #include <nitro/math.h>
 
-void ov23_022434BC(void * param0, UnkStruct_0203CDB0 * param1);
+void ov23_022434BC(void * param0, FieldSystem * param1);
 void ov23_02243520(void);
 void ov23_022435A8(void);
 void ov23_022435DC(void);
-void ov23_02243670(UnkStruct_0203CDB0 * param0);
+void ov23_02243670(FieldSystem * param0);
 void ov23_022436F0(int param0);
 int ov23_02243858(void);
 int ov23_02243860(void);
@@ -64,7 +64,7 @@ void ov23_022457E4(int param0, int param1, void * param2, void * param3);
 void ov23_0224589C(int param0, int param1, void * param2, void * param3);
 int ov23_02245908(void);
 void ov23_022468A8(BGL * param0);
-void ov23_022489F8(UnkStruct_0203CDB0 * param0, int param1, int param2, int param3, int param4, u8 * param5, int param6, u8 * param7, int param8, u8 * param9, int param10);
+void ov23_022489F8(FieldSystem * param0, int param1, int param2, int param3, int param4, u8 * param5, int param6, u8 * param7, int param8, u8 * param9, int param10);
 void ov23_02248B98(int param0);
 
 #endif // POKEPLATINUM_OV23_0224340C_H

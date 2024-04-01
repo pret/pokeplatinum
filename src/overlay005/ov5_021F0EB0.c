@@ -24,7 +24,7 @@ typedef struct {
     fx32 unk_20;
     u32 unk_24;
     fx32 unk_28;
-    UnkStruct_0203CDB0 * unk_2C;
+    FieldSystem * unk_2C;
     UnkStruct_020203AC * unk_30;
 } UnkStruct_ov5_021F0FB8;
 
@@ -36,7 +36,7 @@ static int ov5_021F0FF8(UnkStruct_ov5_021F0FB8 * param0);
 
 static void(*const Unk_ov5_0220020C[4])(UnkStruct_ov5_021F0FB8 *);
 
-SysTask * ov5_021F0EB0 (UnkStruct_0203CDB0 * param0, u32 param1)
+SysTask * ov5_021F0EB0 (FieldSystem * param0, u32 param1)
 {
     SysTask * v0;
     UnkStruct_ov5_021F0FB8 * v1 = Heap_AllocFromHeapAtEnd(param1, (sizeof(UnkStruct_ov5_021F0FB8)));

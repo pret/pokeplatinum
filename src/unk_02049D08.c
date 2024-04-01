@@ -224,7 +224,7 @@ BOOL sub_02049FA0 (UnkStruct_0202D060 * param0)
     return sub_0202D214(param0);
 }
 
-void sub_02049FA8 (UnkStruct_0203CDB0 * param0)
+void sub_02049FA8 (FieldSystem * param0)
 {
     UnkStruct_02049FA8 * v0 = sub_0203A730(sub_0203A790(param0->unk_0C));
 
@@ -234,7 +234,7 @@ void sub_02049FA8 (UnkStruct_0203CDB0 * param0)
     return;
 }
 
-void sub_02049FE8 (UnkStruct_0203CDB0 * param0)
+void sub_02049FE8 (FieldSystem * param0)
 {
     sub_0206ADAC(SaveData_Events(param0->unk_0C));
 }

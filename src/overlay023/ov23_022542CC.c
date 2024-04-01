@@ -35,7 +35,7 @@
 #include "overlay023/ov23_022542CC.h"
 
 typedef struct UnkStruct_ov23_022542D8_t {
-    UnkStruct_0203CDB0 * unk_00;
+    FieldSystem * unk_00;
     Window unk_04;
     Window unk_14;
     ResourceMetadata * unk_24;
@@ -49,7 +49,7 @@ typedef struct UnkStruct_ov23_022542D8_t {
 };
 
 typedef struct UnkStruct_ov23_02254594_t {
-    UnkStruct_0203CDB0 * unk_00;
+    FieldSystem * unk_00;
     UnkStruct_0206A844 * unk_04;
     Window unk_08;
     Window unk_18;
@@ -106,7 +106,7 @@ UnkStruct_ov23_022542D8 * ov23_022542CC (void)
     return v0;
 }
 
-void ov23_022542D8 (UnkStruct_ov23_022542D8 * param0, UnkStruct_0203CDB0 * param1, u16 * param2, u16 * param3)
+void ov23_022542D8 (UnkStruct_ov23_022542D8 * param0, FieldSystem * param1, u16 * param2, u16 * param3)
 {
     param0->unk_00 = param1;
     param0->unk_38 = 0;
@@ -278,7 +278,7 @@ UnkStruct_ov23_02254594 * ov23_02254588 (void)
     return v0;
 }
 
-void ov23_02254594 (UnkStruct_ov23_02254594 * param0, UnkStruct_0203CDB0 * param1, u16 * param2, u16 * param3)
+void ov23_02254594 (UnkStruct_ov23_02254594 * param0, FieldSystem * param1, u16 * param2, u16 * param3)
 {
     param0->unk_00 = param1;
     param0->unk_42 = 0;

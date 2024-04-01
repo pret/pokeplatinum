@@ -19,7 +19,7 @@ typedef struct {
     u32 unk_0C;
 } UnkStruct_ov6_02248948;
 
-typedef UnkStruct_ov5_021D1BEC *(* UnkFuncPtr_ov6_02249840)(UnkStruct_0203CDB0 *);
+typedef UnkStruct_ov5_021D1BEC *(* UnkFuncPtr_ov6_02249840)(FieldSystem *);
 typedef void (* UnkFuncPtr_ov6_02249834)(UnkStruct_ov5_021D1BEC *);
 typedef BOOL (* UnkFuncPtr_ov6_0224984C)(UnkStruct_ov5_021D1BEC *);
 
@@ -60,7 +60,7 @@ static void ov6_02248948 (SysTask * param0, void * param1)
     }
 }
 
-void ov6_0224899C (UnkStruct_0203CDB0 * param0, u16 * param1, u32 param2, u32 param3)
+void ov6_0224899C (FieldSystem * param0, u16 * param1, u32 param2, u32 param3)
 {
     UnkStruct_ov6_02248948 * v0 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov6_02248948));
 

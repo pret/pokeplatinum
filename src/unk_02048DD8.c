@@ -42,9 +42,9 @@
 #include "overlay006/ov6_02246A30.h"
 #include "overlay025/ov25_02253CE0.h"
 
-typedef void (* UnkFuncPtr_020EBB48)(UnkStruct_0203CDB0 *, u16);
-typedef void (* UnkFuncPtr_020EBB48_1)(UnkStruct_0203CDB0 *, StringFormatter *);
-typedef BOOL (* UnkFuncPtr_020EBB48_2)(UnkStruct_0203CDB0 *);
+typedef void (* UnkFuncPtr_020EBB48)(FieldSystem *, u16);
+typedef void (* UnkFuncPtr_020EBB48_1)(FieldSystem *, StringFormatter *);
+typedef BOOL (* UnkFuncPtr_020EBB48_2)(FieldSystem *);
 
 typedef struct {
     UnkFuncPtr_020EBB48 unk_00;
@@ -53,9 +53,9 @@ typedef struct {
     u32 unk_0C;
 } UnkStruct_020EBB48;
 
-static int sub_020491D0(int param0, UnkStruct_0203CDB0 * param1, StringFormatter * param2);
-static void sub_020491B8(UnkStruct_0203CDB0 * param0, int param1, u16 param2, u16 param3);
-static BOOL sub_020491F4(UnkStruct_0203CDB0 * param0, int param1);
+static int sub_020491D0(int param0, FieldSystem * param1, StringFormatter * param2);
+static void sub_020491B8(FieldSystem * param0, int param1, u16 param2, u16 param3);
+static BOOL sub_020491F4(FieldSystem * param0, int param1);
 BOOL sub_020493C8(UnkStruct_0203E724 * param0);
 BOOL sub_020493F4(UnkStruct_0203E724 * param0);
 
@@ -233,7 +233,7 @@ BOOL sub_0204912C (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-static void sub_020491B8 (UnkStruct_0203CDB0 * param0, int param1, u16 param2, u16 param3)
+static void sub_020491B8 (FieldSystem * param0, int param1, u16 param2, u16 param3)
 {
     UnkFuncPtr_020EBB48 v0;
 
@@ -244,7 +244,7 @@ static void sub_020491B8 (UnkStruct_0203CDB0 * param0, int param1, u16 param2, u
     }
 }
 
-static int sub_020491D0 (int param0, UnkStruct_0203CDB0 * param1, StringFormatter * param2)
+static int sub_020491D0 (int param0, FieldSystem * param1, StringFormatter * param2)
 {
     UnkFuncPtr_020EBB48_1 v0;
 
@@ -257,7 +257,7 @@ static int sub_020491D0 (int param0, UnkStruct_0203CDB0 * param1, StringFormatte
     return Unk_020EBB48[param0 - 1].unk_0C;
 }
 
-static BOOL sub_020491F4 (UnkStruct_0203CDB0 * param0, int param1)
+static BOOL sub_020491F4 (FieldSystem * param0, int param1)
 {
     UnkFuncPtr_020EBB48_2 v0;
     TVBroadcast * v1 = SaveData_TVBroadcast(param0->unk_0C);
@@ -284,7 +284,7 @@ static void sub_0204922C (StringFormatter * param0, int param1, const u16 * para
     Strbuf_Free(v0);
 }
 
-static void sub_02049268 (UnkStruct_0203CDB0 * param0, StringFormatter * param1)
+static void sub_02049268 (FieldSystem * param0, StringFormatter * param1)
 {
     Party * v0 = Party_GetFromSavedata(param0->unk_0C);
     Pokemon * v1 = sub_02054A74(v0);
@@ -292,7 +292,7 @@ static void sub_02049268 (UnkStruct_0203CDB0 * param0, StringFormatter * param1)
     sub_0200B538(param1, 0, Pokemon_GetBoxPokemon(v1));
 }
 
-static void sub_02049288 (UnkStruct_0203CDB0 * param0, StringFormatter * param1)
+static void sub_02049288 (FieldSystem * param0, StringFormatter * param1)
 {
     int v0;
 
@@ -300,7 +300,7 @@ static void sub_02049288 (UnkStruct_0203CDB0 * param0, StringFormatter * param1)
     sub_0200B928(param1, 0, v0);
 }
 
-static void sub_020492A0 (UnkStruct_0203CDB0 * param0, StringFormatter * param1)
+static void sub_020492A0 (FieldSystem * param0, StringFormatter * param1)
 {
     u16 v0[10 + 1];
     TVBroadcast * v1 = SaveData_TVBroadcast(param0->unk_0C);
@@ -310,7 +310,7 @@ static void sub_020492A0 (UnkStruct_0203CDB0 * param0, StringFormatter * param1)
     sub_0204922C(param1, 0, v0, 0, GAME_LANGUAGE, 1);
 }
 
-static void sub_020492D4 (UnkStruct_0203CDB0 * param0, StringFormatter * param1)
+static void sub_020492D4 (FieldSystem * param0, StringFormatter * param1)
 {
     u16 v0[10 + 1];
     TVBroadcast * v1 = SaveData_TVBroadcast(param0->unk_0C);
@@ -320,7 +320,7 @@ static void sub_020492D4 (UnkStruct_0203CDB0 * param0, StringFormatter * param1)
     sub_0204922C(param1, 0, v0, 0, GAME_LANGUAGE, 1);
 }
 
-static void sub_02049308 (UnkStruct_0203CDB0 * param0, StringFormatter * param1)
+static void sub_02049308 (FieldSystem * param0, StringFormatter * param1)
 {
     Strbuf* v0;
     TVBroadcast * v1 = SaveData_TVBroadcast(param0->unk_0C);
@@ -333,49 +333,49 @@ static void sub_02049308 (UnkStruct_0203CDB0 * param0, StringFormatter * param1)
     Strbuf_Free(v0);
 }
 
-static BOOL sub_02049348 (UnkStruct_0203CDB0 * param0)
+static BOOL sub_02049348 (FieldSystem * param0)
 {
     UnkStruct_0202E7FC * v0 = sub_0202E7FC(SaveData_TVBroadcast(param0->unk_0C));
     return v0->unk_00;
 }
 
-static BOOL sub_02049358 (UnkStruct_0203CDB0 * param0)
+static BOOL sub_02049358 (FieldSystem * param0)
 {
     PoketchData * v0 = SaveData_PoketchData(param0->unk_0C);
     return sub_020567E0(v0);
 }
 
-static BOOL sub_02049368 (UnkStruct_0203CDB0 * param0)
+static BOOL sub_02049368 (FieldSystem * param0)
 {
     UnkStruct_0202E7D8 * v0 = sub_0202E7D8(SaveData_TVBroadcast(param0->unk_0C));
     return v0->unk_00;
 }
 
-static BOOL sub_02049378 (UnkStruct_0203CDB0 * param0)
+static BOOL sub_02049378 (FieldSystem * param0)
 {
     UnkStruct_0202A750 * v0 = sub_0202A750(param0->unk_0C);
     return sub_02029D10(v0, 0);
 }
 
-static BOOL sub_02049388 (UnkStruct_0203CDB0 * param0)
+static BOOL sub_02049388 (FieldSystem * param0)
 {
     UnkStruct_0202E7F0 * v0 = sub_0202E7F0(SaveData_TVBroadcast(param0->unk_0C));
     return v0->unk_00;
 }
 
-static BOOL sub_02049398 (UnkStruct_0203CDB0 * param0)
+static BOOL sub_02049398 (FieldSystem * param0)
 {
     UnkStruct_0202E7E4 * v0 = sub_0202E7E4(SaveData_TVBroadcast(param0->unk_0C));
     return v0->unk_00;
 }
 
-static BOOL sub_020493A8 (UnkStruct_0203CDB0 * param0)
+static BOOL sub_020493A8 (FieldSystem * param0)
 {
     UnkStruct_0202E810 * v0 = sub_0202E810(SaveData_TVBroadcast(param0->unk_0C));
     return v0->unk_00;
 }
 
-static BOOL sub_020493B8 (UnkStruct_0203CDB0 * param0)
+static BOOL sub_020493B8 (FieldSystem * param0)
 {
     UnkStruct_0202E81C * v0 = sub_0202E81C(SaveData_TVBroadcast(param0->unk_0C));
     return v0->unk_00;

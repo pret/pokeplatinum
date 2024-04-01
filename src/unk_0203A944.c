@@ -1846,7 +1846,7 @@ static const u8 Unk_020E98F4[] = {
 };
 
 
-int sub_0203A944 (UnkStruct_0203CDB0 * param0, int param1)
+int sub_0203A944 (FieldSystem * param0, int param1)
 {
     int v0;
 

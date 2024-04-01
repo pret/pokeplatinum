@@ -57,7 +57,7 @@ BOOL sub_02048614 (UnkStruct_0203E724 * param0)
     SysTask ** v5;
     UnkStruct_02061AB4 ** v6;
     UnkStruct_0205E884 * v7;
-    UnkStruct_0203CDB0 * v8 = param0->unk_34;
+    FieldSystem * v8 = param0->unk_34;
     u16 v9 = inline_02049538(param0);
 
     if (v9 == 0) {
@@ -134,7 +134,7 @@ BOOL sub_02048778 (UnkStruct_0203E724 * param0)
 
 BOOL sub_020487CC (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     u16 * v1 = sub_0203F098(v0, 8);
     u16 * v2 = inline_0204FCAC(param0);
 
@@ -145,7 +145,7 @@ BOOL sub_020487CC (UnkStruct_0203E724 * param0)
 BOOL sub_020487FC (UnkStruct_0203E724 * param0)
 {
     u32 v0;
-    UnkStruct_0203CDB0 * v1 = param0->unk_34;
+    FieldSystem * v1 = param0->unk_34;
     u16 * v2 = sub_0203F098(v1, 8);
     BOOL * v3 = sub_0203F098(v1, 23);
     u16 v4 = inline_02049538(param0);
@@ -164,7 +164,7 @@ BOOL sub_020487FC (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204887C (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     BOOL * v1 = sub_0203F098(v0, 23);
     u16 v2 = inline_02049538(param0);
     u16 v3 = inline_02049538(param0);
@@ -304,7 +304,7 @@ BOOL sub_02048AE0 (UnkStruct_0203E724 * param0)
 
 BOOL sub_02048B0C (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     BOOL * v1 = sub_0203F098(v0, 23);
 
     sub_020515CC(param0->unk_28, 1, 0, 0, 11, v1);
@@ -315,7 +315,7 @@ BOOL sub_02048B0C (UnkStruct_0203E724 * param0)
 BOOL sub_02048B34 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_02061AB4 ** v0;
-    UnkStruct_0203CDB0 * v1 = param0->unk_34;
+    FieldSystem * v1 = param0->unk_34;
 
     v0 = sub_0203F098(v1, 10);
     sub_0203F2BC(sub_02062C00(*v0), sub_02062910(*v0));
@@ -328,7 +328,7 @@ BOOL sub_02048B60 (UnkStruct_0203E724 * param0)
     int v0;
     s32 v1;
     UnkStruct_02061AB4 ** v2;
-    UnkStruct_0203CDB0 * v3 = param0->unk_34;
+    FieldSystem * v3 = param0->unk_34;
 
     v2 = sub_0203F098(v3, 10);
     v1 = (s32)sub_0203E850(param0);

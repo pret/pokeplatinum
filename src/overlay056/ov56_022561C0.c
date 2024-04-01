@@ -80,7 +80,7 @@ struct UnkStruct_ov56_02256468_t {
     int unk_00;
     UnkStruct_0205C22C * unk_04;
     UnkStruct_0205B43C * unk_08;
-    UnkStruct_0203CDB0 * unk_0C;
+    FieldSystem * unk_0C;
     TrainerInfo * unk_10;
     BGL * unk_14;
     StringFormatter * unk_18;
@@ -234,7 +234,7 @@ static void ov56_022563E8 (UnkStruct_ov56_022562EC * param0)
     }
 }
 
-UnkStruct_ov56_02256468 * ov56_02256410 (UnkStruct_0203CDB0 * param0)
+UnkStruct_ov56_02256468 * ov56_02256410 (FieldSystem * param0)
 {
     UnkStruct_ov56_02256468 * v0;
     SysTask * v1;

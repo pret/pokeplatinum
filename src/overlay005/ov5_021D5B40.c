@@ -201,7 +201,7 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
     },
 };
 
-void ov5_021D5B40 (const VecFx32 * param0, UnkStruct_0203CDB0 * param1, const int param2, const BOOL param3)
+void ov5_021D5B40 (const VecFx32 * param0, FieldSystem * param1, const int param2, const BOOL param3)
 {
     const VecFx32 * v0 = param0;
     const UnkStruct_ov5_021F8AE4 * v1 = &Unk_ov5_021F8AE4[param2];
@@ -219,7 +219,7 @@ void ov5_021D5B40 (const VecFx32 * param0, UnkStruct_0203CDB0 * param1, const in
     }
 }
 
-void ov5_021D5BA8 (UnkStruct_0203CDB0 * param0)
+void ov5_021D5BA8 (FieldSystem * param0)
 {
     sub_020203E0();
     sub_02020390(param0->unk_24);

@@ -72,14 +72,14 @@ typedef struct {
 
 typedef struct {
     int unk_00;
-    UnkStruct_0203CDB0 * unk_04;
+    FieldSystem * unk_04;
     UIControlData * unk_08;
     UnkStruct_ov23_022513B0 unk_0C;
     SysTask * unk_10;
 } UnkStruct_ov23_02252038;
 
-static void ov23_022520E8(UnkStruct_0203CDB0 * param0, UnkStruct_ov23_022513B0 * param1);
-static void ov23_02251F94(UnkStruct_0203CDB0 * param0);
+static void ov23_022520E8(FieldSystem * param0, UnkStruct_ov23_022513B0 * param1);
+static void ov23_02251F94(FieldSystem * param0);
 static void ov23_022521C8(UnkStruct_ov23_02250CD4 * param0);
 
 static const UnkStruct_ov61_0222C884 Unk_ov23_022569C8 = {
@@ -199,7 +199,7 @@ static void ov23_022513A4 (int param0)
 void ov23_022513B0 (int param0, int param1, void * param2, void * param3)
 {
     UnkStruct_ov23_022513B0 * v0 = param2;
-    UnkStruct_0203CDB0 * v1 = param3;
+    FieldSystem * v1 = param3;
 
     if (!sub_02035EE0()) {
         return;
@@ -597,7 +597,7 @@ static BOOL ov23_02251A58 (UnkStruct_ov23_02250CD4 * param0)
     return 0;
 }
 
-static void ov23_02251A84 (BOOL param0, UnkStruct_0203CDB0 * param1)
+static void ov23_02251A84 (BOOL param0, FieldSystem * param1)
 {
     VecFx32 v0;
 
@@ -615,7 +615,7 @@ static void ov23_02251A84 (BOOL param0, UnkStruct_0203CDB0 * param1)
 
 static BOOL ov23_02251ACC (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_ov23_02251ACC * v1 = sub_02050A64(param0);
     UnkStruct_02049FA8 v2;
     u32 v3;
@@ -840,7 +840,7 @@ static void ov23_02251C04 (SysTask * param0, void * param1)
     }
 }
 
-static void ov23_02251F94 (UnkStruct_0203CDB0 * param0)
+static void ov23_02251F94 (FieldSystem * param0)
 {
     UnkStruct_ov84_02240FA8 v0;
     UnkStruct_ov23_02250CD4 * v1;
@@ -916,7 +916,7 @@ static void ov23_022520C8 (SysTask * param0, void * param1)
     SysTask_Done(param0);
 }
 
-static void ov23_022520E8 (UnkStruct_0203CDB0 * param0, UnkStruct_ov23_022513B0 * param1)
+static void ov23_022520E8 (FieldSystem * param0, UnkStruct_ov23_022513B0 * param1)
 {
     UnkStruct_ov23_02252038 * v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_02250CD4));
 
@@ -947,7 +947,7 @@ void ov23_0225215C (int param0, int param1, void * param2, void * param3)
 
 void ov23_02252178 (int param0, int param1, void * param2, void * param3)
 {
-    UnkStruct_0203CDB0 * v0 = param3;
+    FieldSystem * v0 = param3;
     UnkStruct_ov23_022513B0 * v1 = param2;
 
     if (CommSys_CurNetId() == v1->unk_00) {

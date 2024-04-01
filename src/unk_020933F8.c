@@ -177,7 +177,7 @@ void sub_020933F8 (UnkStruct_020508D4 * param0, UnkStruct_02095C48 * param1)
 
 static BOOL sub_02093448 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_020933F8 * v1 = sub_02050A64(param0);
 
     switch (v1->unk_04) {
@@ -267,7 +267,7 @@ static BOOL sub_02093448 (UnkStruct_020508D4 * param0)
 
 static BOOL sub_020935EC (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_020933F8 * v1 = sub_02050A64(param0);
 
     switch (v1->unk_04) {

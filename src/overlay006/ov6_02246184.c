@@ -101,7 +101,7 @@ u32 ov6_0224622C (const UnkStruct_ov6_02246204 * param0)
     return param0->unk_00->unk_4C;
 }
 
-void ov6_02246234 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02246204 * param1, int param2)
+void ov6_02246234 (FieldSystem * param0, UnkStruct_ov6_02246204 * param1, int param2)
 {
     Party * v0 = Party_GetFromSavedata(param0->unk_0C);
 
@@ -109,7 +109,7 @@ void ov6_02246234 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02246204 * param1,
     sub_0202F180(param0->unk_0C, param1->unk_04);
 }
 
-void ov6_02246254 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02246204 * param1, int param2, UnkStruct_ov6_02246254 * param3, Pokemon * param4, Pokemon * param5)
+void ov6_02246254 (FieldSystem * param0, UnkStruct_ov6_02246204 * param1, int param2, UnkStruct_ov6_02246254 * param3, Pokemon * param4, Pokemon * param5)
 {
     Party * v0 = Party_GetFromSavedata(param0->unk_0C);
     Pokemon * v1;

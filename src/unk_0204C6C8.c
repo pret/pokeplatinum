@@ -22,7 +22,7 @@
 
 BOOL sub_0204C6C8 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     u16 v1 = inline_02049538(param0);
     u16 v2 = inline_02049538(param0);
     Window ** v3;
@@ -35,7 +35,7 @@ BOOL sub_0204C6C8 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204C718 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     Window ** v1 = sub_0203F098(v0, 38);
 
     ov5_021DD084(*v1);
@@ -44,7 +44,7 @@ BOOL sub_0204C718 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204C730 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     Window ** v1 = sub_0203F098(v0, 38);
 
     ov5_021DD098(param0->unk_34, *v1);
@@ -53,7 +53,7 @@ BOOL sub_0204C730 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204C750 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     SaveData * v1 = v0->unk_0C;
     u16 * v2 = sub_02025E50(v1);
     u16 * v3;
@@ -66,7 +66,7 @@ BOOL sub_0204C750 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204C780 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     SaveData * v1 = v0->unk_0C;
     u16 * v2 = sub_02025E50(v1);
     u16 v3;
@@ -79,7 +79,7 @@ BOOL sub_0204C780 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204C7AC (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     SaveData * v1 = v0->unk_0C;
     u16 * v2 = sub_02025E50(v1);
     u16 v3;
@@ -92,7 +92,7 @@ BOOL sub_0204C7AC (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204C7D8 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     SaveData * v1 = v0->unk_0C;
     u16 * v2 = sub_02025E50(v1);
     u16 * v3 = inline_0204FCAC(param0);
@@ -107,7 +107,7 @@ BOOL sub_0204C7D8 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204C808 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     TrainerInfo * v1 = SaveData_GetTrainerInfo(sub_0203D174(param0->unk_34));
     SaveData * v2 = v0->unk_0C;
     u16 * v3 = sub_02025E50(v2);
@@ -128,7 +128,7 @@ BOOL sub_0204C808 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204C854 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     TrainerInfo * v1 = SaveData_GetTrainerInfo(sub_0203D174(param0->unk_34));
     SaveData * v2 = v0->unk_0C;
     u16 * v3 = sub_02025E50(v2);
@@ -150,7 +150,7 @@ BOOL sub_0204C854 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204C8AC (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     SaveData * v1 = v0->unk_0C;
     u16 * v2 = sub_02025E50(v1);
     u16 * v3 = inline_0204FCAC(param0);

@@ -25,7 +25,7 @@ typedef struct {
     int unk_00;
     int unk_04;
     int unk_08;
-    UnkStruct_0203CDB0 * unk_0C;
+    FieldSystem * unk_0C;
     UnkStruct_ov5_021DF47C * unk_10;
     UnkStruct_ov5_021F3A7C * unk_14;
     UnkStruct_02061AB4 * unk_18;

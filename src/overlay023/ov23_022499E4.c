@@ -64,7 +64,7 @@ static void ov23_022499E4 (char * param0)
     return;
 }
 
-void ov23_022499E8 (UnkStruct_0203CDB0 * param0)
+void ov23_022499E8 (FieldSystem * param0)
 {
     UnkStruct_0205964C * v0 = sub_0205964C();
 

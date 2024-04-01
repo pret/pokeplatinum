@@ -53,7 +53,7 @@ typedef struct {
 } UnkStruct_0205B43C_sub2;
 
 struct UnkStruct_0205B43C_t {
-    UnkStruct_0203CDB0 * unk_00;
+    FieldSystem * unk_00;
     SaveData * unk_04;
     TrainerInfo * unk_08;
     SysTask * unk_0C;
@@ -86,7 +86,7 @@ struct UnkStruct_0205B43C_t {
     UnkStruct_02072014 * unk_188[2];
 };
 
-static UnkStruct_0205B43C * sub_0205B3A0(UnkStruct_0203CDB0 * param0);
+static UnkStruct_0205B43C * sub_0205B3A0(FieldSystem * param0);
 static void sub_0205B43C(UnkStruct_0205B43C * param0);
 static void sub_0205B4B0(UnkStruct_0205B43C * param0);
 static void sub_0205B5B4(UnkStruct_0205B43C * param0, UnkFuncPtr_0205B43C param1, int param2);
@@ -106,7 +106,7 @@ static int sub_0205BCD4(int param0, int param1, StringFormatter * param2);
 static void sub_0205B408(UnkStruct_0205B43C * param0);
 static void sub_0205BFF0(UnkStruct_0205B4F8 * param0);
 
-UnkStruct_0205B43C * sub_0205B33C (UnkStruct_0203CDB0 * param0)
+UnkStruct_0205B43C * sub_0205B33C (FieldSystem * param0)
 {
     UnkStruct_0205B43C * v0 = NULL;
 
@@ -133,7 +133,7 @@ UnkStruct_0205B43C * sub_0205B33C (UnkStruct_0203CDB0 * param0)
     return v0;
 }
 
-void sub_0205B388 (UnkStruct_0203CDB0 * param0)
+void sub_0205B388 (FieldSystem * param0)
 {
     if (param0->unk_7C == NULL) {
         return;
@@ -142,7 +142,7 @@ void sub_0205B388 (UnkStruct_0203CDB0 * param0)
     sub_0205B5B4(param0->unk_7C, sub_0205B5FC, 5);
 }
 
-static UnkStruct_0205B43C * sub_0205B3A0 (UnkStruct_0203CDB0 * param0)
+static UnkStruct_0205B43C * sub_0205B3A0 (FieldSystem * param0)
 {
     void * v0;
     SaveData * v1;
@@ -412,7 +412,7 @@ static void sub_0205B754 (UnkStruct_0205B43C * param0)
     Heap_Destroy(31);
 }
 
-UnkStruct_0203CDB0 * sub_0205B770 (UnkStruct_0205B43C * param0)
+FieldSystem * sub_0205B770 (UnkStruct_0205B43C * param0)
 {
     return param0->unk_00;
 }
@@ -633,7 +633,7 @@ void sub_0205B98C (int param0, int param1, void * param2, void * param3)
 
 void sub_0205B990 (int param0, int param1, void * param2, void * param3)
 {
-    UnkStruct_0203CDB0 * v0 = (UnkStruct_0203CDB0 *)param3;
+    FieldSystem * v0 = (FieldSystem *)param3;
 
     sub_0205B5B4(v0->unk_7C, sub_0205B43C, 2);
     sub_0205C160(v0->unk_7C);
@@ -643,7 +643,7 @@ static int Unk_021C0858;
 
 void sub_0205B9AC (int param0, int param1, void * param2, void * param3)
 {
-    UnkStruct_0203CDB0 * v0 = (UnkStruct_0203CDB0 *)param3;
+    FieldSystem * v0 = (FieldSystem *)param3;
     u8 * v1 = (u8 *)param2;
 
     if (v0->unk_7C->unk_44 == 0) {
@@ -654,7 +654,7 @@ void sub_0205B9AC (int param0, int param1, void * param2, void * param3)
 
 void sub_0205B9C4 (int param0, int param1, void * param2, void * param3)
 {
-    UnkStruct_0203CDB0 * v0 = (UnkStruct_0203CDB0 *)param3;
+    FieldSystem * v0 = (FieldSystem *)param3;
     u8 * v1 = (u8 *)param2;
 
     v0->unk_7C->unk_2C = 1;
@@ -667,7 +667,7 @@ void sub_0205B9C4 (int param0, int param1, void * param2, void * param3)
 
 void sub_0205B9E0 (int param0, int param1, void * param2, void * param3)
 {
-    UnkStruct_0203CDB0 * v0 = (UnkStruct_0203CDB0 *)param3;
+    FieldSystem * v0 = (FieldSystem *)param3;
 
     v0->unk_7C->unk_44 = 1;
 }
@@ -689,7 +689,7 @@ int sub_0205B9EC (UnkStruct_0205B43C * param0, int param1)
 
 void sub_0205BA08 (int param0, int param1, void * param2, void * param3)
 {
-    UnkStruct_0203CDB0 * v0 = (UnkStruct_0203CDB0 *)param3;
+    FieldSystem * v0 = (FieldSystem *)param3;
     UnkStruct_02072014 * v1 = (UnkStruct_02072014 *)param2;
     TrainerInfo * v2 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
     void * v3;
@@ -713,7 +713,7 @@ void sub_0205BA08 (int param0, int param1, void * param2, void * param3)
 
 u8 * sub_0205BA5C (int param0, void * param1, int param2)
 {
-    UnkStruct_0203CDB0 * v0 = (UnkStruct_0203CDB0 *)param1;
+    FieldSystem * v0 = (FieldSystem *)param1;
     UnkStruct_0205B43C * v1 = v0->unk_7C;
 
     return (u8 *)v1->unk_188[param0];
@@ -721,7 +721,7 @@ u8 * sub_0205BA5C (int param0, void * param1, int param2)
 
 void sub_0205BA6C (int param0, int param1, void * param2, void * param3)
 {
-    UnkStruct_0203CDB0 * v0 = (UnkStruct_0203CDB0 *)param3;
+    FieldSystem * v0 = (FieldSystem *)param3;
     UnkStruct_0205B43C * v1 = v0->unk_7C;
     u8 * v2 = (u8 *)param2;
 

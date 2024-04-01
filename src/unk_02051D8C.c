@@ -62,7 +62,7 @@
 #include "unk_0207D3B8.h"
 #include "pokemon_summary_app.h"
 
-static void sub_0205281C(BattleParams * param0, const UnkStruct_0203CDB0 * param1);
+static void sub_0205281C(BattleParams * param0, const FieldSystem * param1);
 void sub_02052894(BattleParams * param0);
 
 BattleParams * sub_02051D8C (int param0, u32 param1)
@@ -155,7 +155,7 @@ BattleParams * sub_02051F38 (int param0, int param1)
     return v0;
 }
 
-BattleParams * sub_02051F4C (int param0, const UnkStruct_0203CDB0 * param1)
+BattleParams * sub_02051F4C (int param0, const FieldSystem * param1)
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(param1->unk_0C);
     Options * v1 = sub_02025E44(param1->unk_0C);
@@ -250,7 +250,7 @@ void sub_020521A4 (BattleParams * param0, const ChatotCry * param1, int param2)
     CopyChatotCryData(param0->unk_F0[param2], param1);
 }
 
-void sub_020521B8 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, SaveData * param2, int param3, UnkStruct_0202B628 * param4, UnkStruct_0207D99C * param5, UnkStruct_0209C370 * param6)
+void sub_020521B8 (BattleParams * param0, const FieldSystem * param1, SaveData * param2, int param3, UnkStruct_0202B628 * param4, UnkStruct_0207D99C * param5, UnkStruct_0209C370 * param6)
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(param2);
     Party * v1 = Party_GetFromSavedata(param2);
@@ -297,13 +297,13 @@ void sub_020521B8 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, Sav
     param0->unk_198 = param2;
 }
 
-void sub_02052314 (BattleParams * param0, const UnkStruct_0203CDB0 * param1)
+void sub_02052314 (BattleParams * param0, const FieldSystem * param1)
 {
     sub_020521B8(param0, param1, param1->unk_0C, param1->unk_1C->unk_00, param1->unk_9C, param1->unk_98, param1->unk_BC);
     sub_02052894(param0);
 }
 
-void sub_02052348 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, int param2)
+void sub_02052348 (BattleParams * param0, const FieldSystem * param1, int param2)
 {
     int v0;
     u32 v1;
@@ -356,7 +356,7 @@ void sub_02052348 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, int
     sub_02052894(param0);
 }
 
-void sub_020524E4 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, const Party * param2, const u8 * param3)
+void sub_020524E4 (BattleParams * param0, const FieldSystem * param1, const Party * param2, const u8 * param3)
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(param1->unk_0C);
     UnkStruct_0207D3C0 * v1 = sub_0207D990(param1->unk_0C);
@@ -434,12 +434,12 @@ void sub_020524E4 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, con
     }
 }
 
-void sub_020526CC (BattleParams * param0, const UnkStruct_0203CDB0 * param1, const u8 * param2)
+void sub_020526CC (BattleParams * param0, const FieldSystem * param1, const u8 * param2)
 {
     sub_020524E4(param0, param1, Party_GetFromSavedata(param1->unk_0C), param2);
 }
 
-void sub_020526E8 (const BattleParams * param0, UnkStruct_0203CDB0 * param1)
+void sub_020526E8 (const BattleParams * param0, FieldSystem * param1)
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(param1->unk_0C);
     Party * v1 = Party_GetFromSavedata(param1->unk_0C);
@@ -455,7 +455,7 @@ void sub_020526E8 (const BattleParams * param0, UnkStruct_0203CDB0 * param1)
     *v4 = param0->unk_168;
 }
 
-void sub_02052754 (const BattleParams * param0, UnkStruct_0203CDB0 * param1)
+void sub_02052754 (const BattleParams * param0, FieldSystem * param1)
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(param1->unk_0C);
     Party * v1 = Party_GetFromSavedata(param1->unk_0C);
@@ -465,7 +465,7 @@ void sub_02052754 (const BattleParams * param0, UnkStruct_0203CDB0 * param1)
     sub_02026338(param0->unk_E8, v3);
 }
 
-static int sub_02052780 (const UnkStruct_0203CDB0 * param0, int param1)
+static int sub_02052780 (const FieldSystem * param0, int param1)
 {
     u8 v0 = sub_02054F94(param0, param0->unk_1C->unk_08, param0->unk_1C->unk_0C);
     static const v1[] = {
@@ -521,7 +521,7 @@ static int sub_02052780 (const UnkStruct_0203CDB0 * param0, int param1)
     return 24;
 }
 
-static void sub_0205281C (BattleParams * param0, const UnkStruct_0203CDB0 * param1)
+static void sub_0205281C (BattleParams * param0, const FieldSystem * param1)
 {
     UnkStruct_0205EC34 * v0 = sub_0203A780(sub_0203A790(param1->unk_0C));
 

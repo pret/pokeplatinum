@@ -21,7 +21,7 @@
 #include "overlay005/ov5_021D0D80.h"
 
 typedef struct {
-    UnkStruct_0203CDB0 * unk_00;
+    FieldSystem * unk_00;
     StringFormatter * unk_04;
     Sentence unk_08;
     UnkStruct_0209747C * unk_10;
@@ -36,7 +36,7 @@ static BOOL sub_0209B3C4(UnkStruct_020508D4 * param0);
 
 void sub_0209B344 (UnkStruct_020508D4 * param0, u16 * param1)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_0209B3AC * v1 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0209B3AC));
 
     v1->unk_00 = v0;

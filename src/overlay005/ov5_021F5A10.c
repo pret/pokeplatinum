@@ -131,7 +131,7 @@ static void ov5_021F5A90 (UnkStruct_ov5_021F5A34 * param0, int param1)
     }
 }
 
-void ov5_021F5AA4 (UnkStruct_0203CDB0 * param0, BOOL param1)
+void ov5_021F5AA4 (FieldSystem * param0, BOOL param1)
 {
     UnkStruct_ov5_021F5A34 * v0 = ov5_021DF55C(param0->unk_40, 20);
 

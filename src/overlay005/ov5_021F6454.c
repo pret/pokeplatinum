@@ -69,7 +69,7 @@ typedef struct {
 } UnkStruct_ov5_02200C90;
 
 struct UnkStruct_ov5_021F6704_t {
-    UnkStruct_0203CDB0 * unk_00;
+    FieldSystem * unk_00;
     SysTask * unk_04;
     Window unk_08;
     Window * unk_18;
@@ -109,8 +109,8 @@ BOOL ov5_021F72B8(UnkStruct_0203E724 * param0);
 BOOL ov5_021F6B3C(UnkStruct_0203E724 * param0);
 BOOL ov5_021F6E50(UnkStruct_0203E724 * param0);
 static void ov5_021F661C(UnkStruct_ov5_021F6704 * param0, MessageLoader * param1);
-static void ov5_021F6624(UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021F6704 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, StringFormatter * param7, Window * param8, MessageLoader * param9, u16 * param10, u16 * param11);
-UnkStruct_ov5_021F6704 * ov5_021F6704(UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringFormatter * param6, Window * param7, MessageLoader * param8, u16 * param9, u16 * param10);
+static void ov5_021F6624(FieldSystem * param0, UnkStruct_ov5_021F6704 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, StringFormatter * param7, Window * param8, MessageLoader * param9, u16 * param10, u16 * param11);
+UnkStruct_ov5_021F6704 * ov5_021F6704(FieldSystem * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringFormatter * param6, Window * param7, MessageLoader * param8, u16 * param9, u16 * param10);
 void ov5_021F6760(UnkStruct_ov5_021F6704 * param0, u32 param1, u32 param2, u32 param3);
 static void ov5_021F6768(UnkStruct_ov5_021F6704 * param0);
 static void ov5_021F6830(UnkStruct_ov5_021F6704 * param0, u32 param1, u32 param2, u32 param3);
@@ -141,7 +141,7 @@ BOOL ov5_021F6454 (UnkStruct_0203E724 * param0)
     int v4, v5;
     MessageLoader * v6;
     MessageLoader * v7;
-    UnkStruct_0203CDB0 * v8 = param0->unk_34;
+    FieldSystem * v8 = param0->unk_34;
     UnkStruct_ov5_021F6704 * v9;
     StringFormatter ** v10 = sub_0203F098(v8, 15);
     u16 v11 = inline_02049538(param0);
@@ -192,7 +192,7 @@ BOOL ov5_021F6454 (UnkStruct_0203E724 * param0)
 
 static BOOL ov5_021F65D4 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     u16 * v1 = sub_0203F118(v0, param0->unk_18[0]);
 
     if (*v1 == 0xeeee) {
@@ -219,7 +219,7 @@ static void ov5_021F661C (UnkStruct_ov5_021F6704 * param0, MessageLoader * param
     return;
 }
 
-static void ov5_021F6624 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021F6704 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, StringFormatter * param7, Window * param8, MessageLoader * param9, u16 * param10, u16 * param11)
+static void ov5_021F6624 (FieldSystem * param0, UnkStruct_ov5_021F6704 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, StringFormatter * param7, Window * param8, MessageLoader * param9, u16 * param10, u16 * param11)
 {
     int v0;
 
@@ -256,7 +256,7 @@ static void ov5_021F6624 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021F6704 * 
     return;
 }
 
-UnkStruct_ov5_021F6704 * ov5_021F6704 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringFormatter * param6, Window * param7, MessageLoader * param8, u16 * param9, u16 * param10)
+UnkStruct_ov5_021F6704 * ov5_021F6704 (FieldSystem * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringFormatter * param6, Window * param7, MessageLoader * param8, u16 * param9, u16 * param10)
 {
     UnkStruct_ov5_021F6704 * v0;
     int v1;
@@ -457,7 +457,7 @@ BOOL ov5_021F6B3C (UnkStruct_0203E724 * param0)
     u8 v0;
     u32 v1[6];
     Pokemon * v2;
-    UnkStruct_0203CDB0 * v3 = param0->unk_34;
+    FieldSystem * v3 = param0->unk_34;
     u16 v4 = inline_02049538(param0);
     u16 * v5 = inline_0204FCAC(param0);
     u16 * v6 = inline_0204FCAC(param0);
@@ -506,7 +506,7 @@ BOOL ov5_021F6C60 (UnkStruct_0203E724 * param0)
     u32 v7;
     int v8[6];
     int v9 = 0;
-    UnkStruct_0203CDB0 * v10 = param0->unk_34;
+    FieldSystem * v10 = param0->unk_34;
     u16 * v11 = inline_0204FCAC(param0);
 
     v1 = Party_GetFromSavedata(v10->unk_0C);
@@ -572,7 +572,7 @@ BOOL ov5_021F6D80 (UnkStruct_0203E724 * param0)
     u32 v4;
     int v5;
     int v6;
-    UnkStruct_0203CDB0 * v7 = param0->unk_34;
+    FieldSystem * v7 = param0->unk_34;
     u16 v8 = inline_02049538(param0);
     u16 * v9 = inline_0204FCAC(param0);
 
@@ -623,7 +623,7 @@ BOOL ov5_021F6D80 (UnkStruct_0203E724 * param0)
 BOOL ov5_021F6E50 (UnkStruct_0203E724 * param0)
 {
     Pokemon * v0;
-    UnkStruct_0203CDB0 * v1 = param0->unk_34;
+    FieldSystem * v1 = param0->unk_34;
     u16 v2 = inline_02049538(param0);
     u16 v3 = inline_02049538(param0);
 
@@ -639,7 +639,7 @@ BOOL ov5_021F6E9C (UnkStruct_0203E724 * param0)
     int v3, v4, v5;
     Pokemon * v6;
     Party * v7;
-    UnkStruct_0203CDB0 * v8 = param0->unk_34;
+    FieldSystem * v8 = param0->unk_34;
     u16 * v9 = inline_0204FCAC(param0);
     u16 * v10 = inline_0204FCAC(param0);
 
@@ -673,7 +673,7 @@ BOOL ov5_021F6F44 (UnkStruct_0203E724 * param0)
     u16 v2, v3;
     Pokemon * v4;
     Party * v5;
-    UnkStruct_0203CDB0 * v6 = param0->unk_34;
+    FieldSystem * v6 = param0->unk_34;
     u16 v7 = inline_02049538(param0);
     u16 v8 = inline_02049538(param0);
     u16 v9 = inline_02049538(param0);
@@ -693,7 +693,7 @@ BOOL ov5_021F6FC0 (UnkStruct_0203E724 * param0)
     u16 v0;
     int v1, v2;
     Pokemon * v3;
-    UnkStruct_0203CDB0 * v4 = param0->unk_34;
+    FieldSystem * v4 = param0->unk_34;
     u16 v5 = inline_02049538(param0);
     u16 * v6 = inline_0204FCAC(param0);
 
@@ -764,7 +764,7 @@ BOOL ov5_021F71B8 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0202783C * v0;
     Pokemon * v1;
-    UnkStruct_0203CDB0 * v2 = param0->unk_34;
+    FieldSystem * v2 = param0->unk_34;
 
     v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v2->unk_0C), 0);
     v0 = sub_0202783C(v2->unk_0C);
@@ -778,7 +778,7 @@ BOOL ov5_021F7208 (UnkStruct_0203E724 * param0)
     int v0, v1, v2;
     UnkStruct_0202783C * v3;
     Pokemon * v4;
-    UnkStruct_0203CDB0 * v5 = param0->unk_34;
+    FieldSystem * v5 = param0->unk_34;
     u16 * v6 = inline_0204FCAC(param0);
     u16 * v7 = inline_0204FCAC(param0);
     u16 * v8 = inline_0204FCAC(param0);
@@ -797,7 +797,7 @@ BOOL ov5_021F7270 (UnkStruct_0203E724 * param0)
 {
     Pokemon * v0;
     Party * v1;
-    UnkStruct_0203CDB0 * v2 = param0->unk_34;
+    FieldSystem * v2 = param0->unk_34;
     u16 v3 = inline_02049538(param0);
     u16 * v4 = inline_0204FCAC(param0);
 
@@ -812,7 +812,7 @@ BOOL ov5_021F72B8 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_020507E4 * v0;
     UnkStruct_0202CD88 * v1;
-    UnkStruct_0203CDB0 * v2 = param0->unk_34;
+    FieldSystem * v2 = param0->unk_34;
     u16 v3 = inline_02049538(param0);
     u16 * v4 = inline_0204FCAC(param0);
 
@@ -987,7 +987,7 @@ BOOL ov5_021F7538 (UnkStruct_0203E724 * param0)
     VecFx32 v1;
     UnkStruct_020216E0 * v2;
     int v3 = 0;
-    UnkStruct_0203CDB0 * v4 = param0->unk_34;
+    FieldSystem * v4 = param0->unk_34;
     UnkStruct_02061830 * v5 = v4->unk_38;
     UnkStruct_02061AB4 * v6 = sub_0205EB3C(v4->unk_3C);
     UnkStruct_02061AB4 * v7;
@@ -1028,7 +1028,7 @@ BOOL ov5_021F7538 (UnkStruct_0203E724 * param0)
 BOOL ov5_021F7604 (UnkStruct_0203E724 * param0)
 {
     int v0 = 0;
-    UnkStruct_0203CDB0 * v1 = param0->unk_34;
+    FieldSystem * v1 = param0->unk_34;
     UnkStruct_02061830 * v2 = v1->unk_38;
     UnkStruct_02061AB4 * v3 = sub_0205EB3C(v1->unk_3C);
     UnkStruct_02061AB4 * v4;
@@ -1066,7 +1066,7 @@ static void ov5_021F7654 (UnkStruct_02061AB4 * param0, int param1)
 BOOL ov5_021F76A0 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_02061AB4 * v0;
-    UnkStruct_0203CDB0 * v1 = param0->unk_34;
+    FieldSystem * v1 = param0->unk_34;
     UnkStruct_02061830 * v2 = v1->unk_38;
 
     v0 = sub_0206251C(v2, 32);

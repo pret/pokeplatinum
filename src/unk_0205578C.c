@@ -20,7 +20,7 @@ void sub_020557DC(UnkStruct_020508D4 * param0, int param1, int param2);
 
 static BOOL sub_0205578C (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0;
+    FieldSystem * v0;
     UnkStruct_0205578C * v1;
 
     v0 = sub_02050A60(param0);

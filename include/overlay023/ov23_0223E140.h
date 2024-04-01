@@ -7,7 +7,7 @@
 
 #include <nitro/math.h>
 
-void ov23_0223E1E4(void * param0, UnkStruct_0203CDB0 * param1);
+void ov23_0223E1E4(void * param0, FieldSystem * param1);
 int ov23_0223E2E8(void);
 void ov23_0223E2F0(void);
 void ov23_0223E2F4(void);

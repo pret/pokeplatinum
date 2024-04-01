@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_0203CDB0_DECL_H
 #define POKEPLATINUM_STRUCT_0203CDB0_DECL_H
 
-typedef struct UnkStruct_0203CDB0_t UnkStruct_0203CDB0;
+typedef struct UnkStruct_0203CDB0_t FieldSystem;
 
 #endif // POKEPLATINUM_STRUCT_0203CDB0_DECL_H

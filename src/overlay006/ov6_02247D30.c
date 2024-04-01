@@ -35,7 +35,7 @@ static VecFx32 Unk_ov6_022498E4[6] = {
     {((FX32_ONE * 4) + (FX32_ONE / 2)), FX32_ONE * 12, ((FX32_ONE * 4) + (FX32_ONE / 2))}
 };
 
-void ov6_02247D30 (UnkStruct_0203CDB0 * param0, const u8 param1)
+void ov6_02247D30 (FieldSystem * param0, const u8 param1)
 {
     BOOL v0;
     UnkStruct_ov5_021E1890 * v1;
@@ -69,7 +69,7 @@ void ov6_02247D30 (UnkStruct_0203CDB0 * param0, const u8 param1)
 
 static BOOL ov6_02247DAC (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_ov6_02247D30 * v1 = (UnkStruct_ov6_02247D30 *)sub_02050A64(param0);
 
     switch (v1->unk_0F) {

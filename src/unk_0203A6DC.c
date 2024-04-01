@@ -171,7 +171,7 @@ UnkStruct_0203A79C * sub_0203A79C (SaveData * param0)
     return v0;
 }
 
-void sub_0203A7A8 (UnkStruct_0203CDB0 * param0)
+void sub_0203A7A8 (FieldSystem * param0)
 {
     UnkStruct_02061D3C * v0;
 
@@ -179,7 +179,7 @@ void sub_0203A7A8 (UnkStruct_0203CDB0 * param0)
     sub_02061CA8(param0, param0->unk_38, v0, 64);
 }
 
-void sub_0203A7C0 (UnkStruct_0203CDB0 * param0)
+void sub_0203A7C0 (FieldSystem * param0)
 {
     UnkStruct_02061D3C * v0;
 

@@ -166,7 +166,7 @@ static void sub_020834B0 (GameWindowLayout * param0, int * param1)
     Pokemon * v0;
     int v1;
     int v2 = 17;
-    UnkStruct_0203CDB0 * v3;
+    FieldSystem * v3;
 
     Window_Clear(&param0->unk_04[35], 1);
     sub_02001BC4(param0->unk_700, NULL);

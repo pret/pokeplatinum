@@ -75,7 +75,7 @@ void sub_0205ED2C(UnkStruct_0205E884 * param0, int param1);
 void sub_0205ED48(UnkStruct_0205E884 * param0, int param1);
 int sub_0205ED6C(int param0, int param1);
 u32 sub_0205EED8(int param0);
-UnkStruct_0205E884 * sub_0205EF3C(UnkStruct_0203CDB0 * param0);
+UnkStruct_0205E884 * sub_0205EF3C(FieldSystem * param0);
 void sub_0205EF40(UnkStruct_0205E884 * param0, int param1);
 int sub_0205EF58(UnkStruct_0205E884 * param0);
 void sub_0205EF6C(UnkStruct_0205E884 * param0, int param1);

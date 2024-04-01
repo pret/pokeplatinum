@@ -154,7 +154,7 @@ typedef struct {
     u16 unk_00;
     u8 unk_02;
     u8 unk_03;
-    UnkStruct_0203CDB0 * unk_04;
+    FieldSystem * unk_04;
     UnkStruct_02014014 * unk_08;
     void * unk_0C;
     u32 unk_10;
@@ -180,8 +180,8 @@ static void ov5_021DEE84(UnkStruct_ov5_021DED04 * param0);
 static void ov5_021DE67C(GraphicElementData * param0, void * param1, u32 param2);
 static void ov5_021DF258(SysTask * param0, void * param1);
 static void ov5_021DF28C(SysTask * param0, void * param1);
-static void ov5_021DF30C(UnkStruct_0203CDB0 * param0);
-static void ov5_021DF3D4(UnkStruct_0203CDB0 * param0);
+static void ov5_021DF30C(FieldSystem * param0);
+static void ov5_021DF3D4(FieldSystem * param0);
 static u32 ov5_021DF3E8(u32 param0, BOOL param1);
 static u32 ov5_021DF414(u32 param0, BOOL param1);
 static void include_ov5_021DDBE8_rodata(SysTask * dummy1, void * dummy2);
@@ -245,7 +245,7 @@ static const u16 Unk_ov5_021F9A2C[8][2] = {
 
 static UnkStruct_ov5_02202120 * Unk_ov5_02202120 = NULL;
 
-void ov5_021DDBE8 (int param0, UnkStruct_0203CDB0 * param1, BOOL * param2)
+void ov5_021DDBE8 (int param0, FieldSystem * param1, BOOL * param2)
 {
     SysTask * v0;
     UnkStruct_ov5_021DDC28 * v1;
@@ -1467,7 +1467,7 @@ void ov5_021DEF8C (int * param0)
     sub_0200DA3C(ov5_021DEF74, param0, 1024);
 }
 
-void ov5_021DEFA0 (UnkStruct_0203CDB0 * param0)
+void ov5_021DEFA0 (FieldSystem * param0)
 {
     GF_ASSERT(Unk_ov5_02202120 == NULL);
 
@@ -1648,7 +1648,7 @@ static void ov5_021DF28C (SysTask * param0, void * param1)
     }
 }
 
-static void ov5_021DF30C (UnkStruct_0203CDB0 * param0)
+static void ov5_021DF30C (FieldSystem * param0)
 {
     {
         UnkStruct_02099F80 v0 = {
@@ -1724,7 +1724,7 @@ static void ov5_021DF30C (UnkStruct_0203CDB0 * param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov5_021DF3D4 (UnkStruct_0203CDB0 * param0)
+static void ov5_021DF3D4 (FieldSystem * param0)
 {
     sub_02019044(param0->unk_08, 2);
     ov5_021D1434(param0->unk_08);

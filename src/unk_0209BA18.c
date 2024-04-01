@@ -15,12 +15,12 @@
 #include "unk_0203CC84.h"
 #include "unk_0209BA18.h"
 
-UnkStruct_ov104_02230BE4 * sub_0209BA18(UnkStruct_0203CDB0 * param0, void * param1);
+UnkStruct_ov104_02230BE4 * sub_0209BA18(FieldSystem * param0, void * param1);
 BOOL ov104_02239624(UnkStruct_ov104_0222E930 * param0);
 BOOL ov104_02239660(UnkStruct_ov104_0222E930 * param0);
 static BOOL ov104_02239C88(UnkStruct_0209BBA4 * param0, u16 param1, u16 param2);
 
-UnkStruct_ov104_02230BE4 * sub_0209BA18 (UnkStruct_0203CDB0 * param0, void * param1)
+UnkStruct_ov104_02230BE4 * sub_0209BA18 (FieldSystem * param0, void * param1)
 {
     UnkStruct_ov104_02230BE4 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov104_02230BE4));
 

@@ -89,7 +89,7 @@ static BOOL ov53_0225621C (UnkStruct_ov53_0225621C * param0, UnkStruct_ov25_0225
             (48 + (48 / 2))
         }
     };
-    UnkStruct_0203CDB0 * v1;
+    FieldSystem * v1;
     int v2;
 
     v1 = ov25_0225453C(param1);
@@ -203,7 +203,7 @@ static BOOL ov53_02256370 (UnkStruct_ov53_0225621C * param0)
     }
 
     {
-        UnkStruct_0203CDB0 * v0;
+        FieldSystem * v0;
         int v1;
 
         v0 = ov25_0225453C(param0->unk_30);

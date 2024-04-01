@@ -95,6 +95,6 @@ typedef struct UnkStruct_0203CDB0_t {
     UnkStruct_0209C370 * unk_BC;
     u32 unk_C0;
     UnkStruct_ov66_0222DCE0_sub1 unk_C4;
-} UnkStruct_0203CDB0;
+} FieldSystem;
 
 #endif // POKEPLATINUM_STRUCT_0203CDB0_H

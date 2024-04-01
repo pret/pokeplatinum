@@ -13,7 +13,7 @@
 #include "overlay005/ov5_021F0824.h"
 #include "overlay023/ov23_02241F74.h"
 
-void ov5_021F0824 (UnkStruct_0203CDB0 * param0)
+void ov5_021F0824 (FieldSystem * param0)
 {
     int v0;
     int v1;

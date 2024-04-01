@@ -67,7 +67,7 @@ typedef struct {
     void * unk_00;
     SysTask * unk_04;
     UnkFuncPtr_ov23_022431EC unk_08;
-    UnkStruct_0203CDB0 * unk_0C;
+    FieldSystem * unk_0C;
     UnkStruct_ov23_02253598 * unk_10;
     SysTask * unk_14;
     UnkStruct_ov23_0224271C unk_18;
@@ -125,7 +125,7 @@ static void ov23_02243310(SysTask * param0, void * param1);
 
 static UnkStruct_ov23_02257748 * Unk_ov23_02257748 = NULL;
 
-static void ov23_02241F74 (UnkStruct_ov23_02257748 * param0, UnkStruct_0203CDB0 * param1)
+static void ov23_02241F74 (UnkStruct_ov23_02257748 * param0, FieldSystem * param1)
 {
     u8 v0 = sub_02027AC0(sub_02025E44(param1->unk_0C));
     int v1;
@@ -771,7 +771,7 @@ void ov23_02242B14 (void)
     }
 }
 
-void ov23_02242BC0 (UnkStruct_0203CDB0 * param0)
+void ov23_02242BC0 (FieldSystem * param0)
 {
     void * v0;
 
@@ -844,7 +844,7 @@ void ov23_02242D08 (void)
     }
 }
 
-void ov23_02242D44 (UnkStruct_0203CDB0 * param0)
+void ov23_02242D44 (FieldSystem * param0)
 {
     void * v0;
 

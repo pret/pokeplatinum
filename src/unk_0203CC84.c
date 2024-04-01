@@ -52,12 +52,12 @@ typedef struct UnkStruct_0203CDB0_sub1_t {
     BOOL unk_0C;
 };
 
-static UnkStruct_0203CDB0 * sub_0203CDB0(UnkStruct_020067E8 * param0);
-static BOOL sub_0203CEEC(UnkStruct_0203CDB0 * param0);
+static FieldSystem * sub_0203CDB0(UnkStruct_020067E8 * param0);
+static BOOL sub_0203CEEC(FieldSystem * param0);
 static void sub_0203CE6C(UnkStruct_020067E8 * param0);
-static void sub_0203CF5C(UnkStruct_0203CDB0 * param0);
+static void sub_0203CF5C(FieldSystem * param0);
 
-static UnkStruct_0203CDB0 * Unk_021C07DC;
+static FieldSystem * Unk_021C07DC;
 
 static int sub_0203CC84 (UnkStruct_020067E8 * param0, int * param1)
 {
@@ -84,7 +84,7 @@ static int sub_0203CCB4 (UnkStruct_020067E8 * param0, int * param1)
 
 static int sub_0203CCCC (UnkStruct_020067E8 * param0, int * param1)
 {
-    UnkStruct_0203CDB0 * v0 = sub_0200682C(param0);
+    FieldSystem * v0 = sub_0200682C(param0);
 
     if (sub_0203CEEC(v0)) {
         return 1;
@@ -114,7 +114,7 @@ const UnkStruct_0208BE5C Unk_020EA11C = {
     0xffffffff
 };
 
-void sub_0203CD00 (UnkStruct_0203CDB0 * param0)
+void sub_0203CD00 (FieldSystem * param0)
 {
     GF_ASSERT(param0->unk_00->unk_04 == NULL);
     GF_ASSERT(param0->unk_00->unk_00 == NULL);
@@ -125,17 +125,17 @@ void sub_0203CD00 (UnkStruct_0203CDB0 * param0)
     param0->unk_00->unk_00 = sub_020067E8(&Unk_ov5_021F89B0, param0, 11);
 }
 
-void sub_0203CD44 (UnkStruct_0203CDB0 * param0)
+void sub_0203CD44 (FieldSystem * param0)
 {
     param0->unk_68 = 0;
 }
 
-BOOL sub_0203CD4C (UnkStruct_0203CDB0 * param0)
+BOOL sub_0203CD4C (FieldSystem * param0)
 {
     return param0->unk_00->unk_00 != NULL;
 }
 
-BOOL sub_0203CD5C (UnkStruct_0203CDB0 * param0)
+BOOL sub_0203CD5C (FieldSystem * param0)
 {
     if ((param0->unk_00->unk_00 != NULL) && param0->unk_68) {
         return 1;
@@ -144,29 +144,29 @@ BOOL sub_0203CD5C (UnkStruct_0203CDB0 * param0)
     }
 }
 
-BOOL sub_0203CD74 (UnkStruct_0203CDB0 * param0)
+BOOL sub_0203CD74 (FieldSystem * param0)
 {
     return param0->unk_00->unk_04 != NULL;
 }
 
-void sub_0203CD84 (UnkStruct_0203CDB0 * param0, const UnkStruct_0208BE5C * param1, void * param2)
+void sub_0203CD84 (FieldSystem * param0, const UnkStruct_0208BE5C * param1, void * param2)
 {
     GF_ASSERT(param0->unk_00->unk_04 == NULL);
     sub_0203CD44(param0);
     param0->unk_00->unk_04 = sub_020067E8(param1, param2, 11);
 }
 
-static UnkStruct_0203CDB0 * sub_0203CDB0 (UnkStruct_020067E8 * param0)
+static FieldSystem * sub_0203CDB0 (UnkStruct_020067E8 * param0)
 {
     UnkStruct_0203CC84 * v0;
-    UnkStruct_0203CDB0 * v1;
+    FieldSystem * v1;
 
     Heap_Create(3, 11, 0x1c000);
     Heap_Create(3, 32, 0x4000);
     Heap_Create(0, 91, 0x300);
 
-    v1 = sub_0200681C(param0, sizeof(UnkStruct_0203CDB0), 11);
-    MI_CpuClear8(v1, sizeof(UnkStruct_0203CDB0));
+    v1 = sub_0200681C(param0, sizeof(FieldSystem), 11);
+    MI_CpuClear8(v1, sizeof(FieldSystem));
 
     v1->unk_00 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0203CDB0_sub1));
     v1->unk_00->unk_00 = NULL;
@@ -196,7 +196,7 @@ static UnkStruct_0203CDB0 * sub_0203CDB0 (UnkStruct_020067E8 * param0)
 
 static void sub_0203CE6C (UnkStruct_020067E8 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_0200682C(param0);
+    FieldSystem * v0 = sub_0200682C(param0);
 
     sub_02039DE4(v0->unk_2C);
     sub_0203A398(v0);
@@ -222,7 +222,7 @@ static void sub_0203CECC (UnkStruct_020067E8 ** param0)
     }
 }
 
-BOOL sub_0203CEEC (UnkStruct_0203CDB0 * param0)
+BOOL sub_0203CEEC (FieldSystem * param0)
 {
     BOOL v0;
 
@@ -250,7 +250,7 @@ BOOL sub_0203CEEC (UnkStruct_0203CDB0 * param0)
     return 0;
 }
 
-void sub_0203CF5C (UnkStruct_0203CDB0 * param0)
+void sub_0203CF5C (FieldSystem * param0)
 {
     int v0;
     UnkStruct_ov5_021D1CAC v1;
@@ -382,11 +382,11 @@ struct UnkStruct_ov25_02253CE0_t * sub_0203D158 (void)
 
 BGL * sub_0203D170 (void * param0)
 {
-    UnkStruct_0203CDB0 * v0 = (UnkStruct_0203CDB0 *)param0;
+    FieldSystem * v0 = (FieldSystem *)param0;
     return v0->unk_08;
 }
 
 SaveData * sub_0203D174 (void * param0)
 {
-    return ((UnkStruct_0203CDB0 *)param0)->unk_0C;
+    return ((FieldSystem *)param0)->unk_0C;
 }

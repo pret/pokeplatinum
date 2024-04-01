@@ -50,7 +50,7 @@ typedef struct {
     Strbuf* unk_0C;
     Window unk_10;
     Window unk_20;
-    UnkStruct_0203CDB0 * unk_30;
+    FieldSystem * unk_30;
     SaveData * unk_34;
     StringFormatter * unk_38;
     MessageLoader * unk_3C;
@@ -384,7 +384,7 @@ static BOOL ov5_021EAD38 (UnkStruct_ov5_021EAE78 * param0)
 static BOOL ov5_021EADB4 (UnkStruct_020508D4 * param0)
 {
     UnkStruct_ov5_021EAE78 * v0 = sub_02050A64(param0);
-    UnkStruct_0203CDB0 * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = sub_02050A60(param0);
 
     switch (v0->unk_48) {
     case 0:
@@ -473,7 +473,7 @@ static void ov5_021EAF1C (UnkStruct_ov5_021EAE78 * param0)
     }
 }
 
-void ov5_021EAF50 (UnkStruct_0203CDB0 * param0)
+void ov5_021EAF50 (FieldSystem * param0)
 {
     UnkStruct_ov5_021EAE78 * v0;
     UnkStruct_020508D4 * v1 = param0->unk_10;

@@ -214,7 +214,7 @@ static BOOL sub_0209843C (UnkStruct_020508D4 * param0)
         break;
     case 2:
     {
-        UnkStruct_0203CDB0 * v1 = sub_02050A60(param0);
+        FieldSystem * v1 = sub_02050A60(param0);
 
         {
             Pokemon * v2 = v0->unk_0C.unk_00;
@@ -242,7 +242,7 @@ static BOOL sub_0209843C (UnkStruct_020508D4 * param0)
     break;
     case 3:
     {
-        UnkStruct_0203CDB0 * v8 = sub_02050A60(param0);
+        FieldSystem * v8 = sub_02050A60(param0);
         int v9;
 
         v9 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_SPECIES, 0);
@@ -259,7 +259,7 @@ static BOOL sub_0209843C (UnkStruct_020508D4 * param0)
             Pokemon_SetValue(v0->unk_0C.unk_00, 120, v0->unk_08->unk_18);
 
             {
-                UnkStruct_0203CDB0 * v10 = sub_02050A60(param0);
+                FieldSystem * v10 = sub_02050A60(param0);
                 UnkStruct_0202CD88 * v11 = sub_0202CD88(sub_0203D174(v10));
 
                 sub_0202CF28(v11, (1 + 48));

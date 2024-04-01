@@ -65,7 +65,7 @@ UnkStruct_ov23_0224A294 * sub_02057518 (void)
     return Unk_021C0848;
 }
 
-BOOL sub_02057524 (void * param0, UnkStruct_0203CDB0 * param1, BOOL param2)
+BOOL sub_02057524 (void * param0, FieldSystem * param1, BOOL param2)
 {
     int v0, v1;
 
@@ -615,7 +615,7 @@ void sub_02058018 (int param0, int param1, void * param2, void * param3)
     }
 }
 
-void sub_0205805C (UnkStruct_0203CDB0 * param0, BOOL param1)
+void sub_0205805C (FieldSystem * param0, BOOL param1)
 {
     if (Unk_021C0848 == NULL) {
         return;

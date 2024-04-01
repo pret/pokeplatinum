@@ -55,7 +55,7 @@ struct UnkStruct_ov23_0224942C_t {
     int unk_04[8][2];
     int unk_44[8][3];
     int unk_A4[17][4];
-    UnkStruct_0203CDB0 * unk_1B4;
+    FieldSystem * unk_1B4;
     BGL * unk_1B8;
     GraphicElementManager * unk_1BC;
     UnkStruct_0200C738 unk_1C0;
@@ -325,7 +325,7 @@ static void ov23_0224937C (int param0[][4], GraphicElementData * param1[])
     }
 }
 
-UnkStruct_ov23_0224942C * ov23_02249404 (UnkStruct_0203CDB0 * param0)
+UnkStruct_ov23_0224942C * ov23_02249404 (FieldSystem * param0)
 {
     UnkStruct_ov23_0224942C * v0;
     SysTask * v1;

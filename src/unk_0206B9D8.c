@@ -67,7 +67,7 @@ typedef struct {
     u16 unk_02;
 } UnkStruct_0206BD88;
 
-static int sub_0206B9D8 (UnkStruct_0206B9D8 * param0, UnkStruct_0203CDB0 * param1, int param2)
+static int sub_0206B9D8 (UnkStruct_0206B9D8 * param0, FieldSystem * param1, int param2)
 {
     u8 v0;
     SaveData * v1;
@@ -96,7 +96,7 @@ static int sub_0206B9D8 (UnkStruct_0206B9D8 * param0, UnkStruct_0203CDB0 * param
     return 1;
 }
 
-static int sub_0206BA84 (UnkStruct_0206B9D8 * param0, UnkStruct_0203CDB0 * param1)
+static int sub_0206BA84 (UnkStruct_0206B9D8 * param0, FieldSystem * param1)
 {
     int v0;
     PartyManagementData * v1;
@@ -126,7 +126,7 @@ static int sub_0206BA84 (UnkStruct_0206B9D8 * param0, UnkStruct_0203CDB0 * param
     return 2;
 }
 
-static int sub_0206BAE0 (UnkStruct_0206B9D8 * param0, UnkStruct_0203CDB0 * param1, int param2)
+static int sub_0206BAE0 (UnkStruct_0206B9D8 * param0, FieldSystem * param1, int param2)
 {
     PokemonSummary * v0;
     SaveData * v1;
@@ -157,7 +157,7 @@ static int sub_0206BAE0 (UnkStruct_0206B9D8 * param0, UnkStruct_0203CDB0 * param
     return 3;
 }
 
-static int sub_0206BB6C (UnkStruct_0206B9D8 * param0, UnkStruct_0203CDB0 * param1)
+static int sub_0206BB6C (UnkStruct_0206B9D8 * param0, FieldSystem * param1)
 {
     PokemonSummary * v0;
 
@@ -175,7 +175,7 @@ static int sub_0206BB6C (UnkStruct_0206B9D8 * param0, UnkStruct_0203CDB0 * param
 
 static BOOL sub_0206BB94 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_0206B9D8 * v1 = sub_02050A64(param0);
 
     switch (v1->unk_04) {
@@ -201,7 +201,7 @@ static BOOL sub_0206BB94 (UnkStruct_020508D4 * param0)
 
 void sub_0206BBFC (UnkStruct_020508D4 * param0, void ** param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u8 param7)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_0206B9D8 * v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0206B9D8));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0206B9D8));
@@ -217,7 +217,7 @@ void sub_0206BBFC (UnkStruct_020508D4 * param0, void ** param1, u8 param2, u8 pa
     sub_02050944(v0->unk_10, sub_0206BB94, v1);
 }
 
-static int sub_0206BC48 (UnkStruct_0206BC48 * param0, UnkStruct_0203CDB0 * param1)
+static int sub_0206BC48 (UnkStruct_0206BC48 * param0, FieldSystem * param1)
 {
     SaveData * v0;
 
@@ -230,7 +230,7 @@ static int sub_0206BC48 (UnkStruct_0206BC48 * param0, UnkStruct_0203CDB0 * param
     }
 }
 
-static int sub_0206BC70 (UnkStruct_0206BC48 * param0, UnkStruct_0203CDB0 * param1)
+static int sub_0206BC70 (UnkStruct_0206BC48 * param0, FieldSystem * param1)
 {
     u8 v0;
     UnkStruct_0206BC70 * v1;
@@ -248,7 +248,7 @@ static int sub_0206BC70 (UnkStruct_0206BC48 * param0, UnkStruct_0203CDB0 * param
 static BOOL sub_0206BC94 (UnkStruct_020508D4 * param0)
 {
     u16 * v0;
-    UnkStruct_0203CDB0 * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = sub_02050A60(param0);
     UnkStruct_0206BC48 * v2 = sub_02050A64(param0);
 
     switch (v2->unk_04) {
@@ -270,7 +270,7 @@ static BOOL sub_0206BC94 (UnkStruct_020508D4 * param0)
 
 void sub_0206BCE4 (UnkStruct_020508D4 * param0, u16 param1, u16 param2, u16 param3)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_0206BC48 * v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0206BC48));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0206BC48));
@@ -286,7 +286,7 @@ static BOOL sub_0206BD1C (UnkStruct_020508D4 * param0)
 {
     u16 * v0;
     const void * v1;
-    UnkStruct_0203CDB0 * v2 = sub_02050A60(param0);
+    FieldSystem * v2 = sub_02050A60(param0);
     UnkStruct_0206BD88 * v3 = sub_02050A64(param0);
 
     v1 = sub_0203664C(1 - CommSys_CurNetId());
@@ -314,7 +314,7 @@ static BOOL sub_0206BD1C (UnkStruct_020508D4 * param0)
 
 void sub_0206BD88 (UnkStruct_020508D4 * param0, u16 param1, u16 param2)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_0206BD88 * v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0206BD88));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0206BD88));
@@ -519,7 +519,7 @@ u32 sub_0206C068 (SaveData * param0)
     return v2;
 }
 
-BOOL sub_0206C0D0 (UnkStruct_0203CDB0 * param0)
+BOOL sub_0206C0D0 (FieldSystem * param0)
 {
     if (param0->unk_1C->unk_00 == SPECIES_ARCEUS) {
         return 1;

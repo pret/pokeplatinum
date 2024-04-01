@@ -12,7 +12,7 @@
 #include "unk_0205F180.h"
 #include "overlay006/ov6_02247660.h"
 
-BOOL ov6_02247660 (UnkStruct_0203CDB0 * param0)
+BOOL ov6_02247660 (FieldSystem * param0)
 {
     u8 v0;
     int v1;

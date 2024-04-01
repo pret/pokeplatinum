@@ -170,7 +170,7 @@ static BOOL ov52_022562F8 (UnkStruct_ov52_0225621C * param0)
     case 0:
         if (ov52_02256554(param0)) {
             if (ov52_02256684(param0)) {
-                UnkStruct_0203CDB0 * v0 = ov25_0225453C(param0->unk_18);
+                FieldSystem * v0 = ov25_0225453C(param0->unk_18);
 
                 ov52_022567A4(param0->unk_14, 3);
 

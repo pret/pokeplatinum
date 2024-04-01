@@ -18,8 +18,8 @@
 FS_EXTERN_OVERLAY(overlay82);
 
 UnkStruct_ov82_0223B164 * sub_02099604(int param0, SaveData * param1, int param2, UnkStruct_0202B628 * param3);
-UnkStruct_ov82_0223B164 * sub_02099674(UnkStruct_0203CDB0 * param0, int param1, int param2);
-UnkStruct_ov82_0223B164 * sub_020996A0(UnkStruct_0203CDB0 * param0, int param1, BOOL param2);
+UnkStruct_ov82_0223B164 * sub_02099674(FieldSystem * param0, int param1, int param2);
+UnkStruct_ov82_0223B164 * sub_020996A0(FieldSystem * param0, int param1, BOOL param2);
 
 UnkStruct_ov82_0223B164 * sub_02099604 (int param0, SaveData * param1, int param2, UnkStruct_0202B628 * param3)
 {
@@ -40,7 +40,7 @@ UnkStruct_ov82_0223B164 * sub_02099604 (int param0, SaveData * param1, int param
     return v0;
 }
 
-static void sub_0209964C (UnkStruct_0203CDB0 * param0, UnkStruct_ov82_0223B164 * param1)
+static void sub_0209964C (FieldSystem * param0, UnkStruct_ov82_0223B164 * param1)
 {
     FS_EXTERN_OVERLAY(overlay82);
 
@@ -56,7 +56,7 @@ static void sub_0209964C (UnkStruct_0203CDB0 * param0, UnkStruct_ov82_0223B164 *
     }
 }
 
-UnkStruct_ov82_0223B164 * sub_02099674 (UnkStruct_0203CDB0 * param0, int param1, int param2)
+UnkStruct_ov82_0223B164 * sub_02099674 (FieldSystem * param0, int param1, int param2)
 {
     UnkStruct_ov82_0223B164 * v0;
 
@@ -66,7 +66,7 @@ UnkStruct_ov82_0223B164 * sub_02099674 (UnkStruct_0203CDB0 * param0, int param1,
     return v0;
 }
 
-UnkStruct_ov82_0223B164 * sub_020996A0 (UnkStruct_0203CDB0 * param0, int param1, BOOL param2)
+UnkStruct_ov82_0223B164 * sub_020996A0 (FieldSystem * param0, int param1, BOOL param2)
 {
     UnkStruct_ov82_0223B164 * v0;
 

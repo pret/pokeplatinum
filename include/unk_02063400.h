@@ -35,7 +35,7 @@ void sub_02064450(int param0, int param1, VecFx32 * param2);
 void sub_02064464(UnkStruct_02061AB4 * param0);
 int sub_0206447C(int param0);
 int sub_02064488(int param0, int param1, int param2, int param3);
-int sub_020644A4(UnkStruct_0203CDB0 * param0, VecFx32 * param1);
-int sub_020644D0(UnkStruct_0203CDB0 * param0, VecFx32 * param1, int param2);
+int sub_020644A4(FieldSystem * param0, VecFx32 * param1);
+int sub_020644D0(FieldSystem * param0, VecFx32 * param1, int param2);
 
 #endif // POKEPLATINUM_UNK_02063400_H

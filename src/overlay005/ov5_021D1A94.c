@@ -17,7 +17,7 @@
 #include "overlay005/ov5_021D1A94.h"
 
 struct UnkStruct_ov5_021D1A94_t {
-    UnkStruct_0203CDB0 * unk_00;
+    FieldSystem * unk_00;
     int unk_04;
     int unk_08;
     UnkStruct_ov5_021D1BEC * unk_0C;
@@ -32,7 +32,7 @@ struct UnkStruct_ov5_021D1BEC_t {
     void * unk_10;
 };
 
-UnkStruct_ov5_021D1A94 * ov5_021D1A94 (UnkStruct_0203CDB0 * param0, int param1, int param2)
+UnkStruct_ov5_021D1A94 * ov5_021D1A94 (FieldSystem * param0, int param1, int param2)
 {
     UnkStruct_ov5_021D1A94 * v0;
     u32 v1;

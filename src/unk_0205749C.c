@@ -43,7 +43,7 @@ void sub_0205749C (UnkStruct_020508D4 * param0, BOOL param1)
 
 static BOOL sub_020574CC (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_0205749C * v1 = sub_02050A64(param0);
 
     switch (v1->unk_00) {
