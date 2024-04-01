@@ -13,8 +13,8 @@
 #include "heap.h"
 #include "unk_02030EE0.h"
 #include "unk_02032798.h"
-#include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_information.h"
+#include "communication_system.h"
 #include "unk_020366A0.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
@@ -79,7 +79,7 @@ static BOOL sub_0209BE84 (UnkStruct_0209BDF8 * param0, u32 param1, const void * 
 
         v1->unk_00 = param1;
         memcpy(v1->unk_04, param2, param3);
-        v0 = sub_020359DC(130, v1, 24);
+        v0 = CommSys_SendData(130, v1, 24);
 
         return v0;
     }
@@ -139,7 +139,7 @@ static void sub_0209BF24 (int param0, int param1, void * param2, void * param3)
 
 static void sub_0209BF2C (int param0, int param1, void * param2, void * param3)
 {
-    if (sub_0203608C() != 0) {
+    if (CommSys_CurNetId() != 0) {
         UnkStruct_0209BDF8 * v0 = param3;
 
         v0->unk_20 = 0;
@@ -162,7 +162,7 @@ static void sub_0209BF64 (int param0, int param1, void * param2, void * param3)
     UnkStruct_0209BF64 * v2 = param2;
 
     if (param0 != 0) {
-        if (sub_0203608C() == 0) {
+        if (CommSys_CurNetId() == 0) {
             v1 = *v2;
             v1.unk_00 = param0;
             v1.unk_01 = v0->unk_2C;
@@ -187,7 +187,7 @@ static void sub_0209BF64 (int param0, int param1, void * param2, void * param3)
     } else {
         switch (v2->unk_02) {
         case 0:
-            if (v2->unk_00 == sub_0203608C()) {
+            if (v2->unk_00 == CommSys_CurNetId()) {
                 if (v2->unk_03 == 0) {
                     ov109_021D5140(
                         v0->unk_00->unk_3C, 8, v2->unk_00);
@@ -213,7 +213,7 @@ static void sub_0209C040 (int param0, int param1, void * param2, void * param3)
     v1 = *(u8 *)param2;
     ov109_021D5258(v0->unk_00->unk_3C, 1, v1);
 
-    if (sub_0203608C() == 0) {
+    if (CommSys_CurNetId() == 0) {
         v0->unk_34 = 0;
     }
 }
@@ -222,7 +222,7 @@ static void sub_0209C060 (int param0, int param1, void * param2, void * param3)
 {
     UnkStruct_0209BDF8 * v0 = param3;
 
-    if (sub_0203608C() != 0) {
+    if (CommSys_CurNetId() != 0) {
         ov109_021D5140(v0->unk_00->unk_3C, 13, 0);
     }
 }
@@ -232,7 +232,7 @@ static void sub_0209C07C (int param0, int param1, void * param2, void * param3)
     u8 v0;
     UnkStruct_0209BDF8 * v1 = param3;
 
-    if (sub_0203608C() == 0) {
+    if (CommSys_CurNetId() == 0) {
         v0 = param0;
         sub_0209BEBC(v1, 0, &v0, 1);
     }
@@ -278,7 +278,7 @@ static void sub_0209C0E0 (int param0, int param1, void * param2, void * param3)
 
 static void sub_0209C0F0 (int param0, int param1, void * param2, void * param3)
 {
-    if (sub_0203608C() != 0) {
+    if (CommSys_CurNetId() != 0) {
         UnkStruct_0209BDF8 * v0 = param3;
         UnkStruct_0209C0F0 * v1 = param2;
 
@@ -343,7 +343,7 @@ int sub_0209C16C (void)
     int i, result;
 
     for (result = 0, i = 0; i < 5; i++) {
-        if (sub_02032EE8(i) != NULL) {
+        if (CommInfo_TrainerInfo(i) != NULL) {
             result++;
         }
     }

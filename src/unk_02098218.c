@@ -218,7 +218,7 @@ static BOOL sub_0209843C (UnkStruct_020508D4 * param0)
 
         {
             Pokemon * v2 = v0->unk_0C.unk_00;
-            TrainerInfo * v3 = sub_02025E38(sub_0203D174(v1));
+            TrainerInfo * v3 = SaveData_GetTrainerInfo(sub_0203D174(v1));
             int v4 = 6;
             int v5 = MapHeader_GetMapLabelTextID(v1->unk_1C->unk_00);
             int v6 = 11;

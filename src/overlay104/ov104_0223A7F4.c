@@ -15,8 +15,8 @@
 #include "strbuf.h"
 #include "unk_0201D15C.h"
 #include "trainer_info.h"
-#include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_information.h"
+#include "communication_system.h"
 #include "unk_02051D8C.h"
 #include "pokemon.h"
 #include "party.h"
@@ -397,7 +397,7 @@ BattleParams * ov104_0223ABA0 (UnkStruct_ov104_0223ADA0 * param0, UnkStruct_ov10
     case 3:
         sub_02052894(v4);
 
-        v10 = sub_02032EE8(1 - sub_0203608C());
+        v10 = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
         TrainerInfo_Copy(v10, v4->unk_D0[2]);
 
         v7 = ov104_0222DD04(&v6, param0->unk_18[param0->unk_06 + 7], 11, 178);

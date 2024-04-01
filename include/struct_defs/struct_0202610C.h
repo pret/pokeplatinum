@@ -13,6 +13,6 @@ typedef struct {
     u8 unk_1E_2 : 1;
     u8 unk_1E_3 : 1;
     u8 unk_1E_4 : 1;
-} UnkStruct_0202610C;
+} BattleRegulation;
 
 #endif // POKEPLATINUM_STRUCT_0202610C_H

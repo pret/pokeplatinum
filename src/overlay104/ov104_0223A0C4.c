@@ -19,7 +19,7 @@
 #include "heap.h"
 #include "trainer_info.h"
 #include "unk_0202D05C.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "unk_02049D08.h"
 #include "unk_02051D8C.h"
 #include "pokemon.h"
@@ -1046,13 +1046,13 @@ static int ov104_0223A7AC (u8 param0)
     switch (param0) {
     case 3:
     case 6:
-        v0 = sub_02032EE8(0);
+        v0 = CommInfo_TrainerInfo(0);
 
         if (v0 == NULL) {
             GF_ASSERT(0);
         }
 
-        v1 = sub_02032EE8(1);
+        v1 = CommInfo_TrainerInfo(1);
 
         if (v1 == NULL) {
             GF_ASSERT(0);

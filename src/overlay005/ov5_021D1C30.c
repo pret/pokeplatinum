@@ -25,8 +25,8 @@
 #include "unk_020261E4.h"
 #include "unk_0202CD50.h"
 #include "unk_02030EE0.h"
-#include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_information.h"
+#include "communication_system.h"
 #include "unk_020366A0.h"
 #include "map_header.h"
 #include "unk_0203A378.h"
@@ -387,7 +387,7 @@ BOOL ov5_021D213C (UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * param1)
         return 1;
     }
 
-    if (sub_020363A0() || (0 != sub_020593CC(sub_0203608C()))) {
+    if (sub_020363A0() || (0 != sub_020593CC(CommSys_CurNetId()))) {
         return 0;
     }
 
@@ -419,7 +419,7 @@ BOOL ov5_021D219C (UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * param1)
         }
     }
 
-    if (sub_020363A0() || (0 != sub_020593CC(sub_0203608C())) || !sub_02059D2C()) {
+    if (sub_020363A0() || (0 != sub_020593CC(CommSys_CurNetId())) || !sub_02059D2C()) {
         return 0;
     }
 
@@ -464,7 +464,7 @@ static int ov5_021D2274 (void)
     v1 = 0;
 
     for (v0 = 1; v0 < 5; v0++) {
-        v2 = sub_02032EE8(v0);
+        v2 = CommInfo_TrainerInfo(v0);
 
         if (v2 != NULL) {
             v1++;
@@ -745,7 +745,7 @@ u16 ov5_021D271C (UnkStruct_0203CDB0 * param0, u8 param1)
     }
 
     if (sub_0205EB74(param0->unk_3C) != 0x2) {
-        TrainerInfo * v1 = sub_02025E38(param0->unk_0C);
+        TrainerInfo * v1 = SaveData_GetTrainerInfo(param0->unk_0C);
         u32 v2 = sub_02061760(param0->unk_3C);
 
         if (ov5_021E0118(param0->unk_3C, v2, param1)

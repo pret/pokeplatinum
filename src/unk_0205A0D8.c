@@ -36,8 +36,8 @@
 #include "unk_02025E08.h"
 #include "unk_0202602C.h"
 #include "unk_0202D778.h"
-#include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_information.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_0203CC84.h"
@@ -136,7 +136,7 @@ static void sub_0205A0D8 (UnkStruct_0205A0D8 * param0, UnkStruct_0203CDB0 * para
     v0 = Heap_AllocFromHeapAtEnd(param5, sizeof(PokemonSummary));
 
     MI_CpuClear8(v0, sizeof(PokemonSummary));
-    PokemonSummary_SetPlayerProfile(v0, sub_02025E38(param1->unk_0C));
+    PokemonSummary_SetPlayerProfile(v0, SaveData_GetTrainerInfo(param1->unk_0C));
 
     v0->dexMode = sub_0207A274(v1);
     v0->contest = PokemonSummary_ShowContestData(v1);
@@ -688,8 +688,8 @@ void sub_0205AB10 (UnkStruct_0203CDB0 * param0, UnkFuncPtr_0205AB10 * param1)
     v0->unk_48 = NULL;
     v0->unk_50 = NULL;
     v0->unk_89 = 0;
-    v0->unk_86 = sub_0203608C();
-    v0->unk_74 = sub_02032EE8(v0->unk_86 ^ 1);
+    v0->unk_86 = CommSys_CurNetId();
+    v0->unk_74 = CommInfo_TrainerInfo(v0->unk_86 ^ 1);
 
     switch (v0->unk_88) {
     case 3:
@@ -820,7 +820,7 @@ static BOOL sub_0205AD34 (UnkStruct_0205A0D8 * param0)
     if (param0->unk_86 == 0) {
         v0 = sub_02035AC4(107, &(param0->unk_84), 1);
     } else {
-        v0 = sub_020359DC(107, &(param0->unk_84), 1);
+        v0 = CommSys_SendData(107, &(param0->unk_84), 1);
     }
 
     if (v0) {
@@ -1026,7 +1026,7 @@ static BOOL sub_0205B140 (UnkStruct_020508D4 * param0)
         v1->unk_04 = Strbuf_Init((100 * 2), 4);
 
         MessageLoader_GetStrbuf(v1->unk_1C, 2 + v2->unk_03, v1->unk_00);
-        sub_0200B498(v1->unk_18, 0, sub_02032EE8(v1->unk_24));
+        sub_0200B498(v1->unk_18, 0, CommInfo_TrainerInfo(v1->unk_24));
         StringFormatter_Format(v1->unk_18, v1->unk_04, v1->unk_00);
         sub_0205D8F4(v0->unk_08, &v1->unk_08, 3);
         sub_0205D944(&v1->unk_08, sub_02025E44(v0->unk_0C));
@@ -1087,7 +1087,7 @@ static BOOL sub_0205B140 (UnkStruct_020508D4 * param0)
 void sub_0205B2D4 (UnkStruct_0203CDB0 * param0)
 {
     int v0;
-    int v1 = sub_0203608C();
+    int v1 = CommSys_CurNetId();
     int v2 = sub_02058D88(v1);
     int v3 = sub_02058DC0(v1);
 

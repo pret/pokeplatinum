@@ -25,7 +25,7 @@
 #include "unk_0202D05C.h"
 #include "unk_0202D778.h"
 #include "unk_0203061C.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_02038FFC.h"
 #include "unk_0203CC84.h"
@@ -150,7 +150,7 @@ static int sub_0206BAE0 (UnkStruct_0206B9D8 * param0, UnkStruct_0203CDB0 * param
     v0->ribbons = sub_0202D79C(v1);
 
     PokemonSummary_FlagVisiblePages(v0, v2);
-    PokemonSummary_SetPlayerProfile(v0, sub_02025E38(v1));
+    PokemonSummary_SetPlayerProfile(v0, SaveData_GetTrainerInfo(v1));
     sub_0203CD84(param1, &Unk_020F410C, v0);
     *(param0->unk_14) = v0;
 
@@ -289,7 +289,7 @@ static BOOL sub_0206BD1C (UnkStruct_020508D4 * param0)
     UnkStruct_0203CDB0 * v2 = sub_02050A60(param0);
     UnkStruct_0206BD88 * v3 = sub_02050A64(param0);
 
-    v1 = sub_0203664C(1 - sub_0203608C());
+    v1 = sub_0203664C(1 - CommSys_CurNetId());
 
     if (v1 == NULL) {
         return 0;

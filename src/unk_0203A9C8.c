@@ -539,7 +539,7 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
             v7 = Strbuf_Init(8, 11);
             v8 = MessageLoader_GetNewStrbuf(v2, Unk_020EA05C[v1->unk_30[v4]][0]);
 
-            sub_0200B498(v6, 0, sub_02025E38(v0->unk_0C));
+            sub_0200B498(v6, 0, SaveData_GetTrainerInfo(v0->unk_0C));
             StringFormatter_Format(v6, v7, v8);
             sub_02013A6C(v1->unk_24, v7, v1->unk_30[v4]);
             Strbuf_Free(v8);
@@ -575,7 +575,7 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
     v1->unk_20 = sub_02001AF4(&v3, 28, 4, v1->unk_28, 11, PAD_BUTTON_B | PAD_BUTTON_X);
 
     sub_0201A9A4(&v1->unk_00);
-    sub_0203B318(v1, v1->unk_30, v5, TrainerInfo_Gender(sub_02025E38(v0->unk_0C)));
+    sub_0203B318(v1, v1->unk_30, v5, TrainerInfo_Gender(SaveData_GetTrainerInfo(v0->unk_0C)));
 }
 
 static u32 sub_0203AFCC (UnkStruct_020708E0 * param0, u8 * param1)
@@ -943,7 +943,7 @@ static BOOL sub_0203B6A4 (UnkStruct_020508D4 * param0)
     v1 = sub_02050A64(param0);
     v2 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov21_021D0D80));
     v3 = sub_02027560(v0->unk_0C);
-    v4 = sub_02025E38(v0->unk_0C);
+    v4 = SaveData_GetTrainerInfo(v0->unk_0C);
     v5 = SaveData_Events(v0->unk_0C);
 
     v2->unk_00 = v3;
@@ -1041,7 +1041,7 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
         v3->chatotCry = NULL;
 
         PokemonSummary_FlagVisiblePages(v3, Unk_020EA02C);
-        PokemonSummary_SetPlayerProfile(v3, sub_02025E38(v0->unk_0C));
+        PokemonSummary_SetPlayerProfile(v3, SaveData_GetTrainerInfo(v0->unk_0C));
         sub_0203D334(v0, v3);
 
         v1->unk_25C = v3;
@@ -1064,7 +1064,7 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
         v4->chatotCry = NULL;
 
         PokemonSummary_FlagVisiblePages(v4, Unk_020EA01C);
-        PokemonSummary_SetPlayerProfile(v4, sub_02025E38(v0->unk_0C));
+        PokemonSummary_SetPlayerProfile(v4, SaveData_GetTrainerInfo(v0->unk_0C));
         sub_0203D334(v0, v4);
 
         {
@@ -1095,7 +1095,7 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
         v6->chatotCry = NULL;
 
         PokemonSummary_FlagVisiblePages(v6, Unk_020EA01C);
-        PokemonSummary_SetPlayerProfile(v6, sub_02025E38(v0->unk_0C));
+        PokemonSummary_SetPlayerProfile(v6, SaveData_GetTrainerInfo(v0->unk_0C));
         sub_0203D334(v0, v6);
 
         {
@@ -1153,7 +1153,7 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
         v1->unk_260 = (void *)v13;
 
         v11 = sub_0207D990(v0->unk_0C);
-        v12 = sub_02025E38(v0->unk_0C);
+        v12 = SaveData_GetTrainerInfo(v0->unk_0C);
         v1->unk_25C = sub_0207D824(v11, Unk_020EA020, 11);
 
         sub_0207CB2C(v1->unk_25C, v0->unk_0C, 1, v0->unk_98);

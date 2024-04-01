@@ -13,9 +13,9 @@
 #include "unk_020067E8.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "unk_02033200.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "overlay097/ov97_0222D04C.h"
@@ -66,7 +66,7 @@ static void ov97_0222D04C (UnkStruct_ov97_0222D04C * param0)
     Unk_ov97_0223F1A4->unk_1C = SysTask_Start(ov97_0222D19C, NULL, 10);
     Unk_ov97_0223F1A4->unk_00 = param0;
 
-    sub_020361BC(&Unk_ov97_0223F1A4->unk_04);
+    CommSys_Seed(&Unk_ov97_0223F1A4->unk_04);
 }
 
 static void ov97_0222D0A4 (UnkFuncPtr_ov97_0222D0A4 param0, int param1)
@@ -79,7 +79,7 @@ static void ov97_0222D0B4 (void)
 {
     int v0;
 
-    if (!sub_02035D78(sub_0203608C())) {
+    if (!CommSys_IsPlayerConnected(CommSys_CurNetId())) {
         return;
     }
 
@@ -87,7 +87,7 @@ static void ov97_0222D0B4 (void)
         Unk_ov97_0223F1A4->unk_3C1[v0] = 0;
     }
 
-    sub_02032AC0();
+    CommInfo_SendBattleRegulation();
     ov97_0222D0A4(ov97_0222D0F0, 0);
 }
 
@@ -96,8 +96,8 @@ static void ov97_0222D0F0 (void)
     int v0;
 
     for (v0 = 0; v0 < 16; v0++) {
-        if ((Unk_ov97_0223F1A4->unk_28[v0] == NULL) && (sub_02035D78(v0) == 1)) {
-            Unk_ov97_0223F1A4->unk_28[v0] = sub_02032EE8(v0);
+        if ((Unk_ov97_0223F1A4->unk_28[v0] == NULL) && (CommSys_IsPlayerConnected(v0) == 1)) {
+            Unk_ov97_0223F1A4->unk_28[v0] = CommInfo_TrainerInfo(v0);
 
             if (Unk_ov97_0223F1A4->unk_28[v0]) {
                 (void)0;
@@ -134,7 +134,7 @@ static void ov97_0222D164 (void)
 
     Unk_ov97_0223F1A4->unk_3C0 = 0;
 
-    sub_02032AC0();
+    CommInfo_SendBattleRegulation();
     sub_020364F0(0xAB);
 
     ov97_0222D0A4(ov97_0222D198, 0);

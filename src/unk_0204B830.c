@@ -182,13 +182,13 @@ static void sub_0204BA88 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 13;
 
-    sub_0200B498(param0->unk_04, 0, sub_02025E38(param0->unk_00->unk_0C));
+    sub_0200B498(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
 }
 
 static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
 {
     UnkUnion_0204C4D0 * v0 = sub_0204B844(param0);
-    TrainerInfo * v1 = sub_02025E38(param0->unk_0C);
+    TrainerInfo * v1 = SaveData_GetTrainerInfo(param0->unk_0C);
     UnkStruct_020507E4 * v2 = SaveData_Events(param0->unk_0C);
     Party * v3;
     Pokemon * v4;
@@ -338,7 +338,7 @@ static void sub_0204BDEC (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
     v1 = (Pokemon *)&v0->val1.unk_04;
 
-    sub_0200B498(param0->unk_04, 0, sub_02025E38(param0->unk_00->unk_0C));
+    sub_0200B498(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
     sub_0200B578(param0->unk_04, 1, Pokemon_GetBoxPokemon(v1));
 }
 
@@ -363,7 +363,7 @@ static void sub_0204BE44 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
     v1 = (Pokemon *)v0->val2.unk_04;
 
-    sub_0200B498(param0->unk_04, 0, sub_02025E38(param0->unk_00->unk_0C));
+    sub_0200B498(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
     sub_0200B538(param0->unk_04, 1, Pokemon_GetBoxPokemon(v1));
 }
 
@@ -393,7 +393,7 @@ static void sub_0204BED4 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 9;
 
-    sub_0200B498(param0->unk_04, 0, sub_02025E38(param0->unk_00->unk_0C));
+    sub_0200B498(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
     sub_0200B70C(param0->unk_04, 1, v1);
 }
 
@@ -417,7 +417,7 @@ static BOOL sub_0204BF48 (UnkStruct_0203CDB0 * param0, void * param1)
 static void sub_0204BF4C (UnkStruct_0203CDB0 * param0, void * param1)
 {
     UnkUnion_0204C4D0 * v0 = sub_0204B844(param0);
-    const UnkStruct_0202610C * v1 = (const UnkStruct_0202610C *)v0;
+    const BattleRegulation * v1 = (const BattleRegulation *)v0;
 
     sub_0202613C(param0->unk_0C, v1);
 }
@@ -425,13 +425,13 @@ static void sub_0204BF4C (UnkStruct_0203CDB0 * param0, void * param1)
 static void sub_0204BF60 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
 {
     UnkUnion_0204C4D0 * v0 = sub_0204B844(param0->unk_00);
-    const UnkStruct_0202610C * v1 = (const UnkStruct_0202610C *)v0;
+    const BattleRegulation * v1 = (const BattleRegulation *)v0;
     Strbuf* v2;
 
     *param1 = 379;
     *param2 = 10;
 
-    sub_0200B498(param0->unk_04, 0, sub_02025E38(param0->unk_00->unk_0C));
+    sub_0200B498(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
 
     v2 = sub_0202605C(v1, 32);
     sub_0200B48C(param0->unk_04, 1, v2, 0, 1, GAME_LANGUAGE);
@@ -471,7 +471,7 @@ static void sub_0204BFF8 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 11;
 
-    sub_0200B498(param0->unk_04, 0, sub_02025E38(param0->unk_00->unk_0C));
+    sub_0200B498(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
     sub_0200BC80(param0->unk_04, 1, v1);
 }
 
@@ -539,7 +539,7 @@ static void sub_0204C0CC (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 12;
 
-    sub_0200B498(param0->unk_04, 0, sub_02025E38(param0->unk_00->unk_0C));
+    sub_0200B498(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
 }
 
 static void sub_0204C128 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
@@ -576,7 +576,7 @@ static void sub_0204C190 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 14;
 
-    sub_0200B498(param0->unk_04, 0, sub_02025E38(param0->unk_00->unk_0C));
+    sub_0200B498(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
     sub_0200B70C(param0->unk_04, 1, v1);
 }
 
@@ -624,7 +624,7 @@ static void sub_0204C264 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 15;
 
-    sub_0200B498(param0->unk_04, 0, sub_02025E38(param0->unk_00->unk_0C));
+    sub_0200B498(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
     sub_0200B70C(param0->unk_04, 1, v1);
 }
 
@@ -668,7 +668,7 @@ static void sub_0204C328 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 17;
 
-    sub_0200B498(param0->unk_04, 0, sub_02025E38(param0->unk_00->unk_0C));
+    sub_0200B498(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
     sub_0200B70C(param0->unk_04, 1, v1);
 }
 
@@ -712,7 +712,7 @@ static void sub_0204C3EC (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 16;
 
-    sub_0200B498(param0->unk_04, 0, sub_02025E38(param0->unk_00->unk_0C));
+    sub_0200B498(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
     sub_0200B70C(param0->unk_04, 1, v1);
 }
 
@@ -751,7 +751,7 @@ static void sub_0204C494 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 19;
 
-    sub_0200B498(param0->unk_04, 0, sub_02025E38(param0->unk_00->unk_0C));
+    sub_0200B498(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
     sub_0200B928(param0->unk_04, 1, v0->val6.unk_00);
 }
 
@@ -762,7 +762,7 @@ static void sub_0204C4D0 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 20;
 
-    sub_0200B498(param0->unk_04, 0, sub_02025E38(param0->unk_00->unk_0C));
+    sub_0200B498(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
 }
 
 static const UnkStruct_020EBE94 Unk_020EBE94[] = {

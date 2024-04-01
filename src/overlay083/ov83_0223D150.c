@@ -11,8 +11,8 @@
 #include "overlay083/struct_ov83_0223FCE8.h"
 #include "overlay083/struct_ov83_022401AC.h"
 
-#include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_information.h"
+#include "communication_system.h"
 #include "overlay083/ov83_0223B5A0.h"
 #include "overlay083/ov83_0223D144.h"
 #include "overlay083/ov83_0223D150.h"
@@ -37,7 +37,7 @@ void ov83_0223D150 (UnkStruct_ov83_0223B784 * param0, TrainerInfo * param1)
         v0 = 0;
 
         for (v1 = 0; v1 < 4; v1++) {
-            param0->unk_1494.unk_134[v1] = sub_02032EE8(v1);
+            param0->unk_1494.unk_134[v1] = CommInfo_TrainerInfo(v1);
 
             if (param0->unk_1494.unk_134[v1] != NULL) {
                 param0->unk_1494.unk_130[v0] = v1;

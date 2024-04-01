@@ -57,7 +57,7 @@
 #include "unk_02025E08.h"
 #include "unk_02030494.h"
 #include "unk_0203061C.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020393C8.h"
 #include "pokemon.h"
@@ -611,7 +611,7 @@ static BOOL ov108_02241F28 (UnkStruct_ov108_02241DB0 * param0)
     case 6:
         ov108_02242964(param0, gCoreSys.pressedKeys);
 
-        if (sub_0203608C() == 0) {
+        if (CommSys_CurNetId() == 0) {
             if (param0->unk_18 > 0) {
                 param0->unk_18--;
             }
@@ -1180,7 +1180,7 @@ BOOL ov108_02242A38 (UnkStruct_ov108_02241DB0 * param0, u16 param1, u16 param2)
         break;
     }
 
-    if (sub_020359DC(v1, param0->unk_3D4, 40) == 1) {
+    if (CommSys_SendData(v1, param0->unk_3D4, 40) == 1) {
         v0 = 1;
     } else {
         v0 = 0;
@@ -1195,7 +1195,7 @@ void ov108_02242A7C (UnkStruct_ov108_02241DB0 * param0, u16 param1)
     TrainerInfo * v2;
 
     v1 = 0;
-    v2 = sub_02025E38(param0->unk_DC);
+    v2 = SaveData_GetTrainerInfo(param0->unk_DC);
 
     param0->unk_3D4[v1] = param1;
 
@@ -1222,14 +1222,14 @@ void ov108_02242AB0 (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v2->unk_0F++;
 
-    if (sub_0203608C() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
     v1 += 1;
     v1 += 1;
 
-    if (sub_0203608C() != 0) {
+    if (CommSys_CurNetId() != 0) {
         for (v0 = 0; v0 < (4 * 4); v0++) {
             v2->unk_34[v0] = (u8)v3[v1 + v0];
         }
@@ -1253,7 +1253,7 @@ void ov108_02242AE8 (UnkStruct_ov108_02241DB0 * param0, u16 param1, u16 param2)
     param0->unk_3D4[0] = param1;
     param0->unk_3D4[1] = param2;
 
-    if (sub_0203608C() == 0) {
+    if (CommSys_CurNetId() == 0) {
         if (param0->unk_0E == 0xff) {
             param0->unk_0E = param2;
         }
@@ -1279,13 +1279,13 @@ void ov108_02242B24 (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v2->unk_0F++;
 
-    if (sub_0203608C() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
     v2->unk_425 = v3[1];
 
-    if (sub_0203608C() == 0) {
+    if (CommSys_CurNetId() == 0) {
         if (v2->unk_0E != 0xff) {
             v2->unk_425 = 0;
         } else {
@@ -1318,7 +1318,7 @@ void ov108_02242B84 (int param0, int param1, void * param2, void * param3)
     UnkStruct_ov108_02241DB0 * v0 = param3;
     const u16 * v1 = param2;
 
-    if (sub_0203608C() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 

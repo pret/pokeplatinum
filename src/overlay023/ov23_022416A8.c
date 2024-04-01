@@ -19,7 +19,7 @@
 #include "strbuf.h"
 #include "unk_0202854C.h"
 #include "unk_0202CD50.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_0203CC84.h"
 #include "unk_020507CC.h"
 #include "unk_02054D00.h"
@@ -257,7 +257,7 @@ static UnkStruct_ov23_02241974 * ov23_02241978 (int param0, int param1)
 void ov23_022419B4 (int param0, int param1, void * param2, void * param3)
 {
     u8 * v0 = param2;
-    int v1 = sub_0203608C();
+    int v1 = CommSys_CurNetId();
     int v2, v3, v4;
     UnkStruct_ov23_02241974 * v5;
 

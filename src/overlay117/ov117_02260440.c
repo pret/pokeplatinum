@@ -10,8 +10,8 @@
 
 #include "unk_020067E8.h"
 #include "heap.h"
-#include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_information.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "overlay004/ov4_021D0D80.h"
@@ -112,7 +112,7 @@ int ov117_02260474 (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 7:
-        if ((sub_02036540(222) == 1) || (sub_02035E18() < sub_02032E64())) {
+        if ((sub_02036540(222) == 1) || (sub_02035E18() < CommInfo_CountReceived())) {
             (*param1)++;
         }
 
@@ -139,12 +139,12 @@ static void ov117_022605D8 (UnkStruct_ov117_022605C0 * param0, UnkStruct_ov117_0
 {
     int v0, v1, v2, v3;
 
-    v3 = sub_0203608C();
+    v3 = CommSys_CurNetId();
     v2 = 0;
     v1 = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (sub_02032EE8(v0) != NULL) {
+        if (CommInfo_TrainerInfo(v0) != NULL) {
             param0->unk_2C[v1] = v0;
 
             if (v0 == v3) {

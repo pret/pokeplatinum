@@ -2027,7 +2027,7 @@ static void ov5_021E62C4 (Party * param0, int param1, UnkStruct_02026218 * param
     u16 v3[10 + 1];
     UnkStruct_02026224 * v4 = sub_02026224(param2);
     BoxPokemon * v5 = sub_02026220(param2);
-    TrainerInfo * v6 = sub_02025E38(param3);
+    TrainerInfo * v6 = SaveData_GetTrainerInfo(param3);
 
     v2 = TrainerInfo_Name(v6);
     Pokemon_GetValue(v1, MON_DATA_NICKNAME, v3);

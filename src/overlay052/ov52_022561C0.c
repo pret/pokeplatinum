@@ -14,7 +14,7 @@
 #include "heap.h"
 #include "unk_02022594.h"
 #include "unk_02033200.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020366A0.h"
 #include "map_header.h"
 #include "overlay025/ov25_02253CE0.h"

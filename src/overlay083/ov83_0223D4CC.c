@@ -8,7 +8,7 @@
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_02032798.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020366A0.h"
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay083/ov83_0223D4CC.h"
@@ -74,7 +74,7 @@ BOOL ov83_0223D508 (int param0, const void * param1, int param2, UnkStruct_ov83_
             }
         }
 
-        return sub_020359DC(param0, param1, param2);
+        return CommSys_SendData(param0, param1, param2);
     } else {
         return ov83_0223D638(param3->unk_04, param0, param1, param2);
     }
@@ -92,7 +92,7 @@ void ov83_0223D558 (UnkStruct_ov83_0223D4CC * param0)
 int ov83_0223D570 (UnkStruct_ov83_0223D4CC * param0)
 {
     if (param0->unk_00 == 1) {
-        return sub_0203608C();
+        return CommSys_CurNetId();
     } else {
         return(0);
     }

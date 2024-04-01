@@ -8,8 +8,8 @@
 
 #include "heap.h"
 #include "unk_02032798.h"
-#include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_information.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 
@@ -30,9 +30,9 @@ static const UnkStruct_02039A58 Unk_020E5D64[] = {
     {NULL, sub_0203294C, NULL},
     {NULL, sub_0203294C, NULL},
     {sub_0203619C, sub_0203294C, NULL},
-    {sub_02032C80, sub_02032BC0, NULL},
-    {sub_02032BEC, sub_02032BC0, NULL},
-    {sub_02032BC4, sub_0203294C, NULL},
+    {CommInfo_RecvPlayerData, CommPlayerData_Size, NULL},
+    {CommInfo_RecvPlayerDataArray, CommPlayerData_Size, NULL},
+    {CommunicatitonInformaion_FinishReading, sub_0203294C, NULL},
     {sub_02037A78, sub_02037B54, NULL},
     {sub_02037AD8, sub_02037B54, NULL},
     {NULL, NULL, NULL},
@@ -186,14 +186,14 @@ static void sub_02032958 (int param0, int param1, void * param2, void * param3)
     u8 * v0 = param2;
     int v1;
 
-    if (sub_0203608C() != 0) {
+    if (CommSys_CurNetId() != 0) {
         return;
     }
 
     Unk_021C07B0->unk_0C[param0] = 1;
 
     for (v1 = 0; v1 < (7 + 1); v1++) {
-        if (!sub_02035D78(v1)) {
+        if (!CommSys_IsPlayerConnected(v1)) {
             continue;
         }
 
@@ -223,7 +223,7 @@ static void sub_020329C4 (int param0, int param1, void * param2, void * param3)
     u8 * v0 = param2;
     int v1;
 
-    if (sub_0203608C() != 0) {
+    if (CommSys_CurNetId() != 0) {
         return;
     }
 

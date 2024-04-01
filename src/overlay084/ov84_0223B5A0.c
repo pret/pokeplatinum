@@ -607,7 +607,7 @@ int ov84_0223B900 (UnkStruct_020067E8 * param0, int * param1)
 static void ov84_0223B9AC (UnkStruct_ov84_0223B5A0 * param0)
 {
     param0->unk_C8 = sub_0207D990(param0->unk_C4->unk_00);
-    param0->unk_CC = sub_02025E38(param0->unk_C4->unk_00);
+    param0->unk_CC = SaveData_GetTrainerInfo(param0->unk_C4->unk_00);
     param0->unk_D0 = sub_02025E44(param0->unk_C4->unk_00);
 }
 

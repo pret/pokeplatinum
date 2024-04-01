@@ -210,7 +210,7 @@ static void ov104_02239FB0 (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * pa
     param1->unk_AC->ribbons = sub_0202D79C(param1->unk_00);
 
     PokemonSummary_FlagVisiblePages(param1->unk_AC, v0);
-    PokemonSummary_SetPlayerProfile(param1->unk_AC, sub_02025E38(param1->unk_00));
+    PokemonSummary_SetPlayerProfile(param1->unk_AC, SaveData_GetTrainerInfo(param1->unk_00));
     sub_0209B988(param0, &Unk_020F410C, param1->unk_AC, 0, NULL);
 
     return;

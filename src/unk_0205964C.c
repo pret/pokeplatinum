@@ -15,9 +15,9 @@
 #include "unk_0200D9E8.h"
 #include "unk_0200F174.h"
 #include "heap.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "unk_02033200.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_0203CC84.h"
@@ -91,7 +91,7 @@ void sub_0205965C (UnkStruct_0203CDB0 * param0)
     Unk_021C084C->unk_44 = NULL;
 
     sub_02059658();
-    sub_020361BC(&Unk_021C084C->unk_1C);
+    CommSys_Seed(&Unk_021C084C->unk_1C);
 }
 
 void sub_020596BC (void)
@@ -172,8 +172,8 @@ void sub_020597B4 (UnkStruct_0203CDB0 * param0)
     Unk_021C084C->unk_43 = 0;
 
     {
-        int v0, v1 = sub_0203608C();
-        TrainerInfo * v2 = sub_02032EE8(sub_0203608C());
+        int v0, v1 = CommSys_CurNetId();
+        TrainerInfo * v2 = CommInfo_TrainerInfo(CommSys_CurNetId());
 
         for (v0 = 0; v0 < sub_02035E18(); v0++) {
             if (Unk_021C084C->unk_00[v0] == NULL) {
@@ -231,13 +231,13 @@ static void sub_020598EC (UnkFuncPtr_020598EC param0, int param1)
 
 static void sub_020598FC (void)
 {
-    if (!sub_02035D78(sub_0203608C())) {
+    if (!CommSys_IsPlayerConnected(CommSys_CurNetId())) {
         return;
     }
 
     ov7_0224B4B8();
 
-    sub_02032AC0();
+    CommInfo_SendBattleRegulation();
     sub_020598EC(sub_02059920, 0);
 }
 
@@ -273,7 +273,7 @@ static void sub_02059964 (void)
         return;
     }
 
-    sub_02032AC0();
+    CommInfo_SendBattleRegulation();
     sub_020598EC(sub_02059980, 0);
 }
 
@@ -306,8 +306,8 @@ static void sub_02059984 (void)
 
 static void sub_020599E4 (void)
 {
-    if (sub_0203608C() == 0) {
-        sub_02032CE8();
+    if (CommSys_CurNetId() == 0) {
+        CommInfo_ServerSendArray();
     }
 
     if (sub_02036540(92)) {
@@ -340,7 +340,7 @@ static void sub_02059A70 (void)
         return;
     }
 
-    if (sub_0203608C() == 0) {
+    if (CommSys_CurNetId() == 0) {
         if (0 == sub_0205928C()) {
             return;
         }
@@ -376,8 +376,8 @@ static void sub_02059AB4 (void)
 
 static void sub_02059B10 (void)
 {
-    if (sub_0203608C() == 0) {
-        sub_02032CE8();
+    if (CommSys_CurNetId() == 0) {
+        CommInfo_ServerSendArray();
     }
 
     if (sub_02036540(92)) {
@@ -401,7 +401,7 @@ static void sub_02059B74 (void)
     int v0, v1;
 
     for (v0 = 0; v0 < sub_02035E18(); v0++) {
-        if (v0 != sub_0203608C()) {
+        if (v0 != CommSys_CurNetId()) {
             if (sub_02036564(v0) == 94) {
                 if (Unk_021C084C->unk_18->unk_10 == NULL) {
                     for (v1 = 0; v1 < 4; v1++) {
@@ -462,7 +462,7 @@ static void sub_02059C7C (void)
 
 static void sub_02059C8C (void)
 {
-    if (sub_020363A0() || (0 != sub_020593CC(sub_0203608C()))) {
+    if (sub_020363A0() || (0 != sub_020593CC(CommSys_CurNetId()))) {
         return;
     }
 
@@ -494,7 +494,7 @@ void sub_02059D0C (int param0, int param1, void * param2, void * param3)
 {
     u8 * v0 = param2;
 
-    if (v0[0] == sub_0203608C()) {
+    if (v0[0] == CommSys_CurNetId()) {
         Unk_021C084C->unk_43 = 1;
     }
 }
@@ -625,7 +625,7 @@ u8 * sub_02059EBC (int param0, void * param1, int param2)
 
 static void sub_02059ED8 (void)
 {
-    int v0, v1 = sub_0203608C();
+    int v0, v1 = CommSys_CurNetId();
 
     if (sub_02036540(95)) {
         sub_0203597C(88, Unk_021C084C->unk_00[v1], sizeof(UnkStruct_02072014));

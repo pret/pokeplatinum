@@ -65,7 +65,7 @@
 #include "unk_020279FC.h"
 #include "unk_0202DAB4.h"
 #include "unk_02033200.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
@@ -2189,9 +2189,9 @@ static int ov97_0222F75C (UnkStruct_020067E8 * param0, int * param1)
         ov97_0222DF70(param0, param1, ov97_0222D94C);
         break;
     case 9:
-        v1 = sub_0203608C();
+        v1 = CommSys_CurNetId();
 
-        if ((v1 != 0) && sub_02035D78(v1)) {
+        if ((v1 != 0) && CommSys_IsPlayerConnected(v1)) {
             if (sub_02036540(0xAB) == 1) {
                 ov97_0222D30C(v3, 0);
                 sub_020388F4(1, 1);
@@ -2201,7 +2201,7 @@ static int ov97_0222F75C (UnkStruct_020067E8 * param0, int * param1)
                 v3->unk_434 = 60 * 10;
                 *param1 = 10;
             }
-        } else if ((v1 != 0) && (sub_02035D78(v1) == 0)) {
+        } else if ((v1 != 0) && (CommSys_IsPlayerConnected(v1) == 0)) {
             ov97_0222D2DC();
             sub_02039794();
             ov97_0222D40C(v3, -1);
@@ -2223,9 +2223,9 @@ static int ov97_0222F75C (UnkStruct_020067E8 * param0, int * param1)
             *param1 = 11;
         }
 
-        v1 = sub_0203608C();
+        v1 = CommSys_CurNetId();
 
-        if ((gCoreSys.pressedKeys & PAD_BUTTON_B) || (--v3->unk_434 == 0) || ((v1 != 0) && (sub_02035D78(v1) == 0))) {
+        if ((gCoreSys.pressedKeys & PAD_BUTTON_B) || (--v3->unk_434 == 0) || ((v1 != 0) && (CommSys_IsPlayerConnected(v1) == 0))) {
             ov97_0222D30C(v3, 0);
             ov97_0222D2DC();
             sub_02039794();
@@ -2240,9 +2240,9 @@ static int ov97_0222F75C (UnkStruct_020067E8 * param0, int * param1)
         *param1 = 12;
         break;
     case 12:
-        v1 = sub_0203608C();
+        v1 = CommSys_CurNetId();
 
-        if ((v1 != 0) && (sub_02035D78(v1) == 0)) {
+        if ((v1 != 0) && (CommSys_IsPlayerConnected(v1) == 0)) {
             ov97_0222D2DC();
             v3->unk_2A4C = 1;
             ov97_0223850C();

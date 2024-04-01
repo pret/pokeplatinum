@@ -31,7 +31,7 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_02030494.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "unk_02051D8C.h"
 #include "pokemon.h"
 #include "party.h"
@@ -492,9 +492,9 @@ BOOL ov104_02237748 (UnkStruct_ov104_0222E930 * param0)
             sub_0200BA40(param0->unk_00->unk_44, v18, v3->unk_78[ov104_02238498(v3, v19)]);
         } else {
             if (ov104_0223C000(v3->unk_10) == 0) {
-                v16 = sub_02025E38(v14->unk_08);
+                v16 = SaveData_GetTrainerInfo(v14->unk_08);
             } else {
-                v16 = sub_02032EE8(v19);
+                v16 = CommInfo_TrainerInfo(v19);
             }
 
             sub_0200B498(param0->unk_00->unk_44, v18, v16);

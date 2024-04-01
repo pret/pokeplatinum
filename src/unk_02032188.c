@@ -4,7 +4,7 @@
 #include "struct_defs/struct_02032188.h"
 
 #include "unk_02032188.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 
 static int sub_020322BC(UnkStruct_02032188 * param0, int param1);
 static int sub_0203229C(UnkStruct_02032188 * param0);

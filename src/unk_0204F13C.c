@@ -35,7 +35,7 @@
 #include "unk_02030108.h"
 #include "unk_0203061C.h"
 #include "unk_02030880.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_0203CC84.h"
 #include "unk_0203E724.h"
 #include "unk_0203E880.h"
@@ -264,7 +264,7 @@ static BOOL sub_0204F414 (UnkStruct_020508D4 * param0)
 
     switch (v0->unk_00) {
     case 0:
-        if (sub_020359DC(132, v0, sizeof(UnkStruct_0204F3D0)) == 1) {
+        if (CommSys_SendData(132, v0, sizeof(UnkStruct_0204F3D0)) == 1) {
             v0->unk_00++;
         }
         break;
@@ -441,7 +441,7 @@ static int sub_0204F628 (UnkStruct_0204F470 * param0, UnkStruct_0203CDB0 * param
     v0->ribbons = sub_0202D79C(v1);
 
     PokemonSummary_FlagVisiblePages(v0, v2);
-    PokemonSummary_SetPlayerProfile(v0, sub_02025E38(v1));
+    PokemonSummary_SetPlayerProfile(v0, SaveData_GetTrainerInfo(v1));
 
     sub_0203CD84(param1, &Unk_020F410C, v0);
 

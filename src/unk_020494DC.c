@@ -15,7 +15,7 @@
 
 #include "unk_0202CD50.h"
 #include "unk_0202D05C.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_0203CC84.h"
 #include "unk_0203E724.h"
@@ -269,7 +269,7 @@ BOOL sub_020498D0 (UnkStruct_0203E724 * param0)
     }
 
     if (sub_0205E6D8(param0->unk_34->unk_0C) == 1) {
-        if (sub_02036614(sub_0203608C(), v6->unk_83E) == 1) {
+        if (sub_02036614(CommSys_CurNetId(), v6->unk_83E) == 1) {
             *v5 = 1;
         } else {
             return 1;
@@ -279,7 +279,7 @@ BOOL sub_020498D0 (UnkStruct_0203E724 * param0)
 
         v1 = 70;
 
-        if (sub_020359DC(v0, v6->unk_83E, v1) == 1) {
+        if (CommSys_SendData(v0, v6->unk_83E, v1) == 1) {
             *v5 = 1;
         }
     }

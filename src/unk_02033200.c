@@ -16,9 +16,9 @@
 #include "unk_0202602C.h"
 #include "unk_02030EE0.h"
 #include "unk_0203266C.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "unk_02033200.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020366A0.h"
 
 typedef struct {
@@ -33,7 +33,7 @@ typedef struct {
     u8 unk_14F8;
     u8 unk_14F9;
     TrainerInfo * unk_14FC;
-    UnkStruct_0202610C * unk_1500;
+    BattleRegulation * unk_1500;
     u32 unk_1504;
     u32 unk_1508;
     u16 * unk_150C;

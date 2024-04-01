@@ -8,8 +8,8 @@
 
 #include "unk_020067E8.h"
 #include "heap.h"
-#include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_information.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_0207D3B8.h"
@@ -118,7 +118,7 @@ int ov82_0223B24C (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 1:
-        if ((sub_02036540(4)) || (sub_02035E18() < sub_02032E64())) {
+        if ((sub_02036540(4)) || (sub_02035E18() < CommInfo_CountReceived())) {
             return 1;
         }
         break;

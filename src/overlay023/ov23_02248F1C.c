@@ -34,7 +34,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_02057518.h"
 #include "unk_0205D8CC.h"
 #include "unk_0205E7D0.h"
@@ -225,17 +225,17 @@ static void ov23_02249214 (UnkStruct_0205E884 * const param0, int param1[][2], i
     }
 
     if (sub_02035E38()) {
-        if (sub_02035D78(sub_0203608C()) == 0) {
+        if (CommSys_IsPlayerConnected(CommSys_CurNetId()) == 0) {
             param1[0][0] = sub_0205EABC(param0);
             param1[0][1] = sub_0205EAC8(param0);
         } else {
             int v1 = param1[0][0];
             int v2 = param1[0][1];
 
-            param1[0][0] = param1[sub_0203608C()][0];
-            param1[0][1] = param1[sub_0203608C()][1];
-            param1[sub_0203608C()][0] = v1;
-            param1[sub_0203608C()][1] = v2;
+            param1[0][0] = param1[CommSys_CurNetId()][0];
+            param1[0][1] = param1[CommSys_CurNetId()][1];
+            param1[CommSys_CurNetId()][0] = v1;
+            param1[CommSys_CurNetId()][1] = v2;
         }
     }
 

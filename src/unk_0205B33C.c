@@ -28,9 +28,9 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_0202B604.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "unk_02033200.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020366A0.h"
 #include "unk_0203CC84.h"
 #include "unk_020508D4.h"
@@ -163,10 +163,10 @@ static UnkStruct_0205B43C * sub_0205B3A0 (UnkStruct_0203CDB0 * param0)
     v2->unk_0C = SysTask_Start(sub_0205B5BC, v2, 10);
     v2->unk_00 = param0;
     v2->unk_04 = v1;
-    v2->unk_08 = sub_02025E38(v1);
+    v2->unk_08 = SaveData_GetTrainerInfo(v1);
 
     sub_0205C160(v2);
-    sub_020361BC(&v2->unk_150);
+    CommSys_Seed(&v2->unk_150);
 
     return v2;
 }
@@ -230,7 +230,7 @@ static int sub_0205B4D4 (void)
     v1 = 0;
 
     for (v0 = 1; v0 < 5; v0++) {
-        v2 = sub_02032EE8(v0);
+        v2 = CommInfo_TrainerInfo(v0);
 
         if (v2 != NULL) {
             v1++;
@@ -253,7 +253,7 @@ static void sub_0205B4F8 (UnkStruct_0205B43C * param0)
     v0 = sub_020340E8();
 
     if (sub_020360E8() && (sub_0205B4D4() == 1) && (v0->unk_1C != 4)) {
-        sub_02032AC0();
+        CommInfo_SendBattleRegulation();
         sub_020388F4(1, 1);
         sub_0205BEA8(11);
         sub_0205B5B4(param0, sub_0205B578, 0);
@@ -333,7 +333,7 @@ static void sub_0205B620 (UnkStruct_0205B43C * param0)
 static void sub_0205B634 (UnkStruct_0205B43C * param0)
 {
     if (1 == sub_02036A68()) {
-        sub_02032AC0();
+        CommInfo_SendBattleRegulation();
         sub_0205B5B4(param0, sub_0205B6C4, 3);
         return;
     } else if (sub_020360E8()) {
@@ -368,7 +368,7 @@ static void sub_0205B694 (UnkStruct_0205B43C * param0)
 static void sub_0205B6C4 (UnkStruct_0205B43C * param0)
 {
     if (1 == sub_02036A68()) {
-        if (sub_02032EE8(sub_0203608C()) != NULL) {
+        if (CommInfo_TrainerInfo(CommSys_CurNetId()) != NULL) {
             param0->unk_20 = 0;
             param0->unk_1C = 1;
             param0->unk_44 = 0;
@@ -572,7 +572,7 @@ u32 sub_0205B8DC (UnkStruct_0205B43C * param0)
         return 7;
     }
 
-    if (sub_0203608C() == 0) {
+    if (CommSys_CurNetId() == 0) {
         if (sub_02036AA0() == 1) {
             return param0->unk_40;
         }
@@ -602,7 +602,7 @@ void sub_0205B930 (UnkStruct_0205B43C * param0, int param1, u32 param2)
     case 0:
         if (param0->unk_44 == 0) {
             param0->unk_34 = v0;
-            sub_020359DC(99, &v0, 1);
+            CommSys_SendData(99, &v0, 1);
         }
         break;
     case 1:
@@ -680,7 +680,7 @@ int sub_0205B9E8 (UnkStruct_0205B43C * param0)
 int sub_0205B9EC (UnkStruct_0205B43C * param0, int param1)
 {
     if (param0->unk_30 == 0) {
-        sub_020359DC(104, NULL, 0);
+        CommSys_SendData(104, NULL, 0);
         return param1;
     }
 
@@ -691,7 +691,7 @@ void sub_0205BA08 (int param0, int param1, void * param2, void * param3)
 {
     UnkStruct_0203CDB0 * v0 = (UnkStruct_0203CDB0 *)param3;
     UnkStruct_02072014 * v1 = (UnkStruct_02072014 *)param2;
-    TrainerInfo * v2 = sub_02032EE8(sub_0203608C() ^ 1);
+    TrainerInfo * v2 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
     void * v3;
 
     {
@@ -705,7 +705,7 @@ void sub_0205BA08 (int param0, int param1, void * param2, void * param3)
 
     v1->unk_66A = 1;
 
-    if (param0 != sub_0203608C()) {
+    if (param0 != CommSys_CurNetId()) {
         v3 = sub_0202C0EC((u16 *)TrainerInfo_Name(v2), TrainerInfo_Gender(v2), 31);
         sub_0202B758(v0->unk_9C, v3, 4);
     }
@@ -730,7 +730,7 @@ void sub_0205BA6C (int param0, int param1, void * param2, void * param3)
 
 u16 sub_0205BA7C (UnkStruct_0205B43C * param0)
 {
-    int v0 = sub_0203608C();
+    int v0 = CommSys_CurNetId();
 
     if (param0->unk_176[v0] == 2) {
         return 1;
@@ -746,7 +746,7 @@ u16 sub_0205BA7C (UnkStruct_0205B43C * param0)
 void sub_0205BAAC (int param0)
 {
     u8 v0 = param0;
-    sub_020359DC(101, &v0, 1);
+    CommSys_SendData(101, &v0, 1);
 }
 
 static const int Unk_020ED560[2][2] = {
@@ -967,10 +967,10 @@ int sub_0205BC50 (StringFormatter * param0)
     u8 v0, v1;
     u8 v2, v3;
 
-    v0 = sub_02032F78(sub_0203608C());
-    v1 = sub_02032F78(sub_0203608C() ^ 1);
-    v2 = sub_02032F9C(sub_0203608C());
-    v3 = sub_02032F9C(sub_0203608C() ^ 1);
+    v0 = CommInfo_PlayerCountry(CommSys_CurNetId());
+    v1 = CommInfo_PlayerCountry(CommSys_CurNetId() ^ 1);
+    v2 = CommInfo_PlayerRegion(CommSys_CurNetId());
+    v3 = CommInfo_PlayerRegion(CommSys_CurNetId() ^ 1);
 
     if (v1 == 0) {
         return 15;
@@ -1100,7 +1100,7 @@ u8 sub_0205BE38 (void)
     u8 v0;
     TrainerInfo * v1;
 
-    v1 = sub_02032EE8(sub_0203608C() ^ 1);
+    v1 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
     GF_ASSERT(v1 != NULL);
     v0 = TrainerInfo_GameCode(v1);
 
@@ -1115,10 +1115,10 @@ static void sub_0205BE58 (UnkStruct_0205B4F8 * param0, int param1)
     for (v1 = 1; v1 < 4 + 1; v1++) {
         int v3 = v1 - 1;
 
-        v0 = sub_02032EE8(v1);
+        v0 = CommInfo_TrainerInfo(v1);
 
         if (v0 != NULL) {
-            if (sub_0203608C() == 0) {
+            if (CommSys_CurNetId() == 0) {
                 param0->unk_00[v3] = TrainerInfo_ID(v0);
                 param0->unk_18[v3] = TrainerInfo_Appearance(v0) | (TrainerInfo_Gender(v0) << 7);
             }
@@ -1282,7 +1282,7 @@ void sub_0205C040 (StringFormatter * param0, int param1, int param2, TrainerInfo
     if (param1 == 0) {
         v0 = sub_02033FB0(param2);
     } else {
-        v0 = sub_02032EE8(sub_0203608C() ^ 1);
+        v0 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
     }
 
     if (v0 == NULL) {
@@ -1375,7 +1375,7 @@ void * sub_0205C17C (UnkStruct_0205B43C * param0)
 
     sub_02071D40(0, 0, 0, sub_0205CA14(TrainerInfo_Gender(param0->unk_08), TrainerInfo_Appearance(param0->unk_08), 0), param0->unk_00, param0->unk_184);
 
-    return (void *)param0->unk_188[sub_0203608C() ^ 1];
+    return (void *)param0->unk_188[CommSys_CurNetId() ^ 1];
 }
 
 void sub_0205C1F0 (UnkStruct_0205B43C * param0)

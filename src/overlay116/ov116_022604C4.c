@@ -36,8 +36,8 @@
 #include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_02024220.h"
-#include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_information.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
@@ -83,9 +83,9 @@ static void ov116_022604C4 (UnkStruct_ov116_0226139C * param0)
     }
 
     {
-        int v2 = sub_02032E64();
+        int v2 = CommInfo_CountReceived();
 
-        param0->unk_44 = sub_0203608C();
+        param0->unk_44 = CommSys_CurNetId();
         ov116_022604A8(param0);
 
         if (ov116_022617C4(param0) == 1) {
@@ -255,7 +255,7 @@ int ov116_022609B4 (UnkStruct_020067E8 * param0, int * param1)
         for (v1 = 0; v1 < 4; v1++) {
             v0->unk_B4[v1] = 0xFF;
 
-            if (sub_02032EE8(v1) != NULL) {
+            if (CommInfo_TrainerInfo(v1) != NULL) {
                 v0->unk_B4[v2] = v1;
                 v2++;
             }
@@ -494,7 +494,7 @@ int ov116_02260CF4 (UnkStruct_020067E8 * param0, int * param1)
         if (v1) {
             if (ov116_022617C4(v0) == 1) {
                 v0->unk_14.unk_04 = v0->unk_78;
-                sub_020359DC(22, &v0->unk_14, sizeof(UnkStruct_ov116_0226048C));
+                CommSys_SendData(22, &v0->unk_14, sizeof(UnkStruct_ov116_0226048C));
             }
         }
 
@@ -533,7 +533,7 @@ int ov116_02260CF4 (UnkStruct_020067E8 * param0, int * param1)
             if (ov116_022617C4(v0) == 1) {
                 if (ov116_02262A74(v0->unk_00) == 0) {
                     sub_020057A4(1393, 0);
-                    sub_020359DC(23, NULL, 0);
+                    CommSys_SendData(23, NULL, 0);
                 }
             }
             ov116_02263B30(v0->unk_04);
@@ -563,7 +563,7 @@ int ov116_02260CF4 (UnkStruct_020067E8 * param0, int * param1)
             v0->unk_1C.unk_00 = 1;
         }
 
-        sub_020359DC(25, &v0->unk_1C, sizeof(UnkStruct_ov116_02260494));
+        CommSys_SendData(25, &v0->unk_1C, sizeof(UnkStruct_ov116_02260494));
         ov116_0226178C(v0, v1, 14, param1);
         break;
     case 14:
@@ -755,7 +755,7 @@ int ov116_0226126C (UnkStruct_020067E8 * param0, int * param1)
     }
     break;
     default:
-        if ((sub_02036540(999) == 1) || (sub_02035E18() < sub_02032E64())) {
+        if ((sub_02036540(999) == 1) || (sub_02035E18() < CommInfo_CountReceived())) {
             return 1;
         }
         break;

@@ -26,7 +26,7 @@
 #include "unk_0202B604.h"
 #include "unk_0202CD50.h"
 #include "unk_0202F1D4.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "unk_0203A6DC.h"
 #include "unk_0203D1B8.h"
 #include "unk_0203E880.h"
@@ -794,7 +794,7 @@ void sub_0205167C (UnkStruct_020508D4 * param0, const u8 * param1, int param2)
     sub_02050944(param0, sub_02050CA8, v1);
 }
 
-static int sub_020516C8 (const UnkStruct_0202610C * param0, int param1)
+static int sub_020516C8 (const BattleRegulation * param0, int param1)
 {
     int v0, v1;
 

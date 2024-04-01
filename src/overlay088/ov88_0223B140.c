@@ -83,8 +83,8 @@
 #include "unk_0202D778.h"
 #include "unk_0202F180.h"
 #include "unk_0203061C.h"
-#include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_information.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_02038ED4.h"
@@ -364,8 +364,8 @@ static void ov88_0223B320 (UnkStruct_02095E80 * param0)
     Strbuf* v0, * v1, * v2;
     TrainerInfo * v3, * v4;
 
-    v3 = sub_02032EE8(sub_0203608C());
-    v4 = sub_02032EE8(sub_0203608C() ^ 1);
+    v3 = CommInfo_TrainerInfo(CommSys_CurNetId());
+    v4 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
     v0 = TrainerInfo_NameNewStrbuf(v3, 26);
     v1 = TrainerInfo_NameNewStrbuf(v4, 26);
     v2 = MessageLoader_GetNewStrbuf(param0->unk_184, 50);
@@ -610,8 +610,8 @@ static int ov88_0223B914 (UnkStruct_02095E80 * param0)
                 param0->unk_4C = 2;
             }
 
-            if (sub_0203608C() == 0) {
-                ov88_0223D044(sub_0203608C(), 31, inline_020564D0(60) + 3);
+            if (CommSys_CurNetId() == 0) {
+                ov88_0223D044(CommSys_CurNetId(), 31, inline_020564D0(60) + 3);
             }
 
             ov88_0223D0C0(param0->unk_04);
@@ -654,8 +654,8 @@ static int ov88_0223B914 (UnkStruct_02095E80 * param0)
         param0->unk_54 = 0;
         param0->unk_58 = 0;
 
-        if (sub_0203608C() == 1) {
-            ov88_0223D098(sub_0203608C(), param0->unk_2270, param0->unk_50);
+        if (CommSys_CurNetId() == 1) {
+            ov88_0223D098(CommSys_CurNetId(), param0->unk_2270, param0->unk_50);
             param0->unk_50++;
         }
 
@@ -693,7 +693,7 @@ static int ov88_0223B914 (UnkStruct_02095E80 * param0)
         param0->unk_4C++;
         break;
     case 12:
-        ov88_0223D0D4(sub_02032EE8(sub_0203608C()), param0->unk_227C, &param0->unk_2280);
+        ov88_0223D0D4(CommInfo_TrainerInfo(CommSys_CurNetId()), param0->unk_227C, &param0->unk_2280);
         param0->unk_4C++;
         break;
     case 13:
@@ -1642,13 +1642,13 @@ static int ov88_0223CFF4 (u32 * param0, int * param1, GraphicElementData * param
 void ov88_0223D044 (int param0, int param1, int param2)
 {
     u8 v0 = param2;
-    sub_020359DC(param1, &v0, 1);
+    CommSys_SendData(param1, &v0, 1);
 }
 
 void ov88_0223D058 (UnkStruct_02095E80 * param0, int param1, int param2)
 {
     if ((param2 != param0->unk_36F8) || (param1 != param0->unk_36FC)) {
-        ov88_0223D044(sub_0203608C(), param1, param2);
+        ov88_0223D044(CommSys_CurNetId(), param1, param2);
         param0->unk_36F8 = param2;
         param0->unk_36FC = param1;
     }
@@ -1663,7 +1663,7 @@ static void * ov88_0223D08C (Party * param0, int param1)
 
 void ov88_0223D098 (int param0, Party * param1, int param2)
 {
-    if (sub_02035D78(param0)) {
+    if (CommSys_IsPlayerConnected(param0)) {
         u8 v0 = param2;
 
         sub_0203597C(22, ov88_0223D08C(param1, param2), (236 * 6 + 4 * 2));
@@ -1675,7 +1675,7 @@ static void ov88_0223D0C0 (SaveData * param0)
     u8 * v0 = sub_0202D79C(param0);
     int v1;
 
-    sub_020359DC(32, v0, 14);
+    CommSys_SendData(32, v0, 14);
 }
 
 static void ov88_0223D0D4 (TrainerInfo * param0, UnkStruct_02027F8C * param1, UnkStruct_02027F8C * param2)
@@ -1749,12 +1749,12 @@ static void ov88_0223D1EC (UnkStruct_02095E80 * param0, int param1)
         param0->unk_0C.max = Party_GetCurrentCount(param0->unk_08->unk_08);
 
         param0->unk_0C.chatotCry = NULL;
-        PokemonSummary_SetPlayerProfile(&param0->unk_0C, sub_02032EE8(sub_0203608C()));
+        PokemonSummary_SetPlayerProfile(&param0->unk_0C, CommInfo_TrainerInfo(CommSys_CurNetId()));
     } else {
         param0->unk_0C.monData = param0->unk_2274;
         param0->unk_0C.max = Party_GetCurrentCount(param0->unk_2274);
-        param0->unk_0C.chatotCry = (ChatotCry *)param0->unk_2E6C[sub_0203608C() ^ 1];
-        PokemonSummary_SetPlayerProfile(&param0->unk_0C, sub_02032EE8(sub_0203608C() ^ 1));
+        param0->unk_0C.chatotCry = (ChatotCry *)param0->unk_2E6C[CommSys_CurNetId() ^ 1];
+        PokemonSummary_SetPlayerProfile(&param0->unk_0C, CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1));
     }
 
     param0->unk_0C.dataType = 1;
@@ -1862,7 +1862,7 @@ static int ov88_0223D514 (UnkStruct_02095E80 * param0)
         param0->unk_226C = ov88_0223D854;
         break;
     case 0xfffffffe:
-        v0 = sub_02032EE8(param0->unk_36C4);
+        v0 = CommInfo_TrainerInfo(param0->unk_36C4);
         sub_0200B498(param0->unk_36CC, 0, v0);
         ov88_0223D49C(param0, 59);
         param0->unk_226C = ov88_0223D4C4;
@@ -1886,7 +1886,7 @@ static int ov88_0223D5B8 (UnkStruct_02095E80 * param0)
         return 0;
     case 0xfffffffe:
         Sound_PlayEffect(1500);
-        v1 = sub_02032EE8(param0->unk_36C4);
+        v1 = CommInfo_TrainerInfo(param0->unk_36C4);
         sub_0200B498(param0->unk_36CC, 0, v1);
         ov88_0223D49C(param0, 59);
         param0->unk_226C = ov88_0223D4C4;
@@ -1956,7 +1956,7 @@ static int ov88_0223D740 (UnkStruct_02095E80 * param0)
         param0->unk_226C = ov88_0223D69C;
         break;
     case 0xfffffffe:
-        v0 = sub_02032EE8(param0->unk_36C4);
+        v0 = CommInfo_TrainerInfo(param0->unk_36C4);
         sub_0200B498(param0->unk_36CC, 0, v0);
         ov88_0223D49C(param0, 59);
         param0->unk_226C = ov88_0223D4C4;
@@ -2034,7 +2034,7 @@ static int ov88_0223D854 (UnkStruct_02095E80 * param0)
     }
 
     if (sub_0207D688(sub_0207D990(param0->unk_04), 437, 1, 26) == 1) {
-        v1 = sub_02032EE8(param0->unk_36C4);
+        v1 = CommInfo_TrainerInfo(param0->unk_36C4);
         sub_0200B498(param0->unk_36CC, 0, v1);
         ov88_0223D49C(param0, 57);
         param0->unk_226C = ov88_0223D7AC;
@@ -2432,7 +2432,7 @@ static int ov88_0223E41C (UnkStruct_02095E80 * param0)
 
 static int ov88_0223E478 (UnkStruct_02095E80 * param0)
 {
-    sub_020331E0(param0->unk_04, 1);
+    CommInfo_SetTradeResult(param0->unk_04, 1);
     ov88_0223E694(param0->unk_2270, param0->unk_2274, param0->unk_88[0], param0->unk_88[1] - 6, param0->unk_08);
     param0->unk_226C = ov88_0223D3E0;
     return 2;
@@ -2521,11 +2521,11 @@ static void ov88_0223E694 (Party * param0, Party * param1, int param2, int param
         Pokemon_SetValue(v1, 9, &v3);
     }
 
-    sub_0209304C(v1, sub_02032EE8(sub_0203608C()), 5, 0, 11);
+    sub_0209304C(v1, CommInfo_TrainerInfo(CommSys_CurNetId()), 5, 0, 11);
     sub_0207893C(v1);
     Pokemon_Copy(v0, param4->unk_3C);
     Pokemon_Copy(v1, param4->unk_40);
-    TrainerInfo_Copy(sub_02032EE8(sub_0203608C() ^ 1), param4->unk_38);
+    TrainerInfo_Copy(CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1), param4->unk_38);
 
     param4->unk_2C = param2;
 
@@ -2546,7 +2546,7 @@ static void ov88_0223E694 (Party * param0, Party * param1, int param2, int param
 static void ov88_0223E7F0 (UnkStruct_0202B628 * param0, Pokemon * param1)
 {
     void * v0;
-    TrainerInfo * v1 = sub_02032EE8(sub_0203608C() ^ 1);
+    TrainerInfo * v1 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
     u16 v2[10 + 1];
 
     Pokemon_GetValue(param1, MON_DATA_NICKNAME, v2);

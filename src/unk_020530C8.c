@@ -40,7 +40,7 @@
 #include "unk_02027F50.h"
 #include "unk_0202854C.h"
 #include "unk_0202B604.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_02039C80.h"
 #include "map_header.h"
 #include "unk_0203A378.h"
@@ -348,7 +348,7 @@ static void sub_02053320 (UnkStruct_0203CDB0 * param0)
 
     param0->unk_38 = sub_02061804(param0, 64, 5);
 
-    v0 = TrainerInfo_Gender(sub_02025E38(param0->unk_0C));
+    v0 = TrainerInfo_Gender(SaveData_GetTrainerInfo(param0->unk_0C));
     v2 = sub_0203A790(param0->unk_0C);
     v3 = sub_0203A780(v2);
 
@@ -373,7 +373,7 @@ static void sub_0205338C (UnkStruct_0203CDB0 * param0)
     {
         UnkStruct_0203A790 * v0 = sub_0203A790(param0->unk_0C);
         UnkStruct_0205EC34 * v1 = sub_0203A780(v0);
-        int v2 = TrainerInfo_Gender(sub_02025E38(param0->unk_0C));
+        int v2 = TrainerInfo_Gender(SaveData_GetTrainerInfo(param0->unk_0C));
 
         param0->unk_3C = sub_0205E820(param0->unk_38, v1, v2);
     }

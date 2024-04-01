@@ -19,9 +19,9 @@
 #include "unk_02030EE0.h"
 #include "unk_0203266C.h"
 #include "unk_02032798.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "unk_02033200.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 #include "unk_02039814.h"
@@ -37,7 +37,7 @@ typedef struct {
     UnkFuncPtr_02036C94 unk_24;
     SaveData * unk_28;
     TrainerInfo * unk_2C;
-    const UnkStruct_0202610C * unk_30;
+    const BattleRegulation * unk_30;
     UnkStruct_ov65_0222F6EC unk_34;
     int unk_40;
     u16 unk_44;
@@ -163,13 +163,13 @@ static void sub_020366A0 (SaveData * param0, int param1)
     Unk_021C07D4->unk_40 = 50;
     Unk_021C07D4->unk_4E = 1;
     Unk_021C07D4->unk_28 = param0;
-    Unk_021C07D4->unk_2C = sub_02025E38(param0);
+    Unk_021C07D4->unk_2C = SaveData_GetTrainerInfo(param0);
     Unk_021C07D4->unk_46 = 1 + 1;
     Unk_021C07D4->unk_48 = 0;
     Unk_021C07D4->unk_53 = 0;
     Unk_021C07D4->unk_4A = param1;
 
-    sub_020361BC(&Unk_021C07D4->unk_0C);
+    CommSys_Seed(&Unk_021C07D4->unk_0C);
     sub_02032798(NULL, 0, NULL);
 
     if ((param1 != 9) && (param1 != 17) && (param1 != 15)) {
@@ -237,7 +237,7 @@ void sub_020367D0 (void)
 void sub_020367F0 (void)
 {
     sub_02034AE4();
-    Unk_021C07D4->unk_44 = sub_0203608C();
+    Unk_021C07D4->unk_44 = CommSys_CurNetId();
     sub_02036C94(sub_0203712C, 0);
 }
 
@@ -288,7 +288,7 @@ void sub_020368A4 (void)
     sub_02036C94(sub_02037108, 0);
 }
 
-void sub_020368B8 (SaveData * param0, int param1, int param2, const UnkStruct_0202610C * param3, BOOL param4)
+void sub_020368B8 (SaveData * param0, int param1, int param2, const BattleRegulation * param3, BOOL param4)
 {
     if (sub_02035E38()) {
         return;
@@ -303,7 +303,7 @@ void sub_020368B8 (SaveData * param0, int param1, int param2, const UnkStruct_02
     sub_02036C94(sub_02037144, 0);
 }
 
-void sub_02036900 (SaveData * param0, int param1, int param2, const UnkStruct_0202610C * param3, BOOL param4)
+void sub_02036900 (SaveData * param0, int param1, int param2, const BattleRegulation * param3, BOOL param4)
 {
     if (sub_02035E38()) {
         return;
@@ -446,7 +446,7 @@ void sub_02036AC4 (void)
 
     sub_02031FA4(Unk_021C07D4->unk_46);
 
-    if (sub_0203608C() == 0) {
+    if (CommSys_CurNetId() == 0) {
         sub_02032160(1);
         sub_02036C94(sub_02037354, 15);
     } else {
@@ -570,7 +570,7 @@ static void sub_02036CA4 (void)
     }
 
     sub_02033200(Unk_021C07D4->unk_2C, 1);
-    sub_020329E0(Unk_021C07D4->unk_28, NULL);
+    CommInfo_Init(Unk_021C07D4->unk_28, NULL);
     sub_02036168(1);
     sub_02035EA8();
 
@@ -693,7 +693,7 @@ static void sub_02036EDC (void)
 
 static void sub_02036F44 (void)
 {
-    if (sub_02035D78(sub_0203608C())) {
+    if (CommSys_IsPlayerConnected(CommSys_CurNetId())) {
         sub_02034AE4();
         sub_02036168(0);
         sub_02035EA8();
@@ -846,7 +846,7 @@ static void sub_02037144 (void)
     }
 
     sub_02033200(Unk_021C07D4->unk_2C, 1);
-    sub_020329E0(Unk_021C07D4->unk_28, Unk_021C07D4->unk_30);
+    CommInfo_Init(Unk_021C07D4->unk_28, Unk_021C07D4->unk_30);
 
     if (sub_02034778(1, 1, 512, 1)) {
         sub_02034878();
@@ -856,7 +856,7 @@ static void sub_02037144 (void)
 
 static void sub_0203718C (void)
 {
-    if (!sub_02035D78(sub_0203608C())) {
+    if (!CommSys_IsPlayerConnected(CommSys_CurNetId())) {
         return;
     }
 
@@ -877,7 +877,7 @@ static void sub_020371C0 (void)
     }
 
     sub_02033200(Unk_021C07D4->unk_2C, 1);
-    sub_020329E0(Unk_021C07D4->unk_28, Unk_021C07D4->unk_30);
+    CommInfo_Init(Unk_021C07D4->unk_28, Unk_021C07D4->unk_30);
 
     if (sub_020347B4(1, 1, 512)) {
         sub_02034878();
@@ -905,7 +905,7 @@ static void sub_02037238 (void)
         sub_02036C94(sub_02037270, 0);
     }
 
-    if (sub_02035D78(sub_0203608C()) && (0 != sub_0203608C())) {
+    if (CommSys_IsPlayerConnected(CommSys_CurNetId()) && (0 != CommSys_CurNetId())) {
         sub_02036C94(sub_020372C4, 0);
     }
 }
@@ -1042,7 +1042,7 @@ static void sub_020373F0 (void)
 
     sub_02033200(Unk_021C07D4->unk_2C, 1);
     sub_02031FA4(Unk_021C07D4->unk_46);
-    sub_020329E0(Unk_021C07D4->unk_28, NULL);
+    CommInfo_Init(Unk_021C07D4->unk_28, NULL);
 
     if (sub_020347B4(1, 1, 512)) {
         sub_02034878();
@@ -1176,7 +1176,7 @@ static void sub_0203764C (void)
         return;
     }
 
-    if (sub_02035D78(sub_0203608C())) {
+    if (CommSys_IsPlayerConnected(CommSys_CurNetId())) {
         Unk_021C07D4->unk_48 = 0;
         sub_02036C94(sub_020376A8, 120);
         return;
@@ -1203,7 +1203,7 @@ static void sub_020376A8 (void)
     }
 
     if (Unk_021C07D4->unk_48 == 1) {
-        sub_02032AC0();
+        CommInfo_SendBattleRegulation();
         sub_02036C94(sub_02037724, 0);
         return;
     }
@@ -1258,8 +1258,8 @@ static void sub_02037790 (void)
             }
         }
     } else {
-        if (sub_0203608C() == 0) {
-            sub_02032CE8();
+        if (CommSys_CurNetId() == 0) {
+            CommInfo_ServerSendArray();
         }
     }
 
@@ -1289,7 +1289,7 @@ void sub_0203781C (void)
 {
     Unk_021C07D4->unk_4A = 13;
 
-    if (sub_0203608C() == 0) {
+    if (CommSys_CurNetId() == 0) {
         u8 v0 = 0;
         sub_020360D0(10, &v0);
     } else {
@@ -1397,7 +1397,7 @@ static void sub_020379D0 (void)
         return;
     }
 
-    if (sub_02035D78(sub_0203608C())) {
+    if (CommSys_IsPlayerConnected(CommSys_CurNetId())) {
         sub_02036C94(sub_02037724, 0);
         return;
     }
@@ -1422,7 +1422,7 @@ void sub_02037A78 (int param0, int param1, void * param2, void * param3)
     u8 * v1 = param2;
     BOOL v2 = 1;
 
-    if (sub_0203608C() != 0) {
+    if (CommSys_CurNetId() != 0) {
         return;
     }
 
@@ -1462,7 +1462,7 @@ void sub_02037AD8 (int param0, int param1, void * param2, void * param3)
     if (v3) {
         v0 = v2[0];
 
-        if (v0 == sub_0203608C()) {
+        if (v0 == CommSys_CurNetId()) {
             Unk_021C07D4->unk_48 = 1;
         }
 
@@ -1481,7 +1481,7 @@ void sub_02037AD8 (int param0, int param1, void * param2, void * param3)
     if (v3) {
         v0 = v2[0];
 
-        if (v0 == (u8)sub_0203608C()) {
+        if (v0 == (u8)CommSys_CurNetId()) {
             Unk_021C07D4->unk_48 = 2;
         }
 
@@ -1514,7 +1514,7 @@ static void sub_02037B78 (void)
     }
 
     sub_02033200(Unk_021C07D4->unk_2C, 1);
-    sub_020329E0(Unk_021C07D4->unk_28, NULL);
+    CommInfo_Init(Unk_021C07D4->unk_28, NULL);
 
     if (sub_020347B4(1, 1, 32)) {
         sub_02034878();
@@ -1601,7 +1601,7 @@ static void sub_02037D08 (void)
     }
 
     sub_02033200(Unk_021C07D4->unk_2C, 0);
-    sub_020329E0(Unk_021C07D4->unk_28, NULL);
+    CommInfo_Init(Unk_021C07D4->unk_28, NULL);
     sub_020320FC(sub_02037C5C);
     sub_02036C94(sub_02037CE4, 0);
 }
@@ -1665,7 +1665,7 @@ static void sub_02037E20 (void)
     }
 
     sub_02033200(Unk_021C07D4->unk_2C, 1);
-    sub_020329E0(Unk_021C07D4->unk_28, NULL);
+    CommInfo_Init(Unk_021C07D4->unk_28, NULL);
 
     if (sub_02034778(1, 1, 512, 1)) {
         sub_02034878();
@@ -1680,7 +1680,7 @@ static void sub_02037E68 (void)
     }
 
     sub_02033200(Unk_021C07D4->unk_2C, 1);
-    sub_020329E0(Unk_021C07D4->unk_28, NULL);
+    CommInfo_Init(Unk_021C07D4->unk_28, NULL);
 
     if (sub_020347B4(1, 1, 512)) {
         sub_02034878();
@@ -1909,7 +1909,7 @@ static void sub_020381F0 (void)
 
     if (ov4_021D20B0(Unk_021C07D4->unk_4C)) {
         if (ov4_021D2134()) {
-            sub_02032A70();
+            CommInfo_Delete();
 
             sub_02036C94(sub_02038164, 0);
             return;
@@ -1925,7 +1925,7 @@ static void sub_020381F0 (void)
 
 void sub_02038240 (int param0, int param1, void * param2, void * param3)
 {
-    if (sub_0203608C() == 0) {
+    if (CommSys_CurNetId() == 0) {
         Unk_021C07D4->unk_4C = 0;
         sub_02036C94(sub_020381F0, 0);
     } else {
@@ -2006,7 +2006,7 @@ void sub_02038350 (void)
     }
 
     ResetUnlock(1);
-    sub_02032A70();
+    CommInfo_Delete();
     sub_02036C94(sub_020373B8, 5);
 }
 
@@ -2028,7 +2028,7 @@ void sub_02038398 (void)
 
     sub_020388F4(0, 1);
 
-    if (sub_0203608C() == 0) {
+    if (CommSys_CurNetId() == 0) {
         Unk_021C07D4->unk_4C = 0;
     } else {
         Unk_021C07D4->unk_4C = 1;
@@ -2039,7 +2039,7 @@ void sub_02038398 (void)
 
 void sub_020383D4 (void)
 {
-    u8 v0 = sub_0203608C();
+    u8 v0 = CommSys_CurNetId();
 
     sub_020360D0(21, &v0);
 }
@@ -2224,7 +2224,7 @@ static void sub_020386B4 (void)
 
 void * sub_0203871C (SaveData * param0, int param1)
 {
-    TrainerInfo * v0 = sub_02025E38(param0);
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(param0);
 
     if (sub_02035E38()) {
         return NULL;
@@ -2246,7 +2246,7 @@ void * sub_0203871C (SaveData * param0, int param1)
 
 void sub_0203878C (SaveData * param0, const void * param1)
 {
-    TrainerInfo * v0 = sub_02025E38(param0);
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(param0);
 
     if (sub_02035E38()) {
         return;
@@ -2702,7 +2702,7 @@ static void sub_02038D94 (void)
 
     if (v0) {
         ResetUnlock(1);
-        sub_02032A70();
+        CommInfo_Delete();
         sub_02036C94(sub_020373B8, 5);
         sub_020362B4(0);
     }

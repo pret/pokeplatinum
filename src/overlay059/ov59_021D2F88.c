@@ -18,8 +18,8 @@
 #include "unk_0202D05C.h"
 #include "unk_0202E2CC.h"
 #include "unk_0202E840.h"
-#include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_information.h"
+#include "communication_system.h"
 #include "unk_02073700.h"
 #include "overlay059/ov59_021D2A2C.h"
 #include "overlay059/ov59_021D2B44.h"
@@ -187,7 +187,7 @@ void ov59_021D313C (SaveData * param0, const UnkStruct_ov59_021D30E0 * param1)
 
     v0.unk_00 = 51;
     v0.unk_04 = param0;
-    v0.unk_0C = sub_0203608C();
+    v0.unk_0C = CommSys_CurNetId();
     v0.unk_08 = 5;
     v0.unk_10 = v7;
     v0.unk_14 = v8;
@@ -213,7 +213,7 @@ void ov59_021D313C (SaveData * param0, const UnkStruct_ov59_021D30E0 * param1)
         GF_ASSERT(v3 > v1);
 
         for (v5 = 0; v5 < 5; v5++) {
-            if (sub_02032EE8(v5) != NULL) {
+            if (CommInfo_TrainerInfo(v5) != NULL) {
                 v0.unk_10[v5] = &(param1[v5].unk_00[v2]);
             } else {
                 v0.unk_10[v5] = NULL;
@@ -225,7 +225,7 @@ void ov59_021D313C (SaveData * param0, const UnkStruct_ov59_021D30E0 * param1)
         case 8:
         case 9:
             for (v6 = 0; v6 < 5; v6++) {
-                if (sub_02032EE8(v6) != NULL) {
+                if (CommInfo_TrainerInfo(v6) != NULL) {
                     v0.unk_14[v6] = &(param1[v6].unk_00[v9[v4 - 7]]);
                 } else {
                     v0.unk_14[v6] = NULL;

@@ -33,8 +33,8 @@
 #include "unk_0202CD50.h"
 #include "unk_020302D0.h"
 #include "unk_0203061C.h"
-#include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_information.h"
+#include "communication_system.h"
 #include "unk_020507CC.h"
 #include "unk_0205DFC4.h"
 #include "unk_0206AFE0.h"
@@ -524,7 +524,7 @@ void ov104_02236C50 (UnkStruct_ov104_0223BA10 * param0)
     int v2, v3;
     Pokemon * v4;
 
-    if (sub_0203608C() == 0) {
+    if (CommSys_CurNetId() == 0) {
         v0 = 0;
     } else {
         v0 = 2;
@@ -570,7 +570,7 @@ int ov104_02236D10 (UnkStruct_ov104_0223BA10 * param0)
     param0->unk_12 = 0;
     v8 = 0;
 
-    if (sub_0203608C() == 0) {
+    if (CommSys_CurNetId() == 0) {
         v2 = 0;
     } else {
         v2 = 2;
@@ -751,7 +751,7 @@ void ov104_022370E0 (UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10
         GF_ASSERT(param0->unk_A8 != NULL);
         GF_ASSERT(param0->unk_AC != NULL);
 
-        if (sub_0203608C() == 0) {
+        if (CommSys_CurNetId() == 0) {
             v0 = param0->unk_A8;
             v1 = param0->unk_AC;
         } else {
@@ -778,12 +778,12 @@ void ov104_02237180 (UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10
     if (ov104_0223BA14(param1->unk_10) == 0) {
         GF_ASSERT(param0->unk_A8 != NULL);
         v0 = sub_02030698(sub_0203068C(param1->unk_04), sub_0205E630(param1->unk_10), sub_0205E6A8(sub_0205E630(param1->unk_10)));
-        ov104_02237284(param0, param0->unk_A8, sub_02025E38(param1->unk_04), v0);
+        ov104_02237284(param0, param0->unk_A8, SaveData_GetTrainerInfo(param1->unk_04), v0);
     } else {
         GF_ASSERT(param0->unk_A8 != NULL);
         GF_ASSERT(param0->unk_AC != NULL);
 
-        if (sub_0203608C() == 0) {
+        if (CommSys_CurNetId() == 0) {
             v0 = sub_02030698(sub_0203068C(param1->unk_04), sub_0205E630(param1->unk_10), sub_0205E6A8(sub_0205E630(param1->unk_10)));
             v1 = param1->unk_A1C;
         } else {
@@ -791,8 +791,8 @@ void ov104_02237180 (UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10
             v1 = sub_02030698(sub_0203068C(param1->unk_04), sub_0205E630(param1->unk_10), sub_0205E6A8(sub_0205E630(param1->unk_10)));
         }
 
-        ov104_02237284(param0, param0->unk_A8, sub_02032EE8(0), v0);
-        ov104_02237284(param0, param0->unk_AC, sub_02032EE8(1), v1);
+        ov104_02237284(param0, param0->unk_A8, CommInfo_TrainerInfo(0), v0);
+        ov104_02237284(param0, param0->unk_AC, CommInfo_TrainerInfo(1), v1);
     }
 
     return;

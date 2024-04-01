@@ -890,7 +890,7 @@ static void ov19_021D1C84 (UnkStruct_ov19_021D5DF8 * param0)
     param0->unk_12C.ribbons = sub_0202D79C(param0->unk_11C);
 
     PokemonSummary_FlagVisiblePages(&(param0->unk_12C), v0);
-    PokemonSummary_SetPlayerProfile(&(param0->unk_12C), sub_02025E38(param0->unk_11C));
+    PokemonSummary_SetPlayerProfile(&(param0->unk_12C), SaveData_GetTrainerInfo(param0->unk_11C));
 }
 
 static int ov19_021D1DAC (UnkStruct_ov19_021D5DF8 * param0)

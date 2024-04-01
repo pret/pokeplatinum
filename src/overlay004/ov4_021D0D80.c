@@ -15,7 +15,7 @@
 #include "unk_0202ACE0.h"
 #include "unk_0203061C.h"
 #include "unk_0203266C.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020366A0.h"
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay004/ov4_021D2808.h"

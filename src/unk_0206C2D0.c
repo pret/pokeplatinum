@@ -25,7 +25,7 @@ void sub_0206C2D0 (SaveData * param0, const s32 param1)
 
     v2 = sub_0202C834(param0);
     v3 = sub_0202C844(v2);
-    v4 = sub_02025E38(param0);
+    v4 = SaveData_GetTrainerInfo(param0);
 
     for (v0 = 0; v0 < 8; v0++) {
         if (TrainerInfo_HasBadge(v4, v0) == 0) {

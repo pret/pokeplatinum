@@ -65,7 +65,7 @@ BOOL sub_0204C59C (UnkStruct_0203E724 * param0)
     PalParkTransfer * v0 = SaveData_PalParkTransfer(param0->unk_34->unk_0C);
     PCBoxes * v1 = SaveData_PCBoxes(param0->unk_34->unk_0C);
     Pokemon * v2 = Pokemon_New(32);
-    TrainerInfo * v3 = sub_02025E38(param0->unk_34->unk_0C);
+    TrainerInfo * v3 = SaveData_GetTrainerInfo(param0->unk_34->unk_0C);
     PokedexData * v4 = sub_02027560(param0->unk_34->unk_0C);
     BOOL v5;
     int v6;

@@ -70,7 +70,7 @@
 #include "unk_0202CD50.h"
 #include "unk_0202F1D4.h"
 #include "unk_02033200.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_02038F8C.h"
@@ -1867,7 +1867,7 @@ static BOOL ov16_0223D354 (UnkStruct_020067E8 * param0)
         if ((v0->unk_00->battleType & BATTLE_TYPE_FRONTIER) == 0) {
             v0->unk_1021 = 33;
         } else {
-            if (sub_0203608C()) {
+            if (CommSys_CurNetId()) {
                 sub_020364F0(57);
                 v0->unk_1021++;
             } else if (sub_0207AB9C(v0, 1) == 1) {
@@ -1879,7 +1879,7 @@ static BOOL ov16_0223D354 (UnkStruct_020067E8 * param0)
     case 22:
         v0->unk_1020 = 1;
 
-        if (sub_0203608C()) {
+        if (CommSys_CurNetId()) {
             if (sub_02036540(57) == 1) {
                 v0->unk_1021++;
             }
@@ -1888,7 +1888,7 @@ static BOOL ov16_0223D354 (UnkStruct_020067E8 * param0)
         }
         break;
     case 24:
-        if (sub_0203608C()) {
+        if (CommSys_CurNetId()) {
             sub_020364F0(58);
             v0->unk_1021++;
         } else if (sub_0207AB9C(v0, 3) == 1) {
@@ -1899,7 +1899,7 @@ static BOOL ov16_0223D354 (UnkStruct_020067E8 * param0)
     case 25:
         v0->unk_1020 = 1;
 
-        if (sub_0203608C()) {
+        if (CommSys_CurNetId()) {
             if (sub_02036540(58) == 1) {
                 v0->unk_1021++;
             }
@@ -1908,7 +1908,7 @@ static BOOL ov16_0223D354 (UnkStruct_020067E8 * param0)
         }
         break;
     case 27:
-        if (sub_0203608C()) {
+        if (CommSys_CurNetId()) {
             sub_020364F0(59);
             v0->unk_1021++;
         } else if (sub_0207AC28(v0, 1) == 1) {
@@ -1919,7 +1919,7 @@ static BOOL ov16_0223D354 (UnkStruct_020067E8 * param0)
     case 28:
         v0->unk_1020 = 1;
 
-        if (sub_0203608C()) {
+        if (CommSys_CurNetId()) {
             if (sub_02036540(59) == 1) {
                 v0->unk_1021++;
             }
@@ -1928,7 +1928,7 @@ static BOOL ov16_0223D354 (UnkStruct_020067E8 * param0)
         }
         break;
     case 30:
-        if (sub_0203608C()) {
+        if (CommSys_CurNetId()) {
             sub_020364F0(60);
             v0->unk_1021++;
         } else if (sub_0207AC28(v0, 3) == 1) {
@@ -1939,7 +1939,7 @@ static BOOL ov16_0223D354 (UnkStruct_020067E8 * param0)
     case 31:
         v0->unk_1020 = 1;
 
-        if (sub_0203608C()) {
+        if (CommSys_CurNetId()) {
             if (sub_02036540(60) == 1) {
                 v0->unk_1021++;
             }
@@ -2030,7 +2030,7 @@ static BOOL ov16_0223D800 (UnkStruct_020067E8 * param0)
 
     v0->unk_1C0 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov10_0221F800));
     MI_CpuClearFast(v0->unk_1C0, sizeof(UnkStruct_ov10_0221F800));
-    v2 = sub_0203608C();
+    v2 = CommSys_CurNetId();
 
     switch (sub_020362F4(v2)) {
     case 0:
@@ -2095,7 +2095,7 @@ static BOOL ov16_0223D98C (UnkStruct_020067E8 * param0)
         return 0;
     }
 
-    v2 = sub_0203608C();
+    v2 = CommSys_CurNetId();
     v0->unk_1C0 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov10_0221F800));
 
     MI_CpuClearFast(v0->unk_1C0, sizeof(UnkStruct_ov10_0221F800));
@@ -2156,7 +2156,7 @@ static BOOL ov16_0223DB1C (UnkStruct_020067E8 * param0)
         return 0;
     }
 
-    v2 = sub_0203608C();
+    v2 = CommSys_CurNetId();
     Overlay_LoadByID(FS_OVERLAY_ID(overlay10), 2);
     v1 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov10_0221F800));
 
@@ -2277,7 +2277,7 @@ static void ov16_0223DD90 (BattleSystem * param0, BattleParams * param1)
         v6[v0] = param1->unk_154[v0];
     }
 
-    v3 = sub_0203608C();
+    v3 = CommSys_CurNetId();
     v4 = sub_02035E18();
 
     for (v0 = 0; v0 < v4 - 1; v0++) {

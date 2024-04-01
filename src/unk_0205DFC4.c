@@ -14,8 +14,8 @@
 #include "unk_0201D15C.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_information.h"
+#include "communication_system.h"
 #include "unk_020508D4.h"
 #include "unk_0205DFC4.h"
 #include "unk_02061804.h"
@@ -717,7 +717,7 @@ u8 sub_0205E6B8 (void)
 {
     TrainerInfo * v0;
 
-    v0 = sub_02032EE8(sub_0203608C() ^ 1);
+    v0 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
     GF_ASSERT(v0 != NULL);
 
     return TrainerInfo_GameCode(v0);
@@ -725,7 +725,7 @@ u8 sub_0205E6B8 (void)
 
 u8 sub_0205E6D8 (SaveData * param0)
 {
-    if (TrainerInfo_GameCode(sub_02025E38(param0)) == 0) {
+    if (TrainerInfo_GameCode(SaveData_GetTrainerInfo(param0)) == 0) {
         return 1;
     }
 

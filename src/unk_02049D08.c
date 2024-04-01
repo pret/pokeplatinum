@@ -373,7 +373,7 @@ UnkStruct_0204AFC4 * sub_0204A124 (SaveData * param0, u16 param1, u16 param2)
         }
     }
 
-    v3->unk_11 = TrainerInfo_Gender(sub_02025E38(param0));
+    v3->unk_11 = TrainerInfo_Gender(SaveData_GetTrainerInfo(param0));
 
     if (v3->unk_0F != 5) {
         v4 = sub_0203068C(param0);

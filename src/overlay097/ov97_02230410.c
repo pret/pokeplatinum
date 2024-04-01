@@ -59,9 +59,9 @@
 #include "trainer_info.h"
 #include "unk_020279FC.h"
 #include "unk_0202DAB4.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "unk_02033200.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
@@ -1185,7 +1185,7 @@ static int ov97_0223161C (UnkStruct_020067E8 * param0, int * param1)
     case 18:
         v3 = 0;
 
-        if (sub_02035D78(0)) {
+        if (CommSys_IsPlayerConnected(0)) {
             sub_02034150(&v4->unk_04.unk_8C.unk_00);
 
             v3 = ov97_02231CA0(v4, &v4->unk_2A68[16]);
@@ -1321,7 +1321,7 @@ static int ov97_02231C84 (UnkStruct_ov97_02230868 * param0)
     v1 = 0;
 
     for (v0 = 1; v0 < 4 + 1; v0++) {
-        if (sub_02032EE8(v0)) {
+        if (CommInfo_TrainerInfo(v0)) {
             v1++;
         }
     }
@@ -1344,7 +1344,7 @@ static int ov97_02231CA0 (UnkStruct_ov97_02230868 * param0, Window * param1)
     v3 = 0;
 
     for (v0 = 1; v0 < 4 + 1; v0++) {
-        v5 = sub_02032EE8(v0);
+        v5 = CommInfo_TrainerInfo(v0);
 
         if (v5 == NULL) {
             if (param0->unk_2C68[v0]) {
@@ -1380,7 +1380,7 @@ static int ov97_02231CA0 (UnkStruct_ov97_02230868 * param0, Window * param1)
     BGL_FillWindow(param1, 0);
 
     for (v0 = 0; v0 < v1; v0++) {
-        v5 = sub_02032EE8(v10[v0]);
+        v5 = CommInfo_TrainerInfo(v10[v0]);
 
         if (v5) {
             sub_0200B498(v7, 0, v5);

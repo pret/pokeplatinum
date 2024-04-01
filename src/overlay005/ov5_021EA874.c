@@ -34,8 +34,8 @@
 #include "unk_020279FC.h"
 #include "unk_0202ACE0.h"
 #include "unk_0203061C.h"
-#include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_information.h"
+#include "communication_system.h"
 #include "unk_0203909C.h"
 #include "unk_0203CC84.h"
 #include "unk_020508D4.h"
@@ -106,7 +106,7 @@ static BOOL ov5_021EA8F0 (UnkStruct_ov5_021EAE78 * param0)
     }
 
     if (sub_0207D688(sub_0207D990(param0->unk_34), 437, 1, 4) == 1) {
-        v1 = sub_02032EE8(param0->unk_8C);
+        v1 = CommInfo_TrainerInfo(param0->unk_8C);
         sub_0200B498(param0->unk_38, 0, v1);
         ov5_021EAE78(param0, 57);
         param0->unk_48 = 2;
@@ -200,7 +200,7 @@ static BOOL ov5_021EAAA8 (UnkStruct_ov5_021EAE78 * param0)
     } else if (v4 == 0) {
         param0->unk_48 = 8;
     } else {
-        v0 = sub_02032EE8(param0->unk_8C);
+        v0 = CommInfo_TrainerInfo(param0->unk_8C);
         sub_0200B498(param0->unk_38, 0, v0);
         ov5_021EAE78(param0, 59);
         param0->unk_48 = 6;
@@ -315,7 +315,7 @@ static BOOL ov5_021EAC44 (UnkStruct_ov5_021EAE78 * param0)
         return 0;
     case 0xfffffffe:
         Sound_PlayEffect(1500);
-        v0 = sub_02032EE8(param0->unk_8C);
+        v0 = CommInfo_TrainerInfo(param0->unk_8C);
         sub_0200B498(param0->unk_38, 0, v0);
         ov5_021EAE78(param0, 59);
         param0->unk_48 = 6;
@@ -372,7 +372,7 @@ static BOOL ov5_021EAD38 (UnkStruct_ov5_021EAE78 * param0)
         sub_02039298(param0->unk_34, param0->unk_8C, 32 - 1, 4, 0);
         param0->unk_48 = 1;
     } else {
-        v1 = sub_02032EE8(param0->unk_8C);
+        v1 = CommInfo_TrainerInfo(param0->unk_8C);
         sub_0200B498(param0->unk_38, 0, v1);
         ov5_021EAE78(param0, 59);
         param0->unk_48 = 6;

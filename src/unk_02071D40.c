@@ -53,7 +53,7 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
     SaveData * v2;
 
     v2 = sub_0203D174(param4);
-    v0 = sub_02025E38(v2);
+    v0 = SaveData_GetTrainerInfo(v2);
     v1 = sub_0202CD88(v2);
 
     param5->unk_05 = param3;

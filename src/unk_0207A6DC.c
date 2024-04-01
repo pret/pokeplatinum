@@ -25,7 +25,7 @@
 #include "unk_0202CC64.h"
 #include "unk_0202F1D4.h"
 #include "unk_02032798.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "party.h"
 #include "unk_0207A6DC.h"
@@ -300,7 +300,7 @@ BOOL sub_0207A8F4 (UnkStruct_0207A778 * param0, u32 param1)
         return 0;
     }
 
-    return sub_020359DC(24, (void *)&param1, 4);
+    return CommSys_SendData(24, (void *)&param1, 4);
 }
 
 static void sub_0207A934 (int param0, int param1, void * param2, void * param3)
@@ -451,9 +451,9 @@ BOOL sub_0207AAFC (UnkStruct_0207A778 * param0)
     v0 = (UnkStruct_02027F8C *)&param0->unk_20[0];
 
     if (param0->unk_00->battleType & BATTLE_TYPE_FRONTIER) {
-        v1 = param0->unk_00->unk_D0[sub_0203608C() * 2];
+        v1 = param0->unk_00->unk_D0[CommSys_CurNetId() * 2];
     } else {
-        v1 = param0->unk_00->unk_D0[sub_0203608C()];
+        v1 = param0->unk_00->unk_D0[CommSys_CurNetId()];
     }
 
     sub_0207ADD4(v1, param0->unk_00->unk_124, (UnkStruct_02027F8C *)param0->unk_20);
@@ -593,7 +593,7 @@ void sub_0207ACB4 (SysTask * param0, void * param1)
 
         v5 = sizeof(UnkStruct_0207A81C) + (v1[v2[0] + 2] | (v1[v2[0] + 3] << 8));
 
-        if (sub_020359DC(23, (void *)&v1[v2[0]], v5) == 1) {
+        if (CommSys_SendData(23, (void *)&v1[v2[0]], v5) == 1) {
             v2[0] += v5;
         }
         break;
@@ -675,7 +675,7 @@ void sub_0207AE34 (int param0, int param1, void * param2, void * param3)
 {
     UnkStruct_0207A778 * v0 = (UnkStruct_0207A778 *)param3;
 
-    if (sub_0203608C() != param0) {
+    if (CommSys_CurNetId() != param0) {
         sub_02027FEC(v0->unk_00->unk_124, (UnkStruct_02027F8C *)param2, 1, 5);
     }
 

@@ -102,7 +102,7 @@
 #include "unk_0202D7A8.h"
 #include "unk_0202DF8C.h"
 #include "unk_02033200.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_02038FFC.h"
@@ -4107,7 +4107,7 @@ static BOOL sub_02041E64 (UnkStruct_0203E724 * param0)
 {
     u16 * v0 = inline_0204FCAC(param0);
 
-    *v0 = sub_0203608C();
+    *v0 = CommSys_CurNetId();
     return 1;
 }
 
@@ -5141,7 +5141,7 @@ static BOOL sub_02043250 (UnkStruct_0203E724 * param0)
 static BOOL sub_02043254 (UnkStruct_0203E724 * param0)
 {
     const PokedexData * v0 = sub_02027560(param0->unk_34->unk_0C);
-    const TrainerInfo * v1 = sub_02025E38(param0->unk_34->unk_0C);
+    const TrainerInfo * v1 = SaveData_GetTrainerInfo(param0->unk_34->unk_0C);
     u8 v2 = (*((param0)->unk_08++));
     u16 * v3 = inline_0204FCAC(param0);
     u16 v4;
@@ -5392,7 +5392,7 @@ static BOOL sub_02043708 (UnkStruct_0203E724 * param0)
         sub_02036BD8();
     }
 
-    if (sub_0203608C() == 0) {
+    if (CommSys_CurNetId() == 0) {
         sub_0205BEA8(v0);
     }
 
@@ -5404,7 +5404,7 @@ static BOOL sub_02043748 (UnkStruct_0203E724 * param0)
     UnkStruct_02061AB4 ** v0 = sub_0203F098(param0->unk_34, 10);
     StringFormatter ** v1 = sub_0203F098(param0->unk_34, 15);
     u16 v2 = sub_0203E838(param0);
-    TrainerInfo * v3 = sub_02025E38(sub_0203D174(param0->unk_34));
+    TrainerInfo * v3 = SaveData_GetTrainerInfo(sub_0203D174(param0->unk_34));
     UnkStruct_02014EC4 * v4 = sub_02014EC4(sub_0203D174(param0->unk_34));
     u16 v5;
 
@@ -5614,7 +5614,7 @@ static BOOL sub_02043A94 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043AA4 (UnkStruct_0203E724 * param0)
 {
-    TrainerInfo * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(sub_0203D174(param0->unk_34));
     StringFormatter ** v1 = sub_0203F098(param0->unk_34, 15);
 
     sub_0205C980(TrainerInfo_ID(v0), TrainerInfo_Gender(v0), *v1);
@@ -5623,7 +5623,7 @@ static BOOL sub_02043AA4 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043AE0 (UnkStruct_0203E724 * param0)
 {
-    TrainerInfo * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(sub_0203D174(param0->unk_34));
     u16 v1 = inline_02049538(param0);
     u16 * v2 = inline_0204FCAC(param0);
 
@@ -5635,7 +5635,7 @@ static BOOL sub_02043AE0 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043B48 (UnkStruct_0203E724 * param0)
 {
-    TrainerInfo * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(sub_0203D174(param0->unk_34));
     u16 v1 = inline_02049538(param0);
     u16 * v2 = inline_0204FCAC(param0);
 
@@ -5646,7 +5646,7 @@ static BOOL sub_02043B48 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043BA0 (UnkStruct_0203E724 * param0)
 {
-    TrainerInfo * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(sub_0203D174(param0->unk_34));
     u16 v1 = inline_02049538(param0);
 
     TrainerInfo_SetAppearance(v0, v1);
@@ -5670,7 +5670,7 @@ static BOOL sub_02043BE0 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043C0C (UnkStruct_0203E724 * param0)
 {
-    TrainerInfo * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(sub_0203D174(param0->unk_34));
     u16 * v1 = inline_0204FCAC(param0);
 
     *v1 = TrainerInfo_Gender(v0);
@@ -6715,7 +6715,7 @@ static BOOL sub_02044DDC (UnkStruct_0203E724 * param0)
 
     if (v0 == 1) {
         sub_02027454(sub_02027560(param0->unk_34->unk_0C));
-        TrainerInfo_GiveNationalDex(sub_02025E38(param0->unk_34->unk_0C));
+        TrainerInfo_GiveNationalDex(SaveData_GetTrainerInfo(param0->unk_34->unk_0C));
     } else if (v0 == 2) {
         *v1 = sub_02027474(sub_02027560(param0->unk_34->unk_0C));
     } else {
@@ -6821,7 +6821,7 @@ static BOOL sub_0204504C (UnkStruct_0203E724 * param0)
 static BOOL sub_02045068 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    TrainerInfo * v1 = sub_02025E38(sub_0203D174(param0->unk_34));
+    TrainerInfo * v1 = SaveData_GetTrainerInfo(sub_0203D174(param0->unk_34));
     u16 * v2 = inline_0204FCAC(param0);
     PCBoxes * v3 = SaveData_PCBoxes(v0->unk_0C);
     u16 v4 = inline_02049538(param0);

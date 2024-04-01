@@ -17,7 +17,7 @@
 #include "unk_020041CC.h"
 #include "savedata/save_table.h"
 #include "unk_0202CD50.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_02049D08.h"
 #include "unk_02051D8C.h"
@@ -240,7 +240,7 @@ BOOL ov104_0223939C (UnkStruct_ov104_0222E930 * param0)
         break;
     }
 
-    if (sub_02036614(sub_0203608C(), v0->unk_83E) == 1) {
+    if (sub_02036614(CommSys_CurNetId(), v0->unk_83E) == 1) {
         *v4 = 1;
     } else {
         *v4 = 0;
@@ -281,7 +281,7 @@ static BOOL ov104_02239464 (UnkStruct_ov104_0222E930 * param0, UnkStruct_0204AFC
     u16 * v0;
     const void * v1;
 
-    v1 = sub_0203664C(1 - sub_0203608C());
+    v1 = sub_0203664C(1 - CommSys_CurNetId());
 
     if (v1 == NULL) {
         return 0;

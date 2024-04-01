@@ -87,7 +87,7 @@ static void ov5_021E1D20 (UnkStruct_ov5_021E1D20 * param0, const UnkStruct_0203C
         param0->unk_00 = 0;
     }
 
-    param0->unk_08 = sub_02025E38(v0);
+    param0->unk_08 = SaveData_GetTrainerInfo(v0);
     param0->unk_0C = sub_02025E5C(v0);
 }
 

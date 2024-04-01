@@ -1,8 +1,9 @@
-#ifndef POKEPLATINUM_UNK_02034198_H
-#define POKEPLATINUM_UNK_02034198_H
-
+#ifndef POKEPLATINUM_COMMUNICATION_SYSTEM_H
+#define POKEPLATINUM_COMMUNICATION_SYSTEM_H
 
 #include <nitro/math.h>
+
+#define MAX_CONNECTED_PLAYERS      8
 
 BOOL sub_02034778(BOOL param0, BOOL param1, int param2, BOOL param3);
 BOOL sub_020347B4(BOOL param0, BOOL param1, int param2);
@@ -24,12 +25,12 @@ void sub_0203568C(void);
 void sub_0203572C(void);
 void sub_02035938(u8 param0);
 BOOL sub_0203597C(int param0, const void * param1, int param2);
-BOOL sub_020359DC(int param0, const void * param1, int param2);
+BOOL CommSys_SendData(int param0, const void * param1, int param2);
 BOOL sub_02035A3C(int param0, const void * param1, int param2);
 BOOL sub_02035AC4(int param0, const void * param1, int param2);
 BOOL sub_02035B48(int param0, const void * param1);
 int sub_02035B54(void);
-BOOL sub_02035D78(u16 param0);
+BOOL CommSys_IsPlayerConnected(u16 param0);
 int sub_02035E18(void);
 BOOL sub_02035E38(void);
 void sub_02035E5C(u8 param0);
@@ -38,12 +39,12 @@ u16 sub_02035E84(int param0);
 void sub_02035EA8(void);
 void sub_02035EC8(void);
 BOOL sub_02035EE0(void);
-BOOL sub_02035F00(int param0, const void * param1, int param2);
+BOOL CommSys_ServerSetSendQueue(int param0, const void * param1, int param2);
 BOOL sub_02035F58(int param0, const void * param1, int param2);
 void sub_02036008(int param0, int param1, void * param2, void * param3);
 void sub_02036030(int param0, int param1, void * param2, void * param3);
 void sub_02036058(int param0, int param1, void * param2, void * param3);
-u16 sub_0203608C(void);
+u16 CommSys_CurNetId(void);
 BOOL sub_020360D0(int param0, const void * param1);
 BOOL Link_Message(int param0);
 BOOL sub_020360E8(void);
@@ -54,7 +55,7 @@ int sub_02036158(int param0);
 void sub_02036168(BOOL param0);
 BOOL sub_02036180(void);
 void sub_0203619C(int param0, int param1, void * param2, void * param3);
-void sub_020361BC(MATHRandContext32 * param0);
+void CommSys_Seed(MATHRandContext32 * param0);
 BOOL sub_02036254(int param0);
 BOOL sub_0203626C(int param0);
 BOOL sub_02036284(void);
@@ -70,4 +71,4 @@ BOOL sub_020363A0(void);
 void sub_020363BC(void);
 void sub_020363D0(void);
 
-#endif // POKEPLATINUM_UNK_02034198_H
+#endif // POKEPLATINUM_COMMUNICATION_SYSTEM_H
