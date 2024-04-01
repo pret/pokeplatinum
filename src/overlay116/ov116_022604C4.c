@@ -85,7 +85,7 @@ static void ov116_022604C4 (UnkStruct_ov116_0226139C * param0)
     {
         int v2 = sub_02032E64();
 
-        param0->unk_44 = sub_0203608C();
+        param0->unk_44 = CommunicationSystem_GetCurNetId();
         ov116_022604A8(param0);
 
         if (ov116_022617C4(param0) == 1) {

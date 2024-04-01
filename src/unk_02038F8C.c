@@ -22,7 +22,7 @@ void sub_02038F8C (UnkStruct_0202C878 * param0)
     }
 
     for (v0 = 0; v0 < v5; v0++) {
-        if (sub_0203608C() != v0) {
+        if (CommunicationSystem_GetCurNetId() != v0) {
             v1 = sub_02032F78(v0);
             v2 = sub_02032F9C(v0);
             v4 = sub_02032EE8(v0);

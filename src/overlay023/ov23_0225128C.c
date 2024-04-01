@@ -205,8 +205,8 @@ void ov23_022513B0 (int param0, int param1, void * param2, void * param3)
         return;
     }
 
-    if (v0->unk_00 == sub_0203608C()) {
-        if (v0->unk_01 == sub_0203608C()) {
+    if (v0->unk_00 == CommunicationSystem_GetCurNetId()) {
+        if (v0->unk_01 == CommunicationSystem_GetCurNetId()) {
             Sound_PlayEffect(1548);
             sub_020594FC();
             ov23_02251F94(v1);
@@ -950,7 +950,7 @@ void ov23_02252178 (int param0, int param1, void * param2, void * param3)
     UnkStruct_0203CDB0 * v0 = param3;
     UnkStruct_ov23_022513B0 * v1 = param2;
 
-    if (sub_0203608C() == v1->unk_00) {
+    if (CommunicationSystem_GetCurNetId() == v1->unk_00) {
         ov23_02254068(ov23_022421AC(), sub_02032EE8(v1->unk_01));
         ov23_02253F40(ov23_022421AC(), 8, 1, ov23_022513A4);
         Sound_PlayBGM(1061);

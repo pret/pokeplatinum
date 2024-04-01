@@ -387,7 +387,7 @@ BOOL ov5_021D213C (UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * param1)
         return 1;
     }
 
-    if (sub_020363A0() || (0 != sub_020593CC(sub_0203608C()))) {
+    if (sub_020363A0() || (0 != sub_020593CC(CommunicationSystem_GetCurNetId()))) {
         return 0;
     }
 
@@ -419,7 +419,7 @@ BOOL ov5_021D219C (UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * param1)
         }
     }
 
-    if (sub_020363A0() || (0 != sub_020593CC(sub_0203608C())) || !sub_02059D2C()) {
+    if (sub_020363A0() || (0 != sub_020593CC(CommunicationSystem_GetCurNetId())) || !sub_02059D2C()) {
         return 0;
     }
 

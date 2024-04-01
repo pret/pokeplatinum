@@ -4107,7 +4107,7 @@ static BOOL sub_02041E64 (UnkStruct_0203E724 * param0)
 {
     u16 * v0 = inline_0204FCAC(param0);
 
-    *v0 = sub_0203608C();
+    *v0 = CommunicationSystem_GetCurNetId();
     return 1;
 }
 
@@ -5392,7 +5392,7 @@ static BOOL sub_02043708 (UnkStruct_0203E724 * param0)
         sub_02036BD8();
     }
 
-    if (sub_0203608C() == 0) {
+    if (CommunicationSystem_GetCurNetId() == 0) {
         sub_0205BEA8(v0);
     }
 

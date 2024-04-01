@@ -803,7 +803,7 @@ void ov114_0225C700 (UnkStruct_ov114_0225C76C * param0, BOOL param1, SaveData * 
     memset(param0, 0, sizeof(UnkStruct_ov114_0225C76C));
 
     param0->unk_08 = sub_02032E64();
-    v2 = sub_0203608C();
+    v2 = CommunicationSystem_GetCurNetId();
     v1 = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -1097,8 +1097,8 @@ BOOL ov114_0225CA98 (const UnkStruct_ov114_0225C76C * param0)
     GF_ASSERT(param0->unk_0C != NULL);
     GF_ASSERT(param0->unk_0C->unk_1C == 1);
 
-    if (sub_02032AAC() == 1) {
-        sub_02032A70();
+    if (CommunicationInformation_IsInitialized() == 1) {
+        CommunicationInformation_Delete();
         sub_0203888C();
     } else {
         if (sub_020382C0() == 1) {

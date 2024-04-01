@@ -431,7 +431,7 @@ void ov23_022539A8 (int param0, int param1, void * param2, void * param3)
 {
     u8 * v0 = param2;
 
-    if (v0[0] == sub_0203608C()) {
+    if (v0[0] == CommunicationSystem_GetCurNetId()) {
         MI_CpuCopy8(&v0[1], Unk_ov23_022577BC->unk_10, param1 - 1);
         Unk_ov23_022577BC->unk_2C = 1;
     }

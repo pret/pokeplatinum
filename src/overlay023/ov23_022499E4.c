@@ -264,7 +264,7 @@ static void ov23_02249C34 (void)
 
     ov23_02242D44(v0->unk_18);
 
-    sub_02032AC0();
+    CommunicationInformation_SendBattleRegulation();
     sub_02057AE4(0);
 
     ov23_02243AF0();
@@ -310,7 +310,7 @@ static void ov23_02249CE4 (void)
     sub_02059524();
 
     if (sub_02036834()) {
-        if (sub_0203608C() == 0) {
+        if (CommunicationSystem_GetCurNetId() == 0) {
             ov23_0224B598();
             ov23_02249C24(ov23_02249DBC, 60);
         } else {
@@ -330,7 +330,7 @@ static void ov23_02249D20 (void)
     if (sub_02033E68() || sub_020360F0() || (v0->unk_3C == 0)) {
         sub_020367F0();
         ov23_02249C24(ov23_02249FFC, 0);
-    } else if (sub_02035D78(sub_0203608C())) {
+    } else if (CommunicationSystem_IsPlayerConnected(CommunicationSystem_GetCurNetId())) {
         if (v0->unk_3C != 0) {
             v0->unk_3C--;
 
@@ -345,7 +345,7 @@ static void ov23_02249D20 (void)
         ov23_0224546C(0, 0, NULL, NULL);
         ov23_02244858(0, 1);
 
-        sub_02032D98(0);
+        CommunicationInformation_InitPlayer(0);
         sub_02057DB8(0, 0, 0);
         sub_02059570();
 
@@ -392,14 +392,14 @@ static void ov23_02249E18 (void)
         return;
     }
 
-    if (sub_020360F0() || !sub_02033E48() || ((!sub_02035D78(sub_0203608C()) && !sub_02036180()))) {
+    if (sub_020360F0() || !sub_02033E48() || ((!CommunicationSystem_IsPlayerConnected(CommunicationSystem_GetCurNetId()) && !sub_02036180()))) {
         ov23_0224B5CC(0);
         ov23_0224AA84();
         ov23_0224DA8C();
 
         Link_Message(43);
 
-        ov23_02244858(sub_0203608C(), 1);
+        ov23_02244858(CommunicationSystem_GetCurNetId(), 1);
         ov23_0224321C();
 
         sub_02036824();
@@ -432,7 +432,7 @@ static void ov23_02249EBC (void)
     UnkStruct_0205964C * v0 = sub_0205964C();
 
     if (v0->unk_3C == 9) {
-        sub_02032AC0();
+        CommunicationInformation_SendBattleRegulation();
         ov23_02243360();
     }
 
@@ -519,7 +519,7 @@ static void ov23_02249FD4 (void)
         return;
     }
 
-    if (sub_0203608C() == 0) {
+    if (CommunicationSystem_GetCurNetId() == 0) {
         ov23_02249C24(ov23_02249C34, 0);
     }
 }
@@ -533,7 +533,7 @@ static void ov23_02249FFC (void)
         return;
     }
 
-    if (sub_0203608C() == 0) {
+    if (CommunicationSystem_GetCurNetId() == 0) {
         ov23_02249C24(ov23_02249C34, 0);
     }
 }
@@ -547,9 +547,9 @@ static void ov23_0224A02C (void)
 {
     UnkStruct_0205964C * v0 = sub_0205964C();
 
-    if (sub_0203608C() == 0) {
+    if (CommunicationSystem_GetCurNetId() == 0) {
         ov23_02242D44(v0->unk_18);
-        sub_02032AC0();
+        CommunicationInformation_SendBattleRegulation();
         sub_02057AE4(0);
         ov23_02243AF0();
         ov23_0224C21C();
@@ -559,8 +559,8 @@ static void ov23_0224A02C (void)
 
 static void ov23_0224A064 (void)
 {
-    ov23_02244858(sub_0203608C(), 1);
-    ov23_0224D9AC(sub_0203608C(), 1);
+    ov23_02244858(CommunicationSystem_GetCurNetId(), 1);
+    ov23_0224D9AC(CommunicationSystem_GetCurNetId(), 1);
     ov23_0224160C();
     sub_020578B0();
     ov23_0224321C();

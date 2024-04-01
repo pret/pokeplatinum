@@ -289,7 +289,7 @@ static BOOL sub_0206BD1C (UnkStruct_020508D4 * param0)
     UnkStruct_0203CDB0 * v2 = sub_02050A60(param0);
     UnkStruct_0206BD88 * v3 = sub_02050A64(param0);
 
-    v1 = sub_0203664C(1 - sub_0203608C());
+    v1 = sub_0203664C(1 - CommunicationSystem_GetCurNetId());
 
     if (v1 == NULL) {
         return 0;

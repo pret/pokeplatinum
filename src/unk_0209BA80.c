@@ -110,7 +110,7 @@ static void sub_0209BA94 (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v2->unk_8D4++;
 
-    if (sub_0203608C() == param0) {
+    if (CommunicationSystem_GetCurNetId() == param0) {
         return;
     }
 
@@ -158,11 +158,11 @@ static void sub_0209BB34 (int param0, int param1, void * param2, void * param3)
     v0 = 0;
     v1->unk_8D4++;
 
-    if (sub_0203608C() == param0) {
+    if (CommunicationSystem_GetCurNetId() == param0) {
         return;
     }
 
-    if (sub_0203608C() == 0) {
+    if (CommunicationSystem_GetCurNetId() == 0) {
         return;
     }
 
@@ -181,7 +181,7 @@ static void sub_0209BB68 (int param0, int param1, void * param2, void * param3)
     v1->unk_8D8 = 0;
     v1->unk_8D4++;
 
-    if (sub_0203608C() == param0) {
+    if (CommunicationSystem_GetCurNetId() == param0) {
         return;
     }
 
@@ -219,7 +219,7 @@ void sub_0209BBEC (int param0, int param1, void * param2, void * param3)
 
     v1->unk_6F++;
 
-    if (sub_0203608C() == param0) {
+    if (CommunicationSystem_GetCurNetId() == param0) {
         return;
     }
 
@@ -254,7 +254,7 @@ void sub_0209BC3C (int param0, int param1, void * param2, void * param3)
     v0 = 0;
     v1->unk_6F++;
 
-    if (sub_0203608C() == param0) {
+    if (CommunicationSystem_GetCurNetId() == param0) {
         return;
     }
 
@@ -312,7 +312,7 @@ void sub_0209BD28 (int param0, int param1, void * param2, void * param3)
 
     v0->unk_6F++;
 
-    if (sub_0203608C() == param0) {
+    if (CommunicationSystem_GetCurNetId() == param0) {
         return;
     }
 
@@ -350,7 +350,7 @@ void sub_0209BD88 (int param0, int param1, void * param2, void * param3)
     v0 = 0;
     v1->unk_6F++;
 
-    if (sub_0203608C() == param0) {
+    if (CommunicationSystem_GetCurNetId() == param0) {
         return;
     }
 
@@ -383,7 +383,7 @@ void sub_0209BDD0 (int param0, int param1, void * param2, void * param3)
     v0 = 0;
     v1->unk_6F++;
 
-    if (sub_0203608C() == param0) {
+    if (CommunicationSystem_GetCurNetId() == param0) {
         return;
     }
 

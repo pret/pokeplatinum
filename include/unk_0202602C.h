@@ -8,7 +8,7 @@
 
 int sub_0202602C(void);
 int RegulationBattles_SaveSize(void);
-void sub_02026034(const BattleRegulation * param0, BattleRegulation * param1);
+void BattleRegulation_Copy(const BattleRegulation * param0, BattleRegulation * param1);
 void RegulationBattles_Init(UnkStruct_02026030 * param0);
 void sub_0202604C(const BattleRegulation * param0, Strbuf *param1);
 Strbuf* sub_0202605C(const BattleRegulation * param0, int param1);

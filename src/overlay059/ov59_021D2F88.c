@@ -187,7 +187,7 @@ void ov59_021D313C (SaveData * param0, const UnkStruct_ov59_021D30E0 * param1)
 
     v0.unk_00 = 51;
     v0.unk_04 = param0;
-    v0.unk_0C = sub_0203608C();
+    v0.unk_0C = CommunicationSystem_GetCurNetId();
     v0.unk_08 = 5;
     v0.unk_10 = v7;
     v0.unk_14 = v8;

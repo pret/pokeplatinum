@@ -1185,7 +1185,7 @@ static int ov97_0223161C (UnkStruct_020067E8 * param0, int * param1)
     case 18:
         v3 = 0;
 
-        if (sub_02035D78(0)) {
+        if (CommunicationSystem_IsPlayerConnected(0)) {
             sub_02034150(&v4->unk_04.unk_8C.unk_00);
 
             v3 = ov97_02231CA0(v4, &v4->unk_2A68[16]);

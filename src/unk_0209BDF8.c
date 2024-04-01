@@ -139,7 +139,7 @@ static void sub_0209BF24 (int param0, int param1, void * param2, void * param3)
 
 static void sub_0209BF2C (int param0, int param1, void * param2, void * param3)
 {
-    if (sub_0203608C() != 0) {
+    if (CommunicationSystem_GetCurNetId() != 0) {
         UnkStruct_0209BDF8 * v0 = param3;
 
         v0->unk_20 = 0;
@@ -162,7 +162,7 @@ static void sub_0209BF64 (int param0, int param1, void * param2, void * param3)
     UnkStruct_0209BF64 * v2 = param2;
 
     if (param0 != 0) {
-        if (sub_0203608C() == 0) {
+        if (CommunicationSystem_GetCurNetId() == 0) {
             v1 = *v2;
             v1.unk_00 = param0;
             v1.unk_01 = v0->unk_2C;
@@ -187,7 +187,7 @@ static void sub_0209BF64 (int param0, int param1, void * param2, void * param3)
     } else {
         switch (v2->unk_02) {
         case 0:
-            if (v2->unk_00 == sub_0203608C()) {
+            if (v2->unk_00 == CommunicationSystem_GetCurNetId()) {
                 if (v2->unk_03 == 0) {
                     ov109_021D5140(
                         v0->unk_00->unk_3C, 8, v2->unk_00);
@@ -213,7 +213,7 @@ static void sub_0209C040 (int param0, int param1, void * param2, void * param3)
     v1 = *(u8 *)param2;
     ov109_021D5258(v0->unk_00->unk_3C, 1, v1);
 
-    if (sub_0203608C() == 0) {
+    if (CommunicationSystem_GetCurNetId() == 0) {
         v0->unk_34 = 0;
     }
 }
@@ -222,7 +222,7 @@ static void sub_0209C060 (int param0, int param1, void * param2, void * param3)
 {
     UnkStruct_0209BDF8 * v0 = param3;
 
-    if (sub_0203608C() != 0) {
+    if (CommunicationSystem_GetCurNetId() != 0) {
         ov109_021D5140(v0->unk_00->unk_3C, 13, 0);
     }
 }
@@ -232,7 +232,7 @@ static void sub_0209C07C (int param0, int param1, void * param2, void * param3)
     u8 v0;
     UnkStruct_0209BDF8 * v1 = param3;
 
-    if (sub_0203608C() == 0) {
+    if (CommunicationSystem_GetCurNetId() == 0) {
         v0 = param0;
         sub_0209BEBC(v1, 0, &v0, 1);
     }
@@ -278,7 +278,7 @@ static void sub_0209C0E0 (int param0, int param1, void * param2, void * param3)
 
 static void sub_0209C0F0 (int param0, int param1, void * param2, void * param3)
 {
-    if (sub_0203608C() != 0) {
+    if (CommunicationSystem_GetCurNetId() != 0) {
         UnkStruct_0209BDF8 * v0 = param3;
         UnkStruct_0209C0F0 * v1 = param2;
 

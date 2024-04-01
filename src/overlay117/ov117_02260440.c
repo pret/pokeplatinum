@@ -139,7 +139,7 @@ static void ov117_022605D8 (UnkStruct_ov117_022605C0 * param0, UnkStruct_ov117_0
 {
     int v0, v1, v2, v3;
 
-    v3 = sub_0203608C();
+    v3 = CommunicationSystem_GetCurNetId();
     v2 = 0;
     v1 = 0;
 

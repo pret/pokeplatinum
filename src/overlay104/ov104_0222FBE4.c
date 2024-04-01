@@ -1848,7 +1848,7 @@ static BOOL ov104_02230DF0 (UnkStruct_ov104_0222E930 * param0)
     UnkStruct_ov104_02230BE4 * v0 = sub_0209B970(param0->unk_00->unk_00);
     u8 v1 = (*((param0)->unk_1C++));
 
-    sub_0200B498(param0->unk_00->unk_44, v1, sub_02032EE8((sub_0203608C() ^ 1)));
+    sub_0200B498(param0->unk_00->unk_44, v1, sub_02032EE8((CommunicationSystem_GetCurNetId() ^ 1)));
     return 0;
 }
 
@@ -2873,7 +2873,7 @@ static BOOL ov104_02231EFC (UnkStruct_ov104_0222E930 * param0)
     v3 = sub_0209B970(param0->unk_00->unk_00);
     v1 = SaveData_TVBroadcast(v3->unk_08);
     v0 = ov104_0222FC00(param0);
-    v2 = sub_02032EE8(1 - sub_0203608C());
+    v2 = sub_02032EE8(1 - CommunicationSystem_GetCurNetId());
 
     sub_0206D088(v1, v0, v2);
     return 0;

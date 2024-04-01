@@ -451,9 +451,9 @@ BOOL sub_0207AAFC (UnkStruct_0207A778 * param0)
     v0 = (UnkStruct_02027F8C *)&param0->unk_20[0];
 
     if (param0->unk_00->battleType & BATTLE_TYPE_FRONTIER) {
-        v1 = param0->unk_00->unk_D0[sub_0203608C() * 2];
+        v1 = param0->unk_00->unk_D0[CommunicationSystem_GetCurNetId() * 2];
     } else {
-        v1 = param0->unk_00->unk_D0[sub_0203608C()];
+        v1 = param0->unk_00->unk_D0[CommunicationSystem_GetCurNetId()];
     }
 
     sub_0207ADD4(v1, param0->unk_00->unk_124, (UnkStruct_02027F8C *)param0->unk_20);
@@ -675,7 +675,7 @@ void sub_0207AE34 (int param0, int param1, void * param2, void * param3)
 {
     UnkStruct_0207A778 * v0 = (UnkStruct_0207A778 *)param3;
 
-    if (sub_0203608C() != param0) {
+    if (CommunicationSystem_GetCurNetId() != param0) {
         sub_02027FEC(v0->unk_00->unk_124, (UnkStruct_02027F8C *)param2, 1, 5);
     }
 

@@ -987,7 +987,7 @@ BOOL sub_020943B0 (UnkStruct_02095C48 * param0)
     param0->unk_155 = 1;
 
     v0 = sub_02035E18();
-    v1 = sub_0203608C();
+    v1 = CommunicationSystem_GetCurNetId();
 
     {
         int v2;

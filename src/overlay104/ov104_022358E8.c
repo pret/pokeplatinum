@@ -403,11 +403,11 @@ BOOL ov104_02235BC0 (UnkStruct_ov104_0222E930 * param0)
         v10 = 0;
 
         if (v3->unk_A1B >= 6) {
-            if (sub_0203608C() != 0) {
+            if (CommunicationSystem_GetCurNetId() != 0) {
                 v10 = 1;
             }
         } else {
-            if (sub_0203608C() == 0) {
+            if (CommunicationSystem_GetCurNetId() == 0) {
                 v10 = 1;
             }
         }
@@ -423,11 +423,11 @@ BOOL ov104_02235BC0 (UnkStruct_ov104_0222E930 * param0)
 
         if (ov104_0223BA14(v3->unk_10) == 1) {
             if (v3->unk_A1B >= 6) {
-                if (sub_0203608C() == 0) {
+                if (CommunicationSystem_GetCurNetId() == 0) {
                     *v17 = 1;
                 }
             } else {
-                if (sub_0203608C() != 0) {
+                if (CommunicationSystem_GetCurNetId() != 0) {
                     *v17 = 1;
                 }
             }

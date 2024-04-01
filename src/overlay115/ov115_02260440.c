@@ -152,7 +152,7 @@ int ov115_0226048C (UnkStruct_020067E8 * param0, int * param1)
 
         GF_ASSERT(v0->unk_74 > 1);
 
-        v0->unk_44 = sub_0203608C();
+        v0->unk_44 = CommunicationSystem_GetCurNetId();
         v0->unk_46 = ov114_0225C76C(&v0->unk_08, v0->unk_44);
 
         if (v0->unk_44 == 0) {

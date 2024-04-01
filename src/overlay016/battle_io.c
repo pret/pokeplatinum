@@ -1528,7 +1528,7 @@ void ClearCommand (BattleSystem * param0, int param1, int param2)
     UnkStruct_ov16_02266ABC v0;
 
     v0.unk_00 = param2;
-    v0.unk_01 = sub_0203608C();
+    v0.unk_01 = CommunicationSystem_GetCurNetId();
 
     SendMessage(param0, 2, param1, &v0, sizeof(UnkStruct_ov16_02266ABC));
 }

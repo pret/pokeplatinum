@@ -688,7 +688,7 @@ void sub_0205AB10 (UnkStruct_0203CDB0 * param0, UnkFuncPtr_0205AB10 * param1)
     v0->unk_48 = NULL;
     v0->unk_50 = NULL;
     v0->unk_89 = 0;
-    v0->unk_86 = sub_0203608C();
+    v0->unk_86 = CommunicationSystem_GetCurNetId();
     v0->unk_74 = sub_02032EE8(v0->unk_86 ^ 1);
 
     switch (v0->unk_88) {
@@ -1087,7 +1087,7 @@ static BOOL sub_0205B140 (UnkStruct_020508D4 * param0)
 void sub_0205B2D4 (UnkStruct_0203CDB0 * param0)
 {
     int v0;
-    int v1 = sub_0203608C();
+    int v1 = CommunicationSystem_GetCurNetId();
     int v2 = sub_02058D88(v1);
     int v3 = sub_02058DC0(v1);
 

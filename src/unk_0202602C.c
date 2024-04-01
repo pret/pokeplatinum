@@ -23,7 +23,7 @@ int RegulationBattles_SaveSize (void)
     return sizeof(UnkStruct_02026030);
 }
 
-void sub_02026034 (const BattleRegulation * param0, BattleRegulation * param1)
+void BattleRegulation_Copy (const BattleRegulation * param0, BattleRegulation * param1)
 {
     MI_CpuCopy8(param0, param1, sizeof(BattleRegulation));
 }
@@ -119,5 +119,5 @@ void sub_0202613C (SaveData * param0, const BattleRegulation * param1)
     UnkStruct_02026030 * v0 = NULL;
 
     v0 = SaveData_SaveTable(param0, 13);
-    sub_02026034(param1, &v0->unk_00[0]);
+    BattleRegulation_Copy(param1, &v0->unk_00[0]);
 }

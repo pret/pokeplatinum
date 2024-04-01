@@ -79,7 +79,7 @@ static void ov97_0222D0B4 (void)
 {
     int v0;
 
-    if (!sub_02035D78(sub_0203608C())) {
+    if (!CommunicationSystem_IsPlayerConnected(CommunicationSystem_GetCurNetId())) {
         return;
     }
 
@@ -87,7 +87,7 @@ static void ov97_0222D0B4 (void)
         Unk_ov97_0223F1A4->unk_3C1[v0] = 0;
     }
 
-    sub_02032AC0();
+    CommunicationInformation_SendBattleRegulation();
     ov97_0222D0A4(ov97_0222D0F0, 0);
 }
 
@@ -96,7 +96,7 @@ static void ov97_0222D0F0 (void)
     int v0;
 
     for (v0 = 0; v0 < 16; v0++) {
-        if ((Unk_ov97_0223F1A4->unk_28[v0] == NULL) && (sub_02035D78(v0) == 1)) {
+        if ((Unk_ov97_0223F1A4->unk_28[v0] == NULL) && (CommunicationSystem_IsPlayerConnected(v0) == 1)) {
             Unk_ov97_0223F1A4->unk_28[v0] = sub_02032EE8(v0);
 
             if (Unk_ov97_0223F1A4->unk_28[v0]) {
@@ -134,7 +134,7 @@ static void ov97_0222D164 (void)
 
     Unk_ov97_0223F1A4->unk_3C0 = 0;
 
-    sub_02032AC0();
+    CommunicationInformation_SendBattleRegulation();
     sub_020364F0(0xAB);
 
     ov97_0222D0A4(ov97_0222D198, 0);

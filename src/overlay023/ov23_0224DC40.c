@@ -585,7 +585,7 @@ static void ov23_0224E2D8 (SysTask * param0, void * param1)
     u32 v1;
 
     if (v0->unk_37 != 17) {
-        if (!sub_02035D78(v0->unk_30)) {
+        if (!CommunicationSystem_IsPlayerConnected(v0->unk_30)) {
             v0->unk_04 = NULL;
             ov23_022535EC();
             v0->unk_37 = 4;
@@ -1080,7 +1080,7 @@ static void ov23_0224EC50 (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_022577B0 * v0 = param1;
 
-    if (!sub_02035D78(v0->unk_2C)) {
+    if (!CommunicationSystem_IsPlayerConnected(v0->unk_2C)) {
         ov23_022535EC();
         v0->unk_34 = 4;
     }
@@ -1315,7 +1315,7 @@ void ov23_0224F108 (int param0, int param1, void * param2, void * param3)
 {
     UnkStruct_ov23_0224DC40 * v0 = param2;
 
-    if ((sub_0203608C() == v0->unk_00) && (Unk_ov23_022577B0)) {
+    if ((CommunicationSystem_GetCurNetId() == v0->unk_00) && (Unk_ov23_022577B0)) {
         GF_ASSERT(param1 == sizeof(UnkStruct_ov23_0224DC40));
         Unk_ov23_022577B0->unk_35 = v0->unk_01;
     }
@@ -1325,7 +1325,7 @@ void ov23_0224F138 (int param0, int param1, void * param2, void * param3)
 {
     UnkStruct_ov23_0224DC40 * v0 = param2;
 
-    if ((sub_0203608C() == v0->unk_00) && (Unk_ov23_022577B4)) {
+    if ((CommunicationSystem_GetCurNetId() == v0->unk_00) && (Unk_ov23_022577B4)) {
         GF_ASSERT(param1 == sizeof(UnkStruct_ov23_0224DC40));
         GF_ASSERT(Unk_ov23_022577B4 != NULL);
 
@@ -1348,7 +1348,7 @@ void ov23_0224F184 (int param0, int param1, void * param2, void * param3)
     UnkStruct_ov23_022577B0 * v0 = Unk_ov23_022577B0;
     UnkStruct_ov23_0224F184 * v1 = param2;
 
-    if (sub_0203608C() != v1->unk_00) {
+    if (CommunicationSystem_GetCurNetId() != v1->unk_00) {
         return;
     }
 
@@ -1385,7 +1385,7 @@ void ov23_0224F208 (int param0, int param1, void * param2, void * param3)
     UnkStruct_ov23_0224E280 * v1 = Unk_ov23_022577B4;
     UnkStruct_ov23_0224DF1C * v2 = param2;
 
-    if (v2->unk_01 == sub_0203608C()) {
+    if (v2->unk_01 == CommunicationSystem_GetCurNetId()) {
         switch (v2->unk_02) {
         case 0:
             v0->unk_2E = v2->unk_00;

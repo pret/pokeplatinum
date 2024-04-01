@@ -62,7 +62,7 @@ void sub_02036464 (int param0, int param1, void * param2, void * param3)
     u8 v2[2];
     int v3;
 
-    if (sub_0203608C() == 0) {
+    if (CommunicationSystem_GetCurNetId() == 0) {
         v2[0] = param0;
         v2[1] = v1;
         sub_02035B48(18, &v2);
@@ -70,7 +70,7 @@ void sub_02036464 (int param0, int param1, void * param2, void * param3)
         Unk_021C07D0->unk_10[param0] = v1;
 
         for (v3 = 0; v3 < (7 + 1); v3++) {
-            if (sub_02035D78(v3)) {
+            if (CommunicationSystem_IsPlayerConnected(v3)) {
                 if (v1 != Unk_021C07D0->unk_10[v3]) {
                     return;
                 }

@@ -1647,7 +1647,7 @@ BattleParams * ov104_0223B250 (UnkStruct_ov104_0223B5C0 * param0, UnkStruct_ov10
     case 3:
         sub_02052894(v8);
 
-        v12 = sub_02032EE8(1 - sub_0203608C());
+        v12 = sub_02032EE8(1 - CommunicationSystem_GetCurNetId());
         TrainerInfo_Copy(v12, v8->unk_D0[2]);
 
         v11 = ov104_0222DD04(&v10, param0->unk_18[v6 + 1], 11, 178);

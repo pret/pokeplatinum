@@ -17,7 +17,7 @@ void sub_02050548 (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v2->unk_01++;
 
-    if (sub_0203608C() == param0) {
+    if (CommunicationSystem_GetCurNetId() == param0) {
         return;
     }
 

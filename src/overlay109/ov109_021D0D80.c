@@ -471,7 +471,7 @@ int ov109_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     {
         int v2 = 0, v3 = 0;
-        int v4 = sub_0203608C();
+        int v4 = CommunicationSystem_GetCurNetId();
         UnkStruct_ov109_021D2AE4 * v5 = &v0->unk_D4;
 
         do {
@@ -569,7 +569,7 @@ static int ov109_021D0F78 (UnkStruct_ov109_021D0F70 * param0)
 static int ov109_021D0F8C (UnkStruct_ov109_021D0F70 * param0)
 {
     if (ScreenWipe_Done()) {
-        if (sub_0203608C() == 0) {
+        if (CommunicationSystem_GetCurNetId() == 0) {
             param0->unk_00 = 2;
         } else {
             param0->unk_00 = 8;
@@ -868,7 +868,7 @@ static int ov109_021D1368 (UnkStruct_ov109_021D0F70 * param0)
     if (param0->unk_0C > 30) {
         param0->unk_0C = 0;
 
-        if (sub_0203608C() == 0) {
+        if (CommunicationSystem_GetCurNetId() == 0) {
             param0->unk_00 = 20;
         } else {
             param0->unk_00 = 21;
@@ -947,7 +947,7 @@ static int ov109_021D141C (UnkStruct_ov109_021D0F70 * param0)
 
 static int ov109_021D1450 (UnkStruct_ov109_021D0F70 * param0)
 {
-    if (sub_0203608C() == 0) {
+    if (CommunicationSystem_GetCurNetId() == 0) {
         param0->unk_00 = 27;
     } else {
         param0->unk_00 = 27;
@@ -1085,7 +1085,7 @@ static int ov109_021D1648 (UnkStruct_ov109_021D0F70 * param0)
 
     param0->unk_28 = ov109_021D2DF8(param0);
 
-    if (param0->unk_28->unk_0C == sub_0203608C()) {
+    if (param0->unk_28->unk_0C == CommunicationSystem_GetCurNetId()) {
         param0->unk_00 = 30;
     } else {
         param0->unk_00 = 31;
@@ -1103,7 +1103,7 @@ static int ov109_021D167C (UnkStruct_ov109_021D0F70 * param0)
     ov109_021D39FC(param0, ((FX32_ONE * 4)));
     param0->unk_28 = ov109_021D2DF8(param0);
 
-    if (param0->unk_28->unk_0C != sub_0203608C()) {
+    if (param0->unk_28->unk_0C != CommunicationSystem_GetCurNetId()) {
         param0->unk_00 = 31;
     }
 
@@ -1157,7 +1157,7 @@ static int ov109_021D1720 (UnkStruct_ov109_021D0F70 * param0)
 static int ov109_021D1734 (UnkStruct_ov109_021D0F70 * param0)
 {
     if (sub_02036540(202)) {
-        if (sub_0203608C() == 0) {
+        if (CommunicationSystem_GetCurNetId() == 0) {
             param0->unk_00 = 34;
         } else {
             param0->unk_00 = 35;
@@ -2076,7 +2076,7 @@ static void ov109_021D268C (UnkStruct_ov109_021D0F70 * param0, u32 param1, const
     UnkStruct_ov109_021D24F8 * v1 = &param0->unk_C9C;
     Window * v2 = &v1->unk_0C[0];
 
-    sub_0200B498(v1->unk_08, 1, sub_02032EE8(sub_0203608C()));
+    sub_0200B498(v1->unk_08, 1, sub_02032EE8(CommunicationSystem_GetCurNetId()));
     sub_0200B498(v1->unk_08, 2, param2);
 
     v0 = Strbuf_Init(0x100, 95);
@@ -2157,7 +2157,7 @@ static void ov109_021D2874 (UnkStruct_ov109_021D0F70 * param0, Strbuf *param1, i
 {
     u32 v0 = ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
 
-    if (param3 == sub_0203608C()) {
+    if (param3 == CommunicationSystem_GetCurNetId()) {
         v0 = ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0)));
     }
 
@@ -3465,7 +3465,7 @@ void ov109_021D3B24 (UnkStruct_ov109_021D0F70 * param0, const UnkStruct_ov109_02
 {
     param0->unk_2C.unk_44[param1->unk_00] = *param1;
 
-    if (param1->unk_02 == sub_0203608C()) {
+    if (param1->unk_02 == CommunicationSystem_GetCurNetId()) {
         param0->unk_2C.unk_00 = param1->unk_00;
     }
 }
@@ -3503,7 +3503,7 @@ static void ov109_021D3B70 (UnkStruct_ov109_021D0F70 * param0, int param1)
     v4 = Party_GetPokemonBySlotIndex(v2, v0);
     v5 = Party_GetPokemonBySlotIndex(v3, v1);
 
-    sub_0209304C(v5, sub_02032EE8(sub_0203608C()), 5, 0, 11);
+    sub_0209304C(v5, sub_02032EE8(CommunicationSystem_GetCurNetId()), 5, 0, 11);
     Pokemon_Copy(v5, v4);
 }
 

@@ -447,8 +447,8 @@ BOOL ov70_02265F38 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
         ov66_0222E3E4(ov70_0225DEE8(param1), v1->unk_03);
 
         sub_02038B40();
-        sub_020329E0(ov66_0222E0C4(ov70_0225DEE8(param1)), NULL);
-        sub_020331F4(ov66_0222E918(v2));
+        CommunicationInformation_Init(ov66_0222E0C4(ov70_0225DEE8(param1)), NULL);
+        CommunicationInformation_SetPersonalTrainerInfo(ov66_0222E918(v2));
         sub_0203632C(0);
         ov70_02266B18(v0, param0, 10, 17);
         break;
@@ -456,8 +456,8 @@ BOOL ov70_02265F38 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
         ov70_02266CCC(&v0->unk_3C, 0);
         ov70_02266CF0(&v0->unk_3C, param1, 0);
 
-        sub_02032AC0();
-        sub_02032E1C(sub_0203608C());
+        CommunicationInformation_SendBattleRegulation();
+        sub_02032E1C(CommunicationSystem_GetCurNetId());
 
         ov70_02262E88(param0, 11);
         break;
@@ -509,7 +509,7 @@ BOOL ov70_02265F38 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
         ov70_02266CF0(&v0->unk_3C, param1, 0);
 
         v0->unk_0C = ov66_0222E344(v2);
-        v15 = sub_02036614(sub_0203608C(), &v0->unk_0C);
+        v15 = sub_02036614(CommunicationSystem_GetCurNetId(), &v0->unk_0C);
 
         if (v15 == 1) {
             ov70_02262E88(param0, 14);
@@ -530,7 +530,7 @@ BOOL ov70_02265F38 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
             s32 v22;
 
             v17 = sub_02032E64();
-            v18 = sub_0203608C();
+            v18 = CommunicationSystem_GetCurNetId();
             v20 = 0;
             v21 = 0;
             v22 = ov66_02233340();
@@ -706,7 +706,7 @@ BOOL ov70_02265F38 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
     }
     break;
     case 23:
-        sub_02032A70();
+        CommunicationInformation_Delete();
         sub_0203888C();
         ov70_02262E88(param0, 24);
         break;
@@ -769,7 +769,7 @@ BOOL ov70_022669B8 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
         sub_020388F4(0, 0);
 
         if (sub_020382C0() == 0) {
-            sub_02032A70();
+            CommunicationInformation_Delete();
             sub_0203888C();
         }
 

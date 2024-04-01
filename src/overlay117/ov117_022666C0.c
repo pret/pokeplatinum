@@ -58,7 +58,7 @@ void ov117_022666E8 (UnkStruct_ov117_02261280 * param0, const UnkStruct_ov117_02
 
 static void ov117_02266714 (UnkStruct_ov117_02261280 * param0, const UnkStruct_ov117_022621D4 * param1)
 {
-    if (param1->unk_04_val4.unk_00 == sub_0203608C()) {
+    if (param1->unk_04_val4.unk_00 == CommunicationSystem_GetCurNetId()) {
         return;
     }
 
