@@ -6,17 +6,16 @@
 #include "struct_decls/sys_task.h"
 #include "overlay025/struct_ov25_0225424C_decl.h"
 #include "overlay025/struct_ov25_02255B34_decl.h"
-#include "overlay036/struct_ov36_02256404_decl.h"
+#include "overlay036/poketch_app_pedometer.h"
 
 #include "struct_defs/union_02022594_020225E0.h"
-#include "overlay036/struct_ov36_02256404_1.h"
 
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "poketch_data.h"
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay025/ov25_02255ACC.h"
-#include "overlay036/ov36_02256404.h"
+#include "overlay036/poketch_app_pedometer.h"
 
 typedef struct {
     u8 unk_00;

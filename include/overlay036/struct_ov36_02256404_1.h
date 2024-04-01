@@ -1,9 +1,0 @@
-#ifndef POKEPLATINUM_STRUCT_OV36_02256404_1_H
-#define POKEPLATINUM_STRUCT_OV36_02256404_1_H
-
-typedef struct {
-    u32 unk_00;
-    u32 unk_04;
-} UnkStruct_ov36_02256404_1;
-
-#endif // POKEPLATINUM_STRUCT_OV36_02256404_1_H
