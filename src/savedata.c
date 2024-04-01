@@ -288,7 +288,7 @@ void SaveData_SaveStateCancel (SaveData *saveData)
 
 static void SaveData_CheckInfoInit (SaveCheckInfo *checkInfo)
 {
-    checkInfo->isValid = FALSE;
+    checkInfo->valid = FALSE;
     checkInfo->globalCounter = 0;
     checkInfo->blockCounter = 0;
 }
@@ -360,7 +360,7 @@ static void SaveBlockFooter_CheckInfo (SaveCheckInfo *checkInfo, SaveData *saveD
 {
     SaveBlockFooter *footer = SaveBlockFooter_Ptr(saveData, bodyAddress, blockID);
 
-    checkInfo->isValid = SaveBlockFooter_Validate(saveData, bodyAddress, blockID);
+    checkInfo->valid = SaveBlockFooter_Validate(saveData, bodyAddress, blockID);
     checkInfo->globalCounter = footer->saveCounter;
     checkInfo->blockCounter = footer->blockCounter;
 }
@@ -399,7 +399,7 @@ static int SaveCheckInfo_CompareSectors (const SaveCheckInfo *checkInfo1, const 
     int globalDiff = SaveCheckInfo_CompareCounters(checkInfo1->globalCounter, checkInfo2->globalCounter);
     int blockDiff = SaveCheckInfo_CompareCounters(checkInfo1->blockCounter, checkInfo2->blockCounter);
 
-    if (checkInfo1->isValid && checkInfo2->isValid) {
+    if (checkInfo1->valid && checkInfo2->valid) {
         if (globalDiff > 0) {
             GF_ASSERT(blockDiff > 0);
             *currentSector = SECTOR_ID_PRIMARY;
@@ -421,11 +421,11 @@ static int SaveCheckInfo_CompareSectors (const SaveCheckInfo *checkInfo1, const 
 
         return SECTOR_RESULT_VALID;
 
-    } else if (checkInfo1->isValid && !checkInfo2->isValid) {
+    } else if (checkInfo1->valid && !checkInfo2->valid) {
         *currentSector = SECTOR_ID_PRIMARY;
         *staleSector = SECTOR_ID_ERROR;
         return SECTOR_RESULT_PARTIAL_VALID;
-    } else if (!checkInfo1->isValid && checkInfo2->isValid) {
+    } else if (!checkInfo1->valid && checkInfo2->valid) {
         *currentSector = SECTOR_ID_BACKUP;
         *staleSector = SECTOR_ID_ERROR;
         return SECTOR_RESULT_PARTIAL_VALID;

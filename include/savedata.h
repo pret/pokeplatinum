@@ -63,7 +63,7 @@ typedef struct SaveData {
 } SaveData;
 
 typedef struct SaveCheckInfo {
-    BOOL isValid;
+    BOOL valid;
     u32 globalCounter;
     u32 blockCounter;
 } SaveCheckInfo;
