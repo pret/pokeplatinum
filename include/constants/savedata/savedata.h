@@ -24,8 +24,9 @@ enum SaveSectorResult {
 enum SaveSectorID {
 	SECTOR_ID_PRIMARY = 0,
 	SECTOR_ID_BACKUP,
+	SECTOR_ID_ERROR,
 
-	SECTOR_ID_MAX = 2,	// also used to indicate an error
+	SECTOR_ID_MAX = SECTOR_ID_ERROR,
 };
 
 

@@ -39,10 +39,10 @@ typedef struct SaveDataState {
     int currentBlock;
     int endBlock;
     s32 lockID;
-    int stateSequence;
+    int mainSequence;
     u32 globalCounterBackup;
     u32 blockCounterBackup[SAVE_BLOCK_ID_MAX];
-    volatile BOOL isLocked;
+    volatile BOOL locked;
 } SaveDataState;
 
 typedef struct SaveData {
@@ -57,7 +57,7 @@ typedef struct SaveData {
     u8 blockOffsets[SAVE_BLOCK_ID_MAX];
     SavePageInfo pageInfo[SAVE_TABLE_ENTRY_MAX];
     SaveBlockInfo blockInfo[SAVE_BLOCK_ID_MAX];
-    SaveDataState saveState;
+    SaveDataState state;
     int unk_202C4;
     u32 unk_202C8;
 } SaveData;

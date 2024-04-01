@@ -23,10 +23,10 @@ static BOOL SaveDataState_Save(SaveData *saveData);
 static BOOL SaveDataState_Load(SaveData *saveData);
 static int SaveData_LoadCheck(SaveData *saveData);
 static void SaveDataExtra_LoadCheck(SaveData *saveData, int *frontierResult, int *videoResult);
-static void SaveDataState_Init(SaveData *saveData, SaveDataState *saveState, int blockID);
-static int SaveDataState_Main(SaveData *saveData, SaveDataState *saveState);
-static void SaveDataState_End(SaveData *saveData, SaveDataState *saveState, int saveResult);
-static void SaveDataState_Cancel(SaveData *saveData, SaveDataState *saveState);
+static void SaveDataState_Init(SaveData *saveData, SaveDataState *state, int blockID);
+static int SaveDataState_Main(SaveData *saveData, SaveDataState *state);
+static void SaveDataState_End(SaveData *saveData, SaveDataState *state, int saveResult);
+static void SaveDataState_Cancel(SaveData *saveData, SaveDataState *state);
 static BOOL SaveBlockFooter_Erase(const SaveData *saveData, int blockID, int sectorID);
 static s32 sub_02025B3C(u32 param0, void * param1, u32 param2);
 static BOOL sub_02025BB8(s32 param0, BOOL param1, BOOL * param2);
@@ -267,15 +267,15 @@ void SaveData_SetFullSaveRequired (void)
 
 void SaveData_SaveStateInit (SaveData *saveData, int blockID)
 {
-    SaveDataState_Init(saveData, &saveData->saveState, blockID);
+    SaveDataState_Init(saveData, &saveData->state, blockID);
 }
 
 int SaveData_SaveStateMain (SaveData *saveData)
 {
-    int saveResult = SaveDataState_Main(saveData, &saveData->saveState);
+    int saveResult = SaveDataState_Main(saveData, &saveData->state);
 
-    if ((saveResult != SAVE_RESULT_PROCEED) && (saveResult != SAVE_RESULT_PROCEED_FINAL)) {
-        SaveDataState_End(saveData, &saveData->saveState, saveResult);
+    if (saveResult != SAVE_RESULT_PROCEED && saveResult != SAVE_RESULT_PROCEED_FINAL) {
+        SaveDataState_End(saveData, &saveData->state, saveResult);
     }
 
     return saveResult;
@@ -283,7 +283,7 @@ int SaveData_SaveStateMain (SaveData *saveData)
 
 void SaveData_SaveStateCancel (SaveData *saveData)
 {
-    SaveDataState_Cancel(saveData, &saveData->saveState);
+    SaveDataState_Cancel(saveData, &saveData->state);
 }
 
 static void SaveData_CheckInfoInit (SaveCheckInfo *checkInfo)
@@ -367,8 +367,8 @@ static void SaveBlockFooter_CheckInfo (SaveCheckInfo *checkInfo, SaveData *saveD
 
 static void SaveBlockFooter_Set (SaveData *saveData, u32 bodyAddress, int blockID)
 {
-    const SaveBlockInfo * blockInfo = &saveData->blockInfo[blockID];
-    SaveBlockFooter * footer = SaveBlockFooter_Ptr(saveData, bodyAddress, blockID);
+    const SaveBlockInfo *blockInfo = &saveData->blockInfo[blockID];
+    SaveBlockFooter *footer = SaveBlockFooter_Ptr(saveData, bodyAddress, blockID);
     u32 startAddress = bodyAddress + blockInfo->offset;
 
     footer->saveCounter = saveData->globalCounter;
@@ -381,9 +381,9 @@ static void SaveBlockFooter_Set (SaveData *saveData, u32 bodyAddress, int blockI
 
 static int SaveCheckInfo_CompareCounters (u32 counter1, u32 counter2)
 {
-    if ((counter1 == 0xffffffff) && (counter2 == 0)) {
+    if (counter1 == 0xffffffff && counter2 == 0) {
         return -1;
-    } else if ((counter1 == 0) && (counter2 == 0xffffffff)) {
+    } else if (counter1 == 0 && counter2 == 0xffffffff) {
         return 1;
     } else if (counter1 > counter2) {
         return 1;
@@ -423,15 +423,15 @@ static int SaveCheckInfo_CompareSectors (const SaveCheckInfo *checkInfo1, const 
 
     } else if (checkInfo1->isValid && !checkInfo2->isValid) {
         *currentSector = SECTOR_ID_PRIMARY;
-        *staleSector = SECTOR_ID_MAX;
+        *staleSector = SECTOR_ID_ERROR;
         return SECTOR_RESULT_PARTIAL_VALID;
     } else if (!checkInfo1->isValid && checkInfo2->isValid) {
         *currentSector = SECTOR_ID_BACKUP;
-        *staleSector = SECTOR_ID_MAX;
+        *staleSector = SECTOR_ID_ERROR;
         return SECTOR_RESULT_PARTIAL_VALID;
     } else {
-        *currentSector = SECTOR_ID_MAX;
-        *staleSector = SECTOR_ID_MAX;
+        *currentSector = SECTOR_ID_ERROR;
+        *staleSector = SECTOR_ID_ERROR;
         return SECTOR_RESULT_INVALID;
     }
 }
@@ -449,8 +449,8 @@ static int SaveData_LoadCheck (SaveData *saveData)
 {
     SaveCheckInfo normalInfo[SECTOR_ID_MAX];
     SaveCheckInfo boxInfo[SECTOR_ID_MAX];
-    u8* primaryBuffer;
-    u8* backupBuffer;
+    u8 *primaryBuffer;
+    u8 *backupBuffer;
     int normalResult, boxResult;
     int currNormalSector, currBoxSector, staleNormalSector, staleBoxSector;
 
@@ -479,15 +479,15 @@ static int SaveData_LoadCheck (SaveData *saveData)
     normalResult = SaveCheckInfo_CompareSectors(&normalInfo[SECTOR_ID_PRIMARY], &normalInfo[SECTOR_ID_BACKUP], &currNormalSector, &staleNormalSector);
     boxResult = SaveCheckInfo_CompareSectors(&boxInfo[SECTOR_ID_PRIMARY], &boxInfo[SECTOR_ID_BACKUP], &currBoxSector, &staleBoxSector);
 
-    if ((normalResult == SECTOR_RESULT_INVALID) && (boxResult == SECTOR_RESULT_INVALID)) {
+    if (normalResult == SECTOR_RESULT_INVALID && boxResult == SECTOR_RESULT_INVALID) {
         return LOAD_RESULT_EMPTY;
     }
 
-    if ((normalResult == SECTOR_RESULT_INVALID) || (boxResult == SECTOR_RESULT_INVALID)) {
+    if (normalResult == SECTOR_RESULT_INVALID || boxResult == SECTOR_RESULT_INVALID) {
         return LOAD_RESULT_ERROR;
     }
 
-    if ((normalResult == SECTOR_RESULT_VALID) && (boxResult == SECTOR_RESULT_VALID)) {
+    if (normalResult == SECTOR_RESULT_VALID && boxResult == SECTOR_RESULT_VALID) {
         if (normalInfo[currNormalSector].globalCounter == boxInfo[currBoxSector].globalCounter) {
             SaveData_SetBlockCheckInfo(saveData, normalInfo, boxInfo, currNormalSector, currBoxSector);
             return LOAD_RESULT_OK;
@@ -497,7 +497,7 @@ static int SaveData_LoadCheck (SaveData *saveData)
         }
     }
 
-    if ((normalResult == SECTOR_RESULT_PARTIAL_VALID) && (boxResult == SECTOR_RESULT_VALID)) {
+    if (normalResult == SECTOR_RESULT_PARTIAL_VALID && boxResult == SECTOR_RESULT_VALID) {
         if (normalInfo[currNormalSector].globalCounter == boxInfo[currBoxSector].globalCounter) {
             SaveData_SetBlockCheckInfo(saveData, normalInfo, boxInfo, currNormalSector, currBoxSector);
             return LOAD_RESULT_CORRUPT;
@@ -509,7 +509,7 @@ static int SaveData_LoadCheck (SaveData *saveData)
         return LOAD_RESULT_ERROR;
     }
 
-    if ((normalResult == SECTOR_RESULT_VALID) && (boxResult == SECTOR_RESULT_PARTIAL_VALID)) {
+    if (normalResult == SECTOR_RESULT_VALID && boxResult == SECTOR_RESULT_PARTIAL_VALID) {
         if (normalInfo[currNormalSector].globalCounter == boxInfo[currBoxSector].globalCounter) {
             SaveData_SetBlockCheckInfo(saveData, normalInfo, boxInfo, currNormalSector, currBoxSector);
             return LOAD_RESULT_OK;
@@ -519,7 +519,9 @@ static int SaveData_LoadCheck (SaveData *saveData)
         }
     }
 
-    if ((normalResult == SECTOR_RESULT_PARTIAL_VALID) && (boxResult == SECTOR_RESULT_PARTIAL_VALID) && (currNormalSector == currBoxSector)) {
+    if (normalResult == SECTOR_RESULT_PARTIAL_VALID 
+        && boxResult == SECTOR_RESULT_PARTIAL_VALID 
+        && currNormalSector == currBoxSector) {
         GF_ASSERT(normalInfo[currNormalSector].globalCounter == boxInfo[currBoxSector].globalCounter);
         SaveData_SetBlockCheckInfo(saveData, normalInfo, boxInfo, currNormalSector, currBoxSector);
         return LOAD_RESULT_OK;
@@ -612,8 +614,8 @@ static BOOL SaveDataState_Load (SaveData *saveData)
 static s32 SaveDataState_InitBlock (SaveData *saveData, int blockID, u8 sectorID)
 {
     u32 saveOffset;
-    u8* bodyOffset;
-    const SaveBlockInfo* blockInfo = &saveData->blockInfo[blockID];
+    u8 *bodyOffset;
+    const SaveBlockInfo *blockInfo = &saveData->blockInfo[blockID];
 
     SaveBlockFooter_Set(saveData, (u32)saveData->body.data, blockID);
 
@@ -626,8 +628,8 @@ static s32 SaveDataState_InitBlock (SaveData *saveData, int blockID, u8 sectorID
 static s32 SaveDataState_InitFooter (SaveData *saveData, int blockID, u8 sectorID)
 {
     u32 saveOffset;
-    u8* bodyOffset;
-    const SaveBlockInfo* blockInfo = &saveData->blockInfo[blockID];
+    u8 *bodyOffset;
+    const SaveBlockInfo *blockInfo = &saveData->blockInfo[blockID];
 
     saveOffset = SaveData_SaveOffset(sectorID, blockInfo) + blockInfo->size - sizeof(SaveBlockFooter);
     bodyOffset = saveData->body.data + blockInfo->offset + blockInfo->size - sizeof(SaveBlockFooter);
@@ -638,8 +640,8 @@ static s32 SaveDataState_InitFooter (SaveData *saveData, int blockID, u8 sectorI
 static s32 sub_02024E98 (SaveData *saveData, int blockID, u8 sectorID)
 {
     u32 saveOffset;
-    u8* bodyOffset;
-    const SaveBlockInfo* blockInfo = &saveData->blockInfo[blockID];
+    u8 *bodyOffset;
+    const SaveBlockInfo *blockInfo = &saveData->blockInfo[blockID];
 
     saveOffset = SaveData_SaveOffset(sectorID, blockInfo) + blockInfo->size - sizeof(SaveBlockFooter) + 8;
     bodyOffset = saveData->body.data + blockInfo->offset + blockInfo->size - sizeof(SaveBlockFooter) + 8;
@@ -647,125 +649,125 @@ static s32 sub_02024E98 (SaveData *saveData, int blockID, u8 sectorID)
     return sub_02025B3C(saveOffset, bodyOffset, 8);
 }
 
-static void SaveDataState_Init (SaveData *saveData, SaveDataState *saveState, int blockID)
+static void SaveDataState_Init (SaveData *saveData, SaveDataState *state, int blockID)
 {
     int blockIndex;
 
     for (blockIndex = 0; blockIndex < SAVE_BLOCK_ID_MAX; blockIndex++) {
-        saveState->blockCounterBackup[blockIndex] = saveData->blockCounters[blockIndex];
+        state->blockCounterBackup[blockIndex] = saveData->blockCounters[blockIndex];
         saveData->blockCounters[blockIndex]++;
     }
 
-    saveState->stateSequence = 0;
-    saveState->fullSaveMode = FALSE;
-    saveState->isLocked = FALSE;
+    state->mainSequence = 0;
+    state->fullSaveMode = FALSE;
+    state->locked = FALSE;
 
     if (blockID == SAVE_BLOCK_ID_MAX) {
         if (saveData->fullSaveRequired) {
-            saveState->fullSaveMode = TRUE;
-            saveState->globalCounterBackup = saveData->globalCounter;
+            state->fullSaveMode = TRUE;
+            state->globalCounterBackup = saveData->globalCounter;
             saveData->globalCounter++;
 
-            saveState->startBlock = SAVE_BLOCK_ID_NORMAL;
-            saveState->currentBlock = SAVE_BLOCK_ID_NORMAL;
-            saveState->endBlock = SAVE_BLOCK_ID_MAX;
+            state->startBlock = SAVE_BLOCK_ID_NORMAL;
+            state->currentBlock = SAVE_BLOCK_ID_NORMAL;
+            state->endBlock = SAVE_BLOCK_ID_MAX;
         } else {
-            saveState->startBlock = SAVE_BLOCK_ID_NORMAL;
-            saveState->currentBlock = SAVE_BLOCK_ID_NORMAL;
-            saveState->endBlock = SAVE_BLOCK_ID_NORMAL + 1;
+            state->startBlock = SAVE_BLOCK_ID_NORMAL;
+            state->currentBlock = SAVE_BLOCK_ID_NORMAL;
+            state->endBlock = SAVE_BLOCK_ID_NORMAL + 1;
         }
     } else {
-        saveState->startBlock = blockID;
-        saveState->currentBlock = blockID;
-        saveState->endBlock = blockID + 1;
+        state->startBlock = blockID;
+        state->currentBlock = blockID;
+        state->endBlock = blockID + 1;
     }
 
     SleepLock(1);
 }
 
-static int SaveDataState_Main (SaveData *saveData, SaveDataState *saveState)
+static int SaveDataState_Main (SaveData *saveData, SaveDataState *state)
 {
     BOOL saveResult;
 
-    switch (saveState->stateSequence) {
+    switch (state->mainSequence) {
     case 0:
-        saveState->lockID = SaveDataState_InitBlock(saveData, saveState->currentBlock, !saveData->blockOffsets[saveState->currentBlock]);
-        saveState->isLocked = TRUE;
-        saveState->stateSequence++;
+        state->lockID = SaveDataState_InitBlock(saveData, state->currentBlock, !saveData->blockOffsets[state->currentBlock]);
+        state->locked = TRUE;
+        state->mainSequence++;
     case 1:
-        if (sub_02025BB8(saveState->lockID, saveState->isLocked, &saveResult) == FALSE) {
+        if (sub_02025BB8(state->lockID, state->locked, &saveResult) == FALSE) {
             break;
         }
 
-        saveState->isLocked = FALSE;
+        state->locked = FALSE;
 
         if (!saveResult) {
             return SAVE_RESULT_CORRUPT;
         }
 
-        saveState->stateSequence++;
+        state->mainSequence++;
     case 2:
-        saveState->lockID = sub_02024E98(saveData, saveState->currentBlock, !saveData->blockOffsets[saveState->currentBlock]);
-        saveState->isLocked = TRUE;
-        saveState->stateSequence++;
+        state->lockID = sub_02024E98(saveData, state->currentBlock, !saveData->blockOffsets[state->currentBlock]);
+        state->locked = TRUE;
+        state->mainSequence++;
     case 3:
-        if (sub_02025BB8(saveState->lockID, saveState->isLocked, &saveResult) == FALSE) {
+        if (sub_02025BB8(state->lockID, state->locked, &saveResult) == FALSE) {
             break;
         }
 
-        saveState->isLocked = FALSE;
+        state->locked = FALSE;
 
         if (!saveResult) {
             return SAVE_RESULT_CORRUPT;
         }
 
-        saveState->stateSequence++;
+        state->mainSequence++;
 
-        if (saveState->currentBlock + 1 == saveState->endBlock) {
+        if (state->currentBlock + 1 == state->endBlock) {
             return SAVE_RESULT_PROCEED_FINAL;
         }
     case 4:
-        saveState->lockID = SaveDataState_InitFooter(saveData, saveState->currentBlock, !saveData->blockOffsets[saveState->currentBlock]);
-        saveState->isLocked = TRUE;
-        saveState->stateSequence++;
+        state->lockID = SaveDataState_InitFooter(saveData, state->currentBlock, !saveData->blockOffsets[state->currentBlock]);
+        state->locked = TRUE;
+        state->mainSequence++;
     case 5:
-        if (sub_02025BB8(saveState->lockID, saveState->isLocked, &saveResult) == FALSE) {
+        if (sub_02025BB8(state->lockID, state->locked, &saveResult) == FALSE) {
             break;
         }
 
-        saveState->isLocked = FALSE;
+        state->locked = FALSE;
 
         if (!saveResult) {
             return SAVE_RESULT_CORRUPT;
         }
 
-        saveState->currentBlock++;
+        state->currentBlock++;
 
-        if (saveState->currentBlock == saveState->endBlock) {
+        if (state->currentBlock == state->endBlock) {
             return SAVE_RESULT_OK;
         }
 
-        saveState->stateSequence = 0;
+        state->mainSequence = 0;
         break;
     }
 
     return 0;
 }
 
-static void SaveDataState_End (SaveData *saveData, SaveDataState *saveState, int saveResult)
+static void SaveDataState_End (SaveData *saveData, SaveDataState *state, int saveResult)
 {
     int i;
 
     if (saveResult == SAVE_RESULT_CORRUPT) {
-        if (saveState->fullSaveMode) {
-            saveData->globalCounter = saveState->globalCounterBackup;
+        if (state->fullSaveMode) {
+            saveData->globalCounter = state->globalCounterBackup;
         }
 
         for (i = 0; i < SAVE_BLOCK_ID_MAX; i++) {
-            saveData->blockCounters[i] = saveState->blockCounterBackup[i];
+            saveData->blockCounters[i] = state->blockCounterBackup[i];
         }
     } else {
-        for (i = saveState->startBlock; i < saveState->endBlock; i++) {
+        for (i = state->startBlock; i < state->endBlock; i++) {
             saveData->blockOffsets[i] = !saveData->blockOffsets[i];
         }
 
@@ -777,26 +779,26 @@ static void SaveDataState_End (SaveData *saveData, SaveDataState *saveState, int
     SleepUnlock(1);
 }
 
-static void SaveDataState_Cancel (SaveData *saveData, SaveDataState *saveState)
+static void SaveDataState_Cancel (SaveData *saveData, SaveDataState *state)
 {
     int i;
 
-    if (saveState->fullSaveMode) {
-        saveData->globalCounter = saveState->globalCounterBackup;
+    if (state->fullSaveMode) {
+        saveData->globalCounter = state->globalCounterBackup;
     }
 
     for (i = 0; i < SAVE_BLOCK_ID_MAX; i++) {
-        saveData->blockCounters[i] = saveState->blockCounterBackup[i];
+        saveData->blockCounters[i] = state->blockCounterBackup[i];
     }
 
     if (!CARD_TryWaitBackupAsync()) {
         CARD_CancelBackupAsync();
     }
 
-    if (saveState->isLocked) {
-        CARD_UnlockBackup(saveState->lockID);
-        OS_ReleaseLockID(saveState->lockID);
-        saveState->isLocked = FALSE;
+    if (state->locked) {
+        CARD_UnlockBackup(state->lockID);
+        OS_ReleaseLockID(state->lockID);
+        state->locked = FALSE;
     }
 
     SleepUnlock(1);
@@ -805,15 +807,15 @@ static void SaveDataState_Cancel (SaveData *saveData, SaveDataState *saveState)
 BOOL SaveDataState_Save (SaveData *saveData)
 {
     int saveResult;
-    SaveDataState saveState;
+    SaveDataState state;
 
-    SaveDataState_Init(saveData, &saveState, SAVE_BLOCK_ID_MAX);
+    SaveDataState_Init(saveData, &state, SAVE_BLOCK_ID_MAX);
 
     do {
-        saveResult = SaveDataState_Main(saveData, &saveState);
+        saveResult = SaveDataState_Main(saveData, &state);
     } while (saveResult == SAVE_RESULT_PROCEED || saveResult == SAVE_RESULT_PROCEED_FINAL);
 
-    SaveDataState_End(saveData, &saveState, saveResult);
+    SaveDataState_End(saveData, &state, saveResult);
     return saveResult;
 }
 
@@ -821,7 +823,7 @@ static BOOL SaveBlockFooter_Erase (const SaveData *saveData, int blockID, int se
 {
     u32 saveOffset;
     SaveBlockFooter footer;
-    const SaveBlockInfo* blockInfo = &saveData->blockInfo[blockID];
+    const SaveBlockInfo *blockInfo = &saveData->blockInfo[blockID];
 
     MI_CpuFill8(&footer, 0xff, sizeof(SaveBlockFooter));
     saveOffset = SaveData_SaveOffset(sectorID, blockInfo) + blockInfo->size - sizeof(SaveBlockFooter);
@@ -832,7 +834,7 @@ static BOOL SaveBlockFooter_Erase (const SaveData *saveData, int blockID, int se
 int SaveTableEntry_BodySize (int saveTableID)
 {
     int size;
-    const SaveTableEntry* saveTable = gSaveTable;
+    const SaveTableEntry *saveTable = gSaveTable;
 
     GF_ASSERT(saveTableID < gSaveTableSize);
     size = saveTable[saveTableID].sizeFunc();
