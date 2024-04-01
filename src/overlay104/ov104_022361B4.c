@@ -524,7 +524,7 @@ void ov104_02236C50 (UnkStruct_ov104_0223BA10 * param0)
     int v2, v3;
     Pokemon * v4;
 
-    if (CommSys_GetCurNetId() == 0) {
+    if (CommSys_CurNetId() == 0) {
         v0 = 0;
     } else {
         v0 = 2;
@@ -570,7 +570,7 @@ int ov104_02236D10 (UnkStruct_ov104_0223BA10 * param0)
     param0->unk_12 = 0;
     v8 = 0;
 
-    if (CommSys_GetCurNetId() == 0) {
+    if (CommSys_CurNetId() == 0) {
         v2 = 0;
     } else {
         v2 = 2;
@@ -751,7 +751,7 @@ void ov104_022370E0 (UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10
         GF_ASSERT(param0->unk_A8 != NULL);
         GF_ASSERT(param0->unk_AC != NULL);
 
-        if (CommSys_GetCurNetId() == 0) {
+        if (CommSys_CurNetId() == 0) {
             v0 = param0->unk_A8;
             v1 = param0->unk_AC;
         } else {
@@ -783,7 +783,7 @@ void ov104_02237180 (UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10
         GF_ASSERT(param0->unk_A8 != NULL);
         GF_ASSERT(param0->unk_AC != NULL);
 
-        if (CommSys_GetCurNetId() == 0) {
+        if (CommSys_CurNetId() == 0) {
             v0 = sub_02030698(sub_0203068C(param1->unk_04), sub_0205E630(param1->unk_10), sub_0205E6A8(sub_0205E630(param1->unk_10)));
             v1 = param1->unk_A1C;
         } else {
@@ -791,8 +791,8 @@ void ov104_02237180 (UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10
             v1 = sub_02030698(sub_0203068C(param1->unk_04), sub_0205E630(param1->unk_10), sub_0205E6A8(sub_0205E630(param1->unk_10)));
         }
 
-        ov104_02237284(param0, param0->unk_A8, CommInfo_GetTrainerInformation(0), v0);
-        ov104_02237284(param0, param0->unk_AC, CommInfo_GetTrainerInformation(1), v1);
+        ov104_02237284(param0, param0->unk_A8, CommInfo_TrainerInfo(0), v0);
+        ov104_02237284(param0, param0->unk_AC, CommInfo_TrainerInfo(1), v1);
     }
 
     return;

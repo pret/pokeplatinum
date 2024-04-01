@@ -1321,7 +1321,7 @@ static int ov97_02231C84 (UnkStruct_ov97_02230868 * param0)
     v1 = 0;
 
     for (v0 = 1; v0 < 4 + 1; v0++) {
-        if (CommInfo_GetTrainerInformation(v0)) {
+        if (CommInfo_TrainerInfo(v0)) {
             v1++;
         }
     }
@@ -1344,7 +1344,7 @@ static int ov97_02231CA0 (UnkStruct_ov97_02230868 * param0, Window * param1)
     v3 = 0;
 
     for (v0 = 1; v0 < 4 + 1; v0++) {
-        v5 = CommInfo_GetTrainerInformation(v0);
+        v5 = CommInfo_TrainerInfo(v0);
 
         if (v5 == NULL) {
             if (param0->unk_2C68[v0]) {
@@ -1380,7 +1380,7 @@ static int ov97_02231CA0 (UnkStruct_ov97_02230868 * param0, Window * param1)
     BGL_FillWindow(param1, 0);
 
     for (v0 = 0; v0 < v1; v0++) {
-        v5 = CommInfo_GetTrainerInformation(v10[v0]);
+        v5 = CommInfo_TrainerInfo(v10[v0]);
 
         if (v5) {
             sub_0200B498(v7, 0, v5);

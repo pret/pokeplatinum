@@ -88,7 +88,7 @@ void ov104_0222ECE8 (int param0, int param1, void * param2, void * param3)
 
     v0->unk_D90++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
@@ -128,7 +128,7 @@ void ov104_0222ED2C (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v2->unk_D90++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
@@ -174,11 +174,11 @@ void ov104_0222ED74 (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v2->unk_D90++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
-    if (CommSys_GetCurNetId() == 0) {
+    if (CommSys_CurNetId() == 0) {
         return;
     }
 
@@ -225,11 +225,11 @@ void ov104_0222EDDC (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v2->unk_D90++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
-    if (CommSys_GetCurNetId() == 0) {
+    if (CommSys_CurNetId() == 0) {
         return;
     }
 
@@ -268,7 +268,7 @@ void ov104_0222EE38 (int param0, int param1, void * param2, void * param3)
 
     v0->unk_D90++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
@@ -309,7 +309,7 @@ void ov104_0222EEA8 (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v3->unk_D90++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
@@ -364,7 +364,7 @@ void ov104_0222EF30 (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v2->unk_702++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
@@ -412,11 +412,11 @@ void ov104_0222EF94 (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v2->unk_702++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
-    if (CommSys_GetCurNetId() == 0) {
+    if (CommSys_CurNetId() == 0) {
         return;
     }
 
@@ -477,11 +477,11 @@ void ov104_0222F03C (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v3->unk_702++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
-    if (CommSys_GetCurNetId() == 0) {
+    if (CommSys_CurNetId() == 0) {
         return;
     }
 
@@ -554,11 +554,11 @@ void ov104_0222F124 (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v2->unk_702++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
-    if (CommSys_GetCurNetId() == 0) {
+    if (CommSys_CurNetId() == 0) {
         return;
     }
 
@@ -610,7 +610,7 @@ void ov104_0222F1C4 (int param0, int param1, void * param2, void * param3)
 
     v0->unk_702++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
@@ -645,7 +645,7 @@ void ov104_0222F210 (int param0, int param1, void * param2, void * param3)
 
     v0->unk_702++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
@@ -715,7 +715,7 @@ void ov104_0222F31C (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v6->unk_702++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
@@ -779,7 +779,7 @@ void ov104_0222F418 (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v2->unk_A1A++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
@@ -826,11 +826,11 @@ void ov104_0222F480 (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v2->unk_A1A++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
-    if (CommSys_GetCurNetId() == 0) {
+    if (CommSys_CurNetId() == 0) {
         return;
     }
 
@@ -853,7 +853,7 @@ BOOL ov104_0222F4B8 (UnkStruct_ov104_0223BA10 * param0)
 
     param0->unk_3C0[0] = param0->unk_A18;
 
-    if (CommSys_GetCurNetId() == 0) {
+    if (CommSys_CurNetId() == 0) {
         if (param0->unk_A1B == 0) {
             param0->unk_A1B = param0->unk_A18;
         } else {
@@ -892,13 +892,13 @@ void ov104_0222F530 (int param0, int param1, void * param2, void * param3)
     v2 = 0;
     v3->unk_A1A++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
     v3->unk_A19 = v4[0];
 
-    if (CommSys_GetCurNetId() == 0) {
+    if (CommSys_CurNetId() == 0) {
         if (v3->unk_A1B != 0) {
             if (v3->unk_A1B == 4) {
                 if (v3->unk_A19 != 4) {
@@ -976,11 +976,11 @@ void ov104_0222F650 (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v2->unk_A1A++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
-    if (CommSys_GetCurNetId() == 0) {
+    if (CommSys_CurNetId() == 0) {
         return;
     }
 
@@ -1031,7 +1031,7 @@ void ov104_0222F6E8 (int param0, int param1, void * param2, void * param3)
     v0 = 0;
     v1->unk_A1A++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
@@ -1064,7 +1064,7 @@ void ov104_0222F730 (int param0, int param1, void * param2, void * param3)
     v0 = 0;
     v1->unk_A1A++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
@@ -1108,7 +1108,7 @@ void ov104_0222F7BC (int param0, int param1, void * param2, void * param3)
     v2 = 0;
     v5->unk_A1A++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
@@ -1123,7 +1123,7 @@ void ov104_0222F7BC (int param0, int param1, void * param2, void * param3)
 
     Heap_FreeToHeap(v4);
 
-    if (CommSys_GetCurNetId() != 0) {
+    if (CommSys_CurNetId() != 0) {
         Party_SwapSlots(v5->unk_28, 0, 2);
         Party_SwapSlots(v5->unk_28, 1, 3);
     }
@@ -1171,7 +1171,7 @@ void ov104_0222F8A0 (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v2->unk_A7C++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
@@ -1214,11 +1214,11 @@ void ov104_0222F908 (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v2->unk_A7C++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
-    if (CommSys_GetCurNetId() == 0) {
+    if (CommSys_CurNetId() == 0) {
         return;
     }
 
@@ -1275,11 +1275,11 @@ void ov104_0222F9C0 (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v2->unk_A7C++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
-    if (CommSys_GetCurNetId() == 0) {
+    if (CommSys_CurNetId() == 0) {
         return;
     }
 
@@ -1330,7 +1330,7 @@ void ov104_0222FA5C (int param0, int param1, void * param2, void * param3)
     v0 = 0;
     v1->unk_A7C++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
@@ -1363,7 +1363,7 @@ void ov104_0222FAA8 (int param0, int param1, void * param2, void * param3)
     v0 = 0;
     v1->unk_A7C++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
@@ -1407,7 +1407,7 @@ void ov104_0222FB34 (int param0, int param1, void * param2, void * param3)
     v2 = 0;
     v5->unk_A7C++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
@@ -1422,7 +1422,7 @@ void ov104_0222FB34 (int param0, int param1, void * param2, void * param3)
 
     Heap_FreeToHeap(v4);
 
-    if (CommSys_GetCurNetId() != 0) {
+    if (CommSys_CurNetId() != 0) {
         Party_SwapSlots(v5->unk_70, 0, 2);
         Party_SwapSlots(v5->unk_70, 1, 3);
     }

@@ -310,7 +310,7 @@ static void ov23_02249CE4 (void)
     sub_02059524();
 
     if (sub_02036834()) {
-        if (CommSys_GetCurNetId() == 0) {
+        if (CommSys_CurNetId() == 0) {
             ov23_0224B598();
             ov23_02249C24(ov23_02249DBC, 60);
         } else {
@@ -330,7 +330,7 @@ static void ov23_02249D20 (void)
     if (sub_02033E68() || sub_020360F0() || (v0->unk_3C == 0)) {
         sub_020367F0();
         ov23_02249C24(ov23_02249FFC, 0);
-    } else if (CommSys_IsPlayerConnected(CommSys_GetCurNetId())) {
+    } else if (CommSys_IsPlayerConnected(CommSys_CurNetId())) {
         if (v0->unk_3C != 0) {
             v0->unk_3C--;
 
@@ -392,14 +392,14 @@ static void ov23_02249E18 (void)
         return;
     }
 
-    if (sub_020360F0() || !sub_02033E48() || ((!CommSys_IsPlayerConnected(CommSys_GetCurNetId()) && !sub_02036180()))) {
+    if (sub_020360F0() || !sub_02033E48() || ((!CommSys_IsPlayerConnected(CommSys_CurNetId()) && !sub_02036180()))) {
         ov23_0224B5CC(0);
         ov23_0224AA84();
         ov23_0224DA8C();
 
         Link_Message(43);
 
-        ov23_02244858(CommSys_GetCurNetId(), 1);
+        ov23_02244858(CommSys_CurNetId(), 1);
         ov23_0224321C();
 
         sub_02036824();
@@ -519,7 +519,7 @@ static void ov23_02249FD4 (void)
         return;
     }
 
-    if (CommSys_GetCurNetId() == 0) {
+    if (CommSys_CurNetId() == 0) {
         ov23_02249C24(ov23_02249C34, 0);
     }
 }
@@ -533,7 +533,7 @@ static void ov23_02249FFC (void)
         return;
     }
 
-    if (CommSys_GetCurNetId() == 0) {
+    if (CommSys_CurNetId() == 0) {
         ov23_02249C24(ov23_02249C34, 0);
     }
 }
@@ -547,7 +547,7 @@ static void ov23_0224A02C (void)
 {
     UnkStruct_0205964C * v0 = sub_0205964C();
 
-    if (CommSys_GetCurNetId() == 0) {
+    if (CommSys_CurNetId() == 0) {
         ov23_02242D44(v0->unk_18);
         CommInfo_SendBattleRegulation();
         sub_02057AE4(0);
@@ -559,8 +559,8 @@ static void ov23_0224A02C (void)
 
 static void ov23_0224A064 (void)
 {
-    ov23_02244858(CommSys_GetCurNetId(), 1);
-    ov23_0224D9AC(CommSys_GetCurNetId(), 1);
+    ov23_02244858(CommSys_CurNetId(), 1);
+    ov23_0224D9AC(CommSys_CurNetId(), 1);
     ov23_0224160C();
     sub_020578B0();
     ov23_0224321C();

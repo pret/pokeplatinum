@@ -79,7 +79,7 @@ static void ov97_0222D0B4 (void)
 {
     int v0;
 
-    if (!CommSys_IsPlayerConnected(CommSys_GetCurNetId())) {
+    if (!CommSys_IsPlayerConnected(CommSys_CurNetId())) {
         return;
     }
 
@@ -97,7 +97,7 @@ static void ov97_0222D0F0 (void)
 
     for (v0 = 0; v0 < 16; v0++) {
         if ((Unk_ov97_0223F1A4->unk_28[v0] == NULL) && (CommSys_IsPlayerConnected(v0) == 1)) {
-            Unk_ov97_0223F1A4->unk_28[v0] = CommInfo_GetTrainerInformation(v0);
+            Unk_ov97_0223F1A4->unk_28[v0] = CommInfo_TrainerInfo(v0);
 
             if (Unk_ov97_0223F1A4->unk_28[v0]) {
                 (void)0;

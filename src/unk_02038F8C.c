@@ -17,15 +17,15 @@ void sub_02038F8C (UnkStruct_0202C878 * param0)
     TrainerInfo * v4;
     int v5 = sub_02035E18();
 
-    if (CommInfo_GetTrainerInformation(0) == NULL) {
+    if (CommInfo_TrainerInfo(0) == NULL) {
         return;
     }
 
     for (v0 = 0; v0 < v5; v0++) {
-        if (CommSys_GetCurNetId() != v0) {
+        if (CommSys_CurNetId() != v0) {
             v1 = CommInfo_PlayerCountry(v0);
             v2 = CommInfo_PlayerRegion(v0);
-            v4 = CommInfo_GetTrainerInformation(v0);
+            v4 = CommInfo_TrainerInfo(v0);
             v3 = TrainerInfo_RegionCode(v4);
 
             sub_02038FDC(param0, v1, v2, v3);

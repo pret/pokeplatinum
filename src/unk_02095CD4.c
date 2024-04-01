@@ -65,18 +65,18 @@ void sub_02095CFC (int param0, int param1, void * param2, void * param3)
     UnkStruct_0203CDB0 * v0 = (UnkStruct_0203CDB0 *)param3;
     UnkStruct_02095E80 * v1 = v0->unk_88;
 
-    if (param0 != CommSys_GetCurNetId()) {
+    if (param0 != CommSys_CurNetId()) {
         memcpy((void *)v1->unk_2274, param2, (236 * 6 + 4 * 2));
         v1->unk_58++;
 
         if ((v1->unk_58) * (236 * 6 + 4 * 2) >= Party_SaveSize()) {
-            if (CommSys_GetCurNetId() == 1) {
+            if (CommSys_CurNetId() == 1) {
                 ov88_0223D058(v1, 27, 0);
             } else {
-                ov88_0223D098(CommSys_GetCurNetId(), v1->unk_2270, v1->unk_50);
+                ov88_0223D098(CommSys_CurNetId(), v1->unk_2270, v1->unk_50);
             }
         } else {
-            ov88_0223D098(CommSys_GetCurNetId(), v1->unk_2270, v1->unk_50);
+            ov88_0223D098(CommSys_CurNetId(), v1->unk_2270, v1->unk_50);
         }
 
         v1->unk_50++;
@@ -88,7 +88,7 @@ void sub_02095D74 (int param0, int param1, void * param2, void * param3)
     UnkStruct_02095E80 * v0 = ((UnkStruct_0203CDB0 *)param3)->unk_88;
     u8 * v1 = (u8 *)param2;
 
-    if (param0 != CommSys_GetCurNetId()) {
+    if (param0 != CommSys_CurNetId()) {
         v0->unk_88[1] = sub_02095CE8(*v1);
     }
 }
@@ -137,7 +137,7 @@ void sub_02095DCC (int param0, int param1, void * param2, void * param3)
     u8 * v2 = sub_0202D79C(v0->unk_0C);
     u8 * v3 = (u8 *)param2;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
@@ -154,7 +154,7 @@ void sub_02095DFC (int param0, int param1, void * param2, void * param3)
 {
     UnkStruct_02095E80 * v0 = ((UnkStruct_0203CDB0 *)param3)->unk_88;
 
-    if (CommSys_GetCurNetId() != param0) {
+    if (CommSys_CurNetId() != param0) {
         sub_02027FEC(v0->unk_227C, (UnkStruct_02027F8C *)param2, 1, 26);
         v0->unk_54 = 3;
     }
@@ -164,7 +164,7 @@ void sub_02095E28 (int param0, int param1, void * param2, void * param3)
 {
     UnkStruct_02095E80 * v0 = ((UnkStruct_0203CDB0 *)param3)->unk_88;
 
-    if (CommSys_GetCurNetId() != param0) {
+    if (CommSys_CurNetId() != param0) {
         MI_CpuCopyFast(param2, v0->unk_2E6C[param0], 1000);
         v0->unk_54 = 4;
         sub_0203632C(0);

@@ -183,7 +183,7 @@ BattleParams * ov104_0223B810 (UnkStruct_ov104_0223BA10 * param0, UnkStruct_ov10
 
     Party_InitWithCapacity(v5->parties[0], v2);
 
-    if (CommSys_GetCurNetId() == 0) {
+    if (CommSys_CurNetId() == 0) {
         v4 = 0;
     } else {
         v4 = 2;
@@ -224,7 +224,7 @@ BattleParams * ov104_0223B810 (UnkStruct_ov104_0223BA10 * param0, UnkStruct_ov10
     case 3:
         sub_02052894(v5);
 
-        v11 = CommInfo_GetTrainerInformation(1 - CommSys_GetCurNetId());
+        v11 = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
         TrainerInfo_Copy(v11, v5->unk_D0[2]);
 
         v8 = ov104_0222DD04(&v7, param0->unk_30[param0->unk_11 + 7], 11, 178);

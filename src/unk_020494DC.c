@@ -269,7 +269,7 @@ BOOL sub_020498D0 (UnkStruct_0203E724 * param0)
     }
 
     if (sub_0205E6D8(param0->unk_34->unk_0C) == 1) {
-        if (sub_02036614(CommSys_GetCurNetId(), v6->unk_83E) == 1) {
+        if (sub_02036614(CommSys_CurNetId(), v6->unk_83E) == 1) {
             *v5 = 1;
         } else {
             return 1;

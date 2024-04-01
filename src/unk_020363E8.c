@@ -62,7 +62,7 @@ void sub_02036464 (int param0, int param1, void * param2, void * param3)
     u8 v2[2];
     int v3;
 
-    if (CommSys_GetCurNetId() == 0) {
+    if (CommSys_CurNetId() == 0) {
         v2[0] = param0;
         v2[1] = v1;
         sub_02035B48(18, &v2);

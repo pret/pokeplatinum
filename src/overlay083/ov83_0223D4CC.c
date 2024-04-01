@@ -92,7 +92,7 @@ void ov83_0223D558 (UnkStruct_ov83_0223D4CC * param0)
 int ov83_0223D570 (UnkStruct_ov83_0223D4CC * param0)
 {
     if (param0->unk_00 == 1) {
-        return CommSys_GetCurNetId();
+        return CommSys_CurNetId();
     } else {
         return(0);
     }

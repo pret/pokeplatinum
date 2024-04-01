@@ -214,7 +214,7 @@ int ov83_0223B710 (UnkStruct_020067E8 * param0, int * param1)
     v0 = v2->unk_00;
 
     if (v1->unk_26) {
-        if (CommSys_GetCurNetId() == 0) {
+        if (CommSys_CurNetId() == 0) {
             ov4_021D25FC();
         }
     }
@@ -581,7 +581,7 @@ static int ov83_0223BCEC (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
 
             for (v4 = 0; v4 < param1->unk_1488; v4++) {
                 v5 = param1->unk_1494.unk_130[v4];
-                v8 = CommInfo_GetDWCFriendData(v5);
+                v8 = CommInfo_DWCFriendData(v5);
                 v6 = sub_0203909C(param0->unk_10->unk_0C, v8, &v7);
 
                 switch (v6) {

@@ -186,7 +186,7 @@ static void ov23_0224DC68 (UnkStruct_ov23_0224E280 * param0, int param1)
     int v0 = param1;
 
     if (param1 >= 136) {
-        TrainerInfo * v1 = CommInfo_GetTrainerInformation(param0->unk_30);
+        TrainerInfo * v1 = CommInfo_TrainerInfo(param0->unk_30);
 
         if (1 == TrainerInfo_Gender(v1)) {
             v0 = v0 - 136 + 155;
@@ -201,7 +201,7 @@ static void ov23_0224DC90 (UnkStruct_ov23_022577B0 * param0, int param1)
     int v0 = param1;
 
     if (param1 >= 136) {
-        TrainerInfo * v1 = CommInfo_GetTrainerInformation(param0->unk_2C);
+        TrainerInfo * v1 = CommInfo_TrainerInfo(param0->unk_2C);
 
         if (1 == TrainerInfo_Gender(v1)) {
             v0 = v0 - 136 + 155;
@@ -464,7 +464,7 @@ static BOOL ov23_0224E05C (SysTask * param0, void * param1)
 
 static void ov23_0224E124 (UnkStruct_ov23_0224E280 * param0)
 {
-    ov23_02254068(ov23_0224219C(), CommInfo_GetTrainerInformation(param0->unk_30));
+    ov23_02254068(ov23_0224219C(), CommInfo_TrainerInfo(param0->unk_30));
     ov23_022540F4(ov23_0224219C(), param0->unk_28.unk_02);
     ov23_02253F40(ov23_0224219C(), 14, 0, NULL);
 
@@ -637,7 +637,7 @@ static void ov23_0224E2D8 (SysTask * param0, void * param1)
     case 9:
         if (ov23_022539D8()) {
             ov23_02254044(ov23_0224219C());
-            ov23_02253834(v0->unk_08->unk_08, CommInfo_GetTrainerInformation(v0->unk_30), ov23_0224E2D0, v0, 0);
+            ov23_02253834(v0->unk_08->unk_08, CommInfo_TrainerInfo(v0->unk_30), ov23_0224E2D0, v0, 0);
             v0->unk_37 = 10;
         }
         break;
@@ -967,13 +967,13 @@ static void ov23_0224EA08 (SysTask * param0, UnkStruct_ov23_022577B0 * param1)
 
 static void ov23_0224EA44 (UnkStruct_ov23_022577B0 * param0, int param1, int param2)
 {
-    ov23_02254068(ov23_0224219C(), CommInfo_GetTrainerInformation(param1));
+    ov23_02254068(ov23_0224219C(), CommInfo_TrainerInfo(param1));
     ov23_02253F40(ov23_0224219C(), param2, 0, NULL);
 }
 
 static void ov23_0224EA70 (UnkStruct_ov23_022577B0 * param0)
 {
-    ov23_02254068(ov23_0224219C(), CommInfo_GetTrainerInformation(param0->unk_2C));
+    ov23_02254068(ov23_0224219C(), CommInfo_TrainerInfo(param0->unk_2C));
     ov23_022540F4(ov23_0224219C(), param0->unk_24.unk_02);
     ov23_02253F40(ov23_0224219C(), 31, 0, NULL);
 }
@@ -1129,7 +1129,7 @@ static void ov23_0224EC50 (SysTask * param0, void * param1)
     case 10:
         if (ov23_022539D8()) {
             ov23_02254044(ov23_0224219C());
-            ov23_02253834(v0->unk_04->unk_08, CommInfo_GetTrainerInformation(v0->unk_2C), ov23_0224EC48, v0, 0);
+            ov23_02253834(v0->unk_04->unk_08, CommInfo_TrainerInfo(v0->unk_2C), ov23_0224EC48, v0, 0);
             v0->unk_34 = 11;
         }
         break;
@@ -1315,7 +1315,7 @@ void ov23_0224F108 (int param0, int param1, void * param2, void * param3)
 {
     UnkStruct_ov23_0224DC40 * v0 = param2;
 
-    if ((CommSys_GetCurNetId() == v0->unk_00) && (Unk_ov23_022577B0)) {
+    if ((CommSys_CurNetId() == v0->unk_00) && (Unk_ov23_022577B0)) {
         GF_ASSERT(param1 == sizeof(UnkStruct_ov23_0224DC40));
         Unk_ov23_022577B0->unk_35 = v0->unk_01;
     }
@@ -1325,7 +1325,7 @@ void ov23_0224F138 (int param0, int param1, void * param2, void * param3)
 {
     UnkStruct_ov23_0224DC40 * v0 = param2;
 
-    if ((CommSys_GetCurNetId() == v0->unk_00) && (Unk_ov23_022577B4)) {
+    if ((CommSys_CurNetId() == v0->unk_00) && (Unk_ov23_022577B4)) {
         GF_ASSERT(param1 == sizeof(UnkStruct_ov23_0224DC40));
         GF_ASSERT(Unk_ov23_022577B4 != NULL);
 
@@ -1348,7 +1348,7 @@ void ov23_0224F184 (int param0, int param1, void * param2, void * param3)
     UnkStruct_ov23_022577B0 * v0 = Unk_ov23_022577B0;
     UnkStruct_ov23_0224F184 * v1 = param2;
 
-    if (CommSys_GetCurNetId() != v1->unk_00) {
+    if (CommSys_CurNetId() != v1->unk_00) {
         return;
     }
 
@@ -1385,7 +1385,7 @@ void ov23_0224F208 (int param0, int param1, void * param2, void * param3)
     UnkStruct_ov23_0224E280 * v1 = Unk_ov23_022577B4;
     UnkStruct_ov23_0224DF1C * v2 = param2;
 
-    if (v2->unk_01 == CommSys_GetCurNetId()) {
+    if (v2->unk_01 == CommSys_CurNetId()) {
         switch (v2->unk_02) {
         case 0:
             v0->unk_2E = v2->unk_00;

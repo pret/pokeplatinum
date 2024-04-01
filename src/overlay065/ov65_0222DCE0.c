@@ -3439,7 +3439,7 @@ static int ov65_02231200 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
         CommInfo_SendBattleRegulation();
 
-        sub_02032E1C(CommSys_GetCurNetId());
+        sub_02032E1C(CommSys_CurNetId());
         param1 = 2;
     }
 
@@ -4270,7 +4270,7 @@ static int ov65_0223229C (UnkStruct_ov65_0222EBE0 * param0, int param1)
         u16 v0 = ov65_0222DD20(param0, &param0->unk_04->unk_00);
         BOOL v1;
 
-        v1 = sub_02036614(CommSys_GetCurNetId(), &v0);
+        v1 = sub_02036614(CommSys_CurNetId(), &v0);
 
         if (v1) {
             param0->unk_3A8 = 51;
@@ -4285,7 +4285,7 @@ static int ov65_022322DC (UnkStruct_ov65_0222EBE0 * param0, int param1)
     const u16 * v0;
     int v1 = 0;
 
-    if (CommSys_GetCurNetId() == 0) {
+    if (CommSys_CurNetId() == 0) {
         v1 = 1;
     } else {
         v1 = 0;

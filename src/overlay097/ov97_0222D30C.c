@@ -2189,7 +2189,7 @@ static int ov97_0222F75C (UnkStruct_020067E8 * param0, int * param1)
         ov97_0222DF70(param0, param1, ov97_0222D94C);
         break;
     case 9:
-        v1 = CommSys_GetCurNetId();
+        v1 = CommSys_CurNetId();
 
         if ((v1 != 0) && CommSys_IsPlayerConnected(v1)) {
             if (sub_02036540(0xAB) == 1) {
@@ -2223,7 +2223,7 @@ static int ov97_0222F75C (UnkStruct_020067E8 * param0, int * param1)
             *param1 = 11;
         }
 
-        v1 = CommSys_GetCurNetId();
+        v1 = CommSys_CurNetId();
 
         if ((gCoreSys.pressedKeys & PAD_BUTTON_B) || (--v3->unk_434 == 0) || ((v1 != 0) && (CommSys_IsPlayerConnected(v1) == 0))) {
             ov97_0222D30C(v3, 0);
@@ -2240,7 +2240,7 @@ static int ov97_0222F75C (UnkStruct_020067E8 * param0, int * param1)
         *param1 = 12;
         break;
     case 12:
-        v1 = CommSys_GetCurNetId();
+        v1 = CommSys_CurNetId();
 
         if ((v1 != 0) && (CommSys_IsPlayerConnected(v1) == 0)) {
             ov97_0222D2DC();

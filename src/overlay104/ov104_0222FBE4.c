@@ -1084,7 +1084,7 @@ static BOOL ov104_022302E8 (UnkStruct_ov104_0222E930 * param0)
                 v8 = sub_02035E18();
 
                 for (v9 = 0; v9 < v8; v9++) {
-                    v7 = CommInfo_GetTrainerInformation(v9);
+                    v7 = CommInfo_TrainerInfo(v9);
                     v3.unk_00 = ov104_0222E5F0(v7);
                     ov104_0223D0EC(v1, &v3);
                 }
@@ -1155,7 +1155,7 @@ static BOOL ov104_022303C8 (UnkStruct_ov104_0222E930 * param0)
             int v9;
 
             v9 = (*((param0)->unk_1C++));
-            v8 = CommInfo_GetTrainerInformation(v9);
+            v8 = CommInfo_TrainerInfo(v9);
             v4.unk_00 = ov104_0222E5F0(v8);
         } else {
             (void)0;
@@ -1848,7 +1848,7 @@ static BOOL ov104_02230DF0 (UnkStruct_ov104_0222E930 * param0)
     UnkStruct_ov104_02230BE4 * v0 = sub_0209B970(param0->unk_00->unk_00);
     u8 v1 = (*((param0)->unk_1C++));
 
-    sub_0200B498(param0->unk_00->unk_44, v1, CommInfo_GetTrainerInformation((CommSys_GetCurNetId() ^ 1)));
+    sub_0200B498(param0->unk_00->unk_44, v1, CommInfo_TrainerInfo((CommSys_CurNetId() ^ 1)));
     return 0;
 }
 
@@ -2873,7 +2873,7 @@ static BOOL ov104_02231EFC (UnkStruct_ov104_0222E930 * param0)
     v3 = sub_0209B970(param0->unk_00->unk_00);
     v1 = SaveData_TVBroadcast(v3->unk_08);
     v0 = ov104_0222FC00(param0);
-    v2 = CommInfo_GetTrainerInformation(1 - CommSys_GetCurNetId());
+    v2 = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
 
     sub_0206D088(v1, v0, v2);
     return 0;

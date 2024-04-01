@@ -186,7 +186,7 @@ static void sub_02032958 (int param0, int param1, void * param2, void * param3)
     u8 * v0 = param2;
     int v1;
 
-    if (CommSys_GetCurNetId() != 0) {
+    if (CommSys_CurNetId() != 0) {
         return;
     }
 
@@ -223,7 +223,7 @@ static void sub_020329C4 (int param0, int param1, void * param2, void * param3)
     u8 * v0 = param2;
     int v1;
 
-    if (CommSys_GetCurNetId() != 0) {
+    if (CommSys_CurNetId() != 0) {
         return;
     }
 

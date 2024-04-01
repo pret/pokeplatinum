@@ -1046,13 +1046,13 @@ static int ov104_0223A7AC (u8 param0)
     switch (param0) {
     case 3:
     case 6:
-        v0 = CommInfo_GetTrainerInformation(0);
+        v0 = CommInfo_TrainerInfo(0);
 
         if (v0 == NULL) {
             GF_ASSERT(0);
         }
 
-        v1 = CommInfo_GetTrainerInformation(1);
+        v1 = CommInfo_TrainerInfo(1);
 
         if (v1 == NULL) {
             GF_ASSERT(0);

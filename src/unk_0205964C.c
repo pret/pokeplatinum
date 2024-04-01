@@ -172,8 +172,8 @@ void sub_020597B4 (UnkStruct_0203CDB0 * param0)
     Unk_021C084C->unk_43 = 0;
 
     {
-        int v0, v1 = CommSys_GetCurNetId();
-        TrainerInfo * v2 = CommInfo_GetTrainerInformation(CommSys_GetCurNetId());
+        int v0, v1 = CommSys_CurNetId();
+        TrainerInfo * v2 = CommInfo_TrainerInfo(CommSys_CurNetId());
 
         for (v0 = 0; v0 < sub_02035E18(); v0++) {
             if (Unk_021C084C->unk_00[v0] == NULL) {
@@ -231,7 +231,7 @@ static void sub_020598EC (UnkFuncPtr_020598EC param0, int param1)
 
 static void sub_020598FC (void)
 {
-    if (!CommSys_IsPlayerConnected(CommSys_GetCurNetId())) {
+    if (!CommSys_IsPlayerConnected(CommSys_CurNetId())) {
         return;
     }
 
@@ -306,7 +306,7 @@ static void sub_02059984 (void)
 
 static void sub_020599E4 (void)
 {
-    if (CommSys_GetCurNetId() == 0) {
+    if (CommSys_CurNetId() == 0) {
         CommInfo_ServerSendArray();
     }
 
@@ -340,7 +340,7 @@ static void sub_02059A70 (void)
         return;
     }
 
-    if (CommSys_GetCurNetId() == 0) {
+    if (CommSys_CurNetId() == 0) {
         if (0 == sub_0205928C()) {
             return;
         }
@@ -376,7 +376,7 @@ static void sub_02059AB4 (void)
 
 static void sub_02059B10 (void)
 {
-    if (CommSys_GetCurNetId() == 0) {
+    if (CommSys_CurNetId() == 0) {
         CommInfo_ServerSendArray();
     }
 
@@ -401,7 +401,7 @@ static void sub_02059B74 (void)
     int v0, v1;
 
     for (v0 = 0; v0 < sub_02035E18(); v0++) {
-        if (v0 != CommSys_GetCurNetId()) {
+        if (v0 != CommSys_CurNetId()) {
             if (sub_02036564(v0) == 94) {
                 if (Unk_021C084C->unk_18->unk_10 == NULL) {
                     for (v1 = 0; v1 < 4; v1++) {
@@ -462,7 +462,7 @@ static void sub_02059C7C (void)
 
 static void sub_02059C8C (void)
 {
-    if (sub_020363A0() || (0 != sub_020593CC(CommSys_GetCurNetId()))) {
+    if (sub_020363A0() || (0 != sub_020593CC(CommSys_CurNetId()))) {
         return;
     }
 
@@ -494,7 +494,7 @@ void sub_02059D0C (int param0, int param1, void * param2, void * param3)
 {
     u8 * v0 = param2;
 
-    if (v0[0] == CommSys_GetCurNetId()) {
+    if (v0[0] == CommSys_CurNetId()) {
         Unk_021C084C->unk_43 = 1;
     }
 }
@@ -625,7 +625,7 @@ u8 * sub_02059EBC (int param0, void * param1, int param2)
 
 static void sub_02059ED8 (void)
 {
-    int v0, v1 = CommSys_GetCurNetId();
+    int v0, v1 = CommSys_CurNetId();
 
     if (sub_02036540(95)) {
         sub_0203597C(88, Unk_021C084C->unk_00[v1], sizeof(UnkStruct_02072014));

@@ -360,7 +360,7 @@ static void sub_020347EC (void)
     int v0;
     BOOL v1 = 0;
 
-    if (CommSys_GetCurNetId() == 0) {
+    if (CommSys_CurNetId() == 0) {
         if (Unk_02100A1C != 4) {
             return;
         }
@@ -478,7 +478,7 @@ static void sub_0203498C (SysTask * param0, void * param1)
     if (Unk_021C07C5) {
         sub_020353CC();
 
-        if (((CommSys_GetCurNetId() == 0) && (CommSys_IsPlayerConnected(0))) || sub_02036180()) {
+        if (((CommSys_CurNetId() == 0) && (CommSys_IsPlayerConnected(0))) || sub_02036180()) {
             sub_02034DC8();
         }
 
@@ -492,7 +492,7 @@ static void sub_020349C4 (void)
         return;
     }
 
-    if (CommSys_GetCurNetId() == 0) {
+    if (CommSys_CurNetId() == 0) {
         if (sub_02033E48()) {
             return;
         }
@@ -523,13 +523,13 @@ BOOL sub_020349EC (void)
                 sub_02035CA8();
             }
 
-            if ((CommSys_GetCurNetId() == 0) && (CommSys_IsPlayerConnected(0)) || sub_02036180()) {
+            if ((CommSys_CurNetId() == 0) && (CommSys_IsPlayerConnected(0)) || sub_02036180()) {
                 if (!sub_0203272C(sub_0203895C())) {
                     sub_02034F68();
                 }
             }
 
-            if ((CommSys_GetCurNetId() == 0) || (sub_02034890() == 1) || sub_02036180()) {
+            if ((CommSys_CurNetId() == 0) || (sub_02034890() == 1) || sub_02036180()) {
                 sub_02035CF8();
             }
 
@@ -538,7 +538,7 @@ BOOL sub_020349EC (void)
 
         sub_02033D94(sCommunicationSystem->unk_68C);
 
-        if (CommSys_GetCurNetId() == 0) {
+        if (CommSys_CurNetId() == 0) {
             sub_02034734();
         }
 
@@ -668,7 +668,7 @@ static void sub_02034B50 (void)
                 (void)0;
             }
         }
-    } else if (((sub_02031934() == 4) && (CommSys_IsPlayerConnected(CommSys_GetCurNetId()))) || sub_02036180()) {
+    } else if (((sub_02031934() == 4) && (CommSys_IsPlayerConnected(CommSys_CurNetId()))) || sub_02036180()) {
         while (TRUE) {
             if (Unk_02100A1D != 4) {
                 break;
@@ -1069,8 +1069,8 @@ static void sub_020353CC (void)
         }
 
         if (sub_02031934() == 4) {
-            if (!CommSys_IsPlayerConnected(CommSys_GetCurNetId())) {
-                if (CommSys_GetCurNetId() == 1) {
+            if (!CommSys_IsPlayerConnected(CommSys_CurNetId())) {
+                if (CommSys_CurNetId() == 1) {
                     (void)0;
                 }
 
@@ -1078,7 +1078,7 @@ static void sub_020353CC (void)
             }
 
             if ((Unk_02100A1D == 2) || (Unk_02100A1D == 0)) {
-                if (CommSys_GetCurNetId() != 0) {
+                if (CommSys_CurNetId() != 0) {
                     Unk_02100A1D++;
 
                     if (!sub_02031E9C(sCommunicationSystem->sendBuffer[sCommunicationSystem->unk_6A7], v3, 14, sub_02035394)) {
@@ -1339,7 +1339,7 @@ static BOOL sub_0203594C (void)
 
 BOOL sub_0203597C (int param0, const void * param1, int param2)
 {
-    if (!CommSys_IsPlayerConnected(CommSys_GetCurNetId()) && !sub_02036180()) {
+    if (!CommSys_IsPlayerConnected(CommSys_CurNetId()) && !sub_02036180()) {
         return 0;
     }
 
@@ -1356,7 +1356,7 @@ BOOL sub_0203597C (int param0, const void * param1, int param2)
 
 BOOL CommSys_SendData (int param0, const void * param1, int param2)
 {
-    if (!CommSys_IsPlayerConnected(CommSys_GetCurNetId()) && !sub_02036180()) {
+    if (!CommSys_IsPlayerConnected(CommSys_CurNetId()) && !sub_02036180()) {
         return 0;
     }
 
@@ -1373,7 +1373,7 @@ BOOL CommSys_SendData (int param0, const void * param1, int param2)
 
 BOOL sub_02035A3C (int param0, const void * param1, int param2)
 {
-    if (CommSys_GetCurNetId() != 0) {
+    if (CommSys_CurNetId() != 0) {
         GF_ASSERT(FALSE);
         return 0;
     }
@@ -1399,7 +1399,7 @@ BOOL sub_02035A3C (int param0, const void * param1, int param2)
 
 BOOL sub_02035AC4 (int param0, const void * param1, int param2)
 {
-    if (CommSys_GetCurNetId() != 0) {
+    if (CommSys_CurNetId() != 0) {
         sub_020363BC();
 
         return 0;
@@ -1599,9 +1599,9 @@ BOOL CommSys_IsPlayerConnected (u16 param0)
         return 0;
     }
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return 1;
-    } else if (CommSys_GetCurNetId() == 0) {
+    } else if (CommSys_CurNetId() == 0) {
         u16 v1 = sub_020318EC();
 
         if (v1 & (1 << param0)) {
@@ -1733,7 +1733,7 @@ void sub_02036008 (int param0, int param1, void * param2, void * param3)
     u8 * v0 = param2;
     int v1;
 
-    if (CommSys_GetCurNetId() != 0) {
+    if (CommSys_CurNetId() != 0) {
         return;
     }
 
@@ -1746,7 +1746,7 @@ void sub_02036030 (int param0, int param1, void * param2, void * param3)
     u8 * v0 = param2;
     int v1;
 
-    if (CommSys_GetCurNetId() == 0) {
+    if (CommSys_CurNetId() == 0) {
         return;
     }
 
@@ -1759,7 +1759,7 @@ void sub_02036058 (int param0, int param1, void * param2, void * param3)
     u8 * v0 = param2;
     int v1;
 
-    if (CommSys_GetCurNetId() != 0) {
+    if (CommSys_CurNetId() != 0) {
         return;
     }
 
@@ -1769,7 +1769,7 @@ void sub_02036058 (int param0, int param1, void * param2, void * param3)
     }
 }
 
-u16 CommSys_GetCurNetId (void)
+u16 CommSys_CurNetId (void)
 {
     if (sCommunicationSystem) {
         if (sub_020326EC(sub_0203895C())) {
@@ -1863,7 +1863,7 @@ void sub_0203619C (int param0, int param1, void * param2, void * param3)
     u8 v0;
 
     if (!sub_0203406C()) {
-        if (CommSys_GetCurNetId() == 0) {
+        if (CommSys_CurNetId() == 0) {
             sub_02035B48(2, &v0);
         }
     }

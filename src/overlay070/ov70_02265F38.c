@@ -457,7 +457,7 @@ BOOL ov70_02265F38 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
         ov70_02266CF0(&v0->unk_3C, param1, 0);
 
         CommInfo_SendBattleRegulation();
-        sub_02032E1C(CommSys_GetCurNetId());
+        sub_02032E1C(CommSys_CurNetId());
 
         ov70_02262E88(param0, 11);
         break;
@@ -469,12 +469,12 @@ BOOL ov70_02265F38 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
         {
             int v14;
 
-            while ((v14 = CommInfo_GetNewNetworkId()) != 0xff) {
+            while ((v14 = CommInfo_NewNetworkId()) != 0xff) {
                 sub_02032E1C(v14);
             }
         }
 
-        if (CommInfo_GetRecvCnt() >= ov66_02233224(v1->unk_01)) {
+        if (CommInfo_CountReceived() >= ov66_02233224(v1->unk_01)) {
             if (ov66_02233374() == 1) {
                 if (v0->unk_02 == 0) {
                     ov66_022330CC();
@@ -509,7 +509,7 @@ BOOL ov70_02265F38 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
         ov70_02266CF0(&v0->unk_3C, param1, 0);
 
         v0->unk_0C = ov66_0222E344(v2);
-        v15 = sub_02036614(CommSys_GetCurNetId(), &v0->unk_0C);
+        v15 = sub_02036614(CommSys_CurNetId(), &v0->unk_0C);
 
         if (v15 == 1) {
             ov70_02262E88(param0, 14);
@@ -529,8 +529,8 @@ BOOL ov70_02265F38 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
             BOOL v21;
             s32 v22;
 
-            v17 = CommInfo_GetRecvCnt();
-            v18 = CommSys_GetCurNetId();
+            v17 = CommInfo_CountReceived();
+            v18 = CommSys_CurNetId();
             v20 = 0;
             v21 = 0;
             v22 = ov66_02233340();

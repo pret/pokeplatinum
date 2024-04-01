@@ -494,7 +494,7 @@ BOOL ov104_02237748 (UnkStruct_ov104_0222E930 * param0)
             if (ov104_0223C000(v3->unk_10) == 0) {
                 v16 = SaveData_GetTrainerInfo(v14->unk_08);
             } else {
-                v16 = CommInfo_GetTrainerInformation(v19);
+                v16 = CommInfo_TrainerInfo(v19);
             }
 
             sub_0200B498(param0->unk_00->unk_44, v18, v16);

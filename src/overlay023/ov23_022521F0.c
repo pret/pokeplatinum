@@ -523,7 +523,7 @@ void * ov23_02252C98 (int param0, UnkStruct_0203CDB0 * param1, int param2)
 int ov23_02252C9C (int param0)
 {
     ov23_02253DFC(ov23_022421BC(), 636, 1);
-    ov23_02254068(ov23_022421BC(), CommInfo_GetTrainerInformation(CommSys_GetCurNetId()));
+    ov23_02254068(ov23_022421BC(), CommInfo_TrainerInfo(CommSys_CurNetId()));
 
     return ov23_02253F40(ov23_022421BC(), param0, 0, NULL);
 }
@@ -916,9 +916,9 @@ static void ov23_02252E70 (SysTask * param0, void * param1)
 void ov23_022534A0 (UnkStruct_0203CDB0 * param0)
 {
     UnkStruct_ov84_02240FA8 v0;
-    int v1 = sub_02058D88(CommSys_GetCurNetId());
-    int v2 = sub_02058DC0(CommSys_GetCurNetId());
-    int v3 = sub_02059328(sub_02058F50(CommSys_GetCurNetId()));
+    int v1 = sub_02058D88(CommSys_CurNetId());
+    int v2 = sub_02058DC0(CommSys_CurNetId());
+    int v3 = sub_02059328(sub_02058F50(CommSys_CurNetId()));
     UnkStruct_ov23_02250CD4 * v4;
     const int v5 = 6;
     int v6;

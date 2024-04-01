@@ -24,7 +24,7 @@ void sub_0204FA34 (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v2->unk_01++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 

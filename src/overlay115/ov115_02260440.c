@@ -148,11 +148,11 @@ int ov115_0226048C (UnkStruct_020067E8 * param0, int * param1)
         ov115_02265A24(v0);
 
         v0->unk_80 = 1;
-        v0->unk_74 = CommInfo_GetRecvCnt();
+        v0->unk_74 = CommInfo_CountReceived();
 
         GF_ASSERT(v0->unk_74 > 1);
 
-        v0->unk_44 = CommSys_GetCurNetId();
+        v0->unk_44 = CommSys_CurNetId();
         v0->unk_46 = ov114_0225C76C(&v0->unk_08, v0->unk_44);
 
         if (v0->unk_44 == 0) {
@@ -394,7 +394,7 @@ int ov115_022608E4 (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 1:
-        if (sub_02036540(4) || (sub_02035E18() < CommInfo_GetRecvCnt())) {
+        if (sub_02036540(4) || (sub_02035E18() < CommInfo_CountReceived())) {
             return 1;
         }
         break;

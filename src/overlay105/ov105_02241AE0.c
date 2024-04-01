@@ -2677,7 +2677,7 @@ static void ov105_02244F84 (UnkStruct_ov105_02241FF4 * param0, Window * param1, 
     Strbuf* v1;
     TrainerInfo * v2;
 
-    v2 = CommInfo_GetTrainerInformation(1 - CommSys_GetCurNetId());
+    v2 = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
     v1 = Strbuf_Init((7 + 1), 93);
 
     BGL_FillWindow(param1, 0);
@@ -3083,7 +3083,7 @@ void ov105_0224569C (int param0, int param1, void * param2, void * param3)
 
     v1 = 0;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
@@ -3131,7 +3131,7 @@ void ov105_02245744 (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v2 = ov104_0223AA50(v3->unk_09);
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
@@ -3211,13 +3211,13 @@ void ov105_022458A4 (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v2->unk_3BE++;
 
-    if (CommSys_GetCurNetId() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
     v2->unk_3B4 = (u8)v3[1];
 
-    if (CommSys_GetCurNetId() == 0) {
+    if (CommSys_CurNetId() == 0) {
         if (v2->unk_13_3 == 1) {
             v2->unk_3B4 = 0;
         } else {

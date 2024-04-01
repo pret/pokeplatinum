@@ -83,9 +83,9 @@ static void ov116_022604C4 (UnkStruct_ov116_0226139C * param0)
     }
 
     {
-        int v2 = CommInfo_GetRecvCnt();
+        int v2 = CommInfo_CountReceived();
 
-        param0->unk_44 = CommSys_GetCurNetId();
+        param0->unk_44 = CommSys_CurNetId();
         ov116_022604A8(param0);
 
         if (ov116_022617C4(param0) == 1) {
@@ -255,7 +255,7 @@ int ov116_022609B4 (UnkStruct_020067E8 * param0, int * param1)
         for (v1 = 0; v1 < 4; v1++) {
             v0->unk_B4[v1] = 0xFF;
 
-            if (CommInfo_GetTrainerInformation(v1) != NULL) {
+            if (CommInfo_TrainerInfo(v1) != NULL) {
                 v0->unk_B4[v2] = v1;
                 v2++;
             }
@@ -755,7 +755,7 @@ int ov116_0226126C (UnkStruct_020067E8 * param0, int * param1)
     }
     break;
     default:
-        if ((sub_02036540(999) == 1) || (sub_02035E18() < CommInfo_GetRecvCnt())) {
+        if ((sub_02036540(999) == 1) || (sub_02035E18() < CommInfo_CountReceived())) {
             return 1;
         }
         break;

@@ -118,7 +118,7 @@ int ov82_0223B24C (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 1:
-        if ((sub_02036540(4)) || (sub_02035E18() < CommInfo_GetRecvCnt())) {
+        if ((sub_02036540(4)) || (sub_02035E18() < CommInfo_CountReceived())) {
             return 1;
         }
         break;

@@ -43,7 +43,7 @@ typedef struct CommPlayerRecord {
 } CommPlayerRecord;
 
 enum InfoState {
-    INFO_STATE_EMPTY,
+    INFO_STATE_EMPTY = 0,
     INFO_STATE_BEGIN_RECIEVE,
     INFO_STATE_RECIEVE,
     INFO_STATE_END_RECIEVE,
@@ -115,7 +115,7 @@ BOOL CommInfo_IsInitialized (void)
 
 void CommInfo_SendBattleRegulation (void)
 {
-    u16 netId = CommSys_GetCurNetId();
+    u16 netId = CommSys_CurNetId();
     TrainerInfo * trainerInfo;
     const u16 * v2;
     UnkStruct_0202B4A0 * v3 = sub_0202B4A0(sCommInfo->saveData);
@@ -191,7 +191,7 @@ void CommInfo_RecvPlayerDataArray (int netId, int param1, void * src, void * unu
     if (sCommInfo->infoState[sCommInfo->curNetId] < INFO_STATE_RECIEVE) {
         sCommInfo->infoState[sCommInfo->curNetId] = INFO_STATE_BEGIN_RECIEVE;
 
-        if (CommSys_GetCurNetId() == sCommInfo->curNetId) {
+        if (CommSys_CurNetId() == sCommInfo->curNetId) {
             sCommInfo->infoState[sCommInfo->curNetId] = INFO_STATE_END_RECIEVE;
         }
     }
@@ -208,7 +208,7 @@ void CommInfo_RecvPlayerData (int netId, int param1, void * src, void * param3)
 
     sCommInfo->infoState[netId] = INFO_STATE_BEGIN_RECIEVE;
 
-    if (CommSys_GetCurNetId() == netId) {
+    if (CommSys_CurNetId() == netId) {
         sCommInfo->infoState[netId] = INFO_STATE_END_RECIEVE;
     } else {
         sCommInfo->dataRecvFlag = TRUE;
@@ -223,7 +223,7 @@ BOOL CommInfo_ServerSendArray (void)
         return FALSE;
     }
 
-    if (CommSys_GetCurNetId() != 0) {
+    if (CommSys_CurNetId() != 0) {
         return FALSE;
     }
 
@@ -280,7 +280,7 @@ void CommInfo_SetReceiveEnd (int netId)
     sCommInfo->infoState[netId] = INFO_STATE_END_RECIEVE;
 }
 
-int CommInfo_GetNewNetworkId (void)
+int CommInfo_NewNetworkId (void)
 {
     int netId;
 
@@ -293,7 +293,7 @@ int CommInfo_GetNewNetworkId (void)
     return 0xff;
 }
 
-int CommInfo_GetRecvCnt (void)
+int CommInfo_CountReceived (void)
 {
     int netId;
     int cnt = 0;
@@ -333,7 +333,7 @@ BOOL sub_02032E90 (void)
     return ret;
 }
 
-TrainerInfo * CommInfo_GetTrainerInformation (int netId)
+TrainerInfo * CommInfo_TrainerInfo (int netId)
 {
     if (!sCommInfo) {
         return NULL;
@@ -349,7 +349,7 @@ TrainerInfo * CommInfo_GetTrainerInformation (int netId)
     return NULL;
 }
 
-DWCFriendData * CommInfo_GetDWCFriendData (int netId)
+DWCFriendData * CommInfo_DWCFriendData (int netId)
 {
     if (sCommInfo->infoState[netId] != INFO_STATE_EMPTY) {
         return &sCommInfo->playerData[netId].friendData;
@@ -428,7 +428,7 @@ static void CommInfo_UpdatePlayerRecord (int param0, int val)
     }
 
     if (param0 != 2) {
-        v1 = sub_020362F4(CommSys_GetCurNetId()) & 0x1;
+        v1 = sub_020362F4(CommSys_CurNetId()) & 0x1;
     }
 
     for (netId = 0; netId < sub_02035E18(); netId++) {
@@ -458,7 +458,7 @@ void CommInfo_SavePlayerRecord (SaveData * saveData)
     int netId, v2, v3;
 
     for (netId = 0; netId < sub_02035E18(); netId++) {
-        DWCFriendData * friendData = CommInfo_GetDWCFriendData(netId);
+        DWCFriendData * friendData = CommInfo_DWCFriendData(netId);
 
         if (friendData == NULL) {
             continue;

@@ -240,7 +240,7 @@ BOOL ov104_0223939C (UnkStruct_ov104_0222E930 * param0)
         break;
     }
 
-    if (sub_02036614(CommSys_GetCurNetId(), v0->unk_83E) == 1) {
+    if (sub_02036614(CommSys_CurNetId(), v0->unk_83E) == 1) {
         *v4 = 1;
     } else {
         *v4 = 0;
@@ -281,7 +281,7 @@ static BOOL ov104_02239464 (UnkStruct_ov104_0222E930 * param0, UnkStruct_0204AFC
     u16 * v0;
     const void * v1;
 
-    v1 = sub_0203664C(1 - CommSys_GetCurNetId());
+    v1 = sub_0203664C(1 - CommSys_CurNetId());
 
     if (v1 == NULL) {
         return 0;
