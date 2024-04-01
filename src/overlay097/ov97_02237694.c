@@ -852,11 +852,11 @@ int ov97_0223847C (void)
     switch (v1->unk_14) {
     case 0:
         ResetLock(4);
-        sub_02024814(v1->unk_18, 2);
+        SaveData_SaveStateInit(v1->unk_18, 2);
         v1->unk_14++;
         break;
     case 1:
-        v0 = sub_02024828(v1->unk_18);
+        v0 = SaveData_SaveStateMain(v1->unk_18);
 
         if (v0 == 3) {
             v1->unk_14 = 3;
@@ -896,7 +896,7 @@ void ov97_0223850C (void)
 {
     UnkStruct_ov97_0223F550 * v0 = &Unk_ov97_0223F550;
 
-    sub_02024850(v0->unk_18);
+    SaveData_SaveStateCancel(v0->unk_18);
     v0->unk_14 = 3;
     ResetUnlock(4);
 }

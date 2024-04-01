@@ -2198,7 +2198,7 @@ static int ov65_0222FB44 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     }
 
     if (ov4_021D27E0()) {
-        sub_02024814(param0->unk_160, 0);
+        SaveData_SaveStateInit(param0->unk_160, 0);
         param0->unk_3A8 = 71;
         return param1;
     }
@@ -2221,7 +2221,7 @@ static int ov65_0222FB44 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 static int ov65_0222FBD0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     if (ov4_021D27E0()) {
-        int v0 = sub_02024828(param0->unk_160);
+        int v0 = SaveData_SaveStateMain(param0->unk_160);
 
         if ((v0 != 0) && (v0 != 1)) {
             ov4_021D27F4();
