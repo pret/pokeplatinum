@@ -27,7 +27,7 @@
 typedef struct {
     u8 regulationBuffer[32];
     u8 trainerInfoBuffer[32];
-    DWCFriendData unk_40;
+    DWCFriendData friendData;
     u16 unk_4C[8];
     u8 macAddress[6];
     u8 netId;
@@ -42,6 +42,14 @@ typedef struct {
     u16 trades;
 } CommPlayerRecord;
 
+enum InfoState {
+    INFO_STATE_EMPTY,
+    INFO_STATE_BEGIN_RECIEVE,
+    INFO_STATE_RECIEVE,
+    INFO_STATE_END_RECIEVE,
+    INFO_STATE_MAX
+};
+
 typedef struct {
     TrainerInfo * personalTrainerInfo;
     const BattleRegulation * regulation;
@@ -49,7 +57,7 @@ typedef struct {
     CommPlayerData playerData[8];
     TrainerInfo * trainerInfo[8];
     CommPlayerRecord playerRecord[8];
-    u8 unk_38C[8];
+    u8 infoState[8];
     u8 dataFinishedReading;
     u8 dataRecvFlag;
     u8 curNetId;
@@ -132,7 +140,7 @@ void CommunicationInformation_SendBattleRegulation (void)
     sCommInfo->playerData[netId].unk_65 = sub_02028810(sCommInfo->saveData);
     sCommInfo->playerData[netId].unk_65 = 1 - sCommInfo->playerData[netId].unk_65;
 
-    DWC_CreateExchangeToken(sub_0202AD28(v4), &sCommInfo->playerData[netId].unk_40);
+    DWC_CreateExchangeToken(sub_0202AD28(v4), &sCommInfo->playerData[netId].friendData);
     MI_CpuClear8(sCommInfo->playerData[netId].regulationBuffer, 32);
 
     if (sCommInfo->regulation) {
@@ -161,76 +169,74 @@ BOOL CommunicationInformation_IsDataFinishedReading (void)
     return sCommInfo->dataFinishedReading;
 }
 
-void sub_02032BEC (int param0, int param1, void * param2, void * param3)
+void CommunicationInformation_RecvPlayerDataArray (int netId, int param1, void * src, void * unused)
 {
-    CommPlayerData * v0 = (CommPlayerData *)param2;
+    CommPlayerData * playerData = (CommPlayerData *)src;
 
     if (!sCommInfo) {
         return;
     }
 
-    if (!CommunicationSystem_IsPlayerConnected(param0)) {
+    if (!CommunicationSystem_IsPlayerConnected(netId)) {
         return;
     }
 
-    MI_CpuCopy8(param2, &sCommInfo->playerData[v0->netId], sizeof(CommPlayerData));
-    sCommInfo->curNetId = v0->netId;
+    MI_CpuCopy8(src, &sCommInfo->playerData[playerData->netId], sizeof(CommPlayerData));
+    sCommInfo->curNetId = playerData->netId;
 
     if (TrainerInfo_HasNoName(sCommInfo->trainerInfo[sCommInfo->curNetId]) == 1) {
         return;
     }
 
-    if (sCommInfo->unk_38C[sCommInfo->curNetId] < 2) {
-        sCommInfo->unk_38C[sCommInfo->curNetId] = 1;
+    if (sCommInfo->infoState[sCommInfo->curNetId] < INFO_STATE_RECIEVE) {
+        sCommInfo->infoState[sCommInfo->curNetId] = INFO_STATE_BEGIN_RECIEVE;
 
         if (CommunicationSystem_GetCurNetId() == sCommInfo->curNetId) {
-            sCommInfo->unk_38C[sCommInfo->curNetId] = 3;
+            sCommInfo->infoState[sCommInfo->curNetId] = INFO_STATE_END_RECIEVE;
         }
     }
 }
 
-void sub_02032C80 (int netId, int param1, void * param2, void * param3)
+void CommunicationInformation_RecvPlayerData (int netId, int param1, void * src, void * param3)
 {
-    int v0;
-
     if (!sCommInfo) {
         return;
     }
 
-    MI_CpuCopy8(param2, &sCommInfo->playerData[netId], sizeof(CommPlayerData));
+    MI_CpuCopy8(src, &sCommInfo->playerData[netId], sizeof(CommPlayerData));
     sub_02033FDC(&sCommInfo->playerData[netId].macAddress[0], netId);
 
-    sCommInfo->unk_38C[netId] = 1;
+    sCommInfo->infoState[netId] = INFO_STATE_BEGIN_RECIEVE;
 
     if (CommunicationSystem_GetCurNetId() == netId) {
-        sCommInfo->unk_38C[netId] = 3;
+        sCommInfo->infoState[netId] = INFO_STATE_END_RECIEVE;
     } else {
-        sCommInfo->dataRecvFlag = 1;
+        sCommInfo->dataRecvFlag = TRUE;
     }
 }
 
-BOOL sub_02032CE8 (void)
+BOOL CommunicationInformation_ServerSendArray (void)
 {
-    int v0;
+    int netId;
 
     if (!sCommInfo->dataRecvFlag) {
-        return 0;
+        return FALSE;
     }
 
     if (CommunicationSystem_GetCurNetId() != 0) {
-        return 0;
+        return FALSE;
     }
 
     if (!sub_02036254(5)) {
-        for (v0 = 0; v0 < (7 + 1); v0++) {
-            if (sCommInfo->unk_38C[v0] != 0) {
-                sCommInfo->playerData[v0].netId = v0;
-                MI_CpuCopy8(sCommInfo->trainerInfo[v0], sCommInfo->playerData[v0].trainerInfoBuffer, TrainerInfo_Size());
-                sub_02035F00(4, &sCommInfo->playerData[v0], sizeof(CommPlayerData));
+        for (netId = 0; netId < (7 + 1); netId++) {
+            if (sCommInfo->infoState[netId] != INFO_STATE_EMPTY) {
+                sCommInfo->playerData[netId].netId = netId;
+                MI_CpuCopy8(sCommInfo->trainerInfo[netId], sCommInfo->playerData[netId].trainerInfoBuffer, TrainerInfo_Size());
+                CommunicationSystem_ServerSetSendQueue(4, &sCommInfo->playerData[netId], sizeof(CommPlayerData));
             }
         }
 
-        sub_02035F00(5, NULL, 0);
+        CommunicationSystem_ServerSetSendQueue(5, NULL, 0);
         sCommInfo->dataRecvFlag = FALSE;
         return TRUE;
     }
@@ -238,40 +244,40 @@ BOOL sub_02032CE8 (void)
     return FALSE;
 }
 
-BOOL sub_02032D84 (void)
+BOOL CommunicationInformation_IsReceivingData (void)
 {
     return sCommInfo->dataRecvFlag;
 }
 
-void CommunicationInformation_InitPlayer (int param0)
+void CommunicationInformation_InitPlayer (int netId)
 {
-    TrainerInfo_Init(sCommInfo->trainerInfo[param0]);
-    sCommInfo->unk_38C[param0] = 0;
+    TrainerInfo_Init(sCommInfo->trainerInfo[netId]);
+    sCommInfo->infoState[netId] = INFO_STATE_EMPTY;
 }
 
-BOOL sub_02032DC4 (int param0)
+BOOL sub_02032DC4 (int netId)
 {
-    return sCommInfo->unk_38C[param0] == 1;
+    return sCommInfo->infoState[netId] == INFO_STATE_BEGIN_RECIEVE;
 }
 
 BOOL sub_02032DE0 (int param0)
 {
-    return (sCommInfo->unk_38C[param0] == 2) || (sCommInfo->unk_38C[param0] == 1);
+    return (sCommInfo->infoState[param0] == 2) || (sCommInfo->infoState[param0] == 1);
 }
 
 BOOL sub_02032E00 (int param0)
 {
-    return sCommInfo->unk_38C[param0] == 2;
+    return sCommInfo->infoState[param0] == 2;
 }
 
 void sub_02032E1C (int param0)
 {
-    sCommInfo->unk_38C[param0] = 2;
+    sCommInfo->infoState[param0] = 2;
 }
 
 void sub_02032E30 (int param0)
 {
-    sCommInfo->unk_38C[param0] = 3;
+    sCommInfo->infoState[param0] = 3;
 }
 
 int sub_02032E44 (void)
@@ -279,7 +285,7 @@ int sub_02032E44 (void)
     int v0;
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
-        if (sCommInfo->unk_38C[v0] == 1) {
+        if (sCommInfo->infoState[v0] == 1) {
             return v0;
         }
     }
@@ -293,7 +299,7 @@ int sub_02032E64 (void)
     int v1 = 0;
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
-        switch (sCommInfo->unk_38C[v0]) {
+        switch (sCommInfo->infoState[v0]) {
         case 2:
         case 3:
             v1++;
@@ -316,7 +322,7 @@ BOOL sub_02032E90 (void)
 
         for (v0 = 0; v0 < (7 + 1); v0++) {
             if (!CommunicationSystem_IsPlayerConnected(v0) && !((v0 == 0) && sub_02036180())) {
-                if (sCommInfo->unk_38C[v0] != 0) {
+                if (sCommInfo->infoState[v0] != 0) {
                     CommunicationInformation_InitPlayer(v0);
                     v1 = 1;
                 }
@@ -327,26 +333,26 @@ BOOL sub_02032E90 (void)
     return v1;
 }
 
-TrainerInfo * sub_02032EE8 (int param0)
+TrainerInfo * CommunicationInformation_GetTrainerInformation (int netId)
 {
     if (!sCommInfo) {
         return NULL;
     }
 
-    switch (sCommInfo->unk_38C[param0]) {
+    switch (sCommInfo->infoState[netId]) {
     case 1:
     case 2:
     case 3:
-        return sCommInfo->trainerInfo[param0];
+        return sCommInfo->trainerInfo[netId];
     }
 
     return NULL;
 }
 
-DWCFriendData * sub_02032F1C (int param0)
+DWCFriendData * CommunicationInformation_GetDWCFriendData (int netId)
 {
-    if (sCommInfo->unk_38C[param0] != 0) {
-        return &sCommInfo->playerData[param0].unk_40;
+    if (sCommInfo->infoState[netId] != 0) {
+        return &sCommInfo->playerData[netId].friendData;
     }
 
     return NULL;
@@ -359,7 +365,7 @@ int sub_02032F40 (int param0)
 
 u16 * sub_02032F54 (int param0)
 {
-    if (sCommInfo->unk_38C[param0] != 0) {
+    if (sCommInfo->infoState[param0] != 0) {
         return sCommInfo->playerData[param0].unk_4C;
     }
 
@@ -368,7 +374,7 @@ u16 * sub_02032F54 (int param0)
 
 int sub_02032F78 (int param0)
 {
-    if (sCommInfo->unk_38C[param0] != 0) {
+    if (sCommInfo->infoState[param0] != 0) {
         return sCommInfo->playerData[param0].unk_63;
     }
 
@@ -377,7 +383,7 @@ int sub_02032F78 (int param0)
 
 int sub_02032F9C (int param0)
 {
-    if (sCommInfo->unk_38C[param0] != 0) {
+    if (sCommInfo->infoState[param0] != 0) {
         return sCommInfo->playerData[param0].unk_64;
     }
 
@@ -386,7 +392,7 @@ int sub_02032F9C (int param0)
 
 int sub_02032FC0 (int param0)
 {
-    if (sCommInfo->unk_38C[param0] != 0) {
+    if (sCommInfo->infoState[param0] != 0) {
         return sCommInfo->playerData[param0].unk_65;
     }
 
@@ -398,8 +404,8 @@ BOOL sub_02032FE4 (void)
     int netId, v1;
 
     for (netId = 0; netId < (7 + 1) - 1; netId++) {
-        if (CommunicationSystem_IsPlayerConnected(netId) && (sCommInfo->unk_38C[netId] != 0)) {
-            if (CommunicationSystem_IsPlayerConnected(netId + 1) && (sCommInfo->unk_38C[netId + 1] != 0)) {
+        if (CommunicationSystem_IsPlayerConnected(netId) && (sCommInfo->infoState[netId] != 0)) {
+            if (CommunicationSystem_IsPlayerConnected(netId + 1) && (sCommInfo->infoState[netId + 1] != 0)) {
                 for (v1 = 0; v1 < 32; v1++) {
                     if (sCommInfo->playerData[netId].regulationBuffer[v1] != sCommInfo->playerData[netId + 1].regulationBuffer[v1]) {
                         return FALSE;
@@ -426,7 +432,7 @@ static void CommunicationInformation_UpdatePlayerRecord (int param0, int param1)
     }
 
     for (v0 = 0; v0 < sub_02035E18(); v0++) {
-        if (CommunicationSystem_IsPlayerConnected(v0) && (sCommInfo->unk_38C[v0] != 0)) {
+        if (CommunicationSystem_IsPlayerConnected(v0) && (sCommInfo->infoState[v0] != 0)) {
             if (param0 == 0) {
                 v2 = sub_020362F4(v0) & 0x1;
 
@@ -452,7 +458,7 @@ void CommunicationInformation_SavePlayerRecord (SaveData * param0)
     int v1, v2, v3;
 
     for (v1 = 0; v1 < sub_02035E18(); v1++) {
-        DWCFriendData * v4 = sub_02032F1C(v1);
+        DWCFriendData * v4 = CommunicationInformation_GetDWCFriendData(v1);
 
         if (v4 == NULL) {
             continue;

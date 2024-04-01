@@ -400,7 +400,7 @@ static void sub_02057C8C (u8 param0)
     }
 
     {
-        TrainerInfo * v3 = sub_02032EE8(param0);
+        TrainerInfo * v3 = CommunicationInformation_GetTrainerInformation(param0);
 
         if (v3 == NULL) {
             (void)0;
@@ -529,7 +529,7 @@ static void sub_02057E80 (SysTask * param0, void * param1)
     for (v0 = 0; v0 < (7 + 1); v0++) {
         if (Unk_021C0848->unk_2BE) {
             if (CommunicationSystem_GetCurNetId() == 0) {
-                if (NULL == sub_02032EE8(v0)) {
+                if (NULL == CommunicationInformation_GetTrainerInformation(v0)) {
                     ov23_0224B5CC(v0);
                 }
             }

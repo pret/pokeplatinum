@@ -186,7 +186,7 @@ static void ov23_0224DC68 (UnkStruct_ov23_0224E280 * param0, int param1)
     int v0 = param1;
 
     if (param1 >= 136) {
-        TrainerInfo * v1 = sub_02032EE8(param0->unk_30);
+        TrainerInfo * v1 = CommunicationInformation_GetTrainerInformation(param0->unk_30);
 
         if (1 == TrainerInfo_Gender(v1)) {
             v0 = v0 - 136 + 155;
@@ -201,7 +201,7 @@ static void ov23_0224DC90 (UnkStruct_ov23_022577B0 * param0, int param1)
     int v0 = param1;
 
     if (param1 >= 136) {
-        TrainerInfo * v1 = sub_02032EE8(param0->unk_2C);
+        TrainerInfo * v1 = CommunicationInformation_GetTrainerInformation(param0->unk_2C);
 
         if (1 == TrainerInfo_Gender(v1)) {
             v0 = v0 - 136 + 155;
@@ -464,7 +464,7 @@ static BOOL ov23_0224E05C (SysTask * param0, void * param1)
 
 static void ov23_0224E124 (UnkStruct_ov23_0224E280 * param0)
 {
-    ov23_02254068(ov23_0224219C(), sub_02032EE8(param0->unk_30));
+    ov23_02254068(ov23_0224219C(), CommunicationInformation_GetTrainerInformation(param0->unk_30));
     ov23_022540F4(ov23_0224219C(), param0->unk_28.unk_02);
     ov23_02253F40(ov23_0224219C(), 14, 0, NULL);
 
@@ -637,7 +637,7 @@ static void ov23_0224E2D8 (SysTask * param0, void * param1)
     case 9:
         if (ov23_022539D8()) {
             ov23_02254044(ov23_0224219C());
-            ov23_02253834(v0->unk_08->unk_08, sub_02032EE8(v0->unk_30), ov23_0224E2D0, v0, 0);
+            ov23_02253834(v0->unk_08->unk_08, CommunicationInformation_GetTrainerInformation(v0->unk_30), ov23_0224E2D0, v0, 0);
             v0->unk_37 = 10;
         }
         break;
@@ -967,13 +967,13 @@ static void ov23_0224EA08 (SysTask * param0, UnkStruct_ov23_022577B0 * param1)
 
 static void ov23_0224EA44 (UnkStruct_ov23_022577B0 * param0, int param1, int param2)
 {
-    ov23_02254068(ov23_0224219C(), sub_02032EE8(param1));
+    ov23_02254068(ov23_0224219C(), CommunicationInformation_GetTrainerInformation(param1));
     ov23_02253F40(ov23_0224219C(), param2, 0, NULL);
 }
 
 static void ov23_0224EA70 (UnkStruct_ov23_022577B0 * param0)
 {
-    ov23_02254068(ov23_0224219C(), sub_02032EE8(param0->unk_2C));
+    ov23_02254068(ov23_0224219C(), CommunicationInformation_GetTrainerInformation(param0->unk_2C));
     ov23_022540F4(ov23_0224219C(), param0->unk_24.unk_02);
     ov23_02253F40(ov23_0224219C(), 31, 0, NULL);
 }
@@ -1129,7 +1129,7 @@ static void ov23_0224EC50 (SysTask * param0, void * param1)
     case 10:
         if (ov23_022539D8()) {
             ov23_02254044(ov23_0224219C());
-            ov23_02253834(v0->unk_04->unk_08, sub_02032EE8(v0->unk_2C), ov23_0224EC48, v0, 0);
+            ov23_02253834(v0->unk_04->unk_08, CommunicationInformation_GetTrainerInformation(v0->unk_2C), ov23_0224EC48, v0, 0);
             v0->unk_34 = 11;
         }
         break;

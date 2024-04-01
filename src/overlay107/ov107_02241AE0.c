@@ -2893,7 +2893,7 @@ static void ov107_02244B24 (UnkStruct_ov107_02241D6C * param0, Window * param1, 
     TrainerInfo * v0;
     u32 v1;
 
-    v0 = sub_02032EE8((CommunicationSystem_GetCurNetId() ^ 1));
+    v0 = CommunicationInformation_GetTrainerInformation((CommunicationSystem_GetCurNetId() ^ 1));
 
     if (TrainerInfo_Gender(v0) == 0) {
         v1 = ((u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | (((0 & 0xff) << 0))));

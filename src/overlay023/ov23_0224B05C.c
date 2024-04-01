@@ -1269,7 +1269,7 @@ void ov23_0224C21C (void)
 
 void ov23_0224C23C (int param0)
 {
-    sub_02035F00(54, &Unk_ov23_022577AC->unk_08[param0], sizeof(UnkStruct_ov23_0224B144));
+    CommunicationSystem_ServerSetSendQueue(54, &Unk_ov23_022577AC->unk_08[param0], sizeof(UnkStruct_ov23_0224B144));
 }
 
 void ov23_0224C25C (int param0, int param1, void * param2, void * param3)
@@ -1391,7 +1391,7 @@ static void ov23_0224C448 (void)
         v1++;
     }
 
-    sub_02035F00(55, &Unk_ov23_022577AC->unk_137B, sizeof(Unk_ov23_022577AC->unk_137B));
+    CommunicationSystem_ServerSetSendQueue(55, &Unk_ov23_022577AC->unk_137B, sizeof(Unk_ov23_022577AC->unk_137B));
 }
 
 void ov23_0224C4CC (int param0, int param1, void * param2, void * param3)
@@ -1474,7 +1474,7 @@ static void ov23_0224C5B4 (SysTask * param0, void * param1)
 
     for (v0 = 0; v0 < 17; v0++) {
         if (v0 < (7 + 1)) {
-            if (NULL == sub_02032EE8(v0)) {
+            if (NULL == CommunicationInformation_GetTrainerInformation(v0)) {
                 ov23_0224B61C(v0);
                 ov23_0224D87C(v0);
             }
@@ -2047,8 +2047,8 @@ BOOL ov23_0224D020 (Strbuf *param0)
             Unk_ov23_022577AC->unk_136B[v0] = 0xff;
 
             if (v0 != v1) {
-                v2 = sub_02032EE8(v0);
-                v3 = sub_02032EE8(v1);
+                v2 = CommunicationInformation_GetTrainerInformation(v0);
+                v3 = CommunicationInformation_GetTrainerInformation(v1);
 
                 if (ov23_0224223C(v2, v3, 104, param0)) {
                     return 1;
@@ -2057,8 +2057,8 @@ BOOL ov23_0224D020 (Strbuf *param0)
         }
 
         if (Unk_ov23_022577AC->unk_133B[v0] != 0xff) {
-            v2 = sub_02032EE8(v0);
-            v3 = sub_02032EE8(Unk_ov23_022577AC->unk_133B[v0]);
+            v2 = CommunicationInformation_GetTrainerInformation(v0);
+            v3 = CommunicationInformation_GetTrainerInformation(Unk_ov23_022577AC->unk_133B[v0]);
 
             Unk_ov23_022577AC->unk_133B[v0] = 0xff;
 
@@ -2068,7 +2068,7 @@ BOOL ov23_0224D020 (Strbuf *param0)
         }
 
         if (Unk_ov23_022577AC->unk_134B[v0] != 0xff) {
-            v2 = sub_02032EE8(v0);
+            v2 = CommunicationInformation_GetTrainerInformation(v0);
             Unk_ov23_022577AC->unk_134B[v0] = 0xff;
 
             if (ov23_022422A8(v2, 0, 109, param0)) {
@@ -2078,8 +2078,8 @@ BOOL ov23_0224D020 (Strbuf *param0)
         }
 
         if (Unk_ov23_022577AC->unk_1343[v0] != 0xff) {
-            v2 = sub_02032EE8(v0);
-            v3 = sub_02032EE8(Unk_ov23_022577AC->unk_1343[v0]);
+            v2 = CommunicationInformation_GetTrainerInformation(v0);
+            v3 = CommunicationInformation_GetTrainerInformation(Unk_ov23_022577AC->unk_1343[v0]);
 
             Unk_ov23_022577AC->unk_1343[v0] = 0xff;
 

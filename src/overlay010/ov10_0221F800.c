@@ -678,7 +678,7 @@ static u8 ov10_0221FD00 (UnkStruct_ov10_0221FB28 * param0)
             param0->unk_BC4 = 0;
 
             for (v2 = 0; v2 < (7 + 1); v2++) {
-                v3 = sub_02032EE8(v2);
+                v3 = CommunicationInformation_GetTrainerInformation(v2);
 
                 if (v3 != NULL) {
                     if (TrainerInfo_GameCode(v3) == 0) {

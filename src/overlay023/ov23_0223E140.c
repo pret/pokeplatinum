@@ -3109,7 +3109,7 @@ BOOL ov23_022415B8 (Strbuf *param0)
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
         if (Unk_ov23_02257740->unk_908[v0]) {
-            v1 = sub_02032EE8(v0);
+            v1 = CommunicationInformation_GetTrainerInformation(v0);
             Unk_ov23_02257740->unk_908[v0] = 0;
 
             if (ov23_022422A8(v1, 0, 105, param0)) {

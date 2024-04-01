@@ -38,7 +38,7 @@ u16 sub_02035E84(int param0);
 void sub_02035EA8(void);
 void sub_02035EC8(void);
 BOOL sub_02035EE0(void);
-BOOL sub_02035F00(int param0, const void * param1, int param2);
+BOOL CommunicationSystem_ServerSetSendQueue(int param0, const void * param1, int param2);
 BOOL sub_02035F58(int param0, const void * param1, int param2);
 void sub_02036008(int param0, int param1, void * param2, void * param3);
 void sub_02036030(int param0, int param1, void * param2, void * param3);

@@ -230,7 +230,7 @@ static int sub_0205B4D4 (void)
     v1 = 0;
 
     for (v0 = 1; v0 < 5; v0++) {
-        v2 = sub_02032EE8(v0);
+        v2 = CommunicationInformation_GetTrainerInformation(v0);
 
         if (v2 != NULL) {
             v1++;
@@ -368,7 +368,7 @@ static void sub_0205B694 (UnkStruct_0205B43C * param0)
 static void sub_0205B6C4 (UnkStruct_0205B43C * param0)
 {
     if (1 == sub_02036A68()) {
-        if (sub_02032EE8(CommunicationSystem_GetCurNetId()) != NULL) {
+        if (CommunicationInformation_GetTrainerInformation(CommunicationSystem_GetCurNetId()) != NULL) {
             param0->unk_20 = 0;
             param0->unk_1C = 1;
             param0->unk_44 = 0;
@@ -691,7 +691,7 @@ void sub_0205BA08 (int param0, int param1, void * param2, void * param3)
 {
     UnkStruct_0203CDB0 * v0 = (UnkStruct_0203CDB0 *)param3;
     UnkStruct_02072014 * v1 = (UnkStruct_02072014 *)param2;
-    TrainerInfo * v2 = sub_02032EE8(CommunicationSystem_GetCurNetId() ^ 1);
+    TrainerInfo * v2 = CommunicationInformation_GetTrainerInformation(CommunicationSystem_GetCurNetId() ^ 1);
     void * v3;
 
     {
@@ -1100,7 +1100,7 @@ u8 sub_0205BE38 (void)
     u8 v0;
     TrainerInfo * v1;
 
-    v1 = sub_02032EE8(CommunicationSystem_GetCurNetId() ^ 1);
+    v1 = CommunicationInformation_GetTrainerInformation(CommunicationSystem_GetCurNetId() ^ 1);
     GF_ASSERT(v1 != NULL);
     v0 = TrainerInfo_GameCode(v1);
 
@@ -1115,7 +1115,7 @@ static void sub_0205BE58 (UnkStruct_0205B4F8 * param0, int param1)
     for (v1 = 1; v1 < 4 + 1; v1++) {
         int v3 = v1 - 1;
 
-        v0 = sub_02032EE8(v1);
+        v0 = CommunicationInformation_GetTrainerInformation(v1);
 
         if (v0 != NULL) {
             if (CommunicationSystem_GetCurNetId() == 0) {
@@ -1282,7 +1282,7 @@ void sub_0205C040 (StringFormatter * param0, int param1, int param2, TrainerInfo
     if (param1 == 0) {
         v0 = sub_02033FB0(param2);
     } else {
-        v0 = sub_02032EE8(CommunicationSystem_GetCurNetId() ^ 1);
+        v0 = CommunicationInformation_GetTrainerInformation(CommunicationSystem_GetCurNetId() ^ 1);
     }
 
     if (v0 == NULL) {

@@ -343,7 +343,7 @@ int sub_0209C16C (void)
     int i, result;
 
     for (result = 0, i = 0; i < 5; i++) {
-        if (sub_02032EE8(i) != NULL) {
+        if (CommunicationInformation_GetTrainerInformation(i) != NULL) {
             result++;
         }
     }

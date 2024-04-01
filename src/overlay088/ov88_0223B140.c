@@ -364,8 +364,8 @@ static void ov88_0223B320 (UnkStruct_02095E80 * param0)
     Strbuf* v0, * v1, * v2;
     TrainerInfo * v3, * v4;
 
-    v3 = sub_02032EE8(CommunicationSystem_GetCurNetId());
-    v4 = sub_02032EE8(CommunicationSystem_GetCurNetId() ^ 1);
+    v3 = CommunicationInformation_GetTrainerInformation(CommunicationSystem_GetCurNetId());
+    v4 = CommunicationInformation_GetTrainerInformation(CommunicationSystem_GetCurNetId() ^ 1);
     v0 = TrainerInfo_NameNewStrbuf(v3, 26);
     v1 = TrainerInfo_NameNewStrbuf(v4, 26);
     v2 = MessageLoader_GetNewStrbuf(param0->unk_184, 50);
@@ -693,7 +693,7 @@ static int ov88_0223B914 (UnkStruct_02095E80 * param0)
         param0->unk_4C++;
         break;
     case 12:
-        ov88_0223D0D4(sub_02032EE8(CommunicationSystem_GetCurNetId()), param0->unk_227C, &param0->unk_2280);
+        ov88_0223D0D4(CommunicationInformation_GetTrainerInformation(CommunicationSystem_GetCurNetId()), param0->unk_227C, &param0->unk_2280);
         param0->unk_4C++;
         break;
     case 13:
@@ -1749,12 +1749,12 @@ static void ov88_0223D1EC (UnkStruct_02095E80 * param0, int param1)
         param0->unk_0C.max = Party_GetCurrentCount(param0->unk_08->unk_08);
 
         param0->unk_0C.chatotCry = NULL;
-        PokemonSummary_SetPlayerProfile(&param0->unk_0C, sub_02032EE8(CommunicationSystem_GetCurNetId()));
+        PokemonSummary_SetPlayerProfile(&param0->unk_0C, CommunicationInformation_GetTrainerInformation(CommunicationSystem_GetCurNetId()));
     } else {
         param0->unk_0C.monData = param0->unk_2274;
         param0->unk_0C.max = Party_GetCurrentCount(param0->unk_2274);
         param0->unk_0C.chatotCry = (ChatotCry *)param0->unk_2E6C[CommunicationSystem_GetCurNetId() ^ 1];
-        PokemonSummary_SetPlayerProfile(&param0->unk_0C, sub_02032EE8(CommunicationSystem_GetCurNetId() ^ 1));
+        PokemonSummary_SetPlayerProfile(&param0->unk_0C, CommunicationInformation_GetTrainerInformation(CommunicationSystem_GetCurNetId() ^ 1));
     }
 
     param0->unk_0C.dataType = 1;
@@ -1862,7 +1862,7 @@ static int ov88_0223D514 (UnkStruct_02095E80 * param0)
         param0->unk_226C = ov88_0223D854;
         break;
     case 0xfffffffe:
-        v0 = sub_02032EE8(param0->unk_36C4);
+        v0 = CommunicationInformation_GetTrainerInformation(param0->unk_36C4);
         sub_0200B498(param0->unk_36CC, 0, v0);
         ov88_0223D49C(param0, 59);
         param0->unk_226C = ov88_0223D4C4;
@@ -1886,7 +1886,7 @@ static int ov88_0223D5B8 (UnkStruct_02095E80 * param0)
         return 0;
     case 0xfffffffe:
         Sound_PlayEffect(1500);
-        v1 = sub_02032EE8(param0->unk_36C4);
+        v1 = CommunicationInformation_GetTrainerInformation(param0->unk_36C4);
         sub_0200B498(param0->unk_36CC, 0, v1);
         ov88_0223D49C(param0, 59);
         param0->unk_226C = ov88_0223D4C4;
@@ -1956,7 +1956,7 @@ static int ov88_0223D740 (UnkStruct_02095E80 * param0)
         param0->unk_226C = ov88_0223D69C;
         break;
     case 0xfffffffe:
-        v0 = sub_02032EE8(param0->unk_36C4);
+        v0 = CommunicationInformation_GetTrainerInformation(param0->unk_36C4);
         sub_0200B498(param0->unk_36CC, 0, v0);
         ov88_0223D49C(param0, 59);
         param0->unk_226C = ov88_0223D4C4;
@@ -2034,7 +2034,7 @@ static int ov88_0223D854 (UnkStruct_02095E80 * param0)
     }
 
     if (sub_0207D688(sub_0207D990(param0->unk_04), 437, 1, 26) == 1) {
-        v1 = sub_02032EE8(param0->unk_36C4);
+        v1 = CommunicationInformation_GetTrainerInformation(param0->unk_36C4);
         sub_0200B498(param0->unk_36CC, 0, v1);
         ov88_0223D49C(param0, 57);
         param0->unk_226C = ov88_0223D7AC;
@@ -2521,11 +2521,11 @@ static void ov88_0223E694 (Party * param0, Party * param1, int param2, int param
         Pokemon_SetValue(v1, 9, &v3);
     }
 
-    sub_0209304C(v1, sub_02032EE8(CommunicationSystem_GetCurNetId()), 5, 0, 11);
+    sub_0209304C(v1, CommunicationInformation_GetTrainerInformation(CommunicationSystem_GetCurNetId()), 5, 0, 11);
     sub_0207893C(v1);
     Pokemon_Copy(v0, param4->unk_3C);
     Pokemon_Copy(v1, param4->unk_40);
-    TrainerInfo_Copy(sub_02032EE8(CommunicationSystem_GetCurNetId() ^ 1), param4->unk_38);
+    TrainerInfo_Copy(CommunicationInformation_GetTrainerInformation(CommunicationSystem_GetCurNetId() ^ 1), param4->unk_38);
 
     param4->unk_2C = param2;
 
@@ -2546,7 +2546,7 @@ static void ov88_0223E694 (Party * param0, Party * param1, int param2, int param
 static void ov88_0223E7F0 (UnkStruct_0202B628 * param0, Pokemon * param1)
 {
     void * v0;
-    TrainerInfo * v1 = sub_02032EE8(CommunicationSystem_GetCurNetId() ^ 1);
+    TrainerInfo * v1 = CommunicationInformation_GetTrainerInformation(CommunicationSystem_GetCurNetId() ^ 1);
     u16 v2[10 + 1];
 
     Pokemon_GetValue(param1, MON_DATA_NICKNAME, v2);

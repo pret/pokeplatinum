@@ -1164,7 +1164,7 @@ static int ov109_021D4E28 (UnkStruct_ov109_021D5140 * param0, int param1)
         } else {
             param0->unk_3B8 = 13;
             sub_0209BEBC(param0->unk_10, 3, NULL, 0);
-            sub_0200B498(param0->unk_34, 0, sub_02032EE8(0));
+            sub_0200B498(param0->unk_34, 0, CommunicationInformation_GetTrainerInformation(0));
         }
 
         param0->unk_394 = NULL;
@@ -1179,7 +1179,7 @@ static int ov109_021D4ED8 (UnkStruct_ov109_021D5140 * param0, int param1)
     if (CommunicationSystem_GetCurNetId() == 0) {
         ov109_021D55A8(param0, 5, 0);
     } else {
-        sub_0200B498(param0->unk_34, 0, sub_02032EE8(0));
+        sub_0200B498(param0->unk_34, 0, CommunicationInformation_GetTrainerInformation(0));
         ov109_021D55A8(param0, 16, 0);
     }
 
@@ -1346,7 +1346,7 @@ void ov109_021D5140 (UnkStruct_ov109_021D5140 * param0, int param1, u8 param2)
             return;
         }
 
-        sub_0200B498(param0->unk_34, 0, sub_02032EE8(param2));
+        sub_0200B498(param0->unk_34, 0, CommunicationInformation_GetTrainerInformation(param2));
 
         if (param2 == CommunicationSystem_GetCurNetId()) {
             return;
@@ -1389,7 +1389,7 @@ void ov109_021D5258 (UnkStruct_ov109_021D5140 * param0, int param1, u8 param2)
     if (param0->unk_3B8 == 3) {
         switch (param1) {
         case 1:
-            sub_0200B498(param0->unk_34, 0, sub_02032EE8(param2));
+            sub_0200B498(param0->unk_34, 0, CommunicationInformation_GetTrainerInformation(param2));
             ov109_021D5858(param0, 1);
 
             param0->unk_3B8 = param1;
@@ -1402,7 +1402,7 @@ void ov109_021D5258 (UnkStruct_ov109_021D5140 * param0, int param1, u8 param2)
             }
             break;
         case 19:
-            sub_0200B498(param0->unk_34, 0, sub_02032EE8(param2));
+            sub_0200B498(param0->unk_34, 0, CommunicationInformation_GetTrainerInformation(param2));
 
             if (param2 == CommunicationSystem_GetCurNetId()) {
                 return;
@@ -1452,7 +1452,7 @@ static int ov109_021D5360 (void)
     v1 = 0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        v2 = sub_02032EE8(v0);
+        v2 = CommunicationInformation_GetTrainerInformation(v0);
 
         if (v2 != NULL) {
             v1++;
@@ -1508,7 +1508,7 @@ static int ov109_021D548C (void)
     int v0, v1;
 
     for (v1 = 0, v0 = 0; v0 < 5; v0++) {
-        if (sub_02032EE8(v0) != NULL) {
+        if (CommunicationInformation_GetTrainerInformation(v0) != NULL) {
             v1++;
         }
     }
@@ -1522,7 +1522,7 @@ static u32 ov109_021D54A8 (void)
     u32 v1;
 
     for (v1 = 0, v0 = 0; v0 < 5; v0++) {
-        if (sub_02032EE8(v0) != NULL) {
+        if (CommunicationInformation_GetTrainerInformation(v0) != NULL) {
             v1 |= 1 << v0;
         }
     }
@@ -1536,7 +1536,7 @@ static BOOL ov109_021D54CC (UnkStruct_ov109_021D5140 * param0)
 
     for (v0 = 0; v0 < 5; v0++) {
         param0->unk_3D8[v0][1] = param0->unk_3D8[v0][0];
-        param0->unk_3D8[v0][0] = sub_02032EE8(v0);
+        param0->unk_3D8[v0][0] = CommunicationInformation_GetTrainerInformation(v0);
         param0->unk_4AC4[v0][1] = param0->unk_4AC4[v0][0];
 
         if (param0->unk_3D8[v0][0] != NULL) {

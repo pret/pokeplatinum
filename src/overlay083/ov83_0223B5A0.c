@@ -581,7 +581,7 @@ static int ov83_0223BCEC (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
 
             for (v4 = 0; v4 < param1->unk_1488; v4++) {
                 v5 = param1->unk_1494.unk_130[v4];
-                v8 = sub_02032F1C(v5);
+                v8 = CommunicationInformation_GetDWCFriendData(v5);
                 v6 = sub_0203909C(param0->unk_10->unk_0C, v8, &v7);
 
                 switch (v6) {

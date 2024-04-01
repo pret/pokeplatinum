@@ -807,7 +807,7 @@ void ov114_0225C700 (UnkStruct_ov114_0225C76C * param0, BOOL param1, SaveData * 
     v1 = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        v3 = sub_02032EE8(v0);
+        v3 = CommunicationInformation_GetTrainerInformation(v0);
 
         if (v3 != NULL) {
             if (v2 == v0) {
@@ -887,7 +887,7 @@ TrainerInfo * ov114_0225C7CC (const UnkStruct_ov114_0225C76C * param0, u32 param
             return SaveData_GetTrainerInfo(param0->unk_00);
         }
 
-        return sub_02032EE8(param1);
+        return CommunicationInformation_GetTrainerInformation(param1);
     }
 
     GF_ASSERT(param0->unk_0C != NULL);
@@ -3579,7 +3579,7 @@ static void ov114_0225F890 (UnkStruct_ov114_0225E854 * param0)
 
     for (v1 = 0; v1 < param0->unk_0C.unk_08; v1++) {
         v2 = param0->unk_0C.unk_04[v1];
-        v5 = sub_02032F1C(v2);
+        v5 = CommunicationInformation_GetDWCFriendData(v2);
         v3 = sub_0203909C(param0->unk_0C.unk_00, v5, &v4);
 
         switch (v3) {

@@ -689,7 +689,7 @@ void sub_0205AB10 (UnkStruct_0203CDB0 * param0, UnkFuncPtr_0205AB10 * param1)
     v0->unk_50 = NULL;
     v0->unk_89 = 0;
     v0->unk_86 = CommunicationSystem_GetCurNetId();
-    v0->unk_74 = sub_02032EE8(v0->unk_86 ^ 1);
+    v0->unk_74 = CommunicationInformation_GetTrainerInformation(v0->unk_86 ^ 1);
 
     switch (v0->unk_88) {
     case 3:
@@ -1026,7 +1026,7 @@ static BOOL sub_0205B140 (UnkStruct_020508D4 * param0)
         v1->unk_04 = Strbuf_Init((100 * 2), 4);
 
         MessageLoader_GetStrbuf(v1->unk_1C, 2 + v2->unk_03, v1->unk_00);
-        sub_0200B498(v1->unk_18, 0, sub_02032EE8(v1->unk_24));
+        sub_0200B498(v1->unk_18, 0, CommunicationInformation_GetTrainerInformation(v1->unk_24));
         StringFormatter_Format(v1->unk_18, v1->unk_04, v1->unk_00);
         sub_0205D8F4(v0->unk_08, &v1->unk_08, 3);
         sub_0205D944(&v1->unk_08, sub_02025E44(v0->unk_0C));

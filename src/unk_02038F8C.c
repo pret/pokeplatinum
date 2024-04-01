@@ -17,7 +17,7 @@ void sub_02038F8C (UnkStruct_0202C878 * param0)
     TrainerInfo * v4;
     int v5 = sub_02035E18();
 
-    if (sub_02032EE8(0) == NULL) {
+    if (CommunicationInformation_GetTrainerInformation(0) == NULL) {
         return;
     }
 
@@ -25,7 +25,7 @@ void sub_02038F8C (UnkStruct_0202C878 * param0)
         if (CommunicationSystem_GetCurNetId() != v0) {
             v1 = sub_02032F78(v0);
             v2 = sub_02032F9C(v0);
-            v4 = sub_02032EE8(v0);
+            v4 = CommunicationInformation_GetTrainerInformation(v0);
             v3 = TrainerInfo_RegionCode(v4);
 
             sub_02038FDC(param0, v1, v2, v3);

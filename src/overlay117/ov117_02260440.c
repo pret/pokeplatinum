@@ -144,7 +144,7 @@ static void ov117_022605D8 (UnkStruct_ov117_022605C0 * param0, UnkStruct_ov117_0
     v1 = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (sub_02032EE8(v0) != NULL) {
+        if (CommunicationInformation_GetTrainerInformation(v0) != NULL) {
             param0->unk_2C[v1] = v0;
 
             if (v0 == v3) {

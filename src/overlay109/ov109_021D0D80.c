@@ -795,7 +795,7 @@ static int ov109_021D122C (UnkStruct_ov109_021D0F70 * param0)
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
         if (ov109_021D3B54(param0, v0)) {
-            param0->unk_2C.unk_58[v0] = sub_02032EE8(v0);
+            param0->unk_2C.unk_58[v0] = CommunicationInformation_GetTrainerInformation(v0);
             TrainerInfo_NameStrbuf(
                 param0->unk_2C.unk_58[v0], param0->unk_2C.unk_6C[v0]);
         }
@@ -2076,7 +2076,7 @@ static void ov109_021D268C (UnkStruct_ov109_021D0F70 * param0, u32 param1, const
     UnkStruct_ov109_021D24F8 * v1 = &param0->unk_C9C;
     Window * v2 = &v1->unk_0C[0];
 
-    sub_0200B498(v1->unk_08, 1, sub_02032EE8(CommunicationSystem_GetCurNetId()));
+    sub_0200B498(v1->unk_08, 1, CommunicationInformation_GetTrainerInformation(CommunicationSystem_GetCurNetId()));
     sub_0200B498(v1->unk_08, 2, param2);
 
     v0 = Strbuf_Init(0x100, 95);
@@ -3503,7 +3503,7 @@ static void ov109_021D3B70 (UnkStruct_ov109_021D0F70 * param0, int param1)
     v4 = Party_GetPokemonBySlotIndex(v2, v0);
     v5 = Party_GetPokemonBySlotIndex(v3, v1);
 
-    sub_0209304C(v5, sub_02032EE8(CommunicationSystem_GetCurNetId()), 5, 0, 11);
+    sub_0209304C(v5, CommunicationInformation_GetTrainerInformation(CommunicationSystem_GetCurNetId()), 5, 0, 11);
     Pokemon_Copy(v5, v4);
 }
 

@@ -926,7 +926,7 @@ static void ov23_022520E8 (UnkStruct_0203CDB0 * param0, UnkStruct_ov23_022513B0 
     v0->unk_04 = param0;
     v0->unk_10 = SysTask_Start(ov23_02252038, v0, 10000);
 
-    ov23_02254068(ov23_0224219C(), sub_02032EE8(param1->unk_01));
+    ov23_02254068(ov23_0224219C(), CommunicationInformation_GetTrainerInformation(param1->unk_01));
     ov23_02253F40(ov23_0224219C(), 67, 0, NULL);
 
     v0->unk_0C.unk_00 = param1->unk_00;
@@ -951,7 +951,7 @@ void ov23_02252178 (int param0, int param1, void * param2, void * param3)
     UnkStruct_ov23_022513B0 * v1 = param2;
 
     if (CommunicationSystem_GetCurNetId() == v1->unk_00) {
-        ov23_02254068(ov23_022421AC(), sub_02032EE8(v1->unk_01));
+        ov23_02254068(ov23_022421AC(), CommunicationInformation_GetTrainerInformation(v1->unk_01));
         ov23_02253F40(ov23_022421AC(), 8, 1, ov23_022513A4);
         Sound_PlayBGM(1061);
     }

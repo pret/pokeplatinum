@@ -466,7 +466,7 @@ int ov65_02236548 (UnkStruct_020067E8 * param0, int * param1)
         if (v0->unk_00.unk_04) {
             if (CommunicationInformation_IsInitialized() == 1) {
                 ov65_02237970(v0);
-                sub_02032CE8();
+                CommunicationInformation_ServerSendArray();
                 ov65_0223782C(v0);
             }
 
@@ -1078,7 +1078,7 @@ static void ov65_0223726C (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
 {
     TrainerInfo * v0;
 
-    v0 = sub_02032EE8(param2);
+    v0 = CommunicationInformation_GetTrainerInformation(param2);
     sub_0200B498(param0->unk_04, param3, v0);
 }
 
@@ -1087,7 +1087,7 @@ static void ov65_02237284 (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
     TrainerInfo * v0;
     u16 v1;
 
-    v0 = sub_02032EE8(param2);
+    v0 = CommunicationInformation_GetTrainerInformation(param2);
     v1 = TrainerInfo_ID_LowHalf(v0);
 
     sub_0200B60C(param0->unk_04, param3, v1, 5, 2, 1);
@@ -1425,7 +1425,7 @@ static void ov65_022376D0 (UnkStruct_ov65_022367A8 * param0, u32 param1, u32 par
     v0 = Unk_ov65_02239AD8[param1];
 
     if (param1 != CommunicationSystem_GetCurNetId()) {
-        v1 = sub_02032EE8(param1);
+        v1 = CommunicationInformation_GetTrainerInformation(param1);
         GF_ASSERT(v1 != NULL);
         v0.unk_0A = TrainerInfo_Appearance(v1);
     } else {
@@ -1579,7 +1579,7 @@ static void ov65_02237970 (UnkStruct_ov65_022367A8 * param0)
 
     v1 = sub_02032E64();
 
-    if (sub_02032D84()) {
+    if (CommunicationInformation_IsReceivingData()) {
         if (!sub_02036254(5)) {
             v2 = 1;
         }

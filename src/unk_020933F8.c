@@ -765,7 +765,7 @@ static void sub_02093C6C (SysTask * param0, void * param1)
                 const TrainerInfo * v2;
 
                 for (v1 = 0; v1 < v0->unk_00.unk_117; v1++) {
-                    v2 = sub_02032EE8(v1);
+                    v2 = CommunicationInformation_GetTrainerInformation(v1);
                     Strbuf_Clear(v0->unk_00.unk_D8[v1]);
                     TrainerInfo_NameStrbuf(v2, v0->unk_00.unk_D8[v1]);
                 }
@@ -952,7 +952,7 @@ static void sub_02093C6C (SysTask * param0, void * param1)
         const TrainerInfo * v6;
 
         for (v5 = 0; v5 < v0->unk_00.unk_117; v5++) {
-            v6 = sub_02032EE8(v5);
+            v6 = CommunicationInformation_GetTrainerInformation(v5);
             v0->unk_00.unk_F8[v5] = TrainerInfo_Gender(v6);
         }
 
@@ -994,7 +994,7 @@ BOOL sub_020943B0 (UnkStruct_02095C48 * param0)
         TrainerInfo * v3;
 
         for (v2 = 0; v2 < v0; v2++) {
-            v3 = sub_02032EE8(v2);
+            v3 = CommunicationInformation_GetTrainerInformation(v2);
             GF_ASSERT(v3 != NULL);
 
             if (TrainerInfo_IsMainStoryCleared(v3) == 0) {
@@ -1009,7 +1009,7 @@ BOOL sub_020943B0 (UnkStruct_02095C48 * param0)
         }
 
         for (v2 = 0; v2 < v0; v2++) {
-            v3 = sub_02032EE8(v2);
+            v3 = CommunicationInformation_GetTrainerInformation(v2);
             GF_ASSERT(v3 != NULL);
 
             if (TrainerInfo_HasNationalDex(v3) == 0) {
@@ -1026,7 +1026,7 @@ BOOL sub_020943B0 (UnkStruct_02095C48 * param0)
         sub_020939E0(param0, param0->unk_197D, param0->unk_197E);
 
         for (v2 = 0; v2 < v0; v2++) {
-            v3 = sub_02032EE8(v2);
+            v3 = CommunicationInformation_GetTrainerInformation(v2);
 
             if (TrainerInfo_GameCode(v3) == 0) {
                 param0->unk_15B++;

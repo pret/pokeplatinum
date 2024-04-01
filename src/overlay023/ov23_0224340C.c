@@ -1409,7 +1409,7 @@ void ov23_02244140 (int param0, int param1, void * param2, void * param3)
 
             Sound_PlayEffect(1507);
 
-            ov23_02254050(ov23_0224219C(), sub_02032EE8(v0->unk_07_0));
+            ov23_02254050(ov23_0224219C(), CommunicationInformation_GetTrainerInformation(v0->unk_07_0));
             ov23_022541F0(ov23_0224219C(), 2, v0->unk_00.unk_04);
             ov23_02254204(ov23_0224219C(), 2);
             ov23_02254098(ov23_0224219C(), v0->unk_00.unk_04);
@@ -1678,14 +1678,14 @@ BOOL ov23_022446B0 (Strbuf *param0)
             Unk_ov23_02257764->unk_B28[v0].unk_07_6 = 0;
 
             if (Unk_ov23_02257764->unk_B28[v0].unk_06 >= ((7 + 1))) {
-                v2 = sub_02032EE8(v0);
+                v2 = CommunicationInformation_GetTrainerInformation(v0);
 
                 if (ov23_022422A8(v2, 0, 99, param0)) {
                     return 1;
                 }
             } else {
-                v2 = sub_02032EE8(Unk_ov23_02257764->unk_B28[v0].unk_06);
-                v3 = sub_02032EE8(v0);
+                v2 = CommunicationInformation_GetTrainerInformation(Unk_ov23_02257764->unk_B28[v0].unk_06);
+                v3 = CommunicationInformation_GetTrainerInformation(v0);
 
                 if (ov23_0224223C(v3, v2, 100, param0)) {
                     return 1;
@@ -1694,8 +1694,8 @@ BOOL ov23_022446B0 (Strbuf *param0)
         }
 
         if (Unk_ov23_02257764->unk_B68[v0] != 0xff) {
-            v2 = sub_02032EE8(v0);
-            v3 = sub_02032EE8(Unk_ov23_02257764->unk_B68[v0]);
+            v2 = CommunicationInformation_GetTrainerInformation(v0);
+            v3 = CommunicationInformation_GetTrainerInformation(Unk_ov23_02257764->unk_B68[v0]);
 
             Unk_ov23_02257764->unk_B68[v0] = 0xff;
 
@@ -1722,7 +1722,7 @@ BOOL ov23_02244784 (Strbuf *param0)
         if (Unk_ov23_02257764->unk_B88[v0] != 0) {
             v1 = Unk_ov23_02257764->unk_B88[v0];
             Unk_ov23_02257764->unk_B88[v0] = 0;
-            v2 = sub_02032EE8(v0);
+            v2 = CommunicationInformation_GetTrainerInformation(v0);
 
             if (ov23_022422A8(v2, 0, v1, param0)) {
                 return 1;
@@ -1731,7 +1731,7 @@ BOOL ov23_02244784 (Strbuf *param0)
 
         if (Unk_ov23_02257764->unk_B90[v0] == 1) {
             Unk_ov23_02257764->unk_B90[v0] = 0;
-            v2 = sub_02032EE8(v0);
+            v2 = CommunicationInformation_GetTrainerInformation(v0);
 
             if (ov23_022422A8(v2, 0, 90, param0)) {
                 return 1;
@@ -1739,7 +1739,7 @@ BOOL ov23_02244784 (Strbuf *param0)
         }
 
         if (Unk_ov23_02257764->unk_B80[v0] == 1) {
-            v2 = sub_02032EE8(v0);
+            v2 = CommunicationInformation_GetTrainerInformation(v0);
             Unk_ov23_02257764->unk_B80[v0] = 0;
 
             if (ov23_022422A8(v2, 0, 98, param0)) {
@@ -2563,7 +2563,7 @@ void ov23_022455B4 (int param0, int param1, void * param2, void * param3)
         sub_0202CFEC(sub_0202CD88(Unk_ov23_02257764->unk_40->unk_0C), 34);
         sub_020594FC();
 
-        ov23_02254068(ov23_0224219C(), sub_02032EE8(v0->unk_01));
+        ov23_02254068(ov23_0224219C(), CommunicationInformation_GetTrainerInformation(v0->unk_01));
         ov23_02253F40(ov23_0224219C(), 71, 1, ov23_02243850);
     }
 

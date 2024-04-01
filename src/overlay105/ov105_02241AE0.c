@@ -2677,7 +2677,7 @@ static void ov105_02244F84 (UnkStruct_ov105_02241FF4 * param0, Window * param1, 
     Strbuf* v1;
     TrainerInfo * v2;
 
-    v2 = sub_02032EE8(1 - CommunicationSystem_GetCurNetId());
+    v2 = CommunicationInformation_GetTrainerInformation(1 - CommunicationSystem_GetCurNetId());
     v1 = Strbuf_Init((7 + 1), 93);
 
     BGL_FillWindow(param1, 0);

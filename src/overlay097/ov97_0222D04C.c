@@ -97,7 +97,7 @@ static void ov97_0222D0F0 (void)
 
     for (v0 = 0; v0 < 16; v0++) {
         if ((Unk_ov97_0223F1A4->unk_28[v0] == NULL) && (CommunicationSystem_IsPlayerConnected(v0) == 1)) {
-            Unk_ov97_0223F1A4->unk_28[v0] = sub_02032EE8(v0);
+            Unk_ov97_0223F1A4->unk_28[v0] = CommunicationInformation_GetTrainerInformation(v0);
 
             if (Unk_ov97_0223F1A4->unk_28[v0]) {
                 (void)0;

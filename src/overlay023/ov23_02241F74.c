@@ -275,7 +275,7 @@ static BOOL ov23_02242308 (Strbuf *param0)
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
         if (sub_02032DE0(v0)) {
-            v3 = sub_02032EE8(v0);
+            v3 = CommunicationInformation_GetTrainerInformation(v0);
             sub_02032E30(v0);
 
             if (ov23_022422A8(v3, 1, 91, param0)) {
@@ -284,8 +284,8 @@ static BOOL ov23_02242308 (Strbuf *param0)
         }
 
         if (Unk_ov23_02257748->unk_C2[v0] != 0xff) {
-            v3 = sub_02032EE8(v0);
-            v4 = sub_02032EE8(Unk_ov23_02257748->unk_C2[v0]);
+            v3 = CommunicationInformation_GetTrainerInformation(v0);
+            v4 = CommunicationInformation_GetTrainerInformation(Unk_ov23_02257748->unk_C2[v0]);
 
             Unk_ov23_02257748->unk_C2[v0] = 0xff;
 
@@ -295,7 +295,7 @@ static BOOL ov23_02242308 (Strbuf *param0)
         }
 
         if (Unk_ov23_02257748->unk_D2[v0] != 0xff) {
-            v3 = sub_02032EE8(v0);
+            v3 = CommunicationInformation_GetTrainerInformation(v0);
             Unk_ov23_02257748->unk_D2[v0] = 0xff;
 
             if (ov23_022422A8(v3, 0, 112, param0)) {
@@ -740,11 +740,11 @@ void ov23_02242B14 (void)
 
     if (CommunicationSystem_GetCurNetId() == 0) {
         for (v0 = 0; v0 < (7 + 1); v0++) {
-            if ((NULL != sub_02032EE8(v0)) && !Unk_ov23_02257748->unk_135[v0]) {
+            if ((NULL != CommunicationInformation_GetTrainerInformation(v0)) && !Unk_ov23_02257748->unk_135[v0]) {
                 ov23_0224B5CC(v0);
             }
 
-            if (sub_02032EE8(v0)) {
+            if (CommunicationInformation_GetTrainerInformation(v0)) {
                 Unk_ov23_02257748->unk_135[v0] = 1;
             } else {
                 Unk_ov23_02257748->unk_135[v0] = 0;
@@ -757,7 +757,7 @@ void ov23_02242B14 (void)
     Unk_ov23_02257748->unk_145++;
 
     if (CommunicationSystem_GetCurNetId() == 0) {
-        if (sub_02032CE8()) {
+        if (CommunicationInformation_ServerSendArray()) {
             sub_02057AE4(1);
         }
     }
@@ -1063,7 +1063,7 @@ void ov23_02243038 (int param0)
             v0 = sub_0200B358(11);
             v1 = Strbuf_Init((50 * 2), 11);
 
-            sub_0200B498(v0, 0, sub_02032EE8(param0));
+            sub_0200B498(v0, 0, CommunicationInformation_GetTrainerInformation(param0));
             MessageLoader_GetStrbuf(ov23_02253E3C(ov23_0224219C()), 115, v1);
             StringFormatter_Format(v0, Unk_ov23_02257748->unk_DC[param0], v1);
             Strbuf_Free(v1);

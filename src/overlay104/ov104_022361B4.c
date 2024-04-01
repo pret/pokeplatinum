@@ -791,8 +791,8 @@ void ov104_02237180 (UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10
             v1 = sub_02030698(sub_0203068C(param1->unk_04), sub_0205E630(param1->unk_10), sub_0205E6A8(sub_0205E630(param1->unk_10)));
         }
 
-        ov104_02237284(param0, param0->unk_A8, sub_02032EE8(0), v0);
-        ov104_02237284(param0, param0->unk_AC, sub_02032EE8(1), v1);
+        ov104_02237284(param0, param0->unk_A8, CommunicationInformation_GetTrainerInformation(0), v0);
+        ov104_02237284(param0, param0->unk_AC, CommunicationInformation_GetTrainerInformation(1), v1);
     }
 
     return;

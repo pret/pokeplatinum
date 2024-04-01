@@ -255,7 +255,7 @@ int ov116_022609B4 (UnkStruct_020067E8 * param0, int * param1)
         for (v1 = 0; v1 < 4; v1++) {
             v0->unk_B4[v1] = 0xFF;
 
-            if (sub_02032EE8(v1) != NULL) {
+            if (CommunicationInformation_GetTrainerInformation(v1) != NULL) {
                 v0->unk_B4[v2] = v1;
                 v2++;
             }

@@ -84,7 +84,7 @@ BOOL sub_020391DC (SaveData * param0, int * param1, int param2)
             continue;
         }
 
-        v4 = sub_02032F1C(v0);
+        v4 = CommunicationInformation_GetDWCFriendData(v0);
 
         if (v4 == NULL) {
             continue;
@@ -116,12 +116,12 @@ void sub_02039298 (SaveData * param0, int param1, int param2, int param3, int pa
 {
     UnkStruct_0202B370 * v0 = sub_0202B370(param0);
     DWCFriendData * v1 = sub_0202AED8(v0, param2);
-    TrainerInfo * v2 = sub_02032EE8(param1);
+    TrainerInfo * v2 = CommunicationInformation_GetTrainerInformation(param1);
     DWCFriendData * v3;
     Strbuf* v4;
 
     if (param4 != 2) {
-        v3 = sub_02032F1C(param1);
+        v3 = CommunicationInformation_GetDWCFriendData(param1);
         MI_CpuCopy8(v3, v1, sizeof(DWCFriendData));
     }
 
@@ -150,7 +150,7 @@ void sub_02039298 (SaveData * param0, int param1, int param2, int param3, int pa
 int sub_02039390 (SaveData * param0, int param1)
 {
     int v0, v1;
-    DWCFriendData * v2 = sub_02032F1C(param1);
+    DWCFriendData * v2 = CommunicationInformation_GetDWCFriendData(param1);
     UnkStruct_0202B370 * v3 = sub_0202B370(param0);
 
     for (v0 = 0; v0 < 32; v0++) {

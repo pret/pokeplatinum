@@ -173,7 +173,7 @@ void sub_020597B4 (UnkStruct_0203CDB0 * param0)
 
     {
         int v0, v1 = CommunicationSystem_GetCurNetId();
-        TrainerInfo * v2 = sub_02032EE8(CommunicationSystem_GetCurNetId());
+        TrainerInfo * v2 = CommunicationInformation_GetTrainerInformation(CommunicationSystem_GetCurNetId());
 
         for (v0 = 0; v0 < sub_02035E18(); v0++) {
             if (Unk_021C084C->unk_00[v0] == NULL) {
@@ -307,7 +307,7 @@ static void sub_02059984 (void)
 static void sub_020599E4 (void)
 {
     if (CommunicationSystem_GetCurNetId() == 0) {
-        sub_02032CE8();
+        CommunicationInformation_ServerSendArray();
     }
 
     if (sub_02036540(92)) {
@@ -377,7 +377,7 @@ static void sub_02059AB4 (void)
 static void sub_02059B10 (void)
 {
     if (CommunicationSystem_GetCurNetId() == 0) {
-        sub_02032CE8();
+        CommunicationInformation_ServerSendArray();
     }
 
     if (sub_02036540(92)) {

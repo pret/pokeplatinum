@@ -502,7 +502,7 @@ asm static void ov7_0224A128 (SysTask * param0, void * param1)
     pop {r4, r5, pc}
  _0224A152:
     bl CommunicationSystem_GetCurNetId
-    bl sub_02032EE8
+    bl CommunicationInformation_GetTrainerInformation
     cmp r0, #0
     beq _0224A238
     bl sub_020365D0
@@ -727,12 +727,12 @@ static void ov7_0224A438 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 
     v0 += param2;
 
-    if (NULL != sub_02032EE8(v0)) {
-        sub_0200B498(Unk_ov7_0224F5A0->unk_50, 0, sub_02032EE8(v0));
+    if (NULL != CommunicationInformation_GetTrainerInformation(v0)) {
+        sub_0200B498(Unk_ov7_0224F5A0->unk_50, 0, CommunicationInformation_GetTrainerInformation(v0));
         MessageLoader_GetStrbuf(Unk_ov7_0224F5A0->unk_74, 66, Unk_ov7_0224F5A0->unk_00[1]);
         StringFormatter_Format(Unk_ov7_0224F5A0->unk_50, Unk_ov7_0224F5A0->unk_00[0], Unk_ov7_0224F5A0->unk_00[1]);
         PrintStringSimple(&Unk_ov7_0224F5A0->unk_20, 0, Unk_ov7_0224F5A0->unk_00[0], 8, param2 * 16, 0, NULL);
-        sub_0200B60C(Unk_ov7_0224F5A0->unk_50, 2, TrainerInfo_ID_LowHalf(sub_02032EE8(v0)), 5, 2, 1);
+        sub_0200B60C(Unk_ov7_0224F5A0->unk_50, 2, TrainerInfo_ID_LowHalf(CommunicationInformation_GetTrainerInformation(v0)), 5, 2, 1);
         MessageLoader_GetStrbuf(Unk_ov7_0224F5A0->unk_74, 65, Unk_ov7_0224F5A0->unk_00[3]);
         StringFormatter_Format(Unk_ov7_0224F5A0->unk_50, Unk_ov7_0224F5A0->unk_00[2], Unk_ov7_0224F5A0->unk_00[3]);
         PrintStringSimple(&Unk_ov7_0224F5A0->unk_20, 0, Unk_ov7_0224F5A0->unk_00[2], 9 * 8, param2 * 16, 0, NULL);
@@ -882,7 +882,7 @@ static void ov7_0224A6D4 (int param0, UnkStruct_ov7_02249C2C * param1)
         29,
         30
     };
-    TrainerInfo * v1 = sub_02032EE8(param0);
+    TrainerInfo * v1 = CommunicationInformation_GetTrainerInformation(param0);
 
     if (v1) {
         sub_0200B498(param1->unk_58, 1, v1);
@@ -941,10 +941,10 @@ static void ov7_0224A7D0 (SysTask * param0, void * param1)
         if (sub_02032DC4(v2) && (v2 != 0)) {
             Unk_ov7_0224F5A0->unk_80[v2] = 1;
             Unk_ov7_0224F5A0->unk_98 = 1;
-        } else if ((NULL != sub_02032EE8(v2)) && !Unk_ov7_0224F5A0->unk_80[v2]) {
+        } else if ((NULL != CommunicationInformation_GetTrainerInformation(v2)) && !Unk_ov7_0224F5A0->unk_80[v2]) {
             Unk_ov7_0224F5A0->unk_80[v2] = 1;
             Unk_ov7_0224F5A0->unk_98 = 1;
-        } else if ((NULL == sub_02032EE8(v2)) && Unk_ov7_0224F5A0->unk_80[v2]) {
+        } else if ((NULL == CommunicationInformation_GetTrainerInformation(v2)) && Unk_ov7_0224F5A0->unk_80[v2]) {
             Unk_ov7_0224F5A0->unk_80[v2] = 0;
             Unk_ov7_0224F5A0->unk_98 = 1;
         }
@@ -1460,7 +1460,7 @@ static void ov7_0224AFD8 (SysTask * param0, UnkStruct_ov7_02249C2C * param1)
 
 static void ov7_0224B054 (UnkStruct_ov7_02249C2C * param0)
 {
-    sub_0200B498(param0->unk_58, 1, sub_02032EE8(1));
+    sub_0200B498(param0->unk_58, 1, CommunicationInformation_GetTrainerInformation(1));
     ov7_02249960(57, 1);
 
     SysTask_Start(ov7_0224A718, param0, 0);

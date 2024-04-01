@@ -375,7 +375,7 @@ static void ov23_0224A6E4 (UnkStruct_ov23_0224A570 * param0, BOOL param1, UnkStr
     sub_02057FC4(0);
     sub_02059464(0x4);
 
-    ov23_02254068(ov23_022421AC(), sub_02032EE8(param0->unk_01));
+    ov23_02254068(ov23_022421AC(), CommunicationInformation_GetTrainerInformation(param0->unk_01));
 
     if (param1) {
         v0->unk_FA[CommunicationSystem_GetCurNetId()] = 0;
@@ -412,7 +412,7 @@ void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
         }
         break;
     case 5:
-        if (sub_02032EE8(v1->unk_01) == NULL) {
+        if (CommunicationInformation_GetTrainerInformation(v1->unk_01) == NULL) {
             ov23_0224AE60(v1->unk_02);
             return;
         }
@@ -425,7 +425,7 @@ void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
             return;
         }
 
-        if (TrainerInfo_Equals(v0->unk_290[v1->unk_02], sub_02032EE8(v1->unk_01)) == 1) {
+        if (TrainerInfo_Equals(v0->unk_290[v1->unk_02], CommunicationInformation_GetTrainerInformation(v1->unk_01)) == 1) {
             ov23_0224AE60(v1->unk_02);
 
             if (v1->unk_01 == CommunicationSystem_GetCurNetId()) {
@@ -442,7 +442,7 @@ void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
             if (v1->unk_01 == CommunicationSystem_GetCurNetId()) {
                 sub_0202955C(v4);
                 sub_02059464(0x1);
-                ov23_02254068(ov23_022421AC(), sub_02032EE8(v1->unk_02));
+                ov23_02254068(ov23_022421AC(), CommunicationInformation_GetTrainerInformation(v1->unk_02));
                 ov23_02253F40(ov23_022421AC(), 12, 1, ov23_0224A328);
                 Sound_PlayBGM(1061);
                 Sound_PlayEffect(1573);
@@ -497,8 +497,8 @@ void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
         }
 
         if (v0->unk_290[v1->unk_01]) {
-            if (TrainerInfo_Equals(v0->unk_290[v1->unk_01], sub_02032EE8(CommunicationSystem_GetCurNetId())) == 1) {
-                sub_0206DAD4(v0->unk_54, sub_02032EE8(v1->unk_01));
+            if (TrainerInfo_Equals(v0->unk_290[v1->unk_01], CommunicationInformation_GetTrainerInformation(CommunicationSystem_GetCurNetId())) == 1) {
+                sub_0206DAD4(v0->unk_54, CommunicationInformation_GetTrainerInformation(v1->unk_01));
             }
         }
 
@@ -794,7 +794,7 @@ BOOL ov23_0224AEC4 (int param0, int param1)
     UnkStruct_ov23_0224A294 * v0 = sub_02057518();
 
     if (v0->unk_290[param0] == NULL) {
-        TrainerInfo * v1 = sub_02032EE8(param1);
+        TrainerInfo * v1 = CommunicationInformation_GetTrainerInformation(param1);
 
         if (v1) {
             v0->unk_290[param0] = TrainerInfo_New(15);

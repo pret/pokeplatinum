@@ -1192,7 +1192,7 @@ static int ov59_021D1F24 (UnkStruct_020961E8 * param0, int param1)
         } else {
             param0->unk_3A8 = 13;
             CommunicationSystem_SendData(113, NULL, 0);
-            sub_0200B498(param0->unk_24, 0, sub_02032EE8(0));
+            sub_0200B498(param0->unk_24, 0, CommunicationInformation_GetTrainerInformation(0));
         }
 
         param0->unk_384 = NULL;
@@ -1207,7 +1207,7 @@ static int ov59_021D1FD0 (UnkStruct_020961E8 * param0, int param1)
     if (CommunicationSystem_GetCurNetId() == 0) {
         ov59_021D2628(param0, 5, 0);
     } else {
-        sub_0200B498(param0->unk_24, 0, sub_02032EE8(0));
+        sub_0200B498(param0->unk_24, 0, CommunicationInformation_GetTrainerInformation(0));
         ov59_021D2628(param0, 16, 0);
     }
 
@@ -1362,7 +1362,7 @@ void ov59_021D2204 (UnkStruct_020961E8 * param0, int param1, u8 param2)
             return;
         }
 
-        sub_0200B498(param0->unk_24, 0, sub_02032EE8(param2));
+        sub_0200B498(param0->unk_24, 0, CommunicationInformation_GetTrainerInformation(param2));
 
         if (param2 == CommunicationSystem_GetCurNetId()) {
             return;
@@ -1395,7 +1395,7 @@ void ov59_021D22EC (UnkStruct_020961E8 * param0, int param1, u8 param2)
     if (param0->unk_3A8 == 3) {
         switch (param1) {
         case 1:
-            sub_0200B498(param0->unk_24, 0, sub_02032EE8(param2));
+            sub_0200B498(param0->unk_24, 0, CommunicationInformation_GetTrainerInformation(param2));
             ov59_021D28D8(param0, 1);
 
             param0->unk_3A8 = param1;
@@ -1408,7 +1408,7 @@ void ov59_021D22EC (UnkStruct_020961E8 * param0, int param1, u8 param2)
             }
             break;
         case 19:
-            sub_0200B498(param0->unk_24, 0, sub_02032EE8(param2));
+            sub_0200B498(param0->unk_24, 0, CommunicationInformation_GetTrainerInformation(param2));
 
             if (param2 == CommunicationSystem_GetCurNetId()) {
                 return;
@@ -1458,7 +1458,7 @@ static int ov59_021D23FC (void)
     v1 = 0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        v2 = sub_02032EE8(v0);
+        v2 = CommunicationInformation_GetTrainerInformation(v0);
 
         if (v2 != NULL) {
             v1++;
@@ -1515,7 +1515,7 @@ static int ov59_021D2528 (void)
     int v0, v1;
 
     for (v1 = 0, v0 = 0; v0 < 5; v0++) {
-        if (sub_02032EE8(v0) != NULL) {
+        if (CommunicationInformation_GetTrainerInformation(v0) != NULL) {
             v1++;
         }
     }
@@ -1534,7 +1534,7 @@ static BOOL ov59_021D254C (UnkStruct_020961E8 * param0)
 
     for (v0 = 0; v0 < 5; v0++) {
         param0->unk_3C8[v0][1] = param0->unk_3C8[v0][0];
-        param0->unk_3C8[v0][0] = sub_02032EE8(v0);
+        param0->unk_3C8[v0][0] = CommunicationInformation_GetTrainerInformation(v0);
         param0->unk_4AC8[v0][1] = param0->unk_4AC8[v0][0];
 
         if (param0->unk_3C8[v0][0] != NULL) {

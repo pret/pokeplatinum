@@ -464,7 +464,7 @@ static int ov5_021D2274 (void)
     v1 = 0;
 
     for (v0 = 1; v0 < 5; v0++) {
-        v2 = sub_02032EE8(v0);
+        v2 = CommunicationInformation_GetTrainerInformation(v0);
 
         if (v2 != NULL) {
             v1++;

@@ -523,7 +523,7 @@ void * ov23_02252C98 (int param0, UnkStruct_0203CDB0 * param1, int param2)
 int ov23_02252C9C (int param0)
 {
     ov23_02253DFC(ov23_022421BC(), 636, 1);
-    ov23_02254068(ov23_022421BC(), sub_02032EE8(CommunicationSystem_GetCurNetId()));
+    ov23_02254068(ov23_022421BC(), CommunicationInformation_GetTrainerInformation(CommunicationSystem_GetCurNetId()));
 
     return ov23_02253F40(ov23_022421BC(), param0, 0, NULL);
 }

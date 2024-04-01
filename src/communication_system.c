@@ -1685,7 +1685,7 @@ BOOL sub_02035EE0 (void)
     return 1;
 }
 
-BOOL sub_02035F00 (int param0, const void * param1, int param2)
+BOOL CommunicationSystem_ServerSetSendQueue (int param0, const void * param1, int param2)
 {
     if (sub_02034890() == 1) {
         return sub_02032498(&sCommunicationSystem->unk_580, param0, (u8 *)param1, param2, 1, 0);

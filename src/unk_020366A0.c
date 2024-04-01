@@ -1259,7 +1259,7 @@ static void sub_02037790 (void)
         }
     } else {
         if (CommunicationSystem_GetCurNetId() == 0) {
-            sub_02032CE8();
+            CommunicationInformation_ServerSendArray();
         }
     }
 
