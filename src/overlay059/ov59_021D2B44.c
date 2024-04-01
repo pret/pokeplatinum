@@ -289,7 +289,7 @@ static const void ** ov59_021D2E40 (int param0, const void ** param1, const void
 {
     TrainerInfo * v0;
 
-    v0 = CommunicationInformation_GetTrainerInformation(param0);
+    v0 = CommInfo_GetTrainerInformation(param0);
 
     if (v0 == NULL) {
         return NULL;

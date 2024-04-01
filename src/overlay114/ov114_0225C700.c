@@ -802,12 +802,12 @@ void ov114_0225C700 (UnkStruct_ov114_0225C76C * param0, BOOL param1, SaveData * 
 
     memset(param0, 0, sizeof(UnkStruct_ov114_0225C76C));
 
-    param0->unk_08 = CommunicationInformation_GetRecvCnt();
-    v2 = CommunicationSystem_GetCurNetId();
+    param0->unk_08 = CommInfo_GetRecvCnt();
+    v2 = CommSys_GetCurNetId();
     v1 = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        v3 = CommunicationInformation_GetTrainerInformation(v0);
+        v3 = CommInfo_GetTrainerInformation(v0);
 
         if (v3 != NULL) {
             if (v2 == v0) {
@@ -887,7 +887,7 @@ TrainerInfo * ov114_0225C7CC (const UnkStruct_ov114_0225C76C * param0, u32 param
             return SaveData_GetTrainerInfo(param0->unk_00);
         }
 
-        return CommunicationInformation_GetTrainerInformation(param1);
+        return CommInfo_GetTrainerInformation(param1);
     }
 
     GF_ASSERT(param0->unk_0C != NULL);
@@ -1097,8 +1097,8 @@ BOOL ov114_0225CA98 (const UnkStruct_ov114_0225C76C * param0)
     GF_ASSERT(param0->unk_0C != NULL);
     GF_ASSERT(param0->unk_0C->unk_1C == 1);
 
-    if (CommunicationInformation_IsInitialized() == 1) {
-        CommunicationInformation_Delete();
+    if (CommInfo_IsInitialized() == 1) {
+        CommInfo_Delete();
         sub_0203888C();
     } else {
         if (sub_020382C0() == 1) {
@@ -1866,7 +1866,7 @@ static void ov114_0225D688 (SysTask * param0, void * param1)
                 break;
             }
 
-            CommunicationSystem_SendData(26, &v8, sizeof(u32));
+            CommSys_SendData(26, &v8, sizeof(u32));
         }
 
         v0->unk_00++;
@@ -2265,8 +2265,8 @@ static void ov114_0225E0F8 (UnkStruct_ov114_0225E0F8 * param0, const UnkStruct_o
     for (v0 = 0; v0 < param1->unk_08; v0++) {
         param0->unk_08[v0] = ov114_0225C7CC(param1, param1->unk_04[v0]);
         GF_ASSERT(param0->unk_08[v0]);
-        param0->unk_00[v0] = CommunicationInformation_GetPlayerCountry(param1->unk_04[v0]);
-        param0->unk_04[v0] = CommunicationInformation_GetPlayerRegion(param1->unk_04[v0]);
+        param0->unk_00[v0] = CommInfo_PlayerCountry(param1->unk_04[v0]);
+        param0->unk_04[v0] = CommInfo_PlayerRegion(param1->unk_04[v0]);
     }
 }
 
@@ -3285,9 +3285,9 @@ static BOOL ov114_0225F27C (UnkStruct_ov114_0225F270 * param0, UnkStruct_ov114_0
 
         if ((v0 == 1) || (v0 == 2)) {
             if (v0 == 1) {
-                CommunicationSystem_SendData(22, NULL, 0);
+                CommSys_SendData(22, NULL, 0);
             } else if (v0 == 2) {
-                CommunicationSystem_SendData(23, NULL, 0);
+                CommSys_SendData(23, NULL, 0);
             }
 
             ov114_0225D368(param1, param2, 15, 1);
@@ -3376,9 +3376,9 @@ static void ov114_0225F424 (UnkStruct_ov114_0225F270 * param0, u32 param1, BOOL 
 
         if (v1 == param3) {
             if (param0->unk_1D) {
-                CommunicationSystem_SendData(24, NULL, 0);
+                CommSys_SendData(24, NULL, 0);
             } else {
-                CommunicationSystem_SendData(25, NULL, 0);
+                CommSys_SendData(25, NULL, 0);
             }
         }
     }
@@ -3579,7 +3579,7 @@ static void ov114_0225F890 (UnkStruct_ov114_0225E854 * param0)
 
     for (v1 = 0; v1 < param0->unk_0C.unk_08; v1++) {
         v2 = param0->unk_0C.unk_04[v1];
-        v5 = CommunicationInformation_GetDWCFriendData(v2);
+        v5 = CommInfo_GetDWCFriendData(v2);
         v3 = sub_0203909C(param0->unk_0C.unk_00, v5, &v4);
 
         switch (v3) {

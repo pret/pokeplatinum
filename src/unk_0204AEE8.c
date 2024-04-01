@@ -180,7 +180,7 @@ u16 sub_0204B020 (UnkStruct_0203CDB0 * param0, const u16 * param1)
     int v0;
     UnkStruct_0204AFC4 * v1 = param0->unk_AC;
 
-    if (CommunicationSystem_GetCurNetId() == 0) {
+    if (CommSys_GetCurNetId() == 0) {
         return 0;
     }
 

@@ -54,7 +54,7 @@ void ov107_02249CF4 (StringFormatter * param0, u32 param1)
     TrainerInfo * v0;
     u32 v1;
 
-    v0 = CommunicationInformation_GetTrainerInformation((CommunicationSystem_GetCurNetId() ^ 1));
+    v0 = CommInfo_GetTrainerInformation((CommSys_GetCurNetId() ^ 1));
     sub_0200B498(param0, param1, v0);
 
     return;

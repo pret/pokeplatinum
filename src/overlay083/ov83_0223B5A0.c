@@ -214,7 +214,7 @@ int ov83_0223B710 (UnkStruct_020067E8 * param0, int * param1)
     v0 = v2->unk_00;
 
     if (v1->unk_26) {
-        if (CommunicationSystem_GetCurNetId() == 0) {
+        if (CommSys_GetCurNetId() == 0) {
             ov4_021D25FC();
         }
     }
@@ -474,7 +474,7 @@ static int ov83_0223BB40 (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
                     int v2;
 
                     for (v2 = 1; v2 < (7 + 1); v2++) {
-                        if (CommunicationSystem_IsPlayerConnected(v2)) {
+                        if (CommSys_IsPlayerConnected(v2)) {
                             if (param1->unk_165C[v2] == 0) {
                                 v1 = 0;
                             }
@@ -486,7 +486,7 @@ static int ov83_0223BB40 (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
                         param1->unk_15DC = 0;
 
                         for (v2 = 1; v2 < (7 + 1); v2++) {
-                            if (CommunicationSystem_IsPlayerConnected(v2)) {
+                            if (CommSys_IsPlayerConnected(v2)) {
                                 param1->unk_165C[v2]--;
                             }
                         }
@@ -581,7 +581,7 @@ static int ov83_0223BCEC (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
 
             for (v4 = 0; v4 < param1->unk_1488; v4++) {
                 v5 = param1->unk_1494.unk_130[v4];
-                v8 = CommunicationInformation_GetDWCFriendData(v5);
+                v8 = CommInfo_GetDWCFriendData(v5);
                 v6 = sub_0203909C(param0->unk_10->unk_0C, v8, &v7);
 
                 switch (v6) {

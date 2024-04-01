@@ -74,7 +74,7 @@ BOOL ov83_0223D508 (int param0, const void * param1, int param2, UnkStruct_ov83_
             }
         }
 
-        return CommunicationSystem_SendData(param0, param1, param2);
+        return CommSys_SendData(param0, param1, param2);
     } else {
         return ov83_0223D638(param3->unk_04, param0, param1, param2);
     }
@@ -92,7 +92,7 @@ void ov83_0223D558 (UnkStruct_ov83_0223D4CC * param0)
 int ov83_0223D570 (UnkStruct_ov83_0223D4CC * param0)
 {
     if (param0->unk_00 == 1) {
-        return CommunicationSystem_GetCurNetId();
+        return CommSys_GetCurNetId();
     } else {
         return(0);
     }

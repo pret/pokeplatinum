@@ -678,7 +678,7 @@ static u8 ov10_0221FD00 (UnkStruct_ov10_0221FB28 * param0)
             param0->unk_BC4 = 0;
 
             for (v2 = 0; v2 < (7 + 1); v2++) {
-                v3 = CommunicationInformation_GetTrainerInformation(v2);
+                v3 = CommInfo_GetTrainerInformation(v2);
 
                 if (v3 != NULL) {
                     if (TrainerInfo_GameCode(v3) == 0) {
@@ -1189,7 +1189,7 @@ static u8 ov10_02220A50 (SysTask * param0, UnkStruct_ov10_0221FB28 * param1)
 
 static BOOL ov10_02220AD0 (void)
 {
-    switch (sub_020362F4(CommunicationSystem_GetCurNetId())) {
+    switch (sub_020362F4(CommSys_GetCurNetId())) {
     case 0:
     case 2:
         return 1;
@@ -2410,7 +2410,7 @@ static void ov10_022227A4 (UnkStruct_ov10_0221F800 * param0)
         return;
     }
 
-    v6 = CommunicationSystem_GetCurNetId();
+    v6 = CommSys_GetCurNetId();
     v5 = param0->unk_2A - 1;
 
     if (MapHeader_IsUnionRoom(param0->unk_00->mapHeaderID) == 1) {

@@ -350,7 +350,7 @@ BOOL ov104_02239B14 (UnkStruct_ov104_0222E930 * param0)
     v1->unk_12 = v4.unk_58;
     v1->unk_10_5 = 5 + v1->unk_12;
 
-    if (CommunicationSystem_GetCurNetId() == 0) {
+    if (CommSys_GetCurNetId() == 0) {
         sub_0204A4C8(v1, v2->unk_08);
     }
 

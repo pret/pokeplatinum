@@ -7,37 +7,37 @@
 
 #include <dwc.h>
 
-void CommunicationInformation_Init(SaveData * saveData, const BattleRegulation * regulation);
-void CommunicationInformation_Delete(void);
-BOOL CommunicationInformation_IsInitialized(void);
-void CommunicationInformation_SendBattleRegulation(void);
-int CommPlayerData_sizeof(void);
+void CommInfo_Init(SaveData * saveData, const BattleRegulation * regulation);
+void CommInfo_Delete(void);
+BOOL CommInfo_IsInitialized(void);
+void CommInfo_SendBattleRegulation(void);
+int CommPlayerData_Size(void);
 void CommunicatitonInformaion_FinishReading(int param0, int param1, void * param2, void * param3);
-BOOL CommunicationInformation_IsDataFinishedReading(void);
-void CommunicationInformation_RecvPlayerDataArray(int netId, int unused1, void * src, void * unused3);
-void CommunicationInformation_RecvPlayerData(int netId, int unused1, void * src, void * unused3);
-BOOL CommunicationInformation_ServerSendArray(void);
-BOOL CommunicationInformation_IsReceivingData(void);
-void CommunicationInformation_InitPlayer(int netId);
+BOOL CommInfo_IsDataFinishedReading(void);
+void CommInfo_RecvPlayerDataArray(int netId, int unused1, void * src, void * unused3);
+void CommInfo_RecvPlayerData(int netId, int unused1, void * src, void * unused3);
+BOOL CommInfo_ServerSendArray(void);
+BOOL CommInfo_IsReceivingData(void);
+void CommInfo_InitPlayer(int netId);
 BOOL sub_02032DC4(int netId);
 BOOL sub_02032DE0(int netId);
 BOOL sub_02032E00(int netId);
 void sub_02032E1C(int netId);
-void CommunicationInformation_SetReceiveEnd(int netId);
-int CommunicationInformation_GetNewNetworkId(void);
-int CommunicationInformation_GetRecvCnt(void);
+void CommInfo_SetReceiveEnd(int netId);
+int CommInfo_GetNewNetworkId(void);
+int CommInfo_GetRecvCnt(void);
 BOOL sub_02032E90(void);
-TrainerInfo * CommunicationInformation_GetTrainerInformation(int netId);
-DWCFriendData * CommunicationInformation_GetDWCFriendData(int netId);
+TrainerInfo * CommInfo_GetTrainerInformation(int netId);
+DWCFriendData * CommInfo_GetDWCFriendData(int netId);
 int sub_02032F40(int param0);
 u16 * sub_02032F54(int netId);
-int CommunicationInformation_GetPlayerCountry(int netId);
-int CommunicationInformation_GetPlayerRegion(int netId);
+int CommInfo_PlayerCountry(int netId);
+int CommInfo_PlayerRegion(int netId);
 int sub_02032FC0(int param0);
-BOOL CommunicationInformation_CheckBattleRegulation(void);
-void CommunicationInformation_SavePlayerRecord(SaveData * saveData);
+BOOL CommInfo_CheckBattleRegulation(void);
+void CommInfo_SavePlayerRecord(SaveData * saveData);
 void sub_020331B4(SaveData * saveData, int param1);
-void CommunicationInformation_SetTradeResult(SaveData * saveData, int val);
-void CommunicationInformation_SetPersonalTrainerInfo(TrainerInfo * trainerInfo);
+void CommInfo_SetTradeResult(SaveData * saveData, int val);
+void CommInfo_SetPersonalTrainerInfo(TrainerInfo * trainerInfo);
 
 #endif // POKEPLATINUM_COMMUNICATION_INFORMATION_H

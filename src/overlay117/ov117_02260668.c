@@ -872,7 +872,7 @@ static void ov117_022613EC (UnkStruct_ov117_02261280 * param0)
     u32 v5;
     int v6, v7;
 
-    v4 = CommunicationSystem_GetCurNetId();
+    v4 = CommSys_GetCurNetId();
 
     for (v0 = 0; v0 < param0->unk_00->unk_30; v0++) {
         if (v4 != param0->unk_00->unk_2C[v0]) {
@@ -1351,7 +1351,7 @@ static void ov117_02261C2C (UnkStruct_ov117_02261280 * param0, NARC * param1)
     int v4;
     void * v5 = NULL;
 
-    v4 = ov117_0226235C(param0, CommunicationSystem_GetCurNetId());
+    v4 = ov117_0226235C(param0, CommSys_GetCurNetId());
 
     sub_020170D8(&v2->unk_00, param1, Unk_ov117_022669F0[v4].unk_00, 110);
     sub_02017258(&v2->unk_10, &v2->unk_00);
@@ -1480,7 +1480,7 @@ void ov117_02261FA4 (UnkStruct_ov117_02261280 * param0)
 
 BOOL ov117_02261FF4 (UnkStruct_ov117_02261280 * param0)
 {
-    if (param0->unk_04 == CommunicationSystem_GetCurNetId()) {
+    if (param0->unk_04 == CommSys_GetCurNetId()) {
         return 1;
     }
 
@@ -1693,7 +1693,7 @@ int ov117_022622C4 (UnkStruct_ov117_02261280 * param0, int param1)
     int v7;
     const u8 * v8;
 
-    v6 = CommunicationSystem_GetCurNetId();
+    v6 = CommSys_GetCurNetId();
     v3 = 0xff;
     v4 = 0xff;
 

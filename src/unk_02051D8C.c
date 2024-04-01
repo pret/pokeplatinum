@@ -128,7 +128,7 @@ BattleParams * sub_02051D8C (int param0, u32 param1)
             v1->unk_178[v0] = sub_020362F4(v0);
         }
 
-        v1->unk_188 = CommunicationSystem_GetCurNetId();
+        v1->unk_188 = CommSys_GetCurNetId();
     }
 
     MI_CpuClear8(&(v1->unk_110), sizeof(BattleParams_sub1));

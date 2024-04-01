@@ -179,7 +179,7 @@ void sub_0209621C (int param0, int param1, void * param2, void * param3)
     v0->unk_4A98 = 0;
     v0->unk_4AA4 = 1;
 
-    sub_020963C0(v0, CommunicationSystem_GetCurNetId());
+    sub_020963C0(v0, CommSys_GetCurNetId());
 
     ov59_021D1D40(v0);
     ov59_021D2204(v0, 25, param0);
@@ -203,7 +203,7 @@ void sub_02096274 (int param0, int param1, void * param2, void * param3)
     v2 = param2;
 
     if (param0 != 0) {
-        if (CommunicationSystem_GetCurNetId() == 0) {
+        if (CommSys_GetCurNetId() == 0) {
             v1 = *v2;
             v1.unk_00 = param0;
             v1.unk_01 = v0->unk_4AAC;
@@ -223,12 +223,12 @@ void sub_02096274 (int param0, int param1, void * param2, void * param3)
                 break;
             }
 
-            CommunicationSystem_SendData(112, &v1, sizeof(UnkStruct_02096274));
+            CommSys_SendData(112, &v1, sizeof(UnkStruct_02096274));
         }
     } else {
         switch (v2->unk_02) {
         case 0:
-            if (v2->unk_00 == CommunicationSystem_GetCurNetId()) {
+            if (v2->unk_00 == CommSys_GetCurNetId()) {
                 if (v2->unk_03 == 0) {
                     ov59_021D2204(v0, 8, v2->unk_00);
                 } else {
@@ -253,7 +253,7 @@ void sub_02096360 (int param0, int param1, void * param2, void * param3)
 
     ov59_021D22EC(v0, 1, v1);
 
-    if (CommunicationSystem_GetCurNetId() == 0) {
+    if (CommSys_GetCurNetId() == 0) {
         v0->unk_414 = 0;
     }
 }
@@ -272,7 +272,7 @@ void sub_02096388 (int param0, int param1, void * param2, void * param3)
 {
     UnkStruct_020961E8 * v0 = (UnkStruct_020961E8 *)param3;
 
-    if (CommunicationSystem_GetCurNetId() != 0) {
+    if (CommSys_GetCurNetId() != 0) {
         ov59_021D2204(v0, 13, 0);
     }
 }
@@ -281,9 +281,9 @@ void sub_020963A0 (int param0, int param1, void * param2, void * param3)
 {
     u8 v0;
 
-    if (CommunicationSystem_GetCurNetId() == 0) {
+    if (CommSys_GetCurNetId() == 0) {
         v0 = param0;
-        CommunicationSystem_SendData(110, &v0, 1);
+        CommSys_SendData(110, &v0, 1);
     }
 }
 

@@ -1152,7 +1152,7 @@ static BOOL ov23_0225044C (SysTask * param0, void * param1)
         ov23_0224FCF4(v0);
 
         if (v1 == 1) {
-            int v3 = CommunicationSystem_GetCurNetId();
+            int v3 = CommSys_GetCurNetId();
             int v4 = sub_02058D88(v3);
             int v5 = sub_02058DC0(v3);
 
@@ -1505,7 +1505,7 @@ static void ov23_02250B9C (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_02250CD4 * v0 = param1;
 
-    if (!ov23_0224AEA4(CommunicationSystem_GetCurNetId())) {
+    if (!ov23_0224AEA4(CommSys_GetCurNetId())) {
         if ((v0->unk_2AA == 0) || (v0->unk_2AA == 1)) {
             v0->unk_2AA = 2;
         }

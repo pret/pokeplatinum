@@ -112,7 +112,7 @@ int ov117_02260474 (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 7:
-        if ((sub_02036540(222) == 1) || (sub_02035E18() < CommunicationInformation_GetRecvCnt())) {
+        if ((sub_02036540(222) == 1) || (sub_02035E18() < CommInfo_GetRecvCnt())) {
             (*param1)++;
         }
 
@@ -139,12 +139,12 @@ static void ov117_022605D8 (UnkStruct_ov117_022605C0 * param0, UnkStruct_ov117_0
 {
     int v0, v1, v2, v3;
 
-    v3 = CommunicationSystem_GetCurNetId();
+    v3 = CommSys_GetCurNetId();
     v2 = 0;
     v1 = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (CommunicationInformation_GetTrainerInformation(v0) != NULL) {
+        if (CommInfo_GetTrainerInformation(v0) != NULL) {
             param0->unk_2C[v1] = v0;
 
             if (v0 == v3) {

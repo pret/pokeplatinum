@@ -615,7 +615,7 @@ void ov104_0222E4BC (u8 param0, u16 param1, u16 param2, u16 * param3, UnkStruct_
 
 void ov104_0222E5D0 (StringFormatter * param0, u32 param1)
 {
-    sub_0200B498(param0, param1, CommunicationInformation_GetTrainerInformation((CommunicationSystem_GetCurNetId() ^ 1)));
+    sub_0200B498(param0, param1, CommInfo_GetTrainerInformation((CommSys_GetCurNetId() ^ 1)));
     return;
 }
 

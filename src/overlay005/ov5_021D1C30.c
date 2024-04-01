@@ -387,7 +387,7 @@ BOOL ov5_021D213C (UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * param1)
         return 1;
     }
 
-    if (sub_020363A0() || (0 != sub_020593CC(CommunicationSystem_GetCurNetId()))) {
+    if (sub_020363A0() || (0 != sub_020593CC(CommSys_GetCurNetId()))) {
         return 0;
     }
 
@@ -419,7 +419,7 @@ BOOL ov5_021D219C (UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * param1)
         }
     }
 
-    if (sub_020363A0() || (0 != sub_020593CC(CommunicationSystem_GetCurNetId())) || !sub_02059D2C()) {
+    if (sub_020363A0() || (0 != sub_020593CC(CommSys_GetCurNetId())) || !sub_02059D2C()) {
         return 0;
     }
 
@@ -464,7 +464,7 @@ static int ov5_021D2274 (void)
     v1 = 0;
 
     for (v0 = 1; v0 < 5; v0++) {
-        v2 = CommunicationInformation_GetTrainerInformation(v0);
+        v2 = CommInfo_GetTrainerInformation(v0);
 
         if (v2 != NULL) {
             v1++;

@@ -83,9 +83,9 @@ static void ov116_022604C4 (UnkStruct_ov116_0226139C * param0)
     }
 
     {
-        int v2 = CommunicationInformation_GetRecvCnt();
+        int v2 = CommInfo_GetRecvCnt();
 
-        param0->unk_44 = CommunicationSystem_GetCurNetId();
+        param0->unk_44 = CommSys_GetCurNetId();
         ov116_022604A8(param0);
 
         if (ov116_022617C4(param0) == 1) {
@@ -255,7 +255,7 @@ int ov116_022609B4 (UnkStruct_020067E8 * param0, int * param1)
         for (v1 = 0; v1 < 4; v1++) {
             v0->unk_B4[v1] = 0xFF;
 
-            if (CommunicationInformation_GetTrainerInformation(v1) != NULL) {
+            if (CommInfo_GetTrainerInformation(v1) != NULL) {
                 v0->unk_B4[v2] = v1;
                 v2++;
             }
@@ -494,7 +494,7 @@ int ov116_02260CF4 (UnkStruct_020067E8 * param0, int * param1)
         if (v1) {
             if (ov116_022617C4(v0) == 1) {
                 v0->unk_14.unk_04 = v0->unk_78;
-                CommunicationSystem_SendData(22, &v0->unk_14, sizeof(UnkStruct_ov116_0226048C));
+                CommSys_SendData(22, &v0->unk_14, sizeof(UnkStruct_ov116_0226048C));
             }
         }
 
@@ -533,7 +533,7 @@ int ov116_02260CF4 (UnkStruct_020067E8 * param0, int * param1)
             if (ov116_022617C4(v0) == 1) {
                 if (ov116_02262A74(v0->unk_00) == 0) {
                     sub_020057A4(1393, 0);
-                    CommunicationSystem_SendData(23, NULL, 0);
+                    CommSys_SendData(23, NULL, 0);
                 }
             }
             ov116_02263B30(v0->unk_04);
@@ -563,7 +563,7 @@ int ov116_02260CF4 (UnkStruct_020067E8 * param0, int * param1)
             v0->unk_1C.unk_00 = 1;
         }
 
-        CommunicationSystem_SendData(25, &v0->unk_1C, sizeof(UnkStruct_ov116_02260494));
+        CommSys_SendData(25, &v0->unk_1C, sizeof(UnkStruct_ov116_02260494));
         ov116_0226178C(v0, v1, 14, param1);
         break;
     case 14:
@@ -755,7 +755,7 @@ int ov116_0226126C (UnkStruct_020067E8 * param0, int * param1)
     }
     break;
     default:
-        if ((sub_02036540(999) == 1) || (sub_02035E18() < CommunicationInformation_GetRecvCnt())) {
+        if ((sub_02036540(999) == 1) || (sub_02035E18() < CommInfo_GetRecvCnt())) {
             return 1;
         }
         break;

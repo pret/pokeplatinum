@@ -2893,7 +2893,7 @@ static void ov107_02244B24 (UnkStruct_ov107_02241D6C * param0, Window * param1, 
     TrainerInfo * v0;
     u32 v1;
 
-    v0 = CommunicationInformation_GetTrainerInformation((CommunicationSystem_GetCurNetId() ^ 1));
+    v0 = CommInfo_GetTrainerInformation((CommSys_GetCurNetId() ^ 1));
 
     if (TrainerInfo_Gender(v0) == 0) {
         v1 = ((u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | (((0 & 0xff) << 0))));
@@ -3413,7 +3413,7 @@ BOOL ov107_0224529C (UnkStruct_ov107_02241D6C * param0, u16 param1, u16 param2)
         break;
     }
 
-    if (CommunicationSystem_SendData(v1, param0->unk_444, 40) == 1) {
+    if (CommSys_SendData(v1, param0->unk_444, 40) == 1) {
         v0 = 1;
     } else {
         v0 = 0;
@@ -3454,7 +3454,7 @@ void ov107_02245338 (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v2->unk_0F++;
 
-    if (CommunicationSystem_GetCurNetId() == param0) {
+    if (CommSys_GetCurNetId() == param0) {
         return;
     }
 
@@ -3475,7 +3475,7 @@ void ov107_02245368 (UnkStruct_ov107_02241D6C * param0, u16 param1, u16 param2)
     param0->unk_444[0] = param1;
     param0->unk_444[1] = param2;
 
-    if (CommunicationSystem_GetCurNetId() == 0) {
+    if (CommSys_GetCurNetId() == 0) {
         if (param0->unk_12 == 0xff) {
             param0->unk_12 = param2;
         }
@@ -3497,13 +3497,13 @@ void ov107_022453A0 (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v2->unk_0F++;
 
-    if (CommunicationSystem_GetCurNetId() == param0) {
+    if (CommSys_GetCurNetId() == param0) {
         return;
     }
 
     v2->unk_495 = v3[1];
 
-    if (CommunicationSystem_GetCurNetId() == 0) {
+    if (CommSys_GetCurNetId() == 0) {
         if (v2->unk_12 != 0xff) {
             v2->unk_495 = 0;
         } else {
@@ -3533,7 +3533,7 @@ void ov107_02245408 (int param0, int param1, void * param2, void * param3)
     UnkStruct_ov107_02241D6C * v0 = param3;
     const u16 * v1 = param2;
 
-    if (CommunicationSystem_GetCurNetId() == param0) {
+    if (CommSys_GetCurNetId() == param0) {
         return;
     }
 
@@ -3554,7 +3554,7 @@ void ov107_02245438 (int param0, int param1, void * param2, void * param3)
     UnkStruct_ov107_02241D6C * v0 = param3;
     const u16 * v1 = param2;
 
-    if (CommunicationSystem_GetCurNetId() == param0) {
+    if (CommSys_GetCurNetId() == param0) {
         return;
     }
 
@@ -3579,7 +3579,7 @@ static void ov107_02245464 (UnkStruct_ov107_02241D6C * param0, Window * param1)
         v1 = v3 + 0;
         ov107_02244AB4(param0, param1, v0, v1, 0);
     } else {
-        if (CommunicationSystem_GetCurNetId() == 0) {
+        if (CommSys_GetCurNetId() == 0) {
             v0 = v2 + 0;
             v1 = v3 + 0;
 
@@ -3800,7 +3800,7 @@ asm static void ov107_02245780 (UnkStruct_ov107_02241D6C * param0, Window * para
     strb r0, [r5, #0xa]
     b _022459C2
  _0224581A:
-    bl CommunicationSystem_GetCurNetId
+    bl CommSys_GetCurNetId
     cmp r0, #0
     add r1, sp, #0x28
     bne _022458F4
@@ -4027,7 +4027,7 @@ static void ov107_022459D0 (UnkStruct_ov107_02241D6C * param0, u8 param1, u8 par
         break;
     }
 
-    if (CommunicationSystem_GetCurNetId() == 0) {
+    if (CommSys_GetCurNetId() == 0) {
         if (param1 < v1) {
             ov107_02244A98(param0, 5);
             ov104_0223BC2C(param0->unk_04, param0->unk_09, v2);
@@ -4163,7 +4163,7 @@ static void ov107_02245C94 (UnkStruct_ov107_02241D6C * param0, u8 param1, u8 par
     v0 = param0->unk_15;
     v1 = ov107_02249C9C(v0, param1);
 
-    if (CommunicationSystem_GetCurNetId() == 0) {
+    if (CommSys_GetCurNetId() == 0) {
         if (param1 < v0) {
             ov107_02244A98(param0, 5);
 

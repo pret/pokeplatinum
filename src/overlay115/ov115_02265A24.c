@@ -40,7 +40,7 @@ void ov115_02265A5C (int param0, int param1, void * param2, void * param3)
 
     ov115_02260988(v0, param2, param0);
 
-    if (CommunicationSystem_GetCurNetId() == 0) {
+    if (CommSys_GetCurNetId() == 0) {
         ov115_0226096C(v0, param2, param0);
     }
 }

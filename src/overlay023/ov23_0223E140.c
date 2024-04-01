@@ -630,7 +630,7 @@ void ov23_0223E1E4 (void * param0, UnkStruct_0203CDB0 * param1)
     Unk_ov23_02257740 = param0;
 
     MI_CpuFill8(Unk_ov23_02257740, 0, sizeof(UnkStruct_ov23_02257740));
-    CommunicationSystem_InitRandomSeed(&Unk_ov23_02257740->unk_08);
+    CommSys_Seed(&Unk_ov23_02257740->unk_08);
 
     Unk_ov23_02257740->unk_00 = param1;
 
@@ -924,7 +924,7 @@ void ov23_0223E878 (void)
 {
     int v0;
 
-    if (CommunicationSystem_GetCurNetId() == 0) {
+    if (CommSys_GetCurNetId() == 0) {
         ov23_022414D4();
         ov23_022413B4();
     }
@@ -1018,7 +1018,7 @@ void ov23_0223E9D4 (int param0, int param1, void * param2, void * param3)
 {
     u8 * v0 = param2;
 
-    if ((v0[0] == CommunicationSystem_GetCurNetId()) && sub_02035EE0()) {
+    if ((v0[0] == CommSys_GetCurNetId()) && sub_02035EE0()) {
         Unk_ov23_02257740->unk_A24 = ov23_02253F40(ov23_0224219C(), 19, 0, NULL);
         Unk_ov23_02257740->unk_8C8 = SysTask_Start(ov23_0223EA38, Unk_ov23_02257740, 0);
 
@@ -1089,7 +1089,7 @@ void ov23_0223EB8C (int param0, int param1, void * param2, void * param3)
 {
     u8 * v0 = param2;
 
-    if (v0[0] == CommunicationSystem_GetCurNetId()) {
+    if (v0[0] == CommSys_GetCurNetId()) {
         sub_020594FC();
         ov23_0223F70C(Unk_ov23_02257740->unk_00);
     }
@@ -1128,7 +1128,7 @@ void ov23_0223EC00 (int param0, int param1, void * param2, void * param3)
     u8 v1[3];
     int v2;
 
-    if (v0[0] == CommunicationSystem_GetCurNetId()) {
+    if (v0[0] == CommSys_GetCurNetId()) {
         return;
     }
 
@@ -2457,8 +2457,8 @@ static void ov23_02240758 (UnkStruct_ov23_0223EE80 * param0)
 
     for (v1 = 0; v1 < (7 + 1); v1++) {
         if ((Unk_ov23_02257740->unk_910[v1] != 0xff) && (Unk_ov23_02257740->unk_918[v1] != 0xff)) {
-            int v2 = sub_02058CA0(CommunicationSystem_GetCurNetId());
-            int v3 = sub_02058CF4(CommunicationSystem_GetCurNetId());
+            int v2 = sub_02058CA0(CommSys_GetCurNetId());
+            int v3 = sub_02058CF4(CommSys_GetCurNetId());
             int v4 = ov23_0224AD04(v1);
             int v5 = ov23_0224AD40(v1);
 
@@ -3022,7 +3022,7 @@ void ov23_0224142C (int param0, int param1, void * param2, void * param3)
     v2 = v0->unk_04 & 0xf;
 
     if (Unk_ov23_02257740->unk_8D0 == NULL) {
-        if (CommunicationSystem_GetCurNetId() == v2) {
+        if (CommSys_GetCurNetId() == v2) {
             v1 = (v0->unk_04 >> 4) & 0xf;
 
             if ((v1 > 0) && (v1 <= 8)) {
@@ -3030,7 +3030,7 @@ void ov23_0224142C (int param0, int param1, void * param2, void * param3)
             }
         }
     } else {
-        if (v2 == CommunicationSystem_GetCurNetId()) {
+        if (v2 == CommSys_GetCurNetId()) {
             MI_CpuCopy8(param2, &Unk_ov23_02257740->unk_8D0->unk_00[Unk_ov23_02257740->unk_8D0->unk_4E2], sizeof(UnkStruct_ov23_0224142C));
             Unk_ov23_02257740->unk_8D0->unk_4E2++;
 
@@ -3052,7 +3052,7 @@ static void ov23_022414D4 (void)
     int v1, v2;
 
     for (v1 = 0; v1 < (7 + 1); v1++) {
-        if (!CommunicationSystem_IsPlayerConnected(v1)) {
+        if (!CommSys_IsPlayerConnected(v1)) {
             continue;
         }
 
@@ -3109,7 +3109,7 @@ BOOL ov23_022415B8 (Strbuf *param0)
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
         if (Unk_ov23_02257740->unk_908[v0]) {
-            v1 = CommunicationInformation_GetTrainerInformation(v0);
+            v1 = CommInfo_GetTrainerInformation(v0);
             Unk_ov23_02257740->unk_908[v0] = 0;
 
             if (ov23_022422A8(v1, 0, 105, param0)) {

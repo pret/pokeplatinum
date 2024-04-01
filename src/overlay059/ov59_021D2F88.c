@@ -187,7 +187,7 @@ void ov59_021D313C (SaveData * param0, const UnkStruct_ov59_021D30E0 * param1)
 
     v0.unk_00 = 51;
     v0.unk_04 = param0;
-    v0.unk_0C = CommunicationSystem_GetCurNetId();
+    v0.unk_0C = CommSys_GetCurNetId();
     v0.unk_08 = 5;
     v0.unk_10 = v7;
     v0.unk_14 = v8;
@@ -213,7 +213,7 @@ void ov59_021D313C (SaveData * param0, const UnkStruct_ov59_021D30E0 * param1)
         GF_ASSERT(v3 > v1);
 
         for (v5 = 0; v5 < 5; v5++) {
-            if (CommunicationInformation_GetTrainerInformation(v5) != NULL) {
+            if (CommInfo_GetTrainerInformation(v5) != NULL) {
                 v0.unk_10[v5] = &(param1[v5].unk_00[v2]);
             } else {
                 v0.unk_10[v5] = NULL;
@@ -225,7 +225,7 @@ void ov59_021D313C (SaveData * param0, const UnkStruct_ov59_021D30E0 * param1)
         case 8:
         case 9:
             for (v6 = 0; v6 < 5; v6++) {
-                if (CommunicationInformation_GetTrainerInformation(v6) != NULL) {
+                if (CommInfo_GetTrainerInformation(v6) != NULL) {
                     v0.unk_14[v6] = &(param1[v6].unk_00[v9[v4 - 7]]);
                 } else {
                     v0.unk_14[v6] = NULL;

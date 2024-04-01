@@ -48,7 +48,7 @@ void ov23_0224991C (UnkStruct_ov23_0224991C * param0)
 {
     int v0;
 
-    CommunicationSystem_InitRandomSeed(&param0->unk_00);
+    CommSys_Seed(&param0->unk_00);
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
         UnkStruct_ov23_02249978 * v1 = &param0->unk_18[v0];

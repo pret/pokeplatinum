@@ -80,11 +80,11 @@ BOOL sub_020391DC (SaveData * param0, int * param1, int param2)
     DWCFriendData * v4;
 
     for (v0 = 0; v0 < sub_02035E18(); v0++) {
-        if (CommunicationSystem_GetCurNetId() == v0) {
+        if (CommSys_GetCurNetId() == v0) {
             continue;
         }
 
-        v4 = CommunicationInformation_GetDWCFriendData(v0);
+        v4 = CommInfo_GetDWCFriendData(v0);
 
         if (v4 == NULL) {
             continue;
@@ -96,13 +96,13 @@ BOOL sub_020391DC (SaveData * param0, int * param1, int param2)
 
         if (param1[v0] == 0) {
             sub_02039298(param0, v0, v2, param2, 2);
-            CommunicationInformation_SavePlayerRecord(param0);
+            CommInfo_SavePlayerRecord(param0);
         } else if (param1[v0] == 1) {
             if (!sub_020389B8()) {
                 sub_02039298(param0, v0, v2, param2, 1);
                 MI_CpuCopy8(v4, &v3[v2], sizeof(DWCFriendData));
 
-                CommunicationInformation_SavePlayerRecord(param0);
+                CommInfo_SavePlayerRecord(param0);
             }
         } else if (param1[v0] == 2) {
             v1 = 1;
@@ -116,12 +116,12 @@ void sub_02039298 (SaveData * param0, int param1, int param2, int param3, int pa
 {
     UnkStruct_0202B370 * v0 = sub_0202B370(param0);
     DWCFriendData * v1 = sub_0202AED8(v0, param2);
-    TrainerInfo * v2 = CommunicationInformation_GetTrainerInformation(param1);
+    TrainerInfo * v2 = CommInfo_GetTrainerInformation(param1);
     DWCFriendData * v3;
     Strbuf* v4;
 
     if (param4 != 2) {
-        v3 = CommunicationInformation_GetDWCFriendData(param1);
+        v3 = CommInfo_GetDWCFriendData(param1);
         MI_CpuCopy8(v3, v1, sizeof(DWCFriendData));
     }
 
@@ -144,13 +144,13 @@ void sub_02039298 (SaveData * param0, int param1, int param2, int param3, int pa
     sub_0202AF50(v0, param2, v4);
     Strbuf_Free(v4);
     sub_0202AE2C(v0, param2, 7, TrainerInfo_Appearance(v2));
-    CommunicationInformation_SavePlayerRecord(param0);
+    CommInfo_SavePlayerRecord(param0);
 }
 
 int sub_02039390 (SaveData * param0, int param1)
 {
     int v0, v1;
-    DWCFriendData * v2 = CommunicationInformation_GetDWCFriendData(param1);
+    DWCFriendData * v2 = CommInfo_GetDWCFriendData(param1);
     UnkStruct_0202B370 * v3 = sub_0202B370(param0);
 
     for (v0 = 0; v0 < 32; v0++) {

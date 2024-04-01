@@ -30,8 +30,8 @@ static const UnkStruct_02039A58 Unk_020E5D64[] = {
     {NULL, sub_0203294C, NULL},
     {NULL, sub_0203294C, NULL},
     {sub_0203619C, sub_0203294C, NULL},
-    {CommunicationInformation_RecvPlayerData, CommPlayerData_sizeof, NULL},
-    {CommunicationInformation_RecvPlayerDataArray, CommPlayerData_sizeof, NULL},
+    {CommInfo_RecvPlayerData, CommPlayerData_Size, NULL},
+    {CommInfo_RecvPlayerDataArray, CommPlayerData_Size, NULL},
     {CommunicatitonInformaion_FinishReading, sub_0203294C, NULL},
     {sub_02037A78, sub_02037B54, NULL},
     {sub_02037AD8, sub_02037B54, NULL},
@@ -186,14 +186,14 @@ static void sub_02032958 (int param0, int param1, void * param2, void * param3)
     u8 * v0 = param2;
     int v1;
 
-    if (CommunicationSystem_GetCurNetId() != 0) {
+    if (CommSys_GetCurNetId() != 0) {
         return;
     }
 
     Unk_021C07B0->unk_0C[param0] = 1;
 
     for (v1 = 0; v1 < (7 + 1); v1++) {
-        if (!CommunicationSystem_IsPlayerConnected(v1)) {
+        if (!CommSys_IsPlayerConnected(v1)) {
             continue;
         }
 
@@ -223,7 +223,7 @@ static void sub_020329C4 (int param0, int param1, void * param2, void * param3)
     u8 * v0 = param2;
     int v1;
 
-    if (CommunicationSystem_GetCurNetId() != 0) {
+    if (CommSys_GetCurNetId() != 0) {
         return;
     }
 

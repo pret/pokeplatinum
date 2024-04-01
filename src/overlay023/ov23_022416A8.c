@@ -257,7 +257,7 @@ static UnkStruct_ov23_02241974 * ov23_02241978 (int param0, int param1)
 void ov23_022419B4 (int param0, int param1, void * param2, void * param3)
 {
     u8 * v0 = param2;
-    int v1 = CommunicationSystem_GetCurNetId();
+    int v1 = CommSys_GetCurNetId();
     int v2, v3, v4;
     UnkStruct_ov23_02241974 * v5;
 

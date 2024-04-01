@@ -55,7 +55,7 @@ BOOL ov6_02248A64 (UnkStruct_02095C48 * param0)
     v0.unk_01 = param0->unk_00.unk_113;
     v0.unk_02 = param0->unk_00.unk_112;
 
-    if (CommunicationSystem_SendData(26, &v0, sizeof(UnkStruct_ov6_02248A94)) == 1) {
+    if (CommSys_SendData(26, &v0, sizeof(UnkStruct_ov6_02248A94)) == 1) {
         return 1;
     }
 
@@ -105,7 +105,7 @@ BOOL ov6_02248AF0 (UnkStruct_02095C48 * param0, int param1, const Pokemon * para
     MI_CpuCopy8(param2, v0, v1);
     v0[v1] = param1;
 
-    if (CommunicationSystem_SendData(27, v0, v1 + 1) == 1) {
+    if (CommSys_SendData(27, v0, v1 + 1) == 1) {
         v2 = 1;
     } else {
         v2 = 0;
@@ -184,7 +184,7 @@ BOOL ov6_02248BE8 (UnkStruct_02095C48 * param0, int param1, const UnkStruct_ov6_
     MI_CpuCopy8(param2, v0, v1);
     v0[v1] = param1;
 
-    if (CommunicationSystem_SendData(29, v0, v1 + 1) == 1) {
+    if (CommSys_SendData(29, v0, v1 + 1) == 1) {
         v2 = 1;
     } else {
         v2 = 0;
@@ -231,7 +231,7 @@ BOOL ov6_02248C68 (UnkStruct_02095C48 * param0, int param1, const UnkStruct_0209
 
     v0[v1 - 1] = param0->unk_00.unk_10E;
 
-    if (CommunicationSystem_SendData(30, v0, v1) == 1) {
+    if (CommSys_SendData(30, v0, v1) == 1) {
         v2 = 1;
     } else {
         v2 = 0;
@@ -279,7 +279,7 @@ BOOL ov6_02248CE8 (UnkStruct_02095C48 * param0, int param1, const Strbuf *param2
     v2[2] = 0;
     v2[3] = 0;
 
-    if (CommunicationSystem_SendData(31, v2, v0 + v1) == 1) {
+    if (CommSys_SendData(31, v2, v0 + v1) == 1) {
         v3 = 1;
     } else {
         v3 = 0;
@@ -360,7 +360,7 @@ BOOL ov6_02248DD8 (UnkStruct_02095C48 * param0, int param1, const UnkStruct_ov6_
     MI_CpuCopy8(param2, v0, v1);
     v0[v1] = param1;
 
-    if (CommunicationSystem_SendData(37, v0, v1 + 1) == 1) {
+    if (CommSys_SendData(37, v0, v1 + 1) == 1) {
         v2 = 1;
     } else {
         v2 = 0;

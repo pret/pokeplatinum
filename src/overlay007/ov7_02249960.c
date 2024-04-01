@@ -501,8 +501,8 @@ asm static void ov7_0224A128 (SysTask * param0, void * param1)
     add sp, #0xc
     pop {r4, r5, pc}
  _0224A152:
-    bl CommunicationSystem_GetCurNetId
-    bl CommunicationInformation_GetTrainerInformation
+    bl CommSys_GetCurNetId
+    bl CommInfo_GetTrainerInformation
     cmp r0, #0
     beq _0224A238
     bl sub_020365D0
@@ -613,7 +613,7 @@ static BOOL ov7_0224A244 (SysTask * param0, void * param1)
         ov7_0224AFD8(param0, v0);
         ov7_02249960(0, 0);
         ov7_0224B348(v0);
-    } else if (sub_020365A8(0, 3) == CommunicationSystem_GetCurNetId()) {
+    } else if (sub_020365A8(0, 3) == CommSys_GetCurNetId()) {
         sub_020365D0();
         ov7_0224AFD8(param0, v0);
         ov7_0224B2DC(v0);
@@ -621,13 +621,13 @@ static BOOL ov7_0224A244 (SysTask * param0, void * param1)
         sub_020365D0();
         ov7_0224AFD8(param0, v0);
         ov7_0224B2DC(v0);
-    } else if (sub_020365A8(0, 4) == CommunicationSystem_GetCurNetId()) {
+    } else if (sub_020365A8(0, 4) == CommSys_GetCurNetId()) {
         ov7_02249960(97, 0);
         ov7_0224A530(ov7_0224AB64);
-    } else if (sub_020365A8(0, 2) == CommunicationSystem_GetCurNetId()) {
+    } else if (sub_020365A8(0, 2) == CommSys_GetCurNetId()) {
         sub_020365D0();
 
-        v0->unk_90 = CommunicationInformation_GetRecvCnt();
+        v0->unk_90 = CommInfo_GetRecvCnt();
 
         if (!sub_0205DA04(Unk_ov7_0224F5A0->unk_94)) {
             sub_0201D730(Unk_ov7_0224F5A0->unk_94);
@@ -727,12 +727,12 @@ static void ov7_0224A438 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 
     v0 += param2;
 
-    if (NULL != CommunicationInformation_GetTrainerInformation(v0)) {
-        sub_0200B498(Unk_ov7_0224F5A0->unk_50, 0, CommunicationInformation_GetTrainerInformation(v0));
+    if (NULL != CommInfo_GetTrainerInformation(v0)) {
+        sub_0200B498(Unk_ov7_0224F5A0->unk_50, 0, CommInfo_GetTrainerInformation(v0));
         MessageLoader_GetStrbuf(Unk_ov7_0224F5A0->unk_74, 66, Unk_ov7_0224F5A0->unk_00[1]);
         StringFormatter_Format(Unk_ov7_0224F5A0->unk_50, Unk_ov7_0224F5A0->unk_00[0], Unk_ov7_0224F5A0->unk_00[1]);
         PrintStringSimple(&Unk_ov7_0224F5A0->unk_20, 0, Unk_ov7_0224F5A0->unk_00[0], 8, param2 * 16, 0, NULL);
-        sub_0200B60C(Unk_ov7_0224F5A0->unk_50, 2, TrainerInfo_ID_LowHalf(CommunicationInformation_GetTrainerInformation(v0)), 5, 2, 1);
+        sub_0200B60C(Unk_ov7_0224F5A0->unk_50, 2, TrainerInfo_ID_LowHalf(CommInfo_GetTrainerInformation(v0)), 5, 2, 1);
         MessageLoader_GetStrbuf(Unk_ov7_0224F5A0->unk_74, 65, Unk_ov7_0224F5A0->unk_00[3]);
         StringFormatter_Format(Unk_ov7_0224F5A0->unk_50, Unk_ov7_0224F5A0->unk_00[2], Unk_ov7_0224F5A0->unk_00[3]);
         PrintStringSimple(&Unk_ov7_0224F5A0->unk_20, 0, Unk_ov7_0224F5A0->unk_00[2], 9 * 8, param2 * 16, 0, NULL);
@@ -816,7 +816,7 @@ static void ov7_0224A5D0 (void)
     GF_ASSERT(Unk_ov7_0224F5A0->unk_91 < (sizeof(v0) / sizeof(int)));
 
     if (Unk_ov7_0224F5A0->unk_91 == 8) {
-        if (CommunicationInformation_GetRecvCnt() > 1) {
+        if (CommInfo_GetRecvCnt() > 1) {
             ov7_02249960(108 + Unk_ov7_0224F5A0->unk_92, 0);
         } else {
             ov7_02249960(98 + Unk_ov7_0224F5A0->unk_92, 0);
@@ -830,11 +830,11 @@ static void ov7_0224A64C (UnkStruct_ov7_02249C2C * param0)
 {
     int v0, v1;
 
-    if (CommunicationInformation_GetRecvCnt() >= ov7_0224B3D4()) {
-        v1 = CommunicationInformation_GetRecvCnt();
+    if (CommInfo_GetRecvCnt() >= ov7_0224B3D4()) {
+        v1 = CommInfo_GetRecvCnt();
         v0 = 68;
     } else {
-        v1 = ov7_0224B3D4() - CommunicationInformation_GetRecvCnt();
+        v1 = ov7_0224B3D4() - CommInfo_GetRecvCnt();
         v0 = 67;
     }
 
@@ -882,7 +882,7 @@ static void ov7_0224A6D4 (int param0, UnkStruct_ov7_02249C2C * param1)
         29,
         30
     };
-    TrainerInfo * v1 = CommunicationInformation_GetTrainerInformation(param0);
+    TrainerInfo * v1 = CommInfo_GetTrainerInformation(param0);
 
     if (v1) {
         sub_0200B498(param1->unk_58, 1, v1);
@@ -941,10 +941,10 @@ static void ov7_0224A7D0 (SysTask * param0, void * param1)
         if (sub_02032DC4(v2) && (v2 != 0)) {
             Unk_ov7_0224F5A0->unk_80[v2] = 1;
             Unk_ov7_0224F5A0->unk_98 = 1;
-        } else if ((NULL != CommunicationInformation_GetTrainerInformation(v2)) && !Unk_ov7_0224F5A0->unk_80[v2]) {
+        } else if ((NULL != CommInfo_GetTrainerInformation(v2)) && !Unk_ov7_0224F5A0->unk_80[v2]) {
             Unk_ov7_0224F5A0->unk_80[v2] = 1;
             Unk_ov7_0224F5A0->unk_98 = 1;
-        } else if ((NULL == CommunicationInformation_GetTrainerInformation(v2)) && Unk_ov7_0224F5A0->unk_80[v2]) {
+        } else if ((NULL == CommInfo_GetTrainerInformation(v2)) && Unk_ov7_0224F5A0->unk_80[v2]) {
             Unk_ov7_0224F5A0->unk_80[v2] = 0;
             Unk_ov7_0224F5A0->unk_98 = 1;
         }
@@ -961,8 +961,8 @@ static void ov7_0224A7D0 (SysTask * param0, void * param1)
 
     v1 = sub_02001288(v0->unk_5C);
 
-    if (CommunicationInformation_GetNewNetworkId() != 0xff) {
-        v0->unk_95 = CommunicationInformation_GetNewNetworkId();
+    if (CommInfo_GetNewNetworkId() != 0xff) {
+        v0->unk_95 = CommInfo_GetNewNetworkId();
         Sound_PlayEffect(1549);
         ov7_0224A6D4(v0->unk_95, v0);
         ov7_0224A530(ov7_0224AF84);
@@ -981,7 +981,7 @@ static void ov7_0224A7D0 (SysTask * param0, void * param1)
             ov7_0224A530(ov7_0224AE10);
             break;
         default:
-            if (ov7_0224B3D4() <= CommunicationInformation_GetRecvCnt()) {
+            if (ov7_0224B3D4() <= CommInfo_GetRecvCnt()) {
                 int v3[] = {
                     0,
                     0,
@@ -1018,7 +1018,7 @@ static void ov7_0224A7D0 (SysTask * param0, void * param1)
                     0
                 };
 
-                v0->unk_90 = CommunicationInformation_GetRecvCnt();
+                v0->unk_90 = CommInfo_GetRecvCnt();
 
                 ov7_02249960(v3[v0->unk_91], 0);
                 ov7_0224A530(ov7_0224AC48);
@@ -1040,15 +1040,15 @@ static void ov7_0224A97C (SysTask * param0, void * param1)
 
     v1 = sub_02002114(v0->unk_60, 4);
 
-    if (!CommunicationSystem_IsPlayerConnected(v0->unk_95)) {
+    if (!CommSys_IsPlayerConnected(v0->unk_95)) {
         if (v1 == 0xffffffff) {
             sub_02002154(v0->unk_60, 4);
         }
 
         if (v0->unk_91 == 8) {
             for (v2 = 1; v2 < ov7_0224B3E8(); v2++) {
-                if (CommunicationSystem_IsPlayerConnected(v2)) {
-                    CommunicationInformation_InitPlayer(v2);
+                if (CommSys_IsPlayerConnected(v2)) {
+                    CommInfo_InitPlayer(v2);
                     sub_02036594(5, v2);
                 }
             }
@@ -1056,7 +1056,7 @@ static void ov7_0224A97C (SysTask * param0, void * param1)
             ov7_02249960(0, 0);
             ov7_0224A530(ov7_0224ABA4);
         } else {
-            CommunicationInformation_InitPlayer(v0->unk_95);
+            CommInfo_InitPlayer(v0->unk_95);
             ov7_02249960(0, 0);
             ov7_0224A530(ov7_0224ABA4);
         }
@@ -1065,12 +1065,12 @@ static void ov7_0224A97C (SysTask * param0, void * param1)
             sub_02002154(v0->unk_60, 4);
         }
 
-        CommunicationInformation_InitPlayer(v0->unk_95);
+        CommInfo_InitPlayer(v0->unk_95);
         ov7_02249960(0, 0);
         ov7_0224A530(ov7_0224ABA4);
     } else if (v1 == 0) {
         if ((v0->unk_91 == 1) || (v0->unk_91 == 2)) {
-            if (!CommunicationInformation_CheckBattleRegulation()) {
+            if (!CommInfo_CheckBattleRegulation()) {
                 ov7_02249960(97, 0);
                 ov7_0224A530(ov7_0224AB64);
                 sub_02036594(4, v0->unk_95);
@@ -1081,8 +1081,8 @@ static void ov7_0224A97C (SysTask * param0, void * param1)
         sub_02032E1C(v0->unk_95);
         sub_02036594(2, v0->unk_95);
 
-        if (ov7_0224B3E8() == CommunicationInformation_GetRecvCnt()) {
-            v0->unk_90 = CommunicationInformation_GetRecvCnt();
+        if (ov7_0224B3E8() == CommInfo_GetRecvCnt()) {
+            v0->unk_90 = CommInfo_GetRecvCnt();
 
             if (ov7_0224B3E8() > 2) {
                 ov7_0224A530(ov7_0224AC08);
@@ -1097,8 +1097,8 @@ static void ov7_0224A97C (SysTask * param0, void * param1)
     } else if (v1 != 0xffffffff) {
         if (v0->unk_91 == 8) {
             for (v2 = 1; v2 < ov7_0224B3E8(); v2++) {
-                if (CommunicationSystem_IsPlayerConnected(v2)) {
-                    CommunicationInformation_InitPlayer(v2);
+                if (CommSys_IsPlayerConnected(v2)) {
+                    CommInfo_InitPlayer(v2);
                     sub_02036594(5, v2);
                 }
             }
@@ -1106,7 +1106,7 @@ static void ov7_0224A97C (SysTask * param0, void * param1)
             ov7_0224A5D0();
             ov7_0224A530(ov7_0224ABE0);
         } else {
-            CommunicationInformation_InitPlayer(v0->unk_95);
+            CommInfo_InitPlayer(v0->unk_95);
             sub_02036594(3, v0->unk_95);
             ov7_0224A5D0();
             ov7_0224A530(ov7_0224ABE0);
@@ -1236,7 +1236,7 @@ static void ov7_0224ACA4 (SysTask * param0, void * param1)
     } else if (v1 == 0) {
         if (v0->unk_91 == 8) {
             for (v2 = 1; v2 < sub_02035E18(); v2++) {
-                if (!CommunicationSystem_IsPlayerConnected(v2)) {
+                if (!CommSys_IsPlayerConnected(v2)) {
                     ov7_0224A530(ov7_0224AD68);
                     return;
                 }
@@ -1356,7 +1356,7 @@ static void ov7_0224AE10 (SysTask * param0, void * param1)
 
     ov7_0224A64C(v0);
 
-    if (CommunicationInformation_GetRecvCnt() > 1) {
+    if (CommInfo_GetRecvCnt() > 1) {
         ov7_02249960(v2[v0->unk_91], 0);
         ov7_0224A530(ov7_0224AE78);
     } else {
@@ -1460,7 +1460,7 @@ static void ov7_0224AFD8 (SysTask * param0, UnkStruct_ov7_02249C2C * param1)
 
 static void ov7_0224B054 (UnkStruct_ov7_02249C2C * param0)
 {
-    sub_0200B498(param0->unk_58, 1, CommunicationInformation_GetTrainerInformation(1));
+    sub_0200B498(param0->unk_58, 1, CommInfo_GetTrainerInformation(1));
     ov7_02249960(57, 1);
 
     SysTask_Start(ov7_0224A718, param0, 0);
@@ -1485,7 +1485,7 @@ static void ov7_0224B0E8 (SysTask * param0, void * param1)
 {
     UnkStruct_ov7_02249C2C * v0 = (UnkStruct_ov7_02249C2C *)param1;
 
-    if ((CommunicationSystem_GetCurNetId() == 0) && (sub_02035E18() != v0->unk_90)) {
+    if ((CommSys_GetCurNetId() == 0) && (sub_02035E18() != v0->unk_90)) {
         ov7_0224A530(ov7_0224B274);
     } else if (ov7_0224B4E4() || sub_020360F0()) {
         ov7_0224A530(ov7_0224B274);
@@ -1499,12 +1499,12 @@ static void ov7_0224B14C (SysTask * param0, void * param1)
 {
     UnkStruct_ov7_02249C2C * v0 = (UnkStruct_ov7_02249C2C *)param1;
 
-    if ((CommunicationSystem_GetCurNetId() == 0) && (sub_02035E18() != v0->unk_90)) {
+    if ((CommSys_GetCurNetId() == 0) && (sub_02035E18() != v0->unk_90)) {
         ov7_0224A530(ov7_0224B274);
     } else if (ov7_0224B4E4() || sub_020360F0()) {
         ov7_0224A530(ov7_0224B274);
         return;
-    } else if (!CommunicationSystem_IsPlayerConnected(0)) {
+    } else if (!CommSys_IsPlayerConnected(0)) {
         ov7_0224A530(ov7_0224B274);
         return;
     } else if (sub_020365A8(0, 5) != -1) {
@@ -1625,7 +1625,7 @@ static void ov7_0224B348 (UnkStruct_ov7_02249C2C * param0)
         int v0;
 
         for (v0 = 0; v0 < (7 + 1); v0++) {
-            CommunicationInformation_InitPlayer(v0);
+            CommInfo_InitPlayer(v0);
         }
     }
 
@@ -1649,7 +1649,7 @@ static void ov7_0224B3A8 (UnkStruct_ov7_02249C2C * param0)
     sub_02036994(0);
     Unk_ov7_0224F5A0->unk_88 = 2;
     sub_020388F4(1, 1);
-    CommunicationInformation_SendBattleRegulation();
+    CommInfo_SendBattleRegulation();
     sub_02033EA8(1);
 }
 

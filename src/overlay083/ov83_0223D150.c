@@ -37,7 +37,7 @@ void ov83_0223D150 (UnkStruct_ov83_0223B784 * param0, TrainerInfo * param1)
         v0 = 0;
 
         for (v1 = 0; v1 < 4; v1++) {
-            param0->unk_1494.unk_134[v1] = CommunicationInformation_GetTrainerInformation(v1);
+            param0->unk_1494.unk_134[v1] = CommInfo_GetTrainerInformation(v1);
 
             if (param0->unk_1494.unk_134[v1] != NULL) {
                 param0->unk_1494.unk_130[v0] = v1;

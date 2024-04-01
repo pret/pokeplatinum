@@ -75,7 +75,7 @@ void ov23_02253598 (UnkStruct_ov23_02253598 * param0, UnkStruct_0202855C * param
     Unk_ov23_022577BC->unk_0C = param1;
     Unk_ov23_022577BC->unk_10 = sub_0202855C(15);
 
-    CommunicationSystem_InitRandomSeed(&Unk_ov23_022577BC->unk_14);
+    CommSys_Seed(&Unk_ov23_022577BC->unk_14);
 }
 
 void ov23_022535CC (void)
@@ -407,7 +407,7 @@ void ov23_022538FC (int param0)
 
     MI_CpuCopy8(Unk_ov23_022577BC->unk_0C, &v2[1], v0);
 
-    CommunicationSystem_SendData(81, v2, v0 + 1);
+    CommSys_SendData(81, v2, v0 + 1);
     Heap_FreeToHeap(v2);
 }
 
@@ -431,7 +431,7 @@ void ov23_022539A8 (int param0, int param1, void * param2, void * param3)
 {
     u8 * v0 = param2;
 
-    if (v0[0] == CommunicationSystem_GetCurNetId()) {
+    if (v0[0] == CommSys_GetCurNetId()) {
         MI_CpuCopy8(&v0[1], Unk_ov23_022577BC->unk_10, param1 - 1);
         Unk_ov23_022577BC->unk_2C = 1;
     }

@@ -611,7 +611,7 @@ static BOOL ov108_02241F28 (UnkStruct_ov108_02241DB0 * param0)
     case 6:
         ov108_02242964(param0, gCoreSys.pressedKeys);
 
-        if (CommunicationSystem_GetCurNetId() == 0) {
+        if (CommSys_GetCurNetId() == 0) {
             if (param0->unk_18 > 0) {
                 param0->unk_18--;
             }
@@ -1180,7 +1180,7 @@ BOOL ov108_02242A38 (UnkStruct_ov108_02241DB0 * param0, u16 param1, u16 param2)
         break;
     }
 
-    if (CommunicationSystem_SendData(v1, param0->unk_3D4, 40) == 1) {
+    if (CommSys_SendData(v1, param0->unk_3D4, 40) == 1) {
         v0 = 1;
     } else {
         v0 = 0;
@@ -1222,14 +1222,14 @@ void ov108_02242AB0 (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v2->unk_0F++;
 
-    if (CommunicationSystem_GetCurNetId() == param0) {
+    if (CommSys_GetCurNetId() == param0) {
         return;
     }
 
     v1 += 1;
     v1 += 1;
 
-    if (CommunicationSystem_GetCurNetId() != 0) {
+    if (CommSys_GetCurNetId() != 0) {
         for (v0 = 0; v0 < (4 * 4); v0++) {
             v2->unk_34[v0] = (u8)v3[v1 + v0];
         }
@@ -1253,7 +1253,7 @@ void ov108_02242AE8 (UnkStruct_ov108_02241DB0 * param0, u16 param1, u16 param2)
     param0->unk_3D4[0] = param1;
     param0->unk_3D4[1] = param2;
 
-    if (CommunicationSystem_GetCurNetId() == 0) {
+    if (CommSys_GetCurNetId() == 0) {
         if (param0->unk_0E == 0xff) {
             param0->unk_0E = param2;
         }
@@ -1279,13 +1279,13 @@ void ov108_02242B24 (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v2->unk_0F++;
 
-    if (CommunicationSystem_GetCurNetId() == param0) {
+    if (CommSys_GetCurNetId() == param0) {
         return;
     }
 
     v2->unk_425 = v3[1];
 
-    if (CommunicationSystem_GetCurNetId() == 0) {
+    if (CommSys_GetCurNetId() == 0) {
         if (v2->unk_0E != 0xff) {
             v2->unk_425 = 0;
         } else {
@@ -1318,7 +1318,7 @@ void ov108_02242B84 (int param0, int param1, void * param2, void * param3)
     UnkStruct_ov108_02241DB0 * v0 = param3;
     const u16 * v1 = param2;
 
-    if (CommunicationSystem_GetCurNetId() == param0) {
+    if (CommSys_GetCurNetId() == param0) {
         return;
     }
 
