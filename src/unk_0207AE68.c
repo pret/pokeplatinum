@@ -419,7 +419,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
                 sub_0202736C(param0->unk_48, param0->unk_28);
                 sub_0202CF28(param0->unk_50, (1 + 11));
                 sub_0202CFEC(param0->unk_50, 22);
-                PoketchData_PokemonHistoryAddEntry(param0->unk_54, Pokemon_GetBoxPokemon(param0->unk_28));
+                PoketchData_PokemonHistoryEnqueue(param0->unk_54, Pokemon_GetBoxPokemon(param0->unk_28));
 
                 if (Pokemon_GetValue(param0->unk_28, MON_DATA_HAS_NICKNAME, NULL) == 0) {
                     Pokemon_SetValue(param0->unk_28, 179, NULL);
@@ -751,7 +751,7 @@ static void sub_0207C028 (UnkStruct_0207AE68 * param0)
                 sub_0202736C(param0->unk_48, v1);
                 sub_0202CF28(param0->unk_50, (1 + 11));
                 sub_0202CFEC(param0->unk_50, 22);
-                PoketchData_PokemonHistoryAddEntry(param0->unk_54, Pokemon_GetBoxPokemon(v1));
+                PoketchData_PokemonHistoryEnqueue(param0->unk_54, Pokemon_GetBoxPokemon(v1));
                 Heap_FreeToHeap(v1);
                 Bag_SubtractItem(param0->unk_4C, 4, 1, param0->unk_5C);
             }

@@ -52,9 +52,9 @@ void Poketch_Init(PoketchData *poketchData)
     }
 
     for (i = 0; i < POKETCH_POKEMONHISTORY_MAX; i++) {
-        poketchData->pokemonHistory[i].species = 0;
-        poketchData->pokemonHistory[i].icon = 0;
-        poketchData->pokemonHistory[i].form = 0;
+        poketchData->pokemonHistoryQueue[i].species = 0;
+        poketchData->pokemonHistoryQueue[i].icon = 0;
+        poketchData->pokemonHistoryQueue[i].form = 0;
     }
 
     poketchData->dotArtModifiedByPlayer = 0;
@@ -161,12 +161,12 @@ void PoketchData_SetScreenColor(PoketchData *poketchData, u32 screenColor)
     poketchData->screenColor = screenColor;
 }
 
-u32 PoketchData_PedometerValue(const PoketchData *poketchData)
+u32 PoketchData_StepCount(const PoketchData *poketchData)
 {
     return poketchData->stepCount;
 }
 
-void PoketchData_SetPedometerValue(PoketchData *poketchData, u32 value)
+void PoketchData_SetStepCount(PoketchData *poketchData, u32 value)
 {
     if (poketchData->pedometerEnabled) {
         poketchData->stepCount = value;
@@ -254,24 +254,24 @@ void PoketchData_SetDotArtData(PoketchData *poketchData, const u8 *src)
     poketchData->dotArtModifiedByPlayer = TRUE;
 }
 
-void PoketchData_PokemonHistoryAddEntry(PoketchData *poketchData, const BoxPokemon * boxPokemon)
+void PoketchData_PokemonHistoryEnqueue(PoketchData *poketchData, const BoxPokemon *boxPokemon)
 {
-    int new_pokemon_index = PoketchData_PokemonHistorySize(poketchData);
+    int index = PoketchData_PokemonHistorySize(poketchData);
 
     // Shift all entries one index up
-    if (new_pokemon_index >= POKETCH_POKEMONHISTORY_MAX) {
+    if (index >= POKETCH_POKEMONHISTORY_MAX) {
 
         for (int i = 0; i < (POKETCH_POKEMONHISTORY_MAX - 1); i++) {
-            poketchData->pokemonHistory[i] = poketchData->pokemonHistory[i + 1];
+            poketchData->pokemonHistoryQueue[i] = poketchData->pokemonHistoryQueue[i + 1];
         }
 
-        new_pokemon_index = POKETCH_POKEMONHISTORY_MAX - 1;
+        index = POKETCH_POKEMONHISTORY_MAX - 1;
     }
 
     // Add new entry to end of the list
-    poketchData->pokemonHistory[new_pokemon_index].species = BoxPokemon_GetValue((BoxPokemon *)boxPokemon, MON_DATA_SPECIES, NULL);
-    poketchData->pokemonHistory[new_pokemon_index].icon = BoxPokemon_IconFormOffset(boxPokemon);
-    poketchData->pokemonHistory[new_pokemon_index].form = BoxPokemon_GetValue((BoxPokemon *)boxPokemon, MON_DATA_FORM, NULL);
+    poketchData->pokemonHistoryQueue[index].species = BoxPokemon_GetValue((BoxPokemon *)boxPokemon, MON_DATA_SPECIES, NULL);
+    poketchData->pokemonHistoryQueue[index].icon = BoxPokemon_IconFormOffset(boxPokemon);
+    poketchData->pokemonHistoryQueue[index].form = BoxPokemon_GetValue((BoxPokemon *)boxPokemon, MON_DATA_FORM, NULL);
 }
 
 int PoketchData_PokemonHistorySize(const PoketchData *poketchData)
@@ -279,7 +279,7 @@ int PoketchData_PokemonHistorySize(const PoketchData *poketchData)
     int size;
 
     for (size = 0; size < POKETCH_POKEMONHISTORY_MAX; size++) {
-        if (poketchData->pokemonHistory[size].species == 0) {
+        if (poketchData->pokemonHistoryQueue[size].species == 0) {
             return size;
         }
     }
@@ -290,18 +290,18 @@ int PoketchData_PokemonHistorySize(const PoketchData *poketchData)
 void PoketchData_PokemonHistorySpeciesAndIcon(const PoketchData *poketchData, int index, int *species, int *icon)
 {
     GF_ASSERT(index < POKETCH_POKEMONHISTORY_MAX);
-    GF_ASSERT(poketchData->pokemonHistory[index].species);
+    GF_ASSERT(poketchData->pokemonHistoryQueue[index].species);
 
-    *species = poketchData->pokemonHistory[index].species;
-    *icon = poketchData->pokemonHistory[index].icon;
+    *species = poketchData->pokemonHistoryQueue[index].species;
+    *icon = poketchData->pokemonHistoryQueue[index].icon;
 }
 
 u32 PoketchData_PokemonHistoryForm(const PoketchData *poketchData, int index)
 {
     GF_ASSERT(index < POKETCH_POKEMONHISTORY_MAX);
-    GF_ASSERT(poketchData->pokemonHistory[index].species);
+    GF_ASSERT(poketchData->pokemonHistoryQueue[index].species);
 
-    return poketchData->pokemonHistory[index].form;
+    return poketchData->pokemonHistoryQueue[index].form;
 }
 
 PoketchData* SaveData_PoketchData(SaveData *saveData)

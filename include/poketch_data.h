@@ -96,7 +96,7 @@ typedef struct PoketchData {
         u16 species;
         u16 icon;
         u32 form;
-    } pokemonHistory[POKETCH_POKEMONHISTORY_MAX];   //!< The pokemon to display in the Pokemon History app
+    } pokemonHistoryQueue[POKETCH_POKEMONHISTORY_MAX];   //!< The pokemon to display in the Pokemon History app
 } PoketchData;
 
 int Poketch_SaveSize(void);
@@ -131,12 +131,12 @@ u32 PoketchData_CurrentScreenColor(const PoketchData *poketchData);
  */
 void PoketchData_SetScreenColor(PoketchData *poketchData, u32 screenColor);
 
-u32 PoketchData_PedometerValue(const PoketchData *poketchData);
+u32 PoketchData_StepCount(const PoketchData *poketchData);
 
 /**
  * Overwrites the current step count. This function will not do anything unless the Pedometer app is registered.
  */
-void PoketchData_SetPedometerValue(PoketchData *poketchData, u32 value);
+void PoketchData_SetStepCount(PoketchData *poketchData, u32 value);
 
 BOOL PoketchData_IsAlarmSet(const PoketchData *poketchData);
 
@@ -181,7 +181,7 @@ void PoketchData_SetDotArtData(PoketchData *poketchData, const u8 *src);
 /**
  * Adds a new Pokemon to the end of the Pokemon History list.
  */
-void PoketchData_PokemonHistoryAddEntry(PoketchData *poketchData, const BoxPokemon *boxPokemon);
+void PoketchData_PokemonHistoryEnqueue(PoketchData *poketchData, const BoxPokemon *boxPokemon);
 
 int PoketchData_PokemonHistorySize(const PoketchData *poketchData);
 
