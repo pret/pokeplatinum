@@ -36,17 +36,17 @@
 
 typedef struct {
     int unk_00;
-    UnkStruct_02072014 * unk_04;
+    TrainerCard * unk_04;
 } UnkStruct_02072204;
 
-static void sub_02072014(const u8 param0, const u8 param1, const u8 param2, const u8 param3, const u8 param4, UnkStruct_02072014 * param5);
-static void sub_02072038(const u16 param0, const u8 param1, const u16 * param2, const u32 param3, const u32 param4, const BOOL param5, const u32 param6, UnkStruct_02072014 * param7);
-static void sub_0207207C(const u8 param0, const UnkStruct_02025E5C * param1, const RTCDate * param2, const RTCDate * param3, const RTCTime * param4, const u8 param5, UnkStruct_02072014 * param6);
-static void sub_02072120(const u32 param0, const u32 param1, const u32 param2, const u32 param3, const u8 * param4, UnkStruct_02072014 * param5);
-static void sub_0207216C(TrainerInfo * param0, FieldSystem * param1, UnkStruct_02072014 * param2);
+static void sub_02072014(const u8 param0, const u8 param1, const u8 param2, const u8 param3, const u8 param4, TrainerCard * param5);
+static void sub_02072038(const u16 param0, const u8 param1, const u16 * param2, const u32 param3, const u32 param4, const BOOL param5, const u32 param6, TrainerCard * param7);
+static void sub_0207207C(const u8 param0, const UnkStruct_02025E5C * param1, const RTCDate * param2, const RTCDate * param3, const RTCTime * param4, const u8 param5, TrainerCard * param6);
+static void sub_02072120(const u32 param0, const u32 param1, const u32 param2, const u32 param3, const u8 * param4, TrainerCard * param5);
+static void sub_0207216C(TrainerInfo * param0, FieldSystem * param1, TrainerCard * param2);
 static BOOL sub_02072230(UnkStruct_020508D4 * param0);
 
-void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 param3, FieldSystem * param4, UnkStruct_02072014 * param5)
+void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 param3, FieldSystem * param4, TrainerCard * param5)
 {
     TrainerInfo * v0;
     UnkStruct_0202CD88 * v1;
@@ -99,7 +99,7 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
         int v13, v14 = 0;
         u8 * v15 = (u8 *)param5;
 
-        for (v13 = 0; v13 < sizeof(UnkStruct_02072014); v13++) {
+        for (v13 = 0; v13 < sizeof(TrainerCard); v13++) {
             v14 ^= v15[v13];
         }
 
@@ -109,15 +109,15 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
     param5->unk_66A = 0;
 }
 
-UnkStruct_02072014 * sub_02071F04 (const u16 param0)
+TrainerCard * sub_02071F04 (const u16 param0)
 {
-    UnkStruct_02072014 * v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_02072014));
+    TrainerCard * v0 = Heap_AllocFromHeap(param0, sizeof(TrainerCard));
 
-    memset(v0, 0, sizeof(UnkStruct_02072014));
+    memset(v0, 0, sizeof(TrainerCard));
     return v0;
 }
 
-void sub_02071F20 (UnkStruct_02072014 * param0)
+void sub_02071F20 (TrainerCard * param0)
 {
     Heap_FreeToHeap(param0);
 }
@@ -161,7 +161,7 @@ u8 sub_02071F28 (FieldSystem * param0)
     return v0;
 }
 
-static void sub_02072014 (const u8 param0, const u8 param1, const u8 param2, const u8 param3, const u8 param4, UnkStruct_02072014 * param5)
+static void sub_02072014 (const u8 param0, const u8 param1, const u8 param2, const u8 param3, const u8 param4, TrainerCard * param5)
 {
     param5->unk_04_0 = param0;
     param5->unk_00 = param1;
@@ -170,7 +170,7 @@ static void sub_02072014 (const u8 param0, const u8 param1, const u8 param2, con
     param5->unk_02 = param3;
 }
 
-static void sub_02072038 (const u16 param0, const u8 param1, const u16 * param2, const u32 param3, const u32 param4, const BOOL param5, const u32 param6, UnkStruct_02072014 * param7)
+static void sub_02072038 (const u16 param0, const u8 param1, const u16 * param2, const u32 param3, const u32 param4, const BOOL param5, const u32 param6, TrainerCard * param7)
 {
     param7->unk_28 = param0;
     param7->unk_04_2 = param1;
@@ -183,7 +183,7 @@ static void sub_02072038 (const u16 param0, const u8 param1, const u16 * param2,
     param7->unk_24 = param6;
 }
 
-static void sub_0207207C (const u8 param0, const UnkStruct_02025E5C * param1, const RTCDate * param2, const RTCDate * param3, const RTCTime * param4, const u8 param5, UnkStruct_02072014 * param6)
+static void sub_0207207C (const u8 param0, const UnkStruct_02025E5C * param1, const RTCDate * param2, const RTCDate * param3, const RTCTime * param4, const u8 param5, TrainerCard * param6)
 {
     param6->unk_2A = sub_0202CC58(param1);
     param6->unk_2E = sub_0202CC5C(param1);
@@ -214,7 +214,7 @@ static void sub_0207207C (const u8 param0, const UnkStruct_02025E5C * param1, co
     }
 }
 
-static void sub_02072120 (const u32 param0, const u32 param1, const u32 param2, const u32 param3, const u8 * param4, UnkStruct_02072014 * param5)
+static void sub_02072120 (const u32 param0, const u32 param1, const u32 param2, const u32 param3, const u8 * param4, TrainerCard * param5)
 {
     param5->unk_38 = param0;
 
@@ -242,7 +242,7 @@ static void sub_02072120 (const u32 param0, const u32 param1, const u32 param2, 
     MI_CpuCopy8(param4, param5->unk_68, 24 * 8 * 8);
 }
 
-static void sub_0207216C (TrainerInfo * param0, FieldSystem * param1, UnkStruct_02072014 * param2)
+static void sub_0207216C (TrainerInfo * param0, FieldSystem * param1, TrainerCard * param2)
 {
     u8 v0;
     UnkStruct_0202C834 * v1;
@@ -262,7 +262,7 @@ static void sub_0207216C (TrainerInfo * param0, FieldSystem * param1, UnkStruct_
     }
 }
 
-void sub_020721D4 (FieldSystem * param0, const UnkStruct_02072014 * param1)
+void sub_020721D4 (FieldSystem * param0, const TrainerCard * param1)
 {
     u8 v0;
     UnkStruct_0202C834 * v1;
@@ -281,7 +281,7 @@ void sub_02072204 (FieldSystem * param0)
     UnkStruct_02072204 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02072204));
 
     v0->unk_00 = 0;
-    v0->unk_04 = (UnkStruct_02072014 *)sub_0205C17C(param0->unk_7C);
+    v0->unk_04 = (TrainerCard *)sub_0205C17C(param0->unk_7C);
 
     sub_02050944(param0->unk_10, sub_02072230, v0);
 }

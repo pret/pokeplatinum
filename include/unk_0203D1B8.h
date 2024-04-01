@@ -66,7 +66,7 @@ void * sub_0203DE34(FieldSystem * param0);
 void sub_0203DE78(FieldSystem * param0, SaveData * param1);
 void sub_0203DE88(FieldSystem * param0, SaveData * param1);
 void sub_0203DFE8(UnkStruct_020508D4 * param0, int param1, int param2, int param3, int param4, const u16 * param5, u16 * param6);
-void sub_0203E09C(FieldSystem * param0, UnkStruct_02072014 * param1);
+void sub_0203E09C(FieldSystem * param0, TrainerCard * param1);
 BOOL sub_0203E0AC(FieldSystem * param0, void * param1);
 void sub_0203E0C0(FieldSystem * param0, UnkStruct_020425E0 * param1);
 void sub_0203E0D0(FieldSystem * param0);

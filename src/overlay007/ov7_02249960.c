@@ -256,7 +256,7 @@ static void ov7_02249B98 (void)
 
 static void ov7_02249C2C (UnkStruct_ov7_02249C2C * param0)
 {
-    sub_02059748(param0->unk_68, param0->unk_91, ov7_0224B3FC());
+    FieldCommMan_StartBattleClient(param0->unk_68, param0->unk_91, ov7_0224B3FC());
 }
 
 static const UnkStruct_ov84_02240FA8 Unk_ov7_0224ED34 = {
@@ -741,7 +741,7 @@ static void ov7_0224A438 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 
 static void ov7_0224A510 (UnkStruct_ov7_02249C2C * param0)
 {
-    sub_02059708(param0->unk_68, param0->unk_91, ov7_0224B3FC());
+    FieldCommMan_StartBattleServer(param0->unk_68, param0->unk_91, ov7_0224B3FC());
 }
 
 static void ov7_0224A528 (void)

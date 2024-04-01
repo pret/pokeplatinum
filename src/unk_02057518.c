@@ -509,7 +509,7 @@ static void sub_02057E80 (SysTask * param0, void * param1)
 {
     int v0;
 
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         sub_02057E68();
 
         if (CommSys_CurNetId() == 0) {
@@ -630,11 +630,11 @@ void sub_0205805C (FieldSystem * param0, BOOL param1)
         Unk_021C0848->unk_08[CommSys_CurNetId()] = param0->unk_3C;
     }
 
-    if (sub_02035E38() && (CommSys_CurNetId() == 0)) {
+    if (CommSys_IsInitialized() && (CommSys_CurNetId() == 0)) {
         sub_0205820C(NULL, Unk_021C0848);
     }
 
-    if (sub_02035E38() && (CommSys_CurNetId() == 0)) {
+    if (CommSys_IsInitialized() && (CommSys_CurNetId() == 0)) {
         if (!Unk_021C0848->unk_2BE) {
             sub_020591A8();
         }

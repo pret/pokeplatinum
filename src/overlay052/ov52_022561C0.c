@@ -400,7 +400,7 @@ static void ov52_022565EC (UnkStruct_ov52_0225621C * param0)
         }
         break;
     case 3:
-        if (sub_02035E38() == 0) {
+        if (CommSys_IsInitialized() == 0) {
             param0->unk_20 = 0;
         }
         break;

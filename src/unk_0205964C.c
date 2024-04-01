@@ -15,6 +15,7 @@
 #include "unk_0200D9E8.h"
 #include "unk_0200F174.h"
 #include "heap.h"
+#include "constants/heap.h"
 #include "communication_information.h"
 #include "unk_02033200.h"
 #include "communication_system.h"
@@ -33,10 +34,10 @@
 #include "overlay023/ov23_02241F74.h"
 
 static void sub_020598C4(SysTask * param0, void * param1);
-static void sub_020598EC(UnkFuncPtr_020598EC param0, int param1);
-static void sub_020598FC(void);
+static void FieldCommMan_SetTask(FieldCommSysTask param0, int param1);
+static void Task_StartBattleServer(void);
 static void sub_02059920(void);
-static void sub_02059924(void);
+static void Task_StartBattleClient(void);
 static void sub_02059940(void);
 static void sub_02059944(void);
 static void sub_02059964(void);
@@ -60,11 +61,11 @@ static void sub_0205A018(void);
 static void sub_0205A040(void);
 static void sub_0205A058(void);
 
-static UnkStruct_0205964C * Unk_021C084C = NULL;
+static FieldCommunicationManager * sFieldCommMan = NULL;
 
-UnkStruct_0205964C * sub_0205964C (void)
+FieldCommunicationManager * FieldCommMan_Get (void)
 {
-    return Unk_021C084C;
+    return sFieldCommMan;
 }
 
 static void sub_02059658 (void)
@@ -72,84 +73,81 @@ static void sub_02059658 (void)
     return;
 }
 
-void sub_0205965C (FieldSystem * param0)
+void FieldCommMan_Init (FieldSystem * fieldSys)
 {
-    void * v0;
-
-    if (Unk_021C084C != NULL) {
+    if (sFieldCommMan != NULL) {
         return;
     }
 
-    sub_02099514((void *)param0);
+    sub_02099514((void *)fieldSys);
 
-    Unk_021C084C = (UnkStruct_0205964C *)Heap_AllocFromHeap(15, sizeof(UnkStruct_0205964C));
-    MI_CpuFill8(Unk_021C084C, 0, sizeof(UnkStruct_0205964C));
+    sFieldCommMan = (FieldCommunicationManager *)Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(FieldCommunicationManager));
+    MI_CpuFill8(sFieldCommMan, 0, sizeof(FieldCommunicationManager));
 
-    Unk_021C084C->unk_3C = 50;
-    Unk_021C084C->unk_38 = SysTask_Start(sub_020598C4, NULL, 10);
-    Unk_021C084C->unk_18 = param0;
-    Unk_021C084C->unk_44 = NULL;
+    sFieldCommMan->unk_3C = 50;
+    sFieldCommMan->sysTask = SysTask_Start(sub_020598C4, NULL, 10);
+    sFieldCommMan->fieldSys = fieldSys;
+    sFieldCommMan->party = NULL;
 
     sub_02059658();
-    CommSys_Seed(&Unk_021C084C->unk_1C);
+    CommSys_Seed(&sFieldCommMan->unk_1C);
 }
 
-void sub_020596BC (void)
+void FieldCommMan_Delete (void)
 {
-    void * v0;
-    int v1;
+    int i;
 
-    if (Unk_021C084C == NULL) {
+    if (sFieldCommMan == NULL) {
         return;
     }
 
-    SysTask_Done(Unk_021C084C->unk_38);
+    SysTask_Done(sFieldCommMan->sysTask);
 
-    for (v1 = 0; v1 < 4; v1++) {
-        if (Unk_021C084C->unk_00[v1]) {
-            Heap_FreeToHeap(Unk_021C084C->unk_00[v1]);
+    for (i = 0; i < 4; i++) {
+        if (sFieldCommMan->trainerCard[i]) {
+            Heap_FreeToHeap(sFieldCommMan->trainerCard[i]);
         }
     }
 
-    if (Unk_021C084C->unk_44) {
-        Heap_FreeToHeap(Unk_021C084C->unk_44);
+    if (sFieldCommMan->party) {
+        Heap_FreeToHeap(sFieldCommMan->party);
     }
 
-    Heap_FreeToHeap(Unk_021C084C);
-    Unk_021C084C = NULL;
+    Heap_FreeToHeap(sFieldCommMan);
+    sFieldCommMan = NULL;
 }
 
-void sub_02059708 (FieldSystem * param0, int param1, int param2)
+void FieldCommMan_StartBattleServer (FieldSystem * param0, int param1, int param2)
 {
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         return;
     }
 
-    sub_020368B8(sub_0203D174(param0), param1, param2, param0->unk_B0, 0);
-    sub_0205965C(param0);
-    sub_020598EC(sub_020598FC, 0);
+    CommMan_StartBattleServer(sub_0203D174(param0), param1, param2, param0->unk_B0, 0);
+    FieldCommMan_Init(param0);
+    FieldCommMan_SetTask(Task_StartBattleServer, 0);
 }
 
-void sub_02059748 (FieldSystem * param0, int param1, int param2)
+void FieldCommMan_StartBattleClient (FieldSystem * param0, int param1, int param2)
 {
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         return;
     }
 
-    sub_02036900(sub_0203D174(param0), param1, param2, param0->unk_B0, 0);
-    sub_0205965C(param0);
-    sub_020598EC(sub_02059924, 0);
+    CommMan_StartBattleClient(sub_0203D174(param0), param1, param2, param0->unk_B0, 0);
+    FieldCommMan_Init(param0);
+    FieldCommMan_SetTask(Task_StartBattleClient, 0);
 }
 
 void sub_02059788 (int param0)
 {
-    Unk_021C084C->unk_3E = param0;
-    sub_020598EC(sub_02059944, 0);
+    sFieldCommMan->unk_3E = param0;
+    FieldCommMan_SetTask(sub_02059944, 0);
 }
 
 void sub_020597A4 (void)
 {
-    sub_020598EC(sub_02059E80, 0);
+    FieldCommMan_SetTask(sub_02059E80, 0);
 }
 
 void sub_020597B4 (FieldSystem * param0)
@@ -162,74 +160,74 @@ void sub_020597B4 (FieldSystem * param0)
         return;
     }
 
-    if (Unk_021C084C == NULL) {
-        sub_0205965C(param0);
-        Unk_021C084C->unk_42 = 1;
+    if (sFieldCommMan == NULL) {
+        FieldCommMan_Init(param0);
+        sFieldCommMan->unk_42 = 1;
     } else {
-        Unk_021C084C->unk_42 = 0;
+        sFieldCommMan->unk_42 = 0;
     }
 
-    Unk_021C084C->unk_43 = 0;
+    sFieldCommMan->unk_43 = 0;
 
     {
         int v0, v1 = CommSys_CurNetId();
         TrainerInfo * v2 = CommInfo_TrainerInfo(CommSys_CurNetId());
 
         for (v0 = 0; v0 < sub_02035E18(); v0++) {
-            if (Unk_021C084C->unk_00[v0] == NULL) {
-                Unk_021C084C->unk_00[v0] = Heap_AllocFromHeap(0, sizeof(UnkStruct_02072014));
+            if (sFieldCommMan->trainerCard[v0] == NULL) {
+                sFieldCommMan->trainerCard[v0] = Heap_AllocFromHeap(0, sizeof(TrainerCard));
             }
         }
 
-        sub_02071D40(0, 0, 0, 0xff, Unk_021C084C->unk_18, Unk_021C084C->unk_00[v1]);
+        sub_02071D40(0, 0, 0, 0xff, sFieldCommMan->fieldSys, sFieldCommMan->trainerCard[v1]);
     }
 
     sub_020364F0(95);
-    sub_020598EC(sub_02059ED8, 0);
+    FieldCommMan_SetTask(sub_02059ED8, 0);
 }
 
 void sub_0205987C (void)
 {
-    if (Unk_021C084C == NULL) {
+    if (sFieldCommMan == NULL) {
         return;
     }
 
     sub_020388F4(0, 0);
-    sub_020598EC(sub_0205A040, 5);
+    FieldCommMan_SetTask(sub_0205A040, 5);
 }
 
 void sub_020598A0 (void)
 {
-    if (Unk_021C084C == NULL) {
+    if (sFieldCommMan == NULL) {
         return;
     }
 
     sub_020364F0(91);
-    sub_020598EC(sub_0205A018, 5);
+    FieldCommMan_SetTask(sub_0205A018, 5);
 }
 
 void sub_020598C4 (SysTask * param0, void * param1)
 {
-    if (Unk_021C084C == NULL) {
+    if (sFieldCommMan == NULL) {
         SysTask_Done(param0);
     } else {
-        if (Unk_021C084C->unk_34 != NULL) {
-            UnkFuncPtr_020598EC v0 = Unk_021C084C->unk_34;
+        if (sFieldCommMan->unk_34 != NULL) {
+            FieldCommSysTask v0 = sFieldCommMan->unk_34;
 
-            if (!Unk_021C084C->unk_40) {
+            if (!sFieldCommMan->unk_40) {
                 v0();
             }
         }
     }
 }
 
-static void sub_020598EC (UnkFuncPtr_020598EC param0, int param1)
+static void FieldCommMan_SetTask (FieldCommSysTask param0, int param1)
 {
-    Unk_021C084C->unk_34 = param0;
-    Unk_021C084C->unk_3C = param1;
+    sFieldCommMan->unk_34 = param0;
+    sFieldCommMan->unk_3C = param1;
 }
 
-static void sub_020598FC (void)
+static void Task_StartBattleServer (void)
 {
     if (!CommSys_IsPlayerConnected(CommSys_CurNetId())) {
         return;
@@ -238,7 +236,7 @@ static void sub_020598FC (void)
     ov7_0224B4B8();
 
     CommInfo_SendBattleRegulation();
-    sub_020598EC(sub_02059920, 0);
+    FieldCommMan_SetTask(sub_02059920, 0);
 }
 
 static void sub_02059920 (void)
@@ -246,14 +244,14 @@ static void sub_02059920 (void)
     return;
 }
 
-static void sub_02059924 (void)
+static void Task_StartBattleClient (void)
 {
     if (!sub_020334A4()) {
         return;
     }
 
     ov7_0224B450();
-    sub_020598EC(sub_02059940, 0);
+    FieldCommMan_SetTask(sub_02059940, 0);
 }
 
 static void sub_02059940 (void)
@@ -263,8 +261,8 @@ static void sub_02059940 (void)
 
 static void sub_02059944 (void)
 {
-    sub_02036948(Unk_021C084C->unk_3E);
-    sub_020598EC(sub_02059964, 0);
+    sub_02036948(sFieldCommMan->unk_3E);
+    FieldCommMan_SetTask(sub_02059964, 0);
 }
 
 static void sub_02059964 (void)
@@ -274,7 +272,7 @@ static void sub_02059964 (void)
     }
 
     CommInfo_SendBattleRegulation();
-    sub_020598EC(sub_02059980, 0);
+    FieldCommMan_SetTask(sub_02059980, 0);
 }
 
 static void sub_02059980 (void)
@@ -287,19 +285,19 @@ static void sub_02059984 (void)
     void * v0;
 
     if (sub_02036540(98)) {
-        v0 = Heap_AllocFromHeap(15, sub_02057C84());
-        sub_02057524(v0, Unk_021C084C->unk_18, 0);
+        v0 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sub_02057C84());
+        sub_02057524(v0, sFieldCommMan->fieldSys, 0);
         sub_02059524();
         sub_02035EC8();
         sub_020364F0(92);
-        sub_020598EC(sub_020599E4, 0);
+        FieldCommMan_SetTask(sub_020599E4, 0);
         return;
     }
 
-    if (Unk_021C084C->unk_3C != 0) {
-        Unk_021C084C->unk_3C--;
+    if (sFieldCommMan->unk_3C != 0) {
+        sFieldCommMan->unk_3C--;
     } else {
-        Unk_021C084C->unk_3C = 30;
+        sFieldCommMan->unk_3C = 30;
         sub_020364F0(98);
     }
 }
@@ -316,27 +314,27 @@ static void sub_020599E4 (void)
         sub_0200F32C(1);
         sub_020576A0();
         sub_02057AE4(0);
-        sub_020598EC(sub_02059A70, 1);
+        FieldCommMan_SetTask(sub_02059A70, 1);
     }
 }
 
 static void sub_02059A3C (void)
 {
-    if (Unk_021C084C->unk_3C != 0) {
-        Unk_021C084C->unk_3C--;
+    if (sFieldCommMan->unk_3C != 0) {
+        sFieldCommMan->unk_3C--;
         return;
     }
 
     if (sub_02036540(30)) {
         sub_02035EA8();
-        sub_020598EC(sub_02059BF4, 0);
+        FieldCommMan_SetTask(sub_02059BF4, 0);
     }
 }
 
 static void sub_02059A70 (void)
 {
-    if (Unk_021C084C->unk_3C != 0) {
-        Unk_021C084C->unk_3C--;
+    if (sFieldCommMan->unk_3C != 0) {
+        sFieldCommMan->unk_3C--;
         return;
     }
 
@@ -350,7 +348,7 @@ static void sub_02059A70 (void)
         sub_020364F0(30);
     }
 
-    sub_020598EC(sub_02059A3C, 20);
+    FieldCommMan_SetTask(sub_02059A3C, 20);
 }
 
 static void sub_02059AB4 (void)
@@ -358,18 +356,18 @@ static void sub_02059AB4 (void)
     void * v0;
 
     if (sub_02036540(98)) {
-        v0 = Heap_AllocFromHeap(15, sub_02057C84());
-        sub_02057524(v0, Unk_021C084C->unk_18, 0);
+        v0 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sub_02057C84());
+        sub_02057524(v0, sFieldCommMan->fieldSys, 0);
         sub_02059524();
         sub_020364F0(92);
-        sub_020598EC(sub_02059B10, 0);
+        FieldCommMan_SetTask(sub_02059B10, 0);
         return;
     }
 
-    if (Unk_021C084C->unk_3C != 0) {
-        Unk_021C084C->unk_3C--;
+    if (sFieldCommMan->unk_3C != 0) {
+        sFieldCommMan->unk_3C--;
     } else {
-        Unk_021C084C->unk_3C = 30;
+        sFieldCommMan->unk_3C = 30;
         sub_020364F0(98);
     }
 }
@@ -392,7 +390,7 @@ static void sub_02059B10 (void)
         sub_0200F174(0, 1, 1, 0x0, 6, 1, 4);
         sub_0200F32C(0);
         sub_0200F32C(1);
-        sub_020598EC(sub_02059CD8, 0);
+        FieldCommMan_SetTask(sub_02059CD8, 0);
     }
 }
 
@@ -403,34 +401,34 @@ static void sub_02059B74 (void)
     for (v0 = 0; v0 < sub_02035E18(); v0++) {
         if (v0 != CommSys_CurNetId()) {
             if (sub_02036564(v0) == 94) {
-                if (Unk_021C084C->unk_18->unk_10 == NULL) {
+                if (sFieldCommMan->fieldSys->unk_10 == NULL) {
                     for (v1 = 0; v1 < 4; v1++) {
-                        if (Unk_021C084C->unk_00[v1]) {
-                            Heap_FreeToHeap(Unk_021C084C->unk_00[v1]);
-                            Unk_021C084C->unk_00[v1] = NULL;
+                        if (sFieldCommMan->trainerCard[v1]) {
+                            Heap_FreeToHeap(sFieldCommMan->trainerCard[v1]);
+                            sFieldCommMan->trainerCard[v1] = NULL;
                         }
                     }
 
-                    sub_0203E880(Unk_021C084C->unk_18, 9102, NULL);
+                    sub_0203E880(sFieldCommMan->fieldSys, 9102, NULL);
                 }
             }
         }
     }
 
-    sub_02038A1C(4, Unk_021C084C->unk_18->unk_08);
+    sub_02038A1C(4, sFieldCommMan->fieldSys->unk_08);
 }
 
 static void sub_02059BF4 (void)
 {
     if (!sub_020590C4()) {
-        Unk_021C084C->unk_43 = 0;
+        sFieldCommMan->unk_43 = 0;
 
         {
             u8 v0 = 1;
             sub_020360D0(94, &v0);
         }
 
-        sub_020598EC(sub_02059CD8, 0);
+        FieldCommMan_SetTask(sub_02059CD8, 0);
     }
 
     sub_02059B74();
@@ -439,25 +437,25 @@ static void sub_02059BF4 (void)
 static void sub_02059C2C (BOOL param0, const Party * param1)
 {
     if (param1) {
-        Unk_021C084C->unk_44 = Party_New(11);
-        Party_cpy(param1, Unk_021C084C->unk_44);
+        sFieldCommMan->party = Party_New(11);
+        Party_cpy(param1, sFieldCommMan->party);
     }
 
     if (param0) {
-        sub_020598EC(sub_02059E50, 3);
+        FieldCommMan_SetTask(sub_02059E50, 3);
     } else {
         {
             u8 v0 = 3;
             sub_020360D0(94, &v0);
         }
 
-        sub_020598EC(sub_02059BF4, 0);
+        FieldCommMan_SetTask(sub_02059BF4, 0);
     }
 }
 
 static void sub_02059C7C (void)
 {
-    sub_020598EC(sub_02059BF4, 0);
+    FieldCommMan_SetTask(sub_02059BF4, 0);
 }
 
 static void sub_02059C8C (void)
@@ -466,20 +464,20 @@ static void sub_02059C8C (void)
         return;
     }
 
-    if (Unk_021C084C->unk_3C != 0) {
-        Unk_021C084C->unk_3C--;
+    if (sFieldCommMan->unk_3C != 0) {
+        sFieldCommMan->unk_3C--;
         return;
     }
 
     sub_020594FC();
-    sub_0205AB10(Unk_021C084C->unk_18, sub_02059C2C);
-    sub_020598EC(sub_02059C7C, 0);
+    sub_0205AB10(sFieldCommMan->fieldSys, sub_02059C2C);
+    FieldCommMan_SetTask(sub_02059C7C, 0);
 }
 
 static void sub_02059CD8 (void)
 {
-    if (Unk_021C084C->unk_43) {
-        sub_020598EC(sub_02059C8C, 5);
+    if (sFieldCommMan->unk_43) {
+        FieldCommMan_SetTask(sub_02059C8C, 5);
 
         {
             u8 v0 = 0;
@@ -495,14 +493,14 @@ void sub_02059D0C (int param0, int param1, void * param2, void * param3)
     u8 * v0 = param2;
 
     if (v0[0] == CommSys_CurNetId()) {
-        Unk_021C084C->unk_43 = 1;
+        sFieldCommMan->unk_43 = 1;
     }
 }
 
 BOOL sub_02059D2C (void)
 {
-    if (Unk_021C084C) {
-        if ((Unk_021C084C->unk_34 == sub_02059CD8) || (Unk_021C084C->unk_34 == sub_02059BF4)) {
+    if (sFieldCommMan) {
+        if ((sFieldCommMan->unk_34 == sub_02059CD8) || (sFieldCommMan->unk_34 == sub_02059BF4)) {
             return 1;
         }
     }
@@ -516,8 +514,8 @@ static void sub_02059D58 (void)
     int v1;
     u8 v2[6];
 
-    if (Unk_021C084C->unk_3C != 0) {
-        Unk_021C084C->unk_3C--;
+    if (sFieldCommMan->unk_3C != 0) {
+        sFieldCommMan->unk_3C--;
         return;
     }
 
@@ -535,43 +533,43 @@ static void sub_02059D58 (void)
 
     sub_020389A0(v2);
 
-    if (Unk_021C084C->unk_44 == NULL) {
-        sub_020517E8(Unk_021C084C->unk_18, v2, v1);
+    if (sFieldCommMan->party == NULL) {
+        sub_020517E8(sFieldCommMan->fieldSys, v2, v1);
     } else {
-        sub_0205184C(Unk_021C084C->unk_18, Unk_021C084C->unk_44, v1);
-        Heap_FreeToHeap(Unk_021C084C->unk_44);
-        Unk_021C084C->unk_44 = NULL;
+        sub_0205184C(sFieldCommMan->fieldSys, sFieldCommMan->party, v1);
+        Heap_FreeToHeap(sFieldCommMan->party);
+        sFieldCommMan->party = NULL;
     }
 
-    sub_020596BC();
+    FieldCommMan_Delete();
 }
 
 static void sub_02059DC8 (void)
 {
     if (sub_020348B0()) {
-        if (Unk_021C084C->unk_3C != 0) {
-            Unk_021C084C->unk_3C--;
+        if (sFieldCommMan->unk_3C != 0) {
+            sFieldCommMan->unk_3C--;
         }
 
-        if (Unk_021C084C->unk_3C == 90) {
+        if (sFieldCommMan->unk_3C == 90) {
             sub_020364F0(4);
         }
 
         if (sub_02036540(4)) {
-            sub_020598EC(sub_02059D58, 0);
+            FieldCommMan_SetTask(sub_02059D58, 0);
         }
     }
 }
 
 static void sub_02059E0C (void)
 {
-    if (Unk_021C084C->unk_3C != 0) {
-        Unk_021C084C->unk_3C--;
+    if (sFieldCommMan->unk_3C != 0) {
+        sFieldCommMan->unk_3C--;
         return;
     }
 
     sub_02034878();
-    sub_020598EC(sub_02059DC8, 120);
+    FieldCommMan_SetTask(sub_02059DC8, 120);
 }
 
 static void sub_02059E34 (void)
@@ -579,7 +577,7 @@ static void sub_02059E34 (void)
     BOOL v0 = 1;
 
     if (sub_02036540(3)) {
-        sub_020598EC(sub_02059E0C, 2);
+        FieldCommMan_SetTask(sub_02059E0C, 2);
     }
 }
 
@@ -587,20 +585,20 @@ static void sub_02059E50 (void)
 {
     BOOL v0 = 1;
 
-    if (Unk_021C084C->unk_3C != 0) {
-        Unk_021C084C->unk_3C--;
+    if (sFieldCommMan->unk_3C != 0) {
+        sFieldCommMan->unk_3C--;
         return;
     }
 
     sub_020576CC(0);
     sub_020364F0(3);
-    sub_020598EC(sub_02059E34, 0);
+    FieldCommMan_SetTask(sub_02059E34, 0);
 }
 
 static void sub_02059E80 (void)
 {
     sub_02036964();
-    sub_020598EC(sub_02059E94, 2);
+    FieldCommMan_SetTask(sub_02059E94, 2);
 }
 
 static void sub_02059E94 (void)
@@ -609,18 +607,18 @@ static void sub_02059E94 (void)
         return;
     }
 
-    sub_020598EC(sub_02059964, 10);
+    FieldCommMan_SetTask(sub_02059964, 10);
 }
 
 void sub_02059EAC (int param0, int param1, void * param2, void * param3)
 {
-    Unk_021C084C->unk_10[param0] = 1;
+    sFieldCommMan->unk_10[param0] = 1;
 }
 
 u8 * sub_02059EBC (int param0, void * param1, int param2)
 {
     GF_ASSERT(param0 < 4);
-    return (u8 *)Unk_021C084C->unk_00[param0];
+    return (u8 *)sFieldCommMan->trainerCard[param0];
 }
 
 static void sub_02059ED8 (void)
@@ -628,8 +626,8 @@ static void sub_02059ED8 (void)
     int v0, v1 = CommSys_CurNetId();
 
     if (sub_02036540(95)) {
-        sub_0203597C(88, Unk_021C084C->unk_00[v1], sizeof(UnkStruct_02072014));
-        sub_020598EC(sub_02059F10, 0);
+        sub_0203597C(88, sFieldCommMan->trainerCard[v1], sizeof(TrainerCard));
+        FieldCommMan_SetTask(sub_02059F10, 0);
     }
 }
 
@@ -638,63 +636,63 @@ static void sub_02059F10 (void)
     int v0;
 
     for (v0 = 0; v0 < sub_02035E18(); v0++) {
-        if (!Unk_021C084C->unk_10[v0]) {
+        if (!sFieldCommMan->unk_10[v0]) {
             return;
         }
     }
 
     sub_020364F0(97);
-    sub_020598EC(sub_02059FB8, 0);
+    FieldCommMan_SetTask(sub_02059FB8, 0);
 }
 
 static void sub_02059F4C (void)
 {
     if (!sub_020348B0()) {
-        if (Unk_021C084C->unk_3C != 0) {
-            Unk_021C084C->unk_3C--;
+        if (sFieldCommMan->unk_3C != 0) {
+            sFieldCommMan->unk_3C--;
         }
 
-        if (Unk_021C084C->unk_3C == 90) {
+        if (sFieldCommMan->unk_3C == 90) {
             sub_020364F0(5);
         }
 
         if (sub_02036540(5)) {
-            sub_020598EC(sub_02059FD4, 0);
+            FieldCommMan_SetTask(sub_02059FD4, 0);
         }
     }
 }
 
 static void sub_02059F90 (void)
 {
-    if (Unk_021C084C->unk_3C != 0) {
-        Unk_021C084C->unk_3C--;
+    if (sFieldCommMan->unk_3C != 0) {
+        sFieldCommMan->unk_3C--;
         return;
     }
 
     sub_02034884();
-    sub_020598EC(sub_02059F4C, 120);
+    FieldCommMan_SetTask(sub_02059F4C, 120);
 }
 
 static void sub_02059FB8 (void)
 {
     if (sub_02036540(97)) {
-        sub_020598EC(sub_02059F90, 2);
+        FieldCommMan_SetTask(sub_02059F90, 2);
     }
 }
 
 static void sub_02059FD4 (void)
 {
-    if (Unk_021C084C->unk_3C != 0) {
-        Unk_021C084C->unk_3C--;
+    if (sFieldCommMan->unk_3C != 0) {
+        sFieldCommMan->unk_3C--;
         return;
     }
 
     sub_020364F0(98);
 
-    if (Unk_021C084C->unk_42) {
-        sub_020598EC(sub_02059984, 30);
+    if (sFieldCommMan->unk_42) {
+        FieldCommMan_SetTask(sub_02059984, 30);
     } else {
-        sub_020598EC(sub_02059AB4, 30);
+        FieldCommMan_SetTask(sub_02059AB4, 30);
     }
 }
 
@@ -703,30 +701,30 @@ static void sub_0205A018 (void)
     if (sub_02036540(91)) {
         sub_020388F4(0, 0);
         sub_020576CC(1);
-        sub_020598EC(sub_0205A058, 5);
+        FieldCommMan_SetTask(sub_0205A058, 5);
     }
 }
 
 static void sub_0205A040 (void)
 {
     sub_020576CC(1);
-    sub_020598EC(sub_0205A058, 5);
+    FieldCommMan_SetTask(sub_0205A058, 5);
 }
 
 static void sub_0205A058 (void)
 {
-    if (Unk_021C084C->unk_3C != 0) {
-        Unk_021C084C->unk_3C--;
+    if (sFieldCommMan->unk_3C != 0) {
+        sFieldCommMan->unk_3C--;
         return;
     }
 
     sub_02036978();
-    sub_020598EC(sub_020596BC, 0);
+    FieldCommMan_SetTask(FieldCommMan_Delete, 0);
 }
 
 UnkStruct_02029894 * sub_0205A080 (SaveData * param0)
 {
-    if (!Unk_021C084C || !Unk_021C084C->unk_41) {
+    if (!sFieldCommMan || !sFieldCommMan->unk_41) {
         return NULL;
     }
 
@@ -735,14 +733,14 @@ UnkStruct_02029894 * sub_0205A080 (SaveData * param0)
 
 void sub_0205A0A0 (void)
 {
-    if (Unk_021C084C && Unk_021C084C->unk_41) {
+    if (sFieldCommMan && sFieldCommMan->unk_41) {
         ov23_02242C78();
     }
 }
 
 void sub_0205A0BC (void)
 {
-    if (Unk_021C084C && Unk_021C084C->unk_41) {
+    if (sFieldCommMan && sFieldCommMan->unk_41) {
         ov23_02242CB4();
     }
 }

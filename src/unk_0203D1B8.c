@@ -1320,7 +1320,7 @@ void sub_0203DFE8 (UnkStruct_020508D4 * param0, int param1, int param2, int para
     sub_02050944(param0, sub_0203DE98, v2);
 }
 
-void sub_0203E09C (FieldSystem * param0, UnkStruct_02072014 * param1)
+void sub_0203E09C (FieldSystem * param0, TrainerCard * param1)
 {
     FS_EXTERN_OVERLAY(overlay71);
 

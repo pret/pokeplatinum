@@ -1016,7 +1016,7 @@ static BOOL sub_0205B140 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_0205B2D4 * v1 = sub_02050A64(param0);
-    UnkStruct_02072014 * v2 = (UnkStruct_02072014 *)sub_02059EBC(v1->unk_24, NULL, 0);
+    TrainerCard * v2 = (TrainerCard *)sub_02059EBC(v1->unk_24, NULL, 0);
 
     switch (v1->unk_28) {
     case 0:

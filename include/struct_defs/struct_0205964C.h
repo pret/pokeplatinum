@@ -9,14 +9,14 @@
 
 #include <nitro/math.h>
 
-typedef struct {
-    UnkStruct_02072014 * unk_00[4];
+typedef struct FieldCommunicationManager {
+    TrainerCard * trainerCard[4];
     u8 unk_10[4];
     u8 padding_14[4];
-    FieldSystem * unk_18;
+    FieldSystem * fieldSys;
     MATHRandContext32 unk_1C;
-    UnkFuncPtr_020598EC unk_34;
-    SysTask * unk_38;
+    FieldCommSysTask unk_34;
+    SysTask * sysTask;
     u16 unk_3C;
     u8 unk_3E;
     u8 padding_3F;
@@ -24,7 +24,7 @@ typedef struct {
     u8 unk_41;
     u8 unk_42;
     u8 unk_43;
-    Party * unk_44;
-} UnkStruct_0205964C;
+    Party * party;
+} FieldCommunicationManager;
 
 #endif // POKEPLATINUM_STRUCT_0205964C_H

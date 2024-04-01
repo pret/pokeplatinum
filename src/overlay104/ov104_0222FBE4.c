@@ -1077,7 +1077,7 @@ static BOOL ov104_022302E8 (UnkStruct_ov104_0222E930 * param0)
 
             ov104_0223D0EC(v1, &v3);
         } else if (v3.unk_00 == 0xeeef) {
-            if (sub_02035E38() == 1) {
+            if (CommSys_IsInitialized() == 1) {
                 const TrainerInfo * v7;
                 int v8, v9;
 

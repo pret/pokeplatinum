@@ -980,7 +980,7 @@ BOOL sub_020943B0 (UnkStruct_02095C48 * param0)
 {
     int v0, v1;
 
-    if (sub_02035E38() == 0) {
+    if (CommSys_IsInitialized() == 0) {
         return 0;
     }
 

@@ -400,7 +400,7 @@ int sub_02033808 (void)
 {
     int v0, v1;
 
-    if (!sub_02035E38()) {
+    if (!CommSys_IsInitialized()) {
         return 0;
     }
 

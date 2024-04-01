@@ -32,7 +32,7 @@ BOOL sub_02035B48(int param0, const void * param1);
 int sub_02035B54(void);
 BOOL CommSys_IsPlayerConnected(u16 param0);
 int sub_02035E18(void);
-BOOL sub_02035E38(void);
+BOOL CommSys_IsInitialized(void);
 void sub_02035E5C(u8 param0);
 u8 sub_02035E70(int param0);
 u16 sub_02035E84(int param0);

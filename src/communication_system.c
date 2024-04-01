@@ -1591,7 +1591,7 @@ BOOL CommSys_IsPlayerConnected (u16 param0)
         return 0;
     }
 
-    if (!sub_02035E38()) {
+    if (!CommSys_IsInitialized()) {
         return 0;
     }
 
@@ -1627,7 +1627,7 @@ int sub_02035E18 (void)
     return v0;
 }
 
-BOOL sub_02035E38 (void)
+BOOL CommSys_IsInitialized (void)
 {
     if (sCommunicationSystem) {
         if (sub_020326EC(sub_0203895C())) {

@@ -224,7 +224,7 @@ static void ov23_02249214 (UnkStruct_0205E884 * const param0, int param1[][2], i
         param1[v0][1] = sub_02058CF4(v0);
     }
 
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         if (CommSys_IsPlayerConnected(CommSys_CurNetId()) == 0) {
             param1[0][0] = sub_0205EABC(param0);
             param1[0][1] = sub_0205EAC8(param0);

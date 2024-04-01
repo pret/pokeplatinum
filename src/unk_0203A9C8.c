@@ -1412,8 +1412,8 @@ static BOOL sub_0203BEB0 (UnkStruct_020508D4 * param0)
 
     v1->unk_25C = sub_02071F04(11);
 
-    sub_02071D40(1, 1, 0, 0xff, v0, (UnkStruct_02072014 *)v1->unk_25C);
-    sub_0203E09C(v0, (UnkStruct_02072014 *)v1->unk_25C);
+    sub_02071D40(1, 1, 0, 0xff, v0, (TrainerCard *)v1->unk_25C);
+    sub_0203E09C(v0, (TrainerCard *)v1->unk_25C);
 
     v1->unk_22C = sub_0203BF00;
     return 0;
@@ -1427,8 +1427,8 @@ static BOOL sub_0203BF00 (UnkStruct_020508D4 * param0)
     v0 = sub_02050A60(param0);
     v1 = sub_02050A64(param0);
 
-    sub_020721D4(v0, (UnkStruct_02072014 *)v1->unk_25C);
-    sub_02071F20((UnkStruct_02072014 *)v1->unk_25C);
+    sub_020721D4(v0, (TrainerCard *)v1->unk_25C);
+    sub_02071F20((TrainerCard *)v1->unk_25C);
     sub_020509D4(v0);
 
     v1->unk_2A = 12;

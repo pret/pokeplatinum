@@ -288,9 +288,9 @@ void sub_020368A4 (void)
     sub_02036C94(sub_02037108, 0);
 }
 
-void sub_020368B8 (SaveData * param0, int param1, int param2, const BattleRegulation * param3, BOOL param4)
+void CommMan_StartBattleServer (SaveData * param0, int param1, int param2, const BattleRegulation * param3, BOOL param4)
 {
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         return;
     }
 
@@ -303,9 +303,9 @@ void sub_020368B8 (SaveData * param0, int param1, int param2, const BattleRegula
     sub_02036C94(sub_02037144, 0);
 }
 
-void sub_02036900 (SaveData * param0, int param1, int param2, const BattleRegulation * param3, BOOL param4)
+void CommMan_StartBattleClient (SaveData * param0, int param1, int param2, const BattleRegulation * param3, BOOL param4)
 {
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         return;
     }
 
@@ -514,7 +514,7 @@ void sub_02036BD8 (void)
 
 void sub_02036BE8 (SaveData * param0, int param1)
 {
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         return;
     }
 
@@ -525,7 +525,7 @@ void sub_02036BE8 (SaveData * param0, int param1)
 
 void sub_02036C1C (SaveData * param0, int param1)
 {
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         return;
     }
 
@@ -865,7 +865,7 @@ static void sub_0203718C (void)
 
 static void sub_020371A8 (void)
 {
-    if (!sub_02035E38()) {
+    if (!CommSys_IsInitialized()) {
         sub_02036C94(sub_02037334, 0);
     }
 }
@@ -937,7 +937,7 @@ static void sub_02037284 (void)
 
 static void sub_020372C4 (void)
 {
-    if (!sub_02035E38()) {
+    if (!CommSys_IsInitialized()) {
         sub_02036C94(sub_02037334, 0);
     }
 }
@@ -974,7 +974,7 @@ static void sub_02037330 (void)
 
 static void sub_02037334 (void)
 {
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         return;
     }
 
@@ -1524,7 +1524,7 @@ static void sub_02037B78 (void)
 
 void sub_02037BC0 (SaveData * param0)
 {
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         return;
     }
 
@@ -1608,7 +1608,7 @@ static void sub_02037D08 (void)
 
 void sub_02037D48 (SaveData * param0)
 {
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         return;
     }
 
@@ -2226,7 +2226,7 @@ void * sub_0203871C (SaveData * param0, int param1)
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(param0);
 
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         return NULL;
     }
 
@@ -2248,7 +2248,7 @@ void sub_0203878C (SaveData * param0, const void * param1)
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(param0);
 
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         return;
     }
 
@@ -2808,5 +2808,5 @@ BOOL sub_02038EB4 (void)
         return 0;
     }
 
-    return sub_02035E38();
+    return CommSys_IsInitialized();
 }

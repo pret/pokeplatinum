@@ -41,6 +41,6 @@ typedef struct {
     u8 unk_68[1536];
     u16 unk_668;
     u16 unk_66A;
-} UnkStruct_02072014;
+} TrainerCard;
 
 #endif // POKEPLATINUM_STRUCT_02072014_H

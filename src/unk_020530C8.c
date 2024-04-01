@@ -1300,7 +1300,7 @@ BOOL sub_0205430C (UnkStruct_020508D4 * param0)
         break;
     case 1:
         if (sub_0200AC1C(2)) {
-            if ((v0->unk_6C == NULL) && !sub_02035E38()) {
+            if ((v0->unk_6C == NULL) && !CommSys_IsInitialized()) {
                 sub_0200564C(0, 30);
                 v1->unk_00++;
             }

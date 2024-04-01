@@ -2326,7 +2326,7 @@ static BOOL sub_02040124 (UnkStruct_0203E724 * param0)
 {
     u8 v0 = (*((param0)->unk_08++));
 
-    if (sub_02035E38() == 0) {
+    if (CommSys_IsInitialized() == 0) {
         ov5_021DD444(param0, param0->unk_2C, v0, 1, NULL);
     } else {
         UnkStruct_ov5_021DD42C v1;

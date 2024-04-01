@@ -172,7 +172,7 @@ void sub_02099514 (void * param0)
 
 static int sub_02099528 (void)
 {
-    return sizeof(UnkStruct_02072014);
+    return sizeof(TrainerCard);
 }
 
 int sub_02099530 (void)

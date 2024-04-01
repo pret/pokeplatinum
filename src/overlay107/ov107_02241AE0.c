@@ -1533,7 +1533,7 @@ static void ov107_02242F5C (UnkStruct_ov107_02241D6C * param0)
     param0->unk_434 = ov107_02249B1C(&param0->unk_1D8, 0, 0, 0, 3, 20, 20, 1, NULL);
     ov107_02249BAC(param0->unk_434, 0);
 
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
         sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
         sub_02039734();

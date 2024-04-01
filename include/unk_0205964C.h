@@ -6,11 +6,11 @@
 #include "struct_defs/struct_0205964C.h"
 #include "savedata.h"
 
-UnkStruct_0205964C * sub_0205964C(void);
-void sub_0205965C(FieldSystem * param0);
-void sub_020596BC(void);
-void sub_02059708(FieldSystem * param0, int param1, int param2);
-void sub_02059748(FieldSystem * param0, int param1, int param2);
+FieldCommunicationManager * FieldCommMan_Get(void);
+void FieldCommMan_Init(FieldSystem * param0);
+void FieldCommMan_Delete(void);
+void FieldCommMan_StartBattleServer(FieldSystem * param0, int param1, int param2);
+void FieldCommMan_StartBattleClient(FieldSystem * param0, int param1, int param2);
 void sub_02059788(int param0);
 void sub_020597A4(void);
 void sub_020597B4(FieldSystem * param0);

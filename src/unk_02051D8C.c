@@ -123,7 +123,7 @@ BattleParams * sub_02051D8C (int param0, u32 param1)
         v1->unk_174 = v2.year + v2.month * 0x100 * v2.day * 0x10000 + v3.hour * 0x10000 + (v3.minute + v3.second) * 0x1000000 + gCoreSys.frameCounter;
     }
 
-    if (sub_02035E38() == 1) {
+    if (CommSys_IsInitialized() == 1) {
         for (v0 = 0; v0 < sub_02035E18(); v0++) {
             v1->unk_178[v0] = sub_020362F4(v0);
         }
