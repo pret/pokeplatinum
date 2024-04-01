@@ -156,7 +156,7 @@
 #include "poketch_data.h"
 #include "unk_0205749C.h"
 #include "unk_02057518.h"
-#include "unk_0205964C.h"
+#include "field_comm_manager.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
 #include "unk_0205C980.h"
@@ -5347,7 +5347,7 @@ static BOOL sub_02043678 (UnkStruct_0203E724 * param0)
 {
     int v0;
 
-    if (sub_02035E18() < 2) {
+    if (CommSys_ConnectedCount() < 2) {
         v0 = 1;
     } else {
         v0 = sub_02036540(param0->unk_18[0]);
@@ -5437,7 +5437,7 @@ static BOOL sub_020437C4 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_020437E8 (UnkStruct_0203E724 * param0)
 {
-    return sub_02035E18() < 2;
+    return CommSys_ConnectedCount() < 2;
 }
 
 static BOOL sub_020437FC (UnkStruct_0203E724 * param0)
@@ -5692,14 +5692,14 @@ static BOOL sub_02043C54 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043C58 (UnkStruct_0203E724 * param0)
 {
-    sub_0205987C();
+    FieldCommMan_EndBattle();
     sub_0203E764(param0, sub_02043C70);
     return 1;
 }
 
 static BOOL sub_02043C70 (UnkStruct_0203E724 * param0)
 {
-    if (sub_02036780() != 1) {
+    if (CommMan_IsInitialized() != 1) {
         if (sub_02033E1C() != 1) {
             return 1;
         }
@@ -5717,7 +5717,7 @@ static BOOL sub_02043C8C (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043CA4 (UnkStruct_0203E724 * param0)
 {
-    sub_020597B4(param0->unk_34);
+    FieldCommMan_EnterBattleRoom(param0->unk_34);
     return 0;
 }
 

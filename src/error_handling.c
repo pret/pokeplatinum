@@ -9,7 +9,7 @@ void ErrorHandling_AssertFail(void);
 
 void ErrorHandling_AssertFail (void)
 {
-    if (sub_02036780() && (OS_GetProcMode() != OS_PROCMODE_IRQ)) {
+    if (CommMan_IsInitialized() && (OS_GetProcMode() != OS_PROCMODE_IRQ)) {
         ErrorMessageReset_PrintErrorAndReset();
     }
 }

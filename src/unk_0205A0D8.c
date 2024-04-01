@@ -44,7 +44,7 @@
 #include "unk_0203D1B8.h"
 #include "unk_020508D4.h"
 #include "unk_02057518.h"
-#include "unk_0205964C.h"
+#include "field_comm_manager.h"
 #include "unk_0205A0D8.h"
 #include "unk_0205D8CC.h"
 #include "unk_0205E7D0.h"
@@ -247,7 +247,7 @@ static BOOL sub_0205A2FC (void)
 {
     int v0, v1;
 
-    v1 = sub_02035E18();
+    v1 = CommSys_ConnectedCount();
 
     for (v0 = 0; v0 < v1; v0++) {
         if (sub_02036564(v0) == 94) {
@@ -1091,7 +1091,7 @@ void sub_0205B2D4 (FieldSystem * param0)
     int v2 = sub_02058D88(v1);
     int v3 = sub_02058DC0(v1);
 
-    for (v0 = 0; v0 < sub_02035E18(); v0++) {
+    for (v0 = 0; v0 < CommSys_ConnectedCount(); v0++) {
         if (v0 == v1) {
             continue;
         }

@@ -84,7 +84,7 @@
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_020507CC.h"
-#include "unk_0205964C.h"
+#include "field_comm_manager.h"
 #include "unk_0205DFC4.h"
 #include "unk_0206CCB0.h"
 #include "party.h"
@@ -1081,7 +1081,7 @@ static BOOL ov104_022302E8 (UnkStruct_ov104_0222E930 * param0)
                 const TrainerInfo * v7;
                 int v8, v9;
 
-                v8 = sub_02035E18();
+                v8 = CommSys_ConnectedCount();
 
                 for (v9 = 0; v9 < v8; v9++) {
                     v7 = CommInfo_TrainerInfo(v9);
@@ -1956,7 +1956,7 @@ static BOOL ov104_02230FCC (UnkStruct_ov104_0222E930 * param0)
 {
     int v0;
 
-    if (sub_02035E18() < 2) {
+    if (CommSys_ConnectedCount() < 2) {
         v0 = 1;
     } else {
         v0 = sub_02036540(param0->unk_78[0]);
@@ -1973,7 +1973,7 @@ static BOOL ov104_02230FEC (UnkStruct_ov104_0222E930 * param0)
 
 static BOOL ov104_02230FF8 (UnkStruct_ov104_0222E930 * param0)
 {
-    sub_0205987C();
+    FieldCommMan_EndBattle();
     ov104_0222E974(param0, ov104_02231010);
 
     return 1;
@@ -1981,7 +1981,7 @@ static BOOL ov104_02230FF8 (UnkStruct_ov104_0222E930 * param0)
 
 static BOOL ov104_02231010 (UnkStruct_ov104_0222E930 * param0)
 {
-    if (sub_02036780() != 1) {
+    if (CommMan_IsInitialized() != 1) {
         if (sub_02033E1C() != 1) {
             return 1;
         }

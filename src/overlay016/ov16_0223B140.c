@@ -1957,7 +1957,7 @@ static BOOL ov16_0223D354 (UnkStruct_020067E8 * param0)
     case 26:
     case 29:
     case 32:
-        if (v0->unk_1020 == sub_02035E18()) {
+        if (v0->unk_1020 == CommSys_ConnectedCount()) {
             if (v0->unk_1021 == 20) {
                 int v2;
 
@@ -2278,7 +2278,7 @@ static void ov16_0223DD90 (BattleSystem * param0, BattleParams * param1)
     }
 
     v3 = CommSys_CurNetId();
-    v4 = sub_02035E18();
+    v4 = CommSys_ConnectedCount();
 
     for (v0 = 0; v0 < v4 - 1; v0++) {
         for (v1 = v0 + 1; v1 < v4; v1++) {

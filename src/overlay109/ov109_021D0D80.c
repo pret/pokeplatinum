@@ -446,7 +446,7 @@ int ov109_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov109_021D0F70 * v0;
     UnkStruct_0209C194 * v1 = sub_02006840(param0);
 
-    sub_020388F4(1, 1);
+    CommMan_SetErrorHandling(1, 1);
     SetMainCallback(NULL, NULL);
     DisableHBlank();
     ResetLock(2);
@@ -607,7 +607,7 @@ static int ov109_021D0FF8 (UnkStruct_ov109_021D0F70 * param0)
 {
     int v0 = ov109_021D3B04(param0) + 1;
 
-    if (v0 != sub_02035E18()) {
+    if (v0 != CommSys_ConnectedCount()) {
         return 0;
     }
 
@@ -1438,7 +1438,7 @@ static int ov109_021D1B2C (UnkStruct_ov109_021D0F70 * param0)
 {
     if (param0->unk_18 == 0) {
         if (sub_02036540(202)) {
-            sub_020388F4(0, 0);
+            CommMan_SetErrorHandling(0, 0);
             sub_02037B58(1);
             sub_02036AC4();
             param0->unk_00 = 50;
@@ -1450,7 +1450,7 @@ static int ov109_021D1B2C (UnkStruct_ov109_021D0F70 * param0)
             param0->unk_0C = 0;
 
             if (param0->unk_D0->unk_3C == 0) {
-                sub_020388F4(0, 0);
+                CommMan_SetErrorHandling(0, 0);
                 sub_02037B58(1);
                 sub_02036AC4();
             }
@@ -1464,7 +1464,7 @@ static int ov109_021D1B2C (UnkStruct_ov109_021D0F70 * param0)
 
 static int ov109_021D1B8C (UnkStruct_ov109_021D0F70 * param0)
 {
-    if (sub_02035E18() <= 1) {
+    if (CommSys_ConnectedCount() <= 1) {
         param0->unk_00 = 51;
         return 1;
     }

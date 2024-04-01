@@ -254,7 +254,7 @@ static void sub_0205B4F8 (UnkStruct_0205B43C * param0)
 
     if (sub_020360E8() && (sub_0205B4D4() == 1) && (v0->unk_1C != 4)) {
         CommInfo_SendBattleRegulation();
-        sub_020388F4(1, 1);
+        CommMan_SetErrorHandling(1, 1);
         sub_0205BEA8(11);
         sub_0205B5B4(param0, sub_0205B578, 0);
     }
@@ -373,7 +373,7 @@ static void sub_0205B6C4 (UnkStruct_0205B43C * param0)
             param0->unk_1C = 1;
             param0->unk_44 = 0;
 
-            sub_020388F4(1, 1);
+            CommMan_SetErrorHandling(1, 1);
             sub_0205B5B4(param0, sub_0205B72C, 3);
         }
     } else if (0 == sub_02036A68()) {
@@ -568,7 +568,7 @@ u32 sub_0205B8DC (UnkStruct_0205B43C * param0)
         return 7;
     }
 
-    if (sub_02035E18() < 2) {
+    if (CommSys_ConnectedCount() < 2) {
         return 7;
     }
 
@@ -1026,7 +1026,7 @@ int sub_0205BCF4 (UnkStruct_0205B43C * param0, int param1, int param2, StringFor
     v1 = sub_02033FB0(param1);
 
     if (v1 == NULL) {
-        sub_020388F4(1, 1);
+        CommMan_SetErrorHandling(1, 1);
         Link_SetErrorState(1);
         return 0;
     }

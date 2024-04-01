@@ -113,12 +113,12 @@ int ov82_0223B24C (UnkStruct_020067E8 * param0, int * param1)
             return 1;
         }
 
-        sub_020388F4(0, 1);
+        CommMan_SetErrorHandling(0, 1);
         sub_020364F0(4);
         (*param1)++;
         break;
     case 1:
-        if ((sub_02036540(4)) || (sub_02035E18() < CommInfo_CountReceived())) {
+        if ((sub_02036540(4)) || (CommSys_ConnectedCount() < CommInfo_CountReceived())) {
             return 1;
         }
         break;

@@ -107,12 +107,12 @@ int ov117_02260474 (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 6:
-        sub_020388F4(0, 1);
+        CommMan_SetErrorHandling(0, 1);
         sub_020364F0(222);
         (*param1)++;
         break;
     case 7:
-        if ((sub_02036540(222) == 1) || (sub_02035E18() < CommInfo_CountReceived())) {
+        if ((sub_02036540(222) == 1) || (CommSys_ConnectedCount() < CommInfo_CountReceived())) {
             (*param1)++;
         }
 

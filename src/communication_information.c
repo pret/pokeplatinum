@@ -316,7 +316,7 @@ BOOL sub_02032E90 (void)
     BOOL ret = FALSE;
 
     if (sCommInfo) {
-        if (sub_02035E18() == 0) {
+        if (CommSys_ConnectedCount() == 0) {
             return ret;
         }
 
@@ -431,7 +431,7 @@ static void CommInfo_UpdatePlayerRecord (int param0, int val)
         v1 = sub_020362F4(CommSys_CurNetId()) & 0x1;
     }
 
-    for (netId = 0; netId < sub_02035E18(); netId++) {
+    for (netId = 0; netId < CommSys_ConnectedCount(); netId++) {
         if (CommSys_IsPlayerConnected(netId) && (sCommInfo->infoState[netId] != 0)) {
             if (param0 == 0) {
                 v2 = sub_020362F4(netId) & 0x1;
@@ -457,7 +457,7 @@ void CommInfo_SavePlayerRecord (SaveData * saveData)
     UnkStruct_0202B370 * v0 = sub_0202B370(saveData);
     int netId, v2, v3;
 
-    for (netId = 0; netId < sub_02035E18(); netId++) {
+    for (netId = 0; netId < CommSys_ConnectedCount(); netId++) {
         DWCFriendData * friendData = CommInfo_DWCFriendData(netId);
 
         if (friendData == NULL) {

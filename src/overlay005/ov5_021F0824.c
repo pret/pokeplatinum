@@ -7,7 +7,7 @@
 
 #include "unk_0202854C.h"
 #include "unk_020573FC.h"
-#include "unk_0205964C.h"
+#include "field_comm_manager.h"
 #include "overlay005/ov5_021E15F4.h"
 #include "overlay005/ov5_021EF75C.h"
 #include "overlay005/ov5_021F0824.h"

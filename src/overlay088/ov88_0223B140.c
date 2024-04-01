@@ -2016,7 +2016,7 @@ static int ov88_0223D854 (UnkStruct_02095E80 * param0)
 
     param0->unk_36C4 = -1;
 
-    for (v0 = 0; v0 < sub_02035E18(); v0++) {
+    for (v0 = 0; v0 < CommSys_ConnectedCount(); v0++) {
         if (param0->unk_3644[v0] == 2) {
             param0->unk_36C4 = v0;
             param0->unk_3644[v0] = 0;

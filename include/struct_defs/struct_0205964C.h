@@ -15,9 +15,9 @@ typedef struct FieldCommunicationManager {
     u8 padding_14[4];
     FieldSystem * fieldSys;
     MATHRandContext32 unk_1C;
-    FieldCommSysTask unk_34;
+    FieldCommTask task;
     SysTask * sysTask;
-    u16 unk_3C;
+    u16 timer;
     u8 unk_3E;
     u8 padding_3F;
     u8 unk_40;

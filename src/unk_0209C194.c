@@ -107,7 +107,7 @@ static BOOL sub_0209C280 (UnkStruct_0209C1EC * param0)
         if (sub_0209C1E8(param0->unk_28) == 0) {
             param0->unk_00 = 5;
         } else {
-            sub_020388F4(1, 1);
+            CommMan_SetErrorHandling(1, 1);
 
             param0->unk_30 = sub_0203D644(param0->unk_2C, param0->unk_04);
             param0->unk_28->unk_00 = 1;

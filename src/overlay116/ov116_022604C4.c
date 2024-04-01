@@ -744,7 +744,7 @@ int ov116_0226126C (UnkStruct_020067E8 * param0, int * param1)
 
         sub_02006830(param0);
         Heap_Destroy(106);
-        sub_020388F4(0, 1);
+        CommMan_SetErrorHandling(0, 1);
 
         if (v0 != 0) {
             return 1;
@@ -755,7 +755,7 @@ int ov116_0226126C (UnkStruct_020067E8 * param0, int * param1)
     }
     break;
     default:
-        if ((sub_02036540(999) == 1) || (sub_02035E18() < CommInfo_CountReceived())) {
+        if ((sub_02036540(999) == 1) || (CommSys_ConnectedCount() < CommInfo_CountReceived())) {
             return 1;
         }
         break;

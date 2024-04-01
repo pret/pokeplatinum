@@ -1579,7 +1579,7 @@ static BOOL ov23_0224C790 (UnkStruct_020508D4 * param0)
         ov23_0224DBF4(0);
         ov23_0224DC08();
 
-        v1->unk_28 = sub_02035E18();
+        v1->unk_28 = CommSys_ConnectedCount();
 
         sub_02035EC8();
         ov23_022417CC();
@@ -1723,7 +1723,7 @@ static BOOL ov23_0224C790 (UnkStruct_020508D4 * param0)
             }
         }
 
-        if ((sub_02035E18() > 1) && (v1->unk_28 == 0)) {
+        if ((CommSys_ConnectedCount() > 1) && (v1->unk_28 == 0)) {
             v1->unk_0C = 13;
             ov23_02254044(ov23_0224219C());
         }

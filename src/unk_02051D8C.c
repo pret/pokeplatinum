@@ -124,7 +124,7 @@ BattleParams * sub_02051D8C (int param0, u32 param1)
     }
 
     if (CommSys_IsInitialized() == 1) {
-        for (v0 = 0; v0 < sub_02035E18(); v0++) {
+        for (v0 = 0; v0 < CommSys_ConnectedCount(); v0++) {
             v1->unk_178[v0] = sub_020362F4(v0);
         }
 

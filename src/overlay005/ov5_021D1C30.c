@@ -42,7 +42,7 @@
 #include "unk_020562F8.h"
 #include "unk_02056B30.h"
 #include "unk_02057518.h"
-#include "unk_0205964C.h"
+#include "field_comm_manager.h"
 #include "unk_0205A0D8.h"
 #include "unk_0205B33C.h"
 #include "unk_0205DAC8.h"
@@ -477,7 +477,7 @@ static int ov5_021D2274 (void)
 BOOL ov5_021D2298 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
 {
     if (sub_020318EC() & 0xfe) {
-        if (ov5_021D2274() && (sub_02035E18() > 1)) {
+        if (ov5_021D2274() && (CommSys_ConnectedCount() > 1)) {
             sub_0203E880(param1, 5, NULL);
             return 1;
         }
@@ -506,7 +506,7 @@ BOOL ov5_021D2298 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
     }
 
     if (param0->unk_00_2) {
-        if (sub_02035E18() > 1) {
+        if (CommSys_ConnectedCount() > 1) {
             (void)0;
         } else {
             Sound_PlayEffect(1533);

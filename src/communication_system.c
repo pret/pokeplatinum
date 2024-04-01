@@ -1614,7 +1614,7 @@ BOOL CommSys_IsPlayerConnected (u16 param0)
     return 0;
 }
 
-int sub_02035E18 (void)
+int CommSys_ConnectedCount (void)
 {
     int v0 = 0, i;
 
@@ -1811,7 +1811,7 @@ BOOL sub_020360F0 (void)
 
     if (sCommunicationSystem) {
         if (sCommunicationSystem->unk_6B1) {
-            sub_020388F4(1, 1);
+            CommMan_SetErrorHandling(1, 1);
             return 1;
         }
     }

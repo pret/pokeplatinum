@@ -4,7 +4,7 @@
 #include "struct_defs/struct_0203CDB0.h"
 
 #include "game_overlay.h"
-#include "unk_0205964C.h"
+#include "field_comm_manager.h"
 #include "overlay005/ov5_021D5BC0.h"
 #include "overlay005/ov5_021EA714.h"
 #include "overlay056/ov56_022561C0.h"

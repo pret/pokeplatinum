@@ -984,7 +984,7 @@ void ov4_021D1E74 (int param0)
     BOOL v2 = sub_0203272C(sub_0203895C());
 
     if (v2) {
-        v1 = sub_02035E18() - 1;
+        v1 = CommSys_ConnectedCount() - 1;
 
         if (v1 < 1) {
             v1 = 1;
