@@ -184,7 +184,7 @@ void sub_0209621C (int param0, int param1, void * param2, void * param3)
     ov59_021D1D40(v0);
     ov59_021D2204(v0, 25, param0);
 
-    sub_020388F4(1, 1);
+    CommMan_SetErrorHandling(1, 1);
     Sound_PlayEffect(1624);
 }
 
@@ -210,13 +210,13 @@ void sub_02096274 (int param0, int param1, void * param2, void * param3)
 
             switch (v2->unk_02) {
             case 0:
-                if ((v0->unk_4AAC != sub_02035E18()) || (v0->unk_4AAC != ov59_021D2544()) || (v0->unk_4AAC != MATH_CountPopulation(sub_020318EC()))) {
+                if ((v0->unk_4AAC != CommSys_ConnectedCount()) || (v0->unk_4AAC != ov59_021D2544()) || (v0->unk_4AAC != MATH_CountPopulation(sub_020318EC()))) {
                     v1.unk_03 = 0;
                 } else {
                     v0->unk_4AB4 |= 1 << param0;
                     v1.unk_03 = 1;
 
-                    sub_02037B58(sub_02035E18());
+                    sub_02037B58(CommSys_ConnectedCount());
                 }
                 break;
             case 1:

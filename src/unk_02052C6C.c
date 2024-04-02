@@ -12,7 +12,7 @@
 
 #include "struct_defs/options.h"
 #include "struct_defs/struct_0202DF8C.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0203E234.h"
 #include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_02049FA8.h"
@@ -63,14 +63,14 @@ typedef struct {
     int unk_38;
 } UnkStruct_0205300C;
 
-static void sub_02052F28(UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * param1);
-static void sub_02052FA8(UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * param1);
-static void sub_02053028(UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * param1, int param2);
+static void sub_02052F28(FieldSystem * param0, UnkStruct_0205300C * param1);
+static void sub_02052FA8(FieldSystem * param0, UnkStruct_0205300C * param1);
+static void sub_02053028(FieldSystem * param0, UnkStruct_0205300C * param1, int param2);
 static void sub_0205300C(UnkStruct_0205300C * param0);
-static void sub_02053098(UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * param1);
+static void sub_02053098(FieldSystem * param0, UnkStruct_0205300C * param1);
 static BOOL sub_02052FFC(UnkStruct_0205300C * param0);
 
-static void sub_02052C6C (UnkStruct_0203CDB0 * param0, BOOL param1)
+static void sub_02052C6C (FieldSystem * param0, BOOL param1)
 {
     HallOfFame * v0;
     Party * v1;
@@ -95,7 +95,7 @@ static BOOL sub_02052CBC (UnkStruct_020508D4 * param0)
 {
     UnkStruct_02049FA8 * v0;
     UnkStruct_020507E4 * v1;
-    UnkStruct_0203CDB0 * v2 = sub_02050A60(param0);
+    FieldSystem * v2 = sub_02050A60(param0);
     UnkStruct_0205300C * v3 = sub_02050A64(param0);
     int * v4 = sub_02050A68(param0);
     UnkStruct_0203E234 * v5 = &v3->unk_04;
@@ -181,7 +181,7 @@ static BOOL sub_02052CBC (UnkStruct_020508D4 * param0)
 
 void sub_02052E58 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0;
+    FieldSystem * v0;
     UnkStruct_02049FA8 * v1, * v2;
     UnkStruct_020507E4 * v3;
     TrainerInfo * v4;
@@ -223,7 +223,7 @@ void sub_02052E58 (UnkStruct_020508D4 * param0)
     sub_02050944(param0, sub_02052CBC, v5);
 }
 
-static void sub_02052F28 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * param1)
+static void sub_02052F28 (FieldSystem * param0, UnkStruct_0205300C * param1)
 {
     static const UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_B,
@@ -275,7 +275,7 @@ static void sub_02052F28 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * para
     sub_02019448(param0->unk_08, 3);
 }
 
-static void sub_02052FA8 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * param1)
+static void sub_02052FA8 (FieldSystem * param0, UnkStruct_0205300C * param1)
 {
     Options * v0 = sub_02025E44(param0->unk_0C);
 
@@ -300,7 +300,7 @@ static void sub_0205300C (UnkStruct_0205300C * param0)
     sub_0205D988(&param0->unk_1C);
 }
 
-static void sub_02053028 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * param1, int param2)
+static void sub_02053028 (FieldSystem * param0, UnkStruct_0205300C * param1, int param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 213, 4);
 
@@ -319,7 +319,7 @@ static void sub_02053028 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * para
     param1->unk_34 = sub_0205D994(&param1->unk_1C, param1->unk_2C, sub_02025E44(param0->unk_0C), 1);
 }
 
-static void sub_02053098 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * param1)
+static void sub_02053098 (FieldSystem * param0, UnkStruct_0205300C * param1)
 {
     if (param1->unk_2C) {
         Strbuf_Free(param1->unk_2C);

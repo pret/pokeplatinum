@@ -1214,7 +1214,7 @@ static int ov97_0223161C (UnkStruct_020067E8 * param0, int * param1)
         ov97_02230C10(v4, 1, 4, param1);
         break;
     case 22:
-        if (sub_02036780() == 0) {
+        if (CommMan_IsInitialized() == 0) {
             *param1 = v4->unk_2CA0;
         }
         break;

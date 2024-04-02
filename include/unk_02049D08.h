@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0202D060_decl.h"
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "savedata.h"
@@ -13,8 +13,8 @@ BOOL sub_02049EC4(u16 param0, SaveData * param1, u8 param2);
 void sub_02049F8C(void);
 void sub_02049F98(UnkStruct_0202D060 * param0);
 BOOL sub_02049FA0(UnkStruct_0202D060 * param0);
-void sub_02049FA8(UnkStruct_0203CDB0 * param0);
-void sub_02049FE8(UnkStruct_0203CDB0 * param0);
+void sub_02049FA8(FieldSystem * param0);
+void sub_02049FE8(FieldSystem * param0);
 u16 sub_02049FF8(SaveData * param0, u16 param1);
 void sub_0204A030(SaveData * param0, u8 param1);
 u16 sub_0204A050(SaveData * param0);

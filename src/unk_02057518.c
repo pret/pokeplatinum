@@ -13,7 +13,7 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "overlay023/struct_ov23_02249978_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_02057B48.h"
 #include "struct_defs/struct_020590C4.h"
 #include "struct_defs/struct_020619DC.h"
@@ -65,7 +65,7 @@ UnkStruct_ov23_0224A294 * sub_02057518 (void)
     return Unk_021C0848;
 }
 
-BOOL sub_02057524 (void * param0, UnkStruct_0203CDB0 * param1, BOOL param2)
+BOOL sub_02057524 (void * param0, FieldSystem * param1, BOOL param2)
 {
     int v0, v1;
 
@@ -509,7 +509,7 @@ static void sub_02057E80 (SysTask * param0, void * param1)
 {
     int v0;
 
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         sub_02057E68();
 
         if (CommSys_CurNetId() == 0) {
@@ -615,7 +615,7 @@ void sub_02058018 (int param0, int param1, void * param2, void * param3)
     }
 }
 
-void sub_0205805C (UnkStruct_0203CDB0 * param0, BOOL param1)
+void sub_0205805C (FieldSystem * param0, BOOL param1)
 {
     if (Unk_021C0848 == NULL) {
         return;
@@ -630,11 +630,11 @@ void sub_0205805C (UnkStruct_0203CDB0 * param0, BOOL param1)
         Unk_021C0848->unk_08[CommSys_CurNetId()] = param0->unk_3C;
     }
 
-    if (sub_02035E38() && (CommSys_CurNetId() == 0)) {
+    if (CommSys_IsInitialized() && (CommSys_CurNetId() == 0)) {
         sub_0205820C(NULL, Unk_021C0848);
     }
 
-    if (sub_02035E38() && (CommSys_CurNetId() == 0)) {
+    if (CommSys_IsInitialized() && (CommSys_CurNetId() == 0)) {
         if (!Unk_021C0848->unk_2BE) {
             sub_020591A8();
         }

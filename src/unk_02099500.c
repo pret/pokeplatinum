@@ -10,7 +10,7 @@
 #include "unk_0205001C.h"
 #include "unk_02050548.h"
 #include "unk_02057518.h"
-#include "unk_0205964C.h"
+#include "field_comm_manager.h"
 #include "unk_0205A0D8.h"
 #include "unk_0205B33C.h"
 #include "unk_02099500.h"
@@ -172,7 +172,7 @@ void sub_02099514 (void * param0)
 
 static int sub_02099528 (void)
 {
-    return sizeof(UnkStruct_02072014);
+    return sizeof(TrainerCard);
 }
 
 int sub_02099530 (void)

@@ -210,7 +210,7 @@ void sub_02095F9C (int param0, int param1, void * param2, void * param3)
     MI_CpuClearFast(v0->unk_4434, 30 * 15 * 32);
 
     if (CommSys_CurNetId() == 0) {
-        v0->unk_37C = sub_02035E18();
+        v0->unk_37C = CommSys_ConnectedCount();
         v0->unk_380 = sub_020318EC();
         v0->unk_9458 = 1;
     }
@@ -232,12 +232,12 @@ void sub_02095FE4 (int param0, int param1, void * param2, void * param3)
 
             switch (v2->unk_02) {
             case 0:
-                if ((v0->unk_37C != sub_02035E18()) || (v0->unk_37C != ov58_021D2A4C()) || (v0->unk_37C != MATH_CountPopulation(sub_020318EC()))) {
+                if ((v0->unk_37C != CommSys_ConnectedCount()) || (v0->unk_37C != ov58_021D2A4C()) || (v0->unk_37C != MATH_CountPopulation(sub_020318EC()))) {
                     v1.unk_03 = 0;
                 } else {
                     v0->unk_9418 |= 1 << param0;
                     v1.unk_03 = 1;
-                    sub_02037B58(sub_02035E18());
+                    sub_02037B58(CommSys_ConnectedCount());
                 }
                 break;
             case 1:
@@ -320,7 +320,7 @@ void sub_0209612C (int param0, int param1, void * param2, void * param3)
         }
     }
 
-    sub_020388F4(0, 1);
+    CommMan_SetErrorHandling(0, 1);
 }
 
 static void sub_02096170 (int param0, int param1, void * param2, void * param3)

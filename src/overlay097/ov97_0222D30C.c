@@ -2194,7 +2194,7 @@ static int ov97_0222F75C (UnkStruct_020067E8 * param0, int * param1)
         if ((v1 != 0) && CommSys_IsPlayerConnected(v1)) {
             if (sub_02036540(0xAB) == 1) {
                 ov97_0222D30C(v3, 0);
-                sub_020388F4(1, 1);
+                CommMan_SetErrorHandling(1, 1);
                 ov97_0222DE78(param0, &v3->unk_18, 7);
                 ov97_0222D40C(v3, 1);
                 ov97_0222D30C(v3, 1);
@@ -2235,7 +2235,7 @@ static int ov97_0222F75C (UnkStruct_020067E8 * param0, int * param1)
     case 11:
         v2 = ov97_0222D55C(param0);
         ov97_02238194(v3->unk_00, v2);
-        sub_020388F4(0, 0);
+        CommMan_SetErrorHandling(0, 0);
         ov97_0222D658(param0);
         *param1 = 12;
         break;

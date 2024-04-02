@@ -14,7 +14,7 @@
 #include "overlay005/struct_ov5_021D432C_decl.h"
 
 #include "struct_defs/struct_0203A55C.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_02049FA8.h"
 #include "functypes/funcptr_02050904.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -139,12 +139,12 @@ typedef struct {
 
 static BOOL sub_02053878(UnkStruct_020508D4 * param0);
 static BOOL sub_02053570(UnkStruct_020508D4 * param0);
-static void sub_0205311C(UnkStruct_0203CDB0 * param0, const UnkStruct_02049FA8 * param1);
-static void sub_020533CC(UnkStruct_0203CDB0 * param0);
-static void sub_02053468(UnkStruct_0203CDB0 * param0);
-static void sub_02053320(UnkStruct_0203CDB0 * param0);
-static void sub_02053374(UnkStruct_0203CDB0 * param0);
-static void sub_020534BC(UnkStruct_0203CDB0 * param0);
+static void sub_0205311C(FieldSystem * param0, const UnkStruct_02049FA8 * param1);
+static void sub_020533CC(FieldSystem * param0);
+static void sub_02053468(FieldSystem * param0);
+static void sub_02053320(FieldSystem * param0);
+static void sub_02053374(FieldSystem * param0);
+static void sub_020534BC(FieldSystem * param0);
 static BOOL sub_02053B44(UnkStruct_020508D4 * param0);
 static void sub_02053BD4(UnkStruct_020508D4 * param0);
 static BOOL sub_02053BE4(UnkStruct_020508D4 * param0);
@@ -178,7 +178,7 @@ static const UnkStruct_ov61_0222C884 Unk_020EC3A0 = {
     0x21F
 };
 
-static void sub_020530C8 (UnkStruct_0203CDB0 * param0)
+static void sub_020530C8 (FieldSystem * param0)
 {
     BOOL v0;
 
@@ -205,7 +205,7 @@ static void sub_020530C8 (UnkStruct_0203CDB0 * param0)
     }
 }
 
-static void sub_0205311C (UnkStruct_0203CDB0 * param0, const UnkStruct_02049FA8 * param1)
+static void sub_0205311C (FieldSystem * param0, const UnkStruct_02049FA8 * param1)
 {
     UnkStruct_0203A790 * v0 = sub_0203A790(param0->unk_0C);
     UnkStruct_02049FA8 * v1 = sub_0203A728(v0);
@@ -235,13 +235,13 @@ static void sub_0205311C (UnkStruct_0203CDB0 * param0, const UnkStruct_02049FA8 
     }
 }
 
-void sub_020531A0 (UnkStruct_0203CDB0 * param0)
+void sub_020531A0 (FieldSystem * param0)
 {
     GF_ASSERT(param0->unk_70 < 5);
     gCoreSys.unk_65 = param0->unk_74->unk_00_12;
 }
 
-void sub_020531C0 (UnkStruct_0203CDB0 * param0, BOOL param1)
+void sub_020531C0 (FieldSystem * param0, BOOL param1)
 {
     int v0 = param0->unk_1C->unk_00;
     UnkStruct_0203A790 * v1 = sub_0203A790(param0->unk_0C);
@@ -301,7 +301,7 @@ void sub_020531C0 (UnkStruct_0203CDB0 * param0, BOOL param1)
     param0->unk_78.unk_02 = 0;
 }
 
-void sub_020532A8 (UnkStruct_0203CDB0 * param0, BOOL param1)
+void sub_020532A8 (FieldSystem * param0, BOOL param1)
 {
     int v0 = param0->unk_1C->unk_00;
     UnkStruct_0203A790 * v1 = sub_0203A790(param0->unk_0C);
@@ -339,7 +339,7 @@ void sub_020532A8 (UnkStruct_0203CDB0 * param0, BOOL param1)
     param0->unk_78.unk_02 = 0;
 }
 
-static void sub_02053320 (UnkStruct_0203CDB0 * param0)
+static void sub_02053320 (FieldSystem * param0)
 {
     int v0;
     int v1;
@@ -358,14 +358,14 @@ static void sub_02053320 (UnkStruct_0203CDB0 * param0)
     sub_02062C30(param0->unk_38);
 }
 
-static void sub_02053374 (UnkStruct_0203CDB0 * param0)
+static void sub_02053374 (FieldSystem * param0)
 {
     sub_0205E8E0(param0->unk_3C);
     sub_02061BBC(param0->unk_38);
     sub_02061830(param0->unk_38);
 }
 
-static void sub_0205338C (UnkStruct_0203CDB0 * param0)
+static void sub_0205338C (FieldSystem * param0)
 {
     param0->unk_38 = sub_02061804(param0, 64, 5);
     sub_0203A7C0(param0);
@@ -381,7 +381,7 @@ static void sub_0205338C (UnkStruct_0203CDB0 * param0)
     sub_02062C30(param0->unk_38);
 }
 
-static void sub_020533CC (UnkStruct_0203CDB0 * param0)
+static void sub_020533CC (FieldSystem * param0)
 {
     sub_020530C8(param0);
     GF_ASSERT(param0->unk_5C == NULL);
@@ -408,7 +408,7 @@ static void sub_020533CC (UnkStruct_0203CDB0 * param0)
     }
 }
 
-static void sub_02053468 (UnkStruct_0203CDB0 * param0)
+static void sub_02053468 (FieldSystem * param0)
 {
     GF_ASSERT(param0->unk_5C != NULL);
 
@@ -422,7 +422,7 @@ static void sub_02053468 (UnkStruct_0203CDB0 * param0)
     param0->unk_74 = NULL;
 }
 
-void sub_02053494 (UnkStruct_0203CDB0 * param0)
+void sub_02053494 (FieldSystem * param0)
 {
     if (param0->unk_9C != NULL) {
         void * v0;
@@ -432,7 +432,7 @@ void sub_02053494 (UnkStruct_0203CDB0 * param0)
     }
 }
 
-static void sub_020534BC (UnkStruct_0203CDB0 * param0)
+static void sub_020534BC (FieldSystem * param0)
 {
     if (param0->unk_9C != NULL) {
         UnkStruct_0203A790 * v0 = sub_0203A790(param0->unk_0C);
@@ -442,12 +442,12 @@ static void sub_020534BC (UnkStruct_0203CDB0 * param0)
     }
 }
 
-static void sub_020534EC (UnkStruct_02049FA8 * param0, const UnkStruct_0203CDB0 * param1)
+static void sub_020534EC (UnkStruct_02049FA8 * param0, const FieldSystem * param1)
 {
     inline_02049FA8(param0, param1->unk_1C->unk_00, -1, sub_0205EABC(param1->unk_3C), sub_0205EAC8(param1->unk_3C), 1);
 }
 
-static BOOL sub_02053518 (const UnkStruct_0203CDB0 * param0)
+static BOOL sub_02053518 (const FieldSystem * param0)
 {
     if (MapHeader_IsPokemonCenter2F(param0->unk_1C->unk_00)
         && (param0->unk_1C->unk_08 == 7) && (param0->unk_1C->unk_0C == 6)) {
@@ -457,7 +457,7 @@ static BOOL sub_02053518 (const UnkStruct_0203CDB0 * param0)
     }
 }
 
-static void sub_02053540 (UnkStruct_0203CDB0 * param0)
+static void sub_02053540 (FieldSystem * param0)
 {
     UnkStruct_02049FA8 * v0 = sub_0203A730(sub_0203A790(param0->unk_0C));
     UnkStruct_020507E4 * v1 = SaveData_Events(param0->unk_0C);
@@ -467,7 +467,7 @@ static void sub_02053540 (UnkStruct_0203CDB0 * param0)
 
 static BOOL sub_02053570 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     int * v1 = sub_02050A68(param0);
 
     switch (*v1) {
@@ -489,7 +489,7 @@ static BOOL sub_02053570 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_020535CC (UnkStruct_0203CDB0 * param0)
+void sub_020535CC (FieldSystem * param0)
 {
     UnkStruct_020508D4 * v0;
 
@@ -500,7 +500,7 @@ void sub_020535CC (UnkStruct_0203CDB0 * param0)
 
 static BOOL sub_020535E8 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_020507E4 * v1 = SaveData_Events(v0->unk_0C);
     int * v2 = sub_02050A68(param0);
 
@@ -555,7 +555,7 @@ static BOOL sub_020535E8 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_02053704 (UnkStruct_0203CDB0 * param0)
+void sub_02053704 (FieldSystem * param0)
 {
     UnkStruct_020508D4 * v0;
 
@@ -565,7 +565,7 @@ void sub_02053704 (UnkStruct_0203CDB0 * param0)
 
 static BOOL sub_02053718 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02053718 * v1 = sub_02050A64(param0);
     UnkStruct_020507E4 * v2 = SaveData_Events(v0->unk_0C);
     int * v3 = sub_02050A68(param0);
@@ -610,7 +610,7 @@ static BOOL sub_02053718 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_02053808 (UnkStruct_0203CDB0 * param0)
+void sub_02053808 (FieldSystem * param0)
 {
     UnkStruct_020508D4 * v0;
     UnkStruct_02053718 * v1;
@@ -637,7 +637,7 @@ void sub_02053808 (UnkStruct_0203CDB0 * param0)
 
 static BOOL sub_02053878 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02053900 * v1 = sub_02050A64(param0);
     UnkStruct_02049FA8 * v2 = &v1->unk_04;
 
@@ -682,7 +682,7 @@ void sub_02053900 (UnkStruct_020508D4 * param0, const UnkStruct_02049FA8 * param
 static BOOL sub_02053930 (UnkStruct_020508D4 * param0)
 {
     u16 v0;
-    UnkStruct_0203CDB0 * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = sub_02050A60(param0);
     UnkStruct_02053A80 * v2 = sub_02050A64(param0);
 
     switch (v2->unk_00) {
@@ -709,7 +709,7 @@ static BOOL sub_02053930 (UnkStruct_020508D4 * param0)
 
 void sub_020539A0 (UnkStruct_020508D4 * param0, const UnkStruct_02049FA8 * param1)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02053A80 * v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02053A80));
 
     if (sub_0203CD4C(v0)) {
@@ -733,7 +733,7 @@ void sub_020539E8 (UnkStruct_020508D4 * param0, int param1, int param2, int para
 
 static BOOL sub_02053A04 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02053A80 * v1 = sub_02050A64(param0);
     UnkStruct_02049FA8 * v2 = &v1->unk_04;
 
@@ -774,7 +774,7 @@ void sub_02053A80 (UnkStruct_020508D4 * param0, int param1, int param2, int para
     sub_02050944(param0, sub_02053A04, v0);
 }
 
-void sub_02053AB4 (UnkStruct_0203CDB0 * param0, int param1, int param2, int param3, int param4, int param5)
+void sub_02053AB4 (FieldSystem * param0, int param1, int param2, int param3, int param4, int param5)
 {
     UnkStruct_02049FA8 v0;
 
@@ -810,7 +810,7 @@ void sub_02053AFC (UnkStruct_020508D4 * param0, int param1, int param2, int para
 
 static BOOL sub_02053B44 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02053AB4 * v1 = sub_02050A64(param0);
     UnkStruct_02049FA8 * v2 = &v1->unk_08;
 
@@ -873,7 +873,7 @@ static void sub_02053C10 (UnkStruct_020508D4 * param0)
 static BOOL sub_02053C28 (UnkStruct_020508D4 * param0)
 {
     int * v0 = sub_02050A68(param0);
-    UnkStruct_0203CDB0 * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = sub_02050A60(param0);
 
     switch (*v0) {
     case 0:
@@ -894,7 +894,7 @@ static BOOL sub_02053C28 (UnkStruct_020508D4 * param0)
 
 static void sub_02053C70 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02053AB4 * v1 = sub_02050A64(param0);
 
     if (!sub_0203CD4C(v0)) {
@@ -934,7 +934,7 @@ void sub_02053CD4 (UnkStruct_020508D4 * param0, const UnkStruct_02049FA8 * param
 
 static BOOL sub_02053D0C (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02053CD4 * v1 = sub_02050A64(param0);
     UnkStruct_02049FA8 * v2 = &v1->unk_0C;
 
@@ -1005,7 +1005,7 @@ static void sub_02053DF0 (UnkStruct_020508D4 * param0)
 static BOOL sub_02053E08 (UnkStruct_020508D4 * param0)
 {
     int * v0 = sub_02050A68(param0);
-    UnkStruct_0203CDB0 * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = sub_02050A60(param0);
     UnkStruct_02053CD4 * v2 = sub_02050A64(param0);
 
     switch (*v0) {
@@ -1027,7 +1027,7 @@ static BOOL sub_02053E08 (UnkStruct_020508D4 * param0)
 
 static void sub_02053E5C (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02053CD4 * v1 = sub_02050A64(param0);
 
     if (!sub_0203CD4C(v0)) {
@@ -1043,7 +1043,7 @@ static void sub_02053E5C (UnkStruct_020508D4 * param0)
 
 static BOOL sub_02053E98 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02053E98 * v1 = sub_02050A64(param0);
     UnkStruct_02049FA8 * v2 = &v1->unk_08;
 
@@ -1090,7 +1090,7 @@ static BOOL sub_02053E98 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_02053F58 (UnkStruct_0203CDB0 * param0, int param1, int param2)
+void sub_02053F58 (FieldSystem * param0, int param1, int param2)
 {
     UnkStruct_02049FA8 v0;
     UnkStruct_02053E98 * v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02053E98));
@@ -1102,7 +1102,7 @@ void sub_02053F58 (UnkStruct_0203CDB0 * param0, int param1, int param2)
     sub_02050904(param0, sub_02053E98, v1);
 }
 
-void * sub_02053FAC (UnkStruct_0203CDB0 * param0)
+void * sub_02053FAC (FieldSystem * param0)
 {
     UnkStruct_02053FAC * v0;
     UnkStruct_02049FA8 * v1 = sub_0203A730(sub_0203A790(param0->unk_0C));
@@ -1153,7 +1153,7 @@ void * sub_02053FAC (UnkStruct_0203CDB0 * param0)
     return v0;
 }
 
-void sub_02054064 (UnkStruct_0203CDB0 * param0)
+void sub_02054064 (FieldSystem * param0)
 {
     UnkStruct_02053FAC * v0 = sub_02053FAC(param0);
 
@@ -1166,7 +1166,7 @@ void sub_02054064 (UnkStruct_0203CDB0 * param0)
 
 BOOL sub_02054084 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02053FAC * v1 = sub_02050A64(param0);
 
     switch (v1->unk_00) {
@@ -1286,7 +1286,7 @@ BOOL sub_02054084 (UnkStruct_020508D4 * param0)
 
 BOOL sub_0205430C (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02053FAC * v1 = sub_02050A64(param0);
     int v2 = 0;
 
@@ -1300,7 +1300,7 @@ BOOL sub_0205430C (UnkStruct_020508D4 * param0)
         break;
     case 1:
         if (sub_0200AC1C(2)) {
-            if ((v0->unk_6C == NULL) && !sub_02035E38()) {
+            if ((v0->unk_6C == NULL) && !CommSys_IsInitialized()) {
                 sub_0200564C(0, 30);
                 v1->unk_00++;
             }
@@ -1345,7 +1345,7 @@ BOOL sub_0205430C (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-UnkFuncPtr_02050904 sub_02054428 (const UnkStruct_0203CDB0 * param0)
+UnkFuncPtr_02050904 sub_02054428 (const FieldSystem * param0)
 {
     if (param0->unk_70 == 0) {
         return sub_02054084;
@@ -1359,7 +1359,7 @@ UnkFuncPtr_02050904 sub_02054428 (const UnkStruct_0203CDB0 * param0)
 
 static BOOL sub_0205444C (UnkStruct_020508D4 * param0, int param1)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02053FAC * v1 = sub_02050A64(param0);
     BOOL v2 = 0;
 
@@ -1382,7 +1382,7 @@ static BOOL sub_0205444C (UnkStruct_020508D4 * param0, int param1)
 
 static BOOL sub_02054494 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02053A80 * v1 = sub_02050A64(param0);
 
     switch (v1->unk_00) {
@@ -1406,7 +1406,7 @@ static BOOL sub_02054494 (UnkStruct_020508D4 * param0)
 
 void sub_020544F0 (UnkStruct_020508D4 * param0, const UnkStruct_02049FA8 * param1)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02053A80 * v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02053A80));
 
     if (sub_0203CD4C(v0)) {
@@ -1422,7 +1422,7 @@ void sub_020544F0 (UnkStruct_020508D4 * param0, const UnkStruct_02049FA8 * param
 
 static BOOL sub_02054538 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02054538 * v1 = sub_02050A64(param0);
     int * v2 = sub_02050A68(param0);
     UnkStruct_02049FA8 * v3 = &v1->unk_08;
@@ -1467,7 +1467,7 @@ static BOOL sub_02054538 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_020545EC (UnkStruct_0203CDB0 * param0)
+void sub_020545EC (FieldSystem * param0)
 {
     UnkStruct_02049FA8 * v0 = sub_0203A730(sub_0203A790(param0->unk_0C));
     UnkStruct_02054538 * v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02054538));
@@ -1485,7 +1485,7 @@ void sub_020545EC (UnkStruct_0203CDB0 * param0)
 
 static BOOL sub_02054648 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02054538 * v1 = sub_02050A64(param0);
     int * v2 = sub_02050A68(param0);
     UnkStruct_02049FA8 * v3 = &v1->unk_08;
@@ -1535,7 +1535,7 @@ static BOOL sub_02054648 (UnkStruct_020508D4 * param0)
 
 void sub_02054708 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02049FA8 * v1 = sub_0203A730(sub_0203A790(v0->unk_0C));
     UnkStruct_02054538 * v2 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02054538));
 
@@ -1553,7 +1553,7 @@ void sub_02054708 (UnkStruct_020508D4 * param0)
 
 static BOOL sub_02054778 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02053900 * v1 = sub_02050A64(param0);
     UnkStruct_02049FA8 * v2 = &v1->unk_04;
 
@@ -1588,7 +1588,7 @@ static BOOL sub_02054778 (UnkStruct_020508D4 * param0)
 void sub_02054800 (UnkStruct_020508D4 * param0, int param1, int param2, int param3, int param4, int param5)
 {
     UnkStruct_02049FA8 v0;
-    UnkStruct_0203CDB0 * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = sub_02050A60(param0);
     UnkStruct_02049FA8 * v2 = sub_0203A730(sub_0203A790(v1->unk_0C));
 
     sub_020534EC(v2, v1);
@@ -1609,7 +1609,7 @@ void sub_02054800 (UnkStruct_020508D4 * param0, int param1, int param2, int para
 
 void sub_02054864 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02049FA8 * v1 = sub_0203A730(sub_0203A790(v0->unk_0C));
 
     v0->unk_70 = 0;

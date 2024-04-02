@@ -25,7 +25,7 @@ void ov83_0223D150 (UnkStruct_ov83_0223B784 * param0, TrainerInfo * param1)
     int v1;
 
     if (param0->unk_1490 == 1) {
-        param0->unk_1488 = sub_02035E18();
+        param0->unk_1488 = CommSys_ConnectedCount();
     } else {
         param0->unk_1488 = 1;
     }

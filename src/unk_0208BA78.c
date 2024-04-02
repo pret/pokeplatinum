@@ -14,7 +14,7 @@
 #include "constdata/const_020F3050.h"
 #include "constdata/const_020F2FCC.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0208BA84.h"
 #include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_0208C06C.h"
@@ -47,7 +47,7 @@ typedef struct {
     BattleParams * unk_10;
     UnkStruct_0208C06C * unk_14;
     UnkStruct_0208BA84 unk_18;
-    UnkStruct_0203CDB0 * unk_28;
+    FieldSystem * unk_28;
 } UnkStruct_0208BC3C;
 
 static void sub_0208BAAC(UnkStruct_020067E8 * param0, int param1);

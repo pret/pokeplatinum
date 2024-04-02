@@ -13,7 +13,7 @@
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_02081CF4.h"
 #include "overlay023/funcptr_ov23_02248D20.h"
 #include "overlay023/funcptr_ov23_0224F758.h"
@@ -426,7 +426,7 @@ BOOL ov23_0224F744 (int param0)
     return sub_02028BC8(Unk_ov23_022577B8->unk_00, param0);
 }
 
-void ov23_0224F758 (UnkFuncPtr_ov23_0224F758 param0, UnkStruct_0203CDB0 * param1)
+void ov23_0224F758 (UnkFuncPtr_ov23_0224F758 param0, FieldSystem * param1)
 {
     UnkStruct_ov23_02250CD4 * v0;
     UnkStruct_ov84_02240FA8 v1;
@@ -1423,7 +1423,7 @@ static void ov23_02250A14 (UnkStruct_ov23_02250CD4 * param0)
     param0->unk_2AA = 10;
 }
 
-void ov23_02250A50 (UnkFuncPtr_ov23_0224F758 param0, UnkStruct_0203CDB0 * param1)
+void ov23_02250A50 (UnkFuncPtr_ov23_0224F758 param0, FieldSystem * param1)
 {
     UnkStruct_ov23_02250CD4 * v0;
     UnkStruct_ov84_02240FA8 v1;
@@ -1847,7 +1847,7 @@ static BOOL ov23_022510F0 (SysTask * param0, void * param1)
     return 1;
 }
 
-void * ov23_022511B0 (UnkFuncPtr_ov23_0224F758 param0, UnkStruct_0203CDB0 * param1)
+void * ov23_022511B0 (UnkFuncPtr_ov23_0224F758 param0, FieldSystem * param1)
 {
     UnkStruct_ov23_02250CD4 * v0;
     UnkStruct_ov84_02240FA8 v1;

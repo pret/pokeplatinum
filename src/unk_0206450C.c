@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 
 #include "unk_0201D15C.h"
 #include "unk_0205E7D0.h"
@@ -1104,7 +1104,7 @@ static void sub_02065100 (UnkStruct_0206502C * param0)
 static int sub_02065124 (UnkStruct_02061AB4 * param0, UnkStruct_0206502C * param1)
 {
     if (sub_02062950(param0) == 0xa) {
-        UnkStruct_0203CDB0 * v0 = sub_02062C00(param0);
+        FieldSystem * v0 = sub_02062C00(param0);
         UnkStruct_0205E884 * v1 = sub_0205EF3C(v0);
         int v2 = sub_0206298C(param0);
         int v3 = sub_020629D8(param0, 0);
@@ -1284,7 +1284,7 @@ static int sub_0206537C (UnkStruct_02061AB4 * param0)
     }
 
     {
-        UnkStruct_0203CDB0 * v1 = sub_02062C00(param0);
+        FieldSystem * v1 = sub_02062C00(param0);
         UnkStruct_0205E884 * v2 = sub_0205EF3C(v1);
 
         if (sub_0206140C(v2) == 0) {
@@ -1374,7 +1374,7 @@ static int sub_02065448 (UnkStruct_02061AB4 * param0, int param1, int param2)
                 int v4 = -1, v5 = -1;
                 int v6 = sub_02063020(param0);
                 int v7 = sub_02063040(param0);
-                UnkStruct_0203CDB0 * v8 = sub_02062C00(param0);
+                FieldSystem * v8 = sub_02062C00(param0);
                 UnkStruct_0205E884 * v9 = sub_0205EF3C(v8);
                 int v10 = sub_0205EABC(v9);
                 int v11 = sub_0205EAC8(v9);

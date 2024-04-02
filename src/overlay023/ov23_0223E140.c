@@ -20,8 +20,8 @@
 #include "savedata.h"
 
 #include "struct_defs/struct_0200C738.h"
-#include "struct_defs/struct_0203CDB0.h"
-#include "struct_defs/struct_0203CDB0_sub2_t.h"
+#include "field/field_system.h"
+#include "field/field_system_sub2_t.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay022/struct_ov22_022559F8.h"
@@ -101,7 +101,7 @@ typedef struct {
     int unk_04;
     int unk_08;
     int unk_0C;
-    UnkStruct_0203CDB0 * unk_10;
+    FieldSystem * unk_10;
     int unk_14;
     void * unk_18[4];
     NNSG2dPaletteData * unk_28[4];
@@ -147,7 +147,7 @@ typedef struct {
 } UnkStruct_ov23_022412CC;
 
 typedef struct {
-    UnkStruct_0203CDB0 * unk_00;
+    FieldSystem * unk_00;
     BGL * unk_04;
     MATHRandContext32 unk_08;
     GraphicElementManager * unk_20;
@@ -194,7 +194,7 @@ static UnkStruct_ov23_0223E6F8 * ov23_0223E88C(u16 param0, u16 param1);
 static void ov23_0223EA38(SysTask * param0, void * param1);
 static void ov23_0223EE80(UnkStruct_ov23_0223EE80 * param0);
 static void ov23_0223EF98(void);
-static void ov23_0223F70C(UnkStruct_0203CDB0 * param0);
+static void ov23_0223F70C(FieldSystem * param0);
 static void ov23_0223FA3C(BGL * param0, int param1, UnkStruct_ov23_0223EE80 * param2);
 static void ov23_0223FF60(int param0, BGL * param1, int param2, UnkStruct_ov23_0223EE80 * param3);
 static void ov23_0223FF8C(BGL * param0);
@@ -618,7 +618,7 @@ static void ov23_0223E140 (void)
     }
 }
 
-void ov23_0223E1E4 (void * param0, UnkStruct_0203CDB0 * param1)
+void ov23_0223E1E4 (void * param0, FieldSystem * param1)
 {
     int v0, v1;
     UnkStruct_020298B0 * v2;
@@ -729,7 +729,7 @@ BOOL ov23_0223E354 (int param0, UnkStruct_ov23_0224271C * param1)
     return 0;
 }
 
-static BOOL ov23_0223E3AC (UnkStruct_0203CDB0 * param0, int param1, int param2)
+static BOOL ov23_0223E3AC (FieldSystem * param0, int param1, int param2)
 {
     if (ov23_02242E58(param1, param2)) {
         return 0;
@@ -1416,7 +1416,7 @@ static void ov23_0223F020 (UnkStruct_ov23_0223EE80 * param0)
 static void ov23_0223F118 (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_0223EE80 * v0 = param1;
-    UnkStruct_0203CDB0 * v1 = v0->unk_10;
+    FieldSystem * v1 = v0->unk_10;
 
     switch (v0->unk_00) {
     case 0:
@@ -1675,7 +1675,7 @@ static void ov23_0223F118 (SysTask * param0, void * param1)
     }
 }
 
-static void ov23_0223F70C (UnkStruct_0203CDB0 * param0)
+static void ov23_0223F70C (FieldSystem * param0)
 {
     UnkStruct_ov23_0223EE80 * v0;
     void * v1 = sub_0202BE14(11);

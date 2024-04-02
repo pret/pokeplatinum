@@ -169,13 +169,13 @@ static void sub_0209BF64 (int param0, int param1, void * param2, void * param3)
 
             switch (v2->unk_02) {
             case 0:
-                if ((v0->unk_2C != sub_02035E18()) || (v0->unk_2C != sub_0209C16C()) || (v0->unk_2C != MATH_CountPopulation(sub_020318EC()))) {
+                if ((v0->unk_2C != CommSys_ConnectedCount()) || (v0->unk_2C != sub_0209C16C()) || (v0->unk_2C != MATH_CountPopulation(sub_020318EC()))) {
                     v1.unk_03 = 0;
                 } else {
                     v0->unk_30 |= 1 << param0;
                     v1.unk_03 = 1;
 
-                    sub_02037B58(sub_02035E18());
+                    sub_02037B58(CommSys_ConnectedCount());
                 }
                 break;
             case 1:

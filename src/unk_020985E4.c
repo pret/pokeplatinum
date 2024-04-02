@@ -4,7 +4,7 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "savedata.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_020985E4.h"
 #include "struct_defs/struct_0209862C.h"
@@ -41,7 +41,7 @@ void sub_020985E4 (UnkStruct_020508D4 * param0, SaveData * param1)
 
 BOOL sub_0209862C (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0;
+    FieldSystem * v0;
     UnkStruct_0209862C * v1;
 
     v0 = sub_02050A60(param0);

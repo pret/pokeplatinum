@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "savedata.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_020619DC.h"
 #include "overlay023/struct_ov23_02250CD4.h"
 #include "overlay061/struct_ov61_0222C884.h"
@@ -514,7 +514,7 @@ static void ov23_02252C78 (UnkStruct_ov23_02250CD4 * param0)
     Heap_FreeToHeap(param0);
 }
 
-void * ov23_02252C98 (int param0, UnkStruct_0203CDB0 * param1, int param2)
+void * ov23_02252C98 (int param0, FieldSystem * param1, int param2)
 {
     UnkStruct_ov23_02250CD4 * v0 = NULL;
     return v0;
@@ -913,7 +913,7 @@ static void ov23_02252E70 (SysTask * param0, void * param1)
     }
 }
 
-void ov23_022534A0 (UnkStruct_0203CDB0 * param0)
+void ov23_022534A0 (FieldSystem * param0)
 {
     UnkStruct_ov84_02240FA8 v0;
     int v1 = sub_02058D88(CommSys_CurNetId());

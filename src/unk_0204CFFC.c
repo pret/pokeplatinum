@@ -9,7 +9,7 @@
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0203E724_t.h"
 
 #include "unk_02017038.h"
@@ -35,7 +35,7 @@ BOOL sub_0204CFFC (UnkStruct_0203E724 * param0)
     int v0 = MapHeader_GetMapLabelTextID(param0->unk_34->unk_1C->unk_00);
     int v1 = 24;
     Party * v2;
-    UnkStruct_0203CDB0 * v3 = param0->unk_34;
+    FieldSystem * v3 = param0->unk_34;
     u16 v4 = inline_02049538(param0);
     u16 v5 = inline_02049538(param0);
     u16 v6 = inline_02049538(param0);
@@ -49,7 +49,7 @@ BOOL sub_0204CFFC (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204D08C (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     Pokemon * v1;
     u16 * v2 = inline_0204FCAC(param0);
     u16 * v3 = inline_0204FCAC(param0);
@@ -67,7 +67,7 @@ BOOL sub_0204D08C (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204D0E8 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     Pokemon * v1;
     TrainerInfo * v2 = SaveData_GetTrainerInfo(sub_0203D174(param0->unk_34));
     u16 * v3 = inline_0204FCAC(param0);
@@ -94,7 +94,7 @@ BOOL sub_0204D154 (UnkStruct_0203E724 * param0)
     BOOL v2;
     Party * v3;
     Pokemon * v4;
-    UnkStruct_0203CDB0 * v5 = param0->unk_34;
+    FieldSystem * v5 = param0->unk_34;
     TrainerInfo * v6 = SaveData_GetTrainerInfo(v5->unk_0C);
     u16 v7 = inline_02049538(param0);
     u16 v8 = inline_02049538(param0);
@@ -130,7 +130,7 @@ BOOL sub_0204D1DC (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204D234 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     Pokemon * v1;
     u16 * v2 = inline_0204FCAC(param0);
     u16 v3 = inline_02049538(param0);
@@ -153,7 +153,7 @@ BOOL sub_0204D234 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204D2D8 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     Pokemon * v1;
     u16 * v2 = inline_0204FCAC(param0);
     u16 v3 = inline_02049538(param0);
@@ -194,7 +194,7 @@ BOOL sub_0204D398 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204D3DC (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     Pokemon * v1;
     u16 * v2 = inline_0204FCAC(param0);
     u16 v3 = inline_02049538(param0);
@@ -220,7 +220,7 @@ BOOL sub_0204D3DC (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204D470 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     Pokemon * v1;
     u16 * v2 = inline_0204FCAC(param0);
     u16 v3 = inline_02049538(param0);
@@ -237,7 +237,7 @@ BOOL sub_0204D470 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204D4CC (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     Pokemon * v1;
     u16 * v2 = inline_0204FCAC(param0);
     u16 v3 = inline_02049538(param0);
@@ -264,7 +264,7 @@ BOOL sub_0204D4CC (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204D540 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     Pokemon * v1;
     u16 * v2 = inline_0204FCAC(param0);
     u16 v3 = inline_02049538(param0);
@@ -289,7 +289,7 @@ BOOL sub_0204D540 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204D5CC (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     Pokemon * v1;
     u16 * v2 = inline_0204FCAC(param0);
     u16 v3 = inline_02049538(param0);
@@ -302,7 +302,7 @@ BOOL sub_0204D5CC (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204D614 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     Pokemon * v1;
     u16 v2 = inline_02049538(param0);
     u16 v3 = inline_02049538(param0);
@@ -338,7 +338,7 @@ BOOL sub_0204D614 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204D6E4 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     Pokemon * v1;
     u16 v2 = inline_02049538(param0);
     u16 v3 = inline_02049538(param0);
@@ -380,7 +380,7 @@ BOOL sub_0204D7AC (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204D7D4 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     Pokemon * v1;
     u16 * v2 = inline_0204FCAC(param0);
     u16 * v3 = inline_0204FCAC(param0);
@@ -397,7 +397,7 @@ BOOL sub_0204D840 (UnkStruct_0203E724 * param0)
 {
     int v0;
     Pokemon * v1;
-    UnkStruct_0203CDB0 * v2 = param0->unk_34;
+    FieldSystem * v2 = param0->unk_34;
     u16 * v3 = inline_0204FCAC(param0);
 
     v0 = Party_GetCurrentCount(Party_GetFromSavedata(v2->unk_0C));
@@ -410,7 +410,7 @@ BOOL sub_0204D86C (UnkStruct_0203E724 * param0)
 {
     int v0, v1, v2;
     Pokemon * v3;
-    UnkStruct_0203CDB0 * v4 = param0->unk_34;
+    FieldSystem * v4 = param0->unk_34;
     u16 * v5 = inline_0204FCAC(param0);
 
     v0 = Party_GetCurrentCount(Party_GetFromSavedata(v4->unk_0C));
@@ -432,7 +432,7 @@ BOOL sub_0204D8C4 (UnkStruct_0203E724 * param0)
 {
     int v0, v1, v2;
     Pokemon * v3;
-    UnkStruct_0203CDB0 * v4 = param0->unk_34;
+    FieldSystem * v4 = param0->unk_34;
     u16 * v5 = inline_0204FCAC(param0);
     u16 v6 = inline_02049538(param0);
 
@@ -461,7 +461,7 @@ BOOL sub_0204D94C (UnkStruct_0203E724 * param0)
 {
     int v0, v1, v2;
     Pokemon * v3;
-    UnkStruct_0203CDB0 * v4 = param0->unk_34;
+    FieldSystem * v4 = param0->unk_34;
     u16 * v5 = inline_0204FCAC(param0);
     PCBoxes * v6 = SaveData_PCBoxes(v4->unk_0C);
 
@@ -487,7 +487,7 @@ BOOL sub_0204D9C8 (UnkStruct_0203E724 * param0)
 {
     int v0, v1, v2;
     Pokemon * v3;
-    UnkStruct_0203CDB0 * v4 = param0->unk_34;
+    FieldSystem * v4 = param0->unk_34;
     u16 * v5 = inline_0204FCAC(param0);
 
     v0 = Party_GetCurrentCount(Party_GetFromSavedata(v4->unk_0C));
@@ -511,7 +511,7 @@ BOOL sub_0204DA20 (UnkStruct_0203E724 * param0)
     u16 * v2;
     u32 v3;
     Pokemon * v4;
-    UnkStruct_0203CDB0 * v5 = param0->unk_34;
+    FieldSystem * v5 = param0->unk_34;
 
     v2 = inline_0204FCAC(param0);
     v1 = Party_GetCurrentCount(Party_GetFromSavedata(v5->unk_0C));
@@ -545,7 +545,7 @@ BOOL sub_0204DA84 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204DACC (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     Pokemon * v1;
     u16 * v2 = inline_0204FCAC(param0);
     u16 v3 = inline_02049538(param0);
@@ -582,7 +582,7 @@ BOOL sub_0204DACC (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204DB74 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     Pokemon * v1;
     u32 v2;
     u8 v3;
@@ -597,7 +597,7 @@ BOOL sub_0204DB74 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204DBB8 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     Pokemon * v1;
     u16 * v2 = inline_0204FCAC(param0);
     u16 v3 = inline_02049538(param0);
@@ -611,7 +611,7 @@ BOOL sub_0204DBB8 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204DC18 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     Pokemon * v1;
     u16 * v2 = inline_0204FCAC(param0);
     u16 v3 = inline_02049538(param0);
@@ -624,7 +624,7 @@ BOOL sub_0204DC18 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204DC60 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     Pokemon * v1;
     u16 v2 = inline_02049538(param0);
     u16 v3;
@@ -639,7 +639,7 @@ BOOL sub_0204DC60 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204DC98 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     Pokemon * v1;
     Party * v2;
     u16 * v3 = inline_0204FCAC(param0);
@@ -669,7 +669,7 @@ BOOL sub_0204DC98 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204DD28 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     Pokemon * v1;
     Party * v2;
     u16 * v3 = inline_0204FCAC(param0);
@@ -714,7 +714,7 @@ BOOL sub_0204DD28 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204DE00 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     Pokemon * v1;
     Party * v2;
     u16 * v3 = inline_0204FCAC(param0);
@@ -858,7 +858,7 @@ BOOL sub_0204E12C (UnkStruct_0203E724 * param0)
     u16 v2;
     Pokemon * v3;
     Party * v4;
-    UnkStruct_0203CDB0 * v5 = param0->unk_34;
+    FieldSystem * v5 = param0->unk_34;
     u16 * v6 = inline_0204FCAC(param0);
     u16 v7 = inline_02049538(param0);
 
@@ -889,7 +889,7 @@ BOOL sub_0204E1D0 (UnkStruct_0203E724 * param0)
     int v0, v1;
     Party * v2;
     Pokemon * v3;
-    UnkStruct_0203CDB0 * v4 = param0->unk_34;
+    FieldSystem * v4 = param0->unk_34;
     u16 v5 = inline_02049538(param0);
     u16 * v6 = inline_0204FCAC(param0);
 

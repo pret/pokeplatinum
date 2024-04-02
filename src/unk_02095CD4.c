@@ -5,7 +5,7 @@
 
 #include "struct_defs/struct_02027F8C.h"
 #include "struct_defs/struct_02039A58.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_02095E80_t.h"
 
 #include "unk_02027F84.h"
@@ -62,7 +62,7 @@ static int sub_02095CE8 (u8 param0)
 
 void sub_02095CFC (int param0, int param1, void * param2, void * param3)
 {
-    UnkStruct_0203CDB0 * v0 = (UnkStruct_0203CDB0 *)param3;
+    FieldSystem * v0 = (FieldSystem *)param3;
     UnkStruct_02095E80 * v1 = v0->unk_88;
 
     if (param0 != CommSys_CurNetId()) {
@@ -85,7 +85,7 @@ void sub_02095CFC (int param0, int param1, void * param2, void * param3)
 
 void sub_02095D74 (int param0, int param1, void * param2, void * param3)
 {
-    UnkStruct_02095E80 * v0 = ((UnkStruct_0203CDB0 *)param3)->unk_88;
+    UnkStruct_02095E80 * v0 = ((FieldSystem *)param3)->unk_88;
     u8 * v1 = (u8 *)param2;
 
     if (param0 != CommSys_CurNetId()) {
@@ -95,7 +95,7 @@ void sub_02095D74 (int param0, int param1, void * param2, void * param3)
 
 void sub_02095D94 (int param0, int param1, void * param2, void * param3)
 {
-    UnkStruct_02095E80 * v0 = ((UnkStruct_0203CDB0 *)param3)->unk_88;
+    UnkStruct_02095E80 * v0 = ((FieldSystem *)param3)->unk_88;
     u8 * v1 = (u8 *)param2;
 
     v0->unk_60[param0] = *v1;
@@ -113,7 +113,7 @@ void sub_02095DA8 (int param0, int param1, void * param2, void * param3)
 
 void sub_02095DAC (int param0, int param1, void * param2, void * param3)
 {
-    UnkStruct_02095E80 * v0 = ((UnkStruct_0203CDB0 *)param3)->unk_88;
+    UnkStruct_02095E80 * v0 = ((FieldSystem *)param3)->unk_88;
     v0->unk_54 = 2;
 }
 
@@ -124,7 +124,7 @@ void sub_02095DB8 (int param0, int param1, void * param2, void * param3)
 
 void sub_02095DBC (int param0, int param1, void * param2, void * param3)
 {
-    UnkStruct_02095E80 * v0 = ((UnkStruct_0203CDB0 *)param3)->unk_88;
+    UnkStruct_02095E80 * v0 = ((FieldSystem *)param3)->unk_88;
     u8 * v1 = (u8 *)param2;
 
     v0->unk_2318 = *v1;
@@ -132,7 +132,7 @@ void sub_02095DBC (int param0, int param1, void * param2, void * param3)
 
 void sub_02095DCC (int param0, int param1, void * param2, void * param3)
 {
-    UnkStruct_0203CDB0 * v0 = (UnkStruct_0203CDB0 *)param3;
+    FieldSystem * v0 = (FieldSystem *)param3;
     int v1;
     u8 * v2 = sub_0202D79C(v0->unk_0C);
     u8 * v3 = (u8 *)param2;
@@ -152,7 +152,7 @@ void sub_02095DCC (int param0, int param1, void * param2, void * param3)
 
 void sub_02095DFC (int param0, int param1, void * param2, void * param3)
 {
-    UnkStruct_02095E80 * v0 = ((UnkStruct_0203CDB0 *)param3)->unk_88;
+    UnkStruct_02095E80 * v0 = ((FieldSystem *)param3)->unk_88;
 
     if (CommSys_CurNetId() != param0) {
         sub_02027FEC(v0->unk_227C, (UnkStruct_02027F8C *)param2, 1, 26);
@@ -162,7 +162,7 @@ void sub_02095DFC (int param0, int param1, void * param2, void * param3)
 
 void sub_02095E28 (int param0, int param1, void * param2, void * param3)
 {
-    UnkStruct_02095E80 * v0 = ((UnkStruct_0203CDB0 *)param3)->unk_88;
+    UnkStruct_02095E80 * v0 = ((FieldSystem *)param3)->unk_88;
 
     if (CommSys_CurNetId() != param0) {
         MI_CpuCopyFast(param2, v0->unk_2E6C[param0], 1000);
@@ -171,7 +171,7 @@ void sub_02095E28 (int param0, int param1, void * param2, void * param3)
     }
 }
 
-void sub_02095E60 (UnkStruct_0203CDB0 * param0, UnkStruct_02095E80 * param1)
+void sub_02095E60 (FieldSystem * param0, UnkStruct_02095E80 * param1)
 {
     param0->unk_88 = param1;
 }
@@ -198,6 +198,6 @@ static int sub_02095E78 (void)
 
 static u8 * sub_02095E80 (int param0, void * param1, int param2)
 {
-    UnkStruct_02095E80 * v0 = ((UnkStruct_0203CDB0 *)param1)->unk_88;
+    UnkStruct_02095E80 * v0 = ((FieldSystem *)param1)->unk_88;
     return (u8 *)v0->unk_234C[param0];
 }

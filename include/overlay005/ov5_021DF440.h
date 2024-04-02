@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_defs/struct_020217F4.h"
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_02073838.h"
 #include "struct_defs/struct_02073974.h"
@@ -14,7 +14,7 @@
 
 #include <nitro/fx/fx.h>
 
-UnkStruct_ov5_021DF47C * ov5_021DF440(UnkStruct_0203CDB0 * param0, u32 param1, u32 param2);
+UnkStruct_ov5_021DF47C * ov5_021DF440(FieldSystem * param0, u32 param1, u32 param2);
 void ov5_021DF47C(UnkStruct_ov5_021DF47C * param0, u32 param1);
 void ov5_021DF488(UnkStruct_ov5_021DF47C * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
 void ov5_021DF4A8(UnkStruct_ov5_021DF47C * param0, u32 param1);
@@ -26,7 +26,7 @@ void * ov5_021DF528(const UnkStruct_ov5_021DF47C * param0, u32 param1, int param
 void * ov5_021DF53C(const UnkStruct_ov5_021DF47C * param0, u32 param1, int param2, u32 param3);
 void ov5_021DF554(void * param0);
 void * ov5_021DF55C(UnkStruct_ov5_021DF47C * param0, u32 param1);
-UnkStruct_0203CDB0 * ov5_021DF574(const UnkStruct_ov5_021DF47C * param0);
+FieldSystem * ov5_021DF574(const UnkStruct_ov5_021DF47C * param0);
 UnkStruct_ov5_021DF47C * ov5_021DF578(const UnkStruct_02061AB4 * param0);
 u32 ov5_021DF5A8(UnkStruct_ov5_021DF47C * param0, u32 param1);
 void ov5_021DF5B4(UnkStruct_ov5_021DF47C * param0, u32 param1, void * param2);

@@ -13,7 +13,7 @@
 #include "overlay023/struct_ov23_0224942C_decl.h"
 
 #include "struct_defs/struct_0200C738.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay097/struct_ov97_0222DB78.h"
@@ -55,7 +55,7 @@ struct UnkStruct_ov23_0224942C_t {
     int unk_04[8][2];
     int unk_44[8][3];
     int unk_A4[17][4];
-    UnkStruct_0203CDB0 * unk_1B4;
+    FieldSystem * unk_1B4;
     BGL * unk_1B8;
     GraphicElementManager * unk_1BC;
     UnkStruct_0200C738 unk_1C0;
@@ -224,7 +224,7 @@ static void ov23_02249214 (UnkStruct_0205E884 * const param0, int param1[][2], i
         param1[v0][1] = sub_02058CF4(v0);
     }
 
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         if (CommSys_IsPlayerConnected(CommSys_CurNetId()) == 0) {
             param1[0][0] = sub_0205EABC(param0);
             param1[0][1] = sub_0205EAC8(param0);
@@ -325,7 +325,7 @@ static void ov23_0224937C (int param0[][4], GraphicElementData * param1[])
     }
 }
 
-UnkStruct_ov23_0224942C * ov23_02249404 (UnkStruct_0203CDB0 * param0)
+UnkStruct_ov23_0224942C * ov23_02249404 (FieldSystem * param0)
 {
     UnkStruct_ov23_0224942C * v0;
     SysTask * v1;

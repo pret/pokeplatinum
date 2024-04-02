@@ -4,7 +4,7 @@
 #include "overlay005/struct_ov5_021DF47C_decl.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_02073838.h"
 #include "struct_defs/struct_02073974.h"
 #include "struct_defs/struct_02073B50.h"
@@ -34,7 +34,7 @@ typedef struct {
     s16 unk_04;
     fx32 unk_08;
     UnkStruct_ov5_021F431C * unk_0C;
-    UnkStruct_0203CDB0 * unk_10;
+    FieldSystem * unk_10;
 } UnkStruct_ov5_021F440C;
 
 typedef struct {
@@ -67,7 +67,7 @@ typedef struct {
 
 static void ov5_021F431C(UnkStruct_ov5_021F431C * param0);
 static void ov5_021F4370(UnkStruct_ov5_021F431C * param0);
-static UnkStruct_ov101_021D5D90 ** ov5_021F439C(UnkStruct_0203CDB0 * param0, int param1, int param2, fx32 param3, int param4, UnkStruct_ov5_021F440C * param5);
+static UnkStruct_ov101_021D5D90 ** ov5_021F439C(FieldSystem * param0, int param1, int param2, fx32 param3, int param4, UnkStruct_ov5_021F440C * param5);
 static void ov5_021F440C(UnkStruct_ov101_021D5D90 * param0, UnkStruct_ov5_021F4698 * param1);
 
 static const UnkStruct_ov101_021D86B0 Unk_ov5_0220070C;
@@ -151,7 +151,7 @@ static void ov5_021F4370 (UnkStruct_ov5_021F431C * param0)
     }
 }
 
-static UnkStruct_ov101_021D5D90 ** ov5_021F439C (UnkStruct_0203CDB0 * param0, int param1, int param2, fx32 param3, int param4, UnkStruct_ov5_021F440C * param5)
+static UnkStruct_ov101_021D5D90 ** ov5_021F439C (FieldSystem * param0, int param1, int param2, fx32 param3, int param4, UnkStruct_ov5_021F440C * param5)
 {
     int v0, v1;
     UnkStruct_ov5_021DF47C * v2;
@@ -206,7 +206,7 @@ static void ov5_021F440C (UnkStruct_ov101_021D5D90 * param0, UnkStruct_ov5_021F4
     sub_020715D4(param0, &v0);
 }
 
-UnkStruct_ov101_021D5D90 * ov5_021F4474 (UnkStruct_0203CDB0 * param0, int param1, int param2, fx32 param3)
+UnkStruct_ov101_021D5D90 * ov5_021F4474 (FieldSystem * param0, int param1, int param2, fx32 param3)
 {
     UnkStruct_ov5_021DF47C * v0;
     UnkStruct_ov101_021D5D90 ** v1;
@@ -338,7 +338,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov5_0220070C = {
     ov5_021F464C
 };
 
-UnkStruct_ov101_021D5D90 * ov5_021F4668 (UnkStruct_0203CDB0 * param0, int param1, int param2, fx32 param3)
+UnkStruct_ov101_021D5D90 * ov5_021F4668 (FieldSystem * param0, int param1, int param2, fx32 param3)
 {
     UnkStruct_ov5_021DF47C * v0;
     UnkStruct_ov101_021D5D90 ** v1;

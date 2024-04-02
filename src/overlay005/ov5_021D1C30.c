@@ -13,8 +13,8 @@
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0203A55C.h"
-#include "struct_defs/struct_0203CDB0.h"
-#include "struct_defs/struct_0203CDB0_sub2_t.h"
+#include "field/field_system.h"
+#include "field/field_system_sub2_t.h"
 #include "struct_defs/struct_02049FA8.h"
 #include "overlay005/struct_ov5_021D1CAC.h"
 #include "overlay005/struct_ov5_021D219C.h"
@@ -42,7 +42,7 @@
 #include "unk_020562F8.h"
 #include "unk_02056B30.h"
 #include "unk_02057518.h"
-#include "unk_0205964C.h"
+#include "field_comm_manager.h"
 #include "unk_0205A0D8.h"
 #include "unk_0205B33C.h"
 #include "unk_0205DAC8.h"
@@ -72,29 +72,29 @@
 #include "overlay009/ov9_02249960.h"
 #include "overlay023/ov23_02241F74.h"
 
-static BOOL ov5_021D2504(UnkStruct_0203CDB0 * param0, const UnkStruct_ov5_021D1CAC * param1);
-static u16 ov5_021D271C(UnkStruct_0203CDB0 * param0, u8 param1);
-static BOOL ov5_021D249C(UnkStruct_0203CDB0 * param0);
-static BOOL ov5_021D2884(UnkStruct_0203CDB0 * param0);
-static BOOL ov5_021D29A0(UnkStruct_0203CDB0 * param0);
-static BOOL ov5_021D29D8(UnkStruct_0203CDB0 * param0, const int param1, const int param2, const u8 param3);
-static BOOL ov5_021D2ABC(UnkStruct_0203CDB0 * param0);
-static BOOL ov5_021D2B94(UnkStruct_0203CDB0 * param0);
-static BOOL ov5_021D2C14(UnkStruct_0203CDB0 * param0);
-static BOOL ov5_021D2B08(UnkStruct_0203CDB0 * param0);
-static BOOL ov5_021D2B14(UnkStruct_0203CDB0 * param0);
-static BOOL ov5_021D20DC(UnkStruct_0203CDB0 * param0);
-static BOOL ov5_021D2B20(UnkStruct_0203CDB0 * param0);
-static BOOL ov5_021D2B2C(UnkStruct_0203CDB0 * param0);
-static void ov5_021D2B54(UnkStruct_0203CDB0 * param0);
-static void ov5_021D2C7C(const UnkStruct_0203CDB0 * param0, int * param1, int * param2);
-static void ov5_021D2C98(const UnkStruct_0203CDB0 * param0, int * param1, int * param2);
-static void ov5_021D2CB4(const UnkStruct_0203CDB0 * param0, int param1, int * param2, int * param3);
-static u8 ov5_021D2CFC(const UnkStruct_0203CDB0 * param0);
-static u8 ov5_021D2D18(const UnkStruct_0203CDB0 * param0);
-static BOOL ov5_021D2D34(const UnkStruct_0203CDB0 * param0, int param1, int param2, UnkStruct_02049FA8 * param3);
-static void ov5_021D2E14(UnkStruct_0203CDB0 * param0);
-static BOOL ov5_021D2EA4(UnkStruct_0203CDB0 * param0, UnkStruct_02061AB4 ** param1);
+static BOOL ov5_021D2504(FieldSystem * param0, const UnkStruct_ov5_021D1CAC * param1);
+static u16 ov5_021D271C(FieldSystem * param0, u8 param1);
+static BOOL ov5_021D249C(FieldSystem * param0);
+static BOOL ov5_021D2884(FieldSystem * param0);
+static BOOL ov5_021D29A0(FieldSystem * param0);
+static BOOL ov5_021D29D8(FieldSystem * param0, const int param1, const int param2, const u8 param3);
+static BOOL ov5_021D2ABC(FieldSystem * param0);
+static BOOL ov5_021D2B94(FieldSystem * param0);
+static BOOL ov5_021D2C14(FieldSystem * param0);
+static BOOL ov5_021D2B08(FieldSystem * param0);
+static BOOL ov5_021D2B14(FieldSystem * param0);
+static BOOL ov5_021D20DC(FieldSystem * param0);
+static BOOL ov5_021D2B20(FieldSystem * param0);
+static BOOL ov5_021D2B2C(FieldSystem * param0);
+static void ov5_021D2B54(FieldSystem * param0);
+static void ov5_021D2C7C(const FieldSystem * param0, int * param1, int * param2);
+static void ov5_021D2C98(const FieldSystem * param0, int * param1, int * param2);
+static void ov5_021D2CB4(const FieldSystem * param0, int param1, int * param2, int * param3);
+static u8 ov5_021D2CFC(const FieldSystem * param0);
+static u8 ov5_021D2D18(const FieldSystem * param0);
+static BOOL ov5_021D2D34(const FieldSystem * param0, int param1, int param2, UnkStruct_02049FA8 * param3);
+static void ov5_021D2E14(FieldSystem * param0);
+static BOOL ov5_021D2EA4(FieldSystem * param0, UnkStruct_02061AB4 ** param1);
 static int ov5_021D2274(void);
 
 static void ov5_021D1C30 (UnkStruct_ov5_021D1CAC * param0)
@@ -115,7 +115,7 @@ static void ov5_021D1C30 (UnkStruct_ov5_021D1CAC * param0)
     param0->unk_03 = -1;
 }
 
-void ov5_021D1CAC (UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * param1, u16 param2, u16 param3)
+void ov5_021D1CAC (UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1, u16 param2, u16 param3)
 {
     int v0;
     int v1;
@@ -173,7 +173,7 @@ void ov5_021D1CAC (UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * param1,
     param0->unk_02 = sub_02061308(param1->unk_3C, param2, param3);
 }
 
-int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * param1)
+int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
 {
     if ((param0->unk_00_11 == 0) && (sub_0203F5C0(param1, 1) == 1)) {
         return 1;
@@ -359,7 +359,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * pa
     return 0;
 }
 
-static BOOL ov5_021D20DC (UnkStruct_0203CDB0 * param0)
+static BOOL ov5_021D20DC (FieldSystem * param0)
 {
     UnkStruct_02061AB4 * v0;
     int v1;
@@ -379,7 +379,7 @@ static BOOL ov5_021D20DC (UnkStruct_0203CDB0 * param0)
     return 0;
 }
 
-BOOL ov5_021D213C (UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * param1)
+BOOL ov5_021D213C (UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
 {
     u8 v0 = 0;
 
@@ -410,7 +410,7 @@ BOOL ov5_021D213C (UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * param1)
     return 0;
 }
 
-BOOL ov5_021D219C (UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * param1)
+BOOL ov5_021D219C (UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
 {
     if (param0->unk_00_5) {
         if ((param0->unk_03 == 1) && sub_0205DB1C(ov5_021D2CFC(param1))) {
@@ -474,10 +474,10 @@ static int ov5_021D2274 (void)
     return v1 >= 1;
 }
 
-BOOL ov5_021D2298 (const UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * param1)
+BOOL ov5_021D2298 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
 {
     if (sub_020318EC() & 0xfe) {
-        if (ov5_021D2274() && (sub_02035E18() > 1)) {
+        if (ov5_021D2274() && (CommSys_ConnectedCount() > 1)) {
             sub_0203E880(param1, 5, NULL);
             return 1;
         }
@@ -506,7 +506,7 @@ BOOL ov5_021D2298 (const UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * p
     }
 
     if (param0->unk_00_2) {
-        if (sub_02035E18() > 1) {
+        if (CommSys_ConnectedCount() > 1) {
             (void)0;
         } else {
             Sound_PlayEffect(1533);
@@ -521,7 +521,7 @@ BOOL ov5_021D2298 (const UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * p
     return 0;
 }
 
-int ov5_021D2368 (const UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * param1)
+int ov5_021D2368 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
 {
     if ((param0->unk_00_11 == 0) && (sub_0203F5C0(param1, 1) == 1)) {
         return 1;
@@ -593,7 +593,7 @@ int ov5_021D2368 (const UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * pa
     return 0;
 }
 
-static BOOL ov5_021D249C (UnkStruct_0203CDB0 * param0)
+static BOOL ov5_021D249C (FieldSystem * param0)
 {
     int v0, v1;
 
@@ -615,7 +615,7 @@ static BOOL ov5_021D249C (UnkStruct_0203CDB0 * param0)
     return 0;
 }
 
-static BOOL ov5_021D2504 (UnkStruct_0203CDB0 * param0, const UnkStruct_ov5_021D1CAC * param1)
+static BOOL ov5_021D2504 (FieldSystem * param0, const UnkStruct_ov5_021D1CAC * param1)
 {
     int v0;
     int v1;
@@ -708,7 +708,7 @@ static BOOL ov5_021D2504 (UnkStruct_0203CDB0 * param0, const UnkStruct_ov5_021D1
     return 1;
 }
 
-u16 ov5_021D271C (UnkStruct_0203CDB0 * param0, u8 param1)
+u16 ov5_021D271C (FieldSystem * param0, u8 param1)
 {
     int v0 = sub_0205EA78(param0->unk_3C);
 
@@ -760,7 +760,7 @@ u16 ov5_021D271C (UnkStruct_0203CDB0 * param0, u8 param1)
     return 0xffff;
 }
 
-static BOOL ov5_021D2884 (UnkStruct_0203CDB0 * param0)
+static BOOL ov5_021D2884 (FieldSystem * param0)
 {
     u8 v0;
     int v1, v2;
@@ -833,7 +833,7 @@ static BOOL ov5_021D2884 (UnkStruct_0203CDB0 * param0)
     return 0;
 }
 
-static BOOL ov5_021D29A0 (UnkStruct_0203CDB0 * param0)
+static BOOL ov5_021D29A0 (FieldSystem * param0)
 {
     u16 v0;
 
@@ -847,7 +847,7 @@ static BOOL ov5_021D29A0 (UnkStruct_0203CDB0 * param0)
     return 0;
 }
 
-static BOOL ov5_021D29D8 (UnkStruct_0203CDB0 * param0, const int param1, const int param2, const u8 param3)
+static BOOL ov5_021D29D8 (FieldSystem * param0, const int param1, const int param2, const u8 param3)
 {
     UnkStruct_02049FA8 v0;
 
@@ -894,7 +894,7 @@ static BOOL ov5_021D29D8 (UnkStruct_0203CDB0 * param0, const int param1, const i
     return 0;
 }
 
-static BOOL ov5_021D2ABC (UnkStruct_0203CDB0 * param0)
+static BOOL ov5_021D2ABC (FieldSystem * param0)
 {
     Party * v0 = Party_GetFromSavedata(param0->unk_0C);
     UnkStruct_02026310 * v1 = sub_02026310(param0->unk_0C);
@@ -912,24 +912,24 @@ static BOOL ov5_021D2ABC (UnkStruct_0203CDB0 * param0)
     }
 }
 
-static BOOL ov5_021D2B08 (UnkStruct_0203CDB0 * param0)
+static BOOL ov5_021D2B08 (FieldSystem * param0)
 {
     ov5_021DBB94(param0);
     return 0;
 }
 
-static BOOL ov5_021D2B14 (UnkStruct_0203CDB0 * param0)
+static BOOL ov5_021D2B14 (FieldSystem * param0)
 {
     RadarChargeStep(param0);
     return 0;
 }
 
-static BOOL ov5_021D2B20 (UnkStruct_0203CDB0 * param0)
+static BOOL ov5_021D2B20 (FieldSystem * param0)
 {
     return ov6_02246BF4(param0->unk_0C, param0);
 }
 
-static BOOL ov5_021D2B2C (UnkStruct_0203CDB0 * param0)
+static BOOL ov5_021D2B2C (FieldSystem * param0)
 {
     u16 v0;
     UnkStruct_020507E4 * v1;
@@ -950,7 +950,7 @@ static BOOL ov5_021D2B2C (UnkStruct_0203CDB0 * param0)
     return v2;
 }
 
-static void ov5_021D2B54 (UnkStruct_0203CDB0 * param0)
+static void ov5_021D2B54 (FieldSystem * param0)
 {
     int v0, v1;
     Pokemon * v2;
@@ -965,7 +965,7 @@ static void ov5_021D2B54 (UnkStruct_0203CDB0 * param0)
     }
 }
 
-static BOOL ov5_021D2B94 (UnkStruct_0203CDB0 * param0)
+static BOOL ov5_021D2B94 (FieldSystem * param0)
 {
     Party * v0 = Party_GetFromSavedata(param0->unk_0C);
     u16 * v1 = sub_0203A78C(sub_0203A790(param0->unk_0C));
@@ -992,7 +992,7 @@ static BOOL ov5_021D2B94 (UnkStruct_0203CDB0 * param0)
     return 0;
 }
 
-static BOOL ov5_021D2C14 (UnkStruct_0203CDB0 * param0)
+static BOOL ov5_021D2C14 (FieldSystem * param0)
 {
     u16 * v0;
     u16 * v1;
@@ -1019,13 +1019,13 @@ static BOOL ov5_021D2C14 (UnkStruct_0203CDB0 * param0)
     return 0;
 }
 
-static void ov5_021D2C7C (const UnkStruct_0203CDB0 * param0, int * param1, int * param2)
+static void ov5_021D2C7C (const FieldSystem * param0, int * param1, int * param2)
 {
     *param1 = sub_0205EABC(param0->unk_3C);
     *param2 = sub_0205EAC8(param0->unk_3C);
 }
 
-static void ov5_021D2C98 (const UnkStruct_0203CDB0 * param0, int * param1, int * param2)
+static void ov5_021D2C98 (const FieldSystem * param0, int * param1, int * param2)
 {
     int v0;
 
@@ -1033,7 +1033,7 @@ static void ov5_021D2C98 (const UnkStruct_0203CDB0 * param0, int * param1, int *
     ov5_021D2CB4(param0, v0, param1, param2);
 }
 
-static void ov5_021D2CB4 (const UnkStruct_0203CDB0 * param0, int param1, int * param2, int * param3)
+static void ov5_021D2CB4 (const FieldSystem * param0, int param1, int * param2, int * param3)
 {
     ov5_021D2C7C(param0, param2, param3);
 
@@ -1055,7 +1055,7 @@ static void ov5_021D2CB4 (const UnkStruct_0203CDB0 * param0, int param1, int * p
     }
 }
 
-static u8 ov5_021D2CFC (const UnkStruct_0203CDB0 * param0)
+static u8 ov5_021D2CFC (const FieldSystem * param0)
 {
     int v0, v1;
 
@@ -1063,7 +1063,7 @@ static u8 ov5_021D2CFC (const UnkStruct_0203CDB0 * param0)
     return sub_02054F94(param0, v0, v1);
 }
 
-static u8 ov5_021D2D18 (const UnkStruct_0203CDB0 * param0)
+static u8 ov5_021D2D18 (const FieldSystem * param0)
 {
     int v0, v1;
 
@@ -1071,7 +1071,7 @@ static u8 ov5_021D2D18 (const UnkStruct_0203CDB0 * param0)
     return sub_02054F94(param0, v0, v1);
 }
 
-static BOOL ov5_021D2D34 (const UnkStruct_0203CDB0 * param0, int param1, int param2, UnkStruct_02049FA8 * param3)
+static BOOL ov5_021D2D34 (const FieldSystem * param0, int param1, int param2, UnkStruct_02049FA8 * param3)
 {
     const UnkStruct_0203A55C * v0;
     int v1;
@@ -1103,7 +1103,7 @@ static BOOL ov5_021D2D34 (const UnkStruct_0203CDB0 * param0, int param1, int par
     return 1;
 }
 
-static void ov5_021D2DCC (UnkStruct_0203CDB0 * param0, const int param1, const int param2, const int param3)
+static void ov5_021D2DCC (FieldSystem * param0, const int param1, const int param2, const int param3)
 {
     UnkStruct_0203A790 * v0 = sub_0203A790(param0->unk_0C);
     UnkStruct_02049FA8 * v1 = sub_0203A72C(v0);
@@ -1121,7 +1121,7 @@ static void ov5_021D2DCC (UnkStruct_0203CDB0 * param0, const int param1, const i
     v1->unk_04 = -1;
 }
 
-static void ov5_021D2E14 (UnkStruct_0203CDB0 * param0)
+static void ov5_021D2E14 (FieldSystem * param0)
 {
     int v0, v1;
     UnkStruct_02049FA8 v2;
@@ -1143,7 +1143,7 @@ static void ov5_021D2E14 (UnkStruct_0203CDB0 * param0)
     }
 }
 
-static BOOL ov5_021D2EA4 (UnkStruct_0203CDB0 * param0, UnkStruct_02061AB4 ** param1)
+static BOOL ov5_021D2EA4 (FieldSystem * param0, UnkStruct_02061AB4 ** param1)
 {
     int v0 = 0;
     int v1, v2, v3, v4, v5, v6;

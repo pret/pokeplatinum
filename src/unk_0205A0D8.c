@@ -16,7 +16,7 @@
 #include "constdata/const_020F1E88.h"
 #include "constdata/const_020F410C.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "functypes/funcptr_0205AB10.h"
 #include "struct_defs/struct_02072014.h"
@@ -44,7 +44,7 @@
 #include "unk_0203D1B8.h"
 #include "unk_020508D4.h"
 #include "unk_02057518.h"
-#include "unk_0205964C.h"
+#include "field_comm_manager.h"
 #include "unk_0205A0D8.h"
 #include "unk_0205D8CC.h"
 #include "unk_0205E7D0.h"
@@ -64,7 +64,7 @@ typedef struct {
     Strbuf* unk_0C;
     Strbuf* unk_10;
     Window unk_14;
-    UnkStruct_0203CDB0 * unk_24;
+    FieldSystem * unk_24;
     StringFormatter * unk_28;
     MessageLoader * unk_2C;
     int unk_30;
@@ -124,7 +124,7 @@ static void sub_0205AAA0(UnkStruct_0205A0D8 * param0, BOOL param1);
 static void sub_0205AF18(UnkStruct_0205A0D8 * param0, int param1);
 static BOOL sub_0205AD20(UnkStruct_0205A0D8 * param0);
 
-static void sub_0205A0D8 (UnkStruct_0205A0D8 * param0, UnkStruct_0203CDB0 * param1, Party * param2, int param3, int param4, int param5)
+static void sub_0205A0D8 (UnkStruct_0205A0D8 * param0, FieldSystem * param1, Party * param2, int param3, int param4, int param5)
 {
     PokemonSummary * v0;
     SaveData * v1;
@@ -188,7 +188,7 @@ static void sub_0205A164 (UnkStruct_0205A0D8 * param0, int param1)
     param0->unk_04 = v1;
 }
 
-static BOOL sub_0205A258 (UnkStruct_0205A0D8 * param0, UnkStruct_0203CDB0 * param1)
+static BOOL sub_0205A258 (UnkStruct_0205A0D8 * param0, FieldSystem * param1)
 {
     int v0;
 
@@ -217,7 +217,7 @@ static BOOL sub_0205A258 (UnkStruct_0205A0D8 * param0, UnkStruct_0203CDB0 * para
     return 1;
 }
 
-static BOOL sub_0205A2B0 (UnkStruct_0205A0D8 * param0, UnkStruct_0203CDB0 * param1)
+static BOOL sub_0205A2B0 (UnkStruct_0205A0D8 * param0, FieldSystem * param1)
 {
     PokemonSummary * v0;
 
@@ -247,7 +247,7 @@ static BOOL sub_0205A2FC (void)
 {
     int v0, v1;
 
-    v1 = sub_02035E18();
+    v1 = CommSys_ConnectedCount();
 
     for (v0 = 0; v0 < v1; v0++) {
         if (sub_02036564(v0) == 94) {
@@ -261,7 +261,7 @@ static BOOL sub_0205A2FC (void)
 static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
 {
     UnkStruct_0205A0D8 * v0 = sub_02050A64(param0);
-    UnkStruct_0203CDB0 * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = sub_02050A60(param0);
 
     switch (v0->unk_34) {
     case 0:
@@ -658,7 +658,7 @@ static void sub_0205AAA0 (UnkStruct_0205A0D8 * param0, BOOL param1)
     }
 }
 
-void sub_0205AB10 (UnkStruct_0203CDB0 * param0, UnkFuncPtr_0205AB10 * param1)
+void sub_0205AB10 (FieldSystem * param0, UnkFuncPtr_0205AB10 * param1)
 {
     UnkStruct_0205A0D8 * v0;
     UnkStruct_020508D4 * v1 = param0->unk_10;
@@ -744,7 +744,7 @@ static void sub_0205AC28 (UnkStruct_0205A0D8 * param0)
     sub_0205AAA0(param0, 1);
 }
 
-static UnkStruct_0205A0D8 * sub_0205AC74 (UnkStruct_0203CDB0 * param0)
+static UnkStruct_0205A0D8 * sub_0205AC74 (FieldSystem * param0)
 {
     return sub_02050A64(param0->unk_10);
 }
@@ -1014,9 +1014,9 @@ void sub_0205B110 (int param0, int param1, void * param2, void * param3)
 
 static BOOL sub_0205B140 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_0205B2D4 * v1 = sub_02050A64(param0);
-    UnkStruct_02072014 * v2 = (UnkStruct_02072014 *)sub_02059EBC(v1->unk_24, NULL, 0);
+    TrainerCard * v2 = (TrainerCard *)sub_02059EBC(v1->unk_24, NULL, 0);
 
     switch (v1->unk_28) {
     case 0:
@@ -1084,14 +1084,14 @@ static BOOL sub_0205B140 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_0205B2D4 (UnkStruct_0203CDB0 * param0)
+void sub_0205B2D4 (FieldSystem * param0)
 {
     int v0;
     int v1 = CommSys_CurNetId();
     int v2 = sub_02058D88(v1);
     int v3 = sub_02058DC0(v1);
 
-    for (v0 = 0; v0 < sub_02035E18(); v0++) {
+    for (v0 = 0; v0 < CommSys_ConnectedCount(); v0++) {
         if (v0 == v1) {
             continue;
         }

@@ -715,10 +715,10 @@ static void ov109_021D471C (UnkStruct_ov109_021D5140 * param0)
 
 static int ov109_021D474C (UnkStruct_ov109_021D5140 * param0, int param1)
 {
-    sub_020388F4(0, 1);
+    CommMan_SetErrorHandling(0, 1);
 
     if (CommSys_CurNetId() == 0) {
-        if (sub_02035E18() >= 2) {
+        if (CommSys_ConnectedCount() >= 2) {
             ov109_021D55A8(param0, 2, 0);
         }
     } else {
@@ -769,7 +769,7 @@ static void ov109_021D47B8 (UnkStruct_ov109_021D5140 * param0)
                 Sound_PlayEffect(1522);
             }
         } else {
-            if ((sub_02035E18() == param0->unk_10->unk_2C) && (param0->unk_10->unk_30 == 0)) {
+            if ((CommSys_ConnectedCount() == param0->unk_10->unk_2C) && (param0->unk_10->unk_30 == 0)) {
                 u8 v1 = 1;
 
                 ov109_021D55A8(param0, 4, 0);
@@ -782,7 +782,7 @@ static void ov109_021D47B8 (UnkStruct_ov109_021D5140 * param0)
         }
     } else {
         if (param0->unk_4AAC == 0) {
-            if ((CommSys_CurNetId() == 0) && (sub_02035E18() == param0->unk_10->unk_2C)) {
+            if ((CommSys_CurNetId() == 0) && (CommSys_ConnectedCount() == param0->unk_10->unk_2C)) {
                 u8 v2 = 0;
 
                 sub_0209BEBC(param0->unk_10, 7, &v2, 1);
@@ -879,7 +879,7 @@ static int ov109_021D4980 (UnkStruct_ov109_021D5140 * param0, int param1)
         }
     }
 
-    if (ov109_021D548C() != sub_02035E18()) {
+    if (ov109_021D548C() != CommSys_ConnectedCount()) {
         ov109_021D48D0(param0);
         return param1;
     }
@@ -933,7 +933,7 @@ static int ov109_021D4AA8 (UnkStruct_ov109_021D5140 * param0, int param1)
 
 static int ov109_021D4AC0 (UnkStruct_ov109_021D5140 * param0, int param1)
 {
-    if ((param0->unk_10->unk_38 != sub_02035E18()) || (param0->unk_10->unk_38 != ov109_021D548C())) {
+    if ((param0->unk_10->unk_38 != CommSys_ConnectedCount()) || (param0->unk_10->unk_38 != ov109_021D548C())) {
         param0->unk_4AC0 = 0;
         param0->unk_3B8 = 8;
         ov109_021D48D0(param0);
@@ -1037,11 +1037,11 @@ static int ov109_021D4C7C (UnkStruct_ov109_021D5140 * param0, int param1)
 
     v1 = 0;
 
-    if ((CommSys_CurNetId() == 0) && (sub_02035E18() != param0->unk_4AB6)) {
+    if ((CommSys_CurNetId() == 0) && (CommSys_ConnectedCount() != param0->unk_4AB6)) {
         (void)0;
     }
 
-    if (sub_02035E18() == param0->unk_10->unk_20) {
+    if (CommSys_ConnectedCount() == param0->unk_10->unk_20) {
         param0->unk_3B8 = 31;
     }
 
@@ -1077,7 +1077,7 @@ static int ov109_021D4CC8 (UnkStruct_ov109_021D5140 * param0, int param1)
 
 static int ov109_021D4D20 (UnkStruct_ov109_021D5140 * param0, int param1)
 {
-    if ((CommSys_CurNetId() == 0) && (sub_02035E18() != param0->unk_4AB6)) {
+    if ((CommSys_CurNetId() == 0) && (CommSys_ConnectedCount() != param0->unk_4AB6)) {
         (void)0;
     }
 
@@ -1214,7 +1214,7 @@ static int ov109_021D4F4C (UnkStruct_ov109_021D5140 * param0, int param1)
 static int ov109_021D4F6C (UnkStruct_ov109_021D5140 * param0, int param1)
 {
     if (sub_02036540(202)) {
-        sub_020388F4(0, 0);
+        CommMan_SetErrorHandling(0, 0);
         sub_0200F174(0, 16, 16, 0x0, 16, 1, 95);
         param1 = 3;
     }
@@ -1258,7 +1258,7 @@ static int ov109_021D4FFC (UnkStruct_ov109_021D5140 * param0, int param1)
         ov109_021D5858(param0, 0);
     }
 
-    param0->unk_4ABC = sub_02035E18();
+    param0->unk_4ABC = CommSys_ConnectedCount();
     param0->unk_4AB8 = (10 * 30);
 
     ov109_021D48D0(param0);
@@ -1268,7 +1268,7 @@ static int ov109_021D4FFC (UnkStruct_ov109_021D5140 * param0, int param1)
 
 static int ov109_021D505C (UnkStruct_ov109_021D5140 * param0, int param1)
 {
-    if ((param0->unk_4ABC != 0) && (sub_02035E18() != param0->unk_4ABC)) {
+    if ((param0->unk_4ABC != 0) && (CommSys_ConnectedCount() != param0->unk_4ABC)) {
         param0->unk_4ABC = 0;
     }
 
@@ -1281,7 +1281,7 @@ static int ov109_021D505C (UnkStruct_ov109_021D5140 * param0, int param1)
 
 static int  ov109_021D5098 (UnkStruct_ov109_021D5140 * param0, int param1)
 {
-    if ((param0->unk_4ABC != 0) && (sub_02035E18() != param0->unk_4ABC)) {
+    if ((param0->unk_4ABC != 0) && (CommSys_ConnectedCount() != param0->unk_4ABC)) {
         param0->unk_4ABC = 0;
     }
 
@@ -1393,7 +1393,7 @@ void ov109_021D5258 (UnkStruct_ov109_021D5140 * param0, int param1, u8 param2)
             ov109_021D5858(param0, 1);
 
             param0->unk_3B8 = param1;
-            param0->unk_10->unk_2C = sub_02035E18();
+            param0->unk_10->unk_2C = CommSys_ConnectedCount();
             param0->unk_10->unk_30 = 0;
 
             if (CommSys_CurNetId() == 0) {
@@ -1420,7 +1420,7 @@ void ov109_021D5258 (UnkStruct_ov109_021D5140 * param0, int param1, u8 param2)
         }
     } else if (param1 == 1) {
         param0->unk_10->unk_30 = 0;
-        param0->unk_10->unk_2C = sub_02035E18();
+        param0->unk_10->unk_2C = CommSys_ConnectedCount();
     }
 }
 
@@ -1707,7 +1707,7 @@ static void ov109_021D5858 (UnkStruct_ov109_021D5140 * param0, int param1)
         if (param1 == -1) {
             sub_02037B58(1);
         } else {
-            int v0 = sub_02035E18() + param1;
+            int v0 = CommSys_ConnectedCount() + param1;
 
             if (v0 > 5) {
                 v0 = 5;
@@ -1747,7 +1747,7 @@ static int ov109_021D58AC (UnkStruct_ov109_021D5140 * param0, int param1)
 
     switch (v0) {
     case 1:
-        if ((sub_02035E18() > 1) || (sub_020318EC() > 1)) {
+        if ((CommSys_ConnectedCount() > 1) || (sub_020318EC() > 1)) {
             return 1;
         }
 
@@ -1775,7 +1775,7 @@ static int ov109_021D58AC (UnkStruct_ov109_021D5140 * param0, int param1)
                 break;
             }
 
-            param0->unk_10->unk_2C = sub_02035E18();
+            param0->unk_10->unk_2C = CommSys_ConnectedCount();
         }
         break;
     case 5:

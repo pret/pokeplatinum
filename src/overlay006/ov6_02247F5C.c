@@ -4,7 +4,7 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "overlay005/struct_ov5_021D3CE4_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 
 #include "unk_020507CC.h"
 #include "unk_020508D4.h"
@@ -14,7 +14,7 @@
 
 static BOOL ov6_02247FD0(UnkStruct_020508D4 * param0);
 
-void ov6_02247F5C (UnkStruct_0203CDB0 * param0)
+void ov6_02247F5C (FieldSystem * param0)
 {
     UnkStruct_ov5_021D3CE4 * v0;
 
@@ -32,7 +32,7 @@ void ov6_02247F5C (UnkStruct_0203CDB0 * param0)
     }
 }
 
-void ov6_02247FBC (UnkStruct_0203CDB0 * param0)
+void ov6_02247FBC (FieldSystem * param0)
 {
     sub_02050944(param0->unk_10, ov6_02247FD0, NULL);
 }
@@ -41,7 +41,7 @@ static BOOL ov6_02247FD0 (UnkStruct_020508D4 * param0)
 {
     int * v0;
     UnkStruct_ov5_021D3CE4 * v1;
-    UnkStruct_0203CDB0 * v2 = sub_02050A60(param0);
+    FieldSystem * v2 = sub_02050A60(param0);
 
     v0 = sub_02050A68(param0);
 

@@ -162,7 +162,7 @@ void ov97_0222D19C (SysTask * param0, void * param1)
 
 void ov97_0222D1C4 (UnkStruct_ov97_0222D04C * param0, SaveData * param1, int param2)
 {
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         return;
     }
 
@@ -181,7 +181,7 @@ void ov97_0222D200 (UnkStruct_ov97_0222D04C * param0, int param1)
 {
     SaveData * v0;
 
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         return;
     }
 

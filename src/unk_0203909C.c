@@ -79,7 +79,7 @@ BOOL sub_020391DC (SaveData * param0, int * param1, int param2)
     DWCFriendData * v3 = sub_0202AED8(sub_0202B370(param0), 0);
     DWCFriendData * v4;
 
-    for (v0 = 0; v0 < sub_02035E18(); v0++) {
+    for (v0 = 0; v0 < CommSys_ConnectedCount(); v0++) {
         if (CommSys_CurNetId() == v0) {
             continue;
         }

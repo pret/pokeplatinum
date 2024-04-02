@@ -212,7 +212,7 @@ static void SendMessage(BattleSystem *battleSys, int recipient, int message, voi
 
     if ((battleSys->battleType & BATTLE_TYPE_LINK) && (battleSys->battleStatusMask & BATTLE_TYPE_TAG) == FALSE) {
         if (recipient == 1) {
-            for (int i = 0; i < sub_02035E18(); i++) {
+            for (int i = 0; i < CommSys_ConnectedCount(); i++) {
                 BattleIO_EnqueueVal(battleSys->battleCtx, i, message, *data);
             }
         }

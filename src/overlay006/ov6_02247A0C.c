@@ -10,7 +10,7 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "savedata.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
 
 #include "unk_02002B7C.h"
@@ -107,7 +107,7 @@ void ov6_02247A0C (UnkStruct_020508D4 * param0)
 
 static BOOL ov6_02247A34 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_ov6_02247A0C * v1 = sub_02050A64(param0);
 
     switch (v1->unk_04) {

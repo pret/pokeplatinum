@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0203E724_decl.h"
 #include "pokemon.h"
 
-#include "struct_defs/struct_0203CDB0_sub2_t.h"
+#include "field/field_system_sub2_t.h"
 #include "struct_defs/struct_0203E724_t.h"
 #include "struct_defs/struct_02093800.h"
 

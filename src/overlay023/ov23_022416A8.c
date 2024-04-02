@@ -6,7 +6,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_020298B0_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "overlay023/struct_ov23_02241A80.h"
 #include "overlay023/struct_ov23_02241A88.h"
 #include "overlay023/struct_ov23_0224271C.h"
@@ -52,7 +52,7 @@ typedef struct {
     u8 unk_454[8];
     SysTask * unk_45C;
     UnkStruct_ov23_02241E4C * unk_460;
-    UnkStruct_0203CDB0 * unk_464;
+    FieldSystem * unk_464;
     u8 unk_468[8];
     int unk_470;
     u8 unk_474;
@@ -83,7 +83,7 @@ static void ov23_022416B0 (int param0)
     }
 }
 
-void ov23_022416E0 (void * param0, UnkStruct_0203CDB0 * param1)
+void ov23_022416E0 (void * param0, FieldSystem * param1)
 {
     int v0;
     UnkStruct_020298B0 * v1;

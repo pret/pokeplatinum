@@ -119,7 +119,7 @@ BOOL ov70_02265F38 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
             break;
         }
 
-        if (v0->unk_08 > sub_02035E18()) {
+        if (v0->unk_08 > CommSys_ConnectedCount()) {
             v1->unk_00 = 4;
             ov70_02262E88(param0, 23);
             break;
@@ -570,7 +570,7 @@ BOOL ov70_02265F38 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
         }
         break;
     case 15:
-        sub_020388F4(0, 1);
+        CommMan_SetErrorHandling(0, 1);
 
         if (ov66_02233374() == 1) {
             int v23;
@@ -766,7 +766,7 @@ BOOL ov70_022669B8 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
 {
     switch (ov70_02262E84(param0)) {
     case 0:
-        sub_020388F4(0, 0);
+        CommMan_SetErrorHandling(0, 0);
 
         if (sub_020382C0() == 0) {
             CommInfo_Delete();

@@ -7,7 +7,7 @@
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_02049FA8.h"
 #include "struct_defs/struct_020556C4.h"
@@ -34,7 +34,7 @@ typedef struct {
     u8 unk_03;
 } UnkStruct_0206B878;
 
-static void sub_0206B878(UnkStruct_0203CDB0 * param0, UnkStruct_0203D8AC * param1, const char * param2);
+static void sub_0206B878(FieldSystem * param0, UnkStruct_0203D8AC * param1, const char * param2);
 
 static const int Unk_020EFA98[10][4] = {
 	{ 0x23D, 0x15, 0x120, 0xA },
@@ -72,7 +72,7 @@ static const u8 Unk_020EFA84[20] = {
     0x44
 };
 
-void sub_0206B70C (UnkStruct_0203CDB0 * param0, UnkStruct_0203D8AC * param1, int param2)
+void sub_0206B70C (FieldSystem * param0, UnkStruct_0203D8AC * param1, int param2)
 {
     TrainerInfo * v0;
     int v1 = 0, v2 = 0, v3 = 0;
@@ -152,7 +152,7 @@ void sub_0206B70C (UnkStruct_0203CDB0 * param0, UnkStruct_0203D8AC * param1, int
     param1->unk_139 = param2;
 }
 
-static void sub_0206B878 (UnkStruct_0203CDB0 * param0, UnkStruct_0203D8AC * param1, const char * param2)
+static void sub_0206B878 (FieldSystem * param0, UnkStruct_0203D8AC * param1, const char * param2)
 {
     FSFile v0;
     int v1, v2;

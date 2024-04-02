@@ -9,8 +9,8 @@
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
-#include "struct_defs/struct_0203CDB0_sub2_t.h"
+#include "field/field_system.h"
+#include "field/field_system_sub2_t.h"
 #include "struct_defs/struct_02049FA8.h"
 #include "overlay115/struct_ov115_0226527C.h"
 
@@ -29,7 +29,7 @@
 #include "unk_02070428.h"
 
 typedef struct {
-    UnkStruct_0203CDB0 * unk_00;
+    FieldSystem * unk_00;
     u16 unk_04;
     u16 unk_06;
     u8 unk_08;
@@ -38,9 +38,9 @@ typedef struct {
 
 static BOOL sub_020505A0(UnkStruct_020508D4 * param0);
 static void sub_0205074C(UnkStruct_0205E884 * param0, BOOL param1);
-static void sub_0205075C(UnkStruct_0203CDB0 * param0);
+static void sub_0205075C(FieldSystem * param0);
 
-void sub_02050568 (UnkStruct_0203CDB0 * param0)
+void sub_02050568 (FieldSystem * param0)
 {
     UnkStruct_02050568 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02050568));
 
@@ -50,7 +50,7 @@ void sub_02050568 (UnkStruct_0203CDB0 * param0)
 
 static BOOL sub_020505A0 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02050568 * v1 = sub_02050A64(param0);
     UnkStruct_020507E4 * v2 = SaveData_Events(v0->unk_0C);
 
@@ -137,7 +137,7 @@ static void sub_0205074C (UnkStruct_0205E884 * param0, BOOL param1)
     sub_02062D64(v0, param1);
 }
 
-static void sub_0205075C (UnkStruct_0203CDB0 * param0)
+static void sub_0205075C (FieldSystem * param0)
 {
     VecFx32 v0;
     UnkStruct_ov115_0226527C v1;

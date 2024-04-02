@@ -1068,7 +1068,7 @@ BOOL ov114_0225CA54 (UnkStruct_ov114_0225C76C * param0)
     BOOL v0 = 0;
 
     if (param0->unk_0C != NULL) {
-        if (param0->unk_08 != sub_02035E18()) {
+        if (param0->unk_08 != CommSys_ConnectedCount()) {
             v0 = 1;
         }
 

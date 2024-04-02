@@ -7,7 +7,7 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 
 #include "unk_0201D15C.h"
 #include "unk_02025E08.h"
@@ -17,20 +17,20 @@
 #include "unk_0206A8DC.h"
 #include "overlay006/ov6_02246A30.h"
 
-typedef BOOL (* UnkStruct_ov6_022494B0)(UnkStruct_0203CDB0 *);
+typedef BOOL (* UnkStruct_ov6_022494B0)(FieldSystem *);
 
-static BOOL ov6_02246A30(UnkStruct_0203CDB0 * param0);
-static BOOL ov6_02246A34(UnkStruct_0203CDB0 * param0);
-static BOOL ov6_02246A38(UnkStruct_0203CDB0 * param0);
-static BOOL ov6_02246A4C(UnkStruct_0203CDB0 * param0);
-static BOOL ov6_02246A60(UnkStruct_0203CDB0 * param0);
-static BOOL ov6_02246A74(UnkStruct_0203CDB0 * param0);
-static BOOL ov6_02246A88(UnkStruct_0203CDB0 * param0);
-static BOOL ov6_02246A9C(UnkStruct_0203CDB0 * param0);
-static BOOL ov6_02246AB0(UnkStruct_0203CDB0 * param0);
-static BOOL ov6_02246AC8(UnkStruct_0203CDB0 * param0);
-static BOOL ov6_02246AD8(UnkStruct_0203CDB0 * param0);
-static BOOL ov6_02246AE8(UnkStruct_0203CDB0 * param0);
+static BOOL ov6_02246A30(FieldSystem * param0);
+static BOOL ov6_02246A34(FieldSystem * param0);
+static BOOL ov6_02246A38(FieldSystem * param0);
+static BOOL ov6_02246A4C(FieldSystem * param0);
+static BOOL ov6_02246A60(FieldSystem * param0);
+static BOOL ov6_02246A74(FieldSystem * param0);
+static BOOL ov6_02246A88(FieldSystem * param0);
+static BOOL ov6_02246A9C(FieldSystem * param0);
+static BOOL ov6_02246AB0(FieldSystem * param0);
+static BOOL ov6_02246AC8(FieldSystem * param0);
+static BOOL ov6_02246AD8(FieldSystem * param0);
+static BOOL ov6_02246AE8(FieldSystem * param0);
 
 static const UnkStruct_ov6_022494B0 Unk_ov6_022494B0[] = {
     ov6_02246A30,
@@ -85,53 +85,53 @@ static u8 Unk_ov6_02249878[] = {
     0x3
 };
 
-static BOOL ov6_02246A30 (UnkStruct_0203CDB0 * param0)
+static BOOL ov6_02246A30 (FieldSystem * param0)
 {
     return 1;
 }
 
-static BOOL ov6_02246A34 (UnkStruct_0203CDB0 * param0)
+static BOOL ov6_02246A34 (FieldSystem * param0)
 {
     return 0;
 }
 
-static BOOL ov6_02246A38 (UnkStruct_0203CDB0 * param0)
+static BOOL ov6_02246A38 (FieldSystem * param0)
 {
     UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
     return inline_0208BE68(v0, 7);
 }
 
-static BOOL ov6_02246A4C (UnkStruct_0203CDB0 * param0)
+static BOOL ov6_02246A4C (FieldSystem * param0)
 {
     UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
     return inline_0208BE68(v0, 2);
 }
 
-static BOOL ov6_02246A60 (UnkStruct_0203CDB0 * param0)
+static BOOL ov6_02246A60 (FieldSystem * param0)
 {
     UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
     return inline_0208BE68(v0, 9);
 }
 
-static BOOL ov6_02246A74 (UnkStruct_0203CDB0 * param0)
+static BOOL ov6_02246A74 (FieldSystem * param0)
 {
     UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
     return inline_0208BE68(v0, 10);
 }
 
-static BOOL ov6_02246A88 (UnkStruct_0203CDB0 * param0)
+static BOOL ov6_02246A88 (FieldSystem * param0)
 {
     UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
     return inline_0208BE68(v0, 11);
 }
 
-static BOOL ov6_02246A9C (UnkStruct_0203CDB0 * param0)
+static BOOL ov6_02246A9C (FieldSystem * param0)
 {
     UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
     return inline_0208BE68(v0, 17);
 }
 
-static BOOL ov6_02246AB0 (UnkStruct_0203CDB0 * param0)
+static BOOL ov6_02246AB0 (FieldSystem * param0)
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(param0->unk_0C);
 
@@ -142,25 +142,25 @@ static BOOL ov6_02246AB0 (UnkStruct_0203CDB0 * param0)
     }
 }
 
-static BOOL ov6_02246AC8 (UnkStruct_0203CDB0 * param0)
+static BOOL ov6_02246AC8 (FieldSystem * param0)
 {
     PokedexData * v0 = sub_02027560(param0->unk_0C);
     return sub_02026F0C(v0);
 }
 
-static BOOL ov6_02246AD8 (UnkStruct_0203CDB0 * param0)
+static BOOL ov6_02246AD8 (FieldSystem * param0)
 {
     PokedexData * v0 = sub_02027560(param0->unk_0C);
     return sub_02027520(v0);
 }
 
-static BOOL ov6_02246AE8 (UnkStruct_0203CDB0 * param0)
+static BOOL ov6_02246AE8 (FieldSystem * param0)
 {
     UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
     return sub_0206A954(v0);
 }
 
-static int ov6_02246AF8 (UnkStruct_0203CDB0 * param0, u8 * param1)
+static int ov6_02246AF8 (FieldSystem * param0, u8 * param1)
 {
     int v0, v1;
     BOOL v2[NELEMS(Unk_ov6_022494B0)];
@@ -181,7 +181,7 @@ static int ov6_02246AF8 (UnkStruct_0203CDB0 * param0, u8 * param1)
     return v1;
 }
 
-int ov6_02246B40 (UnkStruct_0203CDB0 * param0)
+int ov6_02246B40 (FieldSystem * param0)
 {
     u8 v0[36];
     int v1;

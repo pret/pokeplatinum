@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_02055BA8.h"
 
 #include "rtc.h"
@@ -1846,7 +1846,7 @@ static const u8 Unk_020E98F4[] = {
 };
 
 
-int sub_0203A944 (UnkStruct_0203CDB0 * param0, int param1)
+int sub_0203A944 (FieldSystem * param0, int param1)
 {
     int v0;
 

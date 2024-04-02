@@ -8,7 +8,7 @@
 
 #include "enums.h"
 
-BOOL sub_02036780(void);
+BOOL CommMan_IsInitialized(void);
 void sub_02036794(SaveData * param0);
 void sub_020367D0(void);
 void sub_020367F0(void);
@@ -18,8 +18,8 @@ BOOL sub_02036834(void);
 void sub_02036884(void);
 void sub_02036894(void);
 void sub_020368A4(void);
-void sub_020368B8(SaveData * param0, int param1, int param2, const BattleRegulation * param3, BOOL param4);
-void sub_02036900(SaveData * param0, int param1, int param2, const BattleRegulation * param3, BOOL param4);
+void CommMan_StartBattleServer(SaveData * param0, int param1, int param2, const BattleRegulation * param3, BOOL param4);
+void CommMan_StartBattleClient(SaveData * param0, int param1, int param2, const BattleRegulation * param3, BOOL param4);
 void sub_02036948(int param0);
 void sub_02036964(void);
 void sub_02036978(void);
@@ -85,7 +85,7 @@ void sub_0203883C(UnkEnum_ov66_02232F38 param0);
 void sub_0203888C(void);
 u32 sub_020388AC(void);
 void * sub_020388E8(void);
-void sub_020388F4(BOOL param0, BOOL param1);
+void CommMan_SetErrorHandling(BOOL param0, BOOL param1);
 BOOL sub_02038938(void);
 int sub_0203895C(void);
 int sub_02038974(void);

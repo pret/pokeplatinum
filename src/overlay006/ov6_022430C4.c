@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_020698E4.h"
 #include "overlay006/struct_ov6_022430E8.h"
 
@@ -11,7 +11,7 @@
 
 static void ov6_022431A0(UnkStruct_020698E4 * param0, UnkStruct_ov6_022430E8 ** param1);
 
-int ov6_022430C4 (UnkStruct_0203CDB0 * param0)
+int ov6_022430C4 (FieldSystem * param0)
 {
     int v0;
     int v1;
@@ -29,7 +29,7 @@ int ov6_022430C4 (UnkStruct_0203CDB0 * param0)
     return v1;
 }
 
-int ov6_022430E8 (UnkStruct_0203CDB0 * param0, const u8 param1)
+int ov6_022430E8 (FieldSystem * param0, const u8 param1)
 {
     UnkStruct_020698E4 * v0;
     UnkStruct_ov6_022430E8 * v1[3];
@@ -42,7 +42,7 @@ int ov6_022430E8 (UnkStruct_0203CDB0 * param0, const u8 param1)
     return v1[param1]->unk_00;
 }
 
-int ov6_02243114 (UnkStruct_0203CDB0 * param0, const u8 param1)
+int ov6_02243114 (FieldSystem * param0, const u8 param1)
 {
     UnkStruct_020698E4 * v0;
     UnkStruct_ov6_022430E8 * v1[3];
@@ -54,12 +54,12 @@ int ov6_02243114 (UnkStruct_0203CDB0 * param0, const u8 param1)
     return v1[param1]->unk_02;
 }
 
-int ov6_02243140 (UnkStruct_0203CDB0 * param0)
+int ov6_02243140 (FieldSystem * param0)
 {
     return GetChainCount(param0);
 }
 
-int GetRadarSpecies (UnkStruct_0203CDB0 * param0) {
+int GetRadarSpecies (FieldSystem * param0) {
     int species, level;
 
     GetRadarMon(param0->chain, &species, &level);

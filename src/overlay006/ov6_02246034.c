@@ -7,7 +7,7 @@
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0202D7B0.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0206C638.h"
 #include "overlay006/battle_params.h"
 
@@ -22,7 +22,7 @@
 static void ov6_02246110(UnkStruct_0202D7B0 * param0, const int param1);
 static UnkStruct_0206C638 * ov6_02246148(UnkStruct_0202D7B0 * param0, const int param1);
 
-void ov6_02246034 (UnkStruct_0203CDB0 * param0, BattleParams * param1)
+void ov6_02246034 (FieldSystem * param0, BattleParams * param1)
 {
     u16 v0;
     u8 v1;

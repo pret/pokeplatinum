@@ -1631,7 +1631,7 @@ static int ov65_0222F010 (UnkStruct_ov65_0222EBE0 * param0, int param1)
             param0->unk_3A8 = 65;
         } else {
             ov65_02232B58(param0, 77, 0);
-            sub_020388F4(1, 1);
+            CommMan_SetErrorHandling(1, 1);
             sub_020364F0(16);
             param0->unk_3A8 = 61;
         }
@@ -2458,7 +2458,7 @@ static int ov65_0222FFAC (UnkStruct_ov65_0222EBE0 * param0, int param1)
     sub_0200F174(0, 1, 1, 0x0, 6, 1, 54);
     param0->unk_3A8 = 19;
 
-    sub_020388F4(0, 0);
+    CommMan_SetErrorHandling(0, 0);
     return param1;
 }
 
@@ -3428,7 +3428,7 @@ static int ov65_02231200 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     }
 
     if (sub_020382C0()) {
-        sub_020388F4(0, 1);
+        CommMan_SetErrorHandling(0, 1);
 
         sub_0203632C(0);
         sub_0200F174(0, 0, 0, 0x0, 6, 1, 54);
@@ -4094,7 +4094,7 @@ static int ov65_02231E64 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         } else if (CommSys_IsPlayerConnected(0) == 1) {
             ov65_02232DFC(param0);
             CommInfo_Init(param0->unk_160, NULL);
-            sub_020388F4(0, 1);
+            CommMan_SetErrorHandling(0, 1);
             ov65_0222DFD4(v0);
 
             param0->unk_3AC = ov65_0222DD94(v0);
@@ -4320,7 +4320,7 @@ static int ov65_02232358 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         (void)0;
     } else if (sub_02036540(15)) {
         CommInfo_SendBattleRegulation();
-        sub_020388F4(1, 1);
+        CommMan_SetErrorHandling(1, 1);
         sub_020364F0(18);
 
         param0->unk_3A8 = 53;
@@ -4507,7 +4507,7 @@ static int ov65_02232698 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         sub_02038350();
     }
 
-    if (!sub_02036780()) {
+    if (!CommMan_IsInitialized()) {
         sub_0202B0F8(param0->unk_00);
         ov65_02232B58(param0, 27, 1);
 
@@ -4541,7 +4541,7 @@ static int ov65_02232734 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         return param1;
     }
 
-    sub_020388F4(0, 1);
+    CommMan_SetErrorHandling(0, 1);
 
     if (Message_Printing(param0->unk_180) == 0) {
         param0->unk_184 = sub_02002100(param0->unk_15C, &Unk_ov65_0223894C, ((512 - (18 + 12)) - 9), 11, 54);
@@ -4728,7 +4728,7 @@ static int ov65_0223294C (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
 static int ov65_02232B28 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
-    if (!sub_02036780()) {
+    if (!CommMan_IsInitialized()) {
         sub_0200F174(0, 0, 0, 0x0, 6, 1, 54);
         param1 = 2;
     }

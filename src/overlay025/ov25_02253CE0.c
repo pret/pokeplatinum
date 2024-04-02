@@ -8,7 +8,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "savedata.h"
 #include "overlay025/struct_ov25_0225424C_decl.h"
 #include "overlay025/struct_ov25_02254560_decl.h"
@@ -100,7 +100,7 @@ typedef struct UnkStruct_ov25_02253CE0_t {
     NNSG2dOamManagerInstance * unk_50;
     SaveData * unk_54;
     PoketchData * unk_58;
-    UnkStruct_0203CDB0 * unk_5C;
+    FieldSystem * unk_5C;
     int unk_60;
 } UnkStruct_ov25_02253CE0;
 
@@ -164,7 +164,7 @@ static UnkStruct_ov25_02253CE0 * ov25_02253CE0 (void)
     return sub_0203D158();
 }
 
-void ov25_02253CE8 (UnkStruct_0203CDB0 * param0, UnkStruct_ov25_02253CE0 ** param1, SaveData * param2, BGL * param3, NNSG2dOamManagerInstance * param4)
+void ov25_02253CE8 (FieldSystem * param0, UnkStruct_ov25_02253CE0 ** param1, SaveData * param2, BGL * param3, NNSG2dOamManagerInstance * param4)
 {
     UnkStruct_ov25_02253CE0 * v0;
 
@@ -806,7 +806,7 @@ BOOL ov25_02254538 (const UnkStruct_ov25_0225424C * param0)
     return param0->unk_07;
 }
 
-UnkStruct_0203CDB0 * ov25_0225453C (const UnkStruct_ov25_0225424C * param0)
+FieldSystem * ov25_0225453C (const UnkStruct_ov25_0225424C * param0)
 {
     return param0->unk_5C;
 }

@@ -1159,7 +1159,7 @@ static void ov65_02237370 (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 
     v2 = ov65_02237A54(param0);
     v0 = ov65_02237628(param0);
 
-    if (ov65_02237548(param0) > sub_02035E18()) {
+    if (ov65_02237548(param0) > CommSys_ConnectedCount()) {
         v1 = 1;
     } else {
         v1 = 0;
@@ -1183,7 +1183,7 @@ static void ov65_0223742C (UnkStruct_ov65_022367A8 * param0)
 
 static BOOL ov65_02237450 (const UnkStruct_ov65_022367A8 * param0)
 {
-    if (sub_02035E18() > 0) {
+    if (CommSys_ConnectedCount() > 0) {
         return 1;
     }
 
@@ -1657,7 +1657,7 @@ static BOOL ov65_02237A70 (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 
     }
 
     ov4_021D26EC(0);
-    sub_020388F4(0, 1);
+    CommMan_SetErrorHandling(0, 1);
     ov65_022376D0(param0, CommSys_CurNetId(), param2);
 
     param0->unk_00.unk_05 = 1;
@@ -1906,7 +1906,7 @@ static BOOL ov65_02237D98 (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 
 {
     int v0;
 
-    if (sub_02035E18() != CommInfo_CountReceived()) {
+    if (CommSys_ConnectedCount() != CommInfo_CountReceived()) {
         ov65_0223758C(param0);
         return 0;
     }
@@ -2006,7 +2006,7 @@ static BOOL ov65_02237E54 (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 
 
 static BOOL ov65_02237EA4 (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 * param1, u32 param2)
 {
-    sub_020388F4(1, 1);
+    CommMan_SetErrorHandling(1, 1);
     sub_020364F0(18);
 
     param0->unk_00.unk_05 = 18;
@@ -2161,7 +2161,7 @@ static BOOL ov65_0223806C (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 
     sub_02038378();
     ov65_022375CC(param0);
     sub_02038B60();
-    sub_020388F4(0, 1);
+    CommMan_SetErrorHandling(0, 1);
 
     return 1;
 }
@@ -2203,7 +2203,7 @@ static BOOL ov65_02238104 (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 
     sub_02038B60();
     ov65_022375CC(param0);
     param0->unk_00.unk_07 = 0;
-    sub_020388F4(0, 1);
+    CommMan_SetErrorHandling(0, 1);
 
     return 1;
 }
@@ -2263,7 +2263,7 @@ static BOOL ov65_02238190 (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 
 static BOOL ov65_022381CC (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 * param1, u32 param2)
 {
     CommInfo_SendBattleRegulation();
-    sub_020388F4(0, 1);
+    CommMan_SetErrorHandling(0, 1);
     param0->unk_00.unk_05 = 1;
     return 0;
 }
@@ -2380,7 +2380,7 @@ static BOOL ov65_02238350 (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 
     }
 
     param0->unk_00.unk_07 = 0;
-    sub_020388F4(0, 1);
+    CommMan_SetErrorHandling(0, 1);
 
     return 1;
 }
@@ -2462,7 +2462,7 @@ static BOOL ov65_0223846C (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 
 
         v0 = ov65_02237548(param0);
 
-        if (sub_02035E18() != v0) {
+        if (CommSys_ConnectedCount() != v0) {
             param0->unk_00.unk_08--;
 
             if (param0->unk_00.unk_08 <= 0) {
@@ -2519,7 +2519,7 @@ static BOOL ov65_022384BC (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 
 
 static BOOL ov65_0223850C (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 * param1, u32 param2)
 {
-    sub_020388F4(1, 1);
+    CommMan_SetErrorHandling(1, 1);
     sub_020364F0(18);
 
     param0->unk_00.unk_05 = 14;
@@ -2579,7 +2579,7 @@ static BOOL ov65_022385AC (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 
 
     param0->unk_00.unk_07 = 0;
 
-    sub_020388F4(0, 1);
+    CommMan_SetErrorHandling(0, 1);
 
     return 1;
 }
@@ -2811,7 +2811,7 @@ static BOOL ov65_02238910 (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 
     sub_02038B60();
 
     param0->unk_00.unk_07 = 0;
-    sub_020388F4(0, 1);
+    CommMan_SetErrorHandling(0, 1);
 
     return 1;
 }

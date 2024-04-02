@@ -6,7 +6,7 @@
 #include "trainer_info.h"
 #include "struct_decls/struct_0203E724_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0203E724_t.h"
 #include "struct_defs/struct_0205AA50.h"
 
@@ -92,7 +92,7 @@ BOOL sub_0204C9AC (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204C9FC (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     u16 v1 = inline_02049538(param0);
     u16 v2 = inline_02049538(param0);
     Window ** v3;
@@ -105,7 +105,7 @@ BOOL sub_0204C9FC (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204CA4C (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     Window ** v1 = sub_0203F098(v0, 39);
 
     ov5_021DCF58(*v1);
@@ -114,7 +114,7 @@ BOOL sub_0204CA4C (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204CA64 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     Window ** v1 = sub_0203F098(v0, 39);
 
     ov5_021DCF6C(param0->unk_34, *v1);

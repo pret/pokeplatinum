@@ -5,7 +5,7 @@
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_02029894_decl.h"
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "savedata.h"
 #include "overlay023/struct_ov23_0224271C_decl.h"
 #include "overlay023/funcptr_ov23_022427DC.h"
@@ -34,11 +34,11 @@ void ov23_02242830(u8 param0);
 int ov23_022428D4(void);
 void ov23_022428D8(int param0, int param1, void * param2, void * param3);
 void ov23_02242B14(void);
-void ov23_02242BC0(UnkStruct_0203CDB0 * param0);
+void ov23_02242BC0(FieldSystem * param0);
 void ov23_02242C78(void);
 void ov23_02242CB4(void);
 void ov23_02242D08(void);
-void ov23_02242D44(UnkStruct_0203CDB0 * param0);
+void ov23_02242D44(FieldSystem * param0);
 BOOL ov23_02242D60(Strbuf *param0);
 UnkStruct_02029894 * ov23_02242E10(SaveData * param0);
 int ov23_02242E28(void);

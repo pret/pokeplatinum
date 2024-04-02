@@ -12,7 +12,7 @@
 #include "struct_decls/struct_party_decl.h"
 #include "savedata.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0204B184.h"
 #include "struct_defs/struct_0204B1E8.h"
@@ -153,7 +153,7 @@ u16 sub_0204AF9C (u8 param0)
     return 0x3;
 }
 
-u16 sub_0204AFC4 (UnkStruct_0203CDB0 * param0, const u16 * param1)
+u16 sub_0204AFC4 (FieldSystem * param0, const u16 * param1)
 {
     u16 v0 = 0;
     UnkStruct_0204AFC4 * v1 = param0->unk_AC;
@@ -175,7 +175,7 @@ u16 sub_0204AFC4 (UnkStruct_0203CDB0 * param0, const u16 * param1)
     return v0;
 }
 
-u16 sub_0204B020 (UnkStruct_0203CDB0 * param0, const u16 * param1)
+u16 sub_0204B020 (FieldSystem * param0, const u16 * param1)
 {
     int v0;
     UnkStruct_0204AFC4 * v1 = param0->unk_AC;
@@ -188,7 +188,7 @@ u16 sub_0204B020 (UnkStruct_0203CDB0 * param0, const u16 * param1)
     return 1;
 }
 
-u16 sub_0204B044 (UnkStruct_0203CDB0 * param0, const u16 * param1)
+u16 sub_0204B044 (FieldSystem * param0, const u16 * param1)
 {
     int v0;
     UnkStruct_0204AFC4 * v1 = param0->unk_AC;

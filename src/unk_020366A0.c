@@ -201,7 +201,7 @@ static void sub_02036734 (void)
     Unk_021C07D4 = NULL;
 }
 
-BOOL sub_02036780 (void)
+BOOL CommMan_IsInitialized (void)
 {
     if (Unk_021C07D4) {
         return 1;
@@ -288,9 +288,9 @@ void sub_020368A4 (void)
     sub_02036C94(sub_02037108, 0);
 }
 
-void sub_020368B8 (SaveData * param0, int param1, int param2, const BattleRegulation * param3, BOOL param4)
+void CommMan_StartBattleServer (SaveData * param0, int param1, int param2, const BattleRegulation * param3, BOOL param4)
 {
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         return;
     }
 
@@ -303,9 +303,9 @@ void sub_020368B8 (SaveData * param0, int param1, int param2, const BattleRegula
     sub_02036C94(sub_02037144, 0);
 }
 
-void sub_02036900 (SaveData * param0, int param1, int param2, const BattleRegulation * param3, BOOL param4)
+void CommMan_StartBattleClient (SaveData * param0, int param1, int param2, const BattleRegulation * param3, BOOL param4)
 {
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         return;
     }
 
@@ -436,7 +436,7 @@ void sub_02036AC4 (void)
     sub_02032138(0);
 
     if (!((Unk_021C07D4->unk_4F == 1) && (Unk_021C07D4->unk_50 == 1)) || (Unk_021C07D4->unk_4A == 9)) {
-        sub_020388F4(0, 0);
+        CommMan_SetErrorHandling(0, 0);
     }
 
     sub_02039794();
@@ -514,7 +514,7 @@ void sub_02036BD8 (void)
 
 void sub_02036BE8 (SaveData * param0, int param1)
 {
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         return;
     }
 
@@ -525,7 +525,7 @@ void sub_02036BE8 (SaveData * param0, int param1)
 
 void sub_02036C1C (SaveData * param0, int param1)
 {
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         return;
     }
 
@@ -865,7 +865,7 @@ static void sub_0203718C (void)
 
 static void sub_020371A8 (void)
 {
-    if (!sub_02035E38()) {
+    if (!CommSys_IsInitialized()) {
         sub_02036C94(sub_02037334, 0);
     }
 }
@@ -937,7 +937,7 @@ static void sub_02037284 (void)
 
 static void sub_020372C4 (void)
 {
-    if (!sub_02035E38()) {
+    if (!CommSys_IsInitialized()) {
         sub_02036C94(sub_02037334, 0);
     }
 }
@@ -974,7 +974,7 @@ static void sub_02037330 (void)
 
 static void sub_02037334 (void)
 {
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         return;
     }
 
@@ -988,7 +988,7 @@ static void sub_02037344 (void)
 
 static void sub_02037354 (void)
 {
-    if (sub_02035E18() <= 1) {
+    if (CommSys_ConnectedCount() <= 1) {
         sub_02032160(0);
         sub_02034B04();
         sub_02036C94(sub_02037474, 0);
@@ -1524,7 +1524,7 @@ static void sub_02037B78 (void)
 
 void sub_02037BC0 (SaveData * param0)
 {
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         return;
     }
 
@@ -1608,7 +1608,7 @@ static void sub_02037D08 (void)
 
 void sub_02037D48 (SaveData * param0)
 {
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         return;
     }
 
@@ -1745,7 +1745,7 @@ static void sub_02037ED8 (void)
     }
 
     if (Unk_021C07D4->unk_4F) {
-        if (Unk_021C07D4->unk_47 != sub_02035E18()) {
+        if (Unk_021C07D4->unk_47 != CommSys_ConnectedCount()) {
             sub_02036C94(sub_02037EB0, 0);
         }
     }
@@ -2026,7 +2026,7 @@ void sub_02038398 (void)
         return;
     }
 
-    sub_020388F4(0, 1);
+    CommMan_SetErrorHandling(0, 1);
 
     if (CommSys_CurNetId() == 0) {
         Unk_021C07D4->unk_4C = 0;
@@ -2074,7 +2074,7 @@ void sub_02038438 (SaveData * param0)
         Unk_021C07D4->unk_4A = 24;
         Unk_021C07D4->unk_51 = 1;
         Unk_021C07D4->unk_28 = param0;
-        sub_020388F4(0, 1);
+        CommMan_SetErrorHandling(0, 1);
         ResetLock(1);
     }
 }
@@ -2083,7 +2083,7 @@ void sub_0203848C (void)
 {
     if (Unk_021C07D4) {
         ResetUnlock(1);
-        sub_020388F4(0, 0);
+        CommMan_SetErrorHandling(0, 0);
         Heap_FreeToHeap(Unk_021C07D4);
         Unk_021C07D4 = NULL;
         Heap_Destroy(15);
@@ -2099,7 +2099,7 @@ void sub_020384C0 (SaveData * param0)
         Unk_021C07D4->unk_4A = 25;
         Unk_021C07D4->unk_51 = 1;
         Unk_021C07D4->unk_28 = param0;
-        sub_020388F4(0, 1);
+        CommMan_SetErrorHandling(0, 1);
         ResetLock(1);
     }
 }
@@ -2108,7 +2108,7 @@ void sub_02038514 (void)
 {
     if (Unk_021C07D4) {
         ResetUnlock(1);
-        sub_020388F4(0, 0);
+        CommMan_SetErrorHandling(0, 0);
         Heap_FreeToHeap(Unk_021C07D4);
         Unk_021C07D4 = NULL;
         Heap_Destroy(15);
@@ -2124,7 +2124,7 @@ void sub_02038548 (SaveData * param0)
         Unk_021C07D4->unk_4A = 36;
         Unk_021C07D4->unk_51 = 1;
         Unk_021C07D4->unk_28 = param0;
-        sub_020388F4(0, 1);
+        CommMan_SetErrorHandling(0, 1);
         ResetLock(1);
     }
 }
@@ -2133,7 +2133,7 @@ void sub_0203859C (void)
 {
     if (Unk_021C07D4) {
         ResetUnlock(1);
-        sub_020388F4(0, 0);
+        CommMan_SetErrorHandling(0, 0);
         Heap_FreeToHeap(Unk_021C07D4);
         Unk_021C07D4 = NULL;
         Heap_Destroy(15);
@@ -2226,7 +2226,7 @@ void * sub_0203871C (SaveData * param0, int param1)
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(param0);
 
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         return NULL;
     }
 
@@ -2248,7 +2248,7 @@ void sub_0203878C (SaveData * param0, const void * param1)
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(param0);
 
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         return;
     }
 
@@ -2344,14 +2344,14 @@ void * sub_020388E8 (void)
     return Unk_021C07D4->unk_00;
 }
 
-void sub_020388F4 (BOOL param0, BOOL param1)
+void CommMan_SetErrorHandling (BOOL param0, BOOL param1)
 {
     if (Unk_021C07D4) {
         Unk_021C07D4->unk_4F = param0;
         Unk_021C07D4->unk_50 = param1;
 
         if (param0) {
-            Unk_021C07D4->unk_47 = sub_02035E18();
+            Unk_021C07D4->unk_47 = CommSys_ConnectedCount();
         } else {
             Unk_021C07D4->unk_47 = 0;
         }
@@ -2480,7 +2480,7 @@ void sub_02038A20 (int param0)
 
 BOOL sub_02038AB8 (void)
 {
-    if (sub_02033DFC() || !sub_02036780()) {
+    if (sub_02033DFC() || !CommMan_IsInitialized()) {
         return 1;
     }
 
@@ -2613,7 +2613,7 @@ static BOOL sub_02038C74 (int param0)
     }
 
     if (Unk_021C07D4->unk_4F) {
-        if (Unk_021C07D4->unk_47 != sub_02035E18()) {
+        if (Unk_021C07D4->unk_47 != CommSys_ConnectedCount()) {
             sub_02036C94(sub_02037EB0, 0);
             v0 = 0;
         }
@@ -2808,5 +2808,5 @@ BOOL sub_02038EB4 (void)
         return 0;
     }
 
-    return sub_02035E38();
+    return CommSys_IsInitialized();
 }

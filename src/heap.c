@@ -211,7 +211,7 @@ static void * AllocFromHeapInternal (NNSFndHeapHandle heap, u32 size, s32 alignm
 
 static void AllocFail (void)
 {
-    if (sub_02036780()) {
+    if (CommMan_IsInitialized()) {
         ErrorMessageReset_PrintErrorAndReset();
     }
 }

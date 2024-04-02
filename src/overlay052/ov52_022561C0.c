@@ -7,7 +7,7 @@
 #include "overlay025/struct_ov25_0225424C_decl.h"
 #include "overlay052/struct_ov52_02256694_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "overlay052/struct_ov52_02256694_1.h"
 
 #include "unk_0200D9E8.h"
@@ -170,7 +170,7 @@ static BOOL ov52_022562F8 (UnkStruct_ov52_0225621C * param0)
     case 0:
         if (ov52_02256554(param0)) {
             if (ov52_02256684(param0)) {
-                UnkStruct_0203CDB0 * v0 = ov25_0225453C(param0->unk_18);
+                FieldSystem * v0 = ov25_0225453C(param0->unk_18);
 
                 ov52_022567A4(param0->unk_14, 3);
 
@@ -400,7 +400,7 @@ static void ov52_022565EC (UnkStruct_ov52_0225621C * param0)
         }
         break;
     case 3:
-        if (sub_02035E38() == 0) {
+        if (CommSys_IsInitialized() == 0) {
             param0->unk_20 = 0;
         }
         break;

@@ -11,7 +11,7 @@
 #include "savedata.h"
 #include "overlay005/struct_ov5_021E1FF4_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_02049FA8.h"
 #include "struct_defs/struct_0205AA50.h"
 
@@ -44,7 +44,7 @@ typedef struct {
 } UnkStruct_ov5_021E1D20;
 
 struct UnkStruct_ov5_021E1FF4_t {
-    UnkStruct_0203CDB0 * unk_00;
+    FieldSystem * unk_00;
     int unk_04;
     u8 unk_08;
     BGL * unk_0C;
@@ -56,7 +56,7 @@ struct UnkStruct_ov5_021E1FF4_t {
     int unk_30;
 };
 
-static void ov5_021E2028(UnkStruct_0203CDB0 * param0);
+static void ov5_021E2028(FieldSystem * param0);
 
 static const int Unk_ov5_021F9CCC[] = {
     0x0,
@@ -73,7 +73,7 @@ static const int Unk_ov5_021F9CBC[] = {
     0x8
 };
 
-static void ov5_021E1D20 (UnkStruct_ov5_021E1D20 * param0, const UnkStruct_0203CDB0 * param1)
+static void ov5_021E1D20 (UnkStruct_ov5_021E1D20 * param0, const FieldSystem * param1)
 {
     SaveData * v0 = param1->unk_0C;
     UnkStruct_02049FA8 * v1 = sub_0203A720(sub_0203A790(v0));
@@ -189,7 +189,7 @@ void ov5_021E1F7C (UnkStruct_ov5_021E1FF4 * param0)
     Heap_FreeToHeap(param0->unk_10);
 }
 
-UnkStruct_ov5_021E1FF4 * ov5_021E1F98 (UnkStruct_0203CDB0 * param0, int param1, u8 param2)
+UnkStruct_ov5_021E1FF4 * ov5_021E1F98 (FieldSystem * param0, int param1, u8 param2)
 {
     UnkStruct_ov5_021E1FF4 * v0;
 
@@ -218,7 +218,7 @@ void ov5_021E1FF4 (UnkStruct_ov5_021E1FF4 * param0)
     Heap_FreeToHeap(param0);
 }
 
-BOOL ov5_021E200C (UnkStruct_0203CDB0 * param0)
+BOOL ov5_021E200C (FieldSystem * param0)
 {
     ov5_021E2028(param0);
 
@@ -229,7 +229,7 @@ BOOL ov5_021E200C (UnkStruct_0203CDB0 * param0)
     }
 }
 
-static void ov5_021E2028 (UnkStruct_0203CDB0 * param0)
+static void ov5_021E2028 (FieldSystem * param0)
 {
     sub_0203A7A8(param0);
     ov5_021EA714(param0, 4, 0);
@@ -240,7 +240,7 @@ static void ov5_021E2028 (UnkStruct_0203CDB0 * param0)
     param0->unk_1C->unk_10 = sub_0205EA78(param0->unk_3C);
 }
 
-void ov5_021E2064 (UnkStruct_0203CDB0 * param0)
+void ov5_021E2064 (FieldSystem * param0)
 {
     if (param0 == NULL) {
         GF_ASSERT(0);

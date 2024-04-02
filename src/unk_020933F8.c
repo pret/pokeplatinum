@@ -23,7 +23,7 @@
 #include "constdata/const_020F561C.h"
 #include "constdata/const_020F55DC.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_02093800.h"
 #include "struct_defs/struct_02093BBC.h"
@@ -177,7 +177,7 @@ void sub_020933F8 (UnkStruct_020508D4 * param0, UnkStruct_02095C48 * param1)
 
 static BOOL sub_02093448 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_020933F8 * v1 = sub_02050A64(param0);
 
     switch (v1->unk_04) {
@@ -267,7 +267,7 @@ static BOOL sub_02093448 (UnkStruct_020508D4 * param0)
 
 static BOOL sub_020935EC (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_020933F8 * v1 = sub_02050A64(param0);
 
     switch (v1->unk_04) {
@@ -980,13 +980,13 @@ BOOL sub_020943B0 (UnkStruct_02095C48 * param0)
 {
     int v0, v1;
 
-    if (sub_02035E38() == 0) {
+    if (CommSys_IsInitialized() == 0) {
         return 0;
     }
 
     param0->unk_155 = 1;
 
-    v0 = sub_02035E18();
+    v0 = CommSys_ConnectedCount();
     v1 = CommSys_CurNetId();
 
     {

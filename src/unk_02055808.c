@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_020508D4_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 
 #include "unk_0200F174.h"
 #include "unk_0203CC84.h"
@@ -13,7 +13,7 @@
 
 static BOOL sub_02055808 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
 
     if (!sub_0203CD4C(v0)) {
         return 1;
@@ -24,7 +24,7 @@ static BOOL sub_02055808 (UnkStruct_020508D4 * param0)
 
 void sub_02055820 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
 
     if (!sub_0203CD4C(v0)) {
         GF_ASSERT(FALSE);
@@ -37,7 +37,7 @@ void sub_02055820 (UnkStruct_020508D4 * param0)
 
 static BOOL sub_02055850 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
 
     if (sub_020509DC(v0)) {
         return 1;
@@ -48,7 +48,7 @@ static BOOL sub_02055850 (UnkStruct_020508D4 * param0)
 
 void sub_02055868 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
 
     if (sub_0203CD4C(v0)) {
         GF_ASSERT(FALSE);
@@ -70,7 +70,7 @@ static BOOL sub_02055898 (UnkStruct_020508D4 * param0)
 
 void sub_020558AC (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
 
     if (!sub_0203CD4C(v0)) {
         GF_ASSERT(FALSE);
@@ -85,7 +85,7 @@ void sub_020558AC (UnkStruct_020508D4 * param0)
 
 void sub_020558F0 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
 
     if (!sub_0203CD4C(v0)) {
         GF_ASSERT(FALSE);
@@ -126,7 +126,7 @@ void sub_02055974 (UnkStruct_020508D4 * param0)
 static BOOL sub_02055984 (UnkStruct_020508D4 * param0)
 {
     int * v0 = sub_02050A68(param0);
-    UnkStruct_0203CDB0 * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = sub_02050A60(param0);
 
     switch (*v0) {
     case 0:

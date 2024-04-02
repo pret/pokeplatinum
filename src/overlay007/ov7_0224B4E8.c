@@ -14,7 +14,7 @@
 
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0202610C.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 
@@ -43,7 +43,7 @@ typedef struct {
     UnkStruct_0200112C * unk_04;
     ResourceMetadata * unk_08;
     ResourceMetadata * unk_0C;
-    UnkStruct_0203CDB0 * unk_10;
+    FieldSystem * unk_10;
     Strbuf* unk_14;
     Strbuf* unk_18;
     Strbuf* unk_1C;
@@ -460,7 +460,7 @@ static BOOL ov7_0224BBC4 (UnkStruct_ov7_0224B4E8 * param0)
 
 static BOOL ov7_0224BC74 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_ov7_0224B4E8 * v1 = sub_02050A64(param0);
     int v2;
 
@@ -557,7 +557,7 @@ static BOOL ov7_0224BC74 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static UnkStruct_ov7_0224B4E8 * ov7_0224BE10 (UnkStruct_0203CDB0 * param0)
+static UnkStruct_ov7_0224B4E8 * ov7_0224BE10 (FieldSystem * param0)
 {
     UnkStruct_ov7_0224B4E8 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov7_0224B4E8));
 
@@ -579,7 +579,7 @@ static UnkStruct_ov7_0224B4E8 * ov7_0224BE10 (UnkStruct_0203CDB0 * param0)
 
 void ov7_0224BE7C (UnkStruct_020508D4 * param0, u16 * param1)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_ov7_0224B4E8 * v1 = ov7_0224BE10(v0);
 
     v1->unk_70 = param1;
