@@ -1,0 +1,95 @@
+{
+    "bg_events": [
+        {
+            "script": 8803,
+            "type": 0,
+            "x": 62,
+            "y": 38,
+            "z": 0,
+            "player_facing_dir": 0
+        },
+        {
+            "script": 8210,
+            "type": 2,
+            "x": 33,
+            "y": 37,
+            "z": 0,
+            "player_facing_dir": 4
+        }
+    ],
+    "object_events": [
+        {
+            "graphics_id": 87,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 1080,
+            "script": 7066,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 48,
+            "y": 38,
+            "z": 0
+        },
+        {
+            "graphics_id": 87,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 1081,
+            "script": 7067,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 49,
+            "y": 54,
+            "z": 0
+        },
+        {
+            "graphics_id": 93,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 0,
+            "script": 1,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 61,
+            "y": 46,
+            "z": 0
+        },
+        {
+            "graphics_id": 50,
+            "movement_type": 2,
+            "trainer_type": 0,
+            "flag": 0,
+            "script": 2,
+            "initial_dir": 3,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 55,
+            "y": 58,
+            "z": 0
+        },
+        {
+            "local_id": 1,
+            "graphics_id": 93,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 505,
+            "script": 65535,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 70,
+            "y": 46,
+            "z": 0
+        }
+    ],
+    "warp_events": [],
+    "coord_events": []
+}

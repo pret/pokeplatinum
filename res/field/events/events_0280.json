@@ -1,0 +1,102 @@
+{
+    "bg_events": [
+        {
+            "script": 8052,
+            "type": 2,
+            "x": 11,
+            "y": 9,
+            "z": 0,
+            "player_facing_dir": 4
+        }
+    ],
+    "object_events": [
+        {
+            "graphics_id": 87,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 1151,
+            "script": 7137,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 21,
+            "y": 15,
+            "z": 0
+        },
+        {
+            "graphics_id": 87,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 1150,
+            "script": 7136,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 2,
+            "y": 17,
+            "z": 0
+        },
+        {
+            "graphics_id": 53,
+            "movement_type": 4,
+            "trainer_type": 1,
+            "flag": 0,
+            "script": 3456,
+            "initial_dir": 0,
+            "data": [3],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 17,
+            "y": 16,
+            "z": 0
+        },
+        {
+            "graphics_id": 87,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 1304,
+            "script": 7289,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 7,
+            "y": 21,
+            "z": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "x": 6,
+            "y": 26,
+            "dest_header_id": 293,
+            "dest_warp_id": 0
+        },
+        {
+            "x": 16,
+            "y": 26,
+            "dest_header_id": 292,
+            "dest_warp_id": 0
+        },
+        {
+            "x": 2,
+            "y": 3,
+            "dest_header_id": 289,
+            "dest_warp_id": 2
+        }
+    ],
+    "coord_events": [
+        {
+            "script": 2,
+            "x": 11,
+            "y": 23,
+            "width": 1,
+            "length": 1,
+            "z": 0,
+            "value": 0,
+            "var": 16384
+        }
+    ]
+}

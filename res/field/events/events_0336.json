@@ -1,0 +1,446 @@
+{
+    "bg_events": [
+        {
+            "script": 8004,
+            "type": 2,
+            "x": 313,
+            "y": 647,
+            "z": 0,
+            "player_facing_dir": 4
+        },
+        {
+            "script": 8005,
+            "type": 2,
+            "x": 295,
+            "y": 635,
+            "z": 0,
+            "player_facing_dir": 4
+        }
+    ],
+    "object_events": [
+        {
+            "graphics_id": 38,
+            "movement_type": 17,
+            "trainer_type": 1,
+            "flag": 0,
+            "script": 3024,
+            "initial_dir": 3,
+            "data": [4],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 302,
+            "y": 601,
+            "z": 9
+        },
+        {
+            "graphics_id": 39,
+            "movement_type": 14,
+            "trainer_type": 1,
+            "flag": 0,
+            "script": 3028,
+            "initial_dir": 0,
+            "data": [1],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 299,
+            "y": 611,
+            "z": 8
+        },
+        {
+            "graphics_id": 38,
+            "movement_type": 16,
+            "trainer_type": 1,
+            "flag": 0,
+            "script": 3025,
+            "initial_dir": 2,
+            "data": [5],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 304,
+            "y": 622,
+            "z": 7
+        },
+        {
+            "graphics_id": 39,
+            "movement_type": 20,
+            "trainer_type": 1,
+            "flag": 0,
+            "script": 3029,
+            "initial_dir": 3,
+            "data": [2],
+            "movement_range_x": 7,
+            "movement_range_y": 0,
+            "x": 299,
+            "y": 631,
+            "z": 7
+        },
+        {
+            "graphics_id": 38,
+            "movement_type": 17,
+            "trainer_type": 1,
+            "flag": 0,
+            "script": 3026,
+            "initial_dir": 3,
+            "data": [3],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 303,
+            "y": 644,
+            "z": 6
+        },
+        {
+            "graphics_id": 39,
+            "movement_type": 14,
+            "trainer_type": 1,
+            "flag": 0,
+            "script": 3030,
+            "initial_dir": 0,
+            "data": [1],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 306,
+            "y": 675,
+            "z": 3
+        },
+        {
+            "graphics_id": 38,
+            "movement_type": 14,
+            "trainer_type": 1,
+            "flag": 0,
+            "script": 3027,
+            "initial_dir": 0,
+            "data": [1],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 300,
+            "y": 660,
+            "z": 4
+        },
+        {
+            "graphics_id": 39,
+            "movement_type": 17,
+            "trainer_type": 1,
+            "flag": 0,
+            "script": 3031,
+            "initial_dir": 3,
+            "data": [3],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 299,
+            "y": 669,
+            "z": 4
+        },
+        {
+            "graphics_id": 94,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 0,
+            "script": 5,
+            "initial_dir": 0,
+            "data": [4],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 305,
+            "y": 700,
+            "z": 0
+        },
+        {
+            "graphics_id": 94,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 0,
+            "script": 4,
+            "initial_dir": 0,
+            "data": [3],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 302,
+            "y": 578,
+            "z": 0
+        },
+        {
+            "graphics_id": 86,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 32,
+            "script": 10000,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 310,
+            "y": 690,
+            "z": 0
+        },
+        {
+            "graphics_id": 86,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 33,
+            "script": 10000,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 311,
+            "y": 690,
+            "z": 0
+        },
+        {
+            "graphics_id": 86,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 34,
+            "script": 10000,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 312,
+            "y": 679,
+            "z": 0
+        },
+        {
+            "graphics_id": 87,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 1044,
+            "script": 7030,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 292,
+            "y": 623,
+            "z": 0
+        },
+        {
+            "graphics_id": 87,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 1045,
+            "script": 7031,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 313,
+            "y": 679,
+            "z": 0
+        },
+        {
+            "graphics_id": 100,
+            "movement_type": 47,
+            "trainer_type": 0,
+            "flag": 0,
+            "script": 2800,
+            "initial_dir": 0,
+            "data": [18],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 293,
+            "y": 627,
+            "z": 0
+        },
+        {
+            "graphics_id": 100,
+            "movement_type": 47,
+            "trainer_type": 0,
+            "flag": 0,
+            "script": 2800,
+            "initial_dir": 0,
+            "data": [19],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 294,
+            "y": 627,
+            "z": 0
+        },
+        {
+            "graphics_id": 100,
+            "movement_type": 47,
+            "trainer_type": 0,
+            "flag": 0,
+            "script": 2800,
+            "initial_dir": 0,
+            "data": [20],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 295,
+            "y": 691,
+            "z": 0
+        },
+        {
+            "graphics_id": 100,
+            "movement_type": 47,
+            "trainer_type": 0,
+            "flag": 0,
+            "script": 2800,
+            "initial_dir": 0,
+            "data": [21],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 296,
+            "y": 691,
+            "z": 0
+        },
+        {
+            "local_id": 8,
+            "graphics_id": 96,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 353,
+            "script": 65535,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 313,
+            "y": 711,
+            "z": 0
+        },
+        {
+            "graphics_id": 87,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 1047,
+            "script": 7033,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 302,
+            "y": 652,
+            "z": 0
+        },
+        {
+            "graphics_id": 87,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 1046,
+            "script": 7032,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 314,
+            "y": 631,
+            "z": 0
+        },
+        {
+            "graphics_id": 20,
+            "movement_type": 10,
+            "trainer_type": 1,
+            "flag": 0,
+            "script": 3450,
+            "initial_dir": 1,
+            "data": [2],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 311,
+            "y": 622,
+            "z": 0
+        },
+        {
+            "graphics_id": 20,
+            "movement_type": 7,
+            "trainer_type": 0,
+            "flag": 0,
+            "script": 3,
+            "initial_dir": 3,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 292,
+            "y": 643,
+            "z": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "x": 302,
+            "y": 688,
+            "dest_header_id": 351,
+            "dest_warp_id": 4
+        },
+        {
+            "x": 303,
+            "y": 688,
+            "dest_header_id": 351,
+            "dest_warp_id": 4
+        },
+        {
+            "x": 302,
+            "y": 681,
+            "dest_header_id": 351,
+            "dest_warp_id": 2
+        },
+        {
+            "x": 303,
+            "y": 681,
+            "dest_header_id": 351,
+            "dest_warp_id": 2
+        },
+        {
+            "x": 304,
+            "y": 576,
+            "dest_header_id": 80,
+            "dest_warp_id": 1
+        },
+        {
+            "x": 305,
+            "y": 576,
+            "dest_header_id": 80,
+            "dest_warp_id": 1
+        },
+        {
+            "x": 300,
+            "y": 681,
+            "dest_header_id": 351,
+            "dest_warp_id": 0
+        },
+        {
+            "x": 301,
+            "y": 681,
+            "dest_header_id": 351,
+            "dest_warp_id": 2
+        },
+        {
+            "x": 304,
+            "y": 681,
+            "dest_header_id": 351,
+            "dest_warp_id": 2
+        },
+        {
+            "x": 305,
+            "y": 681,
+            "dest_header_id": 351,
+            "dest_warp_id": 3
+        },
+        {
+            "x": 301,
+            "y": 688,
+            "dest_header_id": 351,
+            "dest_warp_id": 1
+        },
+        {
+            "x": 304,
+            "y": 688,
+            "dest_header_id": 351,
+            "dest_warp_id": 5
+        },
+        {
+            "x": 299,
+            "y": 611,
+            "dest_header_id": 284,
+            "dest_warp_id": 0
+        },
+        {
+            "x": 310,
+            "y": 607,
+            "dest_header_id": 284,
+            "dest_warp_id": 1
+        }
+    ],
+    "coord_events": []
+}

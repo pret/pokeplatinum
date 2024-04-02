@@ -357,7 +357,13 @@ RomSpec
 	File data/mmodel/fldeff.narc
 	File wazaeffect/effectdata/ball_particle.narc
 	File wazaeffect/effectdata/waza_particle.narc
-	File fielddata/eventdata/zone_event.narc
+
+	Root /fielddata/eventdata
+	HostRoot res/field/events
+	File zone_event.narc
+
+	Root /
+	HostRoot res/prebuilt
 	File fielddata/encountdata/d_enc_data.narc
 	File fielddata/encountdata/p_enc_data.narc
 

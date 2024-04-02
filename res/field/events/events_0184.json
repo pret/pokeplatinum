@@ -1,0 +1,34 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "graphics_id": 138,
+            "movement_type": 15,
+            "trainer_type": 0,
+            "flag": 0,
+            "script": 2,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 8,
+            "y": 11,
+            "z": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "x": 8,
+            "y": 2,
+            "dest_header_id": 186,
+            "dest_warp_id": 1
+        },
+        {
+            "x": 8,
+            "y": 18,
+            "dest_header_id": 184,
+            "dest_warp_id": 0
+        }
+    ],
+    "coord_events": []
+}

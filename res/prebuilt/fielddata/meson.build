@@ -1,7 +1,6 @@
 subdir('areadata')
 subdir('build_model')
 subdir('encountdata')
-subdir('eventdata')
 subdir('land_data')
 subdir('mapmatrix')
 subdir('maptable')

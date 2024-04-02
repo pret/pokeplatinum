@@ -1,0 +1,98 @@
+{
+    "bg_events": [
+        {
+            "script": 6,
+            "type": 0,
+            "x": 16,
+            "y": 3,
+            "z": 0,
+            "player_facing_dir": 0
+        },
+        {
+            "script": 7,
+            "type": 0,
+            "x": 16,
+            "y": 6,
+            "z": 0,
+            "player_facing_dir": 4
+        }
+    ],
+    "object_events": [
+        {
+            "graphics_id": 87,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 1071,
+            "script": 7057,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 21,
+            "y": 3,
+            "z": 0
+        },
+        {
+            "graphics_id": 82,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 0,
+            "script": 2,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 16,
+            "y": 8,
+            "z": 0
+        },
+        {
+            "graphics_id": 164,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 0,
+            "script": 3,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 15,
+            "y": 8,
+            "z": 0
+        },
+        {
+            "graphics_id": 34,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 651,
+            "script": 4,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 17,
+            "y": 4,
+            "z": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "x": 16,
+            "y": 10,
+            "dest_header_id": 368,
+            "dest_warp_id": 4
+        }
+    ],
+    "coord_events": [
+        {
+            "script": 5,
+            "x": 16,
+            "y": 4,
+            "width": 1,
+            "length": 1,
+            "z": 0,
+            "value": 0,
+            "var": 16662
+        }
+    ]
+}

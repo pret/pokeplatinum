@@ -1,0 +1,63 @@
+{
+    "bg_events": [
+        {
+            "script": 8051,
+            "type": 2,
+            "x": 114,
+            "y": 504,
+            "z": 0,
+            "player_facing_dir": 4
+        }
+    ],
+    "object_events": [
+        {
+            "graphics_id": 56,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 0,
+            "script": 2,
+            "initial_dir": 3,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 99,
+            "y": 502,
+            "z": 0
+        },
+        {
+            "graphics_id": 142,
+            "movement_type": 15,
+            "trainer_type": 0,
+            "flag": 532,
+            "script": 3,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 117,
+            "y": 490,
+            "z": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "x": 111,
+            "y": 499,
+            "dest_header_id": 514,
+            "dest_warp_id": 0
+        },
+        {
+            "x": 117,
+            "y": 489,
+            "dest_header_id": 289,
+            "dest_warp_id": 0
+        },
+        {
+            "x": 103,
+            "y": 489,
+            "dest_header_id": 294,
+            "dest_warp_id": 0
+        }
+    ],
+    "coord_events": []
+}
