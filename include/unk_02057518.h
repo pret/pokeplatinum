@@ -4,8 +4,8 @@
 #include "field/field_system_decl.h"
 #include "overlay023/struct_ov23_0224A294.h"
 
-UnkStruct_ov23_0224A294 * sub_02057518(void);
-BOOL sub_02057524(void * param0, FieldSystem * param1, BOOL param2);
+CommPlayerData * CommPlayerData_Get(void);
+BOOL CommPlayerManager_Init(void * param0, FieldSystem * param1, BOOL param2);
 void sub_0205764C(void);
 void sub_020576A0(void);
 void sub_020576CC(BOOL param0);

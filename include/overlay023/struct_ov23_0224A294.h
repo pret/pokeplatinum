@@ -18,11 +18,11 @@ typedef struct {
     UnkStruct_ov101_021D5D90 * unk_28[8];
     u8 unk_48[8];
     SysTask * unk_50;
-    FieldSystem * unk_54;
+    FieldSystem * fieldSys;
     UnkStruct_ov23_0224A294_sub1 unk_58;
     u8 unk_5A[8];
-    UnkStruct_02057B48 unk_62[8];
-    UnkStruct_02057B48 unk_A2[8];
+    CommPlayerLocation playerLocationServer[8];
+    CommPlayerLocation playerLocation[8];
     u8 unk_E2[8];
     u8 unk_EA[8];
     u8 unk_F2[8];
@@ -54,6 +54,6 @@ typedef struct {
     u8 unk_2C1;
     u8 unk_2C2;
     u8 unk_2C3;
-} UnkStruct_ov23_0224A294;
+} CommPlayerData;
 
 #endif // POKEPLATINUM_STRUCT_OV23_0224A294_H

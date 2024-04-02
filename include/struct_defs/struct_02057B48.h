@@ -2,12 +2,12 @@
 #define POKEPLATINUM_STRUCT_02057B48_H
 
 typedef struct {
-    u16 unk_00;
-    u16 unk_02;
-    s8 unk_04;
-    u8 unk_05;
+    u16 x;
+    u16 z;
+    s8 dir;
+    u8 moveSpeed;
     u8 unk_06;
     u8 unk_07;
-} UnkStruct_02057B48;
+} CommPlayerLocation;
 
 #endif // POKEPLATINUM_STRUCT_02057B48_H

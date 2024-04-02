@@ -57,12 +57,12 @@ typedef struct {
     u8 unk_02;
 } UnkStruct_ov23_0224A570;
 
-UnkStruct_ov23_0224A294 * sub_02057518(void);
+CommPlayerData * CommPlayerData_Get(void);
 
 void ov23_0224A1D0 (void)
 {
     int v0;
-    UnkStruct_ov23_0224A294 * v1 = sub_02057518();
+    CommPlayerData * v1 = CommPlayerData_Get();
 
     if (v1 == NULL) {
         return;
@@ -79,11 +79,11 @@ void ov23_0224A1D0 (void)
 static void ov23_0224A204 (int param0)
 {
     int v0;
-    UnkStruct_ov23_0224A294 * v1 = sub_02057518();
+    CommPlayerData * v1 = CommPlayerData_Get();
 
     if (param0 == CommSys_CurNetId()) {
         if (v1->unk_290[param0] != NULL) {
-            sub_0202CFEC(sub_0202CD88(v1->unk_54->unk_0C), 28);
+            sub_0202CFEC(sub_0202CD88(v1->fieldSys->unk_0C), 28);
 
             if (v1->unk_27C[5 - 1]) {
                 Heap_FreeToHeap(v1->unk_27C[5 - 1]);
@@ -94,7 +94,7 @@ static void ov23_0224A204 (int param0)
             }
 
             v1->unk_27C[0] = v1->unk_290[param0];
-            sub_02028830(sub_020298B0(sub_0203D174(v1->unk_54)), v1->unk_290[param0]);
+            sub_02028830(sub_020298B0(sub_0203D174(v1->fieldSys)), v1->unk_290[param0]);
 
             v1->unk_290[param0] = NULL;
             v1->unk_14A[param0].unk_20 = 0xff;
@@ -106,7 +106,7 @@ static void ov23_0224A204 (int param0)
 
 static BOOL ov23_0224A294 (int param0, int param1)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
+    CommPlayerData * v0 = CommPlayerData_Get();
 
     if ((v0->unk_290[param0] == NULL) && (v0->unk_290[param1] != NULL)) {
         v0->unk_290[param0] = v0->unk_290[param1];
@@ -149,7 +149,7 @@ static void ov23_0224A328 (int param0)
 
 static void ov23_0224A334 (int param0)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
+    CommPlayerData * v0 = CommPlayerData_Get();
 
     if (v0) {
         v0->unk_2B8 = 0;
@@ -159,7 +159,7 @@ static void ov23_0224A334 (int param0)
 void ov23_0224A348 (int param0, int param1, void * param2, void * param3)
 {
     UnkStruct_ov23_0224A348 v0;
-    UnkStruct_ov23_0224A294 * v1 = sub_02057518();
+    CommPlayerData * v1 = CommPlayerData_Get();
 
     v0.unk_00 = 2;
     v0.unk_01 = param0;
@@ -181,7 +181,7 @@ void ov23_0224A348 (int param0, int param1, void * param2, void * param3)
 
 void ov23_0224A3A8 (int param0, int param1, void * param2, void * param3)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
+    CommPlayerData * v0 = CommPlayerData_Get();
     UnkStruct_ov23_0224A348 * v1 = param2;
 
     if (!sub_02035EE0()) {
@@ -192,21 +192,21 @@ void ov23_0224A3A8 (int param0, int param1, void * param2, void * param3)
         if (!v0->unk_2B8) {
             v0->unk_2B8 = 1;
 
-            ov23_0224F758(ov23_0224A334, v0->unk_54);
+            ov23_0224F758(ov23_0224A334, v0->fieldSys);
         }
     } else if ((v1->unk_00 == 3) && (v1->unk_01 == CommSys_CurNetId())) {
         if (!v0->unk_2B8) {
             v0->unk_2B8 = 1;
-            ov23_02250A50(ov23_0224A334, v0->unk_54);
+            ov23_02250A50(ov23_0224A334, v0->fieldSys);
         }
     }
 }
 
 void ov23_0224A410 (int param0, int param1, void * param2, void * param3)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
+    CommPlayerData * v0 = CommPlayerData_Get();
     UnkStruct_ov23_0224A348 * v1 = param2;
-    UnkStruct_020507E4 * v2 = SaveData_Events(v0->unk_54->unk_0C);
+    UnkStruct_020507E4 * v2 = SaveData_Events(v0->fieldSys->unk_0C);
 
     GF_ASSERT(v1->unk_01 < (7 + 1));
 
@@ -220,7 +220,7 @@ void ov23_0224A410 (int param0, int param1, void * param2, void * param3)
     }
 
     if ((v1->unk_00 == 1) && (v1->unk_01 == CommSys_CurNetId())) {
-        ov23_0224DCB8(v1->unk_02, ov23_0224A334, v0->unk_54);
+        ov23_0224DCB8(v1->unk_02, ov23_0224A334, v0->fieldSys);
 
         v0->unk_58.unk_00_0 = v1->unk_01;
         v0->unk_58.unk_00_4 = v1->unk_02;
@@ -228,7 +228,7 @@ void ov23_0224A410 (int param0, int param1, void * param2, void * param3)
         v0->unk_58.unk_00_9 = 0;
 
         if (v0->unk_5A[v1->unk_02] == 0) {
-            sub_020294F4(sub_020298A0(sub_0203D174(v0->unk_54)), v1->unk_02);
+            sub_020294F4(sub_020298A0(sub_0203D174(v0->fieldSys)), v1->unk_02);
             sub_0206B364(v2, sub_0206B354(v2) + 1);
             sub_0206B384(v2, sub_0206B374(v2) + 1);
 
@@ -237,7 +237,7 @@ void ov23_0224A410 (int param0, int param1, void * param2, void * param3)
     }
 
     if ((v1->unk_00 == 1) && (v1->unk_02 == CommSys_CurNetId())) {
-        ov23_0224F07C(v1->unk_02, v1->unk_01, v0->unk_54);
+        ov23_0224F07C(v1->unk_02, v1->unk_01, v0->fieldSys);
     }
 
     if ((v1->unk_00 == 2) && (v1->unk_01 == CommSys_CurNetId())) {
@@ -285,7 +285,7 @@ static void ov23_0224A5B0 (int param0)
 
 static void ov23_0224A5CC (SysTask * param0, void * param1)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
+    CommPlayerData * v0 = CommPlayerData_Get();
     UnkStruct_ov23_0224A5CC * v1 = param1;
     u8 v2 = v1->unk_04;
     u8 v3 = 0;
@@ -311,7 +311,7 @@ static void ov23_0224A5CC (SysTask * param0, void * param1)
 
 static void ov23_0224A620 (int param0)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
+    CommPlayerData * v0 = CommPlayerData_Get();
     UnkStruct_ov23_0224A5CC * v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov23_0224A5CC));
 
     v1->unk_00 = 0;
@@ -368,7 +368,7 @@ BOOL ov23_0224A6B8 (int param0)
 
 static void ov23_0224A6E4 (UnkStruct_ov23_0224A570 * param0, BOOL param1, UnkStruct_0202855C * param2)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
+    CommPlayerData * v0 = CommPlayerData_Get();
 
     ov23_0224321C();
 
@@ -392,11 +392,11 @@ static void ov23_0224A6E4 (UnkStruct_ov23_0224A570 * param0, BOOL param1, UnkStr
 
 void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
+    CommPlayerData * v0 = CommPlayerData_Get();
     UnkStruct_ov23_0224A570 * v1 = param2;
     BOOL v2;
     int v3 = 0;
-    UnkStruct_0202855C * v4 = sub_020298A0(sub_0203D174(v0->unk_54));
+    UnkStruct_0202855C * v4 = sub_020298A0(sub_0203D174(v0->fieldSys));
 
     switch (v1->unk_00) {
     case 0:
@@ -470,14 +470,14 @@ void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
         ov23_0224B040(v1->unk_01);
 
         if (v1->unk_01 == CommSys_CurNetId()) {
-            UnkStruct_0202855C * v5 = sub_020298A0(sub_0203D174(v0->unk_54));
+            UnkStruct_0202855C * v5 = sub_020298A0(sub_0203D174(v0->fieldSys));
             u8 v6 = sub_0202958C(v5);
 
             sub_020295C0(v5);
-            sub_0206AA40(SaveData_Events(v0->unk_54->unk_0C));
+            sub_0206AA40(SaveData_Events(v0->fieldSys->unk_0C));
 
             if (v0->unk_290[v1->unk_01]) {
-                sub_0206DAB8(v0->unk_54, v0->unk_290[v1->unk_01]);
+                sub_0206DAB8(v0->fieldSys, v0->unk_290[v1->unk_01]);
 
                 if (v0->unk_2B2 != 0xffff) {
                     v0->unk_2B2++;
@@ -498,7 +498,7 @@ void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
 
         if (v0->unk_290[v1->unk_01]) {
             if (TrainerInfo_Equals(v0->unk_290[v1->unk_01], CommInfo_TrainerInfo(CommSys_CurNetId())) == 1) {
-                sub_0206DAD4(v0->unk_54, CommInfo_TrainerInfo(v1->unk_01));
+                sub_0206DAD4(v0->fieldSys, CommInfo_TrainerInfo(v1->unk_01));
             }
         }
 
@@ -510,7 +510,7 @@ void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
 void ov23_0224AA84 (void)
 {
     int v0;
-    UnkStruct_ov23_0224A294 * v1 = sub_02057518();
+    CommPlayerData * v1 = CommPlayerData_Get();
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
         v1->unk_14A[v0].unk_20 = 0xff;
@@ -519,13 +519,13 @@ void ov23_0224AA84 (void)
 
 u8 * ov23_0224AAA0 (int param0, void * param1, int param2)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
+    CommPlayerData * v0 = CommPlayerData_Get();
     return (u8 *)&v0->unk_14A[(7 + 1)];
 }
 
 void ov23_0224AAB0 (void)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
+    CommPlayerData * v0 = CommPlayerData_Get();
 
     v0->unk_2B9 = 0;
 
@@ -552,7 +552,7 @@ int ov23_0224AB2C (void)
 
 void ov23_0224AB30 (int param0, int param1, void * param2, void * param3)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
+    CommPlayerData * v0 = CommPlayerData_Get();
     int v1;
     const TrainerInfo * v2 = param2;
     Strbuf* v3;
@@ -585,7 +585,7 @@ void ov23_0224AB30 (int param0, int param1, void * param2, void * param3)
 
 void ov23_0224ABC4 (int param0, int param1, void * param2, void * param3)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
+    CommPlayerData * v0 = CommPlayerData_Get();
     UnkStruct_ov23_0224ABC4 * v1 = param2;
     int v2, v3;
 
@@ -610,7 +610,7 @@ int ov23_0224AC0C (void)
 void ov23_0224AC10 (int param0, int param1, void * param2, void * param3)
 {
     u8 * v0 = param2;
-    UnkStruct_ov23_0224A294 * v1 = sub_02057518();
+    CommPlayerData * v1 = CommPlayerData_Get();
 
     if (v0[0] == CommSys_CurNetId()) {
         v1->unk_2B9 = 1;
@@ -621,7 +621,7 @@ void ov23_0224AC10 (int param0, int param1, void * param2, void * param3)
 
 BOOL ov23_0224AC3C (void)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
+    CommPlayerData * v0 = CommPlayerData_Get();
     return v0->unk_2B9;
 }
 
@@ -630,7 +630,7 @@ void ov23_0224AC4C (void)
     TrainerInfo * v0 = NULL;
     int v1, v2;
     int v3 = CommSys_CurNetId();
-    UnkStruct_ov23_0224A294 * v4 = sub_02057518();
+    CommPlayerData * v4 = CommPlayerData_Get();
 
     if (v4->unk_290[v3]) {
         v0 = v4->unk_290[v3];
@@ -655,7 +655,7 @@ void ov23_0224AC4C (void)
 
 BOOL ov23_0224ACC0 (int param0)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
+    CommPlayerData * v0 = CommPlayerData_Get();
 
     if (v0->unk_04) {
         return !ov23_0224999C(
@@ -679,81 +679,81 @@ void ov23_0224ACF8 (int param0, int param1, void * param2, void * param3)
 
 int ov23_0224AD04 (int param0)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
+    CommPlayerData * v0 = CommPlayerData_Get();
 
     if (!v0) {
         return 0xffff;
     } else if (CommSys_CurNetId() == param0) {
-        return v0->unk_A2[param0].unk_00;
+        return v0->playerLocation[param0].x;
     } else if (!sub_02058C40()) {
         return 0xffff;
     }
 
-    return v0->unk_A2[param0].unk_00;
+    return v0->playerLocation[param0].x;
 }
 
 int ov23_0224AD40 (int param0)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
+    CommPlayerData * v0 = CommPlayerData_Get();
 
     if (!v0) {
         return 0xffff;
     } else if (CommSys_CurNetId() == param0) {
-        return v0->unk_A2[param0].unk_02;
+        return v0->playerLocation[param0].z;
     } else if (!sub_02058C40()) {
         return 0xffff;
     }
 
-    return v0->unk_A2[param0].unk_02;
+    return v0->playerLocation[param0].z;
 }
 
 void ov23_0224AD7C (int param0, int param1)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
+    CommPlayerData * v0 = CommPlayerData_Get();
     ov23_02249994(ov23_0224993C(v0->unk_04, param0), param1);
 }
 
 void ov23_0224AD98 (int param0)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
+    CommPlayerData * v0 = CommPlayerData_Get();
     ov23_02249994(ov23_0224993C(v0->unk_04, param0), 0);
 }
 
 void ov23_0224ADB0 (int param0, int param1, int param2, int param3)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
-    UnkStruct_02057B48 * v1 = &v0->unk_62[param0];
+    CommPlayerData * v0 = CommPlayerData_Get();
+    CommPlayerLocation * v1 = &v0->playerLocationServer[param0];
 
-    v1->unk_00 = param1 + sub_0206419C(param3);
-    v1->unk_02 = param2 + sub_020641A8(param3);
-    v1->unk_04 = param3;
+    v1->x = param1 + sub_0206419C(param3);
+    v1->z = param2 + sub_020641A8(param3);
+    v1->dir = param3;
 }
 
 void ov23_0224ADE8 (int param0, int param1, int param2, int param3)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
-    UnkStruct_02057B48 * v1;
+    CommPlayerData * v0 = CommPlayerData_Get();
+    CommPlayerLocation * v1;
 
     if (!v0) {
         return;
     }
 
-    v1 = &v0->unk_A2[param0];
+    v1 = &v0->playerLocation[param0];
 
     if (!v0->unk_2BD) {
-        ov5_021F5634(v0->unk_54, v1->unk_00, 0, v1->unk_02);
+        ov5_021F5634(v0->fieldSys, v1->x, 0, v1->z);
     }
 
-    v1->unk_00 = param1;
-    v1->unk_02 = param2;
-    v1->unk_04 = param3;
+    v1->x = param1;
+    v1->z = param2;
+    v1->dir = param3;
 
     if (v0->unk_08[param0]) {
         sub_0205ECE0(v0->unk_08[param0], param1, param2, param3);
     }
 
     if (!v0->unk_2BD) {
-        ov5_021F5634(v0->unk_54, v1->unk_00, 0, v1->unk_02);
+        ov5_021F5634(v0->fieldSys, v1->x, 0, v1->z);
     }
 
     if (!v0->unk_2BD) {
@@ -763,7 +763,7 @@ void ov23_0224ADE8 (int param0, int param1, int param2, int param3)
 
 BOOL ov23_0224AE60 (int param0)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
+    CommPlayerData * v0 = CommPlayerData_Get();
 
     if (v0->unk_290[param0] != NULL) {
         Heap_FreeToHeap(v0->unk_290[param0]);
@@ -780,7 +780,7 @@ BOOL ov23_0224AE60 (int param0)
 
 BOOL ov23_0224AEA4 (int param0)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
+    CommPlayerData * v0 = CommPlayerData_Get();
 
     if (v0->unk_290[param0] != NULL) {
         return 1;
@@ -791,7 +791,7 @@ BOOL ov23_0224AEA4 (int param0)
 
 BOOL ov23_0224AEC4 (int param0, int param1)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
+    CommPlayerData * v0 = CommPlayerData_Get();
 
     if (v0->unk_290[param0] == NULL) {
         TrainerInfo * v1 = CommInfo_TrainerInfo(param1);
@@ -806,7 +806,7 @@ BOOL ov23_0224AEC4 (int param0, int param1)
             TrainerInfo_Copy(v1, (TrainerInfo *)&v0->unk_14A[param0].unk_00);
 
             if (param1 == CommSys_CurNetId()) {
-                UnkStruct_0202855C * v2 = sub_020298A0(v0->unk_54->unk_0C);
+                UnkStruct_0202855C * v2 = sub_020298A0(v0->fieldSys->unk_0C);
                 sub_020297B4(v2);
             }
 
@@ -819,7 +819,7 @@ BOOL ov23_0224AEC4 (int param0, int param1)
 
 void ov23_0224AF4C (int param0)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
+    CommPlayerData * v0 = CommPlayerData_Get();
 
     if (v0->unk_28[param0] != NULL) {
         if (sub_020714F0(v0->unk_28[param0])) {
@@ -834,7 +834,7 @@ void ov23_0224AF4C (int param0)
 
 void ov23_0224AF7C (int param0)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
+    CommPlayerData * v0 = CommPlayerData_Get();
 
     if (!v0->unk_2BD) {
         if (v0->unk_08[param0]) {
@@ -866,7 +866,7 @@ void ov23_0224AF7C (int param0)
 
 void ov23_0224B00C (int param0)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
+    CommPlayerData * v0 = CommPlayerData_Get();
 
     if (v0->unk_FA[param0] != 1) {
         v0->unk_FA[param0] = 2;
@@ -875,7 +875,7 @@ void ov23_0224B00C (int param0)
 
 void ov23_0224B024 (int param0)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
+    CommPlayerData * v0 = CommPlayerData_Get();
 
     if (v0->unk_FA[param0] != 1) {
         v0->unk_FA[param0] = 3;
@@ -886,7 +886,7 @@ void ov23_0224B024 (int param0)
 
 void ov23_0224B040 (int param0)
 {
-    UnkStruct_ov23_0224A294 * v0 = sub_02057518();
+    CommPlayerData * v0 = CommPlayerData_Get();
 
     if (v0->unk_FA[param0] != 1) {
         v0->unk_FA[param0] = 0;

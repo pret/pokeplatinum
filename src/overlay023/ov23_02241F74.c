@@ -780,7 +780,7 @@ void ov23_02242BC0 (FieldSystem * param0)
         ov23_02241F74(v0, param0);
 
         v0 = Heap_AllocFromHeap(15, sub_02057C84());
-        sub_02057524(v0, param0, 1);
+        CommPlayerManager_Init(v0, param0, 1);
 
         v0 = Heap_AllocFromHeap(15, ov23_02243858());
         ov23_022434BC(v0, param0);
