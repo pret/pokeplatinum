@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV6_02247100_H
 #define POKEPLATINUM_OV6_02247100_H
 
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "pokemon.h"
 

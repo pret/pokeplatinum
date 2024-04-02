@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_0203E724_T_H
 
 #include "message.h"
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "functypes/funcptr_0203E724.h"
 
 struct UnkStruct_0203E724_t {

@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0203CDB0_sub1_decl.h"
+#include "field/field_system_sub1_decl.h"
 #include "savedata.h"
 #include "overlay025/struct_ov25_02253CE0_decl.h"
 
@@ -13,8 +13,8 @@
 #include "overlay077/const_ov77_021D742C.h"
 
 #include "struct_defs/struct_0203CC84.h"
-#include "struct_defs/struct_0203CDB0.h"
-#include "struct_defs/struct_0203CDB0_sub2_t.h"
+#include "field/field_system.h"
+#include "field/field_system_sub2_t.h"
 #include "struct_defs/struct_0208BE5C.h"
 #include "overlay005/struct_ov5_021D1CAC.h"
 
@@ -45,7 +45,7 @@
 FS_EXTERN_OVERLAY(overlay5);
 FS_EXTERN_OVERLAY(overlay77);
 
-typedef struct UnkStruct_0203CDB0_sub1_t {
+typedef struct FieldSystem_sub1_t {
     UnkStruct_020067E8 * unk_00;
     UnkStruct_020067E8 * unk_04;
     BOOL unk_08;
@@ -168,7 +168,7 @@ static FieldSystem * sub_0203CDB0 (UnkStruct_020067E8 * param0)
     v1 = sub_0200681C(param0, sizeof(FieldSystem), 11);
     MI_CpuClear8(v1, sizeof(FieldSystem));
 
-    v1->unk_00 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0203CDB0_sub1));
+    v1->unk_00 = Heap_AllocFromHeap(11, sizeof(FieldSystem_sub1));
     v1->unk_00->unk_00 = NULL;
     v1->unk_00->unk_04 = NULL;
     v1->unk_00->unk_08 = 0;

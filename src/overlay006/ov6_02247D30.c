@@ -4,7 +4,7 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "overlay005/struct_ov5_021E1890_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 
 #include "heap.h"
 #include "unk_02039C80.h"

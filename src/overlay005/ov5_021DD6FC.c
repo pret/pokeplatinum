@@ -6,8 +6,8 @@
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
 
-#include "struct_defs/struct_0203CDB0.h"
-#include "struct_defs/struct_0203CDB0_sub2_t.h"
+#include "field/field_system.h"
+#include "field/field_system_sub2_t.h"
 #include "struct_defs/struct_0205AA50.h"
 
 #include "unk_02006E3C.h"

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_020562F8_H
 #define POKEPLATINUM_UNK_020562F8_H
 
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "overlay006/battle_params.h"
 
 void sub_020562F8(FieldSystem * param0);

@@ -6,7 +6,7 @@
 #include "struct_defs/struct_0203A4AC.h"
 #include "struct_defs/struct_0203A55C.h"
 #include "struct_defs/struct_0203A594.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_020619DC.h"
 #include "overlay006/struct_ov6_02242634.h"
 

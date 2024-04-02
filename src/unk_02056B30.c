@@ -8,8 +8,8 @@
 #include "overlay005/struct_ov5_021D432C_decl.h"
 #include "overlay005/struct_ov5_021D4E00_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
-#include "struct_defs/struct_0203CDB0_sub2_t.h"
+#include "field/field_system.h"
+#include "field/field_system_sub2_t.h"
 #include "struct_defs/struct_02049FA8.h"
 #include "functypes/funcptr_020EC560.h"
 #include "functypes/funcptr_020EC57C.h"

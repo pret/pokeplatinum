@@ -7,7 +7,7 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 
 #include "unk_0201D15C.h"
 #include "unk_02025E08.h"

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV5_021F4018_H
 #define POKEPLATINUM_OV5_021F4018_H
 
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "overlay005/struct_ov5_021DF47C_decl.h"
 
 void * ov5_021F4018(UnkStruct_ov5_021DF47C * param0);

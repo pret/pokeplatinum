@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02020C44_decl.h"
 #include "struct_decls/struct_02027860_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
-#include "struct_decls/struct_0203CDB0_sub2_decl.h"
+#include "field/field_system_sub2_decl.h"
 #include "overlay005/struct_ov5_021D1A68_decl.h"
 
 #include "overlay005/const_ov5_021F89B0.h"
@@ -18,8 +18,8 @@
 #include "overlay005/const_ov5_021FF744.h"
 #include "overlay005/const_ov5_021FF7D0.h"
 
-#include "struct_defs/struct_0203CDB0.h"
-#include "struct_defs/struct_0203CDB0_sub2_t.h"
+#include "field/field_system.h"
+#include "field/field_system_sub2_t.h"
 #include "struct_defs/struct_020556C4.h"
 #include "struct_defs/struct_020619DC.h"
 #include "struct_defs/struct_0208BE5C.h"
@@ -193,8 +193,8 @@ static int ov5_021D0DA4 (UnkStruct_020067E8 * param0, int * param1)
         Heap_Create(3, 4, v1->unk_74->unk_04);
         GF_ASSERT(v1->unk_04 == NULL);
 
-        v1->unk_04 = Heap_AllocFromHeap(4, sizeof(UnkStruct_0203CDB0_sub2));
-        MI_CpuClear8(v1->unk_04, sizeof(UnkStruct_0203CDB0_sub2));
+        v1->unk_04 = Heap_AllocFromHeap(4, sizeof(FieldSystem_sub2));
+        MI_CpuClear8(v1->unk_04, sizeof(FieldSystem_sub2));
         v1->unk_04->unk_04 = ov5_021D1A94(v1, 4, 8);
 
         ov5_021D1414();

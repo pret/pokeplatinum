@@ -6,7 +6,7 @@
 
 #include "struct_defs/struct_0203A4AC.h"
 #include "struct_defs/struct_0203A594.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 
 #include "unk_0203C954.h"
 #include "unk_0203E880.h"

@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "pokemon.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_02049FA8.h"
 #include "overlay005/struct_ov5_021F8E3C.h"
 

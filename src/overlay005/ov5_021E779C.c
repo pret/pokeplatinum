@@ -10,7 +10,7 @@
 #include "overlay005/struct_ov5_021EF13C_decl.h"
 #include "overlay005/struct_ov5_021EF76C_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "overlay005/struct_ov5_021D5894.h"
 #include "overlay005/funcptr_ov5_021E9630.h"
 

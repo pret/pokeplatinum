@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_0203E6C0_H
 #define POKEPLATINUM_STRUCT_0203E6C0_H
 
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "savedata.h"
 
 typedef struct {

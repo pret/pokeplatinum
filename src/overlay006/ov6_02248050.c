@@ -10,8 +10,8 @@
 #include "struct_defs/struct_020170F4.h"
 #include "struct_defs/struct_02017248.h"
 #include "struct_defs/struct_02017294.h"
-#include "struct_defs/struct_0203CDB0.h"
-#include "struct_defs/struct_0203CDB0_sub2_t.h"
+#include "field/field_system.h"
+#include "field/field_system_sub2_t.h"
 #include "overlay006/struct_ov6_0223E6EC.h"
 
 #include "unk_02005474.h"

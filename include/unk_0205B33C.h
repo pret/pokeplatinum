@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/sys_task.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 
 #include <nitro/wm.h>

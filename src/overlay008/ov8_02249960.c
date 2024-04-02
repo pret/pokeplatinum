@@ -18,8 +18,8 @@
 #include "overlay005/struct_ov5_021E1890_decl.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
-#include "struct_defs/struct_0203CDB0_sub2_t.h"
+#include "field/field_system.h"
+#include "field/field_system_sub2_t.h"
 #include "struct_defs/struct_02055130.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02071B10.h"

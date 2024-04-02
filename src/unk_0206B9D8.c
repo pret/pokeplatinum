@@ -13,7 +13,7 @@
 #include "constdata/const_020F1E88.h"
 #include "constdata/const_020F410C.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0206BC70.h"
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/pokemon_summary.h"

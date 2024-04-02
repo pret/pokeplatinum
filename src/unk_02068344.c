@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02027860_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 
 #include "functypes/funcptr_020EF718.h"
 #include "functypes/funcptr_020EF744.h"

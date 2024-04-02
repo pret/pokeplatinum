@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_020508D4_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 
 #include "unk_0200F174.h"
 #include "unk_0203CC84.h"

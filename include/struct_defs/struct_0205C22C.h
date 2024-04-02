@@ -3,7 +3,7 @@
 
 #include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02027F8C_decl.h"
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_defs/struct_0205C680.h"
 #include "struct_decls/struct_0205C95C_decl.h"

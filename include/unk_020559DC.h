@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_020559DC_H
 #define POKEPLATINUM_UNK_020559DC_H
 
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 
 #include <nitro/rtc.h>
 

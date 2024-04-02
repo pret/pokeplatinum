@@ -7,7 +7,7 @@
 #include "struct_decls/struct_0209747C_decl.h"
 
 #include "struct_defs/sentence.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 
 #include "unk_0200B358.h"
 #include "unk_0200F174.h"

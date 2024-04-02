@@ -7,7 +7,7 @@
 #include "overlay025/struct_ov25_0225424C_decl.h"
 #include "overlay052/struct_ov52_02256694_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "overlay052/struct_ov52_02256694_1.h"
 
 #include "unk_0200D9E8.h"

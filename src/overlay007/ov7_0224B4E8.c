@@ -14,7 +14,7 @@
 
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0202610C.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 

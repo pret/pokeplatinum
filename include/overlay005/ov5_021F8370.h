@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV5_021F8370_H
 #define POKEPLATINUM_OV5_021F8370_H
 
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 
 void ov5_021F8370(FieldSystem * param0);
 void ov5_021F83C0(FieldSystem * param0);

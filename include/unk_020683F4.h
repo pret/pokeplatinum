@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_020683F4_H
 #define POKEPLATINUM_UNK_020683F4_H
 
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "struct_defs/struct_020684D0.h"
 
 u32 sub_020683F4(u16 param0, u16 param1);

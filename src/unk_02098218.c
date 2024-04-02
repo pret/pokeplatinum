@@ -10,7 +10,7 @@
 #include "constdata/const_020F2DAC.h"
 #include "constdata/const_020F67FC.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0203E2FC.h"
 #include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_0209843C.h"

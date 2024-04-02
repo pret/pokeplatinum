@@ -12,7 +12,7 @@
 #include "struct_decls/struct_020507E4_decl.h"
 
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay023/funcptr_ov23_0224DCB8.h"
 #include "overlay023/struct_ov23_02250CD4.h"

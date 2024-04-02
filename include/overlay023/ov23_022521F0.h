@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV23_022521F0_H
 #define POKEPLATINUM_OV23_022521F0_H
 
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "overlay023/struct_ov23_02250CD4.h"
 
 int ov23_02252C70(void * param0);

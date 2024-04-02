@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "functypes/funcptr_02050904.h"
 #include "struct_defs/struct_0208BE5C.h"
 #include "overlay005/struct_ov5_021D219C.h"

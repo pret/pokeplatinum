@@ -16,7 +16,7 @@
 
 #include "struct_defs/struct_020217F4.h"
 #include "struct_defs/struct_02024184.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_02073838.h"
 #include "struct_defs/struct_02073974.h"
 #include "overlay005/struct_ov5_021DF7F8.h"

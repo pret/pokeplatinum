@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02057518_H
 #define POKEPLATINUM_UNK_02057518_H
 
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "overlay023/struct_ov23_0224A294.h"
 
 UnkStruct_ov23_0224A294 * sub_02057518(void);

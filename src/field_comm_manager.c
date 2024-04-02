@@ -7,7 +7,7 @@
 #include "struct_decls/struct_party_decl.h"
 #include "savedata.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0205964C.h"
 #include "functypes/funcptr_020598EC.h"
 #include "struct_defs/struct_02072014.h"

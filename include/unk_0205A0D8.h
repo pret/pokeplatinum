@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0205A0D8_H
 #define POKEPLATINUM_UNK_0205A0D8_H
 
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "functypes/funcptr_0205AB10.h"
 
 void sub_0205AB10(FieldSystem * param0, UnkFuncPtr_0205AB10 * param1);

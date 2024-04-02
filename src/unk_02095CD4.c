@@ -5,7 +5,7 @@
 
 #include "struct_defs/struct_02027F8C.h"
 #include "struct_defs/struct_02039A58.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_02095E80_t.h"
 
 #include "unk_02027F84.h"

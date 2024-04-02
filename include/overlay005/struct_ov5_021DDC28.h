@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV5_021DDC28_H
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 
 typedef struct {
     int unk_00;

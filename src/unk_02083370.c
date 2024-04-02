@@ -6,7 +6,7 @@
 #include "pokemon.h"
 
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0207F248.h"
 #include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_020831B4.h"

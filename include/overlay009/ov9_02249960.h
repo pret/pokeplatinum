@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV9_02249960_H
 
 #include "struct_decls/struct_020216E0_decl.h"
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "overlay009/struct_ov9_0224F6EC_decl.h"

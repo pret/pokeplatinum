@@ -14,7 +14,7 @@
 #include "overlay009/struct_ov9_0224F6EC_decl.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "overlay005/struct_ov5_021F8E3C.h"
 #include "overlay006/battle_params.h"
 

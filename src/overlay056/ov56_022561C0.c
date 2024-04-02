@@ -21,7 +21,7 @@
 #include "struct_defs/sentence.h"
 #include "struct_defs/union_02022594_020225E0.h"
 #include "struct_defs/struct_0203330C.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0205C22C.h"
 #include "struct_defs/struct_0205C924.h"

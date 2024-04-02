@@ -4,7 +4,7 @@
 #include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020203AC_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 
 #include "unk_0200D9E8.h"
 #include "heap.h"

@@ -4,7 +4,7 @@
 #include "trainer_info.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207D99C_decl.h"

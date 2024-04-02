@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV6_022465FC_H
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 
 void ov6_022465FC(FieldSystem * param0);
 int ov6_0224660C(FieldSystem * param0);

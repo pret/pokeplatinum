@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV23_0224DC40_H
 #define POKEPLATINUM_OV23_0224DC40_H
 
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "overlay023/funcptr_ov23_0224DCB8.h"
 
 void ov23_0224DCB8(int param0, UnkFuncPtr_ov23_0224DCB8 param1, FieldSystem * param2);

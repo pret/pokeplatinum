@@ -9,7 +9,7 @@
 #include "overlay005/const_ov5_021FB470.h"
 #include "constdata/const_020EE3A8.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_020619DC.h"
 #include "struct_defs/struct_02061D3C.h"
 #include "functypes/funcptr_020EDF0C.h"

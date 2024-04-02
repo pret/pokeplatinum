@@ -11,7 +11,7 @@
 #include "struct_decls/struct_0209747C_decl.h"
 
 #include "struct_defs/sentence.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
 
 #include "unk_02005474.h"

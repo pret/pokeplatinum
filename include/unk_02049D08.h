@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0202D060_decl.h"
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "savedata.h"

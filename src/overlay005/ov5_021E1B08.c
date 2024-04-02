@@ -3,7 +3,7 @@
 
 #include "overlay005/struct_ov5_021E1B20_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
 
 #include "heap.h"

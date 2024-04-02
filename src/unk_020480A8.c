@@ -8,7 +8,7 @@
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0203E724_t.h"
 
 #include "savedata/save_table.h"

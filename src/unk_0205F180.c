@@ -8,7 +8,7 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "overlay005/struct_ov5_021E8F60_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0205EC34.h"
 
 #include "unk_02005474.h"

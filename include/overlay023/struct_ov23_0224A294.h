@@ -3,7 +3,7 @@
 
 #include "struct_decls/sys_task.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "struct_defs/struct_02057B48.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "overlay023/struct_ov23_0224991C_decl.h"

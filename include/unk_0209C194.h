@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0209C194_H
 #define POKEPLATINUM_UNK_0209C194_H
 
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "struct_defs/struct_0209C194_1.h"
 #include "struct_decls/struct_0209C194_decl.h"
 

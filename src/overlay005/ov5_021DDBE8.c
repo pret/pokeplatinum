@@ -21,8 +21,8 @@
 #include "overlay005/struct_ov5_021EF43C_decl.h"
 
 #include "functypes/sys_task_func.h"
-#include "struct_defs/struct_0203CDB0.h"
-#include "struct_defs/struct_0203CDB0_sub2_t.h"
+#include "field/field_system.h"
+#include "field/field_system_sub2_t.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay005/struct_ov5_021DDC28.h"

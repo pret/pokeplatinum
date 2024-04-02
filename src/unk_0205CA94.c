@@ -12,7 +12,7 @@
 #include "struct_defs/struct_02009CFC.h"
 #include "struct_defs/struct_0200C738.h"
 #include "functypes/sys_task_func.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "overlay115/struct_ov115_02261520.h"
 
 #include "unk_02005474.h"

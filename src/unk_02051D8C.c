@@ -18,7 +18,7 @@
 
 #include "struct_defs/struct_0202610C.h"
 #include "struct_defs/options.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_02055BA8.h"
 #include "struct_defs/struct_0205EC34.h"
 #include "struct_defs/trainer_data.h"

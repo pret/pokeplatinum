@@ -14,7 +14,7 @@
 
 #include "struct_defs/struct_0202610C.h"
 #include "struct_defs/struct_0202BE38.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_02049FA8.h"
 #include "overlay006/battle_params.h"
 

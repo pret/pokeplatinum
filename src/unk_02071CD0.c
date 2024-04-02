@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02027860_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "overlay006/struct_ov6_02242AF0.h"
 
 #include "unk_020277A4.h"

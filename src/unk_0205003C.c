@@ -12,7 +12,7 @@
 #include "constdata/const_020F1E88.h"
 #include "constdata/const_020F410C.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0203E724_t.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_02050224.h"

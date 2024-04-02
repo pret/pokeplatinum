@@ -19,7 +19,7 @@
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0202EE10.h"
 #include "struct_defs/struct_0202EE10_sub1.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay005/struct_ov5_021D30A8.h"
 #include "overlay061/struct_ov61_0222C884.h"

@@ -6,7 +6,7 @@
 #include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 
 #include "unk_02005474.h"
 #include "unk_0200D9E8.h"

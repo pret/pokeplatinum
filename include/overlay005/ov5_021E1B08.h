@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV5_021E1B08_H
 #define POKEPLATINUM_OV5_021E1B08_H
 
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay005/struct_ov5_021E1B20_decl.h"
 

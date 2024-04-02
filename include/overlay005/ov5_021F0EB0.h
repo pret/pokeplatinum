@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV5_021F0EB0_H
 
 #include "struct_decls/sys_task.h"
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 
 SysTask * ov5_021F0EB0(FieldSystem * param0, u32 param1);
 BOOL ov5_021F0EF0(SysTask * param0);

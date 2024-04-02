@@ -13,8 +13,8 @@
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0203A55C.h"
-#include "struct_defs/struct_0203CDB0.h"
-#include "struct_defs/struct_0203CDB0_sub2_t.h"
+#include "field/field_system.h"
+#include "field/field_system_sub2_t.h"
 #include "struct_defs/struct_02049FA8.h"
 #include "overlay005/struct_ov5_021D1CAC.h"
 #include "overlay005/struct_ov5_021D219C.h"

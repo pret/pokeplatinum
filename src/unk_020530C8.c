@@ -14,7 +14,7 @@
 #include "overlay005/struct_ov5_021D432C_decl.h"
 
 #include "struct_defs/struct_0203A55C.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_02049FA8.h"
 #include "functypes/funcptr_02050904.h"
 #include "struct_defs/struct_0205AA50.h"

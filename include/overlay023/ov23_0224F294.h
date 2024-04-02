@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020298B0_decl.h"
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "overlay023/funcptr_ov23_0224F758.h"
 #include "overlay023/struct_ov23_02250CD4.h"
 

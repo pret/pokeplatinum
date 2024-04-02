@@ -11,7 +11,7 @@
 #include "overlay023/struct_ov23_02254594_decl.h"
 
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0206A844.h"
 #include "overlay023/struct_ov23_02248D20.h"

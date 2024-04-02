@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02054BD0_H
 #define POKEPLATINUM_UNK_02054BD0_H
 
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "struct_decls/struct_02054C18_decl.h"
 
 void sub_02054BD0(FieldSystem * param0, const u8 param1);

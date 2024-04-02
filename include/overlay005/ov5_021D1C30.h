@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV5_021D1C30_H
 #define POKEPLATINUM_OV5_021D1C30_H
 
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "overlay005/struct_ov5_021D1CAC.h"
 
 void ov5_021D1CAC(UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1, u16 param2, u16 param3);

@@ -13,7 +13,7 @@
 
 #include "struct_defs/options.h"
 #include "functypes/funcptr_0203BC5C.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_020684D0.h"

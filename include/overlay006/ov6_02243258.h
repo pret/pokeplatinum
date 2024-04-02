@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV6_02243258_H
 
 #include "struct_decls/sys_task.h"
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "pokemon.h"
 
 SysTask * ov6_02243F88(FieldSystem * param0, u32 param1, Pokemon * param2, int param3);

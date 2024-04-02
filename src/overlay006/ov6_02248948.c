@@ -4,8 +4,8 @@
 #include "struct_decls/sys_task.h"
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
-#include "struct_defs/struct_0203CDB0_sub2_t.h"
+#include "field/field_system.h"
+#include "field/field_system_sub2_t.h"
 
 #include "unk_0200D9E8.h"
 #include "heap.h"

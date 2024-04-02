@@ -24,7 +24,7 @@
 #include "struct_defs/sentence.h"
 #include "functypes/funcptr_0203B7C0.h"
 #include "functypes/funcptr_0203BC5C.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0203D8AC.h"
 #include "functypes/funcptr_02050904.h"
 #include "struct_defs/struct_02068630.h"

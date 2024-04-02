@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_0205964C_H
 
 #include "struct_decls/struct_02029894_decl.h"
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "struct_defs/struct_0205964C.h"
 #include "savedata.h"
 

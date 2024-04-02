@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02071D40_H
 #define POKEPLATINUM_UNK_02071D40_H
 
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "struct_defs/struct_02072014.h"
 
 void sub_02071D40(const u8 param0, const u8 param1, const u8 param2, const u8 param3, FieldSystem * param4, TrainerCard * param5);

@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0202440C_decl.h"
 #include "overlay006/struct_ov6_022465F4_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 
 #include "narc.h"
 #include "rtc.h"

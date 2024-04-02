@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_POKERADAR_H
 #define POKEPLATINUM_POKERADAR_H
 
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 
 typedef struct RadarChain RadarChain;

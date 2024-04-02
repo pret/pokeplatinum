@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_02067A84_H
 
 #include "struct_decls/sys_task.h"
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 

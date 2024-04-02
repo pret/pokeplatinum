@@ -20,7 +20,7 @@
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "struct_defs/struct_0200C738.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay023/struct_ov23_0224271C.h"
 #include "overlay115/struct_ov115_02261520.h"

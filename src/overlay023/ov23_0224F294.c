@@ -13,7 +13,7 @@
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_02081CF4.h"
 #include "overlay023/funcptr_ov23_02248D20.h"
 #include "overlay023/funcptr_ov23_0224F758.h"
