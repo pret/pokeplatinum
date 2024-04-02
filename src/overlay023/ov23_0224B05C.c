@@ -1290,7 +1290,7 @@ void ov23_0224C25C (int param0, int param1, void * param2, void * param3)
 
             sub_02059514();
             Link_Message(56);
-            sub_02057AE4(0);
+            CommPlayer_SendPos(0);
 
             ov23_0224DC24();
             return;
@@ -1465,8 +1465,8 @@ static void ov23_0224C5B4 (SysTask * param0, void * param1)
         return;
     }
 
-    v4 = sub_0205EABC(Unk_ov23_022577AC->unk_00->unk_3C);
-    v5 = sub_0205EAC8(Unk_ov23_022577AC->unk_00->unk_3C);
+    v4 = Player_XPos(Unk_ov23_022577AC->unk_00->unk_3C);
+    v5 = Player_ZPos(Unk_ov23_022577AC->unk_00->unk_3C);
 
     if (ov23_02242E58(v4, v5)) {
         return;
@@ -1638,7 +1638,7 @@ static BOOL ov23_0224C790 (UnkStruct_020508D4 * param0)
             v1->unk_2E = 1;
         }
 
-        sub_02035EA8();
+        CommSys_EnableSendMovementData();
         sub_020594FC();
 
         sub_02006E84(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
@@ -1783,7 +1783,7 @@ static void ov23_0224CB1C (SysTask * param0, void * param1)
     {
         v6 = sub_02058D88(CommSys_CurNetId());
         v7 = sub_02058DC0(CommSys_CurNetId());
-        v8 = sub_02059328(sub_0205EA78(v1->unk_3C));
+        v8 = sub_02059328(Player_Dir(v1->unk_3C));
 
         ov23_02253F40(ov23_0224219C(), 34, 0, NULL);
         ov23_0224C588(v6, v7, v8, 16);
@@ -2669,7 +2669,7 @@ void ov23_0224DA8C (void)
 {
     if (Unk_ov23_022577AC->unk_12D4 == 1) {
         Unk_ov23_022577AC->unk_12D4 = 2;
-        sub_020578DC();
+        CommPlayer_InitPersonal();
         ov23_0224B5CC(0);
     }
 }

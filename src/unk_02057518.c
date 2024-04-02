@@ -21,6 +21,7 @@
 
 #include "unk_0200D9E8.h"
 #include "heap.h"
+#include "constants/heap.h"
 #include "trainer_info.h"
 #include "unk_0202854C.h"
 #include "unk_0202CD50.h"
@@ -51,7 +52,7 @@ static BOOL sub_02058A18(int param0, int param1);
 static BOOL sub_020586A8(int param0, int param1, int param2, int param3);
 static void sub_02057BC4(void * param0);
 static void sub_02057C2C(void * param0);
-static void sub_02057C8C(u8 param0);
+static void CommPlayer_Add(u8 param0);
 static void sub_0205820C(SysTask * param0, void * param1);
 static void sub_02057E80(SysTask * param0, void * param1);
 static void sub_02057EF8(void * param0);
@@ -65,7 +66,7 @@ CommPlayerData * CommPlayerData_Get (void)
     return sCommPlayerData;
 }
 
-BOOL CommPlayerManager_Init (void * dest, FieldSystem * fieldSys, BOOL param2)
+BOOL CommPlayerManager_Init (void * dest, FieldSystem * fieldSys, BOOL isUnderground)
 {
     int netId;
 
@@ -78,17 +79,17 @@ BOOL CommPlayerManager_Init (void * dest, FieldSystem * fieldSys, BOOL param2)
         MI_CpuFill8(sCommPlayerData, 0, sizeof(CommPlayerData));
     }
 
-    sCommPlayerData->unk_2BE = param2;
+    sCommPlayerData->isUnderground = isUnderground;
     sCommPlayerData->unk_04 = NULL;
 
-    if (param2) {
-        sCommPlayerData->unk_04 = Heap_AllocFromHeap(15, ov23_02249918());
+    if (isUnderground) {
+        sCommPlayerData->unk_04 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, ov23_02249918());
         ov23_0224991C(sCommPlayerData->unk_04);
     }
 
     sCommPlayerData->fieldSys = fieldSys;
 
-    for (netId = 0; netId < (7 + 1); netId++) {
+    for (netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
         sCommPlayerData->playerLocation[netId].dir = -1;
         sCommPlayerData->playerLocation[netId].x = 0xffff;
         sCommPlayerData->playerLocation[netId].z = 0xffff;
@@ -106,55 +107,53 @@ BOOL CommPlayerManager_Init (void * dest, FieldSystem * fieldSys, BOOL param2)
 
     sCommPlayerData->unk_2BC = 0;
     sCommPlayerData->unk_2BF = 0;
-    sCommPlayerData->unk_50 = SysTask_Start(sub_02057E80, NULL, (100 + 100));
+    sCommPlayerData->task = SysTask_Start(sub_02057E80, NULL, (100 + 100));
 
-    sub_02035EA8();
-    sub_020578DC();
+    CommSys_EnableSendMovementData();
+    CommPlayer_InitPersonal();
 
     return 1;
 }
 
-void sub_0205764C (void)
+void CommPlayerMan_Reset (void)
 {
-    int v0;
+    int netId;
 
     if (sCommPlayerData == NULL) {
         return;
     }
 
-    for (v0 = 0; v0 < (7 + 1); v0++) {
-        if (sCommPlayerData->unk_2BE) {
-            sub_02057DB8(v0, 1, 0);
+    for (netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
+        if (sCommPlayerData->isUnderground) {
+            CommPlayer_Destory(netId, TRUE, FALSE);
         } else {
-            sub_02057DB8(v0, 1, 1);
+            CommPlayer_Destory(netId, TRUE, TRUE);
         }
     }
 
-    if (sCommPlayerData->unk_2BE) {
-        sCommPlayerData->unk_2BD = 1;
+    if (sCommPlayerData->isUnderground) {
+        sCommPlayerData->isResetting = TRUE;
     }
 }
 
-void sub_020576A0 (void)
+void CommPlayerMan_Restart (void)
 {
-    int v0, v1;
-
     if (sCommPlayerData == NULL) {
         return;
     }
 
     sCommPlayerData->unk_2BB = 1;
-    sCommPlayerData->unk_2BD = 0;
+    sCommPlayerData->isResetting = 0;
 
-    sub_020578DC();
-    sub_02057AE4(1);
+    CommPlayer_InitPersonal();
+    CommPlayer_SendPos(1);
 }
 
-void sub_020576CC (BOOL param0)
+void CommPlayerMan_Delete (BOOL deletePlayerData)
 {
-    int v0, v1;
+    int netId, v1;
 
-    if (sCommPlayerData) {
+    if (sCommPlayerData != NULL) {
         for (v1 = 0; v1 < 5; v1++) {
             if (sCommPlayerData->unk_27C[v1]) {
                 Heap_FreeToHeap(sCommPlayerData->unk_27C[v1]);
@@ -166,11 +165,11 @@ void sub_020576CC (BOOL param0)
             sub_0206DF60(sCommPlayerData->fieldSys, sCommPlayerData->unk_2B2);
         }
 
-        for (v0 = 0; v0 < (7 + 1); v0++) {
-            sub_02057DB8(v0, 0, param0);
+        for (netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
+            CommPlayer_Destory(netId, FALSE, deletePlayerData);
         }
 
-        SysTask_Done(sCommPlayerData->unk_50);
+        SysTask_Done(sCommPlayerData->task);
 
         if (sCommPlayerData->unk_04) {
             ov23_02249938(sCommPlayerData->unk_04);
@@ -182,79 +181,79 @@ void sub_020576CC (BOOL param0)
     }
 }
 
-void sub_02057764 (void)
+void CommPlayerMan_Reinit (void)
 {
-    int v0, v1;
+    int netId, v1;
 
-    for (v0 = 0; v0 < (7 + 1); v0++) {
-        if (sCommPlayerData->unk_2BE) {
-            ov23_0224AF4C(v0);
-            ov23_0224AD98(v0);
+    for (netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
+        if (sCommPlayerData->isUnderground) {
+            ov23_0224AF4C(netId);
+            ov23_0224AD98(netId);
 
-            if (v0 != 0) {
-                ov23_0224AE60(v0);
+            if (netId != 0) {
+                ov23_0224AE60(netId);
             }
         }
 
-        if (sCommPlayerData->unk_08[v0] != NULL) {
-            if (sCommPlayerData->fieldSys->unk_3C != sCommPlayerData->unk_08[v0]) {
-                if (sCommPlayerData->unk_2BE) {
-                    sub_0205E8E8(sCommPlayerData->unk_08[v0]);
+        if (sCommPlayerData->unk_08[netId] != NULL) {
+            if (sCommPlayerData->fieldSys->unk_3C != sCommPlayerData->unk_08[netId]) {
+                if (sCommPlayerData->isUnderground) {
+                    sub_0205E8E8(sCommPlayerData->unk_08[netId]);
                 }
             }
 
-            sCommPlayerData->unk_08[v0] = NULL;
+            sCommPlayerData->unk_08[netId] = NULL;
         }
 
-        sCommPlayerData->unk_48[v0] = 0;
-        sCommPlayerData->playerLocation[v0].dir = -1;
-        sCommPlayerData->playerLocation[v0].x = 0xffff;
-        sCommPlayerData->playerLocation[v0].z = 0xffff;
-        sCommPlayerData->playerLocation[v0].moveSpeed = 2;
-        sCommPlayerData->playerLocationServer[v0].dir = -1;
-        sCommPlayerData->playerLocationServer[v0].x = 0xffff;
-        sCommPlayerData->playerLocationServer[v0].z = 0xffff;
-        sCommPlayerData->playerLocationServer[v0].moveSpeed = 2;
-        sCommPlayerData->unk_102[v0] = -1;
-        sCommPlayerData->unk_10A[v0] = 0;
-        sCommPlayerData->unk_E2[v0] = 0;
-        sCommPlayerData->unk_EA[v0] = 1;
-        sCommPlayerData->unk_F2[v0] = 0;
-        sCommPlayerData->unk_13A[v0] = 0;
-        sCommPlayerData->unk_142[v0] = 0;
+        sCommPlayerData->unk_48[netId] = 0;
+        sCommPlayerData->playerLocation[netId].dir = -1;
+        sCommPlayerData->playerLocation[netId].x = 0xffff;
+        sCommPlayerData->playerLocation[netId].z = 0xffff;
+        sCommPlayerData->playerLocation[netId].moveSpeed = 2;
+        sCommPlayerData->playerLocationServer[netId].dir = -1;
+        sCommPlayerData->playerLocationServer[netId].x = 0xffff;
+        sCommPlayerData->playerLocationServer[netId].z = 0xffff;
+        sCommPlayerData->playerLocationServer[netId].moveSpeed = 2;
+        sCommPlayerData->unk_102[netId] = -1;
+        sCommPlayerData->unk_10A[netId] = 0;
+        sCommPlayerData->unk_E2[netId] = 0;
+        sCommPlayerData->unk_EA[netId] = 1;
+        sCommPlayerData->unk_F2[netId] = 0;
+        sCommPlayerData->unk_13A[netId] = 0;
+        sCommPlayerData->unk_142[netId] = 0;
     }
 
     sCommPlayerData->unk_2BF = 0;
-    sub_020578DC();
+    CommPlayer_InitPersonal();
 
-    if (sCommPlayerData->unk_50 == NULL) {
-        sCommPlayerData->unk_50 = SysTask_Start(sub_02057E80, NULL, (100 + 100));
+    if (sCommPlayerData->task == NULL) {
+        sCommPlayerData->task = SysTask_Start(sub_02057E80, NULL, (100 + 100));
     }
 }
 
-void sub_020578B0 (void)
+void CommPlayerMan_Stop (void)
 {
-    if (sCommPlayerData->unk_50) {
+    if (sCommPlayerData->task) {
         sub_02057E80(NULL, NULL);
-        SysTask_Done(sCommPlayerData->unk_50);
+        SysTask_Done(sCommPlayerData->task);
     }
 
-    sCommPlayerData->unk_50 = NULL;
+    sCommPlayerData->task = NULL;
 }
 
-void sub_020578DC (void)
+void CommPlayer_InitPersonal (void)
 {
     sCommPlayerData->unk_08[CommSys_CurNetId()] = sCommPlayerData->fieldSys->unk_3C;
     sCommPlayerData->unk_48[CommSys_CurNetId()] = 1;
-    sCommPlayerData->playerLocation[CommSys_CurNetId()].x = sub_0205EABC(sCommPlayerData->fieldSys->unk_3C);
-    sCommPlayerData->playerLocation[CommSys_CurNetId()].z = sub_0205EAC8(sCommPlayerData->fieldSys->unk_3C);
-    sCommPlayerData->playerLocation[CommSys_CurNetId()].dir = sub_0205EA78(sCommPlayerData->fieldSys->unk_3C);
-    sCommPlayerData->playerLocationServer[CommSys_CurNetId()].x = sub_0205EABC(sCommPlayerData->fieldSys->unk_3C);
-    sCommPlayerData->playerLocationServer[CommSys_CurNetId()].z = sub_0205EAC8(sCommPlayerData->fieldSys->unk_3C);
-    sCommPlayerData->playerLocationServer[CommSys_CurNetId()].dir = sub_0205EA78(sCommPlayerData->fieldSys->unk_3C);
+    sCommPlayerData->playerLocation[CommSys_CurNetId()].x = Player_XPos(sCommPlayerData->fieldSys->unk_3C);
+    sCommPlayerData->playerLocation[CommSys_CurNetId()].z = Player_ZPos(sCommPlayerData->fieldSys->unk_3C);
+    sCommPlayerData->playerLocation[CommSys_CurNetId()].dir = Player_Dir(sCommPlayerData->fieldSys->unk_3C);
+    sCommPlayerData->playerLocationServer[CommSys_CurNetId()].x = Player_XPos(sCommPlayerData->fieldSys->unk_3C);
+    sCommPlayerData->playerLocationServer[CommSys_CurNetId()].z = Player_ZPos(sCommPlayerData->fieldSys->unk_3C);
+    sCommPlayerData->playerLocationServer[CommSys_CurNetId()].dir = Player_Dir(sCommPlayerData->fieldSys->unk_3C);
 }
 
-void sub_020579BC (int param0)
+void CommPlayer_CopyPersonal (int param0)
 {
     int v0;
 
@@ -279,10 +278,10 @@ void sub_020579BC (int param0)
     sCommPlayerData->unk_14A[param0].unk_20 = 0xff;
 }
 
-void sub_02057A94 (BOOL param0, int param1, int param2)
+void CommPlayer_SendXZPos (BOOL param0, int param1, int param2)
 {
     u8 v0[5 + 1];
-    int v1 = sub_0205EA78(sCommPlayerData->fieldSys->unk_3C);
+    int v1 = Player_Dir(sCommPlayerData->fieldSys->unk_3C);
 
     v0[0] = param1;
     v0[1] = param1 >> 8;
@@ -298,20 +297,20 @@ void sub_02057A94 (BOOL param0, int param1, int param2)
     sCommPlayerData->unk_2BB = 1;
 }
 
-void sub_02057AE4 (BOOL param0)
+void CommPlayer_SendPos (BOOL param0)
 {
-    int v0 = sub_0205EABC(sCommPlayerData->fieldSys->unk_3C);
-    int v1 = sub_0205EAC8(sCommPlayerData->fieldSys->unk_3C);
+    int v0 = Player_XPos(sCommPlayerData->fieldSys->unk_3C);
+    int v1 = Player_ZPos(sCommPlayerData->fieldSys->unk_3C);
 
-    sub_02057A94(param0, v0, v1);
+    CommPlayer_SendXZPos(param0, v0, v1);
 }
 
-void sub_02057B14 (BOOL param0)
+void CommPlayer_SendPosServer (BOOL param0)
 {
     int v0 = sCommPlayerData->playerLocationServer[CommSys_CurNetId()].x;
     int v1 = sCommPlayerData->playerLocationServer[CommSys_CurNetId()].z;
 
-    sub_02057A94(param0, v0, v1);
+    CommPlayer_SendXZPos(param0, v0, v1);
 }
 
 static void sub_02057B48 (int param0, const CommPlayerLocation * playerLocation)
@@ -353,7 +352,7 @@ void sub_02057BC4 (void * param0)
 
     if ((0 == v0) && CommSys_IsPlayerConnected(CommSys_CurNetId())) {
         if (!sCommPlayerData->unk_2BA) {
-            sub_02057AE4(1);
+            CommPlayer_SendPos(1);
             sCommPlayerData->unk_2BA = 1;
         }
     }
@@ -381,12 +380,12 @@ static void sub_02057C2C (void * param0)
     sCommPlayerData->unk_2BB = 0;
 }
 
-u32 sub_02057C84 (void)
+u32 CommPlayer_Size (void)
 {
     return sizeof(CommPlayerData);
 }
 
-static void sub_02057C8C (u8 param0)
+static void CommPlayer_Add (u8 param0)
 {
     fx32 v0, v1;
     UnkStruct_0205E884 * v2;
@@ -395,7 +394,7 @@ static void sub_02057C8C (u8 param0)
         return;
     }
 
-    if (sCommPlayerData->unk_2BD) {
+    if (sCommPlayerData->isResetting) {
         return;
     }
 
@@ -407,7 +406,7 @@ static void sub_02057C8C (u8 param0)
         }
 
         if (v3) {
-            if (!sCommPlayerData->unk_2BE) {
+            if (!sCommPlayerData->isUnderground) {
                 if (param0 != CommSys_CurNetId()) {
                     UnkStruct_02061AB4 * v4 = sub_0206251C(sCommPlayerData->fieldSys->unk_38, 0xff + param0 + 1);
 
@@ -432,24 +431,24 @@ static void sub_02057C8C (u8 param0)
 
             sub_0206290C(sub_0205EB3C(v2), 0xff + param0 + 1);
 
-            if (sCommPlayerData->unk_2BE) {
+            if (sCommPlayerData->isUnderground) {
                 ov23_02243038(param0);
             }
 
-            if (sCommPlayerData->unk_2BE && !sCommPlayerData->unk_48[param0]) {
-                if (!sCommPlayerData->unk_2BD) {
+            if (sCommPlayerData->isUnderground && !sCommPlayerData->unk_48[param0]) {
+                if (!sCommPlayerData->isResetting) {
                     ov5_021F5634(sCommPlayerData->fieldSys, sCommPlayerData->playerLocation[param0].x, 0, sCommPlayerData->playerLocation[param0].z);
                 }
 
                 sCommPlayerData->unk_48[param0] = 1;
-            } else if (!sCommPlayerData->unk_2BE) {
+            } else if (!sCommPlayerData->isUnderground) {
                 sCommPlayerData->unk_48[param0] = 1;
             }
         }
     }
 }
 
-void sub_02057DB8 (u8 param0, BOOL param1, BOOL param2)
+void CommPlayer_Destory (u8 param0, BOOL param1, BOOL param2)
 {
     int v0;
 
@@ -459,13 +458,13 @@ void sub_02057DB8 (u8 param0, BOOL param1, BOOL param2)
 
     MI_CpuClear8(sCommPlayerData->unk_5A, (7 + 1));
 
-    if (sCommPlayerData->unk_2BE) {
+    if (sCommPlayerData->isUnderground) {
         ov23_0224AF4C(param0);
     }
 
     if (sCommPlayerData->unk_08[param0] != NULL) {
         if (sCommPlayerData->fieldSys->unk_3C != sCommPlayerData->unk_08[param0]) {
-            if (sCommPlayerData->unk_2BE || param2) {
+            if (sCommPlayerData->isUnderground || param2) {
                 sub_0205E8E8(sCommPlayerData->unk_08[param0]);
             } else {
                 sub_0205E8E0(sCommPlayerData->unk_08[param0]);
@@ -484,7 +483,7 @@ void sub_02057DB8 (u8 param0, BOOL param1, BOOL param2)
     if (!param1) {
         sCommPlayerData->unk_FA[param0] = 0;
 
-        if (sCommPlayerData->unk_2BE) {
+        if (sCommPlayerData->isUnderground) {
             ov23_0224AE60(param0);
 
             if (param0 != 0) {
@@ -494,7 +493,7 @@ void sub_02057DB8 (u8 param0, BOOL param1, BOOL param2)
     }
 }
 
-static void sub_02057E68 ()
+static void CommPlayer_SendMoveSpeed ()
 {
     u8 v0 = 2;
 
@@ -510,7 +509,7 @@ static void sub_02057E80 (SysTask * param0, void * param1)
     int v0;
 
     if (CommSys_IsInitialized()) {
-        sub_02057E68();
+        CommPlayer_SendMoveSpeed();
 
         if (CommSys_CurNetId() == 0) {
             sub_02057C2C(param1);
@@ -527,7 +526,7 @@ static void sub_02057E80 (SysTask * param0, void * param1)
     }
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
-        if (sCommPlayerData->unk_2BE) {
+        if (sCommPlayerData->isUnderground) {
             if (CommSys_CurNetId() == 0) {
                 if (NULL == CommInfo_TrainerInfo(v0)) {
                     ov23_0224B5CC(v0);
@@ -544,7 +543,7 @@ static void sub_02057EF8 (void * param0)
     for (v0 = 0; v0 < (7 + 1); v0++) {
         if (!CommSys_IsPlayerConnected(v0)) {
             if (!(sub_02036180() && (v0 == 0))) {
-                if ((CommSys_CurNetId() == 0) && (sCommPlayerData->unk_2BE)) {
+                if ((CommSys_CurNetId() == 0) && (sCommPlayerData->isUnderground)) {
                     ov23_0224D898(v0);
                 }
             }
@@ -553,12 +552,12 @@ static void sub_02057EF8 (void * param0)
         if (CommSys_IsPlayerConnected(v0) || (sub_02036180() && (v0 == 0))) {
             sub_020587C0(v0);
 
-            if (sCommPlayerData->unk_2BE) {
+            if (sCommPlayerData->isUnderground) {
                 ov23_0224AF7C(v0);
             }
         } else {
             if (sCommPlayerData->unk_48[v0]) {
-                if ((CommSys_CurNetId() == 0) && (sCommPlayerData->unk_2BE)) {
+                if ((CommSys_CurNetId() == 0) && (sCommPlayerData->isUnderground)) {
                     ov23_022436F0(v0);
                     ov23_02241648(v0);
                 }
@@ -621,7 +620,7 @@ void sub_0205805C (FieldSystem * param0, BOOL param1)
         return;
     }
 
-    if (!sCommPlayerData->unk_2BE) {
+    if (!sCommPlayerData->isUnderground) {
         sub_02057FF0(param1);
         sCommPlayerData->unk_2C1 = param1;
     }
@@ -635,7 +634,7 @@ void sub_0205805C (FieldSystem * param0, BOOL param1)
     }
 
     if (CommSys_IsInitialized() && (CommSys_CurNetId() == 0)) {
-        if (!sCommPlayerData->unk_2BE) {
+        if (!sCommPlayerData->isUnderground) {
             sub_020591A8();
         }
     }
@@ -698,7 +697,7 @@ static BOOL sub_0205814C (int param0, int param1, int param2)
             return 1;
         }
 
-        if (sCommPlayerData->unk_2BE) {
+        if (sCommPlayerData->isUnderground) {
             if (!ov23_0224D1A0(param0, param1)) {
                 return 1;
             }
@@ -745,7 +744,7 @@ static void sub_0205820C (SysTask * param0, void * param1)
                 v8 = ov23_0224993C(sCommPlayerData->unk_04, v5);
             }
 
-            if (sCommPlayerData->unk_2BE) {
+            if (sCommPlayerData->isUnderground) {
                 if (ov23_0224C1C8(v5)) {
                     continue;
                 }
@@ -756,7 +755,7 @@ static void sub_0205820C (SysTask * param0, void * param1)
             }
 
             if (sCommPlayerData->unk_13A[v5] == 0) {
-                if (sCommPlayerData->unk_2BE) {
+                if (sCommPlayerData->isUnderground) {
                     if (ov23_0224444C(v5)) {
                         continue;
                     }
@@ -825,7 +824,7 @@ static void sub_0205820C (SysTask * param0, void * param1)
                     }
                 } else if (sCommPlayerData->unk_122[v5] != 0) {
                     continue;
-                } else if (sCommPlayerData->unk_2BE && (ov23_0224B8E0(v5, v3, v4) == 1)) {
+                } else if (sCommPlayerData->isUnderground && (ov23_0224B8E0(v5, v3, v4) == 1)) {
                     continue;
                 } else if (sub_0205814C(v3, v4, v5)) {
                     playerLocation->unk_07 = 1;
@@ -906,15 +905,15 @@ void sub_0205853C (int param0, int param1, void * param2, void * param3)
         return;
     }
 
-    if (sCommPlayerData->unk_2BE) {
+    if (sCommPlayerData->isUnderground) {
         ov23_022430B8(v1);
 
-        if (!sCommPlayerData->unk_2BD) {
+        if (!sCommPlayerData->isResetting) {
             ov5_021F5634(sCommPlayerData->fieldSys, sCommPlayerData->playerLocation[v1].x, 0, sCommPlayerData->playerLocation[v1].z);
         }
     }
 
-    sub_02057DB8(v1, 0, 0);
+    CommPlayer_Destory(v1, 0, 0);
     CommInfo_InitPlayer(v1);
 }
 
@@ -957,7 +956,7 @@ void sub_020585A8 (int param0, int param1, void * param2, void * param3)
     playerLocation->dir = ((v1[0] >> 4) & 0x3);
     playerLocation->moveSpeed = ((v1[0] >> 6) & 0x3);
 
-    sub_02057C8C(v3);
+    CommPlayer_Add(v3);
 }
 
 static void sub_02058644 (int param0)
@@ -965,7 +964,7 @@ static void sub_02058644 (int param0)
     UnkStruct_020298B0 * v0 = sub_020298B0(sub_0203D174(sCommPlayerData->fieldSys));
     UnkStruct_0202855C * v1 = sub_020298A0(sub_0203D174(sCommPlayerData->fieldSys));
 
-    if (sCommPlayerData->unk_2BE) {
+    if (sCommPlayerData->isUnderground) {
         if (param0 == CommSys_CurNetId()) {
             sub_0202929C(v0);
 
@@ -994,7 +993,7 @@ static BOOL sub_020586A8 (int param0, int param1, int param2, int param3)
 
     v0 = sub_0205EB3C(sCommPlayerData->unk_08[param0]);
 
-    if (sub_0205EA78(sCommPlayerData->unk_08[param0]) != sub_02059328(sCommPlayerData->unk_102[param0])) {
+    if (Player_Dir(sCommPlayerData->unk_08[param0]) != sub_02059328(sCommPlayerData->unk_102[param0])) {
         sub_020628C4(v0, (1 << 7));
         sub_0205EA84(sCommPlayerData->unk_08[param0], sub_02059328(sCommPlayerData->unk_102[param0]));
         sub_020628BC(v0, (1 << 7));
@@ -1044,11 +1043,11 @@ static void sub_020587C0 (int param0)
         return;
     }
 
-    if (sCommPlayerData->unk_2BD) {
+    if (sCommPlayerData->isResetting) {
         return;
     }
 
-    if (!sCommPlayerData->unk_2BE) {
+    if (!sCommPlayerData->isUnderground) {
         if (param0 == CommSys_CurNetId()) {
             if (!sCommPlayerData->unk_2C1) {
                 return;
@@ -1059,9 +1058,9 @@ static void sub_020587C0 (int param0)
     v4 = sCommPlayerData->unk_08[param0];
 
     if (v4) {
-        int v6 = sub_0205EABC(v4) - playerLocation->x;
-        int v7 = sub_0205EAC8(v4) - playerLocation->z;
-        int v8 = sub_0205EA78(v4);
+        int v6 = Player_XPos(v4) - playerLocation->x;
+        int v7 = Player_ZPos(v4) - playerLocation->z;
+        int v8 = Player_Dir(v4);
 
         if ((v6 == 0) && (v7 == 0)) {
             v2 = 0;
@@ -1111,7 +1110,7 @@ static void sub_020587C0 (int param0)
 
             if (sCommPlayerData->unk_2C0 && (param0 == CommSys_CurNetId())) {
                 sCommPlayerData->unk_2C0--;
-            } else if (!sub_02035EE0() && sCommPlayerData->unk_2BE && (param0 == CommSys_CurNetId())) {
+            } else if (!sub_02035EE0() && sCommPlayerData->isUnderground && (param0 == CommSys_CurNetId())) {
                 v9 = sub_0206147C(
                     v4, v2, v2, v10, 1, 0);
             } else if (((v2 & ~PAD_BUTTON_B) == 0) && (playerLocation->unk_07)) {
@@ -1304,7 +1303,7 @@ BOOL sub_02058C40 (void)
         return 0;
     }
 
-    if (sCommPlayerData->unk_2BE && !ov23_02249BD4()) {
+    if (sCommPlayerData->isUnderground && !ov23_02249BD4()) {
         return 0;
     }
 
@@ -1712,7 +1711,7 @@ void sub_020593F4 (int param0)
 {
     sub_0205EA84(sCommPlayerData->fieldSys->unk_3C, param0);
     sCommPlayerData->playerLocation[CommSys_CurNetId()].dir = param0;
-    sub_02057AE4(0);
+    CommPlayer_SendPos(0);
 }
 
 void sub_02059424 (int param0, int param1)
@@ -1727,7 +1726,7 @@ int sub_02059444 (int param0)
         return -1;
     }
 
-    return sub_0205EA78(sCommPlayerData->unk_08[param0]);
+    return Player_Dir(sCommPlayerData->unk_08[param0]);
 }
 
 void sub_02059464 (int param0)
@@ -1782,7 +1781,7 @@ void sub_02059514 (void)
 void sub_02059524 (void)
 {
     if (sCommPlayerData->unk_2BF == 0) {
-        if (!sCommPlayerData->unk_2BE) {
+        if (!sCommPlayerData->isUnderground) {
             sub_02059514();
             sCommPlayerData->unk_2BF = 1;
         } else if (ov23_02243298(CommSys_CurNetId())) {
@@ -1797,7 +1796,7 @@ void sub_02059524 (void)
 void sub_02059570 (void)
 {
     if (sCommPlayerData->unk_2BF == 0) {
-        if (sCommPlayerData->unk_2BE) {
+        if (sCommPlayerData->isUnderground) {
             if (!ov23_02243298(CommSys_CurNetId())) {
                 sub_02057FC4(0);
             }

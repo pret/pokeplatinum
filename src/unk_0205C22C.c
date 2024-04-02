@@ -251,8 +251,8 @@ static void sub_0205C51C (UnkStruct_0205C22C * param0, UnkStruct_02061830 * para
 
     GF_ASSERT(param0->unk_08 != NULL);
 
-    v2 = sub_0205EABC(param0->unk_08);
-    v3 = sub_0205EAC8(param0->unk_08);
+    v2 = Player_XPos(param0->unk_08);
+    v3 = Player_ZPos(param0->unk_08);
 
     for (v1 = 0; v1 < 50; v1++) {
         v0 = sub_0206251C(param1, v1 + 1);

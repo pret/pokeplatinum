@@ -1422,7 +1422,7 @@ static void ov23_0223F118 (SysTask * param0, void * param1)
     case 0:
         ov23_0224DBF4(0);
         ov23_022417CC();
-        sub_0205764C();
+        CommPlayerMan_Reset();
         ov23_0224B430();
         (v0->unk_00)++;
         break;
@@ -1603,7 +1603,7 @@ static void ov23_0223F118 (SysTask * param0, void * param1)
 
             sub_02006E84(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
             sub_0200DAA4(v0->unk_10->unk_08, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
-            sub_020576A0();
+            CommPlayerMan_Restart();
 
             ov23_0224B460();
             ov23_022417E0();

@@ -351,8 +351,8 @@ void ov8_0224997C (FieldSystem * param0)
     int v4;
     int v5[] = {239, 240, 241};
 
-    v1 = sub_0205EABC(param0->unk_3C);
-    v2 = sub_0205EAC8(param0->unk_3C);
+    v1 = Player_XPos(param0->unk_3C);
+    v2 = Player_ZPos(param0->unk_3C);
 
     sub_020550F4(v1, v2, 0, 0, 1, 1, &v0);
 
@@ -2619,8 +2619,8 @@ static void ov8_0224B18C (FieldSystem * param0, UnkStruct_ov8_0224B28C * param1,
     int v0, v1, v2, v3;
     const VecFx32 * v4;
 
-    v0 = sub_0205EABC(param0->unk_3C);
-    v1 = sub_0205EAC8(param0->unk_3C);
+    v0 = Player_XPos(param0->unk_3C);
+    v1 = Player_ZPos(param0->unk_3C);
 
     param1->unk_10 = v0;
     param1->unk_14 = v1;
@@ -2954,8 +2954,8 @@ static BOOL ov8_0224B3D4 (UnkStruct_020508D4 * param0)
         v2->unk_00++;
     case 12:
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            int v9 = sub_0205EABC(v1->unk_3C);
-            int v10 = sub_0205EAC8(v1->unk_3C);
+            int v9 = Player_XPos(v1->unk_3C);
+            int v10 = Player_ZPos(v1->unk_3C);
 
             ov8_0224B240(&v2->unk_1C, v9, v10);
             sub_0200E084(v2->unk_44, 0);
@@ -3659,7 +3659,7 @@ BOOL ov8_0224BF4C (FieldSystem * param0)
     {
         int v1, v2, v3;
         UnkStruct_ov8_0224BCA8 * v4;
-        int v5 = sub_0205EA78(param0->unk_3C);
+        int v5 = Player_Dir(param0->unk_3C);
         UnkStruct_ov8_0224B8D0 * v6 = param0->unk_04->unk_24;
 
         sub_0206157C(param0->unk_3C, v5, &v1, &v2);
@@ -3704,8 +3704,8 @@ static void ov8_0224BFCC (FieldSystem * param0, UnkStruct_ov8_0224C098 * param1,
     v3->unk_18 = v0 + (sub_0206419C(param3) * v3->unk_24);
     v3->unk_1C = v1 + (sub_020641A8(param3) * v3->unk_24);
 
-    v0 = sub_0205EABC(param0->unk_3C);
-    v1 = sub_0205EAC8(param0->unk_3C);
+    v0 = Player_XPos(param0->unk_3C);
+    v1 = Player_ZPos(param0->unk_3C);
 
     v3->unk_10 = v0;
     v3->unk_14 = v1;

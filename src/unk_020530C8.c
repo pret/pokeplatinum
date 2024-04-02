@@ -444,7 +444,7 @@ static void sub_020534BC (FieldSystem * param0)
 
 static void sub_020534EC (UnkStruct_02049FA8 * param0, const FieldSystem * param1)
 {
-    inline_02049FA8(param0, param1->unk_1C->unk_00, -1, sub_0205EABC(param1->unk_3C), sub_0205EAC8(param1->unk_3C), 1);
+    inline_02049FA8(param0, param1->unk_1C->unk_00, -1, Player_XPos(param1->unk_3C), Player_ZPos(param1->unk_3C), 1);
 }
 
 static BOOL sub_02053518 (const FieldSystem * param0)
@@ -1097,7 +1097,7 @@ void sub_02053F58 (FieldSystem * param0, int param1, int param2)
 
     MI_CpuClear8(v1, sizeof(UnkStruct_02053E98));
 
-    inline_02049FA8(&v0, param1, param2, 0, 0, sub_0205EA78(param0->unk_3C));
+    inline_02049FA8(&v0, param1, param2, 0, 0, Player_Dir(param0->unk_3C));
     v1->unk_08 = v0;
     sub_02050904(param0, sub_02053E98, v1);
 }

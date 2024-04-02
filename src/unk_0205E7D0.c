@@ -104,9 +104,9 @@ void sub_0205E884 (UnkStruct_0205E884 * param0, int param1)
 
     if (sub_0205EB74(param0) == 0x2) {
         if (param1 != 9) {
-            int v4 = sub_0205EABC(param0);
-            int v5 = sub_0205EAC8(param0);
-            int v6 = sub_0205EA78(param0);
+            int v4 = Player_XPos(param0);
+            int v5 = Player_ZPos(param0);
+            int v6 = Player_Dir(param0);
             UnkStruct_ov101_021D5D90 * v7 = ov5_021F261C(v2, v4, v5, v6, 1);
 
             sub_0205EC00(param0, v7);
@@ -201,7 +201,7 @@ static UnkStruct_02061AB4 * sub_0205EA64 (const UnkStruct_02061830 * param0)
     return v0;
 }
 
-int sub_0205EA78 (UnkStruct_0205E884 * const param0)
+int Player_Dir (UnkStruct_0205E884 * const param0)
 {
     return sub_0206298C(sub_0205EB3C(param0));
 }
@@ -219,18 +219,18 @@ int sub_0205EA94 (UnkStruct_0205E884 * const param0)
 int sub_0205EAA0 (UnkStruct_0205E884 * const param0)
 {
     if (sub_0205F16C(param0) == 1) {
-        return sub_0205EA78(param0);
+        return Player_Dir(param0);
     }
 
     return sub_0205EA94(param0);
 }
 
-int sub_0205EABC (UnkStruct_0205E884 * const param0)
+int Player_XPos (UnkStruct_0205E884 * const param0)
 {
     return sub_02063020(sub_0205EB3C(param0));
 }
 
-int sub_0205EAC8 (UnkStruct_0205E884 * const param0)
+int Player_ZPos (UnkStruct_0205E884 * const param0)
 {
     return sub_02063040(sub_0205EB3C(param0));
 }

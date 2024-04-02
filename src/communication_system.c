@@ -1662,7 +1662,7 @@ u16 sub_02035E84 (int param0)
     return v0;
 }
 
-void sub_02035EA8 (void)
+void CommSys_EnableSendMovementData (void)
 {
     if (sCommunicationSystem) {
         sCommunicationSystem->unk_654 |= 0x8000;

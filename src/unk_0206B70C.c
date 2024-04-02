@@ -84,8 +84,8 @@ void sub_0206B70C (FieldSystem * param0, UnkStruct_0203D8AC * param1, int param2
 
     memset(param1, 0, sizeof(UnkStruct_0203D8AC));
 
-    v4 = sub_0205EABC(param0->unk_3C);
-    v5 = sub_0205EAC8(param0->unk_3C);
+    v4 = Player_XPos(param0->unk_3C);
+    v5 = Player_ZPos(param0->unk_3C);
 
     {
         int v11 = 10 - 1;

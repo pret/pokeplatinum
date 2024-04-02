@@ -283,7 +283,7 @@ static BOOL sub_02056E20 (UnkStruct_020508D4 * param0)
     case 0:
         v1->unk_1C = ov5_021D431C();
         v2 = (UnkStruct_ov5_021D432C *)v1->unk_1C;
-        ov5_021D4334(sub_0205EABC(v0->unk_3C), sub_0205EAC8(v0->unk_3C), v2);
+        ov5_021D4334(Player_XPos(v0->unk_3C), Player_ZPos(v0->unk_3C), v2);
         (v1->unk_04)++;
         break;
     case 1:
@@ -315,13 +315,13 @@ static BOOL sub_02056EA4 (UnkStruct_020508D4 * param0)
     case 0:
         v1->unk_1C = ov5_021D431C();
         v2 = (UnkStruct_ov5_021D432C *)v1->unk_1C;
-        ov5_021D4334(sub_0205EABC(v0->unk_3C), sub_0205EAC8(v0->unk_3C), v2);
+        ov5_021D4334(Player_XPos(v0->unk_3C), Player_ZPos(v0->unk_3C), v2);
         (v1->unk_04)++;
         break;
     case 1:
         v2 = (UnkStruct_ov5_021D432C *)v1->unk_1C;
 
-        if (ov5_021D4A24(v0, v2, sub_0205EA78(v0->unk_3C))) {
+        if (ov5_021D4A24(v0, v2, Player_Dir(v0->unk_3C))) {
             ov5_021D432C(v1->unk_1C);
             (v1->unk_04)++;
         }
@@ -342,7 +342,7 @@ static BOOL sub_02056F1C (UnkStruct_020508D4 * param0)
     switch (v1->unk_04) {
     case 0:
     {
-        int v3 = sub_0205EA78(v0->unk_3C);
+        int v3 = Player_Dir(v0->unk_3C);
 
         v2 = sub_0205EB3C(v0->unk_3C);
 
@@ -438,7 +438,7 @@ static BOOL sub_02057050 (UnkStruct_020508D4 * param0)
         u8 v4;
         UnkStruct_02061AB4 * v5 = sub_0205EB3C(v1->unk_3C);
 
-        v4 = sub_02054F94(v1, sub_0205EABC(v1->unk_3C), sub_0205EAC8(v1->unk_3C));
+        v4 = sub_02054F94(v1, Player_XPos(v1->unk_3C), Player_ZPos(v1->unk_3C));
 
         if (sub_0205DAEC(v4)) {
             sub_02062D64(v5, 1);
@@ -455,7 +455,7 @@ static BOOL sub_02057050 (UnkStruct_020508D4 * param0)
     case 1:
         v2->unk_1C = (UnkStruct_ov5_021D432C *)ov5_021D431C();
         v3 = (UnkStruct_ov5_021D432C *)v2->unk_1C;
-        ov5_021D4334(sub_0205EABC(v1->unk_3C), sub_0205EAC8(v1->unk_3C), v3);
+        ov5_021D4334(Player_XPos(v1->unk_3C), Player_ZPos(v1->unk_3C), v3);
         (v2->unk_04)++;
         break;
     case 2:
@@ -491,7 +491,7 @@ static BOOL sub_0205711C (UnkStruct_020508D4 * param0)
         u8 v4;
         UnkStruct_02061AB4 * v5 = sub_0205EB3C(v1->unk_3C);
 
-        v4 = sub_02054F94(v1, sub_0205EABC(v1->unk_3C), sub_0205EAC8(v1->unk_3C));
+        v4 = sub_02054F94(v1, Player_XPos(v1->unk_3C), Player_ZPos(v1->unk_3C));
 
         if (sub_0205DAEC(v4)) {
             sub_02062D64(v5, 1);
@@ -523,13 +523,13 @@ static BOOL sub_020571A0 (UnkStruct_020508D4 * param0)
     case 0:
         v1->unk_1C = ov5_021D431C();
         v2 = (UnkStruct_ov5_021D432C *)v1->unk_1C;
-        ov5_021D4334(sub_0205EABC(v0->unk_3C), sub_0205EAC8(v0->unk_3C), v2);
+        ov5_021D4334(Player_XPos(v0->unk_3C), Player_ZPos(v0->unk_3C), v2);
         (v1->unk_04)++;
         break;
     case 1:
         v2 = (UnkStruct_ov5_021D432C *)v1->unk_1C;
 
-        if (ov5_021D4858(v0, v2, sub_0205EA78(v0->unk_3C))) {
+        if (ov5_021D4858(v0, v2, Player_Dir(v0->unk_3C))) {
             ov5_021D432C(v1->unk_1C);
             (v1->unk_04)++;
         }
@@ -556,7 +556,7 @@ static BOOL sub_02057218 (UnkStruct_020508D4 * param0)
         if (1) {
             int v3;
 
-            v3 = sub_0205EA78(v0->unk_3C);
+            v3 = Player_Dir(v0->unk_3C);
 
             if (v3 == 2) {
                 sub_02065638(v2, 0xa);
@@ -619,7 +619,7 @@ static void sub_02057300 (FieldSystem * param0)
     int v0;
     VecFx32 v1;
 
-    v0 = sub_0205EA78(param0->unk_3C);
+    v0 = Player_Dir(param0->unk_3C);
     sub_0205EAEC(param0->unk_3C, &v1);
 
     if (v0 == 3) {
@@ -641,11 +641,11 @@ static void sub_02057368 (FieldSystem * param0)
     VecFx32 v3;
     u8 v4;
 
-    v2 = sub_0205EA78(param0->unk_3C);
+    v2 = Player_Dir(param0->unk_3C);
     sub_0205EAEC(param0->unk_3C, &v3);
 
-    v0 = sub_0205EABC(param0->unk_3C);
-    v1 = sub_0205EAC8(param0->unk_3C);
+    v0 = Player_XPos(param0->unk_3C);
+    v1 = Player_ZPos(param0->unk_3C);
     v4 = sub_02054F94(param0, v0, v1);
 
     if (sub_0205DC44(v4)) {

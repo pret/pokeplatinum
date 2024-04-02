@@ -221,12 +221,12 @@ void sub_0206842C (FieldSystem * param0, UnkStruct_020684D0 * param1)
     param1->unk_04 = sub_0206A984(SaveData_Events(param0->unk_0C));
     param1->unk_08 = sub_0205EB74(param0->unk_3C);
 
-    v0 = sub_0205EABC(param0->unk_3C);
-    v1 = sub_0205EAC8(param0->unk_3C);
+    v0 = Player_XPos(param0->unk_3C);
+    v1 = Player_ZPos(param0->unk_3C);
 
     param1->unk_0E = sub_02054F94(param0, v0, v1);
 
-    v2 = sub_0205EA78(param0->unk_3C);
+    v2 = Player_Dir(param0->unk_3C);
 
     switch (v2) {
     case 0:
@@ -443,8 +443,8 @@ static u32 sub_0206877C (const UnkStruct_020684D0 * param0)
     {
         u16 v0, v1;
 
-        v0 = sub_0205EABC(param0->unk_18->unk_3C);
-        v1 = sub_0205EAC8(param0->unk_18->unk_3C);
+        v0 = Player_XPos(param0->unk_18->unk_3C);
+        v1 = Player_ZPos(param0->unk_18->unk_3C);
 
         if (sub_0203A6A4(param0->unk_18, v0, v1) == 0) {
             return -1;

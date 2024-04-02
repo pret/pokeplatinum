@@ -277,7 +277,7 @@ void sub_0203A9E0 (FieldSystem * param0)
     v0->unk_228 = 0;
 
     if (sub_0205F588(param0->unk_3C) == 1) {
-        sub_0205F5E4(param0->unk_3C, sub_0205EA78(param0->unk_3C));
+        sub_0205F5E4(param0->unk_3C, Player_Dir(param0->unk_3C));
     }
 
     sub_02050904(param0, sub_0203AC44, v0);
@@ -291,7 +291,7 @@ void sub_0203AA78 (FieldSystem * param0)
     v0->unk_228 = 1;
 
     if (sub_0205F588(param0->unk_3C) == 1) {
-        sub_0205F5E4(param0->unk_3C, sub_0205EA78(param0->unk_3C));
+        sub_0205F5E4(param0->unk_3C, Player_Dir(param0->unk_3C));
     }
 
     sub_02050904(param0, sub_0203AC44, v0);
@@ -305,7 +305,7 @@ void sub_0203AABC (FieldSystem * param0)
     v0->unk_228 = 0;
 
     if (sub_0205F588(param0->unk_3C) == 1) {
-        sub_0205F5E4(param0->unk_3C, sub_0205EA78(param0->unk_3C));
+        sub_0205F5E4(param0->unk_3C, Player_Dir(param0->unk_3C));
     }
 
     sub_02050904(param0, sub_0203AC44, v0);

@@ -159,8 +159,8 @@ static void sub_02069CD4 (UnkStruct_02061AB4 * param0, UnkStruct_02069CA8 * para
     UnkStruct_0205E884 * v1 = sub_0205EF3C(v0);
 
     param1->unk_01 = 1;
-    param1->unk_02 = sub_0205EABC(v1);
-    param1->unk_04 = sub_0205EAC8(v1);
+    param1->unk_02 = Player_XPos(v1);
+    param1->unk_04 = Player_ZPos(v1);
     param1->unk_06 = 0xff;
 }
 
@@ -170,8 +170,8 @@ static int sub_02069CFC (UnkStruct_02061AB4 * param0, UnkStruct_02069CA8 * param
     UnkStruct_0205E884 * v1 = sub_0205EF3C(v0);
 
     if (v1 != NULL) {
-        int v2 = sub_0205EABC(v1);
-        int v3 = sub_0205EAC8(v1);
+        int v2 = Player_XPos(v1);
+        int v3 = Player_ZPos(v1);
 
         if ((v2 != param1->unk_02) || (v3 != param1->unk_04)) {
             return 1;
@@ -186,8 +186,8 @@ static void sub_02069D30 (UnkStruct_02061AB4 * param0, UnkStruct_02069CA8 * para
     FieldSystem * v0 = sub_02062C00(param0);
     UnkStruct_0205E884 * v1 = sub_0205EF3C(v0);
 
-    param1->unk_02 = sub_0205EABC(v1);
-    param1->unk_04 = sub_0205EAC8(v1);
+    param1->unk_02 = Player_XPos(v1);
+    param1->unk_04 = Player_ZPos(v1);
 }
 
 static u32 sub_02069D50 (UnkStruct_02061AB4 * param0)
@@ -629,7 +629,7 @@ static int sub_0206A324 (UnkStruct_02061AB4 * param0, UnkStruct_0206A23C * param
     if (param1->unk_01 == -1) {
         FieldSystem * v0 = sub_02062C00(param0);
 
-        param1->unk_01 = sub_0205EA78(v0->unk_3C);
+        param1->unk_01 = Player_Dir(v0->unk_3C);
     }
 
     sub_02062D10(param0);
@@ -675,7 +675,7 @@ static int sub_0206A3BC (UnkStruct_02061AB4 * param0, UnkStruct_0206A23C * param
 {
     int v0;
     FieldSystem * v1 = sub_02062C00(param0);
-    int v2 = sub_0205EA78(v1->unk_3C);
+    int v2 = Player_Dir(v1->unk_3C);
     u32 v3 = sub_0205EC1C(v1->unk_3C);
 
     switch (v3) {

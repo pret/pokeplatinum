@@ -195,8 +195,8 @@ void sub_02070728 (FieldSystem * param0, UnkStruct_02070950 * param1)
         }
     }
 
-    v1 = sub_0205EABC(param0->unk_3C);
-    v2 = sub_0205EAC8(param0->unk_3C);
+    v1 = Player_XPos(param0->unk_3C);
+    v2 = Player_ZPos(param0->unk_3C);
     v4 = sub_02054F94(param0, v1, v2);
 
     sub_020615AC(param0->unk_3C, &v1, &v2);
@@ -206,7 +206,7 @@ void sub_02070728 (FieldSystem * param0, UnkStruct_02070950 * param1)
         param1->unk_0C |= (1 << 2);
     }
 
-    if (ov5_021E0760(v3, sub_0205EA78(param0->unk_3C))) {
+    if (ov5_021E0760(v3, Player_Dir(param0->unk_3C))) {
         param1->unk_0C |= (1 << 7);
     }
 

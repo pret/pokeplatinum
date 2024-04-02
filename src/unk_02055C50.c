@@ -305,8 +305,8 @@ static BOOL sub_02056010 (FieldSystem * param0, UnkStruct_020562AC * param1, int
 {
     int v0, v1;
 
-    v0 = sub_0205EABC(param0->unk_3C);
-    v1 = sub_0205EAC8(param0->unk_3C);
+    v0 = Player_XPos(param0->unk_3C);
+    v1 = Player_ZPos(param0->unk_3C);
 
     if (param2 == 2) {
         v0--;
@@ -331,8 +331,8 @@ static UnkStruct_02061AB4 * sub_02056074 (FieldSystem * param0, int param1)
 {
     int v0, v1;
 
-    v0 = sub_0205EABC(param0->unk_3C);
-    v1 = sub_0205EAC8(param0->unk_3C);
+    v0 = Player_XPos(param0->unk_3C);
+    v1 = Player_ZPos(param0->unk_3C);
     v1 -= 1;
 
     if (param1 == 2) {
@@ -348,8 +348,8 @@ static UnkStruct_02061AB4 * sub_020560A8 (FieldSystem * param0, UnkStruct_020562
 {
     int v0, v1;
 
-    v0 = sub_0205EABC(param0->unk_3C);
-    v1 = sub_0205EAC8(param0->unk_3C);
+    v0 = Player_XPos(param0->unk_3C);
+    v1 = Player_ZPos(param0->unk_3C);
 
     if (param1->unk_04 == 0) {
         v1 -= 1;
@@ -472,7 +472,7 @@ void sub_020562AC (FieldSystem * param0)
 
     v0->unk_00 = 0;
     v0->unk_0C = NULL;
-    v0->unk_04 = sub_0205EA78(param0->unk_3C);
+    v0->unk_04 = Player_Dir(param0->unk_3C);
 
     sub_02050944(param0->unk_10, sub_02056124, v0);
 }

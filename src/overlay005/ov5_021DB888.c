@@ -469,8 +469,8 @@ static void ov5_021DBA7C (UnkStruct_ov5_021DBA58 * param0)
         param0->unk_10[v5] = NULL;
     }
 
-    v3 = sub_0205EABC(param0->unk_04->unk_3C);
-    v4 = sub_0205EAC8(param0->unk_04->unk_3C);
+    v3 = Player_XPos(param0->unk_04->unk_3C);
+    v4 = Player_ZPos(param0->unk_04->unk_3C);
     v7 = v3 - 7;
     v8 = v3 + 7;
     v9 = v4 - 7;

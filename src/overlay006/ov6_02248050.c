@@ -112,9 +112,9 @@ static void ov6_022480BC (UnkStruct_0205E884 * const param0, UnkStruct_02017294 
 
     sub_0205EAEC(param0, &v3);
 
-    v1 = sub_0205EABC(param0);
-    v2 = sub_0205EAC8(param0);
-    v0 = sub_0205EA78(param0);
+    v1 = Player_XPos(param0);
+    v2 = Player_ZPos(param0);
+    v0 = Player_Dir(param0);
 
     switch (v0) {
     case 0:

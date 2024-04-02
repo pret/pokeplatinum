@@ -36,7 +36,7 @@ BOOL CommSys_IsInitialized(void);
 void sub_02035E5C(u8 param0);
 u8 sub_02035E70(int param0);
 u16 sub_02035E84(int param0);
-void sub_02035EA8(void);
+void CommSys_EnableSendMovementData(void);
 void sub_02035EC8(void);
 BOOL sub_02035EE0(void);
 BOOL CommSys_ServerSetSendQueue(int param0, const void * param1, int param2);

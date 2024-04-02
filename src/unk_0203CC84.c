@@ -368,7 +368,7 @@ void sub_0203D128 (void)
 void sub_0203D140 (void)
 {
     Unk_021C07DC->unk_00->unk_08 = 0;
-    sub_02035EA8();
+    CommSys_EnableSendMovementData();
 }
 
 struct UnkStruct_ov25_02253CE0_t * sub_0203D158 (void)

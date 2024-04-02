@@ -1320,8 +1320,8 @@ static int sub_0206537C (UnkStruct_02061AB4 * param0)
         }
 
         {
-            int v8 = sub_0205EABC(v2);
-            int v9 = sub_0205EAC8(v2);
+            int v8 = Player_XPos(v2);
+            int v9 = Player_ZPos(v2);
             int v10 = sub_020629D8(param0, 0);
             int v11 = sub_02063020(param0);
             int v12 = sub_02063040(param0);
@@ -1376,8 +1376,8 @@ static int sub_02065448 (UnkStruct_02061AB4 * param0, int param1, int param2)
                 int v7 = sub_02063040(param0);
                 FieldSystem * v8 = sub_02062C00(param0);
                 UnkStruct_0205E884 * v9 = sub_0205EF3C(v8);
-                int v10 = sub_0205EABC(v9);
-                int v11 = sub_0205EAC8(v9);
+                int v10 = Player_XPos(v9);
+                int v11 = Player_ZPos(v9);
 
                 if (v6 > v10) {
                     v4 = 2;

@@ -261,7 +261,7 @@ static void sub_0203EA68 (FieldSystem * param0, UnkStruct_0203EF60 * param1, u16
 {
     u16 * v0 = sub_0203EF60(param1, 54);
 
-    param1->unk_28 = sub_0205EA78(param0->unk_3C);
+    param1->unk_28 = Player_Dir(param0->unk_3C);
     param1->unk_2C = param3;
     param1->unk_0A = param2;
     param1->unk_34 = param4;
@@ -855,8 +855,8 @@ UnkStruct_0203F478 * sub_0203F478 (FieldSystem * param0, int param1)
         return v0;
     }
 
-    v2 = sub_0205EABC(param0->unk_3C);
-    v3 = sub_0205EAC8(param0->unk_3C);
+    v2 = Player_XPos(param0->unk_3C);
+    v3 = Player_ZPos(param0->unk_3C);
     v8 = v2 - 7;
     v9 = v2 + 7;
     v10 = v3 - 7;

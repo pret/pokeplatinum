@@ -310,13 +310,13 @@ static BOOL ov6_02242E60 (FieldSystem * param0, UnkStruct_ov6_02242B58 * param1,
             if (sub_020655F4(v0) == 1) {
                 sub_02065638(v0, Unk_ov6_02249058[param1->unk_06]);
 
-                if ((param1->unk_06 < 7 - 1) && (sub_0205EAC8(param0->unk_3C) > param1->unk_10)) {
+                if ((param1->unk_06 < 7 - 1) && (Player_ZPos(param0->unk_3C) > param1->unk_10)) {
                     if (param1->unk_06 == 0) {
                         Sound_PlayEffect(1753);
                     }
 
                     param1->unk_06++;
-                } else if (sub_0205EAC8(param0->unk_3C) <= param1->unk_10) {
+                } else if (Player_ZPos(param0->unk_3C) <= param1->unk_10) {
                     if (param1->unk_06 != 0) {
                         if (param1->unk_06 == 7 - 1) {
                             Sound_PlayEffect(1754);
@@ -330,13 +330,13 @@ static BOOL ov6_02242E60 (FieldSystem * param0, UnkStruct_ov6_02242B58 * param1,
             if (sub_020655F4(v0) == 1) {
                 sub_02065638(v0, Unk_ov6_0224903C[param1->unk_06]);
 
-                if ((param1->unk_06 < 7 - 1) && (sub_0205EAC8(param0->unk_3C) < param1->unk_10)) {
+                if ((param1->unk_06 < 7 - 1) && (Player_ZPos(param0->unk_3C) < param1->unk_10)) {
                     if (param1->unk_06 == 0) {
                         Sound_PlayEffect(1753);
                     }
 
                     param1->unk_06++;
-                } else if (sub_0205EAC8(param0->unk_3C) >= param1->unk_10) {
+                } else if (Player_ZPos(param0->unk_3C) >= param1->unk_10) {
                     if (param1->unk_06 != 0) {
                         if (param1->unk_06 == 7 - 1) {
                             Sound_PlayEffect(1754);

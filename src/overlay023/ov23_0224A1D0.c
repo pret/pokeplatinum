@@ -69,11 +69,11 @@ void ov23_0224A1D0 (void)
     }
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
-        sub_02057DB8(v0, 0, 0);
+        CommPlayer_Destory(v0, 0, 0);
         sub_020593B4(v0);
     }
 
-    v1->unk_2BD = 1;
+    v1->isResetting = 1;
 }
 
 static void ov23_0224A204 (int param0)
@@ -740,7 +740,7 @@ void ov23_0224ADE8 (int param0, int param1, int param2, int param3)
 
     v1 = &v0->playerLocation[param0];
 
-    if (!v0->unk_2BD) {
+    if (!v0->isResetting) {
         ov5_021F5634(v0->fieldSys, v1->x, 0, v1->z);
     }
 
@@ -752,11 +752,11 @@ void ov23_0224ADE8 (int param0, int param1, int param2, int param3)
         sub_0205ECE0(v0->unk_08[param0], param1, param2, param3);
     }
 
-    if (!v0->unk_2BD) {
+    if (!v0->isResetting) {
         ov5_021F5634(v0->fieldSys, v1->x, 0, v1->z);
     }
 
-    if (!v0->unk_2BD) {
+    if (!v0->isResetting) {
         ov23_0224B040(param0);
     }
 }
@@ -836,7 +836,7 @@ void ov23_0224AF7C (int param0)
 {
     CommPlayerData * v0 = CommPlayerData_Get();
 
-    if (!v0->unk_2BD) {
+    if (!v0->isResetting) {
         if (v0->unk_08[param0]) {
             switch (v0->unk_FA[param0]) {
             case 3:

@@ -212,8 +212,8 @@ static u16 sub_020554E8 (FieldSystem * param0, int param1)
     UnkStruct_0203A790 * v2 = sub_0203A790(param0->unk_0C);
     UnkStruct_02049FA8 * v3 = sub_0203A728(v2);
 
-    v0 = sub_0205EABC(param0->unk_3C);
-    v1 = sub_0205EAC8(param0->unk_3C);
+    v0 = Player_XPos(param0->unk_3C);
+    v1 = Player_ZPos(param0->unk_3C);
 
     if (param1 != 350) {
         return 0;

@@ -236,7 +236,7 @@ static BOOL sub_0205A2DC (UnkStruct_0205A0D8 * param0)
 {
     if (sub_020509DC(param0->unk_24)) {
         ov5_021D1744(1);
-        sub_020576A0();
+        CommPlayerMan_Restart();
         return 1;
     }
 
@@ -1069,7 +1069,7 @@ static BOOL sub_0205B140 (UnkStruct_020508D4 * param0)
     case 6:
         if (!sub_020509DC(v0)) {
             ov5_021D1744(1);
-            sub_020576A0();
+            CommPlayerMan_Restart();
             v1->unk_28++;
         }
         break;

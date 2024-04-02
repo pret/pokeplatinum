@@ -287,9 +287,9 @@ static int ov5_021D0FB4 (UnkStruct_020067E8 * param0, int * param1)
         sub_02068368(v0);
         ov5_021E9338(v0->unk_28);
 
-        v0->unk_1C->unk_08 = sub_0205EABC(v0->unk_3C);
-        v0->unk_1C->unk_0C = sub_0205EAC8(v0->unk_3C);
-        v0->unk_1C->unk_10 = sub_0205EA78(v0->unk_3C);
+        v0->unk_1C->unk_08 = Player_XPos(v0->unk_3C);
+        v0->unk_1C->unk_0C = Player_ZPos(v0->unk_3C);
+        v0->unk_1C->unk_10 = Player_Dir(v0->unk_3C);
 
         ov5_021EF300(v0->unk_A0);
 
@@ -400,8 +400,8 @@ static BOOL ov5_021D119C (FieldSystem * param0)
 {
     int v0, v1;
 
-    v0 = sub_0205EABC(param0->unk_3C);
-    v1 = sub_0205EAC8(param0->unk_3C);
+    v0 = Player_XPos(param0->unk_3C);
+    v1 = Player_ZPos(param0->unk_3C);
 
     if ((v0 != param0->unk_1C->unk_08) || (v1 != param0->unk_1C->unk_0C)) {
         param0->unk_1C->unk_08 = v0;
@@ -423,8 +423,8 @@ static BOOL ov5_021D11CC (FieldSystem * param0)
         return 0;
     }
 
-    v2 = (sub_0205EABC(param0->unk_3C) - ov5_021EA6AC(param0->unk_28)) / 32;
-    v3 = (sub_0205EAC8(param0->unk_3C) - ov5_021EA6B4(param0->unk_28)) / 32;
+    v2 = (Player_XPos(param0->unk_3C) - ov5_021EA6AC(param0->unk_28)) / 32;
+    v3 = (Player_ZPos(param0->unk_3C) - ov5_021EA6B4(param0->unk_28)) / 32;
     v0 = sub_02039E30(param0->unk_2C, v2, v3);
     v1 = param0->unk_1C->unk_00;
 
@@ -554,9 +554,9 @@ static void ov5_021D13B4 (FieldSystem * param0)
     }
 
     v0 = sub_0203A76C(sub_0203A790(param0->unk_0C));
-    v1 = (sub_0205EABC(param0->unk_3C) - ov5_021EA6AC(param0->unk_28)) / 32;
-    v2 = (sub_0205EAC8(param0->unk_3C) - ov5_021EA6B4(param0->unk_28)) / 32;
-    v3 = sub_0205EA78(param0->unk_3C);
+    v1 = (Player_XPos(param0->unk_3C) - ov5_021EA6AC(param0->unk_28)) / 32;
+    v2 = (Player_ZPos(param0->unk_3C) - ov5_021EA6B4(param0->unk_28)) / 32;
+    v3 = Player_Dir(param0->unk_3C);
 
     sub_02055740(v0, v1, v2, v3);
 }

@@ -758,7 +758,7 @@ void ov23_02242B14 (void)
 
     if (CommSys_CurNetId() == 0) {
         if (CommInfo_ServerSendArray()) {
-            sub_02057AE4(1);
+            CommPlayer_SendPos(1);
         }
     }
 
@@ -779,7 +779,7 @@ void ov23_02242BC0 (FieldSystem * param0)
         v0 = Heap_AllocFromHeap(15, sizeof(UnkStruct_ov23_02257748));
         ov23_02241F74(v0, param0);
 
-        v0 = Heap_AllocFromHeap(15, sub_02057C84());
+        v0 = Heap_AllocFromHeap(15, CommPlayer_Size());
         CommPlayerManager_Init(v0, param0, 1);
 
         v0 = Heap_AllocFromHeap(15, ov23_02243858());
@@ -807,7 +807,7 @@ void ov23_02242C78 (void)
         ov23_022417CC();
         ov23_0224B430();
         ov23_02243520();
-        sub_0205764C();
+        CommPlayerMan_Reset();
         ov23_0223E2F0();
         ov23_022421EC();
 
@@ -818,7 +818,7 @@ void ov23_02242C78 (void)
 void ov23_02242CB4 (void)
 {
     if (Unk_ov23_02257748) {
-        sub_020576A0();
+        CommPlayerMan_Restart();
         ov23_02253604();
         ov23_022417E0();
         ov23_0224B460();
@@ -835,7 +835,7 @@ void ov23_02242D08 (void)
         sub_020287F8(Unk_ov23_02257748->unk_0C->unk_0C);
         ov23_0224B4E4();
         ov23_022435DC();
-        sub_020576CC(1);
+        CommPlayerMan_Delete(1);
         ov23_022417F4();
         ov23_0223E2F8();
         ov23_0224F5B8();
@@ -850,7 +850,7 @@ void ov23_02242D44 (FieldSystem * param0)
 
     if (Unk_ov23_02257748 != NULL) {
         ov23_02243670(param0);
-        sub_02057764();
+        CommPlayerMan_Reinit();
         ov23_0224B518();
     }
 }

@@ -56,8 +56,8 @@ static BOOL sub_020505A0 (UnkStruct_020508D4 * param0)
 
     switch (v1->unk_08) {
     case 0:
-        v1->unk_04 = sub_0205EABC(v0->unk_3C);
-        v1->unk_06 = sub_0205EAC8(v0->unk_3C);
+        v1->unk_04 = Player_XPos(v0->unk_3C);
+        v1->unk_06 = Player_ZPos(v0->unk_3C);
         sub_02070428(v0, 1);
         sub_020558AC(param0);
         v1->unk_08++;

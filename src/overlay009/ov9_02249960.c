@@ -2147,7 +2147,7 @@ BOOL ov9_0224A71C (FieldSystem * param0)
 
     {
         int v1, v2, v3;
-        int v4 = sub_0205EA78(param0->unk_3C);
+        int v4 = Player_Dir(param0->unk_3C);
         UnkStruct_ov9_02249B04 * v5 = param0->unk_04->unk_24;
 
         ov9_02250F44(v5, &v1, &v2, &v3);
@@ -2292,7 +2292,7 @@ static void ov9_0224A8C0 (UnkStruct_ov9_02249B04 * param0)
 
     if (v5 == 0x2) {
         UnkStruct_ov101_021D5D90 * v9;
-        int v10 = sub_0205EA78(v7);
+        int v10 = Player_Dir(v7);
 
         v9 = ov5_021F85BC(v7, v2, v3, v4, v10, 1, v0);
         sub_0205EC00(v7, v9);
@@ -4413,8 +4413,8 @@ static void ov9_0224C8E8 (UnkStruct_ov9_02249B04 * param0)
     }
 
     {
-        int v10 = sub_0205EABC(v3->unk_3C);
-        int v11 = sub_0205EAC8(v3->unk_3C);
+        int v10 = Player_XPos(v3->unk_3C);
+        int v11 = Player_ZPos(v3->unk_3C);
 
         ov5_021E99D8(v2->unk_18, v10, v11);
         v2->unk_08 = 1;
@@ -4687,8 +4687,8 @@ static int ov9_0224CCB8 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224CBD8
     ov9_0224BF18(param0, v2->unk_08);
     ov5_021E9CD8(v0->unk_28);
 
-    param1->unk_08 = sub_0205EABC(v0->unk_3C);
-    param1->unk_0A = sub_0205EAC8(v0->unk_3C);
+    param1->unk_08 = Player_XPos(v0->unk_3C);
+    param1->unk_0A = Player_ZPos(v0->unk_3C);
 
     ov5_021E9D3C(v1->unk_10, v1->unk_14, v1->unk_18, v0->unk_28, param1->unk_08, param1->unk_0A);
     v1->unk_08 = 0;

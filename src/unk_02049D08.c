@@ -228,7 +228,7 @@ void sub_02049FA8 (FieldSystem * param0)
 {
     UnkStruct_02049FA8 * v0 = sub_0203A730(sub_0203A790(param0->unk_0C));
 
-    inline_02049FA8(v0, param0->unk_1C->unk_00, -1, sub_0205EABC(param0->unk_3C), sub_0205EAC8(param0->unk_3C), 0);
+    inline_02049FA8(v0, param0->unk_1C->unk_00, -1, Player_XPos(param0->unk_3C), Player_ZPos(param0->unk_3C), 0);
     sub_0206AD9C(SaveData_Events(param0->unk_0C));
 
     return;

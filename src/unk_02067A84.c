@@ -172,8 +172,8 @@ static int sub_02067C80 (const UnkStruct_02061AB4 * param0, UnkStruct_0205E884 *
     v0 = sub_02067C54(param0);
 
     if (v0 == 0x1) {
-        v3 = sub_0205EABC(param1);
-        v4 = sub_0205EAC8(param1);
+        v3 = Player_XPos(param1);
+        v4 = Player_ZPos(param1);
         v2 = sub_0206298C(param0);
         v1 = sub_020629D8(param0, 0);
         v5 = sub_02067DA8(param0, v2, v1, v3, v4, 0);
@@ -189,8 +189,8 @@ static int sub_02067C80 (const UnkStruct_02061AB4 * param0, UnkStruct_0205E884 *
     }
 
     if (v0 == 0x2) {
-        v3 = sub_0205EABC(param1);
-        v4 = sub_0205EAC8(param1);
+        v3 = Player_XPos(param1);
+        v4 = Player_ZPos(param1);
         v1 = sub_020629D8(param0, 0);
         v2 = 0;
 
@@ -215,8 +215,8 @@ static int sub_02067C80 (const UnkStruct_02061AB4 * param0, UnkStruct_0205E884 *
 
 int sub_02067D58 (const UnkStruct_02061AB4 * param0, UnkStruct_0205E884 * param1, int param2, int param3)
 {
-    int v0 = sub_0205EABC(param1);
-    int v1 = sub_0205EAC8(param1);
+    int v0 = Player_XPos(param1);
+    int v1 = Player_ZPos(param1);
     int v2 = sub_02067DA8(param0, param2, param3, v0, v1, 0);
 
     if (v2 != -1) {
@@ -648,7 +648,7 @@ static int sub_02068264 (UnkStruct_020EF6D0 * param0)
     v2 = sub_0205EB3C(param0->unk_28);
     v1 = sub_02064488(sub_02063020(v2), sub_02063040(v2), sub_02063020(param0->unk_24), sub_02063040(param0->unk_24));
 
-    if ((sub_0205EA78(param0->unk_28) != v1) && ((param0->unk_18 == 0) || (param0->unk_14 == 2))) {
+    if ((Player_Dir(param0->unk_28) != v1) && ((param0->unk_18 == 0) || (param0->unk_14 == 2))) {
         if (sub_020655F4(v2) == 1) {
             sub_020628C4(v2, (1 << 7));
             v0 = sub_02065838(v1, 0x0);

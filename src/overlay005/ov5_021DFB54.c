@@ -266,7 +266,7 @@ static void ov5_021DFC3C (UnkStruct_0205E884 * param0)
     sub_0205EC00(param0, NULL);
 
     if (sub_0205F16C(param0) == 1) {
-        v1 = sub_0205EA78(param0);
+        v1 = Player_Dir(param0);
     } else {
         v1 = sub_0205EA94(param0);
     }
@@ -645,8 +645,8 @@ static BOOL ov5_021E0160 (UnkStruct_020508D4 * param0)
     case 2:
     {
         if (sub_0205F108(v0->unk_20) == 0) {
-            int v1 = sub_0205EABC(v0->unk_20) + sub_0206419C(v0->unk_04);
-            int v2 = sub_0205EAC8(v0->unk_20) + sub_020641A8(v0->unk_04);
+            int v1 = Player_XPos(v0->unk_20) + sub_0206419C(v0->unk_04);
+            int v2 = Player_ZPos(v0->unk_20) + sub_020641A8(v0->unk_04);
 
             v0->unk_28 = ov5_021F261C(v0->unk_24, v1, v2, v0->unk_04, 0);
         } else {
@@ -877,7 +877,7 @@ static BOOL ov5_021E0560 (UnkStruct_020508D4 * param0)
         v0->unk_00++;
     case 2:
     {
-        int v2 = sub_0205EA78(v0->unk_0C);
+        int v2 = Player_Dir(v0->unk_0C);
         u32 v3, v4 = gCoreSys.pressedKeys, v5 = gCoreSys.heldKeys;
         int v6 = sub_02061308(v0->unk_0C, v4, v5);
 
@@ -1043,8 +1043,8 @@ static int ov5_021E07E4 (UnkStruct_ov5_021F9B54 * param0)
 
 static int ov5_021E07FC (UnkStruct_ov5_021F9B54 * param0)
 {
-    int v0 = sub_0205EABC(param0->unk_10) + sub_0206419C(param0->unk_04);
-    int v1 = sub_0205EAC8(param0->unk_10) + sub_020641A8(param0->unk_04);
+    int v0 = Player_XPos(param0->unk_10) + sub_0206419C(param0->unk_04);
+    int v1 = Player_ZPos(param0->unk_10) + sub_020641A8(param0->unk_04);
 
     param0->unk_18 = ov5_021F28F4(param0->unk_14, v0, v1, param0->unk_04, 0);
     param0->unk_2C = ov6_0224892C(param0->unk_0C);
@@ -1757,8 +1757,8 @@ static void ov5_021E10C0 (void * param0, const UnkStruct_020216E0 * param1)
 
 static UnkStruct_02061AB4 * ov5_021E10D4 (UnkStruct_0205E884 * param0, int param1)
 {
-    int v0 = sub_0205EABC(param0) + sub_0206419C(param1);
-    int v1 = sub_0205EAC8(param0) + sub_020641A8(param1);
+    int v0 = Player_XPos(param0) + sub_0206419C(param1);
+    int v1 = Player_ZPos(param0) + sub_020641A8(param1);
     const UnkStruct_02061830 * v2 = sub_02062A40(sub_0205EB3C(param0));
     UnkStruct_02061AB4 * v3 = sub_0206326C(v2, v0, v1, 0);
 

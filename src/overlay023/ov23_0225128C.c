@@ -602,8 +602,8 @@ static void ov23_02251A84 (BOOL param0, FieldSystem * param1)
     VecFx32 v0;
 
     v0.y = 0;
-    v0.x = 15 * FX32_ONE * 16 - sub_0205EABC(param1->unk_3C) * FX32_ONE * 16;
-    v0.z = 17 * FX32_ONE * 16 - sub_0205EAC8(param1->unk_3C) * FX32_ONE * 16;
+    v0.x = 15 * FX32_ONE * 16 - Player_XPos(param1->unk_3C) * FX32_ONE * 16;
+    v0.z = 17 * FX32_ONE * 16 - Player_ZPos(param1->unk_3C) * FX32_ONE * 16;
 
     if (!param0) {
         v0.x = -v0.x;

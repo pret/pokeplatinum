@@ -894,7 +894,7 @@ BOOL ov5_021D4E10 (UnkStruct_020508D4 * param0)
     case 0:
         v0 = sub_0205EB3C(v1->unk_3C);
 
-        if (sub_0205EA78(v1->unk_3C) == 1) {
+        if (Player_Dir(v1->unk_3C) == 1) {
             sub_02062D64(v0, 1);
             (v2->unk_00) = 1;
         } else {
@@ -1027,7 +1027,7 @@ BOOL ov5_021D5020 (UnkStruct_020508D4 * param0)
         u8 v4;
 
         v0 = sub_0205EB3C(v1->unk_3C);
-        v3 = sub_0205EA78(v1->unk_3C);
+        v3 = Player_Dir(v1->unk_3C);
 
         if (v3 == 1) {
             sub_02062D64(v0, 1);
@@ -1108,7 +1108,7 @@ BOOL ov5_021D5150 (UnkStruct_020508D4 * param0)
         u8 v4;
 
         v0 = sub_0205EB3C(v1->unk_3C);
-        v3 = sub_0205EA78(v1->unk_3C);
+        v3 = Player_Dir(v1->unk_3C);
 
         if (v3 == 1) {
             sub_02062D64(v0, 1);

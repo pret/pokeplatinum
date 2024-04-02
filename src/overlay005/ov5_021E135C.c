@@ -136,7 +136,7 @@ void ov5_021E15A8 (FieldSystem * param0, BOOL param1, BOOL * param2)
 
     v0->unk_00 = param0;
     v0->unk_04 = param2;
-    v0->unk_10 = sub_0205EA78(param0->unk_3C);
+    v0->unk_10 = Player_Dir(param0->unk_3C);
 
     if (param1) {
         SysTask_Start(ov5_021E139C, v0, 100);

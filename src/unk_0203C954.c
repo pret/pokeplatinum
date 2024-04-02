@@ -20,10 +20,10 @@ static u8 sub_0203CAEC(FieldSystem * param0, const UnkStruct_0203A594 * param1);
 
 static int sub_0203C954 (FieldSystem * param0, int * param1, int * param2)
 {
-    int v0 = sub_0205EA78(param0->unk_3C);
+    int v0 = Player_Dir(param0->unk_3C);
 
-    *param1 = sub_0205EABC(param0->unk_3C);
-    *param2 = sub_0205EAC8(param0->unk_3C);
+    *param1 = Player_XPos(param0->unk_3C);
+    *param2 = Player_ZPos(param0->unk_3C);
 
     switch (v0) {
     case 0:
@@ -142,7 +142,7 @@ static u8 sub_0203CB18 (FieldSystem * param0, const UnkStruct_0203A594 * param1)
         return 1;
     }
 
-    switch (sub_0205EA78(param0->unk_3C)) {
+    switch (Player_Dir(param0->unk_3C)) {
     case 0:
         if ((param1->unk_10 == 0) || (param1->unk_10 == 6)) {
             return 1;
@@ -174,7 +174,7 @@ u16 sub_0203CB80 (FieldSystem * param0, void * param1, int param2)
     int v1, v2;
     int v3;
 
-    if (sub_0205EA78(param0->unk_3C) != 0) {
+    if (Player_Dir(param0->unk_3C) != 0) {
         return 0xffff;
     }
 
@@ -192,7 +192,7 @@ u16 sub_0203CB80 (FieldSystem * param0, void * param1, int param2)
 
 u8 sub_0203CBE0 (FieldSystem * param0, UnkStruct_02061AB4 ** param1)
 {
-    if (sub_0205EA78(param0->unk_3C) != 0) {
+    if (Player_Dir(param0->unk_3C) != 0) {
         return 0;
     }
 
@@ -214,8 +214,8 @@ u16 sub_0203CC14 (FieldSystem * param0, void * param1, int param2)
     int v3;
 
     v0 = (const UnkStruct_0203A4AC *)param1;
-    v1 = sub_0205EABC(param0->unk_3C);
-    v2 = sub_0205EAC8(param0->unk_3C);
+    v1 = Player_XPos(param0->unk_3C);
+    v2 = Player_ZPos(param0->unk_3C);
 
     for (v3 = 0; v3 < param2; v3++) {
         if ((v1 >= v0[v3].unk_02) && (v1 < (v0[v3].unk_02 + v0[v3].unk_06)) && (v2 >= v0[v3].unk_04) && (v2 < (v0[v3].unk_04 + v0[v3].unk_08)) && (sub_0203F150(param0, v0[v3].unk_0E) == v0[v3].unk_0C)) {
