@@ -1,21 +1,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0208BE5C.h"
 
 #include "game_overlay.h"
 #include "unk_020067E8.h"
 #include "heap.h"
-
-typedef struct OverlayManager_t {
-    OverlayManagerTemplate unk_00;
-    int unk_10;
-    int unk_14;
-    void * unk_18;
-    void * unk_1C;
-    OverlayManager * unk_20;
-    OverlayManager * unk_24;
-} OverlayManager;
 
 OverlayManager * sub_020067E8 (const OverlayManagerTemplate * param0, void * param1, const int param2)
 {

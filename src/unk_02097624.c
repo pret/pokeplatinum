@@ -1,14 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02028430_decl.h"
 #include "pokemon.h"
 #include "savedata.h"
 
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_0202818C.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_020978D8.h"
 

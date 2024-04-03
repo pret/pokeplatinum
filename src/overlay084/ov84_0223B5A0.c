@@ -4,7 +4,6 @@
 #include "core_sys.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_020067E8_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
@@ -15,7 +14,6 @@
 #include "struct_defs/struct_0202D7B0.h"
 #include "functypes/funcptr_02069238.h"
 #include "struct_defs/struct_0207CB08.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay084/struct_ov84_0223B5A0.h"
 #include "overlay084/struct_ov84_0223BA5C.h"

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0209B6F8_H
 #define POKEPLATINUM_UNK_0209B6F8_H
 
-#include "struct_defs/struct_0208BE5C.h"
+#include "unk_020067E8.h"
 #include "struct_decls/struct_0209B75C_decl.h"
 #include "functypes/funcptr_0209B988.h"
 #include "overlay104/struct_ov104_02230BE4.h"

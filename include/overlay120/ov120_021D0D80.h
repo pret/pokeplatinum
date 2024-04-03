@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_OV120_021D0D80_H
 #define POKEPLATINUM_OV120_021D0D80_H
 
-#include "struct_decls/struct_020067E8_decl.h"
 
 int ov120_021D0D80(OverlayManager * param0, int * param1);
 int ov120_021D0DB0(OverlayManager * param0, int * param1);

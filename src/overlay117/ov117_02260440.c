@@ -2,9 +2,7 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "struct_decls/struct_020067E8_decl.h"
 
-#include "struct_defs/struct_0208BE5C.h"
 #include "overlay117/struct_ov117_02260440.h"
 #include "overlay117/struct_ov117_022605C0.h"
 

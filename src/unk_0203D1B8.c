@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0202783C_decl.h"
@@ -57,7 +56,6 @@
 #include "struct_defs/struct_02070950.h"
 #include "struct_defs/struct_02072014.h"
 #include "struct_defs/struct_0208737C.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/pokemon_summary.h"
@@ -68,6 +66,7 @@
 #include "overlay090/struct_ov90_021D0D80.h"
 
 #include "rtc.h"
+#include "unk_020067E8.h"
 #include "unk_02017498.h"
 #include "heap.h"
 #include "unk_0201D15C.h"

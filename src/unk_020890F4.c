@@ -4,7 +4,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 
 #include "constdata/const_020F2DBC.h"
@@ -12,7 +11,6 @@
 #include "struct_defs/options.h"
 #include "struct_defs/struct_02089438.h"
 #include "struct_defs/struct_02089688.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 

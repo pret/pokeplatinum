@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "field/field_system.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_0209C194.h"

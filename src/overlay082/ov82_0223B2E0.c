@@ -1,13 +1,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_0207CB08_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
 
 #include "overlay084/const_ov84_02241130.h"
 
-#include "struct_defs/struct_0208BE5C.h"
 #include "overlay083/struct_ov83_0223C344.h"
 
 #include "unk_020067E8.h"

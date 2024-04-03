@@ -2,13 +2,11 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "struct_decls/struct_020067E8_decl.h"
 
 #include "overlay077/const_ov77_021D742C.h"
 #include "constdata/const_020F2DBC.h"
 
 #include "struct_defs/struct_0203CC84.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_02089438.h"
 #include "overlay098/struct_ov98_02246E88.h"
 #include "overlay098/struct_ov98_02247168.h"

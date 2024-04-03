@@ -5,7 +5,6 @@
 #include "savedata.h"
 
 #include "field/field_system.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_020985E4.h"
 #include "struct_defs/struct_0209862C.h"
 

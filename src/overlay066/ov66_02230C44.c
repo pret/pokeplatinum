@@ -1,12 +1,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "savedata.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
 #include "overlay066/struct_ov66_0222E71C_decl.h"
 
-#include "struct_defs/struct_0208BE5C.h"
 #include "overlay066/struct_ov66_0222DCE0_sub1.h"
 #include "overlay066/struct_ov66_02230DBC.h"
 #include "overlay066/struct_ov66_02230E68.h"

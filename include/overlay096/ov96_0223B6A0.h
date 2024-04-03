@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV96_0223B6A0_H
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_020067E8_decl.h"
+#include "unk_020067E8.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay096/struct_ov96_0223BF40_decl.h"

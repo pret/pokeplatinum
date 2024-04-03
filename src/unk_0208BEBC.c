@@ -3,13 +3,11 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_0202783C_decl.h"
 
 #include "constdata/const_020F3050.h"
 #include "constdata/const_020F3060.h"
 
-#include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_0208C06C.h"
 
 #include "unk_020041CC.h"

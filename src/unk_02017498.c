@@ -2,10 +2,8 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "struct_decls/struct_020067E8_decl.h"
 
 #include "struct_defs/struct_02017498.h"
-#include "struct_defs/struct_0208BE5C.h"
 
 #include "unk_020041CC.h"
 #include "unk_020067E8.h"

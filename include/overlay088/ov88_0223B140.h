@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_OV88_0223B140_H
 #define POKEPLATINUM_OV88_0223B140_H
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
 

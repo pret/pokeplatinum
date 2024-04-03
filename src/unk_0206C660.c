@@ -6,7 +6,6 @@
 #include "overlay006/struct_ov6_02246204_decl.h"
 
 #include "field/field_system.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "overlay006/struct_ov6_02246254.h"
 
 #include "heap.h"

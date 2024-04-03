@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_CONST_OV57_021D0F90_H
 #define POKEPLATINUM_CONST_OV57_021D0F90_H
 
-#include "struct_defs/struct_0208BE5C.h"
+#include "unk_020067E8.h"
 
 extern const OverlayManagerTemplate Unk_ov57_021D0F90;
 

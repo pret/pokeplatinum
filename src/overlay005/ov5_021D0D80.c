@@ -5,7 +5,6 @@
 #include "core_sys.h"
 #include "data_02100844.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02020C44_decl.h"
 #include "struct_decls/struct_02027860_decl.h"
@@ -22,7 +21,6 @@
 #include "field/field_system_sub2_t.h"
 #include "struct_defs/struct_020556C4.h"
 #include "struct_defs/struct_020619DC.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay005/struct_ov5_021D5894.h"
 #include "overlay005/struct_ov5_021ED0A4.h"

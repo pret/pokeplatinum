@@ -3,7 +3,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "overlay087/struct_ov87_021D106C_decl.h"
 
 #include "struct_defs/struct_0202DF8C.h"

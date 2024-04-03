@@ -1,11 +1,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020067E8_decl.h"
 
 #include "constdata/const_020F6824.h"
 
-#include "struct_defs/struct_0208BE5C.h"
 
 FS_EXTERN_OVERLAY(overlay73);
 

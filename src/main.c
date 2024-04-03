@@ -5,13 +5,11 @@
 #include "core_sys.h"
 #include "assert.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 
 #include "overlay077/const_ov77_021D742C.h"
 #include "overlay057/const_ov57_021D0F70.h"
 
 #include "struct_defs/struct_0203CC84.h"
-#include "struct_defs/struct_0208BE5C.h"
 
 #include "unk_02000C88.h"
 #include "unk_02002B7C.h"

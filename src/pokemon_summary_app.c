@@ -5,14 +5,12 @@
 
 #include "constants/pokemon.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "savedata.h"
 
 #include "constdata/const_020F410C.h"
 
-#include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/pokemon_summary_app.h"
 #include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_02099F80.h"

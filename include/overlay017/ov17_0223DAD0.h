@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV17_0223DAD0_H
 #define POKEPLATINUM_OV17_0223DAD0_H
 
-#include "struct_decls/struct_020067E8_decl.h"
+#include "unk_020067E8.h"
 
 int ov17_0223DAD0(OverlayManager * param0, int * param1);
 int ov17_0223DDD4(OverlayManager * param0, int * param1);

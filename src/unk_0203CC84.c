@@ -3,7 +3,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "field/field_system_sub1_decl.h"
 #include "savedata.h"
@@ -15,7 +14,6 @@
 #include "struct_defs/struct_0203CC84.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "overlay005/struct_ov5_021D1CAC.h"
 
 #include "unk_02000C88.h"

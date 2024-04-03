@@ -3,7 +3,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
@@ -14,7 +13,6 @@
 #include "overlay077/struct_ov77_021D6CFC_decl.h"
 
 #include "struct_defs/struct_0207C690.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay009/struct_ov9_02249FF4.h"
 #include "overlay084/struct_ov84_0223BA5C.h"

@@ -7,7 +7,6 @@
 
 #include "field/field_system.h"
 #include "struct_defs/struct_0207DE04.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "overlay066/struct_ov66_02231134.h"
 #include "overlay098/struct_ov98_02247168.h"
 #include "overlay115/struct_ov115_02260440.h"

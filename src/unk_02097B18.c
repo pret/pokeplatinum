@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "pokemon.h"
@@ -13,7 +12,6 @@
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0202CA64.h"
 #include "field/field_system.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_02097F18.h"
 #include "struct_defs/struct_02098C44.h"
 #include "overlay076/struct_ov76_0223DE00.h"

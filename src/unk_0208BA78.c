@@ -4,7 +4,6 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "savedata.h"
@@ -16,7 +15,6 @@
 
 #include "field/field_system.h"
 #include "struct_defs/struct_0208BA84.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_0208C06C.h"
 #include "overlay006/battle_params.h"
 

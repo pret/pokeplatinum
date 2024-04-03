@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV113_0225C700_H
 #define POKEPLATINUM_OV113_0225C700_H
 
-#include "struct_decls/struct_020067E8_decl.h"
+#include "unk_020067E8.h"
 #include "overlay113/struct_ov113_0225DBCC_decl.h"
 #include "overlay113/struct_ov113_022607EC.h"
 #include "overlay113/struct_ov113_02260818.h"

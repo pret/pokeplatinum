@@ -3,12 +3,10 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "overlay104/struct_ov104_022320B4_decl.h"
 
 #include "constdata/const_020F8BE0.h"
 
-#include "struct_defs/struct_0208BE5C.h"
 #include "functypes/funcptr_0209B988.h"
 #include "overlay104/struct_ov104_0222E8C8.h"
 #include "overlay104/struct_ov104_02230BE4.h"

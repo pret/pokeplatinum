@@ -4,7 +4,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 
 #include "overlay097/struct_ov97_0222D04C.h"
 

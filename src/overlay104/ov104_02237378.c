@@ -10,7 +10,6 @@
 #include "constdata/const_020EA358.h"
 
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "overlay006/battle_params.h"
 #include "overlay104/struct_ov104_0222E930_t.h"
 #include "overlay104/struct_ov104_02230BE4.h"

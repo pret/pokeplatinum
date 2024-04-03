@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_OV98_02246C20_H
 #define POKEPLATINUM_OV98_02246C20_H
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "overlay098/struct_ov98_02246E88.h"
 
 int ov98_02246C20(OverlayManager * param0, int * param1);

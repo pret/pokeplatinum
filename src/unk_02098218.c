@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
@@ -12,7 +11,6 @@
 
 #include "field/field_system.h"
 #include "struct_defs/struct_0203E2FC.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_0209843C.h"
 #include "overlay119/struct_ov119_021D0FD0.h"
 

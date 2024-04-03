@@ -1,9 +1,8 @@
 #ifndef POKEPLATINUM_UNK_0208BA78_H
 #define POKEPLATINUM_UNK_0208BA78_H
 
-#include "struct_decls/struct_020067E8_decl.h"
+#include "unk_020067E8.h"
 #include "struct_defs/struct_0208BA84.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_0208C06C.h"
 
 UnkStruct_0208C06C * sub_0208BA78(OverlayManager * param0);

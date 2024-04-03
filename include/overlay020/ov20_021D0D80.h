@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV20_021D0D80_H
 #define POKEPLATINUM_OV20_021D0D80_H
 
-#include "struct_decls/struct_020067E8_decl.h"
+#include "unk_020067E8.h"
 #include "strbuf.h"
 #include "overlay020/struct_ov20_021D16E8_decl.h"
 

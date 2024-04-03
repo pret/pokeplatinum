@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV21_021D0D80_H
 #define POKEPLATINUM_OV21_021D0D80_H
 
-#include "struct_decls/struct_020067E8_decl.h"
+#include "unk_020067E8.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_defs/union_02022594_020225E0.h"
