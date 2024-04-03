@@ -23,7 +23,7 @@ typedef struct {
 
 static BOOL sub_020574CC(UnkStruct_020508D4 * param0);
 
-static const UnkStruct_0208BE5C Unk_020ED4CC = {
+static const OverlayManagerTemplate Unk_020ED4CC = {
     ov66_0222DCE0,
     ov66_0222DD6C,
     ov66_0222DD90,

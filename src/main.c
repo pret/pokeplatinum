@@ -47,7 +47,7 @@ typedef struct {
     FSOverlayID unk_00;
     OverlayManager * unk_04;
     FSOverlayID unk_08;
-    const UnkStruct_0208BE5C * unk_0C;
+    const OverlayManagerTemplate * unk_0C;
     UnkStruct_0203CC84 unk_10;
 } UnkStruct_02101D28;
 
@@ -64,7 +64,7 @@ static UnkStruct_02101D28 Unk_02101D28;
 // repeatedly try to restore the backlight to its saved state.
 static PMBackLightSwitch sSavedBacklightState;
 BOOL gIgnoreCartridgeForWake;
-extern const UnkStruct_0208BE5C Unk_ov77_021D788C;
+extern const OverlayManagerTemplate Unk_ov77_021D788C;
 
 void NitroMain (void)
 {
@@ -205,7 +205,7 @@ static void sub_02000E54 (void)
     }
 }
 
-void sub_02000EC4 (FSOverlayID param0, const UnkStruct_0208BE5C * param1)
+void sub_02000EC4 (FSOverlayID param0, const OverlayManagerTemplate * param1)
 {
     GF_ASSERT(Unk_02101D28.unk_0C == NULL);
 

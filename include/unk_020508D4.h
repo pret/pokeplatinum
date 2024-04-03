@@ -14,7 +14,7 @@ BOOL sub_020509A4(FieldSystem * param0);
 BOOL sub_020509B4(FieldSystem * param0);
 void sub_020509D4(FieldSystem * param0);
 BOOL sub_020509DC(FieldSystem * param0);
-void sub_02050A38(UnkStruct_020508D4 * param0, const UnkStruct_0208BE5C * param1, void * param2);
+void sub_02050A38(UnkStruct_020508D4 * param0, const OverlayManagerTemplate * param1, void * param2);
 FieldSystem * sub_02050A60(UnkStruct_020508D4 * param0);
 void * sub_02050A64(UnkStruct_020508D4 * param0);
 int * sub_02050A68(UnkStruct_020508D4 * param0);

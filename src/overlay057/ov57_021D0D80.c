@@ -48,21 +48,21 @@ static int ov57_021D0E34(OverlayManager * param0, int * param1);
 static int ov57_021D0E90(OverlayManager * param0, int * param1);
 static void ov57_021D0EAC(int param0, SaveData * param1, BOOL param2);
 
-const UnkStruct_0208BE5C Unk_ov57_021D0F90 = {
+const OverlayManagerTemplate Unk_ov57_021D0F90 = {
     ov57_021D0D80,
     ov57_021D0D98,
     ov57_021D0DAC,
     0xffffffff
 };
 
-const UnkStruct_0208BE5C Unk_ov57_021D0F80 = {
+const OverlayManagerTemplate Unk_ov57_021D0F80 = {
     ov57_021D0DC8,
     ov57_021D0DE0,
     ov57_021D0E00,
     0xffffffff
 };
 
-const UnkStruct_0208BE5C Unk_ov57_021D0F70 = {
+const OverlayManagerTemplate Unk_ov57_021D0F70 = {
     ov57_021D0E1C,
     ov57_021D0E34,
     ov57_021D0E90,

@@ -20,14 +20,14 @@
 #include "overlay117/ov117_02260668.h"
 #include "overlay117/ov117_02266498.h"
 
-static const UnkStruct_0208BE5C Unk_ov117_022668F8 = {
+static const OverlayManagerTemplate Unk_ov117_022668F8 = {
     ov117_02260668,
     ov117_0226098C,
     ov117_02260C10,
     0xFFFFFFFF
 };
 
-static const UnkStruct_0208BE5C Unk_ov117_02266908 = {
+static const OverlayManagerTemplate Unk_ov117_02266908 = {
     ov117_02266498,
     ov117_022664BC,
     ov117_022665E8,

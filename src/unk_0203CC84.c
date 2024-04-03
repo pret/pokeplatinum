@@ -100,14 +100,14 @@ static int sub_0203CCE4 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-const UnkStruct_0208BE5C Unk_020EA10C = {
+const OverlayManagerTemplate Unk_020EA10C = {
     sub_0203CCB4,
     sub_0203CCCC,
     sub_0203CCE4,
     0xffffffff
 };
 
-const UnkStruct_0208BE5C Unk_020EA11C = {
+const OverlayManagerTemplate Unk_020EA11C = {
     sub_0203CC84,
     sub_0203CCCC,
     sub_0203CCE4,
@@ -149,7 +149,7 @@ BOOL sub_0203CD74 (FieldSystem * param0)
     return param0->unk_00->unk_04 != NULL;
 }
 
-void sub_0203CD84 (FieldSystem * param0, const UnkStruct_0208BE5C * param1, void * param2)
+void sub_0203CD84 (FieldSystem * param0, const OverlayManagerTemplate * param1, void * param2)
 {
     GF_ASSERT(param0->unk_00->unk_04 == NULL);
     sub_0203CD44(param0);

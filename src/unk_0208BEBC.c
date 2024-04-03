@@ -32,14 +32,14 @@ static int sub_0208BF50(OverlayManager * param0, int * param1);
 static int sub_0208BF6C(OverlayManager * param0, int * param1);
 
 
-const UnkStruct_0208BE5C Unk_020F3050 = {
+const OverlayManagerTemplate Unk_020F3050 = {
     sub_0208BF38,
     sub_0208BF50,
     sub_0208BF6C,
     FS_OVERLAY_ID(overlay62)
 };
 
-const UnkStruct_0208BE5C Unk_020F3060 = {
+const OverlayManagerTemplate Unk_020F3060 = {
     sub_0208BF44,
     sub_0208BF50,
     sub_0208BF6C,

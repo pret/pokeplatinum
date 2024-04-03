@@ -26,7 +26,7 @@ static void sub_020176B4(UnkStruct_02017498 * param0);
 static void * sub_020176DC(DWCAllocType param0, u32 param1, int param2);
 static void sub_02017704(DWCAllocType param0, void * param1, u32 param2);
 
-static const UnkStruct_0208BE5C Unk_020E5664 = {
+static const OverlayManagerTemplate Unk_020E5664 = {
     ov61_0222BF44,
     ov61_0222C0F8,
     ov61_0222C160,
@@ -97,7 +97,7 @@ int sub_02017524 (OverlayManager * param0, int * param1)
         break;
     case 4:
     {
-        const UnkStruct_0208BE5C * v1;
+        const OverlayManagerTemplate * v1;
 
         v1 = sub_0208BE5C(v0->unk_00->unk_0C);
         v0->unk_14 = sub_020067E8(v1, v0->unk_00->unk_00, 116);

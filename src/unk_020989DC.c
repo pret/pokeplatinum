@@ -88,7 +88,7 @@ static int sub_02098DE8(UnkStruct_02098BE4 * param0);
 static int sub_02098E0C(UnkStruct_02098BE4 * param0);
 static int sub_02098E88(UnkStruct_02098BE4 * param0);
 
-const UnkStruct_0208BE5C Unk_020F6890 = {
+const OverlayManagerTemplate Unk_020F6890 = {
     sub_02098B1C,
     sub_02098B50,
     sub_02098BC4,
@@ -264,7 +264,7 @@ static int sub_02098C2C (UnkStruct_02098BE4 * param0)
 {
     FS_EXTERN_OVERLAY(overlay79);
 
-    static const UnkStruct_0208BE5C v0 = {
+    static const OverlayManagerTemplate v0 = {
         ov79_021D0D80,
         ov79_021D0DC4,
         ov79_021D0DDC,
@@ -376,7 +376,7 @@ static int sub_02098D7C (UnkStruct_02098BE4 * param0)
 {
     FS_EXTERN_OVERLAY(overlay79);
 
-    static const UnkStruct_0208BE5C v0 = {
+    static const OverlayManagerTemplate v0 = {
         ov79_021D22AC,
         ov79_021D22E4,
         ov79_021D2460,

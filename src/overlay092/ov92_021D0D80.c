@@ -174,7 +174,7 @@ static void ov92_021D2370(MtxFx33 * param0, VecFx32 * param1);
 static void ov92_021D23E8(MtxFx33 * param0, VecFx32 * param1);
 static void ov92_021D2868(UnkStruct_ov92_021D28C0 * param0);
 static u32 ov92_021D28C0(const UnkStruct_ov92_021D28C0 * param0, const UnkStruct_ov92_021D28C0 * param1);
-void sub_02000EC4(FSOverlayID param0, const UnkStruct_0208BE5C * param1);
+void sub_02000EC4(FSOverlayID param0, const OverlayManagerTemplate * param1);
 
 static const UnkStruct_ov97_0222DB78 Unk_ov92_021D2970 = {
     0x0,

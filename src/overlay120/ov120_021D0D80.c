@@ -32,7 +32,7 @@ typedef struct {
     int unk_24;
 } UnkStruct_ov120_021D0F24;
 
-void sub_02000EC4(FSOverlayID param0, const UnkStruct_0208BE5C * param1);
+void sub_02000EC4(FSOverlayID param0, const OverlayManagerTemplate * param1);
 int ov120_021D0D80(OverlayManager * param0, int * param1);
 int ov120_021D0DB0(OverlayManager * param0, int * param1);
 int ov120_021D0EFC(OverlayManager * param0, int * param1);

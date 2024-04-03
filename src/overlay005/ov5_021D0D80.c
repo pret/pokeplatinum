@@ -373,7 +373,7 @@ static int ov5_021D0FB4 (OverlayManager * param0, int * param1)
     return 0;
 }
 
-const UnkStruct_0208BE5C Unk_ov5_021F89B0 = {
+const OverlayManagerTemplate Unk_ov5_021F89B0 = {
     ov5_021D0DA4,
     ov5_021D0F68,
     ov5_021D0FB4,

@@ -23,7 +23,7 @@ typedef struct UnkStruct_020508D4_t {
 
 typedef struct {
     int unk_00;
-    const UnkStruct_0208BE5C * unk_04;
+    const OverlayManagerTemplate * unk_04;
     void * unk_08;
 } UnkStruct_020509F0;
 
@@ -159,7 +159,7 @@ static BOOL sub_020509F0 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_02050A38 (UnkStruct_020508D4 * param0, const UnkStruct_0208BE5C * param1, void * param2)
+void sub_02050A38 (UnkStruct_020508D4 * param0, const OverlayManagerTemplate * param1, void * param2)
 {
     UnkStruct_020509F0 * v0 = Heap_AllocFromHeapAtEnd(32, sizeof(UnkStruct_020509F0));
 

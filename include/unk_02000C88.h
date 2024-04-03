@@ -5,7 +5,7 @@
 
 #include <nitro/fs.h>
 
-void sub_02000EC4(FSOverlayID param0, const UnkStruct_0208BE5C * param1);
+void sub_02000EC4(FSOverlayID param0, const OverlayManagerTemplate * param1);
 void InitRNG(void);
 void HandleConsoleFold(void);
 

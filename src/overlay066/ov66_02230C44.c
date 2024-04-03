@@ -62,7 +62,7 @@ typedef struct UnkStruct_ov66_02230C90_t {
     UnkStruct_ov66_0222DCE0_sub1 * unk_44;
 } UnkStruct_ov66_02230C90;
 
-static void ov66_02230CEC(UnkStruct_ov66_02230C90 * param0, UnkStruct_ov66_02230E4C * param1, const UnkStruct_0208BE5C * param2);
+static void ov66_02230CEC(UnkStruct_ov66_02230C90 * param0, UnkStruct_ov66_02230E4C * param1, const OverlayManagerTemplate * param2);
 static void ov66_02230D0C(UnkStruct_ov66_02230C90 * param0, u32 param1, u32 param2);
 static void ov66_02230D34(UnkStruct_ov66_02230C90 * param0, u32 param1);
 static void ov66_02230D54(UnkStruct_ov66_02230C90 * param0, u32 param1);
@@ -180,7 +180,7 @@ void ov66_02230CE8 (UnkStruct_ov66_02230C90 * param0)
     return;
 }
 
-static void ov66_02230CEC (UnkStruct_ov66_02230C90 * param0, UnkStruct_ov66_02230E4C * param1, const UnkStruct_0208BE5C * param2)
+static void ov66_02230CEC (UnkStruct_ov66_02230C90 * param0, UnkStruct_ov66_02230E4C * param1, const OverlayManagerTemplate * param2)
 {
     GF_ASSERT(param0->unk_00 == NULL);
     param0->unk_00 = sub_020067E8(param2, param1->unk_00, param0->unk_3A);
@@ -344,7 +344,7 @@ static void ov66_02230E68 (UnkStruct_ov66_02230C90 * param0, UnkStruct_ov66_0223
 
     FS_EXTERN_OVERLAY(overlay70);
 
-    static const UnkStruct_0208BE5C v1 = {
+    static const OverlayManagerTemplate v1 = {
         ov70_0225D9A4, ov70_0225DB90, ov70_0225DDF8, FS_OVERLAY_ID(overlay70)
     };
 
@@ -427,7 +427,7 @@ static void ov66_02230F50 (UnkStruct_ov66_02230C90 * param0, UnkStruct_ov66_0223
 
     FS_EXTERN_OVERLAY(overlay69);
 
-    static const UnkStruct_0208BE5C v1 = {
+    static const OverlayManagerTemplate v1 = {
         ov69_0225C700, ov69_0225C820, ov69_0225C8FC, FS_OVERLAY_ID(overlay69)
     };
 
@@ -473,7 +473,7 @@ static void ov66_02230FF0 (UnkStruct_ov66_02230C90 * param0, UnkStruct_ov66_0223
 {
     FS_EXTERN_OVERLAY(overlay112);
 
-    static const UnkStruct_0208BE5C v0 = {
+    static const OverlayManagerTemplate v0 = {
         ov112_0225C700, ov112_0225C7C4, ov112_0225C8FC, FS_OVERLAY_ID(overlay112)
     };
 
@@ -518,7 +518,7 @@ static void ov66_02231064 (UnkStruct_ov66_02230C90 * param0, UnkStruct_ov66_0223
 {
     FS_EXTERN_OVERLAY(overlay67);
 
-    static const UnkStruct_0208BE5C v0 = {
+    static const OverlayManagerTemplate v0 = {
         ov67_0225C700, ov67_0225C820, ov67_0225CB1C, FS_OVERLAY_ID(overlay67)
     };
 
@@ -570,7 +570,7 @@ static void ov66_022310D8 (UnkStruct_ov66_02230C90 * param0, UnkStruct_ov66_0223
     FS_EXTERN_OVERLAY(overlay115);
     FS_EXTERN_OVERLAY(overlay114);
 
-    static const UnkStruct_0208BE5C v0 = {
+    static const OverlayManagerTemplate v0 = {
         ov115_02260440, ov115_0226048C, ov115_022608E4, FS_OVERLAY_ID(overlay115),
     };
 
@@ -636,7 +636,7 @@ static void ov66_02231178 (UnkStruct_ov66_02230C90 * param0, UnkStruct_ov66_0223
     FS_EXTERN_OVERLAY(overlay116);
     FS_EXTERN_OVERLAY(overlay114);
 
-    static const UnkStruct_0208BE5C v0 = {
+    static const OverlayManagerTemplate v0 = {
         ov116_022609B4, ov116_02260CF4, ov116_0226126C, FS_OVERLAY_ID(overlay116),
     };
 
@@ -701,7 +701,7 @@ static void ov66_02231220 (UnkStruct_ov66_02230C90 * param0, UnkStruct_ov66_0223
     FS_EXTERN_OVERLAY(overlay117);
     FS_EXTERN_OVERLAY(overlay114);
 
-    static const UnkStruct_0208BE5C v0 = {
+    static const OverlayManagerTemplate v0 = {
         ov117_02260440, ov117_02260474, ov117_022605C0, FS_OVERLAY_ID(overlay117),
     };
 
@@ -769,7 +769,7 @@ static void ov66_022312D8 (UnkStruct_ov66_02230C90 * param0, UnkStruct_ov66_0223
 
     FS_EXTERN_OVERLAY(overlay113);
 
-    static const UnkStruct_0208BE5C v1 = {
+    static const OverlayManagerTemplate v1 = {
         ov113_0225C700, ov113_0225CA04, ov113_0225CDFC, FS_OVERLAY_ID(overlay113),
     };
 
@@ -785,7 +785,7 @@ static void ov66_022312EC (UnkStruct_ov66_02230C90 * param0, UnkStruct_ov66_0223
 
     FS_EXTERN_OVERLAY(overlay113);
 
-    static const UnkStruct_0208BE5C v1 = {
+    static const OverlayManagerTemplate v1 = {
         ov113_0225C700, ov113_0225CA04, ov113_0225CDFC, FS_OVERLAY_ID(overlay113),
     };
 
@@ -826,7 +826,7 @@ static void ov66_0223135C (UnkStruct_ov66_02230C90 * param0, UnkStruct_ov66_0223
 {
     FS_EXTERN_OVERLAY(overlay67);
 
-    static const UnkStruct_0208BE5C v0 = {
+    static const OverlayManagerTemplate v0 = {
         ov67_0225CB8C, ov67_0225CC6C, ov67_0225CDC0, FS_OVERLAY_ID(overlay67)
     };
 
@@ -880,7 +880,7 @@ static void ov66_022313F4 (UnkStruct_ov66_02230C90 * param0, UnkStruct_ov66_0223
 {
     FS_EXTERN_OVERLAY(overlay68);
 
-    static const UnkStruct_0208BE5C v0 = {
+    static const OverlayManagerTemplate v0 = {
         ov68_0225C700, ov68_0225C798, ov68_0225C8A8, FS_OVERLAY_ID(overlay68)
     };
 

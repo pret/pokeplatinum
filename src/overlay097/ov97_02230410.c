@@ -1444,7 +1444,7 @@ static void ov97_02231F1C (UnkStruct_ov97_02230868 * param0, int * param1, int p
 }
 
 
-extern const UnkStruct_0208BE5C Unk_ov97_0223D71C;
+extern const OverlayManagerTemplate Unk_ov97_0223D71C;
 
 static int ov97_02231F38 (OverlayManager * param0, int * param1)
 {
@@ -1479,7 +1479,7 @@ static int ov97_02231F38 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-const UnkStruct_0208BE5C Unk_ov97_0223D7AC = {
+const OverlayManagerTemplate Unk_ov97_0223D7AC = {
     ov97_02231224,
     ov97_0223161C,
     ov97_02231F38,

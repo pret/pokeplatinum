@@ -2170,7 +2170,7 @@ static int ov97_02235CC8 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-const UnkStruct_0208BE5C Unk_ov97_0223D864 = {
+const OverlayManagerTemplate Unk_ov97_0223D864 = {
     ov97_02235624,
     ov97_022356E8,
     ov97_02235CC8,

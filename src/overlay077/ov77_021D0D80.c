@@ -130,12 +130,12 @@ typedef struct {
 } UnkStruct_ov77_021D17B4;
 
 
-extern const UnkStruct_0208BE5C Unk_020F8A48;
-extern const UnkStruct_0208BE5C Unk_020F8AB4;
-extern const UnkStruct_0208BE5C Unk_ov77_021D788C;
+extern const OverlayManagerTemplate Unk_020F8A48;
+extern const OverlayManagerTemplate Unk_020F8AB4;
+extern const OverlayManagerTemplate Unk_ov77_021D788C;
 
 static void ov77_021D1D48(BGL * param0, int param1);
-void sub_02000EC4(FSOverlayID param0, const UnkStruct_0208BE5C * param1);
+void sub_02000EC4(FSOverlayID param0, const OverlayManagerTemplate * param1);
 static int ov77_021D0D80(OverlayManager * param0, int * param1);
 static int ov77_021D0E3C(OverlayManager * param0, int * param1);
 static int ov77_021D10FC(OverlayManager * param0, int * param1);
@@ -163,7 +163,7 @@ static void ov77_021D2428(BGL * param0, int param1, UnkStruct_ov77_021D1568 * pa
 static void ov77_021D24C8(UnkStruct_ov77_021D1568 * param0);
 static void ov77_021D2438(UnkStruct_ov77_021D1568 * param0);
 
-const UnkStruct_0208BE5C Unk_ov77_021D742C = {
+const OverlayManagerTemplate Unk_ov77_021D742C = {
     ov77_021D0D80,
     ov77_021D0E3C,
     ov77_021D10FC,

@@ -55,7 +55,7 @@ UnkStruct_020978D8 * sub_02097834(const UnkStruct_0202818C * param0, int param1)
 void sub_020978D8(UnkStruct_020978D8 * param0);
 void sub_020978F0(UnkStruct_0202818C * param0, UnkStruct_020978D8 * param1);
 
-const UnkStruct_0208BE5C Unk_020F64B0 = {
+const OverlayManagerTemplate Unk_020F64B0 = {
     sub_02097944,
     sub_020979A8,
     sub_02097AF8,
@@ -314,10 +314,10 @@ static int sub_020979A8 (OverlayManager * param0, int * param1)
     FS_EXTERN_OVERLAY(overlay75);
     FS_EXTERN_OVERLAY(overlay20);
 
-    static const UnkStruct_0208BE5C v2 = {
+    static const OverlayManagerTemplate v2 = {
         ov75_021D0D80, ov75_021D0DF8, ov75_021D0E10, FS_OVERLAY_ID(overlay75),
     };
-    static const UnkStruct_0208BE5C v3 = {
+    static const OverlayManagerTemplate v3 = {
         ov20_021D0D80, ov20_021D0DF8, ov20_021D0EA8, FS_OVERLAY_ID(overlay20),
     };
 

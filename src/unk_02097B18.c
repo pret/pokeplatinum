@@ -71,7 +71,7 @@ static int sub_02097B18(OverlayManager * param0, int * param1);
 static int sub_02097D30(OverlayManager * param0, int * param1);
 static int sub_02097D88(OverlayManager * param0, int * param1);
 
-const UnkStruct_0208BE5C Unk_020F64C0 = {
+const OverlayManagerTemplate Unk_020F64C0 = {
     sub_02097B18,
     sub_02097D30,
     sub_02097D88,

@@ -8,7 +8,7 @@
 #include "heap.h"
 
 typedef struct OverlayManager_t {
-    UnkStruct_0208BE5C unk_00;
+    OverlayManagerTemplate unk_00;
     int unk_10;
     int unk_14;
     void * unk_18;
@@ -17,7 +17,7 @@ typedef struct OverlayManager_t {
     OverlayManager * unk_24;
 } OverlayManager;
 
-OverlayManager * sub_020067E8 (const UnkStruct_0208BE5C * param0, void * param1, const int param2)
+OverlayManager * sub_020067E8 (const OverlayManagerTemplate * param0, void * param1, const int param2)
 {
     OverlayManager * v0;
 

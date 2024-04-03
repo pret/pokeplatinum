@@ -108,7 +108,7 @@ typedef struct {
     u16 * unk_BC;
 } UnkStruct_ov73_021D1058;
 
-void sub_02000EC4(FSOverlayID param0, const UnkStruct_0208BE5C * param1);
+void sub_02000EC4(FSOverlayID param0, const OverlayManagerTemplate * param1);
 int ov73_021D0D80(OverlayManager * param0, int * param1);
 int ov73_021D0E20(OverlayManager * param0, int * param1);
 int ov73_021D0F7C(OverlayManager * param0, int * param1);
@@ -129,14 +129,14 @@ int ov73_021D3250(OverlayManager * param0, int * param1);
 int ov73_021D3280(OverlayManager * param0, int * param1);
 int ov73_021D3404(OverlayManager * param0, int * param1);
 
-const UnkStruct_0208BE5C dummy_UnkStruct_0208BE5C = {
+const OverlayManagerTemplate dummy_OverlayManagerTemplate = {
     ov73_021D0D80,
     ov73_021D0E20,
     ov73_021D0F7C,
     0xffffffff
 };
 
-static const UnkStruct_0208BE5C Unk_ov72_021D3820 = {
+static const OverlayManagerTemplate Unk_ov72_021D3820 = {
     ov73_021D3250,
     ov73_021D3280,
     ov73_021D3404,

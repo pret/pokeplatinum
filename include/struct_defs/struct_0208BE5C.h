@@ -10,6 +10,6 @@ typedef struct {
     int (* unk_04)(OverlayManager *, int *);
     int (* unk_08)(OverlayManager *, int *);
     const FSOverlayID unk_0C;
-} UnkStruct_0208BE5C;
+} OverlayManagerTemplate;
 
 #endif // POKEPLATINUM_STRUCT_0208BE5C_H

@@ -128,7 +128,7 @@ static void sub_0208E794(PokemonSummaryApp * param0, s8 param1);
 u8 PokemonSummary_RibbonAt(PokemonSummaryApp * param0, u8 param1);
 static int sub_0208E958(PokemonSummaryApp * param0);
 
-const UnkStruct_0208BE5C Unk_020F410C = {
+const OverlayManagerTemplate Unk_020F410C = {
     sub_0208C330,
     sub_0208C488,
     sub_0208C5A0,

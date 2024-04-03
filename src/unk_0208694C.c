@@ -880,7 +880,7 @@ static const int Unk_020F2850[] = {
 	0x3
 };
 
-const UnkStruct_0208BE5C Unk_020F2DAC = {
+const OverlayManagerTemplate Unk_020F2DAC = {
     sub_0208694C,
     sub_02086B64,
     sub_02086F3C,

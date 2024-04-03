@@ -25,7 +25,7 @@ static TrainerInfo * ov94_02244870(UnkStruct_ov94_0223BA88 * param0);
 static Pokemon * ov94_022448AC(UnkStruct_ov94_0223FD4C * param0, int param1);
 static void ov94_022448E8(UnkStruct_ov94_0223FD4C * param0);
 
-static const UnkStruct_0208BE5C Unk_ov94_0224636C = {
+static const OverlayManagerTemplate Unk_ov94_0224636C = {
     ov95_02246C20,
     ov95_02246E7C,
     ov95_02246E1C,

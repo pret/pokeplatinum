@@ -346,56 +346,56 @@ static BOOL sub_0208BC8C (UnkStruct_0208BC3C * param0, int param1)
     return 0;
 }
 
-const UnkStruct_0208BE5C Unk_020F2FCC = {
+const OverlayManagerTemplate Unk_020F2FCC = {
     sub_0208BB6C,
     sub_0208BBC0,
     sub_0208BC08,
     0xffffffff,
 };
 
-const UnkStruct_0208BE5C Unk_020F302C = {
+const OverlayManagerTemplate Unk_020F302C = {
     sub_0208BB78,
     sub_0208BBC0,
     sub_0208BC08,
     0xffffffff,
 };
 
-const UnkStruct_0208BE5C Unk_020F301C = {
+const OverlayManagerTemplate Unk_020F301C = {
     sub_0208BB84,
     sub_0208BBC0,
     sub_0208BC08,
     0xffffffff,
 };
 
-const UnkStruct_0208BE5C Unk_020F300C = {
+const OverlayManagerTemplate Unk_020F300C = {
     sub_0208BB90,
     sub_0208BBC0,
     sub_0208BC08,
     0xffffffff,
 };
 
-const UnkStruct_0208BE5C Unk_020F2FFC = {
+const OverlayManagerTemplate Unk_020F2FFC = {
     sub_0208BB9C,
     sub_0208BBC0,
     sub_0208BC08,
     0xffffffff,
 };
 
-const UnkStruct_0208BE5C Unk_020F2FEC = {
+const OverlayManagerTemplate Unk_020F2FEC = {
     sub_0208BBA8,
     sub_0208BBC0,
     sub_0208BC08,
     0xffffffff,
 };
 
-const UnkStruct_0208BE5C Unk_020F2FDC = {
+const OverlayManagerTemplate Unk_020F2FDC = {
     sub_0208BBB4,
     sub_0208BBC0,
     sub_0208BC08,
     0xffffffff,
 };
 
-static const UnkStruct_0208BE5C * Unk_02100CF0[] = {
+static const OverlayManagerTemplate * Unk_02100CF0[] = {
     &Unk_020F2FCC,
     &Unk_020F302C,
     &Unk_020F301C,
@@ -405,9 +405,9 @@ static const UnkStruct_0208BE5C * Unk_02100CF0[] = {
     &Unk_020F2FDC,
 };
 
-const UnkStruct_0208BE5C * sub_0208BE5C (int param0)
+const OverlayManagerTemplate * sub_0208BE5C (int param0)
 {
-    const UnkStruct_0208BE5C * v0;
+    const OverlayManagerTemplate * v0;
 
     v0 = Unk_02100CF0[param0];
     return v0;

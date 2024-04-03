@@ -71,6 +71,6 @@ static int sub_020995D4 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-const UnkStruct_0208BE5C Unk_020F6DF0 = {
+const OverlayManagerTemplate Unk_020F6DF0 = {
     sub_020995D4, NULL, NULL, 0xffffffff,
 };

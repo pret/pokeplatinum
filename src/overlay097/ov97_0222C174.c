@@ -1144,7 +1144,7 @@ int ov97_0222CB10 (UnkStruct_ov97_0222C388 * param0)
     return 0;
 }
 
-const UnkStruct_0208BE5C Unk_ov97_0223D6BC = {
+const OverlayManagerTemplate Unk_ov97_0223D6BC = {
     ov97_0222C6F8,
     ov97_0222C78C,
     ov97_0222C948,

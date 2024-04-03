@@ -3,6 +3,6 @@
 
 #include "struct_defs/struct_0208BE5C.h"
 
-extern const UnkStruct_0208BE5C Unk_020F8BE0;
+extern const OverlayManagerTemplate Unk_020F8BE0;
 
 #endif // POKEPLATINUM_CONST_020F8BE0_H

@@ -164,7 +164,7 @@ static BOOL ov84_0223ED64(UnkStruct_ov84_0223B5A0 * param0, u16 param1);
 static BOOL ov84_0223EE80(UnkStruct_ov84_0223B5A0 * param0, u16 param1);
 static BOOL ov84_0223EF9C(UnkStruct_ov84_0223B5A0 * param0, u8 param1);
 
-const UnkStruct_0208BE5C Unk_ov84_02241130 = {
+const OverlayManagerTemplate Unk_ov84_02241130 = {
     ov84_0223B5A0,
     ov84_0223B76C,
     ov84_0223B900,
