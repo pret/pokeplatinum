@@ -15,12 +15,12 @@
 
 #include <nnsys.h>
 
-void ov25_02253CE8(UnkStruct_0203CDB0 * param0, UnkStruct_ov25_02253CE0 ** param1, SaveData * param2, BGL * param3, NNSG2dOamManagerInstance * param4);
-void ov25_02253D5C(UnkStruct_ov25_02253CE0 * param0);
-BOOL ov25_02253D70(UnkStruct_ov25_02253CE0 * param0);
-void ov25_02253D7C(UnkStruct_ov25_02253CE0 * param0, int param1, u32 param2);
-BOOL ov25_02253DD4(UnkStruct_ov25_02253CE0 * param0);
-int ov25_02253DD8(UnkStruct_ov25_02253CE0 * param0);
+void ov25_02253CE8(UnkStruct_0203CDB0 * param0, PoketchSystem ** param1, SaveData * param2, BGL * param3, NNSG2dOamManagerInstance * param4);
+void ov25_02253D5C(PoketchSystem * param0);
+BOOL ov25_02253D70(PoketchSystem * param0);
+void ov25_02253D7C(PoketchSystem * param0, int param1, u32 param2);
+BOOL ov25_02253DD4(PoketchSystem * param0);
+int ov25_02253DD8(PoketchSystem * param0);
 void ov25_02254238(UnkFuncPtr_ov25_02254238 param0, UnkFuncPtr_ov25_02254238_1 param1);
 void ov25_0225424C(UnkStruct_ov25_0225424C * param0);
 void ov25_02254260(UnkStruct_ov25_0225424C * param0);

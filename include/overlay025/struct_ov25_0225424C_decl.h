@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV25_0225424C_DECL_H
 #define POKEPLATINUM_STRUCT_OV25_0225424C_DECL_H
 
-typedef struct UnkStruct_ov25_02253CE0_t UnkStruct_ov25_0225424C;
+typedef struct PoketchSystem UnkStruct_ov25_0225424C;
 
 #endif // POKEPLATINUM_STRUCT_OV25_0225424C_DECL_H

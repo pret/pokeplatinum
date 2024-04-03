@@ -319,7 +319,7 @@ void sub_0203CF5C (UnkStruct_0203CDB0 * param0)
 
                 {
                     BOOL v3 = 0;
-                    UnkStruct_ov25_02253CE0 * v4 = sub_0203D158();
+                    PoketchSystem * v4 = sub_0203D158();
 
                     if (v4 != NULL) {
                         v3 = ov25_02253DD4(v4);
@@ -345,7 +345,7 @@ void sub_0203CF5C (UnkStruct_0203CDB0 * param0)
 
                 {
                     BOOL v5 = 0;
-                    UnkStruct_ov25_02253CE0 * v6 = sub_0203D158();
+                    PoketchSystem * v6 = sub_0203D158();
 
                     if (v6 != NULL) {
                         v5 = ov25_02253DD4(v6);
@@ -371,7 +371,7 @@ void sub_0203D140 (void)
     sub_02035EA8();
 }
 
-struct UnkStruct_ov25_02253CE0_t * sub_0203D158 (void)
+struct PoketchSystem * sub_0203D158 (void)
 {
     if (Unk_021C07DC->unk_04 == NULL) {
         return NULL;

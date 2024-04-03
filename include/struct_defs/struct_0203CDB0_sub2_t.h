@@ -16,7 +16,7 @@ struct UnkStruct_0203CDB0_sub2_t {
     UnkStruct_ov5_021DD9C8 * unk_08;
     UnkStruct_ov5_021D5EF8 * unk_0C;
     UnkStruct_ov5_021D5CB0 * unk_10;
-    UnkStruct_ov25_02253CE0 * unk_14;
+    PoketchSystem * unk_14;
     UnkStruct_02055CBC * unk_18;
     UnkStruct_ov5_021EF3BC * unk_1C;
     UnkStruct_ov5_021EF4F8 * unk_20;
