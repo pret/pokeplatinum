@@ -261,7 +261,7 @@ static void SoftReset (int param0)
     sub_0200F344(1, 0x7fff);
 
     if (sub_02037DB0()) {
-        sub_02024850(SaveData_Ptr());
+        SaveData_SaveStateCancel(SaveData_Ptr());
     }
 
     while (TRUE) {

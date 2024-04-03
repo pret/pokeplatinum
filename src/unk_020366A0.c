@@ -2462,7 +2462,7 @@ void sub_02038A20 (int param0)
             if (!HeapCanaryOK()) {
                 if (!sub_020389D8()) {
                     sub_0200569C();
-                    sub_02024850(Unk_021C07D4->unk_28);
+                    SaveData_SaveStateCancel(Unk_021C07D4->unk_28);
                     gCoreSys.unk_64 = 1;
 
                     if (Unk_021C07D4->unk_59 == 3) {

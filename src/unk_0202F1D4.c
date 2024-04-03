@@ -183,7 +183,7 @@ int sub_0202F3AC (SaveData * param0, BattleRecording * param1, int param2, u16 *
         v0 = SaveData_SaveBattleRecording(param0, param1, param2);
 
         if (v0 == 2) {
-            sub_02024814(param0, 2);
+            SaveData_SaveStateInit(param0, 2);
             (*param3)++;
             return 0;
         }
@@ -191,7 +191,7 @@ int sub_0202F3AC (SaveData * param0, BattleRecording * param1, int param2, u16 *
         ResetUnlock(8);
         return v0;
     case 1:
-        v0 = sub_02024828(param0);
+        v0 = SaveData_SaveStateMain(param0);
 
         if ((v0 == 2) || (v0 == 3)) {
             (*param3) = 0;

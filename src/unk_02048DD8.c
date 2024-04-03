@@ -342,7 +342,7 @@ static BOOL sub_02049348 (FieldSystem * param0)
 static BOOL sub_02049358 (FieldSystem * param0)
 {
     PoketchData * v0 = SaveData_PoketchData(param0->unk_0C);
-    return sub_020567E0(v0);
+    return PoketchData_IsEnabled(v0);
 }
 
 static BOOL sub_02049368 (FieldSystem * param0)

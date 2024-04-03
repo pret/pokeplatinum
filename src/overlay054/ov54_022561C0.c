@@ -146,11 +146,11 @@ static BOOL ov54_0225621C (UnkStruct_ov54_0225621C * param0, UnkStruct_ov25_0225
     int v2;
 
     v1 = ov25_02254540(param1);
-    param0->unk_04.unk_90 = sub_02056AAC(v1);
+    param0->unk_04.unk_90 = PoketchData_PokemonHistorySize(v1);
 
     for (v2 = 0; v2 < param0->unk_04.unk_90; v2++) {
-        sub_02056AC8(v1, v2, &(param0->unk_04.unk_00[v2].unk_00), &(param0->unk_04.unk_00[v2].unk_08));
-        param0->unk_04.unk_00[v2].unk_04 = sub_02056AFC(v1, v2);
+        PoketchData_PokemonHistorySpeciesAndIcon(v1, v2, &(param0->unk_04.unk_00[v2].unk_00), &(param0->unk_04.unk_00[v2].unk_08));
+        param0->unk_04.unk_00[v2].unk_04 = PoketchData_PokemonHistoryForm(v1, v2);
     }
 
     if (ov54_0225642C(&(param0->unk_98), &(param0->unk_04), param2)) {

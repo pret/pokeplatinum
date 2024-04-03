@@ -31,7 +31,7 @@ void ov5_021EA728 (FieldSystem * param0)
     PoketchData * v0 = SaveData_PoketchData(param0->unk_0C);
     UnkStruct_020507E4 * v1 = SaveData_Events(param0->unk_0C);
 
-    if (sub_020567E0(v0)
+    if (PoketchData_IsEnabled(v0)
         && (sub_0206AE2C(v1) == 0)) {
         Overlay_LoadByID(FS_OVERLAY_ID(overlay25), 2);
         ov25_02253CE8(param0, &param0->unk_04->unk_14, param0->unk_0C, param0->unk_08, sub_0200A914(1));
@@ -46,7 +46,7 @@ void ov5_021EA790 (FieldSystem * param0)
     PoketchData * v0 = SaveData_PoketchData(param0->unk_0C);
     UnkStruct_020507E4 * v1 = SaveData_Events(param0->unk_0C);
 
-    if (sub_020567E0(v0)
+    if (PoketchData_IsEnabled(v0)
         && (sub_0206AE2C(v1) == 0)) {
         ov25_02253D5C(param0->unk_04->unk_14);
     } else {
@@ -59,7 +59,7 @@ u8 ov5_021EA7CC (FieldSystem * param0)
     PoketchData * v0 = SaveData_PoketchData(param0->unk_0C);
     UnkStruct_020507E4 * v1 = SaveData_Events(param0->unk_0C);
 
-    if (sub_020567E0(v0)
+    if (PoketchData_IsEnabled(v0)
         && (sub_0206AE2C(v1) == 0)) {
         if (ov25_02253D70(param0->unk_04->unk_14)) {
             param0->unk_04->unk_14 = NULL;

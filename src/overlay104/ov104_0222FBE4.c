@@ -1732,7 +1732,7 @@ static BOOL ov104_02230C04 (UnkStruct_ov104_0222E930 * param0)
 
     ResetLock(4);
     InitHeapCanary(v0->unk_34);
-    sub_02024814(v1->unk_08, 2);
+    SaveData_SaveStateInit(v1->unk_08, 2);
 
     ov104_0222E974(param0, ov104_02230C3C);
     return 1;
@@ -1743,7 +1743,7 @@ static BOOL ov104_02230C3C (UnkStruct_ov104_0222E930 * param0)
     int v0;
     UnkStruct_ov104_02230BE4 * v1 = sub_0209B970(param0->unk_00->unk_00);
 
-    v0 = sub_02024828(v1->unk_08);
+    v0 = SaveData_SaveStateMain(v1->unk_08);
 
     if (v0 == 2) {
         FreeHeapCanary();
