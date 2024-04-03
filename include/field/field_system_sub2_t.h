@@ -8,7 +8,7 @@
 #include "overlay005/struct_ov5_021DD9C8_decl.h"
 #include "overlay005/struct_ov5_021EF3BC_decl.h"
 #include "overlay005/struct_ov5_021EF4F8_decl.h"
-#include "overlay025/struct_ov25_02253CE0_decl.h"
+#include "overlay025/poketch_system.h"
 
 struct FieldSystem_sub2_t {
     BOOL unk_00;

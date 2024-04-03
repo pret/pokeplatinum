@@ -5,7 +5,7 @@
 #include "field/field_system_decl.h"
 #include "struct_defs/struct_0208BE5C.h"
 #include "savedata.h"
-#include "overlay025/struct_ov25_02253CE0_decl.h"
+#include "overlay025/poketch_system.h"
 
 void sub_0203CD00(FieldSystem * param0);
 void sub_0203CD44(FieldSystem * param0);

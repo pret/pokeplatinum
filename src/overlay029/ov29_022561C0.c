@@ -4,7 +4,7 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
-#include "overlay025/struct_ov25_0225424C_decl.h"
+#include "overlay025/poketch_system.h"
 #include "overlay025/struct_ov25_02255B34_decl.h"
 #include "overlay029/struct_ov29_022566C8_decl.h"
 
@@ -13,7 +13,7 @@
 
 #include "unk_0200D9E8.h"
 #include "heap.h"
-#include "overlay025/ov25_02253CE0.h"
+#include "overlay025/poketch_system.h"
 #include "overlay025/ov25_02255ACC.h"
 #include "overlay029/ov29_022566C8.h"
 
@@ -25,14 +25,14 @@ typedef struct {
     u32 unk_04;
     UnkStruct_ov29_022566C8_1 unk_08;
     UnkStruct_ov29_022566C8 * unk_16F4;
-    UnkStruct_ov25_0225424C * unk_16F8;
+    PoketchSystem * unk_16F8;
     UnkStruct_ov25_02255B34 * unk_16FC;
 } UnkStruct_ov29_0225621C;
 
 static void NitroStaticInit(void);
 
-static BOOL ov29_022561D4(void ** param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3);
-static BOOL ov29_0225621C(UnkStruct_ov29_0225621C * param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3);
+static BOOL ov29_022561D4(void ** param0, PoketchSystem * param1, BGL * param2, u32 param3);
+static BOOL ov29_0225621C(UnkStruct_ov29_0225621C * param0, PoketchSystem * param1, BGL * param2, u32 param3);
 static void ov29_02256288(UnkStruct_ov29_0225621C * param0);
 static void ov29_022562AC(SysTask * param0, void * param1);
 static void ov29_022562F4(u32 param0, u32 param1, u32 param2, void * param3);
@@ -55,7 +55,7 @@ static void NitroStaticInit (void)
     ov25_02254238(ov29_022561D4, ov29_02256324);
 }
 
-static BOOL ov29_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3)
+static BOOL ov29_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2, u32 param3)
 {
     UnkStruct_ov29_0225621C * v0 = (UnkStruct_ov29_0225621C *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov29_0225621C));
 
@@ -73,7 +73,7 @@ static BOOL ov29_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, BGL
     return 0;
 }
 
-static BOOL ov29_0225621C (UnkStruct_ov29_0225621C * param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3)
+static BOOL ov29_0225621C (UnkStruct_ov29_0225621C * param0, PoketchSystem * param1, BGL * param2, u32 param3)
 {
     memset(param0->unk_08.unk_0C, 0, sizeof(u8) * (78 * 75));
 

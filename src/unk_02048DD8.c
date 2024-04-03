@@ -40,7 +40,7 @@
 #include "party.h"
 #include "overlay006/ov6_022465FC.h"
 #include "overlay006/ov6_02246A30.h"
-#include "overlay025/ov25_02253CE0.h"
+#include "overlay025/poketch_system.h"
 
 typedef void (* UnkFuncPtr_020EBB48)(FieldSystem *, u16);
 typedef void (* UnkFuncPtr_020EBB48_1)(FieldSystem *, StringFormatter *);

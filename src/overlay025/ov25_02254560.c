@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
 #include "poketch_data.h"
-#include "overlay025/struct_ov25_0225424C_decl.h"
+#include "overlay025/poketch_system.h"
 #include "overlay025/struct_ov25_02254560_decl.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay025/struct_ov25_022555E8_decl.h"
@@ -24,7 +24,7 @@
 #include "unk_02018340.h"
 #include "gx_layers.h"
 #include "poketch_data.h"
-#include "overlay025/ov25_02253CE0.h"
+#include "overlay025/poketch_system.h"
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
 #include "overlay025/ov25_02255540.h"
@@ -51,7 +51,7 @@ struct UnkStruct_ov25_02254560_t {
     SysTask * unk_1D0;
     UnkStruct_ov25_02254DD8 unk_1D4;
     BGL * unk_1F8;
-    UnkStruct_ov25_0225424C * unk_1FC;
+    PoketchSystem * unk_1FC;
     u16 unk_200[256];
     u16 unk_400[16];
 };
@@ -91,7 +91,7 @@ static void ov25_02255064(SysTask * param0, void * param1);
 struct PoketchSystem * sub_0203D158(void);
 SysTask * sub_0200DA3C(SysTaskFunc param0, void * param1, u32 param2);
 
-BOOL ov25_02254560 (UnkStruct_ov25_02254560 ** param0, const UnkStruct_ov25_02254560_1 * param1, NNSG2dOamManagerInstance * param2, UnkStruct_ov25_0225424C * param3)
+BOOL ov25_02254560 (UnkStruct_ov25_02254560 ** param0, const UnkStruct_ov25_02254560_1 * param1, NNSG2dOamManagerInstance * param2, PoketchSystem * param3)
 {
     *param0 = Heap_AllocFromHeap(7, sizeof(UnkStruct_ov25_02254560));
 

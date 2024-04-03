@@ -18,7 +18,7 @@
 #include "unk_02006E3C.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "overlay025/ov25_02253CE0.h"
+#include "overlay025/poketch_system.h"
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
 #include "overlay025/ov25_02255540.h"

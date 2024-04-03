@@ -68,7 +68,7 @@
 #include "unk_02094EDC.h"
 #include "overlay006/ov6_02243218.h"
 #include "overlay006/ov6_02246444.h"
-#include "overlay025/ov25_02253CE0.h"
+#include "overlay025/poketch_system.h"
 
 static void sub_0206CD70(FieldSystem * param0, int param1, int param2, const void * param3);
 static void sub_0206CD7C(SaveData * param0, int param1, int param2, const void * param3);

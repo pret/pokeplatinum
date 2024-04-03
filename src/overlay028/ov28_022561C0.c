@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
 #include "struct_decls/pokedexdata_decl.h"
-#include "overlay025/struct_ov25_0225424C_decl.h"
+#include "overlay025/poketch_system.h"
 #include "overlay025/struct_ov25_02255B34_decl.h"
 #include "overlay028/struct_ov28_0225697C_decl.h"
 #include "overlay028/struct_ov28_02256E9C_decl.h"
@@ -18,7 +18,7 @@
 #include "heap.h"
 #include "unk_0202631C.h"
 #include "pokemon.h"
-#include "overlay025/ov25_02253CE0.h"
+#include "overlay025/poketch_system.h"
 #include "overlay025/ov25_02255ACC.h"
 #include "overlay028/ov28_0225697C.h"
 #include "overlay028/ov28_02256E9C.h"
@@ -33,14 +33,14 @@ typedef struct {
     u16 unk_06;
     u32 unk_08;
     UnkStruct_ov25_02255B34 * unk_0C;
-    UnkStruct_ov25_0225424C * unk_10;
+    PoketchSystem * unk_10;
     UnkStruct_ov28_0225697C * unk_14;
     UnkStruct_ov28_0225697C_1 unk_18;
 } UnkStruct_ov28_02256210;
 
 static void NitroStaticInit(void);
 
-static BOOL ov28_022561D4(void ** param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3);
+static BOOL ov28_022561D4(void ** param0, PoketchSystem * param1, BGL * param2, u32 param3);
 static BOOL ov28_02256210(UnkStruct_ov28_02256210 * param0, u32 param1, BGL * param2);
 static void ov28_02256298(UnkStruct_ov28_02256210 * param0);
 static void ov28_022562CC(SysTask * param0, void * param1);
@@ -83,7 +83,7 @@ static void NitroStaticInit (void)
     ov25_02254238(ov28_022561D4, ov28_02256324);
 }
 
-static BOOL ov28_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3)
+static BOOL ov28_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2, u32 param3)
 {
     UnkStruct_ov28_02256210 * v0 = (UnkStruct_ov28_02256210 *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov28_02256210));
 

@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "field/field_system_sub1_decl.h"
 #include "savedata.h"
-#include "overlay025/struct_ov25_02253CE0_decl.h"
+#include "overlay025/poketch_system.h"
 
 #include "overlay005/const_ov5_021F89B0.h"
 #include "overlay077/const_ov77_021D742C.h"
@@ -40,7 +40,7 @@
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021E1B08.h"
 #include "overlay005/ov5_021EA714.h"
-#include "overlay025/ov25_02253CE0.h"
+#include "overlay025/poketch_system.h"
 
 FS_EXTERN_OVERLAY(overlay5);
 FS_EXTERN_OVERLAY(overlay77);

@@ -4,7 +4,7 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
-#include "overlay025/struct_ov25_0225424C_decl.h"
+#include "overlay025/poketch_system.h"
 #include "overlay025/struct_ov25_02255B34_decl.h"
 #include "overlay037/struct_ov37_022563D4_decl.h"
 
@@ -13,7 +13,7 @@
 
 #include "unk_0200D9E8.h"
 #include "heap.h"
-#include "overlay025/ov25_02253CE0.h"
+#include "overlay025/poketch_system.h"
 #include "overlay025/ov25_02255ACC.h"
 #include "overlay037/ov37_022563D4.h"
 
@@ -23,7 +23,7 @@ typedef struct {
     u8 unk_02;
     UnkStruct_ov37_022563D4_1 unk_04;
     UnkStruct_ov37_022563D4 * unk_08;
-    UnkStruct_ov25_0225424C * unk_0C;
+    PoketchSystem * unk_0C;
     UnkStruct_ov25_02255B34 * unk_10;
     u32 unk_14;
     u32 unk_18;
@@ -31,8 +31,8 @@ typedef struct {
 
 static void NitroStaticInit(void);
 
-static BOOL ov37_022561D4(void ** param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3);
-static BOOL ov37_0225621C(UnkStruct_ov37_0225621C * param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3);
+static BOOL ov37_022561D4(void ** param0, PoketchSystem * param1, BGL * param2, u32 param3);
+static BOOL ov37_0225621C(UnkStruct_ov37_0225621C * param0, PoketchSystem * param1, BGL * param2, u32 param3);
 static void ov37_02256280(UnkStruct_ov37_0225621C * param0);
 static void ov37_02256298(u32 param0, u32 param1, u32 param2, void * param3);
 static void ov37_022562A0(SysTask * param0, void * param1);
@@ -47,7 +47,7 @@ static void NitroStaticInit (void)
     ov25_02254238(ov37_022561D4, ov37_022562DC);
 }
 
-static BOOL ov37_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3)
+static BOOL ov37_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2, u32 param3)
 {
     UnkStruct_ov37_0225621C * v0 = (UnkStruct_ov37_0225621C *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov37_0225621C));
 
@@ -65,7 +65,7 @@ static BOOL ov37_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, BGL
     return 0;
 }
 
-static BOOL ov37_0225621C (UnkStruct_ov37_0225621C * param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3)
+static BOOL ov37_0225621C (UnkStruct_ov37_0225621C * param0, PoketchSystem * param1, BGL * param2, u32 param3)
 {
     static const UnkUnion_020225E0 v0[] = {
         {72, 104, 92, 132},

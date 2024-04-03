@@ -6,7 +6,7 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
-#include "overlay025/struct_ov25_0225424C_decl.h"
+#include "overlay025/poketch_system.h"
 #include "overlay031/struct_ov31_02256554_decl.h"
 
 #include "overlay031/struct_ov31_02256554_1.h"
@@ -15,7 +15,7 @@
 #include "heap.h"
 #include "unk_02022594.h"
 #include "poketch_data.h"
-#include "overlay025/ov25_02253CE0.h"
+#include "overlay025/poketch_system.h"
 #include "overlay031/ov31_02256554.h"
 
 typedef struct {
@@ -26,14 +26,14 @@ typedef struct {
     u32 unk_08;
     UnkStruct_ov31_02256554_1 unk_0C;
     UnkStruct_ov31_02256554 * unk_1EC;
-    UnkStruct_ov25_0225424C * unk_1F0;
+    PoketchSystem * unk_1F0;
     u8 unk_1F4[120];
 } UnkStruct_ov31_02256228;
 
 static void NitroStaticInit(void);
 
-static BOOL ov31_022561D4(void ** param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3);
-static BOOL ov31_02256228(UnkStruct_ov31_02256228 * param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3);
+static BOOL ov31_022561D4(void ** param0, PoketchSystem * param1, BGL * param2, u32 param3);
+static BOOL ov31_02256228(UnkStruct_ov31_02256228 * param0, PoketchSystem * param1, BGL * param2, u32 param3);
 static void ov31_02256268(UnkStruct_ov31_02256228 * param0, UnkStruct_ov31_02256554_1 * param1);
 static inline u8 inline_ov31_02256298(const u8 * param0, int param1);
 static inline void inline_ov31_022562EC(u8 * param0, int param1, int param2);
@@ -54,7 +54,7 @@ static void NitroStaticInit (void)
     ov25_02254238(ov31_022561D4, ov31_02256404);
 }
 
-static BOOL ov31_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3)
+static BOOL ov31_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2, u32 param3)
 {
     UnkStruct_ov31_02256228 * v0 = (UnkStruct_ov31_02256228 *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov31_02256228));
 
@@ -73,7 +73,7 @@ static BOOL ov31_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, BGL
     return 0;
 }
 
-static BOOL ov31_02256228 (UnkStruct_ov31_02256228 * param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3)
+static BOOL ov31_02256228 (UnkStruct_ov31_02256228 * param0, PoketchSystem * param1, BGL * param2, u32 param3)
 {
     param0->unk_1F0 = param1;
     ov31_02256268(param0, &(param0->unk_0C));
