@@ -30,7 +30,8 @@ def parse_object_events(obj_events: Sequence[Mapping], *args) -> bytes:
         obj_bytes.extend(j2b.parse_int(obj['script'], 2))
         obj_bytes.extend(j2b.parse_int(obj['initial_dir'], 2))
         obj_data = obj['data']
-        assert len(obj_data) <= 3
+        if len(obj_data) > 3:
+            raise ValueError(f'more than 3 values found in object event data ({obj_data})')
         obj_bytes.extend(j2b.parse_int(obj_data[0] if len(obj_data) > 0 else 0, 2))
         obj_bytes.extend(j2b.parse_int(obj_data[1] if len(obj_data) > 1 else 0, 2))
         obj_bytes.extend(j2b.parse_int(obj_data[2] if len(obj_data) > 2 else 0, 2))
