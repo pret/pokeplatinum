@@ -8,20 +8,20 @@ typedef struct OverlayManager OverlayManager;
 typedef int (*OverlayFunc)(OverlayManager *ovyManager, int *state);
 
 typedef struct OverlayManagerTemplate {
-    OverlayFunc unk_00;
-    OverlayFunc unk_04;
-    OverlayFunc unk_08;
-    const FSOverlayID unk_0C;
+    OverlayFunc init;
+    OverlayFunc main;
+    OverlayFunc exit;
+    const FSOverlayID overlayID;
 } OverlayManagerTemplate;
 
 struct OverlayManager {
-    OverlayManagerTemplate unk_00;
-    int unk_10;
-    int unk_14;
-    void * unk_18;
-    void * unk_1C;
-    OverlayManager * unk_20;
-    OverlayManager * unk_24;
+    OverlayManagerTemplate template;
+    int execState;
+    int procState;
+    void *args;
+    void *data;
+    OverlayManager *parent;
+    OverlayManager *child;
 };
 
 OverlayManager * sub_020067E8(const OverlayManagerTemplate * param0, void * param1, const int param2);
