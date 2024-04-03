@@ -43,9 +43,9 @@ static int sub_0203C954 (FieldSystem * param0, int * param1, int * param2)
     return v0;
 }
 
-static u8 sub_0203C9B0 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1)
+static u8 sub_0203C9B0 (PlayerAvatar * param0, LocalMapObject * param1)
 {
-    UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0);
+    LocalMapObject * v0 = Player_LocalMapObject(param0);
 
     if (sub_020630DC(v0) == sub_020630DC(param1)) {
         return 1;
@@ -54,7 +54,7 @@ static u8 sub_0203C9B0 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1)
     return 0;
 }
 
-void sub_0203C9D4 (FieldSystem * param0, UnkStruct_02061AB4 ** param1)
+void sub_0203C9D4 (FieldSystem * param0, LocalMapObject ** param1)
 {
     int v0, v1;
     int v2;
@@ -83,7 +83,7 @@ void sub_0203C9D4 (FieldSystem * param0, UnkStruct_02061AB4 ** param1)
     *param1 = sub_0206326C(param0->unk_38, v0, v1, 0);
 }
 
-u8 sub_0203CA40 (FieldSystem * param0, UnkStruct_02061AB4 ** param1)
+u8 sub_0203CA40 (FieldSystem * param0, LocalMapObject ** param1)
 {
     sub_0203C9D4(param0, param1);
 
@@ -190,7 +190,7 @@ u16 sub_0203CB80 (FieldSystem * param0, void * param1, int param2)
     return 0xffff;
 }
 
-u8 sub_0203CBE0 (FieldSystem * param0, UnkStruct_02061AB4 ** param1)
+u8 sub_0203CBE0 (FieldSystem * param0, LocalMapObject ** param1)
 {
     if (Player_Dir(param0->playerAvatar) != 0) {
         return 0;

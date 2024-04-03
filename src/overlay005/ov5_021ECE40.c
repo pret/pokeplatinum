@@ -73,19 +73,19 @@ typedef struct {
     UnkStruct_02024184 unk_14;
     UnkStruct_020216E0 * unk_24;
     UnkStruct_ov5_021DF84C unk_28;
-    UnkStruct_02061AB4 * unk_50;
+    LocalMapObject * unk_50;
     UnkStruct_ov101_021D5D90 * unk_54;
     void * unk_58;
     UnkFuncPtr_ov5_021EE454 unk_5C;
 } UnkStruct_ov5_021EE698;
 
-static void ov5_021ED094(const UnkStruct_02061AB4 * param0);
+static void ov5_021ED094(const LocalMapObject * param0);
 static void ov5_021ED0A4(UnkStruct_ov5_021ED0A4 * param0, int param1);
 static void ov5_021ED0F0(UnkStruct_ov5_021ED0A4 * param0);
 static UnkStruct_ov5_021DF84C * ov5_021ED110(UnkStruct_ov5_021ED0A4 * param0, u32 param1);
 static void ov5_021ED184(UnkStruct_ov5_021ED0A4 * param0, u32 param1);
 static void ov5_021ED1A4(UnkStruct_ov5_021ED0A4 * param0);
-static int ov5_021ED1C8(const UnkStruct_02061830 * param0, const UnkStruct_02061AB4 * param1, int param2);
+static int ov5_021ED1C8(const UnkStruct_02061830 * param0, const LocalMapObject * param1, int param2);
 static void ov5_021ED224(UnkStruct_ov5_021ED0A4 * param0, int param1, int param2, int param3, int param4, int param5, int param6);
 static void ov5_021ED2AC(UnkStruct_ov5_021ED0A4 * param0);
 static const UnkStruct_ov5_021ED2D0 * ov5_021ED2D0(int param0, int param1, const UnkStruct_ov5_021ED2D0 * param2);
@@ -133,9 +133,9 @@ static void ov5_021ED9C4(UnkStruct_ov5_021ED0A4 * param0, int param1);
 static void ov5_021ED9DC(UnkStruct_ov5_021ED0A4 * param0, int param1);
 static void ov5_021ED9F4(UnkStruct_ov5_021ED0A4 * param0, int param1);
 static void ov5_021EDA0C(UnkStruct_ov5_021ED0A4 * param0, int param1);
-static int ov5_021EDA54(const UnkStruct_02061830 * param0, int param1, const UnkStruct_02061AB4 * param2);
-static int ov5_021EDAB4(const UnkStruct_02061830 * param0, int param1, const UnkStruct_02061AB4 * param2);
-static int ov5_021EDB3C(const UnkStruct_02061830 * param0, int param1, const UnkStruct_02061AB4 * param2);
+static int ov5_021EDA54(const UnkStruct_02061830 * param0, int param1, const LocalMapObject * param2);
+static int ov5_021EDAB4(const UnkStruct_02061830 * param0, int param1, const LocalMapObject * param2);
+static int ov5_021EDB3C(const UnkStruct_02061830 * param0, int param1, const LocalMapObject * param2);
 static int * ov5_021EDCB8(UnkStruct_ov5_021ED0A4 * param0);
 static int * ov5_021EDCBC(UnkStruct_ov5_021ED0A4 * param0);
 static int * ov5_021EDCC0(UnkStruct_ov5_021ED0A4 * param0);
@@ -161,7 +161,7 @@ static void ov5_021EDDAC(UnkStruct_ov5_021ED0A4 * param0, int param1);
 static void ov5_021EDDD4(UnkStruct_02020C44 * param0);
 static UnkStruct_020216E0 * ov5_021EDDDC(UnkStruct_02020C44 * param0, const UnkStruct_ov5_021DF84C * param1, const VecFx32 * param2, u32 param3);
 static void ov5_021EDE3C(UnkStruct_ov5_021ED0A4 * param0, u32 param1, UnkStruct_ov5_021DF84C * param2);
-static UnkStruct_ov5_021ED0A4 * ov5_021EDEA8(const UnkStruct_02061AB4 * param0);
+static UnkStruct_ov5_021ED0A4 * ov5_021EDEA8(const LocalMapObject * param0);
 static int ov5_021EDF3C(UnkStruct_ov5_021ED0A4 * param0, int param1, u32 param2, int param3);
 static void ov5_021EDFBC(UnkStruct_ov5_021ED0A4 * param0, int param1);
 static int ov5_021EDFF0(UnkStruct_ov5_021ED0A4 * param0, int param1);
@@ -171,14 +171,14 @@ static void ov5_021EE134(UnkStruct_ov5_021ED0A4 * param0, int param1);
 static void ov5_021EE170(UnkStruct_ov5_021ED0A4 * param0, int param1);
 static void ov5_021EE1AC(SysTask * param0, void * param1);
 static void ov5_021EE1E8(SysTask * param0, void * param1);
-static void ov5_021EE228(UnkStruct_ov5_021ED0A4 * param0, UnkStruct_02061AB4 * param1, UnkStruct_020216E0 ** param2, int param3);
-static void ov5_021EE264(UnkStruct_ov5_021ED0A4 * param0, const UnkStruct_02061AB4 * param1);
+static void ov5_021EE228(UnkStruct_ov5_021ED0A4 * param0, LocalMapObject * param1, UnkStruct_020216E0 ** param2, int param3);
+static void ov5_021EE264(UnkStruct_ov5_021ED0A4 * param0, const LocalMapObject * param1);
 static void ov5_021EE2C4(SysTask * param0, void * param1);
 static void ov5_021EE294(UnkStruct_ov5_021ED0A4 * param0);
 static void ov5_021EE2D0(UnkStruct_ov5_021ED0A4 * param0, UnkStruct_ov5_021EE294 * param1);
 static void ov5_021EE320(UnkStruct_ov5_021ED0A4 * param0, int param1, int param2);
 static void ov5_021EE3C4(UnkStruct_ov5_021ED0A4 * param0);
-static UnkStruct_020216E0 * ov5_021EE454(UnkStruct_02061AB4 * param0, int param1, UnkFuncPtr_ov5_021EE454 param2, void * param3);
+static UnkStruct_020216E0 * ov5_021EE454(LocalMapObject * param0, int param1, UnkFuncPtr_ov5_021EE454 param2, void * param3);
 static void ov5_021EE698(SysTask * param0, void * param1);
 
 void ov5_021ECE40 (UnkStruct_ov5_021ED0A4 * param0, const UnkStruct_02061830 * param1, int param2, int param3, int param4, int param5, const int * param6, int param7)
@@ -200,7 +200,7 @@ void ov5_021ECE94 (UnkStruct_ov5_021ED0A4 * param0)
     ov5_021ED2AC(param0);
 }
 
-int ov5_021ECEB4 (UnkStruct_02061AB4 * param0, UnkStruct_020216E0 ** param1, int param2)
+int ov5_021ECEB4 (LocalMapObject * param0, UnkStruct_020216E0 ** param1, int param2)
 {
     int v0;
     UnkStruct_ov5_021ED0A4 * v1;
@@ -224,7 +224,7 @@ int ov5_021ECEB4 (UnkStruct_02061AB4 * param0, UnkStruct_020216E0 ** param1, int
     return v0;
 }
 
-int ov5_021ECF04 (UnkStruct_02061AB4 * param0, UnkStruct_020216E0 ** param1)
+int ov5_021ECF04 (LocalMapObject * param0, UnkStruct_020216E0 ** param1)
 {
     int v0 = sub_02062920(param0);
     int v1 = ov5_021ECEB4(param0, param1, v0);
@@ -232,7 +232,7 @@ int ov5_021ECF04 (UnkStruct_02061AB4 * param0, UnkStruct_020216E0 ** param1)
     return v1;
 }
 
-UnkStruct_020216E0 * ov5_021ECF1C (UnkStruct_02061AB4 * param0, int param1)
+UnkStruct_020216E0 * ov5_021ECF1C (LocalMapObject * param0, int param1)
 {
     VecFx32 v0;
     UnkStruct_02020C44 * v1;
@@ -256,7 +256,7 @@ UnkStruct_020216E0 * ov5_021ECF1C (UnkStruct_02061AB4 * param0, int param1)
     return v2;
 }
 
-void ov5_021ECF70 (const UnkStruct_02061AB4 * param0, UnkStruct_020216E0 ** param1, int param2)
+void ov5_021ECF70 (const LocalMapObject * param0, UnkStruct_020216E0 ** param1, int param2)
 {
     int v0;
 
@@ -270,7 +270,7 @@ void ov5_021ECF70 (const UnkStruct_02061AB4 * param0, UnkStruct_020216E0 ** para
     }
 }
 
-void ov5_021ECFA4 (const UnkStruct_02061AB4 * param0, UnkStruct_020216E0 ** param1)
+void ov5_021ECFA4 (const LocalMapObject * param0, UnkStruct_020216E0 ** param1)
 {
     ov5_021ED094(param0);
 
@@ -285,7 +285,7 @@ void ov5_021ECFA4 (const UnkStruct_02061AB4 * param0, UnkStruct_020216E0 ** para
     }
 }
 
-void ov5_021ECFD8 (const UnkStruct_02061AB4 * param0, UnkStruct_020216E0 ** param1, int param2)
+void ov5_021ECFD8 (const LocalMapObject * param0, UnkStruct_020216E0 ** param1, int param2)
 {
     int v0;
 
@@ -319,7 +319,7 @@ void ov5_021ED03C (UnkStruct_020216E0 * param0, UnkStruct_ov5_021ED01C * param1)
     sub_02021380(param0, param1->unk_04);
 }
 
-void ov5_021ED060 (UnkStruct_02061AB4 * param0, UnkStruct_020216E0 ** param1, int param2)
+void ov5_021ED060 (LocalMapObject * param0, UnkStruct_020216E0 ** param1, int param2)
 {
     UnkStruct_ov5_021ED0A4 * v0 = ov5_021EDEA8(param0);
 
@@ -330,7 +330,7 @@ void ov5_021ED060 (UnkStruct_02061AB4 * param0, UnkStruct_020216E0 ** param1, in
     }
 }
 
-static void ov5_021ED094 (const UnkStruct_02061AB4 * param0)
+static void ov5_021ED094 (const LocalMapObject * param0)
 {
     UnkStruct_ov5_021ED0A4 * v0 = ov5_021EDEA8(param0);
 
@@ -469,10 +469,10 @@ static void ov5_021ED1A4 (UnkStruct_ov5_021ED0A4 * param0)
     } while (v0);
 }
 
-static int ov5_021ED1C8 (const UnkStruct_02061830 * param0, const UnkStruct_02061AB4 * param1, int param2)
+static int ov5_021ED1C8 (const UnkStruct_02061830 * param0, const LocalMapObject * param1, int param2)
 {
     int v0, v1;
-    const UnkStruct_02061AB4 * v2;
+    const LocalMapObject * v2;
 
     v0 = sub_02062824(param0);
     v2 = sub_02062868(param0);
@@ -1101,10 +1101,10 @@ void ov5_021EDA38 (UnkStruct_02061830 * param0, UnkStruct_ov5_021ED0A4 * param1)
     ov5_021ED8B8(param0, param1);
 }
 
-static int ov5_021EDA54 (const UnkStruct_02061830 * param0, int param1, const UnkStruct_02061AB4 * param2)
+static int ov5_021EDA54 (const UnkStruct_02061830 * param0, int param1, const LocalMapObject * param2)
 {
     int v0 = 0, v1;
-    UnkStruct_02061AB4 * v2 = NULL;
+    LocalMapObject * v2 = NULL;
 
     while (sub_020625B0(param0, &v2, &v0, (1 << 0)) == 1) {
         if ((param2 != NULL) && (param2 == v2)) {
@@ -1125,10 +1125,10 @@ static int ov5_021EDA54 (const UnkStruct_02061830 * param0, int param1, const Un
     return 0;
 }
 
-static int ov5_021EDAB4 (const UnkStruct_02061830 * param0, int param1, const UnkStruct_02061AB4 * param2)
+static int ov5_021EDAB4 (const UnkStruct_02061830 * param0, int param1, const LocalMapObject * param2)
 {
     int v0, v1 = 0;
-    UnkStruct_02061AB4 * v2 = NULL;
+    LocalMapObject * v2 = NULL;
 
     while (sub_020625B0(param0, &v2, &v1, (1 << 0)) == 1) {
         if ((param2 != NULL) && (param2 == v2)) {
@@ -1163,10 +1163,10 @@ static int ov5_021EDAB4 (const UnkStruct_02061830 * param0, int param1, const Un
     return 0;
 }
 
-static int ov5_021EDB3C (const UnkStruct_02061830 * param0, int param1, const UnkStruct_02061AB4 * param2)
+static int ov5_021EDB3C (const UnkStruct_02061830 * param0, int param1, const LocalMapObject * param2)
 {
     int v0, v1 = 0;
-    UnkStruct_02061AB4 * v2 = NULL;
+    LocalMapObject * v2 = NULL;
 
     while (sub_020625B0(param0, &v2, &v1, (1 << 0)) == 1) {
         if ((param2 != NULL) && (v2 == param2)) {
@@ -1201,7 +1201,7 @@ static int ov5_021EDB3C (const UnkStruct_02061830 * param0, int param1, const Un
     return 0;
 }
 
-void ov5_021EDBC4 (const UnkStruct_02061830 * param0, int param1, UnkStruct_02061AB4 * param2)
+void ov5_021EDBC4 (const UnkStruct_02061830 * param0, int param1, LocalMapObject * param2)
 {
     int v0;
     UnkStruct_ov5_021ED0A4 * v1 = sub_0206285C(param0);
@@ -1405,7 +1405,7 @@ static u32 ov5_021EDD50 (int param0)
     return 1;
 }
 
-void ov5_021EDD78 (UnkStruct_02061AB4 * param0, int param1)
+void ov5_021EDD78 (LocalMapObject * param0, int param1)
 {
     if (param1 == 1) {
         sub_020628BC(param0, (1 << 22));
@@ -1414,7 +1414,7 @@ void ov5_021EDD78 (UnkStruct_02061AB4 * param0, int param1)
     }
 }
 
-int ov5_021EDD94 (UnkStruct_02061AB4 * param0)
+int ov5_021EDD94 (LocalMapObject * param0)
 {
     if (sub_020628D0(param0, (1 << 22))) {
         return 1;
@@ -1500,7 +1500,7 @@ static void ov5_021EDE3C (UnkStruct_ov5_021ED0A4 * param0, u32 param1, UnkStruct
     }
 }
 
-static UnkStruct_ov5_021ED0A4 * ov5_021EDEA8 (const UnkStruct_02061AB4 * param0)
+static UnkStruct_ov5_021ED0A4 * ov5_021EDEA8 (const LocalMapObject * param0)
 {
     const UnkStruct_02061830 * v0;
 
@@ -1508,7 +1508,7 @@ static UnkStruct_ov5_021ED0A4 * ov5_021EDEA8 (const UnkStruct_02061AB4 * param0)
     return (UnkStruct_ov5_021ED0A4 *)sub_0206285C(v0);
 }
 
-BOOL ov5_021EDEB4 (UnkStruct_02061AB4 * param0, UnkStruct_020216E0 * param1)
+BOOL ov5_021EDEB4 (LocalMapObject * param0, UnkStruct_020216E0 * param1)
 {
     BOOL v0;
     VecFx32 v1;
@@ -1524,7 +1524,7 @@ BOOL ov5_021EDEB4 (UnkStruct_02061AB4 * param0, UnkStruct_020216E0 * param1)
     return 0;
 }
 
-void ov5_021EDED8 (UnkStruct_02061AB4 * param0, UnkStruct_020216E0 * param1)
+void ov5_021EDED8 (LocalMapObject * param0, UnkStruct_020216E0 * param1)
 {
     int v0 = 1;
 
@@ -1791,7 +1791,7 @@ static void ov5_021EE1E8 (SysTask * param0, void * param1)
     v2->unk_06 = 0;
 }
 
-static void ov5_021EE228 (UnkStruct_ov5_021ED0A4 * param0, UnkStruct_02061AB4 * param1, UnkStruct_020216E0 ** param2, int param3)
+static void ov5_021EE228 (UnkStruct_ov5_021ED0A4 * param0, LocalMapObject * param1, UnkStruct_020216E0 ** param2, int param3)
 {
     int v0 = 0;
     UnkStruct_ov5_021EDF3C * v1 = param0->unk_100;
@@ -1815,7 +1815,7 @@ static void ov5_021EE228 (UnkStruct_ov5_021ED0A4 * param0, UnkStruct_02061AB4 * 
     GF_ASSERT(FALSE);
 }
 
-static void ov5_021EE264 (UnkStruct_ov5_021ED0A4 * param0, const UnkStruct_02061AB4 * param1)
+static void ov5_021EE264 (UnkStruct_ov5_021ED0A4 * param0, const LocalMapObject * param1)
 {
     int v0 = 0;
     UnkStruct_ov5_021EDF3C * v1 = param0->unk_100;
@@ -1925,7 +1925,7 @@ static void ov5_021EE3C4 (UnkStruct_ov5_021ED0A4 * param0)
     param0->unk_100 = NULL;
 }
 
-UnkStruct_020216E0 * ov5_021EE3FC (UnkStruct_02061AB4 * param0, int param1, UnkFuncPtr_ov5_021EE454 param2, void * param3)
+UnkStruct_020216E0 * ov5_021EE3FC (LocalMapObject * param0, int param1, UnkFuncPtr_ov5_021EE454 param2, void * param3)
 {
     if ((ov5_021EDD94(param0) == 1) || (ov5_021EB1A0(param0) == NULL)) {
         int v0 = sub_02062920(param0);
@@ -1940,7 +1940,7 @@ UnkStruct_020216E0 * ov5_021EE3FC (UnkStruct_02061AB4 * param0, int param1, UnkF
     return ov5_021EE454(param0, param1, param2, param3);
 }
 
-static UnkStruct_020216E0 * ov5_021EE454 (UnkStruct_02061AB4 * param0, int param1, UnkFuncPtr_ov5_021EE454 param2, void * param3)
+static UnkStruct_020216E0 * ov5_021EE454 (LocalMapObject * param0, int param1, UnkFuncPtr_ov5_021EE454 param2, void * param3)
 {
     VecFx32 v0;
     int v1, v2, v3, v4;
@@ -2075,7 +2075,7 @@ static UnkStruct_020216E0 * ov5_021EE454 (UnkStruct_02061AB4 * param0, int param
 static void ov5_021EE698 (SysTask * param0, void * param1)
 {
     UnkStruct_ov5_021EE698 * v0 = param1;
-    UnkStruct_02061AB4 * v1 = v0->unk_50;
+    LocalMapObject * v1 = v0->unk_50;
 
     switch (v0->unk_04) {
     case 0:

@@ -23,7 +23,7 @@ typedef struct {
     int unk_08;
     FieldSystem * unk_0C;
     PlayerAvatar * unk_10;
-    UnkStruct_02061AB4 * unk_14;
+    LocalMapObject * unk_14;
 } UnkStruct_ov5_021E11B0;
 
 static void ov5_021E11B0(FieldSystem * param0, PlayerAvatar * param1, int param2);
@@ -33,7 +33,7 @@ static void ov5_021E1350(void * param0);
 
 int ov5_021E1154 (FieldSystem * param0, PlayerAvatar * param1, int param2)
 {
-    UnkStruct_02061AB4 * v0 = sub_0205EB3C(param1);
+    LocalMapObject * v0 = Player_LocalMapObject(param1);
     u8 v1 = sub_02062BE8(v0);
     int v2;
 
@@ -84,7 +84,7 @@ static int ov5_021E11E0 (int param0)
 static BOOL ov5_021E120C (UnkStruct_020508D4 * param0)
 {
     UnkStruct_ov5_021E11B0 * v0 = sub_02050A64(param0);
-    UnkStruct_02061AB4 * v1 = sub_0205EB3C(v0->unk_10);
+    LocalMapObject * v1 = Player_LocalMapObject(v0->unk_10);
     u8 v2 = sub_02062BE8(v1);
 
     switch (v0->unk_08) {

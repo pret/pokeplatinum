@@ -944,7 +944,7 @@ void ov23_022534A0 (FieldSystem * param0)
     {
         int v8, v9;
         const UnkStruct_020619DC * v10;
-        UnkStruct_02061AB4 * v11;
+        LocalMapObject * v11;
 
         v8 = sub_0203A4B4(v4->unk_0C);
         v10 = sub_0203A4BC(v4->unk_0C);

@@ -333,7 +333,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         if (v0->unk_44 != 0) {
             v0->unk_44--;
         } else {
-            if (sub_02065684(sub_0205EB3C(v1->playerAvatar))) {
+            if (sub_02065684(Player_LocalMapObject(v1->playerAvatar))) {
                 v0->unk_34 = 11;
             }
         }

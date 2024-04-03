@@ -337,14 +337,14 @@ static BOOL sub_02056F1C (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02056BDC * v1 = sub_02050A64(param0);
-    UnkStruct_02061AB4 * v2;
+    LocalMapObject * v2;
 
     switch (v1->unk_04) {
     case 0:
     {
         int v3 = Player_Dir(v0->playerAvatar);
 
-        v2 = sub_0205EB3C(v0->playerAvatar);
+        v2 = Player_LocalMapObject(v0->playerAvatar);
 
         if (v3 == 2) {
             sub_02065638(v2, 0xa);
@@ -357,7 +357,7 @@ static BOOL sub_02056F1C (UnkStruct_020508D4 * param0)
         (v1->unk_04)++;
         break;
     case 1:
-        v2 = sub_0205EB3C(v0->playerAvatar);
+        v2 = Player_LocalMapObject(v0->playerAvatar);
 
         if (sub_02065684(v2) == 1) {
             sub_020656AC(v2);
@@ -383,7 +383,7 @@ static BOOL sub_02056FC0 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02056BDC * v1 = sub_02050A64(param0);
-    UnkStruct_02061AB4 * v2 = sub_0205EB3C(v0->playerAvatar);
+    LocalMapObject * v2 = Player_LocalMapObject(v0->playerAvatar);
 
     switch (v1->unk_04) {
     case 0:
@@ -406,7 +406,7 @@ static BOOL sub_02057008 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02056BDC * v1 = sub_02050A64(param0);
-    UnkStruct_02061AB4 * v2 = sub_0205EB3C(v0->playerAvatar);
+    LocalMapObject * v2 = Player_LocalMapObject(v0->playerAvatar);
 
     switch (v1->unk_04) {
     case 0:
@@ -427,7 +427,7 @@ static BOOL sub_02057008 (UnkStruct_020508D4 * param0)
 
 static BOOL sub_02057050 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_02061AB4 * v0;
+    LocalMapObject * v0;
     FieldSystem * v1 = sub_02050A60(param0);
     UnkStruct_02056BDC * v2 = sub_02050A64(param0);
     UnkStruct_ov5_021D432C * v3;
@@ -436,7 +436,7 @@ static BOOL sub_02057050 (UnkStruct_020508D4 * param0)
     case 0:
     {
         u8 v4;
-        UnkStruct_02061AB4 * v5 = sub_0205EB3C(v1->playerAvatar);
+        LocalMapObject * v5 = Player_LocalMapObject(v1->playerAvatar);
 
         v4 = sub_02054F94(v1, Player_XPos(v1->playerAvatar), Player_ZPos(v1->playerAvatar));
 
@@ -464,7 +464,7 @@ static BOOL sub_02057050 (UnkStruct_020508D4 * param0)
         if (ov5_021D453C(v1, v3)) {
             ov5_021D432C(v3);
             {
-                UnkStruct_02061AB4 * v7 = sub_0205EB3C(v1->playerAvatar);
+                LocalMapObject * v7 = Player_LocalMapObject(v1->playerAvatar);
 
                 sub_02062D64(v7, 0);
             }
@@ -480,7 +480,7 @@ static BOOL sub_02057050 (UnkStruct_020508D4 * param0)
 
 static BOOL sub_0205711C (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_02061AB4 * v0;
+    LocalMapObject * v0;
     FieldSystem * v1 = sub_02050A60(param0);
     UnkStruct_02056BDC * v2 = sub_02050A64(param0);
     UnkStruct_ov5_021D432C * v3;
@@ -489,7 +489,7 @@ static BOOL sub_0205711C (UnkStruct_020508D4 * param0)
     case 0:
     {
         u8 v4;
-        UnkStruct_02061AB4 * v5 = sub_0205EB3C(v1->playerAvatar);
+        LocalMapObject * v5 = Player_LocalMapObject(v1->playerAvatar);
 
         v4 = sub_02054F94(v1, Player_XPos(v1->playerAvatar), Player_ZPos(v1->playerAvatar));
 
@@ -545,13 +545,13 @@ static BOOL sub_02057218 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02056BDC * v1 = sub_02050A64(param0);
-    UnkStruct_02061AB4 * v2;
+    LocalMapObject * v2;
 
     switch (v1->unk_04) {
     case 0:
 
         ov5_021D1744(1);
-        v2 = sub_0205EB3C(v0->playerAvatar);
+        v2 = Player_LocalMapObject(v0->playerAvatar);
 
         if (1) {
             int v3;
@@ -572,7 +572,7 @@ static BOOL sub_02057218 (UnkStruct_020508D4 * param0)
         (v1->unk_04)++;
         break;
     case 1:
-        v2 = sub_0205EB3C(v0->playerAvatar);
+        v2 = Player_LocalMapObject(v0->playerAvatar);
 
         if (sub_02065684(v2) == 1) {
             sub_020656AC(v2);
@@ -595,7 +595,7 @@ static BOOL sub_020572B8 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02056BDC * v1 = sub_02050A64(param0);
-    UnkStruct_02061AB4 * v2 = sub_0205EB3C(v0->playerAvatar);
+    LocalMapObject * v2 = Player_LocalMapObject(v0->playerAvatar);
 
     switch (v1->unk_04) {
     case 0:

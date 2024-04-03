@@ -841,19 +841,19 @@ void ov23_0224AF7C (int param0)
             switch (v0->unk_FA[param0]) {
             case 3:
                 if (v0->unk_28[param0] == NULL) {
-                    v0->unk_28[param0] = ov5_021F5488(sub_0205EB3C(v0->playerAvatar[param0]));
+                    v0->unk_28[param0] = ov5_021F5488(Player_LocalMapObject(v0->playerAvatar[param0]));
                 }
 
                 v0->unk_FA[param0] = 0;
                 break;
             case 2:
                 if (v0->unk_28[param0] == NULL) {
-                    v0->unk_28[param0] = ov5_021F52E4(sub_0205EB3C(v0->playerAvatar[param0]));
+                    v0->unk_28[param0] = ov5_021F52E4(Player_LocalMapObject(v0->playerAvatar[param0]));
                 }
                 break;
             case 1:
                 if (v0->unk_28[param0] == NULL) {
-                    v0->unk_28[param0] = ov5_021F511C(sub_0205EB3C(v0->playerAvatar[param0]));
+                    v0->unk_28[param0] = ov5_021F511C(Player_LocalMapObject(v0->playerAvatar[param0]));
                 }
                 break;
             case 0:

@@ -343,7 +343,7 @@ BOOL ov23_0224240C (int param0, int param1)
 BOOL ov23_02242458 (void)
 {
     VecFx32 v0;
-    UnkStruct_02061AB4 * v1;
+    LocalMapObject * v1;
     int v2, v3;
     UnkStruct_ov23_0224271C v4;
 

@@ -73,7 +73,7 @@ static void ov6_02248050 (UnkStruct_02061830 * param0, u32 param1, UnkStruct_020
     int v0;
     int v1, v2;
     VecFx32 v3;
-    UnkStruct_02061AB4 * v4;
+    LocalMapObject * v4;
 
     v4 = sub_0206251C(param0, param1);
 

@@ -94,7 +94,7 @@ static u8 ov5_021D2CFC(const FieldSystem * param0);
 static u8 ov5_021D2D18(const FieldSystem * param0);
 static BOOL ov5_021D2D34(const FieldSystem * param0, int param1, int param2, UnkStruct_02049FA8 * param3);
 static void ov5_021D2E14(FieldSystem * param0);
-static BOOL ov5_021D2EA4(FieldSystem * param0, UnkStruct_02061AB4 ** param1);
+static BOOL ov5_021D2EA4(FieldSystem * param0, LocalMapObject ** param1);
 static int ov5_021D2274(void);
 
 static void ov5_021D1C30 (UnkStruct_ov5_021D1CAC * param0)
@@ -257,7 +257,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
     if (param0->unk_00_0) {
         {
             int v4;
-            UnkStruct_02061AB4 * v5;
+            LocalMapObject * v5;
 
             if (sub_02071CB4(param1, 9) == 1) {
                 v4 = ov5_021D2EA4(param1, &v5);
@@ -361,7 +361,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
 
 static BOOL ov5_021D20DC (FieldSystem * param0)
 {
-    UnkStruct_02061AB4 * v0;
+    LocalMapObject * v0;
     int v1;
 
     if (sub_0203CBE0(param0, &v0) == 1) {
@@ -425,7 +425,7 @@ BOOL ov5_021D219C (UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
 
     if (param0->unk_00_0) {
         {
-            UnkStruct_02061AB4 * v0;
+            LocalMapObject * v0;
 
             if (sub_0203CA40(param1, &v0) == 1) {
                 UnkStruct_ov5_021D219C * v1;
@@ -486,7 +486,7 @@ BOOL ov5_021D2298 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
     }
 
     if (param0->unk_00_0) {
-        UnkStruct_02061AB4 * v0;
+        LocalMapObject * v0;
 
         if (sub_0203CA40(param1, &v0) == 1) {
             if (sub_0205F588(param1->playerAvatar) == 1) {
@@ -529,7 +529,7 @@ int ov5_021D2368 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
 
     if (param0->unk_00_0) {
         {
-            UnkStruct_02061AB4 * v0;
+            LocalMapObject * v0;
 
             if (sub_0203CA40(param1, &v0) == 1) {
                 UnkStruct_ov5_021D219C * v1;
@@ -1143,7 +1143,7 @@ static void ov5_021D2E14 (FieldSystem * param0)
     }
 }
 
-static BOOL ov5_021D2EA4 (FieldSystem * param0, UnkStruct_02061AB4 ** param1)
+static BOOL ov5_021D2EA4 (FieldSystem * param0, LocalMapObject ** param1)
 {
     int v0 = 0;
     int v1, v2, v3, v4, v5, v6;

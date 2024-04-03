@@ -139,7 +139,7 @@ void sub_0205CA94 (SysTask * param0, void * param1)
 
     switch (v0->unk_1E4) {
     case 0:
-        sub_02062DDC(sub_0205EB3C(v0->unk_00->playerAvatar));
+        sub_02062DDC(Player_LocalMapObject(v0->unk_00->playerAvatar));
         sub_0205EB18(v0->unk_00->playerAvatar, 0);
         v0->unk_1E4++;
         break;

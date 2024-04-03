@@ -133,7 +133,7 @@ static BOOL sub_020505A0 (UnkStruct_020508D4 * param0)
 
 static void sub_0205074C (PlayerAvatar * param0, BOOL param1)
 {
-    UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0);
+    LocalMapObject * v0 = Player_LocalMapObject(param0);
     sub_02062D64(v0, param1);
 }
 

@@ -408,7 +408,7 @@ static void CommPlayer_Add (u8 param0)
         if (v3) {
             if (!sCommPlayerManager->isUnderground) {
                 if (param0 != CommSys_CurNetId()) {
-                    UnkStruct_02061AB4 * v4 = sub_0206251C(sCommPlayerManager->fieldSys->unk_38, 0xff + param0 + 1);
+                    LocalMapObject * v4 = sub_0206251C(sCommPlayerManager->fieldSys->unk_38, 0xff + param0 + 1);
 
                     if (v4) {
                         sub_02061AF4(v4);
@@ -429,7 +429,7 @@ static void CommPlayer_Add (u8 param0)
             GF_ASSERT(v2);
             sCommPlayerManager->playerAvatar[param0] = v2;
 
-            sub_0206290C(sub_0205EB3C(v2), 0xff + param0 + 1);
+            sub_0206290C(Player_LocalMapObject(v2), 0xff + param0 + 1);
 
             if (sCommPlayerManager->isUnderground) {
                 ov23_02243038(param0);
@@ -977,7 +977,7 @@ static void sub_02058644 (int param0)
 
 static BOOL sub_020586A8 (int param0, int param1, int param2, int param3)
 {
-    UnkStruct_02061AB4 * v0;
+    LocalMapObject * v0;
     int v1, v2;
     u8 v3[] = {
         0x14, 0x15, 0x16, 0x17, 0x10, 0x11, 0x12, 0x13, 0xc, 0xd, 0xe, 0xf
@@ -991,7 +991,7 @@ static BOOL sub_020586A8 (int param0, int param1, int param2, int param3)
         return 1;
     }
 
-    v0 = sub_0205EB3C(sCommPlayerManager->playerAvatar[param0]);
+    v0 = Player_LocalMapObject(sCommPlayerManager->playerAvatar[param0]);
 
     if (Player_Dir(sCommPlayerManager->playerAvatar[param0]) != CommPlayer_GetOppositeDir(sCommPlayerManager->unk_102[param0])) {
         sub_020628C4(v0, (1 << 7));
@@ -1251,13 +1251,13 @@ void sub_02058B94 (int param0)
 
 void sub_02058BA8 (int param0, int param1, BOOL param2)
 {
-    UnkStruct_02061AB4 * v0;
+    LocalMapObject * v0;
 
     if (sCommPlayerManager->playerAvatar[param0] == NULL) {
         return;
     }
 
-    v0 = sub_0205EB3C(sCommPlayerManager->playerAvatar[param0]);
+    v0 = Player_LocalMapObject(sCommPlayerManager->playerAvatar[param0]);
 
     sub_020628BC(v0, (1 << 7));
     sub_020628BC(v0, (1 << 8));
@@ -1267,18 +1267,18 @@ void sub_02058BA8 (int param0, int param1, BOOL param2)
 
 void sub_02058BE8 (int param0)
 {
-    UnkStruct_02061AB4 * v0;
+    LocalMapObject * obj;
 
     if (sCommPlayerManager->playerAvatar[param0] == NULL) {
         return;
     }
 
     if (sCommPlayerManager->unk_102[param0] != -1) {
-        v0 = sub_0205EB3C(sCommPlayerManager->playerAvatar[param0]);
+        obj = Player_LocalMapObject(sCommPlayerManager->playerAvatar[param0]);
 
-        sub_020656AC(v0);
-        sub_020628C4(v0, (1 << 7));
-        sub_020628C4(v0, (1 << 8));
+        sub_020656AC(obj);
+        sub_020628C4(obj, (1 << 7));
+        sub_020628C4(obj, (1 << 8));
 
         sCommPlayerManager->unk_102[param0] = -1;
     }
@@ -1806,30 +1806,30 @@ void sub_02059570 (void)
 
 void sub_020595A4 (void)
 {
-    int v0, v1, v2, v3;
-    UnkStruct_02061AB4 * v4;
+    int netId, x, z, dir;
+    LocalMapObject * obj;
 
     if (!sCommPlayerManager) {
         return;
     }
 
-    for (v0 = 0; v0 < (7 + 1); v0++) {
-        if (sCommPlayerManager->playerAvatar[v0] == NULL) {
+    for (netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
+        if (sCommPlayerManager->playerAvatar[netId] == NULL) {
             continue;
         }
 
-        if (CommSys_CurNetId() == v0) {
+        if (CommSys_CurNetId() == netId) {
             continue;
         }
 
-        v4 = sub_0205EB3C(sCommPlayerManager->playerAvatar[v0]);
-        v1 = sCommPlayerManager->playerLocation[v0].x;
-        v2 = sCommPlayerManager->playerLocation[v0].z;
-        v3 = sCommPlayerManager->playerLocation[v0].dir;
+        obj = Player_LocalMapObject(sCommPlayerManager->playerAvatar[netId]);
+        x = sCommPlayerManager->playerLocation[netId].x;
+        z = sCommPlayerManager->playerLocation[netId].z;
+        dir = sCommPlayerManager->playerLocation[netId].dir;
 
-        sub_02063024(v4, v1);
-        sub_02063044(v4, v2);
-        sub_02063340(v4, v1, 0, v2, v3);
+        LocalMapObj_SetX(obj, x);
+        LocalMapObj_SetZ(obj, z);
+        LocalMapObj_SetPosDir(obj, x, 0, z, dir);
     }
 }
 

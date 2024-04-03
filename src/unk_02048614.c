@@ -55,7 +55,7 @@ BOOL sub_02048614 (UnkStruct_0203E724 * param0)
     int * v3;
     int * v4;
     SysTask ** v5;
-    UnkStruct_02061AB4 ** v6;
+    LocalMapObject ** v6;
     PlayerAvatar * v7;
     FieldSystem * v8 = param0->unk_34;
     u16 v9 = inline_02049538(param0);
@@ -314,7 +314,7 @@ BOOL sub_02048B0C (UnkStruct_0203E724 * param0)
 
 BOOL sub_02048B34 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02061AB4 ** v0;
+    LocalMapObject ** v0;
     FieldSystem * v1 = param0->unk_34;
 
     v0 = sub_0203F098(v1, 10);
@@ -327,7 +327,7 @@ BOOL sub_02048B60 (UnkStruct_0203E724 * param0)
 {
     int v0;
     s32 v1;
-    UnkStruct_02061AB4 ** v2;
+    LocalMapObject ** v2;
     FieldSystem * v3 = param0->unk_34;
 
     v2 = sub_0203F098(v3, 10);
