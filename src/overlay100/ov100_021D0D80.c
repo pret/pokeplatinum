@@ -50,7 +50,7 @@ static void ov100_021D111C(UnkStruct_ov100_021D46C8 * param0);
 static void ov100_021D1208(BGL * param0);
 static void ov100_021D13B4(void * param0);
 
-int ov100_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
+int ov100_021D0D80 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov100_021D4DD8 * v0;
 
@@ -101,7 +101,7 @@ static const struct {
     {ov100_021D2340, ov100_021D2428, ov100_021D2C8C},
 };
 
-int ov100_021D0EA8 (UnkStruct_020067E8 * param0, int * param1)
+int ov100_021D0EA8 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov100_021D4DD8 * v0 = sub_0200682C(param0);
 
@@ -149,7 +149,7 @@ int ov100_021D0EA8 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov100_021D0F44 (UnkStruct_020067E8 * param0, int * param1)
+int ov100_021D0F44 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov100_021D4DD8 * v0;
 

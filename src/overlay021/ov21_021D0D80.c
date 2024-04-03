@@ -120,7 +120,7 @@ static void ov21_021D1F10(void);
 static void ov21_021D1F84(void);
 static void ov21_021D1EEC(UnkStruct_ov21_021D0F60 * param0);
 
-int ov21_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
+int ov21_021D0D80 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov21_021D0F18 * v0;
     UnkStruct_ov21_021D0D80 * v1;
@@ -171,7 +171,7 @@ int ov21_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov21_021D0E3C (UnkStruct_020067E8 * param0, int * param1)
+int ov21_021D0E3C (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov21_021D0F18 * v0 = sub_0200682C(param0);
     BOOL v1;
@@ -208,7 +208,7 @@ int ov21_021D0E3C (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov21_021D0EC8 (UnkStruct_020067E8 * param0, int * param1)
+int ov21_021D0EC8 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov21_021D0F18 * v0 = sub_0200682C(param0);
     BOOL v1;

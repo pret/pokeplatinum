@@ -45,7 +45,7 @@ FS_EXTERN_OVERLAY(overlay77);
 
 typedef struct {
     FSOverlayID unk_00;
-    UnkStruct_020067E8 * unk_04;
+    OverlayManager * unk_04;
     FSOverlayID unk_08;
     const UnkStruct_0208BE5C * unk_0C;
     UnkStruct_0203CC84 unk_10;

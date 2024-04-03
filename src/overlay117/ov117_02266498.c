@@ -19,7 +19,7 @@ typedef struct {
     UnkStruct_ov114_0225E854 * unk_08;
 } UnkStruct_ov117_02266498;
 
-int ov117_02266498 (UnkStruct_020067E8 * param0, int * param1)
+int ov117_02266498 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov117_02266498 * v0;
 
@@ -30,7 +30,7 @@ int ov117_02266498 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov117_022664BC (UnkStruct_020067E8 * param0, int * param1)
+int ov117_022664BC (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov117_02266498 * v0 = sub_0200682C(param0);
 
@@ -108,7 +108,7 @@ int ov117_022664BC (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov117_022665E8 (UnkStruct_020067E8 * param0, int * param1)
+int ov117_022665E8 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov117_02266498 * v0 = sub_0200682C(param0);
     sub_02006830(param0);

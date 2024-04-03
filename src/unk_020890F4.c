@@ -35,9 +35,9 @@
 
 static void sub_0208945C(BGL * param0);
 static void sub_020895CC(void * param0);
-static int sub_020890F4(UnkStruct_020067E8 * param0, int * param1);
-static int sub_0208924C(UnkStruct_020067E8 * param0, int * param1);
-static int sub_0208927C(UnkStruct_020067E8 * param0, int * param1);
+static int sub_020890F4(OverlayManager * param0, int * param1);
+static int sub_0208924C(OverlayManager * param0, int * param1);
+static int sub_0208927C(OverlayManager * param0, int * param1);
 
 const UnkStruct_0208BE5C Unk_020F2DBC = {
     sub_020890F4,
@@ -46,7 +46,7 @@ const UnkStruct_0208BE5C Unk_020F2DBC = {
     0xffffffff,
 };
 
-static int sub_020890F4 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_020890F4 (OverlayManager * param0, int * param1)
 {
     UnkStruct_02089688 * v0;
 
@@ -96,7 +96,7 @@ static int sub_020890F4 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static int sub_0208924C (UnkStruct_020067E8 * param0, int * param1)
+static int sub_0208924C (OverlayManager * param0, int * param1)
 {
     BOOL v0;
     UnkStruct_02089688 * v1;
@@ -111,7 +111,7 @@ static int sub_0208924C (UnkStruct_020067E8 * param0, int * param1)
     return v0 ? 1 : 0;
 }
 
-static int sub_0208927C (UnkStruct_020067E8 * param0, int * param1)
+static int sub_0208927C (OverlayManager * param0, int * param1)
 {
     UnkStruct_02089688 * v0;
 

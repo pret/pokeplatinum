@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_020067E8_DECL_H
 #define POKEPLATINUM_STRUCT_020067E8_DECL_H
 
-typedef struct UnkStruct_020067E8_t UnkStruct_020067E8;
+typedef struct OverlayManager_t OverlayManager;
 
 #endif // POKEPLATINUM_STRUCT_020067E8_DECL_H

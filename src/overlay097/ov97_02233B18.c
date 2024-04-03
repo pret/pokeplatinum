@@ -1785,7 +1785,7 @@ static BOOL ov97_02235590 (UnkStruct_ov97_02234A2C * param0, int param1)
     return 0;
 }
 
-static int ov97_02235624 (UnkStruct_020067E8 * param0, int * param1)
+static int ov97_02235624 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov97_02234A2C * v0;
 
@@ -1821,7 +1821,7 @@ static int ov97_02235624 (UnkStruct_020067E8 * param0, int * param1)
 
 extern int gIgnoreCartridgeForWake;
 
-static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
+static int ov97_022356E8 (OverlayManager * param0, int * param1)
 {
     int v0, v1, v2;
     UnkStruct_ov97_02234A2C * v3 = sub_0200682C(param0);
@@ -2152,7 +2152,7 @@ static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-static int ov97_02235CC8 (UnkStruct_020067E8 * param0, int * param1)
+static int ov97_02235CC8 (OverlayManager * param0, int * param1)
 {
     FS_EXTERN_OVERLAY(overlay77);
 

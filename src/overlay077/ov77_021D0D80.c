@@ -136,9 +136,9 @@ extern const UnkStruct_0208BE5C Unk_ov77_021D788C;
 
 static void ov77_021D1D48(BGL * param0, int param1);
 void sub_02000EC4(FSOverlayID param0, const UnkStruct_0208BE5C * param1);
-static int ov77_021D0D80(UnkStruct_020067E8 * param0, int * param1);
-static int ov77_021D0E3C(UnkStruct_020067E8 * param0, int * param1);
-static int ov77_021D10FC(UnkStruct_020067E8 * param0, int * param1);
+static int ov77_021D0D80(OverlayManager * param0, int * param1);
+static int ov77_021D0E3C(OverlayManager * param0, int * param1);
+static int ov77_021D10FC(OverlayManager * param0, int * param1);
 static void ov77_021D1178(void * param0);
 static void ov77_021D1184(void);
 static void ov77_021D17B4(UnkStruct_ov77_021D17B4 * param0);
@@ -170,7 +170,7 @@ const UnkStruct_0208BE5C Unk_ov77_021D742C = {
     0xffffffff
 };
 
-static int ov77_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
+static int ov77_021D0D80 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov77_021D17B4 * v0;
     int v1;
@@ -212,7 +212,7 @@ static int ov77_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static int ov77_021D0E3C (UnkStruct_020067E8 * param0, int * param1)
+static int ov77_021D0E3C (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov77_021D17B4 * v0 = sub_0200682C(param0);
 
@@ -329,7 +329,7 @@ static int ov77_021D0E3C (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-static int ov77_021D10FC (UnkStruct_020067E8 * param0, int * param1)
+static int ov77_021D10FC (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov77_021D17B4 * v0 = sub_0200682C(param0);
     int v1 = v0->unk_00;

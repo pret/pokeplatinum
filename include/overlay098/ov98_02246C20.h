@@ -4,9 +4,9 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "overlay098/struct_ov98_02246E88.h"
 
-int ov98_02246C20(UnkStruct_020067E8 * param0, int * param1);
-int ov98_02246C98(UnkStruct_020067E8 * param0, int * param1);
-int ov98_02246DC0(UnkStruct_020067E8 * param0, int * param1);
+int ov98_02246C20(OverlayManager * param0, int * param1);
+int ov98_02246C98(OverlayManager * param0, int * param1);
+int ov98_02246DC0(OverlayManager * param0, int * param1);
 void ov98_02246E88(UnkStruct_ov98_02246E88 * param0, int param1, int param2);
 void ov98_02246E94(UnkStruct_ov98_02246E88 * param0);
 void ov98_02246E9C(UnkStruct_ov98_02246E88 * param0, int param1);

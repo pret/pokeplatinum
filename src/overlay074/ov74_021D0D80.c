@@ -76,9 +76,9 @@ typedef struct UnkStruct_ov74_021D0D80_t {
     CellActorData * unk_2B8;
 } UnkStruct_ov74_021D0D80;
 
-int ov74_021D0D80(UnkStruct_020067E8 * param0, int * param1);
-int ov74_021D0F60(UnkStruct_020067E8 * param0, int * param1);
-int ov74_021D0E58(UnkStruct_020067E8 * param0, int * param1);
+int ov74_021D0D80(OverlayManager * param0, int * param1);
+int ov74_021D0F60(OverlayManager * param0, int * param1);
+int ov74_021D0E58(OverlayManager * param0, int * param1);
 static void ov74_021D1118(void * param0);
 static void ov74_021D10F8(void);
 static int ov74_021D1178(UnkStruct_ov74_021D0D80 * param0);
@@ -100,7 +100,7 @@ static BOOL ov74_021D1B44(UnkStruct_ov74_021D0D80 * param0);
 static void ov74_021D1BA8(UnkStruct_ov74_021D0D80 * param0);
 static u32 ov74_021D1BD0(UnkStruct_ov74_021D0D80 * param0);
 
-int ov74_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
+int ov74_021D0D80 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov74_021D0D80 * v0 = NULL;
     Options * v1;
@@ -126,7 +126,7 @@ int ov74_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov74_021D0E58 (UnkStruct_020067E8 * param0, int * param1)
+int ov74_021D0E58 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov74_021D0D80 * v0 = sub_0200682C(param0);
 
@@ -154,7 +154,7 @@ int ov74_021D0E58 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov74_021D0F60 (UnkStruct_020067E8 * param0, int * param1)
+int ov74_021D0F60 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov74_021D0D80 * v0 = sub_0200682C(param0);
     BOOL v1;

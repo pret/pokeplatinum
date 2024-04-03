@@ -33,9 +33,9 @@ typedef struct {
 } UnkStruct_ov120_021D0F24;
 
 void sub_02000EC4(FSOverlayID param0, const UnkStruct_0208BE5C * param1);
-int ov120_021D0D80(UnkStruct_020067E8 * param0, int * param1);
-int ov120_021D0DB0(UnkStruct_020067E8 * param0, int * param1);
-int ov120_021D0EFC(UnkStruct_020067E8 * param0, int * param1);
+int ov120_021D0D80(OverlayManager * param0, int * param1);
+int ov120_021D0DB0(OverlayManager * param0, int * param1);
+int ov120_021D0EFC(OverlayManager * param0, int * param1);
 static void ov120_021D0F18(void * param0);
 static void ov120_021D0F24(UnkStruct_ov120_021D0F24 * param0);
 static void ov120_021D10D4(UnkStruct_ov120_021D0F24 * param0);
@@ -43,7 +43,7 @@ static void ov120_021D114C(UnkStruct_ov120_021D0F24 * param0);
 static void ov120_021D116C(UnkStruct_ov120_021D0F24 * param0);
 static void ov120_021D1178(UnkStruct_ov120_021D0F24 * param0);
 
-int ov120_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
+int ov120_021D0D80 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov120_021D0F24 * v0;
     int v1 = 120;
@@ -59,7 +59,7 @@ int ov120_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov120_021D0DB0 (UnkStruct_020067E8 * param0, int * param1)
+int ov120_021D0DB0 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov120_021D0F24 * v0 = sub_0200682C(param0);
     int v1 = 0;
@@ -140,7 +140,7 @@ int ov120_021D0DB0 (UnkStruct_020067E8 * param0, int * param1)
     return v1;
 }
 
-int ov120_021D0EFC (UnkStruct_020067E8 * param0, int * param1)
+int ov120_021D0EFC (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov120_021D0F24 * v0 = sub_0200682C(param0);
     int v1 = v0->unk_00;

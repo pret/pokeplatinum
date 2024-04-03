@@ -33,7 +33,7 @@ static const UnkStruct_0208BE5C Unk_020E5664 = {
     0xffffffff,
 };
 
-int sub_02017498 (UnkStruct_020067E8 * param0, int * param1)
+int sub_02017498 (OverlayManager * param0, int * param1)
 {
     UnkStruct_02017498 * v0;
 
@@ -60,7 +60,7 @@ int sub_02017498 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int sub_02017524 (UnkStruct_020067E8 * param0, int * param1)
+int sub_02017524 (OverlayManager * param0, int * param1)
 {
     UnkStruct_02017498 * v0 = sub_0200682C(param0);
 
@@ -133,7 +133,7 @@ int sub_02017524 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int sub_02017658 (UnkStruct_020067E8 * param0, int * param1)
+int sub_02017658 (OverlayManager * param0, int * param1)
 {
     UnkStruct_02017498 * v0 = sub_0200682C(param0);
 

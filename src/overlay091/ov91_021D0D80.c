@@ -78,7 +78,7 @@ typedef struct {
     SpriteGfxHandler * unk_114;
     CellActorData * unk_118[13];
     PokemonSummary unk_14C;
-    UnkStruct_020067E8 * unk_17C;
+    OverlayManager * unk_17C;
     int unk_180;
     u8 unk_184;
     u8 unk_185;
@@ -364,7 +364,7 @@ static const SpriteTemplate Unk_ov91_021D28FC[] = {
     }
 };
 
-int ov91_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
+int ov91_021D0D80 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov91_021D0ED8 * v0;
 
@@ -388,7 +388,7 @@ int ov91_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov91_021D0E08 (UnkStruct_020067E8 * param0, int * param1)
+int ov91_021D0E08 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov91_021D0ED8 * v0 = sub_0200682C(param0);
 
@@ -439,7 +439,7 @@ int ov91_021D0E08 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov91_021D0EBC (UnkStruct_020067E8 * param0, int * param1)
+int ov91_021D0EBC (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov91_021D0ED8 * v0 = sub_0200682C(param0);
 

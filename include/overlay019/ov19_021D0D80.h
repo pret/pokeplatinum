@@ -12,9 +12,9 @@
 #include "overlay019/struct_ov19_021D5DF8_decl.h"
 #include "overlay019/struct_ov19_021D5FAC.h"
 
-int ov19_021D0D80(UnkStruct_020067E8 * param0, int * param1);
-int ov19_021D0DEC(UnkStruct_020067E8 * param0, int * param1);
-int ov19_021D0E58(UnkStruct_020067E8 * param0, int * param1);
+int ov19_021D0D80(OverlayManager * param0, int * param1);
+int ov19_021D0DEC(OverlayManager * param0, int * param1);
+int ov19_021D0E58(OverlayManager * param0, int * param1);
 BOOL ov19_021D3B18(const UnkStruct_ov19_021D5DF8 * param0);
 BOOL ov19_021D3B20(const UnkStruct_ov19_021D5DF8 * param0);
 MessageLoader * ov19_021D5DE8(const UnkStruct_ov19_021D5DF8 * param0);

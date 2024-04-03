@@ -51,9 +51,9 @@ typedef struct {
     int unk_04;
 } UnkStruct_ov83_0224024C;
 
-int ov83_0223B5B0(UnkStruct_020067E8 * param0, int * param1);
-int ov83_0223B65C(UnkStruct_020067E8 * param0, int * param1);
-int ov83_0223B710(UnkStruct_020067E8 * param0, int * param1);
+int ov83_0223B5B0(OverlayManager * param0, int * param1);
+int ov83_0223B65C(OverlayManager * param0, int * param1);
+int ov83_0223B710(OverlayManager * param0, int * param1);
 static int ov83_0223C344(UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B784 * param1, int * param2);
 static int ov83_0223B78C(UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B784 * param1, int * param2);
 static int ov83_0223B920(UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B784 * param1, int * param2);
@@ -103,7 +103,7 @@ static void ov83_0223B5A0 (void * param0)
     sub_0201DCAC();
 }
 
-int ov83_0223B5B0 (UnkStruct_020067E8 * param0, int * param1)
+int ov83_0223B5B0 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov83_0223C344 * v0 = sub_02006840(param0);
     UnkStruct_ov83_0223B784 * v1;
@@ -140,7 +140,7 @@ int ov83_0223B5B0 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov83_0223B65C (UnkStruct_020067E8 * param0, int * param1)
+int ov83_0223B65C (OverlayManager * param0, int * param1)
 {
     int v0, v1;
     UnkStruct_ov83_0223C344 * v2 = sub_02006840(param0);
@@ -205,7 +205,7 @@ int ov83_0223B65C (UnkStruct_020067E8 * param0, int * param1)
     }
 }
 
-int ov83_0223B710 (UnkStruct_020067E8 * param0, int * param1)
+int ov83_0223B710 (OverlayManager * param0, int * param1)
 {
     int v0;
     UnkStruct_ov83_0223C344 * v1 = sub_02006840(param0);

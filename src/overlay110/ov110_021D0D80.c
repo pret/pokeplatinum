@@ -48,7 +48,7 @@
 #include "overlay110/ov110_021D2124.h"
 
 typedef struct {
-    UnkStruct_020067E8 * unk_00;
+    OverlayManager * unk_00;
     u8 unk_04;
     u8 unk_05;
     u8 unk_06;
@@ -67,9 +67,9 @@ typedef struct {
     UnkStruct_0203068C * unk_12C;
 } UnkStruct_ov110_021D0F78;
 
-int ov110_021D0D80(UnkStruct_020067E8 * param0, int * param1);
-int ov110_021D0E9C(UnkStruct_020067E8 * param0, int * param1);
-int ov110_021D0EF0(UnkStruct_020067E8 * param0, int * param1);
+int ov110_021D0D80(OverlayManager * param0, int * param1);
+int ov110_021D0E9C(OverlayManager * param0, int * param1);
+int ov110_021D0EF0(OverlayManager * param0, int * param1);
 static BOOL ov110_021D0F78(UnkStruct_ov110_021D0F78 * param0);
 static BOOL ov110_021D0FD0(UnkStruct_ov110_021D0F78 * param0);
 static BOOL ov110_021D1000(UnkStruct_ov110_021D0F78 * param0);
@@ -100,7 +100,7 @@ static void ov110_021D1DBC(UnkStruct_ov110_021D0F78 * param0);
 static void ov110_021D1ED8(UnkStruct_ov110_021D0F78 * param0);
 static u32 ov110_021D20CC(UnkStruct_ov110_021D0F78 * param0, u8 param1);
 
-int ov110_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
+int ov110_021D0D80 (OverlayManager * param0, int * param1)
 {
     int v0;
     UnkStruct_ov110_021D0F78 * v1;
@@ -147,7 +147,7 @@ int ov110_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov110_021D0E9C (UnkStruct_020067E8 * param0, int * param1)
+int ov110_021D0E9C (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov110_021D0F78 * v0 = sub_0200682C(param0);
 
@@ -171,7 +171,7 @@ int ov110_021D0E9C (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov110_021D0EF0 (UnkStruct_020067E8 * param0, int * param1)
+int ov110_021D0EF0 (OverlayManager * param0, int * param1)
 {
     int v0;
     UnkStruct_ov110_021D0F78 * v1 = sub_0200682C(param0);

@@ -301,7 +301,7 @@ static BOOL ov86_0223D2A4(UnkStruct_ov86_0223D264 * param0);
 static int ov86_0223D2A8(UnkStruct_ov86_0223B3C8 * param0, Pokemon * param1, const TrainerInfo * param2);
 static SysTask * ov86_0223CAE4(UnkStruct_ov86_0223C9B0 * param0, fx16 param1, fx32 param2, int param3);
 
-int ov86_0223B140 (UnkStruct_020067E8 * param0, int * param1)
+int ov86_0223B140 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov86_0223B3C8 * v0;
 
@@ -357,7 +357,7 @@ int ov86_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov86_0223B2E4 (UnkStruct_020067E8 * param0, int * param1)
+int ov86_0223B2E4 (OverlayManager * param0, int * param1)
 {
     switch (*param1) {
     case 0:
@@ -391,7 +391,7 @@ int ov86_0223B2E4 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov86_0223B394 (UnkStruct_020067E8 * param0, int * param1)
+int ov86_0223B394 (OverlayManager * param0, int * param1)
 {
     static BOOL(*const v0[])(UnkStruct_ov86_0223B3C8 *) = {
         ov86_0223B3C8,

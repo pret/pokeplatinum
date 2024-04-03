@@ -46,20 +46,20 @@ FS_EXTERN_OVERLAY(overlay5);
 FS_EXTERN_OVERLAY(overlay77);
 
 typedef struct FieldSystem_sub1_t {
-    UnkStruct_020067E8 * unk_00;
-    UnkStruct_020067E8 * unk_04;
+    OverlayManager * unk_00;
+    OverlayManager * unk_04;
     BOOL unk_08;
     BOOL unk_0C;
 };
 
-static FieldSystem * sub_0203CDB0(UnkStruct_020067E8 * param0);
+static FieldSystem * sub_0203CDB0(OverlayManager * param0);
 static BOOL sub_0203CEEC(FieldSystem * param0);
-static void sub_0203CE6C(UnkStruct_020067E8 * param0);
+static void sub_0203CE6C(OverlayManager * param0);
 static void sub_0203CF5C(FieldSystem * param0);
 
 static FieldSystem * Unk_021C07DC;
 
-static int sub_0203CC84 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_0203CC84 (OverlayManager * param0, int * param1)
 {
     UnkStruct_0203CC84 * v0 = sub_02006840(param0);
 
@@ -75,14 +75,14 @@ static int sub_0203CC84 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static int sub_0203CCB4 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_0203CCB4 (OverlayManager * param0, int * param1)
 {
     Unk_021C07DC = sub_0203CDB0(param0);
     sub_020535CC(Unk_021C07DC);
     return 1;
 }
 
-static int sub_0203CCCC (UnkStruct_020067E8 * param0, int * param1)
+static int sub_0203CCCC (OverlayManager * param0, int * param1)
 {
     FieldSystem * v0 = sub_0200682C(param0);
 
@@ -93,7 +93,7 @@ static int sub_0203CCCC (UnkStruct_020067E8 * param0, int * param1)
     }
 }
 
-static int sub_0203CCE4 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_0203CCE4 (OverlayManager * param0, int * param1)
 {
     sub_0203CE6C(param0);
     sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
@@ -156,7 +156,7 @@ void sub_0203CD84 (FieldSystem * param0, const UnkStruct_0208BE5C * param1, void
     param0->unk_00->unk_04 = sub_020067E8(param1, param2, 11);
 }
 
-static FieldSystem * sub_0203CDB0 (UnkStruct_020067E8 * param0)
+static FieldSystem * sub_0203CDB0 (OverlayManager * param0)
 {
     UnkStruct_0203CC84 * v0;
     FieldSystem * v1;
@@ -194,7 +194,7 @@ static FieldSystem * sub_0203CDB0 (UnkStruct_020067E8 * param0)
     return v1;
 }
 
-static void sub_0203CE6C (UnkStruct_020067E8 * param0)
+static void sub_0203CE6C (OverlayManager * param0)
 {
     FieldSystem * v0 = sub_0200682C(param0);
 
@@ -212,7 +212,7 @@ static void sub_0203CE6C (UnkStruct_020067E8 * param0)
     Heap_Destroy(32);
 }
 
-static void sub_0203CECC (UnkStruct_020067E8 ** param0)
+static void sub_0203CECC (OverlayManager ** param0)
 {
     if (*param0) {
         if (sub_02006844(*param0)) {

@@ -67,9 +67,9 @@ typedef struct {
     int unk_14;
 } UnkStruct_02097F38;
 
-static int sub_02097B18(UnkStruct_020067E8 * param0, int * param1);
-static int sub_02097D30(UnkStruct_020067E8 * param0, int * param1);
-static int sub_02097D88(UnkStruct_020067E8 * param0, int * param1);
+static int sub_02097B18(OverlayManager * param0, int * param1);
+static int sub_02097D30(OverlayManager * param0, int * param1);
+static int sub_02097D88(OverlayManager * param0, int * param1);
 
 const UnkStruct_0208BE5C Unk_020F64C0 = {
     sub_02097B18,
@@ -78,7 +78,7 @@ const UnkStruct_0208BE5C Unk_020F64C0 = {
     FS_OVERLAY_ID(overlay76),
 };
 
-static int sub_02097B18 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_02097B18 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov76_0223DE00 * v0;
     UnkStruct_02097F18 * v1;
@@ -188,7 +188,7 @@ static int sub_02097B18 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static int sub_02097D30 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_02097D30 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov76_0223DE00 * v0;
 
@@ -223,7 +223,7 @@ static int sub_02097D30 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-static int sub_02097D88 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_02097D88 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov76_0223DE00 * v0;
 

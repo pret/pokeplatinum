@@ -118,9 +118,9 @@ static void ov5_021D1790(FieldSystem * param0);
 static void ov5_021D17EC(FieldSystem * param0);
 static void ov5_021D1878(FieldSystem * param0);
 static void ov5_021D1968(FieldSystem * param0);
-static int ov5_021D0DA4(UnkStruct_020067E8 * param0, int * param1);
-static int ov5_021D0F68(UnkStruct_020067E8 * param0, int * param1);
-static int ov5_021D0FB4(UnkStruct_020067E8 * param0, int * param1);
+static int ov5_021D0DA4(OverlayManager * param0, int * param1);
+static int ov5_021D0F68(OverlayManager * param0, int * param1);
+static int ov5_021D0FB4(OverlayManager * param0, int * param1);
 static BOOL ov5_021D11CC(FieldSystem * param0);
 static void ov5_021D134C(FieldSystem * param0, u8 param1);
 static BOOL ov5_021D119C(FieldSystem * param0);
@@ -153,7 +153,7 @@ static void ov5_021D0D80 (void * param0)
     inline_ov5_021D0D80(v0);
 }
 
-static int ov5_021D0DA4 (UnkStruct_020067E8 * param0, int * param1)
+static int ov5_021D0DA4 (OverlayManager * param0, int * param1)
 {
     u16 v0;
     FieldSystem * v1;
@@ -250,7 +250,7 @@ static int ov5_021D0DA4 (UnkStruct_020067E8 * param0, int * param1)
     return v2;
 }
 
-static int ov5_021D0F68 (UnkStruct_020067E8 * param0, int * param1)
+static int ov5_021D0F68 (OverlayManager * param0, int * param1)
 {
     FieldSystem * v0;
 
@@ -275,7 +275,7 @@ static int ov5_021D0F68 (UnkStruct_020067E8 * param0, int * param1)
     }
 }
 
-static int ov5_021D0FB4 (UnkStruct_020067E8 * param0, int * param1)
+static int ov5_021D0FB4 (OverlayManager * param0, int * param1)
 {
     FieldSystem * v0;
 

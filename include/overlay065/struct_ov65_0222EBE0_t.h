@@ -71,7 +71,7 @@ struct UnkStruct_ov65_0222EBE0_t {
     u8 unk_3C4;
     u8 unk_3C5;
     BOOL unk_3C8;
-    UnkStruct_020067E8 * unk_3CC;
+    OverlayManager * unk_3CC;
     int unk_3D0;
     u16 unk_3D4;
     u16 unk_3D6[3];

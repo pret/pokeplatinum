@@ -133,7 +133,7 @@ __attribute__((aligned(4))) static const u16 Unk_ov17_02254AB4[] = {
     0xF
 };
 
-int ov17_0224F4D4 (UnkStruct_020067E8 * param0, int * param1)
+int ov17_0224F4D4 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov17_0224FCA0 * v0;
 
@@ -226,7 +226,7 @@ int ov17_0224F4D4 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov17_0224F754 (UnkStruct_020067E8 * param0, int * param1)
+int ov17_0224F754 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov17_0224FCA0 * v0 = sub_0200682C(param0);
     int v1;
@@ -278,7 +278,7 @@ int ov17_0224F754 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov17_0224F86C (UnkStruct_020067E8 * param0, int * param1)
+int ov17_0224F86C (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov17_0224FCA0 * v0 = sub_0200682C(param0);
     int v1;

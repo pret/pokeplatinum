@@ -105,25 +105,25 @@ FS_EXTERN_OVERLAY(overlay21);
 
 static const u32 BattleServerVersion = 0x140;
 
-BOOL ov16_0223B140(UnkStruct_020067E8 * param0, int * param1);
+BOOL ov16_0223B140(OverlayManager * param0, int * param1);
 void ov16_0223B384(BattleSystem * param0);
 void ov16_0223B3E4(BattleSystem * param0);
 void ov16_0223B430(BattleSystem * param0);
 void ov16_0223B53C(BattleSystem * param0);
 void ov16_0223B578(BattleSystem * param0);
 void BattleSystem_LoadFightOverlay(BattleSystem *battleSys, int flags);
-static void ov16_0223B790(UnkStruct_020067E8 * param0);
-static int ov16_0223BBD0(UnkStruct_020067E8 * param0);
-static void ov16_0223BCB4(UnkStruct_020067E8 * param0);
-static BOOL ov16_0223D800(UnkStruct_020067E8 * param0);
-static BOOL ov16_0223D944(UnkStruct_020067E8 * param0);
-static BOOL ov16_0223D98C(UnkStruct_020067E8 * param0);
-static BOOL ov16_0223DAD4(UnkStruct_020067E8 * param0);
-static BOOL ov16_0223DB1C(UnkStruct_020067E8 * param0);
-static BOOL ov16_0223DD10(UnkStruct_020067E8 * param0);
-static void ov16_0223D10C(UnkStruct_020067E8 * param0, BattleParams * param1);
-static BOOL ov16_0223D354(UnkStruct_020067E8 * param0);
-static void ov16_0223D7B4(UnkStruct_020067E8 * param0);
+static void ov16_0223B790(OverlayManager * param0);
+static int ov16_0223BBD0(OverlayManager * param0);
+static void ov16_0223BCB4(OverlayManager * param0);
+static BOOL ov16_0223D800(OverlayManager * param0);
+static BOOL ov16_0223D944(OverlayManager * param0);
+static BOOL ov16_0223D98C(OverlayManager * param0);
+static BOOL ov16_0223DAD4(OverlayManager * param0);
+static BOOL ov16_0223DB1C(OverlayManager * param0);
+static BOOL ov16_0223DD10(OverlayManager * param0);
+static void ov16_0223D10C(OverlayManager * param0, BattleParams * param1);
+static BOOL ov16_0223D354(OverlayManager * param0);
+static void ov16_0223D7B4(OverlayManager * param0);
 static void ov16_0223C004(BattleSystem * param0, BGL * param1);
 static void ov16_0223C210(BattleSystem * param0);
 static void ov16_0223C288(BGL * param0);
@@ -171,7 +171,7 @@ const UnkStruct_ov104_02241308 Unk_ov16_0226E2B0 = {
     0x8
 };
 
-BOOL ov16_0223B140 (UnkStruct_020067E8 * param0, int * param1)
+BOOL ov16_0223B140 (OverlayManager * param0, int * param1)
 {
     BattleParams * v0 = sub_02006840(param0);
 
@@ -526,7 +526,7 @@ static const int Unk_ov16_0226E44C[][3] = {
     {0x7fff, 0x7fff, 0x7fff},
 };
 
-static void ov16_0223B790 (UnkStruct_020067E8 * param0)
+static void ov16_0223B790 (OverlayManager * param0)
 {
     BattleSystem * v0 = sub_0200682C(param0);
     BattleParams * v1 = sub_02006840(param0);
@@ -666,7 +666,7 @@ static void ov16_0223B790 (UnkStruct_020067E8 * param0)
     }
 }
 
-static int ov16_0223BBD0 (UnkStruct_020067E8 * param0)
+static int ov16_0223BBD0 (OverlayManager * param0)
 {
     BattleSystem * v0 = sub_0200682C(param0);
     int v1;
@@ -706,7 +706,7 @@ static int ov16_0223BBD0 (UnkStruct_020067E8 * param0)
     return v0->unk_23FA;
 }
 
-static void ov16_0223BCB4 (UnkStruct_020067E8 * param0)
+static void ov16_0223BCB4 (OverlayManager * param0)
 {
     BattleSystem * v0 = sub_0200682C(param0);
     BattleParams * v1 = sub_02006840(param0);
@@ -1652,7 +1652,7 @@ static void NitroStaticInit (void)
     }
 }
 
-static void ov16_0223D10C (UnkStruct_020067E8 * param0, BattleParams * param1)
+static void ov16_0223D10C (OverlayManager * param0, BattleParams * param1)
 {
     UnkStruct_0207A778 * v0 = sub_0200681C(param0, sizeof(UnkStruct_0207A778), 5);
 
@@ -1766,7 +1766,7 @@ static void ov16_0223D10C (UnkStruct_020067E8 * param0, BattleParams * param1)
     ov16_0223DECC();
 }
 
-static BOOL ov16_0223D354 (UnkStruct_020067E8 * param0)
+static BOOL ov16_0223D354 (OverlayManager * param0)
 {
     UnkStruct_0207A778 * v0 = sub_0200682C(param0);
     BOOL v1;
@@ -1993,7 +1993,7 @@ static BOOL ov16_0223D354 (UnkStruct_020067E8 * param0)
     return v1;
 }
 
-static void ov16_0223D7B4 (UnkStruct_020067E8 * param0)
+static void ov16_0223D7B4 (OverlayManager * param0)
 {
     UnkStruct_0207A778 * v0 = sub_0200682C(param0);
 
@@ -2008,7 +2008,7 @@ static void ov16_0223D7B4 (UnkStruct_020067E8 * param0)
     Heap_FreeToHeap(v0);
 }
 
-static BOOL ov16_0223D800 (UnkStruct_020067E8 * param0)
+static BOOL ov16_0223D800 (OverlayManager * param0)
 {
     BattleSystem * v0 = sub_0200681C(param0, sizeof(BattleSystem), 5);
     BattleParams * v1 = sub_02006840(param0);
@@ -2064,7 +2064,7 @@ static BOOL ov16_0223D800 (UnkStruct_020067E8 * param0)
     return 1;
 }
 
-static BOOL ov16_0223D944 (UnkStruct_020067E8 * param0)
+static BOOL ov16_0223D944 (OverlayManager * param0)
 {
     int v0;
     BattleSystem * v1 = sub_0200682C(param0);
@@ -2083,7 +2083,7 @@ static BOOL ov16_0223D944 (UnkStruct_020067E8 * param0)
     return 0;
 }
 
-static BOOL ov16_0223D98C (UnkStruct_020067E8 * param0)
+static BOOL ov16_0223D98C (OverlayManager * param0)
 {
     BattleSystem * v0 = sub_0200682C(param0);
     BattleParams * v1 = sub_02006840(param0);
@@ -2124,7 +2124,7 @@ static BOOL ov16_0223D98C (UnkStruct_020067E8 * param0)
     return 1;
 }
 
-static BOOL ov16_0223DAD4 (UnkStruct_020067E8 * param0)
+static BOOL ov16_0223DAD4 (OverlayManager * param0)
 {
     int v0;
     BattleSystem * v1 = sub_0200682C(param0);
@@ -2143,7 +2143,7 @@ static BOOL ov16_0223DAD4 (UnkStruct_020067E8 * param0)
     return 0;
 }
 
-static BOOL ov16_0223DB1C (UnkStruct_020067E8 * param0)
+static BOOL ov16_0223DB1C (OverlayManager * param0)
 {
     BattleParams * v0 = sub_02006840(param0);
     UnkStruct_ov10_0221F800 * v1;
@@ -2227,7 +2227,7 @@ static BOOL ov16_0223DB1C (UnkStruct_020067E8 * param0)
     return 1;
 }
 
-static BOOL ov16_0223DD10 (UnkStruct_020067E8 * param0)
+static BOOL ov16_0223DD10 (OverlayManager * param0)
 {
     int v0;
     BattleParams * v1 = sub_02006840(param0);

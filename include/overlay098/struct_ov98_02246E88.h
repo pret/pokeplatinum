@@ -12,7 +12,7 @@
 #include <nnsys.h>
 
 typedef struct {
-    UnkStruct_020067E8 * unk_00;
+    OverlayManager * unk_00;
     SaveData * unk_04;
     Options * unk_08;
     void * unk_0C;

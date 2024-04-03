@@ -735,7 +735,7 @@ static void ov65_0222E01C (UnkStruct_ov65_0222EBE0 * param0)
     NARC_dtor(v0);
 }
 
-int ov65_0222E2A8 (UnkStruct_020067E8 * param0, int * param1)
+int ov65_0222E2A8 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov65_0222EBE0 * v0;
     UnkStruct_ov98_02247168 * v1;
@@ -815,7 +815,7 @@ int ov65_0222E2A8 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov65_0222E3FC (UnkStruct_020067E8 * param0, int * param1)
+int ov65_0222E3FC (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov65_0222EBE0 * v0 = sub_0200682C(param0);
 
@@ -894,7 +894,7 @@ static void ov65_0222E47C (UnkStruct_ov65_0222EBE0 * param0)
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay63));
 }
 
-int ov65_0222E548 (UnkStruct_020067E8 * param0, int * param1)
+int ov65_0222E548 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov65_0222EBE0 * v0 = sub_0200682C(param0);
     UnkStruct_ov98_02247168 * v1;

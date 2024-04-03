@@ -61,7 +61,7 @@ void sub_020995C4 (void)
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay60));
 }
 
-static int sub_020995D4 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_020995D4 (OverlayManager * param0, int * param1)
 {
     Heap_Create(3, 49, 0x41000);
     sub_02099590(((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08, 49);

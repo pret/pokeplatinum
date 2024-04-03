@@ -384,7 +384,7 @@ typedef struct {
     int unk_164;
     int unk_168;
     u8 unk_16C[12288];
-    UnkStruct_020067E8 * unk_316C;
+    OverlayManager * unk_316C;
     GraphicElementData * unk_3170;
     MysteryGift * unk_3174;
     int unk_3178;
@@ -663,7 +663,7 @@ static void ov97_0222C578 (UnkStruct_ov97_0222C388 * param0)
     sub_0200B3F0(v6);
 }
 
-static void ov97_0222C688 (UnkStruct_020067E8 * param0)
+static void ov97_0222C688 (OverlayManager * param0)
 {
     int v0;
     UnkStruct_ov97_0222C388 * v1 = sub_0200682C(param0);
@@ -683,7 +683,7 @@ static void ov97_0222C688 (UnkStruct_020067E8 * param0)
     Heap_FreeToHeap(v1->unk_04);
 }
 
-static int ov97_0222C6F8 (UnkStruct_020067E8 * param0, int * param1)
+static int ov97_0222C6F8 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov97_0222C388 * v0;
 
@@ -711,7 +711,7 @@ static int ov97_0222C6F8 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static int ov97_0222C78C (UnkStruct_020067E8 * param0, int * param1)
+static int ov97_0222C78C (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov97_0222C388 * v0 = sub_0200682C(param0);
 
@@ -793,7 +793,7 @@ static int ov97_0222C78C (UnkStruct_020067E8 * param0, int * param1)
 }
 
 
-static int ov97_0222C948 (UnkStruct_020067E8 * param0, int * param1)
+static int ov97_0222C948 (OverlayManager * param0, int * param1)
 {
     Heap_Destroy(91);
     sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);

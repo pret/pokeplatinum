@@ -196,7 +196,7 @@ static BOOL ov22_0225771C(UnkStruct_ov22_02256FD8_sub1 * param0, UnkStruct_ov22_
 static void ov22_02257778(UnkStruct_ov22_02256FD8 * param0, UnkStruct_ov22_02259560 * param1, u32 param2);
 static void ov22_022577A0(UnkStruct_ov22_02255D44 * param0);
 
-int ov22_02255D44 (UnkStruct_020067E8 * param0, int * param1)
+int ov22_02255D44 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov22_02255D44 * v0;
     u32 v1;
@@ -242,7 +242,7 @@ int ov22_02255D44 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov22_02255E50 (UnkStruct_020067E8 * param0, int * param1)
+int ov22_02255E50 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov22_02255D44 * v0 = sub_0200682C(param0);
     int v1 = 0;
@@ -365,7 +365,7 @@ int ov22_02255E50 (UnkStruct_020067E8 * param0, int * param1)
     return v1;
 }
 
-int ov22_02256098 (UnkStruct_020067E8 * param0, int * param1)
+int ov22_02256098 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov22_02255D44 * v0 = sub_0200682C(param0);
     u32 v1;
@@ -413,7 +413,7 @@ int ov22_02256098 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov22_02256174 (UnkStruct_020067E8 * param0, int * param1)
+int ov22_02256174 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov22_02255D44 * v0;
     u32 v1;
@@ -478,7 +478,7 @@ int ov22_02256174 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov22_022562EC (UnkStruct_020067E8 * param0, int * param1)
+int ov22_022562EC (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov22_02255D44 * v0 = sub_0200682C(param0);
     int v1 = 0;
@@ -637,7 +637,7 @@ int ov22_022562EC (UnkStruct_020067E8 * param0, int * param1)
     return v1;
 }
 
-int ov22_02256600 (UnkStruct_020067E8 * param0, int * param1)
+int ov22_02256600 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov22_02255D44 * v0 = sub_0200682C(param0);
     u32 v1;

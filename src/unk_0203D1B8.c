@@ -240,12 +240,12 @@ typedef struct {
 static void sub_0203DF68(UnkStruct_020508D4 * param0);
 static u8 sub_0203E484(SaveData * param0, u8 param1);
 
-static int sub_0203D1B8 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_0203D1B8 (OverlayManager * param0, int * param1)
 {
     return 1;
 }
 
-static int sub_0203D1BC (UnkStruct_020067E8 * param0, int * param1)
+static int sub_0203D1BC (OverlayManager * param0, int * param1)
 {
     if (ov16_0223B140(param0, param1)) {
         return 1;
@@ -254,7 +254,7 @@ static int sub_0203D1BC (UnkStruct_020067E8 * param0, int * param1)
     }
 }
 
-static int sub_0203D1D0 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_0203D1D0 (OverlayManager * param0, int * param1)
 {
     return 1;
 }

@@ -96,7 +96,7 @@ static const struct {
     {ov98_02247168, ov98_02247198, &Unk_ov98_02249B2C, 0x1}
 };
 
-int ov98_02246C20 (UnkStruct_020067E8 * param0, int * param1)
+int ov98_02246C20 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov98_02246E88 * v0;
 
@@ -115,7 +115,7 @@ int ov98_02246C20 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov98_02246C98 (UnkStruct_020067E8 * param0, int * param1)
+int ov98_02246C98 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov98_02246E88 * v0 = sub_0200682C(param0);
     BOOL v1;
@@ -171,7 +171,7 @@ int ov98_02246C98 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov98_02246DC0 (UnkStruct_020067E8 * param0, int * param1)
+int ov98_02246DC0 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov98_02246E88 * v0 = sub_0200682C(param0);
 

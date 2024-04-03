@@ -80,11 +80,11 @@ typedef struct UnkStruct_ov20_021D16E8_t {
 } UnkStruct_ov20_021D16E8;
 
 static void ov20_021D0E38(u32 param0, u32 param1, void * param2);
-static UnkStruct_ov20_021D16E8 * ov20_021D0EC8(UnkStruct_020067E8 * param0);
+static UnkStruct_ov20_021D16E8 * ov20_021D0EC8(OverlayManager * param0);
 static void ov20_021D0F64(UnkStruct_ov20_021D0F64 * param0, Sentence * param1);
 static void ov20_021D0F88(UnkStruct_ov20_021D0F64 * param0, Sentence * param1);
 static void ov20_021D0FCC(UnkStruct_ov20_021D0F64 * param0, Sentence * param1);
-static void ov20_021D1014(UnkStruct_ov20_021D16E8 * param0, UnkStruct_020067E8 * param1);
+static void ov20_021D1014(UnkStruct_ov20_021D16E8 * param0, OverlayManager * param1);
 static void ov20_021D1034(UnkStruct_ov20_021D16E8 * param0, UnkFuncPtr_ov20_021D1034 param1);
 static int ov20_021D103C(UnkStruct_ov20_021D16E8 * param0, int * param1);
 static int ov20_021D1050(UnkStruct_ov20_021D16E8 * param0, int * param1);
@@ -120,7 +120,7 @@ static int ov20_021D1EDC(UnkStruct_ov20_021D1F34 * param0, u16 param1);
 static u32 ov20_021D1F34(const UnkStruct_ov20_021D1F34 * param0);
 static void ov20_021D1F38(UnkStruct_ov20_021D16E8 * param0, int * param1);
 
-int ov20_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
+int ov20_021D0D80 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov20_021D16E8 * v0;
 
@@ -151,7 +151,7 @@ int ov20_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov20_021D0DF8 (UnkStruct_020067E8 * param0, int * param1)
+int ov20_021D0DF8 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov20_021D16E8 * v0 = sub_0200682C(param0);
 
@@ -213,7 +213,7 @@ static void ov20_021D0E38 (u32 param0, u32 param1, void * param2)
     }
 }
 
-int ov20_021D0EA8 (UnkStruct_020067E8 * param0, int * param1)
+int ov20_021D0EA8 (OverlayManager * param0, int * param1)
 {
     ov20_021D1014(sub_0200682C(param0), param0);
 
@@ -223,7 +223,7 @@ int ov20_021D0EA8 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static UnkStruct_ov20_021D16E8 * ov20_021D0EC8 (UnkStruct_020067E8 * param0)
+static UnkStruct_ov20_021D16E8 * ov20_021D0EC8 (OverlayManager * param0)
 {
     static const UnkUnion_020225E0 v0[] = {
         {24, 80, 24, 112},
@@ -305,7 +305,7 @@ static void ov20_021D0FCC (UnkStruct_ov20_021D0F64 * param0, Sentence * param1)
     sub_02014CE0(param1, param0->unk_00, param0->unk_02);
 }
 
-static void ov20_021D1014 (UnkStruct_ov20_021D16E8 * param0, UnkStruct_020067E8 * param1)
+static void ov20_021D1014 (UnkStruct_ov20_021D16E8 * param0, OverlayManager * param1)
 {
     sub_02024034(param0->unk_40);
     ov20_021D2128(param0->unk_14);

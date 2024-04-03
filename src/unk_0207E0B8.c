@@ -82,9 +82,9 @@ typedef struct {
     u16 unk_0A;
 } UnkStruct_020F1DF8;
 
-static int sub_0207E0B8(UnkStruct_020067E8 * param0, int * param1);
-static int sub_0207E2A8(UnkStruct_020067E8 * param0, int * param1);
-static int sub_0207E7E0(UnkStruct_020067E8 * param0, int * param1);
+static int sub_0207E0B8(OverlayManager * param0, int * param1);
+static int sub_0207E2A8(OverlayManager * param0, int * param1);
+static int sub_0207E7E0(OverlayManager * param0, int * param1);
 static int sub_0207E490(GameWindowLayout * param0);
 static int sub_0207E518(GameWindowLayout * param0);
 static int sub_0207E5B4(GameWindowLayout * param0);
@@ -100,7 +100,7 @@ static void sub_0207E8C0(void);
 static void sub_0207E918(BGL * param0);
 static void sub_0207EA24(BGL * param0);
 static void sub_0207EB6C(GameWindowLayout * param0, NARC * param1);
-static GameWindowLayout * sub_0207ECC0(UnkStruct_020067E8 * param0);
+static GameWindowLayout * sub_0207ECC0(OverlayManager * param0);
 static void sub_0207EE14(GameWindowLayout * param0);
 static void sub_0207F308(GameWindowLayout * param0);
 static u8 sub_0207F984(GameWindowLayout * param0, u8 param1);
@@ -250,7 +250,7 @@ static const u16 Unk_020F1CB0[] = {
     0x87
 };
 
-static int sub_0207E0B8 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_0207E0B8 (OverlayManager * param0, int * param1)
 {
     GameWindowLayout * v0;
     NARC * v1;
@@ -326,7 +326,7 @@ static int sub_0207E0B8 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static int sub_0207E2A8 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_0207E2A8 (OverlayManager * param0, int * param1)
 {
     GameWindowLayout * v0 = sub_0200682C(param0);
 
@@ -650,7 +650,7 @@ static int sub_0207E750 (GameWindowLayout * param0)
     return 21;
 }
 
-static int sub_0207E7E0 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_0207E7E0 (OverlayManager * param0, int * param1)
 {
     GameWindowLayout * v0 = sub_0200682C(param0);
     u32 v1;
@@ -951,7 +951,7 @@ static void sub_0207EB6C (GameWindowLayout * param0, NARC * param1)
     sub_0201975C(4, 0);
 }
 
-static GameWindowLayout * sub_0207ECC0 (UnkStruct_020067E8 * param0)
+static GameWindowLayout * sub_0207ECC0 (OverlayManager * param0)
 {
     GameWindowLayout * v0;
     u32 v1;

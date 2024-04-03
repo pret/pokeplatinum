@@ -16,7 +16,7 @@ typedef struct {
     UnkStruct_ov82_0223B164 * unk_10;
     int unk_14;
     void * unk_18;
-    UnkStruct_020067E8 * unk_1C;
+    OverlayManager * unk_1C;
     BOOL unk_20;
     s16 unk_24;
     u8 unk_26;

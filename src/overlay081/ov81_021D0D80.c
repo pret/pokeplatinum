@@ -67,7 +67,7 @@ static const u8 Unk_ov81_021D33E8[9][32] = {
     {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF}
 };
 
-int ov81_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
+int ov81_021D0D80 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov81_021D1610 * v0;
     SaveData * v1;
@@ -114,7 +114,7 @@ int ov81_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov81_021D0E70 (UnkStruct_020067E8 * param0, int * param1)
+int ov81_021D0E70 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov81_021D1610 * v0 = sub_0200682C(param0);
 
@@ -140,7 +140,7 @@ int ov81_021D0E70 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov81_021D0EC4 (UnkStruct_020067E8 * param0, int * param1)
+int ov81_021D0EC4 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov81_021D1610 * v0 = sub_0200682C(param0);
 

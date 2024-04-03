@@ -901,7 +901,7 @@ static void ov97_0222BC1C (UnkStruct_0222AE60 * param0)
     sub_02021CAC(param0->unk_168[1], v2);
 }
 
-static void ov97_0222BC9C (UnkStruct_020067E8 * param0)
+static void ov97_0222BC9C (OverlayManager * param0)
 {
     int v0;
     UnkStruct_0222AE60 * v1 = sub_0200682C(param0);
@@ -980,7 +980,7 @@ static void ov97_0222BD48 (void * param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static int ov97_0222BD70 (UnkStruct_020067E8 * param0, int * param1)
+static int ov97_0222BD70 (OverlayManager * param0, int * param1)
 {
     UnkStruct_0222AE60 * v0;
 
@@ -1016,7 +1016,7 @@ static int ov97_0222BD70 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static int ov97_0222BE24 (UnkStruct_020067E8 * param0, int * param1)
+static int ov97_0222BE24 (OverlayManager * param0, int * param1)
 {
     int v0;
     UnkStruct_0222AE60 * v1 = sub_0200682C(param0);
@@ -1206,7 +1206,7 @@ static void ov97_0222C094 (UnkStruct_0222AE60 * param0)
     }
 }
 
-static int ov97_0222C150 (UnkStruct_020067E8 * param0, int * param1)
+static int ov97_0222C150 (OverlayManager * param0, int * param1)
 {
     UnkStruct_0222AE60 * v0 = sub_0200682C(param0);
 

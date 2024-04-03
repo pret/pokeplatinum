@@ -51,9 +51,9 @@ typedef struct {
 } UnkStruct_0209A3D0;
 
 void sub_02000EC4(FSOverlayID param0, const UnkStruct_0208BE5C * param1);
-int sub_0209A2C4(UnkStruct_020067E8 * param0, int * param1);
-int sub_0209A300(UnkStruct_020067E8 * param0, int * param1);
-int sub_0209A3A4(UnkStruct_020067E8 * param0, int * param1);
+int sub_0209A2C4(OverlayManager * param0, int * param1);
+int sub_0209A300(OverlayManager * param0, int * param1);
+int sub_0209A3A4(OverlayManager * param0, int * param1);
 static void sub_0209A3D0(UnkStruct_0209A3D0 * param0);
 static void sub_0209A490(UnkStruct_0209A3D0 * param0);
 static void sub_0209A4E4(UnkStruct_0209A3D0 * param0);
@@ -80,7 +80,7 @@ const UnkStruct_0208BE5C Unk_020F8AB4 = {
     0xFFFFFFFF
 };
 
-int sub_0209A2C4 (UnkStruct_020067E8 * param0, int * param1)
+int sub_0209A2C4 (OverlayManager * param0, int * param1)
 {
     UnkStruct_0209A3D0 * v0;
     int v1 = 88;
@@ -97,7 +97,7 @@ int sub_0209A2C4 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int sub_0209A300 (UnkStruct_020067E8 * param0, int * param1)
+int sub_0209A300 (OverlayManager * param0, int * param1)
 {
     UnkStruct_0209A3D0 * v0 = sub_0200682C(param0);
     int v1 = 0;
@@ -134,7 +134,7 @@ int sub_0209A300 (UnkStruct_020067E8 * param0, int * param1)
     return v1;
 }
 
-int sub_0209A3A4 (UnkStruct_020067E8 * param0, int * param1)
+int sub_0209A3A4 (OverlayManager * param0, int * param1)
 {
     UnkStruct_0209A3D0 * v0 = sub_0200682C(param0);
     int v1 = v0->unk_00;

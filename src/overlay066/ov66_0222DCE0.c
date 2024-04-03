@@ -31,7 +31,7 @@ typedef struct {
 
 static void ov66_0222DDDC(SysTask * param0, void * param1);
 
-int ov66_0222DCE0 (UnkStruct_020067E8 * param0, int * param1)
+int ov66_0222DCE0 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov66_0222DD90 * v0;
     UnkStruct_ov66_0222DCE0 * v1;
@@ -64,7 +64,7 @@ int ov66_0222DCE0 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov66_0222DD6C (UnkStruct_020067E8 * param0, int * param1)
+int ov66_0222DD6C (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov66_0222DD90 * v0;
     int v1;
@@ -81,7 +81,7 @@ int ov66_0222DD6C (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov66_0222DD90 (UnkStruct_020067E8 * param0, int * param1)
+int ov66_0222DD90 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov66_0222DD90 * v0;
 

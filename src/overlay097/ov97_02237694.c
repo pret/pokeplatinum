@@ -91,7 +91,7 @@ void ov97_02237694 (int param0)
     v0->unk_08 = param0;
 }
 
-void * ov97_022376C4 (UnkStruct_020067E8 * param0, int param1, int param2, int param3)
+void * ov97_022376C4 (OverlayManager * param0, int param1, int param2, int param3)
 {
     void * v0;
 

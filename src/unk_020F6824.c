@@ -9,9 +9,9 @@
 
 FS_EXTERN_OVERLAY(overlay73);
 
-int ov73_021D0D80(UnkStruct_020067E8 * param0, int * param1);
-int ov73_021D0E20(UnkStruct_020067E8 * param0, int * param1);
-int ov73_021D0F7C(UnkStruct_020067E8 * param0, int * param1);
+int ov73_021D0D80(OverlayManager * param0, int * param1);
+int ov73_021D0E20(OverlayManager * param0, int * param1);
+int ov73_021D0F7C(OverlayManager * param0, int * param1);
 
 
 const UnkStruct_0208BE5C Unk_020F6824 = {

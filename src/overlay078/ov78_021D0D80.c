@@ -278,7 +278,7 @@ static void ov78_021D23B8(UnkStruct_ov78_021D2350 * param0);
 static void ov78_021D23E8(SysTask * param0, void * param1);
 static void ov78_021D241C(UnkStruct_ov78_021D2350 * param0);
 
-int ov78_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
+int ov78_021D0D80 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov78_021D107C * v0;
     UnkStruct_020425E0 * v1;
@@ -343,7 +343,7 @@ int ov78_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov78_021D0EF4 (UnkStruct_020067E8 * param0, int * param1)
+int ov78_021D0EF4 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov78_021D107C * v0 = sub_0200682C(param0);
     BOOL v1;
@@ -389,7 +389,7 @@ int ov78_021D0EF4 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov78_021D0FA8 (UnkStruct_020067E8 * param0, int * param1)
+int ov78_021D0FA8 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov78_021D107C * v0 = sub_0200682C(param0);
     UnkStruct_020425E0 * v1 = sub_02006840(param0);

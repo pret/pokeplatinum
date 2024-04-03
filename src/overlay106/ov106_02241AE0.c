@@ -74,8 +74,8 @@
 FS_EXTERN_OVERLAY(overlay104);
 
 struct UnkStruct_ov106_02243118_t {
-    UnkStruct_020067E8 * unk_00;
-    UnkStruct_020067E8 * unk_04;
+    OverlayManager * unk_00;
+    OverlayManager * unk_04;
     u8 unk_08;
     u8 unk_09;
     u8 unk_0A;
@@ -128,9 +128,9 @@ struct UnkStruct_ov106_02243118_t {
     u32 unk_2FC;
 };
 
-int ov106_02241AE0(UnkStruct_020067E8 * param0, int * param1);
-int ov106_02241B9C(UnkStruct_020067E8 * param0, int * param1);
-int ov106_02241CF0(UnkStruct_020067E8 * param0, int * param1);
+int ov106_02241AE0(OverlayManager * param0, int * param1);
+int ov106_02241B9C(OverlayManager * param0, int * param1);
+int ov106_02241CF0(OverlayManager * param0, int * param1);
 static BOOL ov106_02241D28(UnkStruct_ov106_02243118 * param0);
 static BOOL ov106_02241E14(UnkStruct_ov106_02243118 * param0);
 static void ov106_02241DD4(UnkStruct_ov106_02243118 * param0);
@@ -196,7 +196,7 @@ static const u8 Unk_ov106_02243798[] = {
     0x8
 };
 
-int ov106_02241AE0 (UnkStruct_020067E8 * param0, int * param1)
+int ov106_02241AE0 (OverlayManager * param0, int * param1)
 {
     int v0;
     UnkStruct_ov106_02243118 * v1;
@@ -238,7 +238,7 @@ int ov106_02241AE0 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov106_02241B9C (UnkStruct_020067E8 * param0, int * param1)
+int ov106_02241B9C (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov106_02243118 * v0 = sub_0200682C(param0);
 
@@ -318,7 +318,7 @@ int ov106_02241B9C (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov106_02241CF0 (UnkStruct_020067E8 * param0, int * param1)
+int ov106_02241CF0 (OverlayManager * param0, int * param1)
 {
     int v0;
     UnkStruct_ov106_02243118 * v1 = sub_0200682C(param0);

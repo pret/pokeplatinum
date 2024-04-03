@@ -392,7 +392,7 @@ static const UnkUnion_020225E0 Unk_ov84_02240EB4[] = {
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-int ov84_0223B5A0 (UnkStruct_020067E8 * param0, int * param1)
+int ov84_0223B5A0 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov84_0223B5A0 * v0;
 
@@ -458,7 +458,7 @@ int ov84_0223B5A0 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov84_0223B76C (UnkStruct_020067E8 * param0, int * param1)
+int ov84_0223B76C (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov84_0223B5A0 * v0 = sub_0200682C(param0);
 
@@ -571,7 +571,7 @@ int ov84_0223B76C (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov84_0223B900 (UnkStruct_020067E8 * param0, int * param1)
+int ov84_0223B900 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov84_0223B5A0 * v0 = sub_0200682C(param0);
 

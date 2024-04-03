@@ -37,15 +37,15 @@
 #include "party.h"
 #include "overlay057/ov57_021D0F30.h"
 
-static int ov57_021D0D80(UnkStruct_020067E8 * param0, int * param1);
-static int ov57_021D0D98(UnkStruct_020067E8 * param0, int * param1);
-static int ov57_021D0DAC(UnkStruct_020067E8 * param0, int * param1);
-static int ov57_021D0DC8(UnkStruct_020067E8 * param0, int * param1);
-static int ov57_021D0DE0(UnkStruct_020067E8 * param0, int * param1);
-static int ov57_021D0E00(UnkStruct_020067E8 * param0, int * param1);
-static int ov57_021D0E1C(UnkStruct_020067E8 * param0, int * param1);
-static int ov57_021D0E34(UnkStruct_020067E8 * param0, int * param1);
-static int ov57_021D0E90(UnkStruct_020067E8 * param0, int * param1);
+static int ov57_021D0D80(OverlayManager * param0, int * param1);
+static int ov57_021D0D98(OverlayManager * param0, int * param1);
+static int ov57_021D0DAC(OverlayManager * param0, int * param1);
+static int ov57_021D0DC8(OverlayManager * param0, int * param1);
+static int ov57_021D0DE0(OverlayManager * param0, int * param1);
+static int ov57_021D0E00(OverlayManager * param0, int * param1);
+static int ov57_021D0E1C(OverlayManager * param0, int * param1);
+static int ov57_021D0E34(OverlayManager * param0, int * param1);
+static int ov57_021D0E90(OverlayManager * param0, int * param1);
 static void ov57_021D0EAC(int param0, SaveData * param1, BOOL param2);
 
 const UnkStruct_0208BE5C Unk_ov57_021D0F90 = {
@@ -69,7 +69,7 @@ const UnkStruct_0208BE5C Unk_ov57_021D0F70 = {
     0xffffffff
 };
 
-static int ov57_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
+static int ov57_021D0D80 (OverlayManager * param0, int * param1)
 {
     Heap_Create(3, 77, 131072);
     InitRNG();
@@ -77,7 +77,7 @@ static int ov57_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static int ov57_021D0D98 (UnkStruct_020067E8 * param0, int * param1)
+static int ov57_021D0D98 (OverlayManager * param0, int * param1)
 {
     SaveData * v0 = ((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08;
 
@@ -85,7 +85,7 @@ static int ov57_021D0D98 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static int ov57_021D0DAC (UnkStruct_020067E8 * param0, int * param1)
+static int ov57_021D0DAC (OverlayManager * param0, int * param1)
 {
     Heap_Destroy(77);
     sub_02000EC4(0xffffffff, &Unk_020F6824);
@@ -93,7 +93,7 @@ static int ov57_021D0DAC (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static int ov57_021D0DC8 (UnkStruct_020067E8 * param0, int * param1)
+static int ov57_021D0DC8 (OverlayManager * param0, int * param1)
 {
     Heap_Create(3, 77, 131072);
     InitRNG();
@@ -101,7 +101,7 @@ static int ov57_021D0DC8 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static int ov57_021D0DE0 (UnkStruct_020067E8 * param0, int * param1)
+static int ov57_021D0DE0 (OverlayManager * param0, int * param1)
 {
     SaveData * v0 = ((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08;
 
@@ -111,14 +111,14 @@ static int ov57_021D0DE0 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static int ov57_021D0E00 (UnkStruct_020067E8 * param0, int * param1)
+static int ov57_021D0E00 (OverlayManager * param0, int * param1)
 {
     Heap_Destroy(77);
     sub_02000EC4(0xffffffff, &Unk_020EA10C);
     return 1;
 }
 
-static int ov57_021D0E1C (UnkStruct_020067E8 * param0, int * param1)
+static int ov57_021D0E1C (OverlayManager * param0, int * param1)
 {
     Heap_Create(3, 77, 131072);
     InitRNG();
@@ -126,7 +126,7 @@ static int ov57_021D0E1C (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static int ov57_021D0E34 (UnkStruct_020067E8 * param0, int * param1)
+static int ov57_021D0E34 (OverlayManager * param0, int * param1)
 {
     SaveData * v0 = ((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08;
     UnkStruct_02025CCC * v1 = sub_02025CCC(v0);
@@ -144,7 +144,7 @@ static int ov57_021D0E34 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static int ov57_021D0E90 (UnkStruct_020067E8 * param0, int * param1)
+static int ov57_021D0E90 (OverlayManager * param0, int * param1)
 {
     Heap_Destroy(77);
     sub_02000EC4(0xffffffff, &Unk_020EA11C);

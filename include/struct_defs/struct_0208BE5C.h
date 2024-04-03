@@ -6,9 +6,9 @@
 #include <nitro/fs.h>
 
 typedef struct {
-    int (* unk_00)(UnkStruct_020067E8 *, int *);
-    int (* unk_04)(UnkStruct_020067E8 *, int *);
-    int (* unk_08)(UnkStruct_020067E8 *, int *);
+    int (* unk_00)(OverlayManager *, int *);
+    int (* unk_04)(OverlayManager *, int *);
+    int (* unk_08)(OverlayManager *, int *);
     const FSOverlayID unk_0C;
 } UnkStruct_0208BE5C;
 

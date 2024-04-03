@@ -238,7 +238,7 @@ static void ov116_022604C4 (UnkStruct_ov116_0226139C * param0)
     }
 }
 
-int ov116_022609B4 (UnkStruct_020067E8 * param0, int * param1)
+int ov116_022609B4 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov116_0226139C * v0;
 
@@ -431,7 +431,7 @@ static BOOL ov116_02260B6C (UnkStruct_ov116_02262A8C * param0)
     return 0;
 }
 
-int ov116_02260CF4 (UnkStruct_020067E8 * param0, int * param1)
+int ov116_02260CF4 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov116_0226139C * v0 = sub_0200682C(param0);
     BOOL v1 = 0;
@@ -732,7 +732,7 @@ static void ov116_02261244 (UnkStruct_ov116_0226139C * param0)
     memset(&param0->unk_24, 0, sizeof(UnkStruct_ov116_02260498));
 }
 
-int ov116_0226126C (UnkStruct_020067E8 * param0, int * param1)
+int ov116_0226126C (OverlayManager * param0, int * param1)
 {
     switch (*param1) {
     case 0:

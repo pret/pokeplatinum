@@ -79,7 +79,7 @@ static void ov59_021D1388(UnkStruct_020961E8 * param0, NARC * param1);
 static void ov59_021D1474(void);
 static void ov59_021D14A4(UnkStruct_020961E8 * param0, NARC * param1);
 static void ov59_021D1598(UnkStruct_020961E8 * param0);
-static void ov59_021D16A0(UnkStruct_020961E8 * param0, UnkStruct_020067E8 * param1);
+static void ov59_021D16A0(UnkStruct_020961E8 * param0, OverlayManager * param1);
 static void ov59_021D17C8(UnkStruct_020961E8 * param0);
 static void ov59_021D1994(UnkStruct_020961E8 * param0);
 static void ov59_021D23B0(u16 * param0);
@@ -168,7 +168,7 @@ static int (* Unk_ov59_021D3480[])(UnkStruct_020961E8 *, int) = {
     ov59_021D19C0,
 };
 
-int ov59_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
+int ov59_021D0D80 (OverlayManager * param0, int * param1)
 {
     UnkStruct_020961E8 * v0;
     NARC * v1;
@@ -241,7 +241,7 @@ int ov59_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov59_021D0F00 (UnkStruct_020067E8 * param0, int * param1)
+int ov59_021D0F00 (OverlayManager * param0, int * param1)
 {
     UnkStruct_020961E8 * v0 = sub_0200682C(param0);
 
@@ -297,7 +297,7 @@ int ov59_021D0F00 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov59_021D0FF4 (UnkStruct_020067E8 * param0, int * param1)
+int ov59_021D0FF4 (OverlayManager * param0, int * param1)
 {
     UnkStruct_020961E8 * v0 = sub_0200682C(param0);
     int v1;
@@ -686,7 +686,7 @@ static void ov59_021D1598 (UnkStruct_020961E8 * param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov59_021D16A0 (UnkStruct_020961E8 * param0, UnkStruct_020067E8 * param1)
+static void ov59_021D16A0 (UnkStruct_020961E8 * param0, OverlayManager * param1)
 {
     BGL_AddWindow(param0->unk_00, &param0->unk_35C, 5, 26, 20, 6, 2, 13, 1 + 30 * 15);
     BGL_FillWindow(&param0->unk_35C, 0x0);

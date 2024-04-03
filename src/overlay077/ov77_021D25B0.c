@@ -146,9 +146,9 @@ typedef struct {
 
 
 void sub_02000EC4(FSOverlayID param0, const UnkStruct_0208BE5C * param1);
-static int ov77_021D2D08(UnkStruct_020067E8 * param0, int * param1);
-static int ov77_021D2D94(UnkStruct_020067E8 * param0, int * param1);
-static int ov77_021D2E60(UnkStruct_020067E8 * param0, int * param1);
+static int ov77_021D2D08(OverlayManager * param0, int * param1);
+static int ov77_021D2D94(OverlayManager * param0, int * param1);
+static int ov77_021D2E60(OverlayManager * param0, int * param1);
 static BOOL ov77_021D2E9C(UnkStruct_ov77_021D2E9C * param0);
 static BOOL ov77_021D33F0(UnkStruct_ov77_021D2E9C * param0);
 static BOOL ov77_021D5254(UnkStruct_ov77_021D2E9C * param0);
@@ -933,7 +933,7 @@ static void ov77_021D2CE8 (void)
     GXS_SetVisibleWnd(0);
 }
 
-static int ov77_021D2D08 (UnkStruct_020067E8 * param0, int * param1)
+static int ov77_021D2D08 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov77_021D2E9C * v0;
     int v1;
@@ -966,7 +966,7 @@ static int ov77_021D2D08 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static int ov77_021D2D94 (UnkStruct_020067E8 * param0, int * param1)
+static int ov77_021D2D94 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov77_021D2E9C * v0 = sub_0200682C(param0);
 
@@ -1015,7 +1015,7 @@ static int ov77_021D2D94 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-static int ov77_021D2E60 (UnkStruct_020067E8 * param0, int * param1)
+static int ov77_021D2E60 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov77_021D2E9C * v0 = sub_0200682C(param0);
 

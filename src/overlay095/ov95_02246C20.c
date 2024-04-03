@@ -135,7 +135,7 @@ static const struct {
     {ov95_0224B3D8, ov95_0224B49C, ov95_0224B438, 1 | 4},
 };
 
-int ov95_02246C20 (UnkStruct_020067E8 * param0, int * param1)
+int ov95_02246C20 (OverlayManager * param0, int * param1)
 {
     if (ScreenWipe_Done()) {
         UnkStruct_ov95_02247628 * v0;
@@ -209,7 +209,7 @@ static BOOL ov95_02246DEC (BoxPokemon * param0)
     return PokemonPersonalData_GetFormValue(v0, v1, 28) == 0;
 }
 
-int ov95_02246E1C (UnkStruct_020067E8 * param0, int * param1)
+int ov95_02246E1C (OverlayManager * param0, int * param1)
 {
     OSIntrMode v0;
     UnkStruct_ov95_02247628 * v1;
@@ -234,7 +234,7 @@ int ov95_02246E1C (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov95_02246E7C (UnkStruct_020067E8 * param0, int * param1)
+int ov95_02246E7C (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov95_02247628 * v0 = sub_0200682C(param0);
 

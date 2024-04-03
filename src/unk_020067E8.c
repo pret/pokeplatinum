@@ -7,21 +7,21 @@
 #include "unk_020067E8.h"
 #include "heap.h"
 
-typedef struct UnkStruct_020067E8_t {
+typedef struct OverlayManager_t {
     UnkStruct_0208BE5C unk_00;
     int unk_10;
     int unk_14;
     void * unk_18;
     void * unk_1C;
-    UnkStruct_020067E8 * unk_20;
-    UnkStruct_020067E8 * unk_24;
-} UnkStruct_020067E8;
+    OverlayManager * unk_20;
+    OverlayManager * unk_24;
+} OverlayManager;
 
-UnkStruct_020067E8 * sub_020067E8 (const UnkStruct_0208BE5C * param0, void * param1, const int param2)
+OverlayManager * sub_020067E8 (const UnkStruct_0208BE5C * param0, void * param1, const int param2)
 {
-    UnkStruct_020067E8 * v0;
+    OverlayManager * v0;
 
-    v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_020067E8));
+    v0 = Heap_AllocFromHeap(param2, sizeof(OverlayManager));
 
     v0->unk_00 = *param0;
     v0->unk_10 = 0;
@@ -34,34 +34,34 @@ UnkStruct_020067E8 * sub_020067E8 (const UnkStruct_0208BE5C * param0, void * par
     return v0;
 }
 
-void sub_02006814 (UnkStruct_020067E8 * param0)
+void sub_02006814 (OverlayManager * param0)
 {
     Heap_FreeToHeap(param0);
 }
 
-void * sub_0200681C (UnkStruct_020067E8 * param0, int param1, int param2)
+void * sub_0200681C (OverlayManager * param0, int param1, int param2)
 {
     param0->unk_1C = Heap_AllocFromHeap(param2, param1);
     return param0->unk_1C;
 }
 
-void * sub_0200682C (UnkStruct_020067E8 * param0)
+void * sub_0200682C (OverlayManager * param0)
 {
     return param0->unk_1C;
 }
 
-void sub_02006830 (UnkStruct_020067E8 * param0)
+void sub_02006830 (OverlayManager * param0)
 {
     Heap_FreeToHeap(param0->unk_1C);
     param0->unk_1C = NULL;
 }
 
-void * sub_02006840 (UnkStruct_020067E8 * param0)
+void * sub_02006840 (OverlayManager * param0)
 {
     return param0->unk_18;
 }
 
-BOOL sub_02006844 (UnkStruct_020067E8 * param0)
+BOOL sub_02006844 (OverlayManager * param0)
 {
     int v0;
 

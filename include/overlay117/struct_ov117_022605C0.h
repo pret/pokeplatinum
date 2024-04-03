@@ -8,7 +8,7 @@
 typedef struct {
     UnkStruct_ov114_0225C76C unk_00;
     UnkStruct_ov114_0225C9A8 unk_10;
-    UnkStruct_020067E8 * unk_28;
+    OverlayManager * unk_28;
     u8 unk_2C[4];
     u8 unk_30;
     u8 unk_31;

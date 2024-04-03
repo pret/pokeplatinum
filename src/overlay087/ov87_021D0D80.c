@@ -32,7 +32,7 @@ static void ov87_021D0FC4(UnkStruct_ov87_021D12C0 * param0, HallOfFame * param1)
 static void ov87_021D1000(UnkStruct_ov87_021D12C0 * param0);
 static void ov87_021D101C(UnkStruct_ov87_021D12C0 * param0, HallOfFame * param1, int param2);
 
-int ov87_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
+int ov87_021D0D80 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov87_021D0D80 * v0;
 
@@ -55,7 +55,7 @@ int ov87_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov87_021D0DFC (UnkStruct_020067E8 * param0, int * param1)
+int ov87_021D0DFC (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov87_021D0D80 * v0 = sub_0200682C(param0);
 
@@ -68,7 +68,7 @@ int ov87_021D0DFC (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov87_021D0E2C (UnkStruct_020067E8 * param0, int * param1)
+int ov87_021D0E2C (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov87_021D0D80 * v0 = sub_0200682C(param0);
 

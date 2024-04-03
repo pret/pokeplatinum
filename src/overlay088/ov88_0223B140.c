@@ -110,7 +110,7 @@ static void ov88_0223C0E0(void * param0);
 static void ov88_0223C15C(void);
 static void ov88_0223C17C(BGL * param0);
 static void ov88_0223C63C(void);
-static void ov88_0223C370(UnkStruct_02095E80 * param0, UnkStruct_020067E8 * param1);
+static void ov88_0223C370(UnkStruct_02095E80 * param0, OverlayManager * param1);
 static void ov88_0223C44C(BGL * param0);
 static void ov88_0223C4E0(BGL * param0, int param1, int param2);
 static void ov88_0223C504(UnkStruct_02095E80 * param0, NARC * param1);
@@ -289,7 +289,7 @@ static const u8 Unk_ov88_0223F004[][4][6] = {
     }
 };
 
-int ov88_0223B140 (UnkStruct_020067E8 * param0, int * param1)
+int ov88_0223B140 (OverlayManager * param0, int * param1)
 {
     UnkStruct_02095E80 * v0;
     NARC * v1;
@@ -428,7 +428,7 @@ static void ov88_0223B4F0 (UnkStruct_02095E80 * param0)
     ov88_0223C4E0(param0->unk_174, Party_GetCurrentCount(param0->unk_2270), Party_GetCurrentCount(param0->unk_2274));
 }
 
-int ov88_0223B57C (UnkStruct_020067E8 * param0, int * param1)
+int ov88_0223B57C (OverlayManager * param0, int * param1)
 {
     UnkStruct_02095E80 * v0 = sub_0200682C(param0);
     int v1 = 0;
@@ -884,7 +884,7 @@ static void ov88_0223BFD8 (UnkStruct_02095E80 * param0)
     }
 }
 
-int ov88_0223C03C (UnkStruct_020067E8 * param0, int * param1)
+int ov88_0223C03C (OverlayManager * param0, int * param1)
 {
     UnkStruct_02095E80 * v0 = sub_0200682C(param0);
     UnkStruct_ov88_0223C370 * v1 = sub_02006840(param0);
@@ -1136,7 +1136,7 @@ static void ov88_0223C17C (BGL * param0)
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
 }
 
-static void ov88_0223C370 (UnkStruct_02095E80 * param0, UnkStruct_020067E8 * param1)
+static void ov88_0223C370 (UnkStruct_02095E80 * param0, OverlayManager * param1)
 {
     UnkStruct_ov88_0223C370 * v0 = sub_02006840(param1);
 

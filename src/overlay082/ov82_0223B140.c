@@ -17,7 +17,7 @@
 #include "overlay082/ov82_0223B140.h"
 #include "overlay082/ov82_0223B2E0.h"
 
-BOOL ov82_0223B140 (UnkStruct_020067E8 ** param0)
+BOOL ov82_0223B140 (OverlayManager ** param0)
 {
     if (*param0) {
         if (sub_02006844(*param0)) {
@@ -30,7 +30,7 @@ BOOL ov82_0223B140 (UnkStruct_020067E8 ** param0)
     return 0;
 }
 
-int ov82_0223B164 (UnkStruct_020067E8 * param0, int * param1)
+int ov82_0223B164 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov83_0223C344 * v0 = NULL;
     UnkStruct_ov82_0223B164 * v1 = (UnkStruct_ov82_0223B164 *)sub_02006840(param0);
@@ -57,7 +57,7 @@ int ov82_0223B164 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov82_0223B1D4 (UnkStruct_020067E8 * param0, int * param1)
+int ov82_0223B1D4 (OverlayManager * param0, int * param1)
 {
     int v0;
     UnkStruct_ov83_0223C344 * v1 = sub_0200682C(param0);
@@ -89,7 +89,7 @@ int ov82_0223B1D4 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov82_0223B24C (UnkStruct_020067E8 * param0, int * param1)
+int ov82_0223B24C (OverlayManager * param0, int * param1)
 {
     int v0 = 0;
     UnkStruct_ov83_0223C344 * v1 = sub_0200682C(param0);

@@ -61,9 +61,9 @@
 #include "unk_02094EDC.h"
 #include "unk_020989DC.h"
 
-static int sub_0208C330(UnkStruct_020067E8 * param0, int * param1);
-static int sub_0208C488(UnkStruct_020067E8 * param0, int * param1);
-static int sub_0208C5A0(UnkStruct_020067E8 * param0, int * param1);
+static int sub_0208C330(OverlayManager * param0, int * param1);
+static int sub_0208C488(OverlayManager * param0, int * param1);
+static int sub_0208C5A0(OverlayManager * param0, int * param1);
 static int sub_0208C9C8(PokemonSummaryApp * param0);
 static int sub_0208CA00(PokemonSummaryApp * param0);
 static int sub_0208CB38(PokemonSummaryApp * param0);
@@ -140,7 +140,7 @@ BOOL PokemonSummary_ShowContestData(SaveData * param0)
     return EventFlag_VisitedContestHall(SaveData_Events(param0));
 }
 
-static int sub_0208C330 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_0208C330 (OverlayManager * param0, int * param1)
 {
     PokemonSummaryApp * v0;
     NARC * v1;
@@ -199,7 +199,7 @@ static int sub_0208C330 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static int sub_0208C488 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_0208C488 (OverlayManager * param0, int * param1)
 {
     PokemonSummaryApp * v0 = sub_0200682C(param0);
 
@@ -278,7 +278,7 @@ static int sub_0208C488 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-static int sub_0208C5A0 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_0208C5A0 (OverlayManager * param0, int * param1)
 {
     PokemonSummaryApp * v0 = sub_0200682C(param0);
 

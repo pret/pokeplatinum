@@ -24,7 +24,7 @@ static Unk_ov97_02240408;
 static DWCNdFileInfo Unk_ov97_02240414[10];
 
 static void ov97_02238E88(void);
-int ov97_02238EAC(UnkStruct_020067E8 * param0, int * param1);
+int ov97_02238EAC(OverlayManager * param0, int * param1);
 
 static void * ov97_02238D74 (DWCAllocType param0, u32 param1, int param2)
 {
@@ -185,7 +185,7 @@ static void ov97_02238E94 (void)
     sub_020334CC();
 }
 
-int ov97_02238EAC (UnkStruct_020067E8 * param0, int * param1)
+int ov97_02238EAC (OverlayManager * param0, int * param1)
 {
     int v0;
     DWCNasLoginState v1;

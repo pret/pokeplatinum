@@ -72,12 +72,12 @@ typedef struct {
     u16 unk_0A;
     UnkStruct_0203D9B8 * unk_0C;
     void * unk_10;
-    UnkStruct_020067E8 * unk_14;
+    OverlayManager * unk_14;
 } UnkStruct_02098BE4;
 
-static int sub_02098B1C(UnkStruct_020067E8 * param0, int * param1);
-static int sub_02098B50(UnkStruct_020067E8 * param0, int * param1);
-static int sub_02098BC4(UnkStruct_020067E8 * param0, int * param1);
+static int sub_02098B1C(OverlayManager * param0, int * param1);
+static int sub_02098B50(OverlayManager * param0, int * param1);
+static int sub_02098BC4(OverlayManager * param0, int * param1);
 static void sub_02098BE4(UnkStruct_02098BE4 * param0);
 static int sub_02098C2C(UnkStruct_02098BE4 * param0);
 static int sub_02098C44(UnkStruct_02098BE4 * param0);
@@ -163,7 +163,7 @@ void sub_02098AF0 (UnkStruct_0203D9B8 * param0)
     Heap_FreeToHeap(param0);
 }
 
-static BOOL sub_02098AF8 (UnkStruct_020067E8 ** param0)
+static BOOL sub_02098AF8 (OverlayManager ** param0)
 {
     if (*param0) {
         if (sub_02006844(*param0)) {
@@ -176,7 +176,7 @@ static BOOL sub_02098AF8 (UnkStruct_020067E8 ** param0)
     return 0;
 }
 
-static int sub_02098B1C (UnkStruct_020067E8 * param0, int * param1)
+static int sub_02098B1C (OverlayManager * param0, int * param1)
 {
     UnkStruct_02098BE4 * v0 = NULL;
     void * v1 = sub_02006840(param0);
@@ -192,7 +192,7 @@ static int sub_02098B1C (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static int sub_02098B50 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_02098B50 (OverlayManager * param0, int * param1)
 {
     UnkStruct_02098BE4 * v0 = (UnkStruct_02098BE4 *)sub_0200682C(param0);
 
@@ -228,7 +228,7 @@ static int sub_02098B50 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-static int  sub_02098BC4 (UnkStruct_020067E8 * param0, int * param1)
+static int  sub_02098BC4 (OverlayManager * param0, int * param1)
 {
     UnkStruct_02098BE4 * v0 = (UnkStruct_02098BE4 *)sub_0200682C(param0);
 

@@ -62,7 +62,7 @@ static void ov121_021D128C(void);
 static void ov121_021D1310(GenericPointerData * param0);
 static void ov121_021D1318(UnkStruct_ov121_021D0FF4 * param0);
 
-int ov121_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
+int ov121_021D0D80 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov121_021D0FF4 * v0;
 
@@ -107,7 +107,7 @@ int ov121_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov121_021D0E7C (UnkStruct_020067E8 * param0, int * param1)
+int ov121_021D0E7C (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov121_021D0FF4 * v0 = sub_0200682C(param0);
 
@@ -145,7 +145,7 @@ int ov121_021D0E7C (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov121_021D0F14 (UnkStruct_020067E8 * param0, int * param1)
+int ov121_021D0F14 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov121_021D0FF4 * v0 = sub_0200682C(param0);
 

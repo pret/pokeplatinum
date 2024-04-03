@@ -47,7 +47,7 @@
 
 static void ov96_0223B940(void * param0);
 static void ov96_0223B960(void);
-static void ov96_0223B980(UnkStruct_ov96_0223BF40 * param0, UnkStruct_020067E8 * param1);
+static void ov96_0223B980(UnkStruct_ov96_0223BF40 * param0, OverlayManager * param1);
 static void ov96_0223B99C(UnkStruct_ov96_0223BF40 * param0);
 static void ov96_0223B9A0(void);
 static void ov96_0223B9D0(UnkStruct_ov96_0223BF40 * param0);
@@ -65,7 +65,7 @@ static int (* Unk_ov96_0223DCD4[][3])(UnkStruct_ov96_0223BF40 *, int) = {
 
 UnkStruct_ov96_0223BF40 * Unk_ov96_0223DEEC;
 
-int ov96_0223B6A0 (UnkStruct_020067E8 * param0, int * param1)
+int ov96_0223B6A0 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov96_0223BF40 * v0;
 
@@ -123,7 +123,7 @@ int ov96_0223B6A0 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov96_0223B7F8 (UnkStruct_020067E8 * param0, int * param1)
+int ov96_0223B7F8 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov96_0223BF40 * v0 = sub_0200682C(param0);
     int v1;
@@ -168,7 +168,7 @@ int ov96_0223B7F8 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov96_0223B8CC (UnkStruct_020067E8 * param0, int * param1)
+int ov96_0223B8CC (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov96_0223BF40 * v0 = sub_0200682C(param0);
     int v1;
@@ -225,7 +225,7 @@ static void ov96_0223B960 (void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov96_0223B980 (UnkStruct_ov96_0223BF40 * param0, UnkStruct_020067E8 * param1)
+static void ov96_0223B980 (UnkStruct_ov96_0223BF40 * param0, OverlayManager * param1)
 {
     param0->unk_00 = (UnkStruct_0206BC70 *)sub_02006840(param1);
     param0->unk_10 = 0;
