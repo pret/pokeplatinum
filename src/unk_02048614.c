@@ -56,7 +56,7 @@ BOOL sub_02048614 (UnkStruct_0203E724 * param0)
     int * v4;
     SysTask ** v5;
     UnkStruct_02061AB4 ** v6;
-    UnkStruct_0205E884 * v7;
+    PlayerAvatar * v7;
     FieldSystem * v8 = param0->unk_34;
     u16 v9 = inline_02049538(param0);
 
@@ -78,7 +78,7 @@ BOOL sub_02048614 (UnkStruct_0203E724 * param0)
         v5 = sub_0203F098(v8, 37);
     }
 
-    v7 = v8->unk_3C;
+    v7 = v8->playerAvatar;
     *v5 = sub_02067FB8(v8, *v6, v7, *v4, *v0, 0, *v3, v9);
 
     return 0;

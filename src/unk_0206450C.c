@@ -1105,7 +1105,7 @@ static int sub_02065124 (UnkStruct_02061AB4 * param0, UnkStruct_0206502C * param
 {
     if (sub_02062950(param0) == 0xa) {
         FieldSystem * v0 = sub_02062C00(param0);
-        UnkStruct_0205E884 * v1 = sub_0205EF3C(v0);
+        PlayerAvatar * v1 = sub_0205EF3C(v0);
         int v2 = sub_0206298C(param0);
         int v3 = sub_020629D8(param0, 0);
         int v4 = sub_02067D58(param0, v1, v2, v3);
@@ -1285,7 +1285,7 @@ static int sub_0206537C (UnkStruct_02061AB4 * param0)
 
     {
         FieldSystem * v1 = sub_02062C00(param0);
-        UnkStruct_0205E884 * v2 = sub_0205EF3C(v1);
+        PlayerAvatar * v2 = sub_0205EF3C(v1);
 
         if (sub_0206140C(v2) == 0) {
             return(-1);
@@ -1375,7 +1375,7 @@ static int sub_02065448 (UnkStruct_02061AB4 * param0, int param1, int param2)
                 int v6 = sub_02063020(param0);
                 int v7 = sub_02063040(param0);
                 FieldSystem * v8 = sub_02062C00(param0);
-                UnkStruct_0205E884 * v9 = sub_0205EF3C(v8);
+                PlayerAvatar * v9 = sub_0205EF3C(v8);
                 int v10 = Player_XPos(v9);
                 int v11 = Player_ZPos(v9);
 

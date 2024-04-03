@@ -234,10 +234,10 @@ static void ov5_021E2028 (FieldSystem * param0)
     sub_0203A7A8(param0);
     ov5_021EA714(param0, 4, 0);
 
-    param0->unk_1C->unk_08 = Player_XPos(param0->unk_3C);
-    param0->unk_1C->unk_0C = Player_ZPos(param0->unk_3C);
+    param0->unk_1C->unk_08 = Player_XPos(param0->playerAvatar);
+    param0->unk_1C->unk_0C = Player_ZPos(param0->playerAvatar);
     param0->unk_1C->unk_04 = -1;
-    param0->unk_1C->unk_10 = Player_Dir(param0->unk_3C);
+    param0->unk_1C->unk_10 = Player_Dir(param0->playerAvatar);
 }
 
 void ov5_021E2064 (FieldSystem * param0)

@@ -719,7 +719,7 @@ BOOL ov23_0223E354 (int param0, UnkStruct_ov23_0224271C * param1)
             return 1;
         }
 
-        sub_02035AC4(64, &v1, 1);
+        CommSys_SendDataServer(64, &v1, 1);
         sub_02059058(param0, 0);
 
         Unk_ov23_02257740->unk_84C[param0] = v0;
@@ -1068,7 +1068,7 @@ void ov23_0223EAF8 (int param0, int param1, void * param2, void * param3)
 
     if ((v3[0] != 0) && v1) {
         if (v1->unk_04 == 0xff) {
-            sub_02035AC4(66, &v2, 1);
+            CommSys_SendDataServer(66, &v2, 1);
 
             v1->unk_04 = 0xff;
             v1->unk_00 = 0xffff;
@@ -2457,8 +2457,8 @@ static void ov23_02240758 (UnkStruct_ov23_0223EE80 * param0)
 
     for (v1 = 0; v1 < (7 + 1); v1++) {
         if ((Unk_ov23_02257740->unk_910[v1] != 0xff) && (Unk_ov23_02257740->unk_918[v1] != 0xff)) {
-            int v2 = sub_02058CA0(CommSys_CurNetId());
-            int v3 = sub_02058CF4(CommSys_CurNetId());
+            int v2 = CommPlayer_XPos(CommSys_CurNetId());
+            int v3 = CommPlayer_ZPos(CommSys_CurNetId());
             int v4 = ov23_0224AD04(v1);
             int v5 = ov23_0224AD40(v1);
 

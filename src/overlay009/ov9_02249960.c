@@ -2061,7 +2061,7 @@ BOOL ov9_0224A59C (FieldSystem * param0, int param1)
         int v1, v2, v3, v4;
         UnkStruct_ov9_02249B04 * v5 = param0->unk_04->unk_24;
 
-        v4 = sub_02061434(param0->unk_3C, param1);
+        v4 = sub_02061434(param0->playerAvatar, param1);
         ov9_02250F44(v5, &v1, &v2, &v3);
 
         if (v4 == 1) {
@@ -2147,7 +2147,7 @@ BOOL ov9_0224A71C (FieldSystem * param0)
 
     {
         int v1, v2, v3;
-        int v4 = Player_Dir(param0->unk_3C);
+        int v4 = Player_Dir(param0->playerAvatar);
         UnkStruct_ov9_02249B04 * v5 = param0->unk_04->unk_24;
 
         ov9_02250F44(v5, &v1, &v2, &v3);
@@ -2241,7 +2241,7 @@ static void ov9_0224A8C0 (UnkStruct_ov9_02249B04 * param0)
     u32 v0, v1;
     int v2, v3, v4, v5;
     int v6[6] = {0, 0, 0, 90, 270, 180};
-    UnkStruct_0205E884 * v7 = param0->unk_00->unk_3C;
+    PlayerAvatar * v7 = param0->unk_00->playerAvatar;
     UnkStruct_02061AB4 * v8 = sub_0205EB3C(v7);
 
     ov9_02250F44(param0, &v2, &v3, &v4);
@@ -2303,7 +2303,7 @@ static void ov9_0224A8C0 (UnkStruct_ov9_02249B04 * param0)
 
 static void ov9_0224A9E8 (UnkStruct_ov9_02249B04 * param0)
 {
-    UnkStruct_0205E884 * v0 = param0->unk_00->unk_3C;
+    PlayerAvatar * v0 = param0->unk_00->playerAvatar;
 
     sub_0205F098(v0, 0);
     sub_0205EBC0(v0);
@@ -2317,7 +2317,7 @@ static BOOL ov9_0224AA00 (UnkStruct_ov9_02249B04 * param0, int param1, int param
         v0 = ov9_0224C69C(param0, param1, param2, param3, param4);
 
         if (v0) {
-            UnkStruct_02061AB4 * v1 = sub_0205EB3C(param0->unk_00->unk_3C);
+            UnkStruct_02061AB4 * v1 = sub_0205EB3C(param0->unk_00->playerAvatar);
 
             Unk_ov9_02251224[v0->unk_00](param0, v0);
             return 1;
@@ -2361,7 +2361,7 @@ static BOOL ov9_0224AAD4 (UnkStruct_020508D4 * param0)
     FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_ov9_02249B04 * v1 = sub_02050A64(param0);
     UnkStruct_ov9_0224AC58 * v2 = ov9_0224A598(v1);
-    UnkStruct_0205E884 * v3 = v0->unk_3C;
+    PlayerAvatar * v3 = v0->playerAvatar;
     UnkStruct_02061AB4 * v4 = sub_0205EB3C(v3);
 
     switch (v2->unk_00) {
@@ -4397,7 +4397,7 @@ static void ov9_0224C8E8 (UnkStruct_ov9_02249B04 * param0)
         NARC * v6 = ov5_021E9828(v3->unk_28);
 
         v2->unk_18 = ov5_021E9830(v2->unk_10, v2->unk_14, v6);
-        ov5_021E931C(sub_0205EAFC(v3->unk_3C), v2->unk_18);
+        ov5_021E931C(sub_0205EAFC(v3->playerAvatar), v2->unk_18);
     }
 
     {
@@ -4413,8 +4413,8 @@ static void ov9_0224C8E8 (UnkStruct_ov9_02249B04 * param0)
     }
 
     {
-        int v10 = Player_XPos(v3->unk_3C);
-        int v11 = Player_ZPos(v3->unk_3C);
+        int v10 = Player_XPos(v3->playerAvatar);
+        int v11 = Player_ZPos(v3->playerAvatar);
 
         ov5_021E99D8(v2->unk_18, v10, v11);
         v2->unk_08 = 1;
@@ -4424,7 +4424,7 @@ static void ov9_0224C8E8 (UnkStruct_ov9_02249B04 * param0)
 
     if (ov9_02249D38(param0) == 0) {
         VecFx32 v12, v13;
-        UnkStruct_02061AB4 * v14 = sub_0205EB3C(v3->unk_3C);
+        UnkStruct_02061AB4 * v14 = sub_0205EB3C(v3->playerAvatar);
 
         sub_02063050(v14, &v13);
         ov5_021EA6BC(v3->unk_28, &v12);
@@ -4687,8 +4687,8 @@ static int ov9_0224CCB8 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224CBD8
     ov9_0224BF18(param0, v2->unk_08);
     ov5_021E9CD8(v0->unk_28);
 
-    param1->unk_08 = Player_XPos(v0->unk_3C);
-    param1->unk_0A = Player_ZPos(v0->unk_3C);
+    param1->unk_08 = Player_XPos(v0->playerAvatar);
+    param1->unk_0A = Player_ZPos(v0->playerAvatar);
 
     ov5_021E9D3C(v1->unk_10, v1->unk_14, v1->unk_18, v0->unk_28, param1->unk_08, param1->unk_0A);
     v1->unk_08 = 0;
@@ -4994,7 +4994,7 @@ static int ov9_0224D0C8 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
     }
 
     v3 = ov9_0224DE70(param1->unk_02);
-    v1 = sub_0205EB3C(param0->unk_00->unk_3C);
+    v1 = sub_0205EB3C(param0->unk_00->playerAvatar);
 
     sub_02063050(v1, &param1->unk_14);
     sub_02062E28(v1, 1);
@@ -5049,7 +5049,7 @@ static int ov9_0224D0C8 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
 static int ov9_0224D288 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078 * param1)
 {
     VecFx32 v0;
-    UnkStruct_0205E884 * v1 = param0->unk_00->unk_3C;
+    PlayerAvatar * v1 = param0->unk_00->playerAvatar;
     UnkStruct_02061AB4 * v2 = sub_0205EB3C(v1);
     VecFx32 * v3 = ov9_0224E330(param1->unk_64->unk_20);
 
@@ -5110,7 +5110,7 @@ static int ov9_0224D288 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
 static int ov9_0224D374 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078 * param1)
 {
     int v0;
-    UnkStruct_0205E884 * v1 = param0->unk_00->unk_3C;
+    PlayerAvatar * v1 = param0->unk_00->playerAvatar;
     UnkStruct_02061AB4 * v2 = sub_0205EB3C(v1);
     VecFx32 * v3 = ov9_0224E330(param1->unk_64->unk_20);
 
@@ -5192,7 +5192,7 @@ static int ov9_0224D430 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
 static int ov9_0224D4C4 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078 * param1)
 {
     int v0;
-    UnkStruct_0205E884 * v1 = param0->unk_00->unk_3C;
+    PlayerAvatar * v1 = param0->unk_00->playerAvatar;
     UnkStruct_02061AB4 * v2 = sub_0205EB3C(v1);
     VecFx32 * v3 = ov9_0224E330(param1->unk_64->unk_20);
 
@@ -5229,7 +5229,7 @@ static int ov9_0224D4C4 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
             sub_020057A4(1481, 0);
             param1->unk_04 = 5;
         } else {
-            UnkStruct_02061AB4 * v5 = sub_0205EB3C(param0->unk_00->unk_3C);
+            UnkStruct_02061AB4 * v5 = sub_0205EB3C(param0->unk_00->playerAvatar);
 
             sub_02063024(v5, param1->unk_0A);
             sub_02063034(v5, param1->unk_0C);
@@ -5260,13 +5260,13 @@ static int ov9_0224D4C4 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
 static int ov9_0224D5E8 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078 * param1)
 {
     if (ov9_0224CC7C(param0) == 0) {
-        UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0->unk_00->unk_3C);
+        UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0->unk_00->playerAvatar);
 
         sub_02063024(v0, param1->unk_0A);
         sub_02063034(v0, param1->unk_0C);
         sub_02063044(v0, param1->unk_0E);
         sub_02064208(v0);
-        sub_0205ED48(param0->unk_00->unk_3C, 1);
+        sub_0205ED48(param0->unk_00->playerAvatar, 1);
 
         if (param1->unk_68 != NULL) {
             sub_02063034(param1->unk_68, param1->unk_0C);
@@ -6380,7 +6380,7 @@ static int ov9_0224E550 (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * p
 
     if (v0->unk_02 == 1) {
         VecFx32 v3;
-        UnkStruct_02061AB4 * v4 = sub_0205EB3C(param0->unk_00->unk_3C);
+        UnkStruct_02061AB4 * v4 = sub_0205EB3C(param0->unk_00->playerAvatar);
 
         sub_02062E28(v4, 1);
         sub_0206309C(v4, &v3);
@@ -6402,7 +6402,7 @@ static int ov9_0224E5EC (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * p
     VecFx32 * v3 = ov9_0224E330(v2->unk_24->unk_20);
 
     if (v1->unk_02 == 1) {
-        v0 = sub_0205EB3C(param0->unk_00->unk_3C);
+        v0 = sub_0205EB3C(param0->unk_00->playerAvatar);
     }
 
     v3->y = v2->unk_2C + v2->unk_30;
@@ -6488,7 +6488,7 @@ static int ov9_0224E6B0 (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * p
 
     if (v1->unk_02 == 1) {
         VecFx32 v4;
-        UnkStruct_02061AB4 * v5 = sub_0205EB3C(param0->unk_00->unk_3C);
+        UnkStruct_02061AB4 * v5 = sub_0205EB3C(param0->unk_00->playerAvatar);
 
         sub_02063050(v5, &v4);
 
@@ -6511,7 +6511,7 @@ static int ov9_0224E798 (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * p
     const UnkStruct_ov9_0224E550 * v0 = param3;
 
     if (v0->unk_02 == 1) {
-        UnkStruct_02061AB4 * v1 = sub_0205EB3C(param0->unk_00->unk_3C);
+        UnkStruct_02061AB4 * v1 = sub_0205EB3C(param0->unk_00->playerAvatar);
         int v2 = sub_02063020(v1) + v0->unk_06;
         int v3 = sub_02063030(v1) + ((v0->unk_08) * 2);
         int v4 = sub_02063040(v1) + v0->unk_0A;
@@ -6523,7 +6523,7 @@ static int ov9_0224E798 (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * p
 
         {
             u32 v5;
-            UnkStruct_0205E884 * v6 = param0->unk_00->unk_3C;
+            PlayerAvatar * v6 = param0->unk_00->playerAvatar;
 
             v3 = ((v3) / 2);
             ov9_0224C378(param0, v2, v3, v4, 4);
@@ -7807,7 +7807,7 @@ static void ov9_0224F760 (UnkStruct_ov9_02249B04 * param0)
 static void ov9_0224F764 (UnkStruct_ov9_02249B04 * param0)
 {
     UnkStruct_ov9_0224ADC0 * v0 = &param0->unk_1D00;
-    UnkStruct_0205E884 * v1 = param0->unk_00->unk_3C;
+    PlayerAvatar * v1 = param0->unk_00->playerAvatar;
     const VecFx32 * v2 = sub_0205EAFC(v1);
 
     if (v0->unk_06 == 0) {
@@ -8024,7 +8024,7 @@ static const UnkStruct_ov9_0224A8A0 Unk_ov9_02251888 = {
 
 static void ov9_0224FA94 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224FA94 * param1)
 {
-    UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0->unk_00->unk_3C);
+    UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0->unk_00->playerAvatar);
     int v1 = (((param1->unk_40.unk_10.y) >> 4) / FX32_ONE);
 
     if ((param1->unk_04 == 0) && (v1 == -20)) {
@@ -8053,14 +8053,14 @@ static int ov9_0224FB3C (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * p
     VecFx32 v0;
     UnkStruct_ov9_0224F930 * v1;
     UnkStruct_02061AB4 * v2;
-    UnkStruct_0205E884 * v3;
+    PlayerAvatar * v3;
     UnkStruct_ov9_0224FA94 * v4;
     const UnkStruct_ov9_02252384 * v5;
 
     v5 = param3;
     v4 = ov9_0224E37C(param0, sizeof(UnkStruct_ov9_0224FA94));
     v1 = &v4->unk_40;
-    v3 = param0->unk_00->unk_3C;
+    v3 = param0->unk_00->playerAvatar;
     v2 = sub_0205EB3C(v3);
 
     sub_02063050(v2, &v0);
@@ -8113,7 +8113,7 @@ static int ov9_0224FB3C (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * p
 
 static int ov9_0224FC2C (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * param1, u16 * param2, const void * param3)
 {
-    UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0->unk_00->unk_3C);
+    UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0->unk_00->playerAvatar);
     UnkStruct_ov9_0224FA94 * v1 = ov9_0224E39C(param0);
     UnkStruct_ov9_0224F930 * v2 = &v1->unk_40;
 
@@ -8122,7 +8122,7 @@ static int ov9_0224FC2C (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * p
     ov9_0224FA94(param0, v1);
 
     {
-        UnkStruct_ov101_021D5D90 * v3 = sub_0205EC04(param0->unk_00->unk_3C);
+        UnkStruct_ov101_021D5D90 * v3 = sub_0205EC04(param0->unk_00->playerAvatar);
 
         {
             UnkStruct_ov5_02201C58 * v4 = ov5_021F88A8(v3);
@@ -8160,7 +8160,7 @@ static int ov9_0224FC2C (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * p
         ov9_0224F930(v2, 0, 0x400, (FX32_ONE * 4));
 
         {
-            UnkStruct_ov101_021D5D90 * v6 = sub_0205EC04(param0->unk_00->unk_3C);
+            UnkStruct_ov101_021D5D90 * v6 = sub_0205EC04(param0->unk_00->playerAvatar);
             VecFx32 * v7;
 
             v7 = ov5_021F88FC(v6);
@@ -8185,8 +8185,8 @@ static int ov9_0224FC2C (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * p
 static int ov9_0224FD74 (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * param1, u16 * param2, const void * param3)
 {
     int v0;
-    UnkStruct_ov101_021D5D90 * v1 = sub_0205EC04(param0->unk_00->unk_3C);
-    UnkStruct_02061AB4 * v2 = sub_0205EB3C(param0->unk_00->unk_3C);
+    UnkStruct_ov101_021D5D90 * v1 = sub_0205EC04(param0->unk_00->playerAvatar);
+    UnkStruct_02061AB4 * v2 = sub_0205EB3C(param0->unk_00->playerAvatar);
     UnkStruct_ov9_0224FA94 * v3 = ov9_0224E39C(param0);
     UnkStruct_ov9_0224F930 * v4 = &v3->unk_40;
 
@@ -8261,8 +8261,8 @@ static int ov9_0224FD74 (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * p
 static int ov9_0224FEDC (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * param1, u16 * param2, const void * param3)
 {
     int v0;
-    UnkStruct_ov101_021D5D90 * v1 = sub_0205EC04(param0->unk_00->unk_3C);
-    UnkStruct_02061AB4 * v2 = sub_0205EB3C(param0->unk_00->unk_3C);
+    UnkStruct_ov101_021D5D90 * v1 = sub_0205EC04(param0->unk_00->playerAvatar);
+    UnkStruct_02061AB4 * v2 = sub_0205EB3C(param0->unk_00->playerAvatar);
     UnkStruct_ov9_0224FA94 * v3 = ov9_0224E39C(param0);
     UnkStruct_ov9_0224F930 * v4 = &v3->unk_40;
 
@@ -8316,7 +8316,7 @@ static int ov9_0224FEDC (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * p
         sub_02063088(v2, &v13);
         sub_020630AC(v2, &v13);
         ov9_0224C378(param0, v8, ((v9) / 2), v10, 4);
-        sub_0205F098(param0->unk_00->unk_3C, 1);
+        sub_0205F098(param0->unk_00->playerAvatar, 1);
         sub_02062E28(v2, 0);
 
         {
@@ -8349,7 +8349,7 @@ static int ov9_022500E0 (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * p
 {
     u32 v0[2] = {0xa, 0x6};
     UnkStruct_ov9_0224FA94 * v1 = ov9_0224E39C(param0);
-    UnkStruct_02061AB4 * v2 = sub_0205EB3C(param0->unk_00->unk_3C);
+    UnkStruct_02061AB4 * v2 = sub_0205EB3C(param0->unk_00->playerAvatar);
 
     if (sub_020655F4(v2) == 0) {
         return 0;
@@ -8383,7 +8383,7 @@ static const UnkStruct_ov9_0224A8A0 Unk_ov9_02251C48 = {
 
 static void ov9_02250138 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_02250138 * param1)
 {
-    UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0->unk_00->unk_3C);
+    UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0->unk_00->playerAvatar);
     int v1 = (((param1->unk_34.unk_10.y) >> 4) / FX32_ONE);
 
     if ((param1->unk_04 == 0) && (v1 == 20)) {
@@ -8397,14 +8397,14 @@ static int ov9_02250170 (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * p
     VecFx32 v0;
     UnkStruct_ov9_0224F930 * v1;
     UnkStruct_02061AB4 * v2;
-    UnkStruct_0205E884 * v3;
+    PlayerAvatar * v3;
     UnkStruct_ov9_02250138 * v4;
     const UnkStruct_ov9_022523F0 * v5;
 
     v5 = param3;
     v4 = ov9_0224E37C(param0, sizeof(UnkStruct_ov9_02250138));
     v1 = &v4->unk_34;
-    v3 = param0->unk_00->unk_3C;
+    v3 = param0->unk_00->playerAvatar;
     v2 = sub_0205EB3C(v3);
 
     sub_02063050(v2, &v0);
@@ -8457,7 +8457,7 @@ static int ov9_02250170 (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * p
 
 static int ov9_02250260 (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * param1, u16 * param2, const void * param3)
 {
-    UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0->unk_00->unk_3C);
+    UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0->unk_00->playerAvatar);
     UnkStruct_ov9_02250138 * v1 = ov9_0224E39C(param0);
     UnkStruct_ov9_0224F930 * v2 = &v1->unk_34;
 
@@ -8466,7 +8466,7 @@ static int ov9_02250260 (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * p
     ov9_02250138(param0, v1);
 
     {
-        UnkStruct_ov101_021D5D90 * v3 = sub_0205EC04(param0->unk_00->unk_3C);
+        UnkStruct_ov101_021D5D90 * v3 = sub_0205EC04(param0->unk_00->playerAvatar);
 
         {
             UnkStruct_ov5_02201C58 * v4 = ov5_021F88A8(v3);
@@ -8504,7 +8504,7 @@ static int ov9_02250260 (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * p
         ov9_0224F930(v2, 0, 0x200, (FX32_ONE * 4));
 
         {
-            UnkStruct_ov101_021D5D90 * v6 = sub_0205EC04(param0->unk_00->unk_3C);
+            UnkStruct_ov101_021D5D90 * v6 = sub_0205EC04(param0->unk_00->playerAvatar);
             VecFx32 * v7;
 
             v7 = ov5_021F88FC(v6);
@@ -8526,8 +8526,8 @@ static int ov9_02250260 (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * p
 static int ov9_02250388 (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * param1, u16 * param2, const void * param3)
 {
     int v0;
-    UnkStruct_ov101_021D5D90 * v1 = sub_0205EC04(param0->unk_00->unk_3C);
-    UnkStruct_02061AB4 * v2 = sub_0205EB3C(param0->unk_00->unk_3C);
+    UnkStruct_ov101_021D5D90 * v1 = sub_0205EC04(param0->unk_00->playerAvatar);
+    UnkStruct_02061AB4 * v2 = sub_0205EB3C(param0->unk_00->playerAvatar);
     UnkStruct_ov9_02250138 * v3 = ov9_0224E39C(param0);
     UnkStruct_ov9_0224F930 * v4 = &v3->unk_34;
 
@@ -8579,8 +8579,8 @@ static int ov9_02250388 (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * p
 static int ov9_02250468 (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * param1, u16 * param2, const void * param3)
 {
     int v0;
-    UnkStruct_ov101_021D5D90 * v1 = sub_0205EC04(param0->unk_00->unk_3C);
-    UnkStruct_02061AB4 * v2 = sub_0205EB3C(param0->unk_00->unk_3C);
+    UnkStruct_ov101_021D5D90 * v1 = sub_0205EC04(param0->unk_00->playerAvatar);
+    UnkStruct_02061AB4 * v2 = sub_0205EB3C(param0->unk_00->playerAvatar);
     UnkStruct_ov9_02250138 * v3 = ov9_0224E39C(param0);
     UnkStruct_ov9_0224F930 * v4 = &v3->unk_34;
 
@@ -8634,7 +8634,7 @@ static int ov9_02250468 (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * p
         sub_02063088(v2, &v13);
         sub_020630AC(v2, &v13);
         ov9_0224C378(param0, v8, ((v9) / 2), v10, 4);
-        sub_0205F098(param0->unk_00->unk_3C, 5);
+        sub_0205F098(param0->unk_00->playerAvatar, 5);
         sub_02062E28(v2, 1);
 
         {
@@ -8662,7 +8662,7 @@ static int ov9_02250650 (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * p
 {
     u32 v0[3] = {0x97, 0x93, 0x73};
     UnkStruct_ov9_02250138 * v1 = ov9_0224E39C(param0);
-    UnkStruct_02061AB4 * v2 = sub_0205EB3C(param0->unk_00->unk_3C);
+    UnkStruct_02061AB4 * v2 = sub_0205EB3C(param0->unk_00->playerAvatar);
 
     if (sub_020655F4(v2) == 0) {
         return 0;
@@ -9282,7 +9282,7 @@ static int ov9_02250C48 (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * p
         }
 
         v0->unk_10 = sub_02065700(v0->unk_18, v6);
-        v0->unk_14 = sub_02065700(sub_0205EB3C(param0->unk_00->unk_3C), v5);
+        v0->unk_14 = sub_02065700(sub_0205EB3C(param0->unk_00->playerAvatar), v5);
         *param2 = 2;
     }
 
@@ -9497,7 +9497,7 @@ static void ov9_02250F1C (fx32 * param0, fx32 param1)
 
 static void ov9_02250F44 (UnkStruct_ov9_02249B04 * param0, int * param1, int * param2, int * param3)
 {
-    UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0->unk_00->unk_3C);
+    UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0->unk_00->playerAvatar);
 
     *param1 = sub_02063020(v0);
     *param2 = sub_02063030(v0);

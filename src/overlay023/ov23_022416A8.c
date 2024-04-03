@@ -360,7 +360,7 @@ void ov23_02241AE8 (int param0, int param1, int param2, int param3)
         return;
     }
 
-    if (sub_02058108(param2, param3)) {
+    if (CommPlayer_CheckNPCCollision(param2, param3)) {
         ov23_02253F40(ov23_0224219C(), 55, 0, NULL);
         return;
     }

@@ -37,7 +37,7 @@ typedef struct {
 } UnkStruct_02050568;
 
 static BOOL sub_020505A0(UnkStruct_020508D4 * param0);
-static void sub_0205074C(UnkStruct_0205E884 * param0, BOOL param1);
+static void sub_0205074C(PlayerAvatar * param0, BOOL param1);
 static void sub_0205075C(FieldSystem * param0);
 
 void sub_02050568 (FieldSystem * param0)
@@ -56,8 +56,8 @@ static BOOL sub_020505A0 (UnkStruct_020508D4 * param0)
 
     switch (v1->unk_08) {
     case 0:
-        v1->unk_04 = Player_XPos(v0->unk_3C);
-        v1->unk_06 = Player_ZPos(v0->unk_3C);
+        v1->unk_04 = Player_XPos(v0->playerAvatar);
+        v1->unk_06 = Player_ZPos(v0->playerAvatar);
         sub_02070428(v0, 1);
         sub_020558AC(param0);
         v1->unk_08++;
@@ -82,7 +82,7 @@ static BOOL sub_020505A0 (UnkStruct_020508D4 * param0)
         v1->unk_08++;
         break;
     case 4:
-        sub_0205074C(v0->unk_3C, 1);
+        sub_0205074C(v0->playerAvatar, 1);
         sub_0205075C(v0);
         sub_02056B30(param0, 3, 17, 0xffff, 0x0, 6, 1, 11);
         Sound_PlayEffect(1657);
@@ -118,7 +118,7 @@ static BOOL sub_020505A0 (UnkStruct_020508D4 * param0)
         v1->unk_08++;
         break;
     case 10:
-        sub_0205074C(v0->unk_3C, 0);
+        sub_0205074C(v0->playerAvatar, 0);
         sub_020558F0(param0);
         v1->unk_08++;
         break;
@@ -131,7 +131,7 @@ static BOOL sub_020505A0 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static void sub_0205074C (UnkStruct_0205E884 * param0, BOOL param1)
+static void sub_0205074C (PlayerAvatar * param0, BOOL param1)
 {
     UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0);
     sub_02062D64(v0, param1);

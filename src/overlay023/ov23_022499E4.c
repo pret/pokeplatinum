@@ -346,7 +346,7 @@ static void ov23_02249D20 (void)
         ov23_02244858(0, 1);
 
         CommInfo_InitPlayer(0);
-        CommPlayer_Destory(0, 0, 0);
+        CommPlayer_Destroy(0, 0, 0);
         sub_02059570();
 
         ov23_02249C24(ov23_02249EBC, 10);

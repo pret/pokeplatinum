@@ -989,7 +989,7 @@ BOOL ov5_021F7538 (UnkStruct_0203E724 * param0)
     int v3 = 0;
     FieldSystem * v4 = param0->unk_34;
     UnkStruct_02061830 * v5 = v4->unk_38;
-    UnkStruct_02061AB4 * v6 = sub_0205EB3C(v4->unk_3C);
+    UnkStruct_02061AB4 * v6 = sub_0205EB3C(v4->playerAvatar);
     UnkStruct_02061AB4 * v7;
 
     sub_02063050(v6, &v1);
@@ -1030,7 +1030,7 @@ BOOL ov5_021F7604 (UnkStruct_0203E724 * param0)
     int v0 = 0;
     FieldSystem * v1 = param0->unk_34;
     UnkStruct_02061830 * v2 = v1->unk_38;
-    UnkStruct_02061AB4 * v3 = sub_0205EB3C(v1->unk_3C);
+    UnkStruct_02061AB4 * v3 = sub_0205EB3C(v1->playerAvatar);
     UnkStruct_02061AB4 * v4;
 
     while (sub_020625B0(v2, &v4, &v0, (1 << 0)) == 1) {

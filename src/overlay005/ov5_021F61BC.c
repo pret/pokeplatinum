@@ -29,7 +29,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov5_021DF47C * unk_00;
     UnkStruct_021F61E8 * unk_04;
-    UnkStruct_0205E884 * unk_08;
+    PlayerAvatar * unk_08;
 } UnkStruct_021F6218;
 
 typedef struct {
@@ -83,7 +83,7 @@ static void ov5_021F620C (UnkStruct_021F61E8 * param0)
     sub_0207395C(&param0->unk_04);
 }
 
-void ov5_021F6218 (UnkStruct_0205E884 * param0)
+void ov5_021F6218 (PlayerAvatar * param0)
 {
     int v0 = 0, v1;
     UnkStruct_021F6218 v2;
@@ -129,7 +129,7 @@ static void ov5_021F62A0 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     int v0;
     UnkStruct_021F6264 * v1 = param1;
-    UnkStruct_0205E884 * v2 = v1->unk_24.unk_08;
+    PlayerAvatar * v2 = v1->unk_24.unk_08;
     UnkStruct_02061AB4 * v3 = sub_0205EB3C(v2);
 
     if (sub_02062764(v3, v1->unk_14, v1->unk_18) == 0) {

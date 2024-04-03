@@ -39,72 +39,72 @@ typedef struct {
     s16 unk_06;
 } UnkStruct_020EDB04;
 
-static int sub_0205F22C(UnkStruct_0205E884 * param0, int param1);
-static void sub_0205F350(UnkStruct_0205E884 * param0, int param1, u16 param2, u16 param3);
-static void sub_0205F378(UnkStruct_0205E884 * param0);
-static void sub_0205F3B8(UnkStruct_0205E884 * param0);
-static int sub_0205F62C(UnkStruct_0205E884 * param0, int param1);
-static u32 sub_0205F644(UnkStruct_0205E884 * param0, int param1);
-static int sub_0205F6A4(UnkStruct_0205E884 * param0, u32 param1, int param2);
-static void sub_0205FA6C(UnkStruct_0205E884 * param0);
-static int sub_0205FAB0(UnkStruct_0205E884 * param0, int param1);
-static int sub_0205FB10(UnkStruct_0205E884 * param0, int param1);
-static void sub_0205FB40(UnkStruct_0205E884 * param0, int param1);
-static void inline_0205F180(UnkStruct_0205E884 * param0, const UnkStruct_ov5_021E8F60 * param1, int param2, u16 param3, u16 param4);
-static void inline_0205F180_sub(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, const UnkStruct_ov5_021E8F60 * param2, int param3, u16 param4, u16 param5);
-static int sub_0205FC48(UnkStruct_0205E884 * param0, int param1);
+static int sub_0205F22C(PlayerAvatar * param0, int param1);
+static void sub_0205F350(PlayerAvatar * param0, int param1, u16 param2, u16 param3);
+static void sub_0205F378(PlayerAvatar * param0);
+static void sub_0205F3B8(PlayerAvatar * param0);
+static int sub_0205F62C(PlayerAvatar * param0, int param1);
+static u32 sub_0205F644(PlayerAvatar * param0, int param1);
+static int sub_0205F6A4(PlayerAvatar * param0, u32 param1, int param2);
+static void sub_0205FA6C(PlayerAvatar * param0);
+static int sub_0205FAB0(PlayerAvatar * param0, int param1);
+static int sub_0205FB10(PlayerAvatar * param0, int param1);
+static void sub_0205FB40(PlayerAvatar * param0, int param1);
+static void inline_0205F180(PlayerAvatar * param0, const UnkStruct_ov5_021E8F60 * param1, int param2, u16 param3, u16 param4);
+static void inline_0205F180_sub(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, const UnkStruct_ov5_021E8F60 * param2, int param3, u16 param4, u16 param5);
+static int sub_0205FC48(PlayerAvatar * param0, int param1);
 static int sub_0205FC64(int param0);
 static int sub_0205FC88(UnkStruct_02061AB4 * param0, u8 param1, int param2);
 static int sub_0205FCBC(UnkStruct_02061AB4 * param0, u8 param1, int param2);
-static int sub_0205FCC0(UnkStruct_0205E884 * param0, int param1);
-static void sub_0205FD20(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
-static void sub_0205FD40(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
-static void sub_0205FDC8(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
-static void sub_0205FECC(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
-static void sub_020600CC(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
-static void sub_02060150(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
-static void sub_020601D4(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
-static void sub_02060258(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
-static void sub_020602DC(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, const UnkStruct_ov5_021E8F60 * param2, int param3, u16 param4, u16 param5);
-static void sub_02060324(UnkStruct_0205E884 * param0, u16 param1);
-int sub_02060390(UnkStruct_0205E884 * param0, int param1);
-static int sub_020603BC(UnkStruct_0205E884 * param0);
-static int sub_020603EC(UnkStruct_0205E884 * param0);
-static void sub_02060420(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, const UnkStruct_ov5_021E8F60 * param2, int param3, u16 param4, u16 param5);
-static int sub_02060494(UnkStruct_0205E884 * param0, int param1);
+static int sub_0205FCC0(PlayerAvatar * param0, int param1);
+static void sub_0205FD20(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
+static void sub_0205FD40(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
+static void sub_0205FDC8(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
+static void sub_0205FECC(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
+static void sub_020600CC(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
+static void sub_02060150(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
+static void sub_020601D4(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
+static void sub_02060258(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
+static void sub_020602DC(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, const UnkStruct_ov5_021E8F60 * param2, int param3, u16 param4, u16 param5);
+static void sub_02060324(PlayerAvatar * param0, u16 param1);
+int sub_02060390(PlayerAvatar * param0, int param1);
+static int sub_020603BC(PlayerAvatar * param0);
+static int sub_020603EC(PlayerAvatar * param0);
+static void sub_02060420(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, const UnkStruct_ov5_021E8F60 * param2, int param3, u16 param4, u16 param5);
+static int sub_02060494(PlayerAvatar * param0, int param1);
 static int sub_020604B0(int param0);
-static int sub_020604E4(UnkStruct_0205E884 * param0, int param1);
-static void sub_02060548(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
-static void sub_02060570(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
-static void sub_02060688(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
-static void sub_020606C8(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
-static void sub_0206078C(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, const UnkStruct_ov5_021E8F60 * param2, int param3, u16 param4, u16 param5);
-static int sub_02060800(UnkStruct_0205E884 * param0, int param1);
+static int sub_020604E4(PlayerAvatar * param0, int param1);
+static void sub_02060548(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
+static void sub_02060570(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
+static void sub_02060688(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
+static void sub_020606C8(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
+static void sub_0206078C(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, const UnkStruct_ov5_021E8F60 * param2, int param3, u16 param4, u16 param5);
+static int sub_02060800(PlayerAvatar * param0, int param1);
 static int sub_0206081C(int param0);
-static int sub_02060850(UnkStruct_0205E884 * param0, int param1);
-static void sub_020608BC(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
-static void sub_020608E4(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
-static void sub_02060A60(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
-static void sub_02060AA0(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
-static u32 sub_02060C24(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2);
-static int sub_02060CE4(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2);
-static int sub_02060D98(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2);
-static int sub_02060E40(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2);
-static int sub_02060EE4(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2);
-static int sub_02060F4C(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2);
-static int sub_02060FA8(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2);
-static int sub_02061058(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2);
-static int sub_02061180(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2);
-static int sub_02061100(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2);
-static int sub_02061248(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2);
+static int sub_02060850(PlayerAvatar * param0, int param1);
+static void sub_020608BC(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
+static void sub_020608E4(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
+static void sub_02060A60(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
+static void sub_02060AA0(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4);
+static u32 sub_02060C24(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2);
+static int sub_02060CE4(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2);
+static int sub_02060D98(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2);
+static int sub_02060E40(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2);
+static int sub_02060EE4(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2);
+static int sub_02060F4C(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2);
+static int sub_02060FA8(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2);
+static int sub_02061058(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2);
+static int sub_02061180(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2);
+static int sub_02061100(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2);
+static int sub_02061248(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2);
 static int sub_02061310(u16 param0);
 static int sub_0206132C(u16 param0);
-static int sub_02061348(UnkStruct_0205E884 * param0, u16 param1, u16 param2);
+static int sub_02061348(PlayerAvatar * param0, u16 param1, u16 param2);
 static int sub_020613D8(int param0);
-static void sub_020615C8(UnkStruct_0205E884 * param0);
-static int sub_020615E0(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2);
-static int sub_02061630(UnkStruct_0205E884 * param0, u32 param1, int param2);
-static void sub_02060B64(UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, u32 param2, int param3);
+static void sub_020615C8(PlayerAvatar * param0);
+static int sub_020615E0(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2);
+static int sub_02061630(PlayerAvatar * param0, u32 param1, int param2);
+static void sub_02060B64(PlayerAvatar * param0, UnkStruct_02061AB4 * param1, u32 param2, int param3);
 
 static const UnkStruct_020EDB04 Unk_020EDB04[4] = {
     {0x0, 0x0, -1},
@@ -135,9 +135,9 @@ static const UnkStruct_020EDB04 Unk_020EDB64[4] = {
 };
 
 const UnkStruct_020EDB84 Unk_020EDB84[];
-static int(*const Unk_020EDAEC[6])(UnkStruct_0205E884 *, int);
+static int(*const Unk_020EDAEC[6])(PlayerAvatar *, int);
 
-void sub_0205F180 (UnkStruct_0205E884 * param0, const UnkStruct_ov5_021E8F60 * param1, int param2, u16 param3, u16 param4, BOOL param5)
+void sub_0205F180 (PlayerAvatar * param0, const UnkStruct_ov5_021E8F60 * param1, int param2, u16 param3, u16 param4, BOOL param5)
 {
     if (param2 == -1) {
         param2 = sub_02061348(param0, param3, param4);
@@ -173,12 +173,12 @@ void sub_0205F180 (UnkStruct_0205E884 * param0, const UnkStruct_ov5_021E8F60 * p
     sub_0205F3B8(param0);
 }
 
-int sub_0205F224 (UnkStruct_0205E884 * param0, int param1)
+int sub_0205F224 (PlayerAvatar * param0, int param1)
 {
     return sub_0205F22C(param0, param1);
 }
 
-static int sub_0205F22C (UnkStruct_0205E884 * param0, int param1)
+static int sub_0205F22C (PlayerAvatar * param0, int param1)
 {
     int v0;
     UnkStruct_02061AB4 * v1;
@@ -240,13 +240,13 @@ static int sub_0205F22C (UnkStruct_0205E884 * param0, int param1)
     return 0;
 }
 
-static void sub_0205F350 (UnkStruct_0205E884 * param0, int param1, u16 param2, u16 param3)
+static void sub_0205F350 (PlayerAvatar * param0, int param1, u16 param2, u16 param3)
 {
     sub_0205EBEC(param0, sub_02061310(param3), sub_0206132C(param3));
     sub_0205F054(param0);
 }
 
-static void sub_0205F378 (UnkStruct_0205E884 * param0)
+static void sub_0205F378 (PlayerAvatar * param0)
 {
     if ((sub_0205F060(param0) == 1) && (sub_0205EB0C(param0) == 1)) {
         sub_0205EF6C(param0, 0);
@@ -258,7 +258,7 @@ static void sub_0205F378 (UnkStruct_0205E884 * param0)
     }
 }
 
-static void sub_0205F3B8 (UnkStruct_0205E884 * param0)
+static void sub_0205F3B8 (PlayerAvatar * param0)
 {
     if (sub_0205EB0C(param0) == 1) {
         UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0);
@@ -307,7 +307,7 @@ static void sub_0205F3B8 (UnkStruct_0205E884 * param0)
     }
 }
 
-void sub_0205F490 (UnkStruct_0205E884 * param0)
+void sub_0205F490 (PlayerAvatar * param0)
 {
     int v0, v1, v2;
     const UnkStruct_02061AB4 * v3;
@@ -384,14 +384,14 @@ void sub_0205F490 (UnkStruct_0205E884 * param0)
     }
 }
 
-void sub_0205F56C (UnkStruct_0205E884 * param0)
+void sub_0205F56C (PlayerAvatar * param0)
 {
     sub_0205EB08(param0, 0);
     sub_0205EB10(param0, 0);
     sub_0205EBC0(param0);
 }
 
-int sub_0205F588 (UnkStruct_0205E884 * param0)
+int sub_0205F588 (PlayerAvatar * param0)
 {
     int v0, v1, v2;
     const UnkStruct_02061AB4 * v3;
@@ -428,7 +428,7 @@ int sub_0205F588 (UnkStruct_0205E884 * param0)
     return 0;
 }
 
-void sub_0205F5E4 (UnkStruct_0205E884 * param0, int param1)
+void sub_0205F5E4 (PlayerAvatar * param0, int param1)
 {
     UnkStruct_02061AB4 * v0;
 
@@ -444,7 +444,7 @@ void sub_0205F5E4 (UnkStruct_0205E884 * param0, int param1)
     sub_02065638(v0, sub_02065838(param1, 0x0));
 }
 
-static int sub_0205F62C (UnkStruct_0205E884 * param0, int param1)
+static int sub_0205F62C (PlayerAvatar * param0, int param1)
 {
     u32 v0 = sub_0205F644(param0, param1);
 
@@ -452,7 +452,7 @@ static int sub_0205F62C (UnkStruct_0205E884 * param0, int param1)
     return v0;
 }
 
-static u32 sub_0205F644 (UnkStruct_0205E884 * param0, int param1)
+static u32 sub_0205F644 (PlayerAvatar * param0, int param1)
 {
     int v0 = 0;
     u32 v1 = sub_02062BE8(sub_0205EB3C(param0));
@@ -484,7 +484,7 @@ static const UnkStruct_020EDB84 Unk_020EDB84[] = {
     {NULL, 0x6}
 };
 
-static int sub_0205F6A4 (UnkStruct_0205E884 * param0, u32 param1, int param2)
+static int sub_0205F6A4 (PlayerAvatar * param0, u32 param1, int param2)
 {
     if (Unk_020EDAEC[param1](param0, param2) == 1) {
         return 1;
@@ -493,13 +493,13 @@ static int sub_0205F6A4 (UnkStruct_0205E884 * param0, u32 param1, int param2)
     return 0;
 }
 
-static int sub_0205F6C4 (UnkStruct_0205E884 * param0, int param1)
+static int sub_0205F6C4 (PlayerAvatar * param0, int param1)
 {
     sub_0205FA6C(param0);
     return 0;
 }
 
-static int sub_0205F6D0 (UnkStruct_0205E884 * param0, int param1)
+static int sub_0205F6D0 (PlayerAvatar * param0, int param1)
 {
     UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0);
     int v1 = sub_0206299C(v0);
@@ -558,7 +558,7 @@ static int sub_0205F6D0 (UnkStruct_0205E884 * param0, int param1)
     return 1;
 }
 
-static int sub_0205F808 (UnkStruct_0205E884 * param0, int param1)
+static int sub_0205F808 (PlayerAvatar * param0, int param1)
 {
     u32 v0;
     UnkStruct_02061AB4 * v1 = sub_0205EB3C(param0);
@@ -615,7 +615,7 @@ static int sub_0205F808 (UnkStruct_0205E884 * param0, int param1)
     return 0;
 }
 
-static int sub_0205F95C (UnkStruct_0205E884 * param0, int param1)
+static int sub_0205F95C (PlayerAvatar * param0, int param1)
 {
     UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0);
     int v1 = sub_0206299C(v0);
@@ -633,7 +633,7 @@ static int sub_0205F95C (UnkStruct_0205E884 * param0, int param1)
     return 1;
 }
 
-static int sub_0205F9AC (UnkStruct_0205E884 * param0, int param1)
+static int sub_0205F9AC (PlayerAvatar * param0, int param1)
 {
     UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0);
     int v1 = sub_0206299C(v0);
@@ -651,7 +651,7 @@ static int sub_0205F9AC (UnkStruct_0205E884 * param0, int param1)
     return 1;
 }
 
-static int sub_0205F9FC (UnkStruct_0205E884 * param0, int param1)
+static int sub_0205F9FC (PlayerAvatar * param0, int param1)
 {
     int v0 = 1;
     UnkStruct_02061AB4 * v1 = sub_0205EB3C(param0);
@@ -673,7 +673,7 @@ static int sub_0205F9FC (UnkStruct_0205E884 * param0, int param1)
     return 1;
 }
 
-static int(*const Unk_020EDAEC[6])(UnkStruct_0205E884 *, int) = {
+static int(*const Unk_020EDAEC[6])(PlayerAvatar *, int) = {
     sub_0205F6C4,
     sub_0205F6D0,
     sub_0205F808,
@@ -682,7 +682,7 @@ static int(*const Unk_020EDAEC[6])(UnkStruct_0205E884 *, int) = {
     sub_0205F9FC
 };
 
-static void sub_0205FA6C (UnkStruct_0205E884 * param0)
+static void sub_0205FA6C (PlayerAvatar * param0)
 {
     if (sub_0205EF58(param0) == 1) {
         UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0);
@@ -699,7 +699,7 @@ static void sub_0205FA6C (UnkStruct_0205E884 * param0)
     }
 }
 
-static int sub_0205FAB0 (UnkStruct_0205E884 * param0, int param1)
+static int sub_0205FAB0 (PlayerAvatar * param0, int param1)
 {
     int v0;
     VecFx32 v1, v2;
@@ -723,7 +723,7 @@ static int sub_0205FAB0 (UnkStruct_0205E884 * param0, int param1)
     return 1;
 }
 
-static int sub_0205FB10 (UnkStruct_0205E884 * param0, int param1)
+static int sub_0205FB10 (PlayerAvatar * param0, int param1)
 {
     int v0 = sub_0205EBB8(param0);
 
@@ -745,7 +745,7 @@ static int sub_0205FB10 (UnkStruct_0205E884 * param0, int param1)
     return 1;
 }
 
-static void sub_0205FB40 (UnkStruct_0205E884 * param0, int param1)
+static void sub_0205FB40 (PlayerAvatar * param0, int param1)
 {
     UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0);
     int v1 = 0x10;
@@ -771,7 +771,7 @@ static void sub_0205FB40 (UnkStruct_0205E884 * param0, int param1)
     sub_02060B64(param0, v0, v1, v3);
 }
 
-static void inline_0205F180 (UnkStruct_0205E884 * param0, const UnkStruct_ov5_021E8F60 * param1, int param2, u16 param3, u16 param4)
+static void inline_0205F180 (PlayerAvatar * param0, const UnkStruct_ov5_021E8F60 * param1, int param2, u16 param3, u16 param4)
 {
     int v0 = sub_0205EB74(param0);
     UnkStruct_02061AB4 * v1 = sub_0205EB3C(param0);
@@ -790,7 +790,7 @@ static void inline_0205F180 (UnkStruct_0205E884 * param0, const UnkStruct_ov5_02
     }
 }
 
-static void inline_0205F180_sub (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, const UnkStruct_ov5_021E8F60 * param2, int param3, u16 param4, u16 param5)
+static void inline_0205F180_sub (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, const UnkStruct_ov5_021E8F60 * param2, int param3, u16 param4, u16 param5)
 {
     int v0;
 
@@ -809,7 +809,7 @@ static void inline_0205F180_sub (UnkStruct_0205E884 * param0, UnkStruct_02061AB4
     }
 }
 
-static int sub_0205FC48 (UnkStruct_0205E884 * param0, int param1)
+static int sub_0205FC48 (PlayerAvatar * param0, int param1)
 {
     int v0 = sub_0205FCC0(param0, param1);
     int v1 = sub_0205FC64(v0);
@@ -855,7 +855,7 @@ static int sub_0205FCBC (UnkStruct_02061AB4 * param0, u8 param1, int param2)
     return param2;
 }
 
-static int sub_0205FCC0 (UnkStruct_0205E884 * param0, int param1)
+static int sub_0205FCC0 (PlayerAvatar * param0, int param1)
 {
     int v0;
 
@@ -883,7 +883,7 @@ static int sub_0205FCC0 (UnkStruct_0205E884 * param0, int param1)
     return 1;
 }
 
-static void sub_0205FD20 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
+static void sub_0205FD20 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
 {
     int v0;
 
@@ -891,7 +891,7 @@ static void sub_0205FD20 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
     sub_02060B64(param0, param1, v0, 1);
 }
 
-static void sub_0205FD40 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
+static void sub_0205FD40 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
 {
     int v0 = sub_0205F108(param0);
 
@@ -913,7 +913,7 @@ static void sub_0205FD40 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
     }
 }
 
-static void sub_0205FDC8 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
+static void sub_0205FDC8 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
 {
     u32 v0;
     int v1;
@@ -981,7 +981,7 @@ static void sub_0205FDC8 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
     sub_02060B64(param0, param1, v1, v2);
 }
 
-static void sub_0205FECC (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
+static void sub_0205FECC (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
 {
     u32 v0;
     int v1;
@@ -1050,7 +1050,7 @@ static void sub_0205FECC (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
     sub_02060B64(param0, param1, v1, v2);
 }
 
-static void sub_0206000C (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4, const int * param5, const int * param6, const int * param7, const int * param8, const int * param9)
+static void sub_0206000C (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4, const int * param5, const int * param6, const int * param7, const int * param8, const int * param9)
 {
     u32 v0;
     int v1;
@@ -1097,7 +1097,7 @@ static void sub_0206000C (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
     sub_02060B64(param0, param1, v1, v2);
 }
 
-static void sub_020600CC (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
+static void sub_020600CC (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
 {
     int v0[4] = {0x69, 0x6a, 0x6b, 0x6c};
     int v1[4] = {0x79, 0x7a, 0x7b, 0x7c};
@@ -1108,7 +1108,7 @@ static void sub_020600CC (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
     sub_0206000C(param0, param1, param2, param3, param4, v0, v1, v2, v3, v4);
 }
 
-static void sub_02060150 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
+static void sub_02060150 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
 {
     int v0[4] = {0x6d, 0x6e, 0x6f, 0x70};
     int v1[4] = {0x7d, 0x7e, 0x7f, 0x80};
@@ -1119,7 +1119,7 @@ static void sub_02060150 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
     sub_0206000C(param0, param1, param2, param3, param4, v0, v1, v2, v3, v4);
 }
 
-static void sub_020601D4 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
+static void sub_020601D4 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
 {
     int v0[4] = {0x71, 0x72, 0x73, 0x74};
     int v1[4] = {0x81, 0x82, 0x83, 0x84};
@@ -1130,7 +1130,7 @@ static void sub_020601D4 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
     sub_0206000C(param0, param1, param2, param3, param4, v0, v1, v2, v3, v4);
 }
 
-static void sub_02060258 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
+static void sub_02060258 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
 {
     int v0, v1;
     int v2;
@@ -1165,7 +1165,7 @@ static void sub_02060258 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
     sub_02062994(param1, param2);
 }
 
-static void sub_020602DC (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, const UnkStruct_ov5_021E8F60 * param2, int param3, u16 param4, u16 param5)
+static void sub_020602DC (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, const UnkStruct_ov5_021E8F60 * param2, int param3, u16 param4, u16 param5)
 {
     int v0;
 
@@ -1176,7 +1176,7 @@ static void sub_020602DC (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
     }
 }
 
-static void sub_02060324 (UnkStruct_0205E884 * param0, u16 param1)
+static void sub_02060324 (PlayerAvatar * param0, u16 param1)
 {
     if (sub_0205EB74(param0) != 0x1) {
         return;
@@ -1207,7 +1207,7 @@ static void sub_02060324 (UnkStruct_0205E884 * param0, u16 param1)
     }
 }
 
-int sub_02060390 (UnkStruct_0205E884 * param0, int param1)
+int sub_02060390 (PlayerAvatar * param0, int param1)
 {
     int v0;
 
@@ -1229,7 +1229,7 @@ int sub_02060390 (UnkStruct_0205E884 * param0, int param1)
     return v0;
 }
 
-static int sub_020603BC (UnkStruct_0205E884 * param0)
+static int sub_020603BC (PlayerAvatar * param0)
 {
     int v0 = sub_0205EBCC(param0, 1, 3);
 
@@ -1246,7 +1246,7 @@ static int sub_020603BC (UnkStruct_0205E884 * param0)
     return 0;
 }
 
-static int sub_020603EC (UnkStruct_0205E884 * param0)
+static int sub_020603EC (PlayerAvatar * param0)
 {
     int v0 = 1;
     int v1 = sub_0205EBB8(param0);
@@ -1269,7 +1269,7 @@ static int sub_020603EC (UnkStruct_0205E884 * param0)
     return v0;
 }
 
-static void sub_02060420 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, const UnkStruct_ov5_021E8F60 * param2, int param3, u16 param4, u16 param5)
+static void sub_02060420 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, const UnkStruct_ov5_021E8F60 * param2, int param3, u16 param4, u16 param5)
 {
     int v0 = sub_02060494(param0, param3);
 
@@ -1289,7 +1289,7 @@ static void sub_02060420 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
     }
 }
 
-static int sub_02060494 (UnkStruct_0205E884 * param0, int param1)
+static int sub_02060494 (PlayerAvatar * param0, int param1)
 {
     int v0 = sub_020604E4(param0, param1);
     int v1 = sub_020604B0(v0);
@@ -1315,7 +1315,7 @@ static int sub_020604B0 (int param0)
     return 0;
 }
 
-static int sub_020604E4 (UnkStruct_0205E884 * param0, int param1)
+static int sub_020604E4 (PlayerAvatar * param0, int param1)
 {
     int v0;
 
@@ -1341,7 +1341,7 @@ static int sub_020604E4 (UnkStruct_0205E884 * param0, int param1)
     return 1;
 }
 
-static void sub_02060548 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
+static void sub_02060548 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
 {
     int v0;
 
@@ -1351,7 +1351,7 @@ static void sub_02060548 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
     sub_0205EBC0(param0);
 }
 
-static void sub_02060570 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
+static void sub_02060570 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
 {
     u32 v0;
     int v1;
@@ -1413,7 +1413,7 @@ static void sub_02060570 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
     sub_02060B64(param0, param1, v1, v2);
 }
 
-static void sub_02060688 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
+static void sub_02060688 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
 {
     sub_0205EBC0(param0);
 
@@ -1428,7 +1428,7 @@ static void sub_02060688 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
     }
 }
 
-static void sub_020606C8 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
+static void sub_020606C8 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
 {
     u32 v0;
     int v1;
@@ -1470,7 +1470,7 @@ static void sub_020606C8 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
     sub_02060B64(param0, param1, v2, v1);
 }
 
-static void sub_0206078C (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, const UnkStruct_ov5_021E8F60 * param2, int param3, u16 param4, u16 param5)
+static void sub_0206078C (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, const UnkStruct_ov5_021E8F60 * param2, int param3, u16 param4, u16 param5)
 {
     int v0 = sub_02060800(param0, param3);
 
@@ -1490,7 +1490,7 @@ static void sub_0206078C (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
     }
 }
 
-static int sub_02060800 (UnkStruct_0205E884 * param0, int param1)
+static int sub_02060800 (PlayerAvatar * param0, int param1)
 {
     int v0 = sub_02060850(param0, param1);
     int v1 = sub_0206081C(v0);
@@ -1516,7 +1516,7 @@ static int sub_0206081C (int param0)
     return 0;
 }
 
-static int sub_02060850 (UnkStruct_0205E884 * param0, int param1)
+static int sub_02060850 (PlayerAvatar * param0, int param1)
 {
     int v0, v1;
 
@@ -1548,7 +1548,7 @@ static int sub_02060850 (UnkStruct_0205E884 * param0, int param1)
     return 1;
 }
 
-static void sub_020608BC (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
+static void sub_020608BC (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
 {
     int v0;
 
@@ -1558,7 +1558,7 @@ static void sub_020608BC (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
     sub_0205EBC0(param0);
 }
 
-static void sub_020608E4 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
+static void sub_020608E4 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
 {
     u32 v0;
     int v1;
@@ -1632,7 +1632,7 @@ static void sub_020608E4 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
     sub_02060B64(param0, param1, v1, v2);
 }
 
-static void sub_02060A60 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
+static void sub_02060A60 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
 {
     sub_0205EBC0(param0);
 
@@ -1647,7 +1647,7 @@ static void sub_02060A60 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
     }
 }
 
-static void sub_02060AA0 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
+static void sub_02060AA0 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2, u16 param3, u16 param4)
 {
     u32 v0;
     int v1;
@@ -1689,13 +1689,13 @@ static void sub_02060AA0 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
     sub_02060B64(param0, param1, v2, v1);
 }
 
-static void sub_02060B64 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, u32 param2, int param3)
+static void sub_02060B64 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, u32 param2, int param3)
 {
     sub_0205EC20(param0, param2, param3);
     sub_02065638(param1, param2);
 }
 
-u32 sub_02060B7C (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2)
+u32 sub_02060B7C (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2)
 {
     u32 v0, v1;
 
@@ -1741,7 +1741,7 @@ u32 sub_02060B7C (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int 
     return v0;
 }
 
-static u32 sub_02060C24 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2)
+static u32 sub_02060C24 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2)
 {
     VecFx32 v0;
     u32 v1, v2;
@@ -1781,7 +1781,7 @@ static u32 sub_02060C24 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param
     return v1;
 }
 
-static int sub_02060CE4 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2)
+static int sub_02060CE4 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2)
 {
     if (param2 != -1) {
         FieldSystem * v0 = sub_02062C00(param1);
@@ -1823,7 +1823,7 @@ static int sub_02060CE4 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param
     return 0;
 }
 
-static int sub_02060D98 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2)
+static int sub_02060D98 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2)
 {
     BOOL v0 = 0;
 
@@ -1860,7 +1860,7 @@ static int sub_02060D98 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param
     return v0;
 }
 
-static int sub_02060E40 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2)
+static int sub_02060E40 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2)
 {
     if (param2 != -1) {
         FieldSystem * v0 = sub_02062C00(param1);
@@ -1903,7 +1903,7 @@ static int sub_02060E40 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param
     return 0;
 }
 
-static int sub_02060EE4 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2)
+static int sub_02060EE4 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2)
 {
     if (param2 != -1) {
         FieldSystem * v0 = sub_02062C00(param1);
@@ -1923,7 +1923,7 @@ static int sub_02060EE4 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param
     return 0;
 }
 
-static int sub_02060F4C (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2)
+static int sub_02060F4C (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2)
 {
     if (param2 != -1) {
         FieldSystem * v0 = sub_02062C00(param1);
@@ -1939,7 +1939,7 @@ static int sub_02060F4C (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param
     return 0;
 }
 
-static int sub_02060FA8 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2)
+static int sub_02060FA8 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2)
 {
     if (param2 != -1) {
         FieldSystem * v0 = sub_02062C00(param1);
@@ -1973,7 +1973,7 @@ static int sub_02060FA8 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param
     return 0;
 }
 
-static int sub_02061058 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2)
+static int sub_02061058 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2)
 {
     if ((param2 != -1) && (sub_0205EB74(param0) == 0x1)) {
         FieldSystem * v0 = sub_02062C00(param1);
@@ -2005,7 +2005,7 @@ static int sub_02061058 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param
     return 0;
 }
 
-static int sub_02061100 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2)
+static int sub_02061100 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2)
 {
     u32 v0 = 0;
     FieldSystem * v1 = sub_02062C00(param1);
@@ -2031,7 +2031,7 @@ static int sub_02061100 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param
     return v0;
 }
 
-static int sub_02061180 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2)
+static int sub_02061180 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2)
 {
     if (param2 != -1) {
         FieldSystem * v0 = sub_02062C00(param1);
@@ -2056,7 +2056,7 @@ static int sub_02061180 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param
     return 0;
 }
 
-u32 sub_020611FC (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2)
+u32 sub_020611FC (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2)
 {
     u32 v0, v1 = 0;
 
@@ -2081,7 +2081,7 @@ u32 sub_020611FC (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int 
     return v1;
 }
 
-static int sub_02061248 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2)
+static int sub_02061248 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2)
 {
     BOOL v0 = 0;
 
@@ -2118,7 +2118,7 @@ static int sub_02061248 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param
     return v0;
 }
 
-int sub_02061308 (UnkStruct_0205E884 * param0, u16 param1, u16 param2)
+int sub_02061308 (PlayerAvatar * param0, u16 param1, u16 param2)
 {
     return sub_02061348(param0, param1, param2);
 }
@@ -2149,7 +2149,7 @@ static int sub_0206132C (u16 param0)
     return(-1);
 }
 
-static int sub_02061348 (UnkStruct_0205E884 * param0, u16 param1, u16 param2)
+static int sub_02061348 (PlayerAvatar * param0, u16 param1, u16 param2)
 {
     int v0 = sub_02061310(param2);
     int v1 = sub_0206132C(param2);
@@ -2185,7 +2185,7 @@ static int sub_02061348 (UnkStruct_0205E884 * param0, u16 param1, u16 param2)
     return(-1);
 }
 
-int sub_020613AC (UnkStruct_0205E884 * param0)
+int sub_020613AC (PlayerAvatar * param0)
 {
     UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0);
 
@@ -2217,7 +2217,7 @@ static int sub_020613D8 (int param0)
     return 0;
 }
 
-int sub_020613FC (UnkStruct_0205E884 * param0, u16 param1)
+int sub_020613FC (PlayerAvatar * param0, u16 param1)
 {
     if ((param1 & PAD_BUTTON_B)) {
         return 1;
@@ -2226,7 +2226,7 @@ int sub_020613FC (UnkStruct_0205E884 * param0, u16 param1)
     return 0;
 }
 
-int sub_0206140C (UnkStruct_0205E884 * param0)
+int sub_0206140C (PlayerAvatar * param0)
 {
     u32 v0 = sub_0205EC14(param0);
 
@@ -2241,7 +2241,7 @@ int sub_0206140C (UnkStruct_0205E884 * param0)
     return 0;
 }
 
-int sub_02061434 (UnkStruct_0205E884 * param0, int param1)
+int sub_02061434 (PlayerAvatar * param0, int param1)
 {
     int v0, v1, v2 = sub_0205EB74(param0);
 
@@ -2269,7 +2269,7 @@ int sub_02061434 (UnkStruct_0205E884 * param0, int param1)
     return v1;
 }
 
-u32 sub_0206147C (UnkStruct_0205E884 * param0, u16 param1, u16 param2, int param3, int param4, int param5)
+u32 sub_0206147C (PlayerAvatar * param0, u16 param1, u16 param2, int param3, int param4, int param5)
 {
     u32 v0;
     int v1 = sub_02061348(param0, param1, param2);
@@ -2338,37 +2338,37 @@ u32 sub_0206147C (UnkStruct_0205E884 * param0, u16 param1, u16 param2, int param
     return 0xff;
 }
 
-int sub_02061544 (UnkStruct_0205E884 * param0)
+int sub_02061544 (PlayerAvatar * param0)
 {
     UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0);
     return sub_020655F4(v0);
 }
 
-void sub_02061550 (UnkStruct_0205E884 * param0, u32 param1, int param2)
+void sub_02061550 (PlayerAvatar * param0, u32 param1, int param2)
 {
     UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0);
     sub_02060B64(param0, v0, param1, param2);
 }
 
-u32 sub_0206156C (UnkStruct_0205E884 * param0, int param1)
+u32 sub_0206156C (PlayerAvatar * param0, int param1)
 {
     UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0);
     return sub_02064238(v0, param1);
 }
 
-void sub_0206157C (UnkStruct_0205E884 * param0, int param1, int * param2, int * param3)
+void sub_0206157C (PlayerAvatar * param0, int param1, int * param2, int * param3)
 {
     *param2 = Player_XPos(param0) + sub_0206419C(param1);
     *param3 = Player_ZPos(param0) + sub_020641A8(param1);
 }
 
-void sub_020615AC (UnkStruct_0205E884 * param0, int * param1, int * param2)
+void sub_020615AC (PlayerAvatar * param0, int * param1, int * param2)
 {
     int v0 = Player_Dir(param0);
     sub_0206157C(param0, v0, param1, param2);
 }
 
-static void sub_020615C8 (UnkStruct_0205E884 * param0)
+static void sub_020615C8 (PlayerAvatar * param0)
 {
     UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0);
     FieldSystem * v1 = sub_02062C00(v0);
@@ -2377,7 +2377,7 @@ static void sub_020615C8 (UnkStruct_0205E884 * param0)
     sub_0202CF28(v2, (0 + 0));
 }
 
-static int sub_020615E0 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1, int param2)
+static int sub_020615E0 (PlayerAvatar * param0, UnkStruct_02061AB4 * param1, int param2)
 {
     if (param2 != -1) {
         u8 v0 = sub_02062BE8(param1);
@@ -2402,7 +2402,7 @@ static int sub_020615E0 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param
     return 0;
 }
 
-static int sub_02061630 (UnkStruct_0205E884 * param0, u32 param1, int param2)
+static int sub_02061630 (PlayerAvatar * param0, u32 param1, int param2)
 {
     if (param2 != -1) {
         return 0;
@@ -2427,7 +2427,7 @@ static int sub_02061630 (UnkStruct_0205E884 * param0, u32 param1, int param2)
     return 0;
 }
 
-void sub_02061674 (UnkStruct_0205E884 * param0, int param1, int * param2, int * param3, int * param4)
+void sub_02061674 (PlayerAvatar * param0, int param1, int * param2, int * param3, int * param4)
 {
     const UnkStruct_020EDB04 * v0;
     int v1 = sub_0205F108(param0);
@@ -2456,7 +2456,7 @@ void sub_02061674 (UnkStruct_0205E884 * param0, int param1, int * param2, int * 
     (*param4) += v0->unk_04;
 }
 
-u32 sub_020616F0 (UnkStruct_0205E884 * param0, int param1)
+u32 sub_020616F0 (PlayerAvatar * param0, int param1)
 {
     u32 v0;
 
@@ -2476,7 +2476,7 @@ u32 sub_020616F0 (UnkStruct_0205E884 * param0, int param1)
     return v0;
 }
 
-u32 sub_02061760 (UnkStruct_0205E884 * param0)
+u32 sub_02061760 (PlayerAvatar * param0)
 {
     u32 v0;
     UnkStruct_02061AB4 * v1 = sub_0205EB3C(param0);
@@ -2494,7 +2494,7 @@ u32 sub_02061760 (UnkStruct_0205E884 * param0)
     return v0;
 }
 
-void sub_020617BC (UnkStruct_0205E884 * const param0, int * param1, int * param2, int * param3)
+void sub_020617BC (PlayerAvatar * const param0, int * param1, int * param2, int * param3)
 {
     int v0 = sub_0205EAA0(param0);
     UnkStruct_02061AB4 * v1 = sub_0205EB3C(param0);

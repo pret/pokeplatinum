@@ -305,8 +305,8 @@ static BOOL sub_02056010 (FieldSystem * param0, UnkStruct_020562AC * param1, int
 {
     int v0, v1;
 
-    v0 = Player_XPos(param0->unk_3C);
-    v1 = Player_ZPos(param0->unk_3C);
+    v0 = Player_XPos(param0->playerAvatar);
+    v1 = Player_ZPos(param0->playerAvatar);
 
     if (param2 == 2) {
         v0--;
@@ -331,8 +331,8 @@ static UnkStruct_02061AB4 * sub_02056074 (FieldSystem * param0, int param1)
 {
     int v0, v1;
 
-    v0 = Player_XPos(param0->unk_3C);
-    v1 = Player_ZPos(param0->unk_3C);
+    v0 = Player_XPos(param0->playerAvatar);
+    v1 = Player_ZPos(param0->playerAvatar);
     v1 -= 1;
 
     if (param1 == 2) {
@@ -348,8 +348,8 @@ static UnkStruct_02061AB4 * sub_020560A8 (FieldSystem * param0, UnkStruct_020562
 {
     int v0, v1;
 
-    v0 = Player_XPos(param0->unk_3C);
-    v1 = Player_ZPos(param0->unk_3C);
+    v0 = Player_XPos(param0->playerAvatar);
+    v1 = Player_ZPos(param0->playerAvatar);
 
     if (param1->unk_04 == 0) {
         v1 -= 1;
@@ -380,7 +380,7 @@ static void sub_020560F8 (FieldSystem * param0, UnkStruct_020562AC * param1)
 
 static void sub_0205610C (FieldSystem * param0, UnkStruct_020562AC * param1, const UnkStruct_ov5_021F8E3C * param2)
 {
-    UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0->unk_3C);
+    UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0->playerAvatar);
     param1->unk_0C = sub_02065700(v0, param2);
 }
 
@@ -391,9 +391,9 @@ static BOOL sub_02056124 (UnkStruct_020508D4 * param0)
 
     switch (v1->unk_00) {
     case 0:
-        ov5_021DFB54(v0->unk_3C, (1 << 4));
-        ov5_021DFB5C(v0->unk_3C);
-        sub_02062DDC(sub_0205EB3C(v0->unk_3C));
+        ov5_021DFB54(v0->playerAvatar, (1 << 4));
+        ov5_021DFB5C(v0->playerAvatar);
+        sub_02062DDC(sub_0205EB3C(v0->playerAvatar));
         v1->unk_00 = 1;
         break;
     case 1:
@@ -424,7 +424,7 @@ static BOOL sub_02056124 (UnkStruct_020508D4 * param0)
                 break;
             }
         } else if ((gCoreSys.heldKeys & PAD_KEY_UP) && (v1->unk_04 == 1)) {
-            sub_0205EA84(v0->unk_3C, 0);
+            sub_0205EA84(v0->playerAvatar, 0);
             v1->unk_00 = 4;
             break;
         } else if ((gCoreSys.heldKeys & PAD_KEY_DOWN) && (v1->unk_04 == 0)) {
@@ -435,7 +435,7 @@ static BOOL sub_02056124 (UnkStruct_020508D4 * param0)
         v1->unk_08++;
 
         if (v1->unk_08 > 30 * 3) {
-            sub_0205EA84(v0->unk_3C, v1->unk_04);
+            sub_0205EA84(v0->playerAvatar, v1->unk_04);
             v1->unk_00 = 4;
         }
         break;
@@ -449,14 +449,14 @@ static BOOL sub_02056124 (UnkStruct_020508D4 * param0)
             if ((v3 != NULL) && sub_020560E4(v3)) {
                 v1->unk_00 = 1;
             } else {
-                sub_0205EA84(v0->unk_3C, v1->unk_04);
+                sub_0205EA84(v0->playerAvatar, v1->unk_04);
                 v1->unk_00 = 4;
             }
         }
         break;
     case 4:
-        sub_0205EA84(v0->unk_3C, v1->unk_04);
-        sub_02062DD0(sub_0205EB3C(v0->unk_3C));
+        sub_0205EA84(v0->playerAvatar, v1->unk_04);
+        sub_02062DD0(sub_0205EB3C(v0->playerAvatar));
         Heap_FreeToHeap(v1);
         return 1;
     }
@@ -472,16 +472,16 @@ void sub_020562AC (FieldSystem * param0)
 
     v0->unk_00 = 0;
     v0->unk_0C = NULL;
-    v0->unk_04 = Player_Dir(param0->unk_3C);
+    v0->unk_04 = Player_Dir(param0->playerAvatar);
 
     sub_02050944(param0->unk_10, sub_02056124, v0);
 }
 
 void sub_020562D8 (FieldSystem * param0)
 {
-    int v0 = sub_0205EB74(param0->unk_3C);
+    int v0 = sub_0205EB74(param0->playerAvatar);
     u32 v1 = sub_0205EED8(v0);
 
-    ov5_021DFB54(param0->unk_3C, v1);
-    ov5_021DFB5C(param0->unk_3C);
+    ov5_021DFB54(param0->playerAvatar, v1);
+    ov5_021DFB5C(param0->playerAvatar);
 }

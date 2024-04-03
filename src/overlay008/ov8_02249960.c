@@ -351,8 +351,8 @@ void ov8_0224997C (FieldSystem * param0)
     int v4;
     int v5[] = {239, 240, 241};
 
-    v1 = Player_XPos(param0->unk_3C);
-    v2 = Player_ZPos(param0->unk_3C);
+    v1 = Player_XPos(param0->playerAvatar);
+    v2 = Player_ZPos(param0->playerAvatar);
 
     sub_020550F4(v1, v2, 0, 0, 1, 1, &v0);
 
@@ -768,7 +768,7 @@ void ov8_02249FB8 (FieldSystem * param0)
         v2 = sub_02027860(sub_0203D174(param0));
         v3 = (UnkStruct_ov8_02249FB8 *)sub_02027F6C(v2, 2);
 
-        sub_0205EAEC(param0->unk_3C, &v1);
+        sub_0205EAEC(param0->playerAvatar, &v1);
 
         if (v1.y == (FX32_ONE * 16 * 0)) {
             sub_02050944(param0->unk_10, ov8_0224A018, v0);
@@ -788,7 +788,7 @@ static BOOL ov8_0224A018 (UnkStruct_020508D4 * param0)
 
     switch (v2->unk_00) {
     case 0:
-        sub_0205ED2C(v1->unk_3C, 0);
+        sub_0205ED2C(v1->playerAvatar, 0);
         Sound_PlayEffect(1553);
         (v2->unk_00)++;
         break;
@@ -809,14 +809,14 @@ static BOOL ov8_0224A018 (UnkStruct_020508D4 * param0)
                 (v2->unk_00)++;
             }
 
-            sub_0205ED0C(v1->unk_3C, v3.y);
+            sub_0205ED0C(v1->playerAvatar, v3.y);
             ov5_021E18A4(v0, &v3);
         }
     }
     break;
     case 2:
         ov5_021EF388(0, (FX32_ONE * 16 * 10), v1->unk_A0);
-        sub_0205ED48(v1->unk_3C, 1);
+        sub_0205ED48(v1->playerAvatar, 1);
         Sound_PlayEffect(1562);
         (v2->unk_00)++;
         break;
@@ -836,7 +836,7 @@ static BOOL ov8_0224A0E8 (UnkStruct_020508D4 * param0)
 
     switch (v2->unk_00) {
     case 0:
-        sub_0205ED2C(v1->unk_3C, 0);
+        sub_0205ED2C(v1->playerAvatar, 0);
         Sound_PlayEffect(1553);
         (v2->unk_00)++;
         break;
@@ -856,14 +856,14 @@ static BOOL ov8_0224A0E8 (UnkStruct_020508D4 * param0)
                 (v2->unk_00)++;
             }
 
-            sub_0205ED0C(v1->unk_3C, v3.y);
+            sub_0205ED0C(v1->playerAvatar, v3.y);
             ov5_021E18A4(v0, &v3);
         }
     }
     break;
     case 2:
         ov5_021EF388(0, (FX32_ONE * 16 * 0), v1->unk_A0);
-        sub_0205ED48(v1->unk_3C, 1);
+        sub_0205ED48(v1->playerAvatar, 1);
         Sound_PlayEffect(1562);
         (v2->unk_00)++;
         break;
@@ -1230,7 +1230,7 @@ static u8 ov8_0224A1E4 (UnkStruct_ov8_0224A1E4 * param0)
     u8 v3;
     VecFx32 v4;
 
-    sub_0205EAEC(param0->unk_00->unk_3C, &v4);
+    sub_0205EAEC(param0->unk_00->playerAvatar, &v4);
 
     v1 = v4.y / (FX32_ONE * 16);
     v2 = v4.x / (FX32_ONE * 16);
@@ -1353,7 +1353,7 @@ static BOOL ov8_0224A4FC (UnkStruct_020508D4 * param0)
 
     switch (v2->unk_00) {
     case 0:
-        sub_0205ED2C(v1->unk_3C, 0);
+        sub_0205ED2C(v1->playerAvatar, 0);
         Sound_PlayEffect(1553);
         (v2->unk_00)++;
         break;
@@ -1390,7 +1390,7 @@ static BOOL ov8_0224A4FC (UnkStruct_020508D4 * param0)
                 GF_ASSERT(FALSE);
             }
 
-            sub_0205ED0C(v1->unk_3C, v5.y);
+            sub_0205ED0C(v1->playerAvatar, v5.y);
 
             ov5_021E18A4(v0, &v5);
             ov8_0224A434(v3, v5.y);
@@ -1398,7 +1398,7 @@ static BOOL ov8_0224A4FC (UnkStruct_020508D4 * param0)
     }
     break;
     case 2:
-        sub_0205ED48(v1->unk_3C, 1);
+        sub_0205ED48(v1->playerAvatar, 1);
         Sound_PlayEffect(1562);
         (v2->unk_00)++;
         break;
@@ -1419,7 +1419,7 @@ static BOOL ov8_0224A620 (UnkStruct_020508D4 * param0)
     UnkStruct_ov8_0224A1E4 * v4;
 
     v4 = (UnkStruct_ov8_0224A1E4 *)v2->unk_04->unk_24;
-    v1 = sub_0205EB3C(v2->unk_3C);
+    v1 = sub_0205EB3C(v2->playerAvatar);
 
     switch (v3->unk_00) {
     case 0:
@@ -1441,7 +1441,7 @@ static BOOL ov8_0224A620 (UnkStruct_020508D4 * param0)
             VecFx32 v6, v7;
 
             v6 = ov5_021E1894(v0);
-            sub_0205EAEC(v2->unk_3C, &v7);
+            sub_0205EAEC(v2->playerAvatar, &v7);
             v6.x = v7.x;
 
             if (v4->unk_F0 == 4) {
@@ -1503,7 +1503,7 @@ static BOOL ov8_0224A770 (UnkStruct_020508D4 * param0)
     UnkStruct_ov8_0224A1E4 * v4;
 
     v4 = (UnkStruct_ov8_0224A1E4 *)v2->unk_04->unk_24;
-    v1 = sub_0205EB3C(v2->unk_3C);
+    v1 = sub_0205EB3C(v2->playerAvatar);
 
     switch (v3->unk_00) {
     case 0:
@@ -1525,7 +1525,7 @@ static BOOL ov8_0224A770 (UnkStruct_020508D4 * param0)
             VecFx32 v6, v7;
 
             v6 = ov5_021E1894(v0);
-            sub_0205EAEC(v2->unk_3C, &v7);
+            sub_0205EAEC(v2->playerAvatar, &v7);
             v6.z = v7.z;
 
             if (v4->unk_F0 == 3) {
@@ -1568,7 +1568,7 @@ static BOOL ov8_0224A770 (UnkStruct_020508D4 * param0)
     {
         UnkStruct_02061AB4 * v8;
 
-        v8 = sub_0205EB3C(v2->unk_3C);
+        v8 = sub_0205EB3C(v2->playerAvatar);
 
         if (sub_02065684(v8) == 1) {
             sub_020656AC(v8);
@@ -1644,7 +1644,7 @@ void ov8_0224A8C8 (FieldSystem * param0)
     {
         VecFx32 v6;
 
-        sub_0205EAEC(param0->unk_3C, &v6);
+        sub_0205EAEC(param0->playerAvatar, &v6);
         ov8_0224A434(v0, v6.y);
     }
 
@@ -2619,8 +2619,8 @@ static void ov8_0224B18C (FieldSystem * param0, UnkStruct_ov8_0224B28C * param1,
     int v0, v1, v2, v3;
     const VecFx32 * v4;
 
-    v0 = Player_XPos(param0->unk_3C);
-    v1 = Player_ZPos(param0->unk_3C);
+    v0 = Player_XPos(param0->playerAvatar);
+    v1 = Player_ZPos(param0->playerAvatar);
 
     param1->unk_10 = v0;
     param1->unk_14 = v1;
@@ -2727,7 +2727,7 @@ static void ov8_0224B2B4 (UnkStruct_ov8_0224B28C * param0, int param1, int param
 
 static void ov8_0224B2C4 (FieldSystem * param0, UnkStruct_ov8_0224B28C * param1)
 {
-    const VecFx32 * v0 = sub_0205EAFC(param0->unk_3C);
+    const VecFx32 * v0 = sub_0205EAFC(param0->playerAvatar);
 
     ov5_021E931C(v0, param0->unk_28);
     sub_02020690(v0, param0->unk_24);
@@ -2954,8 +2954,8 @@ static BOOL ov8_0224B3D4 (UnkStruct_020508D4 * param0)
         v2->unk_00++;
     case 12:
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            int v9 = Player_XPos(v1->unk_3C);
-            int v10 = Player_ZPos(v1->unk_3C);
+            int v9 = Player_XPos(v1->playerAvatar);
+            int v10 = Player_ZPos(v1->playerAvatar);
 
             ov8_0224B240(&v2->unk_1C, v9, v10);
             sub_0200E084(v2->unk_44, 0);
@@ -3346,7 +3346,7 @@ static BOOL ov8_0224BAF4 (UnkStruct_020508D4 * param0)
     UnkStruct_ov8_0224C098 * v2 = sub_02050A64(param0);
     UnkStruct_ov8_0224B8D0 * v3 = v2->unk_3C;
 
-    v0 = sub_0205EB3C(v1->unk_3C);
+    v0 = sub_0205EB3C(v1->playerAvatar);
 
     switch (v2->unk_00) {
     case 0:
@@ -3406,7 +3406,7 @@ static int ov8_0224BBD0 (UnkStruct_ov8_0224C098 * param0)
 {
     UnkStruct_02061AB4 * v0;
 
-    v0 = sub_0205EB3C(param0->unk_3C->unk_00->unk_3C);
+    v0 = sub_0205EB3C(param0->unk_3C->unk_00->playerAvatar);
 
     if (sub_020655F4(v0) == 0) {
         return 0;
@@ -3586,7 +3586,7 @@ static int ov8_0224BEA4 (UnkStruct_ov8_0224C098 * param0)
 {
     UnkStruct_02061AB4 * v0;
 
-    v0 = sub_0205EB3C(param0->unk_3C->unk_00->unk_3C);
+    v0 = sub_0205EB3C(param0->unk_3C->unk_00->playerAvatar);
 
     if (sub_02065684(v0) == 1) {
         sub_020656AC(v0);
@@ -3659,10 +3659,10 @@ BOOL ov8_0224BF4C (FieldSystem * param0)
     {
         int v1, v2, v3;
         UnkStruct_ov8_0224BCA8 * v4;
-        int v5 = Player_Dir(param0->unk_3C);
+        int v5 = Player_Dir(param0->playerAvatar);
         UnkStruct_ov8_0224B8D0 * v6 = param0->unk_04->unk_24;
 
-        sub_0206157C(param0->unk_3C, v5, &v1, &v2);
+        sub_0206157C(param0->playerAvatar, v5, &v1, &v2);
         v4 = ov8_0224B854(v6, v1, v2);
 
         if (v4 == NULL) {
@@ -3704,8 +3704,8 @@ static void ov8_0224BFCC (FieldSystem * param0, UnkStruct_ov8_0224C098 * param1,
     v3->unk_18 = v0 + (sub_0206419C(param3) * v3->unk_24);
     v3->unk_1C = v1 + (sub_020641A8(param3) * v3->unk_24);
 
-    v0 = Player_XPos(param0->unk_3C);
-    v1 = Player_ZPos(param0->unk_3C);
+    v0 = Player_XPos(param0->playerAvatar);
+    v1 = Player_ZPos(param0->playerAvatar);
 
     v3->unk_10 = v0;
     v3->unk_14 = v1;
@@ -3725,7 +3725,7 @@ static void ov8_0224BFCC (FieldSystem * param0, UnkStruct_ov8_0224C098 * param1,
 static void ov8_0224C098 (UnkStruct_ov8_0224C098 * param0)
 {
     UnkStruct_ov8_0224C0C4 * v0 = &param0->unk_40;
-    const VecFx32 * v1 = sub_0205EAFC(v0->unk_34->unk_3C);
+    const VecFx32 * v1 = sub_0205EAFC(v0->unk_34->playerAvatar);
 
     ov5_021E931C(v1, v0->unk_34->unk_28);
     sub_02020690(v1, v0->unk_34->unk_24);
@@ -3896,10 +3896,10 @@ void ov8_0224C198 (FieldSystem * param0)
 
     {
         int v3 = 0xd2;
-        UnkStruct_0205E884 * v4 = param0->unk_3C;
+        PlayerAvatar * v4 = param0->playerAvatar;
         UnkStruct_02061AB4 * v5 = sub_0205EB3C(v4);
 
-        if (sub_0205EB98(param0->unk_3C) == 1) {
+        if (sub_0205EB98(param0->playerAvatar) == 1) {
             v3 = 0xd3;
         }
 
@@ -4075,7 +4075,7 @@ BOOL ov8_0224C51C (FieldSystem * param0)
 {
     int v0, v1, v2, v3;
     UnkStruct_02027860 * v4;
-    UnkStruct_0205E884 * v5;
+    PlayerAvatar * v5;
     UnkStruct_02061830 * v6;
     UnkStruct_02061AB4 * v7;
     UnkStruct_02061AB4 * v8;
@@ -4089,7 +4089,7 @@ BOOL ov8_0224C51C (FieldSystem * param0)
     v0 = 0;
     v7 = NULL;
     v6 = param0->unk_38;
-    v5 = param0->unk_3C;
+    v5 = param0->playerAvatar;
     v8 = sub_0205EB3C(v5);
     v2 = 2;
     v1 = sub_0206447C(sub_0206298C(v8));

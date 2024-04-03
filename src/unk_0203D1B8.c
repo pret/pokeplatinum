@@ -309,7 +309,7 @@ void * sub_0203D20C (FieldSystem * param0, UnkStruct_020684D0 * param1)
     sub_0207CB2C(v1, param0->unk_0C, 0, param0->unk_98);
     sub_0207CB78(v1, param0->unk_70);
 
-    if (sub_0205EB74(param0->unk_3C) == 0x1) {
+    if (sub_0205EB74(param0->playerAvatar) == 0x1) {
         sub_0207CB58(v1);
     }
 

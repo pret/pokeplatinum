@@ -157,7 +157,7 @@ BOOL ov23_02251324 (int param0, UnkStruct_ov23_0224271C * param1)
     UnkStruct_ov23_022513B0 v3;
     int v4 = ov23_022512D4(param1, sub_02058F80(param0));
 
-    if (sub_02058F50(v4) == -1) {
+    if (CommPlayer_Dir(v4) == -1) {
         v4 = 0xff;
     }
 
@@ -602,8 +602,8 @@ static void ov23_02251A84 (BOOL param0, FieldSystem * param1)
     VecFx32 v0;
 
     v0.y = 0;
-    v0.x = 15 * FX32_ONE * 16 - Player_XPos(param1->unk_3C) * FX32_ONE * 16;
-    v0.z = 17 * FX32_ONE * 16 - Player_ZPos(param1->unk_3C) * FX32_ONE * 16;
+    v0.x = 15 * FX32_ONE * 16 - Player_XPos(param1->playerAvatar) * FX32_ONE * 16;
+    v0.z = 17 * FX32_ONE * 16 - Player_ZPos(param1->playerAvatar) * FX32_ONE * 16;
 
     if (!param0) {
         v0.x = -v0.x;
@@ -630,7 +630,7 @@ static BOOL ov23_02251ACC (UnkStruct_020508D4 * param0)
         break;
     case 1:
         if (ScreenWipe_Done()) {
-            sub_0205EB18(v0->unk_3C, 0);
+            sub_0205EB18(v0->playerAvatar, 0);
 
             ov23_02251A84(1, v0);
             v1->unk_00 = 2;
@@ -644,7 +644,7 @@ static BOOL ov23_02251ACC (UnkStruct_020508D4 * param0)
         v1->unk_00 = 4;
         break;
     case 4:
-        sub_0205EB18(v0->unk_3C, 1);
+        sub_0205EB18(v0->playerAvatar, 1);
         ov23_02251A84(0, v0);
         sub_0200F174(1, 1, 1, 0x0, 6, 1, 4);
         v1->unk_00 = 5;

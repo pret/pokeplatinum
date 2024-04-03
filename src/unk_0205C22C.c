@@ -68,7 +68,7 @@ UnkStruct_0205C22C * sub_0205C22C (UnkStruct_0205B43C * param0)
     v0->unk_04 = SysTask_Start(sub_0205C304, v0, 11);
     v0->unk_470 = sub_0205B770(param0);
     v0->unk_474 = SaveData_SaveTable(v0->unk_470->unk_0C, 9);
-    v0->unk_08 = v0->unk_470->unk_3C;
+    v0->unk_08 = v0->unk_470->playerAvatar;
 
     Heap_CreateAtEnd(11, 89, 10000);
     v0->unk_478 = sub_0205C95C(89);
@@ -116,7 +116,7 @@ static void sub_0205C304 (SysTask * param0, void * param1)
     int v3;
 
     if (!sub_020509A4(v0->unk_470)) {
-        v0->unk_08 = v0->unk_470->unk_3C;
+        v0->unk_08 = v0->unk_470->playerAvatar;
         sub_0205C44C(v0, v1, v0->unk_470->unk_38, v0->unk_474);
         sub_0205C51C(v0, v0->unk_470->unk_38);
     }

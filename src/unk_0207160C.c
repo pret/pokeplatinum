@@ -324,7 +324,7 @@ static BOOL sub_020718D8 (UnkStruct_020508D4 * param0)
 
     switch (v2->unk_00) {
     case 0:
-        sub_0205ED2C(v1->unk_3C, 0);
+        sub_0205ED2C(v1->playerAvatar, 0);
         sub_02071ACC(v2->unk_0C);
         (v2->unk_00)++;
         break;
@@ -360,14 +360,14 @@ static BOOL sub_020718D8 (UnkStruct_020508D4 * param0)
                 (v2->unk_00)++;
             }
 
-            sub_0205ED0C(v1->unk_3C, v6.y);
+            sub_0205ED0C(v1->playerAvatar, v6.y);
             ov5_021E18A4(v0, &v6);
         }
     }
     break;
     case 2:
         ov5_021EF388(0, v2->unk_04, v1->unk_A0);
-        sub_0205ED48(v1->unk_3C, 1);
+        sub_0205ED48(v1->playerAvatar, 1);
         Sound_PlayEffect(1562);
         (v2->unk_00)++;
         break;
@@ -387,7 +387,7 @@ static BOOL sub_020719D8 (UnkStruct_020508D4 * param0)
 
     switch (v2->unk_00) {
     case 0:
-        sub_0205ED2C(v1->unk_3C, 0);
+        sub_0205ED2C(v1->playerAvatar, 0);
         sub_02071ACC(v2->unk_0C);
         (v2->unk_00)++;
         break;
@@ -415,14 +415,14 @@ static BOOL sub_020719D8 (UnkStruct_020508D4 * param0)
                 (v2->unk_00)++;
             }
 
-            sub_0205ED0C(v1->unk_3C, v5.y);
+            sub_0205ED0C(v1->playerAvatar, v5.y);
             ov5_021E18A4(v0, &v5);
         }
     }
     break;
     case 2:
         ov5_021EF388(0, v2->unk_04, v1->unk_A0);
-        sub_0205ED48(v1->unk_3C, 1);
+        sub_0205ED48(v1->playerAvatar, 1);
         Sound_PlayEffect(1562);
         (v2->unk_00)++;
         break;

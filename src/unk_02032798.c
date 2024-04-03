@@ -202,7 +202,7 @@ static void sub_02032958 (int param0, int param1, void * param2, void * param3)
         }
     }
 
-    sub_02035AC4(14, NULL, 0);
+    CommSys_SendDataServer(14, NULL, 0);
 }
 
 static void sub_0203299C (int param0, int param1, void * param2, void * param3)

@@ -15,7 +15,7 @@
 typedef struct {
     u32 unk_00;
     UnkStruct_ov23_0224991C * unk_04;
-    UnkStruct_0205E884 * unk_08[MAX_CONNECTED_PLAYERS];
+    PlayerAvatar * playerAvatar[MAX_CONNECTED_PLAYERS];
     UnkStruct_ov101_021D5D90 * unk_28[MAX_CONNECTED_PLAYERS];
     u8 unk_48[MAX_CONNECTED_PLAYERS];
     SysTask * task;
@@ -51,10 +51,10 @@ typedef struct {
     u8 isResetting;
     u8 isUnderground;
     u8 unk_2BF;
-    u8 unk_2C0;
+    u8 forceDirTimer;
     u8 unk_2C1;
     u8 unk_2C2;
     u8 unk_2C3;
-} CommPlayerData;
+} CommPlayer;
 
 #endif // POKEPLATINUM_STRUCT_OV23_0224A294_H

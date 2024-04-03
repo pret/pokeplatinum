@@ -143,11 +143,11 @@ void sub_02055414 (FieldSystem * param0)
 
 u16 sub_02055428 (FieldSystem * param0, int param1)
 {
-    UnkStruct_0205E884 * v0;
+    PlayerAvatar * v0;
     int v1;
     u16 v2, v3;
 
-    v0 = param0->unk_3C;
+    v0 = param0->playerAvatar;
     v1 = sub_0205EB74(v0);
 
     if (v1 == 0x2) {
@@ -212,8 +212,8 @@ static u16 sub_020554E8 (FieldSystem * param0, int param1)
     UnkStruct_0203A790 * v2 = sub_0203A790(param0->unk_0C);
     UnkStruct_02049FA8 * v3 = sub_0203A728(v2);
 
-    v0 = Player_XPos(param0->unk_3C);
-    v1 = Player_ZPos(param0->unk_3C);
+    v0 = Player_XPos(param0->playerAvatar);
+    v1 = Player_ZPos(param0->playerAvatar);
 
     if (param1 != 350) {
         return 0;
@@ -238,10 +238,10 @@ static u16 sub_020554E8 (FieldSystem * param0, int param1)
 
 BOOL sub_02055554 (FieldSystem * param0, u16 param1, int param2)
 {
-    UnkStruct_0205E884 * v0;
+    PlayerAvatar * v0;
     int v1, v2, v3;
 
-    v0 = param0->unk_3C;
+    v0 = param0->playerAvatar;
     v3 = sub_0205EB74(v0);
 
     if (sub_020041DC() == 1) {

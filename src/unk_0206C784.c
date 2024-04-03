@@ -84,13 +84,13 @@ void sub_0206C784 (FieldSystem * param0, const u8 param1, const u8 param2, const
 
     if (param1 == 3) {
         v4 = 34;
-        sub_020550F4(Player_XPos(param0->unk_3C), Player_ZPos(param0->unk_3C), 1, -3, 3, 6, &v3);
+        sub_020550F4(Player_XPos(param0->playerAvatar), Player_ZPos(param0->playerAvatar), 1, -3, 3, 6, &v3);
         v1 = 1;
         v5 = (25 * 16 * FX32_ONE);
         v0->unk_10 = (14 * 16 * FX32_ONE);
     } else if (param1 == 2) {
         v4 = 538;
-        sub_020550F4(Player_XPos(param0->unk_3C), Player_ZPos(param0->unk_3C), -2, 2, 6, 3, &v3);
+        sub_020550F4(Player_XPos(param0->playerAvatar), Player_ZPos(param0->playerAvatar), -2, 2, 6, 3, &v3);
         v1 = 1;
         v5 = (12 * 16 * FX32_ONE);
     }
@@ -104,7 +104,7 @@ void sub_0206C784 (FieldSystem * param0, const u8 param1, const u8 param2, const
             v0->unk_03 = 0;
             v0->unk_7C = (FX32_ONE / 4);
 
-            sub_0205EAEC(param0->unk_3C, &v0->unk_24);
+            sub_0205EAEC(param0->playerAvatar, &v0->unk_24);
             sub_020206B0(param0->unk_24);
             sub_02020690(&v0->unk_24, param0->unk_24);
 

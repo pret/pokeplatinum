@@ -173,7 +173,7 @@ void sub_02070728 (FieldSystem * param0, UnkStruct_02070950 * param1)
     param1->unk_00 = param0->unk_1C->unk_00;
     param1->unk_0C = 0;
 
-    if (sub_0205F158(param0->unk_3C) == 1) {
+    if (sub_0205F158(param0->playerAvatar) == 1) {
         sub_02070838(param0, param1);
         return;
     }
@@ -195,18 +195,18 @@ void sub_02070728 (FieldSystem * param0, UnkStruct_02070950 * param1)
         }
     }
 
-    v1 = Player_XPos(param0->unk_3C);
-    v2 = Player_ZPos(param0->unk_3C);
+    v1 = Player_XPos(param0->playerAvatar);
+    v2 = Player_ZPos(param0->playerAvatar);
     v4 = sub_02054F94(param0, v1, v2);
 
-    sub_020615AC(param0->unk_3C, &v1, &v2);
+    sub_020615AC(param0->playerAvatar, &v1, &v2);
     v3 = sub_02054F94(param0, v1, v2);
 
-    if (ov5_021E0118(param0->unk_3C, v4, v3)) {
+    if (ov5_021E0118(param0->playerAvatar, v4, v3)) {
         param1->unk_0C |= (1 << 2);
     }
 
-    if (ov5_021E0760(v3, Player_Dir(param0->unk_3C))) {
+    if (ov5_021E0760(v3, Player_Dir(param0->playerAvatar))) {
         param1->unk_0C |= (1 << 7);
     }
 
@@ -229,11 +229,11 @@ static void sub_02070838 (FieldSystem * param0, UnkStruct_02070950 * param1)
     int v0;
     u32 v1, v2;
 
-    v0 = sub_0205EAA0(param0->unk_3C);
-    v2 = sub_020616F0(param0->unk_3C, v0);
-    v1 = sub_02061760(param0->unk_3C);
+    v0 = sub_0205EAA0(param0->playerAvatar);
+    v2 = sub_020616F0(param0->playerAvatar, v0);
+    v1 = sub_02061760(param0->playerAvatar);
 
-    if (ov5_021E0118(param0->unk_3C, v1, v2) == 1) {
+    if (ov5_021E0118(param0->playerAvatar, v1, v2) == 1) {
         param1->unk_0C |= (1 << 2);
     }
 }
@@ -357,7 +357,7 @@ static int sub_02070A24 (const UnkStruct_02070950 * param0)
         return 2;
     }
 
-    if (sub_0205EB74(param0->unk_04->unk_3C) == 0x2) {
+    if (sub_0205EB74(param0->unk_04->playerAvatar) == 0x2) {
         return 4;
     }
 
@@ -497,7 +497,7 @@ static int sub_02070C40 (const UnkStruct_02070950 * param0)
         return 2;
     }
 
-    if (sub_0205EB74(param0->unk_04->unk_3C) == 0x2) {
+    if (sub_0205EB74(param0->unk_04->playerAvatar) == 0x2) {
         return 1;
     }
 

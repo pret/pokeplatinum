@@ -261,7 +261,7 @@ void sub_0203CF5C (FieldSystem * param0)
     }
 
     if (v2) {
-        sub_0205F490(param0->unk_3C);
+        sub_0205F490(param0->playerAvatar);
         ov5_021D1CAC(&v1, param0, gCoreSys.pressedKeys, gCoreSys.heldKeys);
     }
 
@@ -301,7 +301,7 @@ void sub_0203CF5C (FieldSystem * param0)
             if (ov5_021D2298(&v1, param0) == 1) {
                 (void)0;
             } else {
-                sub_0205F180(param0->unk_3C, param0->unk_28, -1, v1.unk_04, v1.unk_06, 0);
+                sub_0205F180(param0->playerAvatar, param0->unk_28, -1, v1.unk_04, v1.unk_06, 0);
             }
         }
         break;
@@ -310,7 +310,7 @@ void sub_0203CF5C (FieldSystem * param0)
             if (ov5_021D2368(&v1, param0) == 1) {
                 ov5_021DDA78(param0->unk_04->unk_08);
                 ov5_021E1BCC(param0, 4);
-                ov5_021E0EEC(param0->unk_3C);
+                ov5_021E0EEC(param0->playerAvatar);
                 ov5_021EA714(param0, 0, 1);
             } else {
                 if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
@@ -325,7 +325,7 @@ void sub_0203CF5C (FieldSystem * param0)
                         v3 = ov25_02253DD4(v4);
                     }
 
-                    sub_0205F180(param0->unk_3C, param0->unk_28, -1, v1.unk_04, v1.unk_06, v3);
+                    sub_0205F180(param0->playerAvatar, param0->unk_28, -1, v1.unk_04, v1.unk_06, v3);
                 }
             }
         }
@@ -335,8 +335,8 @@ void sub_0203CF5C (FieldSystem * param0)
             if (ov5_021D1DA4(&v1, param0) == 1) {
                 ov5_021DDA78(param0->unk_04->unk_08);
                 ov5_021E1BCC(param0, 4);
-                sub_0205F56C(param0->unk_3C);
-                ov5_021E0EEC(param0->unk_3C);
+                sub_0205F56C(param0->playerAvatar);
+                ov5_021E0EEC(param0->playerAvatar);
                 ov5_021EA714(param0, 0, 1);
             } else {
                 if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
@@ -351,7 +351,7 @@ void sub_0203CF5C (FieldSystem * param0)
                         v5 = ov25_02253DD4(v6);
                     }
 
-                    sub_0205F180(param0->unk_3C, param0->unk_28, -1, v1.unk_04, v1.unk_06, v5);
+                    sub_0205F180(param0->playerAvatar, param0->unk_28, -1, v1.unk_04, v1.unk_06, v5);
                 }
             }
         }

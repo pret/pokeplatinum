@@ -54,7 +54,7 @@ void * ov6_02247100 (FieldSystem * param0, u32 param1)
 
     v0->unk_08 = 0;
     v0->unk_1C = param0;
-    v0->unk_18 = sub_0205EB3C(param0->unk_3C);
+    v0->unk_18 = sub_0205EB3C(param0->playerAvatar);
 
     return v0;
 }
@@ -174,7 +174,7 @@ void * ov6_022472C8 (FieldSystem * param0, u32 param1, int param2)
 
     v0->unk_08 = param2;
     v0->unk_1C = param0;
-    v0->unk_18 = sub_0205EB3C(param0->unk_3C);
+    v0->unk_18 = sub_0205EB3C(param0->playerAvatar);
 
     return v0;
 }
@@ -293,7 +293,7 @@ void * ov6_02247488 (FieldSystem * param0, Pokemon * param1, u32 param2)
 
     v0->unk_08 = 1;
     v0->unk_1C = param0;
-    v0->unk_18 = sub_0205EB3C(param0->unk_3C);
+    v0->unk_18 = sub_0205EB3C(param0->playerAvatar);
     v0->unk_20 = param1;
 
     return v0;
@@ -318,7 +318,7 @@ BOOL ov6_022474AC (UnkStruct_020508D4 * param0)
 
 static int ov6_022474E8 (UnkStruct_020508D4 * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
 {
-    int v0 = sub_0205EB98(param1->unk_3C);
+    int v0 = sub_0205EB98(param1->playerAvatar);
 
     param2->unk_10 = ov6_02243F88(param1, 0, param2->unk_20, v0);
     param2->unk_00++;
@@ -352,7 +352,7 @@ void * ov6_02247530 (FieldSystem * param0, Pokemon * param1, u32 param2)
 
     v0->unk_08 = 2;
     v0->unk_1C = param0;
-    v0->unk_18 = sub_0205EB3C(param0->unk_3C);
+    v0->unk_18 = sub_0205EB3C(param0->playerAvatar);
     v0->unk_20 = param1;
 
     return v0;

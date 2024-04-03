@@ -1024,31 +1024,31 @@ void ov23_02243B0C (int param0, int param1, void * param2, void * param3)
 
     if ((sub_02058DF8(param0) == 0xffff) && (sub_02058E4C(param0) == 0xffff)) {
         v4.unk_07 = 7;
-        sub_02035AC4(34, &v4, sizeof(UnkStruct_ov23_02243ED4));
+        CommSys_SendDataServer(34, &v4, sizeof(UnkStruct_ov23_02243ED4));
         return;
     }
 
     if (0xff != sub_0205900C(v1, v2)) {
         v4.unk_07 = 5;
-        sub_02035AC4(34, &v4, sizeof(UnkStruct_ov23_02243ED4));
+        CommSys_SendDataServer(34, &v4, sizeof(UnkStruct_ov23_02243ED4));
         return;
     }
 
-    if (sub_02058108(v1, v2)) {
+    if (CommPlayer_CheckNPCCollision(v1, v2)) {
         v4.unk_07 = 5;
-        sub_02035AC4(34, &v4, sizeof(UnkStruct_ov23_02243ED4));
+        CommSys_SendDataServer(34, &v4, sizeof(UnkStruct_ov23_02243ED4));
         return;
     }
 
     if (ov23_02242E58(v1, v2)) {
         v4.unk_07 = 4;
-        sub_02035AC4(34, &v4, sizeof(UnkStruct_ov23_02243ED4));
+        CommSys_SendDataServer(34, &v4, sizeof(UnkStruct_ov23_02243ED4));
         return;
     }
 
     if (sub_02054F68(Unk_ov23_02257764->unk_40, v1, v2)) {
         v4.unk_07 = 6;
-        sub_02035AC4(34, &v4, sizeof(UnkStruct_ov23_02243ED4));
+        CommSys_SendDataServer(34, &v4, sizeof(UnkStruct_ov23_02243ED4));
         return;
     }
 
@@ -1061,7 +1061,7 @@ void ov23_02243B0C (int param0, int param1, void * param2, void * param3)
         }
     }
 
-    sub_02035AC4(34, &v4, sizeof(UnkStruct_ov23_02243ED4));
+    CommSys_SendDataServer(34, &v4, sizeof(UnkStruct_ov23_02243ED4));
 }
 
 int ov23_02243C38 (void)
@@ -1291,7 +1291,7 @@ void ov23_02243F9C (int param0, int param1, void * param2, void * param3)
     v0[0] = param0;
     v0[1] = 1;
 
-    sub_02035AC4(36, v0, 2);
+    CommSys_SendDataServer(36, v0, 2);
     ov23_02244638();
 }
 
@@ -1360,7 +1360,7 @@ BOOL ov23_02244080 (int param0, UnkStruct_ov23_0224271C * param1, u8 param2)
         }
 
         sub_02059058(param0, 0);
-        sub_02035AC4(51, &v4, sizeof(UnkStruct_ov23_02244140));
+        CommSys_SendDataServer(51, &v4, sizeof(UnkStruct_ov23_02244140));
 
         return 1;
     }
@@ -1502,7 +1502,7 @@ static BOOL ov23_022442F0 (int param0)
         sub_02028FB4(v2, v0.unk_00.unk_05);
     }
 
-    sub_02035AC4(37, &v0, sizeof(UnkStruct_ov23_02244140));
+    CommSys_SendDataServer(37, &v0, sizeof(UnkStruct_ov23_02244140));
     Unk_ov23_02257764->unk_BA0[param0] = v1->unk_04;
     ov23_02243A00(v1);
 
@@ -1527,7 +1527,7 @@ void ov23_022443CC (int param0, int param1, int param2, int param3, int param4, 
     v0.unk_00.unk_02 = param4;
     v0.unk_07_4 = param5;
 
-    sub_02035AC4(37, &v0, sizeof(UnkStruct_ov23_02244140));
+    CommSys_SendDataServer(37, &v0, sizeof(UnkStruct_ov23_02244140));
     Unk_ov23_02257764->unk_BA0[param0] = param2;
 }
 
@@ -1815,9 +1815,9 @@ static void ov23_022448FC (int param0)
 {
     int v0, v1, v2;
 
-    v2 = sub_02059328(param0);
+    v2 = CommPlayer_GetOppositeDir(param0);
 
-    sub_0205EA84(Unk_ov23_02257764->unk_40->unk_3C, v2);
+    sub_0205EA84(Unk_ov23_02257764->unk_40->playerAvatar, v2);
 
     v0 = Unk_ov23_02257764->unk_B28[CommSys_CurNetId()].unk_00.unk_00;
     v1 = Unk_ov23_02257764->unk_B28[CommSys_CurNetId()].unk_00.unk_02;
@@ -1831,9 +1831,9 @@ static BOOL ov23_0224495C (int param0, BOOL param1)
 {
     int v0, v1, v2, v3, v4;
 
-    v0 = Player_XPos(Unk_ov23_02257764->unk_40->unk_3C);
-    v1 = Player_ZPos(Unk_ov23_02257764->unk_40->unk_3C);
-    v4 = sub_02059328(param0);
+    v0 = Player_XPos(Unk_ov23_02257764->unk_40->playerAvatar);
+    v1 = Player_ZPos(Unk_ov23_02257764->unk_40->playerAvatar);
+    v4 = CommPlayer_GetOppositeDir(param0);
     v2 = Unk_ov23_02257764->unk_B28[CommSys_CurNetId()].unk_00.unk_00;
     v3 = Unk_ov23_02257764->unk_B28[CommSys_CurNetId()].unk_00.unk_02;
 
@@ -2014,8 +2014,8 @@ static int ov23_02244C10 (void)
 {
     int v0, v1, v2;
 
-    v1 = Player_XPos(Unk_ov23_02257764->unk_40->unk_3C);
-    v2 = Player_ZPos(Unk_ov23_02257764->unk_40->unk_3C);
+    v1 = Player_XPos(Unk_ov23_02257764->unk_40->playerAvatar);
+    v2 = Player_ZPos(Unk_ov23_02257764->unk_40->playerAvatar);
 
     ov5_021F5634(Unk_ov23_02257764->unk_40, v1, 0, v2);
     ov23_022541B4(ov23_0224219C(), 0, Unk_ov23_02257764->unk_B9F);
@@ -2835,7 +2835,7 @@ static void ov23_02245AA4 (int param0, BOOL param1)
         if (Unk_ov23_02257764->unk_300) {
             UnkStruct_ov23_02245AA4 * v0 = Unk_ov23_02257764->unk_300;
 
-            sub_0205ED0C(Unk_ov23_02257764->unk_40->unk_3C, 0);
+            sub_0205ED0C(Unk_ov23_02257764->unk_40->playerAvatar, 0);
             SysTask_Done(Unk_ov23_02257764->unk_2F0);
             Heap_FreeToHeap(v0);
 
@@ -2864,7 +2864,7 @@ static void ov23_02245AF4 (int param0, BOOL param1)
         G2_BlendNone();
         GX_SetMasterBrightness(0);
 
-        sub_0205ED0C(Unk_ov23_02257764->unk_40->unk_3C, 0);
+        sub_0205ED0C(Unk_ov23_02257764->unk_40->playerAvatar, 0);
         SysTask_Done(Unk_ov23_02257764->unk_2F0);
         Heap_FreeToHeap(v0);
 
@@ -2944,21 +2944,21 @@ static void ov23_02245BA8 (SysTask * param0, void * param1)
             ov23_02254044(ov23_0224219C());
 
             v0->unk_00 = 7;
-            v2 = Player_XPos(Unk_ov23_02257764->unk_40->unk_3C);
-            v3 = Player_ZPos(Unk_ov23_02257764->unk_40->unk_3C);
+            v2 = Player_XPos(Unk_ov23_02257764->unk_40->playerAvatar);
+            v3 = Player_ZPos(Unk_ov23_02257764->unk_40->playerAvatar);
 
             if (!v0->unk_08) {
                 v0->unk_14 = ov5_021F4EAC(Unk_ov23_02257764->unk_40, v2, v3, 2, 32);
-                sub_0205ED0C(Unk_ov23_02257764->unk_40->unk_3C, -2 * FX32_ONE);
+                sub_0205ED0C(Unk_ov23_02257764->unk_40->playerAvatar, -2 * FX32_ONE);
             } else {
                 v0->unk_14 = ov5_021F4EAC(Unk_ov23_02257764->unk_40, v2, v3, 3, 32);
-                sub_0205ED0C(Unk_ov23_02257764->unk_40->unk_3C, -3 * FX32_ONE);
+                sub_0205ED0C(Unk_ov23_02257764->unk_40->playerAvatar, -3 * FX32_ONE);
             }
         }
         break;
     case 7:
     {
-        int v5 = Player_Dir(Unk_ov23_02257764->unk_40->unk_3C);
+        int v5 = Player_Dir(Unk_ov23_02257764->unk_40->playerAvatar);
 
         if (v0->unk_18 != v5) {
             Sound_PlayEffect(1515);
@@ -2971,7 +2971,7 @@ static void ov23_02245BA8 (SysTask * param0, void * param1)
     case 8:
         break;
     case 9:
-        sub_0205ED0C(Unk_ov23_02257764->unk_40->unk_3C, 0);
+        sub_0205ED0C(Unk_ov23_02257764->unk_40->playerAvatar, 0);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
         Unk_ov23_02257764->unk_2F0 = NULL;
@@ -2996,7 +2996,7 @@ static void ov23_02245BA8 (SysTask * param0, void * param1)
         break;
     case 14:
         if (-10 != v4[v0->unk_10]) {
-            sub_0205ED0C(Unk_ov23_02257764->unk_40->unk_3C, v4[v0->unk_10] * FX32_ONE);
+            sub_0205ED0C(Unk_ov23_02257764->unk_40->playerAvatar, v4[v0->unk_10] * FX32_ONE);
             v0->unk_10++;
 
             if (v0->unk_10 == 5) {
@@ -3029,7 +3029,7 @@ static void ov23_02245DF8 (BOOL param0, BOOL param1, int param2)
     v1->unk_08 = param0;
     v1->unk_10 = 0;
     v1->unk_0D = param1;
-    v1->unk_18 = Player_Dir(Unk_ov23_02257764->unk_40->unk_3C);
+    v1->unk_18 = Player_Dir(Unk_ov23_02257764->unk_40->playerAvatar);
     v1->unk_0C = param2;
 
     Unk_ov23_02257764->unk_300 = v1;
@@ -3947,8 +3947,8 @@ static BOOL ov23_02247568 (BGL * param0, UnkStruct_ov23_022471D8 * param1)
     switch (param1->unk_125) {
     case 0:
         param1->unk_124 = 0;
-        v5 = Player_XPos(Unk_ov23_02257764->unk_40->unk_3C);
-        v6 = Player_ZPos(Unk_ov23_02257764->unk_40->unk_3C);
+        v5 = Player_XPos(Unk_ov23_02257764->unk_40->playerAvatar);
+        v6 = Player_ZPos(Unk_ov23_02257764->unk_40->playerAvatar);
         param1->unk_114 = ov5_021F4F18(Unk_ov23_02257764->unk_40, v5, v6, 5, 32);
         param1->unk_125 = 1;
         Sound_PlayEffect(1630);
@@ -4909,7 +4909,7 @@ static void ov23_02248A6C (SysTask * param0, void * param1)
     }
 
     v3 = v0->unk_08;
-    v2 = sub_02059444(v3);
+    v2 = CommPlayer_DirClient(v3);
 
     if ((v0->unk_00 == 1) || (v2 == -1)) {
         Unk_ov23_02257764->unk_00[v3] = NULL;

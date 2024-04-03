@@ -430,10 +430,10 @@ static void ov23_022425B8 (int param0, UnkStruct_ov23_0224271C * param1)
     v0[0] = param0;
 
     v3 = ov23_02242540(v0, ov23_022442D8, param1);
-    sub_02035AC4(49, v0, v3);
+    CommSys_SendDataServer(49, v0, v3);
 
     v3 = ov23_02242540(v0, ov23_02241200, param1);
-    sub_02035AC4(50, v0, v3);
+    CommSys_SendDataServer(50, v0, v3);
 }
 
 void ov23_022425F8 (int param0, int param1, void * param2, void * param3)
@@ -650,7 +650,7 @@ void ov23_022428D8 (int param0, int param1, void * param2, void * param3)
             v0.unk_02 = v3;
             v0.unk_01 = param0;
 
-            sub_02035AC4(30, &v0, sizeof(v0));
+            CommSys_SendDataServer(30, &v0, sizeof(v0));
             sub_02059058(param0, 0);
         } else if (ov23_0224A658(param0, v3, 0)) {
             (void)0;
@@ -662,7 +662,7 @@ void ov23_022428D8 (int param0, int param1, void * param2, void * param3)
                 v0.unk_02 = v3;
                 v0.unk_01 = param0;
 
-                sub_02035AC4(30, &v0, sizeof(v0));
+                CommSys_SendDataServer(30, &v0, sizeof(v0));
                 sub_02059058(param0, 0);
             }
         } else if (!sub_02059094(param0)) {
@@ -672,7 +672,7 @@ void ov23_022428D8 (int param0, int param1, void * param2, void * param3)
             v0.unk_02 = v3;
             v0.unk_01 = param0;
 
-            sub_02035AC4(30, &v0, sizeof(v0));
+            CommSys_SendDataServer(30, &v0, sizeof(v0));
             sub_02059058(param0, 0);
         } else {
             v0.unk_00 = 1;
@@ -680,7 +680,7 @@ void ov23_022428D8 (int param0, int param1, void * param2, void * param3)
             v0.unk_01 = param0;
 
             if (sub_02059094(v3)) {
-                if (sub_02035AC4(30, &v0, sizeof(v0))) {
+                if (CommSys_SendDataServer(30, &v0, sizeof(v0))) {
                     sub_02059058(param0, 0);
                     sub_02059058(v3, 0);
                     sub_02058FB0(param0, v3);
@@ -711,7 +711,7 @@ void ov23_022428D8 (int param0, int param1, void * param2, void * param3)
         return;
     }
 
-    if (sub_02058108(v2.unk_00, v2.unk_02)) {
+    if (CommPlayer_CheckNPCCollision(v2.unk_00, v2.unk_02)) {
         if (ov23_0224A658(param0, 0xff, 0)) {
             return;
         }

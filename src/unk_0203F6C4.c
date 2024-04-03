@@ -2393,13 +2393,13 @@ static BOOL sub_02040204 (UnkStruct_0203E724 * param0)
     }
 
     if (gCoreSys.pressedKeys & PAD_KEY_UP) {
-        sub_0205EA84(param0->unk_34->unk_3C, 0);
+        sub_0205EA84(param0->unk_34->playerAvatar, 0);
     } else if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
-        sub_0205EA84(param0->unk_34->unk_3C, 1);
+        sub_0205EA84(param0->unk_34->playerAvatar, 1);
     } else if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
-        sub_0205EA84(param0->unk_34->unk_3C, 2);
+        sub_0205EA84(param0->unk_34->playerAvatar, 2);
     } else if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
-        sub_0205EA84(param0->unk_34->unk_3C, 3);
+        sub_0205EA84(param0->unk_34->playerAvatar, 3);
     } else if (gCoreSys.pressedKeys & PAD_BUTTON_X) {
         sub_0203F0C0(param0->unk_34);
     } else {
@@ -2663,7 +2663,7 @@ static BOOL sub_02040670 (UnkStruct_0203E724 * param0)
 
     if (v4 != 0xffff) {
         sub_0201D730(*v1);
-        sub_0205EA84(param0->unk_34->unk_3C, v4);
+        sub_0205EA84(param0->unk_34->playerAvatar, v4);
         *v2 = 0;
         return 1;
     }
@@ -2709,7 +2709,7 @@ static BOOL sub_02040730 (UnkStruct_0203E724 * param0)
     }
 
     if (v2 != 0xffff) {
-        sub_0205EA84(param0->unk_34->unk_3C, v2);
+        sub_0205EA84(param0->unk_34->playerAvatar, v2);
         *v1 = 0;
         return 1;
     }
@@ -3236,7 +3236,7 @@ static BOOL sub_02041004 (UnkStruct_0203E724 * param0)
 {
     FieldSystem * v0 = param0->unk_34;
     UnkStruct_02061AB4 ** v1 = sub_0203F098(v0, 10);
-    UnkStruct_02061AB4 * v2 = sub_0205EB3C(v0->unk_3C);
+    UnkStruct_02061AB4 * v2 = sub_0205EB3C(v0->playerAvatar);
 
     if (inline_020410F4_1((1 << 0)) && (sub_02065684(v2) == 1)) {
         sub_02062DD0(v2);
@@ -3290,7 +3290,7 @@ static BOOL sub_020410F4 (UnkStruct_0203E724 * param0)
 {
     FieldSystem * v0 = param0->unk_34;
     UnkStruct_02061AB4 ** v1 = sub_0203F098(v0, 10);
-    UnkStruct_02061AB4 * v2 = sub_0205EB3C(v0->unk_3C);
+    UnkStruct_02061AB4 * v2 = sub_0205EB3C(v0->playerAvatar);
     UnkStruct_02061AB4 * v3 = sub_02062570(v0->unk_38, 0x30);
     UnkStruct_02061AB4 * v4 = sub_02069EB8(*v1);
     UnkStruct_02061830 * v5;
@@ -3466,10 +3466,10 @@ static BOOL sub_020413F0 (UnkStruct_0203E724 * param0)
 
     {
         FieldSystem * v3;
-        UnkStruct_0205E884 * v4;
+        PlayerAvatar * v4;
 
         v3 = param0->unk_34;
-        v4 = v3->unk_3C;
+        v4 = v3->playerAvatar;
         v0 = Player_Dir(v4);
     }
 
@@ -3492,8 +3492,8 @@ static BOOL sub_02041420 (UnkStruct_0203E724 * param0)
 
     v0 = inline_0204FCAC(param0);
     v1 = inline_0204FCAC(param0);
-    *v0 = Player_XPos(v2->unk_3C);
-    *v1 = Player_ZPos(v2->unk_3C);
+    *v0 = Player_XPos(v2->playerAvatar);
+    *v1 = Player_ZPos(v2->playerAvatar);
 
     return 0;
 }
@@ -3518,7 +3518,7 @@ static BOOL sub_020414C4 (UnkStruct_0203E724 * param0)
     u16 * v0;
 
     v0 = inline_0204FCAC(param0);
-    *v0 = Player_Dir(param0->unk_34->unk_3C);
+    *v0 = Player_Dir(param0->unk_34->playerAvatar);
 
     return 0;
 }
@@ -3537,7 +3537,7 @@ static BOOL sub_020414EC (UnkStruct_0203E724 * param0)
     v3.y = FX32_CONST(v1);
     v3.z = FX32_CONST(v2);
 
-    sub_020630AC(sub_0205EB3C(param0->unk_34->unk_3C), &v3);
+    sub_020630AC(sub_0205EB3C(param0->unk_34->playerAvatar), &v3);
     sub_02020990(&v3, param0->unk_34->unk_24);
 
     return 0;
@@ -4763,7 +4763,7 @@ static BOOL sub_02042A8C (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02042AB0 (UnkStruct_0203E724 * param0)
 {
-    ov5_021E0734(param0->unk_28, Player_Dir(param0->unk_34->unk_3C), inline_02049538(param0));
+    ov5_021E0734(param0->unk_28, Player_Dir(param0->unk_34->playerAvatar), inline_02049538(param0));
     return 1;
 }
 
@@ -4774,10 +4774,10 @@ static BOOL sub_02042AE0 (UnkStruct_0203E724 * param0)
     {
         int v0;
 
-        if (sub_0205F16C(param0->unk_34->unk_3C) == 1) {
-            v0 = Player_Dir(param0->unk_34->unk_3C);
+        if (sub_0205F16C(param0->unk_34->playerAvatar) == 1) {
+            v0 = Player_Dir(param0->unk_34->playerAvatar);
         } else {
-            v0 = sub_0205EA94(param0->unk_34->unk_3C);
+            v0 = sub_0205EA94(param0->unk_34->playerAvatar);
         }
 
         ov5_021E00EC(param0->unk_28, v0, inline_02049538(param0));
@@ -4788,7 +4788,7 @@ static BOOL sub_02042AE0 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02042B3C (UnkStruct_0203E724 * param0)
 {
-    ov5_021E0998(param0->unk_28, Player_Dir(param0->unk_34->unk_3C), inline_02049538(param0));
+    ov5_021E0998(param0->unk_28, Player_Dir(param0->unk_34->playerAvatar), inline_02049538(param0));
     return 1;
 }
 
@@ -4831,7 +4831,7 @@ static BOOL sub_02042C18 (UnkStruct_0203E724 * param0)
     u16 v2 = inline_02049538(param0);
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->unk_34->unk_0C), v2);
-    *v1 = ov6_02243F88(param0->unk_34, 0, v0, sub_0205EB98(param0->unk_34->unk_3C));
+    *v1 = ov6_02243F88(param0->unk_34, 0, v0, sub_0205EB98(param0->unk_34->playerAvatar));
 
     sub_0203E764(param0, sub_02042C80);
     return 1;
@@ -4859,7 +4859,7 @@ static BOOL sub_02042CB4 (UnkStruct_0203E724 * param0)
 {
     u16 * v0 = inline_0204FCAC(param0);
 
-    if (sub_0205EB74(param0->unk_34->unk_3C) == 0x1) {
+    if (sub_0205EB74(param0->unk_34->playerAvatar) == 0x1) {
         *v0 = 1;
     } else {
         *v0 = 0;
@@ -4875,11 +4875,11 @@ static BOOL sub_02042CE4 (UnkStruct_0203E724 * param0)
     if (v0 == 1) {
         sub_020553F0(param0->unk_34, 1152);
         sub_02055554(param0->unk_34, 1152, 1);
-        ov5_021DFB54(param0->unk_34->unk_3C, (1 << 1));
-        ov5_021DFB5C(param0->unk_34->unk_3C);
+        ov5_021DFB54(param0->unk_34->playerAvatar, (1 << 1));
+        ov5_021DFB5C(param0->unk_34->playerAvatar);
     } else {
-        ov5_021DFB54(param0->unk_34->unk_3C, (1 << 0));
-        ov5_021DFB5C(param0->unk_34->unk_3C);
+        ov5_021DFB54(param0->unk_34->playerAvatar, (1 << 0));
+        ov5_021DFB5C(param0->unk_34->playerAvatar);
         sub_020553F0(param0->unk_34, 0);
         sub_02055554(param0->unk_34, sub_02055428(param0->unk_34, param0->unk_34->unk_1C->unk_00), 1);
     }
@@ -4895,7 +4895,7 @@ static BOOL sub_02042D70 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02042D84 (UnkStruct_0203E724 * param0)
 {
-    sub_0205EFC4(param0->unk_34->unk_3C, (*((param0)->unk_08++)));
+    sub_0205EFC4(param0->unk_34->playerAvatar, (*((param0)->unk_08++)));
     return 0;
 }
 
@@ -4903,7 +4903,7 @@ static BOOL sub_02042D9C (UnkStruct_0203E724 * param0)
 {
     u16 * v0 = inline_0204FCAC(param0);
 
-    *v0 = sub_0205EB74(param0->unk_34->unk_3C);
+    *v0 = sub_0205EB74(param0->unk_34->playerAvatar);
     return 0;
 }
 
@@ -4911,13 +4911,13 @@ static BOOL sub_02042DC4 (UnkStruct_0203E724 * param0)
 {
     u16 v0 = sub_0203E838(param0);
 
-    sub_0205EB84(param0->unk_34->unk_3C, v0);
+    sub_0205EB84(param0->unk_34->playerAvatar, v0);
     return 1;
 }
 
 static BOOL sub_02042DDC (UnkStruct_0203E724 * param0)
 {
-    ov5_021DFB5C(param0->unk_34->unk_3C);
+    ov5_021DFB5C(param0->unk_34->playerAvatar);
     return 0;
 }
 
@@ -5999,7 +5999,7 @@ static BOOL sub_020440EC (UnkStruct_0203E724 * param0)
     v1 = inline_0204FCAC(param0);
 
     {
-        UnkStruct_02061AB4 * v4 = sub_0205EB3C(v3->unk_3C);
+        UnkStruct_02061AB4 * v4 = sub_0205EB3C(v3->playerAvatar);
 
         *v0 = sub_02063020(v4);
         *v2 = ((sub_02063030(v4) / 2));
@@ -6582,7 +6582,7 @@ static BOOL sub_02044BA0 (UnkStruct_0203E724 * param0)
 {
     u8 v0 = (*((param0)->unk_08++));
 
-    sub_0205ED2C(param0->unk_34->unk_3C, v0);
+    sub_0205ED2C(param0->unk_34->playerAvatar, v0);
     return 1;
 }
 

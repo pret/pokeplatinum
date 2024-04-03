@@ -139,8 +139,8 @@ void sub_0205CA94 (SysTask * param0, void * param1)
 
     switch (v0->unk_1E4) {
     case 0:
-        sub_02062DDC(sub_0205EB3C(v0->unk_00->unk_3C));
-        sub_0205EB18(v0->unk_00->unk_3C, 0);
+        sub_02062DDC(sub_0205EB3C(v0->unk_00->playerAvatar));
+        sub_0205EB18(v0->unk_00->playerAvatar, 0);
         v0->unk_1E4++;
         break;
     case 1:
@@ -202,7 +202,7 @@ void sub_0205CBFC (SysTask * param0, void * param1)
 
     switch (v0->unk_1E4) {
     case 0:
-        sub_0205EB18(v0->unk_00->unk_3C, 0);
+        sub_0205EB18(v0->unk_00->playerAvatar, 0);
         v0->unk_1E4++;
         break;
     case 1:
@@ -229,7 +229,7 @@ void sub_0205CBFC (SysTask * param0, void * param1)
 
         if (v0->unk_1E8 > 0) {
             v0->unk_1E4++;
-            sub_0205EB18(v0->unk_00->unk_3C, 1);
+            sub_0205EB18(v0->unk_00->playerAvatar, 1);
         }
         break;
     case 4:
@@ -257,7 +257,7 @@ void sub_0205CD3C (SysTask * param0, void * param1)
 
     switch (v0->unk_1E4) {
     case 0:
-        sub_0205EB18(v0->unk_00->unk_3C, 0);
+        sub_0205EB18(v0->unk_00->playerAvatar, 0);
         v0->unk_1E4++;
         break;
     case 1:
@@ -320,7 +320,7 @@ void sub_0205CE7C (SysTask * param0, void * param1)
 
     switch (v0->unk_1E4) {
     case 0:
-        sub_0205EB18(v0->unk_00->unk_3C, 0);
+        sub_0205EB18(v0->unk_00->playerAvatar, 0);
         sub_0205D274(v0, &v0->unk_1C0[0], 4);
         sub_0205D274(v0, &v0->unk_1C0[1], 5);
         v0->unk_1E0 = 2;
@@ -340,7 +340,7 @@ void sub_0205CE7C (SysTask * param0, void * param1)
         v1[0] = v0->unk_1C0[0].unk_0C(&v0->unk_1C0[0]);
 
         if (v1[0] == 0) {
-            sub_0205EB18(v0->unk_00->unk_3C, 1);
+            sub_0205EB18(v0->unk_00->playerAvatar, 1);
             v0->unk_1E8 = 6;
             v0->unk_1E4++;
         }

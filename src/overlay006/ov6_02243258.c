@@ -1026,7 +1026,7 @@ static void ov6_02243F50 (void)
 
 static void ov6_02243F74 (FieldSystem * param0, int param1)
 {
-    UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0->unk_3C);
+    UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0->playerAvatar);
     sub_02062D64(v0, param1);
 }
 
@@ -3042,7 +3042,7 @@ static void * ov6_02245F44 (u32 param0, int param1)
 
 static void ov6_02245F64 (UnkStruct_ov6_02243FFC * param0, int param1)
 {
-    UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0->unk_60->unk_3C);
+    UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0->unk_60->playerAvatar);
 
     sub_02062DDC(v0);
     sub_02062D64(v0, param1);

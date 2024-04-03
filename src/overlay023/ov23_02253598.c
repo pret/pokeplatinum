@@ -424,7 +424,7 @@ void ov23_02253968 (void)
 
 void ov23_02253998 (int param0, int param1, void * param2, void * param3)
 {
-    sub_02035AC4(82, param2, param1);
+    CommSys_SendDataServer(82, param2, param1);
 }
 
 void ov23_022539A8 (int param0, int param1, void * param2, void * param3)

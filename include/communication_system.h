@@ -27,7 +27,7 @@ void sub_02035938(u8 param0);
 BOOL sub_0203597C(int param0, const void * param1, int param2);
 BOOL CommSys_SendData(int param0, const void * param1, int param2);
 BOOL sub_02035A3C(int param0, const void * param1, int param2);
-BOOL sub_02035AC4(int param0, const void * param1, int param2);
+BOOL CommSys_SendDataServer(int param0, const void * param1, int param2);
 BOOL sub_02035B48(int param0, const void * param1);
 int sub_02035B54(void);
 BOOL CommSys_IsPlayerConnected(u16 param0);

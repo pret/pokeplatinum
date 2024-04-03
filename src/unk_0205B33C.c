@@ -609,12 +609,12 @@ void sub_0205B930 (UnkStruct_0205B43C * param0, int param1, u32 param2)
         if (param2 == 0) {
             u8 v1 = param0->unk_30;
 
-            sub_02035AC4(103, &v1, 1);
+            CommSys_SendDataServer(103, &v1, 1);
             param0->unk_3C = param2;
         } else {
             u8 v2 = 7;
 
-            sub_02035AC4(103, &v2, 1);
+            CommSys_SendDataServer(103, &v2, 1);
             param0->unk_3C = param2;
         }
         break;

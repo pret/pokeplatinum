@@ -333,7 +333,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         if (v0->unk_44 != 0) {
             v0->unk_44--;
         } else {
-            if (sub_02065684(sub_0205EB3C(v1->unk_3C))) {
+            if (sub_02065684(sub_0205EB3C(v1->playerAvatar))) {
                 v0->unk_34 = 11;
             }
         }
@@ -818,7 +818,7 @@ static BOOL sub_0205AD34 (UnkStruct_0205A0D8 * param0)
     BOOL v0;
 
     if (param0->unk_86 == 0) {
-        v0 = sub_02035AC4(107, &(param0->unk_84), 1);
+        v0 = CommSys_SendDataServer(107, &(param0->unk_84), 1);
     } else {
         v0 = CommSys_SendData(107, &(param0->unk_84), 1);
     }
@@ -1096,7 +1096,7 @@ void sub_0205B2D4 (FieldSystem * param0)
             continue;
         }
 
-        if ((v2 == sub_02058CA0(v0)) && (v3 == sub_02058CF4(v0))) {
+        if ((v2 == CommPlayer_XPos(v0)) && (v3 == CommPlayer_ZPos(v0))) {
             UnkStruct_0205B2D4 * v4 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205B2D4));
 
             v4->unk_24 = v0;

@@ -43,7 +43,7 @@ BOOL ov5_021F101C (UnkStruct_020508D4 * param0)
         break;
     case 2:
     {
-        int v5 = sub_0205EB98(v0->unk_3C);
+        int v5 = sub_0205EB98(v0->playerAvatar);
         v3->unk_00 = ov6_02243F88(v0, 0, v1->unk_00, v5);
     }
         (*v2)++;

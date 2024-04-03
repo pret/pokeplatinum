@@ -211,7 +211,7 @@ void sub_0206842C (FieldSystem * param0, UnkStruct_020684D0 * param1)
     int v0, v1, v2;
     UnkStruct_02061AB4 * v3;
 
-    if (sub_0205F158(param0->unk_3C) == 1) {
+    if (sub_0205F158(param0->playerAvatar) == 1) {
         sub_020684D0(param0, param1);
         return;
     }
@@ -219,14 +219,14 @@ void sub_0206842C (FieldSystem * param0, UnkStruct_020684D0 * param1)
     param1->unk_18 = param0;
     param1->unk_00 = param0->unk_1C->unk_00;
     param1->unk_04 = sub_0206A984(SaveData_Events(param0->unk_0C));
-    param1->unk_08 = sub_0205EB74(param0->unk_3C);
+    param1->unk_08 = sub_0205EB74(param0->playerAvatar);
 
-    v0 = Player_XPos(param0->unk_3C);
-    v1 = Player_ZPos(param0->unk_3C);
+    v0 = Player_XPos(param0->playerAvatar);
+    v1 = Player_ZPos(param0->playerAvatar);
 
     param1->unk_0E = sub_02054F94(param0, v0, v1);
 
-    v2 = Player_Dir(param0->unk_3C);
+    v2 = Player_Dir(param0->playerAvatar);
 
     switch (v2) {
     case 0:
@@ -247,7 +247,7 @@ void sub_0206842C (FieldSystem * param0, UnkStruct_020684D0 * param1)
     sub_0203C9D4(param0, &v3);
 
     param1->unk_10 = sub_02055FC8(param0, v3);
-    param1->unk_14 = param0->unk_3C;
+    param1->unk_14 = param0->playerAvatar;
 }
 
 static void sub_020684D0 (FieldSystem * param0, UnkStruct_020684D0 * param1)
@@ -255,16 +255,16 @@ static void sub_020684D0 (FieldSystem * param0, UnkStruct_020684D0 * param1)
     param1->unk_18 = param0;
     param1->unk_00 = param0->unk_1C->unk_00;
     param1->unk_04 = sub_0206A984(SaveData_Events(param0->unk_0C));
-    param1->unk_08 = sub_0205EB74(param0->unk_3C);
-    param1->unk_0E = sub_02061760(param0->unk_3C);
+    param1->unk_08 = sub_0205EB74(param0->playerAvatar);
+    param1->unk_0E = sub_02061760(param0->playerAvatar);
 
     {
-        int v0 = sub_0205EAA0(param0->unk_3C);
-        param1->unk_0C = sub_020616F0(param0->unk_3C, v0);
+        int v0 = sub_0205EAA0(param0->playerAvatar);
+        param1->unk_0C = sub_020616F0(param0->playerAvatar, v0);
     }
 
     param1->unk_10 = sub_02055FC8(param0, NULL);
-    param1->unk_14 = param0->unk_3C;
+    param1->unk_14 = param0->playerAvatar;
 }
 
 static UnkStruct_0206851C * sub_0206851C (u32 param0, u16 param1, u16 param2, u16 param3, u16 param4)
@@ -443,8 +443,8 @@ static u32 sub_0206877C (const UnkStruct_020684D0 * param0)
     {
         u16 v0, v1;
 
-        v0 = Player_XPos(param0->unk_18->unk_3C);
-        v1 = Player_ZPos(param0->unk_18->unk_3C);
+        v0 = Player_XPos(param0->unk_18->playerAvatar);
+        v1 = Player_ZPos(param0->unk_18->playerAvatar);
 
         if (sub_0203A6A4(param0->unk_18, v0, v1) == 0) {
             return -1;
@@ -488,10 +488,10 @@ static BOOL sub_02068884 (UnkStruct_020508D4 * param0)
         (*v1)++;
         break;
     case 1:
-        if (sub_0205EB74(v0->unk_3C) == 0x1) {
-            sub_02062DDC(sub_0205EB3C(v0->unk_3C));
-            ov5_021DFB54(v0->unk_3C, (1 << 0));
-            ov5_021DFB5C(v0->unk_3C);
+        if (sub_0205EB74(v0->playerAvatar) == 0x1) {
+            sub_02062DDC(sub_0205EB3C(v0->playerAvatar));
+            ov5_021DFB54(v0->playerAvatar, (1 << 0));
+            ov5_021DFB5C(v0->playerAvatar);
 
             sub_020553F0(v0, 0);
             sub_02055554(
@@ -499,10 +499,10 @@ static BOOL sub_02068884 (UnkStruct_020508D4 * param0)
         } else {
             sub_020553F0(v0, 1152);
             sub_02055554(v0, 1152, 1);
-            sub_02062DDC(sub_0205EB3C(v0->unk_3C));
+            sub_02062DDC(sub_0205EB3C(v0->playerAvatar));
 
-            ov5_021DFB54(v0->unk_3C, (1 << 1));
-            ov5_021DFB5C(v0->unk_3C);
+            ov5_021DFB54(v0->playerAvatar, (1 << 1));
+            ov5_021DFB5C(v0->playerAvatar);
 
             RadarChain_Clear(v0->chain);
         }
@@ -742,7 +742,7 @@ static u32 sub_02068C5C (const UnkStruct_020684D0 * param0)
         return 2;
     }
 
-    if (sub_0205EB74(param0->unk_18->unk_3C) == 0x1) {
+    if (sub_0205EB74(param0->unk_18->playerAvatar) == 0x1) {
         return -1;
     }
 

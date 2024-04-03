@@ -44,19 +44,19 @@ typedef struct {
     int unk_1C;
     UnkStruct_ov101_021D5D90 * unk_20;
     UnkStruct_02061AB4 * unk_24;
-    UnkStruct_0205E884 * unk_28;
+    PlayerAvatar * unk_28;
     FieldSystem * unk_2C;
 } UnkStruct_020EF6D0;
 
-static int sub_02067BA8(FieldSystem * param0, UnkStruct_02061830 * param1, UnkStruct_0205E884 * param2, const UnkStruct_02061AB4 * param3, UnkStruct_02067C28 * param4);
+static int sub_02067BA8(FieldSystem * param0, UnkStruct_02061830 * param1, PlayerAvatar * param2, const UnkStruct_02061AB4 * param3, UnkStruct_02067C28 * param4);
 static void sub_02067C28(UnkStruct_02067C28 * param0, UnkStruct_02061AB4 * param1, int param2, int param3);
 static int sub_02067C54(const UnkStruct_02061AB4 * param0);
-static int sub_02067C80(const UnkStruct_02061AB4 * param0, UnkStruct_0205E884 * param1, int * param2);
+static int sub_02067C80(const UnkStruct_02061AB4 * param0, PlayerAvatar * param1, int * param2);
 static int sub_02067DA8(const UnkStruct_02061AB4 * param0, int param1, int param2, int param3, int param4, int param5);
 static int sub_02067E74(const UnkStruct_02061AB4 * param0, int param1, int param2);
 static int sub_02067F14(UnkStruct_02061AB4 * param0);
 static UnkStruct_02061AB4 * sub_02067F2C(FieldSystem * param0, UnkStruct_02061830 * param1, UnkStruct_02061AB4 * param2, int param3);
-static SysTask * sub_02067FF0(FieldSystem * param0, UnkStruct_02061AB4 * param1, UnkStruct_0205E884 * param2, int param3, int param4, int param5, int param6, int param7);
+static SysTask * sub_02067FF0(FieldSystem * param0, UnkStruct_02061AB4 * param1, PlayerAvatar * param2, int param3, int param4, int param5, int param6, int param7);
 static int sub_02068048(SysTask * param0);
 static void sub_02068054(SysTask * param0);
 static void sub_0206806C(SysTask * param0, void * param1);
@@ -68,7 +68,7 @@ int sub_02067A84 (FieldSystem * param0, BOOL param1)
 {
     UnkStruct_02067C28 v0;
     UnkStruct_02061830 * v1 = param0->unk_38;
-    UnkStruct_0205E884 * v2 = param0->unk_3C;
+    PlayerAvatar * v2 = param0->playerAvatar;
 
     if (sub_02067BA8(param0, v1, v2, NULL, &v0) == 0) {
         return 0;
@@ -113,7 +113,7 @@ int sub_02067A84 (FieldSystem * param0, BOOL param1)
     return 0;
 }
 
-static int sub_02067BA8 (FieldSystem * param0, UnkStruct_02061830 * param1, UnkStruct_0205E884 * param2, const UnkStruct_02061AB4 * param3, UnkStruct_02067C28 * param4)
+static int sub_02067BA8 (FieldSystem * param0, UnkStruct_02061830 * param1, PlayerAvatar * param2, const UnkStruct_02061AB4 * param3, UnkStruct_02067C28 * param4)
 {
     int v0, v1, v2;
     UnkStruct_02061AB4 * v3;
@@ -165,7 +165,7 @@ static int sub_02067C54 (const UnkStruct_02061AB4 * param0)
     return v0;
 }
 
-static int sub_02067C80 (const UnkStruct_02061AB4 * param0, UnkStruct_0205E884 * param1, int * param2)
+static int sub_02067C80 (const UnkStruct_02061AB4 * param0, PlayerAvatar * param1, int * param2)
 {
     int v0, v1, v2, v3, v4, v5;
 
@@ -213,7 +213,7 @@ static int sub_02067C80 (const UnkStruct_02061AB4 * param0, UnkStruct_0205E884 *
     return(-1);
 }
 
-int sub_02067D58 (const UnkStruct_02061AB4 * param0, UnkStruct_0205E884 * param1, int param2, int param3)
+int sub_02067D58 (const UnkStruct_02061AB4 * param0, PlayerAvatar * param1, int param2, int param3)
 {
     int v0 = Player_XPos(param1);
     int v1 = Player_ZPos(param1);
@@ -394,7 +394,7 @@ int sub_02067F88 (FieldSystem * param0, UnkStruct_02061AB4 * param1)
     return 0;
 }
 
-SysTask * sub_02067FB8 (FieldSystem * param0, UnkStruct_02061AB4 * param1, UnkStruct_0205E884 * param2, int param3, int param4, int param5, int param6, int param7)
+SysTask * sub_02067FB8 (FieldSystem * param0, UnkStruct_02061AB4 * param1, PlayerAvatar * param2, int param3, int param4, int param5, int param6, int param7)
 {
     return sub_02067FF0(param0, param1, param2, param3, param4, param5, param6, param7);
 }
@@ -410,7 +410,7 @@ void sub_02067FE8 (SysTask * param0)
     sub_02068054(param0);
 }
 
-static SysTask * sub_02067FF0 (FieldSystem * param0, UnkStruct_02061AB4 * param1, UnkStruct_0205E884 * param2, int param3, int param4, int param5, int param6, int param7)
+static SysTask * sub_02067FF0 (FieldSystem * param0, UnkStruct_02061AB4 * param1, PlayerAvatar * param2, int param3, int param4, int param5, int param6, int param7)
 {
     SysTask * v0;
     UnkStruct_020EF6D0 * v1;

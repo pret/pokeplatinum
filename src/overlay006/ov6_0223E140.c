@@ -143,7 +143,7 @@ typedef struct {
     UnkStruct_02061AB4 * unk_108;
     UnkStruct_02061AB4 * unk_10C;
     UnkStruct_02061AB4 * unk_110;
-    UnkStruct_0205E884 * unk_114;
+    PlayerAvatar * unk_114;
 } UnkStruct_ov6_0223EA98;
 
 typedef struct UnkStruct_ov6_0223FDE4_t {

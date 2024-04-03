@@ -918,7 +918,7 @@ void ov23_022534A0 (FieldSystem * param0)
     UnkStruct_ov84_02240FA8 v0;
     int v1 = sub_02058D88(CommSys_CurNetId());
     int v2 = sub_02058DC0(CommSys_CurNetId());
-    int v3 = sub_02059328(sub_02058F50(CommSys_CurNetId()));
+    int v3 = CommPlayer_GetOppositeDir(CommPlayer_Dir(CommSys_CurNetId()));
     UnkStruct_ov23_02250CD4 * v4;
     const int v5 = 6;
     int v6;

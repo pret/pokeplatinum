@@ -570,7 +570,7 @@ static int ov23_0224B65C (int param0, int param1)
             continue;
         }
 
-        if (!sub_02058C90(v0)) {
+        if (!CommPlayer_IsActive(v0)) {
             continue;
         }
 
@@ -995,8 +995,8 @@ static int ov23_0224BD1C (int param0, BOOL param1)
             v3 = sub_02058DF8(v0);
             v4 = sub_02058E4C(v0);
         } else {
-            v3 = sub_02058CA0(v0);
-            v4 = sub_02058CF4(v0);
+            v3 = CommPlayer_XPos(v0);
+            v4 = CommPlayer_ZPos(v0);
         }
 
         if ((v3 == 0xffff) && (v4 == 0xffff)) {
@@ -1156,7 +1156,7 @@ static void ov23_0224BE28 (SysTask * param0, void * param1)
         return;
     }
 
-    if ((v0->unk_2C != 16) && !sub_02058C90(v0->unk_2C)) {
+    if ((v0->unk_2C != 16) && !CommPlayer_IsActive(v0->unk_2C)) {
         if ((8 != v0->unk_0C) && (9 != v0->unk_0C)) {
             v7 = 1;
         }
@@ -1252,7 +1252,7 @@ static void ov23_0224C1EC (int param0, int param1, int param2, int param3)
     if (v0) {
         UnkStruct_02029894 * v1 = (UnkStruct_02029894 *)v0->unk_02;
 
-        sub_02029854(v1, param0, param1, sub_02059328(param2));
+        sub_02029854(v1, param0, param1, CommPlayer_GetOppositeDir(param2));
         v0->unk_00 = param3;
     }
 }
@@ -1461,12 +1461,12 @@ static void ov23_0224C5B4 (SysTask * param0, void * param1)
         return;
     }
 
-    if (Unk_ov23_022577AC->unk_00->unk_3C == NULL) {
+    if (Unk_ov23_022577AC->unk_00->playerAvatar == NULL) {
         return;
     }
 
-    v4 = Player_XPos(Unk_ov23_022577AC->unk_00->unk_3C);
-    v5 = Player_ZPos(Unk_ov23_022577AC->unk_00->unk_3C);
+    v4 = Player_XPos(Unk_ov23_022577AC->unk_00->playerAvatar);
+    v5 = Player_ZPos(Unk_ov23_022577AC->unk_00->playerAvatar);
 
     if (ov23_02242E58(v4, v5)) {
         return;
@@ -1672,8 +1672,8 @@ static BOOL ov23_0224C790 (UnkStruct_020508D4 * param0)
         }
         break;
     case 11:
-        sub_02059624();
-        sub_02061550(v0->unk_3C, sub_02065838(1, 0x24), 1);
+        CommPlayerManager_ForceDir();
+        sub_02061550(v0->playerAvatar, sub_02065838(1, 0x24), 1);
         sub_020593F4(1);
         ov23_02253F40(ov23_0224219C(), 68, 0, NULL);
         Sound_PlayEffect(1540);
@@ -1764,7 +1764,7 @@ static void ov23_0224CB1C (SysTask * param0, void * param1)
         ov23_02254098(ov23_0224219C(), 33);
         Sound_PlayEffect(1566);
 
-        ov5_021F58FC(sub_0205EB3C(v1->unk_3C), 0, 0, 0);
+        ov5_021F58FC(sub_0205EB3C(v1->playerAvatar), 0, 0, 0);
         ov23_02253F40(ov23_0224219C(), 33, 0, NULL);
 
         v0->unk_0C = 1;
@@ -1783,7 +1783,7 @@ static void ov23_0224CB1C (SysTask * param0, void * param1)
     {
         v6 = sub_02058D88(CommSys_CurNetId());
         v7 = sub_02058DC0(CommSys_CurNetId());
-        v8 = sub_02059328(Player_Dir(v1->unk_3C));
+        v8 = CommPlayer_GetOppositeDir(Player_Dir(v1->playerAvatar));
 
         ov23_02253F40(ov23_0224219C(), 34, 0, NULL);
         ov23_0224C588(v6, v7, v8, 16);
@@ -2013,7 +2013,7 @@ void ov23_0224CF18 (int param0, int param1, void * param2, void * param3)
         UnkStruct_ov23_0224B098 v2;
         int v3 = sub_02058D88(v0->unk_00);
         int v4 = sub_02058DC0(v0->unk_00);
-        int v5 = sub_02058F50(v0->unk_00);
+        int v5 = CommPlayer_Dir(v0->unk_00);
 
         ov23_0224C1EC(v3, v4, v5, v0->unk_00);
         ov23_0224C1EC(v3, v4, v5, 16);
@@ -2207,7 +2207,7 @@ static void ov23_0224D238 (void)
     }
 
     MI_CpuFill8(Unk_ov23_022577AC->unk_A04, 0xff, 17 * 32 * (32 / 8));
-    sub_02029854(v0, v2, v3, sub_02059328(v4));
+    sub_02029854(v0, v2, v3, CommPlayer_GetOppositeDir(v4));
 
     MI_CpuCopy8(v0, Unk_ov23_022577AC->unk_08[16].unk_02, 148);
     ov23_0224B39C(v0, Unk_ov23_022577AC->unk_A04[16]);
@@ -2631,8 +2631,8 @@ BOOL ov23_0224D9AC (int param0, BOOL param1)
     }
 
     v5 = Unk_ov23_022577AC->unk_1353[param0];
-    v2 = sub_02058CA0(CommSys_CurNetId());
-    v3 = sub_02058CF4(CommSys_CurNetId());
+    v2 = CommPlayer_XPos(CommSys_CurNetId());
+    v3 = CommPlayer_ZPos(CommSys_CurNetId());
 
     if (!ov23_02242E58(v2, v3)) {
         Unk_ov23_022577AC->unk_1353[param0] = 0xff;
