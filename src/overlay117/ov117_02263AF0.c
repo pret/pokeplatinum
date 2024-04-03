@@ -45,7 +45,7 @@
 #include "unk_0201E86C.h"
 #include "error_handling.h"
 #include "strbuf.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "overlay117/ov117_02260668.h"
 #include "overlay117/ov117_02263AF0.h"
 #include "overlay117/ov117_022666C0.h"
@@ -505,7 +505,7 @@ static int ov117_02263D08 (UnkStruct_ov117_02261280 * param0, UnkStruct_ov117_02
     param1->unk_14 = param1->unk_10 / 6;
     param1->unk_18[ov117_022622C4(param0, param3)] += param2;
 
-    if (param3 == sub_0203608C()) {
+    if (param3 == CommSys_CurNetId()) {
         param0->unk_3D4C += param2;
         ov117_02265F98(&param0->unk_15A8, param0->unk_3D4C);
     }
@@ -590,7 +590,7 @@ static int ov117_02263E1C (UnkStruct_ov117_02261280 * param0, const UnkStruct_ov
     param2->unk_0E = param1->unk_01;
     param2->unk_10 = ov117_0226417C(param0, v1);
 
-    if (param1->unk_00 == sub_0203608C()) {
+    if (param1->unk_00 == CommSys_CurNetId()) {
         ov117_02261E38(param0, param1->unk_04);
         param2->unk_0C = 25;
         SpriteActor_EnableObject(param2->unk_10, 0);
@@ -736,7 +736,7 @@ static BOOL ov117_02263F80 (UnkStruct_ov117_02261280 * param0, UnkStruct_ov117_0
             sub_0200D6E8(param1->unk_10, v7, v7);
         }
     }
-    if ((param1->unk_04 == sub_0203608C()) && (v6 >= 0) && (v5 <= 0)) {
+    if ((param1->unk_04 == CommSys_CurNetId()) && (v6 >= 0) && (v5 <= 0)) {
         UnkStruct_ov117_02265428 * v9;
 
         param1->unk_0E = ov117_022653F4(param0, &v9);
@@ -1247,7 +1247,7 @@ void ov117_02264AF0 (UnkStruct_ov117_02261280 * param0)
         }
     }
 
-    v7 = sub_0203608C();
+    v7 = CommSys_CurNetId();
 
     for (v3 = 0; v3 < param0->unk_00->unk_30; v3++) {
         if (param0->unk_00->unk_2C[v3] == v7) {
@@ -1288,7 +1288,7 @@ void ov117_02264BF8 (UnkStruct_ov117_02261280 * param0)
         }
     }
 
-    v7 = sub_0203608C();
+    v7 = CommSys_CurNetId();
 
     for (v3 = 0; v3 < param0->unk_00->unk_30; v3++) {
         if (param0->unk_00->unk_2C[v3] == v7) {
@@ -1329,7 +1329,7 @@ void ov117_02264D1C (UnkStruct_ov117_02261280 * param0)
         }
     }
 
-    v7 = sub_0203608C();
+    v7 = CommSys_CurNetId();
 
     for (v3 = 0; v3 < param0->unk_00->unk_30; v3++) {
         if (param0->unk_00->unk_2C[v3] == v7) {
@@ -1355,7 +1355,7 @@ void ov117_02264E14 (UnkStruct_ov117_02261280 * param0, int param1, s32 param2, 
 {
     MI_CpuClear8(param3, sizeof(UnkStruct_ov117_02264E84));
 
-    param3->unk_00 = sub_0203608C();
+    param3->unk_00 = CommSys_CurNetId();
     param3->unk_02 = param1;
     param3->unk_04 = param2;
     param3->unk_08 = param2;
@@ -1902,7 +1902,7 @@ void ov117_02265B58 (UnkStruct_ov117_02261280 * param0, UnkStruct_ov117_02265C3C
     int v0, v1, v2, v3;
     UnkStruct_ov117_02265C1C * v4 = NULL;
 
-    if ((param2 == 0) || (param3 == sub_0203608C())) {
+    if ((param2 == 0) || (param3 == CommSys_CurNetId())) {
         return;
     }
 

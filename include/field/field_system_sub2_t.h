@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_0203CDB0_SUB2_T_H
-#define POKEPLATINUM_STRUCT_0203CDB0_SUB2_T_H
+#ifndef POKEPLATINUM_FIELD_SYSTEM_SUB2_T_H
+#define POKEPLATINUM_FIELD_SYSTEM_SUB2_T_H
 
 #include "struct_decls/struct_02055CBC_decl.h"
 #include "overlay005/struct_ov5_021D1A94_decl.h"
@@ -10,7 +10,7 @@
 #include "overlay005/struct_ov5_021EF4F8_decl.h"
 #include "overlay025/struct_ov25_02253CE0_decl.h"
 
-struct UnkStruct_0203CDB0_sub2_t {
+struct FieldSystem_sub2_t {
     BOOL unk_00;
     UnkStruct_ov5_021D1A94 * unk_04;
     UnkStruct_ov5_021DD9C8 * unk_08;
@@ -23,4 +23,4 @@ struct UnkStruct_0203CDB0_sub2_t {
     void * unk_24;
 };
 
-#endif // POKEPLATINUM_STRUCT_0203CDB0_SUB2_T_H
+#endif // POKEPLATINUM_FIELD_SYSTEM_SUB2_T_H

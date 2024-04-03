@@ -16,7 +16,7 @@
 
 #include "struct_defs/struct_020217F4.h"
 #include "struct_defs/struct_02024184.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_02073838.h"
 #include "struct_defs/struct_02073974.h"
 #include "overlay005/struct_ov5_021DF7F8.h"
@@ -47,7 +47,7 @@ typedef struct UnkStruct_ov5_021DF47C_t {
     u32 unk_04;
     u32 unk_08;
     u32 unk_0C;
-    UnkStruct_0203CDB0 * unk_10;
+    FieldSystem * unk_10;
     UnkStruct_ov5_021DF6AC * unk_14;
     NARC * unk_18;
     UnkStruct_020711EC * unk_1C;
@@ -111,7 +111,7 @@ static void ov5_021DFA88(UnkStruct_ov5_021DF47C * param0, u32 param1, UnkStruct_
 static void ov5_021DFAC0(SysTask * param0, void * param1);
 static void ov5_021DFADC(SysTask * param0, void * param1);
 
-UnkStruct_ov5_021DF47C * ov5_021DF440 (UnkStruct_0203CDB0 * param0, u32 param1, u32 param2)
+UnkStruct_ov5_021DF47C * ov5_021DF440 (FieldSystem * param0, u32 param1, u32 param2)
 {
     UnkStruct_ov5_021DF47C * v0;
 
@@ -220,14 +220,14 @@ void * ov5_021DF55C (UnkStruct_ov5_021DF47C * param0, u32 param1)
     return v0->unk_04;
 }
 
-UnkStruct_0203CDB0 * ov5_021DF574 (const UnkStruct_ov5_021DF47C * param0)
+FieldSystem * ov5_021DF574 (const UnkStruct_ov5_021DF47C * param0)
 {
     return param0->unk_10;
 }
 
 UnkStruct_ov5_021DF47C * ov5_021DF578 (const UnkStruct_02061AB4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02062C00(param0);
+    FieldSystem * v0 = sub_02062C00(param0);
     return (UnkStruct_ov5_021DF47C *)v0->unk_40;
 }
 

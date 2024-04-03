@@ -6,7 +6,7 @@
 #include "struct_defs/struct_0203A4AC.h"
 #include "struct_defs/struct_0203A55C.h"
 #include "struct_defs/struct_0203A594.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_020619DC.h"
 #include "overlay006/struct_ov6_02242634.h"
 
@@ -33,14 +33,14 @@ struct UnkStruct_0203A3E8_t {
 static void sub_0203A3E8(UnkStruct_0203A3E8 * param0, int param1);
 static void sub_0203A5B0(UnkStruct_0203A3E8 * param0);
 static void sub_0203A64C(UnkStruct_0203A3E8 * param0, int param1);
-BOOL sub_0203A4FC(UnkStruct_0203CDB0 * param0, int param1, int param2);
-BOOL sub_0203A52C(UnkStruct_0203CDB0 * param0, int param1, int param2);
-BOOL sub_0203A55C(UnkStruct_0203CDB0 * param0, u16 param1, u16 param2, u16 param3);
-BOOL sub_0203A574(UnkStruct_0203CDB0 * param0, u16 param1, u16 param2);
-BOOL sub_0203A584(UnkStruct_0203CDB0 * param0, u16 param1, u16 param2);
-BOOL sub_0203A594(UnkStruct_0203CDB0 * param0, u16 param1, u16 param2, u16 param3);
+BOOL sub_0203A4FC(FieldSystem * param0, int param1, int param2);
+BOOL sub_0203A52C(FieldSystem * param0, int param1, int param2);
+BOOL sub_0203A55C(FieldSystem * param0, u16 param1, u16 param2, u16 param3);
+BOOL sub_0203A574(FieldSystem * param0, u16 param1, u16 param2);
+BOOL sub_0203A584(FieldSystem * param0, u16 param1, u16 param2);
+BOOL sub_0203A594(FieldSystem * param0, u16 param1, u16 param2, u16 param3);
 
-void sub_0203A378 (UnkStruct_0203CDB0 * param0, int param1)
+void sub_0203A378 (FieldSystem * param0, int param1)
 {
     UnkStruct_0203A3E8 * v0;
 
@@ -48,13 +48,13 @@ void sub_0203A378 (UnkStruct_0203CDB0 * param0, int param1)
     param0->unk_14 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_0203A3E8));
 }
 
-void sub_0203A398 (UnkStruct_0203CDB0 * param0)
+void sub_0203A398 (FieldSystem * param0)
 {
     GF_ASSERT(param0->unk_14 != NULL);
     Heap_FreeToHeap(param0->unk_14);
 }
 
-void sub_0203A3B0 (UnkStruct_0203CDB0 * param0, int param1)
+void sub_0203A3B0 (FieldSystem * param0, int param1)
 {
     GF_ASSERT(param0->unk_14 != NULL);
 
@@ -73,7 +73,7 @@ static void sub_0203A3E8 (UnkStruct_0203A3E8 * param0, int param1)
     NARC_ReadWholeMemberByIndexPair(param0->unk_20, 32, v0);
 }
 
-void sub_0203A418 (UnkStruct_0203CDB0 * param0)
+void sub_0203A418 (FieldSystem * param0)
 {
     int v0 = param0->unk_14->unk_04;
 
@@ -84,17 +84,17 @@ void sub_0203A418 (UnkStruct_0203CDB0 * param0)
     }
 }
 
-const UnkStruct_0203A594 * sub_0203A440 (const UnkStruct_0203CDB0 * param0)
+const UnkStruct_0203A594 * sub_0203A440 (const FieldSystem * param0)
 {
     return param0->unk_14->unk_10;
 }
 
-int sub_0203A448 (const UnkStruct_0203CDB0 * param0)
+int sub_0203A448 (const FieldSystem * param0)
 {
     return param0->unk_14->unk_00;
 }
 
-const UnkStruct_0203A55C * sub_0203A450 (const UnkStruct_0203CDB0 * param0, int param1)
+const UnkStruct_0203A55C * sub_0203A450 (const FieldSystem * param0, int param1)
 {
     if (param1 >= param0->unk_14->unk_08) {
         return NULL;
@@ -103,7 +103,7 @@ const UnkStruct_0203A55C * sub_0203A450 (const UnkStruct_0203CDB0 * param0, int 
     return &param0->unk_14->unk_18[param1];
 }
 
-int sub_0203A468 (const UnkStruct_0203CDB0 * param0, int param1, int param2)
+int sub_0203A468 (const FieldSystem * param0, int param1, int param2)
 {
     int v0;
 
@@ -116,27 +116,27 @@ int sub_0203A468 (const UnkStruct_0203CDB0 * param0, int param1, int param2)
     return -1;
 }
 
-int sub_0203A4A4 (const UnkStruct_0203CDB0 * param0)
+int sub_0203A4A4 (const FieldSystem * param0)
 {
     return param0->unk_14->unk_0C;
 }
 
-const UnkStruct_0203A4AC * sub_0203A4AC (const UnkStruct_0203CDB0 * param0)
+const UnkStruct_0203A4AC * sub_0203A4AC (const FieldSystem * param0)
 {
     return param0->unk_14->unk_1C;
 }
 
-u32 sub_0203A4B4 (const UnkStruct_0203CDB0 * param0)
+u32 sub_0203A4B4 (const FieldSystem * param0)
 {
     return param0->unk_14->unk_04;
 }
 
-const UnkStruct_020619DC * sub_0203A4BC (const UnkStruct_0203CDB0 * param0)
+const UnkStruct_020619DC * sub_0203A4BC (const FieldSystem * param0)
 {
     return param0->unk_14->unk_14;
 }
 
-BOOL sub_0203A4C4 (UnkStruct_0203CDB0 * param0, int param1, u16 param2, u16 param3)
+BOOL sub_0203A4C4 (FieldSystem * param0, int param1, u16 param2, u16 param3)
 {
     int v0;
     UnkStruct_020619DC * v1 = (UnkStruct_020619DC *)param0->unk_14->unk_14;
@@ -154,7 +154,7 @@ BOOL sub_0203A4C4 (UnkStruct_0203CDB0 * param0, int param1, u16 param2, u16 para
     return 0;
 }
 
-BOOL sub_0203A4FC (UnkStruct_0203CDB0 * param0, int param1, int param2)
+BOOL sub_0203A4FC (FieldSystem * param0, int param1, int param2)
 {
     int v0;
     UnkStruct_020619DC * v1 = (UnkStruct_020619DC *)param0->unk_14->unk_14;
@@ -171,7 +171,7 @@ BOOL sub_0203A4FC (UnkStruct_0203CDB0 * param0, int param1, int param2)
     return 0;
 }
 
-BOOL sub_0203A52C (UnkStruct_0203CDB0 * param0, int param1, int param2)
+BOOL sub_0203A52C (FieldSystem * param0, int param1, int param2)
 {
     int v0;
     UnkStruct_020619DC * v1 = (UnkStruct_020619DC *)param0->unk_14->unk_14;
@@ -188,7 +188,7 @@ BOOL sub_0203A52C (UnkStruct_0203CDB0 * param0, int param1, int param2)
     return 0;
 }
 
-BOOL sub_0203A55C (UnkStruct_0203CDB0 * param0, u16 param1, u16 param2, u16 param3)
+BOOL sub_0203A55C (FieldSystem * param0, u16 param1, u16 param2, u16 param3)
 {
     UnkStruct_0203A55C * v0 = (UnkStruct_0203A55C *)param0->unk_14->unk_18;
 
@@ -198,7 +198,7 @@ BOOL sub_0203A55C (UnkStruct_0203CDB0 * param0, u16 param1, u16 param2, u16 para
     return 1;
 }
 
-BOOL sub_0203A574 (UnkStruct_0203CDB0 * param0, u16 param1, u16 param2)
+BOOL sub_0203A574 (FieldSystem * param0, u16 param1, u16 param2)
 {
     UnkStruct_0203A55C * v0 = (UnkStruct_0203A55C *)param0->unk_14->unk_18;
 
@@ -206,7 +206,7 @@ BOOL sub_0203A574 (UnkStruct_0203CDB0 * param0, u16 param1, u16 param2)
     return 1;
 }
 
-BOOL sub_0203A584 (UnkStruct_0203CDB0 * param0, u16 param1, u16 param2)
+BOOL sub_0203A584 (FieldSystem * param0, u16 param1, u16 param2)
 {
     UnkStruct_0203A55C * v0 = (UnkStruct_0203A55C *)param0->unk_14->unk_18;
 
@@ -214,7 +214,7 @@ BOOL sub_0203A584 (UnkStruct_0203CDB0 * param0, u16 param1, u16 param2)
     return 1;
 }
 
-BOOL sub_0203A594 (UnkStruct_0203CDB0 * param0, u16 param1, u16 param2, u16 param3)
+BOOL sub_0203A594 (FieldSystem * param0, u16 param1, u16 param2, u16 param3)
 {
     UnkStruct_0203A594 * v0 = (UnkStruct_0203A594 *)sub_0203A440(param0);
 
@@ -288,7 +288,7 @@ void sub_0203A614 (UnkStruct_ov6_02242634 * param0, int param1)
     }
 }
 
-const UnkStruct_ov6_02242634 * sub_0203A640 (const UnkStruct_0203CDB0 * param0)
+const UnkStruct_ov6_02242634 * sub_0203A640 (const FieldSystem * param0)
 {
     return &param0->unk_14->unk_920;
 }
@@ -305,13 +305,13 @@ static void sub_0203A64C (UnkStruct_0203A3E8 * param0, int param1)
     NARC_ReadWholeMemberByIndexPair(param0->unk_820, NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, v0);
 }
 
-void * sub_0203A68C (const UnkStruct_0203CDB0 * param0)
+void * sub_0203A68C (const FieldSystem * param0)
 {
     GF_ASSERT(param0->unk_14 != NULL);
     return &param0->unk_14->unk_820;
 }
 
-BOOL sub_0203A6A4 (const UnkStruct_0203CDB0 * param0, u16 param1, u16 param2)
+BOOL sub_0203A6A4 (const FieldSystem * param0, u16 param1, u16 param2)
 {
     const UnkStruct_0203A3E8 * v0 = param0->unk_14;
     u32 v1;

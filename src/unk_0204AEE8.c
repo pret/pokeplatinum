@@ -12,7 +12,7 @@
 #include "struct_decls/struct_party_decl.h"
 #include "savedata.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0204B184.h"
 #include "struct_defs/struct_0204B1E8.h"
@@ -29,7 +29,7 @@
 #include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_0202D05C.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_02049D08.h"
 #include "unk_0204AEE8.h"
 #include "pokemon.h"
@@ -153,7 +153,7 @@ u16 sub_0204AF9C (u8 param0)
     return 0x3;
 }
 
-u16 sub_0204AFC4 (UnkStruct_0203CDB0 * param0, const u16 * param1)
+u16 sub_0204AFC4 (FieldSystem * param0, const u16 * param1)
 {
     u16 v0 = 0;
     UnkStruct_0204AFC4 * v1 = param0->unk_AC;
@@ -175,12 +175,12 @@ u16 sub_0204AFC4 (UnkStruct_0203CDB0 * param0, const u16 * param1)
     return v0;
 }
 
-u16 sub_0204B020 (UnkStruct_0203CDB0 * param0, const u16 * param1)
+u16 sub_0204B020 (FieldSystem * param0, const u16 * param1)
 {
     int v0;
     UnkStruct_0204AFC4 * v1 = param0->unk_AC;
 
-    if (sub_0203608C() == 0) {
+    if (CommSys_CurNetId() == 0) {
         return 0;
     }
 
@@ -188,7 +188,7 @@ u16 sub_0204B020 (UnkStruct_0203CDB0 * param0, const u16 * param1)
     return 1;
 }
 
-u16 sub_0204B044 (UnkStruct_0203CDB0 * param0, const u16 * param1)
+u16 sub_0204B044 (FieldSystem * param0, const u16 * param1)
 {
     int v0;
     UnkStruct_0204AFC4 * v1 = param0->unk_AC;
@@ -205,7 +205,7 @@ void sub_0204B060 (UnkStruct_0204AFC4 * param0, SaveData * param1)
     int v0;
     Party * v1;
     Pokemon * v2;
-    TrainerInfo * v3 = sub_02025E38(param1);
+    TrainerInfo * v3 = SaveData_GetTrainerInfo(param1);
 
     param0->unk_83E[0] = TrainerInfo_Gender(v3);
     v1 = Party_GetFromSavedata(param1);

@@ -2,7 +2,7 @@
 #include <string.h>
 #include <nnsys/g3d/glbstate.h>
 
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "overlay023/ov23_02249918.h"
 
 typedef struct UnkStruct_ov23_02249978_t {
@@ -48,7 +48,7 @@ void ov23_0224991C (UnkStruct_ov23_0224991C * param0)
 {
     int v0;
 
-    sub_020361BC(&param0->unk_00);
+    CommSys_Seed(&param0->unk_00);
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
         UnkStruct_ov23_02249978 * v1 = &param0->unk_18[v0];

@@ -5,7 +5,7 @@
 #include "pokemon.h"
 #include "overlay006/struct_ov6_02246204_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0208BE5C.h"
 #include "overlay006/struct_ov6_02246254.h"
 
@@ -33,7 +33,7 @@ static void sub_0206C660(UnkStruct_020508D4 * param0);
 
 void sub_0206C660 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_0206C660 * v1 = sub_02050A64(param0);
 
     {
@@ -49,7 +49,7 @@ void sub_0206C660 (UnkStruct_020508D4 * param0)
 
 static BOOL sub_0206C680 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_0206C660 * v1 = sub_02050A64(param0);
 
     switch (v1->unk_04) {

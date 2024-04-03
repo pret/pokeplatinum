@@ -8,8 +8,8 @@
 #include "unk_02005474.h"
 #include "unk_0200B358.h"
 #include "unk_0203061C.h"
-#include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_information.h"
+#include "communication_system.h"
 #include "unk_0205DFC4.h"
 #include "overlay107/ov107_02249C98.h"
 
@@ -54,7 +54,7 @@ void ov107_02249CF4 (StringFormatter * param0, u32 param1)
     TrainerInfo * v0;
     u32 v1;
 
-    v0 = sub_02032EE8((sub_0203608C() ^ 1));
+    v0 = CommInfo_TrainerInfo((CommSys_CurNetId() ^ 1));
     sub_0200B498(param0, param1, v0);
 
     return;

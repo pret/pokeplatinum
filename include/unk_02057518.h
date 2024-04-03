@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_UNK_02057518_H
 #define POKEPLATINUM_UNK_02057518_H
 
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "overlay023/struct_ov23_0224A294.h"
 
 UnkStruct_ov23_0224A294 * sub_02057518(void);
-BOOL sub_02057524(void * param0, UnkStruct_0203CDB0 * param1, BOOL param2);
+BOOL sub_02057524(void * param0, FieldSystem * param1, BOOL param2);
 void sub_0205764C(void);
 void sub_020576A0(void);
 void sub_020576CC(BOOL param0);
@@ -21,7 +21,7 @@ void sub_02057DB8(u8 param0, BOOL param1, BOOL param2);
 BOOL sub_02057FAC(void);
 void sub_02057FC4(BOOL param0);
 void sub_02058018(int param0, int param1, void * param2, void * param3);
-void sub_0205805C(UnkStruct_0203CDB0 * param0, BOOL param1);
+void sub_0205805C(FieldSystem * param0, BOOL param1);
 BOOL sub_02058108(int param0, int param1);
 void sub_02058488(int param0, int param1, void * param2, void * param3);
 void sub_0205853C(int param0, int param1, void * param2, void * param3);

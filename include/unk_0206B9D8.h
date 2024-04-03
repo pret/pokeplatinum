@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0206B9D8_H
 #define POKEPLATINUM_UNK_0206B9D8_H
 
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "savedata.h"
 
@@ -15,6 +15,6 @@ u32 sub_0206BFFC(u32 param0);
 u32 sub_0206C008(SaveData * param0);
 u32 sub_0206C02C(SaveData * param0);
 u32 sub_0206C068(SaveData * param0);
-BOOL sub_0206C0D0(UnkStruct_0203CDB0 * param0);
+BOOL sub_0206C0D0(FieldSystem * param0);
 
 #endif // POKEPLATINUM_UNK_0206B9D8_H

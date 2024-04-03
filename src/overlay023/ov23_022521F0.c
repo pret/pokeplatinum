@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "savedata.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_020619DC.h"
 #include "overlay023/struct_ov23_02250CD4.h"
 #include "overlay061/struct_ov61_0222C884.h"
@@ -30,8 +30,8 @@
 #include "strbuf.h"
 #include "unk_0202631C.h"
 #include "unk_0202854C.h"
-#include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_information.h"
+#include "communication_system.h"
 #include "unk_0203A378.h"
 #include "unk_0203CC84.h"
 #include "unk_020573FC.h"
@@ -514,7 +514,7 @@ static void ov23_02252C78 (UnkStruct_ov23_02250CD4 * param0)
     Heap_FreeToHeap(param0);
 }
 
-void * ov23_02252C98 (int param0, UnkStruct_0203CDB0 * param1, int param2)
+void * ov23_02252C98 (int param0, FieldSystem * param1, int param2)
 {
     UnkStruct_ov23_02250CD4 * v0 = NULL;
     return v0;
@@ -523,7 +523,7 @@ void * ov23_02252C98 (int param0, UnkStruct_0203CDB0 * param1, int param2)
 int ov23_02252C9C (int param0)
 {
     ov23_02253DFC(ov23_022421BC(), 636, 1);
-    ov23_02254068(ov23_022421BC(), sub_02032EE8(sub_0203608C()));
+    ov23_02254068(ov23_022421BC(), CommInfo_TrainerInfo(CommSys_CurNetId()));
 
     return ov23_02253F40(ov23_022421BC(), param0, 0, NULL);
 }
@@ -913,12 +913,12 @@ static void ov23_02252E70 (SysTask * param0, void * param1)
     }
 }
 
-void ov23_022534A0 (UnkStruct_0203CDB0 * param0)
+void ov23_022534A0 (FieldSystem * param0)
 {
     UnkStruct_ov84_02240FA8 v0;
-    int v1 = sub_02058D88(sub_0203608C());
-    int v2 = sub_02058DC0(sub_0203608C());
-    int v3 = sub_02059328(sub_02058F50(sub_0203608C()));
+    int v1 = sub_02058D88(CommSys_CurNetId());
+    int v2 = sub_02058DC0(CommSys_CurNetId());
+    int v3 = sub_02059328(sub_02058F50(CommSys_CurNetId()));
     UnkStruct_ov23_02250CD4 * v4;
     const int v5 = 6;
     int v6;

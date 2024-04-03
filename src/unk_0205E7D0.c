@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0205EC34.h"
 
 #include "heap.h"
@@ -702,7 +702,7 @@ u32 sub_0205EED8 (int param0)
     return 1 << 0;
 }
 
-UnkStruct_0205E884 * sub_0205EF3C (UnkStruct_0203CDB0 * param0)
+UnkStruct_0205E884 * sub_0205EF3C (FieldSystem * param0)
 {
     return param0->unk_3C;
 }

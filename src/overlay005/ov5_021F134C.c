@@ -6,7 +6,7 @@
 #include "overlay005/struct_ov5_021DF47C_decl.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_02073838.h"
 #include "struct_defs/struct_02073B50.h"
 #include "overlay101/struct_ov101_021D86B0.h"
@@ -88,7 +88,7 @@ void ov5_021F1370 (void * param0)
 
 static void ov5_021F1388 (UnkStruct_ov5_021F1388 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = ov5_021DF574(param0->unk_20);
+    FieldSystem * v0 = ov5_021DF574(param0->unk_20);
     int v1 = sub_02062858(v0->unk_38) - 1;
     SysTask * v2 = SysTask_Start(ov5_021F1424, param0, v1);
 

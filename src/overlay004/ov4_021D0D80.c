@@ -15,7 +15,7 @@
 #include "unk_0202ACE0.h"
 #include "unk_0203061C.h"
 #include "unk_0203266C.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020366A0.h"
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay004/ov4_021D2808.h"
@@ -984,7 +984,7 @@ void ov4_021D1E74 (int param0)
     BOOL v2 = sub_0203272C(sub_0203895C());
 
     if (v2) {
-        v1 = sub_02035E18() - 1;
+        v1 = CommSys_ConnectedCount() - 1;
 
         if (v1 < 1) {
             v1 = 1;

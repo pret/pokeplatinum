@@ -191,7 +191,7 @@ void * sub_0202E9FC (SaveData * param0, int param1)
     u32 v1, v2;
     UnkStruct_0202E91C * v3;
     Strbuf* v4;
-    TrainerInfo * v5 = sub_02025E38(param0);
+    TrainerInfo * v5 = SaveData_GetTrainerInfo(param0);
     u32 * v6;
 
     v3 = Heap_AllocFromHeapAtEnd(param1, sizeof(UnkStruct_0202E91C));
@@ -395,7 +395,7 @@ UnkStruct_0202EE10 * sub_0202ED8C (SaveData * param0, int param1, int param2)
     u32 * v4;
     TrainerInfo * v5;
 
-    v5 = sub_02025E38(param0);
+    v5 = SaveData_GetTrainerInfo(param0);
     v3 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_0202EE10));
 
     MI_CpuClear8(v3, sizeof(UnkStruct_0202EE10));

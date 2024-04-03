@@ -2,13 +2,13 @@
 #define POKEPLATINUM_OV23_022416A8_H
 
 #include "strbuf.h"
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "overlay023/struct_ov23_02241A80.h"
 #include "overlay023/struct_ov23_02241A88.h"
 
 #include <nitro/math.h>
 
-void ov23_022416E0(void * param0, UnkStruct_0203CDB0 * param1);
+void ov23_022416E0(void * param0, FieldSystem * param1);
 int ov23_022417C4(void);
 void ov23_022417CC(void);
 void ov23_022417E0(void);

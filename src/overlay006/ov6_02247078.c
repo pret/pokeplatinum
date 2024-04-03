@@ -3,7 +3,7 @@
 
 #include "overlay005/struct_ov5_021E1890_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_02055130.h"
 
 #include "unk_02054D00.h"
@@ -12,7 +12,7 @@
 #include "overlay005/ov5_021EF75C.h"
 #include "overlay006/ov6_02247078.h"
 
-void ov6_02247078 (UnkStruct_0203CDB0 * param0, const u8 param1)
+void ov6_02247078 (FieldSystem * param0, const u8 param1)
 {
     BOOL v0;
     UnkStruct_ov5_021E1890 * v1;
@@ -32,12 +32,12 @@ void ov6_02247078 (UnkStruct_0203CDB0 * param0, const u8 param1)
     }
 }
 
-void ov6_022470E8 (UnkStruct_0203CDB0 * param0, const u8 param1)
+void ov6_022470E8 (FieldSystem * param0, const u8 param1)
 {
     ov5_021D4250(param0->unk_54, param1, 0);
 }
 
-void ov6_022470F4 (UnkStruct_0203CDB0 * param0, const u8 param1)
+void ov6_022470F4 (FieldSystem * param0, const u8 param1)
 {
     ov5_021D4250(param0->unk_54, param1, 1);
 }

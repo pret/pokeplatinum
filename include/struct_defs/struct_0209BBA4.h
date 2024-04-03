@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_0209BBA4_H
 #define POKEPLATINUM_STRUCT_0209BBA4_H
 
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/pokemon_summary.h"
 #include "savedata.h"
@@ -24,7 +24,7 @@ typedef struct {
     u16 unk_7E[4];
     u16 unk_86[4];
     u16 unk_8E[4];
-    UnkStruct_0203CDB0 * unk_98;
+    FieldSystem * unk_98;
     u8 unk_9C;
     u8 unk_9D;
     u8 unk_9E;

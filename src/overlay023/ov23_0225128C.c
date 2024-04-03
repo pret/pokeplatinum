@@ -10,7 +10,7 @@
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_02049FA8.h"
 #include "overlay023/struct_ov23_0224271C.h"
 #include "overlay023/struct_ov23_02250CD4.h"
@@ -34,9 +34,9 @@
 #include "strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_0202854C.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "unk_02033200.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_0203CC84.h"
 #include "unk_020507CC.h"
 #include "unk_020508D4.h"
@@ -72,14 +72,14 @@ typedef struct {
 
 typedef struct {
     int unk_00;
-    UnkStruct_0203CDB0 * unk_04;
+    FieldSystem * unk_04;
     UIControlData * unk_08;
     UnkStruct_ov23_022513B0 unk_0C;
     SysTask * unk_10;
 } UnkStruct_ov23_02252038;
 
-static void ov23_022520E8(UnkStruct_0203CDB0 * param0, UnkStruct_ov23_022513B0 * param1);
-static void ov23_02251F94(UnkStruct_0203CDB0 * param0);
+static void ov23_022520E8(FieldSystem * param0, UnkStruct_ov23_022513B0 * param1);
+static void ov23_02251F94(FieldSystem * param0);
 static void ov23_022521C8(UnkStruct_ov23_02250CD4 * param0);
 
 static const UnkStruct_ov61_0222C884 Unk_ov23_022569C8 = {
@@ -199,14 +199,14 @@ static void ov23_022513A4 (int param0)
 void ov23_022513B0 (int param0, int param1, void * param2, void * param3)
 {
     UnkStruct_ov23_022513B0 * v0 = param2;
-    UnkStruct_0203CDB0 * v1 = param3;
+    FieldSystem * v1 = param3;
 
     if (!sub_02035EE0()) {
         return;
     }
 
-    if (v0->unk_00 == sub_0203608C()) {
-        if (v0->unk_01 == sub_0203608C()) {
+    if (v0->unk_00 == CommSys_CurNetId()) {
+        if (v0->unk_01 == CommSys_CurNetId()) {
             Sound_PlayEffect(1548);
             sub_020594FC();
             ov23_02251F94(v1);
@@ -597,7 +597,7 @@ static BOOL ov23_02251A58 (UnkStruct_ov23_02250CD4 * param0)
     return 0;
 }
 
-static void ov23_02251A84 (BOOL param0, UnkStruct_0203CDB0 * param1)
+static void ov23_02251A84 (BOOL param0, FieldSystem * param1)
 {
     VecFx32 v0;
 
@@ -615,7 +615,7 @@ static void ov23_02251A84 (BOOL param0, UnkStruct_0203CDB0 * param1)
 
 static BOOL ov23_02251ACC (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_ov23_02251ACC * v1 = sub_02050A64(param0);
     UnkStruct_02049FA8 v2;
     u32 v3;
@@ -711,7 +711,7 @@ static void ov23_02251C04 (SysTask * param0, void * param1)
     case 6:
         ov23_0224FB7C(param1);
         ov23_02254044(ov23_022421BC());
-        v0->unk_270 = ov23_02253C64(v0->unk_0C->unk_08, sub_02025E38(sub_0203D174(v0->unk_0C)), sub_020298B0(sub_0203D174(v0->unk_0C)), NULL, NULL);
+        v0->unk_270 = ov23_02253C64(v0->unk_0C->unk_08, SaveData_GetTrainerInfo(sub_0203D174(v0->unk_0C)), sub_020298B0(sub_0203D174(v0->unk_0C)), NULL, NULL);
         v0->unk_2AA = 7;
         break;
     case 7:
@@ -840,7 +840,7 @@ static void ov23_02251C04 (SysTask * param0, void * param1)
     }
 }
 
-static void ov23_02251F94 (UnkStruct_0203CDB0 * param0)
+static void ov23_02251F94 (FieldSystem * param0)
 {
     UnkStruct_ov84_02240FA8 v0;
     UnkStruct_ov23_02250CD4 * v1;
@@ -916,7 +916,7 @@ static void ov23_022520C8 (SysTask * param0, void * param1)
     SysTask_Done(param0);
 }
 
-static void ov23_022520E8 (UnkStruct_0203CDB0 * param0, UnkStruct_ov23_022513B0 * param1)
+static void ov23_022520E8 (FieldSystem * param0, UnkStruct_ov23_022513B0 * param1)
 {
     UnkStruct_ov23_02252038 * v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_02250CD4));
 
@@ -926,7 +926,7 @@ static void ov23_022520E8 (UnkStruct_0203CDB0 * param0, UnkStruct_ov23_022513B0 
     v0->unk_04 = param0;
     v0->unk_10 = SysTask_Start(ov23_02252038, v0, 10000);
 
-    ov23_02254068(ov23_0224219C(), sub_02032EE8(param1->unk_01));
+    ov23_02254068(ov23_0224219C(), CommInfo_TrainerInfo(param1->unk_01));
     ov23_02253F40(ov23_0224219C(), 67, 0, NULL);
 
     v0->unk_0C.unk_00 = param1->unk_00;
@@ -947,11 +947,11 @@ void ov23_0225215C (int param0, int param1, void * param2, void * param3)
 
 void ov23_02252178 (int param0, int param1, void * param2, void * param3)
 {
-    UnkStruct_0203CDB0 * v0 = param3;
+    FieldSystem * v0 = param3;
     UnkStruct_ov23_022513B0 * v1 = param2;
 
-    if (sub_0203608C() == v1->unk_00) {
-        ov23_02254068(ov23_022421AC(), sub_02032EE8(v1->unk_01));
+    if (CommSys_CurNetId() == v1->unk_00) {
+        ov23_02254068(ov23_022421AC(), CommInfo_TrainerInfo(v1->unk_01));
         ov23_02253F40(ov23_022421AC(), 8, 1, ov23_022513A4);
         Sound_PlayBGM(1061);
     }

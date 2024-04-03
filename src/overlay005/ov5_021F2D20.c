@@ -7,7 +7,7 @@
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "struct_defs/struct_020217F4.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "overlay101/struct_ov101_021D86B0.h"
 
 #include "unk_02020AEC.h"
@@ -25,7 +25,7 @@ typedef struct {
     int unk_00;
     int unk_04;
     int unk_08;
-    UnkStruct_0203CDB0 * unk_0C;
+    FieldSystem * unk_0C;
     UnkStruct_ov5_021DF47C * unk_10;
     UnkStruct_ov5_021F2D20 * unk_14;
     UnkStruct_02061AB4 * unk_18;
@@ -45,7 +45,7 @@ typedef struct {
 typedef struct {
     int unk_00;
     int unk_04;
-    UnkStruct_0203CDB0 * unk_08;
+    FieldSystem * unk_08;
     UnkStruct_ov5_021DF47C * unk_0C;
     UnkStruct_ov5_021F2D20 * unk_10;
 } UnkStruct_021F30C4;
@@ -60,7 +60,7 @@ typedef struct {
 typedef struct {
     int unk_00;
     int unk_04;
-    UnkStruct_0203CDB0 * unk_08;
+    FieldSystem * unk_08;
     UnkStruct_ov5_021DF47C * unk_0C;
     UnkStruct_ov5_021F2D20 * unk_10;
 } UnkStruct_021F3154;
@@ -396,7 +396,7 @@ static const UnkStruct_020217F4 Unk_ov5_02200570[] = {
     {0x0, 0x0, 0x2}
 };
 
-UnkStruct_ov101_021D5D90 * ov5_021F3154 (UnkStruct_0203CDB0 * param0, int param1, int param2, int param3)
+UnkStruct_ov101_021D5D90 * ov5_021F3154 (FieldSystem * param0, int param1, int param2, int param3)
 {
     VecFx32 v0;
     UnkStruct_021F3154 v1;

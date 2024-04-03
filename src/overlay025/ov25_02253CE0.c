@@ -8,7 +8,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "savedata.h"
 #include "overlay025/struct_ov25_0225424C_decl.h"
 #include "overlay025/struct_ov25_02254560_decl.h"
@@ -100,7 +100,7 @@ typedef struct PoketchSystem {
     NNSG2dOamManagerInstance * unk_50;
     SaveData * saveData;
     PoketchData * poketchData;
-    UnkStruct_0203CDB0 * unk_5C;
+    FieldSystem * unk_5C;
     enum ButtonDir buttonDir;
 } PoketchSystem;
 
@@ -165,7 +165,8 @@ static PoketchSystem * ov25_02253CE0 (void)
     return sub_0203D158();
 }
 
-void ov25_02253CE8 (UnkStruct_0203CDB0 * param0, PoketchSystem ** poketchData, SaveData * param2, BGL * param3, NNSG2dOamManagerInstance * param4)
+
+void ov25_02253CE8 (FieldSystem * param0, PoketchSystem ** param1, SaveData * param2, BGL * param3, NNSG2dOamManagerInstance * param4)
 {
     PoketchSystem *new_system;
 
@@ -175,7 +176,7 @@ void ov25_02253CE8 (UnkStruct_0203CDB0 * param0, PoketchSystem ** poketchData, S
     new_system = Heap_AllocFromHeap(7, sizeof(PoketchSystem));
 
     if (new_system != NULL) {
-        *poketchData = new_system;
+        *param1 = new_system;
 
         new_system->unk_5C = param0;
         new_system->saveData = param2;
@@ -187,7 +188,7 @@ void ov25_02253CE8 (UnkStruct_0203CDB0 * param0, PoketchSystem ** poketchData, S
             sub_0201E3D8();
             sub_0201E450(4);
 
-            new_system->unk_34 = poketchData;
+            new_system->unk_34 = param1;
             new_system->unk_38 = SysTask_Start(ov25_02253E94, new_system, 4);
 
             SysTask_Start(ov25_02253E40, new_system, 0);
@@ -807,7 +808,7 @@ BOOL ov25_02254538 (const UnkStruct_ov25_0225424C * param0)
     return param0->unk_07;
 }
 
-UnkStruct_0203CDB0 * ov25_0225453C (const UnkStruct_ov25_0225424C * param0)
+FieldSystem * ov25_0225453C (const UnkStruct_ov25_0225424C * param0)
 {
     return param0->unk_5C;
 }
@@ -824,7 +825,7 @@ SaveData * ov25_02254544 (const UnkStruct_ov25_0225424C * param0)
 
 int ov25_02254548 (const UnkStruct_ov25_0225424C * param0)
 {
-    TrainerInfo * v0 = sub_02025E38(param0->saveData);
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(param0->saveData);
 
     if (TrainerInfo_Gender(v0) == 1) {
         return 0;

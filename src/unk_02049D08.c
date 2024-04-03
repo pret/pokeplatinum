@@ -16,7 +16,7 @@
 #include "struct_decls/struct_party_decl.h"
 #include "savedata.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_02049FA8.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_02098C44.h"
@@ -224,7 +224,7 @@ BOOL sub_02049FA0 (UnkStruct_0202D060 * param0)
     return sub_0202D214(param0);
 }
 
-void sub_02049FA8 (UnkStruct_0203CDB0 * param0)
+void sub_02049FA8 (FieldSystem * param0)
 {
     UnkStruct_02049FA8 * v0 = sub_0203A730(sub_0203A790(param0->unk_0C));
 
@@ -234,7 +234,7 @@ void sub_02049FA8 (UnkStruct_0203CDB0 * param0)
     return;
 }
 
-void sub_02049FE8 (UnkStruct_0203CDB0 * param0)
+void sub_02049FE8 (FieldSystem * param0)
 {
     sub_0206ADAC(SaveData_Events(param0->unk_0C));
 }
@@ -373,7 +373,7 @@ UnkStruct_0204AFC4 * sub_0204A124 (SaveData * param0, u16 param1, u16 param2)
         }
     }
 
-    v3->unk_11 = TrainerInfo_Gender(sub_02025E38(param0));
+    v3->unk_11 = TrainerInfo_Gender(SaveData_GetTrainerInfo(param0));
 
     if (v3->unk_0F != 5) {
         v4 = sub_0203068C(param0);

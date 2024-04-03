@@ -52,7 +52,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020393C8.h"
 #include "pokemon.h"
 #include "unk_0208C098.h"
@@ -566,7 +566,7 @@ static void ov79_021D2864 (UnkStruct_ov79_021D2928 * param0)
 
     SpriteActor_EnableObject(param0->unk_60[0]->unk_04, 0);
 
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         sub_02039734();
     }
 

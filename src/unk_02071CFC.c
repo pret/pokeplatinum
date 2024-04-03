@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0203CDB0_sub2_t.h"
+#include "field/field_system_sub2_t.h"
 
 #include "unk_02002B7C.h"
 #include "message.h"

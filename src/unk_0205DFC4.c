@@ -8,14 +8,14 @@
 #include "struct_decls/struct_party_decl.h"
 #include "savedata.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_information.h"
+#include "communication_system.h"
 #include "unk_020508D4.h"
 #include "unk_0205DFC4.h"
 #include "unk_02061804.h"
@@ -292,7 +292,7 @@ BOOL HasAllLegendaryTitansInParty (SaveData * param0)
 static BOOL sub_0205E268 (UnkStruct_020508D4 * param0)
 {
     VecFx32 v0;
-    UnkStruct_0203CDB0 * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = sub_02050A60(param0);
     UnkStruct_0205E268 * v2 = sub_02050A64(param0);
 
     v0.x = FX32_CONST(8);
@@ -322,7 +322,7 @@ static BOOL sub_0205E268 (UnkStruct_020508D4 * param0)
 
 void sub_0205E318 (UnkStruct_020508D4 * param0, UnkStruct_02061AB4 * param1, u16 param2, u16 param3, u16 param4, u16 param5)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_0205E268 * v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205E268));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0205E268));
@@ -338,7 +338,7 @@ void sub_0205E318 (UnkStruct_020508D4 * param0, UnkStruct_02061AB4 * param1, u16
 
 static BOOL sub_0205E3AC (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_0205E3AC * v1 = sub_02050A64(param0);
 
     sub_02062D64(v1->unk_00, v1->unk_09);
@@ -358,7 +358,7 @@ static BOOL sub_0205E3AC (UnkStruct_020508D4 * param0)
 
 void sub_0205E3F4 (UnkStruct_020508D4 * param0, UnkStruct_02061AB4 * param1, u16 param2, u16 param3)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_0205E3AC * v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205E3AC));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0205E3AC));
@@ -717,7 +717,7 @@ u8 sub_0205E6B8 (void)
 {
     TrainerInfo * v0;
 
-    v0 = sub_02032EE8(sub_0203608C() ^ 1);
+    v0 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
     GF_ASSERT(v0 != NULL);
 
     return TrainerInfo_GameCode(v0);
@@ -725,7 +725,7 @@ u8 sub_0205E6B8 (void)
 
 u8 sub_0205E6D8 (SaveData * param0)
 {
-    if (TrainerInfo_GameCode(sub_02025E38(param0)) == 0) {
+    if (TrainerInfo_GameCode(SaveData_GetTrainerInfo(param0)) == 0) {
         return 1;
     }
 

@@ -11,7 +11,7 @@
 #include "struct_decls/struct_0209747C_decl.h"
 
 #include "struct_defs/sentence.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
 
 #include "unk_02005474.h"
@@ -35,7 +35,7 @@
 #include "overlay005/ov5_021D0D80.h"
 
 typedef struct {
-    UnkStruct_0203CDB0 * unk_00;
+    FieldSystem * unk_00;
     Strbuf* unk_04;
     Strbuf* unk_08;
     StringFormatter * unk_0C;
@@ -68,7 +68,7 @@ static int sub_0209B288(UnkStruct_0209AD84 * param0);
 
 void sub_0209ACF4 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_0209AD84 * v1 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0209AD84));
 
     v1->unk_00 = v0;

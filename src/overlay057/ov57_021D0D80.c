@@ -170,7 +170,7 @@ static void ov57_021D0EAC (int param0, SaveData * param1, BOOL param2)
     sub_0202B40C(v4, 1, MTRNG_Next());
     sub_0206C008(param1);
 
-    v2 = sub_02025E38(param1);
+    v2 = SaveData_GetTrainerInfo(param1);
     v0 = MTRNG_Next();
 
     if (param2) {

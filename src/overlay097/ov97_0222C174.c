@@ -692,7 +692,7 @@ static int ov97_0222C6F8 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_00 = 85;
     v0->unk_04 = sub_02018340(v0->unk_00);
     v0->unk_08 = ((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08;
-    v0->unk_10 = sub_02025E38(v0->unk_08);
+    v0->unk_10 = SaveData_GetTrainerInfo(v0->unk_08);
     v0->unk_0C = sub_02027560(v0->unk_08);
     v0->unk_14 = sub_02025E44(v0->unk_08);
 

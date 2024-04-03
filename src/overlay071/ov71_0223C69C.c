@@ -71,7 +71,7 @@ static const int Unk_ov71_0223D644[] = {
     0xA
 };
 
-void ov71_0223C6F0 (Window * param0, const UnkStruct_02072014 * param1)
+void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
 {
     u8 v0;
     MessageLoader * v1;
@@ -169,7 +169,7 @@ void ov71_0223C6F0 (Window * param0, const UnkStruct_02072014 * param1)
     MessageLoader_Free(v1);
 }
 
-asm void ov71_0223CA28 (Window * param0, const UnkStruct_02072014 * param1)
+asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
 {
     push {r3, r4, r5, r6, r7, lr}
     sub sp, #0x18
@@ -549,7 +549,7 @@ static void ov71_0223CDB0 (Window * param0, const u32 param1, const u32 param2, 
     sub_0201D78C(param0, 0, param4, param1 - (v0 + param2), param3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
 }
 
-void ov71_0223CDE8 (Window * param0, const UnkStruct_02072014 * param1, Strbuf *param2)
+void ov71_0223CDE8 (Window * param0, const TrainerCard * param1, Strbuf *param2)
 {
     int v0;
 

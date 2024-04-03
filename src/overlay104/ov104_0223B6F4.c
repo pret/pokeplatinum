@@ -21,8 +21,8 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_0203061C.h"
-#include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_information.h"
+#include "communication_system.h"
 #include "unk_02051D8C.h"
 #include "unk_0205DFC4.h"
 #include "pokemon.h"
@@ -183,7 +183,7 @@ BattleParams * ov104_0223B810 (UnkStruct_ov104_0223BA10 * param0, UnkStruct_ov10
 
     Party_InitWithCapacity(v5->parties[0], v2);
 
-    if (sub_0203608C() == 0) {
+    if (CommSys_CurNetId() == 0) {
         v4 = 0;
     } else {
         v4 = 2;
@@ -224,7 +224,7 @@ BattleParams * ov104_0223B810 (UnkStruct_ov104_0223BA10 * param0, UnkStruct_ov10
     case 3:
         sub_02052894(v5);
 
-        v11 = sub_02032EE8(1 - sub_0203608C());
+        v11 = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
         TrainerInfo_Copy(v11, v5->unk_D0[2]);
 
         v8 = ov104_0222DD04(&v7, param0->unk_30[param0->unk_11 + 7], 11, 178);
@@ -308,7 +308,7 @@ void ov104_0223BA24 (Party * param0)
 
 void ov104_0223BA7C (UnkStruct_ov104_0223BA10 * param0, Pokemon * param1)
 {
-    Pokemon_UpdateAfterCatch(param1, sub_02025E38(param0->unk_04), 4, 0, 0, 11);
+    Pokemon_UpdateAfterCatch(param1, SaveData_GetTrainerInfo(param0->unk_04), 4, 0, 0, 11);
     return;
 }
 

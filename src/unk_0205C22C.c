@@ -11,7 +11,7 @@
 #include "constdata/const_020ED570.h"
 
 #include "struct_defs/struct_0203330C.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0205B4F8.h"
 #include "struct_defs/struct_0205C22C.h"
 #include "struct_defs/struct_0205C680.h"

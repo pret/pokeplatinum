@@ -10,7 +10,7 @@ typedef struct UnkStruct_0202F41C_t {
     u16 unk_24;
     u8 unk_26;
     u8 unk_27;
-    UnkStruct_0202610C unk_28;
+    BattleRegulation unk_28;
     u16 unk_48;
     u8 unk_4A[14];
     u64 unk_58;

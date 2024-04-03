@@ -20,7 +20,7 @@
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
@@ -35,7 +35,7 @@
 #include <nitro/fx/fx.h>
 
 struct UnkStruct_02095E80_t {
-    UnkStruct_0203CDB0 * unk_00;
+    FieldSystem * unk_00;
     SaveData * unk_04;
     UnkStruct_ov88_0223C370 * unk_08;
     PokemonSummary unk_0C;

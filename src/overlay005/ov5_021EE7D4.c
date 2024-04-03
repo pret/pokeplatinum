@@ -5,7 +5,7 @@
 #include "pokemon.h"
 #include "struct_decls/struct_02098700_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 
 #include "unk_0200B358.h"
 #include "unk_0203E880.h"
@@ -100,7 +100,7 @@ static u32 ov5_021EE8A8 (u16 param0, u16 param1)
     return v3 * v4 / 10;
 }
 
-u8 ov5_021EE920 (UnkStruct_0203CDB0 * param0, u16 param1)
+u8 ov5_021EE920 (FieldSystem * param0, u16 param1)
 {
     Pokemon * v0;
     vu16 v1, v2;
@@ -132,7 +132,7 @@ u8 ov5_021EE920 (UnkStruct_0203CDB0 * param0, u16 param1)
     }
 }
 
-void ov5_021EE9BC (UnkStruct_0203CDB0 * param0, u16 param1)
+void ov5_021EE9BC (FieldSystem * param0, u16 param1)
 {
     Pokemon * v0;
     vu16 v1;
@@ -143,7 +143,7 @@ void ov5_021EE9BC (UnkStruct_0203CDB0 * param0, u16 param1)
     sub_0206B0C4(SaveData_Events(param0->unk_0C), v1);
 }
 
-static void ov5_021EE9E8 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u16 param3, vu16 param4)
+static void ov5_021EE9E8 (FieldSystem * param0, u8 param1, u8 param2, u16 param3, vu16 param4)
 {
     u32 v0;
     StringFormatter ** v1 = sub_0203F098(param0, 15);
@@ -159,7 +159,7 @@ static void ov5_021EE9E8 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u16
     sub_0200B60C(*v1, param2, v0 % 10, 1, 0, 1);
 }
 
-void ov5_021EEA54 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u16 param3)
+void ov5_021EEA54 (FieldSystem * param0, u8 param1, u8 param2, u16 param3)
 {
     vu16 v0;
 
@@ -167,7 +167,7 @@ void ov5_021EEA54 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u16 param3
     ov5_021EE9E8(param0, param1, param2, param3, v0);
 }
 
-void ov5_021EEA84 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u16 param3)
+void ov5_021EEA84 (FieldSystem * param0, u8 param1, u8 param2, u16 param3)
 {
     Pokemon * v0;
     u16 v1;

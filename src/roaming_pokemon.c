@@ -288,7 +288,7 @@ void RoamingPokemon_ActivateSlot (SaveData * saveData, const u8 slot)
     sub_0202D980(v1, 4, species);
     sub_0202D980(v1, 6, level);
 
-    v4 = sub_02025E38(saveData);
+    v4 = SaveData_GetTrainerInfo(saveData);
     v0 = Pokemon_New(4);
 
     Pokemon_Init(v0);

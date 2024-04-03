@@ -98,7 +98,7 @@ BOOL sub_02048BD0 (UnkStruct_0203E724 * param0)
     case 6:
     {
         Strbuf* v14 = Strbuf_Init(64, 32);
-        TrainerInfo * v15 = sub_02025E38(param0->unk_34->unk_0C);
+        TrainerInfo * v15 = SaveData_GetTrainerInfo(param0->unk_34->unk_0C);
 
         TrainerInfo_NameStrbuf(v15, v14);
         sub_0202B444(v1, 0, 1, v14);

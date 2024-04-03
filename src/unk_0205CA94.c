@@ -12,7 +12,7 @@
 #include "struct_defs/struct_02009CFC.h"
 #include "struct_defs/struct_0200C738.h"
 #include "functypes/sys_task_func.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "overlay115/struct_ov115_02261520.h"
 
 #include "unk_02005474.h"
@@ -50,7 +50,7 @@ typedef struct UnkStruct_0205D3AC_t {
 } UnkStruct_0205D3AC;
 
 typedef struct {
-    UnkStruct_0203CDB0 * unk_00;
+    FieldSystem * unk_00;
     UnkStruct_0205D094 unk_04;
     UnkStruct_0205D3AC unk_1C0[2];
     int unk_1E0;
@@ -82,7 +82,7 @@ static void sub_0205CA94(SysTask * param0, void * param1);
 static void sub_0205CBFC(SysTask * param0, void * param1);
 static void sub_0205CD3C(SysTask * param0, void * param1);
 static void sub_0205CE7C(SysTask * param0, void * param1);
-static UnkStruct_0205D274 * sub_0205D050(SysTaskFunc func, UnkStruct_0203CDB0 * param1, u32 param2);
+static UnkStruct_0205D274 * sub_0205D050(SysTaskFunc func, FieldSystem * param1, u32 param2);
 static void sub_0205D080(SysTask * param0, UnkStruct_0205D274 * param1);
 void sub_0205D094(UnkStruct_0205D094 * param0, int param1, u32 param2);
 static void sub_0205D0AC(UnkStruct_0205D094 * param0);
@@ -372,7 +372,7 @@ void sub_0205CE7C (SysTask * param0, void * param1)
     }
 }
 
-void sub_0205CFDC (UnkStruct_0203CDB0 * param0, int param1, BOOL * param2)
+void sub_0205CFDC (FieldSystem * param0, int param1, BOOL * param2)
 {
     UnkStruct_0205D274 * v0;
 
@@ -395,7 +395,7 @@ void sub_0205CFDC (UnkStruct_0203CDB0 * param0, int param1, BOOL * param2)
     v0->unk_00 = param0;
 }
 
-UnkStruct_0205D274 * sub_0205D050 (SysTaskFunc func, UnkStruct_0203CDB0 * param1, u32 param2)
+UnkStruct_0205D274 * sub_0205D050 (SysTaskFunc func, FieldSystem * param1, u32 param2)
 {
     UnkStruct_0205D274 * v0;
     SysTask * v1;
@@ -404,7 +404,7 @@ UnkStruct_0205D274 * sub_0205D050 (SysTaskFunc func, UnkStruct_0203CDB0 * param1
 
     v1 = sub_0200679C(func, sizeof(UnkStruct_0205D274), 5, 4);
     v0 = sub_0201CED0(v1);
-    v3 = sub_02025E38(param1->unk_0C);
+    v3 = SaveData_GetTrainerInfo(param1->unk_0C);
     v2 = TrainerInfo_Gender(v3);
 
     sub_0205D094(&v0->unk_04, v2, param2);

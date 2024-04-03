@@ -7,7 +7,7 @@
 #include "overlay115/struct_ov115_02265AD4.h"
 
 #include "unk_02032798.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "overlay115/ov115_02260440.h"
 #include "overlay115/ov115_02265A18.h"
 #include "overlay115/ov115_02265A24.h"
@@ -40,7 +40,7 @@ void ov115_02265A5C (int param0, int param1, void * param2, void * param3)
 
     ov115_02260988(v0, param2, param0);
 
-    if (sub_0203608C() == 0) {
+    if (CommSys_CurNetId() == 0) {
         ov115_0226096C(v0, param2, param0);
     }
 }

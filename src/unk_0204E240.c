@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_0203E724_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0203E724_t.h"
 
 #include "unk_0204E240.h"
@@ -23,7 +23,7 @@ const u16 Unk_020EBFFC[7][2] = {
 
 BOOL sub_0204E240 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     u8 v1;
     u16 v2, v3;
     u16 * v4 = inline_0204FCAC(param0);
@@ -57,7 +57,7 @@ BOOL sub_0204E28C (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204E2E0 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->unk_34;
     u8 v1;
     u16 v2, v3;
     u16 * v4 = inline_0204FCAC(param0);

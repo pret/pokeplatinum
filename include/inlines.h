@@ -9,7 +9,7 @@
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0203E724_t.h"
 #include "struct_defs/struct_02049FA8.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
@@ -131,7 +131,7 @@ static inline void inline_ov61_0222C3B0_sub (SysTask * param0, void * param1)
     }
 }
 
-static inline void inline_ov47_0225621C_sub (UnkStruct_0203CDB0 * param0, int * param1, int * param2)
+static inline void inline_ov47_0225621C_sub (FieldSystem * param0, int * param1, int * param2)
 {
     UnkStruct_0203A790 * v0 = sub_0203A790(param0->unk_0C);
     UnkStruct_02049FA8 * v1 = sub_0203A72C(v0);
@@ -145,7 +145,7 @@ static inline void inline_ov47_0225621C_sub (UnkStruct_0203CDB0 * param0, int * 
     }
 }
 
-static inline void inline_ov47_0225621C (UnkStruct_0203CDB0 * param0, int * param1, int * param2)
+static inline void inline_ov47_0225621C (FieldSystem * param0, int * param1, int * param2)
 {
     inline_ov47_0225621C_sub(param0, param1, param2);
     *param1 /= 32;

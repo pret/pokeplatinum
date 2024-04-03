@@ -3,17 +3,17 @@
 
 #include "struct_decls/struct_02029894_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 
 #include "unk_0202854C.h"
 #include "unk_020573FC.h"
-#include "unk_0205964C.h"
+#include "field_comm_manager.h"
 #include "overlay005/ov5_021E15F4.h"
 #include "overlay005/ov5_021EF75C.h"
 #include "overlay005/ov5_021F0824.h"
 #include "overlay023/ov23_02241F74.h"
 
-void ov5_021F0824 (UnkStruct_0203CDB0 * param0)
+void ov5_021F0824 (FieldSystem * param0)
 {
     int v0;
     int v1;

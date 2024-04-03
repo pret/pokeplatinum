@@ -8,7 +8,7 @@
 
 #include "unk_02030108.h"
 #include "unk_0203061C.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_0204FA34.h"
 #include "unk_0205DFC4.h"
 
@@ -24,7 +24,7 @@ void sub_0204FA34 (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v2->unk_01++;
 
-    if (sub_0203608C() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 

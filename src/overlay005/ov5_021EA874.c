@@ -13,7 +13,7 @@
 #include "savedata.h"
 
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_02240FA8.h"
@@ -34,8 +34,8 @@
 #include "unk_020279FC.h"
 #include "unk_0202ACE0.h"
 #include "unk_0203061C.h"
-#include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_information.h"
+#include "communication_system.h"
 #include "unk_0203909C.h"
 #include "unk_0203CC84.h"
 #include "unk_020508D4.h"
@@ -50,7 +50,7 @@ typedef struct {
     Strbuf* unk_0C;
     Window unk_10;
     Window unk_20;
-    UnkStruct_0203CDB0 * unk_30;
+    FieldSystem * unk_30;
     SaveData * unk_34;
     StringFormatter * unk_38;
     MessageLoader * unk_3C;
@@ -93,7 +93,7 @@ static BOOL ov5_021EA8F0 (UnkStruct_ov5_021EAE78 * param0)
 
     param0->unk_8C = -1;
 
-    for (v0 = 0; v0 < sub_02035E18(); v0++) {
+    for (v0 = 0; v0 < CommSys_ConnectedCount(); v0++) {
         if (param0->unk_4C[v0] == 2) {
             param0->unk_8C = v0;
             param0->unk_4C[v0] = 0;
@@ -106,7 +106,7 @@ static BOOL ov5_021EA8F0 (UnkStruct_ov5_021EAE78 * param0)
     }
 
     if (sub_0207D688(sub_0207D990(param0->unk_34), 437, 1, 4) == 1) {
-        v1 = sub_02032EE8(param0->unk_8C);
+        v1 = CommInfo_TrainerInfo(param0->unk_8C);
         sub_0200B498(param0->unk_38, 0, v1);
         ov5_021EAE78(param0, 57);
         param0->unk_48 = 2;
@@ -200,7 +200,7 @@ static BOOL ov5_021EAAA8 (UnkStruct_ov5_021EAE78 * param0)
     } else if (v4 == 0) {
         param0->unk_48 = 8;
     } else {
-        v0 = sub_02032EE8(param0->unk_8C);
+        v0 = CommInfo_TrainerInfo(param0->unk_8C);
         sub_0200B498(param0->unk_38, 0, v0);
         ov5_021EAE78(param0, 59);
         param0->unk_48 = 6;
@@ -315,7 +315,7 @@ static BOOL ov5_021EAC44 (UnkStruct_ov5_021EAE78 * param0)
         return 0;
     case 0xfffffffe:
         Sound_PlayEffect(1500);
-        v0 = sub_02032EE8(param0->unk_8C);
+        v0 = CommInfo_TrainerInfo(param0->unk_8C);
         sub_0200B498(param0->unk_38, 0, v0);
         ov5_021EAE78(param0, 59);
         param0->unk_48 = 6;
@@ -372,7 +372,7 @@ static BOOL ov5_021EAD38 (UnkStruct_ov5_021EAE78 * param0)
         sub_02039298(param0->unk_34, param0->unk_8C, 32 - 1, 4, 0);
         param0->unk_48 = 1;
     } else {
-        v1 = sub_02032EE8(param0->unk_8C);
+        v1 = CommInfo_TrainerInfo(param0->unk_8C);
         sub_0200B498(param0->unk_38, 0, v1);
         ov5_021EAE78(param0, 59);
         param0->unk_48 = 6;
@@ -384,7 +384,7 @@ static BOOL ov5_021EAD38 (UnkStruct_ov5_021EAE78 * param0)
 static BOOL ov5_021EADB4 (UnkStruct_020508D4 * param0)
 {
     UnkStruct_ov5_021EAE78 * v0 = sub_02050A64(param0);
-    UnkStruct_0203CDB0 * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = sub_02050A60(param0);
 
     switch (v0->unk_48) {
     case 0:
@@ -473,7 +473,7 @@ static void ov5_021EAF1C (UnkStruct_ov5_021EAE78 * param0)
     }
 }
 
-void ov5_021EAF50 (UnkStruct_0203CDB0 * param0)
+void ov5_021EAF50 (FieldSystem * param0)
 {
     UnkStruct_ov5_021EAE78 * v0;
     UnkStruct_020508D4 * v1 = param0->unk_10;

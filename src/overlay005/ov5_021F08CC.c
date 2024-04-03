@@ -14,7 +14,7 @@
 #include "pokemon.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay006/battle_params.h"
 
@@ -63,7 +63,7 @@ typedef struct {
     int unk_14;
     int unk_18;
     int unk_1C;
-    UnkStruct_0203CDB0 * unk_20;
+    FieldSystem * unk_20;
     UnkStruct_ov101_021D5D90 * unk_24;
     u8 unk_28;
     Strbuf* unk_2C;
@@ -87,7 +87,7 @@ static u16 ov5_021F0E58(int param0);
 int(*const Unk_ov5_021FFA0C[])(UnkStruct_ov5_021F0D6C *, UnkStruct_0205E884 *, UnkStruct_02061AB4 *);
 const int Unk_ov5_021FFA00[];
 
-void * ov5_021F08CC (UnkStruct_0203CDB0 * param0, u32 param1, int param2)
+void * ov5_021F08CC (FieldSystem * param0, u32 param1, int param2)
 {
     UnkStruct_ov5_021F08CC * v0 = Heap_AllocFromHeapAtEnd(param1, sizeof(UnkStruct_ov5_021F08CC));
 
@@ -101,7 +101,7 @@ void * ov5_021F08CC (UnkStruct_0203CDB0 * param0, u32 param1, int param2)
 
 BOOL ov5_021F08F8 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_ov5_021F08CC * v1 = sub_02050A64(param0);
 
     switch (v1->unk_00) {
@@ -150,7 +150,7 @@ BOOL ov5_021F08F8 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-SysTask * ov5_021F09B4 (UnkStruct_0203CDB0 * param0, int param1, BOOL param2)
+SysTask * ov5_021F09B4 (FieldSystem * param0, int param1, BOOL param2)
 {
     SysTask * v0;
     UnkStruct_ov5_021F0D6C * v1 = ov5_021F0D1C(sizeof(UnkStruct_ov5_021F0D6C));
@@ -507,7 +507,7 @@ static int ov5_021F0D54 (void)
 
 static void ov5_021F0D6C (UnkStruct_ov5_021F0D6C * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_20;
+    FieldSystem * v0 = param0->unk_20;
 
     param0->unk_48 = MessageLoader_Init(1, 26, 213, 4);
     param0->unk_2C = Strbuf_Init(0x400, 4);
@@ -525,7 +525,7 @@ static void ov5_021F0DA4 (UnkStruct_ov5_021F0D6C * param0)
 
 static void ov5_021F0DC4 (UnkStruct_ov5_021F0D6C * param0)
 {
-    UnkStruct_0203CDB0 * v0 = param0->unk_20;
+    FieldSystem * v0 = param0->unk_20;
 
     sub_0205D8F4(v0->unk_08, &param0->unk_38, 3);
     sub_0205D944(&param0->unk_38, sub_02025E44(v0->unk_0C));
@@ -536,7 +536,7 @@ static void ov5_021F0DE8 (UnkStruct_ov5_021F0D6C * param0, u32 param1)
     ov5_021F0DC4(param0);
 
     {
-        UnkStruct_0203CDB0 * v0 = param0->unk_20;
+        FieldSystem * v0 = param0->unk_20;
 
         MessageLoader_GetStrbuf(param0->unk_48, param1, param0->unk_30);
         StringFormatter_Format(param0->unk_34, param0->unk_2C, param0->unk_30);

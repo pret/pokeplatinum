@@ -6,7 +6,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_020298B0_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "overlay023/struct_ov23_02241A80.h"
 #include "overlay023/struct_ov23_02241A88.h"
 #include "overlay023/struct_ov23_0224271C.h"
@@ -19,7 +19,7 @@
 #include "strbuf.h"
 #include "unk_0202854C.h"
 #include "unk_0202CD50.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_0203CC84.h"
 #include "unk_020507CC.h"
 #include "unk_02054D00.h"
@@ -52,7 +52,7 @@ typedef struct {
     u8 unk_454[8];
     SysTask * unk_45C;
     UnkStruct_ov23_02241E4C * unk_460;
-    UnkStruct_0203CDB0 * unk_464;
+    FieldSystem * unk_464;
     u8 unk_468[8];
     int unk_470;
     u8 unk_474;
@@ -83,7 +83,7 @@ static void ov23_022416B0 (int param0)
     }
 }
 
-void ov23_022416E0 (void * param0, UnkStruct_0203CDB0 * param1)
+void ov23_022416E0 (void * param0, FieldSystem * param1)
 {
     int v0;
     UnkStruct_020298B0 * v1;
@@ -257,7 +257,7 @@ static UnkStruct_ov23_02241974 * ov23_02241978 (int param0, int param1)
 void ov23_022419B4 (int param0, int param1, void * param2, void * param3)
 {
     u8 * v0 = param2;
-    int v1 = sub_0203608C();
+    int v1 = CommSys_CurNetId();
     int v2, v3, v4;
     UnkStruct_ov23_02241974 * v5;
 

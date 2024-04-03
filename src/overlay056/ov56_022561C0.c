@@ -21,7 +21,7 @@
 #include "struct_defs/sentence.h"
 #include "struct_defs/union_02022594_020225E0.h"
 #include "struct_defs/struct_0203330C.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0205C22C.h"
 #include "struct_defs/struct_0205C924.h"
@@ -80,7 +80,7 @@ struct UnkStruct_ov56_02256468_t {
     int unk_00;
     UnkStruct_0205C22C * unk_04;
     UnkStruct_0205B43C * unk_08;
-    UnkStruct_0203CDB0 * unk_0C;
+    FieldSystem * unk_0C;
     TrainerInfo * unk_10;
     BGL * unk_14;
     StringFormatter * unk_18;
@@ -234,7 +234,7 @@ static void ov56_022563E8 (UnkStruct_ov56_022562EC * param0)
     }
 }
 
-UnkStruct_ov56_02256468 * ov56_02256410 (UnkStruct_0203CDB0 * param0)
+UnkStruct_ov56_02256468 * ov56_02256410 (FieldSystem * param0)
 {
     UnkStruct_ov56_02256468 * v0;
     SysTask * v1;
@@ -246,7 +246,7 @@ UnkStruct_ov56_02256468 * ov56_02256410 (UnkStruct_0203CDB0 * param0)
     v0->unk_14 = param0->unk_08;
     v0->unk_04 = param0->unk_80;
     v0->unk_08 = param0->unk_7C;
-    v0->unk_10 = sub_02025E38(param0->unk_0C);
+    v0->unk_10 = SaveData_GetTrainerInfo(param0->unk_0C);
     v0->unk_00 = 0;
     v0->unk_2F8 = v1;
     v0->unk_2D4 = param0->unk_80->unk_478;

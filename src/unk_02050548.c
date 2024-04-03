@@ -3,7 +3,7 @@
 
 #include "struct_defs/struct_02050224.h"
 
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_02050548.h"
 
 void sub_02050548(int param0, int param1, void * param2, void * param3);
@@ -17,7 +17,7 @@ void sub_02050548 (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v2->unk_01++;
 
-    if (sub_0203608C() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 

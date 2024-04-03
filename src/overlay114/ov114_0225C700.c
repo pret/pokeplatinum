@@ -64,8 +64,8 @@
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 #include "unk_0202ACE0.h"
-#include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_information.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_0203909C.h"
@@ -802,12 +802,12 @@ void ov114_0225C700 (UnkStruct_ov114_0225C76C * param0, BOOL param1, SaveData * 
 
     memset(param0, 0, sizeof(UnkStruct_ov114_0225C76C));
 
-    param0->unk_08 = sub_02032E64();
-    v2 = sub_0203608C();
+    param0->unk_08 = CommInfo_CountReceived();
+    v2 = CommSys_CurNetId();
     v1 = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        v3 = sub_02032EE8(v0);
+        v3 = CommInfo_TrainerInfo(v0);
 
         if (v3 != NULL) {
             if (v2 == v0) {
@@ -884,10 +884,10 @@ TrainerInfo * ov114_0225C7CC (const UnkStruct_ov114_0225C76C * param0, u32 param
         v0 = ov114_0225C76C(param0, param1);
 
         if (v0 == param0->unk_09) {
-            return sub_02025E38(param0->unk_00);
+            return SaveData_GetTrainerInfo(param0->unk_00);
         }
 
-        return sub_02032EE8(param1);
+        return CommInfo_TrainerInfo(param1);
     }
 
     GF_ASSERT(param0->unk_0C != NULL);
@@ -1068,7 +1068,7 @@ BOOL ov114_0225CA54 (UnkStruct_ov114_0225C76C * param0)
     BOOL v0 = 0;
 
     if (param0->unk_0C != NULL) {
-        if (param0->unk_08 != sub_02035E18()) {
+        if (param0->unk_08 != CommSys_ConnectedCount()) {
             v0 = 1;
         }
 
@@ -1097,8 +1097,8 @@ BOOL ov114_0225CA98 (const UnkStruct_ov114_0225C76C * param0)
     GF_ASSERT(param0->unk_0C != NULL);
     GF_ASSERT(param0->unk_0C->unk_1C == 1);
 
-    if (sub_02032AAC() == 1) {
-        sub_02032A70();
+    if (CommInfo_IsInitialized() == 1) {
+        CommInfo_Delete();
         sub_0203888C();
     } else {
         if (sub_020382C0() == 1) {
@@ -1866,7 +1866,7 @@ static void ov114_0225D688 (SysTask * param0, void * param1)
                 break;
             }
 
-            sub_020359DC(26, &v8, sizeof(u32));
+            CommSys_SendData(26, &v8, sizeof(u32));
         }
 
         v0->unk_00++;
@@ -2265,8 +2265,8 @@ static void ov114_0225E0F8 (UnkStruct_ov114_0225E0F8 * param0, const UnkStruct_o
     for (v0 = 0; v0 < param1->unk_08; v0++) {
         param0->unk_08[v0] = ov114_0225C7CC(param1, param1->unk_04[v0]);
         GF_ASSERT(param0->unk_08[v0]);
-        param0->unk_00[v0] = sub_02032F78(param1->unk_04[v0]);
-        param0->unk_04[v0] = sub_02032F9C(param1->unk_04[v0]);
+        param0->unk_00[v0] = CommInfo_PlayerCountry(param1->unk_04[v0]);
+        param0->unk_04[v0] = CommInfo_PlayerRegion(param1->unk_04[v0]);
     }
 }
 
@@ -3285,9 +3285,9 @@ static BOOL ov114_0225F27C (UnkStruct_ov114_0225F270 * param0, UnkStruct_ov114_0
 
         if ((v0 == 1) || (v0 == 2)) {
             if (v0 == 1) {
-                sub_020359DC(22, NULL, 0);
+                CommSys_SendData(22, NULL, 0);
             } else if (v0 == 2) {
-                sub_020359DC(23, NULL, 0);
+                CommSys_SendData(23, NULL, 0);
             }
 
             ov114_0225D368(param1, param2, 15, 1);
@@ -3376,9 +3376,9 @@ static void ov114_0225F424 (UnkStruct_ov114_0225F270 * param0, u32 param1, BOOL 
 
         if (v1 == param3) {
             if (param0->unk_1D) {
-                sub_020359DC(24, NULL, 0);
+                CommSys_SendData(24, NULL, 0);
             } else {
-                sub_020359DC(25, NULL, 0);
+                CommSys_SendData(25, NULL, 0);
             }
         }
     }
@@ -3579,7 +3579,7 @@ static void ov114_0225F890 (UnkStruct_ov114_0225E854 * param0)
 
     for (v1 = 0; v1 < param0->unk_0C.unk_08; v1++) {
         v2 = param0->unk_0C.unk_04[v1];
-        v5 = sub_02032F1C(v2);
+        v5 = CommInfo_DWCFriendData(v2);
         v3 = sub_0203909C(param0->unk_0C.unk_00, v5, &v4);
 
         switch (v3) {
