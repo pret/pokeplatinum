@@ -6,7 +6,7 @@
 #include "overlay117/struct_ov117_02260440.h"
 #include "overlay117/struct_ov117_022605C0.h"
 
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "heap.h"
 #include "communication_information.h"
 #include "communication_system.h"

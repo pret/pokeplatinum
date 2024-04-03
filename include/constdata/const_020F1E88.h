@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_CONST_020F1E88_H
 #define POKEPLATINUM_CONST_020F1E88_H
 
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 
 extern const OverlayManagerTemplate Unk_020F1E88;
 

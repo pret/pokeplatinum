@@ -20,7 +20,7 @@
 
 #include "unk_020041CC.h"
 #include "game_overlay.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "heap.h"
 #include "unk_0202B604.h"
 #include "unk_0202CD50.h"

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV16_0223B140_H
 #define POKEPLATINUM_OV16_0223B140_H
 
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "struct_decls/battle_system.h"
 
 BOOL ov16_0223B140(OverlayManager * param0, int * param1);

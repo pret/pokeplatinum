@@ -8,7 +8,7 @@
 #include "struct_defs/struct_0202DF8C.h"
 #include "overlay087/struct_ov87_021D12C0.h"
 
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "heap.h"
 #include "strbuf.h"
 #include "unk_0202DF8C.h"

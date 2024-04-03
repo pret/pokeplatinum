@@ -5,7 +5,7 @@
 #include "overlay082/struct_ov82_0223B164.h"
 #include "overlay083/struct_ov83_0223C344.h"
 
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "heap.h"
 #include "communication_information.h"
 #include "communication_system.h"

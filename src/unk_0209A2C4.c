@@ -18,7 +18,7 @@
 
 #include "unk_02000C88.h"
 #include "unk_02002B7C.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "message.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"

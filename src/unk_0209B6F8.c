@@ -19,7 +19,7 @@
 #include "overlay104/struct_ov104_0223D8F0.h"
 
 #include "game_overlay.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "heap.h"
 #include "unk_0209B6F8.h"
 #include "overlay104/ov104_0222E63C.h"

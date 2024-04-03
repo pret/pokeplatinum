@@ -18,7 +18,7 @@
 #include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_02098DE8.h"
 
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "unk_0200B358.h"
 #include "heap.h"
 #include "unk_02025E08.h"

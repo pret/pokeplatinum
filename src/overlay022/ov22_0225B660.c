@@ -18,7 +18,7 @@
 #include "overlay022/struct_ov22_0225AF8C.h"
 
 #include "unk_02002B7C.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "unk_02006E3C.h"
 #include "message.h"
 #include "unk_0200B358.h"

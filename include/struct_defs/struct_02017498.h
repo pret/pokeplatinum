@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_02017498_H
 #define POKEPLATINUM_STRUCT_02017498_H
 
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "struct_defs/struct_0203E6C0.h"
 
 #include <dwc.h>

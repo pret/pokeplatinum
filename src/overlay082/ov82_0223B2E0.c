@@ -8,7 +8,7 @@
 
 #include "overlay083/struct_ov83_0223C344.h"
 
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "heap.h"
 #include "unk_0207CB08.h"
 #include "item.h"

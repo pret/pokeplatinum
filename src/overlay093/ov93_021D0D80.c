@@ -9,7 +9,7 @@
 #include "overlay009/struct_ov9_02249FF4.h"
 
 #include "unk_02005474.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "narc.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"

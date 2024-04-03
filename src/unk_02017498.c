@@ -6,7 +6,7 @@
 #include "struct_defs/struct_02017498.h"
 
 #include "unk_020041CC.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "unk_02017498.h"
 #include "unk_02017728.h"
 #include "heap.h"

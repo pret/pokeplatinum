@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_020067E8_H
-#define POKEPLATINUM_UNK_020067E8_H
+#ifndef POKEPLATINUM_OVERLAY_MANAGER_H
+#define POKEPLATINUM_OVERLAY_MANAGER_H
 
 #include <nitro/fs.h>
 
@@ -32,4 +32,4 @@ void sub_02006830(OverlayManager * param0);
 void * sub_02006840(OverlayManager * param0);
 BOOL sub_02006844(OverlayManager * param0);
 
-#endif // POKEPLATINUM_UNK_020067E8_H
+#endif // POKEPLATINUM_OVERLAY_MANAGER_H

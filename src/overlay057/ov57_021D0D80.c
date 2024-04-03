@@ -18,7 +18,7 @@
 #include "struct_defs/struct_02055BA8.h"
 
 #include "unk_02000C88.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "unk_02017428.h"
 #include "heap.h"
 #include "unk_0201D15C.h"

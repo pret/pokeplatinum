@@ -29,7 +29,7 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "game_overlay.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "narc.h"
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"

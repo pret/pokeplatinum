@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV84_0223B5A0_H
 #define POKEPLATINUM_OV84_0223B5A0_H
 
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "overlay084/struct_ov84_0223B5A0.h"
 
 int ov84_0223B5A0(OverlayManager * param0, int * param1);

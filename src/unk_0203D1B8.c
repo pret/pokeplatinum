@@ -66,7 +66,7 @@
 #include "overlay090/struct_ov90_021D0D80.h"
 
 #include "rtc.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "unk_02017498.h"
 #include "heap.h"
 #include "unk_0201D15C.h"

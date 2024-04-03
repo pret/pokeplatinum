@@ -6,7 +6,7 @@
 #include "struct_defs/struct_0203CC84.h"
 
 #include "game_overlay.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "heap.h"
 #include "unk_02099550.h"
 #include "overlay018/ov18_0221F800.h"

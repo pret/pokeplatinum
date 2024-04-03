@@ -15,7 +15,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02003B60.h"
 #include "game_overlay.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "rtc.h"

@@ -14,7 +14,7 @@
 
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "unk_02014A84.h"
 #include "heap.h"
 #include "unk_02023FCC.h"

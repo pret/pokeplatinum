@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV19_021D0D80_H
 #define POKEPLATINUM_OV19_021D0D80_H
 
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "pokemon.h"

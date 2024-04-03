@@ -64,7 +64,7 @@
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_02006224.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "unk_0200762C.h"
 #include "unk_0200B358.h"
 #include "unk_0200C6E4.h"

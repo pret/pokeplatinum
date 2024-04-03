@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV98_02246E88_H
 #define POKEPLATINUM_STRUCT_OV98_02246E88_H
 
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "strbuf.h"
 #include "struct_defs/options.h"
 #include "savedata.h"

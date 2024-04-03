@@ -18,7 +18,7 @@
 
 #include "unk_02000C88.h"
 #include "game_overlay.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "heap.h"
 #include "communication_system.h"
 #include "unk_02039C80.h"

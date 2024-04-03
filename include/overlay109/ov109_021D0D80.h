@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV109_021D0D80_H
 #define POKEPLATINUM_OV109_021D0D80_H
 
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "struct_defs/struct_0209C0F0.h"
 #include "overlay109/struct_ov109_021D0F70_decl.h"
 #include "overlay109/struct_ov109_021D1048.h"

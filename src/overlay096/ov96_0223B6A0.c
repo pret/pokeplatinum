@@ -20,7 +20,7 @@
 
 #include "unk_02001AF4.h"
 #include "unk_020041CC.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "narc.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"

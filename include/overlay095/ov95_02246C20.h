@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV95_02246C20_H
 #define POKEPLATINUM_OV95_02246C20_H
 
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"

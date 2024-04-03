@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV105_02241AE0_H
 #define POKEPLATINUM_OV105_02241AE0_H
 
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 
 int ov105_02241AE0(OverlayManager * param0, int * param1);
 int ov105_02241BD8(OverlayManager * param0, int * param1);

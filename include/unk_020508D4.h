@@ -4,7 +4,7 @@
 #include "field/field_system_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "functypes/funcptr_02050904.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 
 UnkStruct_020508D4 * sub_02050904(FieldSystem * param0, UnkFuncPtr_02050904 param1, void * param2);
 void sub_02050924(UnkStruct_020508D4 * param0, UnkFuncPtr_02050904 param1, void * param2);

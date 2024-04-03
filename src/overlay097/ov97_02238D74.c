@@ -7,7 +7,7 @@
 
 #include "overlay097/struct_ov97_0222D04C.h"
 
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "heap.h"
 #include "unk_02033200.h"
 #include "unk_020366A0.h"

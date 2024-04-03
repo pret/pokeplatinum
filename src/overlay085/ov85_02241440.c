@@ -21,7 +21,7 @@
 #include "overlay115/struct_ov115_0226527C.h"
 
 #include "unk_02002B7C.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "message.h"

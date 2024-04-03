@@ -3,7 +3,7 @@
 
 #include <nitro/fs.h>
 
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 
 void sub_02000EC4(FSOverlayID param0, const OverlayManagerTemplate * param1);
 void InitRNG(void);

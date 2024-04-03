@@ -19,7 +19,7 @@
 #include "overlay117/struct_ov117_02260440.h"
 
 #include "game_overlay.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "heap.h"
 #include "trainer_info.h"
 #include "overlay066/ov66_0222DDF0.h"

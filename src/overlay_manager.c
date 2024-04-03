@@ -3,7 +3,7 @@
 
 
 #include "game_overlay.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "heap.h"
 
 OverlayManager * sub_020067E8 (const OverlayManagerTemplate * param0, void * param1, const int param2)

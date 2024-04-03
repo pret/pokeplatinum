@@ -7,7 +7,7 @@
 
 #include "overlay117/struct_ov117_022605C0.h"
 
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "unk_0200F174.h"
 #include "overlay114/ov114_0225C700.h"
 #include "overlay117/ov117_02266498.h"

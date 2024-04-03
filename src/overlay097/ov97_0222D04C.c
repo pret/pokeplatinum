@@ -10,7 +10,7 @@
 #include "overlay097/struct_ov97_0222D250.h"
 #include "overlay097/union_ov97_0222D2B0.h"
 
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "communication_information.h"

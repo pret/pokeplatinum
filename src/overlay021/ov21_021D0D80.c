@@ -32,7 +32,7 @@
 #include "overlay022/struct_ov22_022559F8.h"
 
 #include "unk_020041CC.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0200A9DC.h"

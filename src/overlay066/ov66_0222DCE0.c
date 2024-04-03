@@ -10,7 +10,7 @@
 #include "overlay066/struct_ov66_0222DCE0.h"
 
 #include "game_overlay.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "unk_0200D9E8.h"
 #include "unk_02017728.h"
 #include "heap.h"

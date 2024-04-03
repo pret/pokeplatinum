@@ -10,7 +10,7 @@
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_020978D8.h"
 
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "unk_02014A84.h"
 #include "heap.h"
 #include "strbuf.h"
