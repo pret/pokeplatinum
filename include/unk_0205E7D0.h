@@ -17,7 +17,7 @@ void sub_0205E8E0(PlayerAvatar * param0);
 void sub_0205E8E8(PlayerAvatar * param0);
 LocalMapObject * sub_0205EA24(const UnkStruct_02061830 * param0);
 int Player_Dir(PlayerAvatar * const param0);
-void sub_0205EA84(PlayerAvatar * param0, int param1);
+void Player_SetDir(PlayerAvatar * param0, int param1);
 int sub_0205EA94(PlayerAvatar * const param0);
 int sub_0205EAA0(PlayerAvatar * const param0);
 int Player_XPos(PlayerAvatar * const param0);

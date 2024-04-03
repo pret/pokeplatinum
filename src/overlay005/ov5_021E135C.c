@@ -42,7 +42,7 @@ static void ov5_021E135C (UnkStruct_ov5_021E135C * param0)
         break;
     }
 
-    sub_0205EA84(param0->unk_00->playerAvatar, param0->unk_10);
+    Player_SetDir(param0->unk_00->playerAvatar, param0->unk_10);
 }
 
 static void ov5_021E139C (SysTask * param0, void * param1)
@@ -119,7 +119,7 @@ static void ov5_021E1470 (SysTask * param0, void * param1)
         break;
     case 2:
         if (ScreenWipe_Done()) {
-            sub_0205EA84(v0->unk_00->playerAvatar, 1);
+            Player_SetDir(v0->unk_00->playerAvatar, 1);
             *v0->unk_04 = 1;
             Heap_FreeToHeap(v0);
             SysTask_Done(param0);

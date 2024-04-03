@@ -17,7 +17,7 @@ typedef struct {
     UnkStruct_ov23_0224991C * unk_04;
     PlayerAvatar * playerAvatar[MAX_CONNECTED_PLAYERS];
     UnkStruct_ov101_021D5D90 * unk_28[MAX_CONNECTED_PLAYERS];
-    u8 unk_48[MAX_CONNECTED_PLAYERS];
+    u8 isActive[MAX_CONNECTED_PLAYERS];
     SysTask * task;
     FieldSystem * fieldSys;
     UnkStruct_ov23_0224A294_sub1 unk_58;

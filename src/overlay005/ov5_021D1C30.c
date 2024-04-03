@@ -634,7 +634,7 @@ static BOOL ov5_021D2504 (FieldSystem * param0, const UnkStruct_ov5_021D1CAC * p
 
     ov5_021D2C98(param0, &v1, &v2);
 
-    if (sub_02054F68(param0, v1, v2) == 0) {
+    if (FieldSystem_CheckCollision(param0, v1, v2) == 0) {
         return 0;
     }
 

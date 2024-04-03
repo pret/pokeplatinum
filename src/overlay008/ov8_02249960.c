@@ -3946,7 +3946,7 @@ void ov8_0224C198 (FieldSystem * param0)
                 GF_ASSERT(v1->unk_02 < (v8->unk_04 + v8->unk_08));
                 GF_ASSERT(v1->unk_04 < (v8->unk_0C + v8->unk_14));
                 GF_ASSERT(v1->unk_06 < (v8->unk_10 + v8->unk_18));
-                GF_ASSERT(sub_02054F68(param0, v1->unk_04, v1->unk_06) == 0);
+                GF_ASSERT(FieldSystem_CheckCollision(param0, v1->unk_04, v1->unk_06) == 0);
             }
         }
 

@@ -269,7 +269,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
 
         if (v0->unk_43 == 0) {
             v0->unk_34 = 1;
-            sub_02059240();
+            CommPlayer_SetBattleDir();
         }
         break;
     case 1:
@@ -339,7 +339,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         }
         break;
     case 11:
-        sub_02059240();
+        CommPlayer_SetBattleDir();
         MessageLoader_GetStrbuf(v0->unk_2C, 13, v0->unk_0C);
 
         v0->unk_30 = sub_0205AA50(v0, v0->unk_0C);
@@ -358,7 +358,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         v0->unk_43--;
 
         if (v0->unk_43 == 0) {
-            sub_02059240();
+            CommPlayer_SetBattleDir();
             v0->unk_34 = 15;
         }
         break;
@@ -431,7 +431,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         }
         break;
     case 24:
-        sub_02059240();
+        CommPlayer_SetBattleDir();
         MessageLoader_GetStrbuf(v0->unk_2C, 19, v0->unk_0C);
         v0->unk_30 = sub_0205AA50(v0, v0->unk_0C);
         v0->unk_34 = 25;

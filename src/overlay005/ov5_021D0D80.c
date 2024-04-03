@@ -913,7 +913,7 @@ static void ov5_021D1878 (FieldSystem * param0)
     }
 
     sub_02061C48(param0->unk_38);
-    sub_020595A4();
+    CommPlayerManager_ForcePos();
     sub_02062C3C(param0->unk_38);
     ov5_021E931C(sub_0205EAFC(param0->playerAvatar), param0->unk_28);
 

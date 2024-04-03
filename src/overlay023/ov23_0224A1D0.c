@@ -216,7 +216,7 @@ void ov23_0224A410 (int param0, int param1, void * param2, void * param3)
     }
 
     if (v1->unk_00 == 1) {
-        sub_02058FE4(v1->unk_01, v1->unk_02);
+        CommPlayer_LookTowards(v1->unk_01, v1->unk_02);
     }
 
     if ((v1->unk_00 == 1) && (v1->unk_01 == CommSys_CurNetId())) {

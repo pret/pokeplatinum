@@ -98,7 +98,7 @@ static BOOL ov5_021E120C (UnkStruct_020508D4 * param0)
 
             v3 = sub_02065838(v0->unk_00, v3);
             sub_02061550(v0->unk_10, v3, 1);
-            sub_0205EA84(v0->unk_10, v0->unk_00);
+            Player_SetDir(v0->unk_10, v0->unk_00);
             v0->unk_08++;
             v0->unk_04 = 7;
         }
@@ -109,7 +109,7 @@ static BOOL ov5_021E120C (UnkStruct_020508D4 * param0)
         case 4:
         case 2:
             v0->unk_00 = ov5_021E11E0(v0->unk_00);
-            sub_0205EA84(v0->unk_10, v0->unk_00);
+            Player_SetDir(v0->unk_10, v0->unk_00);
             break;
         default:
             break;
@@ -138,7 +138,7 @@ static BOOL ov5_021E120C (UnkStruct_020508D4 * param0)
                 } else {
                     sub_020628C4(v1, (1 << 7));
                     sub_020628C4(v1, (1 << 8));
-                    sub_0205EA84(v0->unk_10, v0->unk_00);
+                    Player_SetDir(v0->unk_10, v0->unk_00);
                     ov5_021E1350(v0);
                     sub_020057A4(1624, 0);
                     return 1;

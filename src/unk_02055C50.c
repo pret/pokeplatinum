@@ -320,7 +320,7 @@ static BOOL sub_02056010 (FieldSystem * param0, UnkStruct_020562AC * param1, int
         GF_ASSERT(0);
     }
 
-    if (sub_02054F68(param0, v0, v1)) {
+    if (FieldSystem_CheckCollision(param0, v0, v1)) {
         return 1;
     }
 
@@ -424,7 +424,7 @@ static BOOL sub_02056124 (UnkStruct_020508D4 * param0)
                 break;
             }
         } else if ((gCoreSys.heldKeys & PAD_KEY_UP) && (v1->unk_04 == 1)) {
-            sub_0205EA84(v0->playerAvatar, 0);
+            Player_SetDir(v0->playerAvatar, 0);
             v1->unk_00 = 4;
             break;
         } else if ((gCoreSys.heldKeys & PAD_KEY_DOWN) && (v1->unk_04 == 0)) {
@@ -435,7 +435,7 @@ static BOOL sub_02056124 (UnkStruct_020508D4 * param0)
         v1->unk_08++;
 
         if (v1->unk_08 > 30 * 3) {
-            sub_0205EA84(v0->playerAvatar, v1->unk_04);
+            Player_SetDir(v0->playerAvatar, v1->unk_04);
             v1->unk_00 = 4;
         }
         break;
@@ -449,13 +449,13 @@ static BOOL sub_02056124 (UnkStruct_020508D4 * param0)
             if ((v3 != NULL) && sub_020560E4(v3)) {
                 v1->unk_00 = 1;
             } else {
-                sub_0205EA84(v0->playerAvatar, v1->unk_04);
+                Player_SetDir(v0->playerAvatar, v1->unk_04);
                 v1->unk_00 = 4;
             }
         }
         break;
     case 4:
-        sub_0205EA84(v0->playerAvatar, v1->unk_04);
+        Player_SetDir(v0->playerAvatar, v1->unk_04);
         sub_02062DD0(Player_LocalMapObject(v0->playerAvatar));
         Heap_FreeToHeap(v1);
         return 1;

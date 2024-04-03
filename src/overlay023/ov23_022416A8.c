@@ -365,7 +365,7 @@ void ov23_02241AE8 (int param0, int param1, int param2, int param3)
         return;
     }
 
-    if (sub_02054F68(Unk_ov23_02257744->unk_464, param2, param3)) {
+    if (FieldSystem_CheckCollision(Unk_ov23_02257744->unk_464, param2, param3)) {
         ov23_02253F40(ov23_0224219C(), 60, 0, NULL);
         return;
     }

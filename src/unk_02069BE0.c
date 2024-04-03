@@ -849,7 +849,7 @@ static BOOL sub_0206A524 (FieldSystem * param0, int param1, int param2, int para
     param1 += Unk_020EF92C[param3][param4];
     param2 += Unk_020EF94C[param3][param4];
 
-    v0 = sub_02054F68(param0, param1, param2);
+    v0 = FieldSystem_CheckCollision(param0, param1, param2);
     return v0;
 }
 
@@ -860,7 +860,7 @@ static BOOL sub_0206A54C (FieldSystem * param0, int param1, int param2, int para
     param1 += Unk_020EF98C[param3][param4];
     param2 += Unk_020EF9AC[param3][param4];
 
-    v0 = sub_02054F68(param0, param1, param2);
+    v0 = FieldSystem_CheckCollision(param0, param1, param2);
     return v0;
 }
 

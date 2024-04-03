@@ -206,7 +206,7 @@ int Player_Dir (PlayerAvatar * const param0)
     return sub_0206298C(Player_LocalMapObject(param0));
 }
 
-void sub_0205EA84 (PlayerAvatar * param0, int param1)
+void Player_SetDir (PlayerAvatar * param0, int param1)
 {
     sub_02062974(Player_LocalMapObject(param0), param1);
 }

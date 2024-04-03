@@ -155,7 +155,7 @@ BOOL ov23_02251324 (int param0, UnkStruct_ov23_0224271C * param1)
     int v1 = param1->unk_00;
     int v2 = param1->unk_02;
     UnkStruct_ov23_022513B0 v3;
-    int v4 = ov23_022512D4(param1, sub_02058F80(param0));
+    int v4 = ov23_022512D4(param1, CommPlayer_DirServer(param0));
 
     if (CommPlayer_Dir(v4) == -1) {
         v4 = 0xff;

@@ -325,7 +325,7 @@ BOOL ov23_0224240C (int param0, int param1)
     v0.unk_00 = param0;
     v0.unk_02 = param1;
 
-    if (sub_02054F68(Unk_ov23_02257748->unk_0C, param0, param1)) {
+    if (FieldSystem_CheckCollision(Unk_ov23_02257748->unk_0C, param0, param1)) {
         return 1;
     }
 
@@ -621,7 +621,7 @@ void ov23_022428D8 (int param0, int param1, void * param2, void * param3)
     u8 v4;
 
     v4 = param0;
-    v2.unk_00 = sub_02058EE0(param0);
+    v2.unk_00 = CommPlayer_AddXServer(param0);
     v2.unk_02 = sub_02058F18(param0);
 
     if (param0 == 2) {
@@ -683,7 +683,7 @@ void ov23_022428D8 (int param0, int param1, void * param2, void * param3)
                 if (CommSys_SendDataServer(30, &v0, sizeof(v0))) {
                     sub_02059058(param0, 0);
                     sub_02059058(v3, 0);
-                    sub_02058FB0(param0, v3);
+                    CommPlayer_LookTowardsServer(param0, v3);
                 }
             }
         }

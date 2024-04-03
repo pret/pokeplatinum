@@ -2393,13 +2393,13 @@ static BOOL sub_02040204 (UnkStruct_0203E724 * param0)
     }
 
     if (gCoreSys.pressedKeys & PAD_KEY_UP) {
-        sub_0205EA84(param0->unk_34->playerAvatar, 0);
+        Player_SetDir(param0->unk_34->playerAvatar, 0);
     } else if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
-        sub_0205EA84(param0->unk_34->playerAvatar, 1);
+        Player_SetDir(param0->unk_34->playerAvatar, 1);
     } else if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
-        sub_0205EA84(param0->unk_34->playerAvatar, 2);
+        Player_SetDir(param0->unk_34->playerAvatar, 2);
     } else if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
-        sub_0205EA84(param0->unk_34->playerAvatar, 3);
+        Player_SetDir(param0->unk_34->playerAvatar, 3);
     } else if (gCoreSys.pressedKeys & PAD_BUTTON_X) {
         sub_0203F0C0(param0->unk_34);
     } else {
@@ -2663,7 +2663,7 @@ static BOOL sub_02040670 (UnkStruct_0203E724 * param0)
 
     if (v4 != 0xffff) {
         sub_0201D730(*v1);
-        sub_0205EA84(param0->unk_34->playerAvatar, v4);
+        Player_SetDir(param0->unk_34->playerAvatar, v4);
         *v2 = 0;
         return 1;
     }
@@ -2709,7 +2709,7 @@ static BOOL sub_02040730 (UnkStruct_0203E724 * param0)
     }
 
     if (v2 != 0xffff) {
-        sub_0205EA84(param0->unk_34->playerAvatar, v2);
+        Player_SetDir(param0->unk_34->playerAvatar, v2);
         *v1 = 0;
         return 1;
     }
@@ -5723,7 +5723,7 @@ static BOOL sub_02043CA4 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043CB4 (UnkStruct_0203E724 * param0)
 {
-    sub_020593F4(sub_0203E838(param0));
+    CommPlayer_SetDir(sub_0203E838(param0));
     return 0;
 }
 

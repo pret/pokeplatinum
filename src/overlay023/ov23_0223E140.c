@@ -743,20 +743,20 @@ static BOOL ov23_0223E3AC (FieldSystem * param0, int param1, int param2)
         return 0;
     }
 
-    if (sub_02054F68(param0, param1, param2)) {
-        if (!sub_02054F68(param0, param1, param2 + 1)) {
+    if (FieldSystem_CheckCollision(param0, param1, param2)) {
+        if (!FieldSystem_CheckCollision(param0, param1, param2 + 1)) {
             return 1;
         }
 
-        if (!sub_02054F68(param0, param1, param2 - 1)) {
+        if (!FieldSystem_CheckCollision(param0, param1, param2 - 1)) {
             return 1;
         }
 
-        if (!sub_02054F68(param0, param1 + 1, param2)) {
+        if (!FieldSystem_CheckCollision(param0, param1 + 1, param2)) {
             return 1;
         }
 
-        if (!sub_02054F68(param0, param1 - 1, param2)) {
+        if (!FieldSystem_CheckCollision(param0, param1 - 1, param2)) {
             return 1;
         }
     }
@@ -814,7 +814,7 @@ static void ov23_0223E434 (MATHRandContext16 * param0, int param1)
             v5 = MATH_Rand16(param0, 20) + v4 - 10;
             v8 = MATH_Rand16(param0, 20) + v7 - 10;
 
-            if (!sub_02054F68(Unk_ov23_02257740->unk_00, v5, v8)) {
+            if (!FieldSystem_CheckCollision(Unk_ov23_02257740->unk_00, v5, v8)) {
                 int v12 = ov23_02243C3C(v5, v8, param0, Unk_ov23_02257740->unk_A30);
 
                 if (0 != v12) {

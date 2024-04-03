@@ -1674,7 +1674,7 @@ static BOOL ov23_0224C790 (UnkStruct_020508D4 * param0)
     case 11:
         CommPlayerManager_ForceDir();
         sub_02061550(v0->playerAvatar, sub_02065838(1, 0x24), 1);
-        sub_020593F4(1);
+        CommPlayer_SetDir(1);
         ov23_02253F40(ov23_0224219C(), 68, 0, NULL);
         Sound_PlayEffect(1540);
         v1->unk_0C = 12;
@@ -1684,7 +1684,7 @@ static BOOL ov23_0224C790 (UnkStruct_020508D4 * param0)
             if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 v1->unk_0C = 13;
                 ov23_02254044(ov23_0224219C());
-                sub_020593F4(0);
+                CommPlayer_SetDir(0);
             }
         }
         break;
@@ -1891,10 +1891,10 @@ int ov23_0224CD7C (void)
 void ov23_0224CD80 (int param0, int param1, void * param2, void * param3)
 {
     u8 * v0 = param2;
-    int v1 = sub_02058EE0(param0);
+    int v1 = CommPlayer_AddXServer(param0);
     int v2 = sub_02058F18(param0);
     int v3, v4, v5, v6;
-    int v7 = sub_02058F80(param0);
+    int v7 = CommPlayer_DirServer(param0);
     UnkStruct_ov23_0224CF18 v8;
     int v9;
 
@@ -1925,7 +1925,7 @@ void ov23_0224CD80 (int param0, int param1, void * param2, void * param3)
         (void)0;
     } else if (ov23_02242E58(v1, v2)) {
         v8.unk_01 = 6;
-    } else if (sub_02054F68(Unk_ov23_022577AC->unk_00, v1, v2) && sub_02054F68(Unk_ov23_022577AC->unk_00, v3, v4) && sub_02054F68(Unk_ov23_022577AC->unk_00, v5, v6)) {
+    } else if (FieldSystem_CheckCollision(Unk_ov23_022577AC->unk_00, v1, v2) && FieldSystem_CheckCollision(Unk_ov23_022577AC->unk_00, v3, v4) && FieldSystem_CheckCollision(Unk_ov23_022577AC->unk_00, v5, v6)) {
         if (v0[0] == 0) {
             v8.unk_01 = 1;
         } else {
@@ -2160,9 +2160,9 @@ static void ov23_0224D238 (void)
 {
     UnkStruct_02029894 * v0 = sub_02029894(sub_0203D174(Unk_ov23_022577AC->unk_00));
     UnkStruct_020298B0 * v1 = sub_020298B0(sub_0203D174(Unk_ov23_022577AC->unk_00));
-    int v2 = sub_02058EE0(0);
+    int v2 = CommPlayer_AddXServer(0);
     int v3 = sub_02058F18(0);
-    int v4 = sub_02058F80(0);
+    int v4 = CommPlayer_DirServer(0);
     int v5, v6, v7, v8, v9;
     const int v10 = 10, v11 = 18, v12 = 12, v13 = 5, v14 = 6;
     MATHRandContext32 v15;
@@ -2517,7 +2517,7 @@ BOOL ov23_0224D7C8 (int param0)
     UnkStruct_02029894 * v2;
     int v3 = sub_02058DF8(param0);
     int v4 = sub_02058E4C(param0);
-    int v5 = sub_02058F80(param0);
+    int v5 = CommPlayer_DirServer(param0);
 
     if (!ov23_02242E58(v3, v4)) {
         return 0;
@@ -2689,7 +2689,7 @@ void ov23_0224DAD0 (int param0)
     v0 = sub_02058EA0(v3);
     v1 = sub_02058EC0(v3);
 
-    if (!sub_02054F68(Unk_ov23_022577AC->unk_00, v0, v1)) {
+    if (!FieldSystem_CheckCollision(Unk_ov23_022577AC->unk_00, v0, v1)) {
         if (param0 == 0) {
             return;
         }
@@ -2701,7 +2701,7 @@ void ov23_0224DAD0 (int param0)
 
     if ((v0 == 0xffff) && (v1 == 0xffff)) {
         ov23_0224B844(v3, v3, 1);
-    } else if (ov23_02242E58(v0, v1) || sub_02054F68(Unk_ov23_022577AC->unk_00, v0, v1)) {
+    } else if (ov23_02242E58(v0, v1) || FieldSystem_CheckCollision(Unk_ov23_022577AC->unk_00, v0, v1)) {
         ov23_0224B844(v3, v3, 1);
     }
 }
