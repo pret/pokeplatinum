@@ -6,7 +6,7 @@
 #include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 
 #include "unk_02005474.h"
 #include "unk_0200D9E8.h"
@@ -18,7 +18,7 @@
 #include "overlay005/ov5_021ECC20.h"
 
 typedef struct {
-    UnkStruct_0203CDB0 * unk_00;
+    FieldSystem * unk_00;
     BOOL * unk_04;
     int unk_08;
     int unk_0C;
@@ -128,7 +128,7 @@ static void ov5_021E1470 (SysTask * param0, void * param1)
     }
 }
 
-void ov5_021E15A8 (UnkStruct_0203CDB0 * param0, BOOL param1, BOOL * param2)
+void ov5_021E15A8 (FieldSystem * param0, BOOL param1, BOOL * param2)
 {
     UnkStruct_ov5_021E135C * v0 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov5_021E135C));
 

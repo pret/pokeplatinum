@@ -5,7 +5,7 @@
 #include "overlay005/struct_ov5_021DF47C_decl.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_02073838.h"
 #include "struct_defs/struct_02073B50.h"
 #include "overlay101/struct_ov101_021D86B0.h"
@@ -100,7 +100,7 @@ UnkStruct_ov101_021D5D90 * ov5_021F3D90 (UnkStruct_02061AB4 * param0, int param1
     v3 = ov5_021DF578(param0);
 
     {
-        UnkStruct_0203CDB0 * v4 = ov5_021DF574(v3);
+        FieldSystem * v4 = ov5_021DF574(v3);
         int v5 = sub_02063020(param0);
         int v6 = sub_02063040(param0);
 

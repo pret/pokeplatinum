@@ -11,7 +11,7 @@
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_02033200.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 
@@ -347,8 +347,8 @@ void sub_020397C8 (BOOL param0, u32 param1)
 
 void sub_020397E4 (void)
 {
-    if (sub_02035E38()) {
-        if ((sub_02035E18() > 1) || sub_020389B8()) {
+    if (CommSys_IsInitialized()) {
+        if ((CommSys_ConnectedCount() > 1) || sub_020389B8()) {
             sub_02039734();
         }
     } else if (sub_020389B8()) {

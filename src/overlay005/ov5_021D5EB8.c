@@ -16,8 +16,8 @@
 #include "overlay005/struct_ov5_021EF43C_decl.h"
 
 #include "struct_defs/struct_020095C4.h"
-#include "struct_defs/struct_0203CDB0.h"
-#include "struct_defs/struct_0203CDB0_sub2_t.h"
+#include "field/field_system.h"
+#include "field/field_system_sub2_t.h"
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay115/struct_ov115_02261520.h"
 
@@ -126,7 +126,7 @@ typedef struct UnkStruct_ov5_021D6594_t {
     UnkStruct_ov5_021D69B8 * unk_00;
     const UnkStruct_ov5_021F8D90 * unk_04;
     UnkStruct_ov5_021D61D0 unk_08;
-    UnkStruct_0203CDB0 * unk_140;
+    FieldSystem * unk_140;
     NARC * unk_144;
 } UnkStruct_ov5_021D6594;
 
@@ -380,7 +380,7 @@ static void ov5_021DB500(UnkStruct_ov5_021DB614 * param0);
 static void ov5_021DB7CC(UnkStruct_ov5_021DB614 * param0);
 static void ov5_021DB588(fx32 param0, int param1, int param2, int param3, int * param4, int * param5);
 
-UnkStruct_ov5_021D5EF8 * ov5_021D5EB8 (UnkStruct_0203CDB0 * param0)
+UnkStruct_ov5_021D5EF8 * ov5_021D5EB8 (FieldSystem * param0)
 {
     UnkStruct_ov5_021D5EF8 * v0;
 
@@ -875,7 +875,7 @@ static void ov5_021D630C (GraphicElementData * param0, VecFx32 * param1)
     sub_02021C50(param0, param1);
 }
 
-UnkStruct_ov5_021D6594 * ov5_021D6364 (UnkStruct_0203CDB0 * param0)
+UnkStruct_ov5_021D6594 * ov5_021D6364 (FieldSystem * param0)
 {
     UnkStruct_ov5_021D6594 * v0;
 
@@ -5117,7 +5117,7 @@ static void ov5_021DB04C (SysTask * param0, void * param1)
     UnkStruct_ov5_021DB4B8 * v0 = (UnkStruct_ov5_021DB4B8 *)param1;
     UnkStruct_ov5_021DB04C * v1;
     UnkStruct_ov5_021D6594 * v2 = v0->unk_00;
-    UnkStruct_0203CDB0 * v3 = v2->unk_140;
+    FieldSystem * v3 = v2->unk_140;
 
     v1 = (UnkStruct_ov5_021DB04C *)v0->unk_B98;
 

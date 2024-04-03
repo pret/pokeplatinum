@@ -12,7 +12,7 @@
 
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0202CA64.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_02097F18.h"
 #include "struct_defs/struct_02098C44.h"
@@ -317,7 +317,7 @@ static BOOL sub_02097F38 (UnkStruct_020508D4 * param0)
 {
     UnkStruct_02097F38 * v0 = sub_02050A64(param0);
     UnkStruct_02097F18 * v1 = v0->unk_08;
-    UnkStruct_0203CDB0 * v2 = sub_02050A60(param0);
+    FieldSystem * v2 = sub_02050A60(param0);
 
     switch (v0->unk_14) {
     case 0:

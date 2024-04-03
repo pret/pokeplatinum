@@ -4,7 +4,7 @@
 #include "overlay005/struct_ov5_021DF47C_decl.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_02073838.h"
 #include "struct_defs/struct_02073B50.h"
 #include "overlay101/struct_ov101_021D86B0.h"
@@ -23,7 +23,7 @@ typedef struct {
 typedef struct {
     int unk_00;
     int unk_04;
-    UnkStruct_0203CDB0 * unk_08;
+    FieldSystem * unk_08;
     UnkStruct_ov5_021DF47C * unk_0C;
     UnkStruct_ov5_021F4E38 * unk_10;
 } UnkStruct_ov5_021F4EAC;
@@ -86,7 +86,7 @@ static void ov5_021F4E94 (UnkStruct_ov5_021F4E38 * param0)
     }
 }
 
-UnkStruct_ov101_021D5D90 * ov5_021F4EAC (UnkStruct_0203CDB0 * param0, int param1, int param2, int param3, int param4)
+UnkStruct_ov101_021D5D90 * ov5_021F4EAC (FieldSystem * param0, int param1, int param2, int param3, int param4)
 {
     int v0, v1;
     UnkStruct_ov5_021F4EAC v2;
@@ -120,7 +120,7 @@ UnkStruct_ov101_021D5D90 * ov5_021F4EAC (UnkStruct_0203CDB0 * param0, int param1
     return v5;
 }
 
-UnkStruct_ov101_021D5D90 * ov5_021F4F18 (UnkStruct_0203CDB0 * param0, int param1, int param2, int param3, int param4)
+UnkStruct_ov101_021D5D90 * ov5_021F4F18 (FieldSystem * param0, int param1, int param2, int param3, int param4)
 {
     UnkStruct_ov5_021F4F18 * v0;
     UnkStruct_ov101_021D5D90 * v1 = ov5_021F4EAC(param0, param1, param2, param3, param4);

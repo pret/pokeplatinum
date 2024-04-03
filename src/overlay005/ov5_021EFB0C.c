@@ -9,7 +9,7 @@
 
 #include "struct_defs/struct_0202D844.h"
 #include "struct_defs/struct_0202D84C.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_02055130.h"
 
 #include "narc.h"
@@ -37,7 +37,7 @@ typedef struct UnkStruct_ov5_021EFB30_t {
 
 static void ov5_021EFCF8(const BOOL param0, u8 * param1);
 static void ov5_021EFD58(u8 * param0);
-static void ov5_021EFE7C(UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021E1608 * param1, const int param2);
+static void ov5_021EFE7C(FieldSystem * param0, UnkStruct_ov5_021E1608 * param1, const int param2);
 static u8 ov5_021EFF10(const int param0);
 static const int ov5_021EFDAC(const u8 param0);
 static const int ov5_021EFDC0(const u8 param0);
@@ -102,7 +102,7 @@ void ov5_021EFB30 (UnkStruct_ov5_021EFB30 ** param0)
     *param0 = NULL;
 }
 
-BOOL ov5_021EFB40 (UnkStruct_0203CDB0 * param0, int * param1)
+BOOL ov5_021EFB40 (FieldSystem * param0, int * param1)
 {
     UnkStruct_02055130 v0;
     int v1, v2;
@@ -125,7 +125,7 @@ BOOL ov5_021EFB40 (UnkStruct_0203CDB0 * param0, int * param1)
     return v3;
 }
 
-u16 ov5_021EFB94 (UnkStruct_0203CDB0 * param0)
+u16 ov5_021EFB94 (FieldSystem * param0)
 {
     u8 v0;
     UnkStruct_0202D844 * v1;
@@ -148,7 +148,7 @@ u16 ov5_021EFB94 (UnkStruct_0203CDB0 * param0)
     }
 }
 
-void ov5_021EFBDC (UnkStruct_0203CDB0 * param0)
+void ov5_021EFBDC (FieldSystem * param0)
 {
     u8 v0;
     UnkStruct_0202D844 * v1;
@@ -164,7 +164,7 @@ void ov5_021EFBDC (UnkStruct_0203CDB0 * param0)
     v2->unk_00 = (24 * 60);
 
     {
-        TrainerInfo * v4 = sub_02025E38(param0->unk_0C);
+        TrainerInfo * v4 = SaveData_GetTrainerInfo(param0->unk_0C);
         v3 = ov5_021EFF4C(TrainerInfo_ID(v4), v0);
     }
 
@@ -195,7 +195,7 @@ void ov5_021EFBDC (UnkStruct_0203CDB0 * param0)
     sub_0202D848(v0, v1);
 }
 
-void ov5_021EFC90 (UnkStruct_0203CDB0 * param0)
+void ov5_021EFC90 (FieldSystem * param0)
 {
     u8 v0;
 
@@ -358,7 +358,7 @@ static const BOOL ov5_021EFE58 (const int param0, u8 * param1)
     return v1;
 }
 
-static void ov5_021EFE7C (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021E1608 * param1, const int param2)
+static void ov5_021EFE7C (FieldSystem * param0, UnkStruct_ov5_021E1608 * param1, const int param2)
 {
     u16 v0;
     u8 v1;
@@ -460,7 +460,7 @@ static BOOL ov5_021EFF4C (const u32 param0, const u8 param1)
     return 0;
 }
 
-int ov5_021EFFE4 (UnkStruct_0203CDB0 * param0)
+int ov5_021EFFE4 (FieldSystem * param0)
 {
     u8 v0;
 
@@ -491,18 +491,18 @@ int ov5_021EFFE4 (UnkStruct_0203CDB0 * param0)
 
 void ov5_021F0030 (void * param0, const int param1, UnkStruct_ov5_021E1608 * const param2)
 {
-    UnkStruct_0203CDB0 * v0;
+    FieldSystem * v0;
     u8 v1;
 
     if (param1 < 0) {
         return;
     }
 
-    v0 = (UnkStruct_0203CDB0 *)param0;
+    v0 = (FieldSystem *)param0;
     ov5_021EFE7C(v0, param2, param1);
 }
 
-void ov5_021F0040 (UnkStruct_0203CDB0 * param0)
+void ov5_021F0040 (FieldSystem * param0)
 {
     UnkStruct_0202D844 * v0;
     UnkStruct_0202D84C * v1;

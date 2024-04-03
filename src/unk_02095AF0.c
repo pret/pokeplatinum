@@ -12,7 +12,7 @@
 #include "heap.h"
 #include "unk_020298BC.h"
 #include "unk_02032798.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_02095AF0.h"
 #include "overlay006/ov6_022489E4.h"
 #include "overlay017/ov17_02252CEC.h"
@@ -101,7 +101,7 @@ BOOL sub_02095B5C (UnkStruct_02095C48 * param0, int param1, const UnkStruct_0202
     MI_CpuCopy8(param2, v0, v1);
     v0[v1] = param1;
 
-    if (sub_020359DC(32, v0, v1 + 1) == 1) {
+    if (CommSys_SendData(32, v0, v1 + 1) == 1) {
         v2 = 1;
     } else {
         v2 = 0;
@@ -177,7 +177,7 @@ BOOL sub_02095C60 (UnkStruct_02095C60 * param0, u32 param1)
 
     param0->unk_08.unk_00 = param1;
 
-    if (sub_020359DC(34, &param0->unk_08, sizeof(UnkStruct_02095B28)) == 1) {
+    if (CommSys_SendData(34, &param0->unk_08, sizeof(UnkStruct_02095B28)) == 1) {
         return 1;
     }
 
@@ -202,7 +202,7 @@ BOOL sub_02095CA8 (UnkStruct_02095C60 * param0, int param1)
 
     param0->unk_08.unk_04 = param1;
 
-    if (sub_020359DC(35, &param0->unk_08, sizeof(UnkStruct_02095B28)) == 1) {
+    if (CommSys_SendData(35, &param0->unk_08, sizeof(UnkStruct_02095B28)) == 1) {
         return 1;
     }
 

@@ -60,8 +60,8 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_020279FC.h"
-#include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_information.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020393C8.h"
 #include "pokemon.h"
@@ -2652,7 +2652,7 @@ static void ov105_02244F0C (UnkStruct_ov105_02241FF4 * param0, Window * param1, 
     const TrainerInfo * v1;
     Strbuf* v2;
 
-    v1 = sub_02025E38(param0->unk_13C);
+    v1 = SaveData_GetTrainerInfo(param0->unk_13C);
     v2 = Strbuf_Init((7 + 1), 93);
 
     BGL_FillWindow(param1, 0);
@@ -2677,7 +2677,7 @@ static void ov105_02244F84 (UnkStruct_ov105_02241FF4 * param0, Window * param1, 
     Strbuf* v1;
     TrainerInfo * v2;
 
-    v2 = sub_02032EE8(1 - sub_0203608C());
+    v2 = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
     v1 = Strbuf_Init((7 + 1), 93);
 
     BGL_FillWindow(param1, 0);
@@ -2865,7 +2865,7 @@ static void ov105_0224531C (UnkStruct_ov105_02241FF4 * param0)
 
     param0->unk_128 = sub_0200762C(93);
 
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
         sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
         sub_02039734();
@@ -2914,7 +2914,7 @@ static void ov105_02245464 (UnkStruct_ov105_02241FF4 * param0)
     param0->unk_140->contest = 0;
 
     PokemonSummary_FlagVisiblePages(param0->unk_140, Unk_ov105_022462DC);
-    PokemonSummary_SetPlayerProfile(param0->unk_140, sub_02025E38(param0->unk_13C));
+    PokemonSummary_SetPlayerProfile(param0->unk_140, SaveData_GetTrainerInfo(param0->unk_13C));
 
     return;
 }
@@ -3056,7 +3056,7 @@ BOOL ov105_02245620 (UnkStruct_ov105_02241FF4 * param0, u16 param1, u16 param2)
         break;
     }
 
-    if (sub_020359DC(v1, param0->unk_33C, 60) == 1) {
+    if (CommSys_SendData(v1, param0->unk_33C, 60) == 1) {
         v0 = 1;
     } else {
         v0 = 0;
@@ -3069,7 +3069,7 @@ void ov105_02245684 (UnkStruct_ov105_02241FF4 * param0, u16 param1)
 {
     TrainerInfo * v0;
 
-    v0 = sub_02025E38(param0->unk_13C);
+    v0 = SaveData_GetTrainerInfo(param0->unk_13C);
     param0->unk_33C[0] = param1;
 
     return;
@@ -3083,7 +3083,7 @@ void ov105_0224569C (int param0, int param1, void * param2, void * param3)
 
     v1 = 0;
 
-    if (sub_0203608C() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
@@ -3131,7 +3131,7 @@ void ov105_02245744 (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v2 = ov104_0223AA50(v3->unk_09);
 
-    if (sub_0203608C() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
@@ -3211,13 +3211,13 @@ void ov105_022458A4 (int param0, int param1, void * param2, void * param3)
     v1 = 0;
     v2->unk_3BE++;
 
-    if (sub_0203608C() == param0) {
+    if (CommSys_CurNetId() == param0) {
         return;
     }
 
     v2->unk_3B4 = (u8)v3[1];
 
-    if (sub_0203608C() == 0) {
+    if (CommSys_CurNetId() == 0) {
         if (v2->unk_13_3 == 1) {
             v2->unk_3B4 = 0;
         } else {

@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_STRUCT_0203E6C0_H
 #define POKEPLATINUM_STRUCT_0203E6C0_H
 
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "savedata.h"
 
 typedef struct {
-    UnkStruct_0203CDB0 * unk_00;
+    FieldSystem * unk_00;
     SaveData * unk_04;
     int unk_08;
     u8 unk_0C;

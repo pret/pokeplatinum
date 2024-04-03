@@ -15,7 +15,7 @@
 
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200C738.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay083/struct_ov83_0223D9A8.h"
 #include "overlay101/struct_ov101_021D86B0.h"
@@ -68,7 +68,7 @@ typedef struct {
     fx32 unk_54;
     fx32 unk_58;
     Pokemon * unk_5C;
-    UnkStruct_0203CDB0 * unk_60;
+    FieldSystem * unk_60;
     NNSG2dScreenData * unk_64;
     NNSG2dCharacterData * unk_68;
     NNSG2dPaletteData * unk_6C;
@@ -177,7 +177,7 @@ typedef struct {
     int unk_08;
     int unk_0C;
     int unk_10;
-    UnkStruct_0203CDB0 * unk_14;
+    FieldSystem * unk_14;
     UnkStruct_ov6_02243258 unk_18;
     GraphicElementData * unk_1D0;
     UnkStruct_020711EC * unk_1D4;
@@ -187,7 +187,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_020711EC * unk_00;
-    UnkStruct_0203CDB0 * unk_04;
+    FieldSystem * unk_04;
     GraphicElementData * unk_08;
     UnkStruct_ov6_02243258 * unk_0C;
 } UnkStruct_ov6_02243888;
@@ -255,7 +255,7 @@ typedef struct {
     UnkStruct_ov6_02243FFC * unk_04;
 } UnkStruct_ov6_02245F80;
 
-static UnkStruct_ov6_02243FFC * ov6_02243FDC(UnkStruct_0203CDB0 * param0);
+static UnkStruct_ov6_02243FFC * ov6_02243FDC(FieldSystem * param0);
 static void ov6_02243FFC(UnkStruct_ov6_02243FFC * param0);
 static void ov6_02244004(SysTask * param0, void * param1);
 static void ov6_022443B8(SysTask * param0, void * param1);
@@ -318,7 +318,7 @@ static void ov6_02246018(UnkStruct_ov6_02243FFC * param0);
 static void ov6_02243F2C(void);
 static void ov6_02243F50(void);
 static void * ov6_02245F44(u32 param0, int param1);
-static void ov6_02243F74(UnkStruct_0203CDB0 * param0, int param1);
+static void ov6_02243F74(FieldSystem * param0, int param1);
 static void ov6_02245D10(SysTask * param0, void * param1);
 
 int(*const Unk_ov6_022492D8[])(UnkStruct_ov6_02243FFC *);
@@ -608,7 +608,7 @@ static GraphicElementData * ov6_02243848 (UnkStruct_ov6_02243258 * param0, int p
 static const UnkStruct_ov101_021D86B0 Unk_ov6_0224925C;
 int(*const * const Unk_ov6_02249110[])(UnkStruct_ov6_02249110 *);
 
-static UnkStruct_ov101_021D5D90 * ov6_02243888 (UnkStruct_0203CDB0 * param0, UnkStruct_020711EC * param1, UnkStruct_ov6_02243258 * param2, GraphicElementData * param3)
+static UnkStruct_ov101_021D5D90 * ov6_02243888 (FieldSystem * param0, UnkStruct_020711EC * param1, UnkStruct_ov6_02243258 * param2, GraphicElementData * param3)
 {
     UnkStruct_ov101_021D5D90 * v0;
     VecFx32 v1 = {0, 0, 0};
@@ -1024,13 +1024,13 @@ static void ov6_02243F50 (void)
     sub_0200F174(0, 0, 0, 0x7fff, 6, 1, 4);
 }
 
-static void ov6_02243F74 (UnkStruct_0203CDB0 * param0, int param1)
+static void ov6_02243F74 (FieldSystem * param0, int param1)
 {
     UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0->unk_3C);
     sub_02062D64(v0, param1);
 }
 
-SysTask * ov6_02243F88 (UnkStruct_0203CDB0 * param0, u32 param1, Pokemon * param2, int param3)
+SysTask * ov6_02243F88 (FieldSystem * param0, u32 param1, Pokemon * param2, int param3)
 {
     SysTask * v0;
     UnkStruct_ov6_02243FFC * v1 = ov6_02243FDC(param0);
@@ -1062,7 +1062,7 @@ void ov6_02243FC8 (SysTask * param0)
     SysTask_Done(param0);
 }
 
-static UnkStruct_ov6_02243FFC * ov6_02243FDC (UnkStruct_0203CDB0 * param0)
+static UnkStruct_ov6_02243FFC * ov6_02243FDC (FieldSystem * param0)
 {
     UnkStruct_ov6_02243FFC * v0 = Heap_AllocFromHeapAtEnd(4, (sizeof(UnkStruct_ov6_02243FFC)));
 
@@ -2881,7 +2881,7 @@ static const UnkStruct_ov101_021D86B0 dummy_field_cutin = {
 
 int(*const Unk_ov6_02249270[])(UnkStruct_ov6_02249270 *);
 
-SysTask * ov6_02245CCC (UnkStruct_0203CDB0 * param0, int param1)
+SysTask * ov6_02245CCC (FieldSystem * param0, int param1)
 {
     UnkStruct_ov6_02249270 * v0 = ov6_02245F44(4, (sizeof(UnkStruct_ov6_02249270)));
 

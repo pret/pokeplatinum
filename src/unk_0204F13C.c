@@ -17,7 +17,7 @@
 #include "constdata/const_020F1E88.h"
 #include "constdata/const_020F410C.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0203E724_t.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0204F3D0.h"
@@ -35,7 +35,7 @@
 #include "unk_02030108.h"
 #include "unk_0203061C.h"
 #include "unk_02030880.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_0203CC84.h"
 #include "unk_0203E724.h"
 #include "unk_0203E880.h"
@@ -77,10 +77,10 @@ static BOOL sub_0204F414(UnkStruct_020508D4 * param0);
 
 void sub_0204F470(UnkStruct_020508D4 * param0, void ** param1, u8 param2);
 static BOOL sub_0204F4A4(UnkStruct_020508D4 * param0);
-static int sub_0204F50C(UnkStruct_0204F470 * param0, UnkStruct_0203CDB0 * param1, int param2);
-static int sub_0204F5D8(UnkStruct_0204F470 * param0, UnkStruct_0203CDB0 * param1);
-static int sub_0204F628(UnkStruct_0204F470 * param0, UnkStruct_0203CDB0 * param1, int param2);
-static int sub_0204F6B0(UnkStruct_0204F470 * param0, UnkStruct_0203CDB0 * param1);
+static int sub_0204F50C(UnkStruct_0204F470 * param0, FieldSystem * param1, int param2);
+static int sub_0204F5D8(UnkStruct_0204F470 * param0, FieldSystem * param1);
+static int sub_0204F628(UnkStruct_0204F470 * param0, FieldSystem * param1, int param2);
+static int sub_0204F6B0(UnkStruct_0204F470 * param0, FieldSystem * param1);
 
 BOOL sub_0204F13C (UnkStruct_0203E724 * param0)
 {
@@ -264,7 +264,7 @@ static BOOL sub_0204F414 (UnkStruct_020508D4 * param0)
 
     switch (v0->unk_00) {
     case 0:
-        if (sub_020359DC(132, v0, sizeof(UnkStruct_0204F3D0)) == 1) {
+        if (CommSys_SendData(132, v0, sizeof(UnkStruct_0204F3D0)) == 1) {
             v0->unk_00++;
         }
         break;
@@ -295,7 +295,7 @@ static BOOL sub_0204F414 (UnkStruct_020508D4 * param0)
 
 void sub_0204F470 (UnkStruct_020508D4 * param0, void ** param1, u8 param2)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_0204F470 * v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0204F470));
     MI_CpuClear8(v1, sizeof(UnkStruct_0204F470));
 
@@ -308,7 +308,7 @@ void sub_0204F470 (UnkStruct_020508D4 * param0, void ** param1, u8 param2)
 
 static BOOL sub_0204F4A4 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_0204F470 * v1 = sub_02050A64(param0);
 
     switch (v1->unk_00) {
@@ -336,7 +336,7 @@ static BOOL sub_0204F4A4 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static int sub_0204F50C (UnkStruct_0204F470 * param0, UnkStruct_0203CDB0 * param1, int param2)
+static int sub_0204F50C (UnkStruct_0204F470 * param0, FieldSystem * param1, int param2)
 {
     u8 v0;
 
@@ -376,7 +376,7 @@ static int sub_0204F50C (UnkStruct_0204F470 * param0, UnkStruct_0203CDB0 * param
     return UnkEnum_0204F13C_2;
 }
 
-static int sub_0204F5D8 (UnkStruct_0204F470 * param0, UnkStruct_0203CDB0 * param1)
+static int sub_0204F5D8 (UnkStruct_0204F470 * param0, FieldSystem * param1)
 {
     int v0;
     PartyManagementData * v1;
@@ -407,7 +407,7 @@ static int sub_0204F5D8 (UnkStruct_0204F470 * param0, UnkStruct_0203CDB0 * param
     return UnkEnum_0204F13C_3;
 }
 
-static int sub_0204F628 (UnkStruct_0204F470 * param0, UnkStruct_0203CDB0 * param1, int param2)
+static int sub_0204F628 (UnkStruct_0204F470 * param0, FieldSystem * param1, int param2)
 {
     PokemonSummary * v0;
     SaveData * v1;
@@ -441,7 +441,7 @@ static int sub_0204F628 (UnkStruct_0204F470 * param0, UnkStruct_0203CDB0 * param
     v0->ribbons = sub_0202D79C(v1);
 
     PokemonSummary_FlagVisiblePages(v0, v2);
-    PokemonSummary_SetPlayerProfile(v0, sub_02025E38(v1));
+    PokemonSummary_SetPlayerProfile(v0, SaveData_GetTrainerInfo(v1));
 
     sub_0203CD84(param1, &Unk_020F410C, v0);
 
@@ -449,7 +449,7 @@ static int sub_0204F628 (UnkStruct_0204F470 * param0, UnkStruct_0203CDB0 * param
     return UnkEnum_0204F13C_4;
 }
 
-static int sub_0204F6B0 (UnkStruct_0204F470 * param0, UnkStruct_0203CDB0 * param1)
+static int sub_0204F6B0 (UnkStruct_0204F470 * param0, FieldSystem * param1)
 {
     PokemonSummary * v0;
 
@@ -532,7 +532,7 @@ BOOL sub_0204F6D8 (UnkStruct_0203E724 * param0)
     UnkStruct_0203068C * v3;
     u32 v4, v5, v6;
     u16 v7, v8;
-    UnkStruct_0203CDB0 * v9 = param0->unk_34;
+    FieldSystem * v9 = param0->unk_34;
     StringFormatter ** v10 = sub_0203F098(v9, 15);
     u8 v11 = (*((param0)->unk_08++));
     u8 v12 = (*((param0)->unk_08++));
@@ -625,7 +625,7 @@ BOOL sub_0204F8A8 (UnkStruct_0203E724 * param0)
     int v0;
     BattleFrontierStage * v1;
     u32 v2, v3, v4;
-    UnkStruct_0203CDB0 * v5 = param0->unk_34;
+    FieldSystem * v5 = param0->unk_34;
     u16 * v6 = inline_0204FCAC(param0);
 
     v4 = 0;
@@ -676,7 +676,7 @@ BOOL sub_0204F950 (UnkStruct_0203E724 * param0)
     BattleFrontierStage * v2;
     UnkStruct_0203068C * v3;
     u32 v4, v5;
-    UnkStruct_0203CDB0 * v6 = param0->unk_34;
+    FieldSystem * v6 = param0->unk_34;
     u16 * v7 = inline_0204FCAC(param0);
 
     v4 = 0;

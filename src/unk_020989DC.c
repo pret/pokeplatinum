@@ -109,7 +109,7 @@ UnkStruct_0203D9B8 * sub_020989DC (SaveData * param0, int param1)
     MI_CpuClear8(v0, sizeof(UnkStruct_0203D9B8));
 
     v0->unk_08 = Poffin_GetSavedataBlock(param0);
-    v0->unk_0C = sub_02025E38(param0);
+    v0->unk_0C = SaveData_GetTrainerInfo(param0);
     v0->unk_10 = Party_GetFromSavedata(param0);
     v0->unk_14 = sub_0207D990(param0);
     v0->unk_18 = sub_02025E44(param0);

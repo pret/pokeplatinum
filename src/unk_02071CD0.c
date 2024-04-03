@@ -3,16 +3,16 @@
 
 #include "struct_decls/struct_02027860_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "overlay006/struct_ov6_02242AF0.h"
 
 #include "unk_020277A4.h"
 #include "unk_02027F50.h"
 #include "unk_0203CC84.h"
 
-void sub_02071CD0(UnkStruct_0203CDB0 * param0);
+void sub_02071CD0(FieldSystem * param0);
 
-void sub_02071CD0 (UnkStruct_0203CDB0 * param0)
+void sub_02071CD0 (FieldSystem * param0)
 {
     int v0;
     UnkStruct_02027860 * v1;

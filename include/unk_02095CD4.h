@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02095CD4_H
 #define POKEPLATINUM_UNK_02095CD4_H
 
-#include "struct_decls/struct_0203CDB0_decl.h"
+#include "field/field_system_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
 
 void sub_02095CD4(void * param0);
@@ -13,6 +13,6 @@ void sub_02095DA8(int param0, int param1, void * param2, void * param3);
 void sub_02095DAC(int param0, int param1, void * param2, void * param3);
 void sub_02095DB8(int param0, int param1, void * param2, void * param3);
 void sub_02095DFC(int param0, int param1, void * param2, void * param3);
-void sub_02095E60(UnkStruct_0203CDB0 * param0, UnkStruct_02095E80 * param1);
+void sub_02095E60(FieldSystem * param0, UnkStruct_02095E80 * param1);
 
 #endif // POKEPLATINUM_UNK_02095CD4_H

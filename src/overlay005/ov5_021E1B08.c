@@ -3,7 +3,7 @@
 
 #include "overlay005/struct_ov5_021E1B20_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
 
 #include "heap.h"
@@ -19,10 +19,10 @@ struct UnkStruct_ov5_021E1B20_t {
     u8 unk_13_7 : 1;
 };
 
-static void ov5_021E1BE0(UnkStruct_0203CDB0 * param0);
-static void ov5_021E1C1C(UnkStruct_0203CDB0 * param0);
-static BOOL ov5_021E1C70(UnkStruct_0203CDB0 * param0);
-static BOOL ov5_021E1CB0(UnkStruct_0203CDB0 * param0);
+static void ov5_021E1BE0(FieldSystem * param0);
+static void ov5_021E1C1C(FieldSystem * param0);
+static BOOL ov5_021E1C70(FieldSystem * param0);
+static BOOL ov5_021E1CB0(FieldSystem * param0);
 
 void * ov5_021E1B08 (u32 param0)
 {
@@ -71,7 +71,7 @@ BOOL ov5_021E1B58 (UnkStruct_ov5_021E1B20 * param0)
     return 0;
 }
 
-void ov5_021E1B68 (UnkStruct_0203CDB0 * param0)
+void ov5_021E1B68 (FieldSystem * param0)
 {
     UnkStruct_ov5_021E1B20 * v0 = param0->unk_64;
 
@@ -99,13 +99,13 @@ void ov5_021E1B68 (UnkStruct_0203CDB0 * param0)
     }
 }
 
-void ov5_021E1BCC (UnkStruct_0203CDB0 * param0, u8 param1)
+void ov5_021E1BCC (FieldSystem * param0, u8 param1)
 {
     ov5_021E1B40(param0->unk_64, param1);
     ov5_021E1B68(param0);
 }
 
-static void ov5_021E1BE0 (UnkStruct_0203CDB0 * param0)
+static void ov5_021E1BE0 (FieldSystem * param0)
 {
     sub_02019184(param0->unk_08, 3, 3, -48);
 
@@ -117,7 +117,7 @@ static void ov5_021E1BE0 (UnkStruct_0203CDB0 * param0)
     sub_0205DA80(&param0->unk_64->unk_00, param0->unk_64->unk_12, param0->unk_64->unk_10);
 }
 
-static void ov5_021E1C1C (UnkStruct_0203CDB0 * param0)
+static void ov5_021E1C1C (FieldSystem * param0)
 {
     if (param0->unk_64->unk_13_7 == 0) {
         return;
@@ -131,7 +131,7 @@ static void ov5_021E1C1C (UnkStruct_0203CDB0 * param0)
     param0->unk_64->unk_13_7 = 0;
 }
 
-static BOOL ov5_021E1C70 (UnkStruct_0203CDB0 * param0)
+static BOOL ov5_021E1C70 (FieldSystem * param0)
 {
     int v0 = sub_020192F8(param0->unk_08, 3);
 
@@ -148,7 +148,7 @@ static BOOL ov5_021E1C70 (UnkStruct_0203CDB0 * param0)
     return 0;
 }
 
-static BOOL ov5_021E1CB0 (UnkStruct_0203CDB0 * param0)
+static BOOL ov5_021E1CB0 (FieldSystem * param0)
 {
     int v0 = sub_020192F8(param0->unk_08, 3);
 

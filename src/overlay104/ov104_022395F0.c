@@ -14,7 +14,7 @@
 #include "unk_0202D05C.h"
 #include "unk_02030108.h"
 #include "unk_0203061C.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_02049D08.h"
 #include "unk_0204FA34.h"
 #include "unk_0205DFC4.h"
@@ -350,7 +350,7 @@ BOOL ov104_02239B14 (UnkStruct_ov104_0222E930 * param0)
     v1->unk_12 = v4.unk_58;
     v1->unk_10_5 = 5 + v1->unk_12;
 
-    if (sub_0203608C() == 0) {
+    if (CommSys_CurNetId() == 0) {
         sub_0204A4C8(v1, v2->unk_08);
     }
 

@@ -3,8 +3,8 @@
 
 #include "struct_decls/struct_020507E4_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
-#include "struct_defs/struct_0203CDB0_sub2_t.h"
+#include "field/field_system.h"
+#include "field/field_system_sub2_t.h"
 
 #include "game_overlay.h"
 #include "unk_0200A784.h"
@@ -18,7 +18,7 @@
 FS_EXTERN_OVERLAY(overlay24);
 FS_EXTERN_OVERLAY(overlay25);
 
-void ov5_021EA714 (UnkStruct_0203CDB0 * param0, int param1, u32 param2)
+void ov5_021EA714 (FieldSystem * param0, int param1, u32 param2)
 {
     if ((param0->unk_04 != NULL) && (param0->unk_04->unk_14 != NULL)) {
         ov25_02253D7C(param0->unk_04->unk_14, param1, param2);
@@ -26,7 +26,7 @@ void ov5_021EA714 (UnkStruct_0203CDB0 * param0, int param1, u32 param2)
 }
 
 
-void ov5_021EA728 (UnkStruct_0203CDB0 * param0)
+void ov5_021EA728 (FieldSystem * param0)
 {
     PoketchData * v0 = SaveData_PoketchData(param0->unk_0C);
     UnkStruct_020507E4 * v1 = SaveData_Events(param0->unk_0C);
@@ -41,7 +41,7 @@ void ov5_021EA728 (UnkStruct_0203CDB0 * param0)
     }
 }
 
-void ov5_021EA790 (UnkStruct_0203CDB0 * param0)
+void ov5_021EA790 (FieldSystem * param0)
 {
     PoketchData * v0 = SaveData_PoketchData(param0->unk_0C);
     UnkStruct_020507E4 * v1 = SaveData_Events(param0->unk_0C);
@@ -54,7 +54,7 @@ void ov5_021EA790 (UnkStruct_0203CDB0 * param0)
     }
 }
 
-u8 ov5_021EA7CC (UnkStruct_0203CDB0 * param0)
+u8 ov5_021EA7CC (FieldSystem * param0)
 {
     PoketchData * v0 = SaveData_PoketchData(param0->unk_0C);
     UnkStruct_020507E4 * v1 = SaveData_Events(param0->unk_0C);
@@ -76,18 +76,18 @@ u8 ov5_021EA7CC (UnkStruct_0203CDB0 * param0)
     return 0;
 }
 
-void ov5_021EA830 (UnkStruct_0203CDB0 * param0)
+void ov5_021EA830 (FieldSystem * param0)
 {
     Overlay_LoadByID(FS_OVERLAY_ID(overlay24), 2);
     ov24_02253CE0(param0->unk_08);
 }
 
-void ov5_021EA848 (UnkStruct_0203CDB0 * param0)
+void ov5_021EA848 (FieldSystem * param0)
 {
     ov24_02253DA4(param0->unk_08);
 }
 
-BOOL ov5_021EA854 (UnkStruct_0203CDB0 * param0)
+BOOL ov5_021EA854 (FieldSystem * param0)
 {
     if (ov24_02253DB4(param0->unk_08)) {
         Overlay_UnloadByID(FS_OVERLAY_ID(overlay24));

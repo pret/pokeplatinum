@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_02049FA8.h"
 #include "overlay006/struct_ov6_02242634.h"
 
@@ -28,11 +28,11 @@ typedef struct {
 typedef struct UnkStruct_ov6_02242A8C_t {
     UnkStruct_ov6_02242A10 unk_00[6];
     UnkStruct_02049FA8 unk_18;
-    UnkStruct_0203CDB0 * unk_2C;
+    FieldSystem * unk_2C;
     int unk_30;
 } UnkStruct_ov6_02242A8C;
 
-int ov6_02242984 (UnkStruct_0203CDB0 * param0)
+int ov6_02242984 (FieldSystem * param0)
 {
     u8 v0;
     BOOL v1;
@@ -54,7 +54,7 @@ int ov6_02242984 (UnkStruct_0203CDB0 * param0)
     return v2[inline_020564D0(12)];
 }
 
-UnkStruct_ov6_02242A8C * ov6_02242A10 (const int param0, UnkStruct_0203CDB0 * param1)
+UnkStruct_ov6_02242A8C * ov6_02242A10 (const int param0, FieldSystem * param1)
 {
     u8 v0;
     UnkStruct_ov6_02242A8C * v1;

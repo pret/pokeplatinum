@@ -64,8 +64,8 @@
 #include "unk_020279FC.h"
 #include "unk_0202B604.h"
 #include "unk_0202F1D4.h"
-#include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_information.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
@@ -678,7 +678,7 @@ static u8 ov10_0221FD00 (UnkStruct_ov10_0221FB28 * param0)
             param0->unk_BC4 = 0;
 
             for (v2 = 0; v2 < (7 + 1); v2++) {
-                v3 = sub_02032EE8(v2);
+                v3 = CommInfo_TrainerInfo(v2);
 
                 if (v3 != NULL) {
                     if (TrainerInfo_GameCode(v3) == 0) {
@@ -1189,7 +1189,7 @@ static u8 ov10_02220A50 (SysTask * param0, UnkStruct_ov10_0221FB28 * param1)
 
 static BOOL ov10_02220AD0 (void)
 {
-    switch (sub_020362F4(sub_0203608C())) {
+    switch (sub_020362F4(CommSys_CurNetId())) {
     case 0:
     case 2:
         return 1;
@@ -2410,7 +2410,7 @@ static void ov10_022227A4 (UnkStruct_ov10_0221F800 * param0)
         return;
     }
 
-    v6 = sub_0203608C();
+    v6 = CommSys_CurNetId();
     v5 = param0->unk_2A - 1;
 
     if (MapHeader_IsUnionRoom(param0->unk_00->mapHeaderID) == 1) {

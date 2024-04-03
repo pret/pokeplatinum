@@ -14,7 +14,7 @@
 #include "savedata.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "overlay059/ov59_021D2B44.h"
 
 __attribute__((aligned(4))) static const u8 Unk_ov59_021D33B0[] = {
@@ -151,7 +151,7 @@ static BOOL ov59_021D2B5C (int param0, int param1)
 static void ov59_021D2B90 (SaveData * param0, UnkStruct_0202E794 * param1, UnkStruct_0202E768 * param2, int param3, int param4, int param5)
 {
     int v0;
-    TrainerInfo * v1 = sub_02025E38(param0);
+    TrainerInfo * v1 = SaveData_GetTrainerInfo(param0);
 
     for (v0 = 0; v0 < param3; v0++, param1++) {
         MI_CpuClearFast(param1, sizeof(UnkStruct_0202E794));
@@ -289,7 +289,7 @@ static const void ** ov59_021D2E40 (int param0, const void ** param1, const void
 {
     TrainerInfo * v0;
 
-    v0 = sub_02032EE8(param0);
+    v0 = CommInfo_TrainerInfo(param0);
 
     if (v0 == NULL) {
         return NULL;

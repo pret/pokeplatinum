@@ -78,13 +78,13 @@
 #include "unk_0202CD50.h"
 #include "unk_0202D05C.h"
 #include "unk_0202F1D4.h"
-#include "unk_020329E0.h"
+#include "communication_information.h"
 #include "unk_02033200.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_020507CC.h"
-#include "unk_0205964C.h"
+#include "field_comm_manager.h"
 #include "unk_0205DFC4.h"
 #include "unk_0206CCB0.h"
 #include "party.h"
@@ -1072,19 +1072,19 @@ static BOOL ov104_022302E8 (UnkStruct_ov104_0222E930 * param0)
             UnkStruct_ov104_02230BE4 * v6;
 
             v6 = sub_0209B970(v0->unk_00);
-            v5 = sub_02025E38(v6->unk_08);
+            v5 = SaveData_GetTrainerInfo(v6->unk_08);
             v3.unk_00 = ov104_0222E5F0(v5);
 
             ov104_0223D0EC(v1, &v3);
         } else if (v3.unk_00 == 0xeeef) {
-            if (sub_02035E38() == 1) {
+            if (CommSys_IsInitialized() == 1) {
                 const TrainerInfo * v7;
                 int v8, v9;
 
-                v8 = sub_02035E18();
+                v8 = CommSys_ConnectedCount();
 
                 for (v9 = 0; v9 < v8; v9++) {
-                    v7 = sub_02032EE8(v9);
+                    v7 = CommInfo_TrainerInfo(v9);
                     v3.unk_00 = ov104_0222E5F0(v7);
                     ov104_0223D0EC(v1, &v3);
                 }
@@ -1147,7 +1147,7 @@ static BOOL ov104_022303C8 (UnkStruct_ov104_0222E930 * param0)
             UnkStruct_ov104_02230BE4 * v7;
 
             v7 = sub_0209B970(v0->unk_00);
-            v6 = sub_02025E38(v7->unk_08);
+            v6 = SaveData_GetTrainerInfo(v7->unk_08);
             v4.unk_00 = ov104_0222E5F0(v6);
             v5 = (32 - 1);
         } else if (v4.unk_00 == 0xeeef) {
@@ -1155,7 +1155,7 @@ static BOOL ov104_022303C8 (UnkStruct_ov104_0222E930 * param0)
             int v9;
 
             v9 = (*((param0)->unk_1C++));
-            v8 = sub_02032EE8(v9);
+            v8 = CommInfo_TrainerInfo(v9);
             v4.unk_00 = ov104_0222E5F0(v8);
         } else {
             (void)0;
@@ -1839,7 +1839,7 @@ static BOOL ov104_02230DC4 (UnkStruct_ov104_0222E930 * param0)
     UnkStruct_ov104_02230BE4 * v0 = sub_0209B970(param0->unk_00->unk_00);
     u8 v1 = (*((param0)->unk_1C++));
 
-    sub_0200B498(param0->unk_00->unk_44, v1, sub_02025E38(v0->unk_08));
+    sub_0200B498(param0->unk_00->unk_44, v1, SaveData_GetTrainerInfo(v0->unk_08));
     return 0;
 }
 
@@ -1848,7 +1848,7 @@ static BOOL ov104_02230DF0 (UnkStruct_ov104_0222E930 * param0)
     UnkStruct_ov104_02230BE4 * v0 = sub_0209B970(param0->unk_00->unk_00);
     u8 v1 = (*((param0)->unk_1C++));
 
-    sub_0200B498(param0->unk_00->unk_44, v1, sub_02032EE8((sub_0203608C() ^ 1)));
+    sub_0200B498(param0->unk_00->unk_44, v1, CommInfo_TrainerInfo((CommSys_CurNetId() ^ 1)));
     return 0;
 }
 
@@ -1956,7 +1956,7 @@ static BOOL ov104_02230FCC (UnkStruct_ov104_0222E930 * param0)
 {
     int v0;
 
-    if (sub_02035E18() < 2) {
+    if (CommSys_ConnectedCount() < 2) {
         v0 = 1;
     } else {
         v0 = sub_02036540(param0->unk_78[0]);
@@ -1973,7 +1973,7 @@ static BOOL ov104_02230FEC (UnkStruct_ov104_0222E930 * param0)
 
 static BOOL ov104_02230FF8 (UnkStruct_ov104_0222E930 * param0)
 {
-    sub_0205987C();
+    FieldCommMan_EndBattle();
     ov104_0222E974(param0, ov104_02231010);
 
     return 1;
@@ -1981,7 +1981,7 @@ static BOOL ov104_02230FF8 (UnkStruct_ov104_0222E930 * param0)
 
 static BOOL ov104_02231010 (UnkStruct_ov104_0222E930 * param0)
 {
-    if (sub_02036780() != 1) {
+    if (CommMan_IsInitialized() != 1) {
         if (sub_02033E1C() != 1) {
             return 1;
         }
@@ -2569,7 +2569,7 @@ static BOOL ov104_02231AF4 (UnkStruct_ov104_0222E930 * param0)
 
     v1 = sub_0209B970(param0->unk_00->unk_00);
 
-    if (TrainerInfo_Gender(sub_02025E38(v1->unk_08)) == 0) {
+    if (TrainerInfo_Gender(SaveData_GetTrainerInfo(v1->unk_08)) == 0) {
         v0 = 0x0;
     } else {
         v0 = 0x61;
@@ -2873,7 +2873,7 @@ static BOOL ov104_02231EFC (UnkStruct_ov104_0222E930 * param0)
     v3 = sub_0209B970(param0->unk_00->unk_00);
     v1 = SaveData_TVBroadcast(v3->unk_08);
     v0 = ov104_0222FC00(param0);
-    v2 = sub_02032EE8(1 - sub_0203608C());
+    v2 = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
 
     sub_0206D088(v1, v0, v2);
     return 0;

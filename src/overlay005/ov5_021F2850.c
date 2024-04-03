@@ -6,7 +6,7 @@
 #include "overlay005/struct_ov5_021DF47C_decl.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_02073838.h"
 #include "struct_defs/struct_02073B50.h"
 #include "overlay101/struct_ov101_021D86B0.h"
@@ -32,7 +32,7 @@ typedef struct {
 typedef struct {
     int unk_00;
     UnkStruct_ov5_021DF47C * unk_04;
-    UnkStruct_0203CDB0 * unk_08;
+    FieldSystem * unk_08;
     UnkStruct_ov5_021F2874 * unk_0C;
     UnkStruct_02061AB4 * unk_10;
 } UnkStruct_ov5_021F28F4;

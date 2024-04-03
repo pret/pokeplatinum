@@ -14,7 +14,7 @@
 typedef struct {
     BGL * unk_00;
     Window unk_04[11];
-    UnkStruct_02072014 * unk_B4;
+    TrainerCard * unk_B4;
     u8 unk_B8[12288];
     void * unk_30B8;
     NNSG2dCharacterData * unk_30BC;

@@ -10,7 +10,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "heap.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 
 void sub_020041E8(u16 param0);
 u16 sub_020041FC(void);

@@ -1514,7 +1514,7 @@ asm static void ov64_0222EC94 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_
     bl Strbuf_Init
     str r0, [sp, #0x24]
     ldr r0, [r5, #0]
-    bl sub_02025E38
+    bl SaveData_GetTrainerInfo
     add r2, r0, #0
     mov r1, #0x62
     ldr r0, [sp, #0x18]
@@ -3151,7 +3151,7 @@ static void ov64_02230804 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_0222
 
 static void ov64_0223081C (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2)
 {
-    sub_0200B498(param2->unk_214, 0, sub_02025E38(param1->unk_00));
+    sub_0200B498(param2->unk_214, 0, SaveData_GetTrainerInfo(param1->unk_00));
     ov64_0222E738(param2, 46);
 
     sub_020198C0(param2->unk_00, Unk_ov64_02232258[2], param0->unk_24->rawData, 0, 0, param0->unk_24->screenWidth / 8, param0->unk_24->screenHeight / 8);

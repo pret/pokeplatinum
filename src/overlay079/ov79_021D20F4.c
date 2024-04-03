@@ -11,7 +11,7 @@
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_020393C8.h"
 #include "unk_02098FFC.h"
 #include "overlay079/ov79_021D20F4.h"
@@ -58,7 +58,7 @@ void ov79_021D20F4 (UnkStruct_ov79_021D0E1C * param0)
 
     param0->unk_1F8 = sub_02098FFC(param0->unk_00, 1, 1, (NNS_G2D_VRAM_TYPE_2DMAIN), 0);
 
-    if (sub_02035E38()) {
+    if (CommSys_IsInitialized()) {
         sub_02039734();
     }
 

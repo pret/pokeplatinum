@@ -30,8 +30,8 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_0202C858.h"
-#include "unk_020329E0.h"
-#include "unk_02034198.h"
+#include "communication_information.h"
+#include "communication_system.h"
 #include "unk_02038F8C.h"
 #include "map_header.h"
 #include "pokemon.h"
@@ -358,10 +358,10 @@ void ov104_0222E134 (SaveData * param0, Pokemon * param1)
     MessageLoader * v2;
     int v3;
     int v4 = 0;
-    TrainerInfo * v5 = sub_02025E38(param0);
+    TrainerInfo * v5 = SaveData_GetTrainerInfo(param0);
 
     v0 = Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL);
-    Pokemon_UpdateAfterCatch(param1, sub_02025E38(param0), 4, 0, 0, 11);
+    Pokemon_UpdateAfterCatch(param1, SaveData_GetTrainerInfo(param0), 4, 0, 0, 11);
 
     v3 = MapHeader_GetMapLabelTextID(562);
     sub_0209304C(param1, v5, v4, v3, 11);
@@ -615,7 +615,7 @@ void ov104_0222E4BC (u8 param0, u16 param1, u16 param2, u16 * param3, UnkStruct_
 
 void ov104_0222E5D0 (StringFormatter * param0, u32 param1)
 {
-    sub_0200B498(param0, param1, sub_02032EE8((sub_0203608C() ^ 1)));
+    sub_0200B498(param0, param1, CommInfo_TrainerInfo((CommSys_CurNetId() ^ 1)));
     return;
 }
 

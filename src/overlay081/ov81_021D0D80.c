@@ -92,7 +92,7 @@ int ov81_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     v0->unk_4C = v1;
     v0->unk_44 = sub_0202B628(v1);
-    v0->unk_48 = sub_02025E38(v1);
+    v0->unk_48 = SaveData_GetTrainerInfo(v1);
 
     sub_0208C120(0, 42);
     sub_02002BEC(0, 42);

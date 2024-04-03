@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_02049FA8.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
@@ -47,14 +47,14 @@
 
 typedef struct {
     int unk_00;
-    UnkStruct_0203CDB0 * unk_04;
+    FieldSystem * unk_04;
     BGL * unk_08;
     Window unk_0C;
     MessageLoader * unk_1C;
     StringFormatter * unk_20;
 } UnkStruct_02052AA4;
 
-static void sub_02052914(UnkStruct_0203CDB0 * param0, UnkStruct_020508D4 * param1);
+static void sub_02052914(FieldSystem * param0, UnkStruct_020508D4 * param1);
 static BOOL sub_020529C4(UnkStruct_020508D4 * param0);
 static void sub_02052AA4(UnkStruct_02052AA4 * param0, u16 param1, u8 param2, u8 param3);
 
@@ -110,7 +110,7 @@ static void sub_020528D0 (BGL * param0)
     sub_02006E84(14, 6, 0, 13 * 0x20, 0x20, 11);
 }
 
-static void sub_02052914 (UnkStruct_0203CDB0 * param0, UnkStruct_020508D4 * param1)
+static void sub_02052914 (FieldSystem * param0, UnkStruct_020508D4 * param1)
 {
     UnkStruct_02052AA4 * v0;
 
@@ -132,7 +132,7 @@ static void sub_02052914 (UnkStruct_0203CDB0 * param0, UnkStruct_020508D4 * para
     v0->unk_20 = sub_0200B358(11);
 
     sub_0201A8D4(v0->unk_08, &v0->unk_0C, &Unk_020EC2F0);
-    sub_0200B498(v0->unk_20, 0, sub_02025E38(sub_0203D174(param0)));
+    sub_0200B498(v0->unk_20, 0, SaveData_GetTrainerInfo(sub_0203D174(param0)));
 
     if (param0->unk_1C->unk_00 == 414) {
         sub_02052AA4(v0, 4, 0, 0);
@@ -210,7 +210,7 @@ static void sub_02052AA4 (UnkStruct_02052AA4 * param0, u16 param1, u8 param2, u8
 
 BOOL sub_02052B2C (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0;
+    FieldSystem * v0;
     int * v1;
 
     v0 = sub_02050A60(param0);

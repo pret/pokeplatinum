@@ -6,8 +6,8 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "overlay005/struct_ov5_021E1890_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
-#include "struct_defs/struct_0203CDB0_sub2_t.h"
+#include "field/field_system.h"
+#include "field/field_system_sub2_t.h"
 
 #include "unk_02005474.h"
 #include "heap.h"
@@ -114,7 +114,7 @@ static const UnkStruct_020F03F4 Unk_020F03F4[9] = {
     }
 };
 
-void sub_0207160C (UnkStruct_0203CDB0 * param0)
+void sub_0207160C (FieldSystem * param0)
 {
     BOOL v0;
     UnkStruct_ov5_021E1890 * v1;
@@ -157,7 +157,7 @@ void sub_0207160C (UnkStruct_0203CDB0 * param0)
     ov5_021EF2CC(0, v4->unk_08, v4->unk_0C, 3, 2, v5, param0->unk_A0);
 }
 
-void sub_020716D4 (UnkStruct_0203CDB0 * param0)
+void sub_020716D4 (FieldSystem * param0)
 {
     UnkStruct_02027860 * v0;
     UnkStruct_020716D4 * v1;
@@ -269,7 +269,7 @@ void sub_020716D4 (UnkStruct_0203CDB0 * param0)
     }
 }
 
-u8 sub_02071818 (UnkStruct_0203CDB0 * param0)
+u8 sub_02071818 (FieldSystem * param0)
 {
     UnkStruct_02027860 * v0;
     UnkStruct_020716D4 * v1;
@@ -284,7 +284,7 @@ u8 sub_02071818 (UnkStruct_0203CDB0 * param0)
     }
 }
 
-void sub_0207183C (UnkStruct_0203CDB0 * param0)
+void sub_0207183C (FieldSystem * param0)
 {
     UnkStruct_02027860 * v0;
     UnkStruct_020716D4 * v1;
@@ -319,7 +319,7 @@ void sub_0207183C (UnkStruct_0203CDB0 * param0)
 static BOOL sub_020718D8 (UnkStruct_020508D4 * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
-    UnkStruct_0203CDB0 * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = sub_02050A60(param0);
     UnkStruct_020718D8 * v2 = sub_02050A64(param0);
 
     switch (v2->unk_00) {
@@ -382,7 +382,7 @@ static BOOL sub_020718D8 (UnkStruct_020508D4 * param0)
 static BOOL sub_020719D8 (UnkStruct_020508D4 * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
-    UnkStruct_0203CDB0 * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = sub_02050A60(param0);
     UnkStruct_020718D8 * v2 = sub_02050A64(param0);
 
     switch (v2->unk_00) {

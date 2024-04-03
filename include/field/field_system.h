@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_0203CDB0_H
-#define POKEPLATINUM_STRUCT_0203CDB0_H
+#ifndef POKEPLATINUM_FIELD_SYSTEM_H
+#define POKEPLATINUM_FIELD_SYSTEM_H
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
@@ -7,9 +7,9 @@
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_02039E30_decl.h"
 #include "struct_decls/struct_0203A3E8_decl.h"
-#include "struct_decls/struct_0203CDB0_sub1_decl.h"
-#include "struct_decls/struct_0203CDB0_sub2_decl.h"
-#include "struct_defs/struct_0203CDB0_sub3.h"
+#include "field/field_system_sub1_decl.h"
+#include "field/field_system_sub2_decl.h"
+#include "field/field_system_sub3.h"
 #include "struct_defs/struct_02049FA8.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_decls/struct_020508D4_decl.h"
@@ -44,9 +44,9 @@
 #include "overlay056/struct_ov56_02256468_decl.h"
 #include "overlay066/struct_ov66_0222DCE0_sub1.h"
 
-typedef struct UnkStruct_0203CDB0_t {
-    UnkStruct_0203CDB0_sub1 * unk_00;
-    UnkStruct_0203CDB0_sub2 * unk_04;
+typedef struct FieldSystem_t {
+    FieldSystem_sub1 * unk_00;
+    FieldSystem_sub2 * unk_04;
     BGL * unk_08;
     SaveData * unk_0C;
     UnkStruct_020508D4 * unk_10;
@@ -75,7 +75,7 @@ typedef struct UnkStruct_0203CDB0_t {
     UnkStruct_ov23_0224942C * unk_6C;
     int unk_70;
     const UnkStruct_020EC3A8 * unk_74;
-    UnkStruct_0203CDB0_sub3 unk_78;
+    FieldSystem_sub3 unk_78;
     UnkStruct_0205B43C * unk_7C;
     UnkStruct_0205C22C * unk_80;
     UnkStruct_ov56_02256468 * unk_84;
@@ -89,12 +89,12 @@ typedef struct UnkStruct_0203CDB0_t {
     UnkStruct_ov5_021E1608 * unk_A4;
     UnkStruct_ov5_021EFB30 * unk_A8;
     UnkStruct_0204AFC4 * unk_AC;
-    const UnkStruct_0202610C * unk_B0;
+    const BattleRegulation * unk_B0;
     UnkStruct_0209ACBC * unk_B4;
     BOOL unk_B8;
     UnkStruct_0209C370 * unk_BC;
     u32 unk_C0;
     UnkStruct_ov66_0222DCE0_sub1 unk_C4;
-} UnkStruct_0203CDB0;
+} FieldSystem;
 
-#endif // POKEPLATINUM_STRUCT_0203CDB0_H
+#endif // POKEPLATINUM_FIELD_SYSTEM_H

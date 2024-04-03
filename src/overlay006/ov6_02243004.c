@@ -3,7 +3,7 @@
 
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "overlay115/struct_ov115_0226527C.h"
 
 #include "overlay006/ov6_0223E140.h"
@@ -11,7 +11,7 @@
 
 static UnkStruct_ov5_021D1BEC * Unk_ov6_02249940;
 
-BOOL ov6_02243004 (UnkStruct_0203CDB0 * param0, int param1)
+BOOL ov6_02243004 (FieldSystem * param0, int param1)
 {
     VecFx32 v0;
     UnkStruct_ov115_0226527C v1;

@@ -630,7 +630,7 @@ int ov70_0225D9A4 (UnkStruct_020067E8 * param0, int * param1)
     sub_02002AE4(0);
     sub_02002B20(0);
 
-    v0->unk_458 = sub_02025E38(v1->unk_00);
+    v0->unk_458 = SaveData_GetTrainerInfo(v1->unk_00);
     ov70_0225E4EC(&v0->unk_3C, v1->unk_00, 112);
     v0->unk_44C = ov70_0225C858(112);
 

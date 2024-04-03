@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_020508D4_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "overlay007/struct_ov7_0224D008.h"
 
 #include "heap.h"
@@ -13,12 +13,12 @@
 #include "overlay005/ov5_021D0D80.h"
 #include "overlay007/ov7_0224CD28.h"
 
-static u8 sub_0209AC50(UnkStruct_0203CDB0 * param0, UnkStruct_ov7_0224D008 * param1);
+static u8 sub_0209AC50(FieldSystem * param0, UnkStruct_ov7_0224D008 * param1);
 static void sub_0209AC80(UnkStruct_020508D4 * param0);
 
 BOOL sub_0209AC14 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0;
+    FieldSystem * v0;
     UnkStruct_ov7_0224D008 * v1;
 
     v0 = sub_02050A60(param0);
@@ -36,7 +36,7 @@ BOOL sub_0209AC14 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static u8 sub_0209AC50 (UnkStruct_0203CDB0 * param0, UnkStruct_ov7_0224D008 * param1)
+static u8 sub_0209AC50 (FieldSystem * param0, UnkStruct_ov7_0224D008 * param1)
 {
     if (sub_020509B4(param0)) {
         return 16;
@@ -52,7 +52,7 @@ static u8 sub_0209AC50 (UnkStruct_0203CDB0 * param0, UnkStruct_ov7_0224D008 * pa
 
 static void sub_0209AC80 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0;
+    FieldSystem * v0;
     UnkStruct_ov7_0224D008 * v1;
 
     v0 = sub_02050A60(param0);

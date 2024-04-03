@@ -9,8 +9,8 @@
 #include "overlay006/struct_ov6_022426B8_decl.h"
 #include "overlay006/struct_ov6_02242A8C_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
-#include "struct_defs/struct_0203CDB0_sub2_t.h"
+#include "field/field_system.h"
+#include "field/field_system_sub2_t.h"
 #include "struct_defs/struct_02049FA8.h"
 
 #include "unk_02005474.h"
@@ -39,7 +39,7 @@ typedef struct {
 
 static BOOL sub_0206C120(UnkStruct_020508D4 * param0);
 
-void sub_0206C0E8 (UnkStruct_0203CDB0 * param0)
+void sub_0206C0E8 (FieldSystem * param0)
 {
     UnkStruct_0206C0E8 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0206C0E8));
 
@@ -53,7 +53,7 @@ void sub_0206C0E8 (UnkStruct_0203CDB0 * param0)
 
 static BOOL sub_0206C120 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_0206C0E8 * v1 = sub_02050A64(param0);
 
     switch (v1->unk_0C) {

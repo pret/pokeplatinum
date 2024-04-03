@@ -12,7 +12,7 @@
 #include "constdata/const_020F1E88.h"
 
 #include "struct_defs/union_02022594_020225E0.h"
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "functypes/funcptr_0207E634.h"
@@ -2459,7 +2459,7 @@ static int ProcessWindowInput (GameWindowLayout * param0)
             Pokemon * v0;
             Strbuf* v1;
             void * v2;
-            UnkStruct_0203CDB0 * v3;
+            FieldSystem * v3;
 
             v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
             v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 64);
@@ -2647,7 +2647,7 @@ static int ProcessItemApplication (GameWindowLayout * param0)
     Pokemon * v0;
     Window * v1;
     int v2 = -1, v3;
-    UnkStruct_0203CDB0 * v4;
+    FieldSystem * v4;
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
     v1 = &param0->unk_04[34];
@@ -2709,7 +2709,7 @@ static int ProcessItemApplication (GameWindowLayout * param0)
 static int UpdatePokemonWithItem (GameWindowLayout * param0, Pokemon * param1, int * param2)
 {
     u32 v0 = param0->unk_5A4->unk_24;
-    UnkStruct_0203CDB0 * v1;
+    FieldSystem * v1;
 
     v1 = param0->unk_5A4->unk_1C;
 

@@ -13,7 +13,7 @@
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
 
-#include "struct_defs/struct_0203CDB0.h"
+#include "field/field_system.h"
 #include "struct_defs/struct_02081CF4.h"
 #include "overlay023/funcptr_ov23_02248D20.h"
 #include "overlay023/funcptr_ov23_0224F758.h"
@@ -46,7 +46,7 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_0202854C.h"
-#include "unk_02034198.h"
+#include "communication_system.h"
 #include "unk_0203CC84.h"
 #include "unk_020530C8.h"
 #include "unk_02057518.h"
@@ -426,7 +426,7 @@ BOOL ov23_0224F744 (int param0)
     return sub_02028BC8(Unk_ov23_022577B8->unk_00, param0);
 }
 
-void ov23_0224F758 (UnkFuncPtr_ov23_0224F758 param0, UnkStruct_0203CDB0 * param1)
+void ov23_0224F758 (UnkFuncPtr_ov23_0224F758 param0, FieldSystem * param1)
 {
     UnkStruct_ov23_02250CD4 * v0;
     UnkStruct_ov84_02240FA8 v1;
@@ -498,7 +498,7 @@ static void ov23_0224F7F4 (UnkStruct_ov23_02250CD4 * param0)
 
         for (v4 = 0; v4 < NELEMS(Unk_ov23_02256924); v4++) {
             if (v4 == v1) {
-                const TrainerInfo * v5 = sub_02025E38(sub_0203D174(param0->unk_0C));
+                const TrainerInfo * v5 = SaveData_GetTrainerInfo(sub_0203D174(param0->unk_0C));
                 Strbuf* v6 = TrainerInfo_NameNewStrbuf(v5, 4);
 
                 sub_02013A6C(param0->unk_40, v6, Unk_ov23_02256924[v4].unk_04);
@@ -1152,7 +1152,7 @@ static BOOL ov23_0225044C (SysTask * param0, void * param1)
         ov23_0224FCF4(v0);
 
         if (v1 == 1) {
-            int v3 = sub_0203608C();
+            int v3 = CommSys_CurNetId();
             int v4 = sub_02058D88(v3);
             int v5 = sub_02058DC0(v3);
 
@@ -1419,11 +1419,11 @@ static void ov23_02250A14 (UnkStruct_ov23_02250CD4 * param0)
 {
     ov23_0224FB7C(param0);
     ov23_02253968();
-    ov23_02253834(param0->unk_0C->unk_08, sub_02025E38(sub_0203D174(param0->unk_0C)), ov23_02250A0C, param0, 1);
+    ov23_02253834(param0->unk_0C->unk_08, SaveData_GetTrainerInfo(sub_0203D174(param0->unk_0C)), ov23_02250A0C, param0, 1);
     param0->unk_2AA = 10;
 }
 
-void ov23_02250A50 (UnkFuncPtr_ov23_0224F758 param0, UnkStruct_0203CDB0 * param1)
+void ov23_02250A50 (UnkFuncPtr_ov23_0224F758 param0, FieldSystem * param1)
 {
     UnkStruct_ov23_02250CD4 * v0;
     UnkStruct_ov84_02240FA8 v1;
@@ -1505,7 +1505,7 @@ static void ov23_02250B9C (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_02250CD4 * v0 = param1;
 
-    if (!ov23_0224AEA4(sub_0203608C())) {
+    if (!ov23_0224AEA4(CommSys_CurNetId())) {
         if ((v0->unk_2AA == 0) || (v0->unk_2AA == 1)) {
             v0->unk_2AA = 2;
         }
@@ -1847,7 +1847,7 @@ static BOOL ov23_022510F0 (SysTask * param0, void * param1)
     return 1;
 }
 
-void * ov23_022511B0 (UnkFuncPtr_ov23_0224F758 param0, UnkStruct_0203CDB0 * param1)
+void * ov23_022511B0 (UnkFuncPtr_ov23_0224F758 param0, FieldSystem * param1)
 {
     UnkStruct_ov23_02250CD4 * v0;
     UnkStruct_ov84_02240FA8 v1;
