@@ -4,11 +4,12 @@
 #include <nitro/fs.h>
 
 #include "constants/heap.h"
-#include "heap.h"
+
+#define FS_OVERLAY_ID_NONE  -1
 
 typedef struct OverlayManager OverlayManager;
 
-typedef int (*OverlayFunc)(OverlayManager *ovyManager, int *state);
+typedef BOOL (*OverlayFunc)(OverlayManager *ovyManager, int *state);
 
 typedef struct OverlayManagerTemplate {
     OverlayFunc init;
