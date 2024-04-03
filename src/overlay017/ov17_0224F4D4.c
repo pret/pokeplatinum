@@ -150,11 +150,11 @@ int ov17_0224F4D4 (OverlayManager * param0, int * param1)
 
     Heap_Create(3, 24, 0x70000);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov17_0224FCA0), 24);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov17_0224FCA0), 24);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_0224FCA0));
 
     v0->unk_0C = ov17_0223F140(24);
-    v0->unk_00 = sub_02006840(param0);
+    v0->unk_00 = OverlayManager_Args(param0);
     v0->unk_00->unk_150 = v0;
     v0->unk_00->unk_154 = 3;
     v0->unk_10.unk_00 = &v0->unk_00->unk_00;
@@ -227,7 +227,7 @@ int ov17_0224F4D4 (OverlayManager * param0, int * param1)
 
 int ov17_0224F754 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov17_0224FCA0 * v0 = sub_0200682C(param0);
+    UnkStruct_ov17_0224FCA0 * v0 = OverlayManager_Data(param0);
     int v1;
 
     sub_02094E98(v0->unk_00);
@@ -279,7 +279,7 @@ int ov17_0224F754 (OverlayManager * param0, int * param1)
 
 int ov17_0224F86C (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov17_0224FCA0 * v0 = sub_0200682C(param0);
+    UnkStruct_ov17_0224FCA0 * v0 = OverlayManager_Data(param0);
     int v1;
 
     sub_020141E4();
@@ -327,7 +327,7 @@ int ov17_0224F86C (OverlayManager * param0, int * param1)
     ov17_0223F1E0(v0->unk_0C);
 
     sub_0201E530();
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);

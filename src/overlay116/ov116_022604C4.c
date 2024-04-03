@@ -242,10 +242,10 @@ int ov116_022609B4 (OverlayManager * param0, int * param1)
     UnkStruct_ov116_0226139C * v0;
 
     Heap_Create(3, 106, 0x65000);
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov116_0226139C), 106);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov116_0226139C), 106);
     memset(v0, 0, sizeof(UnkStruct_ov116_0226139C));
 
-    v0->unk_80 = sub_02006840(param0);
+    v0->unk_80 = OverlayManager_Args(param0);
 
     {
         int v1;
@@ -432,7 +432,7 @@ static BOOL ov116_02260B6C (UnkStruct_ov116_02262A8C * param0)
 
 int ov116_02260CF4 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov116_0226139C * v0 = sub_0200682C(param0);
+    UnkStruct_ov116_0226139C * v0 = OverlayManager_Data(param0);
     BOOL v1 = 0;
     u32 v2;
 
@@ -737,11 +737,11 @@ int ov116_0226126C (OverlayManager * param0, int * param1)
     case 0:
     {
         u32 v0;
-        UnkStruct_ov116_0226139C * v1 = sub_0200682C(param0);
+        UnkStruct_ov116_0226139C * v1 = OverlayManager_Data(param0);
 
         v0 = ov116_022617E4(v1);
 
-        sub_02006830(param0);
+        OverlayManager_FreeData(param0);
         Heap_Destroy(106);
         CommMan_SetErrorHandling(0, 1);
 

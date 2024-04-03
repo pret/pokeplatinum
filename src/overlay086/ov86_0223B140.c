@@ -307,9 +307,9 @@ int ov86_0223B140 (OverlayManager * param0, int * param1)
     SetMainCallback(NULL, NULL);
     Heap_Create(3, 63, 196608);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov86_0223B3C8), 63);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov86_0223B3C8), 63);
 
-    v0->unk_0C = sub_02006840(param0);
+    v0->unk_0C = OverlayManager_Args(param0);
     v0->unk_1C50 = MessageLoader_Init(0, 26, 351, 63);
     v0->unk_1C48 = Strbuf_Init(500, 63);
     v0->unk_1C4C = Strbuf_Init(500, 63);
@@ -361,7 +361,7 @@ int ov86_0223B2E4 (OverlayManager * param0, int * param1)
     switch (*param1) {
     case 0:
     {
-        UnkStruct_ov86_0223B3C8 * v0 = sub_0200682C(param0);
+        UnkStruct_ov86_0223B3C8 * v0 = OverlayManager_Data(param0);
 
         SysTask_Done(v0->unk_1C28);
 
@@ -376,7 +376,7 @@ int ov86_0223B2E4 (OverlayManager * param0, int * param1)
         Strbuf_Free(v0->unk_1C4C);
         MessageLoader_Free(v0->unk_1C50);
         NARC_dtor(v0->unk_1C54);
-        sub_02006830(param0);
+        OverlayManager_FreeData(param0);
         Heap_Destroy(63);
     }
         (*param1)++;
@@ -400,7 +400,7 @@ int ov86_0223B394 (OverlayManager * param0, int * param1)
         ov86_0223B40C
     };
 
-    UnkStruct_ov86_0223B3C8 * v1 = sub_0200682C(param0);
+    UnkStruct_ov86_0223B3C8 * v1 = OverlayManager_Data(param0);
 
     if ((*param1) < NELEMS(v0)) {
         if (v0[(*param1)](v1)) {

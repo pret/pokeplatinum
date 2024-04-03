@@ -62,7 +62,7 @@ void sub_020995C4 (void)
 static int sub_020995D4 (OverlayManager * param0, int * param1)
 {
     Heap_Create(3, 49, 0x41000);
-    sub_02099590(((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08, 49);
+    sub_02099590(((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08, 49);
     Heap_Destroy(49);
 
     OS_ResetSystem(0);

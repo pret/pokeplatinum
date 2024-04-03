@@ -65,7 +65,7 @@ static BOOL sub_0208BE80(int param0);
 UnkStruct_0208C06C * sub_0208BA78 (OverlayManager * param0)
 {
     UnkStruct_0208C06C * v0;
-    UnkStruct_0208BC3C * v1 = sub_02006840(param0);
+    UnkStruct_0208BC3C * v1 = OverlayManager_Args(param0);
 
     return v1->unk_14;
 }
@@ -90,10 +90,10 @@ static void sub_0208BAAC (OverlayManager * param0, int param1)
 
     Heap_Create(3, 119, 0x10000);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_0208BC3C), 119);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_0208BC3C), 119);
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_0208BC3C));
 
-    v0->unk_28 = sub_02006840(param0);
+    v0->unk_28 = OverlayManager_Args(param0);
     v0->unk_0C = v0->unk_28->unk_0C;
     v0->unk_14 = Heap_AllocFromHeap(119, sizeof(UnkStruct_0208C06C));
 
@@ -176,7 +176,7 @@ static int sub_0208BBB4 (OverlayManager * param0, int * param1)
 static int sub_0208BBC0 (OverlayManager * param0, int * param1)
 {
     BOOL v0;
-    UnkStruct_0208BC3C * v1 = sub_0200682C(param0);
+    UnkStruct_0208BC3C * v1 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:
@@ -206,14 +206,14 @@ static int sub_0208BBC0 (OverlayManager * param0, int * param1)
 
 static int sub_0208BC08 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_0208BC3C * v0 = sub_0200682C(param0);
+    UnkStruct_0208BC3C * v0 = OverlayManager_Data(param0);
 
     if (sub_0202F250() == 1) {
         sub_0202F22C();
     }
 
     Heap_FreeToHeap(v0->unk_14);
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     sub_0200544C(1, 127);
     Heap_Destroy(119);
 
@@ -225,19 +225,19 @@ static BOOL sub_0208BC3C (UnkStruct_0208BC3C * param0, int param1)
     switch (param0->unk_00) {
     case 0:
         if (param0->unk_14->unk_00 == 0) {
-            param0->unk_08 = sub_020067E8(&Unk_020F3050, param0, param1);
+            param0->unk_08 = OverlayManager_New(&Unk_020F3050, param0, param1);
         } else {
-            param0->unk_08 = sub_020067E8(&Unk_020F3060, param0, param1);
+            param0->unk_08 = OverlayManager_New(&Unk_020F3060, param0, param1);
         }
 
         param0->unk_00++;
         break;
     default:
-        if (sub_02006844(param0->unk_08) == 0) {
+        if (OverlayManager_Exec(param0->unk_08) == 0) {
             break;
         }
 
-        sub_02006814(param0->unk_08);
+        OverlayManager_Free(param0->unk_08);
         return 1;
     }
 
@@ -299,11 +299,11 @@ static BOOL sub_0208BC8C (UnkStruct_0208BC3C * param0, int param1)
             sub_02004550(5, 1119, 1);
         }
     }
-        param0->unk_08 = sub_020067E8(&Unk_020EA358, param0->unk_10, param1);
+        param0->unk_08 = OverlayManager_New(&Unk_020EA358, param0->unk_10, param1);
         param0->unk_00++;
         break;
     default:
-        if (sub_02006844(param0->unk_08) == 0) {
+        if (OverlayManager_Exec(param0->unk_08) == 0) {
             break;
         }
 
@@ -317,7 +317,7 @@ static BOOL sub_0208BC8C (UnkStruct_0208BC3C * param0, int param1)
 
         Heap_FreeToHeap(param0->unk_10->unk_E4);
         sub_020520A4(param0->unk_10);
-        sub_02006814(param0->unk_08);
+        OverlayManager_Free(param0->unk_08);
 
         {
             u16 v1;

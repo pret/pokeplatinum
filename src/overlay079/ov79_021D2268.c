@@ -182,12 +182,12 @@ static VecFx32  ov79_021D2268 (VecFx32 * param0, VecFx32 * param1, fx32 param2)
 
 int ov79_021D22AC (OverlayManager * param0, int * param1)
 {
-    UnkStruct_02098DE8 * v0 = sub_02006840(param0);
+    UnkStruct_02098DE8 * v0 = OverlayManager_Args(param0);
     UnkStruct_ov79_021D2928 * v1;
 
     Heap_Create(3, 46, 0x10000);
 
-    v1 = sub_0200681C(param0, sizeof(UnkStruct_ov79_021D2928), 46);
+    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov79_021D2928), 46);
     MI_CpuClear8(v1, sizeof(UnkStruct_ov79_021D2928));
 
     v1->unk_00 = 46;
@@ -198,7 +198,7 @@ int ov79_021D22AC (OverlayManager * param0, int * param1)
 
 int ov79_021D22E4 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov79_021D2928 * v0 = (UnkStruct_ov79_021D2928 *)sub_0200682C(param0);
+    UnkStruct_ov79_021D2928 * v0 = (UnkStruct_ov79_021D2928 *)OverlayManager_Data(param0);
 
     if ((*param1 >= 2) && (*param1 <= 5)) {
         ov79_021D3820(&v0->unk_40);
@@ -281,9 +281,9 @@ int ov79_021D22E4 (OverlayManager * param0, int * param1)
 
 int ov79_021D2460 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov79_021D2928 * v0 = (UnkStruct_ov79_021D2928 *)sub_0200682C(param0);
+    UnkStruct_ov79_021D2928 * v0 = (UnkStruct_ov79_021D2928 *)OverlayManager_Data(param0);
 
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
 
     Heap_Destroy(v0->unk_00);
     return 1;

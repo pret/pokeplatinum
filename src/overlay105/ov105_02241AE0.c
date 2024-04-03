@@ -369,14 +369,14 @@ int ov105_02241AE0 (OverlayManager * param0, int * param1)
     ov105_022452E4();
     Heap_Create(3, 93, 0x20000);
 
-    v1 = sub_0200681C(param0, sizeof(UnkStruct_ov105_02241FF4), 93);
+    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov105_02241FF4), 93);
     memset(v1, 0, sizeof(UnkStruct_ov105_02241FF4));
 
     v1->unk_124 = sub_02024220(93, 0, 2, 0, 2, ov105_02245CD0);
     v1->unk_4C = sub_02018340(93);
     v1->unk_00 = param0;
 
-    v2 = (UnkStruct_ov104_02234130 *)sub_02006840(param0);
+    v2 = (UnkStruct_ov104_02234130 *)OverlayManager_Args(param0);
 
     v1->unk_13C = v2->unk_00;
     v1->unk_09 = v2->unk_04;
@@ -415,7 +415,7 @@ int ov105_02241AE0 (OverlayManager * param0, int * param1)
 
 int ov105_02241BD8 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov105_02241FF4 * v0 = sub_0200682C(param0);
+    UnkStruct_ov105_02241FF4 * v0 = OverlayManager_Data(param0);
 
     if (v0->unk_3B4 == 1) {
         switch (*param1) {
@@ -593,7 +593,7 @@ int ov105_02241BD8 (OverlayManager * param0, int * param1)
 int ov105_02241F54 (OverlayManager * param0, int * param1)
 {
     int v0;
-    UnkStruct_ov105_02241FF4 * v1 = sub_0200682C(param0);
+    UnkStruct_ov105_02241FF4 * v1 = OverlayManager_Data(param0);
 
     if (ov105_022454F8(v1, 0) == 1) {
         for (v0 = 0; v0 < ov105_02245508(v1->unk_09); v0++) {
@@ -612,7 +612,7 @@ int ov105_02241F54 (OverlayManager * param0, int * param1)
 
     ov105_022451B4(v1);
 
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     SetMainCallback(NULL, NULL);
     Heap_Destroy(93);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay104));
@@ -873,7 +873,7 @@ static BOOL ov105_02242698 (UnkStruct_ov105_02241FF4 * param0)
     switch (param0->unk_08) {
     case 0:
 
-        if (sub_02006844(param0->unk_04) == 1) {
+        if (OverlayManager_Exec(param0->unk_04) == 1) {
             param0->unk_334 = param0->unk_140->pos;
             Heap_FreeToHeap(param0->unk_140);
             Heap_FreeToHeap(param0->unk_04);
@@ -984,7 +984,7 @@ static BOOL ov105_022426E0 (UnkStruct_ov105_02241FF4 * param0)
         if (ScreenWipe_Done() == 1) {
             ov105_02245464(param0);
             ov105_022451B4(param0);
-            param0->unk_04 = sub_020067E8(&Unk_020F410C, param0->unk_140, 93);
+            param0->unk_04 = OverlayManager_New(&Unk_020F410C, param0->unk_140, 93);
             param0->unk_13_1 = 1;
             return 1;
         }
@@ -1501,7 +1501,7 @@ static BOOL ov105_022434BC (UnkStruct_ov105_02241FF4 * param0)
         if (ScreenWipe_Done() == 1) {
             ov105_02245464(param0);
             ov105_022451B4(param0);
-            param0->unk_04 = sub_020067E8(&Unk_020F410C, param0->unk_140, 93);
+            param0->unk_04 = OverlayManager_New(&Unk_020F410C, param0->unk_140, 93);
             param0->unk_13_1 = 1;
             return 1;
         }

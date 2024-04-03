@@ -66,7 +66,7 @@ int ov82_0223B330 (UnkStruct_ov83_0223C344 * param0, int * param1)
         FS_OVERLAY_ID(overlay83)
     };
 
-    param0->unk_1C = sub_020067E8(&v0, param0, param0->unk_00);
+    param0->unk_1C = OverlayManager_New(&v0, param0, param0->unk_00);
     return 2;
 }
 
@@ -112,7 +112,7 @@ static int ov82_0223B380 (UnkStruct_ov83_0223C344 * param0)
 
     sub_0207CB2C(v0, param0->unk_10->unk_0C, v1, param0->unk_0C);
 
-    param0->unk_1C = sub_020067E8(&Unk_ov84_02241130, v0, param0->unk_00);
+    param0->unk_1C = OverlayManager_New(&Unk_ov84_02241130, v0, param0->unk_00);
     param0->unk_18 = v0;
 
     return 1;
@@ -187,7 +187,7 @@ static int ov82_0223B470 (UnkStruct_ov83_0223C344 * param0)
     sub_0207D9B4(param0->unk_0C, 4, &v2, &v1);
     sub_0209733C(param0->unk_18, v1, v2, v3 + 2);
 
-    param0->unk_1C = sub_020067E8(&v6, param0->unk_18, param0->unk_00);
+    param0->unk_1C = OverlayManager_New(&v6, param0->unk_18, param0->unk_00);
     return 3;
 }
 

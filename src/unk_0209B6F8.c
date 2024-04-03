@@ -71,13 +71,13 @@ int sub_0209B6F8 (OverlayManager * param0, int * param1)
 
     sub_0209B924();
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_0209B75C), 11);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_0209B75C), 11);
     MI_CpuClear8(v0, sizeof(UnkStruct_0209B75C));
 
     sub_0209B8E8(v0);
     sub_0209B9EC(v0);
 
-    v0->unk_00 = sub_02006840(param0);
+    v0->unk_00 = OverlayManager_Args(param0);
     GF_ASSERT(v0->unk_00 != NULL);
 
     v0->unk_14 = ov104_0222E63C(v0, 11, v0->unk_00->unk_24);
@@ -90,7 +90,7 @@ int sub_0209B6F8 (OverlayManager * param0, int * param1)
 
 int sub_0209B75C (OverlayManager * param0, int * param1)
 {
-    UnkStruct_0209B75C * v0 = sub_0200682C(param0);
+    UnkStruct_0209B75C * v0 = OverlayManager_Data(param0);
     int v1;
 
     switch (*param1) {
@@ -131,8 +131,8 @@ int sub_0209B75C (OverlayManager * param0, int * param1)
         *param1 = 4;
         break;
     case 4:
-        if (sub_02006844(v0->unk_04) == 1) {
-            sub_02006814(v0->unk_04);
+        if (OverlayManager_Exec(v0->unk_04) == 1) {
+            OverlayManager_Free(v0->unk_04);
             sub_0209B924();
 
             if (v0->unk_0C != NULL) {
@@ -183,12 +183,12 @@ int sub_0209B75C (OverlayManager * param0, int * param1)
 
 int sub_0209B8A4 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_0209B75C * v0 = sub_0200682C(param0);
+    UnkStruct_0209B75C * v0 = OverlayManager_Data(param0);
 
     ov104_0222E710(v0->unk_14);
 
     sub_0209B8D8(v0);
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     sub_0209B94C();
 
     return 1;
@@ -258,7 +258,7 @@ void sub_0209B980 (UnkStruct_0209B75C * param0, void * param1)
 void sub_0209B988 (UnkStruct_0209B75C * param0, const OverlayManagerTemplate * param1, void * param2, int param3, UnkFuncPtr_0209B988 param4)
 {
     GF_ASSERT(param0->unk_04 == NULL);
-    param0->unk_04 = sub_020067E8(param1, param2, 11);
+    param0->unk_04 = OverlayManager_New(param1, param2, 11);
     param0->unk_08 = param2;
     param0->unk_10 = param3;
     param0->unk_0C = param4;

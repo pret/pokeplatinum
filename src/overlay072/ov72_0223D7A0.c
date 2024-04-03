@@ -133,7 +133,7 @@ int ov72_0223D7A0 (OverlayManager * param0, int * param1)
 
         Heap_Create(3, 39, 0x40000);
 
-        v0 = sub_0200681C(param0, sizeof(UnkStruct_ov72_0223DB98), 39);
+        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov72_0223DB98), 39);
         memset(v0, 0, sizeof(UnkStruct_ov72_0223DB98));
         v0->unk_00 = sub_02018340(39);
         v1 = NARC_ctor(NARC_INDEX_GRAPHIC__MYSIGN, 39);
@@ -146,11 +146,11 @@ int ov72_0223D7A0 (OverlayManager * param0, int * param1)
         sub_0200F174(0, 1, 1, 0x0, 16, 1, 39);
 
         {
-            SaveData * v2 = (SaveData *)sub_02006840(param0);
+            SaveData * v2 = (SaveData *)OverlayManager_Args(param0);
 
             v0->unk_5BFC = (u8 *)sub_0202C840(sub_0202C834(v2));
-            v0->unk_08 = (UnkStruct_0202CD88 *)sub_0202CD88((SaveData *)sub_02006840(param0));
-            v0->unk_0C = (Options *)sub_02025E44((SaveData *)sub_02006840(param0));
+            v0->unk_08 = (UnkStruct_0202CD88 *)sub_0202CD88((SaveData *)OverlayManager_Args(param0));
+            v0->unk_0C = (Options *)sub_02025E44((SaveData *)OverlayManager_Args(param0));
         }
 
         ov72_0223DCA8(v0, v1);
@@ -172,7 +172,7 @@ int ov72_0223D7A0 (OverlayManager * param0, int * param1)
         (*param1)++;
         break;
     case 1:
-        v0 = sub_0200682C(param0);
+        v0 = OverlayManager_Data(param0);
         (*param1) = 0;
         return 1;
         break;
@@ -183,7 +183,7 @@ int ov72_0223D7A0 (OverlayManager * param0, int * param1)
 
 int ov72_0223D920 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov72_0223DB98 * v0 = sub_0200682C(param0);
+    UnkStruct_ov72_0223DB98 * v0 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:
@@ -213,7 +213,7 @@ int ov72_0223D920 (OverlayManager * param0, int * param1)
 
 int ov72_0223D984 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov72_0223DB98 * v0 = sub_0200682C(param0);
+    UnkStruct_ov72_0223DB98 * v0 = OverlayManager_Data(param0);
     int v1;
 
     ov72_0223E9B4(v0->unk_5BFC, v0->unk_328.unk_0C);
@@ -240,7 +240,7 @@ int ov72_0223D984 (OverlayManager * param0, int * param1)
     MessageLoader_Free(v0->unk_14);
     sub_0200B3F0(v0->unk_10);
     ov72_0223DC34(v0);
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
 
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 

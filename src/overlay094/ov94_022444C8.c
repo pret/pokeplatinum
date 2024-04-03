@@ -73,7 +73,7 @@ int ov94_022444C8 (UnkStruct_ov94_0223FD4C * param0, int param1)
     }
 
     param0->unk_E8.unk_14 = param0->unk_00->unk_24;
-    param0->unk_B4 = sub_020067E8(&Unk_ov94_0224636C, &param0->unk_E8, 62);
+    param0->unk_B4 = OverlayManager_New(&Unk_ov94_0224636C, &param0->unk_E8, 62);
     param0->unk_104 = 1;
 
     return 2;
@@ -85,8 +85,8 @@ int ov94_02244678 (UnkStruct_ov94_0223FD4C * param0, int param1)
 
     switch (param0->unk_2C) {
     case 0:
-        if (sub_02006844(param0->unk_B4)) {
-            sub_02006814(param0->unk_B4);
+        if (OverlayManager_Exec(param0->unk_B4)) {
+            OverlayManager_Free(param0->unk_B4);
 
             if (param0->unk_24 == 9) {
                 Pokemon * v1 = ov94_022448AC(param0, param0->unk_24);

@@ -95,7 +95,7 @@ void * ov97_022376C4 (OverlayManager * param0, int param1, int param2, int param
     void * v0;
 
     Heap_Create(3, param1, param3);
-    v0 = sub_0200681C(param0, param2, param1);
+    v0 = OverlayManager_NewData(param0, param2, param1);
 
     memset(v0, 0, param2);
 

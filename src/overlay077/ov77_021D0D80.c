@@ -193,7 +193,7 @@ static int ov77_021D0D80 (OverlayManager * param0, int * param1)
     SetAutorepeat(4, 8);
     Heap_Create(3, v1, 0x40000);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov77_021D17B4), v1);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov77_021D17B4), v1);
     memset(v0, 0, sizeof(UnkStruct_ov77_021D17B4));
 
     v0->unk_00 = v1;
@@ -212,7 +212,7 @@ static int ov77_021D0D80 (OverlayManager * param0, int * param1)
 
 static int ov77_021D0E3C (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov77_021D17B4 * v0 = sub_0200682C(param0);
+    UnkStruct_ov77_021D17B4 * v0 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:
@@ -329,7 +329,7 @@ static int ov77_021D0E3C (OverlayManager * param0, int * param1)
 
 static int ov77_021D10FC (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov77_021D17B4 * v0 = sub_0200682C(param0);
+    UnkStruct_ov77_021D17B4 * v0 = OverlayManager_Data(param0);
     int v1 = v0->unk_00;
     int v2 = v0->unk_4E8;
 
@@ -338,7 +338,7 @@ static int ov77_021D10FC (OverlayManager * param0, int * param1)
     ov77_021D11FC(v0);
     ov77_021D1908(v0);
 
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(v1);
 
     switch (v2) {

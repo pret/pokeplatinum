@@ -80,7 +80,7 @@ int ov96_0223B6A0 (OverlayManager * param0, int * param1)
 
         Heap_Create(3, 68, 0x50000);
 
-        v0 = sub_0200681C(param0, sizeof(UnkStruct_ov96_0223BF40), 68);
+        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov96_0223BF40), 68);
         memset(v0, 0, sizeof(UnkStruct_ov96_0223BF40));
         v0->unk_04 = sub_02018340(68);
         Unk_ov96_0223DEEC = v0;
@@ -124,7 +124,7 @@ int ov96_0223B6A0 (OverlayManager * param0, int * param1)
 
 int ov96_0223B7F8 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov96_0223BF40 * v0 = sub_0200682C(param0);
+    UnkStruct_ov96_0223BF40 * v0 = OverlayManager_Data(param0);
     int v1;
 
     DWC_UpdateConnection();
@@ -169,7 +169,7 @@ int ov96_0223B7F8 (OverlayManager * param0, int * param1)
 
 int ov96_0223B8CC (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov96_0223BF40 * v0 = sub_0200682C(param0);
+    UnkStruct_ov96_0223BF40 * v0 = OverlayManager_Data(param0);
     int v1;
 
     Heap_FreeToHeap(v0->unk_24);
@@ -187,7 +187,7 @@ int ov96_0223B8CC (OverlayManager * param0, int * param1)
 
     sub_020334CC();
     Heap_FreeToHeap(v0->unk_04);
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     SetMainCallback(NULL, NULL);
     Heap_Destroy(68);
 
@@ -226,7 +226,7 @@ static void ov96_0223B960 (void)
 
 static void ov96_0223B980 (UnkStruct_ov96_0223BF40 * param0, OverlayManager * param1)
 {
-    param0->unk_00 = (UnkStruct_0206BC70 *)sub_02006840(param1);
+    param0->unk_00 = (UnkStruct_0206BC70 *)OverlayManager_Args(param1);
     param0->unk_10 = 0;
 
     ov96_0223BC5C(param0, 0, 0);

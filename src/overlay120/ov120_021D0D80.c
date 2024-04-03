@@ -48,7 +48,7 @@ int ov120_021D0D80 (OverlayManager * param0, int * param1)
 
     Heap_Create(3, v1, 0x40000);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov120_021D0F24), v1);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov120_021D0F24), v1);
     memset(v0, 0, sizeof(UnkStruct_ov120_021D0F24));
 
     v0->unk_00 = v1;
@@ -59,7 +59,7 @@ int ov120_021D0D80 (OverlayManager * param0, int * param1)
 
 int ov120_021D0DB0 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov120_021D0F24 * v0 = sub_0200682C(param0);
+    UnkStruct_ov120_021D0F24 * v0 = OverlayManager_Data(param0);
     int v1 = 0;
 
     switch (*param1) {
@@ -140,10 +140,10 @@ int ov120_021D0DB0 (OverlayManager * param0, int * param1)
 
 int ov120_021D0EFC (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov120_021D0F24 * v0 = sub_0200682C(param0);
+    UnkStruct_ov120_021D0F24 * v0 = OverlayManager_Data(param0);
     int v1 = v0->unk_00;
 
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(v1);
 
     return 1;

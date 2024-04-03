@@ -59,7 +59,7 @@ static FieldSystem * Unk_021C07DC;
 
 static int sub_0203CC84 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_0203CC84 * v0 = sub_02006840(param0);
+    UnkStruct_0203CC84 * v0 = OverlayManager_Args(param0);
 
     Unk_021C07DC = sub_0203CDB0(param0);
 
@@ -82,7 +82,7 @@ static int sub_0203CCB4 (OverlayManager * param0, int * param1)
 
 static int sub_0203CCCC (OverlayManager * param0, int * param1)
 {
-    FieldSystem * v0 = sub_0200682C(param0);
+    FieldSystem * v0 = OverlayManager_Data(param0);
 
     if (sub_0203CEEC(v0)) {
         return 1;
@@ -120,7 +120,7 @@ void sub_0203CD00 (FieldSystem * param0)
 
     param0->unk_68 = 0;
     param0->unk_00->unk_08 = 0;
-    param0->unk_00->unk_00 = sub_020067E8(&Unk_ov5_021F89B0, param0, 11);
+    param0->unk_00->unk_00 = OverlayManager_New(&Unk_ov5_021F89B0, param0, 11);
 }
 
 void sub_0203CD44 (FieldSystem * param0)
@@ -151,7 +151,7 @@ void sub_0203CD84 (FieldSystem * param0, const OverlayManagerTemplate * param1, 
 {
     GF_ASSERT(param0->unk_00->unk_04 == NULL);
     sub_0203CD44(param0);
-    param0->unk_00->unk_04 = sub_020067E8(param1, param2, 11);
+    param0->unk_00->unk_04 = OverlayManager_New(param1, param2, 11);
 }
 
 static FieldSystem * sub_0203CDB0 (OverlayManager * param0)
@@ -163,7 +163,7 @@ static FieldSystem * sub_0203CDB0 (OverlayManager * param0)
     Heap_Create(3, 32, 0x4000);
     Heap_Create(0, 91, 0x300);
 
-    v1 = sub_0200681C(param0, sizeof(FieldSystem), 11);
+    v1 = OverlayManager_NewData(param0, sizeof(FieldSystem), 11);
     MI_CpuClear8(v1, sizeof(FieldSystem));
 
     v1->unk_00 = Heap_AllocFromHeap(11, sizeof(FieldSystem_sub1));
@@ -172,7 +172,7 @@ static FieldSystem * sub_0203CDB0 (OverlayManager * param0)
     v1->unk_00->unk_08 = 0;
     v1->unk_00->unk_0C = 0;
 
-    v0 = sub_02006840(param0);
+    v0 = OverlayManager_Args(param0);
 
     v1->unk_0C = v0->unk_08;
     v1->unk_10 = NULL;
@@ -194,7 +194,7 @@ static FieldSystem * sub_0203CDB0 (OverlayManager * param0)
 
 static void sub_0203CE6C (OverlayManager * param0)
 {
-    FieldSystem * v0 = sub_0200682C(param0);
+    FieldSystem * v0 = OverlayManager_Data(param0);
 
     sub_02039DE4(v0->unk_2C);
     sub_0203A398(v0);
@@ -204,7 +204,7 @@ static void sub_0203CE6C (OverlayManager * param0)
     sub_0209C388(v0->unk_BC);
 
     Heap_FreeToHeap(v0->unk_00);
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(91);
     Heap_Destroy(11);
     Heap_Destroy(32);
@@ -213,8 +213,8 @@ static void sub_0203CE6C (OverlayManager * param0)
 static void sub_0203CECC (OverlayManager ** param0)
 {
     if (*param0) {
-        if (sub_02006844(*param0)) {
-            sub_02006814(*param0);
+        if (OverlayManager_Exec(*param0)) {
+            OverlayManager_Free(*param0);
             *param0 = NULL;
         }
     }

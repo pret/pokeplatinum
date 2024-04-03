@@ -904,7 +904,7 @@ static int sub_0208694C (OverlayManager * param0, int * param1)
 
         Heap_Create(3, 18, 0x20000 + 0x8000);
 
-        v0 = sub_0200681C(param0, sizeof(UnkStruct_02087A10), 18);
+        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02087A10), 18);
         memset(v0, 0, sizeof(UnkStruct_02087A10));
         v0->unk_160 = sub_02018340(18);
         v1 = NARC_ctor(NARC_INDEX_DATA__NAMEIN, 18);
@@ -917,7 +917,7 @@ static int sub_0208694C (OverlayManager * param0, int * param1)
         SetAutorepeat(4, 8);
         sub_020871CC();
         sub_020871EC(v0->unk_160);
-        sub_020871B0(v0, (UnkStruct_0208737C *)sub_02006840(param0));
+        sub_020871B0(v0, (UnkStruct_0208737C *)OverlayManager_Args(param0));
         sub_0208769C(v0, v1);
         sub_02002BB8(2, 18);
         SetMainCallback(sub_02087190, NULL);
@@ -941,7 +941,7 @@ static int sub_0208694C (OverlayManager * param0, int * param1)
         (*param1)++;
         break;
     case 1:
-        v0 = sub_0200682C(param0);
+        v0 = OverlayManager_Data(param0);
 
         if (v0->unk_00 == 1) {
             sub_02086B30(v0->unk_51C, v0->unk_524, v0->unk_04, v0->unk_08);
@@ -969,7 +969,7 @@ static void sub_02086B30 (NNSG2dCharacterData * param0, NNSG2dPaletteData * para
 
 static int sub_02086B64 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_02087A10 * v0 = sub_0200682C(param0);
+    UnkStruct_02087A10 * v0 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:
@@ -1129,8 +1129,8 @@ static int sub_02086F14 (u16 * param0)
 
 static int sub_02086F3C (OverlayManager * param0, int * param1)
 {
-    UnkStruct_02087A10 * v0 = sub_0200682C(param0);
-    UnkStruct_0208737C * v1 = (UnkStruct_0208737C *)sub_02006840(param0);
+    UnkStruct_02087A10 * v0 = OverlayManager_Data(param0);
+    UnkStruct_0208737C * v1 = (UnkStruct_0208737C *)OverlayManager_Args(param0);
     int v2;
 
     v0->unk_D8[v0->unk_158] = 0xffff;
@@ -1196,7 +1196,7 @@ static int sub_02086F3C (OverlayManager * param0, int * param1)
     MessageLoader_Free(v0->unk_170);
     MessageLoader_Free(v0->unk_16C);
     sub_0200B3F0(v0->unk_168);
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     SetMainCallback(NULL, NULL);
     Heap_Destroy(18);
 
@@ -1396,7 +1396,7 @@ static void sub_0208732C (int param0)
 
 static void sub_0208737C (UnkStruct_02087A10 * param0, OverlayManager * param1)
 {
-    UnkStruct_0208737C * v0 = (UnkStruct_0208737C *)sub_02006840(param1);
+    UnkStruct_0208737C * v0 = (UnkStruct_0208737C *)OverlayManager_Args(param1);
 
     param0->unk_4C0 = 4;
 
@@ -1463,7 +1463,7 @@ static void sub_0208737C (UnkStruct_02087A10 * param0, OverlayManager * param1)
 static void sub_02087544 (UnkStruct_02087A10 * param0, OverlayManager * param1)
 {
     Strbuf* v0 = NULL;
-    UnkStruct_0208737C * v1 = (UnkStruct_0208737C *)sub_02006840(param1);
+    UnkStruct_0208737C * v1 = (UnkStruct_0208737C *)OverlayManager_Args(param1);
 
     if (v1->unk_44 != 0) {
         int v2, v3;
@@ -1879,7 +1879,7 @@ static void sub_02087FC0 (UnkStruct_02087A10 * param0, OverlayManager * param1, 
     sub_02087F48(&param0->unk_41C[9], param0->unk_00, param0->unk_178);
 
     {
-        UnkStruct_0208737C * v1 = (UnkStruct_0208737C *)sub_02006840(param1);
+        UnkStruct_0208737C * v1 = (UnkStruct_0208737C *)OverlayManager_Args(param1);
 
         if (param0->unk_118[0] != 0xffff) {
             GF_strcpy(param0->unk_D8, param0->unk_118);

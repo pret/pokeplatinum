@@ -948,7 +948,7 @@ static int ov77_021D2D08 (OverlayManager * param0, int * param1)
     SetAutorepeat(4, 8);
     Heap_Create(3, v1, 0xa0000);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov77_021D2E9C), v1);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov77_021D2E9C), v1);
     memset(v0, 0, sizeof(UnkStruct_ov77_021D2E9C));
 
     v0->unk_00 = v1;
@@ -966,7 +966,7 @@ static int ov77_021D2D08 (OverlayManager * param0, int * param1)
 
 static int ov77_021D2D94 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov77_021D2E9C * v0 = sub_0200682C(param0);
+    UnkStruct_ov77_021D2E9C * v0 = OverlayManager_Data(param0);
 
     if ((v0->unk_2A8) && ((gCoreSys.pressedKeys & PAD_BUTTON_A) || (gCoreSys.pressedKeys & PAD_BUTTON_START))) {
         v0->unk_08 = 1;
@@ -1015,14 +1015,14 @@ static int ov77_021D2D94 (OverlayManager * param0, int * param1)
 
 static int ov77_021D2E60 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov77_021D2E9C * v0 = sub_0200682C(param0);
+    UnkStruct_ov77_021D2E9C * v0 = OverlayManager_Data(param0);
 
     if (ScreenWipe_Done() == 0) {
         sub_0200F2C0();
     }
 
     LCRNG_SetSeed(v0->unk_14);
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(76);
     sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
 

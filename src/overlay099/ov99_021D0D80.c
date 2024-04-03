@@ -108,10 +108,10 @@ int ov99_021D0D80 (OverlayManager * param0, int * param1)
 
     Heap_Create(3, 75, 0x80000);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov99_021D2CB0), 75);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov99_021D2CB0), 75);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov99_021D2CB0));
 
-    v0->unk_00 = sub_02006840(param0);
+    v0->unk_00 = OverlayManager_Args(param0);
     v0->unk_10 = ov99_021D19AC(75);
     v0->unk_0C = sub_02002F38(75);
 
@@ -186,7 +186,7 @@ int ov99_021D0D80 (OverlayManager * param0, int * param1)
 
 int ov99_021D1028 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov99_021D2CB0 * v0 = sub_0200682C(param0);
+    UnkStruct_ov99_021D2CB0 * v0 = OverlayManager_Data(param0);
 
     if (v0->unk_1108 != NULL) {
         ov99_021D3F6C(v0->unk_1108, 1);
@@ -261,7 +261,7 @@ int ov99_021D1028 (OverlayManager * param0, int * param1)
 
 int ov99_021D11A8 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov99_021D2CB0 * v0 = sub_0200682C(param0);
+    UnkStruct_ov99_021D2CB0 * v0 = OverlayManager_Data(param0);
 
     SysTask_Done(v0->unk_14);
 
@@ -287,7 +287,7 @@ int ov99_021D11A8 (OverlayManager * param0, int * param1)
     DisableHBlank();
     sub_0201DC3C();
     sub_0201E530();
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(75);
 
     return 1;

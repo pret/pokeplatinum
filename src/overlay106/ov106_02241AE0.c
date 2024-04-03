@@ -205,13 +205,13 @@ int ov106_02241AE0 (OverlayManager * param0, int * param1)
     ov106_022424C8();
     Heap_Create(3, 98, 0x20000);
 
-    v1 = sub_0200681C(param0, sizeof(UnkStruct_ov106_02243118), 98);
+    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov106_02243118), 98);
     memset(v1, 0, sizeof(UnkStruct_ov106_02243118));
 
     v1->unk_48 = sub_02018340(98);
     v1->unk_00 = param0;
 
-    v2 = (UnkStruct_ov104_02235208 *)sub_02006840(param0);
+    v2 = (UnkStruct_ov104_02235208 *)OverlayManager_Args(param0);
 
     v1->unk_B8 = v2->unk_00;
     v1->unk_09 = v2->unk_04;
@@ -239,7 +239,7 @@ int ov106_02241AE0 (OverlayManager * param0, int * param1)
 
 int ov106_02241B9C (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov106_02243118 * v0 = sub_0200682C(param0);
+    UnkStruct_ov106_02243118 * v0 = OverlayManager_Data(param0);
 
     if (v0->unk_18 != 0xff) {
         switch (*param1) {
@@ -320,13 +320,13 @@ int ov106_02241B9C (OverlayManager * param0, int * param1)
 int ov106_02241CF0 (OverlayManager * param0, int * param1)
 {
     int v0;
-    UnkStruct_ov106_02243118 * v1 = sub_0200682C(param0);
+    UnkStruct_ov106_02243118 * v1 = OverlayManager_Data(param0);
 
     *(v1->unk_28C) = v1->unk_0D;
 
     ov106_022423E8(v1);
 
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     SetMainCallback(NULL, NULL);
     Heap_Destroy(98);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay104));
@@ -391,7 +391,7 @@ static BOOL ov106_02241E14 (UnkStruct_ov106_02243118 * param0)
     switch (param0->unk_08) {
     case 0:
 
-        if (sub_02006844(param0->unk_04) == 1) {
+        if (OverlayManager_Exec(param0->unk_04) == 1) {
             param0->unk_288 = param0->unk_BC->pos;
             Heap_FreeToHeap(param0->unk_BC);
             Heap_FreeToHeap(param0->unk_04);
@@ -527,7 +527,7 @@ static BOOL ov106_02241E5C (UnkStruct_ov106_02243118 * param0)
         if (ScreenWipe_Done() == 1) {
             ov106_02242CA4(param0);
             ov106_022423E8(param0);
-            param0->unk_04 = sub_020067E8(&Unk_020F410C, param0->unk_BC, 98);
+            param0->unk_04 = OverlayManager_New(&Unk_020F410C, param0->unk_BC, 98);
             param0->unk_0B = 1;
             return 1;
         }

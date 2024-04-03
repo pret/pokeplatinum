@@ -185,12 +185,12 @@ int ov59_021D0D80 (OverlayManager * param0, int * param1)
         Heap_Create(3, 51, 0x41000);
 
         v1 = NARC_ctor(NARC_INDEX_GRAPHIC__RECORD, 51);
-        v0 = sub_0200681C(param0, sizeof(UnkStruct_020961E8), 51);
+        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_020961E8), 51);
 
         memset(v0, 0, sizeof(UnkStruct_020961E8));
 
         v0->unk_00 = sub_02018340(51);
-        v0->unk_08 = (UnkStruct_0203DE34 *)sub_02006840(param0);
+        v0->unk_08 = (UnkStruct_0203DE34 *)OverlayManager_Args(param0);
         v0->unk_4A9C = v0->unk_08->unk_00;
         v0->unk_24 = sub_0200B358(51);
         v0->unk_28 = MessageLoader_Init(0, 26, 533, 51);
@@ -231,7 +231,7 @@ int ov59_021D0D80 (OverlayManager * param0, int * param1)
         (*param1)++;
         break;
     case 1:
-        v0 = sub_0200682C(param0);
+        v0 = OverlayManager_Data(param0);
         (*param1) = 0;
         return 1;
         break;
@@ -242,7 +242,7 @@ int ov59_021D0D80 (OverlayManager * param0, int * param1)
 
 int ov59_021D0F00 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_020961E8 * v0 = sub_0200682C(param0);
+    UnkStruct_020961E8 * v0 = OverlayManager_Data(param0);
 
     if ((CommSys_CurNetId() == 0) && (v0->unk_4AB4 != 0)) {
         v0->unk_4AB4 &= sub_020318EC();
@@ -298,7 +298,7 @@ int ov59_021D0F00 (OverlayManager * param0, int * param1)
 
 int ov59_021D0FF4 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_020961E8 * v0 = sub_0200682C(param0);
+    UnkStruct_020961E8 * v0 = OverlayManager_Data(param0);
     int v1;
 
     SysTask_Done(v0->unk_20);
@@ -324,7 +324,7 @@ int ov59_021D0FF4 (OverlayManager * param0, int * param1)
     sub_0200B3F0(v0->unk_24);
 
     ov59_021D131C(v0);
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
 
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 

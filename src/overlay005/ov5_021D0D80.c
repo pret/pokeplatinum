@@ -157,7 +157,7 @@ static int ov5_021D0DA4 (OverlayManager * param0, int * param1)
     FieldSystem * v1;
     int v2 = 0;
 
-    v1 = sub_02006840(param0);
+    v1 = OverlayManager_Args(param0);
 
     switch (*param1) {
     case 0:
@@ -252,7 +252,7 @@ static int ov5_021D0F68 (OverlayManager * param0, int * param1)
 {
     FieldSystem * v0;
 
-    v0 = sub_02006840(param0);
+    v0 = OverlayManager_Args(param0);
 
     if (ov5_021D119C(v0)) {
         sub_02055D94(v0);
@@ -277,7 +277,7 @@ static int ov5_021D0FB4 (OverlayManager * param0, int * param1)
 {
     FieldSystem * v0;
 
-    v0 = sub_02006840(param0);
+    v0 = OverlayManager_Args(param0);
     ov5_021E8188(v0, v0->unk_28);
 
     switch (*param1) {

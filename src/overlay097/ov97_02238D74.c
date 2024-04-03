@@ -188,7 +188,7 @@ int ov97_02238EAC (OverlayManager * param0, int * param1)
 {
     int v0;
     DWCNasLoginState v1;
-    UnkStruct_ov97_0222D04C * v2 = sub_0200682C(param0);
+    UnkStruct_ov97_0222D04C * v2 = OverlayManager_Data(param0);
 
     if (v2->unk_26DC) {
         if (v2->unk_26DC() == 1) {

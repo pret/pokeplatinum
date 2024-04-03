@@ -5,7 +5,7 @@
 #include "overlay_manager.h"
 #include "heap.h"
 
-OverlayManager * sub_020067E8 (const OverlayManagerTemplate * param0, void * param1, const int param2)
+OverlayManager * OverlayManager_New (const OverlayManagerTemplate * param0, void * param1, const enum HeapId param2)
 {
     OverlayManager * v0;
 
@@ -22,34 +22,34 @@ OverlayManager * sub_020067E8 (const OverlayManagerTemplate * param0, void * par
     return v0;
 }
 
-void sub_02006814 (OverlayManager * param0)
+void OverlayManager_Free (OverlayManager * param0)
 {
     Heap_FreeToHeap(param0);
 }
 
-void * sub_0200681C (OverlayManager * param0, int param1, int param2)
+void * OverlayManager_NewData (OverlayManager * param0, u32 param1, enum HeapId param2)
 {
     param0->data = Heap_AllocFromHeap(param2, param1);
     return param0->data;
 }
 
-void * sub_0200682C (OverlayManager * param0)
+void * OverlayManager_Data (OverlayManager * param0)
 {
     return param0->data;
 }
 
-void sub_02006830 (OverlayManager * param0)
+void OverlayManager_FreeData (OverlayManager * param0)
 {
     Heap_FreeToHeap(param0->data);
     param0->data = NULL;
 }
 
-void * sub_02006840 (OverlayManager * param0)
+void * OverlayManager_Args (OverlayManager * param0)
 {
     return param0->args;
 }
 
-BOOL sub_02006844 (OverlayManager * param0)
+BOOL OverlayManager_Exec (OverlayManager * param0)
 {
     int v0;
 

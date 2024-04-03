@@ -304,7 +304,7 @@ int ov88_0223B140 (OverlayManager * param0, int * param1)
     Heap_Create(3, 26, 0x50000 + 0x20000 + 2000);
 
     v1 = NARC_ctor(NARC_INDEX_DATA__TRADELIST, 26);
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_02095E80), 26);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02095E80), 26);
 
     MI_CpuClearFast(v0, sizeof(UnkStruct_02095E80));
 
@@ -429,7 +429,7 @@ static void ov88_0223B4F0 (UnkStruct_02095E80 * param0)
 
 int ov88_0223B57C (OverlayManager * param0, int * param1)
 {
-    UnkStruct_02095E80 * v0 = sub_0200682C(param0);
+    UnkStruct_02095E80 * v0 = OverlayManager_Data(param0);
     int v1 = 0;
 
     switch (*param1) {
@@ -470,8 +470,8 @@ int ov88_0223B57C (OverlayManager * param0, int * param1)
             }
             break;
         case 5:
-            if (sub_02006844(v0->unk_40)) {
-                sub_02006814(v0->unk_40);
+            if (OverlayManager_Exec(v0->unk_40)) {
+                OverlayManager_Free(v0->unk_40);
                 ov88_0223B3C0(v0);
 
                 v0->unk_44 = 0;
@@ -885,8 +885,8 @@ static void ov88_0223BFD8 (UnkStruct_02095E80 * param0)
 
 int ov88_0223C03C (OverlayManager * param0, int * param1)
 {
-    UnkStruct_02095E80 * v0 = sub_0200682C(param0);
-    UnkStruct_ov88_0223C370 * v1 = sub_02006840(param0);
+    UnkStruct_02095E80 * v0 = OverlayManager_Data(param0);
+    UnkStruct_ov88_0223C370 * v1 = OverlayManager_Args(param0);
     int v2;
 
     v1->unk_28 = v0->unk_5C;
@@ -906,7 +906,7 @@ int ov88_0223C03C (OverlayManager * param0, int * param1)
     sub_0200B3F0(v0->unk_17C);
     sub_0200B3F0(v0->unk_178);
     Strbuf_Free(v0->unk_18C);
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     SetMainCallback(NULL, NULL);
     Heap_Destroy(26);
 
@@ -1137,7 +1137,7 @@ static void ov88_0223C17C (BGL * param0)
 
 static void ov88_0223C370 (UnkStruct_02095E80 * param0, OverlayManager * param1)
 {
-    UnkStruct_ov88_0223C370 * v0 = sub_02006840(param1);
+    UnkStruct_ov88_0223C370 * v0 = OverlayManager_Args(param1);
 
     param0->unk_08 = v0;
     param0->unk_6CC = 4;
@@ -1767,7 +1767,7 @@ static void ov88_0223D1EC (UnkStruct_02095E80 * param0, int param1)
 
     PokemonSummary_FlagVisiblePages(&param0->unk_0C, Unk_ov88_0223F13C);
 
-    param0->unk_40 = sub_020067E8(&Unk_020F410C, &param0->unk_0C, 26);
+    param0->unk_40 = OverlayManager_New(&Unk_020F410C, &param0->unk_0C, 26);
     param0->unk_3C = param1;
 }
 

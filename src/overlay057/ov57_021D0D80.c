@@ -77,7 +77,7 @@ static int ov57_021D0D80 (OverlayManager * param0, int * param1)
 
 static int ov57_021D0D98 (OverlayManager * param0, int * param1)
 {
-    SaveData * v0 = ((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08;
+    SaveData * v0 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
 
     ov57_021D0F44(77, v0);
     return 1;
@@ -101,7 +101,7 @@ static int ov57_021D0DC8 (OverlayManager * param0, int * param1)
 
 static int ov57_021D0DE0 (OverlayManager * param0, int * param1)
 {
-    SaveData * v0 = ((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08;
+    SaveData * v0 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
 
     ov57_021D0EAC(77, v0, 1);
     sub_02017434(sub_02025E5C(v0));
@@ -126,7 +126,7 @@ static int ov57_021D0E1C (OverlayManager * param0, int * param1)
 
 static int ov57_021D0E34 (OverlayManager * param0, int * param1)
 {
-    SaveData * v0 = ((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08;
+    SaveData * v0 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
     UnkStruct_02025CCC * v1 = sub_02025CCC(v0);
 
     ov57_021D0F30(77, v0);

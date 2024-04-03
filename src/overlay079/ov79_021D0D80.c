@@ -80,11 +80,11 @@ static const UnkFuncPtr_ov79_021D394C Unk_ov79_021D394C[] = {
 int ov79_021D0D80 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov79_021D0E1C * v0 = NULL;
-    UnkStruct_0203D9B8 * v1 = sub_02006840(param0);
+    UnkStruct_0203D9B8 * v1 = OverlayManager_Args(param0);
 
     Heap_Create(3, 45, 0x20000);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov79_021D0E1C), 45);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov79_021D0E1C), 45);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov79_021D0E1C));
 
     v0->unk_00 = 45;
@@ -97,7 +97,7 @@ int ov79_021D0D80 (OverlayManager * param0, int * param1)
 
 int ov79_021D0DC4 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov79_021D0E1C * v0 = (UnkStruct_ov79_021D0E1C *)sub_0200682C(param0);
+    UnkStruct_ov79_021D0E1C * v0 = (UnkStruct_ov79_021D0E1C *)OverlayManager_Data(param0);
 
     if (ov79_021D0E1C(v0)) {
         return 1;
@@ -108,7 +108,7 @@ int ov79_021D0DC4 (OverlayManager * param0, int * param1)
 
 int ov79_021D0DDC (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov79_021D0E1C * v0 = (UnkStruct_ov79_021D0E1C *)sub_0200682C(param0);
+    UnkStruct_ov79_021D0E1C * v0 = (UnkStruct_ov79_021D0E1C *)OverlayManager_Data(param0);
 
     v0->unk_20->unk_01 = v0->unk_1A;
     v0->unk_20->unk_02 = v0->unk_10;
@@ -116,7 +116,7 @@ int ov79_021D0DDC (OverlayManager * param0, int * param1)
     v0->unk_20->unk_04 = v0->unk_80;
     v0->unk_20->unk_06 = v0->unk_82;
 
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(v0->unk_00);
 
     return 1;

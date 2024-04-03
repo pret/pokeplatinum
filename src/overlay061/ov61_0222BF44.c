@@ -166,9 +166,9 @@ int ov61_0222BF44 (OverlayManager * param0, int * param1)
 
     Heap_Create(3, 117, 0x50000);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov61_0222C664), 117);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov61_0222C664), 117);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov61_0222C664));
-    v0->unk_00 = sub_02006840(param0);
+    v0->unk_00 = OverlayManager_Args(param0);
     v0->unk_04 = sub_02018340(117);
 
     sub_0201DBEC(64, 117);
@@ -220,7 +220,7 @@ int ov61_0222BF44 (OverlayManager * param0, int * param1)
 
 int ov61_0222C0F8 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov61_0222C664 * v0 = sub_0200682C(param0);
+    UnkStruct_ov61_0222C664 * v0 = OverlayManager_Data(param0);
     int v1, v2;
 
     switch (*param1) {
@@ -256,7 +256,7 @@ int ov61_0222C0F8 (OverlayManager * param0, int * param1)
 
 int ov61_0222C160 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov61_0222C664 * v0 = sub_0200682C(param0);
+    UnkStruct_ov61_0222C664 * v0 = OverlayManager_Data(param0);
 
     inline_ov61_0222C160(&v0->unk_A4);
 
@@ -278,7 +278,7 @@ int ov61_0222C160 (OverlayManager * param0, int * param1)
     sub_02002AE4(0);
     sub_02002B20(0);
     sub_02039794();
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(117);
 
     return 1;

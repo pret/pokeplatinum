@@ -172,7 +172,7 @@ const UnkStruct_ov104_02241308 Unk_ov16_0226E2B0 = {
 
 BOOL ov16_0223B140 (OverlayManager * param0, int * param1)
 {
-    BattleParams * v0 = sub_02006840(param0);
+    BattleParams * v0 = OverlayManager_Args(param0);
 
     switch (*param1) {
     case 0:
@@ -527,8 +527,8 @@ static const int Unk_ov16_0226E44C[][3] = {
 
 static void ov16_0223B790 (OverlayManager * param0)
 {
-    BattleSystem * v0 = sub_0200682C(param0);
-    BattleParams * v1 = sub_02006840(param0);
+    BattleSystem * v0 = OverlayManager_Data(param0);
+    BattleParams * v1 = OverlayManager_Args(param0);
     ArchivedSprite v2;
     int v3;
     RTCDate v4;
@@ -667,7 +667,7 @@ static void ov16_0223B790 (OverlayManager * param0)
 
 static int ov16_0223BBD0 (OverlayManager * param0)
 {
-    BattleSystem * v0 = sub_0200682C(param0);
+    BattleSystem * v0 = OverlayManager_Data(param0);
     int v1;
 
     if ((v0->battleType & 0x4) && ((v0->battleStatusMask & 0x10) == 0)) {
@@ -707,8 +707,8 @@ static int ov16_0223BBD0 (OverlayManager * param0)
 
 static void ov16_0223BCB4 (OverlayManager * param0)
 {
-    BattleSystem * v0 = sub_0200682C(param0);
-    BattleParams * v1 = sub_02006840(param0);
+    BattleSystem * v0 = OverlayManager_Data(param0);
+    BattleParams * v1 = OverlayManager_Args(param0);
     int v2;
 
     v1->unk_174 = v0->unk_2448;
@@ -1653,7 +1653,7 @@ static void NitroStaticInit (void)
 
 static void ov16_0223D10C (OverlayManager * param0, BattleParams * param1)
 {
-    UnkStruct_0207A778 * v0 = sub_0200681C(param0, sizeof(UnkStruct_0207A778), 5);
+    UnkStruct_0207A778 * v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_0207A778), 5);
 
     v0->unk_00 = param1;
     v0->unk_1020 = 0;
@@ -1767,7 +1767,7 @@ static void ov16_0223D10C (OverlayManager * param0, BattleParams * param1)
 
 static BOOL ov16_0223D354 (OverlayManager * param0)
 {
-    UnkStruct_0207A778 * v0 = sub_0200682C(param0);
+    UnkStruct_0207A778 * v0 = OverlayManager_Data(param0);
     BOOL v1;
 
     sub_02038A1C(5, v0->unk_04);
@@ -1994,7 +1994,7 @@ static BOOL ov16_0223D354 (OverlayManager * param0)
 
 static void ov16_0223D7B4 (OverlayManager * param0)
 {
-    UnkStruct_0207A778 * v0 = sub_0200682C(param0);
+    UnkStruct_0207A778 * v0 = OverlayManager_Data(param0);
 
     SetMainCallback(NULL, NULL);
     sub_0200F344(0, 0x0);
@@ -2009,8 +2009,8 @@ static void ov16_0223D7B4 (OverlayManager * param0)
 
 static BOOL ov16_0223D800 (OverlayManager * param0)
 {
-    BattleSystem * v0 = sub_0200681C(param0, sizeof(BattleSystem), 5);
-    BattleParams * v1 = sub_02006840(param0);
+    BattleSystem * v0 = OverlayManager_NewData(param0, sizeof(BattleSystem), 5);
+    BattleParams * v1 = OverlayManager_Args(param0);
     u8 v2;
 
     MI_CpuClearFast(v0, sizeof(BattleSystem));
@@ -2066,7 +2066,7 @@ static BOOL ov16_0223D800 (OverlayManager * param0)
 static BOOL ov16_0223D944 (OverlayManager * param0)
 {
     int v0;
-    BattleSystem * v1 = sub_0200682C(param0);
+    BattleSystem * v1 = OverlayManager_Data(param0);
 
     if (v1->unk_1C0->unk_2B) {
         for (v0 = 0; v0 < 4; v0++) {
@@ -2084,8 +2084,8 @@ static BOOL ov16_0223D944 (OverlayManager * param0)
 
 static BOOL ov16_0223D98C (OverlayManager * param0)
 {
-    BattleSystem * v0 = sub_0200682C(param0);
-    BattleParams * v1 = sub_02006840(param0);
+    BattleSystem * v0 = OverlayManager_Data(param0);
+    BattleParams * v1 = OverlayManager_Args(param0);
     u8 v2;
     int v3;
 
@@ -2126,7 +2126,7 @@ static BOOL ov16_0223D98C (OverlayManager * param0)
 static BOOL ov16_0223DAD4 (OverlayManager * param0)
 {
     int v0;
-    BattleSystem * v1 = sub_0200682C(param0);
+    BattleSystem * v1 = OverlayManager_Data(param0);
 
     if (v1->unk_1C0->unk_2B) {
         for (v0 = 0; v0 < 4; v0++) {
@@ -2144,7 +2144,7 @@ static BOOL ov16_0223DAD4 (OverlayManager * param0)
 
 static BOOL ov16_0223DB1C (OverlayManager * param0)
 {
-    BattleParams * v0 = sub_02006840(param0);
+    BattleParams * v0 = OverlayManager_Args(param0);
     UnkStruct_ov10_0221F800 * v1;
     u8 v2;
     int v3;
@@ -2229,7 +2229,7 @@ static BOOL ov16_0223DB1C (OverlayManager * param0)
 static BOOL ov16_0223DD10 (OverlayManager * param0)
 {
     int v0;
-    BattleParams * v1 = sub_02006840(param0);
+    BattleParams * v1 = OverlayManager_Args(param0);
     UnkStruct_ov10_0221F800 * v2 = v1->unk_170;
 
     if (v2->unk_2B) {

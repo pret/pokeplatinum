@@ -700,10 +700,10 @@ int ov69_0225C700 (OverlayManager * param0, int * param1)
     UnkStruct_ov69_0225CE64 * v0;
     UnkStruct_ov66_02230F50 * v1;
 
-    v1 = sub_02006840(param0);
+    v1 = OverlayManager_Args(param0);
     Heap_Create(3, 105, 0x50000);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov69_0225CE64), 105);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov69_0225CE64), 105);
     memset(v0, 0, sizeof(UnkStruct_ov69_0225CE64));
 
     v0->unk_0C = sub_0202C878(v1->unk_04);
@@ -735,8 +735,8 @@ int ov69_0225C820 (OverlayManager * param0, int * param1)
     UnkStruct_ov66_02230F50 * v1;
     BOOL v2;
 
-    v0 = sub_0200682C(param0);
-    v1 = sub_02006840(param0);
+    v0 = OverlayManager_Data(param0);
+    v1 = OverlayManager_Args(param0);
 
     switch (*param1) {
     case 0:
@@ -791,8 +791,8 @@ int ov69_0225C8FC (OverlayManager * param0, int * param1)
     UnkStruct_ov69_0225CE64 * v0;
     UnkStruct_ov66_02230F50 * v1;
 
-    v0 = sub_0200682C(param0);
-    v1 = sub_02006840(param0);
+    v0 = OverlayManager_Data(param0);
+    v1 = OverlayManager_Args(param0);
 
     SetMainCallback(NULL, NULL);
     DisableHBlank();
@@ -806,7 +806,7 @@ int ov69_0225C8FC (OverlayManager * param0, int * param1)
     ov69_0225EF54(&v0->unk_1CC);
     ov69_0225D35C(&v0->unk_20);
 
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(105);
 
     return 1;

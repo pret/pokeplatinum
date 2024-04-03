@@ -3,6 +3,9 @@
 
 #include <nitro/fs.h>
 
+#include "constants/heap.h"
+#include "heap.h"
+
 typedef struct OverlayManager OverlayManager;
 
 typedef int (*OverlayFunc)(OverlayManager *ovyManager, int *state);
@@ -24,12 +27,13 @@ struct OverlayManager {
     OverlayManager *child;
 };
 
-OverlayManager * sub_020067E8(const OverlayManagerTemplate * param0, void * param1, const int param2);
-void sub_02006814(OverlayManager * param0);
-void * sub_0200681C(OverlayManager * param0, int param1, int param2);
-void * sub_0200682C(OverlayManager * param0);
-void sub_02006830(OverlayManager * param0);
-void * sub_02006840(OverlayManager * param0);
-BOOL sub_02006844(OverlayManager * param0);
+OverlayManager* OverlayManager_New(const OverlayManagerTemplate *template, void *args, const enum HeapId heapID);
+void OverlayManager_Free(OverlayManager *ovyManager);
+void* OverlayManager_NewData(OverlayManager *ovyManager, u32 size, enum HeapId heapID);
+void* OverlayManager_Data(OverlayManager *ovyManager);
+void OverlayManager_FreeData(OverlayManager *ovyManager);
+void* OverlayManager_Args(OverlayManager *ovyManager);
+BOOL OverlayManager_Exec(OverlayManager *ovyManager);
 
 #endif // POKEPLATINUM_OVERLAY_MANAGER_H
+

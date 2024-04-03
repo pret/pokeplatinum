@@ -742,7 +742,7 @@ int ov65_0222E2A8 (OverlayManager * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        v1 = sub_02006840(param0);
+        v1 = OverlayManager_Args(param0);
 
         if (sub_020389B8()) {
             switch (v1->unk_04) {
@@ -774,7 +774,7 @@ int ov65_0222E2A8 (OverlayManager * param0, int * param1)
             Heap_Create(3, 54, 0xa0000);
         }
 
-        v0 = sub_0200681C(param0, sizeof(UnkStruct_ov65_0222EBE0), 54);
+        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov65_0222EBE0), 54);
 
         MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov65_0222EBE0));
         sub_0201DBEC(32, 54);
@@ -805,7 +805,7 @@ int ov65_0222E2A8 (OverlayManager * param0, int * param1)
         (*param1)++;
         break;
     case 1:
-        v0 = sub_0200682C(param0);
+        v0 = OverlayManager_Data(param0);
         (*param1) = 0;
         return 1;
         break;
@@ -816,7 +816,7 @@ int ov65_0222E2A8 (OverlayManager * param0, int * param1)
 
 int ov65_0222E3FC (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov65_0222EBE0 * v0 = sub_0200682C(param0);
+    UnkStruct_ov65_0222EBE0 * v0 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:
@@ -895,12 +895,12 @@ static void ov65_0222E47C (UnkStruct_ov65_0222EBE0 * param0)
 
 int ov65_0222E548 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov65_0222EBE0 * v0 = sub_0200682C(param0);
+    UnkStruct_ov65_0222EBE0 * v0 = OverlayManager_Data(param0);
     UnkStruct_ov98_02247168 * v1;
 
     ov65_0222E47C(v0);
 
-    v1 = sub_02006840(param0);
+    v1 = OverlayManager_Args(param0);
     v1->unk_04 = v0->unk_3AC;
 
     if ((v0->unk_3AC == 8) || (v0->unk_3AC == 10)) {
@@ -911,7 +911,7 @@ int ov65_0222E548 (OverlayManager * param0, int * param1)
 
     ov65_0222EC2C(v0);
 
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     sub_0201E530();
     sub_0201DC3C();
     Heap_Destroy(54);

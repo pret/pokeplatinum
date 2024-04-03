@@ -148,11 +148,11 @@ int ov73_021D0D80 (OverlayManager * param0, int * param1)
 
     Heap_Create(3, v1, 0x40000);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov73_021D1058), v1);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov73_021D1058), v1);
     memset(v0, 0, sizeof(UnkStruct_ov73_021D1058));
 
     v0->unk_00 = v1;
-    v0->unk_04 = ((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08;
+    v0->unk_04 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
     v0->unk_08 = sub_02025E44(v0->unk_04);
     v0->unk_0C = 0;
     v0->unk_10 = 0;
@@ -172,7 +172,7 @@ int ov73_021D0D80 (OverlayManager * param0, int * param1)
 
 int ov73_021D0E20 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov73_021D1058 * v0 = sub_0200682C(param0);
+    UnkStruct_ov73_021D1058 * v0 = OverlayManager_Data(param0);
     int v1 = 0;
 
     switch (*param1) {
@@ -230,8 +230,8 @@ int ov73_021D0E20 (OverlayManager * param0, int * param1)
         }
         break;
     case 4:
-        if (sub_02006844(v0->unk_14) == 1) {
-            sub_02006814(v0->unk_14);
+        if (OverlayManager_Exec(v0->unk_14) == 1) {
+            OverlayManager_Free(v0->unk_14);
             v0->unk_14 = NULL;
             *param1 = 5;
         }
@@ -246,7 +246,7 @@ int ov73_021D0E20 (OverlayManager * param0, int * param1)
 
 int ov73_021D0F7C (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov73_021D1058 * v0 = sub_0200682C(param0);
+    UnkStruct_ov73_021D1058 * v0 = OverlayManager_Data(param0);
     int v1 = v0->unk_00;
 
     Heap_FreeToHeap(v0->unk_B8);
@@ -263,7 +263,7 @@ int ov73_021D0F7C (OverlayManager * param0, int * param1)
 
     sub_0208716C(v0->unk_70);
     sub_0208716C(v0->unk_74);
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(v1);
     sub_02000EC4(FS_OVERLAY_ID(overlay57), &Unk_ov57_021D0F80);
 
@@ -1991,7 +1991,7 @@ static BOOL ov73_021D2318 (UnkStruct_ov73_021D1058 * param0)
         break;
     case 76:
         param0->unk_70->unk_04 = param0->unk_84;
-        param0->unk_14 = sub_020067E8(&Unk_020F2DAC, param0->unk_70, param0->unk_00);
+        param0->unk_14 = OverlayManager_New(&Unk_020F2DAC, param0->unk_70, param0->unk_00);
         param0->unk_0C = 77;
         break;
     case 77:
@@ -2143,7 +2143,7 @@ static BOOL ov73_021D2318 (UnkStruct_ov73_021D1058 * param0)
         }
         break;
     case 92:
-        param0->unk_14 = sub_020067E8(&Unk_020F2DAC, param0->unk_74, param0->unk_00);
+        param0->unk_14 = OverlayManager_New(&Unk_020F2DAC, param0->unk_74, param0->unk_00);
         param0->unk_0C = 93;
         break;
     case 93:
@@ -2248,7 +2248,7 @@ static BOOL ov73_021D2318 (UnkStruct_ov73_021D1058 * param0)
         }
         break;
     case 108:
-        param0->unk_14 = sub_020067E8(&Unk_ov72_021D3820, NULL, param0->unk_00);
+        param0->unk_14 = OverlayManager_New(&Unk_ov72_021D3820, NULL, param0->unk_00);
         param0->unk_0C = 109;
         break;
     case 109:

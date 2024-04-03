@@ -180,7 +180,7 @@ int ov58_021D0D80 (OverlayManager * param0, int * param1)
 
         Heap_Create(3, 39, 0x40000);
 
-        v0 = sub_0200681C(param0, sizeof(UnkStruct_02095EAC), 39);
+        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02095EAC), 39);
         memset(v0, 0, sizeof(UnkStruct_02095EAC));
         v0->unk_00 = sub_02018340(39);
 
@@ -197,7 +197,7 @@ int ov58_021D0D80 (OverlayManager * param0, int * param1)
         sub_0200F174(0, 17, 17, 0x0, 16, 1, 39);
 
         {
-            UnkStruct_0203DDFC * v2 = (UnkStruct_0203DDFC *)sub_02006840(param0);
+            UnkStruct_0203DDFC * v2 = (UnkStruct_0203DDFC *)OverlayManager_Args(param0);
             v0->unk_08 = v2;
         }
 
@@ -237,7 +237,7 @@ int ov58_021D0D80 (OverlayManager * param0, int * param1)
         (*param1)++;
         break;
     case 1:
-        v0 = sub_0200682C(param0);
+        v0 = OverlayManager_Data(param0);
         (*param1) = 0;
         return 1;
         break;
@@ -248,7 +248,7 @@ int ov58_021D0D80 (OverlayManager * param0, int * param1)
 
 int ov58_021D0F08 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_02095EAC * v0 = sub_0200682C(param0);
+    UnkStruct_02095EAC * v0 = OverlayManager_Data(param0);
 
     if ((CommSys_CurNetId() == 0) && (v0->unk_9418 != 0)) {
         v0->unk_9418 &= sub_020318EC();
@@ -308,8 +308,8 @@ int ov58_021D0F08 (OverlayManager * param0, int * param1)
 
 int ov58_021D1018 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_02095EAC * v0 = sub_0200682C(param0);
-    UnkStruct_0203DDFC * v1 = (UnkStruct_0203DDFC *)sub_02006840(param0);
+    UnkStruct_02095EAC * v0 = OverlayManager_Data(param0);
+    UnkStruct_0203DDFC * v1 = (UnkStruct_0203DDFC *)OverlayManager_Args(param0);
     int v2;
     void * v3;
 
@@ -367,7 +367,7 @@ int ov58_021D1018 (OverlayManager * param0, int * param1)
         ov58_021D13B4(v0);
 
         Heap_FreeToHeap(v0->unk_08);
-        sub_02006830(param0);
+        OverlayManager_FreeData(param0);
         SetMainCallback(NULL, NULL);
         Heap_Destroy(39);
         sub_02037B58(2);

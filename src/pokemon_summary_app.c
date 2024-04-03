@@ -159,11 +159,11 @@ static int sub_0208C330 (OverlayManager * param0, int * param1)
     Heap_Create(3, 19, 0x40000);
 
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PST_GRA, 19);
-    v0 = sub_0200681C(param0, sizeof(PokemonSummaryApp), 19);
+    v0 = OverlayManager_NewData(param0, sizeof(PokemonSummaryApp), 19);
 
     memset(v0, 0, sizeof(PokemonSummaryApp));
 
-    v0->data = sub_02006840(param0);
+    v0->data = OverlayManager_Args(param0);
     v0->bgl = sub_02018340(19);
     v0->monSpriteData.animationSys = sub_02015F84(19, 1, 1);
     v0->narcPlPokeData = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 19);
@@ -199,7 +199,7 @@ static int sub_0208C330 (OverlayManager * param0, int * param1)
 
 static int sub_0208C488 (OverlayManager * param0, int * param1)
 {
-    PokemonSummaryApp * v0 = sub_0200682C(param0);
+    PokemonSummaryApp * v0 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:
@@ -278,7 +278,7 @@ static int sub_0208C488 (OverlayManager * param0, int * param1)
 
 static int sub_0208C5A0 (OverlayManager * param0, int * param1)
 {
-    PokemonSummaryApp * v0 = sub_0200682C(param0);
+    PokemonSummaryApp * v0 = OverlayManager_Data(param0);
 
     SetMainCallback(NULL, NULL);
     sub_020917B0(v0);
@@ -293,7 +293,7 @@ static int sub_0208C5A0 (OverlayManager * param0, int * param1)
 
     G2_BlendNone();
 
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(19);
 
     return 1;

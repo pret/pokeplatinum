@@ -161,10 +161,10 @@ int ov66_02230CB8 (UnkStruct_ov66_02230C90 * param0)
     u32 v1 = 0;
 
     if (param0->unk_00) {
-        v0 = sub_02006844(param0->unk_00);
+        v0 = OverlayManager_Exec(param0->unk_00);
 
         if (v0) {
-            sub_02006814(param0->unk_00);
+            OverlayManager_Free(param0->unk_00);
             param0->unk_00 = NULL;
             v1 = ov66_02230D7C(param0, param0->unk_38);
         }
@@ -181,7 +181,7 @@ void ov66_02230CE8 (UnkStruct_ov66_02230C90 * param0)
 static void ov66_02230CEC (UnkStruct_ov66_02230C90 * param0, UnkStruct_ov66_02230E4C * param1, const OverlayManagerTemplate * param2)
 {
     GF_ASSERT(param0->unk_00 == NULL);
-    param0->unk_00 = sub_020067E8(param2, param1->unk_00, param0->unk_3A);
+    param0->unk_00 = OverlayManager_New(param2, param1->unk_00, param0->unk_3A);
 }
 
 static void ov66_02230D0C (UnkStruct_ov66_02230C90 * param0, u32 param1, u32 param2)

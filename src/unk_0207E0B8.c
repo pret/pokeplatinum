@@ -326,7 +326,7 @@ static int sub_0207E0B8 (OverlayManager * param0, int * param1)
 
 static int sub_0207E2A8 (OverlayManager * param0, int * param1)
 {
-    GameWindowLayout * v0 = sub_0200682C(param0);
+    GameWindowLayout * v0 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:
@@ -650,7 +650,7 @@ static int sub_0207E750 (GameWindowLayout * param0)
 
 static int sub_0207E7E0 (OverlayManager * param0, int * param1)
 {
-    GameWindowLayout * v0 = sub_0200682C(param0);
+    GameWindowLayout * v0 = OverlayManager_Data(param0);
     u32 v1;
 
     SetMainCallback(NULL, NULL);
@@ -679,7 +679,7 @@ static int sub_0207E7E0 (OverlayManager * param0, int * param1)
         sub_0207A2C0(v0->unk_B20);
     }
 
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(12);
 
     return 1;
@@ -954,10 +954,10 @@ static GameWindowLayout * sub_0207ECC0 (OverlayManager * param0)
     GameWindowLayout * v0;
     u32 v1;
 
-    v0 = sub_0200681C(param0, sizeof(GameWindowLayout), 12);
+    v0 = OverlayManager_NewData(param0, sizeof(GameWindowLayout), 12);
     memset(v0, 0, sizeof(GameWindowLayout));
 
-    v0->unk_5A4 = sub_02006840(param0);
+    v0->unk_5A4 = OverlayManager_Args(param0);
     v0->unk_00 = sub_02018340(12);
 
     if ((v0->unk_5A4->unk_20 == 2) && (v0->unk_5A4->unk_14 != NULL)) {

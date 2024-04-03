@@ -22,16 +22,16 @@ int ov117_02266498 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov117_02266498 * v0;
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov117_02266498), 110);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov117_02266498), 110);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov117_02266498));
-    v0->unk_00 = sub_02006840(param0);
+    v0->unk_00 = OverlayManager_Args(param0);
 
     return 1;
 }
 
 int ov117_022664BC (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov117_02266498 * v0 = sub_0200682C(param0);
+    UnkStruct_ov117_02266498 * v0 = OverlayManager_Data(param0);
 
     if (v0->unk_00->unk_3D == 1) {
         switch (v0->unk_00->unk_3E) {
@@ -109,8 +109,8 @@ int ov117_022664BC (OverlayManager * param0, int * param1)
 
 int ov117_022665E8 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov117_02266498 * v0 = sub_0200682C(param0);
-    sub_02006830(param0);
+    UnkStruct_ov117_02266498 * v0 = OverlayManager_Data(param0);
+    OverlayManager_FreeData(param0);
 
     return 1;
 }

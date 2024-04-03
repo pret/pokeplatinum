@@ -268,8 +268,8 @@ void sub_020978F0 (UnkStruct_0202818C * param0, UnkStruct_020978D8 * param1)
 static BOOL sub_02097920 (OverlayManager ** param0)
 {
     if (*param0) {
-        if (sub_02006844(*param0)) {
-            sub_02006814(*param0);
+        if (OverlayManager_Exec(*param0)) {
+            OverlayManager_Free(*param0);
             *param0 = NULL;
             return 1;
         }
@@ -281,10 +281,10 @@ static BOOL sub_02097920 (OverlayManager ** param0)
 static int sub_02097944 (OverlayManager * param0, int * param1)
 {
     UnkStruct_02097944 * v0 = NULL;
-    UnkStruct_02097728 * v1 = (UnkStruct_02097728 *)sub_02006840(param0);
+    UnkStruct_02097728 * v1 = (UnkStruct_02097728 *)OverlayManager_Args(param0);
 
     Heap_Create(3, 40, 0x1000);
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_02097944), 40);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02097944), 40);
     MI_CpuClear8(v0, sizeof(UnkStruct_02097944));
 
     v0->unk_00 = 40;
@@ -306,8 +306,8 @@ static int sub_02097944 (OverlayManager * param0, int * param1)
 
 static int sub_020979A8 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_02097944 * v0 = sub_0200682C(param0);
-    UnkStruct_02097728 * v1 = (UnkStruct_02097728 *)sub_02006840(param0);
+    UnkStruct_02097944 * v0 = OverlayManager_Data(param0);
+    UnkStruct_02097728 * v1 = (UnkStruct_02097728 *)OverlayManager_Args(param0);
 
     FS_EXTERN_OVERLAY(overlay75);
     FS_EXTERN_OVERLAY(overlay20);
@@ -322,7 +322,7 @@ static int sub_020979A8 (OverlayManager * param0, int * param1)
     switch (*param1) {
     case 0:
         v0->unk_10->unk_00 = v1->unk_00;
-        v0->unk_0C = sub_020067E8(&v2, v0->unk_10, v0->unk_00);
+        v0->unk_0C = OverlayManager_New(&v2, v0->unk_10, v0->unk_00);
         *param1 = 1;
         break;
     case 1:
@@ -366,7 +366,7 @@ static int sub_020979A8 (OverlayManager * param0, int * param1)
         }
 
         sub_02097500(v0->unk_08, &(v0->unk_14));
-        v0->unk_0C = sub_020067E8(&v3, v0->unk_08, v0->unk_00);
+        v0->unk_0C = OverlayManager_New(&v3, v0->unk_08, v0->unk_00);
         *param1 = 4;
         break;
     case 4:
@@ -388,10 +388,10 @@ static int sub_020979A8 (OverlayManager * param0, int * param1)
 
 static int sub_02097AF8 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_02097944 * v0 = sub_0200682C(param0);
+    UnkStruct_02097944 * v0 = OverlayManager_Data(param0);
 
     sub_020978D8(v0->unk_10);
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(v0->unk_00);
 
     return 1;

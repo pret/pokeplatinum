@@ -664,7 +664,7 @@ static void ov97_0222C578 (UnkStruct_ov97_0222C388 * param0)
 static void ov97_0222C688 (OverlayManager * param0)
 {
     int v0;
-    UnkStruct_ov97_0222C388 * v1 = sub_0200682C(param0);
+    UnkStruct_ov97_0222C388 * v1 = OverlayManager_Data(param0);
 
     ov97_02237DA0();
 
@@ -689,7 +689,7 @@ static int ov97_0222C6F8 (OverlayManager * param0, int * param1)
 
     v0->unk_00 = 85;
     v0->unk_04 = sub_02018340(v0->unk_00);
-    v0->unk_08 = ((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08;
+    v0->unk_08 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
     v0->unk_10 = SaveData_GetTrainerInfo(v0->unk_08);
     v0->unk_0C = sub_02027560(v0->unk_08);
     v0->unk_14 = sub_02025E44(v0->unk_08);
@@ -711,7 +711,7 @@ static int ov97_0222C6F8 (OverlayManager * param0, int * param1)
 
 static int ov97_0222C78C (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov97_0222C388 * v0 = sub_0200682C(param0);
+    UnkStruct_ov97_0222C388 * v0 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case UnkEnum_ov97_0222C78C_00:
@@ -795,7 +795,7 @@ static int ov97_0222C948 (OverlayManager * param0, int * param1)
 {
     Heap_Destroy(91);
     sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(85);
 
     return 1;

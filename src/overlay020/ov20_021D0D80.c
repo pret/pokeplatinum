@@ -133,7 +133,7 @@ int ov20_021D0D80 (OverlayManager * param0, int * param1)
         (*param1)++;
         break;
     case 1:
-        v0 = sub_0200682C(param0);
+        v0 = OverlayManager_Data(param0);
 
         if (ov20_021D21F8(v0->unk_14)) {
             if (v0->unk_04 == 2) {
@@ -152,7 +152,7 @@ int ov20_021D0D80 (OverlayManager * param0, int * param1)
 
 int ov20_021D0DF8 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov20_021D16E8 * v0 = sub_0200682C(param0);
+    UnkStruct_ov20_021D16E8 * v0 = OverlayManager_Data(param0);
 
     v0->unk_30 = gCoreSys.pressedKeys;
     v0->unk_32 = gCoreSys.heldKeys;
@@ -214,7 +214,7 @@ static void ov20_021D0E38 (u32 param0, u32 param1, void * param2)
 
 int ov20_021D0EA8 (OverlayManager * param0, int * param1)
 {
-    ov20_021D1014(sub_0200682C(param0), param0);
+    ov20_021D1014(OverlayManager_Data(param0), param0);
 
     Heap_Destroy(34);
     Heap_Destroy(35);
@@ -233,9 +233,9 @@ static UnkStruct_ov20_021D16E8 * ov20_021D0EC8 (OverlayManager * param0)
     };
     UnkStruct_ov20_021D16E8 * v1;
 
-    v1 = sub_0200681C(param0, sizeof(UnkStruct_ov20_021D16E8), 34);
+    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov20_021D16E8), 34);
 
-    v1->unk_00 = sub_02006840(param0);
+    v1->unk_00 = OverlayManager_Args(param0);
     v1->unk_04 = sub_02097550(v1->unk_00);
 
     sub_0209756C(v1->unk_00, v1->unk_10, &v1->unk_08);
@@ -309,7 +309,7 @@ static void ov20_021D1014 (UnkStruct_ov20_021D16E8 * param0, OverlayManager * pa
     sub_02024034(param0->unk_40);
     ov20_021D2128(param0->unk_14);
     sub_0209992C(param0->unk_18);
-    sub_02006830(param1);
+    OverlayManager_FreeData(param1);
 }
 
 static void ov20_021D1034 (UnkStruct_ov20_021D16E8 * param0, UnkFuncPtr_ov20_021D1034 param1)

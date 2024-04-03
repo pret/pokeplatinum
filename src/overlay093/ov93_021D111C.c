@@ -89,10 +89,10 @@ int ov93_021D111C (OverlayManager * param0, int * param1)
 
     Heap_Create(3, 72, 0x20000);
 
-    v1 = sub_0200681C(param0, sizeof(UnkStruct_ov93_021D13C0), 72);
+    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov93_021D13C0), 72);
     memset(v1, 0, sizeof(UnkStruct_ov93_021D13C0));
 
-    v2 = sub_02006840(param0);
+    v2 = OverlayManager_Args(param0);
 
     v1->unk_94 = v2->unk_00;
     v1->unk_95 = 0;
@@ -146,7 +146,7 @@ int ov93_021D120C (OverlayManager * param0, int * param1)
         0,
         0
     };
-    UnkStruct_ov93_021D13C0 * v5 = sub_0200682C(param0);
+    UnkStruct_ov93_021D13C0 * v5 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:
@@ -183,7 +183,7 @@ int ov93_021D120C (OverlayManager * param0, int * param1)
 int ov93_021D12F0 (OverlayManager * param0, int * param1)
 {
     u8 v0;
-    UnkStruct_ov93_021D13C0 * v1 = sub_0200682C(param0);
+    UnkStruct_ov93_021D13C0 * v1 = OverlayManager_Data(param0);
 
     for (v0 = 0; v0 < 3; v0++) {
         NNS_G3dFreeAnmObj(&v1->unk_6C, v1->unk_7C[v0]);
@@ -192,7 +192,7 @@ int ov93_021D12F0 (OverlayManager * param0, int * param1)
 
     Heap_FreeToHeap(v1->unk_5C);
     sub_020203B8(v1->unk_00);
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     sub_0201CBA0();
     Heap_Destroy(72);
 

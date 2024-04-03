@@ -55,9 +55,9 @@ int ov100_021D0D80 (OverlayManager * param0, int * param1)
 
     Heap_Create(3, 111, 0xC0000);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov100_021D4DD8), 111);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov100_021D4DD8), 111);
     memset(v0, 0, sizeof(UnkStruct_ov100_021D4DD8));
-    v0->unk_D0 = sub_02006840(param0);
+    v0->unk_D0 = OverlayManager_Args(param0);
 
     ov100_021D1034(&v0->unk_0C);
     sub_0200F174(0, 1, 1, 0x0, 6 * 2, 1, 111);
@@ -102,7 +102,7 @@ static const struct {
 
 int ov100_021D0EA8 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov100_021D4DD8 * v0 = sub_0200682C(param0);
+    UnkStruct_ov100_021D4DD8 * v0 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:
@@ -152,7 +152,7 @@ int ov100_021D0F44 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov100_021D4DD8 * v0;
 
-    v0 = sub_0200682C(param0);
+    v0 = OverlayManager_Data(param0);
 
     SetMainCallback(NULL, NULL);
     DisableHBlank();
@@ -164,7 +164,7 @@ int ov100_021D0F44 (OverlayManager * param0, int * param1)
     gCoreSys.unk_65 = 0;
 
     GXLayers_SwapDisplay();
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(111);
     sub_02005454(0);
 

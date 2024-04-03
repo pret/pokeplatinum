@@ -186,15 +186,15 @@ static void sub_02000E54 (void)
         }
 
         Unk_02101D28.unk_00 = Unk_02101D28.unk_08;
-        Unk_02101D28.unk_04 = sub_020067E8(Unk_02101D28.unk_0C, &Unk_02101D28.unk_10, 0);
+        Unk_02101D28.unk_04 = OverlayManager_New(Unk_02101D28.unk_0C, &Unk_02101D28.unk_10, 0);
         Unk_02101D28.unk_08 = 0xffffffff;
         Unk_02101D28.unk_0C = NULL;
     }
 
-    v0 = sub_02006844(Unk_02101D28.unk_04);
+    v0 = OverlayManager_Exec(Unk_02101D28.unk_04);
 
     if (v0) {
-        sub_02006814(Unk_02101D28.unk_04);
+        OverlayManager_Free(Unk_02101D28.unk_04);
         Unk_02101D28.unk_04 = NULL;
 
         if (Unk_02101D28.unk_00 != 0xffffffff) {

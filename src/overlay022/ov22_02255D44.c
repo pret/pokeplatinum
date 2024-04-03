@@ -204,13 +204,13 @@ int ov22_02255D44 (OverlayManager * param0, int * param1)
     Heap_Create(3, 13, 0x20000);
     Heap_Create(3, 14, 0x40000);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov22_02255D44), 13);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov22_02255D44), 13);
     memset(v0, 0, sizeof(UnkStruct_ov22_02255D44));
 
     SetMainCallback(ov22_02256940, v0);
     DisableHBlank();
 
-    v2 = sub_02006840(param0);
+    v2 = OverlayManager_Args(param0);
     v0->unk_738 = v2->unk_0C;
     sub_0201E3D8();
     v1 = sub_0201E450(4);
@@ -243,9 +243,9 @@ int ov22_02255D44 (OverlayManager * param0, int * param1)
 
 int ov22_02255E50 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov22_02255D44 * v0 = sub_0200682C(param0);
+    UnkStruct_ov22_02255D44 * v0 = OverlayManager_Data(param0);
     int v1 = 0;
-    UnkStruct_0203DA00 * v2 = sub_02006840(param0);
+    UnkStruct_0203DA00 * v2 = OverlayManager_Args(param0);
 
     switch ((*param1)) {
     case 0:
@@ -366,9 +366,9 @@ int ov22_02255E50 (OverlayManager * param0, int * param1)
 
 int ov22_02256098 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov22_02255D44 * v0 = sub_0200682C(param0);
+    UnkStruct_ov22_02255D44 * v0 = OverlayManager_Data(param0);
     u32 v1;
-    UnkStruct_0203DA00 * v2 = sub_02006840(param0);
+    UnkStruct_0203DA00 * v2 = OverlayManager_Args(param0);
 
     if (v0->unk_71C == 1) {
         sub_0202CFEC(v2->unk_10, 7);
@@ -405,7 +405,7 @@ int ov22_02256098 (OverlayManager * param0, int * param1)
     v1 = sub_0201E530();
     GF_ASSERT(v1 == 1);
 
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(13);
     Heap_Destroy(14);
 
@@ -421,13 +421,13 @@ int ov22_02256174 (OverlayManager * param0, int * param1)
     Heap_Create(3, 13, 0x20000);
     Heap_Create(3, 14, 0x40000);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov22_02255D44), 13);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov22_02255D44), 13);
     memset(v0, 0, sizeof(UnkStruct_ov22_02255D44));
 
     SetMainCallback(ov22_02256940, v0);
     DisableHBlank();
 
-    v2 = sub_02006840(param0);
+    v2 = OverlayManager_Args(param0);
 
     v0->unk_724 = v2->unk_0C;
     v0->unk_728 = v2->unk_10;
@@ -479,7 +479,7 @@ int ov22_02256174 (OverlayManager * param0, int * param1)
 
 int ov22_022562EC (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov22_02255D44 * v0 = sub_0200682C(param0);
+    UnkStruct_ov22_02255D44 * v0 = OverlayManager_Data(param0);
     int v1 = 0;
     int v2;
 
@@ -638,9 +638,9 @@ int ov22_022562EC (OverlayManager * param0, int * param1)
 
 int ov22_02256600 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov22_02255D44 * v0 = sub_0200682C(param0);
+    UnkStruct_ov22_02255D44 * v0 = OverlayManager_Data(param0);
     u32 v1;
-    UnkStruct_02093BBC * v2 = sub_02006840(param0);
+    UnkStruct_02093BBC * v2 = OverlayManager_Args(param0);
 
     ov22_02256FD8(v2->unk_04, &v0->unk_458, v0->unk_724, v2->unk_24);
 
@@ -666,7 +666,7 @@ int ov22_02256600 (OverlayManager * param0, int * param1)
     v1 = sub_0201E530();
     GF_ASSERT(v1 == 1);
 
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(13);
     Heap_Destroy(14);
     sub_02095A24();
