@@ -1182,7 +1182,7 @@ void ov9_02249960 (FieldSystem * param0)
     UnkStruct_02071C5C * v1;
     UnkStruct_ov9_02249B04 * v2;
 
-    v0 = sub_02027860(sub_0203D174(param0));
+    v0 = sub_02027860(FieldSystem_SaveData(param0));
     v1 = sub_02027F6C(v0, 9);
     v2 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov9_02249B04));
 
@@ -1614,7 +1614,7 @@ void ov9_02249FD0 (FieldSystem * param0)
 
     GF_ASSERT(param0 != NULL);
 
-    v0 = sub_02027860(sub_0203D174(param0));
+    v0 = sub_02027860(FieldSystem_SaveData(param0));
     v1 = sub_02027F6C(v0, 9);
 
     v1->unk_04 = 0;
@@ -2055,7 +2055,7 @@ BOOL ov9_0224A59C (FieldSystem * param0, int param1)
 {
     UnkStruct_02027860 * v0;
 
-    v0 = sub_02027860(sub_0203D174(param0));
+    v0 = sub_02027860(FieldSystem_SaveData(param0));
 
     if (sub_02027F80(v0) == 9) {
         int v1, v2, v3, v4;
@@ -2139,7 +2139,7 @@ BOOL ov9_0224A71C (FieldSystem * param0)
 {
     UnkStruct_02027860 * v0;
 
-    v0 = sub_02027860(sub_0203D174(param0));
+    v0 = sub_02027860(FieldSystem_SaveData(param0));
 
     if (sub_02027F80(v0) != 9) {
         return 0;
@@ -9509,7 +9509,7 @@ BOOL ov9_02250F74 (FieldSystem * param0)
 {
     UnkStruct_02027860 * v0;
 
-    v0 = sub_02027860(sub_0203D174(param0));
+    v0 = sub_02027860(FieldSystem_SaveData(param0));
 
     if (sub_02027F80(v0) != 9) {
         return 0;
@@ -9577,7 +9577,7 @@ BOOL ov9_02251044 (FieldSystem * param0, int param1, int param2, int param3, u32
 {
     UnkStruct_02027860 * v0;
 
-    v0 = sub_02027860(sub_0203D174(param0));
+    v0 = sub_02027860(FieldSystem_SaveData(param0));
 
     if (sub_02027F80(v0) != 9) {
         GF_ASSERT(0);

@@ -8,7 +8,7 @@
 #include "overlay023/funcptr_ov23_0224F758.h"
 #include "overlay023/struct_ov23_02250CD4.h"
 
-void ov23_0224F588(UnkStruct_020298B0 * param0);
+void ov23_0224F588(UndergroundData * param0);
 void ov23_0224F5B8(void);
 int ov23_0224F5F0(int param0, void * param1);
 int ov23_0224F61C(int param0, void * param1);

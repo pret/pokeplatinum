@@ -123,7 +123,7 @@ void ov5_021D1CAC (UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1, u16 pa
 
     ov5_021D1C30(param0);
 
-    v0 = sub_0205EB14(param1->playerAvatar);
+    v0 = Player_MoveState(param1->playerAvatar);
     v1 = sub_0205EB0C(param1->playerAvatar);
     v2 = Player_Dir(param1->playerAvatar);
 

@@ -40,7 +40,7 @@
 #include "overlay023/ov23_02253598.h"
 #include "overlay023/ov23_02253D40.h"
 
-typedef int (* UnkFuncPtr_ov23_022576EC)(const UnkStruct_0202855C *);
+typedef int (* UnkFuncPtr_ov23_022576EC)(const SecretBaseRecord *);
 
 typedef struct {
     UnkFuncPtr_ov23_02253834 unk_00;
@@ -57,8 +57,8 @@ typedef struct UnkStruct_ov23_02253598_t {
     UnkStruct_ov23_022537D4 * unk_00;
     SysTask * unk_04;
     SaveData * unk_08;
-    UnkStruct_0202855C * unk_0C;
-    UnkStruct_0202855C * unk_10;
+    SecretBaseRecord * unk_0C;
+    SecretBaseRecord * unk_10;
     MATHRandContext32 unk_14;
     u8 unk_2C;
 };
@@ -66,7 +66,7 @@ typedef struct UnkStruct_ov23_02253598_t {
 static UnkStruct_ov23_02253598 * Unk_ov23_022577BC = NULL;
 static void ov23_022537D4(SysTask * param0, void * param1);
 
-void ov23_02253598 (UnkStruct_ov23_02253598 * param0, UnkStruct_0202855C * param1, SaveData * param2)
+void ov23_02253598 (UnkStruct_ov23_02253598 * param0, SecretBaseRecord * param1, SaveData * param2)
 {
     MI_CpuFill8(param0, 0, sizeof(UnkStruct_ov23_02253598));
 
@@ -120,7 +120,7 @@ static UnkFuncPtr_ov23_022576EC Unk_ov23_022576EC[] = {
     sub_020295B8
 };
 
-asm static void ov23_0225360C (Window * param0, MessageLoader * param1, TrainerInfo * param2, const UnkStruct_0202855C * param3)
+asm static void ov23_0225360C (Window * param0, MessageLoader * param1, TrainerInfo * param2, const SecretBaseRecord * param3)
 {
     push {r3, r4, r5, r6, r7, lr}
     sub sp, #0x20
@@ -356,7 +356,7 @@ static void ov23_0225381C (SysTask * param0, void * param1)
 
 void ov23_02253834 (BGL * param0, TrainerInfo * param1, UnkFuncPtr_ov23_02253834 param2, void * param3, BOOL param4)
 {
-    UnkStruct_0202855C * v0;
+    SecretBaseRecord * v0;
     MessageLoader * v1;
     UnkStruct_ov84_02240FA8 v2;
     int v3 = 10;
@@ -452,10 +452,10 @@ static void ov23_022539F8 (int param0)
     sub_02059514();
 }
 
-void ov23_02253A00 (UnkStruct_0202855C * param0, int param1)
+void ov23_02253A00 (SecretBaseRecord * param0, int param1)
 {
     s32 v0;
-    UnkStruct_0202855C * v1;
+    SecretBaseRecord * v1;
     UnkFuncPtr_ov23_022576EC v2 = Unk_ov23_022576EC[param1 - 32];
 
     GF_ASSERT(param1 >= 32);
@@ -474,7 +474,7 @@ void ov23_02253A00 (UnkStruct_0202855C * param0, int param1)
     ov23_02253F40(ov23_022421BC(), param1, 1, ov23_022539F8);
 }
 
-static void ov23_02253A78 (Window * param0, MessageLoader * param1, TrainerInfo * param2, const UnkStruct_0202855C * param3, const UnkStruct_020298B0 * param4)
+static void ov23_02253A78 (Window * param0, MessageLoader * param1, TrainerInfo * param2, const SecretBaseRecord * param3, const UndergroundData * param4)
 {
     StringFormatter * v0;
     Strbuf* v1;
@@ -537,9 +537,9 @@ static void ov23_02253A78 (Window * param0, MessageLoader * param1, TrainerInfo 
     sub_0200B3F0(v0);
 }
 
-void * ov23_02253C64 (BGL * param0, TrainerInfo * param1, UnkStruct_020298B0 * param2, UnkFuncPtr_ov23_02253834 param3, void * param4)
+void * ov23_02253C64 (BGL * param0, TrainerInfo * param1, UndergroundData * param2, UnkFuncPtr_ov23_02253834 param3, void * param4)
 {
-    UnkStruct_0202855C * v0;
+    SecretBaseRecord * v0;
     MessageLoader * v1;
     UnkStruct_ov84_02240FA8 v2;
     int v3 = 10;

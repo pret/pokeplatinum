@@ -91,7 +91,7 @@ static void ov23_022521F0 (UnkStruct_ov23_02250CD4 * param0, int param1)
 {
     MATHRandContext16 v0;
     int v1, v2, v3, v4, v5;
-    UnkStruct_020298B0 * v6 = sub_020298B0(sub_0203D174(param0->unk_0C));
+    UndergroundData * v6 = sub_020298B0(FieldSystem_SaveData(param0->unk_0C));
 
     MATH_InitRand16(&v0, sub_02028930(v6) + param1);
 
@@ -136,8 +136,8 @@ static void ov23_022522F0 (UnkStruct_ov23_02250CD4 * param0, int param1)
 {
     MATHRandContext16 v0;
     int v1, v2, v3, v4, v5;
-    SaveData * v6 = sub_0203D174(param0->unk_0C);
-    UnkStruct_020298B0 * v7 = sub_020298B0(v6);
+    SaveData * v6 = FieldSystem_SaveData(param0->unk_0C);
+    UndergroundData * v7 = sub_020298B0(v6);
     BOOL v8 = sub_02027474(sub_02027560(v6));
 
     MATH_InitRand16(&v0, sub_02028930(v7) + param1);
@@ -181,7 +181,7 @@ static void ov23_022522F0 (UnkStruct_ov23_02250CD4 * param0, int param1)
 static int ov23_02252404 (UnkStruct_ov23_02250CD4 * param0, int param1, int param2)
 {
     BOOL v0 = 0;
-    UnkStruct_020298B0 * v1 = sub_020298B0(sub_0203D174(param0->unk_0C));
+    UndergroundData * v1 = sub_020298B0(FieldSystem_SaveData(param0->unk_0C));
 
     if (param0->unk_279[param1] != ov23_0224F684(param2, param0)) {
         return 0xfffd;
@@ -304,7 +304,7 @@ static void ov23_02252754 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 {
     MATHRandContext16 v0;
     UnkStruct_ov23_02250CD4 * v1 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
-    UnkStruct_020298B0 * v2 = sub_020298B0(sub_0203D174(v1->unk_0C));
+    UndergroundData * v2 = sub_020298B0(FieldSystem_SaveData(v1->unk_0C));
     int v3 = param1, v4, v5;
     int v6, v7 = 0, v8;
 
@@ -479,7 +479,7 @@ static void ov23_02252BB8 (int param0, UnkStruct_ov23_02250CD4 * param1)
 
 static u32 ov23_02252C08 (UnkStruct_ov23_02250CD4 * param0)
 {
-    UnkStruct_020298B0 * v0 = sub_020298B0(sub_0203D174(param0->unk_0C));
+    UndergroundData * v0 = sub_020298B0(FieldSystem_SaveData(param0->unk_0C));
 
     if (ov23_0224F6E0(param0->unk_279[0], param0->unk_27E[0])) {
         if (param0->unk_2AC == 1) {

@@ -895,7 +895,7 @@ u16 sub_0204ABA0 (UnkStruct_0204AFC4 * param0, SaveData * param1)
 {
     u8 v0, v1;
     u16 v2, v3, v4;
-    UnkStruct_020298B0 * v5;
+    UndergroundData * v5;
 
     if (param0->unk_0F == 5) {
         return 0;

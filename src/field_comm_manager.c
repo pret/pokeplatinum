@@ -123,7 +123,7 @@ void FieldCommMan_StartBattleServer (FieldSystem * fieldSys, int param1, int par
         return;
     }
 
-    CommMan_StartBattleServer(sub_0203D174(fieldSys), param1, param2, fieldSys->unk_B0, 0);
+    CommMan_StartBattleServer(FieldSystem_SaveData(fieldSys), param1, param2, fieldSys->unk_B0, 0);
     FieldCommMan_Init(fieldSys);
     FieldCommMan_SetTask(Task_StartBattleServer, 0);
 }
@@ -134,7 +134,7 @@ void FieldCommMan_StartBattleClient (FieldSystem * fieldSys, int param1, int par
         return;
     }
 
-    CommMan_StartBattleClient(sub_0203D174(fieldSys), param1, param2, fieldSys->unk_B0, 0);
+    CommMan_StartBattleClient(FieldSystem_SaveData(fieldSys), param1, param2, fieldSys->unk_B0, 0);
     FieldCommMan_Init(fieldSys);
     FieldCommMan_SetTask(Task_StartBattleClient, 0);
 }

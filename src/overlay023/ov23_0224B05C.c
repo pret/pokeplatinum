@@ -379,9 +379,9 @@ void ov23_0224B144 (void * param0, FieldSystem * param1)
 void ov23_0224B2C8 (FieldSystem * param0)
 {
     UnkStruct_02029894 * v0;
-    UnkStruct_0202855C * v1;
+    SecretBaseRecord * v1;
 
-    v0 = sub_02029894(sub_0203D174(param0));
+    v0 = sub_02029894(FieldSystem_SaveData(param0));
     v1 = sub_020298AC(v0);
 
     sub_020294D4(v1, sub_0202D034(sub_0202CD88(param0->unk_0C)));
@@ -1988,7 +1988,7 @@ static void ov23_0224CEC8 (void)
 void ov23_0224CF18 (int param0, int param1, void * param2, void * param3)
 {
     UnkStruct_ov23_0224CF18 * v0 = param2;
-    UnkStruct_0202855C * v1 = sub_020298A0(sub_0203D174(Unk_ov23_022577AC->unk_00));
+    SecretBaseRecord * v1 = SaveData_SecretBaseRecord(FieldSystem_SaveData(Unk_ov23_022577AC->unk_00));
 
     if (v0->unk_00 != CommSys_CurNetId()) {
         return;
@@ -2158,8 +2158,8 @@ BOOL ov23_0224D1A0 (int param0, int param1)
 
 static void ov23_0224D238 (void)
 {
-    UnkStruct_02029894 * v0 = sub_02029894(sub_0203D174(Unk_ov23_022577AC->unk_00));
-    UnkStruct_020298B0 * v1 = sub_020298B0(sub_0203D174(Unk_ov23_022577AC->unk_00));
+    UnkStruct_02029894 * v0 = sub_02029894(FieldSystem_SaveData(Unk_ov23_022577AC->unk_00));
+    UndergroundData * v1 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_022577AC->unk_00));
     int v2 = CommPlayer_AddXServer(0);
     int v3 = sub_02058F18(0);
     int v4 = CommPlayer_DirServer(0);
@@ -2308,7 +2308,7 @@ void ov23_0224D4CC (int param0, int param1, void * param2, void * param3)
 {
     u8 * v0 = param2;
     UnkStruct_02029894 * v1 = (UnkStruct_02029894 *)Unk_ov23_022577AC->unk_A00->unk_02;
-    UnkStruct_0202855C * v2 = sub_020298AC(v1);
+    SecretBaseRecord * v2 = sub_020298AC(v1);
 
     if (v0[0] == CommSys_CurNetId()) {
         ov23_02253A00(v2, v0[1]);

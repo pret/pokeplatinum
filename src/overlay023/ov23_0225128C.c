@@ -235,7 +235,7 @@ int ov23_02251414 (void)
 
 static BOOL ov23_02251418 (int param0, UnkStruct_ov23_02250CD4 * param1)
 {
-    UnkStruct_020298B0 * v0 = sub_020298B0(sub_0203D174(param1->unk_0C));
+    UndergroundData * v0 = sub_020298B0(FieldSystem_SaveData(param1->unk_0C));
     int v1;
 
     v1 = sub_02028B88(v0, param0);
@@ -250,7 +250,7 @@ static BOOL ov23_02251418 (int param0, UnkStruct_ov23_02250CD4 * param1)
 
 static int ov23_0225144C (int param0, UnkStruct_ov23_02250CD4 * param1)
 {
-    UnkStruct_020298B0 * v0 = sub_020298B0(sub_0203D174(param1->unk_0C));
+    UndergroundData * v0 = sub_020298B0(FieldSystem_SaveData(param1->unk_0C));
     int v1;
 
     if (sub_02028AFC(v0, param0)) {
@@ -312,7 +312,7 @@ static BOOL ov23_022514D8 (SysTask * param0, void * param1)
         break;
     case 0:
     {
-        UnkStruct_020298B0 * v4 = sub_020298B0(v0->unk_0C->unk_0C);
+        UndergroundData * v4 = sub_020298B0(v0->unk_0C->unk_0C);
 
         if (0 == sub_020289A0(v4)) {
             ov23_02253F40(ov23_022421BC(), 60, 0, NULL);
@@ -355,7 +355,7 @@ static void ov23_022515D8 (UnkStruct_ov23_02250CD4 * param0, int param1, int par
     int v1 = param2 + 1;
     BOOL v2 = 1;
 
-    if (3 > sub_0202958C(sub_020298A0(param0->unk_0C->unk_0C))) {
+    if (3 > sub_0202958C(SaveData_SecretBaseRecord(param0->unk_0C->unk_0C))) {
         v2 = 0;
         v1 -= 1;
     }
@@ -711,7 +711,7 @@ static void ov23_02251C04 (SysTask * param0, void * param1)
     case 6:
         ov23_0224FB7C(param1);
         ov23_02254044(ov23_022421BC());
-        v0->unk_270 = ov23_02253C64(v0->unk_0C->unk_08, SaveData_GetTrainerInfo(sub_0203D174(v0->unk_0C)), sub_020298B0(sub_0203D174(v0->unk_0C)), NULL, NULL);
+        v0->unk_270 = ov23_02253C64(v0->unk_0C->unk_08, SaveData_GetTrainerInfo(FieldSystem_SaveData(v0->unk_0C)), sub_020298B0(FieldSystem_SaveData(v0->unk_0C)), NULL, NULL);
         v0->unk_2AA = 7;
         break;
     case 7:

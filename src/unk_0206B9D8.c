@@ -329,7 +329,7 @@ u16 sub_0206BDBC (SaveData * param0)
 {
     UnkStruct_0203068C * v0;
     UnkStruct_0202D750 * v1;
-    UnkStruct_020298B0 * v2;
+    UndergroundData * v2;
     u16 v3;
     u8 v4, v5, v6, v7, v8, v9;
 

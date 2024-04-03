@@ -382,7 +382,7 @@ const UnkStruct_0208BE5C Unk_ov5_021F89B0 = {
 
 static int ov5_021D1178 (FieldSystem * param0)
 {
-    UnkStruct_02027860 * v0 = sub_02027860(sub_0203D174(param0));
+    UnkStruct_02027860 * v0 = sub_02027860(FieldSystem_SaveData(param0));
     int v1 = sub_02027F80(v0);
 
     if (v1 == 0) {
@@ -906,7 +906,7 @@ static void ov5_021D1878 (FieldSystem * param0)
     ov5_021F1328(param0->unk_40);
 
     {
-        UnkStruct_02027860 * v3 = sub_02027860(sub_0203D174(param0));
+        UnkStruct_02027860 * v3 = sub_02027860(FieldSystem_SaveData(param0));
         int v4 = sub_02027F80(v3);
 
         sub_0205E884(param0->playerAvatar, v4);
@@ -994,7 +994,7 @@ static void ov5_021D1A70 (UnkStruct_ov5_021D1A68 * param0)
 
 static BOOL ov5_021D1A78 (FieldSystem * param0)
 {
-    UnkStruct_02027860 * v0 = sub_02027860(sub_0203D174(param0));
+    UnkStruct_02027860 * v0 = sub_02027860(FieldSystem_SaveData(param0));
     int v1 = sub_02027F80(v0);
 
     if (v1 == 9) {

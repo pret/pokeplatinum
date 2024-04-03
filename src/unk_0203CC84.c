@@ -386,7 +386,7 @@ BGL * sub_0203D170 (void * param0)
     return v0->unk_08;
 }
 
-SaveData * sub_0203D174 (void * param0)
+SaveData * FieldSystem_SaveData (void * param0)
 {
     return ((FieldSystem *)param0)->unk_0C;
 }

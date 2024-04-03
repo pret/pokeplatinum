@@ -29,7 +29,7 @@ const VecFx32 * sub_0205EAFC(PlayerAvatar * const param0);
 void sub_0205EB08(PlayerAvatar * param0, int param1);
 int sub_0205EB0C(const PlayerAvatar * param0);
 void sub_0205EB10(PlayerAvatar * param0, int param1);
-int sub_0205EB14(const PlayerAvatar * param0);
+int Player_MoveState(const PlayerAvatar * param0);
 void sub_0205EB18(PlayerAvatar * param0, int param1);
 void sub_0205EB38(PlayerAvatar * param0, LocalMapObject * param1);
 LocalMapObject * Player_LocalMapObject(PlayerAvatar * param0);

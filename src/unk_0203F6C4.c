@@ -5404,8 +5404,8 @@ static BOOL sub_02043748 (UnkStruct_0203E724 * param0)
     LocalMapObject ** v0 = sub_0203F098(param0->unk_34, 10);
     StringFormatter ** v1 = sub_0203F098(param0->unk_34, 15);
     u16 v2 = sub_0203E838(param0);
-    TrainerInfo * v3 = SaveData_GetTrainerInfo(sub_0203D174(param0->unk_34));
-    UnkStruct_02014EC4 * v4 = sub_02014EC4(sub_0203D174(param0->unk_34));
+    TrainerInfo * v3 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->unk_34));
+    UnkStruct_02014EC4 * v4 = sub_02014EC4(FieldSystem_SaveData(param0->unk_34));
     u16 v5;
 
     if (v2 == 0) {
@@ -5614,7 +5614,7 @@ static BOOL sub_02043A94 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043AA4 (UnkStruct_0203E724 * param0)
 {
-    TrainerInfo * v0 = SaveData_GetTrainerInfo(sub_0203D174(param0->unk_34));
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->unk_34));
     StringFormatter ** v1 = sub_0203F098(param0->unk_34, 15);
 
     sub_0205C980(TrainerInfo_ID(v0), TrainerInfo_Gender(v0), *v1);
@@ -5623,7 +5623,7 @@ static BOOL sub_02043AA4 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043AE0 (UnkStruct_0203E724 * param0)
 {
-    TrainerInfo * v0 = SaveData_GetTrainerInfo(sub_0203D174(param0->unk_34));
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->unk_34));
     u16 v1 = inline_02049538(param0);
     u16 * v2 = inline_0204FCAC(param0);
 
@@ -5635,7 +5635,7 @@ static BOOL sub_02043AE0 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043B48 (UnkStruct_0203E724 * param0)
 {
-    TrainerInfo * v0 = SaveData_GetTrainerInfo(sub_0203D174(param0->unk_34));
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->unk_34));
     u16 v1 = inline_02049538(param0);
     u16 * v2 = inline_0204FCAC(param0);
 
@@ -5646,7 +5646,7 @@ static BOOL sub_02043B48 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043BA0 (UnkStruct_0203E724 * param0)
 {
-    TrainerInfo * v0 = SaveData_GetTrainerInfo(sub_0203D174(param0->unk_34));
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->unk_34));
     u16 v1 = inline_02049538(param0);
 
     TrainerInfo_SetAppearance(v0, v1);
@@ -5670,7 +5670,7 @@ static BOOL sub_02043BE0 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043C0C (UnkStruct_0203E724 * param0)
 {
-    TrainerInfo * v0 = SaveData_GetTrainerInfo(sub_0203D174(param0->unk_34));
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->unk_34));
     u16 * v1 = inline_0204FCAC(param0);
 
     *v1 = TrainerInfo_Gender(v0);
@@ -6821,7 +6821,7 @@ static BOOL sub_0204504C (UnkStruct_0203E724 * param0)
 static BOOL sub_02045068 (UnkStruct_0203E724 * param0)
 {
     FieldSystem * v0 = param0->unk_34;
-    TrainerInfo * v1 = SaveData_GetTrainerInfo(sub_0203D174(param0->unk_34));
+    TrainerInfo * v1 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->unk_34));
     u16 * v2 = inline_0204FCAC(param0);
     PCBoxes * v3 = SaveData_PCBoxes(v0->unk_0C);
     u16 v4 = inline_02049538(param0);
@@ -6851,10 +6851,10 @@ static BOOL sub_02045134 (UnkStruct_0203E724 * param0)
 {
     FieldSystem * v0 = param0->unk_34;
     SaveData * v1 = v0->unk_0C;
-    UnkStruct_0202855C * v2;
+    SecretBaseRecord * v2;
     u16 * v3 = inline_0204FCAC(param0);
 
-    v2 = sub_020298A0(v1);
+    v2 = SaveData_SecretBaseRecord(v1);
     *v3 = sub_020295B8(v2);
 
     return 0;
@@ -7728,7 +7728,7 @@ static BOOL sub_02045EA0 (UnkStruct_0203E724 * param0)
 static BOOL sub_02045ECC (UnkStruct_0203E724 * param0)
 {
     u16 v0 = inline_02049538(param0);
-    UnkStruct_020298B0 * v1 = sub_020298B0(param0->unk_34->unk_0C);
+    UndergroundData * v1 = sub_020298B0(param0->unk_34->unk_0C);
 
     if ((v0 == 135) || (v0 == 136)) {
         sub_02028828(v1);

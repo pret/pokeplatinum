@@ -313,7 +313,7 @@ void sub_0205F490 (PlayerAvatar * param0)
     const LocalMapObject * v3;
 
     v0 = sub_0205EB0C(param0);
-    v1 = sub_0205EB14(param0);
+    v1 = Player_MoveState(param0);
     v3 = Player_LocalMapObject(param0);
 
     sub_0205EB10(param0, 0);
@@ -397,7 +397,7 @@ int sub_0205F588 (PlayerAvatar * param0)
     const LocalMapObject * v3;
 
     v0 = sub_0205EB0C(param0);
-    v1 = sub_0205EB14(param0);
+    v1 = Player_MoveState(param0);
 
     if (v0 == 0) {
         return 1;

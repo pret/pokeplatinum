@@ -66,7 +66,7 @@ void ov5_021F8370 (FieldSystem * param0)
     UnkStruct_02071C34 * v2;
     UnkStruct_ov5_021F8480 * v3;
 
-    v1 = sub_02027860(sub_0203D174(param0));
+    v1 = sub_02027860(FieldSystem_SaveData(param0));
     v2 = sub_02027F6C(v1, 10);
     v3 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021F8480));
 
@@ -115,7 +115,7 @@ BOOL ov5_021F83D4 (FieldSystem * param0, const int param1, const int param2, con
 
 BOOL ov5_021F8410 (FieldSystem * param0, const int param1, const int param2, const int param3)
 {
-    UnkStruct_02027860 * v0 = sub_02027860(sub_0203D174(param0));
+    UnkStruct_02027860 * v0 = sub_02027860(FieldSystem_SaveData(param0));
 
     if (sub_02027F80(v0) == 10) {
         int v1;

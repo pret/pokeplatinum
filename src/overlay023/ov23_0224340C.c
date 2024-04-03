@@ -624,7 +624,7 @@ static const UnkFuncPtr_ov23_022564CC Unk_ov23_022565E4[] = {
 static void ov23_0224340C (void)
 {
     int v0;
-    UnkStruct_020298B0 * v1 = sub_020298B0(sub_0203D174(Unk_ov23_02257764->unk_40));
+    UndergroundData * v1 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257764->unk_40));
 
     for (v0 = 0; v0 < 16; v0++) {
         Unk_ov23_02257764->unk_308[v0].unk_04 = sub_02029030(v1, v0);
@@ -643,7 +643,7 @@ static void ov23_0224340C (void)
 void ov23_022434BC (void * param0, FieldSystem * param1)
 {
     int v0;
-    UnkStruct_020298B0 * v1;
+    UndergroundData * v1;
 
     if (Unk_ov23_02257764) {
         return;
@@ -653,7 +653,7 @@ void ov23_022434BC (void * param0, FieldSystem * param1)
     MI_CpuFill8(Unk_ov23_02257764, 0, sizeof(UnkStruct_ov23_02257764));
     Unk_ov23_02257764->unk_40 = param1;
 
-    v1 = sub_020298B0(sub_0203D174(param1));
+    v1 = sub_020298B0(FieldSystem_SaveData(param1));
 
     Unk_ov23_02257764->unk_2F0 = NULL;
 
@@ -740,7 +740,7 @@ void ov23_022435DC (void)
 void ov23_02243670 (FieldSystem * param0)
 {
     int v0;
-    UnkStruct_020298B0 * v1;
+    UndergroundData * v1;
 
     for (v0 = 0; v0 < 16; v0++) {
         if (Unk_ov23_02257764->unk_368[v0]) {
@@ -1103,7 +1103,7 @@ int ov23_02243C3C (int param0, int param1, MATHRandContext16 * param2, int param
     int v2, v3;
     UnkStruct_ov23_02243DA8 * v4;
     UnkStruct_ov23_02243DA8 * v5;
-    UnkStruct_020298B0 * v6 = sub_020298B0(Unk_ov23_02257764->unk_40->unk_0C);
+    UndergroundData * v6 = sub_020298B0(Unk_ov23_02257764->unk_40->unk_0C);
 
     if (param3 >= (16 * 4)) {
         return 0;
@@ -1136,7 +1136,7 @@ int ov23_02243C3C (int param0, int param1, MATHRandContext16 * param2, int param
 void ov23_02243CE8 (void)
 {
     int v0;
-    UnkStruct_020298B0 * v1 = sub_020298B0(Unk_ov23_02257764->unk_40->unk_0C);
+    UndergroundData * v1 = sub_020298B0(Unk_ov23_02257764->unk_40->unk_0C);
 
     for (v0 = 0; v0 < (16 * 4); v0++) {
         int v2 = sub_02028F40(v1, v0);
@@ -1158,7 +1158,7 @@ void ov23_02243CE8 (void)
 
 static void ov23_02243D50 (void)
 {
-    UnkStruct_020298B0 * v0 = sub_020298B0(sub_0203D174(Unk_ov23_02257764->unk_40));
+    UndergroundData * v0 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257764->unk_40));
     int v1;
 
     for (v1 = 0; v1 < 16; v1++) {
@@ -1332,7 +1332,7 @@ BOOL ov23_02244080 (int param0, UnkStruct_ov23_0224271C * param1, u8 param2)
     u8 v2 = param0;
     UnkStruct_ov23_02243DA8 * v3;
     UnkStruct_ov23_02244140 v4;
-    UnkStruct_020298B0 * v5 = sub_020298B0(sub_0203D174(Unk_ov23_02257764->unk_40));
+    UndergroundData * v5 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257764->unk_40));
 
     v0 = CommPlayer_AddXServer(param0);
     v1 = sub_02058F18(param0);
@@ -1473,7 +1473,7 @@ static BOOL ov23_022442F0 (int param0)
 {
     UnkStruct_ov23_02244140 v0;
     UnkStruct_ov23_02243DA8 * v1;
-    UnkStruct_020298B0 * v2 = sub_020298B0(Unk_ov23_02257764->unk_40->unk_0C);
+    UndergroundData * v2 = sub_020298B0(Unk_ov23_02257764->unk_40->unk_0C);
 
     if (ov23_0224162C(param0)) {
         return 0;
@@ -1550,13 +1550,13 @@ BOOL ov23_02244470 (int param0)
 void ov23_0224448C (int param0, int param1, void * param2, void * param3)
 {
     UnkStruct_ov23_02244140 * v0 = (UnkStruct_ov23_02244140 *)param2;
-    UnkStruct_0202855C * v1;
+    SecretBaseRecord * v1;
 
     if (!Unk_ov23_02257764) {
         return;
     }
 
-    v1 = sub_020298A0(sub_0203D174(Unk_ov23_02257764->unk_40));
+    v1 = SaveData_SecretBaseRecord(FieldSystem_SaveData(Unk_ov23_02257764->unk_40));
 
     Sound_PlayEffect(1570);
     MI_CpuCopy8(v0, &Unk_ov23_02257764->unk_B28[v0->unk_07_0], sizeof(UnkStruct_ov23_02244140));
@@ -2554,7 +2554,7 @@ void ov23_02245560 (int param0, int param1)
 void ov23_022455B4 (int param0, int param1, void * param2, void * param3)
 {
     UnkStruct_ov23_02245560 * v0 = param2;
-    UnkStruct_0202855C * v1 = sub_020298A0(sub_0203D174(Unk_ov23_02257764->unk_40));
+    SecretBaseRecord * v1 = SaveData_SecretBaseRecord(FieldSystem_SaveData(Unk_ov23_02257764->unk_40));
 
     ov23_0224B024(v0->unk_01);
 

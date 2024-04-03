@@ -286,7 +286,7 @@ static BOOL ov23_02254C84 (UnkStruct_020508D4 * param0)
         switch (ov23_02254314(v2->unk_504)) {
         case 0:
         {
-            UnkStruct_020298B0 * v3;
+            UndergroundData * v3;
             int v4;
 
             v3 = sub_020298B0(v1->unk_0C);
@@ -369,7 +369,7 @@ static BOOL ov23_02254DF8 (UnkStruct_020508D4 * param0)
         if (v7) {
             u32 v8;
             int v9;
-            UnkStruct_020298B0 * v10;
+            UndergroundData * v10;
 
             v10 = sub_020298B0(v6->unk_500->unk_0C);
             v8 = ov23_022545D8(v6->unk_508);
@@ -473,7 +473,7 @@ static BOOL ov23_02254DF8 (UnkStruct_020508D4 * param0)
             if (v15) {
                 u32 v16;
                 int v17;
-                UnkStruct_020298B0 * v18;
+                UndergroundData * v18;
 
                 v18 = sub_020298B0(v6->unk_500->unk_0C);
                 v17 = ov23_02255B78(&v6->unk_3C, v6->unk_5C);
@@ -671,7 +671,7 @@ static BOOL ov23_02255100 (UnkStruct_020508D4 * param0)
                             v7->unk_04 = 2;
                         }
                     } else {
-                        UnkStruct_020298B0 * v17;
+                        UndergroundData * v17;
 
                         v17 = sub_020298B0(v7->unk_500->unk_0C);
 

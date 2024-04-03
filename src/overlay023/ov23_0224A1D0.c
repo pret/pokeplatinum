@@ -94,7 +94,7 @@ static void ov23_0224A204 (int param0)
             }
 
             v1->unk_27C[0] = v1->unk_290[param0];
-            sub_02028830(sub_020298B0(sub_0203D174(v1->fieldSys)), v1->unk_290[param0]);
+            sub_02028830(sub_020298B0(FieldSystem_SaveData(v1->fieldSys)), v1->unk_290[param0]);
 
             v1->unk_290[param0] = NULL;
             v1->unk_14A[param0].unk_20 = 0xff;
@@ -228,7 +228,7 @@ void ov23_0224A410 (int param0, int param1, void * param2, void * param3)
         v0->unk_58.unk_00_9 = 0;
 
         if (v0->unk_5A[v1->unk_02] == 0) {
-            sub_020294F4(sub_020298A0(sub_0203D174(v0->fieldSys)), v1->unk_02);
+            sub_020294F4(SaveData_SecretBaseRecord(FieldSystem_SaveData(v0->fieldSys)), v1->unk_02);
             sub_0206B364(v2, sub_0206B354(v2) + 1);
             sub_0206B384(v2, sub_0206B374(v2) + 1);
 
@@ -366,7 +366,7 @@ BOOL ov23_0224A6B8 (int param0)
     return 1;
 }
 
-static void ov23_0224A6E4 (UnkStruct_ov23_0224A570 * param0, BOOL param1, UnkStruct_0202855C * param2)
+static void ov23_0224A6E4 (UnkStruct_ov23_0224A570 * param0, BOOL param1, SecretBaseRecord * param2)
 {
     CommPlayer * v0 = CommPlayerData_Get();
 
@@ -396,7 +396,7 @@ void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
     UnkStruct_ov23_0224A570 * v1 = param2;
     BOOL v2;
     int v3 = 0;
-    UnkStruct_0202855C * v4 = sub_020298A0(sub_0203D174(v0->fieldSys));
+    SecretBaseRecord * v4 = SaveData_SecretBaseRecord(FieldSystem_SaveData(v0->fieldSys));
 
     switch (v1->unk_00) {
     case 0:
@@ -470,7 +470,7 @@ void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
         ov23_0224B040(v1->unk_01);
 
         if (v1->unk_01 == CommSys_CurNetId()) {
-            UnkStruct_0202855C * v5 = sub_020298A0(sub_0203D174(v0->fieldSys));
+            SecretBaseRecord * v5 = SaveData_SecretBaseRecord(FieldSystem_SaveData(v0->fieldSys));
             u8 v6 = sub_0202958C(v5);
 
             sub_020295C0(v5);
@@ -806,7 +806,7 @@ BOOL ov23_0224AEC4 (int param0, int param1)
             TrainerInfo_Copy(v1, (TrainerInfo *)&v0->unk_14A[param0].unk_00);
 
             if (param1 == CommSys_CurNetId()) {
-                UnkStruct_0202855C * v2 = sub_020298A0(v0->fieldSys->unk_0C);
+                SecretBaseRecord * v2 = SaveData_SecretBaseRecord(v0->fieldSys->unk_0C);
                 sub_020297B4(v2);
             }
 

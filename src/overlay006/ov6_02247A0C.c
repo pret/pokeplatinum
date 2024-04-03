@@ -138,7 +138,7 @@ void * ov6_02247A90 (void * param0)
     SaveData * v8;
 
     v1 = sub_0203D170(param0);
-    v8 = sub_0203D174(param0);
+    v8 = FieldSystem_SaveData(param0);
     v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov6_02247A90));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov6_02247A90));

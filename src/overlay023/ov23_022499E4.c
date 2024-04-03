@@ -72,7 +72,7 @@ void ov23_022499E8 (FieldSystem * param0)
         return;
     }
 
-    sub_02036794(sub_0203D174(param0));
+    sub_02036794(FieldSystem_SaveData(param0));
     FieldCommMan_Init(param0);
 
     v0 = FieldCommMan_Get();

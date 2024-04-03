@@ -36,6 +36,6 @@ typedef struct UnkStruct_020298B0_t {
     u8 unk_9AB;
     u8 unk_9AC_0 : 4;
     u8 unk_9AC_4 : 4;
-} UnkStruct_020298B0;
+} UndergroundData;
 
 #endif // POKEPLATINUM_STRUCT_020298B0_H

@@ -270,7 +270,7 @@ void sub_0205EB10 (PlayerAvatar * param0, int param1)
     param0->unk_18 = param1;
 }
 
-int sub_0205EB14 (const PlayerAvatar * param0)
+int Player_MoveState (const PlayerAvatar * param0)
 {
     return param0->unk_18;
 }

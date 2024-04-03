@@ -99,7 +99,7 @@ BOOL sub_02046CFC (UnkStruct_0203E724 * param0)
     Strbuf* v0;
     Pokemon * v1;
     void ** v2 = sub_0203F098(param0->unk_34, 20);
-    TrainerInfo * v3 = SaveData_GetTrainerInfo(sub_0203D174(param0->unk_34));
+    TrainerInfo * v3 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->unk_34));
     u16 v4 = inline_02049538(param0);
     u16 v5 = inline_02049538(param0);
     u16 v6 = inline_02049538(param0);

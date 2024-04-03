@@ -577,7 +577,7 @@ void ov23_02242830 (u8 param0)
     u8 v0 = param0;
     UnkStruct_ov23_02242830 v1;
     int v2, v3;
-    UnkStruct_020298B0 * v4 = sub_020298B0(Unk_ov23_02257748->unk_0C->unk_0C);
+    UndergroundData * v4 = sub_020298B0(Unk_ov23_02257748->unk_0C->unk_0C);
 
     if ((Unk_ov23_02257748->unk_146 != 0) && (Unk_ov23_02257748->unk_134 != 0)) {
         return;
@@ -795,8 +795,8 @@ void ov23_02242BC0 (FieldSystem * param0)
         ov23_0223E1E4(v0, param0);
 
         v0 = Heap_AllocFromHeap(15, ov23_02253608());
-        ov23_02253598(v0, sub_020298A0(sub_0203D174(param0)), sub_0203D174(param0));
-        ov23_0224F588(sub_020298B0(sub_0203D174(param0)));
+        ov23_02253598(v0, SaveData_SecretBaseRecord(FieldSystem_SaveData(param0)), FieldSystem_SaveData(param0));
+        ov23_0224F588(sub_020298B0(FieldSystem_SaveData(param0)));
     }
 }
 

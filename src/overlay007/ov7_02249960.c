@@ -198,7 +198,7 @@ static void ov7_02249AB4 (FieldSystem * param0)
     Unk_ov7_0224F5A0->unk_68 = param0;
     Unk_ov7_0224F5A0->unk_97 = 0;
     Unk_ov7_0224F5A0->unk_74 = MessageLoader_Init(1, 26, 353, 4);
-    Unk_ov7_0224F5A0->unk_78 = SaveData_GetTrainerInfo(sub_0203D174(Unk_ov7_0224F5A0->unk_68));
+    Unk_ov7_0224F5A0->unk_78 = SaveData_GetTrainerInfo(FieldSystem_SaveData(Unk_ov7_0224F5A0->unk_68));
     Unk_ov7_0224F5A0->unk_7C = TrainerInfo_New(4);
 
     sub_0201A7A0(&Unk_ov7_0224F5A0->unk_20);

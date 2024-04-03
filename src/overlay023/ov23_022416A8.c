@@ -86,7 +86,7 @@ static void ov23_022416B0 (int param0)
 void ov23_022416E0 (void * param0, FieldSystem * param1)
 {
     int v0;
-    UnkStruct_020298B0 * v1;
+    UndergroundData * v1;
 
     if (Unk_ov23_02257744) {
         return;
@@ -96,7 +96,7 @@ void ov23_022416E0 (void * param0, FieldSystem * param1)
     MI_CpuFill8(Unk_ov23_02257744, 0, sizeof(UnkStruct_ov23_02257744));
     Unk_ov23_02257744->unk_464 = param1;
 
-    v1 = sub_020298B0(sub_0203D174(param1));
+    v1 = sub_020298B0(FieldSystem_SaveData(param1));
 
     for (v0 = 0; v0 < 100; v0++) {
         Unk_ov23_02257744->unk_00[v0].unk_06 = sub_020290DC(v1, v0);
@@ -113,7 +113,7 @@ void ov23_022416E0 (void * param0, FieldSystem * param1)
 
 static void ov23_02241778 (void)
 {
-    UnkStruct_020298B0 * v0 = sub_020298B0(sub_0203D174(Unk_ov23_02257744->unk_464));
+    UndergroundData * v0 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257744->unk_464));
     int v1;
 
     for (v1 = 0; v1 < 100; v1++) {
@@ -526,7 +526,7 @@ BOOL ov23_02241D58 (Strbuf *param0)
 
 int ov23_02241DF8 (MATHRandContext16 * param0)
 {
-    UnkStruct_020298B0 * v0 = sub_020298B0(sub_0203D174(Unk_ov23_02257744->unk_464));
+    UndergroundData * v0 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257744->unk_464));
     int v1, v2, v3;
 
     for (v3 = 0; v3 < 100; v3++) {

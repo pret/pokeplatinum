@@ -60,7 +60,7 @@ UnkStruct_ov82_0223B164 * sub_02099674 (FieldSystem * param0, int param1, int pa
 {
     UnkStruct_ov82_0223B164 * v0;
 
-    v0 = sub_02099604(param1, sub_0203D174(param0), param2, param0->unk_9C);
+    v0 = sub_02099604(param1, FieldSystem_SaveData(param0), param2, param0->unk_9C);
     sub_0209964C(param0, v0);
 
     return v0;
@@ -70,7 +70,7 @@ UnkStruct_ov82_0223B164 * sub_020996A0 (FieldSystem * param0, int param1, BOOL p
 {
     UnkStruct_ov82_0223B164 * v0;
 
-    v0 = sub_02099604(1, sub_0203D174(param0), param1, param0->unk_9C);
+    v0 = sub_02099604(1, FieldSystem_SaveData(param0), param1, param0->unk_9C);
     v0->unk_20 = 1;
     v0->unk_24 = param2;
 

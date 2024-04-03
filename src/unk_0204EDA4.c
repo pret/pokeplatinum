@@ -83,7 +83,7 @@ static void sub_0204EE90 (UnkStruct_0203E724 * param0, u16 param1, Pokemon * par
     *v0 = v1;
 
     v1->unk_00 = param2;
-    v1->unk_04 = SaveData_GetTrainerInfo(sub_0203D174(param0->unk_34));
+    v1->unk_04 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->unk_34));
     v1->unk_08 = sub_02025E44(param0->unk_34->unk_0C);
     v1->unk_0C = param3;
     v1->unk_15 = param1;
