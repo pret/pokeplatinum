@@ -157,7 +157,7 @@
 #include "overlay120/ov120_021D0D80.h"
 #include "overlay121/ov121_021D0D80.h"
 
-FS_EXTERN_OVERLAY(overlay16);
+FS_EXTERN_OVERLAY(battle);
 FS_EXTERN_OVERLAY(overlay19);
 FS_EXTERN_OVERLAY(overlay20);
 FS_EXTERN_OVERLAY(overlay21);
@@ -263,7 +263,7 @@ const OverlayManagerTemplate Unk_020EA358 = {
     sub_0203D1B8,
     sub_0203D1BC,
     sub_0203D1D0,
-    FS_OVERLAY_ID(overlay16)
+    FS_OVERLAY_ID(battle)
 };
 
 void sub_0203D1D4 (FieldSystem * param0, BattleParams * param1)

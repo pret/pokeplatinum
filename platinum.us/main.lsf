@@ -687,7 +687,7 @@ Overlay overlay15
 	Object main.nef.p/src_overlay015_ov15_dummy.c.o
 }
 
-Overlay overlay16
+Overlay battle 
 {
 	After overlay12
 	Object main.nef.p/src_overlay016_ov16_0223B140.c.o
