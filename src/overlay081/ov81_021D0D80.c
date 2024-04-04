@@ -3,7 +3,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "savedata.h"
@@ -17,7 +16,7 @@
 #include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "message.h"
@@ -67,7 +66,7 @@ static const u8 Unk_ov81_021D33E8[9][32] = {
     {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF}
 };
 
-int ov81_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
+int ov81_021D0D80 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov81_021D1610 * v0;
     SaveData * v1;
@@ -85,8 +84,8 @@ int ov81_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     SetAutorepeat(4, 8);
     Heap_Create(3, 42, 0x20000);
 
-    v1 = sub_02006840(param0);
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov81_021D1610), 42);
+    v1 = OverlayManager_Args(param0);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov81_021D1610), 42);
     memset(v0, 0, sizeof(UnkStruct_ov81_021D1610));
     v0->unk_00 = sub_02018340(42);
 
@@ -114,9 +113,9 @@ int ov81_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov81_021D0E70 (UnkStruct_020067E8 * param0, int * param1)
+int ov81_021D0E70 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov81_021D1610 * v0 = sub_0200682C(param0);
+    UnkStruct_ov81_021D1610 * v0 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:
@@ -140,9 +139,9 @@ int ov81_021D0E70 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov81_021D0EC4 (UnkStruct_020067E8 * param0, int * param1)
+int ov81_021D0EC4 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov81_021D1610 * v0 = sub_0200682C(param0);
+    UnkStruct_ov81_021D1610 * v0 = OverlayManager_Data(param0);
 
     SetMainCallback(NULL, NULL);
 
@@ -151,7 +150,7 @@ int ov81_021D0EC4 (UnkStruct_020067E8 * param0, int * param1)
     ov81_021D115C(v0);
 
     sub_02002C28(0);
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(42);
 
     return 1;

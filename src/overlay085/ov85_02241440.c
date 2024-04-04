@@ -3,7 +3,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
@@ -22,7 +21,7 @@
 #include "overlay115/struct_ov115_0226527C.h"
 
 #include "unk_02002B7C.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "message.h"
@@ -213,7 +212,7 @@ static const UnkStruct_ov85_022423A0 Unk_ov85_02242938[][4] = {
     }
 };
 
-int ov85_02241440 (UnkStruct_020067E8 * param0, int * param1)
+int ov85_02241440 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov85_022417E4 * v0;
     NARC * v1;
@@ -230,9 +229,9 @@ int ov85_02241440 (UnkStruct_020067E8 * param0, int * param1)
 
     Heap_Create(3, 36, 0x20000);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov85_022417E4), 36);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov85_022417E4), 36);
     memset(v0, 0, sizeof(UnkStruct_ov85_022417E4));
-    v0->unk_1F8 = sub_02006840(param0);
+    v0->unk_1F8 = OverlayManager_Args(param0);
     v0->unk_00 = sub_02018340(36);
     v0->unk_1FC = BerryData_LoadDataByNarcMemberIndex(v0->unk_1F8->unk_08, 36);
 
@@ -264,9 +263,9 @@ int ov85_02241440 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov85_0224154C (UnkStruct_020067E8 * param0, int * param1)
+int ov85_0224154C (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov85_022417E4 * v0 = sub_0200682C(param0);
+    UnkStruct_ov85_022417E4 * v0 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:
@@ -290,9 +289,9 @@ int ov85_0224154C (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov85_022415A0 (UnkStruct_020067E8 * param0, int * param1)
+int ov85_022415A0 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov85_022417E4 * v0 = sub_0200682C(param0);
+    UnkStruct_ov85_022417E4 * v0 = OverlayManager_Data(param0);
 
     ov85_02241860(v0->unk_04);
     ov85_022416E8(v0->unk_00);
@@ -303,7 +302,7 @@ int ov85_022415A0 (UnkStruct_020067E8 * param0, int * param1)
     ov85_0224202C(v0);
 
     Heap_FreeToHeap(v0->unk_1FC);
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     SetMainCallback(NULL, NULL);
     Heap_Destroy(36);
 

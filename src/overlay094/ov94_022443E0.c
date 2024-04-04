@@ -6,7 +6,7 @@
 
 #include "overlay094/struct_ov94_0223FD4C.h"
 
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "unk_0202D778.h"
 #include "pokemon_summary_app.h"
 #include "overlay094/ov94_0223BCB0.h"
@@ -41,7 +41,7 @@ int ov94_022443E0 (UnkStruct_ov94_0223FD4C * param0, int param1)
     PokemonSummary_FlagVisiblePages(&param0->unk_B8, Unk_ov94_02246360);
     PokemonSummary_SetPlayerProfile(&param0->unk_B8, param0->unk_00->unk_1C);
 
-    param0->unk_B4 = sub_020067E8(&Unk_020F410C, &param0->unk_B8, 62);
+    param0->unk_B4 = OverlayManager_New(&Unk_020F410C, &param0->unk_B8, 62);
     param0->unk_104 = 1;
 
     return 2;
@@ -51,8 +51,8 @@ int ov94_02244490 (UnkStruct_ov94_0223FD4C * param0, int param1)
 {
     int v0 = 3;
 
-    if (sub_02006844(param0->unk_B4)) {
-        sub_02006814(param0->unk_B4);
+    if (OverlayManager_Exec(param0->unk_B4)) {
+        OverlayManager_Free(param0->unk_B4);
         ov94_0223C4C0(param0, 5, param0->unk_24);
 
         v0 = 4;

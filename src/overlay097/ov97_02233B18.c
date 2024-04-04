@@ -3,7 +3,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
@@ -27,7 +26,6 @@
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "pokemon.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay022/struct_ov22_022559F8.h"
@@ -42,7 +40,7 @@
 #include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
@@ -1785,13 +1783,13 @@ static BOOL ov97_02235590 (UnkStruct_ov97_02234A2C * param0, int param1)
     return 0;
 }
 
-static int ov97_02235624 (UnkStruct_020067E8 * param0, int * param1)
+static int ov97_02235624 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov97_02234A2C * v0;
 
     Heap_Create(3, 78, 0x38000);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov97_02234A2C), 78);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov97_02234A2C), 78);
     memset(v0, 0, sizeof(UnkStruct_ov97_02234A2C));
 
     v0->unk_20 = sub_02018340(78);
@@ -1800,7 +1798,7 @@ static int ov97_02235624 (UnkStruct_020067E8 * param0, int * param1)
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);
 
-    v0->unk_10 = ((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08;
+    v0->unk_10 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
     v0->unk_14 = SaveData_GetTrainerInfo(v0->unk_10);
     v0->unk_18 = sub_02025E44(v0->unk_10);
     v0->unk_1C = sub_02027B50(v0->unk_18);
@@ -1821,10 +1819,10 @@ static int ov97_02235624 (UnkStruct_020067E8 * param0, int * param1)
 
 extern int gIgnoreCartridgeForWake;
 
-static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
+static int ov97_022356E8 (OverlayManager * param0, int * param1)
 {
     int v0, v1, v2;
-    UnkStruct_ov97_02234A2C * v3 = sub_0200682C(param0);
+    UnkStruct_ov97_02234A2C * v3 = OverlayManager_Data(param0);
 
     CTRDG_IsExisting();
 
@@ -2152,17 +2150,17 @@ static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-static int ov97_02235CC8 (UnkStruct_020067E8 * param0, int * param1)
+static int ov97_02235CC8 (OverlayManager * param0, int * param1)
 {
     FS_EXTERN_OVERLAY(overlay77);
 
-    UnkStruct_ov97_02234A2C * v0 = sub_0200682C(param0);
+    UnkStruct_ov97_02234A2C * v0 = OverlayManager_Data(param0);
 
     Strbuf_Free(v0->unk_12668);
     Strbuf_Free(v0->unk_1266C);
     Heap_FreeToHeap(v0->unk_20);
     sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(78);
 
     ov97_02238400(0);
@@ -2170,7 +2168,7 @@ static int ov97_02235CC8 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-const UnkStruct_0208BE5C Unk_ov97_0223D864 = {
+const OverlayManagerTemplate Unk_ov97_0223D864 = {
     ov97_02235624,
     ov97_022356E8,
     ov97_02235CC8,

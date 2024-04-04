@@ -3,7 +3,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
@@ -14,7 +13,6 @@
 #include "overlay077/struct_ov77_021D6CFC_decl.h"
 
 #include "struct_defs/struct_0207C690.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay009/struct_ov9_02249FF4.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
@@ -23,7 +21,7 @@
 
 #include "unk_02000C88.h"
 #include "unk_020041CC.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200A784.h"
@@ -145,10 +143,10 @@ typedef struct {
 } UnkStruct_ov77_021D2E9C;
 
 
-void sub_02000EC4(FSOverlayID param0, const UnkStruct_0208BE5C * param1);
-static int ov77_021D2D08(UnkStruct_020067E8 * param0, int * param1);
-static int ov77_021D2D94(UnkStruct_020067E8 * param0, int * param1);
-static int ov77_021D2E60(UnkStruct_020067E8 * param0, int * param1);
+void sub_02000EC4(FSOverlayID param0, const OverlayManagerTemplate * param1);
+static int ov77_021D2D08(OverlayManager * param0, int * param1);
+static int ov77_021D2D94(OverlayManager * param0, int * param1);
+static int ov77_021D2E60(OverlayManager * param0, int * param1);
 static BOOL ov77_021D2E9C(UnkStruct_ov77_021D2E9C * param0);
 static BOOL ov77_021D33F0(UnkStruct_ov77_021D2E9C * param0);
 static BOOL ov77_021D5254(UnkStruct_ov77_021D2E9C * param0);
@@ -187,9 +185,9 @@ static void ov77_021D5308(UnkStruct_ov77_021D5308 * param0);
 static BOOL ov77_021D5390(UnkStruct_ov77_021D5308 * param0, const int param1);
 static void ov77_021D5478(UnkStruct_ov77_021D2E9C * param0);
 
-extern const UnkStruct_0208BE5C Unk_ov77_021D742C;
+extern const OverlayManagerTemplate Unk_ov77_021D742C;
 
-const UnkStruct_0208BE5C Unk_ov77_021D788C = {
+const OverlayManagerTemplate Unk_ov77_021D788C = {
     ov77_021D2D08,
     ov77_021D2D94,
     ov77_021D2E60,
@@ -933,7 +931,7 @@ static void ov77_021D2CE8 (void)
     GXS_SetVisibleWnd(0);
 }
 
-static int ov77_021D2D08 (UnkStruct_020067E8 * param0, int * param1)
+static int ov77_021D2D08 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov77_021D2E9C * v0;
     int v1;
@@ -950,7 +948,7 @@ static int ov77_021D2D08 (UnkStruct_020067E8 * param0, int * param1)
     SetAutorepeat(4, 8);
     Heap_Create(3, v1, 0xa0000);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov77_021D2E9C), v1);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov77_021D2E9C), v1);
     memset(v0, 0, sizeof(UnkStruct_ov77_021D2E9C));
 
     v0->unk_00 = v1;
@@ -966,9 +964,9 @@ static int ov77_021D2D08 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static int ov77_021D2D94 (UnkStruct_020067E8 * param0, int * param1)
+static int ov77_021D2D94 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov77_021D2E9C * v0 = sub_0200682C(param0);
+    UnkStruct_ov77_021D2E9C * v0 = OverlayManager_Data(param0);
 
     if ((v0->unk_2A8) && ((gCoreSys.pressedKeys & PAD_BUTTON_A) || (gCoreSys.pressedKeys & PAD_BUTTON_START))) {
         v0->unk_08 = 1;
@@ -1015,16 +1013,16 @@ static int ov77_021D2D94 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-static int ov77_021D2E60 (UnkStruct_020067E8 * param0, int * param1)
+static int ov77_021D2E60 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov77_021D2E9C * v0 = sub_0200682C(param0);
+    UnkStruct_ov77_021D2E9C * v0 = OverlayManager_Data(param0);
 
     if (ScreenWipe_Done() == 0) {
         sub_0200F2C0();
     }
 
     LCRNG_SetSeed(v0->unk_14);
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(76);
     sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
 

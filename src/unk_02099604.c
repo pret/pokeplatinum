@@ -5,7 +5,6 @@
 #include "savedata.h"
 
 #include "field/field_system.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "overlay082/struct_ov82_0223B164.h"
 
 #include "heap.h"
@@ -45,7 +44,7 @@ static void sub_0209964C (FieldSystem * param0, UnkStruct_ov82_0223B164 * param1
     FS_EXTERN_OVERLAY(overlay82);
 
     {
-        UnkStruct_0208BE5C v0 = {
+        OverlayManagerTemplate v0 = {
             ov82_0223B164,
             ov82_0223B1D4,
             ov82_0223B24C,

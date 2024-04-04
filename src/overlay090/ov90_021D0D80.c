@@ -4,7 +4,6 @@
 #include "core_sys.h"
 #include "inlines.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
@@ -34,7 +33,7 @@
 
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "narc.h"
 #include "unk_0200A784.h"
 #include "message.h"
@@ -133,15 +132,15 @@ static void ov90_021D1C28(UnkStruct_ov90_021D0ECC * param0);
 static void ov90_021D1C44(UnkStruct_ov90_021D0ECC * param0, BOOL param1);
 static void ov90_021D1C90(UnkStruct_ov90_021D0ECC * param0, u8 param1, u8 param2, u8 param3);
 
-int ov90_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
+int ov90_021D0D80 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov90_021D0ECC * v0 = NULL;
     UnkStruct_ov90_021D0D80 * v1;
 
-    v1 = (UnkStruct_ov90_021D0D80 *)sub_02006840(param0);
+    v1 = (UnkStruct_ov90_021D0D80 *)OverlayManager_Args(param0);
 
     Heap_Create(3, 74, 0x10000);
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov90_021D0ECC), 74);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov90_021D0ECC), 74);
     memset(v0, 0, sizeof(UnkStruct_ov90_021D0ECC));
 
     v0->unk_08 = v1->unk_04;
@@ -157,20 +156,20 @@ int ov90_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov90_021D0DE8 (UnkStruct_020067E8 * param0, int * param1)
+int ov90_021D0DE8 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov90_021D0ECC * v0 = sub_0200682C(param0);
+    UnkStruct_ov90_021D0ECC * v0 = OverlayManager_Data(param0);
 
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(v0->unk_00);
 
     return 1;
 }
 
-int ov90_021D0E04 (UnkStruct_020067E8 * param0, int * param1)
+int ov90_021D0E04 (OverlayManager * param0, int * param1)
 {
     int v0 = 0;
-    UnkStruct_ov90_021D0ECC * v1 = sub_0200682C(param0);
+    UnkStruct_ov90_021D0ECC * v1 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:

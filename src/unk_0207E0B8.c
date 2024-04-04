@@ -3,7 +3,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
@@ -17,7 +16,6 @@
 #include "struct_defs/struct_0207C690.h"
 #include "functypes/funcptr_0207E634.h"
 #include "struct_defs/struct_0207F248.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_02099F80.h"
 #include "struct_defs/struct_020F1DB8.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
@@ -28,7 +26,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "game_overlay.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "message.h"
@@ -82,9 +80,9 @@ typedef struct {
     u16 unk_0A;
 } UnkStruct_020F1DF8;
 
-static int sub_0207E0B8(UnkStruct_020067E8 * param0, int * param1);
-static int sub_0207E2A8(UnkStruct_020067E8 * param0, int * param1);
-static int sub_0207E7E0(UnkStruct_020067E8 * param0, int * param1);
+static int sub_0207E0B8(OverlayManager * param0, int * param1);
+static int sub_0207E2A8(OverlayManager * param0, int * param1);
+static int sub_0207E7E0(OverlayManager * param0, int * param1);
 static int sub_0207E490(GameWindowLayout * param0);
 static int sub_0207E518(GameWindowLayout * param0);
 static int sub_0207E5B4(GameWindowLayout * param0);
@@ -100,7 +98,7 @@ static void sub_0207E8C0(void);
 static void sub_0207E918(BGL * param0);
 static void sub_0207EA24(BGL * param0);
 static void sub_0207EB6C(GameWindowLayout * param0, NARC * param1);
-static GameWindowLayout * sub_0207ECC0(UnkStruct_020067E8 * param0);
+static GameWindowLayout * sub_0207ECC0(OverlayManager * param0);
 static void sub_0207EE14(GameWindowLayout * param0);
 static void sub_0207F308(GameWindowLayout * param0);
 static u8 sub_0207F984(GameWindowLayout * param0, u8 param1);
@@ -162,7 +160,7 @@ u8 sub_02080488(GameWindowLayout * param0, u8 param1);
 static u8 CheckPokemonCondition(GameWindowLayout * param0);
 static BOOL UpdatePokemonStatus(GameWindowLayout * param0, u8 param1, s8 param2);
 
-const UnkStruct_0208BE5C Unk_020F1E88 = {
+const OverlayManagerTemplate Unk_020F1E88 = {
     sub_0207E0B8,
     sub_0207E2A8,
     sub_0207E7E0,
@@ -250,7 +248,7 @@ static const u16 Unk_020F1CB0[] = {
     0x87
 };
 
-static int sub_0207E0B8 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_0207E0B8 (OverlayManager * param0, int * param1)
 {
     GameWindowLayout * v0;
     NARC * v1;
@@ -326,9 +324,9 @@ static int sub_0207E0B8 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static int sub_0207E2A8 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_0207E2A8 (OverlayManager * param0, int * param1)
 {
-    GameWindowLayout * v0 = sub_0200682C(param0);
+    GameWindowLayout * v0 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:
@@ -650,9 +648,9 @@ static int sub_0207E750 (GameWindowLayout * param0)
     return 21;
 }
 
-static int sub_0207E7E0 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_0207E7E0 (OverlayManager * param0, int * param1)
 {
-    GameWindowLayout * v0 = sub_0200682C(param0);
+    GameWindowLayout * v0 = OverlayManager_Data(param0);
     u32 v1;
 
     SetMainCallback(NULL, NULL);
@@ -681,7 +679,7 @@ static int sub_0207E7E0 (UnkStruct_020067E8 * param0, int * param1)
         sub_0207A2C0(v0->unk_B20);
     }
 
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(12);
 
     return 1;
@@ -951,15 +949,15 @@ static void sub_0207EB6C (GameWindowLayout * param0, NARC * param1)
     sub_0201975C(4, 0);
 }
 
-static GameWindowLayout * sub_0207ECC0 (UnkStruct_020067E8 * param0)
+static GameWindowLayout * sub_0207ECC0 (OverlayManager * param0)
 {
     GameWindowLayout * v0;
     u32 v1;
 
-    v0 = sub_0200681C(param0, sizeof(GameWindowLayout), 12);
+    v0 = OverlayManager_NewData(param0, sizeof(GameWindowLayout), 12);
     memset(v0, 0, sizeof(GameWindowLayout));
 
-    v0->unk_5A4 = sub_02006840(param0);
+    v0->unk_5A4 = OverlayManager_Args(param0);
     v0->unk_00 = sub_02018340(12);
 
     if ((v0->unk_5A4->unk_20 == 2) && (v0->unk_5A4->unk_14 != NULL)) {

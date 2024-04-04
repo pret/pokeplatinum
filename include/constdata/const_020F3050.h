@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_CONST_020F3050_H
 #define POKEPLATINUM_CONST_020F3050_H
 
-#include "struct_defs/struct_0208BE5C.h"
+#include "overlay_manager.h"
 
-extern const UnkStruct_0208BE5C Unk_020F3050;
+extern const OverlayManagerTemplate Unk_020F3050;
 
 #endif // POKEPLATINUM_CONST_020F3050_H

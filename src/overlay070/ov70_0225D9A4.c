@@ -7,7 +7,6 @@
 #include "core_sys.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
@@ -56,7 +55,7 @@
 #include "unk_02002328.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
@@ -607,17 +606,17 @@ static const UnkStruct_ov84_02240FA8 Unk_ov70_0226D644 = {
     NULL
 };
 
-int ov70_0225D9A4 (UnkStruct_020067E8 * param0, int * param1)
+int ov70_0225D9A4 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov70_0225DEE8 * v0;
     UnkStruct_ov66_02230E68 * v1;
 
-    v1 = sub_02006840(param0);
+    v1 = OverlayManager_Args(param0);
 
     Heap_Create(3, 112, 0x3a000);
     Heap_Create(3, 113, 0x3d000);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov70_0225DEE8), 112);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov70_0225DEE8), 112);
     memset(v0, 0, sizeof(UnkStruct_ov70_0225DEE8));
 
     v0->unk_38 = &v1->unk_0C;
@@ -677,14 +676,14 @@ int ov70_0225D9A4 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov70_0225DB90 (UnkStruct_020067E8 * param0, int * param1)
+int ov70_0225DB90 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov70_0225DEE8 * v0;
     UnkStruct_ov66_02230E68 * v1;
     BOOL v2;
 
-    v0 = sub_0200682C(param0);
-    v1 = sub_02006840(param0);
+    v0 = OverlayManager_Data(param0);
+    v1 = OverlayManager_Args(param0);
 
     switch (*param1) {
     case 0:
@@ -803,13 +802,13 @@ int ov70_0225DB90 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov70_0225DDF8 (UnkStruct_020067E8 * param0, int * param1)
+int ov70_0225DDF8 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov70_0225DEE8 * v0;
     UnkStruct_ov66_02230E68 * v1;
 
-    v0 = sub_0200682C(param0);
-    v1 = sub_02006840(param0);
+    v0 = OverlayManager_Data(param0);
+    v1 = OverlayManager_Args(param0);
 
     {
         v1->unk_18 = v0->unk_01;

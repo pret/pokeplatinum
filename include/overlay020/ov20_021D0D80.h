@@ -1,13 +1,13 @@
 #ifndef POKEPLATINUM_OV20_021D0D80_H
 #define POKEPLATINUM_OV20_021D0D80_H
 
-#include "struct_decls/struct_020067E8_decl.h"
+#include "overlay_manager.h"
 #include "strbuf.h"
 #include "overlay020/struct_ov20_021D16E8_decl.h"
 
-int ov20_021D0D80(UnkStruct_020067E8 * param0, int * param1);
-int ov20_021D0DF8(UnkStruct_020067E8 * param0, int * param1);
-int ov20_021D0EA8(UnkStruct_020067E8 * param0, int * param1);
+int ov20_021D0D80(OverlayManager * param0, int * param1);
+int ov20_021D0DF8(OverlayManager * param0, int * param1);
+int ov20_021D0EA8(OverlayManager * param0, int * param1);
 u32 ov20_021D1F84(const UnkStruct_ov20_021D16E8 * param0);
 u32 ov20_021D1F88(const UnkStruct_ov20_021D16E8 * param0);
 u32 ov20_021D1F94(const UnkStruct_ov20_021D16E8 * param0);

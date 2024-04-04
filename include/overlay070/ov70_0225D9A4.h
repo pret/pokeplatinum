@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV70_0225D9A4_H
 #define POKEPLATINUM_OV70_0225D9A4_H
 
-#include "struct_decls/struct_020067E8_decl.h"
+#include "overlay_manager.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "strbuf.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
@@ -16,9 +16,9 @@
 
 #include "enums.h"
 
-int ov70_0225D9A4(UnkStruct_020067E8 * param0, int * param1);
-int ov70_0225DB90(UnkStruct_020067E8 * param0, int * param1);
-int ov70_0225DDF8(UnkStruct_020067E8 * param0, int * param1);
+int ov70_0225D9A4(OverlayManager * param0, int * param1);
+int ov70_0225DB90(OverlayManager * param0, int * param1);
+int ov70_0225DDF8(OverlayManager * param0, int * param1);
 UnkStruct_ov66_0222DFF8 * ov70_0225DEE8(UnkStruct_ov70_0225DEE8 * param0);
 UnkStruct_ov70_02263910 * ov70_0225DEEC(UnkStruct_ov70_0225DEE8 * param0);
 UnkStruct_ov70_0225CA20 * ov70_0225DEF0(UnkStruct_ov70_0225DEE8 * param0);

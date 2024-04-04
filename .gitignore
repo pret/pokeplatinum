@@ -96,5 +96,6 @@ sdk/
 __pycache__
 .cache
 .venv/
+.python-version
 
 compile_commands.json

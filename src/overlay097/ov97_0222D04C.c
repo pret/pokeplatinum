@@ -10,7 +10,7 @@
 #include "overlay097/struct_ov97_0222D250.h"
 #include "overlay097/union_ov97_0222D2B0.h"
 
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "communication_information.h"
@@ -185,7 +185,7 @@ void ov97_0222D200 (UnkStruct_ov97_0222D04C * param0, int param1)
         return;
     }
 
-    v0 = ((UnkStruct_0203CC84 *)sub_02006840(ov97_022301A4()))->unk_08;
+    v0 = ((UnkStruct_0203CC84 *)OverlayManager_Args(ov97_022301A4()))->unk_08;
     sub_02036C1C(v0, param1);
 
     ov97_0222D04C(param0);

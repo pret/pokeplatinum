@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
@@ -19,7 +18,6 @@
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
@@ -33,7 +31,7 @@
 #include "unk_02002328.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "message.h"
@@ -141,9 +139,9 @@ typedef struct {
 
 BOOL ov92_021D27E8(int param0, int param1, Strbuf *param2, Strbuf *param3, int param4);
 BOOL ov92_021D2854(int param0);
-int ov92_021D0D80(UnkStruct_020067E8 * param0, int * param1);
-int ov92_021D0EB8(UnkStruct_020067E8 * param0, int * param1);
-int ov92_021D1478(UnkStruct_020067E8 * param0, int * param1);
+int ov92_021D0D80(OverlayManager * param0, int * param1);
+int ov92_021D0EB8(OverlayManager * param0, int * param1);
+int ov92_021D1478(OverlayManager * param0, int * param1);
 static void ov92_021D14F0(void);
 static void ov92_021D1510(void);
 static void ov92_021D1888(UnkStruct_ov92_021D1B24 * param0, NARC * param1);
@@ -174,7 +172,7 @@ static void ov92_021D2370(MtxFx33 * param0, VecFx32 * param1);
 static void ov92_021D23E8(MtxFx33 * param0, VecFx32 * param1);
 static void ov92_021D2868(UnkStruct_ov92_021D28C0 * param0);
 static u32 ov92_021D28C0(const UnkStruct_ov92_021D28C0 * param0, const UnkStruct_ov92_021D28C0 * param1);
-void sub_02000EC4(FSOverlayID param0, const UnkStruct_0208BE5C * param1);
+void sub_02000EC4(FSOverlayID param0, const OverlayManagerTemplate * param1);
 
 static const UnkStruct_ov97_0222DB78 Unk_ov92_021D2970 = {
     0x0,
@@ -316,7 +314,7 @@ static const UnkStruct_ov84_02240FA8 Unk_ov92_021D29C8 = {
     0x0
 };
 
-int ov92_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
+int ov92_021D0D80 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov92_021D1B24 * v0;
     int v1 = 50;
@@ -331,7 +329,7 @@ int ov92_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     Heap_Create(3, v1, 0x80000);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov92_021D1B24), v1);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov92_021D1B24), v1);
     memset(v0, 0, sizeof(UnkStruct_ov92_021D1B24));
     v0->unk_00 = v1;
 
@@ -342,7 +340,7 @@ int ov92_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     }
 
     {
-        SaveData * v2 = sub_02006840(param0);
+        SaveData * v2 = OverlayManager_Args(param0);
 
         v0->unk_04 = sub_0202C878(v2);
         v0->unk_BB14 = sub_0202C8C0(v0->unk_04);
@@ -377,9 +375,9 @@ int ov92_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov92_021D0EB8 (UnkStruct_020067E8 * param0, int * param1)
+int ov92_021D0EB8 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov92_021D1B24 * v0 = sub_0200682C(param0);
+    UnkStruct_ov92_021D1B24 * v0 = OverlayManager_Data(param0);
     int v1 = 0;
     NARC * v2;
 
@@ -700,9 +698,9 @@ int ov92_021D0EB8 (UnkStruct_020067E8 * param0, int * param1)
     return v1;
 }
 
-int ov92_021D1478 (UnkStruct_020067E8 * param0, int * param1)
+int ov92_021D1478 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov92_021D1B24 * v0 = sub_0200682C(param0);
+    UnkStruct_ov92_021D1B24 * v0 = OverlayManager_Data(param0);
     int v1 = v0->unk_00;
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
@@ -714,7 +712,7 @@ int ov92_021D1478 (UnkStruct_020067E8 * param0, int * param1)
     sub_0201CBA0();
     Heap_FreeToHeap(v0->unk_B810);
     SetMainCallback(NULL, NULL);
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(v1);
 
     gCoreSys.unk_65 = 0;

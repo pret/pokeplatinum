@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_020067E8_decl.h"
+#include "overlay_manager.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
@@ -40,7 +40,7 @@ struct UnkStruct_02095E80_t {
     UnkStruct_ov88_0223C370 * unk_08;
     PokemonSummary unk_0C;
     int unk_3C;
-    UnkStruct_020067E8 * unk_40;
+    OverlayManager * unk_40;
     int unk_44;
     int unk_48;
     int unk_4C;

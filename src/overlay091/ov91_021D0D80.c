@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
@@ -38,7 +37,7 @@
 #include "unk_02002328.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "message.h"
@@ -78,7 +77,7 @@ typedef struct {
     SpriteGfxHandler * unk_114;
     CellActorData * unk_118[13];
     PokemonSummary unk_14C;
-    UnkStruct_020067E8 * unk_17C;
+    OverlayManager * unk_17C;
     int unk_180;
     u8 unk_184;
     u8 unk_185;
@@ -364,15 +363,15 @@ static const SpriteTemplate Unk_ov91_021D28FC[] = {
     }
 };
 
-int ov91_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
+int ov91_021D0D80 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov91_021D0ED8 * v0;
 
     Heap_Create(3, 67, 0x20000);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov91_021D0ED8), 67);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov91_021D0ED8), 67);
     memset(v0, 0, sizeof(UnkStruct_ov91_021D0ED8));
-    v0->unk_00 = sub_02006840(param0);
+    v0->unk_00 = OverlayManager_Args(param0);
 
     ov91_021D0ED8(v0);
     ov91_021D2548(v0, v0->unk_00->unk_10, 0);
@@ -388,9 +387,9 @@ int ov91_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov91_021D0E08 (UnkStruct_020067E8 * param0, int * param1)
+int ov91_021D0E08 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov91_021D0ED8 * v0 = sub_0200682C(param0);
+    UnkStruct_ov91_021D0ED8 * v0 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:
@@ -439,13 +438,13 @@ int ov91_021D0E08 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov91_021D0EBC (UnkStruct_020067E8 * param0, int * param1)
+int ov91_021D0EBC (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov91_021D0ED8 * v0 = sub_0200682C(param0);
+    UnkStruct_ov91_021D0ED8 * v0 = OverlayManager_Data(param0);
 
     ov91_021D0F6C(v0);
 
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(67);
 
     return 1;
@@ -1529,14 +1528,14 @@ static int ov91_021D261C (UnkStruct_ov91_021D0ED8 * param0)
 
     PokemonSummary_FlagVisiblePages(&param0->unk_14C, v0);
 
-    param0->unk_17C = sub_020067E8(&Unk_020F410C, &param0->unk_14C, 67);
+    param0->unk_17C = OverlayManager_New(&Unk_020F410C, &param0->unk_14C, 67);
     return 12;
 }
 
 static int ov91_021D26AC (UnkStruct_ov91_021D0ED8 * param0)
 {
-    if (sub_02006844(param0->unk_17C)) {
-        sub_02006814(param0->unk_17C);
+    if (OverlayManager_Exec(param0->unk_17C)) {
+        OverlayManager_Free(param0->unk_17C);
         ov91_021D0ED8(param0);
         ov91_021D2548(param0, param0->unk_00->unk_10, 1);
         ov91_021D2574(param0, 0);

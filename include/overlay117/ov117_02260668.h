@@ -1,13 +1,12 @@
 #ifndef POKEPLATINUM_OV117_02260668_H
 #define POKEPLATINUM_OV117_02260668_H
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "overlay117/struct_ov117_02261280_decl.h"
 #include "overlay117/struct_ov117_022621D4.h"
 
-int ov117_02260668(UnkStruct_020067E8 * param0, int * param1);
-int ov117_0226098C(UnkStruct_020067E8 * param0, int * param1);
-int ov117_02260C10(UnkStruct_020067E8 * param0, int * param1);
+int ov117_02260668(OverlayManager * param0, int * param1);
+int ov117_0226098C(OverlayManager * param0, int * param1);
+int ov117_02260C10(OverlayManager * param0, int * param1);
 void ov117_02261600(UnkStruct_ov117_02261280 * param0, int param1);
 BOOL ov117_02261E38(UnkStruct_ov117_02261280 * param0, int param1);
 BOOL ov117_02261FF4(UnkStruct_ov117_02261280 * param0);

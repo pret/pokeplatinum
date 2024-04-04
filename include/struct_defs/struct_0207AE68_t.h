@@ -2,7 +2,6 @@
 #define POKEPLATINUM_STRUCT_0207AE68_T_H
 
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/sprite_decl.h"
@@ -37,7 +36,7 @@ struct UnkStruct_0207AE68_t {
     Options * unk_2C;
     UnkStruct_0207C8C4 * unk_30;
     GenericPointerData * unk_34;
-    UnkStruct_020067E8 * unk_38;
+    OverlayManager * unk_38;
     PokemonSummary * unk_3C;
     void * unk_40;
     PokemonAnimationSys * unk_44;

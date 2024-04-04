@@ -5,7 +5,6 @@
 #include "inlines.h"
 #include "enums.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -33,7 +32,7 @@
 #include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
@@ -301,16 +300,16 @@ static BOOL ov86_0223D2A4(UnkStruct_ov86_0223D264 * param0);
 static int ov86_0223D2A8(UnkStruct_ov86_0223B3C8 * param0, Pokemon * param1, const TrainerInfo * param2);
 static SysTask * ov86_0223CAE4(UnkStruct_ov86_0223C9B0 * param0, fx16 param1, fx32 param2, int param3);
 
-int ov86_0223B140 (UnkStruct_020067E8 * param0, int * param1)
+int ov86_0223B140 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov86_0223B3C8 * v0;
 
     SetMainCallback(NULL, NULL);
     Heap_Create(3, 63, 196608);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov86_0223B3C8), 63);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov86_0223B3C8), 63);
 
-    v0->unk_0C = sub_02006840(param0);
+    v0->unk_0C = OverlayManager_Args(param0);
     v0->unk_1C50 = MessageLoader_Init(0, 26, 351, 63);
     v0->unk_1C48 = Strbuf_Init(500, 63);
     v0->unk_1C4C = Strbuf_Init(500, 63);
@@ -357,12 +356,12 @@ int ov86_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov86_0223B2E4 (UnkStruct_020067E8 * param0, int * param1)
+int ov86_0223B2E4 (OverlayManager * param0, int * param1)
 {
     switch (*param1) {
     case 0:
     {
-        UnkStruct_ov86_0223B3C8 * v0 = sub_0200682C(param0);
+        UnkStruct_ov86_0223B3C8 * v0 = OverlayManager_Data(param0);
 
         SysTask_Done(v0->unk_1C28);
 
@@ -377,7 +376,7 @@ int ov86_0223B2E4 (UnkStruct_020067E8 * param0, int * param1)
         Strbuf_Free(v0->unk_1C4C);
         MessageLoader_Free(v0->unk_1C50);
         NARC_dtor(v0->unk_1C54);
-        sub_02006830(param0);
+        OverlayManager_FreeData(param0);
         Heap_Destroy(63);
     }
         (*param1)++;
@@ -391,7 +390,7 @@ int ov86_0223B2E4 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov86_0223B394 (UnkStruct_020067E8 * param0, int * param1)
+int ov86_0223B394 (OverlayManager * param0, int * param1)
 {
     static BOOL(*const v0[])(UnkStruct_ov86_0223B3C8 *) = {
         ov86_0223B3C8,
@@ -401,7 +400,7 @@ int ov86_0223B394 (UnkStruct_020067E8 * param0, int * param1)
         ov86_0223B40C
     };
 
-    UnkStruct_ov86_0223B3C8 * v1 = sub_0200682C(param0);
+    UnkStruct_ov86_0223B3C8 * v1 = OverlayManager_Data(param0);
 
     if ((*param1) < NELEMS(v0)) {
         if (v0[(*param1)](v1)) {
