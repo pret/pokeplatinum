@@ -286,7 +286,7 @@ static void sub_02059984 (void)
 
     if (sub_02036540(98)) {
         v0 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, CommPlayer_Size());
-        CommPlayerManager_Init(v0, sFieldCommMan->fieldSys, 0);
+        CommPlayerMan_Init(v0, sFieldCommMan->fieldSys, 0);
         sub_02059524();
         sub_02035EC8();
         sub_020364F0(92);
@@ -357,7 +357,7 @@ static void sub_02059AB4 (void)
 
     if (sub_02036540(98)) {
         v0 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, CommPlayer_Size());
-        CommPlayerManager_Init(v0, sFieldCommMan->fieldSys, 0);
+        CommPlayerMan_Init(v0, sFieldCommMan->fieldSys, 0);
         sub_02059524();
         sub_020364F0(92);
         FieldCommMan_SetTask(sub_02059B10, 0);

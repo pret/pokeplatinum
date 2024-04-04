@@ -1296,7 +1296,7 @@ void ov23_0224F07C (int param0, int param1, FieldSystem * param2)
     v0->unk_2E = 12;
 
     ov23_02253F40(ov23_0224219C(), 22, 0, NULL);
-    CommPlayerManager_ForceDir();
+    CommPlayerMan_ForceDir();
 
     v0->unk_00 = SysTask_Start(ov23_0224EC50, v0, 10000);
 }

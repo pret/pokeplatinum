@@ -17,7 +17,6 @@
 #include "struct_defs/struct_02057B48.h"
 #include "struct_defs/struct_020590C4.h"
 #include "struct_defs/struct_020619DC.h"
-#include "overlay023/struct_ov23_0224A294.h"
 
 #include "unk_0200D9E8.h"
 #include "heap.h"
@@ -61,12 +60,12 @@ static void sub_020591A8(void);
 
 static CommPlayerManager * sCommPlayerManager = NULL;
 
-CommPlayerManager * CommPlayerData_Get (void)
+CommPlayerManager * CommPlayerMan_Get (void)
 {
     return sCommPlayerManager;
 }
 
-BOOL CommPlayerManager_Init (void * dest, FieldSystem * fieldSys, BOOL isUnderground)
+BOOL CommPlayerMan_Init (void * dest, FieldSystem * fieldSys, BOOL isUnderground)
 {
     int netId;
 
@@ -651,7 +650,7 @@ static int CommPlayer_Direction (u16 unused, u16 keys)
         return 1;
     }
 
-    return(-1);
+    return -1;
 }
 
 BOOL CommPlayer_CheckNPCCollision (int x, int z)
@@ -1610,7 +1609,7 @@ void CommPlayer_SetBattleDir (void)
     }
 
     sub_02061550(sCommPlayerManager->playerAvatar[netId], code, 1);
-    CommPlayerManager_ForceDir();
+    CommPlayerMan_ForceDir();
 }
 
 BOOL sub_0205928C (void)
@@ -1785,7 +1784,7 @@ void sub_02059570 (void)
     }
 }
 
-void CommPlayerManager_ForcePos (void)
+void CommPlayerMan_ForcePos (void)
 {
     int netId, x, z, dir;
     LocalMapObject * obj;
@@ -1814,7 +1813,7 @@ void CommPlayerManager_ForcePos (void)
     }
 }
 
-void CommPlayerManager_ForceDir (void)
+void CommPlayerMan_ForceDir (void)
 {
     sCommPlayerManager->forceDirTimer = 8;
 }
