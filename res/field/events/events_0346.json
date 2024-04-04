@@ -1,0 +1,113 @@
+{
+    "bg_events": [
+        {
+            "script": 8188,
+            "type": 2,
+            "x": 2,
+            "y": 11,
+            "z": 0,
+            "player_facing_dir": 4
+        }
+    ],
+    "object_events": [
+        {
+            "graphics_id": 87,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 1108,
+            "script": 7094,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 6,
+            "y": 12,
+            "z": 0
+        },
+        {
+            "graphics_id": 16,
+            "movement_type": 9,
+            "trainer_type": 1,
+            "flag": 0,
+            "script": 3530,
+            "initial_dir": 3,
+            "data": [2],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 9,
+            "y": 11,
+            "z": 0
+        },
+        {
+            "graphics_id": 9,
+            "movement_type": 14,
+            "trainer_type": 1,
+            "flag": 0,
+            "script": 3533,
+            "initial_dir": 0,
+            "data": [1],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 4,
+            "y": 9,
+            "z": 0
+        },
+        {
+            "graphics_id": 12,
+            "movement_type": 14,
+            "trainer_type": 1,
+            "flag": 0,
+            "script": 5533,
+            "initial_dir": 0,
+            "data": [1],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 5,
+            "y": 9,
+            "z": 0
+        },
+        {
+            "graphics_id": 41,
+            "movement_type": 16,
+            "trainer_type": 1,
+            "flag": 0,
+            "script": 3532,
+            "initial_dir": 2,
+            "data": [2],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 13,
+            "y": 13,
+            "z": 0
+        },
+        {
+            "graphics_id": 42,
+            "movement_type": 16,
+            "trainer_type": 1,
+            "flag": 0,
+            "script": 5532,
+            "initial_dir": 2,
+            "data": [2],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 13,
+            "y": 14,
+            "z": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "x": 11,
+            "y": 3,
+            "dest_header_id": 359,
+            "dest_warp_id": 1
+        },
+        {
+            "x": 4,
+            "y": 3,
+            "dest_header_id": 361,
+            "dest_warp_id": 0
+        }
+    ],
+    "coord_events": []
+}

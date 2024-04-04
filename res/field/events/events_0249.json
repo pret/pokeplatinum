@@ -1,0 +1,250 @@
+{
+    "bg_events": [
+        {
+            "script": 8058,
+            "type": 2,
+            "x": 39,
+            "y": 38,
+            "z": 0,
+            "player_facing_dir": 4
+        },
+        {
+            "script": 8059,
+            "type": 2,
+            "x": 33,
+            "y": 18,
+            "z": 0,
+            "player_facing_dir": 4
+        },
+        {
+            "script": 8220,
+            "type": 2,
+            "x": 13,
+            "y": 36,
+            "z": 0,
+            "player_facing_dir": 4
+        },
+        {
+            "script": 8227,
+            "type": 2,
+            "x": 29,
+            "y": 30,
+            "z": 0,
+            "player_facing_dir": 4
+        },
+        {
+            "script": 8226,
+            "type": 2,
+            "x": 39,
+            "y": 23,
+            "z": 0,
+            "player_facing_dir": 4
+        },
+        {
+            "script": 8219,
+            "type": 2,
+            "x": 48,
+            "y": 24,
+            "z": 0,
+            "player_facing_dir": 4
+        },
+        {
+            "script": 8222,
+            "type": 2,
+            "x": 25,
+            "y": 23,
+            "z": 0,
+            "player_facing_dir": 4
+        },
+        {
+            "script": 8223,
+            "type": 2,
+            "x": 52,
+            "y": 31,
+            "z": 0,
+            "player_facing_dir": 4
+        },
+        {
+            "script": 8224,
+            "type": 2,
+            "x": 17,
+            "y": 18,
+            "z": 0,
+            "player_facing_dir": 4
+        },
+        {
+            "script": 8225,
+            "type": 2,
+            "x": 19,
+            "y": 35,
+            "z": 0,
+            "player_facing_dir": 4
+        },
+        {
+            "script": 8221,
+            "type": 2,
+            "x": 21,
+            "y": 14,
+            "z": 0,
+            "player_facing_dir": 4
+        }
+    ],
+    "object_events": [
+        {
+            "graphics_id": 124,
+            "movement_type": 14,
+            "trainer_type": 0,
+            "flag": 415,
+            "script": 3,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 12,
+            "y": 47,
+            "z": 0
+        },
+        {
+            "graphics_id": 124,
+            "movement_type": 14,
+            "trainer_type": 0,
+            "flag": 416,
+            "script": 4,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 13,
+            "y": 47,
+            "z": 0
+        },
+        {
+            "graphics_id": 15,
+            "movement_type": 16,
+            "trainer_type": 0,
+            "flag": 0,
+            "script": 5,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 12,
+            "y": 46,
+            "z": 0
+        },
+        {
+            "graphics_id": 87,
+            "movement_type": 15,
+            "trainer_type": 0,
+            "flag": 414,
+            "script": 7,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 13,
+            "y": 47,
+            "z": 0
+        },
+        {
+            "graphics_id": 87,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 1160,
+            "script": 7146,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 14,
+            "y": 15,
+            "z": 0
+        },
+        {
+            "graphics_id": 87,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 1248,
+            "script": 7234,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 46,
+            "y": 28,
+            "z": 0
+        },
+        {
+            "graphics_id": 87,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 1299,
+            "script": 7284,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 20,
+            "y": 27,
+            "z": 0
+        },
+        {
+            "graphics_id": 87,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 1300,
+            "script": 7285,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 11,
+            "y": 35,
+            "z": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "x": 50,
+            "y": 9,
+            "dest_header_id": 426,
+            "dest_warp_id": 5
+        },
+        {
+            "x": 51,
+            "y": 9,
+            "dest_header_id": 426,
+            "dest_warp_id": 6
+        },
+        {
+            "x": 39,
+            "y": 45,
+            "dest_header_id": 257,
+            "dest_warp_id": 0
+        },
+        {
+            "x": 12,
+            "y": 54,
+            "dest_header_id": 426,
+            "dest_warp_id": 7
+        },
+        {
+            "x": 13,
+            "y": 54,
+            "dest_header_id": 426,
+            "dest_warp_id": 8
+        }
+    ],
+    "coord_events": [
+        {
+            "script": 2,
+            "x": 12,
+            "y": 48,
+            "width": 2,
+            "length": 1,
+            "z": 0,
+            "value": 0,
+            "var": 16617
+        }
+    ]
+}

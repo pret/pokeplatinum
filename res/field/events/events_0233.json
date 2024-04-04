@@ -1,0 +1,31 @@
+{
+    "bg_events": [],
+    "object_events": [],
+    "warp_events": [
+        {
+            "x": 4,
+            "y": 3,
+            "dest_header_id": 242,
+            "dest_warp_id": 0
+        },
+        {
+            "x": 6,
+            "y": 3,
+            "dest_header_id": 239,
+            "dest_warp_id": 0
+        },
+        {
+            "x": 4,
+            "y": 10,
+            "dest_header_id": 240,
+            "dest_warp_id": 0
+        },
+        {
+            "x": 6,
+            "y": 10,
+            "dest_header_id": 233,
+            "dest_warp_id": 0
+        }
+    ],
+    "coord_events": []
+}

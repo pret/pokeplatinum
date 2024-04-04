@@ -1,0 +1,124 @@
+{
+    "bg_events": [
+        {
+            "script": 8808,
+            "type": 0,
+            "x": 69,
+            "y": 106,
+            "z": 0,
+            "player_facing_dir": 0
+        },
+        {
+            "script": 8215,
+            "type": 2,
+            "x": 91,
+            "y": 113,
+            "z": 0,
+            "player_facing_dir": 4
+        }
+    ],
+    "object_events": [
+        {
+            "graphics_id": 87,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 1087,
+            "script": 7073,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 91,
+            "y": 105,
+            "z": 0
+        },
+        {
+            "graphics_id": 93,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 0,
+            "script": 2,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 72,
+            "y": 113,
+            "z": 0
+        },
+        {
+            "graphics_id": 11,
+            "movement_type": 3,
+            "trainer_type": 0,
+            "flag": 0,
+            "script": 1,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_y": 1,
+            "x": 74,
+            "y": 115,
+            "z": 0
+        },
+        {
+            "local_id": 2,
+            "graphics_id": 4,
+            "movement_type": 10,
+            "trainer_type": 0,
+            "flag": 508,
+            "script": 65535,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 62,
+            "y": 115,
+            "z": 0
+        },
+        {
+            "local_id": 1,
+            "graphics_id": 93,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 508,
+            "script": 65535,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 63,
+            "y": 113,
+            "z": 0
+        },
+        {
+            "local_id": 2,
+            "graphics_id": 93,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 507,
+            "script": 65535,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 72,
+            "y": 86,
+            "z": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "x": 68,
+            "y": 118,
+            "dest_header_id": 125,
+            "dest_warp_id": 2
+        },
+        {
+            "x": 69,
+            "y": 118,
+            "dest_header_id": 125,
+            "dest_warp_id": 2
+        }
+    ],
+    "coord_events": []
+}
