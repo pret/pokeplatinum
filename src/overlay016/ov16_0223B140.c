@@ -99,7 +99,7 @@ FS_EXTERN_OVERLAY(overlay10);
 FS_EXTERN_OVERLAY(overlay11);
 FS_EXTERN_OVERLAY(overlay12);
 FS_EXTERN_OVERLAY(overlay13);
-FS_EXTERN_OVERLAY(overlay14);
+FS_EXTERN_OVERLAY(trainer_ai);
 FS_EXTERN_OVERLAY(overlay21);
 
 static const u32 BattleServerVersion = 0x140;
@@ -311,7 +311,7 @@ void ov16_0223B384 (BattleSystem * param0)
     if (param0->overlayFlags == 0) {
         Overlay_UnloadByID(FS_OVERLAY_ID(overlay12));
     } else {
-        Overlay_UnloadByID(FS_OVERLAY_ID(overlay14));
+        Overlay_UnloadByID(FS_OVERLAY_ID(trainer_ai));
     }
 
     Overlay_LoadByID(FS_OVERLAY_ID(overlay13), 2);
@@ -342,7 +342,7 @@ void ov16_0223B430 (BattleSystem * param0)
     if (param0->overlayFlags == 0) {
         Overlay_LoadByID(FS_OVERLAY_ID(overlay12), 2);
     } else {
-        Overlay_LoadByID(FS_OVERLAY_ID(overlay14), 2);
+        Overlay_LoadByID(FS_OVERLAY_ID(trainer_ai), 2);
     }
 
     ov16_0223F314(param0, 0);
@@ -490,11 +490,11 @@ void BattleSystem_LoadFightOverlay (BattleSystem *battleSys, int flags)
     battleSys->overlayFlags = flags;
 
     if (flags == 0) {
-        Overlay_UnloadByID(FS_OVERLAY_ID(overlay14));
+        Overlay_UnloadByID(FS_OVERLAY_ID(trainer_ai));
         Overlay_LoadByID(FS_OVERLAY_ID(overlay12), 2);
     } else {
         Overlay_UnloadByID(FS_OVERLAY_ID(overlay12));
-        Overlay_LoadByID(FS_OVERLAY_ID(overlay14), 2);
+        Overlay_LoadByID(FS_OVERLAY_ID(trainer_ai), 2);
     }
 }
 
