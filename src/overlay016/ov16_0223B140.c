@@ -104,7 +104,6 @@ FS_EXTERN_OVERLAY(overlay21);
 
 static const u32 BattleServerVersion = 0x140;
 
-BOOL ov16_0223B140(OverlayManager * param0, int * param1);
 void ov16_0223B384(BattleSystem * param0);
 void ov16_0223B3E4(BattleSystem * param0);
 void ov16_0223B430(BattleSystem * param0);
@@ -170,7 +169,7 @@ const UnkStruct_ov104_02241308 Unk_ov16_0226E2B0 = {
     0x8
 };
 
-BOOL ov16_0223B140 (OverlayManager * param0, int * param1)
+BOOL Battle_Main (OverlayManager * param0, int * param1)
 {
     BattleParams * v0 = OverlayManager_Args(param0);
 

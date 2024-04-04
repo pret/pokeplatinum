@@ -1689,7 +1689,7 @@ static BOOL ov104_02230B50 (UnkStruct_ov104_0222E930 * param0)
 
     sub_0202F298(v2->unk_08, 11, &v0, v1, 0);
     sub_02004550(5, 1119, 1);
-    sub_0209B988(param0->unk_00->unk_00, &Unk_020EA358, v1, 1, NULL);
+    sub_0209B988(param0->unk_00->unk_00, &gBattleOverlayTemplate, v1, 1, NULL);
 
     return 1;
 }

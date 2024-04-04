@@ -299,7 +299,7 @@ static BOOL sub_0208BC8C (UnkStruct_0208BC3C * param0, int param1)
             sub_02004550(5, 1119, 1);
         }
     }
-        param0->unk_08 = OverlayManager_New(&Unk_020EA358, param0->unk_10, param1);
+        param0->unk_08 = OverlayManager_New(&gBattleOverlayTemplate, param0->unk_10, param1);
         param0->unk_00++;
         break;
     default:

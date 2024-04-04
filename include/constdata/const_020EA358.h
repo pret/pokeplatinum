@@ -3,6 +3,6 @@
 
 #include "overlay_manager.h"
 
-extern const OverlayManagerTemplate Unk_020EA358;
+extern const OverlayManagerTemplate gBattleOverlayTemplate;
 
 #endif // POKEPLATINUM_CONST_020EA358_H

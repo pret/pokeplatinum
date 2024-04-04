@@ -4,7 +4,7 @@
 #include "overlay_manager.h"
 #include "struct_decls/battle_system.h"
 
-BOOL ov16_0223B140(OverlayManager * param0, int * param1);
+BOOL Battle_Main(OverlayManager * param0, int * param1);
 void ov16_0223B384(BattleSystem * param0);
 void ov16_0223B3E4(BattleSystem * param0);
 void ov16_0223B430(BattleSystem * param0);

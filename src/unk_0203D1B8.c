@@ -239,36 +239,36 @@ typedef struct {
 static void sub_0203DF68(UnkStruct_020508D4 * param0);
 static u8 sub_0203E484(SaveData * param0, u8 param1);
 
-static int sub_0203D1B8 (OverlayManager * param0, int * param1)
+static BOOL OverlayInit_Battle(OverlayManager *ovyManager, int *state)
 {
-    return 1;
+    return TRUE;
 }
 
-static int sub_0203D1BC (OverlayManager * param0, int * param1)
+static BOOL OverlayMain_Battle (OverlayManager *ovyManager, int *state)
 {
-    if (ov16_0223B140(param0, param1)) {
-        return 1;
+    if (Battle_Main(ovyManager, state)) {
+        return TRUE;
     } else {
-        return 0;
+        return FALSE;
     }
 }
 
-static int sub_0203D1D0 (OverlayManager * param0, int * param1)
+static BOOL OverlayExit_Battle (OverlayManager *ovyManager, int *state)
 {
-    return 1;
+    return TRUE;
 }
 
 
-const OverlayManagerTemplate Unk_020EA358 = {
-    sub_0203D1B8,
-    sub_0203D1BC,
-    sub_0203D1D0,
+const OverlayManagerTemplate gBattleOverlayTemplate = {
+    OverlayInit_Battle,
+    OverlayMain_Battle,
+    OverlayExit_Battle,
     FS_OVERLAY_ID(battle)
 };
 
 void sub_0203D1D4 (FieldSystem * param0, BattleParams * param1)
 {
-    sub_0203CD84(param0, &Unk_020EA358, param1);
+    sub_0203CD84(param0, &gBattleOverlayTemplate, param1);
 }
 
 static const u8 Unk_020EA164[] = {
