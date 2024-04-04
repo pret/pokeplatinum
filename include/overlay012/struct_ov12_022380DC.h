@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV12_022380DC_H
 
 #include "struct_decls/sprite_decl.h"
-#include "overlay016/struct_ov16_0223E0C8.h"
+#include "battle/struct_ov16_0223E0C8.h"
 
 typedef struct {
     int unk_00;

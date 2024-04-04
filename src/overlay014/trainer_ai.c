@@ -24,7 +24,7 @@
 #include "flags.h"
 #include "pokemon.h"
 #include "party.h"
-#include "overlay016/ov16_0223DF00.h"
+#include "battle/ov16_0223DF00.h"
 
 static const u16 sRiskyMoves[] = {
 	BATTLE_EFFECT_HALVE_DEFENSE,

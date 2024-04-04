@@ -27,7 +27,7 @@
 #include "pokemon_summary_app.h"
 #include "unk_02094EDC.h"
 #include "overlay013/ov13_02221A88.h"
-#include "overlay016/ov16_0223DF00.h"
+#include "battle/ov16_0223DF00.h"
 
 static void ov13_0222339C(UnkStruct_ov13_022213F0 * param0);
 static void ov13_022234C8(UnkStruct_ov13_022213F0 * param0);

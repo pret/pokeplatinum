@@ -690,22 +690,22 @@ Overlay overlay15
 Overlay battle 
 {
 	After overlay12
-	Object main.nef.p/src_overlay016_ov16_0223B140.c.o
-	Object main.nef.p/src_overlay016_ov16_0223DF00.c.o
-	Object main.nef.p/src_overlay016_battle_script.c.o
-	Object main.nef.p/src_overlay016_battle_controller.c.o
-	Object main.nef.p/src_overlay016_battle_lib.c.o
-	Object main.nef.p/src_overlay016_battle_io_command.c.o
-	Object main.nef.p/src_overlay016_battle_display.c.o
-	Object main.nef.p/src_overlay016_ov16_02264798.c.o
-	Object main.nef.p/src_overlay016_battle_io.c.o
-	Object main.nef.p/src_overlay016_healthbar.c.o
-	Object main.nef.p/src_overlay016_ov16_02268520.c.o
-	Object main.nef.p/src_overlay016_ov16_0226871C.c.o
-	Object main.nef.p/src_overlay016_party_gauge.c.o
-	Object main.nef.p/src_overlay016_ov16_0226DB7C.c.o
-	Object main.nef.p/src_overlay016_ov16_0226DE44.c.o
-	Object main.nef.p/src_overlay016_ov16_0226E148.c.o
+	Object main.nef.p/src_battle_ov16_0223B140.c.o
+	Object main.nef.p/src_battle_ov16_0223DF00.c.o
+	Object main.nef.p/src_battle_battle_script.c.o
+	Object main.nef.p/src_battle_battle_controller.c.o
+	Object main.nef.p/src_battle_battle_lib.c.o
+	Object main.nef.p/src_battle_battle_io_command.c.o
+	Object main.nef.p/src_battle_battle_display.c.o
+	Object main.nef.p/src_battle_ov16_02264798.c.o
+	Object main.nef.p/src_battle_battle_io.c.o
+	Object main.nef.p/src_battle_healthbar.c.o
+	Object main.nef.p/src_battle_ov16_02268520.c.o
+	Object main.nef.p/src_battle_ov16_0226871C.c.o
+	Object main.nef.p/src_battle_party_gauge.c.o
+	Object main.nef.p/src_battle_ov16_0226DB7C.c.o
+	Object main.nef.p/src_battle_ov16_0226DE44.c.o
+	Object main.nef.p/src_battle_ov16_0226E148.c.o
 }
 
 Overlay overlay17

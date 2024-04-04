@@ -121,7 +121,7 @@
 #include "unk_020989DC.h"
 #include "overlay005/ov5_021E622C.h"
 #include "overlay007/ov7_0224BE9C.h"
-#include "overlay016/ov16_0223B140.h"
+#include "battle/ov16_0223B140.h"
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay020/ov20_021D0D80.h"
 #include "overlay021/ov21_021D0D80.h"

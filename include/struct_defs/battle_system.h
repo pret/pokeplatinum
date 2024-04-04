@@ -34,12 +34,12 @@
 #include "overlay006/struct_ov6_02240D5C_sub1.h"
 #include "overlay010/struct_ov10_0221F800.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
-#include "overlay016/struct_ov16_0223E0C8.h"
+#include "battle/struct_ov16_0223E0C8.h"
 #include "battle/battle_context.h"
-#include "overlay016/struct_ov16_0225BFFC_decl.h"
-#include "overlay016/struct_ov16_02268520.h"
-#include "overlay016/struct_ov16_02268A14_decl.h"
-#include "overlay016/struct_ov16_0226D160_decl.h"
+#include "battle/struct_ov16_0225BFFC_decl.h"
+#include "battle/struct_ov16_02268520.h"
+#include "battle/struct_ov16_02268A14_decl.h"
+#include "battle/struct_ov16_0226D160_decl.h"
 
 #include <nnsys.h>
 

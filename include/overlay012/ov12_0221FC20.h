@@ -16,8 +16,8 @@
 #include "overlay012/struct_ov12_02223764.h"
 #include "overlay012/struct_ov12_022380DC.h"
 #include "overlay012/funcptr_ov12_02239EEC.h"
-#include "overlay016/struct_ov16_02264408.h"
-#include "overlay016/struct_ov16_02265BBC.h"
+#include "battle/struct_ov16_02264408.h"
+#include "battle/struct_ov16_02265BBC.h"
 #include "struct_defs/sprite_template.h"
 
 #include "spl.h"

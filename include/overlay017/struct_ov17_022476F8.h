@@ -13,7 +13,7 @@
 #include "strbuf.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02095C48_sub1.h"
-#include "overlay016/struct_ov16_0223E0C8.h"
+#include "battle/struct_ov16_0223E0C8.h"
 #include "overlay017/struct_ov17_0223F6E8.h"
 
 typedef struct {

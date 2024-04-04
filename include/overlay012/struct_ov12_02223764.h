@@ -4,7 +4,7 @@
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/cell_actor_data.h"
 #include "overlay012/struct_ov12_02223764_sub1.h"
-#include "overlay016/struct_ov16_0223E0C8.h"
+#include "battle/struct_ov16_0223E0C8.h"
 
 typedef struct {
     int unk_00;

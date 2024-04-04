@@ -3,9 +3,9 @@
 
 #include "struct_decls/battle_system.h"
 #include "battle/battle_context.h"
-#include "overlay016/struct_ov16_0224DDA8.h"
+#include "battle/struct_ov16_0224DDA8.h"
 #include "battle/battle_message.h"
-#include "overlay016/struct_ov16_02265BBC.h"
+#include "battle/struct_ov16_02265BBC.h"
 
 void ov16_02264988(BattleSystem * param0, int param1);
 void BattleIO_SetupBattleUI(BattleSystem * param0, int param1);
