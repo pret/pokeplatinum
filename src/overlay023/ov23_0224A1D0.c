@@ -26,7 +26,7 @@
 #include "communication_system.h"
 #include "unk_0203CC84.h"
 #include "unk_020507CC.h"
-#include "unk_02057518.h"
+#include "comm_player_manager.h"
 #include "unk_0205E7D0.h"
 #include "unk_02063400.h"
 #include "unk_0206A8DC.h"

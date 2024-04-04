@@ -35,7 +35,7 @@
 #include "unk_0203A378.h"
 #include "unk_0203CC84.h"
 #include "unk_020573FC.h"
-#include "unk_02057518.h"
+#include "comm_player_manager.h"
 #include "unk_02061804.h"
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_02248C08.h"

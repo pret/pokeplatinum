@@ -16,7 +16,7 @@
 #include "unk_020366A0.h"
 #include "unk_0203CC84.h"
 #include "unk_020507CC.h"
-#include "unk_02057518.h"
+#include "comm_player_manager.h"
 #include "field_comm_manager.h"
 #include "unk_0206A8DC.h"
 #include "overlay023/ov23_0223E140.h"

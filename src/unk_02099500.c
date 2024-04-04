@@ -9,7 +9,7 @@
 #include "unk_0204FA34.h"
 #include "unk_0205001C.h"
 #include "unk_02050548.h"
-#include "unk_02057518.h"
+#include "comm_player_manager.h"
 #include "field_comm_manager.h"
 #include "unk_0205A0D8.h"
 #include "unk_0205B33C.h"

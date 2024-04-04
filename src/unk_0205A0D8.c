@@ -43,7 +43,7 @@
 #include "unk_0203CC84.h"
 #include "unk_0203D1B8.h"
 #include "unk_020508D4.h"
-#include "unk_02057518.h"
+#include "comm_player_manager.h"
 #include "field_comm_manager.h"
 #include "unk_0205A0D8.h"
 #include "unk_0205D8CC.h"

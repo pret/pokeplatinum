@@ -155,7 +155,7 @@
 #include "unk_020559DC.h"
 #include "poketch_data.h"
 #include "unk_0205749C.h"
-#include "unk_02057518.h"
+#include "comm_player_manager.h"
 #include "field_comm_manager.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"

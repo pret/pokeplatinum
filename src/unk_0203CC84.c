@@ -29,7 +29,7 @@
 #include "unk_0203CC84.h"
 #include "unk_020508D4.h"
 #include "unk_020530C8.h"
-#include "unk_02057518.h"
+#include "comm_player_manager.h"
 #include "unk_0205F180.h"
 #include "pokeradar.h"
 #include "unk_0207D3B8.h"

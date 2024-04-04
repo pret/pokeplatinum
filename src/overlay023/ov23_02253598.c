@@ -35,7 +35,7 @@
 #include "unk_0202854C.h"
 #include "unk_0202CD50.h"
 #include "communication_system.h"
-#include "unk_02057518.h"
+#include "comm_player_manager.h"
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_02253598.h"
 #include "overlay023/ov23_02253D40.h"
