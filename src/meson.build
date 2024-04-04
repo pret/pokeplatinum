@@ -526,7 +526,7 @@ pokeplatinum_c = files(
     'overlay013/ov13_02227BDC.c',
     'overlay013/ov13_02228128.c',
     'overlay013/ov13_02228A38.c',
-    'overlay014/trainer_ai.c',
+    'battle/trainer_ai/trainer_ai.c',
     'overlay015/ov15_dummy.c',
     'battle/ov16_0223B140.c',
     'battle/ov16_0223DF00.c',
