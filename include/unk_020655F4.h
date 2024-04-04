@@ -5,10 +5,10 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "overlay005/struct_ov5_021F8E3C.h"
 
-int sub_020655F4(const LocalMapObject * param0);
-void sub_02065638(LocalMapObject * param0, int param1);
+int LocalMapObj_IsAnimationSet(const LocalMapObject * param0);
+void LocalMapObj_SetAnimationCode(LocalMapObject * param0, int param1);
 void sub_02065668(LocalMapObject * param0, int param1);
-int sub_02065684(const LocalMapObject * param0);
+int LocalMapObj_CheckAnimationFinished(const LocalMapObject * param0);
 int sub_020656AC(LocalMapObject * param0);
 void sub_020656DC(LocalMapObject * param0);
 SysTask * sub_02065700(LocalMapObject * param0, const UnkStruct_ov5_021F8E3C * param1);

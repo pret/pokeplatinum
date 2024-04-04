@@ -1423,8 +1423,8 @@ static BOOL ov8_0224A620 (UnkStruct_020508D4 * param0)
 
     switch (v3->unk_00) {
     case 0:
-        if (sub_020655F4(v1) == 1) {
-            sub_02065638(v1, 0x49);
+        if (LocalMapObj_IsAnimationSet(v1) == 1) {
+            LocalMapObj_SetAnimationCode(v1, 0x49);
 
             Sound_PlayEffect(1553);
             (v3->unk_00)++;
@@ -1451,8 +1451,8 @@ static BOOL ov8_0224A620 (UnkStruct_020508D4 * param0)
                     sub_020057A4(1553, 0);
                     (v3->unk_00)++;
                 } else {
-                    if (sub_020655F4(v1) == 1) {
-                        sub_02065638(v1, 0x17);
+                    if (LocalMapObj_IsAnimationSet(v1) == 1) {
+                        LocalMapObj_SetAnimationCode(v1, 0x17);
                     }
                 }
             } else if (v4->unk_F0 == 5) {
@@ -1462,8 +1462,8 @@ static BOOL ov8_0224A620 (UnkStruct_020508D4 * param0)
                     sub_020057A4(1553, 0);
                     (v3->unk_00)++;
                 } else {
-                    if (sub_020655F4(v1) == 1) {
-                        sub_02065638(v1, 0x16);
+                    if (LocalMapObj_IsAnimationSet(v1) == 1) {
+                        LocalMapObj_SetAnimationCode(v1, 0x16);
                     }
                 }
             } else {
@@ -1475,12 +1475,12 @@ static BOOL ov8_0224A620 (UnkStruct_020508D4 * param0)
     }
     break;
     case 2:
-        if (sub_020655F4(v1) == 1) {
-            sub_02065638(v1, 0x4a);
+        if (LocalMapObj_IsAnimationSet(v1) == 1) {
+            LocalMapObj_SetAnimationCode(v1, 0x4a);
             (v3->unk_00)++;
         }
     case 3:
-        if (sub_02065684(v1) == 1) {
+        if (LocalMapObj_CheckAnimationFinished(v1) == 1) {
             sub_020656AC(v1);
             Sound_PlayEffect(1562);
             (v3->unk_00)++;
@@ -1507,8 +1507,8 @@ static BOOL ov8_0224A770 (UnkStruct_020508D4 * param0)
 
     switch (v3->unk_00) {
     case 0:
-        if (sub_020655F4(v1) == 1) {
-            sub_02065638(v1, 0x49);
+        if (LocalMapObj_IsAnimationSet(v1) == 1) {
+            LocalMapObj_SetAnimationCode(v1, 0x49);
 
             Sound_PlayEffect(1553);
             (v3->unk_00)++;
@@ -1535,8 +1535,8 @@ static BOOL ov8_0224A770 (UnkStruct_020508D4 * param0)
                     sub_020057A4(1553, 0);
                     (v3->unk_00)++;
                 } else {
-                    if (sub_020655F4(v1) == 1) {
-                        sub_02065638(v1, 0x15);
+                    if (LocalMapObj_IsAnimationSet(v1) == 1) {
+                        LocalMapObj_SetAnimationCode(v1, 0x15);
                     }
                 }
             } else if (v4->unk_F0 == 2) {
@@ -1546,8 +1546,8 @@ static BOOL ov8_0224A770 (UnkStruct_020508D4 * param0)
                     sub_020057A4(1553, 0);
                     (v3->unk_00)++;
                 } else {
-                    if (sub_020655F4(v1) == 1) {
-                        sub_02065638(v1, 0x14);
+                    if (LocalMapObj_IsAnimationSet(v1) == 1) {
+                        LocalMapObj_SetAnimationCode(v1, 0x14);
                     }
                 }
             } else {
@@ -1559,8 +1559,8 @@ static BOOL ov8_0224A770 (UnkStruct_020508D4 * param0)
     }
     break;
     case 2:
-        if (sub_020655F4(v1) == 1) {
-            sub_02065638(v1, 0x4a);
+        if (LocalMapObj_IsAnimationSet(v1) == 1) {
+            LocalMapObj_SetAnimationCode(v1, 0x4a);
             (v3->unk_00)++;
         }
         break;
@@ -1570,7 +1570,7 @@ static BOOL ov8_0224A770 (UnkStruct_020508D4 * param0)
 
         v8 = Player_LocalMapObject(v2->playerAvatar);
 
-        if (sub_02065684(v8) == 1) {
+        if (LocalMapObj_CheckAnimationFinished(v8) == 1) {
             sub_020656AC(v8);
             Sound_PlayEffect(1562);
             (v3->unk_00)++;
@@ -2738,7 +2738,7 @@ static BOOL ov8_0224B2E8 (UnkStruct_ov8_0224B28C * param0)
 {
     LocalMapObject * v0 = param0->unk_20;
 
-    if (sub_020655F4(param0->unk_20) == 1) {
+    if (LocalMapObj_IsAnimationSet(param0->unk_20) == 1) {
         int v1 = 0x9a;
         int v2 = sub_02063020(v0);
         int v3 = sub_02063040(v0);
@@ -2762,7 +2762,7 @@ static BOOL ov8_0224B2E8 (UnkStruct_ov8_0224B28C * param0)
         }
 
         if (v1 != 0x9a) {
-            sub_02065638(v0, v1);
+            LocalMapObj_SetAnimationCode(v0, v1);
         }
     }
 
@@ -3350,15 +3350,15 @@ static BOOL ov8_0224BAF4 (UnkStruct_020508D4 * param0)
 
     switch (v2->unk_00) {
     case 0:
-        if (sub_020655F4(v0) == 1) {
-            sub_02065638(v0, sub_02065838(v2->unk_08, 0x28));
+        if (LocalMapObj_IsAnimationSet(v0) == 1) {
+            LocalMapObj_SetAnimationCode(v0, sub_02065838(v2->unk_08, 0x28));
             ov5_021F4698(v2->unk_34->unk_08.unk_0C, v2->unk_08, 0);
             Sound_PlayEffect(1367);
             v2->unk_00++;
         }
         break;
     case 1:
-        if ((sub_02065684(v0) == 1) && (ov5_021F4720(v2->unk_34->unk_08.unk_0C) == 1)) {
+        if ((LocalMapObj_CheckAnimationFinished(v0) == 1) && (ov5_021F4720(v2->unk_34->unk_08.unk_0C) == 1)) {
             sub_020656AC(v0);
             Heap_FreeToHeap(v2);
             return 1;
@@ -3408,11 +3408,11 @@ static int ov8_0224BBD0 (UnkStruct_ov8_0224C098 * param0)
 
     v0 = Player_LocalMapObject(param0->unk_3C->unk_00->playerAvatar);
 
-    if (sub_020655F4(v0) == 0) {
+    if (LocalMapObj_IsAnimationSet(v0) == 0) {
         return 0;
     }
 
-    sub_02065638(v0, sub_02065838(param0->unk_08, 0x1c));
+    LocalMapObj_SetAnimationCode(v0, sub_02065838(param0->unk_08, 0x1c));
 
     {
         UnkStruct_ov8_0224BCA8 * v1 = param0->unk_34;
@@ -3588,7 +3588,7 @@ static int ov8_0224BEA4 (UnkStruct_ov8_0224C098 * param0)
 
     v0 = Player_LocalMapObject(param0->unk_3C->unk_00->playerAvatar);
 
-    if (sub_02065684(v0) == 1) {
+    if (LocalMapObj_CheckAnimationFinished(v0) == 1) {
         sub_020656AC(v0);
         param0->unk_00 = 10;
     }
@@ -3774,12 +3774,12 @@ static void ov8_0224C11C (UnkStruct_ov8_0224C098 * param0, int param1)
     case 0:
         break;
     case 1:
-        if (sub_020655F4(v0->unk_30) == 1) {
+        if (LocalMapObj_IsAnimationSet(v0->unk_30) == 1) {
             if (v0->unk_28 >= v0->unk_24) {
                 v0->unk_00++;
             } else {
                 param1 = sub_02065838(v0->unk_20, param1);
-                sub_02065638(v0->unk_30, param1);
+                LocalMapObj_SetAnimationCode(v0->unk_30, param1);
                 v0->unk_28++;
             }
         }

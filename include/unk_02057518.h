@@ -4,7 +4,7 @@
 #include "field/field_system_decl.h"
 #include "overlay023/struct_ov23_0224A294.h"
 
-CommPlayer * CommPlayerData_Get(void);
+CommPlayerManager * CommPlayerData_Get(void);
 BOOL CommPlayerManager_Init(void * param0, FieldSystem * param1, BOOL param2);
 void CommPlayerMan_Reset(void);
 void CommPlayerMan_Restart(void);
@@ -46,7 +46,7 @@ int sub_02058E4C(int param0);
 int sub_02058EA0(int param0);
 int sub_02058EC0(int param0);
 int CommPlayer_AddXServer(int param0);
-int sub_02058F18(int param0);
+int CommPlayer_AddZServer(int param0);
 int CommPlayer_Dir(int param0);
 int CommPlayer_DirServer(int param0);
 void CommPlayer_LookTowardsServer(int param0, int param1);

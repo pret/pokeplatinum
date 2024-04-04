@@ -1892,7 +1892,7 @@ void ov23_0224CD80 (int param0, int param1, void * param2, void * param3)
 {
     u8 * v0 = param2;
     int v1 = CommPlayer_AddXServer(param0);
-    int v2 = sub_02058F18(param0);
+    int v2 = CommPlayer_AddZServer(param0);
     int v3, v4, v5, v6;
     int v7 = CommPlayer_DirServer(param0);
     UnkStruct_ov23_0224CF18 v8;
@@ -2161,7 +2161,7 @@ static void ov23_0224D238 (void)
     UnkStruct_02029894 * v0 = sub_02029894(FieldSystem_SaveData(Unk_ov23_022577AC->unk_00));
     UndergroundData * v1 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_022577AC->unk_00));
     int v2 = CommPlayer_AddXServer(0);
-    int v3 = sub_02058F18(0);
+    int v3 = CommPlayer_AddZServer(0);
     int v4 = CommPlayer_DirServer(0);
     int v5, v6, v7, v8, v9;
     const int v10 = 10, v11 = 18, v12 = 12, v13 = 5, v14 = 6;

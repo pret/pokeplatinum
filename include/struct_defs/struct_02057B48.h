@@ -7,7 +7,7 @@ typedef struct {
     s8 dir;
     u8 moveSpeed;
     u8 unk_06;
-    u8 unk_07;
+    u8 collisionFlag;
 } CommPlayerLocation;
 
 #endif // POKEPLATINUM_STRUCT_02057B48_H

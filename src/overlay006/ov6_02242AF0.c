@@ -307,8 +307,8 @@ static BOOL ov6_02242E60 (FieldSystem * param0, UnkStruct_ov6_02242B58 * param1,
         return 1;
     } else {
         if (param1->unk_04 == 0) {
-            if (sub_020655F4(v0) == 1) {
-                sub_02065638(v0, Unk_ov6_02249058[param1->unk_06]);
+            if (LocalMapObj_IsAnimationSet(v0) == 1) {
+                LocalMapObj_SetAnimationCode(v0, Unk_ov6_02249058[param1->unk_06]);
 
                 if ((param1->unk_06 < 7 - 1) && (Player_ZPos(param0->playerAvatar) > param1->unk_10)) {
                     if (param1->unk_06 == 0) {
@@ -327,8 +327,8 @@ static BOOL ov6_02242E60 (FieldSystem * param0, UnkStruct_ov6_02242B58 * param1,
                 }
             }
         } else {
-            if (sub_020655F4(v0) == 1) {
-                sub_02065638(v0, Unk_ov6_0224903C[param1->unk_06]);
+            if (LocalMapObj_IsAnimationSet(v0) == 1) {
+                LocalMapObj_SetAnimationCode(v0, Unk_ov6_0224903C[param1->unk_06]);
 
                 if ((param1->unk_06 < 7 - 1) && (Player_ZPos(param0->playerAvatar) < param1->unk_10)) {
                     if (param1->unk_06 == 0) {

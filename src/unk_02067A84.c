@@ -495,7 +495,7 @@ static int sub_020680D0 (UnkStruct_020EF6D0 * param0)
 {
     LocalMapObject * v0 = Player_LocalMapObject(param0->unk_28);
 
-    if (sub_02065684(v0) == 0) {
+    if (LocalMapObj_CheckAnimationFinished(v0) == 0) {
         return 0;
     }
 
@@ -520,14 +520,14 @@ static int sub_02068118 (UnkStruct_020EF6D0 * param0)
 {
     int v0;
 
-    if (sub_020655F4(param0->unk_24) == 0) {
+    if (LocalMapObj_IsAnimationSet(param0->unk_24) == 0) {
         return 0;
     }
 
     GF_ASSERT(param0->unk_08 != -1);
 
     v0 = sub_02065838(param0->unk_08, 0x0);
-    sub_02065638(param0->unk_24, v0);
+    LocalMapObj_SetAnimationCode(param0->unk_24, v0);
     param0->unk_00 = 4;
 
     return 0;
@@ -535,7 +535,7 @@ static int sub_02068118 (UnkStruct_020EF6D0 * param0)
 
 static int sub_02068150 (UnkStruct_020EF6D0 * param0)
 {
-    if (sub_02065684(param0->unk_24) == 0) {
+    if (LocalMapObj_CheckAnimationFinished(param0->unk_24) == 0) {
         return 0;
     }
 
@@ -563,7 +563,7 @@ static int sub_02068188 (UnkStruct_020EF6D0 * param0)
 
 static int sub_020681A4 (UnkStruct_020EF6D0 * param0)
 {
-    sub_02065638(param0->unk_24, 0x65);
+    LocalMapObj_SetAnimationCode(param0->unk_24, 0x65);
     param0->unk_00 = 8;
 
     return 0;
@@ -571,7 +571,7 @@ static int sub_020681A4 (UnkStruct_020EF6D0 * param0)
 
 static int sub_020681B8 (UnkStruct_020EF6D0 * param0)
 {
-    if (sub_02065684(param0->unk_24) == 1) {
+    if (LocalMapObj_CheckAnimationFinished(param0->unk_24) == 1) {
         param0->unk_00 = 9;
     }
 
@@ -605,9 +605,9 @@ static int sub_02068200 (UnkStruct_020EF6D0 * param0)
 {
     int v0;
 
-    if (sub_020655F4(param0->unk_24) == 1) {
+    if (LocalMapObj_IsAnimationSet(param0->unk_24) == 1) {
         v0 = sub_02065838(param0->unk_08, 0xc);
-        sub_02065638(param0->unk_24, v0);
+        LocalMapObj_SetAnimationCode(param0->unk_24, v0);
         param0->unk_00 = 12;
     }
 
@@ -616,7 +616,7 @@ static int sub_02068200 (UnkStruct_020EF6D0 * param0)
 
 static int sub_02068228 (UnkStruct_020EF6D0 * param0)
 {
-    if (sub_02065684(param0->unk_24) == 0) {
+    if (LocalMapObj_CheckAnimationFinished(param0->unk_24) == 0) {
         return 0;
     }
 
@@ -649,10 +649,10 @@ static int sub_02068264 (UnkStruct_020EF6D0 * param0)
     v1 = sub_02064488(sub_02063020(v2), sub_02063040(v2), sub_02063020(param0->unk_24), sub_02063040(param0->unk_24));
 
     if ((Player_Dir(param0->unk_28) != v1) && ((param0->unk_18 == 0) || (param0->unk_14 == 2))) {
-        if (sub_020655F4(v2) == 1) {
+        if (LocalMapObj_IsAnimationSet(v2) == 1) {
             sub_020628C4(v2, (1 << 7));
             v0 = sub_02065838(v1, 0x0);
-            sub_02065638(v2, v0);
+            LocalMapObj_SetAnimationCode(v2, v0);
             param0->unk_00 = 15;
         }
     } else {
@@ -668,7 +668,7 @@ static int sub_020682E0 (UnkStruct_020EF6D0 * param0)
 
     v0 = Player_LocalMapObject(param0->unk_28);
 
-    if (sub_02065684(v0) == 0) {
+    if (LocalMapObj_CheckAnimationFinished(v0) == 0) {
         return 0;
     }
 

@@ -14,7 +14,7 @@ PlayerAvatar * sub_0205E7D0(const UnkStruct_02061830 * param0, int param1, int p
 PlayerAvatar * sub_0205E820(const UnkStruct_02061830 * param0, UnkStruct_0205EC34 * param1, int param2);
 void sub_0205E884(PlayerAvatar * param0, int param1);
 void sub_0205E8E0(PlayerAvatar * param0);
-void sub_0205E8E8(PlayerAvatar * param0);
+void Player_Delete(PlayerAvatar * param0);
 LocalMapObject * sub_0205EA24(const UnkStruct_02061830 * param0);
 int Player_Dir(PlayerAvatar * const param0);
 void Player_SetDir(PlayerAvatar * param0, int param1);

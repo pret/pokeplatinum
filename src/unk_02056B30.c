@@ -347,9 +347,9 @@ static BOOL sub_02056F1C (UnkStruct_020508D4 * param0)
         v2 = Player_LocalMapObject(v0->playerAvatar);
 
         if (v3 == 2) {
-            sub_02065638(v2, 0xa);
+            LocalMapObj_SetAnimationCode(v2, 0xa);
         } else if (v3 == 3) {
-            sub_02065638(v2, 0xb);
+            LocalMapObj_SetAnimationCode(v2, 0xb);
         } else {
             GF_ASSERT(FALSE);
         }
@@ -359,7 +359,7 @@ static BOOL sub_02056F1C (UnkStruct_020508D4 * param0)
     case 1:
         v2 = Player_LocalMapObject(v0->playerAvatar);
 
-        if (sub_02065684(v2) == 1) {
+        if (LocalMapObj_CheckAnimationFinished(v2) == 1) {
             sub_020656AC(v2);
             (v1->unk_04)++;
         }
@@ -559,9 +559,9 @@ static BOOL sub_02057218 (UnkStruct_020508D4 * param0)
             v3 = Player_Dir(v0->playerAvatar);
 
             if (v3 == 2) {
-                sub_02065638(v2, 0xa);
+                LocalMapObj_SetAnimationCode(v2, 0xa);
             } else if (v3 == 3) {
-                sub_02065638(v2, 0xb);
+                LocalMapObj_SetAnimationCode(v2, 0xb);
             } else {
                 GF_ASSERT(FALSE);
             }
@@ -574,7 +574,7 @@ static BOOL sub_02057218 (UnkStruct_020508D4 * param0)
     case 1:
         v2 = Player_LocalMapObject(v0->playerAvatar);
 
-        if (sub_02065684(v2) == 1) {
+        if (LocalMapObj_CheckAnimationFinished(v2) == 1) {
             sub_020656AC(v2);
             (v1->unk_04)++;
         }

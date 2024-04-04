@@ -263,7 +263,7 @@ static void sub_0205C51C (UnkStruct_0205C22C * param0, UnkStruct_02061830 * para
 
         switch (param0->unk_0C[v1].unk_01) {
         case 0:
-            if (sub_020655F4(v0) == 1) {
+            if (LocalMapObj_IsAnimationSet(v0) == 1) {
                 int v4 = param0->unk_0C[v1].unk_00;
 
                 if ((v4 == 1) || (v4 == 2)) {
@@ -272,7 +272,7 @@ static void sub_0205C51C (UnkStruct_0205C22C * param0, UnkStruct_02061830 * para
             }
             break;
         case 1:
-            if (sub_020655F4(v0) == 1) {
+            if (LocalMapObj_IsAnimationSet(v0) == 1) {
                 if (param0->unk_0C[v1].unk_00 == 3) {
                     param0->unk_0C[v1].unk_01 = 0;
                     param0->unk_0C[v1].unk_00 = 0;
@@ -295,7 +295,7 @@ static void sub_0205C51C (UnkStruct_0205C22C * param0, UnkStruct_02061830 * para
             }
             break;
         case 2:
-            if (sub_020655F4(v0) == 1) {
+            if (LocalMapObj_IsAnimationSet(v0) == 1) {
                 sub_0205C7BC(&param0->unk_0C[v1], v0);
 
                 if (param0->unk_0C[v1].unk_00 == 3) {
@@ -306,7 +306,7 @@ static void sub_0205C51C (UnkStruct_0205C22C * param0, UnkStruct_02061830 * para
             }
             break;
         case 3:
-            if (sub_020655F4(v0) == 1) {
+            if (LocalMapObj_IsAnimationSet(v0) == 1) {
                 sub_020656AC(v0);
 
                 param0->unk_0C[v1].unk_01 = 4;
@@ -377,7 +377,7 @@ static void sub_0205C6E0 (UnkStruct_0205C680 * param0, LocalMapObject * param1, 
     sub_0205C680(param0, 0);
     LocalMapObj_SetPosDir(param1, v0, v1, v2, 1);
     sub_0206296C(param1, 1);
-    sub_02065638(param1, 0x44);
+    LocalMapObj_SetAnimationCode(param1, 0x44);
     sub_02062D64(param1, 0);
     sub_02062D80(param1, 1);
 
@@ -396,7 +396,7 @@ static void sub_0205C6E0 (UnkStruct_0205C680 * param0, LocalMapObject * param1, 
 
 static void sub_0205C788 (UnkStruct_0205C680 * param0, LocalMapObject * param1)
 {
-    sub_02065638(param1, 0x43);
+    LocalMapObj_SetAnimationCode(param1, 0x43);
     sub_02062DB4(param1, 1);
     sub_020633A8(param1, 0x0);
     sub_0205C680(param0, 1);
@@ -447,7 +447,7 @@ void sub_0205C820 (UnkStruct_02061830 * param0, UnkStruct_0205C22C * param1)
         GF_ASSERT(0);
     }
 
-    if (sub_020655F4(v0) == 1) {
+    if (LocalMapObj_IsAnimationSet(v0) == 1) {
         if (sub_02036AA0() || sub_02036A68()) {
             int v2;
 
@@ -466,7 +466,7 @@ void sub_0205C820 (UnkStruct_02061830 * param0, UnkStruct_0205C22C * param1)
 
                 sub_02061AD4(v0, v1->unk_08);
                 sub_0206296C(v0, 1);
-                sub_02065638(v0, 0x44);
+                LocalMapObj_SetAnimationCode(v0, 0x44);
                 sub_02062D64(v0, 0);
                 sub_02062D80(v0, 1);
 

@@ -3238,7 +3238,7 @@ static BOOL sub_02041004 (UnkStruct_0203E724 * param0)
     LocalMapObject ** v1 = sub_0203F098(v0, 10);
     LocalMapObject * v2 = Player_LocalMapObject(v0->playerAvatar);
 
-    if (inline_020410F4_1((1 << 0)) && (sub_02065684(v2) == 1)) {
+    if (inline_020410F4_1((1 << 0)) && (LocalMapObj_CheckAnimationFinished(v2) == 1)) {
         sub_02062DD0(v2);
         inline_020410F4_3((1 << 0));
     }
@@ -3300,7 +3300,7 @@ static BOOL sub_020410F4 (UnkStruct_0203E724 * param0)
     inline_020410F4();
     sub_02062C48(v5);
 
-    if (sub_02065684(v2) == 0) {
+    if (LocalMapObj_CheckAnimationFinished(v2) == 0) {
         inline_020410F4_2((1 << 0));
         sub_02062DDC(v2);
     }

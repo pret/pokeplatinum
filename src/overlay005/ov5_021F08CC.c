@@ -206,7 +206,7 @@ static int ov5_021F0A30 (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * param1,
 
 static int ov5_021F0A48 (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * param1, LocalMapObject * param2)
 {
-    if (sub_020655F4(param2) == 1) {
+    if (LocalMapObj_IsAnimationSet(param2) == 1) {
         sub_020656AC(param2);
         ov5_021DFB54(param1, (1 << 5));
         ov5_021DFB5C(param1);

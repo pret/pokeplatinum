@@ -120,7 +120,7 @@ static const fx32 Unk_020EEE84[7];
 static const fx32 Unk_020EEE6C[6];
 static const fx32 Unk_020EECEC[3];
 
-int sub_020655F4 (const LocalMapObject * param0)
+int LocalMapObj_IsAnimationSet (const LocalMapObject * param0)
 {
     if (sub_020628D8(param0, (1 << 0)) == 0) {
         return 0;
@@ -137,7 +137,7 @@ int sub_020655F4 (const LocalMapObject * param0)
     return 1;
 }
 
-void sub_02065638 (LocalMapObject * param0, int param1)
+void LocalMapObj_SetAnimationCode (LocalMapObject * param0, int param1)
 {
     GF_ASSERT(param1 < 0x9a);
 
@@ -154,7 +154,7 @@ void sub_02065668 (LocalMapObject * param0, int param1)
     sub_020628C4(param0, (1 << 5));
 }
 
-int sub_02065684 (const LocalMapObject * param0)
+int LocalMapObj_CheckAnimationFinished (const LocalMapObject * param0)
 {
     if (sub_020628D8(param0, (1 << 4)) == 0) {
         return 1;
@@ -228,7 +228,7 @@ void sub_02065758 (SysTask * param0)
 
     v0 = sub_0201CED0(param0);
 
-    GF_ASSERT(sub_02065684(v0->unk_0C) == 1);
+    GF_ASSERT(LocalMapObj_CheckAnimationFinished(v0->unk_0C) == 1);
 
     sub_020656AC(v0->unk_0C);
     Heap_FreeToHeapExplicit(4, v0);
@@ -256,7 +256,7 @@ static int sub_020657A4 (UnkStruct_020EEE54 * param0)
 
 static int sub_020657B0 (UnkStruct_020EEE54 * param0)
 {
-    if (sub_020655F4(param0->unk_0C) == 0) {
+    if (LocalMapObj_IsAnimationSet(param0->unk_0C) == 0) {
         return 0;
     }
 
@@ -269,7 +269,7 @@ static int sub_020657CC (UnkStruct_020EEE54 * param0)
     const UnkStruct_ov5_021F8E3C * v0;
 
     v0 = param0->unk_10;
-    sub_02065638(param0->unk_0C, v0->unk_00);
+    LocalMapObj_SetAnimationCode(param0->unk_0C, v0->unk_00);
 
     param0->unk_00 = 3;
 
@@ -278,7 +278,7 @@ static int sub_020657CC (UnkStruct_020EEE54 * param0)
 
 static int sub_020657E4 (UnkStruct_020EEE54 * param0)
 {
-    if (sub_02065684(param0->unk_0C) == 0) {
+    if (LocalMapObj_CheckAnimationFinished(param0->unk_0C) == 0) {
         return 0;
     }
 

@@ -185,7 +185,7 @@ static int sub_0205F22C (PlayerAvatar * param0, int param1)
 
     v1 = Player_LocalMapObject(param0);
 
-    if (sub_020655F4(v1) == 1) {
+    if (LocalMapObj_IsAnimationSet(v1) == 1) {
         return 1;
     }
 
@@ -327,7 +327,7 @@ void sub_0205F490 (PlayerAvatar * param0)
         }
     }
 
-    if (sub_020655F4(v3) == 0) {
+    if (LocalMapObj_IsAnimationSet(v3) == 0) {
         switch (v0) {
         case 0:
             break;
@@ -352,7 +352,7 @@ void sub_0205F490 (PlayerAvatar * param0)
         return;
     }
 
-    if (sub_02065684(v3) == 1) {
+    if (LocalMapObj_CheckAnimationFinished(v3) == 1) {
         switch (v0) {
         case 0:
             break;
@@ -414,7 +414,7 @@ int sub_0205F588 (PlayerAvatar * param0)
 
         v3 = Player_LocalMapObject(param0);
 
-        if (sub_020655F4(v3) == 1) {
+        if (LocalMapObj_IsAnimationSet(v3) == 1) {
             return 1;
         }
 
@@ -441,7 +441,7 @@ void sub_0205F5E4 (PlayerAvatar * param0, int param1)
     sub_02062A0C(v0, 0x0);
     sub_02064208(v0);
     sub_020656DC(v0);
-    sub_02065638(v0, sub_02065838(param1, 0x0));
+    LocalMapObj_SetAnimationCode(v0, sub_02065838(param1, 0x0));
 }
 
 static int sub_0205F62C (PlayerAvatar * param0, int param1)
@@ -1692,7 +1692,7 @@ static void sub_02060AA0 (PlayerAvatar * param0, LocalMapObject * param1, int pa
 static void sub_02060B64 (PlayerAvatar * param0, LocalMapObject * param1, u32 param2, int param3)
 {
     sub_0205EC20(param0, param2, param3);
-    sub_02065638(param1, param2);
+    LocalMapObj_SetAnimationCode(param1, param2);
 }
 
 u32 sub_02060B7C (PlayerAvatar * param0, LocalMapObject * param1, int param2)
@@ -2189,7 +2189,7 @@ int sub_020613AC (PlayerAvatar * param0)
 {
     LocalMapObject * v0 = Player_LocalMapObject(param0);
 
-    if (sub_020655F4(v0) == 1) {
+    if (LocalMapObj_IsAnimationSet(v0) == 1) {
         return 1;
     }
 
@@ -2341,7 +2341,7 @@ u32 sub_0206147C (PlayerAvatar * param0, u16 param1, u16 param2, int param3, int
 int sub_02061544 (PlayerAvatar * param0)
 {
     LocalMapObject * v0 = Player_LocalMapObject(param0);
-    return sub_020655F4(v0);
+    return LocalMapObj_IsAnimationSet(v0);
 }
 
 void sub_02061550 (PlayerAvatar * param0, u32 param1, int param2)

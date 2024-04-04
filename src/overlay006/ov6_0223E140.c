@@ -1275,7 +1275,7 @@ static BOOL ov6_0223EE5C (UnkStruct_ov6_0223EA98 * param0)
     case 8:
         param0->unk_D0 = 0;
         sub_0206296C(param0->unk_10C, 2);
-        sub_02065638(param0->unk_110, 0x2);
+        LocalMapObj_SetAnimationCode(param0->unk_110, 0x2);
         sub_02017358(&param0->unk_24, &v1, &v2, &param0->unk_D8);
         param0->unk_18++;
     case 9:
@@ -1438,17 +1438,17 @@ static BOOL ov6_0223EE5C (UnkStruct_ov6_0223EA98 * param0)
     if (param0->unk_1C != 0) {
         if (param0->unk_1C == 20) {
             sub_0206296C(param0->unk_10C, 1);
-            sub_02065638(param0->unk_110, 0x1);
+            LocalMapObj_SetAnimationCode(param0->unk_110, 0x1);
         }
 
         if (param0->unk_1C == 40) {
             sub_0206296C(param0->unk_10C, 2);
-            sub_02065638(param0->unk_110, 0x3);
+            LocalMapObj_SetAnimationCode(param0->unk_110, 0x3);
         }
 
         if (param0->unk_1C == 50) {
             sub_0206296C(param0->unk_10C, 0);
-            sub_02065638(param0->unk_110, 0x0);
+            LocalMapObj_SetAnimationCode(param0->unk_110, 0x0);
         }
 
         param0->unk_1C++;

@@ -177,13 +177,13 @@ BOOL ov5_021D433C (FieldSystem * param0, UnkStruct_ov5_021D432C * param1)
     break;
     case 3:
         v0 = Player_LocalMapObject(param0->playerAvatar);
-        sub_02065638(v0, 0xc);
+        LocalMapObj_SetAnimationCode(v0, 0xc);
         (param1->unk_00)++;
         break;
     case 4:
         v0 = Player_LocalMapObject(param0->playerAvatar);
 
-        if (sub_02065684(v0) == 1) {
+        if (LocalMapObj_CheckAnimationFinished(v0) == 1) {
             sub_020656AC(v0);
             sub_02062D64(v0, 1);
             {
@@ -354,13 +354,13 @@ BOOL ov5_021D453C (FieldSystem * param0, UnkStruct_ov5_021D432C * param1)
     break;
     case 3:
         v0 = Player_LocalMapObject(param0->playerAvatar);
-        sub_02065638(v0, 0xd);
+        LocalMapObj_SetAnimationCode(v0, 0xd);
         (param1->unk_00)++;
         break;
     case 4:
         v0 = Player_LocalMapObject(param0->playerAvatar);
 
-        if (sub_02065684(v0) == 1) {
+        if (LocalMapObj_CheckAnimationFinished(v0) == 1) {
             sub_020656AC(v0);
 
             {
@@ -526,8 +526,8 @@ BOOL ov5_021D4858 (FieldSystem * param0, UnkStruct_ov5_021D432C * param1, const 
 
         v0 = Player_LocalMapObject(param0->playerAvatar);
 
-        if (sub_020655F4(v0) == 1) {
-            sub_02065638(v0, 0x49);
+        if (LocalMapObj_IsAnimationSet(v0) == 1) {
+            LocalMapObj_SetAnimationCode(v0, 0x49);
         } else {
             GF_ASSERT(FALSE);
         }
@@ -541,7 +541,7 @@ BOOL ov5_021D4858 (FieldSystem * param0, UnkStruct_ov5_021D432C * param1, const 
 
         v0 = Player_LocalMapObject(param0->playerAvatar);
 
-        if (sub_020655F4(v0) == 1) {
+        if (LocalMapObj_IsAnimationSet(v0) == 1) {
             int v8;
 
             if (param2 == 3) {
@@ -550,7 +550,7 @@ BOOL ov5_021D4858 (FieldSystem * param0, UnkStruct_ov5_021D432C * param1, const 
                 v8 = 0xa;
             }
 
-            sub_02065638(v0, v8);
+            LocalMapObj_SetAnimationCode(v0, v8);
         } else {
             GF_ASSERT(FALSE);
         }
@@ -560,15 +560,15 @@ BOOL ov5_021D4858 (FieldSystem * param0, UnkStruct_ov5_021D432C * param1, const 
     case 2:
         v0 = Player_LocalMapObject(param0->playerAvatar);
 
-        if (sub_020655F4(v0) == 1) {
-            sub_02065638(v0, 0x4a);
+        if (LocalMapObj_IsAnimationSet(v0) == 1) {
+            LocalMapObj_SetAnimationCode(v0, 0x4a);
             (param1->unk_00)++;
         }
         break;
     case 3:
         v0 = Player_LocalMapObject(param0->playerAvatar);
 
-        if (sub_020655F4(v0) == 1) {
+        if (LocalMapObj_IsAnimationSet(v0) == 1) {
             int v9;
 
             if (param2 == 3) {
@@ -577,14 +577,14 @@ BOOL ov5_021D4858 (FieldSystem * param0, UnkStruct_ov5_021D432C * param1, const 
                 v9 = 0xa;
             }
 
-            sub_02065638(v0, v9);
+            LocalMapObj_SetAnimationCode(v0, v9);
             (param1->unk_00)++;
         }
         break;
     case 4:
         v0 = Player_LocalMapObject(param0->playerAvatar);
 
-        if (sub_02065684(v0) == 1) {
+        if (LocalMapObj_CheckAnimationFinished(v0) == 1) {
             sub_020656AC(v0);
             (param1->unk_00)++;
         }
@@ -642,8 +642,8 @@ BOOL ov5_021D4A24 (FieldSystem * param0, UnkStruct_ov5_021D432C * param1, const 
 
         v0 = Player_LocalMapObject(param0->playerAvatar);
 
-        if (sub_020655F4(v0) == 1) {
-            sub_02065638(v0, 0x49);
+        if (LocalMapObj_IsAnimationSet(v0) == 1) {
+            LocalMapObj_SetAnimationCode(v0, 0x49);
         } else {
             GF_ASSERT(FALSE);
         }
@@ -655,7 +655,7 @@ BOOL ov5_021D4A24 (FieldSystem * param0, UnkStruct_ov5_021D432C * param1, const 
         ov5_021D4278(param0->unk_54, 2, 0, 1557);
         v0 = Player_LocalMapObject(param0->playerAvatar);
 
-        if (sub_020655F4(v0) == 1) {
+        if (LocalMapObj_IsAnimationSet(v0) == 1) {
             int v8;
 
             if (param2 == 2) {
@@ -664,7 +664,7 @@ BOOL ov5_021D4A24 (FieldSystem * param0, UnkStruct_ov5_021D432C * param1, const 
                 v8 = 0xb;
             }
 
-            sub_02065638(v0, v8);
+            LocalMapObj_SetAnimationCode(v0, v8);
         } else {
             GF_ASSERT(FALSE);
         }
@@ -674,8 +674,8 @@ BOOL ov5_021D4A24 (FieldSystem * param0, UnkStruct_ov5_021D432C * param1, const 
     case 2:
         v0 = Player_LocalMapObject(param0->playerAvatar);
 
-        if (sub_020655F4(v0) == 1) {
-            sub_02065638(v0, 0x4a);
+        if (LocalMapObj_IsAnimationSet(v0) == 1) {
+            LocalMapObj_SetAnimationCode(v0, 0x4a);
 
             ov5_021D1744(0);
             (param1->unk_00)++;
@@ -684,7 +684,7 @@ BOOL ov5_021D4A24 (FieldSystem * param0, UnkStruct_ov5_021D432C * param1, const 
     case 3:
         v0 = Player_LocalMapObject(param0->playerAvatar);
 
-        if (sub_02065684(v0) == 1) {
+        if (LocalMapObj_CheckAnimationFinished(v0) == 1) {
             sub_020656AC(v0);
             (param1->unk_00)++;
         }
@@ -916,13 +916,13 @@ BOOL ov5_021D4E10 (UnkStruct_020508D4 * param0)
     case 1:
         v0 = Player_LocalMapObject(v1->playerAvatar);
         sub_02062D64(v0, 0);
-        sub_02065638(v0, 0xd);
+        LocalMapObj_SetAnimationCode(v0, 0xd);
         (v2->unk_00)++;
         break;
     case 2:
         v0 = Player_LocalMapObject(v1->playerAvatar);
 
-        if (sub_02065684(v0) == 1) {
+        if (LocalMapObj_CheckAnimationFinished(v0) == 1) {
             sub_020656AC(v0);
             (v2->unk_00)++;
         }
@@ -1069,13 +1069,13 @@ BOOL ov5_021D5020 (UnkStruct_020508D4 * param0)
     case 1:
         v0 = Player_LocalMapObject(v1->playerAvatar);
         sub_02062D64(v0, 0);
-        sub_02065638(v0, 0xd);
+        LocalMapObj_SetAnimationCode(v0, 0xd);
         (v2->unk_00)++;
         break;
     case 2:
         v0 = Player_LocalMapObject(v1->playerAvatar);
 
-        if (sub_02065684(v0) == 1) {
+        if (LocalMapObj_CheckAnimationFinished(v0) == 1) {
             sub_020656AC(v0);
             (v2->unk_00)++;
         }
@@ -1124,13 +1124,13 @@ BOOL ov5_021D5150 (UnkStruct_020508D4 * param0)
     case 1:
         v0 = Player_LocalMapObject(v1->playerAvatar);
         sub_02062D64(v0, 0);
-        sub_02065638(v0, 0xd);
+        LocalMapObj_SetAnimationCode(v0, 0xd);
         (v2->unk_00)++;
         break;
     case 2:
         v0 = Player_LocalMapObject(v1->playerAvatar);
 
-        if (sub_02065684(v0) == 1) {
+        if (LocalMapObj_CheckAnimationFinished(v0) == 1) {
             sub_020656AC(v0);
             (v2->unk_00)++;
         }

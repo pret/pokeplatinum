@@ -1020,7 +1020,7 @@ void ov23_02243B0C (int param0, int param1, void * param2, void * param3)
     v4.unk_07 = 3;
 
     v1 = CommPlayer_AddXServer(param0);
-    v2 = sub_02058F18(param0);
+    v2 = CommPlayer_AddZServer(param0);
 
     if ((sub_02058DF8(param0) == 0xffff) && (sub_02058E4C(param0) == 0xffff)) {
         v4.unk_07 = 7;
@@ -1335,7 +1335,7 @@ BOOL ov23_02244080 (int param0, UnkStruct_ov23_0224271C * param1, u8 param2)
     UndergroundData * v5 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257764->unk_40));
 
     v0 = CommPlayer_AddXServer(param0);
-    v1 = sub_02058F18(param0);
+    v1 = CommPlayer_AddZServer(param0);
     v3 = ov23_0224429C(v0, v1);
 
     if (v3) {

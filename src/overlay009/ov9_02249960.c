@@ -2371,7 +2371,7 @@ static BOOL ov9_0224AAD4 (UnkStruct_020508D4 * param0)
     }
     break;
     case 1:
-        if (sub_020655F4(v4) == 0) {
+        if (LocalMapObj_IsAnimationSet(v4) == 0) {
             break;
         } else {
             int v5, v6, v7;
@@ -2408,7 +2408,7 @@ static BOOL ov9_0224AAD4 (UnkStruct_020508D4 * param0)
 
             v6 = sub_02065838(v5, 0x0);
 
-            sub_02065638(v4, v6);
+            LocalMapObj_SetAnimationCode(v4, v6);
             sub_02062974(v4, v5);
 
             ov9_0224A4D0(v1, v4, v2->unk_34.unk_1A, v2->unk_34.unk_1C);
@@ -2455,13 +2455,13 @@ static BOOL ov9_0224AAD4 (UnkStruct_020508D4 * param0)
         }
         break;
     case 3:
-        if (sub_020655F4(v4) == 0) {
+        if (LocalMapObj_IsAnimationSet(v4) == 0) {
             break;
         } else {
             int v14 = sub_02065838(
                 v2->unk_34.unk_22, 0x0);
 
-            sub_02065638(v4, v14);
+            LocalMapObj_SetAnimationCode(v4, v14);
             return 1;
         }
     }
@@ -6327,8 +6327,8 @@ static int ov9_0224E4E8 (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * p
     v0 = sub_0206251C(param0->unk_00->unk_38, v1->unk_00);
     GF_ASSERT(v0 != NULL);
 
-    if (sub_020655F4(v0) == 1) {
-        sub_02065638(v0, v1->unk_04);
+    if (LocalMapObj_IsAnimationSet(v0) == 1) {
+        LocalMapObj_SetAnimationCode(v0, v1->unk_04);
         *param2 = 2;
     }
 
@@ -8351,7 +8351,7 @@ static int ov9_022500E0 (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * p
     UnkStruct_ov9_0224FA94 * v1 = ov9_0224E39C(param0);
     LocalMapObject * v2 = Player_LocalMapObject(param0->unk_00->playerAvatar);
 
-    if (sub_020655F4(v2) == 0) {
+    if (LocalMapObj_IsAnimationSet(v2) == 0) {
         return 0;
     }
 
@@ -8359,7 +8359,7 @@ static int ov9_022500E0 (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * p
         return 2;
     }
 
-    sub_02065638(v2, v0[v1->unk_02]);
+    LocalMapObj_SetAnimationCode(v2, v0[v1->unk_02]);
     v1->unk_02++;
     return 0;
 }
@@ -8664,7 +8664,7 @@ static int ov9_02250650 (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * p
     UnkStruct_ov9_02250138 * v1 = ov9_0224E39C(param0);
     LocalMapObject * v2 = Player_LocalMapObject(param0->unk_00->playerAvatar);
 
-    if (sub_020655F4(v2) == 0) {
+    if (LocalMapObj_IsAnimationSet(v2) == 0) {
         return 0;
     }
 
@@ -8672,7 +8672,7 @@ static int ov9_02250650 (UnkStruct_ov9_02249B04 * param0, UnkStruct_020508D4 * p
         return 2;
     }
 
-    sub_02065638(v2, v0[v1->unk_02]);
+    LocalMapObj_SetAnimationCode(v2, v0[v1->unk_02]);
     v1->unk_02++;
     return 0;
 }

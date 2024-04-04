@@ -522,11 +522,11 @@ static BOOL ov5_021DFFBC (UnkStruct_020508D4 * param0)
 
     switch (v0->unk_00) {
     case 0:
-        if (sub_020655F4(v2) == 0) {
+        if (LocalMapObj_IsAnimationSet(v2) == 0) {
             break;
         }
 
-        if (sub_020655F4(v1) == 0) {
+        if (LocalMapObj_IsAnimationSet(v1) == 0) {
             if (sub_020613AC(v0->unk_0C) == 0) {
                 break;
             }
@@ -535,21 +535,21 @@ static BOOL ov5_021DFFBC (UnkStruct_020508D4 * param0)
         {
             int v3 = sub_02065838(v0->unk_04, 0x8);
 
-            sub_02065638(v2, v3);
+            LocalMapObj_SetAnimationCode(v2, v3);
 
             v3 = sub_02065838(v0->unk_04, 0x20);
-            sub_02065638(v1, v3);
+            LocalMapObj_SetAnimationCode(v1, v3);
             Sound_PlayEffect(1575);
         }
 
         v0->unk_00++;
         break;
     case 1:
-        if (sub_02065684(v2) == 0) {
+        if (LocalMapObj_CheckAnimationFinished(v2) == 0) {
             break;
         }
 
-        if (sub_02065684(v1) == 0) {
+        if (LocalMapObj_CheckAnimationFinished(v1) == 0) {
             break;
         }
 
@@ -668,7 +668,7 @@ static BOOL ov5_021E0160 (UnkStruct_020508D4 * param0)
     case 3:
         v0->unk_00++;
     case 4:
-        if (sub_020655F4(v0->unk_24) == 1) {
+        if (LocalMapObj_IsAnimationSet(v0->unk_24) == 1) {
             int v7;
             int v8[6] = {
                 0x34, 0x34, 0x34, 0x85, 0x89, 0x8d
@@ -676,12 +676,12 @@ static BOOL ov5_021E0160 (UnkStruct_020508D4 * param0)
             int v9 = sub_0205F108(v0->unk_20);
 
             v7 = sub_02065838(v0->unk_04, v8[v9]);
-            sub_02065638(v0->unk_24, v7);
+            LocalMapObj_SetAnimationCode(v0->unk_24, v7);
             v0->unk_00++;
         }
         break;
     case 5:
-        if (sub_02065684(v0->unk_24) == 0) {
+        if (LocalMapObj_CheckAnimationFinished(v0->unk_24) == 0) {
             break;
         }
 
@@ -758,7 +758,7 @@ static BOOL ov5_021E03C8 (UnkStruct_020508D4 * param0)
 
     switch (v0->unk_00) {
     case 0:
-        if (sub_020655F4(v0->unk_10) == 1) {
+        if (LocalMapObj_IsAnimationSet(v0->unk_10) == 1) {
             int v1;
             int v2;
             int v3[6] = {
@@ -778,12 +778,12 @@ static BOOL ov5_021E03C8 (UnkStruct_020508D4 * param0)
             ov5_021E106C(v0->unk_0C, v1);
 
             v1 = sub_02065838(v0->unk_04, v3[v2]);
-            sub_02065638(v0->unk_10, v1);
+            LocalMapObj_SetAnimationCode(v0->unk_10, v1);
             v0->unk_00++;
         }
         break;
     case 1:
-        if (sub_02065684(v0->unk_10) == 0) {
+        if (LocalMapObj_CheckAnimationFinished(v0->unk_10) == 0) {
             break;
         }
 
@@ -861,7 +861,7 @@ static BOOL ov5_021E0560 (UnkStruct_020508D4 * param0)
         Sound_PlayEffect(1617);
         v0->unk_00++;
     case 1:
-        if (sub_020655F4(v1) == 0) {
+        if (LocalMapObj_IsAnimationSet(v1) == 0) {
             if (sub_020613AC(v0->unk_0C) == 0) {
                 break;
             }
@@ -924,7 +924,7 @@ static int ov5_021E067C (FieldSystem * param0, PlayerAvatar * param1, int param2
 {
     LocalMapObject * v0 = Player_LocalMapObject(param1);
 
-    if (sub_020655F4(v0) == 0) {
+    if (LocalMapObj_IsAnimationSet(v0) == 0) {
         return 0;
     }
 
@@ -1057,10 +1057,10 @@ static int ov5_021E07FC (UnkStruct_ov5_021F9B54 * param0)
 
 static int ov5_021E0850 (UnkStruct_ov5_021F9B54 * param0)
 {
-    if (sub_020655F4(param0->unk_14) == 1) {
+    if (LocalMapObj_IsAnimationSet(param0->unk_14) == 1) {
         int v0 = sub_02065838(param0->unk_04, 0x34);
 
-        sub_02065638(param0->unk_14, v0);
+        LocalMapObj_SetAnimationCode(param0->unk_14, v0);
         param0->unk_00++;
     }
 
@@ -1069,7 +1069,7 @@ static int ov5_021E0850 (UnkStruct_ov5_021F9B54 * param0)
 
 static int ov5_021E0878 (UnkStruct_ov5_021F9B54 * param0)
 {
-    if (sub_02065684(param0->unk_14) == 1) {
+    if (LocalMapObj_CheckAnimationFinished(param0->unk_14) == 1) {
         param0->unk_00++;
         ov5_021F2974(param0->unk_18, 1);
     }
@@ -1079,10 +1079,10 @@ static int ov5_021E0878 (UnkStruct_ov5_021F9B54 * param0)
 
 static int ov5_021E0898 (UnkStruct_ov5_021F9B54 * param0)
 {
-    if (sub_020655F4(param0->unk_14) == 1) {
+    if (LocalMapObj_IsAnimationSet(param0->unk_14) == 1) {
         int v0 = sub_02065838(param0->unk_04, 0x10);
 
-        sub_02065638(param0->unk_14, v0);
+        LocalMapObj_SetAnimationCode(param0->unk_14, v0);
         param0->unk_00++;
     }
 
@@ -1091,7 +1091,7 @@ static int ov5_021E0898 (UnkStruct_ov5_021F9B54 * param0)
 
 static int ov5_021E08C0 (UnkStruct_ov5_021F9B54 * param0)
 {
-    if (sub_02065684(param0->unk_14) == 0) {
+    if (LocalMapObj_CheckAnimationFinished(param0->unk_14) == 0) {
         return(0);
     }
 
@@ -1108,7 +1108,7 @@ static int ov5_021E08C0 (UnkStruct_ov5_021F9B54 * param0)
     {
         int v2 = sub_02065838(param0->unk_04, 0x34);
 
-        sub_02065638(param0->unk_14, v2);
+        LocalMapObj_SetAnimationCode(param0->unk_14, v2);
         param0->unk_08 = 0;
         param0->unk_00++;
         ov5_021F2974(param0->unk_18, 0);
@@ -1122,7 +1122,7 @@ static int ov5_021E08C0 (UnkStruct_ov5_021F9B54 * param0)
 
 static int ov5_021E0924 (UnkStruct_ov5_021F9B54 * param0)
 {
-    if (sub_02065684(param0->unk_14) == 0) {
+    if (LocalMapObj_CheckAnimationFinished(param0->unk_14) == 0) {
         return(0);
     }
 

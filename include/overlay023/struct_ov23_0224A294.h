@@ -12,7 +12,7 @@
 #include "overlay023/struct_ov23_0224ABC4.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
-typedef struct {
+typedef struct CommPlayerManager {
     u32 unk_00;
     UnkStruct_ov23_0224991C * unk_04;
     PlayerAvatar * playerAvatar[MAX_CONNECTED_PLAYERS];
@@ -28,7 +28,7 @@ typedef struct {
     u8 unk_EA[MAX_CONNECTED_PLAYERS];
     u8 unk_F2[MAX_CONNECTED_PLAYERS];
     u8 unk_FA[MAX_CONNECTED_PLAYERS];
-    s8 unk_102[MAX_CONNECTED_PLAYERS];
+    s8 blowDir[MAX_CONNECTED_PLAYERS];
     u8 unk_10A[MAX_CONNECTED_PLAYERS];
     u8 unk_112[MAX_CONNECTED_PLAYERS];
     u8 unk_11A[MAX_CONNECTED_PLAYERS];
@@ -55,6 +55,6 @@ typedef struct {
     u8 unk_2C1;
     u8 unk_2C2;
     u8 unk_2C3;
-} CommPlayer;
+} CommPlayerManager;
 
 #endif // POKEPLATINUM_STRUCT_OV23_0224A294_H
