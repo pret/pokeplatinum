@@ -4,16 +4,16 @@
             "script": 8131,
             "type": 2,
             "x": 649,
-            "y": 346,
-            "z": 0,
+            "z": 346,
+            "y": 0,
             "player_facing_dir": 4
         },
         {
             "script": 7,
             "type": 0,
             "x": 652,
-            "y": 338,
-            "z": 0,
+            "z": 338,
+            "y": 0,
             "player_facing_dir": 0
         }
     ],
@@ -25,12 +25,14 @@
             "flag": 0,
             "script": 5,
             "initial_dir": 0,
-            "data": [6],
+            "data": [
+                6
+            ],
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 646,
-            "y": 338,
-            "z": 0
+            "z": 338,
+            "y": 0
         },
         {
             "graphics_id": 182,
@@ -43,8 +45,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 660,
-            "y": 327,
-            "z": 0
+            "z": 327,
+            "y": 0
         },
         {
             "graphics_id": 182,
@@ -57,8 +59,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 652,
-            "y": 327,
-            "z": 0
+            "z": 327,
+            "y": 0
         },
         {
             "graphics_id": 50,
@@ -71,8 +73,8 @@
             "movement_range_x": 1,
             "movement_range_y": 1,
             "x": 659,
-            "y": 350,
-            "z": 0
+            "z": 350,
+            "y": 0
         },
         {
             "graphics_id": 7,
@@ -85,8 +87,8 @@
             "movement_range_x": 1,
             "movement_range_y": 0,
             "x": 652,
-            "y": 341,
-            "z": 0
+            "z": 341,
+            "y": 0
         },
         {
             "graphics_id": 4,
@@ -99,8 +101,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 667,
-            "y": 338,
-            "z": 0
+            "z": 338,
+            "y": 0
         },
         {
             "local_id": 0,
@@ -110,12 +112,14 @@
             "flag": 469,
             "script": 65535,
             "initial_dir": 0,
-            "data": [2],
+            "data": [
+                2
+            ],
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 679,
-            "y": 340,
-            "z": 0
+            "z": 340,
+            "y": 0
         },
         {
             "graphics_id": 23,
@@ -128,8 +132,8 @@
             "movement_range_x": 1,
             "movement_range_y": 0,
             "x": 651,
-            "y": 348,
-            "z": 0
+            "z": 348,
+            "y": 0
         },
         {
             "graphics_id": 144,
@@ -142,8 +146,8 @@
             "movement_range_x": 1,
             "movement_range_y": 0,
             "x": 652,
-            "y": 339,
-            "z": 0
+            "z": 339,
+            "y": 0
         },
         {
             "graphics_id": 87,
@@ -156,8 +160,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 662,
-            "y": 335,
-            "z": 0
+            "z": 335,
+            "y": 0
         },
         {
             "graphics_id": 87,
@@ -170,8 +174,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 649,
-            "y": 324,
-            "z": 0
+            "z": 324,
+            "y": 0
         },
         {
             "graphics_id": 148,
@@ -184,38 +188,38 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 651,
-            "y": 339,
-            "z": 0
+            "z": 339,
+            "y": 0
         }
     ],
     "warp_events": [
         {
             "x": 652,
-            "y": 338,
+            "z": 338,
             "dest_header_id": 454,
             "dest_warp_id": 0
         },
         {
             "x": 655,
-            "y": 348,
+            "z": 348,
             "dest_header_id": 455,
             "dest_warp_id": 0
         },
         {
             "x": 656,
-            "y": 325,
+            "z": 325,
             "dest_header_id": 456,
             "dest_warp_id": 0
         },
         {
             "x": 659,
-            "y": 338,
+            "z": 338,
             "dest_header_id": 452,
             "dest_warp_id": 0
         },
         {
             "x": 663,
-            "y": 338,
+            "z": 338,
             "dest_header_id": 451,
             "dest_warp_id": 0
         }

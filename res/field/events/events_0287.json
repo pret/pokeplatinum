@@ -4,37 +4,37 @@
     "warp_events": [
         {
             "x": 19,
-            "y": 5,
+            "z": 5,
             "dest_header_id": 295,
             "dest_warp_id": 3
         },
         {
             "x": 4,
-            "y": 2,
+            "z": 2,
             "dest_header_id": 299,
             "dest_warp_id": 0
         },
         {
             "x": 11,
-            "y": 2,
+            "z": 2,
             "dest_header_id": 300,
             "dest_warp_id": 0
         },
         {
             "x": 19,
-            "y": 2,
+            "z": 2,
             "dest_header_id": 301,
             "dest_warp_id": 0
         },
         {
             "x": 27,
-            "y": 2,
+            "z": 2,
             "dest_header_id": 302,
             "dest_warp_id": 0
         },
         {
             "x": 34,
-            "y": 2,
+            "z": 2,
             "dest_header_id": 303,
             "dest_warp_id": 0
         }

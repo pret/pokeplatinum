@@ -12,8 +12,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 48,
-            "y": 43,
-            "z": 0
+            "z": 43,
+            "y": 0
         },
         {
             "graphics_id": 101,
@@ -26,8 +26,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 49,
-            "y": 43,
-            "z": 0
+            "z": 43,
+            "y": 0
         },
         {
             "graphics_id": 173,
@@ -40,8 +40,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 57,
-            "y": 43,
-            "z": 0
+            "z": 43,
+            "y": 0
         },
         {
             "graphics_id": 173,
@@ -54,8 +54,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 48,
-            "y": 51,
-            "z": 0
+            "z": 51,
+            "y": 0
         },
         {
             "graphics_id": 120,
@@ -68,8 +68,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 48,
-            "y": 43,
-            "z": 0
+            "z": 43,
+            "y": 0
         },
         {
             "graphics_id": 148,
@@ -82,8 +82,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 47,
-            "y": 54,
-            "z": 0
+            "z": 54,
+            "y": 0
         },
         {
             "graphics_id": 87,
@@ -96,20 +96,20 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 25,
-            "y": 54,
-            "z": 0
+            "z": 54,
+            "y": 0
         }
     ],
     "warp_events": [
         {
             "x": 46,
-            "y": 54,
+            "z": 54,
             "dest_header_id": 334,
             "dest_warp_id": 1
         },
         {
             "x": 47,
-            "y": 54,
+            "z": 54,
             "dest_header_id": 334,
             "dest_warp_id": 0
         }

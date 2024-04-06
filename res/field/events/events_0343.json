@@ -12,8 +12,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 8,
-            "y": 9,
-            "z": 0
+            "z": 9,
+            "y": 0
         },
         {
             "graphics_id": 12,
@@ -26,20 +26,20 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 2,
-            "y": 4,
-            "z": 0
+            "z": 4,
+            "y": 0
         }
     ],
     "warp_events": [
         {
             "x": 7,
-            "y": 14,
+            "z": 14,
             "dest_header_id": 356,
             "dest_warp_id": 2
         },
         {
             "x": 4,
-            "y": 3,
+            "z": 3,
             "dest_header_id": 358,
             "dest_warp_id": 0
         }

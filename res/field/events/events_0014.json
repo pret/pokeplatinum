@@ -4,88 +4,88 @@
             "script": 2,
             "type": 0,
             "x": 5,
-            "y": 4,
-            "z": 0,
+            "z": 4,
+            "y": 0,
             "player_facing_dir": 0
         },
         {
             "script": 3,
             "type": 0,
             "x": 9,
-            "y": 2,
-            "z": 0,
+            "z": 2,
+            "y": 0,
             "player_facing_dir": 0
         },
         {
             "script": 4,
             "type": 0,
             "x": 11,
-            "y": 2,
-            "z": 0,
+            "z": 2,
+            "y": 0,
             "player_facing_dir": 0
         },
         {
             "script": 5,
             "type": 0,
             "x": 13,
-            "y": 2,
-            "z": 0,
+            "z": 2,
+            "y": 0,
             "player_facing_dir": 0
         },
         {
             "script": 6,
             "type": 0,
             "x": 15,
-            "y": 2,
-            "z": 0,
+            "z": 2,
+            "y": 0,
             "player_facing_dir": 0
         },
         {
             "script": 7,
             "type": 0,
             "x": 17,
-            "y": 2,
-            "z": 0,
+            "z": 2,
+            "y": 0,
             "player_facing_dir": 0
         },
         {
             "script": 8,
             "type": 0,
             "x": 10,
-            "y": 8,
-            "z": 0,
+            "z": 8,
+            "y": 0,
             "player_facing_dir": 0
         },
         {
             "script": 9,
             "type": 0,
             "x": 12,
-            "y": 8,
-            "z": 0,
+            "z": 8,
+            "y": 0,
             "player_facing_dir": 0
         },
         {
             "script": 10,
             "type": 0,
             "x": 14,
-            "y": 8,
-            "z": 0,
+            "z": 8,
+            "y": 0,
             "player_facing_dir": 0
         },
         {
             "script": 11,
             "type": 0,
             "x": 16,
-            "y": 8,
-            "z": 0,
+            "z": 8,
+            "y": 0,
             "player_facing_dir": 0
         },
         {
             "script": 12,
             "type": 0,
             "x": 18,
-            "y": 8,
-            "z": 0,
+            "z": 8,
+            "y": 0,
             "player_facing_dir": 0
         }
     ],
@@ -101,8 +101,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 3,
-            "y": 5,
-            "z": 0
+            "z": 5,
+            "y": 0
         },
         {
             "graphics_id": 9,
@@ -115,8 +115,8 @@
             "movement_range_x": 1,
             "movement_range_y": 0,
             "x": 15,
-            "y": 10,
-            "z": 0
+            "z": 10,
+            "y": 0
         },
         {
             "graphics_id": 2,
@@ -129,14 +129,14 @@
             "movement_range_x": 10,
             "movement_range_y": 0,
             "x": 18,
-            "y": 10,
-            "z": 0
+            "z": 10,
+            "y": 0
         }
     ],
     "warp_events": [
         {
             "x": 3,
-            "y": 13,
+            "z": 13,
             "dest_header_id": 12,
             "dest_warp_id": 2
         }

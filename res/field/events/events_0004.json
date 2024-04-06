@@ -4,7 +4,7 @@
     "warp_events": [
         {
             "x": 4,
-            "y": 14,
+            "z": 14,
             "dest_header_id": 3,
             "dest_warp_id": 5
         }

@@ -12,8 +12,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 340,
-            "y": 230,
-            "z": 0
+            "z": 230,
+            "y": 0
         },
         {
             "graphics_id": 94,
@@ -22,12 +22,14 @@
             "flag": 0,
             "script": 3,
             "initial_dir": 0,
-            "data": [3],
+            "data": [
+                3
+            ],
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 309,
-            "y": 242,
-            "z": 0
+            "z": 242,
+            "y": 0
         },
         {
             "graphics_id": 148,
@@ -40,8 +42,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 310,
-            "y": 237,
-            "z": 0
+            "z": 237,
+            "y": 0
         },
         {
             "graphics_id": 87,
@@ -54,32 +56,32 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 323,
-            "y": 235,
-            "z": 0
+            "z": 235,
+            "y": 0
         }
     ],
     "warp_events": [
         {
             "x": 308,
-            "y": 229,
+            "z": 229,
             "dest_header_id": 317,
             "dest_warp_id": 0
         },
         {
             "x": 309,
-            "y": 229,
+            "z": 229,
             "dest_header_id": 317,
             "dest_warp_id": 1
         },
         {
             "x": 308,
-            "y": 229,
+            "z": 229,
             "dest_header_id": 318,
             "dest_warp_id": 3
         },
         {
             "x": 309,
-            "y": 229,
+            "z": 229,
             "dest_header_id": 318,
             "dest_warp_id": 4
         }
@@ -88,12 +90,12 @@
         {
             "script": 4,
             "x": 310,
-            "y": 244,
+            "z": 244,
+            "y": 0,
             "width": 2,
             "length": 1,
-            "z": 0,
-            "value": 0,
-            "var": 16516
+            "var": 16516,
+            "value": 0
         }
     ]
 }
