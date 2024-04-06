@@ -25,10 +25,10 @@
 #include "overlay012/struct_ov12_022380DC.h"
 #include "overlay012/funcptr_ov12_02239E68.h"
 #include "overlay012/funcptr_ov12_02239EEC.h"
-#include "overlay016/struct_ov16_0223E0C8.h"
-#include "overlay016/struct_ov16_02264408.h"
-#include "overlay016/struct_ov16_02264408_sub1.h"
-#include "overlay016/struct_ov16_02265BBC.h"
+#include "battle/struct_ov16_0223E0C8.h"
+#include "battle/struct_ov16_02264408.h"
+#include "battle/struct_ov16_02264408_sub1.h"
+#include "battle/struct_ov16_02265BBC.h"
 #include "struct_defs/sprite_template.h"
 #include "overlay104/struct_ov104_02241308.h"
 
@@ -56,7 +56,7 @@
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/ov12_022380BC.h"
 #include "overlay012/is_form_symmetrical.h"
-#include "overlay016/ov16_0223DF00.h"
+#include "battle/ov16_0223DF00.h"
 #include "overlay017/ov17_022413D8.h"
 
 typedef struct UnkStruct_ov12_02223178_t {

@@ -121,7 +121,7 @@
 #include "unk_020989DC.h"
 #include "overlay005/ov5_021E622C.h"
 #include "overlay007/ov7_0224BE9C.h"
-#include "overlay016/ov16_0223B140.h"
+#include "battle/ov16_0223B140.h"
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay020/ov20_021D0D80.h"
 #include "overlay021/ov21_021D0D80.h"
@@ -157,7 +157,7 @@
 #include "overlay120/ov120_021D0D80.h"
 #include "overlay121/ov121_021D0D80.h"
 
-FS_EXTERN_OVERLAY(overlay16);
+FS_EXTERN_OVERLAY(battle);
 FS_EXTERN_OVERLAY(overlay19);
 FS_EXTERN_OVERLAY(overlay20);
 FS_EXTERN_OVERLAY(overlay21);
@@ -239,36 +239,36 @@ typedef struct {
 static void sub_0203DF68(UnkStruct_020508D4 * param0);
 static u8 sub_0203E484(SaveData * param0, u8 param1);
 
-static int sub_0203D1B8 (OverlayManager * param0, int * param1)
+static BOOL OverlayInit_Battle(OverlayManager *ovyManager, int *state)
 {
-    return 1;
+    return TRUE;
 }
 
-static int sub_0203D1BC (OverlayManager * param0, int * param1)
+static BOOL OverlayMain_Battle (OverlayManager *ovyManager, int *state)
 {
-    if (ov16_0223B140(param0, param1)) {
-        return 1;
+    if (Battle_Main(ovyManager, state)) {
+        return TRUE;
     } else {
-        return 0;
+        return FALSE;
     }
 }
 
-static int sub_0203D1D0 (OverlayManager * param0, int * param1)
+static BOOL OverlayExit_Battle (OverlayManager *ovyManager, int *state)
 {
-    return 1;
+    return TRUE;
 }
 
 
-const OverlayManagerTemplate Unk_020EA358 = {
-    sub_0203D1B8,
-    sub_0203D1BC,
-    sub_0203D1D0,
-    FS_OVERLAY_ID(overlay16)
+const OverlayManagerTemplate gBattleOverlayTemplate = {
+    OverlayInit_Battle,
+    OverlayMain_Battle,
+    OverlayExit_Battle,
+    FS_OVERLAY_ID(battle)
 };
 
 void sub_0203D1D4 (FieldSystem * param0, BattleParams * param1)
 {
-    sub_0203CD84(param0, &Unk_020EA358, param1);
+    sub_0203CD84(param0, &gBattleOverlayTemplate, param1);
 }
 
 static const u8 Unk_020EA164[] = {

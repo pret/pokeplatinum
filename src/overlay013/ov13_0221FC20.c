@@ -47,7 +47,7 @@
 #include "overlay013/ov13_02224500.h"
 #include "overlay013/ov13_02225710.h"
 #include "overlay013/ov13_02228A38.h"
-#include "overlay016/ov16_0223DF00.h"
+#include "battle/ov16_0223DF00.h"
 
 static void ov13_0221FCAC(SysTask * param0, void * param1);
 static u8 ov13_0221FE5C(UnkStruct_ov13_022213F0 * param0);

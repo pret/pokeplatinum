@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "overlay016/struct_ov16_0226D160_decl.h"
+#include "battle/struct_ov16_0226D160_decl.h"
 
 enum PartyGaugeSide {
     PARTY_GAUGE_OURS,
