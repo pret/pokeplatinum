@@ -67,8 +67,6 @@ CommPlayerManager * CommPlayerMan_Get (void)
 
 BOOL CommPlayerMan_Init (void * dest, FieldSystem * fieldSys, BOOL isUnderground)
 {
-    int netId;
-
     if (sCommPlayerManager != NULL) {
         return FALSE;
     }
@@ -88,7 +86,7 @@ BOOL CommPlayerMan_Init (void * dest, FieldSystem * fieldSys, BOOL isUnderground
 
     sCommPlayerManager->fieldSys = fieldSys;
 
-    for (netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
+    for (int netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
         sCommPlayerManager->playerLocation[netId].dir = -1;
         sCommPlayerManager->playerLocation[netId].x = 0xffff;
         sCommPlayerManager->playerLocation[netId].z = 0xffff;
@@ -116,13 +114,11 @@ BOOL CommPlayerMan_Init (void * dest, FieldSystem * fieldSys, BOOL isUnderground
 
 void CommPlayerMan_Reset (void)
 {
-    int netId;
-
     if (sCommPlayerManager == NULL) {
         return;
     }
 
-    for (netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
+    for (int netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
         if (sCommPlayerManager->isUnderground) {
             CommPlayer_Destroy(netId, TRUE, FALSE);
         } else {
@@ -182,9 +178,7 @@ void CommPlayerMan_Delete (BOOL deletePlayerData)
 
 void CommPlayerMan_Reinit (void)
 {
-    int netId;
-
-    for (netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
+    for (int netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
         if (sCommPlayerManager->isUnderground) {
             ov23_0224AF4C(netId);
             ov23_0224AD98(netId);
@@ -363,9 +357,7 @@ void sub_02057BC4 (void * param0)
 
 static void sub_02057C2C (void * param0)
 {
-    int netId;
-
-    for (netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
+    for (int netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
         if (sCommPlayerManager->isActive[netId]) {
             CommPlayerLocation * location = &sCommPlayerManager->playerLocationServer[netId];
 
@@ -498,8 +490,6 @@ static void CommPlayer_SendMoveSpeed ()
 
 static void Task_CommPlayerManagerRun (SysTask * task, void * data)
 {
-    int netId;
-
     if (CommSys_IsInitialized()) {
         CommPlayer_SendMoveSpeed();
 
@@ -517,7 +507,7 @@ static void Task_CommPlayerManagerRun (SysTask * task, void * data)
         sub_02057EF8(data);
     }
 
-    for (netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
+    for (int netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
         if (sCommPlayerManager->isUnderground) {
             if (CommSys_CurNetId() == 0) {
                 if (NULL == CommInfo_TrainerInfo(netId)) {
@@ -530,9 +520,7 @@ static void Task_CommPlayerManagerRun (SysTask * task, void * data)
 
 static void sub_02057EF8 (void * param0)
 {
-    int netId;
-
-    for (netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
+    for (int netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
         if (!CommSys_IsPlayerConnected(netId)) {
             if (!(sub_02036180() && (netId == 0))) {
                 if ((CommSys_CurNetId() == 0) && (sCommPlayerManager->isUnderground)) {
@@ -672,10 +660,8 @@ BOOL CommPlayer_CheckNPCCollision (int x, int z)
 
 static BOOL CommPlayer_CheckCollision (int x, int z, int netIdTarget)
 {
-    int netId;
-
     if ((x != 0xffff) && (z != 0xffff)) {
-        for (netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
+        for (int netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
             if (netId == netIdTarget) {
                 continue;
             }
