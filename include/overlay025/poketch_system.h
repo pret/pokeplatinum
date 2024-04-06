@@ -32,7 +32,7 @@ typedef struct PoketchSystem {
     u8 unk_04;
     u8 unk_05;
     u8 unk_06;
-    u8 unk_07;
+    u8 pedometerUpdated;
     u32 unk_08;
     BOOL unk_0C;
     u32 unk_10;
@@ -44,7 +44,7 @@ typedef struct PoketchSystem {
     UnkStruct_ov25_02255B34 * unk_28;
     u32 unk_2C;
     u32 unk_30;
-    PoketchSystem ** unk_34;
+    PoketchSystem ** poketchSysPtr;
     SysTask * unk_38;
     UnkFuncPtr_ov25_02254238 unk_3C;
     UnkFuncPtr_ov25_02254238_1 unk_40;
@@ -58,7 +58,7 @@ typedef struct PoketchSystem {
     enum ButtonDir buttonDir;
 } PoketchSystem;
 
-void ov25_02253CE8(FieldSystem *fieldSys, PoketchSystem **poketchSys, SaveData *saveData, BGL * param3, NNSG2dOamManagerInstance * param4);
+void PoketchSystem_Create(FieldSystem *fieldSys, PoketchSystem **poketchSys, SaveData *saveData, BGL * param3, NNSG2dOamManagerInstance * param4);
 void ov25_02253D5C(PoketchSystem *poketchSys);
 BOOL ov25_02253D70(PoketchSystem *poketchSys);
 void ov25_02253D7C(PoketchSystem *poketchSys, int param1, u32 param2);
@@ -76,10 +76,10 @@ BOOL ov25_022544BC(u32 * param0, u32 * param1);
 BOOL ov25_0225450C(const PoketchSystem *poketchSys);
 void ov25_02254518(const PoketchSystem *poketchSys, UnkStruct_ov25_02255B34 * param1);
 BOOL ov25_02254534(const PoketchSystem *poketchSys);
-BOOL ov25_02254538(const PoketchSystem *poketchSys);
-FieldSystem * ov25_0225453C(const PoketchSystem *poketchSys);
-PoketchData * ov25_02254540(const PoketchSystem *poketchSys);
-SaveData * ov25_02254544(const PoketchSystem *poketchSys);
+BOOL PoketchSystem_PedometerUpdated(const PoketchSystem *poketchSys);
+FieldSystem * PoketchSystem_FieldSystem(const PoketchSystem *poketchSys);
+PoketchData * PoketchSystem_PoketchData(const PoketchSystem *poketchSys);
+SaveData * PoketchSystem_SaveData(const PoketchSystem *poketchSys);
 int ov25_02254548(const PoketchSystem *poketchSys);
 
 #endif // POKEPLATINUM_OV25_02253CE0_H

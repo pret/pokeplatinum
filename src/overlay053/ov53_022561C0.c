@@ -92,7 +92,7 @@ static BOOL ov53_0225621C (UnkStruct_ov53_0225621C * param0, PoketchSystem * par
     FieldSystem * v1;
     int v2;
 
-    v1 = ov25_0225453C(param1);
+    v1 = PoketchSystem_FieldSystem(param1);
     param0->unk_04.unk_04 = ov6_02243140(v1);
 
     if (param0->unk_04.unk_04) {
@@ -206,7 +206,7 @@ static BOOL ov53_02256370 (UnkStruct_ov53_0225621C * param0)
         FieldSystem * v0;
         int v1;
 
-        v0 = ov25_0225453C(param0->unk_30);
+        v0 = PoketchSystem_FieldSystem(param0->unk_30);
         param0->unk_04.unk_04 = ov6_02243140(v0);
 
         if (param0->unk_04.unk_04 == 0) {

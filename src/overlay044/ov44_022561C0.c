@@ -77,7 +77,7 @@ static BOOL ov44_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2,
 
 static BOOL ov44_0225621C (UnkStruct_ov44_0225621C * param0, PoketchSystem * param1, BGL * param2, u32 param3)
 {
-    Party * v0 = Party_GetFromSavedata(ov25_02254544(param1));
+    Party * v0 = Party_GetFromSavedata(PoketchSystem_SaveData(param1));
     Pokemon * v1;
     int v2;
     int v3 = 0;

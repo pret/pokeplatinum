@@ -65,7 +65,7 @@ static BOOL ov49_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2,
 
 static BOOL ov49_0225621C (UnkStruct_ov49_0225621C * param0, PoketchSystem * param1, BGL * param2, u32 param3)
 {
-    param0->unk_10 = ov25_02254540(param1);
+    param0->unk_10 = PoketchSystem_PoketchData(param1);
     param0->unk_04.unk_00 = PoketchData_CurrentScreenColor(param0->unk_10);
     param0->unk_03 = param0->unk_04.unk_00;
 

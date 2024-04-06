@@ -170,7 +170,7 @@ static BOOL ov52_022562F8 (UnkStruct_ov52_0225621C * param0)
     case 0:
         if (ov52_02256554(param0)) {
             if (ov52_02256684(param0)) {
-                FieldSystem * v0 = ov25_0225453C(param0->unk_18);
+                FieldSystem * v0 = PoketchSystem_FieldSystem(param0->unk_18);
 
                 ov52_022567A4(param0->unk_14, 3);
 
@@ -410,7 +410,7 @@ static void ov52_022565EC (UnkStruct_ov52_0225621C * param0)
 static void ov52_0225664C (UnkStruct_ov52_0225621C * param0)
 {
     if (param0->unk_20 == 0) {
-        sub_02037BC0(ov25_02254544(param0->unk_18));
+        sub_02037BC0(PoketchSystem_SaveData(param0->unk_18));
         param0->unk_20 = 1;
     }
 }

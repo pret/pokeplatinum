@@ -77,7 +77,7 @@ static BOOL ov36_0225621C (UnkStruct_ov36_0225621C * param0, PoketchSystem * par
     };
 
     param0->unk_10 = param1;
-    param0->unk_1C = ov25_02254540(param1);
+    param0->unk_1C = PoketchSystem_PoketchData(param1);
     param0->unk_04.unk_04 = 1;
     param0->unk_04.unk_00 = PoketchData_StepCount(param0->unk_1C);
 
@@ -186,7 +186,7 @@ static BOOL ov36_02256330 (UnkStruct_ov36_0225621C * param0)
             break;
         }
 
-        if (ov25_02254538(param0->unk_10)) {
+        if (PoketchSystem_PedometerUpdated(param0->unk_10)) {
             v0->unk_00 = PoketchData_StepCount(param0->unk_1C);
             ov36_0225653C(param0->unk_0C, 3);
             break;

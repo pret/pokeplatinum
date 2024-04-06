@@ -90,7 +90,7 @@ static BOOL ov45_0225621C (UnkStruct_ov45_022561D4 * param0, PoketchSystem * par
     };
     u32 v1, v2;
 
-    param0->unk_10 = ov25_02254540(param1);
+    param0->unk_10 = PoketchSystem_PoketchData(param1);
     param0->unk_03.unk_00 = PoketchData_IsAlarmSet(param0->unk_10);
 
     PoketchData_AlarmTime(param0->unk_10, &v1, &v2);

@@ -24,7 +24,6 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_020508D4.h"
-#include "poketch_data.h"
 #include "unk_02099D44.h"
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255ACC.h"
@@ -60,9 +59,9 @@ FS_EXTERN_OVERLAY(overlay54);
 FS_EXTERN_OVERLAY(overlay55);
 
 static PoketchSystem * ov25_02253CE0(void);
-static BOOL ov25_02253DDC(PoketchSystem *poketchSys);
+static BOOL PoketchSystem_InitInternal(PoketchSystem *poketchSys);
 static void ov25_02253E20(PoketchSystem *poketchSys);
-static void ov25_02253E40(SysTask *param0, void * param1);
+static void PoketchSystem_MainTask(SysTask *param0, void * param1);
 static void ov25_02253E94(SysTask *param0, void * param1);
 static void ov25_02253E9C(PoketchSystem *poketchSys, u32 param1);
 static void ov25_02253EA4(PoketchSystem *poketchSys);
@@ -121,7 +120,7 @@ static PoketchSystem * ov25_02253CE0 (void)
 }
 
 
-void ov25_02253CE8 (FieldSystem * fieldSys, PoketchSystem ** poketchSys, SaveData * saveData, BGL * param3, NNSG2dOamManagerInstance * param4)
+void PoketchSystem_Create(FieldSystem * fieldSys, PoketchSystem ** poketchSys, SaveData * saveData, BGL * param3, NNSG2dOamManagerInstance * param4)
 {
     PoketchSystem *new_system;
 
@@ -139,14 +138,14 @@ void ov25_02253CE8 (FieldSystem * fieldSys, PoketchSystem ** poketchSys, SaveDat
         new_system->unk_4C = param3;
         new_system->unk_50 = param4;
 
-        if (ov25_02253DDC(new_system)) {
+        if (PoketchSystem_InitInternal(new_system)) {
             sub_0201E3D8();
             sub_0201E450(4);
 
-            new_system->unk_34 = poketchSys;
+            new_system->poketchSysPtr = poketchSys;
             new_system->unk_38 = SysTask_Start(ov25_02253E94, new_system, 4);
 
-            SysTask_Start(ov25_02253E40, new_system, 0);
+            SysTask_Start(PoketchSystem_MainTask, new_system, 0);
         }
     }
 }
@@ -163,9 +162,9 @@ BOOL ov25_02253D70 (PoketchSystem *poketchSys)
     return poketchSys == NULL;
 }
 
-void ov25_02253D7C (PoketchSystem *poketchSys, int poketchData, u32 param2)
+void ov25_02253D7C (PoketchSystem *poketchSys, int param1, u32 param2)
 {
-    switch (poketchData) {
+    switch (param1) {
     case 0:
         break;
     case 1:
@@ -173,14 +172,14 @@ void ov25_02253D7C (PoketchSystem *poketchSys, int poketchData, u32 param2)
         break;
     case 5:
     {
-        u32 v0 = PoketchData_StepCount(poketchSys->poketchData);
+        u32 step_count = PoketchData_StepCount(poketchSys->poketchData);
 
-        if (++v0 > 99999) {
-            v0 = 0;
+        if (++step_count > 99999) {
+            step_count = 0;
         }
 
-        PoketchData_SetStepCount(poketchSys->poketchData, v0);
-        poketchSys->unk_07 = 1;
+        PoketchData_SetStepCount(poketchSys->poketchData, step_count);
+        poketchSys->pedometerUpdated = TRUE;
     }
     break;
     case 4:
@@ -203,14 +202,14 @@ int ov25_02253DD8 (PoketchSystem *poketchSys)
     return poketchSys->unk_14;
 }
 
-static BOOL ov25_02253DDC (PoketchSystem *poketchSys)
+static BOOL PoketchSystem_InitInternal (PoketchSystem *poketchSys)
 {
     if (ov25_02254560(&(poketchSys->unk_1C), &(poketchSys->unk_20), poketchSys->unk_50, poketchSys)) {
         poketchSys->unk_00 = 0;
         poketchSys->unk_01 = 0;
         poketchSys->unk_03 = 0;
         poketchSys->unk_04 = 0;
-        poketchSys->unk_07 = 0;
+        poketchSys->pedometerUpdated = FALSE;
         poketchSys->unk_05 = 0;
         poketchSys->unk_06 = 0;
         poketchSys->unk_14 = -1;
@@ -235,7 +234,7 @@ static void ov25_02253E20 (PoketchSystem * poketchSys)
     ov25_02254754(poketchSys->unk_1C);
 }
 
-static void ov25_02253E40 (SysTask * param0, void * param1)
+static void PoketchSystem_MainTask(SysTask *task, void *system)
 {
     static void(*const v0[])(PoketchSystem *) = {
         ov25_02253EA4,
@@ -244,23 +243,23 @@ static void ov25_02253E40 (SysTask * param0, void * param1)
         ov25_022540D8
     };
 
-    PoketchSystem * v1;
+    PoketchSystem *poketchSys;
 
-    v1 = (PoketchSystem *)param1;
+    poketchSys = (PoketchSystem *)system;
 
-    if (v1->unk_00 < NELEMS(v0)) {
-        if (v1->unk_00 != 0) {
-            ov25_022542D4(v1);
+    if (poketchSys->unk_00 < NELEMS(v0)) {
+        if (poketchSys->unk_00 != 0) {
+            ov25_022542D4(poketchSys);
         }
 
-        v0[v1->unk_00](v1);
+        v0[poketchSys->unk_00](poketchSys);
     } else {
-        GF_ASSERT(v1->unk_00 == 4);
-        *(v1->unk_34) = NULL;
+        GF_ASSERT(poketchSys->unk_00 == 4);
+        *(poketchSys->poketchSysPtr) = NULL;
 
-        ov25_02253E20(v1);
-        Heap_FreeToHeap(v1);
-        SysTask_Done(param0);
+        ov25_02253E20(poketchSys);
+        Heap_FreeToHeap(poketchSys);
+        SysTask_Done(task);
         Heap_Destroy(7);
         Heap_Destroy(8);
     }
@@ -271,7 +270,7 @@ static void ov25_02253E94 (SysTask * param0, void * param1)
     PoketchSystem * v0 = param1;
 
     v0->unk_04 = 0;
-    v0->unk_07 = 0;
+    v0->pedometerUpdated = FALSE;
 }
 
 static void ov25_02253E9C (PoketchSystem *poketchSys, u32 param1)
@@ -758,24 +757,24 @@ BOOL ov25_02254534 (const PoketchSystem *poketchSys)
     return poketchSys->unk_04;
 }
 
-BOOL ov25_02254538 (const PoketchSystem *poketchSys)
+BOOL PoketchSystem_PedometerUpdated(const PoketchSystem *poketchSys)
 {
-    return poketchSys->unk_07;
+    return poketchSys->pedometerUpdated;
 }
 
-FieldSystem * ov25_0225453C (const PoketchSystem *poketchSys)
+FieldSystem * PoketchSystem_FieldSystem(const PoketchSystem *poketchSys)
 {
     return poketchSys->fieldSys;
 }
 
-PoketchData * ov25_02254540 (const PoketchSystem *poketchSys)
+PoketchData * PoketchSystem_PoketchData(const PoketchSystem *poketchSys)
 {
-    return (PoketchData *)(poketchSys->poketchData);
+    return poketchSys->poketchData;
 }
 
-SaveData * ov25_02254544 (const PoketchSystem *poketchSys)
+SaveData * PoketchSystem_SaveData(const PoketchSystem *poketchSys)
 {
-    return (SaveData *)(poketchSys->saveData);
+    return poketchSys->saveData;
 }
 
 int ov25_02254548 (const PoketchSystem *poketchSys)

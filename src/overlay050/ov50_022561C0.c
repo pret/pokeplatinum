@@ -115,7 +115,7 @@ static BOOL ov50_0225621C (UnkStruct_ov50_022561D4 * param0, PoketchSystem * par
     RTCDate v1;
 
     GetCurrentDate(&v1);
-    param0->unk_98 = ov25_02254540(param1);
+    param0->unk_98 = PoketchSystem_PoketchData(param1);
     ov50_022562AC(&(param0->unk_04), param0, &v1);
 
     param0->unk_A8 = param0->unk_04.unk_0C[0].unk_02;
