@@ -218,7 +218,7 @@ void sub_020722AC (void * param0, int * param1)
     MI_CpuClear8(v0, sizeof(UnkStruct_02072334));
     v0->unk_04 = param1;
 
-    v1 = sub_0203D174(param0);
+    v1 = FieldSystem_SaveData(param0);
 
     v0->unk_16C = (FieldSystem *)param0;
     v0->unk_00 = 43;
@@ -1012,7 +1012,7 @@ static void sub_020730B8 (UnkStruct_02072334 * param0, u8 param1, BOOL param2)
         return;
     }
 
-    v1 = Party_GetFromSavedata(sub_0203D174(param0->unk_16C));
+    v1 = Party_GetFromSavedata(FieldSystem_SaveData(param0->unk_16C));
     v2 = Party_GetPokemonBySlotIndex(v1, param1);
 
     sub_020977E4(param0->unk_1AC, param0->unk_18, v2, param0->unk_00);
@@ -1225,9 +1225,9 @@ static int sub_02073524 (UnkStruct_02072334 * param0, int param1)
         v0 = Heap_AllocFromHeap(param0->unk_00, sizeof(PartyManagementData));
         MI_CpuClear8(v0, sizeof(PartyManagementData));
 
-        v0->unk_00 = Party_GetFromSavedata(sub_0203D174(param0->unk_16C));
-        v0->unk_04 = sub_0207D990(sub_0203D174(param0->unk_16C));
-        v0->unk_0C = sub_02025E44(sub_0203D174(param0->unk_16C));
+        v0->unk_00 = Party_GetFromSavedata(FieldSystem_SaveData(param0->unk_16C));
+        v0->unk_04 = sub_0207D990(FieldSystem_SaveData(param0->unk_16C));
+        v0->unk_0C = sub_02025E44(FieldSystem_SaveData(param0->unk_16C));
         v0->unk_08 = sub_02028430(param0->unk_16C->unk_0C);
         v0->unk_21 = 0;
         v0->unk_20 = param1;

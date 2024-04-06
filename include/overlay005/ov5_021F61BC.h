@@ -6,6 +6,6 @@
 
 void * ov5_021F61BC(UnkStruct_ov5_021DF47C * param0);
 void ov5_021F61D8(void * param0);
-void ov5_021F6218(UnkStruct_0205E884 * param0);
+void ov5_021F6218(PlayerAvatar * param0);
 
 #endif // POKEPLATINUM_OV5_021F61BC_H

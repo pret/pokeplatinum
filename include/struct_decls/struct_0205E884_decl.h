@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_0205E884_DECL_H
 #define POKEPLATINUM_STRUCT_0205E884_DECL_H
 
-typedef struct UnkStruct_0205E884_t UnkStruct_0205E884;
+typedef struct UnkStruct_0205E884_t PlayerAvatar;
 
 #endif // POKEPLATINUM_STRUCT_0205E884_DECL_H

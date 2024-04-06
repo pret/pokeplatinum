@@ -27,7 +27,7 @@ void * ov5_021DF53C(const UnkStruct_ov5_021DF47C * param0, u32 param1, int param
 void ov5_021DF554(void * param0);
 void * ov5_021DF55C(UnkStruct_ov5_021DF47C * param0, u32 param1);
 FieldSystem * ov5_021DF574(const UnkStruct_ov5_021DF47C * param0);
-UnkStruct_ov5_021DF47C * ov5_021DF578(const UnkStruct_02061AB4 * param0);
+UnkStruct_ov5_021DF47C * ov5_021DF578(const LocalMapObject * param0);
 u32 ov5_021DF5A8(UnkStruct_ov5_021DF47C * param0, u32 param1);
 void ov5_021DF5B4(UnkStruct_ov5_021DF47C * param0, u32 param1, void * param2);
 void * ov5_021DF5C0(UnkStruct_ov5_021DF47C * param0, u32 param1, int param2);

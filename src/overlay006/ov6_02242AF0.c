@@ -87,7 +87,7 @@ void ov6_02242AF0 (FieldSystem * param0)
     UnkStruct_ov6_02242AF0 * v1;
     VecFx32 v2;
 
-    v0 = sub_02027860(sub_0203D174(param0));
+    v0 = sub_02027860(FieldSystem_SaveData(param0));
     v1 = (UnkStruct_ov6_02242AF0 *)sub_02027F6C(v0, 6);
 
     v2.x = ((FX32_ONE * 16) * (32 * 2 + 2));
@@ -114,7 +114,7 @@ void ov6_02242B58 (FieldSystem * param0, const u16 param1, const u16 param2)
     UnkStruct_ov6_02242AF0 * v1;
     UnkStruct_ov6_02242B58 * v2;
 
-    v0 = sub_02027860(sub_0203D174(param0));
+    v0 = sub_02027860(FieldSystem_SaveData(param0));
     v1 = (UnkStruct_ov6_02242AF0 *)sub_02027F6C(v0, 6);
     v2 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov6_02242B58));
 
@@ -183,7 +183,7 @@ u32 ov6_02242C3C (FieldSystem * param0, const u16 param1)
     UnkStruct_02027860 * v0;
     UnkStruct_ov6_02242AF0 * v1;
 
-    v0 = sub_02027860(sub_0203D174(param0));
+    v0 = sub_02027860(FieldSystem_SaveData(param0));
     v1 = (UnkStruct_ov6_02242AF0 *)sub_02027F6C(v0, 6);
 
     if (v1->unk_00 == param1) {
@@ -295,11 +295,11 @@ static BOOL ov6_02242D94 (FieldSystem * param0, UnkStruct_ov6_02242B58 * param1,
 
 static BOOL ov6_02242E60 (FieldSystem * param0, UnkStruct_ov6_02242B58 * param1, const fx32 * param2, VecFx32 * param3)
 {
-    UnkStruct_02061AB4 * v0;
+    LocalMapObject * v0;
     VecFx32 v1;
 
-    v0 = sub_0205EB3C(param0->unk_3C);
-    sub_0205EAEC(param0->unk_3C, &v1);
+    v0 = Player_LocalMapObject(param0->playerAvatar);
+    sub_0205EAEC(param0->playerAvatar, &v1);
 
     param3->z = v1.z + ((FX32_ONE * 16) / 2);
 
@@ -307,16 +307,16 @@ static BOOL ov6_02242E60 (FieldSystem * param0, UnkStruct_ov6_02242B58 * param1,
         return 1;
     } else {
         if (param1->unk_04 == 0) {
-            if (sub_020655F4(v0) == 1) {
-                sub_02065638(v0, Unk_ov6_02249058[param1->unk_06]);
+            if (LocalMapObj_IsAnimationSet(v0) == 1) {
+                LocalMapObj_SetAnimationCode(v0, Unk_ov6_02249058[param1->unk_06]);
 
-                if ((param1->unk_06 < 7 - 1) && (sub_0205EAC8(param0->unk_3C) > param1->unk_10)) {
+                if ((param1->unk_06 < 7 - 1) && (Player_ZPos(param0->playerAvatar) > param1->unk_10)) {
                     if (param1->unk_06 == 0) {
                         Sound_PlayEffect(1753);
                     }
 
                     param1->unk_06++;
-                } else if (sub_0205EAC8(param0->unk_3C) <= param1->unk_10) {
+                } else if (Player_ZPos(param0->playerAvatar) <= param1->unk_10) {
                     if (param1->unk_06 != 0) {
                         if (param1->unk_06 == 7 - 1) {
                             Sound_PlayEffect(1754);
@@ -327,16 +327,16 @@ static BOOL ov6_02242E60 (FieldSystem * param0, UnkStruct_ov6_02242B58 * param1,
                 }
             }
         } else {
-            if (sub_020655F4(v0) == 1) {
-                sub_02065638(v0, Unk_ov6_0224903C[param1->unk_06]);
+            if (LocalMapObj_IsAnimationSet(v0) == 1) {
+                LocalMapObj_SetAnimationCode(v0, Unk_ov6_0224903C[param1->unk_06]);
 
-                if ((param1->unk_06 < 7 - 1) && (sub_0205EAC8(param0->unk_3C) < param1->unk_10)) {
+                if ((param1->unk_06 < 7 - 1) && (Player_ZPos(param0->playerAvatar) < param1->unk_10)) {
                     if (param1->unk_06 == 0) {
                         Sound_PlayEffect(1753);
                     }
 
                     param1->unk_06++;
-                } else if (sub_0205EAC8(param0->unk_3C) >= param1->unk_10) {
+                } else if (Player_ZPos(param0->playerAvatar) >= param1->unk_10) {
                     if (param1->unk_06 != 0) {
                         if (param1->unk_06 == 7 - 1) {
                             Sound_PlayEffect(1754);

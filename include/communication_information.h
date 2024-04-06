@@ -11,7 +11,7 @@ void CommInfo_Init(SaveData * saveData, const BattleRegulation * regulation);
 void CommInfo_Delete(void);
 BOOL CommInfo_IsInitialized(void);
 void CommInfo_SendBattleRegulation(void);
-int CommPlayerData_Size(void);
+int CommPlayerInfo_Size(void);
 void CommunicatitonInformaion_FinishReading(int param0, int param1, void * param2, void * param3);
 BOOL CommInfo_IsDataFinishedReading(void);
 void CommInfo_RecvPlayerDataArray(int netId, int unused1, void * src, void * unused3);

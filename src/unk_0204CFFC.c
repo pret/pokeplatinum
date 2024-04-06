@@ -69,7 +69,7 @@ BOOL sub_0204D0E8 (UnkStruct_0203E724 * param0)
 {
     FieldSystem * v0 = param0->unk_34;
     Pokemon * v1;
-    TrainerInfo * v2 = SaveData_GetTrainerInfo(sub_0203D174(param0->unk_34));
+    TrainerInfo * v2 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->unk_34));
     u16 * v3 = inline_0204FCAC(param0);
     u16 * v4 = inline_0204FCAC(param0);
     u16 v5, v6;

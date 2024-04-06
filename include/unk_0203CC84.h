@@ -17,6 +17,6 @@ void sub_0203D128(void);
 void sub_0203D140(void);
 PoketchSystem * sub_0203D158(void);
 BGL * sub_0203D170(void * param0);
-SaveData * sub_0203D174(void * param0);
+SaveData * FieldSystem_SaveData(void * param0);
 
 #endif // POKEPLATINUM_UNK_0203CC84_H

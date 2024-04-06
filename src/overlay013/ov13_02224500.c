@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
-#include "overlay016/struct_ov16_0226DC24_decl.h"
+#include "battle/struct_ov16_0226DC24_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020F1DB8.h"
@@ -25,8 +25,8 @@
 #include "pokemon_summary_app.h"
 #include "overlay013/ov13_02224500.h"
 #include "overlay013/ov13_02228A38.h"
-#include "overlay016/ov16_0223DF00.h"
-#include "overlay016/ov16_0226DB7C.h"
+#include "battle/ov16_0223DF00.h"
+#include "battle/ov16_0226DB7C.h"
 
 static void ov13_0222453C(UnkStruct_ov13_022213F0 * param0);
 static void ov13_02224588(UnkStruct_ov13_022213F0 * param0);

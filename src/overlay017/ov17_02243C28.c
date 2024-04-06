@@ -3,8 +3,8 @@
 
 #include "struct_decls/sys_task.h"
 
-#include "overlay016/struct_ov16_02264408.h"
-#include "overlay016/struct_ov16_02265BBC.h"
+#include "battle/struct_ov16_02264408.h"
+#include "battle/struct_ov16_02265BBC.h"
 #include "overlay017/struct_ov17_02243C28.h"
 #include "overlay017/struct_ov17_02243C80.h"
 #include "overlay017/struct_ov17_02243D34.h"

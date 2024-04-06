@@ -48,7 +48,7 @@ typedef struct {
     int unk_08;
     int unk_0C;
     int unk_10;
-    UnkStruct_02061AB4 * unk_14;
+    LocalMapObject * unk_14;
     SysTask * unk_18;
 } UnkStruct_0203E8B0;
 
@@ -66,8 +66,8 @@ struct UnkStruct_0203EF60_t {
     Window unk_14;
     UIControlData * unk_24;
     int unk_28;
-    UnkStruct_02061AB4 * unk_2C;
-    UnkStruct_02061AB4 * unk_30;
+    LocalMapObject * unk_2C;
+    LocalMapObject * unk_30;
     u16 * unk_34;
     UnkStruct_0203E724 * unk_38[2];
     StringFormatter * unk_40;
@@ -88,12 +88,12 @@ struct UnkStruct_0203EF60_t {
 
 #include "data/field/hidden_items.h"
 
-void sub_0203E880(FieldSystem * param0, u16 param1, UnkStruct_02061AB4 * param2);
-void sub_0203E8E0(UnkStruct_020508D4 * param0, u16 param1, UnkStruct_02061AB4 * param2, void * param3);
+void sub_0203E880(FieldSystem * param0, u16 param1, LocalMapObject * param2);
+void sub_0203E8E0(UnkStruct_020508D4 * param0, u16 param1, LocalMapObject * param2, void * param3);
 static BOOL sub_0203E950(UnkStruct_020508D4 * param0);
 static UnkStruct_0203EF60 * sub_0203EA28();
 static void sub_0203EA50(UnkStruct_0203E724 * param0);
-static void sub_0203EA68(FieldSystem * param0, UnkStruct_0203EF60 * param1, u16 param2, UnkStruct_02061AB4 * param3, void * param4);
+static void sub_0203EA68(FieldSystem * param0, UnkStruct_0203EF60 * param1, u16 param2, LocalMapObject * param3, void * param4);
 UnkStruct_0203E724 * sub_0203EAB8(FieldSystem * param0, u16 param1);
 static void sub_0203EAF4(FieldSystem * param0, UnkStruct_0203E724 * param1, u16 param2, u8 param3);
 static u16 sub_0203EB20(FieldSystem * param0, UnkStruct_0203E724 * param1, u16 param2);
@@ -131,7 +131,7 @@ static u16 sub_0203F610(const u8 * param0, u8 param1);
 static u16 sub_0203F638(FieldSystem * param0, const u8 * param1, u8 param2);
 UnkStruct_0203F478 * sub_0203F478(FieldSystem * param0, int param1);
 
-void sub_0203E880 (FieldSystem * param0, u16 param1, UnkStruct_02061AB4 * param2)
+void sub_0203E880 (FieldSystem * param0, u16 param1, LocalMapObject * param2)
 {
     UnkStruct_0203EF60 * v0 = sub_0203EA28();
 
@@ -141,7 +141,7 @@ void sub_0203E880 (FieldSystem * param0, u16 param1, UnkStruct_02061AB4 * param2
     return;
 }
 
-void sub_0203E8B0 (FieldSystem * param0, UnkStruct_02061AB4 * param1, int param2, int param3, int param4, int param5, int param6, int param7)
+void sub_0203E8B0 (FieldSystem * param0, LocalMapObject * param1, int param2, int param3, int param4, int param5, int param6, int param7)
 {
     UnkStruct_0203EF60 * v0 = sub_02050A64(param0->unk_10);
     UnkStruct_0203E8B0 * v1 = &v0->unk_50[param7];
@@ -154,7 +154,7 @@ void sub_0203E8B0 (FieldSystem * param0, UnkStruct_02061AB4 * param1, int param2
     v1->unk_14 = param1;
 }
 
-void sub_0203E8E0 (UnkStruct_020508D4 * param0, u16 param1, UnkStruct_02061AB4 * param2, void * param3)
+void sub_0203E8E0 (UnkStruct_020508D4 * param0, u16 param1, LocalMapObject * param2, void * param3)
 {
     FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_0203EF60 * v1 = sub_0203EA28();
@@ -165,7 +165,7 @@ void sub_0203E8E0 (UnkStruct_020508D4 * param0, u16 param1, UnkStruct_02061AB4 *
     return;
 }
 
-void sub_0203E918 (UnkStruct_020508D4 * param0, u16 param1, UnkStruct_02061AB4 * param2)
+void sub_0203E918 (UnkStruct_020508D4 * param0, u16 param1, LocalMapObject * param2)
 {
     FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_0203EF60 * v1 = sub_0203EA28();
@@ -257,11 +257,11 @@ static void sub_0203EA50 (UnkStruct_0203E724 * param0)
     return;
 }
 
-static void sub_0203EA68 (FieldSystem * param0, UnkStruct_0203EF60 * param1, u16 param2, UnkStruct_02061AB4 * param3, void * param4)
+static void sub_0203EA68 (FieldSystem * param0, UnkStruct_0203EF60 * param1, u16 param2, LocalMapObject * param3, void * param4)
 {
     u16 * v0 = sub_0203EF60(param1, 54);
 
-    param1->unk_28 = sub_0205EA78(param0->unk_3C);
+    param1->unk_28 = Player_Dir(param0->playerAvatar);
     param1->unk_2C = param3;
     param1->unk_0A = param2;
     param1->unk_34 = param4;
@@ -855,8 +855,8 @@ UnkStruct_0203F478 * sub_0203F478 (FieldSystem * param0, int param1)
         return v0;
     }
 
-    v2 = sub_0205EABC(param0->unk_3C);
-    v3 = sub_0205EAC8(param0->unk_3C);
+    v2 = Player_XPos(param0->playerAvatar);
+    v3 = Player_ZPos(param0->playerAvatar);
     v8 = v2 - 7;
     v9 = v2 + 7;
     v10 = v3 - 7;

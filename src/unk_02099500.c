@@ -9,7 +9,7 @@
 #include "unk_0204FA34.h"
 #include "unk_0205001C.h"
 #include "unk_02050548.h"
-#include "unk_02057518.h"
+#include "comm_player_manager.h"
 #include "field_comm_manager.h"
 #include "unk_0205A0D8.h"
 #include "unk_0205B33C.h"
@@ -44,7 +44,7 @@ static int sub_02099508 (void)
 }
 
 static const UnkStruct_02039A58 Unk_020F68A4[] = {
-    {sub_02058488, sub_020585A4, NULL},
+    {CommPlayer_RecvLocation, sub_020585A4, NULL},
     {sub_020585A8, sub_02058C3C, NULL},
     {ov23_022431C4, sub_02032950, NULL},
     {ov23_0224ACE8, sub_0203294C, NULL},
@@ -74,7 +74,7 @@ static const UnkStruct_02039A58 Unk_020F68A4[] = {
     {ov23_02242624, sub_02032944, NULL},
     {ov23_02242654, sub_02032944, NULL},
     {ov23_02244140, ov23_0224413C, NULL},
-    {sub_0205853C, sub_02032950, NULL},
+    {CommPlayer_RecvDelete, sub_02032950, NULL},
     {ov23_0224C384, ov23_0224C41C, NULL},
     {ov23_0224C25C, ov23_0224C41C, NULL},
     {ov23_0224C4CC, ov23_0224C584, NULL},

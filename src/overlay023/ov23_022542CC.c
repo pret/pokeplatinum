@@ -368,11 +368,11 @@ static void ov23_0225461C (UnkStruct_ov23_02254594 * param0)
 static void ov23_022546A0 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 {
     int v0;
-    UnkStruct_020298B0 * v1;
+    UndergroundData * v1;
     u32 v2;
     u32 v3;
 
-    v1 = (UnkStruct_020298B0 *)sub_02001504(param0, 19);
+    v1 = (UndergroundData *)sub_02001504(param0, 19);
     v3 = sub_02001504(param0, 2);
     v2 = (param1 >> 1);
 
@@ -388,7 +388,7 @@ static void ov23_022546A0 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 
 static void ov23_022546E0 (UnkStruct_ov23_02254594 * param0)
 {
-    UnkStruct_020298B0 * v0;
+    UndergroundData * v0;
     UnkStruct_ov84_02240FA8 v1;
     int v2, v3;
     int v4;

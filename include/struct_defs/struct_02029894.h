@@ -8,7 +8,7 @@
 typedef struct UnkStruct_02029894_t {
     UnkStruct_02029894_sub1 unk_00[15];
     UnkStruct_02029894_sub2 unk_2D[16];
-    UnkStruct_0202855C unk_50;
+    SecretBaseRecord unk_50;
     u16 unk_8C;
     u16 unk_8E;
     u8 unk_90;

@@ -1208,7 +1208,7 @@ static int ov58_021D2180 (UnkStruct_02095EAC * param0, int param1)
     switch (v0) {
     case 1:
         ov58_021D2CB0(param0, 15);
-        sub_02035AC4(127, NULL, 0);
+        CommSys_SendDataServer(127, NULL, 0);
         sub_0200B498(param0->unk_0C, 0, CommInfo_TrainerInfo(0));
         param1 = 2;
         ov58_021D2D10(param0);
@@ -1665,7 +1665,7 @@ static void ov58_021D29C8 (UnkStruct_02095EAC * param0)
         if (sub_02036284()) {
             param0->unk_43DC.unk_09 = param0->unk_9458;
             param0->unk_9421[0] = param0->unk_43DC;
-            sub_02035AC4(120, param0->unk_9421, 10 * 5);
+            CommSys_SendDataServer(120, param0->unk_9421, 10 * 5);
         }
     } else {
         if (sub_0203629C()) {

@@ -8,7 +8,7 @@
 
 void ov5_021DB888(UnkStruct_020508D4 * param0, StringFormatter * param1, u16 * param2);
 BOOL ov5_021DBB94(FieldSystem * param0);
-u16 ov5_021DBD98(FieldSystem * param0, UnkStruct_02061AB4 * param1, u16 param2);
-void ov5_021DBED4(FieldSystem * param0, UnkStruct_02061AB4 * param1);
+u16 ov5_021DBD98(FieldSystem * param0, LocalMapObject * param1, u16 param2);
+void ov5_021DBED4(FieldSystem * param0, LocalMapObject * param1);
 
 #endif // POKEPLATINUM_OV5_021DB888_H

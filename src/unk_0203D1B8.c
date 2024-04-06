@@ -121,7 +121,7 @@
 #include "unk_020989DC.h"
 #include "overlay005/ov5_021E622C.h"
 #include "overlay007/ov7_0224BE9C.h"
-#include "overlay016/ov16_0223B140.h"
+#include "battle/ov16_0223B140.h"
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay020/ov20_021D0D80.h"
 #include "overlay021/ov21_021D0D80.h"
@@ -157,7 +157,7 @@
 #include "overlay120/ov120_021D0D80.h"
 #include "overlay121/ov121_021D0D80.h"
 
-FS_EXTERN_OVERLAY(overlay16);
+FS_EXTERN_OVERLAY(battle);
 FS_EXTERN_OVERLAY(overlay19);
 FS_EXTERN_OVERLAY(overlay20);
 FS_EXTERN_OVERLAY(overlay21);
@@ -239,36 +239,36 @@ typedef struct {
 static void sub_0203DF68(UnkStruct_020508D4 * param0);
 static u8 sub_0203E484(SaveData * param0, u8 param1);
 
-static int sub_0203D1B8 (OverlayManager * param0, int * param1)
+static BOOL OverlayInit_Battle(OverlayManager *ovyManager, int *state)
 {
-    return 1;
+    return TRUE;
 }
 
-static int sub_0203D1BC (OverlayManager * param0, int * param1)
+static BOOL OverlayMain_Battle (OverlayManager *ovyManager, int *state)
 {
-    if (ov16_0223B140(param0, param1)) {
-        return 1;
+    if (Battle_Main(ovyManager, state)) {
+        return TRUE;
     } else {
-        return 0;
+        return FALSE;
     }
 }
 
-static int sub_0203D1D0 (OverlayManager * param0, int * param1)
+static BOOL OverlayExit_Battle (OverlayManager *ovyManager, int *state)
 {
-    return 1;
+    return TRUE;
 }
 
 
-const OverlayManagerTemplate Unk_020EA358 = {
-    sub_0203D1B8,
-    sub_0203D1BC,
-    sub_0203D1D0,
-    FS_OVERLAY_ID(overlay16)
+const OverlayManagerTemplate gBattleOverlayTemplate = {
+    OverlayInit_Battle,
+    OverlayMain_Battle,
+    OverlayExit_Battle,
+    FS_OVERLAY_ID(battle)
 };
 
 void sub_0203D1D4 (FieldSystem * param0, BattleParams * param1)
 {
-    sub_0203CD84(param0, &Unk_020EA358, param1);
+    sub_0203CD84(param0, &gBattleOverlayTemplate, param1);
 }
 
 static const u8 Unk_020EA164[] = {
@@ -308,7 +308,7 @@ void * sub_0203D20C (FieldSystem * param0, UnkStruct_020684D0 * param1)
     sub_0207CB2C(v1, param0->unk_0C, 0, param0->unk_98);
     sub_0207CB78(v1, param0->unk_70);
 
-    if (sub_0205EB74(param0->unk_3C) == 0x1) {
+    if (sub_0205EB74(param0->playerAvatar) == 0x1) {
         sub_0207CB58(v1);
     }
 
@@ -792,7 +792,7 @@ void * sub_0203D8EC (FieldSystem * param0)
     Options * v1;
 
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0203D8EC));
-    v1 = sub_02025E44(sub_0203D174(param0));
+    v1 = sub_02025E44(FieldSystem_SaveData(param0));
 
     sub_0203D8DC(param0, v1);
 
@@ -810,7 +810,7 @@ UnkStruct_02097728 * sub_0203D920 (FieldSystem * param0, int param1, u8 param2, 
 {
     UnkStruct_02097728 * v0;
 
-    v0 = sub_02097624(sub_0203D174(param0), param1, param2, param3, 11);
+    v0 = sub_02097624(FieldSystem_SaveData(param0), param1, param2, param3, 11);
     sub_0203D910(param0, v0);
 
     return v0;
@@ -821,9 +821,9 @@ UnkStruct_02097728 * sub_0203D94C (FieldSystem * param0, int param1, u8 param2, 
     UnkStruct_02097728 * v0;
 
     if (param1 == 3) {
-        v0 = sub_020976F4(sub_0203D174(param0), param2, param3);
+        v0 = sub_020976F4(FieldSystem_SaveData(param0), param2, param3);
     } else {
-        v0 = sub_0209767C(sub_0203D174(param0), param1, param2, param3);
+        v0 = sub_0209767C(FieldSystem_SaveData(param0), param1, param2, param3);
     }
 
     sub_0203D910(param0, v0);
@@ -835,7 +835,7 @@ UnkStruct_02097728 * sub_0203D984 (FieldSystem * param0, Pokemon * param1, int p
 {
     UnkStruct_02097728 * v0;
 
-    v0 = sub_020976BC(sub_0203D174(param0), param1, param2);
+    v0 = sub_020976BC(FieldSystem_SaveData(param0), param1, param2);
     sub_0203D910(param0, v0);
 
     return v0;
@@ -850,7 +850,7 @@ UnkStruct_0203D9B8 * sub_0203D9B8 (FieldSystem * param0, int param1)
 {
     UnkStruct_0203D9B8 * v0;
 
-    v0 = sub_020989DC(sub_0203D174(param0), param1);
+    v0 = sub_020989DC(FieldSystem_SaveData(param0), param1);
     sub_0203D9A8(param0, v0);
 
     return v0;

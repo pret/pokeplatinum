@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/cell_actor_data.h"
-#include "overlay016/struct_ov16_022674C4.h"
+#include "battle/struct_ov16_022674C4.h"
 
 #define HEALTHBAR_INFO_NONE                     0
 #define HEALTHBAR_INFO_HP_GAUGE                 (1 << 0)

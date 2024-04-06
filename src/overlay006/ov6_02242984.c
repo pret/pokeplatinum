@@ -45,7 +45,7 @@ int ov6_02242984 (FieldSystem * param0)
         v2[v0] = v3->unk_04[v0].unk_04;
     }
 
-    v1 = sub_02027474(sub_02027560(sub_0203D174(param0)));
+    v1 = sub_02027474(sub_02027560(FieldSystem_SaveData(param0)));
 
     ov6_02242F74(sub_0202D814(sub_0202D834(param0->unk_0C), 1), v1, param0->unk_1C->unk_00, &v2[6], &v2[7]);
     ov6_02240C9C(v3, &v2[2], &v2[3]);
@@ -75,8 +75,8 @@ UnkStruct_ov6_02242A8C * ov6_02242A10 (const int param0, FieldSystem * param1)
         }
 
         {
-            v1->unk_00[5].unk_00 = sub_0205EABC(param1->unk_3C);
-            v1->unk_00[5].unk_02 = sub_0205EAC8(param1->unk_3C);
+            v1->unk_00[5].unk_00 = Player_XPos(param1->playerAvatar);
+            v1->unk_00[5].unk_02 = Player_ZPos(param1->playerAvatar);
             v1->unk_30 = param1->unk_1C->unk_00;
         }
 

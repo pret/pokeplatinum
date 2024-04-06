@@ -17,7 +17,7 @@
 #include "strbuf.h"
 #include "item.h"
 #include "overlay013/ov13_02227288.h"
-#include "overlay016/ov16_0223DF00.h"
+#include "battle/ov16_0223DF00.h"
 
 static void ov13_022273CC(UnkStruct_ov13_02227244 * param0);
 static void ov13_02227888(UnkStruct_ov13_02227244 * param0);

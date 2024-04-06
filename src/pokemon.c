@@ -2347,10 +2347,10 @@ s8 Pokemon_GetStatAffinityOf(u8 monNature, u8 statType)
 }
 
 static const s8 Unk_020F05A0[][3] = {
-    {5, 3, 2}, // ??? in overlay16
+    {5, 3, 2}, // ??? in battle overlay
     {5, 3, 2}, // unused?
     {1, 1, 0}, // unused?
-    {3, 2, 1}, // ??? in overlay16
+    {3, 2, 1}, // ??? in battle overlay
     {1, 1, 0}, // ??? in unk_02084B70.c
     {1, 1, 1}, // walking 128 steps
     {-1, -1, -1}, // fainting (opponent level difference < 30)

@@ -98,7 +98,7 @@ BOOL RadarSpawnPatches (FieldSystem *param0, const int param1, const int param2,
         32, 24, 16, 8
     };
 
-    const VecFx32 *v8 = sub_0205EAFC(param0->unk_3C);
+    const VecFx32 *v8 = sub_0205EAFC(param0->playerAvatar);
     v7 = 0;
 
     for (u8 patchRing = 0; patchRing < NUM_GRASS_PATCHES; patchRing++) {
@@ -409,8 +409,8 @@ BOOL RefreshRadarChain (UnkStruct_020508D4 *param0) {
             *v1 = 4;
         } else {
             *v2 = 0;
-            int v3 = sub_0205EABC(v0->unk_3C);
-            int v4 = sub_0205EAC8(v0->unk_3C);
+            int v3 = Player_XPos(v0->playerAvatar);
+            int v4 = Player_ZPos(v0->playerAvatar);
             RadarSpawnPatches(v0, v3, v4, v0->chain);
             if (v0->chain->active) {
                 SetupGrassPatches(v0, 0x1, v0->chain);

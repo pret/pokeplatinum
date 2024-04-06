@@ -22,18 +22,18 @@ typedef struct {
     int unk_04;
     int unk_08;
     FieldSystem * unk_0C;
-    UnkStruct_0205E884 * unk_10;
-    UnkStruct_02061AB4 * unk_14;
+    PlayerAvatar * unk_10;
+    LocalMapObject * unk_14;
 } UnkStruct_ov5_021E11B0;
 
-static void ov5_021E11B0(FieldSystem * param0, UnkStruct_0205E884 * param1, int param2);
+static void ov5_021E11B0(FieldSystem * param0, PlayerAvatar * param1, int param2);
 static BOOL ov5_021E120C(UnkStruct_020508D4 * param0);
 static void * ov5_021E132C(int param0);
 static void ov5_021E1350(void * param0);
 
-int ov5_021E1154 (FieldSystem * param0, UnkStruct_0205E884 * param1, int param2)
+int ov5_021E1154 (FieldSystem * param0, PlayerAvatar * param1, int param2)
 {
-    UnkStruct_02061AB4 * v0 = sub_0205EB3C(param1);
+    LocalMapObject * v0 = Player_LocalMapObject(param1);
     u8 v1 = sub_02062BE8(v0);
     int v2;
 
@@ -53,7 +53,7 @@ int ov5_021E1154 (FieldSystem * param0, UnkStruct_0205E884 * param1, int param2)
     return 1;
 }
 
-static void ov5_021E11B0 (FieldSystem * param0, UnkStruct_0205E884 * param1, int param2)
+static void ov5_021E11B0 (FieldSystem * param0, PlayerAvatar * param1, int param2)
 {
     UnkStruct_ov5_021E11B0 * v0 = ov5_021E132C((sizeof(UnkStruct_ov5_021E11B0)));
 
@@ -84,7 +84,7 @@ static int ov5_021E11E0 (int param0)
 static BOOL ov5_021E120C (UnkStruct_020508D4 * param0)
 {
     UnkStruct_ov5_021E11B0 * v0 = sub_02050A64(param0);
-    UnkStruct_02061AB4 * v1 = sub_0205EB3C(v0->unk_10);
+    LocalMapObject * v1 = Player_LocalMapObject(v0->unk_10);
     u8 v2 = sub_02062BE8(v1);
 
     switch (v0->unk_08) {
@@ -98,7 +98,7 @@ static BOOL ov5_021E120C (UnkStruct_020508D4 * param0)
 
             v3 = sub_02065838(v0->unk_00, v3);
             sub_02061550(v0->unk_10, v3, 1);
-            sub_0205EA84(v0->unk_10, v0->unk_00);
+            Player_SetDir(v0->unk_10, v0->unk_00);
             v0->unk_08++;
             v0->unk_04 = 7;
         }
@@ -109,7 +109,7 @@ static BOOL ov5_021E120C (UnkStruct_020508D4 * param0)
         case 4:
         case 2:
             v0->unk_00 = ov5_021E11E0(v0->unk_00);
-            sub_0205EA84(v0->unk_10, v0->unk_00);
+            Player_SetDir(v0->unk_10, v0->unk_00);
             break;
         default:
             break;
@@ -138,7 +138,7 @@ static BOOL ov5_021E120C (UnkStruct_020508D4 * param0)
                 } else {
                     sub_020628C4(v1, (1 << 7));
                     sub_020628C4(v1, (1 << 8));
-                    sub_0205EA84(v0->unk_10, v0->unk_00);
+                    Player_SetDir(v0->unk_10, v0->unk_00);
                     ov5_021E1350(v0);
                     sub_020057A4(1624, 0);
                     return 1;

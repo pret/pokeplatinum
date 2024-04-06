@@ -29,7 +29,7 @@
 #include "unk_020363E8.h"
 #include "party.h"
 #include "unk_0207A6DC.h"
-#include "overlay016/ov16_0223DF00.h"
+#include "battle/ov16_0223DF00.h"
 #include "battle/battle_io.h"
 
 void sub_0207A81C(BattleSystem * param0, int param1, int param2, void * param3, u8 param4);

@@ -3,8 +3,8 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
-#include "overlay016/struct_ov16_0226DC24_decl.h"
-#include "overlay016/struct_ov16_0226DEEC_decl.h"
+#include "battle/struct_ov16_0226DC24_decl.h"
+#include "battle/struct_ov16_0226DEEC_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020F1DB8.h"
@@ -20,9 +20,9 @@
 #include "overlay013/ov13_02227A4C.h"
 #include "overlay013/ov13_02227BDC.h"
 #include "overlay013/ov13_02228A38.h"
-#include "overlay016/ov16_0223DF00.h"
-#include "overlay016/ov16_0226DB7C.h"
-#include "overlay016/ov16_0226DE44.h"
+#include "battle/ov16_0223DF00.h"
+#include "battle/ov16_0226DB7C.h"
+#include "battle/ov16_0226DE44.h"
 
 static void ov13_02227C08(UnkStruct_ov13_02227244 * param0);
 static void ov13_02227C54(UnkStruct_ov13_02227244 * param0);

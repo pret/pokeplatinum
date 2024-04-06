@@ -4,7 +4,7 @@
 #include "core_sys.h"
 
 #include "overlay013/struct_ov13_02228A50_decl.h"
-#include "overlay016/struct_ov16_0226DC24_decl.h"
+#include "battle/struct_ov16_0226DC24_decl.h"
 
 #include "struct_defs/struct_020F1DB8.h"
 
@@ -12,7 +12,7 @@
 #include "heap.h"
 #include "unk_0201E010.h"
 #include "overlay013/ov13_02228A38.h"
-#include "overlay016/ov16_0226DB7C.h"
+#include "battle/ov16_0226DB7C.h"
 
 struct UnkStruct_ov13_02228A50_t {
     UnkStruct_ov16_0226DC24 * unk_00;

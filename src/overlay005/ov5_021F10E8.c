@@ -30,7 +30,7 @@ typedef struct {
 typedef struct {
     u32 unk_00;
     UnkStruct_ov5_021DF47C * unk_04;
-    const UnkStruct_02061AB4 * unk_08;
+    const LocalMapObject * unk_08;
 } UnkStruct_021F121C;
 
 typedef struct {
@@ -178,7 +178,7 @@ UnkStruct_02073B50 * ov5_021F11FC (UnkStruct_ov5_021DF47C * param0, u32 param1)
     return &v1->unk_18;
 }
 
-UnkStruct_ov101_021D5D90 * ov5_021F121C (const UnkStruct_02061AB4 * param0, const VecFx32 * param1)
+UnkStruct_ov101_021D5D90 * ov5_021F121C (const LocalMapObject * param0, const VecFx32 * param1)
 {
     int v0;
     UnkStruct_ov101_021D5D90 * v1;
@@ -224,7 +224,7 @@ static void ov5_021F12A8 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 static void ov5_021F12AC (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     UnkStruct_021F1258 * v0 = param1;
-    const UnkStruct_02061AB4 * v1 = v0->unk_1C.unk_08;
+    const LocalMapObject * v1 = v0->unk_1C.unk_08;
 
     if (sub_02062764(v1, v0->unk_04, v0->unk_08) == 0) {
         ov5_021DF74C(param0);

@@ -43,7 +43,7 @@
 #include "unk_0203CC84.h"
 #include "unk_0203D1B8.h"
 #include "unk_020508D4.h"
-#include "unk_02057518.h"
+#include "comm_player_manager.h"
 #include "field_comm_manager.h"
 #include "unk_0205A0D8.h"
 #include "unk_0205D8CC.h"
@@ -236,7 +236,7 @@ static BOOL sub_0205A2DC (UnkStruct_0205A0D8 * param0)
 {
     if (sub_020509DC(param0->unk_24)) {
         ov5_021D1744(1);
-        sub_020576A0();
+        CommPlayerMan_Restart();
         return 1;
     }
 
@@ -269,7 +269,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
 
         if (v0->unk_43 == 0) {
             v0->unk_34 = 1;
-            sub_02059240();
+            CommPlayer_SetBattleDir();
         }
         break;
     case 1:
@@ -333,13 +333,13 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         if (v0->unk_44 != 0) {
             v0->unk_44--;
         } else {
-            if (sub_02065684(sub_0205EB3C(v1->unk_3C))) {
+            if (LocalMapObj_CheckAnimationFinished(Player_LocalMapObject(v1->playerAvatar))) {
                 v0->unk_34 = 11;
             }
         }
         break;
     case 11:
-        sub_02059240();
+        CommPlayer_SetBattleDir();
         MessageLoader_GetStrbuf(v0->unk_2C, 13, v0->unk_0C);
 
         v0->unk_30 = sub_0205AA50(v0, v0->unk_0C);
@@ -358,7 +358,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         v0->unk_43--;
 
         if (v0->unk_43 == 0) {
-            sub_02059240();
+            CommPlayer_SetBattleDir();
             v0->unk_34 = 15;
         }
         break;
@@ -431,7 +431,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         }
         break;
     case 24:
-        sub_02059240();
+        CommPlayer_SetBattleDir();
         MessageLoader_GetStrbuf(v0->unk_2C, 19, v0->unk_0C);
         v0->unk_30 = sub_0205AA50(v0, v0->unk_0C);
         v0->unk_34 = 25;
@@ -818,7 +818,7 @@ static BOOL sub_0205AD34 (UnkStruct_0205A0D8 * param0)
     BOOL v0;
 
     if (param0->unk_86 == 0) {
-        v0 = sub_02035AC4(107, &(param0->unk_84), 1);
+        v0 = CommSys_SendDataServer(107, &(param0->unk_84), 1);
     } else {
         v0 = CommSys_SendData(107, &(param0->unk_84), 1);
     }
@@ -1069,7 +1069,7 @@ static BOOL sub_0205B140 (UnkStruct_020508D4 * param0)
     case 6:
         if (!sub_020509DC(v0)) {
             ov5_021D1744(1);
-            sub_020576A0();
+            CommPlayerMan_Restart();
             v1->unk_28++;
         }
         break;
@@ -1096,7 +1096,7 @@ void sub_0205B2D4 (FieldSystem * param0)
             continue;
         }
 
-        if ((v2 == sub_02058CA0(v0)) && (v3 == sub_02058CF4(v0))) {
+        if ((v2 == CommPlayer_XPos(v0)) && (v3 == CommPlayer_ZPos(v0))) {
             UnkStruct_0205B2D4 * v4 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205B2D4));
 
             v4->unk_24 = v0;

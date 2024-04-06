@@ -16,7 +16,7 @@
 #include "unk_020366A0.h"
 #include "unk_0203CC84.h"
 #include "unk_020507CC.h"
-#include "unk_02057518.h"
+#include "comm_player_manager.h"
 #include "field_comm_manager.h"
 #include "unk_0206A8DC.h"
 #include "overlay023/ov23_0223E140.h"
@@ -72,7 +72,7 @@ void ov23_022499E8 (FieldSystem * param0)
         return;
     }
 
-    sub_02036794(sub_0203D174(param0));
+    sub_02036794(FieldSystem_SaveData(param0));
     FieldCommMan_Init(param0);
 
     v0 = FieldCommMan_Get();
@@ -265,7 +265,7 @@ static void ov23_02249C34 (void)
     ov23_02242D44(v0->fieldSys);
 
     CommInfo_SendBattleRegulation();
-    sub_02057AE4(0);
+    CommPlayer_SendPos(0);
 
     ov23_02243AF0();
     ov23_0224C21C();
@@ -340,13 +340,13 @@ static void ov23_02249D20 (void)
         }
 
         ov23_0224321C();
-        sub_020579BC(0);
+        CommPlayer_CopyPersonal(0);
 
         ov23_0224546C(0, 0, NULL, NULL);
         ov23_02244858(0, 1);
 
         CommInfo_InitPlayer(0);
-        sub_02057DB8(0, 0, 0);
+        CommPlayer_Destroy(0, 0, 0);
         sub_02059570();
 
         ov23_02249C24(ov23_02249EBC, 10);
@@ -371,7 +371,7 @@ static void ov23_02249DBC (void)
 
         ov23_022499E4("\u0090\u0065\u008B\u0040\u0090\u00DA\u0091\u00B1");
 
-        sub_02057AE4(0);
+        CommPlayer_SendPos(0);
 
         ov23_0224AAB0();
         ov23_0224C21C();
@@ -409,7 +409,7 @@ static void ov23_02249E18 (void)
 
 static void ov23_02249E84 (void)
 {
-    sub_0205764C();
+    CommPlayerMan_Reset();
     ov23_02249C24(ov23_02249E98, 0);
 }
 
@@ -423,7 +423,7 @@ static void ov23_02249EA0 (void)
     FieldCommunicationManager * v0 = FieldCommMan_Get();
 
     ov23_0224C198();
-    sub_020576A0();
+    CommPlayerMan_Restart();
     ov23_02249C24(ov23_02249E18, 0);
 }
 
@@ -437,7 +437,7 @@ static void ov23_02249EBC (void)
     }
 
     if (v0->timer == 1) {
-        sub_02057B14(0);
+        CommPlayer_SendPosServer(0);
     }
 
     if (v0->timer != 0) {
@@ -491,7 +491,7 @@ static void ov23_02249F7C (void)
     if (ov23_0224C420()) {
         ov23_022499E4("\u0094\u00E9\u0096\u00A7\u008A\u00EE\u0092\u006E\u0082\u00CC\u0088\u00CA\u0092\u0075\u0082\u00AA\u0082\u00AB\u0082\u00BD");
         ov23_0224C434();
-        sub_02057AE4(1);
+        CommPlayer_SendPos(1);
         Link_Message(31);
         ov23_02249C24(ov23_0224A09C, 0);
         return;
@@ -550,7 +550,7 @@ static void ov23_0224A02C (void)
     if (CommSys_CurNetId() == 0) {
         ov23_02242D44(v0->fieldSys);
         CommInfo_SendBattleRegulation();
-        sub_02057AE4(0);
+        CommPlayer_SendPos(0);
         ov23_02243AF0();
         ov23_0224C21C();
         ov23_02249C24(ov23_0224A024, 0);
@@ -562,7 +562,7 @@ static void ov23_0224A064 (void)
     ov23_02244858(CommSys_CurNetId(), 1);
     ov23_0224D9AC(CommSys_CurNetId(), 1);
     ov23_0224160C();
-    sub_020578B0();
+    CommPlayerMan_Stop();
     ov23_0224321C();
     sub_020367F0();
     ov23_0224AC4C();
@@ -587,7 +587,7 @@ static void ov23_0224A09C (void)
 
 static void ov23_0224A0CC (void)
 {
-    sub_0205764C();
+    CommPlayerMan_Reset();
     ov23_02249C24(ov23_0224A0E0, 0);
 }
 
@@ -601,11 +601,11 @@ static void ov23_0224A0E8 (void)
     FieldCommunicationManager * v0 = FieldCommMan_Get();
 
     ov23_0224C198();
-    sub_020576A0();
+    CommPlayerMan_Restart();
 
     if (sub_02033E68() || sub_020360F0()) {
         ov23_0224B518();
-        sub_020578B0();
+        CommPlayerMan_Stop();
         ov23_0224321C();
         sub_020367F0();
         ov23_0224AC4C();
@@ -617,7 +617,7 @@ static void ov23_0224A0E8 (void)
 
 static void ov23_0224A138 (void)
 {
-    sub_0205764C();
+    CommPlayerMan_Reset();
     ov23_02249C24(ov23_0224A14C, 0);
 }
 
@@ -631,7 +631,7 @@ static void ov23_0224A150 (void)
     FieldCommunicationManager * v0 = FieldCommMan_Get();
 
     ov23_0224C198();
-    sub_020576A0();
+    CommPlayerMan_Restart();
     ov23_02249C24(ov23_02249CE4, 0);
 }
 
@@ -651,7 +651,7 @@ static void ov23_0224A184 (void)
     FieldCommunicationManager * v0 = FieldCommMan_Get();
 
     ov23_0224C198();
-    sub_020576A0();
+    CommPlayerMan_Restart();
     ov23_02249C24(ov23_0224A024, 0);
 }
 

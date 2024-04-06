@@ -17,7 +17,7 @@
 
 BOOL sub_0204B64C (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02061AB4 ** v0;
+    LocalMapObject ** v0;
     u16 * v1 = inline_0204FCAC(param0);
 
     v0 = sub_0203F098(param0->unk_34, 10);
@@ -28,7 +28,7 @@ BOOL sub_0204B64C (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204B680 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02061AB4 ** v0 = sub_0203F098(param0->unk_34, 10);
+    LocalMapObject ** v0 = sub_0203F098(param0->unk_34, 10);
     u16 * v1 = inline_0204FCAC(param0);
 
     *v1 = sub_02055F40(param0->unk_34, *v0);
@@ -37,7 +37,7 @@ BOOL sub_0204B680 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204B6B4 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02061AB4 ** v0 = sub_0203F098(param0->unk_34, 10);
+    LocalMapObject ** v0 = sub_0203F098(param0->unk_34, 10);
     u16 * v1 = inline_0204FCAC(param0);
 
     *v1 = sub_02055F64(param0->unk_34, *v0);
@@ -46,7 +46,7 @@ BOOL sub_0204B6B4 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204B6E8 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02061AB4 ** v0 = sub_0203F098(param0->unk_34, 10);
+    LocalMapObject ** v0 = sub_0203F098(param0->unk_34, 10);
     u16 * v1 = inline_0204FCAC(param0);
 
     *v1 = sub_02055F88(param0->unk_34, *v0);
@@ -55,7 +55,7 @@ BOOL sub_0204B6E8 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204B71C (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02061AB4 ** v0 = sub_0203F098(param0->unk_34, 10);
+    LocalMapObject ** v0 = sub_0203F098(param0->unk_34, 10);
     u16 * v1 = inline_0204FCAC(param0);
 
     *v1 = sub_02055FA8(param0->unk_34, *v0);
@@ -64,7 +64,7 @@ BOOL sub_0204B71C (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204B750 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02061AB4 ** v0 = sub_0203F098(param0->unk_34, 10);
+    LocalMapObject ** v0 = sub_0203F098(param0->unk_34, 10);
     u16 v1 = inline_02049538(param0);
 
     sub_02055E80(param0->unk_34, *v0, v1);
@@ -73,7 +73,7 @@ BOOL sub_0204B750 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204B784 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02061AB4 ** v0 = sub_0203F098(param0->unk_34, 10);
+    LocalMapObject ** v0 = sub_0203F098(param0->unk_34, 10);
     UnkStruct_0202CD88 * v1 = sub_0202CD88(param0->unk_34->unk_0C);
     u16 v2 = inline_02049538(param0);
 
@@ -103,7 +103,7 @@ BOOL sub_0204B7FC (UnkStruct_0203E724 * param0)
 {
     u16 v0;
     UnkStruct_0202CD88 * v1 = sub_0202CD88(param0->unk_34->unk_0C);
-    UnkStruct_02061AB4 ** v2 = sub_0203F098(param0->unk_34, 10);
+    LocalMapObject ** v2 = sub_0203F098(param0->unk_34, 10);
 
     sub_02055E00(param0->unk_34, *v2);
     sub_0202CFEC(v1, 0);

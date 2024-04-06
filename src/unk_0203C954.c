@@ -20,10 +20,10 @@ static u8 sub_0203CAEC(FieldSystem * param0, const UnkStruct_0203A594 * param1);
 
 static int sub_0203C954 (FieldSystem * param0, int * param1, int * param2)
 {
-    int v0 = sub_0205EA78(param0->unk_3C);
+    int v0 = Player_Dir(param0->playerAvatar);
 
-    *param1 = sub_0205EABC(param0->unk_3C);
-    *param2 = sub_0205EAC8(param0->unk_3C);
+    *param1 = Player_XPos(param0->playerAvatar);
+    *param2 = Player_ZPos(param0->playerAvatar);
 
     switch (v0) {
     case 0:
@@ -43,9 +43,9 @@ static int sub_0203C954 (FieldSystem * param0, int * param1, int * param2)
     return v0;
 }
 
-static u8 sub_0203C9B0 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1)
+static u8 sub_0203C9B0 (PlayerAvatar * param0, LocalMapObject * param1)
 {
-    UnkStruct_02061AB4 * v0 = sub_0205EB3C(param0);
+    LocalMapObject * v0 = Player_LocalMapObject(param0);
 
     if (sub_020630DC(v0) == sub_020630DC(param1)) {
         return 1;
@@ -54,7 +54,7 @@ static u8 sub_0203C9B0 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * param1
     return 0;
 }
 
-void sub_0203C9D4 (FieldSystem * param0, UnkStruct_02061AB4 ** param1)
+void sub_0203C9D4 (FieldSystem * param0, LocalMapObject ** param1)
 {
     int v0, v1;
     int v2;
@@ -83,12 +83,12 @@ void sub_0203C9D4 (FieldSystem * param0, UnkStruct_02061AB4 ** param1)
     *param1 = sub_0206326C(param0->unk_38, v0, v1, 0);
 }
 
-u8 sub_0203CA40 (FieldSystem * param0, UnkStruct_02061AB4 ** param1)
+u8 sub_0203CA40 (FieldSystem * param0, LocalMapObject ** param1)
 {
     sub_0203C9D4(param0, param1);
 
     if (*param1 != NULL) {
-        if ((sub_02062D9C(*param1) == 1) && (sub_0203C9B0(param0->unk_3C, *param1) == 1)) {
+        if ((sub_02062D9C(*param1) == 1) && (sub_0203C9B0(param0->playerAvatar, *param1) == 1)) {
             return 1;
         }
     }
@@ -142,7 +142,7 @@ static u8 sub_0203CB18 (FieldSystem * param0, const UnkStruct_0203A594 * param1)
         return 1;
     }
 
-    switch (sub_0205EA78(param0->unk_3C)) {
+    switch (Player_Dir(param0->playerAvatar)) {
     case 0:
         if ((param1->unk_10 == 0) || (param1->unk_10 == 6)) {
             return 1;
@@ -174,7 +174,7 @@ u16 sub_0203CB80 (FieldSystem * param0, void * param1, int param2)
     int v1, v2;
     int v3;
 
-    if (sub_0205EA78(param0->unk_3C) != 0) {
+    if (Player_Dir(param0->playerAvatar) != 0) {
         return 0xffff;
     }
 
@@ -190,9 +190,9 @@ u16 sub_0203CB80 (FieldSystem * param0, void * param1, int param2)
     return 0xffff;
 }
 
-u8 sub_0203CBE0 (FieldSystem * param0, UnkStruct_02061AB4 ** param1)
+u8 sub_0203CBE0 (FieldSystem * param0, LocalMapObject ** param1)
 {
-    if (sub_0205EA78(param0->unk_3C) != 0) {
+    if (Player_Dir(param0->playerAvatar) != 0) {
         return 0;
     }
 
@@ -214,8 +214,8 @@ u16 sub_0203CC14 (FieldSystem * param0, void * param1, int param2)
     int v3;
 
     v0 = (const UnkStruct_0203A4AC *)param1;
-    v1 = sub_0205EABC(param0->unk_3C);
-    v2 = sub_0205EAC8(param0->unk_3C);
+    v1 = Player_XPos(param0->playerAvatar);
+    v2 = Player_ZPos(param0->playerAvatar);
 
     for (v3 = 0; v3 < param2; v3++) {
         if ((v1 >= v0[v3].unk_02) && (v1 < (v0[v3].unk_02 + v0[v3].unk_06)) && (v2 >= v0[v3].unk_04) && (v2 < (v0[v3].unk_04 + v0[v3].unk_08)) && (sub_0203F150(param0, v0[v3].unk_0E) == v0[v3].unk_0C)) {

@@ -58,7 +58,7 @@
 #include "unk_020556C4.h"
 #include "unk_020559DC.h"
 #include "unk_02055C50.h"
-#include "unk_02057518.h"
+#include "comm_player_manager.h"
 #include "unk_0205D8CC.h"
 #include "unk_0205E7D0.h"
 #include "unk_02061804.h"
@@ -285,9 +285,9 @@ static int ov5_021D0FB4 (OverlayManager * param0, int * param1)
         sub_02068368(v0);
         ov5_021E9338(v0->unk_28);
 
-        v0->unk_1C->unk_08 = sub_0205EABC(v0->unk_3C);
-        v0->unk_1C->unk_0C = sub_0205EAC8(v0->unk_3C);
-        v0->unk_1C->unk_10 = sub_0205EA78(v0->unk_3C);
+        v0->unk_1C->unk_08 = Player_XPos(v0->playerAvatar);
+        v0->unk_1C->unk_0C = Player_ZPos(v0->playerAvatar);
+        v0->unk_1C->unk_10 = Player_Dir(v0->playerAvatar);
 
         ov5_021EF300(v0->unk_A0);
 
@@ -380,7 +380,7 @@ const OverlayManagerTemplate Unk_ov5_021F89B0 = {
 
 static int ov5_021D1178 (FieldSystem * param0)
 {
-    UnkStruct_02027860 * v0 = sub_02027860(sub_0203D174(param0));
+    UnkStruct_02027860 * v0 = sub_02027860(FieldSystem_SaveData(param0));
     int v1 = sub_02027F80(v0);
 
     if (v1 == 0) {
@@ -398,8 +398,8 @@ static BOOL ov5_021D119C (FieldSystem * param0)
 {
     int v0, v1;
 
-    v0 = sub_0205EABC(param0->unk_3C);
-    v1 = sub_0205EAC8(param0->unk_3C);
+    v0 = Player_XPos(param0->playerAvatar);
+    v1 = Player_ZPos(param0->playerAvatar);
 
     if ((v0 != param0->unk_1C->unk_08) || (v1 != param0->unk_1C->unk_0C)) {
         param0->unk_1C->unk_08 = v0;
@@ -421,8 +421,8 @@ static BOOL ov5_021D11CC (FieldSystem * param0)
         return 0;
     }
 
-    v2 = (sub_0205EABC(param0->unk_3C) - ov5_021EA6AC(param0->unk_28)) / 32;
-    v3 = (sub_0205EAC8(param0->unk_3C) - ov5_021EA6B4(param0->unk_28)) / 32;
+    v2 = (Player_XPos(param0->playerAvatar) - ov5_021EA6AC(param0->unk_28)) / 32;
+    v3 = (Player_ZPos(param0->playerAvatar) - ov5_021EA6B4(param0->unk_28)) / 32;
     v0 = sub_02039E30(param0->unk_2C, v2, v3);
     v1 = param0->unk_1C->unk_00;
 
@@ -552,9 +552,9 @@ static void ov5_021D13B4 (FieldSystem * param0)
     }
 
     v0 = sub_0203A76C(sub_0203A790(param0->unk_0C));
-    v1 = (sub_0205EABC(param0->unk_3C) - ov5_021EA6AC(param0->unk_28)) / 32;
-    v2 = (sub_0205EAC8(param0->unk_3C) - ov5_021EA6B4(param0->unk_28)) / 32;
-    v3 = sub_0205EA78(param0->unk_3C);
+    v1 = (Player_XPos(param0->playerAvatar) - ov5_021EA6AC(param0->unk_28)) / 32;
+    v2 = (Player_ZPos(param0->playerAvatar) - ov5_021EA6B4(param0->unk_28)) / 32;
+    v3 = Player_Dir(param0->playerAvatar);
 
     sub_02055740(v0, v1, v2, v3);
 }
@@ -904,16 +904,16 @@ static void ov5_021D1878 (FieldSystem * param0)
     ov5_021F1328(param0->unk_40);
 
     {
-        UnkStruct_02027860 * v3 = sub_02027860(sub_0203D174(param0));
+        UnkStruct_02027860 * v3 = sub_02027860(FieldSystem_SaveData(param0));
         int v4 = sub_02027F80(v3);
 
-        sub_0205E884(param0->unk_3C, v4);
+        sub_0205E884(param0->playerAvatar, v4);
     }
 
     sub_02061C48(param0->unk_38);
-    sub_020595A4();
+    CommPlayerMan_ForcePos();
     sub_02062C3C(param0->unk_38);
-    ov5_021E931C(sub_0205EAFC(param0->unk_3C), param0->unk_28);
+    ov5_021E931C(sub_0205EAFC(param0->playerAvatar), param0->unk_28);
 
     param0->unk_04->unk_18 = sub_02055C8C(param0, 4);
 }
@@ -928,7 +928,7 @@ static void ov5_021D1968 (FieldSystem * param0)
 
     {
         int v0 = sub_0203A770(sub_0203A790(param0->unk_0C));
-        ov5_021D5B40(sub_0205EAFC(param0->unk_3C), param0, v0, 1);
+        ov5_021D5B40(sub_0205EAFC(param0->playerAvatar), param0, v0, 1);
     }
 
     param0->unk_4C = ov5_021D521C(param0->unk_44, ov5_021EFAD8(param0->unk_30));
@@ -992,7 +992,7 @@ static void ov5_021D1A70 (UnkStruct_ov5_021D1A68 * param0)
 
 static BOOL ov5_021D1A78 (FieldSystem * param0)
 {
-    UnkStruct_02027860 * v0 = sub_02027860(sub_0203D174(param0));
+    UnkStruct_02027860 * v0 = sub_02027860(FieldSystem_SaveData(param0));
     int v1 = sub_02027F80(v0);
 
     if (v1 == 9) {

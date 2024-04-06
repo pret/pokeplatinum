@@ -60,7 +60,7 @@ typedef struct FieldSystem_t {
     UnkStruct_ov5_021EF76C * unk_30;
     UnkStruct_ov5_021D1A68 * unk_34;
     UnkStruct_02061830 * unk_38;
-    UnkStruct_0205E884 * unk_3C;
+    PlayerAvatar * playerAvatar;
     UnkStruct_ov5_021DF47C * unk_40;
     UnkStruct_ov5_021D5894 * unk_44;
     UnkStruct_ov5_021D57D8 * unk_48;

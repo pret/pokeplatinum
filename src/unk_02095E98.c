@@ -165,7 +165,7 @@ void sub_02095EAC (int param0, int param1, void * param2, void * param3)
             v0->unk_4430++;
             sub_0209617C(v0, v0->unk_4430);
         } else {
-            sub_02035AC4(124, NULL, 0);
+            CommSys_SendDataServer(124, NULL, 0);
         }
     }
 }
@@ -244,7 +244,7 @@ void sub_02095FE4 (int param0, int param1, void * param2, void * param3)
                 break;
             }
 
-            sub_02035AC4(126, &v1, sizeof(UnkStruct_02095FE4));
+            CommSys_SendDataServer(126, &v1, sizeof(UnkStruct_02095FE4));
         }
     } else {
         switch (v2->unk_02) {
@@ -314,7 +314,7 @@ void sub_0209612C (int param0, int param1, void * param2, void * param3)
     if (CommSys_CurNetId() == 0) {
         if (v0->unk_9460 != 0) {
             v1 = param0;
-            sub_02035AC4(123, &v1, 1);
+            CommSys_SendDataServer(123, &v1, 1);
         } else {
             v0->unk_9460 = 1;
         }

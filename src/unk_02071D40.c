@@ -52,7 +52,7 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
     UnkStruct_0202CD88 * v1;
     SaveData * v2;
 
-    v2 = sub_0203D174(param4);
+    v2 = FieldSystem_SaveData(param4);
     v0 = SaveData_GetTrainerInfo(v2);
     v1 = sub_0202CD88(v2);
 
@@ -128,13 +128,13 @@ u8 sub_02071F28 (FieldSystem * param0)
     SaveData * v1;
     UnkStruct_0202CD88 * v2;
     UnkStruct_020507E4 * v3;
-    UnkStruct_0202855C * v4;
+    SecretBaseRecord * v4;
     UnkStruct_0203068C * v5;
 
-    v1 = sub_0203D174(param0);
+    v1 = FieldSystem_SaveData(param0);
     v2 = sub_0202CD88(v1);
     v3 = SaveData_Events(v1);
-    v4 = sub_020298A0(v1);
+    v4 = SaveData_SecretBaseRecord(v1);
     v5 = sub_0203068C(v1);
     v0 = 0;
 

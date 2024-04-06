@@ -140,10 +140,10 @@ typedef struct {
     UnkStruct_ov6_0223FD0C unk_E4;
     UnkStruct_ov6_0223FD0C unk_F4;
     FieldSystem * unk_104;
-    UnkStruct_02061AB4 * unk_108;
-    UnkStruct_02061AB4 * unk_10C;
-    UnkStruct_02061AB4 * unk_110;
-    UnkStruct_0205E884 * unk_114;
+    LocalMapObject * unk_108;
+    LocalMapObject * unk_10C;
+    LocalMapObject * unk_110;
+    PlayerAvatar * unk_114;
 } UnkStruct_ov6_0223EA98;
 
 typedef struct UnkStruct_ov6_0223FDE4_t {
@@ -195,7 +195,7 @@ typedef struct UnkStruct_ov6_022400A8_t {
 } UnkStruct_ov6_022400A8;
 
 typedef struct {
-    UnkStruct_02061AB4 * unk_00;
+    LocalMapObject * unk_00;
     UnkStruct_ov6_0223FD0C unk_04;
     UnkStruct_ov6_0223FD0C unk_14;
     int unk_24;
@@ -498,7 +498,7 @@ static void ov6_0223E2FC (SysTask * param0, void * param1)
 
 static void ov6_0223E318 (FieldSystem * param0, u32 param1, BOOL param2)
 {
-    UnkStruct_02061AB4 * v0;
+    LocalMapObject * v0;
 
     v0 = sub_0206251C(param0->unk_38, param1);
 
@@ -836,7 +836,7 @@ static BOOL ov6_0223E71C (UnkStruct_ov6_0223E71C * param0)
 static void ov6_0223E7B4 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1, void * param2)
 {
     UnkStruct_ov6_0223E7B4 * v0 = param2;
-    UnkStruct_02061AB4 * v1;
+    LocalMapObject * v1;
     u16 v2, v3, v4;
 
     v1 = sub_0206251C(param1->unk_38, 0);
@@ -1092,7 +1092,7 @@ static void ov6_0223EB4C (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1,
     v0->unk_104 = param1;
     v0->unk_108 = sub_0206251C(v0->unk_104->unk_38, 1);
     v0->unk_10C = sub_0206251C(v0->unk_104->unk_38, 0);
-    v0->unk_110 = sub_0205EB3C(sub_0205EF3C(v0->unk_104));
+    v0->unk_110 = Player_LocalMapObject(sub_0205EF3C(v0->unk_104));
 
     Heap_FndInitAllocatorForExpHeap(&v0->unk_C0, 4, 32);
     ov6_0223EA98(v0);
@@ -1275,7 +1275,7 @@ static BOOL ov6_0223EE5C (UnkStruct_ov6_0223EA98 * param0)
     case 8:
         param0->unk_D0 = 0;
         sub_0206296C(param0->unk_10C, 2);
-        sub_02065638(param0->unk_110, 0x2);
+        LocalMapObj_SetAnimationCode(param0->unk_110, 0x2);
         sub_02017358(&param0->unk_24, &v1, &v2, &param0->unk_D8);
         param0->unk_18++;
     case 9:
@@ -1438,17 +1438,17 @@ static BOOL ov6_0223EE5C (UnkStruct_ov6_0223EA98 * param0)
     if (param0->unk_1C != 0) {
         if (param0->unk_1C == 20) {
             sub_0206296C(param0->unk_10C, 1);
-            sub_02065638(param0->unk_110, 0x1);
+            LocalMapObj_SetAnimationCode(param0->unk_110, 0x1);
         }
 
         if (param0->unk_1C == 40) {
             sub_0206296C(param0->unk_10C, 2);
-            sub_02065638(param0->unk_110, 0x3);
+            LocalMapObj_SetAnimationCode(param0->unk_110, 0x3);
         }
 
         if (param0->unk_1C == 50) {
             sub_0206296C(param0->unk_10C, 0);
-            sub_02065638(param0->unk_110, 0x0);
+            LocalMapObj_SetAnimationCode(param0->unk_110, 0x0);
         }
 
         param0->unk_1C++;
@@ -2824,7 +2824,7 @@ UnkStruct_ov6_02240C44 * ov6_02240B9C (u32 param0, FieldSystem * param1)
 void ov6_02240C44 (UnkStruct_ov6_02240C44 * param0, u32 param1)
 {
     VecFx32 v0;
-    UnkStruct_02061AB4 * v1;
+    LocalMapObject * v1;
 
     v1 = sub_0206251C(param0->unk_D8->unk_38, param1);
 

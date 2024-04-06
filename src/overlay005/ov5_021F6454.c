@@ -989,8 +989,8 @@ BOOL ov5_021F7538 (UnkStruct_0203E724 * param0)
     int v3 = 0;
     FieldSystem * v4 = param0->unk_34;
     UnkStruct_02061830 * v5 = v4->unk_38;
-    UnkStruct_02061AB4 * v6 = sub_0205EB3C(v4->unk_3C);
-    UnkStruct_02061AB4 * v7;
+    LocalMapObject * v6 = Player_LocalMapObject(v4->playerAvatar);
+    LocalMapObject * v7;
 
     sub_02063050(v6, &v1);
     v0 = v1.y;
@@ -1030,8 +1030,8 @@ BOOL ov5_021F7604 (UnkStruct_0203E724 * param0)
     int v0 = 0;
     FieldSystem * v1 = param0->unk_34;
     UnkStruct_02061830 * v2 = v1->unk_38;
-    UnkStruct_02061AB4 * v3 = sub_0205EB3C(v1->unk_3C);
-    UnkStruct_02061AB4 * v4;
+    LocalMapObject * v3 = Player_LocalMapObject(v1->playerAvatar);
+    LocalMapObject * v4;
 
     while (sub_020625B0(v2, &v4, &v0, (1 << 0)) == 1) {
         if (v4 != v3) {
@@ -1042,7 +1042,7 @@ BOOL ov5_021F7604 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-static void ov5_021F7654 (UnkStruct_02061AB4 * param0, int param1)
+static void ov5_021F7654 (LocalMapObject * param0, int param1)
 {
     VecFx32 v0;
     UnkStruct_020216E0 * v1;
@@ -1065,7 +1065,7 @@ static void ov5_021F7654 (UnkStruct_02061AB4 * param0, int param1)
 
 BOOL ov5_021F76A0 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02061AB4 * v0;
+    LocalMapObject * v0;
     FieldSystem * v1 = param0->unk_34;
     UnkStruct_02061830 * v2 = v1->unk_38;
 
@@ -1086,7 +1086,7 @@ BOOL ov5_021F76A0 (UnkStruct_0203E724 * param0)
 
 BOOL ov5_021F76D0 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02061AB4 * v0;
+    LocalMapObject * v0;
     UnkStruct_02061830 * v1 = param0->unk_34->unk_38;
 
     v0 = sub_0206251C(v1, 32);
@@ -1107,7 +1107,7 @@ BOOL ov5_021F76D0 (UnkStruct_0203E724 * param0)
 BOOL ov5_021F7704 (UnkStruct_0203E724 * param0)
 {    
     int v0;
-    UnkStruct_02061AB4 * v1 = sub_0206251C(param0->unk_34->unk_38, 15);
+    LocalMapObject * v1 = sub_0206251C(param0->unk_34->unk_38, 15);
     if (v1 != NULL)
     {
         switch (sub_02063020(v1))
@@ -1135,7 +1135,7 @@ BOOL ov5_021F7704 (UnkStruct_0203E724 * param0)
 
 BOOL ov5_021F7754 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02061AB4 * v0 = sub_0206251C(param0->unk_34->unk_38, 15);
+    LocalMapObject * v0 = sub_0206251C(param0->unk_34->unk_38, 15);
     if (v0 != NULL)
         sub_020628C4(v0, 8192);
     return 0;

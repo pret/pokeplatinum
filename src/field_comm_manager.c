@@ -24,7 +24,7 @@
 #include "unk_0203CC84.h"
 #include "unk_0203E880.h"
 #include "unk_02050A74.h"
-#include "unk_02057518.h"
+#include "comm_player_manager.h"
 #include "field_comm_manager.h"
 #include "unk_0205A0D8.h"
 #include "unk_02071D40.h"
@@ -123,7 +123,7 @@ void FieldCommMan_StartBattleServer (FieldSystem * fieldSys, int param1, int par
         return;
     }
 
-    CommMan_StartBattleServer(sub_0203D174(fieldSys), param1, param2, fieldSys->unk_B0, 0);
+    CommMan_StartBattleServer(FieldSystem_SaveData(fieldSys), param1, param2, fieldSys->unk_B0, 0);
     FieldCommMan_Init(fieldSys);
     FieldCommMan_SetTask(Task_StartBattleServer, 0);
 }
@@ -134,7 +134,7 @@ void FieldCommMan_StartBattleClient (FieldSystem * fieldSys, int param1, int par
         return;
     }
 
-    CommMan_StartBattleClient(sub_0203D174(fieldSys), param1, param2, fieldSys->unk_B0, 0);
+    CommMan_StartBattleClient(FieldSystem_SaveData(fieldSys), param1, param2, fieldSys->unk_B0, 0);
     FieldCommMan_Init(fieldSys);
     FieldCommMan_SetTask(Task_StartBattleClient, 0);
 }
@@ -285,8 +285,8 @@ static void sub_02059984 (void)
     void * v0;
 
     if (sub_02036540(98)) {
-        v0 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sub_02057C84());
-        sub_02057524(v0, sFieldCommMan->fieldSys, 0);
+        v0 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, CommPlayer_Size());
+        CommPlayerMan_Init(v0, sFieldCommMan->fieldSys, 0);
         sub_02059524();
         sub_02035EC8();
         sub_020364F0(92);
@@ -312,8 +312,8 @@ static void sub_020599E4 (void)
         sub_0200F174(0, 1, 1, 0x0, 6, 1, 4);
         sub_0200F32C(0);
         sub_0200F32C(1);
-        sub_020576A0();
-        sub_02057AE4(0);
+        CommPlayerMan_Restart();
+        CommPlayer_SendPos(0);
         FieldCommMan_SetTask(sub_02059A70, 1);
     }
 }
@@ -326,7 +326,7 @@ static void sub_02059A3C (void)
     }
 
     if (sub_02036540(30)) {
-        sub_02035EA8();
+        CommSys_EnableSendMovementData();
         FieldCommMan_SetTask(sub_02059BF4, 0);
     }
 }
@@ -356,8 +356,8 @@ static void sub_02059AB4 (void)
     void * v0;
 
     if (sub_02036540(98)) {
-        v0 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sub_02057C84());
-        sub_02057524(v0, sFieldCommMan->fieldSys, 0);
+        v0 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, CommPlayer_Size());
+        CommPlayerMan_Init(v0, sFieldCommMan->fieldSys, 0);
         sub_02059524();
         sub_020364F0(92);
         FieldCommMan_SetTask(sub_02059B10, 0);
@@ -379,8 +379,8 @@ static void sub_02059B10 (void)
     }
 
     if (sub_02036540(92)) {
-        sub_020576A0();
-        sub_02057AE4(0);
+        CommPlayerMan_Restart();
+        CommPlayer_SendPos(0);
 
         {
             u8 v0 = 1;
@@ -590,7 +590,7 @@ static void sub_02059E50 (void)
         return;
     }
 
-    sub_020576CC(0);
+    CommPlayerMan_Delete(0);
     sub_020364F0(3);
     FieldCommMan_SetTask(sub_02059E34, 0);
 }
@@ -700,14 +700,14 @@ static void sub_0205A018 (void)
 {
     if (sub_02036540(91)) {
         CommMan_SetErrorHandling(0, 0);
-        sub_020576CC(1);
+        CommPlayerMan_Delete(1);
         FieldCommMan_SetTask(sub_0205A058, 5);
     }
 }
 
 static void Task_EndBattle (void)
 {
-    sub_020576CC(1);
+    CommPlayerMan_Delete(1);
     FieldCommMan_SetTask(sub_0205A058, 5);
 }
 

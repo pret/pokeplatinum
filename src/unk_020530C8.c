@@ -352,7 +352,7 @@ static void sub_02053320 (FieldSystem * param0)
     v2 = sub_0203A790(param0->unk_0C);
     v3 = sub_0203A780(v2);
 
-    param0->unk_3C = sub_0205E7D0(param0->unk_38, param0->unk_1C->unk_08, param0->unk_1C->unk_0C, param0->unk_1C->unk_10, v3->unk_04, v0, 0, v3);
+    param0->playerAvatar = sub_0205E7D0(param0->unk_38, param0->unk_1C->unk_08, param0->unk_1C->unk_0C, param0->unk_1C->unk_10, v3->unk_04, v0, 0, v3);
 
     sub_0203A418(param0);
     sub_02062C30(param0->unk_38);
@@ -360,7 +360,7 @@ static void sub_02053320 (FieldSystem * param0)
 
 static void sub_02053374 (FieldSystem * param0)
 {
-    sub_0205E8E0(param0->unk_3C);
+    sub_0205E8E0(param0->playerAvatar);
     sub_02061BBC(param0->unk_38);
     sub_02061830(param0->unk_38);
 }
@@ -375,7 +375,7 @@ static void sub_0205338C (FieldSystem * param0)
         UnkStruct_0205EC34 * v1 = sub_0203A780(v0);
         int v2 = TrainerInfo_Gender(SaveData_GetTrainerInfo(param0->unk_0C));
 
-        param0->unk_3C = sub_0205E820(param0->unk_38, v1, v2);
+        param0->playerAvatar = sub_0205E820(param0->unk_38, v1, v2);
     }
 
     sub_02062C30(param0->unk_38);
@@ -444,7 +444,7 @@ static void sub_020534BC (FieldSystem * param0)
 
 static void sub_020534EC (UnkStruct_02049FA8 * param0, const FieldSystem * param1)
 {
-    inline_02049FA8(param0, param1->unk_1C->unk_00, -1, sub_0205EABC(param1->unk_3C), sub_0205EAC8(param1->unk_3C), 1);
+    inline_02049FA8(param0, param1->unk_1C->unk_00, -1, Player_XPos(param1->playerAvatar), Player_ZPos(param1->playerAvatar), 1);
 }
 
 static BOOL sub_02053518 (const FieldSystem * param0)
@@ -821,7 +821,7 @@ static BOOL sub_02053B44 (UnkStruct_020508D4 * param0)
         (v1->unk_00)++;
         break;
     case 1:
-        sub_0205EB58(v0->unk_3C, 0x0);
+        sub_0205EB58(v0->playerAvatar, 0x0);
         sub_020539A0(param0, &v1->unk_08);
         (v1->unk_00)++;
         break;
@@ -903,7 +903,7 @@ static void sub_02053C70 (UnkStruct_020508D4 * param0)
     }
 
     {
-        v1->unk_04 = ov6_02245CCC(v0, sub_0205EB98(v0->unk_3C));
+        v1->unk_04 = ov6_02245CCC(v0, sub_0205EB98(v0->playerAvatar));
         sub_02050944(param0, sub_02053CB4, v1);
     }
 }
@@ -945,7 +945,7 @@ static BOOL sub_02053D0C (UnkStruct_020508D4 * param0)
         (v1->unk_00)++;
         break;
     case 1:
-        sub_0205EB58(v0->unk_3C, 0x0);
+        sub_0205EB58(v0->playerAvatar, 0x0);
         sub_020539A0(param0, &v1->unk_0C);
         (v1->unk_00)++;
         break;
@@ -1097,7 +1097,7 @@ void sub_02053F58 (FieldSystem * param0, int param1, int param2)
 
     MI_CpuClear8(v1, sizeof(UnkStruct_02053E98));
 
-    inline_02049FA8(&v0, param1, param2, 0, 0, sub_0205EA78(param0->unk_3C));
+    inline_02049FA8(&v0, param1, param2, 0, 0, Player_Dir(param0->playerAvatar));
     v1->unk_08 = v0;
     sub_02050904(param0, sub_02053E98, v1);
 }

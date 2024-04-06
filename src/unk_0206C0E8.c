@@ -88,7 +88,7 @@ static BOOL sub_0206C120 (UnkStruct_020508D4 * param0)
         break;
     case 4:
     {
-        UnkStruct_02061AB4 * v3 = sub_0205EB3C(v0->unk_3C);
+        LocalMapObject * v3 = Player_LocalMapObject(v0->playerAvatar);
 
         v1->unk_0D++;
 

@@ -13,7 +13,7 @@
 #include "struct_defs/struct_0207CDEC.h"
 #include "overlay013/struct_ov13_022264F4.h"
 #include "overlay013/struct_ov13_02228A50_decl.h"
-#include "overlay016/struct_ov16_0226DEEC_decl.h"
+#include "battle/struct_ov16_0226DEEC_decl.h"
 
 typedef struct {
     UnkStruct_ov13_022264F4 * unk_00;
