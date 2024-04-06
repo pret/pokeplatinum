@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV21_021D0D80_H
 #define POKEPLATINUM_OV21_021D0D80_H
 
-#include "struct_decls/struct_020067E8_decl.h"
+#include "overlay_manager.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_defs/union_02022594_020225E0.h"
@@ -21,9 +21,9 @@
 
 #include <nnsys.h>
 
-int ov21_021D0D80(UnkStruct_020067E8 * param0, int * param1);
-int ov21_021D0E3C(UnkStruct_020067E8 * param0, int * param1);
-int ov21_021D0EC8(UnkStruct_020067E8 * param0, int * param1);
+int ov21_021D0D80(OverlayManager * param0, int * param1);
+int ov21_021D0E3C(OverlayManager * param0, int * param1);
+int ov21_021D0EC8(OverlayManager * param0, int * param1);
 UnkStruct_ov21_021D0F60 * ov21_021D0F60(int param0, const UnkStruct_ov21_021D0D80_1 * param1);
 BOOL ov21_021D10B8(UnkStruct_ov21_021D0F60 * param0);
 void ov21_021D12B0(int param0);

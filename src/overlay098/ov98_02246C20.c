@@ -2,13 +2,11 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "struct_decls/struct_020067E8_decl.h"
 
 #include "overlay077/const_ov77_021D742C.h"
 #include "constdata/const_020F2DBC.h"
 
 #include "struct_defs/struct_0203CC84.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_02089438.h"
 #include "overlay098/struct_ov98_02246E88.h"
 #include "overlay098/struct_ov98_02247168.h"
@@ -16,7 +14,7 @@
 #include "unk_02000C88.h"
 #include "unk_020041CC.h"
 #include "game_overlay.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "unk_02017728.h"
 #include "heap.h"
 #include "error_handling.h"
@@ -61,21 +59,21 @@ static void ov98_02247134(UnkStruct_ov98_02246E88 * param0);
 
 static NNSFndHeapHandle Unk_ov98_02249E20;
 
-const UnkStruct_0208BE5C Unk_ov98_02249BAC = {
+const OverlayManagerTemplate Unk_ov98_02249BAC = {
     ov98_02246C20,
     ov98_02246C98,
     ov98_02246DC0,
     0xFFFFFFFF
 };
 
-static const UnkStruct_0208BE5C Unk_ov98_02249B3C = {
+static const OverlayManagerTemplate Unk_ov98_02249B3C = {
     ov98_022471C8,
     ov98_022473D8,
     ov98_02247440,
     0xFFFFFFFF
 };
 
-static const UnkStruct_0208BE5C Unk_ov98_02249B2C = {
+static const OverlayManagerTemplate Unk_ov98_02249B2C = {
     ov65_0222E2A8,
     ov65_0222E3FC,
     ov65_0222E548,
@@ -85,7 +83,7 @@ static const UnkStruct_0208BE5C Unk_ov98_02249B2C = {
 static const struct {
     UnkFuncPtr_ov98_02249B4C unk_00;
     UnkFuncPtr_ov98_02249B4C_1 unk_04;
-    const UnkStruct_0208BE5C * unk_08;
+    const OverlayManagerTemplate * unk_08;
     int unk_0C;
 } Unk_ov98_02249B4C[] = {
     {ov98_02246FBC, ov98_02246FC0, &Unk_ov98_02249B3C, 0x0},
@@ -96,16 +94,16 @@ static const struct {
     {ov98_02247168, ov98_02247198, &Unk_ov98_02249B2C, 0x1}
 };
 
-int ov98_02246C20 (UnkStruct_020067E8 * param0, int * param1)
+int ov98_02246C20 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov98_02246E88 * v0;
 
     Heap_Create(3, 108, 0x28000);
     Heap_Create(0, 91, 0x300);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov98_02246E88), 108);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov98_02246E88), 108);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov98_02246E88));
-    v0->unk_04 = ((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08;
+    v0->unk_04 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
     v0->unk_08 = sub_02025E44(v0->unk_04);
     v0->unk_114 = Strbuf_Init(100, 108);
     v0->unk_118 = Strbuf_Init(100, 108);
@@ -115,9 +113,9 @@ int ov98_02246C20 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov98_02246C98 (UnkStruct_020067E8 * param0, int * param1)
+int ov98_02246C98 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov98_02246E88 * v0 = sub_0200682C(param0);
+    UnkStruct_ov98_02246E88 * v0 = OverlayManager_Data(param0);
     BOOL v1;
 
     if (v0->unk_80 == 1) {
@@ -140,15 +138,15 @@ int ov98_02246C98 (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 2:
-        v0->unk_00 = sub_020067E8(Unk_ov98_02249B4C[v0->unk_8C].unk_08, Unk_ov98_02249B4C[v0->unk_8C].unk_00(v0), 108);
+        v0->unk_00 = OverlayManager_New(Unk_ov98_02249B4C[v0->unk_8C].unk_08, Unk_ov98_02249B4C[v0->unk_8C].unk_00(v0), 108);
         v0->unk_84 = v0->unk_8C;
         v0->unk_8C = 6;
         *param1 = 3;
         break;
     case 3:
-        if (sub_02006844(v0->unk_00) == 1) {
+        if (OverlayManager_Exec(v0->unk_00) == 1) {
             Unk_ov98_02249B4C[v0->unk_84].unk_04(v0);
-            sub_02006814(v0->unk_00);
+            OverlayManager_Free(v0->unk_00);
 
             if (v0->unk_8C == 6) {
                 *param1 = 4;
@@ -171,15 +169,15 @@ int ov98_02246C98 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov98_02246DC0 (UnkStruct_020067E8 * param0, int * param1)
+int ov98_02246DC0 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov98_02246E88 * v0 = sub_0200682C(param0);
+    UnkStruct_ov98_02246E88 * v0 = OverlayManager_Data(param0);
 
     ov98_02246E54(v0);
 
     Strbuf_Free(v0->unk_118);
     Strbuf_Free(v0->unk_114);
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(108);
     Heap_Destroy(91);
     sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);

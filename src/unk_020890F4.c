@@ -4,7 +4,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 
 #include "constdata/const_020F2DBC.h"
@@ -12,12 +11,11 @@
 #include "struct_defs/options.h"
 #include "struct_defs/struct_02089438.h"
 #include "struct_defs/struct_02089688.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "unk_02002F38.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "narc.h"
 #include "unk_0200C6E4.h"
 #include "unk_02017728.h"
@@ -35,26 +33,26 @@
 
 static void sub_0208945C(BGL * param0);
 static void sub_020895CC(void * param0);
-static int sub_020890F4(UnkStruct_020067E8 * param0, int * param1);
-static int sub_0208924C(UnkStruct_020067E8 * param0, int * param1);
-static int sub_0208927C(UnkStruct_020067E8 * param0, int * param1);
+static int sub_020890F4(OverlayManager * param0, int * param1);
+static int sub_0208924C(OverlayManager * param0, int * param1);
+static int sub_0208927C(OverlayManager * param0, int * param1);
 
-const UnkStruct_0208BE5C Unk_020F2DBC = {
+const OverlayManagerTemplate Unk_020F2DBC = {
     sub_020890F4,
     sub_0208924C,
     sub_0208927C,
     0xffffffff,
 };
 
-static int sub_020890F4 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_020890F4 (OverlayManager * param0, int * param1)
 {
     UnkStruct_02089688 * v0;
 
     Heap_Create(3, 101, 0x40000);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_02089688), 101);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02089688), 101);
     memset(v0, 0, sizeof(UnkStruct_02089688));
-    v0->unk_38C = *(( UnkStruct_02089438 * )sub_02006840(param0));
+    v0->unk_38C = *(( UnkStruct_02089438 * )OverlayManager_Args(param0));
 
     SetMainCallback(NULL, NULL);
     DisableHBlank();
@@ -96,12 +94,12 @@ static int sub_020890F4 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static int sub_0208924C (UnkStruct_020067E8 * param0, int * param1)
+static int sub_0208924C (OverlayManager * param0, int * param1)
 {
     BOOL v0;
     UnkStruct_02089688 * v1;
 
-    v1 = sub_0200682C(param0);
+    v1 = OverlayManager_Data(param0);
     v0 = sub_02089BEC(v1);
 
     if (v1->unk_38C.unk_30 != 0) {
@@ -111,11 +109,11 @@ static int sub_0208924C (UnkStruct_020067E8 * param0, int * param1)
     return v0 ? 1 : 0;
 }
 
-static int sub_0208927C (UnkStruct_020067E8 * param0, int * param1)
+static int sub_0208927C (OverlayManager * param0, int * param1)
 {
     UnkStruct_02089688 * v0;
 
-    v0 = sub_0200682C(param0);
+    v0 = OverlayManager_Data(param0);
 
     if (v0->unk_38C.unk_30 != 0) {
         sub_02039794();
@@ -153,7 +151,7 @@ static int sub_0208927C (UnkStruct_020067E8 * param0, int * param1)
     sub_0200D0B0(v0->unk_2C0.unk_04, v0->unk_2C0.unk_08);
     sub_0200C8D4(v0->unk_2C0.unk_04);
     sub_02024034(v0->unk_2C0.unk_14);
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(101);
 
     return 1;

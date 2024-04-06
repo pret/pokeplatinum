@@ -6,7 +6,6 @@
 #include "overlay006/struct_ov6_02246204_decl.h"
 
 #include "field/field_system.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "overlay006/struct_ov6_02246254.h"
 
 #include "heap.h"
@@ -39,7 +38,7 @@ void sub_0206C660 (UnkStruct_020508D4 * param0)
     {
         FS_EXTERN_OVERLAY(overlay95);
 
-        static const UnkStruct_0208BE5C v2 = {
+        static const OverlayManagerTemplate v2 = {
             ov95_02246C20, ov95_02246E7C, ov95_02246E1C, FS_OVERLAY_ID(overlay95),
         };
 

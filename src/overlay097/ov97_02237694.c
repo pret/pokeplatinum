@@ -5,7 +5,6 @@
 #include "assert.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_020067E8_decl.h"
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -28,7 +27,7 @@
 
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -91,12 +90,12 @@ void ov97_02237694 (int param0)
     v0->unk_08 = param0;
 }
 
-void * ov97_022376C4 (UnkStruct_020067E8 * param0, int param1, int param2, int param3)
+void * ov97_022376C4 (OverlayManager * param0, int param1, int param2, int param3)
 {
     void * v0;
 
     Heap_Create(3, param1, param3);
-    v0 = sub_0200681C(param0, param2, param1);
+    v0 = OverlayManager_NewData(param0, param2, param1);
 
     memset(v0, 0, param2);
 

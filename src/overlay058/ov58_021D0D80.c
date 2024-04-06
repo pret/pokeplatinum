@@ -3,7 +3,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
@@ -29,7 +28,7 @@
 #include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
@@ -84,7 +83,7 @@ static void ov58_021D142C(UnkStruct_02095EAC * param0, NARC * param1);
 static void ov58_021D1524(void);
 static void ov58_021D1554(UnkStruct_02095EAC * param0, NARC * param1);
 static void ov58_021D16D8(UnkStruct_02095EAC * param0);
-static void ov58_021D18AC(UnkStruct_02095EAC * param0, UnkStruct_020067E8 * param1);
+static void ov58_021D18AC(UnkStruct_02095EAC * param0, OverlayManager * param1);
 static void ov58_021D19D4(UnkStruct_02095EAC * param0);
 static void ov58_021D1A10(GraphicElementData * param0, int param1, int param2);
 static void ov58_021D1A80(UnkStruct_02095EAC * param0);
@@ -164,7 +163,7 @@ static UnkStruct_ov58_021D3180 Unk_ov58_021D3180[] = {
     {ov58_021D23C8, 0x1}
 };
 
-int ov58_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
+int ov58_021D0D80 (OverlayManager * param0, int * param1)
 {
     UnkStruct_02095EAC * v0;
     NARC * v1;
@@ -181,7 +180,7 @@ int ov58_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
         Heap_Create(3, 39, 0x40000);
 
-        v0 = sub_0200681C(param0, sizeof(UnkStruct_02095EAC), 39);
+        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02095EAC), 39);
         memset(v0, 0, sizeof(UnkStruct_02095EAC));
         v0->unk_00 = sub_02018340(39);
 
@@ -198,7 +197,7 @@ int ov58_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
         sub_0200F174(0, 17, 17, 0x0, 16, 1, 39);
 
         {
-            UnkStruct_0203DDFC * v2 = (UnkStruct_0203DDFC *)sub_02006840(param0);
+            UnkStruct_0203DDFC * v2 = (UnkStruct_0203DDFC *)OverlayManager_Args(param0);
             v0->unk_08 = v2;
         }
 
@@ -238,7 +237,7 @@ int ov58_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 1:
-        v0 = sub_0200682C(param0);
+        v0 = OverlayManager_Data(param0);
         (*param1) = 0;
         return 1;
         break;
@@ -247,9 +246,9 @@ int ov58_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov58_021D0F08 (UnkStruct_020067E8 * param0, int * param1)
+int ov58_021D0F08 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_02095EAC * v0 = sub_0200682C(param0);
+    UnkStruct_02095EAC * v0 = OverlayManager_Data(param0);
 
     if ((CommSys_CurNetId() == 0) && (v0->unk_9418 != 0)) {
         v0->unk_9418 &= sub_020318EC();
@@ -307,10 +306,10 @@ int ov58_021D0F08 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov58_021D1018 (UnkStruct_020067E8 * param0, int * param1)
+int ov58_021D1018 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_02095EAC * v0 = sub_0200682C(param0);
-    UnkStruct_0203DDFC * v1 = (UnkStruct_0203DDFC *)sub_02006840(param0);
+    UnkStruct_02095EAC * v0 = OverlayManager_Data(param0);
+    UnkStruct_0203DDFC * v1 = (UnkStruct_0203DDFC *)OverlayManager_Args(param0);
     int v2;
     void * v3;
 
@@ -368,7 +367,7 @@ int ov58_021D1018 (UnkStruct_020067E8 * param0, int * param1)
         ov58_021D13B4(v0);
 
         Heap_FreeToHeap(v0->unk_08);
-        sub_02006830(param0);
+        OverlayManager_FreeData(param0);
         SetMainCallback(NULL, NULL);
         Heap_Destroy(39);
         sub_02037B58(2);
@@ -736,7 +735,7 @@ static void ov58_021D16D8 (UnkStruct_02095EAC * param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov58_021D18AC (UnkStruct_02095EAC * param0, UnkStruct_020067E8 * param1)
+static void ov58_021D18AC (UnkStruct_02095EAC * param0, OverlayManager * param1)
 {
     BGL_AddWindow(param0->unk_00, &param0->unk_33C, 0, 2, 1, 27, 4, 13, 1 + (18 + 12) + 9);
     BGL_FillWindow(&param0->unk_33C, 0xf0f);

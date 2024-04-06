@@ -5,14 +5,12 @@
 
 #include "constants/pokemon.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "savedata.h"
 
 #include "constdata/const_020F410C.h"
 
-#include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/pokemon_summary_app.h"
 #include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_02099F80.h"
@@ -23,7 +21,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02006224.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
@@ -61,9 +59,9 @@
 #include "unk_02094EDC.h"
 #include "unk_020989DC.h"
 
-static int sub_0208C330(UnkStruct_020067E8 * param0, int * param1);
-static int sub_0208C488(UnkStruct_020067E8 * param0, int * param1);
-static int sub_0208C5A0(UnkStruct_020067E8 * param0, int * param1);
+static int sub_0208C330(OverlayManager * param0, int * param1);
+static int sub_0208C488(OverlayManager * param0, int * param1);
+static int sub_0208C5A0(OverlayManager * param0, int * param1);
 static int sub_0208C9C8(PokemonSummaryApp * param0);
 static int sub_0208CA00(PokemonSummaryApp * param0);
 static int sub_0208CB38(PokemonSummaryApp * param0);
@@ -128,7 +126,7 @@ static void sub_0208E794(PokemonSummaryApp * param0, s8 param1);
 u8 PokemonSummary_RibbonAt(PokemonSummaryApp * param0, u8 param1);
 static int sub_0208E958(PokemonSummaryApp * param0);
 
-const UnkStruct_0208BE5C Unk_020F410C = {
+const OverlayManagerTemplate Unk_020F410C = {
     sub_0208C330,
     sub_0208C488,
     sub_0208C5A0,
@@ -140,7 +138,7 @@ BOOL PokemonSummary_ShowContestData(SaveData * param0)
     return EventFlag_VisitedContestHall(SaveData_Events(param0));
 }
 
-static int sub_0208C330 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_0208C330 (OverlayManager * param0, int * param1)
 {
     PokemonSummaryApp * v0;
     NARC * v1;
@@ -161,11 +159,11 @@ static int sub_0208C330 (UnkStruct_020067E8 * param0, int * param1)
     Heap_Create(3, 19, 0x40000);
 
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PST_GRA, 19);
-    v0 = sub_0200681C(param0, sizeof(PokemonSummaryApp), 19);
+    v0 = OverlayManager_NewData(param0, sizeof(PokemonSummaryApp), 19);
 
     memset(v0, 0, sizeof(PokemonSummaryApp));
 
-    v0->data = sub_02006840(param0);
+    v0->data = OverlayManager_Args(param0);
     v0->bgl = sub_02018340(19);
     v0->monSpriteData.animationSys = sub_02015F84(19, 1, 1);
     v0->narcPlPokeData = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 19);
@@ -199,9 +197,9 @@ static int sub_0208C330 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static int sub_0208C488 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_0208C488 (OverlayManager * param0, int * param1)
 {
-    PokemonSummaryApp * v0 = sub_0200682C(param0);
+    PokemonSummaryApp * v0 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:
@@ -278,9 +276,9 @@ static int sub_0208C488 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-static int sub_0208C5A0 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_0208C5A0 (OverlayManager * param0, int * param1)
 {
-    PokemonSummaryApp * v0 = sub_0200682C(param0);
+    PokemonSummaryApp * v0 = OverlayManager_Data(param0);
 
     SetMainCallback(NULL, NULL);
     sub_020917B0(v0);
@@ -295,7 +293,7 @@ static int sub_0208C5A0 (UnkStruct_020067E8 * param0, int * param1)
 
     G2_BlendNone();
 
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(19);
 
     return 1;

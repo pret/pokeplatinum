@@ -8,7 +8,6 @@
 
 #include "constants/species.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/sys_task.h"
@@ -45,7 +44,7 @@
 
 #include "unk_02005474.h"
 #include "game_overlay.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
@@ -157,7 +156,7 @@ typedef struct UnkStruct_ov19_021D5DF8_t {
     BOOL unk_204;
     BOOL unk_208;
     int unk_20C;
-    UnkStruct_020067E8 * unk_210;
+    OverlayManager * unk_210;
     void * unk_214;
     u32 unk_218;
 } UnkStruct_ov19_021D5DF8;
@@ -280,17 +279,17 @@ static void ov19_021D5DD8(UnkStruct_ov19_021D4DF0 * param0);
 static u32 ov19_021D5FD0(UnkStruct_ov19_021D4DF0 * param0, int param1, void * param2);
 static u32 ov19_021D6014(UnkStruct_ov19_021D4DF0 * param0, int param1, void * param2);
 
-int ov19_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
+int ov19_021D0D80 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov19_021D5DF8 * v0;
 
     Heap_Create(3, 9, 16384);
     Heap_Create(3, 10, 245760);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov19_021D5DF8), 9);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov19_021D5DF8), 9);
 
     if (v0 != NULL) {
-        ov19_021D4BE0(v0, sub_02006840(param0));
+        ov19_021D4BE0(v0, OverlayManager_Args(param0));
         ov19_021D61B0(&(v0->unk_114), &v0->unk_00, v0);
 
         v0->unk_1B0 = 0;
@@ -302,9 +301,9 @@ int ov19_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov19_021D0DEC (UnkStruct_020067E8 * param0, int * param1)
+int ov19_021D0DEC (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov19_021D5DF8 * v0 = sub_0200682C(param0);
+    UnkStruct_ov19_021D5DF8 * v0 = OverlayManager_Data(param0);
 
     if (v0->unk_1AC != NULL) {
         v0->unk_1AC(v0, &(v0->unk_1B4));
@@ -327,9 +326,9 @@ int ov19_021D0DEC (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov19_021D0E58 (UnkStruct_020067E8 * param0, int * param1)
+int ov19_021D0E58 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov19_021D5DF8 * v0 = sub_0200682C(param0);
+    UnkStruct_ov19_021D5DF8 * v0 = OverlayManager_Data(param0);
 
     if (Party_HasSpecies(v0->unk_124, 441) == 0) {
         ChatotCry * v1 = GetChatotCryDataFromSave(v0->unk_11C);
@@ -2532,15 +2531,15 @@ static void ov19_021D3B34 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
             ov19_021D64A0(param0->unk_114);
             Heap_Destroy(10);
             sub_02079AF4(param0->unk_120, sub_0207999C(param0->unk_120), param0->unk_128->unk_18);
-            param0->unk_210 = sub_020067E8(&Unk_020F2DAC, param0->unk_128, 9);
+            param0->unk_210 = OverlayManager_New(&Unk_020F2DAC, param0->unk_128, 9);
             (*param1)++;
         }
         break;
     case 2:
-        if (sub_02006844(param0->unk_210)) {
+        if (OverlayManager_Exec(param0->unk_210)) {
             u32 v0 = sub_0207999C(param0->unk_120);
 
-            sub_02006814(param0->unk_210);
+            OverlayManager_Free(param0->unk_210);
             Heap_Create(3, 10, 245760);
             sub_02079B24(param0->unk_120, v0, param0->unk_128->unk_18);
 
@@ -2564,15 +2563,15 @@ static void ov19_021D3C28 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
             ov19_021D64A0(param0->unk_114);
             Heap_Destroy(10);
             ov19_021D1C84(param0);
-            param0->unk_210 = sub_020067E8(&Unk_020F410C, &(param0->unk_12C), 9);
+            param0->unk_210 = OverlayManager_New(&Unk_020F410C, &(param0->unk_12C), 9);
             (*param1)++;
         }
         break;
     case 2:
-        if (sub_02006844(param0->unk_210)) {
+        if (OverlayManager_Exec(param0->unk_210)) {
             u32 v0 = sub_0207999C(param0->unk_120);
 
-            sub_02006814(param0->unk_210);
+            OverlayManager_Free(param0->unk_210);
             Heap_Create(3, 10, 245760);
 
             if (ov19_021D5E38(&param0->unk_00) == 1) {
@@ -2631,15 +2630,15 @@ static void ov19_021D3D44 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
             param0->unk_214 = sub_0207D824(v2, v0, 9);
             sub_0207CB2C(param0->unk_214, param0->unk_11C, 1, NULL);
             Overlay_LoadByID(FS_OVERLAY_ID(overlay84), 2);
-            param0->unk_210 = sub_020067E8(&Unk_ov84_02241130, param0->unk_214, 9);
+            param0->unk_210 = OverlayManager_New(&Unk_ov84_02241130, param0->unk_214, 9);
             (*param1)++;
         }
         break;
     case 2:
-        if (sub_02006844(param0->unk_210)) {
+        if (OverlayManager_Exec(param0->unk_210)) {
             v1 = sub_0207CB94((UnkStruct_0207CB08 *)(param0->unk_214));
 
-            sub_02006814(param0->unk_210);
+            OverlayManager_Free(param0->unk_210);
             Heap_FreeToHeap(param0->unk_214);
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay84));
 

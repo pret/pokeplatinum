@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV98_02246E88_H
 #define POKEPLATINUM_STRUCT_OV98_02246E88_H
 
-#include "struct_decls/struct_020067E8_decl.h"
+#include "overlay_manager.h"
 #include "strbuf.h"
 #include "struct_defs/options.h"
 #include "savedata.h"
@@ -12,7 +12,7 @@
 #include <nnsys.h>
 
 typedef struct {
-    UnkStruct_020067E8 * unk_00;
+    OverlayManager * unk_00;
     SaveData * unk_04;
     Options * unk_08;
     void * unk_0C;

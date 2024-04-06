@@ -1,0 +1,93 @@
+{
+    "bg_events": [
+        {
+            "script": 4,
+            "type": 0,
+            "x": 11,
+            "y": 12,
+            "z": 0,
+            "player_facing_dir": 0
+        },
+        {
+            "script": 4,
+            "type": 0,
+            "x": 10,
+            "y": 12,
+            "z": 0,
+            "player_facing_dir": 0
+        },
+        {
+            "script": 4,
+            "type": 0,
+            "x": 12,
+            "y": 12,
+            "z": 0,
+            "player_facing_dir": 0
+        },
+        {
+            "script": 6,
+            "type": 0,
+            "x": 11,
+            "y": 14,
+            "z": 0,
+            "player_facing_dir": 4
+        }
+    ],
+    "object_events": [
+        {
+            "graphics_id": 160,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 592,
+            "script": 2,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 11,
+            "y": 14,
+            "z": 0
+        },
+        {
+            "graphics_id": 87,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 632,
+            "script": 3,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 11,
+            "y": 13,
+            "z": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "x": 11,
+            "y": 1,
+            "dest_header_id": 268,
+            "dest_warp_id": 2
+        },
+        {
+            "x": 20,
+            "y": 11,
+            "dest_header_id": 268,
+            "dest_warp_id": 3
+        },
+        {
+            "x": 11,
+            "y": 20,
+            "dest_header_id": 268,
+            "dest_warp_id": 0
+        },
+        {
+            "x": 2,
+            "y": 11,
+            "dest_header_id": 268,
+            "dest_warp_id": 1
+        }
+    ],
+    "coord_events": []
+}

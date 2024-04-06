@@ -2,7 +2,6 @@
 #include <string.h>
 #include <ppwlobby/ppw_lobby.h>
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/sys_task.h"
 #include "savedata.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
@@ -11,7 +10,7 @@
 #include "overlay066/struct_ov66_0222DCE0.h"
 
 #include "game_overlay.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "unk_0200D9E8.h"
 #include "unk_02017728.h"
 #include "heap.h"
@@ -31,7 +30,7 @@ typedef struct {
 
 static void ov66_0222DDDC(SysTask * param0, void * param1);
 
-int ov66_0222DCE0 (UnkStruct_020067E8 * param0, int * param1)
+int ov66_0222DCE0 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov66_0222DD90 * v0;
     UnkStruct_ov66_0222DCE0 * v1;
@@ -45,10 +44,10 @@ int ov66_0222DCE0 (UnkStruct_020067E8 * param0, int * param1)
 
     Heap_Create(3, 104, 0x5000);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov66_0222DD90), 104);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov66_0222DD90), 104);
     memset(v0, 0, sizeof(UnkStruct_ov66_0222DD90));
 
-    v1 = sub_02006840(param0);
+    v1 = OverlayManager_Args(param0);
 
     v0->unk_00 = v1->unk_04;
     v0->unk_04 = ov66_0222DDF0(v0->unk_00, 104);
@@ -64,12 +63,12 @@ int ov66_0222DCE0 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov66_0222DD6C (UnkStruct_020067E8 * param0, int * param1)
+int ov66_0222DD6C (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov66_0222DD90 * v0;
     int v1;
 
-    v0 = sub_0200682C(param0);
+    v0 = OverlayManager_Data(param0);
     v1 = ov66_02230CB8(v0->unk_08);
 
     ov66_0222DF58(v0->unk_04);
@@ -81,11 +80,11 @@ int ov66_0222DD6C (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov66_0222DD90 (UnkStruct_020067E8 * param0, int * param1)
+int ov66_0222DD90 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov66_0222DD90 * v0;
 
-    v0 = sub_0200682C(param0);
+    v0 = OverlayManager_Data(param0);
 
     SysTask_Done(v0->unk_0C);
     SetMainCallback(NULL, NULL);
@@ -94,7 +93,7 @@ int ov66_0222DD90 (UnkStruct_020067E8 * param0, int * param1)
     ov66_02230C90(v0->unk_08);
     ov66_0222DEEC(v0->unk_04);
 
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(104);
 
     {

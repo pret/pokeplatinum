@@ -1,0 +1,263 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "graphics_id": 4,
+            "movement_type": 3,
+            "trainer_type": 0,
+            "flag": 0,
+            "script": 4,
+            "initial_dir": 2,
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_y": 1,
+            "x": 187,
+            "y": 855,
+            "z": 1
+        },
+        {
+            "graphics_id": 9,
+            "movement_type": 2,
+            "trainer_type": 0,
+            "flag": 0,
+            "script": 5,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 2,
+            "movement_range_y": 0,
+            "x": 171,
+            "y": 854,
+            "z": 1
+        },
+        {
+            "graphics_id": 12,
+            "movement_type": 8,
+            "trainer_type": 0,
+            "flag": 0,
+            "script": 6,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 183,
+            "y": 852,
+            "z": 1
+        },
+        {
+            "graphics_id": 148,
+            "movement_type": 15,
+            "trainer_type": 0,
+            "flag": 407,
+            "script": 0,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 168,
+            "y": 842,
+            "z": 1
+        },
+        {
+            "graphics_id": 101,
+            "movement_type": 16,
+            "trainer_type": 0,
+            "flag": 375,
+            "script": 10300,
+            "initial_dir": 2,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 168,
+            "y": 845,
+            "z": 1
+        },
+        {
+            "graphics_id": 93,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 0,
+            "script": 9,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 165,
+            "y": 843,
+            "z": 0
+        },
+        {
+            "graphics_id": 93,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 0,
+            "script": 10,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 174,
+            "y": 854,
+            "z": 0
+        },
+        {
+            "graphics_id": 91,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 0,
+            "script": 8,
+            "initial_dir": 0,
+            "data": [2],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 182,
+            "y": 854,
+            "z": 0
+        },
+        {
+            "local_id": 2,
+            "graphics_id": 94,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 391,
+            "script": 65535,
+            "initial_dir": 0,
+            "data": [4],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 179,
+            "y": 866,
+            "z": 0
+        },
+        {
+            "local_id": 4,
+            "graphics_id": 94,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 343,
+            "script": 65535,
+            "initial_dir": 0,
+            "data": [4],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 183,
+            "y": 825,
+            "z": 0
+        },
+        {
+            "local_id": 4,
+            "graphics_id": 94,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 342,
+            "script": 65535,
+            "initial_dir": 0,
+            "data": [1],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 151,
+            "y": 843,
+            "z": 0
+        },
+        {
+            "local_id": 9,
+            "graphics_id": 3,
+            "movement_type": 16,
+            "trainer_type": 0,
+            "flag": 342,
+            "script": 65535,
+            "initial_dir": 2,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 153,
+            "y": 847,
+            "z": 0
+        },
+        {
+            "graphics_id": 93,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 0,
+            "script": 12,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 180,
+            "y": 842,
+            "z": 0
+        },
+        {
+            "graphics_id": 93,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 0,
+            "script": 11,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 185,
+            "y": 842,
+            "z": 0
+        },
+        {
+            "graphics_id": 99,
+            "movement_type": 15,
+            "trainer_type": 0,
+            "flag": 708,
+            "script": 0,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 168,
+            "y": 842,
+            "z": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "x": 187,
+            "y": 842,
+            "dest_header_id": 419,
+            "dest_warp_id": 0
+        },
+        {
+            "x": 177,
+            "y": 842,
+            "dest_header_id": 420,
+            "dest_warp_id": 0
+        },
+        {
+            "x": 168,
+            "y": 842,
+            "dest_header_id": 422,
+            "dest_warp_id": 0
+        },
+        {
+            "x": 176,
+            "y": 854,
+            "dest_header_id": 423,
+            "dest_warp_id": 0
+        },
+        {
+            "x": 167,
+            "y": 854,
+            "dest_header_id": 425,
+            "dest_warp_id": 0
+        }
+    ],
+    "coord_events": [
+        {
+            "script": 2,
+            "x": 164,
+            "y": 842,
+            "width": 1,
+            "length": 6,
+            "z": 0,
+            "value": 0,
+            "var": 16497
+        }
+    ]
+}

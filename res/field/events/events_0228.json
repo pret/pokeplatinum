@@ -1,0 +1,13 @@
+{
+    "bg_events": [],
+    "object_events": [],
+    "warp_events": [
+        {
+            "x": 4,
+            "y": 3,
+            "dest_header_id": 238,
+            "dest_warp_id": 3
+        }
+    ],
+    "coord_events": []
+}

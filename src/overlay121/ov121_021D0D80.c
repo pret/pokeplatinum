@@ -3,7 +3,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020203AC_decl.h"
@@ -17,7 +16,7 @@
 
 #include "unk_02002328.h"
 #include "unk_02005474.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "narc.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200F174.h"
@@ -62,7 +61,7 @@ static void ov121_021D128C(void);
 static void ov121_021D1310(GenericPointerData * param0);
 static void ov121_021D1318(UnkStruct_ov121_021D0FF4 * param0);
 
-int ov121_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
+int ov121_021D0D80 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov121_021D0FF4 * v0;
 
@@ -80,7 +79,7 @@ int ov121_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     Heap_Create(3, 30, 0x50000);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov121_021D0FF4), 30);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov121_021D0FF4), 30);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov121_021D0FF4));
     v0->unk_00 = ov121_021D1270(30);
 
@@ -107,9 +106,9 @@ int ov121_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov121_021D0E7C (UnkStruct_020067E8 * param0, int * param1)
+int ov121_021D0E7C (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov121_021D0FF4 * v0 = sub_0200682C(param0);
+    UnkStruct_ov121_021D0FF4 * v0 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:
@@ -145,9 +144,9 @@ int ov121_021D0E7C (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov121_021D0F14 (UnkStruct_020067E8 * param0, int * param1)
+int ov121_021D0F14 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov121_021D0FF4 * v0 = sub_0200682C(param0);
+    UnkStruct_ov121_021D0FF4 * v0 = OverlayManager_Data(param0);
 
     SysTask_Done(v0->unk_08);
 
@@ -161,7 +160,7 @@ int ov121_021D0F14 (UnkStruct_020067E8 * param0, int * param1)
     sub_02002AC8(0);
     sub_02002AE4(0);
     sub_02002B20(0);
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(30);
 
     return 1;

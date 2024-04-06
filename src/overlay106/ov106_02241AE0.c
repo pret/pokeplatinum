@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
@@ -34,7 +33,7 @@
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "game_overlay.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
@@ -74,8 +73,8 @@
 FS_EXTERN_OVERLAY(overlay104);
 
 struct UnkStruct_ov106_02243118_t {
-    UnkStruct_020067E8 * unk_00;
-    UnkStruct_020067E8 * unk_04;
+    OverlayManager * unk_00;
+    OverlayManager * unk_04;
     u8 unk_08;
     u8 unk_09;
     u8 unk_0A;
@@ -128,9 +127,9 @@ struct UnkStruct_ov106_02243118_t {
     u32 unk_2FC;
 };
 
-int ov106_02241AE0(UnkStruct_020067E8 * param0, int * param1);
-int ov106_02241B9C(UnkStruct_020067E8 * param0, int * param1);
-int ov106_02241CF0(UnkStruct_020067E8 * param0, int * param1);
+int ov106_02241AE0(OverlayManager * param0, int * param1);
+int ov106_02241B9C(OverlayManager * param0, int * param1);
+int ov106_02241CF0(OverlayManager * param0, int * param1);
 static BOOL ov106_02241D28(UnkStruct_ov106_02243118 * param0);
 static BOOL ov106_02241E14(UnkStruct_ov106_02243118 * param0);
 static void ov106_02241DD4(UnkStruct_ov106_02243118 * param0);
@@ -196,7 +195,7 @@ static const u8 Unk_ov106_02243798[] = {
     0x8
 };
 
-int ov106_02241AE0 (UnkStruct_020067E8 * param0, int * param1)
+int ov106_02241AE0 (OverlayManager * param0, int * param1)
 {
     int v0;
     UnkStruct_ov106_02243118 * v1;
@@ -206,13 +205,13 @@ int ov106_02241AE0 (UnkStruct_020067E8 * param0, int * param1)
     ov106_022424C8();
     Heap_Create(3, 98, 0x20000);
 
-    v1 = sub_0200681C(param0, sizeof(UnkStruct_ov106_02243118), 98);
+    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov106_02243118), 98);
     memset(v1, 0, sizeof(UnkStruct_ov106_02243118));
 
     v1->unk_48 = sub_02018340(98);
     v1->unk_00 = param0;
 
-    v2 = (UnkStruct_ov104_02235208 *)sub_02006840(param0);
+    v2 = (UnkStruct_ov104_02235208 *)OverlayManager_Args(param0);
 
     v1->unk_B8 = v2->unk_00;
     v1->unk_09 = v2->unk_04;
@@ -238,9 +237,9 @@ int ov106_02241AE0 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov106_02241B9C (UnkStruct_020067E8 * param0, int * param1)
+int ov106_02241B9C (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov106_02243118 * v0 = sub_0200682C(param0);
+    UnkStruct_ov106_02243118 * v0 = OverlayManager_Data(param0);
 
     if (v0->unk_18 != 0xff) {
         switch (*param1) {
@@ -318,16 +317,16 @@ int ov106_02241B9C (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov106_02241CF0 (UnkStruct_020067E8 * param0, int * param1)
+int ov106_02241CF0 (OverlayManager * param0, int * param1)
 {
     int v0;
-    UnkStruct_ov106_02243118 * v1 = sub_0200682C(param0);
+    UnkStruct_ov106_02243118 * v1 = OverlayManager_Data(param0);
 
     *(v1->unk_28C) = v1->unk_0D;
 
     ov106_022423E8(v1);
 
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     SetMainCallback(NULL, NULL);
     Heap_Destroy(98);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay104));
@@ -392,7 +391,7 @@ static BOOL ov106_02241E14 (UnkStruct_ov106_02243118 * param0)
     switch (param0->unk_08) {
     case 0:
 
-        if (sub_02006844(param0->unk_04) == 1) {
+        if (OverlayManager_Exec(param0->unk_04) == 1) {
             param0->unk_288 = param0->unk_BC->pos;
             Heap_FreeToHeap(param0->unk_BC);
             Heap_FreeToHeap(param0->unk_04);
@@ -528,7 +527,7 @@ static BOOL ov106_02241E5C (UnkStruct_ov106_02243118 * param0)
         if (ScreenWipe_Done() == 1) {
             ov106_02242CA4(param0);
             ov106_022423E8(param0);
-            param0->unk_04 = sub_020067E8(&Unk_020F410C, param0->unk_BC, 98);
+            param0->unk_04 = OverlayManager_New(&Unk_020F410C, param0->unk_BC, 98);
             param0->unk_0B = 1;
             return 1;
         }

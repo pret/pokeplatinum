@@ -4,7 +4,6 @@
 #include "core_sys.h"
 #include "enums.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
@@ -31,7 +30,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
@@ -185,7 +184,7 @@ static const struct {
     {0x1F, 0x2B, 0x2C, 0x2D, 0x2E}
 };
 
-int ov117_02260668 (UnkStruct_020067E8 * param0, int * param1)
+int ov117_02260668 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov117_02261280 * v0;
 
@@ -199,12 +198,12 @@ int ov117_02260668 (UnkStruct_020067E8 * param0, int * param1)
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_ALL, 16, 16);
     G2S_SetBlendAlpha((GX_BLEND_PLANEMASK_BG3), (GX_BLEND_BGALL | GX_BLEND_PLANEMASK_OBJ), 13, 3);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov117_02261280), 110);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov117_02261280), 110);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov117_02261280));
     Heap_FndInitAllocatorForExpHeap(&v0->unk_A8, 110, 32);
 
     v0->unk_98 = ov117_02260E14(110);
-    v0->unk_00 = sub_02006840(param0);
+    v0->unk_00 = OverlayManager_Args(param0);
     ov117_022665FC(v0);
     v0->unk_8C = sub_02002F38(110);
 
@@ -298,9 +297,9 @@ int ov117_02260668 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov117_0226098C (UnkStruct_020067E8 * param0, int * param1)
+int ov117_0226098C (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov117_02261280 * v0 = sub_0200682C(param0);
+    UnkStruct_ov117_02261280 * v0 = OverlayManager_Data(param0);
     int v1;
 
     if (v0->unk_00->unk_3D == 1) {
@@ -431,9 +430,9 @@ int ov117_0226098C (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov117_02260C10 (UnkStruct_020067E8 * param0, int * param1)
+int ov117_02260C10 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov117_02261280 * v0 = sub_0200682C(param0);
+    UnkStruct_ov117_02261280 * v0 = OverlayManager_Data(param0);
     int v1;
 
     v0->unk_00->unk_10.unk_14 = v0->unk_2FD0;
@@ -486,7 +485,7 @@ int ov117_02260C10 (UnkStruct_020067E8 * param0, int * param1)
 
     ov117_02260EB8(v0->unk_98);
     sub_0201E530();
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     sub_02002AC8(0);
     sub_02002AE4(0);
     sub_02002B20(0);

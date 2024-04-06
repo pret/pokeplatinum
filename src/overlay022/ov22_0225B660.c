@@ -3,7 +3,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
@@ -19,7 +18,7 @@
 #include "overlay022/struct_ov22_0225AF8C.h"
 
 #include "unk_02002B7C.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "unk_02006E3C.h"
 #include "message.h"
 #include "unk_0200B358.h"
@@ -61,7 +60,7 @@ static void ov22_0225BAD0(UnkStruct_ov22_0225B85C * param0);
 static void ov22_0225BB00(UnkStruct_ov22_0225B85C * param0);
 static void ov22_0225BC18(UnkStruct_ov22_0225B85C * param0);
 
-int ov22_0225B660 (UnkStruct_020067E8 * param0, int * param1)
+int ov22_0225B660 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov22_0225B85C * v0;
     UnkStruct_02041DC8 * v1;
@@ -69,13 +68,13 @@ int ov22_0225B660 (UnkStruct_020067E8 * param0, int * param1)
     Heap_Create(3, 13, 0x20000);
     Heap_Create(3, 14, 0x40000);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov22_0225B85C), 13);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov22_0225B85C), 13);
     memset(v0, 0, sizeof(UnkStruct_ov22_0225B85C));
 
     SetMainCallback(ov22_0225B848, v0);
     DisableHBlank();
 
-    v1 = sub_02006840(param0);
+    v1 = OverlayManager_Args(param0);
 
     if (v1->unk_08 == 0) {
         v0->unk_00 = sub_02029CA8(v1->unk_00, v1->unk_04);
@@ -115,9 +114,9 @@ int ov22_0225B660 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov22_0225B738 (UnkStruct_020067E8 * param0, int * param1)
+int ov22_0225B738 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov22_0225B85C * v0 = sub_0200682C(param0);
+    UnkStruct_ov22_0225B85C * v0 = OverlayManager_Data(param0);
 
     {
         sub_020241B4();
@@ -161,9 +160,9 @@ int ov22_0225B738 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov22_0225B7FC (UnkStruct_020067E8 * param0, int * param1)
+int ov22_0225B7FC (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov22_0225B85C * v0 = sub_0200682C(param0);
+    UnkStruct_ov22_0225B85C * v0 = OverlayManager_Data(param0);
 
     ov22_0225B020(v0->unk_10);
     ov22_0225BA00(v0);
@@ -173,7 +172,7 @@ int ov22_0225B7FC (UnkStruct_020067E8 * param0, int * param1)
 
     SetMainCallback(NULL, NULL);
     DisableHBlank();
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(13);
     Heap_Destroy(14);
 

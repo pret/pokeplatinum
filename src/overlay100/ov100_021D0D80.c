@@ -3,7 +3,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"
@@ -18,7 +17,7 @@
 
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "narc.h"
 #include "message.h"
 #include "unk_0200C6E4.h"
@@ -50,15 +49,15 @@ static void ov100_021D111C(UnkStruct_ov100_021D46C8 * param0);
 static void ov100_021D1208(BGL * param0);
 static void ov100_021D13B4(void * param0);
 
-int ov100_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
+int ov100_021D0D80 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov100_021D4DD8 * v0;
 
     Heap_Create(3, 111, 0xC0000);
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov100_021D4DD8), 111);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov100_021D4DD8), 111);
     memset(v0, 0, sizeof(UnkStruct_ov100_021D4DD8));
-    v0->unk_D0 = sub_02006840(param0);
+    v0->unk_D0 = OverlayManager_Args(param0);
 
     ov100_021D1034(&v0->unk_0C);
     sub_0200F174(0, 1, 1, 0x0, 6 * 2, 1, 111);
@@ -101,9 +100,9 @@ static const struct {
     {ov100_021D2340, ov100_021D2428, ov100_021D2C8C},
 };
 
-int ov100_021D0EA8 (UnkStruct_020067E8 * param0, int * param1)
+int ov100_021D0EA8 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov100_021D4DD8 * v0 = sub_0200682C(param0);
+    UnkStruct_ov100_021D4DD8 * v0 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:
@@ -149,11 +148,11 @@ int ov100_021D0EA8 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov100_021D0F44 (UnkStruct_020067E8 * param0, int * param1)
+int ov100_021D0F44 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov100_021D4DD8 * v0;
 
-    v0 = sub_0200682C(param0);
+    v0 = OverlayManager_Data(param0);
 
     SetMainCallback(NULL, NULL);
     DisableHBlank();
@@ -165,7 +164,7 @@ int ov100_021D0F44 (UnkStruct_020067E8 * param0, int * param1)
     gCoreSys.unk_65 = 0;
 
     GXLayers_SwapDisplay();
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(111);
     sub_02005454(0);
 

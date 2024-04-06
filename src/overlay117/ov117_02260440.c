@@ -2,13 +2,11 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "struct_decls/struct_020067E8_decl.h"
 
-#include "struct_defs/struct_0208BE5C.h"
 #include "overlay117/struct_ov117_02260440.h"
 #include "overlay117/struct_ov117_022605C0.h"
 
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "heap.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -20,14 +18,14 @@
 #include "overlay117/ov117_02260668.h"
 #include "overlay117/ov117_02266498.h"
 
-static const UnkStruct_0208BE5C Unk_ov117_022668F8 = {
+static const OverlayManagerTemplate Unk_ov117_022668F8 = {
     ov117_02260668,
     ov117_0226098C,
     ov117_02260C10,
     0xFFFFFFFF
 };
 
-static const UnkStruct_0208BE5C Unk_ov117_02266908 = {
+static const OverlayManagerTemplate Unk_ov117_02266908 = {
     ov117_02266498,
     ov117_022664BC,
     ov117_022665E8,
@@ -37,24 +35,24 @@ static const UnkStruct_0208BE5C Unk_ov117_02266908 = {
 static void ov117_022605D8(UnkStruct_ov117_022605C0 * param0, UnkStruct_ov117_02260440 * param1);
 static BOOL ov117_02260630(UnkStruct_ov117_022605C0 * param0);
 
-int ov117_02260440 (UnkStruct_020067E8 * param0, int * param1)
+int ov117_02260440 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov117_02260440 * v0 = sub_02006840(param0);
+    UnkStruct_ov117_02260440 * v0 = OverlayManager_Args(param0);
     UnkStruct_ov117_022605C0 * v1;
 
     Heap_Create(3, 110, 0x60000);
 
-    v1 = sub_0200681C(param0, sizeof(UnkStruct_ov117_022605C0), 110);
+    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov117_022605C0), 110);
     MI_CpuClear8(v1, sizeof(UnkStruct_ov117_022605C0));
     ov117_022605D8(v1, v0);
 
     return 1;
 }
 
-int ov117_02260474 (UnkStruct_020067E8 * param0, int * param1)
+int ov117_02260474 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov117_022605C0 * v0 = sub_0200682C(param0);
-    UnkStruct_ov117_02260440 * v1 = sub_02006840(param0);
+    UnkStruct_ov117_022605C0 * v0 = OverlayManager_Data(param0);
+    UnkStruct_ov117_02260440 * v1 = OverlayManager_Args(param0);
 
     if (ov117_02260630(v0) == 1) {
         return 1;
@@ -63,24 +61,24 @@ int ov117_02260474 (UnkStruct_020067E8 * param0, int * param1)
     switch (*param1) {
     case 0:
         v0->unk_31 = 0;
-        v0->unk_28 = sub_020067E8(&Unk_ov117_02266908, v0, 110);
+        v0->unk_28 = OverlayManager_New(&Unk_ov117_02266908, v0, 110);
         (*param1)++;
         break;
     case 1:
-        if (sub_02006844(v0->unk_28) == 1) {
-            sub_02006814(v0->unk_28);
+        if (OverlayManager_Exec(v0->unk_28) == 1) {
+            OverlayManager_Free(v0->unk_28);
             v0->unk_28 = NULL;
             (*param1)++;
         }
         break;
     case 2:
         v0->unk_31 = 1;
-        v0->unk_28 = sub_020067E8(&Unk_ov117_022668F8, v0, 110);
+        v0->unk_28 = OverlayManager_New(&Unk_ov117_022668F8, v0, 110);
         (*param1)++;
         break;
     case 3:
-        if (sub_02006844(v0->unk_28) == 1) {
-            sub_02006814(v0->unk_28);
+        if (OverlayManager_Exec(v0->unk_28) == 1) {
+            OverlayManager_Free(v0->unk_28);
             v0->unk_28 = NULL;
             (*param1)++;
         }
@@ -91,12 +89,12 @@ int ov117_02260474 (UnkStruct_020067E8 * param0, int * param1)
         }
 
         v0->unk_31 = 2;
-        v0->unk_28 = sub_020067E8(&Unk_ov117_02266908, v0, 110);
+        v0->unk_28 = OverlayManager_New(&Unk_ov117_02266908, v0, 110);
         (*param1)++;
         break;
     case 5:
-        if (sub_02006844(v0->unk_28) == 1) {
-            sub_02006814(v0->unk_28);
+        if (OverlayManager_Exec(v0->unk_28) == 1) {
+            OverlayManager_Free(v0->unk_28);
             v0->unk_28 = NULL;
 
             if (v0->unk_38 == 1) {
@@ -125,11 +123,11 @@ int ov117_02260474 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov117_022605C0 (UnkStruct_020067E8 * param0, int * param1)
+int ov117_022605C0 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov117_022605C0 * v0 = sub_0200682C(param0);
+    UnkStruct_ov117_022605C0 * v0 = OverlayManager_Data(param0);
 
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(110);
 
     return 1;

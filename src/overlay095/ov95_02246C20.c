@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -24,7 +23,7 @@
 
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
@@ -135,7 +134,7 @@ static const struct {
     {ov95_0224B3D8, ov95_0224B49C, ov95_0224B438, 1 | 4},
 };
 
-int ov95_02246C20 (UnkStruct_020067E8 * param0, int * param1)
+int ov95_02246C20 (OverlayManager * param0, int * param1)
 {
     if (ScreenWipe_Done()) {
         UnkStruct_ov95_02247628 * v0;
@@ -145,10 +144,10 @@ int ov95_02246C20 (UnkStruct_020067E8 * param0, int * param1)
         ov95_02247688();
         sub_02004550(3, 1170, 1);
 
-        v0 = sub_0200681C(param0, sizeof(UnkStruct_ov95_02247628), 57);
+        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov95_02247628), 57);
 
         if (v0) {
-            v0->unk_00 = sub_02006840(param0);
+            v0->unk_00 = OverlayManager_Args(param0);
             v0->unk_04 = 0;
             v0->unk_08 = sub_02018340(57);
             v0->unk_14 = Strbuf_Init(400, 57);
@@ -209,13 +208,13 @@ static BOOL ov95_02246DEC (BoxPokemon * param0)
     return PokemonPersonalData_GetFormValue(v0, v1, 28) == 0;
 }
 
-int ov95_02246E1C (UnkStruct_020067E8 * param0, int * param1)
+int ov95_02246E1C (OverlayManager * param0, int * param1)
 {
     OSIntrMode v0;
     UnkStruct_ov95_02247628 * v1;
 
     v0 = OS_DisableInterrupts();
-    v1 = sub_0200682C(param0);
+    v1 = OverlayManager_Data(param0);
 
     SysTask_Done(v1->unk_1A8);
     sub_02039794();
@@ -225,7 +224,7 @@ int ov95_02246E1C (UnkStruct_020067E8 * param0, int * param1)
     Heap_FreeToHeap(v1->unk_08);
     sub_02021964(v1->unk_18);
     sub_0200A878();
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(57);
     Heap_Destroy(58);
 
@@ -234,9 +233,9 @@ int ov95_02246E1C (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov95_02246E7C (UnkStruct_020067E8 * param0, int * param1)
+int ov95_02246E7C (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov95_02247628 * v0 = sub_0200682C(param0);
+    UnkStruct_ov95_02247628 * v0 = OverlayManager_Data(param0);
 
     if (v0->unk_04 < NELEMS(Unk_ov95_0224BE8C)) {
         if (Unk_ov95_0224BE8C[v0->unk_04].unk_0C & v0->unk_00->unk_10) {

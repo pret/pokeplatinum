@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_020067E8_decl.h"
+#include "overlay_manager.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "message.h"
@@ -63,7 +63,7 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     void * unk_4C;
     NNSFndHeapHandle unk_50;
     DWCInetControl unk_54;
-    UnkStruct_020067E8 * unk_B4;
+    OverlayManager * unk_B4;
     PokemonSummary unk_B8;
     UnkStruct_ov6_02246254 unk_E8;
     UnkStruct_0207AE68 * unk_100;

@@ -1,0 +1,125 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "graphics_id": 133,
+            "movement_type": 15,
+            "trainer_type": 0,
+            "flag": 0,
+            "script": 4,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 11,
+            "y": 3,
+            "z": 0
+        },
+        {
+            "graphics_id": 14,
+            "movement_type": 17,
+            "trainer_type": 1,
+            "flag": 0,
+            "script": 3284,
+            "initial_dir": 3,
+            "data": [3],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 4,
+            "y": 23,
+            "z": 0
+        },
+        {
+            "graphics_id": 10,
+            "movement_type": 15,
+            "trainer_type": 1,
+            "flag": 0,
+            "script": 3301,
+            "initial_dir": 1,
+            "data": [2],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 3,
+            "y": 3,
+            "z": 0
+        },
+        {
+            "graphics_id": 10,
+            "movement_type": 45,
+            "trainer_type": 1,
+            "flag": 0,
+            "script": 3302,
+            "initial_dir": 1,
+            "data": [2],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 16,
+            "y": 23,
+            "z": 0
+        },
+        {
+            "graphics_id": 11,
+            "movement_type": 16,
+            "trainer_type": 1,
+            "flag": 0,
+            "script": 3280,
+            "initial_dir": 2,
+            "data": [1],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 21,
+            "y": 10,
+            "z": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "x": 11,
+            "y": 25,
+            "dest_header_id": 155,
+            "dest_warp_id": 1
+        }
+    ],
+    "coord_events": [
+        {
+            "script": 2,
+            "x": 6,
+            "y": 8,
+            "width": 1,
+            "length": 1,
+            "z": 0,
+            "value": 0,
+            "var": 16384
+        },
+        {
+            "script": 2,
+            "x": 16,
+            "y": 13,
+            "width": 1,
+            "length": 1,
+            "z": 0,
+            "value": 0,
+            "var": 16384
+        },
+        {
+            "script": 3,
+            "x": 6,
+            "y": 18,
+            "width": 1,
+            "length": 1,
+            "z": 0,
+            "value": 0,
+            "var": 16384
+        },
+        {
+            "script": 3,
+            "x": 16,
+            "y": 18,
+            "width": 1,
+            "length": 1,
+            "z": 0,
+            "value": 0,
+            "var": 16384
+        }
+    ]
+}

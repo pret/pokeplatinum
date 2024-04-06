@@ -1,16 +1,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_0207CB08_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
 
 #include "overlay084/const_ov84_02241130.h"
 
-#include "struct_defs/struct_0208BE5C.h"
 #include "overlay083/struct_ov83_0223C344.h"
 
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "heap.h"
 #include "unk_0207CB08.h"
 #include "item.h"
@@ -29,9 +27,9 @@ static int ov82_0223B380(UnkStruct_ov83_0223C344 * param0);
 static int ov82_0223B3DC(UnkStruct_ov83_0223C344 * param0);
 static int ov82_0223B470(UnkStruct_ov83_0223C344 * param0);
 static int ov82_0223B510(UnkStruct_ov83_0223C344 * param0);
-int ov83_0223B5B0(UnkStruct_020067E8 * param0, int * param1);
-int ov83_0223B65C(UnkStruct_020067E8 * param0, int * param1);
-int ov83_0223B710(UnkStruct_020067E8 * param0, int * param1);
+int ov83_0223B5B0(OverlayManager * param0, int * param1);
+int ov83_0223B65C(OverlayManager * param0, int * param1);
+int ov83_0223B710(OverlayManager * param0, int * param1);
 
 int ov82_0223B2E0 (UnkStruct_ov83_0223C344 * param0, int * param1)
 {
@@ -61,14 +59,14 @@ int ov82_0223B330 (UnkStruct_ov83_0223C344 * param0, int * param1)
 {
     FS_EXTERN_OVERLAY(overlay83);
 
-    const UnkStruct_0208BE5C v0 = {
+    const OverlayManagerTemplate v0 = {
         ov83_0223B5B0,
         ov83_0223B65C,
         ov83_0223B710,
         FS_OVERLAY_ID(overlay83)
     };
 
-    param0->unk_1C = sub_020067E8(&v0, param0, param0->unk_00);
+    param0->unk_1C = OverlayManager_New(&v0, param0, param0->unk_00);
     return 2;
 }
 
@@ -97,7 +95,7 @@ static int ov82_0223B380 (UnkStruct_ov83_0223C344 * param0)
 
     FS_EXTERN_OVERLAY(overlay84);
 
-    const UnkStruct_0208BE5C Unk_ov84_02241130 = {
+    const OverlayManagerTemplate Unk_ov84_02241130 = {
         ov84_0223B5A0, ov84_0223B76C, ov84_0223B900, FS_OVERLAY_ID(overlay84)
     };
     static const u8 v3[] = {
@@ -114,7 +112,7 @@ static int ov82_0223B380 (UnkStruct_ov83_0223C344 * param0)
 
     sub_0207CB2C(v0, param0->unk_10->unk_0C, v1, param0->unk_0C);
 
-    param0->unk_1C = sub_020067E8(&Unk_ov84_02241130, v0, param0->unk_00);
+    param0->unk_1C = OverlayManager_New(&Unk_ov84_02241130, v0, param0->unk_00);
     param0->unk_18 = v0;
 
     return 1;
@@ -168,7 +166,7 @@ static int ov82_0223B470 (UnkStruct_ov83_0223C344 * param0)
 
     FS_EXTERN_OVERLAY(overlay85);
 
-    const UnkStruct_0208BE5C v6 = {
+    const OverlayManagerTemplate v6 = {
         ov85_02241440, ov85_0224154C, ov85_022415A0, FS_OVERLAY_ID(overlay85)
     };
 
@@ -189,7 +187,7 @@ static int ov82_0223B470 (UnkStruct_ov83_0223C344 * param0)
     sub_0207D9B4(param0->unk_0C, 4, &v2, &v1);
     sub_0209733C(param0->unk_18, v1, v2, v3 + 2);
 
-    param0->unk_1C = sub_020067E8(&v6, param0->unk_18, param0->unk_00);
+    param0->unk_1C = OverlayManager_New(&v6, param0->unk_18, param0->unk_00);
     return 3;
 }
 

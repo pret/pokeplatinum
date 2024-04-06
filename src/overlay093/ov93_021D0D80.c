@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
 
@@ -10,7 +9,7 @@
 #include "overlay009/struct_ov9_02249FF4.h"
 
 #include "unk_02005474.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "narc.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -82,7 +81,7 @@ static UnkStruct_ov93_021D15A0 Unk_ov93_021D15A0[4] = {
     }
 };
 
-int ov93_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
+int ov93_021D0D80 (OverlayManager * param0, int * param1)
 {
     u8 v0;
     UnkStruct_ov93_021D102C * v1;
@@ -90,9 +89,9 @@ int ov93_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     Heap_Create(3, 72, 0x20000);
 
-    v1 = sub_0200681C(param0, sizeof(UnkStruct_ov93_021D102C), 72);
+    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov93_021D102C), 72);
     memset(v1, 0, sizeof(UnkStruct_ov93_021D102C));
-    v2 = sub_02006840(param0);
+    v2 = OverlayManager_Args(param0);
 
     v1->unk_9C = v2->unk_00;
     v1->unk_9D = 0;
@@ -121,7 +120,7 @@ int ov93_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-int ov93_021D0E70 (UnkStruct_020067E8 * param0, int * param1)
+int ov93_021D0E70 (OverlayManager * param0, int * param1)
 {
     u8 v0;
     BOOL v1;
@@ -146,7 +145,7 @@ int ov93_021D0E70 (UnkStruct_020067E8 * param0, int * param1)
         0,
         0
     };
-    UnkStruct_ov93_021D102C * v5 = sub_0200682C(param0);
+    UnkStruct_ov93_021D102C * v5 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:
@@ -181,10 +180,10 @@ int ov93_021D0E70 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov93_021D0F58 (UnkStruct_020067E8 * param0, int * param1)
+int ov93_021D0F58 (OverlayManager * param0, int * param1)
 {
     u8 v0;
-    UnkStruct_ov93_021D102C * v1 = sub_0200682C(param0);
+    UnkStruct_ov93_021D102C * v1 = OverlayManager_Data(param0);
 
     for (v0 = 0; v0 < 4; v0++) {
         NNS_G3dFreeAnmObj(&v1->unk_70, v1->unk_80[v0]);
@@ -193,7 +192,7 @@ int ov93_021D0F58 (UnkStruct_020067E8 * param0, int * param1)
 
     Heap_FreeToHeap(v1->unk_5C);
     sub_020203B8(v1->unk_00);
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     sub_0201CBA0();
     Heap_Destroy(72);
 

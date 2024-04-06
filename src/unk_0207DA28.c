@@ -7,7 +7,6 @@
 
 #include "field/field_system.h"
 #include "struct_defs/struct_0207DE04.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "overlay066/struct_ov66_02231134.h"
 #include "overlay098/struct_ov98_02247168.h"
 #include "overlay115/struct_ov115_02260440.h"
@@ -63,14 +62,14 @@ static UnkStruct_ov117_02260440 * sub_0207DF40(FieldSystem * param0, u32 param1,
 static void sub_0207DF88(UnkStruct_ov115_02260440 * param0);
 static void sub_0207DF9C(FieldSystem * param0);
 
-static const UnkStruct_0208BE5C Unk_020F1B98 = {
+static const OverlayManagerTemplate Unk_020F1B98 = {
     ov65_0222E2A8,
     ov65_0222E3FC,
     ov65_0222E548,
     FS_OVERLAY_ID(overlay65)
 };
 
-static const UnkStruct_0208BE5C Unk_020F1B88 = {
+static const OverlayManagerTemplate Unk_020F1B88 = {
     ov65_0223648C,
     ov65_02236548,
     ov65_0223668C,
@@ -380,7 +379,7 @@ static UnkStruct_ov115_02260440 * sub_0207DE90 (FieldSystem * param0, u32 param1
     FS_EXTERN_OVERLAY(overlay114);
 
     {
-        static const UnkStruct_0208BE5C v1 = {
+        static const OverlayManagerTemplate v1 = {
             ov115_02260440, ov115_0226048C, ov115_022608E4, FS_OVERLAY_ID(overlay115),
         };
 
@@ -412,7 +411,7 @@ static UnkStruct_ov66_02231134 * sub_0207DEEC (FieldSystem * param0, u32 param1,
     FS_EXTERN_OVERLAY(overlay116);
     FS_EXTERN_OVERLAY(overlay114);
     {
-        static const UnkStruct_0208BE5C v1 = {
+        static const OverlayManagerTemplate v1 = {
             ov116_022609B4, ov116_02260CF4, ov116_0226126C, FS_OVERLAY_ID(overlay116),
         };
 
@@ -444,7 +443,7 @@ static UnkStruct_ov117_02260440 * sub_0207DF40 (FieldSystem * param0, u32 param1
     FS_EXTERN_OVERLAY(overlay114);
 
     {
-        static const UnkStruct_0208BE5C v1 = {
+        static const OverlayManagerTemplate v1 = {
             ov117_02260440, ov117_02260474, ov117_022605C0, FS_OVERLAY_ID(overlay117),
         };
 

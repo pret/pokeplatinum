@@ -3,7 +3,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
@@ -23,7 +22,6 @@
 #include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208737C.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay022/struct_ov22_022559F8.h"
@@ -36,7 +34,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
@@ -162,22 +160,22 @@ typedef struct {
     u8  : 3;
 } UnkStruct_020F2A14;
 
-static int sub_0208694C(UnkStruct_020067E8 * param0, int * param1);
-static int sub_02086B64(UnkStruct_020067E8 * param0, int * param1);
-static int sub_02086F3C(UnkStruct_020067E8 * param0, int * param1);
+static int sub_0208694C(OverlayManager * param0, int * param1);
+static int sub_02086B64(OverlayManager * param0, int * param1);
+static int sub_02086F3C(OverlayManager * param0, int * param1);
 static void sub_02087190(void * param0);
 static void sub_020871CC(void);
 static void sub_020871EC(BGL * param0);
 static void sub_0208765C(BGL * param0, Window * param1);
 static void sub_0208769C(UnkStruct_02087A10 * param0, NARC * param1);
 static void sub_02087D64(BGL * param0, Window * param1, int * param2, int param3, int * param4, VecFx32 param5[], GraphicElementData ** param6, void * param7);
-static void sub_0208737C(UnkStruct_02087A10 * param0, UnkStruct_020067E8 * param1);
+static void sub_0208737C(UnkStruct_02087A10 * param0, OverlayManager * param1);
 static void sub_02088240(BGL * param0, int param1, VecFx32 param2[]);
 static void sub_02088260(VecFx32 param0[], int param1);
 static void sub_020877F4(UnkStruct_02087A10 * param0, NARC * param1);
 static void sub_02087A10(UnkStruct_02087A10 * param0);
 static void sub_020877C4(void);
-static void sub_02087FC0(UnkStruct_02087A10 * param0, UnkStruct_020067E8 * param1, NARC * param2);
+static void sub_02087FC0(UnkStruct_02087A10 * param0, OverlayManager * param1, NARC * param2);
 static void sub_02088350(UnkStruct_02087A10 * param0);
 static void sub_02088514(u16 * param0);
 static void sub_02088554(Window * param0, const u16 * param1, int param2, int param3, int param4, int param5, u32 param6, u8 * param7);
@@ -196,7 +194,7 @@ static void sub_020879DC(SysTask * param0, void * param1);
 static void sub_02087CDC(SysTask * param0, void * param1);
 static void sub_02086B30(NNSG2dCharacterData * param0, NNSG2dPaletteData * param1, int param2, int param3);
 static void sub_0208732C(int param0);
-static void sub_02087544(UnkStruct_02087A10 * param0, UnkStruct_020067E8 * param1);
+static void sub_02087544(UnkStruct_02087A10 * param0, OverlayManager * param1);
 static void sub_02087BE4(UnkStruct_02087A10 * param0, UnkStruct_ov115_02261520 * param1);
 static void sub_02086E6C(UnkStruct_02087A10 * param0, UnkStruct_0208737C * param1);
 static void sub_02087F48(Window * param0, int param1, Strbuf *param2);
@@ -880,7 +878,7 @@ static const int Unk_020F2850[] = {
 	0x3
 };
 
-const UnkStruct_0208BE5C Unk_020F2DAC = {
+const OverlayManagerTemplate Unk_020F2DAC = {
     sub_0208694C,
     sub_02086B64,
     sub_02086F3C,
@@ -889,7 +887,7 @@ const UnkStruct_0208BE5C Unk_020F2DAC = {
 
 static UnkStruct_02087A10 * Unk_021C0A30;
 
-static int sub_0208694C (UnkStruct_020067E8 * param0, int * param1)
+static int sub_0208694C (OverlayManager * param0, int * param1)
 {
     UnkStruct_02087A10 * v0;
     NARC * v1;
@@ -906,7 +904,7 @@ static int sub_0208694C (UnkStruct_020067E8 * param0, int * param1)
 
         Heap_Create(3, 18, 0x20000 + 0x8000);
 
-        v0 = sub_0200681C(param0, sizeof(UnkStruct_02087A10), 18);
+        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02087A10), 18);
         memset(v0, 0, sizeof(UnkStruct_02087A10));
         v0->unk_160 = sub_02018340(18);
         v1 = NARC_ctor(NARC_INDEX_DATA__NAMEIN, 18);
@@ -919,7 +917,7 @@ static int sub_0208694C (UnkStruct_020067E8 * param0, int * param1)
         SetAutorepeat(4, 8);
         sub_020871CC();
         sub_020871EC(v0->unk_160);
-        sub_020871B0(v0, (UnkStruct_0208737C *)sub_02006840(param0));
+        sub_020871B0(v0, (UnkStruct_0208737C *)OverlayManager_Args(param0));
         sub_0208769C(v0, v1);
         sub_02002BB8(2, 18);
         SetMainCallback(sub_02087190, NULL);
@@ -943,7 +941,7 @@ static int sub_0208694C (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 1:
-        v0 = sub_0200682C(param0);
+        v0 = OverlayManager_Data(param0);
 
         if (v0->unk_00 == 1) {
             sub_02086B30(v0->unk_51C, v0->unk_524, v0->unk_04, v0->unk_08);
@@ -969,9 +967,9 @@ static void sub_02086B30 (NNSG2dCharacterData * param0, NNSG2dPaletteData * para
     GX_LoadOBJPltt((void *)(v0 + PokeIconPaletteIndex(param2, param3, 0) * 0x20), 6 * 0x20, 0x20);
 }
 
-static int sub_02086B64 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_02086B64 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_02087A10 * v0 = sub_0200682C(param0);
+    UnkStruct_02087A10 * v0 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:
@@ -1129,10 +1127,10 @@ static int sub_02086F14 (u16 * param0)
     return v0;
 }
 
-static int sub_02086F3C (UnkStruct_020067E8 * param0, int * param1)
+static int sub_02086F3C (OverlayManager * param0, int * param1)
 {
-    UnkStruct_02087A10 * v0 = sub_0200682C(param0);
-    UnkStruct_0208737C * v1 = (UnkStruct_0208737C *)sub_02006840(param0);
+    UnkStruct_02087A10 * v0 = OverlayManager_Data(param0);
+    UnkStruct_0208737C * v1 = (UnkStruct_0208737C *)OverlayManager_Args(param0);
     int v2;
 
     v0->unk_D8[v0->unk_158] = 0xffff;
@@ -1198,7 +1196,7 @@ static int sub_02086F3C (UnkStruct_020067E8 * param0, int * param1)
     MessageLoader_Free(v0->unk_170);
     MessageLoader_Free(v0->unk_16C);
     sub_0200B3F0(v0->unk_168);
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     SetMainCallback(NULL, NULL);
     Heap_Destroy(18);
 
@@ -1396,9 +1394,9 @@ static void sub_0208732C (int param0)
     GXLayers_EngineBToggleLayers(GX_BLEND_PLANEMASK_OBJ, 0);
 }
 
-static void sub_0208737C (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * param1)
+static void sub_0208737C (UnkStruct_02087A10 * param0, OverlayManager * param1)
 {
-    UnkStruct_0208737C * v0 = (UnkStruct_0208737C *)sub_02006840(param1);
+    UnkStruct_0208737C * v0 = (UnkStruct_0208737C *)OverlayManager_Args(param1);
 
     param0->unk_4C0 = 4;
 
@@ -1462,10 +1460,10 @@ static void sub_0208737C (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * para
     }
 }
 
-static void sub_02087544 (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * param1)
+static void sub_02087544 (UnkStruct_02087A10 * param0, OverlayManager * param1)
 {
     Strbuf* v0 = NULL;
-    UnkStruct_0208737C * v1 = (UnkStruct_0208737C *)sub_02006840(param1);
+    UnkStruct_0208737C * v1 = (UnkStruct_0208737C *)OverlayManager_Args(param1);
 
     if (v1->unk_44 != 0) {
         int v2, v3;
@@ -1844,7 +1842,7 @@ static void sub_02087F78 (Window * param0, int param1, Strbuf *param2)
     sub_0201A954(param0);
 }
 
-static void sub_02087FC0 (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * param1, NARC * param2)
+static void sub_02087FC0 (UnkStruct_02087A10 * param0, OverlayManager * param1, NARC * param2)
 {
     BGL_AddWindow(param0->unk_160, &param0->unk_41C[0], 0, 2, 1, 26, 12, 1, (32 * 8));
     BGL_AddWindow(param0->unk_160, &param0->unk_41C[1], 1, 2, 1, 26, 12, 1, ((32 * 8) + (26 * 12)));
@@ -1881,7 +1879,7 @@ static void sub_02087FC0 (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * para
     sub_02087F48(&param0->unk_41C[9], param0->unk_00, param0->unk_178);
 
     {
-        UnkStruct_0208737C * v1 = (UnkStruct_0208737C *)sub_02006840(param1);
+        UnkStruct_0208737C * v1 = (UnkStruct_0208737C *)OverlayManager_Args(param1);
 
         if (param0->unk_118[0] != 0xffff) {
             GF_strcpy(param0->unk_D8, param0->unk_118);

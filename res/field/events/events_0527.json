@@ -1,0 +1,21 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "graphics_id": 235,
+            "movement_type": 15,
+            "trainer_type": 0,
+            "flag": 0,
+            "script": 0,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 20,
+            "y": 10,
+            "z": 0
+        }
+    ],
+    "warp_events": [],
+    "coord_events": []
+}

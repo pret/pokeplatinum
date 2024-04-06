@@ -3,7 +3,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
@@ -28,7 +27,7 @@
 #include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
@@ -171,11 +170,11 @@ static int(*const Unk_ov109_021D5E9C[])(UnkStruct_ov109_021D5140 *, int) = {
     ov109_021D510C,
 };
 
-int ov109_021D3D50 (UnkStruct_020067E8 * param0, int * param1)
+int ov109_021D3D50 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov109_021D5140 * v0;
     NARC * v1;
-    UnkStruct_0209C194 * v2 = sub_02006840(param0);
+    UnkStruct_0209C194 * v2 = OverlayManager_Args(param0);
 
     switch (*param1) {
     case 0:
@@ -192,7 +191,7 @@ int ov109_021D3D50 (UnkStruct_020067E8 * param0, int * param1)
         v1 = NARC_ctor(NARC_INDEX_GRAPHIC__RECORD, 95);
         GF_ASSERT(v1);
 
-        v0 = sub_0200681C(param0, sizeof(UnkStruct_ov109_021D5140), 95);
+        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov109_021D5140), 95);
         memset(v0, 0, sizeof(UnkStruct_ov109_021D5140));
 
         v2->unk_3C = v0;
@@ -235,9 +234,9 @@ int ov109_021D3D50 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov109_021D3EB0 (UnkStruct_020067E8 * param0, int * param1)
+int ov109_021D3EB0 (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov109_021D5140 * v0 = sub_0200682C(param0);
+    UnkStruct_ov109_021D5140 * v0 = OverlayManager_Data(param0);
 
     if ((CommSys_CurNetId() == 0) && (v0->unk_10->unk_30 != 0)) {
         v0->unk_10->unk_30 &= sub_020318EC();
@@ -296,10 +295,10 @@ int ov109_021D3EB0 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-int ov109_021D3F9C (UnkStruct_020067E8 * param0, int * param1)
+int ov109_021D3F9C (OverlayManager * param0, int * param1)
 {
     int v0;
-    UnkStruct_ov109_021D5140 * v1 = sub_0200682C(param0);
+    UnkStruct_ov109_021D5140 * v1 = OverlayManager_Data(param0);
 
     SysTask_Done(v1->unk_30);
     sub_0200A4E4(v1->unk_200[2][0]);
@@ -329,7 +328,7 @@ int ov109_021D3F9C (UnkStruct_020067E8 * param0, int * param1)
     v1->unk_0C->unk_0C = ov109_021D54A8();
 
     ov109_021D4294(v1);
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
     Heap_Destroy(95);
 
     return 1;

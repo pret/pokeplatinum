@@ -26,7 +26,7 @@ pokeplatinum_c = files(
     'unk_02005474.c',
     'unk_02006224.c',
     'unk_0200679C.c',
-    'unk_020067E8.c',
+    'overlay_manager.c',
     'unk_02006E3C.c',
     'unk_0200762C.c',
     'unk_020093B4.c',

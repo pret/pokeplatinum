@@ -5,7 +5,6 @@
 #include "savedata.h"
 
 #include "field/field_system.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_020985E4.h"
 #include "struct_defs/struct_0209862C.h"
 
@@ -57,7 +56,7 @@ BOOL sub_0209862C (UnkStruct_020508D4 * param0)
         }
 
         {
-            static const UnkStruct_0208BE5C v2 = {
+            static const OverlayManagerTemplate v2 = {
                 ov100_021D0D80,
                 ov100_021D0EA8,
                 ov100_021D0F44,

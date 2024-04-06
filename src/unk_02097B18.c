@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "pokemon.h"
@@ -13,7 +12,6 @@
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0202CA64.h"
 #include "field/field_system.h"
-#include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_02097F18.h"
 #include "struct_defs/struct_02098C44.h"
 #include "overlay076/struct_ov76_0223DE00.h"
@@ -21,7 +19,7 @@
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "game_overlay.h"
-#include "unk_020067E8.h"
+#include "overlay_manager.h"
 #include "narc.h"
 #include "unk_0200762C.h"
 #include "unk_0200F174.h"
@@ -67,18 +65,18 @@ typedef struct {
     int unk_14;
 } UnkStruct_02097F38;
 
-static int sub_02097B18(UnkStruct_020067E8 * param0, int * param1);
-static int sub_02097D30(UnkStruct_020067E8 * param0, int * param1);
-static int sub_02097D88(UnkStruct_020067E8 * param0, int * param1);
+static int sub_02097B18(OverlayManager * param0, int * param1);
+static int sub_02097D30(OverlayManager * param0, int * param1);
+static int sub_02097D88(OverlayManager * param0, int * param1);
 
-const UnkStruct_0208BE5C Unk_020F64C0 = {
+const OverlayManagerTemplate Unk_020F64C0 = {
     sub_02097B18,
     sub_02097D30,
     sub_02097D88,
     FS_OVERLAY_ID(overlay76),
 };
 
-static int sub_02097B18 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_02097B18 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov76_0223DE00 * v0;
     UnkStruct_02097F18 * v1;
@@ -87,11 +85,11 @@ static int sub_02097B18 (UnkStruct_020067E8 * param0, int * param1)
     ov76_0223EB20(53);
     ov76_0223D3A0();
 
-    v0 = sub_0200681C(param0, sizeof(UnkStruct_ov76_0223DE00), 53);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov76_0223DE00), 53);
     memset(v0, 0, sizeof(UnkStruct_ov76_0223DE00));
 
     v0->unk_D4.unk_15C = ov76_0223BE6C();
-    v1 = sub_02006840(param0);
+    v1 = OverlayManager_Args(param0);
     v0->unk_00 = v1;
     v0->unk_42C = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 53);
     v0->unk_428 = Pokemon_New(53);
@@ -188,11 +186,11 @@ static int sub_02097B18 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static int sub_02097D30 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_02097D30 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov76_0223DE00 * v0;
 
-    v0 = sub_0200682C(param0);
+    v0 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:
@@ -223,11 +221,11 @@ static int sub_02097D30 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-static int sub_02097D88 (UnkStruct_020067E8 * param0, int * param1)
+static int sub_02097D88 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov76_0223DE00 * v0;
 
-    v0 = sub_0200682C(param0);
+    v0 = OverlayManager_Data(param0);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
@@ -262,7 +260,7 @@ static int sub_02097D88 (UnkStruct_020067E8 * param0, int * param1)
     sub_020242C4(v0->unk_D4.unk_15C);
     ov76_0223EB54(53);
     NARC_dtor(v0->unk_42C);
-    sub_02006830(param0);
+    OverlayManager_FreeData(param0);
 
     {
         u32 v1;

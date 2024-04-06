@@ -1,0 +1,98 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "graphics_id": 17,
+            "movement_type": 0,
+            "trainer_type": 0,
+            "flag": 0,
+            "script": 1,
+            "initial_dir": 2,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 13,
+            "y": 9,
+            "z": 0
+        },
+        {
+            "graphics_id": 144,
+            "movement_type": 15,
+            "trainer_type": 0,
+            "flag": 470,
+            "script": 2,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 11,
+            "y": 8,
+            "z": 0
+        },
+        {
+            "graphics_id": 102,
+            "movement_type": 17,
+            "trainer_type": 0,
+            "flag": 674,
+            "script": 5,
+            "initial_dir": 3,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 2,
+            "y": 9,
+            "z": 0
+        },
+        {
+            "graphics_id": 103,
+            "movement_type": 15,
+            "trainer_type": 0,
+            "flag": 675,
+            "script": 6,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 6,
+            "y": 8,
+            "z": 0
+        },
+        {
+            "graphics_id": 104,
+            "movement_type": 16,
+            "trainer_type": 0,
+            "flag": 676,
+            "script": 7,
+            "initial_dir": 2,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 9,
+            "y": 7,
+            "z": 0
+        },
+        {
+            "graphics_id": 105,
+            "movement_type": 14,
+            "trainer_type": 0,
+            "flag": 677,
+            "script": 8,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "x": 11,
+            "y": 5,
+            "z": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "x": 7,
+            "y": 11,
+            "dest_header_id": 450,
+            "dest_warp_id": 0
+        }
+    ],
+    "coord_events": []
+}
