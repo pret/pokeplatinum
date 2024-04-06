@@ -37,7 +37,7 @@ BOOL sub_020494DC (UnkStruct_0203E724 * param0)
     v0 = sub_0203E838(param0);
     v1 = sub_0203E838(param0);
 
-    param0->unk_34->unk_AC = sub_0204A124(sub_0203D174(param0->unk_34), v0, v1);
+    param0->unk_34->unk_AC = sub_0204A124(FieldSystem_SaveData(param0->unk_34), v0, v1);
     return 0;
 }
 

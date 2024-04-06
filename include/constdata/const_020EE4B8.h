@@ -3,6 +3,6 @@
 
 #include "struct_decls/struct_02061AB4_decl.h"
 
-extern int(*const * const Unk_020EE4B8[0x9a])(UnkStruct_02061AB4 *);
+extern int(*const * const Unk_020EE4B8[0x9a])(LocalMapObject *);
 
 #endif // POKEPLATINUM_CONST_020EE4B8_H

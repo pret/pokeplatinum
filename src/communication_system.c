@@ -1397,7 +1397,7 @@ BOOL sub_02035A3C (int param0, const void * param1, int param2)
     return 0;
 }
 
-BOOL sub_02035AC4 (int param0, const void * param1, int param2)
+BOOL CommSys_SendDataServer (int param0, const void * param1, int param2)
 {
     if (CommSys_CurNetId() != 0) {
         sub_020363BC();
@@ -1426,7 +1426,7 @@ BOOL sub_02035AC4 (int param0, const void * param1, int param2)
 
 BOOL sub_02035B48 (int param0, const void * param1)
 {
-    return sub_02035AC4(param0, param1, 0);
+    return CommSys_SendDataServer(param0, param1, 0);
 }
 
 int sub_02035B54 (void)
@@ -1662,7 +1662,7 @@ u16 sub_02035E84 (int param0)
     return v0;
 }
 
-void sub_02035EA8 (void)
+void CommSys_EnableSendMovementData (void)
 {
     if (sCommunicationSystem) {
         sCommunicationSystem->unk_654 |= 0x8000;
@@ -1712,7 +1712,7 @@ static void sub_02035F84 (void)
         if (sub_02034890() == 1) {
             v0 = sub_020360D0(11, &sCommunicationSystem->unk_6A4);
         } else {
-            v0 = sub_02035AC4(11, &sCommunicationSystem->unk_6A4, 1);
+            v0 = CommSys_SendDataServer(11, &sCommunicationSystem->unk_6A4, 1);
         }
 
         if (v0) {

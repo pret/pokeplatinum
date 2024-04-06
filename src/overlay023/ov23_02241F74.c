@@ -38,7 +38,7 @@
 #include "unk_0203CC84.h"
 #include "unk_020507CC.h"
 #include "unk_02054D00.h"
-#include "unk_02057518.h"
+#include "comm_player_manager.h"
 #include "unk_0206A8DC.h"
 #include "overlay005/ov5_021E779C.h"
 #include "overlay005/ov5_021EAFA4.h"
@@ -325,7 +325,7 @@ BOOL ov23_0224240C (int param0, int param1)
     v0.unk_00 = param0;
     v0.unk_02 = param1;
 
-    if (sub_02054F68(Unk_ov23_02257748->unk_0C, param0, param1)) {
+    if (FieldSystem_CheckCollision(Unk_ov23_02257748->unk_0C, param0, param1)) {
         return 1;
     }
 
@@ -343,7 +343,7 @@ BOOL ov23_0224240C (int param0, int param1)
 BOOL ov23_02242458 (void)
 {
     VecFx32 v0;
-    UnkStruct_02061AB4 * v1;
+    LocalMapObject * v1;
     int v2, v3;
     UnkStruct_ov23_0224271C v4;
 
@@ -430,10 +430,10 @@ static void ov23_022425B8 (int param0, UnkStruct_ov23_0224271C * param1)
     v0[0] = param0;
 
     v3 = ov23_02242540(v0, ov23_022442D8, param1);
-    sub_02035AC4(49, v0, v3);
+    CommSys_SendDataServer(49, v0, v3);
 
     v3 = ov23_02242540(v0, ov23_02241200, param1);
-    sub_02035AC4(50, v0, v3);
+    CommSys_SendDataServer(50, v0, v3);
 }
 
 void ov23_022425F8 (int param0, int param1, void * param2, void * param3)
@@ -577,7 +577,7 @@ void ov23_02242830 (u8 param0)
     u8 v0 = param0;
     UnkStruct_ov23_02242830 v1;
     int v2, v3;
-    UnkStruct_020298B0 * v4 = sub_020298B0(Unk_ov23_02257748->unk_0C->unk_0C);
+    UndergroundData * v4 = sub_020298B0(Unk_ov23_02257748->unk_0C->unk_0C);
 
     if ((Unk_ov23_02257748->unk_146 != 0) && (Unk_ov23_02257748->unk_134 != 0)) {
         return;
@@ -621,8 +621,8 @@ void ov23_022428D8 (int param0, int param1, void * param2, void * param3)
     u8 v4;
 
     v4 = param0;
-    v2.unk_00 = sub_02058EE0(param0);
-    v2.unk_02 = sub_02058F18(param0);
+    v2.unk_00 = CommPlayer_AddXServer(param0);
+    v2.unk_02 = CommPlayer_AddZServer(param0);
 
     if (param0 == 2) {
         (void)0;
@@ -650,7 +650,7 @@ void ov23_022428D8 (int param0, int param1, void * param2, void * param3)
             v0.unk_02 = v3;
             v0.unk_01 = param0;
 
-            sub_02035AC4(30, &v0, sizeof(v0));
+            CommSys_SendDataServer(30, &v0, sizeof(v0));
             sub_02059058(param0, 0);
         } else if (ov23_0224A658(param0, v3, 0)) {
             (void)0;
@@ -662,7 +662,7 @@ void ov23_022428D8 (int param0, int param1, void * param2, void * param3)
                 v0.unk_02 = v3;
                 v0.unk_01 = param0;
 
-                sub_02035AC4(30, &v0, sizeof(v0));
+                CommSys_SendDataServer(30, &v0, sizeof(v0));
                 sub_02059058(param0, 0);
             }
         } else if (!sub_02059094(param0)) {
@@ -672,7 +672,7 @@ void ov23_022428D8 (int param0, int param1, void * param2, void * param3)
             v0.unk_02 = v3;
             v0.unk_01 = param0;
 
-            sub_02035AC4(30, &v0, sizeof(v0));
+            CommSys_SendDataServer(30, &v0, sizeof(v0));
             sub_02059058(param0, 0);
         } else {
             v0.unk_00 = 1;
@@ -680,10 +680,10 @@ void ov23_022428D8 (int param0, int param1, void * param2, void * param3)
             v0.unk_01 = param0;
 
             if (sub_02059094(v3)) {
-                if (sub_02035AC4(30, &v0, sizeof(v0))) {
+                if (CommSys_SendDataServer(30, &v0, sizeof(v0))) {
                     sub_02059058(param0, 0);
                     sub_02059058(v3, 0);
-                    sub_02058FB0(param0, v3);
+                    CommPlayer_LookTowardsServer(param0, v3);
                 }
             }
         }
@@ -711,7 +711,7 @@ void ov23_022428D8 (int param0, int param1, void * param2, void * param3)
         return;
     }
 
-    if (sub_02058108(v2.unk_00, v2.unk_02)) {
+    if (CommPlayer_CheckNPCCollision(v2.unk_00, v2.unk_02)) {
         if (ov23_0224A658(param0, 0xff, 0)) {
             return;
         }
@@ -758,7 +758,7 @@ void ov23_02242B14 (void)
 
     if (CommSys_CurNetId() == 0) {
         if (CommInfo_ServerSendArray()) {
-            sub_02057AE4(1);
+            CommPlayer_SendPos(1);
         }
     }
 
@@ -779,8 +779,8 @@ void ov23_02242BC0 (FieldSystem * param0)
         v0 = Heap_AllocFromHeap(15, sizeof(UnkStruct_ov23_02257748));
         ov23_02241F74(v0, param0);
 
-        v0 = Heap_AllocFromHeap(15, sub_02057C84());
-        sub_02057524(v0, param0, 1);
+        v0 = Heap_AllocFromHeap(15, CommPlayer_Size());
+        CommPlayerMan_Init(v0, param0, 1);
 
         v0 = Heap_AllocFromHeap(15, ov23_02243858());
         ov23_022434BC(v0, param0);
@@ -795,8 +795,8 @@ void ov23_02242BC0 (FieldSystem * param0)
         ov23_0223E1E4(v0, param0);
 
         v0 = Heap_AllocFromHeap(15, ov23_02253608());
-        ov23_02253598(v0, sub_020298A0(sub_0203D174(param0)), sub_0203D174(param0));
-        ov23_0224F588(sub_020298B0(sub_0203D174(param0)));
+        ov23_02253598(v0, SaveData_SecretBaseRecord(FieldSystem_SaveData(param0)), FieldSystem_SaveData(param0));
+        ov23_0224F588(sub_020298B0(FieldSystem_SaveData(param0)));
     }
 }
 
@@ -807,7 +807,7 @@ void ov23_02242C78 (void)
         ov23_022417CC();
         ov23_0224B430();
         ov23_02243520();
-        sub_0205764C();
+        CommPlayerMan_Reset();
         ov23_0223E2F0();
         ov23_022421EC();
 
@@ -818,7 +818,7 @@ void ov23_02242C78 (void)
 void ov23_02242CB4 (void)
 {
     if (Unk_ov23_02257748) {
-        sub_020576A0();
+        CommPlayerMan_Restart();
         ov23_02253604();
         ov23_022417E0();
         ov23_0224B460();
@@ -835,7 +835,7 @@ void ov23_02242D08 (void)
         sub_020287F8(Unk_ov23_02257748->unk_0C->unk_0C);
         ov23_0224B4E4();
         ov23_022435DC();
-        sub_020576CC(1);
+        CommPlayerMan_Delete(1);
         ov23_022417F4();
         ov23_0223E2F8();
         ov23_0224F5B8();
@@ -850,7 +850,7 @@ void ov23_02242D44 (FieldSystem * param0)
 
     if (Unk_ov23_02257748 != NULL) {
         ov23_02243670(param0);
-        sub_02057764();
+        CommPlayerMan_Reinit();
         ov23_0224B518();
     }
 }

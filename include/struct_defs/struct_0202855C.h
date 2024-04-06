@@ -17,6 +17,6 @@ typedef struct UnkStruct_0202855C_t {
     u32 unk_30_0 : 20;
     u32 unk_34_0 : 20;
     u32 unk_38_0 : 20;
-} UnkStruct_0202855C;
+} SecretBaseRecord;
 
 #endif // POKEPLATINUM_STRUCT_0202855C_H

@@ -221,7 +221,7 @@ void ov7_0224CDA4 (UnkStruct_020508D4 * param0, FieldSystem * param1, u16 * para
 
 static u8 ov7_0224CE90 (FieldSystem * param0)
 {
-    int v0 = sub_0205EA78(param0->unk_3C);
+    int v0 = Player_Dir(param0->playerAvatar);
 
     if ((v0 == 0) || (v0 == 1) || (v0 == 3)) {
         return 10;

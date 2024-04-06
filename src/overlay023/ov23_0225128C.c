@@ -40,7 +40,7 @@
 #include "unk_0203CC84.h"
 #include "unk_020507CC.h"
 #include "unk_020508D4.h"
-#include "unk_02057518.h"
+#include "comm_player_manager.h"
 #include "unk_0205E7D0.h"
 #include "unk_0206A780.h"
 #include "unk_0206A8DC.h"
@@ -155,9 +155,9 @@ BOOL ov23_02251324 (int param0, UnkStruct_ov23_0224271C * param1)
     int v1 = param1->unk_00;
     int v2 = param1->unk_02;
     UnkStruct_ov23_022513B0 v3;
-    int v4 = ov23_022512D4(param1, sub_02058F80(param0));
+    int v4 = ov23_022512D4(param1, CommPlayer_DirServer(param0));
 
-    if (sub_02058F50(v4) == -1) {
+    if (CommPlayer_Dir(v4) == -1) {
         v4 = 0xff;
     }
 
@@ -235,7 +235,7 @@ int ov23_02251414 (void)
 
 static BOOL ov23_02251418 (int param0, UnkStruct_ov23_02250CD4 * param1)
 {
-    UnkStruct_020298B0 * v0 = sub_020298B0(sub_0203D174(param1->unk_0C));
+    UndergroundData * v0 = sub_020298B0(FieldSystem_SaveData(param1->unk_0C));
     int v1;
 
     v1 = sub_02028B88(v0, param0);
@@ -250,7 +250,7 @@ static BOOL ov23_02251418 (int param0, UnkStruct_ov23_02250CD4 * param1)
 
 static int ov23_0225144C (int param0, UnkStruct_ov23_02250CD4 * param1)
 {
-    UnkStruct_020298B0 * v0 = sub_020298B0(sub_0203D174(param1->unk_0C));
+    UndergroundData * v0 = sub_020298B0(FieldSystem_SaveData(param1->unk_0C));
     int v1;
 
     if (sub_02028AFC(v0, param0)) {
@@ -312,7 +312,7 @@ static BOOL ov23_022514D8 (SysTask * param0, void * param1)
         break;
     case 0:
     {
-        UnkStruct_020298B0 * v4 = sub_020298B0(v0->unk_0C->unk_0C);
+        UndergroundData * v4 = sub_020298B0(v0->unk_0C->unk_0C);
 
         if (0 == sub_020289A0(v4)) {
             ov23_02253F40(ov23_022421BC(), 60, 0, NULL);
@@ -355,7 +355,7 @@ static void ov23_022515D8 (UnkStruct_ov23_02250CD4 * param0, int param1, int par
     int v1 = param2 + 1;
     BOOL v2 = 1;
 
-    if (3 > sub_0202958C(sub_020298A0(param0->unk_0C->unk_0C))) {
+    if (3 > sub_0202958C(SaveData_SecretBaseRecord(param0->unk_0C->unk_0C))) {
         v2 = 0;
         v1 -= 1;
     }
@@ -602,8 +602,8 @@ static void ov23_02251A84 (BOOL param0, FieldSystem * param1)
     VecFx32 v0;
 
     v0.y = 0;
-    v0.x = 15 * FX32_ONE * 16 - sub_0205EABC(param1->unk_3C) * FX32_ONE * 16;
-    v0.z = 17 * FX32_ONE * 16 - sub_0205EAC8(param1->unk_3C) * FX32_ONE * 16;
+    v0.x = 15 * FX32_ONE * 16 - Player_XPos(param1->playerAvatar) * FX32_ONE * 16;
+    v0.z = 17 * FX32_ONE * 16 - Player_ZPos(param1->playerAvatar) * FX32_ONE * 16;
 
     if (!param0) {
         v0.x = -v0.x;
@@ -630,7 +630,7 @@ static BOOL ov23_02251ACC (UnkStruct_020508D4 * param0)
         break;
     case 1:
         if (ScreenWipe_Done()) {
-            sub_0205EB18(v0->unk_3C, 0);
+            sub_0205EB18(v0->playerAvatar, 0);
 
             ov23_02251A84(1, v0);
             v1->unk_00 = 2;
@@ -644,7 +644,7 @@ static BOOL ov23_02251ACC (UnkStruct_020508D4 * param0)
         v1->unk_00 = 4;
         break;
     case 4:
-        sub_0205EB18(v0->unk_3C, 1);
+        sub_0205EB18(v0->playerAvatar, 1);
         ov23_02251A84(0, v0);
         sub_0200F174(1, 1, 1, 0x0, 6, 1, 4);
         v1->unk_00 = 5;
@@ -711,7 +711,7 @@ static void ov23_02251C04 (SysTask * param0, void * param1)
     case 6:
         ov23_0224FB7C(param1);
         ov23_02254044(ov23_022421BC());
-        v0->unk_270 = ov23_02253C64(v0->unk_0C->unk_08, SaveData_GetTrainerInfo(sub_0203D174(v0->unk_0C)), sub_020298B0(sub_0203D174(v0->unk_0C)), NULL, NULL);
+        v0->unk_270 = ov23_02253C64(v0->unk_0C->unk_08, SaveData_GetTrainerInfo(FieldSystem_SaveData(v0->unk_0C)), sub_020298B0(FieldSystem_SaveData(v0->unk_0C)), NULL, NULL);
         v0->unk_2AA = 7;
         break;
     case 7:

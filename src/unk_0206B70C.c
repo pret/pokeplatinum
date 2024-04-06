@@ -84,8 +84,8 @@ void sub_0206B70C (FieldSystem * param0, UnkStruct_0203D8AC * param1, int param2
 
     memset(param1, 0, sizeof(UnkStruct_0203D8AC));
 
-    v4 = sub_0205EABC(param0->unk_3C);
-    v5 = sub_0205EAC8(param0->unk_3C);
+    v4 = Player_XPos(param0->playerAvatar);
+    v5 = Player_ZPos(param0->playerAvatar);
 
     {
         int v11 = 10 - 1;
@@ -114,7 +114,7 @@ void sub_0206B70C (FieldSystem * param0, UnkStruct_0203D8AC * param1, int param2
         param1->unk_04 = v10->unk_0C;
     }
 
-    v0 = SaveData_GetTrainerInfo(sub_0203D174(param0));
+    v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0));
     param1->unk_0C = TrainerInfo_Gender(v0);
     v7 = sub_0203A76C(sub_0203A790(param0->unk_0C));
     v2 = (v7->unk_00 - 2 + 6) % 6;

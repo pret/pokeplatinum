@@ -37,7 +37,7 @@ typedef struct {
     FieldSystem * unk_04;
     UnkStruct_020507E4 * unk_08;
     const UnkStruct_ov5_021F8E48 * unk_0C;
-    UnkStruct_02061AB4 * unk_10[64];
+    LocalMapObject * unk_10[64];
     u16 unk_110;
     u16 unk_112;
     u16 * unk_114;
@@ -52,30 +52,30 @@ typedef struct {
 } UnkStruct_ov5_021DBC64;
 
 void ov5_021DB888(UnkStruct_020508D4 * param0, StringFormatter * param1, u16 * param2);
-u16 ov5_021DBD98(FieldSystem * param0, UnkStruct_02061AB4 * param1, u16 param2);
+u16 ov5_021DBD98(FieldSystem * param0, LocalMapObject * param1, u16 param2);
 BOOL ov5_021DBB94(FieldSystem * param0);
 static BOOL ov5_021DBB70(u32 param0);
 static BOOL ov5_021DB8D8(UnkStruct_020508D4 * param0);
 static int ov5_021DBA58(UnkStruct_ov5_021DBA58 * param0);
 static void ov5_021DBA54(UnkStruct_ov5_021DBA58 * param0, u32 param1);
 static void ov5_021DBA7C(UnkStruct_ov5_021DBA58 * param0);
-static void ov5_021DBC40(UnkStruct_ov5_021DBA58 * param0, UnkStruct_02061AB4 * param1, const UnkStruct_ov5_021F8E3C * param2);
+static void ov5_021DBC40(UnkStruct_ov5_021DBA58 * param0, LocalMapObject * param1, const UnkStruct_ov5_021F8E3C * param2);
 static void ov5_021DBC64(UnkStruct_ov5_021DBA58 * param0, SysTask * param1);
 static void ov5_021DBC94(SysTask * param0, void * param1);
 static BOOL ov5_021DBCD4(UnkStruct_ov5_021DBA58 * param0);
 static BOOL ov5_021DBCE0(UnkStruct_ov5_021DBA58 * param0);
-static u16 ov5_021DBD88(UnkStruct_02061AB4 * param0);
+static u16 ov5_021DBD88(LocalMapObject * param0);
 static void ov5_021DBC08(FieldSystem * param0);
 static u16 ov5_021DBDDC(FieldSystem * param0, u16 param1);
 static u16 ov5_021DBDFC(FieldSystem * param0, u16 param1);
 static u16 ov5_021DBE48(FieldSystem * param0, u16 param1, u16 param2);
 static u16 ov5_021DBE70(u16 param0, u16 param1);
 static u16 ov5_021DBEA4(u16 param0, u16 param1);
-static BOOL ov5_021DBEB8(UnkStruct_02061AB4 * param0);
-static void ov5_021DBECC(UnkStruct_02061AB4 * param0, u16 param1);
-void ov5_021DBED4(FieldSystem * param0, UnkStruct_02061AB4 * param1);
+static BOOL ov5_021DBEB8(LocalMapObject * param0);
+static void ov5_021DBECC(LocalMapObject * param0, u16 param1);
+void ov5_021DBED4(FieldSystem * param0, LocalMapObject * param1);
 static BOOL ov5_021DBF20(FieldSystem * param0);
-static UnkStruct_02061AB4 * ov5_021DBF70(FieldSystem * param0, UnkStruct_02061AB4 * param1, int param2);
+static LocalMapObject * ov5_021DBF70(FieldSystem * param0, LocalMapObject * param1, int param2);
 
 const UnkStruct_ov5_021F8E48 Unk_ov5_021F8E48[] = {
 	{ 0xE, 0xE, 0x0, 0x0, 0x0, 0x0 },
@@ -460,7 +460,7 @@ static void ov5_021DBA7C (UnkStruct_ov5_021DBA58 * param0)
     u32 v2;
     int v3, v4, v5, v6;
     int v7, v8, v9, v10;
-    UnkStruct_02061AB4 * v11;
+    LocalMapObject * v11;
     u32 v12 = sub_0203A4B4(param0->unk_04);
 
     v6 = 0;
@@ -469,8 +469,8 @@ static void ov5_021DBA7C (UnkStruct_ov5_021DBA58 * param0)
         param0->unk_10[v5] = NULL;
     }
 
-    v3 = sub_0205EABC(param0->unk_04->unk_3C);
-    v4 = sub_0205EAC8(param0->unk_04->unk_3C);
+    v3 = Player_XPos(param0->unk_04->playerAvatar);
+    v4 = Player_ZPos(param0->unk_04->playerAvatar);
     v7 = v3 - 7;
     v8 = v3 + 7;
     v9 = v4 - 7;
@@ -561,7 +561,7 @@ BOOL ov5_021DBB94 (FieldSystem * param0)
 static void ov5_021DBC08 (FieldSystem * param0)
 {
     int v0;
-    UnkStruct_02061AB4 * v1;
+    LocalMapObject * v1;
     u32 v2 = sub_0203A4B4(param0);
 
     for (v0 = 0; v0 < v2; v0++) {
@@ -579,7 +579,7 @@ static void ov5_021DBC08 (FieldSystem * param0)
     return;
 }
 
-static void ov5_021DBC40 (UnkStruct_ov5_021DBA58 * param0, UnkStruct_02061AB4 * param1, const UnkStruct_ov5_021F8E3C * param2)
+static void ov5_021DBC40 (UnkStruct_ov5_021DBA58 * param0, LocalMapObject * param1, const UnkStruct_ov5_021F8E3C * param2)
 {
     SysTask * v0;
 
@@ -635,7 +635,7 @@ static BOOL ov5_021DBCD4 (UnkStruct_ov5_021DBA58 * param0)
 static BOOL ov5_021DBCE0 (UnkStruct_ov5_021DBA58 * param0)
 {
     UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_04->unk_0C);
-    UnkStruct_02061AB4 * v1;
+    LocalMapObject * v1;
     u16 v2;
     int v3, v4;
 
@@ -670,13 +670,13 @@ static BOOL ov5_021DBCE0 (UnkStruct_ov5_021DBA58 * param0)
     return v4;
 }
 
-static u16 ov5_021DBD88 (UnkStruct_02061AB4 * param0)
+static u16 ov5_021DBD88 (LocalMapObject * param0)
 {
     u32 v0 = sub_02062960(param0);
     return sub_0203F254(v0);
 }
 
-u16 ov5_021DBD98 (FieldSystem * param0, UnkStruct_02061AB4 * param1, u16 param2)
+u16 ov5_021DBD98 (FieldSystem * param0, LocalMapObject * param1, u16 param2)
 {
     u16 v0, v1, v2;
 
@@ -772,7 +772,7 @@ static u16 ov5_021DBEA4 (u16 param0, u16 param1)
     return v0[param0].unk_00[param1];
 }
 
-static BOOL ov5_021DBEB8 (UnkStruct_02061AB4 * param0)
+static BOOL ov5_021DBEB8 (LocalMapObject * param0)
 {
     if (sub_02062948(param0) == 0x31) {
         return 1;
@@ -781,15 +781,15 @@ static BOOL ov5_021DBEB8 (UnkStruct_02061AB4 * param0)
     return 0;
 }
 
-static void ov5_021DBECC (UnkStruct_02061AB4 * param0, u16 param1)
+static void ov5_021DBECC (LocalMapObject * param0, u16 param1)
 {
     sub_020633A8(param0, param1);
     return;
 }
 
-void ov5_021DBED4 (FieldSystem * param0, UnkStruct_02061AB4 * param1)
+void ov5_021DBED4 (FieldSystem * param0, LocalMapObject * param1)
 {
-    UnkStruct_02061AB4 * v0;
+    LocalMapObject * v0;
     u32 v1;
     int v2;
 
@@ -822,7 +822,7 @@ void ov5_021DBED4 (FieldSystem * param0, UnkStruct_02061AB4 * param1)
 static BOOL ov5_021DBF20 (FieldSystem * param0)
 {
     int v0, v1;
-    UnkStruct_02061AB4 * v2;
+    LocalMapObject * v2;
     u32 v3 = sub_0203A4B4(param0);
 
     v1 = 0;
@@ -849,9 +849,9 @@ static BOOL ov5_021DBF20 (FieldSystem * param0)
     }
 }
 
-static UnkStruct_02061AB4 * ov5_021DBF70 (FieldSystem * param0, UnkStruct_02061AB4 * param1, int param2)
+static LocalMapObject * ov5_021DBF70 (FieldSystem * param0, LocalMapObject * param1, int param2)
 {
-    UnkStruct_02061AB4 * v0;
+    LocalMapObject * v0;
     u32 v1, v2, v3, v4;
     u32 v5 = sub_0203A4B4(param0);
     u16 v6 = sub_02062960(param1);

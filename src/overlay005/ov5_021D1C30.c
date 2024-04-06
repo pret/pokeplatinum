@@ -41,7 +41,7 @@
 #include "unk_02054D00.h"
 #include "unk_020562F8.h"
 #include "unk_02056B30.h"
-#include "unk_02057518.h"
+#include "comm_player_manager.h"
 #include "field_comm_manager.h"
 #include "unk_0205A0D8.h"
 #include "unk_0205B33C.h"
@@ -94,7 +94,7 @@ static u8 ov5_021D2CFC(const FieldSystem * param0);
 static u8 ov5_021D2D18(const FieldSystem * param0);
 static BOOL ov5_021D2D34(const FieldSystem * param0, int param1, int param2, UnkStruct_02049FA8 * param3);
 static void ov5_021D2E14(FieldSystem * param0);
-static BOOL ov5_021D2EA4(FieldSystem * param0, UnkStruct_02061AB4 ** param1);
+static BOOL ov5_021D2EA4(FieldSystem * param0, LocalMapObject ** param1);
 static int ov5_021D2274(void);
 
 static void ov5_021D1C30 (UnkStruct_ov5_021D1CAC * param0)
@@ -123,9 +123,9 @@ void ov5_021D1CAC (UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1, u16 pa
 
     ov5_021D1C30(param0);
 
-    v0 = sub_0205EB14(param1->unk_3C);
-    v1 = sub_0205EB0C(param1->unk_3C);
-    v2 = sub_0205EA78(param1->unk_3C);
+    v0 = Player_MoveState(param1->playerAvatar);
+    v1 = sub_0205EB0C(param1->playerAvatar);
+    v2 = Player_Dir(param1->playerAvatar);
 
     param0->unk_04 = param2;
     param0->unk_06 = param3;
@@ -170,7 +170,7 @@ void ov5_021D1CAC (UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1, u16 pa
         param0->unk_03 = -1;
     }
 
-    param0->unk_02 = sub_02061308(param1->unk_3C, param2, param3);
+    param0->unk_02 = sub_02061308(param1->playerAvatar, param2, param3);
 }
 
 int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
@@ -188,7 +188,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
             }
 
             if ((sub_02067A84(param1, v0) == 1) || ((sub_02071CB4(param1, 2) == 1) && (ov8_0224C51C(param1) == 1))) {
-                sub_0205F56C(param1->unk_3C);
+                sub_0205F56C(param1->playerAvatar);
                 sub_02062C48(param1->unk_38);
                 return 1;
             }
@@ -205,7 +205,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
 
     if (param0->unk_00_11 == 0) {
         int v1 = 0;
-        int v2 = sub_02061308(param1->unk_3C, param0->unk_04, param0->unk_06);
+        int v2 = sub_02061308(param1->playerAvatar, param0->unk_04, param0->unk_06);
 
         if (inline_0204E650_2(SaveData_Events(param1->unk_0C))) {
             v1 |= 1 << 0;
@@ -221,7 +221,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
             }
         }
 
-        if (ov5_021DFDE0(param1, param1->unk_3C, v2, v1) == 1) {
+        if (ov5_021DFDE0(param1, param1->playerAvatar, v2, v1) == 1) {
             return 1;
         }
     }
@@ -239,7 +239,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
             int v3 = (s8)param0->unk_02;
 
             if (v3 == -1) {
-                v3 = sub_0205EA78(param1->unk_3C);
+                v3 = Player_Dir(param1->playerAvatar);
             }
 
             if (ov9_0224A67C(param1, v3) == 1) {
@@ -248,7 +248,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
         }
     }
 
-    if (param0->unk_00_4 && (sub_0205EA78(param1->unk_3C) == param0->unk_02)) {
+    if (param0->unk_00_4 && (Player_Dir(param1->playerAvatar) == param0->unk_02)) {
         if (ov5_021D20DC(param1) == 1) {
             return 1;
         }
@@ -257,7 +257,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
     if (param0->unk_00_0) {
         {
             int v4;
-            UnkStruct_02061AB4 * v5;
+            LocalMapObject * v5;
 
             if (sub_02071CB4(param1, 9) == 1) {
                 v4 = ov5_021D2EA4(param1, &v5);
@@ -268,9 +268,9 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
             if (v4 == 1) {
                 UnkStruct_ov5_021D219C * v6;
 
-                if (sub_0205F588(param1->unk_3C) == 1) {
+                if (sub_0205F588(param1->playerAvatar) == 1) {
                     sub_0205F5E4(
-                        param1->unk_3C, sub_0205EA78(param1->unk_3C));
+                        param1->playerAvatar, Player_Dir(param1->playerAvatar));
                 }
 
                 if (sub_02062950(v5) != 0x9) {
@@ -286,7 +286,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
         {
             int v7;
 
-            v7 = sub_0205F108(param1->unk_3C);
+            v7 = sub_0205F108(param1->playerAvatar);
 
             if ((v7 == 0) || (v7 == 1)) {
                 int v8;
@@ -311,8 +311,8 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
         }
 
         {
-            int v10 = sub_0205EAA0(param1->unk_3C);
-            u32 v11 = sub_020616F0(param1->unk_3C, v10);
+            int v10 = sub_0205EAA0(param1->playerAvatar);
+            u32 v11 = sub_020616F0(param1->playerAvatar, v10);
             int v12 = ov5_021D271C(param1, v11);
 
             if (v12 != 0xffff) {
@@ -324,7 +324,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
         {
             int v13, v14, v15;
 
-            v15 = sub_0205EA78(param1->unk_3C);
+            v15 = Player_Dir(param1->playerAvatar);
             ov5_021D2C98(param1, &v13, &v14);
 
             if (ov5_021F8410(param1, v13, v14, v15) == 1) {
@@ -361,7 +361,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
 
 static BOOL ov5_021D20DC (FieldSystem * param0)
 {
-    UnkStruct_02061AB4 * v0;
+    LocalMapObject * v0;
     int v1;
 
     if (sub_0203CBE0(param0, &v0) == 1) {
@@ -425,14 +425,14 @@ BOOL ov5_021D219C (UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
 
     if (param0->unk_00_0) {
         {
-            UnkStruct_02061AB4 * v0;
+            LocalMapObject * v0;
 
             if (sub_0203CA40(param1, &v0) == 1) {
                 UnkStruct_ov5_021D219C * v1;
 
                 if (0x1 != sub_02062948(v0)) {
-                    if (sub_0205F588(param1->unk_3C) == 1) {
-                        sub_0205F5E4(param1->unk_3C, sub_0205EA78(param1->unk_3C));
+                    if (sub_0205F588(param1->playerAvatar) == 1) {
+                        sub_0205F5E4(param1->playerAvatar, Player_Dir(param1->playerAvatar));
                     }
 
                     sub_0203E880(param1, sub_02062960(v0), v0);
@@ -486,11 +486,11 @@ BOOL ov5_021D2298 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
     }
 
     if (param0->unk_00_0) {
-        UnkStruct_02061AB4 * v0;
+        LocalMapObject * v0;
 
         if (sub_0203CA40(param1, &v0) == 1) {
-            if (sub_0205F588(param1->unk_3C) == 1) {
-                sub_0205F5E4(param1->unk_3C, sub_0205EA78(param1->unk_3C));
+            if (sub_0205F588(param1->playerAvatar) == 1) {
+                sub_0205F5E4(param1->playerAvatar, Player_Dir(param1->playerAvatar));
             }
 
             sub_02036B84();
@@ -529,13 +529,13 @@ int ov5_021D2368 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
 
     if (param0->unk_00_0) {
         {
-            UnkStruct_02061AB4 * v0;
+            LocalMapObject * v0;
 
             if (sub_0203CA40(param1, &v0) == 1) {
                 UnkStruct_ov5_021D219C * v1;
 
-                if (sub_0205F588(param1->unk_3C) == 1) {
-                    sub_0205F5E4(param1->unk_3C, sub_0205EA78(param1->unk_3C));
+                if (sub_0205F588(param1->playerAvatar) == 1) {
+                    sub_0205F5E4(param1->playerAvatar, Player_Dir(param1->playerAvatar));
                 }
 
                 if (sub_02062950(v0) != 0x9) {
@@ -634,7 +634,7 @@ static BOOL ov5_021D2504 (FieldSystem * param0, const UnkStruct_ov5_021D1CAC * p
 
     ov5_021D2C98(param0, &v1, &v2);
 
-    if (sub_02054F68(param0, v1, v2) == 0) {
+    if (FieldSystem_CheckCollision(param0, v1, v2) == 0) {
         return 0;
     }
 
@@ -710,7 +710,7 @@ static BOOL ov5_021D2504 (FieldSystem * param0, const UnkStruct_ov5_021D1CAC * p
 
 u16 ov5_021D271C (FieldSystem * param0, u8 param1)
 {
-    int v0 = sub_0205EA78(param0->unk_3C);
+    int v0 = Player_Dir(param0->playerAvatar);
 
     if (sub_0205DBE4(param1) && (v0 == 0)) {
         return 2018;
@@ -744,11 +744,11 @@ u16 ov5_021D271C (FieldSystem * param0, u8 param1)
         return 10003;
     }
 
-    if (sub_0205EB74(param0->unk_3C) != 0x2) {
+    if (sub_0205EB74(param0->playerAvatar) != 0x2) {
         TrainerInfo * v1 = SaveData_GetTrainerInfo(param0->unk_0C);
-        u32 v2 = sub_02061760(param0->unk_3C);
+        u32 v2 = sub_02061760(param0->playerAvatar);
 
-        if (ov5_021E0118(param0->unk_3C, v2, param1)
+        if (ov5_021E0118(param0->playerAvatar, v2, param1)
 
             && TrainerInfo_HasBadge(v1, 3)) {
             if (sub_020549A0(Party_GetFromSavedata(param0->unk_0C), 57) != 0xff) {
@@ -776,14 +776,14 @@ static BOOL ov5_021D2884 (FieldSystem * param0)
         }
     }
 
-    v3 = sub_0205EA78(param0->unk_3C);
+    v3 = Player_Dir(param0->playerAvatar);
 
-    if (ov5_021E1154(param0, param0->unk_3C, v3) == 1) {
+    if (ov5_021E1154(param0, param0->playerAvatar, v3) == 1) {
         return 1;
     }
 
-    v1 = sub_0205EABC(param0->unk_3C);
-    v2 = sub_0205EAC8(param0->unk_3C);
+    v1 = Player_XPos(param0->playerAvatar);
+    v2 = Player_ZPos(param0->playerAvatar);
     v0 = sub_02054F94(param0, v1, v2);
 
     if (ov5_021D29A0(param0) == 1) {
@@ -795,7 +795,7 @@ static BOOL ov5_021D2884 (FieldSystem * param0)
         return 1;
     }
 
-    if (sub_0205EF58(param0->unk_3C)) {
+    if (sub_0205EF58(param0->playerAvatar)) {
         return 0;
     }
 
@@ -856,7 +856,7 @@ static BOOL ov5_021D29D8 (FieldSystem * param0, const int param1, const int para
     }
 
     if (sub_0205DC2C(param3) == 1) {
-        int v1 = sub_0205EA78(param0->unk_3C);
+        int v1 = Player_Dir(param0->playerAvatar);
 
         if (v1 == 2) {
             v1 = 3;
@@ -870,7 +870,7 @@ static BOOL ov5_021D29D8 (FieldSystem * param0, const int param1, const int para
         sub_02056BDC(param0, v0.unk_00, v0.unk_04, 0, 0, v1, 2);
         return 1;
     } else if (sub_0205DC38(param3) == 1) {
-        int v1 = sub_0205EA78(param0->unk_3C);
+        int v1 = Player_Dir(param0->playerAvatar);
 
         if ((v1 != 2) && (v1 != 3)) {
             GF_ASSERT(FALSE);
@@ -1021,15 +1021,15 @@ static BOOL ov5_021D2C14 (FieldSystem * param0)
 
 static void ov5_021D2C7C (const FieldSystem * param0, int * param1, int * param2)
 {
-    *param1 = sub_0205EABC(param0->unk_3C);
-    *param2 = sub_0205EAC8(param0->unk_3C);
+    *param1 = Player_XPos(param0->playerAvatar);
+    *param2 = Player_ZPos(param0->playerAvatar);
 }
 
 static void ov5_021D2C98 (const FieldSystem * param0, int * param1, int * param2)
 {
     int v0;
 
-    v0 = sub_0205EA78(param0->unk_3C);
+    v0 = Player_Dir(param0->playerAvatar);
     ov5_021D2CB4(param0, v0, param1, param2);
 }
 
@@ -1097,7 +1097,7 @@ static BOOL ov5_021D2D34 (const FieldSystem * param0, int param1, int param2, Un
 
     {
         UnkStruct_02049FA8 * v2 = sub_0203A724(sub_0203A790(param0->unk_0C));
-        inline_02049FA8(v2, param0->unk_1C->unk_00, v1, param1, param2, sub_0205EA78(param0->unk_3C));
+        inline_02049FA8(v2, param0->unk_1C->unk_00, v1, param1, param2, Player_Dir(param0->playerAvatar));
     }
 
     return 1;
@@ -1130,25 +1130,25 @@ static void ov5_021D2E14 (FieldSystem * param0)
 
     if (ov5_021D2D34(param0, v0, v1, &v2)) {
         if ((MapHeader_IsOnMainMatrix(param0->unk_1C->unk_00) == 1) && (MapHeader_IsOnMainMatrix(v2.unk_00) == 0)) {
-            ov5_021D2DCC(param0, v0, v1, sub_0205EA78(param0->unk_3C));
+            ov5_021D2DCC(param0, v0, v1, Player_Dir(param0->playerAvatar));
         }
     } else {
         ov5_021D2C98(param0, &v0, &v1);
 
         if (ov5_021D2D34(param0, v0, v1, &v2)) {
             if ((MapHeader_IsOnMainMatrix(param0->unk_1C->unk_00) == 1) && (MapHeader_IsOnMainMatrix(v2.unk_00) == 0)) {
-                ov5_021D2DCC(param0, v0, v1, sub_0205EA78(param0->unk_3C));
+                ov5_021D2DCC(param0, v0, v1, Player_Dir(param0->playerAvatar));
             }
         }
     }
 }
 
-static BOOL ov5_021D2EA4 (FieldSystem * param0, UnkStruct_02061AB4 ** param1)
+static BOOL ov5_021D2EA4 (FieldSystem * param0, LocalMapObject ** param1)
 {
     int v0 = 0;
     int v1, v2, v3, v4, v5, v6;
 
-    sub_020617BC(param0->unk_3C, &v1, &v2, &v3);
+    sub_020617BC(param0->playerAvatar, &v1, &v2, &v3);
 
     while (sub_020625B0(param0->unk_38, param1, &v0, (1 << 0))) {
         v4 = sub_02063020(*param1);

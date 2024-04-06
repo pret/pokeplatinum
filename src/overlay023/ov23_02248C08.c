@@ -21,7 +21,7 @@
 #include "unk_0202854C.h"
 #include "overlay023/ov23_02248C08.h"
 
-UnkStruct_ov23_02248D20 * ov23_02248C08 (UnkStruct_ov84_02240FA8 * param0, u16 param1, u16 param2, u8 param3, UnkFuncPtr_ov23_02248D20 param4, UnkStruct_020298B0 * param5, BOOL param6)
+UnkStruct_ov23_02248D20 * ov23_02248C08 (UnkStruct_ov84_02240FA8 * param0, u16 param1, u16 param2, u8 param3, UnkFuncPtr_ov23_02248D20 param4, UndergroundData * param5, BOOL param6)
 {
     UnkStruct_ov23_02248D20 * v0 = (UnkStruct_ov23_02248D20 *)Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov23_02248D20));
 

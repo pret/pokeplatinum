@@ -73,7 +73,7 @@ static void ov6_02248050 (UnkStruct_02061830 * param0, u32 param1, UnkStruct_020
     int v0;
     int v1, v2;
     VecFx32 v3;
-    UnkStruct_02061AB4 * v4;
+    LocalMapObject * v4;
 
     v4 = sub_0206251C(param0, param1);
 
@@ -104,7 +104,7 @@ static void ov6_02248050 (UnkStruct_02061830 * param0, u32 param1, UnkStruct_020
     sub_02017350(param2, (((v1) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1), v3.y, (((v2) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1));
 }
 
-static void ov6_022480BC (UnkStruct_0205E884 * const param0, UnkStruct_02017294 * param1)
+static void ov6_022480BC (PlayerAvatar * const param0, UnkStruct_02017294 * param1)
 {
     int v0;
     int v1, v2;
@@ -112,9 +112,9 @@ static void ov6_022480BC (UnkStruct_0205E884 * const param0, UnkStruct_02017294 
 
     sub_0205EAEC(param0, &v3);
 
-    v1 = sub_0205EABC(param0);
-    v2 = sub_0205EAC8(param0);
-    v0 = sub_0205EA78(param0);
+    v1 = Player_XPos(param0);
+    v2 = Player_ZPos(param0);
+    v0 = Player_Dir(param0);
 
     switch (v0) {
     case 0:
@@ -137,7 +137,7 @@ static void ov6_022480BC (UnkStruct_0205E884 * const param0, UnkStruct_02017294 
     sub_02017350(param1, (((v1) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1), v3.y, (((v2) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1));
 }
 
-static void ov6_02248124 (UnkStruct_0205E884 * const param0, UnkStruct_02017294 * param1)
+static void ov6_02248124 (PlayerAvatar * const param0, UnkStruct_02017294 * param1)
 {
     VecFx32 v0;
 
@@ -215,7 +215,7 @@ static void ov6_0224825C (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1,
     ov6_02248140(&v0->unk_00, v2, 3, 0, 3, &v0->unk_DC);
     NARC_dtor(v2);
 
-    ov6_022480BC(param1->unk_3C, &v0->unk_00.unk_00);
+    ov6_022480BC(param1->playerAvatar, &v0->unk_00.unk_00);
     Sound_PlayEffect(1611);
 
     v0->unk_EC = 0;
@@ -296,7 +296,7 @@ static void ov6_02248340 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1,
     ov6_02248140(&v0->unk_00, v2, 8, 4, 4, &v0->unk_DC);
     NARC_dtor(v2);
 
-    ov6_022480BC(param1->unk_3C, &v0->unk_00.unk_00);
+    ov6_022480BC(param1->playerAvatar, &v0->unk_00.unk_00);
     Sound_PlayEffect(1610);
 
     v0->unk_EC = 0;
@@ -416,7 +416,7 @@ static void ov6_02248498 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1,
     v2 = NARC_ctor(NARC_INDEX_GRAPHIC__HIDEN_EFFECT, 4);
 
     ov6_02248140(&v0->unk_00[0], v2, 14, 12, 2, &v0->unk_1B8);
-    ov6_02248124(param1->unk_3C, &v0->unk_00[0].unk_00);
+    ov6_02248124(param1->playerAvatar, &v0->unk_00[0].unk_00);
 
     NARC_dtor(v2);
     Sound_PlayEffect(1613);
@@ -445,23 +445,23 @@ static void ov6_02248520 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1,
         v2 = NARC_ctor(NARC_INDEX_GRAPHIC__HIDEN_EFFECT, 4);
         ov6_02248140(&v0->unk_00[1], v2, 11, 9, 2, &v0->unk_1B8);
         NARC_dtor(v2);
-        ov6_02248124(param1->unk_3C, &v0->unk_00[1].unk_00);
+        ov6_02248124(param1->playerAvatar, &v0->unk_00[1].unk_00);
         sub_02017348(&v0->unk_00[1].unk_00, 0);
         v0->unk_1C8++;
     case 1:
         v1 = ov6_022481F0(&v0->unk_00[0]);
-        ov6_02248124(param1->unk_3C, &v0->unk_00[0].unk_00);
+        ov6_02248124(param1->playerAvatar, &v0->unk_00[0].unk_00);
 
         if (v1 == 1) {
             sub_02017348(&v0->unk_00[1].unk_00, 1);
             sub_02017348(&v0->unk_00[0].unk_00, 0);
-            ov6_02248124(param1->unk_3C, &v0->unk_00[1].unk_00);
+            ov6_02248124(param1->playerAvatar, &v0->unk_00[1].unk_00);
             v0->unk_1C8++;
         }
         break;
     case 2:
         ov6_02248224(&v0->unk_00[1]);
-        ov6_02248124(param1->unk_3C, &v0->unk_00[1].unk_00);
+        ov6_02248124(param1->playerAvatar, &v0->unk_00[1].unk_00);
         break;
     default:
         break;
@@ -499,7 +499,7 @@ void ov6_02248608 (UnkStruct_ov5_021D1BEC * param0)
     ov5_021D1BEC(param0);
 }
 
-static void ov6_02248610 (UnkStruct_ov6_022486B4 * param0, UnkStruct_0205E884 * const param1, fx32 param2, fx32 param3)
+static void ov6_02248610 (UnkStruct_ov6_022486B4 * param0, PlayerAvatar * const param1, fx32 param2, fx32 param3)
 {
     VecFx32 v0;
     int v1;
@@ -570,7 +570,7 @@ static void ov6_02248728 (UnkStruct_ov6_022487F8 * param0)
 {
     VecFx32 v0;
 
-    sub_0205EAEC(param0->unk_CE0->unk_3C, &v0);
+    sub_0205EAEC(param0->unk_CE0->playerAvatar, &v0);
 
     if (((v0.x - param0->unk_CF0.x) == 0) && (v0.y < param0->unk_CF0.y) && (v0.z > param0->unk_CF0.z)) {
         param0->unk_CE8 = 0;
@@ -591,7 +591,7 @@ static void ov6_02248798 (UnkStruct_ov6_022487F8 * param0)
 
     for (v0 = 0; v0 < 16; v0++) {
         if (param0->unk_10[v0].unk_C8 == 0) {
-            ov6_02248610(&param0->unk_10[v0], param0->unk_CE0->unk_3C, param0->unk_CE8, param0->unk_CEC);
+            ov6_02248610(&param0->unk_10[v0], param0->unk_CE0->playerAvatar, param0->unk_CE8, param0->unk_CEC);
             return;
         }
     }
@@ -630,7 +630,7 @@ static void ov6_022487F8 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1,
     }
 
     v0->unk_CE0 = param1;
-    sub_0205EAEC(v0->unk_CE0->unk_3C, &v0->unk_CF0);
+    sub_0205EAEC(v0->unk_CE0->playerAvatar, &v0->unk_CF0);
 
     v0->unk_D0C = 0;
     NARC_dtor(v2);

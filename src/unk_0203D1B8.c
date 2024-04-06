@@ -308,7 +308,7 @@ void * sub_0203D20C (FieldSystem * param0, UnkStruct_020684D0 * param1)
     sub_0207CB2C(v1, param0->unk_0C, 0, param0->unk_98);
     sub_0207CB78(v1, param0->unk_70);
 
-    if (sub_0205EB74(param0->unk_3C) == 0x1) {
+    if (sub_0205EB74(param0->playerAvatar) == 0x1) {
         sub_0207CB58(v1);
     }
 
@@ -792,7 +792,7 @@ void * sub_0203D8EC (FieldSystem * param0)
     Options * v1;
 
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0203D8EC));
-    v1 = sub_02025E44(sub_0203D174(param0));
+    v1 = sub_02025E44(FieldSystem_SaveData(param0));
 
     sub_0203D8DC(param0, v1);
 
@@ -810,7 +810,7 @@ UnkStruct_02097728 * sub_0203D920 (FieldSystem * param0, int param1, u8 param2, 
 {
     UnkStruct_02097728 * v0;
 
-    v0 = sub_02097624(sub_0203D174(param0), param1, param2, param3, 11);
+    v0 = sub_02097624(FieldSystem_SaveData(param0), param1, param2, param3, 11);
     sub_0203D910(param0, v0);
 
     return v0;
@@ -821,9 +821,9 @@ UnkStruct_02097728 * sub_0203D94C (FieldSystem * param0, int param1, u8 param2, 
     UnkStruct_02097728 * v0;
 
     if (param1 == 3) {
-        v0 = sub_020976F4(sub_0203D174(param0), param2, param3);
+        v0 = sub_020976F4(FieldSystem_SaveData(param0), param2, param3);
     } else {
-        v0 = sub_0209767C(sub_0203D174(param0), param1, param2, param3);
+        v0 = sub_0209767C(FieldSystem_SaveData(param0), param1, param2, param3);
     }
 
     sub_0203D910(param0, v0);
@@ -835,7 +835,7 @@ UnkStruct_02097728 * sub_0203D984 (FieldSystem * param0, Pokemon * param1, int p
 {
     UnkStruct_02097728 * v0;
 
-    v0 = sub_020976BC(sub_0203D174(param0), param1, param2);
+    v0 = sub_020976BC(FieldSystem_SaveData(param0), param1, param2);
     sub_0203D910(param0, v0);
 
     return v0;
@@ -850,7 +850,7 @@ UnkStruct_0203D9B8 * sub_0203D9B8 (FieldSystem * param0, int param1)
 {
     UnkStruct_0203D9B8 * v0;
 
-    v0 = sub_020989DC(sub_0203D174(param0), param1);
+    v0 = sub_020989DC(FieldSystem_SaveData(param0), param1);
     sub_0203D9A8(param0, v0);
 
     return v0;

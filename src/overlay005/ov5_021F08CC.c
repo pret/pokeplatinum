@@ -84,7 +84,7 @@ static void ov5_021F0DE8(UnkStruct_ov5_021F0D6C * param0, u32 param1);
 static int ov5_021F0E24(UnkStruct_ov5_021F0D6C * param0);
 static u16 ov5_021F0E58(int param0);
 
-int(*const Unk_ov5_021FFA0C[])(UnkStruct_ov5_021F0D6C *, UnkStruct_0205E884 *, UnkStruct_02061AB4 *);
+int(*const Unk_ov5_021FFA0C[])(UnkStruct_ov5_021F0D6C *, PlayerAvatar *, LocalMapObject *);
 const int Unk_ov5_021FFA00[];
 
 void * ov5_021F08CC (FieldSystem * param0, u32 param1, int param2)
@@ -187,15 +187,15 @@ void ov5_021F09F0 (SysTask * param0)
 static void ov5_021F0A04 (SysTask * param0, void * param1)
 {
     UnkStruct_ov5_021F0D6C * v0 = param1;
-    UnkStruct_0205E884 * v1 = v0->unk_20->unk_3C;
-    UnkStruct_02061AB4 * v2 = sub_0205EB3C(v1);
+    PlayerAvatar * v1 = v0->unk_20->playerAvatar;
+    LocalMapObject * v2 = Player_LocalMapObject(v1);
 
     while (Unk_ov5_021FFA0C[v0->unk_0C](v0, v1, v2)) {
         (void)0;
     }
 }
 
-static int ov5_021F0A30 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * param1, UnkStruct_02061AB4 * param2)
+static int ov5_021F0A30 (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * param1, LocalMapObject * param2)
 {
     ov5_021F0D6C(param0);
     sub_02062DDC(param2);
@@ -204,9 +204,9 @@ static int ov5_021F0A30 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * p
     return 1;
 }
 
-static int ov5_021F0A48 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * param1, UnkStruct_02061AB4 * param2)
+static int ov5_021F0A48 (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * param1, LocalMapObject * param2)
 {
-    if (sub_020655F4(param2) == 1) {
+    if (LocalMapObj_IsAnimationSet(param2) == 1) {
         sub_020656AC(param2);
         ov5_021DFB54(param1, (1 << 5));
         ov5_021DFB5C(param1);
@@ -217,7 +217,7 @@ static int ov5_021F0A48 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * p
     return 0;
 }
 
-static int ov5_021F0A80 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * param1, UnkStruct_02061AB4 * param2)
+static int ov5_021F0A80 (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * param1, LocalMapObject * param2)
 {
     param0->unk_10++;
 
@@ -239,7 +239,7 @@ static int ov5_021F0A80 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * p
     return 1;
 }
 
-static int ov5_021F0AB8 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * param1, UnkStruct_02061AB4 * param2)
+static int ov5_021F0AB8 (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * param1, LocalMapObject * param2)
 {
     param0->unk_14 = ((LCRNG_Next() % 4) + 1) * 30;
     param0->unk_18 = Unk_ov5_021FFA00[param0->unk_1C];
@@ -248,7 +248,7 @@ static int ov5_021F0AB8 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * p
     return 1;
 }
 
-static int ov5_021F0AEC (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * param1, UnkStruct_02061AB4 * param2)
+static int ov5_021F0AEC (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * param1, LocalMapObject * param2)
 {
     param0->unk_14--;
 
@@ -269,7 +269,7 @@ static int ov5_021F0AEC (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * p
     return 1;
 }
 
-static int ov5_021F0B30 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * param1, UnkStruct_02061AB4 * param2)
+static int ov5_021F0B30 (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * param1, LocalMapObject * param2)
 {
     param0->unk_18--;
 
@@ -287,7 +287,7 @@ static int ov5_021F0B30 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * p
     return 0;
 }
 
-static int ov5_021F0B5C (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * param1, UnkStruct_02061AB4 * param2)
+static int ov5_021F0B5C (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * param1, LocalMapObject * param2)
 {
     ov5_021F5C58(param0->unk_24);
     sub_02062A0C(param2, 0x3);
@@ -298,7 +298,7 @@ static int ov5_021F0B5C (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * p
     return 0;
 }
 
-static int ov5_021F0B7C (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * param1, UnkStruct_02061AB4 * param2)
+static int ov5_021F0B7C (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * param1, LocalMapObject * param2)
 {
     param0->unk_10++;
 
@@ -316,7 +316,7 @@ static int ov5_021F0B7C (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * p
     return 0;
 }
 
-static int ov5_021F0BB0 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * param1, UnkStruct_02061AB4 * param2)
+static int ov5_021F0BB0 (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * param1, LocalMapObject * param2)
 {
     if (ov5_021F0E24(param0) == 0) {
         return 0;
@@ -326,7 +326,7 @@ static int ov5_021F0BB0 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * p
     return 1;
 }
 
-static int ov5_021F0BC8 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * param1, UnkStruct_02061AB4 * param2)
+static int ov5_021F0BC8 (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * param1, LocalMapObject * param2)
 {
     param0->unk_08 = 1;
     param0->unk_0C = 15;
@@ -334,7 +334,7 @@ static int ov5_021F0BC8 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * p
     return 1;
 }
 
-static int ov5_021F0BD4 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * param1, UnkStruct_02061AB4 * param2)
+static int ov5_021F0BD4 (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * param1, LocalMapObject * param2)
 {
     sub_02062A0C(param2, 0x0);
     ov5_021F0DE8(param0, 56);
@@ -345,7 +345,7 @@ static int ov5_021F0BD4 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * p
     return 1;
 }
 
-static int ov5_021F0BF4 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * param1, UnkStruct_02061AB4 * param2)
+static int ov5_021F0BF4 (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * param1, LocalMapObject * param2)
 {
     sub_02062A0C(param2, 0x0);
     ov5_021F0DE8(param0, 55);
@@ -363,7 +363,7 @@ static int ov5_021F0BF4 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * p
     return 1;
 }
 
-static int ov5_021F0C34 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * param1, UnkStruct_02061AB4 * param2)
+static int ov5_021F0C34 (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * param1, LocalMapObject * param2)
 {
     param0->unk_10 = 30 * 4;
     param0->unk_0C = 13;
@@ -371,7 +371,7 @@ static int ov5_021F0C34 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * p
     return 1;
 }
 
-static int ov5_021F0C40 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * param1, UnkStruct_02061AB4 * param2)
+static int ov5_021F0C40 (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * param1, LocalMapObject * param2)
 {
     param0->unk_10--;
 
@@ -393,7 +393,7 @@ static int ov5_021F0C40 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * p
     return 0;
 }
 
-static int ov5_021F0C84 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * param1, UnkStruct_02061AB4 * param2)
+static int ov5_021F0C84 (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * param1, LocalMapObject * param2)
 {
     param0->unk_10++;
 
@@ -412,7 +412,7 @@ static int ov5_021F0C84 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * p
     return 1;
 }
 
-static int ov5_021F0CB0 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * param1, UnkStruct_02061AB4 * param2)
+static int ov5_021F0CB0 (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * param1, LocalMapObject * param2)
 {
     if (param0->unk_24 != NULL) {
         ov5_021F5C58(param0->unk_24);
@@ -434,7 +434,7 @@ static int ov5_021F0CB0 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * p
     return 1;
 }
 
-static int ov5_021F0CEC (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * param1, UnkStruct_02061AB4 * param2)
+static int ov5_021F0CEC (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * param1, LocalMapObject * param2)
 {
     param0->unk_10++;
 
@@ -445,7 +445,7 @@ static int ov5_021F0CEC (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * p
     return 0;
 }
 
-static int ov5_021F0D00 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * param1, UnkStruct_02061AB4 * param2)
+static int ov5_021F0D00 (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * param1, LocalMapObject * param2)
 {
     if (param0->unk_24 != NULL) {
         sub_0207136C(param0->unk_24);
@@ -456,7 +456,7 @@ static int ov5_021F0D00 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * p
     return 0;
 }
 
-static int(*const Unk_ov5_021FFA0C[])(UnkStruct_ov5_021F0D6C *, UnkStruct_0205E884 *, UnkStruct_02061AB4 *) = {
+static int(*const Unk_ov5_021FFA0C[])(UnkStruct_ov5_021F0D6C *, PlayerAvatar *, LocalMapObject *) = {
     ov5_021F0A30,
     ov5_021F0A48,
     ov5_021F0A80,

@@ -29,7 +29,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov5_021DF47C * unk_00;
     UnkStruct_021F61E8 * unk_04;
-    UnkStruct_0205E884 * unk_08;
+    PlayerAvatar * unk_08;
 } UnkStruct_021F6218;
 
 typedef struct {
@@ -83,15 +83,15 @@ static void ov5_021F620C (UnkStruct_021F61E8 * param0)
     sub_0207395C(&param0->unk_04);
 }
 
-void ov5_021F6218 (UnkStruct_0205E884 * param0)
+void ov5_021F6218 (PlayerAvatar * param0)
 {
     int v0 = 0, v1;
     UnkStruct_021F6218 v2;
     UnkStruct_ov5_021DF47C * v3;
-    UnkStruct_02061AB4 * v4;
+    LocalMapObject * v4;
     VecFx32 v5 = {0, 0, 0};
 
-    v4 = sub_0205EB3C(param0);
+    v4 = Player_LocalMapObject(param0);
     v3 = ov5_021DF578(v4);
 
     v2.unk_00 = v3;
@@ -105,13 +105,13 @@ void ov5_021F6218 (UnkStruct_0205E884 * param0)
 static int ov5_021F6264 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     UnkStruct_021F6264 * v0;
-    UnkStruct_02061AB4 * v1;
+    LocalMapObject * v1;
     const UnkStruct_021F6218 * v2;
 
     v0 = param1;
     v2 = sub_020715BC(param0);
     v0->unk_24 = *v2;
-    v1 = sub_0205EB3C(v2->unk_08);
+    v1 = Player_LocalMapObject(v2->unk_08);
 
     v0->unk_04 = -1;
     v0->unk_14 = sub_02062910(v1);
@@ -129,8 +129,8 @@ static void ov5_021F62A0 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     int v0;
     UnkStruct_021F6264 * v1 = param1;
-    UnkStruct_0205E884 * v2 = v1->unk_24.unk_08;
-    UnkStruct_02061AB4 * v3 = sub_0205EB3C(v2);
+    PlayerAvatar * v2 = v1->unk_24.unk_08;
+    LocalMapObject * v3 = Player_LocalMapObject(v2);
 
     if (sub_02062764(v3, v1->unk_14, v1->unk_18) == 0) {
         ov5_021DF74C(param0);
@@ -143,7 +143,7 @@ static void ov5_021F62A0 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     v1->unk_04 = ov5_021F6414(v1->unk_08);
     v1->unk_00 = 0;
 
-    if ((v1->unk_04 == -1) || (v1->unk_04 != sub_0205EA78(v2))) {
+    if ((v1->unk_04 == -1) || (v1->unk_04 != Player_Dir(v2))) {
         v1->unk_1C = 0;
         v1->unk_20 = 0;
         v1->unk_00 = 1;

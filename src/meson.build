@@ -226,7 +226,7 @@ pokeplatinum_c = files(
     'unk_02056B30.c',
     'unk_020573FC.c',
     'unk_0205749C.c',
-    'unk_02057518.c',
+    'comm_player_manager.c',
     'field_comm_manager.c',
     'unk_0205A0D8.c',
     'unk_0205B33C.c',

@@ -34,7 +34,7 @@ typedef struct {
     UnkStruct_ov5_021DF47C * unk_04;
     FieldSystem * unk_08;
     UnkStruct_ov5_021F2874 * unk_0C;
-    UnkStruct_02061AB4 * unk_10;
+    LocalMapObject * unk_10;
 } UnkStruct_ov5_021F28F4;
 
 typedef struct {
@@ -115,7 +115,7 @@ static void ov5_021F28E4 (UnkStruct_ov5_021F2874 * param0)
     }
 }
 
-UnkStruct_ov101_021D5D90 * ov5_021F28F4 (UnkStruct_02061AB4 * param0, int param1, int param2, int param3, int param4)
+UnkStruct_ov101_021D5D90 * ov5_021F28F4 (LocalMapObject * param0, int param1, int param2, int param3, int param4)
 {
     int v0;
     UnkStruct_ov101_021D5D90 * v1;
@@ -175,7 +175,7 @@ static void ov5_021F29BC (UnkStruct_ov101_021D5D90 * param0, void * param1)
 static void ov5_021F29D0 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     UnkStruct_ov5_021F2974 * v0 = param1;
-    UnkStruct_02061AB4 * v1 = v0->unk_10.unk_10;
+    LocalMapObject * v1 = v0->unk_10.unk_10;
 
     if (v0->unk_0C == 0) {
         return;

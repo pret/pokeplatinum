@@ -244,8 +244,8 @@ BOOL ov6_02240D5C (FieldSystem * param0)
     UnkStruct_ov6_0224222C v13[12];
     UnkStruct_ov6_022422D0 v14;
 
-    v2 = sub_0205EABC(param0->unk_3C);
-    v3 = sub_0205EAC8(param0->unk_3C);
+    v2 = Player_XPos(param0->playerAvatar);
+    v3 = Player_ZPos(param0->playerAvatar);
     v4 = (u8)sub_02054F94(param0, v2, v3);
 
     {
@@ -342,7 +342,7 @@ BOOL ov6_02240D5C (FieldSystem * param0)
             v13[v18].unk_06 = v12->unk_04[v18].unk_00;
         }
 
-        v19 = sub_02027474(sub_02027560(sub_0203D174(param0)));
+        v19 = sub_02027474(sub_02027560(FieldSystem_SaveData(param0)));
 
         ov6_02240C9C(v12, &v13[2].unk_00, &v13[3].unk_00);
         ov6_02240CC8(param0, v12, &v13[0].unk_00, &v13[1].unk_00);
@@ -498,8 +498,8 @@ BOOL ov6_022411C8 (FieldSystem * param0, UnkStruct_020508D4 * param1)
     UnkStruct_ov6_0224222C v12[12];
     UnkStruct_ov6_022422D0 v13;
 
-    v2 = sub_0205EABC(param0->unk_3C);
-    v3 = sub_0205EAC8(param0->unk_3C);
+    v2 = Player_XPos(param0->playerAvatar);
+    v3 = Player_ZPos(param0->playerAvatar);
     v4 = (u8)sub_02054F94(param0, v2, v3);
 
     {
@@ -562,7 +562,7 @@ BOOL ov6_022411C8 (FieldSystem * param0, UnkStruct_020508D4 * param1)
             v12[v16].unk_06 = v11->unk_04[v16].unk_00;
         }
 
-        v17 = sub_02027474(sub_02027560(sub_0203D174(param0)));
+        v17 = sub_02027474(sub_02027560(FieldSystem_SaveData(param0)));
 
         ov6_02240C9C(v11, &v12[2].unk_00, &v12[3].unk_00);
         ov6_02240CC8(param0, v11, &v12[0].unk_00, &v12[1].unk_00);
@@ -623,8 +623,8 @@ BOOL ov6_022413E4 (FieldSystem * param0, BattleParams ** param1)
 
     *param1 = NULL;
 
-    v1 = sub_0205EABC(param0->unk_3C);
-    v2 = sub_0205EAC8(param0->unk_3C);
+    v1 = Player_XPos(param0->playerAvatar);
+    v2 = Player_ZPos(param0->playerAvatar);
     v3 = (u8)sub_02054F94(param0, v1, v2);
 
     {
@@ -710,7 +710,7 @@ BOOL ov6_022413E4 (FieldSystem * param0, BattleParams ** param1)
             v12[v17].unk_06 = v11->unk_04[v17].unk_00;
         }
 
-        v18 = sub_02027474(sub_02027560(sub_0203D174(param0)));
+        v18 = sub_02027474(sub_02027560(FieldSystem_SaveData(param0)));
 
         ov6_02240C9C(v11, &v12[2].unk_00, &v12[3].unk_00);
         ov6_02240CC8(param0, v11, &v12[0].unk_00, &v12[1].unk_00);
@@ -769,7 +769,7 @@ static BOOL ov6_02241674 (FieldSystem * param0, Pokemon * param1, BattleParams *
         if (param6->unk_04 == 1) {
             TrainerInfo * v3;
 
-            v3 = SaveData_GetTrainerInfo(sub_0203D174(param0));
+            v3 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0));
             v0 = ov6_02241F2C(v1, v2, 1, param6->unk_08, TrainerInfo_ID(v3), param5, param1, param2);
         } else {
             v0 = ov6_02241F7C(param0, param1, param5, param4, 1, param2, v1, v2);
@@ -779,8 +779,8 @@ static BOOL ov6_02241674 (FieldSystem * param0, Pokemon * param1, BattleParams *
             {
                 int v4, v5;
 
-                v4 = sub_0205EABC(param0->unk_3C);
-                v5 = sub_0205EAC8(param0->unk_3C);
+                v4 = Player_XPos(param0->playerAvatar);
+                v5 = Player_ZPos(param0->playerAvatar);
 
                 RadarSpawnPatches(param0, v4, v5, param0->chain);
             }
@@ -857,7 +857,7 @@ static BOOL ov6_022417C8 (FieldSystem * param0, const u32 param1, const u8 param
     if (sub_0205DAD4(param2)) {
         v0 += 30;
     } else {
-        if (sub_0205EB74(param0->unk_3C) == 0x1) {
+        if (sub_0205EB74(param0->playerAvatar) == 0x1) {
             v0 += 30;
         }
     }

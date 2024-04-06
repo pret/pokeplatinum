@@ -35,7 +35,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "communication_system.h"
-#include "unk_02057518.h"
+#include "comm_player_manager.h"
 #include "unk_0205D8CC.h"
 #include "unk_0205E7D0.h"
 #include "overlay023/ov23_02241F74.h"
@@ -75,7 +75,7 @@ int Unk_ov23_0225776C[8][2];
 
 static void ov23_0224944C(BGL * param0, Window * param1);
 static void ov23_02249584(UnkStruct_ov23_0224942C * param0);
-static void ov23_02249214(UnkStruct_0205E884 * const param0, int param1[][2], int param2[][3]);
+static void ov23_02249214(PlayerAvatar * const param0, int param1[][2], int param2[][3]);
 static void ov23_022491CC(int param0[][2], int param1[][3]);
 static void ov23_022492C8(int param0[][3], GraphicElementData * param1[]);
 static void ov23_0224944C(BGL * param0, Window * param1);
@@ -162,7 +162,7 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
         v0->unk_00++;
         break;
     case 5:
-        ov23_02249214(v0->unk_1B4->unk_3C, v0->unk_04, v0->unk_44);
+        ov23_02249214(v0->unk_1B4->playerAvatar, v0->unk_04, v0->unk_44);
         ov23_022492C8(v0->unk_44, v0->unk_390);
         ov23_02249334(v0->unk_A4);
         ov23_0224937C(v0->unk_A4, v0->unk_3B0);
@@ -215,19 +215,19 @@ static void ov23_022491CC (int param0[][2], int param1[][3])
     }
 }
 
-static void ov23_02249214 (UnkStruct_0205E884 * const param0, int param1[][2], int param2[][3])
+static void ov23_02249214 (PlayerAvatar * const param0, int param1[][2], int param2[][3])
 {
     int v0;
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
-        param1[v0][0] = sub_02058CA0(v0);
-        param1[v0][1] = sub_02058CF4(v0);
+        param1[v0][0] = CommPlayer_XPos(v0);
+        param1[v0][1] = CommPlayer_ZPos(v0);
     }
 
     if (CommSys_IsInitialized()) {
         if (CommSys_IsPlayerConnected(CommSys_CurNetId()) == 0) {
-            param1[0][0] = sub_0205EABC(param0);
-            param1[0][1] = sub_0205EAC8(param0);
+            param1[0][0] = Player_XPos(param0);
+            param1[0][1] = Player_ZPos(param0);
         } else {
             int v1 = param1[0][0];
             int v2 = param1[0][1];

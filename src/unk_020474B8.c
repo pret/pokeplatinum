@@ -58,7 +58,7 @@ BOOL sub_020474F4 (UnkStruct_0203E724 * param0)
     StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
 
-    sub_0200B498(*v1, v2, SaveData_GetTrainerInfo(sub_0203D174(v0)));
+    sub_0200B498(*v1, v2, SaveData_GetTrainerInfo(FieldSystem_SaveData(v0)));
     return 0;
 }
 
@@ -259,7 +259,7 @@ BOOL sub_020478E4 (UnkStruct_0203E724 * param0)
 {
     int v0;
     FieldSystem * v1 = param0->unk_34;
-    TrainerInfo * v2 = SaveData_GetTrainerInfo(sub_0203D174(param0->unk_34));
+    TrainerInfo * v2 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->unk_34));
     StringFormatter ** v3 = sub_0203F098(v1, 15);
     u8 v4 = (*((param0)->unk_08++));
 

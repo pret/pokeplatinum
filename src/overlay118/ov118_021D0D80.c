@@ -97,7 +97,7 @@ int ov118_021D0DBC (GameWindowLayout * param0)
             break;
         }
 
-        sub_0202736C(sub_02027560(sub_0203D174(param0->unk_5A4->unk_1C)), v1);
+        sub_0202736C(sub_02027560(FieldSystem_SaveData(param0->unk_5A4->unk_1C)), v1);
     }
         v0->unk_00++;
         break;

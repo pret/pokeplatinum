@@ -152,7 +152,7 @@ static UnkStruct_0205B43C * sub_0205B3A0 (FieldSystem * param0)
         return NULL;
     }
 
-    v1 = sub_0203D174(param0);
+    v1 = FieldSystem_SaveData(param0);
     sub_020369EC(v1);
 
     v2 = (UnkStruct_0205B43C *)Heap_AllocFromHeap(31, sizeof(UnkStruct_0205B43C));
@@ -609,12 +609,12 @@ void sub_0205B930 (UnkStruct_0205B43C * param0, int param1, u32 param2)
         if (param2 == 0) {
             u8 v1 = param0->unk_30;
 
-            sub_02035AC4(103, &v1, 1);
+            CommSys_SendDataServer(103, &v1, 1);
             param0->unk_3C = param2;
         } else {
             u8 v2 = 7;
 
-            sub_02035AC4(103, &v2, 1);
+            CommSys_SendDataServer(103, &v2, 1);
             param0->unk_3C = param2;
         }
         break;

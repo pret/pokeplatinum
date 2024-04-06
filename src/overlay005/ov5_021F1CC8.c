@@ -44,7 +44,7 @@ static void ov5_021F1CF8(UnkStruct_021F1CF8 * param0);
 static void ov5_021F1D80(UnkStruct_021F1CF8 * param0);
 static UnkStruct_02073B50 * ov5_021F1DA4(UnkStruct_021F1CF8 * param0, int param1, int param2, int param3);
 static UnkStruct_02073838 * ov5_021F1E24(UnkStruct_021F1CF8 * param0, int param1, int param2, int param3);
-static UnkStruct_ov101_021D5D90 * ov5_021F1ECC(const UnkStruct_02061AB4 * param0, int param1);
+static UnkStruct_ov101_021D5D90 * ov5_021F1ECC(const LocalMapObject * param0, int param1);
 
 static const u32 Unk_ov5_0220039C[10];
 static const u32 Unk_ov5_02200374[10];
@@ -153,37 +153,37 @@ static UnkStruct_02073838 * ov5_021F1E24 (UnkStruct_021F1CF8 * param0, int param
     return v1;
 }
 
-UnkStruct_ov101_021D5D90 * ov5_021F1E8C (const UnkStruct_02061AB4 * param0)
+UnkStruct_ov101_021D5D90 * ov5_021F1E8C (const LocalMapObject * param0)
 {
     return ov5_021F1ECC(param0, 0);
 }
 
-UnkStruct_ov101_021D5D90 * ov5_021F1E98 (const UnkStruct_02061AB4 * param0)
+UnkStruct_ov101_021D5D90 * ov5_021F1E98 (const LocalMapObject * param0)
 {
     return ov5_021F1ECC(param0, 1);
 }
 
-UnkStruct_ov101_021D5D90 * ov5_021F1EA4 (const UnkStruct_02061AB4 * param0)
+UnkStruct_ov101_021D5D90 * ov5_021F1EA4 (const LocalMapObject * param0)
 {
     return ov5_021F1ECC(param0, 2);
 }
 
-UnkStruct_ov101_021D5D90 * ov5_021F1EB0 (const UnkStruct_02061AB4 * param0)
+UnkStruct_ov101_021D5D90 * ov5_021F1EB0 (const LocalMapObject * param0)
 {
     return ov5_021F1ECC(param0, 3);
 }
 
-UnkStruct_ov101_021D5D90 * ov5_021F1EBC (const UnkStruct_02061AB4 * param0)
+UnkStruct_ov101_021D5D90 * ov5_021F1EBC (const LocalMapObject * param0)
 {
     return ov5_021F1ECC(param0, 4);
 }
 
-UnkStruct_ov101_021D5D90 * ov5_021F1EC8 (const UnkStruct_02061AB4 * param0)
+UnkStruct_ov101_021D5D90 * ov5_021F1EC8 (const LocalMapObject * param0)
 {
     return NULL;
 }
 
-static UnkStruct_ov101_021D5D90 * ov5_021F1ECC (const UnkStruct_02061AB4 * param0, int param1)
+static UnkStruct_ov101_021D5D90 * ov5_021F1ECC (const LocalMapObject * param0, int param1)
 {
     VecFx32 v0;
     UnkStruct_ov101_021D5D90 * v1;

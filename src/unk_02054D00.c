@@ -271,7 +271,7 @@ void sub_02054F44 (const UnkStruct_02054F44 ** param0, int param1)
     }
 }
 
-BOOL sub_02054F68 (const FieldSystem * param0, const int param1, const int param2)
+BOOL FieldSystem_CheckCollision (const FieldSystem * param0, const int param1, const int param2)
 {
     BOOL v0;
     u16 v1;
@@ -369,7 +369,7 @@ BOOL sub_02055024 (const FieldSystem * param0, const VecFx32 * param1, const int
     if (v0 == 0) {
         BOOL v2;
 
-        v2 = sub_02054F68(param0, param2, param3);
+        v2 = FieldSystem_CheckCollision(param0, param2, param3);
 
         if ((!v2) && (v1 == 2)) {
             u8 v3 = sub_02054F94(param0, param2, param3);
@@ -403,7 +403,7 @@ BOOL sub_0205507C (FieldSystem * param0, const VecFx32 * param1, const int param
         v3 = sub_02068390(param0, param2, param3, param1->y, &v2);
 
         if (!v3) {
-            v2 = sub_02054F68(param0, param2, param3);
+            v2 = FieldSystem_CheckCollision(param0, param2, param3);
 
             if ((!v2) && (v1 == 2)) {
                 u8 v4 = sub_02054F94(param0, param2, param3);

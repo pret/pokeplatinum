@@ -31,8 +31,8 @@ typedef struct {
     int unk_04;
     UnkStruct_ov5_021DF47C * unk_08;
     UnkStruct_ov5_021F858C * unk_0C;
-    UnkStruct_02061AB4 * unk_10;
-    UnkStruct_0205E884 * unk_14;
+    LocalMapObject * unk_10;
+    PlayerAvatar * unk_14;
 } UnkStruct_ov5_021F8668;
 
 typedef struct {
@@ -91,16 +91,16 @@ static void ov5_021F85B0 (UnkStruct_ov5_021F858C * param0)
     sub_0207395C(&param0->unk_04);
 }
 
-UnkStruct_ov101_021D5D90 * ov5_021F85BC (UnkStruct_0205E884 * param0, int param1, int param2, int param3, int param4, int param5, int param6)
+UnkStruct_ov101_021D5D90 * ov5_021F85BC (PlayerAvatar * param0, int param1, int param2, int param3, int param4, int param5, int param6)
 {
     int v0;
     UnkStruct_ov101_021D5D90 * v1;
     const VecFx32 * v2;
     VecFx32 v3 = {0, 0, 0};
     UnkStruct_ov5_021F8668 v4;
-    UnkStruct_02061AB4 * v5;
+    LocalMapObject * v5;
 
-    v5 = sub_0205EB3C(param0);
+    v5 = Player_LocalMapObject(param0);
 
     v4.unk_00 = param4;
     v4.unk_04 = param6;
@@ -132,7 +132,7 @@ static int ov5_021F8668 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     UnkStruct_ov5_021F86CC * v0 = param1;
     const UnkStruct_ov5_021F8668 * v1 = sub_020715BC(param0);
-    UnkStruct_02061AB4 * v2 = v1->unk_10;
+    LocalMapObject * v2 = v1->unk_10;
 
     v0->unk_38 = *v1;
     v0->unk_04 = v1->unk_00;
@@ -153,7 +153,7 @@ static int ov5_021F8668 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 static void ov5_021F86CC (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     UnkStruct_ov5_021F86CC * v0 = param1;
-    UnkStruct_02061AB4 * v1 = v0->unk_38.unk_10;
+    LocalMapObject * v1 = v0->unk_38.unk_10;
     VecFx32 v2 = {0, 0, 0};
 
     sub_020630AC(v1, &v2);
@@ -162,8 +162,8 @@ static void ov5_021F86CC (UnkStruct_ov101_021D5D90 * param0, void * param1)
 static void ov5_021F86E4 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     UnkStruct_ov5_021F86CC * v0 = param1;
-    UnkStruct_02061AB4 * v1 = v0->unk_38.unk_10;
-    UnkStruct_0205E884 * v2 = v0->unk_38.unk_14;
+    LocalMapObject * v1 = v0->unk_38.unk_10;
+    PlayerAvatar * v2 = v0->unk_38.unk_14;
 
     if (((v0)->unk_00 & (1 << 1)) == 0) {
         return;

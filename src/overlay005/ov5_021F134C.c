@@ -35,7 +35,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov5_021DF47C * unk_00;
     UnkStruct_ov5_021F1388 * unk_04;
-    UnkStruct_02061AB4 * unk_08;
+    LocalMapObject * unk_08;
 } UnkStruct_ov5_021F1570;
 
 typedef struct {
@@ -198,7 +198,7 @@ static void ov5_021F1554 (UnkStruct_ov5_021F1388 * param0, int param1)
     NNS_G3dMdlSetMdlAlphaAll(param0->unk_28[0].unk_0C, param1);
 }
 
-void ov5_021F1570 (UnkStruct_02061AB4 * param0)
+void ov5_021F1570 (LocalMapObject * param0)
 {
     int v0, v1;
     UnkStruct_ov5_021F1570 v2;
@@ -249,7 +249,7 @@ static void ov5_021F1600 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 static void ov5_021F1604 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     UnkStruct_ov5_021F15B4 * v0;
-    UnkStruct_02061AB4 * v1;
+    LocalMapObject * v1;
 
     v0 = param1;
     v1 = v0->unk_14.unk_08;
@@ -307,7 +307,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov5_022002AC = {
     ov5_021F1670
 };
 
-UnkStruct_ov101_021D5D90 * ov5_021F16D4 (UnkStruct_02061AB4 * param0, int param1)
+UnkStruct_ov101_021D5D90 * ov5_021F16D4 (LocalMapObject * param0, int param1)
 {
     int v0;
     UnkStruct_ov5_021F1570 v1;
@@ -329,7 +329,7 @@ UnkStruct_ov101_021D5D90 * ov5_021F16D4 (UnkStruct_02061AB4 * param0, int param1
 static void ov5_021F1718 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     UnkStruct_ov5_021F15B4 * v0;
-    UnkStruct_02061AB4 * v1;
+    LocalMapObject * v1;
 
     v0 = param1;
     v1 = v0->unk_14.unk_08;

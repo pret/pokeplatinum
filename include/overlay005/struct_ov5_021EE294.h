@@ -6,7 +6,7 @@
 
 typedef struct {
     int unk_00;
-    UnkStruct_02061AB4 * unk_04;
+    LocalMapObject * unk_04;
     UnkStruct_020216E0 ** unk_08;
 } UnkStruct_ov5_021EE294;
 

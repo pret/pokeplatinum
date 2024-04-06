@@ -27,7 +27,7 @@
 #include "unk_0203CC84.h"
 #include "unk_020508D4.h"
 #include "unk_020530C8.h"
-#include "unk_02057518.h"
+#include "comm_player_manager.h"
 #include "unk_0205F180.h"
 #include "pokeradar.h"
 #include "unk_0207D3B8.h"
@@ -259,7 +259,7 @@ void sub_0203CF5C (FieldSystem * param0)
     }
 
     if (v2) {
-        sub_0205F490(param0->unk_3C);
+        sub_0205F490(param0->playerAvatar);
         ov5_021D1CAC(&v1, param0, gCoreSys.pressedKeys, gCoreSys.heldKeys);
     }
 
@@ -299,7 +299,7 @@ void sub_0203CF5C (FieldSystem * param0)
             if (ov5_021D2298(&v1, param0) == 1) {
                 (void)0;
             } else {
-                sub_0205F180(param0->unk_3C, param0->unk_28, -1, v1.unk_04, v1.unk_06, 0);
+                sub_0205F180(param0->playerAvatar, param0->unk_28, -1, v1.unk_04, v1.unk_06, 0);
             }
         }
         break;
@@ -308,7 +308,7 @@ void sub_0203CF5C (FieldSystem * param0)
             if (ov5_021D2368(&v1, param0) == 1) {
                 ov5_021DDA78(param0->unk_04->unk_08);
                 ov5_021E1BCC(param0, 4);
-                ov5_021E0EEC(param0->unk_3C);
+                ov5_021E0EEC(param0->playerAvatar);
                 ov5_021EA714(param0, 0, 1);
             } else {
                 if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
@@ -323,7 +323,7 @@ void sub_0203CF5C (FieldSystem * param0)
                         v3 = ov25_02253DD4(v4);
                     }
 
-                    sub_0205F180(param0->unk_3C, param0->unk_28, -1, v1.unk_04, v1.unk_06, v3);
+                    sub_0205F180(param0->playerAvatar, param0->unk_28, -1, v1.unk_04, v1.unk_06, v3);
                 }
             }
         }
@@ -333,8 +333,8 @@ void sub_0203CF5C (FieldSystem * param0)
             if (ov5_021D1DA4(&v1, param0) == 1) {
                 ov5_021DDA78(param0->unk_04->unk_08);
                 ov5_021E1BCC(param0, 4);
-                sub_0205F56C(param0->unk_3C);
-                ov5_021E0EEC(param0->unk_3C);
+                sub_0205F56C(param0->playerAvatar);
+                ov5_021E0EEC(param0->playerAvatar);
                 ov5_021EA714(param0, 0, 1);
             } else {
                 if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
@@ -349,7 +349,7 @@ void sub_0203CF5C (FieldSystem * param0)
                         v5 = ov25_02253DD4(v6);
                     }
 
-                    sub_0205F180(param0->unk_3C, param0->unk_28, -1, v1.unk_04, v1.unk_06, v5);
+                    sub_0205F180(param0->playerAvatar, param0->unk_28, -1, v1.unk_04, v1.unk_06, v5);
                 }
             }
         }
@@ -366,7 +366,7 @@ void sub_0203D128 (void)
 void sub_0203D140 (void)
 {
     Unk_021C07DC->unk_00->unk_08 = 0;
-    sub_02035EA8();
+    CommSys_EnableSendMovementData();
 }
 
 struct UnkStruct_ov25_02253CE0_t * sub_0203D158 (void)
@@ -384,7 +384,7 @@ BGL * sub_0203D170 (void * param0)
     return v0->unk_08;
 }
 
-SaveData * sub_0203D174 (void * param0)
+SaveData * FieldSystem_SaveData (void * param0)
 {
     return ((FieldSystem *)param0)->unk_0C;
 }

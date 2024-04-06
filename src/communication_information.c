@@ -24,7 +24,7 @@
 #include "communication_system.h"
 #include "unk_0203909C.h"
 
-typedef struct CommPlayerData {
+typedef struct CommPlayerInfo {
     u8 regulationBuffer[32];
     u8 trainerInfoBuffer[32];
     DWCFriendData friendData;
@@ -34,7 +34,7 @@ typedef struct CommPlayerData {
     u8 country;
     u8 region;
     u8 unk_65;
-} CommPlayerData;
+} CommPlayerInfo;
 
 typedef struct CommPlayerRecord {
     u16 win;
@@ -54,7 +54,7 @@ typedef struct CommunicationInformation {
     TrainerInfo * personalTrainerInfo;
     const BattleRegulation * regulation;
     SaveData * saveData;
-    CommPlayerData playerData[MAX_CONNECTED_PLAYERS];
+    CommPlayerInfo playerInfo[MAX_CONNECTED_PLAYERS];
     TrainerInfo * trainerInfo[MAX_CONNECTED_PLAYERS];
     CommPlayerRecord playerRecord[MAX_CONNECTED_PLAYERS];
     u8 infoState[MAX_CONNECTED_PLAYERS];
@@ -78,7 +78,7 @@ void CommInfo_Init (SaveData * saveData, const BattleRegulation * regulation)
     MI_CpuClear8(sCommInfo, sizeof(CommunicationInformation));
 
     for (netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
-        sCommInfo->trainerInfo[netId] = (TrainerInfo *)&sCommInfo->playerData[netId].trainerInfoBuffer[0];
+        sCommInfo->trainerInfo[netId] = (TrainerInfo *)&sCommInfo->playerInfo[netId].trainerInfoBuffer[0];
         CommInfo_InitPlayer(netId);
     }
 
@@ -129,30 +129,30 @@ void CommInfo_SendBattleRegulation (void)
     }
 
     TrainerInfo_Copy(trainerInfo, sCommInfo->trainerInfo[netId]);
-    OS_GetMacAddress(&sCommInfo->playerData[netId].macAddress[0]);
+    OS_GetMacAddress(&sCommInfo->playerInfo[netId].macAddress[0]);
 
     v2 = sub_0202B42C(v3, 1, 0);
 
-    MI_CpuCopy8(v2, sCommInfo->playerData[netId].unk_4C, sizeof(sCommInfo->playerData[netId].unk_4C));
+    MI_CpuCopy8(v2, sCommInfo->playerInfo[netId].unk_4C, sizeof(sCommInfo->playerInfo[netId].unk_4C));
 
-    sCommInfo->playerData[netId].country = sub_0202C8C0(v5);
-    sCommInfo->playerData[netId].region = sub_0202C8C4(v5);
-    sCommInfo->playerData[netId].unk_65 = sub_02028810(sCommInfo->saveData);
-    sCommInfo->playerData[netId].unk_65 = 1 - sCommInfo->playerData[netId].unk_65;
+    sCommInfo->playerInfo[netId].country = sub_0202C8C0(v5);
+    sCommInfo->playerInfo[netId].region = sub_0202C8C4(v5);
+    sCommInfo->playerInfo[netId].unk_65 = sub_02028810(sCommInfo->saveData);
+    sCommInfo->playerInfo[netId].unk_65 = 1 - sCommInfo->playerInfo[netId].unk_65;
 
-    DWC_CreateExchangeToken(sub_0202AD28(v4), &sCommInfo->playerData[netId].friendData);
-    MI_CpuClear8(sCommInfo->playerData[netId].regulationBuffer, 32);
+    DWC_CreateExchangeToken(sub_0202AD28(v4), &sCommInfo->playerInfo[netId].friendData);
+    MI_CpuClear8(sCommInfo->playerInfo[netId].regulationBuffer, 32);
 
     if (sCommInfo->regulation) {
-        BattleRegulation_Copy(sCommInfo->regulation, (BattleRegulation *)sCommInfo->playerData[netId].regulationBuffer);
+        BattleRegulation_Copy(sCommInfo->regulation, (BattleRegulation *)sCommInfo->playerInfo[netId].regulationBuffer);
     }
 
-    CommSys_SendData(3, &sCommInfo->playerData[netId], sizeof(CommPlayerData));
+    CommSys_SendData(3, &sCommInfo->playerInfo[netId], sizeof(CommPlayerInfo));
 }
 
-int CommPlayerData_Size (void)
+int CommPlayerInfo_Size (void)
 {
-    return sizeof(CommPlayerData);
+    return sizeof(CommPlayerInfo);
 }
 
 void CommunicatitonInformaion_FinishReading (int param0, int param1, void * param2, void * param3)
@@ -171,7 +171,7 @@ BOOL CommInfo_IsDataFinishedReading (void)
 
 void CommInfo_RecvPlayerDataArray (int netId, int param1, void * src, void * unused)
 {
-    CommPlayerData * playerData = (CommPlayerData *)src;
+    CommPlayerInfo * playerInfo = (CommPlayerInfo *)src;
 
     if (!sCommInfo) {
         return;
@@ -181,8 +181,8 @@ void CommInfo_RecvPlayerDataArray (int netId, int param1, void * src, void * unu
         return;
     }
 
-    MI_CpuCopy8(src, &sCommInfo->playerData[playerData->netId], sizeof(CommPlayerData));
-    sCommInfo->curNetId = playerData->netId;
+    MI_CpuCopy8(src, &sCommInfo->playerInfo[playerInfo->netId], sizeof(CommPlayerInfo));
+    sCommInfo->curNetId = playerInfo->netId;
 
     if (TrainerInfo_HasNoName(sCommInfo->trainerInfo[sCommInfo->curNetId]) == 1) {
         return;
@@ -203,8 +203,8 @@ void CommInfo_RecvPlayerData (int netId, int param1, void * src, void * param3)
         return;
     }
 
-    MI_CpuCopy8(src, &sCommInfo->playerData[netId], sizeof(CommPlayerData));
-    sub_02033FDC(&sCommInfo->playerData[netId].macAddress[0], netId);
+    MI_CpuCopy8(src, &sCommInfo->playerInfo[netId], sizeof(CommPlayerInfo));
+    sub_02033FDC(&sCommInfo->playerInfo[netId].macAddress[0], netId);
 
     sCommInfo->infoState[netId] = INFO_STATE_BEGIN_RECIEVE;
 
@@ -230,9 +230,9 @@ BOOL CommInfo_ServerSendArray (void)
     if (!sub_02036254(5)) {
         for (netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
             if (sCommInfo->infoState[netId] != INFO_STATE_EMPTY) {
-                sCommInfo->playerData[netId].netId = netId;
-                MI_CpuCopy8(sCommInfo->trainerInfo[netId], sCommInfo->playerData[netId].trainerInfoBuffer, TrainerInfo_Size());
-                CommSys_ServerSetSendQueue(4, &sCommInfo->playerData[netId], sizeof(CommPlayerData));
+                sCommInfo->playerInfo[netId].netId = netId;
+                MI_CpuCopy8(sCommInfo->trainerInfo[netId], sCommInfo->playerInfo[netId].trainerInfoBuffer, TrainerInfo_Size());
+                CommSys_ServerSetSendQueue(4, &sCommInfo->playerInfo[netId], sizeof(CommPlayerInfo));
             }
         }
 
@@ -352,7 +352,7 @@ TrainerInfo * CommInfo_TrainerInfo (int netId)
 DWCFriendData * CommInfo_DWCFriendData (int netId)
 {
     if (sCommInfo->infoState[netId] != INFO_STATE_EMPTY) {
-        return &sCommInfo->playerData[netId].friendData;
+        return &sCommInfo->playerInfo[netId].friendData;
     }
 
     return NULL;
@@ -366,7 +366,7 @@ int sub_02032F40 (int param0)
 u16 * sub_02032F54 (int netId)
 {
     if (sCommInfo->infoState[netId] != 0) {
-        return sCommInfo->playerData[netId].unk_4C;
+        return sCommInfo->playerInfo[netId].unk_4C;
     }
 
     return NULL;
@@ -375,7 +375,7 @@ u16 * sub_02032F54 (int netId)
 int CommInfo_PlayerCountry (int netId)
 {
     if (sCommInfo->infoState[netId] != 0) {
-        return sCommInfo->playerData[netId].country;
+        return sCommInfo->playerInfo[netId].country;
     }
 
     return 0;
@@ -384,7 +384,7 @@ int CommInfo_PlayerCountry (int netId)
 int CommInfo_PlayerRegion (int netId)
 {
     if (sCommInfo->infoState[netId] != 0) {
-        return sCommInfo->playerData[netId].region;
+        return sCommInfo->playerInfo[netId].region;
     }
 
     return 0;
@@ -393,7 +393,7 @@ int CommInfo_PlayerRegion (int netId)
 int sub_02032FC0 (int param0)
 {
     if (sCommInfo->infoState[param0] != 0) {
-        return sCommInfo->playerData[param0].unk_65;
+        return sCommInfo->playerInfo[param0].unk_65;
     }
 
     return 0;
@@ -407,7 +407,7 @@ BOOL CommInfo_CheckBattleRegulation (void)
         if (CommSys_IsPlayerConnected(netId) && (sCommInfo->infoState[netId] != 0)) {
             if (CommSys_IsPlayerConnected(netId + 1) && (sCommInfo->infoState[netId + 1] != 0)) {
                 for (i = 0; i < 32; i++) {
-                    if (sCommInfo->playerData[netId].regulationBuffer[i] != sCommInfo->playerData[netId + 1].regulationBuffer[i]) {
+                    if (sCommInfo->playerInfo[netId].regulationBuffer[i] != sCommInfo->playerInfo[netId + 1].regulationBuffer[i]) {
                         return FALSE;
                     }
                 }

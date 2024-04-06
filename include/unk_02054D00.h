@@ -9,7 +9,7 @@
 #include <nitro/fx/fx.h>
 
 void sub_02054F44(const UnkStruct_02054F44 ** param0, int param1);
-BOOL sub_02054F68(const FieldSystem * param0, const int param1, const int param2);
+BOOL FieldSystem_CheckCollision(const FieldSystem * param0, const int param1, const int param2);
 u8 sub_02054F94(const FieldSystem * param0, const int param1, const int param2);
 const fx32 sub_02054FBC(const FieldSystem * param0, const fx32 param1, const fx32 param2, const fx32 param3, u8 * param4);
 BOOL sub_02055024(const FieldSystem * param0, const VecFx32 * param1, const int param2, const int param3, s8 * param4);
