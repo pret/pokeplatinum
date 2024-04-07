@@ -144,13 +144,11 @@ BOOL SaveData_Erase (SaveData *saveData)
 
 BOOL SaveData_Load (SaveData *saveData)
 {
-    BOOL loadSucceeded;
-
     if (!saveData->backupExists) {
         return FALSE;
     }
 
-    loadSucceeded = SaveDataState_Load(saveData);
+    BOOL loadSucceeded = SaveDataState_Load(saveData);
 
     if (loadSucceeded) {
         saveData->dataExists = TRUE;
@@ -442,15 +440,11 @@ static void SaveData_SetBlockCheckInfo (SaveData *saveData, const SaveCheckInfo 
 
 static int SaveData_LoadCheck (SaveData *saveData)
 {
+    u8 *primaryBuffer = Heap_AllocFromHeapAtEnd(HEAP_ID_APPLICATION, SAVE_SECTOR_SIZE * SAVE_PAGE_MAX);
+    u8 *backupBuffer = Heap_AllocFromHeapAtEnd(HEAP_ID_APPLICATION, SAVE_SECTOR_SIZE * SAVE_PAGE_MAX);
+
     SaveCheckInfo normalInfo[SECTOR_ID_MAX];
     SaveCheckInfo boxInfo[SECTOR_ID_MAX];
-    u8 *primaryBuffer;
-    u8 *backupBuffer;
-    int normalResult, boxResult;
-    int currNormalSector, currBoxSector, staleNormalSector, staleBoxSector;
-
-    primaryBuffer = Heap_AllocFromHeapAtEnd(HEAP_ID_APPLICATION, SAVE_SECTOR_SIZE * SAVE_PAGE_MAX);
-    backupBuffer = Heap_AllocFromHeapAtEnd(HEAP_ID_APPLICATION, SAVE_SECTOR_SIZE * SAVE_PAGE_MAX);
 
     if (SaveData_CardLoad(PRIMARY_SECTOR_START * SAVE_SECTOR_SIZE, primaryBuffer, SAVE_SECTOR_SIZE * SAVE_PAGE_MAX)) {
         SaveBlockFooter_CheckInfo(&normalInfo[SECTOR_ID_PRIMARY], saveData, (u32)primaryBuffer, SAVE_BLOCK_ID_NORMAL);
@@ -471,8 +465,9 @@ static int SaveData_LoadCheck (SaveData *saveData)
     Heap_FreeToHeap(primaryBuffer);
     Heap_FreeToHeap(backupBuffer);
 
-    normalResult = SaveCheckInfo_CompareSectors(&normalInfo[SECTOR_ID_PRIMARY], &normalInfo[SECTOR_ID_BACKUP], &currNormalSector, &staleNormalSector);
-    boxResult = SaveCheckInfo_CompareSectors(&boxInfo[SECTOR_ID_PRIMARY], &boxInfo[SECTOR_ID_BACKUP], &currBoxSector, &staleBoxSector);
+    int currNormalSector, currBoxSector, staleNormalSector, staleBoxSector;
+    int normalResult = SaveCheckInfo_CompareSectors(&normalInfo[SECTOR_ID_PRIMARY], &normalInfo[SECTOR_ID_BACKUP], &currNormalSector, &staleNormalSector);
+    int boxResult = SaveCheckInfo_CompareSectors(&boxInfo[SECTOR_ID_PRIMARY], &boxInfo[SECTOR_ID_BACKUP], &currBoxSector, &staleBoxSector);
 
     if (normalResult == SECTOR_RESULT_INVALID && boxResult == SECTOR_RESULT_INVALID) {
         return LOAD_RESULT_EMPTY;
@@ -530,11 +525,7 @@ static int SaveData_LoadCheck (SaveData *saveData)
 static void SaveDataExtra_LoadCheck (SaveData *saveData, int *frontierResult, int *videoResult)
 {
     int loadResult;
-    BOOL isOld;
-    int extraSaveID;
     UnkStruct_0202783C *miscSave = sub_0202783C(saveData);
-    u32 currKey, oldKey;
-    u8 loadFlag;
 
     *frontierResult = LOAD_RESULT_OK;
     *videoResult = LOAD_RESULT_OK;
@@ -542,6 +533,10 @@ static void SaveDataExtra_LoadCheck (SaveData *saveData, int *frontierResult, in
     if (SaveData_MiscSave_InitFlag(saveData) == FALSE) {
         return;
     }
+
+    BOOL isOld;
+    u32 currKey, oldKey;
+    u8 loadFlag;
 
     sub_020279A8(miscSave, EXTRA_SAVE_TABLE_ENTRY_FRONTIER, &currKey, &oldKey, &loadFlag);
 
@@ -557,11 +552,11 @@ static void SaveDataExtra_LoadCheck (SaveData *saveData, int *frontierResult, in
         }
     }
 
-    for (extraSaveID = EXTRA_SAVE_TABLE_ENTRY_MY_RECORDINGS; extraSaveID <= EXTRA_SAVE_TABLE_ENTRY_DL_RECORDINGS_2; extraSaveID++) {
-        sub_020279A8(miscSave, extraSaveID, &currKey, &oldKey, &loadFlag);
+    for (int i = EXTRA_SAVE_TABLE_ENTRY_MY_RECORDINGS; i <= EXTRA_SAVE_TABLE_ENTRY_DL_RECORDINGS_2; i++) {
+        sub_020279A8(miscSave, i, &currKey, &oldKey, &loadFlag);
 
         if (currKey != EXTRA_SAVE_TABLE_ENTRY_NONE || oldKey != EXTRA_SAVE_TABLE_ENTRY_NONE) {
-            saveBuffer = SaveDataExtra_Mirror(saveData, HEAP_ID_APPLICATION, extraSaveID, &loadResult, &isOld);
+            saveBuffer = SaveDataExtra_Mirror(saveData, HEAP_ID_APPLICATION, i, &loadResult, &isOld);
             Heap_FreeToHeap(saveBuffer);
 
             if (loadResult == LOAD_RESULT_CORRUPT) {
@@ -606,49 +601,41 @@ static BOOL SaveDataState_Load (SaveData *saveData)
 
 static s32 SaveDataState_InitBlock (SaveData *saveData, int blockID, u8 sectorID)
 {
-    u32 saveOffset;
-    u8 *bodyOffset;
     const SaveBlockInfo *blockInfo = &saveData->blockInfo[blockID];
 
     SaveBlockFooter_Set(saveData, (u32)saveData->body.data, blockID);
 
-    saveOffset = SaveData_SaveOffset(sectorID, blockInfo);
-    bodyOffset = saveData->body.data + blockInfo->offset;
+    u32 saveOffset = SaveData_SaveOffset(sectorID, blockInfo);
+    u8 *bodyOffset = saveData->body.data + blockInfo->offset;
 
     return SaveData_CardSave_Init(saveOffset, bodyOffset, blockInfo->size - sizeof(SaveBlockFooter));
 }
 
 static s32 SaveDataState_InitFooter (SaveData *saveData, int blockID, u8 sectorID)
 {
-    u32 saveOffset;
-    u8 *bodyOffset;
     const SaveBlockInfo *blockInfo = &saveData->blockInfo[blockID];
 
-    saveOffset = SaveData_SaveOffset(sectorID, blockInfo) + blockInfo->size - sizeof(SaveBlockFooter);
-    bodyOffset = saveData->body.data + blockInfo->offset + blockInfo->size - sizeof(SaveBlockFooter);
+    u32 saveOffset = SaveData_SaveOffset(sectorID, blockInfo) + blockInfo->size - sizeof(SaveBlockFooter);
+    u8 *bodyOffset = saveData->body.data + blockInfo->offset + blockInfo->size - sizeof(SaveBlockFooter);
 
     return SaveData_CardSave_Init(saveOffset, bodyOffset, sizeof(SaveBlockFooter));
 }
 
 static s32 SaveDataState_InitFooter_Secondary (SaveData *saveData, int blockID, u8 sectorID)
 {
-    u32 saveOffset;
-    u8 *bodyOffset;
     const SaveBlockInfo *blockInfo = &saveData->blockInfo[blockID];
 
-    saveOffset = SaveData_SaveOffset(sectorID, blockInfo) + blockInfo->size - sizeof(SaveBlockFooter) + SECONDARY_FOOTER_SIZE;
-    bodyOffset = saveData->body.data + blockInfo->offset + blockInfo->size - sizeof(SaveBlockFooter) + SECONDARY_FOOTER_SIZE;
+    u32 saveOffset = SaveData_SaveOffset(sectorID, blockInfo) + blockInfo->size - sizeof(SaveBlockFooter) + SECONDARY_FOOTER_SIZE;
+    u8 *bodyOffset = saveData->body.data + blockInfo->offset + blockInfo->size - sizeof(SaveBlockFooter) + SECONDARY_FOOTER_SIZE;
 
     return SaveData_CardSave_Init(saveOffset, bodyOffset, SECONDARY_FOOTER_SIZE);
 }
 
 static void SaveDataState_Init (SaveData *saveData, SaveDataState *state, int blockID)
 {
-    int blockIndex;
-
-    for (blockIndex = 0; blockIndex < SAVE_BLOCK_ID_MAX; blockIndex++) {
-        state->blockCounterBackup[blockIndex] = saveData->blockCounters[blockIndex];
-        saveData->blockCounters[blockIndex]++;
+    for (int i = 0; i < SAVE_BLOCK_ID_MAX; i++) {
+        state->blockCounterBackup[i] = saveData->blockCounters[i];
+        saveData->blockCounters[i]++;
     }
 
     state->mainSequence = 0;
@@ -799,10 +786,10 @@ static void SaveDataState_Cancel (SaveData *saveData, SaveDataState *state)
 
 BOOL SaveDataState_Save (SaveData *saveData)
 {
-    int saveResult;
     SaveDataState state;
-
     SaveDataState_Init(saveData, &state, SAVE_BLOCK_ID_MAX);
+
+    int saveResult;
 
     do {
         saveResult = SaveDataState_Main(saveData, &state);
@@ -814,23 +801,21 @@ BOOL SaveDataState_Save (SaveData *saveData)
 
 static BOOL SaveBlockFooter_Erase (const SaveData *saveData, int blockID, int sectorID)
 {
-    u32 saveOffset;
     SaveBlockFooter footer;
     const SaveBlockInfo *blockInfo = &saveData->blockInfo[blockID];
 
     MI_CpuFill8(&footer, 0xff, sizeof(SaveBlockFooter));
-    saveOffset = SaveData_SaveOffset(sectorID, blockInfo) + blockInfo->size - sizeof(SaveBlockFooter);
+    u32 saveOffset = SaveData_SaveOffset(sectorID, blockInfo) + blockInfo->size - sizeof(SaveBlockFooter);
 
     return SaveData_CardSave(saveOffset, &footer, sizeof(SaveBlockFooter));
 }
 
 int SaveTableEntry_BodySize (int saveTableID)
 {
-    int size;
     const SaveTableEntry *saveTable = gSaveTable;
 
     GF_ASSERT(saveTableID < gSaveTableSize);
-    size = saveTable[saveTableID].sizeFunc();
+    int size = saveTable[saveTableID].sizeFunc();
 
     size += 4 - (size % 4);
     size += 4;
@@ -841,8 +826,7 @@ int SaveTableEntry_BodySize (int saveTableID)
 static void SavePageInfo_Init (SavePageInfo *pageInfo)
 {
     const SaveTableEntry *saveTable = gSaveTable;
-    int i;
-    int totalSize = 0;
+    int i, totalSize = 0;
 
     GF_ASSERT(gSaveTableSize == SAVE_TABLE_ENTRY_MAX);
 
@@ -867,23 +851,24 @@ static void SavePageInfo_Init (SavePageInfo *pageInfo)
 
 static void SaveBlockInfo_Init (SaveBlockInfo *blockInfo, const SavePageInfo *pageInfo)
 {
-    int totalSectors = 0, blockOffset = 0, block, page = 0;
+    int totalSectors = 0, blockOffset = 0, i, page = 0;
 
-    for (block = 0; block < SAVE_BLOCK_ID_MAX; block++) {
-        blockInfo[block].saveBlockID = block;
-        blockInfo[block].size = 0;
+    for (i = 0; i < SAVE_BLOCK_ID_MAX; i++) {
+        blockInfo[i].saveBlockID = i;
+        blockInfo[i].size = 0;
 
-        for (; pageInfo[page].blockID == block && page < gSaveTableSize; page++) {
-            blockInfo[block].size += pageInfo[page].size;
+        while (pageInfo[page].blockID == i && page < gSaveTableSize) {
+            blockInfo[i].size += pageInfo[page].size;
+            page++;
         }
 
-        blockInfo[block].size += sizeof(SaveBlockFooter);
-        blockInfo[block].sectorStartPos = totalSectors;
-        blockInfo[block].offset = blockOffset;
-        blockInfo[block].sectorsInUse = (blockInfo[block].size + SAVE_SECTOR_SIZE - 1) / SAVE_SECTOR_SIZE;
+        blockInfo[i].size += sizeof(SaveBlockFooter);
+        blockInfo[i].sectorStartPos = totalSectors;
+        blockInfo[i].offset = blockOffset;
+        blockInfo[i].sectorsInUse = (blockInfo[i].size + SAVE_SECTOR_SIZE - 1) / SAVE_SECTOR_SIZE;
 
-        totalSectors += blockInfo[block].sectorsInUse;
-        blockOffset += blockInfo[block].size;
+        totalSectors += blockInfo[i].sectorsInUse;
+        blockOffset += blockInfo[i].size;
     }
 
     GF_ASSERT(totalSectors == blockInfo[SAVE_BLOCK_ID_MAX - 1].sectorStartPos + blockInfo[SAVE_BLOCK_ID_MAX - 1].sectorsInUse);
@@ -893,12 +878,12 @@ static void SaveBlockInfo_Init (SaveBlockInfo *blockInfo, const SavePageInfo *pa
 static void SaveTable_Clear (SaveDataBody *body, const SavePageInfo *pageInfo)
 {
     const SaveTableEntry *saveTable = gSaveTable;
+    MI_CpuClearFast(body->data, sizeof(body->data));
+
     int i, size;
     void *page;
     u32 location;
-
-    MI_CpuClearFast(body->data, sizeof(body->data));
-
+    
     for (i = 0; i < gSaveTableSize; i++) {
         location = pageInfo[i].location;
         page = &body->data[location];
@@ -911,13 +896,13 @@ static void SaveTable_Clear (SaveDataBody *body, const SavePageInfo *pageInfo)
 void SaveDataExtra_Init (SaveData *saveData)
 {
     const SaveTableEntry *extraTable = gExtraSaveTable;
-    int i;
-    int loadResult;
-    void *extraData;
 
     if (SaveData_MiscSave_InitFlag(saveData) == TRUE) {
         return;
     }
+
+    int i, loadResult;
+    void *extraData;
 
     for (i = 0; i < gExtraSaveTableSize; i++) {
         if (extraTable[i].dataID == EXTRA_SAVE_TABLE_ENTRY_HALL_OF_FAME) {
@@ -979,17 +964,14 @@ static u32 SaveCheckFooter_SaveCounter (void *saveBody, u32 size)
 
 int SaveDataExtra_Save (const SaveData *saveData, int extraSaveID, void *data)
 {
-    const SaveTableEntry *saveTable;
-    u32 size;
-    BOOL saveResult;
-
     SleepLock(1);
-
     GF_ASSERT(extraSaveID < gExtraSaveTableSize);
-    saveTable = &gExtraSaveTable[extraSaveID];
 
+    const SaveTableEntry *saveTable = &gExtraSaveTable[extraSaveID];
     GF_ASSERT(saveTable->dataID == extraSaveID);
-    size = saveTable->sizeFunc() + sizeof(SaveCheckFooter);
+
+    u32 size = saveTable->sizeFunc() + sizeof(SaveCheckFooter);
+    BOOL saveResult;
 
     if (saveData->sectorSwitch == SECTOR_ID_BACKUP) {
         SaveCheckFooter_Set(saveData, data, extraSaveID, saveTable->sizeFunc());
@@ -1022,20 +1004,16 @@ int SaveDataExtra_Save (const SaveData *saveData, int extraSaveID, void *data)
 
 int SaveDataExtra_SaveMirror (SaveData *saveData, int extraSaveID, void *data)
 {
-    const SaveTableEntry *saveTable;
-    u32 size;
-    BOOL saveResult;
+    SleepLock(1);
+    GF_ASSERT(extraSaveID < gExtraSaveTableSize);
+
+    const SaveTableEntry *saveTable = &gExtraSaveTable[extraSaveID];
+    GF_ASSERT(saveTable->dataID == extraSaveID);
+    
+    u32 size = saveTable->sizeFunc() + sizeof(SaveCheckFooter);
+
     u32 currKey, oldKey, newKey;
     u8 keyFlag;
-
-    SleepLock(1);
-
-    GF_ASSERT(extraSaveID < gExtraSaveTableSize);
-    saveTable = &gExtraSaveTable[extraSaveID];
-
-    GF_ASSERT(saveTable->dataID == extraSaveID);
-    size = saveTable->sizeFunc() + sizeof(SaveCheckFooter);
-
     SaveDataExtra_SaveKey(saveData, extraSaveID, &currKey, &oldKey, &keyFlag);
 
     do {
@@ -1045,6 +1023,8 @@ int SaveDataExtra_SaveMirror (SaveData *saveData, int extraSaveID, void *data)
     SaveDataExtra_SetSaveKey(saveData, extraSaveID, newKey, currKey, keyFlag ^ 1);
 
     *((u32 *)data) = newKey;
+
+    BOOL saveResult;
 
     if (keyFlag == 1) {
         SaveCheckFooter_Set(saveData, data, extraSaveID, saveTable->sizeFunc());
@@ -1067,28 +1047,23 @@ int SaveDataExtra_SaveMirror (SaveData *saveData, int extraSaveID, void *data)
 
 void* SaveDataExtra_Get (SaveData *saveData, int heapID, int extraSaveID, int *loadResult)
 {
-    const SaveTableEntry *saveTable;
-    void *ret;
-    u32 size;
-    BOOL primaryResult, backupResult;
-    u32 primaryCounter, backupCounter;
-
     GF_ASSERT(extraSaveID < gExtraSaveTableSize);
-    saveTable = &gExtraSaveTable[extraSaveID];
 
+    const SaveTableEntry *saveTable = &gExtraSaveTable[extraSaveID];
     GF_ASSERT(saveTable->dataID == extraSaveID);
-    size = saveTable->sizeFunc() + sizeof(SaveCheckFooter);
-    ret = Heap_AllocFromHeap(heapID, size);
+
+    u32 size = saveTable->sizeFunc() + sizeof(SaveCheckFooter);
+    void *ret = Heap_AllocFromHeap(heapID, size);
 
     SaveData_CardLoad((PRIMARY_SECTOR_START + saveTable->blockID) * SAVE_SECTOR_SIZE, ret, size);
 
-    primaryResult = SaveCheckFooter_Validate(saveData, ret, extraSaveID, saveTable->sizeFunc());
-    primaryCounter = SaveCheckFooter_SaveCounter(ret, saveTable->sizeFunc());
+    BOOL primaryResult = SaveCheckFooter_Validate(saveData, ret, extraSaveID, saveTable->sizeFunc());
+    u32 primaryCounter = SaveCheckFooter_SaveCounter(ret, saveTable->sizeFunc());
 
     SaveData_CardLoad((BACKUP_SECTOR_START + saveTable->blockID) * SAVE_SECTOR_SIZE, ret, size);
 
-    backupResult = SaveCheckFooter_Validate(saveData, ret, extraSaveID, saveTable->sizeFunc());
-    backupCounter = SaveCheckFooter_SaveCounter(ret, saveTable->sizeFunc());
+    BOOL backupResult = SaveCheckFooter_Validate(saveData, ret, extraSaveID, saveTable->sizeFunc());
+    u32 backupCounter = SaveCheckFooter_SaveCounter(ret, saveTable->sizeFunc());
 
     *loadResult = LOAD_RESULT_OK;
 
@@ -1134,8 +1109,6 @@ void* SaveDataExtra_Mirror (SaveData *saveData, int heapID, int extraSaveID, int
     void *ret;
     u32 size;
     BOOL primaryResult, backupResult;
-    u32 primaryKey, backupKey, currKey, oldKey;
-    u8 keyFlag;
     UnkStruct_0202783C *miscSave = sub_0202783C(saveData);
 
     GF_ASSERT(extraSaveID < gExtraSaveTableSize);
@@ -1147,10 +1120,14 @@ void* SaveDataExtra_Mirror (SaveData *saveData, int heapID, int extraSaveID, int
     size = saveTable->sizeFunc() + sizeof(SaveCheckFooter);
     ret = Heap_AllocFromHeap(heapID, size);
 
-    SaveDataExtra_SaveKey(saveData, extraSaveID, &currKey, &oldKey, &keyFlag);
-    SaveData_CardLoad((PRIMARY_SECTOR_START + saveTable->blockID) * SAVE_SECTOR_SIZE, ret, size);
+    u32 primaryKey, backupKey, currKey, oldKey;
+    u8 keyFlag;
 
+    SaveDataExtra_SaveKey(saveData, extraSaveID, &currKey, &oldKey, &keyFlag);
+
+    SaveData_CardLoad((PRIMARY_SECTOR_START + saveTable->blockID) * SAVE_SECTOR_SIZE, ret, size);
     primaryResult = SaveCheckFooter_Validate(saveData, ret, extraSaveID, saveTable->sizeFunc());
+    
     MI_CpuCopy8(ret, &primaryKey, sizeof(u32));
 
     SaveData_CardLoad((BACKUP_SECTOR_START + saveTable->blockID) * SAVE_SECTOR_SIZE, ret, size);
@@ -1161,28 +1138,30 @@ void* SaveDataExtra_Mirror (SaveData *saveData, int heapID, int extraSaveID, int
     *loadResult = LOAD_RESULT_OK;
     *isOld = FALSE;
 
-    if (primaryResult == TRUE && backupResult == FALSE) {
-        if (currKey == primaryKey) {
-            if (keyFlag == 1) {
-                SaveDataExtra_SetSaveKey(saveData, extraSaveID, oldKey, oldKey, 0);
-                *isOld = TRUE;
-            }
+    if (primaryResult == TRUE 
+        && backupResult == FALSE 
+        && currKey == primaryKey) {
 
-            SaveData_CardLoad((PRIMARY_SECTOR_START + saveTable->blockID) * SAVE_SECTOR_SIZE, ret, size);
-            return ret;
+        if (keyFlag == 1) {
+            SaveDataExtra_SetSaveKey(saveData, extraSaveID, oldKey, oldKey, 0);
+            *isOld = TRUE;
         }
+
+        SaveData_CardLoad((PRIMARY_SECTOR_START + saveTable->blockID) * SAVE_SECTOR_SIZE, ret, size);
+        return ret;
     }
 
-    if (primaryResult == FALSE && backupResult == TRUE) {
-        if (currKey == backupKey) {
-            if (keyFlag == 0) {
-                SaveDataExtra_SetSaveKey(saveData, extraSaveID, oldKey, oldKey, 1);
-                *isOld = TRUE;
-            }
+    if (primaryResult == FALSE 
+        && backupResult == TRUE 
+        && currKey == backupKey) {
 
-            SaveData_CardLoad((BACKUP_SECTOR_START + saveTable->blockID) * SAVE_SECTOR_SIZE, ret, size);
-            return ret;
+        if (keyFlag == 0) {
+            SaveDataExtra_SetSaveKey(saveData, extraSaveID, oldKey, oldKey, 1);
+            *isOld = TRUE;
         }
+
+        SaveData_CardLoad((BACKUP_SECTOR_START + saveTable->blockID) * SAVE_SECTOR_SIZE, ret, size);
+        return ret;
     }
 
     if (primaryResult == TRUE && backupResult == TRUE) {
@@ -1227,13 +1206,12 @@ static void SaveDataExtra_SetSaveKey (SaveData *saveData, int extraSaveID, u32 n
 
 BOOL SaveData_CardBackupType (void)
 {
-    s32 lockID;
-    BOOL result;
-
-    lockID = OS_GetLockID();
+    s32 lockID = OS_GetLockID();
     GF_ASSERT(lockID != OS_LOCK_ID_ERROR);
 
     CARD_LockBackup(lockID);
+
+    BOOL result;
 
     if (CARD_IdentifyBackup(CARD_BACKUP_TYPE_FLASH_4MBITS)) {
         result = CARD_BACKUP_TYPE_FLASH_4MBITS;
@@ -1251,10 +1229,8 @@ BOOL SaveData_CardBackupType (void)
 
 BOOL SaveData_CardSave (u32 address, void *data, u32 size)
 {
-    s32 lockID;
+    s32 lockID = SaveData_CardSave_Init(address, data, size);
     BOOL result;
-
-    lockID = SaveData_CardSave_Init(address, data, size);
 
     while (SaveData_CardSave_Main(lockID, TRUE, &result) == FALSE) {
         (void)0;
@@ -1265,16 +1241,13 @@ BOOL SaveData_CardSave (u32 address, void *data, u32 size)
 
 BOOL SaveData_CardLoad (u32 address, void *data, u32 size)
 {
-    s32 lockID;
-    BOOL result;
-
-    lockID = OS_GetLockID();
+    s32 lockID = OS_GetLockID();
     GF_ASSERT(lockID != OS_LOCK_ID_ERROR);
 
     CARD_LockBackup(lockID);
     CARD_ReadFlashAsync(address, data, size, NULL, NULL);
 
-    result = CARD_WaitBackupAsync();
+    BOOL result = CARD_WaitBackupAsync();
 
     CARD_UnlockBackup(lockID);
     OS_ReleaseLockID(lockID);
@@ -1294,16 +1267,13 @@ static void CB_SaveComplete (void *unused)
 
 static s32 SaveData_CardSave_Init (u32 address, void *data, u32 size)
 {
-    s32 lockID;
-    u32 buffer;
-    BOOL readResult;
-
-    lockID = OS_GetLockID();
+    s32 lockID = OS_GetLockID();
     GF_ASSERT(lockID != OS_LOCK_ID_ERROR);
 
     CARD_LockBackup(lockID);
 
-    readResult = CARD_ReadFlash(0, &buffer, sizeof(buffer));
+    u32 buffer;
+    BOOL readResult = CARD_ReadFlash(0, &buffer, sizeof(buffer));
 
     if (!readResult) {
         SaveData_CardSave_Error(lockID, SAVE_ERROR_DISABLE_READ);
@@ -1360,18 +1330,17 @@ BOOL SaveData_Checksum (int saveTableID)
     SaveData *saveData = SaveData_Ptr();
     void *table = SaveData_SaveTable(saveData, saveTableID);
     int size = SaveTableEntry_BodySize(saveTableID) - 4;
+
+    u16 checkResult = sub_0201D628(table, size);
+
     int halfSize = size / 2;
     u16 *halfTable = table;
-    u16 checkResult;
-    u32 address;
-
-    checkResult = sub_0201D628(table, size);
 
     if (halfTable[halfSize] == checkResult) {
         return TRUE;
     }
 
-    address = (u32) &halfTable[halfSize];
+    u32 address = (u32) &halfTable[halfSize];
     GF_ASSERT(0);
 
     return FALSE;
@@ -1381,15 +1350,14 @@ void SaveData_SetChecksum (int saveTableID)
 {
     SaveData *saveData = SaveData_Ptr();
     void *table = SaveData_SaveTable(saveData, saveTableID);
-    u16 *halfTable = table;
-    int halfSize, size;
-    u16 checksum;
-    u32 address;
 
-    size = SaveTableEntry_BodySize(saveTableID) - 4;
-    halfSize = size / 2;
-    halfTable = table;
-    checksum = sub_0201D628(table, size);
+    int size = SaveTableEntry_BodySize(saveTableID) - 4;
+    int halfSize = size / 2;
+    u16 *halfTable = table;
+
+    u16 checksum = sub_0201D628(table, size);
+
     halfTable[halfSize] = checksum;
-    address = (u32) &halfTable[halfSize];
+
+    u32 address = (u32) &halfTable[halfSize];
 }
