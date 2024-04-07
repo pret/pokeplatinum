@@ -14,7 +14,6 @@
 #include "heap.h"
 #include "poketch_data.h"
 #include "overlay025/ov25_02255ACC.h"
-#include "overlay036/poketch_app_pedometer.h"
 
 typedef struct {
     u8 unk_00;
