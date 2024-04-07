@@ -296,7 +296,7 @@ static void sub_02049288 (FieldSystem * param0, StringFormatter * param1)
 {
     int v0;
 
-    v0 = ov25_02253DD8(param0->unk_04->unk_14);
+    v0 = PoketchSystem_CurrentAppID(param0->unk_04->unk_14);
     sub_0200B928(param1, 0, v0);
 }
 

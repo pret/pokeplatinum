@@ -1696,7 +1696,7 @@ void sub_0206E264 (FieldSystem * param0, u16 param1)
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E28C * v1 = &v0.val28;
 
-    v1->unk_00 = ov25_02253DD8(param0->unk_04->unk_14);
+    v1->unk_00 = PoketchSystem_CurrentAppID(param0->unk_04->unk_14);
     v1->unk_04 = param1;
 
     sub_0206CD70(param0, 1, 6, v1);

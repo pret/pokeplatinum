@@ -68,8 +68,8 @@ static void ov25_02253EA4(PoketchSystem *poketchSys);
 static void ov25_02253F2C(PoketchSystem *poketchSys);
 static void ov25_0225406C(PoketchSystem *poketchSys);
 static void ov25_022540D8(PoketchSystem *poketchSys);
-static void ov25_02254170(PoketchSystem *poketchSys, int param1);
-static void ov25_022541BC(PoketchSystem *poketchSys);
+static void PoketchSystem_LoadApp(PoketchSystem *poketchSys, int param1);
+static void PoketchSystem_UnloadApp(PoketchSystem *poketchSys);
 static void ov25_022541D8(PoketchSystem *poketchSys, u32 param1);
 static BOOL ov25_022541FC(PoketchSystem *poketchSys);
 static void ov25_0225420C(PoketchSystem *poketchSys);
@@ -120,7 +120,7 @@ static PoketchSystem * ov25_02253CE0 (void)
 }
 
 
-void PoketchSystem_Create(FieldSystem * fieldSys, PoketchSystem ** poketchSys, SaveData * saveData, BGL * param3, NNSG2dOamManagerInstance * param4)
+void PoketchSystem_Create(FieldSystem *fieldSys, PoketchSystem **poketchSys, SaveData *saveData, BGL *param3, NNSG2dOamManagerInstance *param4)
 {
     PoketchSystem *new_system;
 
@@ -135,7 +135,7 @@ void PoketchSystem_Create(FieldSystem * fieldSys, PoketchSystem ** poketchSys, S
         new_system->fieldSys = fieldSys;
         new_system->saveData = saveData;
         new_system->poketchData = SaveData_PoketchData(saveData);
-        new_system->unk_4C = param3;
+        new_system->bgl = param3;
         new_system->unk_50 = param4;
 
         if (PoketchSystem_InitInternal(new_system)) {
@@ -197,9 +197,9 @@ BOOL ov25_02253DD4 (PoketchSystem *poketchSys)
     return poketchSys->unk_03;
 }
 
-int ov25_02253DD8 (PoketchSystem *poketchSys)
+enum PoketchAppID PoketchSystem_CurrentAppID(PoketchSystem *poketchSys)
 {
-    return poketchSys->unk_14;
+    return poketchSys->loadedAppID;
 }
 
 static BOOL PoketchSystem_InitInternal (PoketchSystem *poketchSys)
@@ -212,7 +212,7 @@ static BOOL PoketchSystem_InitInternal (PoketchSystem *poketchSys)
         poketchSys->pedometerUpdated = FALSE;
         poketchSys->unk_05 = 0;
         poketchSys->unk_06 = 0;
-        poketchSys->unk_14 = -1;
+        poketchSys->loadedAppID = -1;
         poketchSys->unk_02 = 0;
         poketchSys->unk_08 = 0;
         poketchSys->buttonDir = BUTTON_UP;
@@ -230,7 +230,7 @@ static void ov25_02253E20 (PoketchSystem * poketchSys)
     SysTask_Done(poketchSys->unk_38);
 
     ov25_022542C8(poketchSys);
-    ov25_022541BC(poketchSys);
+    PoketchSystem_UnloadApp(poketchSys);
     ov25_02254754(poketchSys->unk_1C);
 }
 
@@ -288,10 +288,10 @@ static void ov25_02253EA4 (PoketchSystem *poketchSys)
         break;
     case 1:
         if (ov25_022547F4(poketchSys->unk_1C, 0)) {
-            u32 v0 = PoketchData_CurrentAppID(poketchSys->poketchData);
+            u32 app_ID = PoketchData_CurrentAppID(poketchSys->poketchData);
 
-            ov25_02254170(poketchSys, v0);
-            ov25_022541D8(poketchSys, v0);
+            PoketchSystem_LoadApp(poketchSys, app_ID);
+            ov25_022541D8(poketchSys, app_ID);
 
             poketchSys->unk_01++;
         }
@@ -369,7 +369,7 @@ static void ov25_02253F2C (PoketchSystem *poketchSys)
         break;
     case 3:
         if (ov25_02254228(poketchSys)) {
-            ov25_022541BC(poketchSys);
+            PoketchSystem_UnloadApp(poketchSys);
             sub_02099D44();
             ov25_02253E9C(poketchSys, 2);
         }
@@ -408,7 +408,7 @@ static void ov25_0225406C (PoketchSystem *poketchSys)
         poketchSys->unk_06 = 1;
         v0 = PoketchData_CurrentAppID(poketchSys->poketchData);
 
-        ov25_02254170(poketchSys, v0);
+        PoketchSystem_LoadApp(poketchSys, v0);
         ov25_022541D8(poketchSys, v0);
 
         poketchSys->unk_01++;
@@ -462,7 +462,7 @@ static void ov25_022540D8 (PoketchSystem *poketchSys)
         break;
     case 3:
         if (ov25_02254800(poketchSys->unk_1C)) {
-            ov25_022541BC(poketchSys);
+            PoketchSystem_UnloadApp(poketchSys);
             sub_0201E530();
             ov25_02253E9C(poketchSys, 4);
         }
@@ -470,29 +470,30 @@ static void ov25_022540D8 (PoketchSystem *poketchSys)
     }
 }
 
-static void ov25_02254170 (PoketchSystem *poketchSys, int param1)
+static void PoketchSystem_LoadApp(PoketchSystem *poketchSys, int appID)
 {
-    GF_ASSERT(param1 >= 0 && param1 < NELEMS(sAppOverlayIDs));
+    GF_ASSERT(appID >= 0 && appID < NELEMS(sAppOverlayIDs));
 
-    if (poketchSys->unk_14 == -1) {
-        int v0;
+    if (poketchSys->loadedAppID == POKETCH_APPID_NONE) {
 
-        for (v0 = 0; v0 < NELEMS(sAppOverlayIDs); v0++) {
-            if (sAppOverlayIDs[v0].appID == param1) {
-                Overlay_LoadByID(sAppOverlayIDs[v0].overlayID, 2);
-                poketchSys->unk_14 = param1;
-                poketchSys->loadedAppOverlayID = sAppOverlayIDs[v0].overlayID;
+        for (int i = 0; i < NELEMS(sAppOverlayIDs); i++) {
+
+            if (sAppOverlayIDs[i].appID == appID) {
+
+                Overlay_LoadByID(sAppOverlayIDs[i].overlayID, OVERLAY_LOAD_ASYNC);
+                poketchSys->loadedAppID = appID;
+                poketchSys->loadedAppOverlayID = sAppOverlayIDs[i].overlayID;
                 break;
             }
         }
     }
 }
 
-static void ov25_022541BC (PoketchSystem *poketchSys)
+static void PoketchSystem_UnloadApp(PoketchSystem *poketchSys)
 {
-    if (poketchSys->unk_14 != -1) {
+    if (poketchSys->loadedAppID != POKETCH_APPID_NONE) {
         Overlay_UnloadByID(poketchSys->loadedAppOverlayID);
-        poketchSys->unk_14 = -1;
+        poketchSys->loadedAppID = POKETCH_APPID_NONE;
     }
 }
 
@@ -500,7 +501,7 @@ static void ov25_022541D8 (PoketchSystem *poketchSys, u32 param1)
 {
     GF_ASSERT(poketchSys->unk_02 == 0);
 
-    poketchSys->unk_3C(&(poketchSys->unk_24), poketchSys, poketchSys->unk_4C, poketchSys->unk_14);
+    poketchSys->unk_3C(&(poketchSys->unk_24), poketchSys, poketchSys->bgl, poketchSys->loadedAppID);
     poketchSys->unk_02 = 1;
 }
 
@@ -762,17 +763,17 @@ BOOL PoketchSystem_PedometerUpdated(const PoketchSystem *poketchSys)
     return poketchSys->pedometerUpdated;
 }
 
-FieldSystem * PoketchSystem_FieldSystem(const PoketchSystem *poketchSys)
+FieldSystem* PoketchSystem_FieldSystem(const PoketchSystem *poketchSys)
 {
     return poketchSys->fieldSys;
 }
 
-PoketchData * PoketchSystem_PoketchData(const PoketchSystem *poketchSys)
+PoketchData* PoketchSystem_PoketchData(const PoketchSystem *poketchSys)
 {
     return poketchSys->poketchData;
 }
 
-SaveData * PoketchSystem_SaveData(const PoketchSystem *poketchSys)
+SaveData* PoketchSystem_SaveData(const PoketchSystem *poketchSys)
 {
     return poketchSys->saveData;
 }

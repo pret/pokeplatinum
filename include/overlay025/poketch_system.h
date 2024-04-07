@@ -36,7 +36,7 @@ typedef struct PoketchSystem {
     u32 unk_08;
     BOOL unk_0C;
     u32 unk_10;
-    int unk_14;
+    enum PoketchAppID loadedAppID;
     FSOverlayID loadedAppOverlayID;
     UnkStruct_ov25_02254560 * unk_1C;
     UnkStruct_ov25_02254560_1 unk_20;
@@ -50,7 +50,7 @@ typedef struct PoketchSystem {
     UnkFuncPtr_ov25_02254238_1 unk_40;
     UnkFuncPtr_ov25_02254274 unk_44;
     void * unk_48;
-    BGL * unk_4C;
+    BGL *bgl;
     NNSG2dOamManagerInstance * unk_50;
     SaveData * saveData;
     PoketchData * poketchData;
@@ -63,7 +63,7 @@ void ov25_02253D5C(PoketchSystem *poketchSys);
 BOOL ov25_02253D70(PoketchSystem *poketchSys);
 void ov25_02253D7C(PoketchSystem *poketchSys, int param1, u32 param2);
 BOOL ov25_02253DD4(PoketchSystem *poketchSys);
-int ov25_02253DD8(PoketchSystem *poketchSys);
+enum PoketchAppID PoketchSystem_CurrentAppID(PoketchSystem *poketchSys);
 void ov25_02254238(UnkFuncPtr_ov25_02254238 param0, UnkFuncPtr_ov25_02254238_1 param1);
 void ov25_0225424C(PoketchSystem *poketchSys);
 void ov25_02254260(PoketchSystem *poketchSys);
