@@ -237,18 +237,12 @@ BOOL SaveData_IsNewGameData (const SaveData *saveData)
 
 BOOL SaveData_MiscSave_InitFlag (SaveData *saveData)
 {
-    UnkStruct_0202783C *miscSave;
-
-    miscSave = sub_0202783C(saveData);
-    return sub_020278CC(miscSave);
+    return sub_020278CC(sub_0202783C(saveData));
 }
 
 static void SaveData_MiscSave_SetInitFlag (SaveData *saveData)
 {
-    UnkStruct_0202783C *miscSave;
-
-    miscSave = sub_0202783C(saveData);
-    sub_020278B8(miscSave);
+    sub_020278B8(sub_0202783C(saveData));
 }
 
 BOOL SaveData_OverwriteCheck (const SaveData *saveData)
@@ -984,7 +978,7 @@ static BOOL SaveCheckFooter_Validate (const SaveData *saveData, void *saveBody, 
 
 static u32 SaveCheckFooter_SaveCounter (void *saveBody, u32 size)
 {
-    const SaveCheckFooter *footer = (const SaveCheckFooter *)((u8 *)saveBody + size);
+    SaveCheckFooter *footer = (SaveCheckFooter *)((u8 *)saveBody + size);
     return footer->saveCounter;
 }
 
