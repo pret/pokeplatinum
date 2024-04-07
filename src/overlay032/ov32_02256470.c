@@ -86,7 +86,7 @@ static const struct {
 
 BOOL ov32_02256470 (UnkStruct_ov32_02256470 ** param0, const UnkStruct_ov32_02256470_1 * param1, BGL * param2)
 {
-    UnkStruct_ov32_02256470 * v0 = (UnkStruct_ov32_02256470 *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov32_02256470));
+    UnkStruct_ov32_02256470 * v0 = (UnkStruct_ov32_02256470 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov32_02256470));
 
     if (v0 != NULL) {
         int v1;

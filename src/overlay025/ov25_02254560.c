@@ -92,7 +92,7 @@ SysTask * sub_0200DA3C(SysTaskFunc param0, void * param1, u32 param2);
 
 BOOL ov25_02254560 (UnkStruct_ov25_02254560 ** param0, const UnkStruct_ov25_02254560_1 * param1, NNSG2dOamManagerInstance * param2, PoketchSystem * param3)
 {
-    *param0 = Heap_AllocFromHeap(7, sizeof(UnkStruct_ov25_02254560));
+    *param0 = Heap_AllocFromHeap(HEAP_ID_POKETCH_MAIN, sizeof(UnkStruct_ov25_02254560));
 
     if (*param0 != NULL) {
         UnkStruct_ov25_02254560 * v0 = *param0;

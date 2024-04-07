@@ -29,7 +29,7 @@ static void ov51_02256458(SysTask * param0, void * param1);
 
 BOOL ov51_0225632C (UnkStruct_ov51_0225632C ** param0, const UnkStruct_ov51_0225632C_1 * param1, BGL * param2)
 {
-    UnkStruct_ov51_0225632C * v0 = (UnkStruct_ov51_0225632C *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov51_0225632C));
+    UnkStruct_ov51_0225632C * v0 = (UnkStruct_ov51_0225632C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov51_0225632C));
 
     if (v0 != NULL) {
         ov25_02255090(v0->unk_08, 8);

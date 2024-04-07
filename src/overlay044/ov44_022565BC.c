@@ -61,7 +61,7 @@ static BOOL ov44_02256AC8(UnkStruct_ov44_022565BC * param0, const UnkStruct_ov44
 
 BOOL ov44_022565BC (UnkStruct_ov44_022565BC ** param0, const UnkStruct_ov44_022565BC_1 * param1, BGL * param2)
 {
-    UnkStruct_ov44_022565BC * v0 = (UnkStruct_ov44_022565BC *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov44_022565BC));
+    UnkStruct_ov44_022565BC * v0 = (UnkStruct_ov44_022565BC *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov44_022565BC));
 
     if (v0 != NULL) {
         ov25_02255090(v0->unk_08, 4);

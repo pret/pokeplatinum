@@ -120,14 +120,12 @@ static PoketchSystem * ov25_02253CE0 (void)
 }
 
 
-void PoketchSystem_Create(FieldSystem *fieldSys, PoketchSystem **poketchSys, SaveData *saveData, BGL *param3, NNSG2dOamManagerInstance *param4)
+void PoketchSystem_Create(FieldSystem *fieldSys, PoketchSystem **poketchSys, SaveData *saveData, BGL *bgl, NNSG2dOamManagerInstance *oamManager)
 {
-    PoketchSystem *new_system;
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_POKETCH_MAIN, HEAP_SIZE_POKETCH_MAIN);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_POKETCH_APP, HEAP_SIZE_POKETCH_APP);
 
-    Heap_Create(3, 7, 49152);
-    Heap_Create(3, 8, 49152);
-
-    new_system = Heap_AllocFromHeap(7, sizeof(PoketchSystem));
+    PoketchSystem *new_system = Heap_AllocFromHeap(HEAP_ID_POKETCH_MAIN, sizeof(PoketchSystem));
 
     if (new_system != NULL) {
         *poketchSys = new_system;
@@ -135,8 +133,8 @@ void PoketchSystem_Create(FieldSystem *fieldSys, PoketchSystem **poketchSys, Sav
         new_system->fieldSys = fieldSys;
         new_system->saveData = saveData;
         new_system->poketchData = SaveData_PoketchData(saveData);
-        new_system->bgl = param3;
-        new_system->unk_50 = param4;
+        new_system->bgl = bgl;
+        new_system->unk_50 = oamManager;
 
         if (PoketchSystem_InitInternal(new_system)) {
             sub_0201E3D8();
@@ -202,7 +200,7 @@ enum PoketchAppID PoketchSystem_CurrentAppID(PoketchSystem *poketchSys)
     return poketchSys->loadedAppID;
 }
 
-static BOOL PoketchSystem_InitInternal (PoketchSystem *poketchSys)
+static BOOL PoketchSystem_InitInternal(PoketchSystem *poketchSys)
 {
     if (ov25_02254560(&(poketchSys->unk_1C), &(poketchSys->unk_20), poketchSys->unk_50, poketchSys)) {
         poketchSys->unk_00 = 0;
@@ -212,17 +210,17 @@ static BOOL PoketchSystem_InitInternal (PoketchSystem *poketchSys)
         poketchSys->pedometerUpdated = FALSE;
         poketchSys->unk_05 = 0;
         poketchSys->unk_06 = 0;
-        poketchSys->loadedAppID = -1;
+        poketchSys->loadedAppID = POKETCH_APPID_NONE;
         poketchSys->unk_02 = 0;
         poketchSys->unk_08 = 0;
         poketchSys->buttonDir = BUTTON_UP;
 
         if (ov25_02254284(poketchSys)) {
-            return 1;
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 static void ov25_02253E20 (PoketchSystem * poketchSys)
@@ -236,23 +234,22 @@ static void ov25_02253E20 (PoketchSystem * poketchSys)
 
 static void PoketchSystem_MainTask(SysTask *task, void *system)
 {
-    static void(*const v0[])(PoketchSystem *) = {
+    typedef void(*const PoketchEvent)(PoketchSystem *);
+    static PoketchEvent sPoketchEvents[] = {
         ov25_02253EA4,
         ov25_02253F2C,
         ov25_0225406C,
         ov25_022540D8
     };
 
-    PoketchSystem *poketchSys;
+    PoketchSystem *poketchSys = (PoketchSystem *)system;
 
-    poketchSys = (PoketchSystem *)system;
-
-    if (poketchSys->unk_00 < NELEMS(v0)) {
+    if (poketchSys->unk_00 < NELEMS(sPoketchEvents)) {
         if (poketchSys->unk_00 != 0) {
             ov25_022542D4(poketchSys);
         }
 
-        v0[poketchSys->unk_00](poketchSys);
+        sPoketchEvents[poketchSys->unk_00](poketchSys);
     } else {
         GF_ASSERT(poketchSys->unk_00 == 4);
         *(poketchSys->poketchSysPtr) = NULL;
@@ -475,9 +472,7 @@ static void PoketchSystem_LoadApp(PoketchSystem *poketchSys, int appID)
     GF_ASSERT(appID >= 0 && appID < NELEMS(sAppOverlayIDs));
 
     if (poketchSys->loadedAppID == POKETCH_APPID_NONE) {
-
         for (int i = 0; i < NELEMS(sAppOverlayIDs); i++) {
-
             if (sAppOverlayIDs[i].appID == appID) {
 
                 Overlay_LoadByID(sAppOverlayIDs[i].overlayID, OVERLAY_LOAD_ASYNC);
@@ -525,10 +520,10 @@ static void ov25_0225420C (PoketchSystem *poketchSys)
 static BOOL ov25_02254228 (PoketchSystem *poketchSys)
 {
     if (poketchSys->unk_02 == 0) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 void ov25_02254238 (UnkFuncPtr_ov25_02254238 param0, UnkFuncPtr_ov25_02254238_1 param1)

@@ -24,7 +24,7 @@ typedef BOOL (* UnkFuncPtr_ov25_02254238)(void **, PoketchSystem *, BGL *, u32);
 typedef void (* UnkFuncPtr_ov25_02254238_1)(void *);
 typedef void (* UnkFuncPtr_ov25_02254274)(void *);
 
-typedef struct PoketchSystem {
+struct PoketchSystem {
     u8 unk_00;
     u8 unk_01;
     u8 unk_02;
@@ -56,9 +56,9 @@ typedef struct PoketchSystem {
     PoketchData * poketchData;
     FieldSystem * fieldSys;
     enum ButtonDir buttonDir;
-} PoketchSystem;
+};
 
-void PoketchSystem_Create(FieldSystem *fieldSys, PoketchSystem **poketchSys, SaveData *saveData, BGL * param3, NNSG2dOamManagerInstance * param4);
+void PoketchSystem_Create(FieldSystem *fieldSys, PoketchSystem **poketchSys, SaveData *saveData, BGL *bgl, NNSG2dOamManagerInstance *oamManager);
 void ov25_02253D5C(PoketchSystem *poketchSys);
 BOOL ov25_02253D70(PoketchSystem *poketchSys);
 void ov25_02253D7C(PoketchSystem *poketchSys, int param1, u32 param2);
