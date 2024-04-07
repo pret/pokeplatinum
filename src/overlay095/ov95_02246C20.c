@@ -152,13 +152,13 @@ int ov95_02246C20 (OverlayManager * param0, int * param1)
             v0->unk_08 = sub_02018340(57);
             v0->unk_14 = Strbuf_Init(400, 57);
             v0->unk_10 = MessageLoader_Init(0, 26, 350, 57);
-            v0->unk_0C = sub_0200B358(57);
+            v0->unk_0C = StringFormatter_New(57);
 
             switch (v0->unk_00->unk_10) {
             case 1:
                 StringFormatter_BufferNickname(v0->unk_0C, 0, (BoxPokemon *)(v0->unk_00->unk_00));
                 StringFormatter_BufferNickname(v0->unk_0C, 1, (BoxPokemon *)(v0->unk_00->unk_04));
-                sub_0200B498(v0->unk_0C, 2, v0->unk_00->unk_08);
+                StringFormatter_FormatPlayerName(v0->unk_0C, 2, v0->unk_00->unk_08);
                 v0->unk_1AC = ov95_02246DEC((BoxPokemon *)(v0->unk_00->unk_04));
                 break;
             case 2:

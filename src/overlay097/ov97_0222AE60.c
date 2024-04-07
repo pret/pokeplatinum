@@ -563,7 +563,7 @@ static void ov97_0222B590 (StringFormatter * param0, int param1)
         v0 = 3 - 1; v1 = 1;
     }
 
-    sub_0200B60C(param0, 0, param1, v0, v1, 1);
+    StringFormatter_FormatNumber(param0, 0, param1, v0, v1, 1);
 }
 
 static BOOL ov97_0222B5C0 (void * param0, int param1, UnkStruct_ov97_02237808 * param2, int param3)
@@ -576,7 +576,7 @@ static BOOL ov97_0222B5C0 (void * param0, int param1, UnkStruct_ov97_02237808 * 
     u32 v7;
 
     v5 = MessageLoader_Init(1, 26, 550, 81);
-    v4 = sub_0200B358(81);
+    v4 = StringFormatter_New(81);
 
     if (TrainerInfo_Gender(v6->unk_0C) == 1) {
         v7 = ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((15 & 0xff) << 0)));
@@ -596,14 +596,14 @@ static BOOL ov97_0222B5C0 (void * param0, int param1, UnkStruct_ov97_02237808 * 
         Strbuf_Free(v3);
     }
 
-    sub_0200B498(v4, 0, v6->unk_0C);
+    StringFormatter_FormatPlayerName(v4, 0, v6->unk_0C);
     ov97_0222B53C(param2->unk_10, v5, v4, v7, 16, 16 * 1);
     ov97_0222B590(v4, sub_0202CC58(v6->unk_10));
 
-    sub_0200B60C(v4, 1, sub_0202CC5C(v6->unk_10), 2, 2, 1);
+    StringFormatter_FormatNumber(v4, 1, sub_0202CC5C(v6->unk_10), 2, 2, 1);
     ov97_0222B53C(param2->unk_10, v5, v4, v7, 17, 16 * 2);
 
-    sub_0200B60C(v4, 0, v6->unk_50, 1, 0, 1);
+    StringFormatter_FormatNumber(v4, 0, v6->unk_50, 1, 0, 1);
     ov97_0222B53C(param2->unk_10, v5, v4, v7, 19, 16 * 3);
 
     if (v6->unk_4C) {

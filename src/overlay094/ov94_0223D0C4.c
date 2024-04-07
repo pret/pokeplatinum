@@ -538,7 +538,7 @@ void ov94_0223D910 (MessageLoader * param0, MessageLoader * param1, StringFormat
     v3 = MessageLoader_GetNewStrbuf(param0, 70);
     v1 = MessageLoader_GetNewStrbuf(param0, Unk_ov94_02245FD8[v6]);
 
-    sub_0200B60C(param2, 3, v7, 3, 0, 1);
+    StringFormatter_FormatNumber(param2, 3, v7, 3, 0, 1);
 
     v2 = sub_0200B29C(param2, param0, 102, 62);
     v0 = MessageLoader_GetNewStrbuf(param1, v10);

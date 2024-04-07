@@ -314,7 +314,7 @@ static void ov102_021D1174 (UnkStruct_ov102_021D0F8C * param0)
     sub_0201D710();
 
     param0->unk_34 = MessageLoader_Init(1, 26, 1, param0->unk_00);
-    param0->unk_38 = sub_0200B358(param0->unk_00);
+    param0->unk_38 = StringFormatter_New(param0->unk_00);
 
     v0.unk_00 = 0;
 
@@ -402,7 +402,7 @@ static void ov102_021D1420 (UnkStruct_ov102_021D0F8C * param0)
         Strbuf* v1 = Strbuf_Init(0x200, param0->unk_00);
 
         MessageLoader_GetStrbuf(param0->unk_34, 0, v1);
-        sub_0200B498(param0->unk_38, 0, param0->unk_0C);
+        StringFormatter_FormatPlayerName(param0->unk_38, 0, param0->unk_0C);
         StringFormatter_Format(param0->unk_38, v0, v1);
         sub_0201D78C(&param0->unk_14, 0, v0, 48, 32, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
         sub_0201D78C(&param0->unk_24, 0, v0, 48, 32, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);

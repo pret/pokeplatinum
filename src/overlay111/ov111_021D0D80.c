@@ -1159,7 +1159,7 @@ static void ov111_021D1D68 (UnkStruct_ov111_021D0F7C * param0)
     ov111_021D2034(param0);
 
     param0->unk_38 = MessageLoader_Init(1, 26, 540, 115);
-    param0->unk_3C = sub_0200B358(115);
+    param0->unk_3C = StringFormatter_New(115);
     param0->unk_40 = Strbuf_Init(600, 115);
     param0->unk_44 = Strbuf_Init(600, 115);
 
@@ -1649,7 +1649,7 @@ static u8 ov111_021D2674 (UnkStruct_ov111_021D0F7C * param0, u8 param1)
 
 static void ov111_021D26CC (UnkStruct_ov111_021D0F7C * param0, u32 param1, s32 param2)
 {
-    sub_0200B60C(param0->unk_3C, param1, param2, 1, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_3C, param1, param2, 1, 0, 1);
     return;
 }
 

@@ -968,7 +968,7 @@ static GameWindowLayout * sub_0207ECC0 (OverlayManager * param0)
 
     v0->unk_69C = MessageLoader_Init(0, 26, 453, 12);
     v0->unk_698 = sub_0200C440(15, 14, 0, 12);
-    v0->unk_6A0 = sub_0200B358(12);
+    v0->unk_6A0 = StringFormatter_New(12);
 
     for (v1 = 0; v1 < 6; v1++) {
         v0->unk_704[v1].unk_00 = Strbuf_Init(10 + 1, 12);
@@ -2121,7 +2121,7 @@ static int HandleGameWindowEvent (GameWindowLayout * param0)
             v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 184);
             v2 = sub_02026074(param0->unk_5A4->unk_14, 3);
 
-            sub_0200B60C(param0->unk_6A0, 0, v2, 3, 0, 1);
+            StringFormatter_FormatNumber(param0->unk_6A0, 0, v2, 3, 0, 1);
             StringFormatter_Format(param0->unk_6A0, param0->unk_6A4, v1);
             Strbuf_Free(v1);
         }
@@ -2463,7 +2463,7 @@ static int ProcessWindowInput (GameWindowLayout * param0)
             v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 64);
 
             StringFormatter_BufferNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
-            sub_0200B60C(param0->unk_6A0, 1, param0->unk_B14[2], 3, 0, 1);
+            StringFormatter_FormatNumber(param0->unk_6A0, 1, param0->unk_B14[2], 3, 0, 1);
             StringFormatter_Format(param0->unk_6A0, param0->unk_6A4, v1);
             Strbuf_Free(v1);
             sub_02082708(param0, 0xffffffff, 1);

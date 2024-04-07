@@ -682,7 +682,7 @@ static void sub_02036EDC (void)
         }
     }
 
-    if (sub_020360F0()) {
+    if (CommSys_CheckError()) {
         sub_02036C94(sub_02036FA4, 0);
     } else if (Unk_021C07D4->unk_40 != 0) {
         Unk_021C07D4->unk_40--;
@@ -701,7 +701,7 @@ static void sub_02036F44 (void)
         return;
     }
 
-    if (sub_020360F0()) {
+    if (CommSys_CheckError()) {
         sub_02036C94(sub_02036FA4, 0);
         return;
     }
@@ -901,7 +901,7 @@ static void sub_02037210 (void)
 
 static void sub_02037238 (void)
 {
-    if (sub_020360F0()) {
+    if (CommSys_CheckError()) {
         sub_02036C94(sub_02037270, 0);
     }
 
@@ -1160,7 +1160,7 @@ static void sub_020375E8 (void)
         }
     }
 
-    if (sub_020360F0()) {
+    if (CommSys_CheckError()) {
         sub_02036C94(sub_02037740, 0);
     } else if (Unk_021C07D4->unk_40 != 0) {
         Unk_021C07D4->unk_40--;
@@ -1171,7 +1171,7 @@ static void sub_020375E8 (void)
 
 static void sub_0203764C (void)
 {
-    if (sub_020360F0()) {
+    if (CommSys_CheckError()) {
         sub_02036C94(sub_02037740, 0);
         return;
     }
@@ -1192,7 +1192,7 @@ static void sub_0203764C (void)
 
 static void sub_020376A8 (void)
 {
-    if (sub_020360F0()) {
+    if (CommSys_CheckError()) {
         sub_02036C94(sub_02037740, 0);
         return;
     }
@@ -1222,7 +1222,7 @@ static void sub_020376A8 (void)
 
 static void sub_02037724 (void)
 {
-    if (sub_020360F0()) {
+    if (CommSys_CheckError()) {
         sub_02036C94(sub_02037740, 0);
         return;
     }
@@ -1263,7 +1263,7 @@ static void sub_02037790 (void)
         }
     }
 
-    if (sub_020360F0()) {
+    if (CommSys_CheckError()) {
         if (!sub_02038938()) {
             sub_02036C94(sub_02037740, 0);
             return;
@@ -1365,7 +1365,7 @@ static void sub_0203794C (void)
         }
     }
 
-    if (sub_020360F0() || (Unk_021C07D4->unk_40 == 0)) {
+    if (CommSys_CheckError() || (Unk_021C07D4->unk_40 == 0)) {
         Unk_021C07D4->unk_44--;
 
         if (Unk_021C07D4->unk_44 == 0) {
@@ -1385,7 +1385,7 @@ static void sub_020379D0 (void)
         return;
     }
 
-    if (sub_020360F0()) {
+    if (CommSys_CheckError()) {
         Unk_021C07D4->unk_44--;
 
         if (Unk_021C07D4->unk_44 == 0) {
@@ -2457,7 +2457,7 @@ void sub_02038A1C (int param0, BGL * param1)
 void sub_02038A20 (int param0)
 {
     if (sub_02038938()) {
-        if (sub_020360F0() || sub_020383E8() || sub_020385D0()
+        if (CommSys_CheckError() || sub_020383E8() || sub_020385D0()
             || (Unk_021C07D4->unk_59 != 0) || sub_0203881C()) {
             if (!HeapCanaryOK()) {
                 if (!sub_020389D8()) {

@@ -1062,7 +1062,7 @@ static void ov64_0222E570 (UnkStruct_ov64_0222E21C * param0)
 
 static void ov64_0222E5D8 (UnkStruct_ov64_0222E21C * param0, u32 param1)
 {
-    param0->unk_214 = sub_0200B358(param1);
+    param0->unk_214 = StringFormatter_New(param1);
     param0->unk_218 = MessageLoader_Init(0, 26, 675, param1);
 }
 
@@ -1145,13 +1145,13 @@ static void ov64_0222E7F8 (UnkStruct_ov64_0222E21C * param0, u64 param1)
     u64 v0;
 
     v0 = param1 / 100000000;
-    sub_0200B60C(param0->unk_214, 1, v0, 4, 2, 1);
+    StringFormatter_FormatNumber(param0->unk_214, 1, v0, 4, 2, 1);
 
     v0 = (param1 / 10000) % 10000;
-    sub_0200B60C(param0->unk_214, 2, v0, 4, 2, 1);
+    StringFormatter_FormatNumber(param0->unk_214, 2, v0, 4, 2, 1);
 
     v0 = param1 % 10000;
-    sub_0200B60C(param0->unk_214, 3, v0, 4, 2, 1);
+    StringFormatter_FormatNumber(param0->unk_214, 3, v0, 4, 2, 1);
 }
 
 static void ov64_0222E880 (UnkStruct_ov64_0222E21C * param0, SaveData * param1, u32 param2, u32 param3)
@@ -1163,7 +1163,7 @@ static void ov64_0222E880 (UnkStruct_ov64_0222E21C * param0, SaveData * param1, 
     v1 = TrainerInfo_New(param3);
 
     TrainerInfo_SetName(v1, sub_0202AEF0(v0, param2));
-    sub_0200B498(param0->unk_214, 0, v1);
+    StringFormatter_FormatPlayerName(param0->unk_214, 0, v1);
     Heap_FreeToHeap(v1);
 }
 
@@ -1173,7 +1173,7 @@ static void ov64_0222E8C0 (UnkStruct_ov64_0222E21C * param0, SaveData * param1, 
     UnkStruct_0202B370 * v1 = sub_0202B370(param1);
 
     TrainerInfo_SetName(v0, sub_0202AF34(v1, param2));
-    sub_0200B498(param0->unk_214, 0, v0);
+    StringFormatter_FormatPlayerName(param0->unk_214, 0, v0);
     Heap_FreeToHeap(v0);
 }
 
@@ -1189,10 +1189,10 @@ static BOOL ov64_0222E8FC (UnkStruct_ov64_0222E21C * param0, SaveData * param1, 
         v2 = 0;
     }
 
-    sub_0200B60C(param0->unk_214, 2, v1, 2, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_214, 2, v1, 2, 0, 1);
     v1 = sub_0202AD2C(v0, param2, 4);
 
-    sub_0200B60C(param0->unk_214, 0, v1, 4, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_214, 0, v1, 4, 0, 1);
     v1 = sub_0202AD2C(v0, param2, 5);
 
     sub_0200C2E0(param0->unk_214, 1, v1);
@@ -1202,7 +1202,7 @@ static BOOL ov64_0222E8FC (UnkStruct_ov64_0222E21C * param0, SaveData * param1, 
 
 static void ov64_0222E970 (UnkStruct_ov64_0222E21C * param0, u32 param1)
 {
-    sub_0200B60C(param0->unk_214, 0, param1, 4, 1, 1);
+    StringFormatter_FormatNumber(param0->unk_214, 0, param1, 4, 1, 1);
 }
 
 static void ov64_0222E990 (UnkStruct_ov64_0222E21C * param0, u32 param1)
@@ -1343,7 +1343,7 @@ static int ov64_0222EA70 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222E
             v2 = TrainerInfo_New(param3);
 
             TrainerInfo_SetName(v2, Strbuf_GetData(param1->unk_2C.unk_00));
-            sub_0200B498(param2->unk_214, 0, v2);
+            StringFormatter_FormatPlayerName(param2->unk_214, 0, v2);
             Heap_FreeToHeap(v2);
 
             v1 = Strbuf_AtoI(param1->unk_2C.unk_04, &v0);
@@ -1520,7 +1520,7 @@ asm static void ov64_0222EC94 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_
     lsl r1, r1, #2
     ldr r0, [r0, r1]
     mov r1, #0
-    bl sub_0200B498
+    bl StringFormatter_FormatPlayerName
     mov r0, #0
     str r0, [sp, #0x20]
     ldr r0, = Unk_ov64_02232424
@@ -3150,7 +3150,7 @@ static void ov64_02230804 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_0222
 
 static void ov64_0223081C (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2)
 {
-    sub_0200B498(param2->unk_214, 0, SaveData_GetTrainerInfo(param1->unk_00));
+    StringFormatter_FormatPlayerName(param2->unk_214, 0, SaveData_GetTrainerInfo(param1->unk_00));
     ov64_0222E738(param2, 46);
 
     sub_020198C0(param2->unk_00, Unk_ov64_02232258[2], param0->unk_24->rawData, 0, 0, param0->unk_24->screenWidth / 8, param0->unk_24->screenHeight / 8);

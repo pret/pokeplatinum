@@ -464,7 +464,7 @@ static void ov7_0224C4E0 (UnkStruct_ov7_0224C3EC * param0, MessageLoader * param
     Strbuf* v1;
     StringFormatter * v2;
 
-    v2 = sub_0200B358(param2);
+    v2 = StringFormatter_New(param2);
     v1 = Strbuf_Init(200, param2);
     v0 = MessageLoader_GetNewStrbuf(param1, 7);
 
@@ -474,7 +474,7 @@ static void ov7_0224C4E0 (UnkStruct_ov7_0224C3EC * param0, MessageLoader * param
         sub_0200B77C(v2, 0, param3[param4].unk_04 + 149);
     }
 
-    sub_0200B60C(v2, 1, param3[param4].unk_08, 3, 0, 1);
+    StringFormatter_FormatNumber(v2, 1, param3[param4].unk_08, 3, 0, 1);
     sub_0200BFAC(v2, 2, param3[param4].unk_00);
     StringFormatter_Format(v2, v1, v0);
 
@@ -491,7 +491,7 @@ static void ov7_0224C580 (UnkStruct_ov7_0224C3EC * param0, MessageLoader * param
     Strbuf* v1;
     StringFormatter * v2;
 
-    v2 = sub_0200B358(param2);
+    v2 = StringFormatter_New(param2);
     v1 = Strbuf_Init(200, param2);
     v0 = MessageLoader_GetNewStrbuf(param1, 12);
 
@@ -501,7 +501,7 @@ static void ov7_0224C580 (UnkStruct_ov7_0224C3EC * param0, MessageLoader * param
         sub_0200B77C(v2, 0, param3[param4].unk_04 + 149);
     }
 
-    sub_0200B60C(v2, 1, param3[param4].unk_08, 3, 0, 1);
+    StringFormatter_FormatNumber(v2, 1, param3[param4].unk_08, 3, 0, 1);
     sub_0200BFAC(v2, 2, param3[param4].unk_00);
     StringFormatter_Format(v2, v1, v0);
 
@@ -522,7 +522,7 @@ static void ov7_0224C620 (UnkStruct_ov7_0224C620 * param0, BGL * param1, Message
 
     param0->unk_04 = sub_0201A778(param3, 1);
     BGL_AddWindow(param1, param0->unk_04, 3, 1, 11, 14, 6, 13, (((1 + (18 + 12)) + 9) + (27 * 4)));
-    param0->unk_08 = sub_0200B358(param3);
+    param0->unk_08 = StringFormatter_New(param3);
 
     for (v0 = 0; v0 < 3; v0++) {
         param0->unk_10[v0] = MessageLoader_GetNewStrbuf(param2, 16 + v0);
@@ -559,8 +559,8 @@ static void ov7_0224C6DC (UnkStruct_ov7_0224C620 * param0, u32 param1, u32 param
     int v0;
 
     sub_0200B70C(param0->unk_08, 0, param1 + 149);
-    sub_0200B60C(param0->unk_08, 1, param2, 3, 1, 1);
-    sub_0200B60C(param0->unk_08, 2, param3, 3, 1, 1);
+    StringFormatter_FormatNumber(param0->unk_08, 1, param2, 3, 1, 1);
+    StringFormatter_FormatNumber(param0->unk_08, 2, param3, 3, 1, 1);
     BGL_FillWindow(param0->unk_04, 15);
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -614,7 +614,7 @@ static void ov7_0224C768 (UnkStruct_ov7_0224C768 * param0, BGL * param1, u32 par
 
     BGL_AddWindow(param1, param0->unk_04, 3, 17, 1, 14, 16, 13, ((((1 + (18 + 12)) + 9) + (27 * 4)) + (14 * 6)));
 
-    param0->unk_124 = sub_0200B358(param2);
+    param0->unk_124 = StringFormatter_New(param2);
     param0->unk_128 = Strbuf_Init(32, param2);
 
     v1 = MessageLoader_GetNewStrbuf(param5, 16);

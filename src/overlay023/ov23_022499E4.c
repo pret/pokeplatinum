@@ -327,7 +327,7 @@ static void ov23_02249D20 (void)
         v0->timer--;
     }
 
-    if (sub_02033E68() || sub_020360F0() || (v0->timer == 0)) {
+    if (sub_02033E68() || CommSys_CheckError() || (v0->timer == 0)) {
         sub_020367F0();
         ov23_02249C24(ov23_02249FFC, 0);
     } else if (CommSys_IsPlayerConnected(CommSys_CurNetId())) {
@@ -392,7 +392,7 @@ static void ov23_02249E18 (void)
         return;
     }
 
-    if (sub_020360F0() || !sub_02033E48() || ((!CommSys_IsPlayerConnected(CommSys_CurNetId()) && !sub_02036180()))) {
+    if (CommSys_CheckError() || !sub_02033E48() || ((!CommSys_IsPlayerConnected(CommSys_CurNetId()) && !sub_02036180()))) {
         ov23_0224B5CC(0);
         ov23_0224AA84();
         ov23_0224DA8C();
@@ -580,7 +580,7 @@ static void ov23_0224A09C (void)
         return;
     }
 
-    if (sub_02033E68() || sub_020360F0()) {
+    if (sub_02033E68() || CommSys_CheckError()) {
         ov23_0224A064();
     }
 }
@@ -603,7 +603,7 @@ static void ov23_0224A0E8 (void)
     ov23_0224C198();
     CommPlayerMan_Restart();
 
-    if (sub_02033E68() || sub_020360F0()) {
+    if (sub_02033E68() || CommSys_CheckError()) {
         ov23_0224B518();
         CommPlayerMan_Stop();
         ov23_0224321C();

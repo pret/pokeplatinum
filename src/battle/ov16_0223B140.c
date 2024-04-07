@@ -624,7 +624,7 @@ static void ov16_0223B790 (OverlayManager * param0)
 
     v0->unk_0C = MessageLoader_Init(1, 26, 368, 5);
     v0->unk_10 = MessageLoader_Init(1, 26, 0, 5);
-    v0->strFormatter = sub_0200B358(5);
+    v0->strFormatter = StringFormatter_New(5);
     v0->msgBuffer = Strbuf_Init((2 * 160), 5);
 
     MI_CpuCopy16(sub_02003164(v0->unk_28, 0), &v0->unk_2224[0], 0x20 * 7);

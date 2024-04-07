@@ -89,7 +89,7 @@ UnkStruct_ov23_02253E2C * ov23_02253D48 (int param0, int param1, BGL * param2, i
 
     v1->unk_00 = Strbuf_Init(v0, param1);
     v1->unk_04 = Strbuf_Init(v0, param1);
-    v1->unk_28 = sub_0200B358(param1);
+    v1->unk_28 = StringFormatter_New(param1);
     v1->unk_2C = param0;
     v1->unk_24 = MessageLoader_Init(1, 26, param0, param1);
     v1->unk_34 = param1;
@@ -274,13 +274,13 @@ void ov23_02254044 (UnkStruct_ov23_02253E2C * param0)
 
 void ov23_02254050 (UnkStruct_ov23_02253E2C * param0, TrainerInfo * param1)
 {
-    sub_0200B498(param0->unk_28, 1, param1);
+    StringFormatter_FormatPlayerName(param0->unk_28, 1, param1);
     param0->unk_44_1 = 1;
 }
 
 void ov23_02254068 (UnkStruct_ov23_02253E2C * param0, TrainerInfo * param1)
 {
-    sub_0200B498(param0->unk_28, 0, param1);
+    StringFormatter_FormatPlayerName(param0->unk_28, 0, param1);
     param0->unk_44_1 = 1;
 }
 
@@ -322,25 +322,25 @@ void ov23_022540F4 (UnkStruct_ov23_02253E2C * param0, int param1)
 
 void ov23_0225410C (UnkStruct_ov23_02253E2C * param0, int param1, int param2)
 {
-    sub_0200B60C(param0->unk_28, param1, param2, 1, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_28, param1, param2, 1, 0, 1);
     param0->unk_44_1 = 1;
 }
 
 void ov23_0225412C (UnkStruct_ov23_02253E2C * param0, int param1)
 {
-    sub_0200B60C(param0->unk_28, 6, param1, 2, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_28, 6, param1, 2, 0, 1);
     param0->unk_44_1 = 1;
 }
 
 void ov23_02254154 (UnkStruct_ov23_02253E2C * param0, int param1, int param2)
 {
-    sub_0200B60C(param0->unk_28, param1, param2, 2, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_28, param1, param2, 2, 0, 1);
     param0->unk_44_1 = 1;
 }
 
 void ov23_02254178 (UnkStruct_ov23_02253E2C * param0, int param1)
 {
-    sub_0200B60C(param0->unk_28, 6, param1, 6, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_28, 6, param1, 6, 0, 1);
     param0->unk_44_1 = 1;
 }
 

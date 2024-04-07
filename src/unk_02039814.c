@@ -157,13 +157,13 @@ void sub_02039834 (int param0, int param1, int param2)
     v3 = Strbuf_Init(0x180, param0);
     v4 = Strbuf_Init(0x180, param0);
     sub_0201D710();
-    v5 = sub_0200B358(param0);
+    v5 = StringFormatter_New(param0);
 
     sub_0201A8D4(v0, &v1, &Unk_020E5EC8);
     BGL_WindowColor(&v1, 15, 0, 0, 26 * 8, 18 * 8);
     Window_Show(&v1, 0, (512 - 9), 2);
 
-    sub_0200B60C(v5, 0, param2, 5, 2, 1);
+    StringFormatter_FormatNumber(v5, 0, param2, 5, 2, 1);
     MessageLoader_GetStrbuf(v2, v6, v4);
     StringFormatter_Format(v5, v3, v4);
 

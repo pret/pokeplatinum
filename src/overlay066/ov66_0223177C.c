@@ -430,7 +430,7 @@ BOOL ov66_02231C94 (const UnkStruct_ov66_0223177C * param0, const UnkStruct_ov66
 
     v2 = param0->unk_5C.unk_188.unk_2C;
     v1 = MessageLoader_Init(1, 26, 653, param4);
-    v0 = sub_0200B358(param4);
+    v0 = StringFormatter_New(param4);
 
     if (v2->unk_00 < 9) {
         v3 = v4[v2->unk_00](v2, param1, v0, v1, param3, param4);
@@ -799,7 +799,7 @@ static BOOL ov66_0223211C (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
         v0 = MessageLoader_GetNewStrbuf(param3, v1);
     } else {
         sub_0200B48C(param2, 1, param0->unk_10[0], 0, 1, Unk_020E4C44);
-        sub_0200B60C(param2, 2, 4 - param0->unk_04[1], 1, 1, 1);
+        StringFormatter_FormatNumber(param2, 2, 4 - param0->unk_04[1], 1, 1, 1);
 
         v0 = MessageLoader_GetNewStrbuf(param3, 5);
     }
@@ -816,7 +816,7 @@ static BOOL ov66_02232258 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
 
     sub_0200C0B0(param2, 0, param0->unk_04[0]);
     sub_0200B48C(param2, 1, param0->unk_10[0], 0, 1, Unk_020E4C44);
-    sub_0200B60C(param2, 2, 8 - param0->unk_04[1], 1, 1, 1);
+    StringFormatter_FormatNumber(param2, 2, 8 - param0->unk_04[1], 1, 1, 1);
 
     v0 = MessageLoader_GetNewStrbuf(param3, 9);
 

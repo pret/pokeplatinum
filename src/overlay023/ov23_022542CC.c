@@ -439,10 +439,10 @@ static void ov23_022546E0 (UnkStruct_ov23_02254594 * param0)
             v15 = Strbuf_Init(6, 4);
 
             PrintStringSimple(&param0->unk_18, 0, v13, 0, 0, 0xff, NULL);
-            v16 = sub_0200B358(4);
+            v16 = StringFormatter_New(4);
 
-            sub_0200B60C(v16, 0, param0->unk_40, 2, 1, 1);
-            sub_0200B60C(v16, 1, param0->unk_41, 2, 1, 1);
+            StringFormatter_FormatNumber(v16, 0, param0->unk_40, 2, 1, 1);
+            StringFormatter_FormatNumber(v16, 1, param0->unk_41, 2, 1, 1);
             StringFormatter_Format(v16, v15, v14);
             PrintStringSimple(&param0->unk_18, 0, v15, 0, 16, 0xff, NULL);
 

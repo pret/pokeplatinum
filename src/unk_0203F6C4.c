@@ -229,7 +229,7 @@
 #include "overlay006/ov6_02247D30.h"
 #include "overlay006/ov6_02247F5C.h"
 #include "overlay006/ov6_02248948.h"
-#include "overlay007/ov7_02249960.h"
+#include "overlay007/communication_club.h"
 #include "overlay007/ov7_0224B4E8.h"
 #include "overlay007/ov7_0224CD28.h"
 #include "overlay008/ov8_02249960.h"
@@ -5010,7 +5010,7 @@ static BOOL sub_0204300C (UnkStruct_0203E724 * param0)
     FieldSystem * v1 = param0->unk_34;
     u16 * v2 = sub_0203F118(v1, param0->unk_18[0]);
 
-    v0 = ov7_0224B4C8();
+    v0 = CommClub_CheckWindowOpenClient();
 
     if (v0 == 0) {
         return 0;
@@ -7759,7 +7759,7 @@ static BOOL sub_02045F48 (UnkStruct_0203E724 * param0)
     u16 v3 = inline_02049538(param0);
     u16 v4 = inline_02049538(param0);
     u16 v5 = inline_02049538(param0);
-    StringFormatter * v6 = sub_0200B358(32);
+    StringFormatter * v6 = StringFormatter_New(32);
     MessageLoader * v7 = MessageLoader_Init(0, 26, 372, 32);
     Strbuf* v8;
     Strbuf* v9;

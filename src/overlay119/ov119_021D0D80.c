@@ -319,7 +319,7 @@ int ov119_021D1158 (Window * param0, int param1, Pokemon * param2, int param3)
     BGL_FillWindow(param0, 15);
 
     v5 = MessageLoader_Init(0, 26, 357, 71);
-    v3 = sub_0200B358(71);
+    v3 = StringFormatter_New(71);
     v1 = MessageLoader_GetNewStrbuf(v5, param1);
     v2 = Strbuf_Init(255, 71);
     v4 = Pokemon_GetBoxPokemon(param2);

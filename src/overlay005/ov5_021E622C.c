@@ -2191,7 +2191,7 @@ u8 ov5_021E65B0 (UnkStruct_02026218 * param0, StringFormatter * param1)
 
     v0 = ov5_021E6568(param0);
 
-    sub_0200B60C(param1, 1, v0, 3, 0, 1);
+    StringFormatter_FormatNumber(param1, 1, v0, 3, 0, 1);
     StringFormatter_BufferNickname(param1, 0, v3);
 
     return v0;
@@ -2206,7 +2206,7 @@ int ov5_021E65EC (UnkStruct_02026218 * param0, StringFormatter * param1)
     StringFormatter_BufferNickname(param1, 0, v1);
 
     v0 = v0 * 100 + 100;
-    sub_0200B60C(param1, 1, v0, 5, 0, 1);
+    StringFormatter_FormatNumber(param1, 1, v0, 5, 0, 1);
 
     return v0;
 }
@@ -2964,7 +2964,7 @@ void ov5_021E7308 (UnkStruct_02026310 * param0, u32 param1, u32 param2, u32 para
     StringFormatter_BufferNickname(param5, param1, v1);
 
     v2 = ov5_021E6520(v1, sub_02026228(v0));
-    sub_0200B60C(param5, param2, v2, 3, 0, 1);
+    StringFormatter_FormatNumber(param5, param2, v2, 3, 0, 1);
     v3 = BoxPokemon_GetValue(v1, MON_DATA_GENDER, NULL);
 
     if (v3 != 2) {

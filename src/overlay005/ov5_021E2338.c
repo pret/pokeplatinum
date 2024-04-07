@@ -2626,7 +2626,7 @@ static Strbuf* ov5_021E5240 (u32 param0, u32 param1)
     Strbuf* v3;
 
     v1 = MessageLoader_Init(1, 26, 359, param1);
-    v0 = sub_0200B358(param1);
+    v0 = StringFormatter_New(param1);
     v2 = Strbuf_Init(128, param1);
     v3 = Strbuf_Init(128, param1);
     MessageLoader_GetStrbuf(v1, 0, v3);

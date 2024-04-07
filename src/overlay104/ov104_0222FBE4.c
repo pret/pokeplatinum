@@ -1807,7 +1807,7 @@ static BOOL ov104_02230CF4 (UnkStruct_ov104_0222E930 * param0)
     u8 v0 = (*((param0)->unk_1C++));
     u16 v1 = ov104_0222FC00(param0);
 
-    sub_0200B60C(param0->unk_00->unk_44, v0, v1, ov104_02230D28(v1), 1, 1);
+    StringFormatter_FormatNumber(param0->unk_00->unk_44, v0, v1, ov104_02230D28(v1), 1, 1);
     return 0;
 }
 
@@ -1839,7 +1839,7 @@ static BOOL ov104_02230DC4 (UnkStruct_ov104_0222E930 * param0)
     UnkStruct_ov104_02230BE4 * v0 = sub_0209B970(param0->unk_00->unk_00);
     u8 v1 = (*((param0)->unk_1C++));
 
-    sub_0200B498(param0->unk_00->unk_44, v1, SaveData_GetTrainerInfo(v0->unk_08));
+    StringFormatter_FormatPlayerName(param0->unk_00->unk_44, v1, SaveData_GetTrainerInfo(v0->unk_08));
     return 0;
 }
 
@@ -1848,7 +1848,7 @@ static BOOL ov104_02230DF0 (UnkStruct_ov104_0222E930 * param0)
     UnkStruct_ov104_02230BE4 * v0 = sub_0209B970(param0->unk_00->unk_00);
     u8 v1 = (*((param0)->unk_1C++));
 
-    sub_0200B498(param0->unk_00->unk_44, v1, CommInfo_TrainerInfo((CommSys_CurNetId() ^ 1)));
+    StringFormatter_FormatPlayerName(param0->unk_00->unk_44, v1, CommInfo_TrainerInfo((CommSys_CurNetId() ^ 1)));
     return 0;
 }
 

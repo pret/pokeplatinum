@@ -1803,7 +1803,7 @@ BOOL sub_020360E8 (void)
     return sub_02033E48();
 }
 
-BOOL sub_020360F0 (void)
+BOOL CommSys_CheckError (void)
 {
     if (sub_02036180()) {
         return 0;

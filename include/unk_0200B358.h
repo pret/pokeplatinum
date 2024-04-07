@@ -11,11 +11,11 @@
 
 #include "enums.h"
 
-StringFormatter * sub_0200B358(u32 param0);
+StringFormatter * StringFormatter_New(u32 param0);
 StringFormatter * sub_0200B368(u32 param0, u32 param1, u32 param2);
 void sub_0200B3F0(StringFormatter * param0);
 void sub_0200B48C(StringFormatter * param0, u32 param1, const Strbuf *param2, u32 param3, BOOL param4, u32 param5);
-void sub_0200B498(StringFormatter * param0, u32 param1, const TrainerInfo * param2);
+void StringFormatter_FormatPlayerName(StringFormatter * param0, u32 param1, const TrainerInfo * param2);
 void sub_0200B4BC(StringFormatter * param0, u32 param1, const SaveData * param2);
 void sub_0200B4E4(StringFormatter * param0, u32 param1, const SaveData * param2);
 void sub_0200B538(StringFormatter * param0, u32 param1, BoxPokemon * param2);
@@ -23,7 +23,7 @@ void sub_0200B578(StringFormatter * param0, u32 param1, BoxPokemon * param2);
 void sub_0200B594(StringFormatter * param0, u32 param1, u32 param2);
 void StringFormatter_BufferNickname(StringFormatter * param0, u32 param1, BoxPokemon * param2);
 void sub_0200B5EC(StringFormatter * param0, u32 param1, BoxPokemon * param2);
-void sub_0200B60C(StringFormatter * param0, u32 param1, s32 param2, u32 param3, int param4, int param5);
+void StringFormatter_FormatNumber(StringFormatter * param0, u32 param1, s32 param2, u32 param3, int param4, int param5);
 void sub_0200B630(StringFormatter * param0, u32 param1, u32 param2);
 void sub_0200B668(StringFormatter * param0, u32 param1, u32 param2);
 void sub_0200B6A0(StringFormatter * param0, u32 param1, u32 param2);

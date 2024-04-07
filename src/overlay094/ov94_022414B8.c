@@ -986,7 +986,7 @@ static void ov94_022423FC (MessageLoader * param0, StringFormatter * param1, Win
     v5 = BoxPokemon_GetLevel(param3);
     v0 = MessageLoader_GetNewStrbuf(param0, 100);
 
-    sub_0200B60C(param1, 3, v5, 3, 0, 1);
+    StringFormatter_FormatNumber(param1, 3, v5, 3, 0, 1);
     v1 = sub_0200B29C(param1, param0, 102, 62);
 
     if (v4 != 3) {

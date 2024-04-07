@@ -827,7 +827,7 @@ static void ov108_0224237C (UnkStruct_ov108_02241DB0 * param0)
     ov108_022426B0(param0);
 
     param0->unk_68 = MessageLoader_Init(1, 26, 536, 103);
-    param0->unk_6C = sub_0200B358(103);
+    param0->unk_6C = StringFormatter_New(103);
     param0->unk_70 = Strbuf_Init(600, 103);
     param0->unk_74 = Strbuf_Init(600, 103);
 

@@ -981,7 +981,7 @@ static void ov94_022459B4 (UnkStruct_ov94_0223FD4C * param0, int param1, int par
         v0 = 11;
     }
 
-    sub_0200B60C(param0->unk_B8C, 0, param2, 5, 2, 1);
+    StringFormatter_FormatNumber(param0->unk_B8C, 0, param2, 5, 2, 1);
     sub_0200E084(&param0->unk_F5C, 1);
 
     ov94_0224593C(param0, v0);

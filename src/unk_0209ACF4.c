@@ -74,7 +74,7 @@ void sub_0209ACF4 (UnkStruct_020508D4 * param0)
     v1->unk_00 = v0;
     v1->unk_04 = Strbuf_Init(400, 32);
     v1->unk_08 = Strbuf_Init(400, 32);
-    v1->unk_0C = sub_0200B358(32);
+    v1->unk_0C = StringFormatter_New(32);
     v1->unk_10 = MessageLoader_Init(1, 26, 420, 32);
     v1->unk_14 = sub_020149F0(32);
     v1->unk_50 = sub_0209747C(2, 0, v1->unk_00->unk_0C, 32);

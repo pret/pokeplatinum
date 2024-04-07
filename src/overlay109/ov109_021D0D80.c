@@ -2020,7 +2020,7 @@ static void ov109_021D24F8 (UnkStruct_ov109_021D0F70 * param0)
     PaletteSys_LoadPalette(param0->unk_D9C, 14, 7, 95, 0, 0x20, 15 * 16);
 
     v1->unk_04 = MessageLoader_Init(0, 26, 376, 95);
-    v1->unk_08 = sub_0200B358(95);
+    v1->unk_08 = StringFormatter_New(95);
 
     for (v0 = 0; v0 < 1; v0++) {
         sub_0201A8D4(param0->unk_D84, &v1->unk_0C[v0], &Unk_ov109_021D59B8[v0]);
@@ -2075,8 +2075,8 @@ static void ov109_021D268C (UnkStruct_ov109_021D0F70 * param0, u32 param1, const
     UnkStruct_ov109_021D24F8 * v1 = &param0->unk_C9C;
     Window * v2 = &v1->unk_0C[0];
 
-    sub_0200B498(v1->unk_08, 1, CommInfo_TrainerInfo(CommSys_CurNetId()));
-    sub_0200B498(v1->unk_08, 2, param2);
+    StringFormatter_FormatPlayerName(v1->unk_08, 1, CommInfo_TrainerInfo(CommSys_CurNetId()));
+    StringFormatter_FormatPlayerName(v1->unk_08, 2, param2);
 
     v0 = Strbuf_Init(0x100, 95);
 

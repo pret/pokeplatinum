@@ -1377,7 +1377,7 @@ static void Healthbar_DrawBallsLeftMessage (Healthbar * param0, u32 param1)
         v6 = MessageLoader_GetNewStrbuf(v4, 1221);
     }
 
-    sub_0200B60C(v7, 0, param0->unk_27, 2, 1, 1);
+    StringFormatter_FormatNumber(v7, 0, param0->unk_27, 2, 1, 1);
     StringFormatter_Format(v7, v5, v6);
     BGL_AddFramelessWindow(v0, &v3, 13, 2, 0, 0xf);
     PrintStringWithColorAndMargins(&v3, 0, v5, 0, 0, 0xff, ((u32)(((0xe & 0xff) << 16) | ((2 & 0xff) << 8) | (((0xf & 0xff) << 0)))), 0, 0, NULL);

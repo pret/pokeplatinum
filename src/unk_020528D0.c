@@ -129,10 +129,10 @@ static void sub_02052914 (FieldSystem * param0, UnkStruct_020508D4 * param1)
     sub_020528D0(v0->unk_08);
 
     v0->unk_1C = MessageLoader_Init(1, 26, 373, 11);
-    v0->unk_20 = sub_0200B358(11);
+    v0->unk_20 = StringFormatter_New(11);
 
     sub_0201A8D4(v0->unk_08, &v0->unk_0C, &Unk_020EC2F0);
-    sub_0200B498(v0->unk_20, 0, SaveData_GetTrainerInfo(FieldSystem_SaveData(param0)));
+    StringFormatter_FormatPlayerName(v0->unk_20, 0, SaveData_GetTrainerInfo(FieldSystem_SaveData(param0)));
 
     if (param0->unk_1C->unk_00 == 414) {
         sub_02052AA4(v0, 4, 0, 0);

@@ -1457,7 +1457,7 @@ static void ov114_0225D0F8 (UnkStruct_ov114_0225D084 * param0)
 
 static void ov114_0225D104 (UnkStruct_ov114_0225D084 * param0, const TrainerInfo * param1)
 {
-    sub_0200B498(param0->unk_04, 0, param1);
+    StringFormatter_FormatPlayerName(param0->unk_04, 0, param1);
 }
 
 static void ov114_0225D114 (UnkStruct_ov114_0225D084 * param0, u32 param1)
@@ -1472,12 +1472,12 @@ static void ov114_0225D124 (UnkStruct_ov114_0225D084 * param0, u32 param1, u32 p
 
 static void ov114_0225D138 (UnkStruct_ov114_0225D084 * param0, u32 param1, u32 param2)
 {
-    sub_0200B60C(param0->unk_04, 0, param1, param2, 1, 1);
+    StringFormatter_FormatNumber(param0->unk_04, 0, param1, param2, 1, 1);
 }
 
 static void ov114_0225D154 (UnkStruct_ov114_0225D084 * param0, u32 param1)
 {
-    sub_0200B60C(param0->unk_04, 0, param1, 2, 1, 1);
+    StringFormatter_FormatNumber(param0->unk_04, 0, param1, 2, 1, 1);
 }
 
 static void ov114_0225D170 (UnkStruct_ov114_0225D084 * param0, u32 param1)

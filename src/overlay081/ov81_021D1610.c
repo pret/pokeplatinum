@@ -159,7 +159,7 @@ static u8 ov81_021D16B0 (UnkStruct_ov81_021D1610 * param0, Window * param1, Wind
     v1 = MessageLoader_GetNewStrbuf(param0->unk_50, 1);
 
     sub_0200C2E0(param0->unk_54, 0, v0.unk_00_7);
-    sub_0200B60C(param0->unk_54, 1, v0.unk_00_14, 2, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_54, 1, v0.unk_00_14, 2, 0, 1);
     StringFormatter_Format(param0->unk_54, param0->unk_58, v1);
     Strbuf_Free(v1);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -1095,7 +1095,7 @@ static void ov81_021D2FAC (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 87);
 
-    sub_0200B60C(param0->unk_54, 0, param2->unk_01_0, 1, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_54, 0, param2->unk_01_0, 1, 0, 1);
     StringFormatter_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);

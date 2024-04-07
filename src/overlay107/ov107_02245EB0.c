@@ -1134,7 +1134,7 @@ static void ov107_02246EE4 (UnkStruct_ov107_02246170 * param0)
     ov107_02247280(param0);
 
     param0->unk_20 = MessageLoader_Init(1, 26, 201, 100);
-    param0->unk_24 = sub_0200B358(100);
+    param0->unk_24 = StringFormatter_New(100);
     param0->unk_28 = Strbuf_Init(600, 100);
     param0->unk_2C = Strbuf_Init(600, 100);
 
@@ -2126,7 +2126,7 @@ static void ov107_022480A0 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 
 static void ov107_022480EC (UnkStruct_ov107_02246170 * param0, u32 param1, s32 param2, u32 param3, int param4)
 {
-    sub_0200B60C(param0->unk_24, param1, param2, param3, param4, 1);
+    StringFormatter_FormatNumber(param0->unk_24, param1, param2, param3, param4, 1);
     return;
 }
 
@@ -2138,7 +2138,7 @@ static void ov107_02248104 (UnkStruct_ov107_02246170 * param0, u32 param1, BoxPo
 
 static void ov107_02248110 (UnkStruct_ov107_02246170 * param0, u32 param1)
 {
-    sub_0200B498(param0->unk_24, param1, SaveData_GetTrainerInfo(param0->unk_14C));
+    StringFormatter_FormatPlayerName(param0->unk_24, param1, SaveData_GetTrainerInfo(param0->unk_14C));
     return;
 }
 
@@ -2178,7 +2178,7 @@ static void ov107_02248194 (UnkStruct_ov107_02246170 * param0, Window * param1, 
         v1 = ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | (((0 & 0xff) << 0))));
     }
 
-    sub_0200B498(param0->unk_24, 0, v0);
+    StringFormatter_FormatPlayerName(param0->unk_24, 0, v0);
     ov107_02247714(param0, param1, 1, param2, param3, 0xff, (((v1) >> 16) & 0xff), (((v1) >> 8) & 0xff), (((v1) >> 0) & 0xff), 0);
 
     return;

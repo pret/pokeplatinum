@@ -2822,8 +2822,8 @@ void ov16_0226AC98 (UnkStruct_ov16_02268A14 * param0, int param1, const UnkStruc
         }
 
         if ((v0->unk_78[v4].unk_00.unk_0C == NULL) || (v0->unk_C8[v4].unk_00.unk_0C == NULL) || (param2->unk_00[v4] != 0) || (param2->unk_00[v4] != v0->unk_00.unk_00[v4]) || (param2->unk_08[v4] != v0->unk_00.unk_08[v4]) || (param2->unk_10[v4] != v0->unk_00.unk_10[v4])) {
-            sub_0200B60C(v10, 0, param2->unk_08[v4], 2, 1, 0);
-            sub_0200B60C(v10, 1, param2->unk_10[v4], 2, 1, 0);
+            StringFormatter_FormatNumber(v10, 0, param2->unk_08[v4], 2, 1, 0);
+            StringFormatter_FormatNumber(v10, 1, param2->unk_10[v4], 2, 1, 0);
             StringFormatter_Format(v10, v7, v8);
 
             v11 = ov16_0226B924(param2->unk_08[v4], param2->unk_10[v4]);

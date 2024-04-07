@@ -936,8 +936,8 @@ static int ov96_0223CA70 (UnkStruct_ov96_0223BF40 * param0)
 
 static int ov96_0223CB7C (UnkStruct_ov96_0223BF40 * param0)
 {
-    sub_0200B60C(param0->unk_BCC, 0, param0->unk_98, 3, 2, 1);
-    sub_0200B60C(param0->unk_BCC, 1, param0->unk_90, 2, 2, 1);
+    StringFormatter_FormatNumber(param0->unk_BCC, 0, param0->unk_98, 3, 2, 1);
+    StringFormatter_FormatNumber(param0->unk_BCC, 1, param0->unk_90, 2, 2, 1);
 
     ov96_0223D750(param0, param0->unk_BD0, 1, 1, 0xf0f);
     ov96_0223BBFC(param0, 47, 17);
@@ -1244,8 +1244,8 @@ static int ov96_0223D100 (UnkStruct_ov96_0223BF40 * param0)
 
 static int ov96_0223D1D8 (UnkStruct_ov96_0223BF40 * param0)
 {
-    sub_0200B60C(param0->unk_BCC, 0, param0->unk_98, 3, 2, 1);
-    sub_0200B60C(param0->unk_BCC, 1, param0->unk_90, 2, 2, 1);
+    StringFormatter_FormatNumber(param0->unk_BCC, 0, param0->unk_98, 3, 2, 1);
+    StringFormatter_FormatNumber(param0->unk_BCC, 1, param0->unk_90, 2, 2, 1);
 
     ov96_0223D750(param0, param0->unk_BD0, 1, 1, 0xf0f);
     ov96_0223BBFC(param0, 47, 36);
@@ -1696,7 +1696,7 @@ static void ov96_0223DA34 (UnkStruct_ov96_0223BF40 * param0, int param1, int par
         v0 = 11;
     }
 
-    sub_0200B60C(param0->unk_BCC, 0, param2, 5, 2, 1);
+    StringFormatter_FormatNumber(param0->unk_BCC, 0, param2, 5, 2, 1);
     sub_0200E084(&param0->unk_E38, 1);
     ov96_0223D9B8(param0, v0);
 }

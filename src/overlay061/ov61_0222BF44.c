@@ -529,7 +529,7 @@ static void ov61_0222C7F8 (UnkStruct_ov61_0222C664 * param0, int param1, int par
         v0 = 11;
     }
 
-    sub_0200B60C(param0->unk_20, 0, param2, 5, 2, 1);
+    StringFormatter_FormatNumber(param0->unk_20, 0, param2, 5, 2, 1);
     sub_0200E084(&param0->unk_44, 1);
 
     ov61_0222C794(param0, v0);

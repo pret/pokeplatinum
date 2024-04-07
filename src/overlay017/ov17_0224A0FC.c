@@ -1907,7 +1907,7 @@ static void ov17_0224C0C0 (UnkStruct_ov17_0224DF54 * param0, int param1, const U
         sub_0200BBA8(param0->unk_14.unk_88, 0, v0);
         break;
     case 3:
-        sub_0200B60C(param0->unk_14.unk_88, 0, param2->unk_04, 1, 0, 1);
+        StringFormatter_FormatNumber(param0->unk_14.unk_88, 0, param2->unk_04, 1, 0, 1);
         break;
     case 4:
         sub_0200B48C(param0->unk_14.unk_88, 0, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
@@ -1915,12 +1915,12 @@ static void ov17_0224C0C0 (UnkStruct_ov17_0224DF54 * param0, int param1, const U
         break;
     case 5:
         StringFormatter_BufferNickname(param0->unk_14.unk_88, 0, Pokemon_GetBoxPokemon(param0->unk_14.unk_00->unk_00[param2->unk_00]));
-        sub_0200B60C(param0->unk_14.unk_88, 1, param2->unk_04, 1, 0, 1);
+        StringFormatter_FormatNumber(param0->unk_14.unk_88, 1, param2->unk_04, 1, 0, 1);
         break;
     case 6:
         v0 = sub_02095848(param0->unk_00->unk_00.unk_110, param0->unk_00->unk_00.unk_111, param0->unk_00->unk_155);
         sub_0200BBA8(param0->unk_14.unk_88, 0, v0);
-        sub_0200B60C(param0->unk_14.unk_88, 1, param2->unk_04, 1, 0, 1);
+        StringFormatter_FormatNumber(param0->unk_14.unk_88, 1, param2->unk_04, 1, 0, 1);
         sub_0200B48C(param0->unk_14.unk_88, 2, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
         StringFormatter_BufferNickname(param0->unk_14.unk_88, 3, Pokemon_GetBoxPokemon(param0->unk_14.unk_00->unk_00[param2->unk_00]));
         break;

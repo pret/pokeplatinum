@@ -496,7 +496,7 @@ static int sub_020855C4 (void * param0)
     }
 
     StringFormatter_BufferNickname(v0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
-    sub_0200B60C(v0->unk_6A0, 1, v3 - v0->unk_704[v0->unk_B11].unk_06, 3, 0, 1);
+    StringFormatter_FormatNumber(v0->unk_6A0, 1, v3 - v0->unk_704[v0->unk_B11].unk_06, 3, 0, 1);
     StringFormatter_Format(v0->unk_6A0, v0->unk_6A4, v2);
     Strbuf_Free(v2);
 
@@ -683,7 +683,7 @@ static int sub_02085A70 (void * param0)
     v2 = MessageLoader_GetNewStrbuf(v0->unk_69C, 193);
 
     StringFormatter_BufferNickname(v0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
-    sub_0200B60C(v0->unk_6A0, 1, v0->unk_704[v0->unk_B11].unk_0A, 3, 0, 1);
+    StringFormatter_FormatNumber(v0->unk_6A0, 1, v0->unk_704[v0->unk_B11].unk_0A, 3, 0, 1);
     StringFormatter_Format(v0->unk_6A0, v0->unk_6A4, v2);
     Strbuf_Free(v2);
 

@@ -12269,7 +12269,7 @@ static void BattleScript_LoadPartyLevelUpIcon (BattleSystem * param0, BattleScri
     }
 
     StringFormatter_BufferNickname(v5, 0, Pokemon_GetBoxPokemon(param2));
-    sub_0200B60C(v5, 1, Pokemon_GetValue(param2, MON_DATA_LEVEL, NULL), 3, 0, 1);
+    StringFormatter_FormatNumber(v5, 1, Pokemon_GetValue(param2, MON_DATA_LEVEL, NULL), 3, 0, 1);
     StringFormatter_Format(v5, v7, v6);
     Strbuf_Free(v6);
     sub_0201A7A0(&v9);
