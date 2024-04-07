@@ -90,7 +90,7 @@ const int gSaveTableSize = NELEMS(gSaveTable);
 
 TVBroadcast* SaveData_TVBroadcast(SaveData *save)
 {
-    SaveData_CRC(SAVE_TABLE_ENTRY_TV_BROADCAST);
+    SaveData_Checksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
     return SaveData_SaveTable(save, SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
@@ -101,7 +101,7 @@ PCBoxes* SaveData_PCBoxes(SaveData *save)
 
 MysteryGift* SaveData_MysteryGift(SaveData *save)
 {
-    SaveData_CRC(SAVE_TABLE_ENTRY_MYSTERY_GIFT);
+    SaveData_Checksum(SAVE_TABLE_ENTRY_MYSTERY_GIFT);
     return SaveData_SaveTable(save, SAVE_TABLE_ENTRY_MYSTERY_GIFT);
 }
 

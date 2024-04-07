@@ -58,8 +58,8 @@ typedef struct SaveData {
     SavePageInfo pageInfo[SAVE_TABLE_ENTRY_MAX];
     SaveBlockInfo blockInfo[SAVE_BLOCK_ID_MAX];
     SaveDataState state;
-    int unk_202C4;
-    u32 unk_202C8;
+    int sectorSwitch;
+    u32 sectorCounter;
 } SaveData;
 
 typedef struct SaveCheckInfo {
@@ -68,13 +68,13 @@ typedef struct SaveCheckInfo {
     u32 blockCounter;
 } SaveCheckInfo;
 
-typedef struct UnkStruct_020253B4 {
-    u32 unk_00;
-    u32 unk_04;
-    u32 unk_08;
-    u16 unk_0C;
-    u16 unk_0E;
-} UnkStruct_020253B4;
+typedef struct SaveCheckFooter {
+    u32 signature;
+    u32 saveCounter;
+    u32 size;
+    u16 id;
+    u16 checksum;
+} SaveCheckFooter;
 
 SaveData* SaveData_Init(void);
 SaveData* SaveData_Ptr(void);
@@ -89,7 +89,7 @@ BOOL SaveData_BackupExists(const SaveData *saveData);
 u32 SaveData_LoadCheckStatus(const SaveData *saveData);
 BOOL SaveData_DataExists(const SaveData *saveData);
 BOOL SaveData_IsNewGameData(const SaveData *saveData);
-BOOL sub_020247C8(SaveData *saveData);
+BOOL SaveData_MiscSave_InitFlag(SaveData *saveData);
 BOOL SaveData_OverwriteCheck(const SaveData *saveData);
 BOOL SaveData_FullSaveRequired(const SaveData *saveData);
 void SaveData_SetFullSaveRequired(void);
@@ -98,15 +98,15 @@ int SaveData_SaveStateMain(SaveData *saveData);
 void SaveData_SaveStateCancel(SaveData *saveData);
 u16 SaveData_CalculateChecksum(const SaveData *saveData, const void *startAddress, u32 size);
 int SaveTableEntry_BodySize(int saveTableID);
-void sub_02025340(SaveData * param0);
-int SaveDataExtra_Save(const SaveData * param0, int param1, void * param2);
-int SaveDataExtra_SaveMirror(SaveData * param0, int param1, void * param2);
-void * SaveDataExtra_Get(SaveData * param0, int param1, int param2, int * param3);
-void * SaveDataExtra_Mirror(SaveData * param0, int param1, int param2, int * param3, BOOL * param4);
-BOOL sub_02025A3C(void);
-BOOL sub_02025A9C(u32 param0, void * param1, u32 param2);
-BOOL sub_02025AC0(u32 param0, void * param1, u32 param2);
-BOOL SaveData_CRC(int param0);
-void sub_02025C84(int param0);
+void SaveDataExtra_Init(SaveData *saveData);
+int SaveDataExtra_Save(const SaveData *saveData, int extraSaveID, void *data);
+int SaveDataExtra_SaveMirror(SaveData *saveData, int extraSaveID, void *data);
+void* SaveDataExtra_Get(SaveData *saveData, int heapID, int extraSaveID, int *loadResult);
+void* SaveDataExtra_Mirror(SaveData *saveData, int heapID, int extraSaveID, int *loadResult, BOOL *isOld);
+BOOL SaveData_CardBackupType(void);
+BOOL SaveData_CardSave(u32 address, void *data, u32 size);
+BOOL SaveData_CardLoad(u32 address, void *data, u32 size);
+BOOL SaveData_Checksum(int saveTableID);
+void SaveData_SetChecksum(int saveTableID);
 
 #endif // POKEPLATINUM_SAVEDATA_H
