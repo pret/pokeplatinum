@@ -55,7 +55,7 @@ void sub_0202E858 (UnkStruct_0202E858 * param0)
     param0->unk_04 = 0;
 
     sub_02002294(param0->unk_08, 7 + 1);
-    sub_02025C84(28);
+    SaveData_SetChecksum(28);
 }
 
 BOOL sub_0202E870 (UnkStruct_0202E858 * param0)
@@ -84,12 +84,12 @@ void Rankings_Init (UnkStruct_0202E8C0 * param0)
         }
     }
 
-    sub_02025C84(28);
+    SaveData_SetChecksum(28);
 }
 
 UnkStruct_0202E8C0 * sub_0202E8C0 (SaveData * param0)
 {
-    SaveData_CRC(28);
+    SaveData_Checksum(28);
     return SaveData_SaveTable(param0, 28);
 }
 
@@ -110,7 +110,7 @@ void sub_0202E8D4 (UnkStruct_0202E8C0 * param0, int param1, u8 param2)
     }
 
     sub_0202E858(&(v1->unk_00[6 - 1]));
-    sub_02025C84(28);
+    SaveData_SetChecksum(28);
 }
 
 int sub_0202E91C (void)
@@ -180,7 +180,7 @@ static u32 * sub_0202E924 (SaveData * param0, int param1)
         }
     }
 
-    sub_02025C84(28);
+    SaveData_SetChecksum(28);
 
     return v4;
 }
@@ -211,7 +211,7 @@ void * sub_0202E9FC (SaveData * param0, int param1)
 
     Heap_FreeToHeap(v6);
     Strbuf_Free(v4);
-    sub_02025C84(28);
+    SaveData_SetChecksum(28);
 
     return v3;
 }
@@ -382,7 +382,7 @@ void sub_0202ED0C (SaveData * param0, int param1, u8 param2, const void ** param
         sub_0202ECB0(v4, v2, v0, v3, v1, param4);
     }
 
-    sub_02025C84(28);
+    SaveData_SetChecksum(28);
 
     return;
 }
@@ -454,5 +454,5 @@ void sub_0202EE8C (UnkStruct_0202EE10 * param0)
 
     Heap_FreeToHeap(param0);
     param0 = NULL;
-    sub_02025C84(28);
+    SaveData_SetChecksum(28);
 }

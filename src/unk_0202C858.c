@@ -16,12 +16,12 @@ int WiFiHistory_SaveSize (void)
 void WiFiHistory_Init (UnkStruct_0202C878 * param0)
 {
     MI_CpuClear32(param0, sizeof(UnkStruct_0202C878));
-    sub_02025C84(30);
+    SaveData_SetChecksum(30);
 }
 
 UnkStruct_0202C878 * sub_0202C878 (SaveData * param0)
 {
-    SaveData_CRC(30);
+    SaveData_Checksum(30);
     return (UnkStruct_0202C878 *)SaveData_SaveTable(param0, 30);
 }
 
@@ -34,7 +34,7 @@ void sub_0202C88C (UnkStruct_0202C878 * param0, int param1, int param2)
     param0->unk_06 = param2;
 
     sub_0202C918(param0, param1, param2, 3);
-    sub_02025C84(30);
+    SaveData_SetChecksum(30);
 }
 
 int sub_0202C8C0 (const UnkStruct_0202C878 * param0)
@@ -86,7 +86,7 @@ void sub_0202C918 (UnkStruct_0202C878 * param0, int param1, int param2, int para
         sub_0202C994(param0, 1);
     }
 
-    sub_02025C84(30);
+    SaveData_SetChecksum(30);
 }
 
 BOOL sub_0202C990 (const UnkStruct_0202C878 * param0)
@@ -97,7 +97,7 @@ BOOL sub_0202C990 (const UnkStruct_0202C878 * param0)
 void sub_0202C994 (UnkStruct_0202C878 * param0, BOOL param1)
 {
     param0->unk_04 = param1;
-    sub_02025C84(30);
+    SaveData_SetChecksum(30);
 }
 
 void sub_0202C9A0 (UnkStruct_0202C878 * param0)
@@ -118,5 +118,5 @@ void sub_0202C9A0 (UnkStruct_0202C878 * param0)
         param0->unk_07[v0] = v2;
     }
 
-    sub_02025C84(30);
+    SaveData_SetChecksum(30);
 }

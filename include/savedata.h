@@ -89,7 +89,7 @@ BOOL SaveData_BackupExists(const SaveData *saveData);
 u32 SaveData_LoadCheckStatus(const SaveData *saveData);
 BOOL SaveData_DataExists(const SaveData *saveData);
 BOOL SaveData_IsNewGameData(const SaveData *saveData);
-BOOL sub_020247C8(SaveData *saveData);
+BOOL SaveData_MiscSave_InitFlag(SaveData *saveData);
 BOOL SaveData_OverwriteCheck(const SaveData *saveData);
 BOOL SaveData_FullSaveRequired(const SaveData *saveData);
 void SaveData_SetFullSaveRequired(void);
@@ -98,7 +98,7 @@ int SaveData_SaveStateMain(SaveData *saveData);
 void SaveData_SaveStateCancel(SaveData *saveData);
 u16 SaveData_CalculateChecksum(const SaveData *saveData, const void *startAddress, u32 size);
 int SaveTableEntry_BodySize(int saveTableID);
-void sub_02025340(SaveData *saveData);
+void SaveDataExtra_Init(SaveData *saveData);
 int SaveDataExtra_Save(const SaveData *saveData, int extraSaveID, void *data);
 int SaveDataExtra_SaveMirror(SaveData *saveData, int extraSaveID, void *data);
 void* SaveDataExtra_Get(SaveData *saveData, int heapID, int extraSaveID, int *loadResult);
@@ -106,7 +106,7 @@ void* SaveDataExtra_Mirror(SaveData *saveData, int heapID, int extraSaveID, int 
 BOOL SaveData_CardBackupType(void);
 BOOL SaveData_CardSave(u32 address, void *data, u32 size);
 BOOL SaveData_CardLoad(u32 address, void *data, u32 size);
-BOOL SaveData_CRC(int saveTableID);
-void sub_02025C84(int saveTableID);
+BOOL SaveData_Checksum(int saveTableID);
+void SaveData_SetChecksum(int saveTableID);
 
 #endif // POKEPLATINUM_SAVEDATA_H

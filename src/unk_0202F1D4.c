@@ -353,7 +353,7 @@ static BOOL sub_0202F75C (SaveData * param0, BattleRecording * param1)
     UnkStruct_0202F298 * v0 = &param1->unk_E8;
     UnkStruct_0202F41C * v1 = &param1->unk_84;
 
-    if (sub_020247C8(param0) == 0) {
+    if (SaveData_MiscSave_InitFlag(param0) == 0) {
         return 1;
     }
 

@@ -235,8 +235,7 @@ BOOL SaveData_IsNewGameData (const SaveData *saveData)
     return saveData->isNewGameData;
 }
 
-//ravetodo SaveData_MiscSave_InitFlag
-BOOL sub_020247C8 (SaveData *saveData)
+BOOL SaveData_MiscSave_InitFlag (SaveData *saveData)
 {
     UnkStruct_0202783C *miscSave;
 
@@ -244,8 +243,7 @@ BOOL sub_020247C8 (SaveData *saveData)
     return sub_020278CC(miscSave);
 }
 
-//ravetodo SaveData_MiscSave_SetInitFlag
-static void sub_020247D4 (SaveData *saveData)
+static void SaveData_MiscSave_SetInitFlag (SaveData *saveData)
 {
     UnkStruct_0202783C *miscSave;
 
@@ -547,7 +545,7 @@ static void SaveDataExtra_LoadCheck (SaveData *saveData, int *frontierResult, in
     *frontierResult = LOAD_RESULT_OK;
     *videoResult = LOAD_RESULT_OK;
 
-    if (sub_020247C8(saveData) == FALSE) {
+    if (SaveData_MiscSave_InitFlag(saveData) == FALSE) {
         return;
     }
 
@@ -916,15 +914,14 @@ static void SaveTable_Clear (SaveDataBody *body, const SavePageInfo *pageInfo)
     }
 }
 
-//ravetodo SaveDataExtra_Init
-void sub_02025340 (SaveData *saveData)
+void SaveDataExtra_Init (SaveData *saveData)
 {
     const SaveTableEntry *extraTable = gExtraSaveTable;
     int i;
     int loadResult;
     void *extraData;
 
-    if (sub_020247C8(saveData) == TRUE) {
+    if (SaveData_MiscSave_InitFlag(saveData) == TRUE) {
         return;
     }
 
@@ -944,7 +941,7 @@ void sub_02025340 (SaveData *saveData)
         Heap_FreeToHeap(extraData);
     }
 
-    sub_020247D4(saveData);
+    SaveData_MiscSave_SetInitFlag(saveData);
 }
 
 static void SaveCheckFooter_Set (const SaveData *saveData, void *saveBody, int extraSaveID, u32 size)
@@ -1369,8 +1366,7 @@ static void SaveData_CardSave_Error (s32 lockID, int errorID)
     sub_0209AA74(HEAP_ID_SAVE, errorID);
 }
 
-//ravetodo SaveData_Checksum
-BOOL SaveData_CRC (int saveTableID)
+BOOL SaveData_Checksum (int saveTableID)
 {
     SaveData *saveData = SaveData_Ptr();
     void *table = SaveData_SaveTable(saveData, saveTableID);
@@ -1392,8 +1388,7 @@ BOOL SaveData_CRC (int saveTableID)
     return FALSE;
 }
 
-//ravetodo SaveData_SetChecksum
-void sub_02025C84 (int saveTableID)
+void SaveData_SetChecksum (int saveTableID)
 {
     SaveData *saveData = SaveData_Ptr();
     void *table = SaveData_SaveTable(saveData, saveTableID);

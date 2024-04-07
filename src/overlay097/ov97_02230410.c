@@ -970,7 +970,7 @@ static void ov97_02231464 (void * param0)
 static void ov97_02231488 (UnkStruct_ov97_02230868 * param0)
 {
     GF_ASSERT(param0->unk_2C20 < 3);
-    SaveData_CRC(31);
+    SaveData_Checksum(31);
 
     if (param0->unk_2C14[param0->unk_2C20]->unk_350 != 255) {
         param0->unk_2C14[param0->unk_2C20]->unk_350++;
@@ -980,7 +980,7 @@ static void ov97_02231488 (UnkStruct_ov97_02230868 * param0)
         param0->unk_2C14[param0->unk_2C20]->unk_348--;
     }
 
-    sub_02025C84(31);
+    SaveData_SetChecksum(31);
     ov97_0223846C(param0->unk_2C04);
 
     param0->unk_3E0C = ov97_02231464;

@@ -258,12 +258,12 @@ void Sentence_Init (void * param0)
         }
     }
 
-    sub_02025C84(34);
+    SaveData_SetChecksum(34);
 }
 
 UnkStruct_02014EC4 * sub_02014EC4 (SaveData * param0)
 {
-    SaveData_CRC(34);
+    SaveData_Checksum(34);
     return SaveData_SaveTable(param0, 34);
 }
 
@@ -290,7 +290,7 @@ u32 sub_02014EE4 (UnkStruct_02014EC4 * param0)
                 if (v2 == 0) {
                     param0->unk_04 |= (1 << v0);
 
-                    sub_02025C84(34);
+                    SaveData_SetChecksum(34);
 
                     return v0;
                 } else {
@@ -300,7 +300,7 @@ u32 sub_02014EE4 (UnkStruct_02014EC4 * param0)
         }
     }
 
-    sub_02025C84(34);
+    SaveData_SetChecksum(34);
 
     return 32;
 }
@@ -339,7 +339,7 @@ void sub_02014F98 (UnkStruct_02014EC4 * param0, int param1)
 {
     param0->unk_00 |= (1 << param1);
 
-    sub_02025C84(34);
+    SaveData_SetChecksum(34);
 }
 
 UnkStruct_02014FB0 * sub_02014FB0 (u32 param0)
