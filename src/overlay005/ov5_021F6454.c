@@ -10,7 +10,6 @@
 #include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020216E0_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_0202783C_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
@@ -762,7 +761,7 @@ static void ov5_021F70CC (Pokemon * param0, int * param1, int * param2)
 
 BOOL ov5_021F71B8 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0202783C * v0;
+    MiscSaveBlock * v0;
     Pokemon * v1;
     FieldSystem * v2 = param0->unk_34;
 
@@ -776,7 +775,7 @@ BOOL ov5_021F71B8 (UnkStruct_0203E724 * param0)
 BOOL ov5_021F7208 (UnkStruct_0203E724 * param0)
 {
     int v0, v1, v2;
-    UnkStruct_0202783C * v3;
+    MiscSaveBlock * v3;
     Pokemon * v4;
     FieldSystem * v5 = param0->unk_34;
     u16 * v6 = inline_0204FCAC(param0);

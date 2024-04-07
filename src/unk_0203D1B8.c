@@ -3,7 +3,6 @@
 
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_0202783C_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
@@ -1275,7 +1274,7 @@ static void sub_0203DF68 (UnkStruct_020508D4 * param0)
     break;
     case 6:
     {
-        UnkStruct_0202783C * v6 = sub_0202783C(v0->unk_0C);
+        MiscSaveBlock * v6 = sub_0202783C(v0->unk_0C);
         sub_020278A0(v6, v1->unk_0C->unk_18);
     }
     break;

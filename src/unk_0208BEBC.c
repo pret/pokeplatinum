@@ -3,7 +3,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_0202783C_decl.h"
 
 #include "constdata/const_020F3050.h"
 #include "constdata/const_020F3060.h"
@@ -59,7 +58,7 @@ static int sub_0208BEBC (OverlayManager * param0, int * param1, int param2)
 
     if (param2 == 0) {
         {
-            UnkStruct_0202783C * v1 = sub_0202783C(v0->unk_830);
+            MiscSaveBlock * v1 = sub_0202783C(v0->unk_830);
 
             sub_0202797C(v1, &v0->unk_14.unk_48);
 

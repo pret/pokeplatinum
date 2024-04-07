@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_0202783C_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 
@@ -25,7 +24,7 @@ typedef struct {
     StringFormatter * unk_04;
     Sentence unk_08;
     UnkStruct_0209747C * unk_10;
-    UnkStruct_0202783C * unk_14;
+    MiscSaveBlock * unk_14;
     int unk_18;
     int unk_1C;
     u16 * unk_20;

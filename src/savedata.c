@@ -3,7 +3,6 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_0202783C_decl.h"
 
 #include "savedata/save_table.h"
 
@@ -525,7 +524,7 @@ static int SaveData_LoadCheck (SaveData *saveData)
 static void SaveDataExtra_LoadCheck (SaveData *saveData, int *frontierResult, int *videoResult)
 {
     int loadResult;
-    UnkStruct_0202783C *miscSave = sub_0202783C(saveData);
+    MiscSaveBlock *miscSave = sub_0202783C(saveData);
 
     *frontierResult = LOAD_RESULT_OK;
     *videoResult = LOAD_RESULT_OK;
@@ -1109,7 +1108,7 @@ void* SaveDataExtra_Mirror (SaveData *saveData, int heapID, int extraSaveID, int
     void *ret;
     u32 size;
     BOOL primaryResult, backupResult;
-    UnkStruct_0202783C *miscSave = sub_0202783C(saveData);
+    MiscSaveBlock *miscSave = sub_0202783C(saveData);
 
     GF_ASSERT(extraSaveID < gExtraSaveTableSize);
     GF_ASSERT(extraSaveID != EXTRA_SAVE_TABLE_ENTRY_HALL_OF_FAME);

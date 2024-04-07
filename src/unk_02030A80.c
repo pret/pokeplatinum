@@ -4,7 +4,6 @@
 #include "strbuf.h"
 #include "struct_decls/struct_02025CCC_decl.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_0202783C_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "savedata.h"
 
@@ -48,7 +47,7 @@ void sub_02030AA0 (UnkStruct_02030A80 * param0, SaveData * param1)
     TrainerInfo * v0 = SaveData_GetTrainerInfo(param1);
     UnkStruct_0202C878 * v1 = sub_0202C878(param1);
     UnkStruct_02025CCC * v2 = sub_02025CCC(param1);
-    const UnkStruct_0202783C * v3 = Save_MiscRO(param1);
+    const MiscSaveBlock * v3 = Save_MiscRO(param1);
     int v4, v5, v6;
     int v7;
     OSOwnerInfo v8;

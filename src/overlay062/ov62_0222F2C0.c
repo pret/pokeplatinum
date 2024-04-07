@@ -5,7 +5,6 @@
 #include "core_sys.h"
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0202783C_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 
 #include "struct_defs/struct_0208B284.h"
@@ -169,7 +168,7 @@ void ov62_0222F514 (UnkStruct_0208C06C * param0)
     sub_02002F54(param0->unk_14.unk_14);
 
     if (param0->unk_00 == 0) {
-        UnkStruct_0202783C * v0 = sub_0202783C(param0->unk_830);
+        MiscSaveBlock * v0 = sub_0202783C(param0->unk_830);
         sub_0202798C(v0, param0->unk_14.unk_48);
     }
 

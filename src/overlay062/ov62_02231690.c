@@ -14,7 +14,6 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
-#include "struct_decls/struct_0202783C_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0202F298_decl.h"
 #include "struct_decls/struct_0202F41C_decl.h"
@@ -3197,7 +3196,7 @@ void ov62_022342BC (UnkStruct_0208C06C * param0)
 
 BOOL ov62_022342CC (UnkStruct_0208C06C * param0)
 {
-    UnkStruct_0202783C * v0 = sub_0202783C(param0->unk_830);
+    MiscSaveBlock * v0 = sub_0202783C(param0->unk_830);
     u32 v1, v2;
     u8 v3;
 
