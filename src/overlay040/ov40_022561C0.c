@@ -19,7 +19,6 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "overlay005/ov5_021E622C.h"
-#include "overlay025/poketch_system.h"
 #include "overlay040/ov40_0225645C.h"
 
 typedef struct {

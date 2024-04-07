@@ -13,7 +13,6 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_02099D44.h"
-#include "overlay025/poketch_system.h"
 #include "overlay042/ov42_022563D4.h"
 
 typedef struct {

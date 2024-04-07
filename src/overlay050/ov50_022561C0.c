@@ -15,7 +15,6 @@
 #include "rtc.h"
 #include "heap.h"
 #include "poketch_data.h"
-#include "overlay025/poketch_system.h"
 #include "overlay025/ov25_02255ACC.h"
 #include "overlay050/ov50_02256510.h"
 

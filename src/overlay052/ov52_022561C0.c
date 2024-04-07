@@ -17,7 +17,6 @@
 #include "communication_system.h"
 #include "unk_020366A0.h"
 #include "map_header.h"
-#include "overlay025/poketch_system.h"
 #include "overlay052/ov52_02256694.h"
 
 typedef struct {

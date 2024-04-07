@@ -24,7 +24,6 @@
 #include "unk_02018340.h"
 #include "gx_layers.h"
 #include "poketch_data.h"
-#include "overlay025/poketch_system.h"
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
 #include "overlay025/ov25_02255540.h"

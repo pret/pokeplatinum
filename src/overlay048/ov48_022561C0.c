@@ -19,7 +19,6 @@
 #include "unk_02027B70.h"
 #include "unk_020507CC.h"
 #include "unk_0206AFE0.h"
-#include "overlay025/poketch_system.h"
 #include "overlay048/ov48_0225650C.h"
 
 static const struct {

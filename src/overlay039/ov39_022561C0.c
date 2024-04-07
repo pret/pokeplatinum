@@ -13,7 +13,6 @@
 
 #include "unk_0200D9E8.h"
 #include "heap.h"
-#include "overlay025/poketch_system.h"
 #include "overlay025/ov25_02255ACC.h"
 #include "overlay039/ov39_022563DC.h"
 

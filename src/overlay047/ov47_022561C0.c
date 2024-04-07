@@ -20,7 +20,6 @@
 #include "unk_020507CC.h"
 #include "poketch_data.h"
 #include "unk_0206AFE0.h"
-#include "overlay025/poketch_system.h"
 #include "overlay047/ov47_02256634.h"
 
 typedef struct {

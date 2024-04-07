@@ -38,7 +38,6 @@
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021E1B08.h"
 #include "overlay005/ov5_021EA714.h"
-#include "overlay025/poketch_system.h"
 
 FS_EXTERN_OVERLAY(overlay5);
 FS_EXTERN_OVERLAY(overlay77);

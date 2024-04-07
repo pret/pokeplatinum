@@ -14,7 +14,6 @@
 #include "heap.h"
 #include "unk_02022594.h"
 #include "unk_0203E880.h"
-#include "overlay025/poketch_system.h"
 #include "overlay034/ov34_02256540.h"
 
 typedef struct {

@@ -19,7 +19,6 @@
 #include "pokemon_icon.h"
 #include "party.h"
 #include "overlay005/ov5_021E622C.h"
-#include "overlay025/poketch_system.h"
 #include "overlay025/ov25_02255ACC.h"
 #include "overlay044/ov44_022565BC.h"
 
