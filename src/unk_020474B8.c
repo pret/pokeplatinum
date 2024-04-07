@@ -20,7 +20,7 @@
 #include "savedata/save_table.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_020277A4.h"
+#include "savedata_misc.h"
 #include "unk_0203CC84.h"
 #include "unk_0203E724.h"
 #include "unk_0203E880.h"

@@ -21,7 +21,7 @@
 #include "trainer_data.h"
 #include "unk_020021B0.h"
 #include "unk_0201D15C.h"
-#include "unk_020277A4.h"
+#include "savedata_misc.h"
 
 static void TrainerData_BuildParty(BattleParams *battleParams, int battler, int heapID);
 

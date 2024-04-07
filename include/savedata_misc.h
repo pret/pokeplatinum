@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_020277A4_H
-#define POKEPLATINUM_UNK_020277A4_H
+#ifndef POKEPLATINUM_SAVEDATA_MISC_H
+#define POKEPLATINUM_SAVEDATA_MISC_H
 
 #include "struct_defs/sentence.h"
 #include "strbuf.h"
@@ -29,4 +29,4 @@ void sub_0202798C(UnkStruct_0202783C * param0, u8 param1);
 void sub_020279A8(const UnkStruct_0202783C * param0, int param1, u32 * param2, u32 * param3, u8 * param4);
 void sub_020279D0(UnkStruct_0202783C * param0, int param1, u32 param2, u32 param3, u8 param4);
 
-#endif // POKEPLATINUM_UNK_020277A4_H
+#endif // POKEPLATINUM_SAVEDATA_MISC_H

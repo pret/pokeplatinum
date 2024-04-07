@@ -9,7 +9,7 @@
 #include "functypes/funcptr_020EF744.h"
 #include "functypes/funcptr_020EF770.h"
 
-#include "unk_020277A4.h"
+#include "savedata_misc.h"
 #include "unk_02027F50.h"
 #include "unk_0203CC84.h"
 #include "unk_02068344.h"

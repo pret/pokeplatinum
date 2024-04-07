@@ -110,7 +110,7 @@ Static main
 	Object main.nef.p/src_unk_02026150.c.o
 	Object main.nef.p/src_unk_020261E4.c.o
 	Object main.nef.p/src_unk_0202631C.c.o
-	Object main.nef.p/src_unk_020277A4.c.o
+	Object main.nef.p/src_savedata_misc.c.o
 	Object main.nef.p/src_unk_020279FC.c.o
 	Object main.nef.p/src_unk_02027B70.c.o
 	Object main.nef.p/src_unk_02027F50.c.o

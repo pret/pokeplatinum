@@ -21,7 +21,7 @@
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_020277A4.h"
+#include "savedata_misc.h"
 #include "unk_0202C858.h"
 #include "unk_02030A80.h"
 #include "unk_0205C980.h"
