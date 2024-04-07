@@ -112,7 +112,7 @@ void* SaveData_SaveTable (SaveData *saveData, int saveTableID)
 
 const void* SaveData_SaveTableConst (const SaveData *saveData, int saveTableID)
 {
-    return SaveData_SaveTable((SaveData*)saveData, saveTableID);
+    return SaveData_SaveTable(saveData, saveTableID);
 }
 
 BOOL SaveData_Erase (SaveData *saveData)
@@ -344,7 +344,7 @@ static BOOL SaveBlockFooter_Validate (SaveData *saveData, u32 bodyAddress, int b
         return FALSE;
     }
 
-    if (footer->checksum != SaveData_CalculateFooterChecksum(saveData, (void *)startAddress, blockInfo->size)) {
+    if (footer->checksum != SaveData_CalculateFooterChecksum(saveData, startAddress, blockInfo->size)) {
         return FALSE;
     }
 
@@ -371,7 +371,7 @@ static void SaveBlockFooter_Set (SaveData *saveData, u32 bodyAddress, int blockI
     footer->size = blockInfo->size;
     footer->signature = SECTOR_SIGNATURE;
     footer->saveBlockID = blockID;
-    footer->checksum = SaveData_CalculateFooterChecksum(saveData, (void *)startAddress, blockInfo->size);
+    footer->checksum = SaveData_CalculateFooterChecksum(saveData, startAddress, blockInfo->size);
 }
 
 static int SaveCheckInfo_CompareCounters (u32 counter1, u32 counter2)
@@ -940,9 +940,7 @@ void SaveDataExtra_Init (SaveData *saveData)
 
 static void SaveCheckFooter_Set (const SaveData *saveData, void *saveBody, int extraSaveID, u32 size)
 {
-    SaveCheckFooter *footer;
-
-    footer = (SaveCheckFooter *)((u8 *)saveBody + size);
+    SaveCheckFooter *footer = (SaveCheckFooter *)(saveBody + size);
 
     footer->signature = SECTOR_SIGNATURE;
     footer->saveCounter = saveData->sectorCounter + 1;
@@ -953,9 +951,7 @@ static void SaveCheckFooter_Set (const SaveData *saveData, void *saveBody, int e
 
 static BOOL SaveCheckFooter_Validate (const SaveData *saveData, void *saveBody, int extraSaveID, u32 size)
 {
-    const SaveCheckFooter *footer;
-
-    footer = (const SaveCheckFooter *)((u8 *)saveBody + size);
+    SaveCheckFooter *footer = (SaveCheckFooter *)(saveBody + size);
 
     if (footer->signature != SECTOR_SIGNATURE) {
         return FALSE;
@@ -978,8 +974,7 @@ static BOOL SaveCheckFooter_Validate (const SaveData *saveData, void *saveBody, 
 
 static u32 SaveCheckFooter_SaveCounter (void *saveBody, u32 size)
 {
-    SaveCheckFooter *footer = (SaveCheckFooter *)((u8 *)saveBody + size);
-    return footer->saveCounter;
+    return ((SaveCheckFooter *)(saveBody + size))->saveCounter;
 }
 
 int SaveDataExtra_Save (const SaveData *saveData, int extraSaveID, void *data)
