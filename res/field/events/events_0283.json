@@ -12,32 +12,32 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 14,
-            "y": 7,
-            "z": 0
+            "z": 7,
+            "y": 0
         }
     ],
     "warp_events": [
         {
             "x": 2,
-            "y": 5,
+            "z": 5,
             "dest_header_id": 288,
             "dest_warp_id": 2
         },
         {
             "x": 14,
-            "y": 15,
+            "z": 15,
             "dest_header_id": 293,
             "dest_warp_id": 1
         },
         {
             "x": 14,
-            "y": 1,
+            "z": 1,
             "dest_header_id": 587,
             "dest_warp_id": 0
         },
         {
             "x": 14,
-            "y": 1,
+            "z": 1,
             "dest_header_id": 588,
             "dest_warp_id": 0
         }
@@ -46,12 +46,12 @@
         {
             "script": 2,
             "x": 9,
-            "y": 11,
+            "z": 11,
+            "y": 0,
             "width": 1,
             "length": 1,
-            "z": 0,
-            "value": 0,
-            "var": 16384
+            "var": 16384,
+            "value": 0
         }
     ]
 }

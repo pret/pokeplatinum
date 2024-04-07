@@ -12,8 +12,8 @@ def parse_bg_events(bg_events: Sequence[Mapping], *args) -> bytes:
         bg_bytes.extend(j2b.parse_int(bg['script'], 2))
         bg_bytes.extend(j2b.parse_int(bg['type'], 2))
         bg_bytes.extend(j2b.parse_int(bg['x'], 4))
-        bg_bytes.extend(j2b.parse_int(bg['y'], 4))
         bg_bytes.extend(j2b.parse_int(bg['z'], 4))
+        bg_bytes.extend(j2b.parse_int(bg['y'], 4))
         bg_bytes.extend(j2b.parse_int(bg['player_facing_dir'], 4))
     return bg_bytes
 
@@ -38,8 +38,8 @@ def parse_object_events(obj_events: Sequence[Mapping], *args) -> bytes:
         obj_bytes.extend(j2b.parse_int(obj['movement_range_x'], 2))
         obj_bytes.extend(j2b.parse_int(obj['movement_range_y'], 2))
         obj_bytes.extend(j2b.parse_int(obj['x'], 2))
-        obj_bytes.extend(j2b.parse_int(obj['y'], 2))
-        obj_bytes.extend(j2b.parse_int(obj['z'] * 0x10000, 4))
+        obj_bytes.extend(j2b.parse_int(obj['z'], 2))
+        obj_bytes.extend(j2b.parse_int(obj['y'] * 0x10000, 4))
     return obj_bytes
 
 def parse_warp_events(warp_events: Sequence[Mapping], *args) -> bytes:
@@ -47,7 +47,7 @@ def parse_warp_events(warp_events: Sequence[Mapping], *args) -> bytes:
     warp_bytes.extend(j2b.parse_int(len(warp_events), 4))
     for warp in warp_events:
         warp_bytes.extend(j2b.parse_int(warp['x'], 2))
-        warp_bytes.extend(j2b.parse_int(warp['y'], 2))
+        warp_bytes.extend(j2b.parse_int(warp['z'], 2))
         warp_bytes.extend(j2b.parse_int(warp['dest_header_id'], 2))
         warp_bytes.extend(j2b.parse_int(warp['dest_warp_id'], 2))
         warp_bytes.extend(j2b.parse_int(0, 4))
@@ -59,10 +59,10 @@ def parse_coord_events(coord_events: Sequence[Mapping], *args) -> bytes:
     for coord in coord_events:
         coords_bytes.extend(j2b.parse_int(coord['script'], 2))
         coords_bytes.extend(j2b.parse_int(coord['x'], 2))
-        coords_bytes.extend(j2b.parse_int(coord['y'], 2))
+        coords_bytes.extend(j2b.parse_int(coord['z'], 2))
         coords_bytes.extend(j2b.parse_int(coord['width'], 2))
         coords_bytes.extend(j2b.parse_int(coord['length'], 2))
-        coords_bytes.extend(j2b.parse_int(coord['z'], 2))
+        coords_bytes.extend(j2b.parse_int(coord['y'], 2))
         coords_bytes.extend(j2b.parse_int(coord['value'], 2))
         coords_bytes.extend(j2b.parse_int(coord['var'], 2))
     return coords_bytes

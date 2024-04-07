@@ -4,160 +4,160 @@
             "script": 31,
             "type": 0,
             "x": 46,
-            "y": 49,
-            "z": 0,
+            "z": 49,
+            "y": 0,
             "player_facing_dir": 4
         },
         {
             "script": 32,
             "type": 0,
             "x": 50,
-            "y": 49,
-            "z": 0,
+            "z": 49,
+            "y": 0,
             "player_facing_dir": 4
         },
         {
             "script": 31,
             "type": 0,
             "x": 46,
-            "y": 48,
-            "z": 0,
+            "z": 48,
+            "y": 0,
             "player_facing_dir": 4
         },
         {
             "script": 31,
             "type": 0,
             "x": 47,
-            "y": 48,
-            "z": 0,
+            "z": 48,
+            "y": 0,
             "player_facing_dir": 4
         },
         {
             "script": 31,
             "type": 0,
             "x": 47,
-            "y": 49,
-            "z": 0,
+            "z": 49,
+            "y": 0,
             "player_facing_dir": 4
         },
         {
             "script": 32,
             "type": 0,
             "x": 50,
-            "y": 48,
-            "z": 0,
+            "z": 48,
+            "y": 0,
             "player_facing_dir": 4
         },
         {
             "script": 32,
             "type": 0,
             "x": 51,
-            "y": 49,
-            "z": 0,
+            "z": 49,
+            "y": 0,
             "player_facing_dir": 4
         },
         {
             "script": 32,
             "type": 0,
             "x": 51,
-            "y": 48,
-            "z": 0,
+            "z": 48,
+            "y": 0,
             "player_facing_dir": 4
         },
         {
             "script": 33,
             "type": 0,
             "x": 50,
-            "y": 39,
-            "z": 0,
+            "z": 39,
+            "y": 0,
             "player_facing_dir": 4
         },
         {
             "script": 33,
             "type": 0,
             "x": 51,
-            "y": 39,
-            "z": 0,
+            "z": 39,
+            "y": 0,
             "player_facing_dir": 0
         },
         {
             "script": 33,
             "type": 0,
             "x": 50,
-            "y": 38,
-            "z": 0,
+            "z": 38,
+            "y": 0,
             "player_facing_dir": 1
         },
         {
             "script": 33,
             "type": 0,
             "x": 50,
-            "y": 37,
-            "z": 0,
+            "z": 37,
+            "y": 0,
             "player_facing_dir": 1
         },
         {
             "script": 33,
             "type": 0,
             "x": 50,
-            "y": 36,
-            "z": 0,
+            "z": 36,
+            "y": 0,
             "player_facing_dir": 4
         },
         {
             "script": 33,
             "type": 0,
             "x": 51,
-            "y": 36,
-            "z": 0,
+            "z": 36,
+            "y": 0,
             "player_facing_dir": 3
         },
         {
             "script": 33,
             "type": 0,
             "x": 52,
-            "y": 39,
-            "z": 0,
+            "z": 39,
+            "y": 0,
             "player_facing_dir": 0
         },
         {
             "script": 33,
             "type": 0,
             "x": 52,
-            "y": 36,
-            "z": 0,
+            "z": 36,
+            "y": 0,
             "player_facing_dir": 3
         },
         {
             "script": 33,
             "type": 0,
             "x": 53,
-            "y": 36,
-            "z": 0,
+            "z": 36,
+            "y": 0,
             "player_facing_dir": 4
         },
         {
             "script": 33,
             "type": 0,
             "x": 53,
-            "y": 37,
-            "z": 0,
+            "z": 37,
+            "y": 0,
             "player_facing_dir": 2
         },
         {
             "script": 33,
             "type": 0,
             "x": 53,
-            "y": 38,
-            "z": 0,
+            "z": 38,
+            "y": 0,
             "player_facing_dir": 2
         },
         {
             "script": 33,
             "type": 0,
             "x": 53,
-            "y": 39,
-            "z": 0,
+            "z": 39,
+            "y": 0,
             "player_facing_dir": 4
         }
     ],
@@ -173,8 +173,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 25,
-            "y": 32,
-            "z": 0
+            "z": 32,
+            "y": 0
         },
         {
             "graphics_id": 96,
@@ -187,8 +187,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 47,
-            "y": 19,
-            "z": 0
+            "z": 19,
+            "y": 0
         },
         {
             "graphics_id": 12,
@@ -201,8 +201,8 @@
             "movement_range_x": 1,
             "movement_range_y": 1,
             "x": 44,
-            "y": 50,
-            "z": 0
+            "z": 50,
+            "y": 0
         },
         {
             "graphics_id": 18,
@@ -215,8 +215,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 49,
-            "y": 64,
-            "z": 0
+            "z": 64,
+            "y": 0
         },
         {
             "graphics_id": 17,
@@ -229,8 +229,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 48,
-            "y": 64,
-            "z": 0
+            "z": 64,
+            "y": 0
         },
         {
             "graphics_id": 2,
@@ -243,8 +243,8 @@
             "movement_range_x": 3,
             "movement_range_y": 0,
             "x": 41,
-            "y": 57,
-            "z": 0
+            "z": 57,
+            "y": 0
         },
         {
             "graphics_id": 3,
@@ -257,8 +257,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 59,
-            "y": 45,
-            "z": 0
+            "z": 45,
+            "y": 0
         },
         {
             "graphics_id": 1,
@@ -271,8 +271,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 50,
-            "y": 19,
-            "z": 0
+            "z": 19,
+            "y": 0
         },
         {
             "graphics_id": 35,
@@ -285,8 +285,8 @@
             "movement_range_x": 0,
             "movement_range_y": 1,
             "x": 26,
-            "y": 30,
-            "z": 0
+            "z": 30,
+            "y": 0
         },
         {
             "graphics_id": 31,
@@ -299,8 +299,8 @@
             "movement_range_x": 0,
             "movement_range_y": 1,
             "x": 67,
-            "y": 39,
-            "z": 0
+            "z": 39,
+            "y": 0
         },
         {
             "graphics_id": 51,
@@ -313,8 +313,8 @@
             "movement_range_x": 3,
             "movement_range_y": 3,
             "x": 38,
-            "y": 23,
-            "z": 0
+            "z": 23,
+            "y": 0
         },
         {
             "graphics_id": 233,
@@ -327,8 +327,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 45,
-            "y": 43,
-            "z": 0
+            "z": 43,
+            "y": 0
         },
         {
             "graphics_id": 233,
@@ -341,8 +341,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 45,
-            "y": 37,
-            "z": 0
+            "z": 37,
+            "y": 0
         },
         {
             "graphics_id": 233,
@@ -355,8 +355,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 52,
-            "y": 43,
-            "z": 0
+            "z": 43,
+            "y": 0
         },
         {
             "graphics_id": 15,
@@ -369,8 +369,8 @@
             "movement_range_x": 2,
             "movement_range_y": 0,
             "x": 60,
-            "y": 29,
-            "z": 0
+            "z": 29,
+            "y": 0
         },
         {
             "graphics_id": 19,
@@ -383,8 +383,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 59,
-            "y": 18,
-            "z": 0
+            "z": 18,
+            "y": 0
         },
         {
             "graphics_id": 36,
@@ -397,8 +397,8 @@
             "movement_range_x": 0,
             "movement_range_y": 1,
             "x": 38,
-            "y": 37,
-            "z": 0
+            "z": 37,
+            "y": 0
         },
         {
             "graphics_id": 49,
@@ -411,8 +411,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 55,
-            "y": 38,
-            "z": 0
+            "z": 38,
+            "y": 0
         },
         {
             "graphics_id": 11,
@@ -425,8 +425,8 @@
             "movement_range_x": 1,
             "movement_range_y": 1,
             "x": 54,
-            "y": 49,
-            "z": 0
+            "z": 49,
+            "y": 0
         },
         {
             "graphics_id": 42,
@@ -439,8 +439,8 @@
             "movement_range_x": 2,
             "movement_range_y": 0,
             "x": 66,
-            "y": 50,
-            "z": 0
+            "z": 50,
+            "y": 0
         },
         {
             "graphics_id": 54,
@@ -453,8 +453,8 @@
             "movement_range_x": 2,
             "movement_range_y": 1,
             "x": 60,
-            "y": 37,
-            "z": 0
+            "z": 37,
+            "y": 0
         },
         {
             "graphics_id": 53,
@@ -467,8 +467,8 @@
             "movement_range_x": 2,
             "movement_range_y": 0,
             "x": 45,
-            "y": 46,
-            "z": 0
+            "z": 46,
+            "y": 0
         },
         {
             "graphics_id": 55,
@@ -481,8 +481,8 @@
             "movement_range_x": 2,
             "movement_range_y": 0,
             "x": 44,
-            "y": 61,
-            "z": 0
+            "z": 61,
+            "y": 0
         },
         {
             "graphics_id": 60,
@@ -495,8 +495,8 @@
             "movement_range_x": 0,
             "movement_range_y": 2,
             "x": 54,
-            "y": 59,
-            "z": 0
+            "z": 59,
+            "y": 0
         },
         {
             "graphics_id": 96,
@@ -509,8 +509,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 35,
-            "y": 57,
-            "z": 0
+            "z": 57,
+            "y": 0
         },
         {
             "graphics_id": 96,
@@ -523,8 +523,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 62,
-            "y": 57,
-            "z": 0
+            "z": 57,
+            "y": 0
         },
         {
             "graphics_id": 96,
@@ -537,8 +537,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 72,
-            "y": 32,
-            "z": 0
+            "z": 32,
+            "y": 0
         },
         {
             "graphics_id": 11,
@@ -551,8 +551,8 @@
             "movement_range_x": 0,
             "movement_range_y": 2,
             "x": 42,
-            "y": 41,
-            "z": 0
+            "z": 41,
+            "y": 0
         },
         {
             "graphics_id": 69,
@@ -565,8 +565,8 @@
             "movement_range_x": 0,
             "movement_range_y": 1,
             "x": 31,
-            "y": 40,
-            "z": 0
+            "z": 40,
+            "y": 0
         },
         {
             "graphics_id": 22,
@@ -579,104 +579,104 @@
             "movement_range_x": 0,
             "movement_range_y": 1,
             "x": 25,
-            "y": 36,
-            "z": 0
+            "z": 36,
+            "y": 0
         }
     ],
     "warp_events": [
         {
             "x": 48,
-            "y": 17,
+            "z": 17,
             "dest_header_id": 326,
             "dest_warp_id": 0
         },
         {
             "x": 49,
-            "y": 17,
+            "z": 17,
             "dest_header_id": 326,
             "dest_warp_id": 0
         },
         {
             "x": 77,
-            "y": 34,
+            "z": 34,
             "dest_header_id": 562,
             "dest_warp_id": 0
         },
         {
             "x": 77,
-            "y": 35,
+            "z": 35,
             "dest_header_id": 562,
             "dest_warp_id": 0
         },
         {
             "x": 19,
-            "y": 34,
+            "z": 34,
             "dest_header_id": 563,
             "dest_warp_id": 0
         },
         {
             "x": 19,
-            "y": 35,
+            "z": 35,
             "dest_header_id": 563,
             "dest_warp_id": 0
         },
         {
             "x": 33,
-            "y": 62,
+            "z": 62,
             "dest_header_id": 564,
             "dest_warp_id": 0
         },
         {
             "x": 33,
-            "y": 63,
+            "z": 63,
             "dest_header_id": 564,
             "dest_warp_id": 0
         },
         {
             "x": 64,
-            "y": 62,
+            "z": 62,
             "dest_header_id": 565,
             "dest_warp_id": 0
         },
         {
             "x": 64,
-            "y": 63,
+            "z": 63,
             "dest_header_id": 565,
             "dest_warp_id": 0
         },
         {
             "x": 48,
-            "y": 52,
+            "z": 52,
             "dest_header_id": 560,
             "dest_warp_id": 0
         },
         {
             "x": 49,
-            "y": 52,
+            "z": 52,
             "dest_header_id": 560,
             "dest_warp_id": 0
         },
         {
             "x": 73,
-            "y": 34,
+            "z": 34,
             "dest_header_id": 562,
             "dest_warp_id": 0
         },
         {
             "x": 23,
-            "y": 34,
+            "z": 34,
             "dest_header_id": 563,
             "dest_warp_id": 0
         },
         {
             "x": 60,
-            "y": 62,
+            "z": 62,
             "dest_header_id": 565,
             "dest_warp_id": 0
         },
         {
             "x": 36,
-            "y": 62,
+            "z": 62,
             "dest_header_id": 564,
             "dest_warp_id": 0
         }
@@ -685,42 +685,42 @@
         {
             "script": 34,
             "x": 22,
-            "y": 34,
+            "z": 34,
+            "y": 0,
             "width": 1,
             "length": 2,
-            "z": 0,
-            "value": 0,
-            "var": 16501
+            "var": 16501,
+            "value": 0
         },
         {
             "script": 35,
             "x": 35,
-            "y": 62,
+            "z": 62,
+            "y": 0,
             "width": 1,
             "length": 2,
-            "z": 0,
-            "value": 0,
-            "var": 16501
+            "var": 16501,
+            "value": 0
         },
         {
             "script": 36,
             "x": 61,
-            "y": 62,
+            "z": 62,
+            "y": 0,
             "width": 1,
             "length": 2,
-            "z": 0,
-            "value": 0,
-            "var": 16501
+            "var": 16501,
+            "value": 0
         },
         {
             "script": 37,
             "x": 74,
-            "y": 34,
+            "z": 34,
+            "y": 0,
             "width": 1,
             "length": 2,
-            "z": 0,
-            "value": 0,
-            "var": 16501
+            "var": 16501,
+            "value": 0
         }
     ]
 }

@@ -8,12 +8,14 @@
             "flag": 0,
             "script": 3342,
             "initial_dir": 3,
-            "data": [2],
+            "data": [
+                2
+            ],
             "movement_range_x": 2,
             "movement_range_y": 2,
             "x": 4,
-            "y": 15,
-            "z": 0
+            "z": 15,
+            "y": 0
         },
         {
             "graphics_id": 11,
@@ -22,12 +24,14 @@
             "flag": 0,
             "script": 3279,
             "initial_dir": 3,
-            "data": [2],
+            "data": [
+                2
+            ],
             "movement_range_x": 3,
             "movement_range_y": 0,
             "x": 18,
-            "y": 7,
-            "z": 0
+            "z": 7,
+            "y": 0
         },
         {
             "graphics_id": 3,
@@ -36,12 +40,14 @@
             "flag": 0,
             "script": 3339,
             "initial_dir": 2,
-            "data": [2],
+            "data": [
+                2
+            ],
             "movement_range_x": 3,
             "movement_range_y": 3,
             "x": 21,
-            "y": 17,
-            "z": 0
+            "z": 17,
+            "y": 0
         },
         {
             "graphics_id": 14,
@@ -50,48 +56,50 @@
             "flag": 0,
             "script": 3283,
             "initial_dir": 1,
-            "data": [2],
+            "data": [
+                2
+            ],
             "movement_range_x": 0,
             "movement_range_y": 3,
             "x": 11,
-            "y": 9,
-            "z": 0
+            "z": 9,
+            "y": 0
         }
     ],
     "warp_events": [
         {
             "x": 14,
-            "y": 22,
+            "z": 22,
             "dest_header_id": 88,
             "dest_warp_id": 1
         },
         {
             "x": 4,
-            "y": 2,
+            "z": 2,
             "dest_header_id": 91,
             "dest_warp_id": 3
         },
         {
             "x": 9,
-            "y": 2,
+            "z": 2,
             "dest_header_id": 91,
             "dest_warp_id": 3
         },
         {
             "x": 14,
-            "y": 2,
+            "z": 2,
             "dest_header_id": 91,
             "dest_warp_id": 3
         },
         {
             "x": 19,
-            "y": 2,
+            "z": 2,
             "dest_header_id": 91,
             "dest_warp_id": 3
         },
         {
             "x": 24,
-            "y": 2,
+            "z": 2,
             "dest_header_id": 91,
             "dest_warp_id": 3
         }

@@ -12,8 +12,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 3,
-            "y": 7,
-            "z": 0
+            "z": 7,
+            "y": 0
         },
         {
             "graphics_id": 24,
@@ -26,8 +26,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 11,
-            "y": 7,
-            "z": 0
+            "z": 7,
+            "y": 0
         },
         {
             "graphics_id": 7,
@@ -40,44 +40,44 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 9,
-            "y": 9,
-            "z": 0
+            "z": 9,
+            "y": 0
         }
     ],
     "warp_events": [
         {
             "x": 6,
-            "y": 2,
+            "z": 2,
             "dest_header_id": 350,
             "dest_warp_id": 7
         },
         {
             "x": 6,
-            "y": 12,
+            "z": 12,
             "dest_header_id": 350,
             "dest_warp_id": 0
         },
         {
             "x": 7,
-            "y": 2,
+            "z": 2,
             "dest_header_id": 350,
             "dest_warp_id": 2
         },
         {
             "x": 8,
-            "y": 2,
+            "z": 2,
             "dest_header_id": 350,
             "dest_warp_id": 8
         },
         {
             "x": 7,
-            "y": 12,
+            "z": 12,
             "dest_header_id": 350,
             "dest_warp_id": 0
         },
         {
             "x": 8,
-            "y": 12,
+            "z": 12,
             "dest_header_id": 350,
             "dest_warp_id": 1
         }
@@ -86,22 +86,22 @@
         {
             "script": 3,
             "x": 5,
-            "y": 6,
+            "z": 6,
+            "y": 0,
             "width": 5,
             "length": 1,
-            "z": 0,
-            "value": 0,
-            "var": 16386
+            "var": 16386,
+            "value": 0
         },
         {
             "script": 4,
             "x": 5,
-            "y": 8,
+            "z": 8,
+            "y": 0,
             "width": 5,
             "length": 1,
-            "z": 0,
-            "value": 1,
-            "var": 16386
+            "var": 16386,
+            "value": 1
         }
     ]
 }

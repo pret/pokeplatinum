@@ -12,8 +12,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 7,
-            "y": 7,
-            "z": 0
+            "z": 7,
+            "y": 0
         },
         {
             "graphics_id": 60,
@@ -26,8 +26,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 8,
-            "y": 4,
-            "z": 0
+            "z": 4,
+            "y": 0
         },
         {
             "graphics_id": 19,
@@ -40,8 +40,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 1,
-            "y": 4,
-            "z": 0
+            "z": 4,
+            "y": 0
         },
         {
             "graphics_id": 19,
@@ -54,8 +54,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 3,
-            "y": 4,
-            "z": 0
+            "z": 4,
+            "y": 0
         },
         {
             "graphics_id": 60,
@@ -68,8 +68,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 5,
-            "y": 3,
-            "z": 0
+            "z": 3,
+            "y": 0
         },
         {
             "graphics_id": 164,
@@ -82,14 +82,14 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 3,
-            "y": 6,
-            "z": 0
+            "z": 6,
+            "y": 0
         }
     ],
     "warp_events": [
         {
             "x": 5,
-            "y": 8,
+            "z": 8,
             "dest_header_id": 362,
             "dest_warp_id": 0
         }

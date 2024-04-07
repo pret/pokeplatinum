@@ -12,8 +12,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 30,
-            "y": 48,
-            "z": 0
+            "z": 48,
+            "y": 0
         },
         {
             "graphics_id": 120,
@@ -26,8 +26,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 31,
-            "y": 28,
-            "z": 0
+            "z": 28,
+            "y": 0
         },
         {
             "graphics_id": 121,
@@ -40,8 +40,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 33,
-            "y": 32,
-            "z": 0
+            "z": 32,
+            "y": 0
         },
         {
             "graphics_id": 124,
@@ -54,8 +54,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 32,
-            "y": 48,
-            "z": 0
+            "z": 48,
+            "y": 0
         },
         {
             "graphics_id": 123,
@@ -68,8 +68,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 29,
-            "y": 32,
-            "z": 0
+            "z": 32,
+            "y": 0
         },
         {
             "graphics_id": 148,
@@ -82,14 +82,14 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 30,
-            "y": 35,
-            "z": 0
+            "z": 35,
+            "y": 0
         }
     ],
     "warp_events": [
         {
             "x": 31,
-            "y": 53,
+            "z": 53,
             "dest_header_id": 215,
             "dest_warp_id": 1
         }
@@ -98,32 +98,32 @@
         {
             "script": 3,
             "x": 31,
-            "y": 48,
+            "z": 48,
+            "y": 0,
             "width": 1,
             "length": 1,
-            "z": 0,
-            "value": 0,
-            "var": 16536
+            "var": 16536,
+            "value": 0
         },
         {
             "script": 5,
             "x": 30,
-            "y": 32,
+            "z": 32,
+            "y": 0,
             "width": 3,
             "length": 1,
-            "z": 0,
-            "value": 1,
-            "var": 16536
+            "var": 16536,
+            "value": 1
         },
         {
             "script": 2039,
             "x": 31,
-            "y": 52,
+            "z": 52,
+            "y": 0,
             "width": 1,
             "length": 1,
-            "z": 0,
-            "value": 1,
-            "var": 16664
+            "var": 16664,
+            "value": 1
         }
     ]
 }

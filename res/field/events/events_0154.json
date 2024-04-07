@@ -8,12 +8,14 @@
             "flag": 0,
             "script": 3340,
             "initial_dir": 0,
-            "data": [3],
+            "data": [
+                3
+            ],
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 4,
-            "y": 5,
-            "z": 0
+            "z": 5,
+            "y": 0
         },
         {
             "graphics_id": 10,
@@ -22,12 +24,14 @@
             "flag": 0,
             "script": 3300,
             "initial_dir": 1,
-            "data": [2],
+            "data": [
+                2
+            ],
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 14,
-            "y": 11,
-            "z": 0
+            "z": 11,
+            "y": 0
         },
         {
             "graphics_id": 71,
@@ -36,24 +40,26 @@
             "flag": 0,
             "script": 3330,
             "initial_dir": 1,
-            "data": [1],
+            "data": [
+                1
+            ],
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 12,
-            "y": 4,
-            "z": 0
+            "z": 4,
+            "y": 0
         }
     ],
     "warp_events": [
         {
             "x": 9,
-            "y": 21,
+            "z": 21,
             "dest_header_id": 154,
             "dest_warp_id": 1
         },
         {
             "x": 9,
-            "y": 2,
+            "z": 2,
             "dest_header_id": 156,
             "dest_warp_id": 0
         }
@@ -62,32 +68,32 @@
         {
             "script": 2,
             "x": 6,
-            "y": 13,
+            "z": 13,
+            "y": 0,
             "width": 1,
             "length": 1,
-            "z": 0,
-            "value": 0,
-            "var": 16384
+            "var": 16384,
+            "value": 0
         },
         {
             "script": 3,
             "x": 6,
-            "y": 8,
+            "z": 8,
+            "y": 0,
             "width": 1,
             "length": 1,
-            "z": 0,
-            "value": 0,
-            "var": 16384
+            "var": 16384,
+            "value": 0
         },
         {
             "script": 3,
             "x": 11,
-            "y": 8,
+            "z": 8,
+            "y": 0,
             "width": 1,
             "length": 1,
-            "z": 0,
-            "value": 0,
-            "var": 16384
+            "var": 16384,
+            "value": 0
         }
     ]
 }

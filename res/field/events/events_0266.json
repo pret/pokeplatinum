@@ -12,8 +12,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 911,
-            "y": 203,
-            "z": 0
+            "z": 203,
+            "y": 0
         }
     ],
     "warp_events": [],

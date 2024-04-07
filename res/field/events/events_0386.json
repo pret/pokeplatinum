@@ -4,32 +4,32 @@
             "script": 8130,
             "type": 2,
             "x": 627,
-            "y": 370,
-            "z": 0,
+            "z": 370,
+            "y": 0,
             "player_facing_dir": 4
         },
         {
             "script": 8173,
             "type": 2,
             "x": 636,
-            "y": 389,
-            "z": 0,
+            "z": 389,
+            "y": 0,
             "player_facing_dir": 4
         },
         {
             "script": 8203,
             "type": 2,
             "x": 614,
-            "y": 373,
-            "z": 0,
+            "z": 373,
+            "y": 0,
             "player_facing_dir": 4
         },
         {
             "script": 8204,
             "type": 2,
             "x": 621,
-            "y": 331,
-            "z": 0,
+            "z": 331,
+            "y": 0,
             "player_facing_dir": 4
         }
     ],
@@ -41,12 +41,14 @@
             "flag": 0,
             "script": 1,
             "initial_dir": 0,
-            "data": [4],
+            "data": [
+                4
+            ],
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 628,
-            "y": 410,
-            "z": 0
+            "z": 410,
+            "y": 0
         },
         {
             "graphics_id": 94,
@@ -55,12 +57,14 @@
             "flag": 0,
             "script": 2,
             "initial_dir": 0,
-            "data": [1],
+            "data": [
+                1
+            ],
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 630,
-            "y": 330,
-            "z": 0
+            "z": 330,
+            "y": 0
         },
         {
             "graphics_id": 87,
@@ -73,8 +77,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 611,
-            "y": 410,
-            "z": 0
+            "z": 410,
+            "y": 0
         },
         {
             "graphics_id": 87,
@@ -87,8 +91,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 637,
-            "y": 394,
-            "z": 0
+            "z": 394,
+            "y": 0
         },
         {
             "graphics_id": 87,
@@ -101,8 +105,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 618,
-            "y": 399,
-            "z": 0
+            "z": 399,
+            "y": 0
         },
         {
             "graphics_id": 87,
@@ -115,8 +119,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 610,
-            "y": 368,
-            "z": 0
+            "z": 368,
+            "y": 0
         },
         {
             "graphics_id": 87,
@@ -129,8 +133,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 610,
-            "y": 350,
-            "z": 0
+            "z": 350,
+            "y": 0
         },
         {
             "graphics_id": 87,
@@ -143,8 +147,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 628,
-            "y": 321,
-            "z": 0
+            "z": 321,
+            "y": 0
         },
         {
             "graphics_id": 100,
@@ -153,12 +157,14 @@
             "flag": 0,
             "script": 2800,
             "initial_dir": 0,
-            "data": [97],
+            "data": [
+                97
+            ],
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 610,
-            "y": 337,
-            "z": 0
+            "z": 337,
+            "y": 0
         },
         {
             "graphics_id": 100,
@@ -167,12 +173,14 @@
             "flag": 0,
             "script": 2800,
             "initial_dir": 0,
-            "data": [96],
+            "data": [
+                96
+            ],
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 613,
-            "y": 337,
-            "z": 0
+            "z": 337,
+            "y": 0
         },
         {
             "graphics_id": 100,
@@ -181,12 +189,14 @@
             "flag": 0,
             "script": 2800,
             "initial_dir": 0,
-            "data": [95],
+            "data": [
+                95
+            ],
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 611,
-            "y": 337,
-            "z": 0
+            "z": 337,
+            "y": 0
         },
         {
             "graphics_id": 100,
@@ -195,12 +205,14 @@
             "flag": 0,
             "script": 2800,
             "initial_dir": 0,
-            "data": [94],
+            "data": [
+                94
+            ],
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 612,
-            "y": 337,
-            "z": 0
+            "z": 337,
+            "y": 0
         },
         {
             "graphics_id": 87,
@@ -213,8 +225,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 611,
-            "y": 388,
-            "z": 0
+            "z": 388,
+            "y": 0
         },
         {
             "graphics_id": 86,
@@ -227,8 +239,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 632,
-            "y": 394,
-            "z": 0
+            "z": 394,
+            "y": 0
         },
         {
             "graphics_id": 86,
@@ -241,8 +253,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 632,
-            "y": 395,
-            "z": 0
+            "z": 395,
+            "y": 0
         },
         {
             "graphics_id": 86,
@@ -255,8 +267,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 613,
-            "y": 368,
-            "z": 0
+            "z": 368,
+            "y": 0
         },
         {
             "graphics_id": 86,
@@ -269,8 +281,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 613,
-            "y": 369,
-            "z": 0
+            "z": 369,
+            "y": 0
         },
         {
             "graphics_id": 86,
@@ -283,8 +295,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 614,
-            "y": 339,
-            "z": 0
+            "z": 339,
+            "y": 0
         },
         {
             "graphics_id": 86,
@@ -297,8 +309,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 614,
-            "y": 340,
-            "z": 0
+            "z": 340,
+            "y": 0
         },
         {
             "graphics_id": 11,
@@ -307,12 +319,15 @@
             "flag": 0,
             "script": 3562,
             "initial_dir": 3,
-            "data": [2, 2],
+            "data": [
+                2,
+                2
+            ],
             "movement_range_x": 4,
             "movement_range_y": 0,
             "x": 612,
-            "y": 377,
-            "z": 0
+            "z": 377,
+            "y": 0
         },
         {
             "graphics_id": 14,
@@ -321,12 +336,14 @@
             "flag": 0,
             "script": 3593,
             "initial_dir": 1,
-            "data": [4],
+            "data": [
+                4
+            ],
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 628,
-            "y": 392,
-            "z": 0
+            "z": 392,
+            "y": 0
         },
         {
             "graphics_id": 14,
@@ -335,12 +352,14 @@
             "flag": 0,
             "script": 3553,
             "initial_dir": 0,
-            "data": [4],
+            "data": [
+                4
+            ],
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 628,
-            "y": 397,
-            "z": 0
+            "z": 397,
+            "y": 0
         },
         {
             "graphics_id": 70,
@@ -349,12 +368,14 @@
             "flag": 0,
             "script": 3584,
             "initial_dir": 2,
-            "data": [2],
+            "data": [
+                2
+            ],
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 631,
-            "y": 392,
-            "z": 0
+            "z": 392,
+            "y": 0
         },
         {
             "graphics_id": 11,
@@ -363,12 +384,14 @@
             "flag": 0,
             "script": 3556,
             "initial_dir": 2,
-            "data": [3],
+            "data": [
+                3
+            ],
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 627,
-            "y": 322,
-            "z": 0
+            "z": 322,
+            "y": 0
         },
         {
             "graphics_id": 14,
@@ -377,12 +400,14 @@
             "flag": 0,
             "script": 3572,
             "initial_dir": 3,
-            "data": [4],
+            "data": [
+                4
+            ],
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 619,
-            "y": 340,
-            "z": 0
+            "z": 340,
+            "y": 0
         },
         {
             "local_id": 0,
@@ -392,12 +417,14 @@
             "flag": 450,
             "script": 65535,
             "initial_dir": 0,
-            "data": [6],
+            "data": [
+                6
+            ],
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 646,
-            "y": 338,
-            "z": 0
+            "z": 338,
+            "y": 0
         },
         {
             "graphics_id": 11,
@@ -406,12 +433,14 @@
             "flag": 0,
             "script": 3592,
             "initial_dir": 3,
-            "data": [2],
+            "data": [
+                2
+            ],
             "movement_range_x": 2,
             "movement_range_y": 6,
             "x": 612,
-            "y": 397,
-            "z": 0
+            "z": 397,
+            "y": 0
         },
         {
             "graphics_id": 11,
@@ -420,12 +449,14 @@
             "flag": 0,
             "script": 3566,
             "initial_dir": 0,
-            "data": [3],
+            "data": [
+                3
+            ],
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 624,
-            "y": 367,
-            "z": 0
+            "z": 367,
+            "y": 0
         },
         {
             "graphics_id": 86,
@@ -438,8 +469,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 634,
-            "y": 361,
-            "z": 0
+            "z": 361,
+            "y": 0
         },
         {
             "graphics_id": 86,
@@ -452,8 +483,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 635,
-            "y": 361,
-            "z": 0
+            "z": 361,
+            "y": 0
         },
         {
             "graphics_id": 87,
@@ -466,26 +497,26 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 630,
-            "y": 338,
-            "z": 0
+            "z": 338,
+            "y": 0
         }
     ],
     "warp_events": [
         {
             "x": 630,
-            "y": 413,
+            "z": 413,
             "dest_header_id": 193,
             "dest_warp_id": 1
         },
         {
             "x": 631,
-            "y": 413,
+            "z": 413,
             "dest_header_id": 193,
             "dest_warp_id": 1
         },
         {
             "x": 617,
-            "y": 368,
+            "z": 368,
             "dest_header_id": 498,
             "dest_warp_id": 0
         }
