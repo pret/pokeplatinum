@@ -4,16 +4,16 @@
             "script": 8807,
             "type": 0,
             "x": 62,
-            "y": 106,
-            "z": 0,
+            "z": 106,
+            "y": 0,
             "player_facing_dir": 0
         },
         {
             "script": 8214,
             "type": 2,
             "x": 47,
-            "y": 120,
-            "z": 0,
+            "z": 120,
+            "y": 0,
             "player_facing_dir": 4
         }
     ],
@@ -29,8 +29,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 47,
-            "y": 112,
-            "z": 0
+            "z": 112,
+            "y": 0
         },
         {
             "graphics_id": 93,
@@ -43,8 +43,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 63,
-            "y": 113,
-            "z": 0
+            "z": 113,
+            "y": 0
         },
         {
             "graphics_id": 4,
@@ -57,8 +57,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 62,
-            "y": 115,
-            "z": 0
+            "z": 115,
+            "y": 0
         },
         {
             "local_id": 1,
@@ -72,8 +72,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 72,
-            "y": 113,
-            "z": 0
+            "z": 113,
+            "y": 0
         }
     ],
     "warp_events": [],

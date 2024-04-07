@@ -58,7 +58,7 @@ int sub_020308A8 (SaveData * param0, BattleFrontierStage * param1)
 
 u16 sub_020308BC (SaveData * param0, BattleFrontierStage * param1, int param2, int param3)
 {
-    if (sub_020247C8(param0) == 0) {
+    if (SaveData_MiscSave_InitFlag(param0) == 0) {
         return 0;
     }
 
@@ -103,7 +103,7 @@ static u16 sub_02030954 (SaveData * param0, BattleFrontierStage * param1, int pa
 {
     u16 v0;
 
-    if (sub_020247C8(param0) == 0) {
+    if (SaveData_MiscSave_InitFlag(param0) == 0) {
         return 0;
     }
 
@@ -138,7 +138,7 @@ BOOL sub_020309A0 (SaveData * param0, int param1, int param2, int param3, int pa
         return v6;
     }
 
-    if (sub_020247C8(param0) == 0) {
+    if (SaveData_MiscSave_InitFlag(param0) == 0) {
         return v6;
     }
 

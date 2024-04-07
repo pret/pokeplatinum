@@ -4,13 +4,13 @@
     "warp_events": [
         {
             "x": 12,
-            "y": 16,
+            "z": 16,
             "dest_header_id": 247,
             "dest_warp_id": 1
         },
         {
             "x": 29,
-            "y": 16,
+            "z": 16,
             "dest_header_id": 399,
             "dest_warp_id": 0
         }

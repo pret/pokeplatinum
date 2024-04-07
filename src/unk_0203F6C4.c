@@ -5285,7 +5285,7 @@ static BOOL sub_02043540 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043568 (UnkStruct_0203E724 * param0)
 {
-    sub_02025340(param0->unk_34->unk_0C);
+    SaveDataExtra_Init(param0->unk_34->unk_0C);
     return 0;
 }
 
@@ -5293,7 +5293,7 @@ static BOOL sub_02043578 (UnkStruct_0203E724 * param0)
 {
     u16 * v0 = inline_0204FCAC(param0);
 
-    *v0 = sub_020247C8(param0->unk_34->unk_0C);
+    *v0 = SaveData_MiscSave_InitFlag(param0->unk_34->unk_0C);
     return 0;
 }
 

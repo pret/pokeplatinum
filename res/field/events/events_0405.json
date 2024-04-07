@@ -12,8 +12,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 179,
-            "y": 661,
-            "z": 5
+            "z": 661,
+            "y": 5
         },
         {
             "graphics_id": 6,
@@ -26,8 +26,8 @@
             "movement_range_x": 1,
             "movement_range_y": 0,
             "x": 170,
-            "y": 645,
-            "z": 5
+            "z": 645,
+            "y": 5
         },
         {
             "graphics_id": 3,
@@ -40,8 +40,8 @@
             "movement_range_x": 1,
             "movement_range_y": 1,
             "x": 176,
-            "y": 656,
-            "z": 5
+            "z": 656,
+            "y": 5
         },
         {
             "graphics_id": 13,
@@ -54,8 +54,8 @@
             "movement_range_x": 1,
             "movement_range_y": 1,
             "x": 170,
-            "y": 659,
-            "z": 5
+            "z": 659,
+            "y": 5
         },
         {
             "graphics_id": 6,
@@ -68,8 +68,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 183,
-            "y": 651,
-            "z": 5
+            "z": 651,
+            "y": 5
         },
         {
             "graphics_id": 100,
@@ -82,8 +82,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 178,
-            "y": 651,
-            "z": 0
+            "z": 651,
+            "y": 0
         },
         {
             "graphics_id": 100,
@@ -92,12 +92,14 @@
             "flag": 0,
             "script": 2800,
             "initial_dir": 0,
-            "data": [1],
+            "data": [
+                1
+            ],
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 182,
-            "y": 651,
-            "z": 0
+            "z": 651,
+            "y": 0
         },
         {
             "graphics_id": 124,
@@ -110,8 +112,8 @@
             "movement_range_x": 1,
             "movement_range_y": 4,
             "x": 162,
-            "y": 641,
-            "z": 5
+            "z": 641,
+            "y": 5
         },
         {
             "graphics_id": 124,
@@ -124,8 +126,8 @@
             "movement_range_x": 1,
             "movement_range_y": 4,
             "x": 163,
-            "y": 641,
-            "z": 5
+            "z": 641,
+            "y": 5
         },
         {
             "graphics_id": 91,
@@ -134,12 +136,14 @@
             "flag": 0,
             "script": 8,
             "initial_dir": 0,
-            "data": [3],
+            "data": [
+                3
+            ],
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 173,
-            "y": 659,
-            "z": 0
+            "z": 659,
+            "y": 0
         },
         {
             "graphics_id": 93,
@@ -152,8 +156,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 177,
-            "y": 651,
-            "z": 0
+            "z": 651,
+            "y": 0
         },
         {
             "graphics_id": 93,
@@ -162,12 +166,14 @@
             "flag": 0,
             "script": 10,
             "initial_dir": 0,
-            "data": [3],
+            "data": [
+                3
+            ],
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 189,
-            "y": 655,
-            "z": 0
+            "z": 655,
+            "y": 0
         },
         {
             "graphics_id": 52,
@@ -180,62 +186,62 @@
             "movement_range_x": 1,
             "movement_range_y": 1,
             "x": 166,
-            "y": 650,
-            "z": 0
+            "z": 650,
+            "y": 0
         }
     ],
     "warp_events": [
         {
             "x": 184,
-            "y": 657,
+            "z": 657,
             "dest_header_id": 427,
             "dest_warp_id": 0
         },
         {
             "x": 176,
-            "y": 666,
+            "z": 666,
             "dest_header_id": 428,
             "dest_warp_id": 0
         },
         {
             "x": 180,
-            "y": 651,
+            "z": 651,
             "dest_header_id": 430,
             "dest_warp_id": 0
         },
         {
             "x": 184,
-            "y": 666,
+            "z": 666,
             "dest_header_id": 431,
             "dest_warp_id": 0
         },
         {
             "x": 171,
-            "y": 654,
+            "z": 654,
             "dest_header_id": 432,
             "dest_warp_id": 0
         },
         {
             "x": 180,
-            "y": 612,
+            "z": 612,
             "dest_header_id": 256,
             "dest_warp_id": 0
         },
         {
             "x": 181,
-            "y": 612,
+            "z": 612,
             "dest_header_id": 256,
             "dest_warp_id": 1
         },
         {
             "x": 162,
-            "y": 641,
+            "z": 641,
             "dest_header_id": 256,
             "dest_warp_id": 3
         },
         {
             "x": 163,
-            "y": 641,
+            "z": 641,
             "dest_header_id": 256,
             "dest_warp_id": 4
         }

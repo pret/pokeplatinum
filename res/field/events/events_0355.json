@@ -4,56 +4,56 @@
             "script": 8163,
             "type": 2,
             "x": 23,
-            "y": 9,
-            "z": 0,
+            "z": 9,
+            "y": 0,
             "player_facing_dir": 4
         },
         {
             "script": 3,
             "type": 0,
             "x": 6,
-            "y": 4,
-            "z": 0,
+            "z": 4,
+            "y": 0,
             "player_facing_dir": 4
         },
         {
             "script": 3,
             "type": 0,
             "x": 6,
-            "y": 5,
-            "z": 0,
+            "z": 5,
+            "y": 0,
             "player_facing_dir": 4
         },
         {
             "script": 3,
             "type": 0,
             "x": 14,
-            "y": 4,
-            "z": 0,
+            "z": 4,
+            "y": 0,
             "player_facing_dir": 4
         },
         {
             "script": 3,
             "type": 0,
             "x": 14,
-            "y": 5,
-            "z": 0,
+            "z": 5,
+            "y": 0,
             "player_facing_dir": 4
         },
         {
             "script": 3,
             "type": 0,
             "x": 22,
-            "y": 4,
-            "z": 0,
+            "z": 4,
+            "y": 0,
             "player_facing_dir": 4
         },
         {
             "script": 3,
             "type": 0,
             "x": 22,
-            "y": 5,
-            "z": 0,
+            "z": 5,
+            "y": 0,
             "player_facing_dir": 4
         }
     ],
@@ -69,8 +69,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 4,
-            "y": 3,
-            "z": 0
+            "z": 3,
+            "y": 0
         },
         {
             "graphics_id": 175,
@@ -83,8 +83,8 @@
             "movement_range_x": 2,
             "movement_range_y": 2,
             "x": 11,
-            "y": 6,
-            "z": 0
+            "z": 6,
+            "y": 0
         },
         {
             "graphics_id": 175,
@@ -97,26 +97,26 @@
             "movement_range_x": 1,
             "movement_range_y": 0,
             "x": 20,
-            "y": 7,
-            "z": 0
+            "z": 7,
+            "y": 0
         }
     ],
     "warp_events": [
         {
             "x": 20,
-            "y": 9,
+            "z": 9,
             "dest_header_id": 368,
             "dest_warp_id": 3
         },
         {
             "x": 4,
-            "y": 9,
+            "z": 9,
             "dest_header_id": 368,
             "dest_warp_id": 1
         },
         {
             "x": 12,
-            "y": 9,
+            "z": 9,
             "dest_header_id": 368,
             "dest_warp_id": 2
         }

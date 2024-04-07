@@ -12,26 +12,26 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "x": 31,
-            "y": 17,
-            "z": 0
+            "z": 17,
+            "y": 0
         }
     ],
     "warp_events": [
         {
             "x": 12,
-            "y": 56,
+            "z": 56,
             "dest_header_id": 341,
             "dest_warp_id": 0
         },
         {
             "x": 13,
-            "y": 56,
+            "z": 56,
             "dest_header_id": 341,
             "dest_warp_id": 1
         },
         {
             "x": 31,
-            "y": 16,
+            "z": 16,
             "dest_header_id": 268,
             "dest_warp_id": 4
         }
