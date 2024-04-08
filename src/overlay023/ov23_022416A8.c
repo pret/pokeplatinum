@@ -498,11 +498,11 @@ BOOL ov23_02241D58 (Strbuf *param0)
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
         if (Unk_ov23_02257744->unk_468[v0] != 0) {
-            v1 = StringTemplate_New(4);
+            v1 = StringTemplate_Default(4);
             v2 = Strbuf_Init((50 * 2), 4);
 
-            sub_0200BACC(v1, 2, Unk_ov23_02257744->unk_468[v0]);
-            sub_0200C324(v1, 2);
+            StringTemplate_SetUndergroundItemNameWithArticle(v1, 2, Unk_ov23_02257744->unk_468[v0]);
+            StringTemplate_CapitalizeArgAtIndex(v1, 2);
             MessageLoader_GetStrbuf(ov23_02253E3C(ov23_0224219C()), 95, v2);
             StringTemplate_Format(v1, param0, v2);
 
@@ -517,7 +517,7 @@ BOOL ov23_02241D58 (Strbuf *param0)
     }
 
     if (v1) {
-        sub_0200B3F0(v1);
+        StringTemplate_Free(v1);
     }
 
     return v3;

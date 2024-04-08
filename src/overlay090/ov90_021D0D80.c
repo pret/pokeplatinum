@@ -621,7 +621,7 @@ static void ov90_021D13D8 (UnkStruct_ov90_021D0ECC * param0)
     int v0 = 0;
 
     param0->unk_28.unk_00 = MessageLoader_Init(0, 26, 22, param0->unk_00);
-    param0->unk_28.unk_04 = sub_0200B368(2, ((18 + 1) * 4), param0->unk_00);
+    param0->unk_28.unk_04 = StringTemplate_New(2, ((18 + 1) * 4), param0->unk_00);
     param0->unk_28.unk_08 = Strbuf_Init(((18 + 1) * 4), param0->unk_00);
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -656,7 +656,7 @@ static void ov90_021D146C (UnkStruct_ov90_021D0ECC * param0)
     }
 
     Strbuf_Free(param0->unk_28.unk_08);
-    sub_0200B3F0(param0->unk_28.unk_04);
+    StringTemplate_Free(param0->unk_28.unk_04);
     MessageLoader_Free(param0->unk_28.unk_00);
 }
 
@@ -670,7 +670,7 @@ static void ov90_021D14C8 (UnkStruct_ov90_021D0ECC * param0, Window * param1, u8
     v0 = sub_0202D414(param0->unk_20, 8 + param2, 0);
 
     sub_0201D78C(param1, 0, param0->unk_28.unk_24[v0], 4, param4, 0xff, ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
-    StringTemplate_FormatNumber(param0->unk_28.unk_04, 0, v2, 4, 1, 1);
+    StringTemplate_SetNumber(param0->unk_28.unk_04, 0, v2, 4, 1, 1);
     StringTemplate_Format(param0->unk_28.unk_04, param0->unk_28.unk_08, param0->unk_28.unk_24[4]);
 
     v3 = 21 * 8 - sub_02002D7C(0, param0->unk_28.unk_08, 0) - 4;
@@ -678,7 +678,7 @@ static void ov90_021D14C8 (UnkStruct_ov90_021D0ECC * param0, Window * param1, u8
 
     param4 += 24;
     sub_0201D78C(param1, 0, param0->unk_28.unk_24[2], 4, param4, 0xff, ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
-    StringTemplate_FormatNumber(param0->unk_28.unk_04, 0, v1, 4, 1, 1);
+    StringTemplate_SetNumber(param0->unk_28.unk_04, 0, v1, 4, 1, 1);
     StringTemplate_Format(param0->unk_28.unk_04, param0->unk_28.unk_08, param0->unk_28.unk_24[4]);
 
     v3 = 21 * 8 - sub_02002D7C(0, param0->unk_28.unk_08, 0) - 4;
@@ -714,7 +714,7 @@ static void ov90_021D15D0 (UnkStruct_ov90_021D0ECC * param0)
     case 2:
         MessageLoader_GetStrbuf(param0->unk_28.unk_00, 12, param0->unk_28.unk_08);
         sub_0201D78C(&param0->unk_6C[3], 0, param0->unk_28.unk_08, 4, 10, 0, ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
-        StringTemplate_FormatNumber(param0->unk_28.unk_04, 0, sub_0202D2C0(param0->unk_20, 0), 2, 0, 1);
+        StringTemplate_SetNumber(param0->unk_28.unk_04, 0, sub_0202D2C0(param0->unk_20, 0), 2, 0, 1);
         StringTemplate_Format(param0->unk_28.unk_04, param0->unk_28.unk_08, param0->unk_28.unk_24[5]);
 
         v0 = 64 - sub_02002D7C(0, param0->unk_28.unk_08, 0);
@@ -806,8 +806,8 @@ static void ov90_021D18BC (UnkStruct_ov90_021D0ECC * param0)
 
     sub_0202D708(param0->unk_24, &v0);
     Strbuf_Clear(param0->unk_28.unk_08);
-    StringTemplate_FormatNumber(param0->unk_28.unk_04, 0, v0.unk_00, 2, 0, 1);
-    StringTemplate_FormatNumber(param0->unk_28.unk_04, 1, v0.unk_04, 3, 2, 1);
+    StringTemplate_SetNumber(param0->unk_28.unk_04, 0, v0.unk_00, 2, 0, 1);
+    StringTemplate_SetNumber(param0->unk_28.unk_04, 1, v0.unk_04, 3, 2, 1);
     StringTemplate_Format(param0->unk_28.unk_04, param0->unk_28.unk_08, param0->unk_28.unk_10);
 
     v1 = 24 * 8 - sub_02002D7C(0, param0->unk_28.unk_08, 0);
@@ -828,12 +828,12 @@ static void ov90_021D1984 (UnkStruct_ov90_021D0ECC * param0)
     if (v0->unk_05 == 0) {
         sub_0201D78C(&param0->unk_6C[2], 0, param0->unk_28.unk_20, 0, 4, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
     } else if (v0->unk_06 == 0) {
-        sub_0200BDD0(param0->unk_28.unk_04, 0, v0->unk_05);
+        StringTemplate_SetCountryName(param0->unk_28.unk_04, 0, v0->unk_05);
         StringTemplate_Format(param0->unk_28.unk_04, param0->unk_28.unk_08, param0->unk_28.unk_1C);
         sub_0201D78C(&param0->unk_6C[2], 0, param0->unk_28.unk_08, 0, 4, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
     } else {
-        sub_0200BDD0(param0->unk_28.unk_04, 0, v0->unk_05);
-        sub_0200BE08(param0->unk_28.unk_04, 1, v0->unk_05, v0->unk_06);
+        StringTemplate_SetCountryName(param0->unk_28.unk_04, 0, v0->unk_05);
+        StringTemplate_SetCityName(param0->unk_28.unk_04, 1, v0->unk_05, v0->unk_06);
         StringTemplate_Format(param0->unk_28.unk_04, param0->unk_28.unk_08, param0->unk_28.unk_18);
         sub_0201D78C(&param0->unk_6C[2], 0, param0->unk_28.unk_08, 0, 4, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
     }

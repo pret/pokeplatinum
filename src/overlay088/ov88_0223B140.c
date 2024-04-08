@@ -308,9 +308,9 @@ int ov88_0223B140 (OverlayManager * param0, int * param1)
     MI_CpuClearFast(v0, sizeof(UnkStruct_02095E80));
 
     v0->unk_174 = sub_02018340(26);
-    v0->unk_178 = sub_0200B368(12, (10 + 1) * 2, 26);
-    v0->unk_17C = StringTemplate_New(26);
-    v0->unk_180 = StringTemplate_New(26);
+    v0->unk_178 = StringTemplate_New(12, (10 + 1) * 2, 26);
+    v0->unk_17C = StringTemplate_Default(26);
+    v0->unk_180 = StringTemplate_Default(26);
     v0->unk_184 = MessageLoader_Init(0, 26, 354, 26);
     v0->unk_40 = NULL;
 
@@ -516,7 +516,7 @@ static void ov88_0223B710 (StringTemplate * param0, Party * param1, int param2)
     int v0;
 
     for (v0 = 0; v0 < Party_GetCurrentCount(param1); v0++) {
-        StringTemplate_BufferNickname(param0, v0 + param2, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param1, v0)));
+        StringTemplate_SetNickname(param0, v0 + param2, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param1, v0)));
     }
 }
 
@@ -901,9 +901,9 @@ int ov88_0223C03C (OverlayManager * param0, int * param1)
 
     Heap_FreeToHeapExplicit(26, v0->unk_174);
     MessageLoader_Free(v0->unk_184);
-    sub_0200B3F0(v0->unk_180);
-    sub_0200B3F0(v0->unk_17C);
-    sub_0200B3F0(v0->unk_178);
+    StringTemplate_Free(v0->unk_180);
+    StringTemplate_Free(v0->unk_17C);
+    StringTemplate_Free(v0->unk_178);
     Strbuf_Free(v0->unk_18C);
     OverlayManager_FreeData(param0);
     SetMainCallback(NULL, NULL);
@@ -1861,7 +1861,7 @@ static int ov88_0223D514 (UnkStruct_02095E80 * param0)
         break;
     case 0xfffffffe:
         v0 = CommInfo_TrainerInfo(param0->unk_36C4);
-        StringTemplate_FormatPlayerName(param0->unk_36CC, 0, v0);
+        StringTemplate_SetPlayerName(param0->unk_36CC, 0, v0);
         ov88_0223D49C(param0, 59);
         param0->unk_226C = ov88_0223D4C4;
         break;
@@ -1885,7 +1885,7 @@ static int ov88_0223D5B8 (UnkStruct_02095E80 * param0)
     case 0xfffffffe:
         Sound_PlayEffect(1500);
         v1 = CommInfo_TrainerInfo(param0->unk_36C4);
-        StringTemplate_FormatPlayerName(param0->unk_36CC, 0, v1);
+        StringTemplate_SetPlayerName(param0->unk_36CC, 0, v1);
         ov88_0223D49C(param0, 59);
         param0->unk_226C = ov88_0223D4C4;
         break;
@@ -1897,7 +1897,7 @@ static int ov88_0223D5B8 (UnkStruct_02095E80 * param0)
             TrainerInfo * v2 = TrainerInfo_New(26);
 
             TrainerInfo_SetName(v2, sub_0202AEF0(param0->unk_36EC, v0));
-            StringTemplate_FormatPlayerName(param0->unk_36CC, 0, v2);
+            StringTemplate_SetPlayerName(param0->unk_36CC, 0, v2);
             Heap_FreeToHeap(v2);
         }
 
@@ -1955,7 +1955,7 @@ static int ov88_0223D740 (UnkStruct_02095E80 * param0)
         break;
     case 0xfffffffe:
         v0 = CommInfo_TrainerInfo(param0->unk_36C4);
-        StringTemplate_FormatPlayerName(param0->unk_36CC, 0, v0);
+        StringTemplate_SetPlayerName(param0->unk_36CC, 0, v0);
         ov88_0223D49C(param0, 59);
         param0->unk_226C = ov88_0223D4C4;
         break;
@@ -2024,7 +2024,7 @@ static int ov88_0223D854 (UnkStruct_02095E80 * param0)
 
     if (param0->unk_36C4 == -1) {
         MessageLoader_Free(param0->unk_36D0);
-        sub_0200B3F0(param0->unk_36CC);
+        StringTemplate_Free(param0->unk_36CC);
         sub_020364F0(19);
         ov88_0223ECBC(&param0->unk_49C[23], 28, 1, param0->unk_184, param0->unk_178);
         param0->unk_226C = ov88_0223D840;
@@ -2033,7 +2033,7 @@ static int ov88_0223D854 (UnkStruct_02095E80 * param0)
 
     if (sub_0207D688(sub_0207D990(param0->unk_04), 437, 1, 26) == 1) {
         v1 = CommInfo_TrainerInfo(param0->unk_36C4);
-        StringTemplate_FormatPlayerName(param0->unk_36CC, 0, v1);
+        StringTemplate_SetPlayerName(param0->unk_36CC, 0, v1);
         ov88_0223D49C(param0, 57);
         param0->unk_226C = ov88_0223D7AC;
         return 0;
@@ -2063,7 +2063,7 @@ static int ov88_0223D96C (UnkStruct_02095E80 * param0)
         return 0;
     }
 
-    param0->unk_36CC = StringTemplate_New(26);
+    param0->unk_36CC = StringTemplate_Default(26);
     param0->unk_36D0 = MessageLoader_Init(0, 26, 675, 26);
     param0->unk_36EC = sub_0202B370(param0->unk_04);
     param0->unk_226C = ov88_0223D854;
@@ -2099,7 +2099,7 @@ static int ov88_0223DA3C (UnkStruct_02095E80 * param0)
     v0.unk_0B_4 = 0;
     v0.unk_0B_6 = 0;
 
-    StringTemplate_BufferNickname(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2270, param0->unk_88[0])));
+    StringTemplate_SetNickname(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2270, param0->unk_88[0])));
     sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
     ov88_0223ECBC(&param0->unk_49C[22], 16, 1, param0->unk_184, param0->unk_17C);
 
@@ -2309,8 +2309,8 @@ static void ov88_0223DFF4 (UnkStruct_02095E80 * param0)
 static int ov88_0223E110 (UnkStruct_02095E80 * param0)
 {
     sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-    StringTemplate_BufferNickname(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2270, param0->unk_88[0])));
-    StringTemplate_BufferNickname(param0->unk_17C, 1, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2274, param0->unk_88[1] - 6)));
+    StringTemplate_SetNickname(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2270, param0->unk_88[0])));
+    StringTemplate_SetNickname(param0->unk_17C, 1, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2274, param0->unk_88[1] - 6)));
 
     ov88_0223ECBC(&param0->unk_49C[23], 21, 1, param0->unk_184, param0->unk_17C);
     param0->unk_226C = ov88_0223E20C;
@@ -2447,7 +2447,7 @@ static int ov88_0223E4BC (UnkStruct_02095E80 * param0)
     v0.unk_0B_4 = 0;
     v0.unk_0B_6 = 0;
 
-    StringTemplate_BufferNickname(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2274, param0->unk_88[0] - 6)));
+    StringTemplate_SetNickname(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2274, param0->unk_88[0] - 6)));
     sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
     ov88_0223ECBC(&param0->unk_49C[22], 16, 1, param0->unk_184, param0->unk_17C);
 

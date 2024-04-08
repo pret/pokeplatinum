@@ -318,12 +318,12 @@ int ov119_021D1158 (Window * param0, int param1, Pokemon * param2, int param3)
     BGL_FillWindow(param0, 15);
 
     v5 = MessageLoader_Init(0, 26, 357, 71);
-    v3 = StringTemplate_New(71);
+    v3 = StringTemplate_Default(71);
     v1 = MessageLoader_GetNewStrbuf(v5, param1);
     v2 = Strbuf_Init(255, 71);
     v4 = Pokemon_GetBoxPokemon(param2);
 
-    sub_0200B538(v3, 0, v4);
+    StringTemplate_SetSpeciesName(v3, 0, v4);
     StringTemplate_Format(v3, v2, v1);
 
     v0 = PrintStringSimple(param0, 1, v2, 0, 0, param3, NULL);
@@ -331,7 +331,7 @@ int ov119_021D1158 (Window * param0, int param1, Pokemon * param2, int param3)
     MessageLoader_Free(v5);
     Strbuf_Free(v2);
     Strbuf_Free(v1);
-    sub_0200B3F0(v3);
+    StringTemplate_Free(v3);
 
     return v0;
 }

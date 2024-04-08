@@ -458,7 +458,7 @@ static void ov97_02233DD0 (UnkStruct_ov97_02234A2C * param0, UnkStruct_ov97_0223
         if (param1->unk_40) {
             v1 = param1->unk_40;
         } else {
-            v1 = StringTemplate_New(78);
+            v1 = StringTemplate_Default(78);
         }
 
         Strbuf_Clear(param0->unk_12668);
@@ -473,7 +473,7 @@ static void ov97_02233DD0 (UnkStruct_ov97_02234A2C * param0, UnkStruct_ov97_0223
         param1->unk_48 = sub_0201D78C(param1->unk_00, param1->unk_28, v0, v3, param1->unk_1C, v5, param1->unk_2C, NULL);
 
         if (param1->unk_40 == NULL) {
-            sub_0200B3F0(v1);
+            StringTemplate_Free(v1);
         }
 
         MessageLoader_Free(v2);
@@ -1625,11 +1625,11 @@ static void ov97_02235344 (UnkStruct_ov97_02234A2C * param0)
 
     ov97_0223936C(ov97_02236378(), v3, 7 + 1, ov97_02235DBC());
 
-    v1 = StringTemplate_New(78);
+    v1 = StringTemplate_Default(78);
     v2 = Strbuf_Init(7 + 1, 78);
 
     Strbuf_CopyChars(v2, v3);
-    sub_0200B48C(v1, 1, v2, 0, 1, GAME_LANGUAGE);
+    StringTemplate_SetStrbuf(v1, 1, v2, 0, 1, GAME_LANGUAGE);
 
     ov97_02234ECC(param0);
 
@@ -1639,7 +1639,7 @@ static void ov97_02235344 (UnkStruct_ov97_02234A2C * param0)
     ov97_02233DD0(param0, &param0->unk_490, 0x8 | 0x10);
 
     Strbuf_Free(v2);
-    sub_0200B3F0(v1);
+    StringTemplate_Free(v1);
 
     ov97_02235310(param0);
 }

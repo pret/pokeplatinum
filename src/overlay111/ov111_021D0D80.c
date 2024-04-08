@@ -1121,7 +1121,7 @@ static void ov111_021D1C0C (UnkStruct_ov111_021D0F7C * param0)
 
     sub_02015760(param0->unk_34);
     MessageLoader_Free(param0->unk_38);
-    sub_0200B3F0(param0->unk_3C);
+    StringTemplate_Free(param0->unk_3C);
     Strbuf_Free(param0->unk_40);
     Strbuf_Free(param0->unk_44);
     sub_0200C560(param0->unk_160);
@@ -1158,7 +1158,7 @@ static void ov111_021D1D68 (UnkStruct_ov111_021D0F7C * param0)
     ov111_021D2034(param0);
 
     param0->unk_38 = MessageLoader_Init(1, 26, 540, 115);
-    param0->unk_3C = StringTemplate_New(115);
+    param0->unk_3C = StringTemplate_Default(115);
     param0->unk_40 = Strbuf_Init(600, 115);
     param0->unk_44 = Strbuf_Init(600, 115);
 
@@ -1639,7 +1639,7 @@ static u8 ov111_021D2674 (UnkStruct_ov111_021D0F7C * param0, u8 param1)
 {
     u8 v0;
 
-    sub_0200B70C(param0->unk_3C, 0, param0->unk_3CE[param1]);
+    StringTemplate_SetItemName(param0->unk_3C, 0, param0->unk_3CE[param1]);
     v0 = ov111_021D2424(param0, &param0->unk_5C[2 + param1], 1, 8 * 6 - 4, Unk_ov111_021D3814[param1], 0, 1, 2, 0, 0);
     sub_0201A9A4(&param0->unk_5C[2 + param1]);
 
@@ -1648,7 +1648,7 @@ static u8 ov111_021D2674 (UnkStruct_ov111_021D0F7C * param0, u8 param1)
 
 static void ov111_021D26CC (UnkStruct_ov111_021D0F7C * param0, u32 param1, s32 param2)
 {
-    StringTemplate_FormatNumber(param0->unk_3C, param1, param2, 1, 0, 1);
+    StringTemplate_SetNumber(param0->unk_3C, param1, param2, 1, 0, 1);
     return;
 }
 

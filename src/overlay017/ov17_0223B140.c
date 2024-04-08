@@ -215,7 +215,7 @@ int ov17_0223B140 (OverlayManager * param0, int * param1)
     v0->unk_0C.unk_40 = MessageLoader_Init(0, 26, 210, 21);
     v0->unk_0C.unk_44 = MessageLoader_Init(0, 26, 211, 21);
     v0->unk_0C.unk_54 = sub_02012744((2 * 4), 21);
-    v0->unk_0C.unk_48 = StringTemplate_New(21);
+    v0->unk_0C.unk_48 = StringTemplate_Default(21);
     v0->unk_0C.unk_4C = Strbuf_Init((3 * 160), 21);
 
     {
@@ -363,7 +363,7 @@ int ov17_0223B580 (OverlayManager * param0, int * param1)
     sub_02002F54(v0->unk_0C.unk_50);
 
     Strbuf_Free(v0->unk_0C.unk_4C);
-    sub_0200B3F0(v0->unk_0C.unk_48);
+    StringTemplate_Free(v0->unk_0C.unk_48);
     MessageLoader_Free(v0->unk_0C.unk_38);
     MessageLoader_Free(v0->unk_0C.unk_3C);
     MessageLoader_Free(v0->unk_0C.unk_40);

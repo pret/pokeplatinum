@@ -448,7 +448,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
                 v0->unk_82 = (v0->unk_38 != 0);
                 sub_0205AC80(v0, v0->unk_82);
                 sub_020364F0(0);
-                StringTemplate_FormatPlayerName(v0->unk_28, 0, v0->unk_74);
+                StringTemplate_SetPlayerName(v0->unk_28, 0, v0->unk_74);
                 MessageLoader_GetStrbuf(v0->unk_2C, 14, v0->unk_0C);
                 StringTemplate_Format(v0->unk_28, v0->unk_10, v0->unk_0C);
                 v0->unk_30 = sub_0205AA50(v0, v0->unk_10);
@@ -519,7 +519,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         }
         break;
     case 36:
-        sub_0200B538(v0->unk_28, 1, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(v0->unk_50, v0->unk_84)));
+        StringTemplate_SetSpeciesName(v0->unk_28, 1, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(v0->unk_50, v0->unk_84)));
         MessageLoader_GetStrbuf(v0->unk_2C, 18, v0->unk_0C);
         StringTemplate_Format(v0->unk_28, v0->unk_10, v0->unk_0C);
         v0->unk_30 = sub_0205AA50(v0, v0->unk_10);
@@ -672,7 +672,7 @@ void sub_0205AB10 (FieldSystem * param0, UnkFuncPtr_0205AB10 * param1)
     v0->unk_43 = 5;
     v0->unk_24 = param0;
     v0->unk_08 = param1;
-    v0->unk_28 = StringTemplate_New(11);
+    v0->unk_28 = StringTemplate_Default(11);
     v0->unk_2C = MessageLoader_Init(0, 26, 11, 11);
     v0->unk_0C = Strbuf_Init((100 * 2), 11);
     v0->unk_10 = Strbuf_Init((100 * 2), 11);
@@ -735,7 +735,7 @@ static void sub_0205AC28 (UnkStruct_0205A0D8 * param0)
     }
 
     MessageLoader_Free(param0->unk_2C);
-    sub_0200B3F0(param0->unk_28);
+    StringTemplate_Free(param0->unk_28);
     Strbuf_Free(param0->unk_0C);
     Strbuf_Free(param0->unk_10);
     sub_02014A20(param0->unk_78);
@@ -1019,13 +1019,13 @@ static BOOL sub_0205B140 (UnkStruct_020508D4 * param0)
 
     switch (v1->unk_28) {
     case 0:
-        v1->unk_18 = StringTemplate_New(4);
+        v1->unk_18 = StringTemplate_Default(4);
         v1->unk_1C = MessageLoader_Init(0, 26, 11, 4);
         v1->unk_00 = Strbuf_Init((100 * 2), 4);
         v1->unk_04 = Strbuf_Init((100 * 2), 4);
 
         MessageLoader_GetStrbuf(v1->unk_1C, 2 + v2->unk_03, v1->unk_00);
-        StringTemplate_FormatPlayerName(v1->unk_18, 0, CommInfo_TrainerInfo(v1->unk_24));
+        StringTemplate_SetPlayerName(v1->unk_18, 0, CommInfo_TrainerInfo(v1->unk_24));
         StringTemplate_Format(v1->unk_18, v1->unk_04, v1->unk_00);
         sub_0205D8F4(v0->unk_08, &v1->unk_08, 3);
         sub_0205D944(&v1->unk_08, sub_02025E44(v0->unk_0C));
@@ -1037,7 +1037,7 @@ static BOOL sub_0205B140 (UnkStruct_020508D4 * param0)
         if (sub_0205DA04(v1->unk_20)) {
             if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
                 MessageLoader_Free(v1->unk_1C);
-                sub_0200B3F0(v1->unk_18);
+                StringTemplate_Free(v1->unk_18);
                 Strbuf_Free(v1->unk_00);
                 Strbuf_Free(v1->unk_04);
                 sub_0200E084(&v1->unk_08, 0);

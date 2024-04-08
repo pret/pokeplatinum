@@ -1033,7 +1033,7 @@ static void sub_02073130 (UnkStruct_02072334 * param0)
     Strbuf* v2;
 
     param0->unk_10C = MessageLoader_Init(1, 26, 408, param0->unk_00);
-    param0->unk_110.unk_00 = sub_0200B368(1, 128, param0->unk_00);
+    param0->unk_110.unk_00 = StringTemplate_New(1, 128, param0->unk_00);
     param0->unk_110.unk_04 = Strbuf_Init(128, param0->unk_00);
     param0->unk_110.unk_08 = MessageLoader_GetNewStrbuf(param0->unk_10C, 4);
     param0->unk_110.unk_0C = MessageLoader_GetNewStrbuf(param0->unk_10C, 0);
@@ -1054,7 +1054,7 @@ static void sub_020731A4 (UnkStruct_02072334 * param0)
     Strbuf_Free(param0->unk_110.unk_0C);
     Strbuf_Free(param0->unk_110.unk_08);
     Strbuf_Free(param0->unk_110.unk_04);
-    sub_0200B3F0(param0->unk_110.unk_00);
+    StringTemplate_Free(param0->unk_110.unk_00);
     MessageLoader_Free(param0->unk_10C);
 }
 
@@ -1095,7 +1095,7 @@ static void sub_020732C4 (UnkStruct_02072334 * param0, int param1, u8 param2, u8
 
     if (param1 == 0) {
         Strbuf_Clear(param0->unk_110.unk_04);
-        sub_0200B48C(param0->unk_110.unk_00, 0, param0->unk_1C[param0->unk_18].unk_08, 2, 1, GAME_LANGUAGE);
+        StringTemplate_SetStrbuf(param0->unk_110.unk_00, 0, param0->unk_1C[param0->unk_18].unk_08, 2, 1, GAME_LANGUAGE);
         StringTemplate_Format(param0->unk_110.unk_00, param0->unk_110.unk_04, param0->unk_110.unk_10[param1]);
 
         v0 = param0->unk_110.unk_04;

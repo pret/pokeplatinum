@@ -2625,15 +2625,15 @@ static Strbuf* ov5_021E5240 (u32 param0, u32 param1)
     Strbuf* v3;
 
     v1 = MessageLoader_Init(1, 26, 359, param1);
-    v0 = StringTemplate_New(param1);
+    v0 = StringTemplate_Default(param1);
     v2 = Strbuf_Init(128, param1);
     v3 = Strbuf_Init(128, param1);
     MessageLoader_GetStrbuf(v1, 0, v3);
-    sub_0200BA08(v0, 0, param0);
+    StringTemplate_SetTrainerName(v0, 0, param0);
     StringTemplate_Format(v0, v2, v3);
 
     MessageLoader_Free(v1);
-    sub_0200B3F0(v0);
+    StringTemplate_Free(v0);
     Strbuf_Free(v3);
     return v2;
 }

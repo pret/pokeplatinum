@@ -225,7 +225,7 @@ static void sub_02084E58 (GameWindowLayout * param0, u16 param1, u32 param2)
     Strbuf* v1;
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
-    StringTemplate_BufferNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
+    StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
 
     switch (sub_02084B70(param1)) {
     case 4:
@@ -270,80 +270,80 @@ static void sub_02084E58 (GameWindowLayout * param0, u16 param1, u32 param2)
         break;
     case 12:
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 75);
-        sub_0200B824(param0->unk_6A0, 1, 0);
+        StringTemplate_SetPokemonStatName(param0->unk_6A0, 1, 0);
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
         Strbuf_Free(v1);
         break;
     case 13:
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 75);
-        sub_0200B824(param0->unk_6A0, 1, 1);
+        StringTemplate_SetPokemonStatName(param0->unk_6A0, 1, 1);
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
         Strbuf_Free(v1);
         break;
     case 14:
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 75);
-        sub_0200B824(param0->unk_6A0, 1, 2);
+        StringTemplate_SetPokemonStatName(param0->unk_6A0, 1, 2);
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
         Strbuf_Free(v1);
         break;
     case 15:
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 75);
-        sub_0200B824(param0->unk_6A0, 1, 3);
+        StringTemplate_SetPokemonStatName(param0->unk_6A0, 1, 3);
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
         Strbuf_Free(v1);
         break;
     case 16:
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 75);
-        sub_0200B824(param0->unk_6A0, 1, 4);
+        StringTemplate_SetPokemonStatName(param0->unk_6A0, 1, 4);
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
         Strbuf_Free(v1);
         break;
     case 17:
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 75);
-        sub_0200B824(param0->unk_6A0, 1, 5);
+        StringTemplate_SetPokemonStatName(param0->unk_6A0, 1, 5);
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
         Strbuf_Free(v1);
         break;
     case 18:
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 110 + param2);
-        sub_0200B824(param0->unk_6A0, 1, 0);
+        StringTemplate_SetPokemonStatName(param0->unk_6A0, 1, 0);
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
         Strbuf_Free(v1);
         break;
     case 19:
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 110 + param2);
-        sub_0200B824(param0->unk_6A0, 1, 1);
+        StringTemplate_SetPokemonStatName(param0->unk_6A0, 1, 1);
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
         Strbuf_Free(v1);
         break;
     case 20:
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 110 + param2);
-        sub_0200B824(param0->unk_6A0, 1, 2);
+        StringTemplate_SetPokemonStatName(param0->unk_6A0, 1, 2);
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
         Strbuf_Free(v1);
         break;
     case 21:
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 110 + param2);
-        sub_0200B824(param0->unk_6A0, 1, 3);
+        StringTemplate_SetPokemonStatName(param0->unk_6A0, 1, 3);
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
         Strbuf_Free(v1);
         break;
     case 22:
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 110 + param2);
-        sub_0200B824(param0->unk_6A0, 1, 4);
+        StringTemplate_SetPokemonStatName(param0->unk_6A0, 1, 4);
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
         Strbuf_Free(v1);
         break;
     case 23:
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 110 + param2);
-        sub_0200B824(param0->unk_6A0, 1, 5);
+        StringTemplate_SetPokemonStatName(param0->unk_6A0, 1, 5);
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
         Strbuf_Free(v1);
         break;
     case 25:
     case 26:
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 72);
-        sub_0200B630(param0->unk_6A0, 0, param2);
+        StringTemplate_SetMoveName(param0->unk_6A0, 0, param2);
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
         Strbuf_Free(v1);
         break;
@@ -495,8 +495,8 @@ static int sub_020855C4 (void * param0)
         v2 = MessageLoader_GetNewStrbuf(v0->unk_69C, 64);
     }
 
-    StringTemplate_BufferNickname(v0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
-    StringTemplate_FormatNumber(v0->unk_6A0, 1, v3 - v0->unk_704[v0->unk_B11].unk_06, 3, 0, 1);
+    StringTemplate_SetNickname(v0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
+    StringTemplate_SetNumber(v0->unk_6A0, 1, v3 - v0->unk_704[v0->unk_B11].unk_06, 3, 0, 1);
     StringTemplate_Format(v0->unk_6A0, v0->unk_6A4, v2);
     Strbuf_Free(v2);
 
@@ -599,7 +599,7 @@ int sub_02085804 (GameWindowLayout * param0)
         v2 = Pokemon_GetValue(v0, MON_DATA_CURRENT_HP, NULL);
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 70);
 
-        StringTemplate_BufferNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
+        StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
         Strbuf_Free(v1);
 
@@ -682,8 +682,8 @@ static int sub_02085A70 (void * param0)
 
     v2 = MessageLoader_GetNewStrbuf(v0->unk_69C, 193);
 
-    StringTemplate_BufferNickname(v0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
-    StringTemplate_FormatNumber(v0->unk_6A0, 1, v0->unk_704[v0->unk_B11].unk_0A, 3, 0, 1);
+    StringTemplate_SetNickname(v0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
+    StringTemplate_SetNumber(v0->unk_6A0, 1, v0->unk_704[v0->unk_B11].unk_0A, 3, 0, 1);
     StringTemplate_Format(v0->unk_6A0, v0->unk_6A4, v2);
     Strbuf_Free(v2);
 
@@ -750,8 +750,8 @@ static int sub_02085C50 (void * param0)
             v0->unk_B13 = 6;
             break;
         case 0xffff:
-            StringTemplate_BufferNickname(v0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
-            sub_0200B630(v0->unk_6A0, 1, v0->unk_5A4->unk_26);
+            StringTemplate_SetNickname(v0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
+            StringTemplate_SetMoveName(v0->unk_6A0, 1, v0->unk_5A4->unk_26);
 
             v2 = MessageLoader_GetNewStrbuf(v0->unk_69C, 52);
 
@@ -767,8 +767,8 @@ static int sub_02085C50 (void * param0)
         case 0xfffe:
             break;
         default:
-            StringTemplate_BufferNickname(v0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
-            sub_0200B630(v0->unk_6A0, 1, v0->unk_5A4->unk_26);
+            StringTemplate_SetNickname(v0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
+            StringTemplate_SetMoveName(v0->unk_6A0, 1, v0->unk_5A4->unk_26);
 
             v2 = MessageLoader_GetNewStrbuf(v0->unk_69C, 194);
 
@@ -793,7 +793,7 @@ static int sub_02085C50 (void * param0)
             sub_02086590(v0, v1, v0->unk_5A4->unk_28);
             v2 = MessageLoader_GetNewStrbuf(v0->unk_69C, 61);
 
-            sub_0200B630(v0->unk_6A0, 1, v0->unk_5A4->unk_26);
+            StringTemplate_SetMoveName(v0->unk_6A0, 1, v0->unk_5A4->unk_26);
             StringTemplate_Format(v0->unk_6A0, v0->unk_6A4, v2);
             Strbuf_Free(v2);
             sub_02082708(v0, 0xffffffff, 0);
@@ -833,14 +833,14 @@ int sub_02085EF4 (GameWindowLayout * param0)
     param0->unk_B13 = 3;
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
-    StringTemplate_BufferNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
+    StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
 
     if (param0->unk_5A4->unk_28 == 4) {
-        sub_0200B630(param0->unk_6A0, 1, param0->unk_5A4->unk_26);
+        StringTemplate_SetMoveName(param0->unk_6A0, 1, param0->unk_5A4->unk_26);
         return sub_02086008(param0);
     }
 
-    sub_0200B630(param0->unk_6A0, 1, Pokemon_GetValue(v0, 54 + param0->unk_5A4->unk_28, NULL));
+    StringTemplate_SetMoveName(param0->unk_6A0, 1, Pokemon_GetValue(v0, 54 + param0->unk_5A4->unk_28, NULL));
     v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 60);
     StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
     Strbuf_Free(v1);
@@ -963,8 +963,8 @@ int sub_0208615C (GameWindowLayout * param0)
     v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
     v2 = sub_02086104(param0, v0);
 
-    StringTemplate_BufferNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
-    sub_0200B630(param0->unk_6A0, 1, param0->unk_5A4->unk_26);
+    StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
+    StringTemplate_SetMoveName(param0->unk_6A0, 1, param0->unk_5A4->unk_26);
 
     switch (v2) {
     case 0:
@@ -1017,14 +1017,14 @@ int sub_020862F8 (GameWindowLayout * param0)
     Strbuf* v1;
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
-    StringTemplate_BufferNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
+    StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
 
     if (param0->unk_5A4->unk_28 == 4) {
-        sub_0200B630(param0->unk_6A0, 1, param0->unk_5A4->unk_26);
+        StringTemplate_SetMoveName(param0->unk_6A0, 1, param0->unk_5A4->unk_26);
         return sub_0208648C(param0);
     }
 
-    sub_0200B630(param0->unk_6A0, 1, Pokemon_GetValue(v0, 54 + param0->unk_5A4->unk_28, NULL));
+    StringTemplate_SetMoveName(param0->unk_6A0, 1, Pokemon_GetValue(v0, 54 + param0->unk_5A4->unk_28, NULL));
     v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 60);
     StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
     Strbuf_Free(v1);
@@ -1044,7 +1044,7 @@ int sub_020863A0 (GameWindowLayout * param0)
 
         sub_02086590(param0, v0, param0->unk_5A4->unk_28);
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 61);
-        sub_0200B630(param0->unk_6A0, 1, param0->unk_5A4->unk_26);
+        StringTemplate_SetMoveName(param0->unk_6A0, 1, param0->unk_5A4->unk_26);
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
         Strbuf_Free(v1);
         sub_02082708(param0, 0xffffffff, 0);
@@ -1164,7 +1164,7 @@ static u8 sub_02086614 (GameWindowLayout * param0, u8 param1)
     v2 = (u16)Pokemon_GetValue(v0, MON_DATA_MOVE1 + param1, NULL);
     v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 162 + param1);
 
-    sub_0200B630(param0->unk_6A0, 0, v2);
+    StringTemplate_SetMoveName(param0->unk_6A0, 0, v2);
     StringTemplate_Format(param0->unk_6A0, param0->unk_6A8, v1);
     Strbuf_Free(v1);
 

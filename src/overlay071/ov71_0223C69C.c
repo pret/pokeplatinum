@@ -96,7 +96,7 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
 
     {
         Strbuf* v3 = Strbuf_Init(32, 25);
-        StringTemplate * v4 = sub_0200B368(6, 32, 25);
+        StringTemplate * v4 = StringTemplate_New(6, 32, 25);
 
         ov71_0223CD64(&param0[0], (8 * 17), 0, 0, v2, param1->unk_28, 5, 2);
         Strbuf_CopyChars(v2, param1->unk_08);
@@ -105,7 +105,7 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
         {
             u32 v5;
 
-            StringTemplate_FormatNumber(v4, 5, param1->unk_1C, 6, 0, 1);
+            StringTemplate_SetNumber(v4, 5, param1->unk_1C, 6, 0, 1);
             MessageLoader_GetStrbuf(v1, 14, v3);
             StringTemplate_Format(v4, v2, v3);
 
@@ -117,7 +117,7 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
         if (param1->unk_04_3) {
             u32 v6;
 
-            StringTemplate_FormatNumber(v4, 5, param1->unk_20, 3, 0, 1);
+            StringTemplate_SetNumber(v4, 5, param1->unk_20, 3, 0, 1);
             MessageLoader_GetStrbuf(v1, 21, v3);
             StringTemplate_Format(v4, v2, v3);
 
@@ -132,12 +132,12 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
             u32 v7;
 
             if (param1->unk_04_1) {
-                StringTemplate_FormatNumber(v4, 0, sub_0202CC58(param1->unk_18), 3, 1, 1);
-                StringTemplate_FormatNumber(v4, 1, sub_0202CC5C(param1->unk_18), 2, 2, 1);
+                StringTemplate_SetNumber(v4, 0, sub_0202CC58(param1->unk_18), 3, 1, 1);
+                StringTemplate_SetNumber(v4, 1, sub_0202CC5C(param1->unk_18), 2, 2, 1);
                 MessageLoader_GetStrbuf(v1, 16, v3);
             } else {
-                StringTemplate_FormatNumber(v4, 0, param1->unk_2A, 3, 1, 1);
-                StringTemplate_FormatNumber(v4, 1, param1->unk_2E, 2, 2, 1);
+                StringTemplate_SetNumber(v4, 0, param1->unk_2A, 3, 1, 1);
+                StringTemplate_SetNumber(v4, 1, param1->unk_2E, 2, 2, 1);
                 MessageLoader_GetStrbuf(v1, 15, v3);
             }
 
@@ -149,9 +149,9 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
         {
             u32 v8;
 
-            StringTemplate_FormatNumber(v4, 2, param1->unk_2F, 2, 2, 1);
-            sub_0200C2E0(v4, 3, param1->unk_30);
-            StringTemplate_FormatNumber(v4, 4, param1->unk_31, 2, 2, 1);
+            StringTemplate_SetNumber(v4, 2, param1->unk_2F, 2, 2, 1);
+            StringTemplate_SetMonthName(v4, 3, param1->unk_30);
+            StringTemplate_SetNumber(v4, 4, param1->unk_31, 2, 2, 1);
             MessageLoader_GetStrbuf(v1, 17, v3);
             StringTemplate_Format(v4, v2, v3);
 
@@ -161,7 +161,7 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
         }
 
         Strbuf_Free(v3);
-        sub_0200B3F0(v4);
+        StringTemplate_Free(v4);
     }
 
     Strbuf_Free(v2);
@@ -258,7 +258,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     mov r0, #6
     mov r1, #0x20
     mov r2, #0x19
-    bl sub_0200B368
+    bl StringTemplate_New
     ldr r1, [sp, #0x10]
     add r4, r0, #0
     add r1, #0x33
@@ -273,13 +273,13 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     add r3, r1, #0
     add r2, #0x32
     ldrb r2, [r2]
-    bl StringTemplate_FormatNumber
+    bl StringTemplate_SetNumber
     ldr r2, [sp, #0x10]
     add r0, r4, #0
     add r2, #0x33
     ldrb r2, [r2]
     mov r1, #3
-    bl sub_0200C2E0
+    bl StringTemplate_SetMonthName
     mov r3, #2
     ldr r2, [sp, #0x10]
     str r3, [sp]
@@ -289,7 +289,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     ldrb r2, [r2]
     add r0, r4, #0
     mov r1, #4
-    bl StringTemplate_FormatNumber
+    bl StringTemplate_SetNumber
     mov r0, #1
     str r0, [sp]
     str r0, [sp, #4]
@@ -298,7 +298,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     ldrh r2, [r2, #0x2c]
     mov r1, #0
     mov r3, #3
-    bl StringTemplate_FormatNumber
+    bl StringTemplate_SetNumber
     mov r3, #2
     ldr r2, [sp, #0x10]
     str r3, [sp]
@@ -307,7 +307,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     add r2, #0x35
     ldrb r2, [r2]
     add r0, r4, #0
-    bl StringTemplate_FormatNumber
+    bl StringTemplate_SetNumber
     ldr r2, [sp, #0x14]
     add r0, r7, #0
     mov r1, #0x11
@@ -329,7 +329,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     ldr r2, [sp, #0x14]
     add r0, r4, #0
     add r3, r1, #0
-    bl sub_0200B48C
+    bl StringTemplate_SetStrbuf
     mov r3, #0
     str r3, [sp]
     mov r0, #2
@@ -337,7 +337,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     ldr r2, [sp, #0x14]
     add r0, r4, #0
     mov r1, #1
-    bl sub_0200B48C
+    bl StringTemplate_SetStrbuf
     add r0, r7, #0
     mov r1, #0x14
     add r2, r5, #0
@@ -393,7 +393,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     ldr r2, [r2, #0x38]
     mov r1, #5
     mov r3, #6
-    bl StringTemplate_FormatNumber
+    bl StringTemplate_SetNumber
     ldr r2, [sp, #0x14]
     add r0, r7, #0
     mov r1, #0x16
@@ -485,7 +485,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     ldr r2, [r2, #0x44]
     mov r1, #5
     mov r3, #6
-    bl StringTemplate_FormatNumber
+    bl StringTemplate_SetNumber
     ldr r2, [sp, #0x14]
     add r0, r7, #0
     mov r1, #0x16
@@ -513,7 +513,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     ldr r0, [sp, #0x14]
     bl Strbuf_Free
     add r0, r4, #0
-    bl sub_0200B3F0
+    bl StringTemplate_Free
     add r0, r5, #0
     bl Strbuf_Free
     add r0, r7, #0
@@ -567,10 +567,10 @@ void ov71_0223CDE8 (Window * param0, const TrainerCard * param1, Strbuf *param2)
         MessageLoader * v2 = MessageLoader_Init(0, 26, 616, 25);
         Strbuf* v3 = Strbuf_Init(32, 25);
         Strbuf* v4 = Strbuf_Init(32, 25);
-        StringTemplate * v5 = sub_0200B368((1 + 1), 32, 25);
+        StringTemplate * v5 = StringTemplate_New((1 + 1), 32, 25);
 
-        StringTemplate_FormatNumber(v5, 0, sub_0202CC58(param1->unk_18), 3, 1, 1);
-        StringTemplate_FormatNumber(v5, 1, sub_0202CC5C(param1->unk_18), 2, 2, 1);
+        StringTemplate_SetNumber(v5, 0, sub_0202CC58(param1->unk_18), 3, 1, 1);
+        StringTemplate_SetNumber(v5, 1, sub_0202CC5C(param1->unk_18), 2, 2, 1);
         MessageLoader_GetStrbuf(v2, 16, v4);
         StringTemplate_Format(v5, v3, v4);
         v1 = (8 * 28) - sub_02002D7C(0, v3, 0);
@@ -579,7 +579,7 @@ void ov71_0223CDE8 (Window * param0, const TrainerCard * param1, Strbuf *param2)
         MessageLoader_Free(v2);
         Strbuf_Free(v3);
         Strbuf_Free(v4);
-        sub_0200B3F0(v5);
+        StringTemplate_Free(v5);
     }
 }
 

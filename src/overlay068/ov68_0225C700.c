@@ -584,7 +584,7 @@ static void ov68_0225CB70 (UnkStruct_ov68_0225CB70 * param0, UnkStruct_ov66_0222
         param0->unk_00[v0] = MessageLoader_Init(0, 26, v1[v0], param2);
     }
 
-    param0->unk_24 = StringTemplate_New(param2);
+    param0->unk_24 = StringTemplate_Default(param2);
     param0->unk_28 = Strbuf_Init(256, param2);
     param0->unk_2C = Strbuf_Init(256, param2);
 }
@@ -597,7 +597,7 @@ static void ov68_0225CBC0 (UnkStruct_ov68_0225CB70 * param0)
         MessageLoader_Free(param0->unk_00[v0]);
     }
 
-    sub_0200B3F0(param0->unk_24);
+    StringTemplate_Free(param0->unk_24);
     Strbuf_Free(param0->unk_28);
     Strbuf_Free(param0->unk_2C);
 }
@@ -649,7 +649,7 @@ static void ov68_0225CC78 (UnkStruct_ov68_0225CB70 * param0, u32 param1, u32 par
     v1 = ov66_0222E3BC(param0->unk_30);
 
     ov66_0222E640(v1, v0, param2);
-    StringTemplate_FormatPlayerName(param0->unk_24, param1, v0);
+    StringTemplate_SetPlayerName(param0->unk_24, param1, v0);
     Heap_FreeToHeap(v0);
 }
 

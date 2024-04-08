@@ -38,7 +38,7 @@ void sub_0209B344 (UnkStruct_020508D4 * param0, u16 * param1)
     UnkStruct_0209B3AC * v1 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0209B3AC));
 
     v1->unk_00 = v0;
-    v1->unk_04 = StringTemplate_New(32);
+    v1->unk_04 = StringTemplate_Default(32);
     v1->unk_10 = sub_0209747C(2, 0, v1->unk_00->unk_0C, 32);
     v1->unk_14 = SaveData_MiscSaveBlock(v0->unk_0C);
     v1->unk_20 = param1;
@@ -56,7 +56,7 @@ void sub_0209B344 (UnkStruct_020508D4 * param0, u16 * param1)
 static void sub_0209B3AC (UnkStruct_0209B3AC * param0)
 {
     sub_020974EC(param0->unk_10);
-    sub_0200B3F0(param0->unk_04);
+    StringTemplate_Free(param0->unk_04);
     Heap_FreeToHeap(param0);
 }
 

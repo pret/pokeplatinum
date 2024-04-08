@@ -132,7 +132,7 @@ int ov110_021D0D80 (OverlayManager * param0, int * param1)
     ov110_021D1180(v1);
 
     v1->unk_110 = MessageLoader_Init(1, 26, 16, 114);
-    v1->unk_114 = StringTemplate_New(114);
+    v1->unk_114 = StringTemplate_Default(114);
     v1->unk_118 = Strbuf_Init(800, 114);
     v1->unk_11C = Strbuf_Init(800, 114);
 
@@ -181,7 +181,7 @@ int ov110_021D0EF0 (OverlayManager * param0, int * param1)
     v1->unk_120 = NULL;
 
     MessageLoader_Free(v1->unk_110);
-    sub_0200B3F0(v1->unk_114);
+    StringTemplate_Free(v1->unk_114);
     Strbuf_Free(v1->unk_118);
     Strbuf_Free(v1->unk_11C);
 
@@ -506,7 +506,7 @@ static u8 ov110_021D13CC (UnkStruct_ov110_021D0F78 * param0, Window * param1, in
 
 static void ov110_021D13F0 (UnkStruct_ov110_021D0F78 * param0, u32 param1, s32 param2)
 {
-    StringTemplate_FormatNumber(param0->unk_114, param1, param2, 4, 1, 1);
+    StringTemplate_SetNumber(param0->unk_114, param1, param2, 4, 1, 1);
     return;
 }
 
@@ -972,7 +972,7 @@ static void ov110_021D19B0 (UnkStruct_ov110_021D0F78 * param0)
     v1 = MessageLoader_GetNewStrbuf(v0, param0->unk_08);
 
     MessageLoader_Free(v0);
-    sub_0200B48C(param0->unk_114, 0, v1, 0, 0, GAME_LANGUAGE);
+    StringTemplate_SetStrbuf(param0->unk_114, 0, v1, 0, 0, GAME_LANGUAGE);
     Strbuf_Free(v1);
 
     return;

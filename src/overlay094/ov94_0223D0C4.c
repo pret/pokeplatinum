@@ -504,7 +504,7 @@ static void ov94_0223D88C (UnkStruct_ov94_0223FD4C * param0, int param1, int par
 {
     Strbuf* v0;
 
-    sub_0200B538(param0->unk_B8C, 0, Pokemon_GetBoxPokemon(param5));
+    StringTemplate_SetSpeciesName(param0->unk_B8C, 0, Pokemon_GetBoxPokemon(param5));
     v0 = MessageLoader_GetNewStrbuf(param0->unk_B90, param1);
     StringTemplate_Format(param0->unk_B8C, param0->unk_BAC, v0);
     BGL_FillWindow(&param0->unk_F5C, 0xf0f);
@@ -537,7 +537,7 @@ void ov94_0223D910 (MessageLoader * param0, MessageLoader * param1, StringTempla
     v3 = MessageLoader_GetNewStrbuf(param0, 70);
     v1 = MessageLoader_GetNewStrbuf(param0, Unk_ov94_02245FD8[v6]);
 
-    StringTemplate_FormatNumber(param2, 3, v7, 3, 0, 1);
+    StringTemplate_SetNumber(param2, 3, v7, 3, 0, 1);
 
     v2 = sub_0200B29C(param2, param0, 102, 62);
     v0 = MessageLoader_GetNewStrbuf(param1, v10);

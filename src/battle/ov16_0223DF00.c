@@ -2340,51 +2340,51 @@ static void BattleMessage_Nickname (BattleSystem * param0, u32 param1, int param
     Pokemon * v0;
 
     v0 = BattleSystem_PartyPokemon(param0, param2 & 0xff, (param2 & 0xff00) >> 8);
-    StringTemplate_BufferNickname(param0->strFormatter, param1, &v0->box);
+    StringTemplate_SetNickname(param0->strFormatter, param1, &v0->box);
 }
 
 static void BattleMessage_MoveName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B630(param0->strFormatter, param1, param2);
+    StringTemplate_SetMoveName(param0->strFormatter, param1, param2);
 }
 
 static void BattleMessage_ItemName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B70C(param0->strFormatter, param1, param2);
+    StringTemplate_SetItemName(param0->strFormatter, param1, param2);
 }
 
 static void BattleMessage_Number (BattleSystem * param0, u32 param1, int param2)
 {
-    StringTemplate_FormatNumber(param0->strFormatter, param1, param2, 5, 0, 1);
+    StringTemplate_SetNumber(param0->strFormatter, param1, param2, 5, 0, 1);
 }
 
 static void BattleMessage_NumberDigits (BattleSystem * param0, u32 param1, int param2, int param3)
 {
     if (param3) {
-        StringTemplate_FormatNumber(param0->strFormatter, param1, param2, param3, 1, 1);
+        StringTemplate_SetNumber(param0->strFormatter, param1, param2, param3, 1, 1);
     } else {
-        StringTemplate_FormatNumber(param0->strFormatter, param1, param2, 5, 1, 1);
+        StringTemplate_SetNumber(param0->strFormatter, param1, param2, 5, 1, 1);
     }
 }
 
 static void BattleMessage_TypeName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B7EC(param0->strFormatter, param1, param2);
+    StringTemplate_SetPokemonTypeName(param0->strFormatter, param1, param2);
 }
 
 static void BattleMessage_AbilityName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B6A0(param0->strFormatter, param1, param2);
+    StringTemplate_SetAbilityName(param0->strFormatter, param1, param2);
 }
 
 static void BattleMessage_StatName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B824(param0->strFormatter, param1, param2);
+    StringTemplate_SetPokemonStatName(param0->strFormatter, param1, param2);
 }
 
 static void BattleMessage_StatusName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B85C(param0->strFormatter, param1, param2);
+    StringTemplate_SetStatusConditionName(param0->strFormatter, param1, param2);
 }
 
 static void BattleMessage_PokemonName (BattleSystem * param0, u32 param1, int param2)
@@ -2392,7 +2392,7 @@ static void BattleMessage_PokemonName (BattleSystem * param0, u32 param1, int pa
     Pokemon * v0;
 
     v0 = BattleSystem_PartyPokemon(param0, param2 & 0xff, (param2 & 0xff00) >> 8);
-    sub_0200B538(param0->strFormatter, param1, &v0->box);
+    StringTemplate_SetSpeciesName(param0->strFormatter, param1, &v0->box);
 }
 
 static void BattleMessage_PoffinName (BattleSystem * param0, u32 param1, int param2)
@@ -2402,7 +2402,7 @@ static void BattleMessage_PoffinName (BattleSystem * param0, u32 param1, int par
 
 static void BattleMessage_FlavorName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B890(param0->strFormatter, param1, param2);
+    StringTemplate_SetFlavorName(param0->strFormatter, param1, param2);
 }
 
 static void BattleMessage_TrainerClassName (BattleSystem * param0, u32 param1, int param2)
@@ -2410,7 +2410,7 @@ static void BattleMessage_TrainerClassName (BattleSystem * param0, u32 param1, i
     TrainerData * v0;
 
     v0 = BattleSystem_TrainerData(param0, param2);
-    sub_0200B9D0(param0->strFormatter, param1, v0);
+    StringTemplate_SetTrainerClassNameBattle(param0->strFormatter, param1, v0);
 }
 
 static void BattleMessage_TrainerName (BattleSystem * param0, u32 param1, int param2)
@@ -2418,12 +2418,12 @@ static void BattleMessage_TrainerName (BattleSystem * param0, u32 param1, int pa
     TrainerData * v0;
 
     v0 = BattleSystem_TrainerData(param0, param2);
-    sub_0200BA74(param0->strFormatter, param1, v0);
+    StringTemplate_SetTrainerNameBattle(param0->strFormatter, param1, v0);
 }
 
 static void BattleMessage_PCBoxName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200BD40(param0->strFormatter, param1, param0->pcBoxes, param2);
+    StringTemplate_SetPCBoxName(param0->strFormatter, param1, param0->pcBoxes, param2);
 }
 
 /**

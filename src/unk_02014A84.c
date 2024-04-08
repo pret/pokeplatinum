@@ -94,11 +94,11 @@ Strbuf* sub_02014B34 (const Sentence * param0, u32 param1)
     MessageLoader * v2;
     int v3;
 
-    v1 = StringTemplate_New(param1);
+    v1 = StringTemplate_Default(param1);
 
     for (v3 = 0; v3 < 2; v3++) {
         if (param0->words[v3] != 0xffff) {
-            sub_0200BE48(v1, v3, param0->words[v3]);
+            StringTemplate_SetCustomMessageWord(v1, v3, param0->words[v3]);
         } else {
             break;
         }
@@ -108,7 +108,7 @@ Strbuf* sub_02014B34 (const Sentence * param0, u32 param1)
     v0 = sub_0200B29C(v1, v2, param0->id, param1);
 
     MessageLoader_Free(v2);
-    sub_0200B3F0(v1);
+    StringTemplate_Free(v1);
 
     return v0;
 }

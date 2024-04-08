@@ -143,7 +143,7 @@ void * ov6_02247A90 (void * param0)
     MI_CpuClear8(v0, sizeof(UnkStruct_ov6_02247A90));
 
     v0->unk_10 = MessageLoader_Init(0, 26, 208, 11);
-    v0->unk_14 = StringTemplate_New(11);
+    v0->unk_14 = StringTemplate_Default(11);
 
     BGL_AddWindow(v1, &v0->unk_00, 3, 1, 3, 30, 17, 12, (1 + 10));
     sub_0200DAA4(v1, 3, 1, 11, 0, 11);
@@ -153,7 +153,7 @@ void * ov6_02247A90 (void * param0)
     v3 = Strbuf_Init(100, 11);
     v2 = MessageLoader_GetNewStrbuf(v0->unk_10, 0);
 
-    StringTemplate_FormatPlayerName(v0->unk_14, 0, SaveData_GetTrainerInfo(v8));
+    StringTemplate_SetPlayerName(v0->unk_14, 0, SaveData_GetTrainerInfo(v8));
     StringTemplate_Format(v0->unk_14, v3, v2);
 
     v4 = ov6_02247CF4(v3, 0, 1, (15 * 8));
@@ -185,7 +185,7 @@ void * ov6_02247A90 (void * param0)
         for (v6 = 0; v6 < 4; v6++) {
             v5 = sub_0202F160(v8, v7, v6);
             v2 = MessageLoader_GetNewStrbuf(v0->unk_10, Unk_ov6_0224971C[v7][v6].unk_00);
-            StringTemplate_FormatNumber(v0->unk_14, 0, v5, 4, 1, 1);
+            StringTemplate_SetNumber(v0->unk_14, 0, v5, 4, 1, 1);
             StringTemplate_Format(v0->unk_14, v3, v2);
             v4 = ov6_02247CF4(v3, 0, 2, Unk_ov6_0224971C[v7][v6].unk_04);
             PrintStringSimple(&v0->unk_00, 0, v3, v4, Unk_ov6_0224971C[v7][v6].unk_06, 0xff, NULL);
@@ -207,7 +207,7 @@ void ov6_02247CC8 (void * param0)
     sub_0201ACF4(&v0->unk_00);
     BGL_DeleteWindow(&v0->unk_00);
     MessageLoader_Free(v0->unk_10);
-    sub_0200B3F0(v0->unk_14);
+    StringTemplate_Free(v0->unk_14);
     Heap_FreeToHeap(v0);
 }
 

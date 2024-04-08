@@ -158,8 +158,8 @@ static u8 ov81_021D16B0 (UnkStruct_ov81_021D1610 * param0, Window * param1, Wind
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_50, 1);
 
-    sub_0200C2E0(param0->unk_54, 0, v0.unk_00_7);
-    StringTemplate_FormatNumber(param0->unk_54, 1, v0.unk_00_14, 2, 0, 1);
+    StringTemplate_SetMonthName(param0->unk_54, 0, v0.unk_00_7);
+    StringTemplate_SetNumber(param0->unk_54, 1, v0.unk_00_14, 2, 0, 1);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v1);
     Strbuf_Free(v1);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -170,7 +170,7 @@ static u8 ov81_021D16B0 (UnkStruct_ov81_021D1610 * param0, Window * param1, Wind
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_50, 0);
-    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(v0.unk_00_19));
+    StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(v0.unk_00_19));
 
     StringTemplate_Format(param0->unk_54, param0->unk_58, v1);
     sub_0201D78C(param2, 0, param0->unk_58, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -344,7 +344,7 @@ static void ov81_021D1AD4 (UnkStruct_ov81_021D1610 * param0, Window * param1)
 
         if (TrainerData_LoadParam(v0.unk_00_1, 1) == 63) {
             v3 = MessageLoader_GetNewStrbuf(param0->unk_50, 61);
-            sub_0200B4BC(param0->unk_54, 1, param0->unk_4C);
+            StringTemplate_SetRivalName(param0->unk_54, 1, param0->unk_4C);
             StringTemplate_Format(param0->unk_54, param0->unk_58, v3);
             v2 += Strbuf_Length(param0->unk_58);
             Strbuf_Free(v3);
@@ -352,7 +352,7 @@ static void ov81_021D1AD4 (UnkStruct_ov81_021D1610 * param0, Window * param1)
             v3 = MessageBank_GetNewStrbufFromNARC(26, 618, v0.unk_00_1, 42);
             v2 += Strbuf_Length(v3);
             Strbuf_Free(v3);
-            sub_0200BA08(param0->unk_54, 1, v0.unk_00_1);
+            StringTemplate_SetTrainerName(param0->unk_54, 1, v0.unk_00_1);
         }
     }
 
@@ -366,7 +366,7 @@ static void ov81_021D1AD4 (UnkStruct_ov81_021D1610 * param0, Window * param1)
         v1 = MessageLoader_GetNewStrbuf(param0->unk_50, 60);
     }
 
-    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(v0.unk_02));
+    StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(v0.unk_02));
     StringTemplate_Format(param0->unk_54, param0->unk_58, v1);
     sub_0201D78C(param1, 0, param0->unk_58, 0, ((16 * 4 + 16) + 16), 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
@@ -530,7 +530,7 @@ static void ov81_021D1FE4 (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 17);
 
-    sub_0200BD60(param0->unk_54, 0, param2->unk_02);
+    StringTemplate_SetGymName(param0->unk_54, 0, param2->unk_02);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -540,8 +540,8 @@ static void ov81_021D2038 (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 18);
 
-    sub_0200BD60(param0->unk_54, 0, param2->unk_02);
-    sub_0200BA08(param0->unk_54, 1, param2->unk_04);
+    StringTemplate_SetGymName(param0->unk_54, 0, param2->unk_02);
+    StringTemplate_SetTrainerName(param0->unk_54, 1, param2->unk_04);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -551,7 +551,7 @@ static void ov81_021D2098 (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 19);
 
-    sub_0200BA08(param0->unk_54, 0, param2->unk_04);
+    StringTemplate_SetTrainerName(param0->unk_54, 0, param2->unk_04);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -561,7 +561,7 @@ static void ov81_021D20EC (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 20);
 
-    sub_0200BA08(param0->unk_54, 0, param2->unk_04);
+    StringTemplate_SetTrainerName(param0->unk_54, 0, param2->unk_04);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -571,7 +571,7 @@ static void ov81_021D2140 (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 21);
 
-    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
+    StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -590,7 +590,7 @@ static void ov81_021D219C (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
         v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 22);
     }
 
-    sub_0200B8C8(param0->unk_54, 0, v1);
+    StringTemplate_SetLocationName(param0->unk_54, 0, v1);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -609,7 +609,7 @@ static void ov81_021D2208 (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
         v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 24);
     }
 
-    sub_0200B8C8(param0->unk_54, 0, v1);
+    StringTemplate_SetLocationName(param0->unk_54, 0, v1);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -635,7 +635,7 @@ static void ov81_021D22E8 (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 34);
 
-    sub_0200B70C(param0->unk_54, 0, param2->unk_06);
+    StringTemplate_SetItemName(param0->unk_54, 0, param2->unk_06);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -645,7 +645,7 @@ static void ov81_021D233C (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 40);
 
-    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
+    StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -655,7 +655,7 @@ static void ov81_021D2398 (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 35);
 
-    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
+    StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -665,7 +665,7 @@ static void ov81_021D23F4 (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 36);
 
-    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
+    StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -675,7 +675,7 @@ static void ov81_021D2450 (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 43);
 
-    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
+    StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -685,7 +685,7 @@ static void ov81_021D24AC (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 38);
 
-    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
+    StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -695,7 +695,7 @@ static void ov81_021D2508 (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 37);
 
-    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
+    StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -705,7 +705,7 @@ static void ov81_021D2564 (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 42);
 
-    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
+    StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -715,7 +715,7 @@ static void ov81_021D25C0 (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 41);
 
-    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
+    StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -725,7 +725,7 @@ static void ov81_021D261C (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 39);
 
-    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
+    StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -735,7 +735,7 @@ static void ov81_021D2678 (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 46);
 
-    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
+    StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -745,7 +745,7 @@ static void ov81_021D26D4 (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 44);
 
-    sub_0200B8C8(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
+    StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -825,7 +825,7 @@ static void ov81_021D28C8 (UnkStruct_ov81_021D1610 * param0, u16 param1, u8 para
     Pokemon * v0 = Pokemon_New(42);
 
     sub_02074088(v0, param1, 1, 32, param2, 0, 0);
-    sub_0200B538(param0->unk_54, param3, Pokemon_GetBoxPokemon(v0));
+    StringTemplate_SetSpeciesName(param0->unk_54, param3, Pokemon_GetBoxPokemon(v0));
     Heap_FreeToHeap(v0);
 }
 
@@ -851,7 +851,7 @@ static void ov81_021D2908 (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
     }
 
     ov81_021D28C8(param0, param2->unk_02, param2->unk_01_6, 0);
-    sub_0200BD98(param0->unk_54, 1, param2->unk_01_2);
+    StringTemplate_SetTimeOfDay(param0->unk_54, 1, param2->unk_01_2);
 
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, (16 * 4 + 16), 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -880,7 +880,7 @@ static void ov81_021D29B4 (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
     }
 
     ov81_021D28C8(param0, param2->unk_02, param2->unk_01_6, 0);
-    sub_0200BD98(param0->unk_54, 1, param2->unk_01_2);
+    StringTemplate_SetTimeOfDay(param0->unk_54, 1, param2->unk_01_2);
 
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, (16 * 4 + 16), 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -892,7 +892,7 @@ static void ov81_021D2A60 (UnkStruct_ov81_021D1610 * param0, u16 * param1, u8 pa
     Strbuf* v0 = Strbuf_Init(32, 42);
 
     Strbuf_CopyChars(v0, param1);
-    sub_0200B48C(param0->unk_54, param3, v0, param2, 1, GAME_LANGUAGE);
+    StringTemplate_SetStrbuf(param0->unk_54, param3, v0, param2, 1, GAME_LANGUAGE);
     Strbuf_Free(v0);
 }
 
@@ -1095,7 +1095,7 @@ static void ov81_021D2FAC (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 87);
 
-    StringTemplate_FormatNumber(param0->unk_54, 0, param2->unk_01_0, 1, 0, 1);
+    StringTemplate_SetNumber(param0->unk_54, 0, param2->unk_01_0, 1, 0, 1);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
@@ -1186,7 +1186,7 @@ static void ov81_021D3248 (UnkStruct_ov81_021D1610 * param0, Window * param1, Un
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 97);
 
-    sub_0200C0B0(param0->unk_54, 0, param2->unk_01_0);
+    StringTemplate_SetPlazaMinigameName(param0->unk_54, 0, param2->unk_01_0);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
     sub_0201D78C(param1, 0, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);

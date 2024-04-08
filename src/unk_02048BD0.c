@@ -61,7 +61,7 @@ BOOL sub_02048BD0 (UnkStruct_0203E724 * param0)
         v7 = inline_02049538(param0);
         v8 = inline_02049538(param0);
 
-        sub_0200C054(*v0, v2, v7, v8, 0);
+        StringTemplate_SetUnionGroupName(*v0, v2, v7, v8, 0);
     }
     break;
     case 3:
@@ -71,7 +71,7 @@ BOOL sub_02048BD0 (UnkStruct_0203E724 * param0)
         v9 = inline_02049538(param0);
         v10 = inline_02049538(param0);
 
-        sub_0200C054(*v0, v2, v9, v10, 1);
+        StringTemplate_SetUnionGroupName(*v0, v2, v9, v10, 1);
     }
     break;
     case 4:

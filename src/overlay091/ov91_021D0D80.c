@@ -647,14 +647,14 @@ static void ov91_021D11A0 (UnkStruct_ov91_021D0ED8 * param0)
 static void ov91_021D11B8 (UnkStruct_ov91_021D0ED8 * param0)
 {
     param0->unk_F8 = MessageLoader_Init(0, 26, 645, 67);
-    param0->unk_FC = StringTemplate_New(67);
+    param0->unk_FC = StringTemplate_Default(67);
     param0->unk_100 = Strbuf_Init(256, 67);
 }
 
 static void ov91_021D11F0 (UnkStruct_ov91_021D0ED8 * param0)
 {
     MessageLoader_Free(param0->unk_F8);
-    sub_0200B3F0(param0->unk_FC);
+    StringTemplate_Free(param0->unk_FC);
     Strbuf_Free(param0->unk_100);
 }
 
@@ -869,7 +869,7 @@ static void ov91_021D1618 (UnkStruct_ov91_021D0ED8 * param0, u32 param1, u32 par
     Strbuf* v0;
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_F8, param1);
-    StringTemplate_FormatNumber(param0->unk_FC, 0, param2, param3, param4, 1);
+    StringTemplate_SetNumber(param0->unk_FC, 0, param2, param3, param4, 1);
     StringTemplate_Format(param0->unk_FC, param0->unk_100, v0);
     Strbuf_Free(v0);
 }
@@ -1105,42 +1105,42 @@ static void ov91_021D1C10 (UnkStruct_ov91_021D0ED8 * param0, u32 param1)
 
     switch (param1) {
     case 0:
-        StringTemplate_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringTemplate_SetNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
         break;
     case 1:
-        sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
+        StringTemplate_SetMoveName(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 2:
-        StringTemplate_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringTemplate_SetNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
         break;
     case 3:
-        StringTemplate_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
-        sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
+        StringTemplate_SetNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringTemplate_SetMoveName(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 4:
-        StringTemplate_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
-        sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
+        StringTemplate_SetNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringTemplate_SetMoveName(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 5:
-        StringTemplate_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
-        sub_0200B630(param0->unk_FC, 1, ov91_021D1DE0(param0));
+        StringTemplate_SetNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringTemplate_SetMoveName(param0->unk_FC, 1, ov91_021D1DE0(param0));
         break;
     case 6:
-        StringTemplate_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
-        sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
+        StringTemplate_SetNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringTemplate_SetMoveName(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 7:
-        sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
+        StringTemplate_SetMoveName(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 8:
-        StringTemplate_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
-        sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
+        StringTemplate_SetNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringTemplate_SetMoveName(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 9:
-        StringTemplate_FormatPlayerName(param0->unk_FC, 2, param0->unk_00->unk_04);
+        StringTemplate_SetPlayerName(param0->unk_FC, 2, param0->unk_00->unk_04);
         break;
     case 10:
-        sub_0200B630(param0->unk_FC, 0, ov91_021D1DE0(param0));
+        StringTemplate_SetMoveName(param0->unk_FC, 0, ov91_021D1DE0(param0));
         break;
     }
 

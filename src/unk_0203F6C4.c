@@ -2237,7 +2237,7 @@ static BOOL sub_0203FF34 (UnkStruct_0203E724 * param0)
     v6 = sub_0204AEE8(v0->unk_0C, v2, v3, v4, &v5);
 
     ov5_021DD530(param0, v6, v1 + v5, 1);
-    sub_0200B3F0(v6);
+    StringTemplate_Free(v6);
     sub_0203E764(param0, sub_02040014);
 
     return 1;
@@ -4667,7 +4667,7 @@ static BOOL sub_020428D4 (UnkStruct_0203E724 * param0)
     u16 v1 = inline_02049538(param0);
     u16 v2 = inline_02049538(param0);
 
-    sub_0200BE48(*v0, v1, v2);
+    StringTemplate_SetCustomMessageWord(*v0, v1, v2);
 
     return 0;
 }
@@ -7230,7 +7230,7 @@ static BOOL sub_02045760 (UnkStruct_0203E724 * param0)
     u8 v1 = (*((param0)->unk_08++));
     u16 v2 = inline_02049538(param0);
 
-    sub_0200C01C(*v0, v1, v2);
+    StringTemplate_SetContestBackdropName(*v0, v1, v2);
     return 1;
 }
 
@@ -7313,7 +7313,7 @@ static BOOL sub_02045860 (UnkStruct_0203E724 * param0)
         u16 v5;
 
         v5 = sub_02014F64(v1);
-        sub_0200BE48(*v4, v3, v5);
+        StringTemplate_SetCustomMessageWord(*v4, v3, v5);
     }
 
     return 0;
@@ -7758,15 +7758,15 @@ static BOOL sub_02045F48 (UnkStruct_0203E724 * param0)
     u16 v3 = inline_02049538(param0);
     u16 v4 = inline_02049538(param0);
     u16 v5 = inline_02049538(param0);
-    StringTemplate * v6 = StringTemplate_New(32);
+    StringTemplate * v6 = StringTemplate_Default(32);
     MessageLoader * v7 = MessageLoader_Init(0, 26, 372, 32);
     Strbuf* v8;
     Strbuf* v9;
 
-    sub_0200BE48(v6, 0, v2);
-    sub_0200BE48(v6, 1, v3);
-    sub_0200BE48(v6, 2, v4);
-    sub_0200BE48(v6, 3, v5);
+    StringTemplate_SetCustomMessageWord(v6, 0, v2);
+    StringTemplate_SetCustomMessageWord(v6, 1, v3);
+    StringTemplate_SetCustomMessageWord(v6, 2, v4);
+    StringTemplate_SetCustomMessageWord(v6, 3, v5);
 
     v8 = sub_0200B29C(v6, v7, 1, 32);
     v9 = MessageLoader_GetNewStrbuf(v7, 0);
@@ -7775,7 +7775,7 @@ static BOOL sub_02045F48 (UnkStruct_0203E724 * param0)
     Strbuf_Free(v8);
     Strbuf_Free(v9);
     MessageLoader_Free(v7);
-    sub_0200B3F0(v6);
+    StringTemplate_Free(v6);
 
     return 0;
 }

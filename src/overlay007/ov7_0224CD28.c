@@ -321,7 +321,7 @@ static void ov7_0224D008 (UnkStruct_ov7_0224D008 * param0)
 static void ov7_0224D018 (UnkStruct_ov7_0224D008 * param0)
 {
     param0->unk_88 = MessageLoader_Init(0, 26, 543, 11);
-    param0->unk_8C = StringTemplate_New(11);
+    param0->unk_8C = StringTemplate_Default(11);
 }
 
 static void ov7_0224D040 (UnkStruct_ov7_0224D008 * param0)
@@ -406,7 +406,7 @@ static u8 ov7_0224D250 (FieldSystem * param0, UnkStruct_ov7_0224D008 * param1)
         sub_0200E084(&param1->unk_08[1], 0);
         BGL_DeleteWindow(&param1->unk_08[1]);
         MessageLoader_Free(param1->unk_88);
-        sub_0200B3F0(param1->unk_8C);
+        StringTemplate_Free(param1->unk_8C);
         Strbuf_Free(param1->unk_298);
 
         if (param1->unk_2A9 == 0) {
@@ -746,7 +746,7 @@ static void ov7_0224D9B8 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
             v2 = MessageLoader_GetNewStrbuf(v0->unk_88, 9);
         }
 
-        StringTemplate_FormatNumber(v0->unk_8C, 0, v3, 4, 1, 1);
+        StringTemplate_SetNumber(v0->unk_8C, 0, v3, 4, 1, 1);
         StringTemplate_Format(v0->unk_8C, v1, v2);
 
         v4 = sub_02002D7C(0, v1, 0);
@@ -785,7 +785,7 @@ static void ov7_0224DAF8 (UnkStruct_ov7_0224D008 * param0, u8 param1)
         v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 38);
         v2 = ov7_0224E8F4(param0);
 
-        StringTemplate_FormatNumber(param0->unk_8C, 0, v2, 6, 1, 1);
+        StringTemplate_SetNumber(param0->unk_8C, 0, v2, 6, 1, 1);
         StringTemplate_Format(param0->unk_8C, v0, v1);
 
         v3 = sub_02002D7C(0, v0, 0);
@@ -808,7 +808,7 @@ static void ov7_0224DAF8 (UnkStruct_ov7_0224D008 * param0, u8 param1)
         v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 19);
         v2 = ov7_0224E8F4(param0);
 
-        StringTemplate_FormatNumber(param0->unk_8C, 0, v2, 6, 1, 1);
+        StringTemplate_SetNumber(param0->unk_8C, 0, v2, 6, 1, 1);
         StringTemplate_Format(param0->unk_8C, v0, v1);
 
         v3 = sub_02002D7C(0, v0, 0);
@@ -955,7 +955,7 @@ static void ov7_0224DED4 (UnkStruct_ov7_0224D008 * param0)
     v0 = Strbuf_Init((12 * 2), 11);
     v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 20);
 
-    StringTemplate_FormatNumber(param0->unk_8C, 0, v2, 3, 1, 1);
+    StringTemplate_SetNumber(param0->unk_8C, 0, v2, 3, 1, 1);
     StringTemplate_Format(param0->unk_8C, v0, v1);
     PrintStringSimple(&param0->unk_08[4], 0, v0, 0, 0, 0xff, NULL);
     Strbuf_Free(v1);
@@ -1044,13 +1044,13 @@ static u8 ov7_0224E098 (UnkStruct_ov7_0224D008 * param0)
 
     ov7_0224E834(param0, param0->unk_2AA, 0);
 
-    StringTemplate_FormatNumber(param0->unk_8C, 1, param0->unk_2AC, 2, 0, 1);
-    StringTemplate_FormatNumber(param0->unk_8C, 2, param0->unk_2B0 * param0->unk_2AC, 6, 0, 1);
+    StringTemplate_SetNumber(param0->unk_8C, 1, param0->unk_2AC, 2, 0, 1);
+    StringTemplate_SetNumber(param0->unk_8C, 2, param0->unk_2B0 * param0->unk_2AC, 6, 0, 1);
 
     if ((param0->unk_2AA <= 420) && (param0->unk_2AA >= 328)) {
         u16 v2 = Item_MoveForTMHM(param0->unk_2AA);
 
-        sub_0200B630(param0->unk_8C, 3, v2);
+        StringTemplate_SetMoveName(param0->unk_8C, 3, v2);
 
         if (param0->unk_2A9 == 3) {
             v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 36);
@@ -1087,7 +1087,7 @@ static void ov7_0224E28C (UnkStruct_ov7_0224D008 * param0, u8 param1)
     v0 = Strbuf_Init(24, 11);
     v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 21);
 
-    StringTemplate_FormatNumber(param0->unk_8C, 0, param0->unk_2AC, 2, 2, 1);
+    StringTemplate_SetNumber(param0->unk_8C, 0, param0->unk_2AC, 2, 2, 1);
     StringTemplate_Format(param0->unk_8C, v0, v1);
     PrintStringSimple(&param0->unk_08[3], 0, v0, 0, 8, 0xff, NULL);
     Strbuf_Free(v1);
@@ -1098,7 +1098,7 @@ static void ov7_0224E28C (UnkStruct_ov7_0224D008 * param0, u8 param1)
         v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 22);
     }
 
-    StringTemplate_FormatNumber(param0->unk_8C, 0, param0->unk_2B0 * param0->unk_2AC, 6, 1, 1);
+    StringTemplate_SetNumber(param0->unk_8C, 0, param0->unk_2B0 * param0->unk_2AC, 6, 1, 1);
     StringTemplate_Format(param0->unk_8C, v0, v1);
 
     v2 = sub_02002D7C(0, v0, 0);
@@ -1130,30 +1130,30 @@ static u8 ov7_0224E3D8 (UnkStruct_ov7_0224D008 * param0)
             v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 6);
 
             if (param0->unk_2AC == 1) {
-                sub_0200B70C(param0->unk_8C, 0, param0->unk_2AA);
+                StringTemplate_SetItemName(param0->unk_8C, 0, param0->unk_2AA);
             } else {
-                sub_0200B77C(param0->unk_8C, 0, param0->unk_2AA);
+                StringTemplate_SetItemNamePlural(param0->unk_8C, 0, param0->unk_2AA);
             }
 
-            sub_0200B7B4(param0->unk_8C, 1, Item_LoadParam(param0->unk_2AA, 5, 11));
+            StringTemplate_SetBagPocketName(param0->unk_8C, 1, Item_LoadParam(param0->unk_2AA, 5, 11));
         } else if (param0->unk_2A9 == 3) {
             if (param0->unk_2AC == 1) {
-                sub_0200B70C(param0->unk_8C, 0, param0->unk_2AA);
+                StringTemplate_SetItemName(param0->unk_8C, 0, param0->unk_2AA);
             } else {
-                sub_0200B77C(param0->unk_8C, 0, param0->unk_2AA);
+                StringTemplate_SetItemNamePlural(param0->unk_8C, 0, param0->unk_2AA);
             }
 
             v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 6);
-            sub_0200B7B4(param0->unk_8C, 1, Item_LoadParam(param0->unk_2AA, 5, 11));
+            StringTemplate_SetBagPocketName(param0->unk_8C, 1, Item_LoadParam(param0->unk_2AA, 5, 11));
         } else {
             if (param0->unk_2A9 == 1) {
                 ov7_0224E834(param0, param0->unk_2AA, 0);
                 v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 11);
             } else {
                 if (param0->unk_2AC == 1) {
-                    sub_0200BE64(param0->unk_8C, 0, sub_02098164((u8)param0->unk_2AA));
+                    StringTemplate_SetBallSealName(param0->unk_8C, 0, sub_02098164((u8)param0->unk_2AA));
                 } else {
-                    sub_0200BE98(param0->unk_8C, 0, sub_02098164((u8)param0->unk_2AA));
+                    StringTemplate_SetBallSealNamePlural(param0->unk_8C, 0, sub_02098164((u8)param0->unk_2AA));
                 }
 
                 v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 13);
@@ -1284,13 +1284,13 @@ static u8 ov7_0224E7C8 (UnkStruct_ov7_0224D008 * param0)
 static void ov7_0224E834 (UnkStruct_ov7_0224D008 * param0, u16 param1, u16 param2)
 {
     if (param0->unk_2A9 == 0) {
-        sub_0200B70C(param0->unk_8C, param2, param1);
+        StringTemplate_SetItemName(param0->unk_8C, param2, param1);
     } else if (param0->unk_2A9 == 3) {
-        sub_0200B70C(param0->unk_8C, param2, param1);
+        StringTemplate_SetItemName(param0->unk_8C, param2, param1);
     } else if (param0->unk_2A9 == 1) {
-        sub_0200BC80(param0->unk_8C, param2, param1);
+        StringTemplate_SetUndergroundGoodsName(param0->unk_8C, param2, param1);
     } else {
-        sub_0200BE64(param0->unk_8C, param2, sub_02098164((u8)param1));
+        StringTemplate_SetBallSealName(param0->unk_8C, param2, sub_02098164((u8)param1));
     }
 }
 

@@ -760,7 +760,7 @@ static void ov106_022423E8 (UnkStruct_ov106_02243118 * param0)
     ov106_02243570(&param0->unk_C0);
 
     MessageLoader_Free(param0->unk_20);
-    sub_0200B3F0(param0->unk_24);
+    StringTemplate_Free(param0->unk_24);
     Strbuf_Free(param0->unk_28);
     Strbuf_Free(param0->unk_2C);
     sub_0200C560(param0->unk_B0);
@@ -816,7 +816,7 @@ static void ov106_02242500 (UnkStruct_ov106_02243118 * param0)
     ov106_02242688(param0);
 
     param0->unk_20 = MessageLoader_Init(1, 26, 549, 98);
-    param0->unk_24 = StringTemplate_New(98);
+    param0->unk_24 = StringTemplate_Default(98);
     param0->unk_28 = Strbuf_Init(600, 98);
     param0->unk_2C = Strbuf_Init(600, 98);
 
@@ -1130,7 +1130,7 @@ static void ov106_02242A54 (UnkStruct_ov106_02243118 * param0)
 
 static void ov106_02242AAC (UnkStruct_ov106_02243118 * param0, u32 param1, s32 param2)
 {
-    StringTemplate_FormatNumber(param0->unk_24, param1, param2, 2, 0, 1);
+    StringTemplate_SetNumber(param0->unk_24, param1, param2, 2, 0, 1);
     return;
 }
 
@@ -1640,7 +1640,7 @@ static void ov106_02243224 (UnkStruct_ov106_02243118 * param0)
 
     ov106_02243664(param0->unk_284, 0);
     ov106_02243758(&param0->unk_4C[0], sub_02027B50(param0->unk_B4));
-    sub_0200B7EC(param0->unk_24, 0, ov104_0223B5A4(param0->unk_0D));
+    StringTemplate_SetPokemonTypeName(param0->unk_24, 0, ov104_0223B5A4(param0->unk_0D));
 
     v0 = sub_020301E0(ov106_02243090(param0->unk_0D), param0->unk_294);
     v0++;

@@ -106,7 +106,7 @@ static BOOL ov5_021EA8F0 (UnkStruct_ov5_021EAE78 * param0)
 
     if (sub_0207D688(sub_0207D990(param0->unk_34), 437, 1, 4) == 1) {
         v1 = CommInfo_TrainerInfo(param0->unk_8C);
-        StringTemplate_FormatPlayerName(param0->unk_38, 0, v1);
+        StringTemplate_SetPlayerName(param0->unk_38, 0, v1);
         ov5_021EAE78(param0, 57);
         param0->unk_48 = 2;
         return 0;
@@ -200,7 +200,7 @@ static BOOL ov5_021EAAA8 (UnkStruct_ov5_021EAE78 * param0)
         param0->unk_48 = 8;
     } else {
         v0 = CommInfo_TrainerInfo(param0->unk_8C);
-        StringTemplate_FormatPlayerName(param0->unk_38, 0, v0);
+        StringTemplate_SetPlayerName(param0->unk_38, 0, v0);
         ov5_021EAE78(param0, 59);
         param0->unk_48 = 6;
     }
@@ -315,7 +315,7 @@ static BOOL ov5_021EAC44 (UnkStruct_ov5_021EAE78 * param0)
     case 0xfffffffe:
         Sound_PlayEffect(1500);
         v0 = CommInfo_TrainerInfo(param0->unk_8C);
-        StringTemplate_FormatPlayerName(param0->unk_38, 0, v0);
+        StringTemplate_SetPlayerName(param0->unk_38, 0, v0);
         ov5_021EAE78(param0, 59);
         param0->unk_48 = 6;
         break;
@@ -328,7 +328,7 @@ static BOOL ov5_021EAC44 (UnkStruct_ov5_021EAE78 * param0)
             TrainerInfo * v3 = TrainerInfo_New(4);
 
             TrainerInfo_SetName(v3, sub_0202AEF0(v2, v1));
-            StringTemplate_FormatPlayerName(param0->unk_38, 0, v3);
+            StringTemplate_SetPlayerName(param0->unk_38, 0, v3);
             Heap_FreeToHeap(v3);
         }
 
@@ -372,7 +372,7 @@ static BOOL ov5_021EAD38 (UnkStruct_ov5_021EAE78 * param0)
         param0->unk_48 = 1;
     } else {
         v1 = CommInfo_TrainerInfo(param0->unk_8C);
-        StringTemplate_FormatPlayerName(param0->unk_38, 0, v1);
+        StringTemplate_SetPlayerName(param0->unk_38, 0, v1);
         ov5_021EAE78(param0, 59);
         param0->unk_48 = 6;
     }
@@ -454,7 +454,7 @@ static void ov5_021EAEE0 (UnkStruct_ov5_021EAE78 * param0)
 {
     MI_CpuClear8(param0, sizeof(UnkStruct_ov5_021EAE78));
 
-    param0->unk_38 = StringTemplate_New(4);
+    param0->unk_38 = StringTemplate_Default(4);
     param0->unk_3C = MessageLoader_Init(0, 26, 675, 4);
     param0->unk_0C = Strbuf_Init(110, 4);
     param0->unk_08 = Strbuf_Init(110, 4);
@@ -463,7 +463,7 @@ static void ov5_021EAEE0 (UnkStruct_ov5_021EAE78 * param0)
 static void ov5_021EAF1C (UnkStruct_ov5_021EAE78 * param0)
 {
     MessageLoader_Free(param0->unk_3C);
-    sub_0200B3F0(param0->unk_38);
+    StringTemplate_Free(param0->unk_38);
     Strbuf_Free(param0->unk_0C);
     Strbuf_Free(param0->unk_08);
 

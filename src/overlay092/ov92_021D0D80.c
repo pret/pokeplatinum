@@ -357,7 +357,7 @@ int ov92_021D0D80 (OverlayManager * param0, int * param1)
     GXLayers_TurnBothDispOn();
     sub_0201D710();
 
-    v0->unk_B870 = sub_0200B368(8, 64, v0->unk_00);
+    v0->unk_B870 = StringTemplate_New(8, 64, v0->unk_00);
     v0->unk_BACC = sub_020203AC(v0->unk_00);
     v0->unk_BAE8 = 0;
 
@@ -707,7 +707,7 @@ int ov92_021D1478 (OverlayManager * param0, int * param1)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
     sub_020203B8(v0->unk_BACC);
-    sub_0200B3F0(v0->unk_B870);
+    StringTemplate_Free(v0->unk_B870);
     sub_0201CBA0();
     Heap_FreeToHeap(v0->unk_B810);
     SetMainCallback(NULL, NULL);
@@ -1114,8 +1114,8 @@ static void ov92_021D1DEC (UnkStruct_ov92_021D1B24 * param0)
     BGL_WindowColor(&param0->unk_B844, 15, 0, 0, 27 * 8, 6 * 8);
     Window_Show(&param0->unk_B844, 0, ((512 - ((18 + 12))) - 9), 7);
 
-    sub_0200BDD0(param0->unk_B870, 0, param0->unk_BB14);
-    sub_0200BE08(param0->unk_B870, 1, param0->unk_BB14, param0->unk_BB18);
+    StringTemplate_SetCountryName(param0->unk_B870, 0, param0->unk_BB14);
+    StringTemplate_SetCityName(param0->unk_B870, 1, param0->unk_BB14, param0->unk_BB18);
 
     MessageLoader_GetStrbuf(param0->unk_B860, 13, v1);
     StringTemplate_Format(param0->unk_B870, v0, v1);

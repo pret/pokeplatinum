@@ -192,7 +192,7 @@ int ov59_021D0D80 (OverlayManager * param0, int * param1)
         v0->unk_00 = sub_02018340(51);
         v0->unk_08 = (UnkStruct_0203DE34 *)OverlayManager_Args(param0);
         v0->unk_4A9C = v0->unk_08->unk_00;
-        v0->unk_24 = StringTemplate_New(51);
+        v0->unk_24 = StringTemplate_Default(51);
         v0->unk_28 = MessageLoader_Init(0, 26, 533, 51);
 
         SetAutorepeat(4, 8);
@@ -321,7 +321,7 @@ int ov59_021D0FF4 (OverlayManager * param0, int * param1)
     sub_02036AC4();
     sub_0205C2C8(v0->unk_08->unk_04);
     MessageLoader_Free(v0->unk_28);
-    sub_0200B3F0(v0->unk_24);
+    StringTemplate_Free(v0->unk_24);
 
     ov59_021D131C(v0);
     OverlayManager_FreeData(param0);
@@ -1191,7 +1191,7 @@ static int ov59_021D1F24 (UnkStruct_020961E8 * param0, int param1)
         } else {
             param0->unk_3A8 = 13;
             CommSys_SendData(113, NULL, 0);
-            StringTemplate_FormatPlayerName(param0->unk_24, 0, CommInfo_TrainerInfo(0));
+            StringTemplate_SetPlayerName(param0->unk_24, 0, CommInfo_TrainerInfo(0));
         }
 
         param0->unk_384 = NULL;
@@ -1206,7 +1206,7 @@ static int ov59_021D1FD0 (UnkStruct_020961E8 * param0, int param1)
     if (CommSys_CurNetId() == 0) {
         ov59_021D2628(param0, 5, 0);
     } else {
-        StringTemplate_FormatPlayerName(param0->unk_24, 0, CommInfo_TrainerInfo(0));
+        StringTemplate_SetPlayerName(param0->unk_24, 0, CommInfo_TrainerInfo(0));
         ov59_021D2628(param0, 16, 0);
     }
 
@@ -1361,7 +1361,7 @@ void ov59_021D2204 (UnkStruct_020961E8 * param0, int param1, u8 param2)
             return;
         }
 
-        StringTemplate_FormatPlayerName(param0->unk_24, 0, CommInfo_TrainerInfo(param2));
+        StringTemplate_SetPlayerName(param0->unk_24, 0, CommInfo_TrainerInfo(param2));
 
         if (param2 == CommSys_CurNetId()) {
             return;
@@ -1394,7 +1394,7 @@ void ov59_021D22EC (UnkStruct_020961E8 * param0, int param1, u8 param2)
     if (param0->unk_3A8 == 3) {
         switch (param1) {
         case 1:
-            StringTemplate_FormatPlayerName(param0->unk_24, 0, CommInfo_TrainerInfo(param2));
+            StringTemplate_SetPlayerName(param0->unk_24, 0, CommInfo_TrainerInfo(param2));
             ov59_021D28D8(param0, 1);
 
             param0->unk_3A8 = param1;
@@ -1407,7 +1407,7 @@ void ov59_021D22EC (UnkStruct_020961E8 * param0, int param1, u8 param2)
             }
             break;
         case 19:
-            StringTemplate_FormatPlayerName(param0->unk_24, 0, CommInfo_TrainerInfo(param2));
+            StringTemplate_SetPlayerName(param0->unk_24, 0, CommInfo_TrainerInfo(param2));
 
             if (param2 == CommSys_CurNetId()) {
                 return;
@@ -1483,7 +1483,7 @@ static BOOL ov59_021D2418 (Window * param0, int param1, u32 param2, UnkStruct_02
             u16 v3 = TrainerInfo_ID_LowHalf(param3->unk_3C8[v0][0]);
 
             TrainerInfo_NameStrbuf(param3->unk_3C8[v0][0], param3->unk_2C[v0]);
-            StringTemplate_FormatNumber(param3->unk_24, 0, v3, 5, 2, 1);
+            StringTemplate_SetNumber(param3->unk_24, 0, v3, 5, 2, 1);
 
             v2 = sub_0200B29C(param3->unk_24, param3->unk_28, 1, 51);
 

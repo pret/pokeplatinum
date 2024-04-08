@@ -73,7 +73,7 @@ static void ov62_022349E4(Strbuf *param0, int param1);
 
 StringTemplate * ov62_02231690 (u32 param0)
 {
-    StringTemplate * v0 = sub_0200B368(4, 64, param0);
+    StringTemplate * v0 = StringTemplate_New(4, 64, param0);
     return v0;
 }
 
@@ -499,7 +499,7 @@ asm static void ov62_02231C78 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C
     ldr r2, [sp, #0x2c]
     add r0, r4, #0
     add r3, r1, #0
-    bl sub_0200B48C
+    bl StringTemplate_SetStrbuf
     ldr r2, [sp, #0x30]
     add r0, r4, #0
     add r1, r6, #0
@@ -530,7 +530,7 @@ asm static void ov62_02231C78 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C
     add r0, r6, #0
     bl Strbuf_Free
     add r0, r4, #0
-    bl sub_0200C41C
+    bl StringTemplate_ClearArgs
     ldr r0, [sp, #0x20]
     bl sub_02030CCC
     str r0, [sp, #0x34]
@@ -554,7 +554,7 @@ asm static void ov62_02231C78 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C
     ldr r2, [sp, #0x34]
     add r0, r4, #0
     mov r1, #0
-    bl sub_0200C2E0
+    bl StringTemplate_SetMonthName
     ldr r2, [sp, #0x38]
     add r0, r4, #0
     add r1, r6, #0
@@ -585,7 +585,7 @@ asm static void ov62_02231C78 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C
     add r0, r6, #0
     bl Strbuf_Free
     add r0, r4, #0
-    bl sub_0200C41C
+    bl StringTemplate_ClearArgs
     ldr r5, [sp, #0x14]
     ldr r0, [r7, #0x48]
     add r5, #0x3c
@@ -658,7 +658,7 @@ asm static void ov62_02231C78 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C
     add r0, r4, #0
     mov r1, #0
     add r2, r6, #0
-    bl sub_0200BDD0
+    bl StringTemplate_SetCountryName
     ldr r1, [sp, #0x44]
     ldr r2, [sp, #0x48]
     add r0, r4, #0
@@ -701,7 +701,7 @@ asm static void ov62_02231C78 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C
     add r0, r4, #0
     mov r1, #0
     add r2, r6, #0
-    bl sub_0200BE08
+    bl StringTemplate_SetCityName
     ldr r2, [sp, #0x4c]
     add r0, r4, #0
     add r1, r5, #0
@@ -725,7 +725,7 @@ asm static void ov62_02231C78 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C
     bl Strbuf_Free
  _02231FD2:
     add r0, r4, #0
-    bl sub_0200C41C
+    bl StringTemplate_ClearArgs
     ldr r5, [sp, #0x14]
     ldr r0, [r7, #0x48]
     add r5, #0x6c
@@ -788,7 +788,7 @@ asm static void ov62_02231C78 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C
     add r0, r5, #0
     bl Strbuf_Free
     add r0, r4, #0
-    bl sub_0200B3F0
+    bl StringTemplate_Free
     add sp, #0xd8
     pop {r3, r4, r5, r6, r7, pc}
 }
@@ -1042,17 +1042,17 @@ static void ov62_022323CC (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C 
         if (v5 != 0) {
             v0 = Strbuf_Init(255, 102);
             v1 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 23);
-            sub_0200BE08(v2, 0, v4, v5);
+            StringTemplate_SetCityName(v2, 0, v4, v5);
             StringTemplate_Format(v2, v0, v1);
         } else {
             v0 = Strbuf_Init(255, 102);
             v1 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 22);
-            sub_0200BDD0(v2, 0, v4);
+            StringTemplate_SetCountryName(v2, 0, v4);
             StringTemplate_Format(v2, v0, v1);
         }
 
         Strbuf_Free(v1);
-        sub_0200B3F0(v2);
+        StringTemplate_Free(v2);
     }
 
     sub_0201D78C(v3, 0, v0, 0, 16, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -1395,7 +1395,7 @@ asm void ov62_02232778 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * p
     add r0, r5, #0
     mov r1, #1
     mov r3, #0
-    bl sub_0200B48C
+    bl StringTemplate_SetStrbuf
     b _02232984
  _0223292A:
     ldr r0, [r4, #0x28]
@@ -1410,7 +1410,7 @@ asm void ov62_02232778 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * p
     ldr r2, [sp, #0x30]
     add r0, r5, #0
     mov r1, #1
-    bl sub_0200C2E0
+    bl StringTemplate_SetMonthName
     b _02232984
  _0223294A:
     ldr r0, [r4, #0x28]
@@ -1437,7 +1437,7 @@ asm void ov62_02232778 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * p
     add r0, r5, #0
     mov r1, #1
     mov r3, #0
-    bl sub_0200B48C
+    bl StringTemplate_SetStrbuf
  _02232984:
     ldr r0, [r4, #0x28]
     ldr r0, [r0, #0]
@@ -1475,7 +1475,7 @@ asm void ov62_02232778 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * p
     ldr r2, [sp, #0x48]
     add r0, r5, #0
     add r3, r1, #0
-    bl sub_0200B48C
+    bl StringTemplate_SetStrbuf
     ldr r2, [sp, #0x4c]
     add r0, r5, #0
     add r1, r7, #0
@@ -1512,7 +1512,7 @@ asm void ov62_02232778 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * p
     add r0, r5, #0
     mov r1, #2
     mov r3, #0
-    bl sub_0200B48C
+    bl StringTemplate_SetStrbuf
     ldr r2, [sp, #0x2f8]
     add r0, r5, #0
     add r1, r7, #0
@@ -1547,7 +1547,7 @@ asm void ov62_02232778 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * p
     ldr r0, [sp, #0x34]
     bl Strbuf_Free
     add r0, r5, #0
-    bl sub_0200C41C
+    bl StringTemplate_ClearArgs
     ldr r0, [sp, #0x20]
     ldr r1, [r4, #0x10]
     add r0, r0, #4
@@ -1563,7 +1563,7 @@ asm void ov62_02232778 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * p
     ldr r0, [sp, #0x50]
     bl sub_0201A9A4
     add r0, r5, #0
-    bl sub_0200B3F0
+    bl StringTemplate_Free
     add sp, #0x1fc
     add sp, #0xe0
     pop {r4, r5, r6, r7, pc}
@@ -1837,7 +1837,7 @@ asm int ov62_02232C78 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * pa
     add r0, r5, #0
     mov r1, #1
     mov r3, #0
-    bl sub_0200B48C
+    bl StringTemplate_SetStrbuf
     b _02232E34
  _02232DDA:
     ldr r0, [r4, #0x28]
@@ -1852,7 +1852,7 @@ asm int ov62_02232C78 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * pa
     ldr r2, [sp, #0x30]
     add r0, r5, #0
     mov r1, #1
-    bl sub_0200C2E0
+    bl StringTemplate_SetMonthName
     b _02232E34
  _02232DFA:
     ldr r0, [r4, #0x28]
@@ -1879,7 +1879,7 @@ asm int ov62_02232C78 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * pa
     add r0, r5, #0
     mov r1, #1
     mov r3, #0
-    bl sub_0200B48C
+    bl StringTemplate_SetStrbuf
  _02232E34:
     ldr r0, [r4, #0x28]
     ldr r0, [r0, #0]
@@ -1917,7 +1917,7 @@ asm int ov62_02232C78 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * pa
     ldr r2, [sp, #0x50]
     add r0, r5, #0
     add r3, r1, #0
-    bl sub_0200B48C
+    bl StringTemplate_SetStrbuf
     ldr r2, [sp, #0x54]
     add r0, r5, #0
     add r1, r7, #0
@@ -1954,7 +1954,7 @@ asm int ov62_02232C78 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * pa
     add r0, r5, #0
     mov r1, #2
     mov r3, #0
-    bl sub_0200B48C
+    bl StringTemplate_SetStrbuf
     ldr r2, [sp, #0x2f8]
     add r0, r5, #0
     add r1, r7, #0
@@ -1992,7 +1992,7 @@ asm int ov62_02232C78 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * pa
     ldr r0, [sp, #0x48]
     bl Strbuf_Free
     add r0, r5, #0
-    bl sub_0200C41C
+    bl StringTemplate_ClearArgs
     ldr r0, [sp, #0x20]
     add r6, #0x10
     add r0, r0, #4
@@ -2008,7 +2008,7 @@ asm int ov62_02232C78 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * pa
     ldr r0, [sp, #0x58]
     bl sub_0201A9A4
     add r0, r5, #0
-    bl sub_0200B3F0
+    bl StringTemplate_Free
     mov r0, #8
     ldrsh r0, [r4, r0]
     str r0, [r4, #0xc]
@@ -2851,7 +2851,7 @@ static void ov62_02233B50 (UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C 
         v7 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 7);
         v8 = Strbuf_Init(255, 102);
 
-        sub_0200B48C(v9, 0, v6, 0, 1, GAME_LANGUAGE);
+        StringTemplate_SetStrbuf(v9, 0, v6, 0, 1, GAME_LANGUAGE);
         StringTemplate_Format(v9, v8, v7);
         BGL_FillWindow(v10, 0x0);
         sub_0201D78C(v10, 0, v8, ov62_0223429C(v10, v8), 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -2859,7 +2859,7 @@ static void ov62_02233B50 (UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C 
         Strbuf_Free(v6);
         Strbuf_Free(v7);
         Strbuf_Free(v8);
-        sub_0200C41C(v9);
+        StringTemplate_ClearArgs(v9);
 
         {
             int v12 = sub_0202FE98(param0->unk_04, 3, 0);
@@ -2871,7 +2871,7 @@ static void ov62_02233B50 (UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C 
             sub_0201D78C(v10, 0, v8, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
             sub_0201A9A4(v10);
             Strbuf_Free(v8);
-            sub_0200C41C(v9);
+            StringTemplate_ClearArgs(v9);
         }
 
         {
@@ -2884,7 +2884,7 @@ static void ov62_02233B50 (UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C 
                 v8 = Strbuf_Init(255, 102);
 
                 Strbuf_FormatInt(v6, v13, 4, 0, 1);
-                sub_0200B48C(v9, 0, v6, 0, 1, GAME_LANGUAGE);
+                StringTemplate_SetStrbuf(v9, 0, v6, 0, 1, GAME_LANGUAGE);
                 StringTemplate_Format(v9, v8, v7);
                 BGL_FillWindow(v10, 0x0);
                 sub_0201D78C(v10, 0, v8, ov62_0223429C(v10, v8), 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -2892,7 +2892,7 @@ static void ov62_02233B50 (UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C 
                 Strbuf_Free(v6);
                 Strbuf_Free(v7);
                 Strbuf_Free(v8);
-                sub_0200C41C(v9);
+                StringTemplate_ClearArgs(v9);
             } else {
                 v10 = &param0->unk_3C[3];
                 BGL_FillWindow(v10, 0x0);
@@ -2930,9 +2930,9 @@ static void ov62_02233B50 (UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C 
             Strbuf_FormatInt(v17, v16[0], 5, 2, 1);
             Strbuf_FormatInt(v18, v16[1], 5, 2, 1);
             Strbuf_FormatInt(v19, v16[2], 2, 2, 1);
-            sub_0200B48C(v9, 2, v17, 0, 1, GAME_LANGUAGE);
-            sub_0200B48C(v9, 1, v18, 0, 1, GAME_LANGUAGE);
-            sub_0200B48C(v9, 0, v19, 0, 1, GAME_LANGUAGE);
+            StringTemplate_SetStrbuf(v9, 2, v17, 0, 1, GAME_LANGUAGE);
+            StringTemplate_SetStrbuf(v9, 1, v18, 0, 1, GAME_LANGUAGE);
+            StringTemplate_SetStrbuf(v9, 0, v19, 0, 1, GAME_LANGUAGE);
             StringTemplate_Format(v9, v8, v7);
             BGL_FillWindow(v10, 0x0);
             sub_0201D78C(v10, 0, v8, ov62_0223429C(v10, v8), 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -2942,10 +2942,10 @@ static void ov62_02233B50 (UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C 
             Strbuf_Free(v19);
             Strbuf_Free(v7);
             Strbuf_Free(v8);
-            sub_0200C41C(v9);
+            StringTemplate_ClearArgs(v9);
         }
 
-        sub_0200B3F0(v9);
+        StringTemplate_Free(v9);
     }
 }
 

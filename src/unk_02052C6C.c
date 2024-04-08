@@ -306,10 +306,10 @@ static void sub_02053028 (FieldSystem * param0, UnkStruct_0205300C * param1, int
     if (param2 == 2) {
         StringTemplate * v1;
 
-        v1 = StringTemplate_New(4);
-        StringTemplate_FormatPlayerName(v1, 0, SaveData_GetTrainerInfo(param0->unk_0C));
+        v1 = StringTemplate_Default(4);
+        StringTemplate_SetPlayerName(v1, 0, SaveData_GetTrainerInfo(param0->unk_0C));
         param1->unk_2C = sub_0200B29C(v1, v0, 16, 4);
-        sub_0200B3F0(v1);
+        StringTemplate_Free(v1);
     } else {
         param1->unk_2C = MessageLoader_GetNewStrbuf(v0, 18);
     }

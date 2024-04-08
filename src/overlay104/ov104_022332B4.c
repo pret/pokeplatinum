@@ -403,7 +403,7 @@ BOOL ov104_022334DC (UnkStruct_ov104_0222E930 * param0)
 
         for (v10 = 0; v10 < v6; v10++) {
             v3 = Party_GetPokemonBySlotIndex(v4->unk_4D4, v10);
-            sub_0200B538(param0->unk_00->unk_44, v10, Pokemon_GetBoxPokemon(v3));
+            StringTemplate_SetSpeciesName(param0->unk_00->unk_44, v10, Pokemon_GetBoxPokemon(v3));
         }
         break;
     case 35:

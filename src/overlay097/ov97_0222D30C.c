@@ -855,7 +855,7 @@ static void ov97_0222DE78 (OverlayManager * param0, Window * param1, u32 param2)
     UnkStruct_ov97_0222D04C * v1 = OverlayManager_Data(param0);
 
     v1->unk_10 = MessageLoader_Init(1, 26, 421, 86);
-    v1->unk_0C = StringTemplate_New(86);
+    v1->unk_0C = StringTemplate_Default(86);
 
     BGL_FillWindow(param1, sub_02002DF8(1, 6));
 
@@ -873,7 +873,7 @@ static void ov97_0222DE78 (OverlayManager * param0, Window * param1, u32 param2)
 
     sub_0200E060(param1, 0, 1, 2);
     MessageLoader_Free(v1->unk_10);
-    sub_0200B3F0(v1->unk_0C);
+    StringTemplate_Free(v1->unk_0C);
 
     v1->unk_68 = 0xff;
 }
@@ -1004,8 +1004,8 @@ void ov97_0222E13C (UnkStruct_ov97_0222D04C * param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
     sub_02019EBC(param0->unk_00, 0);
 
-    v0 = StringTemplate_New(86);
-    StringTemplate_FormatNumber(v0, 0, param0->unk_26D0, 5, 2, 1);
+    v0 = StringTemplate_Default(86);
+    StringTemplate_SetNumber(v0, 0, param0->unk_26D0, 5, 2, 1);
 
     ov97_02237808(&v1, &param0->unk_26E0, 1, 695, (1 + (18 + 12)), 3);
     ov97_02237858(&v1, 24, 16, 100);
@@ -1014,7 +1014,7 @@ void ov97_0222E13C (UnkStruct_ov97_0222D04C * param0)
     v1.unk_14 = v0;
 
     ov97_0223795C(param0->unk_00, &v1, 4, 4, v2);
-    sub_0200B3F0(v0);
+    StringTemplate_Free(v0);
 }
 
 static int ov97_0222E1D8 (OverlayManager * param0)
@@ -1046,14 +1046,14 @@ static int ov97_0222E228 (OverlayManager * param0, Window * param1, int param2, 
 
     if (param1 && param2) {
         v1 = MessageLoader_Init(1, 26, 421, 86);
-        v0 = StringTemplate_New(86);
+        v0 = StringTemplate_Default(86);
         v2->unk_14 = sub_0200B29C(v0, v1, param2, 86);
         v2->unk_68 = 1;
 
         ov97_0222DE78(param0, param1, param2);
         v2->unk_74 = param3;
 
-        sub_0200B3F0(v0);
+        StringTemplate_Free(v0);
         MessageLoader_Free(v1);
     } else {
         if (Message_Printing(v2->unk_6C) == 0) {

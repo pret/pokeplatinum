@@ -798,7 +798,7 @@ static int ov94_02243398 (UnkStruct_ov94_0223FD4C * param0)
                 Pokemon * v1 = Pokemon_New(62);
 
                 sub_0202DA70(param0->unk_00->unk_00, v1);
-                StringTemplate_BufferNickname(param0->unk_B8C, 0, Pokemon_GetBoxPokemon(v1));
+                StringTemplate_SetNickname(param0->unk_B8C, 0, Pokemon_GetBoxPokemon(v1));
 
                 param0->unk_28 = 2;
                 param0->unk_2C = 34;
@@ -818,7 +818,7 @@ static int ov94_02243398 (UnkStruct_ov94_0223FD4C * param0)
                 Pokemon * v2 = Pokemon_New(62);
 
                 sub_0202DA70(param0->unk_00->unk_00, v2);
-                StringTemplate_BufferNickname(param0->unk_B8C, 0, Pokemon_GetBoxPokemon(v2));
+                StringTemplate_SetNickname(param0->unk_B8C, 0, Pokemon_GetBoxPokemon(v2));
 
                 param0->unk_28 = 3;
                 param0->unk_2C = 34;

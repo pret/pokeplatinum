@@ -12267,8 +12267,8 @@ static void BattleScript_LoadPartyLevelUpIcon (BattleSystem * param0, BattleScri
         v6 = MessageLoader_GetNewStrbuf(v4, 946);
     }
 
-    StringTemplate_BufferNickname(v5, 0, Pokemon_GetBoxPokemon(param2));
-    StringTemplate_FormatNumber(v5, 1, Pokemon_GetValue(param2, MON_DATA_LEVEL, NULL), 3, 0, 1);
+    StringTemplate_SetNickname(v5, 0, Pokemon_GetBoxPokemon(param2));
+    StringTemplate_SetNumber(v5, 1, Pokemon_GetValue(param2, MON_DATA_LEVEL, NULL), 3, 0, 1);
     StringTemplate_Format(v5, v7, v6);
     Strbuf_Free(v6);
     Window_Init(&v9);

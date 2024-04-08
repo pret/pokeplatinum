@@ -434,16 +434,16 @@ void ov20_021D3578 (UnkStruct_ov20_021D30F8 * param0, u32 param1)
     case 0:
 
     {
-        StringTemplate * v0 = sub_0200B368(2, 60, 0);
+        StringTemplate * v0 = StringTemplate_New(2, 60, 0);
         Strbuf* v1 = Strbuf_Init(300, 0);
 
-        sub_0200B7B4(v0, 0, 0);
+        StringTemplate_SetBagPocketName(v0, 0, 0);
         MessageLoader_GetStrbuf(param0->unk_48, 0 + ov20_021D1F88(param0->unk_04), param0->unk_4C);
         StringTemplate_Format(v0, v1, param0->unk_4C);
         sub_0201D78C(&param0->unk_1C, 1, v1, 0, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((9 & 0xff) << 0)), NULL);
 
         Strbuf_Free(v1);
-        sub_0200B3F0(v0);
+        StringTemplate_Free(v0);
     }
     break;
     case 2:

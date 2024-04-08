@@ -128,10 +128,10 @@ static void sub_02052914 (FieldSystem * param0, UnkStruct_020508D4 * param1)
     sub_020528D0(v0->unk_08);
 
     v0->unk_1C = MessageLoader_Init(1, 26, 373, 11);
-    v0->unk_20 = StringTemplate_New(11);
+    v0->unk_20 = StringTemplate_Default(11);
 
     sub_0201A8D4(v0->unk_08, &v0->unk_0C, &Unk_020EC2F0);
-    StringTemplate_FormatPlayerName(v0->unk_20, 0, SaveData_GetTrainerInfo(FieldSystem_SaveData(param0)));
+    StringTemplate_SetPlayerName(v0->unk_20, 0, SaveData_GetTrainerInfo(FieldSystem_SaveData(param0)));
 
     if (param0->unk_1C->unk_00 == 414) {
         sub_02052AA4(v0, 4, 0, 0);
@@ -174,7 +174,7 @@ static BOOL sub_020529C4 (UnkStruct_020508D4 * param0)
     case 4:
         sub_0200E084(&v0->unk_0C, 0);
         BGL_DeleteWindow(&v0->unk_0C);
-        sub_0200B3F0(v0->unk_20);
+        StringTemplate_Free(v0->unk_20);
         MessageLoader_Free(v0->unk_1C);
         sub_02019044(v0->unk_08, 3);
         Heap_FreeToHeap(v0->unk_08);

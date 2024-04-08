@@ -223,15 +223,15 @@ BOOL ov23_0224223C (TrainerInfo * param0, TrainerInfo * param1, int param2, Strb
     Strbuf* v1;
 
     if (param0 && param1) {
-        v0 = StringTemplate_New(4);
+        v0 = StringTemplate_Default(4);
         v1 = Strbuf_Init((50 * 2), 4);
 
-        StringTemplate_FormatPlayerName(v0, 0, param0);
-        StringTemplate_FormatPlayerName(v0, 1, param1);
+        StringTemplate_SetPlayerName(v0, 0, param0);
+        StringTemplate_SetPlayerName(v0, 1, param1);
         MessageLoader_GetStrbuf(ov23_02253E3C(ov23_0224219C()), param2, v1);
         StringTemplate_Format(v0, param3, v1);
         Strbuf_Free(v1);
-        sub_0200B3F0(v0);
+        StringTemplate_Free(v0);
 
         return 1;
     }
@@ -245,14 +245,14 @@ BOOL ov23_022422A8 (TrainerInfo * param0, int param1, int param2, Strbuf *param3
     Strbuf* v1;
 
     if (param0) {
-        v0 = StringTemplate_New(4);
+        v0 = StringTemplate_Default(4);
         v1 = Strbuf_Init((50 * 2), 4);
 
-        StringTemplate_FormatPlayerName(v0, param1, param0);
+        StringTemplate_SetPlayerName(v0, param1, param0);
         MessageLoader_GetStrbuf(ov23_02253E3C(ov23_0224219C()), param2, v1);
         StringTemplate_Format(v0, param3, v1);
         Strbuf_Free(v1);
-        sub_0200B3F0(v0);
+        StringTemplate_Free(v0);
 
         return 1;
     }
@@ -1059,14 +1059,14 @@ void ov23_02243038 (int param0)
         if (Unk_ov23_02257748->unk_DC[param0] == NULL) {
             Unk_ov23_02257748->unk_DC[param0] = Strbuf_Init((50 * 2), 15);
 
-            v0 = StringTemplate_New(11);
+            v0 = StringTemplate_Default(11);
             v1 = Strbuf_Init((50 * 2), 11);
 
-            StringTemplate_FormatPlayerName(v0, 0, CommInfo_TrainerInfo(param0));
+            StringTemplate_SetPlayerName(v0, 0, CommInfo_TrainerInfo(param0));
             MessageLoader_GetStrbuf(ov23_02253E3C(ov23_0224219C()), 115, v1);
             StringTemplate_Format(v0, Unk_ov23_02257748->unk_DC[param0], v1);
             Strbuf_Free(v1);
-            sub_0200B3F0(v0);
+            StringTemplate_Free(v0);
         }
     }
 }

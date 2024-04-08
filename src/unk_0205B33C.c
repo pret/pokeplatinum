@@ -976,10 +976,10 @@ int sub_0205BC50 (StringTemplate * param0)
     }
 
     if (v1 != 0) {
-        sub_0200BDD0(param0, 3, v1);
+        StringTemplate_SetCountryName(param0, 3, v1);
 
         if (v3 != 0) {
-            sub_0200BE08(param0, 4, v1, v3);
+            StringTemplate_SetCityName(param0, 4, v1, v3);
         }
     }
 
@@ -1221,7 +1221,7 @@ int sub_0205BF44 (UnkStruct_0205B43C * param0, StringTemplate * param1)
         int v4 = TrainerInfo_Appearance(param0->unk_08);
         int v5 = TrainerInfo_Gender(param0->unk_08);
 
-        sub_0200B960(param1, 0, sub_0205CA14(v5, v4, 2));
+        StringTemplate_SetTrainerClassName(param1, 0, sub_0205CA14(v5, v4, 2));
 
         return 168;
     }
@@ -1233,7 +1233,7 @@ int sub_0205BF44 (UnkStruct_0205B43C * param0, StringTemplate * param1)
     }
 
     if ((v3 = sub_02014C78(&param0->unk_178, 0)) != 0xffff) {
-        sub_0200BE48(param1, 0, v3);
+        StringTemplate_SetCustomMessageWord(param1, 0, v3);
     }
 
     return Unk_020ED720[v2];
@@ -1289,8 +1289,8 @@ void sub_0205C040 (StringTemplate * param0, int param1, int param2, TrainerInfo 
         return;
     }
 
-    StringTemplate_FormatPlayerName(param0, 0, v0);
-    StringTemplate_FormatPlayerName(param0, 1, param3);
+    StringTemplate_SetPlayerName(param0, 0, v0);
+    StringTemplate_SetPlayerName(param0, 1, param3);
 
     v3 = TrainerInfo_RegionCode(v0);
 
@@ -1330,7 +1330,7 @@ void sub_0205C040 (StringTemplate * param0, int param1, int param2, TrainerInfo 
 
     v1 = MessageLoader_GetNewStrbuf(v2, v4);
 
-    sub_0200B48C(param0, 2, v1, 0, 1, v3);
+    StringTemplate_SetStrbuf(param0, 2, v1, 0, 1, v3);
     Heap_FreeToHeap(v1);
     MessageLoader_Free(v2);
 }

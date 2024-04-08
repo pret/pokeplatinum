@@ -272,7 +272,7 @@ void sub_0208FF3C (PokemonSummaryApp * param0)
 
         v1 = MessageLoader_GetNewStrbuf(param0->msgLoader, 3);
 
-        StringTemplate_FormatNumber(param0->strFormatter, 0, param0->monData.level, 3, 0, 1);
+        StringTemplate_SetNumber(param0->strFormatter, 0, param0->monData.level, 3, 0, 1);
         StringTemplate_Format(param0->strFormatter, param0->strbuf, v1);
         Strbuf_Free(v1);
         sub_0201D78C(v0, 0, param0->strbuf, 16, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -288,7 +288,7 @@ void sub_0208FFE0 (PokemonSummaryApp * param0)
     BGL_FillWindow(&param0->staticWindows[32], 0);
 
     if (param0->monData.heldItem != 0) {
-        sub_0200B70C(param0->strFormatter, 0, param0->monData.heldItem);
+        StringTemplate_SetItemName(param0->strFormatter, 0, param0->monData.heldItem);
         v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, 5);
         StringTemplate_Format(param0->strFormatter, param0->strbuf, v0);
         Strbuf_Free(v0);
@@ -357,7 +357,7 @@ static void sub_02090184 (PokemonSummaryApp * param0, u32 param1, u32 param2, u8
     Strbuf* v0;
 
     v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, param1);
-    StringTemplate_FormatNumber(param0->strFormatter, 0, param2, param3, param4, 1);
+    StringTemplate_SetNumber(param0->strFormatter, 0, param2, param3, param4, 1);
     StringTemplate_Format(param0->strFormatter, param0->strbuf, v0);
     Strbuf_Free(v0);
 }
@@ -627,7 +627,7 @@ static void sub_0209093C (PokemonSummaryApp * param0)
         MessageLoader * v1;
         Strbuf* v2;
 
-        sub_0200B6A0(param0->strFormatter, 0, param0->monData.ability);
+        StringTemplate_SetAbilityName(param0->strFormatter, 0, param0->monData.ability);
 
         v2 = MessageLoader_GetNewStrbuf(param0->msgLoader, 125);
         StringTemplate_Format(param0->strFormatter, param0->strbuf, v2);
@@ -778,7 +778,7 @@ void sub_02090F84 (PokemonSummaryApp * param0)
 
     v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, 186);
 
-    StringTemplate_FormatNumber(param0->strFormatter, 0, param0->ribbonMax, 3, 0, 1);
+    StringTemplate_SetNumber(param0->strFormatter, 0, param0->ribbonMax, 3, 0, 1);
     StringTemplate_Format(param0->strFormatter, param0->strbuf, v0);
     Strbuf_Free(v0);
 
@@ -796,7 +796,7 @@ void sub_02090F84 (PokemonSummaryApp * param0)
 
     v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, 184);
 
-    StringTemplate_FormatNumber(param0->strFormatter, 0, param0->ribbonPos + param0->ribbonState * 4 + 1, 3, 0, 1);
+    StringTemplate_SetNumber(param0->strFormatter, 0, param0->ribbonPos + param0->ribbonState * 4 + 1, 3, 0, 1);
     StringTemplate_Format(param0->strFormatter, param0->strbuf, v0);
     Strbuf_Free(v0);
 

@@ -193,7 +193,7 @@ void sub_02081CAC (GameWindowLayout * param0, u16 param1, u8 param2)
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_69C, 156 + param2);
 
-    sub_0200B630(param0->unk_6A0, 0, param1);
+    StringTemplate_SetMoveName(param0->unk_6A0, 0, param1);
     StringTemplate_Format(param0->unk_6A0, param0->unk_6AC[16 + param2], v0);
 
     Strbuf_Free(v0);
@@ -249,7 +249,7 @@ void sub_02081E08 (GameWindowLayout * param0)
         v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 37);
 
-        StringTemplate_BufferNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
+        StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
         Strbuf_Free(v1);
     }
@@ -275,7 +275,7 @@ void sub_02081ED8 (GameWindowLayout * param0, Pokemon * param1, u32 param2)
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_69C, Unk_020F1EA0[param2][0]);
 
-    StringTemplate_BufferNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(param1));
+    StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(param1));
     StringTemplate_Format(param0->unk_6A0, param0->unk_704[param2].unk_00, v0);
     Strbuf_Free(v0);
 }
@@ -767,7 +767,7 @@ void sub_020829DC (GameWindowLayout * param0)
 
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 191);
 
-        StringTemplate_FormatNumber(param0->unk_6A0, 0, v3[v2] - param0->unk_B14[v2], 2, 0, 1);
+        StringTemplate_SetNumber(param0->unk_6A0, 0, v3[v2] - param0->unk_B14[v2], 2, 0, 1);
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
         Strbuf_Free(v1);
 
@@ -792,7 +792,7 @@ void sub_02082B58 (GameWindowLayout * param0)
     v0 = MessageLoader_GetNewStrbuf(param0->unk_69C, 192);
 
     for (v2 = 0; v2 < 6; v2++) {
-        StringTemplate_FormatNumber(param0->unk_6A0, 0, param0->unk_B14[v2], 3, 0, 1);
+        StringTemplate_SetNumber(param0->unk_6A0, 0, param0->unk_B14[v2], 3, 0, 1);
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v0);
 
         v1 = sub_02002D7C(0, param0->unk_6A4, 0);

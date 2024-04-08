@@ -401,7 +401,7 @@ int ov113_0225C700 (OverlayManager * param0, int * param1)
     sub_0201E450(4);
     sub_02002BB8(2, 118);
 
-    v0->unk_2C = StringTemplate_New(118);
+    v0->unk_2C = StringTemplate_Default(118);
     v0->unk_30 = MessageLoader_Init(0, 26, 650, 118);
     v0->unk_10 = sub_02012744(4, 118);
     v0->unk_160 = NARC_ctor(NARC_INDEX_GRAPHIC__FOOTPRINT_BOARD, 118);
@@ -651,7 +651,7 @@ int ov113_0225CDFC (OverlayManager * param0, int * param1)
     sub_02002C60(2);
     sub_020127BC(v0->unk_10);
     MessageLoader_Free(v0->unk_30);
-    sub_0200B3F0(v0->unk_2C);
+    StringTemplate_Free(v0->unk_2C);
 
     ov113_0225DC4C(v0);
     ov113_0225D12C(v0->unk_08);

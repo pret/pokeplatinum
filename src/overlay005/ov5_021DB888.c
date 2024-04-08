@@ -420,7 +420,7 @@ static BOOL ov5_021DB8D8 (UnkStruct_020508D4 * param0)
             v1 = 3;
         }
 
-        StringTemplate_FormatNumber(v3->unk_118, 0, v0, v1, 1, 1);
+        StringTemplate_SetNumber(v3->unk_118, 0, v0, v1, 1, 1);
         ov5_021DBA54(v3, 9);
         break;
     case 8:

@@ -461,7 +461,7 @@ static void sub_0206CD94 (StringTemplate * param0, int param1, const u16 * param
     Strbuf* v0 = Strbuf_Init(64, 4);
 
     Strbuf_CopyChars(v0, param2);
-    sub_0200B48C(param0, param1, v0, param3, param5, param4);
+    StringTemplate_SetStrbuf(param0, param1, v0, param3, param5, param4);
     Strbuf_Free(v0);
 }
 
@@ -746,15 +746,15 @@ static int sub_0206D230 (FieldSystem * param0, StringTemplate * param1, UnkStruc
     if (v0->unk_0B) {
         sub_0206CDD0(param1, 0, param2);
         sub_0206CE74(param1, 1, v0->unk_06, v0->unk_08, v0->unk_09, v0->unk_0A);
-        sub_0200B70C(param1, 2, v0->unk_22);
-        StringTemplate_FormatNumber(param1, 3, v0->unk_04, 3, 0, 1);
+        StringTemplate_SetItemName(param1, 2, v0->unk_22);
+        StringTemplate_SetNumber(param1, 3, v0->unk_04, 3, 0, 1);
         sub_0206CD94(param1, 4, v0->unk_0C, v0->unk_08, v0->unk_09, 1);
         return 0;
     } else {
         sub_0206CDD0(param1, 0, param2);
         sub_0206CE74(param1, 1, v0->unk_06, v0->unk_08, v0->unk_09, v0->unk_0A);
-        sub_0200B70C(param1, 2, v0->unk_22);
-        StringTemplate_FormatNumber(param1, 3, v0->unk_04, 3, 0, 1);
+        StringTemplate_SetItemName(param1, 2, v0->unk_22);
+        StringTemplate_SetNumber(param1, 3, v0->unk_04, 3, 0, 1);
         return 1;
     }
 }
@@ -764,7 +764,7 @@ static int sub_0206D2E0 (FieldSystem * param0, StringTemplate * param1, UnkStruc
     UnkStruct_0206D140 * v0 = ov6_02246498(param2);
 
     sub_0206CDD0(param1, 0, param2);
-    StringTemplate_FormatNumber(param1, 1, v0->unk_04, 3, 0, 1);
+    StringTemplate_SetNumber(param1, 1, v0->unk_04, 3, 0, 1);
 
     if (v0->unk_00 == 0x1) {
         return 2;
@@ -803,7 +803,7 @@ static int sub_0206D374 (FieldSystem * param0, StringTemplate * param1, UnkStruc
     sub_0206CDD0(param1, 0, param2);
 
     if (v0->unk_08) {
-        sub_0200B70C(param1, 1, v0->unk_06);
+        StringTemplate_SetItemName(param1, 1, v0->unk_06);
         sub_0206CE74(param1, 2, v0->unk_00, v0->unk_02, v0->unk_03, v0->unk_04);
         return 4;
     } else {
@@ -880,9 +880,9 @@ static int sub_0206D4D4 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 {
     UnkStruct_0206D4D4 * v0 = (UnkStruct_0206D4D4 *)ov6_02246498(param2);
 
-    sub_0200B8C8(param1, 0, v0->unk_02);
+    StringTemplate_SetLocationName(param1, 0, v0->unk_02);
     sub_0206CDD0(param1, 1, param2);
-    sub_0200B70C(param1, 2, v0->unk_00);
+    StringTemplate_SetItemName(param1, 2, v0->unk_00);
 
     return 10;
 }
@@ -908,10 +908,10 @@ static int sub_0206D530 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 {
     UnkStruct_0206D530 * v0 = (UnkStruct_0206D530 *)ov6_02246498(param2);
 
-    sub_0200B70C(param1, 0, v0->unk_00);
-    StringTemplate_FormatNumber(param1, 1, v0->unk_02, 3, 0, 1);
+    StringTemplate_SetItemName(param1, 0, v0->unk_00);
+    StringTemplate_SetNumber(param1, 1, v0->unk_02, 3, 0, 1);
     sub_0206CDD0(param1, 2, param2);
-    sub_0200B77C(param1, 3, v0->unk_00);
+    StringTemplate_SetItemNamePlural(param1, 3, v0->unk_00);
 
     return 11;
 }
@@ -930,7 +930,7 @@ static int sub_0206D5B0 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 {
     UnkStruct_0206D5B0 * v0 = (UnkStruct_0206D5B0 *)ov6_02246498(param2);
 
-    sub_0200B8C8(param1, 1, v0->unk_06);
+    StringTemplate_SetLocationName(param1, 1, v0->unk_06);
     sub_0206CDD0(param1, 0, param2);
     sub_0206CE74(param1, 2, v0->unk_00, v0->unk_02, v0->unk_03, v0->unk_04);
 
@@ -988,8 +988,8 @@ static int sub_0206D6E0 (FieldSystem * param0, StringTemplate * param1, UnkStruc
     UnkStruct_0206D6E0 * v0 = (UnkStruct_0206D6E0 *)ov6_02246498(param2);
 
     sub_0206CDD0(param1, 0, param2);
-    sub_0200BA94(param1, 1, v0->unk_00);
-    StringTemplate_FormatNumber(param1, 2, v0->unk_02, 3, 0, 1);
+    StringTemplate_SetUndergroundItemName(param1, 1, v0->unk_00);
+    StringTemplate_SetNumber(param1, 2, v0->unk_02, 3, 0, 1);
 
     return 24;
 }
@@ -1020,7 +1020,7 @@ static int sub_0206D75C (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
     sub_0206CDD0(param1, 0, param2);
     sub_0206CE74(param1, 1, v0->unk_00, v0->unk_02, v0->unk_03, v0->unk_04);
-    StringTemplate_FormatNumber(param1, 2, v0->unk_05, 2, 0, 1);
+    StringTemplate_SetNumber(param1, 2, v0->unk_05, 2, 0, 1);
 
     return 26;
 }
@@ -1133,8 +1133,8 @@ static int sub_0206D94C (FieldSystem * param0, StringTemplate * param1, UnkStruc
     UnkStruct_0206D94C * v0 = ov6_02246498(param2);
 
     sub_0206CDD0(param1, 0, param2);
-    sub_0200B70C(param1, 1, v0->unk_00);
-    StringTemplate_FormatNumber(param1, 2, v0->unk_04, 2, 0, 1);
+    StringTemplate_SetItemName(param1, 1, v0->unk_00);
+    StringTemplate_SetNumber(param1, 2, v0->unk_04, 2, 0, 1);
 
     return 30;
 }
@@ -1144,7 +1144,7 @@ static int sub_0206D98C (FieldSystem * param0, StringTemplate * param1, UnkStruc
     UnkStruct_0206D94C * v0 = ov6_02246498(param2);
 
     sub_0206CDD0(param1, 0, param2);
-    sub_0200B70C(param1, 1, v0->unk_00);
+    StringTemplate_SetItemName(param1, 1, v0->unk_00);
 
     return 31;
 }
@@ -1166,7 +1166,7 @@ static int sub_0206D9F4 (FieldSystem * param0, StringTemplate * param1, UnkStruc
     UnkStruct_0206D9F4 * v0 = (UnkStruct_0206D9F4 *)ov6_02246498(param2);
 
     sub_0206CDD0(param1, 0, param2);
-    sub_0200BE64(param1, 1, v0->unk_06);
+    StringTemplate_SetBallSealName(param1, 1, v0->unk_06);
     sub_0206CE74(param1, 2, v0->unk_00, v0->unk_02, v0->unk_03, v0->unk_04);
 
     return 33 + inline_020564D0(3);
@@ -1193,7 +1193,7 @@ static void sub_0206DA84 (FieldSystem * param0, StringTemplate * param1, UnkStru
     GF_ASSERT(TrainerInfo_Size() == v0->unk_00);
 
     sub_0206CDD0(param1, 0, param2);
-    StringTemplate_FormatPlayerName(param1, 1, v1);
+    StringTemplate_SetPlayerName(param1, 1, v1);
 }
 
 void sub_0206DAB8 (FieldSystem * param0, const TrainerInfo * param1)
@@ -1267,7 +1267,7 @@ static int sub_0206DB74 (FieldSystem * param0, StringTemplate * param1, UnkStruc
     UnkStruct_0206DB74 * v0 = (UnkStruct_0206DB74 *)ov6_02246498(param2);
 
     sub_0206CDD0(param1, 0, param2);
-    sub_0200C2A8(param1, 1, v0->unk_00);
+    StringTemplate_SetFurniture(param1, 1, v0->unk_00);
 
     return 39;
 }
@@ -1296,7 +1296,7 @@ static int sub_0206DBE8 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
     sub_0206CDD0(param1, 0, param2);
     sub_0206CE74(param1, 1, v0->unk_02, v0->unk_04, v0->unk_05, v0->unk_06);
-    StringTemplate_FormatNumber(param1, 2, v0->unk_00, 4, 0, 1);
+    StringTemplate_SetNumber(param1, 2, v0->unk_00, 4, 0, 1);
 
     if (v0->unk_07) {
         return 0;
@@ -1336,8 +1336,8 @@ static int sub_0206DC9C (FieldSystem * param0, StringTemplate * param1, UnkStruc
     {
         u32 v1 = (((v0->unk_08 * 1000) / 254 + 5) / 10);
 
-        StringTemplate_FormatNumber(param1, 2, v1 / 10, 3, 0, 1);
-        StringTemplate_FormatNumber(param1, 3, v1 % 10, 1, 0, 1);
+        StringTemplate_SetNumber(param1, 2, v1 / 10, 3, 0, 1);
+        StringTemplate_SetNumber(param1, 3, v1 % 10, 1, 0, 1);
     }
 
     return 2;
@@ -1370,9 +1370,9 @@ static int sub_0206DD5C (FieldSystem * param0, StringTemplate * param1, UnkStruc
     UnkStruct_0206DD5C * v0 = ov6_02246498(param2);
 
     sub_0206CDD0(param1, 0, param2);
-    StringTemplate_FormatNumber(param1, 1, v0->unk_08, 10, 0, 1);
-    StringTemplate_FormatNumber(param1, 2, v0->unk_00, 6, 0, 1);
-    StringTemplate_FormatNumber(param1, 3, v0->unk_04, 6, 0, 1);
+    StringTemplate_SetNumber(param1, 1, v0->unk_08, 10, 0, 1);
+    StringTemplate_SetNumber(param1, 2, v0->unk_00, 6, 0, 1);
+    StringTemplate_SetNumber(param1, 3, v0->unk_04, 6, 0, 1);
 
     return 3;
 }
@@ -1477,8 +1477,8 @@ static int sub_0206DE80 (FieldSystem * param0, StringTemplate * param1, UnkStruc
         sub_0206CE74(param1, 1, v0->unk_1C, v0->unk_19, v0->unk_1A, v0->unk_1B);
     }
 
-    sub_0200B668(param1, 2, v0->unk_16);
-    StringTemplate_FormatNumber(param1, 3, v0->unk_17, 3, 0, 1);
+    StringTemplate_SetRibbonName(param1, 2, v0->unk_16);
+    StringTemplate_SetNumber(param1, 3, v0->unk_17, 3, 0, 1);
 
     return 4;
 }
@@ -1504,7 +1504,7 @@ static int sub_0206DF14 (FieldSystem * param0, StringTemplate * param1, UnkStruc
     UnkStruct_0206DF14 * v1 = ov6_02246498(param2);
 
     sub_0206CDD0(param1, 0, param2);
-    sub_0200BB04(param1, 1, v1->unk_00);
+    StringTemplate_SetUndergroundTrapName(param1, 1, v1->unk_00);
 
     v0 = v1->unk_02;
 
@@ -1512,7 +1512,7 @@ static int sub_0206DF14 (FieldSystem * param0, StringTemplate * param1, UnkStruc
         v0 = 999;
     }
 
-    StringTemplate_FormatNumber(param1, 2, v0, 3, 0, 1);
+    StringTemplate_SetNumber(param1, 2, v0, 3, 0, 1);
     return 7;
 }
 
@@ -1545,7 +1545,7 @@ static int sub_0206DF88 (FieldSystem * param0, StringTemplate * param1, UnkStruc
         v0 = 999;
     }
 
-    StringTemplate_FormatNumber(param1, 1, v0, 3, 0, 1);
+    StringTemplate_SetNumber(param1, 1, v0, 3, 0, 1);
 
     return 8;
 }
@@ -1575,7 +1575,7 @@ static int sub_0206E018 (FieldSystem * param0, StringTemplate * param1, UnkStruc
     UnkStruct_0206E018 * v0 = ov6_02246498(param2);
 
     sub_0206CDD0(param1, 0, param2);
-    StringTemplate_FormatNumber(param1, 1, v0->unk_00.unk_04, 4, 0, 1);
+    StringTemplate_SetNumber(param1, 1, v0->unk_00.unk_04, 4, 0, 1);
 
     return 9;
 }
@@ -1605,7 +1605,7 @@ static int sub_0206E098 (FieldSystem * param0, StringTemplate * param1, UnkStruc
     UnkStruct_0206E098 * v0 = ov6_02246498(param2);
 
     sub_0206CDD0(param1, 0, param2);
-    StringTemplate_FormatNumber(param1, 1, v0->unk_00.unk_02, 4, 0, 1);
+    StringTemplate_SetNumber(param1, 1, v0->unk_00.unk_02, 4, 0, 1);
 
     return 10;
 }
@@ -1633,9 +1633,9 @@ static int sub_0206E118 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 {
     UnkStruct_0206E118 * v0 = ov6_02246498(param2);
 
-    StringTemplate_FormatNumber(param1, 0, v0->unk_00.unk_02, 4, 0, 1);
+    StringTemplate_SetNumber(param1, 0, v0->unk_00.unk_02, 4, 0, 1);
     sub_0206CDD0(param1, 1, param2);
-    sub_0200BE48(param1, 2, v0->unk_04);
+    StringTemplate_SetCustomMessageWord(param1, 2, v0->unk_04);
 
     if (v0->unk_00.unk_01 == 1) {
         return 8;
@@ -1672,13 +1672,13 @@ static int sub_0206E1C0 (FieldSystem * param0, StringTemplate * param1, UnkStruc
         sub_0206CDD0(param1, 0, param2);
         sub_0206CE74(param1, 1, v0->unk_00, v0->unk_02, v0->unk_03, v0->unk_04);
         sub_0206CD94(param1, 2, v0->unk_06, v0->unk_02, v0->unk_03, 1);
-        sub_0200BE48(param1, 3, v0->unk_1C);
+        StringTemplate_SetCustomMessageWord(param1, 3, v0->unk_1C);
         return 10;
     } else {
         sub_0206CDD0(param1, 0, param2);
         sub_0206CE74(param1, 1, v0->unk_00, v0->unk_02, v0->unk_03, v0->unk_04);
 
-        sub_0200BE48(param1, 3, v0->unk_1C);
+        StringTemplate_SetCustomMessageWord(param1, 3, v0->unk_1C);
         return 11;
     }
 }
@@ -1706,8 +1706,8 @@ static int sub_0206E28C (FieldSystem * param0, StringTemplate * param1, UnkStruc
     UnkStruct_0206E28C * v0 = ov6_02246498(param2);
 
     sub_0206CDD0(param1, 0, param2);
-    sub_0200B928(param1, 1, v0->unk_00);
-    sub_0200BE48(param1, 2, v0->unk_04);
+    StringTemplate_SetPoketchAppName(param1, 1, v0->unk_00);
+    StringTemplate_SetCustomMessageWord(param1, 2, v0->unk_04);
 
     return 16;
 }
@@ -1731,11 +1731,11 @@ static int sub_0206E300 (FieldSystem * param0, StringTemplate * param1, UnkStruc
     UnkStruct_0206E300 * v0 = ov6_02246498(param2);
 
     sub_0206CE74(param1, 0, v0->unk_00.unk_02, v0->unk_00.unk_04, v0->unk_00.unk_05, v0->unk_00.unk_06);
-    sub_0200BBDC(param1, 1, sub_020958B8(v0->unk_00.unk_08));
-    sub_0200BBA8(param1, 2, sub_02095888(v0->unk_00.unk_07));
-    StringTemplate_FormatNumber(param1, 3, v0->unk_00.unk_09, 1, 0, 1);
+    StringTemplate_SetContestTypeName(param1, 1, sub_020958B8(v0->unk_00.unk_08));
+    StringTemplate_SetContestRankName(param1, 2, sub_02095888(v0->unk_00.unk_07));
+    StringTemplate_SetNumber(param1, 3, v0->unk_00.unk_09, 1, 0, 1);
     sub_0206CDD0(param1, 4, param2);
-    sub_0200BE48(param1, 5, v0->unk_0A);
+    StringTemplate_SetCustomMessageWord(param1, 5, v0->unk_0A);
 
     if (v0->unk_00.unk_09 == 1) {
         return 18;
@@ -1773,7 +1773,7 @@ static int sub_0206E3C8 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
     sub_0206CDD0(param1, 0, param2);
     sub_0206CEA4(param1, 1, v0->unk_00);
-    sub_0200BE48(param1, 2, v0->unk_02);
+    StringTemplate_SetCustomMessageWord(param1, 2, v0->unk_02);
 
     return 20;
 }
@@ -1821,8 +1821,8 @@ static int sub_0206E480 (FieldSystem * param0, StringTemplate * param1, UnkStruc
     int v1 = v0->unk_00.unk_01;
 
     sub_0206CDD0(param1, 0, param2);
-    sub_0200BF74(param1, 1, v1);
-    sub_0200BE48(param1, 2, v0->unk_02);
+    StringTemplate_SetPoffinName(param1, 1, v1);
+    StringTemplate_SetCustomMessageWord(param1, 2, v0->unk_02);
 
     switch (v1) {
     case 25:
@@ -1858,17 +1858,17 @@ static int sub_0206E520 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
     sub_0206CDD0(param1, 0, param2);
     sub_0206CE74(param1, 1, v0->unk_00.unk_02, v0->unk_00.unk_04, v0->unk_00.unk_05, v0->unk_00.unk_06);
-    sub_0200B6D8(param1, 2, v0->unk_00.unk_1E);
-    sub_0200BE48(param1, 5, v0->unk_24);
+    StringTemplate_SetNatureName(param1, 2, v0->unk_00.unk_1E);
+    StringTemplate_SetCustomMessageWord(param1, 5, v0->unk_24);
 
     switch (v0->unk_00.unk_1F) {
     case 0:
         return 45;
     case 2:
-        sub_0200BFAC(param1, 3, v0->unk_00.unk_20);
+        StringTemplate_SetContestAccessoryName(param1, 3, v0->unk_00.unk_20);
         return 44;
     case 1:
-        sub_0200B70C(param1, 3, v0->unk_00.unk_22);
+        StringTemplate_SetItemName(param1, 3, v0->unk_00.unk_22);
         return 46;
     }
 
@@ -1902,7 +1902,7 @@ static int sub_0206E5E4 (FieldSystem * param0, StringTemplate * param1, UnkStruc
         sub_0206CE74(param1, 2, v0->unk_00.unk_02, v0->unk_00.unk_04, v0->unk_00.unk_05, v0->unk_00.unk_06);
     }
 
-    sub_0200BE48(param1, 3, v0->unk_1E);
+    StringTemplate_SetCustomMessageWord(param1, 3, v0->unk_1E);
     return 47;
 }
 
@@ -1925,7 +1925,7 @@ static int sub_0206E680 (FieldSystem * param0, StringTemplate * param1, UnkStruc
     UnkStruct_0206E680 * v0 = ov6_02246498(param2);
 
     sub_0206CDD0(param1, 0, param2);
-    sub_0200BE48(param1, 1, v0->unk_00);
+    StringTemplate_SetCustomMessageWord(param1, 1, v0->unk_00);
 
     return 48;
 }
@@ -1944,7 +1944,7 @@ static int sub_0206E6C0 (FieldSystem * param0, StringTemplate * param1, UnkStruc
     UnkStruct_0206E6C0 * v0 = ov6_02246498(param2);
 
     sub_0206CDD0(param1, 0, param2);
-    sub_0200BE48(param1, 1, v0->unk_00);
+    StringTemplate_SetCustomMessageWord(param1, 1, v0->unk_00);
 
     return 49;
 }
@@ -1963,7 +1963,7 @@ static int sub_0206E700 (FieldSystem * param0, StringTemplate * param1, UnkStruc
     UnkStruct_0206E700 * v0 = ov6_02246498(param2);
 
     sub_0206CDD0(param1, 0, param2);
-    sub_0200BE48(param1, 1, v0->unk_00);
+    StringTemplate_SetCustomMessageWord(param1, 1, v0->unk_00);
 
     return 50;
 }
@@ -1982,7 +1982,7 @@ static int sub_0206E740 (FieldSystem * param0, StringTemplate * param1, UnkStruc
     UnkStruct_0206E740 * v0 = ov6_02246498(param2);
 
     sub_0206CDD0(param1, 0, param2);
-    sub_0200BE48(param1, 1, v0->unk_00);
+    StringTemplate_SetCustomMessageWord(param1, 1, v0->unk_00);
 
     return 51;
 }
@@ -2009,9 +2009,9 @@ static int sub_0206E7AC (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
     sub_0206CDD0(param1, 0, param2);
     Strbuf_CopyChars(v2, v1->unk_00.unk_06);
-    sub_0200B48C(param1, 1, v2, v1->unk_00.unk_02, 0, v1->unk_00.unk_03);
+    StringTemplate_SetStrbuf(param1, 1, v2, v1->unk_00.unk_02, 0, v1->unk_00.unk_03);
     Strbuf_Free(v2);
-    sub_0200BE48(param1, 2, v1->unk_16);
+    StringTemplate_SetCustomMessageWord(param1, 2, v1->unk_16);
 
     switch (v1->unk_00.unk_01) {
     case 1:
@@ -2095,9 +2095,9 @@ static int sub_0206E870 (FieldSystem * param0, StringTemplate * param1, UnkStruc
         v3++;
     }
 
-    sub_0200C054(param1, param0->unk_0C, v2, 0, 1);
-    sub_0200C054(param1, param0->unk_0C, v2, 1, 0);
-    sub_0200B7EC(param1, 2, v3);
+    StringTemplate_SetUnionGroupName(param1, param0->unk_0C, v2, 0, 1);
+    StringTemplate_SetUnionGroupName(param1, param0->unk_0C, v2, 1, 0);
+    StringTemplate_SetPokemonTypeName(param1, 2, v3);
 
     return 0;
 }
@@ -2127,7 +2127,7 @@ static int sub_0206E940 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
     v0 = Unk_02100BA4[inline_020564D0(NELEMS(Unk_02100BA4))];
     v1 = sub_0203A944(param0, v0);
-    sub_0200B8C8(param1, 0, MapHeader_GetMapLabelTextID(v0));
+    StringTemplate_SetLocationName(param1, 0, MapHeader_GetMapLabelTextID(v0));
 
     switch (v1) {
     case 0:
@@ -2175,13 +2175,13 @@ static int sub_0206EA10 (FieldSystem * param0, StringTemplate * param1, UnkStruc
     int v1 = param0->unk_1C->unk_00;
 
     if ((v1 == 411) || ((v1 >= 412) && (v1 <= 417))) {
-        StringTemplate_FormatPlayerName(param1, 0, v0);
-        sub_0200B4BC(param1, 1, param0->unk_0C);
+        StringTemplate_SetPlayerName(param1, 0, v0);
+        StringTemplate_SetRivalName(param1, 1, param0->unk_0C);
         return 13;
     }
 
     if ((v1 == 418) || ((v1 >= 422) && (v1 <= 425))) {
-        sub_0200B4E4(param1, 1, param0->unk_0C);
+        StringTemplate_SetCounterpartName(param1, 1, param0->unk_0C);
         return 14;
     }
 
@@ -2233,8 +2233,8 @@ static int sub_0206EA10 (FieldSystem * param0, StringTemplate * param1, UnkStruc
         return 26;
     }
 
-    StringTemplate_FormatPlayerName(param1, 0, v0);
-    sub_0200B4BC(param1, 1, param0->unk_0C);
+    StringTemplate_SetPlayerName(param1, 0, v0);
+    StringTemplate_SetRivalName(param1, 1, param0->unk_0C);
 
     return 27;
 }
@@ -2245,7 +2245,7 @@ static int sub_0206EB94 (FieldSystem * param0, StringTemplate * param1, UnkStruc
     UnkStruct_0202D7B0 * v2 = sub_0202D834(param0->unk_0C);
 
     ov6_0224322C(sub_0202D814(v2, 2), &v0, &v1);
-    sub_0200B8C8(param1, 0, MapHeader_GetMapLabelTextID(v0));
+    StringTemplate_SetLocationName(param1, 0, MapHeader_GetMapLabelTextID(v0));
     sub_0206CEA4(param1, 1, v1);
 
     return 29;
@@ -2550,7 +2550,7 @@ static int sub_0206EC90 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
     v1 = sub_0206EBE8(param0);
     v2 = Unk_020F0074[v1 * 2 + 1];
-    sub_0200B8C8(param1, 0, MapHeader_GetMapLabelTextID(v2));
+    StringTemplate_SetLocationName(param1, 0, MapHeader_GetMapLabelTextID(v2));
 
     switch (sub_02027D04(v0, v1)) {
     case 5:
@@ -2592,7 +2592,7 @@ static int sub_0206ED14 (FieldSystem * param0, StringTemplate * param1, UnkStruc
     v0 = (LCRNG_Next() % 0xffff);
     v2 = Pokemon_GetNatureOf(v0);
 
-    sub_0200B6D8(param1, 0, v2);
+    StringTemplate_SetNatureName(param1, 0, v2);
 
     if ((v2 == 0) || (v2 == 6) || (v2 == 12) || (v2 == 18) || (v2 == 24)) {
         return 46;
@@ -2606,7 +2606,7 @@ static int sub_0206ED14 (FieldSystem * param0, StringTemplate * param1, UnkStruc
             }
         }
 
-        sub_0200B890(param1, 2, v5);
+        StringTemplate_SetFlavorName(param1, 2, v5);
         return 45;
     }
 
@@ -2617,7 +2617,7 @@ static int sub_0206ED14 (FieldSystem * param0, StringTemplate * param1, UnkStruc
         }
     }
 
-    sub_0200B824(param1, 1, 1 + v6);
+    StringTemplate_SetPokemonStatName(param1, 1, 1 + v6);
     return 44;
 }
 
@@ -2634,7 +2634,7 @@ static int sub_0206EDAC (FieldSystem * param0, StringTemplate * param1, UnkStruc
     v2 = (LCRNG_Next() % 29);
 
     sub_02071D10(sub_0206C3C8(v2), 4, v6);
-    sub_0200B48C(param1, 0, v6, 0, 1, GAME_LANGUAGE);
+    StringTemplate_SetStrbuf(param1, 0, v6, 0, 1, GAME_LANGUAGE);
     Strbuf_Free(v6);
 
     for (v3 = 0; v3 < 6; v3++) {
@@ -2715,11 +2715,11 @@ static int sub_0206EEBC (FieldSystem * param0, StringTemplate * param1, UnkStruc
         int v8 = sub_0202A1C0(v0);
 
         sub_0202A1A0(v0, v7);
-        sub_0200B48C(param1, 0, v7, v8, 1, sub_0202A200(v0));
+        StringTemplate_SetStrbuf(param1, 0, v7, v8, 1, sub_0202A200(v0));
         Strbuf_Free(v7);
 
         v6 = sub_0202A1F4(v0);
-        sub_0200BE48(param1, 1, v6);
+        StringTemplate_SetCustomMessageWord(param1, 1, v6);
     }
 
     return 52;
@@ -2778,7 +2778,7 @@ static int sub_0206F01C (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
     v0 = sub_0206F0D8(v3, 4);
 
-    sub_0200B48C(param1, 0, v0, 0, 1, GAME_LANGUAGE);
+    StringTemplate_SetStrbuf(param1, 0, v0, 0, 1, GAME_LANGUAGE);
     Strbuf_Free(v0);
 
     v1 = (LCRNG_Next() % 3);
@@ -2787,7 +2787,7 @@ static int sub_0206F01C (FieldSystem * param0, StringTemplate * param1, UnkStruc
         return 8;
     } else if (v1 == 1) {
         v1 = (LCRNG_Next() % 34) + 25;
-        StringTemplate_FormatNumber(param1, 1, v1, 2, 0, 1);
+        StringTemplate_SetNumber(param1, 1, v1, 2, 0, 1);
         return 9;
     } else {
         return 10;
@@ -2860,14 +2860,14 @@ static int sub_0206F160 (FieldSystem * param0, StringTemplate * param1, UnkStruc
     v3 = Party_GetPokemonBySlotIndex(v4, sub_0205E1B4(param0->unk_0C));
 
     sub_0206CE74(param1, 0, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), Pokemon_GetValue(v3, MON_DATA_GENDER, NULL), TrainerInfo_RegionCode(v5), TrainerInfo_GameCode(v5));
-    sub_0200BFAC(param1, 1, (LCRNG_Next() % 100));
+    StringTemplate_SetContestAccessoryName(param1, 1, (LCRNG_Next() % 100));
 
     v1 = (LCRNG_Next() % (NATIONAL_DEX_COUNT - 2) + 1);
 
     for (v2 = 1; v2 <= NATIONAL_DEX_COUNT; v2++) {
         if (sub_02026FE8(v6, v1) == 1) {
             v0 = sub_0206F0D8(v1, 4);
-            sub_0200B48C(param1, 2, v0, 0, 1, GAME_LANGUAGE);
+            StringTemplate_SetStrbuf(param1, 2, v0, 0, 1, GAME_LANGUAGE);
             Strbuf_Free(v0);
             break;
         }
@@ -2879,7 +2879,7 @@ static int sub_0206F160 (FieldSystem * param0, StringTemplate * param1, UnkStruc
         }
     }
 
-    sub_0200B630(param1, 3, (LCRNG_Next() % 467 - 2) + 1);
+    StringTemplate_SetMoveName(param1, 3, (LCRNG_Next() % 467 - 2) + 1);
 
     return 17;
 }

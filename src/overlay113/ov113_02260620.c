@@ -587,7 +587,7 @@ void ov113_02260620 (MessageLoader * param0, StringTemplate * param1, Window par
     v4 = TrainerInfo_NameNewStrbuf(v1, 118);
     v6 = TrainerInfo_Gender(v1);
 
-    sub_0200B48C(param1, 0, v4, v6, 1, GAME_LANGUAGE);
+    StringTemplate_SetStrbuf(param1, 0, v4, v6, 1, GAME_LANGUAGE);
 
     v2 = MessageLoader_GetNewStrbuf(param0, 0);
     v3 = Strbuf_Init(v5, 118);

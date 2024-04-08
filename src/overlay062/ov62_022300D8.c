@@ -702,11 +702,11 @@ void ov62_02230FC8 (UnkStruct_0208C06C * param0, UnkStruct_ov62_022307C0_sub1 * 
             ov62_022349A8(param0, v5);
             v0 = Strbuf_Init(255, 102);
 
-            sub_0200B48C(v3, 0, v5, 0, 1, GAME_LANGUAGE);
+            StringTemplate_SetStrbuf(v3, 0, v5, 0, 1, GAME_LANGUAGE);
             StringTemplate_Format(v3, v0, v4);
             Strbuf_Free(v4);
             Strbuf_Free(v5);
-            sub_0200B3F0(v3);
+            StringTemplate_Free(v3);
         }
     } else if (param2 == 41) {
         if (param0->unk_88C[param3->unk_18] == NULL) {
@@ -718,11 +718,11 @@ void ov62_02230FC8 (UnkStruct_0208C06C * param0, UnkStruct_ov62_022307C0_sub1 * 
             ov62_022349A8(param0, v5);
             v0 = Strbuf_Init(255, 102);
 
-            sub_0200B48C(v3, 0, v5, 0, 1, GAME_LANGUAGE);
+            StringTemplate_SetStrbuf(v3, 0, v5, 0, 1, GAME_LANGUAGE);
             StringTemplate_Format(v3, v0, v4);
             Strbuf_Free(v4);
             Strbuf_Free(v5);
-            sub_0200B3F0(v3);
+            StringTemplate_Free(v3);
         }
     } else {
         v0 = MessageLoader_GetNewStrbuf(v1, param2);

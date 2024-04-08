@@ -511,12 +511,12 @@ static void ov5_021F0D6C (UnkStruct_ov5_021F0D6C * param0)
     param0->unk_48 = MessageLoader_Init(1, 26, 213, 4);
     param0->unk_2C = Strbuf_Init(0x400, 4);
     param0->unk_30 = Strbuf_Init(0x400, 4);
-    param0->unk_34 = sub_0200B368(8, 64, 4);
+    param0->unk_34 = StringTemplate_New(8, 64, 4);
 }
 
 static void ov5_021F0DA4 (UnkStruct_ov5_021F0D6C * param0)
 {
-    sub_0200B3F0(param0->unk_34);
+    StringTemplate_Free(param0->unk_34);
     Strbuf_Free(param0->unk_2C);
     Strbuf_Free(param0->unk_30);
     MessageLoader_Free(param0->unk_48);

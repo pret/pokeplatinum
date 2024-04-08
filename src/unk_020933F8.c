@@ -1129,7 +1129,7 @@ static void sub_0209451C (SysTask * param0, void * param1)
 
 void sub_02094630 (UnkStruct_02095C48 * param0, int param1, StringTemplate * param2, u32 param3)
 {
-    sub_0200BB74(param2, param3, param0->unk_00.unk_C0[param1].unk_00);
+    StringTemplate_SetContestJudgeName(param2, param3, param0->unk_00.unk_C0[param1].unk_00);
 }
 
 void sub_02094648 (UnkStruct_02095C48 * param0, int param1, StringTemplate * param2, u32 param3)
@@ -1137,7 +1137,7 @@ void sub_02094648 (UnkStruct_02095C48 * param0, int param1, StringTemplate * par
     int v0, v1;
 
     v1 = sub_02095904(param1);
-    sub_0200B48C(param2, param3, param0->unk_00.unk_D8[v1], param0->unk_00.unk_F8[v1], 1, GAME_LANGUAGE);
+    StringTemplate_SetStrbuf(param2, param3, param0->unk_00.unk_D8[v1], param0->unk_00.unk_F8[v1], 1, GAME_LANGUAGE);
 }
 
 void sub_02094680 (UnkStruct_02095C48 * param0, int param1, StringTemplate * param2, u32 param3)
@@ -1148,7 +1148,7 @@ void sub_02094680 (UnkStruct_02095C48 * param0, int param1, StringTemplate * par
     v1 = sub_02095904(param1);
     v0 = Pokemon_GetBoxPokemon(param0->unk_00.unk_00[v1]);
 
-    StringTemplate_BufferNickname(param2, param3, v0);
+    StringTemplate_SetNickname(param2, param3, v0);
 }
 
 void sub_020946A4 (UnkStruct_02095C48 * param0, StringTemplate * param1, u32 param2)
@@ -1156,7 +1156,7 @@ void sub_020946A4 (UnkStruct_02095C48 * param0, StringTemplate * param1, u32 par
     u32 v0;
 
     v0 = sub_02095848(param0->unk_00.unk_110, param0->unk_00.unk_111, param0->unk_155);
-    sub_0200BBA8(param1, param2, v0);
+    StringTemplate_SetContestRankName(param1, param2, v0);
 }
 
 void sub_020946CC (UnkStruct_02095C48 * param0, StringTemplate * param1, u32 param2)
@@ -1164,7 +1164,7 @@ void sub_020946CC (UnkStruct_02095C48 * param0, StringTemplate * param1, u32 par
     u32 v0;
 
     v0 = sub_020958C4(param0->unk_00.unk_10F, param0->unk_00.unk_111);
-    sub_0200BBDC(param1, param2, v0);
+    StringTemplate_SetContestTypeName(param1, param2, v0);
 }
 
 void sub_020946F0 (UnkStruct_02095C48 * param0, StringTemplate * param1, u32 param2)
@@ -1349,7 +1349,7 @@ void sub_02094898 (UnkStruct_02095C48 * param0, StringTemplate * param1, u32 par
     }
 
     v1 = sub_020923C0(v0, 3);
-    sub_0200B668(param1, param2, v1);
+    StringTemplate_SetRibbonName(param1, param2, v1);
 }
 
 u32 sub_02094904 (UnkStruct_02095C48 * param0)

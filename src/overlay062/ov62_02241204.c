@@ -719,17 +719,17 @@ static void ov62_022419D4 (UnkStruct_0208C06C * param0, int param1, int param2)
         if (param2 != 0) {
             v2 = Strbuf_Init(255, 102);
             v3 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 23);
-            sub_0200BE08(v4, 0, param1, param2);
+            StringTemplate_SetCityName(v4, 0, param1, param2);
             StringTemplate_Format(v4, v2, v3);
         } else {
             v2 = Strbuf_Init(255, 102);
             v3 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 22);
-            sub_0200BDD0(v4, 0, param1);
+            StringTemplate_SetCountryName(v4, 0, param1);
             StringTemplate_Format(v4, v2, v3);
         }
 
         Strbuf_Free(v3);
-        sub_0200B3F0(v4);
+        StringTemplate_Free(v4);
     }
 
     sub_0201D78C(v1, 0, v2, 0, 0, 0xff, (((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0)))), NULL);
@@ -3135,11 +3135,11 @@ static void ov62_022448E0 (UnkStruct_ov62_022312B0 * param0, UnkStruct_0208C06C 
         v5 = sub_02030B94(param1->unk_88C[param2], 102);
         ov62_022349A8(param1, v5);
         v0 = Strbuf_Init(255, 102);
-        sub_0200B48C(v3, 0, v5, 0, 1, GAME_LANGUAGE);
+        StringTemplate_SetStrbuf(v3, 0, v5, 0, 1, GAME_LANGUAGE);
         StringTemplate_Format(v3, v0, v4);
         Strbuf_Free(v4);
         Strbuf_Free(v5);
-        sub_0200B3F0(v3);
+        StringTemplate_Free(v3);
     }
 
     Window_Init(&v2);
@@ -3172,11 +3172,11 @@ static void ov62_022449B8 (UnkStruct_0208C06C * param0, int param1, BOOL param2)
         v4 = sub_02030B94(v6, 102);
         ov62_022349A8(param0, v4);
         v5 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
-        sub_0200B48C(v3, 0, v4, 0, 1, GAME_LANGUAGE);
+        StringTemplate_SetStrbuf(v3, 0, v4, 0, 1, GAME_LANGUAGE);
         StringTemplate_Format(v3, v0, v5);
         Strbuf_Free(v4);
         Strbuf_Free(v5);
-        sub_0200B3F0(v3);
+        StringTemplate_Free(v3);
     } else {
         v0 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
     }
@@ -3204,11 +3204,11 @@ static void ov62_02244AB4 (UnkStruct_0208C06C * param0, int param1, int param2)
         v4 = sub_02030B94(v6, 102);
         ov62_022349A8(param0, v4);
         v5 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
-        sub_0200B48C(v3, 0, v4, 0, 1, GAME_LANGUAGE);
+        StringTemplate_SetStrbuf(v3, 0, v4, 0, 1, GAME_LANGUAGE);
         StringTemplate_Format(v3, v0, v5);
         Strbuf_Free(v4);
         Strbuf_Free(v5);
-        sub_0200B3F0(v3);
+        StringTemplate_Free(v3);
     } else if (param1 == 102) {
         StringTemplate * v7;
         Strbuf* v8;
@@ -3220,11 +3220,11 @@ static void ov62_02244AB4 (UnkStruct_0208C06C * param0, int param1, int param2)
         v8 = sub_02030B94(v10, 102);
         ov62_022349A8(param0, v8);
         v9 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
-        sub_0200B48C(v7, 0, v8, 0, 1, GAME_LANGUAGE);
+        StringTemplate_SetStrbuf(v7, 0, v8, 0, 1, GAME_LANGUAGE);
         StringTemplate_Format(v7, v0, v9);
         Strbuf_Free(v8);
         Strbuf_Free(v9);
-        sub_0200B3F0(v7);
+        StringTemplate_Free(v7);
     } else {
         v0 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
     }
@@ -4719,9 +4719,9 @@ static void ov62_022469A0 (UnkStruct_ov62_02241204 * param0, UnkStruct_0208C06C 
         Strbuf_FormatInt(v8, v7[0], 5, 2, 1);
         Strbuf_FormatInt(v9, v7[1], 5, 2, 1);
         Strbuf_FormatInt(v10, v7[2], 2, 2, 1);
-        sub_0200B48C(v3, 2, v8, 0, 1, GAME_LANGUAGE);
-        sub_0200B48C(v3, 1, v9, 0, 1, GAME_LANGUAGE);
-        sub_0200B48C(v3, 0, v10, 0, 1, GAME_LANGUAGE);
+        StringTemplate_SetStrbuf(v3, 2, v8, 0, 1, GAME_LANGUAGE);
+        StringTemplate_SetStrbuf(v3, 1, v9, 0, 1, GAME_LANGUAGE);
+        StringTemplate_SetStrbuf(v3, 0, v10, 0, 1, GAME_LANGUAGE);
         StringTemplate_Format(v3, v2, v1);
         BGL_FillWindow(v4, 0xCC);
         sub_0201D78C(v4, 0, v2, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -4731,8 +4731,8 @@ static void ov62_022469A0 (UnkStruct_ov62_02241204 * param0, UnkStruct_0208C06C 
         Strbuf_Free(v10);
         Strbuf_Free(v1);
         Strbuf_Free(v2);
-        sub_0200C41C(v3);
+        StringTemplate_ClearArgs(v3);
     }
 
-    sub_0200B3F0(v3);
+    StringTemplate_Free(v3);
 }

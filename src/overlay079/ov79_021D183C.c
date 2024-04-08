@@ -158,8 +158,8 @@ void ov79_021D196C (UnkStruct_ov79_021D0E1C * param0)
         v2 = &(param0->unk_20->unk_1C[v0]);
         v1 = v2->unk_06;
 
-        sub_0200B48C(param0->unk_30.unk_00, 0, sub_02015918(param0->unk_28, v2->unk_02), 0, 0, GAME_LANGUAGE);
-        StringTemplate_FormatNumber(param0->unk_30.unk_00, 1, v2->unk_01, 2, 2, 1);
+        StringTemplate_SetStrbuf(param0->unk_30.unk_00, 0, sub_02015918(param0->unk_28, v2->unk_02), 0, 0, GAME_LANGUAGE);
+        StringTemplate_SetNumber(param0->unk_30.unk_00, 1, v2->unk_01, 2, 2, 1);
         StringTemplate_Format(param0->unk_30.unk_00, param0->unk_30.unk_04, param0->unk_30.unk_0C);
         sub_02013A6C(param0->unk_CC, param0->unk_30.unk_04, v2->unk_05);
     }
@@ -359,7 +359,7 @@ static void ov79_021D1D94 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
         v4 = 99;
     }
 
-    StringTemplate_FormatNumber(v0->unk_30.unk_00, 0, v4, 2, 0, 1);
+    StringTemplate_SetNumber(v0->unk_30.unk_00, 0, v4, 2, 0, 1);
     StringTemplate_Format(v0->unk_30.unk_00, v0->unk_30.unk_04, v0->unk_30.unk_10);
     sub_0201D78C(&v0->unk_E8[1], 0, v0->unk_30.unk_04, 8, 0, 0, v1, NULL);
     sub_0209933C(v0->unk_1F8, v0->unk_1FC, v0->unk_20->unk_1C[param1].unk_02);
@@ -412,7 +412,7 @@ static void ov79_021D1FA8 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 void ov79_021D1FBC (UnkStruct_ov79_021D0E1C * param0)
 {
     Strbuf_Clear(param0->unk_30.unk_04);
-    sub_0200B48C(param0->unk_30.unk_00, 0, sub_02015918(param0->unk_28, param0->unk_20->unk_1C[param0->unk_1A].unk_02), 2, 1, GAME_LANGUAGE);
+    StringTemplate_SetStrbuf(param0->unk_30.unk_00, 0, sub_02015918(param0->unk_28, param0->unk_20->unk_1C[param0->unk_1A].unk_02), 2, 1, GAME_LANGUAGE);
     StringTemplate_Format(param0->unk_30.unk_00, param0->unk_30.unk_04, param0->unk_30.unk_14);
 
     ov79_021D1850(param0, param0->unk_30.unk_04, param0->unk_30.unk_4C, 1);
@@ -421,7 +421,7 @@ void ov79_021D1FBC (UnkStruct_ov79_021D0E1C * param0)
 void ov79_021D2008 (UnkStruct_ov79_021D0E1C * param0)
 {
     Strbuf_Clear(param0->unk_30.unk_04);
-    sub_0200B48C(param0->unk_30.unk_00, 0, sub_02015918(param0->unk_28, param0->unk_20->unk_1C[param0->unk_1A].unk_02), 2, 1, GAME_LANGUAGE);
+    StringTemplate_SetStrbuf(param0->unk_30.unk_00, 0, sub_02015918(param0->unk_28, param0->unk_20->unk_1C[param0->unk_1A].unk_02), 2, 1, GAME_LANGUAGE);
     StringTemplate_Format(param0->unk_30.unk_00, param0->unk_30.unk_04, param0->unk_30.unk_18);
 
     ov79_021D1850(param0, param0->unk_30.unk_04, param0->unk_30.unk_4C, 0);

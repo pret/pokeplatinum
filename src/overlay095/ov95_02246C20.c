@@ -151,20 +151,20 @@ int ov95_02246C20 (OverlayManager * param0, int * param1)
             v0->unk_08 = sub_02018340(57);
             v0->unk_14 = Strbuf_Init(400, 57);
             v0->unk_10 = MessageLoader_Init(0, 26, 350, 57);
-            v0->unk_0C = StringTemplate_New(57);
+            v0->unk_0C = StringTemplate_Default(57);
 
             switch (v0->unk_00->unk_10) {
             case 1:
-                StringTemplate_BufferNickname(v0->unk_0C, 0, (BoxPokemon *)(v0->unk_00->unk_00));
-                StringTemplate_BufferNickname(v0->unk_0C, 1, (BoxPokemon *)(v0->unk_00->unk_04));
-                StringTemplate_FormatPlayerName(v0->unk_0C, 2, v0->unk_00->unk_08);
+                StringTemplate_SetNickname(v0->unk_0C, 0, (BoxPokemon *)(v0->unk_00->unk_00));
+                StringTemplate_SetNickname(v0->unk_0C, 1, (BoxPokemon *)(v0->unk_00->unk_04));
+                StringTemplate_SetPlayerName(v0->unk_0C, 2, v0->unk_00->unk_08);
                 v0->unk_1AC = ov95_02246DEC((BoxPokemon *)(v0->unk_00->unk_04));
                 break;
             case 2:
-                StringTemplate_BufferNickname(v0->unk_0C, 0, (BoxPokemon *)(v0->unk_00->unk_00));
+                StringTemplate_SetNickname(v0->unk_0C, 0, (BoxPokemon *)(v0->unk_00->unk_00));
                 break;
             case 4:
-                StringTemplate_BufferNickname(v0->unk_0C, 1, (BoxPokemon *)(v0->unk_00->unk_04));
+                StringTemplate_SetNickname(v0->unk_0C, 1, (BoxPokemon *)(v0->unk_00->unk_04));
                 v0->unk_1AC = ov95_02246DEC((BoxPokemon *)(v0->unk_00->unk_04));
                 break;
             }
@@ -217,7 +217,7 @@ int ov95_02246E1C (OverlayManager * param0, int * param1)
 
     SysTask_Done(v1->unk_1A8);
     sub_02039794();
-    sub_0200B3F0(v1->unk_0C);
+    StringTemplate_Free(v1->unk_0C);
     MessageLoader_Free(v1->unk_10);
     Strbuf_Free(v1->unk_14);
     Heap_FreeToHeap(v1->unk_08);

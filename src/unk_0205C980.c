@@ -44,7 +44,7 @@ void sub_0205C980 (u32 param0, int param1, StringTemplate * param2)
 
     for (v1 = 0; v1 < 4; v1++) {
         int v2 = Unk_020ED770[v0][v1] + 8 * param1;
-        sub_0200B960(param2, v1, Unk_020ED7F0[v2][1]);
+        StringTemplate_SetTrainerClassName(param2, v1, Unk_020ED7F0[v2][1]);
     }
 }
 

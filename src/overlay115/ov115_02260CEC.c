@@ -3261,7 +3261,7 @@ static void ov115_02263B78 (UnkStruct_ov115_02261ADC * param0)
 
 static void ov115_02263BCC (UnkStruct_ov115_02261ADC * param0, u32 param1)
 {
-    param0->unk_04 = StringTemplate_New(param1);
+    param0->unk_04 = StringTemplate_Default(param1);
     param0->unk_08 = MessageLoader_Init(0, 26, 407, param1);
     param0->unk_0C = Strbuf_Init(128, param1);
     param0->unk_10 = Strbuf_Init(128, param1);
@@ -3272,7 +3272,7 @@ static void ov115_02263C04 (UnkStruct_ov115_02261ADC * param0)
     Strbuf_Free(param0->unk_10);
     Strbuf_Free(param0->unk_0C);
     MessageLoader_Free(param0->unk_08);
-    sub_0200B3F0(param0->unk_04);
+    StringTemplate_Free(param0->unk_04);
 }
 
 static void ov115_02263C24 (UnkStruct_ov115_02261ADC * param0, u32 param1, u32 param2, u32 param3)

@@ -142,32 +142,32 @@ BOOL sub_0207CC10 (SaveData * param0, Strbuf *param1, u16 param2, u32 param3)
     Strbuf* v2;
 
     v0 = MessageLoader_Init(0, 26, 7, param3);
-    v1 = StringTemplate_New(param3);
+    v1 = StringTemplate_Default(param3);
 
     if (param2 == 0) {
         v2 = MessageLoader_GetNewStrbuf(v0, 99);
     } else if (param2 == 432) {
         v2 = MessageLoader_GetNewStrbuf(v0, 97);
-        StringTemplate_FormatNumber(v1, 0, sub_0207CC00(param0), 4, 0, 1);
+        StringTemplate_SetNumber(v1, 0, sub_0207CC00(param0), 4, 0, 1);
     } else if (param2 == 434) {
         v2 = MessageLoader_GetNewStrbuf(v0, 92);
-        StringTemplate_FormatNumber(v1, 0, sub_0207CBC0(param0), 4, 0, 1);
+        StringTemplate_SetNumber(v1, 0, sub_0207CBC0(param0), 4, 0, 1);
     } else if (param2 == 435) {
         v2 = MessageLoader_GetNewStrbuf(v0, 93);
-        StringTemplate_FormatNumber(v1, 0, sub_0207CBE0(param0), 3, 0, 1);
-        StringTemplate_FormatNumber(v1, 1, sub_0207CBF0(param0), 2, 0, 1);
+        StringTemplate_SetNumber(v1, 0, sub_0207CBE0(param0), 3, 0, 1);
+        StringTemplate_SetNumber(v1, 1, sub_0207CBF0(param0), 2, 0, 1);
     } else if (param2 == 444) {
         v2 = MessageLoader_GetNewStrbuf(v0, 57);
-        StringTemplate_FormatNumber(v1, 0, sub_0207CBB4(param0), 5, 0, 1);
+        StringTemplate_SetNumber(v1, 0, sub_0207CBB4(param0), 5, 0, 1);
     } else {
-        sub_0200B3F0(v1);
+        StringTemplate_Free(v1);
         MessageLoader_Free(v0);
         return 0;
     }
 
     StringTemplate_Format(v1, param1, v2);
     Strbuf_Free(v2);
-    sub_0200B3F0(v1);
+    StringTemplate_Free(v1);
     MessageLoader_Free(v0);
 
     return 1;
@@ -197,12 +197,12 @@ void sub_0207CD34 (void * param0, Strbuf *param1, u16 param2, u32 param3, u32 pa
         break;
     default:
         v0 = MessageLoader_Init(1, 26, 213, param4);
-        v1 = StringTemplate_New(param4);
+        v1 = StringTemplate_Default(param4);
         v2 = MessageLoader_GetNewStrbuf(v0, 36);
-        StringTemplate_FormatPlayerName(v1, 0, param0);
+        StringTemplate_SetPlayerName(v1, 0, param0);
         StringTemplate_Format(v1, param1, v2);
         Strbuf_Free(v2);
-        sub_0200B3F0(v1);
+        StringTemplate_Free(v1);
         MessageLoader_Free(v0);
     }
 }

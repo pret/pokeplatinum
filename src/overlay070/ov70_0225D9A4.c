@@ -1134,38 +1134,38 @@ void ov70_0225E29C (UnkStruct_ov70_0225DEE8 * param0, u32 param1, u32 param2)
 
 void ov70_0225E2AC (UnkStruct_ov70_0225DEE8 * param0, u32 param1, u32 param2)
 {
-    sub_0200C158(param0->unk_340.unk_00, param1, param2);
+    StringTemplate_SetJPGreeting(param0->unk_340.unk_00, param1, param2);
 }
 
 void ov70_0225E2BC (UnkStruct_ov70_0225DEE8 * param0, u32 param1, u32 param2)
 {
-    sub_0200C190(param0->unk_340.unk_00, param1, param2);
+    StringTemplate_SetENGreeting(param0->unk_340.unk_00, param1, param2);
 }
 
 void ov70_0225E2CC (UnkStruct_ov70_0225DEE8 * param0, u32 param1, u32 param2)
 {
-    sub_0200C1C8(param0->unk_340.unk_00, param1, param2);
+    StringTemplate_SetFRGreeting(param0->unk_340.unk_00, param1, param2);
 }
 
 void ov70_0225E2DC (UnkStruct_ov70_0225DEE8 * param0, u32 param1, u32 param2)
 {
-    sub_0200C200(param0->unk_340.unk_00, param1, param2);
+    StringTemplate_SetITGreeting(param0->unk_340.unk_00, param1, param2);
 }
 
 void ov70_0225E2EC (UnkStruct_ov70_0225DEE8 * param0, u32 param1, u32 param2)
 {
-    sub_0200C238(param0->unk_340.unk_00, param1, param2);
+    StringTemplate_SetDEGreeting(param0->unk_340.unk_00, param1, param2);
 }
 
 void ov70_0225E2FC (UnkStruct_ov70_0225DEE8 * param0, u32 param1, u32 param2)
 {
-    sub_0200C270(param0->unk_340.unk_00, param1, param2);
+    StringTemplate_SetESGreeting(param0->unk_340.unk_00, param1, param2);
 }
 
 void ov70_0225E30C (UnkStruct_ov70_0225DEE8 * param0, u32 param1, int param2)
 {
     param2 = ov66_022316E8(param2);
-    sub_0200B7EC(param0->unk_340.unk_00, param1, param2);
+    StringTemplate_SetPokemonTypeName(param0->unk_340.unk_00, param1, param2);
 }
 
 void ov70_0225E328 (UnkStruct_ov70_0225DEE8 * param0, u32 param1, BOOL param2)
@@ -1999,7 +1999,7 @@ static void ov70_0225F208 (UnkStruct_ov70_0225F208 * param0, u32 param1)
         672, 673, 695, 662
     };
 
-    param0->unk_00 = sub_0200B368(8, 64, param1);
+    param0->unk_00 = StringTemplate_New(8, 64, param1);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_04[v0] = MessageLoader_Init(1, 26, v1[v0], param1);
@@ -2013,7 +2013,7 @@ static void ov70_0225F25C (UnkStruct_ov70_0225F208 * param0)
 {
     int v0;
 
-    sub_0200B3F0(param0->unk_00);
+    StringTemplate_Free(param0->unk_00);
 
     for (v0 = 0; v0 < 4; v0++) {
         MessageLoader_Free(param0->unk_04[v0]);
@@ -2032,47 +2032,47 @@ static Strbuf* ov70_0225F288 (UnkStruct_ov70_0225F208 * param0, int param1, u32 
 
 static void ov70_0225F2A8 (UnkStruct_ov70_0225F208 * param0, u32 param1, u32 param2, u32 param3, int param4)
 {
-    StringTemplate_FormatNumber(param0->unk_00, param3, param1, param2, param4, 1);
+    StringTemplate_SetNumber(param0->unk_00, param3, param1, param2, param4, 1);
 }
 
 static void ov70_0225F2C8 (UnkStruct_ov70_0225F208 * param0, const TrainerInfo * param1, u32 param2)
 {
-    StringTemplate_FormatPlayerName(param0->unk_00, param2, param1);
+    StringTemplate_SetPlayerName(param0->unk_00, param2, param1);
 }
 
 static void ov70_0225F2D8 (UnkStruct_ov70_0225F208 * param0, UnkEnum_ov66_022324D0 param1, u32 param2)
 {
-    sub_0200C0B0(param0->unk_00, param2, param1);
+    StringTemplate_SetPlazaMinigameName(param0->unk_00, param2, param1);
 }
 
 static void ov70_0225F2E8 (UnkStruct_ov70_0225F208 * param0, int param1, u32 param2)
 {
-    sub_0200C0E8(param0->unk_00, param2, param1);
+    StringTemplate_SetPlazaEventName(param0->unk_00, param2, param1);
 }
 
 static void ov70_0225F2F8 (UnkStruct_ov70_0225F208 * param0, u32 param1, u32 param2)
 {
-    sub_0200C120(param0->unk_00, param2, param1);
+    StringTemplate_SetPlazaItemName(param0->unk_00, param2, param1);
 }
 
 static void ov70_0225F308 (UnkStruct_ov70_0225F208 * param0, u32 param1, u32 param2)
 {
-    sub_0200BDD0(param0->unk_00, param2, param1);
+    StringTemplate_SetCountryName(param0->unk_00, param2, param1);
 }
 
 static void ov70_0225F318 (UnkStruct_ov70_0225F208 * param0, u32 param1, u32 param2, u32 param3)
 {
-    sub_0200BE08(param0->unk_00, param3, param1, param2);
+    StringTemplate_SetCityName(param0->unk_00, param3, param1, param2);
 }
 
 static void ov70_0225F32C (UnkStruct_ov70_0225F208 * param0, u32 param1, u16 param2)
 {
-    sub_0200BE48(param0->unk_00, param1, param2);
+    StringTemplate_SetCustomMessageWord(param0->unk_00, param1, param2);
 }
 
 static void ov70_0225F338 (UnkStruct_ov70_0225F208 * param0)
 {
-    sub_0200C41C(param0->unk_00);
+    StringTemplate_ClearArgs(param0->unk_00);
 }
 
 static void ov70_0225F344 (UnkStruct_ov70_0225DEE8 * param0)

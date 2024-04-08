@@ -1430,11 +1430,11 @@ asm static void ov62_02239724 (UnkStruct_0208C06C * param0)
     ldr r0, [sp, #0x18]
     add r2, r4, #0
     add r3, r1, #0
-    bl sub_0200B48C
+    bl StringTemplate_SetStrbuf
     ldr r0, [sp, #0x18]
     mov r1, #1
     add r2, r5, #0
-    bl sub_0200BE48
+    bl StringTemplate_SetCustomMessageWord
     ldr r0, [sp, #0x18]
     ldr r2, [sp, #0x1c]
     add r1, r7, #0
@@ -1484,7 +1484,7 @@ asm static void ov62_02239724 (UnkStruct_0208C06C * param0)
     add r0, r7, #0
     bl Strbuf_Free
     ldr r0, [sp, #0x18]
-    bl sub_0200B3F0
+    bl StringTemplate_Free
  _0223984A:
     add sp, #0x24
     pop {r4, r5, r6, r7, pc}
@@ -1565,11 +1565,11 @@ asm static void ov62_02239854 (UnkStruct_0208C06C * param0, int param1)
     ldr r0, [sp, #0x18]
     add r2, r4, #0
     add r3, r1, #0
-    bl sub_0200B48C
+    bl StringTemplate_SetStrbuf
     ldr r0, [sp, #0x18]
     mov r1, #1
     add r2, r5, #0
-    bl sub_0200BE48
+    bl StringTemplate_SetCustomMessageWord
     ldr r0, [sp, #0x18]
     ldr r2, [sp, #0x1c]
     add r1, r7, #0
@@ -1619,7 +1619,7 @@ asm static void ov62_02239854 (UnkStruct_0208C06C * param0, int param1)
     add r0, r7, #0
     bl Strbuf_Free
     ldr r0, [sp, #0x18]
-    bl sub_0200B3F0
+    bl StringTemplate_Free
  _0223997A:
     add sp, #0x24
     pop {r4, r5, r6, r7, pc}

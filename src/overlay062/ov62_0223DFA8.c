@@ -255,11 +255,11 @@ static void ov62_0223E0FC (UnkStruct_0208C06C * param0, int param1, int param2)
         v4 = sub_02030B94(v6, 102);
         ov62_022349A8(param0, v4);
         v5 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
-        sub_0200B48C(v3, 0, v4, 0, 1, GAME_LANGUAGE);
+        StringTemplate_SetStrbuf(v3, 0, v4, 0, 1, GAME_LANGUAGE);
         StringTemplate_Format(v3, v0, v5);
         Strbuf_Free(v4);
         Strbuf_Free(v5);
-        sub_0200B3F0(v3);
+        StringTemplate_Free(v3);
     } else if (param1 == 102) {
         StringTemplate * v7;
         Strbuf* v8;
@@ -272,11 +272,11 @@ static void ov62_0223E0FC (UnkStruct_0208C06C * param0, int param1, int param2)
         ov62_022349A8(param0, v8);
         v9 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
 
-        sub_0200B48C(v7, 0, v8, 0, 1, GAME_LANGUAGE);
+        StringTemplate_SetStrbuf(v7, 0, v8, 0, 1, GAME_LANGUAGE);
         StringTemplate_Format(v7, v0, v9);
         Strbuf_Free(v8);
         Strbuf_Free(v9);
-        sub_0200B3F0(v7);
+        StringTemplate_Free(v7);
     } else {
         v0 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
     }
@@ -839,11 +839,11 @@ static void ov62_0223EE88 (UnkStruct_ov62_022312B0 * param0, UnkStruct_0208C06C 
         ov62_022349A8(param1, v5);
         v0 = Strbuf_Init(255, 102);
 
-        sub_0200B48C(v3, 0, v5, 0, 1, GAME_LANGUAGE);
+        StringTemplate_SetStrbuf(v3, 0, v5, 0, 1, GAME_LANGUAGE);
         StringTemplate_Format(v3, v0, v4);
         Strbuf_Free(v4);
         Strbuf_Free(v5);
-        sub_0200B3F0(v3);
+        StringTemplate_Free(v3);
     }
 
     Window_Init(&v2);
@@ -1779,11 +1779,11 @@ static void ov62_022402FC (UnkStruct_0208C06C * param0, int param1, BOOL param2)
         v4 = sub_02030B94(v6, 102);
         ov62_022349A8(param0, v4);
         v5 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
-        sub_0200B48C(v3, 0, v4, 0, 1, GAME_LANGUAGE);
+        StringTemplate_SetStrbuf(v3, 0, v4, 0, 1, GAME_LANGUAGE);
         StringTemplate_Format(v3, v0, v5);
         Strbuf_Free(v4);
         Strbuf_Free(v5);
-        sub_0200B3F0(v3);
+        StringTemplate_Free(v3);
     } else {
         v0 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
     }

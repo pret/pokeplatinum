@@ -93,7 +93,7 @@ int ov96_0223B6A0 (OverlayManager * param0, int * param1)
             sub_02018368(&v1);
         }
 
-        v0->unk_BCC = sub_0200B368(11, 32, 68);
+        v0->unk_BCC = StringTemplate_New(11, 32, 68);
         v0->unk_BD0 = MessageLoader_Init(0, 26, 670, 68);
         v0->unk_BD4 = MessageLoader_Init(0, 26, 674, 68);
         v0->unk_BD8 = MessageLoader_Init(0, 26, 695, 68);
@@ -181,7 +181,7 @@ int ov96_0223B8CC (OverlayManager * param0, int * param1)
     MessageLoader_Free(v0->unk_BD8);
     MessageLoader_Free(v0->unk_BD4);
     MessageLoader_Free(v0->unk_BD0);
-    sub_0200B3F0(v0->unk_BCC);
+    StringTemplate_Free(v0->unk_BCC);
 
     ov96_0223B99C(v0);
 

@@ -1798,7 +1798,7 @@ static BOOL ov104_02230CD4 (UnkStruct_ov104_0222E930 * param0)
     u8 v0 = (*((param0)->unk_1C++));
     u16 v1 = ov104_0222FC00(param0);
 
-    sub_0200B70C(param0->unk_00->unk_44, v0, v1);
+    StringTemplate_SetItemName(param0->unk_00->unk_44, v0, v1);
     return 0;
 }
 
@@ -1807,7 +1807,7 @@ static BOOL ov104_02230CF4 (UnkStruct_ov104_0222E930 * param0)
     u8 v0 = (*((param0)->unk_1C++));
     u16 v1 = ov104_0222FC00(param0);
 
-    StringTemplate_FormatNumber(param0->unk_00->unk_44, v0, v1, ov104_02230D28(v1), 1, 1);
+    StringTemplate_SetNumber(param0->unk_00->unk_44, v0, v1, ov104_02230D28(v1), 1, 1);
     return 0;
 }
 
@@ -1839,7 +1839,7 @@ static BOOL ov104_02230DC4 (UnkStruct_ov104_0222E930 * param0)
     UnkStruct_ov104_02230BE4 * v0 = sub_0209B970(param0->unk_00->unk_00);
     u8 v1 = (*((param0)->unk_1C++));
 
-    StringTemplate_FormatPlayerName(param0->unk_00->unk_44, v1, SaveData_GetTrainerInfo(v0->unk_08));
+    StringTemplate_SetPlayerName(param0->unk_00->unk_44, v1, SaveData_GetTrainerInfo(v0->unk_08));
     return 0;
 }
 
@@ -1848,7 +1848,7 @@ static BOOL ov104_02230DF0 (UnkStruct_ov104_0222E930 * param0)
     UnkStruct_ov104_02230BE4 * v0 = sub_0209B970(param0->unk_00->unk_00);
     u8 v1 = (*((param0)->unk_1C++));
 
-    StringTemplate_FormatPlayerName(param0->unk_00->unk_44, v1, CommInfo_TrainerInfo((CommSys_CurNetId() ^ 1)));
+    StringTemplate_SetPlayerName(param0->unk_00->unk_44, v1, CommInfo_TrainerInfo((CommSys_CurNetId() ^ 1)));
     return 0;
 }
 
@@ -1857,7 +1857,7 @@ BOOL ov104_02230E20 (UnkStruct_ov104_0222E930 * param0)
     u8 v0 = (*((param0)->unk_1C++));
     u16 v1 = ov104_0222FC00(param0);
 
-    sub_0200B630(param0->unk_00->unk_44, v0, v1);
+    StringTemplate_SetMoveName(param0->unk_00->unk_44, v0, v1);
     return 0;
 }
 
@@ -1869,7 +1869,7 @@ BOOL ov104_02230E40 (UnkStruct_ov104_0222E930 * param0)
     u8 v3 = (*((param0)->unk_1C++));
     Strbuf* v4 = ov104_02230E90(v1, 11);
 
-    sub_0200B48C(param0->unk_00->unk_44, v0, v4, v2, v3, GAME_LANGUAGE);
+    StringTemplate_SetStrbuf(param0->unk_00->unk_44, v0, v4, v2, v3, GAME_LANGUAGE);
     Strbuf_Free(v4);
 
     return 0;
@@ -1892,7 +1892,7 @@ static BOOL ov104_02230EB8 (UnkStruct_ov104_0222E930 * param0)
     u8 v0 = (*((param0)->unk_1C++));
     u16 v1 = ov104_0222FC00(param0);
 
-    sub_0200B7EC(param0->unk_00->unk_44, v0, v1);
+    StringTemplate_SetPokemonTypeName(param0->unk_00->unk_44, v0, v1);
     return 0;
 }
 
@@ -1901,7 +1901,7 @@ static BOOL ov104_02230ED8 (UnkStruct_ov104_0222E930 * param0)
     UnkStruct_ov104_02230BE4 * v0 = sub_0209B970(param0->unk_00->unk_00);
     u8 v1 = (*((param0)->unk_1C++));
 
-    sub_0200B4BC(param0->unk_00->unk_44, v1, v0->unk_08);
+    StringTemplate_SetRivalName(param0->unk_00->unk_44, v1, v0->unk_08);
     return 0;
 }
 

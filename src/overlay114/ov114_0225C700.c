@@ -1433,7 +1433,7 @@ static void ov114_0225D07C (UnkStruct_ov114_0225CFCC * param0)
 static void ov114_0225D084 (UnkStruct_ov114_0225D084 * param0, u32 param1)
 {
     param0->unk_00 = MessageLoader_Init(0, 26, 411, param1);
-    param0->unk_04 = sub_0200B368(8, 64, param1);
+    param0->unk_04 = StringTemplate_New(8, 64, param1);
     param0->unk_08 = Strbuf_Init(128, param1);
     param0->unk_0C = Strbuf_Init(128, param1);
 
@@ -1445,48 +1445,48 @@ static void ov114_0225D0D8 (UnkStruct_ov114_0225D084 * param0)
 {
     Strbuf_Free(param0->unk_0C);
     Strbuf_Free(param0->unk_08);
-    sub_0200B3F0(param0->unk_04);
+    StringTemplate_Free(param0->unk_04);
     MessageLoader_Free(param0->unk_00);
 }
 
 static void ov114_0225D0F8 (UnkStruct_ov114_0225D084 * param0)
 {
-    sub_0200C41C(param0->unk_04);
+    StringTemplate_ClearArgs(param0->unk_04);
 }
 
 static void ov114_0225D104 (UnkStruct_ov114_0225D084 * param0, const TrainerInfo * param1)
 {
-    StringTemplate_FormatPlayerName(param0->unk_04, 0, param1);
+    StringTemplate_SetPlayerName(param0->unk_04, 0, param1);
 }
 
 static void ov114_0225D114 (UnkStruct_ov114_0225D084 * param0, u32 param1)
 {
-    sub_0200BDD0(param0->unk_04, 0, param1);
+    StringTemplate_SetCountryName(param0->unk_04, 0, param1);
 }
 
 static void ov114_0225D124 (UnkStruct_ov114_0225D084 * param0, u32 param1, u32 param2)
 {
-    sub_0200BE08(param0->unk_04, 0, param1, param2);
+    StringTemplate_SetCityName(param0->unk_04, 0, param1, param2);
 }
 
 static void ov114_0225D138 (UnkStruct_ov114_0225D084 * param0, u32 param1, u32 param2)
 {
-    StringTemplate_FormatNumber(param0->unk_04, 0, param1, param2, 1, 1);
+    StringTemplate_SetNumber(param0->unk_04, 0, param1, param2, 1, 1);
 }
 
 static void ov114_0225D154 (UnkStruct_ov114_0225D084 * param0, u32 param1)
 {
-    StringTemplate_FormatNumber(param0->unk_04, 0, param1, 2, 1, 1);
+    StringTemplate_SetNumber(param0->unk_04, 0, param1, 2, 1, 1);
 }
 
 static void ov114_0225D170 (UnkStruct_ov114_0225D084 * param0, u32 param1)
 {
-    sub_0200C120(param0->unk_04, 1, param1);
+    StringTemplate_SetPlazaItemName(param0->unk_04, 1, param1);
 }
 
 static void ov114_0225D180 (UnkStruct_ov114_0225D084 * param0, u32 param1)
 {
-    sub_0200C0B0(param0->unk_04, 0, param1);
+    StringTemplate_SetPlazaMinigameName(param0->unk_04, 0, param1);
 }
 
 static void ov114_0225D190 (UnkStruct_ov114_0225D084 * param0, Strbuf *param1, u32 param2)

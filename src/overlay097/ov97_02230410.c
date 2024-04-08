@@ -335,7 +335,7 @@ static void ov97_022305EC (Window * param0, int param1)
 {
     Strbuf* v0;
     MessageLoader * v1 = MessageLoader_Init(1, 26, 421, 87);
-    StringTemplate * v2 = StringTemplate_New(87);
+    StringTemplate * v2 = StringTemplate_Default(87);
 
     BGL_FillWindow(param0, sub_02002DF8(1, 6));
 
@@ -345,7 +345,7 @@ static void ov97_022305EC (Window * param0, int param1)
 
     Strbuf_Free(v0);
     MessageLoader_Free(v1);
-    sub_0200B3F0(v2);
+    StringTemplate_Free(v2);
 }
 
 static void ov97_02230664 (BGL * param0)
@@ -483,9 +483,9 @@ static BOOL ov97_0223097C (UnkStruct_ov97_02230868 * param0, Window * param1, u3
 
     RTC_ConvertDayToDate(&v0, param0->unk_2C14[param0->unk_2C20]->unk_354);
 
-    StringTemplate_FormatNumber(param0->unk_2A60, 0, v0.year + 2000, 4, 2, 1);
-    sub_0200C2E0(param0->unk_2A60, 1, v0.month);
-    StringTemplate_FormatNumber(param0->unk_2A60, 2, v0.day, 2, 2, 1);
+    StringTemplate_SetNumber(param0->unk_2A60, 0, v0.year + 2000, 4, 2, 1);
+    StringTemplate_SetMonthName(param0->unk_2A60, 1, v0.month);
+    StringTemplate_SetNumber(param0->unk_2A60, 2, v0.day, 2, 2, 1);
 
     return 1;
 }
@@ -513,7 +513,7 @@ static BOOL ov97_02230A34 (UnkStruct_ov97_02230868 * param0, Window * param1, u3
         Strbuf_Free(v0);
         return 0;
     } else if (param0->unk_2C14[param0->unk_2C20]->unk_348) {
-        StringTemplate_FormatNumber(param0->unk_2A60, 0, param0->unk_2C14[param0->unk_2C20]->unk_348, 3, 0, 1);
+        StringTemplate_SetNumber(param0->unk_2A60, 0, param0->unk_2C14[param0->unk_2C20]->unk_348, 3, 0, 1);
         return 1;
     } else {
         return 0;
@@ -566,7 +566,7 @@ static BOOL ov97_02230BC4 (UnkStruct_ov97_02230868 * param0, Window * param1, u3
 
 static BOOL ov97_02230BF0 (UnkStruct_ov97_02230868 * param0, Window * param1, u32 param2)
 {
-    StringTemplate_FormatNumber(param0->unk_2A60, 0, 0, 1, 1, 1);
+    StringTemplate_SetNumber(param0->unk_2A60, 0, 0, 1, 1, 1);
     return 1;
 }
 
@@ -589,7 +589,7 @@ static void ov97_02230C44 (UnkStruct_ov97_02230868 * param0, int param1, int par
     UnkStruct_ov97_0223E680 * v4 = Unk_ov97_0223E680;
 
     param0->unk_2A64 = MessageLoader_Init(1, 26, 421, param0->unk_00);
-    param0->unk_2A60 = StringTemplate_New(param0->unk_00);
+    param0->unk_2A60 = StringTemplate_Default(param0->unk_00);
     param0->unk_2C24 = param2;
 
     ov97_02230F98(param0, param2);
@@ -634,7 +634,7 @@ static void ov97_02230C44 (UnkStruct_ov97_02230868 * param0, int param1, int par
     }
 
     MessageLoader_Free(param0->unk_2A64);
-    sub_0200B3F0(param0->unk_2A60);
+    StringTemplate_Free(param0->unk_2A60);
 
     if (param2 == 0) {
         ov97_022310FC(param0);
@@ -655,7 +655,7 @@ static int ov97_02230E04 (UnkStruct_ov97_02230868 * param0, Window * param1, int
 
     if (v2->unk_20) {
         param0->unk_2A64 = MessageLoader_Init(1, 26, 421, 87);
-        param0->unk_2A60 = StringTemplate_New(87);
+        param0->unk_2A60 = StringTemplate_Default(87);
     }
 
     param0->unk_2BF8 = param3;
@@ -669,7 +669,7 @@ static int ov97_02230E04 (UnkStruct_ov97_02230868 * param0, Window * param1, int
         sub_0201D78C(param1, v2->unk_14, v0, 0, 0, 0xff, v2->unk_18, NULL);
         Strbuf_Free(v0);
         MessageLoader_Free(param0->unk_2A64);
-        sub_0200B3F0(param0->unk_2A60);
+        StringTemplate_Free(param0->unk_2A60);
     }
 
     if (param1 == &param0->unk_2C30) {
@@ -1370,7 +1370,7 @@ static int ov97_02231CA0 (UnkStruct_ov97_02230868 * param0, Window * param1)
     v10[2] = ov97_02231C48(v9);
     v10[3] = ov97_02231C48(v9);
 
-    v7 = StringTemplate_New(87);
+    v7 = StringTemplate_Default(87);
     v8 = MessageLoader_Init(1, 26, 421, 87);
     v2 = 0;
 
@@ -1380,7 +1380,7 @@ static int ov97_02231CA0 (UnkStruct_ov97_02230868 * param0, Window * param1)
         v5 = CommInfo_TrainerInfo(v10[v0]);
 
         if (v5) {
-            StringTemplate_FormatPlayerName(v7, 0, v5);
+            StringTemplate_SetPlayerName(v7, 0, v5);
             v6 = sub_0200B29C(v7, v8, 53, 87);
 
             if (TrainerInfo_Gender(v5) == 0) {
@@ -1390,7 +1390,7 @@ static int ov97_02231CA0 (UnkStruct_ov97_02230868 * param0, Window * param1)
             }
 
             Strbuf_Free(v6);
-            StringTemplate_FormatNumber(v7, 0, TrainerInfo_ID(v5) & 0xFFFF, 5, 2, 1);
+            StringTemplate_SetNumber(v7, 0, TrainerInfo_ID(v5) & 0xFFFF, 5, 2, 1);
 
             v6 = sub_0200B29C(v7, v8, 54, 87);
 
@@ -1406,7 +1406,7 @@ static int ov97_02231CA0 (UnkStruct_ov97_02230868 * param0, Window * param1)
     }
 
     MessageLoader_Free(v8);
-    sub_0200B3F0(v7);
+    StringTemplate_Free(v7);
 
     return v1;
 }
@@ -1417,10 +1417,10 @@ static void ov97_02231E78 (UnkStruct_ov97_02230868 * param0, Window * param1, in
 
     param0->unk_2C54 = param2;
     param0->unk_2A64 = MessageLoader_Init(1, 26, 421, 87);
-    param0->unk_2A60 = StringTemplate_New(87);
+    param0->unk_2A60 = StringTemplate_Default(87);
 
     BGL_FillWindow(param1, 0);
-    StringTemplate_FormatNumber(param0->unk_2A60, 0, param0->unk_2C54, 1, 1, 1);
+    StringTemplate_SetNumber(param0->unk_2A60, 0, param0->unk_2C54, 1, 1, 1);
 
     v0 = sub_0200B29C(param0->unk_2A60, param0->unk_2A64, 56, 87);
 
@@ -1429,7 +1429,7 @@ static void ov97_02231E78 (UnkStruct_ov97_02230868 * param0, Window * param1, in
 
     Strbuf_Free(v0);
     MessageLoader_Free(param0->unk_2A64);
-    sub_0200B3F0(param0->unk_2A60);
+    StringTemplate_Free(param0->unk_2A60);
 }
 
 static void ov97_02231F1C (UnkStruct_ov97_02230868 * param0, int * param1, int param2)

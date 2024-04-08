@@ -2935,7 +2935,7 @@ static void ov69_0225EF1C (UnkStruct_ov69_0225EF54 * param0, u32 param1)
     }
 
     {
-        param0->unk_04 = sub_0200B368(8, 64, param1);
+        param0->unk_04 = StringTemplate_New(8, 64, param1);
     }
 
     param0->unk_08 = Strbuf_Init(128, param1);
@@ -2949,7 +2949,7 @@ static void ov69_0225EF54 (UnkStruct_ov69_0225EF54 * param0)
     }
 
     {
-        sub_0200B3F0(param0->unk_04);
+        StringTemplate_Free(param0->unk_04);
     }
 
     Strbuf_Free(param0->unk_08);
@@ -2970,7 +2970,7 @@ static void ov69_0225EF84 (UnkStruct_ov69_0225EF54 * param0, u32 param1, Strbuf 
 static Strbuf* ov69_0225EF90 (UnkStruct_ov69_0225EF54 * param0, u32 param1)
 {
     MessageLoader_GetStrbuf(param0->unk_00, 3, param0->unk_0C);
-    sub_0200BDD0(param0->unk_04, 0, param1);
+    StringTemplate_SetCountryName(param0->unk_04, 0, param1);
     StringTemplate_Format(param0->unk_04, param0->unk_08, param0->unk_0C);
 
     return param0->unk_08;
@@ -2978,9 +2978,9 @@ static Strbuf* ov69_0225EF90 (UnkStruct_ov69_0225EF54 * param0, u32 param1)
 
 static Strbuf* ov69_0225EFB8 (UnkStruct_ov69_0225EF54 * param0, u32 param1, u32 param2)
 {
-    sub_0200C41C(param0->unk_04);
+    StringTemplate_ClearArgs(param0->unk_04);
     MessageLoader_GetStrbuf(param0->unk_00, 3, param0->unk_0C);
-    sub_0200BE08(param0->unk_04, 0, param1, param2);
+    StringTemplate_SetCityName(param0->unk_04, 0, param1, param2);
     StringTemplate_Format(param0->unk_04, param0->unk_08, param0->unk_0C);
 
     return param0->unk_08;

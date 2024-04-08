@@ -800,7 +800,7 @@ static void ov65_02236B90 (UnkStruct_ov65_02236840 * param0, u32 param1)
 
 static void ov65_02236C10 (UnkStruct_ov65_02236840 * param0, const UnkStruct_0207DE04 * param1, u32 param2)
 {
-    param0->unk_04 = StringTemplate_New(param2);
+    param0->unk_04 = StringTemplate_Default(param2);
     param0->unk_08 = MessageLoader_Init(0, 26, 674, param2);
     param0->unk_0C = Strbuf_Init(256, param2);
     param0->unk_10 = Strbuf_Init(256, param2);
@@ -813,7 +813,7 @@ static void ov65_02236C5C (UnkStruct_ov65_02236840 * param0)
     Strbuf_Free(param0->unk_10);
     Strbuf_Free(param0->unk_0C);
     MessageLoader_Free(param0->unk_08);
-    sub_0200B3F0(param0->unk_04);
+    StringTemplate_Free(param0->unk_04);
 }
 
 static void ov65_02236C7C (UnkStruct_ov65_02236840 * param0, const UnkStruct_0207DE04 * param1, u32 param2)
@@ -822,13 +822,13 @@ static void ov65_02236C7C (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
     case 0:
         break;
     case 1:
-        sub_0200C0B0(param0->unk_04, 0, UnkEnum_ov66_022324D0_00);
+        StringTemplate_SetPlazaMinigameName(param0->unk_04, 0, UnkEnum_ov66_022324D0_00);
         break;
     case 2:
-        sub_0200C0B0(param0->unk_04, 0, UnkEnum_ov66_022324D0_01);
+        StringTemplate_SetPlazaMinigameName(param0->unk_04, 0, UnkEnum_ov66_022324D0_01);
         break;
     case 3:
-        sub_0200C0B0(param0->unk_04, 0, UnkEnum_ov66_022324D0_02);
+        StringTemplate_SetPlazaMinigameName(param0->unk_04, 0, UnkEnum_ov66_022324D0_02);
         break;
     }
 
@@ -1077,7 +1077,7 @@ static void ov65_0223726C (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
     TrainerInfo * v0;
 
     v0 = CommInfo_TrainerInfo(param2);
-    StringTemplate_FormatPlayerName(param0->unk_04, param3, v0);
+    StringTemplate_SetPlayerName(param0->unk_04, param3, v0);
 }
 
 static void ov65_02237284 (UnkStruct_ov65_02236840 * param0, const UnkStruct_0207DE04 * param1, int param2, int param3, u32 param4)
@@ -1088,7 +1088,7 @@ static void ov65_02237284 (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
     v0 = CommInfo_TrainerInfo(param2);
     v1 = TrainerInfo_ID_LowHalf(v0);
 
-    StringTemplate_FormatNumber(param0->unk_04, param3, v1, 5, 2, 1);
+    StringTemplate_SetNumber(param0->unk_04, param3, v1, 5, 2, 1);
 }
 
 static void ov65_022372B0 (UnkStruct_ov65_02236840 * param0)

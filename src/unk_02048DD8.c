@@ -279,7 +279,7 @@ static void sub_0204922C (StringTemplate * param0, int param1, const u16 * param
     Strbuf* v0 = Strbuf_Init(64, 4);
 
     Strbuf_CopyChars(v0, param2);
-    sub_0200B48C(param0, param1, v0, param3, param5, param4);
+    StringTemplate_SetStrbuf(param0, param1, v0, param3, param5, param4);
     Strbuf_Free(v0);
 }
 
@@ -288,7 +288,7 @@ static void sub_02049268 (FieldSystem * param0, StringTemplate * param1)
     Party * v0 = Party_GetFromSavedata(param0->unk_0C);
     Pokemon * v1 = sub_02054A74(v0);
 
-    sub_0200B538(param1, 0, Pokemon_GetBoxPokemon(v1));
+    StringTemplate_SetSpeciesName(param1, 0, Pokemon_GetBoxPokemon(v1));
 }
 
 static void sub_02049288 (FieldSystem * param0, StringTemplate * param1)
@@ -296,7 +296,7 @@ static void sub_02049288 (FieldSystem * param0, StringTemplate * param1)
     int v0;
 
     v0 = PoketchSystem_CurrentAppID(param0->unk_04->unk_14);
-    sub_0200B928(param1, 0, v0);
+    StringTemplate_SetPoketchAppName(param1, 0, v0);
 }
 
 static void sub_020492A0 (FieldSystem * param0, StringTemplate * param1)
@@ -328,7 +328,7 @@ static void sub_02049308 (FieldSystem * param0, StringTemplate * param1)
     v0 = Strbuf_Init(64, 4);
 
     Strbuf_CopyChars(v0, v2->unk_06);
-    sub_0200B48C(param1, 0, v0, v2->unk_02, 1, GAME_LANGUAGE);
+    StringTemplate_SetStrbuf(param1, 0, v0, v2->unk_02, 1, GAME_LANGUAGE);
     Strbuf_Free(v0);
 }
 

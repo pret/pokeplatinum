@@ -438,14 +438,14 @@ static void ov23_022546E0 (UnkStruct_ov23_02254594 * param0)
             v15 = Strbuf_Init(6, 4);
 
             PrintStringSimple(&param0->unk_18, 0, v13, 0, 0, 0xff, NULL);
-            v16 = StringTemplate_New(4);
+            v16 = StringTemplate_Default(4);
 
-            StringTemplate_FormatNumber(v16, 0, param0->unk_40, 2, 1, 1);
-            StringTemplate_FormatNumber(v16, 1, param0->unk_41, 2, 1, 1);
+            StringTemplate_SetNumber(v16, 0, param0->unk_40, 2, 1, 1);
+            StringTemplate_SetNumber(v16, 1, param0->unk_41, 2, 1, 1);
             StringTemplate_Format(v16, v15, v14);
             PrintStringSimple(&param0->unk_18, 0, v15, 0, 16, 0xff, NULL);
 
-            sub_0200B3F0(v16);
+            StringTemplate_Free(v16);
             Strbuf_Free(v13);
             Strbuf_Free(v14);
             Strbuf_Free(v15);

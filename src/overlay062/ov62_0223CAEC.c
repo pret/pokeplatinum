@@ -673,7 +673,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     ldr r2, [sp, #0x1c]
     add r0, r6, #0
     add r3, r1, #0
-    bl sub_0200B48C
+    bl StringTemplate_SetStrbuf
     b _0223D326
  _0223D292:
     ldr r0, = 0x88C
@@ -691,7 +691,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     ldr r2, [sp, #0x24]
     add r0, r6, #0
     mov r1, #0
-    bl sub_0200C2E0
+    bl StringTemplate_SetMonthName
     b _0223D326
  _0223D2BC:
     ldr r0, = 0x88C
@@ -741,7 +741,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     ldr r2, [sp, #0x1c]
     add r0, r6, #0
     add r3, r1, #0
-    bl sub_0200B48C
+    bl StringTemplate_SetStrbuf
  _0223D326:
     mov r1, #1
     str r1, [sp]
@@ -750,7 +750,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     ldr r2, [sp, #0x18]
     add r0, r6, #0
     mov r3, #0
-    bl sub_0200B48C
+    bl StringTemplate_SetStrbuf
     ldr r1, [sp, #0x14]
     add r0, r6, #0
     add r2, r7, #0
@@ -780,9 +780,9 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     ldr r0, [sp, #0x18]
     bl Strbuf_Free
     add r0, r6, #0
-    bl sub_0200C41C
+    bl StringTemplate_ClearArgs
     add r0, r6, #0
-    bl sub_0200B3F0
+    bl StringTemplate_Free
     add sp, #0x1fc
     add sp, #0x30
     pop {r4, r5, r6, r7, pc}

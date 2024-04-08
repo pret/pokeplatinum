@@ -112,7 +112,7 @@ UnkStruct_0203D9B8 * sub_020989DC (SaveData * param0, int param1)
     v0->unk_18 = sub_02025E44(param0);
 
     v1 = Poffin_malloc(param1);
-    v3 = sub_0200B368(1, 32, param1);
+    v3 = StringTemplate_New(1, 32, param1);
 
     for (v5 = 0; v5 < 100; v5++) {
         sub_0202AC54(v0->unk_08, v5, v1);
@@ -145,7 +145,7 @@ UnkStruct_0203D9B8 * sub_020989DC (SaveData * param0, int param1)
         v2->unk_07 = v2->unk_06 = 0xFF;
     }
 
-    sub_0200B3F0(v3);
+    StringTemplate_Free(v3);
     Heap_FreeToHeap(v1);
 
     v0->unk_00 = v6;

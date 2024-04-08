@@ -128,7 +128,7 @@ asm static void ov23_0225360C (Window * param0, MessageLoader * param1, TrainerI
     str r1, [sp, #0xc]
     add r5, r2, #0
     str r3, [sp, #0x10]
-    bl StringTemplate_New
+    bl StringTemplate_Default
     str r0, [sp, #0x1c]
     mov r0, #0x1e
     mov r1, #4
@@ -190,7 +190,7 @@ asm static void ov23_0225360C (Window * param0, MessageLoader * param1, TrainerI
     ldr r0, [sp, #0x1c]
     mov r1, #6
     mov r3, #5
-    bl StringTemplate_FormatNumber
+    bl StringTemplate_SetNumber
     ldr r0, [sp, #0xc]
     mov r1, #5
     add r2, r4, #0
@@ -212,7 +212,7 @@ asm static void ov23_0225360C (Window * param0, MessageLoader * param1, TrainerI
     ldr r0, [sp, #0x1c]
     mov r1, #0
     add r2, r5, #0
-    bl StringTemplate_FormatPlayerName
+    bl StringTemplate_SetPlayerName
     ldr r0, [sp, #0xc]
     mov r1, #4
     add r2, r4, #0
@@ -284,7 +284,7 @@ asm static void ov23_0225360C (Window * param0, MessageLoader * param1, TrainerI
     mov r1, #6
     ldr r0, [sp, #0x1c]
     add r3, r1, #0
-    bl StringTemplate_FormatNumber
+    bl StringTemplate_SetNumber
     ldr r0, [sp, #0xc]
     mov r1, #0xd
     add r2, r4, #0
@@ -315,7 +315,7 @@ asm static void ov23_0225360C (Window * param0, MessageLoader * param1, TrainerI
     ldr r0, [sp, #0x18]
     bl Strbuf_Free
     ldr r0, [sp, #0x1c]
-    bl sub_0200B3F0
+    bl StringTemplate_Free
     add sp, #0x20
     pop {r3, r4, r5, r6, r7, pc}
     nop
@@ -488,11 +488,11 @@ static void ov23_02253A78 (Window * param0, MessageLoader * param1, TrainerInfo 
     const int v11 = 146;
     const int v12 = 100;
 
-    v0 = StringTemplate_New(4);
+    v0 = StringTemplate_Default(4);
     v1 = Strbuf_Init(40, 4);
     v2 = Strbuf_Init(40, 4);
 
-    StringTemplate_FormatPlayerName(v0, 1, param2);
+    StringTemplate_SetPlayerName(v0, 1, param2);
     MessageLoader_GetStrbuf(param1, 12, v1);
     StringTemplate_Format(v0, v2, v1);
     PrintStringSimple(param0, 0, v2, v7, 1, 0xff, NULL);
@@ -500,7 +500,7 @@ static void ov23_02253A78 (Window * param0, MessageLoader * param1, TrainerInfo 
     MessageLoader_GetStrbuf(param1, 13, v1);
     PrintStringSimple(param0, 0, v1, v7, 1 + v8, 0xff, NULL);
 
-    StringTemplate_FormatNumber(v0, 6, sub_020295B8(param3), 6, 1, 1);
+    StringTemplate_SetNumber(v0, 6, sub_020295B8(param3), 6, 1, 1);
     MessageLoader_GetStrbuf(param1, 14, v1);
     StringTemplate_Format(v0, v2, v1);
     PrintStringSimple(param0, 0, v2, v7 + 100, 1 + v8, 0xff, NULL);
@@ -512,12 +512,12 @@ static void ov23_02253A78 (Window * param0, MessageLoader * param1, TrainerInfo 
         TrainerInfo * v13 = sub_020288C8(param4, 4, v3);
 
         if (v13) {
-            StringTemplate_FormatPlayerName(v0, 0, v13);
+            StringTemplate_SetPlayerName(v0, 0, v13);
             MessageLoader_GetStrbuf(param1, 16, v1);
             StringTemplate_Format(v0, v2, v1);
             PrintStringSimple(param0, 0, v2, v7, 1 + v8 * (4 + v3), 0xff, NULL);
 
-            StringTemplate_FormatNumber(v0, 5, TrainerInfo_ID_LowHalf(v13), 5, 2, 1);
+            StringTemplate_SetNumber(v0, 5, TrainerInfo_ID_LowHalf(v13), 5, 2, 1);
             MessageLoader_GetStrbuf(param1, 17, v1);
             StringTemplate_Format(v0, v2, v1);
 
@@ -533,7 +533,7 @@ static void ov23_02253A78 (Window * param0, MessageLoader * param1, TrainerInfo 
 
     Strbuf_Free(v1);
     Strbuf_Free(v2);
-    sub_0200B3F0(v0);
+    StringTemplate_Free(v0);
 }
 
 void * ov23_02253C64 (BGL * param0, TrainerInfo * param1, UndergroundData * param2, UnkFuncPtr_ov23_02253834 param3, void * param4)

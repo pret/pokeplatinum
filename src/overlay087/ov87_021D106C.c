@@ -110,7 +110,7 @@ UnkStruct_ov87_021D106C * ov87_021D106C (UnkStruct_ov87_021D0D80 * param0, const
         v0->unk_1E4 = MessageLoader_Init(0, 26, 352, 61);
         v0->unk_1E8 = MessageLoader_Init(1, 26, 412, 61);
         v0->unk_1EC = MessageLoader_Init(1, 26, 647, 61);
-        v0->unk_1F0 = StringTemplate_New(61);
+        v0->unk_1F0 = StringTemplate_Default(61);
         v0->unk_1F4 = Strbuf_Init(256, 61);
         v0->unk_1F8 = Strbuf_Init(256, 61);
         v0->unk_1FC = Pokemon_New(61);
@@ -128,7 +128,7 @@ void ov87_021D1140 (UnkStruct_ov87_021D106C * param0)
         Heap_FreeToHeap(param0->unk_1FC);
         Strbuf_Free(param0->unk_1F8);
         Strbuf_Free(param0->unk_1F4);
-        sub_0200B3F0(param0->unk_1F0);
+        StringTemplate_Free(param0->unk_1F0);
         MessageLoader_Free(param0->unk_1EC);
         MessageLoader_Free(param0->unk_1E8);
         MessageLoader_Free(param0->unk_1E4);
@@ -383,10 +383,10 @@ static void ov87_021D1590 (UnkStruct_ov87_021D106C * param0)
     const UnkStruct_ov87_021D12C0 * v0 = param0->unk_04;
     Window * v1 = &(param0->unk_14[0]);
 
-    StringTemplate_FormatNumber(param0->unk_1F0, 0, v0->unk_00, 4, 0, 1);
-    StringTemplate_FormatNumber(param0->unk_1F0, 1, v0->unk_04.year + 2000, 4, 0, 1);
-    sub_0200C2E0(param0->unk_1F0, 2, v0->unk_04.month);
-    StringTemplate_FormatNumber(param0->unk_1F0, 3, v0->unk_04.day, 2, 0, 1);
+    StringTemplate_SetNumber(param0->unk_1F0, 0, v0->unk_00, 4, 0, 1);
+    StringTemplate_SetNumber(param0->unk_1F0, 1, v0->unk_04.year + 2000, 4, 0, 1);
+    StringTemplate_SetMonthName(param0->unk_1F0, 2, v0->unk_04.month);
+    StringTemplate_SetNumber(param0->unk_1F0, 3, v0->unk_04.day, 2, 0, 1);
     MessageLoader_GetStrbuf(param0->unk_1E4, 0, param0->unk_1F4);
     StringTemplate_Format(param0->unk_1F0, param0->unk_1F8, param0->unk_1F4);
     BGL_FillWindow(v1, 15);
@@ -424,7 +424,7 @@ static void ov87_021D1640 (UnkStruct_ov87_021D106C * param0)
 
         PrintStringSimple(v2, 0, param0->unk_1F4, 174, 0, 0xff, NULL);
         MessageLoader_GetStrbuf(param0->unk_1E4, 1, param0->unk_1F4);
-        StringTemplate_FormatNumber(param0->unk_1F0, 0, v1->unk_12, 4, 1, 1);
+        StringTemplate_SetNumber(param0->unk_1F0, 0, v1->unk_12, 4, 1, 1);
         StringTemplate_Format(param0->unk_1F0, param0->unk_1F8, param0->unk_1F4);
         PrintStringSimple(v2, 0, param0->unk_1F8, 194, 0, 0xff, NULL);
         MessageLoader_GetStrbuf(param0->unk_1E4, 2, param0->unk_1F4);

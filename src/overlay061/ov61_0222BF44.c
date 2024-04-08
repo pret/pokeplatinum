@@ -176,7 +176,7 @@ int ov61_0222BF44 (OverlayManager * param0, int * param1)
     sub_0201E3D8();
     sub_0201E450(4);
 
-    v0->unk_20 = sub_0200B368(11, 64, 117);
+    v0->unk_20 = StringTemplate_New(11, 64, 117);
     v0->unk_24 = MessageLoader_Init(0, 26, 671, 117);
     v0->unk_28 = MessageLoader_Init(0, 26, 674, 117);
     v0->unk_2C = MessageLoader_Init(0, 26, 695, 117);
@@ -262,7 +262,7 @@ int ov61_0222C160 (OverlayManager * param0, int * param1)
     MessageLoader_Free(v0->unk_2C);
     MessageLoader_Free(v0->unk_28);
     MessageLoader_Free(v0->unk_24);
-    sub_0200B3F0(v0->unk_20);
+    StringTemplate_Free(v0->unk_20);
     Strbuf_Free(v0->unk_38);
     Strbuf_Free(v0->unk_3C);
     Strbuf_Free(v0->unk_34);
@@ -528,7 +528,7 @@ static void ov61_0222C7F8 (UnkStruct_ov61_0222C664 * param0, int param1, int par
         v0 = 11;
     }
 
-    StringTemplate_FormatNumber(param0->unk_20, 0, param2, 5, 2, 1);
+    StringTemplate_SetNumber(param0->unk_20, 0, param2, 5, 2, 1);
     sub_0200E084(&param0->unk_44, 1);
 
     ov61_0222C794(param0, v0);

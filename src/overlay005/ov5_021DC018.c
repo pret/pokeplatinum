@@ -856,12 +856,12 @@ void ov5_021DCF6C (FieldSystem * param0, Window * param1)
     BGL_WindowColor(param1, 15, 0, 16, 10 * 8, 4 * 8 - 16);
 
     v0 = MessageLoader_Init(0, 26, 543, 4);
-    v1 = StringTemplate_New(4);
+    v1 = StringTemplate_Default(4);
     v2 = Strbuf_Init(16, 4);
     v3 = MessageLoader_GetNewStrbuf(v0, 19);
     v4 = TrainerInfo_Money(SaveData_GetTrainerInfo(param0->unk_0C));
 
-    StringTemplate_FormatNumber(v1, 0, v4, 6, 1, 1);
+    StringTemplate_SetNumber(v1, 0, v4, 6, 1, 1);
     StringTemplate_Format(v1, v2, v3);
 
     v5 = (10 * 8) - sub_02002D7C(0, v2, 0);
@@ -869,7 +869,7 @@ void ov5_021DCF6C (FieldSystem * param0, Window * param1)
     PrintStringSimple(param1, 0, v2, v5, 16, 0xff, NULL);
     Strbuf_Free(v3);
     Strbuf_Free(v2);
-    sub_0200B3F0(v1);
+    StringTemplate_Free(v1);
     MessageLoader_Free(v0);
     sub_0201A9A4(param1);
 }
@@ -905,12 +905,12 @@ void ov5_021DD098 (FieldSystem * param0, Window * param1)
     BGL_FillWindow(param1, 15);
 
     v0 = MessageLoader_Init(0, 26, 361, 4);
-    v1 = StringTemplate_New(4);
+    v1 = StringTemplate_Default(4);
     v2 = Strbuf_Init(16, 4);
     v3 = MessageLoader_GetNewStrbuf(v0, 197);
     v4 = Coins_GetValue(sub_02025E50(param0->unk_0C));
 
-    StringTemplate_FormatNumber(v1, 0, v4, 5, 1, 1);
+    StringTemplate_SetNumber(v1, 0, v4, 5, 1, 1);
     StringTemplate_Format(v1, v2, v3);
 
     v5 = (10 * 8) - sub_02002D7C(0, v2, 0);
@@ -918,7 +918,7 @@ void ov5_021DD098 (FieldSystem * param0, Window * param1)
     PrintStringSimple(param1, 0, v2, v5, 0, 0xff, NULL);
     Strbuf_Free(v3);
     Strbuf_Free(v2);
-    sub_0200B3F0(v1);
+    StringTemplate_Free(v1);
     MessageLoader_Free(v0);
     sub_0201A9A4(param1);
 }
@@ -948,12 +948,12 @@ void ov5_021DD1A4 (FieldSystem * param0, Window * param1)
     BGL_FillWindow(param1, 15);
 
     v0 = MessageLoader_Init(0, 26, 361, 4);
-    v1 = StringTemplate_New(4);
+    v1 = StringTemplate_Default(4);
     v2 = Strbuf_Init(16, 4);
     v3 = MessageLoader_GetNewStrbuf(v0, 230);
     v4 = sub_0202D230(sub_0202D750(param0->unk_0C), 0, 0);
 
-    StringTemplate_FormatNumber(v1, 0, v4, 5, 1, 1);
+    StringTemplate_SetNumber(v1, 0, v4, 5, 1, 1);
     StringTemplate_Format(v1, v2, v3);
 
     v5 = (10 * 8) - sub_02002D7C(0, v2, 0);
@@ -961,7 +961,7 @@ void ov5_021DD1A4 (FieldSystem * param0, Window * param1)
     PrintStringSimple(param1, 0, v2, v5, 0, 0xff, NULL);
     Strbuf_Free(v3);
     Strbuf_Free(v2);
-    sub_0200B3F0(v1);
+    StringTemplate_Free(v1);
     MessageLoader_Free(v0);
     sub_0201A9A4(param1);
 }
@@ -978,19 +978,19 @@ UnkStruct_ov5_021DC1A4 * ov5_021DD250 (FieldSystem * param0, u8 param1, u8 param
     BGL_WindowColor(&v0->unk_08, 15, 0, 0, (10 * 8), (16 * 8));
 
     ov5_021DCC00(v0, 273, 0, 0);
-    StringTemplate_FormatNumber(param4, 0, param5, 3, 1, 1);
+    StringTemplate_SetNumber(param4, 0, param5, 3, 1, 1);
     ov5_021DCC00(v0, 277, 0, (0 + 16));
 
     ov5_021DCC00(v0, 274, 0, 32);
-    StringTemplate_FormatNumber(param4, 0, param6, 3, 1, 1);
+    StringTemplate_SetNumber(param4, 0, param6, 3, 1, 1);
     ov5_021DCC00(v0, 277, 0, (32 + 16));
 
     ov5_021DCC00(v0, 275, 0, 64);
-    StringTemplate_FormatNumber(param4, 0, param7, 3, 1, 1);
+    StringTemplate_SetNumber(param4, 0, param7, 3, 1, 1);
     ov5_021DCC00(v0, 277, 0, (64 + 16));
 
     ov5_021DCC00(v0, 276, 0, 96);
-    StringTemplate_FormatNumber(param4, 0, param8, 3, 1, 1);
+    StringTemplate_SetNumber(param4, 0, param8, 3, 1, 1);
     ov5_021DCC00(v0, 277, 0, (96 + 16));
 
     v0->unk_AC.unk_04 = &v0->unk_08;

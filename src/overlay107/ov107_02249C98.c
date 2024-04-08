@@ -54,7 +54,7 @@ void ov107_02249CF4 (StringTemplate * param0, u32 param1)
     u32 v1;
 
     v0 = CommInfo_TrainerInfo((CommSys_CurNetId() ^ 1));
-    StringTemplate_FormatPlayerName(param0, param1, v0);
+    StringTemplate_SetPlayerName(param0, param1, v0);
 
     return;
 }

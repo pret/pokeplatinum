@@ -630,7 +630,7 @@ static void ov97_0222C578 (UnkStruct_ov97_0222C388 * param0)
     UnkStruct_ov97_022335A8 v5;
     StringTemplate * v6;
 
-    v6 = StringTemplate_New(param0->unk_00);
+    v6 = StringTemplate_Default(param0->unk_00);
 
     ov97_02237808(&param0->unk_F0, &param0->unk_38, 0, 421, 1, 1);
     ov97_02237858(&param0->unk_F0, 26, 4, param0->unk_144);
@@ -638,8 +638,8 @@ static void ov97_0222C578 (UnkStruct_ov97_0222C388 * param0)
 
     param0->unk_F0.unk_14 = v6;
 
-    StringTemplate_FormatPlayerName(v6, 0, param0->unk_10);
-    StringTemplate_FormatNumber(v6, 1, TrainerInfo_ID_LowHalf(param0->unk_10), 5, 2, 1);
+    StringTemplate_SetPlayerName(v6, 0, param0->unk_10);
+    StringTemplate_SetNumber(v6, 1, TrainerInfo_ID_LowHalf(param0->unk_10), 5, 2, 1);
 
     ov97_0223795C(param0->unk_04, &param0->unk_F0, 3, 13, 66);
     param0->unk_F0.unk_08 = 0;
@@ -651,13 +651,13 @@ static void ov97_0222C578 (UnkStruct_ov97_0222C388 * param0)
     v5 = ov97_022335A8(v4);
     ov97_022335EC(v5.unk_00.val2, &v0, &v1);
 
-    StringTemplate_FormatNumber(v6, 0, v0, 4, 2, 1);
-    StringTemplate_FormatNumber(v6, 1, v1, 4, 2, 1);
+    StringTemplate_SetNumber(v6, 0, v0, 4, 2, 1);
+    StringTemplate_SetNumber(v6, 1, v1, 4, 2, 1);
 
     param0->unk_F0.unk_0C = 1;
 
     ov97_0223795C(param0->unk_04, &param0->unk_F0, -1, -1, 69);
-    sub_0200B3F0(v6);
+    StringTemplate_Free(v6);
 }
 
 static void ov97_0222C688 (OverlayManager * param0)
@@ -811,7 +811,7 @@ static void ov97_0222C974 (UnkStruct_ov97_0222C388 * param0)
     MI_CpuClear8(v4, sizeof(UnkStruct_0202DBAC));
 
     v3 = MessageLoader_Init(1, 26, 421, param0->unk_00);
-    v2 = StringTemplate_New(param0->unk_00);
+    v2 = StringTemplate_Default(param0->unk_00);
 
     v4->unk_00 = 7;
     v1 = sub_0200B29C(v2, v3, 76, param0->unk_00);
@@ -840,7 +840,7 @@ static void ov97_0222C974 (UnkStruct_ov97_0222C388 * param0)
     GetCurrentDate(&v0);
     v4->unk_354 = RTC_ConvertDateToDay(&v0);
 
-    sub_0200B3F0(v2);
+    StringTemplate_Free(v2);
     MessageLoader_Free(v3);
     sub_0202DB2C(param0->unk_3174, &v4->unk_00, 3);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);

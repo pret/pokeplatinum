@@ -197,7 +197,7 @@ static void ov56_02256294 (UnkStruct_ov56_02256468 * param0)
     param0->unk_2D8.unk_02 = 0;
     param0->unk_2D8.unk_04 = 0;
     param0->unk_2D8.unk_06 = 0;
-    param0->unk_18 = StringTemplate_New(4);
+    param0->unk_18 = StringTemplate_Default(4);
     param0->unk_1C = MessageLoader_Init(0, 26, 635, 4);
     param0->unk_20 = sub_02006F6C(74, 3, 1, &(param0->unk_24), 4);
 }
@@ -271,7 +271,7 @@ void ov56_02256468 (UnkStruct_ov56_02256468 * param0)
 
         sub_02021964(param0->unk_28);
         MessageLoader_Free(param0->unk_1C);
-        sub_0200B3F0(param0->unk_18);
+        StringTemplate_Free(param0->unk_18);
 
         ov56_022563E8(param0->unk_22C);
         ov56_022564E4(v0);
@@ -785,14 +785,14 @@ static Strbuf* ov56_02256E5C (UnkStruct_02027F8C * param0, u32 param1, StringTem
 
     if (v2 > 0) {
         if (v2 == 1) {
-            StringTemplate_FormatPlayerName(param2, 0, param4);
+            StringTemplate_SetPlayerName(param2, 0, param4);
         } else if (v2 >= 2) {
             int v3 = v2 - 2;
 
             v1 = Strbuf_Init(10, 89);
 
             Strbuf_CopyChars(v1, sub_02027FBC(param0, v3));
-            sub_0200B48C(param2, 0, v1, 0, 0, sub_02027FC4(param0, v3));
+            StringTemplate_SetStrbuf(param2, 0, v1, 0, 0, sub_02027FC4(param0, v3));
             Strbuf_Free(v1);
         }
 

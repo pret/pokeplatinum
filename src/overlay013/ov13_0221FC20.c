@@ -1188,7 +1188,7 @@ static void ov13_02220F08 (UnkStruct_ov13_022213F0 * param0)
 {
     param0->unk_1FA4 = MessageLoader_Init(0, 26, 3, param0->unk_00->unk_0C);
     param0->unk_1FA0 = sub_0200C440(15, 14, 0, param0->unk_00->unk_0C);
-    param0->unk_1FA8 = StringTemplate_New(param0->unk_00->unk_0C);
+    param0->unk_1FA8 = StringTemplate_Default(param0->unk_00->unk_0C);
     param0->unk_1FAC = Strbuf_Init(512, param0->unk_00->unk_0C);
 }
 
@@ -1196,7 +1196,7 @@ static void ov13_02220F60 (UnkStruct_ov13_022213F0 * param0)
 {
     MessageLoader_Free(param0->unk_1FA4);
     sub_0200C560(param0->unk_1FA0);
-    sub_0200B3F0(param0->unk_1FA8);
+    StringTemplate_Free(param0->unk_1FA8);
     Strbuf_Free(param0->unk_1FAC);
 }
 
@@ -1611,7 +1611,7 @@ static u8 ov13_022217A4 (UnkStruct_ov13_022213F0 * param0)
             int v2;
 
             v2 = BattleSystem_Partner(param0->unk_00->unk_08, param0->unk_00->unk_28);
-            sub_0200BA74(param0->unk_1FA8, 0, BattleSystem_TrainerData(param0->unk_00->unk_08, v2));
+            StringTemplate_SetTrainerNameBattle(param0->unk_1FA8, 0, BattleSystem_TrainerData(param0->unk_00->unk_08, v2));
         }
         StringTemplate_Format(param0->unk_1FA8, param0->unk_1FAC, v1);
         Strbuf_Free(v1);
@@ -1620,7 +1620,7 @@ static u8 ov13_022217A4 (UnkStruct_ov13_022213F0 * param0)
 
     if (v0->unk_10 == 0) {
         v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 77);
-        StringTemplate_BufferNickname(param0->unk_1FA8, 0, Pokemon_GetBoxPokemon(v0->unk_00));
+        StringTemplate_SetNickname(param0->unk_1FA8, 0, Pokemon_GetBoxPokemon(v0->unk_00));
         StringTemplate_Format(param0->unk_1FA8, param0->unk_1FAC, v1);
         Strbuf_Free(v1);
         return 0;
@@ -1628,7 +1628,7 @@ static u8 ov13_022217A4 (UnkStruct_ov13_022213F0 * param0)
 
     if ((param0->unk_00->unk_2C[param0->unk_00->unk_11] == param0->unk_00->unk_14) || (param0->unk_00->unk_2C[param0->unk_00->unk_11] == param0->unk_00->unk_15)) {
         v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 76);
-        StringTemplate_BufferNickname(param0->unk_1FA8, 0, Pokemon_GetBoxPokemon(v0->unk_00));
+        StringTemplate_SetNickname(param0->unk_1FA8, 0, Pokemon_GetBoxPokemon(v0->unk_00));
         StringTemplate_Format(param0->unk_1FA8, param0->unk_1FAC, v1);
         Strbuf_Free(v1);
         return 0;
@@ -1643,7 +1643,7 @@ static u8 ov13_022217A4 (UnkStruct_ov13_022213F0 * param0)
         v0 = &param0->unk_04[param0->unk_00->unk_11];
         v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 93);
 
-        StringTemplate_BufferNickname(param0->unk_1FA8, 0, Pokemon_GetBoxPokemon(v0->unk_00));
+        StringTemplate_SetNickname(param0->unk_1FA8, 0, Pokemon_GetBoxPokemon(v0->unk_00));
         StringTemplate_Format(param0->unk_1FA8, param0->unk_1FAC, v1);
         Strbuf_Free(v1);
         return 0;
@@ -1653,7 +1653,7 @@ static u8 ov13_022217A4 (UnkStruct_ov13_022213F0 * param0)
         v0 = &param0->unk_04[param0->unk_2072];
         v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 78);
 
-        StringTemplate_BufferNickname(param0->unk_1FA8, 0, Pokemon_GetBoxPokemon(v0->unk_00));
+        StringTemplate_SetNickname(param0->unk_1FA8, 0, Pokemon_GetBoxPokemon(v0->unk_00));
         StringTemplate_Format(param0->unk_1FA8, param0->unk_1FAC, v1);
         Strbuf_Free(v1);
         return 0;

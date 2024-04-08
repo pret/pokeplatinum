@@ -783,7 +783,7 @@ static void ov108_02242238 (UnkStruct_ov108_02241DB0 * param0)
     ov108_02243194(&param0->unk_E8);
 
     MessageLoader_Free(param0->unk_68);
-    sub_0200B3F0(param0->unk_6C);
+    StringTemplate_Free(param0->unk_6C);
     Strbuf_Free(param0->unk_70);
     Strbuf_Free(param0->unk_74);
 
@@ -826,7 +826,7 @@ static void ov108_0224237C (UnkStruct_ov108_02241DB0 * param0)
     ov108_022426B0(param0);
 
     param0->unk_68 = MessageLoader_Init(1, 26, 536, 103);
-    param0->unk_6C = StringTemplate_New(103);
+    param0->unk_6C = StringTemplate_Default(103);
     param0->unk_70 = Strbuf_Init(600, 103);
     param0->unk_74 = Strbuf_Init(600, 103);
 

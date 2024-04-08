@@ -2015,7 +2015,7 @@ static void ov16_02269DB0 (UnkStruct_ov16_02268A14 * param0, int param1, int par
     v3 = Strbuf_Init(100, 5);
     v4 = Strbuf_Init(100, 5);
 
-    sub_0200B630(v5, 0, v6->unk_00);
+    StringTemplate_SetMoveName(v5, 0, v6->unk_00);
     StringTemplate_Format(v5, v3, v1);
     StringTemplate_Format(v5, v4, v2);
 
@@ -2079,7 +2079,7 @@ static void ov16_02269F68 (UnkStruct_ov16_02268A14 * param0, int param1, int par
     v3 = Strbuf_Init(100, 5);
     v4 = Strbuf_Init(100, 5);
 
-    sub_0200B630(v5, 0, v6->unk_00);
+    StringTemplate_SetMoveName(v5, 0, v6->unk_00);
     StringTemplate_Format(v5, v3, v1);
     StringTemplate_Format(v5, v4, v2);
 
@@ -2107,7 +2107,7 @@ static void ov16_0226A04C (UnkStruct_ov16_02268A14 * param0, int param1, int par
     v3 = Strbuf_Init(100, 5);
     v4 = Strbuf_Init(100, 5);
 
-    sub_0200B630(v5, 0, v6->unk_00);
+    StringTemplate_SetMoveName(v5, 0, v6->unk_00);
     StringTemplate_Format(v5, v3, v1);
     StringTemplate_Format(v5, v4, v2);
 
@@ -2166,7 +2166,7 @@ static void ov16_0226A12C (UnkStruct_ov16_02268A14 * param0, int param1, int par
             v6 = BattleSystem_PartyPokemon(param0->unk_00, v12, v0->unk_00[v12].unk_00);
             v7 = Pokemon_GetBoxPokemon(v6);
 
-            StringTemplate_BufferNickname(v8, 0, v7);
+            StringTemplate_SetNickname(v8, 0, v7);
             StringTemplate_Format(v8, v4, v5);
 
             if (v1 & 1) {
@@ -2821,8 +2821,8 @@ void ov16_0226AC98 (UnkStruct_ov16_02268A14 * param0, int param1, const UnkStruc
         }
 
         if ((v0->unk_78[v4].unk_00.unk_0C == NULL) || (v0->unk_C8[v4].unk_00.unk_0C == NULL) || (param2->unk_00[v4] != 0) || (param2->unk_00[v4] != v0->unk_00.unk_00[v4]) || (param2->unk_08[v4] != v0->unk_00.unk_08[v4]) || (param2->unk_10[v4] != v0->unk_00.unk_10[v4])) {
-            StringTemplate_FormatNumber(v10, 0, param2->unk_08[v4], 2, 1, 0);
-            StringTemplate_FormatNumber(v10, 1, param2->unk_10[v4], 2, 1, 0);
+            StringTemplate_SetNumber(v10, 0, param2->unk_08[v4], 2, 1, 0);
+            StringTemplate_SetNumber(v10, 1, param2->unk_10[v4], 2, 1, 0);
             StringTemplate_Format(v10, v7, v8);
 
             v11 = ov16_0226B924(param2->unk_08[v4], param2->unk_10[v4]);

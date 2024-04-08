@@ -202,7 +202,7 @@ static void ov13_022274A8 (UnkStruct_ov13_02227244 * param0, u32 param1, u32 par
     if (param0->unk_3C[param0->unk_114D][param1].item != 0) {
         v1 = MessageLoader_GetNewStrbuf(param0->unk_10, Unk_ov13_02229AB0[param2][0]);
 
-        sub_0200B70C(param0->unk_14, 0, param0->unk_3C[param0->unk_114D][param1].item);
+        StringTemplate_SetItemName(param0->unk_14, 0, param0->unk_3C[param0->unk_114D][param1].item);
         StringTemplate_Format(param0->unk_14, param0->unk_18, v1);
 
         v2 = sub_02002D7C(param4, param0->unk_18, 0);
@@ -227,7 +227,7 @@ static void ov13_0222754C (UnkStruct_ov13_02227244 * param0, u32 param1, u32 par
     if (param0->unk_3C[param0->unk_114D][param1].quantity != 0) {
         v0 = MessageLoader_GetNewStrbuf(param0->unk_10, Unk_ov13_02229AB0[param2][1]);
 
-        StringTemplate_FormatNumber(param0->unk_14, 0, param0->unk_3C[param0->unk_114D][param1].quantity, 3, 0, 1);
+        StringTemplate_SetNumber(param0->unk_14, 0, param0->unk_3C[param0->unk_114D][param1].quantity, 3, 0, 1);
         StringTemplate_Format(param0->unk_14, param0->unk_18, v0);
         sub_0201D78C(v1, param4, param0->unk_18, 0, param5, 0xff, param6, NULL);
         Strbuf_Free(v0);
@@ -284,13 +284,13 @@ void ov13_02227698 (UnkStruct_ov13_02227244 * param0)
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_10, 29);
-    StringTemplate_FormatNumber(param0->unk_14, 0, param0->unk_1154[param0->unk_114D] + 1, 2, 0, 1);
+    StringTemplate_SetNumber(param0->unk_14, 0, param0->unk_1154[param0->unk_114D] + 1, 2, 0, 1);
     StringTemplate_Format(param0->unk_14, param0->unk_18, v1);
     sub_0201D78C(v0, 0, param0->unk_18, v3 + v2, 4, 0xff, (((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)))), NULL);
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_10, 30);
-    StringTemplate_FormatNumber(param0->unk_14, 0, param0->unk_00->unk_2C[param0->unk_114D] + 1, 2, 0, 1);
+    StringTemplate_SetNumber(param0->unk_14, 0, param0->unk_00->unk_2C[param0->unk_114D] + 1, 2, 0, 1);
     StringTemplate_Format(param0->unk_14, param0->unk_18, v1);
 
     v2 = sub_02002D7C(0, param0->unk_18, 0);
@@ -336,7 +336,7 @@ static void ov13_022278A0 (UnkStruct_ov13_02227244 * param0, u32 param1)
     v0 = &param0->unk_2C[0];
     v1 = MessageLoader_GetNewStrbuf(param0->unk_10, Unk_ov13_02229AB0[0][0]);
 
-    sub_0200B70C(param0->unk_14, 0, param0->unk_3C[param0->unk_114D][param1].item);
+    StringTemplate_SetItemName(param0->unk_14, 0, param0->unk_3C[param0->unk_114D][param1].item);
     StringTemplate_Format(param0->unk_14, param0->unk_18, v1);
     BGL_FillWindow(v0, 0);
     sub_0201D78C(v0, 0, param0->unk_18, 0, 0, 0xff, (((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)))), NULL);

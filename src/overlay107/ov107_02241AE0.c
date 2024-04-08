@@ -1092,7 +1092,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
                 }
             } else {
                 ov107_02244A8C(param0, 0, Pokemon_GetBoxPokemon(v7));
-                sub_0200B744(param0->unk_24, 1, Pokemon_GetValue(v7, MON_DATA_HELD_ITEM, NULL));
+                StringTemplate_SetItemNameWithArticle(param0->unk_24, 1, Pokemon_GetValue(v7, MON_DATA_HELD_ITEM, NULL));
                 param0->unk_0A = ov107_02243918(param0, 60, 1);
                 param0->unk_08 = 16;
             }
@@ -1413,7 +1413,7 @@ static void ov107_02242E14 (UnkStruct_ov107_02241D6C * param0)
 
     MessageLoader_Free(param0->unk_20);
     MessageLoader_Free(param0->unk_1C);
-    sub_0200B3F0(param0->unk_24);
+    StringTemplate_Free(param0->unk_24);
     Strbuf_Free(param0->unk_28);
     Strbuf_Free(param0->unk_2C);
     sub_0200C560(param0->unk_1C4);
@@ -1459,7 +1459,7 @@ static void ov107_02242F5C (UnkStruct_ov107_02241D6C * param0)
 
     param0->unk_20 = MessageLoader_Init(1, 26, 199, 100);
     param0->unk_1C = MessageLoader_Init(1, 26, 391, 100);
-    param0->unk_24 = StringTemplate_New(100);
+    param0->unk_24 = StringTemplate_Default(100);
     param0->unk_28 = Strbuf_Init(600, 100);
     param0->unk_2C = Strbuf_Init(600, 100);
 
@@ -1899,7 +1899,7 @@ asm static void ov107_02243950 (UnkStruct_ov107_02241D6C * param0, Window * para
     add r2, r0, #0
     ldr r0, [r5, #0x24]
     mov r1, #0
-    bl sub_0200B70C
+    bl StringTemplate_SetItemName
     mov r0, #8
     str r0, [sp]
     mov r3, #0
@@ -1922,7 +1922,7 @@ asm static void ov107_02243950 (UnkStruct_ov107_02241D6C * param0, Window * para
     add r2, r0, #0
     ldr r0, [r5, #0x24]
     mov r1, #0
-    bl sub_0200B6D8
+    bl StringTemplate_SetNatureName
     mov r0, #0x18
     str r0, [sp]
     mov r3, #0
@@ -1947,7 +1947,7 @@ asm static void ov107_02243950 (UnkStruct_ov107_02241D6C * param0, Window * para
     add r2, r0, #0
     ldr r0, [r5, #0x24]
     mov r1, #0
-    bl sub_0200B6A0
+    bl StringTemplate_SetAbilityName
     mov r0, #0x28
     str r0, [sp]
     mov r3, #0
@@ -2140,7 +2140,7 @@ static void ov107_02243C18 (UnkStruct_ov107_02241D6C * param0, Window * param1, 
     v2 = 137;
     v3 = 12 + (param2 * 24);
 
-    sub_0200B630(param0->unk_24, param2, Pokemon_GetValue(param5, param6, NULL));
+    StringTemplate_SetMoveName(param0->unk_24, param2, Pokemon_GetValue(param5, param6, NULL));
     param0->unk_0A = ov107_02243860(param0, param1, param3, v0, v1, 0xff, 1, 2, 0, 0);
 
     ov107_02244A74(param0, 4, Pokemon_GetValue(param5, param7, NULL), MON_DATA_IS_DATA_INVALID, 0);
@@ -2846,19 +2846,19 @@ static void ov107_02244A1C (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 
 static void ov107_02244A74 (UnkStruct_ov107_02241D6C * param0, u32 param1, s32 param2, u32 param3, int param4)
 {
-    StringTemplate_FormatNumber(param0->unk_24, param1, param2, param3, param4, 1);
+    StringTemplate_SetNumber(param0->unk_24, param1, param2, param3, param4, 1);
     return;
 }
 
 static void ov107_02244A8C (UnkStruct_ov107_02241D6C * param0, u32 param1, BoxPokemon * param2)
 {
-    sub_0200B538(param0->unk_24, param1, param2);
+    StringTemplate_SetSpeciesName(param0->unk_24, param1, param2);
     return;
 }
 
 static void ov107_02244A98 (UnkStruct_ov107_02241D6C * param0, u32 param1)
 {
-    StringTemplate_FormatPlayerName(param0->unk_24, param1, SaveData_GetTrainerInfo(param0->unk_1CC));
+    StringTemplate_SetPlayerName(param0->unk_24, param1, SaveData_GetTrainerInfo(param0->unk_1CC));
     return;
 }
 
@@ -2899,7 +2899,7 @@ static void ov107_02244B24 (UnkStruct_ov107_02241D6C * param0, Window * param1, 
         v1 = ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | (((0 & 0xff) << 0))));
     }
 
-    StringTemplate_FormatPlayerName(param0->unk_24, 0, v0);
+    StringTemplate_SetPlayerName(param0->unk_24, 0, v0);
     ov107_02243860(param0, param1, 1, param2, param3, 0xff, (((v1) >> 16) & 0xff), (((v1) >> 8) & 0xff), (((v1) >> 0) & 0xff), 0);
 
     return;
@@ -3649,7 +3649,7 @@ static void ov107_022455A0 (UnkStruct_ov107_02241D6C * param0, u8 param1, u16 pa
     ov107_02249BAC(param0->unk_404[ov107_02249C98(param0->unk_14, param1)], 1);
     ov107_02244A8C(param0, 0, Pokemon_GetBoxPokemon(v0));
 
-    sub_0200B70C(param0->unk_24, 1, param2);
+    StringTemplate_SetItemName(param0->unk_24, 1, param2);
     param0->unk_0A = ov107_02243918(param0, 59, 1);
     Sound_PlayEffect(1572);
 

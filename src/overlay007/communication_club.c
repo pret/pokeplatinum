@@ -206,9 +206,9 @@ static void CommClubMan_Init (FieldSystem * fsys)
     Window_Init(&sCommClubMan->unk_30);
     Window_Init(&sCommClubMan->msgWindow);
 
-    sCommClubMan->unk_50 = StringTemplate_New(4);
-    sCommClubMan->unk_54 = StringTemplate_New(4);
-    sCommClubMan->unk_58 = StringTemplate_New(4);
+    sCommClubMan->unk_50 = StringTemplate_Default(4);
+    sCommClubMan->unk_54 = StringTemplate_Default(4);
+    sCommClubMan->unk_58 = StringTemplate_Default(4);
     sCommClubMan->unk_98 = 0;
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
@@ -229,17 +229,17 @@ static void CommClubMan_Delete (void)
     Heap_FreeToHeap(sCommClubMan->unk_7C);
 
     if (sCommClubMan->unk_50) {
-        sub_0200B3F0(sCommClubMan->unk_50);
+        StringTemplate_Free(sCommClubMan->unk_50);
         sCommClubMan->unk_50 = NULL;
     }
 
     if (sCommClubMan->unk_54) {
-        sub_0200B3F0(sCommClubMan->unk_54);
+        StringTemplate_Free(sCommClubMan->unk_54);
         sCommClubMan->unk_54 = NULL;
     }
 
     if (sCommClubMan->unk_58) {
-        sub_0200B3F0(sCommClubMan->unk_58);
+        StringTemplate_Free(sCommClubMan->unk_58);
         sCommClubMan->unk_58 = NULL;
     }
 
@@ -312,21 +312,21 @@ static void ov7_02249C94 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     if (cnt < v0) {
         sub_020339AC(cnt, sCommClubMan->unk_7C);
         
-        StringTemplate_FormatNumber(sCommClubMan->unk_50, 0, cnt + 1, 2, 2, 1);
-        StringTemplate_FormatPlayerName(sCommClubMan->unk_50, 1, sCommClubMan->unk_7C);
+        StringTemplate_SetNumber(sCommClubMan->unk_50, 0, cnt + 1, 2, 2, 1);
+        StringTemplate_SetPlayerName(sCommClubMan->unk_50, 1, sCommClubMan->unk_7C);
         MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00063, sCommClubMan->unk_00[1]);
         
         StringTemplate_Format(sCommClubMan->unk_50, sCommClubMan->unk_00[0], sCommClubMan->unk_00[1]);
         PrintStringSimple(&sCommClubMan->unk_20, 0, sCommClubMan->unk_00[0], 8, param2 * 16, 0xff, NULL);
         
-        StringTemplate_FormatNumber(sCommClubMan->unk_50, 2, TrainerInfo_ID(sCommClubMan->unk_7C) % 0x10000, 5, 2, 1);
+        StringTemplate_SetNumber(sCommClubMan->unk_50, 2, TrainerInfo_ID(sCommClubMan->unk_7C) % 0x10000, 5, 2, 1);
         //ID {ID Number}
         MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00065, sCommClubMan->unk_00[3]);
         
         StringTemplate_Format(sCommClubMan->unk_50, sCommClubMan->unk_00[2], sCommClubMan->unk_00[3]);
         PrintStringSimple(&sCommClubMan->unk_20, 0, sCommClubMan->unk_00[2], 11 * 8, param2 * 16, 0xff, NULL);
     } else {
-        StringTemplate_FormatNumber(sCommClubMan->unk_50, 0, cnt + 1, 2, 2, 1);
+        StringTemplate_SetNumber(sCommClubMan->unk_50, 0, cnt + 1, 2, 2, 1);
         MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00064, sCommClubMan->unk_00[1]);
         
         StringTemplate_Format(sCommClubMan->unk_50, sCommClubMan->unk_00[0], sCommClubMan->unk_00[1]);
@@ -397,8 +397,8 @@ static void CommClubMan_PrintChooseJoinMsg (CommClubManager * param0)
 
 static void CommClubMan_DisplayPersonalTrainerInfo (CommClubManager * param0)
 {
-    StringTemplate_FormatPlayerName(sCommClubMan->unk_54, 0, sCommClubMan->trainerInfoPersonal);
-    StringTemplate_FormatNumber(sCommClubMan->unk_54, 1, TrainerInfo_ID(sCommClubMan->trainerInfoPersonal) % 0x10000, 5, 2, 1);
+    StringTemplate_SetPlayerName(sCommClubMan->unk_54, 0, sCommClubMan->trainerInfoPersonal);
+    StringTemplate_SetNumber(sCommClubMan->unk_54, 1, TrainerInfo_ID(sCommClubMan->trainerInfoPersonal) % 0x10000, 5, 2, 1);
     MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00062, sCommClubMan->unk_00[6]);
     StringTemplate_Format(sCommClubMan->unk_54, sCommClubMan->unk_00[7], sCommClubMan->unk_00[6]);
     PrintStringSimple(&sCommClubMan->unk_30, 0, sCommClubMan->unk_00[7], 2, 2, 0, NULL);
@@ -412,7 +412,7 @@ static void ov7_02249F54 (SysTask * task, void * data)
         sCommClubMan->unk_64 = sub_02013A04(16, 4);
 
         for (v2 = 0; v2 < 16; v2++) {
-            StringTemplate_FormatNumber(sCommClubMan->unk_50, 0, v2 + 1, 2, 2, 1);
+            StringTemplate_SetNumber(sCommClubMan->unk_50, 0, v2 + 1, 2, 2, 1);
             MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00064, sCommClubMan->unk_00[1]);
             StringTemplate_Format(sCommClubMan->unk_50, sCommClubMan->unk_00[0], sCommClubMan->unk_00[1]);
             sub_02013A6C(sCommClubMan->unk_64, sCommClubMan->unk_00[0], 0);
@@ -516,7 +516,7 @@ asm static void CommClubTask_SelectServerList (SysTask * task, void * param1)
     ldr r2, [r2, #0]
     mov r1, #1
     ldr r2, [r2, #0x7c]
-    bl StringTemplate_FormatPlayerName
+    bl StringTemplate_SetPlayerName
     bl CommClubMan_MinPlayers
     cmp r0, #2
     bgt _0224A192
@@ -730,13 +730,13 @@ static void ov7_0224A438 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     v0 += param2;
 
     if (NULL != CommInfo_TrainerInfo(v0)) {
-        StringTemplate_FormatPlayerName(sCommClubMan->unk_50, 0, CommInfo_TrainerInfo(v0));
+        StringTemplate_SetPlayerName(sCommClubMan->unk_50, 0, CommInfo_TrainerInfo(v0));
         MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00066, sCommClubMan->unk_00[1]);
         
         StringTemplate_Format(sCommClubMan->unk_50, sCommClubMan->unk_00[0], sCommClubMan->unk_00[1]);
         PrintStringSimple(&sCommClubMan->unk_20, 0, sCommClubMan->unk_00[0], 8, param2 * 16, 0, NULL);
         
-        StringTemplate_FormatNumber(sCommClubMan->unk_50, 2, TrainerInfo_ID_LowHalf(CommInfo_TrainerInfo(v0)), 5, 2, 1);
+        StringTemplate_SetNumber(sCommClubMan->unk_50, 2, TrainerInfo_ID_LowHalf(CommInfo_TrainerInfo(v0)), 5, 2, 1);
         MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00065, sCommClubMan->unk_00[3]);
         
         StringTemplate_Format(sCommClubMan->unk_50, sCommClubMan->unk_00[2], sCommClubMan->unk_00[3]);
@@ -845,7 +845,7 @@ static void ov7_0224A64C (CommClubManager * commClubMan)
         msg = pl_msg_00000353_00067; //{cnt} more players needed.
     }
 
-    StringTemplate_FormatNumber(sCommClubMan->unk_54, 0, playerCnt, 2, 5, 1);
+    StringTemplate_SetNumber(sCommClubMan->unk_54, 0, playerCnt, 2, 5, 1);
     BGL_FillWindow(&sCommClubMan->unk_30, 15);
     
     MessageLoader_GetStrbuf(sCommClubMan->msgLoader, msg, sCommClubMan->unk_00[7]);
@@ -893,7 +893,7 @@ static void CommClubMan_PrintPlayerContactMsg (int netId, CommClubManager * comm
     TrainerInfo * trainerInfo = CommInfo_TrainerInfo(netId);
 
     if (trainerInfo != NULL) {
-        StringTemplate_FormatPlayerName(commClubMan->unk_58, 1, trainerInfo);
+        StringTemplate_SetPlayerName(commClubMan->unk_58, 1, trainerInfo);
     }
 
     CommClubMan_PrintMessage(sContactMsg[commClubMan->commType], TRUE);
@@ -1467,7 +1467,7 @@ static void CommClubMan_DestroyList (SysTask * task, CommClubManager * param1)
 
 static void ov7_0224B054 (CommClubManager * commClubMan)
 {
-    StringTemplate_FormatPlayerName(commClubMan->unk_58, 1, CommInfo_TrainerInfo(1));
+    StringTemplate_SetPlayerName(commClubMan->unk_58, 1, CommInfo_TrainerInfo(1));
     CommClubMan_PrintMessage(pl_msg_00000353_00057, 1); //Reeplied "OK" to {}
 
     SysTask_Start(CommClubMan_Run, commClubMan, 0);
@@ -1477,7 +1477,7 @@ static void ov7_0224B054 (CommClubManager * commClubMan)
 static void ov7_0224B08C (CommClubManager * commClubMan)
 {
     sub_020339AC(commClubMan->unk_8E, sCommClubMan->unk_7C);
-    StringTemplate_FormatPlayerName(commClubMan->unk_58, 1, sCommClubMan->unk_7C);
+    StringTemplate_SetPlayerName(commClubMan->unk_58, 1, sCommClubMan->unk_7C);
     CommClubMan_PrintMessage(pl_msg_00000353_00004, 1); //Replied, "OK"
 
     commClubMan->unk_90 = CommSys_ConnectedCount();
@@ -1606,7 +1606,7 @@ static void ov7_0224B2A0 (SysTask * task, void * param1)
 static void CommClubMan_PlayerRefused (CommClubManager * commClubMan)
 {
     sub_020339AC(commClubMan->unk_8E, sCommClubMan->unk_7C);
-    StringTemplate_FormatPlayerName(commClubMan->unk_58, 1, sCommClubMan->unk_7C);
+    StringTemplate_SetPlayerName(commClubMan->unk_58, 1, sCommClubMan->unk_7C);
 
     CommClubMan_PrintMessage(pl_msg_00000353_00005, 1); //{Player Name} refused...
 
