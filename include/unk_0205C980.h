@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0205C980_H
 #define POKEPLATINUM_UNK_0205C980_H
 
-#include "struct_decls/struct_0200B358_decl.h"
+#include "unk_0200B358.h"
 
 void sub_0205C980(u32 param0, int param1, StringFormatter * param2);
 int sub_0205C9BC(u32 param0, int param1, u32 param2);

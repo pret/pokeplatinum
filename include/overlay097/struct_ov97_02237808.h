@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV97_02237808_H
 #define POKEPLATINUM_STRUCT_OV97_02237808_H
 
-#include "struct_decls/struct_0200B358_decl.h"
+#include "unk_0200B358.h"
 #include "struct_defs/struct_0205AA50.h"
 
 typedef struct {

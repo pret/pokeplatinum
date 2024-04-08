@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_02090800_H
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
+#include "unk_0200B358.h"
 #include "pokemon.h"
 #include "struct_defs/struct_02090800_sub1.h"
 

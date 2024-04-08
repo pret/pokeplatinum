@@ -4,7 +4,6 @@
 #include "core_sys.h"
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202CD88_decl.h"

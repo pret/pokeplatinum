@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_0200B29C_H
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
+#include "unk_0200B358.h"
 #include "strbuf.h"
 
 Strbuf* sub_0200B29C(StringFormatter * param0, MessageLoader * param1, u32 param2, u32 param3);

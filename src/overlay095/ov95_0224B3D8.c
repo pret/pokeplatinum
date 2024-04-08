@@ -7,7 +7,6 @@
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/sprite_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02022550_decl.h"

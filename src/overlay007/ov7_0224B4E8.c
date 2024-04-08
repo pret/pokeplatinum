@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_020508D4_decl.h"

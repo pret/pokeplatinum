@@ -3,7 +3,7 @@
 
 #include "overlay_manager.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
+#include "unk_0200B358.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "overlay019/struct_ov19_021D4DF0.h"

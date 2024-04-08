@@ -4,7 +4,6 @@
 #include "inlines.h"
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "trainer_info.h"

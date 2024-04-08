@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B358_decl.h"
 
 #include "unk_02006E3C.h"
 #include "unk_0200B358.h"

@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013BE0_decl.h"
 #include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020203AC_decl.h"

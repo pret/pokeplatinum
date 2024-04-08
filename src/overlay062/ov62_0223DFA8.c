@@ -4,7 +4,6 @@
 #include "overlay062/ov62_const_funcptr_tables.h"
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_decls/struct_0202F41C_decl.h"

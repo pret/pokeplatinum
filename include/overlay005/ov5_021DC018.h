@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV5_021DC018_H
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
+#include "unk_0200B358.h"
 #include "field/field_system_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay005/struct_ov5_021DC1A4_decl.h"

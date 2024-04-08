@@ -1,14 +1,13 @@
 #ifndef POKEPLATINUM_OV16_0223DF00_H
 #define POKEPLATINUM_OV16_0223DF00_H
 
-#include "constants/battle/terrain.h"
 #include "constants/time.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/sprite_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
+#include "unk_0200B358.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
@@ -38,8 +37,6 @@
 #include "battle/struct_ov16_0226D160_decl.h"
 
 #include "battle/party_gauge.h"
-
-#include "enums.h"
 
 #define ENEMY_IN_SLOT_RIGHT 0
 #define ENEMY_IN_SLOT_LEFT  2

@@ -3,7 +3,6 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/cell_actor_data.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202F41C_decl.h"

@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "struct_decls/struct_020298B0_decl.h"

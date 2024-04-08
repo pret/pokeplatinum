@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_UNK_0200B358_H
 #define POKEPLATINUM_UNK_0200B358_H
 
-#include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "pokemon.h"
@@ -10,6 +9,8 @@
 #include "savedata.h"
 
 #include "enums.h"
+
+typedef struct UnkStruct_0200B358_t StringFormatter;
 
 StringFormatter * StringFormatter_New(u32 param0);
 StringFormatter * sub_0200B368(u32 param0, u32 param1, u32 param2);

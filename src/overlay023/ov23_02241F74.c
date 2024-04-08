@@ -3,7 +3,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "trainer_info.h"

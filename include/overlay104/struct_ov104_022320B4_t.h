@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
+#include "unk_0200B358.h"
 #include "strbuf.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_decls/struct_0209B75C_decl.h"

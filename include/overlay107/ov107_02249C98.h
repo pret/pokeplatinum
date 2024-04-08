@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_OV107_02249C98_H
 #define POKEPLATINUM_OV107_02249C98_H
 
-#include "struct_decls/struct_0200B358_decl.h"
 #include "savedata.h"
 
 u8 ov107_02249C98(u8 param0, u8 param1);

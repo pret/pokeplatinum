@@ -3,7 +3,6 @@
 
 #include "assert.h"
 
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/sys_task.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "trainer_info.h"

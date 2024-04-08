@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV81_021D1610_H
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
+#include "unk_0200B358.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"

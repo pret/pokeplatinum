@@ -2,7 +2,6 @@
 #define POKEPLATINUM_OV94_0223D0C4_H
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "pokemon.h"
 #include "overlay094/struct_ov94_0223BA88_sub2.h"

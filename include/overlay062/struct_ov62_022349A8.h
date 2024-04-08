@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV62_022349A8_H
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
+#include "unk_0200B358.h"
 #include "strbuf.h"
 #include "savedata.h"
 #include "overlay061/struct_ov61_0222B138.h"

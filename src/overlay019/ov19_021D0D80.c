@@ -9,7 +9,6 @@
 #include "constants/species.h"
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_defs/chatot_cry.h"

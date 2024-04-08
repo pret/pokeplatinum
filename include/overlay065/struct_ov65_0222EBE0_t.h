@@ -6,7 +6,6 @@
 #include "overlay_manager.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
