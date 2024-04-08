@@ -545,7 +545,7 @@ BOOL sub_0204F6D8 (UnkStruct_0203E724 * param0)
     v0 = 1;
     v1 = 2;
 
-    if (SaveData_MiscSave_InitFlag(v9->unk_0C) == 0) {
+    if (SaveData_MiscSaveBlock_InitFlag(v9->unk_0C) == 0) {
         *v16 = 0;
         return 0;
     }
@@ -631,7 +631,7 @@ BOOL sub_0204F8A8 (UnkStruct_0203E724 * param0)
     v4 = 0;
     v0 = 1;
 
-    if (SaveData_MiscSave_InitFlag(v5->unk_0C) == 0) {
+    if (SaveData_MiscSaveBlock_InitFlag(v5->unk_0C) == 0) {
         *v6 = 0;
         return 0;
     }
@@ -683,7 +683,7 @@ BOOL sub_0204F950 (UnkStruct_0203E724 * param0)
     v0 = 1;
     v1 = 2;
 
-    if (SaveData_MiscSave_InitFlag(v6->unk_0C) == 0) {
+    if (SaveData_MiscSaveBlock_InitFlag(v6->unk_0C) == 0) {
         *v7 = 0;
         return 0;
     }

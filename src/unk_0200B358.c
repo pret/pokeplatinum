@@ -22,7 +22,7 @@
 #include "strbuf.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_020277A4.h"
+#include "savedata_misc.h"
 #include "unk_0202B37C.h"
 #include "pokemon.h"
 #include "unk_020797C8.h"
@@ -180,7 +180,7 @@ void sub_0200B498 (StringFormatter * param0, u32 param1, const TrainerInfo * par
 
 void sub_0200B4BC (StringFormatter * param0, u32 param1, const SaveData * param2)
 {
-    const u16 * v0 = MiscSave_RivalName(Save_MiscRO(param2));
+    const u16 * v0 = MiscSaveBlock_RivalName(SaveData_MiscSaveBlockConst(param2));
 
     Strbuf_CopyChars(param0->unk_0C, v0);
     sub_0200B448(param0, param1, param0->unk_0C, NULL);

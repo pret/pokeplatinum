@@ -5293,7 +5293,7 @@ static BOOL sub_02043578 (UnkStruct_0203E724 * param0)
 {
     u16 * v0 = inline_0204FCAC(param0);
 
-    *v0 = SaveData_MiscSave_InitFlag(param0->unk_34->unk_0C);
+    *v0 = SaveData_MiscSaveBlock_InitFlag(param0->unk_34->unk_0C);
     return 0;
 }
 

@@ -11,7 +11,6 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
-#include "struct_decls/struct_0202783C_decl.h"
 #include "savedata.h"
 
 #include "overlay057/const_ov57_021D0F80.h"
@@ -56,7 +55,7 @@
 #include "strbuf.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_020277A4.h"
+#include "savedata_misc.h"
 #include "unk_020279FC.h"
 #include "pokemon.h"
 #include "unk_0208694C.h"
@@ -256,9 +255,9 @@ int ov73_021D0F7C (OverlayManager * param0, int * param1)
     TrainerInfo_SetGender(SaveData_GetTrainerInfo(v0->unk_04), v0->unk_70->unk_04);
 
     {
-        UnkStruct_0202783C * v2 = sub_0202783C(v0->unk_04);
+        MiscSaveBlock * v2 = SaveData_MiscSaveBlock(v0->unk_04);
 
-        sub_0202787C(v2, v0->unk_74->unk_18);
+        MiscSaveBlock_SetRivalName(v2, v0->unk_74->unk_18);
     }
 
     sub_0208716C(v0->unk_70);

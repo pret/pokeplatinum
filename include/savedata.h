@@ -89,7 +89,7 @@ BOOL SaveData_BackupExists(const SaveData *saveData);
 u32 SaveData_LoadCheckStatus(const SaveData *saveData);
 BOOL SaveData_DataExists(const SaveData *saveData);
 BOOL SaveData_IsNewGameData(const SaveData *saveData);
-BOOL SaveData_MiscSave_InitFlag(SaveData *saveData);
+BOOL SaveData_MiscSaveBlock_InitFlag(SaveData *saveData);
 BOOL SaveData_OverwriteCheck(const SaveData *saveData);
 BOOL SaveData_FullSaveRequired(const SaveData *saveData);
 void SaveData_SetFullSaveRequired(void);

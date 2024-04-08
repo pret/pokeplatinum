@@ -14,7 +14,6 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
-#include "struct_decls/struct_0202783C_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0202F298_decl.h"
 #include "struct_decls/struct_0202F41C_decl.h"
@@ -57,7 +56,7 @@
 #include "gx_layers.h"
 #include "unk_02022594.h"
 #include "strbuf.h"
-#include "unk_020277A4.h"
+#include "savedata_misc.h"
 #include "unk_0202CD50.h"
 #include "unk_0202F1D4.h"
 #include "unk_02030A80.h"
@@ -3197,12 +3196,12 @@ void ov62_022342BC (UnkStruct_0208C06C * param0)
 
 BOOL ov62_022342CC (UnkStruct_0208C06C * param0)
 {
-    UnkStruct_0202783C * v0 = sub_0202783C(param0->unk_830);
+    MiscSaveBlock * v0 = SaveData_MiscSaveBlock(param0->unk_830);
     u32 v1, v2;
     u8 v3;
 
-    sub_020279A8(v0, 2 + param0->unk_86C, &v1, &v2, &v3);
-    sub_020279D0(v0, 2 + param0->unk_86C, 0xffffffff, 0xffffffff, v3);
+    MiscSaveBlock_ExtraSaveKey(v0, 2 + param0->unk_86C, &v1, &v2, &v3);
+    MiscSaveBlock_SetExtraSaveKey(v0, 2 + param0->unk_86C, 0xffffffff, 0xffffffff, v3);
 
     return 1;
 }
