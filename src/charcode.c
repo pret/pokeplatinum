@@ -2,7 +2,7 @@
 #include <string.h>
 #include <nnsys.h>
 
-#include "unk_0201D0C8.h"
+#include "charcode.h"
 
 u16 * sub_0201D0C8 (const u16 * param0)
 {

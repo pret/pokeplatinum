@@ -23,7 +23,7 @@
 #include "unk_02014D38.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201D0C8.h"
+#include "charcode.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"

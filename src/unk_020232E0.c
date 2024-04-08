@@ -7,7 +7,7 @@
 
 #include "narc.h"
 #include "heap.h"
-#include "unk_0201D0C8.h"
+#include "charcode.h"
 #include "unk_0201D670.h"
 #include "unk_020232E0.h"
 

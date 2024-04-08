@@ -12,7 +12,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_02018340.h"
-#include "unk_0201D0C8.h"
+#include "charcode.h"
 #include "unk_0201D670.h"
 
 static UnkStruct_02101D44 Unk_02101D44;

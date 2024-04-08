@@ -11,7 +11,7 @@
 #include "string_template.h"
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
-#include "unk_0201D0C8.h"
+#include "charcode.h"
 #include "strbuf.h"
 
 static u32 sub_02014C00(u32 param0, u32 param1);
