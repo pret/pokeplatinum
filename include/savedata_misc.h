@@ -11,7 +11,7 @@
 #include "constants/savedata/save_table.h"
 #include "constants/savedata/savedata_misc.h"
 
-typedef struct {
+typedef struct ExtraSaveKey {
     u32 keys[EXTRA_SAVE_TABLE_ENTRY_MAX - 1];
     u32 oldKeys[EXTRA_SAVE_TABLE_ENTRY_MAX - 1];
     u8 keyFlags[EXTRA_SAVE_TABLE_ENTRY_MAX - 1];
