@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRBUF_H
 #define POKEPLATINUM_STRBUF_H
 
-typedef u16 charcode_t;
+#include "charcode.h"
 
 /**
  * Managed string buffer.

@@ -250,7 +250,7 @@ u32 sub_02023620 (const UnkStruct_02023350 * param0, const u16 * param1, u32 par
 
     while (*param1 != 0xffff) {
         if (*param1 == 0xfffe) {
-            param1 = sub_0201D0C8(param1);
+            param1 = CharCode_SkipFormatArg(param1);
 
             if (*param1 == 0xffff) {
                 break;
@@ -268,7 +268,7 @@ BOOL sub_0202366C (const UnkStruct_02023350 * param0, const u16 * param1)
 {
     while (*param1 != 0xffff) {
         if (*param1 == 0xfffe) {
-            param1 = sub_0201D0C8(param1);
+            param1 = CharCode_SkipFormatArg(param1);
 
             if (*param1 == 0xffff) {
                 return 1;
@@ -305,7 +305,7 @@ u32 sub_020236D0 (const UnkStruct_02023350 * param0, const u16 * param1, u32 par
 
     while (*param1 != 0xffff) {
         if (*param1 == 0xfffe) {
-            param1 = sub_0201D0C8(param1);
+            param1 = CharCode_SkipFormatArg(param1);
             continue;
         } else if (*param1 == 0xe000) {
             v1 -= param2;
@@ -339,11 +339,11 @@ u32 sub_02023738 (const UnkStruct_02023350 * param0, const u16 * param1)
 
     while (*param1 != 0xffff) {
         if (*param1 == 0xfffe) {
-            if (sub_0201D0F0(param1) == 0x203) {
-                v0 = sub_0201D134(param1, 0) - 12;
+            if (CharCode_FormatArgType(param1) == 0x203) {
+                v0 = CharCode_FormatArgParam(param1, 0) - 12;
             }
 
-            param1 = sub_0201D0C8(param1);
+            param1 = CharCode_SkipFormatArg(param1);
             continue;
         }
 

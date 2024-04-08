@@ -68,12 +68,12 @@ int sub_02002328 (UnkStruct_0201D834 * param0)
             return 2;
         case 0xfffe:
             param0->unk_00.unk_00_val1--;
-            v4 = sub_0201D0F0(param0->unk_00.unk_00_val1);
+            v4 = CharCode_FormatArgType(param0->unk_00.unk_00_val1);
 
             switch (v4) {
             case 0xff00:
             {
-                u16 v5 = sub_0201D134(param0->unk_00.unk_00_val1, 0);
+                u16 v5 = CharCode_FormatArgParam(param0->unk_00.unk_00_val1, 0);
 
                 if (v5 == 255) {
                     u8 v6 = param0->unk_00.unk_1B;
@@ -98,7 +98,7 @@ int sub_02002328 (UnkStruct_0201D834 * param0)
             break;
             case 0x200:
             {
-                u16 v7 = sub_0201D134(param0->unk_00.unk_00_val1, 0);
+                u16 v7 = CharCode_FormatArgParam(param0->unk_00.unk_00_val1, 0);
                 sub_0201DB8C(param0, param0->unk_00.unk_0C, param0->unk_00.unk_0E, v7);
             }
 
@@ -108,25 +108,25 @@ int sub_02002328 (UnkStruct_0201D834 * param0)
                 break;
             case 0x201:
             {
-                param0->unk_2A = sub_0201D134(param0->unk_00.unk_00_val1, 0);
-                param0->unk_00.unk_00_val1 = sub_0201D0C8(param0->unk_00.unk_00_val1);
+                param0->unk_2A = CharCode_FormatArgParam(param0->unk_00.unk_00_val1, 0);
+                param0->unk_00.unk_00_val1 = CharCode_SkipFormatArg(param0->unk_00.unk_00_val1);
                 param0->unk_28 = 6;
                 return 3;
             }
             break;
             case 0x202:
-                param0->unk_2E = sub_0201D134(param0->unk_00.unk_00_val1, 0);
-                param0->unk_00.unk_00_val1 = sub_0201D0C8(param0->unk_00.unk_00_val1);
+                param0->unk_2E = CharCode_FormatArgParam(param0->unk_00.unk_00_val1, 0);
+                param0->unk_00.unk_00_val1 = CharCode_SkipFormatArg(param0->unk_00.unk_00_val1);
                 return 3;
             case 0x203:
-                param0->unk_00.unk_0C = sub_0201D134(param0->unk_00.unk_00_val1, 0);
+                param0->unk_00.unk_0C = CharCode_FormatArgParam(param0->unk_00.unk_00_val1, 0);
                 break;
             case 0x204:
-                param0->unk_00.unk_0E = sub_0201D134(param0->unk_00.unk_00_val1, 0);
+                param0->unk_00.unk_0E = CharCode_FormatArgParam(param0->unk_00.unk_00_val1, 0);
                 break;
             case 0xff01:
             {
-                u16 v8 = sub_0201D134(param0->unk_00.unk_00_val1, 0);
+                u16 v8 = CharCode_FormatArgParam(param0->unk_00.unk_00_val1, 0);
 
                 switch (v8) {
                 case 0x64:
@@ -142,25 +142,25 @@ int sub_02002328 (UnkStruct_0201D834 * param0)
             break;
             case 0xfe06:
             {
-                u16 v9 = sub_0201D134(param0->unk_00.unk_00_val1, 0);
+                u16 v9 = CharCode_FormatArgParam(param0->unk_00.unk_00_val1, 0);
 
                 switch (v9) {
                 case 0xfe01:
                     param0->unk_28 = 2;
                     sub_020027B4(param0);
-                    param0->unk_00.unk_00_val1 = sub_0201D0C8(param0->unk_00.unk_00_val1);
+                    param0->unk_00.unk_00_val1 = CharCode_SkipFormatArg(param0->unk_00.unk_00_val1);
                     return 3;
                 case 0xfe00:
                     param0->unk_28 = 3;
                     sub_020027B4(param0);
-                    param0->unk_00.unk_00_val1 = sub_0201D0C8(param0->unk_00.unk_00_val1);
+                    param0->unk_00.unk_00_val1 = CharCode_SkipFormatArg(param0->unk_00.unk_00_val1);
                     return 3;
                 }
             }
             break;
             }
 
-            param0->unk_00.unk_00_val1 = sub_0201D0C8(param0->unk_00.unk_00_val1);
+            param0->unk_00.unk_00_val1 = CharCode_SkipFormatArg(param0->unk_00.unk_00_val1);
             return 2;
         case 0x25bc:
             param0->unk_28 = 2;

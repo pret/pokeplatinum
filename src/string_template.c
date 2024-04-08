@@ -962,18 +962,18 @@ void StringTemplate_Format (const StringTemplate * param0, Strbuf *param1, const
 
     while (*v0 != 0xffff) {
         if (*v0 == 0xfffe) {
-            if (sub_0201D108(v0)) {
+            if (CharCode_IsFormatArg(v0)) {
                 u32 v2;
 
-                v2 = sub_0201D134(v0, 0);
+                v2 = CharCode_FormatArgParam(v0, 0);
                 GF_ASSERT(v2 < param0->unk_00);
 
                 Strbuf_ConcatTrainerName(param1, param0->unk_08[v2].unk_04);
-                v0 = sub_0201D0C8(v0);
+                v0 = CharCode_SkipFormatArg(v0);
             } else {
                 const u16 * v3 = v0;
 
-                v0 = sub_0201D0C8(v0);
+                v0 = CharCode_SkipFormatArg(v0);
 
                 while (v3 < v0) {
                     Strbuf_AppendChar(param1, *v3++);

@@ -153,11 +153,11 @@ static u32 sub_02014C00 (u32 param0, u32 param1)
 
     while (*v1 != 0xffff) {
         if (*v1 == 0xfffe) {
-            if (sub_0201D108(v1)) {
+            if (CharCode_IsFormatArg(v1)) {
                 v2++;
             }
 
-            v1 = sub_0201D0C8(v1);
+            v1 = CharCode_SkipFormatArg(v1);
         } else {
             v1++;
         }

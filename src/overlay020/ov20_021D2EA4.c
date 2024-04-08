@@ -356,7 +356,7 @@ static int ov20_021D3400 (UnkStruct_ov20_021D33C8 * param0, Strbuf *param1)
         Strbuf_CopyNumChars(param1, v0, (param0->unk_04 - v0) + 1);
         return 0;
     case 1:
-        param0->unk_04 = sub_0201D0C8(param0->unk_04);
+        param0->unk_04 = CharCode_SkipFormatArg(param0->unk_04);
         v1 = 1;
         break;
     case 2:
