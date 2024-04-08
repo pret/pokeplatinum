@@ -38,7 +38,7 @@
 #include "unk_0200A328.h"
 #include "message.h"
 #include "unk_0200B29C.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_02014A84.h"
 #include "unk_02017728.h"
 #include "heap.h"

@@ -6,7 +6,7 @@
 
 #include "message.h"
 #include "unk_0200B29C.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "strbuf.h"
 
 Strbuf* sub_0200B29C (StringFormatter * param0, MessageLoader * param1, u32 param2, u32 param3)

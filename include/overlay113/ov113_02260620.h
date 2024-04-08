@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV113_02260620_H
 
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
 #include "overlay113/struct_ov113_02260818.h"

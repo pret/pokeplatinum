@@ -23,7 +23,7 @@
 #include "struct_defs/struct_0203E724_t.h"
 
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "strbuf.h"
 #include "savedata/save_table.h"
 #include "unk_020298BC.h"

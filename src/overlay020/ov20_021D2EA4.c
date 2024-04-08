@@ -17,7 +17,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02006E3C.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_020149F0.h"
 #include "unk_02014D38.h"

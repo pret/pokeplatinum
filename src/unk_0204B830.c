@@ -17,7 +17,7 @@
 #include "struct_defs/struct_0203E724_t.h"
 #include "struct_defs/union_0204C4D0.h"
 
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_02017038.h"
 #include "heap.h"
 #include "unk_0201D15C.h"

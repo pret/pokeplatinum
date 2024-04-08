@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV5_021E622C_H
 #define POKEPLATINUM_OV5_021E622C_H
 
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_02026218_decl.h"
 #include "struct_decls/struct_02026310_decl.h"

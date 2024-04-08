@@ -3,7 +3,7 @@
 
 
 #include "unk_02006E3C.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "heap.h"
 #include "unk_0205C980.h"
 

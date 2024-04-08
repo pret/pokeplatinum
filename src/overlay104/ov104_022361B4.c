@@ -23,7 +23,7 @@
 #include "overlay104/struct_ov104_0223C4CC.h"
 
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "heap.h"
 #include "unk_02018340.h"

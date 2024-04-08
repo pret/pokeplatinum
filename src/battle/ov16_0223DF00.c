@@ -52,7 +52,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "heap.h"

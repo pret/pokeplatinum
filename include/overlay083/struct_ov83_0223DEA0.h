@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV83_0223DEA0_H
 
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "strbuf.h"
 
 typedef struct {

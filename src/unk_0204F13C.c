@@ -23,7 +23,7 @@
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/pokemon_summary.h"
 
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "heap.h"
 #include "savedata.h"
 #include "unk_02025E08.h"

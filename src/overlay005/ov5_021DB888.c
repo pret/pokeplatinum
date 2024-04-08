@@ -10,7 +10,7 @@
 #include "overlay005/struct_ov5_021F8E3C.h"
 
 #include "unk_02005474.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_0201D15C.h"

@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0200B358_H
-#define POKEPLATINUM_UNK_0200B358_H
+#ifndef POKEPLATINUM_STRING_TEMPLATE_H
+#define POKEPLATINUM_STRING_TEMPLATE_H
 
 #include "strbuf.h"
 #include "trainer_info.h"
@@ -87,4 +87,5 @@ void sub_0200C338(StringFormatter * param0, u32 param1, u32 param2);
 void StringFormatter_Format(const StringFormatter * param0, Strbuf *param1, const Strbuf *param2);
 void sub_0200C41C(StringFormatter * param0);
 
-#endif // POKEPLATINUM_UNK_0200B358_H
+#endif // POKEPLATINUM_STRING_TEMPLATE_H
+

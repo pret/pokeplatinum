@@ -22,7 +22,7 @@
 #include "spl.h"
 
 #include "unk_02002F38.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_02014000.h"
 #include "heap.h"
 #include "gx_layers.h"

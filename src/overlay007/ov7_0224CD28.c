@@ -27,7 +27,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"

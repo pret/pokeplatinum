@@ -7,7 +7,7 @@
 #include "struct_defs/sentence.h"
 #include "field/field_system.h"
 
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "heap.h"

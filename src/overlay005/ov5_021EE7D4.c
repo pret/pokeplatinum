@@ -6,7 +6,7 @@
 
 #include "field/field_system.h"
 
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0203E880.h"
 #include "unk_020507CC.h"
 #include "unk_0206AFE0.h"

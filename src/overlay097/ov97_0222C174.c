@@ -35,7 +35,7 @@
 #include "unk_02006E3C.h"
 #include "message.h"
 #include "unk_0200B29C.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "rtc.h"
 #include "heap.h"

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0205B33C_H
 #define POKEPLATINUM_UNK_0205B33C_H
 
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "struct_defs/sentence.h"
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/sys_task.h"

@@ -48,7 +48,7 @@
 #include "unk_020093B4.h"
 #include "unk_0200A9DC.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"

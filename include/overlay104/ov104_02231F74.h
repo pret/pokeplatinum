@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV104_02231F74_H
 
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "struct_decls/cell_actor_data.h"
 #include "struct_decls/sys_task.h"
 #include "pokemon.h"

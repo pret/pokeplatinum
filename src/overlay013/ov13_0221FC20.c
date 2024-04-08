@@ -23,7 +23,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"

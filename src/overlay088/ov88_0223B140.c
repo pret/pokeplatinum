@@ -55,7 +55,7 @@
 #include "unk_0200A9DC.h"
 #include "message.h"
 #include "unk_0200B29C.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"

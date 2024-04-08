@@ -12,7 +12,7 @@
 #include "struct_defs/struct_0203E724_t.h"
 #include "struct_defs/struct_02093800.h"
 
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"

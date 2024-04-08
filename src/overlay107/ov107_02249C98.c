@@ -5,7 +5,7 @@
 #include "savedata.h"
 
 #include "unk_02005474.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0203061C.h"
 #include "communication_information.h"
 #include "communication_system.h"

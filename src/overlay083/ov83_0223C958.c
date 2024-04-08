@@ -16,7 +16,7 @@
 #include "narc.h"
 #include "unk_0200A784.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_02015064.h"
 #include "heap.h"
 #include "unk_02018340.h"

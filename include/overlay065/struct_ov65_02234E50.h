@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV65_02234E50_H
 
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "struct_decls/font_oam.h"
 #include "struct_defs/sprite_manager_allocation.h"
 #include "struct_decls/struct_02022550_decl.h"

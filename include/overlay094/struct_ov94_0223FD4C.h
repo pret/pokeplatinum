@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"

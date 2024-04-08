@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/sprite_decl.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"

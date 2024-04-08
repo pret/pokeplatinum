@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV19_021DB6F0_H
 
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
 #include "struct_defs/struct_0205AA50.h"

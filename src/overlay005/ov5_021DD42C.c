@@ -12,7 +12,7 @@
 #include "overlay005/struct_ov5_021DD42C.h"
 
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_02014A84.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"

@@ -18,7 +18,7 @@
 #include "struct_defs/struct_02072014.h"
 
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200D9E8.h"
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"

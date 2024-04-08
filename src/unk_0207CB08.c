@@ -11,7 +11,7 @@
 #include "struct_defs/struct_0207CDEC.h"
 
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "heap.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
