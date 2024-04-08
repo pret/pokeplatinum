@@ -29,6 +29,6 @@ typedef struct {
     UnkStruct_02070950 unk_24C;
     void * unk_25C;
     void * unk_260;
-} UnkStruct_020708E0;
+} FieldMenu;
 
 #endif // POKEPLATINUM_STRUCT_020708E0_H

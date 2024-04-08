@@ -6,11 +6,11 @@
 #include "struct_defs/struct_020708E0.h"
 
 BOOL sub_0203A9C8(FieldSystem * param0);
-void sub_0203A9E0(struct FieldSystem_t * param0);
+void FieldMenu_Init(struct FieldSystem_t * param0);
 void sub_0203AA78(struct FieldSystem_t * param0);
 void sub_0203AABC(FieldSystem * param0);
 void sub_0203AB00(FieldSystem * param0);
-void sub_0203B674(UnkStruct_020708E0 * param0, void * param1);
+void sub_0203B674(FieldMenu * param0, void * param1);
 BOOL sub_0203B7C0(UnkStruct_020508D4 * param0);
 BOOL sub_0203C3F4(UnkStruct_020508D4 * param0);
 BOOL sub_0203C434(UnkStruct_020508D4 * param0);
