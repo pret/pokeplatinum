@@ -255,9 +255,9 @@ int ov73_021D0F7C (OverlayManager * param0, int * param1)
     TrainerInfo_SetGender(SaveData_GetTrainerInfo(v0->unk_04), v0->unk_70->unk_04);
 
     {
-        MiscSaveBlock * v2 = sub_0202783C(v0->unk_04);
+        MiscSaveBlock * v2 = SaveData_MiscSaveBlock(v0->unk_04);
 
-        sub_0202787C(v2, v0->unk_74->unk_18);
+        MiscSaveBlock_SetRivalName(v2, v0->unk_74->unk_18);
     }
 
     sub_0208716C(v0->unk_70);

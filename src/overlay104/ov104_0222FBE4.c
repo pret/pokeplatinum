@@ -1773,7 +1773,7 @@ static BOOL ov104_02230C88 (UnkStruct_ov104_0222E930 * param0)
     UnkStruct_ov104_02230BE4 * v0 = sub_0209B970(param0->unk_00->unk_00);
     u16 * v1 = ov104_0222FBE4(param0);
 
-    *v1 = SaveData_MiscSave_InitFlag(v0->unk_08);
+    *v1 = SaveData_MiscSaveBlock_InitFlag(v0->unk_08);
     return 0;
 }
 

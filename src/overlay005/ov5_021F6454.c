@@ -766,9 +766,9 @@ BOOL ov5_021F71B8 (UnkStruct_0203E724 * param0)
     FieldSystem * v2 = param0->unk_34;
 
     v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v2->unk_0C), 0);
-    v0 = sub_0202783C(v2->unk_0C);
+    v0 = SaveData_MiscSaveBlock(v2->unk_0C);
 
-    sub_020278DC(v0, Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), Pokemon_GetValue(v1, MON_DATA_FORM, NULL), Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL));
+    MiscSaveBlock_SetFavoriteMon(v0, Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), Pokemon_GetValue(v1, MON_DATA_FORM, NULL), Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL));
     return 0;
 }
 
@@ -782,8 +782,8 @@ BOOL ov5_021F7208 (UnkStruct_0203E724 * param0)
     u16 * v7 = inline_0204FCAC(param0);
     u16 * v8 = inline_0204FCAC(param0);
 
-    v3 = sub_0202783C(v5->unk_0C);
-    sub_02027914(v3, &v0, &v1, &v2);
+    v3 = SaveData_MiscSaveBlock(v5->unk_0C);
+    MiscSaveBlock_FavoriteMon(v3, &v0, &v1, &v2);
 
     *v6 = v0;
     *v7 = v1;

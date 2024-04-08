@@ -13,138 +13,131 @@
 #include "savedata_misc.h"
 #include "unk_02027B70.h"
 #include "unk_02027F50.h"
+#include "charcode.h"
 
 int MiscSaveBlock_SaveSize (void)
 {
     return sizeof(MiscSaveBlock);
 }
 
-void MiscSaveBlock_Init (MiscSaveBlock * param0)
+void MiscSaveBlock_Init (MiscSaveBlock *miscSave)
 {
-    MI_CpuClearFast(param0, sizeof(MiscSaveBlock));
+    MI_CpuClearFast(miscSave, sizeof(MiscSaveBlock));
 
-    sub_02027B70(param0->unk_00);
-    sub_02027F50(&param0->unk_680);
+    sub_02027B70(miscSave->unk_00);
+    sub_02027F50(&miscSave->unk_680);
 
-    MI_CpuFill16(param0->rivalName, 0xffff, 7 + 1);
-    MI_CpuFill16(param0->unk_6B4, 0xffff, 10 + 1);
+    MI_CpuFill16(miscSave->rivalName, CHAR_EOS, RIVAL_NAME_LEN + 1);
+    MI_CpuFill16(miscSave->tabletName, CHAR_EOS, TABLET_NAME_LEN + 1);
 
-    sub_02014A9C(&param0->introMsg, 4);
+    sub_02014A9C(&miscSave->introMsg, 4);
 
-    param0->introMsg.id = 0;
-    param0->introMsg.words[0] = sub_02014DFC(441, 99);
-    param0->introMsg.words[1] = 0xffff;
+    miscSave->introMsg.id = 0;
+    miscSave->introMsg.words[0] = sub_02014DFC(441, 99);
+    miscSave->introMsg.words[1] = 0xffff;
 
-    {
-        int v0;
-
-        for (v0 = 0; v0 < 6 - 1; v0++) {
-            param0->extraKey.keys[v0] = 0xffffffff;
-            param0->extraKey.oldKeys[v0] = 0xffffffff;
-        }
+    for (int i = 0; i < EXTRA_SAVE_TABLE_ENTRY_MAX - 1; i++) {
+        miscSave->extraKey.keys[i] = EXTRA_SAVE_TABLE_ENTRY_NONE;
+        miscSave->extraKey.oldKeys[i] = EXTRA_SAVE_TABLE_ENTRY_NONE;
     }
 }
 
-MiscSaveBlock * sub_0202783C (SaveData * param0)
+MiscSaveBlock* SaveData_MiscSaveBlock (SaveData *saveData)
 {
-    return SaveData_SaveTable(param0, 10);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_MISC);
 }
 
-const MiscSaveBlock * Save_MiscRO (const SaveData * param0)
+const MiscSaveBlock* SaveData_MiscSaveBlockConst (const SaveData *saveData)
 {
-    return SaveData_SaveTableConst(param0, 10);
+    return SaveData_SaveTableConst(saveData, SAVE_TABLE_ENTRY_MISC);
 }
 
-UnkStruct_02027854 * sub_02027854 (SaveData * param0)
+UnkStruct_02027854* sub_02027854 (SaveData *saveData)
 {
-    MiscSaveBlock * v0;
-
-    v0 = SaveData_SaveTable(param0, 10);
-    return v0->unk_00;
+    MiscSaveBlock *miscSave = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_MISC);
+    return miscSave->unk_00;
 }
 
-UnkStruct_02027860 * sub_02027860 (SaveData * param0)
+UnkStruct_02027860* sub_02027860 (SaveData *saveData)
 {
-    MiscSaveBlock * v0;
-
-    v0 = SaveData_SaveTable(param0, 10);
-    return &v0->unk_680;
+    MiscSaveBlock *miscSave = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_MISC);
+    return &miscSave->unk_680;
 }
 
-const u16 * MiscSave_RivalName (const MiscSaveBlock * param0)
+const u16* MiscSaveBlock_RivalName (const MiscSaveBlock* miscSave)
 {
-    return param0->rivalName;
+    return miscSave->rivalName;
 }
 
-void sub_0202787C (MiscSaveBlock * param0, Strbuf *param1)
+void MiscSaveBlock_SetRivalName (MiscSaveBlock* miscSave, Strbuf *name)
 {
-    Strbuf_ToChars(param1, param0->rivalName, 7 + 1);
+    Strbuf_ToChars(name, miscSave->rivalName, RIVAL_NAME_LEN + 1);
 }
 
-const u16 * sub_02027894 (const MiscSaveBlock * param0)
+const u16* MiscSaveBlock_TabletName (const MiscSaveBlock *miscSave)
 {
-    return param0->unk_6B4;
+    return miscSave->tabletName;
 }
 
-void sub_020278A0 (MiscSaveBlock * param0, Strbuf *param1)
+void MiscSaveBlock_SetTabletName (MiscSaveBlock *miscSave, Strbuf *name)
 {
-    Strbuf_ToChars(param1, param0->unk_6B4, 10 + 1);
+    Strbuf_ToChars(name, miscSave->tabletName, TABLET_NAME_LEN + 1);
 }
 
-void sub_020278B8 (MiscSaveBlock * param0)
+void MiscSaveBlock_SetInitFlag (MiscSaveBlock *miscSave)
 {
-    param0->extraSaveInitalized = 1;
+    miscSave->extraSaveInitalized = TRUE;
 }
 
-u32 sub_020278CC (const MiscSaveBlock * param0)
+u32 MiscSaveBlock_InitFlag (const MiscSaveBlock *miscSave)
 {
-    return param0->extraSaveInitalized;
+    return miscSave->extraSaveInitalized;
 }
 
-void sub_020278DC (MiscSaveBlock * param0, int param1, int param2, int param3)
+void MiscSaveBlock_SetFavoriteMon (MiscSaveBlock *miscSave, int species, int form, int isEgg)
 {
-    param0->favoriteMon = param1;
-    param0->favoriteMonForm = param2;
-    param0->favoriteMonIsEgg = param3;
+    miscSave->favoriteMon = species;
+    miscSave->favoriteMonForm = form;
+    miscSave->favoriteMonIsEgg = isEgg;
 }
 
-void sub_02027914 (const MiscSaveBlock * param0, int * param1, int * param2, int * param3)
+void MiscSaveBlock_FavoriteMon (const MiscSaveBlock *miscSave, int *species, int *form, int *isEgg)
 {
-    *param1 = param0->favoriteMon;
-    *param2 = param0->favoriteMonForm;
-    *param3 = param0->favoriteMonIsEgg;
+    *species = miscSave->favoriteMon;
+    *form = miscSave->favoriteMonForm;
+    *isEgg = miscSave->favoriteMonIsEgg;
 }
 
-void sub_02027938 (const MiscSaveBlock * param0, Sentence * param1)
+void MiscSaveBlock_IntroMsg (const MiscSaveBlock *miscSave, Sentence *message)
 {
-    *param1 = param0->introMsg;
+    *message = miscSave->introMsg;
 }
 
-void sub_02027958 (MiscSaveBlock * param0, const Sentence * param1)
+void MiscSaveBlock_SetIntroMsg (MiscSaveBlock *miscSave, const Sentence *message)
 {
-    param0->introMsg = *param1;
+    miscSave->introMsg = *message;
 }
 
-void sub_0202797C (const MiscSaveBlock * param0, u8 * param1)
+void MiscSaveBlock_VsRecorderColor (const MiscSaveBlock *miscSave, u8 *color)
 {
-    *param1 = param0->recorderColor;
+    *color = miscSave->vsRecorderColor;
 }
 
-void sub_0202798C (MiscSaveBlock * param0, u8 param1)
+void MiscSaveBlock_SetVsRecorderColor (MiscSaveBlock *miscSave, u8 color)
 {
-    param0->recorderColor = param1;
+    miscSave->vsRecorderColor = color;
 }
 
-void sub_020279A8 (const MiscSaveBlock * param0, int param1, u32 * param2, u32 * param3, u8 * param4)
+void MiscSaveBlock_ExtraSaveKey (const MiscSaveBlock *miscSave, int saveTableID, u32 *currKey, u32 *oldKey, u8 *keyFlag)
 {
-    *param2 = param0->extraKey.keys[param1 - 1];
-    *param3 = param0->extraKey.oldKeys[param1 - 1];
-    *param4 = param0->extraKey.keyFlags[param1 - 1];
+    *currKey = miscSave->extraKey.keys[saveTableID - 1];
+    *oldKey = miscSave->extraKey.oldKeys[saveTableID - 1];
+    *keyFlag = miscSave->extraKey.keyFlags[saveTableID - 1];
 }
 
-void sub_020279D0 (MiscSaveBlock * param0, int param1, u32 param2, u32 param3, u8 param4)
+void MiscSaveBlock_SetExtraSaveKey (MiscSaveBlock *miscSave, int saveTableID, u32 currKey, u32 oldKey, u8 keyFlag)
 {
-    param0->extraKey.keys[param1 - 1] = param2;
-    param0->extraKey.oldKeys[param1 - 1] = param3;
-    param0->extraKey.keyFlags[param1 - 1] = param4;
+    miscSave->extraKey.keys[saveTableID - 1] = currKey;
+    miscSave->extraKey.oldKeys[saveTableID - 1] = oldKey;
+    miscSave->extraKey.keyFlags[saveTableID - 1] = keyFlag;
 }

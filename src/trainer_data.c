@@ -29,7 +29,7 @@ void TrainerData_Encounter(BattleParams *battleParams, const SaveData *save, int
 {
     TrainerData trdata;
     MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 618, heapID);
-    const charcode_t *rivalName = MiscSave_RivalName(Save_MiscRO(save));
+    const charcode_t *rivalName = MiscSaveBlock_RivalName(SaveData_MiscSaveBlockConst(save));
 
     for (int i = 0; i < MAX_BATTLERS; i++) {
         if (!battleParams->trainerIDs[i]) {

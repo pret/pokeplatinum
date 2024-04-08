@@ -168,8 +168,8 @@ void ov62_0222F514 (UnkStruct_0208C06C * param0)
     sub_02002F54(param0->unk_14.unk_14);
 
     if (param0->unk_00 == 0) {
-        MiscSaveBlock * v0 = sub_0202783C(param0->unk_830);
-        sub_0202798C(v0, param0->unk_14.unk_48);
+        MiscSaveBlock * v0 = SaveData_MiscSaveBlock(param0->unk_830);
+        MiscSaveBlock_SetVsRecorderColor(v0, param0->unk_14.unk_48);
     }
 
     NARC_dtor(param0->unk_14.unk_00);

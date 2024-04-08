@@ -427,7 +427,7 @@ BOOL sub_02047CA0 (UnkStruct_0203E724 * param0)
 
     v0 = Strbuf_Init(10 + 1, 11);
 
-    Strbuf_CopyChars(v0, sub_02027894(sub_0202783C(param0->unk_34->unk_0C)));
+    Strbuf_CopyChars(v0, MiscSaveBlock_TabletName(SaveData_MiscSaveBlock(param0->unk_34->unk_0C)));
     sub_0200B48C(*v2, v3, v0, 0, 0, Unk_020E4C44);
     Strbuf_Free(v0);
 

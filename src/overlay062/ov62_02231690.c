@@ -3196,12 +3196,12 @@ void ov62_022342BC (UnkStruct_0208C06C * param0)
 
 BOOL ov62_022342CC (UnkStruct_0208C06C * param0)
 {
-    MiscSaveBlock * v0 = sub_0202783C(param0->unk_830);
+    MiscSaveBlock * v0 = SaveData_MiscSaveBlock(param0->unk_830);
     u32 v1, v2;
     u8 v3;
 
-    sub_020279A8(v0, 2 + param0->unk_86C, &v1, &v2, &v3);
-    sub_020279D0(v0, 2 + param0->unk_86C, 0xffffffff, 0xffffffff, v3);
+    MiscSaveBlock_ExtraSaveKey(v0, 2 + param0->unk_86C, &v1, &v2, &v3);
+    MiscSaveBlock_SetExtraSaveKey(v0, 2 + param0->unk_86C, 0xffffffff, 0xffffffff, v3);
 
     return 1;
 }

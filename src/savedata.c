@@ -232,14 +232,14 @@ BOOL SaveData_IsNewGameData (const SaveData *saveData)
     return saveData->isNewGameData;
 }
 
-BOOL SaveData_MiscSave_InitFlag (SaveData *saveData)
+BOOL SaveData_MiscSaveBlock_InitFlag (SaveData *saveData)
 {
-    return sub_020278CC(sub_0202783C(saveData));
+    return MiscSaveBlock_InitFlag(SaveData_MiscSaveBlock(saveData));
 }
 
-static void SaveData_MiscSave_SetInitFlag (SaveData *saveData)
+static void SaveData_MiscSaveBlock_SetInitFlag (SaveData *saveData)
 {
-    sub_020278B8(sub_0202783C(saveData));
+    MiscSaveBlock_SetInitFlag(SaveData_MiscSaveBlock(saveData));
 }
 
 BOOL SaveData_OverwriteCheck (const SaveData *saveData)
@@ -524,12 +524,12 @@ static int SaveData_LoadCheck (SaveData *saveData)
 static void SaveDataExtra_LoadCheck (SaveData *saveData, int *frontierResult, int *videoResult)
 {
     int loadResult;
-    MiscSaveBlock *miscSave = sub_0202783C(saveData);
+    MiscSaveBlock *miscSave = SaveData_MiscSaveBlock(saveData);
 
     *frontierResult = LOAD_RESULT_OK;
     *videoResult = LOAD_RESULT_OK;
 
-    if (SaveData_MiscSave_InitFlag(saveData) == FALSE) {
+    if (SaveData_MiscSaveBlock_InitFlag(saveData) == FALSE) {
         return;
     }
 
@@ -537,7 +537,7 @@ static void SaveDataExtra_LoadCheck (SaveData *saveData, int *frontierResult, in
     u32 currKey, oldKey;
     u8 loadFlag;
 
-    sub_020279A8(miscSave, EXTRA_SAVE_TABLE_ENTRY_FRONTIER, &currKey, &oldKey, &loadFlag);
+    MiscSaveBlock_ExtraSaveKey(miscSave, EXTRA_SAVE_TABLE_ENTRY_FRONTIER, &currKey, &oldKey, &loadFlag);
 
     void *saveBuffer;
     if (currKey != EXTRA_SAVE_TABLE_ENTRY_NONE || oldKey != EXTRA_SAVE_TABLE_ENTRY_NONE) {
@@ -552,7 +552,7 @@ static void SaveDataExtra_LoadCheck (SaveData *saveData, int *frontierResult, in
     }
 
     for (int i = EXTRA_SAVE_TABLE_ENTRY_MY_RECORDINGS; i <= EXTRA_SAVE_TABLE_ENTRY_DL_RECORDINGS_2; i++) {
-        sub_020279A8(miscSave, i, &currKey, &oldKey, &loadFlag);
+        MiscSaveBlock_ExtraSaveKey(miscSave, i, &currKey, &oldKey, &loadFlag);
 
         if (currKey != EXTRA_SAVE_TABLE_ENTRY_NONE || oldKey != EXTRA_SAVE_TABLE_ENTRY_NONE) {
             saveBuffer = SaveDataExtra_Mirror(saveData, HEAP_ID_APPLICATION, i, &loadResult, &isOld);
@@ -896,7 +896,7 @@ void SaveDataExtra_Init (SaveData *saveData)
 {
     const SaveTableEntry *extraTable = gExtraSaveTable;
 
-    if (SaveData_MiscSave_InitFlag(saveData) == TRUE) {
+    if (SaveData_MiscSaveBlock_InitFlag(saveData) == TRUE) {
         return;
     }
 
@@ -919,7 +919,7 @@ void SaveDataExtra_Init (SaveData *saveData)
         Heap_FreeToHeap(extraData);
     }
 
-    SaveData_MiscSave_SetInitFlag(saveData);
+    SaveData_MiscSaveBlock_SetInitFlag(saveData);
 }
 
 static void SaveCheckFooter_Set (const SaveData *saveData, void *saveBody, int extraSaveID, u32 size)
@@ -1108,7 +1108,7 @@ void* SaveDataExtra_Mirror (SaveData *saveData, int heapID, int extraSaveID, int
     void *ret;
     u32 size;
     BOOL primaryResult, backupResult;
-    MiscSaveBlock *miscSave = sub_0202783C(saveData);
+    MiscSaveBlock *miscSave = SaveData_MiscSaveBlock(saveData);
 
     GF_ASSERT(extraSaveID < gExtraSaveTableSize);
     GF_ASSERT(extraSaveID != EXTRA_SAVE_TABLE_ENTRY_HALL_OF_FAME);
@@ -1188,19 +1188,19 @@ void* SaveDataExtra_Mirror (SaveData *saveData, int heapID, int extraSaveID, int
     }
 
     *loadResult = LOAD_RESULT_CORRUPT;
-    sub_020279D0(miscSave, saveTable->dataID, EXTRA_SAVE_TABLE_ENTRY_NONE, EXTRA_SAVE_TABLE_ENTRY_NONE, 0);
+    MiscSaveBlock_SetExtraSaveKey(miscSave, saveTable->dataID, EXTRA_SAVE_TABLE_ENTRY_NONE, EXTRA_SAVE_TABLE_ENTRY_NONE, 0);
 
     return ret;
 }
 
 static void SaveDataExtra_SaveKey (SaveData *saveData, int extraSaveID, u32 *returnKey, u32 *oldKey, u8 *keyFlag)
 {
-    sub_020279A8(sub_0202783C(saveData), extraSaveID, returnKey, oldKey, keyFlag);
+    MiscSaveBlock_ExtraSaveKey(SaveData_MiscSaveBlock(saveData), extraSaveID, returnKey, oldKey, keyFlag);
 }
 
 static void SaveDataExtra_SetSaveKey (SaveData *saveData, int extraSaveID, u32 newKey, u32 oldKey, u8 keyFlag)
 {
-    sub_020279D0(sub_0202783C(saveData), extraSaveID, newKey, oldKey, keyFlag);
+    MiscSaveBlock_SetExtraSaveKey(SaveData_MiscSaveBlock(saveData), extraSaveID, newKey, oldKey, keyFlag);
 }
 
 BOOL SaveData_CardBackupType (void)

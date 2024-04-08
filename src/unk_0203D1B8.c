@@ -1274,8 +1274,8 @@ static void sub_0203DF68 (UnkStruct_020508D4 * param0)
     break;
     case 6:
     {
-        MiscSaveBlock * v6 = sub_0202783C(v0->unk_0C);
-        sub_020278A0(v6, v1->unk_0C->unk_18);
+        MiscSaveBlock * v6 = SaveData_MiscSaveBlock(v0->unk_0C);
+        MiscSaveBlock_SetTabletName(v6, v1->unk_0C->unk_18);
     }
     break;
     }
