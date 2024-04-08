@@ -2,8 +2,9 @@
 #include <string.h>
 #include <dwc.h>
 
+#include "constants/charcode.h"
+
 #include "strbuf.h"
-#include "charcode.h"
 #include "heap.h"
 #include "error_handling.h"
 #include "strbuf.h"

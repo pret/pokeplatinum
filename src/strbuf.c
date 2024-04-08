@@ -1,7 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "charcode.h"
+#include "constants/charcode.h"
+
 #include "heap.h"
 #include "strbuf.h"
 

@@ -1,9 +1,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/charcode.h"
+
 #include "unk_020021B0.h"
 
-#include "charcode.h"
 #include "heap.h"
 #include "strbuf.h"
 #include "trainer_info.h"
