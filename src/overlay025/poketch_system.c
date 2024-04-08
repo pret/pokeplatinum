@@ -168,8 +168,7 @@ void ov25_02253D7C (PoketchSystem *poketchSys, int param1, u32 param2)
     case 1:
         poketchSys->unk_04 = 1;
         break;
-    case 5:
-    {
+    case 5:{
         u32 step_count = PoketchData_StepCount(poketchSys->poketchData);
 
         if (++step_count > 99999) {
