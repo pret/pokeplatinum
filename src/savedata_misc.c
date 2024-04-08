@@ -1,15 +1,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "strbuf.h"
-#include "savedata.h"
-
 #include "struct_defs/sentence.h"
 
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
-#include "strbuf.h"
-#include "savedata.h"
 #include "savedata_misc.h"
 #include "unk_02027B70.h"
 #include "unk_02027F50.h"
@@ -27,7 +22,7 @@ void MiscSaveBlock_Init (MiscSaveBlock *miscSave)
     sub_02027B70(miscSave->unk_00);
     sub_02027F50(&miscSave->unk_680);
 
-    MI_CpuFill16(miscSave->rivalName, CHAR_EOS, RIVAL_NAME_LEN + 1);
+    MI_CpuFill16(miscSave->rivalName, CHAR_EOS, TRAINER_NAME_LEN + 1);
     MI_CpuFill16(miscSave->tabletName, CHAR_EOS, TABLET_NAME_LEN + 1);
 
     sub_02014A9C(&miscSave->introMsg, 4);
@@ -71,7 +66,7 @@ const u16* MiscSaveBlock_RivalName (const MiscSaveBlock* miscSave)
 
 void MiscSaveBlock_SetRivalName (MiscSaveBlock* miscSave, Strbuf *name)
 {
-    Strbuf_ToChars(name, miscSave->rivalName, RIVAL_NAME_LEN + 1);
+    Strbuf_ToChars(name, miscSave->rivalName, TRAINER_NAME_LEN + 1);
 }
 
 const u16* MiscSaveBlock_TabletName (const MiscSaveBlock *miscSave)

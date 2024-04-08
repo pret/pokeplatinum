@@ -1,7 +1,8 @@
 #ifndef POKEPLATINUM_CONSTANTS_STRING_H
 #define POKEPLATINUM_CONSTANTS_STRING_H
 
-#define MON_NAME_LEN    10
-#define TRAINER_NAME_LEN 7
+#define MON_NAME_LEN        10
+#define TRAINER_NAME_LEN    7
+#define TABLET_NAME_LEN     10
 
 #endif

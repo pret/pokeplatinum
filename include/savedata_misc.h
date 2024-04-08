@@ -9,26 +9,26 @@
 #include "struct_defs/struct_02027860.h"
 #include "savedata.h"
 #include "constants/savedata/save_table.h"
-#include "constants/savedata/savedata_misc.h"
+#include "constants/string.h"
 
 typedef struct ExtraSaveKey {
     u32 keys[EXTRA_SAVE_TABLE_ENTRY_MAX - 1];
     u32 oldKeys[EXTRA_SAVE_TABLE_ENTRY_MAX - 1];
     u8 keyFlags[EXTRA_SAVE_TABLE_ENTRY_MAX - 1];
-    u8 filler[3];
+    u8 padding[3];
 } ExtraSaveKey;
 
 typedef struct MiscSaveBlock {
     UnkStruct_02027854 unk_00[128];
     UnkStruct_02027860 unk_680;
-    u16 rivalName[RIVAL_NAME_LEN + 1];
+    u16 rivalName[TRAINER_NAME_LEN + 1];
     u16 tabletName[TABLET_NAME_LEN + 1]; // used in shaymin event
     u16 favoriteMon;
-    u8 favoriteMonForm:7;
-    u8 favoriteMonIsEgg:1;
-    u8 extraSaveInitalized:1;
-    u8 vsRecorderColor:4;
-    u8 filler:3;
+    u8 favoriteMonForm : 7;
+    u8 favoriteMonIsEgg : 1;
+    u8 extraSaveInitalized : 1;
+    u8 vsRecorderColor : 4;
+    u8 padding : 3;
     u32 unused;
     Sentence introMsg;
     ExtraSaveKey extraKey;
