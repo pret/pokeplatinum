@@ -92,7 +92,9 @@ enum {
     CHAR_NUM_SPACE = 0x01E2,
 
     CHAR_CR = 0xE000,
-    CHAR_EOS = 0xFFFF,
+
+    CHAR_FORMAT_ARG = 0xFFFE,
+    CHAR_EOS,
 };
 
 #endif // POKEPLATINUM_CONSTANTS_CHARCODE_H

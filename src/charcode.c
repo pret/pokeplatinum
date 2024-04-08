@@ -1,50 +1,50 @@
+#include "constants/charcode.h"
+
 #include "charcode.h"
 
-u16 * CharCode_SkipFormatArg (const u16 * param0)
+#define FORMAT_ARG_TYPE_MASK   0xFF00
+
+charcode_t *CharCode_SkipFormatArg(const charcode_t *cstr)
 {
-    GF_ASSERT(*param0 == 0xfffe);
+    GF_ASSERT(*cstr == CHAR_FORMAT_ARG);
 
-    if (*param0 == 0xfffe) {
-        u32 v0;
-
-        param0 += 2;
-        v0 = *param0++;
-        param0 += v0;
+    if (*cstr == CHAR_FORMAT_ARG) {
+        cstr += 2;
+        u32 skip = *cstr++;
+        cstr += skip;
     }
 
-    return (u16 *)param0;
+    return cstr;
 }
 
-u32 CharCode_FormatArgType (const u16 * param0)
+u32 CharCode_FormatArgType(const charcode_t *cstr)
 {
-    GF_ASSERT(*param0 == 0xfffe);
-    return *(param0 + 1);
+    GF_ASSERT(*cstr== CHAR_FORMAT_ARG);
+    return *(cstr + 1);
 }
 
-BOOL CharCode_IsFormatArg (const u16 * param0)
+BOOL CharCode_IsFormatArg(const charcode_t *cstr)
 {
-    u32 v0 = CharCode_FormatArgType(param0);
+    u32 type = CharCode_FormatArgType(cstr);
 
-    if (((v0 & 0xff00) == 0x100) || ((v0 & 0xff00) == 0x600) || ((v0 & 0xff00) == 0x500)) {
-        return 1;
+    if ((type & FORMAT_ARG_TYPE_MASK) == 0x100
+            || (type & FORMAT_ARG_TYPE_MASK) == 0x600
+            || (type & FORMAT_ARG_TYPE_MASK) == 0x500) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-u32 CharCode_FormatArgParam (const u16 * param0, u32 param1)
+u32 CharCode_FormatArgParam(const charcode_t *cstr, u32 paramIdx)
 {
-    GF_ASSERT(*param0 == 0xfffe);
+    GF_ASSERT(*cstr == CHAR_FORMAT_ARG);
 
-    {
-        u32 v0;
+    cstr += 2;
+    u32 skip = *cstr++;
 
-        param0 += 2;
-        v0 = *param0++;
+    GF_ASSERT(paramIdx < skip);
 
-        GF_ASSERT(param1 < v0);
-
-        return param0[param1];
-    }
+    return cstr[paramIdx];
 }
 
