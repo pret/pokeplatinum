@@ -40,7 +40,7 @@
 #include "party.h"
 #include "overlay006/ov6_022465FC.h"
 #include "overlay006/ov6_02246A30.h"
-#include "overlay025/ov25_02253CE0.h"
+#include "overlay025/poketch_system.h"
 
 typedef void (* UnkFuncPtr_020EBB48)(FieldSystem *, u16);
 typedef void (* UnkFuncPtr_020EBB48_1)(FieldSystem *, StringFormatter *);
@@ -296,7 +296,7 @@ static void sub_02049288 (FieldSystem * param0, StringFormatter * param1)
 {
     int v0;
 
-    v0 = ov25_02253DD8(param0->unk_04->unk_14);
+    v0 = PoketchSystem_CurrentAppID(param0->unk_04->unk_14);
     sub_0200B928(param1, 0, v0);
 }
 

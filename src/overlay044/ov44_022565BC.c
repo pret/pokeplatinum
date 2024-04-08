@@ -19,7 +19,7 @@
 #include "unk_02018340.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
-#include "overlay025/ov25_02253CE0.h"
+#include "overlay025/poketch_system.h"
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
 #include "overlay025/ov25_02255540.h"
@@ -61,7 +61,7 @@ static BOOL ov44_02256AC8(UnkStruct_ov44_022565BC * param0, const UnkStruct_ov44
 
 BOOL ov44_022565BC (UnkStruct_ov44_022565BC ** param0, const UnkStruct_ov44_022565BC_1 * param1, BGL * param2)
 {
-    UnkStruct_ov44_022565BC * v0 = (UnkStruct_ov44_022565BC *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov44_022565BC));
+    UnkStruct_ov44_022565BC * v0 = (UnkStruct_ov44_022565BC *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov44_022565BC));
 
     if (v0 != NULL) {
         ov25_02255090(v0->unk_08, 4);

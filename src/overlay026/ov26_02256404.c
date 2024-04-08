@@ -34,7 +34,7 @@ static void ov26_022565F4(UnkStruct_ov26_02256404 * param0);
 
 BOOL ov26_02256404 (UnkStruct_ov26_02256404 ** param0, const UnkStruct_ov26_02256404_1 * param1, BGL * param2)
 {
-    UnkStruct_ov26_02256404 * v0 = (UnkStruct_ov26_02256404 *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov26_02256404));
+    UnkStruct_ov26_02256404 * v0 = (UnkStruct_ov26_02256404 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov26_02256404));
 
     if (v0 != NULL) {
         NNSG2dScreenData * v1;

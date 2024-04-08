@@ -23,7 +23,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
-#include "overlay025/ov25_02253CE0.h"
+#include "overlay025/poketch_system.h"
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
 #include "overlay025/ov25_02255540.h"
@@ -58,7 +58,7 @@ static void ov48_022569FC(SysTask * param0, void * param1);
 
 BOOL ov48_0225650C (UnkStruct_ov48_0225650C ** param0, const UnkStruct_ov48_0225650C_1 * param1, BGL * param2)
 {
-    UnkStruct_ov48_0225650C * v0 = (UnkStruct_ov48_0225650C *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov48_0225650C));
+    UnkStruct_ov48_0225650C * v0 = (UnkStruct_ov48_0225650C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov48_0225650C));
 
     if (v0 != NULL) {
         ov25_02255090(v0->unk_08, 4);

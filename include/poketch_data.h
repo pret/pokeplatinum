@@ -37,7 +37,9 @@ enum PoketchAppID {
     POKETCH_APPID_STOPWATCH,    // unused
     POKETCH_APPID_ALARMCLOCK,   // unused
 
-    POKETCH_APPID_MAX
+    POKETCH_APPID_MAX,
+
+    POKETCH_APPID_NONE = -1
 };
 
 /** Poketch Screen colors, used in PoketchData_SetScreenColor */

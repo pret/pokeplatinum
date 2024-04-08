@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "field/field_system_sub1_decl.h"
 #include "savedata.h"
-#include "overlay025/struct_ov25_02253CE0_decl.h"
+#include "overlay025/poketch_system.h"
 
 #include "overlay005/const_ov5_021F89B0.h"
 #include "overlay077/const_ov77_021D742C.h"
@@ -38,7 +38,6 @@
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021E1B08.h"
 #include "overlay005/ov5_021EA714.h"
-#include "overlay025/ov25_02253CE0.h"
 
 FS_EXTERN_OVERLAY(overlay5);
 FS_EXTERN_OVERLAY(overlay77);
@@ -317,7 +316,7 @@ void sub_0203CF5C (FieldSystem * param0)
 
                 {
                     BOOL v3 = 0;
-                    UnkStruct_ov25_02253CE0 * v4 = sub_0203D158();
+                    PoketchSystem * v4 = sub_0203D158();
 
                     if (v4 != NULL) {
                         v3 = ov25_02253DD4(v4);
@@ -343,7 +342,7 @@ void sub_0203CF5C (FieldSystem * param0)
 
                 {
                     BOOL v5 = 0;
-                    UnkStruct_ov25_02253CE0 * v6 = sub_0203D158();
+                    PoketchSystem * v6 = sub_0203D158();
 
                     if (v6 != NULL) {
                         v5 = ov25_02253DD4(v6);
@@ -369,7 +368,7 @@ void sub_0203D140 (void)
     CommSys_EnableSendMovementData();
 }
 
-struct UnkStruct_ov25_02253CE0_t * sub_0203D158 (void)
+struct PoketchSystem * sub_0203D158 (void)
 {
     if (Unk_021C07DC->unk_04 == NULL) {
         return NULL;

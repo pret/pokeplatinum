@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
 #include "poketch_data.h"
-#include "overlay025/struct_ov25_0225424C_decl.h"
+#include "overlay025/poketch_system.h"
 #include "overlay025/struct_ov25_02254560_decl.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay025/struct_ov25_022555E8_decl.h"
@@ -24,7 +24,6 @@
 #include "unk_02018340.h"
 #include "gx_layers.h"
 #include "poketch_data.h"
-#include "overlay025/ov25_02253CE0.h"
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
 #include "overlay025/ov25_02255540.h"
@@ -51,7 +50,7 @@ struct UnkStruct_ov25_02254560_t {
     SysTask * unk_1D0;
     UnkStruct_ov25_02254DD8 unk_1D4;
     BGL * unk_1F8;
-    UnkStruct_ov25_0225424C * unk_1FC;
+    PoketchSystem * unk_1FC;
     u16 unk_200[256];
     u16 unk_400[16];
 };
@@ -88,12 +87,12 @@ static void ov25_02254F40(UnkStruct_ov25_02254DD8 * param0);
 static void ov25_02254F68(SysTask * param0, void * param1);
 static void ov25_02255004(SysTask * param0, void * param1);
 static void ov25_02255064(SysTask * param0, void * param1);
-struct UnkStruct_ov25_02253CE0_t * sub_0203D158(void);
+struct PoketchSystem * sub_0203D158(void);
 SysTask * sub_0200DA3C(SysTaskFunc param0, void * param1, u32 param2);
 
-BOOL ov25_02254560 (UnkStruct_ov25_02254560 ** param0, const UnkStruct_ov25_02254560_1 * param1, NNSG2dOamManagerInstance * param2, UnkStruct_ov25_0225424C * param3)
+BOOL ov25_02254560 (UnkStruct_ov25_02254560 ** param0, const UnkStruct_ov25_02254560_1 * param1, NNSG2dOamManagerInstance * param2, PoketchSystem * param3)
 {
-    *param0 = Heap_AllocFromHeap(7, sizeof(UnkStruct_ov25_02254560));
+    *param0 = Heap_AllocFromHeap(HEAP_ID_POKETCH_MAIN, sizeof(UnkStruct_ov25_02254560));
 
     if (*param0 != NULL) {
         UnkStruct_ov25_02254560 * v0 = *param0;
@@ -167,7 +166,7 @@ static void ov25_02254684 (UnkStruct_ov25_02254560 * param0)
 void ov25_022546B8 (u32 param0, u32 param1)
 {
     UnkStruct_ov25_02254560 * v0 = ov25_02254418();
-    PoketchData * v1 = ov25_02254540(v0->unk_1FC);
+    PoketchData * v1 = PoketchSystem_PoketchData(v0->unk_1FC);
     u32 v2 = PoketchData_CurrentScreenColor(v1);
 
     GXS_LoadBGPltt(&v0->unk_200[v2 * 32], param0 * 0x20, 0x20);
@@ -177,7 +176,7 @@ void ov25_022546B8 (u32 param0, u32 param1)
 void ov25_022546F0 (u32 param0, u32 param1)
 {
     UnkStruct_ov25_02254560 * v0 = ov25_02254418();
-    PoketchData * v1 = ov25_02254540(v0->unk_1FC);
+    PoketchData * v1 = PoketchSystem_PoketchData(v0->unk_1FC);
     u32 v2 = PoketchData_CurrentScreenColor(v1);
 
     GXS_LoadBGPltt(&v0->unk_200[v2 * 32 + 16], 0, 0x20);
@@ -187,7 +186,7 @@ void ov25_022546F0 (u32 param0, u32 param1)
 void ov25_02254728 (u16 * param0)
 {
     UnkStruct_ov25_02254560 * v0 = ov25_02254418();
-    PoketchData * v1 = ov25_02254540(v0->unk_1FC);
+    PoketchData * v1 = PoketchSystem_PoketchData(v0->unk_1FC);
     u32 v2 = PoketchData_CurrentScreenColor(v1);
 
     MI_CpuCopy16(&v0->unk_200[v2 * 32], param0, 0x20);
@@ -609,7 +608,7 @@ static void ov25_02254DE0 (UnkStruct_ov25_02254560 * param0, UnkStruct_ov25_0225
 
 static void ov25_02254E84 (UnkStruct_ov25_02254560 * param0, u32 param1)
 {
-    PoketchData * v1 = ov25_02254540(param0->unk_1FC);
+    PoketchData * v1 = PoketchSystem_PoketchData(param0->unk_1FC);
     u32 v2 = PoketchData_CurrentScreenColor(v1);
 
     ov25_02254728(param0->unk_400);

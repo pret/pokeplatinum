@@ -195,7 +195,7 @@ void ov25_02255290 (u16 * param0, u32 param1)
 {
     u16 * v0;
 
-    v0 = Heap_AllocFromHeap(8, 0x20);
+    v0 = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, 0x20);
 
     if (v0) {
         static const u8 v1[] = {
@@ -227,10 +227,10 @@ void ov25_02255308 (u32 param0, u32 param1)
 {
     u16 * v0;
 
-    v0 = Heap_AllocFromHeap(8, 0x20);
+    v0 = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, 0x20);
 
     if (v0) {
-        u16 * v1 = Heap_AllocFromHeap(8, 0x20);
+        u16 * v1 = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, 0x20);
 
         ov25_02254728(v0);
 
@@ -271,7 +271,7 @@ void ov25_022553A0 (u32 param0, const u32 * param1, u32 param2, BOOL param3)
     static const u16 v1[2] = {640, 1152};
     u8 * v2;
 
-    v2 = Heap_AllocFromHeap(8, v1[param3]);
+    v2 = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, v1[param3]);
 
     if (v2) {
         NARC * v3 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 8);

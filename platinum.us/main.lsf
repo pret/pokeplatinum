@@ -871,7 +871,7 @@ Overlay overlay24
 Overlay overlay25
 {
 	After overlay9
-	Object main.nef.p/src_overlay025_ov25_02253CE0.c.o
+	Object main.nef.p/src_overlay025_poketch_system.c.o
 	Object main.nef.p/src_overlay025_ov25_02254560.c.o
 	Object main.nef.p/src_overlay025_ov25_02255090.c.o
 	Object main.nef.p/src_overlay025_ov25_02255540.c.o
