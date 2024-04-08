@@ -1346,7 +1346,7 @@ void ov66_0222E9CC (UnkStruct_ov66_0222DFF8 * param0, u32 param1, u32 param2, u3
     ov66_02232E00(4, &v0, sizeof(UnkStruct_ov66_0222E990));
 }
 
-void ov66_0222EA10 (UnkStruct_ov66_0222DFF8 * param0, UnkEnum_ov66_022324D0 param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, BOOL param7)
+void ov66_0222EA10 (UnkStruct_ov66_0222DFF8 * param0, enum PlazaMinigame param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, BOOL param7)
 {
     UnkStruct_ov66_0222E990 v0 = {0};
     u32 v1;
@@ -1383,7 +1383,7 @@ void ov66_0222EA10 (UnkStruct_ov66_0222DFF8 * param0, UnkEnum_ov66_022324D0 para
     ov66_02232E00(4, &v0, sizeof(UnkStruct_ov66_0222E990));
 }
 
-void ov66_0222EAB4 (UnkStruct_ov66_0222DFF8 * param0, UnkEnum_ov66_022324D0 param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6)
+void ov66_0222EAB4 (UnkStruct_ov66_0222DFF8 * param0, enum PlazaMinigame param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6)
 {
     UnkStruct_ov66_0222E990 v0 = {0};
     u32 v1;
@@ -1779,7 +1779,7 @@ void ov66_0222EF44 (UnkStruct_ov66_0222DFF8 * param0, u32 param1)
     }
 }
 
-void ov66_0222EF94 (UnkStruct_ov66_0222DFF8 * param0, UnkEnum_ov66_022324D0 param1)
+void ov66_0222EF94 (UnkStruct_ov66_0222DFF8 * param0, enum PlazaMinigame param1)
 {
     void * v0;
     UnkStruct_0202B628 * v1;

@@ -6,7 +6,7 @@
 #include "enums.h"
 
 typedef struct {
-    UnkEnum_ov66_022324D0 unk_00;
+    enum PlazaMinigame unk_00;
     u32 unk_04;
     const TrainerInfo * unk_08;
     const TrainerInfo * unk_0C;

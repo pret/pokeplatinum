@@ -303,7 +303,7 @@ static void ov70_0225F25C(UnkStruct_ov70_0225F208 * param0);
 static Strbuf* ov70_0225F288(UnkStruct_ov70_0225F208 * param0, int param1, u32 param2);
 static void ov70_0225F2A8(UnkStruct_ov70_0225F208 * param0, u32 param1, u32 param2, u32 param3, int param4);
 static void ov70_0225F2C8(UnkStruct_ov70_0225F208 * param0, const TrainerInfo * param1, u32 param2);
-static void ov70_0225F2D8(UnkStruct_ov70_0225F208 * param0, UnkEnum_ov66_022324D0 param1, u32 param2);
+static void ov70_0225F2D8(UnkStruct_ov70_0225F208 * param0, enum PlazaMinigame param1, u32 param2);
 static void ov70_0225F2E8(UnkStruct_ov70_0225F208 * param0, int param1, u32 param2);
 static void ov70_0225F2F8(UnkStruct_ov70_0225F208 * param0, u32 param1, u32 param2);
 static void ov70_0225F308(UnkStruct_ov70_0225F208 * param0, u32 param1, u32 param2);
@@ -1117,7 +1117,7 @@ void ov70_0225E234 (UnkStruct_ov70_0225DEE8 * param0, u32 param1, u32 param2)
     Heap_FreeToHeap(v0);
 }
 
-void ov70_0225E27C (UnkStruct_ov70_0225DEE8 * param0, UnkEnum_ov66_022324D0 param1, u32 param2)
+void ov70_0225E27C (UnkStruct_ov70_0225DEE8 * param0, enum PlazaMinigame param1, u32 param2)
 {
     ov70_0225F2D8(&param0->unk_340, param1, param2);
 }
@@ -2040,7 +2040,7 @@ static void ov70_0225F2C8 (UnkStruct_ov70_0225F208 * param0, const TrainerInfo *
     StringTemplate_SetPlayerName(param0->unk_00, param2, param1);
 }
 
-static void ov70_0225F2D8 (UnkStruct_ov70_0225F208 * param0, UnkEnum_ov66_022324D0 param1, u32 param2)
+static void ov70_0225F2D8 (UnkStruct_ov70_0225F208 * param0, enum PlazaMinigame param1, u32 param2)
 {
     StringTemplate_SetPlazaMinigameName(param0->unk_00, param2, param1);
 }

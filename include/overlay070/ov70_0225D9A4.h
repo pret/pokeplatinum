@@ -68,7 +68,7 @@ void ov70_0225E1F8(UnkStruct_ov70_0225DEE8 * param0);
 Strbuf* ov70_0225E20C(UnkStruct_ov70_0225DEE8 * param0, int param1, u32 param2);
 void ov70_0225E21C(UnkStruct_ov70_0225DEE8 * param0, u32 param1, u32 param2, u32 param3, int param4);
 void ov70_0225E234(UnkStruct_ov70_0225DEE8 * param0, u32 param1, u32 param2);
-void ov70_0225E27C(UnkStruct_ov70_0225DEE8 * param0, UnkEnum_ov66_022324D0 param1, u32 param2);
+void ov70_0225E27C(UnkStruct_ov70_0225DEE8 * param0, enum PlazaMinigame param1, u32 param2);
 void ov70_0225E28C(UnkStruct_ov70_0225DEE8 * param0, int param1, u32 param2);
 void ov70_0225E29C(UnkStruct_ov70_0225DEE8 * param0, u32 param1, u32 param2);
 void ov70_0225E2AC(UnkStruct_ov70_0225DEE8 * param0, u32 param1, u32 param2);

@@ -71,7 +71,7 @@ void StringTemplate_SetContestAccessoryName(StringTemplate * param0, u32 param1,
 void StringTemplate_SetContestAccessoryNameWithArticle(StringTemplate * param0, u32 param1, u32 param2);
 void StringTemplate_SetContestBackdropName(StringTemplate * param0, u32 param1, u32 param2);
 void StringTemplate_SetUnionGroupName(StringTemplate * param0, SaveData * param1, int param2, int param3, int param4);
-void StringTemplate_SetPlazaMinigameName(StringTemplate * param0, u32 param1, UnkEnum_ov66_022324D0 param2);
+void StringTemplate_SetPlazaMinigameName(StringTemplate * param0, u32 param1, enum PlazaMinigame param2);
 void StringTemplate_SetPlazaEventName(StringTemplate * param0, u32 param1, int param2);
 void StringTemplate_SetPlazaItemName(StringTemplate * param0, u32 param1, u32 param2);
 void StringTemplate_SetJPGreeting(StringTemplate * param0, u32 param1, u32 param2);

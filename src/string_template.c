@@ -803,7 +803,7 @@ void StringTemplate_SetUnionGroupName (StringTemplate * param0, SaveData * param
     Strbuf_Free(v2);
 }
 
-void StringTemplate_SetPlazaMinigameName (StringTemplate * param0, u32 param1, UnkEnum_ov66_022324D0 param2)
+void StringTemplate_SetPlazaMinigameName (StringTemplate * param0, u32 param1, enum PlazaMinigame param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 651, param0->unk_04);
 

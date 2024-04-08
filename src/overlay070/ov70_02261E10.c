@@ -569,7 +569,7 @@ void ov70_0226278C (UnkStruct_ov70_02261E10 * param0, fx32 param1)
     }
 }
 
-void ov70_022627BC (UnkStruct_ov70_02261E10 * param0, UnkEnum_ov66_022324D0 param1, u32 param2, BOOL param3, BOOL param4, BOOL param5)
+void ov70_022627BC (UnkStruct_ov70_02261E10 * param0, enum PlazaMinigame param1, u32 param2, BOOL param3, BOOL param4, BOOL param5)
 {
     BOOL v0;
     UnkStruct_ov70_022610B8 * v1;

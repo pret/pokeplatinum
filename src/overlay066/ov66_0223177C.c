@@ -99,7 +99,7 @@ static u32 ov66_022324A0(const UnkStruct_ov66_02231FB0 * param0, u32 param1);
 static u32 ov66_022324B4(const UnkStruct_ov66_02231FB0 * param0, u32 param1);
 static u32 ov66_022324B8(const UnkStruct_ov66_02231FB0 * param0, u32 param1);
 static u32 ov66_022324BC(const UnkStruct_ov66_02231FB0 * param0, u32 param1);
-static BOOL ov66_022324D0(UnkEnum_ov66_022324D0 param0, u32 param1);
+static BOOL ov66_022324D0(enum PlazaMinigame param0, u32 param1);
 
 UnkStruct_ov66_0223177C * ov66_0223177C (u32 param0)
 {
@@ -997,7 +997,7 @@ static u32 ov66_022324BC (const UnkStruct_ov66_02231FB0 * param0, u32 param1)
     return param0->unk_20[param1];
 }
 
-static BOOL ov66_022324D0 (UnkEnum_ov66_022324D0 param0, u32 param1)
+static BOOL ov66_022324D0 (enum PlazaMinigame param0, u32 param1)
 {
     if ((param0 == UnkEnum_ov66_022324D0_00) || (param0 == UnkEnum_ov66_022324D0_01)) {
         if ((param1 < 1) || (param1 > 4)) {
