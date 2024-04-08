@@ -936,8 +936,8 @@ static int ov96_0223CA70 (UnkStruct_ov96_0223BF40 * param0)
 
 static int ov96_0223CB7C (UnkStruct_ov96_0223BF40 * param0)
 {
-    StringFormatter_FormatNumber(param0->unk_BCC, 0, param0->unk_98, 3, 2, 1);
-    StringFormatter_FormatNumber(param0->unk_BCC, 1, param0->unk_90, 2, 2, 1);
+    StringTemplate_FormatNumber(param0->unk_BCC, 0, param0->unk_98, 3, 2, 1);
+    StringTemplate_FormatNumber(param0->unk_BCC, 1, param0->unk_90, 2, 2, 1);
 
     ov96_0223D750(param0, param0->unk_BD0, 1, 1, 0xf0f);
     ov96_0223BBFC(param0, 47, 17);
@@ -1244,8 +1244,8 @@ static int ov96_0223D100 (UnkStruct_ov96_0223BF40 * param0)
 
 static int ov96_0223D1D8 (UnkStruct_ov96_0223BF40 * param0)
 {
-    StringFormatter_FormatNumber(param0->unk_BCC, 0, param0->unk_98, 3, 2, 1);
-    StringFormatter_FormatNumber(param0->unk_BCC, 1, param0->unk_90, 2, 2, 1);
+    StringTemplate_FormatNumber(param0->unk_BCC, 0, param0->unk_98, 3, 2, 1);
+    StringTemplate_FormatNumber(param0->unk_BCC, 1, param0->unk_90, 2, 2, 1);
 
     ov96_0223D750(param0, param0->unk_BD0, 1, 1, 0xf0f);
     ov96_0223BBFC(param0, 47, 36);
@@ -1567,7 +1567,7 @@ static void ov96_0223D750 (UnkStruct_ov96_0223BF40 * param0, MessageLoader * par
 {
     Strbuf* v0 = MessageLoader_GetNewStrbuf(param1, param2);
 
-    StringFormatter_Format(param0->unk_BCC, param0->unk_BDC, v0);
+    StringTemplate_Format(param0->unk_BCC, param0->unk_BDC, v0);
     BGL_FillWindow(&param0->unk_E38, 0xf0f);
     sub_0200E060(&param0->unk_E38, 0, 1, 14);
 
@@ -1677,7 +1677,7 @@ static void ov96_0223D9B8 (UnkStruct_ov96_0223BF40 * param0, int param1)
     Strbuf* v0 = Strbuf_Init((16 * 8 * 2), 68);
 
     MessageLoader_GetStrbuf(param0->unk_BD8, param1, v0);
-    StringFormatter_Format(param0->unk_BCC, param0->unk_BEC, v0);
+    StringTemplate_Format(param0->unk_BCC, param0->unk_BEC, v0);
     BGL_FillWindow(&param0->unk_E78, 15);
     Window_Show(&param0->unk_E78, 1, (1 + (18 + 12)), 11);
 
@@ -1696,7 +1696,7 @@ static void ov96_0223DA34 (UnkStruct_ov96_0223BF40 * param0, int param1, int par
         v0 = 11;
     }
 
-    StringFormatter_FormatNumber(param0->unk_BCC, 0, param2, 5, 2, 1);
+    StringTemplate_FormatNumber(param0->unk_BCC, 0, param2, 5, 2, 1);
     sub_0200E084(&param0->unk_E38, 1);
     ov96_0223D9B8(param0, v0);
 }

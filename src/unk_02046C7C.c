@@ -145,7 +145,7 @@ BOOL sub_02046E14 (UnkStruct_0203E724 * param0)
 BOOL sub_02046E60 (UnkStruct_0203E724 * param0)
 {
     void ** v0 = sub_0203F098(param0->unk_34, 20);
-    StringFormatter ** v1 = sub_0203F098(param0->unk_34, 15);
+    StringTemplate ** v1 = sub_0203F098(param0->unk_34, 15);
     u16 v2 = inline_02049538(param0);
     u16 v3 = inline_02049538(param0);
 
@@ -157,7 +157,7 @@ BOOL sub_02046E60 (UnkStruct_0203E724 * param0)
 BOOL sub_02046EB4 (UnkStruct_0203E724 * param0)
 {
     void ** v0 = sub_0203F098(param0->unk_34, 20);
-    StringFormatter ** v1 = sub_0203F098(param0->unk_34, 15);
+    StringTemplate ** v1 = sub_0203F098(param0->unk_34, 15);
     u16 v2 = inline_02049538(param0);
     u16 v3 = inline_02049538(param0);
 
@@ -169,7 +169,7 @@ BOOL sub_02046EB4 (UnkStruct_0203E724 * param0)
 BOOL sub_02046F08 (UnkStruct_0203E724 * param0)
 {
     void ** v0 = sub_0203F098(param0->unk_34, 20);
-    StringFormatter ** v1 = sub_0203F098(param0->unk_34, 15);
+    StringTemplate ** v1 = sub_0203F098(param0->unk_34, 15);
     u16 v2 = inline_02049538(param0);
     u16 v3 = inline_02049538(param0);
 
@@ -181,11 +181,11 @@ BOOL sub_02046F08 (UnkStruct_0203E724 * param0)
 BOOL sub_02046F5C (UnkStruct_0203E724 * param0)
 {
     void ** v0 = sub_0203F098(param0->unk_34, 20);
-    StringFormatter ** v1 = sub_0203F098(param0->unk_34, 15);
+    StringTemplate ** v1 = sub_0203F098(param0->unk_34, 15);
     u16 v2 = inline_02049538(param0);
     u16 v3 = inline_02049538(param0);
 
-    StringFormatter_FormatNumber(*v1, v3, v2, 1, 0, 1);
+    StringTemplate_FormatNumber(*v1, v3, v2, 1, 0, 1);
     return 0;
 }
 
@@ -216,7 +216,7 @@ BOOL sub_02046FF0 (UnkStruct_0203E724 * param0)
 BOOL sub_0204700C (UnkStruct_0203E724 * param0)
 {
     void ** v0 = sub_0203F098(param0->unk_34, 20);
-    StringFormatter ** v1 = sub_0203F098(param0->unk_34, 15);
+    StringTemplate ** v1 = sub_0203F098(param0->unk_34, 15);
     u16 v2 = inline_02049538(param0);
 
     sub_020946A4(*v0, *v1, v2);
@@ -226,7 +226,7 @@ BOOL sub_0204700C (UnkStruct_0203E724 * param0)
 BOOL sub_02047048 (UnkStruct_0203E724 * param0)
 {
     void ** v0 = sub_0203F098(param0->unk_34, 20);
-    StringFormatter ** v1 = sub_0203F098(param0->unk_34, 15);
+    StringTemplate ** v1 = sub_0203F098(param0->unk_34, 15);
     u16 v2 = inline_02049538(param0);
 
     sub_020946CC(*v0, *v1, v2);
@@ -236,7 +236,7 @@ BOOL sub_02047048 (UnkStruct_0203E724 * param0)
 BOOL sub_02047084 (UnkStruct_0203E724 * param0)
 {
     void ** v0 = sub_0203F098(param0->unk_34, 20);
-    StringFormatter ** v1 = sub_0203F098(param0->unk_34, 15);
+    StringTemplate ** v1 = sub_0203F098(param0->unk_34, 15);
     u16 v2 = inline_02049538(param0);
 
     sub_020946F0(*v0, *v1, v2);
@@ -255,7 +255,7 @@ BOOL sub_020470C0 (UnkStruct_0203E724 * param0)
 BOOL sub_020470F0 (UnkStruct_0203E724 * param0)
 {
     void ** v0 = sub_0203F098(param0->unk_34, 20);
-    StringFormatter ** v1 = sub_0203F098(param0->unk_34, 15);
+    StringTemplate ** v1 = sub_0203F098(param0->unk_34, 15);
     u16 v2 = inline_02049538(param0);
 
     sub_02094720(*v0, *v1, v2);
@@ -342,7 +342,7 @@ BOOL sub_020472E8 (UnkStruct_0203E724 * param0)
 BOOL sub_02047318 (UnkStruct_0203E724 * param0)
 {
     void ** v0 = sub_0203F098(param0->unk_34, 20);
-    StringFormatter ** v1 = sub_0203F098(param0->unk_34, 15);
+    StringTemplate ** v1 = sub_0203F098(param0->unk_34, 15);
     u16 v2 = inline_02049538(param0);
 
     sub_02094898(*v0, *v1, v2, 11);

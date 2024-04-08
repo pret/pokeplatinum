@@ -199,7 +199,7 @@ struct UnkStruct_ov108_02241DB0_t {
     u8 unk_44[32];
     u8 unk_64;
     MessageLoader * unk_68;
-    StringFormatter * unk_6C;
+    StringTemplate * unk_6C;
     Strbuf* unk_70;
     Strbuf* unk_74;
     Strbuf* unk_78[2];
@@ -826,7 +826,7 @@ static void ov108_0224237C (UnkStruct_ov108_02241DB0 * param0)
     ov108_022426B0(param0);
 
     param0->unk_68 = MessageLoader_Init(1, 26, 536, 103);
-    param0->unk_6C = StringFormatter_New(103);
+    param0->unk_6C = StringTemplate_New(103);
     param0->unk_70 = Strbuf_Init(600, 103);
     param0->unk_74 = Strbuf_Init(600, 103);
 

@@ -108,7 +108,7 @@ typedef struct PokemonSummaryApp {
     UnkStruct_0200C440 *unk_684;
     MessageLoader *msgLoader;
     MessageLoader *ribbonLoader;
-    StringFormatter *strFormatter;
+    StringTemplate *strFormatter;
     Strbuf *strbuf;
     Strbuf *playerName;
     MessageLoader *moveNameLoader;

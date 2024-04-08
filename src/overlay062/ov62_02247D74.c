@@ -65,7 +65,7 @@ static void ov62_02247DD8 (UnkStruct_0208C06C * param0, int param1, int param2)
     Window * v1 = &param0->unk_8A4;
 
     if (param1 == 282) {
-        StringFormatter * v2;
+        StringTemplate * v2;
         Strbuf* v3;
         Strbuf* v4;
         UnkStruct_02030A80 * v5 = param0->unk_88C[param2];
@@ -78,7 +78,7 @@ static void ov62_02247DD8 (UnkStruct_0208C06C * param0, int param1, int param2)
         v4 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
 
         sub_0200B48C(v2, 0, v3, 0, 1, GAME_LANGUAGE);
-        StringFormatter_Format(v2, v0, v4);
+        StringTemplate_Format(v2, v0, v4);
         Strbuf_Free(v3);
         Strbuf_Free(v4);
         sub_0200B3F0(v2);

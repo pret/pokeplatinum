@@ -37,7 +37,7 @@ static const int Unk_020ED770[][4] = {
     {0x7, 0x4, 0x5, 0x6}
 };
 
-void sub_0205C980 (u32 param0, int param1, StringFormatter * param2)
+void sub_0205C980 (u32 param0, int param1, StringTemplate * param2)
 {
     int v0 = param0 % 8;
     int v1;

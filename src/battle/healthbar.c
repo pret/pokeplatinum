@@ -1098,11 +1098,11 @@ static void Healthbar_DrawBattlerName(Healthbar *healthbar)
     Strbuf *nickname, *template;
     Pokemon *mon;
     BoxPokemon *boxMon;
-    StringFormatter *strFormatter;
+    StringTemplate *strFormatter;
 
     bgl = BattleSystem_BGL(healthbar->battleSys);
     msgLoader = BattleSystem_MessageLoader(healthbar->battleSys);
-    strFormatter = BattleSystem_StringFormatter(healthbar->battleSys);
+    strFormatter = BattleSystem_StringTemplate(healthbar->battleSys);
 
     nickname = Strbuf_Init(MON_NAME_LEN + 12, HEAP_ID_BATTLE); // TODO: not sure why there is a +12 here
     template = MessageLoader_GetNewStrbuf(msgLoader, pl_msg_00000368_00964);
@@ -1110,8 +1110,8 @@ static void Healthbar_DrawBattlerName(Healthbar *healthbar)
     mon = BattleSystem_PartyPokemon(healthbar->battleSys, healthbar->battler, healthbar->selectedPartySlot);
     boxMon = Pokemon_GetBoxPokemon(mon);
 
-    StringFormatter_BufferNickname(strFormatter, 0, boxMon);
-    StringFormatter_Format(strFormatter, nickname, template);
+    StringTemplate_BufferNickname(strFormatter, 0, boxMon);
+    StringTemplate_Format(strFormatter, nickname, template);
 
     BGL_AddFramelessWindow(bgl, &window,
         HEALTHBAR_NAME_BLOCK_COUNT_X,
@@ -1363,11 +1363,11 @@ static void Healthbar_DrawBallsLeftMessage (Healthbar * param0, u32 param1)
     Window v3;
     MessageLoader * v4;
     Strbuf* v5, * v6;
-    StringFormatter * v7;
+    StringTemplate * v7;
 
     v0 = BattleSystem_BGL(param0->battleSys);
     v4 = BattleSystem_MessageLoader(param0->battleSys);
-    v7 = BattleSystem_StringFormatter(param0->battleSys);
+    v7 = BattleSystem_StringTemplate(param0->battleSys);
     v5 = Strbuf_Init(30, 5);
 
     if (param1 & (1 << 10)) {
@@ -1376,8 +1376,8 @@ static void Healthbar_DrawBallsLeftMessage (Healthbar * param0, u32 param1)
         v6 = MessageLoader_GetNewStrbuf(v4, 1221);
     }
 
-    StringFormatter_FormatNumber(v7, 0, param0->unk_27, 2, 1, 1);
-    StringFormatter_Format(v7, v5, v6);
+    StringTemplate_FormatNumber(v7, 0, param0->unk_27, 2, 1, 1);
+    StringTemplate_Format(v7, v5, v6);
     BGL_AddFramelessWindow(v0, &v3, 13, 2, 0, 0xf);
     PrintStringWithColorAndMargins(&v3, 0, v5, 0, 0, 0xff, ((u32)(((0xe & 0xff) << 16) | ((2 & 0xff) << 8) | (((0xf & 0xff) << 0)))), 0, 0, NULL);
 

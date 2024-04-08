@@ -855,7 +855,7 @@ static void ov97_0222DE78 (OverlayManager * param0, Window * param1, u32 param2)
     UnkStruct_ov97_0222D04C * v1 = OverlayManager_Data(param0);
 
     v1->unk_10 = MessageLoader_Init(1, 26, 421, 86);
-    v1->unk_0C = StringFormatter_New(86);
+    v1->unk_0C = StringTemplate_New(86);
 
     BGL_FillWindow(param1, sub_02002DF8(1, 6));
 
@@ -990,7 +990,7 @@ static void ov97_0222E080 (OverlayManager * param0, int * param1)
 
 void ov97_0222E13C (UnkStruct_ov97_0222D04C * param0)
 {
-    StringFormatter * v0;
+    StringTemplate * v0;
     UnkStruct_ov97_02237808 v1;
     int v2;
 
@@ -1004,8 +1004,8 @@ void ov97_0222E13C (UnkStruct_ov97_0222D04C * param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
     sub_02019EBC(param0->unk_00, 0);
 
-    v0 = StringFormatter_New(86);
-    StringFormatter_FormatNumber(v0, 0, param0->unk_26D0, 5, 2, 1);
+    v0 = StringTemplate_New(86);
+    StringTemplate_FormatNumber(v0, 0, param0->unk_26D0, 5, 2, 1);
 
     ov97_02237808(&v1, &param0->unk_26E0, 1, 695, (1 + (18 + 12)), 3);
     ov97_02237858(&v1, 24, 16, 100);
@@ -1040,13 +1040,13 @@ static int ov97_0222E1D8 (OverlayManager * param0)
 
 static int ov97_0222E228 (OverlayManager * param0, Window * param1, int param2, int param3)
 {
-    StringFormatter * v0;
+    StringTemplate * v0;
     MessageLoader * v1;
     UnkStruct_ov97_0222D04C * v2 = OverlayManager_Data(param0);
 
     if (param1 && param2) {
         v1 = MessageLoader_Init(1, 26, 421, 86);
-        v0 = StringFormatter_New(86);
+        v0 = StringTemplate_New(86);
         v2->unk_14 = sub_0200B29C(v0, v1, param2, 86);
         v2->unk_68 = 1;
 

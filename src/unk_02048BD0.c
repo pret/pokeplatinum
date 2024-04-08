@@ -25,7 +25,7 @@
 
 BOOL sub_02048BD0 (UnkStruct_0203E724 * param0)
 {
-    StringFormatter ** v0 = sub_0203F098(param0->unk_34, 15);
+    StringTemplate ** v0 = sub_0203F098(param0->unk_34, 15);
     UnkStruct_0202B4A0 * v1 = sub_0202B4A0(param0->unk_34->unk_0C);
     SaveData * v2 = param0->unk_34->unk_0C;
 

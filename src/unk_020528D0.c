@@ -50,7 +50,7 @@ typedef struct {
     BGL * unk_08;
     Window unk_0C;
     MessageLoader * unk_1C;
-    StringFormatter * unk_20;
+    StringTemplate * unk_20;
 } UnkStruct_02052AA4;
 
 static void sub_02052914(FieldSystem * param0, UnkStruct_020508D4 * param1);
@@ -128,10 +128,10 @@ static void sub_02052914 (FieldSystem * param0, UnkStruct_020508D4 * param1)
     sub_020528D0(v0->unk_08);
 
     v0->unk_1C = MessageLoader_Init(1, 26, 373, 11);
-    v0->unk_20 = StringFormatter_New(11);
+    v0->unk_20 = StringTemplate_New(11);
 
     sub_0201A8D4(v0->unk_08, &v0->unk_0C, &Unk_020EC2F0);
-    StringFormatter_FormatPlayerName(v0->unk_20, 0, SaveData_GetTrainerInfo(FieldSystem_SaveData(param0)));
+    StringTemplate_FormatPlayerName(v0->unk_20, 0, SaveData_GetTrainerInfo(FieldSystem_SaveData(param0)));
 
     if (param0->unk_1C->unk_00 == 414) {
         sub_02052AA4(v0, 4, 0, 0);
@@ -193,7 +193,7 @@ static void sub_02052AA4 (UnkStruct_02052AA4 * param0, u16 param1, u8 param2, u8
 
     BGL_FillWindow(&param0->unk_0C, 0);
     MessageLoader_GetStrbuf(param0->unk_1C, param1, v0);
-    StringFormatter_Format(param0->unk_20, v1, v0);
+    StringTemplate_Format(param0->unk_20, v1, v0);
 
     {
         u32 v2 = sub_02002EB4(0, v1, 0);

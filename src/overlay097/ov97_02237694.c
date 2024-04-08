@@ -223,7 +223,7 @@ static int ov97_02237870 (UnkStruct_ov97_02237808 * param0, int param1)
 {
     int v0;
     Strbuf* v1;
-    StringFormatter * v2;
+    StringTemplate * v2;
     MessageLoader * v3;
     UnkStruct_ov97_0223F550 * v4 = &Unk_ov97_0223F550;
 
@@ -238,7 +238,7 @@ static int ov97_02237870 (UnkStruct_ov97_02237808 * param0, int param1)
             v3 = MessageLoader_Init(1, 26, param0->unk_34, v4->unk_08);
 
             if (param0->unk_14 == NULL) {
-                v2 = StringFormatter_New(v4->unk_08);
+                v2 = StringTemplate_New(v4->unk_08);
             } else {
                 v2 = param0->unk_14;
             }

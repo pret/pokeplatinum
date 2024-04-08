@@ -99,7 +99,7 @@ typedef struct {
     int unk_34;
     u16 * unk_38;
     Strbuf* unk_3C;
-    StringFormatter * unk_40;
+    StringTemplate * unk_40;
     int unk_44;
     int unk_48;
 } UnkStruct_ov97_02233DAC;
@@ -433,7 +433,7 @@ static int ov97_02233DAC (UnkStruct_ov97_02233DAC * param0, Strbuf *param1, int 
 static void ov97_02233DD0 (UnkStruct_ov97_02234A2C * param0, UnkStruct_ov97_02233DAC * param1, int param2)
 {
     Strbuf* v0;
-    StringFormatter * v1;
+    StringTemplate * v1;
     MessageLoader * v2;
     int v3, v4, v5;
     Strbuf* v6;
@@ -458,7 +458,7 @@ static void ov97_02233DD0 (UnkStruct_ov97_02234A2C * param0, UnkStruct_ov97_0223
         if (param1->unk_40) {
             v1 = param1->unk_40;
         } else {
-            v1 = StringFormatter_New(78);
+            v1 = StringTemplate_New(78);
         }
 
         Strbuf_Clear(param0->unk_12668);
@@ -466,7 +466,7 @@ static void ov97_02233DD0 (UnkStruct_ov97_02234A2C * param0, UnkStruct_ov97_0223
         v0 = param0->unk_12668;
         v6 = MessageLoader_GetNewStrbuf(v2, param1->unk_34);
 
-        StringFormatter_Format(v1, param0->unk_12668, v6);
+        StringTemplate_Format(v1, param0->unk_12668, v6);
         Strbuf_Free(v6);
 
         v3 = ov97_02233DAC(param1, v0, param2);
@@ -1619,13 +1619,13 @@ static void ov97_02235310 (UnkStruct_ov97_02234A2C * param0)
 static void ov97_02235344 (UnkStruct_ov97_02234A2C * param0)
 {
     UnkStruct_ov97_02233DAC v0;
-    StringFormatter * v1;
+    StringTemplate * v1;
     Strbuf* v2;
     u16 v3[7 + 1];
 
     ov97_0223936C(ov97_02236378(), v3, 7 + 1, ov97_02235DBC());
 
-    v1 = StringFormatter_New(78);
+    v1 = StringTemplate_New(78);
     v2 = Strbuf_Init(7 + 1, 78);
 
     Strbuf_CopyChars(v2, v3);

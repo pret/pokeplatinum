@@ -48,7 +48,7 @@ struct UnkStruct_ov5_021E1FF4_t {
     u8 unk_08;
     BGL * unk_0C;
     Window * unk_10;
-    StringFormatter * unk_14;
+    StringTemplate * unk_14;
     MessageLoader * unk_18;
     UnkStruct_ov5_021E1D20 unk_1C;
     int unk_2C;
@@ -90,13 +90,13 @@ static void ov5_021E1D20 (UnkStruct_ov5_021E1D20 * param0, const FieldSystem * p
     param0->unk_0C = sub_02025E5C(v0);
 }
 
-static void ov5_021E1D6C (StringFormatter * param0, const UnkStruct_ov5_021E1D20 * param1)
+static void ov5_021E1D6C (StringTemplate * param0, const UnkStruct_ov5_021E1D20 * param1)
 {
     int v0, v1, v2;
 
     sub_0200B8C8(param0, 0, param1->unk_04);
-    StringFormatter_FormatPlayerName(param0, 1, param1->unk_08);
-    StringFormatter_FormatNumber(param0, 2, TrainerInfo_BadgeCount(param1->unk_08), 1, 0, 1);
+    StringTemplate_FormatPlayerName(param0, 1, param1->unk_08);
+    StringTemplate_FormatNumber(param0, 2, TrainerInfo_BadgeCount(param1->unk_08), 1, 0, 1);
 
     if (param1->unk_00 >= 100) {
         v0 = 3;
@@ -109,7 +109,7 @@ static void ov5_021E1D6C (StringFormatter * param0, const UnkStruct_ov5_021E1D20
         v1 = 1;
     }
 
-    StringFormatter_FormatNumber(param0, 3, param1->unk_00, v0, v1, 1);
+    StringTemplate_FormatNumber(param0, 3, param1->unk_00, v0, v1, 1);
     v2 = sub_0202CC58(param1->unk_0C);
 
     if (v2 >= 100) {
@@ -123,8 +123,8 @@ static void ov5_021E1D6C (StringFormatter * param0, const UnkStruct_ov5_021E1D20
         v1 = 1;
     }
 
-    StringFormatter_FormatNumber(param0, 4, v2, v0, v1, 1);
-    StringFormatter_FormatNumber(param0, 5, sub_0202CC5C(param1->unk_0C), 2, 2, 1);
+    StringTemplate_FormatNumber(param0, 4, v2, v0, v1, 1);
+    StringTemplate_FormatNumber(param0, 5, sub_0202CC5C(param1->unk_0C), 2, 2, 1);
 }
 
 static int ov5_021E1E10 (const UnkStruct_ov5_021E1D20 * param0)
@@ -198,7 +198,7 @@ UnkStruct_ov5_021E1FF4 * ov5_021E1F98 (FieldSystem * param0, int param1, u8 para
     v0->unk_04 = param1;
     v0->unk_08 = param2;
     v0->unk_0C = param0->unk_08;
-    v0->unk_14 = StringFormatter_New(param1);
+    v0->unk_14 = StringTemplate_New(param1);
     v0->unk_18 = MessageLoader_Init(1, 26, 534, param1);
 
     ov5_021E1D20(&v0->unk_1C, v0->unk_00);

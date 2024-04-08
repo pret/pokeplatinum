@@ -321,7 +321,7 @@ static void ov7_0224D008 (UnkStruct_ov7_0224D008 * param0)
 static void ov7_0224D018 (UnkStruct_ov7_0224D008 * param0)
 {
     param0->unk_88 = MessageLoader_Init(0, 26, 543, 11);
-    param0->unk_8C = StringFormatter_New(11);
+    param0->unk_8C = StringTemplate_New(11);
 }
 
 static void ov7_0224D040 (UnkStruct_ov7_0224D008 * param0)
@@ -746,8 +746,8 @@ static void ov7_0224D9B8 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
             v2 = MessageLoader_GetNewStrbuf(v0->unk_88, 9);
         }
 
-        StringFormatter_FormatNumber(v0->unk_8C, 0, v3, 4, 1, 1);
-        StringFormatter_Format(v0->unk_8C, v1, v2);
+        StringTemplate_FormatNumber(v0->unk_8C, 0, v3, 4, 1, 1);
+        StringTemplate_Format(v0->unk_8C, v1, v2);
 
         v4 = sub_02002D7C(0, v1, 0);
 
@@ -785,8 +785,8 @@ static void ov7_0224DAF8 (UnkStruct_ov7_0224D008 * param0, u8 param1)
         v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 38);
         v2 = ov7_0224E8F4(param0);
 
-        StringFormatter_FormatNumber(param0->unk_8C, 0, v2, 6, 1, 1);
-        StringFormatter_Format(param0->unk_8C, v0, v1);
+        StringTemplate_FormatNumber(param0->unk_8C, 0, v2, 6, 1, 1);
+        StringTemplate_Format(param0->unk_8C, v0, v1);
 
         v3 = sub_02002D7C(0, v0, 0);
 
@@ -808,8 +808,8 @@ static void ov7_0224DAF8 (UnkStruct_ov7_0224D008 * param0, u8 param1)
         v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 19);
         v2 = ov7_0224E8F4(param0);
 
-        StringFormatter_FormatNumber(param0->unk_8C, 0, v2, 6, 1, 1);
-        StringFormatter_Format(param0->unk_8C, v0, v1);
+        StringTemplate_FormatNumber(param0->unk_8C, 0, v2, 6, 1, 1);
+        StringTemplate_Format(param0->unk_8C, v0, v1);
 
         v3 = sub_02002D7C(0, v0, 0);
 
@@ -876,7 +876,7 @@ static u8 ov7_0224DC84 (UnkStruct_ov7_0224D008 * param0)
                 v3 = MessageLoader_GetNewStrbuf(param0->unk_88, 3);
             }
 
-            StringFormatter_Format(param0->unk_8C, param0->unk_298, v3);
+            StringTemplate_Format(param0->unk_8C, param0->unk_298, v3);
             Strbuf_Free(v3);
 
             param0->unk_2A4 = sub_0205D994(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
@@ -903,7 +903,7 @@ static u8 ov7_0224DC84 (UnkStruct_ov7_0224D008 * param0)
             v3 = MessageLoader_GetNewStrbuf(param0->unk_88, 4);
         }
 
-        StringFormatter_Format(param0->unk_8C, param0->unk_298, v3);
+        StringTemplate_Format(param0->unk_8C, param0->unk_298, v3);
         Strbuf_Free(v3);
 
         param0->unk_2A4 = sub_0205D994(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
@@ -955,8 +955,8 @@ static void ov7_0224DED4 (UnkStruct_ov7_0224D008 * param0)
     v0 = Strbuf_Init((12 * 2), 11);
     v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 20);
 
-    StringFormatter_FormatNumber(param0->unk_8C, 0, v2, 3, 1, 1);
-    StringFormatter_Format(param0->unk_8C, v0, v1);
+    StringTemplate_FormatNumber(param0->unk_8C, 0, v2, 3, 1, 1);
+    StringTemplate_Format(param0->unk_8C, v0, v1);
     PrintStringSimple(&param0->unk_08[4], 0, v0, 0, 0, 0xff, NULL);
     Strbuf_Free(v1);
     Strbuf_Free(v0);
@@ -1035,7 +1035,7 @@ static u8 ov7_0224E098 (UnkStruct_ov7_0224D008 * param0)
             v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 14);
         }
 
-        StringFormatter_Format(param0->unk_8C, param0->unk_298, v0);
+        StringTemplate_Format(param0->unk_8C, param0->unk_298, v0);
         Strbuf_Free(v0);
 
         param0->unk_2A4 = sub_0205D994(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
@@ -1044,8 +1044,8 @@ static u8 ov7_0224E098 (UnkStruct_ov7_0224D008 * param0)
 
     ov7_0224E834(param0, param0->unk_2AA, 0);
 
-    StringFormatter_FormatNumber(param0->unk_8C, 1, param0->unk_2AC, 2, 0, 1);
-    StringFormatter_FormatNumber(param0->unk_8C, 2, param0->unk_2B0 * param0->unk_2AC, 6, 0, 1);
+    StringTemplate_FormatNumber(param0->unk_8C, 1, param0->unk_2AC, 2, 0, 1);
+    StringTemplate_FormatNumber(param0->unk_8C, 2, param0->unk_2B0 * param0->unk_2AC, 6, 0, 1);
 
     if ((param0->unk_2AA <= 420) && (param0->unk_2AA >= 328)) {
         u16 v2 = Item_MoveForTMHM(param0->unk_2AA);
@@ -1065,7 +1065,7 @@ static u8 ov7_0224E098 (UnkStruct_ov7_0224D008 * param0)
         }
     }
 
-    StringFormatter_Format(param0->unk_8C, param0->unk_298, v0);
+    StringTemplate_Format(param0->unk_8C, param0->unk_298, v0);
     Strbuf_Free(v0);
 
     param0->unk_2A4 = sub_0205D994(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
@@ -1087,8 +1087,8 @@ static void ov7_0224E28C (UnkStruct_ov7_0224D008 * param0, u8 param1)
     v0 = Strbuf_Init(24, 11);
     v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 21);
 
-    StringFormatter_FormatNumber(param0->unk_8C, 0, param0->unk_2AC, 2, 2, 1);
-    StringFormatter_Format(param0->unk_8C, v0, v1);
+    StringTemplate_FormatNumber(param0->unk_8C, 0, param0->unk_2AC, 2, 2, 1);
+    StringTemplate_Format(param0->unk_8C, v0, v1);
     PrintStringSimple(&param0->unk_08[3], 0, v0, 0, 8, 0xff, NULL);
     Strbuf_Free(v1);
 
@@ -1098,8 +1098,8 @@ static void ov7_0224E28C (UnkStruct_ov7_0224D008 * param0, u8 param1)
         v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 22);
     }
 
-    StringFormatter_FormatNumber(param0->unk_8C, 0, param0->unk_2B0 * param0->unk_2AC, 6, 1, 1);
-    StringFormatter_Format(param0->unk_8C, v0, v1);
+    StringTemplate_FormatNumber(param0->unk_8C, 0, param0->unk_2B0 * param0->unk_2AC, 6, 1, 1);
+    StringTemplate_Format(param0->unk_8C, v0, v1);
 
     v2 = sub_02002D7C(0, v0, 0);
 
@@ -1160,7 +1160,7 @@ static u8 ov7_0224E3D8 (UnkStruct_ov7_0224D008 * param0)
             }
         }
 
-        StringFormatter_Format(param0->unk_8C, param0->unk_298, v0);
+        StringTemplate_Format(param0->unk_8C, param0->unk_298, v0);
         Strbuf_Free(v0);
     }
         BGL_FillWindow(&param0->unk_08[5], 15);
@@ -1233,7 +1233,7 @@ static u8 ov7_0224E6B8 (UnkStruct_ov7_0224D008 * param0)
             if (sub_0207D570(param0->unk_274, 12, 1, 11) == 1) {
                 Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 10);
 
-                StringFormatter_Format(param0->unk_8C, param0->unk_298, v0);
+                StringTemplate_Format(param0->unk_8C, param0->unk_298, v0);
                 Strbuf_Free(v0);
                 BGL_FillWindow(&param0->unk_08[5], 15);
 
@@ -1409,7 +1409,7 @@ static u8 ov7_0224E950 (FieldSystem * param0, UnkStruct_ov7_0224D008 * param1)
     {
         Strbuf* v1 = MessageLoader_GetNewStrbuf(param1->unk_88, 2);
 
-        StringFormatter_Format(param1->unk_8C, param1->unk_298, v1);
+        StringTemplate_Format(param1->unk_8C, param1->unk_298, v1);
         Strbuf_Free(v1);
     }
 
@@ -1440,7 +1440,7 @@ static void ov7_0224EA54 (FieldSystem * param0, UnkStruct_ov7_0224D008 * param1)
         v0 = MessageLoader_GetNewStrbuf(param1->unk_88, 1);
     }
 
-    StringFormatter_Format(param1->unk_8C, param1->unk_298, v0);
+    StringTemplate_Format(param1->unk_8C, param1->unk_298, v0);
     Strbuf_Free(v0);
     sub_0205D8F4(param0->unk_08, &param1->unk_08[1], 3);
     sub_0205D944(&param1->unk_08[1], param1->unk_278);
@@ -1572,7 +1572,7 @@ static u8 ov7_0224EC9C (FieldSystem * param0, UnkStruct_ov7_0224D008 * param1)
     {
         Strbuf* v0 = MessageLoader_GetNewStrbuf(param1->unk_88, 2);
 
-        StringFormatter_Format(param1->unk_8C, param1->unk_298, v0);
+        StringTemplate_Format(param1->unk_8C, param1->unk_298, v0);
         Strbuf_Free(v0);
     }
 

@@ -253,7 +253,7 @@ struct UnkStruct_ov107_02241D6C_t {
     u16 unk_1A;
     MessageLoader * unk_1C;
     MessageLoader * unk_20;
-    StringFormatter * unk_24;
+    StringTemplate * unk_24;
     Strbuf* unk_28;
     Strbuf* unk_2C;
     Strbuf* unk_30[3];
@@ -1459,7 +1459,7 @@ static void ov107_02242F5C (UnkStruct_ov107_02241D6C * param0)
 
     param0->unk_20 = MessageLoader_Init(1, 26, 199, 100);
     param0->unk_1C = MessageLoader_Init(1, 26, 391, 100);
-    param0->unk_24 = StringFormatter_New(100);
+    param0->unk_24 = StringTemplate_New(100);
     param0->unk_28 = Strbuf_Init(600, 100);
     param0->unk_2C = Strbuf_Init(600, 100);
 
@@ -1829,7 +1829,7 @@ static u8 ov107_022437CC (UnkStruct_ov107_02241D6C * param0, Window * param1, in
     u8 v0;
     BGL_FillWindow(param1, param8);
     MessageLoader_GetStrbuf(param0->unk_20, param2, param0->unk_2C);
-    StringFormatter_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
+    StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
     
     switch (param10) {
     case 1:
@@ -1855,7 +1855,7 @@ static u8 ov107_02243890 (UnkStruct_ov107_02241D6C * param0, Window * param1, in
 {
     u8 v0;
     MessageLoader_GetStrbuf(param0->unk_20, param2, param0->unk_2C);
-    StringFormatter_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
+    StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
     
     switch (param10) {
     case 1:
@@ -2277,7 +2277,7 @@ static u8 ov107_02243EF8 (UnkStruct_ov107_02241D6C * param0, Window * param1, u1
 
     BGL_FillWindow(param1, 0);
     MessageLoader_GetStrbuf(param0->unk_1C, param2, param0->unk_2C);
-    StringFormatter_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
+    StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
 
     v0 = sub_0201D78C(param1, 0, param0->unk_28, 0, 6, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0))), NULL);
 
@@ -2846,7 +2846,7 @@ static void ov107_02244A1C (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 
 static void ov107_02244A74 (UnkStruct_ov107_02241D6C * param0, u32 param1, s32 param2, u32 param3, int param4)
 {
-    StringFormatter_FormatNumber(param0->unk_24, param1, param2, param3, param4, 1);
+    StringTemplate_FormatNumber(param0->unk_24, param1, param2, param3, param4, 1);
     return;
 }
 
@@ -2858,7 +2858,7 @@ static void ov107_02244A8C (UnkStruct_ov107_02241D6C * param0, u32 param1, BoxPo
 
 static void ov107_02244A98 (UnkStruct_ov107_02241D6C * param0, u32 param1)
 {
-    StringFormatter_FormatPlayerName(param0->unk_24, param1, SaveData_GetTrainerInfo(param0->unk_1CC));
+    StringTemplate_FormatPlayerName(param0->unk_24, param1, SaveData_GetTrainerInfo(param0->unk_1CC));
     return;
 }
 
@@ -2899,7 +2899,7 @@ static void ov107_02244B24 (UnkStruct_ov107_02241D6C * param0, Window * param1, 
         v1 = ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | (((0 & 0xff) << 0))));
     }
 
-    StringFormatter_FormatPlayerName(param0->unk_24, 0, v0);
+    StringTemplate_FormatPlayerName(param0->unk_24, 0, v0);
     ov107_02243860(param0, param1, 1, param2, param3, 0xff, (((v1) >> 16) & 0xff), (((v1) >> 8) & 0xff), (((v1) >> 0) & 0xff), 0);
 
     return;

@@ -118,7 +118,7 @@ typedef struct {
 
 typedef struct {
     MessageLoader * unk_00[9];
-    StringFormatter * unk_24;
+    StringTemplate * unk_24;
     Strbuf* unk_28;
     Strbuf* unk_2C;
     UnkStruct_ov66_0222DFF8 * unk_30;
@@ -584,7 +584,7 @@ static void ov68_0225CB70 (UnkStruct_ov68_0225CB70 * param0, UnkStruct_ov66_0222
         param0->unk_00[v0] = MessageLoader_Init(0, 26, v1[v0], param2);
     }
 
-    param0->unk_24 = StringFormatter_New(param2);
+    param0->unk_24 = StringTemplate_New(param2);
     param0->unk_28 = Strbuf_Init(256, param2);
     param0->unk_2C = Strbuf_Init(256, param2);
 }
@@ -607,7 +607,7 @@ static Strbuf* ov68_0225CBEC (UnkStruct_ov68_0225CB70 * param0, u32 param1, u32 
     GF_ASSERT(param1 < 9);
 
     MessageLoader_GetStrbuf(param0->unk_00[param1], param2, param0->unk_2C);
-    StringFormatter_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
+    StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
 
     return param0->unk_28;
 }
@@ -649,7 +649,7 @@ static void ov68_0225CC78 (UnkStruct_ov68_0225CB70 * param0, u32 param1, u32 par
     v1 = ov66_0222E3BC(param0->unk_30);
 
     ov66_0222E640(v1, v0, param2);
-    StringFormatter_FormatPlayerName(param0->unk_24, param1, v0);
+    StringTemplate_FormatPlayerName(param0->unk_24, param1, v0);
     Heap_FreeToHeap(v0);
 }
 

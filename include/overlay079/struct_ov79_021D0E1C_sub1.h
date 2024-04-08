@@ -5,7 +5,7 @@
 #include "strbuf.h"
 
 typedef struct {
-    StringFormatter * unk_00;
+    StringTemplate * unk_00;
     Strbuf* unk_04;
     Strbuf* unk_08;
     Strbuf* unk_0C;

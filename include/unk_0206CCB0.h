@@ -10,7 +10,7 @@
 #include "savedata.h"
 #include "overlay006/struct_ov6_022465F4_decl.h"
 
-int sub_0206CD00(int param0, FieldSystem * param1, StringFormatter * param2, UnkStruct_ov6_022465F4 * param3, u16 * param4);
+int sub_0206CD00(int param0, FieldSystem * param1, StringTemplate * param2, UnkStruct_ov6_022465F4 * param3, u16 * param4);
 BOOL sub_0206CD2C(int param0, FieldSystem * param1, UnkStruct_ov6_022465F4 * param2);
 void sub_0206CF14(TVBroadcast * param0, Pokemon * param1, int param2, int param3, int param4);
 void sub_0206CF48(TVBroadcast * param0, Pokemon * param1, int param2);

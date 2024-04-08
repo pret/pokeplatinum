@@ -975,7 +975,7 @@ static void ov62_0223AC58 (UnkStruct_0208C06C * param0, int param1)
     Strbuf* v2;
     Strbuf* v3;
     Strbuf* v4;
-    StringFormatter * v5;
+    StringTemplate * v5;
     int v6 = 28 + v0->unk_380.unk_00;
 
     v1 = &v0->unk_1B4[2];
@@ -987,7 +987,7 @@ static void ov62_0223AC58 (UnkStruct_0208C06C * param0, int param1)
     Strbuf_CopyChars(v3, v0->unk_38C[param0->unk_14.unk_48C.unk_38.unk_00]->unk_00.unk_00);
     ov62_022349A8(param0, v3);
     sub_0200B48C(v5, 0, v3, 0, 1, GAME_LANGUAGE);
-    StringFormatter_Format(v5, v4, v2);
+    StringTemplate_Format(v5, v4, v2);
     BGL_FillWindow(v1, Unk_ov62_02248D78[2]);
     sub_0201D78C(v1, 0, v4, 0, Unk_ov62_02248DA8[2], 0xff, Unk_ov62_02248D90[2], NULL);
     sub_0201A9A4(v1);

@@ -41,44 +41,44 @@ typedef struct {
     Strbuf* unk_04;
 } UnkStruct_0200B358_sub1;
 
-typedef struct UnkStruct_0200B358_t {
+struct StringTemplate {
     u32 unk_00;
     u32 unk_04;
     UnkStruct_0200B358_sub1 * unk_08;
     Strbuf* unk_0C;
-} StringFormatter;
+};
 
-static void sub_0200B448(StringFormatter * param0, u32 param1, const Strbuf *param2, const UnkStruct_0200B444 * param3);
+static void sub_0200B448(StringTemplate * param0, u32 param1, const Strbuf *param2, const UnkStruct_0200B444 * param3);
 static void sub_0200B444(UnkStruct_0200B444 * param0);
-void sub_0200B578(StringFormatter * param0, u32 param1, BoxPokemon * param2);
-void sub_0200B594(StringFormatter * param0, u32 param1, u32 param2);
-void sub_0200B744(StringFormatter * param0, u32 param1, u32 param2);
-void sub_0200B77C(StringFormatter * param0, u32 param1, u32 param2);
-void sub_0200B998(StringFormatter * param0, u32 param1, u32 param2);
-void sub_0200BACC(StringFormatter * param0, u32 param1, u32 param2);
-void sub_0200BB3C(StringFormatter * param0, u32 param1, u32 param2);
-void sub_0200BCB8(StringFormatter * param0, u32 param1, u32 param2);
-void sub_0200BE98(StringFormatter * param0, u32 param1, u32 param2);
-void sub_0200BFE4(StringFormatter * param0, u32 param1, u32 param2);
-void sub_0200C2E0(StringFormatter * param0, u32 param1, u32 param2);
-void sub_0200C324(StringFormatter * param0, u32 param1);
-void sub_0200C338(StringFormatter * param0, u32 param1, u32 param2);
+void sub_0200B578(StringTemplate * param0, u32 param1, BoxPokemon * param2);
+void sub_0200B594(StringTemplate * param0, u32 param1, u32 param2);
+void sub_0200B744(StringTemplate * param0, u32 param1, u32 param2);
+void sub_0200B77C(StringTemplate * param0, u32 param1, u32 param2);
+void sub_0200B998(StringTemplate * param0, u32 param1, u32 param2);
+void sub_0200BACC(StringTemplate * param0, u32 param1, u32 param2);
+void sub_0200BB3C(StringTemplate * param0, u32 param1, u32 param2);
+void sub_0200BCB8(StringTemplate * param0, u32 param1, u32 param2);
+void sub_0200BE98(StringTemplate * param0, u32 param1, u32 param2);
+void sub_0200BFE4(StringTemplate * param0, u32 param1, u32 param2);
+void sub_0200C2E0(StringTemplate * param0, u32 param1, u32 param2);
+void sub_0200C324(StringTemplate * param0, u32 param1);
+void sub_0200C338(StringTemplate * param0, u32 param1, u32 param2);
 
-StringFormatter * StringFormatter_New (u32 param0)
+StringTemplate * StringTemplate_New (u32 param0)
 {
     return sub_0200B368(8, 32, param0);
 }
 
-StringFormatter * sub_0200B368 (u32 param0, u32 param1, u32 param2)
+StringTemplate * sub_0200B368 (u32 param0, u32 param1, u32 param2)
 {
-    StringFormatter * v0 = NULL;
+    StringTemplate * v0 = NULL;
     u32 v1;
 
     GF_ASSERT(param0);
     GF_ASSERT(param1);
 
     do {
-        StringFormatter * v2 = Heap_AllocFromHeapAtEnd(param2, sizeof(StringFormatter));
+        StringTemplate * v2 = Heap_AllocFromHeapAtEnd(param2, sizeof(StringTemplate));
 
         if (v2 == NULL) {
             break;
@@ -119,7 +119,7 @@ StringFormatter * sub_0200B368 (u32 param0, u32 param1, u32 param2)
     return NULL;
 }
 
-void sub_0200B3F0 (StringFormatter * param0)
+void sub_0200B3F0 (StringTemplate * param0)
 {
     u32 v0;
 
@@ -150,7 +150,7 @@ static void sub_0200B444 (UnkStruct_0200B444 * param0)
     return;
 }
 
-static void sub_0200B448 (StringFormatter * param0, u32 param1, const Strbuf *param2, const UnkStruct_0200B444 * param3)
+static void sub_0200B448 (StringTemplate * param0, u32 param1, const Strbuf *param2, const UnkStruct_0200B444 * param3)
 {
     GF_ASSERT(param1 < param0->unk_00);
 
@@ -163,12 +163,12 @@ static void sub_0200B448 (StringFormatter * param0, u32 param1, const Strbuf *pa
     }
 }
 
-void sub_0200B48C (StringFormatter * param0, u32 param1, const Strbuf *param2, u32 param3, BOOL param4, u32 param5)
+void sub_0200B48C (StringTemplate * param0, u32 param1, const Strbuf *param2, u32 param3, BOOL param4, u32 param5)
 {
     sub_0200B448(param0, param1, param2, NULL);
 }
 
-void StringFormatter_FormatPlayerName (StringFormatter * param0, u32 param1, const TrainerInfo * param2)
+void StringTemplate_FormatPlayerName (StringTemplate * param0, u32 param1, const TrainerInfo * param2)
 {
     const u16 * v0;
 
@@ -178,7 +178,7 @@ void StringFormatter_FormatPlayerName (StringFormatter * param0, u32 param1, con
     sub_0200B448(param0, param1, param0->unk_0C, NULL);
 }
 
-void sub_0200B4BC (StringFormatter * param0, u32 param1, const SaveData * param2)
+void sub_0200B4BC (StringTemplate * param0, u32 param1, const SaveData * param2)
 {
     const u16 * v0 = MiscSaveBlock_RivalName(SaveData_MiscSaveBlockConst(param2));
 
@@ -186,7 +186,7 @@ void sub_0200B4BC (StringFormatter * param0, u32 param1, const SaveData * param2
     sub_0200B448(param0, param1, param0->unk_0C, NULL);
 }
 
-void sub_0200B4E4 (StringFormatter * param0, u32 param1, const SaveData * param2)
+void sub_0200B4E4 (StringTemplate * param0, u32 param1, const SaveData * param2)
 {
     const TrainerInfo * v0 = SaveData_GetTrainerInfo((SaveData *)param2);
     MessageLoader * v1;
@@ -203,7 +203,7 @@ void sub_0200B4E4 (StringFormatter * param0, u32 param1, const SaveData * param2
     MessageLoader_Free(v1);
 }
 
-void sub_0200B538 (StringFormatter * param0, u32 param1, BoxPokemon * param2)
+void sub_0200B538 (StringTemplate * param0, u32 param1, BoxPokemon * param2)
 {
     MessageLoader * v0;
     u32 v1;
@@ -216,7 +216,7 @@ void sub_0200B538 (StringFormatter * param0, u32 param1, BoxPokemon * param2)
     MessageLoader_Free(v0);
 }
 
-void sub_0200B578 (StringFormatter * param0, u32 param1, BoxPokemon * param2)
+void sub_0200B578 (StringTemplate * param0, u32 param1, BoxPokemon * param2)
 {
     u32 v0;
 
@@ -224,7 +224,7 @@ void sub_0200B578 (StringFormatter * param0, u32 param1, BoxPokemon * param2)
     sub_0200B594(param0, param1, v0);
 }
 
-void sub_0200B594 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200B594 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0;
 
@@ -235,25 +235,25 @@ void sub_0200B594 (StringFormatter * param0, u32 param1, u32 param2)
     MessageLoader_Free(v0);
 }
 
-void StringFormatter_BufferNickname (StringFormatter * param0, u32 param1, BoxPokemon * param2)
+void StringTemplate_BufferNickname (StringTemplate * param0, u32 param1, BoxPokemon * param2)
 {
     BoxPokemon_GetValue(param2, MON_DATA_NICKNAME_STRBUF, param0->unk_0C);
     sub_0200B448(param0, param1, param0->unk_0C, NULL);
 }
 
-void sub_0200B5EC (StringFormatter * param0, u32 param1, BoxPokemon * param2)
+void sub_0200B5EC (StringTemplate * param0, u32 param1, BoxPokemon * param2)
 {
     BoxPokemon_GetValue(param2, MON_DATA_OTNAME_STRBUF, param0->unk_0C);
     sub_0200B448(param0, param1, param0->unk_0C, NULL);
 }
 
-void StringFormatter_FormatNumber (StringFormatter * param0, u32 param1, s32 param2, u32 param3, int param4, int param5)
+void StringTemplate_FormatNumber (StringTemplate * param0, u32 param1, s32 param2, u32 param3, int param4, int param5)
 {
     Strbuf_FormatInt(param0->unk_0C, param2, param3, param4, param5);
     sub_0200B448(param0, param1, param0->unk_0C, NULL);
 }
 
-void sub_0200B630 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200B630 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 647, param0->unk_04);
 
@@ -264,7 +264,7 @@ void sub_0200B630 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200B668 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200B668 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 535, param0->unk_04);
 
@@ -275,7 +275,7 @@ void sub_0200B668 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200B6A0 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200B6A0 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 610, param0->unk_04);
 
@@ -286,7 +286,7 @@ void sub_0200B6A0 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200B6D8 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200B6D8 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0;
 
@@ -297,7 +297,7 @@ void sub_0200B6D8 (StringFormatter * param0, u32 param1, u32 param2)
     MessageLoader_Free(v0);
 }
 
-void sub_0200B70C (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200B70C (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 392, param0->unk_04);
 
@@ -308,7 +308,7 @@ void sub_0200B70C (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200B744 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200B744 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 393, param0->unk_04);
 
@@ -319,7 +319,7 @@ void sub_0200B744 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200B77C (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200B77C (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 394, param0->unk_04);
 
@@ -330,7 +330,7 @@ void sub_0200B77C (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200B7B4 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200B7B4 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 396, param0->unk_04);
 
@@ -341,7 +341,7 @@ void sub_0200B7B4 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200B7EC (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200B7EC (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 624, param0->unk_04);
 
@@ -352,7 +352,7 @@ void sub_0200B7EC (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200B824 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200B824 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 551, param0->unk_04);
 
@@ -363,7 +363,7 @@ void sub_0200B824 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200B85C (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200B85C (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 219, param0->unk_04);
 
@@ -374,7 +374,7 @@ void sub_0200B85C (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200B890 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200B890 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 606, param0->unk_04);
 
@@ -385,7 +385,7 @@ void sub_0200B890 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200B8C8 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200B8C8 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 433, param0->unk_04);
 
@@ -402,7 +402,7 @@ void sub_0200B8C8 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200B928 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200B928 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 457, param0->unk_04);
 
@@ -413,7 +413,7 @@ void sub_0200B928 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200B960 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200B960 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 619, param0->unk_04);
 
@@ -424,7 +424,7 @@ void sub_0200B960 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200B998 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200B998 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 620, param0->unk_04);
 
@@ -435,7 +435,7 @@ void sub_0200B998 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200B9D0 (StringFormatter * param0, u32 param1, TrainerData * param2)
+void sub_0200B9D0 (StringTemplate * param0, u32 param1, TrainerData * param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 619, param0->unk_04);
 
@@ -446,7 +446,7 @@ void sub_0200B9D0 (StringFormatter * param0, u32 param1, TrainerData * param2)
     }
 }
 
-void sub_0200BA08 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200BA08 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 618, param0->unk_04);
 
@@ -457,7 +457,7 @@ void sub_0200BA08 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200BA40 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200BA40 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 21, param0->unk_04);
 
@@ -468,13 +468,13 @@ void sub_0200BA40 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200BA74 (StringFormatter * param0, u32 param1, TrainerData * param2)
+void sub_0200BA74 (StringTemplate * param0, u32 param1, TrainerData * param2)
 {
     Strbuf_CopyChars(param0->unk_0C, &param2->name[0]);
     sub_0200B448(param0, param1, param0->unk_0C, NULL);
 }
 
-void sub_0200BA94 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200BA94 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 628, param0->unk_04);
 
@@ -485,7 +485,7 @@ void sub_0200BA94 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200BACC (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200BACC (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 629, param0->unk_04);
 
@@ -496,7 +496,7 @@ void sub_0200BACC (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200BB04 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200BB04 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 630, param0->unk_04);
 
@@ -507,7 +507,7 @@ void sub_0200BB04 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200BB3C (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200BB3C (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 631, param0->unk_04);
 
@@ -518,7 +518,7 @@ void sub_0200BB3C (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200BB74 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200BB74 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 207, param0->unk_04);
 
@@ -529,7 +529,7 @@ void sub_0200BB74 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200BBA8 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200BBA8 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 204, param0->unk_04);
 
@@ -540,7 +540,7 @@ void sub_0200BBA8 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200BBDC (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200BBDC (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 204, param0->unk_04);
 
@@ -551,7 +551,7 @@ void sub_0200BBDC (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200BC10 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200BC10 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 633, param0->unk_04);
 
@@ -562,7 +562,7 @@ void sub_0200BC10 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200BC48 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200BC48 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 632, param0->unk_04);
 
@@ -573,7 +573,7 @@ void sub_0200BC48 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200BC80 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200BC80 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 626, param0->unk_04);
 
@@ -584,7 +584,7 @@ void sub_0200BC80 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200BCB8 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200BCB8 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 627, param0->unk_04);
 
@@ -595,7 +595,7 @@ void sub_0200BCB8 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200BCF0 (StringFormatter * param0, u32 param1, u8 param2)
+void sub_0200BCF0 (StringTemplate * param0, u32 param1, u8 param2)
 {
     MessageLoader * v0;
 
@@ -616,13 +616,13 @@ void sub_0200BCF0 (StringFormatter * param0, u32 param1, u8 param2)
     MessageLoader_Free(v0);
 }
 
-void sub_0200BD40 (StringFormatter * param0, u32 param1, const PCBoxes * param2, u32 param3)
+void sub_0200BD40 (StringTemplate * param0, u32 param1, const PCBoxes * param2, u32 param3)
 {
     sub_02079AF4(param2, param3, param0->unk_0C);
     sub_0200B448(param0, param1, param0->unk_0C, NULL);
 }
 
-void sub_0200BD60 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200BD60 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 378, param0->unk_04);
 
@@ -633,7 +633,7 @@ void sub_0200BD60 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200BD98 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200BD98 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 608, param0->unk_04);
 
@@ -644,7 +644,7 @@ void sub_0200BD98 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200BDD0 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200BDD0 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 694, param0->unk_04);
 
@@ -655,7 +655,7 @@ void sub_0200BDD0 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200BE08 (StringFormatter * param0, u32 param1, u32 param2, u32 param3)
+void sub_0200BE08 (StringTemplate * param0, u32 param1, u32 param2, u32 param3)
 {
     u32 v0;
 
@@ -674,13 +674,13 @@ void sub_0200BE08 (StringFormatter * param0, u32 param1, u32 param2, u32 param3)
     }
 }
 
-void sub_0200BE48 (StringFormatter * param0, u32 param1, u16 param2)
+void sub_0200BE48 (StringTemplate * param0, u32 param1, u16 param2)
 {
     sub_02014DB8(param2, param0->unk_0C);
     sub_0200B448(param0, param1, param0->unk_0C, NULL);
 }
 
-void sub_0200BE64 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200BE64 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 12, param0->unk_04);
 
@@ -691,7 +691,7 @@ void sub_0200BE64 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200BE98 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200BE98 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 13, param0->unk_04);
 
@@ -702,7 +702,7 @@ void sub_0200BE98 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200BECC (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200BECC (StringTemplate * param0, u32 param1, u32 param2)
 {
     static const u16 v0[] = {
         433, 435, 434,
@@ -744,7 +744,7 @@ void sub_0200BECC (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200BF74 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200BF74 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 465, param0->unk_04);
 
@@ -755,7 +755,7 @@ void sub_0200BF74 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200BFAC (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200BFAC (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 386, param0->unk_04);
 
@@ -766,7 +766,7 @@ void sub_0200BFAC (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200BFE4 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200BFE4 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 387, param0->unk_04);
 
@@ -777,7 +777,7 @@ void sub_0200BFE4 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200C01C (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200C01C (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 388, param0->unk_04);
 
@@ -788,7 +788,7 @@ void sub_0200C01C (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200C054 (StringFormatter * param0, SaveData * param1, int param2, int param3, int param4)
+void sub_0200C054 (StringTemplate * param0, SaveData * param1, int param2, int param3, int param4)
 {
     int v0, v1;
     Strbuf* v2;
@@ -803,7 +803,7 @@ void sub_0200C054 (StringFormatter * param0, SaveData * param1, int param2, int 
     Strbuf_Free(v2);
 }
 
-void sub_0200C0B0 (StringFormatter * param0, u32 param1, UnkEnum_ov66_022324D0 param2)
+void sub_0200C0B0 (StringTemplate * param0, u32 param1, UnkEnum_ov66_022324D0 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 651, param0->unk_04);
 
@@ -814,7 +814,7 @@ void sub_0200C0B0 (StringFormatter * param0, u32 param1, UnkEnum_ov66_022324D0 p
     }
 }
 
-void sub_0200C0E8 (StringFormatter * param0, u32 param1, int param2)
+void sub_0200C0E8 (StringTemplate * param0, u32 param1, int param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 649, param0->unk_04);
 
@@ -825,7 +825,7 @@ void sub_0200C0E8 (StringFormatter * param0, u32 param1, int param2)
     }
 }
 
-void sub_0200C120 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200C120 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 652, param0->unk_04);
 
@@ -836,7 +836,7 @@ void sub_0200C120 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200C158 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200C158 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 667, param0->unk_04);
 
@@ -847,7 +847,7 @@ void sub_0200C158 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200C190 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200C190 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 663, param0->unk_04);
 
@@ -858,7 +858,7 @@ void sub_0200C190 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200C1C8 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200C1C8 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 664, param0->unk_04);
 
@@ -869,7 +869,7 @@ void sub_0200C1C8 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200C200 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200C200 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 666, param0->unk_04);
 
@@ -880,7 +880,7 @@ void sub_0200C200 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200C238 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200C238 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 665, param0->unk_04);
 
@@ -891,7 +891,7 @@ void sub_0200C238 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200C270 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200C270 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 668, param0->unk_04);
 
@@ -902,7 +902,7 @@ void sub_0200C270 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200C2A8 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200C2A8 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0;
 
@@ -913,7 +913,7 @@ void sub_0200C2A8 (StringFormatter * param0, u32 param1, u32 param2)
     MessageLoader_Free(v0);
 }
 
-void sub_0200C2E0 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200C2E0 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 414, param0->unk_04);
 
@@ -928,12 +928,12 @@ void sub_0200C2E0 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200C324 (StringFormatter * param0, u32 param1)
+void sub_0200C324 (StringTemplate * param0, u32 param1)
 {
     Strbuf_UpperChar(param0->unk_08[param1].unk_04, 0);
 }
 
-void sub_0200C338 (StringFormatter * param0, u32 param1, u32 param2)
+void sub_0200C338 (StringTemplate * param0, u32 param1, u32 param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 361, param0->unk_04);
 
@@ -952,7 +952,7 @@ void sub_0200C338 (StringFormatter * param0, u32 param1, u32 param2)
     }
 }
 
-void StringFormatter_Format (const StringFormatter * param0, Strbuf *param1, const Strbuf *param2)
+void StringTemplate_Format (const StringTemplate * param0, Strbuf *param1, const Strbuf *param2)
 {
     const u16 * v0;
     u16 * v1;
@@ -985,7 +985,7 @@ void StringFormatter_Format (const StringFormatter * param0, Strbuf *param1, con
     }
 }
 
-void sub_0200C41C (StringFormatter * param0)
+void sub_0200C41C (StringTemplate * param0)
 {
     u32 v0;
 

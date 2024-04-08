@@ -84,7 +84,7 @@ struct UnkStruct_ov111_021D0F7C_t {
     VecFx32 unk_28;
     void * unk_34;
     MessageLoader * unk_38;
-    StringFormatter * unk_3C;
+    StringTemplate * unk_3C;
     Strbuf* unk_40;
     Strbuf* unk_44;
     u16 unk_48[8];
@@ -1158,7 +1158,7 @@ static void ov111_021D1D68 (UnkStruct_ov111_021D0F7C * param0)
     ov111_021D2034(param0);
 
     param0->unk_38 = MessageLoader_Init(1, 26, 540, 115);
-    param0->unk_3C = StringFormatter_New(115);
+    param0->unk_3C = StringTemplate_New(115);
     param0->unk_40 = Strbuf_Init(600, 115);
     param0->unk_44 = Strbuf_Init(600, 115);
 
@@ -1531,7 +1531,7 @@ static u8 ov111_021D23C4 (UnkStruct_ov111_021D0F7C * param0, Window * param1, in
 {
     BGL_FillWindow(param1, param8);
     MessageLoader_GetStrbuf(param0->unk_38, param2, param0->unk_44);
-    StringFormatter_Format(param0->unk_3C, param0->unk_40, param0->unk_44);
+    StringTemplate_Format(param0->unk_3C, param0->unk_40, param0->unk_44);
 
     return sub_0201D78C(param1, param9, param0->unk_40, param3, param4, param5, (u32)((((param6) & 0xff) << 16) | (((param7) & 0xff) << 8) | (((param8) & 0xff) << 0)), NULL);
 }
@@ -1540,7 +1540,7 @@ static u8 ov111_021D2424 (UnkStruct_ov111_021D0F7C * param0, Window * param1, in
 {
     BGL_FillWindow(param1, param8);
     MessageLoader_GetStrbuf(param0->unk_38, param2, param0->unk_44);
-    StringFormatter_Format(param0->unk_3C, param0->unk_40, param0->unk_44);
+    StringTemplate_Format(param0->unk_3C, param0->unk_40, param0->unk_44);
     param3 -= (sub_02002D7C(param9, param0->unk_40, 0) + 1) / 2;
     return sub_0201D78C(param1, param9, param0->unk_40, param3, param4, param5, (u32)((((param6) & 0xff) << 16) | (((param7) & 0xff) << 8) | (((param8) & 0xff) << 0)), NULL);
 }
@@ -1648,7 +1648,7 @@ static u8 ov111_021D2674 (UnkStruct_ov111_021D0F7C * param0, u8 param1)
 
 static void ov111_021D26CC (UnkStruct_ov111_021D0F7C * param0, u32 param1, s32 param2)
 {
-    StringFormatter_FormatNumber(param0->unk_3C, param1, param2, 1, 0, 1);
+    StringTemplate_FormatNumber(param0->unk_3C, param1, param2, 1, 0, 1);
     return;
 }
 

@@ -139,7 +139,7 @@ typedef struct UnkStruct_ov19_021D5DF8_t {
     MessageLoader * unk_190;
     MessageLoader * unk_194;
     MessageLoader * unk_198;
-    StringFormatter * unk_19C;
+    StringTemplate * unk_19C;
     Pokemon * unk_1A0;
     Options * unk_1A4;
     int (* unk_1A8)(struct UnkStruct_ov19_021D5DF8_t * param0);
@@ -1034,7 +1034,7 @@ static void ov19_021D20A4 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
 {
     switch ((*param1)) {
     case 0:
-        StringFormatter_BufferNickname(param0->unk_19C, 0, ov19_021D5E9C(&param0->unk_00));
+        StringTemplate_BufferNickname(param0->unk_19C, 0, ov19_021D5E9C(&param0->unk_00));
         ov19_021D5408(&param0->unk_00, 0);
         ov19_021DF990(&param0->unk_00);
 
@@ -2276,7 +2276,7 @@ static void ov19_021D35F8 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
         break;
     case 2:
         if (ov19_021D6600(param0->unk_114, 26)) {
-            StringFormatter_BufferNickname(param0->unk_19C, 0, ov19_021D5E9C(&param0->unk_00));
+            StringTemplate_BufferNickname(param0->unk_19C, 0, ov19_021D5E9C(&param0->unk_00));
             ov19_021D38E0(param0);
 
             if (ov19_021D5E38(&param0->unk_00) == 2) {
@@ -3319,7 +3319,7 @@ static void ov19_021D4BE0 (UnkStruct_ov19_021D5DF8 * param0, UnkStruct_02042434 
     param0->unk_190 = MessageLoader_Init(1, 26, 412, 9);
     param0->unk_194 = MessageLoader_Init(0, 26, 202, 9);
     param0->unk_198 = MessageLoader_Init(0, 26, 610, 9);
-    param0->unk_19C = StringFormatter_New(9);
+    param0->unk_19C = StringTemplate_New(9);
     param0->unk_1A0 = Heap_AllocFromHeap(9, Pokemon_StructSize());
 
     GF_ASSERT(param0->unk_19C);
@@ -4423,7 +4423,7 @@ MessageLoader * ov19_021D5DE8 (const UnkStruct_ov19_021D5DF8 * param0)
     return param0->unk_18C;
 }
 
-const StringFormatter * ov19_021D5DF0 (const UnkStruct_ov19_021D5DF8 * param0)
+const StringTemplate * ov19_021D5DF0 (const UnkStruct_ov19_021D5DF8 * param0)
 {
     return param0->unk_19C;
 }

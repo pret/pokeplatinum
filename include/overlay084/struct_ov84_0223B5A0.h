@@ -35,7 +35,7 @@ typedef struct {
     CellActorData * unk_E0[12];
     UnkStruct_0200C440 * unk_110;
     MessageLoader * unk_114;
-    StringFormatter * unk_118;
+    StringTemplate * unk_118;
     MessageLoader * unk_11C;
     MessageLoader * unk_120;
     Strbuf* unk_124[12];

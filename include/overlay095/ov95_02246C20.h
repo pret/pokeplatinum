@@ -29,7 +29,7 @@ void ov95_022475A0(UnkStruct_ov95_02247568 * param0);
 void ov95_022475C4(UnkStruct_ov19_021DA864 * param0, UnkStruct_ov95_02247568 * param1, NNSG2dImageProxy * param2, NNSG2dImagePaletteProxy * param3, u32 param4);
 GraphicElementData * ov95_022475E4(UnkStruct_ov95_02247628 * param0, UnkStruct_ov19_021DA864 * param1, u32 param2, u32 param3, u32 param4, int param5);
 BGL * ov95_02247628(UnkStruct_ov95_02247628 * param0);
-StringFormatter * ov95_0224762C(UnkStruct_ov95_02247628 * param0);
+StringTemplate * ov95_0224762C(UnkStruct_ov95_02247628 * param0);
 MessageLoader * ov95_02247630(UnkStruct_ov95_02247628 * param0);
 const BoxPokemon * ov95_02247634(UnkStruct_ov95_02247628 * param0);
 const BoxPokemon * ov95_0224763C(UnkStruct_ov95_02247628 * param0);

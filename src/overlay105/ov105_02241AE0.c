@@ -104,7 +104,7 @@ struct UnkStruct_ov105_02241FF4_t {
     u8 unk_1A;
     u8 unk_1B;
     MessageLoader * unk_1C;
-    StringFormatter * unk_20;
+    StringTemplate * unk_20;
     Strbuf* unk_24;
     Strbuf* unk_28;
     Strbuf* unk_2C[4];
@@ -2542,7 +2542,7 @@ static u8 ov105_02244C60 (UnkStruct_ov105_02241FF4 * param0, Window * param1, in
 {
     BGL_FillWindow(param1, param8);
     MessageLoader_GetStrbuf(param0->unk_1C, param2, param0->unk_28);
-    StringFormatter_Format(param0->unk_20, param0->unk_24, param0->unk_28);
+    StringTemplate_Format(param0->unk_20, param0->unk_24, param0->unk_28);
 
     return sub_0201D78C(param1, param9, param0->unk_24, param3, param4, param5, (u32)((((param6) & 0xff) << 16) | (((param7) & 0xff) << 8) | (((param8) & 0xff) << 0)), NULL);
 }
@@ -2550,7 +2550,7 @@ static u8 ov105_02244C60 (UnkStruct_ov105_02241FF4 * param0, Window * param1, in
 static u8 ov105_02244CC0 (UnkStruct_ov105_02241FF4 * param0, Window * param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
 {
     MessageLoader_GetStrbuf(param0->unk_1C, param2, param0->unk_28);
-    StringFormatter_Format(param0->unk_20, param0->unk_24, param0->unk_28);
+    StringTemplate_Format(param0->unk_20, param0->unk_24, param0->unk_28);
 
     return sub_0201D78C(param1, param9, param0->unk_24, param3, param4, param5, (u32)((((param6) & 0xff) << 16) | (((param7) & 0xff) << 8) | (((param8) & 0xff) << 0)), NULL);
 }
@@ -2634,7 +2634,7 @@ static void ov105_02244E94 (UnkStruct_ov105_02241FF4 * param0)
 
 static void ov105_02244EE8 (UnkStruct_ov105_02241FF4 * param0, u32 param1, s32 param2)
 {
-    StringFormatter_FormatNumber(param0->unk_20, param1, param2, 1, 0, 1);
+    StringTemplate_FormatNumber(param0->unk_20, param1, param2, 1, 0, 1);
     return;
 }
 
@@ -2850,7 +2850,7 @@ static void ov105_0224531C (UnkStruct_ov105_02241FF4 * param0)
     ov105_0224472C(param0);
 
     param0->unk_1C = MessageLoader_Init(1, 26, 364, 93);
-    param0->unk_20 = StringFormatter_New(93);
+    param0->unk_20 = StringTemplate_New(93);
     param0->unk_24 = Strbuf_Init(800, 93);
     param0->unk_28 = Strbuf_Init(800, 93);
 

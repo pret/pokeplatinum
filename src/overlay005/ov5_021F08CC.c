@@ -67,7 +67,7 @@ typedef struct {
     u8 unk_28;
     Strbuf* unk_2C;
     Strbuf* unk_30;
-    StringFormatter * unk_34;
+    StringTemplate * unk_34;
     Window unk_38;
     MessageLoader * unk_48;
 } UnkStruct_ov5_021F0D6C;
@@ -538,7 +538,7 @@ static void ov5_021F0DE8 (UnkStruct_ov5_021F0D6C * param0, u32 param1)
         FieldSystem * v0 = param0->unk_20;
 
         MessageLoader_GetStrbuf(param0->unk_48, param1, param0->unk_30);
-        StringFormatter_Format(param0->unk_34, param0->unk_2C, param0->unk_30);
+        StringTemplate_Format(param0->unk_34, param0->unk_2C, param0->unk_30);
 
         param0->unk_28 = sub_0205D994(&param0->unk_38, param0->unk_2C, sub_02025E44(v0->unk_0C), 1);
     }

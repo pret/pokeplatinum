@@ -443,7 +443,7 @@ void ov23_0224F758 (UnkFuncPtr_ov23_0224F758 param0, FieldSystem * param1)
     v0->unk_2AA = 0;
     v0->unk_68 = Strbuf_Init((50 * 2), 4);
     v0->unk_6C = Strbuf_Init((50 * 2), 4);
-    v0->unk_70 = StringFormatter_New(4);
+    v0->unk_70 = StringTemplate_New(4);
     v0->unk_04 = SysTask_Start(ov23_0224F914, v0, 10000);
 
     ov23_022431EC(v0, v0->unk_04, ov23_02251270);
@@ -1059,9 +1059,9 @@ static void ov23_0225021C (UnkStruct_ov23_02250CD4 * param0, UnkFuncPtr_ov23_022
 
         for (v7 = 0; v7 < v4; v7++) {
             sub_0200BA94(param0->unk_70, 2, v1(v7, param0));
-            StringFormatter_FormatNumber(param0->unk_70, 6, v2(v7, param0), 2, 2, 1);
+            StringTemplate_FormatNumber(param0->unk_70, 6, v2(v7, param0), 2, 2, 1);
             MessageLoader_GetStrbuf(ov23_02253E3C(ov23_0224219C()), 128, param0->unk_6C);
-            StringFormatter_Format(param0->unk_70, param0->unk_68, param0->unk_6C);
+            StringTemplate_Format(param0->unk_70, param0->unk_68, param0->unk_6C);
             sub_02013A6C(param0->unk_40, param0->unk_68, v7);
         }
 
@@ -1437,7 +1437,7 @@ void ov23_02250A50 (UnkFuncPtr_ov23_0224F758 param0, FieldSystem * param1)
     v0->unk_2AA = 0;
     v0->unk_68 = Strbuf_Init((50 * 2), 4);
     v0->unk_6C = Strbuf_Init((50 * 2), 4);
-    v0->unk_70 = StringFormatter_New(4);
+    v0->unk_70 = StringTemplate_New(4);
 
     sub_020594FC();
 
@@ -1864,7 +1864,7 @@ void * ov23_022511B0 (UnkFuncPtr_ov23_0224F758 param0, FieldSystem * param1)
     v0->unk_60 = NULL;
     v0->unk_68 = Strbuf_Init((50 * 2), 4);
     v0->unk_6C = Strbuf_Init((50 * 2), 4);
-    v0->unk_70 = StringFormatter_New(4);
+    v0->unk_70 = StringTemplate_New(4);
 
     ov23_02250CD4(v0);
 

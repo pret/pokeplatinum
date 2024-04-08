@@ -37,7 +37,7 @@ typedef struct {
     FieldSystem * unk_00;
     Strbuf* unk_04;
     Strbuf* unk_08;
-    StringFormatter * unk_0C;
+    StringTemplate * unk_0C;
     MessageLoader * unk_10;
     UnkStruct_020149F0 * unk_14;
     Window unk_18;
@@ -73,7 +73,7 @@ void sub_0209ACF4 (UnkStruct_020508D4 * param0)
     v1->unk_00 = v0;
     v1->unk_04 = Strbuf_Init(400, 32);
     v1->unk_08 = Strbuf_Init(400, 32);
-    v1->unk_0C = StringFormatter_New(32);
+    v1->unk_0C = StringTemplate_New(32);
     v1->unk_10 = MessageLoader_Init(1, 26, 420, 32);
     v1->unk_14 = sub_020149F0(32);
     v1->unk_50 = sub_0209747C(2, 0, v1->unk_00->unk_0C, 32);
@@ -265,7 +265,7 @@ static void sub_0209B084 (UnkStruct_0209AD84 * param0, int param1, BOOL param2)
 
     if (param2) {
         MessageLoader_GetStrbuf(param0->unk_10, param1, param0->unk_04);
-        StringFormatter_Format(param0->unk_0C, param0->unk_08, param0->unk_04);
+        StringTemplate_Format(param0->unk_0C, param0->unk_08, param0->unk_04);
     } else {
         MessageLoader_GetStrbuf(param0->unk_10, param1, param0->unk_08);
     }

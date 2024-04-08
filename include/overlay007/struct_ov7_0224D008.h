@@ -30,7 +30,7 @@ typedef struct {
     UIControlData * unk_80;
     ResourceMetadata * unk_84;
     MessageLoader * unk_88;
-    StringFormatter * unk_8C;
+    StringTemplate * unk_8C;
     UnkStruct_020203AC * unk_90;
     UnkStruct_ov5_021D30A8 unk_94;
     GraphicElementData * unk_25C[4];

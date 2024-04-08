@@ -90,11 +90,11 @@ void sub_02014AC4 (Sentence * param0, int param1)
 Strbuf* sub_02014B34 (const Sentence * param0, u32 param1)
 {
     Strbuf* v0;
-    StringFormatter * v1;
+    StringTemplate * v1;
     MessageLoader * v2;
     int v3;
 
-    v1 = StringFormatter_New(param1);
+    v1 = StringTemplate_New(param1);
 
     for (v3 = 0; v3 < 2; v3++) {
         if (param0->words[v3] != 0xffff) {

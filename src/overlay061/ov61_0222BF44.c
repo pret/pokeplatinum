@@ -62,7 +62,7 @@ typedef struct {
     int unk_14;
     int unk_18;
     int unk_1C;
-    StringFormatter * unk_20;
+    StringTemplate * unk_20;
     MessageLoader * unk_24;
     MessageLoader * unk_28;
     MessageLoader * unk_2C;
@@ -508,7 +508,7 @@ static void ov61_0222C794 (UnkStruct_ov61_0222C664 * param0, int param1)
     Strbuf* v0 = Strbuf_Init((16 * 8 * 2), 117);
 
     MessageLoader_GetStrbuf(param0->unk_2C, param1, v0);
-    StringFormatter_Format(param0->unk_20, param0->unk_3C, v0);
+    StringTemplate_Format(param0->unk_20, param0->unk_3C, v0);
     BGL_FillWindow(&param0->unk_64, 15);
     Window_Show(&param0->unk_64, 1, (1 + (18 + 12)), 11);
 
@@ -528,7 +528,7 @@ static void ov61_0222C7F8 (UnkStruct_ov61_0222C664 * param0, int param1, int par
         v0 = 11;
     }
 
-    StringFormatter_FormatNumber(param0->unk_20, 0, param2, 5, 2, 1);
+    StringTemplate_FormatNumber(param0->unk_20, 0, param2, 5, 2, 1);
     sub_0200E084(&param0->unk_44, 1);
 
     ov61_0222C794(param0, v0);
@@ -575,7 +575,7 @@ static void ov61_0222C8B8 (UnkStruct_ov61_0222C664 * param0, MessageLoader * par
 
     v0 = MessageLoader_GetNewStrbuf(param1, param2);
 
-    StringFormatter_Format(param0->unk_20, param0->unk_34, v0);
+    StringTemplate_Format(param0->unk_20, param0->unk_34, v0);
     Strbuf_Free(v0);
     BGL_FillWindow(&param0->unk_44, 0xf0f);
     sub_0200E060(&param0->unk_44, 0, 1, 10);

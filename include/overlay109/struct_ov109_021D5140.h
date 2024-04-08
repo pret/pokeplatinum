@@ -33,7 +33,7 @@ typedef struct UnkStruct_ov109_021D5140_t {
     BOOL unk_18;
     UnkStruct_ov109_021D5140_sub1 unk_1C;
     SysTask * unk_30;
-    StringFormatter * unk_34;
+    StringTemplate * unk_34;
     MessageLoader * unk_38;
     Strbuf* unk_3C[5];
     Strbuf* unk_50;

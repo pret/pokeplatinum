@@ -12,7 +12,7 @@
 #include <nnsys.h>
 
 typedef struct {
-    StringFormatter * unk_00;
+    StringTemplate * unk_00;
     void * unk_04;
     NNSG2dScreenData * unk_08;
     void * unk_0C[7];

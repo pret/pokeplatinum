@@ -51,7 +51,7 @@ typedef struct {
     Window unk_34;
     Window unk_44;
     Window unk_54;
-    StringFormatter * unk_64;
+    StringTemplate * unk_64;
     MessageLoader * unk_68;
     HeightWeightData * unk_6C;
     u16 * unk_70;
@@ -101,7 +101,7 @@ static void ov7_0224B4E8 (UnkStruct_ov7_0224B4E8 * param0, int param1)
     }
 
     MessageLoader_GetStrbuf(param0->unk_68, param1, param0->unk_14);
-    StringFormatter_Format(param0->unk_64, param0->unk_18, param0->unk_14);
+    StringTemplate_Format(param0->unk_64, param0->unk_18, param0->unk_14);
 
     param0->unk_74 = sub_0205D994(&param0->unk_54, param0->unk_18, sub_02025E44(param0->unk_10->unk_0C), 1);
 }
@@ -146,7 +146,7 @@ static void ov7_0224B5A8 (UnkStruct_ov7_0224B4E8 * param0)
             ov7_0224B57C(param0, v4);
 
             MessageLoader_GetStrbuf(param0->unk_68, 113, param0->unk_1C);
-            StringFormatter_Format(param0->unk_64, param0->unk_20, param0->unk_1C);
+            StringTemplate_Format(param0->unk_64, param0->unk_20, param0->unk_1C);
             sub_02013A6C(param0->unk_08, param0->unk_20, v4);
         }
 
@@ -322,7 +322,7 @@ static u8 Unk_ov7_0224F4CC[] = {
 static void ov7_0224B8DC (UnkStruct_ov7_0224B4E8 * param0)
 {
     MessageLoader * v0;
-    StringFormatter * v1 = param0->unk_64;
+    StringTemplate * v1 = param0->unk_64;
     Strbuf* v2;
     Strbuf* v3;
     Window * v4;
@@ -345,7 +345,7 @@ static void ov7_0224B8DC (UnkStruct_ov7_0224B4E8 * param0)
     ov7_0224B57C(param0, param0->unk_78 - 1);
 
     MessageLoader_GetStrbuf(v0, 95, v2);
-    StringFormatter_Format(v1, v3, v2);
+    StringTemplate_Format(v1, v3, v2);
     PrintStringSimple(v4, 0, v3, v10 + v12, 0, 0xff, NULL);
 
     for (v5 = 0; v5 < 9; v5++) {
@@ -359,23 +359,23 @@ static void ov7_0224B8DC (UnkStruct_ov7_0224B4E8 * param0)
 
         switch (Unk_ov7_0224F4C0[v5]) {
         case 1:
-            StringFormatter_FormatNumber(v1, 0, v6, 1, 1, 1);
+            StringTemplate_FormatNumber(v1, 0, v6, 1, 1, 1);
             break;
         case 2:
-            StringFormatter_FormatNumber(v1, 0, v6, 3, 0, 1);
+            StringTemplate_FormatNumber(v1, 0, v6, 3, 0, 1);
             break;
         case 3:
             if (v6 == 0) {
                 v7 = 96;
             } else {
-                StringFormatter_FormatNumber(v1, 0, v6, 3, 0, 1);
+                StringTemplate_FormatNumber(v1, 0, v6, 3, 0, 1);
             }
             break;
         case 5:
             v6 = (v6 >= 0) ? (((v6 * 10 * 1000) / 254 + 5) / 10) : -(((-v6 * 10 * 1000) / 254 + 5) / 10);
 
-            StringFormatter_FormatNumber(v1, 0, abs(v6 / 12), 2, 0, 1);
-            StringFormatter_FormatNumber(v1, 1, abs(v6 % 12), 2, 2, 1);
+            StringTemplate_FormatNumber(v1, 0, abs(v6 / 12), 2, 0, 1);
+            StringTemplate_FormatNumber(v1, 1, abs(v6 % 12), 2, 2, 1);
 
             if (v6 == 0) {
                 v7 = 96;
@@ -385,7 +385,7 @@ static void ov7_0224B8DC (UnkStruct_ov7_0224B4E8 * param0)
             break;
         case 7:
             v6 = (v6 >= 0) ? (((v6 * 220462) + 50000) / 100000) : -(((-v6 * 220462) + 50000) / 100000);
-            StringFormatter_FormatNumber(v1, 0, abs(v6), 3, 0, 1);
+            StringTemplate_FormatNumber(v1, 0, abs(v6), 3, 0, 1);
 
             if (v6 == 0) {
                 v7 = 96;
@@ -406,7 +406,7 @@ static void ov7_0224B8DC (UnkStruct_ov7_0224B4E8 * param0)
         }
 
         MessageLoader_GetStrbuf(v0, v7, v2);
-        StringFormatter_Format(v1, v3, v2);
+        StringTemplate_Format(v1, v3, v2);
         {
             int v14 = sub_02002D7C(0, v3, 0);
             int v15 = v13 - v14;
@@ -441,7 +441,7 @@ static BOOL ov7_0224BBC4 (UnkStruct_ov7_0224B4E8 * param0)
         Sound_PlayEffect(1523);
         ov7_0224B57C(param0, param0->unk_78 - 1);
         v2 = sub_02026074(param0->unk_10->unk_B0, 1);
-        StringFormatter_FormatNumber(param0->unk_64, 1, v2, 1, 1, 1);
+        StringTemplate_FormatNumber(param0->unk_64, 1, v2, 1, 1, 1);
         ov7_0224B4E8(param0, 107);
         break;
     default:
@@ -449,7 +449,7 @@ static BOOL ov7_0224BBC4 (UnkStruct_ov7_0224B4E8 * param0)
         Sound_PlayEffect(1523);
         ov7_0224B57C(param0, param0->unk_78 - 1);
         v2 = sub_02026074(param0->unk_10->unk_B0, 3);
-        StringFormatter_FormatNumber(param0->unk_64, 1, v2, 3, 0, 1);
+        StringTemplate_FormatNumber(param0->unk_64, 1, v2, 3, 0, 1);
         ov7_0224B4E8(param0, 121);
         break;
     }
@@ -565,7 +565,7 @@ static UnkStruct_ov7_0224B4E8 * ov7_0224BE10 (FieldSystem * param0)
     v0->unk_7C = 0;
     v0->unk_10 = param0;
     v0->unk_10->unk_B0 = NULL;
-    v0->unk_64 = StringFormatter_New(4);
+    v0->unk_64 = StringTemplate_New(4);
     v0->unk_68 = MessageLoader_Init(0, 26, 221, 4);
     v0->unk_14 = Strbuf_Init((90 * 2), 4);
     v0->unk_18 = Strbuf_Init((90 * 2), 4);

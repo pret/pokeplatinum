@@ -96,7 +96,7 @@ typedef struct {
     int unk_B864;
     int unk_B868;
     Strbuf* unk_B86C;
-    StringFormatter * unk_B870;
+    StringTemplate * unk_B870;
     NNSG3dRenderObj unk_B874;
     NNSG3dResMdl * unk_B8C8;
     NNSG3dResFileHeader * unk_B8CC;
@@ -1118,7 +1118,7 @@ static void ov92_021D1DEC (UnkStruct_ov92_021D1B24 * param0)
     sub_0200BE08(param0->unk_B870, 1, param0->unk_BB14, param0->unk_BB18);
 
     MessageLoader_GetStrbuf(param0->unk_B860, 13, v1);
-    StringFormatter_Format(param0->unk_B870, v0, v1);
+    StringTemplate_Format(param0->unk_B870, v0, v1);
 
     PrintStringSimple(&param0->unk_B844, 0, v0, 0, 0, 0, NULL);
 

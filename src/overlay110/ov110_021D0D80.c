@@ -56,7 +56,7 @@ typedef struct {
     BGL * unk_0C;
     Window unk_10[16];
     MessageLoader * unk_110;
-    StringFormatter * unk_114;
+    StringTemplate * unk_114;
     Strbuf* unk_118;
     Strbuf* unk_11C;
     PaletteData * unk_120;
@@ -132,7 +132,7 @@ int ov110_021D0D80 (OverlayManager * param0, int * param1)
     ov110_021D1180(v1);
 
     v1->unk_110 = MessageLoader_Init(1, 26, 16, 114);
-    v1->unk_114 = StringFormatter_New(114);
+    v1->unk_114 = StringTemplate_New(114);
     v1->unk_118 = Strbuf_Init(800, 114);
     v1->unk_11C = Strbuf_Init(800, 114);
 
@@ -485,7 +485,7 @@ static u8 ov110_021D1324 (UnkStruct_ov110_021D0F78 * param0, Window * param1, in
     if (param9)
         BGL_FillWindow(param1, param7);
     MessageLoader_GetStrbuf(param0->unk_110, param2, param0->unk_11C);
-    StringFormatter_Format(param0->unk_114, param0->unk_118, param0->unk_11C);
+    StringTemplate_Format(param0->unk_114, param0->unk_118, param0->unk_11C);
     
     switch(param10) {
     case 1:
@@ -506,7 +506,7 @@ static u8 ov110_021D13CC (UnkStruct_ov110_021D0F78 * param0, Window * param1, in
 
 static void ov110_021D13F0 (UnkStruct_ov110_021D0F78 * param0, u32 param1, s32 param2)
 {
-    StringFormatter_FormatNumber(param0->unk_114, param1, param2, 4, 1, 1);
+    StringTemplate_FormatNumber(param0->unk_114, param1, param2, 4, 1, 1);
     return;
 }
 

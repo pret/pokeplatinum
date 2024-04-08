@@ -21,7 +21,7 @@ typedef struct {
     PaletteData * unk_08;
     UnkStruct_0200C440 * unk_0C;
     MessageLoader * unk_10;
-    StringFormatter * unk_14;
+    StringTemplate * unk_14;
     Strbuf* unk_18;
     Window unk_1C;
     Window * unk_2C;

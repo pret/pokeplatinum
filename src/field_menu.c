@@ -544,16 +544,16 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
 
     for (v4 = 0; v4 < v5; v4++) {
         if (v1->unk_30[v4] == 3) {
-            StringFormatter * v6;
+            StringTemplate * v6;
             Strbuf* v7;
             Strbuf* v8;
 
-            v6 = StringFormatter_New(11);
+            v6 = StringTemplate_New(11);
             v7 = Strbuf_Init(8, 11);
             v8 = MessageLoader_GetNewStrbuf(v2, Unk_020EA05C[v1->unk_30[v4]][0]);
 
-            StringFormatter_FormatPlayerName(v6, 0, SaveData_GetTrainerInfo(fieldSystem->unk_0C));
-            StringFormatter_Format(v6, v7, v8);
+            StringTemplate_FormatPlayerName(v6, 0, SaveData_GetTrainerInfo(fieldSystem->unk_0C));
+            StringTemplate_Format(v6, v7, v8);
             sub_02013A6C(v1->unk_24, v7, v1->unk_30[v4]);
             Strbuf_Free(v8);
             Strbuf_Free(v7);
@@ -657,7 +657,7 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
     FieldSystem * v0;
     FieldMenu * v1;
     MessageLoader * v2;
-    StringFormatter * v3;
+    StringTemplate * v3;
     Strbuf* v4;
     Strbuf* v5;
     u8 v6;
@@ -689,21 +689,21 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
     PrintStringSimple(&v1->unk_10, 0, v5, 0, 0, 0xff, NULL);
     Strbuf_Free(v5);
 
-    v3 = StringFormatter_New(11);
+    v3 = StringTemplate_New(11);
     v4 = Strbuf_Init(32, 11);
     v5 = MessageLoader_GetNewStrbuf(v2, 11);
 
     if (v6 == 0) {
         u16 * v7 = sub_0203A784(sub_0203A790(v0->unk_0C));
 
-        StringFormatter_FormatNumber(v3, 0, *v7, 2, 0, 1);
+        StringTemplate_FormatNumber(v3, 0, *v7, 2, 0, 1);
     } else {
         int v8 = sub_020563BC(v0);
 
-        StringFormatter_FormatNumber(v3, 0, v8, 2, 0, 1);
+        StringTemplate_FormatNumber(v3, 0, v8, 2, 0, 1);
     }
 
-    StringFormatter_Format(v3, v4, v5);
+    StringTemplate_Format(v3, v4, v5);
     PrintStringSimple(&v1->unk_10, 0, v4, 0, 16, 0xff, NULL);
     Strbuf_Free(v4);
     Strbuf_Free(v5);

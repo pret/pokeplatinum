@@ -93,7 +93,7 @@ struct UnkStruct_02087A10_t {
     u16 unk_15A[3];
     BGL * unk_160;
     BOOL unk_164;
-    StringFormatter * unk_168;
+    StringTemplate * unk_168;
     MessageLoader * unk_16C;
     MessageLoader * unk_170;
     MessageLoader * unk_174;
@@ -908,7 +908,7 @@ static int sub_0208694C (OverlayManager * param0, int * param1)
         v0->unk_160 = sub_02018340(18);
         v1 = NARC_ctor(NARC_INDEX_DATA__NAMEIN, 18);
 
-        v0->unk_168 = StringFormatter_New(18);
+        v0->unk_168 = StringTemplate_New(18);
         v0->unk_16C = MessageLoader_Init(0, 26, 422, 18);
         v0->unk_170 = MessageLoader_Init(1, 26, 427, 18);
         v0->unk_174 = MessageLoader_Init(1, 26, 368, 18);

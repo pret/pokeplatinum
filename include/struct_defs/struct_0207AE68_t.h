@@ -26,7 +26,7 @@ struct UnkStruct_0207AE68_t {
     BGL * unk_00;
     Window * unk_04;
     MessageLoader * unk_08;
-    StringFormatter * unk_0C;
+    StringTemplate * unk_0C;
     Strbuf* unk_10;
     PaletteData * unk_14;
     UnkStruct_02007768 * unk_18;

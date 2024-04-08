@@ -857,7 +857,7 @@ static void ov23_02251F94 (FieldSystem * param0)
     v1->unk_2AA = 0;
     v1->unk_68 = Strbuf_Init((50 * 2), 4);
     v1->unk_6C = Strbuf_Init((50 * 2), 4);
-    v1->unk_70 = StringFormatter_New(4);
+    v1->unk_70 = StringTemplate_New(4);
     v1->unk_08 = sub_0206A780(4);
 
     sub_0206A8A0(v1->unk_08, 200, 20, 122);

@@ -2231,7 +2231,7 @@ static BOOL sub_0203FF34 (UnkStruct_0203E724 * param0)
     u16 v3 = sub_0203E838(param0);
     u8 v4 = (*((param0)->unk_08++));
     u8 v5;
-    StringFormatter * v6;
+    StringTemplate * v6;
 
     v5 = 0;
     v6 = sub_0204AEE8(v0->unk_0C, v2, v3, v4, &v5);
@@ -2532,7 +2532,7 @@ static BOOL sub_020404A4 (UnkStruct_0203E724 * param0)
     FieldSystem * v0;
     Strbuf ** v1;
     Strbuf ** v2;
-    StringFormatter ** v3;
+    StringTemplate ** v3;
     u16 v4;
     u16 v5;
     u8 v6;
@@ -2558,7 +2558,7 @@ static BOOL sub_020404A4 (UnkStruct_0203E724 * param0)
     ov5_021E1B68(v0);
 
     MessageLoader_GetStrbuf(param0->unk_2C, v7, *v1);
-    StringFormatter_Format(*v3, *v2, *v1);
+    StringTemplate_Format(*v3, *v2, *v1);
     PrintStringSimple(ov5_021E1B50(v0->unk_64), 1, *v2, 0, 0, 0, NULL);
 
     return 1;
@@ -2622,12 +2622,12 @@ static BOOL sub_020405DC (UnkStruct_0203E724 * param0)
     u8 * v1 = sub_0203F098(v0, 3);
     Strbuf ** v2 = sub_0203F098(v0, 17);
     Strbuf ** v3 = sub_0203F098(v0, 16);
-    StringFormatter ** v4 = sub_0203F098(v0, 15);
+    StringTemplate ** v4 = sub_0203F098(v0, 15);
     u8 v5 = (*((param0)->unk_08++));
     u16 v6 = sub_0203E838(param0);
 
     MessageLoader_GetStrbuf(param0->unk_2C, v5, *v2);
-    StringFormatter_Format(*v4, *v3, *v2);
+    StringTemplate_Format(*v4, *v3, *v2);
 
     *v1 = sub_0205D994(ov5_021E1B50(v0->unk_64), *v3, sub_02025E44(param0->unk_34->unk_0C), 1);
 
@@ -2792,7 +2792,7 @@ static BOOL sub_020408B0 (UnkStruct_0203E724 * param0)
 {
     FieldSystem * v0 = param0->unk_34;
     UnkStruct_ov5_021DC1A4 ** v1 = sub_0203F098(v0, 0);
-    StringFormatter ** v2 = sub_0203F098(v0, 15);
+    StringTemplate ** v2 = sub_0203F098(v0, 15);
     u8 v3 = (*((param0)->unk_08++));
     u8 v4 = (*((param0)->unk_08++));
     u8 v5 = (*((param0)->unk_08++));
@@ -2809,7 +2809,7 @@ static BOOL sub_02040938 (UnkStruct_0203E724 * param0)
 {
     FieldSystem * v0 = param0->unk_34;
     UnkStruct_ov5_021DC1A4 ** v1 = sub_0203F098(v0, 0);
-    StringFormatter ** v2 = sub_0203F098(v0, 15);
+    StringTemplate ** v2 = sub_0203F098(v0, 15);
     u8 v3 = (*((param0)->unk_08++));
     u8 v4 = (*((param0)->unk_08++));
     u8 v5 = (*((param0)->unk_08++));
@@ -2905,7 +2905,7 @@ static BOOL sub_02040AE8 (UnkStruct_0203E724 * param0)
 {
     FieldSystem * v0 = param0->unk_34;
     UnkStruct_ov5_021DC1A4 ** v1 = sub_0203F098(v0, 0);
-    StringFormatter ** v2 = sub_0203F098(v0, 15);
+    StringTemplate ** v2 = sub_0203F098(v0, 15);
     u8 v3 = (*((param0)->unk_08++));
     u8 v4 = (*((param0)->unk_08++));
     u8 v5 = (*((param0)->unk_08++));
@@ -2922,7 +2922,7 @@ static BOOL sub_02040B70 (UnkStruct_0203E724 * param0)
 {
     FieldSystem * v0 = param0->unk_34;
     UnkStruct_ov5_021DC1A4 ** v1 = sub_0203F098(v0, 0);
-    StringFormatter ** v2 = sub_0203F098(v0, 15);
+    StringTemplate ** v2 = sub_0203F098(v0, 15);
     u8 v3 = (*((param0)->unk_08++));
     u8 v4 = (*((param0)->unk_08++));
     u8 v5 = (*((param0)->unk_08++));
@@ -4189,7 +4189,7 @@ static BOOL sub_02041FF8 (UnkStruct_0203E724 * param0)
 static BOOL sub_02042028 (UnkStruct_0203E724 * param0)
 {
     u16 v0 = sub_0203E838(param0);
-    StringFormatter ** v1 = sub_0203F098(param0->unk_34, 15);
+    StringTemplate ** v1 = sub_0203F098(param0->unk_34, 15);
 
     ov5_021DB888(param0->unk_28, *v1, sub_0203F118(param0->unk_34, v0));
     return 1;
@@ -4663,7 +4663,7 @@ static BOOL sub_02042868 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_020428D4 (UnkStruct_0203E724 * param0)
 {
-    StringFormatter ** v0 = sub_0203F098(param0->unk_34, 15);
+    StringTemplate ** v0 = sub_0203F098(param0->unk_34, 15);
     u16 v1 = inline_02049538(param0);
     u16 v2 = inline_02049538(param0);
 
@@ -5084,7 +5084,7 @@ static BOOL sub_02043100 (UnkStruct_0203E724 * param0)
 static BOOL sub_02043130 (UnkStruct_0203E724 * param0)
 {
     FieldSystem * v0 = param0->unk_34;
-    StringFormatter ** v1 = sub_0203F098(v0, 15);
+    StringTemplate ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
     u8 v3 = (*((param0)->unk_08++));
     u16 * v4 = inline_0204FCAC(param0);
@@ -5364,7 +5364,7 @@ static BOOL sub_02043694 (UnkStruct_0203E724 * param0)
 static BOOL sub_020436A0 (UnkStruct_0203E724 * param0)
 {
     FieldSystem * v0 = param0->unk_34;
-    StringFormatter ** v1 = sub_0203F098(v0, 15);
+    StringTemplate ** v1 = sub_0203F098(v0, 15);
     u16 * v2 = inline_0204FCAC(param0);
 
     *v2 = sub_0205BC50(*v1);
@@ -5375,7 +5375,7 @@ static BOOL sub_020436D0 (UnkStruct_0203E724 * param0)
 {
     u16 * v0 = inline_0204FCAC(param0);
     FieldSystem * v1 = param0->unk_34;
-    StringFormatter ** v2 = sub_0203F098(v1, 15);
+    StringTemplate ** v2 = sub_0203F098(v1, 15);
 
     *v0 = sub_0205BF44(param0->unk_34->unk_7C, *v2);
     return 0;
@@ -5401,7 +5401,7 @@ static BOOL sub_02043708 (UnkStruct_0203E724 * param0)
 static BOOL sub_02043748 (UnkStruct_0203E724 * param0)
 {
     LocalMapObject ** v0 = sub_0203F098(param0->unk_34, 10);
-    StringFormatter ** v1 = sub_0203F098(param0->unk_34, 15);
+    StringTemplate ** v1 = sub_0203F098(param0->unk_34, 15);
     u16 v2 = sub_0203E838(param0);
     TrainerInfo * v3 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->unk_34));
     UnkStruct_02014EC4 * v4 = sub_02014EC4(FieldSystem_SaveData(param0->unk_34));
@@ -5444,7 +5444,7 @@ static BOOL sub_020437FC (UnkStruct_0203E724 * param0)
     LocalMapObject ** v0 = sub_0203F098(param0->unk_34, 10);
     u16 v1 = sub_0203E838(param0);
     u16 * v2 = inline_0204FCAC(param0);
-    StringFormatter ** v3 = sub_0203F098(param0->unk_34, 15);
+    StringTemplate ** v3 = sub_0203F098(param0->unk_34, 15);
 
     *v2 = sub_0205BCF4(param0->unk_34->unk_7C, sub_02062910(*v0), v1, *v3);
     return 0;
@@ -5614,7 +5614,7 @@ static BOOL sub_02043A94 (UnkStruct_0203E724 * param0)
 static BOOL sub_02043AA4 (UnkStruct_0203E724 * param0)
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->unk_34));
-    StringFormatter ** v1 = sub_0203F098(param0->unk_34, 15);
+    StringTemplate ** v1 = sub_0203F098(param0->unk_34, 15);
 
     sub_0205C980(TrainerInfo_ID(v0), TrainerInfo_Gender(v0), *v1);
     return 0;
@@ -7226,7 +7226,7 @@ static BOOL sub_02045720 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02045760 (UnkStruct_0203E724 * param0)
 {
-    StringFormatter ** v0 = sub_0203F098(param0->unk_34, 15);
+    StringTemplate ** v0 = sub_0203F098(param0->unk_34, 15);
     u8 v1 = (*((param0)->unk_08++));
     u16 v2 = inline_02049538(param0);
 
@@ -7297,7 +7297,7 @@ static BOOL sub_02045860 (UnkStruct_0203E724 * param0)
     u32 v1;
     u16 * v2 = inline_0204FCAC(param0);
     u16 v3 = inline_02049538(param0);
-    StringFormatter ** v4 = sub_0203F098(param0->unk_34, 15);
+    StringTemplate ** v4 = sub_0203F098(param0->unk_34, 15);
 
     v0 = sub_02014EC4(param0->unk_34->unk_0C);
     v1 = sub_02014EE4(v0);
@@ -7758,7 +7758,7 @@ static BOOL sub_02045F48 (UnkStruct_0203E724 * param0)
     u16 v3 = inline_02049538(param0);
     u16 v4 = inline_02049538(param0);
     u16 v5 = inline_02049538(param0);
-    StringFormatter * v6 = StringFormatter_New(32);
+    StringTemplate * v6 = StringTemplate_New(32);
     MessageLoader * v7 = MessageLoader_Init(0, 26, 372, 32);
     Strbuf* v8;
     Strbuf* v9;
@@ -7795,7 +7795,7 @@ static BOOL sub_02046050 (UnkStruct_0203E724 * param0)
 {
     FieldSystem * v0 = param0->unk_34;
     u16 * v1 = inline_0204FCAC(param0);
-    StringFormatter ** v2 = sub_0203F098(v0, 15);
+    StringTemplate ** v2 = sub_0203F098(v0, 15);
 
     *v1 = sub_0205BC50(*v2);
     return 0;

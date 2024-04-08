@@ -111,7 +111,7 @@ typedef struct {
     const Options * unk_738;
     u32 unk_73C;
     Strbuf* unk_740;
-    StringFormatter * unk_744;
+    StringTemplate * unk_744;
 } UnkStruct_ov22_02255D44;
 
 typedef struct {
@@ -1371,7 +1371,7 @@ static void ov22_02257368 (UnkStruct_ov22_02255D44 * param0, u32 param1)
     v2 = MessageLoader_GetNewStrbuf(v0, param1);
     v1 = Strbuf_Init(256, 13);
 
-    StringFormatter_Format(param0->unk_744, v1, v2);
+    StringTemplate_Format(param0->unk_744, v1, v2);
     sub_0201D78C(param0->unk_718, 1, v1, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
     Strbuf_Free(v2);
@@ -1394,7 +1394,7 @@ static u32 ov22_022573EC (UnkStruct_ov22_02255D44 * param0, u32 param1)
     v3 = MessageLoader_GetNewStrbuf(v1, param1);
     param0->unk_740 = Strbuf_Init(256, 13);
 
-    StringFormatter_Format(param0->unk_744, param0->unk_740, v3);
+    StringTemplate_Format(param0->unk_744, param0->unk_740, v3);
 
     if (param0->unk_734->unk_16 == 0) {
         v2 = sub_02027AC0(param0->unk_738);
@@ -1441,7 +1441,7 @@ static void ov22_022574EC (UnkStruct_ov22_02255D44 * param0)
 static void ov22_022574F4 (UnkStruct_ov22_02255D44 * param0, u32 param1)
 {
     ov22_022572A0(param0, param1, 2, 19, 27, 4);
-    param0->unk_744 = StringFormatter_New(13);
+    param0->unk_744 = StringTemplate_New(13);
 }
 
 static u32 ov22_0225751C (UnkStruct_ov22_02255D44 * param0, u32 param1)
@@ -1451,7 +1451,7 @@ static u32 ov22_0225751C (UnkStruct_ov22_02255D44 * param0, u32 param1)
 
 static void ov22_02257524 (UnkStruct_ov22_02255D44 * param0, int param1, int param2)
 {
-    StringFormatter_FormatNumber(param0->unk_744, param1, param2, 2, 0, 1);
+    StringTemplate_FormatNumber(param0->unk_744, param1, param2, 2, 0, 1);
 }
 
 static void ov22_02257540 (UnkStruct_ov22_02255D44 * param0)

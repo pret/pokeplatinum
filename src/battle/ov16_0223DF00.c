@@ -109,7 +109,7 @@ u16 * ov16_0223E0A4(BattleSystem * param0);
 u16 * ov16_0223E0B0(BattleSystem * param0);
 u16 * ov16_0223E0BC(BattleSystem * param0);
 UnkStruct_ov16_0223E0C8 * ov16_0223E0C8(BattleSystem * param0);
-StringFormatter * BattleSystem_StringFormatter(BattleSystem * param0);
+StringTemplate * BattleSystem_StringTemplate(BattleSystem * param0);
 Strbuf* ov16_0223E0D4(BattleSystem * param0);
 u16 Battler_TrainerID(BattleSystem * param0, int param1);
 TrainerData * BattleSystem_TrainerData(BattleSystem * param0, int param1);
@@ -415,7 +415,7 @@ UnkStruct_ov16_0223E0C8 * ov16_0223E0C8 (BattleSystem * param0)
     return &param0->unk_1CC[0];
 }
 
-StringFormatter * BattleSystem_StringFormatter (BattleSystem * param0)
+StringTemplate * BattleSystem_StringTemplate (BattleSystem * param0)
 {
     return param0->strFormatter;
 }
@@ -2340,7 +2340,7 @@ static void BattleMessage_Nickname (BattleSystem * param0, u32 param1, int param
     Pokemon * v0;
 
     v0 = BattleSystem_PartyPokemon(param0, param2 & 0xff, (param2 & 0xff00) >> 8);
-    StringFormatter_BufferNickname(param0->strFormatter, param1, &v0->box);
+    StringTemplate_BufferNickname(param0->strFormatter, param1, &v0->box);
 }
 
 static void BattleMessage_MoveName (BattleSystem * param0, u32 param1, int param2)
@@ -2355,15 +2355,15 @@ static void BattleMessage_ItemName (BattleSystem * param0, u32 param1, int param
 
 static void BattleMessage_Number (BattleSystem * param0, u32 param1, int param2)
 {
-    StringFormatter_FormatNumber(param0->strFormatter, param1, param2, 5, 0, 1);
+    StringTemplate_FormatNumber(param0->strFormatter, param1, param2, 5, 0, 1);
 }
 
 static void BattleMessage_NumberDigits (BattleSystem * param0, u32 param1, int param2, int param3)
 {
     if (param3) {
-        StringFormatter_FormatNumber(param0->strFormatter, param1, param2, param3, 1, 1);
+        StringTemplate_FormatNumber(param0->strFormatter, param1, param2, param3, 1, 1);
     } else {
-        StringFormatter_FormatNumber(param0->strFormatter, param1, param2, 5, 1, 1);
+        StringTemplate_FormatNumber(param0->strFormatter, param1, param2, 5, 1, 1);
     }
 }
 
@@ -2436,7 +2436,7 @@ static void BattleMessage_PCBoxName (BattleSystem * param0, u32 param1, int para
 static void BattleMessage_Format(BattleSystem *battleSys, MessageLoader *msgLoader, BattleMessage *battleMsg)
 {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(msgLoader, battleMsg->id);
-    StringFormatter_Format(battleSys->strFormatter, battleSys->msgBuffer, strbuf);
+    StringTemplate_Format(battleSys->strFormatter, battleSys->msgBuffer, strbuf);
     Strbuf_Free(strbuf);
 }
 

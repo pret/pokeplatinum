@@ -91,7 +91,7 @@ typedef struct {
     SysTask * unk_1C2C;
     SysTask * unk_1C30;
     SysTask * unk_1C34[4];
-    StringFormatter * unk_1C44;
+    StringTemplate * unk_1C44;
     Strbuf* unk_1C48;
     Strbuf* unk_1C4C;
     MessageLoader * unk_1C50;
@@ -183,7 +183,7 @@ typedef struct {
     UnkStruct_ov86_0223B3C8 * unk_08;
     BGL * unk_0C;
     Window * unk_10;
-    StringFormatter * unk_14;
+    StringTemplate * unk_14;
     Strbuf* unk_18;
     Strbuf* unk_1C;
     MessageLoader * unk_20;
@@ -312,7 +312,7 @@ int ov86_0223B140 (OverlayManager * param0, int * param1)
     v0->unk_1C50 = MessageLoader_Init(0, 26, 351, 63);
     v0->unk_1C48 = Strbuf_Init(500, 63);
     v0->unk_1C4C = Strbuf_Init(500, 63);
-    v0->unk_1C44 = StringFormatter_New(63);
+    v0->unk_1C44 = StringTemplate_New(63);
     v0->unk_1C54 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 63);
 
     {
@@ -1298,7 +1298,7 @@ static void ov86_0223C47C (UnkStruct_ov86_0223C3E4 * param0, int param1)
 static void ov86_0223C4DC (UnkStruct_ov86_0223C3E4 * param0)
 {
     sub_0200B538(param0->unk_14, 0, Pokemon_GetBoxPokemon(param0->unk_24));
-    StringFormatter_FormatNumber(param0->unk_14, 1, Pokemon_GetLevel(param0->unk_24), 3, 0, 1);
+    StringTemplate_FormatNumber(param0->unk_14, 1, Pokemon_GetLevel(param0->unk_24), 3, 0, 1);
 
     switch (Pokemon_GetGender(param0->unk_24)) {
     case 0:
@@ -1313,7 +1313,7 @@ static void ov86_0223C4DC (UnkStruct_ov86_0223C3E4 * param0)
         break;
     }
 
-    StringFormatter_Format(param0->unk_14, param0->unk_1C, param0->unk_18);
+    StringTemplate_Format(param0->unk_14, param0->unk_1C, param0->unk_18);
 }
 
 static void ov86_0223C54C (UnkStruct_ov86_0223C3E4 * param0)
@@ -1328,7 +1328,7 @@ static void ov86_0223C54C (UnkStruct_ov86_0223C3E4 * param0)
     }
 
     MessageLoader_GetStrbuf(param0->unk_20, 5 + v0, param0->unk_18);
-    StringFormatter_Format(param0->unk_14, param0->unk_1C, param0->unk_18);
+    StringTemplate_Format(param0->unk_14, param0->unk_1C, param0->unk_18);
 }
 
 static void ov86_0223C58C (SysTask * param0, void * param1)
@@ -1360,7 +1360,7 @@ static void ov86_0223C58C (SysTask * param0, void * param1)
     case 2:
         sub_0200B5EC(v0->unk_14, 0, Pokemon_GetBoxPokemon(v0->unk_24));
         MessageLoader_GetStrbuf(v0->unk_20, 4, v0->unk_18);
-        StringFormatter_Format(v0->unk_14, v0->unk_1C, v0->unk_18);
+        StringTemplate_Format(v0->unk_14, v0->unk_1C, v0->unk_18);
         ov86_0223C47C(v0, 96);
         ov86_0223C54C(v0);
         ov86_0223C47C(v0, 112);
@@ -1430,13 +1430,13 @@ static void ov86_0223C72C (UnkStruct_ov86_0223B3C8 * param0)
 
     v0 = (256 - sub_02002D7C(0, param0->unk_1C48, 0)) / 2;
     sub_0201D78C(&param0->unk_14, 0, param0->unk_1C48, v0, 4, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
-    StringFormatter_FormatPlayerName(param0->unk_1C44, 0, param0->unk_0C->unk_00);
+    StringTemplate_FormatPlayerName(param0->unk_1C44, 0, param0->unk_0C->unk_00);
 
-    StringFormatter_FormatNumber(param0->unk_1C44, 1, TrainerInfo_ID_LowHalf(param0->unk_0C->unk_00), 5, 2, 1);
-    StringFormatter_FormatNumber(param0->unk_1C44, 2, sub_0202CC58(param0->unk_0C->unk_08), 3, 0, 1);
-    StringFormatter_FormatNumber(param0->unk_1C44, 3, sub_0202CC5C(param0->unk_0C->unk_08), 2, 2, 1);
+    StringTemplate_FormatNumber(param0->unk_1C44, 1, TrainerInfo_ID_LowHalf(param0->unk_0C->unk_00), 5, 2, 1);
+    StringTemplate_FormatNumber(param0->unk_1C44, 2, sub_0202CC58(param0->unk_0C->unk_08), 3, 0, 1);
+    StringTemplate_FormatNumber(param0->unk_1C44, 3, sub_0202CC5C(param0->unk_0C->unk_08), 2, 2, 1);
     MessageLoader_GetStrbuf(param0->unk_1C50, 13, param0->unk_1C4C);
-    StringFormatter_Format(param0->unk_1C44, param0->unk_1C48, param0->unk_1C4C);
+    StringTemplate_Format(param0->unk_1C44, param0->unk_1C48, param0->unk_1C4C);
 
     v0 = (256 - sub_02002D7C(0, param0->unk_1C48, 0)) / 2;
     sub_0201D78C(&param0->unk_14, 0, param0->unk_1C48, v0, 172, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);

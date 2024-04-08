@@ -2004,20 +2004,20 @@ static void ov16_02269DB0 (UnkStruct_ov16_02268A14 * param0, int param1, int par
 {
     MessageLoader * v0;
     Strbuf* v1, * v2, * v3, * v4;
-    StringFormatter * v5;
+    StringTemplate * v5;
     UnkStruct_ov16_022623F0 * v6;
 
     v6 = &param0->unk_1A.val4;
     v0 = BattleSystem_MessageLoader(param0->unk_00);
-    v5 = BattleSystem_StringFormatter(param0->unk_00);
+    v5 = BattleSystem_StringTemplate(param0->unk_00);
     v1 = MessageLoader_GetNewStrbuf(v0, 1186);
     v2 = MessageLoader_GetNewStrbuf(v0, 1187);
     v3 = Strbuf_Init(100, 5);
     v4 = Strbuf_Init(100, 5);
 
     sub_0200B630(v5, 0, v6->unk_00);
-    StringFormatter_Format(v5, v3, v1);
-    StringFormatter_Format(v5, v4, v2);
+    StringTemplate_Format(v5, v3, v1);
+    StringTemplate_Format(v5, v4, v2);
 
     ov16_0226A98C(param0, &param0->unk_4CC[0], v3, 2, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((3 & 0xff) << 0))), 2, 20023, 128, 68, 1, NULL);
     ov16_0226A98C(param0, &param0->unk_4CC[1], v4, 2, ((u32)(((10 & 0xff) << 16) | ((11 & 0xff) << 8) | ((12 & 0xff) << 0))), 2, 20023, 128, 140, 1, NULL);
@@ -2068,20 +2068,20 @@ static void ov16_02269F68 (UnkStruct_ov16_02268A14 * param0, int param1, int par
 {
     MessageLoader * v0;
     Strbuf* v1, * v2, * v3, * v4;
-    StringFormatter * v5;
+    StringTemplate * v5;
     UnkStruct_ov16_022623F0 * v6;
 
     v6 = &param0->unk_1A.val4;
     v0 = BattleSystem_MessageLoader(param0->unk_00);
-    v5 = BattleSystem_StringFormatter(param0->unk_00);
+    v5 = BattleSystem_StringTemplate(param0->unk_00);
     v1 = MessageLoader_GetNewStrbuf(v0, 1217);
     v2 = MessageLoader_GetNewStrbuf(v0, 1218);
     v3 = Strbuf_Init(100, 5);
     v4 = Strbuf_Init(100, 5);
 
     sub_0200B630(v5, 0, v6->unk_00);
-    StringFormatter_Format(v5, v3, v1);
-    StringFormatter_Format(v5, v4, v2);
+    StringTemplate_Format(v5, v3, v1);
+    StringTemplate_Format(v5, v4, v2);
 
     ov16_0226A98C(param0, &param0->unk_4CC[0], v3, 2, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((3 & 0xff) << 0))), 2, 20023, 128, 68, 1, NULL);
     ov16_0226A98C(param0, &param0->unk_4CC[1], v4, 2, ((u32)(((10 & 0xff) << 16) | ((11 & 0xff) << 8) | ((12 & 0xff) << 0))), 2, 20023, 128, 140, 1, NULL);
@@ -2096,20 +2096,20 @@ static void ov16_0226A04C (UnkStruct_ov16_02268A14 * param0, int param1, int par
 {
     MessageLoader * v0;
     Strbuf* v1, * v2, * v3, * v4;
-    StringFormatter * v5;
+    StringTemplate * v5;
     UnkStruct_ov16_022623F0 * v6;
 
     v6 = &param0->unk_1A.val4;
     v0 = BattleSystem_MessageLoader(param0->unk_00);
-    v5 = BattleSystem_StringFormatter(param0->unk_00);
+    v5 = BattleSystem_StringTemplate(param0->unk_00);
     v1 = MessageLoader_GetNewStrbuf(v0, 1215);
     v2 = MessageLoader_GetNewStrbuf(v0, 1216);
     v3 = Strbuf_Init(100, 5);
     v4 = Strbuf_Init(100, 5);
 
     sub_0200B630(v5, 0, v6->unk_00);
-    StringFormatter_Format(v5, v3, v1);
-    StringFormatter_Format(v5, v4, v2);
+    StringTemplate_Format(v5, v3, v1);
+    StringTemplate_Format(v5, v4, v2);
 
     ov16_0226A98C(param0, &param0->unk_4CC[0], v3, 2, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((3 & 0xff) << 0))), 2, 20023, 128, 68, 1, NULL);
     ov16_0226A98C(param0, &param0->unk_4CC[1], v4, 2, ((u32)(((10 & 0xff) << 16) | ((11 & 0xff) << 8) | ((12 & 0xff) << 0))), 2, 20023, 128, 140, 1, NULL);
@@ -2129,7 +2129,7 @@ static void ov16_0226A12C (UnkStruct_ov16_02268A14 * param0, int param1, int par
     Strbuf* v4, * v5;
     Pokemon * v6;
     BoxPokemon * v7;
-    StringFormatter * v8;
+    StringTemplate * v8;
     u32 v9;
     u8 v10[6];
     u8 v11[6];
@@ -2141,7 +2141,7 @@ static void ov16_0226A12C (UnkStruct_ov16_02268A14 * param0, int param1, int par
     param0->unk_66A = v0->unk_20;
 
     v2 = BattleSystem_MessageLoader(param0->unk_00);
-    v8 = BattleSystem_StringFormatter(param0->unk_00);
+    v8 = BattleSystem_StringTemplate(param0->unk_00);
 
     ov16_0226B20C(param0, v3, 0);
     ov16_0226A698(param0);
@@ -2166,8 +2166,8 @@ static void ov16_0226A12C (UnkStruct_ov16_02268A14 * param0, int param1, int par
             v6 = BattleSystem_PartyPokemon(param0->unk_00, v12, v0->unk_00[v12].unk_00);
             v7 = Pokemon_GetBoxPokemon(v6);
 
-            StringFormatter_BufferNickname(v8, 0, v7);
-            StringFormatter_Format(v8, v4, v5);
+            StringTemplate_BufferNickname(v8, 0, v7);
+            StringTemplate_Format(v8, v4, v5);
 
             if (v1 & 1) {
                 v9 = ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((3 & 0xff) << 0)));
@@ -2794,7 +2794,7 @@ void ov16_0226AC98 (UnkStruct_ov16_02268A14 * param0, int param1, const UnkStruc
     Strbuf* v7;
     Strbuf* v8;
     Strbuf* v9;
-    StringFormatter * v10;
+    StringTemplate * v10;
     u32 v11;
     MessageLoader * v12;
 
@@ -2802,7 +2802,7 @@ void ov16_0226AC98 (UnkStruct_ov16_02268A14 * param0, int param1, const UnkStruc
     v0 = ov16_0226ABD4(param0, param1);
     v3 = sub_0208C098(6);
     v9 = MessageLoader_GetNewStrbuf(v12, 938);
-    v10 = BattleSystem_StringFormatter(param0->unk_00);
+    v10 = BattleSystem_StringTemplate(param0->unk_00);
     v7 = Strbuf_Init(((2 + 2 + 1 + 2) * 2 + 2), 5);
     v8 = MessageLoader_GetNewStrbuf(v12, 937);
 
@@ -2821,9 +2821,9 @@ void ov16_0226AC98 (UnkStruct_ov16_02268A14 * param0, int param1, const UnkStruc
         }
 
         if ((v0->unk_78[v4].unk_00.unk_0C == NULL) || (v0->unk_C8[v4].unk_00.unk_0C == NULL) || (param2->unk_00[v4] != 0) || (param2->unk_00[v4] != v0->unk_00.unk_00[v4]) || (param2->unk_08[v4] != v0->unk_00.unk_08[v4]) || (param2->unk_10[v4] != v0->unk_00.unk_10[v4])) {
-            StringFormatter_FormatNumber(v10, 0, param2->unk_08[v4], 2, 1, 0);
-            StringFormatter_FormatNumber(v10, 1, param2->unk_10[v4], 2, 1, 0);
-            StringFormatter_Format(v10, v7, v8);
+            StringTemplate_FormatNumber(v10, 0, param2->unk_08[v4], 2, 1, 0);
+            StringTemplate_FormatNumber(v10, 1, param2->unk_10[v4], 2, 1, 0);
+            StringTemplate_Format(v10, v7, v8);
 
             v11 = ov16_0226B924(param2->unk_08[v4], param2->unk_10[v4]);
 

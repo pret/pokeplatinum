@@ -47,7 +47,7 @@ typedef struct UnkStruct_ov117_02261280_t {
     BGL * unk_2C;
     Window unk_30[5];
     MessageLoader * unk_80;
-    StringFormatter * unk_84;
+    StringTemplate * unk_84;
     Strbuf* unk_88;
     PaletteData * unk_8C;
     UnkStruct_02012744 * unk_90;

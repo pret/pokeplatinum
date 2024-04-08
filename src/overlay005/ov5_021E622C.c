@@ -1961,11 +1961,11 @@ static u8 ov5_021E70FC(UnkStruct_02026310 * param0);
 static int ov5_021E6F6C(Party * param0);
 static u8 ov5_021E6FF0(BoxPokemon ** param0);
 void ov5_021E6B40(UnkStruct_02026310 * param0);
-int ov5_021E6630(UnkStruct_02026310 * param0, u8 param1, StringFormatter * param2);
-u8 ov5_021E6640(UnkStruct_02026310 * param0, int param1, StringFormatter * param2);
-u16 ov5_021E73A0(Party * param0, int param1, StringFormatter * param2);
+int ov5_021E6630(UnkStruct_02026310 * param0, u8 param1, StringTemplate * param2);
+u8 ov5_021E6640(UnkStruct_02026310 * param0, int param1, StringTemplate * param2);
+u16 ov5_021E73A0(Party * param0, int param1, StringTemplate * param2);
 u8 ov5_021E73C8(UnkStruct_02026310 * param0);
-void ov5_021E72BC(UnkStruct_02026310 * param0, StringFormatter * param1);
+void ov5_021E72BC(UnkStruct_02026310 * param0, StringTemplate * param1);
 static void ov5_021E62C4(Party * param0, int param1, UnkStruct_02026218 * param2, SaveData * param3);
 static int ov5_021E7110(FieldSystem * param0);
 
@@ -2097,7 +2097,7 @@ static void ov5_021E63E0 (Pokemon * param0)
     Pokemon_CalcLevelAndStats(param0);
 }
 
-static int ov5_021E6444 (Party * param0, UnkStruct_02026218 * param1, StringFormatter * param2)
+static int ov5_021E6444 (Party * param0, UnkStruct_02026218 * param1, StringTemplate * param2)
 {
     Pokemon * v0 = Pokemon_New(4);
     BoxPokemon * v1 = sub_02026220(param1);
@@ -2105,7 +2105,7 @@ static int ov5_021E6444 (Party * param0, UnkStruct_02026218 * param1, StringForm
     u32 v3;
     u16 v4;
 
-    StringFormatter_BufferNickname(param2, 0, v1);
+    StringTemplate_BufferNickname(param2, 0, v1);
     v4 = BoxPokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
     Pokemon_FromBoxPokemon(v1, v0);
 
@@ -2128,7 +2128,7 @@ static int ov5_021E6444 (Party * param0, UnkStruct_02026218 * param1, StringForm
     return v4;
 }
 
-u16 ov5_021E64F8 (Party * param0, StringFormatter * param1, UnkStruct_02026310 * param2, u8 param3)
+u16 ov5_021E64F8 (Party * param0, StringTemplate * param1, UnkStruct_02026310 * param2, u8 param3)
 {
     u16 v0;
     UnkStruct_02026218 * v1 = sub_02026218(param2, param3);
@@ -2181,7 +2181,7 @@ int ov5_021E6590 (UnkStruct_02026218 * param0)
     return v0;
 }
 
-u8 ov5_021E65B0 (UnkStruct_02026218 * param0, StringFormatter * param1)
+u8 ov5_021E65B0 (UnkStruct_02026218 * param0, StringTemplate * param1)
 {
     int v0;
     Strbuf* v1;
@@ -2190,27 +2190,27 @@ u8 ov5_021E65B0 (UnkStruct_02026218 * param0, StringFormatter * param1)
 
     v0 = ov5_021E6568(param0);
 
-    StringFormatter_FormatNumber(param1, 1, v0, 3, 0, 1);
-    StringFormatter_BufferNickname(param1, 0, v3);
+    StringTemplate_FormatNumber(param1, 1, v0, 3, 0, 1);
+    StringTemplate_BufferNickname(param1, 0, v3);
 
     return v0;
 }
 
-int ov5_021E65EC (UnkStruct_02026218 * param0, StringFormatter * param1)
+int ov5_021E65EC (UnkStruct_02026218 * param0, StringTemplate * param1)
 {
     u16 v0;
     BoxPokemon * v1 = sub_02026220(param0);
 
     v0 = ov5_021E6568(param0);
-    StringFormatter_BufferNickname(param1, 0, v1);
+    StringTemplate_BufferNickname(param1, 0, v1);
 
     v0 = v0 * 100 + 100;
-    StringFormatter_FormatNumber(param1, 1, v0, 5, 0, 1);
+    StringTemplate_FormatNumber(param1, 1, v0, 5, 0, 1);
 
     return v0;
 }
 
-int ov5_021E6630 (UnkStruct_02026310 * param0, u8 param1, StringFormatter * param2)
+int ov5_021E6630 (UnkStruct_02026310 * param0, u8 param1, StringTemplate * param2)
 {
     UnkStruct_02026218 * v0;
 
@@ -2218,7 +2218,7 @@ int ov5_021E6630 (UnkStruct_02026310 * param0, u8 param1, StringFormatter * para
     return ov5_021E65EC(v0, param2);
 }
 
-u8 ov5_021E6640 (UnkStruct_02026310 * param0, int param1, StringFormatter * param2)
+u8 ov5_021E6640 (UnkStruct_02026310 * param0, int param1, StringTemplate * param2)
 {
     UnkStruct_02026218 * v0 = sub_02026218(param0, param1);
     BoxPokemon * v1 = sub_02026220(v0);
@@ -2933,7 +2933,7 @@ Pokemon * ov5_021E7278 (Party * param0)
     return NULL;
 }
 
-void ov5_021E72BC (UnkStruct_02026310 * param0, StringFormatter * param1)
+void ov5_021E72BC (UnkStruct_02026310 * param0, StringTemplate * param1)
 {
     BoxPokemon * v0[2];
     u16 v1[10 + 1];
@@ -2941,16 +2941,16 @@ void ov5_021E72BC (UnkStruct_02026310 * param0, StringFormatter * param1)
     ov5_021E6668(param0, v0);
 
     if (BoxPokemon_GetValue(v0[0], MON_DATA_SPECIES, NULL) != 0) {
-        StringFormatter_BufferNickname(param1, 0, v0[0]);
+        StringTemplate_BufferNickname(param1, 0, v0[0]);
         sub_0200B5EC(param1, 2, v0[0]);
     }
 
     if (BoxPokemon_GetValue(v0[1], MON_DATA_SPECIES, NULL) != 0) {
-        StringFormatter_BufferNickname(param1, 1, v0[1]);
+        StringTemplate_BufferNickname(param1, 1, v0[1]);
     }
 }
 
-void ov5_021E7308 (UnkStruct_02026310 * param0, u32 param1, u32 param2, u32 param3, u8 param4, StringFormatter * param5)
+void ov5_021E7308 (UnkStruct_02026310 * param0, u32 param1, u32 param2, u32 param3, u8 param4, StringTemplate * param5)
 {
     UnkStruct_02026218 * v0;
     BoxPokemon * v1;
@@ -2960,10 +2960,10 @@ void ov5_021E7308 (UnkStruct_02026310 * param0, u32 param1, u32 param2, u32 para
     v0 = sub_02026218(param0, param4);
     v1 = ov5_021E622C(param0, param4);
 
-    StringFormatter_BufferNickname(param5, param1, v1);
+    StringTemplate_BufferNickname(param5, param1, v1);
 
     v2 = ov5_021E6520(v1, sub_02026228(v0));
-    StringFormatter_FormatNumber(param5, param2, v2, 3, 0, 1);
+    StringTemplate_FormatNumber(param5, param2, v2, 3, 0, 1);
     v3 = BoxPokemon_GetValue(v1, MON_DATA_GENDER, NULL);
 
     if (v3 != 2) {
@@ -2977,11 +2977,11 @@ void ov5_021E7308 (UnkStruct_02026310 * param0, u32 param1, u32 param2, u32 para
     sub_0200BCF0(param5, param3, v3);
 }
 
-u16 ov5_021E73A0 (Party * param0, int param1, StringFormatter * param2)
+u16 ov5_021E73A0 (Party * param0, int param1, StringTemplate * param2)
 {
     Pokemon * v0 = Party_GetPokemonBySlotIndex(param0, param1);
 
-    StringFormatter_BufferNickname(param2, 0, Pokemon_GetBoxPokemon(v0));
+    StringTemplate_BufferNickname(param2, 0, Pokemon_GetBoxPokemon(v0));
     return Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
 }
 

@@ -54,7 +54,7 @@ struct UnkStruct_ov95_02247628_t {
     const UnkStruct_ov6_02246254 * unk_00;
     int unk_04;
     BGL * unk_08;
-    StringFormatter * unk_0C;
+    StringTemplate * unk_0C;
     MessageLoader * unk_10;
     Strbuf* unk_14;
     GraphicElementManager * unk_18;
@@ -151,20 +151,20 @@ int ov95_02246C20 (OverlayManager * param0, int * param1)
             v0->unk_08 = sub_02018340(57);
             v0->unk_14 = Strbuf_Init(400, 57);
             v0->unk_10 = MessageLoader_Init(0, 26, 350, 57);
-            v0->unk_0C = StringFormatter_New(57);
+            v0->unk_0C = StringTemplate_New(57);
 
             switch (v0->unk_00->unk_10) {
             case 1:
-                StringFormatter_BufferNickname(v0->unk_0C, 0, (BoxPokemon *)(v0->unk_00->unk_00));
-                StringFormatter_BufferNickname(v0->unk_0C, 1, (BoxPokemon *)(v0->unk_00->unk_04));
-                StringFormatter_FormatPlayerName(v0->unk_0C, 2, v0->unk_00->unk_08);
+                StringTemplate_BufferNickname(v0->unk_0C, 0, (BoxPokemon *)(v0->unk_00->unk_00));
+                StringTemplate_BufferNickname(v0->unk_0C, 1, (BoxPokemon *)(v0->unk_00->unk_04));
+                StringTemplate_FormatPlayerName(v0->unk_0C, 2, v0->unk_00->unk_08);
                 v0->unk_1AC = ov95_02246DEC((BoxPokemon *)(v0->unk_00->unk_04));
                 break;
             case 2:
-                StringFormatter_BufferNickname(v0->unk_0C, 0, (BoxPokemon *)(v0->unk_00->unk_00));
+                StringTemplate_BufferNickname(v0->unk_0C, 0, (BoxPokemon *)(v0->unk_00->unk_00));
                 break;
             case 4:
-                StringFormatter_BufferNickname(v0->unk_0C, 1, (BoxPokemon *)(v0->unk_00->unk_04));
+                StringTemplate_BufferNickname(v0->unk_0C, 1, (BoxPokemon *)(v0->unk_00->unk_04));
                 v0->unk_1AC = ov95_02246DEC((BoxPokemon *)(v0->unk_00->unk_04));
                 break;
             }
@@ -677,7 +677,7 @@ BGL * ov95_02247628 (UnkStruct_ov95_02247628 * param0)
     return param0->unk_08;
 }
 
-StringFormatter * ov95_0224762C (UnkStruct_ov95_02247628 * param0)
+StringTemplate * ov95_0224762C (UnkStruct_ov95_02247628 * param0)
 {
     return param0->unk_0C;
 }

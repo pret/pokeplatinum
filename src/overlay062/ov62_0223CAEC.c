@@ -754,7 +754,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     ldr r1, [sp, #0x14]
     add r0, r6, #0
     add r2, r7, #0
-    bl StringFormatter_Format
+    bl StringTemplate_Format
     mov r0, #0x10
     str r0, [sp]
     mov r0, #0xff

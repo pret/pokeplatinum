@@ -437,7 +437,7 @@ void ov101_021D13C8 (UnkStruct_ov101_021D13C8 * param0)
     sub_02002E98(0, 15 * 32, 79);
 
     v1->unk_00 = MessageLoader_Init(0, 26, 544, 79);
-    v1->unk_04 = StringFormatter_New(79);
+    v1->unk_04 = StringTemplate_New(79);
 
     for (v0 = 0; v0 < 1; v0++) {
         sub_0201A8D4(param0->unk_43C, &v1->unk_08[v0], &Unk_ov101_021D8588[v0]);

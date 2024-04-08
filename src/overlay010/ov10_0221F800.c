@@ -139,7 +139,7 @@ typedef struct UnkStruct_ov10_0221FB28_t {
     Window unk_B8C;
     GXBG0As unk_B9C;
     MessageLoader * unk_BA0;
-    StringFormatter * unk_BA4;
+    StringTemplate * unk_BA4;
     Strbuf* unk_BA8;
     int unk_BAC;
     int unk_BB0;
@@ -701,7 +701,7 @@ static u8 ov10_0221FD00 (UnkStruct_ov10_0221FB28 * param0)
         param0->unk_B71 = 2;
         param0->unk_B68 = 12;
         param0->unk_BA0 = MessageLoader_Init(0, 26, 605, param0->unk_00->unk_24);
-        param0->unk_BA4 = StringFormatter_New(param0->unk_00->unk_24);
+        param0->unk_BA4 = StringTemplate_New(param0->unk_00->unk_24);
         param0->unk_BA8 = Strbuf_Init((2 * 160), param0->unk_00->unk_24);
         param0->unk_BB0 = 1;
 
@@ -2252,7 +2252,7 @@ static void ov10_022223E8 (UnkStruct_ov10_0221FB28 * param0)
     }
 }
 
-static void ov10_02222400 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * param1, UnkStruct_0200C440 * param2, StringFormatter * param3, Strbuf *param4, u32 param5)
+static void ov10_02222400 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * param1, UnkStruct_0200C440 * param2, StringTemplate * param3, Strbuf *param4, u32 param5)
 {
     Pokemon * v0;
     Window * v1;
@@ -2268,8 +2268,8 @@ static void ov10_02222400 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * par
 
     v2 = MessageLoader_GetNewStrbuf(param1, 8 + param5);
 
-    StringFormatter_BufferNickname(param3, 0, Pokemon_GetBoxPokemon(v0));
-    StringFormatter_Format(param3, param4, v2);
+    StringTemplate_BufferNickname(param3, 0, Pokemon_GetBoxPokemon(v0));
+    StringTemplate_Format(param3, param4, v2);
     Strbuf_Free(v2);
     sub_0201D78C(v1, 0, param4, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
@@ -2284,7 +2284,7 @@ static void ov10_02222400 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * par
     }
 }
 
-static void ov10_022224F0 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * param1, UnkStruct_0200C440 * param2, StringFormatter * param3, Strbuf *param4, u32 param5)
+static void ov10_022224F0 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * param1, UnkStruct_0200C440 * param2, StringTemplate * param3, Strbuf *param4, u32 param5)
 {
     Window * v0;
     Strbuf* v1;
@@ -2294,7 +2294,7 @@ static void ov10_022224F0 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * par
     sub_0200C648(param2, 1, param0->unk_214[param5].unk_0C, 3, 0, v0, 0, 5 - 3);
 }
 
-static void ov10_02222528 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * param1, UnkStruct_0200C440 * param2, StringFormatter * param3, Strbuf *param4, u32 param5)
+static void ov10_02222528 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * param1, UnkStruct_0200C440 * param2, StringTemplate * param3, Strbuf *param4, u32 param5)
 {
     Window * v0;
     Strbuf* v1;
@@ -2343,7 +2343,7 @@ static void ov10_02222594 (UnkStruct_ov10_0221FB28 * param0, u32 param1)
     BGL_WindowColor(v0, 10, 0, 5, v1, 1);
 }
 
-static void ov10_02222684 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * param1, UnkStruct_0200C440 * param2, StringFormatter * param3, Strbuf *param4, u32 param5)
+static void ov10_02222684 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * param1, UnkStruct_0200C440 * param2, StringTemplate * param3, Strbuf *param4, u32 param5)
 {
     Pokemon * v0;
     Window * v1;
@@ -2372,13 +2372,13 @@ static void ov10_02222720 (UnkStruct_ov10_0221FB28 * param0)
 {
     MessageLoader * v0;
     UnkStruct_0200C440 * v1;
-    StringFormatter * v2;
+    StringTemplate * v2;
     Strbuf* v3;
     u32 v4;
 
     v0 = MessageLoader_Init(0, 26, 453, param0->unk_00->unk_24);
     v1 = sub_0200C440(15, 14, 0, param0->unk_00->unk_24);
-    v2 = StringFormatter_New(param0->unk_00->unk_24);
+    v2 = StringTemplate_New(param0->unk_00->unk_24);
     v3 = Strbuf_Init(32, param0->unk_00->unk_24);
 
     for (v4 = 0; v4 < 6; v4++) {

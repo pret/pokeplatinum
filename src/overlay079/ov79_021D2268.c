@@ -60,7 +60,7 @@
 #include "overlay079/ov79_021D3768.h"
 
 typedef struct {
-    StringFormatter * unk_00;
+    StringTemplate * unk_00;
     Strbuf* unk_04;
     Strbuf* unk_08[3];
 } UnkStruct_ov79_021D2928_sub1;
@@ -736,7 +736,7 @@ static int ov79_021D2B94 (UnkStruct_ov79_021D2928 * param0)
     BGL_FillWindow(&param0->unk_6C, ((15 << 4) | 15));
     Strbuf_Clear(param0->unk_1C.unk_04);
     sub_0200B48C(param0->unk_1C.unk_00, 0, param0->unk_30.unk_0C, 2, 1, GAME_LANGUAGE);
-    StringFormatter_Format(param0->unk_1C.unk_00, param0->unk_1C.unk_04, param0->unk_1C.unk_08[param0->unk_30.unk_09]);
+    StringTemplate_Format(param0->unk_1C.unk_00, param0->unk_1C.unk_04, param0->unk_1C.unk_08[param0->unk_30.unk_09]);
 
     param0->unk_0C = sub_0201D78C(&param0->unk_6C, 1, param0->unk_1C.unk_04, 0, 0, param0->unk_10->unk_0A, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((15 & 0xff) << 0)))), NULL);
     param0->unk_0E = 0;

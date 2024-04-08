@@ -318,7 +318,7 @@ static void ov81_021D1050 (UnkStruct_ov81_021D1610 * param0)
 static void ov81_021D1130 (UnkStruct_ov81_021D1610 * param0)
 {
     param0->unk_50 = MessageLoader_Init(0, 26, 366, 42);
-    param0->unk_54 = StringFormatter_New(42);
+    param0->unk_54 = StringTemplate_New(42);
     param0->unk_58 = Strbuf_Init(128, 42);
 }
 

@@ -198,7 +198,7 @@ int ov109_021D3D50 (OverlayManager * param0, int * param1)
         v0->unk_0C = v2;
         v0->unk_10 = v2->unk_34;
         v0->unk_14 = sub_02018340(95);
-        v0->unk_34 = StringFormatter_New(95);
+        v0->unk_34 = StringTemplate_New(95);
         v0->unk_38 = MessageLoader_Init(0, 26, 377, 95);
 
         SetAutorepeat(4, 8);
@@ -1163,7 +1163,7 @@ static int ov109_021D4E28 (UnkStruct_ov109_021D5140 * param0, int param1)
         } else {
             param0->unk_3B8 = 13;
             sub_0209BEBC(param0->unk_10, 3, NULL, 0);
-            StringFormatter_FormatPlayerName(param0->unk_34, 0, CommInfo_TrainerInfo(0));
+            StringTemplate_FormatPlayerName(param0->unk_34, 0, CommInfo_TrainerInfo(0));
         }
 
         param0->unk_394 = NULL;
@@ -1178,7 +1178,7 @@ static int ov109_021D4ED8 (UnkStruct_ov109_021D5140 * param0, int param1)
     if (CommSys_CurNetId() == 0) {
         ov109_021D55A8(param0, 5, 0);
     } else {
-        StringFormatter_FormatPlayerName(param0->unk_34, 0, CommInfo_TrainerInfo(0));
+        StringTemplate_FormatPlayerName(param0->unk_34, 0, CommInfo_TrainerInfo(0));
         ov109_021D55A8(param0, 16, 0);
     }
 
@@ -1345,7 +1345,7 @@ void ov109_021D5140 (UnkStruct_ov109_021D5140 * param0, int param1, u8 param2)
             return;
         }
 
-        StringFormatter_FormatPlayerName(param0->unk_34, 0, CommInfo_TrainerInfo(param2));
+        StringTemplate_FormatPlayerName(param0->unk_34, 0, CommInfo_TrainerInfo(param2));
 
         if (param2 == CommSys_CurNetId()) {
             return;
@@ -1388,7 +1388,7 @@ void ov109_021D5258 (UnkStruct_ov109_021D5140 * param0, int param1, u8 param2)
     if (param0->unk_3B8 == 3) {
         switch (param1) {
         case 1:
-            StringFormatter_FormatPlayerName(param0->unk_34, 0, CommInfo_TrainerInfo(param2));
+            StringTemplate_FormatPlayerName(param0->unk_34, 0, CommInfo_TrainerInfo(param2));
             ov109_021D5858(param0, 1);
 
             param0->unk_3B8 = param1;
@@ -1401,7 +1401,7 @@ void ov109_021D5258 (UnkStruct_ov109_021D5140 * param0, int param1, u8 param2)
             }
             break;
         case 19:
-            StringFormatter_FormatPlayerName(param0->unk_34, 0, CommInfo_TrainerInfo(param2));
+            StringTemplate_FormatPlayerName(param0->unk_34, 0, CommInfo_TrainerInfo(param2));
 
             if (param2 == CommSys_CurNetId()) {
                 return;
@@ -1477,7 +1477,7 @@ static BOOL ov109_021D537C (Window * param0, int param1, u32 param2, UnkStruct_o
             u16 v3 = TrainerInfo_ID_LowHalf(param3->unk_3D8[v0][0]);
 
             TrainerInfo_NameStrbuf(param3->unk_3D8[v0][0], param3->unk_3C[v0]);
-            StringFormatter_FormatNumber(param3->unk_34, 0, v3, 5, 2, 1);
+            StringTemplate_FormatNumber(param3->unk_34, 0, v3, 5, 2, 1);
             v2 = sub_0200B29C(param3->unk_34, param3->unk_38, 1, 95);
 
             if (v1 == v0) {
@@ -1578,7 +1578,7 @@ static void ov109_021D55A8 (UnkStruct_ov109_021D5140 * param0, int param1, int p
     v0 = Strbuf_Init((90 * 2), 95);
 
     MessageLoader_GetStrbuf(param0->unk_38, param1, v0);
-    StringFormatter_Format(param0->unk_34, param0->unk_54, v0);
+    StringTemplate_Format(param0->unk_34, param0->unk_54, v0);
     Strbuf_Free(v0);
     BGL_FillWindow(&param0->unk_35C, 0xf0f);
     sub_0200E060(&param0->unk_35C, 0, 1, 10);

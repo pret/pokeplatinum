@@ -82,7 +82,7 @@ struct UnkStruct_ov56_02256468_t {
     FieldSystem * unk_0C;
     TrainerInfo * unk_10;
     BGL * unk_14;
-    StringFormatter * unk_18;
+    StringTemplate * unk_18;
     MessageLoader * unk_1C;
     u16 * unk_20;
     NNSG2dScreenData * unk_24;
@@ -132,7 +132,7 @@ static int ov56_02256A68(UnkStruct_ov56_02256468 * param0);
 static int ov56_02256BC0(UnkStruct_ov56_02256468 * param0);
 static void ov56_02257100(UnkStruct_ov56_02256468 * param0);
 static void ov56_02257048(UnkStruct_ov56_02256468 * param0, TrainerInfo * param1, Sentence * param2, u32 param3);
-static Strbuf* ov56_02256E5C(UnkStruct_02027F8C * param0, u32 param1, StringFormatter * param2, MessageLoader * param3, TrainerInfo * param4);
+static Strbuf* ov56_02256E5C(UnkStruct_02027F8C * param0, u32 param1, StringTemplate * param2, MessageLoader * param3, TrainerInfo * param4);
 static void ov56_02256D64(BGL * param0, NNSG2dScreenData * param1, UnkStruct_ov56_022562EC * param2, int param3, int param4, int * param5);
 static void ov56_0225710C(UnkStruct_ov56_02256468 * param0);
 static void ov56_0225712C(UnkStruct_ov56_02256468 * param0);
@@ -197,7 +197,7 @@ static void ov56_02256294 (UnkStruct_ov56_02256468 * param0)
     param0->unk_2D8.unk_02 = 0;
     param0->unk_2D8.unk_04 = 0;
     param0->unk_2D8.unk_06 = 0;
-    param0->unk_18 = StringFormatter_New(4);
+    param0->unk_18 = StringTemplate_New(4);
     param0->unk_1C = MessageLoader_Init(0, 26, 635, 4);
     param0->unk_20 = sub_02006F6C(74, 3, 1, &(param0->unk_24), 4);
 }
@@ -773,7 +773,7 @@ static void ov56_02256D64 (BGL * param0, NNSG2dScreenData * param1, UnkStruct_ov
     sub_02019460(param0, 7, sub_02019FE4(param0, 7), 32 * 24 * 2, 0);
 }
 
-static Strbuf* ov56_02256E5C (UnkStruct_02027F8C * param0, u32 param1, StringFormatter * param2, MessageLoader * param3, TrainerInfo * param4)
+static Strbuf* ov56_02256E5C (UnkStruct_02027F8C * param0, u32 param1, StringTemplate * param2, MessageLoader * param3, TrainerInfo * param4)
 {
     Strbuf* v0 = NULL;
     Strbuf* v1;
@@ -785,7 +785,7 @@ static Strbuf* ov56_02256E5C (UnkStruct_02027F8C * param0, u32 param1, StringFor
 
     if (v2 > 0) {
         if (v2 == 1) {
-            StringFormatter_FormatPlayerName(param2, 0, param4);
+            StringTemplate_FormatPlayerName(param2, 0, param4);
         } else if (v2 >= 2) {
             int v3 = v2 - 2;
 

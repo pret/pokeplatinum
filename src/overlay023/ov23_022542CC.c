@@ -427,7 +427,7 @@ static void ov23_022546E0 (UnkStruct_ov23_02254594 * param0)
             Strbuf* v13;
             Strbuf* v14;
             Strbuf* v15;
-            StringFormatter * v16;
+            StringTemplate * v16;
 
             v12 = MessageLoader_Init(0, 26, 637, 4);
 
@@ -438,11 +438,11 @@ static void ov23_022546E0 (UnkStruct_ov23_02254594 * param0)
             v15 = Strbuf_Init(6, 4);
 
             PrintStringSimple(&param0->unk_18, 0, v13, 0, 0, 0xff, NULL);
-            v16 = StringFormatter_New(4);
+            v16 = StringTemplate_New(4);
 
-            StringFormatter_FormatNumber(v16, 0, param0->unk_40, 2, 1, 1);
-            StringFormatter_FormatNumber(v16, 1, param0->unk_41, 2, 1, 1);
-            StringFormatter_Format(v16, v15, v14);
+            StringTemplate_FormatNumber(v16, 0, param0->unk_40, 2, 1, 1);
+            StringTemplate_FormatNumber(v16, 1, param0->unk_41, 2, 1, 1);
+            StringTemplate_Format(v16, v15, v14);
             PrintStringSimple(&param0->unk_18, 0, v15, 0, 16, 0xff, NULL);
 
             sub_0200B3F0(v16);

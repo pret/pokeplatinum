@@ -26,7 +26,7 @@ typedef struct {
     BGL * unk_24;
     Window unk_28[1];
     MessageLoader * unk_38;
-    StringFormatter * unk_3C;
+    StringTemplate * unk_3C;
     Strbuf* unk_40;
     PaletteData * unk_44;
     UnkStruct_ov16_0223E0C8 unk_48[4];

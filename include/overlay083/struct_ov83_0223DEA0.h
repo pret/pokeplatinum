@@ -7,7 +7,7 @@
 
 typedef struct {
     MessageLoader * unk_00;
-    StringFormatter * unk_04;
+    StringTemplate * unk_04;
     Strbuf* unk_08;
     Strbuf* unk_0C;
     Strbuf* unk_10;

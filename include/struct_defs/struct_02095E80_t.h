@@ -64,9 +64,9 @@ struct UnkStruct_02095E80_t {
     int unk_16C;
     int unk_170;
     BGL * unk_174;
-    StringFormatter * unk_178;
-    StringFormatter * unk_17C;
-    StringFormatter * unk_180;
+    StringTemplate * unk_178;
+    StringTemplate * unk_17C;
+    StringTemplate * unk_180;
     MessageLoader * unk_184;
     Strbuf* unk_188;
     Strbuf* unk_18C;
@@ -125,7 +125,7 @@ struct UnkStruct_02095E80_t {
     int unk_3644[32];
     int unk_36C4;
     int unk_36C8;
-    StringFormatter * unk_36CC;
+    StringTemplate * unk_36CC;
     MessageLoader * unk_36D0;
     ResourceMetadata * unk_36D4;
     UnkStruct_0200112C * unk_36D8;

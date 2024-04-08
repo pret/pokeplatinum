@@ -40,7 +40,7 @@ typedef struct {
     u16 unk_110;
     u16 unk_112;
     u16 * unk_114;
-    StringFormatter * unk_118;
+    StringTemplate * unk_118;
     SysTask * unk_11C;
 } UnkStruct_ov5_021DBA58;
 
@@ -50,7 +50,7 @@ typedef struct {
     UnkStruct_ov5_021DBA58 * unk_08;
 } UnkStruct_ov5_021DBC64;
 
-void ov5_021DB888(UnkStruct_020508D4 * param0, StringFormatter * param1, u16 * param2);
+void ov5_021DB888(UnkStruct_020508D4 * param0, StringTemplate * param1, u16 * param2);
 u16 ov5_021DBD98(FieldSystem * param0, LocalMapObject * param1, u16 param2);
 BOOL ov5_021DBB94(FieldSystem * param0);
 static BOOL ov5_021DBB70(u32 param0);
@@ -330,7 +330,7 @@ static const UnkStruct_ov5_021F8E3C Unk_ov5_021F8E34[] = {
     {0xfe, 0x0}
 };
 
-void ov5_021DB888 (UnkStruct_020508D4 * param0, StringFormatter * param1, u16 * param2)
+void ov5_021DB888 (UnkStruct_020508D4 * param0, StringTemplate * param1, u16 * param2)
 {
     UnkStruct_ov5_021DBA58 * v0;
     FieldSystem * v1 = sub_02050A60(param0);
@@ -420,7 +420,7 @@ static BOOL ov5_021DB8D8 (UnkStruct_020508D4 * param0)
             v1 = 3;
         }
 
-        StringFormatter_FormatNumber(v3->unk_118, 0, v0, v1, 1, 1);
+        StringTemplate_FormatNumber(v3->unk_118, 0, v0, v1, 1, 1);
         ov5_021DBA54(v3, 9);
         break;
     case 8:

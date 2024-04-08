@@ -94,7 +94,7 @@ typedef struct {
 typedef struct {
     u32 unk_00;
     Window * unk_04;
-    StringFormatter * unk_08;
+    StringTemplate * unk_08;
     Strbuf* unk_0C;
     Strbuf* unk_10[3];
 } UnkStruct_ov7_0224C620;
@@ -106,7 +106,7 @@ typedef struct {
     ResourceMetadata unk_0C[23];
     Strbuf* unk_C4[23];
     s32 unk_120;
-    StringFormatter * unk_124;
+    StringTemplate * unk_124;
     Strbuf* unk_128;
     u16 unk_12C;
     u16 unk_12E;
@@ -461,9 +461,9 @@ static void ov7_0224C4E0 (UnkStruct_ov7_0224C3EC * param0, MessageLoader * param
 {
     Strbuf* v0;
     Strbuf* v1;
-    StringFormatter * v2;
+    StringTemplate * v2;
 
-    v2 = StringFormatter_New(param2);
+    v2 = StringTemplate_New(param2);
     v1 = Strbuf_Init(200, param2);
     v0 = MessageLoader_GetNewStrbuf(param1, 7);
 
@@ -473,9 +473,9 @@ static void ov7_0224C4E0 (UnkStruct_ov7_0224C3EC * param0, MessageLoader * param
         sub_0200B77C(v2, 0, param3[param4].unk_04 + 149);
     }
 
-    StringFormatter_FormatNumber(v2, 1, param3[param4].unk_08, 3, 0, 1);
+    StringTemplate_FormatNumber(v2, 1, param3[param4].unk_08, 3, 0, 1);
     sub_0200BFAC(v2, 2, param3[param4].unk_00);
-    StringFormatter_Format(v2, v1, v0);
+    StringTemplate_Format(v2, v1, v0);
 
     ov7_0224C468(param0, v1, param2);
 
@@ -488,9 +488,9 @@ static void ov7_0224C580 (UnkStruct_ov7_0224C3EC * param0, MessageLoader * param
 {
     Strbuf* v0;
     Strbuf* v1;
-    StringFormatter * v2;
+    StringTemplate * v2;
 
-    v2 = StringFormatter_New(param2);
+    v2 = StringTemplate_New(param2);
     v1 = Strbuf_Init(200, param2);
     v0 = MessageLoader_GetNewStrbuf(param1, 12);
 
@@ -500,9 +500,9 @@ static void ov7_0224C580 (UnkStruct_ov7_0224C3EC * param0, MessageLoader * param
         sub_0200B77C(v2, 0, param3[param4].unk_04 + 149);
     }
 
-    StringFormatter_FormatNumber(v2, 1, param3[param4].unk_08, 3, 0, 1);
+    StringTemplate_FormatNumber(v2, 1, param3[param4].unk_08, 3, 0, 1);
     sub_0200BFAC(v2, 2, param3[param4].unk_00);
-    StringFormatter_Format(v2, v1, v0);
+    StringTemplate_Format(v2, v1, v0);
 
     ov7_0224C468(param0, v1, param2);
 
@@ -521,7 +521,7 @@ static void ov7_0224C620 (UnkStruct_ov7_0224C620 * param0, BGL * param1, Message
 
     param0->unk_04 = sub_0201A778(param3, 1);
     BGL_AddWindow(param1, param0->unk_04, 3, 1, 11, 14, 6, 13, (((1 + (18 + 12)) + 9) + (27 * 4)));
-    param0->unk_08 = StringFormatter_New(param3);
+    param0->unk_08 = StringTemplate_New(param3);
 
     for (v0 = 0; v0 < 3; v0++) {
         param0->unk_10[v0] = MessageLoader_GetNewStrbuf(param2, 16 + v0);
@@ -558,12 +558,12 @@ static void ov7_0224C6DC (UnkStruct_ov7_0224C620 * param0, u32 param1, u32 param
     int v0;
 
     sub_0200B70C(param0->unk_08, 0, param1 + 149);
-    StringFormatter_FormatNumber(param0->unk_08, 1, param2, 3, 1, 1);
-    StringFormatter_FormatNumber(param0->unk_08, 2, param3, 3, 1, 1);
+    StringTemplate_FormatNumber(param0->unk_08, 1, param2, 3, 1, 1);
+    StringTemplate_FormatNumber(param0->unk_08, 2, param3, 3, 1, 1);
     BGL_FillWindow(param0->unk_04, 15);
 
     for (v0 = 0; v0 < 3; v0++) {
-        StringFormatter_Format(param0->unk_08, param0->unk_0C, param0->unk_10[v0]);
+        StringTemplate_Format(param0->unk_08, param0->unk_0C, param0->unk_10[v0]);
         sub_0201D78C(param0->unk_04, 0, param0->unk_0C, 0, 16 * v0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     }
 
@@ -613,14 +613,14 @@ static void ov7_0224C768 (UnkStruct_ov7_0224C768 * param0, BGL * param1, u32 par
 
     BGL_AddWindow(param1, param0->unk_04, 3, 17, 1, 14, 16, 13, ((((1 + (18 + 12)) + 9) + (27 * 4)) + (14 * 6)));
 
-    param0->unk_124 = StringFormatter_New(param2);
+    param0->unk_124 = StringTemplate_New(param2);
     param0->unk_128 = Strbuf_Init(32, param2);
 
     v1 = MessageLoader_GetNewStrbuf(param5, 16);
 
     for (v0 = 0; v0 < param4; v0++) {
         sub_0200BFAC(param0->unk_124, 0, param3[v0].unk_00);
-        StringFormatter_Format(param0->unk_124, param0->unk_128, v1);
+        StringTemplate_Format(param0->unk_124, param0->unk_128, v1);
 
         param0->unk_C4[v0] = Strbuf_Clone(param0->unk_128, param2);
         param0->unk_0C[v0].unk_00 = param0->unk_C4[v0];

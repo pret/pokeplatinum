@@ -84,9 +84,9 @@ BOOL sub_020944D4(UnkStruct_02095C48 * param0);
 static void sub_02093C6C(SysTask * param0, void * param1);
 UnkStruct_02095C48 * sub_02093800(const UnkStruct_02093800 * param0);
 void sub_02093AD4(UnkStruct_02095C48 * param0);
-void sub_02094630(UnkStruct_02095C48 * param0, int param1, StringFormatter * param2, u32 param3);
-void sub_02094648(UnkStruct_02095C48 * param0, int param1, StringFormatter * param2, u32 param3);
-void sub_02094680(UnkStruct_02095C48 * param0, int param1, StringFormatter * param2, u32 param3);
+void sub_02094630(UnkStruct_02095C48 * param0, int param1, StringTemplate * param2, u32 param3);
+void sub_02094648(UnkStruct_02095C48 * param0, int param1, StringTemplate * param2, u32 param3);
+void sub_02094680(UnkStruct_02095C48 * param0, int param1, StringTemplate * param2, u32 param3);
 static BOOL sub_02093448(UnkStruct_020508D4 * param0);
 static BOOL sub_020935EC(UnkStruct_020508D4 * param0);
 void sub_02093BBC(UnkStruct_02095C48 * param0);
@@ -1127,12 +1127,12 @@ static void sub_0209451C (SysTask * param0, void * param1)
     }
 }
 
-void sub_02094630 (UnkStruct_02095C48 * param0, int param1, StringFormatter * param2, u32 param3)
+void sub_02094630 (UnkStruct_02095C48 * param0, int param1, StringTemplate * param2, u32 param3)
 {
     sub_0200BB74(param2, param3, param0->unk_00.unk_C0[param1].unk_00);
 }
 
-void sub_02094648 (UnkStruct_02095C48 * param0, int param1, StringFormatter * param2, u32 param3)
+void sub_02094648 (UnkStruct_02095C48 * param0, int param1, StringTemplate * param2, u32 param3)
 {
     int v0, v1;
 
@@ -1140,7 +1140,7 @@ void sub_02094648 (UnkStruct_02095C48 * param0, int param1, StringFormatter * pa
     sub_0200B48C(param2, param3, param0->unk_00.unk_D8[v1], param0->unk_00.unk_F8[v1], 1, GAME_LANGUAGE);
 }
 
-void sub_02094680 (UnkStruct_02095C48 * param0, int param1, StringFormatter * param2, u32 param3)
+void sub_02094680 (UnkStruct_02095C48 * param0, int param1, StringTemplate * param2, u32 param3)
 {
     BoxPokemon * v0;
     int v1;
@@ -1148,10 +1148,10 @@ void sub_02094680 (UnkStruct_02095C48 * param0, int param1, StringFormatter * pa
     v1 = sub_02095904(param1);
     v0 = Pokemon_GetBoxPokemon(param0->unk_00.unk_00[v1]);
 
-    StringFormatter_BufferNickname(param2, param3, v0);
+    StringTemplate_BufferNickname(param2, param3, v0);
 }
 
-void sub_020946A4 (UnkStruct_02095C48 * param0, StringFormatter * param1, u32 param2)
+void sub_020946A4 (UnkStruct_02095C48 * param0, StringTemplate * param1, u32 param2)
 {
     u32 v0;
 
@@ -1159,7 +1159,7 @@ void sub_020946A4 (UnkStruct_02095C48 * param0, StringFormatter * param1, u32 pa
     sub_0200BBA8(param1, param2, v0);
 }
 
-void sub_020946CC (UnkStruct_02095C48 * param0, StringFormatter * param1, u32 param2)
+void sub_020946CC (UnkStruct_02095C48 * param0, StringTemplate * param1, u32 param2)
 {
     u32 v0;
 
@@ -1167,7 +1167,7 @@ void sub_020946CC (UnkStruct_02095C48 * param0, StringFormatter * param1, u32 pa
     sub_0200BBDC(param1, param2, v0);
 }
 
-void sub_020946F0 (UnkStruct_02095C48 * param0, StringFormatter * param1, u32 param2)
+void sub_020946F0 (UnkStruct_02095C48 * param0, StringTemplate * param1, u32 param2)
 {
     int v0, v1;
     int v2;
@@ -1184,7 +1184,7 @@ void sub_020946F0 (UnkStruct_02095C48 * param0, StringFormatter * param1, u32 pa
     sub_02094648(param0, v1, param1, param2);
 }
 
-void sub_02094720 (UnkStruct_02095C48 * param0, StringFormatter * param1, u32 param2)
+void sub_02094720 (UnkStruct_02095C48 * param0, StringTemplate * param1, u32 param2)
 {
     int v0, v1;
     int v2;
@@ -1323,7 +1323,7 @@ BOOL sub_02094868 (UnkStruct_02095C48 * param0)
     return 1;
 }
 
-void sub_02094898 (UnkStruct_02095C48 * param0, StringFormatter * param1, u32 param2, int param3)
+void sub_02094898 (UnkStruct_02095C48 * param0, StringTemplate * param1, u32 param2, int param3)
 {
     u32 v0, v1;
 

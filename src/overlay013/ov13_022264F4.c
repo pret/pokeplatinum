@@ -415,9 +415,9 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
             v3 = BattleSystem_PartyPokemon(v0->unk_00, v0->unk_10, v1);
             v4 = MessageLoader_GetNewStrbuf(param0->unk_10, 46);
 
-            StringFormatter_BufferNickname(param0->unk_14, 0, Pokemon_GetBoxPokemon(v3));
+            StringTemplate_BufferNickname(param0->unk_14, 0, Pokemon_GetBoxPokemon(v3));
             sub_0200B630(param0->unk_14, 1, 373);
-            StringFormatter_Format(param0->unk_14, param0->unk_18, v4);
+            StringTemplate_Format(param0->unk_14, param0->unk_18, v4);
             Strbuf_Free(v4);
 
             ov13_022279F4(param0);
@@ -439,8 +439,8 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
 
                 v5 = MessageLoader_Init(1, 26, 213, v0->unk_0C);
                 v6 = MessageLoader_GetNewStrbuf(v5, 36);
-                StringFormatter_FormatPlayerName(param0->unk_14, 0, v0->unk_04);
-                StringFormatter_Format(param0->unk_14, param0->unk_18, v6);
+                StringTemplate_FormatPlayerName(param0->unk_14, 0, v0->unk_04);
+                StringTemplate_Format(param0->unk_14, param0->unk_18, v6);
                 Strbuf_Free(v6);
                 MessageLoader_Free(v5);
                 ov13_022279F4(param0);
@@ -767,7 +767,7 @@ static void ov13_022270B8 (UnkStruct_ov13_02227244 * param0)
 {
     param0->unk_10 = MessageLoader_Init(0, 26, 2, param0->unk_00->unk_0C);
     param0->unk_0C = sub_0200C440(15, 14, 0, param0->unk_00->unk_0C);
-    param0->unk_14 = StringFormatter_New(param0->unk_00->unk_0C);
+    param0->unk_14 = StringTemplate_New(param0->unk_00->unk_0C);
     param0->unk_18 = Strbuf_Init(512, param0->unk_00->unk_0C);
 }
 

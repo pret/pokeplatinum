@@ -32,7 +32,7 @@ typedef struct UnkStruct_ov23_02253E2C_t {
     UnkStruct_ov23_02253F60 unk_1C;
     SysTask * unk_20;
     MessageLoader * unk_24;
-    StringFormatter * unk_28;
+    StringTemplate * unk_28;
     int unk_2C;
     int unk_30;
     int unk_34;
@@ -88,7 +88,7 @@ UnkStruct_ov23_02253E2C * ov23_02253D48 (int param0, int param1, BGL * param2, i
 
     v1->unk_00 = Strbuf_Init(v0, param1);
     v1->unk_04 = Strbuf_Init(v0, param1);
-    v1->unk_28 = StringFormatter_New(param1);
+    v1->unk_28 = StringTemplate_New(param1);
     v1->unk_2C = param0;
     v1->unk_24 = MessageLoader_Init(1, 26, param0, param1);
     v1->unk_34 = param1;
@@ -158,7 +158,7 @@ static Strbuf* ov23_02253E6C (UnkStruct_ov23_02253E2C * param0)
     Strbuf* v0 = param0->unk_00;
 
     if (param0->unk_44_1) {
-        StringFormatter_Format(param0->unk_28, param0->unk_04, param0->unk_00);
+        StringTemplate_Format(param0->unk_28, param0->unk_04, param0->unk_00);
         v0 = param0->unk_04;
         param0->unk_44_1 = 0;
     }
@@ -273,13 +273,13 @@ void ov23_02254044 (UnkStruct_ov23_02253E2C * param0)
 
 void ov23_02254050 (UnkStruct_ov23_02253E2C * param0, TrainerInfo * param1)
 {
-    StringFormatter_FormatPlayerName(param0->unk_28, 1, param1);
+    StringTemplate_FormatPlayerName(param0->unk_28, 1, param1);
     param0->unk_44_1 = 1;
 }
 
 void ov23_02254068 (UnkStruct_ov23_02253E2C * param0, TrainerInfo * param1)
 {
-    StringFormatter_FormatPlayerName(param0->unk_28, 0, param1);
+    StringTemplate_FormatPlayerName(param0->unk_28, 0, param1);
     param0->unk_44_1 = 1;
 }
 
@@ -321,25 +321,25 @@ void ov23_022540F4 (UnkStruct_ov23_02253E2C * param0, int param1)
 
 void ov23_0225410C (UnkStruct_ov23_02253E2C * param0, int param1, int param2)
 {
-    StringFormatter_FormatNumber(param0->unk_28, param1, param2, 1, 0, 1);
+    StringTemplate_FormatNumber(param0->unk_28, param1, param2, 1, 0, 1);
     param0->unk_44_1 = 1;
 }
 
 void ov23_0225412C (UnkStruct_ov23_02253E2C * param0, int param1)
 {
-    StringFormatter_FormatNumber(param0->unk_28, 6, param1, 2, 0, 1);
+    StringTemplate_FormatNumber(param0->unk_28, 6, param1, 2, 0, 1);
     param0->unk_44_1 = 1;
 }
 
 void ov23_02254154 (UnkStruct_ov23_02253E2C * param0, int param1, int param2)
 {
-    StringFormatter_FormatNumber(param0->unk_28, param1, param2, 2, 0, 1);
+    StringTemplate_FormatNumber(param0->unk_28, param1, param2, 2, 0, 1);
     param0->unk_44_1 = 1;
 }
 
 void ov23_02254178 (UnkStruct_ov23_02253E2C * param0, int param1)
 {
-    StringFormatter_FormatNumber(param0->unk_28, 6, param1, 6, 0, 1);
+    StringTemplate_FormatNumber(param0->unk_28, 6, param1, 6, 0, 1);
     param0->unk_44_1 = 1;
 }
 

@@ -134,7 +134,7 @@ void ov88_0223EC78 (Window * param0, Strbuf *param1, int param2, u32 param3, int
     sub_0201D78C(param0, 0, param1, v0, param5, param3, (u32)(((11 & 0xff) << 16) | ((12 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
 }
 
-int ov88_0223ECBC (Window * param0, int param1, int param2, MessageLoader * param3, StringFormatter * param4)
+int ov88_0223ECBC (Window * param0, int param1, int param2, MessageLoader * param3, StringTemplate * param4)
 {
     Strbuf* v0;
     int v1;

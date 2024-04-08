@@ -24,7 +24,7 @@ struct UnkStruct_ov72_0223DB98_t {
     BOOL unk_04;
     UnkStruct_0202CD88 * unk_08;
     Options * unk_0C;
-    StringFormatter * unk_10;
+    StringTemplate * unk_10;
     MessageLoader * unk_14;
     Strbuf* unk_18[5];
     Strbuf* unk_2C;

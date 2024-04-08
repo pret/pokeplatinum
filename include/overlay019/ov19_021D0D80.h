@@ -18,7 +18,7 @@ int ov19_021D0E58(OverlayManager * param0, int * param1);
 BOOL ov19_021D3B18(const UnkStruct_ov19_021D5DF8 * param0);
 BOOL ov19_021D3B20(const UnkStruct_ov19_021D5DF8 * param0);
 MessageLoader * ov19_021D5DE8(const UnkStruct_ov19_021D5DF8 * param0);
-const StringFormatter * ov19_021D5DF0(const UnkStruct_ov19_021D5DF8 * param0);
+const StringTemplate * ov19_021D5DF0(const UnkStruct_ov19_021D5DF8 * param0);
 int ov19_021D5DF8(const UnkStruct_ov19_021D5DF8 * param0);
 u32 ov19_021D5E08(const UnkStruct_ov19_021D4DF0 * param0);
 u32 ov19_021D5E10(const UnkStruct_ov19_021D4DF0 * param0);

@@ -37,7 +37,7 @@ struct UnkStruct_ov65_0222EBE0_t {
     UnkStruct_0200112C * unk_158;
     BGL * unk_15C;
     SaveData * unk_160;
-    StringFormatter * unk_164;
+    StringTemplate * unk_164;
     MessageLoader * unk_168;
     MessageLoader * unk_16C;
     Strbuf* unk_170;

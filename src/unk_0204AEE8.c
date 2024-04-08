@@ -105,13 +105,13 @@ static const u16 Unk_020EBD98[][2] = {
     {0x16, 0x47}
 };
 
-StringFormatter * sub_0204AEE8 (SaveData * param0, u16 param1, u16 param2, u8 param3, u8 * param4)
+StringTemplate * sub_0204AEE8 (SaveData * param0, u16 param1, u16 param2, u8 param3, u8 * param4)
 {
     u8 v0;
     u16 v1;
     Strbuf* v2, * v3;
     PokedexData * v4;
-    StringFormatter * v5;
+    StringTemplate * v5;
     MessageLoader * v6;
 
     v2 = Strbuf_Init(12 + 2, 4);
@@ -120,7 +120,7 @@ StringFormatter * sub_0204AEE8 (SaveData * param0, u16 param1, u16 param2, u8 pa
     v6 = MessageLoader_Init(1, 26, 412, 4);
     v5 = sub_0200B368(18 + 1, 12 + 2, 4);
 
-    StringFormatter_FormatNumber(v5, 0, param1, 1, 0, 1);
+    StringTemplate_FormatNumber(v5, 0, param1, 1, 0, 1);
 
     for (v0 = 0; v0 < 18; v0++) {
         v1 = sub_02078824(v0);

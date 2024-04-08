@@ -256,7 +256,7 @@ typedef struct {
 
 typedef struct {
     MessageLoader * unk_00;
-    StringFormatter * unk_04;
+    StringTemplate * unk_04;
     Strbuf* unk_08;
     Strbuf* unk_0C;
 } UnkStruct_ov69_0225EF54;
@@ -2971,7 +2971,7 @@ static Strbuf* ov69_0225EF90 (UnkStruct_ov69_0225EF54 * param0, u32 param1)
 {
     MessageLoader_GetStrbuf(param0->unk_00, 3, param0->unk_0C);
     sub_0200BDD0(param0->unk_04, 0, param1);
-    StringFormatter_Format(param0->unk_04, param0->unk_08, param0->unk_0C);
+    StringTemplate_Format(param0->unk_04, param0->unk_08, param0->unk_0C);
 
     return param0->unk_08;
 }
@@ -2981,7 +2981,7 @@ static Strbuf* ov69_0225EFB8 (UnkStruct_ov69_0225EF54 * param0, u32 param1, u32 
     sub_0200C41C(param0->unk_04);
     MessageLoader_GetStrbuf(param0->unk_00, 3, param0->unk_0C);
     sub_0200BE08(param0->unk_04, 0, param1, param2);
-    StringFormatter_Format(param0->unk_04, param0->unk_08, param0->unk_0C);
+    StringTemplate_Format(param0->unk_04, param0->unk_08, param0->unk_0C);
 
     return param0->unk_08;
 }

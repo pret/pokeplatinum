@@ -50,7 +50,7 @@ struct UnkStruct_ov96_0223BF40_t {
     BoxPokemon * unk_BC0;
     int unk_BC4;
     int unk_BC8;
-    StringFormatter * unk_BCC;
+    StringTemplate * unk_BCC;
     MessageLoader * unk_BD0;
     MessageLoader * unk_BD4;
     MessageLoader * unk_BD8;

@@ -159,7 +159,7 @@ typedef struct {
 } UnkStruct_ov70_0225EFD4;
 
 typedef struct {
-    StringFormatter * unk_00;
+    StringTemplate * unk_00;
     MessageLoader * unk_04[4];
     Strbuf* unk_14;
     Strbuf* unk_18;
@@ -2026,18 +2026,18 @@ static void ov70_0225F25C (UnkStruct_ov70_0225F208 * param0)
 static Strbuf* ov70_0225F288 (UnkStruct_ov70_0225F208 * param0, int param1, u32 param2)
 {
     MessageLoader_GetStrbuf(param0->unk_04[param1], param2, param0->unk_18);
-    StringFormatter_Format(param0->unk_00, param0->unk_14, param0->unk_18);
+    StringTemplate_Format(param0->unk_00, param0->unk_14, param0->unk_18);
     return param0->unk_14;
 }
 
 static void ov70_0225F2A8 (UnkStruct_ov70_0225F208 * param0, u32 param1, u32 param2, u32 param3, int param4)
 {
-    StringFormatter_FormatNumber(param0->unk_00, param3, param1, param2, param4, 1);
+    StringTemplate_FormatNumber(param0->unk_00, param3, param1, param2, param4, 1);
 }
 
 static void ov70_0225F2C8 (UnkStruct_ov70_0225F208 * param0, const TrainerInfo * param1, u32 param2)
 {
-    StringFormatter_FormatPlayerName(param0->unk_00, param2, param1);
+    StringTemplate_FormatPlayerName(param0->unk_00, param2, param1);
 }
 
 static void ov70_0225F2D8 (UnkStruct_ov70_0225F208 * param0, UnkEnum_ov66_022324D0 param1, u32 param2)

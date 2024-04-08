@@ -715,7 +715,7 @@ static void ov65_0222E01C (UnkStruct_ov65_0222EBE0 * param0)
     v0 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, 54);
 
     param0->unk_15C = sub_02018340(54);
-    param0->unk_164 = StringFormatter_New(54);
+    param0->unk_164 = StringTemplate_New(54);
     param0->unk_168 = MessageLoader_Init(0, 26, 674, 54);
     param0->unk_16C = MessageLoader_Init(0, 26, 695, 54);
 
@@ -1933,7 +1933,7 @@ static void ov65_0222F6EC (UnkStruct_ov65_0222EBE0 * param0)
     }
 
     ov65_02232DFC(param0);
-    StringFormatter_FormatNumber(param0->unk_164, 0, v2, 5, 2, 1);
+    StringTemplate_FormatNumber(param0->unk_164, 0, v2, 5, 2, 1);
 
     param0->unk_3BC = 30;
 
@@ -3480,7 +3480,7 @@ static int ov65_0223128C (UnkStruct_ov65_0222EBE0 * param0, int param1)
         } else {
             sub_0200C0B0(param0->unk_164, 0, v0);
             MessageLoader_GetStrbuf(param0->unk_168, v3[v0].unk_00, param0->unk_170);
-            StringFormatter_Format(param0->unk_164, param0->unk_178, param0->unk_170);
+            StringTemplate_Format(param0->unk_164, param0->unk_178, param0->unk_170);
             sub_02013A6C(param0->unk_154, param0->unk_178, v3[v0].unk_04);
         }
     }
@@ -4766,7 +4766,7 @@ static void ov65_02232B58 (UnkStruct_ov65_0222EBE0 * param0, int param1, BOOL pa
         MessageLoader_GetStrbuf(param0->unk_168, param1, param0->unk_170);
     }
 
-    StringFormatter_Format(param0->unk_164, param0->unk_174, param0->unk_170);
+    StringTemplate_Format(param0->unk_164, param0->unk_174, param0->unk_170);
     BGL_FillWindow(&param0->unk_330, 15);
     sub_0200E060(&param0->unk_330, 1, (512 - (18 + 12)), 10);
     sub_02002AC8(1);
@@ -4800,7 +4800,7 @@ static void ov65_02232CA8 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
     BGL_AddWindow(param0->unk_15C, &param0->unk_360, 2, 4, 4, 23, 16, 12, (((512 - (18 + 12)) - 9) - (23 * 16)));
     MessageLoader_GetStrbuf(param0->unk_16C, param1, param0->unk_170);
-    StringFormatter_Format(param0->unk_164, param0->unk_174, param0->unk_170);
+    StringTemplate_Format(param0->unk_164, param0->unk_174, param0->unk_170);
 
     BGL_FillWindow(&param0->unk_360, 15);
     Window_Show(&param0->unk_360, 1, ((512 - (18 + 12)) - 9), 11);
@@ -4815,7 +4815,7 @@ static void ov65_02232DC0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         TrainerInfo * v0 = TrainerInfo_New(54);
 
         TrainerInfo_SetName(v0, sub_0202AEF0(param0->unk_00, param1));
-        StringFormatter_FormatPlayerName(param0->unk_164, 0, v0);
+        StringTemplate_FormatPlayerName(param0->unk_164, 0, v0);
         Heap_FreeToHeap(v0);
     }
 }
@@ -4959,7 +4959,7 @@ static void ov65_02232FE0 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1, u32 
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
 
     param0->unk_BE0.unk_4C = sub_02023FCC(v0, 8, ov65_022332C4, param0, param2);
-    param0->unk_BE0.unk_00 = StringFormatter_New(param2);
+    param0->unk_BE0.unk_00 = StringTemplate_New(param2);
 
     ov65_022332FC(param0, param1, param2);
 
@@ -5433,7 +5433,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     sub r2, #8
     ldr r0, [r5, r0]
     ldr r2, [r5, r2]
-    bl StringFormatter_Format
+    bl StringTemplate_Format
     mov r0, #8
     str r0, [sp]
     mov r2, #0xff
@@ -5493,7 +5493,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     mov r1, #0
     ldr r0, [r5, r0]
     add r2, r6, #0
-    bl StringFormatter_FormatPlayerName
+    bl StringTemplate_FormatPlayerName
     add r0, r6, #0
     bl Heap_FreeToHeap
     mov r2, #0x5a
@@ -5532,7 +5532,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     sub r2, #8
     ldr r0, [r5, r0]
     ldr r2, [r5, r2]
-    bl StringFormatter_Format
+    bl StringTemplate_Format
     mov r1, #0x5e
     lsl r1, r1, #2
     mov r0, #0
@@ -5587,7 +5587,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     mov r1, #0
     ldr r0, [r5, r0]
     mov r3, #4
-    bl StringFormatter_FormatNumber
+    bl StringTemplate_FormatNumber
     mov r2, #0x5a
     lsl r2, r2, #2
     ldr r0, [r5, r2]
@@ -5602,7 +5602,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     sub r2, #8
     ldr r0, [r5, r0]
     ldr r2, [r5, r2]
-    bl StringFormatter_Format
+    bl StringTemplate_Format
     mov r0, #0x38
     str r0, [sp]
     mov r2, #0xff
@@ -5629,7 +5629,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     mov r1, #0
     ldr r0, [r5, r0]
     mov r3, #4
-    bl StringFormatter_FormatNumber
+    bl StringTemplate_FormatNumber
     mov r0, #0x5a
     mov r1, #0x2e
     lsl r0, r0, #2
@@ -5644,7 +5644,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     sub r2, #8
     ldr r0, [r5, r0]
     ldr r2, [r5, r2]
-    bl StringFormatter_Format
+    bl StringTemplate_Format
     mov r1, #0x5e
     lsl r1, r1, #2
     mov r0, #0
@@ -5699,7 +5699,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     mov r1, #0
     ldr r0, [r5, r0]
     mov r3, #4
-    bl StringFormatter_FormatNumber
+    bl StringTemplate_FormatNumber
     mov r2, #0x5a
     lsl r2, r2, #2
     ldr r0, [r5, r2]
@@ -5714,7 +5714,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     sub r2, #8
     ldr r0, [r5, r0]
     ldr r2, [r5, r2]
-    bl StringFormatter_Format
+    bl StringTemplate_Format
     mov r1, #0x5e
     lsl r1, r1, #2
     mov r0, #0
@@ -5773,7 +5773,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     mov r1, #0
     ldr r0, [r5, r0]
     mov r3, #4
-    bl StringFormatter_FormatNumber
+    bl StringTemplate_FormatNumber
     mov r2, #0x5a
     lsl r2, r2, #2
     ldr r0, [r5, r2]
@@ -5788,7 +5788,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     sub r2, #8
     ldr r0, [r5, r0]
     ldr r2, [r5, r2]
-    bl StringFormatter_Format
+    bl StringTemplate_Format
     mov r1, #0x5e
     lsl r1, r1, #2
     mov r0, #0
@@ -5848,7 +5848,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     mov r1, #2
     ldr r0, [r5, r0]
     add r3, r1, #0
-    bl StringFormatter_FormatNumber
+    bl StringTemplate_FormatNumber
     ldr r0, [r5, #0]
     add r1, r4, #0
     mov r2, #4
@@ -5861,7 +5861,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     ldr r0, = 0xB18
     mov r3, #4
     ldr r0, [r5, r0]
-    bl StringFormatter_FormatNumber
+    bl StringTemplate_FormatNumber
     ldr r0, [r5, #0]
     add r1, r4, #0
     mov r2, #5
@@ -5885,7 +5885,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     sub r2, #8
     ldr r0, [r5, r0]
     ldr r2, [r5, r2]
-    bl StringFormatter_Format
+    bl StringTemplate_Format
     mov r1, #0x5e
     lsl r1, r1, #2
     mov r0, #0
@@ -6368,7 +6368,7 @@ static void ov65_0223449C (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     {
         sub_0200C0B0(param0->unk_BE0.unk_00, 0, UnkEnum_ov66_022324D0_00);
         MessageLoader_GetStrbuf(param0->unk_168, 71, param0->unk_170);
-        StringFormatter_Format(param0->unk_BE0.unk_00, param0->unk_178, param0->unk_170);
+        StringTemplate_Format(param0->unk_BE0.unk_00, param0->unk_178, param0->unk_170);
         sub_0201D78C(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 24, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         ov65_02234708(param0, 72, sub_0202AD2C(v1, v0, 10), 164, 24);
     }
@@ -6376,7 +6376,7 @@ static void ov65_0223449C (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     {
         sub_0200C0B0(param0->unk_BE0.unk_00, 0, UnkEnum_ov66_022324D0_01);
         MessageLoader_GetStrbuf(param0->unk_168, 71, param0->unk_170);
-        StringFormatter_Format(param0->unk_BE0.unk_00, param0->unk_178, param0->unk_170);
+        StringTemplate_Format(param0->unk_BE0.unk_00, param0->unk_178, param0->unk_170);
         sub_0201D78C(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 48, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         ov65_02234708(param0, 72, sub_0202AD2C(v1, v0, 11), 164, 48);
     }
@@ -6384,7 +6384,7 @@ static void ov65_0223449C (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     {
         sub_0200C0B0(param0->unk_BE0.unk_00, 0, UnkEnum_ov66_022324D0_02);
         MessageLoader_GetStrbuf(param0->unk_168, 71, param0->unk_170);
-        StringFormatter_Format(param0->unk_BE0.unk_00, param0->unk_178, param0->unk_170);
+        StringTemplate_Format(param0->unk_BE0.unk_00, param0->unk_178, param0->unk_170);
         sub_0201D78C(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 72, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         ov65_02234708(param0, 72, sub_0202AD2C(v1, v0, 12), 164, 72);
     }
@@ -6440,9 +6440,9 @@ static void ov65_022346C4 (UnkStruct_ov65_0222EBE0 * param0, Strbuf *param1, u32
 
 static void ov65_02234708 (UnkStruct_ov65_0222EBE0 * param0, u32 param1, u32 param2, u32 param3, u32 param4)
 {
-    StringFormatter_FormatNumber(param0->unk_BE0.unk_00, 0, param2, 4, 1, 1);
+    StringTemplate_FormatNumber(param0->unk_BE0.unk_00, 0, param2, 4, 1, 1);
     MessageLoader_GetStrbuf(param0->unk_168, param1, param0->unk_170);
-    StringFormatter_Format(param0->unk_BE0.unk_00, param0->unk_178, param0->unk_170);
+    StringTemplate_Format(param0->unk_BE0.unk_00, param0->unk_178, param0->unk_170);
 
     {
         u32 v0 = param3 - (sub_02002D7C(0, param0->unk_178, 0) + 1) / 2;
@@ -6578,7 +6578,7 @@ static void ov65_02234900 (UnkStruct_ov65_0222EBE0 * param0, Window * param1, u3
     ov65_02234F68(param0, param2 - 1);
 
     MessageLoader_GetStrbuf(param0->unk_168, 42, param0->unk_170);
-    StringFormatter_Format(param0->unk_BE0.unk_00, param0->unk_178, param0->unk_170);
+    StringTemplate_Format(param0->unk_BE0.unk_00, param0->unk_178, param0->unk_170);
     sub_0201D78C(param1, 1, param0->unk_178, 0, v2, 0xff, v1, NULL);
     sub_0201A9A4(param1);
 }
@@ -6897,7 +6897,7 @@ static void ov65_02234F68 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         TrainerInfo * v0 = TrainerInfo_New(54);
 
         TrainerInfo_SetName(v0, sub_0202AEF0(param0->unk_00, param1));
-        StringFormatter_FormatPlayerName(param0->unk_BE0.unk_00, 0, v0);
+        StringTemplate_FormatPlayerName(param0->unk_BE0.unk_00, 0, v0);
         Heap_FreeToHeap(v0);
     }
 }
