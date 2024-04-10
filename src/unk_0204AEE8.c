@@ -121,7 +121,7 @@ StringFormatter * sub_0204AEE8 (SaveData * param0, u16 param1, u16 param2, u8 pa
     v6 = MessageLoader_Init(1, 26, 412, 4);
     v5 = sub_0200B368(18 + 1, 12 + 2, 4);
 
-    sub_0200B60C(v5, 0, param1, 1, 0, 1);
+    StringFormatter_FormatNumber(v5, 0, param1, 1, 0, 1);
 
     for (v0 = 0; v0 < 18; v0++) {
         v1 = sub_02078824(v0);

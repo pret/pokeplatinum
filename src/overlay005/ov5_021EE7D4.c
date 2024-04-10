@@ -155,8 +155,8 @@ static void ov5_021EE9E8 (FieldSystem * param0, u8 param1, u8 param2, u16 param3
         v0 = (((v0 * 1000) / 254 + 5) / 10);
     }
 
-    sub_0200B60C(*v1, param1, v0 / 10, 3, 0, 1);
-    sub_0200B60C(*v1, param2, v0 % 10, 1, 0, 1);
+    StringFormatter_FormatNumber(*v1, param1, v0 / 10, 3, 0, 1);
+    StringFormatter_FormatNumber(*v1, param2, v0 % 10, 1, 0, 1);
 }
 
 void ov5_021EEA54 (FieldSystem * param0, u8 param1, u8 param2, u16 param3)

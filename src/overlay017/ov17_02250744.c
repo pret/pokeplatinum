@@ -229,7 +229,7 @@ static void ov17_022507F0 (UnkStruct_ov17_0224FCA0 * param0, int param1, const U
         StringFormatter_BufferNickname(param0->unk_10.unk_B8, 1, Pokemon_GetBoxPokemon(param0->unk_10.unk_00->unk_00[param2->unk_00]));
         break;
     case 3:
-        sub_0200B60C(param0->unk_10.unk_B8, 0, param2->unk_04, 1, 0, 1);
+        StringFormatter_FormatNumber(param0->unk_10.unk_B8, 0, param2->unk_04, 1, 0, 1);
         sub_0200B48C(param0->unk_10.unk_B8, 1, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
         StringFormatter_BufferNickname(param0->unk_10.unk_B8, 2, Pokemon_GetBoxPokemon(param0->unk_10.unk_00->unk_00[param2->unk_00]));
         break;

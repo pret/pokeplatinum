@@ -68,7 +68,7 @@
 #include "unk_020366A0.h"
 #include "map_header.h"
 #include "unk_0203A6DC.h"
-#include "unk_0203A9C8.h"
+#include "field_menu.h"
 #include "unk_0203CC84.h"
 #include "unk_0203D1B8.h"
 #include "unk_0203E880.h"
@@ -106,6 +106,20 @@
 #include "overlay005/ov5_021D2F14.h"
 #include "overlay005/ov5_021E1D20.h"
 
+#include "gmm/pl_msg_0367.h"
+
+typedef enum FieldMenuPos {
+    MENU_POS_POKEDEX,
+    MENU_POS_POKEMON,
+    MENU_POS_BAG,
+    MENU_POS_TRAINER_CARD,
+    MENU_POS_SAVE,
+    MENU_POS_OPTIONS,
+    MENU_POS_EXIT,
+    MENU_POS_CHAT,
+    MENU_POS_RETIRE
+} FieldMenuPos;
+
 typedef struct {
     u16 unk_00;
     u8 unk_02;
@@ -130,48 +144,48 @@ typedef struct {
     u16 unk_04;
 } UnkStruct_0203BF6C;
 
-static UnkStruct_020708E0 * sub_0203ABB4(void);
+static FieldMenu * FieldMenu_Alloc(void);
 static u32 sub_0203ABD0(FieldSystem * param0);
 static u32 sub_0203AC24(FieldSystem * param0);
 static u32 sub_0203AC28(FieldSystem * param0);
 static u32 sub_0203AC2C(FieldSystem * param0);
 static u32 sub_0203AC34(FieldSystem * param0);
 static u32 sub_0203AC3C(FieldSystem * param0);
-static void sub_0203B318(UnkStruct_020708E0 * param0, u8 * param1, u32 param2, u8 param3);
-static void sub_0203B4E8(UnkStruct_020708E0 * param0);
-static void sub_0203B520(UnkStruct_020708E0 * param0);
+static void sub_0203B318(FieldMenu * param0, u8 * param1, u32 param2, u8 param3);
+static void sub_0203B4E8(FieldMenu * param0);
+static void sub_0203B520(FieldMenu * param0);
 static void sub_0203B558(GraphicElementData * param0, u32 param1);
 static void sub_0203B588(GraphicElementData * param0, u16 param1, u16 param2);
-static void sub_0203B5B4(UnkStruct_020708E0 * param0, u16 param1, u16 param2);
+static void sub_0203B5B4(FieldMenu * param0, u16 param1, u16 param2);
 static void sub_0203B5E8(GraphicElementData * param0);
 static BOOL sub_0203AC44(UnkStruct_020508D4 * param0);
 static void sub_0203ADFC(UnkStruct_020508D4 * param0);
 static BOOL sub_0203B244(UnkStruct_020508D4 * param0);
-static u32 sub_0203AFCC(UnkStruct_020708E0 * param0, u8 * param1);
-static void sub_0203B078(UnkStruct_020708E0 * param0);
-static void sub_0203B2EC(UnkStruct_020708E0 * param0, FieldSystem * param1);
+static u32 FieldMenu_MakeList(FieldMenu * param0, u8 * param1);
+static void sub_0203B078(FieldMenu * param0);
+static void sub_0203B2EC(FieldMenu * param0, FieldSystem * param1);
 static void sub_0203B094(UnkStruct_020508D4 * param0);
 static void sub_0203B200(UnkStruct_020508D4 * param0);
 static void sub_0203B610(UnkStruct_020508D4 * param0);
 static void sub_0203B64C(UnkStruct_020508D4 * param0);
-static BOOL sub_0203B680(UnkStruct_020508D4 * param0);
+static BOOL FieldMenu_SelectPokedex(UnkStruct_020508D4 * param0);
 static BOOL sub_0203B6A4(UnkStruct_020508D4 * param0);
 static BOOL sub_0203B738(UnkStruct_020508D4 * param0);
-static BOOL sub_0203BE8C(UnkStruct_020508D4 * param0);
+static BOOL FieldMenu_SelectTrainerCard(UnkStruct_020508D4 * param0);
 static BOOL sub_0203BEB0(UnkStruct_020508D4 * param0);
 static BOOL sub_0203BF00(UnkStruct_020508D4 * param0);
-static BOOL sub_0203C000(UnkStruct_020508D4 * param0);
-static BOOL sub_0203C024(UnkStruct_020508D4 * param0);
+static BOOL FieldMenu_SelectOptions(UnkStruct_020508D4 * param0);
+static BOOL FieldMenu_Options(UnkStruct_020508D4 * param0);
 static BOOL sub_0203C050(UnkStruct_020508D4 * param0);
-static BOOL sub_0203C07C(UnkStruct_020508D4 * param0);
+static BOOL FieldMenu_SelectChat(UnkStruct_020508D4 * param0);
 static BOOL sub_0203C0A0(UnkStruct_020508D4 * param0);
 static BOOL sub_0203C0F8(UnkStruct_020508D4 * param0);
-static BOOL sub_0203B768(UnkStruct_020508D4 * param0);
+static BOOL FieldMenu_SelectPokemon(UnkStruct_020508D4 * param0);
 static BOOL sub_0203B78C(UnkStruct_020508D4 * param0);
-static BOOL sub_0203BBF4(UnkStruct_020508D4 * param0);
+static BOOL FieldMenu_SelectBag(UnkStruct_020508D4 * param0);
 static BOOL sub_0203BC18(UnkStruct_020508D4 * param0);
 static BOOL sub_0203BC5C(UnkStruct_020508D4 * param0);
-static BOOL sub_0203BF38(UnkStruct_020508D4 * param0);
+static BOOL FieldMenu_SelectSave(UnkStruct_020508D4 * param0);
 static void sub_0203BFC0(UnkStruct_020508D4 * param0);
 static void sub_0203BF6C(UnkStruct_020508D4 * param0);
 static BOOL sub_0203C1C8(UnkStruct_020508D4 * param0);
@@ -180,18 +194,18 @@ static BOOL sub_0203C390(UnkStruct_020508D4 * param0);
 BOOL sub_0203C434(UnkStruct_020508D4 * param0);
 static void sub_0203C7B8(UnkStruct_020508D4 * param0);
 static void sub_0203C8CC(UnkStruct_020508D4 * param0);
-static BOOL sub_0203C164(UnkStruct_020508D4 * param0);
+static BOOL FieldMenu_SelectRetire(UnkStruct_020508D4 * param0);
 
 static const u32 Unk_020EA05C[][2] = {
-    {0x0, (u32)sub_0203B680},
-    {0x1, (u32)sub_0203B768},
-    {0x2, (u32)sub_0203BBF4},
-    {0x3, (u32)sub_0203BE8C},
-    {0x4, (u32)sub_0203BF38},
-    {0x5, (u32)sub_0203C000},
-    {0x6, (u32)0xfffffffe},
-    {0x7, (u32)sub_0203C07C},
-    {0x8, (u32)sub_0203C164}
+    {pl_msg_00000367_00000, (u32)FieldMenu_SelectPokedex},
+    {pl_msg_00000367_00001, (u32)FieldMenu_SelectPokemon},
+    {pl_msg_00000367_00002, (u32)FieldMenu_SelectBag},
+    {pl_msg_00000367_00003, (u32)FieldMenu_SelectTrainerCard},
+    {pl_msg_00000367_00004, (u32)FieldMenu_SelectSave},
+    {pl_msg_00000367_00005, (u32)FieldMenu_SelectOptions},
+    {pl_msg_00000367_00006, (u32)0xfffffffe}, //Exit
+    {pl_msg_00000367_00007, (u32)FieldMenu_SelectChat},
+    {pl_msg_00000367_00008, (u32)FieldMenu_SelectRetire}
 };
 
 static const SpriteTemplate Unk_020EA0A4[] = {
@@ -251,123 +265,123 @@ static const u8 Unk_020EA01C[] = {
     0x8
 };
 
-BOOL sub_0203A9C8 (FieldSystem * param0)
+BOOL sub_0203A9C8 (FieldSystem * fieldSystem)
 {
-    if (MapHeader_GetMapLabelTextID(param0->unk_1C->unk_00) == 0) {
-        return 0;
+    if (MapHeader_GetMapLabelTextID(fieldSystem->unk_1C->unk_00) == 0) {
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-void sub_0203A9E0 (FieldSystem * param0)
+void FieldMenu_Init (FieldSystem * fieldSystem)
 {
-    UnkStruct_020708E0 * v0 = sub_0203ABB4();
+    FieldMenu * v0 = FieldMenu_Alloc();
 
-    if (sub_0206AE5C(SaveData_Events(param0->unk_0C)) == 1) {
-        v0->unk_224 = sub_0203AC24(param0);
-    } else if (sub_0206AE8C(SaveData_Events(param0->unk_0C)) == 1) {
-        v0->unk_224 = sub_0203AC28(param0);
-    } else if (sub_0206C0D0(param0) == 1) {
-        v0->unk_224 = sub_0203AC2C(param0);
+    if (sub_0206AE5C(SaveData_Events(fieldSystem->unk_0C)) == 1) {
+        v0->unk_224 = sub_0203AC24(fieldSystem);
+    } else if (sub_0206AE8C(SaveData_Events(fieldSystem->unk_0C)) == 1) {
+        v0->unk_224 = sub_0203AC28(fieldSystem);
+    } else if (sub_0206C0D0(fieldSystem) == 1) {
+        v0->unk_224 = sub_0203AC2C(fieldSystem);
     } else {
-        v0->unk_224 = sub_0203ABD0(param0);
+        v0->unk_224 = sub_0203ABD0(fieldSystem);
     }
 
     v0->unk_228 = 0;
 
-    if (sub_0205F588(param0->playerAvatar) == 1) {
-        sub_0205F5E4(param0->playerAvatar, Player_Dir(param0->playerAvatar));
+    if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
+        sub_0205F5E4(fieldSystem->playerAvatar, Player_Dir(fieldSystem->playerAvatar));
     }
 
-    sub_02050904(param0, sub_0203AC44, v0);
+    sub_02050904(fieldSystem, sub_0203AC44, v0);
 }
 
-void sub_0203AA78 (FieldSystem * param0)
+void sub_0203AA78 (FieldSystem * fieldSystem)
 {
-    UnkStruct_020708E0 * v0 = sub_0203ABB4();
+    FieldMenu * v0 = FieldMenu_Alloc();
 
-    v0->unk_224 = sub_0203AC34(param0);
+    v0->unk_224 = sub_0203AC34(fieldSystem);
     v0->unk_228 = 1;
 
-    if (sub_0205F588(param0->playerAvatar) == 1) {
-        sub_0205F5E4(param0->playerAvatar, Player_Dir(param0->playerAvatar));
+    if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
+        sub_0205F5E4(fieldSystem->playerAvatar, Player_Dir(fieldSystem->playerAvatar));
     }
 
-    sub_02050904(param0, sub_0203AC44, v0);
+    sub_02050904(fieldSystem, sub_0203AC44, v0);
 }
 
-void sub_0203AABC (FieldSystem * param0)
+void sub_0203AABC (FieldSystem * fieldSystem)
 {
-    UnkStruct_020708E0 * v0 = sub_0203ABB4();
+    FieldMenu * v0 = FieldMenu_Alloc();
 
-    v0->unk_224 = sub_0203AC3C(param0);
+    v0->unk_224 = sub_0203AC3C(fieldSystem);
     v0->unk_228 = 0;
 
-    if (sub_0205F588(param0->playerAvatar) == 1) {
-        sub_0205F5E4(param0->playerAvatar, Player_Dir(param0->playerAvatar));
+    if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
+        sub_0205F5E4(fieldSystem->playerAvatar, Player_Dir(fieldSystem->playerAvatar));
     }
 
-    sub_02050904(param0, sub_0203AC44, v0);
+    sub_02050904(fieldSystem, sub_0203AC44, v0);
 }
 
-void sub_0203AB00 (FieldSystem * param0)
+void sub_0203AB00 (FieldSystem * fieldSystem)
 {
-    UnkStruct_020708E0 * v0;
+    FieldMenu * v0;
 
     Sound_PlayEffect(1533);
-    v0 = sub_0203ABB4();
+    v0 = FieldMenu_Alloc();
 
     v0->unk_228 = 0;
 
-    if (sub_0206AE5C(SaveData_Events(param0->unk_0C)) == 1) {
-        v0->unk_224 = sub_0203AC24(param0);
-    } else if (sub_0206AE8C(SaveData_Events(param0->unk_0C)) == 1) {
-        v0->unk_224 = sub_0203AC28(param0);
-    } else if (sub_0206C0D0(param0) == 1) {
-        v0->unk_224 = sub_0203AC2C(param0);
-    } else if (param0->unk_70 == 3) {
-        v0->unk_224 = sub_0203AC3C(param0);
-    } else if (param0->unk_70 == 2) {
-        v0->unk_224 = sub_0203AC34(param0);
+    if (sub_0206AE5C(SaveData_Events(fieldSystem->unk_0C)) == 1) {
+        v0->unk_224 = sub_0203AC24(fieldSystem);
+    } else if (sub_0206AE8C(SaveData_Events(fieldSystem->unk_0C)) == 1) {
+        v0->unk_224 = sub_0203AC28(fieldSystem);
+    } else if (sub_0206C0D0(fieldSystem) == 1) {
+        v0->unk_224 = sub_0203AC2C(fieldSystem);
+    } else if (fieldSystem->unk_70 == 3) {
+        v0->unk_224 = sub_0203AC3C(fieldSystem);
+    } else if (fieldSystem->unk_70 == 2) {
+        v0->unk_224 = sub_0203AC34(fieldSystem);
         v0->unk_228 = 1;
     } else {
-        v0->unk_224 = sub_0203ABD0(param0);
+        v0->unk_224 = sub_0203ABD0(fieldSystem);
     }
 
-    sub_02050924(param0->unk_10, sub_0203AC44, v0);
+    sub_02050924(fieldSystem->unk_10, sub_0203AC44, v0);
 }
 
-static UnkStruct_020708E0 * sub_0203ABB4 (void)
+static FieldMenu * FieldMenu_Alloc (void)
 {
-    UnkStruct_020708E0 * v0;
+    FieldMenu * menu;
 
-    v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_020708E0));
+    menu = Heap_AllocFromHeap(11, sizeof(FieldMenu));
 
-    v0->unk_2A = 0;
-    v0->unk_28 = 0;
-    v0->unk_25C = NULL;
+    menu->unk_2A = 0;
+    menu->unk_28 = 0;
+    menu->unk_25C = NULL;
 
-    return v0;
+    return menu;
 }
 
-static u32 sub_0203ABD0 (FieldSystem * param0)
+static u32 sub_0203ABD0 (FieldSystem * fieldSystem)
 {
     u32 v0 = 0;
 
-    if (sub_02027520(sub_02027560(param0->unk_0C)) == 0) {
+    if (sub_02027520(sub_02027560(fieldSystem->unk_0C)) == 0) {
         v0 |= 0x1;
     }
 
-    if (sub_0206B054(SaveData_Events(param0->unk_0C)) == 0) {
+    if (sub_0206B054(SaveData_Events(fieldSystem->unk_0C)) == 0) {
         v0 |= 0x2;
     }
 
-    if (sub_0206A938(SaveData_Events(param0->unk_0C)) == 0) {
+    if (sub_0206A938(SaveData_Events(fieldSystem->unk_0C)) == 0) {
         v0 |= 0x4;
     }
 
-    if (MapHeader_IsAmitySquare(param0->unk_1C->unk_00) == 1) {
+    if (MapHeader_IsAmitySquare(fieldSystem->unk_1C->unk_00) == 1) {
         v0 |= 0x2;
         v0 |= 0x4;
     }
@@ -378,44 +392,44 @@ static u32 sub_0203ABD0 (FieldSystem * param0)
     return v0;
 }
 
-static u32 sub_0203AC24 (FieldSystem * param0)
+static u32 sub_0203AC24 (FieldSystem * fieldSystem)
 {
     return 0x10 | 0x80;
 }
 
-static u32 sub_0203AC28 (FieldSystem * param0)
+static u32 sub_0203AC28 (FieldSystem * fieldSystem)
 {
     return 0x10 | 0x80 | 0x4;
 }
 
-static u32 sub_0203AC2C (FieldSystem * param0)
+static u32 sub_0203AC2C (FieldSystem * fieldSystem)
 {
     return 0x1 | 0x4 | 0x10 | 0x80 | 0x100;
 }
 
-static u32 sub_0203AC34 (FieldSystem * param0)
+static u32 sub_0203AC34 (FieldSystem * fieldSystem)
 {
     return 0x10 | 0x100;
 }
 
-static u32 sub_0203AC3C (FieldSystem * param0)
+static u32 sub_0203AC3C (FieldSystem * fieldSystem)
 {
     return 0x10 | 0x1 | 0x80 | 0x100;
 }
 
 static BOOL sub_0203AC44 (UnkStruct_020508D4 * param0)
 {
-    FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldSystem * fieldSystem;
+    FieldMenu * v1;
 
-    v0 = sub_02050A60(param0);
+    fieldSystem = sub_02050A60(param0);
     v1 = sub_02050A64(param0);
 
     switch (v1->unk_2A) {
     case 0:
-        sub_02062C48(v0->unk_38);
-        sub_0206842C(v0, &v1->unk_230);
-        sub_02070728(v0, &v1->unk_24C);
+        sub_02062C48(fieldSystem->unk_38);
+        sub_0206842C(fieldSystem, &v1->unk_230);
+        sub_02070728(fieldSystem, &v1->unk_24C);
         sub_0203ADFC(param0);
         sub_0203B094(param0);
         v1->unk_2A = 1;
@@ -444,8 +458,8 @@ static BOOL sub_0203AC44 (UnkStruct_020508D4 * param0)
         sub_0203C8CC(param0);
         break;
     case 12:
-        if (sub_020509DC(v0)) {
-            sub_02062C48(v0->unk_38);
+        if (sub_020509DC(fieldSystem)) {
+            sub_02062C48(fieldSystem->unk_38);
             sub_0203ADFC(param0);
             sub_0203B094(param0);
             ov5_021D1744(1);
@@ -453,22 +467,22 @@ static BOOL sub_0203AC44 (UnkStruct_020508D4 * param0)
         }
         break;
     case 8:
-        if (sub_020509DC(v0)) {
+        if (sub_020509DC(fieldSystem)) {
             ov5_021D1744(1);
             v1->unk_2A = 9;
         }
         break;
     case 9:
         if (ScreenWipe_Done()) {
-            sub_0203B2EC(v1, v0);
+            sub_0203B2EC(v1, fieldSystem);
             Heap_FreeToHeap(v1);
-            sub_02062C78(v0->unk_38);
+            sub_02062C78(fieldSystem->unk_38);
             return 1;
         }
         break;
     case 10:
-        if (sub_020509DC(v0)) {
-            sub_02062C48(v0->unk_38);
+        if (sub_020509DC(fieldSystem)) {
+            sub_02062C48(fieldSystem->unk_38);
             ov5_021D1744(1);
             v1->unk_2A = 11;
         }
@@ -481,17 +495,17 @@ static BOOL sub_0203AC44 (UnkStruct_020508D4 * param0)
         break;
     case 15:
         Heap_FreeToHeap(v1);
-        sub_02062C78(v0->unk_38);
+        sub_02062C78(fieldSystem->unk_38);
         return 1;
     case 13:
-        sub_0203B2EC(v1, v0);
+        sub_0203B2EC(v1, fieldSystem);
         sub_0203B078(v1);
         Window_Clear(&v1->unk_00, 1);
         BGL_DeleteWindow(&v1->unk_00);
         sub_0203B200(param0);
-        sub_0201C3C0(v0->unk_08, 3);
+        sub_0201C3C0(fieldSystem->unk_08, 3);
         Heap_FreeToHeap(v1);
-        sub_02062C78(v0->unk_38);
+        sub_02062C78(fieldSystem->unk_38);
         return 1;
     case 14:
         if (ScreenWipe_Done()) {
@@ -510,18 +524,18 @@ static BOOL sub_0203AC44 (UnkStruct_020508D4 * param0)
 
 static void sub_0203ADFC (UnkStruct_020508D4 * param0)
 {
-    FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldSystem * fieldSystem;
+    FieldMenu * v1;
     MessageLoader * v2;
     UnkStruct_02081CF4 v3;
     u32 v4, v5;
 
-    v0 = sub_02050A60(param0);
+    fieldSystem = sub_02050A60(param0);
     v1 = sub_02050A64(param0);
-    v5 = sub_0203AFCC(v1, v1->unk_30);
+    v5 = FieldMenu_MakeList(v1, v1->unk_30);
 
-    BGL_AddWindow(v0->unk_08, &v1->unk_00, 3, 20, 1, 11, v5 * 3, 12, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)));
-    sub_0200DAA4(v0->unk_08, 3, 1024 - (18 + 12) - 9, 11, 1, 11);
+    BGL_AddWindow(fieldSystem->unk_08, &v1->unk_00, 3, 20, 1, 11, v5 * 3, 12, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)));
+    sub_0200DAA4(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 1, 11);
     Window_Show(&v1->unk_00, 1, 1024 - (18 + 12) - 9, 11);
 
     v2 = MessageLoader_Init(0, 26, 367, 11);
@@ -535,11 +549,11 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
             Strbuf* v7;
             Strbuf* v8;
 
-            v6 = sub_0200B358(11);
+            v6 = StringFormatter_New(11);
             v7 = Strbuf_Init(8, 11);
             v8 = MessageLoader_GetNewStrbuf(v2, Unk_020EA05C[v1->unk_30[v4]][0]);
 
-            sub_0200B498(v6, 0, SaveData_GetTrainerInfo(v0->unk_0C));
+            StringFormatter_FormatPlayerName(v6, 0, SaveData_GetTrainerInfo(fieldSystem->unk_0C));
             StringFormatter_Format(v6, v7, v8);
             sub_02013A6C(v1->unk_24, v7, v1->unk_30[v4]);
             Strbuf_Free(v8);
@@ -550,12 +564,12 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
                 v1->unk_24, v2, Unk_020EA05C[v1->unk_30[v4]][0], v1->unk_30[v4]);
         }
 
-        if (v0->unk_90 == v1->unk_30[v4]) {
+        if (fieldSystem->unk_90 == v1->unk_30[v4]) {
             v1->unk_28 = v4;
         }
     }
 
-    v0->unk_90 = v1->unk_30[v1->unk_28];
+    fieldSystem->unk_90 = v1->unk_30[v1->unk_28];
     MessageLoader_Free(v2);
 
     v3.unk_00 = v1->unk_24;
@@ -575,62 +589,62 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
     v1->unk_20 = sub_02001AF4(&v3, 28, 4, v1->unk_28, 11, PAD_BUTTON_B | PAD_BUTTON_X);
 
     sub_0201A9A4(&v1->unk_00);
-    sub_0203B318(v1, v1->unk_30, v5, TrainerInfo_Gender(SaveData_GetTrainerInfo(v0->unk_0C)));
+    sub_0203B318(v1, v1->unk_30, v5, TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->unk_0C)));
 }
 
-static u32 sub_0203AFCC (UnkStruct_020708E0 * param0, u8 * param1)
+static u32 FieldMenu_MakeList (FieldMenu * param0, u8 * param1)
 {
     u32 v0 = 0;
 
     if ((param0->unk_224 & 0x100) == 0) {
-        param1[v0] = 8;
+        param1[v0] = MENU_POS_RETIRE;
         v0++;
     }
 
     if ((param0->unk_224 & 0x80) == 0) {
-        param1[v0] = 7;
+        param1[v0] = MENU_POS_CHAT;
         v0++;
     }
 
     if ((param0->unk_224 & 0x1) == 0) {
-        param1[v0] = 0;
+        param1[v0] = MENU_POS_POKEDEX;
         v0++;
     }
 
     if ((param0->unk_224 & 0x2) == 0) {
-        param1[v0] = 1;
+        param1[v0] = MENU_POS_POKEMON;
         v0++;
     }
 
     if ((param0->unk_224 & 0x4) == 0) {
-        param1[v0] = 2;
+        param1[v0] = MENU_POS_BAG;
         v0++;
     }
 
     if ((param0->unk_224 & 0x8) == 0) {
-        param1[v0] = 3;
+        param1[v0] = MENU_POS_TRAINER_CARD;
         v0++;
     }
 
     if ((param0->unk_224 & 0x10) == 0) {
-        param1[v0] = 4;
+        param1[v0] = MENU_POS_SAVE;
         v0++;
     }
 
     if ((param0->unk_224 & 0x20) == 0) {
-        param1[v0] = 5;
+        param1[v0] = MENU_POS_OPTIONS;
         v0++;
     }
 
     if ((param0->unk_224 & 0x40) == 0) {
-        param1[v0] = 6;
+        param1[v0] = MENU_POS_EXIT;
         v0++;
     }
 
     return v0;
 }
 
-static void sub_0203B078 (UnkStruct_020708E0 * param0)
+static void sub_0203B078 (FieldMenu * param0)
 {
     sub_0203B4E8(param0);
     sub_02001BC4(param0->unk_20, NULL);
@@ -642,7 +656,7 @@ static void sub_0203B078 (UnkStruct_020708E0 * param0)
 static void sub_0203B094 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
     MessageLoader * v2;
     StringFormatter * v3;
     Strbuf* v4;
@@ -676,18 +690,18 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
     PrintStringSimple(&v1->unk_10, 0, v5, 0, 0, 0xff, NULL);
     Strbuf_Free(v5);
 
-    v3 = sub_0200B358(11);
+    v3 = StringFormatter_New(11);
     v4 = Strbuf_Init(32, 11);
     v5 = MessageLoader_GetNewStrbuf(v2, 11);
 
     if (v6 == 0) {
         u16 * v7 = sub_0203A784(sub_0203A790(v0->unk_0C));
 
-        sub_0200B60C(v3, 0, *v7, 2, 0, 1);
+        StringFormatter_FormatNumber(v3, 0, *v7, 2, 0, 1);
     } else {
         int v8 = sub_020563BC(v0);
 
-        sub_0200B60C(v3, 0, v8, 2, 0, 1);
+        StringFormatter_FormatNumber(v3, 0, v8, 2, 0, 1);
     }
 
     StringFormatter_Format(v3, v4, v5);
@@ -702,7 +716,7 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
 static void sub_0203B200 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
 
     v0 = sub_02050A60(param0);
     v1 = sub_02050A64(param0);
@@ -718,7 +732,7 @@ static void sub_0203B200 (UnkStruct_020508D4 * param0)
 static BOOL sub_0203B244 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
     u16 v2;
 
     v0 = sub_02050A60(param0);
@@ -755,7 +769,7 @@ static BOOL sub_0203B244 (UnkStruct_020508D4 * param0)
     return 1;
 }
 
-static void sub_0203B2EC (UnkStruct_020708E0 * param0, FieldSystem * param1)
+static void sub_0203B2EC (FieldMenu * param0, FieldSystem * param1)
 {
     if (sub_02033E1C()) {
         if (param0->unk_228) {
@@ -767,7 +781,7 @@ static void sub_0203B2EC (UnkStruct_020708E0 * param0, FieldSystem * param1)
     }
 }
 
-static void sub_0203B318 (UnkStruct_020708E0 * param0, u8 * param1, u32 param2, u8 param3)
+static void sub_0203B318 (FieldMenu * param0, u8 * param1, u32 param2, u8 param3)
 {
     UnkStruct_ov104_02241308 v0 = {
         8, 1, 2, 2, 0, 0
@@ -820,7 +834,7 @@ static void sub_0203B318 (UnkStruct_020708E0 * param0, u8 * param1, u32 param2, 
     NARC_dtor(v2);
 }
 
-static void sub_0203B4E8 (UnkStruct_020708E0 * param0)
+static void sub_0203B4E8 (FieldMenu * param0)
 {
     u16 v0;
 
@@ -831,7 +845,7 @@ static void sub_0203B4E8 (UnkStruct_020708E0 * param0)
     ov5_021D375C(&param0->unk_38);
 }
 
-static void sub_0203B520 (UnkStruct_020708E0 * param0)
+static void sub_0203B520 (FieldMenu * param0)
 {
     u16 v0;
 
@@ -858,7 +872,7 @@ static void sub_0203B588 (GraphicElementData * param0, u16 param1, u16 param2)
     sub_02021EC4(param0, param2);
 }
 
-static void sub_0203B5B4 (UnkStruct_020708E0 * param0, u16 param1, u16 param2)
+static void sub_0203B5B4 (FieldMenu * param0, u16 param1, u16 param2)
 {
     sub_0203B588(param0->unk_200[1 + param1]->unk_00, 0, 0);
     sub_0203B588(param0->unk_200[1 + param2]->unk_00, 1, 1);
@@ -878,7 +892,7 @@ static void sub_0203B5E8 (GraphicElementData * param0)
 static void sub_0203B610 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
 
     if (ScreenWipe_Done() == 0) {
         return;
@@ -898,7 +912,7 @@ static void sub_0203B610 (UnkStruct_020508D4 * param0)
 static void sub_0203B64C (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
 
     v0 = sub_02050A60(param0);
     v1 = sub_02050A64(param0);
@@ -910,15 +924,15 @@ static void sub_0203B64C (UnkStruct_020508D4 * param0)
     v1->unk_22C(param0);
 }
 
-void sub_0203B674 (UnkStruct_020708E0 * param0, void * param1)
+void sub_0203B674 (FieldMenu * param0, void * param1)
 {
     param0->unk_22C = param1;
     param0->unk_2A = 3;
 }
 
-static BOOL sub_0203B680 (UnkStruct_020508D4 * param0)
+static BOOL FieldMenu_SelectPokedex (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_020708E0 * v0;
+    FieldMenu * v0;
 
     v0 = sub_02050A64(param0);
 
@@ -933,7 +947,7 @@ static BOOL sub_0203B680 (UnkStruct_020508D4 * param0)
 static BOOL sub_0203B6A4 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
     UnkStruct_ov21_021D0D80 * v2;
     PokedexData * v3;
     TrainerInfo * v4;
@@ -966,7 +980,7 @@ static BOOL sub_0203B6A4 (UnkStruct_020508D4 * param0)
 static BOOL sub_0203B738 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
 
     v0 = sub_02050A60(param0);
     v1 = sub_02050A64(param0);
@@ -982,9 +996,9 @@ static BOOL sub_0203B738 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL sub_0203B768 (UnkStruct_020508D4 * param0)
+static BOOL FieldMenu_SelectPokemon (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_020708E0 * v0;
+    FieldMenu * v0;
 
     v0 = sub_02050A64(param0);
 
@@ -999,7 +1013,7 @@ static BOOL sub_0203B768 (UnkStruct_020508D4 * param0)
 static BOOL sub_0203B78C (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
 
     v0 = sub_02050A60(param0);
     v1 = sub_02050A64(param0);
@@ -1013,7 +1027,7 @@ static BOOL sub_0203B78C (UnkStruct_020508D4 * param0)
 BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
     PartyManagementData * v2;
 
     v0 = sub_02050A60(param0);
@@ -1243,9 +1257,9 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL sub_0203BBF4 (UnkStruct_020508D4 * param0)
+static BOOL FieldMenu_SelectBag (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_020708E0 * v0;
+    FieldMenu * v0;
 
     v0 = sub_02050A64(param0);
 
@@ -1260,7 +1274,7 @@ static BOOL sub_0203BBF4 (UnkStruct_020508D4 * param0)
 static BOOL sub_0203BC18 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
 
     v0 = sub_02050A60(param0);
     v1 = sub_02050A64(param0);
@@ -1277,7 +1291,7 @@ static BOOL sub_0203BC18 (UnkStruct_020508D4 * param0)
 static BOOL sub_0203BC5C (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
     UnkStruct_0207CB08 * v2;
 
     v0 = sub_02050A60(param0);
@@ -1388,9 +1402,9 @@ static BOOL sub_0203BC5C (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL sub_0203BE8C (UnkStruct_020508D4 * param0)
+static BOOL FieldMenu_SelectTrainerCard (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_020708E0 * v0;
+    FieldMenu * v0;
 
     v0 = sub_02050A64(param0);
 
@@ -1405,7 +1419,7 @@ static BOOL sub_0203BE8C (UnkStruct_020508D4 * param0)
 static BOOL sub_0203BEB0 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
 
     v0 = sub_02050A60(param0);
     v1 = sub_02050A64(param0);
@@ -1422,7 +1436,7 @@ static BOOL sub_0203BEB0 (UnkStruct_020508D4 * param0)
 static BOOL sub_0203BF00 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
 
     v0 = sub_02050A60(param0);
     v1 = sub_02050A64(param0);
@@ -1436,9 +1450,9 @@ static BOOL sub_0203BF00 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL sub_0203BF38 (UnkStruct_020508D4 * param0)
+static BOOL FieldMenu_SelectSave (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_020708E0 * v0 = sub_02050A64(param0);
+    FieldMenu * v0 = sub_02050A64(param0);
 
     sub_0203B078(v0);
     Window_Clear(&v0->unk_00, 1);
@@ -1453,7 +1467,7 @@ static BOOL sub_0203BF38 (UnkStruct_020508D4 * param0)
 
 static void sub_0203BF6C (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_020708E0 * v0 = sub_02050A64(param0);
+    FieldMenu * v0 = sub_02050A64(param0);
     FieldSystem * v1 = sub_02050A60(param0);
     UnkStruct_0203BF6C * v2;
 
@@ -1473,7 +1487,7 @@ static void sub_0203BF6C (UnkStruct_020508D4 * param0)
 static void sub_0203BFC0 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_020708E0 * v1 = sub_02050A64(param0);
+    FieldMenu * v1 = sub_02050A64(param0);
     UnkStruct_0203BF6C * v2 = v1->unk_25C;
 
     if (SaveData_OverwriteCheck(v0->unk_0C)) {
@@ -1489,24 +1503,24 @@ static void sub_0203BFC0 (UnkStruct_020508D4 * param0)
     }
 }
 
-static BOOL sub_0203C000 (UnkStruct_020508D4 * param0)
+static BOOL FieldMenu_SelectOptions (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_020708E0 * v0;
+    FieldMenu * v0;
 
     v0 = sub_02050A64(param0);
 
     ov5_021D1744(0);
 
-    v0->unk_22C = sub_0203C024;
+    v0->unk_22C = FieldMenu_Options;
     v0->unk_2A = 2;
 
     return 1;
 }
 
-static BOOL sub_0203C024 (UnkStruct_020508D4 * param0)
+static BOOL FieldMenu_Options (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
 
     v0 = sub_02050A60(param0);
     v1 = sub_02050A64(param0);
@@ -1520,7 +1534,7 @@ static BOOL sub_0203C024 (UnkStruct_020508D4 * param0)
 static BOOL sub_0203C050 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
 
     v0 = sub_02050A60(param0);
     v1 = sub_02050A64(param0);
@@ -1533,9 +1547,9 @@ static BOOL sub_0203C050 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL sub_0203C07C (UnkStruct_020508D4 * param0)
+static BOOL FieldMenu_SelectChat (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_020708E0 * v0;
+    FieldMenu * v0;
 
     v0 = sub_02050A64(param0);
 
@@ -1550,7 +1564,7 @@ static BOOL sub_0203C07C (UnkStruct_020508D4 * param0)
 static BOOL sub_0203C0A0 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
     Sentence v2;
 
     v0 = sub_02050A60(param0);
@@ -1571,7 +1585,7 @@ static BOOL sub_0203C0F8 (UnkStruct_020508D4 * param0)
 {
     Sentence v0;
     FieldSystem * v1;
-    UnkStruct_020708E0 * v2;
+    FieldMenu * v2;
 
     v1 = sub_02050A60(param0);
     v2 = sub_02050A64(param0);
@@ -1596,10 +1610,10 @@ static BOOL sub_0203C0F8 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL sub_0203C164 (UnkStruct_020508D4 * param0)
+static BOOL FieldMenu_SelectRetire (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
 
     v0 = sub_02050A60(param0);
     v1 = sub_02050A64(param0);
@@ -1623,7 +1637,7 @@ static BOOL sub_0203C164 (UnkStruct_020508D4 * param0)
 static BOOL sub_0203C1C8 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
     PokemonSummary * v2;
 
     v0 = sub_02050A60(param0);
@@ -1684,7 +1698,7 @@ static BOOL sub_0203C1C8 (UnkStruct_020508D4 * param0)
 static void sub_0203C2D8 (UnkStruct_020508D4 * param0, u16 param1)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
     UnkStruct_0207D3C0 * v2;
     u8 v3;
     u8 v4, v5, v6;
@@ -1716,7 +1730,7 @@ static void sub_0203C2D8 (UnkStruct_020508D4 * param0, u16 param1)
 static BOOL sub_0203C390 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
     u8 v2, v3;
 
     v0 = sub_02050A60(param0);
@@ -1735,7 +1749,7 @@ static BOOL sub_0203C390 (UnkStruct_020508D4 * param0)
 BOOL sub_0203C3F4 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
 
     v0 = sub_02050A60(param0);
     v1 = sub_02050A64(param0);
@@ -1750,7 +1764,7 @@ BOOL sub_0203C3F4 (UnkStruct_020508D4 * param0)
 BOOL sub_0203C434 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
     UnkStruct_0203D8AC * v2;
     u32 v3;
 
@@ -1790,7 +1804,7 @@ BOOL sub_0203C434 (UnkStruct_020508D4 * param0)
 BOOL sub_0203C50C (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
 
     v0 = sub_02050A60(param0);
     v1 = sub_02050A64(param0);
@@ -1801,7 +1815,7 @@ BOOL sub_0203C50C (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static void sub_0203C668(FieldSystem * param0, UnkStruct_020708E0 * param1, u8 param2);
+static void sub_0203C668(FieldSystem * param0, FieldMenu * param1, u8 param2);
 
 void * sub_0203C540 (u16 param0, u8 param1, u8 param2)
 {
@@ -1817,7 +1831,7 @@ void * sub_0203C540 (u16 param0, u8 param1, u8 param2)
 BOOL sub_0203C558 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
     UnkStruct_0203C540 * v2;
 
     v0 = sub_02050A60(param0);
@@ -1859,7 +1873,7 @@ BOOL sub_0203C558 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static void sub_0203C668 (FieldSystem * param0, UnkStruct_020708E0 * param1, u8 param2)
+static void sub_0203C668 (FieldSystem * param0, FieldMenu * param1, u8 param2)
 {
     UnkStruct_0203C540 * v0;
     PartyManagementData * v1;
@@ -1890,7 +1904,7 @@ static void sub_0203C668 (FieldSystem * param0, UnkStruct_020708E0 * param1, u8 
 BOOL sub_0203C710 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
 
     v0 = sub_02050A60(param0);
     v1 = sub_02050A64(param0);
@@ -1906,7 +1920,7 @@ BOOL sub_0203C710 (UnkStruct_020508D4 * param0)
 BOOL sub_0203C750 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
 
     v0 = sub_02050A60(param0);
     v1 = sub_02050A64(param0);
@@ -1920,7 +1934,7 @@ BOOL sub_0203C750 (UnkStruct_020508D4 * param0)
 BOOL sub_0203C784 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
 
     v0 = sub_02050A60(param0);
     v1 = sub_02050A64(param0);
@@ -1934,7 +1948,7 @@ BOOL sub_0203C784 (UnkStruct_020508D4 * param0)
 static void sub_0203C7B8 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
     UnkStruct_0203C7B8 * v2;
     Party * v3;
     Pokemon * v4;
@@ -1972,7 +1986,7 @@ static void sub_0203C7B8 (UnkStruct_020508D4 * param0)
 static void sub_0203C8CC (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
 
     v0 = sub_02050A60(param0);
     v1 = sub_02050A64(param0);

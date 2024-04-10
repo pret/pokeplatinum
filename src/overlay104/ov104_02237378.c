@@ -496,7 +496,7 @@ BOOL ov104_02237748 (UnkStruct_ov104_0222E930 * param0)
                 v16 = CommInfo_TrainerInfo(v19);
             }
 
-            sub_0200B498(param0->unk_00->unk_44, v18, v16);
+            StringFormatter_FormatPlayerName(param0->unk_00->unk_44, v18, v16);
         }
         break;
     case 39:

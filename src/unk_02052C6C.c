@@ -262,7 +262,7 @@ static void sub_02052F28 (FieldSystem * param0, UnkStruct_0205300C * param1)
     param1->unk_2C = NULL;
     param1->unk_30 = NULL;
 
-    sub_0201A7A0(&param1->unk_1C);
+    Window_Init(&param1->unk_1C);
     GXLayers_SetBanks(&v0);
 
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
@@ -307,8 +307,8 @@ static void sub_02053028 (FieldSystem * param0, UnkStruct_0205300C * param1, int
     if (param2 == 2) {
         StringFormatter * v1;
 
-        v1 = sub_0200B358(4);
-        sub_0200B498(v1, 0, SaveData_GetTrainerInfo(param0->unk_0C));
+        v1 = StringFormatter_New(4);
+        StringFormatter_FormatPlayerName(v1, 0, SaveData_GetTrainerInfo(param0->unk_0C));
         param1->unk_2C = sub_0200B29C(v1, v0, 16, 4);
         sub_0200B3F0(v1);
     } else {

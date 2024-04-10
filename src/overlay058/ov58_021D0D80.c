@@ -184,7 +184,7 @@ int ov58_021D0D80 (OverlayManager * param0, int * param1)
         memset(v0, 0, sizeof(UnkStruct_02095EAC));
         v0->unk_00 = sub_02018340(39);
 
-        v0->unk_0C = sub_0200B358(39);
+        v0->unk_0C = StringFormatter_New(39);
         v0->unk_10 = MessageLoader_Init(0, 26, 425, 39);
 
         SetAutorepeat(4, 8);
@@ -1209,7 +1209,7 @@ static int ov58_021D2180 (UnkStruct_02095EAC * param0, int param1)
     case 1:
         ov58_021D2CB0(param0, 15);
         CommSys_SendDataServer(127, NULL, 0);
-        sub_0200B498(param0->unk_0C, 0, CommInfo_TrainerInfo(0));
+        StringFormatter_FormatPlayerName(param0->unk_0C, 0, CommInfo_TrainerInfo(0));
         param1 = 2;
         ov58_021D2D10(param0);
         break;
@@ -1232,7 +1232,7 @@ static int ov58_021D2180 (UnkStruct_02095EAC * param0, int param1)
 
 static int ov58_021D223C (UnkStruct_02095EAC * param0, int param1)
 {
-    sub_0200B498(param0->unk_0C, 0, CommInfo_TrainerInfo(0));
+    StringFormatter_FormatPlayerName(param0->unk_0C, 0, CommInfo_TrainerInfo(0));
 
     ov58_021D2A98(param0, 3, 1);
     ov58_021D2CB0(param0, 16);
@@ -1351,7 +1351,7 @@ void ov58_021D2434 (UnkStruct_02095EAC * param0, int param1, u8 param2)
         }
 
         ov58_021D1CDC(param0->unk_2AC, 0);
-        sub_0200B498(param0->unk_0C, 0, CommInfo_TrainerInfo(param2));
+        StringFormatter_FormatPlayerName(param0->unk_0C, 0, CommInfo_TrainerInfo(param2));
 
         param0->unk_384 = param2;
         param0->unk_9418 = 0;
@@ -1364,7 +1364,7 @@ void ov58_021D2434 (UnkStruct_02095EAC * param0, int param1, u8 param2)
             return;
         }
 
-        sub_0200B498(param0->unk_0C, 0, CommInfo_TrainerInfo(param2));
+        StringFormatter_FormatPlayerName(param0->unk_0C, 0, CommInfo_TrainerInfo(param2));
 
         if (param2 == CommSys_CurNetId()) {
             return;

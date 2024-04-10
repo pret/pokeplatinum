@@ -535,7 +535,7 @@ static void ov13_02222290 (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 24);
     v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->unk_0C);
 
-    sub_0200B60C(param0->unk_1FA8, 0, v0->unk_16_0, 3, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_1FA8, 0, v0->unk_16_0, 3, 0, 1);
     StringFormatter_Format(param0->unk_1FA8, v2, v1);
     sub_0201D78C(&param0->unk_206C[11 + v4], 0, v2, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
@@ -550,10 +550,10 @@ static void ov13_02222290 (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v2 = Strbuf_Init((6 + 1) * 2, param0->unk_00->unk_0C);
 
     if (v0->unk_16_0 < 100) {
-        sub_0200B60C(
+        StringFormatter_FormatNumber(
             param0->unk_1FA8, 0, v0->unk_24 - v0->unk_1C, 6, 1, 1);
     } else {
-        sub_0200B60C(
+        StringFormatter_FormatNumber(
             param0->unk_1FA8, 0, 0, 6, 1, 1);
     }
 
@@ -589,7 +589,7 @@ static void ov13_02222464 (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 33);
     v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->unk_0C);
 
-    sub_0200B60C(param0->unk_1FA8, 0, v0->unk_06, 3, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_1FA8, 0, v0->unk_06, 3, 0, 1);
     StringFormatter_Format(param0->unk_1FA8, v2, v1);
 
     v4 = sub_02002D7C(0, v2, 0);
@@ -621,7 +621,7 @@ static void ov13_02222560 (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 35);
     v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->unk_0C);
 
-    sub_0200B60C(param0->unk_1FA8, 0, v0->unk_08, 3, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_1FA8, 0, v0->unk_08, 3, 0, 1);
     StringFormatter_Format(param0->unk_1FA8, v2, v1);
 
     v4 = sub_02002D7C(0, v2, 0);
@@ -653,7 +653,7 @@ static void ov13_0222265C (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 41);
     v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->unk_0C);
 
-    sub_0200B60C(param0->unk_1FA8, 0, v0->unk_0A, 3, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_1FA8, 0, v0->unk_0A, 3, 0, 1);
     StringFormatter_Format(param0->unk_1FA8, v2, v1);
 
     v4 = sub_02002D7C(0, v2, 0);
@@ -686,7 +686,7 @@ static void ov13_0222275C (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 37);
     v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->unk_0C);
 
-    sub_0200B60C(param0->unk_1FA8, 0, v0->unk_0C, 3, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_1FA8, 0, v0->unk_0C, 3, 0, 1);
     StringFormatter_Format(param0->unk_1FA8, v2, v1);
 
     v4 = sub_02002D7C(0, v2, 0);
@@ -718,7 +718,7 @@ static void ov13_0222285C (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 39);
     v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->unk_0C);
 
-    sub_0200B60C(param0->unk_1FA8, 0, v0->unk_0E, 3, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_1FA8, 0, v0->unk_0E, 3, 0, 1);
     StringFormatter_Format(param0->unk_1FA8, v2, v1);
 
     v4 = sub_02002D7C(0, v2, 0);
@@ -757,7 +757,7 @@ static void ov13_0222295C (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 29);
     v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->unk_0C);
 
-    sub_0200B60C(param0->unk_1FA8, 0, v0->unk_10, 3, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_1FA8, 0, v0->unk_10, 3, 0, 1);
     StringFormatter_Format(param0->unk_1FA8, v2, v1);
 
     v4 = sub_02002D7C(0, v2, 0);
@@ -769,7 +769,7 @@ static void ov13_0222295C (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 30);
     v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->unk_0C);
 
-    sub_0200B60C(param0->unk_1FA8, 0, v0->unk_12, 3, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_1FA8, 0, v0->unk_12, 3, 0, 1);
     StringFormatter_Format(param0->unk_1FA8, v2, v1);
     sub_0201D78C(&param0->unk_206C[4 + v6], 0, v2, v5 + v3, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
@@ -830,7 +830,7 @@ static void ov13_02222BB4 (UnkStruct_ov13_022213F0 * param0, u32 param1, u32 par
         v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 52);
         v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->unk_0C);
 
-        sub_0200B60C(param0->unk_1FA8, 0, param2, 3, 0, 1);
+        StringFormatter_FormatNumber(param0->unk_1FA8, 0, param2, 3, 0, 1);
         StringFormatter_Format(param0->unk_1FA8, v2, v1);
 
         v3 = sub_02002D7C(0, v2, 0);
@@ -878,7 +878,7 @@ static void ov13_02222CE4 (UnkStruct_ov13_022213F0 * param0, u32 param1, u32 par
         v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 49);
         v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->unk_0C);
 
-        sub_0200B60C(param0->unk_1FA8, 0, param2, 3, 0, 1);
+        StringFormatter_FormatNumber(param0->unk_1FA8, 0, param2, 3, 0, 1);
         StringFormatter_Format(param0->unk_1FA8, v2, v1);
 
         v3 = sub_02002D7C(0, v2, 0);
@@ -992,7 +992,7 @@ static void ov13_02222F74 (UnkStruct_ov13_022213F0 * param0, u32 param1, u32 par
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 44);
     v2 = Strbuf_Init((2 + 1) * 2, param0->unk_00->unk_0C);
 
-    sub_0200B60C(param0->unk_1FA8, 0, param2, 3, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_1FA8, 0, param2, 3, 0, 1);
     StringFormatter_Format(param0->unk_1FA8, v2, v1);
 
     v4 = sub_02002D7C(0, v2, 0);
@@ -1004,7 +1004,7 @@ static void ov13_02222F74 (UnkStruct_ov13_022213F0 * param0, u32 param1, u32 par
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 45);
     v2 = Strbuf_Init((2 + 1) * 2, param0->unk_00->unk_0C);
 
-    sub_0200B60C(param0->unk_1FA8, 0, param3, 3, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_1FA8, 0, param3, 3, 0, 1);
     StringFormatter_Format(param0->unk_1FA8, v2, v1);
     sub_0201D78C(v0, 0, v2, v5 + v3, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
@@ -1075,14 +1075,14 @@ static void ov13_0222317C (UnkStruct_ov13_022213F0 * param0, UnkStruct_ov13_0222
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 45);
 
-    sub_0200B60C(param0->unk_1FA8, 0, param1->unk_03, 2, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_1FA8, 0, param1->unk_03, 2, 0, 1);
     StringFormatter_Format(param0->unk_1FA8, v2, v1);
     sub_0201D78C(v0, 0, v2, 80 + v3, 24, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 44);
 
-    sub_0200B60C(param0->unk_1FA8, 0, param1->unk_02, 2, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_1FA8, 0, param1->unk_02, 2, 0, 1);
     StringFormatter_Format(param0->unk_1FA8, v2, v1);
 
     v3 = sub_02002D7C(0, v2, 0);
@@ -1110,7 +1110,7 @@ static void ov13_022232C8 (UnkStruct_ov13_022213F0 * param0, UnkStruct_ov13_0222
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 44);
 
-    sub_0200B60C(param0->unk_1FA8, 0, param1->unk_02, 2, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_1FA8, 0, param1->unk_02, 2, 0, 1);
     StringFormatter_Format(param0->unk_1FA8, v2, v1);
 
     v3 = sub_02002D7C(0, v2, 0);
@@ -1603,7 +1603,7 @@ void ov13_02224144 (UnkStruct_ov13_022213F0 * param0)
     } else if (param0->unk_04[v1->unk_11].unk_10 != v4) {
         v3 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 82);
         StringFormatter_BufferNickname(param0->unk_1FA8, 0, Pokemon_GetBoxPokemon(v0));
-        sub_0200B60C(param0->unk_1FA8, 1, v4 - param0->unk_04[v1->unk_11].unk_10, 3, 0, 1);
+        StringFormatter_FormatNumber(param0->unk_1FA8, 1, v4 - param0->unk_04[v1->unk_11].unk_10, 3, 0, 1);
         StringFormatter_Format(param0->unk_1FA8, param0->unk_1FAC, v3);
         Strbuf_Free(v3);
     } else if ((Item_Get(v2, 36) != 0) || (Item_Get(v2, 37) != 0)) {

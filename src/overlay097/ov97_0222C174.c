@@ -631,7 +631,7 @@ static void ov97_0222C578 (UnkStruct_ov97_0222C388 * param0)
     UnkStruct_ov97_022335A8 v5;
     StringFormatter * v6;
 
-    v6 = sub_0200B358(param0->unk_00);
+    v6 = StringFormatter_New(param0->unk_00);
 
     ov97_02237808(&param0->unk_F0, &param0->unk_38, 0, 421, 1, 1);
     ov97_02237858(&param0->unk_F0, 26, 4, param0->unk_144);
@@ -639,8 +639,8 @@ static void ov97_0222C578 (UnkStruct_ov97_0222C388 * param0)
 
     param0->unk_F0.unk_14 = v6;
 
-    sub_0200B498(v6, 0, param0->unk_10);
-    sub_0200B60C(v6, 1, TrainerInfo_ID_LowHalf(param0->unk_10), 5, 2, 1);
+    StringFormatter_FormatPlayerName(v6, 0, param0->unk_10);
+    StringFormatter_FormatNumber(v6, 1, TrainerInfo_ID_LowHalf(param0->unk_10), 5, 2, 1);
 
     ov97_0223795C(param0->unk_04, &param0->unk_F0, 3, 13, 66);
     param0->unk_F0.unk_08 = 0;
@@ -652,8 +652,8 @@ static void ov97_0222C578 (UnkStruct_ov97_0222C388 * param0)
     v5 = ov97_022335A8(v4);
     ov97_022335EC(v5.unk_00.val2, &v0, &v1);
 
-    sub_0200B60C(v6, 0, v0, 4, 2, 1);
-    sub_0200B60C(v6, 1, v1, 4, 2, 1);
+    StringFormatter_FormatNumber(v6, 0, v0, 4, 2, 1);
+    StringFormatter_FormatNumber(v6, 1, v1, 4, 2, 1);
 
     param0->unk_F0.unk_0C = 1;
 
@@ -812,7 +812,7 @@ static void ov97_0222C974 (UnkStruct_ov97_0222C388 * param0)
     MI_CpuClear8(v4, sizeof(UnkStruct_0202DBAC));
 
     v3 = MessageLoader_Init(1, 26, 421, param0->unk_00);
-    v2 = sub_0200B358(param0->unk_00);
+    v2 = StringFormatter_New(param0->unk_00);
 
     v4->unk_00 = 7;
     v1 = sub_0200B29C(v2, v3, 76, param0->unk_00);

@@ -487,7 +487,7 @@ static void sub_0208C884 (PokemonSummaryApp * param0)
     param0->msgLoader = MessageLoader_Init(0, 26, 455, 19);
     param0->ribbonLoader = MessageLoader_Init(1, 26, 535, 19);
     param0->unk_684 = sub_0200C440(1, 2, 0, 19);
-    param0->strFormatter = sub_0200B358(19);
+    param0->strFormatter = StringFormatter_New(19);
     param0->monData.speciesName = Strbuf_Init(12, 19);
     param0->monData.nickname = Strbuf_Init(12, 19);
     param0->monData.OTName = Strbuf_Init(8, 19);

@@ -439,7 +439,7 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
 
                 v5 = MessageLoader_Init(1, 26, 213, v0->unk_0C);
                 v6 = MessageLoader_GetNewStrbuf(v5, 36);
-                sub_0200B498(param0->unk_14, 0, v0->unk_04);
+                StringFormatter_FormatPlayerName(param0->unk_14, 0, v0->unk_04);
                 StringFormatter_Format(param0->unk_14, param0->unk_18, v6);
                 Strbuf_Free(v6);
                 MessageLoader_Free(v5);
@@ -767,7 +767,7 @@ static void ov13_022270B8 (UnkStruct_ov13_02227244 * param0)
 {
     param0->unk_10 = MessageLoader_Init(0, 26, 2, param0->unk_00->unk_0C);
     param0->unk_0C = sub_0200C440(15, 14, 0, param0->unk_00->unk_0C);
-    param0->unk_14 = sub_0200B358(param0->unk_00->unk_0C);
+    param0->unk_14 = StringFormatter_New(param0->unk_00->unk_0C);
     param0->unk_18 = Strbuf_Init(512, param0->unk_00->unk_0C);
 }
 

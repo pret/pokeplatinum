@@ -644,7 +644,7 @@ static void ov67_0225D17C (UnkStruct_ov67_0225D154 * param0)
 
 static void ov67_0225D188 (UnkStruct_ov67_0225D210 * param0, BGL * param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, SaveData * param9, u32 param10)
 {
-    param0->unk_00 = sub_0200B358(param10);
+    param0->unk_00 = StringFormatter_New(param10);
     param0->unk_04 = MessageLoader_Init(0, 26, param3, param10);
     param0->unk_18 = Strbuf_Init(256, param10);
     param0->unk_1C = Strbuf_Init(256, param10);
@@ -738,5 +738,5 @@ static void ov67_0225D37C (UnkStruct_ov67_0225D210 * param0, u32 param1)
 
 static void ov67_0225D3D0 (UnkStruct_ov67_0225D210 * param0, u32 param1)
 {
-    sub_0200B60C(param0->unk_00, 0, param1, 5, 2, 1);
+    StringFormatter_FormatNumber(param0->unk_00, 0, param1, 5, 2, 1);
 }

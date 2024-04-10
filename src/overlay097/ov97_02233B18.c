@@ -459,7 +459,7 @@ static void ov97_02233DD0 (UnkStruct_ov97_02234A2C * param0, UnkStruct_ov97_0223
         if (param1->unk_40) {
             v1 = param1->unk_40;
         } else {
-            v1 = sub_0200B358(78);
+            v1 = StringFormatter_New(78);
         }
 
         Strbuf_Clear(param0->unk_12668);
@@ -1626,7 +1626,7 @@ static void ov97_02235344 (UnkStruct_ov97_02234A2C * param0)
 
     ov97_0223936C(ov97_02236378(), v3, 7 + 1, ov97_02235DBC());
 
-    v1 = sub_0200B358(78);
+    v1 = StringFormatter_New(78);
     v2 = Strbuf_Init(7 + 1, 78);
 
     Strbuf_CopyChars(v2, v3);

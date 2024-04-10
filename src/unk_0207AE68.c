@@ -146,7 +146,7 @@ UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon * param1, int param2,
     v0->unk_67 = 0;
     v0->unk_66 = 2;
     v0->unk_08 = MessageLoader_Init(1, 26, 368, param11);
-    v0->unk_0C = sub_0200B358(param11);
+    v0->unk_0C = StringFormatter_New(param11);
     v0->unk_10 = Strbuf_Init((2 * 160), param11);
     v0->unk_3C = Heap_AllocFromHeap(param11, sizeof(PokemonSummary));
 

@@ -567,7 +567,7 @@ BOOL sub_0204F6D8 (UnkStruct_0203E724 * param0)
         Heap_FreeToHeap(v2);
     }
 
-    sub_0200B60C(*v10, v11, v4, sub_0205DFC4(v4),
+    StringFormatter_FormatNumber(*v10, v11, v4, sub_0205DFC4(v4),
                  1, 1);
 
     v7 = 0;
@@ -605,15 +605,15 @@ BOOL sub_0204F6D8 (UnkStruct_0203E724 * param0)
         }
     }
 
-    sub_0200B60C(*v10, v12, Unk_020EC078[v6].unk_00,
+    StringFormatter_FormatNumber(*v10, v12, Unk_020EC078[v6].unk_00,
                  sub_0205DFC4(Unk_020EC078[v6].unk_00),
                  1, 1);
 
-    sub_0200B60C(*v10, v13, Unk_020EC078[*v15].unk_00,
+    StringFormatter_FormatNumber(*v10, v13, Unk_020EC078[*v15].unk_00,
                  sub_0205DFC4(Unk_020EC078[*v15].unk_00),
                  1, 1);
 
-    sub_0200B60C(*v10, v14, v7, sub_0205DFC4(v7),
+    StringFormatter_FormatNumber(*v10, v14, v7, sub_0205DFC4(v7),
                  1, 1);
 
     return 0;

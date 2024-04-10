@@ -58,7 +58,7 @@ BOOL sub_020474F4 (UnkStruct_0203E724 * param0)
     StringFormatter ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
 
-    sub_0200B498(*v1, v2, SaveData_GetTrainerInfo(FieldSystem_SaveData(v0)));
+    StringFormatter_FormatPlayerName(*v1, v2, SaveData_GetTrainerInfo(FieldSystem_SaveData(v0)));
     return 0;
 }
 
@@ -162,7 +162,7 @@ BOOL sub_020476D4 (UnkStruct_0203E724 * param0)
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
 
-    sub_0200B60C(*v1, v2, v3, sub_0205DFC4(v3), 1, 1);
+    StringFormatter_FormatNumber(*v1, v2, v3, sub_0205DFC4(v3), 1, 1);
     return 0;
 }
 
@@ -179,7 +179,7 @@ BOOL sub_0204771C (UnkStruct_0203E724 * param0)
         v5 = sub_0205DFC4(v3);
     }
 
-    sub_0200B60C(*v1, v2, v3, v5, v4, 1);
+    StringFormatter_FormatNumber(*v1, v2, v3, v5, v4, 1);
     return 0;
 }
 
@@ -196,7 +196,7 @@ BOOL sub_0204777C (UnkStruct_0203E724 * param0)
         v5 = sub_0205DFC4(v3);
     }
 
-    sub_0200B60C(*v1, v2, v3, v5, v4, 1);
+    StringFormatter_FormatNumber(*v1, v2, v3, v5, v4, 1);
     return 0;
 }
 

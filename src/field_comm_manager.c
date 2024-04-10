@@ -30,7 +30,7 @@
 #include "unk_02071D40.h"
 #include "party.h"
 #include "unk_02099500.h"
-#include "overlay007/ov7_02249960.h"
+#include "overlay007/communication_club.h"
 #include "overlay023/ov23_02241F74.h"
 
 static void FieldCommMan_RunTask(SysTask * param0, void * param1);

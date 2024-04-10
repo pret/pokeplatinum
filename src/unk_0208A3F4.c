@@ -713,7 +713,7 @@ void sub_0208B090 (UnkStruct_02089688 * param0, int param1, int param2, int para
     v3 = MessageLoader_GetNewStrbuf(v6, 2 + param1);
 
     {
-        sub_0201A7A0(&v7);
+        Window_Init(&v7);
         BGL_AddFramelessWindow(param0->unk_2C0.unk_0C, &v7, 10, 2, 0, 0);
         sub_0201D78C(&v7, 2, v3, sub_02002EEC(2, v3, 0, 80), 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((2 & 0xff) << 0))), NULL);
     }
@@ -751,7 +751,7 @@ void sub_0208B090 (UnkStruct_02089688 * param0, int param1, int param2, int para
 
 void sub_0208B1C4 (BGL * param0, Window * param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8)
 {
-    sub_0201A7A0(param1);
+    Window_Init(param1);
     BGL_AddWindow(param0, param1, param2, param3, param4, param5, param6, 12, param7);
     sub_0200E060(param1, 1, 1, 11);
     BGL_FillWindow(param1, 15);

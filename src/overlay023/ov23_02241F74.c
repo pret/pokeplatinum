@@ -224,11 +224,11 @@ BOOL ov23_0224223C (TrainerInfo * param0, TrainerInfo * param1, int param2, Strb
     Strbuf* v1;
 
     if (param0 && param1) {
-        v0 = sub_0200B358(4);
+        v0 = StringFormatter_New(4);
         v1 = Strbuf_Init((50 * 2), 4);
 
-        sub_0200B498(v0, 0, param0);
-        sub_0200B498(v0, 1, param1);
+        StringFormatter_FormatPlayerName(v0, 0, param0);
+        StringFormatter_FormatPlayerName(v0, 1, param1);
         MessageLoader_GetStrbuf(ov23_02253E3C(ov23_0224219C()), param2, v1);
         StringFormatter_Format(v0, param3, v1);
         Strbuf_Free(v1);
@@ -246,10 +246,10 @@ BOOL ov23_022422A8 (TrainerInfo * param0, int param1, int param2, Strbuf *param3
     Strbuf* v1;
 
     if (param0) {
-        v0 = sub_0200B358(4);
+        v0 = StringFormatter_New(4);
         v1 = Strbuf_Init((50 * 2), 4);
 
-        sub_0200B498(v0, param1, param0);
+        StringFormatter_FormatPlayerName(v0, param1, param0);
         MessageLoader_GetStrbuf(ov23_02253E3C(ov23_0224219C()), param2, v1);
         StringFormatter_Format(v0, param3, v1);
         Strbuf_Free(v1);
@@ -360,7 +360,7 @@ BOOL ov23_02242458 (void)
 
         if (!Unk_ov23_02257748->unk_14B) {
             if (sub_02057FAC() && !ov23_0224ACC0(CommSys_CurNetId())) {
-                if (sub_020360F0()) {
+                if (CommSys_CheckError()) {
                     return 0;
                 }
 
@@ -1060,10 +1060,10 @@ void ov23_02243038 (int param0)
         if (Unk_ov23_02257748->unk_DC[param0] == NULL) {
             Unk_ov23_02257748->unk_DC[param0] = Strbuf_Init((50 * 2), 15);
 
-            v0 = sub_0200B358(11);
+            v0 = StringFormatter_New(11);
             v1 = Strbuf_Init((50 * 2), 11);
 
-            sub_0200B498(v0, 0, CommInfo_TrainerInfo(param0));
+            StringFormatter_FormatPlayerName(v0, 0, CommInfo_TrainerInfo(param0));
             MessageLoader_GetStrbuf(ov23_02253E3C(ov23_0224219C()), 115, v1);
             StringFormatter_Format(v0, Unk_ov23_02257748->unk_DC[param0], v1);
             Strbuf_Free(v1);

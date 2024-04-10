@@ -2636,7 +2636,7 @@ static void ov16_0226A98C (UnkStruct_ov16_02268A14 * param0, UnkStruct_ov16_0226
     }
 
     if (param10 == NULL) {
-        sub_0201A7A0(&v1);
+        Window_Init(&v1);
         BGL_AddFramelessWindow(v5, &v1, v8, 16 / 8, 0, 0);
         PrintStringWithColorAndMargins(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
     } else {
@@ -2822,8 +2822,8 @@ void ov16_0226AC98 (UnkStruct_ov16_02268A14 * param0, int param1, const UnkStruc
         }
 
         if ((v0->unk_78[v4].unk_00.unk_0C == NULL) || (v0->unk_C8[v4].unk_00.unk_0C == NULL) || (param2->unk_00[v4] != 0) || (param2->unk_00[v4] != v0->unk_00.unk_00[v4]) || (param2->unk_08[v4] != v0->unk_00.unk_08[v4]) || (param2->unk_10[v4] != v0->unk_00.unk_10[v4])) {
-            sub_0200B60C(v10, 0, param2->unk_08[v4], 2, 1, 0);
-            sub_0200B60C(v10, 1, param2->unk_10[v4], 2, 1, 0);
+            StringFormatter_FormatNumber(v10, 0, param2->unk_08[v4], 2, 1, 0);
+            StringFormatter_FormatNumber(v10, 1, param2->unk_10[v4], 2, 1, 0);
             StringFormatter_Format(v10, v7, v8);
 
             v11 = ov16_0226B924(param2->unk_08[v4], param2->unk_10[v4]);
@@ -2858,7 +2858,7 @@ static void ov16_0226AEA0 (UnkStruct_ov16_02268A14 * param0, const Strbuf *param
         BGL_DeleteWindow(&param3->unk_00);
     }
 
-    sub_0201A7A0(&param3->unk_00);
+    Window_Init(&param3->unk_00);
     BGL_AddFramelessWindow(BattleSystem_BGL(param0->unk_00), &param3->unk_00, v1, 16 / 8, 0, 0);
     PrintStringWithColorAndMargins(&param3->unk_00, param2, param1, 0, 0, 0xff, param4, 0, 0, NULL);
 }

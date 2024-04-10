@@ -186,7 +186,7 @@ BOOL sub_02046F5C (UnkStruct_0203E724 * param0)
     u16 v2 = inline_02049538(param0);
     u16 v3 = inline_02049538(param0);
 
-    sub_0200B60C(*v1, v3, v2, 1, 0, 1);
+    StringFormatter_FormatNumber(*v1, v3, v2, 1, 0, 1);
     return 0;
 }
 

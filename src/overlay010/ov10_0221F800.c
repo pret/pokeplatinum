@@ -702,7 +702,7 @@ static u8 ov10_0221FD00 (UnkStruct_ov10_0221FB28 * param0)
         param0->unk_B71 = 2;
         param0->unk_B68 = 12;
         param0->unk_BA0 = MessageLoader_Init(0, 26, 605, param0->unk_00->unk_24);
-        param0->unk_BA4 = sub_0200B358(param0->unk_00->unk_24);
+        param0->unk_BA4 = StringFormatter_New(param0->unk_00->unk_24);
         param0->unk_BA8 = Strbuf_Init((2 * 160), param0->unk_00->unk_24);
         param0->unk_BB0 = 1;
 
@@ -2379,7 +2379,7 @@ static void ov10_02222720 (UnkStruct_ov10_0221FB28 * param0)
 
     v0 = MessageLoader_Init(0, 26, 453, param0->unk_00->unk_24);
     v1 = sub_0200C440(15, 14, 0, param0->unk_00->unk_24);
-    v2 = sub_0200B358(param0->unk_00->unk_24);
+    v2 = StringFormatter_New(param0->unk_00->unk_24);
     v3 = Strbuf_Init(32, param0->unk_00->unk_24);
 
     for (v4 = 0; v4 < 6; v4++) {

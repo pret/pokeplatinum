@@ -95,7 +95,7 @@ Strbuf* sub_02014B34 (const Sentence * param0, u32 param1)
     MessageLoader * v2;
     int v3;
 
-    v1 = sub_0200B358(param1);
+    v1 = StringFormatter_New(param1);
 
     for (v3 = 0; v3 < 2; v3++) {
         if (param0->words[v3] != 0xffff) {

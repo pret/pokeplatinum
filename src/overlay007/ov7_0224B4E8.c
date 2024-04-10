@@ -94,7 +94,7 @@ static const UnkStruct_ov84_02240FA8 Unk_ov7_0224F188 = {
 static void ov7_0224B4E8 (UnkStruct_ov7_0224B4E8 * param0, int param1)
 {
     if (sub_0201A7CC(&param0->unk_54) == 0) {
-        sub_0201A7A0(&param0->unk_54);
+        Window_Init(&param0->unk_54);
         sub_0205D8F4(param0->unk_10->unk_08, &param0->unk_54, 3);
         sub_0205D944(&param0->unk_54, sub_02025E44(param0->unk_10->unk_0C));
     } else {
@@ -360,23 +360,23 @@ static void ov7_0224B8DC (UnkStruct_ov7_0224B4E8 * param0)
 
         switch (Unk_ov7_0224F4C0[v5]) {
         case 1:
-            sub_0200B60C(v1, 0, v6, 1, 1, 1);
+            StringFormatter_FormatNumber(v1, 0, v6, 1, 1, 1);
             break;
         case 2:
-            sub_0200B60C(v1, 0, v6, 3, 0, 1);
+            StringFormatter_FormatNumber(v1, 0, v6, 3, 0, 1);
             break;
         case 3:
             if (v6 == 0) {
                 v7 = 96;
             } else {
-                sub_0200B60C(v1, 0, v6, 3, 0, 1);
+                StringFormatter_FormatNumber(v1, 0, v6, 3, 0, 1);
             }
             break;
         case 5:
             v6 = (v6 >= 0) ? (((v6 * 10 * 1000) / 254 + 5) / 10) : -(((-v6 * 10 * 1000) / 254 + 5) / 10);
 
-            sub_0200B60C(v1, 0, abs(v6 / 12), 2, 0, 1);
-            sub_0200B60C(v1, 1, abs(v6 % 12), 2, 2, 1);
+            StringFormatter_FormatNumber(v1, 0, abs(v6 / 12), 2, 0, 1);
+            StringFormatter_FormatNumber(v1, 1, abs(v6 % 12), 2, 2, 1);
 
             if (v6 == 0) {
                 v7 = 96;
@@ -386,7 +386,7 @@ static void ov7_0224B8DC (UnkStruct_ov7_0224B4E8 * param0)
             break;
         case 7:
             v6 = (v6 >= 0) ? (((v6 * 220462) + 50000) / 100000) : -(((-v6 * 220462) + 50000) / 100000);
-            sub_0200B60C(v1, 0, abs(v6), 3, 0, 1);
+            StringFormatter_FormatNumber(v1, 0, abs(v6), 3, 0, 1);
 
             if (v6 == 0) {
                 v7 = 96;
@@ -442,7 +442,7 @@ static BOOL ov7_0224BBC4 (UnkStruct_ov7_0224B4E8 * param0)
         Sound_PlayEffect(1523);
         ov7_0224B57C(param0, param0->unk_78 - 1);
         v2 = sub_02026074(param0->unk_10->unk_B0, 1);
-        sub_0200B60C(param0->unk_64, 1, v2, 1, 1, 1);
+        StringFormatter_FormatNumber(param0->unk_64, 1, v2, 1, 1, 1);
         ov7_0224B4E8(param0, 107);
         break;
     default:
@@ -450,7 +450,7 @@ static BOOL ov7_0224BBC4 (UnkStruct_ov7_0224B4E8 * param0)
         Sound_PlayEffect(1523);
         ov7_0224B57C(param0, param0->unk_78 - 1);
         v2 = sub_02026074(param0->unk_10->unk_B0, 3);
-        sub_0200B60C(param0->unk_64, 1, v2, 3, 0, 1);
+        StringFormatter_FormatNumber(param0->unk_64, 1, v2, 3, 0, 1);
         ov7_0224B4E8(param0, 121);
         break;
     }
@@ -566,7 +566,7 @@ static UnkStruct_ov7_0224B4E8 * ov7_0224BE10 (FieldSystem * param0)
     v0->unk_7C = 0;
     v0->unk_10 = param0;
     v0->unk_10->unk_B0 = NULL;
-    v0->unk_64 = sub_0200B358(4);
+    v0->unk_64 = StringFormatter_New(4);
     v0->unk_68 = MessageLoader_Init(0, 26, 221, 4);
     v0->unk_14 = Strbuf_Init((90 * 2), 4);
     v0->unk_18 = Strbuf_Init((90 * 2), 4);

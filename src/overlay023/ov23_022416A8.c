@@ -499,7 +499,7 @@ BOOL ov23_02241D58 (Strbuf *param0)
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
         if (Unk_ov23_02257744->unk_468[v0] != 0) {
-            v1 = sub_0200B358(4);
+            v1 = StringFormatter_New(4);
             v2 = Strbuf_Init((50 * 2), 4);
 
             sub_0200BACC(v1, 2, Unk_ov23_02257744->unk_468[v0]);

@@ -2125,7 +2125,7 @@ static int ov98_02249238 (UnkStruct_ov98_02247704 * param0)
         v0 = SaveData_Save(param0->unk_00->unk_04);
 
         if (v0 == 2) {
-            sub_0200B498(param0->unk_20, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_04));
+            StringFormatter_FormatPlayerName(param0->unk_20, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_04));
             ov98_02249714(param0, param0->unk_34, 33, 0, 0xf0f);
             Sound_PlayEffect(1563);
         } else {
@@ -2461,7 +2461,7 @@ static int ov98_022497F8 (UnkStruct_ov98_02247704 * param0)
         if (ov98_02246FA4(v0) == sub_02030D98(v0->unk_04, 3)) {
             ov98_02249ACC(sub_02030D50(v0->unk_04), v2, 108);
             for (v3 = 0; v3 < 4; v3++)
-                sub_0200B60C(param0->unk_20, v3, v2[v3], 4, 2, 1);
+                StringFormatter_FormatNumber(param0->unk_20, v3, v2[v3], 4, 2, 1);
             v1 = 41;
         } else {
             v1 = 40;
@@ -2528,7 +2528,7 @@ static void ov98_02249964 (UnkStruct_ov98_02247704 * param0, int param1, int par
         v0 = 11;
     }
 
-    sub_0200B60C(param0->unk_20, 0, param2, 5, 2, 1);
+    StringFormatter_FormatNumber(param0->unk_20, 0, param2, 5, 2, 1);
 
     sub_0200E084(&param0->unk_48, 1);
     ov98_02249900(param0, v0);

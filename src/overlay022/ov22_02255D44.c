@@ -1442,7 +1442,7 @@ static void ov22_022574EC (UnkStruct_ov22_02255D44 * param0)
 static void ov22_022574F4 (UnkStruct_ov22_02255D44 * param0, u32 param1)
 {
     ov22_022572A0(param0, param1, 2, 19, 27, 4);
-    param0->unk_744 = sub_0200B358(13);
+    param0->unk_744 = StringFormatter_New(13);
 }
 
 static u32 ov22_0225751C (UnkStruct_ov22_02255D44 * param0, u32 param1)
@@ -1452,7 +1452,7 @@ static u32 ov22_0225751C (UnkStruct_ov22_02255D44 * param0, u32 param1)
 
 static void ov22_02257524 (UnkStruct_ov22_02255D44 * param0, int param1, int param2)
 {
-    sub_0200B60C(param0->unk_744, param1, param2, 2, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_744, param1, param2, 2, 0, 1);
 }
 
 static void ov22_02257540 (UnkStruct_ov22_02255D44 * param0)

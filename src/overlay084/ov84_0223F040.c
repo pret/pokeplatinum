@@ -248,7 +248,7 @@ void ov84_0223F584 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
 
     v3 = MoveTable_CalcMaxPP(v2, 0);
     v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 90);
-    sub_0200B60C(param0->unk_118, 0, v3, 2, 1, 1);
+    StringFormatter_FormatNumber(param0->unk_118, 0, v3, 2, 1, 1);
     StringFormatter_Format(param0->unk_118, param0->unk_3F8, v1);
     Strbuf_Free(v1);
     sub_0201D78C(v0, 0, param0->unk_3F8, 48, 16, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -261,7 +261,7 @@ void ov84_0223F584 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
         v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 91);
     }
 
-    sub_0200B60C(param0->unk_118, 0, v3, 3, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_118, 0, v3, 3, 0, 1);
     StringFormatter_Format(param0->unk_118, param0->unk_3F8, v1);
     Strbuf_Free(v1);
     sub_0201D78C(v0, 0, param0->unk_3F8, 96 + 64, 16, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -273,7 +273,7 @@ void ov84_0223F584 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
         v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 91);
     }
 
-    sub_0200B60C(param0->unk_118, 0, v3, 3, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_118, 0, v3, 3, 0, 1);
     StringFormatter_Format(param0->unk_118, param0->unk_3F8, v1);
     Strbuf_Free(v1);
     sub_0201D78C(v0, 0, param0->unk_3F8, 96 + 64, 32, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -304,7 +304,7 @@ void ov84_0223F81C (UnkStruct_ov84_0223B5A0 * param0, u16 param1, u16 param2, u3
 
     v0 = Strbuf_Init(10, 6);
 
-    sub_0200B60C(param0->unk_118, 0, param1, 3, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_118, 0, param1, 3, 0, 1);
     StringFormatter_Format(param0->unk_118, v0, param0->unk_400);
 
     v1 = sub_02002D7C(0, v0, 0);
@@ -543,7 +543,7 @@ void ov84_0223FF44 (UnkStruct_ov84_0223B5A0 * param0)
     BGL_FillWindow(v0, 15);
     v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 84);
 
-    sub_0200B60C(param0->unk_118, 0, param0->unk_488, 3, 2, 1);
+    StringFormatter_FormatNumber(param0->unk_118, 0, param0->unk_488, 3, 2, 1);
     StringFormatter_Format(param0->unk_118, param0->unk_3F8, v1);
     PrintStringSimple(v0, 0, param0->unk_3F8, 16, 8, 0xff, NULL);
     sub_0201A9A4(v0);
@@ -577,7 +577,7 @@ void ov84_0223FFF0 (UnkStruct_ov84_0223B5A0 * param0)
         ov84_0223F508(param0, v0->unk_06 + v0->unk_04 - 1, 0);
     }
 
-    sub_0200B60C(param0->unk_118, 1, param0->unk_488, 3, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_118, 1, param0->unk_488, 3, 0, 1);
     StringFormatter_Format(param0->unk_118, param0->unk_3F8, v1);
     Strbuf_Free(v1);
 
@@ -633,14 +633,14 @@ void ov84_02240148 (UnkStruct_ov84_0223B5A0 * param0, u8 param1)
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 80);
 
-    sub_0200B60C(param0->unk_118, 0, param0->unk_488, 2, 2, 1);
+    StringFormatter_FormatNumber(param0->unk_118, 0, param0->unk_488, 2, 2, 1);
     StringFormatter_Format(param0->unk_118, param0->unk_3F8, v1);
     PrintStringSimple(v0, 0, param0->unk_3F8, 0, 8, 0xff, NULL);
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 81);
 
-    sub_0200B60C(param0->unk_118, 0, param0->unk_48C * param0->unk_488, 6, 1, 1);
+    StringFormatter_FormatNumber(param0->unk_118, 0, param0->unk_48C * param0->unk_488, 6, 1, 1);
     StringFormatter_Format(param0->unk_118, param0->unk_3F8, v1);
 
     v2 = sub_02002D7C(0, param0->unk_3F8, 0);
@@ -672,7 +672,7 @@ void ov84_02240248 (UnkStruct_ov84_0223B5A0 * param0, u8 param1)
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 79);
 
-    sub_0200B60C(param0->unk_118, 0, TrainerInfo_Money(param0->unk_CC), 6, 1, 1);
+    StringFormatter_FormatNumber(param0->unk_118, 0, TrainerInfo_Money(param0->unk_CC), 6, 1, 1);
     StringFormatter_Format(param0->unk_118, param0->unk_3F8, v1);
 
     v2 = sub_02002D7C(0, param0->unk_3F8, 0);
@@ -697,7 +697,7 @@ void ov84_02240328 (UnkStruct_ov84_0223B5A0 * param0)
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 109);
-    sub_0200B60C(param0->unk_118, 0, sub_0202AC98(Poffin_GetSavedataBlock(param0->unk_C4->unk_00)), 3, 1, 1);
+    StringFormatter_FormatNumber(param0->unk_118, 0, sub_0202AC98(Poffin_GetSavedataBlock(param0->unk_C4->unk_00)), 3, 1, 1);
     StringFormatter_Format(param0->unk_118, param0->unk_3F8, v1);
     Strbuf_Free(v1);
 

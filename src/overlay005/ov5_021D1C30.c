@@ -31,7 +31,7 @@
 #include "map_header.h"
 #include "unk_0203A378.h"
 #include "unk_0203A6DC.h"
-#include "unk_0203A9C8.h"
+#include "field_menu.h"
 #include "unk_0203C954.h"
 #include "unk_0203E880.h"
 #include "unk_020507CC.h"
@@ -351,7 +351,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
     if (param0->unk_00_2) {
         if (sub_0203A9C8(param1) == 1) {
             Sound_PlayEffect(1533);
-            sub_0203A9E0(param1);
+            FieldMenu_Init(param1);
             return 1;
         }
     }
@@ -586,7 +586,7 @@ int ov5_021D2368 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
 
     if (param0->unk_00_2) {
         Sound_PlayEffect(1533);
-        sub_0203A9E0(param1);
+        FieldMenu_Init(param1);
         return 1;
     }
 

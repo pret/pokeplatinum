@@ -806,12 +806,12 @@ static void ov104_02237284 (UnkStruct_ov104_022320B4 * param0, Window * param1, 
 
     v0 = MessageLoader_Init(0, 26, 199, 11);
 
-    sub_0200B60C(param0->unk_44, 0, param3, 4, 1, 1);
+    StringFormatter_FormatNumber(param0->unk_44, 0, param3, 4, 1, 1);
     MessageLoader_GetStrbuf(v0, 2, v1);
 
     StringFormatter_Format(param0->unk_44, v2, v1);
     PrintStringSimple(param1, 0, v2, 16, 2 * 8, 0xff, NULL);
-    sub_0200B498(param0->unk_44, 0, param2);
+    StringFormatter_FormatPlayerName(param0->unk_44, 0, param2);
 
     MessageLoader_GetStrbuf(v0, 0, v1);
 

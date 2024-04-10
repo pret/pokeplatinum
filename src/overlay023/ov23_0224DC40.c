@@ -352,7 +352,7 @@ static BOOL ov23_0224DF1C (SysTask * param0, void * param1)
     v1 = sub_02001288(v0->unk_20);
     ov23_0224F270(v0);
 
-    if (sub_020360F0()) {
+    if (CommSys_CheckError()) {
         v0->unk_37 = 3;
         ov23_0224E244(param0, v0);
         return 1;
@@ -428,7 +428,7 @@ static BOOL ov23_0224E05C (SysTask * param0, void * param1)
     v1 = sub_02001288(v0->unk_20);
     ov23_0224F270(v0);
 
-    if (sub_020360F0()) {
+    if (CommSys_CheckError()) {
         ov23_0224E244(param0, v0);
         v0->unk_37 = 3;
         return 1;
@@ -509,7 +509,7 @@ static BOOL ov23_0224E1E0 (SysTask * param0, void * param1)
     v1 = sub_02001288(v0->unk_20);
     ov23_0224F270(v0);
 
-    if (sub_020360F0()) {
+    if (CommSys_CheckError()) {
         v1 = 0xfffffffe;
     }
 
@@ -1031,7 +1031,7 @@ static BOOL ov23_0224EB74 (SysTask * param0, void * param1)
         Sound_PlayEffect(1500);
     }
 
-    if (sub_020360F0()) {
+    if (CommSys_CheckError()) {
         v1 = 0xfffffffe;
     }
 

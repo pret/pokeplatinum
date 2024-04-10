@@ -402,7 +402,7 @@ int ov113_0225C700 (OverlayManager * param0, int * param1)
     sub_0201E450(4);
     sub_02002BB8(2, 118);
 
-    v0->unk_2C = sub_0200B358(118);
+    v0->unk_2C = StringFormatter_New(118);
     v0->unk_30 = MessageLoader_Init(0, 26, 650, 118);
     v0->unk_10 = sub_02012744(4, 118);
     v0->unk_160 = NARC_ctor(NARC_INDEX_GRAPHIC__FOOTPRINT_BOARD, 118);
@@ -1532,7 +1532,7 @@ static void ov113_0225E15C (UnkStruct_ov113_0225DBCC * param0, UnkStruct_ov113_0
 
     ov113_0225E264(param2, param3, &v7, &v8);
 
-    sub_0201A7A0(&v1);
+    Window_Init(&v1);
     BGL_AddFramelessWindow(v5, &v1, v8, 16 / 8, 0, 0);
     PrintStringWithColorAndMargins(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
 

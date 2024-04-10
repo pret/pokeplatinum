@@ -313,7 +313,7 @@ int ov86_0223B140 (OverlayManager * param0, int * param1)
     v0->unk_1C50 = MessageLoader_Init(0, 26, 351, 63);
     v0->unk_1C48 = Strbuf_Init(500, 63);
     v0->unk_1C4C = Strbuf_Init(500, 63);
-    v0->unk_1C44 = sub_0200B358(63);
+    v0->unk_1C44 = StringFormatter_New(63);
     v0->unk_1C54 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 63);
 
     {
@@ -1299,7 +1299,7 @@ static void ov86_0223C47C (UnkStruct_ov86_0223C3E4 * param0, int param1)
 static void ov86_0223C4DC (UnkStruct_ov86_0223C3E4 * param0)
 {
     sub_0200B538(param0->unk_14, 0, Pokemon_GetBoxPokemon(param0->unk_24));
-    sub_0200B60C(param0->unk_14, 1, Pokemon_GetLevel(param0->unk_24), 3, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_14, 1, Pokemon_GetLevel(param0->unk_24), 3, 0, 1);
 
     switch (Pokemon_GetGender(param0->unk_24)) {
     case 0:
@@ -1431,11 +1431,11 @@ static void ov86_0223C72C (UnkStruct_ov86_0223B3C8 * param0)
 
     v0 = (256 - sub_02002D7C(0, param0->unk_1C48, 0)) / 2;
     sub_0201D78C(&param0->unk_14, 0, param0->unk_1C48, v0, 4, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
-    sub_0200B498(param0->unk_1C44, 0, param0->unk_0C->unk_00);
+    StringFormatter_FormatPlayerName(param0->unk_1C44, 0, param0->unk_0C->unk_00);
 
-    sub_0200B60C(param0->unk_1C44, 1, TrainerInfo_ID_LowHalf(param0->unk_0C->unk_00), 5, 2, 1);
-    sub_0200B60C(param0->unk_1C44, 2, sub_0202CC58(param0->unk_0C->unk_08), 3, 0, 1);
-    sub_0200B60C(param0->unk_1C44, 3, sub_0202CC5C(param0->unk_0C->unk_08), 2, 2, 1);
+    StringFormatter_FormatNumber(param0->unk_1C44, 1, TrainerInfo_ID_LowHalf(param0->unk_0C->unk_00), 5, 2, 1);
+    StringFormatter_FormatNumber(param0->unk_1C44, 2, sub_0202CC58(param0->unk_0C->unk_08), 3, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_1C44, 3, sub_0202CC5C(param0->unk_0C->unk_08), 2, 2, 1);
     MessageLoader_GetStrbuf(param0->unk_1C50, 13, param0->unk_1C4C);
     StringFormatter_Format(param0->unk_1C44, param0->unk_1C48, param0->unk_1C4C);
 

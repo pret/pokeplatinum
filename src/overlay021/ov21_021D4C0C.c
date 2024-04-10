@@ -132,7 +132,7 @@ Window * ov21_021D4D6C (UnkStruct_ov21_021D4C0C * param0, int param1, int param2
 
     v0 = sub_0201A778(param0->unk_14, 1);
 
-    sub_0201A7A0(v0);
+    Window_Init(v0);
     BGL_AddFramelessWindow(param0->unk_08, v0, param1, param2, 0, 0);
 
     return v0;

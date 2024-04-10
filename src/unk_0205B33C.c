@@ -1290,8 +1290,8 @@ void sub_0205C040 (StringFormatter * param0, int param1, int param2, TrainerInfo
         return;
     }
 
-    sub_0200B498(param0, 0, v0);
-    sub_0200B498(param0, 1, param3);
+    StringFormatter_FormatPlayerName(param0, 0, v0);
+    StringFormatter_FormatPlayerName(param0, 1, param3);
 
     v3 = TrainerInfo_RegionCode(v0);
 

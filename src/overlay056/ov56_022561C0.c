@@ -198,7 +198,7 @@ static void ov56_02256294 (UnkStruct_ov56_02256468 * param0)
     param0->unk_2D8.unk_02 = 0;
     param0->unk_2D8.unk_04 = 0;
     param0->unk_2D8.unk_06 = 0;
-    param0->unk_18 = sub_0200B358(4);
+    param0->unk_18 = StringFormatter_New(4);
     param0->unk_1C = MessageLoader_Init(0, 26, 635, 4);
     param0->unk_20 = sub_02006F6C(74, 3, 1, &(param0->unk_24), 4);
 }
@@ -786,7 +786,7 @@ static Strbuf* ov56_02256E5C (UnkStruct_02027F8C * param0, u32 param1, StringFor
 
     if (v2 > 0) {
         if (v2 == 1) {
-            sub_0200B498(param2, 0, param4);
+            StringFormatter_FormatPlayerName(param2, 0, param4);
         } else if (v2 >= 2) {
             int v3 = v2 - 2;
 

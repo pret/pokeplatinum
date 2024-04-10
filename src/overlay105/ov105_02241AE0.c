@@ -2635,7 +2635,7 @@ static void ov105_02244E94 (UnkStruct_ov105_02241FF4 * param0)
 
 static void ov105_02244EE8 (UnkStruct_ov105_02241FF4 * param0, u32 param1, s32 param2)
 {
-    sub_0200B60C(param0->unk_20, param1, param2, 1, 0, 1);
+    StringFormatter_FormatNumber(param0->unk_20, param1, param2, 1, 0, 1);
     return;
 }
 
@@ -2851,7 +2851,7 @@ static void ov105_0224531C (UnkStruct_ov105_02241FF4 * param0)
     ov105_0224472C(param0);
 
     param0->unk_1C = MessageLoader_Init(1, 26, 364, 93);
-    param0->unk_20 = sub_0200B358(93);
+    param0->unk_20 = StringFormatter_New(93);
     param0->unk_24 = Strbuf_Init(800, 93);
     param0->unk_28 = Strbuf_Init(800, 93);
 

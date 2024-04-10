@@ -767,7 +767,7 @@ void sub_020829DC (GameWindowLayout * param0)
 
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 191);
 
-        sub_0200B60C(param0->unk_6A0, 0, v3[v2] - param0->unk_B14[v2], 2, 0, 1);
+        StringFormatter_FormatNumber(param0->unk_6A0, 0, v3[v2] - param0->unk_B14[v2], 2, 0, 1);
         StringFormatter_Format(param0->unk_6A0, param0->unk_6A4, v1);
         Strbuf_Free(v1);
 
@@ -792,7 +792,7 @@ void sub_02082B58 (GameWindowLayout * param0)
     v0 = MessageLoader_GetNewStrbuf(param0->unk_69C, 192);
 
     for (v2 = 0; v2 < 6; v2++) {
-        sub_0200B60C(param0->unk_6A0, 0, param0->unk_B14[v2], 3, 0, 1);
+        StringFormatter_FormatNumber(param0->unk_6A0, 0, param0->unk_B14[v2], 3, 0, 1);
         StringFormatter_Format(param0->unk_6A0, param0->unk_6A4, v0);
 
         v1 = sub_02002D7C(0, param0->unk_6A4, 0);

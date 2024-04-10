@@ -2356,15 +2356,15 @@ static void BattleMessage_ItemName (BattleSystem * param0, u32 param1, int param
 
 static void BattleMessage_Number (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B60C(param0->strFormatter, param1, param2, 5, 0, 1);
+    StringFormatter_FormatNumber(param0->strFormatter, param1, param2, 5, 0, 1);
 }
 
 static void BattleMessage_NumberDigits (BattleSystem * param0, u32 param1, int param2, int param3)
 {
     if (param3) {
-        sub_0200B60C(param0->strFormatter, param1, param2, param3, 1, 1);
+        StringFormatter_FormatNumber(param0->strFormatter, param1, param2, param3, 1, 1);
     } else {
-        sub_0200B60C(param0->strFormatter, param1, param2, 5, 1, 1);
+        StringFormatter_FormatNumber(param0->strFormatter, param1, param2, 5, 1, 1);
     }
 }
 

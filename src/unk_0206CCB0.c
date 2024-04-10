@@ -748,14 +748,14 @@ static int sub_0206D230 (FieldSystem * param0, StringFormatter * param1, UnkStru
         sub_0206CDD0(param1, 0, param2);
         sub_0206CE74(param1, 1, v0->unk_06, v0->unk_08, v0->unk_09, v0->unk_0A);
         sub_0200B70C(param1, 2, v0->unk_22);
-        sub_0200B60C(param1, 3, v0->unk_04, 3, 0, 1);
+        StringFormatter_FormatNumber(param1, 3, v0->unk_04, 3, 0, 1);
         sub_0206CD94(param1, 4, v0->unk_0C, v0->unk_08, v0->unk_09, 1);
         return 0;
     } else {
         sub_0206CDD0(param1, 0, param2);
         sub_0206CE74(param1, 1, v0->unk_06, v0->unk_08, v0->unk_09, v0->unk_0A);
         sub_0200B70C(param1, 2, v0->unk_22);
-        sub_0200B60C(param1, 3, v0->unk_04, 3, 0, 1);
+        StringFormatter_FormatNumber(param1, 3, v0->unk_04, 3, 0, 1);
         return 1;
     }
 }
@@ -765,7 +765,7 @@ static int sub_0206D2E0 (FieldSystem * param0, StringFormatter * param1, UnkStru
     UnkStruct_0206D140 * v0 = ov6_02246498(param2);
 
     sub_0206CDD0(param1, 0, param2);
-    sub_0200B60C(param1, 1, v0->unk_04, 3, 0, 1);
+    StringFormatter_FormatNumber(param1, 1, v0->unk_04, 3, 0, 1);
 
     if (v0->unk_00 == 0x1) {
         return 2;
@@ -910,7 +910,7 @@ static int sub_0206D530 (FieldSystem * param0, StringFormatter * param1, UnkStru
     UnkStruct_0206D530 * v0 = (UnkStruct_0206D530 *)ov6_02246498(param2);
 
     sub_0200B70C(param1, 0, v0->unk_00);
-    sub_0200B60C(param1, 1, v0->unk_02, 3, 0, 1);
+    StringFormatter_FormatNumber(param1, 1, v0->unk_02, 3, 0, 1);
     sub_0206CDD0(param1, 2, param2);
     sub_0200B77C(param1, 3, v0->unk_00);
 
@@ -990,7 +990,7 @@ static int sub_0206D6E0 (FieldSystem * param0, StringFormatter * param1, UnkStru
 
     sub_0206CDD0(param1, 0, param2);
     sub_0200BA94(param1, 1, v0->unk_00);
-    sub_0200B60C(param1, 2, v0->unk_02, 3, 0, 1);
+    StringFormatter_FormatNumber(param1, 2, v0->unk_02, 3, 0, 1);
 
     return 24;
 }
@@ -1021,7 +1021,7 @@ static int sub_0206D75C (FieldSystem * param0, StringFormatter * param1, UnkStru
 
     sub_0206CDD0(param1, 0, param2);
     sub_0206CE74(param1, 1, v0->unk_00, v0->unk_02, v0->unk_03, v0->unk_04);
-    sub_0200B60C(param1, 2, v0->unk_05, 2, 0, 1);
+    StringFormatter_FormatNumber(param1, 2, v0->unk_05, 2, 0, 1);
 
     return 26;
 }
@@ -1135,7 +1135,7 @@ static int sub_0206D94C (FieldSystem * param0, StringFormatter * param1, UnkStru
 
     sub_0206CDD0(param1, 0, param2);
     sub_0200B70C(param1, 1, v0->unk_00);
-    sub_0200B60C(param1, 2, v0->unk_04, 2, 0, 1);
+    StringFormatter_FormatNumber(param1, 2, v0->unk_04, 2, 0, 1);
 
     return 30;
 }
@@ -1194,7 +1194,7 @@ static void sub_0206DA84 (FieldSystem * param0, StringFormatter * param1, UnkStr
     GF_ASSERT(TrainerInfo_Size() == v0->unk_00);
 
     sub_0206CDD0(param1, 0, param2);
-    sub_0200B498(param1, 1, v1);
+    StringFormatter_FormatPlayerName(param1, 1, v1);
 }
 
 void sub_0206DAB8 (FieldSystem * param0, const TrainerInfo * param1)
@@ -1297,7 +1297,7 @@ static int sub_0206DBE8 (FieldSystem * param0, StringFormatter * param1, UnkStru
 
     sub_0206CDD0(param1, 0, param2);
     sub_0206CE74(param1, 1, v0->unk_02, v0->unk_04, v0->unk_05, v0->unk_06);
-    sub_0200B60C(param1, 2, v0->unk_00, 4, 0, 1);
+    StringFormatter_FormatNumber(param1, 2, v0->unk_00, 4, 0, 1);
 
     if (v0->unk_07) {
         return 0;
@@ -1337,8 +1337,8 @@ static int sub_0206DC9C (FieldSystem * param0, StringFormatter * param1, UnkStru
     {
         u32 v1 = (((v0->unk_08 * 1000) / 254 + 5) / 10);
 
-        sub_0200B60C(param1, 2, v1 / 10, 3, 0, 1);
-        sub_0200B60C(param1, 3, v1 % 10, 1, 0, 1);
+        StringFormatter_FormatNumber(param1, 2, v1 / 10, 3, 0, 1);
+        StringFormatter_FormatNumber(param1, 3, v1 % 10, 1, 0, 1);
     }
 
     return 2;
@@ -1371,9 +1371,9 @@ static int sub_0206DD5C (FieldSystem * param0, StringFormatter * param1, UnkStru
     UnkStruct_0206DD5C * v0 = ov6_02246498(param2);
 
     sub_0206CDD0(param1, 0, param2);
-    sub_0200B60C(param1, 1, v0->unk_08, 10, 0, 1);
-    sub_0200B60C(param1, 2, v0->unk_00, 6, 0, 1);
-    sub_0200B60C(param1, 3, v0->unk_04, 6, 0, 1);
+    StringFormatter_FormatNumber(param1, 1, v0->unk_08, 10, 0, 1);
+    StringFormatter_FormatNumber(param1, 2, v0->unk_00, 6, 0, 1);
+    StringFormatter_FormatNumber(param1, 3, v0->unk_04, 6, 0, 1);
 
     return 3;
 }
@@ -1479,7 +1479,7 @@ static int sub_0206DE80 (FieldSystem * param0, StringFormatter * param1, UnkStru
     }
 
     sub_0200B668(param1, 2, v0->unk_16);
-    sub_0200B60C(param1, 3, v0->unk_17, 3, 0, 1);
+    StringFormatter_FormatNumber(param1, 3, v0->unk_17, 3, 0, 1);
 
     return 4;
 }
@@ -1513,7 +1513,7 @@ static int sub_0206DF14 (FieldSystem * param0, StringFormatter * param1, UnkStru
         v0 = 999;
     }
 
-    sub_0200B60C(param1, 2, v0, 3, 0, 1);
+    StringFormatter_FormatNumber(param1, 2, v0, 3, 0, 1);
     return 7;
 }
 
@@ -1546,7 +1546,7 @@ static int sub_0206DF88 (FieldSystem * param0, StringFormatter * param1, UnkStru
         v0 = 999;
     }
 
-    sub_0200B60C(param1, 1, v0, 3, 0, 1);
+    StringFormatter_FormatNumber(param1, 1, v0, 3, 0, 1);
 
     return 8;
 }
@@ -1576,7 +1576,7 @@ static int sub_0206E018 (FieldSystem * param0, StringFormatter * param1, UnkStru
     UnkStruct_0206E018 * v0 = ov6_02246498(param2);
 
     sub_0206CDD0(param1, 0, param2);
-    sub_0200B60C(param1, 1, v0->unk_00.unk_04, 4, 0, 1);
+    StringFormatter_FormatNumber(param1, 1, v0->unk_00.unk_04, 4, 0, 1);
 
     return 9;
 }
@@ -1606,7 +1606,7 @@ static int sub_0206E098 (FieldSystem * param0, StringFormatter * param1, UnkStru
     UnkStruct_0206E098 * v0 = ov6_02246498(param2);
 
     sub_0206CDD0(param1, 0, param2);
-    sub_0200B60C(param1, 1, v0->unk_00.unk_02, 4, 0, 1);
+    StringFormatter_FormatNumber(param1, 1, v0->unk_00.unk_02, 4, 0, 1);
 
     return 10;
 }
@@ -1634,7 +1634,7 @@ static int sub_0206E118 (FieldSystem * param0, StringFormatter * param1, UnkStru
 {
     UnkStruct_0206E118 * v0 = ov6_02246498(param2);
 
-    sub_0200B60C(param1, 0, v0->unk_00.unk_02, 4, 0, 1);
+    StringFormatter_FormatNumber(param1, 0, v0->unk_00.unk_02, 4, 0, 1);
     sub_0206CDD0(param1, 1, param2);
     sub_0200BE48(param1, 2, v0->unk_04);
 
@@ -1734,7 +1734,7 @@ static int sub_0206E300 (FieldSystem * param0, StringFormatter * param1, UnkStru
     sub_0206CE74(param1, 0, v0->unk_00.unk_02, v0->unk_00.unk_04, v0->unk_00.unk_05, v0->unk_00.unk_06);
     sub_0200BBDC(param1, 1, sub_020958B8(v0->unk_00.unk_08));
     sub_0200BBA8(param1, 2, sub_02095888(v0->unk_00.unk_07));
-    sub_0200B60C(param1, 3, v0->unk_00.unk_09, 1, 0, 1);
+    StringFormatter_FormatNumber(param1, 3, v0->unk_00.unk_09, 1, 0, 1);
     sub_0206CDD0(param1, 4, param2);
     sub_0200BE48(param1, 5, v0->unk_0A);
 
@@ -2176,7 +2176,7 @@ static int sub_0206EA10 (FieldSystem * param0, StringFormatter * param1, UnkStru
     int v1 = param0->unk_1C->unk_00;
 
     if ((v1 == 411) || ((v1 >= 412) && (v1 <= 417))) {
-        sub_0200B498(param1, 0, v0);
+        StringFormatter_FormatPlayerName(param1, 0, v0);
         sub_0200B4BC(param1, 1, param0->unk_0C);
         return 13;
     }
@@ -2234,7 +2234,7 @@ static int sub_0206EA10 (FieldSystem * param0, StringFormatter * param1, UnkStru
         return 26;
     }
 
-    sub_0200B498(param1, 0, v0);
+    StringFormatter_FormatPlayerName(param1, 0, v0);
     sub_0200B4BC(param1, 1, param0->unk_0C);
 
     return 27;
@@ -2788,7 +2788,7 @@ static int sub_0206F01C (FieldSystem * param0, StringFormatter * param1, UnkStru
         return 8;
     } else if (v1 == 1) {
         v1 = (LCRNG_Next() % 34) + 25;
-        sub_0200B60C(param1, 1, v1, 2, 0, 1);
+        StringFormatter_FormatNumber(param1, 1, v1, 2, 0, 1);
         return 9;
     } else {
         return 10;

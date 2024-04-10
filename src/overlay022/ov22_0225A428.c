@@ -214,7 +214,7 @@ static void ov22_0225A748 (Window ** param0, BGL * param1, int param2, int param
 {
     *param0 = sub_0201A778(14, 1);
 
-    sub_0201A7A0(*param0);
+    Window_Init(*param0);
     BGL_AddWindow(param1, *param0, 5, param2, param3, param4, param5, 2, param6);
     BGL_FillWindow(*param0, 15);
 

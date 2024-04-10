@@ -48,7 +48,7 @@ u16 CommSys_CurNetId(void);
 BOOL sub_020360D0(int param0, const void * param1);
 BOOL Link_Message(int param0);
 BOOL sub_020360E8(void);
-BOOL sub_020360F0(void);
+BOOL CommSys_CheckError(void);
 u16 sub_02036128(u16 param0);
 int sub_02036148(int param0);
 int sub_02036158(int param0);

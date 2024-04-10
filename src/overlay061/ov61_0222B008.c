@@ -96,7 +96,7 @@ int ov61_0222B008 (UnkStruct_ov62_022349A8 * param0, const UnkStruct_ov62_022411
     MI_CpuClear8(param0->unk_3B4, ov61_0222DE8C(-1));
 
     param0->unk_3F4 = MessageLoader_Init(0, 26, 695, param1->unk_04);
-    param0->unk_3F8 = sub_0200B358(param1->unk_04);
+    param0->unk_3F8 = StringFormatter_New(param1->unk_04);
     param0->unk_3FC = Strbuf_Init((16 * 8 * 2), param1->unk_04);
     param0->unk_18C = ov61_0222BBF0(param1->unk_04);
     param0->unk_0C.unk_00 = param1->unk_00;
@@ -756,7 +756,7 @@ static void ov61_0222BB60 (UnkStruct_ov62_022349A8 * param0, int param1, int par
         v0 = 11;
     }
 
-    sub_0200B60C(param0->unk_3F8, 0, param2, 5, 2, 1);
+    StringFormatter_FormatNumber(param0->unk_3F8, 0, param2, 5, 2, 1);
     v1 = MessageLoader_GetNewStrbuf(param0->unk_3F4, v0);
     StringFormatter_Format(param0->unk_3F8, param0->unk_3FC, v1);
     Strbuf_Free(v1);

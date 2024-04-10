@@ -159,7 +159,7 @@ void ov76_0223B98C (UnkStruct_ov76_0223DE00 * param0, int param1, int param2, in
     v1 = MessageLoader_GetNewStrbuf(v4, 5 + param1);
 
     {
-        sub_0201A7A0(&v5);
+        Window_Init(&v5);
         BGL_AddFramelessWindow(param0->unk_D4.unk_10, &v5, 10, 2, 0, 0);
         sub_0201D78C(&v5, 2, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((2 & 0xff) << 0))), NULL);
     }
@@ -496,7 +496,7 @@ void ov76_0223BF74 (BGL * param0, Window * param1, int param2, UnkStruct_ov76_02
 
     v7 = (v5 / 2);
 
-    sub_0201A7A0(param1);
+    Window_Init(param1);
     BGL_AddWindow(param0, param1, param2, v2, v3, v4, v5, 14, v6);
 
     param3->unk_D4.unk_C8 = sub_02013A04(v7, 53);
@@ -958,7 +958,7 @@ void ov76_0223CA30 (Window * param0, int param1)
 
 void ov76_0223CA98 (BGL * param0, Window * param1, int param2, int param3, int param4, int param5, int param6, int param7)
 {
-    sub_0201A7A0(param1);
+    Window_Init(param1);
     BGL_AddWindow(param0, param1, param2, param3, param4, param5, param6, 14, param7);
     sub_0200E060(param1, 1, 1, 12);
     BGL_FillWindow(param1, 15);
@@ -967,7 +967,7 @@ void ov76_0223CA98 (BGL * param0, Window * param1, int param2, int param3, int p
 
 static void ov76_0223CAFC (BGL * param0, Window * param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8)
 {
-    sub_0201A7A0(param1);
+    Window_Init(param1);
     BGL_AddWindow(param0, param1, param2, param3, param4, param5, param6, param8, param7);
     BGL_FillWindow(param1, 15);
     sub_0201A954(param1);

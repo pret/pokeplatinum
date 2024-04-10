@@ -310,8 +310,8 @@ int ov88_0223B140 (OverlayManager * param0, int * param1)
 
     v0->unk_174 = sub_02018340(26);
     v0->unk_178 = sub_0200B368(12, (10 + 1) * 2, 26);
-    v0->unk_17C = sub_0200B358(26);
-    v0->unk_180 = sub_0200B358(26);
+    v0->unk_17C = StringFormatter_New(26);
+    v0->unk_180 = StringFormatter_New(26);
     v0->unk_184 = MessageLoader_Init(0, 26, 354, 26);
     v0->unk_40 = NULL;
 
@@ -1862,7 +1862,7 @@ static int ov88_0223D514 (UnkStruct_02095E80 * param0)
         break;
     case 0xfffffffe:
         v0 = CommInfo_TrainerInfo(param0->unk_36C4);
-        sub_0200B498(param0->unk_36CC, 0, v0);
+        StringFormatter_FormatPlayerName(param0->unk_36CC, 0, v0);
         ov88_0223D49C(param0, 59);
         param0->unk_226C = ov88_0223D4C4;
         break;
@@ -1886,7 +1886,7 @@ static int ov88_0223D5B8 (UnkStruct_02095E80 * param0)
     case 0xfffffffe:
         Sound_PlayEffect(1500);
         v1 = CommInfo_TrainerInfo(param0->unk_36C4);
-        sub_0200B498(param0->unk_36CC, 0, v1);
+        StringFormatter_FormatPlayerName(param0->unk_36CC, 0, v1);
         ov88_0223D49C(param0, 59);
         param0->unk_226C = ov88_0223D4C4;
         break;
@@ -1898,7 +1898,7 @@ static int ov88_0223D5B8 (UnkStruct_02095E80 * param0)
             TrainerInfo * v2 = TrainerInfo_New(26);
 
             TrainerInfo_SetName(v2, sub_0202AEF0(param0->unk_36EC, v0));
-            sub_0200B498(param0->unk_36CC, 0, v2);
+            StringFormatter_FormatPlayerName(param0->unk_36CC, 0, v2);
             Heap_FreeToHeap(v2);
         }
 
@@ -1956,7 +1956,7 @@ static int ov88_0223D740 (UnkStruct_02095E80 * param0)
         break;
     case 0xfffffffe:
         v0 = CommInfo_TrainerInfo(param0->unk_36C4);
-        sub_0200B498(param0->unk_36CC, 0, v0);
+        StringFormatter_FormatPlayerName(param0->unk_36CC, 0, v0);
         ov88_0223D49C(param0, 59);
         param0->unk_226C = ov88_0223D4C4;
         break;
@@ -2034,7 +2034,7 @@ static int ov88_0223D854 (UnkStruct_02095E80 * param0)
 
     if (sub_0207D688(sub_0207D990(param0->unk_04), 437, 1, 26) == 1) {
         v1 = CommInfo_TrainerInfo(param0->unk_36C4);
-        sub_0200B498(param0->unk_36CC, 0, v1);
+        StringFormatter_FormatPlayerName(param0->unk_36CC, 0, v1);
         ov88_0223D49C(param0, 57);
         param0->unk_226C = ov88_0223D7AC;
         return 0;
@@ -2064,7 +2064,7 @@ static int ov88_0223D96C (UnkStruct_02095E80 * param0)
         return 0;
     }
 
-    param0->unk_36CC = sub_0200B358(26);
+    param0->unk_36CC = StringFormatter_New(26);
     param0->unk_36D0 = MessageLoader_Init(0, 26, 675, 26);
     param0->unk_36EC = sub_0202B370(param0->unk_04);
     param0->unk_226C = ov88_0223D854;

@@ -633,7 +633,7 @@ static void ov62_022417C0 (UnkStruct_0208C06C * param0, int param1)
         for (v7 = 0; v7 < v0->unk_794; v7++) {
             v11 = &v0->unk_614[v7];
 
-            sub_0201A7A0(v11);
+            Window_Init(v11);
             BGL_AddWindow(param0->unk_14.unk_10, v11, 2, v3[v7][0], v3[v7][1], v3[v7][2], v3[v7][3], 14, v9);
             BGL_FillWindow(v11, 0x0);
 
@@ -775,7 +775,7 @@ static void ov62_02241AA4 (UnkStruct_0208C06C * param0, int param1)
         for (v7 = 0; v7 < v0->unk_798; v7++) {
             v11 = &v0->unk_6D4[v7];
 
-            sub_0201A7A0(v11);
+            Window_Init(v11);
             BGL_AddWindow(param0->unk_14.unk_10, v11, 6, v3[v7][0], v3[v7][1], v3[v7][2], v3[v7][3], 14, v9);
             BGL_FillWindow(v11, 0x0);
 
@@ -828,7 +828,7 @@ static void ov62_02241C38 (UnkStruct_0208C06C * param0)
     Window * v4;
 
     v4 = &v0->unk_614[0];
-    sub_0201A7A0(v4);
+    Window_Init(v4);
     BGL_AddWindow(param0->unk_14.unk_10, v4, 2, 3, 3, 20, 4, 14, v2);
     BGL_FillWindow(v4, 0x0);
 
@@ -839,7 +839,7 @@ static void ov62_02241C38 (UnkStruct_0208C06C * param0)
 
     v2 = 256;
     v4 = &v0->unk_6D4[0];
-    sub_0201A7A0(v4);
+    Window_Init(v4);
     BGL_AddWindow(param0->unk_14.unk_10, v4, 6, 11, 6, 10, 4, 14, v2);
     BGL_FillWindow(v4, 0x0);
     v3 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 95);
@@ -1245,7 +1245,7 @@ asm static void ov62_022422C0 (UnkStruct_0208C06C * param0)
     lsl r0, r0, #0x18
     lsr r6, r0, #0x18
     add r0, r4, #0
-    bl sub_0201A7A0
+    bl Window_Init
     ldr r0, [sp, #0x20]
     add r1, r4, #0
     str r0, [sp]
@@ -3143,7 +3143,7 @@ static void ov62_022448E0 (UnkStruct_ov62_022312B0 * param0, UnkStruct_0208C06C 
         sub_0200B3F0(v3);
     }
 
-    sub_0201A7A0(&v2);
+    Window_Init(&v2);
     BGL_AddFramelessWindow(param1->unk_14.unk_10, &v2, 20, 2, 0, 0);
     sub_0201D78C(&v2, 0, v0, 0, 0, 0xff, ((u32)(((14 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_02012BE0(param0->unk_0C, param0->unk_10, &v2, 102);
@@ -3159,7 +3159,7 @@ static void ov62_022449B8 (UnkStruct_0208C06C * param0, int param1, BOOL param2)
 
     ov62_022302A8(param0, 2, param2);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
-    sub_0201A7A0(v1);
+    Window_Init(v1);
     BGL_AddWindow(param0->unk_14.unk_10, v1, 2, 1, 19, 30, 4, 14, 300);
 
     if (param1 == 100) {
@@ -3724,7 +3724,7 @@ static void ov62_02245640 (UnkStruct_0208C06C * param0)
 
     v1 = &v0->unk_6D4[0];
 
-    sub_0201A7A0(v1);
+    Window_Init(v1);
     BGL_AddWindow(param0->unk_14.unk_10, v1, 6, 8, 3, 16, 2, 14, v2);
     ov62_022455E4(param0, 121 + v0->unk_1CC);
 }
@@ -3739,7 +3739,7 @@ static void ov62_0224568C (UnkStruct_0208C06C * param0)
 
     v1 = &v0->unk_6D4[0];
 
-    sub_0201A7A0(v1);
+    Window_Init(v1);
     BGL_AddWindow(param0->unk_14.unk_10, v1, 6, 4, 6, 10, 2, 14, v3);
     BGL_FillWindow(v1, 0x0);
 
@@ -3754,7 +3754,7 @@ static void ov62_0224568C (UnkStruct_0208C06C * param0)
 
     v1 = &v0->unk_6D4[1];
 
-    sub_0201A7A0(v1);
+    Window_Init(v1);
     BGL_AddWindow(param0->unk_14.unk_10, v1, 6, 18, 6, 10, 2, 14, v3);
     BGL_FillWindow(v1, 0x0);
 

@@ -236,7 +236,7 @@ int ov117_02260668 (OverlayManager * param0, int * param1)
     ov117_02261574(v0);
 
     v0->unk_80 = MessageLoader_Init(0, 26, 9, 110);
-    v0->unk_84 = sub_0200B358(110);
+    v0->unk_84 = StringFormatter_New(110);
     v0->unk_88 = Strbuf_Init((2 * 160), 110);
     v0->unk_90 = sub_02012744((2 * 6 + 6 + 1), 110);
 

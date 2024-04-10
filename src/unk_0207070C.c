@@ -21,7 +21,7 @@
 #include "unk_0202B604.h"
 #include "map_header.h"
 #include "unk_0203A6DC.h"
-#include "unk_0203A9C8.h"
+#include "field_menu.h"
 #include "unk_0203C954.h"
 #include "unk_0203D1B8.h"
 #include "unk_0203E880.h"
@@ -274,7 +274,7 @@ static int sub_020708AC (const UnkStruct_02070950 * param0)
 
 static void sub_020708E0 (UnkStruct_020709CC * param0, const UnkStruct_02070950 * param1)
 {
-    UnkStruct_020708E0 * v0;
+    FieldMenu * v0;
     UnkStruct_0207086C * v1;
 
     v0 = sub_02050A64(param0->unk_00);
@@ -327,7 +327,7 @@ static int sub_02070950 (const UnkStruct_02070950 * param0)
 static void sub_020709CC (UnkStruct_020709CC * param0, const UnkStruct_02070950 * param1)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
 
     v0 = sub_02050A60(param0->unk_00);
     v1 = sub_02050A64(param0->unk_00);
@@ -374,7 +374,7 @@ static int sub_02070A24 (const UnkStruct_02070950 * param0)
 
 static void sub_02070A80 (UnkStruct_020709CC * param0, const UnkStruct_02070950 * param1)
 {
-    UnkStruct_020708E0 * v0;
+    FieldMenu * v0;
     UnkStruct_0207086C * v1;
 
     v0 = sub_02050A64(param0->unk_00);
@@ -418,7 +418,7 @@ static int sub_02070AF0 (const UnkStruct_02070950 * param0)
 
 static void sub_02070B28 (UnkStruct_020709CC * param0, const UnkStruct_02070950 * param1)
 {
-    UnkStruct_020708E0 * v0;
+    FieldMenu * v0;
     UnkStruct_0207086C * v1;
 
     v0 = sub_02050A64(param0->unk_00);
@@ -462,7 +462,7 @@ static int sub_02070B98 (const UnkStruct_02070950 * param0)
 
 static void sub_02070BD0 (UnkStruct_020709CC * param0, const UnkStruct_02070950 * param1)
 {
-    UnkStruct_020708E0 * v0;
+    FieldMenu * v0;
     UnkStruct_0207086C * v1;
 
     v0 = sub_02050A64(param0->unk_00);
@@ -510,7 +510,7 @@ static int sub_02070C40 (const UnkStruct_02070950 * param0)
 
 static void sub_02070C88 (UnkStruct_020709CC * param0, const UnkStruct_02070950 * param1)
 {
-    UnkStruct_020708E0 * v0;
+    FieldMenu * v0;
     UnkStruct_0207086C * v1;
 
     v0 = sub_02050A64(param0->unk_00);
@@ -554,7 +554,7 @@ static int sub_02070CF8 (const UnkStruct_02070950 * param0)
 
 static void sub_02070D30 (UnkStruct_020709CC * param0, const UnkStruct_02070950 * param1)
 {
-    UnkStruct_020708E0 * v0;
+    FieldMenu * v0;
     UnkStruct_0207086C * v1;
 
     v0 = sub_02050A64(param0->unk_00);
@@ -602,7 +602,7 @@ static int sub_02070DA0 (const UnkStruct_02070950 * param0)
 
 static void sub_02070DEC (UnkStruct_020709CC * param0, const UnkStruct_02070950 * param1)
 {
-    UnkStruct_020708E0 * v0;
+    FieldMenu * v0;
     UnkStruct_0207086C * v1;
 
     v0 = sub_02050A64(param0->unk_00);
@@ -642,7 +642,7 @@ static int sub_02070E5C (const UnkStruct_02070950 * param0)
 
 static void sub_02070E7C (UnkStruct_020709CC * param0, const UnkStruct_02070950 * param1)
 {
-    UnkStruct_020708E0 * v0;
+    FieldMenu * v0;
     UnkStruct_0207086C * v1;
 
     v0 = sub_02050A64(param0->unk_00);
@@ -691,7 +691,7 @@ static int sub_02070EEC (const UnkStruct_02070950 * param0)
 static void sub_02070F54 (UnkStruct_020709CC * param0, const UnkStruct_02070950 * param1)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
 
     v0 = sub_02050A60(param0->unk_00);
     v1 = sub_02050A64(param0->unk_00);
@@ -741,7 +741,7 @@ static int sub_02070FCC (const UnkStruct_02070950 * param0)
 static void sub_02071010 (UnkStruct_020709CC * param0, const UnkStruct_02070950 * param1)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
 
     v0 = sub_02050A60(param0->unk_00);
     v1 = sub_02050A64(param0->unk_00);
@@ -792,7 +792,7 @@ static int sub_020710A4 (const UnkStruct_02070950 * param0)
 static void sub_020710D4 (UnkStruct_020709CC * param0, const UnkStruct_02070950 * param1)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
     UnkStruct_020711C8 * v2;
     int v3;
     void * v4;
@@ -823,7 +823,7 @@ static int sub_02071130 (const UnkStruct_02070950 * param0)
 static void sub_02071150 (UnkStruct_020709CC * param0, const UnkStruct_02070950 * param1)
 {
     FieldSystem * v0;
-    UnkStruct_020708E0 * v1;
+    FieldMenu * v1;
     UnkStruct_0207086C * v2;
 
     v0 = sub_02050A60(param0->unk_00);

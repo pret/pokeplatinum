@@ -648,7 +648,7 @@ static void ov91_021D11A0 (UnkStruct_ov91_021D0ED8 * param0)
 static void ov91_021D11B8 (UnkStruct_ov91_021D0ED8 * param0)
 {
     param0->unk_F8 = MessageLoader_Init(0, 26, 645, 67);
-    param0->unk_FC = sub_0200B358(67);
+    param0->unk_FC = StringFormatter_New(67);
     param0->unk_100 = Strbuf_Init(256, 67);
 }
 
@@ -870,7 +870,7 @@ static void ov91_021D1618 (UnkStruct_ov91_021D0ED8 * param0, u32 param1, u32 par
     Strbuf* v0;
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_F8, param1);
-    sub_0200B60C(param0->unk_FC, 0, param2, param3, param4, 1);
+    StringFormatter_FormatNumber(param0->unk_FC, 0, param2, param3, param4, 1);
     StringFormatter_Format(param0->unk_FC, param0->unk_100, v0);
     Strbuf_Free(v0);
 }
@@ -1138,7 +1138,7 @@ static void ov91_021D1C10 (UnkStruct_ov91_021D0ED8 * param0, u32 param1)
         sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 9:
-        sub_0200B498(param0->unk_FC, 2, param0->unk_00->unk_04);
+        StringFormatter_FormatPlayerName(param0->unk_FC, 2, param0->unk_00->unk_04);
         break;
     case 10:
         sub_0200B630(param0->unk_FC, 0, ov91_021D1DE0(param0));

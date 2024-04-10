@@ -3320,7 +3320,7 @@ static void ov19_021D4BE0 (UnkStruct_ov19_021D5DF8 * param0, UnkStruct_02042434 
     param0->unk_190 = MessageLoader_Init(1, 26, 412, 9);
     param0->unk_194 = MessageLoader_Init(0, 26, 202, 9);
     param0->unk_198 = MessageLoader_Init(0, 26, 610, 9);
-    param0->unk_19C = sub_0200B358(9);
+    param0->unk_19C = StringFormatter_New(9);
     param0->unk_1A0 = Heap_AllocFromHeap(9, Pokemon_StructSize());
 
     GF_ASSERT(param0->unk_19C);

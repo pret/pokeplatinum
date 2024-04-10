@@ -133,7 +133,7 @@ int ov110_021D0D80 (OverlayManager * param0, int * param1)
     ov110_021D1180(v1);
 
     v1->unk_110 = MessageLoader_Init(1, 26, 16, 114);
-    v1->unk_114 = sub_0200B358(114);
+    v1->unk_114 = StringFormatter_New(114);
     v1->unk_118 = Strbuf_Init(800, 114);
     v1->unk_11C = Strbuf_Init(800, 114);
 
@@ -507,7 +507,7 @@ static u8 ov110_021D13CC (UnkStruct_ov110_021D0F78 * param0, Window * param1, in
 
 static void ov110_021D13F0 (UnkStruct_ov110_021D0F78 * param0, u32 param1, s32 param2)
 {
-    sub_0200B60C(param0->unk_114, param1, param2, 4, 1, 1);
+    StringFormatter_FormatNumber(param0->unk_114, param1, param2, 4, 1, 1);
     return;
 }
 

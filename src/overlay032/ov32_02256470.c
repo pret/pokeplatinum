@@ -100,7 +100,7 @@ BOOL ov32_02256470 (UnkStruct_ov32_02256470 ** param0, const UnkStruct_ov32_0225
         v0->unk_F4 = NULL;
 
         for (v1 = 0; v1 < 6; v1++) {
-            sub_0201A7A0(&(v0->unk_3C[v1]));
+            Window_Init(&(v0->unk_3C[v1]));
             v0->unk_9C[v1] = NULL;
             v0->unk_B4[v1] = NULL;
         }
@@ -218,7 +218,7 @@ static void ov32_02256648 (UnkStruct_ov32_02256470 * param0, const UnkStruct_ov3
     int v1;
 
     for (v1 = 0; v1 < param1->unk_00; v1++) {
-        sub_0201A7A0(&(param0->unk_3C[v1]));
+        Window_Init(&(param0->unk_3C[v1]));
         BGL_AddWindow(param0->unk_04, &(param0->unk_3C[v1]), 6, v0[v1].unk_00, v0[v1].unk_02, 8, 1, 0, param2 + v1 * 8);
         sub_0201A9F4(&(param0->unk_3C[v1]));
 

@@ -1264,7 +1264,7 @@ static void ov62_02239498 (UnkStruct_0208C06C * param0)
     int v2 = 1;
 
     v1 = &v0->unk_D0[0];
-    sub_0201A7A0(v1);
+    Window_Init(v1);
     BGL_AddWindow(param0->unk_14.unk_10, v1, 6, 8, 3, 16, 2, 14, v2);
 
     ov62_02239440(param0, 121);
@@ -1376,7 +1376,7 @@ asm static void ov62_02239724 (UnkStruct_0208C06C * param0)
     str r0, [sp, #0x20]
     add r0, #0x10
     str r0, [sp, #0x20]
-    bl sub_0201A7A0
+    bl Window_Init
     mov r0, #0x13
     str r0, [sp]
     mov r3, #0x10
@@ -1511,7 +1511,7 @@ asm static void ov62_02239854 (UnkStruct_0208C06C * param0, int param1)
     str r0, [sp, #0x20]
     add r0, #0x10
     str r0, [sp, #0x20]
-    bl sub_0201A7A0
+    bl Window_Init
     mov r0, #0x13
     str r0, [sp]
     mov r3, #0x10
@@ -1797,7 +1797,7 @@ asm static void ov62_02239BD8 (UnkStruct_0208C06C * param0)
     lsl r0, r0, #0x18
     lsr r6, r0, #0x18
     add r0, r4, #0
-    bl sub_0201A7A0
+    bl Window_Init
     ldr r0, [sp, #0x20]
     add r1, r4, #0
     str r0, [sp]

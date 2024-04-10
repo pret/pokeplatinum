@@ -652,7 +652,7 @@ void ov62_02230E80 (UnkStruct_0208C06C * param0)
         v7[1] = &param0->unk_534.unk_00[v10];
 
         for (v11 = 0; v11 < 2; v11++) {
-            sub_0201A7A0(&v6);
+            Window_Init(&v6);
             BGL_AddFramelessWindow(param0->unk_14.unk_10, &v6, 20, 2, 0, 0);
 
             v7[v11]->unk_18 = sub_02012B20(&v6, 102);
@@ -729,7 +729,7 @@ void ov62_02230FC8 (UnkStruct_0208C06C * param0, UnkStruct_ov62_022307C0_sub1 * 
         v0 = MessageLoader_GetNewStrbuf(v1, param2);
     }
 
-    sub_0201A7A0(&v2);
+    Window_Init(&v2);
     BGL_AddFramelessWindow(param0->unk_14.unk_10, &v2, 20, 2, 0, 0);
     sub_0201D78C(&v2, 0, v0, 0, 0, 0xff, ((u32)(((14 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_02012BE0(param1->unk_14, param1->unk_18, &v2, 102);
@@ -768,7 +768,7 @@ void ov62_0223118C (UnkStruct_ov62_022312B0 * param0, UnkStruct_ov62_0223118C * 
         v7 = 10000;
     }
 
-    sub_0201A7A0(&v6);
+    Window_Init(&v6);
     BGL_AddFramelessWindow(param1->unk_10, &v6, 20, 2, 0, 0);
 
     param0->unk_10 = sub_02012B20(&v6, 102);
@@ -806,7 +806,7 @@ void ov62_0223124C (UnkStruct_ov62_022312B0 * param0, UnkStruct_ov62_0223118C * 
     v1 = param1->unk_34;
     v0 = MessageLoader_GetNewStrbuf(v1, param2);
 
-    sub_0201A7A0(&v2);
+    Window_Init(&v2);
     BGL_AddFramelessWindow(param1->unk_10, &v2, 20, 2, 0, 0);
     sub_0201D78C(&v2, 0, v0, 0, 0, 0xff, ((u32)(((14 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_02012BE0(param0->unk_0C, param0->unk_10, &v2, 102);

@@ -43,7 +43,7 @@ static void ov62_02234A10 (UnkStruct_0208C06C * param0)
     int v1;
     Window * v2 = &param0->unk_8A4;
 
-    sub_0201A7A0(v2);
+    Window_Init(v2);
     BGL_AddWindow(param0->unk_14.unk_10, v2, 2, 8, 16, 16, 2, 14, 300);
     BGL_FillWindow(v2, 0x0);
 
