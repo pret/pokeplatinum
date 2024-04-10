@@ -419,17 +419,17 @@ static u32 sub_0203AC3C (FieldSystem * fieldSystem)
 
 static BOOL sub_0203AC44 (UnkStruct_020508D4 * param0)
 {
-    FieldSystem * v0;
+    FieldSystem * fieldSystem;
     FieldMenu * v1;
 
-    v0 = sub_02050A60(param0);
+    fieldSystem = sub_02050A60(param0);
     v1 = sub_02050A64(param0);
 
     switch (v1->unk_2A) {
     case 0:
-        sub_02062C48(v0->unk_38);
-        sub_0206842C(v0, &v1->unk_230);
-        sub_02070728(v0, &v1->unk_24C);
+        sub_02062C48(fieldSystem->unk_38);
+        sub_0206842C(fieldSystem, &v1->unk_230);
+        sub_02070728(fieldSystem, &v1->unk_24C);
         sub_0203ADFC(param0);
         sub_0203B094(param0);
         v1->unk_2A = 1;
@@ -458,8 +458,8 @@ static BOOL sub_0203AC44 (UnkStruct_020508D4 * param0)
         sub_0203C8CC(param0);
         break;
     case 12:
-        if (sub_020509DC(v0)) {
-            sub_02062C48(v0->unk_38);
+        if (sub_020509DC(fieldSystem)) {
+            sub_02062C48(fieldSystem->unk_38);
             sub_0203ADFC(param0);
             sub_0203B094(param0);
             ov5_021D1744(1);
@@ -467,22 +467,22 @@ static BOOL sub_0203AC44 (UnkStruct_020508D4 * param0)
         }
         break;
     case 8:
-        if (sub_020509DC(v0)) {
+        if (sub_020509DC(fieldSystem)) {
             ov5_021D1744(1);
             v1->unk_2A = 9;
         }
         break;
     case 9:
         if (ScreenWipe_Done()) {
-            sub_0203B2EC(v1, v0);
+            sub_0203B2EC(v1, fieldSystem);
             Heap_FreeToHeap(v1);
-            sub_02062C78(v0->unk_38);
+            sub_02062C78(fieldSystem->unk_38);
             return 1;
         }
         break;
     case 10:
-        if (sub_020509DC(v0)) {
-            sub_02062C48(v0->unk_38);
+        if (sub_020509DC(fieldSystem)) {
+            sub_02062C48(fieldSystem->unk_38);
             ov5_021D1744(1);
             v1->unk_2A = 11;
         }
@@ -495,17 +495,17 @@ static BOOL sub_0203AC44 (UnkStruct_020508D4 * param0)
         break;
     case 15:
         Heap_FreeToHeap(v1);
-        sub_02062C78(v0->unk_38);
+        sub_02062C78(fieldSystem->unk_38);
         return 1;
     case 13:
-        sub_0203B2EC(v1, v0);
+        sub_0203B2EC(v1, fieldSystem);
         sub_0203B078(v1);
         Window_Clear(&v1->unk_00, 1);
         BGL_DeleteWindow(&v1->unk_00);
         sub_0203B200(param0);
-        sub_0201C3C0(v0->unk_08, 3);
+        sub_0201C3C0(fieldSystem->unk_08, 3);
         Heap_FreeToHeap(v1);
-        sub_02062C78(v0->unk_38);
+        sub_02062C78(fieldSystem->unk_38);
         return 1;
     case 14:
         if (ScreenWipe_Done()) {
@@ -524,18 +524,18 @@ static BOOL sub_0203AC44 (UnkStruct_020508D4 * param0)
 
 static void sub_0203ADFC (UnkStruct_020508D4 * param0)
 {
-    FieldSystem * v0;
+    FieldSystem * fieldSystem;
     FieldMenu * v1;
     MessageLoader * v2;
     UnkStruct_02081CF4 v3;
     u32 v4, v5;
 
-    v0 = sub_02050A60(param0);
+    fieldSystem = sub_02050A60(param0);
     v1 = sub_02050A64(param0);
     v5 = FieldMenu_MakeList(v1, v1->unk_30);
 
-    BGL_AddWindow(v0->unk_08, &v1->unk_00, 3, 20, 1, 11, v5 * 3, 12, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)));
-    sub_0200DAA4(v0->unk_08, 3, 1024 - (18 + 12) - 9, 11, 1, 11);
+    BGL_AddWindow(fieldSystem->unk_08, &v1->unk_00, 3, 20, 1, 11, v5 * 3, 12, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)));
+    sub_0200DAA4(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 1, 11);
     Window_Show(&v1->unk_00, 1, 1024 - (18 + 12) - 9, 11);
 
     v2 = MessageLoader_Init(0, 26, 367, 11);
@@ -553,7 +553,7 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
             v7 = Strbuf_Init(8, 11);
             v8 = MessageLoader_GetNewStrbuf(v2, Unk_020EA05C[v1->unk_30[v4]][0]);
 
-            StringFormatter_FormatPlayerName(v6, 0, SaveData_GetTrainerInfo(v0->unk_0C));
+            StringFormatter_FormatPlayerName(v6, 0, SaveData_GetTrainerInfo(fieldSystem->unk_0C));
             StringFormatter_Format(v6, v7, v8);
             sub_02013A6C(v1->unk_24, v7, v1->unk_30[v4]);
             Strbuf_Free(v8);
@@ -564,12 +564,12 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
                 v1->unk_24, v2, Unk_020EA05C[v1->unk_30[v4]][0], v1->unk_30[v4]);
         }
 
-        if (v0->unk_90 == v1->unk_30[v4]) {
+        if (fieldSystem->unk_90 == v1->unk_30[v4]) {
             v1->unk_28 = v4;
         }
     }
 
-    v0->unk_90 = v1->unk_30[v1->unk_28];
+    fieldSystem->unk_90 = v1->unk_30[v1->unk_28];
     MessageLoader_Free(v2);
 
     v3.unk_00 = v1->unk_24;
@@ -589,7 +589,7 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
     v1->unk_20 = sub_02001AF4(&v3, 28, 4, v1->unk_28, 11, PAD_BUTTON_B | PAD_BUTTON_X);
 
     sub_0201A9A4(&v1->unk_00);
-    sub_0203B318(v1, v1->unk_30, v5, TrainerInfo_Gender(SaveData_GetTrainerInfo(v0->unk_0C)));
+    sub_0203B318(v1, v1->unk_30, v5, TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->unk_0C)));
 }
 
 static u32 FieldMenu_MakeList (FieldMenu * param0, u8 * param1)

@@ -337,8 +337,6 @@ static void ov7_02249C94 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 
 static void CommClubMan_PrintChooseJoinMsg (CommClubManager * param0)
 {
-    int v0;
-
     if (!sub_0201A7CC(&sCommClubMan->unk_30)) {
         BGL_AddWindow(sCommClubMan->fieldSystem->unk_08, &sCommClubMan->unk_30, 3, 23, 2, 8, 4, 13, (1 + 20 * 5 * 2));
     }
@@ -409,8 +407,6 @@ static void CommClubMan_DisplayPersonalTrainerInfo (CommClubManager * param0)
 
 static void ov7_02249F54 (SysTask * task, void * data)
 {
-    u32 v0;
-
     if (sub_0205DA04(sCommClubMan->printMsgIndex)) {
         int v2;
 
