@@ -95,7 +95,7 @@ UnkStruct_ov23_02253E2C * ov23_02253D48 (int param0, int param1, BGL * param2, i
     v1->unk_34 = param1;
     v1->unk_18 = param2;
 
-    sub_0201A7A0(&v1->unk_08);
+    Window_Init(&v1->unk_08);
 
     v1->unk_44_0 = 0;
     v1->unk_44_1 = 0;

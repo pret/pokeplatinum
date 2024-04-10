@@ -976,7 +976,7 @@ static void ov17_02240138 (UnkStruct_ov17_0223F7E4 * param0, UnkStruct_ov17_0224
     }
 
     if (param10 == NULL) {
-        sub_0201A7A0(&v1);
+        Window_Init(&v1);
         BGL_AddFramelessWindow(v5, &v1, v8, 16 / 8, 0, 0);
         PrintStringWithColorAndMargins(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
     } else {
@@ -1508,7 +1508,7 @@ static void ov17_02240BF4 (UnkStruct_ov17_0223F7E4 * param0, const Strbuf *param
         BGL_DeleteWindow(&param3->unk_00);
     }
 
-    sub_0201A7A0(&param3->unk_00);
+    Window_Init(&param3->unk_00);
     BGL_AddFramelessWindow(param0->unk_04->unk_24, &param3->unk_00, v1, 16 / 8, 0, 0);
     PrintStringWithColorAndMargins(&param3->unk_00, param2, param1, 0, 0, 0xff, param4, 0, 0, NULL);
 }

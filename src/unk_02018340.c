@@ -1613,13 +1613,13 @@ Window * sub_0201A778 (u32 param0, u8 param1)
     v0 = (Window *)Heap_AllocFromHeap(param0, sizeof(Window) * param1);
 
     for (v1 = 0; v1 < param1; v1++) {
-        sub_0201A7A0(&v0[v1]);
+        Window_Init(&v0[v1]);
     }
 
     return v0;
 }
 
-void sub_0201A7A0 (Window * param0)
+void Window_Init (Window * param0)
 {
     param0->unk_00 = NULL;
     param0->unk_04 = 0xff;

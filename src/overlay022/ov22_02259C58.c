@@ -521,7 +521,7 @@ static Window * ov22_0225A348 (UnkStruct_ov22_0225A0E4 * param0, u32 param1, u32
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
 
     v2 = sub_0201A778(14, 1);
-    sub_0201A7A0(v2);
+    Window_Init(v2);
     BGL_AddFramelessWindow(param0->unk_40, v2, param4, param5, 0, 0);
 
     {

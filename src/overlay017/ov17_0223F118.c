@@ -131,7 +131,7 @@ void ov17_0223F1E8 (int param0, BGL * param1, SpriteGfxHandler * param2, UnkStru
     }
 
     {
-        sub_0201A7A0(&v1);
+        Window_Init(&v1);
         BGL_AddFramelessWindow(param1, &v1, v6, 16 / 8, 0, 0);
         PrintStringWithColorAndMargins(&v1, param6, param5, 0, 0, 0xff, param7, v7, 0, NULL);
     }

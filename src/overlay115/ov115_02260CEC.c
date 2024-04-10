@@ -1464,7 +1464,7 @@ static void ov115_022617E8 (UnkStruct_ov115_022617E8 * param0, UnkStruct_ov115_0
         u32 v9;
         u32 v10;
 
-        sub_0201A7A0(&v5);
+        Window_Init(&v5);
         BGL_AddWindow(param1->unk_00, &v5, 2, 0, 0, 8, 2, 5, 256);
 
         v6 = 256;

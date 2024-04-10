@@ -5176,13 +5176,13 @@ static void ov65_022332FC (UnkStruct_ov65_0222EBE0 * param0, NARC * param1, u32 
         v2 = v0 / 4;
         v3 = v0 % 4;
 
-        sub_0201A7A0(&param0->unk_BE0.unk_7C[v0]);
+        Window_Init(&param0->unk_BE0.unk_7C[v0]);
         BGL_AddWindow(param0->unk_15C, &param0->unk_BE0.unk_7C[v0], 5, 4 + (16 * v2), 1 + (6 * v3), 9, 3, 15, 1 + ((9 * 3) * v0));
         BGL_FillWindow(&param0->unk_BE0.unk_7C[v0], 0);
         sub_0201A9A4(&param0->unk_BE0.unk_7C[v0]);
 
         for (v1 = 0; v1 < 2; v1++) {
-            sub_0201A7A0(&param0->unk_BE0.unk_FC[v0][v1]);
+            Window_Init(&param0->unk_BE0.unk_FC[v0][v1]);
             BGL_AddWindow(param0->unk_15C, &param0->unk_BE0.unk_FC[v0][v1], 5, 1 + (16 * v2) + (v1 * 12), 1 + (6 * v3), 2, 3, 13, ((((9 * 3) * 8) + 1) + 1) + ((2 * 3) * ((v0 * 2) + v1)));
             BGL_FillWindow(&param0->unk_BE0.unk_FC[v0][v1], 0);
             sub_0201A9A4(&param0->unk_BE0.unk_FC[v0][v1]);
@@ -6712,7 +6712,7 @@ static void ov65_02234A68 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1, u32 
     }
 
     sub_02002BB8(2, param2);
-    sub_0201A7A0(&v3);
+    Window_Init(&v3);
     BGL_AddFramelessWindow(param0->unk_15C, &v3, 8, 2, 0, 0);
 
     v4 = Strbuf_Init(64, param2);

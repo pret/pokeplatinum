@@ -391,7 +391,7 @@ void ov116_02261F3C (UnkStruct_ov116_02262A8C * param0)
 
 void ov116_02261F70 (UnkStruct_ov116_02262A8C * param0)
 {
-    sub_0201A7A0(&param0->unk_1FC8);
+    Window_Init(&param0->unk_1FC8);
     BGL_AddWindow(param0->unk_14->unk_10, &param0->unk_1FC8, 7, 2, 19, 28, 4, 14, 256 + (16 * 3));
     BGL_FillWindow(&param0->unk_1FC8, 0xFF);
 
@@ -517,7 +517,7 @@ void ov116_022620AC (UnkStruct_ov116_0226139C * param0, UnkStruct_ov116_02262A8C
         v3 = &param1->unk_1FD8[v1];
         v9 = ov114_0225C7CC(&param0->unk_84, v0);
 
-        sub_0201A7A0(v3);
+        Window_Init(v3);
 
         v5 = v4[param1->unk_04 - 2][v1][0];
         v6 = v4[param1->unk_04 - 2][v1][1];

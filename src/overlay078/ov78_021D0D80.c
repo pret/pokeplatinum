@@ -620,7 +620,7 @@ static void ov78_021D1308 (UnkStruct_ov78_021D107C * param0, int param1)
 {
     param0->unk_98 = sub_0201A778(param1, 1);
 
-    sub_0201A7A0(param0->unk_98);
+    Window_Init(param0->unk_98);
     BGL_AddWindow(param0->unk_94, param0->unk_98, 1, 4, 19, 23, 4, 2, (18 + 12) + 1);
     BGL_FillWindow(param0->unk_98, 15);
     sub_0200DD0C(param0->unk_94, 1, 512, 0, param0->unk_700, param1);
@@ -1687,7 +1687,7 @@ static void ov78_021D27CC (UnkStruct_ov78_021D107C * param0, int param1)
 
     for (v0 = 0; v0 < 3; v0++) {
         param0->unk_9C[v0] = sub_0201A778(param1, 1);
-        sub_0201A7A0(param0->unk_9C[v0]);
+        Window_Init(param0->unk_9C[v0]);
 
         switch (v0) {
         case 0:

@@ -80,9 +80,9 @@ void sub_0209ACF4 (UnkStruct_020508D4 * param0)
     v1->unk_50 = sub_0209747C(2, 0, v1->unk_00->unk_0C, 32);
 
     sub_02097520(v1->unk_50);
-    sub_0201A7A0(&(v1->unk_18));
-    sub_0201A7A0(&(v1->unk_28));
-    sub_0201A7A0(&(v1->unk_38));
+    Window_Init(&(v1->unk_18));
+    Window_Init(&(v1->unk_28));
+    Window_Init(&(v1->unk_38));
 
     v1->unk_54 = 0;
 
@@ -105,17 +105,17 @@ static void sub_0209ADBC (UnkStruct_0209AD84 * param0)
 {
     if (sub_0201A7CC(&(param0->unk_18))) {
         BGL_DeleteWindow(&param0->unk_18);
-        sub_0201A7A0(&(param0->unk_18));
+        Window_Init(&(param0->unk_18));
     }
 
     if (sub_0201A7CC(&(param0->unk_28))) {
         BGL_DeleteWindow(&param0->unk_28);
-        sub_0201A7A0(&(param0->unk_28));
+        Window_Init(&(param0->unk_28));
     }
 
     if (sub_0201A7CC(&(param0->unk_38))) {
         BGL_DeleteWindow(&param0->unk_38);
-        sub_0201A7A0(&(param0->unk_38));
+        Window_Init(&(param0->unk_38));
     }
 }
 

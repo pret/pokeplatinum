@@ -292,7 +292,7 @@ static void ov62_022362B8 (UnkStruct_0208C06C * param0)
     int v4;
 
     v1 = &v0->unk_178[0];
-    sub_0201A7A0(v1);
+    Window_Init(v1);
     BGL_AddWindow(param0->unk_14.unk_10, v1, 6, 4, 6, 10, 2, 14, v3);
     BGL_FillWindow(v1, 0x0);
 
@@ -306,7 +306,7 @@ static void ov62_022362B8 (UnkStruct_0208C06C * param0)
     v3 += (10 * 2);
     v1 = &v0->unk_178[1];
 
-    sub_0201A7A0(v1);
+    Window_Init(v1);
     BGL_AddWindow(param0->unk_14.unk_10, v1, 6, 18, 6, 10, 2, 14, v3);
     BGL_FillWindow(v1, 0x0);
 
@@ -697,7 +697,7 @@ static void ov62_02236B64 (UnkStruct_0208C06C * param0)
     int v2 = 1;
 
     v1 = &v0->unk_178[0];
-    sub_0201A7A0(v1);
+    Window_Init(v1);
     BGL_AddWindow(param0->unk_14.unk_10, v1, 6, 8, 3, 16, 2, 14, v2);
     ov62_02236BC8(param0, 121);
 }

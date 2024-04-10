@@ -74,7 +74,7 @@ int ov100_021D0D80 (OverlayManager * param0, int * param1)
         Window * v1 = &v0->unk_0C.unk_30;
         int v2 = sub_02027B50(v0->unk_D0->unk_04);
 
-        sub_0201A7A0(v1);
+        Window_Init(v1);
         BGL_AddWindow(v0->unk_0C.unk_0C, v1, 1, 2, 19, 27, 4, 14, 1);
         BGL_FillWindow(v1, 0xFF);
         sub_0201A954(v1);

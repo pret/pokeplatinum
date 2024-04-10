@@ -885,7 +885,7 @@ static void ov62_0223AA90 (UnkStruct_0208C06C * param0)
     for (v3 = 0; v3 < 3; v3++) {
         v1 = &v0->unk_1B4[v3];
 
-        sub_0201A7A0(v1);
+        Window_Init(v1);
         BGL_AddWindow(param0->unk_14.unk_10, v1, 2, Unk_ov62_02248D9C[v3][0], Unk_ov62_02248D9C[v3][1], Unk_ov62_02248D9C[v3][2], Unk_ov62_02248D9C[v3][3], 14, v2);
         BGL_FillWindow(v1, Unk_ov62_02248D78[v3]);
         sub_0201A9A4(v1);
@@ -914,7 +914,7 @@ static void ov62_0223AB14 (UnkStruct_0208C06C * param0)
 
     for (v3 = 0; v3 < NELEMS(Unk_ov62_02248DC4); v3++) {
         v1 = &v0->unk_234[v3];
-        sub_0201A7A0(v1);
+        Window_Init(v1);
         BGL_AddWindow(param0->unk_14.unk_10, v1, 6, Unk_ov62_02248DC4[v3][0], Unk_ov62_02248DC4[v3][1], Unk_ov62_02248DC4[v3][2], Unk_ov62_02248DC4[v3][3], 14, v2);
 
         v5 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 60 + v3);
@@ -1480,7 +1480,7 @@ static void ov62_0223B6AC (UnkStruct_0208C06C * param0)
 
     for (v3 = 0; v3 < 2; v3++) {
         v1 = &v0->unk_234[v3];
-        sub_0201A7A0(v1);
+        Window_Init(v1);
         BGL_AddWindow(param0->unk_14.unk_10, v1, 6, Unk_ov62_02248D5C[v3][0], Unk_ov62_02248D5C[v3][1], Unk_ov62_02248D5C[v3][2], Unk_ov62_02248D5C[v3][3], 14, v2);
         BGL_FillWindow(v1, 0x0);
 
@@ -1525,7 +1525,7 @@ static void ov62_0223B7C0 (UnkStruct_0208C06C * param0)
     for (v3 = 0; v3 < 1; v3++) {
         v1 = &v0->unk_234[v3];
 
-        sub_0201A7A0(v1);
+        Window_Init(v1);
         BGL_AddWindow(param0->unk_14.unk_10, v1, 6, 12, 6, 8, 4, 14, v2);
         BGL_FillWindow(v1, 0x0);
 
@@ -1578,7 +1578,7 @@ static void ov62_0223B888 (UnkStruct_0208C06C * param0)
     for (v3 = 0; v3 < NELEMS(Unk_ov62_02248D50); v3++) {
         v1 = &v0->unk_1B4[v3];
 
-        sub_0201A7A0(v1);
+        Window_Init(v1);
         BGL_AddWindow(param0->unk_14.unk_10, v1, 2, Unk_ov62_02248D50[v3][0], Unk_ov62_02248D50[v3][1], Unk_ov62_02248D50[v3][2], Unk_ov62_02248D50[v3][3], 14, v2);
         BGL_FillWindow(v1, 0x0);
 

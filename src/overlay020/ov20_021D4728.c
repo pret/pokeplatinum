@@ -164,7 +164,7 @@ asm static void ov20_021D48C4 (UnkStruct_ov20_021D4AD4 * param0, NARC * param1)
     add r7, r0, #0
     beq _021D496C
     add r0, sp, #8
-    bl sub_0201A7A0
+    bl Window_Init
     ldr r0, [r5, #0xc]
     add r1, sp, #4
     str r0, [sp, #8]

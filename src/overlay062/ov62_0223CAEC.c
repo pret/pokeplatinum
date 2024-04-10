@@ -385,7 +385,7 @@ static void ov62_0223D004 (UnkStruct_0208C06C * param0)
     for (v3 = 0; v3 < v6; v3++) {
         v1 = &v0->unk_24[v3];
 
-        sub_0201A7A0(v1);
+        Window_Init(v1);
 
         if (v0->unk_1C == 0) {
             BGL_AddWindow(param0->unk_14.unk_10, v1, 2, Unk_ov62_02248EC0[v3][0], Unk_ov62_02248EC0[v3][1], Unk_ov62_02248EC0[v3][2], Unk_ov62_02248EC0[v3][3], 14, v2);

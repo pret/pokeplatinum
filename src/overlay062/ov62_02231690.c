@@ -198,7 +198,7 @@ void ov62_0223197C (UnkStruct_0208C06C * param0, int param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
     G2S_BlendNone();
     BGL_SetPriority(6, 0);
-    sub_0201A7A0(v1);
+    Window_Init(v1);
     BGL_AddWindow(param0->unk_14.unk_10, v1, 6, 1, 19, 30, 4, 14, 32);
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
@@ -247,7 +247,7 @@ void ov62_02231AAC (UnkStruct_0208C06C * param0, int param1)
 
     ov62_022302A8(param0, 2, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
-    sub_0201A7A0(v1);
+    Window_Init(v1);
     BGL_AddWindow(param0->unk_14.unk_10, v1, 2, 1, 19, 30, 4, 14, 32);
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
@@ -310,7 +310,7 @@ void ov62_02231BC4 (UnkStruct_0208C06C * param0, int param1)
     BGL_SetPriority(6, 0);
     ov62_022302A8(param0, 6, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
-    sub_0201A7A0(v1);
+    Window_Init(v1);
     BGL_AddWindow(param0->unk_14.unk_10, v1, 6, 1, 19, 30, 4, 14, 32);
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
@@ -398,7 +398,7 @@ asm static void ov62_02231C78 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C
     bl MessageLoader_GetNewStrbuf
     add r6, r0, #0
     add r0, r4, #0
-    bl sub_0201A7A0
+    bl Window_Init
     mov r0, #2
     ldrsh r0, [r5, r0]
     mov r3, #0
@@ -1084,7 +1084,7 @@ void ov62_022324A0 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param
         param0->unk_38.unk_0C = param0->unk_10 - 1;
     }
 
-    sub_0201A7A0(v1);
+    Window_Init(v1);
     BGL_AddWindow(param1->unk_14.unk_10, v1, param2->unk_20, param2->unk_0C, param2->unk_10, param2->unk_14, param2->unk_18, 14, param2->unk_1C);
     BGL_FillWindow(v1, 0x0);
 
@@ -1132,7 +1132,7 @@ void ov62_02232594 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param
         param0->unk_38.unk_0C = param0->unk_10 - 1;
     }
 
-    sub_0201A7A0(v1);
+    Window_Init(v1);
     BGL_AddWindow(param1->unk_14.unk_10, v1, param3->unk_20, param3->unk_0C, param3->unk_10, param3->unk_14, param3->unk_18, 14, param3->unk_1C);
     BGL_FillWindow(v1, 0x0);
 
@@ -1251,7 +1251,7 @@ asm void ov62_02232778 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * p
     asr r0, r0, #1
     str r0, [r4, #0x44]
     ldr r0, [sp, #0x50]
-    bl sub_0201A7A0
+    bl Window_Init
     ldr r0, [r5, #0x10]
     ldr r1, [sp, #0x50]
     lsl r0, r0, #0x18
@@ -1597,7 +1597,7 @@ void ov62_02232AAC (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param
 
     param0->unk_48 = 1;
 
-    sub_0201A7A0(v1);
+    Window_Init(v1);
     BGL_AddWindow(param1->unk_14.unk_10, v1, param2->unk_20, param2->unk_0C, param2->unk_10, param2->unk_14, param2->unk_18, 14, param2->unk_1C);
     BGL_FillWindow(v1, 0x0);
 
@@ -2824,7 +2824,7 @@ static void ov62_02233B50 (UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C 
             v2 = &param0->unk_3C[v0];
             v3 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, v5[v0]);
 
-            sub_0201A7A0(v2);
+            Window_Init(v2);
             BGL_AddWindow(param1->unk_14.unk_10, v2, 2, v4[v0][0], v4[v0][1], v4[v0][2], v4[v0][3], 14, v1);
             BGL_FillWindow(v2, 0x0);
             sub_0201D78C(v2, 0, v3, ov62_0223429C(v2, v3), 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);

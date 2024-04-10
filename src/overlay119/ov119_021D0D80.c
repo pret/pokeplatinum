@@ -300,7 +300,7 @@ void ov119_021D1068 (BGL * param0, PaletteData * param1, int param2)
 
 void ov119_021D10F0 (BGL * param0, Window * param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8)
 {
-    sub_0201A7A0(param1);
+    Window_Init(param1);
     BGL_AddWindow(param0, param1, param2, param3, param4, param5, param6, param8, param7);
     sub_0200E060(param1, 1, 20, 12);
     BGL_FillWindow(param1, 15);
@@ -341,7 +341,7 @@ void ov119_021D11E4 (UnkStruct_ov119_021D0FD0 * param0, BGL * param1, Window * p
 {
     UnkStruct_02081CF4 v0;
 
-    sub_0201A7A0(param2);
+    Window_Init(param2);
     BGL_AddWindow(param1, param2, param3, param4, param5, param6, param7, param9, param8);
 
     param0->unk_04.unk_44 = sub_02013A04(2, 71);

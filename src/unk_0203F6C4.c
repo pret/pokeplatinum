@@ -4961,12 +4961,12 @@ static BOOL sub_02042E64 (UnkStruct_0203E724 * param0)
 static BOOL sub_02042F04 (UnkStruct_0203E724 * param0)
 {
     FieldSystem * v0 = param0->unk_34;
-    u16 v1 = inline_02049538(param0);
+    u16 commType = inline_02049538(param0);
     u16 v2 = inline_02049538(param0);
     u16 v3 = inline_02049538(param0);
     u16 v4 = sub_0203E838(param0);
 
-    ov7_0224B414(v0, v1, v2, v3);
+    ov7_0224B414(v0, commType, v2, v3);
     param0->unk_18[0] = v4;
     sub_0203E764(param0, sub_02042F74);
 
@@ -4992,12 +4992,12 @@ static BOOL sub_02042F74 (UnkStruct_0203E724 * param0)
 static BOOL sub_02042F9C (UnkStruct_0203E724 * param0)
 {
     FieldSystem * v0 = param0->unk_34;
-    u16 v1 = inline_02049538(param0);
+    u16 commType = inline_02049538(param0);
     u16 v2 = inline_02049538(param0);
     u16 v3 = inline_02049538(param0);
     u16 v4 = sub_0203E838(param0);
 
-    ov7_0224B47C(v0, v1, v2, v3);
+    ov7_0224B47C(v0, commType, v2, v3);
     param0->unk_18[0] = v4;
     sub_0203E764(param0, sub_0204300C);
 

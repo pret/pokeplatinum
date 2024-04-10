@@ -644,17 +644,17 @@ static void sub_0205AAA0 (UnkStruct_0205A0D8 * param0, BOOL param1)
         }
 
         BGL_DeleteWindow(&param0->unk_14);
-        sub_0201A7A0(&param0->unk_14);
+        Window_Init(&param0->unk_14);
     }
 
     if (sub_0201A7CC(&(param0->unk_54))) {
         BGL_DeleteWindow(&param0->unk_54);
-        sub_0201A7A0(&param0->unk_54);
+        Window_Init(&param0->unk_54);
     }
 
     if (sub_0201A7CC(&(param0->unk_64))) {
         BGL_DeleteWindow(&param0->unk_64);
-        sub_0201A7A0(&param0->unk_64);
+        Window_Init(&param0->unk_64);
     }
 }
 
@@ -678,9 +678,9 @@ void sub_0205AB10 (FieldSystem * param0, UnkFuncPtr_0205AB10 * param1)
     v0->unk_0C = Strbuf_Init((100 * 2), 11);
     v0->unk_10 = Strbuf_Init((100 * 2), 11);
 
-    sub_0201A7A0(&v0->unk_14);
-    sub_0201A7A0(&v0->unk_54);
-    sub_0201A7A0(&v0->unk_64);
+    Window_Init(&v0->unk_14);
+    Window_Init(&v0->unk_54);
+    Window_Init(&v0->unk_64);
 
     v0->unk_78 = sub_020149F0(11);
     v0->unk_88 = sub_0203895C();

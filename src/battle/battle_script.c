@@ -12272,7 +12272,7 @@ static void BattleScript_LoadPartyLevelUpIcon (BattleSystem * param0, BattleScri
     StringFormatter_FormatNumber(v5, 1, Pokemon_GetValue(param2, MON_DATA_LEVEL, NULL), 3, 0, 1);
     StringFormatter_Format(v5, v7, v6);
     Strbuf_Free(v6);
-    sub_0201A7A0(&v9);
+    Window_Init(&v9);
     BGL_AddFramelessWindow(v8, &v9, 12, 4, 0, 0);
     sub_0201D78C(&v9, 0, v7, 0, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
 

@@ -94,7 +94,7 @@ static const UnkStruct_ov84_02240FA8 Unk_ov7_0224F188 = {
 static void ov7_0224B4E8 (UnkStruct_ov7_0224B4E8 * param0, int param1)
 {
     if (sub_0201A7CC(&param0->unk_54) == 0) {
-        sub_0201A7A0(&param0->unk_54);
+        Window_Init(&param0->unk_54);
         sub_0205D8F4(param0->unk_10->unk_08, &param0->unk_54, 3);
         sub_0205D944(&param0->unk_54, sub_02025E44(param0->unk_10->unk_0C));
     } else {

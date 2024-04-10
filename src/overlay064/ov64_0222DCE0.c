@@ -1081,7 +1081,7 @@ static void ov64_0222E620 (UnkStruct_ov64_0222E21C * param0, const UnkStruct_ov6
     sub_02002E98(0, 7 * 0x20, param2);
     sub_0200DD0C(param0->unk_00, Unk_ov64_02232258[1], (1 + 9), 8, v0, param2);
     sub_0200DAA4(param0->unk_00, Unk_ov64_02232258[1], 1, 9, 0, param2);
-    sub_0201A7A0(&param0->unk_220);
+    Window_Init(&param0->unk_220);
     BGL_AddWindow(param0->unk_00, &param0->unk_220, Unk_ov64_02232258[1], 1, 0, 24, 3, 7, (((1 + 9) + (18 + 12))));
 
     param0->unk_230 = Strbuf_Init(128, param2);
@@ -1448,7 +1448,7 @@ asm static void ov64_0222EC94 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_
     add r5, r1, #0
     str r2, [sp, #0x18]
     str r3, [sp, #0x1c]
-    bl sub_0201A7A0
+    bl Window_Init
     mov r0, #4
     str r0, [sp]
     mov r0, #0x1a
@@ -1468,7 +1468,7 @@ asm static void ov64_0222EC94 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_
     bl BGL_AddWindow
     ldr r0, [sp, #0x14]
     add r0, #0x1c
-    bl sub_0201A7A0
+    bl Window_Init
     mov r0, #0x13
     str r0, [sp]
     mov r0, #0x1b
@@ -2024,7 +2024,7 @@ asm static void ov64_0222F414 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_
     bl ov63_0222B02C
     ldr r0, [sp, #0x14]
     add r0, #0xb8
-    bl sub_0201A7A0
+    bl Window_Init
     mov r0, #0x15
     str r0, [sp]
     mov r0, #8
@@ -2076,7 +2076,7 @@ asm static void ov64_0222F414 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_
     bl Strbuf_Free
     ldr r0, [sp, #0x14]
     add r0, #0xe4
-    bl sub_0201A7A0
+    bl Window_Init
     mov r0, #9
     str r0, [sp]
     mov r0, #0xf
@@ -2136,7 +2136,7 @@ asm static void ov64_0222F414 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_
     blt _0222F530
     ldr r0, [sp, #0x14]
     add r0, #0xc8
-    bl sub_0201A7A0
+    bl Window_Init
     mov r0, #0x13
     str r0, [sp]
     mov r0, #0x1b
@@ -2699,7 +2699,7 @@ static void ov64_02230074 (UnkStruct_ov64_02230074 * param0, UnkStruct_ov64_0222
 {
     param0->unk_00 = *param2;
 
-    sub_0201A7A0(&param0->unk_08);
+    Window_Init(&param0->unk_08);
     BGL_AddWindow(param1->unk_00, &param0->unk_08, Unk_ov64_02232258[3], 4 + MATH_ABS(param2->unk_00), 4 + MATH_ABS(param2->unk_02), 26, 17, 7, param3);
 }
 
@@ -2976,7 +2976,7 @@ asm static void ov64_02230680 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_
     str r1, [sp, #0x14]
     add r4, r2, #0
     add r7, r3, #0
-    bl sub_0201A7A0
+    bl Window_Init
     mov r0, #0xd
     str r0, [sp]
     mov r0, #0x17
@@ -2994,7 +2994,7 @@ asm static void ov64_02230680 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_
     bl BGL_AddWindow
     add r0, r5, #0
     add r0, #0x10
-    bl sub_0201A7A0
+    bl Window_Init
     mov r0, #8
     str r0, [sp]
     mov r0, #0xf
@@ -3540,7 +3540,7 @@ static void ov64_02230F9C (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_0222
     v1 = param0->unk_08;
 
     for (v0 = 0; v0 < param3; v0++) {
-        sub_0201A7A0(&param0->unk_0C[param2][v0]);
+        Window_Init(&param0->unk_0C[param2][v0]);
         BGL_AddWindow(param1->unk_00, &param0->unk_0C[param2][v0], Unk_ov64_02232258[3], MATH_ABS(param0->unk_00.unk_00) + param4[v0].unk_00, MATH_ABS(param0->unk_00.unk_02) + param4[v0].unk_01, param4[v0].unk_02, param4[v0].unk_03, 7, v1);
         BGL_FillWindow(&param0->unk_0C[param2][v0], 0);
         v1 += (param4[v0].unk_02 * param4[v0].unk_03);

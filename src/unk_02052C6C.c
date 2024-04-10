@@ -262,7 +262,7 @@ static void sub_02052F28 (FieldSystem * param0, UnkStruct_0205300C * param1)
     param1->unk_2C = NULL;
     param1->unk_30 = NULL;
 
-    sub_0201A7A0(&param1->unk_1C);
+    Window_Init(&param1->unk_1C);
     GXLayers_SetBanks(&v0);
 
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
