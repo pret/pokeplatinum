@@ -19,7 +19,7 @@ charcode_t *CharCode_SkipFormatArg(const charcode_t *cstr)
 
 u32 CharCode_FormatArgType(const charcode_t *cstr)
 {
-    GF_ASSERT(*cstr== CHAR_FORMAT_ARG);
+    GF_ASSERT(*cstr == CHAR_FORMAT_ARG);
     return *(cstr + 1);
 }
 
