@@ -3,7 +3,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "trainer_info.h"
@@ -23,7 +22,7 @@
 
 #include "unk_02006E3C.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
 #include "heap.h"
@@ -220,19 +219,19 @@ void ov23_022421EC (void)
 
 BOOL ov23_0224223C (TrainerInfo * param0, TrainerInfo * param1, int param2, Strbuf *param3)
 {
-    StringFormatter * v0;
+    StringTemplate * v0;
     Strbuf* v1;
 
     if (param0 && param1) {
-        v0 = StringFormatter_New(4);
+        v0 = StringTemplate_Default(4);
         v1 = Strbuf_Init((50 * 2), 4);
 
-        StringFormatter_FormatPlayerName(v0, 0, param0);
-        StringFormatter_FormatPlayerName(v0, 1, param1);
+        StringTemplate_SetPlayerName(v0, 0, param0);
+        StringTemplate_SetPlayerName(v0, 1, param1);
         MessageLoader_GetStrbuf(ov23_02253E3C(ov23_0224219C()), param2, v1);
-        StringFormatter_Format(v0, param3, v1);
+        StringTemplate_Format(v0, param3, v1);
         Strbuf_Free(v1);
-        sub_0200B3F0(v0);
+        StringTemplate_Free(v0);
 
         return 1;
     }
@@ -242,18 +241,18 @@ BOOL ov23_0224223C (TrainerInfo * param0, TrainerInfo * param1, int param2, Strb
 
 BOOL ov23_022422A8 (TrainerInfo * param0, int param1, int param2, Strbuf *param3)
 {
-    StringFormatter * v0;
+    StringTemplate * v0;
     Strbuf* v1;
 
     if (param0) {
-        v0 = StringFormatter_New(4);
+        v0 = StringTemplate_Default(4);
         v1 = Strbuf_Init((50 * 2), 4);
 
-        StringFormatter_FormatPlayerName(v0, param1, param0);
+        StringTemplate_SetPlayerName(v0, param1, param0);
         MessageLoader_GetStrbuf(ov23_02253E3C(ov23_0224219C()), param2, v1);
-        StringFormatter_Format(v0, param3, v1);
+        StringTemplate_Format(v0, param3, v1);
         Strbuf_Free(v1);
-        sub_0200B3F0(v0);
+        StringTemplate_Free(v0);
 
         return 1;
     }
@@ -264,7 +263,7 @@ BOOL ov23_022422A8 (TrainerInfo * param0, int param1, int param2, Strbuf *param3
 static BOOL ov23_02242308 (Strbuf *param0)
 {
     int v0;
-    StringFormatter * v1;
+    StringTemplate * v1;
     Strbuf* v2;
     TrainerInfo * v3;
     TrainerInfo * v4;
@@ -1053,21 +1052,21 @@ void ov23_02243020 (int param0)
 
 void ov23_02243038 (int param0)
 {
-    StringFormatter * v0;
+    StringTemplate * v0;
     Strbuf* v1;
 
     if (Unk_ov23_02257748) {
         if (Unk_ov23_02257748->unk_DC[param0] == NULL) {
             Unk_ov23_02257748->unk_DC[param0] = Strbuf_Init((50 * 2), 15);
 
-            v0 = StringFormatter_New(11);
+            v0 = StringTemplate_Default(11);
             v1 = Strbuf_Init((50 * 2), 11);
 
-            StringFormatter_FormatPlayerName(v0, 0, CommInfo_TrainerInfo(param0));
+            StringTemplate_SetPlayerName(v0, 0, CommInfo_TrainerInfo(param0));
             MessageLoader_GetStrbuf(ov23_02253E3C(ov23_0224219C()), 115, v1);
-            StringFormatter_Format(v0, Unk_ov23_02257748->unk_DC[param0], v1);
+            StringTemplate_Format(v0, Unk_ov23_02257748->unk_DC[param0], v1);
             Strbuf_Free(v1);
-            sub_0200B3F0(v0);
+            StringTemplate_Free(v0);
         }
     }
 }

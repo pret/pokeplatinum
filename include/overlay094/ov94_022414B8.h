@@ -3,7 +3,6 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -22,8 +21,8 @@ void ov94_0224218C(Window * param0, MessageLoader * param1, MessageLoader * para
 void ov94_02242204(Window * param0, MessageLoader * param1, int param2, int param3, int param4, int param5, u32 param6);
 void ov94_0224226C(Window * param0, MessageLoader * param1, int param2, int param3, int param4, u32 param5, int param6, int param7);
 void ov94_022422B8(Window * param0, MessageLoader * param1, int param2, int param3, int param4, u32 param5, int param6);
-void ov94_022422D4(MessageLoader * param0, MessageLoader * param1, StringFormatter * param2, Window param3[], int param4, int param5, int param6);
-void ov94_02242368(MessageLoader * param0, MessageLoader * param1, StringFormatter * param2, Window param3[], int param4, int param5, int param6);
+void ov94_022422D4(MessageLoader * param0, MessageLoader * param1, StringTemplate * param2, Window param3[], int param4, int param5, int param6);
+void ov94_02242368(MessageLoader * param0, MessageLoader * param1, StringTemplate * param2, Window param3[], int param4, int param5, int param6);
 u16 * ov94_02242524(int param0, int param1, int * param2);
 u8 * ov94_02242548(int param0);
 void ov94_022425A8(UnkStruct_ov94_0223BA88 * param0, UnkStruct_ov94_0223FD4C * param1);

@@ -3,7 +3,6 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/cell_actor_data.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202F41C_decl.h"
@@ -18,7 +17,7 @@
 #include "overlay062/struct_ov62_0223CAA4.h"
 #include "overlay062/struct_ov62_02248CDC.h"
 
-StringFormatter * ov62_02231690(u32 param0);
+StringTemplate * ov62_02231690(u32 param0);
 int ov62_022316A0(UnkStruct_0208C06C * param0);
 int ov62_022316D0(UnkStruct_0208C06C * param0);
 int ov62_02231710(UnkStruct_0208C06C * param0, int param1);

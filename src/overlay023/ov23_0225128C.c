@@ -23,7 +23,7 @@
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -667,7 +667,7 @@ static void ov23_02251BB4 (SysTask * param0, UnkStruct_ov23_02250CD4 * param1)
 {
     Strbuf_Free(param1->unk_68);
     Strbuf_Free(param1->unk_6C);
-    sub_0200B3F0(param1->unk_70);
+    StringTemplate_Free(param1->unk_70);
 
     if (param1->unk_260 != NULL) {
         param1->unk_260(0);
@@ -857,7 +857,7 @@ static void ov23_02251F94 (FieldSystem * param0)
     v1->unk_2AA = 0;
     v1->unk_68 = Strbuf_Init((50 * 2), 4);
     v1->unk_6C = Strbuf_Init((50 * 2), 4);
-    v1->unk_70 = StringFormatter_New(4);
+    v1->unk_70 = StringTemplate_Default(4);
     v1->unk_08 = sub_0206A780(4);
 
     sub_0206A8A0(v1->unk_08, 200, 20, 122);

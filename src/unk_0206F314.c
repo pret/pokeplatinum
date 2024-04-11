@@ -7,7 +7,6 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
@@ -33,7 +32,7 @@
 #include "unk_02005474.h"
 #include "narc.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
@@ -51,7 +50,7 @@
 
 typedef struct {
     MessageLoader * unk_00;
-    StringFormatter * unk_04;
+    StringTemplate * unk_04;
     Strbuf* unk_08;
     Strbuf* unk_0C;
     Strbuf* unk_10;
@@ -538,7 +537,7 @@ static void sub_0206FA08 (UnkStruct_0206F7F8 * param0)
     int v0;
 
     param0->unk_2C.unk_00 = MessageLoader_Init(0, 26, 532, param0->unk_00);
-    param0->unk_2C.unk_04 = sub_0200B368(2, (38 * 2), param0->unk_00);
+    param0->unk_2C.unk_04 = StringTemplate_New(2, (38 * 2), param0->unk_00);
     param0->unk_2C.unk_08 = Strbuf_Init((38 * 2), param0->unk_00);
     param0->unk_2C.unk_0C = MessageLoader_GetNewStrbuf(param0->unk_2C.unk_00, 13);
     param0->unk_2C.unk_10 = MessageLoader_GetNewStrbuf(param0->unk_2C.unk_00, 22);
@@ -581,7 +580,7 @@ static void sub_0206FAC0 (UnkStruct_0206F7F8 * param0)
     Strbuf_Free(param0->unk_2C.unk_10);
     Strbuf_Free(param0->unk_2C.unk_0C);
     Strbuf_Free(param0->unk_2C.unk_08);
-    sub_0200B3F0(param0->unk_2C.unk_04);
+    StringTemplate_Free(param0->unk_2C.unk_04);
     MessageLoader_Free(param0->unk_2C.unk_00);
 }
 
@@ -799,12 +798,12 @@ static void sub_02070050 (UnkStruct_0206F7F8 * param0, BOOL param1)
             ++v2;
         }
 
-        StringFormatter_FormatNumber(param0->unk_2C.unk_04, 0, v2, 1, 1, 1);
-        sub_0200B48C(param0->unk_2C.unk_04, 1, v6->unk_04[v0].unk_00->unk_08, 2, 1, GAME_LANGUAGE);
-        StringFormatter_Format(param0->unk_2C.unk_04, param0->unk_2C.unk_08, param0->unk_2C.unk_18);
+        StringTemplate_SetNumber(param0->unk_2C.unk_04, 0, v2, 1, 1, 1);
+        StringTemplate_SetStrbuf(param0->unk_2C.unk_04, 1, v6->unk_04[v0].unk_00->unk_08, 2, 1, GAME_LANGUAGE);
+        StringTemplate_Format(param0->unk_2C.unk_04, param0->unk_2C.unk_08, param0->unk_2C.unk_18);
         sub_0201D78C(&param0->unk_D4, 0, param0->unk_2C.unk_08, 8, v3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((15 & 0xff) << 0)))), NULL);
-        StringFormatter_FormatNumber(param0->unk_2C.unk_04, 0, v4, v7->unk_04, 1, 1);
-        StringFormatter_Format(param0->unk_2C.unk_04, param0->unk_2C.unk_08, param0->unk_2C.unk_1C[v7->unk_06 - 15]);
+        StringTemplate_SetNumber(param0->unk_2C.unk_04, 0, v4, v7->unk_04, 1, 1);
+        StringTemplate_Format(param0->unk_2C.unk_04, param0->unk_2C.unk_08, param0->unk_2C.unk_1C[v7->unk_06 - 15]);
         sub_0201D78C(&param0->unk_D4, 0, param0->unk_2C.unk_08, (24 * 8) - sub_02002D7C(0, param0->unk_2C.unk_08, 0) - 8, v3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((15 & 0xff) << 0)))), NULL);
 
         param0->unk_32C[v3] = v0;

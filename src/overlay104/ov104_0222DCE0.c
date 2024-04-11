@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
@@ -22,7 +21,7 @@
 #include "unk_020021B0.h"
 #include "narc.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_020218BC.h"
@@ -613,9 +612,9 @@ void ov104_0222E4BC (u8 param0, u16 param1, u16 param2, u16 * param3, UnkStruct_
     return;
 }
 
-void ov104_0222E5D0 (StringFormatter * param0, u32 param1)
+void ov104_0222E5D0 (StringTemplate * param0, u32 param1)
 {
-    StringFormatter_FormatPlayerName(param0, param1, CommInfo_TrainerInfo((CommSys_CurNetId() ^ 1)));
+    StringTemplate_SetPlayerName(param0, param1, CommInfo_TrainerInfo((CommSys_CurNetId() ^ 1)));
     return;
 }
 

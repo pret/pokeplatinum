@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
+#include "string_template.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -30,7 +30,7 @@ typedef struct {
     UIControlData * unk_80;
     ResourceMetadata * unk_84;
     MessageLoader * unk_88;
-    StringFormatter * unk_8C;
+    StringTemplate * unk_8C;
     UnkStruct_020203AC * unk_90;
     UnkStruct_ov5_021D30A8 unk_94;
     GraphicElementData * unk_25C[4];

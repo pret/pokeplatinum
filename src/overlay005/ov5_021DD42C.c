@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0203E724_decl.h"
 
@@ -13,7 +12,7 @@
 #include "overlay005/struct_ov5_021DD42C.h"
 
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_02014A84.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
@@ -27,7 +26,7 @@
 typedef struct {
     Strbuf* unk_00;
     Strbuf* unk_04;
-    StringFormatter * unk_08;
+    StringTemplate * unk_08;
     Window * unk_0C;
     u8 * unk_10;
     u8 * unk_14;
@@ -35,7 +34,7 @@ typedef struct {
 
 static u8 ov5_021DD574(UnkStruct_0203E724 * param0);
 static void ov5_021DD588(FieldSystem * param0, UnkStruct_ov5_021DD648 * param1);
-static void ov5_021DD5D0(FieldSystem * param0, StringFormatter * param1, UnkStruct_ov5_021DD648 * param2);
+static void ov5_021DD5D0(FieldSystem * param0, StringTemplate * param1, UnkStruct_ov5_021DD648 * param2);
 static void ov5_021DD610(FieldSystem * param0, UnkStruct_ov5_021DD648 * param1);
 static void ov5_021DD648(UnkStruct_ov5_021DD648 * param0, const MessageLoader * param1, u32 param2);
 static void ov5_021DD664(UnkStruct_ov5_021DD648 * param0, u16 param1, u16 param2, u16 param3, u16 param4);
@@ -99,7 +98,7 @@ void ov5_021DD4CC (UnkStruct_0203E724 * param0, u16 param1, u16 param2, u16 para
     }
 }
 
-void ov5_021DD530 (UnkStruct_0203E724 * param0, StringFormatter * param1, u8 param2, u8 param3)
+void ov5_021DD530 (UnkStruct_0203E724 * param0, StringTemplate * param1, u8 param2, u8 param3)
 {
     UnkStruct_ov5_021DD648 v0;
 
@@ -118,13 +117,13 @@ static void ov5_021DD588 (FieldSystem * param0, UnkStruct_ov5_021DD648 * param1)
 {
     param1->unk_00 = *((Strbuf **)(sub_0203F098(param0, 16)));
     param1->unk_04 = *((Strbuf **)(sub_0203F098(param0, 17)));
-    param1->unk_08 = *((StringFormatter **)(sub_0203F098(param0, 15)));
+    param1->unk_08 = *((StringTemplate **)(sub_0203F098(param0, 15)));
     param1->unk_0C = sub_0203F098(param0, 1);
     param1->unk_10 = sub_0203F098(param0, 6);
     param1->unk_14 = sub_0203F098(param0, 3);
 }
 
-static void ov5_021DD5D0 (FieldSystem * param0, StringFormatter * param1, UnkStruct_ov5_021DD648 * param2)
+static void ov5_021DD5D0 (FieldSystem * param0, StringTemplate * param1, UnkStruct_ov5_021DD648 * param2)
 {
     param2->unk_00 = *((Strbuf **)(sub_0203F098(param0, 16)));
     param2->unk_04 = *((Strbuf **)(sub_0203F098(param0, 17)));
@@ -148,7 +147,7 @@ static void ov5_021DD610 (FieldSystem * param0, UnkStruct_ov5_021DD648 * param1)
 static void ov5_021DD648 (UnkStruct_ov5_021DD648 * param0, const MessageLoader * param1, u32 param2)
 {
     MessageLoader_GetStrbuf(param1, param2, param0->unk_04);
-    StringFormatter_Format(param0->unk_08, param0->unk_00, param0->unk_04);
+    StringTemplate_Format(param0->unk_08, param0->unk_00, param0->unk_04);
 }
 
 static void ov5_021DD664 (UnkStruct_ov5_021DD648 * param0, u16 param1, u16 param2, u16 param3, u16 param4)

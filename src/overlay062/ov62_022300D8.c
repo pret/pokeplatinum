@@ -4,7 +4,6 @@
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -26,7 +25,7 @@
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
 #include "unk_02012744.h"
@@ -687,7 +686,7 @@ void ov62_02230FC8 (UnkStruct_0208C06C * param0, UnkStruct_ov62_022307C0_sub1 * 
     Strbuf* v0;
     MessageLoader * v1;
     Window v2;
-    StringFormatter * v3;
+    StringTemplate * v3;
     Strbuf* v4;
     Strbuf* v5;
 
@@ -703,11 +702,11 @@ void ov62_02230FC8 (UnkStruct_0208C06C * param0, UnkStruct_ov62_022307C0_sub1 * 
             ov62_022349A8(param0, v5);
             v0 = Strbuf_Init(255, 102);
 
-            sub_0200B48C(v3, 0, v5, 0, 1, GAME_LANGUAGE);
-            StringFormatter_Format(v3, v0, v4);
+            StringTemplate_SetStrbuf(v3, 0, v5, 0, 1, GAME_LANGUAGE);
+            StringTemplate_Format(v3, v0, v4);
             Strbuf_Free(v4);
             Strbuf_Free(v5);
-            sub_0200B3F0(v3);
+            StringTemplate_Free(v3);
         }
     } else if (param2 == 41) {
         if (param0->unk_88C[param3->unk_18] == NULL) {
@@ -719,11 +718,11 @@ void ov62_02230FC8 (UnkStruct_0208C06C * param0, UnkStruct_ov62_022307C0_sub1 * 
             ov62_022349A8(param0, v5);
             v0 = Strbuf_Init(255, 102);
 
-            sub_0200B48C(v3, 0, v5, 0, 1, GAME_LANGUAGE);
-            StringFormatter_Format(v3, v0, v4);
+            StringTemplate_SetStrbuf(v3, 0, v5, 0, 1, GAME_LANGUAGE);
+            StringTemplate_Format(v3, v0, v4);
             Strbuf_Free(v4);
             Strbuf_Free(v5);
-            sub_0200B3F0(v3);
+            StringTemplate_Free(v3);
         }
     } else {
         v0 = MessageLoader_GetNewStrbuf(v1, param2);

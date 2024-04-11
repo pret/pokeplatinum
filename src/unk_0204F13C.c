@@ -3,7 +3,6 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02030114_decl.h"
 #include "struct_decls/struct_0203026C_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
@@ -24,7 +23,7 @@
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/pokemon_summary.h"
 
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "heap.h"
 #include "savedata.h"
 #include "unk_02025E08.h"
@@ -533,7 +532,7 @@ BOOL sub_0204F6D8 (UnkStruct_0203E724 * param0)
     u32 v4, v5, v6;
     u16 v7, v8;
     FieldSystem * v9 = param0->unk_34;
-    StringFormatter ** v10 = sub_0203F098(v9, 15);
+    StringTemplate ** v10 = sub_0203F098(v9, 15);
     u8 v11 = (*((param0)->unk_08++));
     u8 v12 = (*((param0)->unk_08++));
     u8 v13 = (*((param0)->unk_08++));
@@ -567,7 +566,7 @@ BOOL sub_0204F6D8 (UnkStruct_0203E724 * param0)
         Heap_FreeToHeap(v2);
     }
 
-    StringFormatter_FormatNumber(*v10, v11, v4, sub_0205DFC4(v4),
+    StringTemplate_SetNumber(*v10, v11, v4, sub_0205DFC4(v4),
                  1, 1);
 
     v7 = 0;
@@ -605,15 +604,15 @@ BOOL sub_0204F6D8 (UnkStruct_0203E724 * param0)
         }
     }
 
-    StringFormatter_FormatNumber(*v10, v12, Unk_020EC078[v6].unk_00,
+    StringTemplate_SetNumber(*v10, v12, Unk_020EC078[v6].unk_00,
                  sub_0205DFC4(Unk_020EC078[v6].unk_00),
                  1, 1);
 
-    StringFormatter_FormatNumber(*v10, v13, Unk_020EC078[*v15].unk_00,
+    StringTemplate_SetNumber(*v10, v13, Unk_020EC078[*v15].unk_00,
                  sub_0205DFC4(Unk_020EC078[*v15].unk_00),
                  1, 1);
 
-    StringFormatter_FormatNumber(*v10, v14, v7, sub_0205DFC4(v7),
+    StringTemplate_SetNumber(*v10, v14, v7, sub_0205DFC4(v7),
                  1, 1);
 
     return 0;

@@ -34,7 +34,7 @@
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
 #include "unk_02012744.h"
@@ -1381,121 +1381,121 @@ static void ov17_0224290C (UnkStruct_ov17_02246F24 * param0, int param1, const U
     case 0:
         break;
     case 1:
-        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param0->unk_304.unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param0->unk_304.unk_00]));
         break;
     case 2:
-        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         break;
     case 3:
-        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
         break;
     case 4:
-        sub_0200B630(param0->unk_0C.unk_48, 0, param2->unk_02);
+        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 0, param2->unk_02);
         break;
     case 5:
-        StringFormatter_FormatNumber(param0->unk_0C.unk_48, 0, param2->unk_04, 1, 0, 1);
+        StringTemplate_SetNumber(param0->unk_0C.unk_48, 0, param2->unk_04, 1, 0, 1);
         break;
     case 6:
-        sub_0200BB74(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
+        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
         break;
     case 7:
-        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
-        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
         break;
     case 8:
-        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
-        sub_0200B630(param0->unk_0C.unk_48, 1, param2->unk_02);
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 1, param2->unk_02);
         break;
     case 9:
-        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
-        StringFormatter_FormatNumber(param0->unk_0C.unk_48, 1, param2->unk_04, 1, 0, 1);
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNumber(param0->unk_0C.unk_48, 1, param2->unk_04, 1, 0, 1);
         break;
     case 10:
-        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
-        sub_0200BB74(param0->unk_0C.unk_48, 1, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 1, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
         break;
     case 11:
-        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
-        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         break;
     case 12:
-        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
-        sub_0200B630(param0->unk_0C.unk_48, 1, param2->unk_02);
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 1, param2->unk_02);
         break;
     case 13:
-        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
-        StringFormatter_FormatNumber(param0->unk_0C.unk_48, 1, param2->unk_04, 1, 0, 1);
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringTemplate_SetNumber(param0->unk_0C.unk_48, 1, param2->unk_04, 1, 0, 1);
         break;
     case 14:
-        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
-        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         break;
     case 15:
-        sub_0200B630(param0->unk_0C.unk_48, 0, param2->unk_02);
-        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 0, param2->unk_02);
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         break;
     case 16:
-        sub_0200B630(param0->unk_0C.unk_48, 0, param2->unk_02);
-        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 0, param2->unk_02);
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
         break;
     case 17:
-        sub_0200B630(param0->unk_0C.unk_48, 0, param2->unk_02);
-        StringFormatter_FormatNumber(param0->unk_0C.unk_48, 1, param2->unk_04, 1, 0, 1);
+        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 0, param2->unk_02);
+        StringTemplate_SetNumber(param0->unk_0C.unk_48, 1, param2->unk_04, 1, 0, 1);
         break;
     case 18:
-        sub_0200B630(param0->unk_0C.unk_48, 0, param2->unk_02);
-        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 0, param2->unk_02);
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         break;
     case 19:
-        StringFormatter_FormatNumber(param0->unk_0C.unk_48, 0, param2->unk_04, 1, 0, 1);
-        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNumber(param0->unk_0C.unk_48, 0, param2->unk_04, 1, 0, 1);
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         break;
     case 20:
-        StringFormatter_FormatNumber(param0->unk_0C.unk_48, 0, param2->unk_04, 1, 0, 1);
-        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringTemplate_SetNumber(param0->unk_0C.unk_48, 0, param2->unk_04, 1, 0, 1);
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
         break;
     case 21:
-        StringFormatter_FormatNumber(param0->unk_0C.unk_48, 0, param2->unk_04, 1, 0, 1);
-        sub_0200B630(param0->unk_0C.unk_48, 1, param2->unk_02);
+        StringTemplate_SetNumber(param0->unk_0C.unk_48, 0, param2->unk_04, 1, 0, 1);
+        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 1, param2->unk_02);
         break;
     case 22:
-        StringFormatter_FormatNumber(param0->unk_0C.unk_48, 0, param2->unk_04, 1, 0, 1);
-        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNumber(param0->unk_0C.unk_48, 0, param2->unk_04, 1, 0, 1);
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         break;
     case 23:
-        sub_0200BB74(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
-        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         break;
     case 24:
-        sub_0200BB74(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
-        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
         break;
     case 25:
-        sub_0200BB74(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
-        sub_0200B630(param0->unk_0C.unk_48, 1, param2->unk_02);
+        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
+        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 1, param2->unk_02);
         break;
     case 26:
-        sub_0200BB74(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
-        StringFormatter_FormatNumber(param0->unk_0C.unk_48, 1, param2->unk_04, 1, 0, 1);
+        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
+        StringTemplate_SetNumber(param0->unk_0C.unk_48, 1, param2->unk_04, 1, 0, 1);
         break;
     case 27:
-        StringFormatter_BufferNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
-        sub_0200BB74(param0->unk_0C.unk_48, 1, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
-        sub_0200B630(param0->unk_0C.unk_48, 2, param2->unk_02);
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 1, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
+        StringTemplate_SetMoveName(param0->unk_0C.unk_48, 2, param2->unk_02);
         break;
     case 28:
     {
         const UnkStruct_ov17_0224290C * v0 = param3;
         int v1;
 
-        sub_0200BB74(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[v0->unk_00].unk_00);
+        StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[v0->unk_00].unk_00);
 
         for (v1 = 0; v1 < 4; v1++) {
             if (v0->unk_01[v1] == 4) {
                 break;
             }
 
-            StringFormatter_BufferNickname(param0->unk_0C.unk_48, 1 + v1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[v0->unk_01[v1]]));
+            StringTemplate_SetNickname(param0->unk_0C.unk_48, 1 + v1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[v0->unk_01[v1]]));
         }
     }
     break;
@@ -1529,7 +1529,7 @@ static void ov17_02242DC0 (UnkStruct_ov17_02246F24 * param0, MessageLoader * par
     v0 = MessageLoader_GetNewStrbuf(param1, param2);
     ov17_0224290C(param0, param3, param4, param5);
 
-    StringFormatter_Format(param0->unk_0C.unk_48, param0->unk_0C.unk_4C, v0);
+    StringTemplate_Format(param0->unk_0C.unk_48, param0->unk_0C.unk_4C, v0);
     BGL_FillWindow(&param0->unk_0C.unk_28[0], 0xff);
 
     param0->unk_0C.unk_210 = PrintStringSimple(&param0->unk_0C.unk_28[0], 1, param0->unk_0C.unk_4C, 0, 0, v1, NULL);

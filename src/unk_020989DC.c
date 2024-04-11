@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B358_decl.h"
 #include "pokemon.h"
 #include "savedata.h"
 
@@ -19,7 +18,7 @@
 #include "struct_defs/struct_02098DE8.h"
 
 #include "overlay_manager.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "heap.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
@@ -98,7 +97,7 @@ UnkStruct_0203D9B8 * sub_020989DC (SaveData * param0, int param1)
     UnkStruct_0203D9B8 * v0;
     Poffin * v1;
     UnkStruct_020989DC * v2;
-    StringFormatter * v3;
+    StringTemplate * v3;
     u8 v4[7];
     u8 v5 = 0, v6 = 0, v7 = 0;
     u8 v8 = 0;
@@ -113,7 +112,7 @@ UnkStruct_0203D9B8 * sub_020989DC (SaveData * param0, int param1)
     v0->unk_18 = sub_02025E44(param0);
 
     v1 = Poffin_malloc(param1);
-    v3 = sub_0200B368(1, 32, param1);
+    v3 = StringTemplate_New(1, 32, param1);
 
     for (v5 = 0; v5 < 100; v5++) {
         sub_0202AC54(v0->unk_08, v5, v1);
@@ -146,7 +145,7 @@ UnkStruct_0203D9B8 * sub_020989DC (SaveData * param0, int param1)
         v2->unk_07 = v2->unk_06 = 0xFF;
     }
 
-    sub_0200B3F0(v3);
+    StringTemplate_Free(v3);
     Heap_FreeToHeap(v1);
 
     v0->unk_00 = v6;

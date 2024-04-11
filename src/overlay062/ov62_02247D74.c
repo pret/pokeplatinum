@@ -3,7 +3,6 @@
 
 #include "overlay062/ov62_const_funcptr_tables.h"
 
-#include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 
 #include "struct_defs/union_02022594_020225E0.h"
@@ -14,7 +13,7 @@
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
@@ -66,7 +65,7 @@ static void ov62_02247DD8 (UnkStruct_0208C06C * param0, int param1, int param2)
     Window * v1 = &param0->unk_8A4;
 
     if (param1 == 282) {
-        StringFormatter * v2;
+        StringTemplate * v2;
         Strbuf* v3;
         Strbuf* v4;
         UnkStruct_02030A80 * v5 = param0->unk_88C[param2];
@@ -78,11 +77,11 @@ static void ov62_02247DD8 (UnkStruct_0208C06C * param0, int param1, int param2)
         ov62_022349A8(param0, v3);
         v4 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
 
-        sub_0200B48C(v2, 0, v3, 0, 1, GAME_LANGUAGE);
-        StringFormatter_Format(v2, v0, v4);
+        StringTemplate_SetStrbuf(v2, 0, v3, 0, 1, GAME_LANGUAGE);
+        StringTemplate_Format(v2, v0, v4);
         Strbuf_Free(v3);
         Strbuf_Free(v4);
-        sub_0200B3F0(v2);
+        StringTemplate_Free(v2);
     } else {
         v0 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
     }

@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV65_02234E50_H
 
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0200B358_decl.h"
+#include "string_template.h"
 #include "struct_decls/font_oam.h"
 #include "struct_defs/sprite_manager_allocation.h"
 #include "struct_decls/struct_02022550_decl.h"
@@ -12,7 +12,7 @@
 #include <nnsys.h>
 
 typedef struct {
-    StringFormatter * unk_00;
+    StringTemplate * unk_00;
     void * unk_04;
     NNSG2dScreenData * unk_08;
     void * unk_0C[7];

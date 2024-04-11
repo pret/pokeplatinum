@@ -23,7 +23,7 @@
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
@@ -222,16 +222,16 @@ static void ov17_022507F0 (UnkStruct_ov17_0224FCA0 * param0, int param1, const U
         break;
     case 1:
         v0 = sub_02095848(param0->unk_00->unk_00.unk_110, param0->unk_00->unk_00.unk_111, param0->unk_00->unk_155);
-        sub_0200BBA8(param0->unk_10.unk_B8, 0, v0);
+        StringTemplate_SetContestRankName(param0->unk_10.unk_B8, 0, v0);
         break;
     case 2:
-        sub_0200B48C(param0->unk_10.unk_B8, 0, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
-        StringFormatter_BufferNickname(param0->unk_10.unk_B8, 1, Pokemon_GetBoxPokemon(param0->unk_10.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetStrbuf(param0->unk_10.unk_B8, 0, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
+        StringTemplate_SetNickname(param0->unk_10.unk_B8, 1, Pokemon_GetBoxPokemon(param0->unk_10.unk_00->unk_00[param2->unk_00]));
         break;
     case 3:
-        StringFormatter_FormatNumber(param0->unk_10.unk_B8, 0, param2->unk_04, 1, 0, 1);
-        sub_0200B48C(param0->unk_10.unk_B8, 1, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
-        StringFormatter_BufferNickname(param0->unk_10.unk_B8, 2, Pokemon_GetBoxPokemon(param0->unk_10.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNumber(param0->unk_10.unk_B8, 0, param2->unk_04, 1, 0, 1);
+        StringTemplate_SetStrbuf(param0->unk_10.unk_B8, 1, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
+        StringTemplate_SetNickname(param0->unk_10.unk_B8, 2, Pokemon_GetBoxPokemon(param0->unk_10.unk_00->unk_00[param2->unk_00]));
         break;
     default:
         GF_ASSERT(FALSE);
@@ -253,7 +253,7 @@ static void ov17_022508E4 (UnkStruct_ov17_0224FCA0 * param0, MessageLoader * par
     v0 = MessageLoader_GetNewStrbuf(param1, param2);
     ov17_022507F0(param0, param3, param4);
 
-    StringFormatter_Format(param0->unk_10.unk_B8, param0->unk_10.unk_BC, v0);
+    StringTemplate_Format(param0->unk_10.unk_B8, param0->unk_10.unk_BC, v0);
     BGL_FillWindow(&param0->unk_10.unk_24[0], 0xff);
 
     param0->unk_10.unk_388 = PrintStringSimple(&param0->unk_10.unk_24[0], 1, param0->unk_10.unk_BC, 0, 0, v1, NULL);

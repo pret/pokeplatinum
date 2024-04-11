@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -43,7 +42,7 @@
 #include "narc.h"
 #include "unk_020093B4.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
@@ -147,7 +146,7 @@ typedef struct {
 typedef struct {
     int unk_00;
     MessageLoader * unk_04;
-    StringFormatter * unk_08;
+    StringTemplate * unk_08;
     Window unk_0C[1];
     Window unk_1C[5];
     void * unk_6C;
@@ -2020,7 +2019,7 @@ static void ov109_021D24F8 (UnkStruct_ov109_021D0F70 * param0)
     PaletteSys_LoadPalette(param0->unk_D9C, 14, 7, 95, 0, 0x20, 15 * 16);
 
     v1->unk_04 = MessageLoader_Init(0, 26, 376, 95);
-    v1->unk_08 = StringFormatter_New(95);
+    v1->unk_08 = StringTemplate_Default(95);
 
     for (v0 = 0; v0 < 1; v0++) {
         sub_0201A8D4(param0->unk_D84, &v1->unk_0C[v0], &Unk_ov109_021D59B8[v0]);
@@ -2048,7 +2047,7 @@ static void ov109_021D25E8 (UnkStruct_ov109_021D0F70 * param0)
     ov109_021D27F0(param0);
 
     MessageLoader_Free(v1->unk_04);
-    sub_0200B3F0(v1->unk_08);
+    StringTemplate_Free(v1->unk_08);
     Strbuf_Free(v1->unk_6C);
 
     for (v0 = 0; v0 < 5; v0++) {
@@ -2075,13 +2074,13 @@ static void ov109_021D268C (UnkStruct_ov109_021D0F70 * param0, u32 param1, const
     UnkStruct_ov109_021D24F8 * v1 = &param0->unk_C9C;
     Window * v2 = &v1->unk_0C[0];
 
-    StringFormatter_FormatPlayerName(v1->unk_08, 1, CommInfo_TrainerInfo(CommSys_CurNetId()));
-    StringFormatter_FormatPlayerName(v1->unk_08, 2, param2);
+    StringTemplate_SetPlayerName(v1->unk_08, 1, CommInfo_TrainerInfo(CommSys_CurNetId()));
+    StringTemplate_SetPlayerName(v1->unk_08, 2, param2);
 
     v0 = Strbuf_Init(0x100, 95);
 
     MessageLoader_GetStrbuf(v1->unk_04, param1, v0);
-    StringFormatter_Format(v1->unk_08, v1->unk_6C, v0);
+    StringTemplate_Format(v1->unk_08, v1->unk_6C, v0);
     Strbuf_Free(v0);
     sub_0200E060(v2, 1, (1 + 9), 14);
     BGL_FillWindow(v2, 15);
@@ -2095,12 +2094,12 @@ static void ov109_021D2714 (UnkStruct_ov109_021D0F70 * param0, u32 param1, u32 p
     UnkStruct_ov109_021D24F8 * v1 = &param0->unk_C9C;
     Window * v2 = &v1->unk_0C[0];
 
-    sub_0200B70C(v1->unk_08, 0, param2);
+    StringTemplate_SetItemName(v1->unk_08, 0, param2);
 
     v0 = Strbuf_Init(0x100, 95);
 
     MessageLoader_GetStrbuf(v1->unk_04, param1, v0);
-    StringFormatter_Format(v1->unk_08, v1->unk_6C, v0);
+    StringTemplate_Format(v1->unk_08, v1->unk_6C, v0);
     Strbuf_Free(v0);
     sub_0200E060(v2, 1, (1 + 9), 14);
     BGL_FillWindow(v2, 15);

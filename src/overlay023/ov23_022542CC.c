@@ -3,7 +3,6 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_020298B0_decl.h"
@@ -20,7 +19,7 @@
 #include "unk_0200112C.h"
 #include "unk_02005474.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
 #include "heap.h"
@@ -428,7 +427,7 @@ static void ov23_022546E0 (UnkStruct_ov23_02254594 * param0)
             Strbuf* v13;
             Strbuf* v14;
             Strbuf* v15;
-            StringFormatter * v16;
+            StringTemplate * v16;
 
             v12 = MessageLoader_Init(0, 26, 637, 4);
 
@@ -439,14 +438,14 @@ static void ov23_022546E0 (UnkStruct_ov23_02254594 * param0)
             v15 = Strbuf_Init(6, 4);
 
             PrintStringSimple(&param0->unk_18, 0, v13, 0, 0, 0xff, NULL);
-            v16 = StringFormatter_New(4);
+            v16 = StringTemplate_Default(4);
 
-            StringFormatter_FormatNumber(v16, 0, param0->unk_40, 2, 1, 1);
-            StringFormatter_FormatNumber(v16, 1, param0->unk_41, 2, 1, 1);
-            StringFormatter_Format(v16, v15, v14);
+            StringTemplate_SetNumber(v16, 0, param0->unk_40, 2, 1, 1);
+            StringTemplate_SetNumber(v16, 1, param0->unk_41, 2, 1, 1);
+            StringTemplate_Format(v16, v15, v14);
             PrintStringSimple(&param0->unk_18, 0, v15, 0, 16, 0xff, NULL);
 
-            sub_0200B3F0(v16);
+            StringTemplate_Free(v16);
             Strbuf_Free(v13);
             Strbuf_Free(v14);
             Strbuf_Free(v15);

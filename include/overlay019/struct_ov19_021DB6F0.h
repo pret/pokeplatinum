@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV19_021DB6F0_H
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
+#include "string_template.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -24,7 +24,7 @@ typedef struct {
     int unk_20;
     void * unk_24;
     NNSG2dCharacterData * unk_28;
-    const StringFormatter * unk_2C;
+    const StringTemplate * unk_2C;
     Strbuf* unk_30;
     Strbuf* unk_34;
 } UnkStruct_ov19_021DB6F0;

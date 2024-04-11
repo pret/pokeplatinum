@@ -2,15 +2,14 @@
 #include <string.h>
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 
 #include "message.h"
 #include "unk_0200B29C.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "strbuf.h"
 
-Strbuf* sub_0200B29C (StringFormatter * param0, MessageLoader * param1, u32 param2, u32 param3)
+Strbuf* sub_0200B29C (StringTemplate * param0, MessageLoader * param1, u32 param2, u32 param3)
 {
     Strbuf* v0 = NULL;
     Strbuf* v1;
@@ -21,7 +20,7 @@ Strbuf* sub_0200B29C (StringFormatter * param0, MessageLoader * param1, u32 para
         Strbuf* v2 = MessageLoader_GetNewStrbuf(param1, param2);
 
         if (v2) {
-            StringFormatter_Format(param0, v1, v2);
+            StringTemplate_Format(param0, v1, v2);
             v0 = Strbuf_Clone(v1, param3);
             Strbuf_Free(v2);
         }

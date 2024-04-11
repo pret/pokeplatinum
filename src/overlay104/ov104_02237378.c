@@ -22,7 +22,7 @@
 #include "spl.h"
 
 #include "unk_02002F38.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_02014000.h"
 #include "heap.h"
 #include "gx_layers.h"
@@ -488,7 +488,7 @@ BOOL ov104_02237748 (UnkStruct_ov104_0222E930 * param0)
         v6 = ov104_0223C148(v3->unk_13);
 
         if (v6 == 0) {
-            sub_0200BA40(param0->unk_00->unk_44, v18, v3->unk_78[ov104_02238498(v3, v19)]);
+            StringTemplate_SetFrontierTrainerName(param0->unk_00->unk_44, v18, v3->unk_78[ov104_02238498(v3, v19)]);
         } else {
             if (ov104_0223C000(v3->unk_10) == 0) {
                 v16 = SaveData_GetTrainerInfo(v14->unk_08);
@@ -496,7 +496,7 @@ BOOL ov104_02237748 (UnkStruct_ov104_0222E930 * param0)
                 v16 = CommInfo_TrainerInfo(v19);
             }
 
-            StringFormatter_FormatPlayerName(param0->unk_00->unk_44, v18, v16);
+            StringTemplate_SetPlayerName(param0->unk_00->unk_44, v18, v16);
         }
         break;
     case 39:

@@ -1,14 +1,14 @@
 #ifndef POKEPLATINUM_UNK_0204AEE8_H
 #define POKEPLATINUM_UNK_0204AEE8_H
 
-#include "struct_decls/struct_0200B358_decl.h"
+#include "string_template.h"
 #include "field/field_system_decl.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0204B404.h"
 #include "savedata.h"
 #include "overlay104/struct_ov104_0223A348.h"
 
-StringFormatter * sub_0204AEE8(SaveData * param0, u16 param1, u16 param2, u8 param3, u8 * param4);
+StringTemplate * sub_0204AEE8(SaveData * param0, u16 param1, u16 param2, u8 param3, u8 * param4);
 u16 sub_0204AF9C(u8 param0);
 u16 sub_0204AFC4(FieldSystem * param0, const u16 * param1);
 u16 sub_0204B020(FieldSystem * param0, const u16 * param1);

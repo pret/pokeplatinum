@@ -6,7 +6,6 @@
 #include "overlay_manager.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
@@ -38,7 +37,7 @@ struct UnkStruct_ov65_0222EBE0_t {
     UnkStruct_0200112C * unk_158;
     BGL * unk_15C;
     SaveData * unk_160;
-    StringFormatter * unk_164;
+    StringTemplate * unk_164;
     MessageLoader * unk_168;
     MessageLoader * unk_16C;
     Strbuf* unk_170;

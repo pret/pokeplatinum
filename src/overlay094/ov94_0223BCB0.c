@@ -28,7 +28,7 @@
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -122,7 +122,7 @@ int ov94_0223BCB0 (OverlayManager * param0, int * param1)
             sub_02018368(&v1);
         }
 
-        v0->unk_B8C = sub_0200B368(11, 64, 62);
+        v0->unk_B8C = StringTemplate_New(11, 64, 62);
         v0->unk_B90 = MessageLoader_Init(0, 26, 671, 62);
         v0->unk_B98 = MessageLoader_Init(0, 26, 674, 62);
         v0->unk_B9C = MessageLoader_Init(0, 26, 695, 62);
@@ -225,7 +225,7 @@ int ov94_0223BF54 (OverlayManager * param0, int * param1)
     MessageLoader_Free(v0->unk_B98);
     MessageLoader_Free(v0->unk_B90);
     MessageLoader_Free(v0->unk_BA0);
-    sub_0200B3F0(v0->unk_B8C);
+    StringTemplate_Free(v0->unk_B8C);
 
     ov94_0223C0A0(v0);
 

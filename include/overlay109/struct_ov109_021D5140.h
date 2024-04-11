@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
+#include "string_template.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
@@ -33,7 +33,7 @@ typedef struct UnkStruct_ov109_021D5140_t {
     BOOL unk_18;
     UnkStruct_ov109_021D5140_sub1 unk_1C;
     SysTask * unk_30;
-    StringFormatter * unk_34;
+    StringTemplate * unk_34;
     MessageLoader * unk_38;
     Strbuf* unk_3C[5];
     Strbuf* unk_50;

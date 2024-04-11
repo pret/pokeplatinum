@@ -16,7 +16,7 @@
 #include "narc.h"
 #include "unk_0200A784.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_02015064.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -379,7 +379,7 @@ static void ov83_0223CF2C (UnkStruct_ov83_0223B784 * param0)
     int v0;
 
     param0->unk_15E0.unk_00 = MessageLoader_Init(0, 26, 464, param0->unk_00);
-    param0->unk_15E0.unk_04 = sub_0200B368(4, 64, param0->unk_00);
+    param0->unk_15E0.unk_04 = StringTemplate_New(4, 64, param0->unk_00);
     param0->unk_15E0.unk_08 = Strbuf_Init(64, param0->unk_00);
     param0->unk_15E0.unk_0C = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 0);
     param0->unk_15E0.unk_10 = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 1);
@@ -427,6 +427,6 @@ static void ov83_0223D068 (UnkStruct_ov83_0223B784 * param0)
     }
 
     Strbuf_Free(param0->unk_15E0.unk_08);
-    sub_0200B3F0(param0->unk_15E0.unk_04);
+    StringTemplate_Free(param0->unk_15E0.unk_04);
     MessageLoader_Free(param0->unk_15E0.unk_00);
 }

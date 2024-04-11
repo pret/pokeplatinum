@@ -23,7 +23,7 @@
 #include "overlay104/struct_ov104_0223C4CC.h"
 
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -806,16 +806,16 @@ static void ov104_02237284 (UnkStruct_ov104_022320B4 * param0, Window * param1, 
 
     v0 = MessageLoader_Init(0, 26, 199, 11);
 
-    StringFormatter_FormatNumber(param0->unk_44, 0, param3, 4, 1, 1);
+    StringTemplate_SetNumber(param0->unk_44, 0, param3, 4, 1, 1);
     MessageLoader_GetStrbuf(v0, 2, v1);
 
-    StringFormatter_Format(param0->unk_44, v2, v1);
+    StringTemplate_Format(param0->unk_44, v2, v1);
     PrintStringSimple(param1, 0, v2, 16, 2 * 8, 0xff, NULL);
-    StringFormatter_FormatPlayerName(param0->unk_44, 0, param2);
+    StringTemplate_SetPlayerName(param0->unk_44, 0, param2);
 
     MessageLoader_GetStrbuf(v0, 0, v1);
 
-    StringFormatter_Format(param0->unk_44, v2, v1);
+    StringTemplate_Format(param0->unk_44, v2, v1);
     PrintStringSimple(param1, 0, v2, 0, 0, 0, NULL);
 
     Strbuf_Free(v1);

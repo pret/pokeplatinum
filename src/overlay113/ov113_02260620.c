@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
@@ -15,7 +14,7 @@
 
 #include "message.h"
 #include "constants/species.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
@@ -547,7 +546,7 @@ static const UnkUnion_02022594 Unk_ov113_02260D4C[] = {
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-void ov113_02260620 (MessageLoader * param0, StringFormatter * param1, Window param2[], UnkStruct_ov66_0222DFF8 * param3, s32 param4)
+void ov113_02260620 (MessageLoader * param0, StringTemplate * param1, Window param2[], UnkStruct_ov66_0222DFF8 * param3, s32 param4)
 {
     const UnkStruct_ov66_0222E71C * v0;
     TrainerInfo * v1;
@@ -588,12 +587,12 @@ void ov113_02260620 (MessageLoader * param0, StringFormatter * param1, Window pa
     v4 = TrainerInfo_NameNewStrbuf(v1, 118);
     v6 = TrainerInfo_Gender(v1);
 
-    sub_0200B48C(param1, 0, v4, v6, 1, GAME_LANGUAGE);
+    StringTemplate_SetStrbuf(param1, 0, v4, v6, 1, GAME_LANGUAGE);
 
     v2 = MessageLoader_GetNewStrbuf(param0, 0);
     v3 = Strbuf_Init(v5, 118);
 
-    StringFormatter_Format(param1, v3, v2);
+    StringTemplate_Format(param1, v3, v2);
     BGL_FillWindow(&param2[v7], 0x0);
 
     if (ov66_0222E924(param3, v8) == 1) {

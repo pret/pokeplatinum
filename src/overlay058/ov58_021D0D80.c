@@ -36,7 +36,7 @@
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
@@ -184,7 +184,7 @@ int ov58_021D0D80 (OverlayManager * param0, int * param1)
         memset(v0, 0, sizeof(UnkStruct_02095EAC));
         v0->unk_00 = sub_02018340(39);
 
-        v0->unk_0C = StringFormatter_New(39);
+        v0->unk_0C = StringTemplate_Default(39);
         v0->unk_10 = MessageLoader_Init(0, 26, 425, 39);
 
         SetAutorepeat(4, 8);
@@ -338,7 +338,7 @@ int ov58_021D1018 (OverlayManager * param0, int * param1)
 
         sub_0201E530();
         MessageLoader_Free(v0->unk_10);
-        sub_0200B3F0(v0->unk_0C);
+        StringTemplate_Free(v0->unk_0C);
         (*param1)++;
         break;
     case 1:
@@ -1209,7 +1209,7 @@ static int ov58_021D2180 (UnkStruct_02095EAC * param0, int param1)
     case 1:
         ov58_021D2CB0(param0, 15);
         CommSys_SendDataServer(127, NULL, 0);
-        StringFormatter_FormatPlayerName(param0->unk_0C, 0, CommInfo_TrainerInfo(0));
+        StringTemplate_SetPlayerName(param0->unk_0C, 0, CommInfo_TrainerInfo(0));
         param1 = 2;
         ov58_021D2D10(param0);
         break;
@@ -1232,7 +1232,7 @@ static int ov58_021D2180 (UnkStruct_02095EAC * param0, int param1)
 
 static int ov58_021D223C (UnkStruct_02095EAC * param0, int param1)
 {
-    StringFormatter_FormatPlayerName(param0->unk_0C, 0, CommInfo_TrainerInfo(0));
+    StringTemplate_SetPlayerName(param0->unk_0C, 0, CommInfo_TrainerInfo(0));
 
     ov58_021D2A98(param0, 3, 1);
     ov58_021D2CB0(param0, 16);
@@ -1351,7 +1351,7 @@ void ov58_021D2434 (UnkStruct_02095EAC * param0, int param1, u8 param2)
         }
 
         ov58_021D1CDC(param0->unk_2AC, 0);
-        StringFormatter_FormatPlayerName(param0->unk_0C, 0, CommInfo_TrainerInfo(param2));
+        StringTemplate_SetPlayerName(param0->unk_0C, 0, CommInfo_TrainerInfo(param2));
 
         param0->unk_384 = param2;
         param0->unk_9418 = 0;
@@ -1364,7 +1364,7 @@ void ov58_021D2434 (UnkStruct_02095EAC * param0, int param1, u8 param2)
             return;
         }
 
-        StringFormatter_FormatPlayerName(param0->unk_0C, 0, CommInfo_TrainerInfo(param2));
+        StringTemplate_SetPlayerName(param0->unk_0C, 0, CommInfo_TrainerInfo(param2));
 
         if (param2 == CommSys_CurNetId()) {
             return;
@@ -1717,7 +1717,7 @@ static void ov58_021D2A98 (UnkStruct_02095EAC * param0, int param1, int param2)
     v0 = Strbuf_Init((40 * 2), 39);
 
     MessageLoader_GetStrbuf(param0->unk_10, param1, v0);
-    StringFormatter_Format(param0->unk_0C, param0->unk_2C, v0);
+    StringTemplate_Format(param0->unk_0C, param0->unk_2C, v0);
     Strbuf_Free(v0);
 
     BGL_FillWindow(&param0->unk_33C, 0xf0f);

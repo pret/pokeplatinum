@@ -4,7 +4,6 @@
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
@@ -22,7 +21,7 @@
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
 #include "heap.h"
@@ -52,7 +51,7 @@ typedef struct {
     Window unk_20;
     FieldSystem * unk_30;
     SaveData * unk_34;
-    StringFormatter * unk_38;
+    StringTemplate * unk_38;
     MessageLoader * unk_3C;
     int unk_40;
     UIControlData * unk_44;
@@ -107,7 +106,7 @@ static BOOL ov5_021EA8F0 (UnkStruct_ov5_021EAE78 * param0)
 
     if (sub_0207D688(sub_0207D990(param0->unk_34), 437, 1, 4) == 1) {
         v1 = CommInfo_TrainerInfo(param0->unk_8C);
-        StringFormatter_FormatPlayerName(param0->unk_38, 0, v1);
+        StringTemplate_SetPlayerName(param0->unk_38, 0, v1);
         ov5_021EAE78(param0, 57);
         param0->unk_48 = 2;
         return 0;
@@ -201,7 +200,7 @@ static BOOL ov5_021EAAA8 (UnkStruct_ov5_021EAE78 * param0)
         param0->unk_48 = 8;
     } else {
         v0 = CommInfo_TrainerInfo(param0->unk_8C);
-        StringFormatter_FormatPlayerName(param0->unk_38, 0, v0);
+        StringTemplate_SetPlayerName(param0->unk_38, 0, v0);
         ov5_021EAE78(param0, 59);
         param0->unk_48 = 6;
     }
@@ -316,7 +315,7 @@ static BOOL ov5_021EAC44 (UnkStruct_ov5_021EAE78 * param0)
     case 0xfffffffe:
         Sound_PlayEffect(1500);
         v0 = CommInfo_TrainerInfo(param0->unk_8C);
-        StringFormatter_FormatPlayerName(param0->unk_38, 0, v0);
+        StringTemplate_SetPlayerName(param0->unk_38, 0, v0);
         ov5_021EAE78(param0, 59);
         param0->unk_48 = 6;
         break;
@@ -329,7 +328,7 @@ static BOOL ov5_021EAC44 (UnkStruct_ov5_021EAE78 * param0)
             TrainerInfo * v3 = TrainerInfo_New(4);
 
             TrainerInfo_SetName(v3, sub_0202AEF0(v2, v1));
-            StringFormatter_FormatPlayerName(param0->unk_38, 0, v3);
+            StringTemplate_SetPlayerName(param0->unk_38, 0, v3);
             Heap_FreeToHeap(v3);
         }
 
@@ -373,7 +372,7 @@ static BOOL ov5_021EAD38 (UnkStruct_ov5_021EAE78 * param0)
         param0->unk_48 = 1;
     } else {
         v1 = CommInfo_TrainerInfo(param0->unk_8C);
-        StringFormatter_FormatPlayerName(param0->unk_38, 0, v1);
+        StringTemplate_SetPlayerName(param0->unk_38, 0, v1);
         ov5_021EAE78(param0, 59);
         param0->unk_48 = 6;
     }
@@ -444,7 +443,7 @@ static void ov5_021EAE78 (UnkStruct_ov5_021EAE78 * param0, int param1)
     }
 
     MessageLoader_GetStrbuf(param0->unk_3C, param1, param0->unk_08);
-    StringFormatter_Format(param0->unk_38, param0->unk_0C, param0->unk_08);
+    StringTemplate_Format(param0->unk_38, param0->unk_0C, param0->unk_08);
     sub_0205D8F4(param0->unk_30->unk_08, &param0->unk_10, 3);
     sub_0205D944(&param0->unk_10, sub_02025E44(param0->unk_30->unk_0C));
 
@@ -455,7 +454,7 @@ static void ov5_021EAEE0 (UnkStruct_ov5_021EAE78 * param0)
 {
     MI_CpuClear8(param0, sizeof(UnkStruct_ov5_021EAE78));
 
-    param0->unk_38 = StringFormatter_New(4);
+    param0->unk_38 = StringTemplate_Default(4);
     param0->unk_3C = MessageLoader_Init(0, 26, 675, 4);
     param0->unk_0C = Strbuf_Init(110, 4);
     param0->unk_08 = Strbuf_Init(110, 4);
@@ -464,7 +463,7 @@ static void ov5_021EAEE0 (UnkStruct_ov5_021EAE78 * param0)
 static void ov5_021EAF1C (UnkStruct_ov5_021EAE78 * param0)
 {
     MessageLoader_Free(param0->unk_3C);
-    sub_0200B3F0(param0->unk_38);
+    StringTemplate_Free(param0->unk_38);
     Strbuf_Free(param0->unk_0C);
     Strbuf_Free(param0->unk_08);
 

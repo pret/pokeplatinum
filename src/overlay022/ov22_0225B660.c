@@ -4,7 +4,6 @@
 #include "core_sys.h"
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02029C68_decl.h"
@@ -21,7 +20,7 @@
 #include "overlay_manager.h"
 #include "unk_02006E3C.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "heap.h"
@@ -279,14 +278,14 @@ static void ov22_0225BB00 (UnkStruct_ov22_0225B85C * param0)
     int v1, v2;
     int v3;
     u16 v4;
-    StringFormatter * v5;
+    StringTemplate * v5;
     Strbuf* v6;
     Strbuf* v7;
     MessageLoader * v8;
 
     v8 = MessageLoader_Init(0, 26, 385, 13);
     GF_ASSERT(v8);
-    v5 = StringFormatter_New(13);
+    v5 = StringTemplate_Default(13);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_1FC, 5);
     v0.x = 48 << FX32_SHIFT;
@@ -305,11 +304,11 @@ static void ov22_0225BB00 (UnkStruct_ov22_0225B85C * param0)
     Strbuf_Free(v7);
 
     v4 = sub_0202A1F4(param0->unk_00);
-    sub_0200BE48(v5, 0, v4);
+    StringTemplate_SetCustomMessageWord(v5, 0, v4);
 
     v7 = Strbuf_Init(200, 13);
     v6 = MessageLoader_GetNewStrbuf(v8, 45);
-    StringFormatter_Format(v5, v7, v6);
+    StringTemplate_Format(v5, v7, v6);
 
     v3 = sub_02002D7C(0, v7, 0);
     v1 = 128 - (v3 / 2);
@@ -319,13 +318,13 @@ static void ov22_0225BB00 (UnkStruct_ov22_0225B85C * param0)
     Strbuf_Free(v7);
     Strbuf_Free(v6);
     MessageLoader_Free(v8);
-    sub_0200B3F0(v5);
+    StringTemplate_Free(v5);
 }
 
 static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
 {
     int v0;
-    StringFormatter * v1;
+    StringTemplate * v1;
     Strbuf* v2;
     Strbuf* v3;
     int v4;
@@ -338,27 +337,27 @@ static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
     SpriteActor_SetSpriteAnimActive(param0->unk_1FC, param0->unk_08);
 
     v0 = sub_0202A5D0(param0->unk_04);
-    v1 = StringFormatter_New(13);
+    v1 = StringTemplate_Default(13);
     v2 = Strbuf_Init(200, 13);
 
-    sub_0200BBDC(v1, 0, sub_020958B8(param0->unk_08));
-    sub_0200BBA8(v1, 1, sub_02095888(v0));
+    StringTemplate_SetContestTypeName(v1, 0, sub_020958B8(param0->unk_08));
+    StringTemplate_SetContestRankName(v1, 1, sub_02095888(v0));
 
     v4 = sub_0202A544(param0->unk_04);
     sub_0202A524(param0->unk_04, v2);
-    sub_0200B48C(v1, 3, v2, v4, 1, GAME_LANGUAGE);
+    StringTemplate_SetStrbuf(v1, 3, v2, v4, 1, GAME_LANGUAGE);
 
     v5 = Pokemon_New(13);
     sub_0202A560(param0->unk_04, v5);
     v6 = Pokemon_GetBoxPokemon(v5);
-    StringFormatter_BufferNickname(v1, 4, v6);
+    StringTemplate_SetNickname(v1, 4, v6);
     Heap_FreeToHeap(v5);
 
     v7 = MessageLoader_Init(0, 26, 385, 13);
     GF_ASSERT(v7);
 
     v3 = MessageLoader_GetNewStrbuf(v7, 43);
-    StringFormatter_Format(v1, v2, v3);
+    StringTemplate_Format(v1, v2, v3);
     Strbuf_Free(v3);
     v10 = sub_02002D7C(0, v2, 0);
     v8 = 128 - (v10 / 2);
@@ -366,7 +365,7 @@ static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
     sub_0201D78C(param0->unk_200, 0, v2, v8, v9, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     v3 = MessageLoader_GetNewStrbuf(v7, 44);
-    StringFormatter_Format(v1, v2, v3);
+    StringTemplate_Format(v1, v2, v3);
     Strbuf_Free(v3);
     v10 = sub_02002D7C(0, v2, 0);
     v8 = 128 - (v10 / 2);
@@ -375,5 +374,5 @@ static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
 
     Strbuf_Free(v2);
     MessageLoader_Free(v7);
-    sub_0200B3F0(v1);
+    StringTemplate_Free(v1);
 }

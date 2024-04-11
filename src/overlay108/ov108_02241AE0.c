@@ -7,7 +7,6 @@
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
@@ -42,7 +41,7 @@
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "heap.h"
@@ -200,7 +199,7 @@ struct UnkStruct_ov108_02241DB0_t {
     u8 unk_44[32];
     u8 unk_64;
     MessageLoader * unk_68;
-    StringFormatter * unk_6C;
+    StringTemplate * unk_6C;
     Strbuf* unk_70;
     Strbuf* unk_74;
     Strbuf* unk_78[2];
@@ -784,7 +783,7 @@ static void ov108_02242238 (UnkStruct_ov108_02241DB0 * param0)
     ov108_02243194(&param0->unk_E8);
 
     MessageLoader_Free(param0->unk_68);
-    sub_0200B3F0(param0->unk_6C);
+    StringTemplate_Free(param0->unk_6C);
     Strbuf_Free(param0->unk_70);
     Strbuf_Free(param0->unk_74);
 
@@ -827,7 +826,7 @@ static void ov108_0224237C (UnkStruct_ov108_02241DB0 * param0)
     ov108_022426B0(param0);
 
     param0->unk_68 = MessageLoader_Init(1, 26, 536, 103);
-    param0->unk_6C = StringFormatter_New(103);
+    param0->unk_6C = StringTemplate_Default(103);
     param0->unk_70 = Strbuf_Init(600, 103);
     param0->unk_74 = Strbuf_Init(600, 103);
 

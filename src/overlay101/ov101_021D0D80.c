@@ -23,7 +23,7 @@
 #include "narc.h"
 #include "unk_0200A784.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -437,7 +437,7 @@ void ov101_021D13C8 (UnkStruct_ov101_021D13C8 * param0)
     sub_02002E98(0, 15 * 32, 79);
 
     v1->unk_00 = MessageLoader_Init(0, 26, 544, 79);
-    v1->unk_04 = StringFormatter_New(79);
+    v1->unk_04 = StringTemplate_Default(79);
 
     for (v0 = 0; v0 < 1; v0++) {
         sub_0201A8D4(param0->unk_43C, &v1->unk_08[v0], &Unk_ov101_021D8588[v0]);
@@ -457,7 +457,7 @@ void ov101_021D1458 (UnkStruct_ov101_021D13C8 * param0)
     }
 
     MessageLoader_Free(v1->unk_00);
-    sub_0200B3F0(v1->unk_04);
+    StringTemplate_Free(v1->unk_04);
     Strbuf_Free(v1->unk_18);
 }
 

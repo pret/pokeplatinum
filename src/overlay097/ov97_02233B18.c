@@ -7,7 +7,6 @@
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
@@ -48,7 +47,7 @@
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
@@ -100,7 +99,7 @@ typedef struct {
     int unk_34;
     u16 * unk_38;
     Strbuf* unk_3C;
-    StringFormatter * unk_40;
+    StringTemplate * unk_40;
     int unk_44;
     int unk_48;
 } UnkStruct_ov97_02233DAC;
@@ -434,7 +433,7 @@ static int ov97_02233DAC (UnkStruct_ov97_02233DAC * param0, Strbuf *param1, int 
 static void ov97_02233DD0 (UnkStruct_ov97_02234A2C * param0, UnkStruct_ov97_02233DAC * param1, int param2)
 {
     Strbuf* v0;
-    StringFormatter * v1;
+    StringTemplate * v1;
     MessageLoader * v2;
     int v3, v4, v5;
     Strbuf* v6;
@@ -459,7 +458,7 @@ static void ov97_02233DD0 (UnkStruct_ov97_02234A2C * param0, UnkStruct_ov97_0223
         if (param1->unk_40) {
             v1 = param1->unk_40;
         } else {
-            v1 = StringFormatter_New(78);
+            v1 = StringTemplate_Default(78);
         }
 
         Strbuf_Clear(param0->unk_12668);
@@ -467,14 +466,14 @@ static void ov97_02233DD0 (UnkStruct_ov97_02234A2C * param0, UnkStruct_ov97_0223
         v0 = param0->unk_12668;
         v6 = MessageLoader_GetNewStrbuf(v2, param1->unk_34);
 
-        StringFormatter_Format(v1, param0->unk_12668, v6);
+        StringTemplate_Format(v1, param0->unk_12668, v6);
         Strbuf_Free(v6);
 
         v3 = ov97_02233DAC(param1, v0, param2);
         param1->unk_48 = sub_0201D78C(param1->unk_00, param1->unk_28, v0, v3, param1->unk_1C, v5, param1->unk_2C, NULL);
 
         if (param1->unk_40 == NULL) {
-            sub_0200B3F0(v1);
+            StringTemplate_Free(v1);
         }
 
         MessageLoader_Free(v2);
@@ -1620,17 +1619,17 @@ static void ov97_02235310 (UnkStruct_ov97_02234A2C * param0)
 static void ov97_02235344 (UnkStruct_ov97_02234A2C * param0)
 {
     UnkStruct_ov97_02233DAC v0;
-    StringFormatter * v1;
+    StringTemplate * v1;
     Strbuf* v2;
     u16 v3[7 + 1];
 
     ov97_0223936C(ov97_02236378(), v3, 7 + 1, ov97_02235DBC());
 
-    v1 = StringFormatter_New(78);
+    v1 = StringTemplate_Default(78);
     v2 = Strbuf_Init(7 + 1, 78);
 
     Strbuf_CopyChars(v2, v3);
-    sub_0200B48C(v1, 1, v2, 0, 1, GAME_LANGUAGE);
+    StringTemplate_SetStrbuf(v1, 1, v2, 0, 1, GAME_LANGUAGE);
 
     ov97_02234ECC(param0);
 
@@ -1640,7 +1639,7 @@ static void ov97_02235344 (UnkStruct_ov97_02234A2C * param0)
     ov97_02233DD0(param0, &param0->unk_490, 0x8 | 0x10);
 
     Strbuf_Free(v2);
-    sub_0200B3F0(v1);
+    StringTemplate_Free(v1);
 
     ov97_02235310(param0);
 }

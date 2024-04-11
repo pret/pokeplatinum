@@ -20,7 +20,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "heap.h"
@@ -318,14 +318,14 @@ static void ov81_021D1050 (UnkStruct_ov81_021D1610 * param0)
 static void ov81_021D1130 (UnkStruct_ov81_021D1610 * param0)
 {
     param0->unk_50 = MessageLoader_Init(0, 26, 366, 42);
-    param0->unk_54 = StringFormatter_New(42);
+    param0->unk_54 = StringTemplate_Default(42);
     param0->unk_58 = Strbuf_Init(128, 42);
 }
 
 static void ov81_021D115C (UnkStruct_ov81_021D1610 * param0)
 {
     MessageLoader_Free(param0->unk_50);
-    sub_0200B3F0(param0->unk_54);
+    StringTemplate_Free(param0->unk_54);
     Strbuf_Free(param0->unk_58);
 }
 

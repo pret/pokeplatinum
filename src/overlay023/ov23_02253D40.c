@@ -4,7 +4,6 @@
 #include "core_sys.h"
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
@@ -16,7 +15,7 @@
 #include "overlay084/struct_ov84_02240FA8.h"
 
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
 #include "heap.h"
@@ -33,7 +32,7 @@ typedef struct UnkStruct_ov23_02253E2C_t {
     UnkStruct_ov23_02253F60 unk_1C;
     SysTask * unk_20;
     MessageLoader * unk_24;
-    StringFormatter * unk_28;
+    StringTemplate * unk_28;
     int unk_2C;
     int unk_30;
     int unk_34;
@@ -89,7 +88,7 @@ UnkStruct_ov23_02253E2C * ov23_02253D48 (int param0, int param1, BGL * param2, i
 
     v1->unk_00 = Strbuf_Init(v0, param1);
     v1->unk_04 = Strbuf_Init(v0, param1);
-    v1->unk_28 = StringFormatter_New(param1);
+    v1->unk_28 = StringTemplate_Default(param1);
     v1->unk_2C = param0;
     v1->unk_24 = MessageLoader_Init(1, 26, param0, param1);
     v1->unk_34 = param1;
@@ -111,7 +110,7 @@ void ov23_02253DD8 (UnkStruct_ov23_02253E2C * param0)
 {
     Strbuf_Free(param0->unk_00);
     Strbuf_Free(param0->unk_04);
-    sub_0200B3F0(param0->unk_28);
+    StringTemplate_Free(param0->unk_28);
     MessageLoader_Free(param0->unk_24);
     Heap_FreeToHeap(param0);
 }
@@ -159,7 +158,7 @@ static Strbuf* ov23_02253E6C (UnkStruct_ov23_02253E2C * param0)
     Strbuf* v0 = param0->unk_00;
 
     if (param0->unk_44_1) {
-        StringFormatter_Format(param0->unk_28, param0->unk_04, param0->unk_00);
+        StringTemplate_Format(param0->unk_28, param0->unk_04, param0->unk_00);
         v0 = param0->unk_04;
         param0->unk_44_1 = 0;
     }
@@ -274,109 +273,109 @@ void ov23_02254044 (UnkStruct_ov23_02253E2C * param0)
 
 void ov23_02254050 (UnkStruct_ov23_02253E2C * param0, TrainerInfo * param1)
 {
-    StringFormatter_FormatPlayerName(param0->unk_28, 1, param1);
+    StringTemplate_SetPlayerName(param0->unk_28, 1, param1);
     param0->unk_44_1 = 1;
 }
 
 void ov23_02254068 (UnkStruct_ov23_02253E2C * param0, TrainerInfo * param1)
 {
-    StringFormatter_FormatPlayerName(param0->unk_28, 0, param1);
+    StringTemplate_SetPlayerName(param0->unk_28, 0, param1);
     param0->unk_44_1 = 1;
 }
 
 void ov23_02254080 (UnkStruct_ov23_02253E2C * param0, int param1)
 {
-    sub_0200BACC(param0->unk_28, 2, param1);
+    StringTemplate_SetUndergroundItemNameWithArticle(param0->unk_28, 2, param1);
     param0->unk_44_1 = 1;
 }
 
 void ov23_02254098 (UnkStruct_ov23_02253E2C * param0, int param1)
 {
-    sub_0200BB04(param0->unk_28, 3, param1);
+    StringTemplate_SetUndergroundTrapName(param0->unk_28, 3, param1);
     param0->unk_44_1 = 1;
 }
 
 void ov23_022540B0 (UnkStruct_ov23_02253E2C * param0, int param1)
 {
-    sub_0200BC10(param0->unk_28, 5, param1);
+    StringTemplate_SetUndergroundQuestion(param0->unk_28, 5, param1);
     param0->unk_44_1 = 1;
 }
 
 void ov23_022540C8 (UnkStruct_ov23_02253E2C * param0, int param1)
 {
-    sub_0200BC48(param0->unk_28, 5, param1);
+    StringTemplate_SetUndergroundAnswer(param0->unk_28, 5, param1);
     param0->unk_44_1 = 1;
 }
 
 void ov23_022540E0 (UnkStruct_ov23_02253E2C * param0, int param1, int param2)
 {
-    sub_0200BC48(param0->unk_28, param1, param2);
+    StringTemplate_SetUndergroundAnswer(param0->unk_28, param1, param2);
     param0->unk_44_1 = 1;
 }
 
 void ov23_022540F4 (UnkStruct_ov23_02253E2C * param0, int param1)
 {
-    sub_0200BC80(param0->unk_28, 2, param1);
+    StringTemplate_SetUndergroundGoodsName(param0->unk_28, 2, param1);
     param0->unk_44_1 = 1;
 }
 
 void ov23_0225410C (UnkStruct_ov23_02253E2C * param0, int param1, int param2)
 {
-    StringFormatter_FormatNumber(param0->unk_28, param1, param2, 1, 0, 1);
+    StringTemplate_SetNumber(param0->unk_28, param1, param2, 1, 0, 1);
     param0->unk_44_1 = 1;
 }
 
 void ov23_0225412C (UnkStruct_ov23_02253E2C * param0, int param1)
 {
-    StringFormatter_FormatNumber(param0->unk_28, 6, param1, 2, 0, 1);
+    StringTemplate_SetNumber(param0->unk_28, 6, param1, 2, 0, 1);
     param0->unk_44_1 = 1;
 }
 
 void ov23_02254154 (UnkStruct_ov23_02253E2C * param0, int param1, int param2)
 {
-    StringFormatter_FormatNumber(param0->unk_28, param1, param2, 2, 0, 1);
+    StringTemplate_SetNumber(param0->unk_28, param1, param2, 2, 0, 1);
     param0->unk_44_1 = 1;
 }
 
 void ov23_02254178 (UnkStruct_ov23_02253E2C * param0, int param1)
 {
-    StringFormatter_FormatNumber(param0->unk_28, 6, param1, 6, 0, 1);
+    StringTemplate_SetNumber(param0->unk_28, 6, param1, 6, 0, 1);
     param0->unk_44_1 = 1;
 }
 
 void ov23_022541A0 (UnkStruct_ov23_02253E2C * param0, int param1, int param2)
 {
-    sub_0200BA94(param0->unk_28, param1, param2);
+    StringTemplate_SetUndergroundItemName(param0->unk_28, param1, param2);
     param0->unk_44_1 = 1;
 }
 
 void ov23_022541B4 (UnkStruct_ov23_02253E2C * param0, int param1, int param2)
 {
-    sub_0200BB04(param0->unk_28, param1, param2);
+    StringTemplate_SetUndergroundTrapName(param0->unk_28, param1, param2);
     param0->unk_44_1 = 1;
 }
 
 void ov23_022541C8 (UnkStruct_ov23_02253E2C * param0, int param1, int param2)
 {
-    sub_0200BC80(param0->unk_28, param1, param2);
+    StringTemplate_SetUndergroundGoodsName(param0->unk_28, param1, param2);
     param0->unk_44_1 = 1;
 }
 
 void ov23_022541DC (UnkStruct_ov23_02253E2C * param0, int param1, int param2)
 {
-    sub_0200BACC(param0->unk_28, param1, param2);
+    StringTemplate_SetUndergroundItemNameWithArticle(param0->unk_28, param1, param2);
     param0->unk_44_1 = 1;
 }
 
 void ov23_022541F0 (UnkStruct_ov23_02253E2C * param0, int param1, int param2)
 {
-    sub_0200BB3C(param0->unk_28, param1, param2);
+    StringTemplate_SetUndergroundTrapNameWithArticle(param0->unk_28, param1, param2);
     param0->unk_44_1 = 1;
 }
 
 void ov23_02254204 (UnkStruct_ov23_02253E2C * param0, int param1)
 {
-    sub_0200C324(param0->unk_28, param1);
+    StringTemplate_CapitalizeArgAtIndex(param0->unk_28, param1);
 }
 
 void ov23_02254210 (UnkStruct_ov23_02253E2C * param0)

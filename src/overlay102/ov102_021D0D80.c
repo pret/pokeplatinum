@@ -4,7 +4,6 @@
 #include "core_sys.h"
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
@@ -22,7 +21,7 @@
 #include "overlay_manager.h"
 #include "unk_02006E3C.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "heap.h"
@@ -42,7 +41,7 @@ typedef struct {
     Window unk_14;
     Window unk_24;
     MessageLoader * unk_34;
-    StringFormatter * unk_38;
+    StringTemplate * unk_38;
     s16 unk_3C;
     int unk_40;
 } UnkStruct_ov102_021D0F8C;
@@ -314,7 +313,7 @@ static void ov102_021D1174 (UnkStruct_ov102_021D0F8C * param0)
     sub_0201D710();
 
     param0->unk_34 = MessageLoader_Init(1, 26, 1, param0->unk_00);
-    param0->unk_38 = StringFormatter_New(param0->unk_00);
+    param0->unk_38 = StringTemplate_Default(param0->unk_00);
 
     v0.unk_00 = 0;
 
@@ -331,7 +330,7 @@ static void ov102_021D1204 (UnkStruct_ov102_021D0F8C * param0)
 {
     BGL_DeleteWindow(&param0->unk_24);
     BGL_DeleteWindow(&param0->unk_14);
-    sub_0200B3F0(param0->unk_38);
+    StringTemplate_Free(param0->unk_38);
     MessageLoader_Free(param0->unk_34);
 }
 
@@ -402,8 +401,8 @@ static void ov102_021D1420 (UnkStruct_ov102_021D0F8C * param0)
         Strbuf* v1 = Strbuf_Init(0x200, param0->unk_00);
 
         MessageLoader_GetStrbuf(param0->unk_34, 0, v1);
-        StringFormatter_FormatPlayerName(param0->unk_38, 0, param0->unk_0C);
-        StringFormatter_Format(param0->unk_38, v0, v1);
+        StringTemplate_SetPlayerName(param0->unk_38, 0, param0->unk_0C);
+        StringTemplate_Format(param0->unk_38, v0, v1);
         sub_0201D78C(&param0->unk_14, 0, v0, 48, 32, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
         sub_0201D78C(&param0->unk_24, 0, v0, 48, 32, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
         Strbuf_Free(v1);

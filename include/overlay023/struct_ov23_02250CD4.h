@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_0200B358_decl.h"
+#include "string_template.h"
 #include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/sys_task.h"
@@ -39,7 +39,7 @@ typedef struct {
     UnkFuncPtr_ov23_022515D8 unk_64;
     Strbuf* unk_68;
     Strbuf* unk_6C;
-    StringFormatter * unk_70;
+    StringTemplate * unk_70;
     UnkStruct_ov5_021D30A8 unk_74;
     CellActorData * unk_23C[8];
     u32 unk_25C;

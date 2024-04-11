@@ -42,7 +42,7 @@
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
@@ -1900,29 +1900,29 @@ static void ov17_0224C0C0 (UnkStruct_ov17_0224DF54 * param0, int param1, const U
     case 0:
         break;
     case 1:
-        StringFormatter_BufferNickname(param0->unk_14.unk_88, 0, Pokemon_GetBoxPokemon(param0->unk_14.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_14.unk_88, 0, Pokemon_GetBoxPokemon(param0->unk_14.unk_00->unk_00[param2->unk_00]));
         break;
     case 2:
         v0 = sub_02095848(param0->unk_00->unk_00.unk_110, param0->unk_00->unk_00.unk_111, param0->unk_00->unk_155);
-        sub_0200BBA8(param0->unk_14.unk_88, 0, v0);
+        StringTemplate_SetContestRankName(param0->unk_14.unk_88, 0, v0);
         break;
     case 3:
-        StringFormatter_FormatNumber(param0->unk_14.unk_88, 0, param2->unk_04, 1, 0, 1);
+        StringTemplate_SetNumber(param0->unk_14.unk_88, 0, param2->unk_04, 1, 0, 1);
         break;
     case 4:
-        sub_0200B48C(param0->unk_14.unk_88, 0, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
-        StringFormatter_BufferNickname(param0->unk_14.unk_88, 1, Pokemon_GetBoxPokemon(param0->unk_14.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetStrbuf(param0->unk_14.unk_88, 0, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
+        StringTemplate_SetNickname(param0->unk_14.unk_88, 1, Pokemon_GetBoxPokemon(param0->unk_14.unk_00->unk_00[param2->unk_00]));
         break;
     case 5:
-        StringFormatter_BufferNickname(param0->unk_14.unk_88, 0, Pokemon_GetBoxPokemon(param0->unk_14.unk_00->unk_00[param2->unk_00]));
-        StringFormatter_FormatNumber(param0->unk_14.unk_88, 1, param2->unk_04, 1, 0, 1);
+        StringTemplate_SetNickname(param0->unk_14.unk_88, 0, Pokemon_GetBoxPokemon(param0->unk_14.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNumber(param0->unk_14.unk_88, 1, param2->unk_04, 1, 0, 1);
         break;
     case 6:
         v0 = sub_02095848(param0->unk_00->unk_00.unk_110, param0->unk_00->unk_00.unk_111, param0->unk_00->unk_155);
-        sub_0200BBA8(param0->unk_14.unk_88, 0, v0);
-        StringFormatter_FormatNumber(param0->unk_14.unk_88, 1, param2->unk_04, 1, 0, 1);
-        sub_0200B48C(param0->unk_14.unk_88, 2, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
-        StringFormatter_BufferNickname(param0->unk_14.unk_88, 3, Pokemon_GetBoxPokemon(param0->unk_14.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetContestRankName(param0->unk_14.unk_88, 0, v0);
+        StringTemplate_SetNumber(param0->unk_14.unk_88, 1, param2->unk_04, 1, 0, 1);
+        StringTemplate_SetStrbuf(param0->unk_14.unk_88, 2, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
+        StringTemplate_SetNickname(param0->unk_14.unk_88, 3, Pokemon_GetBoxPokemon(param0->unk_14.unk_00->unk_00[param2->unk_00]));
         break;
     default:
         GF_ASSERT(FALSE);
@@ -1944,7 +1944,7 @@ static void ov17_0224C244 (UnkStruct_ov17_0224DF54 * param0, MessageLoader * par
     v0 = MessageLoader_GetNewStrbuf(param1, param2);
     ov17_0224C0C0(param0, param3, param4);
 
-    StringFormatter_Format(param0->unk_14.unk_88, param0->unk_14.unk_8C, v0);
+    StringTemplate_Format(param0->unk_14.unk_88, param0->unk_14.unk_8C, v0);
     BGL_FillWindow(&param0->unk_14.unk_64[0], 0xff);
 
     param0->unk_14.unk_A18 = PrintStringSimple(&param0->unk_14.unk_64[0], 1, param0->unk_14.unk_8C, 0, 0, v1, NULL);
@@ -2117,7 +2117,7 @@ void ov17_0224C5A0 (UnkStruct_ov17_0224DF54 * param0, u32 param1, const UnkStruc
 
     ov17_0224C0C0(param0, v1, param2);
 
-    StringFormatter_Format(param0->unk_14.unk_88, param0->unk_14.unk_8C, v2);
+    StringTemplate_Format(param0->unk_14.unk_88, param0->unk_14.unk_8C, v2);
     BGL_FillWindow(&param0->unk_14.unk_64[1], 0xff);
     PrintStringSimple(&param0->unk_14.unk_64[1], 1, param0->unk_14.unk_8C, 0, 0, 0, NULL);
     Strbuf_Free(v2);

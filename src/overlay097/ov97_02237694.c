@@ -6,7 +6,6 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -35,7 +34,7 @@
 #include "unk_0200A784.h"
 #include "message.h"
 #include "unk_0200B29C.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
@@ -224,7 +223,7 @@ static int ov97_02237870 (UnkStruct_ov97_02237808 * param0, int param1)
 {
     int v0;
     Strbuf* v1;
-    StringFormatter * v2;
+    StringTemplate * v2;
     MessageLoader * v3;
     UnkStruct_ov97_0223F550 * v4 = &Unk_ov97_0223F550;
 
@@ -239,7 +238,7 @@ static int ov97_02237870 (UnkStruct_ov97_02237808 * param0, int param1)
             v3 = MessageLoader_Init(1, 26, param0->unk_34, v4->unk_08);
 
             if (param0->unk_14 == NULL) {
-                v2 = StringFormatter_New(v4->unk_08);
+                v2 = StringTemplate_Default(v4->unk_08);
             } else {
                 v2 = param0->unk_14;
             }
@@ -261,7 +260,7 @@ static int ov97_02237870 (UnkStruct_ov97_02237808 * param0, int param1)
             Strbuf_Free(v1);
 
             if (param0->unk_14 == NULL) {
-                sub_0200B3F0(v2);
+                StringTemplate_Free(v2);
             }
 
             MessageLoader_Free(v3);

@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
@@ -19,7 +18,7 @@
 #include "unk_02001AF4.h"
 #include "unk_02006E3C.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -34,7 +33,7 @@ static void ov19_021DB7BC(BGL * param0, u32 param1, u32 param2, u32 param3, u32 
 static void ov19_021DB84C(BGL * param0, Window * param1);
 static void ov19_021DB898(BGL * param0, Window * param1);
 
-BOOL ov19_021DB2FC (UnkStruct_ov19_021DB6F0 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, BGL * param3, GraphicElementManager * param4, MessageLoader * param5, const StringFormatter * param6, int param7, NARC * param8)
+BOOL ov19_021DB2FC (UnkStruct_ov19_021DB6F0 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, BGL * param3, GraphicElementManager * param4, MessageLoader * param5, const StringTemplate * param6, int param7, NARC * param8)
 {
     param0->unk_0C = param1;
     param0->unk_00 = param3;
@@ -115,7 +114,7 @@ void ov19_021DB448 (UnkStruct_ov19_021DB6F0 * param0, u32 param1)
     ov19_021DB4B4(param0->unk_00, param0->unk_18[0].unk_04, param0->unk_18[0].unk_05, param0->unk_18[0].unk_06, param0->unk_18[0].unk_07, param0->unk_18[0].unk_08);
     BGL_FillWindow(&param0->unk_18[0], 15);
     MessageLoader_GetStrbuf(param0->unk_10, param1, param0->unk_30);
-    StringFormatter_Format(param0->unk_2C, param0->unk_34, param0->unk_30);
+    StringTemplate_Format(param0->unk_2C, param0->unk_34, param0->unk_30);
     PrintStringSimple(&(param0->unk_18[0]), 1, param0->unk_34, 0, 0, 0xff, NULL);
     sub_0201ACCC(&(param0->unk_18[0]));
     sub_02019448(param0->unk_00, 1);

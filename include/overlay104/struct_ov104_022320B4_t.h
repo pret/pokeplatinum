@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
+#include "string_template.h"
 #include "strbuf.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_decls/struct_0209B75C_decl.h"
@@ -19,7 +19,7 @@ struct UnkStruct_ov104_022320B4_t {
     u8 unk_38;
     MessageLoader * unk_3C;
     u8 * unk_40;
-    StringFormatter * unk_44;
+    StringTemplate * unk_44;
     Strbuf* unk_48;
     Strbuf* unk_4C;
     u8 unk_50;

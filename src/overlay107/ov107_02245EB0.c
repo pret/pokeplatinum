@@ -8,7 +8,6 @@
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -46,7 +45,7 @@
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200C440.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -109,7 +108,7 @@ struct UnkStruct_ov107_02246170_t {
     u16 unk_1C;
     u16 unk_1E;
     MessageLoader * unk_20;
-    StringFormatter * unk_24;
+    StringTemplate * unk_24;
     Strbuf* unk_28;
     Strbuf* unk_2C;
     Strbuf* unk_30[3];
@@ -1090,7 +1089,7 @@ static void ov107_02246D84 (UnkStruct_ov107_02246170 * param0)
     ov107_02249954(&param0->unk_158);
 
     MessageLoader_Free(param0->unk_20);
-    sub_0200B3F0(param0->unk_24);
+    StringTemplate_Free(param0->unk_24);
     Strbuf_Free(param0->unk_28);
     Strbuf_Free(param0->unk_2C);
     sub_0200C560(param0->unk_144);
@@ -1134,7 +1133,7 @@ static void ov107_02246EE4 (UnkStruct_ov107_02246170 * param0)
     ov107_02247280(param0);
 
     param0->unk_20 = MessageLoader_Init(1, 26, 201, 100);
-    param0->unk_24 = StringFormatter_New(100);
+    param0->unk_24 = StringTemplate_Default(100);
     param0->unk_28 = Strbuf_Init(600, 100);
     param0->unk_2C = Strbuf_Init(600, 100);
 
@@ -1489,7 +1488,7 @@ static u8 ov107_02247680 (UnkStruct_ov107_02246170 * param0, Window * param1, in
     u8 v0;
     BGL_FillWindow(param1, param8);
     MessageLoader_GetStrbuf(param0->unk_20, param2, param0->unk_2C);
-    StringFormatter_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
+    StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
     
     switch (param10) {
     case 1:
@@ -1515,7 +1514,7 @@ static u8 ov107_02247744 (UnkStruct_ov107_02246170 * param0, Window * param1, in
 {
     u8 v0;
     MessageLoader_GetStrbuf(param0->unk_20, param2, param0->unk_2C);
-    StringFormatter_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
+    StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
     
     switch (param10) {
     case 1:
@@ -1559,7 +1558,7 @@ asm static void ov107_02247804 (UnkStruct_ov107_02246170 * param0, Window * para
     add r2, r0, #0
     ldr r0, [r5, #0x24]
     mov r1, #0
-    bl sub_0200B70C
+    bl StringTemplate_SetItemName
     mov r3, #8
     str r3, [sp]
     mov r0, #0
@@ -1582,7 +1581,7 @@ asm static void ov107_02247804 (UnkStruct_ov107_02246170 * param0, Window * para
     add r2, r0, #0
     ldr r0, [r5, #0x24]
     mov r1, #0
-    bl sub_0200B6D8
+    bl StringTemplate_SetNatureName
     mov r0, #0x18
     str r0, [sp]
     mov r0, #0
@@ -1608,7 +1607,7 @@ asm static void ov107_02247804 (UnkStruct_ov107_02246170 * param0, Window * para
     add r2, r0, #0
     ldr r0, [r5, #0x24]
     mov r1, #0
-    bl sub_0200B6A0
+    bl StringTemplate_SetAbilityName
     mov r0, #0x28
     str r0, [sp]
     mov r0, #0
@@ -1802,7 +1801,7 @@ static void ov107_02247AD0 (UnkStruct_ov107_02246170 * param0, Window * param1, 
     v1 = (2 * 8 - 4) + param2 * 24;
     v2 = 18 * 8 + 1;
     v3 = (2 * 8 - 4) + param2 * 24;
-    sub_0200B630(param0->unk_24, param2, Pokemon_GetValue(param5, param6, NULL));
+    StringTemplate_SetMoveName(param0->unk_24, param2, Pokemon_GetValue(param5, param6, NULL));
     param0->unk_0A = ov107_02247714(param0, param1, param3, v0, v1, 0xFF, 1, 2, 0, 0);
     ov107_022480EC(param0, 4, Pokemon_GetValue(param5, param7, NULL), 3, 0);
     ov107_022480EC(param0, 5, Pokemon_GetValue(param5, param8, NULL), 3, 0);
@@ -2126,19 +2125,19 @@ static void ov107_022480A0 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 
 static void ov107_022480EC (UnkStruct_ov107_02246170 * param0, u32 param1, s32 param2, u32 param3, int param4)
 {
-    StringFormatter_FormatNumber(param0->unk_24, param1, param2, param3, param4, 1);
+    StringTemplate_SetNumber(param0->unk_24, param1, param2, param3, param4, 1);
     return;
 }
 
 static void ov107_02248104 (UnkStruct_ov107_02246170 * param0, u32 param1, BoxPokemon * param2)
 {
-    sub_0200B538(param0->unk_24, param1, param2);
+    StringTemplate_SetSpeciesName(param0->unk_24, param1, param2);
     return;
 }
 
 static void ov107_02248110 (UnkStruct_ov107_02246170 * param0, u32 param1)
 {
-    StringFormatter_FormatPlayerName(param0->unk_24, param1, SaveData_GetTrainerInfo(param0->unk_14C));
+    StringTemplate_SetPlayerName(param0->unk_24, param1, SaveData_GetTrainerInfo(param0->unk_14C));
     return;
 }
 
@@ -2178,7 +2177,7 @@ static void ov107_02248194 (UnkStruct_ov107_02246170 * param0, Window * param1, 
         v1 = ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | (((0 & 0xff) << 0))));
     }
 
-    StringFormatter_FormatPlayerName(param0->unk_24, 0, v0);
+    StringTemplate_SetPlayerName(param0->unk_24, 0, v0);
     ov107_02247714(param0, param1, 1, param2, param3, 0xff, (((v1) >> 16) & 0xff), (((v1) >> 8) & 0xff), (((v1) >> 0) & 0xff), 0);
 
     return;

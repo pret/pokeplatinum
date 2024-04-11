@@ -1,10 +1,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B358_decl.h"
 
 #include "unk_02006E3C.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "heap.h"
 #include "unk_0205C980.h"
 
@@ -38,14 +37,14 @@ static const int Unk_020ED770[][4] = {
     {0x7, 0x4, 0x5, 0x6}
 };
 
-void sub_0205C980 (u32 param0, int param1, StringFormatter * param2)
+void sub_0205C980 (u32 param0, int param1, StringTemplate * param2)
 {
     int v0 = param0 % 8;
     int v1;
 
     for (v1 = 0; v1 < 4; v1++) {
         int v2 = Unk_020ED770[v0][v1] + 8 * param1;
-        sub_0200B960(param2, v1, Unk_020ED7F0[v2][1]);
+        StringTemplate_SetTrainerClassName(param2, v1, Unk_020ED7F0[v2][1]);
     }
 }
 

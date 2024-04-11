@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV62_022349A8_H
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
+#include "string_template.h"
 #include "strbuf.h"
 #include "savedata.h"
 #include "overlay061/struct_ov61_0222B138.h"
@@ -40,7 +40,7 @@ typedef struct {
     int unk_3EC;
     int unk_3F0;
     MessageLoader * unk_3F4;
-    StringFormatter * unk_3F8;
+    StringTemplate * unk_3F8;
     Strbuf* unk_3FC;
     UnkStruct_ov61_0222B920 unk_400;
     u8 unk_40D;

@@ -29,7 +29,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
@@ -567,7 +567,7 @@ static int ov94_022402BC (UnkStruct_ov94_0223FD4C * param0)
                     switch (ov94_022412F4(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112)) {
                     case 1:
                         if (ov94_0224121C(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112)) {
-                            StringFormatter_BufferNickname(param0->unk_B8C, 0, ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112));
+                            StringTemplate_SetNickname(param0->unk_B8C, 0, ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112));
                             ov94_02240D58(param0, 22, 1, 0, 0xf0f, 0);
                             ov94_0223C3F4(param0, 3, 7);
                         } else {
@@ -602,7 +602,7 @@ static int ov94_022402BC (UnkStruct_ov94_0223FD4C * param0)
 
                         if (ov94_02241384(v0, &param0->unk_250[param0->unk_11C].unk_F0)) {
                             if (ov94_0224121C(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112)) {
-                                StringFormatter_BufferNickname(param0->unk_B8C, 0, v0);
+                                StringTemplate_SetNickname(param0->unk_B8C, 0, v0);
                                 ov94_02240D58(param0, 18, 1, 0, 0xf0f, 0);
                                 ov94_0223C3F4(param0, 3, 9);
                                 Sound_PlayEffect(1500);
@@ -1019,7 +1019,7 @@ static void ov94_02240D58 (UnkStruct_ov94_0223FD4C * param0, int param1, int par
     Strbuf* v1;
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_B90, param1);
-    StringFormatter_Format(param0->unk_B8C, param0->unk_BAC, v1);
+    StringTemplate_Format(param0->unk_B8C, param0->unk_BAC, v1);
 
     if (param5 == 0) {
         v0 = &param0->unk_F5C;

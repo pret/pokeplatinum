@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
+#include "string_template.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -87,7 +87,7 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     UnkStruct_ov94_0223BA88_sub3 unk_B7A;
     UnkStruct_ov94_0223BA88_sub3 unk_B80;
     int unk_B88;
-    StringFormatter * unk_B8C;
+    StringTemplate * unk_B8C;
     MessageLoader * unk_B90;
     MessageLoader * unk_B94;
     MessageLoader * unk_B98;

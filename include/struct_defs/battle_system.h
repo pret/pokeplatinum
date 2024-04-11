@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
+#include "string_template.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
@@ -49,7 +49,7 @@ struct BattleSystem {
     Window *windows;
     MessageLoader * unk_0C;
     MessageLoader * unk_10;
-    StringFormatter *strFormatter;
+    StringTemplate *strFormatter;
     Strbuf *msgBuffer;
     SysTask * unk_1C;
     SysTask * unk_20;

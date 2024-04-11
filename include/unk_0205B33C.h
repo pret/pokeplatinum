@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0205B33C_H
 #define POKEPLATINUM_UNK_0205B33C_H
 
-#include "struct_decls/struct_0200B358_decl.h"
+#include "string_template.h"
 #include "struct_defs/sentence.h"
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/sys_task.h"
@@ -35,14 +35,14 @@ u8 * sub_0205BA5C(int param0, void * param1, int param2);
 void sub_0205BA6C(int param0, int param1, void * param2, void * param3);
 u16 sub_0205BA7C(UnkStruct_0205B43C * param0);
 void sub_0205BAAC(int param0);
-int sub_0205BC50(StringFormatter * param0);
-int sub_0205BCF4(UnkStruct_0205B43C * param0, int param1, int param2, StringFormatter * param3);
+int sub_0205BC50(StringTemplate * param0);
+int sub_0205BCF4(UnkStruct_0205B43C * param0, int param1, int param2, StringTemplate * param3);
 u8 sub_0205BE38(void);
 void sub_0205BEA8(int param0);
-int sub_0205BF44(UnkStruct_0205B43C * param0, StringFormatter * param1);
+int sub_0205BF44(UnkStruct_0205B43C * param0, StringTemplate * param1);
 void sub_0205C010(UnkStruct_0205B43C * param0, Sentence * param1);
 Sentence * sub_0205C028(UnkStruct_0205B43C * param0);
-void sub_0205C040(StringFormatter * param0, int param1, int param2, TrainerInfo * param3, UnkStruct_02014EC4 * param4);
+void sub_0205C040(StringTemplate * param0, int param1, int param2, TrainerInfo * param3, UnkStruct_02014EC4 * param4);
 void sub_0205C12C(Sentence * param0);
 void sub_0205C154(UnkStruct_0205B43C * param0);
 void * sub_0205C17C(UnkStruct_0205B43C * param0);

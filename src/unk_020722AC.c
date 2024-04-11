@@ -6,7 +6,6 @@
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
@@ -37,7 +36,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -79,7 +78,7 @@ typedef struct {
 } UnkStruct_020F0524;
 
 typedef struct {
-    StringFormatter * unk_00;
+    StringTemplate * unk_00;
     Strbuf* unk_04;
     Strbuf* unk_08;
     Strbuf* unk_0C;
@@ -1034,7 +1033,7 @@ static void sub_02073130 (UnkStruct_02072334 * param0)
     Strbuf* v2;
 
     param0->unk_10C = MessageLoader_Init(1, 26, 408, param0->unk_00);
-    param0->unk_110.unk_00 = sub_0200B368(1, 128, param0->unk_00);
+    param0->unk_110.unk_00 = StringTemplate_New(1, 128, param0->unk_00);
     param0->unk_110.unk_04 = Strbuf_Init(128, param0->unk_00);
     param0->unk_110.unk_08 = MessageLoader_GetNewStrbuf(param0->unk_10C, 4);
     param0->unk_110.unk_0C = MessageLoader_GetNewStrbuf(param0->unk_10C, 0);
@@ -1055,7 +1054,7 @@ static void sub_020731A4 (UnkStruct_02072334 * param0)
     Strbuf_Free(param0->unk_110.unk_0C);
     Strbuf_Free(param0->unk_110.unk_08);
     Strbuf_Free(param0->unk_110.unk_04);
-    sub_0200B3F0(param0->unk_110.unk_00);
+    StringTemplate_Free(param0->unk_110.unk_00);
     MessageLoader_Free(param0->unk_10C);
 }
 
@@ -1096,8 +1095,8 @@ static void sub_020732C4 (UnkStruct_02072334 * param0, int param1, u8 param2, u8
 
     if (param1 == 0) {
         Strbuf_Clear(param0->unk_110.unk_04);
-        sub_0200B48C(param0->unk_110.unk_00, 0, param0->unk_1C[param0->unk_18].unk_08, 2, 1, GAME_LANGUAGE);
-        StringFormatter_Format(param0->unk_110.unk_00, param0->unk_110.unk_04, param0->unk_110.unk_10[param1]);
+        StringTemplate_SetStrbuf(param0->unk_110.unk_00, 0, param0->unk_1C[param0->unk_18].unk_08, 2, 1, GAME_LANGUAGE);
+        StringTemplate_Format(param0->unk_110.unk_00, param0->unk_110.unk_04, param0->unk_110.unk_10[param1]);
 
         v0 = param0->unk_110.unk_04;
     } else {

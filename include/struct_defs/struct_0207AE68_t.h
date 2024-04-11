@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/sprite_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
+#include "string_template.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
@@ -26,7 +26,7 @@ struct UnkStruct_0207AE68_t {
     BGL * unk_00;
     Window * unk_04;
     MessageLoader * unk_08;
-    StringFormatter * unk_0C;
+    StringTemplate * unk_0C;
     Strbuf* unk_10;
     PaletteData * unk_14;
     UnkStruct_02007768 * unk_18;

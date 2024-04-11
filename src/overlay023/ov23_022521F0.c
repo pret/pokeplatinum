@@ -20,7 +20,7 @@
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
@@ -276,10 +276,10 @@ static void ov23_0225265C (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     PrintStringSimple(&v0->unk_20, 0, v0->unk_68, 1, 1, 0xff, NULL);
 
     if (param1 != 0xfffffffe) {
-        sub_0200BA94(v0->unk_70, 2, v0->unk_279[v1]);
-        StringFormatter_FormatNumber(v0->unk_70, 6, v0->unk_27E[v1], 2, 1, 1);
+        StringTemplate_SetUndergroundItemName(v0->unk_70, 2, v0->unk_279[v1]);
+        StringTemplate_SetNumber(v0->unk_70, 6, v0->unk_27E[v1], 2, 1, 1);
         MessageLoader_GetStrbuf(ov23_02253E3C(ov23_022421BC()), 25, v0->unk_68);
-        StringFormatter_Format(v0->unk_70, v0->unk_6C, v0->unk_68);
+        StringTemplate_Format(v0->unk_70, v0->unk_6C, v0->unk_68);
         PrintStringSimple(&v0->unk_20, 0, v0->unk_6C, 1, 17, 0xff, NULL);
     } else {
         (void)0;
@@ -358,10 +358,10 @@ static void ov23_02252754 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     if (param1 == 0xfffffffe) {
         (void)0;
     } else if (v7 != 0) {
-        sub_0200BA94(v1->unk_70, 2, v7);
-        StringFormatter_FormatNumber(v1->unk_70, 6, v8, 2, 1, 1);
+        StringTemplate_SetUndergroundItemName(v1->unk_70, 2, v7);
+        StringTemplate_SetNumber(v1->unk_70, 6, v8, 2, 1, 1);
         MessageLoader_GetStrbuf(ov23_02253E3C(ov23_022421BC()), 25, v1->unk_68);
-        StringFormatter_Format(v1->unk_70, v1->unk_6C, v1->unk_68);
+        StringTemplate_Format(v1->unk_70, v1->unk_6C, v1->unk_68);
         PrintStringSimple(&v1->unk_20, 0, v1->unk_6C, 1, 17, 0xff, NULL);
 
         v1->unk_279[0] = v7;
@@ -510,7 +510,7 @@ static void ov23_02252C78 (UnkStruct_ov23_02250CD4 * param0)
 {
     Strbuf_Free(param0->unk_68);
     Strbuf_Free(param0->unk_6C);
-    sub_0200B3F0(param0->unk_70);
+    StringTemplate_Free(param0->unk_70);
     Heap_FreeToHeap(param0);
 }
 
@@ -934,7 +934,7 @@ void ov23_022534A0 (FieldSystem * param0)
     v4->unk_288 = v6;
     v4->unk_68 = Strbuf_Init((50 * 2), 4);
     v4->unk_6C = Strbuf_Init((50 * 2), 4);
-    v4->unk_70 = StringFormatter_New(4);
+    v4->unk_70 = StringTemplate_Default(4);
     v4->unk_2AA = 0;
 
     Sound_PlayEffect(1500);

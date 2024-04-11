@@ -7,7 +7,6 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
@@ -41,7 +40,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -68,7 +67,7 @@ typedef struct {
     BGL * unk_04;
     Window unk_08[15];
     MessageLoader * unk_F8;
-    StringFormatter * unk_FC;
+    StringTemplate * unk_FC;
     Strbuf* unk_100;
     UnkStruct_0200112C * unk_104;
     ResourceMetadata * unk_108;
@@ -648,14 +647,14 @@ static void ov91_021D11A0 (UnkStruct_ov91_021D0ED8 * param0)
 static void ov91_021D11B8 (UnkStruct_ov91_021D0ED8 * param0)
 {
     param0->unk_F8 = MessageLoader_Init(0, 26, 645, 67);
-    param0->unk_FC = StringFormatter_New(67);
+    param0->unk_FC = StringTemplate_Default(67);
     param0->unk_100 = Strbuf_Init(256, 67);
 }
 
 static void ov91_021D11F0 (UnkStruct_ov91_021D0ED8 * param0)
 {
     MessageLoader_Free(param0->unk_F8);
-    sub_0200B3F0(param0->unk_FC);
+    StringTemplate_Free(param0->unk_FC);
     Strbuf_Free(param0->unk_100);
 }
 
@@ -870,8 +869,8 @@ static void ov91_021D1618 (UnkStruct_ov91_021D0ED8 * param0, u32 param1, u32 par
     Strbuf* v0;
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_F8, param1);
-    StringFormatter_FormatNumber(param0->unk_FC, 0, param2, param3, param4, 1);
-    StringFormatter_Format(param0->unk_FC, param0->unk_100, v0);
+    StringTemplate_SetNumber(param0->unk_FC, 0, param2, param3, param4, 1);
+    StringTemplate_Format(param0->unk_FC, param0->unk_100, v0);
     Strbuf_Free(v0);
 }
 
@@ -1106,47 +1105,47 @@ static void ov91_021D1C10 (UnkStruct_ov91_021D0ED8 * param0, u32 param1)
 
     switch (param1) {
     case 0:
-        StringFormatter_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringTemplate_SetNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
         break;
     case 1:
-        sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
+        StringTemplate_SetMoveName(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 2:
-        StringFormatter_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringTemplate_SetNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
         break;
     case 3:
-        StringFormatter_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
-        sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
+        StringTemplate_SetNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringTemplate_SetMoveName(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 4:
-        StringFormatter_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
-        sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
+        StringTemplate_SetNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringTemplate_SetMoveName(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 5:
-        StringFormatter_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
-        sub_0200B630(param0->unk_FC, 1, ov91_021D1DE0(param0));
+        StringTemplate_SetNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringTemplate_SetMoveName(param0->unk_FC, 1, ov91_021D1DE0(param0));
         break;
     case 6:
-        StringFormatter_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
-        sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
+        StringTemplate_SetNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringTemplate_SetMoveName(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 7:
-        sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
+        StringTemplate_SetMoveName(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 8:
-        StringFormatter_BufferNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
-        sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
+        StringTemplate_SetNickname(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
+        StringTemplate_SetMoveName(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 9:
-        StringFormatter_FormatPlayerName(param0->unk_FC, 2, param0->unk_00->unk_04);
+        StringTemplate_SetPlayerName(param0->unk_FC, 2, param0->unk_00->unk_04);
         break;
     case 10:
-        sub_0200B630(param0->unk_FC, 0, ov91_021D1DE0(param0));
+        StringTemplate_SetMoveName(param0->unk_FC, 0, ov91_021D1DE0(param0));
         break;
     }
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_F8, Unk_ov91_021D282C[param0->unk_00->unk_15][param1]);
-    StringFormatter_Format(param0->unk_FC, param0->unk_100, v0);
+    StringTemplate_Format(param0->unk_FC, param0->unk_100, v0);
     Strbuf_Free(v0);
 }
 

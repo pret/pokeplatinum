@@ -17,7 +17,6 @@
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -66,7 +65,7 @@
 #include "unk_02006224.h"
 #include "overlay_manager.h"
 #include "unk_0200762C.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
@@ -12217,7 +12216,7 @@ static void BattleScript_LoadPartyLevelUpIcon (BattleSystem * param0, BattleScri
     SpriteGfxHandler * v2;
     PaletteData * v3;
     MessageLoader * v4;
-    StringFormatter * v5;
+    StringTemplate * v5;
     Strbuf* v6, * v7;
     BGL * v8;
     Window v9;
@@ -12228,7 +12227,7 @@ static void BattleScript_LoadPartyLevelUpIcon (BattleSystem * param0, BattleScri
 
     v4 = BattleSystem_MessageLoader(param0);
     v7 = ov16_0223E0D4(param0);
-    v5 = BattleSystem_StringFormatter(param0);
+    v5 = BattleSystem_StringTemplate(param0);
     v8 = BattleSystem_BGL(param0);
     v1 = ov16_0223E010(param0);
     v2 = ov16_0223E018(param0);
@@ -12268,9 +12267,9 @@ static void BattleScript_LoadPartyLevelUpIcon (BattleSystem * param0, BattleScri
         v6 = MessageLoader_GetNewStrbuf(v4, 946);
     }
 
-    StringFormatter_BufferNickname(v5, 0, Pokemon_GetBoxPokemon(param2));
-    StringFormatter_FormatNumber(v5, 1, Pokemon_GetValue(param2, MON_DATA_LEVEL, NULL), 3, 0, 1);
-    StringFormatter_Format(v5, v7, v6);
+    StringTemplate_SetNickname(v5, 0, Pokemon_GetBoxPokemon(param2));
+    StringTemplate_SetNumber(v5, 1, Pokemon_GetValue(param2, MON_DATA_LEVEL, NULL), 3, 0, 1);
+    StringTemplate_Format(v5, v7, v6);
     Strbuf_Free(v6);
     Window_Init(&v9);
     BGL_AddFramelessWindow(v8, &v9, 12, 4, 0, 0);

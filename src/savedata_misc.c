@@ -1,6 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/charcode.h"
+
 #include "struct_defs/sentence.h"
 
 #include "unk_02014A84.h"
@@ -8,7 +10,6 @@
 #include "savedata_misc.h"
 #include "unk_02027B70.h"
 #include "unk_02027F50.h"
-#include "charcode.h"
 
 int MiscSaveBlock_SaveSize (void)
 {

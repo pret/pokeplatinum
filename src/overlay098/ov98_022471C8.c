@@ -9,7 +9,6 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_020149F0_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -37,7 +36,7 @@
 #include "unk_02006E3C.h"
 #include "unk_0200A784.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
@@ -74,7 +73,7 @@ typedef struct {
     int unk_14;
     int unk_18;
     int unk_1C;
-    StringFormatter * unk_20;
+    StringTemplate * unk_20;
     MessageLoader * unk_24;
     MessageLoader * unk_28;
     MessageLoader * unk_2C;
@@ -324,7 +323,7 @@ int ov98_022471C8 (OverlayManager * param0, int * param1)
     sub_0201E3D8();
     sub_0201E450(4);
 
-    v0->unk_20 = sub_0200B368(11, 64, 109);
+    v0->unk_20 = StringTemplate_New(11, 64, 109);
     v0->unk_24 = MessageLoader_Init(0, 26, 671, 109);
     v0->unk_2C = MessageLoader_Init(0, 26, 674, 109);
     v0->unk_30 = MessageLoader_Init(0, 26, 695, 109);
@@ -426,7 +425,7 @@ int ov98_02247440 (OverlayManager * param0, int * param1)
     MessageLoader_Free(v0->unk_30);
     MessageLoader_Free(v0->unk_2C);
     MessageLoader_Free(v0->unk_24);
-    sub_0200B3F0(v0->unk_20);
+    StringTemplate_Free(v0->unk_20);
     Strbuf_Free(v0->unk_3C);
     Strbuf_Free(v0->unk_40);
     Strbuf_Free(v0->unk_38);
@@ -2125,7 +2124,7 @@ static int ov98_02249238 (UnkStruct_ov98_02247704 * param0)
         v0 = SaveData_Save(param0->unk_00->unk_04);
 
         if (v0 == 2) {
-            StringFormatter_FormatPlayerName(param0->unk_20, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_04));
+            StringTemplate_SetPlayerName(param0->unk_20, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_04));
             ov98_02249714(param0, param0->unk_34, 33, 0, 0xf0f);
             Sound_PlayEffect(1563);
         } else {
@@ -2406,7 +2405,7 @@ static void ov98_02249714 (UnkStruct_ov98_02247704 * param0, MessageLoader * par
 
     v0 = MessageLoader_GetNewStrbuf(param1, param2);
 
-    StringFormatter_Format(param0->unk_20, param0->unk_38, v0);
+    StringTemplate_Format(param0->unk_20, param0->unk_38, v0);
     Strbuf_Free(v0);
     BGL_FillWindow(&param0->unk_48, 0xf0f);
     sub_0200E060(&param0->unk_48, 0, 1, 10);
@@ -2461,7 +2460,7 @@ static int ov98_022497F8 (UnkStruct_ov98_02247704 * param0)
         if (ov98_02246FA4(v0) == sub_02030D98(v0->unk_04, 3)) {
             ov98_02249ACC(sub_02030D50(v0->unk_04), v2, 108);
             for (v3 = 0; v3 < 4; v3++)
-                StringFormatter_FormatNumber(param0->unk_20, v3, v2[v3], 4, 2, 1);
+                StringTemplate_SetNumber(param0->unk_20, v3, v2[v3], 4, 2, 1);
             v1 = 41;
         } else {
             v1 = 40;
@@ -2507,7 +2506,7 @@ static void ov98_02249900 (UnkStruct_ov98_02247704 * param0, int param1)
     Strbuf* v0 = Strbuf_Init((16 * 8 * 2), 109);
 
     MessageLoader_GetStrbuf(param0->unk_30, param1, v0);
-    StringFormatter_Format(param0->unk_20, param0->unk_40, v0);
+    StringTemplate_Format(param0->unk_20, param0->unk_40, v0);
 
     BGL_FillWindow(&param0->unk_68, 15);
     Window_Show(&param0->unk_68, 1, (1 + (18 + 12)), 11);
@@ -2528,7 +2527,7 @@ static void ov98_02249964 (UnkStruct_ov98_02247704 * param0, int param1, int par
         v0 = 11;
     }
 
-    StringFormatter_FormatNumber(param0->unk_20, 0, param2, 5, 2, 1);
+    StringTemplate_SetNumber(param0->unk_20, 0, param2, 5, 2, 1);
 
     sub_0200E084(&param0->unk_48, 1);
     ov98_02249900(param0, v0);

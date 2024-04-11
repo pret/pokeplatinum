@@ -7,7 +7,6 @@
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
@@ -43,7 +42,7 @@
 #include "unk_0200A784.h"
 #include "message.h"
 #include "unk_0200B29C.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
@@ -94,7 +93,7 @@ struct UnkStruct_02087A10_t {
     u16 unk_15A[3];
     BGL * unk_160;
     BOOL unk_164;
-    StringFormatter * unk_168;
+    StringTemplate * unk_168;
     MessageLoader * unk_16C;
     MessageLoader * unk_170;
     MessageLoader * unk_174;
@@ -909,7 +908,7 @@ static int sub_0208694C (OverlayManager * param0, int * param1)
         v0->unk_160 = sub_02018340(18);
         v1 = NARC_ctor(NARC_INDEX_DATA__NAMEIN, 18);
 
-        v0->unk_168 = StringFormatter_New(18);
+        v0->unk_168 = StringTemplate_Default(18);
         v0->unk_16C = MessageLoader_Init(0, 26, 422, 18);
         v0->unk_170 = MessageLoader_Init(1, 26, 427, 18);
         v0->unk_174 = MessageLoader_Init(1, 26, 368, 18);
@@ -1195,7 +1194,7 @@ static int sub_02086F3C (OverlayManager * param0, int * param1)
     MessageLoader_Free(v0->unk_174);
     MessageLoader_Free(v0->unk_170);
     MessageLoader_Free(v0->unk_16C);
-    sub_0200B3F0(v0->unk_168);
+    StringTemplate_Free(v0->unk_168);
     OverlayManager_FreeData(param0);
     SetMainCallback(NULL, NULL);
     Heap_Destroy(18);
@@ -1419,7 +1418,7 @@ static void sub_0208737C (UnkStruct_02087A10 * param0, OverlayManager * param1)
 
         v1 = Pokemon_New(18);
         Pokemon_InitWith(v1, param0->unk_04, 5, 10, 10, 10, 10, 10);
-        sub_0200B538(param0->unk_168, 0, Pokemon_GetBoxPokemon(v1));
+        StringTemplate_SetSpeciesName(param0->unk_168, 0, Pokemon_GetBoxPokemon(v1));
         Heap_FreeToHeap(v1);
     }
 
@@ -1473,25 +1472,25 @@ static void sub_02087544 (UnkStruct_02087A10 * param0, OverlayManager * param1)
         v2 = sub_0207999C(v1->unk_48);
         v3 = PCBoxes_FirstEmptyBox(v1->unk_48);
 
-        sub_0200BD40(param0->unk_168, 1, v1->unk_48, v2);
+        StringTemplate_SetPCBoxName(param0->unk_168, 1, v1->unk_48, v2);
 
         if (v2 != v3) {
-            sub_0200BD40(param0->unk_168, 2, v1->unk_48, v3);
+            StringTemplate_SetPCBoxName(param0->unk_168, 2, v1->unk_48, v3);
             v1->unk_44 += 2;
         } else {
-            sub_0200BD40(param0->unk_168, 2, v1->unk_48, v2);
+            StringTemplate_SetPCBoxName(param0->unk_168, 2, v1->unk_48, v2);
         }
 
         if ((param0->unk_158 == 0) || sub_02086F14(param0->unk_D8)) {
             Pokemon * v4 = Pokemon_New(18);
 
             Pokemon_InitWith(v4, param0->unk_04, 1, 0, 0, 0, 0, 0);
-            sub_0200B538(param0->unk_168, 0, Pokemon_GetBoxPokemon(v4));
+            StringTemplate_SetSpeciesName(param0->unk_168, 0, Pokemon_GetBoxPokemon(v4));
             Heap_FreeToHeap(v4);
         } else {
             param0->unk_D8[param0->unk_158] = 0xffff;
             Strbuf_CopyChars(v0, param0->unk_D8);
-            sub_0200B48C(param0->unk_168, 0, v0, 0, 0, 0);
+            StringTemplate_SetStrbuf(param0->unk_168, 0, v0, 0, 0, 0);
         }
 
         param0->unk_180 = sub_0200B29C(param0->unk_168, param0->unk_174, v1->unk_44, 18);

@@ -40,7 +40,7 @@
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
@@ -137,7 +137,7 @@ int ov72_0223D7A0 (OverlayManager * param0, int * param1)
         memset(v0, 0, sizeof(UnkStruct_ov72_0223DB98));
         v0->unk_00 = sub_02018340(39);
         v1 = NARC_ctor(NARC_INDEX_GRAPHIC__MYSIGN, 39);
-        v0->unk_10 = StringFormatter_New(39);
+        v0->unk_10 = StringTemplate_Default(39);
         v0->unk_14 = MessageLoader_Init(0, 26, 425, 39);
 
         SetAutorepeat(4, 8);
@@ -238,7 +238,7 @@ int ov72_0223D984 (OverlayManager * param0, int * param1)
     ov72_0223DC6C(v0->unk_00);
     sub_0201E530();
     MessageLoader_Free(v0->unk_14);
-    sub_0200B3F0(v0->unk_10);
+    StringTemplate_Free(v0->unk_10);
     ov72_0223DC34(v0);
     OverlayManager_FreeData(param0);
 
@@ -1103,7 +1103,7 @@ static void ov72_0223E930 (UnkStruct_ov72_0223DB98 * param0, int param1)
     v0 = Strbuf_Init((40 * 2), 39);
 
     MessageLoader_GetStrbuf(param0->unk_14, param1, v0);
-    StringFormatter_Format(param0->unk_10, param0->unk_34, v0);
+    StringTemplate_Format(param0->unk_10, param0->unk_34, v0);
     Strbuf_Free(v0);
     BGL_FillWindow(&param0->unk_338, 0xf0f);
     sub_0200E060(&param0->unk_338, 0, 1, 10);
