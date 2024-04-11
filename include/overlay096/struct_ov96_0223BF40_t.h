@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
+#include "string_template.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
@@ -50,7 +50,7 @@ struct UnkStruct_ov96_0223BF40_t {
     BoxPokemon * unk_BC0;
     int unk_BC4;
     int unk_BC8;
-    StringFormatter * unk_BCC;
+    StringTemplate * unk_BCC;
     MessageLoader * unk_BD0;
     MessageLoader * unk_BD4;
     MessageLoader * unk_BD8;

@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
@@ -24,7 +23,7 @@
 #include "unk_0200112C.h"
 #include "unk_02005474.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -617,7 +616,7 @@ struct UnkStruct_ov5_021F7ED8_t {
     Window * unk_18;
     Strbuf* unk_1C[39];
     MessageLoader * unk_B8;
-    StringFormatter * unk_BC;
+    StringTemplate * unk_BC;
     u8 unk_C0;
     u8 unk_C1;
     u8 unk_C2;
@@ -650,8 +649,8 @@ static u16 ov5_021F7A4C(u16 param0);
 static u8 ReadMovesetMaskByte(Pokemon * param0, u8 param1);
 static u16 ov5_021F7B60(Pokemon * param0, u16 param1);
 static void ov5_021F7E10(UnkStruct_ov5_021F7ED8 * param0, MessageLoader * param1);
-static void ov5_021F7E18(FieldSystem * param0, UnkStruct_ov5_021F7ED8 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, StringFormatter * param7, Window * param8, MessageLoader * param9);
-UnkStruct_ov5_021F7ED8 * ov5_021F7ED8(FieldSystem * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringFormatter * param6, Window * param7, MessageLoader * param8);
+static void ov5_021F7E18(FieldSystem * param0, UnkStruct_ov5_021F7ED8 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, StringTemplate * param7, Window * param8, MessageLoader * param9);
+UnkStruct_ov5_021F7ED8 * ov5_021F7ED8(FieldSystem * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringTemplate * param6, Window * param7, MessageLoader * param8);
 void ov5_021F7F2C(UnkStruct_ov5_021F7ED8 * param0, u32 param1, u32 param2, u32 param3);
 static void ov5_021F7F34(UnkStruct_ov5_021F7ED8 * param0);
 static void ov5_021F7FF8(UnkStruct_ov5_021F7ED8 * param0, u32 param1, u32 param2, u32 param3);
@@ -896,7 +895,7 @@ BOOL ov5_021F7C04 (UnkStruct_0203E724 * param0)
     UnkStruct_ov5_021F7ED8 * v10;
     u16 v11[4];
     u16 v12[(NELEMS(sTeachableMoves))];
-    StringFormatter ** v13 = sub_0203F098(v9, 15);
+    StringTemplate ** v13 = sub_0203F098(v9, 15);
     u16 v14 = inline_02049538(param0);
     u16 v15 = inline_02049538(param0);
     u16 v16 = sub_0203E838(param0);
@@ -986,7 +985,7 @@ static void ov5_021F7E10 (UnkStruct_ov5_021F7ED8 * param0, MessageLoader * param
     return;
 }
 
-static void ov5_021F7E18 (FieldSystem * param0, UnkStruct_ov5_021F7ED8 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, StringFormatter * param7, Window * param8, MessageLoader * param9)
+static void ov5_021F7E18 (FieldSystem * param0, UnkStruct_ov5_021F7ED8 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, StringTemplate * param7, Window * param8, MessageLoader * param9)
 {
     int v0;
 
@@ -1019,7 +1018,7 @@ static void ov5_021F7E18 (FieldSystem * param0, UnkStruct_ov5_021F7ED8 * param1,
     return;
 }
 
-UnkStruct_ov5_021F7ED8 * ov5_021F7ED8 (FieldSystem * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringFormatter * param6, Window * param7, MessageLoader * param8)
+UnkStruct_ov5_021F7ED8 * ov5_021F7ED8 (FieldSystem * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringTemplate * param6, Window * param7, MessageLoader * param8)
 {
     UnkStruct_ov5_021F7ED8 * v0;
     int v1;
@@ -1069,7 +1068,7 @@ static void ov5_021F7FF8 (UnkStruct_ov5_021F7ED8 * param0, u32 param1, u32 param
         Strbuf* v2 = Strbuf_Init((40 * 2), 4);
 
         MessageLoader_GetStrbuf(param0->unk_B8, param1, v2);
-        StringFormatter_Format(param0->unk_BC, param0->unk_1C[param0->unk_C7], v2);
+        StringTemplate_Format(param0->unk_BC, param0->unk_1C[param0->unk_C7], v2);
         param0->unk_F8[param0->unk_C7].unk_00 = (const void *)param0->unk_1C[param0->unk_C7];
         Strbuf_Free(v2);
     }
@@ -1194,7 +1193,7 @@ static void ov5_021F8250 (UnkStruct_ov5_021F7ED8 * param0)
 BOOL ov5_021F82B8 (UnkStruct_0203E724 * param0)
 {
     FieldSystem * v0 = param0->unk_34;
-    StringFormatter ** v1 = sub_0203F098(v0, 15);
+    StringTemplate ** v1 = sub_0203F098(v0, 15);
     UnkStruct_ov5_021DC1A4 ** v2 = sub_0203F098(v0, 0);
     u8 v3 = (*((param0)->unk_08++));
     u8 v4 = (*((param0)->unk_08++));

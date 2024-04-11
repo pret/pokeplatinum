@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
+#include "string_template.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
@@ -47,7 +47,7 @@ typedef struct UnkStruct_ov117_02261280_t {
     BGL * unk_2C;
     Window unk_30[5];
     MessageLoader * unk_80;
-    StringFormatter * unk_84;
+    StringTemplate * unk_84;
     Strbuf* unk_88;
     PaletteData * unk_8C;
     UnkStruct_02012744 * unk_90;

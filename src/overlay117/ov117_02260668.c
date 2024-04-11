@@ -35,7 +35,7 @@
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
@@ -236,7 +236,7 @@ int ov117_02260668 (OverlayManager * param0, int * param1)
     ov117_02261574(v0);
 
     v0->unk_80 = MessageLoader_Init(0, 26, 9, 110);
-    v0->unk_84 = StringFormatter_New(110);
+    v0->unk_84 = StringTemplate_Default(110);
     v0->unk_88 = Strbuf_Init((2 * 160), 110);
     v0->unk_90 = sub_02012744((2 * 6 + 6 + 1), 110);
 
@@ -474,7 +474,7 @@ int ov117_02260C10 (OverlayManager * param0, int * param1)
     sub_02002FA0(v0->unk_8C, 3);
     sub_02002F54(v0->unk_8C);
     Strbuf_Free(v0->unk_88);
-    sub_0200B3F0(v0->unk_84);
+    StringTemplate_Free(v0->unk_84);
     MessageLoader_Free(v0->unk_80);
     Heap_FreeToHeap(v0->unk_2C);
     ov117_02260F64(v0);

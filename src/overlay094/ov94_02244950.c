@@ -19,7 +19,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02018340.h"
@@ -912,7 +912,7 @@ void ov94_02245824 (UnkStruct_ov94_0223FD4C * param0, MessageLoader * param1, in
 
     v0 = MessageLoader_GetNewStrbuf(param1, param2);
 
-    StringFormatter_Format(param0->unk_B8C, param0->unk_BAC, v0);
+    StringTemplate_Format(param0->unk_B8C, param0->unk_BAC, v0);
     Strbuf_Free(v0);
     BGL_FillWindow(&param0->unk_F5C, 0xf0f);
     sub_0200E060(&param0->unk_F5C, 0, 1, 10);
@@ -961,7 +961,7 @@ static void ov94_0224593C (UnkStruct_ov94_0223FD4C * param0, int param1)
     Strbuf* v0 = Strbuf_Init((16 * 8 * 2), 62);
 
     MessageLoader_GetStrbuf(param0->unk_B9C, param1, v0);
-    StringFormatter_Format(param0->unk_B8C, param0->unk_BDC, v0);
+    StringTemplate_Format(param0->unk_B8C, param0->unk_BDC, v0);
 
     BGL_FillWindow(&param0->unk_F8C, 15);
     Window_Show(&param0->unk_F8C, 1, (1 + (18 + 12)), 11);
@@ -981,7 +981,7 @@ static void ov94_022459B4 (UnkStruct_ov94_0223FD4C * param0, int param1, int par
         v0 = 11;
     }
 
-    StringFormatter_FormatNumber(param0->unk_B8C, 0, param2, 5, 2, 1);
+    StringTemplate_SetNumber(param0->unk_B8C, 0, param2, 5, 2, 1);
     sub_0200E084(&param0->unk_F5C, 1);
 
     ov94_0224593C(param0, v0);

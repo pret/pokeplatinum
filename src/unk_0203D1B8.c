@@ -3,7 +3,6 @@
 
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_0202783C_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
@@ -77,7 +76,7 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
-#include "unk_020277A4.h"
+#include "savedata_misc.h"
 #include "unk_020279FC.h"
 #include "unk_02028124.h"
 #include "unk_020298BC.h"
@@ -1275,8 +1274,8 @@ static void sub_0203DF68 (UnkStruct_020508D4 * param0)
     break;
     case 6:
     {
-        UnkStruct_0202783C * v6 = sub_0202783C(v0->unk_0C);
-        sub_020278A0(v6, v1->unk_0C->unk_18);
+        MiscSaveBlock * v6 = SaveData_MiscSaveBlock(v0->unk_0C);
+        MiscSaveBlock_SetTabletName(v6, v1->unk_0C->unk_18);
     }
     break;
     }

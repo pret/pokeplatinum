@@ -10,7 +10,6 @@
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
@@ -46,7 +45,7 @@
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -119,7 +118,7 @@ typedef struct {
 
 typedef struct {
     MessageLoader * unk_00[9];
-    StringFormatter * unk_24;
+    StringTemplate * unk_24;
     Strbuf* unk_28;
     Strbuf* unk_2C;
     UnkStruct_ov66_0222DFF8 * unk_30;
@@ -585,7 +584,7 @@ static void ov68_0225CB70 (UnkStruct_ov68_0225CB70 * param0, UnkStruct_ov66_0222
         param0->unk_00[v0] = MessageLoader_Init(0, 26, v1[v0], param2);
     }
 
-    param0->unk_24 = StringFormatter_New(param2);
+    param0->unk_24 = StringTemplate_Default(param2);
     param0->unk_28 = Strbuf_Init(256, param2);
     param0->unk_2C = Strbuf_Init(256, param2);
 }
@@ -598,7 +597,7 @@ static void ov68_0225CBC0 (UnkStruct_ov68_0225CB70 * param0)
         MessageLoader_Free(param0->unk_00[v0]);
     }
 
-    sub_0200B3F0(param0->unk_24);
+    StringTemplate_Free(param0->unk_24);
     Strbuf_Free(param0->unk_28);
     Strbuf_Free(param0->unk_2C);
 }
@@ -608,7 +607,7 @@ static Strbuf* ov68_0225CBEC (UnkStruct_ov68_0225CB70 * param0, u32 param1, u32 
     GF_ASSERT(param1 < 9);
 
     MessageLoader_GetStrbuf(param0->unk_00[param1], param2, param0->unk_2C);
-    StringFormatter_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
+    StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
 
     return param0->unk_28;
 }
@@ -650,7 +649,7 @@ static void ov68_0225CC78 (UnkStruct_ov68_0225CB70 * param0, u32 param1, u32 par
     v1 = ov66_0222E3BC(param0->unk_30);
 
     ov66_0222E640(v1, v0, param2);
-    StringFormatter_FormatPlayerName(param0->unk_24, param1, v0);
+    StringTemplate_SetPlayerName(param0->unk_24, param1, v0);
     Heap_FreeToHeap(v0);
 }
 

@@ -8,7 +8,6 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
@@ -37,7 +36,7 @@
 #include "unk_02006E3C.h"
 #include "message.h"
 #include "unk_0200B29C.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
@@ -78,7 +77,7 @@ static int ov94_02241B2C(UnkStruct_ov94_0223FD4C * param0);
 static int ov94_02241BAC(UnkStruct_ov94_0223FD4C * param0);
 static int ov94_022420E4(UnkStruct_ov94_0223FD4C * param0);
 static int ov94_02242138(UnkStruct_ov94_0223FD4C * param0);
-static void ov94_022423FC(MessageLoader * param0, StringFormatter * param1, Window param2[], BoxPokemon * param3, UnkStruct_ov94_0223BA88_sub2 * param4);
+static void ov94_022423FC(MessageLoader * param0, StringTemplate * param1, Window param2[], BoxPokemon * param3, UnkStruct_ov94_0223BA88_sub2 * param4);
 static int ov94_02241DA0(UnkStruct_ov94_0223FD4C * param0);
 static int ov94_02241D64(UnkStruct_ov94_0223FD4C * param0);
 static int ov94_02241D08(UnkStruct_ov94_0223FD4C * param0);
@@ -333,7 +332,7 @@ static void ov94_0224158C (UnkStruct_ov94_0223FD4C * param0, int param1, int par
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_B90, param1);
 
-    StringFormatter_Format(param0->unk_B8C, param0->unk_BAC, v0);
+    StringTemplate_Format(param0->unk_B8C, param0->unk_BAC, v0);
     BGL_FillWindow(&param0->unk_F5C, 0xf0f);
     sub_0200E060(&param0->unk_F5C, 0, 1, 10);
 
@@ -925,7 +924,7 @@ void ov94_022422B8 (Window * param0, MessageLoader * param1, int param2, int par
     ov94_0224226C(param0, param1, param2, param3, param4, param5, param6, 0);
 }
 
-void ov94_022422D4 (MessageLoader * param0, MessageLoader * param1, StringFormatter * param2, Window param3[], int param4, int param5, int param6)
+void ov94_022422D4 (MessageLoader * param0, MessageLoader * param1, StringTemplate * param2, Window param3[], int param4, int param5, int param6)
 {
     Strbuf* v0;
     int v1;
@@ -949,7 +948,7 @@ void ov94_022422D4 (MessageLoader * param0, MessageLoader * param1, StringFormat
     Strbuf_Free(v0);
 }
 
-void ov94_02242368 (MessageLoader * param0, MessageLoader * param1, StringFormatter * param2, Window param3[], int param4, int param5, int param6)
+void ov94_02242368 (MessageLoader * param0, MessageLoader * param1, StringTemplate * param2, Window param3[], int param4, int param5, int param6)
 {
     Strbuf* v0;
     int v1;
@@ -973,7 +972,7 @@ void ov94_02242368 (MessageLoader * param0, MessageLoader * param1, StringFormat
     Strbuf_Free(v0);
 }
 
-static void ov94_022423FC (MessageLoader * param0, StringFormatter * param1, Window param2[], BoxPokemon * param3, UnkStruct_ov94_0223BA88_sub2 * param4)
+static void ov94_022423FC (MessageLoader * param0, StringTemplate * param1, Window param2[], BoxPokemon * param3, UnkStruct_ov94_0223BA88_sub2 * param4)
 {
     Strbuf* v0, * v1;
     Strbuf* v2 = Strbuf_Init(10 + 1, 62);
@@ -986,7 +985,7 @@ static void ov94_022423FC (MessageLoader * param0, StringFormatter * param1, Win
     v5 = BoxPokemon_GetLevel(param3);
     v0 = MessageLoader_GetNewStrbuf(param0, 100);
 
-    StringFormatter_FormatNumber(param1, 3, v5, 3, 0, 1);
+    StringTemplate_SetNumber(param1, 3, v5, 3, 0, 1);
     v1 = sub_0200B29C(param1, param0, 102, 62);
 
     if (v4 != 3) {

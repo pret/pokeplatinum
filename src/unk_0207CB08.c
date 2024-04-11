@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202CA1C_decl.h"
@@ -12,7 +11,7 @@
 #include "struct_defs/struct_0207CDEC.h"
 
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "heap.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
@@ -139,36 +138,36 @@ static u32 sub_0207CC00 (SaveData * param0)
 BOOL sub_0207CC10 (SaveData * param0, Strbuf *param1, u16 param2, u32 param3)
 {
     MessageLoader * v0;
-    StringFormatter * v1;
+    StringTemplate * v1;
     Strbuf* v2;
 
     v0 = MessageLoader_Init(0, 26, 7, param3);
-    v1 = StringFormatter_New(param3);
+    v1 = StringTemplate_Default(param3);
 
     if (param2 == 0) {
         v2 = MessageLoader_GetNewStrbuf(v0, 99);
     } else if (param2 == 432) {
         v2 = MessageLoader_GetNewStrbuf(v0, 97);
-        StringFormatter_FormatNumber(v1, 0, sub_0207CC00(param0), 4, 0, 1);
+        StringTemplate_SetNumber(v1, 0, sub_0207CC00(param0), 4, 0, 1);
     } else if (param2 == 434) {
         v2 = MessageLoader_GetNewStrbuf(v0, 92);
-        StringFormatter_FormatNumber(v1, 0, sub_0207CBC0(param0), 4, 0, 1);
+        StringTemplate_SetNumber(v1, 0, sub_0207CBC0(param0), 4, 0, 1);
     } else if (param2 == 435) {
         v2 = MessageLoader_GetNewStrbuf(v0, 93);
-        StringFormatter_FormatNumber(v1, 0, sub_0207CBE0(param0), 3, 0, 1);
-        StringFormatter_FormatNumber(v1, 1, sub_0207CBF0(param0), 2, 0, 1);
+        StringTemplate_SetNumber(v1, 0, sub_0207CBE0(param0), 3, 0, 1);
+        StringTemplate_SetNumber(v1, 1, sub_0207CBF0(param0), 2, 0, 1);
     } else if (param2 == 444) {
         v2 = MessageLoader_GetNewStrbuf(v0, 57);
-        StringFormatter_FormatNumber(v1, 0, sub_0207CBB4(param0), 5, 0, 1);
+        StringTemplate_SetNumber(v1, 0, sub_0207CBB4(param0), 5, 0, 1);
     } else {
-        sub_0200B3F0(v1);
+        StringTemplate_Free(v1);
         MessageLoader_Free(v0);
         return 0;
     }
 
-    StringFormatter_Format(v1, param1, v2);
+    StringTemplate_Format(v1, param1, v2);
     Strbuf_Free(v2);
-    sub_0200B3F0(v1);
+    StringTemplate_Free(v1);
     MessageLoader_Free(v0);
 
     return 1;
@@ -177,7 +176,7 @@ BOOL sub_0207CC10 (SaveData * param0, Strbuf *param1, u16 param2, u32 param3)
 void sub_0207CD34 (void * param0, Strbuf *param1, u16 param2, u32 param3, u32 param4)
 {
     MessageLoader * v0;
-    StringFormatter * v1;
+    StringTemplate * v1;
     Strbuf* v2;
 
     switch (param3) {
@@ -198,12 +197,12 @@ void sub_0207CD34 (void * param0, Strbuf *param1, u16 param2, u32 param3, u32 pa
         break;
     default:
         v0 = MessageLoader_Init(1, 26, 213, param4);
-        v1 = StringFormatter_New(param4);
+        v1 = StringTemplate_Default(param4);
         v2 = MessageLoader_GetNewStrbuf(v0, 36);
-        StringFormatter_FormatPlayerName(v1, 0, param0);
-        StringFormatter_Format(v1, param1, v2);
+        StringTemplate_SetPlayerName(v1, 0, param0);
+        StringTemplate_Format(v1, param1, v2);
         Strbuf_Free(v2);
-        sub_0200B3F0(v1);
+        StringTemplate_Free(v1);
         MessageLoader_Free(v0);
     }
 }

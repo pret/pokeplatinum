@@ -4,7 +4,6 @@
 #include "inlines.h"
 #include "constants/species.h"
 
-#include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0203E724_decl.h"
@@ -18,7 +17,7 @@
 #include "struct_defs/struct_0203E724_t.h"
 #include "struct_defs/union_0204C4D0.h"
 
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_02017038.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
@@ -47,7 +46,7 @@
 
 typedef struct {
     FieldSystem * unk_00;
-    StringFormatter * unk_04;
+    StringTemplate * unk_04;
     void * unk_08;
 } UnkStruct_0204B830;
 
@@ -65,7 +64,7 @@ typedef struct {
 
 static const UnkStruct_020EBE94 Unk_020EBE94[13];
 
-static void sub_0204B830 (UnkStruct_0204B830 * param0, FieldSystem * param1, StringFormatter * param2, void * param3)
+static void sub_0204B830 (UnkStruct_0204B830 * param0, FieldSystem * param1, StringTemplate * param2, void * param3)
 {
     param0->unk_00 = param1;
     param0->unk_04 = param2;
@@ -136,7 +135,7 @@ BOOL sub_0204B85C (UnkStruct_0203E724 * param0)
     {
         UnkStruct_0204B830 v5;
         const UnkStruct_020EBE94 * v6 = &Unk_020EBE94[sub_0204B838(param0->unk_34) - 1];
-        StringFormatter ** v7 = sub_0203F098(param0->unk_34, 15);
+        StringTemplate ** v7 = sub_0203F098(param0->unk_34, 15);
         u16 * v8 = inline_0204FCAC(param0);
         u16 * v9 = inline_0204FCAC(param0);
 
@@ -148,7 +147,7 @@ BOOL sub_0204B85C (UnkStruct_0203E724 * param0)
     {
         UnkStruct_0204B830 v10;
         const UnkStruct_020EBE94 * v11 = &Unk_020EBE94[sub_0204B838(param0->unk_34) - 1];
-        StringFormatter ** v12 = sub_0203F098(param0->unk_34, 15);
+        StringTemplate ** v12 = sub_0203F098(param0->unk_34, 15);
         u16 * v13 = inline_0204FCAC(param0);
         u16 * v14 = inline_0204FCAC(param0);
 
@@ -182,7 +181,7 @@ static void sub_0204BA88 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 13;
 
-    StringFormatter_FormatPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
+    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
 }
 
 static void sub_0204BAAC (FieldSystem * param0, void * param1)
@@ -338,8 +337,8 @@ static void sub_0204BDEC (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
     v1 = (Pokemon *)&v0->val1.unk_04;
 
-    StringFormatter_FormatPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
-    sub_0200B578(param0->unk_04, 1, Pokemon_GetBoxPokemon(v1));
+    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
+    StringTemplate_SetSpeciesNameWithArticle(param0->unk_04, 1, Pokemon_GetBoxPokemon(v1));
 }
 
 static void sub_0204BE2C (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
@@ -363,8 +362,8 @@ static void sub_0204BE44 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
     v1 = (Pokemon *)v0->val2.unk_04;
 
-    StringFormatter_FormatPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
-    sub_0200B538(param0->unk_04, 1, Pokemon_GetBoxPokemon(v1));
+    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
+    StringTemplate_SetSpeciesName(param0->unk_04, 1, Pokemon_GetBoxPokemon(v1));
 }
 
 static BOOL sub_0204BE84 (FieldSystem * param0, void * param1)
@@ -393,8 +392,8 @@ static void sub_0204BED4 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 9;
 
-    StringFormatter_FormatPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
-    sub_0200B70C(param0->unk_04, 1, v1);
+    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
+    StringTemplate_SetItemName(param0->unk_04, 1, v1);
 }
 
 static void sub_0204BF14 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
@@ -406,7 +405,7 @@ static void sub_0204BF14 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 5;
 
-    sub_0200B70C(param0->unk_04, 0, v2);
+    StringTemplate_SetItemName(param0->unk_04, 0, v2);
 }
 
 static BOOL sub_0204BF48 (FieldSystem * param0, void * param1)
@@ -431,10 +430,10 @@ static void sub_0204BF60 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 10;
 
-    StringFormatter_FormatPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
+    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
 
     v2 = sub_0202605C(v1, 32);
-    sub_0200B48C(param0->unk_04, 1, v2, 0, 1, GAME_LANGUAGE);
+    StringTemplate_SetStrbuf(param0->unk_04, 1, v2, 0, 1, GAME_LANGUAGE);
     Strbuf_Free(v2);
 }
 
@@ -471,8 +470,8 @@ static void sub_0204BFF8 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 11;
 
-    StringFormatter_FormatPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
-    sub_0200BC80(param0->unk_04, 1, v1);
+    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
+    StringTemplate_SetUndergroundGoodsName(param0->unk_04, 1, v1);
 }
 
 static void sub_0204C034 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
@@ -526,20 +525,20 @@ static void sub_0204C0CC (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
     switch (v1) {
     case 1:
-        sub_0200BE64(param0->unk_04, 1, v2);
+        StringTemplate_SetBallSealName(param0->unk_04, 1, v2);
         break;
     case 2:
-        sub_0200BFAC(param0->unk_04, 1, v2);
+        StringTemplate_SetContestAccessoryName(param0->unk_04, 1, v2);
         break;
     case 3:
-        sub_0200C01C(param0->unk_04, 1, v2);
+        StringTemplate_SetContestBackdropName(param0->unk_04, 1, v2);
         break;
     }
 
     *param1 = 379;
     *param2 = 12;
 
-    StringFormatter_FormatPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
+    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
 }
 
 static void sub_0204C128 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
@@ -576,8 +575,8 @@ static void sub_0204C190 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 14;
 
-    StringFormatter_FormatPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
-    sub_0200B70C(param0->unk_04, 1, v1);
+    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
+    StringTemplate_SetItemName(param0->unk_04, 1, v1);
 }
 
 static void sub_0204C1CC (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
@@ -589,7 +588,7 @@ static void sub_0204C1CC (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 5;
 
-    sub_0200B70C(param0->unk_04, 0, v2);
+    StringTemplate_SetItemName(param0->unk_04, 0, v2);
 }
 
 static BOOL sub_0204C1FC (FieldSystem * param0, void * param1)
@@ -624,8 +623,8 @@ static void sub_0204C264 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 15;
 
-    StringFormatter_FormatPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
-    sub_0200B70C(param0->unk_04, 1, v1);
+    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
+    StringTemplate_SetItemName(param0->unk_04, 1, v1);
 }
 
 static void sub_0204C2A0 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
@@ -637,7 +636,7 @@ static void sub_0204C2A0 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 5;
 
-    sub_0200B70C(param0->unk_04, 0, v2);
+    StringTemplate_SetItemName(param0->unk_04, 0, v2);
 }
 
 static BOOL sub_0204C2D0 (FieldSystem * param0, void * param1)
@@ -668,8 +667,8 @@ static void sub_0204C328 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 17;
 
-    StringFormatter_FormatPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
-    sub_0200B70C(param0->unk_04, 1, v1);
+    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
+    StringTemplate_SetItemName(param0->unk_04, 1, v1);
 }
 
 static void sub_0204C364 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
@@ -681,7 +680,7 @@ static void sub_0204C364 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 5;
 
-    sub_0200B70C(param0->unk_04, 0, v2);
+    StringTemplate_SetItemName(param0->unk_04, 0, v2);
 }
 
 static BOOL sub_0204C394 (FieldSystem * param0, void * param1)
@@ -712,8 +711,8 @@ static void sub_0204C3EC (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 16;
 
-    StringFormatter_FormatPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
-    sub_0200B70C(param0->unk_04, 1, v1);
+    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
+    StringTemplate_SetItemName(param0->unk_04, 1, v1);
 }
 
 static void sub_0204C428 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
@@ -725,7 +724,7 @@ static void sub_0204C428 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 5;
 
-    sub_0200B70C(param0->unk_04, 0, v2);
+    StringTemplate_SetItemName(param0->unk_04, 0, v2);
 }
 
 static BOOL sub_0204C458 (FieldSystem * param0, void * param1)
@@ -751,8 +750,8 @@ static void sub_0204C494 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 19;
 
-    StringFormatter_FormatPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
-    sub_0200B928(param0->unk_04, 1, v0->val6.unk_00);
+    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
+    StringTemplate_SetPoketchAppName(param0->unk_04, 1, v0->val6.unk_00);
 }
 
 static void sub_0204C4D0 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
@@ -762,7 +761,7 @@ static void sub_0204C4D0 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 20;
 
-    StringFormatter_FormatPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
+    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
 }
 
 static const UnkStruct_020EBE94 Unk_020EBE94[] = {

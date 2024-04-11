@@ -5,7 +5,6 @@
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/sprite_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02022550_decl.h"
@@ -29,7 +28,7 @@
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -329,7 +328,7 @@ static int ov95_02247F04 (UnkStruct_ov95_02247C6C * param0, int * param1)
     case 1:
         if (++(param0->unk_08) > 10) {
             MessageLoader * v0 = ov95_02247630(param0->unk_00);
-            StringFormatter * v1 = ov95_0224762C(param0->unk_00);
+            StringTemplate * v1 = ov95_0224762C(param0->unk_00);
             int v2, v3;
 
             if (ov95_02247680(param0->unk_00) == 1) {
@@ -341,7 +340,7 @@ static int ov95_02247F04 (UnkStruct_ov95_02247C6C * param0, int * param1)
             }
 
             MessageLoader_GetStrbuf(v0, v2, param0->unk_68);
-            StringFormatter_Format(v1, param0->unk_6C, param0->unk_68);
+            StringTemplate_Format(v1, param0->unk_6C, param0->unk_68);
             PrintStringSimple(&(param0->unk_58), 1, param0->unk_6C, 0, 0, 0xff, NULL);
             sub_0200E010(&(param0->unk_58), 109, 2);
             sub_0201A954(&(param0->unk_58));
@@ -352,10 +351,10 @@ static int ov95_02247F04 (UnkStruct_ov95_02247C6C * param0, int * param1)
     case 2:
         if (++(param0->unk_08) > 60) {
             MessageLoader * v4 = ov95_02247630(param0->unk_00);
-            StringFormatter * v5 = ov95_0224762C(param0->unk_00);
+            StringTemplate * v5 = ov95_0224762C(param0->unk_00);
 
             MessageLoader_GetStrbuf(v4, 1, param0->unk_68);
-            StringFormatter_Format(v5, param0->unk_6C, param0->unk_68);
+            StringTemplate_Format(v5, param0->unk_6C, param0->unk_68);
 
             {
                 const BoxPokemon * v6 = ov95_02247634(param0->unk_00);

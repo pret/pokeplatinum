@@ -4,7 +4,6 @@
 #include "core_sys.h"
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -35,7 +34,7 @@
 #include "unk_0200A784.h"
 #include "message.h"
 #include "unk_0200B29C.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -538,7 +537,7 @@ static void ov97_0222B4FC (UnkStruct_0222AE60 * param0, int param1, int param2)
     sub_02019448(param0->unk_00, 2);
 }
 
-static void ov97_0222B53C (Window * param0, MessageLoader * param1, StringFormatter * param2, u32 param3, u32 param4, int param5)
+static void ov97_0222B53C (Window * param0, MessageLoader * param1, StringTemplate * param2, u32 param3, u32 param4, int param5)
 {
     int v0, v1;
     Strbuf* v2;
@@ -551,7 +550,7 @@ static void ov97_0222B53C (Window * param0, MessageLoader * param1, StringFormat
     Strbuf_Free(v2);
 }
 
-static void ov97_0222B590 (StringFormatter * param0, int param1)
+static void ov97_0222B590 (StringTemplate * param0, int param1)
 {
     int v0, v1;
 
@@ -563,20 +562,20 @@ static void ov97_0222B590 (StringFormatter * param0, int param1)
         v0 = 3 - 1; v1 = 1;
     }
 
-    StringFormatter_FormatNumber(param0, 0, param1, v0, v1, 1);
+    StringTemplate_SetNumber(param0, 0, param1, v0, v1, 1);
 }
 
 static BOOL ov97_0222B5C0 (void * param0, int param1, UnkStruct_ov97_02237808 * param2, int param3)
 {
     int v0, v1, v2;
     Strbuf* v3;
-    StringFormatter * v4;
+    StringTemplate * v4;
     MessageLoader * v5;
     UnkStruct_0222AE60 * v6 = (UnkStruct_0222AE60 *)param0;
     u32 v7;
 
     v5 = MessageLoader_Init(1, 26, 550, 81);
-    v4 = StringFormatter_New(81);
+    v4 = StringTemplate_Default(81);
 
     if (TrainerInfo_Gender(v6->unk_0C) == 1) {
         v7 = ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((15 & 0xff) << 0)));
@@ -596,14 +595,14 @@ static BOOL ov97_0222B5C0 (void * param0, int param1, UnkStruct_ov97_02237808 * 
         Strbuf_Free(v3);
     }
 
-    StringFormatter_FormatPlayerName(v4, 0, v6->unk_0C);
+    StringTemplate_SetPlayerName(v4, 0, v6->unk_0C);
     ov97_0222B53C(param2->unk_10, v5, v4, v7, 16, 16 * 1);
     ov97_0222B590(v4, sub_0202CC58(v6->unk_10));
 
-    StringFormatter_FormatNumber(v4, 1, sub_0202CC5C(v6->unk_10), 2, 2, 1);
+    StringTemplate_SetNumber(v4, 1, sub_0202CC5C(v6->unk_10), 2, 2, 1);
     ov97_0222B53C(param2->unk_10, v5, v4, v7, 17, 16 * 2);
 
-    StringFormatter_FormatNumber(v4, 0, v6->unk_50, 1, 0, 1);
+    StringTemplate_SetNumber(v4, 0, v6->unk_50, 1, 0, 1);
     ov97_0222B53C(param2->unk_10, v5, v4, v7, 19, 16 * 3);
 
     if (v6->unk_4C) {
@@ -615,7 +614,7 @@ static BOOL ov97_0222B5C0 (void * param0, int param1, UnkStruct_ov97_02237808 * 
 
     v6->unk_DC[param1] = Unk_ov97_0223E014[param1].unk_00;
 
-    sub_0200B3F0(v4);
+    StringTemplate_Free(v4);
     MessageLoader_Free(v5);
 
     return 1;

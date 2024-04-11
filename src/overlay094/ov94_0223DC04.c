@@ -22,7 +22,7 @@
 #include "unk_02006E3C.h"
 #include "message.h"
 #include "unk_0200B29C.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02018340.h"
@@ -299,14 +299,14 @@ static void ov94_0223DFDC (UnkStruct_ov94_0223FD4C * param0)
 
     param0->unk_BAC = Strbuf_Init((90 * 2), 62);
 
-    sub_0200C41C(param0->unk_B8C);
+    StringTemplate_ClearArgs(param0->unk_B8C);
 
     if (v2->unk_11E != 0) {
-        sub_0200BDD0(param0->unk_B8C, 8, v2->unk_11E);
+        StringTemplate_SetCountryName(param0->unk_B8C, 8, v2->unk_11E);
     }
 
     if (v2->unk_11F != 0) {
-        sub_0200BE08(param0->unk_B8C, 9, v2->unk_11E, v2->unk_11F);
+        StringTemplate_SetCityName(param0->unk_B8C, 9, v2->unk_11E, v2->unk_11F);
     }
 
     param0->unk_BB4[0] = sub_0200B29C(param0->unk_B8C, param0->unk_B90, 79, 62);

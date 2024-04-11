@@ -14,7 +14,6 @@
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/sprite_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
@@ -53,7 +52,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "heap.h"
@@ -110,7 +109,7 @@ u16 * ov16_0223E0A4(BattleSystem * param0);
 u16 * ov16_0223E0B0(BattleSystem * param0);
 u16 * ov16_0223E0BC(BattleSystem * param0);
 UnkStruct_ov16_0223E0C8 * ov16_0223E0C8(BattleSystem * param0);
-StringFormatter * BattleSystem_StringFormatter(BattleSystem * param0);
+StringTemplate * BattleSystem_StringTemplate(BattleSystem * param0);
 Strbuf* ov16_0223E0D4(BattleSystem * param0);
 u16 Battler_TrainerID(BattleSystem * param0, int param1);
 TrainerData * BattleSystem_TrainerData(BattleSystem * param0, int param1);
@@ -416,7 +415,7 @@ UnkStruct_ov16_0223E0C8 * ov16_0223E0C8 (BattleSystem * param0)
     return &param0->unk_1CC[0];
 }
 
-StringFormatter * BattleSystem_StringFormatter (BattleSystem * param0)
+StringTemplate * BattleSystem_StringTemplate (BattleSystem * param0)
 {
     return param0->strFormatter;
 }
@@ -2341,51 +2340,51 @@ static void BattleMessage_Nickname (BattleSystem * param0, u32 param1, int param
     Pokemon * v0;
 
     v0 = BattleSystem_PartyPokemon(param0, param2 & 0xff, (param2 & 0xff00) >> 8);
-    StringFormatter_BufferNickname(param0->strFormatter, param1, &v0->box);
+    StringTemplate_SetNickname(param0->strFormatter, param1, &v0->box);
 }
 
 static void BattleMessage_MoveName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B630(param0->strFormatter, param1, param2);
+    StringTemplate_SetMoveName(param0->strFormatter, param1, param2);
 }
 
 static void BattleMessage_ItemName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B70C(param0->strFormatter, param1, param2);
+    StringTemplate_SetItemName(param0->strFormatter, param1, param2);
 }
 
 static void BattleMessage_Number (BattleSystem * param0, u32 param1, int param2)
 {
-    StringFormatter_FormatNumber(param0->strFormatter, param1, param2, 5, 0, 1);
+    StringTemplate_SetNumber(param0->strFormatter, param1, param2, 5, 0, 1);
 }
 
 static void BattleMessage_NumberDigits (BattleSystem * param0, u32 param1, int param2, int param3)
 {
     if (param3) {
-        StringFormatter_FormatNumber(param0->strFormatter, param1, param2, param3, 1, 1);
+        StringTemplate_SetNumber(param0->strFormatter, param1, param2, param3, 1, 1);
     } else {
-        StringFormatter_FormatNumber(param0->strFormatter, param1, param2, 5, 1, 1);
+        StringTemplate_SetNumber(param0->strFormatter, param1, param2, 5, 1, 1);
     }
 }
 
 static void BattleMessage_TypeName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B7EC(param0->strFormatter, param1, param2);
+    StringTemplate_SetPokemonTypeName(param0->strFormatter, param1, param2);
 }
 
 static void BattleMessage_AbilityName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B6A0(param0->strFormatter, param1, param2);
+    StringTemplate_SetAbilityName(param0->strFormatter, param1, param2);
 }
 
 static void BattleMessage_StatName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B824(param0->strFormatter, param1, param2);
+    StringTemplate_SetPokemonStatName(param0->strFormatter, param1, param2);
 }
 
 static void BattleMessage_StatusName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B85C(param0->strFormatter, param1, param2);
+    StringTemplate_SetStatusConditionName(param0->strFormatter, param1, param2);
 }
 
 static void BattleMessage_PokemonName (BattleSystem * param0, u32 param1, int param2)
@@ -2393,7 +2392,7 @@ static void BattleMessage_PokemonName (BattleSystem * param0, u32 param1, int pa
     Pokemon * v0;
 
     v0 = BattleSystem_PartyPokemon(param0, param2 & 0xff, (param2 & 0xff00) >> 8);
-    sub_0200B538(param0->strFormatter, param1, &v0->box);
+    StringTemplate_SetSpeciesName(param0->strFormatter, param1, &v0->box);
 }
 
 static void BattleMessage_PoffinName (BattleSystem * param0, u32 param1, int param2)
@@ -2403,7 +2402,7 @@ static void BattleMessage_PoffinName (BattleSystem * param0, u32 param1, int par
 
 static void BattleMessage_FlavorName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200B890(param0->strFormatter, param1, param2);
+    StringTemplate_SetFlavorName(param0->strFormatter, param1, param2);
 }
 
 static void BattleMessage_TrainerClassName (BattleSystem * param0, u32 param1, int param2)
@@ -2411,7 +2410,7 @@ static void BattleMessage_TrainerClassName (BattleSystem * param0, u32 param1, i
     TrainerData * v0;
 
     v0 = BattleSystem_TrainerData(param0, param2);
-    sub_0200B9D0(param0->strFormatter, param1, v0);
+    StringTemplate_SetTrainerClassNameBattle(param0->strFormatter, param1, v0);
 }
 
 static void BattleMessage_TrainerName (BattleSystem * param0, u32 param1, int param2)
@@ -2419,12 +2418,12 @@ static void BattleMessage_TrainerName (BattleSystem * param0, u32 param1, int pa
     TrainerData * v0;
 
     v0 = BattleSystem_TrainerData(param0, param2);
-    sub_0200BA74(param0->strFormatter, param1, v0);
+    StringTemplate_SetTrainerNameBattle(param0->strFormatter, param1, v0);
 }
 
 static void BattleMessage_PCBoxName (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200BD40(param0->strFormatter, param1, param0->pcBoxes, param2);
+    StringTemplate_SetPCBoxName(param0->strFormatter, param1, param0->pcBoxes, param2);
 }
 
 /**
@@ -2437,7 +2436,7 @@ static void BattleMessage_PCBoxName (BattleSystem * param0, u32 param1, int para
 static void BattleMessage_Format(BattleSystem *battleSys, MessageLoader *msgLoader, BattleMessage *battleMsg)
 {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(msgLoader, battleMsg->id);
-    StringFormatter_Format(battleSys->strFormatter, battleSys->msgBuffer, strbuf);
+    StringTemplate_Format(battleSys->strFormatter, battleSys->msgBuffer, strbuf);
     Strbuf_Free(strbuf);
 }
 

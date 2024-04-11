@@ -3,7 +3,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_0202783C_decl.h"
 
 #include "constdata/const_020F3050.h"
 #include "constdata/const_020F3060.h"
@@ -14,7 +13,7 @@
 #include "game_overlay.h"
 #include "heap.h"
 #include "gx_layers.h"
-#include "unk_020277A4.h"
+#include "savedata_misc.h"
 #include "unk_0208B284.h"
 #include "unk_0208BA78.h"
 #include "overlay062/ov62_0222F2C0.h"
@@ -59,9 +58,9 @@ static int sub_0208BEBC (OverlayManager * param0, int * param1, int param2)
 
     if (param2 == 0) {
         {
-            UnkStruct_0202783C * v1 = sub_0202783C(v0->unk_830);
+            MiscSaveBlock * v1 = SaveData_MiscSaveBlock(v0->unk_830);
 
-            sub_0202797C(v1, &v0->unk_14.unk_48);
+            MiscSaveBlock_VsRecorderColor(v1, &v0->unk_14.unk_48);
 
             if (v0->unk_14.unk_48 >= 7) {
                 v0->unk_14.unk_48 = 0;

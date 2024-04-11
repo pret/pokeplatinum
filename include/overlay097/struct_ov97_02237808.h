@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV97_02237808_H
 #define POKEPLATINUM_STRUCT_OV97_02237808_H
 
-#include "struct_decls/struct_0200B358_decl.h"
+#include "string_template.h"
 #include "struct_defs/struct_0205AA50.h"
 
 typedef struct {
@@ -10,7 +10,7 @@ typedef struct {
     int unk_08;
     int unk_0C;
     Window * unk_10;
-    StringFormatter * unk_14;
+    StringTemplate * unk_14;
     int unk_18;
     int unk_1C;
     int unk_20;

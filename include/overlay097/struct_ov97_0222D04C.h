@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
+#include "string_template.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -25,7 +25,7 @@ typedef struct {
     BGL * unk_00;
     SaveData * unk_04;
     Options * unk_08;
-    StringFormatter * unk_0C;
+    StringTemplate * unk_0C;
     MessageLoader * unk_10;
     Strbuf* unk_14;
     Window unk_18;

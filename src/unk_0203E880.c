@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0203E724_decl.h"
@@ -25,7 +24,7 @@
 
 #include "narc.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "strbuf.h"
@@ -70,7 +69,7 @@ struct UnkStruct_0203EF60_t {
     LocalMapObject * unk_30;
     u16 * unk_34;
     UnkStruct_0203E724 * unk_38[2];
-    StringFormatter * unk_40;
+    StringTemplate * unk_40;
     Strbuf* unk_44;
     Strbuf* unk_48;
     void * unk_4C;
@@ -188,7 +187,7 @@ static BOOL sub_0203E950 (UnkStruct_020508D4 * param0)
     case 0:
         v3->unk_38[0] = sub_0203EAB8(v4, v3->unk_0A);
         v3->unk_09 = 1;
-        v3->unk_40 = sub_0200B368(8, 64, 11);
+        v3->unk_40 = StringTemplate_New(8, 64, 11);
         v3->unk_44 = Strbuf_Init(1024, 11);
         v3->unk_48 = Strbuf_Init(1024, 11);
         v3->unk_04++;
@@ -212,7 +211,7 @@ static BOOL sub_0203E950 (UnkStruct_020508D4 * param0)
 
         if (v3->unk_09 <= 0) {
             v1 = v3->unk_A4;
-            sub_0200B3F0(v3->unk_40);
+            StringTemplate_Free(v3->unk_40);
             Strbuf_Free(v3->unk_44);
             Strbuf_Free(v3->unk_48);
             v3->unk_00 = 0;

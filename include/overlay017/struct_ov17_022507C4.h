@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/sprite_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
+#include "string_template.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/cell_actor_data.h"
@@ -27,7 +27,7 @@ typedef struct {
     BGL * unk_20;
     Window unk_24[9];
     MessageLoader * unk_B4;
-    StringFormatter * unk_B8;
+    StringTemplate * unk_B8;
     Strbuf* unk_BC;
     PaletteData * unk_C0;
     UnkStruct_02012744 * unk_C4;

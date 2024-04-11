@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "struct_decls/struct_020298B0_decl.h"
@@ -13,7 +12,7 @@
 
 #include "unk_02005474.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "strbuf.h"
@@ -489,7 +488,7 @@ int ov23_02241D38 (int param0)
 BOOL ov23_02241D58 (Strbuf *param0)
 {
     int v0;
-    StringFormatter * v1 = NULL;
+    StringTemplate * v1 = NULL;
     Strbuf* v2 = NULL;
     BOOL v3 = 0;
 
@@ -499,13 +498,13 @@ BOOL ov23_02241D58 (Strbuf *param0)
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
         if (Unk_ov23_02257744->unk_468[v0] != 0) {
-            v1 = StringFormatter_New(4);
+            v1 = StringTemplate_Default(4);
             v2 = Strbuf_Init((50 * 2), 4);
 
-            sub_0200BACC(v1, 2, Unk_ov23_02257744->unk_468[v0]);
-            sub_0200C324(v1, 2);
+            StringTemplate_SetUndergroundItemNameWithArticle(v1, 2, Unk_ov23_02257744->unk_468[v0]);
+            StringTemplate_CapitalizeArgAtIndex(v1, 2);
             MessageLoader_GetStrbuf(ov23_02253E3C(ov23_0224219C()), 95, v2);
-            StringFormatter_Format(v1, param0, v2);
+            StringTemplate_Format(v1, param0, v2);
 
             Unk_ov23_02257744->unk_468[v0] = 0;
             v3 = 1;
@@ -518,7 +517,7 @@ BOOL ov23_02241D58 (Strbuf *param0)
     }
 
     if (v1) {
-        sub_0200B3F0(v1);
+        StringTemplate_Free(v1);
     }
 
     return v3;

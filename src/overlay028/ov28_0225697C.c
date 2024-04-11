@@ -13,7 +13,7 @@
 #include "unk_02006E3C.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "overlay025/ov25_02253CE0.h"
+#include "overlay025/poketch_system.h"
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
 #include "overlay028/ov28_0225697C.h"
@@ -43,7 +43,7 @@ static void ov28_02256D90(BGL * param0, const UnkStruct_ov28_0225697C_1 * param1
 static void ov28_02256DCC(BGL * param0);
 static void ov28_02256DF0(SysTask * param0, void * param1);
 static void ov28_02256E0C(BGL * param0, const u16 * param1);
-struct UnkStruct_ov25_02253CE0_t * sub_0203D158(void);
+struct PoketchSystem * sub_0203D158(void);
 
 static const u16 Unk_ov28_022578F8[32] = {
     0xFB,
@@ -461,7 +461,7 @@ static const struct {
 
 BOOL ov28_0225697C (UnkStruct_ov28_0225697C ** param0, const UnkStruct_ov28_0225697C_1 * param1, BGL * param2)
 {
-    UnkStruct_ov28_0225697C * v0 = (UnkStruct_ov28_0225697C *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov28_0225697C));
+    UnkStruct_ov28_0225697C * v0 = (UnkStruct_ov28_0225697C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov28_0225697C));
 
     if (v0 != NULL) {
         v0->unk_00 = param1;

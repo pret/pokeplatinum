@@ -252,7 +252,7 @@ typedef enum {
     UnkEnum_ov66_02231E6C_02,
 } UnkEnum_ov66_02231E6C;
 
-typedef enum {
+enum PlazaMinigame {
     UnkEnum_ov66_022324D0_00,
     UnkEnum_ov66_022324D0_01,
     UnkEnum_ov66_022324D0_02,
@@ -266,7 +266,7 @@ typedef enum {
     UnkEnum_ov66_022324D0_10,
     UnkEnum_ov66_022324D0_11,
     UnkEnum_ov66_022324D0_12 = UnkEnum_ov66_022324D0_02 + 1,
-} UnkEnum_ov66_022324D0;
+};
 
 enum {
     GX_BLEND_BGALL = GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3,

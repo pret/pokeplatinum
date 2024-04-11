@@ -5,13 +5,11 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
-#include "struct_decls/struct_0202783C_decl.h"
 #include "savedata.h"
 
 #include "overlay057/const_ov57_021D0F80.h"
@@ -41,7 +39,7 @@
 #include "unk_02006E3C.h"
 #include "unk_0200A9DC.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
@@ -56,7 +54,7 @@
 #include "strbuf.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_020277A4.h"
+#include "savedata_misc.h"
 #include "unk_020279FC.h"
 #include "pokemon.h"
 #include "unk_0208694C.h"
@@ -83,7 +81,7 @@ typedef struct {
     int unk_58;
     Strbuf* unk_5C;
     void * unk_60;
-    StringFormatter * unk_64;
+    StringTemplate * unk_64;
     UnkStruct_02015920 * unk_68;
     SysTask * unk_6C;
     UnkStruct_0208737C * unk_70;
@@ -256,9 +254,9 @@ int ov73_021D0F7C (OverlayManager * param0, int * param1)
     TrainerInfo_SetGender(SaveData_GetTrainerInfo(v0->unk_04), v0->unk_70->unk_04);
 
     {
-        UnkStruct_0202783C * v2 = sub_0202783C(v0->unk_04);
+        MiscSaveBlock * v2 = SaveData_MiscSaveBlock(v0->unk_04);
 
-        sub_0202787C(v2, v0->unk_74->unk_18);
+        MiscSaveBlock_SetRivalName(v2, v0->unk_74->unk_18);
     }
 
     sub_0208716C(v0->unk_70);
@@ -463,7 +461,7 @@ static void ov73_021D12C4 (UnkStruct_ov73_021D1058 * param0)
     sub_0201D710();
 
     param0->unk_60 = sub_0201567C(NULL, 0, 6, param0->unk_00);
-    param0->unk_64 = StringFormatter_New(param0->unk_00);
+    param0->unk_64 = StringTemplate_Default(param0->unk_00);
     param0->unk_50 = 0;
     param0->unk_54 = 0;
     param0->unk_2C = 0;
@@ -471,7 +469,7 @@ static void ov73_021D12C4 (UnkStruct_ov73_021D1058 * param0)
 
 static void ov73_021D1300 (UnkStruct_ov73_021D1058 * param0)
 {
-    sub_0200B3F0(param0->unk_64);
+    StringTemplate_Free(param0->unk_64);
     sub_02015760(param0->unk_60);
     MessageLoader_Free(param0->unk_4C);
 }
@@ -723,9 +721,9 @@ static BOOL ov73_021D1510 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
             param0->unk_5C = Strbuf_Init(0x400, param0->unk_00);
 
             MessageLoader_GetStrbuf(param0->unk_4C, param1, v1);
-            sub_0200B48C(param0->unk_64, 0, param0->unk_70->unk_18, param0->unk_84, 1, GAME_LANGUAGE);
-            sub_0200B48C(param0->unk_64, 1, param0->unk_74->unk_18, 0, 1, GAME_LANGUAGE);
-            StringFormatter_Format(param0->unk_64, param0->unk_5C, v1);
+            StringTemplate_SetStrbuf(param0->unk_64, 0, param0->unk_70->unk_18, param0->unk_84, 1, GAME_LANGUAGE);
+            StringTemplate_SetStrbuf(param0->unk_64, 1, param0->unk_74->unk_18, 0, 1, GAME_LANGUAGE);
+            StringTemplate_Format(param0->unk_64, param0->unk_5C, v1);
             Strbuf_Free(v1);
         }
 

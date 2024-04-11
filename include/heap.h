@@ -2,6 +2,7 @@
 #define POKEPLATINUM_UNK_02017E74_H
 
 #include "struct_defs/struct_02017E74.h"
+#include "constants/heap.h"
 
 #include <nnsys.h>
 

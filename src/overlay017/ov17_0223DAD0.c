@@ -30,7 +30,7 @@
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
@@ -290,7 +290,7 @@ int ov17_0223DAD0 (OverlayManager * param0, int * param1)
     ov17_0223E450();
 
     v0->unk_14.unk_84 = MessageLoader_Init(0, 26, 206, 23);
-    v0->unk_14.unk_88 = StringFormatter_New(23);
+    v0->unk_14.unk_88 = StringTemplate_Default(23);
     v0->unk_14.unk_8C = Strbuf_Init((2 * 160), 23);
     v0->unk_14.unk_94 = sub_02012744((3 * 3), 23);
 
@@ -440,7 +440,7 @@ int ov17_0223DF0C (OverlayManager * param0, int * param1)
     sub_02002FA0(v0->unk_14.unk_90, 3);
     sub_02002F54(v0->unk_14.unk_90);
     Strbuf_Free(v0->unk_14.unk_8C);
-    sub_0200B3F0(v0->unk_14.unk_88);
+    StringTemplate_Free(v0->unk_14.unk_88);
     MessageLoader_Free(v0->unk_14.unk_84);
     Heap_FreeToHeap(v0->unk_14.unk_60);
     SysTask_Done(v0->unk_04);

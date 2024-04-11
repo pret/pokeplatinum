@@ -20,7 +20,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_02099D44.h"
-#include "overlay025/ov25_02253CE0.h"
+#include "overlay025/poketch_system.h"
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
 #include "overlay025/ov25_02255540.h"
@@ -49,7 +49,7 @@ static void ov29_02256B18(UnkStruct_ov29_022566C8 * param0);
 
 BOOL ov29_022566C8 (UnkStruct_ov29_022566C8 ** param0, const UnkStruct_ov29_022566C8_1 * param1, BGL * param2)
 {
-    UnkStruct_ov29_022566C8 * v0 = (UnkStruct_ov29_022566C8 *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov29_022566C8));
+    UnkStruct_ov29_022566C8 * v0 = (UnkStruct_ov29_022566C8 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov29_022566C8));
 
     if (v0 != NULL) {
         GF_ASSERT(GF_heap_c_dummy_return_true(7));

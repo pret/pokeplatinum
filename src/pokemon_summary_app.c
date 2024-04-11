@@ -26,7 +26,7 @@
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
@@ -487,7 +487,7 @@ static void sub_0208C884 (PokemonSummaryApp * param0)
     param0->msgLoader = MessageLoader_Init(0, 26, 455, 19);
     param0->ribbonLoader = MessageLoader_Init(1, 26, 535, 19);
     param0->unk_684 = sub_0200C440(1, 2, 0, 19);
-    param0->strFormatter = StringFormatter_New(19);
+    param0->strFormatter = StringTemplate_Default(19);
     param0->monData.speciesName = Strbuf_Init(12, 19);
     param0->monData.nickname = Strbuf_Init(12, 19);
     param0->monData.OTName = Strbuf_Init(8, 19);
@@ -506,7 +506,7 @@ static void sub_0208C950 (PokemonSummaryApp * param0)
     MessageLoader_Free(param0->ribbonLoader);
     MessageLoader_Free(param0->msgLoader);
     sub_0200C560(param0->unk_684);
-    sub_0200B3F0(param0->strFormatter);
+    StringTemplate_Free(param0->strFormatter);
     Strbuf_Free(param0->monData.speciesName);
     Strbuf_Free(param0->monData.nickname);
     Strbuf_Free(param0->monData.OTName);
@@ -1029,16 +1029,16 @@ static void sub_0208D200 (PokemonSummaryApp * param0, Pokemon * param1, PokemonS
     v0 = Pokemon_GetBoxPokemon(param1);
 
     MessageLoader_GetStrbuf(param0->msgLoader, 11, param0->strbuf);
-    sub_0200B538(param0->strFormatter, 0, v0);
-    StringFormatter_Format(param0->strFormatter, param0->monData.speciesName, param0->strbuf);
+    StringTemplate_SetSpeciesName(param0->strFormatter, 0, v0);
+    StringTemplate_Format(param0->strFormatter, param0->monData.speciesName, param0->strbuf);
 
     MessageLoader_GetStrbuf(param0->msgLoader, 0, param0->strbuf);
-    StringFormatter_BufferNickname(param0->strFormatter, 0, v0);
-    StringFormatter_Format(param0->strFormatter, param0->monData.nickname, param0->strbuf);
+    StringTemplate_SetNickname(param0->strFormatter, 0, v0);
+    StringTemplate_Format(param0->strFormatter, param0->monData.nickname, param0->strbuf);
 
     MessageLoader_GetStrbuf(param0->msgLoader, 14, param0->strbuf);
-    sub_0200B5EC(param0->strFormatter, 0, v0);
-    StringFormatter_Format(param0->strFormatter, param0->monData.OTName, param0->strbuf);
+    StringTemplate_SetOTName(param0->strFormatter, 0, v0);
+    StringTemplate_Format(param0->strFormatter, param0->monData.OTName, param0->strbuf);
 
     param2->heldItem = (u16)Pokemon_GetValue(param1, MON_DATA_HELD_ITEM, NULL);
     param2->level = (u8)Pokemon_GetValue(param1, MON_DATA_LEVEL, NULL);

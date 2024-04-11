@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV81_021D1610_H
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
+#include "string_template.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
@@ -17,7 +17,7 @@ typedef struct {
     TrainerInfo * unk_48;
     SaveData * unk_4C;
     MessageLoader * unk_50;
-    StringFormatter * unk_54;
+    StringTemplate * unk_54;
     Strbuf* unk_58;
     u16 unk_5C[1024];
     u16 unk_85C[1024];

@@ -1,13 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B358_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_02098700_decl.h"
 
 #include "field/field_system.h"
 
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0203E880.h"
 #include "unk_020507CC.h"
 #include "unk_0206AFE0.h"
@@ -146,7 +145,7 @@ void ov5_021EE9BC (FieldSystem * param0, u16 param1)
 static void ov5_021EE9E8 (FieldSystem * param0, u8 param1, u8 param2, u16 param3, vu16 param4)
 {
     u32 v0;
-    StringFormatter ** v1 = sub_0203F098(param0, 15);
+    StringTemplate ** v1 = sub_0203F098(param0, 15);
 
     v0 = ov5_021EE8A8(param3, param4);
 
@@ -155,8 +154,8 @@ static void ov5_021EE9E8 (FieldSystem * param0, u8 param1, u8 param2, u16 param3
         v0 = (((v0 * 1000) / 254 + 5) / 10);
     }
 
-    StringFormatter_FormatNumber(*v1, param1, v0 / 10, 3, 0, 1);
-    StringFormatter_FormatNumber(*v1, param2, v0 % 10, 1, 0, 1);
+    StringTemplate_SetNumber(*v1, param1, v0 / 10, 3, 0, 1);
+    StringTemplate_SetNumber(*v1, param2, v0 % 10, 1, 0, 1);
 }
 
 void ov5_021EEA54 (FieldSystem * param0, u8 param1, u8 param2, u16 param3)

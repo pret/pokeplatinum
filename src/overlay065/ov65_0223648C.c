@@ -9,7 +9,6 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "strbuf.h"
@@ -47,7 +46,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A784.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -111,7 +110,7 @@ typedef struct {
 
 typedef struct {
     BGL * unk_00;
-    StringFormatter * unk_04;
+    StringTemplate * unk_04;
     MessageLoader * unk_08;
     Strbuf* unk_0C;
     Strbuf* unk_10;
@@ -801,7 +800,7 @@ static void ov65_02236B90 (UnkStruct_ov65_02236840 * param0, u32 param1)
 
 static void ov65_02236C10 (UnkStruct_ov65_02236840 * param0, const UnkStruct_0207DE04 * param1, u32 param2)
 {
-    param0->unk_04 = StringFormatter_New(param2);
+    param0->unk_04 = StringTemplate_Default(param2);
     param0->unk_08 = MessageLoader_Init(0, 26, 674, param2);
     param0->unk_0C = Strbuf_Init(256, param2);
     param0->unk_10 = Strbuf_Init(256, param2);
@@ -814,7 +813,7 @@ static void ov65_02236C5C (UnkStruct_ov65_02236840 * param0)
     Strbuf_Free(param0->unk_10);
     Strbuf_Free(param0->unk_0C);
     MessageLoader_Free(param0->unk_08);
-    sub_0200B3F0(param0->unk_04);
+    StringTemplate_Free(param0->unk_04);
 }
 
 static void ov65_02236C7C (UnkStruct_ov65_02236840 * param0, const UnkStruct_0207DE04 * param1, u32 param2)
@@ -823,18 +822,18 @@ static void ov65_02236C7C (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
     case 0:
         break;
     case 1:
-        sub_0200C0B0(param0->unk_04, 0, UnkEnum_ov66_022324D0_00);
+        StringTemplate_SetPlazaMinigameName(param0->unk_04, 0, UnkEnum_ov66_022324D0_00);
         break;
     case 2:
-        sub_0200C0B0(param0->unk_04, 0, UnkEnum_ov66_022324D0_01);
+        StringTemplate_SetPlazaMinigameName(param0->unk_04, 0, UnkEnum_ov66_022324D0_01);
         break;
     case 3:
-        sub_0200C0B0(param0->unk_04, 0, UnkEnum_ov66_022324D0_02);
+        StringTemplate_SetPlazaMinigameName(param0->unk_04, 0, UnkEnum_ov66_022324D0_02);
         break;
     }
 
     MessageLoader_GetStrbuf(param0->unk_08, Unk_ov65_02239E5C[param1->unk_00], param0->unk_10);
-    StringFormatter_Format(param0->unk_04, param0->unk_0C, param0->unk_10);
+    StringTemplate_Format(param0->unk_04, param0->unk_0C, param0->unk_10);
     sub_0201D78C(&param0->unk_200, 0, param0->unk_0C, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     sub_0201A9A4(&param0->unk_200);
     sub_0201A9A4(&param0->unk_220);
@@ -915,7 +914,7 @@ static void ov65_02236E50 (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
     v0 = Strbuf_Init(256, param4);
 
     MessageLoader_GetStrbuf(param0->unk_08, param2, v0);
-    StringFormatter_Format(param0->unk_04, param0->unk_0C, v0);
+    StringTemplate_Format(param0->unk_04, param0->unk_0C, v0);
 
     param0->unk_14 = sub_0201D78C(&param0->unk_1F0, 1, param0->unk_0C, 0, 0, param0->unk_16, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
 
@@ -979,7 +978,7 @@ static void ov65_02236F70 (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
     ov65_02237284(param0, param1, param2, 1, param3);
 
     MessageLoader_GetStrbuf(param0->unk_08, 131, v0);
-    StringFormatter_Format(param0->unk_04, v1, v0);
+    StringTemplate_Format(param0->unk_04, v1, v0);
 
     BGL_FillWindow(&param0->unk_230, 15);
     sub_0201D78C(&param0->unk_230, 0, v1, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
@@ -1031,14 +1030,14 @@ static void ov65_0223709C (UnkStruct_ov65_022367A8 * param0, UnkStruct_ov65_0223
     ov65_0223726C(param1, param2, param3, 0, param4);
 
     MessageLoader_GetStrbuf(param1->unk_08, 129, v0);
-    StringFormatter_Format(param1->unk_04, v1, v0);
+    StringTemplate_Format(param1->unk_04, v1, v0);
     BGL_WindowColor(&param1->unk_220, 15, 0, param3 * (2 * 8), (20 * 8), (2 * 8));
     sub_0201D78C(&param1->unk_220, 0, v1, 0, param3 * (2 * 8), 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
 
     ov65_02237284(param1, param2, param3, 0, param4);
 
     MessageLoader_GetStrbuf(param1->unk_08, 130, v0);
-    StringFormatter_Format(param1->unk_04, v1, v0);
+    StringTemplate_Format(param1->unk_04, v1, v0);
     sub_0201D78C(&param1->unk_220, 0, v1, 72, param3 * (2 * 8), 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     sub_0201A9A4(&param1->unk_220);
 
@@ -1078,7 +1077,7 @@ static void ov65_0223726C (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
     TrainerInfo * v0;
 
     v0 = CommInfo_TrainerInfo(param2);
-    StringFormatter_FormatPlayerName(param0->unk_04, param3, v0);
+    StringTemplate_SetPlayerName(param0->unk_04, param3, v0);
 }
 
 static void ov65_02237284 (UnkStruct_ov65_02236840 * param0, const UnkStruct_0207DE04 * param1, int param2, int param3, u32 param4)
@@ -1089,7 +1088,7 @@ static void ov65_02237284 (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
     v0 = CommInfo_TrainerInfo(param2);
     v1 = TrainerInfo_ID_LowHalf(v0);
 
-    StringFormatter_FormatNumber(param0->unk_04, param3, v1, 5, 2, 1);
+    StringTemplate_SetNumber(param0->unk_04, param3, v1, 5, 2, 1);
 }
 
 static void ov65_022372B0 (UnkStruct_ov65_02236840 * param0)

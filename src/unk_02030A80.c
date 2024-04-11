@@ -4,7 +4,6 @@
 #include "strbuf.h"
 #include "struct_decls/struct_02025CCC_decl.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_0202783C_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "savedata.h"
 
@@ -21,7 +20,7 @@
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_020277A4.h"
+#include "savedata_misc.h"
 #include "unk_0202C858.h"
 #include "unk_02030A80.h"
 #include "unk_0205C980.h"
@@ -48,14 +47,14 @@ void sub_02030AA0 (UnkStruct_02030A80 * param0, SaveData * param1)
     TrainerInfo * v0 = SaveData_GetTrainerInfo(param1);
     UnkStruct_0202C878 * v1 = sub_0202C878(param1);
     UnkStruct_02025CCC * v2 = sub_02025CCC(param1);
-    const UnkStruct_0202783C * v3 = Save_MiscRO(param1);
+    const MiscSaveBlock * v3 = SaveData_MiscSaveBlockConst(param1);
     int v4, v5, v6;
     int v7;
     OSOwnerInfo v8;
 
     OS_GetOwnerInfo(&v8);
 
-    sub_02027914(v3, &v4, &v5, &v6);
+    MiscSaveBlock_FavoriteMon(v3, &v4, &v5, &v6);
     MI_CpuClear8(param0, sizeof(UnkStruct_02030A80));
     GF_strcpy(param0->unk_00, TrainerInfo_Name(v0));
 
@@ -71,7 +70,7 @@ void sub_02030AA0 (UnkStruct_02030A80 * param0, SaveData * param1)
         param0->unk_20_val2[v7] = 0xffff;
     }
 
-    sub_02027938(v3, &param0->unk_20_val1);
+    MiscSaveBlock_IntroMsg(v3, &param0->unk_20_val1);
 
     param0->unk_15 = v8.birthday.month;
     param0->unk_16 = sub_0205CA14(TrainerInfo_Gender(v0), TrainerInfo_Appearance(v0), 0);

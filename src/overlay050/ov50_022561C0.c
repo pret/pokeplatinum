@@ -4,7 +4,7 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
-#include "overlay025/struct_ov25_0225424C_decl.h"
+#include "overlay025/poketch_system.h"
 #include "overlay025/struct_ov25_02255B34_decl.h"
 #include "overlay050/struct_ov50_02256510_decl.h"
 
@@ -15,7 +15,6 @@
 #include "rtc.h"
 #include "heap.h"
 #include "poketch_data.h"
-#include "overlay025/ov25_02253CE0.h"
 #include "overlay025/ov25_02255ACC.h"
 #include "overlay050/ov50_02256510.h"
 
@@ -25,7 +24,7 @@ typedef struct {
     u8 unk_02;
     UnkStruct_ov50_02256510_1 unk_04;
     UnkStruct_ov50_02256510 * unk_90;
-    UnkStruct_ov25_0225424C * unk_94;
+    PoketchSystem * unk_94;
     PoketchData * unk_98;
     UnkStruct_ov25_02255B34 * unk_9C;
     u32 unk_A0;
@@ -36,8 +35,8 @@ typedef struct {
 
 static void NitroStaticInit(void);
 
-static BOOL ov50_022561D4(void ** param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3);
-static BOOL ov50_0225621C(UnkStruct_ov50_022561D4 * param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3);
+static BOOL ov50_022561D4(void ** param0, PoketchSystem * param1, BGL * param2, u32 param3);
+static BOOL ov50_0225621C(UnkStruct_ov50_022561D4 * param0, PoketchSystem * param1, BGL * param2, u32 param3);
 static void ov50_022562AC(UnkStruct_ov50_02256510_1 * param0, UnkStruct_ov50_022561D4 * param1, const RTCDate * param2);
 static void ov50_02256340(UnkStruct_ov50_022561D4 * param0);
 static void ov50_02256360(u32 param0, u32 param1, u32 param2, void * param3);
@@ -53,9 +52,9 @@ static void NitroStaticInit (void)
     ov25_02254238(ov50_022561D4, ov50_022563B0);
 }
 
-static BOOL ov50_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3)
+static BOOL ov50_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2, u32 param3)
 {
-    UnkStruct_ov50_022561D4 * v0 = (UnkStruct_ov50_022561D4 *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov50_022561D4));
+    UnkStruct_ov50_022561D4 * v0 = (UnkStruct_ov50_022561D4 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov50_022561D4));
 
     if (v0 != NULL) {
         if (ov50_0225621C(v0, param1, param2, param3)) {
@@ -71,7 +70,7 @@ static BOOL ov50_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, BGL
     return 0;
 }
 
-static BOOL ov50_0225621C (UnkStruct_ov50_022561D4 * param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3)
+static BOOL ov50_0225621C (UnkStruct_ov50_022561D4 * param0, PoketchSystem * param1, BGL * param2, u32 param3)
 {
     static const UnkUnion_020225E0 v0[] = {
         {((5 + 3 * 0) * 8), ((5 + 3 * 0 + 2) * 8), ((4 + 3 * 0) * 8), ((4 + 3 * 0 + 2) * 8)},
@@ -115,7 +114,7 @@ static BOOL ov50_0225621C (UnkStruct_ov50_022561D4 * param0, UnkStruct_ov25_0225
     RTCDate v1;
 
     GetCurrentDate(&v1);
-    param0->unk_98 = ov25_02254540(param1);
+    param0->unk_98 = PoketchSystem_PoketchData(param1);
     ov50_022562AC(&(param0->unk_04), param0, &v1);
 
     param0->unk_A8 = param0->unk_04.unk_0C[0].unk_02;

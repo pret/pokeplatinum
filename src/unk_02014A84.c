@@ -2,17 +2,16 @@
 #include <string.h>
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 
 #include "struct_defs/sentence.h"
 
 #include "message.h"
 #include "unk_0200B29C.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
-#include "unk_0201D0C8.h"
+#include "charcode.h"
 #include "strbuf.h"
 
 static u32 sub_02014C00(u32 param0, u32 param1);
@@ -91,15 +90,15 @@ void sub_02014AC4 (Sentence * param0, int param1)
 Strbuf* sub_02014B34 (const Sentence * param0, u32 param1)
 {
     Strbuf* v0;
-    StringFormatter * v1;
+    StringTemplate * v1;
     MessageLoader * v2;
     int v3;
 
-    v1 = StringFormatter_New(param1);
+    v1 = StringTemplate_Default(param1);
 
     for (v3 = 0; v3 < 2; v3++) {
         if (param0->words[v3] != 0xffff) {
-            sub_0200BE48(v1, v3, param0->words[v3]);
+            StringTemplate_SetCustomMessageWord(v1, v3, param0->words[v3]);
         } else {
             break;
         }
@@ -109,7 +108,7 @@ Strbuf* sub_02014B34 (const Sentence * param0, u32 param1)
     v0 = sub_0200B29C(v1, v2, param0->id, param1);
 
     MessageLoader_Free(v2);
-    sub_0200B3F0(v1);
+    StringTemplate_Free(v1);
 
     return v0;
 }
@@ -154,11 +153,11 @@ static u32 sub_02014C00 (u32 param0, u32 param1)
 
     while (*v1 != 0xffff) {
         if (*v1 == 0xfffe) {
-            if (sub_0201D108(v1)) {
+            if (CharCode_IsFormatArg(v1)) {
                 v2++;
             }
 
-            v1 = sub_0201D0C8(v1);
+            v1 = CharCode_SkipFormatArg(v1);
         } else {
             v1++;
         }

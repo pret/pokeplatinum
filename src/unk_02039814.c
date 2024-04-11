@@ -4,7 +4,6 @@
 #include "core_sys.h"
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
 
@@ -17,7 +16,7 @@
 #include "unk_02002B7C.h"
 #include "unk_0200A9DC.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -89,7 +88,7 @@ void sub_02039834 (int param0, int param1, int param2)
     MessageLoader * v2;
     Strbuf* v3;
     Strbuf* v4;
-    StringFormatter * v5;
+    StringTemplate * v5;
     int v6;
 
     switch (param1) {
@@ -157,15 +156,15 @@ void sub_02039834 (int param0, int param1, int param2)
     v3 = Strbuf_Init(0x180, param0);
     v4 = Strbuf_Init(0x180, param0);
     sub_0201D710();
-    v5 = StringFormatter_New(param0);
+    v5 = StringTemplate_Default(param0);
 
     sub_0201A8D4(v0, &v1, &Unk_020E5EC8);
     BGL_WindowColor(&v1, 15, 0, 0, 26 * 8, 18 * 8);
     Window_Show(&v1, 0, (512 - 9), 2);
 
-    StringFormatter_FormatNumber(v5, 0, param2, 5, 2, 1);
+    StringTemplate_SetNumber(v5, 0, param2, 5, 2, 1);
     MessageLoader_GetStrbuf(v2, v6, v4);
-    StringFormatter_Format(v5, v3, v4);
+    StringTemplate_Format(v5, v3, v4);
 
     PrintStringSimple(&v1, 0, v3, 0, 0, 0, NULL);
     Strbuf_Free(v3);
@@ -177,6 +176,6 @@ void sub_02039834 (int param0, int param1, int param2)
 
     BGL_DeleteWindow(&v1);
     MessageLoader_Free(v2);
-    sub_0200B3F0(v5);
+    StringTemplate_Free(v5);
     Heap_FreeToHeap(v0);
 }

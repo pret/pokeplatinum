@@ -25,7 +25,7 @@
 #include "overlay062/struct_ov62_02241130.h"
 
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "heap.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
@@ -96,7 +96,7 @@ int ov61_0222B008 (UnkStruct_ov62_022349A8 * param0, const UnkStruct_ov62_022411
     MI_CpuClear8(param0->unk_3B4, ov61_0222DE8C(-1));
 
     param0->unk_3F4 = MessageLoader_Init(0, 26, 695, param1->unk_04);
-    param0->unk_3F8 = StringFormatter_New(param1->unk_04);
+    param0->unk_3F8 = StringTemplate_Default(param1->unk_04);
     param0->unk_3FC = Strbuf_Init((16 * 8 * 2), param1->unk_04);
     param0->unk_18C = ov61_0222BBF0(param1->unk_04);
     param0->unk_0C.unk_00 = param1->unk_00;
@@ -119,7 +119,7 @@ void ov61_0222B0F0 (UnkStruct_ov62_022349A8 * param0)
     param0->unk_3C4 = 0;
 
     Strbuf_Free(param0->unk_3FC);
-    sub_0200B3F0(param0->unk_3F8);
+    StringTemplate_Free(param0->unk_3F8);
     MessageLoader_Free(param0->unk_3F4);
     Heap_FreeToHeap(param0->unk_3B4);
     ov61_0222BC40();
@@ -756,9 +756,9 @@ static void ov61_0222BB60 (UnkStruct_ov62_022349A8 * param0, int param1, int par
         v0 = 11;
     }
 
-    StringFormatter_FormatNumber(param0->unk_3F8, 0, param2, 5, 2, 1);
+    StringTemplate_SetNumber(param0->unk_3F8, 0, param2, 5, 2, 1);
     v1 = MessageLoader_GetNewStrbuf(param0->unk_3F4, v0);
-    StringFormatter_Format(param0->unk_3F8, param0->unk_3FC, v1);
+    StringTemplate_Format(param0->unk_3F8, param0->unk_3FC, v1);
     Strbuf_Free(v1);
     ov61_0222BB54(param0, param0->unk_3FC);
 }

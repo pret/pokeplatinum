@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
+#include "string_template.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -24,7 +24,7 @@ struct UnkStruct_ov72_0223DB98_t {
     BOOL unk_04;
     UnkStruct_0202CD88 * unk_08;
     Options * unk_0C;
-    StringFormatter * unk_10;
+    StringTemplate * unk_10;
     MessageLoader * unk_14;
     Strbuf* unk_18[5];
     Strbuf* unk_2C;

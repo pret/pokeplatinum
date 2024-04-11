@@ -20,7 +20,7 @@
 #include "overlay_manager.h"
 #include "narc.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -691,7 +691,7 @@ static void ov79_021D1568 (UnkStruct_ov79_021D0E1C * param0)
 
     param0->unk_2C = MessageLoader_Init(0, 26, 463, param0->unk_00);
     param0->unk_28 = sub_020158A8(param0->unk_00);
-    param0->unk_30.unk_00 = sub_0200B368(2, 64, param0->unk_00);
+    param0->unk_30.unk_00 = StringTemplate_New(2, 64, param0->unk_00);
     param0->unk_30.unk_04 = Strbuf_Init(64, param0->unk_00);
     param0->unk_30.unk_08 = MessageLoader_GetNewStrbuf(param0->unk_2C, 6);
     param0->unk_30.unk_0C = MessageLoader_GetNewStrbuf(param0->unk_2C, 22);
@@ -734,7 +734,7 @@ static void ov79_021D1618 (UnkStruct_ov79_021D0E1C * param0)
     Strbuf_Free(param0->unk_30.unk_0C);
     Strbuf_Free(param0->unk_30.unk_08);
     Strbuf_Free(param0->unk_30.unk_04);
-    sub_0200B3F0(param0->unk_30.unk_00);
+    StringTemplate_Free(param0->unk_30.unk_00);
     sub_020158F4(param0->unk_28);
     MessageLoader_Free(param0->unk_2C);
     sub_02002C60(2);

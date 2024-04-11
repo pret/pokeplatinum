@@ -1,12 +1,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B358_decl.h"
 #include "trainer_info.h"
 #include "savedata.h"
 
 #include "unk_02005474.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0203061C.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -19,7 +18,7 @@ u8 ov107_02249C98(u8 param0, u8 param1);
 u8 ov107_02249C9C(u8 param0, u8 param1);
 u8 ov107_02249CAC(SaveData * param0, u8 param1, u8 param2);
 void ov107_02249CE0(u32 param0, u16 param1);
-void ov107_02249CF4(StringFormatter * param0, u32 param1);
+void ov107_02249CF4(StringTemplate * param0, u32 param1);
 
 u8 ov107_02249C98 (u8 param0, u8 param1)
 {
@@ -49,13 +48,13 @@ void ov107_02249CE0 (u32 param0, u16 param1)
     return;
 }
 
-void ov107_02249CF4 (StringFormatter * param0, u32 param1)
+void ov107_02249CF4 (StringTemplate * param0, u32 param1)
 {
     TrainerInfo * v0;
     u32 v1;
 
     v0 = CommInfo_TrainerInfo((CommSys_CurNetId() ^ 1));
-    StringFormatter_FormatPlayerName(param0, param1, v0);
+    StringTemplate_SetPlayerName(param0, param1, v0);
 
     return;
 }

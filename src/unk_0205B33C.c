@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
@@ -19,7 +18,7 @@
 #include "struct_defs/struct_02072014.h"
 
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200D9E8.h"
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
@@ -102,7 +101,7 @@ static void sub_0205B694(UnkStruct_0205B43C * param0);
 static void sub_0205C160(UnkStruct_0205B43C * param0);
 static int sub_0205B4D4(void);
 static int sub_0205BAE8(UnkStruct_0205B43C * param0, int param1);
-static int sub_0205BCD4(int param0, int param1, StringFormatter * param2);
+static int sub_0205BCD4(int param0, int param1, StringTemplate * param2);
 static void sub_0205B408(UnkStruct_0205B43C * param0);
 static void sub_0205BFF0(UnkStruct_0205B4F8 * param0);
 
@@ -962,7 +961,7 @@ static int sub_0205BAE8 (UnkStruct_0205B43C * param0, int param1)
     return 40;
 }
 
-int sub_0205BC50 (StringFormatter * param0)
+int sub_0205BC50 (StringTemplate * param0)
 {
     u8 v0, v1;
     u8 v2, v3;
@@ -977,10 +976,10 @@ int sub_0205BC50 (StringFormatter * param0)
     }
 
     if (v1 != 0) {
-        sub_0200BDD0(param0, 3, v1);
+        StringTemplate_SetCountryName(param0, 3, v1);
 
         if (v3 != 0) {
-            sub_0200BE08(param0, 4, v1, v3);
+            StringTemplate_SetCityName(param0, 4, v1, v3);
         }
     }
 
@@ -1003,7 +1002,7 @@ int sub_0205BC50 (StringFormatter * param0)
     return 15;
 }
 
-static int sub_0205BCD4 (int param0, int param1, StringFormatter * param2)
+static int sub_0205BCD4 (int param0, int param1, StringTemplate * param2)
 {
     if (param0 != (1 - 1)) {
         return Unk_020ED6E8[param0][param1];
@@ -1012,7 +1011,7 @@ static int sub_0205BCD4 (int param0, int param1, StringFormatter * param2)
     return sub_0205BC50(param2);
 }
 
-int sub_0205BCF4 (UnkStruct_0205B43C * param0, int param1, int param2, StringFormatter * param3)
+int sub_0205BCF4 (UnkStruct_0205B43C * param0, int param1, int param2, StringTemplate * param3)
 {
     int v0;
     TrainerInfo * v1;
@@ -1199,7 +1198,7 @@ static const int Unk_020ED720[] = {
     0xBC
 };
 
-int sub_0205BF44 (UnkStruct_0205B43C * param0, StringFormatter * param1)
+int sub_0205BF44 (UnkStruct_0205B43C * param0, StringTemplate * param1)
 {
     int v0, v1 = 0, v2;
     u16 v3;
@@ -1222,7 +1221,7 @@ int sub_0205BF44 (UnkStruct_0205B43C * param0, StringFormatter * param1)
         int v4 = TrainerInfo_Appearance(param0->unk_08);
         int v5 = TrainerInfo_Gender(param0->unk_08);
 
-        sub_0200B960(param1, 0, sub_0205CA14(v5, v4, 2));
+        StringTemplate_SetTrainerClassName(param1, 0, sub_0205CA14(v5, v4, 2));
 
         return 168;
     }
@@ -1234,7 +1233,7 @@ int sub_0205BF44 (UnkStruct_0205B43C * param0, StringFormatter * param1)
     }
 
     if ((v3 = sub_02014C78(&param0->unk_178, 0)) != 0xffff) {
-        sub_0200BE48(param1, 0, v3);
+        StringTemplate_SetCustomMessageWord(param1, 0, v3);
     }
 
     return Unk_020ED720[v2];
@@ -1270,7 +1269,7 @@ Sentence * sub_0205C028 (UnkStruct_0205B43C * param0)
     return &param0->unk_178;
 }
 
-void sub_0205C040 (StringFormatter * param0, int param1, int param2, TrainerInfo * param3, UnkStruct_02014EC4 * param4)
+void sub_0205C040 (StringTemplate * param0, int param1, int param2, TrainerInfo * param3, UnkStruct_02014EC4 * param4)
 {
     TrainerInfo * v0;
     Strbuf* v1;
@@ -1290,8 +1289,8 @@ void sub_0205C040 (StringFormatter * param0, int param1, int param2, TrainerInfo
         return;
     }
 
-    StringFormatter_FormatPlayerName(param0, 0, v0);
-    StringFormatter_FormatPlayerName(param0, 1, param3);
+    StringTemplate_SetPlayerName(param0, 0, v0);
+    StringTemplate_SetPlayerName(param0, 1, param3);
 
     v3 = TrainerInfo_RegionCode(v0);
 
@@ -1331,7 +1330,7 @@ void sub_0205C040 (StringFormatter * param0, int param1, int param2, TrainerInfo
 
     v1 = MessageLoader_GetNewStrbuf(v2, v4);
 
-    sub_0200B48C(param0, 2, v1, 0, 1, v3);
+    StringTemplate_SetStrbuf(param0, 2, v1, 0, 1, v3);
     Heap_FreeToHeap(v1);
     MessageLoader_Free(v2);
 }

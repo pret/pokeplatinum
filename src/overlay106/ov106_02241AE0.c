@@ -6,7 +6,6 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -39,7 +38,7 @@
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200C440.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -96,7 +95,7 @@ struct UnkStruct_ov106_02243118_t {
     u8 unk_1E;
     u8 unk_1F;
     MessageLoader * unk_20;
-    StringFormatter * unk_24;
+    StringTemplate * unk_24;
     Strbuf* unk_28;
     Strbuf* unk_2C;
     Strbuf* unk_30[2];
@@ -761,7 +760,7 @@ static void ov106_022423E8 (UnkStruct_ov106_02243118 * param0)
     ov106_02243570(&param0->unk_C0);
 
     MessageLoader_Free(param0->unk_20);
-    sub_0200B3F0(param0->unk_24);
+    StringTemplate_Free(param0->unk_24);
     Strbuf_Free(param0->unk_28);
     Strbuf_Free(param0->unk_2C);
     sub_0200C560(param0->unk_B0);
@@ -817,7 +816,7 @@ static void ov106_02242500 (UnkStruct_ov106_02243118 * param0)
     ov106_02242688(param0);
 
     param0->unk_20 = MessageLoader_Init(1, 26, 549, 98);
-    param0->unk_24 = StringFormatter_New(98);
+    param0->unk_24 = StringTemplate_Default(98);
     param0->unk_28 = Strbuf_Init(600, 98);
     param0->unk_2C = Strbuf_Init(600, 98);
 
@@ -1067,7 +1066,7 @@ static u8 ov106_02242918 (UnkStruct_ov106_02243118 * param0, Window * param1, in
 {
     BGL_FillWindow(param1, param8);
     MessageLoader_GetStrbuf(param0->unk_20, param2, param0->unk_2C);
-    StringFormatter_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
+    StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
 
     return sub_0201D78C(param1, param9, param0->unk_28, param3, param4, param5, (u32)((((param6) & 0xff) << 16) | (((param7) & 0xff) << 8) | (((param8) & 0xff) << 0)), NULL);
 }
@@ -1131,7 +1130,7 @@ static void ov106_02242A54 (UnkStruct_ov106_02243118 * param0)
 
 static void ov106_02242AAC (UnkStruct_ov106_02243118 * param0, u32 param1, s32 param2)
 {
-    StringFormatter_FormatNumber(param0->unk_24, param1, param2, 2, 0, 1);
+    StringTemplate_SetNumber(param0->unk_24, param1, param2, 2, 0, 1);
     return;
 }
 
@@ -1641,7 +1640,7 @@ static void ov106_02243224 (UnkStruct_ov106_02243118 * param0)
 
     ov106_02243664(param0->unk_284, 0);
     ov106_02243758(&param0->unk_4C[0], sub_02027B50(param0->unk_B4));
-    sub_0200B7EC(param0->unk_24, 0, ov104_0223B5A4(param0->unk_0D));
+    StringTemplate_SetPokemonTypeName(param0->unk_24, 0, ov104_0223B5A4(param0->unk_0D));
 
     v0 = sub_020301E0(ov106_02243090(param0->unk_0D), param0->unk_294);
     v0++;

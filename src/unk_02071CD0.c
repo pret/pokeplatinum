@@ -6,7 +6,7 @@
 #include "field/field_system.h"
 #include "overlay006/struct_ov6_02242AF0.h"
 
-#include "unk_020277A4.h"
+#include "savedata_misc.h"
 #include "unk_02027F50.h"
 #include "unk_0203CC84.h"
 

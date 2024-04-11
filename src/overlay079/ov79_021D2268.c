@@ -6,7 +6,6 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/sprite_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
@@ -36,7 +35,7 @@
 #include "unk_0200762C.h"
 #include "unk_0200A784.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
@@ -61,7 +60,7 @@
 #include "overlay079/ov79_021D3768.h"
 
 typedef struct {
-    StringFormatter * unk_00;
+    StringTemplate * unk_00;
     Strbuf* unk_04;
     Strbuf* unk_08[3];
 } UnkStruct_ov79_021D2928_sub1;
@@ -502,7 +501,7 @@ static void ov79_021D2768 (UnkStruct_ov79_021D2928 * param0)
     int v0 = 0;
 
     param0->unk_18 = MessageLoader_Init(0, 26, 462, param0->unk_00);
-    param0->unk_1C.unk_00 = sub_0200B368(1, 64, param0->unk_00);
+    param0->unk_1C.unk_00 = StringTemplate_New(1, 64, param0->unk_00);
     param0->unk_1C.unk_04 = Strbuf_Init(64, param0->unk_00);
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -519,7 +518,7 @@ static void ov79_021D27AC (UnkStruct_ov79_021D2928 * param0)
     }
 
     Strbuf_Free(param0->unk_1C.unk_04);
-    sub_0200B3F0(param0->unk_1C.unk_00);
+    StringTemplate_Free(param0->unk_1C.unk_00);
     MessageLoader_Free(param0->unk_18);
 }
 
@@ -736,8 +735,8 @@ static int ov79_021D2B94 (UnkStruct_ov79_021D2928 * param0)
     sub_0200E060(&param0->unk_6C, 1, 1, 14);
     BGL_FillWindow(&param0->unk_6C, ((15 << 4) | 15));
     Strbuf_Clear(param0->unk_1C.unk_04);
-    sub_0200B48C(param0->unk_1C.unk_00, 0, param0->unk_30.unk_0C, 2, 1, GAME_LANGUAGE);
-    StringFormatter_Format(param0->unk_1C.unk_00, param0->unk_1C.unk_04, param0->unk_1C.unk_08[param0->unk_30.unk_09]);
+    StringTemplate_SetStrbuf(param0->unk_1C.unk_00, 0, param0->unk_30.unk_0C, 2, 1, GAME_LANGUAGE);
+    StringTemplate_Format(param0->unk_1C.unk_00, param0->unk_1C.unk_04, param0->unk_1C.unk_08[param0->unk_30.unk_09]);
 
     param0->unk_0C = sub_0201D78C(&param0->unk_6C, 1, param0->unk_1C.unk_04, 0, 0, param0->unk_10->unk_0A, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((15 & 0xff) << 0)))), NULL);
     param0->unk_0E = 0;

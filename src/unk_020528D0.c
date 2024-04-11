@@ -4,7 +4,6 @@
 #include "core_sys.h"
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0203A790_decl.h"
@@ -23,7 +22,7 @@
 #include "unk_02006E3C.h"
 #include "unk_0200A9DC.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "heap.h"
@@ -51,7 +50,7 @@ typedef struct {
     BGL * unk_08;
     Window unk_0C;
     MessageLoader * unk_1C;
-    StringFormatter * unk_20;
+    StringTemplate * unk_20;
 } UnkStruct_02052AA4;
 
 static void sub_02052914(FieldSystem * param0, UnkStruct_020508D4 * param1);
@@ -129,10 +128,10 @@ static void sub_02052914 (FieldSystem * param0, UnkStruct_020508D4 * param1)
     sub_020528D0(v0->unk_08);
 
     v0->unk_1C = MessageLoader_Init(1, 26, 373, 11);
-    v0->unk_20 = StringFormatter_New(11);
+    v0->unk_20 = StringTemplate_Default(11);
 
     sub_0201A8D4(v0->unk_08, &v0->unk_0C, &Unk_020EC2F0);
-    StringFormatter_FormatPlayerName(v0->unk_20, 0, SaveData_GetTrainerInfo(FieldSystem_SaveData(param0)));
+    StringTemplate_SetPlayerName(v0->unk_20, 0, SaveData_GetTrainerInfo(FieldSystem_SaveData(param0)));
 
     if (param0->unk_1C->unk_00 == 414) {
         sub_02052AA4(v0, 4, 0, 0);
@@ -175,7 +174,7 @@ static BOOL sub_020529C4 (UnkStruct_020508D4 * param0)
     case 4:
         sub_0200E084(&v0->unk_0C, 0);
         BGL_DeleteWindow(&v0->unk_0C);
-        sub_0200B3F0(v0->unk_20);
+        StringTemplate_Free(v0->unk_20);
         MessageLoader_Free(v0->unk_1C);
         sub_02019044(v0->unk_08, 3);
         Heap_FreeToHeap(v0->unk_08);
@@ -194,7 +193,7 @@ static void sub_02052AA4 (UnkStruct_02052AA4 * param0, u16 param1, u8 param2, u8
 
     BGL_FillWindow(&param0->unk_0C, 0);
     MessageLoader_GetStrbuf(param0->unk_1C, param1, v0);
-    StringFormatter_Format(param0->unk_20, v1, v0);
+    StringTemplate_Format(param0->unk_20, v1, v0);
 
     {
         u32 v2 = sub_02002EB4(0, v1, 0);

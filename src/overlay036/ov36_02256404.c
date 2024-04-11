@@ -6,22 +6,20 @@
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay025/struct_ov25_022555E8_decl.h"
 #include "overlay025/struct_ov25_022558C4_decl.h"
-#include "overlay036/struct_ov36_02256404_decl.h"
+#include "overlay036/poketch_app_pedometer.h"
 
 #include "overlay025/struct_ov25_0225517C.h"
 #include "overlay025/struct_ov25_02255810.h"
 #include "overlay025/struct_ov25_02255958.h"
-#include "overlay036/struct_ov36_02256404_1.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "unk_02006E3C.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "overlay025/ov25_02253CE0.h"
+#include "overlay025/poketch_system.h"
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
 #include "overlay025/ov25_02255540.h"
-#include "overlay036/ov36_02256404.h"
 
 struct UnkStruct_ov36_02256404_t {
     const UnkStruct_ov36_02256404_1 * unk_00;
@@ -45,7 +43,7 @@ static void ov36_0225669C(UnkStruct_ov36_02256404 * param0, const UnkStruct_ov36
 
 BOOL ov36_02256404 (UnkStruct_ov36_02256404 ** param0, const UnkStruct_ov36_02256404_1 * param1, BGL * param2)
 {
-    UnkStruct_ov36_02256404 * v0 = (UnkStruct_ov36_02256404 *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov36_02256404));
+    UnkStruct_ov36_02256404 * v0 = (UnkStruct_ov36_02256404 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov36_02256404));
 
     if (v0 != NULL) {
         ov25_02255090(v0->unk_08, 4);

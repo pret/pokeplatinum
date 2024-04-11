@@ -19,7 +19,7 @@
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
@@ -195,8 +195,8 @@ static void ov17_0224792C (UnkStruct_ov17_02247A48 * param0, int param1, const U
     case 0:
         break;
     case 1:
-        sub_0200B48C(param0->unk_0C.unk_3C, 0, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
-        StringFormatter_BufferNickname(param0->unk_0C.unk_3C, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetStrbuf(param0->unk_0C.unk_3C, 0, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
+        StringTemplate_SetNickname(param0->unk_0C.unk_3C, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         break;
     default:
         GF_ASSERT(FALSE);
@@ -218,7 +218,7 @@ static void ov17_02247990 (UnkStruct_ov17_02247A48 * param0, MessageLoader * par
     v0 = MessageLoader_GetNewStrbuf(param1, param2);
     ov17_0224792C(param0, param3, param4);
 
-    StringFormatter_Format(param0->unk_0C.unk_3C, param0->unk_0C.unk_40, v0);
+    StringTemplate_Format(param0->unk_0C.unk_3C, param0->unk_0C.unk_40, v0);
     BGL_FillWindow(&param0->unk_0C.unk_28[0], 0xff);
 
     param0->unk_0C.unk_C4 = PrintStringSimple(&param0->unk_0C.unk_28[0], 1, param0->unk_0C.unk_40, 0, 0, v1, NULL);

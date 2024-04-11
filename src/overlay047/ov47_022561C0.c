@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020507E4_decl.h"
-#include "overlay025/struct_ov25_0225424C_decl.h"
+#include "overlay025/poketch_system.h"
 #include "overlay047/struct_ov47_02256634_decl.h"
 
 #include "struct_defs/struct_0202D7B0.h"
@@ -20,7 +20,6 @@
 #include "unk_020507CC.h"
 #include "poketch_data.h"
 #include "unk_0206AFE0.h"
-#include "overlay025/ov25_02253CE0.h"
 #include "overlay047/ov47_02256634.h"
 
 typedef struct {
@@ -29,7 +28,7 @@ typedef struct {
     u8 unk_02;
     UnkStruct_ov47_02256634_1 unk_04;
     UnkStruct_ov47_02256634 * unk_70;
-    UnkStruct_ov25_0225424C * unk_74;
+    PoketchSystem * unk_74;
     PoketchData * unk_78;
     UnkStruct_0206C638 * unk_7C[6];
     u8 unk_94[6];
@@ -38,8 +37,8 @@ typedef struct {
 
 static void NitroStaticInit(void);
 
-static BOOL ov47_022561D4(void ** param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3);
-static BOOL ov47_0225621C(UnkStruct_ov47_0225621C * param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3);
+static BOOL ov47_022561D4(void ** param0, PoketchSystem * param1, BGL * param2, u32 param3);
+static BOOL ov47_0225621C(UnkStruct_ov47_0225621C * param0, PoketchSystem * param1, BGL * param2, u32 param3);
 static void ov47_0225634C(UnkStruct_ov47_0225621C * param0);
 static void ov47_02256384(SysTask * param0, void * param1);
 static void ov47_022563B8(void * param0);
@@ -56,9 +55,9 @@ static void NitroStaticInit (void)
     ov25_02254238(ov47_022561D4, ov47_022563B8);
 }
 
-static BOOL ov47_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3)
+static BOOL ov47_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2, u32 param3)
 {
-    UnkStruct_ov47_0225621C * v0 = (UnkStruct_ov47_0225621C *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov47_0225621C));
+    UnkStruct_ov47_0225621C * v0 = (UnkStruct_ov47_0225621C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov47_0225621C));
 
     if (v0 != NULL) {
         if (ov47_0225621C(v0, param1, param2, param3)) {
@@ -74,11 +73,11 @@ static BOOL ov47_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, BGL
     return 0;
 }
 
-static BOOL ov47_0225621C (UnkStruct_ov47_0225621C * param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3)
+static BOOL ov47_0225621C (UnkStruct_ov47_0225621C * param0, PoketchSystem * param1, BGL * param2, u32 param3)
 {
     int v0;
 
-    param0->unk_78 = ov25_02254540(param1);
+    param0->unk_78 = PoketchSystem_PoketchData(param1);
 
     for (v0 = 0; v0 < 6; v0++) {
         param0->unk_04.unk_0C[v0].unk_03 = 1;
@@ -97,7 +96,7 @@ static BOOL ov47_0225621C (UnkStruct_ov47_0225621C * param0, UnkStruct_ov25_0225
     param0->unk_04.unk_08 = 0;
 
     {
-        UnkStruct_020507E4 * v1 = SaveData_Events(ov25_02254544(param1));
+        UnkStruct_020507E4 * v1 = SaveData_Events(PoketchSystem_SaveData(param1));
 
         for (v0 = 0; v0 < 4; v0++) {
             param0->unk_04.unk_2C[v0] = sub_0206B1F0(v1, v0);
@@ -105,7 +104,7 @@ static BOOL ov47_0225621C (UnkStruct_ov47_0225621C * param0, UnkStruct_ov25_0225
     }
 
     {
-        UnkStruct_0202D7B0 * v2 = sub_0202D834(ov25_02254544(param1));
+        UnkStruct_0202D7B0 * v2 = sub_0202D834(PoketchSystem_SaveData(param1));
 
         for (v0 = 0; v0 < 6; v0++) {
             param0->unk_7C[v0] = sub_0202D924(v2, v0);
@@ -114,7 +113,7 @@ static BOOL ov47_0225621C (UnkStruct_ov47_0225621C * param0, UnkStruct_ov25_0225
         }
     }
 
-    inline_ov47_0225621C(ov25_0225453C(param1), &(param0->unk_04.unk_00), &(param0->unk_04.unk_04));
+    inline_ov47_0225621C(PoketchSystem_FieldSystem(param1), &(param0->unk_04.unk_00), &(param0->unk_04.unk_04));
 
     if (ov47_02256634(&(param0->unk_70), &(param0->unk_04), param2)) {
         param0->unk_00 = 0;
@@ -304,7 +303,7 @@ static BOOL ov47_02256584 (UnkStruct_ov47_0225621C * param0)
     if (ov25_02254534(param0->unk_74)) {
         int v1, v2;
 
-        inline_ov47_0225621C(ov25_0225453C(param0->unk_74), &v1, &v2);
+        inline_ov47_0225621C(PoketchSystem_FieldSystem(param0->unk_74), &v1, &v2);
 
         if ((v1 != param0->unk_04.unk_00) || (v2 != param0->unk_04.unk_04)) {
             param0->unk_04.unk_00 = v1;

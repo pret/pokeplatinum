@@ -4,7 +4,7 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
-#include "overlay025/struct_ov25_0225424C_decl.h"
+#include "overlay025/poketch_system.h"
 #include "overlay025/struct_ov25_02255B34_decl.h"
 #include "overlay027/struct_ov27_0225680C_decl.h"
 
@@ -15,7 +15,6 @@
 #include "heap.h"
 #include "unk_02022844.h"
 #include "unk_02099D44.h"
-#include "overlay025/ov25_02253CE0.h"
 #include "overlay025/ov25_02255ACC.h"
 #include "overlay027/ov27_0225680C.h"
 
@@ -43,12 +42,12 @@ typedef struct {
     UnkStruct_ov27_0225621C_sub1 unk_38;
     UnkStruct_ov25_02255B34 * unk_5C;
     UnkStruct_ov27_0225680C * unk_60;
-    UnkStruct_ov25_0225424C * unk_64;
+    PoketchSystem * unk_64;
 } UnkStruct_ov27_0225621C;
 
 static void NitroStaticInit(void);
 
-static BOOL ov27_022561D4(void ** param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3);
+static BOOL ov27_022561D4(void ** param0, PoketchSystem * param1, BGL * param2, u32 param3);
 static BOOL ov27_0225621C(UnkStruct_ov27_0225621C * param0, BGL * param1, u32 param2);
 static void ov27_022562AC(UnkStruct_ov27_0225621C * param0);
 static void ov27_022562FC(SysTask * param0, void * param1);
@@ -73,9 +72,9 @@ static void NitroStaticInit (void)
     ov25_02254238(ov27_022561D4, ov27_02256358);
 }
 
-static BOOL ov27_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3)
+static BOOL ov27_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2, u32 param3)
 {
-    UnkStruct_ov27_0225621C * v0 = (UnkStruct_ov27_0225621C *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov27_0225621C));
+    UnkStruct_ov27_0225621C * v0 = (UnkStruct_ov27_0225621C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov27_0225621C));
 
     if (v0 != NULL) {
         if (ov27_0225621C(v0, param2, param3)) {

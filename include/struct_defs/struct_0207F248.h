@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
+#include "string_template.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
@@ -38,7 +38,7 @@ typedef struct {
     CellActorData * unk_624[29];
     UnkStruct_0200C440 * unk_698;
     MessageLoader * unk_69C;
-    StringFormatter * unk_6A0;
+    StringTemplate * unk_6A0;
     Strbuf* unk_6A4;
     Strbuf* unk_6A8;
     Strbuf* unk_6AC[20];

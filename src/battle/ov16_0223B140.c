@@ -42,7 +42,7 @@
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
@@ -624,7 +624,7 @@ static void ov16_0223B790 (OverlayManager * param0)
 
     v0->unk_0C = MessageLoader_Init(1, 26, 368, 5);
     v0->unk_10 = MessageLoader_Init(1, 26, 0, 5);
-    v0->strFormatter = StringFormatter_New(5);
+    v0->strFormatter = StringTemplate_Default(5);
     v0->msgBuffer = Strbuf_Init((2 * 160), 5);
 
     MI_CpuCopy16(sub_02003164(v0->unk_28, 0), &v0->unk_2224[0], 0x20 * 7);
@@ -769,7 +769,7 @@ static void ov16_0223BCB4 (OverlayManager * param0)
     sub_02002F54(v0->unk_28);
     MessageLoader_Free(v0->unk_0C);
     MessageLoader_Free(v0->unk_10);
-    sub_0200B3F0(v0->strFormatter);
+    StringTemplate_Free(v0->strFormatter);
     sub_02015FB8(v0->unk_1C4);
     sub_020141E4();
 

@@ -14,7 +14,7 @@
 
 #include "unk_02005474.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_02014000.h"
 #include "heap.h"
 #include "unk_0201D670.h"
@@ -146,8 +146,8 @@ int ov118_021D0DBC (GameWindowLayout * param0)
 
         v2 = MessageLoader_GetNewStrbuf(param0->unk_69C, 202);
 
-        StringFormatter_BufferNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
-        StringFormatter_Format(param0->unk_6A0, param0->unk_6A4, v2);
+        StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
+        StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v2);
         Strbuf_Free(v2);
         sub_02082708(param0, 0xffffffff, 1);
     }

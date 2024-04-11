@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 
 #include "struct_defs/struct_020985E4.h"
@@ -17,7 +16,7 @@
 
 #include "unk_02002F38.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_020170BC.h"
 #include "unk_02018340.h"
@@ -43,12 +42,12 @@ int ov100_021D46C8 (UnkStruct_ov100_021D46C8 * param0, UnkStruct_020985E4 * para
 
     if (param2 == 22) {
         Strbuf* v5 = TrainerInfo_NameNewStrbuf(param1->unk_08, 111);
-        StringFormatter * v6 = StringFormatter_New(111);
+        StringTemplate * v6 = StringTemplate_Default(111);
 
-        sub_0200B48C(v6, 0, v5, 0, 1, GAME_LANGUAGE);
-        StringFormatter_Format(v6, v3, v2);
+        StringTemplate_SetStrbuf(v6, 0, v5, 0, 1, GAME_LANGUAGE);
+        StringTemplate_Format(v6, v3, v2);
         Strbuf_Free(v5);
-        sub_0200B3F0(v6);
+        StringTemplate_Free(v6);
     } else {
         Strbuf_Copy(v3, v2);
     }

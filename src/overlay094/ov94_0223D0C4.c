@@ -6,7 +6,6 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
 #include "pokemon.h"
@@ -28,7 +27,7 @@
 #include "unk_02006E3C.h"
 #include "message.h"
 #include "unk_0200B29C.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
@@ -505,9 +504,9 @@ static void ov94_0223D88C (UnkStruct_ov94_0223FD4C * param0, int param1, int par
 {
     Strbuf* v0;
 
-    sub_0200B538(param0->unk_B8C, 0, Pokemon_GetBoxPokemon(param5));
+    StringTemplate_SetSpeciesName(param0->unk_B8C, 0, Pokemon_GetBoxPokemon(param5));
     v0 = MessageLoader_GetNewStrbuf(param0->unk_B90, param1);
-    StringFormatter_Format(param0->unk_B8C, param0->unk_BAC, v0);
+    StringTemplate_Format(param0->unk_B8C, param0->unk_BAC, v0);
     BGL_FillWindow(&param0->unk_F5C, 0xf0f);
     sub_0200E060(&param0->unk_F5C, 0, 1, 10);
 
@@ -522,7 +521,7 @@ static u32 Unk_ov94_022467FC[] = {
     (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0))
 };
 
-void ov94_0223D910 (MessageLoader * param0, MessageLoader * param1, StringFormatter * param2, Window param3[], BoxPokemon * param4, UnkStruct_ov94_0223BA88_sub2 * param5)
+void ov94_0223D910 (MessageLoader * param0, MessageLoader * param1, StringTemplate * param2, Window param3[], BoxPokemon * param4, UnkStruct_ov94_0223BA88_sub2 * param5)
 {
     Strbuf* v0, * v1, * v2, * v3;
     Strbuf* v4 = Strbuf_Init((10 + 1) * 2, 62);
@@ -538,7 +537,7 @@ void ov94_0223D910 (MessageLoader * param0, MessageLoader * param1, StringFormat
     v3 = MessageLoader_GetNewStrbuf(param0, 70);
     v1 = MessageLoader_GetNewStrbuf(param0, Unk_ov94_02245FD8[v6]);
 
-    StringFormatter_FormatNumber(param2, 3, v7, 3, 0, 1);
+    StringTemplate_SetNumber(param2, 3, v7, 3, 0, 1);
 
     v2 = sub_0200B29C(param2, param0, 102, 62);
     v0 = MessageLoader_GetNewStrbuf(param1, v10);

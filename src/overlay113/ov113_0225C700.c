@@ -9,7 +9,6 @@
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
@@ -56,7 +55,7 @@
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
@@ -115,7 +114,7 @@ typedef struct UnkStruct_ov113_0225DBCC_t {
     UnkStruct_02015920 * unk_24;
     u8 unk_28;
     u8 unk_29;
-    StringFormatter * unk_2C;
+    StringTemplate * unk_2C;
     MessageLoader * unk_30;
     Window unk_34[8];
     Window unk_B4;
@@ -402,7 +401,7 @@ int ov113_0225C700 (OverlayManager * param0, int * param1)
     sub_0201E450(4);
     sub_02002BB8(2, 118);
 
-    v0->unk_2C = StringFormatter_New(118);
+    v0->unk_2C = StringTemplate_Default(118);
     v0->unk_30 = MessageLoader_Init(0, 26, 650, 118);
     v0->unk_10 = sub_02012744(4, 118);
     v0->unk_160 = NARC_ctor(NARC_INDEX_GRAPHIC__FOOTPRINT_BOARD, 118);
@@ -652,7 +651,7 @@ int ov113_0225CDFC (OverlayManager * param0, int * param1)
     sub_02002C60(2);
     sub_020127BC(v0->unk_10);
     MessageLoader_Free(v0->unk_30);
-    sub_0200B3F0(v0->unk_2C);
+    StringTemplate_Free(v0->unk_2C);
 
     ov113_0225DC4C(v0);
     ov113_0225D12C(v0->unk_08);

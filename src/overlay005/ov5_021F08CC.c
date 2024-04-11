@@ -4,7 +4,6 @@
 #include "core_sys.h"
 
 #include "message.h"
-#include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202CD88_decl.h"
@@ -20,7 +19,7 @@
 
 #include "unk_02005474.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
 #include "heap.h"
@@ -68,7 +67,7 @@ typedef struct {
     u8 unk_28;
     Strbuf* unk_2C;
     Strbuf* unk_30;
-    StringFormatter * unk_34;
+    StringTemplate * unk_34;
     Window unk_38;
     MessageLoader * unk_48;
 } UnkStruct_ov5_021F0D6C;
@@ -512,12 +511,12 @@ static void ov5_021F0D6C (UnkStruct_ov5_021F0D6C * param0)
     param0->unk_48 = MessageLoader_Init(1, 26, 213, 4);
     param0->unk_2C = Strbuf_Init(0x400, 4);
     param0->unk_30 = Strbuf_Init(0x400, 4);
-    param0->unk_34 = sub_0200B368(8, 64, 4);
+    param0->unk_34 = StringTemplate_New(8, 64, 4);
 }
 
 static void ov5_021F0DA4 (UnkStruct_ov5_021F0D6C * param0)
 {
-    sub_0200B3F0(param0->unk_34);
+    StringTemplate_Free(param0->unk_34);
     Strbuf_Free(param0->unk_2C);
     Strbuf_Free(param0->unk_30);
     MessageLoader_Free(param0->unk_48);
@@ -539,7 +538,7 @@ static void ov5_021F0DE8 (UnkStruct_ov5_021F0D6C * param0, u32 param1)
         FieldSystem * v0 = param0->unk_20;
 
         MessageLoader_GetStrbuf(param0->unk_48, param1, param0->unk_30);
-        StringFormatter_Format(param0->unk_34, param0->unk_2C, param0->unk_30);
+        StringTemplate_Format(param0->unk_34, param0->unk_2C, param0->unk_30);
 
         param0->unk_28 = sub_0205D994(&param0->unk_38, param0->unk_2C, sub_02025E44(v0->unk_0C), 1);
     }

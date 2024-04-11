@@ -3,7 +3,6 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0202B4A0_decl.h"
@@ -12,7 +11,7 @@
 
 #include "struct_defs/struct_0203E724_t.h"
 
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0201D15C.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
@@ -26,7 +25,7 @@
 
 BOOL sub_02048BD0 (UnkStruct_0203E724 * param0)
 {
-    StringFormatter ** v0 = sub_0203F098(param0->unk_34, 15);
+    StringTemplate ** v0 = sub_0203F098(param0->unk_34, 15);
     UnkStruct_0202B4A0 * v1 = sub_0202B4A0(param0->unk_34->unk_0C);
     SaveData * v2 = param0->unk_34->unk_0C;
 
@@ -62,7 +61,7 @@ BOOL sub_02048BD0 (UnkStruct_0203E724 * param0)
         v7 = inline_02049538(param0);
         v8 = inline_02049538(param0);
 
-        sub_0200C054(*v0, v2, v7, v8, 0);
+        StringTemplate_SetUnionGroupName(*v0, v2, v7, v8, 0);
     }
     break;
     case 3:
@@ -72,7 +71,7 @@ BOOL sub_02048BD0 (UnkStruct_0203E724 * param0)
         v9 = inline_02049538(param0);
         v10 = inline_02049538(param0);
 
-        sub_0200C054(*v0, v2, v9, v10, 1);
+        StringTemplate_SetUnionGroupName(*v0, v2, v9, v10, 1);
     }
     break;
     case 4:

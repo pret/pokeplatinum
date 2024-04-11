@@ -30,7 +30,7 @@ void ov24_02253CE0 (BGL * param0)
         0
     };
 
-    Heap_Create(3, 8, 0x18000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_POKETCH_APP, 0x18000);
 
     GXS_SetGraphicsMode(GX_BGMODE_0);
 #ifdef SDK_ARM9

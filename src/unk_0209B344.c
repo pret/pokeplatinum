@@ -1,19 +1,17 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_0202783C_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 
 #include "struct_defs/sentence.h"
 #include "field/field_system.h"
 
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "heap.h"
-#include "unk_020277A4.h"
+#include "savedata_misc.h"
 #include "unk_0203D1B8.h"
 #include "unk_020508D4.h"
 #include "unk_0209747C.h"
@@ -22,10 +20,10 @@
 
 typedef struct {
     FieldSystem * unk_00;
-    StringFormatter * unk_04;
+    StringTemplate * unk_04;
     Sentence unk_08;
     UnkStruct_0209747C * unk_10;
-    UnkStruct_0202783C * unk_14;
+    MiscSaveBlock * unk_14;
     int unk_18;
     int unk_1C;
     u16 * unk_20;
@@ -40,13 +38,13 @@ void sub_0209B344 (UnkStruct_020508D4 * param0, u16 * param1)
     UnkStruct_0209B3AC * v1 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0209B3AC));
 
     v1->unk_00 = v0;
-    v1->unk_04 = StringFormatter_New(32);
+    v1->unk_04 = StringTemplate_Default(32);
     v1->unk_10 = sub_0209747C(2, 0, v1->unk_00->unk_0C, 32);
-    v1->unk_14 = sub_0202783C(v0->unk_0C);
+    v1->unk_14 = SaveData_MiscSaveBlock(v0->unk_0C);
     v1->unk_20 = param1;
 
     sub_02014A9C(&v1->unk_08, 4);
-    sub_02027938(v1->unk_14, &v1->unk_08);
+    MiscSaveBlock_IntroMsg(v1->unk_14, &v1->unk_08);
     sub_02097520(v1->unk_10);
 
     v1->unk_18 = 0;
@@ -58,7 +56,7 @@ void sub_0209B344 (UnkStruct_020508D4 * param0, u16 * param1)
 static void sub_0209B3AC (UnkStruct_0209B3AC * param0)
 {
     sub_020974EC(param0->unk_10);
-    sub_0200B3F0(param0->unk_04);
+    StringTemplate_Free(param0->unk_04);
     Heap_FreeToHeap(param0);
 }
 
@@ -94,7 +92,7 @@ static BOOL sub_0209B3C4 (UnkStruct_020508D4 * param0)
                 *v0->unk_20 = 1;
                 sub_02097540(v0->unk_10, &(v0->unk_08));
 
-                sub_02027958(v0->unk_14, &v0->unk_08);
+                MiscSaveBlock_SetIntroMsg(v0->unk_14, &v0->unk_08);
 
                 v0->unk_18 = 4;
             }

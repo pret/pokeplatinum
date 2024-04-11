@@ -16,7 +16,7 @@
 
 #include "narc.h"
 #include "message.h"
-#include "unk_0200B358.h"
+#include "string_template.h"
 #include "heap.h"
 #include "strbuf.h"
 #include "unk_0209B6F8.h"
@@ -44,7 +44,7 @@ UnkStruct_ov104_022320B4 * ov104_0222E63C (UnkStruct_0209B75C * param0, int para
 
     ov104_0222E830(&v0->unk_40, &v0->unk_3C, param2, param1);
 
-    v0->unk_44 = sub_0200B368(8, 64, param1);
+    v0->unk_44 = StringTemplate_New(8, 64, param1);
     v0->unk_48 = Strbuf_Init(1024, param1);
     v0->unk_4C = Strbuf_Init(1024, param1);
 
@@ -93,7 +93,7 @@ void ov104_0222E710 (UnkStruct_ov104_022320B4 * param0)
 {
     GF_ASSERT(param0->unk_51 == 0);
 
-    sub_0200B3F0(param0->unk_44);
+    StringTemplate_Free(param0->unk_44);
     Strbuf_Free(param0->unk_48);
     Strbuf_Free(param0->unk_4C);
     Heap_FreeToHeap(param0->unk_40);

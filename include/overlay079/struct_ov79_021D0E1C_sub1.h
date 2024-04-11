@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_STRUCT_OV79_021D0E1C_SUB1_H
 #define POKEPLATINUM_STRUCT_OV79_021D0E1C_SUB1_H
 
-#include "struct_decls/struct_0200B358_decl.h"
+#include "string_template.h"
 #include "strbuf.h"
 
 typedef struct {
-    StringFormatter * unk_00;
+    StringTemplate * unk_00;
     Strbuf* unk_04;
     Strbuf* unk_08;
     Strbuf* unk_0C;

@@ -4,6 +4,7 @@
 #include "consts/generated/c/abilities.h"
 #include "consts/generated/c/gender.h"
 
+#include "constants/charcode.h"
 #include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/moves.h"
@@ -58,7 +59,6 @@
 #include "party.h"
 #include "item.h"
 #include "unk_02092494.h"
-#include "charcode.h"
 #include "flags.h"
 
 #define FATEFUL_ENCOUNTER_LOCATION 3002
