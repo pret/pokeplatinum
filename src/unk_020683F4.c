@@ -294,7 +294,7 @@ static void sub_02068540 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
 
     v1->unk_22C = sub_020685AC;
     v1->unk_25C = sub_0206851C(param2, param0->unk_04, 0, 0, 0);
-    v1->unk_2A = 10;
+    v1->state = FIELD_MENU_STATE_10;
 }
 
 static void sub_02068584 (UnkStruct_02068870 * param0, u32 param1)
@@ -394,7 +394,7 @@ static void sub_02068710 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
 
     v1->unk_22C = sub_02054084;
     v1->unk_25C = sub_02053FAC(v0);
-    v1->unk_2A = 10;
+    v1->state = FIELD_MENU_STATE_10;
 
     v0->unk_90 = 0;
 }
@@ -466,7 +466,7 @@ static void sub_0206883C (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
 
     v1->unk_22C = sub_02068884;
     v1->unk_25C = NULL;
-    v1->unk_2A = 10;
+    v1->state = FIELD_MENU_STATE_10;
 }
 
 static BOOL sub_02068870 (UnkStruct_02068870 * param0)
@@ -723,7 +723,7 @@ static void sub_02068BF8 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
 
     v1->unk_22C = RefreshRadarChain;
     v1->unk_25C = v2;
-    v1->unk_2A = 10;
+    v1->state = FIELD_MENU_STATE_10;
 }
 
 static BOOL sub_02068C38 (UnkStruct_02068870 * param0)
@@ -810,7 +810,7 @@ static void sub_02068CF0 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
 
     v1->unk_22C = ov5_021F0488;
     v1->unk_25C = v2;
-    v1->unk_2A = 10;
+    v1->state = FIELD_MENU_STATE_10;
 
     Bag_SubtractItem(sub_0207D990(v0->unk_0C), param0->unk_04, 1, 11);
 }
@@ -847,7 +847,7 @@ static void sub_02068D80 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
 
     v1->unk_22C = ov5_021F08F8;
     v1->unk_25C = ov5_021F08CC(v0, 11, 0);
-    v1->unk_2A = 10;
+    v1->state = FIELD_MENU_STATE_10;
 }
 
 static BOOL sub_02068DBC (UnkStruct_02068870 * param0)
@@ -870,7 +870,7 @@ static void sub_02068DDC (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
 
     v1->unk_22C = ov5_021F08F8;
     v1->unk_25C = ov5_021F08CC(v0, 11, 1);
-    v1->unk_2A = 10;
+    v1->state = FIELD_MENU_STATE_10;
 }
 
 static BOOL sub_02068E18 (UnkStruct_02068870 * param0)
@@ -893,7 +893,7 @@ static void sub_02068E38 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
 
     v1->unk_22C = ov5_021F08F8;
     v1->unk_25C = ov5_021F08CC(v0, 11, 2);
-    v1->unk_2A = 10;
+    v1->state = FIELD_MENU_STATE_10;
 }
 
 static BOOL sub_02068E74 (UnkStruct_02068870 * param0)
@@ -1014,16 +1014,16 @@ static void sub_02068FEC (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
 static void sub_02069080 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 * param1)
 {
     FieldSystem * v0;
-    FieldMenu * v1;
+    FieldMenu * menu;
 
     v0 = sub_02050A60(param0->unk_00);
-    v1 = sub_02050A64(param0->unk_00);
+    menu = sub_02050A64(param0->unk_00);
 
     sub_020509D4(v0);
 
-    v1->unk_22C = sub_020690F0;
-    v1->unk_25C = NULL;
-    v1->unk_2A = 10;
+    menu->unk_22C = sub_020690F0;
+    menu->unk_25C = NULL;
+    menu->state = FIELD_MENU_STATE_10;
 
     Bag_SubtractItem(sub_0207D990(v0->unk_0C), param0->unk_04, 1, 11);
 }

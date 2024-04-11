@@ -284,7 +284,7 @@ static void sub_020708E0 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
 
     v0->unk_22C = sub_02070914;
     v0->unk_25C = v1;
-    v0->unk_2A = 10;
+    v0->state = FIELD_MENU_STATE_10;
 }
 
 static BOOL sub_02070914 (UnkStruct_020508D4 * param0)
@@ -384,7 +384,7 @@ static void sub_02070A80 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
 
     v0->unk_22C = sub_02070AB4;
     v0->unk_25C = v1;
-    v0->unk_2A = 10;
+    v0->state = FIELD_MENU_STATE_10;
 }
 
 static BOOL sub_02070AB4 (UnkStruct_020508D4 * param0)
@@ -428,7 +428,7 @@ static void sub_02070B28 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
 
     v0->unk_22C = sub_02070B5C;
     v0->unk_25C = v1;
-    v0->unk_2A = 10;
+    v0->state = FIELD_MENU_STATE_10;
 }
 
 static BOOL sub_02070B5C (UnkStruct_020508D4 * param0)
@@ -472,7 +472,7 @@ static void sub_02070BD0 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
 
     v0->unk_22C = sub_02070C04;
     v0->unk_25C = v1;
-    v0->unk_2A = 10;
+    v0->state = FIELD_MENU_STATE_10;
 }
 
 static BOOL sub_02070C04 (UnkStruct_020508D4 * param0)
@@ -520,7 +520,7 @@ static void sub_02070C88 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
 
     v0->unk_22C = sub_02070CBC;
     v0->unk_25C = v1;
-    v0->unk_2A = 10;
+    v0->state = FIELD_MENU_STATE_10;
 }
 
 static BOOL sub_02070CBC (UnkStruct_020508D4 * param0)
@@ -564,7 +564,7 @@ static void sub_02070D30 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
 
     v0->unk_22C = sub_02070D64;
     v0->unk_25C = v1;
-    v0->unk_2A = 10;
+    v0->state = FIELD_MENU_STATE_10;
 }
 
 static BOOL sub_02070D64 (UnkStruct_020508D4 * param0)
@@ -612,7 +612,7 @@ static void sub_02070DEC (UnkStruct_020709CC * param0, const UnkStruct_02070950 
 
     v0->unk_22C = sub_02070E20;
     v0->unk_25C = v1;
-    v0->unk_2A = 10;
+    v0->state = FIELD_MENU_STATE_10;
 }
 
 static BOOL sub_02070E20 (UnkStruct_020508D4 * param0)
@@ -652,7 +652,7 @@ static void sub_02070E7C (UnkStruct_020709CC * param0, const UnkStruct_02070950 
 
     v0->unk_22C = sub_02070EB0;
     v0->unk_25C = v1;
-    v0->unk_2A = 10;
+    v0->state = FIELD_MENU_STATE_10;
 }
 
 static BOOL sub_02070EB0 (UnkStruct_020508D4 * param0)
@@ -705,7 +705,7 @@ static void sub_02070F54 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
 
         v1->unk_22C = sub_02070F94;
         v1->unk_25C = v2;
-        v1->unk_2A = 10;
+        v1->state = FIELD_MENU_STATE_10;
     }
 }
 
@@ -755,7 +755,7 @@ static void sub_02071010 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
 
         v1->unk_22C = sub_02071050;
         v1->unk_25C = v2;
-        v1->unk_2A = 10;
+        v1->state = FIELD_MENU_STATE_10;
     }
 }
 
@@ -805,7 +805,7 @@ static void sub_020710D4 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
 
     v1->unk_22C = ov5_021F101C;
     v1->unk_25C = v2;
-    v1->unk_2A = 10;
+    v1->state = FIELD_MENU_STATE_10;
 
     v4 = sub_0202BE00((30 - 19), v0->unk_1C->unk_00, 11);
     sub_0202B758(v0->unk_9C, v4, 1);
@@ -834,7 +834,7 @@ static void sub_02071150 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
 
     v1->unk_22C = sub_0207118C;
     v1->unk_25C = v2;
-    v1->unk_2A = 10;
+    v1->state = FIELD_MENU_STATE_10;
 }
 
 static BOOL sub_0207118C (UnkStruct_020508D4 * param0)
