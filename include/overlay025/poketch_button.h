@@ -4,9 +4,18 @@
 #include "struct_defs/union_02022594_020225E0.h"
 #include "overlay025/poketch_button.h"
 
-typedef struct PoketchButton PoketchButton;
-
 typedef void (* PoketchButtonCallback)(u32, u32, u32, void *);
+
+typedef struct PoketchButton {
+    u8 unk_00;
+    u8 unk_01;
+    u8 unk_02;
+    u8 unk_03;
+    u16 unk_04;
+    u16 unk_06;
+    u16 unk_08[2];
+    u16 unk_0C;
+} PoketchButton;
 
 typedef struct PoketchButtonManager {
     const UnkUnion_020225E0 * unk_00;
