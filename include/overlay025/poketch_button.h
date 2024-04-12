@@ -1,8 +1,7 @@
-#ifndef POKEPLATINUM_OV25_02255ACC_H
-#define POKEPLATINUM_OV25_02255ACC_H
+#ifndef POKEPLATINUM_POKETCH_BUTTON_H
+#define POKEPLATINUM_POKETCH_BUTTON_H
 
 #include "struct_defs/union_02022594_020225E0.h"
-#include "overlay025/poketch_button.h"
 
 typedef void (* PoketchButtonCallback)(u32, u32, u32, void *);
 
@@ -33,4 +32,4 @@ void ov25_02255C48(PoketchButtonManager * param0, u32 param1, u32 param2, u16 pa
 void ov25_02255C5C(PoketchButtonManager * param0, u32 param1, u16 param2);
 void ov25_02255C68(PoketchButtonManager * param0, u32 param1);
 
-#endif // POKEPLATINUM_OV25_02255ACC_H
+#endif // POKEPLATINUM_POKETCH_BUTTON_H
