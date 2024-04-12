@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
 #include "overlay025/poketch_system.h"
-#include "overlay025/struct_ov25_02255B34_decl.h"
+#include "overlay025/poketch_button.h"
 #include "overlay035/struct_ov35_02256410_decl.h"
 
 #include "struct_defs/union_02022594_020225E0.h"
@@ -14,7 +14,6 @@
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_02099D44.h"
-#include "overlay025/ov25_02255ACC.h"
 #include "overlay035/ov35_02256410.h"
 
 typedef struct {
@@ -25,7 +24,7 @@ typedef struct {
     UnkStruct_ov35_02256410_1 unk_08;
     UnkStruct_ov35_02256410 * unk_10;
     PoketchSystem * unk_14;
-    UnkStruct_ov25_02255B34 * unk_18;
+    PoketchButtonManager * unk_18;
     u32 unk_1C;
 } UnkStruct_ov35_0225621C;
 

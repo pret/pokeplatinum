@@ -7,7 +7,7 @@
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "overlay025/poketch_system.h"
-#include "overlay025/struct_ov25_02255B34_decl.h"
+#include "overlay025/poketch_button.h"
 #include "overlay044/struct_ov44_022565BC_decl.h"
 
 #include "struct_defs/union_02022594_020225E0.h"
@@ -19,7 +19,6 @@
 #include "pokemon_icon.h"
 #include "party.h"
 #include "overlay005/ov5_021E622C.h"
-#include "overlay025/ov25_02255ACC.h"
 #include "overlay044/ov44_022565BC.h"
 
 typedef struct {
@@ -29,7 +28,7 @@ typedef struct {
     UnkStruct_ov44_022565BC_1 unk_04;
     UnkStruct_ov44_022565BC * unk_38;
     PoketchSystem * unk_3C;
-    UnkStruct_ov25_02255B34 * unk_40;
+    PoketchButtonManager * unk_40;
     u16 unk_44;
     u16 unk_46;
     BoxPokemon * unk_48[6];

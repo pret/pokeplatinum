@@ -6,7 +6,7 @@
 #include "struct_decls/sys_task.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "overlay025/poketch_system.h"
-#include "overlay025/struct_ov25_02255B34_decl.h"
+#include "overlay025/poketch_button.h"
 #include "overlay028/struct_ov28_0225697C_decl.h"
 #include "overlay028/struct_ov28_02256E9C_decl.h"
 
@@ -18,7 +18,6 @@
 #include "heap.h"
 #include "unk_0202631C.h"
 #include "pokemon.h"
-#include "overlay025/ov25_02255ACC.h"
 #include "overlay028/ov28_0225697C.h"
 #include "overlay028/ov28_02256E9C.h"
 
@@ -31,7 +30,7 @@ typedef struct {
     u8 unk_05;
     u16 unk_06;
     u32 unk_08;
-    UnkStruct_ov25_02255B34 * unk_0C;
+    PoketchButtonManager * unk_0C;
     PoketchSystem * unk_10;
     UnkStruct_ov28_0225697C * unk_14;
     UnkStruct_ov28_0225697C_1 unk_18;

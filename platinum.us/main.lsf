@@ -875,7 +875,7 @@ Overlay overlay25
 	Object main.nef.p/src_overlay025_ov25_02254560.c.o
 	Object main.nef.p/src_overlay025_ov25_02255090.c.o
 	Object main.nef.p/src_overlay025_ov25_02255540.c.o
-	Object main.nef.p/src_overlay025_ov25_02255ACC.c.o
+	Object main.nef.p/src_overlay025_poketch_button.c.o
 	Object main.nef.p/src_overlay025_ov25_02255DBC.c.o
 }
 

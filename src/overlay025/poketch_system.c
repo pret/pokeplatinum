@@ -11,7 +11,7 @@
 #include "savedata.h"
 #include "overlay025/poketch_system.h"
 #include "overlay025/struct_ov25_02254560_decl.h"
-#include "overlay025/struct_ov25_02255B34_decl.h"
+#include "overlay025/poketch_button.h"
 
 #include "struct_defs/union_02022594_020225E0.h"
 
@@ -26,7 +26,6 @@
 #include "unk_020508D4.h"
 #include "unk_02099D44.h"
 #include "overlay025/ov25_02254560.h"
-#include "overlay025/ov25_02255ACC.h"
 
 FS_EXTERN_OVERLAY(overlay26);
 FS_EXTERN_OVERLAY(overlay27);
@@ -740,7 +739,7 @@ BOOL ov25_0225450C (const PoketchSystem *poketchSys)
     return sub_020509A4(poketchSys->fieldSys);
 }
 
-void ov25_02254518 (const PoketchSystem *poketchSys, UnkStruct_ov25_02255B34 * param1)
+void ov25_02254518 (const PoketchSystem *poketchSys, PoketchButtonManager * param1)
 {
     if ((ov25_0225450C(poketchSys) == 0) && (poketchSys->unk_05 == 0)) {
         ov25_02255B50(param1);

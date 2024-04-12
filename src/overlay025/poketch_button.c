@@ -1,16 +1,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay025/struct_ov25_02255B34_decl.h"
+#include "overlay025/poketch_button.h"
 
 #include "struct_defs/union_02022594_020225E0.h"
-#include "overlay025/funcptr_ov25_02255ACC.h"
 
 #include "heap.h"
 #include "unk_02022594.h"
-#include "overlay025/ov25_02255ACC.h"
 
-typedef struct {
+typedef struct PoketchButton {
     u8 unk_00;
     u8 unk_01;
     u8 unk_02;
@@ -19,35 +17,26 @@ typedef struct {
     u16 unk_06;
     u16 unk_08[2];
     u16 unk_0C;
-} UnkStruct_ov25_02255C80;
+} PoketchButton;
 
-struct UnkStruct_ov25_02255B34_t {
-    const UnkUnion_020225E0 * unk_00;
-    UnkFuncPtr_ov25_02255ACC unk_04;
-    u32 unk_08;
-    u32 unk_0C;
-    void * unk_10;
-    UnkStruct_ov25_02255C80 * unk_14;
-};
+static void ov25_02255C80(PoketchButton * param0);
+static void ov25_02255CA0(PoketchButton * param0, u32 param1);
+static void ov25_02255CA0(PoketchButton * param0, u32 param1);
+static void ov25_02255CAC(PoketchButton * param0);
+static u32 ov25_02255CC0(PoketchButton * param0);
+static u32 ov25_02255CDC(PoketchButton * param0, BOOL param1, BOOL param2);
+static u32 ov25_02255CF8(PoketchButton * param0, BOOL param1, BOOL param2);
+static u32 ov25_02255D58(PoketchButton * param0, BOOL param1, BOOL param2);
+static u32 ov25_02255D90(PoketchButton * param0, BOOL param1, BOOL param2);
+static u32 ov25_02255DA8(PoketchButton * param0, BOOL param1, BOOL param2);
 
-static void ov25_02255C80(UnkStruct_ov25_02255C80 * param0);
-static void ov25_02255CA0(UnkStruct_ov25_02255C80 * param0, u32 param1);
-static void ov25_02255CA0(UnkStruct_ov25_02255C80 * param0, u32 param1);
-static void ov25_02255CAC(UnkStruct_ov25_02255C80 * param0);
-static u32 ov25_02255CC0(UnkStruct_ov25_02255C80 * param0);
-static u32 ov25_02255CDC(UnkStruct_ov25_02255C80 * param0, BOOL param1, BOOL param2);
-static u32 ov25_02255CF8(UnkStruct_ov25_02255C80 * param0, BOOL param1, BOOL param2);
-static u32 ov25_02255D58(UnkStruct_ov25_02255C80 * param0, BOOL param1, BOOL param2);
-static u32 ov25_02255D90(UnkStruct_ov25_02255C80 * param0, BOOL param1, BOOL param2);
-static u32 ov25_02255DA8(UnkStruct_ov25_02255C80 * param0, BOOL param1, BOOL param2);
-
-UnkStruct_ov25_02255B34 * ov25_02255ACC (const UnkUnion_020225E0 * param0, u32 param1, UnkFuncPtr_ov25_02255ACC param2, void * param3, u32 param4)
+PoketchButtonManager * ov25_02255ACC (const UnkUnion_020225E0 * param0, u32 param1, PoketchButtonCallback param2, void * param3, u32 param4)
 {
-    UnkStruct_ov25_02255B34 * v0;
+    PoketchButtonManager * v0;
 
     GF_ASSERT(param1 > 0);
 
-    v0 = Heap_AllocFromHeap(param4, sizeof(UnkStruct_ov25_02255B34));
+    v0 = Heap_AllocFromHeap(param4, sizeof(PoketchButtonManager));
 
     if (v0) {
         v0->unk_08 = param4;
@@ -55,7 +44,7 @@ UnkStruct_ov25_02255B34 * ov25_02255ACC (const UnkUnion_020225E0 * param0, u32 p
         v0->unk_00 = param0;
         v0->unk_0C = param1;
         v0->unk_10 = param3;
-        v0->unk_14 = Heap_AllocFromHeap(param4, sizeof(UnkStruct_ov25_02255C80) * param1);
+        v0->unk_14 = Heap_AllocFromHeap(param4, sizeof(PoketchButton) * param1);
 
         if (v0->unk_14) {
             u32 v1;
@@ -72,16 +61,16 @@ UnkStruct_ov25_02255B34 * ov25_02255ACC (const UnkUnion_020225E0 * param0, u32 p
     return v0;
 }
 
-void ov25_02255B34 (UnkStruct_ov25_02255B34 * param0)
+void ov25_02255B34 (PoketchButtonManager * param0)
 {
     GF_ASSERT(param0);
     Heap_FreeToHeapExplicit(param0->unk_08, param0->unk_14);
     Heap_FreeToHeapExplicit(param0->unk_08, param0);
 }
 
-void ov25_02255B50 (UnkStruct_ov25_02255B34 * param0)
+void ov25_02255B50 (PoketchButtonManager * param0)
 {
-    static u32(*const v0[])(UnkStruct_ov25_02255C80 *, BOOL, BOOL) = {
+    static u32(*const v0[])(PoketchButton *, BOOL, BOOL) = {
         ov25_02255CDC,
         ov25_02255CF8,
         ov25_02255D58,
@@ -135,23 +124,23 @@ void ov25_02255B50 (UnkStruct_ov25_02255B34 * param0)
     }
 }
 
-void ov25_02255C48 (UnkStruct_ov25_02255B34 * param0, u32 param1, u32 param2, u16 param3)
+void ov25_02255C48 (PoketchButtonManager * param0, u32 param1, u32 param2, u16 param3)
 {
     param0->unk_14[param1].unk_08[param2] = param3;
 }
 
-void ov25_02255C5C (UnkStruct_ov25_02255B34 * param0, u32 param1, u16 param2)
+void ov25_02255C5C (PoketchButtonManager * param0, u32 param1, u16 param2)
 {
     param0->unk_14[param1].unk_0C = param2;
 }
 
-void ov25_02255C68 (UnkStruct_ov25_02255B34 * param0, u32 param1)
+void ov25_02255C68 (PoketchButtonManager * param0, u32 param1)
 {
     param0->unk_14[param1].unk_04 = 0;
     param0->unk_14[param1].unk_00 = 4;
 }
 
-static void ov25_02255C80 (UnkStruct_ov25_02255C80 * param0)
+static void ov25_02255C80 (PoketchButton * param0)
 {
     u32 v0;
 
@@ -168,25 +157,25 @@ static void ov25_02255C80 (UnkStruct_ov25_02255C80 * param0)
     param0->unk_0C = 0;
 }
 
-static void ov25_02255CA0 (UnkStruct_ov25_02255C80 * param0, u32 param1)
+static void ov25_02255CA0 (PoketchButton * param0, u32 param1)
 {
     param0->unk_00 = param1;
     param0->unk_04 = 0;
 }
 
-static void ov25_02255CA8 (UnkStruct_ov25_02255C80 * param0, u32 param1)
+static void ov25_02255CA8 (PoketchButton * param0, u32 param1)
 {
     param0->unk_00 = param1;
 }
 
-static void ov25_02255CAC (UnkStruct_ov25_02255C80 * param0)
+static void ov25_02255CAC (PoketchButton * param0)
 {
     if (param0->unk_04 < 0xffff) {
         param0->unk_04++;
     }
 }
 
-static u32 ov25_02255CC0 (UnkStruct_ov25_02255C80 * param0)
+static u32 ov25_02255CC0 (PoketchButton * param0)
 {
     u32 v0;
 
@@ -199,7 +188,7 @@ static u32 ov25_02255CC0 (UnkStruct_ov25_02255C80 * param0)
     return 0;
 }
 
-static u32 ov25_02255CDC (UnkStruct_ov25_02255C80 * param0, BOOL param1, BOOL param2)
+static u32 ov25_02255CDC (PoketchButton * param0, BOOL param1, BOOL param2)
 {
     if (param0->unk_01) {
         if (param2) {
@@ -211,7 +200,7 @@ static u32 ov25_02255CDC (UnkStruct_ov25_02255C80 * param0, BOOL param1, BOOL pa
     return 0;
 }
 
-static u32 ov25_02255CF8 (UnkStruct_ov25_02255C80 * param0, BOOL param1, BOOL param2)
+static u32 ov25_02255CF8 (PoketchButton * param0, BOOL param1, BOOL param2)
 {
     ov25_02255CAC(param0);
 
@@ -243,7 +232,7 @@ static u32 ov25_02255CF8 (UnkStruct_ov25_02255C80 * param0, BOOL param1, BOOL pa
     return 0;
 }
 
-static u32 ov25_02255D58 (UnkStruct_ov25_02255C80 * param0, BOOL param1, BOOL param2)
+static u32 ov25_02255D58 (PoketchButton * param0, BOOL param1, BOOL param2)
 {
     ov25_02255CAC(param0);
 
@@ -260,7 +249,7 @@ static u32 ov25_02255D58 (UnkStruct_ov25_02255C80 * param0, BOOL param1, BOOL pa
     return 0;
 }
 
-static u32 ov25_02255D90 (UnkStruct_ov25_02255C80 * param0, BOOL param1, BOOL param2)
+static u32 ov25_02255D90 (PoketchButton * param0, BOOL param1, BOOL param2)
 {
     if (param0->unk_01) {
         ov25_02255CAC(param0);
@@ -271,7 +260,7 @@ static u32 ov25_02255D90 (UnkStruct_ov25_02255C80 * param0, BOOL param1, BOOL pa
     return 0;
 }
 
-static u32 ov25_02255DA8 (UnkStruct_ov25_02255C80 * param0, BOOL param1, BOOL param2)
+static u32 ov25_02255DA8 (PoketchButton * param0, BOOL param1, BOOL param2)
 {
     if (param0->unk_01 == 0) {
         ov25_02255CA0(param0, 0);
