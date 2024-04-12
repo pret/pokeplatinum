@@ -29,17 +29,17 @@ PoketchButtonManager * ov25_02255ACC (const UnkUnion_020225E0 * param0, u32 para
 
     if (v0) {
         v0->unk_08 = param4;
-        v0->unk_04 = param2;
+        v0->callback = param2;
         v0->unk_00 = param0;
         v0->unk_0C = param1;
         v0->unk_10 = param3;
-        v0->unk_14 = Heap_AllocFromHeap(param4, sizeof(PoketchButton) * param1);
+        v0->button = Heap_AllocFromHeap(param4, sizeof(PoketchButton) * param1);
 
-        if (v0->unk_14) {
+        if (v0->button) {
             u32 v1;
 
             for (v1 = 0; v1 < param1; v1++) {
-                ov25_02255C80(&v0->unk_14[v1]);
+                ov25_02255C80(&v0->button[v1]);
             }
         } else {
             Heap_FreeToHeapExplicit(param4, v0);
@@ -53,7 +53,7 @@ PoketchButtonManager * ov25_02255ACC (const UnkUnion_020225E0 * param0, u32 para
 void ov25_02255B34 (PoketchButtonManager * param0)
 {
     GF_ASSERT(param0);
-    Heap_FreeToHeapExplicit(param0->unk_08, param0->unk_14);
+    Heap_FreeToHeapExplicit(param0->unk_08, param0->button);
     Heap_FreeToHeapExplicit(param0->unk_08, param0);
 }
 
@@ -76,57 +76,57 @@ void ov25_02255B50 (PoketchButtonManager * param0)
         v2 = TouchScreen_Tapped();
 
         for (v3 = 0; v3 < param0->unk_0C; v3++) {
-            param0->unk_14[v3].unk_02 = param0->unk_14[v3].unk_01;
+            param0->button[v3].unk_02 = param0->button[v3].unk_01;
 
-            if (param0->unk_14[v3].unk_01) {
-                param0->unk_14[v3].unk_01 = sub_02022734(&param0->unk_00[v3]);
+            if (param0->button[v3].unk_01) {
+                param0->button[v3].unk_01 = sub_02022734(&param0->unk_00[v3]);
             } else {
-                param0->unk_14[v3].unk_01 = sub_02022760(&param0->unk_00[v3]);
+                param0->button[v3].unk_01 = sub_02022760(&param0->unk_00[v3]);
             }
         }
     } else {
         v2 = 0;
 
         for (v3 = 0; v3 < param0->unk_0C; v3++) {
-            param0->unk_14[v3].unk_02 = param0->unk_14[v3].unk_01;
-            param0->unk_14[v3].unk_01 = 0;
+            param0->button[v3].unk_02 = param0->button[v3].unk_01;
+            param0->button[v3].unk_01 = 0;
         }
     }
 
     for (v3 = 0; v3 < param0->unk_0C; v3++) {
-        v4 = v0[param0->unk_14[v3].unk_00](&param0->unk_14[v3], v1, v2);
+        v4 = v0[param0->button[v3].unk_00](&param0->button[v3], v1, v2);
 
-        if (param0->unk_14[v3].unk_01 != param0->unk_14[v3].unk_02) {
-            v5 = param0->unk_14[v3].unk_01;
+        if (param0->button[v3].unk_01 != param0->button[v3].unk_02) {
+            v5 = param0->button[v3].unk_01;
         } else {
             v5 = 2;
         }
 
         if ((v4 != 0) || (v5 != 2)) {
-            param0->unk_04(v3, v4, v5, param0->unk_10);
+            param0->callback(v3, v4, v5, param0->unk_10);
             break;
         }
     }
 
     for (v3++; v3 < param0->unk_0C; v3++) {
-        v0[param0->unk_14[v3].unk_00](&param0->unk_14[v3], v1, v2);
+        v0[param0->button[v3].unk_00](&param0->button[v3], v1, v2);
     }
 }
 
 void ov25_02255C48 (PoketchButtonManager * param0, u32 param1, u32 param2, u16 param3)
 {
-    param0->unk_14[param1].unk_08[param2] = param3;
+    param0->button[param1].unk_08[param2] = param3;
 }
 
 void ov25_02255C5C (PoketchButtonManager * param0, u32 param1, u16 param2)
 {
-    param0->unk_14[param1].unk_0C = param2;
+    param0->button[param1].unk_0C = param2;
 }
 
 void ov25_02255C68 (PoketchButtonManager * param0, u32 param1)
 {
-    param0->unk_14[param1].unk_04 = 0;
-    param0->unk_14[param1].unk_00 = 4;
+    param0->button[param1].unk_04 = 0;
+    param0->button[param1].unk_00 = 4;
 }
 
 static void ov25_02255C80 (PoketchButton * param0)

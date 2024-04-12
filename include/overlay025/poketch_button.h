@@ -18,11 +18,11 @@ typedef struct PoketchButton {
 
 typedef struct PoketchButtonManager {
     const UnkUnion_020225E0 * unk_00;
-    PoketchButtonCallback unk_04;
+    PoketchButtonCallback callback;
     u32 unk_08;
     u32 unk_0C;
     void * unk_10;
-    PoketchButton * unk_14;
+    PoketchButton * button;
 } PoketchButtonManager;
 
 PoketchButtonManager * ov25_02255ACC(const UnkUnion_020225E0 * param0, u32 param1, PoketchButtonCallback param2, void * param3, u32 param4);
