@@ -3183,7 +3183,7 @@ static void sub_02040F5C (SysTask * param0, void * param1)
 
 static BOOL sub_02040FA4 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02061830 * v0;
+    MapObjectManager * v0;
     FieldSystem * v1 = param0->unk_34;
     LocalMapObject ** v2 = sub_0203F098(v1, 10);
 
@@ -3292,7 +3292,7 @@ static BOOL sub_020410F4 (UnkStruct_0203E724 * param0)
     LocalMapObject * v2 = Player_LocalMapObject(v0->playerAvatar);
     LocalMapObject * v3 = sub_02062570(v0->unk_38, 0x30);
     LocalMapObject * v4 = sub_02069EB8(*v1);
-    UnkStruct_02061830 * v5;
+    MapObjectManager * v5;
 
     v5 = v0->unk_38;
 
@@ -3329,7 +3329,7 @@ static BOOL sub_020410F4 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_020411C4 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02061830 * v0;
+    MapObjectManager * v0;
     FieldSystem * v1 = param0->unk_34;
 
     v0 = v1->unk_38;

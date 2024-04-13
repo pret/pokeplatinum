@@ -38,15 +38,15 @@
 #include "overlay005/ov5_021F600C.h"
 
 static void sub_0205C304(SysTask * param0, void * param1);
-static void sub_0205C44C(UnkStruct_0205C22C * param0, UnkStruct_0205B43C * param1, UnkStruct_02061830 * param2, UnkStruct_02027F8C * param3);
+static void sub_0205C44C(UnkStruct_0205C22C * param0, UnkStruct_0205B43C * param1, MapObjectManager * param2, UnkStruct_02027F8C * param3);
 static int sub_0205C340(UnkStruct_0205C22C * param0, int param1, WMBssDesc * param2, UnkStruct_02027F8C * param3);
-static void sub_0205C51C(UnkStruct_0205C22C * param0, UnkStruct_02061830 * param1);
+static void sub_0205C51C(UnkStruct_0205C22C * param0, MapObjectManager * param1);
 static void sub_0205C680(UnkStruct_0205C680 * param0, int param1);
 static void sub_0205C6BC(UnkStruct_0205C680 * param0);
 static void sub_0205C6E0(UnkStruct_0205C680 * param0, LocalMapObject * param1, int param2, int param3);
 static void sub_0205C788(UnkStruct_0205C680 * param0, LocalMapObject * param1);
 static void sub_0205C7BC(UnkStruct_0205C680 * param0, LocalMapObject * param1);
-static void sub_0205C7E4(UnkStruct_02061830 * param0, int param1, int param2);
+static void sub_0205C7E4(MapObjectManager * param0, int param1, int param2);
 static void sub_0205C444(UnkStruct_0205C680 param0[], int param1, int param2);
 void sub_0205C970(UnkStruct_0205C95C * param0);
 UnkStruct_0205C95C * sub_0205C95C(int param0);
@@ -190,7 +190,7 @@ static void sub_0205C444 (UnkStruct_0205C680 param0[], int param1, int param2)
     param0[param1].unk_00 = param2;
 }
 
-static void sub_0205C44C (UnkStruct_0205C22C * param0, UnkStruct_0205B43C * param1, UnkStruct_02061830 * param2, UnkStruct_02027F8C * param3)
+static void sub_0205C44C (UnkStruct_0205C22C * param0, UnkStruct_0205B43C * param1, MapObjectManager * param2, UnkStruct_02027F8C * param3)
 {
     WMBssDesc * v0;
     int v1;
@@ -244,7 +244,7 @@ static void sub_0205C44C (UnkStruct_0205C22C * param0, UnkStruct_0205B43C * para
     }
 }
 
-static void sub_0205C51C (UnkStruct_0205C22C * param0, UnkStruct_02061830 * param1)
+static void sub_0205C51C (UnkStruct_0205C22C * param0, MapObjectManager * param1)
 {
     LocalMapObject * v0;
     int v1, v2, v3;
@@ -418,7 +418,7 @@ static void sub_0205C7BC (UnkStruct_0205C680 * param0, LocalMapObject * param1)
     }
 }
 
-static void sub_0205C7E4 (UnkStruct_02061830 * param0, int param1, int param2)
+static void sub_0205C7E4 (MapObjectManager * param0, int param1, int param2)
 {
     int v0;
     LocalMapObject * v1;
@@ -436,7 +436,7 @@ static void sub_0205C7E4 (UnkStruct_02061830 * param0, int param1, int param2)
     }
 }
 
-void sub_0205C820 (UnkStruct_02061830 * param0, UnkStruct_0205C22C * param1)
+void sub_0205C820 (MapObjectManager * param0, UnkStruct_0205C22C * param1)
 {
     LocalMapObject * v0;
     UnkStruct_0205C680 * v1;

@@ -383,7 +383,7 @@ static void sub_02063A70 (LocalMapObject * param0, u8 param1, u8 param2, const U
 static void sub_02063A78 (LocalMapObject * param0, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 * param3)
 {
     {
-        const UnkStruct_02061830 * v0 = sub_02062A40(param0);
+        const MapObjectManager * v0 = sub_02062A40(param0);
 
         if (sub_02062CE4(v0) == 0) {
             return;
@@ -407,7 +407,7 @@ static void sub_02063A78 (LocalMapObject * param0, u8 param1, u8 param2, const U
 static void sub_02063B20 (LocalMapObject * param0, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 * param3)
 {
     {
-        const UnkStruct_02061830 * v0 = sub_02062A40(param0);
+        const MapObjectManager * v0 = sub_02062A40(param0);
 
         if (sub_02062CE4(v0) == 0) {
             return;
@@ -616,7 +616,7 @@ u32 sub_02063EBC (const LocalMapObject * param0, int param1)
 int sub_02063F00 (const LocalMapObject * param0, int param1, int param2, int param3)
 {
     int v0, v1, v2;
-    const UnkStruct_02061830 * v3;
+    const MapObjectManager * v3;
     const LocalMapObject * v4;
 
     v3 = sub_02062A40(param0);

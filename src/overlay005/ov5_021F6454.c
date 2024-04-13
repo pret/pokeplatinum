@@ -986,7 +986,7 @@ BOOL ov5_021F7538 (UnkStruct_0203E724 * param0)
     UnkStruct_020216E0 * v2;
     int v3 = 0;
     FieldSystem * v4 = param0->unk_34;
-    UnkStruct_02061830 * v5 = v4->unk_38;
+    MapObjectManager * v5 = v4->unk_38;
     LocalMapObject * v6 = Player_LocalMapObject(v4->playerAvatar);
     LocalMapObject * v7;
 
@@ -1027,7 +1027,7 @@ BOOL ov5_021F7604 (UnkStruct_0203E724 * param0)
 {
     int v0 = 0;
     FieldSystem * v1 = param0->unk_34;
-    UnkStruct_02061830 * v2 = v1->unk_38;
+    MapObjectManager * v2 = v1->unk_38;
     LocalMapObject * v3 = Player_LocalMapObject(v1->playerAvatar);
     LocalMapObject * v4;
 
@@ -1065,7 +1065,7 @@ BOOL ov5_021F76A0 (UnkStruct_0203E724 * param0)
 {
     LocalMapObject * v0;
     FieldSystem * v1 = param0->unk_34;
-    UnkStruct_02061830 * v2 = v1->unk_38;
+    MapObjectManager * v2 = v1->unk_38;
 
     v0 = sub_0206251C(v2, 32);
 
@@ -1085,7 +1085,7 @@ BOOL ov5_021F76A0 (UnkStruct_0203E724 * param0)
 BOOL ov5_021F76D0 (UnkStruct_0203E724 * param0)
 {
     LocalMapObject * v0;
-    UnkStruct_02061830 * v1 = param0->unk_34->unk_38;
+    MapObjectManager * v1 = param0->unk_34->unk_38;
 
     v0 = sub_0206251C(v1, 32);
 

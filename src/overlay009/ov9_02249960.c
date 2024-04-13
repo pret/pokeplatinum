@@ -3351,7 +3351,7 @@ static void ov9_0224BA6C (UnkStruct_ov101_021D5D90 * param0, void * param1)
     if ((v2->unk_08.unk_04 == 0) && (v5 == v2->unk_02)) {
         int v6 = 0;
         int v7 = ((v2->unk_08.unk_08) * 2);
-        const UnkStruct_02061830 * v8 = v2->unk_14->unk_00->unk_38;
+        const MapObjectManager * v8 = v2->unk_14->unk_00->unk_38;
         LocalMapObject * v9;
 
         while (sub_020625B0(
@@ -5712,7 +5712,7 @@ static void ov9_0224DCA8 (UnkStruct_ov9_02249B04 * param0)
         int v0 = 0;
         UnkStruct_ov9_0224E0DC * v1;
         LocalMapObject * v2;
-        UnkStruct_02061830 * v3 = param0->unk_00->unk_38;
+        MapObjectManager * v3 = param0->unk_00->unk_38;
 
         while (sub_020625B0(v3, &v2, &v0, (1 << 0)) == 1) {
             if (sub_02062910(v2) == 0xfd) {
@@ -7143,7 +7143,7 @@ static LocalMapObject * ov9_0224EECC (UnkStruct_ov9_02249B04 * param0, const Unk
 {
     int v0 = 0;
     LocalMapObject * v1;
-    const UnkStruct_02061830 * v2 = param0->unk_00->unk_38;
+    const MapObjectManager * v2 = param0->unk_00->unk_38;
 
     while (sub_020625B0(v2, &v1, &v0, (1 << 0))) {
         if (sub_02062918(v1) == param2) {
@@ -7318,7 +7318,7 @@ void ov9_0224F16C (FieldSystem * param0, u16 param1)
     int v0 = 0;
     LocalMapObject * v1;
     u32 v2 = param0->unk_1C->unk_00;
-    UnkStruct_02061830 * v3 = param0->unk_38;
+    MapObjectManager * v3 = param0->unk_38;
     UnkStruct_ov9_02249B04 * v4 = param0->unk_04->unk_24;
 
     while (sub_020625B0(

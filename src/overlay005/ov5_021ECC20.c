@@ -16,11 +16,11 @@
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/ov5_021ECE40.h"
 
-static void ov5_021ECCA4(UnkStruct_02061830 * param0);
-static void ov5_021ECCBC(UnkStruct_02061830 * param0);
+static void ov5_021ECCA4(MapObjectManager * param0);
+static void ov5_021ECCBC(MapObjectManager * param0);
 static const UnkStruct_ov5_021ECD10 * ov5_021ECD10(int param0);
 
-void ov5_021ECC20 (UnkStruct_02061830 * param0, int param1, int param2, const int * param3, int param4)
+void ov5_021ECC20 (MapObjectManager * param0, int param1, int param2, const int * param3, int param4)
 {
     int v0, v1;
     UnkStruct_ov5_021ED0A4 * v2;
@@ -37,7 +37,7 @@ void ov5_021ECC20 (UnkStruct_02061830 * param0, int param1, int param2, const in
     sub_02062838(param0, (1 << 0));
 }
 
-void ov5_021ECC78 (UnkStruct_02061830 * param0)
+void ov5_021ECC78 (MapObjectManager * param0)
 {
     int v0;
 
@@ -50,13 +50,13 @@ void ov5_021ECC78 (UnkStruct_02061830 * param0)
     ov5_021ECCBC(param0);
 }
 
-static void ov5_021ECCA4 (UnkStruct_02061830 * param0)
+static void ov5_021ECCA4 (MapObjectManager * param0)
 {
     NARC * v0 = NARC_ctor(NARC_INDEX_DATA__MMODEL__MMODEL, 4);
     sub_0206289C(param0, v0);
 }
 
-static void ov5_021ECCBC (UnkStruct_02061830 * param0)
+static void ov5_021ECCBC (MapObjectManager * param0)
 {
     NARC * v0 = sub_020628A0(param0);
     NARC_dtor(v0);
@@ -64,7 +64,7 @@ static void ov5_021ECCBC (UnkStruct_02061830 * param0)
 
 void ov5_021ECCC8 (LocalMapObject * param0)
 {
-    const UnkStruct_02061830 * v0 = sub_02062A40(param0);
+    const MapObjectManager * v0 = sub_02062A40(param0);
 
     if (sub_0206284C(v0, (1 << 2))) {
         return;
@@ -118,7 +118,7 @@ int ov5_021ECD38 (const LocalMapObject * param0)
     return 0;
 }
 
-void * ov5_021ECD68 (const UnkStruct_02061830 * param0, u32 param1, int param2)
+void * ov5_021ECD68 (const MapObjectManager * param0, u32 param1, int param2)
 {
     void * v0;
     NARC * v1 = sub_020628A0(param0);

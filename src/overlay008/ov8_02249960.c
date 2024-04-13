@@ -3239,7 +3239,7 @@ static void ov8_0224B958 (UnkStruct_ov8_0224B8D0 * param0)
     int v0 = 0, v1 = 0;
     LocalMapObject * v2;
     FieldSystem * v3 = param0->unk_00;
-    UnkStruct_02061830 * v4 = v3->unk_38;
+    MapObjectManager * v4 = v3->unk_38;
     UnkStruct_ov8_0224B8A0 * v5 = param0->unk_04;
     UnkStruct_ov8_0224BCA8 * v6 = param0->unk_10C;
 
@@ -4022,7 +4022,7 @@ static void ov8_0224C444 (UnkStruct_ov8_0224C444 * param0)
     int v0, v1, v2, v3, v4;
     LocalMapObject * v5;
     UnkStruct_ov8_0224C4F8 * v6 = param0->unk_04;
-    const UnkStruct_02061830 * v7 = param0->unk_00->unk_38;
+    const MapObjectManager * v7 = param0->unk_00->unk_38;
 
     v0 = 0;
     v1 = 0;
@@ -4076,7 +4076,7 @@ BOOL ov8_0224C51C (FieldSystem * param0)
     int v0, v1, v2, v3;
     UnkStruct_02027860 * v4;
     PlayerAvatar * v5;
-    UnkStruct_02061830 * v6;
+    MapObjectManager * v6;
     LocalMapObject * v7;
     LocalMapObject * v8;
 

@@ -1759,7 +1759,7 @@ static LocalMapObject * ov5_021E10D4 (PlayerAvatar * param0, int param1)
 {
     int v0 = Player_XPos(param0) + sub_0206419C(param1);
     int v1 = Player_ZPos(param0) + sub_020641A8(param1);
-    const UnkStruct_02061830 * v2 = sub_02062A40(Player_LocalMapObject(param0));
+    const MapObjectManager * v2 = sub_02062A40(Player_LocalMapObject(param0));
     LocalMapObject * v3 = sub_0206326C(v2, v0, v1, 0);
 
     return v3;
