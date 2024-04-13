@@ -40,14 +40,14 @@ static const UnkStruct_ov6_02249470 Unk_ov6_02249470[] = {
 
 void ov6_022465FC (FieldSystem * param0)
 {
-    TVBroadcast * v0 = SaveData_TVBroadcast(param0->unk_0C);
+    TVBroadcast * v0 = SaveData_TVBroadcast(param0->saveData);
     sub_0202E374(v0, 1);
 }
 
 int ov6_0224660C (FieldSystem * param0)
 {
     int v0;
-    TVBroadcast * v1 = SaveData_TVBroadcast(param0->unk_0C);
+    TVBroadcast * v1 = SaveData_TVBroadcast(param0->saveData);
 
     if (sub_0202E380(v1) == 1) {
         return 0;
@@ -113,7 +113,7 @@ static void ov6_022466EC (int param0, FieldSystem * param1, u8 * param2)
 {
     u8 v0[11];
     int v1, v2;
-    TVBroadcast * v3 = SaveData_TVBroadcast(param1->unk_0C);
+    TVBroadcast * v3 = SaveData_TVBroadcast(param1->saveData);
 
     ov6_022466C8(param0, v0);
     MI_CpuClear8(param2, sizeof(u8) * 11);
@@ -178,7 +178,7 @@ static int ov6_0224678C (TVBroadcast * param0, int param1, int param2, BOOL para
 static int ov6_022467DC (int param0, FieldSystem * param1, BOOL param2, BOOL param3, const u8 * param4, u8 * param5)
 {
     u8 v0[16];
-    TVBroadcast * v1 = SaveData_TVBroadcast(param1->unk_0C);
+    TVBroadcast * v1 = SaveData_TVBroadcast(param1->saveData);
     int v2, v3;
     int v4 = 0;
 
@@ -216,7 +216,7 @@ static void ov6_02246844 (FieldSystem * param0, int param1, u8 * param2)
 
 static void ov6_02246884 (FieldSystem * param0, u8 * param1)
 {
-    TVBroadcast * v0 = SaveData_TVBroadcast(param0->unk_0C);
+    TVBroadcast * v0 = SaveData_TVBroadcast(param0->saveData);
 
     while (*param1 != 0) {
         if (sub_0202E3C4(v0, *param1)) {
@@ -293,7 +293,7 @@ static const UnkStruct_ov6_02249470 * ov6_02246958 (FieldSystem * param0)
 
 int ov6_02246978 (FieldSystem * param0, int param1)
 {
-    TVBroadcast * v0 = SaveData_TVBroadcast(param0->unk_0C);
+    TVBroadcast * v0 = SaveData_TVBroadcast(param0->saveData);
     const UnkStruct_ov6_02249470 * v1 = ov6_02246958(param0);
 
     switch (param1) {
@@ -325,7 +325,7 @@ BOOL ov6_022469E0 (FieldSystem * param0, StringTemplate * param1, int param2, u1
 {
     int v0 = ov6_0224663C(param0);
     int v1 = ov6_0224669C(v0);
-    TVBroadcast * v2 = SaveData_TVBroadcast(param0->unk_0C);
+    TVBroadcast * v2 = SaveData_TVBroadcast(param0->saveData);
     UnkStruct_ov6_022465F4 * v3;
 
     sub_0202E384(v2, param2);

@@ -48,7 +48,7 @@ typedef struct FieldSystem_t {
     FieldSystem_sub1 * unk_00;
     FieldSystem_sub2 * unk_04;
     BGL * unk_08;
-    SaveData * unk_0C;
+    SaveData * saveData;
     UnkStruct_020508D4 * unk_10;
     UnkStruct_0203A3E8 * unk_14;
     int unk_18;

@@ -277,9 +277,9 @@ void FieldMenu_Init (FieldSystem * fieldSystem)
 {
     FieldMenu * menu = FieldMenu_Alloc();
 
-    if (sub_0206AE5C(SaveData_Events(fieldSystem->unk_0C)) == 1) {
+    if (sub_0206AE5C(SaveData_Events(fieldSystem->saveData)) == 1) {
         menu->unk_224 = sub_0203AC24(fieldSystem);
-    } else if (sub_0206AE8C(SaveData_Events(fieldSystem->unk_0C)) == 1) {
+    } else if (sub_0206AE8C(SaveData_Events(fieldSystem->saveData)) == 1) {
         menu->unk_224 = sub_0203AC28(fieldSystem);
     } else if (sub_0206C0D0(fieldSystem) == 1) {
         menu->unk_224 = sub_0203AC2C(fieldSystem);
@@ -333,9 +333,9 @@ void sub_0203AB00 (FieldSystem * fieldSystem)
 
     menu->unk_228 = 0;
 
-    if (sub_0206AE5C(SaveData_Events(fieldSystem->unk_0C)) == 1) {
+    if (sub_0206AE5C(SaveData_Events(fieldSystem->saveData)) == 1) {
         menu->unk_224 = sub_0203AC24(fieldSystem);
-    } else if (sub_0206AE8C(SaveData_Events(fieldSystem->unk_0C)) == 1) {
+    } else if (sub_0206AE8C(SaveData_Events(fieldSystem->saveData)) == 1) {
         menu->unk_224 = sub_0203AC28(fieldSystem);
     } else if (sub_0206C0D0(fieldSystem) == 1) {
         menu->unk_224 = sub_0203AC2C(fieldSystem);
@@ -368,15 +368,15 @@ static u32 sub_0203ABD0 (FieldSystem * fieldSystem)
 {
     u32 v0 = 0;
 
-    if (sub_02027520(SaveData_Pokedex(fieldSystem->unk_0C)) == 0) {
+    if (sub_02027520(SaveData_Pokedex(fieldSystem->saveData)) == 0) {
         v0 |= 0x1;
     }
 
-    if (sub_0206B054(SaveData_Events(fieldSystem->unk_0C)) == 0) {
+    if (sub_0206B054(SaveData_Events(fieldSystem->saveData)) == 0) {
         v0 |= 0x2;
     }
 
-    if (sub_0206A938(SaveData_Events(fieldSystem->unk_0C)) == 0) {
+    if (sub_0206A938(SaveData_Events(fieldSystem->saveData)) == 0) {
         v0 |= 0x4;
     }
 
@@ -552,7 +552,7 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
             v7 = Strbuf_Init(8, 11);
             v8 = MessageLoader_GetNewStrbuf(v2, Unk_020EA05C[menu->unk_30[v4]][0]);
 
-            StringTemplate_SetPlayerName(v6, 0, SaveData_GetTrainerInfo(fieldSystem->unk_0C));
+            StringTemplate_SetPlayerName(v6, 0, SaveData_GetTrainerInfo(fieldSystem->saveData));
             StringTemplate_Format(v6, v7, v8);
             sub_02013A6C(menu->unk_24, v7, menu->unk_30[v4]);
 
@@ -589,7 +589,7 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
     menu->unk_20 = sub_02001AF4(&v3, 28, 4, menu->unk_28, 11, PAD_BUTTON_B | PAD_BUTTON_X);
 
     sub_0201A9A4(&menu->unk_00);
-    sub_0203B318(menu, menu->unk_30, v5, TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->unk_0C)));
+    sub_0203B318(menu, menu->unk_30, v5, TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData)));
 }
 
 static u32 FieldMenu_MakeList (FieldMenu * param0, u8 * param1)
@@ -666,9 +666,9 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
     fieldSystem = sub_02050A60(param0);
     menu = sub_02050A64(param0);
 
-    if (sub_0206AE5C(SaveData_Events(fieldSystem->unk_0C)) == 1) {
+    if (sub_0206AE5C(SaveData_Events(fieldSystem->saveData)) == 1) {
         v6 = 0;
-    } else if (sub_0206AE8C(SaveData_Events(fieldSystem->unk_0C)) == 1) {
+    } else if (sub_0206AE8C(SaveData_Events(fieldSystem->saveData)) == 1) {
         v6 = 1;
     } else {
         return;
@@ -695,7 +695,7 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
     v5 = MessageLoader_GetNewStrbuf(v2, 11);
 
     if (v6 == 0) {
-        u16 * v7 = sub_0203A784(sub_0203A790(fieldSystem->unk_0C));
+        u16 * v7 = sub_0203A784(sub_0203A790(fieldSystem->saveData));
 
         StringTemplate_SetNumber(v3, 0, *v7, 2, 0, 1);
     } else {
@@ -722,7 +722,7 @@ static void sub_0203B200 (UnkStruct_020508D4 * param0)
     fieldSystem = sub_02050A60(param0);
     menu = sub_02050A64(param0);
 
-    if ((sub_0206AE5C(SaveData_Events(fieldSystem->unk_0C)) == 0) && (sub_0206AE8C(SaveData_Events(fieldSystem->unk_0C)) == 0)) {
+    if ((sub_0206AE5C(SaveData_Events(fieldSystem->saveData)) == 0) && (sub_0206AE8C(SaveData_Events(fieldSystem->saveData)) == 0)) {
         return;
     }
 
@@ -957,9 +957,9 @@ static BOOL FieldMenu_Pokedex (UnkStruct_020508D4 * param0)
     fieldSystem = sub_02050A60(param0);
     menu = sub_02050A64(param0);
     v2 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov21_021D0D80));
-    v3 = SaveData_Pokedex(fieldSystem->unk_0C);
-    v4 = SaveData_GetTrainerInfo(fieldSystem->unk_0C);
-    v5 = SaveData_Events(fieldSystem->unk_0C);
+    v3 = SaveData_Pokedex(fieldSystem->saveData);
+    v4 = SaveData_GetTrainerInfo(fieldSystem->saveData);
+    v5 = SaveData_Events(fieldSystem->saveData);
 
     v2->unk_00 = v3;
     v2->unk_04 = v4;
@@ -1043,20 +1043,20 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
     {
         PokemonSummary * v3 = Heap_AllocFromHeap(11, sizeof(PokemonSummary));
 
-        v3->monData = Party_GetFromSavedata(fieldSystem->unk_0C);
-        v3->options = sub_02025E44(fieldSystem->unk_0C);
+        v3->monData = Party_GetFromSavedata(fieldSystem->saveData);
+        v3->options = sub_02025E44(fieldSystem->saveData);
         v3->dataType = 1;
         v3->pos = v2->unk_22;
         v3->max = (u8)Party_GetCurrentCount(v3->monData);
         v3->move = 0;
         v3->mode = 0;
-        v3->ribbons = sub_0202D79C(fieldSystem->unk_0C);
-        v3->dexMode = sub_0207A274(fieldSystem->unk_0C);
-        v3->contest = PokemonSummary_ShowContestData(fieldSystem->unk_0C);
+        v3->ribbons = sub_0202D79C(fieldSystem->saveData);
+        v3->dexMode = sub_0207A274(fieldSystem->saveData);
+        v3->contest = PokemonSummary_ShowContestData(fieldSystem->saveData);
         v3->chatotCry = NULL;
 
         PokemonSummary_FlagVisiblePages(v3, Unk_020EA02C);
-        PokemonSummary_SetPlayerProfile(v3, SaveData_GetTrainerInfo(fieldSystem->unk_0C));
+        PokemonSummary_SetPlayerProfile(v3, SaveData_GetTrainerInfo(fieldSystem->saveData));
         sub_0203D334(fieldSystem, v3);
 
         menu->unk_25C = v3;
@@ -1067,19 +1067,19 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
     {
         PokemonSummary * v4 = Heap_AllocFromHeap(11, sizeof(PokemonSummary));
 
-        v4->monData = Party_GetFromSavedata(fieldSystem->unk_0C);
-        v4->options = sub_02025E44(fieldSystem->unk_0C);
+        v4->monData = Party_GetFromSavedata(fieldSystem->saveData);
+        v4->options = sub_02025E44(fieldSystem->saveData);
         v4->dataType = 1;
         v4->pos = v2->unk_22;
         v4->max = 1;
         v4->move = v2->unk_26;
         v4->mode = 2;
-        v4->dexMode = sub_0207A274(fieldSystem->unk_0C);
-        v4->contest = PokemonSummary_ShowContestData(fieldSystem->unk_0C);
+        v4->dexMode = sub_0207A274(fieldSystem->saveData);
+        v4->contest = PokemonSummary_ShowContestData(fieldSystem->saveData);
         v4->chatotCry = NULL;
 
         PokemonSummary_FlagVisiblePages(v4, Unk_020EA01C);
-        PokemonSummary_SetPlayerProfile(v4, SaveData_GetTrainerInfo(fieldSystem->unk_0C));
+        PokemonSummary_SetPlayerProfile(v4, SaveData_GetTrainerInfo(fieldSystem->saveData));
         sub_0203D334(fieldSystem, v4);
 
         {
@@ -1098,19 +1098,19 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
     {
         PokemonSummary * v6 = Heap_AllocFromHeap(11, sizeof(PokemonSummary));
 
-        v6->monData = Party_GetFromSavedata(fieldSystem->unk_0C);
-        v6->options = sub_02025E44(fieldSystem->unk_0C);
+        v6->monData = Party_GetFromSavedata(fieldSystem->saveData);
+        v6->options = sub_02025E44(fieldSystem->saveData);
         v6->dataType = 1;
         v6->pos = v2->unk_22;
         v6->max = 1;
         v6->move = v2->unk_26;
         v6->mode = 2;
-        v6->dexMode = sub_0207A274(fieldSystem->unk_0C);
-        v6->contest = PokemonSummary_ShowContestData(fieldSystem->unk_0C);
+        v6->dexMode = sub_0207A274(fieldSystem->saveData);
+        v6->contest = PokemonSummary_ShowContestData(fieldSystem->saveData);
         v6->chatotCry = NULL;
 
         PokemonSummary_FlagVisiblePages(v6, Unk_020EA01C);
-        PokemonSummary_SetPlayerProfile(v6, SaveData_GetTrainerInfo(fieldSystem->unk_0C));
+        PokemonSummary_SetPlayerProfile(v6, SaveData_GetTrainerInfo(fieldSystem->saveData));
         sub_0203D334(fieldSystem, v6);
 
         {
@@ -1148,7 +1148,7 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
         UnkStruct_02097728 * v9;
         Pokemon * v10;
 
-        v10 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->unk_0C), v2->unk_22);
+        v10 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v2->unk_22);
         v9 = sub_0203D984(fieldSystem, v10, 11);
 
         menu->unk_25C = v9;
@@ -1167,11 +1167,11 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
         *v13 = v2->unk_22;
         menu->unk_260 = (void *)v13;
 
-        v11 = sub_0207D990(fieldSystem->unk_0C);
-        v12 = SaveData_GetTrainerInfo(fieldSystem->unk_0C);
+        v11 = sub_0207D990(fieldSystem->saveData);
+        v12 = SaveData_GetTrainerInfo(fieldSystem->saveData);
         menu->unk_25C = sub_0207D824(v11, Unk_020EA020, 11);
 
-        sub_0207CB2C(menu->unk_25C, fieldSystem->unk_0C, 1, fieldSystem->unk_98);
+        sub_0207CB2C(menu->unk_25C, fieldSystem->saveData, 1, fieldSystem->unk_98);
     }
 
         sub_0203D1E4(fieldSystem, menu->unk_25C);
@@ -1327,10 +1327,10 @@ static BOOL sub_0203BC5C (UnkStruct_020508D4 * param0)
         v6 = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
         memset(v6, 0, sizeof(PartyManagementData));
 
-        v6->unk_00 = Party_GetFromSavedata(fieldSystem->unk_0C);
-        v6->unk_04 = sub_0207D990(fieldSystem->unk_0C);
-        v6->unk_08 = sub_02028430(fieldSystem->unk_0C);
-        v6->unk_0C = sub_02025E44(fieldSystem->unk_0C);
+        v6->unk_00 = Party_GetFromSavedata(fieldSystem->saveData);
+        v6->unk_04 = sub_0207D990(fieldSystem->saveData);
+        v6->unk_08 = sub_02028430(fieldSystem->saveData);
+        v6->unk_0C = sub_02025E44(fieldSystem->saveData);
         v6->unk_18 = &menu->unk_24C;
         v6->unk_21 = 0;
         v6->unk_20 = 9;
@@ -1349,7 +1349,7 @@ static BOOL sub_0203BC5C (UnkStruct_020508D4 * param0)
         u32 v9;
         u16 v10;
 
-        v7 = Party_GetFromSavedata(fieldSystem->unk_0C);
+        v7 = Party_GetFromSavedata(fieldSystem->saveData);
         v9 = *(u32 *)menu->unk_260;
         v10 = sub_0207CB94(v2);
         v8 = Party_GetPokemonBySlotIndex(v7, v9);
@@ -1371,9 +1371,9 @@ static BOOL sub_0203BC5C (UnkStruct_020508D4 * param0)
             memset(v13, 0, sizeof(PartyManagementData));
 
             v13->unk_00 = v7;
-            v13->unk_04 = sub_0207D990(fieldSystem->unk_0C);
-            v13->unk_08 = sub_02028430(fieldSystem->unk_0C);
-            v13->unk_0C = sub_02025E44(fieldSystem->unk_0C);
+            v13->unk_04 = sub_0207D990(fieldSystem->saveData);
+            v13->unk_08 = sub_02028430(fieldSystem->saveData);
+            v13->unk_0C = sub_02025E44(fieldSystem->saveData);
             v13->unk_18 = &menu->unk_24C;
             v13->unk_21 = 0;
             v13->unk_24 = sub_0207CB94(v2);
@@ -1472,7 +1472,7 @@ static void FieldMenu_Save (UnkStruct_020508D4 * param0)
     FieldSystem * fieldSystem = sub_02050A60(param0);
     SaveMenu * saveMenu;
 
-    if (SaveData_OverwriteCheck(fieldSystem->unk_0C)) {
+    if (SaveData_OverwriteCheck(fieldSystem->saveData)) {
         sub_0203E8E0(param0, 2034, NULL, NULL);
     } else {
         menu->unk_25C = Heap_AllocFromHeap(32, sizeof(SaveMenu));
@@ -1491,7 +1491,7 @@ static void FieldMenu_SaveWait (UnkStruct_020508D4 * param0)
     FieldMenu * menu = sub_02050A64(param0);
     SaveMenu * saveMenu = menu->unk_25C;
 
-    if (SaveData_OverwriteCheck(fieldSystem->unk_0C)) {
+    if (SaveData_OverwriteCheck(fieldSystem->saveData)) {
         menu->state = FIELD_MENU_STATE_INIT;
     } else {
         if (saveMenu->unk_04 == 0) {
@@ -1571,7 +1571,7 @@ static BOOL sub_0203C0A0 (UnkStruct_020508D4 * param0)
     fieldSystem = sub_02050A60(param0);
     menu = sub_02050A64(param0);
 
-    menu->unk_25C = sub_0209747C(2, 0, fieldSystem->unk_0C, 11);
+    menu->unk_25C = sub_0209747C(2, 0, fieldSystem->saveData, 11);
 
     sub_02014A9C(&v2, 4);
     sub_02097500(menu->unk_25C, &v2);
@@ -1625,7 +1625,7 @@ static BOOL FieldMenu_SelectRetire (UnkStruct_020508D4 * param0)
     BGL_DeleteWindow(&menu->unk_00);
     sub_0203B200(param0);
 
-    if (sub_0206AE5C(SaveData_Events(fieldSystem->unk_0C)) == 1) {
+    if (sub_0206AE5C(SaveData_Events(fieldSystem->saveData)) == 1) {
         sub_0203E918(param0, 8821, NULL);
     } else {
         sub_0203E918(param0, 4, NULL);
@@ -1659,10 +1659,10 @@ static BOOL sub_0203C1C8 (UnkStruct_020508D4 * param0)
 
         memset(v3, 0, sizeof(PartyManagementData));
 
-        v3->unk_00 = Party_GetFromSavedata(fieldSystem->unk_0C);
-        v3->unk_04 = sub_0207D990(fieldSystem->unk_0C);
-        v3->unk_08 = sub_02028430(fieldSystem->unk_0C);
-        v3->unk_0C = sub_02025E44(fieldSystem->unk_0C);
+        v3->unk_00 = Party_GetFromSavedata(fieldSystem->saveData);
+        v3->unk_04 = sub_0207D990(fieldSystem->saveData);
+        v3->unk_08 = sub_02028430(fieldSystem->saveData);
+        v3->unk_0C = sub_02025E44(fieldSystem->saveData);
         v3->unk_18 = &menu->unk_24C;
         v3->unk_21 = 0;
         v3->unk_1C = fieldSystem;
@@ -1708,7 +1708,7 @@ static void sub_0203C2D8 (UnkStruct_020508D4 * param0, u16 param1)
     menu = sub_02050A64(param0);
 
     menu->unk_25C = sub_020972FC(11);
-    v2 = sub_0207D990(fieldSystem->unk_0C);
+    v2 = sub_0207D990(fieldSystem->saveData);
     sub_02097320(menu->unk_25C, param1, 1);
     v6 = 0;
 
@@ -1786,7 +1786,7 @@ BOOL sub_0203C434 (UnkStruct_020508D4 * param0)
         void * v5;
         void * v6;
 
-        v4 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->unk_0C), v3);
+        v4 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v3);
         v5 = sub_0207064C(11, fieldSystem, v4, v2->unk_1C, v2->unk_14 * 32 + 16, v2->unk_18 * 32 + 16);
         v6 = sub_0202BE00((20 - 19), v2->unk_1C, 11);
 
@@ -1883,10 +1883,10 @@ static void sub_0203C668 (FieldSystem * param0, FieldMenu * param1, u8 param2)
     partyMan = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
 
     memset(partyMan, 0, sizeof(PartyManagementData));
-    partyMan->unk_00 = Party_GetFromSavedata(param0->unk_0C);
-    partyMan->unk_04 = sub_0207D990(param0->unk_0C);
-    partyMan->unk_08 = sub_02028430(param0->unk_0C);
-    partyMan->unk_0C = sub_02025E44(param0->unk_0C);
+    partyMan->unk_00 = Party_GetFromSavedata(param0->saveData);
+    partyMan->unk_04 = sub_0207D990(param0->saveData);
+    partyMan->unk_08 = sub_02028430(param0->saveData);
+    partyMan->unk_0C = sub_02025E44(param0->saveData);
     partyMan->unk_18 = &param1->unk_24C;
     partyMan->unk_21 = 0;
     partyMan->unk_24 = v0->unk_00;
@@ -1962,13 +1962,13 @@ static void FieldMenu_EvolveInit (UnkStruct_020508D4 * param0)
     sub_0200569C();
     Heap_Create(3, 73, 0x30000);
 
-    v3 = Party_GetFromSavedata(fieldSystem->unk_0C);
+    v3 = Party_GetFromSavedata(fieldSystem->saveData);
     v4 = Party_GetPokemonBySlotIndex(v3, v2->unk_00);
 
     if (v2->unk_01 == 0) {
-        v5 = sub_0207AE68(v3, v4, v2->unk_04, sub_02025E44(fieldSystem->unk_0C), PokemonSummary_ShowContestData(fieldSystem->unk_0C), SaveData_Pokedex(fieldSystem->unk_0C), sub_0207D990(fieldSystem->unk_0C), sub_0202CD88(fieldSystem->unk_0C), SaveData_PoketchData(fieldSystem->unk_0C), v2->unk_08, 0x1, 73);
+        v5 = sub_0207AE68(v3, v4, v2->unk_04, sub_02025E44(fieldSystem->saveData), PokemonSummary_ShowContestData(fieldSystem->saveData), SaveData_Pokedex(fieldSystem->saveData), sub_0207D990(fieldSystem->saveData), sub_0202CD88(fieldSystem->saveData), SaveData_PoketchData(fieldSystem->saveData), v2->unk_08, 0x1, 73);
     } else {
-        v5 = sub_0207AE68(v3, v4, v2->unk_04, sub_02025E44(fieldSystem->unk_0C), PokemonSummary_ShowContestData(fieldSystem->unk_0C), SaveData_Pokedex(fieldSystem->unk_0C), sub_0207D990(fieldSystem->unk_0C), sub_0202CD88(fieldSystem->unk_0C), SaveData_PoketchData(fieldSystem->unk_0C), v2->unk_08, NULL, 73);
+        v5 = sub_0207AE68(v3, v4, v2->unk_04, sub_02025E44(fieldSystem->saveData), PokemonSummary_ShowContestData(fieldSystem->saveData), SaveData_Pokedex(fieldSystem->saveData), sub_0207D990(fieldSystem->saveData), sub_0202CD88(fieldSystem->saveData), SaveData_PoketchData(fieldSystem->saveData), v2->unk_08, NULL, 73);
     }
 
     {

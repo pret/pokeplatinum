@@ -45,9 +45,9 @@ int ov6_02242984 (FieldSystem * param0)
         v2[v0] = v3->unk_04[v0].unk_04;
     }
 
-    v1 = sub_02027474(sub_02027560(FieldSystem_SaveData(param0)));
+    v1 = sub_02027474(SaveData_Pokedex(FieldSystem_SaveData(param0)));
 
-    ov6_02242F74(sub_0202D814(sub_0202D834(param0->unk_0C), 1), v1, param0->unk_1C->unk_00, &v2[6], &v2[7]);
+    ov6_02242F74(sub_0202D814(sub_0202D834(param0->saveData), 1), v1, param0->unk_1C->unk_00, &v2[6], &v2[7]);
     ov6_02240C9C(v3, &v2[2], &v2[3]);
     ov6_022477B8(v3, v1, &v2[8], &v2[9]);
 

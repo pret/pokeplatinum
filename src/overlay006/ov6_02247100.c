@@ -144,7 +144,7 @@ static int ov6_02247244 (UnkStruct_020508D4 * param0, FieldSystem * param1, UnkS
 
 static int ov6_02247288 (UnkStruct_020508D4 * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
 {
-    UnkStruct_0203A790 * v0 = sub_0203A790(param1->unk_0C);
+    UnkStruct_0203A790 * v0 = sub_0203A790(param1->saveData);
 
     if (param2->unk_08 == 2) {
         u16 v1;

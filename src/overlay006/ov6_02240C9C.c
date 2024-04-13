@@ -191,7 +191,7 @@ static void ov6_02240CC8 (FieldSystem * param0, const UnkStruct_ov6_02242634 * p
     u32 v0;
     UnkStruct_0202D7B0 * v1;
 
-    v1 = sub_0202D834(param0->unk_0C);
+    v1 = sub_0202D834(param0->saveData);
 
     if (sub_0202D898(v1)) {
         v0 = sub_0202D814(v1, 2);
@@ -209,7 +209,7 @@ static void ov6_02240D00 (FieldSystem * param0, const BOOL param1, int * param2,
     u16 v1, v2;
 
     if (MapHeader_IsTrophyGarden(param0->unk_1C->unk_00)) {
-        sub_0202DA10(param0->unk_0C, &v1, &v2);
+        sub_0202DA10(param0->saveData, &v1, &v2);
 
         if (param1) {
             v0 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 8, 4);
@@ -257,14 +257,14 @@ BOOL ov6_02240D5C (FieldSystem * param0)
             return 0;
         }
 
-        v11 = Party_GetFromSavedata(param0->unk_0C);
+        v11 = Party_GetFromSavedata(param0->saveData);
         v12 = (UnkStruct_ov6_02242634 *)sub_0203A640(param0);
         v1 = Party_GetPokemonBySlotIndex(v11, 0);
 
         ov6_02242634(param0, v1, v12, &v14);
 
         {
-            if (!sub_0202D9D8(sub_0202D834(param0->unk_0C))) {
+            if (!sub_0202D9D8(sub_0202D834(param0->saveData))) {
                 Pokemon * v16;
 
                 v16 = Party_FirstBattler(v11);
@@ -274,7 +274,7 @@ BOOL ov6_02240D5C (FieldSystem * param0)
             }
         }
 
-        v15 = ov6_0224226C(0, v15, &v14, sub_0203A74C(sub_0203A790(param0->unk_0C)), v1);
+        v15 = ov6_0224226C(0, v15, &v14, sub_0203A74C(sub_0203A790(param0->saveData)), v1);
 
         ov6_02241ABC(param0, &v15);
         ov6_02241A90(v1, &v15);
@@ -299,7 +299,7 @@ BOOL ov6_02240D5C (FieldSystem * param0)
         return 0;
     }
 
-    if (!sub_0206A984(SaveData_Events(param0->unk_0C))) {
+    if (!sub_0206A984(SaveData_Events(param0->saveData))) {
         v8 = 0;
     } else {
         v8 = 1;
@@ -324,7 +324,7 @@ BOOL ov6_02240D5C (FieldSystem * param0)
     }
 
     if (!v8) {
-        v9 = sub_0206AE5C(SaveData_Events(param0->unk_0C));
+        v9 = sub_0206AE5C(SaveData_Events(param0->saveData));
         ov6_02242328(param0, v9, &v0);
     } else {
         v0 = sub_02051D8C(11, (0x2 | 0x8 | 0x40));
@@ -342,7 +342,7 @@ BOOL ov6_02240D5C (FieldSystem * param0)
             v13[v18].unk_06 = v12->unk_04[v18].unk_00;
         }
 
-        v19 = sub_02027474(sub_02027560(FieldSystem_SaveData(param0)));
+        v19 = sub_02027474(SaveData_Pokedex(FieldSystem_SaveData(param0)));
 
         ov6_02240C9C(v12, &v13[2].unk_00, &v13[3].unk_00);
         ov6_02240CC8(param0, v12, &v13[0].unk_00, &v13[1].unk_00);
@@ -355,8 +355,8 @@ BOOL ov6_02240D5C (FieldSystem * param0)
             v7 = ov6_02241674(param0, v1, v0, v12, v13, &v14, &v10);
         } else {
             {
-                v0->trainerIDs[2] = sub_0206B034(SaveData_Events(param0->unk_0C));
-                TrainerData_Encounter(v0, param0->unk_0C, 11);
+                v0->trainerIDs[2] = sub_0206B034(SaveData_Events(param0->saveData));
+                TrainerData_Encounter(v0, param0->saveData, 11);
             }
             v7 = ov6_0224174C(param0, v1, v0, v13, &v14);
         }
@@ -411,17 +411,17 @@ BOOL ov6_0224106C (FieldSystem * param0, const int param1, BattleParams ** param
             return 0;
         }
 
-        v1 = Party_GetFromSavedata(param0->unk_0C);
+        v1 = Party_GetFromSavedata(param0->saveData);
         v0 = Party_GetPokemonBySlotIndex(v1, 0);
         ov6_02242634(param0, v0, NULL, &v4);
-        v5 = ov6_0224226C(1, v5, &v4, sub_0203A74C(sub_0203A790(param0->unk_0C)), v0);
+        v5 = ov6_0224226C(1, v5, &v4, sub_0203A74C(sub_0203A790(param0->saveData)), v0);
 
         if (inline_020564D0(100) >= v5) {
             return 0;
         }
     }
 
-    v2 = sub_0206AE5C(SaveData_Events(param0->unk_0C));
+    v2 = sub_0206AE5C(SaveData_Events(param0->saveData));
 
     ov6_02242328(param0, v2, param2);
 
@@ -512,7 +512,7 @@ BOOL ov6_022411C8 (FieldSystem * param0, UnkStruct_020508D4 * param1)
         }
     }
 
-    v10 = Party_GetFromSavedata(param0->unk_0C);
+    v10 = Party_GetFromSavedata(param0->saveData);
     v11 = (UnkStruct_ov6_02242634 *)sub_0203A640(param0);
     v1 = Party_GetPokemonBySlotIndex(v10, 0);
 
@@ -523,7 +523,7 @@ BOOL ov6_022411C8 (FieldSystem * param0, UnkStruct_020508D4 * param1)
 
     memset(&v9, 0, sizeof(UnkStruct_ov6_02241674));
 
-    if (!sub_0206A984(SaveData_Events(param0->unk_0C))) {
+    if (!sub_0206A984(SaveData_Events(param0->saveData))) {
         v6 = 0;
     } else {
         v6 = 1;
@@ -544,7 +544,7 @@ BOOL ov6_022411C8 (FieldSystem * param0, UnkStruct_020508D4 * param1)
     }
 
     if (!v6) {
-        v7 = sub_0206AE5C(SaveData_Events(param0->unk_0C));
+        v7 = sub_0206AE5C(SaveData_Events(param0->saveData));
         ov6_02242328(param0, v7, &v0);
     } else {
         v0 = sub_02051D8C(11, (0x2 | 0x8 | 0x40));
@@ -562,7 +562,7 @@ BOOL ov6_022411C8 (FieldSystem * param0, UnkStruct_020508D4 * param1)
             v12[v16].unk_06 = v11->unk_04[v16].unk_00;
         }
 
-        v17 = sub_02027474(sub_02027560(FieldSystem_SaveData(param0)));
+        v17 = sub_02027474(SaveData_Pokedex(FieldSystem_SaveData(param0)));
 
         ov6_02240C9C(v11, &v12[2].unk_00, &v12[3].unk_00);
         ov6_02240CC8(param0, v11, &v12[0].unk_00, &v12[1].unk_00);
@@ -575,8 +575,8 @@ BOOL ov6_022411C8 (FieldSystem * param0, UnkStruct_020508D4 * param1)
             v8 = ov6_02241674(param0, v1, v0, v11, v12, &v13, &v9);
         } else {
             {
-                v0->trainerIDs[2] = sub_0206B034(SaveData_Events(param0->unk_0C));
-                TrainerData_Encounter(v0, param0->unk_0C, 11);
+                v0->trainerIDs[2] = sub_0206B034(SaveData_Events(param0->saveData));
+                TrainerData_Encounter(v0, param0->saveData, 11);
             }
             v8 = ov6_0224174C(param0, v1, v0, v12, &v13);
         }
@@ -636,14 +636,14 @@ BOOL ov6_022413E4 (FieldSystem * param0, BattleParams ** param1)
             return 0;
         }
 
-        v10 = Party_GetFromSavedata(param0->unk_0C);
+        v10 = Party_GetFromSavedata(param0->saveData);
         v11 = (UnkStruct_ov6_02242634 *)sub_0203A640(param0);
         v0 = Party_GetPokemonBySlotIndex(v10, 0);
 
         ov6_02242634(param0, v0, v11, &v13);
 
         {
-            if (!sub_0202D9D8(sub_0202D834(param0->unk_0C))) {
+            if (!sub_0202D9D8(sub_0202D834(param0->saveData))) {
                 Pokemon * v15;
 
                 v15 = Party_FirstBattler(v10);
@@ -653,7 +653,7 @@ BOOL ov6_022413E4 (FieldSystem * param0, BattleParams ** param1)
             }
         }
 
-        v14 = ov6_0224226C(0, v14, &v13, sub_0203A74C(sub_0203A790(param0->unk_0C)), v0);
+        v14 = ov6_0224226C(0, v14, &v13, sub_0203A74C(sub_0203A790(param0->saveData)), v0);
 
         ov6_02241ABC(param0, &v14);
         ov6_02241A90(v0, &v14);
@@ -668,7 +668,7 @@ BOOL ov6_022413E4 (FieldSystem * param0, BattleParams ** param1)
     memset(&v9, 0, sizeof(UnkStruct_ov6_02241674));
     v9.unk_0C = 0;
 
-    if (!sub_0206A984(SaveData_Events(param0->unk_0C))) {
+    if (!sub_0206A984(SaveData_Events(param0->saveData))) {
         v7 = 0;
     } else {
         v7 = 1;
@@ -692,7 +692,7 @@ BOOL ov6_022413E4 (FieldSystem * param0, BattleParams ** param1)
     }
 
     if (!v7) {
-        v8 = sub_0206AE5C(SaveData_Events(param0->unk_0C));
+        v8 = sub_0206AE5C(SaveData_Events(param0->saveData));
         ov6_02242328(param0, v8, param1);
     } else {
         *param1 = sub_02051D8C(11, (0x2 | 0x8 | 0x40));
@@ -710,7 +710,7 @@ BOOL ov6_022413E4 (FieldSystem * param0, BattleParams ** param1)
             v12[v17].unk_06 = v11->unk_04[v17].unk_00;
         }
 
-        v18 = sub_02027474(sub_02027560(FieldSystem_SaveData(param0)));
+        v18 = sub_02027474(SaveData_Pokedex(FieldSystem_SaveData(param0)));
 
         ov6_02240C9C(v11, &v12[2].unk_00, &v12[3].unk_00);
         ov6_02240CC8(param0, v11, &v12[0].unk_00, &v12[1].unk_00);
@@ -723,8 +723,8 @@ BOOL ov6_022413E4 (FieldSystem * param0, BattleParams ** param1)
             v6 = ov6_02241674(param0, v0, *param1, v11, v12, &v13, &v9);
         } else {
             {
-                (*param1)->trainerIDs[2] = sub_0206B034(SaveData_Events(param0->unk_0C));
-                TrainerData_Encounter(*param1, param0->unk_0C, 11);
+                (*param1)->trainerIDs[2] = sub_0206B034(SaveData_Events(param0->saveData));
+                TrainerData_Encounter(*param1, param0->saveData, 11);
             }
             v6 = ov6_0224174C(param0, v0, *param1, v12, &v13);
         }
@@ -1065,7 +1065,7 @@ static void ov6_02241ABC (FieldSystem * param0, u8 * param1)
 {
     u8 v0;
 
-    v0 = sub_0202DA04(sub_0202D834(param0->unk_0C));
+    v0 = sub_0202DA04(sub_0202D834(param0->saveData));
 
     if (v0 == 1) {
         (*param1) /= 2;
@@ -1375,7 +1375,7 @@ void ov6_02242034 (FieldSystem * param0, BattleParams * param1)
     {
         Party * v4;
 
-        v4 = Party_GetFromSavedata(param0->unk_0C);
+        v4 = Party_GetFromSavedata(param0->saveData);
         v0 = Party_GetPokemonBySlotIndex(v4, 0);
 
         ov6_02242634(param0, v0, NULL, &v2);
@@ -1412,7 +1412,7 @@ void ov6_022420D4 (FieldSystem * param0, u16 param1, u8 param2, BattleParams * p
     {
         Party * v2;
 
-        v2 = Party_GetFromSavedata(param0->unk_0C);
+        v2 = Party_GetFromSavedata(param0->saveData);
         v0 = Party_GetPokemonBySlotIndex(v2, 0);
 
         ov6_02242634(param0, v0, NULL, &v1);
@@ -1586,7 +1586,7 @@ static void ov6_02242328 (FieldSystem * param0, const BOOL param1, BattleParams 
     if (!param1) {
         (*param2) = sub_02051D8C(11, (0x0 | 0x0));
     } else {
-        u16 * v0 = sub_0203A784(sub_0203A790(param0->unk_0C));
+        u16 * v0 = sub_0203A784(sub_0203A790(param0->saveData));
         (*param2) = sub_02051F24(11, *v0);
     }
 }
@@ -1594,7 +1594,7 @@ static void ov6_02242328 (FieldSystem * param0, const BOOL param1, BattleParams 
 static void ov6_02242354 (FieldSystem * param0, const BOOL param1, const BOOL param2, UnkStruct_ov6_0224222C * param3)
 {
     if (param1) {
-        ov6_02242F74(sub_0202D814(sub_0202D834(param0->unk_0C), 1), param2, param0->unk_1C->unk_00, &param3[6].unk_00, &param3[7].unk_00);
+        ov6_02242F74(sub_0202D814(sub_0202D834(param0->saveData), 1), param2, param0->unk_1C->unk_00, &param3[6].unk_00, &param3[7].unk_00);
     }
 }
 
@@ -1648,7 +1648,7 @@ static BOOL ov6_02242440 (FieldSystem * param0, UnkStruct_0206C638 ** param1)
     int v4;
 
     v2 = 0;
-    v0 = sub_0202D834(param0->unk_0C);
+    v0 = sub_0202D834(param0->saveData);
 
     for (v3 = 0; v3 < 6; v3++) {
         v4 = sub_0206C3C8(sub_0202D8C4(v0, v3));
@@ -1783,5 +1783,5 @@ static void ov6_02242634 (FieldSystem * param0, Pokemon * param1, UnkStruct_ov6_
         }
     }
 
-    param3->unk_00 = TrainerInfo_ID(SaveData_GetTrainerInfo(param0->unk_0C));
+    param3->unk_00 = TrainerInfo_ID(SaveData_GetTrainerInfo(param0->saveData));
 }

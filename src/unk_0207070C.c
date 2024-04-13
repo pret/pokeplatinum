@@ -118,17 +118,17 @@ static inline BOOL inline_020708AC (const UnkStruct_02070950 * param0, int param
 
 static inline BOOL inline_02070950 (const UnkStruct_02070950 * param0, int param1)
 {
-    return TrainerInfo_HasBadge(SaveData_GetTrainerInfo(param0->unk_04->unk_0C), param1);
+    return TrainerInfo_HasBadge(SaveData_GetTrainerInfo(param0->unk_04->saveData), param1);
 }
 
 static inline BOOL inline_02070A24 (const UnkStruct_02070950 * param0)
 {
-    return sub_0206A984(SaveData_Events(param0->unk_04->unk_0C));
+    return sub_0206A984(SaveData_Events(param0->unk_04->saveData));
 }
 
 static inline BOOL inline_02070EEC (const UnkStruct_02070950 * param0)
 {
-    if ((sub_0206AE5C(SaveData_Events(param0->unk_04->unk_0C)) == 1) || (sub_0206AE8C(SaveData_Events(param0->unk_04->unk_0C)) == 1)) {
+    if ((sub_0206AE5C(SaveData_Events(param0->unk_04->saveData)) == 1) || (sub_0206AE8C(SaveData_Events(param0->unk_04->saveData)) == 1)) {
         return 1;
     }
 
@@ -137,7 +137,7 @@ static inline BOOL inline_02070EEC (const UnkStruct_02070950 * param0)
 
 static inline BOOL inline_020710A4 (const UnkStruct_02070950 * param0)
 {
-    if (sub_0206AE8C(SaveData_Events(param0->unk_04->unk_0C)) == 1) {
+    if (sub_0206AE8C(SaveData_Events(param0->unk_04->saveData)) == 1) {
         return 1;
     }
 
@@ -214,7 +214,7 @@ void sub_02070728 (FieldSystem * param0, UnkStruct_02070950 * param1)
         param1->unk_0C |= (1 << 6);
     }
 
-    switch (sub_0203A74C(sub_0203A790(param0->unk_0C))) {
+    switch (sub_0203A74C(sub_0203A790(param0->saveData))) {
     case 14:
         param1->unk_0C |= (1 << 4);
         break;
@@ -701,7 +701,7 @@ static void sub_02070F54 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     {
         UnkStruct_020711C8 * v2;
 
-        v2 = sub_020711C8(11, param0->unk_04, v0->unk_0C);
+        v2 = sub_020711C8(11, param0->unk_04, v0->saveData);
 
         v1->unk_22C = sub_02070F94;
         v1->unk_25C = v2;
@@ -751,7 +751,7 @@ static void sub_02071010 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     {
         UnkStruct_020711C8 * v2;
 
-        v2 = sub_020711C8(11, param0->unk_04, v0->unk_0C);
+        v2 = sub_020711C8(11, param0->unk_04, v0->saveData);
 
         v1->unk_22C = sub_02071050;
         v1->unk_25C = v2;
@@ -800,7 +800,7 @@ static void sub_020710D4 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     v0 = sub_02050A60(param0->unk_00);
     v1 = sub_02050A64(param0->unk_00);
 
-    v2 = sub_020711C8(11, param0->unk_04, v0->unk_0C);
+    v2 = sub_020711C8(11, param0->unk_04, v0->saveData);
     sub_020509D4(v0);
 
     v1->unk_22C = ov5_021F101C;

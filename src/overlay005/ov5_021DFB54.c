@@ -511,7 +511,7 @@ static void ov5_021DFF88 (int param0, FieldSystem * param1, PlayerAvatar * param
     v0->unk_0C = param2;
 
     sub_02050904(param1, ov5_021DFFBC, v0);
-    sub_0202CF28(sub_0202CD88(param1->unk_0C), (1 + 54));
+    sub_0202CF28(sub_0202CD88(param1->saveData), (1 + 54));
 }
 
 static BOOL ov5_021DFFBC (UnkStruct_020508D4 * param0)
@@ -848,7 +848,7 @@ static void ov5_021E0534 (FieldSystem * param0, PlayerAvatar * param1)
     v0->unk_0C = param1;
 
     sub_02050904(param0, ov5_021E0560, v0);
-    sub_0202CF28(sub_0202CD88(param0->unk_0C), (1 + 55));
+    sub_0202CF28(sub_0202CD88(param0->saveData), (1 + 55));
 }
 
 static BOOL ov5_021E0560 (UnkStruct_020508D4 * param0)
@@ -1782,6 +1782,6 @@ static void ov5_021E1134 (void * param0)
 
 static Pokemon * ov5_021E1140 (FieldSystem * param0, int param1)
 {
-    Pokemon * v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->unk_0C), param1);
+    Pokemon * v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->saveData), param1);
     return v0;
 }

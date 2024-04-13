@@ -2969,7 +2969,7 @@ void ov5_021E585C (SysTask * param0, void * param1)
 
 static u32 ov5_021E5880 (FieldSystem * param0)
 {
-    TrainerInfo * v0 = SaveData_GetTrainerInfo(param0->unk_0C);
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(param0->saveData);
 
     return TrainerInfo_Gender(v0);
 }

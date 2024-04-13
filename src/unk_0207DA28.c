@@ -91,12 +91,12 @@ static BOOL sub_0207DA28 (UnkStruct_020508D4 * param0)
 
     switch (v2->unk_04) {
     case 0:
-        v2->unk_00->unk_00 = v1->unk_0C;
+        v2->unk_00->unk_00 = v1->saveData;
     case 1:
         v2->unk_04++;
 
         if (v2->unk_00->unk_04 == 1) {
-            if (sub_02039074(v1->unk_0C)) {
+            if (sub_02039074(v1->saveData)) {
                 v2->unk_04 = 10;
                 *(v2->unk_08) = 0;
             }
@@ -107,8 +107,8 @@ static BOOL sub_0207DA28 (UnkStruct_020508D4 * param0)
         v2->unk_04++;
         break;
     case 3:
-        if (sub_02039074(v1->unk_0C)) {
-            sub_0206AF5C(SaveData_Events(v1->unk_0C));
+        if (sub_02039074(v1->saveData)) {
+            sub_0206AF5C(SaveData_Events(v1->saveData));
         }
 
         switch (v2->unk_00->unk_04) {
@@ -335,7 +335,7 @@ static void sub_0207DE04 (UnkStruct_0207DE40 * param0, FieldSystem * param1, u32
     v0->unk_02 = Unk_020F1B64[param3];
     v0->unk_03 = 0;
     v0->unk_04 = 0;
-    v0->unk_08 = param1->unk_0C;
+    v0->unk_08 = param1->saveData;
 
     param0->unk_10 = v0;
 
@@ -388,7 +388,7 @@ static UnkStruct_ov115_02260440 * sub_0207DE90 (FieldSystem * param0, u32 param1
 
         v0->unk_38 = param2;
         v0->unk_39 = 0;
-        v0->unk_34 = param0->unk_0C;
+        v0->unk_34 = param0->saveData;
 
         Overlay_LoadByID(FS_OVERLAY_ID(overlay114), 2);
         sub_0203CD84(param0, &v1, v0);
@@ -419,7 +419,7 @@ static UnkStruct_ov66_02231134 * sub_0207DEEC (FieldSystem * param0, u32 param1,
         memset(v0, 0, sizeof(UnkStruct_ov66_02231134));
         v0->unk_3C = param2;
         v0->unk_38 = 0;
-        v0->unk_34 = param0->unk_0C;
+        v0->unk_34 = param0->saveData;
 
         Overlay_LoadByID(FS_OVERLAY_ID(overlay114), 2);
         sub_0203CD84(param0, &v1, v0);
@@ -452,7 +452,7 @@ static UnkStruct_ov117_02260440 * sub_0207DF40 (FieldSystem * param0, u32 param1
 
         v0->unk_38 = param2;
         v0->unk_39 = 0;
-        v0->unk_34 = param0->unk_0C;
+        v0->unk_34 = param0->saveData;
 
         Overlay_LoadByID(FS_OVERLAY_ID(overlay114), 2);
         sub_0203CD84(param0, &v1, v0);
@@ -473,6 +473,6 @@ static void sub_0207DF9C (FieldSystem * param0)
 {
     UnkStruct_0202CD88 * v0;
 
-    v0 = sub_0202CD88(param0->unk_0C);
+    v0 = sub_0202CD88(param0->saveData);
     sub_0202CFEC(v0, 50);
 }

@@ -74,9 +74,9 @@ static const int Unk_ov5_021F9CBC[] = {
 
 static void ov5_021E1D20 (UnkStruct_ov5_021E1D20 * param0, const FieldSystem * param1)
 {
-    SaveData * v0 = param1->unk_0C;
+    SaveData * v0 = param1->saveData;
     UnkStruct_02049FA8 * v1 = sub_0203A720(sub_0203A790(v0));
-    PokedexData * v2 = sub_02027560(v0);
+    PokedexData * v2 = SaveData_Pokedex(v0);
 
     param0->unk_04 = MapHeader_GetMapLabelTextID(v1->unk_00);
 
@@ -221,7 +221,7 @@ BOOL ov5_021E200C (FieldSystem * param0)
 {
     ov5_021E2028(param0);
 
-    if (SaveData_Save(param0->unk_0C) == 2) {
+    if (SaveData_Save(param0->saveData) == 2) {
         return 1;
     } else {
         return 0;

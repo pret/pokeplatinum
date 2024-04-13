@@ -124,7 +124,7 @@ BOOL ov5_021F08F8 (UnkStruct_020508D4 * param0)
                 }
 
                 {
-                    UnkStruct_0202CD88 * v4 = sub_0202CD88(v0->unk_0C);
+                    UnkStruct_0202CD88 * v4 = sub_0202CD88(v0->saveData);
                     sub_0202CF28(v4, (1 + 9));
                 }
 
@@ -353,7 +353,7 @@ static int ov5_021F0BF4 (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * param1,
     param0->unk_0C = 14;
 
     {
-        UnkStruct_0202CD88 * v0 = sub_0202CD88(param0->unk_20->unk_0C);
+        UnkStruct_0202CD88 * v0 = sub_0202CD88(param0->unk_20->saveData);
         sub_0202CF28(v0, (((70 + 1)) + 29));
     }
 
@@ -527,7 +527,7 @@ static void ov5_021F0DC4 (UnkStruct_ov5_021F0D6C * param0)
     FieldSystem * v0 = param0->unk_20;
 
     sub_0205D8F4(v0->unk_08, &param0->unk_38, 3);
-    sub_0205D944(&param0->unk_38, sub_02025E44(v0->unk_0C));
+    sub_0205D944(&param0->unk_38, sub_02025E44(v0->saveData));
 }
 
 static void ov5_021F0DE8 (UnkStruct_ov5_021F0D6C * param0, u32 param1)
@@ -540,7 +540,7 @@ static void ov5_021F0DE8 (UnkStruct_ov5_021F0D6C * param0, u32 param1)
         MessageLoader_GetStrbuf(param0->unk_48, param1, param0->unk_30);
         StringTemplate_Format(param0->unk_34, param0->unk_2C, param0->unk_30);
 
-        param0->unk_28 = sub_0205D994(&param0->unk_38, param0->unk_2C, sub_02025E44(v0->unk_0C), 1);
+        param0->unk_28 = sub_0205D994(&param0->unk_38, param0->unk_2C, sub_02025E44(v0->saveData), 1);
     }
 }
 

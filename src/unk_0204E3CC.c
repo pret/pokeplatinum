@@ -24,7 +24,7 @@
 
 BOOL sub_0204E3CC (UnkStruct_0203E724 * param0)
 {
-    const PokedexData * v0 = sub_02027560(param0->unk_34->unk_0C);
+    const PokedexData * v0 = SaveData_Pokedex(param0->unk_34->saveData);
     u16 * v1 = inline_0204FCAC(param0);
 
     *v1 = sub_02027520(v0);
@@ -33,7 +33,7 @@ BOOL sub_0204E3CC (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204E3FC (UnkStruct_0203E724 * param0)
 {
-    PokedexData * v0 = sub_02027560(param0->unk_34->unk_0C);
+    PokedexData * v0 = SaveData_Pokedex(param0->unk_34->saveData);
 
     sub_02027540(v0);
     return 0;
@@ -45,7 +45,7 @@ BOOL sub_0204E410 (UnkStruct_0203E724 * param0)
     UnkStruct_0205EC34 * v1;
     u16 * v2 = inline_0204FCAC(param0);
 
-    v0 = sub_0203A790(param0->unk_34->unk_0C);
+    v0 = sub_0203A790(param0->unk_34->saveData);
     v1 = sub_0203A780(v0);
     *v2 = sub_0205EC40(v1);
 
@@ -57,7 +57,7 @@ BOOL sub_0204E440 (UnkStruct_0203E724 * param0)
     UnkStruct_0203A790 * v0;
     UnkStruct_0205EC34 * v1;
 
-    v0 = sub_0203A790(param0->unk_34->unk_0C);
+    v0 = sub_0203A790(param0->unk_34->saveData);
     v1 = sub_0203A780(v0);
 
     sub_0205EC54(v1, 1);
@@ -70,7 +70,7 @@ BOOL sub_0204E45C (UnkStruct_0203E724 * param0)
     u16 * v1 = inline_0204FCAC(param0);
 
     GF_ASSERT(v0 < 8);
-    * v1 = TrainerInfo_HasBadge(SaveData_GetTrainerInfo(param0->unk_34->unk_0C), v0);
+    * v1 = TrainerInfo_HasBadge(SaveData_GetTrainerInfo(param0->unk_34->saveData), v0);
 
     return 0;
 }
@@ -80,7 +80,7 @@ BOOL sub_0204E4A4 (UnkStruct_0203E724 * param0)
     u16 v0 = inline_02049538(param0);
 
     GF_ASSERT(v0 < 8);
-    TrainerInfo_SetBadge(SaveData_GetTrainerInfo(param0->unk_34->unk_0C), v0);
+    TrainerInfo_SetBadge(SaveData_GetTrainerInfo(param0->unk_34->saveData), v0);
 
     return 0;
 }
@@ -89,7 +89,7 @@ BOOL sub_0204E4D8 (UnkStruct_0203E724 * param0)
 {
     u16 * v0 = inline_0204FCAC(param0);
 
-    *v0 = sub_0206A938(SaveData_Events(param0->unk_34->unk_0C));
+    *v0 = sub_0206A938(SaveData_Events(param0->unk_34->saveData));
     return 0;
 }
 
@@ -110,7 +110,7 @@ BOOL sub_0204E504 (UnkStruct_0203E724 * param0)
     u16 * v2 = inline_0204FCAC(param0);
 
     for (v0 = 0, v1 = 0; v0 < 8; v0++) {
-        if (TrainerInfo_HasBadge(SaveData_GetTrainerInfo(param0->unk_34->unk_0C), Unk_020EC064[v0]) == 1) {
+        if (TrainerInfo_HasBadge(SaveData_GetTrainerInfo(param0->unk_34->saveData), Unk_020EC064[v0]) == 1) {
             v1++;
         }
     }
@@ -121,7 +121,7 @@ BOOL sub_0204E504 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204E554 (UnkStruct_0203E724 * param0)
 {
-    sub_0206A92C(SaveData_Events(param0->unk_34->unk_0C));
+    sub_0206A92C(SaveData_Events(param0->unk_34->saveData));
     return 0;
 }
 
@@ -129,19 +129,19 @@ BOOL sub_0204E568 (UnkStruct_0203E724 * param0)
 {
     u16 * v0 = inline_0204FCAC(param0);
 
-    *v0 = sub_0206A984(SaveData_Events(param0->unk_34->unk_0C));
+    *v0 = sub_0206A984(SaveData_Events(param0->unk_34->saveData));
     return 0;
 }
 
 BOOL sub_0204E594 (UnkStruct_0203E724 * param0)
 {
-    sub_0206A964(SaveData_Events(param0->unk_34->unk_0C));
+    sub_0206A964(SaveData_Events(param0->unk_34->saveData));
     return 0;
 }
 
 BOOL sub_0204E5A8 (UnkStruct_0203E724 * param0)
 {
-    sub_0206A974(SaveData_Events(param0->unk_34->unk_0C));
+    sub_0206A974(SaveData_Events(param0->unk_34->saveData));
     return 0;
 }
 
@@ -149,19 +149,19 @@ BOOL sub_0204E5BC (UnkStruct_0203E724 * param0)
 {
     u16 * v0 = inline_0204FCAC(param0);
 
-    *v0 = sub_0206A9B4(SaveData_Events(param0->unk_34->unk_0C));
+    *v0 = sub_0206A9B4(SaveData_Events(param0->unk_34->saveData));
     return 0;
 }
 
 BOOL sub_0204E5E8 (UnkStruct_0203E724 * param0)
 {
-    sub_0206A994(SaveData_Events(param0->unk_34->unk_0C));
+    sub_0206A994(SaveData_Events(param0->unk_34->saveData));
     return 0;
 }
 
 BOOL sub_0204E5FC (UnkStruct_0203E724 * param0)
 {
-    sub_0206A9A4(SaveData_Events(param0->unk_34->unk_0C));
+    sub_0206A9A4(SaveData_Events(param0->unk_34->saveData));
     return 0;
 }
 
@@ -169,13 +169,13 @@ BOOL sub_0204E610 (UnkStruct_0203E724 * param0)
 {
     u16 * v0 = inline_0204FCAC(param0);
 
-    *v0 = sub_0206A954(SaveData_Events(param0->unk_34->unk_0C));
+    *v0 = sub_0206A954(SaveData_Events(param0->unk_34->saveData));
     return 0;
 }
 
 BOOL sub_0204E63C (UnkStruct_0203E724 * param0)
 {
-    sub_0206A944(SaveData_Events(param0->unk_34->unk_0C));
+    sub_0206A944(SaveData_Events(param0->unk_34->saveData));
     return 0;
 }
 
@@ -183,7 +183,7 @@ BOOL sub_0204E650 (UnkStruct_0203E724 * param0)
 {
     u8 v0;
     u16 * v1;
-    UnkStruct_020507E4 * v2 = SaveData_Events(param0->unk_34->unk_0C);
+    UnkStruct_020507E4 * v2 = SaveData_Events(param0->unk_34->saveData);
 
     v0 = (*((param0)->unk_08++));
 
@@ -209,7 +209,7 @@ BOOL sub_0204E6AC (UnkStruct_0203E724 * param0)
 {
     u8 v0;
     u16 * v1;
-    UnkStruct_020507E4 * v2 = SaveData_Events(param0->unk_34->unk_0C);
+    UnkStruct_020507E4 * v2 = SaveData_Events(param0->unk_34->saveData);
 
     v0 = (*((param0)->unk_08++));
 
@@ -235,7 +235,7 @@ BOOL sub_0204E704 (UnkStruct_0203E724 * param0)
 {
     u8 v0;
     u16 * v1;
-    UnkStruct_020507E4 * v2 = SaveData_Events(param0->unk_34->unk_0C);
+    UnkStruct_020507E4 * v2 = SaveData_Events(param0->unk_34->saveData);
 
     v0 = (*((param0)->unk_08++));
 

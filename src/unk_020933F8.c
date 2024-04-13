@@ -1650,7 +1650,7 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, U
             int v6;
             PokedexData * v7;
 
-            v7 = sub_02027560(param0->unk_1970);
+            v7 = SaveData_Pokedex(param0->unk_1970);
 
             for (v6 = param0->unk_00.unk_117; v6 < 4; v6++) {
                 sub_020272A4(v7, param0->unk_00.unk_00[v6]);

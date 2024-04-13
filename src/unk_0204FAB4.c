@@ -78,23 +78,23 @@ BOOL sub_0204FAB4 (UnkStruct_0203E724 * param0)
     v4 = inline_02049538(param0);
     v5 = sub_0203E838(param0);
     v6 = sub_0203F118(param0->unk_34, v5);
-    v10 = sub_020302DC(param0->unk_34->unk_0C);
-    v11 = sub_0203041C(param0->unk_34->unk_0C);
+    v10 = sub_020302DC(param0->unk_34->saveData);
+    v11 = sub_0203041C(param0->unk_34->saveData);
     v8 = sub_0203F098(param0->unk_34, 19);
 
     switch (v3) {
     case 0:
-        *v6 = sub_02049EC4(v4, param0->unk_34->unk_0C, 0);
+        *v6 = sub_02049EC4(v4, param0->unk_34->saveData, 0);
         break;
     case 1:
         if (v4 == 3) {
-            *v6 = sub_02030698(sub_0203068C(param0->unk_34->unk_0C), 108, sub_0205E6A8(108));
+            *v6 = sub_02030698(sub_0203068C(param0->unk_34->saveData), 108, sub_0205E6A8(108));
         } else {
             *v6 = (u16)sub_02030470(v11, 9, v4, 0, NULL);
         }
         break;
     case 3:
-        sub_0204FBEC(param0->unk_34->unk_0C, v11, v4);
+        sub_0204FBEC(param0->unk_34->saveData, v11, v4);
         break;
     case 4:
         if (v4 == 0) {
@@ -123,8 +123,8 @@ BOOL sub_0204FBB4 (UnkStruct_0203E724 * param0)
     UnkStruct_0203041C * v0;
     u16 v1 = inline_02049538(param0);
 
-    v0 = sub_0203041C(param0->unk_34->unk_0C);
-    sub_0204FBEC(param0->unk_34->unk_0C, v0, v1);
+    v0 = sub_0203041C(param0->unk_34->saveData);
+    sub_0204FBEC(param0->unk_34->saveData, v0, v1);
 
     return 0;
 }
@@ -261,10 +261,10 @@ static int sub_0204FE50 (UnkStruct_0204FE50 * param0, FieldSystem * param1, int 
 
     MI_CpuClearFast(v1, sizeof(PartyManagementData));
 
-    v1->unk_00 = Party_GetFromSavedata(param1->unk_0C);
-    v1->unk_04 = sub_0207D990(param1->unk_0C);
-    v1->unk_08 = sub_02028430(param1->unk_0C);
-    v1->unk_0C = sub_02025E44(param1->unk_0C);
+    v1->unk_00 = Party_GetFromSavedata(param1->saveData);
+    v1->unk_04 = sub_0207D990(param1->saveData);
+    v1->unk_08 = sub_02028430(param1->saveData);
+    v1->unk_0C = sub_02025E44(param1->saveData);
 
     v1->unk_21 = 0;
     v1->unk_20 = 23;
@@ -327,7 +327,7 @@ static int sub_0204FF6C (UnkStruct_0204FE50 * param0, FieldSystem * param1, int 
         0, 1, 2, 4, 3, 5, 6, 7, 8
     };
 
-    v1 = param1->unk_0C;
+    v1 = param1->saveData;
     v0 = Heap_AllocFromHeapAtEnd(param2, sizeof(PokemonSummary));
 
     MI_CpuClear8(v0, sizeof(PokemonSummary));

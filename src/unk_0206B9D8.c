@@ -73,7 +73,7 @@ static int sub_0206B9D8 (UnkStruct_0206B9D8 * param0, FieldSystem * param1, int 
     SaveData * v1;
     PartyManagementData * v2 = Heap_AllocFromHeapAtEnd(param2, sizeof(PartyManagementData));
 
-    v1 = param1->unk_0C;
+    v1 = param1->saveData;
     MI_CpuClear8(v2, sizeof(PartyManagementData));
 
     v2->unk_0C = sub_02025E44(v1);
@@ -134,7 +134,7 @@ static int sub_0206BAE0 (UnkStruct_0206B9D8 * param0, FieldSystem * param1, int 
         0, 1, 2, 4, 3, 5, 6, 7, 8
     };
 
-    v1 = param1->unk_0C;
+    v1 = param1->saveData;
     v0 = Heap_AllocFromHeapAtEnd(param2, sizeof(PokemonSummary));
     MI_CpuClear8(v0, sizeof(PokemonSummary));
 
@@ -221,7 +221,7 @@ static int sub_0206BC48 (UnkStruct_0206BC48 * param0, FieldSystem * param1)
 {
     SaveData * v0;
 
-    if (sub_02039074(param1->unk_0C)) {
+    if (sub_02039074(param1->saveData)) {
         param0->unk_08 = sub_0203E1AC(param1, param0->unk_12, param0->unk_14);
         return 1;
     } else {

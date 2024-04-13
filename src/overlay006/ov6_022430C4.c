@@ -17,7 +17,7 @@ int ov6_022430C4 (FieldSystem * param0)
     int v1;
     UnkStruct_020698E4 * v2;
 
-    v2 = sub_0202D830(sub_0202D834(param0->unk_0C));
+    v2 = sub_0202D830(sub_0202D834(param0->saveData));
     v1 = 0;
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -36,7 +36,7 @@ int ov6_022430E8 (FieldSystem * param0, const u8 param1)
 
     GF_ASSERT(param1 < 3);
 
-    v0 = sub_0202D830(sub_0202D834(param0->unk_0C));
+    v0 = sub_0202D830(sub_0202D834(param0->saveData));
     ov6_022431A0(v0, v1);
 
     return v1[param1]->unk_00;
@@ -48,7 +48,7 @@ int ov6_02243114 (FieldSystem * param0, const u8 param1)
     UnkStruct_ov6_022430E8 * v1[3];
 
     GF_ASSERT(param1 < 3);
-    v0 = sub_0202D830(sub_0202D834(param0->unk_0C));
+    v0 = sub_0202D830(sub_0202D834(param0->saveData));
 
     ov6_022431A0(v0, v1);
     return v1[param1]->unk_02;

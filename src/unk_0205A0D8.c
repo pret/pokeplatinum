@@ -131,11 +131,11 @@ static void sub_0205A0D8 (UnkStruct_0205A0D8 * param0, FieldSystem * param1, Par
         0, 1, 2, 4, 3, 5, 6, 7, 8
     };
 
-    v1 = param1->unk_0C;
+    v1 = param1->saveData;
     v0 = Heap_AllocFromHeapAtEnd(param5, sizeof(PokemonSummary));
 
     MI_CpuClear8(v0, sizeof(PokemonSummary));
-    PokemonSummary_SetPlayerProfile(v0, SaveData_GetTrainerInfo(param1->unk_0C));
+    PokemonSummary_SetPlayerProfile(v0, SaveData_GetTrainerInfo(param1->saveData));
 
     v0->dexMode = sub_0207A274(v1);
     v0->contest = PokemonSummary_ShowContestData(v1);
@@ -161,10 +161,10 @@ static void sub_0205A164 (UnkStruct_0205A0D8 * param0, int param1)
 
     MI_CpuClear8(v1, sizeof(PartyManagementData));
 
-    v1->unk_0C = sub_02025E44(param0->unk_24->unk_0C);
+    v1->unk_0C = sub_02025E44(param0->unk_24->saveData);
     v1->unk_14 = (void *)param0->unk_24->unk_B0;
-    v1->unk_00 = Party_GetFromSavedata(param0->unk_24->unk_0C);
-    v1->unk_04 = sub_0207D990(param0->unk_24->unk_0C);
+    v1->unk_00 = Party_GetFromSavedata(param0->unk_24->saveData);
+    v1->unk_04 = sub_0207D990(param0->unk_24->saveData);
     v1->unk_21 = 0;
     v1->unk_20 = 2;
 
@@ -382,7 +382,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         }
         break;
     case 17:
-        sub_0205A0D8(v0, v0->unk_24, Party_GetFromSavedata(v0->unk_24->unk_0C), v0->unk_3C, 0, 11);
+        sub_0205A0D8(v0, v0->unk_24, Party_GetFromSavedata(v0->unk_24->saveData), v0->unk_3C, 0, 11);
         v0->unk_34 = 18;
         break;
     case 18:
@@ -626,12 +626,12 @@ static int sub_0205AA50 (UnkStruct_0205A0D8 * param0, const Strbuf *param1)
 
     if (sub_0201A7CC(v0) == 0) {
         sub_0205D8F4(param0->unk_24->unk_08, v0, 3);
-        sub_0205D944(v0, sub_02025E44(param0->unk_24->unk_0C));
+        sub_0205D944(v0, sub_02025E44(param0->unk_24->saveData));
     } else {
         sub_0205D988(v0);
     }
 
-    return sub_0205D994(v0, (Strbuf *)param1, sub_02025E44(param0->unk_24->unk_0C), 1);
+    return sub_0205D994(v0, (Strbuf *)param1, sub_02025E44(param0->unk_24->saveData), 1);
 }
 
 static void sub_0205AAA0 (UnkStruct_0205A0D8 * param0, BOOL param1)
@@ -755,7 +755,7 @@ static void sub_0205AC80 (UnkStruct_0205A0D8 * param0, BOOL param1)
     u8 * v2;
     int v3, v4;
 
-    v0 = Party_GetFromSavedata(param0->unk_24->unk_0C);
+    v0 = Party_GetFromSavedata(param0->unk_24->saveData);
     v2 = param0->unk_4C;
     v4 = Pokemon_GetStructSize();
     v1 = (UnkStruct_0205AD20 *)(v2 + v4 * 3);
@@ -1028,9 +1028,9 @@ static BOOL sub_0205B140 (UnkStruct_020508D4 * param0)
         StringTemplate_SetPlayerName(v1->unk_18, 0, CommInfo_TrainerInfo(v1->unk_24));
         StringTemplate_Format(v1->unk_18, v1->unk_04, v1->unk_00);
         sub_0205D8F4(v0->unk_08, &v1->unk_08, 3);
-        sub_0205D944(&v1->unk_08, sub_02025E44(v0->unk_0C));
+        sub_0205D944(&v1->unk_08, sub_02025E44(v0->saveData));
 
-        v1->unk_20 = sub_0205D994(&v1->unk_08, v1->unk_04, sub_02025E44(v0->unk_0C), 1);
+        v1->unk_20 = sub_0205D994(&v1->unk_08, v1->unk_04, sub_02025E44(v0->saveData), 1);
         v1->unk_28++;
         break;
     case 1:

@@ -194,25 +194,25 @@ void ov7_0224CDA4 (UnkStruct_020508D4 * param0, FieldSystem * param1, u16 * para
     v0->unk_00 = param1->unk_08;
 
     v0->unk_298 = Strbuf_Init((24 * 2 * 2), 11);
-    v0->unk_270 = SaveData_GetTrainerInfo(param1->unk_0C);
-    v0->unk_278 = sub_02025E44(param1->unk_0C);
-    v0->unk_280 = sub_0202CD88(param1->unk_0C);
-    v0->unk_288 = SaveData_Events(param1->unk_0C);
+    v0->unk_270 = SaveData_GetTrainerInfo(param1->saveData);
+    v0->unk_278 = sub_02025E44(param1->saveData);
+    v0->unk_280 = sub_0202CD88(param1->saveData);
+    v0->unk_288 = SaveData_Events(param1->saveData);
     v0->unk_28C = param4;
     v0->unk_2A6 = ov7_0224CE90(param1);
     v0->unk_27C = param1->unk_9C;
     v0->unk_2A9 = param3;
-    v0->unk_284 = param1->unk_0C;
+    v0->unk_284 = param1->saveData;
     v0->unk_2B4 = sub_0200C440(1, 2, 0, 11);
 
     if (v0->unk_2A9 == 0) {
-        v0->unk_274 = sub_0207D990(param1->unk_0C);
+        v0->unk_274 = sub_0207D990(param1->saveData);
     } else if (v0->unk_2A9 == 3) {
-        v0->unk_274 = sub_0207D990(param1->unk_0C);
+        v0->unk_274 = sub_0207D990(param1->saveData);
     } else if (v0->unk_2A9 == 1) {
-        v0->unk_274 = sub_020298B0(param1->unk_0C);
+        v0->unk_274 = sub_020298B0(param1->saveData);
     } else {
-        v0->unk_274 = sub_0202CA1C(param1->unk_0C);
+        v0->unk_274 = sub_0202CA1C(param1->saveData);
     }
 
     ov7_0224CD28(v0, param2);
@@ -1548,10 +1548,10 @@ static void ov7_0224EC38 (UnkStruct_020508D4 * param0)
     {
         UnkStruct_0207D3C0 * v2;
 
-        v2 = sub_0207D990(v0->unk_0C);
+        v2 = sub_0207D990(v0->saveData);
         v1->unk_04 = sub_0207D824(v2, Unk_ov7_0224F49C, 11);
 
-        sub_0207CB2C(v1->unk_04, v0->unk_0C, 2, v0->unk_98);
+        sub_0207CB2C(v1->unk_04, v0->saveData, 2, v0->unk_98);
     }
 
     sub_0203D1E4(v0, v1->unk_04);

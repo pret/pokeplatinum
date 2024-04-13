@@ -598,7 +598,7 @@ u16 * sub_0203F118 (FieldSystem * param0, u16 param1)
 {
     UnkStruct_020507E4 * v0;
 
-    v0 = SaveData_Events(param0->unk_0C);
+    v0 = SaveData_Events(param0->saveData);
 
     if (param1 < 0x4000) {
         return NULL;
@@ -630,18 +630,18 @@ u16 sub_0203F164 (FieldSystem * param0, u16 param1)
 
 BOOL sub_0203F188 (FieldSystem * param0, u16 param1)
 {
-    return sub_020507F0(SaveData_Events(param0->unk_0C), param1);
+    return sub_020507F0(SaveData_Events(param0->saveData), param1);
 }
 
 void sub_0203F19C (FieldSystem * param0, u16 param1)
 {
-    sub_0205081C(SaveData_Events(param0->unk_0C), param1);
+    sub_0205081C(SaveData_Events(param0->saveData), param1);
     return;
 }
 
 void sub_0203F1B0 (FieldSystem * param0, u16 param1)
 {
-    sub_02050844(SaveData_Events(param0->unk_0C), param1);
+    sub_02050844(SaveData_Events(param0->saveData), param1);
     return;
 }
 
@@ -650,7 +650,7 @@ void sub_0203F1C4 (FieldSystem * param0)
     int v0;
     UnkStruct_020507E4 * v1;
 
-    v1 = SaveData_Events(param0->unk_0C);
+    v1 = SaveData_Events(param0->saveData);
 
     memset(sub_02050870(v1, 1), 0, (64 / 8));
     memset(sub_020508B8(v1, (0 + 0x4000)), 0, 2 * 32);
@@ -662,7 +662,7 @@ void sub_0203F1FC (FieldSystem * param0)
 {
     UnkStruct_020507E4 * v0;
 
-    v0 = SaveData_Events(param0->unk_0C);
+    v0 = SaveData_Events(param0->saveData);
     memset(sub_02050870(v0, 2400 + 320), 0, 192 / 8);
 
     return;
@@ -705,18 +705,18 @@ BOOL sub_0203F28C (u16 param0)
 
 BOOL sub_0203F2A0 (FieldSystem * param0, u16 param1)
 {
-    return sub_020507F0(SaveData_Events(param0->unk_0C), 1360 + param1);
+    return sub_020507F0(SaveData_Events(param0->saveData), 1360 + param1);
 }
 
 void sub_0203F2BC (FieldSystem * param0, u16 param1)
 {
-    sub_0205081C(SaveData_Events(param0->unk_0C), 1360 + param1);
+    sub_0205081C(SaveData_Events(param0->saveData), 1360 + param1);
     return;
 }
 
 void sub_0203F2D8 (FieldSystem * param0, u16 param1)
 {
-    sub_02050844(SaveData_Events(param0->unk_0C), 1360 + param1);
+    sub_02050844(SaveData_Events(param0->saveData), 1360 + param1);
     return;
 }
 

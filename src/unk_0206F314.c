@@ -198,7 +198,7 @@ static const UnkStruct_020F02D0 * const Unk_020F0254[] = {
 static int sub_0206F314 (UnkStruct_0206F314 * param0, FieldSystem * param1, u16 param2)
 {
     UnkStruct_0206F7F8 * v0;
-    SaveData * v1 = param1->unk_0C;
+    SaveData * v1 = param1->saveData;
 
     Heap_Create(3, 80, 0x6000);
 
@@ -863,7 +863,7 @@ static BOOL sub_020702D0 (UnkStruct_020508D4 * param0)
         v1->unk_00 = sub_0206F314(v1, v0, v1->unk_04);
         break;
     case 1:
-        v1->unk_00 = sub_0206F448(v1->unk_08, v0->unk_0C);
+        v1->unk_00 = sub_0206F448(v1->unk_08, v0->saveData);
         break;
     case 2:
         v1->unk_00 = sub_0206F488(v1->unk_08);

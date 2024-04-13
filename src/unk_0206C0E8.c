@@ -70,7 +70,7 @@ static BOOL sub_0206C120 (UnkStruct_020508D4 * param0)
         break;
     case 2:
     {
-        UnkStruct_020507E4 * v2 = SaveData_Events(v0->unk_0C);
+        UnkStruct_020507E4 * v2 = SaveData_Events(v0->saveData);
 
         if (v1->unk_0D == 0) {
             sub_0206AE0C(v2);

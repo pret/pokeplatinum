@@ -558,7 +558,7 @@ void sub_0202FAFC (BattleParams * param0, SaveData * param1)
     param0->unk_14 = 0;
     param0->unk_150 = 0;
 
-    sub_02026338(sub_02027560(param1), param0->unk_E8);
+    sub_02026338(SaveData_Pokedex(param1), param0->unk_E8);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->trainerIDs[v0] = v1->unk_00.unk_08[v0];

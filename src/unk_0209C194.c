@@ -69,11 +69,11 @@ void * sub_0209C1EC (FieldSystem * param0)
     memset(v0, 0, sizeof(UnkStruct_0209C1EC));
 
     v0->unk_2C = param0;
-    v0->unk_08.unk_08 = param0->unk_0C;
+    v0->unk_08.unk_08 = param0->saveData;
     v0->unk_08.unk_0C = param0->unk_80;
-    v0->unk_08.unk_10 = sub_02025E44(param0->unk_0C);
-    v0->unk_08.unk_14 = sub_0202CD88(param0->unk_0C);
-    v0->unk_08.unk_18 = sub_0202B628(param0->unk_0C);
+    v0->unk_08.unk_10 = sub_02025E44(param0->saveData);
+    v0->unk_08.unk_14 = sub_0202CD88(param0->saveData);
+    v0->unk_08.unk_18 = sub_0202B628(param0->saveData);
     v0->unk_08.unk_04 = sub_02027B50(v0->unk_08.unk_10);
     v0->unk_08.unk_1C = param0;
 

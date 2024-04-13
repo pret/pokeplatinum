@@ -82,7 +82,7 @@ static void ov23_0224A204 (int param0)
 
     if (param0 == CommSys_CurNetId()) {
         if (v1->unk_290[param0] != NULL) {
-            sub_0202CFEC(sub_0202CD88(v1->fieldSys->unk_0C), 28);
+            sub_0202CFEC(sub_0202CD88(v1->fieldSys->saveData), 28);
 
             if (v1->unk_27C[5 - 1]) {
                 Heap_FreeToHeap(v1->unk_27C[5 - 1]);
@@ -205,7 +205,7 @@ void ov23_0224A410 (int param0, int param1, void * param2, void * param3)
 {
     CommPlayerManager * v0 = CommPlayerMan_Get();
     UnkStruct_ov23_0224A348 * v1 = param2;
-    UnkStruct_020507E4 * v2 = SaveData_Events(v0->fieldSys->unk_0C);
+    UnkStruct_020507E4 * v2 = SaveData_Events(v0->fieldSys->saveData);
 
     GF_ASSERT(v1->unk_01 < (7 + 1));
 
@@ -473,7 +473,7 @@ void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
             u8 v6 = sub_0202958C(v5);
 
             sub_020295C0(v5);
-            sub_0206AA40(SaveData_Events(v0->fieldSys->unk_0C));
+            sub_0206AA40(SaveData_Events(v0->fieldSys->saveData));
 
             if (v0->unk_290[v1->unk_01]) {
                 sub_0206DAB8(v0->fieldSys, v0->unk_290[v1->unk_01]);
@@ -805,7 +805,7 @@ BOOL ov23_0224AEC4 (int param0, int param1)
             TrainerInfo_Copy(v1, (TrainerInfo *)&v0->unk_14A[param0].unk_00);
 
             if (param1 == CommSys_CurNetId()) {
-                SecretBaseRecord * v2 = SaveData_SecretBaseRecord(v0->fieldSys->unk_0C);
+                SecretBaseRecord * v2 = SaveData_SecretBaseRecord(v0->fieldSys->saveData);
                 sub_020297B4(v2);
             }
 

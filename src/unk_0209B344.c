@@ -39,8 +39,8 @@ void sub_0209B344 (UnkStruct_020508D4 * param0, u16 * param1)
 
     v1->unk_00 = v0;
     v1->unk_04 = StringTemplate_Default(32);
-    v1->unk_10 = sub_0209747C(2, 0, v1->unk_00->unk_0C, 32);
-    v1->unk_14 = SaveData_MiscSaveBlock(v0->unk_0C);
+    v1->unk_10 = sub_0209747C(2, 0, v1->unk_00->saveData, 32);
+    v1->unk_14 = SaveData_MiscSaveBlock(v0->saveData);
     v1->unk_20 = param1;
 
     sub_02014A9C(&v1->unk_08, 4);

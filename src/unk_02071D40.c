@@ -65,7 +65,7 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
         sub_02072014(param0, GAME_VERSION, v3, param2, TrainerInfo_RegionCode(v0), param5);
     }
 
-    sub_02072038(TrainerInfo_ID_LowHalf(v0), TrainerInfo_Gender(v0), TrainerInfo_Name(v0), TrainerInfo_Money(v0), sub_02026E48(sub_02027560(param4->unk_0C)), sub_02027520(sub_02027560(param4->unk_0C)), sub_0202D034(v1), param5);
+    sub_02072038(TrainerInfo_ID_LowHalf(v0), TrainerInfo_Gender(v0), TrainerInfo_Name(v0), TrainerInfo_Money(v0), sub_02026E48(SaveData_Pokedex(param4->saveData)), sub_02027520(SaveData_Pokedex(param4->saveData)), sub_0202D034(v1), param5);
 
     {
         RTCDate v4;
@@ -77,14 +77,14 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
 
         sub_02055BF4(param4, &v4, &v6);
         sub_02055C10(param4, &v5, &v6);
-        sub_0207207C(sub_0206A954(SaveData_Events(param4->unk_0C)), v7, &v4, &v5, &v6, param1, param5);
+        sub_0207207C(sub_0206A954(SaveData_Events(param4->saveData)), v7, &v4, &v5, &v6, param1, param5);
     }
 
     {
         u32 v8, v9, v10, v11;
         UnkStruct_0202C834 * v12;
 
-        v12 = sub_0202C834(param4->unk_0C);
+        v12 = sub_0202C834(param4->saveData);
         v8 = sub_0202CFB8(v1, (((70 + 1)) + 20)) + sub_0202CFB8(v1, (1 + 18)) + sub_0202CFB8(v1, (1 + 23)) + sub_0202CFB8(v1, (1 + 19)) + sub_0202CFB8(v1, (1 + 24)) + sub_0202CFB8(v1, (1 + 31));
         v9 = sub_0202CFB8(v1, (1 + 20)) + sub_0202CFB8(v1, (1 + 25));
         v10 = sub_0202CFB8(v1, (1 + 21)) + sub_0202CFB8(v1, (1 + 26));
@@ -142,7 +142,7 @@ u8 sub_02071F28 (FieldSystem * param0)
         v0++;
     }
 
-    if (sub_02026EF4(sub_02027560(v1))) {
+    if (sub_02026EF4(SaveData_Pokedex(v1))) {
         v0++;
     }
 
@@ -248,7 +248,7 @@ static void sub_0207216C (TrainerInfo * param0, FieldSystem * param1, TrainerCar
     UnkStruct_0202C834 * v1;
     UnkStruct_0202C844 * v2;
 
-    v1 = sub_0202C834(param1->unk_0C);
+    v1 = sub_0202C834(param1->saveData);
     v2 = sub_0202C844(v1);
 
     for (v0 = 0; v0 < 8; v0++) {
@@ -268,7 +268,7 @@ void sub_020721D4 (FieldSystem * param0, const TrainerCard * param1)
     UnkStruct_0202C834 * v1;
     UnkStruct_0202C844 * v2;
 
-    v1 = sub_0202C834(param0->unk_0C);
+    v1 = sub_0202C834(param0->saveData);
     v2 = sub_0202C844(v1);
 
     for (v0 = 0; v0 < 8; v0++) {

@@ -207,7 +207,7 @@ static void sub_020530C8 (FieldSystem * param0)
 
 static void sub_0205311C (FieldSystem * param0, const UnkStruct_02049FA8 * param1)
 {
-    UnkStruct_0203A790 * v0 = sub_0203A790(param0->unk_0C);
+    UnkStruct_0203A790 * v0 = sub_0203A790(param0->saveData);
     UnkStruct_02049FA8 * v1 = sub_0203A728(v0);
 
     if (param1 != NULL) {
@@ -244,7 +244,7 @@ void sub_020531A0 (FieldSystem * param0)
 void sub_020531C0 (FieldSystem * param0, BOOL param1)
 {
     int v0 = param0->unk_1C->unk_00;
-    UnkStruct_0203A790 * v1 = sub_0203A790(param0->unk_0C);
+    UnkStruct_0203A790 * v1 = sub_0203A790(param0->saveData);
 
     sub_02055414(param0);
     sub_0203F1C4(param0);
@@ -255,18 +255,18 @@ void sub_020531C0 (FieldSystem * param0, BOOL param1)
         sub_02070430(param0);
     }
 
-    sub_0206B0D4(SaveData_Events(param0->unk_0C));
+    sub_0206B0D4(SaveData_Events(param0->saveData));
 
     if (!param1) {
         sub_020559DC(param0);
     }
 
     if (!param1) {
-        sub_02027F50(sub_02027860(param0->unk_0C));
+        sub_02027F50(sub_02027860(param0->saveData));
     }
 
     {
-        UnkStruct_020507E4 * v2 = SaveData_Events(param0->unk_0C);
+        UnkStruct_020507E4 * v2 = SaveData_Events(param0->saveData);
         u16 v3 = sub_0203A944(param0, v0);
 
         if (((v3 == 14) && (sub_0206AF0C(v2) == 1)) || ((v3 == 16) && (sub_0206AEDC(v2) == 1))) {
@@ -304,7 +304,7 @@ void sub_020531C0 (FieldSystem * param0, BOOL param1)
 void sub_020532A8 (FieldSystem * param0, BOOL param1)
 {
     int v0 = param0->unk_1C->unk_00;
-    UnkStruct_0203A790 * v1 = sub_0203A790(param0->unk_0C);
+    UnkStruct_0203A790 * v1 = sub_0203A790(param0->saveData);
 
     sub_02055414(param0);
     sub_0203F1C4(param0);
@@ -315,14 +315,14 @@ void sub_020532A8 (FieldSystem * param0, BOOL param1)
         sub_02070430(param0);
     }
 
-    sub_0206B0D4(SaveData_Events(param0->unk_0C));
+    sub_0206B0D4(SaveData_Events(param0->saveData));
 
     if (!param1) {
         sub_020559DC(param0);
     }
 
     if (!param1) {
-        sub_02027F50(sub_02027860(param0->unk_0C));
+        sub_02027F50(sub_02027860(param0->saveData));
     }
 
     if (!param1) {
@@ -348,8 +348,8 @@ static void sub_02053320 (FieldSystem * param0)
 
     param0->unk_38 = sub_02061804(param0, 64, 5);
 
-    v0 = TrainerInfo_Gender(SaveData_GetTrainerInfo(param0->unk_0C));
-    v2 = sub_0203A790(param0->unk_0C);
+    v0 = TrainerInfo_Gender(SaveData_GetTrainerInfo(param0->saveData));
+    v2 = sub_0203A790(param0->saveData);
     v3 = sub_0203A780(v2);
 
     param0->playerAvatar = sub_0205E7D0(param0->unk_38, param0->unk_1C->unk_08, param0->unk_1C->unk_0C, param0->unk_1C->unk_10, v3->unk_04, v0, 0, v3);
@@ -371,9 +371,9 @@ static void sub_0205338C (FieldSystem * param0)
     sub_0203A7C0(param0);
 
     {
-        UnkStruct_0203A790 * v0 = sub_0203A790(param0->unk_0C);
+        UnkStruct_0203A790 * v0 = sub_0203A790(param0->saveData);
         UnkStruct_0205EC34 * v1 = sub_0203A780(v0);
-        int v2 = TrainerInfo_Gender(SaveData_GetTrainerInfo(param0->unk_0C));
+        int v2 = TrainerInfo_Gender(SaveData_GetTrainerInfo(param0->saveData));
 
         param0->playerAvatar = sub_0205E820(param0->unk_38, v1, v2);
     }
@@ -387,11 +387,11 @@ static void sub_020533CC (FieldSystem * param0)
     GF_ASSERT(param0->unk_5C == NULL);
     sub_02039DC0(param0->unk_1C->unk_00, param0->unk_2C);
 
-    if (sub_0206B1F0(SaveData_Events(param0->unk_0C), 3)) {
+    if (sub_0206B1F0(SaveData_Events(param0->saveData), 3)) {
         sub_02039FE0(param0->unk_2C);
     }
 
-    if (!sub_0206B1F0(SaveData_Events(param0->unk_0C), 2)) {
+    if (!sub_0206B1F0(SaveData_Events(param0->saveData), 2)) {
         sub_02039F8C(param0->unk_2C);
     }
 
@@ -435,7 +435,7 @@ void sub_02053494 (FieldSystem * param0)
 static void sub_020534BC (FieldSystem * param0)
 {
     if (param0->unk_9C != NULL) {
-        UnkStruct_0203A790 * v0 = sub_0203A790(param0->unk_0C);
+        UnkStruct_0203A790 * v0 = sub_0203A790(param0->saveData);
         UnkStruct_02049FA8 * v1 = sub_0203A730(v0);
         void * v2 = sub_0202BC58(v1->unk_00, 11);
         sub_0202B758(param0->unk_9C, v2, 0);
@@ -459,8 +459,8 @@ static BOOL sub_02053518 (const FieldSystem * param0)
 
 static void sub_02053540 (FieldSystem * param0)
 {
-    UnkStruct_02049FA8 * v0 = sub_0203A730(sub_0203A790(param0->unk_0C));
-    UnkStruct_020507E4 * v1 = SaveData_Events(param0->unk_0C);
+    UnkStruct_02049FA8 * v0 = sub_0203A730(sub_0203A790(param0->saveData));
+    UnkStruct_020507E4 * v1 = SaveData_Events(param0->saveData);
 
     inline_02049FA8(v0, param0->unk_1C->unk_00, -1, 8, 2, 1);
 }
@@ -501,23 +501,23 @@ void sub_020535CC (FieldSystem * param0)
 static BOOL sub_020535E8 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_020507E4 * v1 = SaveData_Events(v0->unk_0C);
+    UnkStruct_020507E4 * v1 = SaveData_Events(v0->saveData);
     int * v2 = sub_02050A68(param0);
 
     switch (*v2) {
     case 0:
-        sub_0202878C(v0->unk_0C);
+        sub_0202878C(v0->saveData);
 
-        if (sub_0202B6A4(sub_0202B628(v0->unk_0C), inline_020535E8(v1))) {
+        if (sub_0202B6A4(sub_0202B628(v0->saveData), inline_020535E8(v1))) {
             sub_0203D30C(v0, NULL);
             (*v2) = 4;
             break;
         }
     case 1:
-        v0->unk_9C = sub_0202B634(sub_0202B628(v0->unk_0C), inline_020535E8(v1));
+        v0->unk_9C = sub_0202B634(sub_0202B628(v0->saveData), inline_020535E8(v1));
 
         if (sub_0206ADBC(v1)) {
-            UnkStruct_0203A790 * v3 = sub_0203A790(v0->unk_0C);
+            UnkStruct_0203A790 * v3 = sub_0203A790(v0->saveData);
 
             if (sub_02053518(v0)) {
                 sub_02053540(v0);
@@ -567,15 +567,15 @@ static BOOL sub_02053718 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0 = sub_02050A60(param0);
     UnkStruct_02053718 * v1 = sub_02050A64(param0);
-    UnkStruct_020507E4 * v2 = SaveData_Events(v0->unk_0C);
+    UnkStruct_020507E4 * v2 = SaveData_Events(v0->saveData);
     int * v3 = sub_02050A68(param0);
 
     switch (*v3) {
     case 0:
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
-        sub_0202878C(v0->unk_0C);
-        v0->unk_9C = sub_0202B634(sub_0202B628(v0->unk_0C), inline_020535E8(v2));
+        sub_0202878C(v0->saveData);
+        v0->unk_9C = sub_0202B634(sub_0202B628(v0->saveData), inline_020535E8(v2));
         (*v3)++;
         break;
     case 1:
@@ -618,7 +618,7 @@ void sub_02053808 (FieldSystem * param0)
     if (MapHeader_IsUnionRoom(param0->unk_1C->unk_00)) {
         (void)0;
     } else if (sub_02053518(param0)) {
-        UnkStruct_020507E4 * v2 = SaveData_Events(param0->unk_0C);
+        UnkStruct_020507E4 * v2 = SaveData_Events(param0->saveData);
 
         sub_02053540(param0);
         sub_0206AD9C(v2);
@@ -1105,7 +1105,7 @@ void sub_02053F58 (FieldSystem * param0, int param1, int param2)
 void * sub_02053FAC (FieldSystem * param0)
 {
     UnkStruct_02053FAC * v0;
-    UnkStruct_02049FA8 * v1 = sub_0203A730(sub_0203A790(param0->unk_0C));
+    UnkStruct_02049FA8 * v1 = sub_0203A730(sub_0203A790(param0->saveData));
 
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02053FAC));
     v0->unk_00 = 0;
@@ -1178,8 +1178,8 @@ BOOL sub_02054084 (UnkStruct_020508D4 * param0)
         MessageLoader_Free(v2);
     }
         sub_0205D8F4(v0->unk_08, &v1->unk_24, 3);
-        sub_0205D944(&v1->unk_24, sub_02025E44(v0->unk_0C));
-        v1->unk_38 = sub_0205D994(&v1->unk_24, v1->unk_34, sub_02025E44(v0->unk_0C), 1);
+        sub_0205D944(&v1->unk_24, sub_02025E44(v0->saveData));
+        v1->unk_38 = sub_0205D994(&v1->unk_24, v1->unk_34, sub_02025E44(v0->saveData), 1);
         v1->unk_00 = 1;
         break;
     case 1:
@@ -1204,10 +1204,10 @@ BOOL sub_02054084 (UnkStruct_020508D4 * param0)
         }
         break;
     case 3:
-        if (SaveData_OverwriteCheck(v0->unk_0C)) {
+        if (SaveData_OverwriteCheck(v0->saveData)) {
             sub_0203E8E0(param0, 2034, NULL, NULL);
         } else {
-            sub_020287E0(v0->unk_0C);
+            sub_020287E0(v0->saveData);
             v1->unk_20 = ov5_021E1F98(v0, 11, 3);
             ov5_021E1F04(v1->unk_20);
             v1->unk_1C = 0;
@@ -1217,7 +1217,7 @@ BOOL sub_02054084 (UnkStruct_020508D4 * param0)
         v1->unk_00 = 4;
         break;
     case 4:
-        if (SaveData_OverwriteCheck(v0->unk_0C)) {
+        if (SaveData_OverwriteCheck(v0->saveData)) {
             v1->unk_00 = 5;
         } else {
             ov5_021E1F7C(v1->unk_20);
@@ -1469,7 +1469,7 @@ static BOOL sub_02054538 (UnkStruct_020508D4 * param0)
 
 void sub_020545EC (FieldSystem * param0)
 {
-    UnkStruct_02049FA8 * v0 = sub_0203A730(sub_0203A790(param0->unk_0C));
+    UnkStruct_02049FA8 * v0 = sub_0203A730(sub_0203A790(param0->saveData));
     UnkStruct_02054538 * v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02054538));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_02054538));
@@ -1536,7 +1536,7 @@ static BOOL sub_02054648 (UnkStruct_020508D4 * param0)
 void sub_02054708 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_02049FA8 * v1 = sub_0203A730(sub_0203A790(v0->unk_0C));
+    UnkStruct_02049FA8 * v1 = sub_0203A730(sub_0203A790(v0->saveData));
     UnkStruct_02054538 * v2 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02054538));
 
     MI_CpuClear8(v2, sizeof(UnkStruct_02054538));
@@ -1589,7 +1589,7 @@ void sub_02054800 (UnkStruct_020508D4 * param0, int param1, int param2, int para
 {
     UnkStruct_02049FA8 v0;
     FieldSystem * v1 = sub_02050A60(param0);
-    UnkStruct_02049FA8 * v2 = sub_0203A730(sub_0203A790(v1->unk_0C));
+    UnkStruct_02049FA8 * v2 = sub_0203A730(sub_0203A790(v1->saveData));
 
     sub_020534EC(v2, v1);
 
@@ -1610,7 +1610,7 @@ void sub_02054800 (UnkStruct_020508D4 * param0, int param1, int param2, int para
 void sub_02054864 (UnkStruct_020508D4 * param0)
 {
     FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_02049FA8 * v1 = sub_0203A730(sub_0203A790(v0->unk_0C));
+    UnkStruct_02049FA8 * v1 = sub_0203A730(sub_0203A790(v0->saveData));
 
     v0->unk_70 = 0;
     sub_02053900(v0->unk_10, v1);

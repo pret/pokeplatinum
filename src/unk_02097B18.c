@@ -403,7 +403,7 @@ static BOOL sub_02097F38 (UnkStruct_020508D4 * param0)
             v10 = sub_0202CA64(v9, 0);
             v12 = sub_0202CA7C(v10);
             v12 = sub_02098164(v12);
-            v11 = SaveData_TVBroadcast(v2->unk_0C);
+            v11 = SaveData_TVBroadcast(v2->saveData);
 
             sub_0206D9B4(v11, v8, v12);
         }

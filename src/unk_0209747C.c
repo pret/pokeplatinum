@@ -39,7 +39,7 @@ UnkStruct_0209747C * sub_0209747C (u32 param0, u32 param1, SaveData * param2, u3
 
     v0->unk_00 = param0;
     v0->unk_01 = param1;
-    v0->unk_0C = sub_02027560(param2);
+    v0->unk_0C = SaveData_Pokedex(param2);
     v0->unk_10 = sub_02014EC4(param2);
     v0->unk_04 = sub_0206A954(SaveData_Events(param2));
     v0->unk_05 = 0;

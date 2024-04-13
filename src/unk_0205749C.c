@@ -48,7 +48,7 @@ static BOOL sub_020574CC (UnkStruct_020508D4 * param0)
     switch (v1->unk_00) {
     case 0:
     {
-        v1->unk_04.unk_04 = v0->unk_0C;
+        v1->unk_04.unk_04 = v0->saveData;
         v1->unk_04.unk_08 = v1->unk_02;
         v1->unk_04.unk_00 = &v0->unk_C4;
         sub_02050A38(param0, &Unk_020ED4CC, &v1->unk_04);

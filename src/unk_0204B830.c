@@ -90,13 +90,13 @@ BOOL sub_0204B85C (UnkStruct_0203E724 * param0)
 {
     switch (sub_0203E838(param0)) {
     case 0:
-        sub_0202DEE4(param0->unk_34->unk_0C, 32);
+        sub_0202DEE4(param0->unk_34->saveData, 32);
         break;
     case 7:
-        sub_0202DF04(param0->unk_34->unk_0C, 0);
+        sub_0202DF04(param0->unk_34->saveData, 0);
         break;
     case 8:
-        sub_0202DF04(param0->unk_34->unk_0C, 1);
+        sub_0202DF04(param0->unk_34->saveData, 1);
         break;
     case 1:
     {
@@ -162,7 +162,7 @@ BOOL sub_0204B85C (UnkStruct_0203E724 * param0)
 
 static BOOL sub_0204BA50 (FieldSystem * param0, void * param1)
 {
-    Party * v0 = Party_GetFromSavedata(param0->unk_0C);
+    Party * v0 = Party_GetFromSavedata(param0->saveData);
 
     if (Party_GetCurrentCount(v0) < 6) {
         return 1;
@@ -173,7 +173,7 @@ static BOOL sub_0204BA50 (FieldSystem * param0, void * param1)
 
 static void sub_0204BA68 (FieldSystem * param0, void * param1)
 {
-    sub_02054930(32, param0->unk_0C, 490, 1, 2, 1);
+    sub_02054930(32, param0->saveData, 490, 1, 2, 1);
 }
 
 static void sub_0204BA88 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
@@ -181,14 +181,14 @@ static void sub_0204BA88 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 13;
 
-    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
+    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->saveData));
 }
 
 static void sub_0204BAAC (FieldSystem * param0, void * param1)
 {
     UnkUnion_0204C4D0 * v0 = sub_0204B844(param0);
-    TrainerInfo * v1 = SaveData_GetTrainerInfo(param0->unk_0C);
-    UnkStruct_020507E4 * v2 = SaveData_Events(param0->unk_0C);
+    TrainerInfo * v1 = SaveData_GetTrainerInfo(param0->saveData);
+    UnkStruct_020507E4 * v2 = SaveData_Events(param0->saveData);
     Party * v3;
     Pokemon * v4;
     BOOL v5;
@@ -245,7 +245,7 @@ static void sub_0204BAAC (FieldSystem * param0, void * param1)
         Pokemon_SetValue(v4, 75, (u8 *)&v9);
     }
 
-    v13 = sub_0202D79C(param0->unk_0C);
+    v13 = sub_0202D79C(param0->saveData);
 
     if (Pokemon_GetValue(v4, MON_DATA_SINNOH_RED_RIBBON, 0)) {
         v13[sub_02092444(73)] = v14[0];
@@ -315,11 +315,11 @@ static void sub_0204BAAC (FieldSystem * param0, void * param1)
 
     Pokemon_CalcLevelAndStats(v4);
 
-    v3 = Party_GetFromSavedata(param0->unk_0C);
+    v3 = Party_GetFromSavedata(param0->saveData);
     v5 = Party_AddPokemon(v3, v4);
 
     if (v5) {
-        sub_0202F180(param0->unk_0C, v4);
+        sub_0202F180(param0->saveData, v4);
     }
 
     if (v6) {
@@ -337,7 +337,7 @@ static void sub_0204BDEC (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
     v1 = (Pokemon *)&v0->val1.unk_04;
 
-    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
+    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->saveData));
     StringTemplate_SetSpeciesNameWithArticle(param0->unk_04, 1, Pokemon_GetBoxPokemon(v1));
 }
 
@@ -362,13 +362,13 @@ static void sub_0204BE44 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
     v1 = (Pokemon *)v0->val2.unk_04;
 
-    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
+    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->saveData));
     StringTemplate_SetSpeciesName(param0->unk_04, 1, Pokemon_GetBoxPokemon(v1));
 }
 
 static BOOL sub_0204BE84 (FieldSystem * param0, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_0C);
+    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
 
     return sub_0207D55C(v0, v1->val3.unk_00, 1, 32);
@@ -376,7 +376,7 @@ static BOOL sub_0204BE84 (FieldSystem * param0, void * param1)
 
 static void sub_0204BEAC (FieldSystem * param0, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_0C);
+    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
     u16 v2;
     u16 v3 = v1->val3.unk_00;
@@ -392,13 +392,13 @@ static void sub_0204BED4 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 9;
 
-    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
+    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->saveData));
     StringTemplate_SetItemName(param0->unk_04, 1, v1);
 }
 
 static void sub_0204BF14 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_00->unk_0C);
+    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_00->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0->unk_00);
     u16 v2 = v1->val3.unk_00;
 
@@ -418,7 +418,7 @@ static void sub_0204BF4C (FieldSystem * param0, void * param1)
     UnkUnion_0204C4D0 * v0 = sub_0204B844(param0);
     const BattleRegulation * v1 = (const BattleRegulation *)v0;
 
-    sub_0202613C(param0->unk_0C, v1);
+    sub_0202613C(param0->saveData, v1);
 }
 
 static void sub_0204BF60 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
@@ -430,7 +430,7 @@ static void sub_0204BF60 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 10;
 
-    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
+    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->saveData));
 
     v2 = sub_0202605C(v1, 32);
     StringTemplate_SetStrbuf(param0->unk_04, 1, v2, 0, 1, GAME_LANGUAGE);
@@ -445,7 +445,7 @@ static void sub_0204BFB8 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static BOOL sub_0204BFC8 (FieldSystem * param0, void * param1)
 {
-    int v0 = sub_020289A0(sub_020298B0(param0->unk_0C));
+    int v0 = sub_020289A0(sub_020298B0(param0->saveData));
 
     if (v0 < 200) {
         return 1;
@@ -459,7 +459,7 @@ static void sub_0204BFE0 (FieldSystem * param0, void * param1)
     UnkUnion_0204C4D0 * v0 = sub_0204B844(param0);
     int v1 = v0->val4.unk_00;
 
-    sub_0202895C(sub_020298B0(param0->unk_0C), v1);
+    sub_0202895C(sub_020298B0(param0->saveData), v1);
 }
 
 static void sub_0204BFF8 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
@@ -470,7 +470,7 @@ static void sub_0204BFF8 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 11;
 
-    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
+    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->saveData));
     StringTemplate_SetUndergroundGoodsName(param0->unk_04, 1, v1);
 }
 
@@ -488,7 +488,7 @@ static BOOL sub_0204C044 (FieldSystem * param0, void * param1)
 
     switch (v1) {
     case 1:
-        return sub_0202CB70(sub_0202CA1C(param0->unk_0C), v2, 1);
+        return sub_0202CB70(sub_0202CA1C(param0->saveData), v2, 1);
     case 2:
         return 1;
     case 3:
@@ -506,13 +506,13 @@ static void sub_0204C07C (FieldSystem * param0, void * param1)
 
     switch (v1) {
     case 1:
-        sub_0202CAE0(sub_0202CA1C(param0->unk_0C), v2, 1);
+        sub_0202CAE0(sub_0202CA1C(param0->saveData), v2, 1);
         break;
     case 2:
-        sub_02029E2C(sub_02029D04(sub_0202A750(param0->unk_0C)), v2, 1);
+        sub_02029E2C(sub_02029D04(sub_0202A750(param0->saveData)), v2, 1);
         break;
     case 3:
-        sub_02029EFC(sub_02029D04(sub_0202A750(param0->unk_0C)), v2);
+        sub_02029EFC(sub_02029D04(sub_0202A750(param0->saveData)), v2);
         break;
     }
 }
@@ -538,7 +538,7 @@ static void sub_0204C0CC (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 12;
 
-    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
+    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->saveData));
 }
 
 static void sub_0204C128 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
@@ -549,7 +549,7 @@ static void sub_0204C128 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static BOOL sub_0204C138 (FieldSystem * param0, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_0C);
+    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
 
     return sub_0207D55C(v0, 454, 1, 32);
@@ -557,9 +557,9 @@ static BOOL sub_0204C138 (FieldSystem * param0, void * param1)
 
 static void sub_0204C15C (FieldSystem * param0, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_0C);
+    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
-    UnkStruct_020507E4 * v2 = SaveData_Events(param0->unk_0C);
+    UnkStruct_020507E4 * v2 = SaveData_Events(param0->saveData);
     u16 v3;
     u16 v4 = 454;
 
@@ -575,13 +575,13 @@ static void sub_0204C190 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 14;
 
-    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
+    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->saveData));
     StringTemplate_SetItemName(param0->unk_04, 1, v1);
 }
 
 static void sub_0204C1CC (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_00->unk_0C);
+    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_00->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0->unk_00);
     u16 v2 = 454;
 
@@ -593,7 +593,7 @@ static void sub_0204C1CC (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static BOOL sub_0204C1FC (FieldSystem * param0, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_0C);
+    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
 
     return sub_0207D55C(v0, 452, 1, 32);
@@ -601,9 +601,9 @@ static BOOL sub_0204C1FC (FieldSystem * param0, void * param1)
 
 static void sub_0204C220 (FieldSystem * param0, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_0C);
+    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
-    UnkStruct_020507E4 * v2 = SaveData_Events(param0->unk_0C);
+    UnkStruct_020507E4 * v2 = SaveData_Events(param0->saveData);
     u16 v3;
     u16 v4 = 452;
 
@@ -623,13 +623,13 @@ static void sub_0204C264 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 15;
 
-    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
+    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->saveData));
     StringTemplate_SetItemName(param0->unk_04, 1, v1);
 }
 
 static void sub_0204C2A0 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_00->unk_0C);
+    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_00->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0->unk_00);
     u16 v2 = 452;
 
@@ -641,7 +641,7 @@ static void sub_0204C2A0 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static BOOL sub_0204C2D0 (FieldSystem * param0, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_0C);
+    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
 
     return sub_0207D55C(v0, 467, 1, 32);
@@ -649,9 +649,9 @@ static BOOL sub_0204C2D0 (FieldSystem * param0, void * param1)
 
 static void sub_0204C2F4 (FieldSystem * param0, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_0C);
+    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
-    UnkStruct_020507E4 * v2 = SaveData_Events(param0->unk_0C);
+    UnkStruct_020507E4 * v2 = SaveData_Events(param0->saveData);
     u16 v3;
     u16 v4 = 467;
 
@@ -667,13 +667,13 @@ static void sub_0204C328 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 17;
 
-    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
+    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->saveData));
     StringTemplate_SetItemName(param0->unk_04, 1, v1);
 }
 
 static void sub_0204C364 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_00->unk_0C);
+    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_00->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0->unk_00);
     u16 v2 = 467;
 
@@ -685,7 +685,7 @@ static void sub_0204C364 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static BOOL sub_0204C394 (FieldSystem * param0, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_0C);
+    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
 
     return sub_0207D55C(v0, 455, 1, 32);
@@ -693,9 +693,9 @@ static BOOL sub_0204C394 (FieldSystem * param0, void * param1)
 
 static void sub_0204C3B8 (FieldSystem * param0, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_0C);
+    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
-    UnkStruct_020507E4 * v2 = SaveData_Events(param0->unk_0C);
+    UnkStruct_020507E4 * v2 = SaveData_Events(param0->saveData);
     u16 v3;
     u16 v4 = 455;
 
@@ -711,13 +711,13 @@ static void sub_0204C3EC (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 16;
 
-    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
+    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->saveData));
     StringTemplate_SetItemName(param0->unk_04, 1, v1);
 }
 
 static void sub_0204C428 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_00->unk_0C);
+    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_00->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0->unk_00);
     u16 v2 = 455;
 
@@ -729,7 +729,7 @@ static void sub_0204C428 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static BOOL sub_0204C458 (FieldSystem * param0, void * param1)
 {
-    PoketchData * v0 = SaveData_PoketchData(param0->unk_0C);
+    PoketchData * v0 = SaveData_PoketchData(param0->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
 
     return PoketchData_IsEnabled(v0);
@@ -737,7 +737,7 @@ static BOOL sub_0204C458 (FieldSystem * param0, void * param1)
 
 static void sub_0204C474 (FieldSystem * param0, void * param1)
 {
-    PoketchData * v0 = SaveData_PoketchData(param0->unk_0C);
+    PoketchData * v0 = SaveData_PoketchData(param0->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
 
     PoketchData_RegisterApp(v0, v1->val6.unk_00);
@@ -750,7 +750,7 @@ static void sub_0204C494 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 19;
 
-    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
+    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->saveData));
     StringTemplate_SetPoketchAppName(param0->unk_04, 1, v0->val6.unk_00);
 }
 
@@ -761,7 +761,7 @@ static void sub_0204C4D0 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     *param1 = 379;
     *param2 = 20;
 
-    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->unk_0C));
+    StringTemplate_SetPlayerName(param0->unk_04, 0, SaveData_GetTrainerInfo(param0->unk_00->saveData));
 }
 
 static const UnkStruct_020EBE94 Unk_020EBE94[] = {

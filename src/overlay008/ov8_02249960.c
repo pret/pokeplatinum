@@ -2451,13 +2451,13 @@ static __attribute__((aligned(4))) const u8 Unk_ov8_0224CA5C[5][21] = {
 
 static void ov8_0224AEDC (FieldSystem * param0, u16 param1)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->saveData);
     sub_0206B46C(v0, param1);
 }
 
 static u32 ov8_0224AEF0 (FieldSystem * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->saveData);
     return sub_0206B47C(v0);
 }
 
@@ -2941,9 +2941,9 @@ static BOOL ov8_0224B3D4 (UnkStruct_020508D4 * param0)
             MessageLoader_GetStrbuf(v2->unk_48, 12, v2->unk_4C);
             sub_0205D8F4(v1->unk_08, v2->unk_44, 3);
             sub_0200E084(v2->unk_44, 0);
-            sub_0205D944(v2->unk_44, sub_02025E44(v1->unk_0C));
+            sub_0205D944(v2->unk_44, sub_02025E44(v1->saveData));
 
-            v2->unk_40 = sub_0205D994(v2->unk_44, v2->unk_4C, sub_02025E44(v1->unk_0C), 1);
+            v2->unk_40 = sub_0205D994(v2->unk_44, v2->unk_4C, sub_02025E44(v1->saveData), 1);
         }
         break;
     case 11:
@@ -4001,7 +4001,7 @@ static void ov8_0224C3B4 (UnkStruct_ov8_0224C444 * param0)
 
     {
         char v2 = 109;
-        BOOL v3 = TrainerInfo_HasBadge(SaveData_GetTrainerInfo(param0->unk_00->unk_0C), 4);
+        BOOL v3 = TrainerInfo_HasBadge(SaveData_GetTrainerInfo(param0->unk_00->saveData), 4);
 
         if (v3 == 1) {
             v2 = 91;

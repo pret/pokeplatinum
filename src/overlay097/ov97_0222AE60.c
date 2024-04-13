@@ -995,7 +995,7 @@ static int ov97_0222BD70 (OverlayManager * param0, int * param1)
     v0->unk_11C = FX32_ONE * 0;
     v0->unk_120 = FX32_ONE * 0;
     v0->unk_0C = SaveData_GetTrainerInfo(v0->unk_04);
-    v0->unk_08 = sub_02027560(v0->unk_04);
+    v0->unk_08 = SaveData_Pokedex(v0->unk_04);
     v0->unk_10 = sub_02025E5C(v0->unk_04);
     v0->unk_4C = sub_02027520(v0->unk_08);
     v0->unk_50 = TrainerInfo_BadgeCount(v0->unk_0C);

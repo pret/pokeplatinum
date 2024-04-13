@@ -76,17 +76,17 @@ static void sub_02052C6C (FieldSystem * param0, BOOL param1)
     RTCDate v2;
     int v3;
 
-    v0 = SaveData_HallOfFame(param0->unk_0C, 11, &v3);
+    v0 = SaveData_HallOfFame(param0->saveData, 11, &v3);
 
     if ((v3 != 1) || !param1) {
         HallOfFame_Init(v0);
     }
 
-    v1 = Party_GetFromSavedata(param0->unk_0C);
+    v1 = Party_GetFromSavedata(param0->saveData);
 
     GetCurrentDate(&v2);
     sub_0202DFA8(v0, v1, &v2);
-    SaveData_SaveHallOfFame(param0->unk_0C, v0);
+    SaveData_SaveHallOfFame(param0->saveData, v0);
     Heap_FreeToHeap(v0);
 }
 
@@ -114,7 +114,7 @@ static BOOL sub_02052CBC (UnkStruct_020508D4 * param0)
         break;
     case 2:
         if (ScreenWipe_Done()) {
-            if (SaveData_OverwriteCheck(v2->unk_0C) == 0) {
+            if (SaveData_OverwriteCheck(v2->saveData) == 0) {
                 sub_02052FA8(v2, v3);
                 (*v4)++;
             } else {
@@ -131,9 +131,9 @@ static BOOL sub_02052CBC (UnkStruct_020508D4 * param0)
     {
         int v6;
 
-        HealAllPokemonInParty(Party_GetFromSavedata(v2->unk_0C));
+        HealAllPokemonInParty(Party_GetFromSavedata(v2->saveData));
         SaveData_SetFullSaveRequired();
-        v6 = SaveData_Save(v2->unk_0C);
+        v6 = SaveData_Save(v2->saveData);
         sub_02052C6C(v2, v3->unk_00);
         sub_0205300C(v3);
         sub_02053028(v2, v3, v6);
@@ -190,24 +190,24 @@ void sub_02052E58 (UnkStruct_020508D4 * param0)
 
     v0 = sub_02050A60(param0);
     v5 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0205300C));
-    v3 = SaveData_Events(v0->unk_0C);
-    v4 = SaveData_GetTrainerInfo(v0->unk_0C);
-    v1 = sub_0203A730(sub_0203A790(v0->unk_0C));
-    v2 = sub_0203A72C(sub_0203A790(v0->unk_0C));
+    v3 = SaveData_Events(v0->saveData);
+    v4 = SaveData_GetTrainerInfo(v0->saveData);
+    v1 = sub_0203A730(sub_0203A790(v0->saveData));
+    v2 = sub_0203A72C(sub_0203A790(v0->saveData));
 
     v5->unk_00 = sub_0206A954(v3);
-    v5->unk_04.unk_00 = SaveData_GetTrainerInfo(v0->unk_0C);
-    v5->unk_04.unk_04 = Party_GetFromSavedata(v0->unk_0C);
-    v5->unk_04.unk_08 = sub_02025E5C(v0->unk_0C);
-    v5->unk_10.unk_00 = TrainerInfo_Gender(SaveData_GetTrainerInfo(v0->unk_0C));
+    v5->unk_04.unk_00 = SaveData_GetTrainerInfo(v0->saveData);
+    v5->unk_04.unk_04 = Party_GetFromSavedata(v0->saveData);
+    v5->unk_04.unk_08 = sub_02025E5C(v0->saveData);
+    v5->unk_10.unk_00 = TrainerInfo_Gender(SaveData_GetTrainerInfo(v0->saveData));
     v5->unk_10.unk_04 = sub_0206A954(v3);
-    v5->unk_10.unk_08 = sub_02027560(v0->unk_0C);
+    v5->unk_10.unk_08 = SaveData_Pokedex(v0->saveData);
 
     if (sub_0206A954(v3) == 0) {
         sub_02055C2C(v0);
     }
 
-    v7 = Party_GetFromSavedata(v0->unk_0C);
+    v7 = Party_GetFromSavedata(v0->saveData);
 
     sub_02054AC4(v7);
     sub_0203D178(v1);
@@ -216,7 +216,7 @@ void sub_02052E58 (UnkStruct_020508D4 * param0)
     sub_0206A944(v3);
     TrainerInfo_SetMainStoryCleared(v4);
 
-    v6 = sub_0202CD88(v0->unk_0C);
+    v6 = sub_0202CD88(v0->saveData);
 
     sub_0202CF28(v6, (((70 + 1)) + 2));
     sub_02050944(param0, sub_02052CBC, v5);
@@ -276,7 +276,7 @@ static void sub_02052F28 (FieldSystem * param0, UnkStruct_0205300C * param1)
 
 static void sub_02052FA8 (FieldSystem * param0, UnkStruct_0205300C * param1)
 {
-    Options * v0 = sub_02025E44(param0->unk_0C);
+    Options * v0 = sub_02025E44(param0->saveData);
 
     param1->unk_2C = MessageBank_GetNewStrbufFromNARC(26, 213, 15, 32);
 
@@ -307,7 +307,7 @@ static void sub_02053028 (FieldSystem * param0, UnkStruct_0205300C * param1, int
         StringTemplate * v1;
 
         v1 = StringTemplate_Default(4);
-        StringTemplate_SetPlayerName(v1, 0, SaveData_GetTrainerInfo(param0->unk_0C));
+        StringTemplate_SetPlayerName(v1, 0, SaveData_GetTrainerInfo(param0->saveData));
         param1->unk_2C = sub_0200B29C(v1, v0, 16, 4);
         StringTemplate_Free(v1);
     } else {
@@ -315,7 +315,7 @@ static void sub_02053028 (FieldSystem * param0, UnkStruct_0205300C * param1, int
     }
 
     MessageLoader_Free(v0);
-    param1->unk_34 = sub_0205D994(&param1->unk_1C, param1->unk_2C, sub_02025E44(param0->unk_0C), 1);
+    param1->unk_34 = sub_0205D994(&param1->unk_1C, param1->unk_2C, sub_02025E44(param0->saveData), 1);
 }
 
 static void sub_02053098 (FieldSystem * param0, UnkStruct_0205300C * param1)

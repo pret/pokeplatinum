@@ -289,7 +289,7 @@ static BOOL ov23_02254C84 (UnkStruct_020508D4 * param0)
             UndergroundData * v3;
             int v4;
 
-            v3 = sub_020298B0(v1->unk_0C);
+            v3 = sub_020298B0(v1->saveData);
             v4 = sub_020289A0(v3);
 
             if (v4 == 0) {
@@ -371,7 +371,7 @@ static BOOL ov23_02254DF8 (UnkStruct_020508D4 * param0)
             int v9;
             UndergroundData * v10;
 
-            v10 = sub_020298B0(v6->unk_500->unk_0C);
+            v10 = sub_020298B0(v6->unk_500->saveData);
             v8 = ov23_022545D8(v6->unk_508);
 
             if (v8 == 0xfffffffe) {
@@ -475,7 +475,7 @@ static BOOL ov23_02254DF8 (UnkStruct_020508D4 * param0)
                 int v17;
                 UndergroundData * v18;
 
-                v18 = sub_020298B0(v6->unk_500->unk_0C);
+                v18 = sub_020298B0(v6->unk_500->saveData);
                 v17 = ov23_02255B78(&v6->unk_3C, v6->unk_5C);
                 v16 = ov23_022545D8(v6->unk_508);
 
@@ -673,7 +673,7 @@ static BOOL ov23_02255100 (UnkStruct_020508D4 * param0)
                     } else {
                         UndergroundData * v17;
 
-                        v17 = sub_020298B0(v7->unk_500->unk_0C);
+                        v17 = sub_020298B0(v7->unk_500->saveData);
 
                         Sound_PlayEffect(1515);
                         sub_02028B20(v17, v16);
@@ -1164,7 +1164,7 @@ static void ov23_02255C78 (FieldSystem * param0, UnkStruct_ov23_02256098 * param
     int v2, v3;
     UnkStruct_02029894 * v4;
 
-    v4 = sub_02029894(param0->unk_0C);
+    v4 = sub_02029894(param0->saveData);
 
     param1->unk_51F = 0;
     param1->unk_520 = 0;
@@ -1245,7 +1245,7 @@ static void ov23_02255DDC (FieldSystem * param0, const UnkStruct_ov23_02255BF4 *
     int v2, v3;
     UnkStruct_02029894 * v4;
 
-    v4 = sub_02029894(param0->unk_0C);
+    v4 = sub_02029894(param0->saveData);
 
     for (v0 = 0; v0 < 32; v0++) {
         if (param1[v0].unk_00 == 1) {

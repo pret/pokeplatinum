@@ -78,7 +78,7 @@ void ov23_022499E8 (FieldSystem * param0)
     v0 = FieldCommMan_Get();
     Heap_Create(3, 33, 0xe800);
 
-    if (!sub_0206ADDC(SaveData_Events(v0->fieldSys->unk_0C))) {
+    if (!sub_0206ADDC(SaveData_Events(v0->fieldSys->saveData))) {
         sub_02036894();
     }
 }
@@ -88,7 +88,7 @@ void ov23_02249A2C (void)
     FieldCommunicationManager * v0 = FieldCommMan_Get();
 
     v0->unk_41 = 1;
-    sub_0202CFEC(sub_0202CD88(v0->fieldSys->unk_0C), 36);
+    sub_0202CFEC(sub_0202CD88(v0->fieldSys->saveData), 36);
 
     ov23_02242BC0(v0->fieldSys);
     ov23_02249C24(ov23_02249C34, 0);
@@ -270,7 +270,7 @@ static void ov23_02249C34 (void)
     ov23_02243AF0();
     ov23_0224C21C();
 
-    if (!sub_0206ADDC(SaveData_Events(v0->fieldSys->unk_0C))) {
+    if (!sub_0206ADDC(SaveData_Events(v0->fieldSys->saveData))) {
         ov23_02249C24(ov23_02249C98, 0);
     } else {
         sub_02059524();
@@ -282,7 +282,7 @@ static void ov23_02249C98 (void)
 {
     FieldCommunicationManager * v0 = FieldCommMan_Get();
 
-    if (!sub_0206ADDC(SaveData_Events(v0->fieldSys->unk_0C))) {
+    if (!sub_0206ADDC(SaveData_Events(v0->fieldSys->saveData))) {
         return;
     }
 

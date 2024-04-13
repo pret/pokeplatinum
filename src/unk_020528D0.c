@@ -218,14 +218,14 @@ BOOL sub_02052B2C (UnkStruct_020508D4 * param0)
     switch (*v1) {
     case 0:
     {
-        if ((v0 != NULL) && (v0->unk_0C != NULL)) {
-            Party_SetGiratinaForm(Party_GetFromSavedata(v0->unk_0C), 0);
+        if ((v0 != NULL) && (v0->saveData != NULL)) {
+            Party_SetGiratinaForm(Party_GetFromSavedata(v0->saveData), 0);
         }
     }
 
         {
             UnkStruct_02049FA8 v2;
-            UnkStruct_0203A790 * v3 = sub_0203A790(v0->unk_0C);
+            UnkStruct_0203A790 * v3 = sub_0203A790(v0->saveData);
             u16 v4 = sub_0203A75C(v3);
 
             sub_0203A824(v4, &v2);
@@ -259,7 +259,7 @@ BOOL sub_02052B2C (UnkStruct_020508D4 * param0)
         sub_0200AB4C(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
 
         if (sub_0203A7EC()
-            == sub_0203A75C(sub_0203A790(v0->unk_0C))) {
+            == sub_0203A75C(sub_0203A790(v0->saveData))) {
             sub_0203E8E0(param0, 2020, NULL, NULL);
         } else {
             sub_0203E8E0(param0, 2021, NULL, NULL);

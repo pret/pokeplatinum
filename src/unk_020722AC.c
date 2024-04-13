@@ -1227,7 +1227,7 @@ static int sub_02073524 (UnkStruct_02072334 * param0, int param1)
         v0->unk_00 = Party_GetFromSavedata(FieldSystem_SaveData(param0->unk_16C));
         v0->unk_04 = sub_0207D990(FieldSystem_SaveData(param0->unk_16C));
         v0->unk_0C = sub_02025E44(FieldSystem_SaveData(param0->unk_16C));
-        v0->unk_08 = sub_02028430(param0->unk_16C->unk_0C);
+        v0->unk_08 = sub_02028430(param0->unk_16C->saveData);
         v0->unk_21 = 0;
         v0->unk_20 = param1;
         v0->unk_24 = param0->unk_1C[param0->unk_18].unk_06;

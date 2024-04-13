@@ -384,7 +384,7 @@ void ov23_0224B2C8 (FieldSystem * param0)
     v0 = sub_02029894(FieldSystem_SaveData(param0));
     v1 = sub_020298AC(v0);
 
-    sub_020294D4(v1, sub_0202D034(sub_0202CD88(param0->unk_0C)));
+    sub_020294D4(v1, sub_0202D034(sub_0202CD88(param0->saveData)));
 
     MI_CpuCopy8(v0, Unk_ov23_022577AC->unk_08[16].unk_02, 148);
     ov23_0224B39C(v0, Unk_ov23_022577AC->unk_A04[16]);
@@ -1756,7 +1756,7 @@ static void ov23_0224CB1C (SysTask * param0, void * param1)
     switch (v0->unk_0C) {
     case 0:
     {
-        UnkStruct_02029894 * v9 = sub_02029894(v1->unk_0C);
+        UnkStruct_02029894 * v9 = sub_02029894(v1->saveData);
 
         v0->unk_12 = sub_0202988C(v9);
     }
@@ -2026,7 +2026,7 @@ void ov23_0224CF18 (int param0, int param1, void * param2, void * param3)
             void * v6 = sub_0202BE20(11);
 
             sub_0202B758(Unk_ov23_022577AC->unk_00->unk_9C, v6, 1);
-            sub_0202CFEC(sub_0202CD88(Unk_ov23_022577AC->unk_00->unk_0C), 35);
+            sub_0202CFEC(sub_0202CD88(Unk_ov23_022577AC->unk_00->saveData), 35);
         }
     }
 }
@@ -2171,7 +2171,7 @@ static void ov23_0224D238 (void)
     v16[0][0] = 16;
     v16[0][1] = 12;
 
-    sub_0206AA20(SaveData_Events(Unk_ov23_022577AC->unk_00->unk_0C));
+    sub_0206AA20(SaveData_Events(Unk_ov23_022577AC->unk_00->saveData));
     sub_020292CC(v0);
     sub_02028B34(v1);
     CommSys_Seed(&v15);

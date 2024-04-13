@@ -95,7 +95,7 @@ static void ov7_0224B4E8 (UnkStruct_ov7_0224B4E8 * param0, int param1)
     if (sub_0201A7CC(&param0->unk_54) == 0) {
         Window_Init(&param0->unk_54);
         sub_0205D8F4(param0->unk_10->unk_08, &param0->unk_54, 3);
-        sub_0205D944(&param0->unk_54, sub_02025E44(param0->unk_10->unk_0C));
+        sub_0205D944(&param0->unk_54, sub_02025E44(param0->unk_10->saveData));
     } else {
         sub_0205D988(&param0->unk_54);
     }
@@ -103,7 +103,7 @@ static void ov7_0224B4E8 (UnkStruct_ov7_0224B4E8 * param0, int param1)
     MessageLoader_GetStrbuf(param0->unk_68, param1, param0->unk_14);
     StringTemplate_Format(param0->unk_64, param0->unk_18, param0->unk_14);
 
-    param0->unk_74 = sub_0205D994(&param0->unk_54, param0->unk_18, sub_02025E44(param0->unk_10->unk_0C), 1);
+    param0->unk_74 = sub_0205D994(&param0->unk_54, param0->unk_18, sub_02025E44(param0->unk_10->saveData), 1);
 }
 
 static void ov7_0224B558 (UnkStruct_ov7_0224B4E8 * param0, BOOL param1)
@@ -118,7 +118,7 @@ static void ov7_0224B558 (UnkStruct_ov7_0224B4E8 * param0, BOOL param1)
 
 static void ov7_0224B57C (UnkStruct_ov7_0224B4E8 * param0, int param1)
 {
-    sub_0202616C(param0->unk_10->unk_0C, param1, param0->unk_1C, 4);
+    sub_0202616C(param0->unk_10->saveData, param1, param0->unk_1C, 4);
     StringTemplate_SetStrbuf(param0->unk_64, 0, param0->unk_1C, 0, 1, GAME_LANGUAGE);
 }
 
@@ -126,7 +126,7 @@ static void ov7_0224B5A8 (UnkStruct_ov7_0224B4E8 * param0)
 {
     UnkStruct_ov84_02240FA8 v0;
     Window * v1 = &(param0->unk_34);
-    BattleRegulation * v2 = sub_0202610C(param0->unk_10->unk_0C, 0);
+    BattleRegulation * v2 = sub_0202610C(param0->unk_10->saveData, 0);
     int v3 = 5;
 
     if (v2) {
@@ -207,7 +207,7 @@ static int ov7_0224B6E8 (UnkStruct_ov7_0224B4E8 * param0)
         return -1;
     default:
         Sound_PlayEffect(1500);
-        param0->unk_10->unk_B0 = sub_02026150(param0->unk_10->unk_0C, v0);
+        param0->unk_10->unk_B0 = sub_02026150(param0->unk_10->saveData, v0);
         break;
     }
 
@@ -430,7 +430,7 @@ static void ov7_0224BBA0 (UnkStruct_ov7_0224B4E8 * param0)
 
 static BOOL ov7_0224BBC4 (UnkStruct_ov7_0224B4E8 * param0)
 {
-    Party * v0 = Party_GetFromSavedata(param0->unk_10->unk_0C);
+    Party * v0 = Party_GetFromSavedata(param0->unk_10->saveData);
     int v1 = sub_0207A594(param0->unk_10->unk_B0, v0, param0->unk_6C);
     int v2;
 
