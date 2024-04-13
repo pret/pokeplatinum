@@ -42,7 +42,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202E840.h"
 #include "unk_020508D4.h"
 #include "unk_0206F314.h"

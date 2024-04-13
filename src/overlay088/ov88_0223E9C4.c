@@ -9,7 +9,6 @@
 #include "strbuf.h"
 
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_02240FA8.h"
@@ -23,7 +22,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "overlay088/ov88_0223E9C4.h"
 
 static void ov88_0223EE14(UnkStruct_0200112C * param0, u32 param1, u8 param2);

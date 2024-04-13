@@ -13,7 +13,6 @@
 #include "savedata.h"
 #include "overlay066/struct_ov66_0222E71C_decl.h"
 
-#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
@@ -42,7 +41,7 @@
 #include "gx_layers.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202CD50.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"

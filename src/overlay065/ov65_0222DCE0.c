@@ -82,7 +82,7 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "poffin.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202B604.h"

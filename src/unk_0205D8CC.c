@@ -4,7 +4,6 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
 
-#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 
 #include "unk_02002328.h"
@@ -12,7 +11,7 @@
 #include "unk_0200DA60.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0205D8CC.h"
 
 void sub_0205D8CC (u32 param0, u32 param1)

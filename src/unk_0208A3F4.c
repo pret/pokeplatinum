@@ -33,7 +33,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
 #include "strbuf.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0208A3F4.h"
 
 void sub_0208A3F4 (UnkStruct_02089688 * param0)

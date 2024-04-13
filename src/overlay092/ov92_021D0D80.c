@@ -15,7 +15,6 @@
 #include "savedata.h"
 
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay061/struct_ov61_0222C884.h"
@@ -49,7 +48,7 @@
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202C858.h"
 #include "unk_020996D0.h"
 #include "overlay092/ov92_021D0D80.h"

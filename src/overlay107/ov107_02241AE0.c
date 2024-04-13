@@ -23,7 +23,6 @@
 #include "overlay107/struct_ov107_02249B8C_decl.h"
 
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_02099F80.h"
@@ -60,7 +59,7 @@
 #include "strbuf.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_020302D0.h"
 #include "unk_0203061C.h"
 #include "communication_information.h"

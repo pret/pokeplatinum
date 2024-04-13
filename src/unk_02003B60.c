@@ -6,7 +6,7 @@
 #include "struct_defs/chatot_cry.h"
 
 #include "struct_defs/struct_020052C8.h"
-#include "struct_defs/options.h"
+#include "game_options.h"
 
 #include "unk_02003B60.h"
 #include "unk_020041CC.h"

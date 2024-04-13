@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_POKEMON_SUMMARY_H
 #define POKEPLATINUM_STRUCT_POKEMON_SUMMARY_H
 
-#include "struct_defs/options.h"
+#include "game_options.h"
 #include "struct_defs/chatot_cry.h"
 
 typedef struct PokemonSummary {

@@ -25,7 +25,6 @@
 #include "constdata/const_020F2DAC.h"
 
 #include "struct_defs/union_02022594_020225E0.h"
-#include "struct_defs/options.h"
 #include "struct_defs/struct_02042434.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/pokemon_summary.h"
@@ -53,7 +52,7 @@
 #include "savedata/save_table.h"
 #include "savedata.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202CC64.h"
 #include "unk_0202D778.h"
 #include "pokemon.h"

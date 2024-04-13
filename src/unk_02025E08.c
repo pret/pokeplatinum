@@ -5,12 +5,11 @@
 #include "savedata.h"
 
 #include "struct_defs/struct_02025E5C.h"
-#include "struct_defs/options.h"
 
 #include "savedata.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "coins.h"
 #include "unk_0202CBE4.h"
 

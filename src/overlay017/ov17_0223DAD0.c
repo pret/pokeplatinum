@@ -45,7 +45,7 @@
 #include "gx_layers.h"
 #include "unk_02020020.h"
 #include "strbuf.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 #include "pokemon.h"

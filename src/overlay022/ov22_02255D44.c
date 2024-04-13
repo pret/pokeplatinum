@@ -14,7 +14,6 @@
 
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/options.h"
 #include "struct_defs/struct_0203DA00.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02093BBC.h"
@@ -62,7 +61,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_020298BC.h"
 #include "unk_0202CD50.h"
 #include "unk_020363E8.h"

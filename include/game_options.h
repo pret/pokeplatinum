@@ -1,8 +1,17 @@
-#ifndef POKEPLATINUM_UNK_020279FC_H
-#define POKEPLATINUM_UNK_020279FC_H
+#ifndef POKEPLATINUM_GAME_OPTIONS_H
+#define POKEPLATINUM_GAME_OPTIONS_H
 
-#include "struct_defs/options.h"
 #include "savedata.h"
+
+typedef struct Options {
+    u16 textSpeed : 4;
+    u16 soundMethod : 2;
+    u16 battleStyle : 1;
+    u16 battleScene : 1;
+    u16 buttonMode : 2;
+    u16 frame : 5;
+    u16 : 1;
+} Options;
 
 Options * sub_020279FC(u32 param0);
 void sub_02027A10(const Options * param0, Options * param1);
@@ -22,4 +31,4 @@ void sub_02027B38(Options * param0, int param1);
 int sub_02027B50(const Options * param0);
 void sub_02027B58(Options * param0, int param1);
 
-#endif // POKEPLATINUM_UNK_020279FC_H
+#endif // POKEPLATINUM_GAME_OPTIONS_H

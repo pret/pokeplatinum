@@ -40,7 +40,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "trainer_info.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_02033200.h"
 #include "unk_020797C8.h"
 #include "pokemon_icon.h"

@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV6_02246254_H
 
 #include "trainer_info.h"
-#include "struct_defs/options.h"
+#include "game_options.h"
 #include "pokemon.h"
 
 typedef struct {

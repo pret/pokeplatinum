@@ -59,7 +59,7 @@
 #include "strbuf.h"
 #include "savedata/save_table.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202DAB4.h"
 #include "unk_02033200.h"
 #include "communication_system.h"

@@ -31,7 +31,7 @@
 #include "strbuf.h"
 #include "savedata/save_table.h"
 #include "savedata.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202B604.h"
 #include "unk_0202CC64.h"
 #include "unk_0202CD50.h"

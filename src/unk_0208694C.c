@@ -18,7 +18,6 @@
 #include "constdata/const_020F2DAC.h"
 
 #include "struct_defs/struct_0200C738.h"
-#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02099F80.h"
@@ -59,7 +58,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "pokemon.h"
 #include "unk_020797C8.h"
 #include "pokemon_icon.h"

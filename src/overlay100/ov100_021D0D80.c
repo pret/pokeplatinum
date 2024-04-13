@@ -30,7 +30,7 @@
 #include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_02024220.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "overlay100/ov100_021D0D80.h"
 #include "overlay100/ov100_021D13E4.h"
 #include "overlay100/ov100_021D1C44.h"

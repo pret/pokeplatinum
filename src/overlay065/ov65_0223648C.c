@@ -61,7 +61,7 @@
 #include "strbuf.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202B604.h"
 #include "communication_information.h"
 #include "communication_system.h"

@@ -46,7 +46,7 @@
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202C858.h"
 #include "unk_020393C8.h"
 #include "pokemon.h"

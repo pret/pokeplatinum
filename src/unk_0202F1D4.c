@@ -28,7 +28,7 @@
 #include "trainer_info.h"
 #include "unk_02026150.h"
 #include "unk_0202631C.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202F1D4.h"
 #include "pokemon.h"
 #include "party.h"

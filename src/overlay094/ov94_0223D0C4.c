@@ -37,7 +37,7 @@
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_020393C8.h"
 #include "pokemon.h"
 #include "party.h"

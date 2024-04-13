@@ -36,7 +36,6 @@
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0201D738.h"
-#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "pokemon.h"
 #include "struct_defs/trainer_data.h"
@@ -62,7 +61,7 @@
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202CD50.h"
 #include "unk_0202F1D4.h"
 #include "poketch_data.h"

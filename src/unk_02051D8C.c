@@ -17,7 +17,6 @@
 #include "savedata.h"
 
 #include "struct_defs/struct_0202610C.h"
-#include "struct_defs/options.h"
 #include "field/field_system.h"
 #include "struct_defs/struct_02055BA8.h"
 #include "struct_defs/struct_0205EC34.h"
@@ -37,7 +36,7 @@
 #include "trainer_info.h"
 #include "unk_0202602C.h"
 #include "unk_0202631C.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_02027F84.h"
 #include "unk_0202C858.h"
 #include "unk_0202CC64.h"

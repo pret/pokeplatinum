@@ -16,7 +16,6 @@
 
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/union_02022594_020225E0.h"
-#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay022/struct_ov22_022559F8.h"
@@ -59,7 +58,7 @@
 #include "unk_02022594.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202C7FC.h"
 #include "unk_0202CD50.h"
 #include "overlay072/ov72_0223D7A0.h"

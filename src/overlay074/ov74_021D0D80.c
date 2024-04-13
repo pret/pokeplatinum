@@ -12,7 +12,6 @@
 #include "strbuf.h"
 
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/options.h"
 #include "struct_defs/struct_0203D8EC.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
@@ -38,7 +37,7 @@
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
 #include "strbuf.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_020393C8.h"
 #include "overlay074/ov74_021D0D80.h"
 

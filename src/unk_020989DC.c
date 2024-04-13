@@ -21,7 +21,7 @@
 #include "string_template.h"
 #include "heap.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "poffin.h"
 #include "pokemon.h"
 #include "party.h"

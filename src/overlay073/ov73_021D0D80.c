@@ -18,7 +18,6 @@
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/options.h"
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208737C.h"
@@ -55,7 +54,7 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "savedata_misc.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "pokemon.h"
 #include "unk_0208694C.h"
 

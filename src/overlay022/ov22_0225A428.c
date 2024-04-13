@@ -9,7 +9,6 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "strbuf.h"
 
-#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02095C60.h"
 #include "overlay019/struct_ov19_021DA864.h"
@@ -35,7 +34,7 @@
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_02095AF0.h"
 #include "overlay022/ov22_022597BC.h"
 #include "overlay022/ov22_0225A428.h"

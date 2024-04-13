@@ -35,7 +35,7 @@
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
 #include "strbuf.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0208C098.h"
 #include "unk_02098FFC.h"
 #include "overlay079/ov79_021D0D80.h"

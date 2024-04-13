@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
-#include "struct_defs/options.h"
+#include "game_options.h"
 #include "struct_defs/struct_0205AA50.h"
 
 void ov88_0223E9C4(BGL * param0, Window * param1, Options * param2);

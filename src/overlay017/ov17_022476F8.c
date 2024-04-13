@@ -27,7 +27,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "pokemon.h"
 #include "overlay017/ov17_022476F8.h"
 

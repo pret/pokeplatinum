@@ -9,7 +9,7 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
-#include "struct_defs/options.h"
+#include "game_options.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "field/field_system.h"
 #include "struct_defs/struct_0203E234.h"

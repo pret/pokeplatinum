@@ -69,7 +69,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "pokemon.h"
 #include "overlay078/ov78_021D0D80.h"
 

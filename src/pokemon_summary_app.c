@@ -41,7 +41,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_020393C8.h"
 #include "unk_020507CC.h"
 #include "unk_0206A8DC.h"

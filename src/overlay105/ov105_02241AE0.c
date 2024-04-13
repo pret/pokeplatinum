@@ -20,7 +20,6 @@
 #include "constdata/const_020F410C.h"
 
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02081CF4.h"
@@ -57,7 +56,7 @@
 #include "unk_02024220.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "unk_020363E8.h"

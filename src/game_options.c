@@ -5,11 +5,10 @@
 
 #include "savedata.h"
 
-#include "struct_defs/options.h"
 
 #include "heap.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 
 Options * sub_020279FC (u32 param0)
 {

@@ -25,7 +25,7 @@
 #include "unk_02020020.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "overlay100/ov100_021D44C0.h"
 #include "overlay100/ov100_021D46C8.h"
 

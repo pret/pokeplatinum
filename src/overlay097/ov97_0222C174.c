@@ -16,7 +16,6 @@
 
 #include "overlay077/const_ov77_021D742C.h"
 
-#include "struct_defs/options.h"
 #include "struct_defs/struct_0202DBAC.h"
 #include "struct_defs/struct_0202DF40.h"
 #include "struct_defs/struct_0203CC84.h"
@@ -48,7 +47,7 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202DAB4.h"
 #include "unk_02033200.h"
 #include "unk_020393C8.h"

@@ -8,7 +8,7 @@
 
 #include "constdata/const_020F2DBC.h"
 
-#include "struct_defs/options.h"
+#include "game_options.h"
 #include "struct_defs/struct_02089438.h"
 #include "struct_defs/struct_02089688.h"
 #include "struct_defs/struct_02099F80.h"

@@ -13,7 +13,7 @@
 #include "heap.h"
 #include "unk_02025E08.h"
 #include "unk_0202631C.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_020507CC.h"
 #include "unk_0206A8DC.h"
 #include "unk_0209747C.h"

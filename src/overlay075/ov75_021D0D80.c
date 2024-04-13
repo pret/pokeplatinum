@@ -48,7 +48,7 @@
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
 #include "strbuf.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_020393C8.h"
 #include "pokemon_icon.h"
 #include "overlay075/ov75_021D0D80.h"

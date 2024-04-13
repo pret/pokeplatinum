@@ -22,7 +22,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "savedata/save_table.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "poffin.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202B604.h"

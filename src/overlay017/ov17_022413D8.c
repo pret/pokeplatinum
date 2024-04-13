@@ -43,7 +43,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "pokemon.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"

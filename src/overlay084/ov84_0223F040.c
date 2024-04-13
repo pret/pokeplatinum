@@ -26,7 +26,7 @@
 #include "unk_0201D670.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "poffin.h"
 #include "move_table.h"
 #include "item.h"
