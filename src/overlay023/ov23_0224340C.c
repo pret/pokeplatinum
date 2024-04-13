@@ -129,7 +129,7 @@ typedef struct {
     UnkStruct_ov19_021DA864 unk_238;
     GraphicElementData * unk_25C[32];
     GraphicElementData * unk_2DC[4];
-    UnkStruct_020508D4 * unk_2EC;
+    TaskManager * unk_2EC;
     SysTask * unk_2F0;
     SysTask * unk_2F4;
     SysTask * unk_2F8;

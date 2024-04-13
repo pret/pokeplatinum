@@ -55,7 +55,7 @@ typedef struct {
 
 static void sub_0209AD84(UnkStruct_0209AD84 * param0);
 static void sub_0209ADBC(UnkStruct_0209AD84 * param0);
-static BOOL sub_0209AE14(UnkStruct_020508D4 * param0);
+static BOOL sub_0209AE14(TaskManager * param0);
 static void sub_0209B084(UnkStruct_0209AD84 * param0, int param1, BOOL param2);
 static BOOL sub_0209B100(UnkStruct_0209AD84 * param0);
 static void sub_0209B110(UnkStruct_0209AD84 * param0);
@@ -65,9 +65,9 @@ static void sub_0209B1D8(UnkStruct_0209AD84 * param0);
 static void sub_0209B27C(UnkStruct_0209AD84 * param0);
 static int sub_0209B288(UnkStruct_0209AD84 * param0);
 
-void sub_0209ACF4 (UnkStruct_020508D4 * param0)
+void sub_0209ACF4 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_0209AD84 * v1 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0209AD84));
 
     v1->unk_00 = v0;
@@ -118,7 +118,7 @@ static void sub_0209ADBC (UnkStruct_0209AD84 * param0)
     }
 }
 
-static BOOL sub_0209AE14 (UnkStruct_020508D4 * param0)
+static BOOL sub_0209AE14 (TaskManager * param0)
 {
     UnkStruct_0209AD84 * v0 = sub_02050A64(param0);
 

@@ -13,8 +13,8 @@
 #include "overlay006/struct_ov6_02240A00_decl.h"
 #include "overlay006/struct_ov6_02240C44_decl.h"
 
-void ov6_0223E384(UnkStruct_020508D4 * param0);
-void ov6_0223E4EC(UnkStruct_020508D4 * param0);
+void ov6_0223E384(TaskManager * param0);
+void ov6_0223E4EC(TaskManager * param0);
 UnkStruct_ov5_021D1BEC * ov6_0223E6EC(FieldSystem * param0);
 void ov6_0223E700(UnkStruct_ov5_021D1BEC * param0);
 BOOL ov6_0223E708(UnkStruct_ov5_021D1BEC * param0);

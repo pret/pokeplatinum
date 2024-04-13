@@ -424,7 +424,7 @@ void sub_0204A32C (UnkStruct_0204AFC4 * param0)
     param0 = NULL;
 }
 
-void sub_0204A358 (UnkStruct_0204AFC4 * param0, UnkStruct_020508D4 * param1, void ** param2)
+void sub_0204A358 (UnkStruct_0204AFC4 * param0, TaskManager * param1, void ** param2)
 {
     sub_0206BBFC(param1, param2, 17, 0, param0->unk_0E, param0->unk_0E, 100, 0);
 }

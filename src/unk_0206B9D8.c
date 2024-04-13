@@ -173,9 +173,9 @@ static int sub_0206BB6C (UnkStruct_0206B9D8 * param0, FieldSystem * param1)
     return 0;
 }
 
-static BOOL sub_0206BB94 (UnkStruct_020508D4 * param0)
+static BOOL sub_0206BB94 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_0206B9D8 * v1 = sub_02050A64(param0);
 
     switch (v1->unk_04) {
@@ -199,9 +199,9 @@ static BOOL sub_0206BB94 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_0206BBFC (UnkStruct_020508D4 * param0, void ** param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u8 param7)
+void sub_0206BBFC (TaskManager * param0, void ** param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u8 param7)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_0206B9D8 * v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0206B9D8));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0206B9D8));
@@ -245,10 +245,10 @@ static int sub_0206BC70 (UnkStruct_0206BC48 * param0, FieldSystem * param1)
     return 2;
 }
 
-static BOOL sub_0206BC94 (UnkStruct_020508D4 * param0)
+static BOOL sub_0206BC94 (TaskManager * param0)
 {
     u16 * v0;
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
     UnkStruct_0206BC48 * v2 = sub_02050A64(param0);
 
     switch (v2->unk_04) {
@@ -268,9 +268,9 @@ static BOOL sub_0206BC94 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_0206BCE4 (UnkStruct_020508D4 * param0, u16 param1, u16 param2, u16 param3)
+void sub_0206BCE4 (TaskManager * param0, u16 param1, u16 param2, u16 param3)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_0206BC48 * v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0206BC48));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0206BC48));
@@ -282,11 +282,11 @@ void sub_0206BCE4 (UnkStruct_020508D4 * param0, u16 param1, u16 param2, u16 para
     sub_02050944(v0->unk_10, sub_0206BC94, v1);
 }
 
-static BOOL sub_0206BD1C (UnkStruct_020508D4 * param0)
+static BOOL sub_0206BD1C (TaskManager * param0)
 {
     u16 * v0;
     const void * v1;
-    FieldSystem * v2 = sub_02050A60(param0);
+    FieldSystem * v2 = TaskMan_FieldSystem(param0);
     UnkStruct_0206BD88 * v3 = sub_02050A64(param0);
 
     v1 = sub_0203664C(1 - CommSys_CurNetId());
@@ -312,9 +312,9 @@ static BOOL sub_0206BD1C (UnkStruct_020508D4 * param0)
     return 1;
 }
 
-void sub_0206BD88 (UnkStruct_020508D4 * param0, u16 param1, u16 param2)
+void sub_0206BD88 (TaskManager * param0, u16 param1, u16 param2)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_0206BD88 * v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0206BD88));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0206BD88));

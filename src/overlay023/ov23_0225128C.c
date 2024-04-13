@@ -613,9 +613,9 @@ static void ov23_02251A84 (BOOL param0, FieldSystem * param1)
     sub_02020990(&v0, param1->unk_24);
 }
 
-static BOOL ov23_02251ACC (UnkStruct_020508D4 * param0)
+static BOOL ov23_02251ACC (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_ov23_02251ACC * v1 = sub_02050A64(param0);
     UnkStruct_02049FA8 v2;
     u32 v3;

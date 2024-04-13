@@ -44,7 +44,7 @@ static void sub_02072038(const u16 param0, const u8 param1, const u16 * param2, 
 static void sub_0207207C(const u8 param0, const UnkStruct_02025E5C * param1, const RTCDate * param2, const RTCDate * param3, const RTCTime * param4, const u8 param5, TrainerCard * param6);
 static void sub_02072120(const u32 param0, const u32 param1, const u32 param2, const u32 param3, const u8 * param4, TrainerCard * param5);
 static void sub_0207216C(TrainerInfo * param0, FieldSystem * param1, TrainerCard * param2);
-static BOOL sub_02072230(UnkStruct_020508D4 * param0);
+static BOOL sub_02072230(TaskManager * param0);
 
 void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 param3, FieldSystem * param4, TrainerCard * param5)
 {
@@ -286,9 +286,9 @@ void sub_02072204 (FieldSystem * param0)
     sub_02050944(param0->unk_10, sub_02072230, v0);
 }
 
-static BOOL sub_02072230 (UnkStruct_020508D4 * param0)
+static BOOL sub_02072230 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_02072204 * v1 = sub_02050A64(param0);
 
     switch (v1->unk_00) {

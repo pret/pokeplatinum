@@ -852,9 +852,9 @@ static void sub_02070288 (UnkStruct_0206F7F8 * param0)
     SpriteActor_EnableObject(param0->unk_2FC[1], 0);
 }
 
-static BOOL sub_020702D0 (UnkStruct_020508D4 * param0)
+static BOOL sub_020702D0 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_0206F314 * v1 = sub_02050A64(param0);
     UnkStruct_0206F7F8 * v2 = v1->unk_08;
 
@@ -914,9 +914,9 @@ static BOOL sub_020702D0 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_020703FC (UnkStruct_020508D4 * param0, u16 param1)
+void sub_020703FC (TaskManager * param0, u16 param1)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_0206F314 * v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0206F314));
 
     v1->unk_00 = 0;

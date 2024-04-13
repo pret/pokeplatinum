@@ -708,10 +708,10 @@ BOOL ov5_021D4A24 (FieldSystem * param0, UnkStruct_ov5_021D432C * param1, const 
     return 0;
 }
 
-static BOOL ov5_021D4BC8 (UnkStruct_020508D4 * param0)
+static BOOL ov5_021D4BC8 (TaskManager * param0)
 {
     BOOL v0;
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
     u8 * v2 = sub_02050A64(param0);
 
     v0 = ov5_021D42F0(v1->unk_54, *v2);
@@ -884,10 +884,10 @@ UnkStruct_ov5_021D4E00 * ov5_021D4E00 (void)
     return v0;
 }
 
-BOOL ov5_021D4E10 (UnkStruct_020508D4 * param0)
+BOOL ov5_021D4E10 (TaskManager * param0)
 {
     LocalMapObject * v0;
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
     UnkStruct_ov5_021D4E00 * v2 = sub_02050A64(param0);
 
     switch (v2->unk_00) {
@@ -942,9 +942,9 @@ BOOL ov5_021D4E10 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-BOOL ov5_021D4F14 (UnkStruct_020508D4 * param0)
+BOOL ov5_021D4F14 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_ov5_021D4E00 * v1 = sub_02050A64(param0);
 
     switch (v1->unk_00) {
@@ -981,9 +981,9 @@ BOOL ov5_021D4F14 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-BOOL ov5_021D4FA0 (UnkStruct_020508D4 * param0)
+BOOL ov5_021D4FA0 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_ov5_021D4E00 * v1 = sub_02050A64(param0);
 
     switch (v1->unk_00) {
@@ -1014,10 +1014,10 @@ BOOL ov5_021D4FA0 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-BOOL ov5_021D5020 (UnkStruct_020508D4 * param0)
+BOOL ov5_021D5020 (TaskManager * param0)
 {
     LocalMapObject * v0;
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
     UnkStruct_ov5_021D4E00 * v2 = sub_02050A64(param0);
 
     switch (v2->unk_00) {
@@ -1095,10 +1095,10 @@ BOOL ov5_021D5020 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-BOOL ov5_021D5150 (UnkStruct_020508D4 * param0)
+BOOL ov5_021D5150 (TaskManager * param0)
 {
     LocalMapObject * v0;
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
     UnkStruct_ov5_021D4E00 * v2 = sub_02050A64(param0);
 
     switch (v2->unk_00) {

@@ -50,11 +50,11 @@ typedef struct {
     UnkStruct_ov5_021DBA58 * unk_08;
 } UnkStruct_ov5_021DBC64;
 
-void ov5_021DB888(UnkStruct_020508D4 * param0, StringTemplate * param1, u16 * param2);
+void ov5_021DB888(TaskManager * param0, StringTemplate * param1, u16 * param2);
 u16 ov5_021DBD98(FieldSystem * param0, LocalMapObject * param1, u16 param2);
 BOOL ov5_021DBB94(FieldSystem * param0);
 static BOOL ov5_021DBB70(u32 param0);
-static BOOL ov5_021DB8D8(UnkStruct_020508D4 * param0);
+static BOOL ov5_021DB8D8(TaskManager * param0);
 static int ov5_021DBA58(UnkStruct_ov5_021DBA58 * param0);
 static void ov5_021DBA54(UnkStruct_ov5_021DBA58 * param0, u32 param1);
 static void ov5_021DBA7C(UnkStruct_ov5_021DBA58 * param0);
@@ -330,10 +330,10 @@ static const UnkStruct_ov5_021F8E3C Unk_ov5_021F8E34[] = {
     {0xfe, 0x0}
 };
 
-void ov5_021DB888 (UnkStruct_020508D4 * param0, StringTemplate * param1, u16 * param2)
+void ov5_021DB888 (TaskManager * param0, StringTemplate * param1, u16 * param2)
 {
     UnkStruct_ov5_021DBA58 * v0;
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
 
     v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021DBA58));
 
@@ -353,7 +353,7 @@ void ov5_021DB888 (UnkStruct_020508D4 * param0, StringTemplate * param1, u16 * p
     return;
 }
 
-static BOOL ov5_021DB8D8 (UnkStruct_020508D4 * param0)
+static BOOL ov5_021DB8D8 (TaskManager * param0)
 {
     s32 v0, v1;
     int v2;

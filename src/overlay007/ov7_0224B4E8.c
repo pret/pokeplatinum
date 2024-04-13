@@ -457,9 +457,9 @@ static BOOL ov7_0224BBC4 (UnkStruct_ov7_0224B4E8 * param0)
     return 0;
 }
 
-static BOOL ov7_0224BC74 (UnkStruct_020508D4 * param0)
+static BOOL ov7_0224BC74 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_ov7_0224B4E8 * v1 = sub_02050A64(param0);
     int v2;
 
@@ -576,9 +576,9 @@ static UnkStruct_ov7_0224B4E8 * ov7_0224BE10 (FieldSystem * param0)
     return v0;
 }
 
-void ov7_0224BE7C (UnkStruct_020508D4 * param0, u16 * param1)
+void ov7_0224BE7C (TaskManager * param0, u16 * param1)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_ov7_0224B4E8 * v1 = ov7_0224BE10(v0);
 
     v1->unk_70 = param1;

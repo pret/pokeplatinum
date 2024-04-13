@@ -289,10 +289,10 @@ BOOL HasAllLegendaryTitansInParty (SaveData * param0)
     return 0;
 }
 
-static BOOL sub_0205E268 (UnkStruct_020508D4 * param0)
+static BOOL sub_0205E268 (TaskManager * param0)
 {
     VecFx32 v0;
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
     UnkStruct_0205E268 * v2 = sub_02050A64(param0);
 
     v0.x = FX32_CONST(8);
@@ -320,9 +320,9 @@ static BOOL sub_0205E268 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_0205E318 (UnkStruct_020508D4 * param0, LocalMapObject * param1, u16 param2, u16 param3, u16 param4, u16 param5)
+void sub_0205E318 (TaskManager * param0, LocalMapObject * param1, u16 param2, u16 param3, u16 param4, u16 param5)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_0205E268 * v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205E268));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0205E268));
@@ -336,9 +336,9 @@ void sub_0205E318 (UnkStruct_020508D4 * param0, LocalMapObject * param1, u16 par
     sub_02050944(v0->unk_10, sub_0205E268, v1);
 }
 
-static BOOL sub_0205E3AC (UnkStruct_020508D4 * param0)
+static BOOL sub_0205E3AC (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_0205E3AC * v1 = sub_02050A64(param0);
 
     sub_02062D64(v1->unk_00, v1->unk_09);
@@ -356,9 +356,9 @@ static BOOL sub_0205E3AC (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_0205E3F4 (UnkStruct_020508D4 * param0, LocalMapObject * param1, u16 param2, u16 param3)
+void sub_0205E3F4 (TaskManager * param0, LocalMapObject * param1, u16 param2, u16 param3)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_0205E3AC * v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205E3AC));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0205E3AC));

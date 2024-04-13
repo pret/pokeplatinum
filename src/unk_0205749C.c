@@ -20,7 +20,7 @@ typedef struct {
 } UnkStruct_0205749C;
 
 
-static BOOL sub_020574CC(UnkStruct_020508D4 * param0);
+static BOOL sub_020574CC(TaskManager * param0);
 
 static const OverlayManagerTemplate Unk_020ED4CC = {
     ov66_0222DCE0,
@@ -29,7 +29,7 @@ static const OverlayManagerTemplate Unk_020ED4CC = {
     FS_OVERLAY_ID(overlay66)
 };
 
-void sub_0205749C (UnkStruct_020508D4 * param0, BOOL param1)
+void sub_0205749C (TaskManager * param0, BOOL param1)
 {
     UnkStruct_0205749C * v0;
 
@@ -40,9 +40,9 @@ void sub_0205749C (UnkStruct_020508D4 * param0, BOOL param1)
     sub_02050944(param0, sub_020574CC, v0);
 }
 
-static BOOL sub_020574CC (UnkStruct_020508D4 * param0)
+static BOOL sub_020574CC (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_0205749C * v1 = sub_02050A64(param0);
 
     switch (v1->unk_00) {

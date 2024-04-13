@@ -305,16 +305,16 @@ void include_ov8_02249960(void);
 
 static u8 ov8_02249960(const u8 param0, const int param1);
 static void ov8_0224996C(const u8 param0, int * param1);
-static BOOL ov8_02249A94(UnkStruct_020508D4 * param0);
-static BOOL ov8_02249B74(UnkStruct_020508D4 * param0);
-static BOOL ov8_02249CD8(UnkStruct_020508D4 * param0);
+static BOOL ov8_02249A94(TaskManager * param0);
+static BOOL ov8_02249B74(TaskManager * param0);
+static BOOL ov8_02249CD8(TaskManager * param0);
 static void ov8_02249F14(const u8 param0, UnkStruct_ov5_021D3CAC * param1);
-static BOOL ov8_0224A018(UnkStruct_020508D4 * param0);
-static BOOL ov8_0224A0E8(UnkStruct_020508D4 * param0);
-static BOOL ov8_0224A4FC(UnkStruct_020508D4 * param0);
-static BOOL ov8_0224A620(UnkStruct_020508D4 * param0);
-static BOOL ov8_0224A770(UnkStruct_020508D4 * param0);
-static BOOL ov8_0224ADE8(UnkStruct_020508D4 * param0);
+static BOOL ov8_0224A018(TaskManager * param0);
+static BOOL ov8_0224A0E8(TaskManager * param0);
+static BOOL ov8_0224A4FC(TaskManager * param0);
+static BOOL ov8_0224A620(TaskManager * param0);
+static BOOL ov8_0224A770(TaskManager * param0);
+static BOOL ov8_0224ADE8(TaskManager * param0);
 static void ov8_0224B8D0(UnkStruct_ov8_0224B8D0 * param0);
 static void ov8_0224B958(UnkStruct_ov8_0224B8D0 * param0);
 static void ov8_0224BFCC(FieldSystem * param0, UnkStruct_ov8_0224C098 * param1, UnkStruct_ov8_0224B80C * param2, int param3);
@@ -411,10 +411,10 @@ BOOL ov8_02249A40 (FieldSystem * param0, const int param1, const int param2, con
     return 0;
 }
 
-static BOOL ov8_02249A94 (UnkStruct_020508D4 * param0)
+static BOOL ov8_02249A94 (TaskManager * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
     UnkStruct_ov8_0224997C * v2 = sub_02050A64(param0);
 
     switch (v2->unk_00) {
@@ -465,10 +465,10 @@ static BOOL ov8_02249A94 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL ov8_02249B74 (UnkStruct_020508D4 * param0)
+static BOOL ov8_02249B74 (TaskManager * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
     UnkStruct_ov8_0224997C * v2 = sub_02050A64(param0);
 
     switch (v2->unk_00) {
@@ -554,10 +554,10 @@ static BOOL ov8_02249B74 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL ov8_02249CD8 (UnkStruct_020508D4 * param0)
+static BOOL ov8_02249CD8 (TaskManager * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
     UnkStruct_ov8_0224997C * v2 = sub_02050A64(param0);
 
     switch (v2->unk_00) {
@@ -780,10 +780,10 @@ void ov8_02249FB8 (FieldSystem * param0)
     }
 }
 
-static BOOL ov8_0224A018 (UnkStruct_020508D4 * param0)
+static BOOL ov8_0224A018 (TaskManager * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
     UnkStruct_ov8_0224997C * v2 = sub_02050A64(param0);
 
     switch (v2->unk_00) {
@@ -828,10 +828,10 @@ static BOOL ov8_0224A018 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL ov8_0224A0E8 (UnkStruct_020508D4 * param0)
+static BOOL ov8_0224A0E8 (TaskManager * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
     UnkStruct_ov8_0224997C * v2 = sub_02050A64(param0);
 
     switch (v2->unk_00) {
@@ -1342,10 +1342,10 @@ static void ov8_0224A434 (UnkStruct_ov8_0224A1E4 * param0, const fx32 param1)
     }
 }
 
-static BOOL ov8_0224A4FC (UnkStruct_020508D4 * param0)
+static BOOL ov8_0224A4FC (TaskManager * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
     UnkStruct_ov8_0224997C * v2 = sub_02050A64(param0);
     UnkStruct_ov8_0224A1E4 * v3;
 
@@ -1410,11 +1410,11 @@ static BOOL ov8_0224A4FC (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL ov8_0224A620 (UnkStruct_020508D4 * param0)
+static BOOL ov8_0224A620 (TaskManager * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
     LocalMapObject * v1;
-    FieldSystem * v2 = sub_02050A60(param0);
+    FieldSystem * v2 = TaskMan_FieldSystem(param0);
     UnkStruct_ov8_0224997C * v3 = sub_02050A64(param0);
     UnkStruct_ov8_0224A1E4 * v4;
 
@@ -1494,11 +1494,11 @@ static BOOL ov8_0224A620 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL ov8_0224A770 (UnkStruct_020508D4 * param0)
+static BOOL ov8_0224A770 (TaskManager * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
     LocalMapObject * v1;
-    FieldSystem * v2 = sub_02050A60(param0);
+    FieldSystem * v2 = TaskMan_FieldSystem(param0);
     UnkStruct_ov8_0224997C * v3 = sub_02050A64(param0);
     UnkStruct_ov8_0224A1E4 * v4;
 
@@ -2230,10 +2230,10 @@ void ov8_0224AD34 (FieldSystem * param0, const u8 param1)
     }
 }
 
-static BOOL ov8_0224ADE8 (UnkStruct_020508D4 * param0)
+static BOOL ov8_0224ADE8 (TaskManager * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
     UnkStruct_ov8_0224997C * v2 = sub_02050A64(param0);
     UnkStruct_ov8_0224ABD4 * v3;
 
@@ -2807,10 +2807,10 @@ static BOOL ov8_0224B370 (UnkStruct_ov8_0224AF00 * param0, const fx32 param1, co
     return v0;
 }
 
-static BOOL ov8_0224B3D4 (UnkStruct_020508D4 * param0)
+static BOOL ov8_0224B3D4 (TaskManager * param0)
 {
     BOOL v0;
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
     UnkStruct_ov8_0224B67C * v2 = sub_02050A64(param0);
     UnkStruct_02071BD0 * v3 = v2->unk_14;
     UnkStruct_ov8_0224AF00 * v4 = v2->unk_18;
@@ -3339,10 +3339,10 @@ static u32 ov8_0224BAA0 (UnkStruct_ov8_0224B8D0 * param0, int param1, int param2
     return v0;
 }
 
-static BOOL ov8_0224BAF4 (UnkStruct_020508D4 * param0)
+static BOOL ov8_0224BAF4 (TaskManager * param0)
 {
     LocalMapObject * v0;
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
     UnkStruct_ov8_0224C098 * v2 = sub_02050A64(param0);
     UnkStruct_ov8_0224B8D0 * v3 = v2->unk_3C;
 
@@ -3368,7 +3368,7 @@ static BOOL ov8_0224BAF4 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL ov8_0224BB78 (UnkStruct_020508D4 * param0)
+static BOOL ov8_0224BB78 (TaskManager * param0)
 {
     int v0;
     UnkStruct_ov8_0224C098 * v1;

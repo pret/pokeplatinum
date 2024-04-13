@@ -196,7 +196,7 @@ static int sub_02098388 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-static BOOL sub_0209843C (UnkStruct_020508D4 * param0)
+static BOOL sub_0209843C (TaskManager * param0)
 {
     UnkStruct_0209843C * v0 = sub_02050A64(param0);
 
@@ -212,7 +212,7 @@ static BOOL sub_0209843C (UnkStruct_020508D4 * param0)
         break;
     case 2:
     {
-        FieldSystem * v1 = sub_02050A60(param0);
+        FieldSystem * v1 = TaskMan_FieldSystem(param0);
 
         {
             Pokemon * v2 = v0->unk_0C.unk_00;
@@ -240,7 +240,7 @@ static BOOL sub_0209843C (UnkStruct_020508D4 * param0)
     break;
     case 3:
     {
-        FieldSystem * v8 = sub_02050A60(param0);
+        FieldSystem * v8 = TaskMan_FieldSystem(param0);
         int v9;
 
         v9 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_SPECIES, 0);
@@ -257,7 +257,7 @@ static BOOL sub_0209843C (UnkStruct_020508D4 * param0)
             Pokemon_SetValue(v0->unk_0C.unk_00, 120, v0->unk_08->unk_18);
 
             {
-                FieldSystem * v10 = sub_02050A60(param0);
+                FieldSystem * v10 = TaskMan_FieldSystem(param0);
                 UnkStruct_0202CD88 * v11 = sub_0202CD88(FieldSystem_SaveData(v10));
 
                 sub_0202CF28(v11, (1 + 48));
@@ -279,7 +279,7 @@ static BOOL sub_0209843C (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_020985AC (UnkStruct_020508D4 * param0, void * param1)
+void sub_020985AC (TaskManager * param0, void * param1)
 {
     UnkStruct_0209843C * v0;
     UnkStruct_0203E2FC * v1;

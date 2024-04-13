@@ -394,13 +394,13 @@ static BOOL CheckPatchContinueChain (const u8 patchRing, const int battleResult)
     }
 }
 
-BOOL RefreshRadarChain (UnkStruct_020508D4 *param0) {
-    FieldSystem *v0 = sub_02050A60(param0);
+BOOL RefreshRadarChain (TaskManager *param0) {
+    FieldSystem *v0 = TaskMan_FieldSystem(param0);
     int *v1 = sub_02050A64(param0);
 
     switch (*v1) {
     case 0:
-        sub_02062C48(v0->unk_38);
+        MapObjectMan_PauseAllMovement(v0->unk_38);
         u8 *v2 = sub_0202D9C4(sub_0202D834(v0->saveData));
 
         if (*v2 < RADAR_BATTERY_STEPS) {
@@ -432,7 +432,7 @@ BOOL RefreshRadarChain (UnkStruct_020508D4 *param0) {
         break;
     case 4:
         Heap_FreeToHeap(v1);
-        sub_02062C78(v0->unk_38);
+        MapObjectMan_UnpauseAllMovement(v0->unk_38);
         return TRUE;
         break;
     case 3:

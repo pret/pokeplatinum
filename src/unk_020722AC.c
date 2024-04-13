@@ -131,7 +131,7 @@ typedef struct {
     int unk_04;
 } UnkStruct_020736D8;
 
-void sub_020736D8(UnkStruct_020508D4 * param0);
+void sub_020736D8(TaskManager * param0);
 void sub_020722AC(void * param0, int * param1);
 static void sub_02072334(UnkStruct_02072334 * param0);
 static void sub_02072364(SysTask * param0, void * param1);
@@ -1288,9 +1288,9 @@ static int sub_020735E8 (UnkStruct_02072334 * param0)
     return 0;
 }
 
-static BOOL sub_02073694 (UnkStruct_020508D4 * param0)
+static BOOL sub_02073694 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_020736D8 * v1 = sub_02050A64(param0);
 
     switch (v1->unk_04) {
@@ -1310,9 +1310,9 @@ static BOOL sub_02073694 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_020736D8 (UnkStruct_020508D4 * param0)
+void sub_020736D8 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_020736D8 * v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_020736D8));
 
     v1->unk_00 = 0;

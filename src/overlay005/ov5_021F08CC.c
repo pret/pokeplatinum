@@ -98,14 +98,14 @@ void * ov5_021F08CC (FieldSystem * param0, u32 param1, int param2)
     return v0;
 }
 
-BOOL ov5_021F08F8 (UnkStruct_020508D4 * param0)
+BOOL ov5_021F08F8 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_ov5_021F08CC * v1 = sub_02050A64(param0);
 
     switch (v1->unk_00) {
     case 0:
-        sub_02062C48(v0->unk_38);
+        MapObjectMan_PauseAllMovement(v0->unk_38);
         v1->unk_10 = NULL;
         v1->unk_08 = ov6_0224106C(v0, v1->unk_0C, &v1->unk_10);
         v1->unk_14 = ov5_021F09B4(v0, v1->unk_0C, v1->unk_08);
@@ -138,7 +138,7 @@ BOOL ov5_021F08F8 (UnkStruct_020508D4 * param0)
                 sub_020520A4(v1->unk_10);
             }
 
-            sub_02062C78(v0->unk_38);
+            MapObjectMan_UnpauseAllMovement(v0->unk_38);
             Heap_FreeToHeap(v1);
 
             return 1;

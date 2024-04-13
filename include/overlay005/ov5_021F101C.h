@@ -3,6 +3,6 @@
 
 #include "struct_decls/struct_020508D4_decl.h"
 
-BOOL ov5_021F101C(UnkStruct_020508D4 * param0);
+BOOL ov5_021F101C(TaskManager * param0);
 
 #endif // POKEPLATINUM_OV5_021F101C_H

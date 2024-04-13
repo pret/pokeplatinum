@@ -1718,7 +1718,7 @@ void sub_02062C3C (MapObjectManager * param0)
     sub_02062840(param0, (1 << 1) | (1 << 2));
 }
 
-void sub_02062C48 (MapObjectManager * param0)
+void MapObjectMan_PauseAllMovement (MapObjectManager * param0)
 {
     int v0 = sub_02062824(param0);
     LocalMapObject * v1 = sub_02062878(param0);
@@ -1733,7 +1733,7 @@ void sub_02062C48 (MapObjectManager * param0)
     } while (v0);
 }
 
-void sub_02062C78 (MapObjectManager * param0)
+void MapObjectMan_UnpauseAllMovement (MapObjectManager * param0)
 {
     int v0 = sub_02062824(param0);
     LocalMapObject * v1 = sub_02062878(param0);

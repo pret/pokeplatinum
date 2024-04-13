@@ -24,7 +24,7 @@ typedef struct {
     u8 unk_10[6];
 } UnkStruct_ov6_02247D30;
 
-static BOOL ov6_02247DAC(UnkStruct_020508D4 * param0);
+static BOOL ov6_02247DAC(TaskManager * param0);
 
 static VecFx32 Unk_ov6_022498E4[6] = {
     {-((FX32_ONE * 4) + (FX32_ONE / 2)), FX32_ONE * 12, -((FX32_ONE * 4) + (FX32_ONE / 2))},
@@ -67,9 +67,9 @@ void ov6_02247D30 (FieldSystem * param0, const u8 param1)
     }
 }
 
-static BOOL ov6_02247DAC (UnkStruct_020508D4 * param0)
+static BOOL ov6_02247DAC (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_ov6_02247D30 * v1 = (UnkStruct_ov6_02247D30 *)sub_02050A64(param0);
 
     switch (v1->unk_0F) {

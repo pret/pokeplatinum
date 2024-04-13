@@ -384,9 +384,9 @@ static void sub_0205610C (FieldSystem * param0, UnkStruct_020562AC * param1, con
     param1->unk_0C = sub_02065700(v0, param2);
 }
 
-static BOOL sub_02056124 (UnkStruct_020508D4 * param0)
+static BOOL sub_02056124 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_020562AC * v1 = sub_02050A64(param0);
 
     switch (v1->unk_00) {

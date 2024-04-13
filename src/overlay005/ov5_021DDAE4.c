@@ -23,9 +23,9 @@ typedef struct {
     int unk_00;
 } UnkStruct_ov5_021DDBC8;
 
-static BOOL ov5_021DDAE4 (UnkStruct_020508D4 * param0)
+static BOOL ov5_021DDAE4 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_ov5_021DDBC8 * v1 = sub_02050A64(param0);
 
     switch (v1->unk_00) {
@@ -65,7 +65,7 @@ static BOOL ov5_021DDAE4 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void ov5_021DDBC8 (UnkStruct_020508D4 * param0)
+void ov5_021DDBC8 (TaskManager * param0)
 {
     UnkStruct_ov5_021DDBC8 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov5_021DDBC8));
 

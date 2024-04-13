@@ -3,6 +3,6 @@
 
 #include "struct_decls/struct_020508D4_decl.h"
 
-void sub_0209ACF4(UnkStruct_020508D4 * param0);
+void sub_0209ACF4(TaskManager * param0);
 
 #endif // POKEPLATINUM_UNK_0209ACF4_H

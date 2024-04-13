@@ -41,9 +41,9 @@ void * sub_0207064C (u32 param0, FieldSystem * param1, Pokemon * param2, u16 par
     return v0;
 }
 
-BOOL sub_02070680 (UnkStruct_020508D4 * param0)
+BOOL sub_02070680 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_0207064C * v1 = sub_02050A64(param0);
 
     switch (v1->unk_04) {

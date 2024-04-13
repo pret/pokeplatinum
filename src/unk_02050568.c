@@ -36,7 +36,7 @@ typedef struct {
     u8 unk_09[3];
 } UnkStruct_02050568;
 
-static BOOL sub_020505A0(UnkStruct_020508D4 * param0);
+static BOOL sub_020505A0(TaskManager * param0);
 static void sub_0205074C(PlayerAvatar * param0, BOOL param1);
 static void sub_0205075C(FieldSystem * param0);
 
@@ -48,9 +48,9 @@ void sub_02050568 (FieldSystem * param0)
     sub_02050944(param0->unk_10, sub_020505A0, v0);
 }
 
-static BOOL sub_020505A0 (UnkStruct_020508D4 * param0)
+static BOOL sub_020505A0 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_02050568 * v1 = sub_02050A64(param0);
     UnkStruct_020507E4 * v2 = SaveData_Events(v0->saveData);
 

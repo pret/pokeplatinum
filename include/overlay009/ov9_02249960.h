@@ -27,7 +27,7 @@ void ov9_0224F158(FieldSystem * param0, u16 param1);
 void ov9_0224F16C(FieldSystem * param0, u16 param1);
 BOOL ov9_0224F240(const LocalMapObject * param0, int param1);
 BOOL ov9_0224F2B0(const LocalMapObject * param0);
-UnkStruct_ov9_0224F6EC * ov9_0224F2BC(FieldSystem * param0, UnkStruct_020508D4 * param1, LocalMapObject * param2);
+UnkStruct_ov9_0224F6EC * ov9_0224F2BC(FieldSystem * param0, TaskManager * param1, LocalMapObject * param2);
 BOOL ov9_0224F6EC(UnkStruct_ov9_0224F6EC * param0);
 void ov9_02250780(FieldSystem * param0);
 BOOL ov9_02250F74(FieldSystem * param0);

@@ -40,9 +40,9 @@ typedef struct {
 static void * ov6_02247590(u32 param0, u32 param1);
 static void ov6_0224732C(FieldSystem * param0, UnkStruct_ov6_02247100 * param1);
 
-int(*const Unk_ov6_022495CC[])(UnkStruct_020508D4 *, FieldSystem *, UnkStruct_ov6_02247100 *);
-int(*const Unk_ov6_022495BC[])(UnkStruct_020508D4 *, FieldSystem *, UnkStruct_ov6_02247100 *);
-int(*const Unk_ov6_022495F0[])(UnkStruct_020508D4 *, FieldSystem *, UnkStruct_ov6_02247100 *);
+int(*const Unk_ov6_022495CC[])(TaskManager *, FieldSystem *, UnkStruct_ov6_02247100 *);
+int(*const Unk_ov6_022495BC[])(TaskManager *, FieldSystem *, UnkStruct_ov6_02247100 *);
+int(*const Unk_ov6_022495F0[])(TaskManager *, FieldSystem *, UnkStruct_ov6_02247100 *);
 
 const UnkStruct_ov5_021F8E3C Unk_ov6_02249608[];
 const UnkStruct_ov5_021F8E3C Unk_ov6_022495DC[];
@@ -59,10 +59,10 @@ void * ov6_02247100 (FieldSystem * param0, u32 param1)
     return v0;
 }
 
-BOOL ov6_02247120 (UnkStruct_020508D4 * param0)
+BOOL ov6_02247120 (TaskManager * param0)
 {
     int v0;
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
     UnkStruct_ov6_02247100 * v2 = sub_02050A64(param0);
 
     do {
@@ -76,7 +76,7 @@ BOOL ov6_02247120 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static int ov6_0224715C (UnkStruct_020508D4 * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
+static int ov6_0224715C (TaskManager * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
 {
     param2->unk_14 = ov5_021F0EB0(param1, 4);
     ov5_021F0F10(param2->unk_14, 1, ((FX32_ONE * -150)), 15);
@@ -98,7 +98,7 @@ static int ov6_0224715C (UnkStruct_020508D4 * param0, FieldSystem * param1, UnkS
     return 0;
 }
 
-static int ov6_022471C0 (UnkStruct_020508D4 * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
+static int ov6_022471C0 (TaskManager * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
 {
     if (sub_0206574C(param2->unk_0C) == 0) {
         return 0;
@@ -123,7 +123,7 @@ static int ov6_022471C0 (UnkStruct_020508D4 * param0, FieldSystem * param1, UnkS
     return 0;
 }
 
-static int ov6_02247244 (UnkStruct_020508D4 * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
+static int ov6_02247244 (TaskManager * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
 {
     if (sub_0206574C(param2->unk_0C) == 1) {
         sub_02065758(param2->unk_0C);
@@ -142,7 +142,7 @@ static int ov6_02247244 (UnkStruct_020508D4 * param0, FieldSystem * param1, UnkS
     return 1;
 }
 
-static int ov6_02247288 (UnkStruct_020508D4 * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
+static int ov6_02247288 (TaskManager * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
 {
     UnkStruct_0203A790 * v0 = sub_0203A790(param1->saveData);
 
@@ -161,7 +161,7 @@ static int ov6_02247288 (UnkStruct_020508D4 * param0, FieldSystem * param1, UnkS
     return 2;
 }
 
-static int(*const Unk_ov6_022495CC[])(UnkStruct_020508D4 *, FieldSystem *, UnkStruct_ov6_02247100 *) = {
+static int(*const Unk_ov6_022495CC[])(TaskManager *, FieldSystem *, UnkStruct_ov6_02247100 *) = {
     ov6_0224715C,
     ov6_022471C0,
     ov6_02247244,
@@ -179,10 +179,10 @@ void * ov6_022472C8 (FieldSystem * param0, u32 param1, int param2)
     return v0;
 }
 
-BOOL ov6_022472E8 (UnkStruct_020508D4 * param0)
+BOOL ov6_022472E8 (TaskManager * param0)
 {
     int v0;
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
     UnkStruct_ov6_02247100 * v2 = sub_02050A64(param0);
 
     do {
@@ -211,7 +211,7 @@ static void ov6_0224732C (FieldSystem * param0, UnkStruct_ov6_02247100 * param1)
     sub_0202B758(param0->unk_9C, v0, 1);
 }
 
-static int ov6_02247354 (UnkStruct_020508D4 * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
+static int ov6_02247354 (TaskManager * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
 {
     if (param2->unk_08 == 2) {
         sub_0200F174(0, 1, 1, 0x0, 6, 1, 4);
@@ -227,7 +227,7 @@ static int ov6_02247354 (UnkStruct_020508D4 * param0, FieldSystem * param1, UnkS
     return 0;
 }
 
-static int ov6_022473C8 (UnkStruct_020508D4 * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
+static int ov6_022473C8 (TaskManager * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
 {
     if (sub_0206574C(param2->unk_0C) == 1) {
         sub_02065758(param2->unk_0C);
@@ -244,7 +244,7 @@ static int ov6_022473C8 (UnkStruct_020508D4 * param0, FieldSystem * param1, UnkS
     return 1;
 }
 
-static int ov6_0224740C (UnkStruct_020508D4 * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
+static int ov6_0224740C (TaskManager * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
 {
     if (sub_0206574C(param2->unk_0C) == 0) {
         return 0;
@@ -264,7 +264,7 @@ static int ov6_0224740C (UnkStruct_020508D4 * param0, FieldSystem * param1, UnkS
     return 0;
 }
 
-static int ov6_02247458 (UnkStruct_020508D4 * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
+static int ov6_02247458 (TaskManager * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
 {
     if (sub_0206574C(param2->unk_0C) == 0) {
         return 0;
@@ -280,7 +280,7 @@ static int ov6_02247458 (UnkStruct_020508D4 * param0, FieldSystem * param1, UnkS
     return 2;
 }
 
-static int(*const Unk_ov6_022495BC[])(UnkStruct_020508D4 *, FieldSystem *, UnkStruct_ov6_02247100 *) = {
+static int(*const Unk_ov6_022495BC[])(TaskManager *, FieldSystem *, UnkStruct_ov6_02247100 *) = {
     ov6_02247354,
     ov6_022473C8,
     ov6_0224740C,
@@ -299,10 +299,10 @@ void * ov6_02247488 (FieldSystem * param0, Pokemon * param1, u32 param2)
     return v0;
 }
 
-BOOL ov6_022474AC (UnkStruct_020508D4 * param0)
+BOOL ov6_022474AC (TaskManager * param0)
 {
     int v0;
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
     UnkStruct_ov6_02247100 * v2 = sub_02050A64(param0);
 
     do {
@@ -316,7 +316,7 @@ BOOL ov6_022474AC (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static int ov6_022474E8 (UnkStruct_020508D4 * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
+static int ov6_022474E8 (TaskManager * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
 {
     int v0 = sub_0205EB98(param1->playerAvatar);
 
@@ -326,7 +326,7 @@ static int ov6_022474E8 (UnkStruct_020508D4 * param0, FieldSystem * param1, UnkS
     return 0;
 }
 
-static int ov6_0224750C (UnkStruct_020508D4 * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
+static int ov6_0224750C (TaskManager * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
 {
     if (ov6_02243FBC(param2->unk_10) == 0) {
         return 0;
@@ -337,7 +337,7 @@ static int ov6_0224750C (UnkStruct_020508D4 * param0, FieldSystem * param1, UnkS
     return 1;
 }
 
-static int(*const Unk_ov6_022495F0[])(UnkStruct_020508D4 *, FieldSystem *, UnkStruct_ov6_02247100 *) = {
+static int(*const Unk_ov6_022495F0[])(TaskManager *, FieldSystem *, UnkStruct_ov6_02247100 *) = {
     ov6_022474E8,
     ov6_0224750C,
     ov6_0224715C,
@@ -358,10 +358,10 @@ void * ov6_02247530 (FieldSystem * param0, Pokemon * param1, u32 param2)
     return v0;
 }
 
-BOOL ov6_02247554 (UnkStruct_020508D4 * param0)
+BOOL ov6_02247554 (TaskManager * param0)
 {
     int v0;
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
     UnkStruct_ov6_02247100 * v2 = sub_02050A64(param0);
 
     do {

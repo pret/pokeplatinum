@@ -3189,7 +3189,7 @@ static BOOL sub_02040FA4 (UnkStruct_0203E724 * param0)
 
     if (*v2 == NULL) {
         v0 = v1->unk_38;
-        sub_02062C48(v0);
+        MapObjectMan_PauseAllMovement(v0);
 
         {
             LocalMapObject * v3 = sub_02062570(v1->unk_38, 0x30);
@@ -3297,7 +3297,7 @@ static BOOL sub_020410F4 (UnkStruct_0203E724 * param0)
     v5 = v0->unk_38;
 
     inline_020410F4();
-    sub_02062C48(v5);
+    MapObjectMan_PauseAllMovement(v5);
 
     if (LocalMapObj_CheckAnimationFinished(v2) == 0) {
         inline_020410F4_2((1 << 0));
@@ -3333,7 +3333,7 @@ static BOOL sub_020411C4 (UnkStruct_0203E724 * param0)
     FieldSystem * v1 = param0->unk_34;
 
     v0 = v1->unk_38;
-    sub_02062C78(v0);
+    MapObjectMan_UnpauseAllMovement(v0);
 
     return 1;
 }
@@ -5678,7 +5678,7 @@ static BOOL sub_02043C0C (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043C3C (UnkStruct_0203E724 * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0->unk_28);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0->unk_28);
 
     HealAllPokemonInParty(Party_GetFromSavedata(v0->saveData));
     return 0;

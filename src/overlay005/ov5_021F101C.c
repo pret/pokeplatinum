@@ -20,9 +20,9 @@ typedef struct {
     UnkStruct_ov5_021F0468 * unk_04;
 } UnkStruct_ov5_021F101C;
 
-BOOL ov5_021F101C (UnkStruct_020508D4 * param0)
+BOOL ov5_021F101C (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_020711C8 * v1 = sub_02050A64(param0);
     int * v2 = sub_02050A68(param0);
     UnkStruct_ov5_021F101C * v3 = v1->unk_04;

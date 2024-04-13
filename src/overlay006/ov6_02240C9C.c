@@ -482,7 +482,7 @@ BOOL ov6_0224106C (FieldSystem * param0, const int param1, BattleParams ** param
     return 1;
 }
 
-BOOL ov6_022411C8 (FieldSystem * param0, UnkStruct_020508D4 * param1)
+BOOL ov6_022411C8 (FieldSystem * param0, TaskManager * param1)
 {
     BattleParams * v0;
     Pokemon * v1;

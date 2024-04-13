@@ -52,15 +52,15 @@ typedef struct {
 BOOL sub_0204FAB4(UnkStruct_0203E724 * param0);
 BOOL sub_0204FBB4(UnkStruct_0203E724 * param0);
 static void sub_0204FBEC(SaveData * param0, UnkStruct_0203041C * param1, u8 param2);
-static void sub_0204FDB4(UnkStruct_020508D4 * param0, void ** param1, u8 param2);
-static BOOL sub_0204FDE8(UnkStruct_020508D4 * param0);
+static void sub_0204FDB4(TaskManager * param0, void ** param1, u8 param2);
+static BOOL sub_0204FDE8(TaskManager * param0);
 static int sub_0204FE50(UnkStruct_0204FE50 * param0, FieldSystem * param1, int param2);
 static int sub_0204FF1C(UnkStruct_0204FE50 * param0, FieldSystem * param1);
 static int sub_0204FF6C(UnkStruct_0204FE50 * param0, FieldSystem * param1, int param2);
 static int sub_0204FFF4(UnkStruct_0204FE50 * param0, FieldSystem * param1);
 BOOL sub_0204FCAC(UnkStruct_0203E724 * param0);
-static void sub_0204FCF8(UnkStruct_020508D4 * param0, u16 param1, u16 param2, u16 * param3);
-static BOOL sub_0204FD38(UnkStruct_020508D4 * param0);
+static void sub_0204FCF8(TaskManager * param0, u16 param1, u16 param2, u16 * param3);
+static BOOL sub_0204FD38(TaskManager * param0);
 
 BOOL sub_0204FAB4 (UnkStruct_0203E724 * param0)
 {
@@ -164,7 +164,7 @@ BOOL sub_0204FCAC (UnkStruct_0203E724 * param0)
     return 1;
 }
 
-static void sub_0204FCF8 (UnkStruct_020508D4 * param0, u16 param1, u16 param2, u16 * param3)
+static void sub_0204FCF8 (TaskManager * param0, u16 param1, u16 param2, u16 * param3)
 {
     UnkStruct_0204FCF8 * v0;
 
@@ -181,7 +181,7 @@ static void sub_0204FCF8 (UnkStruct_020508D4 * param0, u16 param1, u16 param2, u
     return;
 }
 
-static BOOL sub_0204FD38 (UnkStruct_020508D4 * param0)
+static BOOL sub_0204FD38 (TaskManager * param0)
 {
     UnkStruct_0204FCF8 * v0 = sub_02050A64(param0);
 
@@ -214,9 +214,9 @@ static BOOL sub_0204FD38 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static void sub_0204FDB4 (UnkStruct_020508D4 * param0, void ** param1, u8 param2)
+static void sub_0204FDB4 (TaskManager * param0, void ** param1, u8 param2)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_0204FE50 * v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0204FE50));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0204FE50));
@@ -228,9 +228,9 @@ static void sub_0204FDB4 (UnkStruct_020508D4 * param0, void ** param1, u8 param2
     return;
 }
 
-static BOOL sub_0204FDE8 (UnkStruct_020508D4 * param0)
+static BOOL sub_0204FDE8 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_0204FE50 * v1 = sub_02050A64(param0);
 
     switch (v1->unk_00) {

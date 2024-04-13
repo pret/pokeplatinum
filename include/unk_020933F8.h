@@ -8,7 +8,7 @@
 #include "struct_defs/struct_02095C48.h"
 #include "savedata.h"
 
-void sub_020933F8(UnkStruct_020508D4 * param0, UnkStruct_02095C48 * param1);
+void sub_020933F8(TaskManager * param0, UnkStruct_02095C48 * param1);
 UnkStruct_02095C48 * sub_02093800(const UnkStruct_02093800 * param0);
 void sub_02093AD4(UnkStruct_02095C48 * param0);
 BOOL sub_020943B0(UnkStruct_02095C48 * param0);

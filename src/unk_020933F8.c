@@ -87,8 +87,8 @@ void sub_02093AD4(UnkStruct_02095C48 * param0);
 void sub_02094630(UnkStruct_02095C48 * param0, int param1, StringTemplate * param2, u32 param3);
 void sub_02094648(UnkStruct_02095C48 * param0, int param1, StringTemplate * param2, u32 param3);
 void sub_02094680(UnkStruct_02095C48 * param0, int param1, StringTemplate * param2, u32 param3);
-static BOOL sub_02093448(UnkStruct_020508D4 * param0);
-static BOOL sub_020935EC(UnkStruct_020508D4 * param0);
+static BOOL sub_02093448(TaskManager * param0);
+static BOOL sub_020935EC(TaskManager * param0);
 void sub_02093BBC(UnkStruct_02095C48 * param0);
 void sub_02093C54(UnkStruct_02095C48 * param0);
 static void sub_020944E8(UnkStruct_02095C48 * param0);
@@ -154,7 +154,7 @@ __attribute__((aligned(4))) static const u8 Unk_020F55D0[][6] = {
     {0xF, 0xF, 0x8, 0x8, 0x14, 0xFF}
 };
 
-void sub_020933F8 (UnkStruct_020508D4 * param0, UnkStruct_02095C48 * param1)
+void sub_020933F8 (TaskManager * param0, UnkStruct_02095C48 * param1)
 {
     UnkStruct_020933F8 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_020933F8));
 
@@ -173,9 +173,9 @@ void sub_020933F8 (UnkStruct_020508D4 * param0, UnkStruct_02095C48 * param1)
     }
 }
 
-static BOOL sub_02093448 (UnkStruct_020508D4 * param0)
+static BOOL sub_02093448 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_020933F8 * v1 = sub_02050A64(param0);
 
     switch (v1->unk_04) {
@@ -263,9 +263,9 @@ static BOOL sub_02093448 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL sub_020935EC (UnkStruct_020508D4 * param0)
+static BOOL sub_020935EC (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_020933F8 * v1 = sub_02050A64(param0);
 
     switch (v1->unk_04) {

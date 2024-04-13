@@ -189,7 +189,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
 
             if ((sub_02067A84(param1, v0) == 1) || ((sub_02071CB4(param1, 2) == 1) && (ov8_0224C51C(param1) == 1))) {
                 sub_0205F56C(param1->playerAvatar);
-                sub_02062C48(param1->unk_38);
+                MapObjectMan_PauseAllMovement(param1->unk_38);
                 return 1;
             }
         }

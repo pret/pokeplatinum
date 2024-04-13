@@ -88,8 +88,8 @@ struct UnkStruct_0203EF60_t {
 #include "data/field/hidden_items.h"
 
 void sub_0203E880(FieldSystem * param0, u16 param1, LocalMapObject * param2);
-void sub_0203E8E0(UnkStruct_020508D4 * param0, u16 param1, LocalMapObject * param2, void * param3);
-static BOOL sub_0203E950(UnkStruct_020508D4 * param0);
+void sub_0203E8E0(TaskManager * param0, u16 param1, LocalMapObject * param2, void * param3);
+static BOOL sub_0203E950(TaskManager * param0);
 static UnkStruct_0203EF60 * sub_0203EA28();
 static void sub_0203EA50(UnkStruct_0203E724 * param0);
 static void sub_0203EA68(FieldSystem * param0, UnkStruct_0203EF60 * param1, u16 param2, LocalMapObject * param3, void * param4);
@@ -153,9 +153,9 @@ void sub_0203E8B0 (FieldSystem * param0, LocalMapObject * param1, int param2, in
     v1->unk_14 = param1;
 }
 
-void sub_0203E8E0 (UnkStruct_020508D4 * param0, u16 param1, LocalMapObject * param2, void * param3)
+void sub_0203E8E0 (TaskManager * param0, u16 param1, LocalMapObject * param2, void * param3)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_0203EF60 * v1 = sub_0203EA28();
 
     sub_0203EA68(v0, v1, param1, param2, param3);
@@ -164,9 +164,9 @@ void sub_0203E8E0 (UnkStruct_020508D4 * param0, u16 param1, LocalMapObject * par
     return;
 }
 
-void sub_0203E918 (UnkStruct_020508D4 * param0, u16 param1, LocalMapObject * param2)
+void sub_0203E918 (TaskManager * param0, u16 param1, LocalMapObject * param2)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_0203EF60 * v1 = sub_0203EA28();
 
     sub_0203EA68(v0, v1, param1, param2, NULL);
@@ -175,13 +175,13 @@ void sub_0203E918 (UnkStruct_020508D4 * param0, u16 param1, LocalMapObject * par
     return;
 }
 
-static BOOL sub_0203E950 (UnkStruct_020508D4 * param0)
+static BOOL sub_0203E950 (TaskManager * param0)
 {
     int v0;
     UnkFuncPtr_0203E950 v1;
     UnkStruct_0203E724 * v2 = NULL;
     UnkStruct_0203EF60 * v3 = sub_02050A64(param0);
-    FieldSystem * v4 = sub_02050A60(param0);
+    FieldSystem * v4 = TaskMan_FieldSystem(param0);
 
     switch (v3->unk_04) {
     case 0:

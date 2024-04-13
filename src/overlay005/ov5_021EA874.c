@@ -380,10 +380,10 @@ static BOOL ov5_021EAD38 (UnkStruct_ov5_021EAE78 * param0)
     return 0;
 }
 
-static BOOL ov5_021EADB4 (UnkStruct_020508D4 * param0)
+static BOOL ov5_021EADB4 (TaskManager * param0)
 {
     UnkStruct_ov5_021EAE78 * v0 = sub_02050A64(param0);
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
 
     switch (v0->unk_48) {
     case 0:
@@ -475,7 +475,7 @@ static void ov5_021EAF1C (UnkStruct_ov5_021EAE78 * param0)
 void ov5_021EAF50 (FieldSystem * param0)
 {
     UnkStruct_ov5_021EAE78 * v0;
-    UnkStruct_020508D4 * v1 = param0->unk_10;
+    TaskManager * v1 = param0->unk_10;
 
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov5_021EAE78));
     ov5_021EAEE0(v0);

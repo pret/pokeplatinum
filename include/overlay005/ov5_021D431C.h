@@ -20,10 +20,10 @@ void ov5_021D4D48(FieldSystem * param0, const u8 param1);
 void ov5_021D4D68(FieldSystem * param0, const u8 param1);
 void ov5_021D4D78(const int param0, const int param1, const int param2, FieldSystem * param3);
 UnkStruct_ov5_021D4E00 * ov5_021D4E00(void);
-BOOL ov5_021D4E10(UnkStruct_020508D4 * param0);
-BOOL ov5_021D4F14(UnkStruct_020508D4 * param0);
-BOOL ov5_021D4FA0(UnkStruct_020508D4 * param0);
-BOOL ov5_021D5020(UnkStruct_020508D4 * param0);
-BOOL ov5_021D5150(UnkStruct_020508D4 * param0);
+BOOL ov5_021D4E10(TaskManager * param0);
+BOOL ov5_021D4F14(TaskManager * param0);
+BOOL ov5_021D4FA0(TaskManager * param0);
+BOOL ov5_021D5020(TaskManager * param0);
+BOOL ov5_021D5150(TaskManager * param0);
 
 #endif // POKEPLATINUM_OV5_021D431C_H

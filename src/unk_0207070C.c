@@ -57,39 +57,39 @@ static int sub_02070950(const UnkStruct_02070950 * param0);
 static void sub_020709CC(UnkStruct_020709CC * param0, const UnkStruct_02070950 * param1);
 static int sub_02070EEC(const UnkStruct_02070950 * param0);
 static void sub_02070F54(UnkStruct_020709CC * param0, const UnkStruct_02070950 * param1);
-static BOOL sub_02070F94(UnkStruct_020508D4 * param0);
+static BOOL sub_02070F94(TaskManager * param0);
 static int sub_02070A24(const UnkStruct_02070950 * param0);
 static void sub_02070A80(UnkStruct_020709CC * param0, const UnkStruct_02070950 * param1);
-static BOOL sub_02070AB4(UnkStruct_020508D4 * param0);
+static BOOL sub_02070AB4(TaskManager * param0);
 static int sub_02070CF8(const UnkStruct_02070950 * param0);
 static void sub_02070D30(UnkStruct_020709CC * param0, const UnkStruct_02070950 * param1);
-static BOOL sub_02070D64(UnkStruct_020508D4 * param0);
+static BOOL sub_02070D64(TaskManager * param0);
 static int sub_02070DA0(const UnkStruct_02070950 * param0);
 static void sub_02070DEC(UnkStruct_020709CC * param0, const UnkStruct_02070950 * param1);
-static BOOL sub_02070E20(UnkStruct_020508D4 * param0);
+static BOOL sub_02070E20(TaskManager * param0);
 static int sub_02070E5C(const UnkStruct_02070950 * param0);
 static void sub_02070E7C(UnkStruct_020709CC * param0, const UnkStruct_02070950 * param1);
-static BOOL sub_02070EB0(UnkStruct_020508D4 * param0);
+static BOOL sub_02070EB0(TaskManager * param0);
 static int sub_02070B98(const UnkStruct_02070950 * param0);
 static void sub_02070BD0(UnkStruct_020709CC * param0, const UnkStruct_02070950 * param1);
-static BOOL sub_02070C04(UnkStruct_020508D4 * param0);
+static BOOL sub_02070C04(TaskManager * param0);
 static int sub_02070C40(const UnkStruct_02070950 * param0);
 static void sub_02070C88(UnkStruct_020709CC * param0, const UnkStruct_02070950 * param1);
-static BOOL sub_02070CBC(UnkStruct_020508D4 * param0);
+static BOOL sub_02070CBC(TaskManager * param0);
 static int sub_02070AF0(const UnkStruct_02070950 * param0);
 static void sub_02070B28(UnkStruct_020709CC * param0, const UnkStruct_02070950 * param1);
-static BOOL sub_02070B5C(UnkStruct_020508D4 * param0);
+static BOOL sub_02070B5C(TaskManager * param0);
 static int sub_02070FCC(const UnkStruct_02070950 * param0);
 static void sub_02071010(UnkStruct_020709CC * param0, const UnkStruct_02070950 * param1);
-static BOOL sub_02071050(UnkStruct_020508D4 * param0);
+static BOOL sub_02071050(TaskManager * param0);
 static int sub_020710A4(const UnkStruct_02070950 * param0);
 static void sub_020710D4(UnkStruct_020709CC * param0, const UnkStruct_02070950 * param1);
 static int sub_02071130(const UnkStruct_02070950 * param0);
 static void sub_02071150(UnkStruct_020709CC * param0, const UnkStruct_02070950 * param1);
-static BOOL sub_0207118C(UnkStruct_020508D4 * param0);
+static BOOL sub_0207118C(TaskManager * param0);
 static int sub_020708AC(const UnkStruct_02070950 * param0);
 static void sub_020708E0(UnkStruct_020709CC * param0, const UnkStruct_02070950 * param1);
-static BOOL sub_02070914(UnkStruct_020508D4 * param0);
+static BOOL sub_02070914(TaskManager * param0);
 
 static const UnkStruct_020F0368 Unk_020F0368[] = {
     {sub_020708E0, sub_020708AC},
@@ -287,10 +287,10 @@ static void sub_020708E0 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     v0->state = FIELD_MENU_STATE_10;
 }
 
-static BOOL sub_02070914 (UnkStruct_020508D4 * param0)
+static BOOL sub_02070914 (TaskManager * param0)
 {
     UnkStruct_0207086C * v0 = sub_02050A64(param0);
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
 
     sub_0203E918(param0, 10008, v0->unk_04);
     sub_0203F21C(v1, v0->unk_08.unk_04, 0, 0, 0);
@@ -329,7 +329,7 @@ static void sub_020709CC (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     FieldSystem * v0;
     FieldMenu * v1;
 
-    v0 = sub_02050A60(param0->unk_00);
+    v0 = TaskMan_FieldSystem(param0->unk_00);
     v1 = sub_02050A64(param0->unk_00);
 
     {
@@ -387,10 +387,10 @@ static void sub_02070A80 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     v0->state = FIELD_MENU_STATE_10;
 }
 
-static BOOL sub_02070AB4 (UnkStruct_020508D4 * param0)
+static BOOL sub_02070AB4 (TaskManager * param0)
 {
     UnkStruct_0207086C * v0 = sub_02050A64(param0);
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
 
     sub_0203E918(param0, 10012, NULL);
     sub_0203F21C(v1, v0->unk_08.unk_04, 0, 0, 0);
@@ -431,10 +431,10 @@ static void sub_02070B28 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     v0->state = FIELD_MENU_STATE_10;
 }
 
-static BOOL sub_02070B5C (UnkStruct_020508D4 * param0)
+static BOOL sub_02070B5C (TaskManager * param0)
 {
     UnkStruct_0207086C * v0 = sub_02050A64(param0);
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
 
     sub_0203E918(param0, 10010, v0->unk_04);
     sub_0203F21C(v1, v0->unk_08.unk_04, 0, 0, 0);
@@ -475,10 +475,10 @@ static void sub_02070BD0 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     v0->state = FIELD_MENU_STATE_10;
 }
 
-static BOOL sub_02070C04 (UnkStruct_020508D4 * param0)
+static BOOL sub_02070C04 (TaskManager * param0)
 {
     UnkStruct_0207086C * v0 = sub_02050A64(param0);
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
 
     sub_0203E918(param0, 10014, NULL);
     sub_0203F21C(v1, v0->unk_08.unk_04, 0, 0, 0);
@@ -523,10 +523,10 @@ static void sub_02070C88 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     v0->state = FIELD_MENU_STATE_10;
 }
 
-static BOOL sub_02070CBC (UnkStruct_020508D4 * param0)
+static BOOL sub_02070CBC (TaskManager * param0)
 {
     UnkStruct_0207086C * v0 = sub_02050A64(param0);
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
 
     sub_0203E918(param0, 10009, v0->unk_04);
     sub_0203F21C(v1, v0->unk_08.unk_04, 0, 0, 0);
@@ -567,10 +567,10 @@ static void sub_02070D30 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     v0->state = FIELD_MENU_STATE_10;
 }
 
-static BOOL sub_02070D64 (UnkStruct_020508D4 * param0)
+static BOOL sub_02070D64 (TaskManager * param0)
 {
     UnkStruct_0207086C * v0 = sub_02050A64(param0);
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
 
     sub_0203E918(param0, 10013, NULL);
     sub_0203F21C(v1, v0->unk_08.unk_04, 0, 0, 0);
@@ -615,10 +615,10 @@ static void sub_02070DEC (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     v0->state = FIELD_MENU_STATE_10;
 }
 
-static BOOL sub_02070E20 (UnkStruct_020508D4 * param0)
+static BOOL sub_02070E20 (TaskManager * param0)
 {
     UnkStruct_0207086C * v0 = sub_02050A64(param0);
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
 
     sub_0203E918(param0, 10011, NULL);
     sub_0203F21C(v1, v0->unk_08.unk_04, 0, 0, 0);
@@ -655,10 +655,10 @@ static void sub_02070E7C (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     v0->state = FIELD_MENU_STATE_10;
 }
 
-static BOOL sub_02070EB0 (UnkStruct_020508D4 * param0)
+static BOOL sub_02070EB0 (TaskManager * param0)
 {
     UnkStruct_0207086C * v0 = sub_02050A64(param0);
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
 
     sub_0203E918(param0, 10015, NULL);
     sub_0203F21C(v1, v0->unk_08.unk_04, 0, 0, 0);
@@ -693,7 +693,7 @@ static void sub_02070F54 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     FieldSystem * v0;
     FieldMenu * v1;
 
-    v0 = sub_02050A60(param0->unk_00);
+    v0 = TaskMan_FieldSystem(param0->unk_00);
     v1 = sub_02050A64(param0->unk_00);
 
     sub_020509D4(v0);
@@ -709,9 +709,9 @@ static void sub_02070F54 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     }
 }
 
-static BOOL sub_02070F94 (UnkStruct_020508D4 * param0)
+static BOOL sub_02070F94 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_020711C8 * v1 = sub_02050A64(param0);
     void * v2 = ov6_02247530(v0, v1->unk_00, 4);
 
@@ -743,7 +743,7 @@ static void sub_02071010 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     FieldSystem * v0;
     FieldMenu * v1;
 
-    v0 = sub_02050A60(param0->unk_00);
+    v0 = TaskMan_FieldSystem(param0->unk_00);
     v1 = sub_02050A64(param0->unk_00);
 
     sub_020509D4(v0);
@@ -759,9 +759,9 @@ static void sub_02071010 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     }
 }
 
-static BOOL sub_02071050 (UnkStruct_020508D4 * param0)
+static BOOL sub_02071050 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_020711C8 * v1 = sub_02050A64(param0);
     void * v2 = ov6_02247488(v0, v1->unk_00, 11);
 
@@ -797,7 +797,7 @@ static void sub_020710D4 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     int v3;
     void * v4;
 
-    v0 = sub_02050A60(param0->unk_00);
+    v0 = TaskMan_FieldSystem(param0->unk_00);
     v1 = sub_02050A64(param0->unk_00);
 
     v2 = sub_020711C8(11, param0->unk_04, v0->saveData);
@@ -826,7 +826,7 @@ static void sub_02071150 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     FieldMenu * v1;
     UnkStruct_0207086C * v2;
 
-    v0 = sub_02050A60(param0->unk_00);
+    v0 = TaskMan_FieldSystem(param0->unk_00);
     v1 = sub_02050A64(param0->unk_00);
     v2 = sub_0207086C(param0, param1);
 
@@ -837,10 +837,10 @@ static void sub_02071150 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     v1->state = FIELD_MENU_STATE_10;
 }
 
-static BOOL sub_0207118C (UnkStruct_020508D4 * param0)
+static BOOL sub_0207118C (TaskManager * param0)
 {
     UnkStruct_0207086C * v0 = sub_02050A64(param0);
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskMan_FieldSystem(param0);
 
     sub_0203E918(param0, 8900, NULL);
     sub_0203F21C(v1, v0->unk_08.unk_04, 0, 0, 0);
