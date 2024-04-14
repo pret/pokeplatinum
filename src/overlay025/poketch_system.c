@@ -560,10 +560,10 @@ static BOOL ov25_02254284 (PoketchSystem *poketchSys)
         {16, 175, 16, 207}
     };
 
-    poketchSys->unk_28 = PoketchButtonManager_Create(v0, NELEMS(v0), ov25_022542E4, poketchSys, 7);
+    poketchSys->unk_28 = PoketchButtonManager_New(v0, NELEMS(v0), ov25_022542E4, poketchSys, 7);
 
     if (poketchSys->unk_28 != NULL) {
-        PoketchButtonManager_ButtonTimer(poketchSys->unk_28, 0, 0, 7);
+        PoketchButtonManager_SetButtonTimer(poketchSys->unk_28, 0, 0, 7);
         poketchSys->unk_2C = 0xffffffff;
         poketchSys->unk_30 = 0xffffffff;
         return 1;
@@ -574,7 +574,7 @@ static BOOL ov25_02254284 (PoketchSystem *poketchSys)
 
 static void ov25_022542C8 (PoketchSystem *poketchSys)
 {
-    PoketchButtonManager_Destroy(poketchSys->unk_28);
+    PoketchButtonManager_Free(poketchSys->unk_28);
 }
 
 static void ov25_022542D4 (PoketchSystem *poketchSys)

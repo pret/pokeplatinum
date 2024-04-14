@@ -117,7 +117,7 @@ static BOOL ov28_02256210 (UnkStruct_ov28_02256210 * param0, u32 param1, BGL * p
             return 0;
         }
 
-        param0->unk_0C = PoketchButtonManager_Create(Unk_ov28_02257658, NELEMS(Unk_ov28_02257658), ov28_02256344, param0, 8);
+        param0->unk_0C = PoketchButtonManager_New(Unk_ov28_02257658, NELEMS(Unk_ov28_02257658), ov28_02256344, param0, 8);
 
         if (param0->unk_0C == NULL) {
             return 0;
@@ -142,7 +142,7 @@ static void ov28_02256298 (UnkStruct_ov28_02256210 * param0)
     }
 
     if (param0->unk_0C) {
-        PoketchButtonManager_Destroy(param0->unk_0C);
+        PoketchButtonManager_Free(param0->unk_0C);
     }
 
     ov28_022569AC(param0->unk_14);

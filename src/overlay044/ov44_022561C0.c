@@ -110,7 +110,7 @@ static BOOL ov44_0225621C (UnkStruct_ov44_0225621C * param0, PoketchSystem * par
         param0->unk_00 = 0;
         param0->unk_01 = 0;
         param0->unk_02 = 0;
-        param0->unk_40 = PoketchButtonManager_Create(v4, NELEMS(v4), ov44_0225632C, param0, 8);
+        param0->unk_40 = PoketchButtonManager_New(v4, NELEMS(v4), ov44_0225632C, param0, 8);
         param0->unk_46 = 0;
         param0->unk_3C = param1;
 
@@ -122,7 +122,7 @@ static BOOL ov44_0225621C (UnkStruct_ov44_0225621C * param0, PoketchSystem * par
 
 static void ov44_02256314 (UnkStruct_ov44_0225621C * param0)
 {
-    PoketchButtonManager_Destroy(param0->unk_40);
+    PoketchButtonManager_Free(param0->unk_40);
     ov44_022565F8(param0->unk_38);
     Heap_FreeToHeap(param0);
 }

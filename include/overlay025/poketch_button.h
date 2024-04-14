@@ -55,11 +55,11 @@ typedef struct PoketchButtonManager {
     PoketchButton * buttons;
 } PoketchButtonManager;
 
-PoketchButtonManager * PoketchButtonManager_Create(const TouchScreenHitTable *hitTable, u32 numButtons, PoketchButtonCallback callback, void *callbackData, u32 heapID);
-void PoketchButtonManager_Destroy(PoketchButtonManager *buttonManager);
+PoketchButtonManager * PoketchButtonManager_New(const TouchScreenHitTable *hitTable, u32 numButtons, PoketchButtonCallback callback, void *callbackData, u32 heapID);
+void PoketchButtonManager_Free(PoketchButtonManager *buttonManager);
 void PoketchButtonManager_Update(PoketchButtonManager *buttonManager);
-void PoketchButtonManager_ButtonTimer(PoketchButtonManager *buttonManager, u32 buttonIndex, u32 timerIndex, u16 time);
-void PoketchButtonManager_RepeatTime(PoketchButtonManager *buttonManager, u32 index, u16 repeatTime);
+void PoketchButtonManager_SetButtonTimer(PoketchButtonManager *buttonManager, u32 buttonIndex, u32 timerIndex, u16 time);
+void PoketchButtonManager_SetRepeatTime(PoketchButtonManager *buttonManager, u32 index, u16 repeatTime);
 void PoketchButtonManager_ResetButtonState(PoketchButtonManager *buttonManager, u32 index);
 
 #endif // POKEPLATINUM_POKETCH_BUTTON_H

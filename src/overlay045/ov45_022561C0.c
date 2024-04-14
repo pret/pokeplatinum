@@ -102,13 +102,13 @@ static BOOL ov45_0225621C (UnkStruct_ov45_022561D4 * param0, PoketchSystem * par
         param0->unk_00 = 0;
         param0->unk_01 = 0;
         param0->unk_02 = 0;
-        param0->unk_14 = PoketchButtonManager_Create(v0, NELEMS(v0), ov45_02256310, param0, 8);
+        param0->unk_14 = PoketchButtonManager_New(v0, NELEMS(v0), ov45_02256310, param0, 8);
         param0->unk_1C = 0;
 
-        PoketchButtonManager_RepeatTime(param0->unk_14, 2, 4);
-        PoketchButtonManager_RepeatTime(param0->unk_14, 3, 4);
-        PoketchButtonManager_RepeatTime(param0->unk_14, 4, 4);
-        PoketchButtonManager_RepeatTime(param0->unk_14, 5, 4);
+        PoketchButtonManager_SetRepeatTime(param0->unk_14, 2, 4);
+        PoketchButtonManager_SetRepeatTime(param0->unk_14, 3, 4);
+        PoketchButtonManager_SetRepeatTime(param0->unk_14, 4, 4);
+        PoketchButtonManager_SetRepeatTime(param0->unk_14, 5, 4);
 
         param0->unk_2C = 0;
         param0->unk_30 = 0;
@@ -140,7 +140,7 @@ static void ov45_022562C0 (UnkStruct_ov45_022566EC_1 * param0)
 
 static void ov45_022562F8 (UnkStruct_ov45_022561D4 * param0)
 {
-    PoketchButtonManager_Destroy(param0->unk_14);
+    PoketchButtonManager_Free(param0->unk_14);
     ov45_02256728(param0->unk_08);
 
     Heap_FreeToHeap(param0);

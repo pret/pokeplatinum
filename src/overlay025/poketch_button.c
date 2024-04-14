@@ -8,7 +8,7 @@
 #include "heap.h"
 
 static void PoketchButton_Init(PoketchButton *button);
-static void PoketchButton_ChangeState(PoketchButton *button, u32 state);
+static void PoketchButton_ChangeState(PoketchButton *button, enum ButtonEventState state);
 static void PoketchButton_IncrementTimer(PoketchButton *button);
 static u32 PoketchButton_CheckTimers(PoketchButton *button);
 static u32 Button_OnIdle(PoketchButton *button, BOOL touched, BOOL tapped);
@@ -17,13 +17,11 @@ static u32 Button_OnCheckDoubleTap(PoketchButton *button, BOOL touched, BOOL tap
 static u32 Button_OnDoubleTap(PoketchButton *button, BOOL touched, BOOL tapped);
 static u32 Button_OnReset(PoketchButton *button, BOOL touched, BOOL tapped);
 
-PoketchButtonManager* PoketchButtonManager_Create(const TouchScreenHitTable *hitTable, u32 numButtons, PoketchButtonCallback callback, void *callbackData, u32 heapID)
+PoketchButtonManager* PoketchButtonManager_New(const TouchScreenHitTable *hitTable, u32 numButtons, PoketchButtonCallback callback, void *callbackData, u32 heapID)
 {
-    PoketchButtonManager *buttonManager;
-
     GF_ASSERT(numButtons > 0);
 
-    buttonManager = Heap_AllocFromHeap(heapID, sizeof(PoketchButtonManager));
+    PoketchButtonManager *buttonManager = Heap_AllocFromHeap(heapID, sizeof(PoketchButtonManager));
 
     if (buttonManager) {
         buttonManager->heapID = heapID;
@@ -46,7 +44,7 @@ PoketchButtonManager* PoketchButtonManager_Create(const TouchScreenHitTable *hit
     return buttonManager;
 }
 
-void PoketchButtonManager_Destroy(PoketchButtonManager *buttonManager)
+void PoketchButtonManager_Free(PoketchButtonManager *buttonManager)
 {
     GF_ASSERT(buttonManager);
     Heap_FreeToHeapExplicit(buttonManager->heapID, buttonManager->buttons);
@@ -66,7 +64,7 @@ static ButtonEvent sButtonEvents = {
 void PoketchButtonManager_Update(PoketchButtonManager *buttonManager)
 {
     BOOL touched, tapped;
-    u32 i, button_state, touch_state;
+    u32 i, buttonState, touchState;
 
     touched = TouchScreen_Touched();
 
@@ -95,17 +93,17 @@ void PoketchButtonManager_Update(PoketchButtonManager *buttonManager)
 
     // Call Buttons's state machine function, and then optionally the button manager's currently set callback after that.
     for (i = 0; i < buttonManager->numButtons; i++) {
-        button_state = sButtonEvents[buttonManager->buttons[i].state](&buttonManager->buttons[i], touched, tapped);
+        buttonState = sButtonEvents[buttonManager->buttons[i].state](&buttonManager->buttons[i], touched, tapped);
 
         if (buttonManager->buttons[i].screenTouched != buttonManager->buttons[i].prevScreenTouched) {
-            touch_state = buttonManager->buttons[i].screenTouched;
+            touchState = buttonManager->buttons[i].screenTouched;
         } else {
-            touch_state = BUTTON_TOUCH_DOWN;
+            touchState = BUTTON_TOUCH_DOWN;
         }
 
         // We only call the button manager's callback once per update, and only if a button's state changed
-        if ((button_state != BUTTON_MANAGER_STATE_NULL) || (touch_state != BUTTON_TOUCH_DOWN)) {
-            buttonManager->callback(i, button_state, touch_state, buttonManager->buttonCallbackData);
+        if (buttonState != BUTTON_MANAGER_STATE_NULL || touchState != BUTTON_TOUCH_DOWN) {
+            buttonManager->callback(i, buttonState, touchState, buttonManager->buttonCallbackData);
             break;
         }
     }
@@ -116,12 +114,12 @@ void PoketchButtonManager_Update(PoketchButtonManager *buttonManager)
     }
 }
 
-void PoketchButtonManager_ButtonTimer(PoketchButtonManager *buttonManager, u32 buttonIndex, u32 timerIndex, u16 time)
+void PoketchButtonManager_SetButtonTimer(PoketchButtonManager *buttonManager, u32 buttonIndex, u32 timerIndex, u16 time)
 {
     buttonManager->buttons[buttonIndex].timerDurations[timerIndex] = time;
 }
 
-void PoketchButtonManager_RepeatTime(PoketchButtonManager *buttonManager, u32 index, u16 repeatTime)
+void PoketchButtonManager_SetRepeatTime(PoketchButtonManager *buttonManager, u32 index, u16 repeatTime)
 {
     buttonManager->buttons[index].repeatTime = repeatTime;
 }
@@ -148,14 +146,14 @@ static void PoketchButton_Init(PoketchButton *button)
 }
 
 /** Use enum ButtonEventState for state input. */
-static void PoketchButton_ChangeState(PoketchButton *button, u32 state)
+static void PoketchButton_ChangeState(PoketchButton *button, enum ButtonEventState state)
 {
     button->state = state;
     button->timer = 0;
 }
 
 /** Use enum ButtonEventState for state input. */
-static void PoketchButton_ChangeState_NoReset(PoketchButton *button, u32 state)
+static void PoketchButton_ChangeState_NoReset(PoketchButton *button, enum ButtonEventState state)
 {
     button->state = state;
 }

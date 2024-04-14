@@ -96,7 +96,7 @@ static BOOL ov26_0225621C (UnkStruct_ov26_0225621C * param0, PoketchSystem * par
 
         param0->unk_06 = param0->unk_14.unk_00.minute;
         param0->unk_05 = param0->unk_14.unk_00.hour;
-        param0->unk_10 = PoketchButtonManager_Create(Unk_ov26_02256718, NELEMS(Unk_ov26_02256718), ov26_02256300, param0, 8);
+        param0->unk_10 = PoketchButtonManager_New(Unk_ov26_02256718, NELEMS(Unk_ov26_02256718), ov26_02256300, param0, 8);
 
         if (param0->unk_10 == NULL) {
             return 0;
@@ -112,7 +112,7 @@ static BOOL ov26_0225621C (UnkStruct_ov26_0225621C * param0, PoketchSystem * par
 static void ov26_022562A4 (UnkStruct_ov26_0225621C * param0)
 {
     ov26_0225649C(param0->unk_24);
-    PoketchButtonManager_Destroy(param0->unk_10);
+    PoketchButtonManager_Free(param0->unk_10);
     Heap_FreeToHeap(param0);
 }
 

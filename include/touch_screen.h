@@ -3,6 +3,12 @@
 
 #define TOUCHSCREEN_USE_CIRCLE 0xfe
 
+/** 
+ * These two structs represent regions that can be checked on the touch screen.
+ * The first struct, TouchScreenRect, is for strictly rectangular regions.
+ * The second struct, TouchScreenHitTable, is for rectangles OR circles.
+ * To enable circle mode, set the 'code' value to TOUCHSCREEN_USE_CIRCLE.
+*/
 typedef union {
     struct {
         u8 top;

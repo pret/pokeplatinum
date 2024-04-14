@@ -375,11 +375,11 @@ static BOOL ov27_02256608 (UnkStruct_ov27_0225621C * param0)
         {0xfe, 112, 112, 39},
     };
 
-    param0->unk_5C = PoketchButtonManager_Create(v0, NELEMS(v0), ov27_02256660, param0, 8);
+    param0->unk_5C = PoketchButtonManager_New(v0, NELEMS(v0), ov27_02256660, param0, 8);
 
     if (param0->unk_5C != NULL) {
-        PoketchButtonManager_ButtonTimer(param0->unk_5C, 0, 0, 15);
-        PoketchButtonManager_ButtonTimer(param0->unk_5C, 0, 1, 75);
+        PoketchButtonManager_SetButtonTimer(param0->unk_5C, 0, 0, 15);
+        PoketchButtonManager_SetButtonTimer(param0->unk_5C, 0, 1, 75);
         param0->unk_04 = 0;
         return 1;
     }
@@ -389,7 +389,7 @@ static BOOL ov27_02256608 (UnkStruct_ov27_0225621C * param0)
 
 static void ov27_02256654 (UnkStruct_ov27_0225621C * param0)
 {
-    PoketchButtonManager_Destroy(param0->unk_5C);
+    PoketchButtonManager_Free(param0->unk_5C);
 }
 
 static void ov27_02256660 (u32 param0, u32 param1, u32 param2, void * param3)
