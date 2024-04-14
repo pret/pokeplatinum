@@ -86,7 +86,7 @@ static const u8 Unk_020F1B64[4] = {
 static BOOL sub_0207DA28 (TaskManager * param0)
 {
     int v0;
-    FieldSystem * v1 = TaskMan_FieldSystem(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
     UnkStruct_0207DE40 * v2 = TaskManager_Environment(param0);
 
     switch (v2->unk_04) {

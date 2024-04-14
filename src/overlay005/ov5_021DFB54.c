@@ -595,7 +595,7 @@ static void ov5_021E00B0 (FieldSystem * param0, int param1, const UnkStruct_ov5_
 void ov5_021E00EC (TaskManager * param0, int param1, int param2)
 {
     UnkStruct_ov5_021E1050 v0;
-    FieldSystem * v1 = TaskMan_FieldSystem(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
     Pokemon * v2 = ov5_021E1140(v1, param2);
 
     ov5_021E1028(v1, v2, &v0);
@@ -892,7 +892,7 @@ static BOOL ov5_021E0560 (TaskManager * param0)
             u8 v7 = sub_02062BE8(v1);
 
             if (sub_0205DD0C(v7) == 1) {
-                FieldSystem * v8 = TaskMan_FieldSystem(param0);
+                FieldSystem * v8 = TaskManager_FieldSystem(param0);
                 BattleParams * v9;
 
                 if (ov6_022413E4(v8, &v9) == 1) {
@@ -981,7 +981,7 @@ static void ov5_021E06F8 (FieldSystem * param0, int param1, const UnkStruct_ov5_
 void ov5_021E0734 (TaskManager * param0, int param1, int param2)
 {
     UnkStruct_ov5_021E1050 v0;
-    FieldSystem * v1 = TaskMan_FieldSystem(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
     Pokemon * v2 = ov5_021E1140(v1, param2);
 
     ov5_021E1028(v1, v2, &v0);
@@ -1167,7 +1167,7 @@ void ov5_021E097C (FieldSystem * param0, int param1)
 void ov5_021E0998 (TaskManager * param0, int param1, int param2)
 {
     UnkStruct_ov5_021E1050 v0;
-    FieldSystem * v1 = TaskMan_FieldSystem(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
     Pokemon * v2 = ov5_021E1140(v1, param2);
 
     ov5_021E1028(v1, v2, &v0);
@@ -1514,7 +1514,7 @@ static const UnkStruct_ov5_021F8E3C Unk_ov5_021F9C00[] = {
 
 void ov5_021E0DD4 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     ov5_021E0DE0(v0);
 }
 

@@ -22,7 +22,7 @@ typedef struct {
 
 BOOL ov5_021F101C (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_020711C8 * v1 = TaskManager_Environment(param0);
     int * v2 = sub_02050A68(param0);
     UnkStruct_ov5_021F101C * v3 = v1->unk_04;

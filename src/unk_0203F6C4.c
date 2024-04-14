@@ -5678,7 +5678,7 @@ static BOOL sub_02043C0C (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043C3C (UnkStruct_0203E724 * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0->unk_28);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0->unk_28);
 
     HealAllPokemonInParty(Party_GetFromSavedata(v0->saveData));
     return 0;

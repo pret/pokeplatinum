@@ -117,7 +117,7 @@ void sub_02056B30 (TaskManager * param0, int param1, int param2, int param3, u16
 
 static BOOL sub_02056B70 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_02056B30 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_00) {
@@ -204,7 +204,7 @@ void sub_02056C18 (FieldSystem * param0, const int param1, const int param2, con
 
 static BOOL sub_02056CFC (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_02056BDC * v1 = TaskManager_Environment(param0);
     UnkStruct_02049FA8 * v2 = &v1->unk_08;
 
@@ -256,7 +256,7 @@ static BOOL sub_02056CFC (TaskManager * param0)
 
 static BOOL sub_02056DE4 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_02056BDC * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_04) {
@@ -275,7 +275,7 @@ static BOOL sub_02056DE4 (TaskManager * param0)
 
 static BOOL sub_02056E20 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_02056BDC * v1 = TaskManager_Environment(param0);
     UnkStruct_ov5_021D432C * v2;
 
@@ -307,7 +307,7 @@ static BOOL sub_02056E20 (TaskManager * param0)
 
 static BOOL sub_02056EA4 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_02056BDC * v1 = TaskManager_Environment(param0);
     UnkStruct_ov5_021D432C * v2;
 
@@ -335,7 +335,7 @@ static BOOL sub_02056EA4 (TaskManager * param0)
 
 static BOOL sub_02056F1C (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_02056BDC * v1 = TaskManager_Environment(param0);
     LocalMapObject * v2;
 
@@ -381,7 +381,7 @@ static BOOL sub_02056F1C (TaskManager * param0)
 
 static BOOL sub_02056FC0 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_02056BDC * v1 = TaskManager_Environment(param0);
     LocalMapObject * v2 = Player_LocalMapObject(v0->playerAvatar);
 
@@ -404,7 +404,7 @@ static BOOL sub_02056FC0 (TaskManager * param0)
 
 static BOOL sub_02057008 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_02056BDC * v1 = TaskManager_Environment(param0);
     LocalMapObject * v2 = Player_LocalMapObject(v0->playerAvatar);
 
@@ -428,7 +428,7 @@ static BOOL sub_02057008 (TaskManager * param0)
 static BOOL sub_02057050 (TaskManager * param0)
 {
     LocalMapObject * v0;
-    FieldSystem * v1 = TaskMan_FieldSystem(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
     UnkStruct_02056BDC * v2 = TaskManager_Environment(param0);
     UnkStruct_ov5_021D432C * v3;
 
@@ -481,7 +481,7 @@ static BOOL sub_02057050 (TaskManager * param0)
 static BOOL sub_0205711C (TaskManager * param0)
 {
     LocalMapObject * v0;
-    FieldSystem * v1 = TaskMan_FieldSystem(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
     UnkStruct_02056BDC * v2 = TaskManager_Environment(param0);
     UnkStruct_ov5_021D432C * v3;
 
@@ -515,7 +515,7 @@ static BOOL sub_0205711C (TaskManager * param0)
 
 static BOOL sub_020571A0 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_02056BDC * v1 = TaskManager_Environment(param0);
     UnkStruct_ov5_021D432C * v2;
 
@@ -543,7 +543,7 @@ static BOOL sub_020571A0 (TaskManager * param0)
 
 static BOOL sub_02057218 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_02056BDC * v1 = TaskManager_Environment(param0);
     LocalMapObject * v2;
 
@@ -593,7 +593,7 @@ static BOOL sub_02057218 (TaskManager * param0)
 
 static BOOL sub_020572B8 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_02056BDC * v1 = TaskManager_Environment(param0);
     LocalMapObject * v2 = Player_LocalMapObject(v0->playerAvatar);
 

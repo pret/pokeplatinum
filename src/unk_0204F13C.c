@@ -294,7 +294,7 @@ static BOOL sub_0204F414 (TaskManager * param0)
 
 void sub_0204F470 (TaskManager * param0, void ** param1, u8 param2)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_0204F470 * v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0204F470));
     MI_CpuClear8(v1, sizeof(UnkStruct_0204F470));
 
@@ -307,7 +307,7 @@ void sub_0204F470 (TaskManager * param0, void ** param1, u8 param2)
 
 static BOOL sub_0204F4A4 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_0204F470 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_00) {

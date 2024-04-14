@@ -94,7 +94,7 @@ static BOOL sub_02052CBC (TaskManager * param0)
 {
     UnkStruct_02049FA8 * v0;
     UnkStruct_020507E4 * v1;
-    FieldSystem * v2 = TaskMan_FieldSystem(param0);
+    FieldSystem * v2 = TaskManager_FieldSystem(param0);
     UnkStruct_0205300C * v3 = TaskManager_Environment(param0);
     int * v4 = sub_02050A68(param0);
     UnkStruct_0203E234 * v5 = &v3->unk_04;
@@ -188,7 +188,7 @@ void sub_02052E58 (TaskManager * param0)
     UnkStruct_0202CD88 * v6;
     Party * v7;
 
-    v0 = TaskMan_FieldSystem(param0);
+    v0 = TaskManager_FieldSystem(param0);
     v5 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0205300C));
     v3 = SaveData_Events(v0->saveData);
     v4 = SaveData_GetTrainerInfo(v0->saveData);

@@ -138,7 +138,7 @@ BOOL sub_020509DC (FieldSystem * param0)
 
 static BOOL sub_020509F0 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_020509F0 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_00) {
@@ -169,7 +169,7 @@ void sub_02050A38 (TaskManager * param0, const OverlayManagerTemplate * param1, 
     sub_02050944(param0, sub_020509F0, v0);
 }
 
-FieldSystem * TaskMan_FieldSystem (TaskManager * param0)
+FieldSystem * TaskManager_FieldSystem (TaskManager * param0)
 {
     return param0->unk_18;
 }

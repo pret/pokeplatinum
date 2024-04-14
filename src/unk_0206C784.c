@@ -143,7 +143,7 @@ static void sub_0206C8D4 (FieldSystem * param0, const u8 param1, UnkStruct_ov5_0
 
 static BOOL sub_0206C8F8 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_0206C8D4 * v1 = TaskManager_Environment(param0);
     int * v2 = sub_02050A68(param0);
 
@@ -171,7 +171,7 @@ static BOOL sub_0206C8F8 (TaskManager * param0)
 
 static BOOL sub_0206C964 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_0206CAD0 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_00) {

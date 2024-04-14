@@ -155,7 +155,7 @@ void sub_0203E8B0 (FieldSystem * param0, LocalMapObject * param1, int param2, in
 
 void sub_0203E8E0 (TaskManager * param0, u16 param1, LocalMapObject * param2, void * param3)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_0203EF60 * v1 = sub_0203EA28();
 
     sub_0203EA68(v0, v1, param1, param2, param3);
@@ -166,7 +166,7 @@ void sub_0203E8E0 (TaskManager * param0, u16 param1, LocalMapObject * param2, vo
 
 void sub_0203E918 (TaskManager * param0, u16 param1, LocalMapObject * param2)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_0203EF60 * v1 = sub_0203EA28();
 
     sub_0203EA68(v0, v1, param1, param2, NULL);
@@ -181,7 +181,7 @@ static BOOL sub_0203E950 (TaskManager * param0)
     UnkFuncPtr_0203E950 v1;
     UnkStruct_0203E724 * v2 = NULL;
     UnkStruct_0203EF60 * v3 = TaskManager_Environment(param0);
-    FieldSystem * v4 = TaskMan_FieldSystem(param0);
+    FieldSystem * v4 = TaskManager_FieldSystem(param0);
 
     switch (v3->unk_04) {
     case 0:

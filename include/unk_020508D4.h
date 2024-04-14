@@ -15,7 +15,7 @@ BOOL sub_020509B4(FieldSystem * param0);
 void sub_020509D4(FieldSystem * param0);
 BOOL sub_020509DC(FieldSystem * param0);
 void sub_02050A38(TaskManager * param0, const OverlayManagerTemplate * param1, void * param2);
-FieldSystem * TaskMan_FieldSystem(TaskManager * param0);
+FieldSystem * TaskManager_FieldSystem(TaskManager * param0);
 void * TaskManager_Environment(TaskManager * param0);
 int * sub_02050A68(TaskManager * param0);
 u32 sub_02050A6C(TaskManager * param0);

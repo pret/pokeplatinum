@@ -34,7 +34,7 @@ static BOOL sub_0209B3C4(TaskManager * param0);
 
 void sub_0209B344 (TaskManager * param0, u16 * param1)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_0209B3AC * v1 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0209B3AC));
 
     v1->unk_00 = v0;

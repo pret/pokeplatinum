@@ -25,7 +25,7 @@ typedef struct {
 
 static BOOL ov5_021DDAE4 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_ov5_021DDBC8 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_00) {

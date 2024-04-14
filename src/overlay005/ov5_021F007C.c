@@ -433,7 +433,7 @@ u32 ov5_021F0484 (void)
 
 BOOL ov5_021F0488 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_ov5_021F0468 * v1 = TaskManager_Environment(param0);
     BOOL v2;
 

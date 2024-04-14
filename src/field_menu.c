@@ -421,7 +421,7 @@ static BOOL sub_0203AC44 (TaskManager * taskMan)
     FieldSystem * fieldSystem;
     FieldMenu * menu;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
 
     switch (menu->state) {
@@ -529,7 +529,7 @@ static void sub_0203ADFC (TaskManager * taskMan)
     UnkStruct_02081CF4 v3;
     u32 v4, v5;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
     v5 = FieldMenu_MakeList(menu, menu->unk_30);
 
@@ -663,7 +663,7 @@ static void sub_0203B094 (TaskManager * taskMan)
     Strbuf* v5;
     u8 v6;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
 
     if (sub_0206AE5C(SaveData_Events(fieldSystem->saveData)) == 1) {
@@ -719,7 +719,7 @@ static void sub_0203B200 (TaskManager * taskMan)
     FieldSystem * fieldSystem;
     FieldMenu * menu;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
 
     if ((sub_0206AE5C(SaveData_Events(fieldSystem->saveData)) == 0) && (sub_0206AE8C(SaveData_Events(fieldSystem->saveData)) == 0)) {
@@ -736,7 +736,7 @@ static BOOL FieldMenu_Select (TaskManager * taskMan)
     FieldMenu * menu;
     u16 v2;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
     v2 = sub_02001DC4(menu->unk_20);
 
@@ -899,7 +899,7 @@ static void FieldMenu_ApplicationStart (TaskManager * taskMan)
         return;
     }
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
 
     FieldMenu_Close(menu);
@@ -915,7 +915,7 @@ static void FieldMenu_ApplicationRun (TaskManager * taskMan)
     FieldSystem * fieldSystem;
     FieldMenu * menu;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
 
     if (sub_020509B4(fieldSystem)) {
@@ -954,7 +954,7 @@ static BOOL FieldMenu_Pokedex (TaskManager * taskMan)
     TrainerInfo * v4;
     UnkStruct_020507E4 * v5;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
     v2 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov21_021D0D80));
     v3 = SaveData_Pokedex(fieldSystem->saveData);
@@ -983,7 +983,7 @@ static BOOL FieldMenu_PokedexEnd (TaskManager * taskMan)
     FieldSystem * fieldSystem;
     FieldMenu * menu;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
 
     sub_020509D4(fieldSystem);
@@ -1016,7 +1016,7 @@ static BOOL sub_0203B78C (TaskManager * taskMan)
     FieldSystem * fieldSystem;
     FieldMenu * menu;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
 
     menu->unk_25C = sub_0203D390(fieldSystem, &menu->unk_24C, 0);
@@ -1031,7 +1031,7 @@ BOOL sub_0203B7C0 (TaskManager * taskMan)
     FieldMenu * menu;
     PartyManagementData * v2;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
     v2 = (PartyManagementData *)Heap_AllocFromHeap(11, sizeof(PartyManagementData));
 
@@ -1277,7 +1277,7 @@ static BOOL FieldMenu_Bag (TaskManager * taskMan)
     FieldSystem * fieldSystem;
     FieldMenu * menu;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
 
     menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
@@ -1295,7 +1295,7 @@ static BOOL sub_0203BC5C (TaskManager * taskMan)
     FieldMenu * menu;
     UnkStruct_0207CB08 * v2;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
     v2 = sub_0207CB08(11);
 
@@ -1422,7 +1422,7 @@ static BOOL FieldMenu_TrainerCard (TaskManager * taskMan)
     FieldSystem * fieldSystem;
     FieldMenu * menu;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
 
     menu->unk_25C = sub_02071F04(11);
@@ -1439,7 +1439,7 @@ static BOOL sub_0203BF00 (TaskManager * taskMan)
     FieldSystem * fieldSystem;
     FieldMenu * menu;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
 
     sub_020721D4(fieldSystem, (TrainerCard *)menu->unk_25C);
@@ -1469,7 +1469,7 @@ static BOOL FieldMenu_SelectSave (TaskManager * taskMan)
 static void FieldMenu_Save (TaskManager * taskMan)
 {
     FieldMenu * menu = TaskManager_Environment(taskMan);
-    FieldSystem * fieldSystem = TaskMan_FieldSystem(taskMan);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     SaveMenu * saveMenu;
 
     if (SaveData_OverwriteCheck(fieldSystem->saveData)) {
@@ -1487,7 +1487,7 @@ static void FieldMenu_Save (TaskManager * taskMan)
 
 static void FieldMenu_SaveWait (TaskManager * taskMan)
 {
-    FieldSystem * fieldSystem = TaskMan_FieldSystem(taskMan);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     FieldMenu * menu = TaskManager_Environment(taskMan);
     SaveMenu * saveMenu = menu->unk_25C;
 
@@ -1523,7 +1523,7 @@ static BOOL FieldMenu_Options (TaskManager * taskMan)
     FieldSystem * fieldSystem;
     FieldMenu * menu;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
 
     menu->unk_25C = sub_0203D8EC(fieldSystem);
@@ -1537,7 +1537,7 @@ static BOOL sub_0203C050 (TaskManager * taskMan)
     FieldSystem * fieldSystem;
     FieldMenu * menu;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
 
     Heap_FreeToHeap(menu->unk_25C);
@@ -1568,7 +1568,7 @@ static BOOL sub_0203C0A0 (TaskManager * taskMan)
     FieldMenu * menu;
     Sentence v2;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
 
     menu->unk_25C = sub_0209747C(2, 0, fieldSystem->saveData, 11);
@@ -1588,7 +1588,7 @@ static BOOL sub_0203C0F8 (TaskManager * taskMan)
     FieldSystem * fieldSystem;
     FieldMenu * v2;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     v2 = TaskManager_Environment(taskMan);
 
     if (sub_02097528(v2->unk_25C) == 0) {
@@ -1616,7 +1616,7 @@ static BOOL FieldMenu_SelectRetire (TaskManager * taskMan)
     FieldSystem * fieldSystem;
     FieldMenu * menu;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
 
     FieldMenu_Close(menu);
@@ -1641,7 +1641,7 @@ static BOOL sub_0203C1C8 (TaskManager * taskMan)
     FieldMenu * menu;
     PokemonSummary * v2;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
     v2 = Heap_AllocFromHeap(11, sizeof(PokemonSummary));
 
@@ -1704,7 +1704,7 @@ static void sub_0203C2D8 (TaskManager * taskMan, u16 param1)
     u8 v3;
     u8 v4, v5, v6;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
 
     menu->unk_25C = sub_020972FC(11);
@@ -1734,7 +1734,7 @@ static BOOL sub_0203C390 (TaskManager * taskMan)
     FieldMenu * menu;
     u8 v2, v3;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
 
     sub_02097390(menu->unk_25C, &v2, &v3);
@@ -1752,7 +1752,7 @@ BOOL sub_0203C3F4 (TaskManager * taskMan)
     FieldSystem * fieldSystem;
     FieldMenu * menu;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
 
     Heap_FreeToHeapExplicit(11, menu->unk_25C);
@@ -1769,7 +1769,7 @@ BOOL sub_0203C434 (TaskManager * taskMan)
     UnkStruct_0203D8AC * v2;
     u32 v3;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
     v3 = *((u32 *)menu->unk_260);
 
@@ -1807,7 +1807,7 @@ BOOL sub_0203C50C (TaskManager * taskMan)
     FieldSystem * fieldSystem;
     FieldMenu * menu;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
 
     menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
@@ -1835,7 +1835,7 @@ BOOL sub_0203C558 (TaskManager * taskMan)
     FieldMenu * menu;
     UnkStruct_0203C540 * v2;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
     v2 = menu->unk_260;
 
@@ -1907,7 +1907,7 @@ BOOL sub_0203C710 (TaskManager * taskMan)
     FieldSystem * fieldSystem;
     FieldMenu * menu;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
 
     sub_02098AF0(menu->unk_25C);
@@ -1923,7 +1923,7 @@ BOOL sub_0203C750 (TaskManager * taskMan)
     FieldSystem * fieldSystem;
     FieldMenu * menu;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
 
     menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
@@ -1937,7 +1937,7 @@ BOOL sub_0203C784 (TaskManager * taskMan)
     FieldSystem * fieldSystem;
     FieldMenu * menu;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
 
     menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
@@ -1955,7 +1955,7 @@ static void FieldMenu_EvolveInit (TaskManager * taskMan)
     Pokemon * v4;
     UnkStruct_0207AE68 * v5;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
     v2 = menu->unk_25C;
 
@@ -1989,7 +1989,7 @@ static void FieldMenu_Evolve (TaskManager * taskMan)
     FieldSystem * fieldSystem;
     FieldMenu * menu;
 
-    fieldSystem = TaskMan_FieldSystem(taskMan);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
 
     if (sub_0207B0D0(menu->unk_25C) == 1) {

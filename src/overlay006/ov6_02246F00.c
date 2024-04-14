@@ -45,7 +45,7 @@ void ov6_02246F00 (FieldSystem * param0, const u8 param1, const u8 param2)
 
 static BOOL ov6_02246F40 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_ov6_02246F00 * v1 = (UnkStruct_ov6_02246F00 *)TaskManager_Environment(param0);
 
     switch (v1->unk_02) {

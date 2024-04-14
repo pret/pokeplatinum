@@ -1290,7 +1290,7 @@ static int sub_020735E8 (UnkStruct_02072334 * param0)
 
 static BOOL sub_02073694 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_020736D8 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_04) {
@@ -1312,7 +1312,7 @@ static BOOL sub_02073694 (TaskManager * param0)
 
 void sub_020736D8 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_020736D8 * v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_020736D8));
 
     v1->unk_00 = 0;

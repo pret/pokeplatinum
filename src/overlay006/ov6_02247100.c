@@ -62,7 +62,7 @@ void * ov6_02247100 (FieldSystem * param0, u32 param1)
 BOOL ov6_02247120 (TaskManager * param0)
 {
     int v0;
-    FieldSystem * v1 = TaskMan_FieldSystem(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
     UnkStruct_ov6_02247100 * v2 = TaskManager_Environment(param0);
 
     do {
@@ -182,7 +182,7 @@ void * ov6_022472C8 (FieldSystem * param0, u32 param1, int param2)
 BOOL ov6_022472E8 (TaskManager * param0)
 {
     int v0;
-    FieldSystem * v1 = TaskMan_FieldSystem(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
     UnkStruct_ov6_02247100 * v2 = TaskManager_Environment(param0);
 
     do {
@@ -302,7 +302,7 @@ void * ov6_02247488 (FieldSystem * param0, Pokemon * param1, u32 param2)
 BOOL ov6_022474AC (TaskManager * param0)
 {
     int v0;
-    FieldSystem * v1 = TaskMan_FieldSystem(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
     UnkStruct_ov6_02247100 * v2 = TaskManager_Environment(param0);
 
     do {
@@ -361,7 +361,7 @@ void * ov6_02247530 (FieldSystem * param0, Pokemon * param1, u32 param2)
 BOOL ov6_02247554 (TaskManager * param0)
 {
     int v0;
-    FieldSystem * v1 = TaskMan_FieldSystem(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
     UnkStruct_ov6_02247100 * v2 = TaskManager_Environment(param0);
 
     do {

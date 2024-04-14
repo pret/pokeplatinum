@@ -53,9 +53,9 @@ static void sub_02059E80(void);
 static void sub_02059E94(void);
 static void sub_02059E50(void);
 static void sub_02059D58(void);
-static void sub_02059F10(void);
+static void FieldCommTask_CopyTrainerCard(void);
 static void sub_02059FB8(void);
-static void sub_02059ED8(void);
+static void FieldCommTask_StartCopyTrainerCard(void);
 static void sub_02059FD4(void);
 static void sub_0205A018(void);
 static void Task_EndBattle(void);
@@ -183,7 +183,7 @@ void FieldCommMan_EnterBattleRoom (FieldSystem * fieldSys)
     }
 
     sub_020364F0(95);
-    FieldCommMan_SetTask(sub_02059ED8, 0);
+    FieldCommMan_SetTask(FieldCommTask_StartCopyTrainerCard, 0);
 }
 
 void FieldCommMan_EndBattle (void)
@@ -621,17 +621,17 @@ u8 * sub_02059EBC (int param0, void * param1, int param2)
     return (u8 *)sFieldCommMan->trainerCard[param0];
 }
 
-static void sub_02059ED8 (void)
+static void FieldCommTask_StartCopyTrainerCard (void)
 {
     int v0, v1 = CommSys_CurNetId();
 
     if (sub_02036540(95)) {
         sub_0203597C(88, sFieldCommMan->trainerCard[v1], sizeof(TrainerCard));
-        FieldCommMan_SetTask(sub_02059F10, 0);
+        FieldCommMan_SetTask(FieldCommTask_CopyTrainerCard, 0);
     }
 }
 
-static void sub_02059F10 (void)
+static void FieldCommTask_CopyTrainerCard (void)
 {
     int v0;
 

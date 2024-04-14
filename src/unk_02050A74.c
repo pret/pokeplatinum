@@ -78,7 +78,7 @@ static BOOL sub_02051074(TaskManager * param0);
 
 static BOOL sub_02050A74 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     BattleParams * v1 = TaskManager_Environment(param0);
     int * v2 = sub_02050A68(param0);
 
@@ -154,7 +154,7 @@ static BOOL sub_02050B30 (TaskManager * param0)
     UnkStruct_02050ACC * v1;
     int * v2;
 
-    v0 = TaskMan_FieldSystem(param0);
+    v0 = TaskManager_FieldSystem(param0);
     v1 = TaskManager_Environment(param0);
     v2 = sub_02050A68(param0);
 
@@ -238,7 +238,7 @@ static BOOL sub_02050CA8 (TaskManager * param0)
     UnkStruct_02050ACC * v1;
     int * v2;
 
-    v0 = TaskMan_FieldSystem(param0);
+    v0 = TaskManager_FieldSystem(param0);
     v1 = TaskManager_Environment(param0);
     v2 = sub_02050A68(param0);
 
@@ -283,7 +283,7 @@ static BOOL sub_02050D4C (TaskManager * param0)
     UnkStruct_02050ACC * v1;
     int * v2;
 
-    v0 = TaskMan_FieldSystem(param0);
+    v0 = TaskManager_FieldSystem(param0);
     v1 = TaskManager_Environment(param0);
     v2 = sub_02050A68(param0);
 
@@ -375,7 +375,7 @@ static BOOL sub_02050EE0 (TaskManager * param0)
     FieldSystem * v0;
     UnkStruct_02050DD4 * v1;
 
-    v0 = TaskMan_FieldSystem(param0);
+    v0 = TaskManager_FieldSystem(param0);
     v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_00) {
@@ -456,7 +456,7 @@ static BOOL sub_02051074 (TaskManager * param0)
     int * v2;
     u16 * v3;
 
-    v0 = TaskMan_FieldSystem(param0);
+    v0 = TaskManager_FieldSystem(param0);
     v1 = TaskManager_Environment(param0);
     v2 = sub_02050A68(param0);
     v3 = sub_0203A784(sub_0203A790(v0->saveData));
@@ -540,7 +540,7 @@ void sub_0205120C (TaskManager * param0, int * param1)
     BattleParams * v1;
     FieldSystem * v2;
 
-    v2 = TaskMan_FieldSystem(param0);
+    v2 = TaskManager_FieldSystem(param0);
     RadarChain_Clear(v2->chain);
 
     v1 = sub_02051D8C(11, (0x0 | 0x0));
@@ -561,7 +561,7 @@ void sub_02051270 (TaskManager * param0, u16 param1, u8 param2, int * param3, BO
     BattleParams * v1;
     FieldSystem * v2;
 
-    v2 = TaskMan_FieldSystem(param0);
+    v2 = TaskManager_FieldSystem(param0);
     RadarChain_Clear(v2->chain);
 
     v1 = sub_02051D8C(11, (0x0 | 0x0));
@@ -585,7 +585,7 @@ void sub_020512E4 (TaskManager * param0, u16 param1, u8 param2, int * param3, BO
     Pokemon * v3;
     int v4;
 
-    v2 = TaskMan_FieldSystem(param0);
+    v2 = TaskManager_FieldSystem(param0);
     RadarChain_Clear(v2->chain);
 
     v1 = sub_02051D8C(11, (0x0 | 0x0));
@@ -612,7 +612,7 @@ static BOOL sub_0205136C (TaskManager * param0)
     UnkStruct_02050ACC * v1;
     int * v2;
 
-    v0 = TaskMan_FieldSystem(param0);
+    v0 = TaskManager_FieldSystem(param0);
     v1 = TaskManager_Environment(param0);
     v2 = sub_02050A68(param0);
 
@@ -675,7 +675,7 @@ void sub_02051480 (TaskManager * param0, int param1, int param2, int * param3)
     BattleParams * v1;
     FieldSystem * v2;
 
-    v2 = TaskMan_FieldSystem(param0);
+    v2 = TaskManager_FieldSystem(param0);
     v1 = sub_02051D8C(11, 0x1);
 
     sub_02052314(v1, v2);
@@ -693,7 +693,7 @@ void sub_02051480 (TaskManager * param0, int param1, int param2, int * param3)
 static BOOL sub_020514E8 (TaskManager * param0)
 {
     UnkStruct_02050ACC * v0 = TaskManager_Environment(param0);
-    FieldSystem * v1 = TaskMan_FieldSystem(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
     int * v2 = sub_02050A68(param0);
 
     switch (*v2) {
@@ -735,7 +735,7 @@ void sub_02051590 (TaskManager * param0)
 {
     UnkStruct_02050ACC * v0;
     BattleParams * v1;
-    FieldSystem * v2 = TaskMan_FieldSystem(param0);
+    FieldSystem * v2 = TaskManager_FieldSystem(param0);
 
     v1 = sub_02051F4C(11, v2);
     v0 = sub_02050ACC(v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), NULL);
@@ -750,7 +750,7 @@ void sub_020515CC (TaskManager * param0, int param1, int param2, int param3, int
     BattleParams * v2;
     FieldSystem * v3;
 
-    v3 = TaskMan_FieldSystem(param0);
+    v3 = TaskManager_FieldSystem(param0);
 
     if ((param2 != 0) && (param1 != param2)) {
         if (param3 == 0) {
@@ -783,7 +783,7 @@ void sub_020515CC (TaskManager * param0, int param1, int param2, int param3, int
 
 void sub_0205167C (TaskManager * param0, const u8 * param1, int param2)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_02050ACC * v1;
     BattleParams * v2;
 
@@ -817,7 +817,7 @@ static int sub_020516C8 (const BattleRegulation * param0, int param1)
 
 void sub_020516F4 (TaskManager * param0, int param1, int param2, int param3)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_02050ACC * v1;
     BattleParams * v2;
     int v3;
@@ -856,7 +856,7 @@ void sub_020516F4 (TaskManager * param0, int param1, int param2, int param3)
 
 static BOOL sub_02051790 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_02050ACC * v1 = TaskManager_Environment(param0);
     int * v2 = sub_02050A68(param0);
 
@@ -1010,7 +1010,7 @@ void sub_02051ABC (TaskManager * param0, u16 param1, u8 param2, int * param3, BO
     BattleParams * v1;
     FieldSystem * v2;
 
-    v2 = TaskMan_FieldSystem(param0);
+    v2 = TaskManager_FieldSystem(param0);
     RadarChain_Clear(v2->chain);
 
     v1 = sub_02051D8C(11, (0x0 | 0x0));

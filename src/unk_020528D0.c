@@ -212,7 +212,7 @@ BOOL sub_02052B2C (TaskManager * param0)
     FieldSystem * v0;
     int * v1;
 
-    v0 = TaskMan_FieldSystem(param0);
+    v0 = TaskManager_FieldSystem(param0);
     v1 = sub_02050A68(param0);
 
     switch (*v1) {

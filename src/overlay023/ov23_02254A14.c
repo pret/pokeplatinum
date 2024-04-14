@@ -207,7 +207,7 @@ static void ov23_02254AA4 (const int param0, UnkStruct_ov23_02256098 * param1)
 
 static BOOL ov23_02254AD4 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_ov23_02256098 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_00) {
@@ -277,7 +277,7 @@ static BOOL ov23_02254AD4 (TaskManager * param0)
 static BOOL ov23_02254C84 (TaskManager * param0)
 {
     BOOL v0;
-    FieldSystem * v1 = TaskMan_FieldSystem(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
     UnkStruct_ov23_02256098 * v2 = TaskManager_Environment(param0);
 
     v0 = ov23_02254318(v2->unk_504);
@@ -356,7 +356,7 @@ static BOOL ov23_02254DF8 (TaskManager * param0)
     UnkStruct_ov5_021E1890 * v2;
     BOOL v3;
     BOOL v4;
-    FieldSystem * v5 = TaskMan_FieldSystem(param0);
+    FieldSystem * v5 = TaskManager_FieldSystem(param0);
     UnkStruct_ov23_02256098 * v6 = TaskManager_Environment(param0);
 
     switch (v6->unk_04) {
@@ -536,7 +536,7 @@ static BOOL ov23_02255100 (TaskManager * param0)
     fx32 v2, v3;
     BOOL v4;
     BOOL v5;
-    FieldSystem * v6 = TaskMan_FieldSystem(param0);
+    FieldSystem * v6 = TaskManager_FieldSystem(param0);
     UnkStruct_ov23_02256098 * v7 = TaskManager_Environment(param0);
 
     switch (v7->unk_04) {
@@ -773,7 +773,7 @@ static BOOL ov23_02255580 (TaskManager * param0)
     fx32 v2, v3;
     BOOL v4;
     BOOL v5;
-    FieldSystem * v6 = TaskMan_FieldSystem(param0);
+    FieldSystem * v6 = TaskManager_FieldSystem(param0);
     UnkStruct_ov23_02256098 * v7 = TaskManager_Environment(param0);
 
     switch (v7->unk_04) {
@@ -925,7 +925,7 @@ static BOOL ov23_02255850 (TaskManager * param0)
     UnkStruct_ov5_021E1890 * v2;
     BOOL v3;
     BOOL v4;
-    FieldSystem * v5 = TaskMan_FieldSystem(param0);
+    FieldSystem * v5 = TaskManager_FieldSystem(param0);
     UnkStruct_ov23_02256098 * v6 = TaskManager_Environment(param0);
 
     switch (v6->unk_04) {

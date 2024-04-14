@@ -2358,7 +2358,7 @@ static void ov9_0224AA34 (UnkStruct_ov9_02249B04 * param0, const UnkStruct_ov9_0
 
 static BOOL ov9_0224AAD4 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_ov9_02249B04 * v1 = TaskManager_Environment(param0);
     UnkStruct_ov9_0224AC58 * v2 = ov9_0224A598(v1);
     PlayerAvatar * v3 = v0->playerAvatar;

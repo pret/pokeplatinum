@@ -212,7 +212,7 @@ static BOOL sub_0209843C (TaskManager * param0)
         break;
     case 2:
     {
-        FieldSystem * v1 = TaskMan_FieldSystem(param0);
+        FieldSystem * v1 = TaskManager_FieldSystem(param0);
 
         {
             Pokemon * v2 = v0->unk_0C.unk_00;
@@ -240,7 +240,7 @@ static BOOL sub_0209843C (TaskManager * param0)
     break;
     case 3:
     {
-        FieldSystem * v8 = TaskMan_FieldSystem(param0);
+        FieldSystem * v8 = TaskManager_FieldSystem(param0);
         int v9;
 
         v9 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_SPECIES, 0);
@@ -257,7 +257,7 @@ static BOOL sub_0209843C (TaskManager * param0)
             Pokemon_SetValue(v0->unk_0C.unk_00, 120, v0->unk_08->unk_18);
 
             {
-                FieldSystem * v10 = TaskMan_FieldSystem(param0);
+                FieldSystem * v10 = TaskManager_FieldSystem(param0);
                 UnkStruct_0202CD88 * v11 = sub_0202CD88(FieldSystem_SaveData(v10));
 
                 sub_0202CF28(v11, (1 + 48));

@@ -43,7 +43,7 @@ void * sub_0207064C (u32 param0, FieldSystem * param1, Pokemon * param2, u16 par
 
 BOOL sub_02070680 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_0207064C * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_04) {

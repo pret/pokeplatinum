@@ -100,7 +100,7 @@ void * ov5_021F08CC (FieldSystem * param0, u32 param1, int param2)
 
 BOOL ov5_021F08F8 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_ov5_021F08CC * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_00) {

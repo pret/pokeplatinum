@@ -333,7 +333,7 @@ static const UnkStruct_ov5_021F8E3C Unk_ov5_021F8E34[] = {
 void ov5_021DB888 (TaskManager * param0, StringTemplate * param1, u16 * param2)
 {
     UnkStruct_ov5_021DBA58 * v0;
-    FieldSystem * v1 = TaskMan_FieldSystem(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
 
     v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021DBA58));
 

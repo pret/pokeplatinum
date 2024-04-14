@@ -50,7 +50,7 @@ void sub_02050568 (FieldSystem * param0)
 
 static BOOL sub_020505A0 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskMan_FieldSystem(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_02050568 * v1 = TaskManager_Environment(param0);
     UnkStruct_020507E4 * v2 = SaveData_Events(v0->saveData);
 

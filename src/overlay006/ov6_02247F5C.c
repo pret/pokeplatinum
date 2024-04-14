@@ -41,7 +41,7 @@ static BOOL ov6_02247FD0 (TaskManager * param0)
 {
     int * v0;
     UnkStruct_ov5_021D3CE4 * v1;
-    FieldSystem * v2 = TaskMan_FieldSystem(param0);
+    FieldSystem * v2 = TaskManager_FieldSystem(param0);
 
     v0 = sub_02050A68(param0);
 
