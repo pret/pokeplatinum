@@ -19,17 +19,17 @@ void Options_Copy(const Options *src, Options *dest);
 void Options_Init(Options *options);
 void Options_SetSystemButtonMode(SaveData *saveData, int buttonMode);
 int Options_TextSpeed(const Options *options);
-void Options_SetTextSpeed(Options *options, int textSpeed);
+void Options_SetTextSpeed(Options *options, enum OptionsTextSpeed speed);
 u8 Options_TextFrameDelay(const Options *options);
 int Options_SoundMode(const Options *options);
-void Options_SetSoundMode(Options *options, int soundMode);
+void Options_SetSoundMode(Options *options, enum OptionsSoundMode mode);
 int Options_BattleScene(const Options *options);
-void Options_SetBattleScene(Options *options, int battleScene);
+void Options_SetBattleScene(Options *options, enum OptionsBattleScene scene);
 int Options_BattleStyle(const Options *options);
-void Options_SetBattleStyle(Options *options, int battleStyle);
+void Options_SetBattleStyle(Options *options, enum OptionsBattleStyle style);
 int Options_ButtonMode(const Options *options);
-void Options_SetButtonMode(Options *options, int buttonMode);
+void Options_SetButtonMode(Options *options, enum OptionsButtonMode mode);
 int Options_Frame(const Options *options);
-void Options_SetFrame(Options *options, int frame);
+void Options_SetFrame(Options *options, enum OptionsFrame frame);
 
 #endif // POKEPLATINUM_GAME_OPTIONS_H

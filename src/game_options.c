@@ -1,9 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-
-#include "constants/game_options.h"
-
 #include "core_sys.h"
 #include "savedata.h"
 #include "heap.h"
@@ -61,9 +58,9 @@ int Options_TextSpeed (const Options *options)
     return options->textSpeed;
 }
 
-void Options_SetTextSpeed (Options *options, int textSpeed)
+void Options_SetTextSpeed (Options *options, enum OptionsTextSpeed speed)
 {
-    options->textSpeed = textSpeed;
+    options->textSpeed = speed;
 }
 
 u8 Options_TextFrameDelay (const Options *options)
@@ -84,9 +81,9 @@ int Options_SoundMode (const Options *options)
     return options->soundMode;
 }
 
-void Options_SetSoundMode (Options *options, int soundMode)
+void Options_SetSoundMode (Options *options, enum OptionsSoundMode mode)
 {
-    options->soundMode = soundMode;
+    options->soundMode = mode;
 }
 
 int Options_BattleScene (const Options *options)
@@ -94,9 +91,9 @@ int Options_BattleScene (const Options *options)
     return options->battleScene;
 }
 
-void Options_SetBattleScene (Options *options, int battleScene)
+void Options_SetBattleScene (Options *options, enum OptionsBattleScene scene)
 {
-    options->battleScene = battleScene;
+    options->battleScene = scene;
 }
 
 int Options_BattleStyle (const Options *options)
@@ -104,9 +101,9 @@ int Options_BattleStyle (const Options *options)
     return options->battleStyle;
 }
 
-void Options_SetBattleStyle (Options *options, int battleStyle)
+void Options_SetBattleStyle (Options *options, enum OptionsBattleStyle style)
 {
-    options->battleStyle = battleStyle;
+    options->battleStyle = style;
 }
 
 int Options_ButtonMode (const Options *options)
@@ -114,9 +111,9 @@ int Options_ButtonMode (const Options *options)
     return options->buttonMode;
 }
 
-void Options_SetButtonMode (Options *options, int buttonMode)
+void Options_SetButtonMode (Options *options, enum OptionsButtonMode mode)
 {
-    options->buttonMode = buttonMode;
+    options->buttonMode = mode;
 }
 
 int Options_Frame (const Options *options)
@@ -124,7 +121,7 @@ int Options_Frame (const Options *options)
     return options->frame;
 }
 
-void Options_SetFrame (Options *options, int frame)
+void Options_SetFrame (Options *options, enum OptionsFrame frame)
 {
     options->frame = frame;
 }
