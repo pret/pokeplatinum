@@ -36,7 +36,7 @@ def parse_object_events(obj_events: Sequence[Mapping], *args) -> bytes:
         obj_bytes.extend(j2b.parse_int(obj_data[1] if len(obj_data) > 1 else 0, 2))
         obj_bytes.extend(j2b.parse_int(obj_data[2] if len(obj_data) > 2 else 0, 2))
         obj_bytes.extend(j2b.parse_int(obj['movement_range_x'], 2))
-        obj_bytes.extend(j2b.parse_int(obj['movement_range_y'], 2))
+        obj_bytes.extend(j2b.parse_int(obj['movement_range_z'], 2))
         obj_bytes.extend(j2b.parse_int(obj['x'], 2))
         obj_bytes.extend(j2b.parse_int(obj['z'], 2))
         obj_bytes.extend(j2b.parse_int(obj['y'] * 0x10000, 4))
