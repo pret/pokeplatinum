@@ -79,7 +79,7 @@ static BOOL sub_02051074(TaskManager * param0);
 static BOOL sub_02050A74 (TaskManager * param0)
 {
     FieldSystem * v0 = TaskMan_FieldSystem(param0);
-    BattleParams * v1 = sub_02050A64(param0);
+    BattleParams * v1 = TaskManager_Environment(param0);
     int * v2 = sub_02050A68(param0);
 
     switch (*v2) {
@@ -155,7 +155,7 @@ static BOOL sub_02050B30 (TaskManager * param0)
     int * v2;
 
     v0 = TaskMan_FieldSystem(param0);
-    v1 = sub_02050A64(param0);
+    v1 = TaskManager_Environment(param0);
     v2 = sub_02050A68(param0);
 
     switch (*v2) {
@@ -239,7 +239,7 @@ static BOOL sub_02050CA8 (TaskManager * param0)
     int * v2;
 
     v0 = TaskMan_FieldSystem(param0);
-    v1 = sub_02050A64(param0);
+    v1 = TaskManager_Environment(param0);
     v2 = sub_02050A68(param0);
 
     switch (*v2) {
@@ -284,7 +284,7 @@ static BOOL sub_02050D4C (TaskManager * param0)
     int * v2;
 
     v0 = TaskMan_FieldSystem(param0);
-    v1 = sub_02050A64(param0);
+    v1 = TaskManager_Environment(param0);
     v2 = sub_02050A68(param0);
 
     switch (*v2) {
@@ -376,7 +376,7 @@ static BOOL sub_02050EE0 (TaskManager * param0)
     UnkStruct_02050DD4 * v1;
 
     v0 = TaskMan_FieldSystem(param0);
-    v1 = sub_02050A64(param0);
+    v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_00) {
     case 0:
@@ -457,7 +457,7 @@ static BOOL sub_02051074 (TaskManager * param0)
     u16 * v3;
 
     v0 = TaskMan_FieldSystem(param0);
-    v1 = sub_02050A64(param0);
+    v1 = TaskManager_Environment(param0);
     v2 = sub_02050A68(param0);
     v3 = sub_0203A784(sub_0203A790(v0->saveData));
 
@@ -613,7 +613,7 @@ static BOOL sub_0205136C (TaskManager * param0)
     int * v2;
 
     v0 = TaskMan_FieldSystem(param0);
-    v1 = sub_02050A64(param0);
+    v1 = TaskManager_Environment(param0);
     v2 = sub_02050A68(param0);
 
     switch (*v2) {
@@ -692,7 +692,7 @@ void sub_02051480 (TaskManager * param0, int param1, int param2, int * param3)
 
 static BOOL sub_020514E8 (TaskManager * param0)
 {
-    UnkStruct_02050ACC * v0 = sub_02050A64(param0);
+    UnkStruct_02050ACC * v0 = TaskManager_Environment(param0);
     FieldSystem * v1 = TaskMan_FieldSystem(param0);
     int * v2 = sub_02050A68(param0);
 
@@ -857,7 +857,7 @@ void sub_020516F4 (TaskManager * param0, int param1, int param2, int param3)
 static BOOL sub_02051790 (TaskManager * param0)
 {
     FieldSystem * v0 = TaskMan_FieldSystem(param0);
-    UnkStruct_02050ACC * v1 = sub_02050A64(param0);
+    UnkStruct_02050ACC * v1 = TaskManager_Environment(param0);
     int * v2 = sub_02050A68(param0);
 
     switch (*v2) {

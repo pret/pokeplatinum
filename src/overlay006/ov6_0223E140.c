@@ -512,7 +512,7 @@ static void ov6_0223E318 (FieldSystem * param0, u32 param1, BOOL param2)
 static BOOL ov6_0223E33C (TaskManager * param0)
 {
     FieldSystem * v0 = TaskMan_FieldSystem(param0);
-    UnkStruct_ov6_0223E33C * v1 = sub_02050A64(param0);
+    UnkStruct_ov6_0223E33C * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_0C) {
     case 0:
@@ -562,7 +562,7 @@ static void ov6_0223E3D8 (UnkStruct_ov6_0223E33C * param0)
 static BOOL ov6_0223E408 (TaskManager * param0)
 {
     FieldSystem * v0 = TaskMan_FieldSystem(param0);
-    UnkStruct_ov6_0223E33C * v1 = sub_02050A64(param0);
+    UnkStruct_ov6_0223E33C * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_0C) {
     case 0:

@@ -147,7 +147,7 @@ static void sub_02052914 (FieldSystem * param0, TaskManager * param1)
 
 static BOOL sub_020529C4 (TaskManager * param0)
 {
-    UnkStruct_02052AA4 * v0 = sub_02050A64(param0);
+    UnkStruct_02052AA4 * v0 = TaskManager_Environment(param0);
 
     switch (v0->unk_00) {
     case 0:

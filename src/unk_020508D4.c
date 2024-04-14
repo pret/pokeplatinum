@@ -139,7 +139,7 @@ BOOL sub_020509DC (FieldSystem * param0)
 static BOOL sub_020509F0 (TaskManager * param0)
 {
     FieldSystem * v0 = TaskMan_FieldSystem(param0);
-    UnkStruct_020509F0 * v1 = sub_02050A64(param0);
+    UnkStruct_020509F0 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_00) {
     case 0:
@@ -174,7 +174,7 @@ FieldSystem * TaskMan_FieldSystem (TaskManager * param0)
     return param0->unk_18;
 }
 
-void * sub_02050A64 (TaskManager * param0)
+void * TaskManager_Environment (TaskManager * param0)
 {
     return param0->unk_0C;
 }

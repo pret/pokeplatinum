@@ -320,7 +320,7 @@ static BOOL sub_020718D8 (TaskManager * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
     FieldSystem * v1 = TaskMan_FieldSystem(param0);
-    UnkStruct_020718D8 * v2 = sub_02050A64(param0);
+    UnkStruct_020718D8 * v2 = TaskManager_Environment(param0);
 
     switch (v2->unk_00) {
     case 0:
@@ -383,7 +383,7 @@ static BOOL sub_020719D8 (TaskManager * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
     FieldSystem * v1 = TaskMan_FieldSystem(param0);
-    UnkStruct_020718D8 * v2 = sub_02050A64(param0);
+    UnkStruct_020718D8 * v2 = TaskManager_Environment(param0);
 
     switch (v2->unk_00) {
     case 0:

@@ -22,7 +22,7 @@ BOOL sub_0209AC14 (TaskManager * param0)
     UnkStruct_ov7_0224D008 * v1;
 
     v0 = TaskMan_FieldSystem(param0);
-    v1 = sub_02050A64(param0);
+    v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_297) {
     case 16:
@@ -56,7 +56,7 @@ static void sub_0209AC80 (TaskManager * param0)
     UnkStruct_ov7_0224D008 * v1;
 
     v0 = TaskMan_FieldSystem(param0);
-    v1 = sub_02050A64(param0);
+    v1 = TaskManager_Environment(param0);
 
     if (sub_020509DC(v0)) {
         ov5_021D1744(1);

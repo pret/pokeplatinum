@@ -460,7 +460,7 @@ static BOOL ov7_0224BBC4 (UnkStruct_ov7_0224B4E8 * param0)
 static BOOL ov7_0224BC74 (TaskManager * param0)
 {
     FieldSystem * v0 = TaskMan_FieldSystem(param0);
-    UnkStruct_ov7_0224B4E8 * v1 = sub_02050A64(param0);
+    UnkStruct_ov7_0224B4E8 * v1 = TaskManager_Environment(param0);
     int v2;
 
     switch (v1->unk_7C) {

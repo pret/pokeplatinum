@@ -83,7 +83,7 @@ static int ov5_021E11E0 (int param0)
 
 static BOOL ov5_021E120C (TaskManager * param0)
 {
-    UnkStruct_ov5_021E11B0 * v0 = sub_02050A64(param0);
+    UnkStruct_ov5_021E11B0 * v0 = TaskManager_Environment(param0);
     LocalMapObject * v1 = Player_LocalMapObject(v0->unk_10);
     u8 v2 = sub_02062BE8(v1);
 

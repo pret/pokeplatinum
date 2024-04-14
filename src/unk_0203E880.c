@@ -142,7 +142,7 @@ void sub_0203E880 (FieldSystem * param0, u16 param1, LocalMapObject * param2)
 
 void sub_0203E8B0 (FieldSystem * param0, LocalMapObject * param1, int param2, int param3, int param4, int param5, int param6, int param7)
 {
-    UnkStruct_0203EF60 * v0 = sub_02050A64(param0->unk_10);
+    UnkStruct_0203EF60 * v0 = TaskManager_Environment(param0->unk_10);
     UnkStruct_0203E8B0 * v1 = &v0->unk_50[param7];
 
     v1->unk_00 = param2;
@@ -180,7 +180,7 @@ static BOOL sub_0203E950 (TaskManager * param0)
     int v0;
     UnkFuncPtr_0203E950 v1;
     UnkStruct_0203E724 * v2 = NULL;
-    UnkStruct_0203EF60 * v3 = sub_02050A64(param0);
+    UnkStruct_0203EF60 * v3 = TaskManager_Environment(param0);
     FieldSystem * v4 = TaskMan_FieldSystem(param0);
 
     switch (v3->unk_04) {
@@ -556,7 +556,7 @@ void * sub_0203EF60 (UnkStruct_0203EF60 * param0, u32 param1)
 
 void * sub_0203F098 (FieldSystem * param0, u32 param1)
 {
-    UnkStruct_0203EF60 * v0 = sub_02050A64(param0->unk_10);
+    UnkStruct_0203EF60 * v0 = TaskManager_Environment(param0->unk_10);
 
     if (v0->unk_00 != 0x3643f) {
         GF_ASSERT(FALSE);
@@ -567,7 +567,7 @@ void * sub_0203F098 (FieldSystem * param0, u32 param1)
 
 void sub_0203F0C0 (FieldSystem * param0)
 {
-    UnkStruct_0203EF60 * v0 = sub_02050A64(param0->unk_10);
+    UnkStruct_0203EF60 * v0 = TaskManager_Environment(param0->unk_10);
 
     if (sub_0203A9C8(param0) == 1) {
         v0->unk_A4 = sub_0203AB00;

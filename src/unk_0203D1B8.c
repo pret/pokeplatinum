@@ -470,7 +470,7 @@ static BOOL sub_0203D444 (TaskManager * param0)
     int * v2;
 
     v0 = TaskMan_FieldSystem(param0);
-    v1 = sub_02050A64(param0);
+    v1 = TaskManager_Environment(param0);
     v2 = sub_02050A68(param0);
 
     switch (*v2) {
@@ -668,7 +668,7 @@ void sub_0203D754 (FieldSystem * param0, UnkStruct_02042434 * param1)
 static BOOL sub_0203D764 (TaskManager * param0)
 {
     int * v0 = sub_02050A68(param0);
-    UnkStruct_0203D764 * v1 = sub_02050A64(param0);
+    UnkStruct_0203D764 * v1 = TaskManager_Environment(param0);
     FieldSystem * v2 = TaskMan_FieldSystem(param0);
 
     switch (*v0) {
@@ -902,7 +902,7 @@ static UnkStruct_0203DA00 * sub_0203DA00 (int param0, SaveData * param1, int par
 static BOOL sub_0203DA64 (TaskManager * param0)
 {
     FieldSystem * v0 = TaskMan_FieldSystem(param0);
-    UnkStruct_0203DA64 * v1 = sub_02050A64(param0);
+    UnkStruct_0203DA64 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_00) {
     case 0:
@@ -1030,7 +1030,7 @@ BOOL sub_0203DBF0 (TaskManager * param0)
 {
     int v0;
     FieldSystem * v1 = TaskMan_FieldSystem(param0);
-    UnkStruct_0203DBF0 * v2 = sub_02050A64(param0);
+    UnkStruct_0203DBF0 * v2 = TaskManager_Environment(param0);
 
     switch (v2->unk_00) {
     case 0:
@@ -1198,7 +1198,7 @@ static BOOL sub_0203DE98 (TaskManager * param0)
 {
     int v0;
     FieldSystem * v1 = TaskMan_FieldSystem(param0);
-    UnkStruct_0203DE98 * v2 = sub_02050A64(param0);
+    UnkStruct_0203DE98 * v2 = TaskManager_Environment(param0);
 
     switch (v2->unk_00) {
     case 0:
@@ -1248,7 +1248,7 @@ static BOOL sub_0203DE98 (TaskManager * param0)
 static void sub_0203DF68 (TaskManager * param0)
 {
     FieldSystem * v0 = TaskMan_FieldSystem(param0);
-    UnkStruct_0203DE98 * v1 = sub_02050A64(param0);
+    UnkStruct_0203DE98 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_0C->unk_00) {
     case 0:
@@ -1580,7 +1580,7 @@ static BOOL sub_0203E35C (TaskManager * param0)
 {
     FieldSystem * v0 = TaskMan_FieldSystem(param0);
     UnkStruct_020507E4 * v1 = SaveData_Events(v0->saveData);
-    UnkStruct_0203E35C * v2 = sub_02050A64(param0);
+    UnkStruct_0203E35C * v2 = TaskManager_Environment(param0);
     int * v3 = sub_02050A68(param0);
     int v4;
 
@@ -1660,7 +1660,7 @@ static u8 sub_0203E484 (SaveData * param0, u8 param1)
 
 static BOOL sub_0203E4F8 (TaskManager * param0)
 {
-    UnkStruct_ov7_0224BEFC * v0 = sub_02050A64(param0);
+    UnkStruct_ov7_0224BEFC * v0 = TaskManager_Environment(param0);
 
     if (ov7_0224BF2C(v0) == 1) {
         ov7_0224BEFC(v0);

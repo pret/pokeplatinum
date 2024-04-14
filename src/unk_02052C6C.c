@@ -95,7 +95,7 @@ static BOOL sub_02052CBC (TaskManager * param0)
     UnkStruct_02049FA8 * v0;
     UnkStruct_020507E4 * v1;
     FieldSystem * v2 = TaskMan_FieldSystem(param0);
-    UnkStruct_0205300C * v3 = sub_02050A64(param0);
+    UnkStruct_0205300C * v3 = TaskManager_Environment(param0);
     int * v4 = sub_02050A68(param0);
     UnkStruct_0203E234 * v5 = &v3->unk_04;
 

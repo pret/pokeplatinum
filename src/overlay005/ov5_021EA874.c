@@ -382,7 +382,7 @@ static BOOL ov5_021EAD38 (UnkStruct_ov5_021EAE78 * param0)
 
 static BOOL ov5_021EADB4 (TaskManager * param0)
 {
-    UnkStruct_ov5_021EAE78 * v0 = sub_02050A64(param0);
+    UnkStruct_ov5_021EAE78 * v0 = TaskManager_Environment(param0);
     FieldSystem * v1 = TaskMan_FieldSystem(param0);
 
     switch (v0->unk_48) {

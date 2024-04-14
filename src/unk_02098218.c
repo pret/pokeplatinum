@@ -198,7 +198,7 @@ static int sub_02098388 (OverlayManager * param0, int * param1)
 
 static BOOL sub_0209843C (TaskManager * param0)
 {
-    UnkStruct_0209843C * v0 = sub_02050A64(param0);
+    UnkStruct_0209843C * v0 = TaskManager_Environment(param0);
 
     switch (v0->unk_00) {
     case 0:

@@ -357,7 +357,7 @@ static BOOL ov5_021DB8D8 (TaskManager * param0)
 {
     s32 v0, v1;
     int v2;
-    UnkStruct_ov5_021DBA58 * v3 = sub_02050A64(param0);
+    UnkStruct_ov5_021DBA58 * v3 = TaskManager_Environment(param0);
 
     switch (v3->unk_00) {
     case 0:

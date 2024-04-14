@@ -33,7 +33,7 @@ static void sub_0206C660(TaskManager * param0);
 void sub_0206C660 (TaskManager * param0)
 {
     FieldSystem * v0 = TaskMan_FieldSystem(param0);
-    UnkStruct_0206C660 * v1 = sub_02050A64(param0);
+    UnkStruct_0206C660 * v1 = TaskManager_Environment(param0);
 
     {
         FS_EXTERN_OVERLAY(overlay95);
@@ -49,7 +49,7 @@ void sub_0206C660 (TaskManager * param0)
 static BOOL sub_0206C680 (TaskManager * param0)
 {
     FieldSystem * v0 = TaskMan_FieldSystem(param0);
-    UnkStruct_0206C660 * v1 = sub_02050A64(param0);
+    UnkStruct_0206C660 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_04) {
     case 0:

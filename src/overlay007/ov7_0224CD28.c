@@ -236,7 +236,7 @@ BOOL ov7_0224CEAC (TaskManager * param0)
     UnkStruct_ov7_0224D008 * v1;
 
     v0 = TaskMan_FieldSystem(param0);
-    v1 = sub_02050A64(param0);
+    v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_297) {
     case 0:
@@ -1541,7 +1541,7 @@ static void ov7_0224EC38 (TaskManager * param0)
     }
 
     v0 = TaskMan_FieldSystem(param0);
-    v1 = sub_02050A64(param0);
+    v1 = TaskManager_Environment(param0);
 
     ov7_0224D21C(v1);
 

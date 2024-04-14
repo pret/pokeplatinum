@@ -176,7 +176,7 @@ static int sub_0206BB6C (UnkStruct_0206B9D8 * param0, FieldSystem * param1)
 static BOOL sub_0206BB94 (TaskManager * param0)
 {
     FieldSystem * v0 = TaskMan_FieldSystem(param0);
-    UnkStruct_0206B9D8 * v1 = sub_02050A64(param0);
+    UnkStruct_0206B9D8 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_04) {
     case 0:
@@ -249,7 +249,7 @@ static BOOL sub_0206BC94 (TaskManager * param0)
 {
     u16 * v0;
     FieldSystem * v1 = TaskMan_FieldSystem(param0);
-    UnkStruct_0206BC48 * v2 = sub_02050A64(param0);
+    UnkStruct_0206BC48 * v2 = TaskManager_Environment(param0);
 
     switch (v2->unk_04) {
     case 0:
@@ -287,7 +287,7 @@ static BOOL sub_0206BD1C (TaskManager * param0)
     u16 * v0;
     const void * v1;
     FieldSystem * v2 = TaskMan_FieldSystem(param0);
-    UnkStruct_0206BD88 * v3 = sub_02050A64(param0);
+    UnkStruct_0206BD88 * v3 = TaskManager_Environment(param0);
 
     v1 = sub_0203664C(1 - CommSys_CurNetId());
 

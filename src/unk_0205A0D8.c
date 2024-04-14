@@ -259,7 +259,7 @@ static BOOL sub_0205A2FC (void)
 
 static BOOL sub_0205A324 (TaskManager * param0)
 {
-    UnkStruct_0205A0D8 * v0 = sub_02050A64(param0);
+    UnkStruct_0205A0D8 * v0 = TaskManager_Environment(param0);
     FieldSystem * v1 = TaskMan_FieldSystem(param0);
 
     switch (v0->unk_34) {
@@ -745,7 +745,7 @@ static void sub_0205AC28 (UnkStruct_0205A0D8 * param0)
 
 static UnkStruct_0205A0D8 * sub_0205AC74 (FieldSystem * param0)
 {
-    return sub_02050A64(param0->unk_10);
+    return TaskManager_Environment(param0->unk_10);
 }
 
 static void sub_0205AC80 (UnkStruct_0205A0D8 * param0, BOOL param1)
@@ -1014,7 +1014,7 @@ void sub_0205B110 (int param0, int param1, void * param2, void * param3)
 static BOOL sub_0205B140 (TaskManager * param0)
 {
     FieldSystem * v0 = TaskMan_FieldSystem(param0);
-    UnkStruct_0205B2D4 * v1 = sub_02050A64(param0);
+    UnkStruct_0205B2D4 * v1 = TaskManager_Environment(param0);
     TrainerCard * v2 = (TrainerCard *)sub_02059EBC(v1->unk_24, NULL, 0);
 
     switch (v1->unk_28) {

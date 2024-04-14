@@ -62,7 +62,7 @@ static void sub_0209B3AC (UnkStruct_0209B3AC * param0)
 
 static BOOL sub_0209B3C4 (TaskManager * param0)
 {
-    UnkStruct_0209B3AC * v0 = sub_02050A64(param0);
+    UnkStruct_0209B3AC * v0 = TaskManager_Environment(param0);
 
     switch (v0->unk_18) {
     case 0:

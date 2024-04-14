@@ -415,7 +415,7 @@ static BOOL ov8_02249A94 (TaskManager * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
     FieldSystem * v1 = TaskMan_FieldSystem(param0);
-    UnkStruct_ov8_0224997C * v2 = sub_02050A64(param0);
+    UnkStruct_ov8_0224997C * v2 = TaskManager_Environment(param0);
 
     switch (v2->unk_00) {
     case 0:
@@ -469,7 +469,7 @@ static BOOL ov8_02249B74 (TaskManager * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
     FieldSystem * v1 = TaskMan_FieldSystem(param0);
-    UnkStruct_ov8_0224997C * v2 = sub_02050A64(param0);
+    UnkStruct_ov8_0224997C * v2 = TaskManager_Environment(param0);
 
     switch (v2->unk_00) {
     case 0:
@@ -558,7 +558,7 @@ static BOOL ov8_02249CD8 (TaskManager * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
     FieldSystem * v1 = TaskMan_FieldSystem(param0);
-    UnkStruct_ov8_0224997C * v2 = sub_02050A64(param0);
+    UnkStruct_ov8_0224997C * v2 = TaskManager_Environment(param0);
 
     switch (v2->unk_00) {
     case 0:
@@ -784,7 +784,7 @@ static BOOL ov8_0224A018 (TaskManager * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
     FieldSystem * v1 = TaskMan_FieldSystem(param0);
-    UnkStruct_ov8_0224997C * v2 = sub_02050A64(param0);
+    UnkStruct_ov8_0224997C * v2 = TaskManager_Environment(param0);
 
     switch (v2->unk_00) {
     case 0:
@@ -832,7 +832,7 @@ static BOOL ov8_0224A0E8 (TaskManager * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
     FieldSystem * v1 = TaskMan_FieldSystem(param0);
-    UnkStruct_ov8_0224997C * v2 = sub_02050A64(param0);
+    UnkStruct_ov8_0224997C * v2 = TaskManager_Environment(param0);
 
     switch (v2->unk_00) {
     case 0:
@@ -1346,7 +1346,7 @@ static BOOL ov8_0224A4FC (TaskManager * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
     FieldSystem * v1 = TaskMan_FieldSystem(param0);
-    UnkStruct_ov8_0224997C * v2 = sub_02050A64(param0);
+    UnkStruct_ov8_0224997C * v2 = TaskManager_Environment(param0);
     UnkStruct_ov8_0224A1E4 * v3;
 
     v3 = (UnkStruct_ov8_0224A1E4 *)v1->unk_04->unk_24;
@@ -1415,7 +1415,7 @@ static BOOL ov8_0224A620 (TaskManager * param0)
     UnkStruct_ov5_021E1890 * v0;
     LocalMapObject * v1;
     FieldSystem * v2 = TaskMan_FieldSystem(param0);
-    UnkStruct_ov8_0224997C * v3 = sub_02050A64(param0);
+    UnkStruct_ov8_0224997C * v3 = TaskManager_Environment(param0);
     UnkStruct_ov8_0224A1E4 * v4;
 
     v4 = (UnkStruct_ov8_0224A1E4 *)v2->unk_04->unk_24;
@@ -1499,7 +1499,7 @@ static BOOL ov8_0224A770 (TaskManager * param0)
     UnkStruct_ov5_021E1890 * v0;
     LocalMapObject * v1;
     FieldSystem * v2 = TaskMan_FieldSystem(param0);
-    UnkStruct_ov8_0224997C * v3 = sub_02050A64(param0);
+    UnkStruct_ov8_0224997C * v3 = TaskManager_Environment(param0);
     UnkStruct_ov8_0224A1E4 * v4;
 
     v4 = (UnkStruct_ov8_0224A1E4 *)v2->unk_04->unk_24;
@@ -2234,7 +2234,7 @@ static BOOL ov8_0224ADE8 (TaskManager * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
     FieldSystem * v1 = TaskMan_FieldSystem(param0);
-    UnkStruct_ov8_0224997C * v2 = sub_02050A64(param0);
+    UnkStruct_ov8_0224997C * v2 = TaskManager_Environment(param0);
     UnkStruct_ov8_0224ABD4 * v3;
 
     v3 = (UnkStruct_ov8_0224ABD4 *)v1->unk_04->unk_24;
@@ -2811,7 +2811,7 @@ static BOOL ov8_0224B3D4 (TaskManager * param0)
 {
     BOOL v0;
     FieldSystem * v1 = TaskMan_FieldSystem(param0);
-    UnkStruct_ov8_0224B67C * v2 = sub_02050A64(param0);
+    UnkStruct_ov8_0224B67C * v2 = TaskManager_Environment(param0);
     UnkStruct_02071BD0 * v3 = v2->unk_14;
     UnkStruct_ov8_0224AF00 * v4 = v2->unk_18;
 
@@ -3343,7 +3343,7 @@ static BOOL ov8_0224BAF4 (TaskManager * param0)
 {
     LocalMapObject * v0;
     FieldSystem * v1 = TaskMan_FieldSystem(param0);
-    UnkStruct_ov8_0224C098 * v2 = sub_02050A64(param0);
+    UnkStruct_ov8_0224C098 * v2 = TaskManager_Environment(param0);
     UnkStruct_ov8_0224B8D0 * v3 = v2->unk_3C;
 
     v0 = Player_LocalMapObject(v1->playerAvatar);
@@ -3373,7 +3373,7 @@ static BOOL ov8_0224BB78 (TaskManager * param0)
     int v0;
     UnkStruct_ov8_0224C098 * v1;
 
-    v1 = sub_02050A64(param0);
+    v1 = TaskManager_Environment(param0);
 
     do {
         v0 = Unk_ov8_0224C818[v1->unk_00](v1);

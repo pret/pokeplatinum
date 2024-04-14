@@ -313,7 +313,7 @@ void sub_02097F30 (UnkStruct_02097F18 * param0, u8 param1)
 
 static BOOL sub_02097F38 (TaskManager * param0)
 {
-    UnkStruct_02097F38 * v0 = sub_02050A64(param0);
+    UnkStruct_02097F38 * v0 = TaskManager_Environment(param0);
     UnkStruct_02097F18 * v1 = v0->unk_08;
     FieldSystem * v2 = TaskMan_FieldSystem(param0);
 

@@ -288,7 +288,7 @@ static void sub_02068540 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     FieldMenu * v1;
 
     v0 = TaskMan_FieldSystem(param0->unk_00);
-    v1 = sub_02050A64(param0->unk_00);
+    v1 = TaskManager_Environment(param0->unk_00);
 
     sub_020509D4(v0);
 
@@ -306,7 +306,7 @@ static void sub_02068584 (UnkStruct_02068870 * param0, u32 param1)
 static BOOL sub_020685AC (TaskManager * param0)
 {
     FieldSystem * v0 = TaskMan_FieldSystem(param0);
-    UnkStruct_0206851C * v1 = sub_02050A64(param0);
+    UnkStruct_0206851C * v1 = TaskManager_Environment(param0);
     int * v2 = sub_02050A68(param0);
     LocalMapObject * v3;
 
@@ -337,7 +337,7 @@ static void sub_02068630 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     PartyManagementData * v2;
 
     v0 = TaskMan_FieldSystem(param0->unk_00);
-    v1 = sub_02050A64(param0->unk_00);
+    v1 = TaskManager_Environment(param0->unk_00);
     v2 = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
 
     memset(v2, 0, sizeof(PartyManagementData));
@@ -365,7 +365,7 @@ static void sub_020686C8 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     FieldMenu * v1;
 
     v0 = TaskMan_FieldSystem(param0->unk_00);
-    v1 = sub_02050A64(param0->unk_00);
+    v1 = TaskManager_Environment(param0->unk_00);
 
     v1->unk_25C = sub_0203D8AC(v0);
     sub_0203B674(v1, sub_0203C3F4);
@@ -388,7 +388,7 @@ static void sub_02068710 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     FieldMenu * v1;
 
     v0 = TaskMan_FieldSystem(param0->unk_00);
-    v1 = sub_02050A64(param0->unk_00);
+    v1 = TaskManager_Environment(param0->unk_00);
 
     sub_020509D4(v0);
 
@@ -460,7 +460,7 @@ static void sub_0206883C (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     FieldMenu * v1;
 
     v0 = TaskMan_FieldSystem(param0->unk_00);
-    v1 = sub_02050A64(param0->unk_00);
+    v1 = TaskManager_Environment(param0->unk_00);
 
     sub_020509D4(v0);
 
@@ -565,7 +565,7 @@ static void sub_020689EC (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     FieldMenu * v1;
 
     v0 = TaskMan_FieldSystem(param0->unk_00);
-    v1 = sub_02050A64(param0->unk_00);
+    v1 = TaskManager_Environment(param0->unk_00);
 
     sub_0203D30C(v0, NULL);
     sub_0203B674(v1, sub_0203C50C);
@@ -590,7 +590,7 @@ static void sub_02068A34 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     PartyManagementData * v2;
 
     v0 = TaskMan_FieldSystem(param0->unk_00);
-    v1 = sub_02050A64(param0->unk_00);
+    v1 = TaskManager_Environment(param0->unk_00);
     v2 = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
 
     memset(v2, 0, sizeof(PartyManagementData));
@@ -619,7 +619,7 @@ static void sub_02068ACC (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     UnkStruct_02097728 * v2;
 
     v0 = TaskMan_FieldSystem(param0->unk_00);
-    v1 = sub_02050A64(param0->unk_00);
+    v1 = TaskManager_Environment(param0->unk_00);
     v2 = sub_0203D94C(v0, 3, Item_MailNumber(param0->unk_04), 11);
 
     v1->unk_260 = sub_0203C540(param0->unk_04, 3, 0);
@@ -640,7 +640,7 @@ static void sub_02068B1C (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     LocalMapObject * v2;
 
     v0 = TaskMan_FieldSystem(param0->unk_00);
-    v1 = sub_02050A64(param0->unk_00);
+    v1 = TaskManager_Environment(param0->unk_00);
 
     if (param1->unk_10 & 0x1) {
         sub_02068540(param0, param1, 2801);
@@ -665,7 +665,7 @@ static void sub_02068B5C (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     UnkStruct_0203D9B8 * v2;
 
     v0 = TaskMan_FieldSystem(param0->unk_00);
-    v1 = sub_02050A64(param0->unk_00);
+    v1 = TaskManager_Environment(param0->unk_00);
     v2 = sub_0203D9B8(v0, 11);
 
     v1->unk_25C = v2;
@@ -689,7 +689,7 @@ static void sub_02068BA8 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     FieldMenu * v1;
 
     v0 = TaskMan_FieldSystem(param0->unk_00);
-    v1 = sub_02050A64(param0->unk_00);
+    v1 = TaskManager_Environment(param0->unk_00);
 
     sub_0203DE78(v0, v0->saveData);
     v1->unk_25C = NULL;
@@ -715,7 +715,7 @@ static void sub_02068BF8 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     int * v2;
 
     v0 = TaskMan_FieldSystem(param0->unk_00);
-    v1 = sub_02050A64(param0->unk_00);
+    v1 = TaskManager_Environment(param0->unk_00);
     v2 = Heap_AllocFromHeapAtEnd(11, sizeof(int));
 
     (*v2) = 0;
@@ -799,7 +799,7 @@ static void sub_02068CF0 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     int v3;
 
     v0 = TaskMan_FieldSystem(param0->unk_00);
-    v1 = sub_02050A64(param0->unk_00);
+    v1 = TaskManager_Environment(param0->unk_00);
 
     sub_020509D4(v0);
 
@@ -841,7 +841,7 @@ static void sub_02068D80 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     FieldMenu * v1;
 
     v0 = TaskMan_FieldSystem(param0->unk_00);
-    v1 = sub_02050A64(param0->unk_00);
+    v1 = TaskManager_Environment(param0->unk_00);
 
     sub_020509D4(v0);
 
@@ -864,7 +864,7 @@ static void sub_02068DDC (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     FieldMenu * v1;
 
     v0 = TaskMan_FieldSystem(param0->unk_00);
-    v1 = sub_02050A64(param0->unk_00);
+    v1 = TaskManager_Environment(param0->unk_00);
 
     sub_020509D4(v0);
 
@@ -887,7 +887,7 @@ static void sub_02068E38 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     FieldMenu * v1;
 
     v0 = TaskMan_FieldSystem(param0->unk_00);
-    v1 = sub_02050A64(param0->unk_00);
+    v1 = TaskManager_Environment(param0->unk_00);
 
     sub_020509D4(v0);
 
@@ -948,7 +948,7 @@ static BOOL sub_02068F48 (TaskManager * param0)
     UnkStruct_02068EFC * v1;
 
     v0 = TaskMan_FieldSystem(param0);
-    v1 = sub_02050A64(param0);
+    v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_16) {
     case 0:
@@ -990,7 +990,7 @@ static void sub_02068FEC (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     PartyManagementData * v2;
 
     v0 = TaskMan_FieldSystem(param0->unk_00);
-    v1 = sub_02050A64(param0->unk_00);
+    v1 = TaskManager_Environment(param0->unk_00);
     v2 = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
 
     memset(v2, 0, sizeof(PartyManagementData));
@@ -1017,7 +1017,7 @@ static void sub_02069080 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     FieldMenu * menu;
 
     v0 = TaskMan_FieldSystem(param0->unk_00);
-    menu = sub_02050A64(param0->unk_00);
+    menu = TaskManager_Environment(param0->unk_00);
 
     sub_020509D4(v0);
 
@@ -1090,7 +1090,7 @@ static void sub_02069188 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     FieldMenu * v1;
 
     v0 = TaskMan_FieldSystem(param0->unk_00);
-    v1 = sub_02050A64(param0->unk_00);
+    v1 = TaskManager_Environment(param0->unk_00);
 
     sub_0203DE88(v0, v0->saveData);
     v1->unk_25C = NULL;
@@ -1118,7 +1118,7 @@ static void sub_020691E0 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     PartyManagementData * v2;
 
     v0 = TaskMan_FieldSystem(param0->unk_00);
-    v1 = sub_02050A64(param0->unk_00);
+    v1 = TaskManager_Environment(param0->unk_00);
 
     v1->unk_25C = sub_0203E598(v0, 11, 466);
 
@@ -1208,7 +1208,7 @@ static BOOL sub_0206932C (TaskManager * param0)
     UnkStruct_02068870 * v1;
 
     v0 = TaskMan_FieldSystem(param0);
-    v1 = sub_02050A64(param0);
+    v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_2A) {
     case 0:

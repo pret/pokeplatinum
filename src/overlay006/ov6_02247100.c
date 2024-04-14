@@ -63,7 +63,7 @@ BOOL ov6_02247120 (TaskManager * param0)
 {
     int v0;
     FieldSystem * v1 = TaskMan_FieldSystem(param0);
-    UnkStruct_ov6_02247100 * v2 = sub_02050A64(param0);
+    UnkStruct_ov6_02247100 * v2 = TaskManager_Environment(param0);
 
     do {
         v0 = Unk_ov6_022495CC[v2->unk_00](param0, v1, v2);
@@ -183,7 +183,7 @@ BOOL ov6_022472E8 (TaskManager * param0)
 {
     int v0;
     FieldSystem * v1 = TaskMan_FieldSystem(param0);
-    UnkStruct_ov6_02247100 * v2 = sub_02050A64(param0);
+    UnkStruct_ov6_02247100 * v2 = TaskManager_Environment(param0);
 
     do {
         v0 = Unk_ov6_022495BC[v2->unk_00](param0, v1, v2);
@@ -303,7 +303,7 @@ BOOL ov6_022474AC (TaskManager * param0)
 {
     int v0;
     FieldSystem * v1 = TaskMan_FieldSystem(param0);
-    UnkStruct_ov6_02247100 * v2 = sub_02050A64(param0);
+    UnkStruct_ov6_02247100 * v2 = TaskManager_Environment(param0);
 
     do {
         v0 = Unk_ov6_022495F0[v2->unk_00](param0, v1, v2);
@@ -362,7 +362,7 @@ BOOL ov6_02247554 (TaskManager * param0)
 {
     int v0;
     FieldSystem * v1 = TaskMan_FieldSystem(param0);
-    UnkStruct_ov6_02247100 * v2 = sub_02050A64(param0);
+    UnkStruct_ov6_02247100 * v2 = TaskManager_Environment(param0);
 
     do {
         v0 = Unk_ov6_022495F0[v2->unk_00](param0, v1, v2);

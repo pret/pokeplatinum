@@ -87,7 +87,7 @@ static BOOL sub_0207DA28 (TaskManager * param0)
 {
     int v0;
     FieldSystem * v1 = TaskMan_FieldSystem(param0);
-    UnkStruct_0207DE40 * v2 = sub_02050A64(param0);
+    UnkStruct_0207DE40 * v2 = TaskManager_Environment(param0);
 
     switch (v2->unk_04) {
     case 0:

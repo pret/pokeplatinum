@@ -712,7 +712,7 @@ static BOOL ov5_021D4BC8 (TaskManager * param0)
 {
     BOOL v0;
     FieldSystem * v1 = TaskMan_FieldSystem(param0);
-    u8 * v2 = sub_02050A64(param0);
+    u8 * v2 = TaskManager_Environment(param0);
 
     v0 = ov5_021D42F0(v1->unk_54, *v2);
 
@@ -888,7 +888,7 @@ BOOL ov5_021D4E10 (TaskManager * param0)
 {
     LocalMapObject * v0;
     FieldSystem * v1 = TaskMan_FieldSystem(param0);
-    UnkStruct_ov5_021D4E00 * v2 = sub_02050A64(param0);
+    UnkStruct_ov5_021D4E00 * v2 = TaskManager_Environment(param0);
 
     switch (v2->unk_00) {
     case 0:
@@ -945,7 +945,7 @@ BOOL ov5_021D4E10 (TaskManager * param0)
 BOOL ov5_021D4F14 (TaskManager * param0)
 {
     FieldSystem * v0 = TaskMan_FieldSystem(param0);
-    UnkStruct_ov5_021D4E00 * v1 = sub_02050A64(param0);
+    UnkStruct_ov5_021D4E00 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_00) {
     case 0:
@@ -984,7 +984,7 @@ BOOL ov5_021D4F14 (TaskManager * param0)
 BOOL ov5_021D4FA0 (TaskManager * param0)
 {
     FieldSystem * v0 = TaskMan_FieldSystem(param0);
-    UnkStruct_ov5_021D4E00 * v1 = sub_02050A64(param0);
+    UnkStruct_ov5_021D4E00 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_00) {
     case 0:
@@ -1018,7 +1018,7 @@ BOOL ov5_021D5020 (TaskManager * param0)
 {
     LocalMapObject * v0;
     FieldSystem * v1 = TaskMan_FieldSystem(param0);
-    UnkStruct_ov5_021D4E00 * v2 = sub_02050A64(param0);
+    UnkStruct_ov5_021D4E00 * v2 = TaskManager_Environment(param0);
 
     switch (v2->unk_00) {
     case 0:
@@ -1099,7 +1099,7 @@ BOOL ov5_021D5150 (TaskManager * param0)
 {
     LocalMapObject * v0;
     FieldSystem * v1 = TaskMan_FieldSystem(param0);
-    UnkStruct_ov5_021D4E00 * v2 = sub_02050A64(param0);
+    UnkStruct_ov5_021D4E00 * v2 = TaskManager_Environment(param0);
 
     switch (v2->unk_00) {
     case 0:
