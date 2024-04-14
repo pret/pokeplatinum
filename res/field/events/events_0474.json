@@ -91,7 +91,7 @@
             "initial_dir": 2,
             "data": [],
             "movement_range_x": 2,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 8,
             "z": 13,
             "y": 0
@@ -105,7 +105,7 @@
             "initial_dir": 2,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 3,
+            "movement_range_z": 3,
             "x": 36,
             "z": 10,
             "y": 0
@@ -119,7 +119,7 @@
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 6,
             "z": 8,
             "y": 0

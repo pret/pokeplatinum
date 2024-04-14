@@ -10,7 +10,7 @@
             "initial_dir": 3,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 26,
             "z": 5,
             "y": 0
@@ -24,7 +24,7 @@
             "initial_dir": 1,
             "data": [],
             "movement_range_x": 1,
-            "movement_range_y": 5,
+            "movement_range_z": 5,
             "x": 8,
             "z": 10,
             "y": 0
@@ -38,7 +38,7 @@
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 29,
             "z": 11,
             "y": 0
@@ -54,7 +54,7 @@
                 5
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 40,
             "z": 15,
             "y": 0
@@ -70,7 +70,7 @@
                 3
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 71,
             "z": 10,
             "y": 0
@@ -84,7 +84,7 @@
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 20,
             "z": 5,
             "y": 0
@@ -98,7 +98,7 @@
             "initial_dir": 1,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 14,
             "z": 8,
             "y": 0
@@ -112,7 +112,7 @@
             "initial_dir": 1,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 15,
             "z": 8,
             "y": 0
@@ -126,7 +126,7 @@
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 62,
             "z": 3,
             "y": 0

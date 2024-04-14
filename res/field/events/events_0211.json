@@ -29,7 +29,7 @@
                 5
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 26,
             "z": 16,
             "y": 0
@@ -45,7 +45,7 @@
                 3
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 20,
             "z": 22,
             "y": 0
