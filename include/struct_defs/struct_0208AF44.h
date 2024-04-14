@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_0208AF44_H
 
 #include "struct_decls/cell_actor_data.h"
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0208AF44_sub1.h"
 
 typedef struct {

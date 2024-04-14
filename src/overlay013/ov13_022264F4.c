@@ -14,7 +14,7 @@
 #include "struct_decls/battle_system.h"
 #include "struct_decls/struct_0207D99C_decl.h"
 
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "overlay013/struct_ov13_022264F4.h"
 #include "overlay013/struct_ov13_02227244.h"
 #include "overlay084/struct_ov84_0223BA5C.h"

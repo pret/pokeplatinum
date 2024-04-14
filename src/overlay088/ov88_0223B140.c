@@ -24,7 +24,7 @@
 #include "constdata/const_020F410C.h"
 
 #include "struct_defs/archived_sprite.h"
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_02027F8C.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02081CF4.h"

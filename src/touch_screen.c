@@ -3,7 +3,7 @@
 
 #include "core_sys.h"
 
-#include "unk_02022594.h"
+#include "touch_screen.h"
 
 static int sub_02022594(const TouchScreenRect *rect, u32 param1, u32 param2);
 static BOOL sub_020225E0(const TouchScreenHitTable *hitTable, u32 param1, u32 param2);

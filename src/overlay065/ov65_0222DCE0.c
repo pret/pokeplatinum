@@ -24,7 +24,7 @@
 #include "overlay065/struct_ov65_0222EBE0_decl.h"
 
 #include "struct_defs/struct_020127E8.h"
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207DFAC.h"
 #include "struct_defs/struct_0207E060.h"

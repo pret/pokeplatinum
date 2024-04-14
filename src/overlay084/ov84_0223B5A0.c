@@ -10,7 +10,7 @@
 
 #include "overlay084/const_ov84_02241130.h"
 
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0202D7B0.h"
 #include "functypes/funcptr_02069238.h"
 #include "struct_defs/struct_0207CB08.h"

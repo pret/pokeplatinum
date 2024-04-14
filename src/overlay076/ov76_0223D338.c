@@ -16,7 +16,7 @@
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_02015958.h"
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0202CA64.h"
 #include "struct_defs/struct_02099F80.h"

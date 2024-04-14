@@ -18,7 +18,7 @@
 
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/sentence.h"
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0203330C.h"
 #include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"

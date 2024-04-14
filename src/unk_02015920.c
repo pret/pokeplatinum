@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02023FCC_decl.h"
 
 #include "struct_defs/struct_02015958.h"
-#include "unk_02022594.h"
+#include "touch_screen.h"
 
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"

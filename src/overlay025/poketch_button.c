@@ -3,7 +3,7 @@
 
 #include "overlay025/poketch_button.h"
 
-#include "unk_02022594.h"
+#include "touch_screen.h"
 
 #include "heap.h"
 

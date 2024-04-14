@@ -24,7 +24,7 @@
 #include "overlay084/const_ov84_02241130.h"
 #include "constdata/const_020F2DAC.h"
 
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "struct_defs/options.h"
 #include "struct_defs/struct_02042434.h"
 #include "struct_defs/struct_0208737C.h"

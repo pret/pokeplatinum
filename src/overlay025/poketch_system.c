@@ -13,7 +13,7 @@
 #include "overlay025/struct_ov25_02254560_decl.h"
 #include "overlay025/poketch_button.h"
 
-#include "unk_02022594.h"
+#include "touch_screen.h"
 
 #include "unk_02005474.h"
 #include "game_overlay.h"

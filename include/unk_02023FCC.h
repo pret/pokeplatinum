@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02023FCC_H
 #define POKEPLATINUM_UNK_02023FCC_H
 
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "functypes/funcptr_02023FCC.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 

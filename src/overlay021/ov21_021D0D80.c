@@ -12,7 +12,7 @@
 #include "overlay021/struct_ov21_021D423C_decl.h"
 #include "overlay021/struct_ov21_021D4C0C_decl.h"
 
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay021/struct_ov21_021D0D80.h"

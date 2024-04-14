@@ -8,7 +8,7 @@
 #include "struct_decls/sys_task.h"
 #include "struct_decls/battle_system.h"
 
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "overlay013/struct_ov13_0221FC20.h"
 #include "overlay013/struct_ov13_022213F0.h"
 #include "overlay013/struct_ov13_02221ED0.h"

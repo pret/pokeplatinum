@@ -76,7 +76,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
 #include "unk_020218BC.h"
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "unk_020797C8.h"
 #include "pokemon_icon.h"
 #include "unk_0207A274.h"

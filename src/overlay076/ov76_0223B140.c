@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "overlay076/struct_ov76_0223B52C.h"
 #include "overlay076/struct_ov76_0223DE00.h"

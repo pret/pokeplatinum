@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "functypes/funcptr_02023FCC.h"
 
 #include "heap.h"

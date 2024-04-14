@@ -20,7 +20,7 @@
 
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02015958.h"
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "struct_defs/options.h"
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_0205AA50.h"

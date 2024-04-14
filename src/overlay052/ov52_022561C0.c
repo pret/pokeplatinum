@@ -12,7 +12,7 @@
 
 #include "unk_0200D9E8.h"
 #include "heap.h"
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "unk_02033200.h"
 #include "communication_system.h"
 #include "unk_020366A0.h"

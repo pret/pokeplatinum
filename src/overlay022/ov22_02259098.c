@@ -7,7 +7,7 @@
 #include "pokemon.h"
 
 #include "struct_defs/archived_sprite.h"
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_020298D8.h"
 #include "overlay022/struct_ov22_022596B0.h"
 #include "overlay022/struct_ov22_0225A0E4.h"

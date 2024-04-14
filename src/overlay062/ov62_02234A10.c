@@ -21,7 +21,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "strbuf.h"
 #include "unk_0208B284.h"
 #include "overlay062/ov62_0222F2C0.h"

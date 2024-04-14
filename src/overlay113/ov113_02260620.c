@@ -7,7 +7,7 @@
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
 #include "overlay066/struct_ov66_0222E71C_decl.h"
 
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay113/struct_ov113_02260818.h"
 #include "overlay113/struct_ov113_02260D90.h"

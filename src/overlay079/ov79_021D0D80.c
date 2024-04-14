@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay007/struct_ov7_0224F358.h"

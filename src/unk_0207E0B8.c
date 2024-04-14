@@ -10,7 +10,7 @@
 
 #include "constdata/const_020F1E88.h"
 
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"

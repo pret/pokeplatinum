@@ -13,7 +13,7 @@
 #include "overlay111/struct_ov111_021D33F4_decl.h"
 
 #include "struct_defs/struct_02015958.h"
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "struct_defs/options.h"
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_0205AA50.h"

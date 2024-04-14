@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_020298D8_H
 
 #include "struct_decls/sprite_decl.h"
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "pokemon.h"
 #include "overlay022/struct_ov22_022596B0.h"
 

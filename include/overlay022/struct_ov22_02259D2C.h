@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV22_02259D2C_H
 
 #include "struct_decls/struct_02012744_decl.h"
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "overlay022/struct_ov22_02259C58.h"
 #include "overlay022/struct_ov22_0225A154.h"

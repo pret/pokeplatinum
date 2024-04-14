@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV76_0223B140_H
 
 #include "struct_decls/cell_actor_data.h"
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "overlay076/struct_ov76_0223DE00.h"
 

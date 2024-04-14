@@ -11,7 +11,7 @@
 #include "struct_decls/struct_02095EAC_decl.h"
 
 #include "struct_defs/struct_02015958.h"
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0203DDFC.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02095EAC_t.h"

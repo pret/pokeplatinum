@@ -5,7 +5,7 @@
 
 #include "struct_decls/sys_task.h"
 
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0208C06C.h"
 #include "overlay062/struct_ov62_022354A4.h"
 #include "overlay062/struct_ov62_02235580.h"

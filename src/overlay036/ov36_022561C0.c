@@ -8,7 +8,7 @@
 #include "overlay025/poketch_button.h"
 #include "overlay036/poketch_app_pedometer.h"
 
-#include "unk_02022594.h"
+#include "touch_screen.h"
 
 #include "unk_0200D9E8.h"
 #include "heap.h"

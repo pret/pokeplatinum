@@ -3,7 +3,7 @@
 
 #include "overlay019/struct_ov19_021D6104.h"
 
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "overlay019/ov19_021D603C.h"
 
 static void ov19_021D60FC(UnkStruct_ov19_021D6104 * param0, int (* func)(UnkStruct_ov19_021D6104 *, BOOL, BOOL));

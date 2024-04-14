@@ -7,7 +7,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208C06C.h"
 #include "overlay061/struct_ov61_0222BDAC.h"

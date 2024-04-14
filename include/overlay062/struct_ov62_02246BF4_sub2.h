@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 
 typedef struct {

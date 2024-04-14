@@ -26,7 +26,7 @@
 #include "struct_defs/struct_020127E8.h"
 #include "functypes/sys_task_func.h"
 #include "struct_defs/sprite_manager_allocation.h"
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0209C370.h"
 #include "battle/struct_ov16_02260C00.h"

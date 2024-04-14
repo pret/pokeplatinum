@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_POKETCH_BUTTON_H
 #define POKEPLATINUM_POKETCH_BUTTON_H
 
-#include "unk_02022594.h"
+#include "touch_screen.h"
 
 #define BUTTON_TIMER_MAX 0xffff
 #define BUTTON_MANAGER_NUM_TIMERS_PER_BUTTON 2

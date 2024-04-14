@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02012B20_decl.h"
 #include "struct_decls/font_oam.h"
 #include "struct_defs/sprite_manager_allocation.h"
-#include "unk_02022594.h"
+#include "touch_screen.h"
 
 typedef struct {
     CellActorData * unk_00;

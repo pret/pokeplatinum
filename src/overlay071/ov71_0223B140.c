@@ -7,7 +7,7 @@
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
 
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay071/struct_ov71_0223B620.h"
 #include "overlay071/struct_ov71_0223C444.h"

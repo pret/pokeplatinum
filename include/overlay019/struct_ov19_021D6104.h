@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV19_021D6104_H
 #define POKEPLATINUM_STRUCT_OV19_021D6104_H
 
-#include "unk_02022594.h"
+#include "touch_screen.h"
 
 typedef struct UnkStruct_ov19_021D6104_t {
     u32 unk_00;

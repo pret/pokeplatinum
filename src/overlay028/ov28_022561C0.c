@@ -10,7 +10,7 @@
 #include "overlay028/struct_ov28_0225697C_decl.h"
 #include "overlay028/struct_ov28_02256E9C_decl.h"
 
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "overlay028/struct_ov28_0225697C_1.h"
 
 #include "constants/species.h"

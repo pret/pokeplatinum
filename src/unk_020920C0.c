@@ -3,7 +3,7 @@
 
 #include "core_sys.h"
 
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "struct_defs/pokemon_summary_app.h"
 
 #include "unk_02005474.h"

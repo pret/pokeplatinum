@@ -4,7 +4,7 @@
 #include "overlay_manager.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "strbuf.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay021/struct_ov21_021D0D80_1.h"

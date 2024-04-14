@@ -10,7 +10,7 @@
 #include "overlay025/poketch_button.h"
 #include "overlay046/struct_ov46_02256BCC_decl.h"
 
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "overlay046/struct_ov46_02256BCC_1.h"
 
 #include "unk_0200D9E8.h"
