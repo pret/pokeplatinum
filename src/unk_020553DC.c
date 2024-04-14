@@ -121,7 +121,7 @@ void sub_020553DC ()
 
 void sub_020553F0 (FieldSystem * param0, u16 param1)
 {
-    u16 * v0 = sub_0203A748(sub_0203A790(param0->unk_0C));
+    u16 * v0 = sub_0203A748(sub_0203A790(param0->saveData));
 
     *v0 = param1;
     return;
@@ -129,13 +129,13 @@ void sub_020553F0 (FieldSystem * param0, u16 param1)
 
 u16 sub_02055404 (FieldSystem * param0)
 {
-    u16 * v0 = sub_0203A748(sub_0203A790(param0->unk_0C));
+    u16 * v0 = sub_0203A748(sub_0203A790(param0->saveData));
     return *v0;
 }
 
 void sub_02055414 (FieldSystem * param0)
 {
-    u16 * v0 = sub_0203A748(sub_0203A790(param0->unk_0C));
+    u16 * v0 = sub_0203A748(sub_0203A790(param0->saveData));
 
     *v0 = 0;
     return;
@@ -191,7 +191,7 @@ u16 sub_020554A4 (FieldSystem * param0, int param1)
         v0 = MapHeader_GetNightMusicID(param1);
     }
 
-    v1 = sub_0206AB68(SaveData_Events(param0->unk_0C), param1);
+    v1 = sub_0206AB68(SaveData_Events(param0->saveData), param1);
 
     if (v1 != 0) {
         v0 = v1;
@@ -209,7 +209,7 @@ u16 sub_020554A4 (FieldSystem * param0, int param1)
 static u16 sub_020554E8 (FieldSystem * param0, int param1)
 {
     int v0, v1;
-    UnkStruct_0203A790 * v2 = sub_0203A790(param0->unk_0C);
+    UnkStruct_0203A790 * v2 = sub_0203A790(param0->saveData);
     UnkStruct_02049FA8 * v3 = sub_0203A728(v2);
 
     v0 = Player_XPos(param0->playerAvatar);

@@ -133,7 +133,7 @@ static inline void inline_ov61_0222C3B0_sub (SysTask * param0, void * param1)
 
 static inline void inline_ov47_0225621C_sub (FieldSystem * param0, int * param1, int * param2)
 {
-    UnkStruct_0203A790 * v0 = sub_0203A790(param0->unk_0C);
+    UnkStruct_0203A790 * v0 = sub_0203A790(param0->saveData);
     UnkStruct_02049FA8 * v1 = sub_0203A72C(v0);
 
     if (MapHeader_IsOnMainMatrix(param0->unk_1C->unk_00)) {

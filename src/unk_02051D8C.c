@@ -17,7 +17,6 @@
 #include "savedata.h"
 
 #include "struct_defs/struct_0202610C.h"
-#include "struct_defs/options.h"
 #include "field/field_system.h"
 #include "struct_defs/struct_02055BA8.h"
 #include "struct_defs/struct_0205EC34.h"
@@ -37,7 +36,7 @@
 #include "trainer_info.h"
 #include "unk_0202602C.h"
 #include "unk_0202631C.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_02027F84.h"
 #include "unk_0202C858.h"
 #include "unk_0202CC64.h"
@@ -105,7 +104,7 @@ BattleParams * sub_02051D8C (int param0, u32 param1)
 
     v1->unk_E0 = sub_0207D3C0(param0);
     v1->unk_E8 = sub_02026324(param0);
-    v1->unk_108 = sub_020279FC(param0);
+    v1->unk_108 = Options_New(param0);
     v1->unk_10C = sub_0206D140(param0);
     v1->unk_E4 = NULL;
     v1->unk_190 = NULL;
@@ -157,8 +156,8 @@ BattleParams * sub_02051F38 (int param0, int param1)
 
 BattleParams * sub_02051F4C (int param0, const FieldSystem * param1)
 {
-    TrainerInfo * v0 = SaveData_GetTrainerInfo(param1->unk_0C);
-    Options * v1 = sub_02025E44(param1->unk_0C);
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(param1->saveData);
+    Options * v1 = sub_02025E44(param1->saveData);
     MessageLoader * v2;
     Strbuf* v3;
     BattleParams * v4;
@@ -174,22 +173,22 @@ BattleParams * sub_02051F4C (int param0, const FieldSystem * param1)
     MessageLoader_Free(v2);
     TrainerInfo_SetGender(v4->unk_D0[0], TrainerInfo_Gender(v0) ^ 1);
     sub_0205281C(v4, param1);
-    sub_02027A10(v1, v4->unk_108);
+    Options_Copy(v1, v4->unk_108);
 
     v4->unk_138 = sub_02055BA8(param1);
     sub_0207D570(v4->unk_E0, 4, 20, param0);
     v5 = Pokemon_New(param0);
 
-    Pokemon_InitWith(v5, sub_0206B08C(SaveData_Events(param1->unk_0C)), 5, 32, 0, 0, 2, 0);
+    Pokemon_InitWith(v5, sub_0206B08C(SaveData_Events(param1->saveData)), 5, 32, 0, 0, 2, 0);
     Party_AddPokemon(v4->parties[0], v5);
     Pokemon_InitWith(v5, 399, 2, 32, 0, 0, 2, 0);
     Party_AddPokemon(v4->parties[1], v5);
     Heap_FreeToHeap(v5);
 
-    v4->unk_EC = SaveData_PCBoxes(param1->unk_0C);
+    v4->unk_EC = SaveData_PCBoxes(param1->saveData);
     v4->unk_E4 = param1->unk_98;
     v4->unk_190 = NULL;
-    v4->unk_11C = sub_0202CD88(param1->unk_0C);
+    v4->unk_11C = sub_0202CD88(param1->saveData);
     v4->unk_120 = param1->unk_9C;
     v4->mapHeaderID = param1->unk_1C->unk_00;
 
@@ -255,7 +254,7 @@ void sub_020521B8 (BattleParams * param0, const FieldSystem * param1, SaveData *
     TrainerInfo * v0 = SaveData_GetTrainerInfo(param2);
     Party * v1 = Party_GetFromSavedata(param2);
     UnkStruct_0207D3C0 * v2 = sub_0207D990(param2);
-    PokedexData * v3 = sub_02027560(param2);
+    PokedexData * v3 = SaveData_Pokedex(param2);
     ChatotCry * v4 = GetChatotCryDataFromSave(param2);
     Options * v5 = sub_02025E44(param2);
     UnkStruct_0203A790 * v6 = sub_0203A790(param2);
@@ -277,7 +276,7 @@ void sub_020521B8 (BattleParams * param0, const FieldSystem * param1, SaveData *
     sub_02052164(param0, v1, 0);
     sub_0207D3EC(v2, param0->unk_E0);
     sub_02026338(v3, param0->unk_E8);
-    sub_02027A10(v5, param0->unk_108);
+    Options_Copy(v5, param0->unk_108);
     sub_020521A4(param0, v4, 0);
 
     param0->unk_EC = SaveData_PCBoxes(param2);
@@ -299,7 +298,7 @@ void sub_020521B8 (BattleParams * param0, const FieldSystem * param1, SaveData *
 
 void sub_02052314 (BattleParams * param0, const FieldSystem * param1)
 {
-    sub_020521B8(param0, param1, param1->unk_0C, param1->unk_1C->unk_00, param1->unk_9C, param1->unk_98, param1->unk_BC);
+    sub_020521B8(param0, param1, param1->saveData, param1->unk_1C->unk_00, param1->unk_9C, param1->unk_98, param1->unk_BC);
     sub_02052894(param0);
 }
 
@@ -307,12 +306,12 @@ void sub_02052348 (BattleParams * param0, const FieldSystem * param1, int param2
 {
     int v0;
     u32 v1;
-    TrainerInfo * v2 = SaveData_GetTrainerInfo(param1->unk_0C);
-    Party * v3 = Party_GetFromSavedata(param1->unk_0C);
-    UnkStruct_0207D3C0 * v4 = sub_0207D990(param1->unk_0C);
-    PokedexData * v5 = sub_02027560(param1->unk_0C);
-    ChatotCry * v6 = GetChatotCryDataFromSave(param1->unk_0C);
-    Options * v7 = sub_02025E44(param1->unk_0C);
+    TrainerInfo * v2 = SaveData_GetTrainerInfo(param1->saveData);
+    Party * v3 = Party_GetFromSavedata(param1->saveData);
+    UnkStruct_0207D3C0 * v4 = sub_0207D990(param1->saveData);
+    PokedexData * v5 = SaveData_Pokedex(param1->saveData);
+    ChatotCry * v6 = GetChatotCryDataFromSave(param1->saveData);
+    Options * v7 = sub_02025E44(param1->saveData);
     Pokemon * v8;
 
     param0->unk_128 = 6;
@@ -338,31 +337,31 @@ void sub_02052348 (BattleParams * param0, const FieldSystem * param1, int param2
     Heap_FreeToHeap(v8);
     sub_0207D3EC(v4, param0->unk_E0);
     sub_02026338(v5, param0->unk_E8);
-    sub_02027A10(v7, param0->unk_108);
+    Options_Copy(v7, param0->unk_108);
     sub_020521A4(param0, v6, 0);
 
-    param0->unk_EC = SaveData_PCBoxes(param1->unk_0C);
+    param0->unk_EC = SaveData_PCBoxes(param1->saveData);
     param0->unk_138 = sub_02055BA8(param1);
     param0->unk_E4 = param1->unk_98;
     param0->unk_190 = param1->unk_BC;
-    param0->unk_100 = SaveData_PoketchData(param1->unk_0C);
-    param0->unk_104 = sub_0202C878(param1->unk_0C);
-    param0->unk_11C = sub_0202CD88(param1->unk_0C);
+    param0->unk_100 = SaveData_PoketchData(param1->saveData);
+    param0->unk_104 = sub_0202C878(param1->saveData);
+    param0->unk_11C = sub_0202CD88(param1->saveData);
     param0->unk_120 = param1->unk_9C;
-    param0->unk_124 = sub_02027F8C(param1->unk_0C);
+    param0->unk_124 = sub_02027F8C(param1->saveData);
     param0->mapHeaderID = param1->unk_1C->unk_00;
-    param0->unk_198 = param1->unk_0C;
+    param0->unk_198 = param1->saveData;
 
     sub_02052894(param0);
 }
 
 void sub_020524E4 (BattleParams * param0, const FieldSystem * param1, const Party * param2, const u8 * param3)
 {
-    TrainerInfo * v0 = SaveData_GetTrainerInfo(param1->unk_0C);
-    UnkStruct_0207D3C0 * v1 = sub_0207D990(param1->unk_0C);
-    PokedexData * v2 = sub_02027560(param1->unk_0C);
-    ChatotCry * v3 = GetChatotCryDataFromSave(param1->unk_0C);
-    Options * v4 = sub_02025E44(param1->unk_0C);
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(param1->saveData);
+    UnkStruct_0207D3C0 * v1 = sub_0207D990(param1->saveData);
+    PokedexData * v2 = SaveData_Pokedex(param1->saveData);
+    ChatotCry * v3 = GetChatotCryDataFromSave(param1->saveData);
+    Options * v4 = sub_02025E44(param1->saveData);
     const BattleRegulation * v5 = param1->unk_B0;
     int v6, v7, v8;
     Pokemon * v9;
@@ -408,19 +407,19 @@ void sub_020524E4 (BattleParams * param0, const FieldSystem * param1, const Part
 
     sub_0207D3EC(v1, param0->unk_E0);
     sub_02026338(v2, param0->unk_E8);
-    sub_02027A10(v4, param0->unk_108);
+    Options_Copy(v4, param0->unk_108);
     sub_020521A4(param0, v3, 0);
 
-    param0->unk_EC = SaveData_PCBoxes(param1->unk_0C);
+    param0->unk_EC = SaveData_PCBoxes(param1->saveData);
     param0->unk_138 = sub_02055BA8(param1);
     param0->unk_E4 = param1->unk_98;
     param0->unk_190 = param1->unk_BC;
-    param0->unk_104 = sub_0202C878(param1->unk_0C);
-    param0->unk_11C = sub_0202CD88(param1->unk_0C);
+    param0->unk_104 = sub_0202C878(param1->saveData);
+    param0->unk_11C = sub_0202CD88(param1->saveData);
     param0->unk_120 = param1->unk_9C;
     param0->mapHeaderID = param1->unk_1C->unk_00;
-    param0->unk_124 = sub_02027F8C(param1->unk_0C);
-    param0->unk_198 = param1->unk_0C;
+    param0->unk_124 = sub_02027F8C(param1->saveData);
+    param0->unk_198 = param1->saveData;
 
     if (sub_020326C4(sub_0203895C())) {
         int v11 = TrainerInfo_Appearance(v0);
@@ -436,16 +435,16 @@ void sub_020524E4 (BattleParams * param0, const FieldSystem * param1, const Part
 
 void sub_020526CC (BattleParams * param0, const FieldSystem * param1, const u8 * param2)
 {
-    sub_020524E4(param0, param1, Party_GetFromSavedata(param1->unk_0C), param2);
+    sub_020524E4(param0, param1, Party_GetFromSavedata(param1->saveData), param2);
 }
 
 void sub_020526E8 (const BattleParams * param0, FieldSystem * param1)
 {
-    TrainerInfo * v0 = SaveData_GetTrainerInfo(param1->unk_0C);
-    Party * v1 = Party_GetFromSavedata(param1->unk_0C);
-    UnkStruct_0207D3C0 * v2 = sub_0207D990(param1->unk_0C);
-    PokedexData * v3 = sub_02027560(param1->unk_0C);
-    u16 * v4 = sub_0203A784(sub_0203A790(param1->unk_0C));
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(param1->saveData);
+    Party * v1 = Party_GetFromSavedata(param1->saveData);
+    UnkStruct_0207D3C0 * v2 = sub_0207D990(param1->saveData);
+    PokedexData * v3 = SaveData_Pokedex(param1->saveData);
+    u16 * v4 = sub_0203A784(sub_0203A790(param1->saveData));
 
     TrainerInfo_Copy(param0->unk_D0[0], v0);
     Party_cpy(param0->parties[0], v1);
@@ -457,10 +456,10 @@ void sub_020526E8 (const BattleParams * param0, FieldSystem * param1)
 
 void sub_02052754 (const BattleParams * param0, FieldSystem * param1)
 {
-    TrainerInfo * v0 = SaveData_GetTrainerInfo(param1->unk_0C);
-    Party * v1 = Party_GetFromSavedata(param1->unk_0C);
-    UnkStruct_0207D3C0 * v2 = sub_0207D990(param1->unk_0C);
-    PokedexData * v3 = sub_02027560(param1->unk_0C);
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(param1->saveData);
+    Party * v1 = Party_GetFromSavedata(param1->saveData);
+    UnkStruct_0207D3C0 * v2 = sub_0207D990(param1->saveData);
+    PokedexData * v3 = SaveData_Pokedex(param1->saveData);
 
     sub_02026338(param0->unk_E8, v3);
 }
@@ -523,7 +522,7 @@ static int sub_02052780 (const FieldSystem * param0, int param1)
 
 static void sub_0205281C (BattleParams * param0, const FieldSystem * param1)
 {
-    UnkStruct_0205EC34 * v0 = sub_0203A780(sub_0203A790(param1->unk_0C));
+    UnkStruct_0205EC34 * v0 = sub_0203A780(sub_0203A790(param1->saveData));
 
     param0->unk_128 = MapHeader_GetBattleBG(param1->unk_1C->unk_00);
 

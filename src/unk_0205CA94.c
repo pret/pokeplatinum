@@ -404,7 +404,7 @@ UnkStruct_0205D274 * sub_0205D050 (SysTaskFunc func, FieldSystem * param1, u32 p
 
     v1 = sub_0200679C(func, sizeof(UnkStruct_0205D274), 5, 4);
     v0 = sub_0201CED0(v1);
-    v3 = SaveData_GetTrainerInfo(param1->unk_0C);
+    v3 = SaveData_GetTrainerInfo(param1->saveData);
     v2 = TrainerInfo_Gender(v3);
 
     sub_0205D094(&v0->unk_04, v2, param2);

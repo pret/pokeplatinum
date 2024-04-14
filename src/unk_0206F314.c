@@ -42,7 +42,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202E840.h"
 #include "unk_020508D4.h"
 #include "unk_0206F314.h"
@@ -198,7 +198,7 @@ static const UnkStruct_020F02D0 * const Unk_020F0254[] = {
 static int sub_0206F314 (UnkStruct_0206F314 * param0, FieldSystem * param1, u16 param2)
 {
     UnkStruct_0206F7F8 * v0;
-    SaveData * v1 = param1->unk_0C;
+    SaveData * v1 = param1->saveData;
 
     Heap_Create(3, 80, 0x6000);
 
@@ -213,8 +213,8 @@ static int sub_0206F314 (UnkStruct_0206F314 * param0, FieldSystem * param1, u16 
     v0->unk_CC = param1;
     v0->unk_D0 = param1->unk_08;
     v0->unk_304 = sub_0202E8C0(v1);
-    v0->unk_1A = sub_02027AC0(sub_02025E44(v1));
-    v0->unk_1C = sub_02027B50(sub_02025E44(v1));
+    v0->unk_1A = Options_TextFrameDelay(sub_02025E44(v1));
+    v0->unk_1C = Options_Frame(sub_02025E44(v1));
 
     param0->unk_08 = v0;
 
@@ -852,10 +852,10 @@ static void sub_02070288 (UnkStruct_0206F7F8 * param0)
     SpriteActor_EnableObject(param0->unk_2FC[1], 0);
 }
 
-static BOOL sub_020702D0 (UnkStruct_020508D4 * param0)
+static BOOL sub_020702D0 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_0206F314 * v1 = sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_0206F314 * v1 = TaskManager_Environment(param0);
     UnkStruct_0206F7F8 * v2 = v1->unk_08;
 
     switch (v1->unk_00) {
@@ -863,7 +863,7 @@ static BOOL sub_020702D0 (UnkStruct_020508D4 * param0)
         v1->unk_00 = sub_0206F314(v1, v0, v1->unk_04);
         break;
     case 1:
-        v1->unk_00 = sub_0206F448(v1->unk_08, v0->unk_0C);
+        v1->unk_00 = sub_0206F448(v1->unk_08, v0->saveData);
         break;
     case 2:
         v1->unk_00 = sub_0206F488(v1->unk_08);
@@ -914,9 +914,9 @@ static BOOL sub_020702D0 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_020703FC (UnkStruct_020508D4 * param0, u16 param1)
+void sub_020703FC (TaskManager * param0, u16 param1)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_0206F314 * v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0206F314));
 
     v1->unk_00 = 0;

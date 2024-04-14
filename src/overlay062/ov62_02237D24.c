@@ -1644,7 +1644,7 @@ static BOOL ov62_02239984 (UnkStruct_0208C06C * param0, int param1)
         int v7;
         int v8 = 0;
         BOOL v9;
-        PokedexData * v10 = sub_02027560(param0->unk_830);
+        PokedexData * v10 = SaveData_Pokedex(param0->unk_830);
 
         for (v7 = v3; v7 < v4; v7++) {
             v9 = sub_02026FE8(v10, v1[v7]);
@@ -1688,7 +1688,7 @@ static void ov62_02239A0C (UnkStruct_0208C06C * param0, int param1)
         int v5;
         int v6 = 0;
         BOOL v7;
-        PokedexData * v8 = sub_02027560(param0->unk_830);
+        PokedexData * v8 = SaveData_Pokedex(param0->unk_830);
 
         v4->unk_1D4.unk_00 = 0;
 

@@ -114,12 +114,12 @@ void sub_02055CD4 (FieldSystem * param0, int param1)
 
     if (param0->unk_04 == NULL) {
         v1 = sub_02027BF4(11);
-        v0 = sub_02027854(param0->unk_0C);
+        v0 = sub_02027854(param0->saveData);
         sub_02027EAC(v0, v1, param1);
         Heap_FreeToHeap(v1);
     } else {
         v1 = param0->unk_04->unk_18->unk_04;
-        v0 = sub_02027854(param0->unk_0C);
+        v0 = sub_02027854(param0->saveData);
         sub_02027EAC(v0, v1, param1);
     }
 }
@@ -158,7 +158,7 @@ void sub_02055D94 (FieldSystem * param0)
 {
     int v0 = 0;
     LocalMapObject * v1;
-    UnkStruct_02027854 * v2 = sub_02027854(param0->unk_0C);
+    UnkStruct_02027854 * v2 = sub_02027854(param0->saveData);
 
     while (sub_020625B0(param0->unk_38, &v1, &v0, (1 << 0)) == 1) {
         if (sub_020677F4(sub_02062920(v1)) == 1) {
@@ -173,7 +173,7 @@ void sub_02055D94 (FieldSystem * param0)
 BOOL sub_02055E00 (FieldSystem * param0, LocalMapObject * param1)
 {
     int v0, v1, v2;
-    UnkStruct_02027854 * v3 = sub_02027854(param0->unk_0C);
+    UnkStruct_02027854 * v3 = sub_02027854(param0->saveData);
 
     v0 = sub_020629D8(param1, 0);
     v2 = sub_02027D10(v3, v0);
@@ -183,13 +183,13 @@ BOOL sub_02055E00 (FieldSystem * param0, LocalMapObject * param1)
     sub_02027DC0(v3, v0);
     sub_02067834(param1);
 
-    return sub_0207D570(sub_0207D990(param0->unk_0C), sub_02055C50(v2), v1, 4);
+    return sub_0207D570(sub_0207D990(param0->saveData), sub_02055C50(v2), v1, 4);
 }
 
 void sub_02055E80 (FieldSystem * param0, LocalMapObject * param1, u16 param2)
 {
     int v0;
-    UnkStruct_02027854 * v1 = sub_02027854(param0->unk_0C);
+    UnkStruct_02027854 * v1 = sub_02027854(param0->saveData);
 
     v0 = sub_020629D8(param1, 0);
     sub_02027DA8(v1, v0, sub_02055C80(param2));
@@ -198,7 +198,7 @@ void sub_02055E80 (FieldSystem * param0, LocalMapObject * param1, u16 param2)
 void sub_02055EAC (FieldSystem * param0, LocalMapObject * param1, u16 param2)
 {
     int v0;
-    UnkStruct_02027854 * v1 = sub_02027854(param0->unk_0C);
+    UnkStruct_02027854 * v1 = sub_02027854(param0->saveData);
 
     v0 = sub_020629D8(param1, 0);
     sub_02027D40(v1, v0, param0->unk_04->unk_18->unk_04, sub_02055C60(param2));
@@ -207,7 +207,7 @@ void sub_02055EAC (FieldSystem * param0, LocalMapObject * param1, u16 param2)
 void sub_02055EE0 (FieldSystem * param0, LocalMapObject * param1)
 {
     int v0;
-    UnkStruct_02027854 * v1 = sub_02027854(param0->unk_0C);
+    UnkStruct_02027854 * v1 = sub_02027854(param0->saveData);
 
     v0 = sub_020629D8(param1, 0);
     sub_02027D78(v1, v0);
@@ -216,7 +216,7 @@ void sub_02055EE0 (FieldSystem * param0, LocalMapObject * param1)
 int sub_02055F00 (const FieldSystem * param0, const LocalMapObject * param1)
 {
     int v0;
-    UnkStruct_02027854 * v1 = sub_02027854(param0->unk_0C);
+    UnkStruct_02027854 * v1 = sub_02027854(param0->saveData);
 
     v0 = sub_020629D8(param1, 0);
     return sub_02027D04(v1, v0);
@@ -225,7 +225,7 @@ int sub_02055F00 (const FieldSystem * param0, const LocalMapObject * param1)
 int sub_02055F20 (const FieldSystem * param0, const LocalMapObject * param1)
 {
     int v0;
-    UnkStruct_02027854 * v1 = sub_02027854(param0->unk_0C);
+    UnkStruct_02027854 * v1 = sub_02027854(param0->saveData);
 
     v0 = sub_020629D8(param1, 0);
     return sub_02027D10(v1, v0);
@@ -234,7 +234,7 @@ int sub_02055F20 (const FieldSystem * param0, const LocalMapObject * param1)
 u16 sub_02055F40 (const FieldSystem * param0, const LocalMapObject * param1)
 {
     int v0;
-    UnkStruct_02027854 * v1 = sub_02027854(param0->unk_0C);
+    UnkStruct_02027854 * v1 = sub_02027854(param0->saveData);
 
     v0 = sub_020629D8(param1, 0);
     return sub_02055C50(sub_02027D10(v1, v0));
@@ -243,7 +243,7 @@ u16 sub_02055F40 (const FieldSystem * param0, const LocalMapObject * param1)
 u16 sub_02055F64 (const FieldSystem * param0, const LocalMapObject * param1)
 {
     int v0;
-    UnkStruct_02027854 * v1 = sub_02027854(param0->unk_0C);
+    UnkStruct_02027854 * v1 = sub_02027854(param0->saveData);
 
     v0 = sub_020629D8(param1, 0);
     return sub_02055C70(sub_02027D9C(v1, v0));
@@ -252,7 +252,7 @@ u16 sub_02055F64 (const FieldSystem * param0, const LocalMapObject * param1)
 int sub_02055F88 (const FieldSystem * param0, const LocalMapObject * param1)
 {
     int v0;
-    UnkStruct_02027854 * v1 = sub_02027854(param0->unk_0C);
+    UnkStruct_02027854 * v1 = sub_02027854(param0->saveData);
 
     v0 = sub_020629D8(param1, 0);
     return sub_02027D18(v1, v0);
@@ -261,7 +261,7 @@ int sub_02055F88 (const FieldSystem * param0, const LocalMapObject * param1)
 int sub_02055FA8 (const FieldSystem * param0, const LocalMapObject * param1)
 {
     int v0;
-    UnkStruct_02027854 * v1 = sub_02027854(param0->unk_0C);
+    UnkStruct_02027854 * v1 = sub_02027854(param0->saveData);
 
     v0 = sub_020629D8(param1, 0);
     return sub_02027DB4(v1, v0);
@@ -384,10 +384,10 @@ static void sub_0205610C (FieldSystem * param0, UnkStruct_020562AC * param1, con
     param1->unk_0C = sub_02065700(v0, param2);
 }
 
-static BOOL sub_02056124 (UnkStruct_020508D4 * param0)
+static BOOL sub_02056124 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_020562AC * v1 = sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_020562AC * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_00) {
     case 0:

@@ -48,14 +48,14 @@ typedef struct {
     FieldSystem * unk_2C;
 } UnkStruct_020EF6D0;
 
-static int sub_02067BA8(FieldSystem * param0, UnkStruct_02061830 * param1, PlayerAvatar * param2, const LocalMapObject * param3, UnkStruct_02067C28 * param4);
+static int sub_02067BA8(FieldSystem * param0, MapObjectManager * param1, PlayerAvatar * param2, const LocalMapObject * param3, UnkStruct_02067C28 * param4);
 static void sub_02067C28(UnkStruct_02067C28 * param0, LocalMapObject * param1, int param2, int param3);
 static int sub_02067C54(const LocalMapObject * param0);
 static int sub_02067C80(const LocalMapObject * param0, PlayerAvatar * param1, int * param2);
 static int sub_02067DA8(const LocalMapObject * param0, int param1, int param2, int param3, int param4, int param5);
 static int sub_02067E74(const LocalMapObject * param0, int param1, int param2);
 static int sub_02067F14(LocalMapObject * param0);
-static LocalMapObject * sub_02067F2C(FieldSystem * param0, UnkStruct_02061830 * param1, LocalMapObject * param2, int param3);
+static LocalMapObject * sub_02067F2C(FieldSystem * param0, MapObjectManager * param1, LocalMapObject * param2, int param3);
 static SysTask * sub_02067FF0(FieldSystem * param0, LocalMapObject * param1, PlayerAvatar * param2, int param3, int param4, int param5, int param6, int param7);
 static int sub_02068048(SysTask * param0);
 static void sub_02068054(SysTask * param0);
@@ -67,7 +67,7 @@ int(*const Unk_020EF6D0[])(UnkStruct_020EF6D0 *);
 int sub_02067A84 (FieldSystem * param0, BOOL param1)
 {
     UnkStruct_02067C28 v0;
-    UnkStruct_02061830 * v1 = param0->unk_38;
+    MapObjectManager * v1 = param0->unk_38;
     PlayerAvatar * v2 = param0->playerAvatar;
 
     if (sub_02067BA8(param0, v1, v2, NULL, &v0) == 0) {
@@ -113,7 +113,7 @@ int sub_02067A84 (FieldSystem * param0, BOOL param1)
     return 0;
 }
 
-static int sub_02067BA8 (FieldSystem * param0, UnkStruct_02061830 * param1, PlayerAvatar * param2, const LocalMapObject * param3, UnkStruct_02067C28 * param4)
+static int sub_02067BA8 (FieldSystem * param0, MapObjectManager * param1, PlayerAvatar * param2, const LocalMapObject * param3, UnkStruct_02067C28 * param4)
 {
     int v0, v1, v2;
     LocalMapObject * v3;
@@ -358,7 +358,7 @@ int sub_02067F24 (LocalMapObject * param0)
     return sub_02067F14(param0);
 }
 
-static LocalMapObject * sub_02067F2C (FieldSystem * param0, UnkStruct_02061830 * param1, LocalMapObject * param2, int param3)
+static LocalMapObject * sub_02067F2C (FieldSystem * param0, MapObjectManager * param1, LocalMapObject * param2, int param3)
 {
     int v0;
     LocalMapObject * v1;

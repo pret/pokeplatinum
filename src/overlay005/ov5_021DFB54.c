@@ -138,22 +138,22 @@ static int ov5_021DFE68(FieldSystem * param0, PlayerAvatar * param1, int param2,
 static int ov5_021DFEF4(FieldSystem * param0, PlayerAvatar * param1, int param2, int param3);
 static int ov5_021DFF1C(FieldSystem * param0, PlayerAvatar * param1, int param2, int param3);
 static void ov5_021DFF88(int param0, FieldSystem * param1, PlayerAvatar * param2, LocalMapObject * param3);
-static BOOL ov5_021DFFBC(UnkStruct_020508D4 * param0);
+static BOOL ov5_021DFFBC(TaskManager * param0);
 static void ov5_021E00B0(FieldSystem * param0, int param1, const UnkStruct_ov5_021E1050 * param2);
-static BOOL ov5_021E0160(UnkStruct_020508D4 * param0);
+static BOOL ov5_021E0160(TaskManager * param0);
 static int ov5_021E032C(FieldSystem * param0, PlayerAvatar * param1, int param2, int param3);
 static void ov5_021E0390(int param0, FieldSystem * param1, PlayerAvatar * param2);
-static BOOL ov5_021E03C8(UnkStruct_020508D4 * param0);
+static BOOL ov5_021E03C8(TaskManager * param0);
 static int ov5_021E04A8(FieldSystem * param0, PlayerAvatar * param1, int param2, int param3);
 static int ov5_021E04EC(FieldSystem * param0, PlayerAvatar * param1, int param2, int param3);
 static void ov5_021E0534(FieldSystem * param0, PlayerAvatar * param1);
-static BOOL ov5_021E0560(UnkStruct_020508D4 * param0);
+static BOOL ov5_021E0560(TaskManager * param0);
 static int ov5_021E067C(FieldSystem * param0, PlayerAvatar * param1, int param2);
 static int ov5_021E06A8(FieldSystem * param0, PlayerAvatar * param1);
 static void ov5_021E06F8(FieldSystem * param0, int param1, const UnkStruct_ov5_021E1050 * param2);
-static BOOL ov5_021E07A0(UnkStruct_020508D4 * param0);
+static BOOL ov5_021E07A0(TaskManager * param0);
 static UnkStruct_ov5_021F9B10 * ov5_021E0948(FieldSystem * param0, int param1, const UnkStruct_ov5_021E1050 * param2);
-static BOOL ov5_021E09D4(UnkStruct_020508D4 * param0);
+static BOOL ov5_021E09D4(TaskManager * param0);
 static SysTask * ov5_021E0F54(FieldSystem * param0, u32 param1);
 static void ov5_021E0FC0(SysTask * param0);
 static void ov5_021E0FF0(SysTask * param0, void * param1);
@@ -167,7 +167,7 @@ static void * ov5_021E1110(int param0);
 static void ov5_021E1134(void * param0);
 static Pokemon * ov5_021E1140(FieldSystem * param0, int param1);
 static void ov5_021E0DE0(FieldSystem * param0);
-static BOOL ov5_021E0E10(UnkStruct_020508D4 * param0);
+static BOOL ov5_021E0E10(TaskManager * param0);
 
 static void(*const Unk_ov5_021F9B74[10])(PlayerAvatar *);
 int(*const Unk_ov5_021F9B54[])(UnkStruct_ov5_021F9B54 *);
@@ -511,12 +511,12 @@ static void ov5_021DFF88 (int param0, FieldSystem * param1, PlayerAvatar * param
     v0->unk_0C = param2;
 
     sub_02050904(param1, ov5_021DFFBC, v0);
-    sub_0202CF28(sub_0202CD88(param1->unk_0C), (1 + 54));
+    sub_0202CF28(sub_0202CD88(param1->saveData), (1 + 54));
 }
 
-static BOOL ov5_021DFFBC (UnkStruct_020508D4 * param0)
+static BOOL ov5_021DFFBC (TaskManager * param0)
 {
-    UnkStruct_ov5_021DFF88 * v0 = sub_02050A64(param0);
+    UnkStruct_ov5_021DFF88 * v0 = TaskManager_Environment(param0);
     LocalMapObject * v1 = Player_LocalMapObject(v0->unk_0C);
     LocalMapObject * v2 = v0->unk_10;
 
@@ -592,10 +592,10 @@ static void ov5_021E00B0 (FieldSystem * param0, int param1, const UnkStruct_ov5_
     sub_02050944(param0->unk_10, ov5_021E0160, v0);
 }
 
-void ov5_021E00EC (UnkStruct_020508D4 * param0, int param1, int param2)
+void ov5_021E00EC (TaskManager * param0, int param1, int param2)
 {
     UnkStruct_ov5_021E1050 v0;
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
     Pokemon * v2 = ov5_021E1140(v1, param2);
 
     ov5_021E1028(v1, v2, &v0);
@@ -619,9 +619,9 @@ int ov5_021E0118 (PlayerAvatar * param0, u32 param1, u32 param2)
     return 0;
 }
 
-static BOOL ov5_021E0160 (UnkStruct_020508D4 * param0)
+static BOOL ov5_021E0160 (TaskManager * param0)
 {
-    UnkStruct_ov5_021E00B0 * v0 = sub_02050A64(param0);
+    UnkStruct_ov5_021E00B0 * v0 = TaskManager_Environment(param0);
 
     switch (v0->unk_00) {
     case 0:
@@ -752,9 +752,9 @@ static void ov5_021E0390 (int param0, FieldSystem * param1, PlayerAvatar * param
     sub_02050904(param1, ov5_021E03C8, v0);
 }
 
-static BOOL ov5_021E03C8 (UnkStruct_020508D4 * param0)
+static BOOL ov5_021E03C8 (TaskManager * param0)
 {
-    UnkStruct_ov5_021E0390 * v0 = sub_02050A64(param0);
+    UnkStruct_ov5_021E0390 * v0 = TaskManager_Environment(param0);
 
     switch (v0->unk_00) {
     case 0:
@@ -848,12 +848,12 @@ static void ov5_021E0534 (FieldSystem * param0, PlayerAvatar * param1)
     v0->unk_0C = param1;
 
     sub_02050904(param0, ov5_021E0560, v0);
-    sub_0202CF28(sub_0202CD88(param0->unk_0C), (1 + 55));
+    sub_0202CF28(sub_0202CD88(param0->saveData), (1 + 55));
 }
 
-static BOOL ov5_021E0560 (UnkStruct_020508D4 * param0)
+static BOOL ov5_021E0560 (TaskManager * param0)
 {
-    UnkStruct_ov5_021E0534 * v0 = sub_02050A64(param0);
+    UnkStruct_ov5_021E0534 * v0 = TaskManager_Environment(param0);
     LocalMapObject * v1 = Player_LocalMapObject(v0->unk_0C);
 
     switch (v0->unk_00) {
@@ -892,7 +892,7 @@ static BOOL ov5_021E0560 (UnkStruct_020508D4 * param0)
             u8 v7 = sub_02062BE8(v1);
 
             if (sub_0205DD0C(v7) == 1) {
-                FieldSystem * v8 = sub_02050A60(param0);
+                FieldSystem * v8 = TaskManager_FieldSystem(param0);
                 BattleParams * v9;
 
                 if (ov6_022413E4(v8, &v9) == 1) {
@@ -978,10 +978,10 @@ static void ov5_021E06F8 (FieldSystem * param0, int param1, const UnkStruct_ov5_
     sub_02050944(param0->unk_10, ov5_021E07A0, v0);
 }
 
-void ov5_021E0734 (UnkStruct_020508D4 * param0, int param1, int param2)
+void ov5_021E0734 (TaskManager * param0, int param1, int param2)
 {
     UnkStruct_ov5_021E1050 v0;
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
     Pokemon * v2 = ov5_021E1140(v1, param2);
 
     ov5_021E1028(v1, v2, &v0);
@@ -1008,10 +1008,10 @@ int ov5_021E0760 (u32 param0, int param1)
     return 0;
 }
 
-static BOOL ov5_021E07A0 (UnkStruct_020508D4 * param0)
+static BOOL ov5_021E07A0 (TaskManager * param0)
 {
     int v0;
-    UnkStruct_ov5_021F9B54 * v1 = sub_02050A64(param0);
+    UnkStruct_ov5_021F9B54 * v1 = TaskManager_Environment(param0);
 
     do {
         v0 = Unk_ov5_021F9B54[v1->unk_00](v1);
@@ -1164,10 +1164,10 @@ void ov5_021E097C (FieldSystem * param0, int param1)
     sub_02050904(param0, ov5_021E09D4, v0);
 }
 
-void ov5_021E0998 (UnkStruct_020508D4 * param0, int param1, int param2)
+void ov5_021E0998 (TaskManager * param0, int param1, int param2)
 {
     UnkStruct_ov5_021E1050 v0;
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
     Pokemon * v2 = ov5_021E1140(v1, param2);
 
     ov5_021E1028(v1, v2, &v0);
@@ -1178,10 +1178,10 @@ void ov5_021E0998 (UnkStruct_020508D4 * param0, int param1, int param2)
     }
 }
 
-static BOOL ov5_021E09D4 (UnkStruct_020508D4 * param0)
+static BOOL ov5_021E09D4 (TaskManager * param0)
 {
     int v0;
-    UnkStruct_ov5_021F9B10 * v1 = sub_02050A64(param0);
+    UnkStruct_ov5_021F9B10 * v1 = TaskManager_Environment(param0);
 
     do {
         if (v1->unk_04 == 0) {
@@ -1512,9 +1512,9 @@ static const UnkStruct_ov5_021F8E3C Unk_ov5_021F9C00[] = {
     {0xfe, 0x0}
 };
 
-void ov5_021E0DD4 (UnkStruct_020508D4 * param0)
+void ov5_021E0DD4 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     ov5_021E0DE0(v0);
 }
 
@@ -1530,9 +1530,9 @@ static void ov5_021E0DE0 (FieldSystem * param0)
     sub_02050944(param0->unk_10, ov5_021E0E10, v0);
 }
 
-static BOOL ov5_021E0E10 (UnkStruct_020508D4 * param0)
+static BOOL ov5_021E0E10 (TaskManager * param0)
 {
-    UnkStruct_ov5_021E0DE0 * v0 = sub_02050A64(param0);
+    UnkStruct_ov5_021E0DE0 * v0 = TaskManager_Environment(param0);
 
     switch (v0->unk_0C) {
     case 0:
@@ -1759,7 +1759,7 @@ static LocalMapObject * ov5_021E10D4 (PlayerAvatar * param0, int param1)
 {
     int v0 = Player_XPos(param0) + sub_0206419C(param1);
     int v1 = Player_ZPos(param0) + sub_020641A8(param1);
-    const UnkStruct_02061830 * v2 = sub_02062A40(Player_LocalMapObject(param0));
+    const MapObjectManager * v2 = sub_02062A40(Player_LocalMapObject(param0));
     LocalMapObject * v3 = sub_0206326C(v2, v0, v1, 0);
 
     return v3;
@@ -1782,6 +1782,6 @@ static void ov5_021E1134 (void * param0)
 
 static Pokemon * ov5_021E1140 (FieldSystem * param0, int param1)
 {
-    Pokemon * v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->unk_0C), param1);
+    Pokemon * v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->saveData), param1);
     return v0;
 }

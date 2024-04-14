@@ -13,7 +13,7 @@
 #include "struct_decls/struct_020308A0_decl.h"
 #include "savedata.h"
 
-#include "struct_defs/options.h"
+#include "game_options.h"
 #include "struct_defs/struct_0203E564.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"

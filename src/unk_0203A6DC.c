@@ -175,7 +175,7 @@ void sub_0203A7A8 (FieldSystem * param0)
 {
     UnkStruct_02061D3C * v0;
 
-    v0 = ((UnkStruct_0203A79C *)sub_0203A79C(param0->unk_0C))->unk_00;
+    v0 = ((UnkStruct_0203A79C *)sub_0203A79C(param0->saveData))->unk_00;
     sub_02061CA8(param0, param0->unk_38, v0, 64);
 }
 
@@ -183,6 +183,6 @@ void sub_0203A7C0 (FieldSystem * param0)
 {
     UnkStruct_02061D3C * v0;
 
-    v0 = ((UnkStruct_0203A79C *)sub_0203A79C(param0->unk_0C))->unk_00;
+    v0 = ((UnkStruct_0203A79C *)sub_0203A79C(param0->saveData))->unk_00;
     sub_02061D04(param0->unk_38, v0, 64);
 }

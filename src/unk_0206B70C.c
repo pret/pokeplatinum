@@ -78,8 +78,8 @@ void sub_0206B70C (FieldSystem * param0, UnkStruct_0203D8AC * param1, int param2
     int v1 = 0, v2 = 0, v3 = 0;
     int v4, v5, v6;
     UnkStruct_020556C4 * v7;
-    UnkStruct_020507E4 * v8 = SaveData_Events(param0->unk_0C);
-    UnkStruct_0203A790 * v9 = sub_0203A790(param0->unk_0C);
+    UnkStruct_020507E4 * v8 = SaveData_Events(param0->saveData);
+    UnkStruct_0203A790 * v9 = sub_0203A790(param0->saveData);
     UnkStruct_02049FA8 * v10 = sub_0203A72C(v9);
 
     memset(param1, 0, sizeof(UnkStruct_0203D8AC));
@@ -116,7 +116,7 @@ void sub_0206B70C (FieldSystem * param0, UnkStruct_0203D8AC * param1, int param2
 
     v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0));
     param1->unk_0C = TrainerInfo_Gender(v0);
-    v7 = sub_0203A76C(sub_0203A790(param0->unk_0C));
+    v7 = sub_0203A76C(sub_0203A790(param0->saveData));
     v2 = (v7->unk_00 - 2 + 6) % 6;
 
     for (v1 = 0; v1 < 5; v1++) {
@@ -159,7 +159,7 @@ static void sub_0206B878 (FieldSystem * param0, UnkStruct_0203D8AC * param1, con
     int v3;
     UnkStruct_0206B878 * v4;
     UnkUnion_0206B878 * v5;
-    UnkStruct_020507E4 * v6 = SaveData_Events(param0->unk_0C);
+    UnkStruct_020507E4 * v6 = SaveData_Events(param0->saveData);
 
     FS_InitFile(&v0);
 

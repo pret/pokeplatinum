@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV104_02230BE4_H
 #define POKEPLATINUM_STRUCT_OV104_02230BE4_H
 
-#include "struct_defs/options.h"
+#include "game_options.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "field/field_system_decl.h"
 #include "struct_decls/struct_0207D99C_decl.h"

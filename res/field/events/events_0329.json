@@ -21,7 +21,7 @@
                 5
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 166,
             "z": 813,
             "y": 1
@@ -37,7 +37,7 @@
                 4
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 181,
             "z": 818,
             "y": 1
@@ -53,7 +53,7 @@
                 5
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 185,
             "z": 804,
             "y": 1
@@ -67,7 +67,7 @@
             "initial_dir": 3,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 174,
             "z": 827,
             "y": 1
@@ -83,7 +83,7 @@
                 4
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 183,
             "z": 825,
             "y": 0
@@ -99,7 +99,7 @@
                 3
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 176,
             "z": 804,
             "y": 0
@@ -113,7 +113,7 @@
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 174,
             "z": 816,
             "y": 0
@@ -127,7 +127,7 @@
             "initial_dir": 3,
             "data": [],
             "movement_range_x": 1,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 169,
             "z": 808,
             "y": 0
@@ -141,7 +141,7 @@
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 162,
             "z": 806,
             "y": 0

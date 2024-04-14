@@ -29,7 +29,7 @@ BOOL sub_0204E240 (UnkStruct_0203E724 * param0)
     u16 * v4 = inline_0204FCAC(param0);
 
     for (v1 = 0, v3 = 0; v1 < 7; v1++) {
-        v3 += sub_0207D730(sub_0207D990(v0->unk_0C), Unk_020EBFFC[v1][0], 4);
+        v3 += sub_0207D730(sub_0207D990(v0->saveData), Unk_020EBFFC[v1][0], 4);
     }
 
     *v4 = v3;
@@ -68,7 +68,7 @@ BOOL sub_0204E2E0 (UnkStruct_0203E724 * param0)
     *v5 = 0;
 
     for (v1 = 0, v3 = 0; v1 < 7; v1++) {
-        v3 += sub_0207D730(sub_0207D990(v0->unk_0C), Unk_020EBFFC[v1][0], 4);
+        v3 += sub_0207D730(sub_0207D990(v0->saveData), Unk_020EBFFC[v1][0], 4);
 
         if (v3 >= v6) {
             *v4 = Unk_020EBFFC[v1][0];

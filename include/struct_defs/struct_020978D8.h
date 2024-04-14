@@ -3,7 +3,7 @@
 
 #include "struct_defs/sentence.h"
 #include "strbuf.h"
-#include "struct_defs/options.h"
+#include "game_options.h"
 #include "struct_defs/union_02028328.h"
 
 typedef struct {

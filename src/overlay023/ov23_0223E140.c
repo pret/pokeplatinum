@@ -643,7 +643,7 @@ void ov23_0223E1E4 (void * param0, FieldSystem * param1)
     ov23_0223E140();
 
     Unk_ov23_02257740->unk_A24 = -1;
-    v2 = sub_020298B0(Unk_ov23_02257740->unk_00->unk_0C);
+    v2 = sub_020298B0(Unk_ov23_02257740->unk_00->saveData);
 
     if (sub_02029234(v2)) {
         MATHRandContext16 v3;
@@ -770,7 +770,7 @@ static void ov23_0223E434 (MATHRandContext16 * param0, int param1)
     u16 v4, v5, v6;
     u16 v7, v8, v9;
     UnkStruct_ov23_0223E6F8 * v10;
-    UndergroundData * v11 = sub_020298B0(Unk_ov23_02257740->unk_00->unk_0C);
+    UndergroundData * v11 = sub_020298B0(Unk_ov23_02257740->unk_00->saveData);
 
     v6 = (sub_02039E10(Unk_ov23_02257740->unk_00->unk_2C) - 2) * 32;
     v9 = (sub_02039E20(Unk_ov23_02257740->unk_00->unk_2C) - 2) * 32;
@@ -831,7 +831,7 @@ void ov23_0223E650 (int param0, int param1, MATHRandContext16 * param2)
     int v0, v1, v2, v3;
     u16 v4, v5;
     UnkStruct_ov23_0223E6F8 * v6;
-    UndergroundData * v7 = sub_020298B0(Unk_ov23_02257740->unk_00->unk_0C);
+    UndergroundData * v7 = sub_020298B0(Unk_ov23_02257740->unk_00->saveData);
 
     v3 = 0;
 
@@ -904,7 +904,7 @@ static UnkStruct_ov23_0223E6F8 * ov23_0223E740 (int param0, int param1)
 
 static void ov23_0223E834 (void)
 {
-    UndergroundData * v0 = sub_020298B0(Unk_ov23_02257740->unk_00->unk_0C);
+    UndergroundData * v0 = sub_020298B0(Unk_ov23_02257740->unk_00->saveData);
     int v1;
     int v2, v3;
     UnkStruct_ov23_0223E6F8 * v4;
@@ -1061,7 +1061,7 @@ static void ov23_0223EA38 (SysTask * param0, void * param1)
 
 void ov23_0223EAF8 (int param0, int param1, void * param2, void * param3)
 {
-    UndergroundData * v0 = sub_020298B0(Unk_ov23_02257740->unk_00->unk_0C);
+    UndergroundData * v0 = sub_020298B0(Unk_ov23_02257740->unk_00->saveData);
     UnkStruct_ov23_0223E6F8 * v1 = Unk_ov23_02257740->unk_84C[param0];
     u8 v2 = param0;
     u8 * v3 = param2;
@@ -1687,7 +1687,7 @@ static void ov23_0223F70C (FieldSystem * param0)
     v0->unk_10 = param0;
 
     ov5_021EF3FC(param0->unk_04->unk_1C);
-    sub_0206AA04(SaveData_Events(param0->unk_0C));
+    sub_0206AA04(SaveData_Events(param0->saveData));
 
     Unk_ov23_02257740->unk_8CC = SysTask_Start(ov23_0223F118, v0, 100);
 }
@@ -1792,7 +1792,7 @@ static int ov23_0223F970 (UnkStruct_ov23_02256EB0 * param0)
     SaveData * v0 = FieldSystem_SaveData(Unk_ov23_02257740->unk_00);
     UndergroundData * v1 = sub_020298B0(v0);
     BOOL v2 = TrainerInfo_ID(SaveData_GetTrainerInfo(v0)) % 2;
-    BOOL v3 = sub_02027474(sub_02027560(v0));
+    BOOL v3 = sub_02027474(SaveData_Pokedex(v0));
     int v4 = 0;
 
     if (v3) {
@@ -2602,8 +2602,8 @@ static BOOL ov23_022409F0 (UnkStruct_ov23_0223EE80 * param0)
 static BOOL ov23_02240A90 (UnkStruct_ov23_0223EE80 * param0)
 {
     int v0, v1, v2;
-    SecretBaseRecord * v3 = SaveData_SecretBaseRecord((Unk_ov23_02257740->unk_00->unk_0C));
-    UndergroundData * v4 = sub_020298B0((Unk_ov23_02257740->unk_00->unk_0C));
+    SecretBaseRecord * v3 = SaveData_SecretBaseRecord((Unk_ov23_02257740->unk_00->saveData));
+    UndergroundData * v4 = sub_020298B0((Unk_ov23_02257740->unk_00->saveData));
 
     for (v0 = 0; v0 < param0->unk_0C; v0++) {
         if (Unk_ov23_02257740->unk_874[v0].unk_08 == 1) {
@@ -2619,7 +2619,7 @@ static BOOL ov23_02240A90 (UnkStruct_ov23_0223EE80 * param0)
                 if ((v2 >= 23) && ((28 + 1) > v2) || (v2 == 36) || (v2 == 37)) {
                     sub_02029644(v3, 1);
                     {
-                        UnkStruct_020507E4 * v5 = SaveData_Events(Unk_ov23_02257740->unk_00->unk_0C);
+                        UnkStruct_020507E4 * v5 = SaveData_Events(Unk_ov23_02257740->unk_00->saveData);
 
                         sub_0206B41C(v5, sub_0206B40C(v5) + 1);
                     }
@@ -2749,7 +2749,7 @@ static BOOL ov23_02240CFC (UnkStruct_ov23_0223EE80 * param0)
 
     if (ov23_02240934(param0)) {
         sub_02029220(v2);
-        sub_0202CFEC(sub_0202CD88(Unk_ov23_02257740->unk_00->unk_0C), 30);
+        sub_0202CFEC(sub_0202CD88(Unk_ov23_02257740->unk_00->saveData), 30);
         param0->unk_00 = 14;
         param0->unk_08 = 25;
         param0->unk_50 = 1;

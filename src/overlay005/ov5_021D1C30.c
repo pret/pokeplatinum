@@ -181,22 +181,22 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
 
     {
         if (param0->unk_00_11 == 0) {
-            BOOL v0 = sub_02054AB0(Party_GetFromSavedata(param1->unk_0C));
+            BOOL v0 = sub_02054AB0(Party_GetFromSavedata(param1->saveData));
 
-            if (sub_0206A984(SaveData_Events(param1->unk_0C)) == 1) {
+            if (sub_0206A984(SaveData_Events(param1->saveData)) == 1) {
                 v0 = 1;
             }
 
             if ((sub_02067A84(param1, v0) == 1) || ((sub_02071CB4(param1, 2) == 1) && (ov8_0224C51C(param1) == 1))) {
                 sub_0205F56C(param1->playerAvatar);
-                sub_02062C48(param1->unk_38);
+                MapObjectMan_PauseAllMovement(param1->unk_38);
                 return 1;
             }
         }
     }
 
     if (param0->unk_00_6) {
-        sub_0206A9A4(SaveData_Events(param1->unk_0C));
+        sub_0206A9A4(SaveData_Events(param1->saveData));
 
         if (ov5_021D2884(param1) == 1) {
             return 1;
@@ -207,11 +207,11 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1)
         int v1 = 0;
         int v2 = sub_02061308(param1->playerAvatar, param0->unk_04, param0->unk_06);
 
-        if (inline_0204E650_2(SaveData_Events(param1->unk_0C))) {
+        if (inline_0204E650_2(SaveData_Events(param1->saveData))) {
             v1 |= 1 << 0;
         }
 
-        if (sub_020549A0(Party_GetFromSavedata(param1->unk_0C), 127) != 0xff) {
+        if (sub_020549A0(Party_GetFromSavedata(param1->saveData), 127) != 0xff) {
             v1 |= 1 << 1;
         }
 
@@ -599,7 +599,7 @@ static BOOL ov5_021D249C (FieldSystem * param0)
 
     ov5_021D2C7C(param0, &v0, &v1);
 
-    if (sub_0206AE8C(SaveData_Events(param0->unk_0C)) == 1) {
+    if (sub_0206AE8C(SaveData_Events(param0->saveData)) == 1) {
         if (sub_02056374(param0, v0, v1) == 1) {
             sub_02051450(param0, sub_0205639C(param0));
             return 1;
@@ -745,13 +745,13 @@ u16 ov5_021D271C (FieldSystem * param0, u8 param1)
     }
 
     if (sub_0205EB74(param0->playerAvatar) != 0x2) {
-        TrainerInfo * v1 = SaveData_GetTrainerInfo(param0->unk_0C);
+        TrainerInfo * v1 = SaveData_GetTrainerInfo(param0->saveData);
         u32 v2 = sub_02061760(param0->playerAvatar);
 
         if (ov5_021E0118(param0->playerAvatar, v2, param1)
 
             && TrainerInfo_HasBadge(v1, 3)) {
-            if (sub_020549A0(Party_GetFromSavedata(param0->unk_0C), 57) != 0xff) {
+            if (sub_020549A0(Party_GetFromSavedata(param0->saveData), 57) != 0xff) {
                 return 10004;
             }
         }
@@ -829,7 +829,7 @@ static BOOL ov5_021D2884 (FieldSystem * param0)
         ov5_021D2B54(param0);
     }
 
-    sub_0206B238(SaveData_Events(param0->unk_0C));
+    sub_0206B238(SaveData_Events(param0->saveData));
     return 0;
 }
 
@@ -896,11 +896,11 @@ static BOOL ov5_021D29D8 (FieldSystem * param0, const int param1, const int para
 
 static BOOL ov5_021D2ABC (FieldSystem * param0)
 {
-    Party * v0 = Party_GetFromSavedata(param0->unk_0C);
-    UnkStruct_02026310 * v1 = sub_02026310(param0->unk_0C);
+    Party * v0 = Party_GetFromSavedata(param0->saveData);
+    UnkStruct_02026310 * v1 = sub_02026310(param0->saveData);
 
     if (ov5_021E7154(v1, v0, param0) == 1) {
-        UnkStruct_0202CD88 * v2 = sub_0202CD88(param0->unk_0C);
+        UnkStruct_0202CD88 * v2 = sub_0202CD88(param0->saveData);
 
         sub_0202CF28(v2, (1 + 10));
         sub_0202CFEC(v2, 15);
@@ -926,7 +926,7 @@ static BOOL ov5_021D2B14 (FieldSystem * param0)
 
 static BOOL ov5_021D2B20 (FieldSystem * param0)
 {
-    return ov6_02246BF4(param0->unk_0C, param0);
+    return ov6_02246BF4(param0->saveData, param0);
 }
 
 static BOOL ov5_021D2B2C (FieldSystem * param0)
@@ -935,7 +935,7 @@ static BOOL ov5_021D2B2C (FieldSystem * param0)
     UnkStruct_020507E4 * v1;
     BOOL v2 = 0;
 
-    v1 = SaveData_Events(param0->unk_0C);
+    v1 = SaveData_Events(param0->saveData);
     v0 = sub_0206B44C(v1);
 
     v0++;
@@ -954,7 +954,7 @@ static void ov5_021D2B54 (FieldSystem * param0)
 {
     int v0, v1;
     Pokemon * v2;
-    Party * v3 = Party_GetFromSavedata(param0->unk_0C);
+    Party * v3 = Party_GetFromSavedata(param0->saveData);
     u16 v4 = MapHeader_GetMapLabelTextID(param0->unk_1C->unk_00);
 
     v1 = Party_GetCurrentCount(v3);
@@ -967,8 +967,8 @@ static void ov5_021D2B54 (FieldSystem * param0)
 
 static BOOL ov5_021D2B94 (FieldSystem * param0)
 {
-    Party * v0 = Party_GetFromSavedata(param0->unk_0C);
-    u16 * v1 = sub_0203A78C(sub_0203A790(param0->unk_0C));
+    Party * v0 = Party_GetFromSavedata(param0->saveData);
+    u16 * v1 = sub_0203A78C(sub_0203A790(param0->saveData));
 
     (*v1)++;
     (*v1) %= 4;
@@ -997,18 +997,18 @@ static BOOL ov5_021D2C14 (FieldSystem * param0)
     u16 * v0;
     u16 * v1;
 
-    if (sub_0206AE5C(SaveData_Events(param0->unk_0C)) == 0) {
+    if (sub_0206AE5C(SaveData_Events(param0->saveData)) == 0) {
         return 0;
     }
 
-    v0 = sub_0203A784(sub_0203A790(param0->unk_0C));
+    v0 = sub_0203A784(sub_0203A790(param0->saveData));
 
     if (*v0 == 0) {
         sub_0203E880(param0, 8802, NULL);
         return 1;
     }
 
-    v1 = sub_0203A788(sub_0203A790(param0->unk_0C));
+    v1 = sub_0203A788(sub_0203A790(param0->saveData));
     (*v1)++;
 
     if (*v1 >= 500) {
@@ -1090,13 +1090,13 @@ static BOOL ov5_021D2D34 (const FieldSystem * param0, int param1, int param2, Un
 
     if (v0->unk_06 == 0x100) {
         GF_ASSERT(v0->unk_04 == 0xfff);
-        *param3 = *(sub_0203A730(sub_0203A790(param0->unk_0C)));
+        *param3 = *(sub_0203A730(sub_0203A790(param0->saveData)));
     } else {
         inline_02049FA8(param3, v0->unk_04, v0->unk_06, v0->unk_00, v0->unk_02, 1);
     }
 
     {
-        UnkStruct_02049FA8 * v2 = sub_0203A724(sub_0203A790(param0->unk_0C));
+        UnkStruct_02049FA8 * v2 = sub_0203A724(sub_0203A790(param0->saveData));
         inline_02049FA8(v2, param0->unk_1C->unk_00, v1, param1, param2, Player_Dir(param0->playerAvatar));
     }
 
@@ -1105,7 +1105,7 @@ static BOOL ov5_021D2D34 (const FieldSystem * param0, int param1, int param2, Un
 
 static void ov5_021D2DCC (FieldSystem * param0, const int param1, const int param2, const int param3)
 {
-    UnkStruct_0203A790 * v0 = sub_0203A790(param0->unk_0C);
+    UnkStruct_0203A790 * v0 = sub_0203A790(param0->saveData);
     UnkStruct_02049FA8 * v1 = sub_0203A72C(v0);
 
     (*v1) = *(param0->unk_1C);

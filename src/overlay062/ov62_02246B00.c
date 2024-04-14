@@ -11,7 +11,7 @@
 #include "strbuf.h"
 
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/options.h"
+#include "game_options.h"
 #include "overlay062/struct_ov62_02246B00.h"
 #include "overlay062/struct_ov62_02246BF4.h"
 #include "overlay062/struct_ov62_02246BF4_sub1.h"

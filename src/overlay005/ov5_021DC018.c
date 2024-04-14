@@ -859,7 +859,7 @@ void ov5_021DCF6C (FieldSystem * param0, Window * param1)
     v1 = StringTemplate_Default(4);
     v2 = Strbuf_Init(16, 4);
     v3 = MessageLoader_GetNewStrbuf(v0, 19);
-    v4 = TrainerInfo_Money(SaveData_GetTrainerInfo(param0->unk_0C));
+    v4 = TrainerInfo_Money(SaveData_GetTrainerInfo(param0->saveData));
 
     StringTemplate_SetNumber(v1, 0, v4, 6, 1, 1);
     StringTemplate_Format(v1, v2, v3);
@@ -908,7 +908,7 @@ void ov5_021DD098 (FieldSystem * param0, Window * param1)
     v1 = StringTemplate_Default(4);
     v2 = Strbuf_Init(16, 4);
     v3 = MessageLoader_GetNewStrbuf(v0, 197);
-    v4 = Coins_GetValue(sub_02025E50(param0->unk_0C));
+    v4 = Coins_GetValue(sub_02025E50(param0->saveData));
 
     StringTemplate_SetNumber(v1, 0, v4, 5, 1, 1);
     StringTemplate_Format(v1, v2, v3);
@@ -951,7 +951,7 @@ void ov5_021DD1A4 (FieldSystem * param0, Window * param1)
     v1 = StringTemplate_Default(4);
     v2 = Strbuf_Init(16, 4);
     v3 = MessageLoader_GetNewStrbuf(v0, 230);
-    v4 = sub_0202D230(sub_0202D750(param0->unk_0C), 0, 0);
+    v4 = sub_0202D230(sub_0202D750(param0->saveData), 0, 0);
 
     StringTemplate_SetNumber(v1, 0, v4, 5, 1, 1);
     StringTemplate_Format(v1, v2, v3);

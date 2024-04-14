@@ -226,17 +226,17 @@ BOOL sub_02049FA0 (UnkStruct_0202D060 * param0)
 
 void sub_02049FA8 (FieldSystem * param0)
 {
-    UnkStruct_02049FA8 * v0 = sub_0203A730(sub_0203A790(param0->unk_0C));
+    UnkStruct_02049FA8 * v0 = sub_0203A730(sub_0203A790(param0->saveData));
 
     inline_02049FA8(v0, param0->unk_1C->unk_00, -1, Player_XPos(param0->playerAvatar), Player_ZPos(param0->playerAvatar), 0);
-    sub_0206AD9C(SaveData_Events(param0->unk_0C));
+    sub_0206AD9C(SaveData_Events(param0->saveData));
 
     return;
 }
 
 void sub_02049FE8 (FieldSystem * param0)
 {
-    sub_0206ADAC(SaveData_Events(param0->unk_0C));
+    sub_0206ADAC(SaveData_Events(param0->saveData));
 }
 
 u16 sub_02049FF8 (SaveData * param0, u16 param1)
@@ -424,7 +424,7 @@ void sub_0204A32C (UnkStruct_0204AFC4 * param0)
     param0 = NULL;
 }
 
-void sub_0204A358 (UnkStruct_0204AFC4 * param0, UnkStruct_020508D4 * param1, void ** param2)
+void sub_0204A358 (UnkStruct_0204AFC4 * param0, TaskManager * param1, void ** param2)
 {
     sub_0206BBFC(param1, param2, 17, 0, param0->unk_0E, param0->unk_0E, 100, 0);
 }

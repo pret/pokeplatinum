@@ -943,7 +943,7 @@ static void sub_02058644 (int param0)
             sub_0202929C(underground);
 
             if (sub_020292B4(underground) == 50) {
-                sub_0202CFEC(sub_0202CD88(sCommPlayerManager->fieldSys->unk_0C), 37);
+                sub_0202CFEC(sub_0202CD88(sCommPlayerManager->fieldSys->saveData), 37);
             }
         }
     }

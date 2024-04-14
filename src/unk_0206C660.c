@@ -27,13 +27,13 @@ typedef struct {
     Pokemon * unk_28;
 } UnkStruct_0206C660;
 
-static BOOL sub_0206C680(UnkStruct_020508D4 * param0);
-static void sub_0206C660(UnkStruct_020508D4 * param0);
+static BOOL sub_0206C680(TaskManager * param0);
+static void sub_0206C660(TaskManager * param0);
 
-void sub_0206C660 (UnkStruct_020508D4 * param0)
+void sub_0206C660 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_0206C660 * v1 = sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_0206C660 * v1 = TaskManager_Environment(param0);
 
     {
         FS_EXTERN_OVERLAY(overlay95);
@@ -46,10 +46,10 @@ void sub_0206C660 (UnkStruct_020508D4 * param0)
     }
 }
 
-static BOOL sub_0206C680 (UnkStruct_020508D4 * param0)
+static BOOL sub_0206C680 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_0206C660 * v1 = sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_0206C660 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_04) {
     case 0:
@@ -87,7 +87,7 @@ static BOOL sub_0206C680 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_0206C740 (UnkStruct_020508D4 * param0, UnkStruct_ov6_02246204 * param1, int param2, u32 param3)
+void sub_0206C740 (TaskManager * param0, UnkStruct_ov6_02246204 * param1, int param2, u32 param3)
 {
     UnkStruct_0206C660 * v0 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_0206C660));
 

@@ -21,7 +21,6 @@
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02015958.h"
 #include "touch_screen.h"
-#include "struct_defs/options.h"
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "pokemon.h"
@@ -64,7 +63,7 @@
 #include "savedata/save_table.h"
 #include "savedata.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202EEC0.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
@@ -1799,7 +1798,7 @@ static int ov97_02235624 (OverlayManager * param0, int * param1)
     v0->unk_10 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
     v0->unk_14 = SaveData_GetTrainerInfo(v0->unk_10);
     v0->unk_18 = sub_02025E44(v0->unk_10);
-    v0->unk_1C = sub_02027B50(v0->unk_18);
+    v0->unk_1C = Options_Frame(v0->unk_18);
     v0->unk_12668 = Strbuf_Init(256, 78);
     v0->unk_1266C = Strbuf_Init(256, 78);
 

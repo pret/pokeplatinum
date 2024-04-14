@@ -50,11 +50,11 @@ typedef struct {
     UnkStruct_ov5_021DBA58 * unk_08;
 } UnkStruct_ov5_021DBC64;
 
-void ov5_021DB888(UnkStruct_020508D4 * param0, StringTemplate * param1, u16 * param2);
+void ov5_021DB888(TaskManager * param0, StringTemplate * param1, u16 * param2);
 u16 ov5_021DBD98(FieldSystem * param0, LocalMapObject * param1, u16 param2);
 BOOL ov5_021DBB94(FieldSystem * param0);
 static BOOL ov5_021DBB70(u32 param0);
-static BOOL ov5_021DB8D8(UnkStruct_020508D4 * param0);
+static BOOL ov5_021DB8D8(TaskManager * param0);
 static int ov5_021DBA58(UnkStruct_ov5_021DBA58 * param0);
 static void ov5_021DBA54(UnkStruct_ov5_021DBA58 * param0, u32 param1);
 static void ov5_021DBA7C(UnkStruct_ov5_021DBA58 * param0);
@@ -330,10 +330,10 @@ static const UnkStruct_ov5_021F8E3C Unk_ov5_021F8E34[] = {
     {0xfe, 0x0}
 };
 
-void ov5_021DB888 (UnkStruct_020508D4 * param0, StringTemplate * param1, u16 * param2)
+void ov5_021DB888 (TaskManager * param0, StringTemplate * param1, u16 * param2)
 {
     UnkStruct_ov5_021DBA58 * v0;
-    FieldSystem * v1 = sub_02050A60(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
 
     v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021DBA58));
 
@@ -345,7 +345,7 @@ void ov5_021DB888 (UnkStruct_020508D4 * param0, StringTemplate * param1, u16 * p
     memset(v0, 0, sizeof(UnkStruct_ov5_021DBA58));
 
     v0->unk_04 = v1;
-    v0->unk_08 = SaveData_Events(v1->unk_0C);
+    v0->unk_08 = SaveData_Events(v1->saveData);
     v0->unk_114 = param2;
     v0->unk_118 = param1;
 
@@ -353,11 +353,11 @@ void ov5_021DB888 (UnkStruct_020508D4 * param0, StringTemplate * param1, u16 * p
     return;
 }
 
-static BOOL ov5_021DB8D8 (UnkStruct_020508D4 * param0)
+static BOOL ov5_021DB8D8 (TaskManager * param0)
 {
     s32 v0, v1;
     int v2;
-    UnkStruct_ov5_021DBA58 * v3 = sub_02050A64(param0);
+    UnkStruct_ov5_021DBA58 * v3 = TaskManager_Environment(param0);
 
     switch (v3->unk_00) {
     case 0:
@@ -531,11 +531,11 @@ static BOOL ov5_021DBB70 (u32 param0)
 
 BOOL ov5_021DBB94 (FieldSystem * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->saveData);
     u16 v1 = sub_0206B0E8(v0);
     u16 v2 = sub_0206B108(v0);
 
-    if (sub_0207D688(sub_0207D990(param0->unk_0C), 443, 1, 4) == 1) {
+    if (sub_0207D688(sub_0207D990(param0->saveData), 443, 1, 4) == 1) {
         if (v1 < 100) {
             v1++;
             sub_0206B0F8(v0, v1);
@@ -633,7 +633,7 @@ static BOOL ov5_021DBCD4 (UnkStruct_ov5_021DBA58 * param0)
 
 static BOOL ov5_021DBCE0 (UnkStruct_ov5_021DBA58 * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_04->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_04->saveData);
     LocalMapObject * v1;
     u16 v2;
     int v3, v4;
@@ -734,7 +734,7 @@ static u16 ov5_021DBDFC (FieldSystem * param0, u16 param1)
 
 static u16 ov5_021DBE48 (FieldSystem * param0, u16 param1, u16 param2)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->saveData);
     u16 v1 = param2;
 
     switch (param2) {

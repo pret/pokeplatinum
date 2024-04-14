@@ -24,7 +24,7 @@ void ov5_021F0824 (FieldSystem * param0)
     VecFx32 v9;
     int v10;
 
-    v2 = sub_0205A080(param0->unk_0C);
+    v2 = sub_0205A080(param0->saveData);
 
     if (v2 == NULL) {
         return;

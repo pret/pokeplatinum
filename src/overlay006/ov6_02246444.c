@@ -105,7 +105,7 @@ static UnkStruct_ov6_022465F4 * ov6_022464A8 (FieldSystem * param0, UnkStruct_02
 
 static UnkStruct_ov6_022465F4 * ov6_022464F8 (FieldSystem * param0, UnkStruct_0202E768 * param1)
 {
-    TrainerInfo * v0 = SaveData_GetTrainerInfo(param0->unk_0C);
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(param0->saveData);
     UnkStruct_ov6_022465F4 * v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov6_022465F4));
 
     ov6_02246444(v1);
@@ -120,7 +120,7 @@ static UnkStruct_ov6_022465F4 * ov6_022464F8 (FieldSystem * param0, UnkStruct_02
 
 static UnkStruct_ov6_022465F4 * ov6_02246550 (FieldSystem * param0, int param1)
 {
-    TrainerInfo * v0 = SaveData_GetTrainerInfo(param0->unk_0C);
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(param0->saveData);
     UnkStruct_ov6_022465F4 * v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov6_022465F4));
 
     ov6_02246444(v1);
@@ -136,7 +136,7 @@ static UnkStruct_ov6_022465F4 * ov6_02246550 (FieldSystem * param0, int param1)
 
 UnkStruct_ov6_022465F4 * ov6_022465A0 (FieldSystem * param0, int param1, int param2)
 {
-    TVBroadcast * v0 = SaveData_TVBroadcast(param0->unk_0C);
+    TVBroadcast * v0 = SaveData_TVBroadcast(param0->saveData);
 
     if ((param1 == 4) || (param1 == 5)) {
         return ov6_02246550(param0, param2);

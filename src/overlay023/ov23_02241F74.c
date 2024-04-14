@@ -28,7 +28,7 @@
 #include "heap.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202854C.h"
 #include "unk_02030EE0.h"
 #include "communication_information.h"
@@ -126,7 +126,7 @@ static UnkStruct_ov23_02257748 * Unk_ov23_02257748 = NULL;
 
 static void ov23_02241F74 (UnkStruct_ov23_02257748 * param0, FieldSystem * param1)
 {
-    u8 v0 = sub_02027AC0(sub_02025E44(param1->unk_0C));
+    u8 v0 = Options_TextFrameDelay(sub_02025E44(param1->saveData));
     int v1;
 
     Unk_ov23_02257748 = param0;
@@ -154,7 +154,7 @@ static void ov23_02241F74 (UnkStruct_ov23_02257748 * param0, FieldSystem * param
         Unk_ov23_02257748->unk_DC[v1] = NULL;
     }
 
-    sub_0206A9F4(SaveData_Events(Unk_ov23_02257748->unk_0C->unk_0C));
+    sub_0206A9F4(SaveData_Events(Unk_ov23_02257748->unk_0C->saveData));
     Unk_ov23_02257748->unk_14 = SysTask_Start(ov23_02243310, NULL, 0);
     sub_02032110(ov23_022433F4);
 }
@@ -576,7 +576,7 @@ void ov23_02242830 (u8 param0)
     u8 v0 = param0;
     UnkStruct_ov23_02242830 v1;
     int v2, v3;
-    UndergroundData * v4 = sub_020298B0(Unk_ov23_02257748->unk_0C->unk_0C);
+    UndergroundData * v4 = sub_020298B0(Unk_ov23_02257748->unk_0C->saveData);
 
     if ((Unk_ov23_02257748->unk_146 != 0) && (Unk_ov23_02257748->unk_134 != 0)) {
         return;
@@ -831,7 +831,7 @@ void ov23_02242CB4 (void)
 void ov23_02242D08 (void)
 {
     if (Unk_ov23_02257748 != NULL) {
-        sub_020287F8(Unk_ov23_02257748->unk_0C->unk_0C);
+        sub_020287F8(Unk_ov23_02257748->unk_0C->saveData);
         ov23_0224B4E4();
         ov23_022435DC();
         CommPlayerMan_Delete(1);
@@ -943,7 +943,7 @@ int ov23_02242E78 (int param0)
                 return ov23_0224125C(v1);
             }
         } else {
-            UnkStruct_02029894 * v2 = sub_02029894(Unk_ov23_02257748->unk_0C->unk_0C);
+            UnkStruct_02029894 * v2 = sub_02029894(Unk_ov23_02257748->unk_0C->saveData);
             return sub_02029874(v2);
         }
     }
@@ -974,7 +974,7 @@ int ov23_02242EE0 (int param0)
                 return ov23_02241294(v1);
             }
         } else {
-            UnkStruct_02029894 * v3 = sub_02029894(Unk_ov23_02257748->unk_0C->unk_0C);
+            UnkStruct_02029894 * v3 = sub_02029894(Unk_ov23_02257748->unk_0C->saveData);
 
             return sub_0202987C(v3);
         }
@@ -1000,7 +1000,7 @@ int ov23_02242F48 (int param0)
                 return 12;
             }
         } else {
-            UnkStruct_02029894 * v0 = sub_02029894(Unk_ov23_02257748->unk_0C->unk_0C);
+            UnkStruct_02029894 * v0 = sub_02029894(Unk_ov23_02257748->unk_0C->saveData);
 
             if (sub_0202988C(v0)) {
                 return 3;

@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV82_0223B164_H
 
 #include "trainer_info.h"
-#include "struct_defs/options.h"
+#include "game_options.h"
 #include "struct_decls/struct_0202AB28_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"

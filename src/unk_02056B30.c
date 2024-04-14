@@ -53,19 +53,19 @@ typedef struct {
     int unk_1C;
 } UnkStruct_02056B30;
 
-static BOOL sub_02056B70(UnkStruct_020508D4 * param0);
-static BOOL sub_02056CFC(UnkStruct_020508D4 * param0);
-static BOOL sub_02056DE4(UnkStruct_020508D4 * param0);
-static BOOL sub_02056E20(UnkStruct_020508D4 * param0);
-static BOOL sub_02056EA4(UnkStruct_020508D4 * param0);
-static BOOL sub_02056F1C(UnkStruct_020508D4 * param0);
-static BOOL sub_02056FC0(UnkStruct_020508D4 * param0);
-static BOOL sub_02057008(UnkStruct_020508D4 * param0);
-static BOOL sub_02057050(UnkStruct_020508D4 * param0);
-static BOOL sub_0205711C(UnkStruct_020508D4 * param0);
-static BOOL sub_020571A0(UnkStruct_020508D4 * param0);
-static BOOL sub_02057218(UnkStruct_020508D4 * param0);
-static BOOL sub_020572B8(UnkStruct_020508D4 * param0);
+static BOOL sub_02056B70(TaskManager * param0);
+static BOOL sub_02056CFC(TaskManager * param0);
+static BOOL sub_02056DE4(TaskManager * param0);
+static BOOL sub_02056E20(TaskManager * param0);
+static BOOL sub_02056EA4(TaskManager * param0);
+static BOOL sub_02056F1C(TaskManager * param0);
+static BOOL sub_02056FC0(TaskManager * param0);
+static BOOL sub_02057008(TaskManager * param0);
+static BOOL sub_02057050(TaskManager * param0);
+static BOOL sub_0205711C(TaskManager * param0);
+static BOOL sub_020571A0(TaskManager * param0);
+static BOOL sub_02057218(TaskManager * param0);
+static BOOL sub_020572B8(TaskManager * param0);
 static void sub_02057300(FieldSystem * param0);
 static void sub_02057368(FieldSystem * param0);
 
@@ -99,7 +99,7 @@ static const UnkFuncPtr_020EC57C Unk_020EC57C[7] = {
     NULL
 };
 
-void sub_02056B30 (UnkStruct_020508D4 * param0, int param1, int param2, int param3, u16 param4, int param5, int param6, int param7)
+void sub_02056B30 (TaskManager * param0, int param1, int param2, int param3, u16 param4, int param5, int param6, int param7)
 {
     UnkStruct_02056B30 * v0 = Heap_AllocFromHeap(param7, sizeof(UnkStruct_02056B30));
 
@@ -115,10 +115,10 @@ void sub_02056B30 (UnkStruct_020508D4 * param0, int param1, int param2, int para
     sub_02050944(param0, sub_02056B70, v0);
 }
 
-static BOOL sub_02056B70 (UnkStruct_020508D4 * param0)
+static BOOL sub_02056B70 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_02056B30 * v1 = sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_02056B30 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_00) {
     case 0:
@@ -202,10 +202,10 @@ void sub_02056C18 (FieldSystem * param0, const int param1, const int param2, con
     sub_02050904(param0, sub_02056CFC, v2);
 }
 
-static BOOL sub_02056CFC (UnkStruct_020508D4 * param0)
+static BOOL sub_02056CFC (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_02056BDC * v1 = sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_02056BDC * v1 = TaskManager_Environment(param0);
     UnkStruct_02049FA8 * v2 = &v1->unk_08;
 
     switch (v1->unk_00) {
@@ -254,10 +254,10 @@ static BOOL sub_02056CFC (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL sub_02056DE4 (UnkStruct_020508D4 * param0)
+static BOOL sub_02056DE4 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_02056BDC * v1 = sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_02056BDC * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_04) {
     case 0:
@@ -273,10 +273,10 @@ static BOOL sub_02056DE4 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL sub_02056E20 (UnkStruct_020508D4 * param0)
+static BOOL sub_02056E20 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_02056BDC * v1 = sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_02056BDC * v1 = TaskManager_Environment(param0);
     UnkStruct_ov5_021D432C * v2;
 
     switch (v1->unk_04) {
@@ -305,10 +305,10 @@ static BOOL sub_02056E20 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL sub_02056EA4 (UnkStruct_020508D4 * param0)
+static BOOL sub_02056EA4 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_02056BDC * v1 = sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_02056BDC * v1 = TaskManager_Environment(param0);
     UnkStruct_ov5_021D432C * v2;
 
     switch (v1->unk_04) {
@@ -333,10 +333,10 @@ static BOOL sub_02056EA4 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL sub_02056F1C (UnkStruct_020508D4 * param0)
+static BOOL sub_02056F1C (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_02056BDC * v1 = sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_02056BDC * v1 = TaskManager_Environment(param0);
     LocalMapObject * v2;
 
     switch (v1->unk_04) {
@@ -379,10 +379,10 @@ static BOOL sub_02056F1C (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL sub_02056FC0 (UnkStruct_020508D4 * param0)
+static BOOL sub_02056FC0 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_02056BDC * v1 = sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_02056BDC * v1 = TaskManager_Environment(param0);
     LocalMapObject * v2 = Player_LocalMapObject(v0->playerAvatar);
 
     switch (v1->unk_04) {
@@ -402,10 +402,10 @@ static BOOL sub_02056FC0 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL sub_02057008 (UnkStruct_020508D4 * param0)
+static BOOL sub_02057008 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_02056BDC * v1 = sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_02056BDC * v1 = TaskManager_Environment(param0);
     LocalMapObject * v2 = Player_LocalMapObject(v0->playerAvatar);
 
     switch (v1->unk_04) {
@@ -425,11 +425,11 @@ static BOOL sub_02057008 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL sub_02057050 (UnkStruct_020508D4 * param0)
+static BOOL sub_02057050 (TaskManager * param0)
 {
     LocalMapObject * v0;
-    FieldSystem * v1 = sub_02050A60(param0);
-    UnkStruct_02056BDC * v2 = sub_02050A64(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
+    UnkStruct_02056BDC * v2 = TaskManager_Environment(param0);
     UnkStruct_ov5_021D432C * v3;
 
     switch (v2->unk_04) {
@@ -478,11 +478,11 @@ static BOOL sub_02057050 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL sub_0205711C (UnkStruct_020508D4 * param0)
+static BOOL sub_0205711C (TaskManager * param0)
 {
     LocalMapObject * v0;
-    FieldSystem * v1 = sub_02050A60(param0);
-    UnkStruct_02056BDC * v2 = sub_02050A64(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
+    UnkStruct_02056BDC * v2 = TaskManager_Environment(param0);
     UnkStruct_ov5_021D432C * v3;
 
     switch (v2->unk_04) {
@@ -513,10 +513,10 @@ static BOOL sub_0205711C (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL sub_020571A0 (UnkStruct_020508D4 * param0)
+static BOOL sub_020571A0 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_02056BDC * v1 = sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_02056BDC * v1 = TaskManager_Environment(param0);
     UnkStruct_ov5_021D432C * v2;
 
     switch (v1->unk_04) {
@@ -541,10 +541,10 @@ static BOOL sub_020571A0 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL sub_02057218 (UnkStruct_020508D4 * param0)
+static BOOL sub_02057218 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_02056BDC * v1 = sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_02056BDC * v1 = TaskManager_Environment(param0);
     LocalMapObject * v2;
 
     switch (v1->unk_04) {
@@ -591,10 +591,10 @@ static BOOL sub_02057218 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL sub_020572B8 (UnkStruct_020508D4 * param0)
+static BOOL sub_020572B8 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_02056BDC * v1 = sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_02056BDC * v1 = TaskManager_Environment(param0);
     LocalMapObject * v2 = Player_LocalMapObject(v0->playerAvatar);
 
     switch (v1->unk_04) {

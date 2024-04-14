@@ -48,7 +48,7 @@
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_020393C8.h"
 #include "unk_0209B6F8.h"
 #include "overlay063/ov63_0222BCE8.h"
@@ -624,7 +624,7 @@ static void ov104_0223CB80 (UnkStruct_ov104_0223C4CC * param0)
 
         v0 = sub_0209B970(param0->unk_08);
 
-        sub_0200DD0C(param0->unk_00, 1, (1024 - (18 + 12)), 11, sub_02027B50(v0->unk_04), 94);
+        sub_0200DD0C(param0->unk_00, 1, (1024 - (18 + 12)), 11, Options_Frame(v0->unk_04), 94);
         sub_02003070(param0->unk_04, 0, 11 * 16, 0x20);
     }
 

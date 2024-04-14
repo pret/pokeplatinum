@@ -16,7 +16,7 @@
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_defs/options.h"
+#include "game_options.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "pokemon.h"

@@ -134,7 +134,7 @@ u16 ov5_021EFB94 (FieldSystem * param0)
     v0 = ov5_021EFF10(param0->unk_1C->unk_00);
     GF_ASSERT(v0 != 21);
 
-    v1 = sub_0202D840(sub_0202D834(param0->unk_0C));
+    v1 = sub_0202D840(sub_0202D834(param0->saveData));
     v2 = sub_0202D84C(v0, v1);
 
     if (ov5_021EFF34(v2->unk_00)) {
@@ -158,13 +158,13 @@ void ov5_021EFBDC (FieldSystem * param0)
     v0 = ov5_021EFF10(param0->unk_1C->unk_00);
     GF_ASSERT(v0 != 21);
 
-    v1 = sub_0202D840(sub_0202D834(param0->unk_0C));
+    v1 = sub_0202D840(sub_0202D834(param0->saveData));
     v2 = sub_0202D84C(v0, v1);
 
     v2->unk_00 = (24 * 60);
 
     {
-        TrainerInfo * v4 = SaveData_GetTrainerInfo(param0->unk_0C);
+        TrainerInfo * v4 = SaveData_GetTrainerInfo(param0->saveData);
         v3 = ov5_021EFF4C(TrainerInfo_ID(v4), v0);
     }
 
@@ -371,7 +371,7 @@ static void ov5_021EFE7C (FieldSystem * param0, UnkStruct_ov5_021E1608 * param1,
         UnkStruct_0202D84C * v3;
         UnkStruct_ov5_021E1890 * v4;
 
-        v2 = sub_0202D840(sub_0202D834(param0->unk_0C));
+        v2 = sub_0202D840(sub_0202D834(param0->saveData));
         v3 = sub_0202D84C(v1, v2);
 
         if (ov5_021EFF34(v3->unk_00)) {
@@ -473,7 +473,7 @@ int ov5_021EFFE4 (FieldSystem * param0)
         UnkStruct_0202D844 * v3;
         UnkStruct_0202D84C * v4;
 
-        v3 = sub_0202D840(sub_0202D834(param0->unk_0C));
+        v3 = sub_0202D840(sub_0202D834(param0->saveData));
         v4 = sub_0202D84C(v0, v3);
 
         if ((GAME_VERSION == 10) || (GAME_VERSION == 12)) {
@@ -513,7 +513,7 @@ void ov5_021F0040 (FieldSystem * param0)
 
     param0->unk_A8->unk_00[v2].unk_04 = 0;
 
-    v0 = sub_0202D840(sub_0202D834(param0->unk_0C));
+    v0 = sub_0202D840(sub_0202D834(param0->saveData));
     v1 = sub_0202D84C(v2, v0);
 
     v1->unk_00 = 0;

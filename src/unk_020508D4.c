@@ -10,7 +10,7 @@
 #include "unk_020508D4.h"
 
 typedef struct UnkStruct_020508D4_t {
-    UnkStruct_020508D4 * unk_00;
+    TaskManager * unk_00;
     UnkFuncPtr_02050904 unk_04;
     int unk_08;
     void * unk_0C;
@@ -18,7 +18,7 @@ typedef struct UnkStruct_020508D4_t {
     void * unk_14;
     FieldSystem * unk_18;
     UnkStruct_ov5_021D219C * unk_1C;
-} UnkStruct_020508D4;
+} TaskManager;
 
 typedef struct {
     int unk_00;
@@ -26,11 +26,11 @@ typedef struct {
     void * unk_08;
 } UnkStruct_020509F0;
 
-static UnkStruct_020508D4 * sub_020508D4 (FieldSystem * param0, UnkFuncPtr_02050904 param1, void * param2)
+static TaskManager * sub_020508D4 (FieldSystem * param0, UnkFuncPtr_02050904 param1, void * param2)
 {
-    UnkStruct_020508D4 * v0;
+    TaskManager * v0;
 
-    v0 = Heap_AllocFromHeapAtEnd(32, sizeof(UnkStruct_020508D4));
+    v0 = Heap_AllocFromHeapAtEnd(32, sizeof(TaskManager));
     v0->unk_00 = NULL;
     v0->unk_04 = param1;
     v0->unk_08 = 0;
@@ -43,9 +43,9 @@ static UnkStruct_020508D4 * sub_020508D4 (FieldSystem * param0, UnkFuncPtr_02050
     return v0;
 }
 
-UnkStruct_020508D4 * sub_02050904 (FieldSystem * param0, UnkFuncPtr_02050904 param1, void * param2)
+TaskManager * sub_02050904 (FieldSystem * param0, UnkFuncPtr_02050904 param1, void * param2)
 {
-    UnkStruct_020508D4 * v0;
+    TaskManager * v0;
 
     GF_ASSERT(param0->unk_10 == NULL);
 
@@ -55,7 +55,7 @@ UnkStruct_020508D4 * sub_02050904 (FieldSystem * param0, UnkFuncPtr_02050904 par
     return v0;
 }
 
-void sub_02050924 (UnkStruct_020508D4 * param0, UnkFuncPtr_02050904 param1, void * param2)
+void sub_02050924 (TaskManager * param0, UnkFuncPtr_02050904 param1, void * param2)
 {
     param0->unk_04 = param1;
     param0->unk_08 = 0;
@@ -68,9 +68,9 @@ void sub_02050924 (UnkStruct_020508D4 * param0, UnkFuncPtr_02050904 param1, void
     }
 }
 
-UnkStruct_020508D4 * sub_02050944 (UnkStruct_020508D4 * param0, UnkFuncPtr_02050904 param1, void * param2)
+TaskManager * sub_02050944 (TaskManager * param0, UnkFuncPtr_02050904 param1, void * param2)
 {
-    UnkStruct_020508D4 * v0;
+    TaskManager * v0;
 
     v0 = sub_020508D4(param0->unk_18, param1, param2);
     v0->unk_00 = param0;
@@ -87,7 +87,7 @@ BOOL sub_02050958 (FieldSystem * param0)
     }
 
     while (param0->unk_10->unk_04(param0->unk_10) == 1) {
-        UnkStruct_020508D4 * v0;
+        TaskManager * v0;
 
         v0 = param0->unk_10->unk_00;
 
@@ -136,10 +136,10 @@ BOOL sub_020509DC (FieldSystem * param0)
     }
 }
 
-static BOOL sub_020509F0 (UnkStruct_020508D4 * param0)
+static BOOL sub_020509F0 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_020509F0 * v1 = sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_020509F0 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_00) {
     case 0:
@@ -158,7 +158,7 @@ static BOOL sub_020509F0 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_02050A38 (UnkStruct_020508D4 * param0, const OverlayManagerTemplate * param1, void * param2)
+void sub_02050A38 (TaskManager * param0, const OverlayManagerTemplate * param1, void * param2)
 {
     UnkStruct_020509F0 * v0 = Heap_AllocFromHeapAtEnd(32, sizeof(UnkStruct_020509F0));
 
@@ -169,22 +169,22 @@ void sub_02050A38 (UnkStruct_020508D4 * param0, const OverlayManagerTemplate * p
     sub_02050944(param0, sub_020509F0, v0);
 }
 
-FieldSystem * sub_02050A60 (UnkStruct_020508D4 * param0)
+FieldSystem * TaskManager_FieldSystem (TaskManager * param0)
 {
     return param0->unk_18;
 }
 
-void * sub_02050A64 (UnkStruct_020508D4 * param0)
+void * TaskManager_Environment (TaskManager * param0)
 {
     return param0->unk_0C;
 }
 
-int * sub_02050A68 (UnkStruct_020508D4 * param0)
+int * sub_02050A68 (TaskManager * param0)
 {
     return &param0->unk_08;
 }
 
-u32 sub_02050A6C (UnkStruct_020508D4 * param0)
+u32 sub_02050A6C (TaskManager * param0)
 {
     return param0->unk_1C->unk_00;
 }

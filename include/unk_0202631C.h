@@ -45,7 +45,7 @@ void sub_02027508(PokedexData * param0);
 BOOL sub_02027514(const PokedexData * param0);
 BOOL sub_02027520(const PokedexData * param0);
 void sub_02027540(PokedexData * param0);
-PokedexData * sub_02027560(SaveData * param0);
+PokedexData * SaveData_Pokedex(SaveData * param0);
 u32 sub_0202756C(const PokedexData * param0, int param1, int param2);
 u32 sub_020276C8(const PokedexData * param0, int param1);
 

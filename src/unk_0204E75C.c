@@ -20,7 +20,7 @@ BOOL sub_0204E75C (UnkStruct_0203E724 * param0)
     u16 v2 = inline_02049538(param0);
     u16 * v3 = inline_0204FCAC(param0);
 
-    *v3 = sub_0207D570(sub_0207D990(v0->unk_0C), v1, v2, 4);
+    *v3 = sub_0207D570(sub_0207D990(v0->saveData), v1, v2, 4);
     return 0;
 }
 
@@ -31,7 +31,7 @@ BOOL sub_0204E7B4 (UnkStruct_0203E724 * param0)
     u16 v2 = inline_02049538(param0);
     u16 * v3 = inline_0204FCAC(param0);
 
-    *v3 = Bag_SubtractItem(sub_0207D990(v0->unk_0C), v1, v2, 4);
+    *v3 = Bag_SubtractItem(sub_0207D990(v0->saveData), v1, v2, 4);
     return 0;
 }
 
@@ -42,7 +42,7 @@ BOOL sub_0204E80C (UnkStruct_0203E724 * param0)
     u16 v2 = inline_02049538(param0);
     u16 * v3 = inline_0204FCAC(param0);
 
-    *v3 = sub_0207D55C(sub_0207D990(v0->unk_0C), v1, v2, 4);
+    *v3 = sub_0207D55C(sub_0207D990(v0->saveData), v1, v2, 4);
     return 0;
 }
 
@@ -53,7 +53,7 @@ BOOL sub_0204E864 (UnkStruct_0203E724 * param0)
     u16 v2 = inline_02049538(param0);
     u16 * v3 = inline_0204FCAC(param0);
 
-    *v3 = sub_0207D688(sub_0207D990(v0->unk_0C), v1, v2, 11);
+    *v3 = sub_0207D688(sub_0207D990(v0->saveData), v1, v2, 11);
     return 0;
 }
 
@@ -63,7 +63,7 @@ BOOL sub_0204E8BC (UnkStruct_0203E724 * param0)
     u16 v1 = inline_02049538(param0);
     u16 * v2 = inline_0204FCAC(param0);
 
-    *v2 = sub_0207D730(sub_0207D990(v0->unk_0C), v1, 11);
+    *v2 = sub_0207D730(sub_0207D990(v0->saveData), v1, 11);
     return 0;
 }
 

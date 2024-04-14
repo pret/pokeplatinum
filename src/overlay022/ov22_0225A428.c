@@ -9,7 +9,6 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "strbuf.h"
 
-#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02095C60.h"
 #include "overlay019/struct_ov19_021DA864.h"
@@ -35,7 +34,7 @@
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_02095AF0.h"
 #include "overlay022/ov22_022597BC.h"
 #include "overlay022/ov22_0225A428.h"
@@ -102,8 +101,8 @@ void ov22_0225A428 (UnkStruct_ov22_0225A428 * param0, UnkStruct_ov22_02256BAC * 
 
     ov22_0225A718(param1->unk_00, param1->unk_0C);
 
-    param0->unk_13C = sub_02027B50(param1->unk_0C);
-    param0->unk_140 = sub_02027AC0(param1->unk_0C);
+    param0->unk_13C = Options_Frame(param1->unk_0C);
+    param0->unk_140 = Options_TextFrameDelay(param1->unk_0C);
     param0->unk_138 |= param2;
 }
 
@@ -204,7 +203,7 @@ static void ov22_0225A6E0 (UnkStruct_ov22_022597BC * param0, BGL * param1)
 
 static void ov22_0225A718 (BGL * param0, const Options * param1)
 {
-    int v0 = sub_02027B50(param1);
+    int v0 = Options_Frame(param1);
 
     sub_0200DD0C(param0, 5, 1, 1, v0, 14);
     sub_02002E98(4, 2 * 32, 14);

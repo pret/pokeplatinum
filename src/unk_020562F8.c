@@ -71,7 +71,7 @@ void sub_020562F8 (FieldSystem * param0)
 void sub_02056328 (FieldSystem * param0)
 {
     UnkStruct_020564B4 * v0 = &Unk_021C07FC;
-    UnkStruct_0202CD88 * v1 = sub_0202CD88(param0->unk_0C);
+    UnkStruct_0202CD88 * v1 = sub_0202CD88(param0->saveData);
     s64 v2 = GetTimestamp();
     s64 v3 = TimeElapsed(v0->unk_40, v2);
 
@@ -141,7 +141,7 @@ static void sub_0205642C (FieldSystem * param0, UnkStruct_020564B4 * param1)
     Pokemon * v3;
     PalParkTransfer * v4;
 
-    v4 = SaveData_PalParkTransfer(param0->unk_0C);
+    v4 = SaveData_PalParkTransfer(param0->saveData);
     v3 = Pokemon_New(4);
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -276,7 +276,7 @@ static BattleParams * sub_0205664C (FieldSystem * param0, UnkStruct_020564B4 * p
 {
     BattleParams * v0;
     Pokemon * v1 = Pokemon_New(32);
-    PalParkTransfer * v2 = SaveData_PalParkTransfer(param0->unk_0C);
+    PalParkTransfer * v2 = SaveData_PalParkTransfer(param0->saveData);
     int v3 = sub_020563BC(param0);
 
     v0 = sub_02051F38(11, v3);

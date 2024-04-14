@@ -34,7 +34,7 @@
 #include "unk_02024220.h"
 #include "savedata/save_table.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_02028124.h"
 #include "unk_0202C9F4.h"
 #include "unk_020508D4.h"
@@ -160,7 +160,7 @@ static int sub_02097B18 (OverlayManager * param0, int * param1)
     {
         int v7;
 
-        v7 = sub_02027B50(v0->unk_00->unk_24);
+        v7 = Options_Frame(v0->unk_00->unk_24);
         ov76_0223C8EC(v0->unk_D4.unk_10, v0->unk_D4.unk_14, v7);
         ov76_0223C974(v0->unk_D4.unk_10, v0->unk_D4.unk_14, v7);
     }
@@ -311,11 +311,11 @@ void sub_02097F30 (UnkStruct_02097F18 * param0, u8 param1)
     param0->unk_2D = param1;
 }
 
-static BOOL sub_02097F38 (UnkStruct_020508D4 * param0)
+static BOOL sub_02097F38 (TaskManager * param0)
 {
-    UnkStruct_02097F38 * v0 = sub_02050A64(param0);
+    UnkStruct_02097F38 * v0 = TaskManager_Environment(param0);
     UnkStruct_02097F18 * v1 = v0->unk_08;
-    FieldSystem * v2 = sub_02050A60(param0);
+    FieldSystem * v2 = TaskManager_FieldSystem(param0);
 
     switch (v0->unk_14) {
     case 0:
@@ -403,7 +403,7 @@ static BOOL sub_02097F38 (UnkStruct_020508D4 * param0)
             v10 = sub_0202CA64(v9, 0);
             v12 = sub_0202CA7C(v10);
             v12 = sub_02098164(v12);
-            v11 = SaveData_TVBroadcast(v2->unk_0C);
+            v11 = SaveData_TVBroadcast(v2->saveData);
 
             sub_0206D9B4(v11, v8, v12);
         }
@@ -424,7 +424,7 @@ static BOOL sub_02097F38 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_020980DC (UnkStruct_020508D4 * param0, SaveData * param1)
+void sub_020980DC (TaskManager * param0, SaveData * param1)
 {
     UnkStruct_02097F38 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02097F38));
 

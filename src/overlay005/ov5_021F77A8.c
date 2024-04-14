@@ -663,7 +663,7 @@ BOOL ov5_021F77A8 (UnkStruct_0203E724 * param0)
 {
     u16 v0 = sub_0203F150(param0->unk_34, sub_0203E838(param0));
     u16 * v1 = sub_0203F118(param0->unk_34, sub_0203E838(param0));
-    PokedexData * v2 = sub_02027560(param0->unk_34->unk_0C);
+    PokedexData * v2 = SaveData_Pokedex(param0->unk_34->saveData);
 
     *v1 = sub_02026FE8(v2, v0);
     return 0;
@@ -676,7 +676,7 @@ BOOL ov5_021F77E8 (UnkStruct_0203E724 * param0)
     u16 v2 = inline_02049538(param0);
     u16 * v3 = inline_0204FCAC(param0);
 
-    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->unk_34->unk_0C), v1);
+    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->unk_34->saveData), v1);
     *v3 = ov5_021F7B60(v0, v2);
 
     return 0;
@@ -688,7 +688,7 @@ BOOL ov5_021F7844 (UnkStruct_0203E724 * param0)
     u16 v1 = inline_02049538(param0);
     u16 v2 = inline_02049538(param0);
 
-    sub_02054988(Party_GetFromSavedata(param0->unk_34->unk_0C), v0, v1, v2);
+    sub_02054988(Party_GetFromSavedata(param0->unk_34->saveData), v0, v1, v2);
     return 0;
 }
 
@@ -700,7 +700,7 @@ BOOL ov5_021F789C (UnkStruct_0203E724 * param0)
     u16 v6 = inline_02049538(param0);
     u16 * v7 = inline_0204FCAC(param0);
 
-    v5 = sub_0207D990(param0->unk_34->unk_0C);
+    v5 = sub_0207D990(param0->unk_34->saveData);
 
     for (v0 = 0; v0 < (NELEMS(sTeachableMoves)); v0++) {
         if (v6 == sTeachableMoves[v0].moveID) {
@@ -754,7 +754,7 @@ BOOL ov5_021F7998 (UnkStruct_0203E724 * param0)
     UnkStruct_0207D3C0 * v5;
     u16 v6 = inline_02049538(param0);
 
-    v5 = sub_0207D990(param0->unk_34->unk_0C);
+    v5 = sub_0207D990(param0->unk_34->saveData);
 
     for (v0 = 0; v0 < (NELEMS(sTeachableMoves)); v0++) {
         if (v6 == sTeachableMoves[v0].moveID) {
@@ -903,7 +903,7 @@ BOOL ov5_021F7C04 (UnkStruct_0203E724 * param0)
     param0->unk_18[0] = v16;
 
     if (v14 != 0xff) {
-        v6 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->unk_34->unk_0C), v14);
+        v6 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->unk_34->saveData), v14);
     }
 
     v7 = MessageLoader_Init(0, 26, 647, 32);

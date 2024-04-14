@@ -1858,7 +1858,7 @@ int sub_0203A944 (FieldSystem * param0, int param1)
 
     {
         int v1;
-        UnkStruct_02055BA8 * v2 = sub_02025CD8(param0->unk_0C);
+        UnkStruct_02055BA8 * v2 = sub_02025CD8(param0->saveData);
 
         v1 = DayNumberForDate(&v2->unk_04) - 1;
         GF_ASSERT(v1 >= 0 && v1 < 366);

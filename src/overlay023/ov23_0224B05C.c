@@ -384,7 +384,7 @@ void ov23_0224B2C8 (FieldSystem * param0)
     v0 = sub_02029894(FieldSystem_SaveData(param0));
     v1 = sub_020298AC(v0);
 
-    sub_020294D4(v1, sub_0202D034(sub_0202CD88(param0->unk_0C)));
+    sub_020294D4(v1, sub_0202D034(sub_0202CD88(param0->saveData)));
 
     MI_CpuCopy8(v0, Unk_ov23_022577AC->unk_08[16].unk_02, 148);
     ov23_0224B39C(v0, Unk_ov23_022577AC->unk_A04[16]);
@@ -1525,10 +1525,10 @@ static void ov23_0224C6E8 (void)
     }
 }
 
-static BOOL ov23_0224C708 (UnkStruct_020508D4 * param0)
+static BOOL ov23_0224C708 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_ov23_0224BA48 * v1 = sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_ov23_0224BA48 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_10) {
     case 0:
@@ -1546,10 +1546,10 @@ static BOOL ov23_0224C708 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL ov23_0224C74C (UnkStruct_020508D4 * param0)
+static BOOL ov23_0224C74C (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_ov23_0224BA48 * v1 = sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_ov23_0224BA48 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_10) {
     case 0:
@@ -1567,10 +1567,10 @@ static BOOL ov23_0224C74C (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL ov23_0224C790 (UnkStruct_020508D4 * param0)
+static BOOL ov23_0224C790 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_ov23_0224BA48 * v1 = sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_ov23_0224BA48 * v1 = TaskManager_Environment(param0);
     UnkStruct_02049FA8 v2;
     int v3 = 0, v4 = 0;
 
@@ -1756,7 +1756,7 @@ static void ov23_0224CB1C (SysTask * param0, void * param1)
     switch (v0->unk_0C) {
     case 0:
     {
-        UnkStruct_02029894 * v9 = sub_02029894(v1->unk_0C);
+        UnkStruct_02029894 * v9 = sub_02029894(v1->saveData);
 
         v0->unk_12 = sub_0202988C(v9);
     }
@@ -2026,7 +2026,7 @@ void ov23_0224CF18 (int param0, int param1, void * param2, void * param3)
             void * v6 = sub_0202BE20(11);
 
             sub_0202B758(Unk_ov23_022577AC->unk_00->unk_9C, v6, 1);
-            sub_0202CFEC(sub_0202CD88(Unk_ov23_022577AC->unk_00->unk_0C), 35);
+            sub_0202CFEC(sub_0202CD88(Unk_ov23_022577AC->unk_00->saveData), 35);
         }
     }
 }
@@ -2171,7 +2171,7 @@ static void ov23_0224D238 (void)
     v16[0][0] = 16;
     v16[0][1] = 12;
 
-    sub_0206AA20(SaveData_Events(Unk_ov23_022577AC->unk_00->unk_0C));
+    sub_0206AA20(SaveData_Events(Unk_ov23_022577AC->unk_00->saveData));
     sub_020292CC(v0);
     sub_02028B34(v1);
     CommSys_Seed(&v15);

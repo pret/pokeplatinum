@@ -23,7 +23,7 @@ u16 sub_0204A100(SaveData * param0);
 void sub_0204A110(UnkStruct_0204AFC4 ** param0);
 UnkStruct_0204AFC4 * sub_0204A124(SaveData * param0, u16 param1, u16 param2);
 void sub_0204A32C(UnkStruct_0204AFC4 * param0);
-void sub_0204A358(UnkStruct_0204AFC4 * param0, UnkStruct_020508D4 * param1, void ** param2);
+void sub_0204A358(UnkStruct_0204AFC4 * param0, TaskManager * param1, void ** param2);
 BOOL sub_0204A378(UnkStruct_0204AFC4 * param0, void ** param1, SaveData * param2);
 int sub_0204A410(UnkStruct_0204AFC4 * param0, SaveData * param1);
 void sub_0204A4C8(UnkStruct_0204AFC4 * param0, SaveData * param1);

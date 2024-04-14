@@ -3,7 +3,7 @@
 
 #include "overlay_manager.h"
 #include "strbuf.h"
-#include "struct_defs/options.h"
+#include "game_options.h"
 #include "savedata.h"
 #include "overlay096/struct_ov96_0223B574.h"
 #include "overlay096/struct_ov96_0223B574_1.h"

@@ -431,10 +431,10 @@ u32 ov5_021F0484 (void)
     return sizeof(UnkStruct_ov5_021F0468);
 }
 
-BOOL ov5_021F0488 (UnkStruct_020508D4 * param0)
+BOOL ov5_021F0488 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_ov5_021F0468 * v1 = sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_ov5_021F0468 * v1 = TaskManager_Environment(param0);
     BOOL v2;
 
     switch (v1->unk_0C) {

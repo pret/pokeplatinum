@@ -18,7 +18,6 @@
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0201D738.h"
-#include "struct_defs/options.h"
 #include "struct_defs/struct_0202818C.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0207AE68_t.h"
@@ -55,7 +54,7 @@
 #include "unk_020241F0.h"
 #include "unk_02024220.h"
 #include "unk_0202631C.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_02028124.h"
 #include "unk_0202CD50.h"
 #include "unk_020393C8.h"
@@ -894,7 +893,7 @@ static void sub_0207C1CC (UnkStruct_0207AE68 * param0, BGL * param1)
         int v8 = 8;
         int v9 = 3;
 
-        v4 = sub_02027B50(param0->unk_2C);
+        v4 = Options_Frame(param0->unk_2C);
 
         sub_0200E218(param1, 1, 1, 10, v4, param0->unk_5C);
         sub_02006E3C(v5, v6, param1, v9, 0, 0, 1, param0->unk_5C);
@@ -989,7 +988,7 @@ static u8 sub_0207C584 (UnkStruct_0207AE68 * param0, int param1)
     Heap_FreeToHeap(v0);
     BGL_FillWindow(param0->unk_04, 0xff);
 
-    return PrintStringSimple(param0->unk_04, 1, param0->unk_10, 0, 0, sub_02027AC0(param0->unk_2C), sub_0207C5CC);
+    return PrintStringSimple(param0->unk_04, 1, param0->unk_10, 0, 0, Options_TextFrameDelay(param0->unk_2C), sub_0207C5CC);
 }
 
 static BOOL sub_0207C5CC (UnkStruct_0201D738 * param0, u16 param1)

@@ -22,7 +22,7 @@
 
 #include "struct_defs/struct_02013A04_t.h"
 #include "touch_screen.h"
-#include "struct_defs/options.h"
+#include "game_options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_02099F80.h"

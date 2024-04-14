@@ -21,7 +21,6 @@
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_020170F4.h"
 #include "struct_defs/struct_02017294.h"
-#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -68,7 +67,7 @@
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202C858.h"
 #include "unk_020393C8.h"
 #include "unk_020996D0.h"
@@ -1460,7 +1459,7 @@ static void ov69_0225D3A4 (UnkStruct_ov69_0225D35C * param0, Options * param1, u
     sub_0200DAA4(param0->unk_00, 1, ((1 + (18 + 12))), 0, 0, param2);
 
     {
-        u8 v1 = sub_02027B50(param1);
+        u8 v1 = Options_Frame(param1);
 
         sub_0200DD0C(param0->unk_00, 4, 10, 10, v1, param2);
         sub_0200DD0C(param0->unk_00, 1, 1, 2, v1, param2);
@@ -1963,7 +1962,7 @@ static void ov69_0225DD60 (UnkStruct_ov69_0225DDC8 * param0, UnkStruct_ov69_0225
         Options * v0;
 
         v0 = sub_02025E44(param3);
-        param0->unk_08 = sub_02027AC0(v0);
+        param0->unk_08 = Options_TextFrameDelay(v0);
     }
 
     param0->unk_0C = Strbuf_Init(128, param4);

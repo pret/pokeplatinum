@@ -222,7 +222,7 @@ static int ov5_021D0DA4 (OverlayManager * param0, int * param1)
         ov5_021D1968(v1);
 
         if (v1->unk_04->unk_0C != NULL) {
-            u16 v3 = sub_0203A74C(sub_0203A790(v1->unk_0C));
+            u16 v3 = sub_0203A74C(sub_0203A790(v1->saveData));
             ov5_021D5F24(v1->unk_04->unk_0C, v3);
         }
 
@@ -430,7 +430,7 @@ static BOOL ov5_021D11CC (FieldSystem * param0)
         return 0;
     }
 
-    v4 = sub_0203A790(param0->unk_0C);
+    v4 = sub_0203A790(param0->saveData);
     {
         param0->unk_1C->unk_00 = v0;
 
@@ -482,7 +482,7 @@ void ov5_021D12D0 (FieldSystem * param0, u32 param1)
     UnkStruct_0203A790 * v1;
 
     v0 = param0->unk_1C->unk_00;
-    v1 = sub_0203A790(param0->unk_0C);
+    v1 = sub_0203A790(param0->saveData);
 
     {
         param0->unk_1C->unk_00 = param1;
@@ -551,7 +551,7 @@ static void ov5_021D13B4 (FieldSystem * param0)
         return;
     }
 
-    v0 = sub_0203A76C(sub_0203A790(param0->unk_0C));
+    v0 = sub_0203A76C(sub_0203A790(param0->saveData));
     v1 = (Player_XPos(param0->playerAvatar) - ov5_021EA6AC(param0->unk_28)) / 32;
     v2 = (Player_ZPos(param0->playerAvatar) - ov5_021EA6B4(param0->unk_28)) / 32;
     v3 = Player_Dir(param0->playerAvatar);
@@ -927,7 +927,7 @@ static void ov5_021D1968 (FieldSystem * param0)
     param0->unk_48 = ov5_021D57BC();
 
     {
-        int v0 = sub_0203A770(sub_0203A790(param0->unk_0C));
+        int v0 = sub_0203A770(sub_0203A790(param0->saveData));
         ov5_021D5B40(sub_0205EAFC(param0->playerAvatar), param0, v0, 1);
     }
 

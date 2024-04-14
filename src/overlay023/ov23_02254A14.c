@@ -113,12 +113,12 @@ typedef struct {
     u8 unk_522;
 } UnkStruct_ov23_02256098;
 
-static BOOL ov23_02254C84(UnkStruct_020508D4 * param0);
-static BOOL ov23_02254AD4(UnkStruct_020508D4 * param0);
-static BOOL ov23_02254DF8(UnkStruct_020508D4 * param0);
-static BOOL ov23_02255100(UnkStruct_020508D4 * param0);
-static BOOL ov23_02255580(UnkStruct_020508D4 * param0);
-static BOOL ov23_02255850(UnkStruct_020508D4 * param0);
+static BOOL ov23_02254C84(TaskManager * param0);
+static BOOL ov23_02254AD4(TaskManager * param0);
+static BOOL ov23_02254DF8(TaskManager * param0);
+static BOOL ov23_02255100(TaskManager * param0);
+static BOOL ov23_02255580(TaskManager * param0);
+static BOOL ov23_02255850(TaskManager * param0);
 static void ov23_02254A14(FieldSystem * param0, const int param1, UnkStruct_ov23_02256098 * param2);
 static void ov23_02254A94(FieldSystem * param0, const int param1);
 static void ov23_02254AA4(const int param0, UnkStruct_ov23_02256098 * param1);
@@ -205,10 +205,10 @@ static void ov23_02254AA4 (const int param0, UnkStruct_ov23_02256098 * param1)
     param1->unk_3C = (*v0);
 }
 
-static BOOL ov23_02254AD4 (UnkStruct_020508D4 * param0)
+static BOOL ov23_02254AD4 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_ov23_02256098 * v1 = sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_ov23_02256098 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_00) {
     case 0:
@@ -274,11 +274,11 @@ static BOOL ov23_02254AD4 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL ov23_02254C84 (UnkStruct_020508D4 * param0)
+static BOOL ov23_02254C84 (TaskManager * param0)
 {
     BOOL v0;
-    FieldSystem * v1 = sub_02050A60(param0);
-    UnkStruct_ov23_02256098 * v2 = sub_02050A64(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
+    UnkStruct_ov23_02256098 * v2 = TaskManager_Environment(param0);
 
     v0 = ov23_02254318(v2->unk_504);
 
@@ -289,7 +289,7 @@ static BOOL ov23_02254C84 (UnkStruct_020508D4 * param0)
             UndergroundData * v3;
             int v4;
 
-            v3 = sub_020298B0(v1->unk_0C);
+            v3 = sub_020298B0(v1->saveData);
             v4 = sub_020289A0(v3);
 
             if (v4 == 0) {
@@ -336,7 +336,7 @@ static BOOL ov23_02254C84 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void ov23_02254D98 (FieldSystem * param0, UnkStruct_020508D4 * param1)
+void ov23_02254D98 (FieldSystem * param0, TaskManager * param1)
 {
     UnkStruct_ov23_02256098 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_02256098));
 
@@ -350,14 +350,14 @@ void ov23_02254D98 (FieldSystem * param0, UnkStruct_020508D4 * param1)
     sub_02050944(param1, ov23_02254AD4, v0);
 }
 
-static BOOL ov23_02254DF8 (UnkStruct_020508D4 * param0)
+static BOOL ov23_02254DF8 (TaskManager * param0)
 {
     fx32 v0, v1;
     UnkStruct_ov5_021E1890 * v2;
     BOOL v3;
     BOOL v4;
-    FieldSystem * v5 = sub_02050A60(param0);
-    UnkStruct_ov23_02256098 * v6 = sub_02050A64(param0);
+    FieldSystem * v5 = TaskManager_FieldSystem(param0);
+    UnkStruct_ov23_02256098 * v6 = TaskManager_Environment(param0);
 
     switch (v6->unk_04) {
     case 0:
@@ -371,7 +371,7 @@ static BOOL ov23_02254DF8 (UnkStruct_020508D4 * param0)
             int v9;
             UndergroundData * v10;
 
-            v10 = sub_020298B0(v6->unk_500->unk_0C);
+            v10 = sub_020298B0(v6->unk_500->saveData);
             v8 = ov23_022545D8(v6->unk_508);
 
             if (v8 == 0xfffffffe) {
@@ -475,7 +475,7 @@ static BOOL ov23_02254DF8 (UnkStruct_020508D4 * param0)
                 int v17;
                 UndergroundData * v18;
 
-                v18 = sub_020298B0(v6->unk_500->unk_0C);
+                v18 = sub_020298B0(v6->unk_500->saveData);
                 v17 = ov23_02255B78(&v6->unk_3C, v6->unk_5C);
                 v16 = ov23_022545D8(v6->unk_508);
 
@@ -529,15 +529,15 @@ static BOOL ov23_02254DF8 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL ov23_02255100 (UnkStruct_020508D4 * param0)
+static BOOL ov23_02255100 (TaskManager * param0)
 {
     BOOL v0;
     UnkStruct_ov23_02255C30 v1;
     fx32 v2, v3;
     BOOL v4;
     BOOL v5;
-    FieldSystem * v6 = sub_02050A60(param0);
-    UnkStruct_ov23_02256098 * v7 = sub_02050A64(param0);
+    FieldSystem * v6 = TaskManager_FieldSystem(param0);
+    UnkStruct_ov23_02256098 * v7 = TaskManager_Environment(param0);
 
     switch (v7->unk_04) {
     case 0:
@@ -673,7 +673,7 @@ static BOOL ov23_02255100 (UnkStruct_020508D4 * param0)
                     } else {
                         UndergroundData * v17;
 
-                        v17 = sub_020298B0(v7->unk_500->unk_0C);
+                        v17 = sub_020298B0(v7->unk_500->saveData);
 
                         Sound_PlayEffect(1515);
                         sub_02028B20(v17, v16);
@@ -766,15 +766,15 @@ static BOOL ov23_02255100 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL ov23_02255580 (UnkStruct_020508D4 * param0)
+static BOOL ov23_02255580 (TaskManager * param0)
 {
     BOOL v0;
     UnkStruct_ov23_02255C30 v1;
     fx32 v2, v3;
     BOOL v4;
     BOOL v5;
-    FieldSystem * v6 = sub_02050A60(param0);
-    UnkStruct_ov23_02256098 * v7 = sub_02050A64(param0);
+    FieldSystem * v6 = TaskManager_FieldSystem(param0);
+    UnkStruct_ov23_02256098 * v7 = TaskManager_Environment(param0);
 
     switch (v7->unk_04) {
     case 0:
@@ -919,14 +919,14 @@ static BOOL ov23_02255580 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL ov23_02255850 (UnkStruct_020508D4 * param0)
+static BOOL ov23_02255850 (TaskManager * param0)
 {
     fx32 v0, v1;
     UnkStruct_ov5_021E1890 * v2;
     BOOL v3;
     BOOL v4;
-    FieldSystem * v5 = sub_02050A60(param0);
-    UnkStruct_ov23_02256098 * v6 = sub_02050A64(param0);
+    FieldSystem * v5 = TaskManager_FieldSystem(param0);
+    UnkStruct_ov23_02256098 * v6 = TaskManager_Environment(param0);
 
     switch (v6->unk_04) {
     case 0:
@@ -1164,7 +1164,7 @@ static void ov23_02255C78 (FieldSystem * param0, UnkStruct_ov23_02256098 * param
     int v2, v3;
     UnkStruct_02029894 * v4;
 
-    v4 = sub_02029894(param0->unk_0C);
+    v4 = sub_02029894(param0->saveData);
 
     param1->unk_51F = 0;
     param1->unk_520 = 0;
@@ -1245,7 +1245,7 @@ static void ov23_02255DDC (FieldSystem * param0, const UnkStruct_ov23_02255BF4 *
     int v2, v3;
     UnkStruct_02029894 * v4;
 
-    v4 = sub_02029894(param0->unk_0C);
+    v4 = sub_02029894(param0->saveData);
 
     for (v0 = 0; v0 < 32; v0++) {
         if (param1[v0].unk_00 == 1) {

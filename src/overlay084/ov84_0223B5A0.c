@@ -50,7 +50,7 @@
 #include "strbuf.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202D7A8.h"
 #include "unk_020393C8.h"
 #include "unk_020683F4.h"
@@ -827,7 +827,7 @@ static void ov84_0223BC1C (UnkStruct_ov84_0223B5A0 * param0)
     sub_02007130(param0->unk_D4, 22, 0, 16 * 13 * 2, 32, 6);
     sub_02002E98(0, 11 * 32, 6);
     sub_0200DAA4(param0->unk_00, 0, 1024 - 9, 14, 0, 6);
-    sub_0200DD0C(param0->unk_00, 0, 1024 - 9 - (18 + 12), 12, sub_02027B50(param0->unk_D0), 6);
+    sub_0200DD0C(param0->unk_00, 0, 1024 - 9 - (18 + 12), 12, Options_Frame(param0->unk_D0), 6);
     sub_020070E8(param0->unk_D4, 15, param0->unk_00, 5, 0, 0, 0, 6);
     sub_02007130(param0->unk_D4, 16, 4, 0, 0, 6);
     sub_0200710C(param0->unk_D4, 17, param0->unk_00, 5, 0, 0, 0, 6);

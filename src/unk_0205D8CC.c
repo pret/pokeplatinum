@@ -4,7 +4,6 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
 
-#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 
 #include "unk_02002328.h"
@@ -12,7 +11,7 @@
 #include "unk_0200DA60.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0205D8CC.h"
 
 void sub_0205D8CC (u32 param0, u32 param1)
@@ -36,7 +35,7 @@ void sub_0205D8F4 (BGL * param0, Window * param1, u32 param2)
 
 void sub_0205D944 (Window * param0, const Options * param1)
 {
-    sub_0200DD0C(param0->unk_00, sub_0201C290(param0), 1024 - (18 + 12), 10, sub_02027B50(param1), 4);
+    sub_0200DD0C(param0->unk_00, sub_0201C290(param0), 1024 - (18 + 12), 10, Options_Frame(param1), 4);
     sub_0205D988(param0);
     sub_0200E060(param0, 0, 1024 - (18 + 12), 10);
 }
@@ -54,7 +53,7 @@ u8 sub_0205D994 (Window * param0, Strbuf *param1, const Options * param2, u8 par
     sub_02002AE4(0);
     sub_02002B20(0);
 
-    v0 = PrintStringSimple(param0, 1, param1, 0, 0, sub_02027AC0(param2), NULL);
+    v0 = PrintStringSimple(param0, 1, param1, 0, 0, Options_TextFrameDelay(param2), NULL);
     return v0;
 }
 

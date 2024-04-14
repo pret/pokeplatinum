@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_0208737C_H
 
 #include "strbuf.h"
-#include "struct_defs/options.h"
+#include "game_options.h"
 #include "struct_decls/struct_020797DC_decl.h"
 
 typedef struct {

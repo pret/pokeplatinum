@@ -82,7 +82,7 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "poffin.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202B604.h"
@@ -1478,7 +1478,7 @@ static void ov65_0222ECA8 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1)
     sub_0200710C(param1, 11, v0, 4, 0, 0, 0, 54);
 
     {
-        int v1 = sub_02027B50(sub_02025E44(param0->unk_160));
+        int v1 = Options_Frame(sub_02025E44(param0->unk_160));
 
         sub_0200DD0C(v0, 2, (512 - (18 + 12)), 10, v1, 54);
         sub_0200DAA4(v0, 2, ((512 - (18 + 12)) - 9), 11, 0, 54);
@@ -1807,7 +1807,7 @@ static int ov65_0222F490 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 static void ov65_0222F4C4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(param0->unk_160);
-    PokedexData * v1 = sub_02027560(param0->unk_160);
+    PokedexData * v1 = SaveData_Pokedex(param0->unk_160);
     Party * v2 = Party_GetFromSavedata(param0->unk_160);
     UnkStruct_0202C878 * v3 = sub_0202C878(param0->unk_160);
     int v4, v5;
@@ -4737,7 +4737,7 @@ static int ov65_02232B28 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
 static void ov65_02232B58 (UnkStruct_ov65_0222EBE0 * param0, int param1, BOOL param2)
 {
-    u8 v0 = sub_02027AC0(sub_02025E44(param0->unk_160));
+    u8 v0 = Options_TextFrameDelay(sub_02025E44(param0->unk_160));
 
     ov65_02232F50(param0);
 

@@ -33,7 +33,6 @@
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02013A04_t.h"
 #include "touch_screen.h"
-#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -83,7 +82,7 @@
 #include "unk_02024220.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 #include "pokemon.h"
@@ -1316,7 +1315,7 @@ static void ov70_0225E4EC (UnkStruct_ov70_0225E4EC * param0, SaveData * param1, 
         u8 v2;
 
         v1 = sub_02025E44(param1);
-        v2 = sub_02027B50(v1);
+        v2 = Options_Frame(v1);
 
         sub_02002E7C(0, 5 * 32, param2);
         sub_02002E98(0, 4 * 32, param2);
@@ -1550,7 +1549,7 @@ static void ov70_0225E9C8 (UnkStruct_ov70_0225E9C8 * param0, UnkStruct_ov70_0225
         Options * v0;
 
         v0 = sub_02025E44(param2);
-        param0->unk_14 = sub_02027AC0(v0);
+        param0->unk_14 = Options_TextFrameDelay(v0);
     }
 }
 

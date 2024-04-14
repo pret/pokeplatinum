@@ -41,7 +41,7 @@ typedef struct {
     int unk_00;
     int unk_04;
     OverlayManager * unk_08;
-    SaveData * unk_0C;
+    SaveData * saveData;
     BattleParams * unk_10;
     UnkStruct_0208C06C * unk_14;
     UnkStruct_0208BA84 unk_18;
@@ -94,13 +94,13 @@ static void sub_0208BAAC (OverlayManager * param0, int param1)
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_0208BC3C));
 
     v0->unk_28 = OverlayManager_Args(param0);
-    v0->unk_0C = v0->unk_28->unk_0C;
+    v0->saveData = v0->unk_28->saveData;
     v0->unk_14 = Heap_AllocFromHeap(119, sizeof(UnkStruct_0208C06C));
 
     MI_CpuFill8(v0->unk_14, 0, sizeof(UnkStruct_0208C06C));
 
     v0->unk_14->unk_868 = &v0->unk_18;
-    v0->unk_14->unk_830 = v0->unk_0C;
+    v0->unk_14->unk_830 = v0->saveData;
     v0->unk_14->unk_00 = param1;
     v0->unk_14->unk_81C[v0->unk_14->unk_534.unk_1A4] = sub_0208C034(v0->unk_14, v0->unk_14->unk_00);
 
@@ -127,7 +127,7 @@ static void sub_0208BAAC (OverlayManager * param0, int param1)
             return;
         }
 
-        sub_0208BA8C(v0->unk_0C, 119, v1);
+        sub_0208BA8C(v0->saveData, 119, v1);
     }
 }
 
@@ -262,14 +262,14 @@ static BOOL sub_0208BC8C (UnkStruct_0208BC3C * param0, int param1)
         param0->unk_10 = sub_02051D8C(param1, 0x0);
 
         if (sub_0202F250() == 0) {
-            sub_0202F298(param0->unk_0C, param1, &v0, param0->unk_10, param0->unk_14->unk_86C);
+            sub_0202F298(param0->saveData, param1, &v0, param0->unk_10, param0->unk_14->unk_86C);
         } else {
-            sub_0202FAFC(param0->unk_10, param0->unk_0C);
+            sub_0202FAFC(param0->unk_10, param0->saveData);
             v0 = 1;
         }
 
         param0->unk_10->unk_E4 = sub_0207D99C(param1);
-        param0->unk_10->unk_11C = sub_0202CD88(param0->unk_0C);
+        param0->unk_10->unk_11C = sub_0202CD88(param0->saveData);
 
         if (Overlay_LoadByID(FS_OVERLAY_ID(overlay62), 2) == 1) {
             ov62_02248408(sub_0202F264(), param0->unk_10, param1);

@@ -5,12 +5,11 @@
 #include "savedata.h"
 
 #include "struct_defs/struct_02025E5C.h"
-#include "struct_defs/options.h"
 
 #include "savedata.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "coins.h"
 #include "unk_0202CBE4.h"
 
@@ -30,7 +29,7 @@ void Player_Init (UnkStruct_02025E0C * param0)
 {
     MI_CpuClearFast(param0, sizeof(UnkStruct_02025E0C));
 
-    sub_02027A1C(&param0->unk_00);
+    Options_Init(&param0->unk_00);
     TrainerInfo_Init(&param0->unk_04);
     Coins_Init(&param0->unk_24);
     sub_0202CBE4(&param0->unk_26);

@@ -39,7 +39,7 @@ void sub_020559DC (FieldSystem * param0)
 {
     RTCDate v0;
     RTCTime v1;
-    UnkStruct_02055BA8 * v2 = sub_02025CD8(param0->unk_0C);
+    UnkStruct_02055BA8 * v2 = sub_02025CD8(param0->saveData);
 
     if (v2->unk_00 == 0) {
         return;
@@ -93,19 +93,19 @@ static void sub_02055AC0 (FieldSystem * param0, s32 param1)
 {
     sub_02028658(FieldSystem_SaveData(param0), param1);
     sub_0203F1FC(param0);
-    sub_0206C2D0(param0->unk_0C, param1);
-    sub_0202B3D8(sub_0202B4A0(param0->unk_0C), param1);
-    sub_0202D80C(sub_0202D834(param0->unk_0C), sub_0202B428(sub_0202B4A0(param0->unk_0C)));
+    sub_0206C2D0(param0->saveData, param1);
+    sub_0202B3D8(sub_0202B4A0(param0->saveData), param1);
+    sub_0202D80C(sub_0202D834(param0->saveData), sub_0202B428(sub_0202B4A0(param0->saveData)));
 
     {
         Party * v0;
 
-        v0 = Party_GetFromSavedata(param0->unk_0C);
+        v0 = Party_GetFromSavedata(param0->saveData);
         Party_UpdatePokerusStatus(v0, param1);
     }
 
     {
-        UnkStruct_020507E4 * v1 = SaveData_Events(param0->unk_0C);
+        UnkStruct_020507E4 * v1 = SaveData_Events(param0->saveData);
         u16 v2 = sub_0206B260(v1);
 
         if (v2 > param1) {
@@ -118,96 +118,96 @@ static void sub_02055AC0 (FieldSystem * param0, s32 param1)
     }
 
     {
-        sub_0206B2E4(param0->unk_0C, param1);
+        sub_0206B2E4(param0->saveData, param1);
     }
 
     {
-        sub_0206B334(param0->unk_0C);
+        sub_0206B334(param0->saveData);
     }
 
-    sub_0206B514(param0->unk_0C);
+    sub_0206B514(param0->saveData);
     sub_0203F310(param0);
-    sub_0206C008(param0->unk_0C);
-    sub_0202C9A0(sub_0202C878(param0->unk_0C));
-    sub_0206F2F0(param0->unk_0C);
+    sub_0206C008(param0->saveData);
+    sub_0202C9A0(sub_0202C878(param0->saveData));
+    sub_0206F2F0(param0->saveData);
 }
 
 static void sub_02055B64 (FieldSystem * param0, s32 param1, const RTCTime * param2)
 {
     sub_02055CD4(param0, param1);
-    sub_0202D854(param0->unk_0C, param1);
-    sub_02028758(param0->unk_0C, param1, sub_02055C40(param0));
+    sub_0202D854(param0->saveData, param1);
+    sub_02028758(param0->saveData, param1, sub_02055C40(param0));
 
     {
-        TVBroadcast * v0 = SaveData_TVBroadcast(param0->unk_0C);
+        TVBroadcast * v0 = SaveData_TVBroadcast(param0->saveData);
         sub_0202E324(v0, param1, param2->minute);
     }
 
     {
         Party * v1;
 
-        v1 = Party_GetFromSavedata(param0->unk_0C);
+        v1 = Party_GetFromSavedata(param0->saveData);
         Party_SetShayminForm(v1, param1, param2);
     }
 }
 
 int sub_02055BA8 (const FieldSystem * param0)
 {
-    UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->unk_0C);
+    UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->saveData);
     return TimeOfDayForHour(v0->unk_14.hour);
 }
 
 int sub_02055BB8 (const FieldSystem * param0)
 {
-    UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->unk_0C);
+    UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->saveData);
     return v0->unk_04.month;
 }
 
 int sub_02055BC4 (const FieldSystem * param0)
 {
-    UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->unk_0C);
+    UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->saveData);
     return v0->unk_04.day;
 }
 
 int sub_02055BD0 (const FieldSystem * param0)
 {
-    UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->unk_0C);
+    UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->saveData);
     return v0->unk_04.week;
 }
 
 int sub_02055BDC (const FieldSystem * param0)
 {
-    UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->unk_0C);
+    UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->saveData);
     return v0->unk_14.hour;
 }
 
 int sub_02055BE8 (const FieldSystem * param0)
 {
-    UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->unk_0C);
+    UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->saveData);
     return v0->unk_14.minute;
 }
 
 void sub_02055BF4 (const FieldSystem * param0, RTCDate * param1, RTCTime * param2)
 {
-    UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->unk_0C);
+    UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->saveData);
     RTC_ConvertSecondToDateTime(param1, param2, v0->unk_24);
 }
 
 void sub_02055C10 (const FieldSystem * param0, RTCDate * param1, RTCTime * param2)
 {
-    UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->unk_0C);
+    UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->saveData);
     RTC_ConvertSecondToDateTime(param1, param2, v0->unk_2C);
 }
 
 void sub_02055C2C (const FieldSystem * param0)
 {
-    UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->unk_0C);
+    UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->saveData);
 
     v0->unk_2C = GetTimestamp();
 }
 
 BOOL sub_02055C40 (FieldSystem * param0)
 {
-    UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->unk_0C);
+    UnkStruct_02055BA8 * v0 = sub_02025CD8(param0->saveData);
     return sub_02025DB8(v0);
 }

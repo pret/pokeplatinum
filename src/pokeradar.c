@@ -331,7 +331,7 @@ static BOOL sub_020698AC (const RadarChain *chain, const int param1, const int p
 }
 
 static void sub_020698E4 (FieldSystem *param0, RadarChain *chain) {
-    UnkStruct_020698E4 *v0 = sub_0202D830(sub_0202D834(param0->unk_0C));
+    UnkStruct_020698E4 *v0 = sub_0202D830(sub_0202D834(param0->saveData));
     int v1 = v0->unk_00[chain->unk_D0].unk_02;
 
     if (v1 < chain->count) {
@@ -353,7 +353,7 @@ static void sub_020698E4 (FieldSystem *param0, RadarChain *chain) {
 static u8 sub_0206994C (FieldSystem *param0) {
     u8 v1;
     BOOL v2;
-    UnkStruct_020698E4 *v0 = sub_0202D830(sub_0202D834(param0->unk_0C));
+    UnkStruct_020698E4 *v0 = sub_0202D830(sub_0202D834(param0->saveData));
 
     for (v1 = 0; v1 < 3; v1++) {
         if (v0->unk_00[v1].unk_00 == 0) {
@@ -394,14 +394,14 @@ static BOOL CheckPatchContinueChain (const u8 patchRing, const int battleResult)
     }
 }
 
-BOOL RefreshRadarChain (UnkStruct_020508D4 *param0) {
-    FieldSystem *v0 = sub_02050A60(param0);
-    int *v1 = sub_02050A64(param0);
+BOOL RefreshRadarChain (TaskManager *param0) {
+    FieldSystem *v0 = TaskManager_FieldSystem(param0);
+    int *v1 = TaskManager_Environment(param0);
 
     switch (*v1) {
     case 0:
-        sub_02062C48(v0->unk_38);
-        u8 *v2 = sub_0202D9C4(sub_0202D834(v0->unk_0C));
+        MapObjectMan_PauseAllMovement(v0->unk_38);
+        u8 *v2 = sub_0202D9C4(sub_0202D834(v0->saveData));
 
         if (*v2 < RADAR_BATTERY_STEPS) {
             sub_0203E8E0(param0, 8970, NULL, NULL);
@@ -432,7 +432,7 @@ BOOL RefreshRadarChain (UnkStruct_020508D4 *param0) {
         break;
     case 4:
         Heap_FreeToHeap(v1);
-        sub_02062C78(v0->unk_38);
+        MapObjectMan_UnpauseAllMovement(v0->unk_38);
         return TRUE;
         break;
     case 3:
@@ -473,8 +473,8 @@ int GetChainCount (FieldSystem *param0) {
 void RadarChargeStep (FieldSystem *param0) {
     u8 *v0;
 
-    if (sub_0207D688(sub_0207D990(param0->unk_0C), 431, 1, 4) == 1) {
-        v0 = sub_0202D9C4(sub_0202D834(param0->unk_0C));
+    if (sub_0207D688(sub_0207D990(param0->saveData), 431, 1, 4) == 1) {
+        v0 = sub_0202D9C4(sub_0202D834(param0->saveData));
         if ((*v0) < RADAR_BATTERY_STEPS) {
             (*v0)++;
         }

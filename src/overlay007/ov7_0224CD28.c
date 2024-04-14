@@ -42,7 +42,7 @@
 #include "strbuf.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202854C.h"
 #include "unk_0202B604.h"
 #include "unk_0202C9F4.h"
@@ -96,7 +96,7 @@ static u8 ov7_0224E5B0(UnkStruct_ov7_0224D008 * param0);
 static u8 ov7_0224EA2C(UnkStruct_ov7_0224D008 * param0);
 static void ov7_0224EA54(FieldSystem * param0, UnkStruct_ov7_0224D008 * param1);
 static void ov7_0224EC20(FieldSystem * param0, UnkStruct_ov7_0224D008 * param1);
-static void ov7_0224EC38(UnkStruct_020508D4 * param0);
+static void ov7_0224EC38(TaskManager * param0);
 static u8 ov7_0224EC9C(FieldSystem * param0, UnkStruct_ov7_0224D008 * param1);
 static void ov7_0224EAD0(UnkStruct_ov7_0224D008 * param0);
 static void ov7_0224EB14(UnkStruct_ov7_0224D008 * param0);
@@ -187,32 +187,32 @@ static UnkStruct_ov7_0224D008 * ov7_0224CD88 (void)
     return v0;
 }
 
-void ov7_0224CDA4 (UnkStruct_020508D4 * param0, FieldSystem * param1, u16 * param2, u8 param3, BOOL param4)
+void ov7_0224CDA4 (TaskManager * param0, FieldSystem * param1, u16 * param2, u8 param3, BOOL param4)
 {
     UnkStruct_ov7_0224D008 * v0 = ov7_0224CD88();
 
     v0->unk_00 = param1->unk_08;
 
     v0->unk_298 = Strbuf_Init((24 * 2 * 2), 11);
-    v0->unk_270 = SaveData_GetTrainerInfo(param1->unk_0C);
-    v0->unk_278 = sub_02025E44(param1->unk_0C);
-    v0->unk_280 = sub_0202CD88(param1->unk_0C);
-    v0->unk_288 = SaveData_Events(param1->unk_0C);
+    v0->unk_270 = SaveData_GetTrainerInfo(param1->saveData);
+    v0->unk_278 = sub_02025E44(param1->saveData);
+    v0->unk_280 = sub_0202CD88(param1->saveData);
+    v0->unk_288 = SaveData_Events(param1->saveData);
     v0->unk_28C = param4;
     v0->unk_2A6 = ov7_0224CE90(param1);
     v0->unk_27C = param1->unk_9C;
     v0->unk_2A9 = param3;
-    v0->unk_284 = param1->unk_0C;
+    v0->unk_284 = param1->saveData;
     v0->unk_2B4 = sub_0200C440(1, 2, 0, 11);
 
     if (v0->unk_2A9 == 0) {
-        v0->unk_274 = sub_0207D990(param1->unk_0C);
+        v0->unk_274 = sub_0207D990(param1->saveData);
     } else if (v0->unk_2A9 == 3) {
-        v0->unk_274 = sub_0207D990(param1->unk_0C);
+        v0->unk_274 = sub_0207D990(param1->saveData);
     } else if (v0->unk_2A9 == 1) {
-        v0->unk_274 = sub_020298B0(param1->unk_0C);
+        v0->unk_274 = sub_020298B0(param1->saveData);
     } else {
-        v0->unk_274 = sub_0202CA1C(param1->unk_0C);
+        v0->unk_274 = sub_0202CA1C(param1->saveData);
     }
 
     ov7_0224CD28(v0, param2);
@@ -230,13 +230,13 @@ static u8 ov7_0224CE90 (FieldSystem * param0)
     return 8;
 }
 
-BOOL ov7_0224CEAC (UnkStruct_020508D4 * param0)
+BOOL ov7_0224CEAC (TaskManager * param0)
 {
     FieldSystem * v0;
     UnkStruct_ov7_0224D008 * v1;
 
-    v0 = sub_02050A60(param0);
-    v1 = sub_02050A64(param0);
+    v0 = TaskManager_FieldSystem(param0);
+    v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_297) {
     case 0:
@@ -503,7 +503,7 @@ static void ov7_0224D474 (UnkStruct_ov7_0224D008 * param0)
     }
 
     sub_0200DAA4(param0->unk_00, 3, (1 + (18 + 12)), 11, 0, 11);
-    sub_0200DD0C(param0->unk_00, 3, 1, 10, sub_02027B50(param0->unk_278), 11);
+    sub_0200DD0C(param0->unk_00, 3, 1, 10, Options_Frame(param0->unk_278), 11);
     NARC_dtor(v0);
 }
 
@@ -1531,7 +1531,7 @@ static void ov7_0224EC20 (FieldSystem * param0, UnkStruct_ov7_0224D008 * param1)
     param1->unk_297 = 15;
 }
 
-static void ov7_0224EC38 (UnkStruct_020508D4 * param0)
+static void ov7_0224EC38 (TaskManager * param0)
 {
     FieldSystem * v0;
     UnkStruct_ov7_0224D008 * v1;
@@ -1540,18 +1540,18 @@ static void ov7_0224EC38 (UnkStruct_020508D4 * param0)
         return;
     }
 
-    v0 = sub_02050A60(param0);
-    v1 = sub_02050A64(param0);
+    v0 = TaskManager_FieldSystem(param0);
+    v1 = TaskManager_Environment(param0);
 
     ov7_0224D21C(v1);
 
     {
         UnkStruct_0207D3C0 * v2;
 
-        v2 = sub_0207D990(v0->unk_0C);
+        v2 = sub_0207D990(v0->saveData);
         v1->unk_04 = sub_0207D824(v2, Unk_ov7_0224F49C, 11);
 
-        sub_0207CB2C(v1->unk_04, v0->unk_0C, 2, v0->unk_98);
+        sub_0207CB2C(v1->unk_04, v0->saveData, 2, v0->unk_98);
     }
 
     sub_0203D1E4(v0, v1->unk_04);

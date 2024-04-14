@@ -173,9 +173,9 @@ static FieldSystem * sub_0203CDB0 (OverlayManager * param0)
 
     v0 = OverlayManager_Args(param0);
 
-    v1->unk_0C = v0->unk_08;
+    v1->saveData = v0->unk_08;
     v1->unk_10 = NULL;
-    v1->unk_1C = sub_0203A720(sub_0203A790(v1->unk_0C));
+    v1->unk_1C = sub_0203A720(sub_0203A790(v1->saveData));
     v1->unk_2C = sub_02039D6C();
 
     sub_0203A378(v1, 11);
@@ -385,5 +385,5 @@ BGL * sub_0203D170 (void * param0)
 
 SaveData * FieldSystem_SaveData (void * param0)
 {
-    return ((FieldSystem *)param0)->unk_0C;
+    return ((FieldSystem *)param0)->saveData;
 }
