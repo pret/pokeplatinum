@@ -33,13 +33,13 @@ void Options_Init (Options *options)
     options->frame = OPTIONS_FRAME_1;
 }
 
-void Options_SetSystemButtonMode (SaveData *saveData, int buttonMode)
+void Options_SetSystemButtonMode (SaveData *saveData, enum OptionsButtonMode mode)
 {
-    if (saveData != NULL) {
-        buttonMode = Options_ButtonMode(sub_02025E44(saveData));
+    if (saveData != NULL) { 
+        mode = Options_ButtonMode(sub_02025E44(saveData));
     }
 
-    switch (buttonMode) {
+    switch (mode) {
     case OPTIONS_BUTTON_MODE_START_IS_X:
         gCoreSys.buttonMode = BUTTON_MODE_START_IS_X;
         break;
