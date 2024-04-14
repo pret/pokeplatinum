@@ -9,6 +9,7 @@
 #include "constants/battle.h"
 #include "constants/heap.h"
 #include "constants/items.h"
+#include "constants/game_options.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
@@ -1027,7 +1028,7 @@ BOOL BattleSystem_AnimationsOn(BattleSystem *battleSys)
         return TRUE;
     }
 
-    return Options_BattleScene(battleSys->unk_1B0) == 0;
+    return Options_BattleScene(battleSys->unk_1B0) == OPTIONS_BATTLE_SCENE_ON;
 }
 
 int ov16_0223EDE0 (BattleSystem * param0)

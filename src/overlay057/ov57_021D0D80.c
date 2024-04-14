@@ -34,6 +34,7 @@
 #include "pokemon.h"
 #include "party.h"
 #include "overlay057/ov57_021D0F30.h"
+#include "constants/game_options.h"
 
 static int ov57_021D0D80(OverlayManager * param0, int * param1);
 static int ov57_021D0D98(OverlayManager * param0, int * param1);
@@ -130,7 +131,7 @@ static int ov57_021D0E34 (OverlayManager * param0, int * param1)
     UnkStruct_02025CCC * v1 = sub_02025CCC(v0);
 
     ov57_021D0F30(77, v0);
-    Options_SetSystemButtonMode(v0, 0);
+    Options_SetSystemButtonMode(v0, OPTIONS_BUTTON_MODE_NORMAL);
 
     if (!sub_02025D10(v1) || !sub_02025D40(v1)) {
         sub_02025DE8(sub_02025CD8(v0));
