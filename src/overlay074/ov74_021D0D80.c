@@ -110,11 +110,11 @@ int ov74_021D0D80 (OverlayManager * param0, int * param1)
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov74_021D0D80), 38);
     memset(v0, 0, sizeof(UnkStruct_ov74_021D0D80));
 
-    v0->unk_18.unk_00_0 = sub_02027AA4(v1);
-    v0->unk_18.unk_00_6 = GameConfig_BattleAnimations(v1);
-    v0->unk_18.unk_00_7 = sub_02027B14(v1);
-    v0->unk_18.unk_00_4 = sub_02027ADC(v1);
-    v0->unk_18.unk_00_8 = sub_02027B30(v1);
+    v0->unk_18.unk_00_0 = Options_TextSpeed(v1);
+    v0->unk_18.unk_00_6 = Options_BattleScene(v1);
+    v0->unk_18.unk_00_7 = Options_BattleStyle(v1);
+    v0->unk_18.unk_00_4 = Options_SoundMethod(v1);
+    v0->unk_18.unk_00_8 = Options_ButtonMode(v1);
     v0->unk_18.unk_00_10 = sub_02027B50(v1);
     v0->unk_00 = 38;
     v0->unk_1C = v1;
@@ -137,14 +137,14 @@ int ov74_021D0E58 (OverlayManager * param0, int * param1)
         v0->unk_18.unk_00_10 = v0->unk_5C[5].unk_02;
     }
 
-    sub_02027AAC(v0->unk_1C, v0->unk_18.unk_00_0);
-    sub_02027B00(v0->unk_1C, v0->unk_18.unk_00_6);
-    sub_02027B1C(v0->unk_1C, v0->unk_18.unk_00_7);
-    sub_02027AE4(v0->unk_1C, v0->unk_18.unk_00_4);
-    sub_02027B38(v0->unk_1C, v0->unk_18.unk_00_8);
-    sub_02027B58(v0->unk_1C, v0->unk_18.unk_00_10);
+    Options_SetTextSpeed(v0->unk_1C, v0->unk_18.unk_00_0);
+    Options_SetBattleScene(v0->unk_1C, v0->unk_18.unk_00_6);
+    Options_SetBattleStyle(v0->unk_1C, v0->unk_18.unk_00_7);
+    Options_SetSoundMethod(v0->unk_1C, v0->unk_18.unk_00_4);
+    Options_SetButtonMode(v0->unk_1C, v0->unk_18.unk_00_8);
+    Options_SetFrame(v0->unk_1C, v0->unk_18.unk_00_10);
     sub_02004FB8(v0->unk_18.unk_00_4);
-    sub_02027A68(NULL, v0->unk_18.unk_00_8);
+    Options_SetSystemButtonMode(NULL, v0->unk_18.unk_00_8);
     sub_02002AC8(1);
     OverlayManager_FreeData(param0);
     Heap_Destroy(v0->unk_00);
@@ -632,9 +632,9 @@ static void ov74_021D17CC (UnkStruct_ov74_021D0D80 * param0, u16 param1)
     if (param1 == 1) {
         sub_02004FB8(param0->unk_5C[param1].unk_02);
     } else if (param1 == 4) {
-        sub_02027A68(NULL, param0->unk_5C[param1].unk_02);
+        Options_SetSystemButtonMode(NULL, param0->unk_5C[param1].unk_02);
     } else if (param1 == 0) {
-        sub_02027AAC(param0->unk_1C, param0->unk_5C[param1].unk_02);
+        Options_SetTextSpeed(param0->unk_1C, param0->unk_5C[param1].unk_02);
         ov74_021D1BE4(param0, param1, 0);
     }
 

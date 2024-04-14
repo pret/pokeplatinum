@@ -13,22 +13,22 @@ typedef struct Options {
     u16 : 1;
 } Options;
 
-Options * sub_020279FC(u32 param0);
-void sub_02027A10(const Options * param0, Options * param1);
-void sub_02027A1C(Options * param0);
-void sub_02027A68(SaveData * param0, int param1);
-int sub_02027AA4(const Options * param0);
-void sub_02027AAC(Options * param0, int param1);
-u8 sub_02027AC0(const Options * param0);
-int sub_02027ADC(const Options * param0);
-void sub_02027AE4(Options * param0, int param1);
-int GameConfig_BattleAnimations(const Options * param0);
-void sub_02027B00(Options * param0, int param1);
-int sub_02027B14(const Options * param0);
-void sub_02027B1C(Options * param0, int param1);
-int sub_02027B30(const Options * param0);
-void sub_02027B38(Options * param0, int param1);
-int sub_02027B50(const Options * param0);
-void sub_02027B58(Options * param0, int param1);
+Options* Options_AllocMemory(u32 heapID);
+void Options_Copy(const Options *src, Options *dest);
+void Options_Init(Options *options);
+void Options_SetSystemButtonMode(SaveData *saveData, int buttonMode);
+int Options_TextSpeed(const Options *options);
+void Options_SetTextSpeed(Options *options, int textSpeed);
+u8 sub_02027AC0(const Options *options);
+int Options_SoundMethod(const Options *options);
+void Options_SetSoundMethod(Options *options, int soundMethod);
+int Options_BattleScene(const Options *options);
+void Options_SetBattleScene(Options *options, int battleScene);
+int Options_BattleStyle(const Options *options);
+void Options_SetBattleStyle(Options *options, int battleStyle);
+int Options_ButtonMode(const Options *options);
+void Options_SetButtonMode(Options *options, int buttonMode);
+int sub_02027B50(const Options *options);
+void Options_SetFrame(Options *options, int frame);
 
 #endif // POKEPLATINUM_GAME_OPTIONS_H

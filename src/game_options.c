@@ -1,133 +1,131 @@
 #include <nitro.h>
 #include <string.h>
 
+
+#include "constants/game_options.h"
+
 #include "core_sys.h"
-
 #include "savedata.h"
-
-
 #include "heap.h"
 #include "unk_02025E08.h"
 #include "game_options.h"
+#include "core_sys.h"
 
-Options * sub_020279FC (u32 param0)
+Options* Options_AllocMemory (u32 heapID)
 {
-    Options * v0;
+    Options *options = Heap_AllocFromHeap(heapID, sizeof(Options));
+    Options_Init(options);
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(Options));
-    sub_02027A1C(v0);
-
-    return v0;
+    return options;
 }
 
-void sub_02027A10 (const Options * param0, Options * param1)
+void Options_Copy (const Options *src, Options *dest)
 {
-    MI_CpuCopy8(param0, param1, sizeof(Options));
+    MI_CpuCopy8(src, dest, sizeof(Options));
 }
 
-void sub_02027A1C (Options * param0)
+void Options_Init (Options *options)
 {
-    MI_CpuFill8(param0, 0, sizeof(Options));
+    MI_CpuFill8(options, 0, sizeof(Options));
 
-    param0->textSpeed = 1;
-    param0->soundMethod = 0;
-    param0->battleStyle = 0;
-    param0->battleScene = 0;
-    param0->buttonMode = 0;
-    param0->frame = 0;
+    options->textSpeed = OPTIONS_TEXT_SPEED_NORMAL;
+    options->soundMethod = OPTIONS_SOUND_METHOD_STEREO;
+    options->battleStyle = OPTIONS_BATTLE_STYLE_SHIFT;
+    options->battleScene = OPTIONS_BATTLE_SCENE_ON;
+    options->buttonMode = OPTIONS_BUTTON_MODE_NORMAL;
+    options->frame = OPTIONS_FRAME_1;
 }
 
-void sub_02027A68 (SaveData * param0, int param1)
+void Options_SetSystemButtonMode (SaveData *saveData, int buttonMode)
 {
-    Options * v0;
-
-    if (param0 != NULL) {
-        param1 = sub_02027B30(sub_02025E44(param0));
+    if (saveData != NULL) {
+        buttonMode = Options_ButtonMode(sub_02025E44(saveData));
     }
 
-    switch (param1) {
-    case 1:
-        gCoreSys.buttonMode = 1;
+    switch (buttonMode) {
+    case OPTIONS_BUTTON_MODE_START_IS_X:
+        gCoreSys.buttonMode = BUTTON_MODE_START_IS_X;
         break;
-    case 2:
-        gCoreSys.buttonMode = 3;
+    case OPTIONS_BUTTON_MODE_L_IS_A:
+        gCoreSys.buttonMode = BUTTON_MODE_L_IS_A;
         break;
-    case 0:
+    case OPTIONS_BUTTON_MODE_NORMAL:
     default:
-        gCoreSys.buttonMode = 0;
+        gCoreSys.buttonMode = BUTTON_MODE_NORMAL;
         break;
     }
 }
 
-int sub_02027AA4 (const Options * param0)
+int Options_TextSpeed (const Options *options)
 {
-    return param0->textSpeed;
+    return options->textSpeed;
 }
 
-void sub_02027AAC (Options * param0, int param1)
+void Options_SetTextSpeed (Options *options, int textSpeed)
 {
-    param0->textSpeed = param1;
+    options->textSpeed = textSpeed;
 }
-
-u8 sub_02027AC0 (const Options * param0)
+//ravetodo Options_GetTextFrameDelay
+u8 sub_02027AC0 (const Options *options)
 {
-    int v0 = sub_02027AA4(param0);
+    int speed = Options_TextSpeed(options);
 
-    if (v0 == 0) {
+    if (speed == OPTIONS_TEXT_SPEED_SLOW) {
         return 8;
-    } else if (v0 == 1) {
+    } else if (speed == OPTIONS_TEXT_SPEED_NORMAL) {
         return 4;
     } else {
         return 1;
     }
 }
 
-int sub_02027ADC (const Options * param0)
+int Options_SoundMethod (const Options *options)
 {
-    return param0->soundMethod;
+    return options->soundMethod;
 }
 
-void sub_02027AE4 (Options * param0, int param1)
+void Options_SetSoundMethod (Options *options, int soundMethod)
 {
-    param0->soundMethod = param1;
+    options->soundMethod = soundMethod;
 }
 
-int GameConfig_BattleAnimations (const Options * param0)
+int Options_BattleScene (const Options *options)
 {
-    return param0->battleScene;
+    return options->battleScene;
 }
 
-void sub_02027B00 (Options * param0, int param1)
+void Options_SetBattleScene (Options *options, int battleScene)
 {
-    param0->battleScene = param1;
+    options->battleScene = battleScene;
 }
 
-int sub_02027B14 (const Options * param0)
+int Options_BattleStyle (const Options *options)
 {
-    return param0->battleStyle;
+    return options->battleStyle;
 }
 
-void sub_02027B1C (Options * param0, int param1)
+void Options_SetBattleStyle (Options *options, int battleStyle)
 {
-    param0->battleStyle = param1;
+    options->battleStyle = battleStyle;
 }
 
-int sub_02027B30 (const Options * param0)
+int Options_ButtonMode (const Options *options)
 {
-    return param0->buttonMode;
+    return options->buttonMode;
 }
 
-void sub_02027B38 (Options * param0, int param1)
+void Options_SetButtonMode (Options *options, int buttonMode)
 {
-    param0->buttonMode = param1;
+    options->buttonMode = buttonMode;
 }
 
-int sub_02027B50 (const Options * param0)
+//ravetodo Options_Frame
+int sub_02027B50 (const Options *options)
 {
-    return param0->frame;
+    return options->frame;
 }
 
-void sub_02027B58 (Options * param0, int param1)
+void Options_SetFrame (Options *options, int frame)
 {
-    param0->frame = param1;
+    options->frame = frame;
 }

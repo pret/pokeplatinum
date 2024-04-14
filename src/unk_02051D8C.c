@@ -104,7 +104,7 @@ BattleParams * sub_02051D8C (int param0, u32 param1)
 
     v1->unk_E0 = sub_0207D3C0(param0);
     v1->unk_E8 = sub_02026324(param0);
-    v1->unk_108 = sub_020279FC(param0);
+    v1->unk_108 = Options_AllocMemory(param0);
     v1->unk_10C = sub_0206D140(param0);
     v1->unk_E4 = NULL;
     v1->unk_190 = NULL;
@@ -173,7 +173,7 @@ BattleParams * sub_02051F4C (int param0, const FieldSystem * param1)
     MessageLoader_Free(v2);
     TrainerInfo_SetGender(v4->unk_D0[0], TrainerInfo_Gender(v0) ^ 1);
     sub_0205281C(v4, param1);
-    sub_02027A10(v1, v4->unk_108);
+    Options_Copy(v1, v4->unk_108);
 
     v4->unk_138 = sub_02055BA8(param1);
     sub_0207D570(v4->unk_E0, 4, 20, param0);
@@ -276,7 +276,7 @@ void sub_020521B8 (BattleParams * param0, const FieldSystem * param1, SaveData *
     sub_02052164(param0, v1, 0);
     sub_0207D3EC(v2, param0->unk_E0);
     sub_02026338(v3, param0->unk_E8);
-    sub_02027A10(v5, param0->unk_108);
+    Options_Copy(v5, param0->unk_108);
     sub_020521A4(param0, v4, 0);
 
     param0->unk_EC = SaveData_PCBoxes(param2);
@@ -337,7 +337,7 @@ void sub_02052348 (BattleParams * param0, const FieldSystem * param1, int param2
     Heap_FreeToHeap(v8);
     sub_0207D3EC(v4, param0->unk_E0);
     sub_02026338(v5, param0->unk_E8);
-    sub_02027A10(v7, param0->unk_108);
+    Options_Copy(v7, param0->unk_108);
     sub_020521A4(param0, v6, 0);
 
     param0->unk_EC = SaveData_PCBoxes(param1->saveData);
@@ -407,7 +407,7 @@ void sub_020524E4 (BattleParams * param0, const FieldSystem * param1, const Part
 
     sub_0207D3EC(v1, param0->unk_E0);
     sub_02026338(v2, param0->unk_E8);
-    sub_02027A10(v4, param0->unk_108);
+    Options_Copy(v4, param0->unk_108);
     sub_020521A4(param0, v3, 0);
 
     param0->unk_EC = SaveData_PCBoxes(param1->saveData);

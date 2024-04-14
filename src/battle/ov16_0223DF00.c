@@ -1027,7 +1027,7 @@ BOOL BattleSystem_AnimationsOn(BattleSystem *battleSys)
         return TRUE;
     }
 
-    return GameConfig_BattleAnimations(battleSys->unk_1B0) == 0;
+    return Options_BattleScene(battleSys->unk_1B0) == 0;
 }
 
 int ov16_0223EDE0 (BattleSystem * param0)
@@ -1046,7 +1046,7 @@ u8 BattleSystem_TextSpeed (BattleSystem * param0)
 
 int BattleSystem_Ruleset (BattleSystem * param0)
 {
-    return sub_02027B14(param0->unk_1B0);
+    return Options_BattleStyle(param0->unk_1B0);
 }
 
 PokemonAnimationSys * ov16_0223EE28 (BattleSystem * param0)

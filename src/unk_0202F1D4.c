@@ -494,7 +494,7 @@ void sub_0202F8AC (BattleParams * param0)
         v2->unk_14C[v0] = Sound_Chatter(param0->unk_F0[v0]);
     }
 
-    sub_02027A10(param0->unk_108, &v1->unk_1BE8);
+    Options_Copy(param0->unk_108, &v1->unk_1BE8);
 }
 
 void sub_0202FAA8 (int param0, u32 param1)
@@ -572,7 +572,7 @@ void sub_0202FAFC (BattleParams * param0, SaveData * param1)
         param0->unk_194[v0] = v1->unk_00.unk_14C[v0];
     }
 
-    sub_02027A10(sub_02025E44(param1), param0->unk_108);
+    Options_Copy(sub_02025E44(param1), param0->unk_108);
     param0->unk_108->frame = v1->unk_1BE8.frame;
 
     if (param0->unk_108->frame >= 20) {
