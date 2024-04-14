@@ -1520,7 +1520,7 @@ static void ov17_02242DC0 (UnkStruct_ov17_02246F24 * param0, MessageLoader * par
         v1 = 0;
     } else {
         if (param0->unk_00->unk_155 == 0) {
-            v1 = Options_GetTextFrameDelay(param0->unk_00->unk_196C);
+            v1 = Options_TextFrameDelay(param0->unk_00->unk_196C);
         } else {
             v1 = 1;
         }

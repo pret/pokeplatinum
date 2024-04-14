@@ -1042,7 +1042,7 @@ u8 BattleSystem_TextSpeed (BattleSystem * param0)
         return 1;
     }
 
-    return Options_GetTextFrameDelay(param0->unk_1B0);
+    return Options_TextFrameDelay(param0->unk_1B0);
 }
 
 int BattleSystem_Ruleset (BattleSystem * param0)

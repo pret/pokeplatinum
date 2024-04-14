@@ -1549,7 +1549,7 @@ static void ov70_0225E9C8 (UnkStruct_ov70_0225E9C8 * param0, UnkStruct_ov70_0225
         Options * v0;
 
         v0 = sub_02025E44(param2);
-        param0->unk_14 = Options_GetTextFrameDelay(v0);
+        param0->unk_14 = Options_TextFrameDelay(v0);
     }
 }
 

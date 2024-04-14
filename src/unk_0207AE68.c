@@ -988,7 +988,7 @@ static u8 sub_0207C584 (UnkStruct_0207AE68 * param0, int param1)
     Heap_FreeToHeap(v0);
     BGL_FillWindow(param0->unk_04, 0xff);
 
-    return PrintStringSimple(param0->unk_04, 1, param0->unk_10, 0, 0, Options_GetTextFrameDelay(param0->unk_2C), sub_0207C5CC);
+    return PrintStringSimple(param0->unk_04, 1, param0->unk_10, 0, 0, Options_TextFrameDelay(param0->unk_2C), sub_0207C5CC);
 }
 
 static BOOL sub_0207C5CC (UnkStruct_0201D738 * param0, u16 param1)

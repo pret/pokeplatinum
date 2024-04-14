@@ -19,7 +19,7 @@ void Options_Init(Options *options);
 void Options_SetSystemButtonMode(SaveData *saveData, int buttonMode);
 int Options_TextSpeed(const Options *options);
 void Options_SetTextSpeed(Options *options, int textSpeed);
-u8 Options_GetTextFrameDelay(const Options *options);
+u8 Options_TextFrameDelay(const Options *options);
 int Options_SoundMethod(const Options *options);
 void Options_SetSoundMethod(Options *options, int soundMethod);
 int Options_BattleScene(const Options *options);

@@ -1396,7 +1396,7 @@ static u32 ov22_022573EC (UnkStruct_ov22_02255D44 * param0, u32 param1)
     StringTemplate_Format(param0->unk_744, param0->unk_740, v3);
 
     if (param0->unk_734->unk_16 == 0) {
-        v2 = Options_GetTextFrameDelay(param0->unk_738);
+        v2 = Options_TextFrameDelay(param0->unk_738);
     } else {
         v2 = 1;
     }

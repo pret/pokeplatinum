@@ -505,7 +505,7 @@ static BOOL ov106_02241E5C (UnkStruct_ov106_02243118 * param0)
         break;
     case 4:
         ov106_02243758(&param0->unk_4C[0], Options_Frame(param0->unk_B4));
-        param0->unk_0A = ov106_02242918(param0, &param0->unk_4C[0], 32, 1, 1, Options_GetTextFrameDelay(sub_02025E44(param0->unk_B8)), 1, 2, 15, 1);
+        param0->unk_0A = ov106_02242918(param0, &param0->unk_4C[0], 32, 1, 1, Options_TextFrameDelay(sub_02025E44(param0->unk_B8)), 1, 2, 15, 1);
         sub_0201A954(&param0->unk_4C[0]);
         param0->unk_08 = 5;
         break;

@@ -145,7 +145,7 @@ int ov75_021D0D80 (OverlayManager * param0, int * param1)
     v1->unk_12 = v1->unk_1C->unk_03;
     v1->unk_17 = v1->unk_16 = v1->unk_11;
     v1->unk_1C->unk_00 = 0xFFFF;
-    v1->unk_10 = Options_GetTextFrameDelay(v1->unk_1C->unk_04);
+    v1->unk_10 = Options_TextFrameDelay(v1->unk_1C->unk_04);
     v1->unk_0A = Options_Frame(v1->unk_1C->unk_04);
 
     sub_02002AC8(1);

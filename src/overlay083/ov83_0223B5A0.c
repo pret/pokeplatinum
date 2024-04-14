@@ -129,7 +129,7 @@ int ov83_0223B5B0 (OverlayManager * param0, int * param1)
     }
 
     v1->unk_24 = Options_Frame(v0->unk_10->unk_18);
-    v1->unk_28 = Options_GetTextFrameDelay(v0->unk_10->unk_18);
+    v1->unk_28 = Options_TextFrameDelay(v0->unk_10->unk_18);
     v1->unk_31C = 1;
 
     SetMainCallback(ov83_0223B5A0, v0);

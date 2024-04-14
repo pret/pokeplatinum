@@ -66,7 +66,7 @@ void Options_SetTextSpeed (Options *options, int textSpeed)
     options->textSpeed = textSpeed;
 }
 
-u8 Options_GetTextFrameDelay (const Options *options)
+u8 Options_TextFrameDelay (const Options *options)
 {
     int speed = Options_TextSpeed(options);
 

@@ -674,7 +674,7 @@ static void ov74_021D1968 (UnkStruct_ov74_021D0D80 * param0, u16 param1, BOOL pa
         sub_0201D730(param0->unk_2AC);
     }
 
-    v2 = Options_GetTextFrameDelay(param0->unk_1C);
+    v2 = Options_TextFrameDelay(param0->unk_1C);
 
     BGL_FillWindow(&(param0->unk_2C[2]), 15);
 

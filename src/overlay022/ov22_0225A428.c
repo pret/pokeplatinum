@@ -102,7 +102,7 @@ void ov22_0225A428 (UnkStruct_ov22_0225A428 * param0, UnkStruct_ov22_02256BAC * 
     ov22_0225A718(param1->unk_00, param1->unk_0C);
 
     param0->unk_13C = Options_Frame(param1->unk_0C);
-    param0->unk_140 = Options_GetTextFrameDelay(param1->unk_0C);
+    param0->unk_140 = Options_TextFrameDelay(param1->unk_0C);
     param0->unk_138 |= param2;
 }
 

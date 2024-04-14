@@ -4737,7 +4737,7 @@ static int ov65_02232B28 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
 static void ov65_02232B58 (UnkStruct_ov65_0222EBE0 * param0, int param1, BOOL param2)
 {
-    u8 v0 = Options_GetTextFrameDelay(sub_02025E44(param0->unk_160));
+    u8 v0 = Options_TextFrameDelay(sub_02025E44(param0->unk_160));
 
     ov65_02232F50(param0);
 

@@ -72,7 +72,7 @@ static int sub_02098218 (OverlayManager * param0, int * param1)
     v0 = OverlayManager_Args(param0);
 
     v1->unk_00 = v0;
-    v1->unk_04.unk_0C = Options_GetTextFrameDelay(v1->unk_00->unk_0C.unk_04);
+    v1->unk_04.unk_0C = Options_TextFrameDelay(v1->unk_00->unk_0C.unk_04);
     v1->unk_04.unk_10 = Options_Frame(v1->unk_00->unk_0C.unk_04);
     v1->unk_04.unk_34 = ov119_021D0DD4();
     v1->unk_04.unk_38 = sub_0200762C(71);

@@ -53,7 +53,7 @@ u8 sub_0205D994 (Window * param0, Strbuf *param1, const Options * param2, u8 par
     sub_02002AE4(0);
     sub_02002B20(0);
 
-    v0 = PrintStringSimple(param0, 1, param1, 0, 0, Options_GetTextFrameDelay(param2), NULL);
+    v0 = PrintStringSimple(param0, 1, param1, 0, 0, Options_TextFrameDelay(param2), NULL);
     return v0;
 }
 

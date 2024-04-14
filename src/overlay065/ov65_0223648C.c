@@ -805,7 +805,7 @@ static void ov65_02236C10 (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
     param0->unk_0C = Strbuf_Init(256, param2);
     param0->unk_10 = Strbuf_Init(256, param2);
     param0->unk_14 = 0xff;
-    param0->unk_16 = Options_GetTextFrameDelay(sub_02025E44(param1->unk_08));
+    param0->unk_16 = Options_TextFrameDelay(sub_02025E44(param1->unk_08));
 }
 
 static void ov65_02236C5C (UnkStruct_ov65_02236840 * param0)

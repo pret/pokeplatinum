@@ -1020,7 +1020,7 @@ static BOOL ov92_021D1B70 (UnkStruct_ov92_021D1B24 * param0, u32 param1, int par
         BGL_WindowColor(&param0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
         param0->unk_B86C = Strbuf_Init(0x400, param0->unk_00);
         MessageLoader_GetStrbuf(param0->unk_B860, param1, param0->unk_B86C);
-        param0->unk_B868 = PrintStringSimple(&param0->unk_B814, 1, param0->unk_B86C, 0, 0, Options_GetTextFrameDelay(param0->unk_08), NULL);
+        param0->unk_B868 = PrintStringSimple(&param0->unk_B814, 1, param0->unk_B86C, 0, 0, Options_TextFrameDelay(param0->unk_08), NULL);
         param0->unk_B864 = 1;
         break;
     case 1:

@@ -492,7 +492,7 @@ void ov94_0223C4C8 (UnkStruct_ov94_0223FD4C * param0)
 
 int ov94_0223C4D4 (UnkStruct_ov94_0223FD4C * param0)
 {
-    return Options_GetTextFrameDelay(param0->unk_00->unk_24);
+    return Options_TextFrameDelay(param0->unk_00->unk_24);
 }
 
 static void ov94_0223C4E0 (UnkStruct_ov94_0223FD4C * param0)

@@ -373,7 +373,7 @@ static void ov7_0224C338 (UnkStruct_ov7_0224BEFC * param0)
     Options * v0 = sub_02025E44(param0->unk_08);
 
     param0->unk_1B0 = Options_Frame(v0);
-    param0->unk_1B4 = Options_GetTextFrameDelay(v0);
+    param0->unk_1B4 = Options_TextFrameDelay(v0);
 }
 
 static void ov7_0224C35C (UnkStruct_ov7_0224BEFC * param0)

@@ -1962,7 +1962,7 @@ static void ov69_0225DD60 (UnkStruct_ov69_0225DDC8 * param0, UnkStruct_ov69_0225
         Options * v0;
 
         v0 = sub_02025E44(param3);
-        param0->unk_08 = Options_GetTextFrameDelay(v0);
+        param0->unk_08 = Options_TextFrameDelay(v0);
     }
 
     param0->unk_0C = Strbuf_Init(128, param4);

@@ -710,7 +710,7 @@ static void ov79_021D1568 (UnkStruct_ov79_021D0E1C * param0)
         param0->unk_30.unk_38[v0] = MessageLoader_GetNewStrbuf(param0->unk_2C, 17 + v0);
     }
 
-    param0->unk_30.unk_4C = Options_GetTextFrameDelay(param0->unk_20->unk_18);
+    param0->unk_30.unk_4C = Options_TextFrameDelay(param0->unk_20->unk_18);
 }
 
 static void ov79_021D1618 (UnkStruct_ov79_021D0E1C * param0)

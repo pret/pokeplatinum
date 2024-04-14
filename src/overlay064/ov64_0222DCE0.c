@@ -1500,7 +1500,7 @@ asm static void ov64_0222EC94 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_
     str r0, [r1, #0x38]
     ldr r0, [r5, #0]
     bl sub_02025E44
-    bl Options_GetTextFrameDelay
+    bl Options_TextFrameDelay
     ldr r1, [sp, #0x14]
     str r0, [r1, #0x34]
     ldr r1, [sp, #0x1c]
@@ -1751,7 +1751,7 @@ static BOOL ov64_0222F068 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222
 
 static void ov64_0222F09C (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
-    param0->unk_DC = Options_GetTextFrameDelay(sub_02025E44(param1->unk_00));
+    param0->unk_DC = Options_TextFrameDelay(sub_02025E44(param1->unk_00));
     ov64_0222F414(param0, param1, param2, param3);
 }
 

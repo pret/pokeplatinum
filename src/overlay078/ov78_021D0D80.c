@@ -294,7 +294,7 @@ int ov78_021D0D80 (OverlayManager * param0, int * param1)
 
     v1 = OverlayManager_Args(param0);
     v0->unk_700 = Options_Frame(v1->unk_04);
-    v0->unk_704 = Options_GetTextFrameDelay(v1->unk_04);
+    v0->unk_704 = Options_TextFrameDelay(v1->unk_04);
 
     sub_0201DBEC(8, 47);
     SetMainCallback(ov78_021D1058, v0);
