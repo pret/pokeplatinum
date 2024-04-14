@@ -113,7 +113,7 @@ int ov74_021D0D80 (OverlayManager * param0, int * param1)
     v0->unk_18.unk_00_0 = Options_TextSpeed(v1);
     v0->unk_18.unk_00_6 = Options_BattleScene(v1);
     v0->unk_18.unk_00_7 = Options_BattleStyle(v1);
-    v0->unk_18.unk_00_4 = Options_SoundMethod(v1);
+    v0->unk_18.unk_00_4 = Options_SoundMode(v1);
     v0->unk_18.unk_00_8 = Options_ButtonMode(v1);
     v0->unk_18.unk_00_10 = Options_Frame(v1);
     v0->unk_00 = 38;
@@ -140,7 +140,7 @@ int ov74_021D0E58 (OverlayManager * param0, int * param1)
     Options_SetTextSpeed(v0->unk_1C, v0->unk_18.unk_00_0);
     Options_SetBattleScene(v0->unk_1C, v0->unk_18.unk_00_6);
     Options_SetBattleStyle(v0->unk_1C, v0->unk_18.unk_00_7);
-    Options_SetSoundMethod(v0->unk_1C, v0->unk_18.unk_00_4);
+    Options_SetSoundMode(v0->unk_1C, v0->unk_18.unk_00_4);
     Options_SetButtonMode(v0->unk_1C, v0->unk_18.unk_00_8);
     Options_SetFrame(v0->unk_1C, v0->unk_18.unk_00_10);
     sub_02004FB8(v0->unk_18.unk_00_4);

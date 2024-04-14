@@ -7,9 +7,9 @@ enum OptionsTextSpeed {
     OPTIONS_TEXT_SPEED_FAST
 };
 
-enum OptionsSoundMethod {
-    OPTIONS_SOUND_METHOD_STEREO = 0,
-    OPTIONS_SOUND_METHOD_MONO
+enum OptionsSoundMode {
+    OPTIONS_SOUND_MODE_STEREO = 0,
+    OPTIONS_SOUND_MODE_MONO
 };
 
 enum OptionsBattleStyle {

@@ -11,7 +11,7 @@
 #include "game_options.h"
 #include "core_sys.h"
 
-Options* Options_AllocMemory (u32 heapID)
+Options* Options_New (u32 heapID)
 {
     Options *options = Heap_AllocFromHeap(heapID, sizeof(Options));
     Options_Init(options);
@@ -29,7 +29,7 @@ void Options_Init (Options *options)
     MI_CpuFill8(options, 0, sizeof(Options));
 
     options->textSpeed = OPTIONS_TEXT_SPEED_NORMAL;
-    options->soundMethod = OPTIONS_SOUND_METHOD_STEREO;
+    options->soundMode = OPTIONS_SOUND_MODE_STEREO;
     options->battleStyle = OPTIONS_BATTLE_STYLE_SHIFT;
     options->battleScene = OPTIONS_BATTLE_SCENE_ON;
     options->buttonMode = OPTIONS_BUTTON_MODE_NORMAL;
@@ -79,14 +79,14 @@ u8 Options_TextFrameDelay (const Options *options)
     }
 }
 
-int Options_SoundMethod (const Options *options)
+int Options_SoundMode (const Options *options)
 {
-    return options->soundMethod;
+    return options->soundMode;
 }
 
-void Options_SetSoundMethod (Options *options, int soundMethod)
+void Options_SetSoundMode (Options *options, int soundMode)
 {
-    options->soundMethod = soundMethod;
+    options->soundMode = soundMode;
 }
 
 int Options_BattleScene (const Options *options)
