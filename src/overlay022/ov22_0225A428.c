@@ -101,8 +101,8 @@ void ov22_0225A428 (UnkStruct_ov22_0225A428 * param0, UnkStruct_ov22_02256BAC * 
 
     ov22_0225A718(param1->unk_00, param1->unk_0C);
 
-    param0->unk_13C = sub_02027B50(param1->unk_0C);
-    param0->unk_140 = sub_02027AC0(param1->unk_0C);
+    param0->unk_13C = Options_Frame(param1->unk_0C);
+    param0->unk_140 = Options_GetTextFrameDelay(param1->unk_0C);
     param0->unk_138 |= param2;
 }
 
@@ -203,7 +203,7 @@ static void ov22_0225A6E0 (UnkStruct_ov22_022597BC * param0, BGL * param1)
 
 static void ov22_0225A718 (BGL * param0, const Options * param1)
 {
-    int v0 = sub_02027B50(param1);
+    int v0 = Options_Frame(param1);
 
     sub_0200DD0C(param0, 5, 1, 1, v0, 14);
     sub_02002E98(4, 2 * 32, 14);

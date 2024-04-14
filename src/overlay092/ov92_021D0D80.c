@@ -947,7 +947,7 @@ static void ov92_021D1888 (UnkStruct_ov92_021D1B24 * param0, NARC * param1)
     sub_020070E8(param1, 5, param0->unk_B810, 7, 0, 0, 0, param0->unk_00);
     sub_02007130(param1, 6, 4, 0 * (2 * 16), (2 * 16) * 4, param0->unk_00);
     sub_0200710C(param1, 7, param0->unk_B810, 7, 0, 0, 0, param0->unk_00);
-    sub_0200DD0C(param0->unk_B810, 6, (512 - ((18 + 12))), 6, sub_02027B50(param0->unk_08), param0->unk_00);
+    sub_0200DD0C(param0->unk_B810, 6, (512 - ((18 + 12))), 6, Options_Frame(param0->unk_08), param0->unk_00);
     sub_0200DAA4(param0->unk_B810, 6, ((512 - ((18 + 12))) - 9), 7, 0, param0->unk_00);
     sub_02002E7C(4, 4 * (2 * 16), param0->unk_00);
     sub_02019690(6, 32, 0, param0->unk_00);
@@ -1020,7 +1020,7 @@ static BOOL ov92_021D1B70 (UnkStruct_ov92_021D1B24 * param0, u32 param1, int par
         BGL_WindowColor(&param0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
         param0->unk_B86C = Strbuf_Init(0x400, param0->unk_00);
         MessageLoader_GetStrbuf(param0->unk_B860, param1, param0->unk_B86C);
-        param0->unk_B868 = PrintStringSimple(&param0->unk_B814, 1, param0->unk_B86C, 0, 0, sub_02027AC0(param0->unk_08), NULL);
+        param0->unk_B868 = PrintStringSimple(&param0->unk_B814, 1, param0->unk_B86C, 0, 0, Options_GetTextFrameDelay(param0->unk_08), NULL);
         param0->unk_B864 = 1;
         break;
     case 1:

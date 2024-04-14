@@ -1075,7 +1075,7 @@ static void ov64_0222E620 (UnkStruct_ov64_0222E21C * param0, const UnkStruct_ov6
 {
     int v0;
 
-    v0 = sub_02027B50(sub_02025E44(param1->unk_00));
+    v0 = Options_Frame(sub_02025E44(param1->unk_00));
 
     sub_02002E98(0, 7 * 0x20, param2);
     sub_0200DD0C(param0->unk_00, Unk_ov64_02232258[1], (1 + 9), 8, v0, param2);
@@ -1500,7 +1500,7 @@ asm static void ov64_0222EC94 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_
     str r0, [r1, #0x38]
     ldr r0, [r5, #0]
     bl sub_02025E44
-    bl sub_02027AC0
+    bl Options_GetTextFrameDelay
     ldr r1, [sp, #0x14]
     str r0, [r1, #0x34]
     ldr r1, [sp, #0x1c]
@@ -1751,7 +1751,7 @@ static BOOL ov64_0222F068 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222
 
 static void ov64_0222F09C (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
-    param0->unk_DC = sub_02027AC0(sub_02025E44(param1->unk_00));
+    param0->unk_DC = Options_GetTextFrameDelay(sub_02025E44(param1->unk_00));
     ov64_0222F414(param0, param1, param2, param3);
 }
 

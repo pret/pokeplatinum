@@ -1315,7 +1315,7 @@ static void ov70_0225E4EC (UnkStruct_ov70_0225E4EC * param0, SaveData * param1, 
         u8 v2;
 
         v1 = sub_02025E44(param1);
-        v2 = sub_02027B50(v1);
+        v2 = Options_Frame(v1);
 
         sub_02002E7C(0, 5 * 32, param2);
         sub_02002E98(0, 4 * 32, param2);
@@ -1549,7 +1549,7 @@ static void ov70_0225E9C8 (UnkStruct_ov70_0225E9C8 * param0, UnkStruct_ov70_0225
         Options * v0;
 
         v0 = sub_02025E44(param2);
-        param0->unk_14 = sub_02027AC0(v0);
+        param0->unk_14 = Options_GetTextFrameDelay(v0);
     }
 }
 

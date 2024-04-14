@@ -213,8 +213,8 @@ static int sub_0206F314 (UnkStruct_0206F314 * param0, FieldSystem * param1, u16 
     v0->unk_CC = param1;
     v0->unk_D0 = param1->unk_08;
     v0->unk_304 = sub_0202E8C0(v1);
-    v0->unk_1A = sub_02027AC0(sub_02025E44(v1));
-    v0->unk_1C = sub_02027B50(sub_02025E44(v1));
+    v0->unk_1A = Options_GetTextFrameDelay(sub_02025E44(v1));
+    v0->unk_1C = Options_Frame(sub_02025E44(v1));
 
     param0->unk_08 = v0;
 

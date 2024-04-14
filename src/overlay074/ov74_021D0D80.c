@@ -115,7 +115,7 @@ int ov74_021D0D80 (OverlayManager * param0, int * param1)
     v0->unk_18.unk_00_7 = Options_BattleStyle(v1);
     v0->unk_18.unk_00_4 = Options_SoundMethod(v1);
     v0->unk_18.unk_00_8 = Options_ButtonMode(v1);
-    v0->unk_18.unk_00_10 = sub_02027B50(v1);
+    v0->unk_18.unk_00_10 = Options_Frame(v1);
     v0->unk_00 = 38;
     v0->unk_1C = v1;
 
@@ -674,7 +674,7 @@ static void ov74_021D1968 (UnkStruct_ov74_021D0D80 * param0, u16 param1, BOOL pa
         sub_0201D730(param0->unk_2AC);
     }
 
-    v2 = sub_02027AC0(param0->unk_1C);
+    v2 = Options_GetTextFrameDelay(param0->unk_1C);
 
     BGL_FillWindow(&(param0->unk_2C[2]), 15);
 

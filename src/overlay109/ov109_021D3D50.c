@@ -582,7 +582,7 @@ static void ov109_021D4300 (UnkStruct_ov109_021D5140 * param0, NARC * param1)
     sub_020070E8(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, 95);
     sub_0200710C(param1, 3, v0, 1, 0, 32 * 24 * 2, 1, 95);
     sub_0200DD0C(v0, 0, 1, 10,
-                 sub_02027B50(param0->unk_0C->unk_14.unk_10), 95);
+                 Options_Frame(param0->unk_0C->unk_14.unk_10), 95);
     sub_0200DAA4(v0, 0, 1 + (18 + 12), 11, 0, 95);
 }
 

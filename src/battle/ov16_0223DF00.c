@@ -1032,7 +1032,7 @@ BOOL BattleSystem_AnimationsOn(BattleSystem *battleSys)
 
 int ov16_0223EDE0 (BattleSystem * param0)
 {
-    return sub_02027B50(param0->unk_1B0);
+    return Options_Frame(param0->unk_1B0);
 }
 
 u8 BattleSystem_TextSpeed (BattleSystem * param0)
@@ -1041,7 +1041,7 @@ u8 BattleSystem_TextSpeed (BattleSystem * param0)
         return 1;
     }
 
-    return sub_02027AC0(param0->unk_1B0);
+    return Options_GetTextFrameDelay(param0->unk_1B0);
 }
 
 int BattleSystem_Ruleset (BattleSystem * param0)

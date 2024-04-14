@@ -74,7 +74,7 @@ void * sub_0209C1EC (FieldSystem * param0)
     v0->unk_08.unk_10 = sub_02025E44(param0->saveData);
     v0->unk_08.unk_14 = sub_0202CD88(param0->saveData);
     v0->unk_08.unk_18 = sub_0202B628(param0->saveData);
-    v0->unk_08.unk_04 = sub_02027B50(v0->unk_08.unk_10);
+    v0->unk_08.unk_04 = Options_Frame(v0->unk_08.unk_10);
     v0->unk_08.unk_1C = param0;
 
     return v0;

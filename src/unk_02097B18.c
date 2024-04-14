@@ -160,7 +160,7 @@ static int sub_02097B18 (OverlayManager * param0, int * param1)
     {
         int v7;
 
-        v7 = sub_02027B50(v0->unk_00->unk_24);
+        v7 = Options_Frame(v0->unk_00->unk_24);
         ov76_0223C8EC(v0->unk_D4.unk_10, v0->unk_D4.unk_14, v7);
         ov76_0223C974(v0->unk_D4.unk_10, v0->unk_D4.unk_14, v7);
     }

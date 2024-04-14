@@ -1044,7 +1044,7 @@ static int ov97_0223161C (OverlayManager * param0, int * param1)
         v4->unk_2C04 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
         v4->unk_2C00 = SaveData_MysteryGift(v4->unk_2C04);
         v4->unk_2C08 = sub_02025E44(v4->unk_2C04);
-        v4->unk_2C0C = sub_02027B50(v4->unk_2C08);
+        v4->unk_2C0C = Options_Frame(v4->unk_2C08);
 
         v4->unk_2C14[0] = sub_0202DB00(v4->unk_2C00, 0);
         v4->unk_2C14[1] = sub_0202DB00(v4->unk_2C00, 1);

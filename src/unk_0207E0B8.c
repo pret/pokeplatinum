@@ -938,7 +938,7 @@ static void sub_0207EB6C (GameWindowLayout * param0, NARC * param1)
 
     sub_02002E98(0, 13 * 32, 12);
     sub_0200DAA4(param0->unk_00, 0, 1, 14, 0, 12);
-    sub_0200DD0C(param0->unk_00, 0, (1 + 9), 15, sub_02027B50(param0->unk_5A4->unk_0C), 12);
+    sub_0200DD0C(param0->unk_00, 0, (1 + 9), 15, Options_Frame(param0->unk_5A4->unk_0C), 12);
     sub_020070E8(param1, 3, param0->unk_00, 4, 0, 0, 0, 12);
     sub_02007130(param1, 4, 4, 0x20, 0x20, 12);
     sub_020070E8(param1, 12, param0->unk_00, 5, 0, 0, 0, 12);

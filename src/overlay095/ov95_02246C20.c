@@ -724,7 +724,7 @@ u16 ov95_02247668 (UnkStruct_ov95_02247628 * param0)
 
 int ov95_02247674 (UnkStruct_ov95_02247628 * param0)
 {
-    return sub_02027B50(param0->unk_00->unk_14);
+    return Options_Frame(param0->unk_00->unk_14);
 }
 
 int ov95_02247680 (UnkStruct_ov95_02247628 * param0)

@@ -1622,7 +1622,7 @@ void sub_0203E414 (TaskManager * param0, int param1)
     v2->unk_04 = GetTimestamp();
     v2->unk_0C.unk_08 = sub_0202CD88(v0->saveData);
     v2->unk_0C.unk_0C = 0;
-    v2->unk_0C.unk_10 = sub_02027B50(v1);
+    v2->unk_0C.unk_10 = Options_Frame(v1);
     v2->unk_0C.unk_04 = sub_0203E484(v0->saveData, param1);
 
     sub_0202CFEC(sub_0202CD88(v0->saveData), 5);

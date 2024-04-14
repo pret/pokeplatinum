@@ -104,7 +104,7 @@ void sub_0208A490 (UnkStruct_02089688 * param0)
     SpriteRenderer_LoadAnimResObjFromOpenNarc(v2, v3, v0, 11, 0, 1002);
 
     {
-        int v5 = sub_02027B50(param0->unk_38C.unk_20);
+        int v5 = Options_Frame(param0->unk_38C.unk_20);
 
         sub_0200DD0C(v1, 4, 1, 10, v5, 101);
         PaletteSys_LoadPalette(v4, 38, sub_0200DD08(v5), 101, 1, 0x20, 11 * 16);

@@ -223,8 +223,8 @@ void sub_020722AC (void * param0, int * param1)
     v0->unk_00 = 43;
     v0->unk_19 = 0;
     v0->unk_1A = 0xFF;
-    v0->unk_16 = sub_02027AC0(sub_02025E44(v1));
-    v0->unk_14 = sub_02027B50(sub_02025E44(v1));
+    v0->unk_16 = Options_GetTextFrameDelay(sub_02025E44(v1));
+    v0->unk_14 = Options_Frame(sub_02025E44(v1));
 
     sub_02072ED0(v0->unk_1C, 20, v0->unk_00);
     sub_02072F30(v0, v1, v0->unk_00);

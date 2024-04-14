@@ -759,7 +759,7 @@ static void ov65_02236A28 (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
 
     sub_02002E98(0, 1 * 0x20, param2);
 
-    v0 = sub_02027B50(sub_02025E44(param1->unk_08));
+    v0 = Options_Frame(sub_02025E44(param1->unk_08));
 
     sub_0200DD0C(param0->unk_00, 1, 1, 2, v0, param2);
     sub_0200DAA4(param0->unk_00, 1, (1 + (18 + 12)), 3, 0, param2);
@@ -805,7 +805,7 @@ static void ov65_02236C10 (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
     param0->unk_0C = Strbuf_Init(256, param2);
     param0->unk_10 = Strbuf_Init(256, param2);
     param0->unk_14 = 0xff;
-    param0->unk_16 = sub_02027AC0(sub_02025E44(param1->unk_08));
+    param0->unk_16 = Options_GetTextFrameDelay(sub_02025E44(param1->unk_08));
 }
 
 static void ov65_02236C5C (UnkStruct_ov65_02236840 * param0)
@@ -921,7 +921,7 @@ static void ov65_02236E50 (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
     sub_0201A9A4(&param0->unk_1F0);
     Strbuf_Free(v0);
 
-    v1 = sub_02027B50(sub_02025E44(param1->unk_08));
+    v1 = Options_Frame(sub_02025E44(param1->unk_08));
 
     sub_0200DD0C(param0->unk_00, 1, 1, 2, v1, param4);
 
@@ -1521,7 +1521,7 @@ static void ov65_022378C4 (UnkStruct_ov65_022367A8 * param0, const UnkStruct_020
     DeleteWaitDial(param0->unk_30.unk_24C);
 
     param0->unk_30.unk_24C = NULL;
-    v0 = sub_02027B50(sub_02025E44(param1->unk_08));
+    v0 = Options_Frame(sub_02025E44(param1->unk_08));
 
     sub_0200DD0C(param0->unk_30.unk_00, 1, 1, 2, v0, param2);
 }

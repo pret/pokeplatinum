@@ -1527,7 +1527,7 @@ static void sub_0208769C (UnkStruct_02087A10 * param0, NARC * param1)
     sub_0200710C(param1, 6, v0, 1, 0, (32 * 14 * 2), 1, 18);
     sub_0200710C(param1, 7, v0, 0, 0, (32 * 14 * 2), 1, 18);
     sub_02002E98(0, 12 * 32, 18);
-    sub_0200DD0C(param0->unk_160, 4, ((32 * 8)), 10, sub_02027B50(param0->unk_18), 18);
+    sub_0200DD0C(param0->unk_160, 4, ((32 * 8)), 10, Options_Frame(param0->unk_18), 18);
     sub_02002E98(4, 12 * 32, 18);
 
     param0->unk_510 = sub_020071B4(param1, 16, 1, &param0->unk_514, 18);

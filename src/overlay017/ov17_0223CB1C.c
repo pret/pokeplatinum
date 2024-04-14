@@ -599,7 +599,7 @@ static void ov17_0223D4A8 (UnkStruct_ov17_02247A48 * param0, NARC * param1)
     PaletteSys_LoadPalette(param0->unk_0C.unk_44, 45, 35, 22, 0, 0, 0);
     PaletteSys_LoadPalette(param0->unk_0C.unk_44, 45, 36, 22, 0, 0x20, 13 * 16);
 
-    v0 = sub_02027B50(param0->unk_00->unk_196C);
+    v0 = Options_Frame(param0->unk_00->unk_196C);
 
     sub_0200DD0C(param0->unk_0C.unk_24, 1, 1, 15, v0, 22);
     PaletteSys_LoadPalette(param0->unk_0C.unk_44, 38, sub_0200DD08(v0), 22, 0, 0x20, 14 * 16);

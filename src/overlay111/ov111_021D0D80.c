@@ -478,7 +478,7 @@ static BOOL ov111_021D0FC8 (UnkStruct_ov111_021D0F7C * param0)
             ov111_021D3468(param0->unk_390[v0], (20 + v0));
         }
 
-        ov111_021D35C0(&param0->unk_5C[15], sub_02027B50(param0->unk_164));
+        ov111_021D35C0(&param0->unk_5C[15], Options_Frame(param0->unk_164));
         ov111_021D24D4(param0);
         GXLayers_EngineBToggleLayers((GX_PLANEMASK_BG0), 1);
         param0->unk_12 = (4 - 1);

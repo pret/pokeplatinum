@@ -554,7 +554,7 @@ static void ov97_0222C254 (UnkStruct_ov97_0222C388 * param0)
     sub_02002E7C(0, 0 * 32, param0->unk_00);
     sub_0200DAA4(param0->unk_04, 0, 1, 1, 0, param0->unk_00);
 
-    v0 = sub_02027B50(param0->unk_14);
+    v0 = Options_Frame(param0->unk_14);
 
     sub_0200DD0C(param0->unk_04, 0, (1 + 9), 2, v0, param0->unk_00);
     sub_02006E84(116, 0, 0, 16 * 2 * 8, 16 * 2, param0->unk_00);

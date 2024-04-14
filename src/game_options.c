@@ -65,8 +65,8 @@ void Options_SetTextSpeed (Options *options, int textSpeed)
 {
     options->textSpeed = textSpeed;
 }
-//ravetodo Options_GetTextFrameDelay
-u8 sub_02027AC0 (const Options *options)
+
+u8 Options_GetTextFrameDelay (const Options *options)
 {
     int speed = Options_TextSpeed(options);
 
@@ -119,8 +119,7 @@ void Options_SetButtonMode (Options *options, int buttonMode)
     options->buttonMode = buttonMode;
 }
 
-//ravetodo Options_Frame
-int sub_02027B50 (const Options *options)
+int Options_Frame (const Options *options)
 {
     return options->frame;
 }

@@ -19,7 +19,7 @@ void Options_Init(Options *options);
 void Options_SetSystemButtonMode(SaveData *saveData, int buttonMode);
 int Options_TextSpeed(const Options *options);
 void Options_SetTextSpeed(Options *options, int textSpeed);
-u8 sub_02027AC0(const Options *options);
+u8 Options_GetTextFrameDelay(const Options *options);
 int Options_SoundMethod(const Options *options);
 void Options_SetSoundMethod(Options *options, int soundMethod);
 int Options_BattleScene(const Options *options);
@@ -28,7 +28,7 @@ int Options_BattleStyle(const Options *options);
 void Options_SetBattleStyle(Options *options, int battleStyle);
 int Options_ButtonMode(const Options *options);
 void Options_SetButtonMode(Options *options, int buttonMode);
-int sub_02027B50(const Options *options);
+int Options_Frame(const Options *options);
 void Options_SetFrame(Options *options, int frame);
 
 #endif // POKEPLATINUM_GAME_OPTIONS_H

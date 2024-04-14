@@ -68,7 +68,7 @@ void ov88_0223E9C4 (BGL * param0, Window * param1, Options * param2)
     BGL_AddWindow(param0, &param1[6], 1, 26, 21, 5, 2, 8, ((1 + (10 * 2)) + (10 * 2)));
     BGL_FillWindow(&param1[6], 0);
 
-    sub_0200DD0C(param0, 0, (512 - (9 + (18 + 12))), 10, sub_02027B50(param2), 26);
+    sub_0200DD0C(param0, 0, (512 - (9 + (18 + 12))), 10, Options_Frame(param2), 26);
     sub_0200DAA4(param0, 0, (512 - 9), 11, 0, 26);
 
     BGL_AddWindow(param0, &param1[21], 0, 2, 21, 20, 2, 13, 1);

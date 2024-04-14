@@ -1728,7 +1728,7 @@ static void ov16_0223D10C (OverlayManager * param0, BattleParams * param1)
     {
         int v4;
 
-        v4 = sub_02027B50(param1->unk_108);
+        v4 = Options_Frame(param1->unk_108);
 
         sub_0200E218(v0->unk_04, 1, 1, 10, v4, 5);
         PaletteSys_LoadPalette(v0->unk_0C, 14, 7, 5, 0, 0x20, 0xb * 0x10);

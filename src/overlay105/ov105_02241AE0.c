@@ -768,7 +768,7 @@ static void ov105_0224227C (UnkStruct_ov105_02241FF4 * param0)
     }
 
     ov105_02244FF8(param0, &param0->unk_50[2 + param0->unk_11], ov105_022461A0(param0->unk_30C), 0, 0, 15, 2, 0, 0, param0->unk_31C);
-    ov105_0224628C(&param0->unk_50[5], sub_02027B50(param0->unk_138));
+    ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->unk_138));
     ov105_02244EE8(param0, 0, (param0->unk_11 + 1));
 
     param0->unk_10 = ov105_02244D14(param0, 0);
@@ -818,7 +818,7 @@ static void ov105_022424CC (UnkStruct_ov105_02241FF4 * param0)
     int v0;
 
     ov105_02245528(param0, 0);
-    ov105_0224628C(&param0->unk_50[5], sub_02027B50(param0->unk_138));
+    ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->unk_138));
 
     if (ov104_0223AED4(param0->unk_09) == 0) {
         param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_1A, ((NELEMS(Unk_ov105_02246340)) - 1), 2, param0->unk_334, Unk_ov105_02246340, Unk_ov105_022462D0);
@@ -1642,7 +1642,7 @@ static BOOL ov105_02243A3C (UnkStruct_ov105_02241FF4 * param0)
         v3 = ov105_022461A0(param0->unk_30C);
 
         ov105_02244FF8(param0, &param0->unk_50[2], v3, 0, 0, 15, 2, 0, 0, param0->unk_320);
-        ov105_0224628C(&param0->unk_50[5], sub_02027B50(param0->unk_138));
+        ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->unk_138));
 
         param0->unk_10 = ov105_02244D14(param0, 13);
         param0->unk_08++;
@@ -1766,7 +1766,7 @@ static void ov105_02243DE4 (UnkStruct_ov105_02241FF4 * param0)
     ov105_02246260(param0->unk_4C, &param0->unk_50[7]);
     param0->unk_10 = ov105_02244C60(param0, &param0->unk_50[7], 23, 1, 1, 0xFF, 1, 2, 15, 0);
     param0->unk_10 = ov105_02244CC0(param0, &param0->unk_50[7], 24, 1, 1 + 16, 0xFF, 1, 2, 15, 0);
-    ov105_0224628C(&param0->unk_50[5], sub_02027B50(param0->unk_138));
+    ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->unk_138));
     param0->unk_10 = ov105_02244D14(param0, 13);
     sub_0201A9A4(&param0->unk_50[7]);
 }
@@ -1782,7 +1782,7 @@ static BOOL ov105_02243E84 (UnkStruct_ov105_02241FF4 * param0)
         sub_0201A9A4(&param0->unk_50[2]);
         sub_02007DC8(param0->unk_12C[0]);
 
-        ov105_0224628C(&param0->unk_50[5], sub_02027B50(param0->unk_138));
+        ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->unk_138));
         param0->unk_10 = ov105_02244D14(param0, 10);
         ov105_02246074(param0->unk_30C, 0);
 
@@ -2105,9 +2105,9 @@ static BOOL ov105_02244424 (UnkStruct_ov105_02241FF4 * param0)
         v2 = Pokemon_GetBoxPokemon(v1);
 
         ov105_02244F00(param0, 2, v2);
-        ov105_0224628C(&param0->unk_50[5], sub_02027B50(param0->unk_138));
+        ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->unk_138));
 
-        param0->unk_10 = ov105_02244C60(param0, &param0->unk_50[5], 16, 1, 1, sub_02027AC0(sub_02025E44(param0->unk_13C)), 1, 2, 15, 1);
+        param0->unk_10 = ov105_02244C60(param0, &param0->unk_50[5], 16, 1, 1, Options_GetTextFrameDelay(sub_02025E44(param0->unk_13C)), 1, 2, 15, 1);
 
         sub_0201A9A4(&param0->unk_50[5]);
 

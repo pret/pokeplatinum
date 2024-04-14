@@ -464,7 +464,7 @@ static BOOL ov106_02241E5C (UnkStruct_ov106_02243118 * param0)
                 param0->unk_08 = 3;
                 break;
             } else {
-                ov106_02243758(&param0->unk_4C[0], sub_02027B50(param0->unk_B4));
+                ov106_02243758(&param0->unk_4C[0], Options_Frame(param0->unk_B4));
                 param0->unk_0A = ov106_02242978(param0, 0, 1);
                 param0->unk_1A = param0->unk_0D;
                 param0->unk_17 = 1;
@@ -504,8 +504,8 @@ static BOOL ov106_02241E5C (UnkStruct_ov106_02243118 * param0)
         }
         break;
     case 4:
-        ov106_02243758(&param0->unk_4C[0], sub_02027B50(param0->unk_B4));
-        param0->unk_0A = ov106_02242918(param0, &param0->unk_4C[0], 32, 1, 1, sub_02027AC0(sub_02025E44(param0->unk_B8)), 1, 2, 15, 1);
+        ov106_02243758(&param0->unk_4C[0], Options_Frame(param0->unk_B4));
+        param0->unk_0A = ov106_02242918(param0, &param0->unk_4C[0], 32, 1, 1, Options_GetTextFrameDelay(sub_02025E44(param0->unk_B8)), 1, 2, 15, 1);
         sub_0201A954(&param0->unk_4C[0]);
         param0->unk_08 = 5;
         break;
@@ -579,7 +579,7 @@ static BOOL ov106_02242108 (UnkStruct_ov106_02243118 * param0)
         break;
     case 3:
         ov106_02243664(param0->unk_284, 0);
-        ov106_02243758(&param0->unk_4C[0], sub_02027B50(param0->unk_B4));
+        ov106_02243758(&param0->unk_4C[0], Options_Frame(param0->unk_B4));
         ov104_0222E5D0(param0->unk_24, 0);
 
         param0->unk_0A = ov106_02242978(param0, 11, 1);
@@ -1638,7 +1638,7 @@ static void ov106_02243224 (UnkStruct_ov106_02243118 * param0)
     int v1;
 
     ov106_02243664(param0->unk_284, 0);
-    ov106_02243758(&param0->unk_4C[0], sub_02027B50(param0->unk_B4));
+    ov106_02243758(&param0->unk_4C[0], Options_Frame(param0->unk_B4));
     StringTemplate_SetPokemonTypeName(param0->unk_24, 0, ov104_0223B5A4(param0->unk_0D));
 
     v0 = sub_020301E0(ov106_02243090(param0->unk_0D), param0->unk_294);

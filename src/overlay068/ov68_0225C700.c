@@ -504,7 +504,7 @@ static void ov68_0225C9A0 (UnkStruct_ov68_0225C91C * param0, Options * param1, u
     sub_02002E98(0, 4 * 0x20, param2);
 
     {
-        u8 v1 = sub_02027B50(param1);
+        u8 v1 = Options_Frame(param1);
         sub_0200DD0C(param0->unk_00, 1, 1, 5, v1, param2);
     }
 
@@ -921,7 +921,7 @@ static void ov68_0225D128 (UnkStruct_ov68_0225D128 * param0, UnkStruct_ov68_0225
         Options * v0;
 
         v0 = sub_02025E44(param2);
-        param0->unk_04 = sub_02027AC0(v0);
+        param0->unk_04 = Options_GetTextFrameDelay(v0);
     }
 }
 

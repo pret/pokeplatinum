@@ -4429,7 +4429,7 @@ const StringTemplate * ov19_021D5DF0 (const UnkStruct_ov19_021D5DF8 * param0)
 
 int ov19_021D5DF8 (const UnkStruct_ov19_021D5DF8 * param0)
 {
-    return sub_02027B50(param0->unk_1A4);
+    return Options_Frame(param0->unk_1A4);
 }
 
 u32 ov19_021D5E08 (const UnkStruct_ov19_021D4DF0 * param0)
