@@ -3,7 +3,7 @@
 
 #include "struct_decls/sys_task.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "overlay022/struct_ov22_0225500C.h"
 #include "overlay022/struct_ov22_02255040.h"
 #include "overlay022/struct_ov22_02257F50.h"
@@ -17,7 +17,6 @@
 #include "heap.h"
 #include "unk_0201CCF0.h"
 #include "unk_0201D15C.h"
-#include "unk_02022594.h"
 #include "overlay022/ov22_02254DE0.h"
 #include "overlay022/ov22_02257F50.h"
 #include "overlay022/ov22_0225894C.h"
@@ -318,24 +317,24 @@ void ov22_022582C0 (UnkStruct_ov22_02257F50 * param0, int param1, int param2)
 
 BOOL ov22_022582E8 (UnkStruct_ov22_02257F50 * param0)
 {
-    UnkUnion_020225E0 v0;
+    TouchScreenHitTable v0;
 
-    v0.val1.unk_00 = (16 + 2);
-    v0.val1.unk_01 = (16 + 2) + (129 - (2 * 2));
-    v0.val1.unk_02 = (8 + 2);
-    v0.val1.unk_03 = (8 + 2) + (112 - (2 * 2));
+    v0.rect.top = (16 + 2);
+    v0.rect.bottom = (16 + 2) + (129 - (2 * 2));
+    v0.rect.left = (8 + 2);
+    v0.rect.right = (8 + 2) + (112 - (2 * 2));
 
-    return sub_02022734(&v0);
+    return TouchScreen_LocationHeld(&v0);
 }
 
 BOOL ov22_02258304 (UnkStruct_ov22_02257F50 * param0, int param1, int param2)
 {
-    UnkUnion_020225E0 v0;
+    TouchScreenHitTable v0;
 
-    v0.val1.unk_00 = (16 + 2);
-    v0.val1.unk_01 = (16 + 2) + (129 - (2 * 2));
-    v0.val1.unk_02 = (8 + 2);
-    v0.val1.unk_03 = (8 + 2) + (112 - (2 * 2));
+    v0.rect.top = (16 + 2);
+    v0.rect.bottom = (16 + 2) + (129 - (2 * 2));
+    v0.rect.left = (8 + 2);
+    v0.rect.right = (8 + 2) + (112 - (2 * 2));
 
     return sub_02022830(&v0, param1, param2);
 }

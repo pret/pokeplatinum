@@ -32,7 +32,7 @@
 
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -3091,7 +3091,7 @@ static void ov70_02260744 (UnkStruct_ov70_02260744 * param0, UnkStruct_ov70_0225
     }
 
     {
-        static const UnkUnion_020225E0 v1 = {32, 160, 40, 216};
+        static const TouchScreenHitTable v1 = {32, 160, 40, 216};
         param0->unk_1C = sub_02023FCC(&v1, 1, ov70_02260A50, param0, param3);
     }
 

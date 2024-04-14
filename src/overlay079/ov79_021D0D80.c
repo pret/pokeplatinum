@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay007/struct_ov7_0224F358.h"
@@ -33,7 +33,6 @@
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02022594.h"
 #include "strbuf.h"
 #include "game_options.h"
 #include "unk_0208C098.h"
@@ -215,7 +214,7 @@ static int ov79_021D0FB0 (UnkStruct_ov79_021D0E1C * param0)
 {
     int v0;
     u16 v1;
-    static const UnkUnion_02022594 v2[] = {
+    static const TouchScreenRect v2[] = {
         {0x22, 0x3E, 0x60, 0xA0},
         {0x52, 0x6E, 0xA0, 0xE0},
         {0x94, 0xB0, 0x88, 0xC8},

@@ -26,7 +26,7 @@
 #include "struct_defs/struct_020127E8.h"
 #include "functypes/sys_task_func.h"
 #include "struct_defs/sprite_manager_allocation.h"
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0209C370.h"
 #include "battle/struct_ov16_02260C00.h"
@@ -57,7 +57,6 @@
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
 #include "unk_020218BC.h"
-#include "unk_02022594.h"
 #include "strbuf.h"
 #include "pokemon.h"
 #include "move_table.h"
@@ -280,7 +279,7 @@ typedef struct {
         };
         u16 unk_0C_val2[4];
     };
-    const UnkUnion_02022594 * unk_14;
+    const TouchScreenRect * unk_14;
     const int * unk_18;
     const u8 * unk_1C;
     int (* unk_20)(UnkStruct_ov16_02268A14 * param0, int param1);
@@ -430,7 +429,7 @@ static const UnkStruct_ov97_0222DB78 Unk_ov16_02270540[] = {
     {0x0, 0x0, 0x800, 0x0, 0x1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0x7800, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01, 0x0, 0x0, 0x0, 0x0}
 };
 
-static const UnkUnion_02022594 Unk_ov16_02270350[] = {
+static const TouchScreenRect Unk_ov16_02270350[] = {
     {0x18, 0x90, 0x0, 0xFF},
     {0x90, 0xC0, 0x0, 0x50},
     {0x90, 0xC0, 0xB0, 0xFF},
@@ -457,12 +456,12 @@ __attribute__((aligned(4))) static const u8 Unk_ov16_022701EC[2][3] = {
     {0x1, 0x3, 0x2}
 };
 
-static const UnkUnion_02022594 Unk_ov16_02270214[] = {
+static const TouchScreenRect Unk_ov16_02270214[] = {
     {0x18, 0x90, 0x0, 0xFF},
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-static const UnkUnion_02022594 Unk_ov16_02270258[] = {
+static const TouchScreenRect Unk_ov16_02270258[] = {
     {0x28, 0x80, 0x18, 0xE8},
     {0x98, 0xC0, 0x58, 0xA8},
     {0xFF, 0x0, 0x0, 0x0}
@@ -483,7 +482,7 @@ __attribute__((aligned(4))) static const u8 Unk_ov16_022701CC[2][1] = {
     {0x1}
 };
 
-static const UnkUnion_02022594 Unk_ov16_0227038C[] = {
+static const TouchScreenRect Unk_ov16_0227038C[] = {
     {0x98, 0xC0, 0x8, 0xF8},
     {0x18, 0x50, 0x0, 0x80},
     {0x18, 0x50, 0x80, 0xFF},
@@ -514,7 +513,7 @@ __attribute__((aligned(4))) static const u8 Unk_ov16_022701E4[3][2] = {
     {0x0, 0x0}
 };
 
-static const UnkUnion_02022594 Unk_ov16_0227024C[] = {
+static const TouchScreenRect Unk_ov16_0227024C[] = {
     {0x28, 0x60, 0x8, 0xF8},
     {0x70, 0xA8, 0x8, 0xF8},
     {0xFF, 0x0, 0x0, 0x0}
@@ -535,7 +534,7 @@ __attribute__((aligned(4))) static const u8 Unk_ov16_022701C8[2][1] = {
     {0x1}
 };
 
-static const UnkUnion_02022594 Unk_ov16_022703BC[] = {
+static const TouchScreenRect Unk_ov16_022703BC[] = {
     {0x58, 0x90, 0x0, 0x78},
     {0x8, 0x50, 0x88, 0xFF},
     {0x58, 0x90, 0x88, 0xFF},
@@ -566,7 +565,7 @@ __attribute__((aligned(4))) static const u8 Unk_ov16_022701DC[3][2] = {
     {0x4, 0x4}
 };
 
-static const UnkUnion_02022594 Unk_ov16_02270204[] = {
+static const TouchScreenRect Unk_ov16_02270204[] = {
     {0x98, 0xC0, 0x0, 0xFF},
     {0xFF, 0x0, 0x0, 0x0}
 };
@@ -3834,7 +3833,7 @@ static int ov16_0226BEC0 (UnkStruct_ov16_02268A14 * param0, int param1)
         v0->unk_02 = v6->unk_00;
         v0->unk_01 = v6->unk_01;
         v4 = Unk_ov16_022701EC[v0->unk_01][v0->unk_02];
-        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].val1.unk_02 + 8, v2->unk_14[v4].val1.unk_03 - 8, v2->unk_14[v4].val1.unk_00 + 8, v2->unk_14[v4].val1.unk_01 - 8, ((192 + 80) << FX32_SHIFT));
+        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
         return 0xffffffff;
     }
 
@@ -3874,13 +3873,13 @@ static int ov16_0226BEC0 (UnkStruct_ov16_02268A14 * param0, int param1)
     case PAD_KEY_LEFT:
     case PAD_KEY_RIGHT:
         v4 = Unk_ov16_022701EC[v0->unk_01][v0->unk_02];
-        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].val1.unk_02 + 8, v2->unk_14[v4].val1.unk_03 - 8, v2->unk_14[v4].val1.unk_00 + 8, v2->unk_14[v4].val1.unk_01 - 8, ((192 + 80) << FX32_SHIFT));
+        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
         break;
     case PAD_BUTTON_A:
         return Unk_ov16_022701EC[v0->unk_01][v0->unk_02];
     case PAD_BUTTON_B:
         if (param0->unk_66F == 1) {
-            for (v3 = 0; v3 < v2->unk_14[v3].val1.unk_00 != 0xff; v3++) {
+            for (v3 = 0; v3 < v2->unk_14[v3].rect.top != 0xff; v3++) {
                 if (4 == v2->unk_18[v3]) {
                     return v3;
                 }
@@ -3929,7 +3928,7 @@ static int ov16_0226C100 (UnkStruct_ov16_02268A14 * param0, int param1)
         v0->unk_02 = 0;
         v0->unk_01 = 0;
         v4 = Unk_ov16_022701CC[v0->unk_01][v0->unk_02];
-        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].val1.unk_02 + 8, v2->unk_14[v4].val1.unk_03 - 8, v2->unk_14[v4].val1.unk_00 + 8, v2->unk_14[v4].val1.unk_01 - 8, ((192 + 80) << FX32_SHIFT));
+        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
         return 0xffffffff;
     }
 
@@ -3941,7 +3940,7 @@ static int ov16_0226C100 (UnkStruct_ov16_02268A14 * param0, int param1)
     case PAD_KEY_LEFT:
     case PAD_KEY_RIGHT:
         v4 = Unk_ov16_022701CC[v0->unk_01][v0->unk_02];
-        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].val1.unk_02 + 8, v2->unk_14[v4].val1.unk_03 - 8, v2->unk_14[v4].val1.unk_00 + 8, v2->unk_14[v4].val1.unk_01 - 8, ((192 + 80) << FX32_SHIFT));
+        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
         break;
     case PAD_BUTTON_A:
         return Unk_ov16_022701CC[v0->unk_01][v0->unk_02];
@@ -3980,7 +3979,7 @@ static int ov16_0226C1F8 (UnkStruct_ov16_02268A14 * param0, int param1)
             v3 = Unk_ov16_022701E4[v0->unk_01][v0->unk_02];
         }
 
-        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v3].val1.unk_02 + 8, v2->unk_14[v3].val1.unk_03 - 8, v2->unk_14[v3].val1.unk_00 + 8, v2->unk_14[v3].val1.unk_01 - 8, ((192 + 80) << FX32_SHIFT));
+        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
         return 0xffffffff;
     }
 
@@ -3993,12 +3992,12 @@ static int ov16_0226C1F8 (UnkStruct_ov16_02268A14 * param0, int param1)
     case PAD_KEY_LEFT:
     case PAD_KEY_RIGHT:
         v3 = Unk_ov16_022701E4[v0->unk_01][v0->unk_02];
-        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v3].val1.unk_02 + 8, v2->unk_14[v3].val1.unk_03 - 8, v2->unk_14[v3].val1.unk_00 + 8, v2->unk_14[v3].val1.unk_01 - 8, ((192 + 80) << FX32_SHIFT));
+        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
         break;
     case PAD_BUTTON_A:
         return Unk_ov16_022701E4[v0->unk_01][v0->unk_02];
     case PAD_BUTTON_B:
-        for (v4 = 0; v4 < v2->unk_14[v4].val1.unk_00 != 0xff; v4++) {
+        for (v4 = 0; v4 < v2->unk_14[v4].rect.top != 0xff; v4++) {
             if (0xff == v2->unk_18[v4]) {
                 return v4;
             }
@@ -4089,20 +4088,20 @@ static int ov16_0226C3C8 (UnkStruct_ov16_02268A14 * param0, int param1)
         v12 = 2;
 
         if ((v7[5 - 2] == 1) && (v7[3 - 2] == 1)) {
-            v21 = v2->unk_14[3].val1.unk_02 + 8;
-            v22 = v2->unk_14[1].val1.unk_03 - 8;
-            v19 = v2->unk_14[3].val1.unk_00 + 8;
-            v20 = v2->unk_14[3].val1.unk_01 - 8;
+            v21 = v2->unk_14[3].rect.left + 8;
+            v22 = v2->unk_14[1].rect.right - 8;
+            v19 = v2->unk_14[3].rect.top + 8;
+            v20 = v2->unk_14[3].rect.bottom - 8;
         } else if ((v7[5 - 2] == 1) && (v7[3 - 2] == 0)) {
-            v21 = v2->unk_14[3].val1.unk_02 + 8;
-            v22 = v2->unk_14[3].val1.unk_03 - 8;
-            v19 = v2->unk_14[3].val1.unk_00 + 8;
-            v20 = v2->unk_14[3].val1.unk_01 - 8;
+            v21 = v2->unk_14[3].rect.left + 8;
+            v22 = v2->unk_14[3].rect.right - 8;
+            v19 = v2->unk_14[3].rect.top + 8;
+            v20 = v2->unk_14[3].rect.bottom - 8;
         } else if ((v7[5 - 2] == 0) && (v7[3 - 2] == 1)) {
-            v21 = v2->unk_14[1].val1.unk_02 + 8;
-            v22 = v2->unk_14[1].val1.unk_03 - 8;
-            v19 = v2->unk_14[1].val1.unk_00 + 8;
-            v20 = v2->unk_14[1].val1.unk_01 - 8;
+            v21 = v2->unk_14[1].rect.left + 8;
+            v22 = v2->unk_14[1].rect.right - 8;
+            v19 = v2->unk_14[1].rect.top + 8;
+            v20 = v2->unk_14[1].rect.bottom - 8;
         } else {
             v21 = -1;
             v22 = -1;
@@ -4111,20 +4110,20 @@ static int ov16_0226C3C8 (UnkStruct_ov16_02268A14 * param0, int param1)
         }
 
         if ((v7[2 - 2] == 1) && (v7[4 - 2] == 1)) {
-            v25 = v2->unk_14[0].val1.unk_02 + 8;
-            v26 = v2->unk_14[2].val1.unk_03 - 8;
-            v23 = v2->unk_14[0].val1.unk_00 + 8;
-            v24 = v2->unk_14[0].val1.unk_01 - 8;
+            v25 = v2->unk_14[0].rect.left + 8;
+            v26 = v2->unk_14[2].rect.right - 8;
+            v23 = v2->unk_14[0].rect.top + 8;
+            v24 = v2->unk_14[0].rect.bottom - 8;
         } else if ((v7[2 - 2] == 1) && (v7[4 - 2] == 0)) {
-            v25 = v2->unk_14[0].val1.unk_02 + 8;
-            v26 = v2->unk_14[0].val1.unk_03 - 8;
-            v23 = v2->unk_14[0].val1.unk_00 + 8;
-            v24 = v2->unk_14[0].val1.unk_01 - 8;
+            v25 = v2->unk_14[0].rect.left + 8;
+            v26 = v2->unk_14[0].rect.right - 8;
+            v23 = v2->unk_14[0].rect.top + 8;
+            v24 = v2->unk_14[0].rect.bottom - 8;
         } else if ((v7[2 - 2] == 0) && (v7[4 - 2] == 1)) {
-            v25 = v2->unk_14[2].val1.unk_02 + 8;
-            v26 = v2->unk_14[2].val1.unk_03 - 8;
-            v23 = v2->unk_14[2].val1.unk_00 + 8;
-            v24 = v2->unk_14[2].val1.unk_01 - 8;
+            v25 = v2->unk_14[2].rect.left + 8;
+            v26 = v2->unk_14[2].rect.right - 8;
+            v23 = v2->unk_14[2].rect.top + 8;
+            v24 = v2->unk_14[2].rect.bottom - 8;
         } else {
             v25 = -1;
             v26 = -1;
@@ -4208,7 +4207,7 @@ static int ov16_0226C3C8 (UnkStruct_ov16_02268A14 * param0, int param1)
             }
 
             v4 = Unk_ov16_022701DC[v0->unk_01][v0->unk_02];
-            ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].val1.unk_02 + 8, v2->unk_14[v4].val1.unk_03 - 8, v2->unk_14[v4].val1.unk_00 + 8, v2->unk_14[v4].val1.unk_01 - 8, ((192 + 80) << FX32_SHIFT));
+            ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
         } else {
             v0->unk_02 = 0;
             v0->unk_01 = 0;
@@ -4242,7 +4241,7 @@ static int ov16_0226C3C8 (UnkStruct_ov16_02268A14 * param0, int param1)
     case PAD_KEY_RIGHT:
         if (v5 == 0) {
             v4 = Unk_ov16_022701DC[v0->unk_01][v0->unk_02];
-            ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].val1.unk_02 + 8, v2->unk_14[v4].val1.unk_03 - 8, v2->unk_14[v4].val1.unk_00 + 8, v2->unk_14[v4].val1.unk_01 - 8, ((192 + 80) << FX32_SHIFT));
+            ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
         } else {
             if (v0->unk_01 == 0) {
                 if (((v27 == -1) && (v28 == -1)) || (v17 == -1)) {
@@ -4259,7 +4258,7 @@ static int ov16_0226C3C8 (UnkStruct_ov16_02268A14 * param0, int param1)
                     ov16_0226DE04(param0->unk_6B8);
                 }
             } else {
-                ov16_0226DD9C(param0->unk_6B8, v2->unk_14[4].val1.unk_02 + 8, v2->unk_14[4].val1.unk_03 - 8, v2->unk_14[4].val1.unk_00 + 8, v2->unk_14[4].val1.unk_01 - 8, ((192 + 80) << FX32_SHIFT));
+                ov16_0226DD9C(param0->unk_6B8, v2->unk_14[4].rect.left + 8, v2->unk_14[4].rect.right - 8, v2->unk_14[4].rect.top + 8, v2->unk_14[4].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
                 ov16_0226DE04(param0->unk_6B8);
             }
         }
@@ -4328,7 +4327,7 @@ static int ov16_0226CA14 (UnkStruct_ov16_02268A14 * param0, int param1)
 
     if (param1 == 1) {
         v3 = Unk_ov16_022701C8[v0->unk_01][v0->unk_02];
-        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v3].val1.unk_02 + 8, v2->unk_14[v3].val1.unk_03 - 8, v2->unk_14[v3].val1.unk_00 + 8, v2->unk_14[v3].val1.unk_01 - 8, ((192 + 80) << FX32_SHIFT));
+        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
         return 0xffffffff;
     }
 
@@ -4340,7 +4339,7 @@ static int ov16_0226CA14 (UnkStruct_ov16_02268A14 * param0, int param1)
     case PAD_KEY_LEFT:
     case PAD_KEY_RIGHT:
         v3 = Unk_ov16_022701C8[v0->unk_01][v0->unk_02];
-        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v3].val1.unk_02 + 8, v2->unk_14[v3].val1.unk_03 - 8, v2->unk_14[v3].val1.unk_00 + 8, v2->unk_14[v3].val1.unk_01 - 8, ((192 + 80) << FX32_SHIFT));
+        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
         break;
     case PAD_BUTTON_A:
         v3 = Unk_ov16_022701C8[v0->unk_01][v0->unk_02];

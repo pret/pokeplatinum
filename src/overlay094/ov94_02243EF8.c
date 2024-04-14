@@ -5,7 +5,7 @@
 #include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02022550_decl.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "overlay094/struct_ov94_0223FD4C.h"
 #include "overlay115/struct_ov115_02261520.h"
 
@@ -15,7 +15,6 @@
 #include "heap.h"
 #include "unk_0201CCF0.h"
 #include "unk_020218BC.h"
-#include "unk_02022594.h"
 #include "unk_0205C980.h"
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_02243EF8.h"
@@ -213,7 +212,7 @@ static void ov94_022441A0 (GraphicElementData * param0, int param1, int param2)
     sub_02021C50(param0, &v0);
 }
 
-static const UnkUnion_02022594 Unk_ov94_0224633E[] = {
+static const TouchScreenRect Unk_ov94_0224633E[] = {
     {0x26, 0x46, 0x70, 0x90},
     {0x27, 0x47, 0x50, 0x70},
     {0x27, 0x47, 0x90, 0xB0},

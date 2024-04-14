@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay021/struct_ov21_021D13FC.h"
@@ -36,7 +36,6 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201F834.h"
 #include "unk_020218BC.h"
-#include "unk_02022594.h"
 #include "unk_02023FCC.h"
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
@@ -63,9 +62,9 @@ typedef struct {
 
 typedef struct {
     UnkStruct_02023FCC * unk_00;
-    UnkUnion_020225E0 * unk_04;
+    TouchScreenHitTable * unk_04;
     UnkStruct_ov21_021E5228 unk_08;
-    UnkUnion_020225E0 * unk_10;
+    TouchScreenHitTable * unk_10;
     UnkStruct_02023FCC * unk_14;
     int unk_18[2];
     BOOL unk_20;
@@ -498,20 +497,20 @@ static BOOL ov21_021E50EC (UnkStruct_ov21_021E5004 * param0, UnkStruct_ov21_021E
 
 static void ov21_021E5128 (UnkStruct_ov21_021E51DC * param0, UnkStruct_ov21_021E4D90 * param1, int param2)
 {
-    param0->unk_04 = Heap_AllocFromHeap(param2, sizeof(UnkUnion_020225E0) * 3);
-    param0->unk_10 = Heap_AllocFromHeap(param2, sizeof(UnkUnion_020225E0) * 2);
+    param0->unk_04 = Heap_AllocFromHeap(param2, sizeof(TouchScreenHitTable) * 3);
+    param0->unk_10 = Heap_AllocFromHeap(param2, sizeof(TouchScreenHitTable) * 2);
 
     ov21_021D154C(&param0->unk_04[0], 67 - 14, 67 + 14, 64 - 42, 64 + 42);
 
-    param0->unk_04[1].val2.unk_00 = 0xfe;
-    param0->unk_04[1].val2.unk_01 = 51;
-    param0->unk_04[1].val2.unk_02 = 157;
-    param0->unk_04[1].val2.unk_03 = 32;
+    param0->unk_04[1].circle.code = TOUCHSCREEN_USE_CIRCLE;
+    param0->unk_04[1].circle.x = 51;
+    param0->unk_04[1].circle.y = 157;
+    param0->unk_04[1].circle.r = 32;
 
-    param0->unk_04[2].val2.unk_00 = 0xfe;
-    param0->unk_04[2].val2.unk_01 = (131 - -48);
-    param0->unk_04[2].val2.unk_02 = (99 - -16) + 8;
-    param0->unk_04[2].val2.unk_03 = 72;
+    param0->unk_04[2].circle.code = TOUCHSCREEN_USE_CIRCLE;
+    param0->unk_04[2].circle.x = (131 - -48);
+    param0->unk_04[2].circle.y = (99 - -16) + 8;
+    param0->unk_04[2].circle.r = 72;
 
     ov21_021D154C(&param0->unk_10[0], 131 - 24, 131 + 24, 180 - 24, 180 + 24);
     ov21_021D154C(&param0->unk_10[1], 166 - 16, 166 + 16, 230 - 16, 230 + 16);
@@ -645,8 +644,8 @@ static void ov21_021E530C (u32 param0, UnkStruct_ov21_021E4D90 * param1, UnkStru
         break;
     case 2:
         if (param2->unk_2C) {
-            param2->unk_20 = sub_02022734(&param2->unk_10[0]);
-            param2->unk_20 |= sub_02022734(&param2->unk_10[1]);
+            param2->unk_20 = TouchScreen_LocationHeld(&param2->unk_10[0]);
+            param2->unk_20 |= TouchScreen_LocationHeld(&param2->unk_10[1]);
         } else {
             param2->unk_20 = 1;
         }

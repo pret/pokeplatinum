@@ -10,7 +10,7 @@
 
 #include "overlay084/const_ov84_02241130.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0202D7B0.h"
 #include "functypes/funcptr_02069238.h"
 #include "struct_defs/struct_0207CB08.h"
@@ -47,7 +47,6 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
-#include "unk_02022594.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
@@ -65,7 +64,7 @@
 
 typedef struct {
     const u8 * unk_00;
-    const UnkUnion_02022594 * unk_04;
+    const TouchScreenRect * unk_04;
 } UnkStruct_ov84_022410C8;
 
 typedef int (* UnkFuncPtr_ov84_0223DA04)(UnkStruct_ov84_0223B5A0 *);
@@ -210,7 +209,7 @@ static const u8 Unk_ov84_02241140[] = {
     0x4
 };
 
-static const UnkUnion_02022594 Unk_ov84_02240FE8[] = {
+static const TouchScreenRect Unk_ov84_02240FE8[] = {
     {0x20, 0x47, 0x8, 0x2F},
     {0x50, 0x77, 0x10, 0x37},
     {0x78, 0x9F, 0x28, 0x4F},
@@ -233,7 +232,7 @@ static const u8 Unk_ov84_02241110[] = {
     0x4
 };
 
-static const UnkUnion_02022594 Unk_ov84_02240ED0[] = {
+static const TouchScreenRect Unk_ov84_02240ED0[] = {
     {0x20, 0x47, 0x8, 0x2F},
     {0x78, 0x9F, 0x28, 0x4F},
     {0x78, 0x9F, 0xB0, 0xD7},
@@ -246,7 +245,7 @@ static const u8 Unk_ov84_02240E94[] = {
     0x12
 };
 
-static const UnkUnion_02022594 Unk_ov84_02240EA0[] = {
+static const TouchScreenRect Unk_ov84_02240EA0[] = {
     {0x90, 0xB7, 0x88, 0xAF},
     {0xFF, 0x0, 0x0, 0x0}
 };
@@ -268,7 +267,7 @@ static const u8 Unk_ov84_02241120[] = {
     0x4
 };
 
-static const UnkUnion_02022594 Unk_ov84_02240FC8[] = {
+static const TouchScreenRect Unk_ov84_02240FC8[] = {
     {0x50, 0x77, 0x10, 0x37},
     {0x78, 0x9F, 0x28, 0x4F},
     {0x90, 0xB7, 0x50, 0x77},
@@ -373,18 +372,18 @@ static const u16 Unk_ov84_02241096[] = {
     0x1002
 };
 
-static const UnkUnion_02022594 Unk_ov84_02240E98[] = {
+static const TouchScreenRect Unk_ov84_02240E98[] = {
     {0x38, 0x67, 0x68, 0x97},
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-static const UnkUnion_020225E0 Unk_ov84_02240EA8[] = {
+static const TouchScreenHitTable Unk_ov84_02240EA8[] = {
     {0xFE, 0x80, 0x50, 0x1A},
     {0xFE, 0x80, 0x50, 0x40},
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-static const UnkUnion_020225E0 Unk_ov84_02240EB4[] = {
+static const TouchScreenHitTable Unk_ov84_02240EB4[] = {
     {0xFE, 0x80, 0x50, 0x10},
     {0xFE, 0x80, 0x50, 0x50},
     {0xFF, 0x0, 0x0, 0x0}
@@ -1398,7 +1397,7 @@ static u8 ov84_0223C920 (UnkStruct_ov84_0223B5A0 * param0)
 
     v0 = &param0->unk_429;
 
-    if (sub_0202278C() == 0) {
+    if (TouchScreen_Touched() == 0) {
         v0->unk_07_4 = 1;
     }
 

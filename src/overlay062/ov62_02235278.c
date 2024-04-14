@@ -5,7 +5,7 @@
 
 #include "struct_decls/sys_task.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0208C06C.h"
 #include "overlay062/struct_ov62_022354A4.h"
 #include "overlay062/struct_ov62_02235580.h"
@@ -18,7 +18,6 @@
 #include "unk_02012744.h"
 #include "heap.h"
 #include "gx_layers.h"
-#include "unk_02022594.h"
 #include "unk_0208B284.h"
 #include "overlay062/ov62_0222F2C0.h"
 #include "overlay062/ov62_022300D8.h"
@@ -66,16 +65,16 @@ static BOOL ov62_02235278 (UnkStruct_0208C06C * param0)
 
 static int ov62_022352DC (void)
 {
-    static const UnkUnion_020225E0 v0[] = {
+    static const TouchScreenHitTable v0[] = {
         {0, 192, 0, 8},
         {0, 192, 248, 256},
     };
 
-    if (sub_02022734(&v0[0])) {
+    if (TouchScreen_LocationHeld(&v0[0])) {
         return 1;
     }
 
-    if (sub_02022734(&v0[1])) {
+    if (TouchScreen_LocationHeld(&v0[1])) {
         return 2;
     }
 

@@ -20,7 +20,7 @@
 
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "pokemon.h"
@@ -59,7 +59,6 @@
 #include "unk_0201F834.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02022594.h"
 #include "strbuf.h"
 #include "savedata/save_table.h"
 #include "savedata.h"
@@ -145,7 +144,7 @@ typedef struct {
     UnkStruct_02009DC8 * unk_1D0[6];
     UnkStruct_ov19_021DA864 unk_1E8;
     UnkStruct_ov97_02234A2C_sub1 unk_20C[30];
-    UnkUnion_02022594 unk_374[34];
+    TouchScreenRect unk_374[34];
     GraphicElementData * unk_3FC[4];
     GraphicElementData * unk_40C[4];
     GraphicElementData * unk_41C[4];
@@ -581,12 +580,12 @@ static int ov97_0223416C (UnkStruct_ov97_02234A2C * param0, int param1, int para
     return GetGBABoxMonData(&(param0->unk_E8E0->boxes[param1][param2]), 0, NULL);
 }
 
-static void ov97_02234190 (UnkUnion_02022594 * param0, int param1, int param2, int param3, int param4)
+static void ov97_02234190 (TouchScreenRect *rect, int param1, int param2, int param3, int param4)
 {
-    param0->val1.unk_00 = param2 - param4 / 2;
-    param0->val1.unk_02 = param1 - param3 / 2;
-    param0->val1.unk_01 = param2 + param4 / 2;
-    param0->val1.unk_03 = param1 + param3 / 2;
+    rect->rect.top = param2 - param4 / 2;
+    rect->rect.left = param1 - param3 / 2;
+    rect->rect.bottom = param2 + param4 / 2;
+    rect->rect.right = param1 + param3 / 2;
 }
 
 static void * ov97_022341B4 (u32 param0, u32 param1, NNSG2dCharacterData ** param2, u32 param3)
@@ -828,7 +827,7 @@ static void ov97_0223468C (UnkStruct_ov97_02234A2C * param0)
 
     ov97_02234190(&param0->unk_374[(30 + 1)], 24, 176, 32, 32);
     param0->unk_41C[0] = ov97_02234638(param0, 24, 176, 0, 1);
-    param0->unk_374[(30 + 3)].val1.unk_00 = 0xff;
+    param0->unk_374[(30 + 3)].rect.top = 0xff;
 
     for (v0 = 0; v0 < 6; v0++) {
         param0->unk_42C[v0].unk_00 = ov97_02234638(param0, 36 * v0, 64, 9, 0);
@@ -1983,7 +1982,7 @@ static int ov97_022356E8 (OverlayManager * param0, int * param1)
 
         break;
     case 13:
-        v0 = sub_02022664((const UnkUnion_02022594 *)v3->unk_374);
+        v0 = sub_02022664((const TouchScreenRect *)v3->unk_374);
 
         if (v0 != 0xffffffff) {
             if (v0 < 30) {

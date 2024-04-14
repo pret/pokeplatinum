@@ -7,7 +7,7 @@
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay071/struct_ov71_0223B620.h"
 #include "overlay071/struct_ov71_0223C444.h"
@@ -29,7 +29,6 @@
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02022594.h"
 #include "strbuf.h"
 #include "unk_020393C8.h"
 #include "overlay071/ov71_0223B140.h"
@@ -38,7 +37,7 @@
 #include "overlay071/ov71_0223D324.h"
 
 typedef struct {
-    const UnkUnion_02022594 * unk_00[2];
+    const TouchScreenRect * unk_00[2];
 } UnkStruct_ov71_0223D4D0;
 
 static void ov71_0223B620(UnkStruct_ov71_0223B620 * param0);
@@ -71,8 +70,8 @@ static void ov71_0223C4DC(const u8 * param0, u8 * param1);
 static void ov71_0223C530(BGL * param0, const int param1, const u8 * param2);
 static void ov71_0223C594(const int param0);
 static void ov71_0223C5A4(UnkStruct_ov71_0223B620 * param0, const u8 param1);
-static int ov71_0223C60C(BGL * param0, const UnkUnion_02022594 * param1);
-static int ov71_0223C654(BGL * param0, const UnkUnion_02022594 * param1);
+static int ov71_0223C60C(BGL * param0, const TouchScreenRect *rect);
+static int ov71_0223C654(BGL * param0, const TouchScreenRect *rect);
 
 static const u8 Unk_ov71_0223D4B0[5] = {
     0x1,
@@ -82,7 +81,7 @@ static const u8 Unk_ov71_0223D4B0[5] = {
     0xF
 };
 
-static const UnkUnion_02022594 Unk_ov71_0223D5A4[] = {
+static const TouchScreenRect Unk_ov71_0223D5A4[] = {
     {0x98, 0xB7, 0x78, 0x97},
     {0x28, 0x4F, 0x18, 0x3F},
     {0x28, 0x4F, 0x50, 0x77},
@@ -95,7 +94,7 @@ static const UnkUnion_02022594 Unk_ov71_0223D5A4[] = {
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-static const UnkUnion_02022594 Unk_ov71_0223D4C0[] = {
+static const TouchScreenRect Unk_ov71_0223D4C0[] = {
     {0x98, 0xB7, 0x78, 0x97},
     {0xFF, 0x0, 0x0, 0x0}
 };
@@ -1324,9 +1323,9 @@ static void ov71_0223C5A4 (UnkStruct_ov71_0223B620 * param0, const u8 param1)
     param0->unk_3382 = (param0->unk_3382 + 1) % 30;
 }
 
-static int ov71_0223C60C (BGL * param0, const UnkUnion_02022594 * param1)
+static int ov71_0223C60C (BGL * param0, const TouchScreenRect *rect)
 {
-    int v0 = sub_02022664(param1);
+    int v0 = sub_02022664(rect);
 
     if (v0 != 0xffffffff) {
         if (v0 != 0) {
@@ -1343,9 +1342,9 @@ static int ov71_0223C60C (BGL * param0, const UnkUnion_02022594 * param1)
     return v0;
 }
 
-static int ov71_0223C654 (BGL * param0, const UnkUnion_02022594 * param1)
+static int ov71_0223C654 (BGL * param0, const TouchScreenRect *rect)
 {
-    int v0 = sub_02022644(param1);
+    int v0 = sub_02022644(rect);
 
     if (v0 != 0xffffffff) {
         if (v0 != 0) {

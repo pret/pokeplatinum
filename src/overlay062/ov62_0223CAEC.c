@@ -7,7 +7,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208C06C.h"
 #include "overlay061/struct_ov61_0222BDAC.h"
@@ -850,7 +850,7 @@ static void ov62_0223D518 (UnkStruct_ov62_0223D518 * param0)
     param0->unk_20 = v0[param0->unk_14];
 }
 
-static const UnkUnion_02022594 Unk_ov62_02248E94[] = {
+static const TouchScreenRect Unk_ov62_02248E94[] = {
     {0x18, 0x38, 0x30, 0xD0},
     {0x50, 0x70, 0x30, 0xD0},
     {0x98, 0xB8, 0x50, 0xB0}

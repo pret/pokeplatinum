@@ -25,7 +25,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "gx_layers.h"
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "unk_0202D05C.h"
 #include "unk_02030A80.h"
 #include "unk_020507CC.h"

@@ -12,7 +12,7 @@
 #include "overlay021/struct_ov21_021D423C_decl.h"
 #include "overlay021/struct_ov21_021D4C0C_decl.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay021/struct_ov21_021D0D80.h"
@@ -606,12 +606,12 @@ void ov21_021D1524 (GraphicElementData * param0, UnkStruct_ov21_021D4CA0 * param
     }
 }
 
-void ov21_021D154C (UnkUnion_020225E0 * param0, int param1, int param2, int param3, int param4)
+void ov21_021D154C (TouchScreenHitTable *hitTable, int param1, int param2, int param3, int param4)
 {
-    param0->val1.unk_00 = param1;
-    param0->val1.unk_01 = param2;
-    param0->val1.unk_02 = param3;
-    param0->val1.unk_03 = param4;
+    hitTable->rect.top = param1;
+    hitTable->rect.bottom = param2;
+    hitTable->rect.left = param3;
+    hitTable->rect.right = param4;
 }
 
 void ov21_021D1558 (UnkStruct_ov21_021D157C * param0, BGL * param1, int param2, NNSG2dScreenData * param3, int param4, int param5, int param6, int param7, int param8)

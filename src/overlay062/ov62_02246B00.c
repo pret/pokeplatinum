@@ -413,20 +413,20 @@ void ov62_02247220 (UnkStruct_ov62_02246BF4 * param0)
         };
 
         for ( ; v0 < 24; v0++) {
-            param0->unk_220.unk_18[v0].val1.unk_00 = v1[v0 - 12][1] - v1[v0 - 12][3];
-            param0->unk_220.unk_18[v0].val1.unk_02 = v1[v0 - 12][0] - v1[v0 - 12][2];
-            param0->unk_220.unk_18[v0].val1.unk_01 = v1[v0 - 12][1] + v1[v0 - 12][3];
-            param0->unk_220.unk_18[v0].val1.unk_03 = v1[v0 - 12][0] + v1[v0 - 12][2];
+            param0->unk_220.unk_18[v0].rect.top = v1[v0 - 12][1] - v1[v0 - 12][3];
+            param0->unk_220.unk_18[v0].rect.left = v1[v0 - 12][0] - v1[v0 - 12][2];
+            param0->unk_220.unk_18[v0].rect.bottom = v1[v0 - 12][1] + v1[v0 - 12][3];
+            param0->unk_220.unk_18[v0].rect.right = v1[v0 - 12][0] + v1[v0 - 12][2];
         }
 
-        param0->unk_220.unk_18[22].val1.unk_00 = 152;
-        param0->unk_220.unk_18[22].val1.unk_02 = 32;
-        param0->unk_220.unk_18[22].val1.unk_01 = 152 + 32;
-        param0->unk_220.unk_18[22].val1.unk_03 = 128;
-        param0->unk_220.unk_18[23].val1.unk_00 = 152;
-        param0->unk_220.unk_18[23].val1.unk_02 = 128;
-        param0->unk_220.unk_18[23].val1.unk_01 = 152 + 32;
-        param0->unk_220.unk_18[23].val1.unk_03 = 224;
+        param0->unk_220.unk_18[22].rect.top = 152;
+        param0->unk_220.unk_18[22].rect.left = 32;
+        param0->unk_220.unk_18[22].rect.bottom = 152 + 32;
+        param0->unk_220.unk_18[22].rect.right = 128;
+        param0->unk_220.unk_18[23].rect.top = 152;
+        param0->unk_220.unk_18[23].rect.left = 128;
+        param0->unk_220.unk_18[23].rect.bottom = 152 + 32;
+        param0->unk_220.unk_18[23].rect.right = 224;
     }
 
     param0->unk_220.unk_14 = sub_02023FCC(param0->unk_220.unk_18, 24, ov62_0224730C, param0, 102);
@@ -762,8 +762,8 @@ void ov62_022479D4 (UnkStruct_ov62_02246BF4 * param0, int param1)
 {
     s16 v0, v1;
 
-    v0 = (param0->unk_220.unk_18[param1 + 12].val1.unk_02 + param0->unk_220.unk_18[param1 + 12].val1.unk_03) / 2;
-    v1 = (param0->unk_220.unk_18[param1 + 12].val1.unk_00 + param0->unk_220.unk_18[param1 + 12].val1.unk_01) / 2;
+    v0 = (param0->unk_220.unk_18[param1 + 12].rect.left + param0->unk_220.unk_18[param1 + 12].rect.right) / 2;
+    v1 = (param0->unk_220.unk_18[param1 + 12].rect.top + param0->unk_220.unk_18[param1 + 12].rect.bottom) / 2;
 
     SpriteActor_SetSpritePositionXY(param0->unk_188[1].unk_0C, v0 - 0, v1 - 8);
 }
@@ -772,8 +772,8 @@ void ov62_02247A20 (UnkStruct_ov62_02246BF4 * param0, int param1, int param2)
 {
     s16 v0, v1;
 
-    v0 = (param0->unk_220.unk_18[param1 + 12].val1.unk_02 + param0->unk_220.unk_18[param1 + 12].val1.unk_03) / 2;
-    v1 = (param0->unk_220.unk_18[param1 + 12].val1.unk_00 + param0->unk_220.unk_18[param1 + 12].val1.unk_01) / 2;
+    v0 = (param0->unk_220.unk_18[param1 + 12].rect.left + param0->unk_220.unk_18[param1 + 12].rect.right) / 2;
+    v1 = (param0->unk_220.unk_18[param1 + 12].rect.top + param0->unk_220.unk_18[param1 + 12].rect.bottom) / 2;
 
     SpriteActor_SetSpritePositionXY(param0->unk_188[param2].unk_0C, v0 - 0, v1 - 8);
 }
@@ -923,13 +923,13 @@ static inline void inline_ov62_02247CE0 (UnkStruct_ov62_02246BF4 * param0, int p
 
     SpriteActor_GetSpritePositionXY(v2->unk_0C, &v0, &v1);
 
-    v2->unk_10->val1.unk_00 = v1 - param3;
-    v2->unk_10->val1.unk_02 = v0 - param2;
-    v2->unk_10->val1.unk_01 = v1 + param3;
-    v2->unk_10->val1.unk_03 = v0 + param2;
+    v2->unk_10->rect.top = v1 - param3;
+    v2->unk_10->rect.left = v0 - param2;
+    v2->unk_10->rect.bottom = v1 + param3;
+    v2->unk_10->rect.right = v0 + param2;
 
     if (param1 == 0) {
-        v2->unk_10->val1.unk_02 -= 4;
+        v2->unk_10->rect.left -= 4;
     }
 }
 

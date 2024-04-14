@@ -9,7 +9,7 @@
 
 #include "overlay025/struct_ov25_02254560_decl.h"
 #include "overlay025/struct_ov25_02254560_1.h"
-#include "overlay025/struct_ov25_02255B34_decl.h"
+#include "overlay025/poketch_button.h"
 
 #include <nnsys.h>
 
@@ -41,7 +41,7 @@ struct PoketchSystem {
     UnkStruct_ov25_02254560 * unk_1C;
     UnkStruct_ov25_02254560_1 unk_20;
     void * unk_24;
-    UnkStruct_ov25_02255B34 * unk_28;
+    PoketchButtonManager * unk_28;
     u32 unk_2C;
     u32 unk_30;
     PoketchSystem ** poketchSysPtr;
@@ -74,7 +74,7 @@ void ov25_02254444(u32 param0, u32 param1);
 BOOL ov25_0225446C(u32 * param0, u32 * param1);
 BOOL ov25_022544BC(u32 * param0, u32 * param1);
 BOOL ov25_0225450C(const PoketchSystem *poketchSys);
-void ov25_02254518(const PoketchSystem *poketchSys, UnkStruct_ov25_02255B34 * param1);
+void ov25_02254518(const PoketchSystem *poketchSys, PoketchButtonManager * param1);
 BOOL ov25_02254534(const PoketchSystem *poketchSys);
 BOOL PoketchSystem_PedometerUpdated(const PoketchSystem *poketchSys);
 FieldSystem * PoketchSystem_FieldSystem(const PoketchSystem *poketchSys);

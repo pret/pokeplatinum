@@ -5,17 +5,16 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
 #include "overlay025/poketch_system.h"
-#include "overlay025/struct_ov25_02255B34_decl.h"
+#include "overlay025/poketch_button.h"
 #include "overlay045/struct_ov45_022566EC_decl.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "overlay045/struct_ov45_022566EC_1.h"
 
 #include "unk_0200D9E8.h"
 #include "rtc.h"
 #include "heap.h"
 #include "poketch_data.h"
-#include "overlay025/ov25_02255ACC.h"
 #include "overlay045/ov45_022566EC.h"
 
 typedef struct {
@@ -26,7 +25,7 @@ typedef struct {
     UnkStruct_ov45_022566EC * unk_08;
     PoketchSystem * unk_0C;
     PoketchData * unk_10;
-    UnkStruct_ov25_02255B34 * unk_14;
+    PoketchButtonManager * unk_14;
     u32 unk_18;
     u32 unk_1C;
     RTCTime unk_20;
@@ -79,7 +78,7 @@ static BOOL ov45_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2,
 
 static BOOL ov45_0225621C (UnkStruct_ov45_022561D4 * param0, PoketchSystem * param1, BGL * param2, u32 param3)
 {
-    static const UnkUnion_020225E0 v0[] = {
+    static const TouchScreenHitTable v0[] = {
         {72, 104, 176, 208, },
         {104, 136, 176, 208, },
         {112, 128, 64, 80, },
@@ -103,13 +102,13 @@ static BOOL ov45_0225621C (UnkStruct_ov45_022561D4 * param0, PoketchSystem * par
         param0->unk_00 = 0;
         param0->unk_01 = 0;
         param0->unk_02 = 0;
-        param0->unk_14 = ov25_02255ACC(v0, NELEMS(v0), ov45_02256310, param0, 8);
+        param0->unk_14 = PoketchButtonManager_New(v0, NELEMS(v0), ov45_02256310, param0, 8);
         param0->unk_1C = 0;
 
-        ov25_02255C5C(param0->unk_14, 2, 4);
-        ov25_02255C5C(param0->unk_14, 3, 4);
-        ov25_02255C5C(param0->unk_14, 4, 4);
-        ov25_02255C5C(param0->unk_14, 5, 4);
+        PoketchButtonManager_SetRepeatTime(param0->unk_14, 2, 4);
+        PoketchButtonManager_SetRepeatTime(param0->unk_14, 3, 4);
+        PoketchButtonManager_SetRepeatTime(param0->unk_14, 4, 4);
+        PoketchButtonManager_SetRepeatTime(param0->unk_14, 5, 4);
 
         param0->unk_2C = 0;
         param0->unk_30 = 0;
@@ -141,7 +140,7 @@ static void ov45_022562C0 (UnkStruct_ov45_022566EC_1 * param0)
 
 static void ov45_022562F8 (UnkStruct_ov45_022561D4 * param0)
 {
-    ov25_02255B34(param0->unk_14);
+    PoketchButtonManager_Free(param0->unk_14);
     ov45_02256728(param0->unk_08);
 
     Heap_FreeToHeap(param0);

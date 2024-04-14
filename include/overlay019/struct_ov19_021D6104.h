@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV19_021D6104_H
 #define POKEPLATINUM_STRUCT_OV19_021D6104_H
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 
 typedef struct UnkStruct_ov19_021D6104_t {
     u32 unk_00;
@@ -15,8 +15,8 @@ typedef struct UnkStruct_ov19_021D6104_t {
     u16 unk_20;
     u8 padding_22[2];
     int unk_24;
-    UnkUnion_020225E0 unk_28;
-    UnkUnion_020225E0 unk_2C;
+    TouchScreenHitTable unk_28;
+    TouchScreenHitTable unk_2C;
     int (* unk_30)(struct UnkStruct_ov19_021D6104_t *, BOOL, BOOL);
 } UnkStruct_ov19_021D6104;
 

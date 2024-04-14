@@ -24,7 +24,7 @@
 #include "overlay065/struct_ov65_0222EBE0_decl.h"
 
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207DFAC.h"
 #include "struct_defs/struct_0207E060.h"
@@ -302,7 +302,7 @@ static const u8 Unk_ov65_02238930[3] = {
     0x5
 };
 
-static const UnkUnion_020225E0 Unk_ov65_0223895C[3] = {
+static const TouchScreenHitTable Unk_ov65_0223895C[3] = {
     {0xA0, 0xC0, 0x8, 0x40},
     {0xA0, 0xC0, 0x50, 0xB0},
     {0xA0, 0xC0, 0xC0, 0xF8}
@@ -4940,7 +4940,7 @@ static BOOL ov65_02232FCC (const UnkStruct_ov65_0222EBE0 * param0)
 
 static void ov65_02232FE0 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1, u32 param2)
 {
-    static const UnkUnion_020225E0 v0[8] = {
+    static const TouchScreenHitTable v0[8] = {
         {0, 47, 0, 119},
         {48, 95, 0, 119},
         {96, 143, 0, 119},

@@ -4,7 +4,7 @@
 #include "overlay_manager.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "strbuf.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay021/struct_ov21_021D0D80_1.h"
@@ -49,7 +49,7 @@ UnkStruct_ov21_021E68F4 * ov21_021D1430(UnkStruct_ov21_021D0F60 * param0, int pa
 void ov21_021D144C(GraphicElementData * param0, int param1);
 void ov21_021D1498(GraphicElementData * param0, UnkStruct_ov21_021D4CA0 * param1, int param2);
 void ov21_021D1524(GraphicElementData * param0, UnkStruct_ov21_021D4CA0 * param1, int param2, int param3, int param4);
-void ov21_021D154C(UnkUnion_020225E0 * param0, int param1, int param2, int param3, int param4);
+void ov21_021D154C(TouchScreenHitTable *hitTable, int param1, int param2, int param3, int param4);
 void ov21_021D1558(UnkStruct_ov21_021D157C * param0, BGL * param1, int param2, NNSG2dScreenData * param3, int param4, int param5, int param6, int param7, int param8);
 BOOL ov21_021D157C(UnkStruct_ov21_021D157C * param0);
 void ov21_021D1650(Window * param0, int param1, int param2, int param3);

@@ -88,7 +88,7 @@ Static main
 	Object main.nef.p/src_unk_02020020.c.o
 	Object main.nef.p/src_unk_02020AEC.c.o
 	Object main.nef.p/src_unk_020218BC.c.o
-	Object main.nef.p/src_unk_02022594.c.o
+	Object main.nef.p/src_touch_screen.c.o
 	Object main.nef.p/src_unk_02022844.c.o
 	Object main.nef.p/src_error_handling.c.o
 	Object main.nef.p/src_unk_0202298C.c.o
@@ -875,7 +875,7 @@ Overlay overlay25
 	Object main.nef.p/src_overlay025_ov25_02254560.c.o
 	Object main.nef.p/src_overlay025_ov25_02255090.c.o
 	Object main.nef.p/src_overlay025_ov25_02255540.c.o
-	Object main.nef.p/src_overlay025_ov25_02255ACC.c.o
+	Object main.nef.p/src_overlay025_poketch_button.c.o
 	Object main.nef.p/src_overlay025_ov25_02255DBC.c.o
 }
 

@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "overlay076/struct_ov76_0223B52C.h"
 #include "overlay076/struct_ov76_0223DE00.h"
@@ -17,7 +17,6 @@
 
 #include "game_overlay.h"
 #include "unk_0200C6E4.h"
-#include "unk_02022594.h"
 #include "unk_0202C9F4.h"
 #include "unk_02097B18.h"
 #include "overlay012/ov12_02237E54.h"
@@ -32,23 +31,23 @@ static void NitroStaticInit (void)
     Overlay_LoadByID(FS_OVERLAY_ID(overlay12), 2);
 }
 
-static void ov76_0223B15C (UnkUnion_02022594 * param0, u8 param1, u8 param2)
+static void ov76_0223B15C (TouchScreenRect *rect, u8 param1, u8 param2)
 {
-    param0->val1.unk_00 = param2 - 10;
-    param0->val1.unk_02 = param1 - 10;
-    param0->val1.unk_01 = param2 + 10;
-    param0->val1.unk_03 = param1 + 10;
+    rect->rect.top = param2 - 10;
+    rect->rect.left = param1 - 10;
+    rect->rect.bottom = param2 + 10;
+    rect->rect.right = param1 + 10;
 }
 
-static void ov76_0223B174 (UnkUnion_02022594 * param0)
+static void ov76_0223B174 (TouchScreenRect *rect)
 {
-    param0->val1.unk_00 = 0;
-    param0->val1.unk_02 = 0;
-    param0->val1.unk_01 = 192;
-    param0->val1.unk_03 = 255;
+    rect->rect.top = 0;
+    rect->rect.left = 0;
+    rect->rect.bottom = 192;
+    rect->rect.right = 255;
 }
 
-void ov76_0223B184 (UnkUnion_02022594 * param0, CellActorData * param1, BOOL param2)
+void ov76_0223B184 (TouchScreenRect *rect, CellActorData * param1, BOOL param2)
 {
     s16 v0, v1;
 
@@ -59,10 +58,10 @@ void ov76_0223B184 (UnkUnion_02022594 * param0, CellActorData * param1, BOOL par
     if (param2 == 1) {
         SpriteActor_SetSpritePositionXY(param1, gCoreSys.touchX, gCoreSys.touchY);
         SpriteActor_GetSpritePositionXY(param1, &v0, &v1);
-        ov76_0223B174(param0);
+        ov76_0223B174(rect);
     } else {
         SpriteActor_GetSpritePositionXY(param1, &v0, &v1);
-        ov76_0223B15C(param0, v0, v1);
+        ov76_0223B15C(rect, v0, v1);
     }
 }
 

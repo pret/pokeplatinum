@@ -5,16 +5,15 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
 #include "overlay025/poketch_system.h"
-#include "overlay025/struct_ov25_02255B34_decl.h"
+#include "overlay025/poketch_button.h"
 #include "overlay043/struct_ov43_02256544_decl.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "overlay043/struct_ov43_02256544_1.h"
 
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_02099D44.h"
-#include "overlay025/ov25_02255ACC.h"
 #include "overlay043/ov43_02256544.h"
 
 typedef struct {
@@ -25,7 +24,7 @@ typedef struct {
     UnkStruct_ov43_02256544_1 unk_08;
     UnkStruct_ov43_02256544 * unk_14;
     PoketchSystem * unk_18;
-    UnkStruct_ov25_02255B34 * unk_1C;
+    PoketchButtonManager * unk_1C;
     u32 unk_20;
 } UnkStruct_ov43_0225621C;
 
@@ -70,7 +69,7 @@ static BOOL ov43_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2,
 
 static BOOL ov43_0225621C (UnkStruct_ov43_0225621C * param0, PoketchSystem * param1, BGL * param2, u32 param3)
 {
-    static const UnkUnion_020225E0 v0[] = {
+    static const TouchScreenHitTable v0[] = {
         {112, 144, 16, 40},
         {112, 144, 104, 128},
         {24, 56, 96, 120},
@@ -89,7 +88,7 @@ static BOOL ov43_0225621C (UnkStruct_ov43_0225621C * param0, PoketchSystem * par
         param0->unk_00 = 0;
         param0->unk_01 = 0;
         param0->unk_02 = 0;
-        param0->unk_1C = ov25_02255ACC(v0, NELEMS(v0), ov43_02256308, param0, 8);
+        param0->unk_1C = PoketchButtonManager_New(v0, NELEMS(v0), ov43_02256308, param0, 8);
         param0->unk_20 = 0;
         param0->unk_18 = param1;
 
@@ -111,7 +110,7 @@ static void ov43_02256288 (UnkStruct_ov43_02256544_1 * param0)
 static void ov43_022562A8 (UnkStruct_ov43_0225621C * param0)
 {
     sub_02099D54(param0->unk_04, &(param0->unk_08), sizeof(param0->unk_08));
-    ov25_02255B34(param0->unk_1C);
+    PoketchButtonManager_Free(param0->unk_1C);
     ov43_02256680(param0->unk_14);
     Heap_FreeToHeap(param0);
 }
