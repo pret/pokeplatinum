@@ -16,7 +16,7 @@
 #include "struct_defs/struct_020127E8.h"
 #include "functypes/sys_task_func.h"
 #include "struct_defs/sprite_manager_allocation.h"
-#include "struct_defs/union_02022594_020225E0.h"
+#include "unk_02022594.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02095C48.h"
 #include "overlay017/struct_ov17_0224A1EC.h"
@@ -33,7 +33,6 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
-#include "unk_02022594.h"
 #include "strbuf.h"
 #include "unk_02094EDC.h"
 #include "overlay017/ov17_022492DC.h"
@@ -129,7 +128,7 @@ typedef struct {
         };
         u16 unk_0C_val2[4];
     };
-    const UnkUnion_02022594 * unk_14;
+    const TouchScreenRect * unk_14;
     const int * unk_18;
     void (* unk_1C)(UnkStruct_ov17_022492DC * param0, int param1, int param2);
     int (* unk_20)(UnkStruct_ov17_022492DC * param0, int param1);
@@ -221,7 +220,7 @@ static const UnkStruct_ov97_0222DB78 Unk_ov17_022545C0[] = {
     }
 };
 
-static const UnkUnion_02022594 Unk_ov17_02254564[] = {
+static const TouchScreenRect Unk_ov17_02254564[] = {
     {0x0, 0x50, 0x58, 0xA8},
     {0x60, 0xB0, 0x58, 0xA8},
     {0x28, 0x78, 0x8, 0x58},

@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02023FCC_decl.h"
 
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/union_02022594_020225E0.h"
+#include "unk_02022594.h"
 
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
@@ -65,7 +65,7 @@ typedef struct {
 
 typedef struct UnkStruct_02015920_t {
     UnkStruct_02023FCC * unk_00;
-    UnkUnion_020225E0 unk_04[2];
+    TouchScreenHitTable unk_04[2];
     UnkStruct_02015C38 unk_0C[2];
     BGL * unk_7C;
     u32 unk_80;
@@ -258,10 +258,10 @@ static void sub_02015BA4 (UnkStruct_02015920 * param0, const UnkStruct_02015958 
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        param0->unk_04[v0].val1.unk_00 = (param0->unk_99 * 8) + (v0 * 40);
-        param0->unk_04[v0].val1.unk_01 = (param0->unk_99 * 8) + (v0 * 40) + (4 * 8);
-        param0->unk_04[v0].val1.unk_02 = (param0->unk_98 * 8);
-        param0->unk_04[v0].val1.unk_03 = (param0->unk_98 * 8) + (6 * 8);
+        param0->unk_04[v0].rect.top = (param0->unk_99 * 8) + (v0 * 40);
+        param0->unk_04[v0].rect.bottom = (param0->unk_99 * 8) + (v0 * 40) + (4 * 8);
+        param0->unk_04[v0].rect.left = (param0->unk_98 * 8);
+        param0->unk_04[v0].rect.right = (param0->unk_98 * 8) + (6 * 8);
     }
 
     param0->unk_00 = sub_02023FCC(param0->unk_04, 2, sub_02015C08, param0, param0->unk_84);

@@ -24,7 +24,7 @@
 #include "constdata/const_020F410C.h"
 
 #include "struct_defs/archived_sprite.h"
-#include "struct_defs/union_02022594_020225E0.h"
+#include "unk_02022594.h"
 #include "struct_defs/struct_02027F8C.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02081CF4.h"
@@ -70,7 +70,6 @@
 #include "unk_0201F834.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02022594.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "unk_020279FC.h"
@@ -1513,7 +1512,7 @@ static void ov88_0223CE34 (u32 * param0)
     }
 }
 
-static const UnkUnion_02022594 Unk_ov88_0223EE28[] = {
+static const TouchScreenRect Unk_ov88_0223EE28[] = {
     {0x38, 0x88, 0x18, 0x68},
     {0xFF, 0x0, 0x0, 0x0}
 };

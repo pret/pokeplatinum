@@ -22,14 +22,14 @@ void ov19_021D603C (UnkStruct_ov19_021D6104 * param0, int param1, int param2, in
     param0->unk_18 = param2;
     param0->unk_04 = param1;
     param0->unk_08 = param2;
-    param0->unk_28.val2.unk_00 = 0xfe;
-    param0->unk_28.val2.unk_01 = param1;
-    param0->unk_28.val2.unk_02 = param2;
-    param0->unk_28.val2.unk_03 = param3;
-    param0->unk_2C.val2.unk_00 = 0xfe;
-    param0->unk_2C.val2.unk_01 = param1;
-    param0->unk_2C.val2.unk_02 = param2;
-    param0->unk_2C.val2.unk_03 = param4;
+    param0->unk_28.circle.code = TOUCHSCREEN_USE_CIRCLE;
+    param0->unk_28.circle.x = param1;
+    param0->unk_28.circle.y = param2;
+    param0->unk_28.circle.r = param3;
+    param0->unk_2C.circle.code = TOUCHSCREEN_USE_CIRCLE;
+    param0->unk_2C.circle.x = param1;
+    param0->unk_2C.circle.y = param2;
+    param0->unk_2C.circle.r = param4;
 
     if (param1 < 128) {
         param0->unk_24 = 1;
@@ -42,7 +42,7 @@ int ov19_021D60A8 (UnkStruct_ov19_021D6104 * param0)
 {
     BOOL v0, v1;
 
-    if ((sub_02022734(&param0->unk_2C) == 1) && (sub_02022734(&param0->unk_28) == 0)) {
+    if ((TouchScreen_LocationHeld(&param0->unk_2C) == 1) && (TouchScreen_LocationHeld(&param0->unk_28) == 0)) {
         u32 v2, v3;
 
         v0 = 1;

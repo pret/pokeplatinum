@@ -1,35 +1,65 @@
 #ifndef POKEPLATINUM_POKETCH_BUTTON_H
 #define POKEPLATINUM_POKETCH_BUTTON_H
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "unk_02022594.h"
+
+#define BUTTON_TIMER_MAX 0xffff
+#define BUTTON_MANAGER_NUM_TIMERS_PER_BUTTON 2
 
 typedef void (* PoketchButtonCallback)(u32, u32, u32, void *);
 
+enum ButtonManagerState {
+	BUTTON_MANAGER_STATE_NULL = 0,
+	BUTTON_MANAGER_STATE_TOUCH,
+	BUTTON_MANAGER_STATE_OUT,
+	BUTTON_MANAGER_STATE_TAP,
+	BUTTON_MANAGER_STATE_DOUBLETAP,
+	BUTTON_MANAGER_STATE_TIMER0,
+	BUTTON_MANAGER_STATE_TIMER1,
+	BUTTON_MANAGER_STATE_REPEAT,
+};
+
+/** Button states similar to a game input */
+enum ButtonTouchState {
+	BUTTON_TOUCH_PRESSED = 0,     //!< up last frame, down this frame
+	BUTTON_TOUCH_RELEASED,        //!< down last frame, up this frame
+	BUTTON_TOUCH_DOWN,            //!< down last frame, down this frame
+};
+
+/** States in the Button State Machine */
+enum ButtonEventState {
+    BUTTON_STATE_IDLE = 0,
+    BUTTON_STATE_TAP,
+    BUTTON_STATE_CHECK_DOUBLETAP,
+    BUTTON_STATE_DOUBLETAP,
+    BUTTON_STATE_RESET,
+};
+
 typedef struct PoketchButton {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    u8 unk_03;
-    u16 unk_04;
-    u16 unk_06;
-    u16 unk_08[2];
-    u16 unk_0C;
+    u8 state;
+    u8 screenTouched;
+    u8 prevScreenTouched;
+    u8 unk_03; // unused
+    u16 timer;
+    u16 doubleTapTime;
+    u16 timerDurations[BUTTON_MANAGER_NUM_TIMERS_PER_BUTTON];
+    u16 repeatTime;
 } PoketchButton;
 
 typedef struct PoketchButtonManager {
-    const UnkUnion_020225E0 * unk_00;
+    const TouchScreenHitTable * hitTable;
     PoketchButtonCallback callback;
-    u32 unk_08;
-    u32 unk_0C;
-    void * unk_10;
-    PoketchButton * button;
+    u32 heapID;
+    u32 numButtons;
+    void * buttonCallbackData;
+    PoketchButton * buttons;
 } PoketchButtonManager;
 
-PoketchButtonManager * ov25_02255ACC(const UnkUnion_020225E0 * param0, u32 param1, PoketchButtonCallback param2, void * param3, u32 param4);
-void ov25_02255B34(PoketchButtonManager * param0);
-void ov25_02255B50(PoketchButtonManager * param0);
-void ov25_02255C48(PoketchButtonManager * param0, u32 param1, u32 param2, u16 param3);
-void ov25_02255C5C(PoketchButtonManager * param0, u32 param1, u16 param2);
-void ov25_02255C68(PoketchButtonManager * param0, u32 param1);
+PoketchButtonManager * PoketchButtonManager_Create(const TouchScreenHitTable *hitTable, u32 numButtons, PoketchButtonCallback callback, void *callbackData, u32 heapID);
+void PoketchButtonManager_Destroy(PoketchButtonManager *buttonManager);
+void PoketchButtonManager_Update(PoketchButtonManager *buttonManager);
+void PoketchButtonManager_ButtonTimer(PoketchButtonManager *buttonManager, u32 buttonIndex, u32 timerIndex, u16 time);
+void PoketchButtonManager_RepeatTime(PoketchButtonManager *buttonManager, u32 index, u16 repeatTime);
+void PoketchButtonManager_ResetButtonState(PoketchButtonManager *buttonManager, u32 index);
 
 #endif // POKEPLATINUM_POKETCH_BUTTON_H

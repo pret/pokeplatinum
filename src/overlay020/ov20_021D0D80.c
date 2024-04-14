@@ -10,7 +10,7 @@
 #include "overlay020/struct_ov20_021D2128_decl.h"
 
 #include "struct_defs/sentence.h"
-#include "struct_defs/union_02022594_020225E0.h"
+#include "unk_02022594.h"
 
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -224,7 +224,7 @@ int ov20_021D0EA8 (OverlayManager * param0, int * param1)
 
 static UnkStruct_ov20_021D16E8 * ov20_021D0EC8 (OverlayManager * param0)
 {
-    static const UnkUnion_020225E0 v0[] = {
+    static const TouchScreenHitTable v0[] = {
         {24, 80, 24, 112},
         {112, 168, 24, 112},
         {40, 72, 176, 208},

@@ -7,7 +7,7 @@
 #include "strbuf.h"
 
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/union_02022594_020225E0.h"
+#include "unk_02022594.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay022/struct_ov22_02259C58.h"
@@ -41,7 +41,7 @@
 static void ov22_02259D94(UnkStruct_ov22_02259C58 * param0, void * param1);
 static void ov22_0225A0E4(UnkStruct_ov22_02259C58 * param0, int param1, UnkStruct_ov22_0225A0E4 * param2, int param3, int param4, int param5, int param6);
 static void ov22_0225A154(UnkStruct_ov22_0225A154 * param0, int param1, UnkStruct_ov22_0225A0E4 * param2, const UnkStruct_02012744 * param3, const Window * param4, int param5, int param6, int param7, int param8);
-static void ov22_0225A200(UnkUnion_020225E0 * param0, int param1, int param2, int param3, int param4, int param5);
+static void ov22_0225A200(TouchScreenHitTable *hitTable, int param1, int param2, int param3, int param4, int param5);
 static void ov22_0225A218(UnkStruct_ov22_0225A0E4 * param0);
 static void ov22_0225A2A8(UnkStruct_ov22_0225A0E4 * param0);
 static Window * ov22_0225A348(UnkStruct_ov22_0225A0E4 * param0, u32 param1, u32 param2, u32 param3, int param4, int param5);
@@ -441,12 +441,12 @@ asm static void ov22_0225A154 (UnkStruct_ov22_0225A154 * param0, int param1, Unk
     pop {r4, r5, r6, pc}
 }
 
-static void ov22_0225A200 (UnkUnion_020225E0 * param0, int param1, int param2, int param3, int param4, int param5)
+static void ov22_0225A200 (TouchScreenHitTable *hitTable, int param1, int param2, int param3, int param4, int param5)
 {
-    param0[param1].val1.unk_00 = param3;
-    param0[param1].val1.unk_02 = param2;
-    param0[param1].val1.unk_01 = param3 + param5;
-    param0[param1].val1.unk_03 = param2 + param4;
+    hitTable[param1].rect.top = param3;
+    hitTable[param1].rect.left = param2;
+    hitTable[param1].rect.bottom = param3 + param5;
+    hitTable[param1].rect.right = param2 + param4;
 }
 
 static void ov22_0225A218 (UnkStruct_ov22_0225A0E4 * param0)

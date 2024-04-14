@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_02015214_decl.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "unk_02022594.h"
 #include "overlay021/struct_ov21_021E7F40.h"
 #include "overlay022/struct_ov22_02254DE0.h"
 #include "overlay022/struct_ov22_0225500C.h"
@@ -13,13 +13,12 @@
 
 #include "unk_02015064.h"
 #include "heap.h"
-#include "unk_02022594.h"
 #include "overlay022/ov22_02254DE0.h"
 #include "overlay022/ov22_02255094.h"
 
 static UnkStruct_ov22_02255040 * ov22_02254FE0(UnkStruct_ov22_02254DE0 * param0);
 static UnkStruct_02015214 * ov22_0225500C(UnkStruct_ov22_0225500C * param0);
-static void ov22_02255040(UnkStruct_ov22_02255040 * param0, UnkUnion_020225E0 * param1);
+static void ov22_02255040(UnkStruct_ov22_02255040 * param0, TouchScreenHitTable *hitTable);
 
 UnkStruct_ov22_02254DE0 * ov22_02254DE0 (int param0, int param1)
 {
@@ -55,10 +54,10 @@ UnkStruct_ov22_02255040 * ov22_02254E20 (UnkStruct_ov22_0225500C * param0)
 
 BOOL ov22_02254E44 (UnkStruct_ov22_02255040 * param0)
 {
-    UnkUnion_020225E0 v0;
+    TouchScreenHitTable v0;
 
     ov22_02255040(param0, &v0);
-    return sub_02022734(&v0);
+    return TouchScreen_LocationHeld(&v0);
 }
 
 BOOL ov22_02254E54 (UnkStruct_ov22_02255040 * param0, int * param1, int * param2, NNSG2dCharacterData * param3)
@@ -97,7 +96,7 @@ BOOL ov22_02254E54 (UnkStruct_ov22_02255040 * param0, int * param1, int * param2
 
 BOOL ov22_02254EDC (UnkStruct_ov22_02255040 * param0, int param1, int param2)
 {
-    UnkUnion_020225E0 v0;
+    TouchScreenHitTable v0;
 
     ov22_02255040(param0, &v0);
     return sub_02022830(&v0, param1, param2);
@@ -202,13 +201,13 @@ static UnkStruct_02015214 * ov22_0225500C (UnkStruct_ov22_0225500C * param0)
     return sub_02015214(&v0);
 }
 
-static void ov22_02255040 (UnkStruct_ov22_02255040 * param0, UnkUnion_020225E0 * param1)
+static void ov22_02255040 (UnkStruct_ov22_02255040 * param0, TouchScreenHitTable *hitTable)
 {
     NNSG2dSVec2 v0 = sub_0201525C(param0->unk_04);
     NNSG2dSVec2 v1 = sub_02015280(param0->unk_04);
 
-    param1->val1.unk_00 = v0.y;
-    param1->val1.unk_01 = v0.y + v1.y;
-    param1->val1.unk_02 = v0.x;
-    param1->val1.unk_03 = v0.x + v1.x;
+    hitTable->rect.top = v0.y;
+    hitTable->rect.bottom = v0.y + v1.y;
+    hitTable->rect.left = v0.x;
+    hitTable->rect.right = v0.x + v1.x;
 }

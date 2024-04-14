@@ -6,7 +6,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "unk_02022594.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208C06C.h"
 #include "overlay062/struct_ov62_022312B0.h"
@@ -23,7 +23,6 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_02022594.h"
 #include "strbuf.h"
 #include "unk_02023FCC.h"
 #include "savedata.h"
@@ -78,7 +77,7 @@ BOOL(*const Unk_ov62_02248C28[])(UnkStruct_0208C06C *) = {
     ov62_02236920,
 };
 
-static const UnkUnion_02022594 Unk_ov62_02248C1C[] = {
+static const TouchScreenRect Unk_ov62_02248C1C[] = {
     {0x10, 0x30, 0x40, 0xC8},
     {0x40, 0x70, 0x58, 0xA8},
     {0x98, 0xB8, 0x50, 0xB0}
@@ -278,7 +277,7 @@ static BOOL ov62_0223618C (UnkStruct_0208C06C * param0)
     return 0;
 }
 
-static const UnkUnion_02022594 Unk_ov62_02248C14[] = {
+static const TouchScreenRect Unk_ov62_02248C14[] = {
     {0x28, 0x48, 0x20, 0x78},
     {0x28, 0x48, 0x90, 0xE8}
 };
@@ -382,7 +381,7 @@ static BOOL ov62_022363CC (UnkStruct_0208C06C * param0)
         sub_02003A2C(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
         break;
     case 4:
-        if (sub_02022760(&Unk_ov62_02248C14[0])) {
+        if (TouchScreen_LocationPressed(&Unk_ov62_02248C14[0])) {
             v0->unk_198 = 1;
             ov62_02234520(param0);
 
@@ -393,7 +392,7 @@ static BOOL ov62_022363CC (UnkStruct_0208C06C * param0)
             }
 
             param0->unk_08++;
-        } else if (sub_02022760(&Unk_ov62_02248C14[1])) {
+        } else if (TouchScreen_LocationPressed(&Unk_ov62_02248C14[1])) {
             v0->unk_198 = 2;
             ov62_02234520(param0);
 

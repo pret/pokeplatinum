@@ -18,7 +18,7 @@
 
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/sentence.h"
-#include "struct_defs/union_02022594_020225E0.h"
+#include "unk_02022594.h"
 #include "struct_defs/struct_0203330C.h"
 #include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -47,7 +47,6 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02022594.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
@@ -515,7 +514,7 @@ static void ov56_022568E0 (UnkStruct_ov56_02256468 * param0)
     }
 }
 
-static const UnkUnion_02022594 Unk_ov56_02257264[] = {
+static const TouchScreenRect Unk_ov56_02257264[] = {
     {0x0, 0x20, 0xE8, 0xF8},
     {0xA0, 0x20, 0xE8, 0xF8},
     {0x0, 0x40, 0x0, 0xE8},
@@ -525,7 +524,7 @@ static const UnkUnion_02022594 Unk_ov56_02257264[] = {
     {0xff, 0x0, 0x0, 0x0}
 };
 
-static const UnkUnion_02022594 Unk_ov56_02257250[] = {
+static const TouchScreenRect Unk_ov56_02257250[] = {
     {0x30, 0x90, 0xE8, 0x100},
     {0x0, 0x40, 0x0, 0xE8},
     {0x40, 0x80, 0x0, 0xE8},

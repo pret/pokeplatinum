@@ -13,14 +13,13 @@
 #include "overlay025/struct_ov25_02254560_decl.h"
 #include "overlay025/poketch_button.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "unk_02022594.h"
 
 #include "unk_02005474.h"
 #include "game_overlay.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_0201E3D8.h"
-#include "unk_02022594.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_020508D4.h"
@@ -555,16 +554,16 @@ void ov25_02254274 (UnkFuncPtr_ov25_02254274 param0, void * param1)
 
 static BOOL ov25_02254284 (PoketchSystem *poketchSys)
 {
-    static const UnkUnion_020225E0 v0[] = {
+    static const TouchScreenHitTable v0[] = {
         {4 * 8, 12 * 8, 28 * 8, 255},
         {12 * 8, 20 * 8, 28 * 8, 255},
         {16, 175, 16, 207}
     };
 
-    poketchSys->unk_28 = ov25_02255ACC(v0, NELEMS(v0), ov25_022542E4, poketchSys, 7);
+    poketchSys->unk_28 = PoketchButtonManager_Create(v0, NELEMS(v0), ov25_022542E4, poketchSys, 7);
 
     if (poketchSys->unk_28 != NULL) {
-        ov25_02255C48(poketchSys->unk_28, 0, 0, 7);
+        PoketchButtonManager_ButtonTimer(poketchSys->unk_28, 0, 0, 7);
         poketchSys->unk_2C = 0xffffffff;
         poketchSys->unk_30 = 0xffffffff;
         return 1;
@@ -575,13 +574,13 @@ static BOOL ov25_02254284 (PoketchSystem *poketchSys)
 
 static void ov25_022542C8 (PoketchSystem *poketchSys)
 {
-    ov25_02255B34(poketchSys->unk_28);
+    PoketchButtonManager_Destroy(poketchSys->unk_28);
 }
 
 static void ov25_022542D4 (PoketchSystem *poketchSys)
 {
     poketchSys->unk_08 = 0;
-    ov25_02255B50(poketchSys->unk_28);
+    PoketchButtonManager_Update(poketchSys->unk_28);
 }
 
 static void ov25_022542E4 (u32 param0, u32 param1, u32 param2, void * param3)
@@ -641,7 +640,7 @@ static void ov25_022542E4 (u32 param0, u32 param1, u32 param2, void * param3)
 
         switch (param1) {
         case 5:
-            ov25_02255C68(v0->unk_28, 0);
+            PoketchButtonManager_ResetButtonState(v0->unk_28, 0);
             break;
         case 3:
             if ((v0->unk_30 == 6) || (v0->unk_30 == 9)) {
@@ -742,7 +741,7 @@ BOOL ov25_0225450C (const PoketchSystem *poketchSys)
 void ov25_02254518 (const PoketchSystem *poketchSys, PoketchButtonManager * param1)
 {
     if ((ov25_0225450C(poketchSys) == 0) && (poketchSys->unk_05 == 0)) {
-        ov25_02255B50(param1);
+        PoketchButtonManager_Update(param1);
     }
 }
 

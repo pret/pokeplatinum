@@ -1,11 +1,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "unk_02022594.h"
 #include "functypes/funcptr_02023FCC.h"
 
 #include "heap.h"
-#include "unk_02022594.h"
 #include "unk_02023FCC.h"
 
 typedef struct {
@@ -15,7 +14,7 @@ typedef struct {
 } UnkStruct_02024028;
 
 typedef struct UnkStruct_02023FCC_t {
-    const UnkUnion_020225E0 * unk_00;
+    const TouchScreenHitTable * unk_00;
     u32 unk_04;
     UnkFuncPtr_02023FCC unk_08;
     void * unk_0C;
@@ -27,7 +26,7 @@ static u32 sub_020240F4(UnkStruct_02024028 * param0, BOOL param1, BOOL param2);
 static u32 sub_02024110(UnkStruct_02024028 * param0, BOOL param1, BOOL param2);
 static void sub_02024144(UnkStruct_02024028 * param0, u32 param1);
 
-UnkStruct_02023FCC * sub_02023FCC (const UnkUnion_020225E0 * param0, u32 param1, UnkFuncPtr_02023FCC param2, void * param3, u32 param4)
+UnkStruct_02023FCC * sub_02023FCC (const TouchScreenHitTable *hitTable, u32 param1, UnkFuncPtr_02023FCC param2, void * param3, u32 param4)
 {
     UnkStruct_02023FCC * v0;
 
@@ -36,7 +35,7 @@ UnkStruct_02023FCC * sub_02023FCC (const UnkUnion_020225E0 * param0, u32 param1,
     v0 = Heap_AllocFromHeap(param4, sizeof(UnkStruct_02023FCC));
 
     if (v0) {
-        v0->unk_00 = param0;
+        v0->unk_00 = hitTable;
         v0->unk_04 = param1;
         v0->unk_08 = param2;
         v0->unk_0C = param3;
@@ -82,16 +81,16 @@ void sub_0202404C (UnkStruct_02023FCC * param0)
     BOOL v1, v2;
     u32 v3, v4;
 
-    v1 = sub_0202278C();
+    v1 = TouchScreen_Touched();
 
     if (v1) {
         v2 = TouchScreen_Tapped();
 
         for (v3 = 0; v3 < param0->unk_04; v3++) {
             if (param0->unk_10[v3].unk_01) {
-                param0->unk_10[v3].unk_01 = sub_02022734(&param0->unk_00[v3]);
+                param0->unk_10[v3].unk_01 = TouchScreen_LocationHeld(&param0->unk_00[v3]);
             } else {
-                param0->unk_10[v3].unk_01 = sub_02022760(&param0->unk_00[v3]);
+                param0->unk_10[v3].unk_01 = TouchScreen_LocationPressed(&param0->unk_00[v3]);
             }
         }
     } else {

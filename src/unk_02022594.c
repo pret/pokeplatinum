@@ -3,20 +3,18 @@
 
 #include "core_sys.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
-
 #include "unk_02022594.h"
 
-static int sub_02022594(const UnkUnion_02022594 * param0, u32 param1, u32 param2);
-static BOOL sub_020225E0(const UnkUnion_020225E0 * param0, u32 param1, u32 param2);
-static BOOL sub_0202260C(const UnkUnion_020225E0 * param0, u32 param1, u32 param2);
+static int sub_02022594(const TouchScreenRect *rect, u32 param1, u32 param2);
+static BOOL sub_020225E0(const TouchScreenHitTable *hitTable, u32 param1, u32 param2);
+static BOOL sub_0202260C(const TouchScreenHitTable *hitTable, u32 param1, u32 param2);
 
-static int sub_02022594 (const UnkUnion_02022594 * param0, u32 param1, u32 param2)
+static int sub_02022594 (const TouchScreenRect *rect, u32 param1, u32 param2)
 {
     int v0;
 
-    for (v0 = 0; param0[v0].val1.unk_00 != 0xff; v0++) {
-        if (((u32)(param1 - param0[v0].val1.unk_02) < (u32)(param0[v0].val1.unk_03 - param0[v0].val1.unk_02)) & ((u32)(param2 - param0[v0].val1.unk_00) < (u32)(param0[v0].val1.unk_01 - param0[v0].val1.unk_00))) {
+    for (v0 = 0; rect[v0].rect.top != 0xff; v0++) {
+        if (((u32)(param1 - rect[v0].rect.left) < (u32)(rect[v0].rect.right - rect[v0].rect.left)) & ((u32)(param2 - rect[v0].rect.top) < (u32)(rect[v0].rect.bottom - rect[v0].rect.top))) {
             return v0;
         }
     }
@@ -24,57 +22,57 @@ static int sub_02022594 (const UnkUnion_02022594 * param0, u32 param1, u32 param
     return 0xffffffff;
 }
 
-static BOOL sub_020225E0 (const UnkUnion_020225E0 * param0, u32 param1, u32 param2)
+static BOOL sub_020225E0 (const TouchScreenHitTable *hitTable, u32 param1, u32 param2)
 {
-    param1 = (param0->val2.unk_01 - param1) * (param0->val2.unk_01 - param1);
-    param2 = (param0->val2.unk_02 - param2) * (param0->val2.unk_02 - param2);
+    param1 = (hitTable->circle.x - param1) * (hitTable->circle.x - param1);
+    param2 = (hitTable->circle.y - param2) * (hitTable->circle.y - param2);
 
-    if (param1 + param2 < (param0->val2.unk_03 * param0->val2.unk_03)) {
+    if (param1 + param2 < (hitTable->circle.r * hitTable->circle.r)) {
         return 1;
     }
 
     return 0;
 }
 
-static BOOL sub_0202260C (const UnkUnion_020225E0 * param0, u32 param1, u32 param2)
+static BOOL sub_0202260C (const TouchScreenHitTable *hitTable, u32 param1, u32 param2)
 {
-    if (((u32)(param1 - param0->val1.unk_02) < (u32)(param0->val1.unk_03 - param0->val1.unk_02)) & ((u32)(param2 - param0->val1.unk_00) < (u32)(param0->val1.unk_01 - param0->val1.unk_00))) {
+    if (((u32)(param1 - hitTable->rect.left) < (u32)(hitTable->rect.right - hitTable->rect.left)) & ((u32)(param2 - hitTable->rect.top) < (u32)(hitTable->rect.bottom - hitTable->rect.top))) {
         return 1;
     }
 
     return 0;
 }
 
-int sub_02022644 (const UnkUnion_02022594 * param0)
+int sub_02022644 (const TouchScreenRect *rect)
 {
     if (gCoreSys.touchHeld) {
-        return sub_02022594(param0, gCoreSys.touchX, gCoreSys.touchY);
+        return sub_02022594(rect, gCoreSys.touchX, gCoreSys.touchY);
     }
 
     return 0xffffffff;
 }
 
-int sub_02022664 (const UnkUnion_02022594 * param0)
+int sub_02022664 (const TouchScreenRect *rect)
 {
     if (gCoreSys.touchPressed) {
-        return sub_02022594(param0, gCoreSys.touchX, gCoreSys.touchY);
+        return sub_02022594(rect, gCoreSys.touchX, gCoreSys.touchY);
     }
 
     return 0xffffffff;
 }
 
-int sub_02022684 (const UnkUnion_020225E0 * param0)
+int sub_02022684 (const TouchScreenHitTable *hitTable)
 {
     if (gCoreSys.touchHeld) {
         int v0;
 
-        for (v0 = 0; param0[v0].val2.unk_00 != 0xff; v0++) {
-            if (param0[v0].val2.unk_00 == 0xfe) {
-                if (sub_020225E0(&param0[v0], gCoreSys.touchX, gCoreSys.touchY)) {
+        for (v0 = 0; hitTable[v0].circle.code != 0xff; v0++) {
+            if (hitTable[v0].circle.code == TOUCHSCREEN_USE_CIRCLE) {
+                if (sub_020225E0(&hitTable[v0], gCoreSys.touchX, gCoreSys.touchY)) {
                     return v0;
                 }
             } else {
-                if (sub_0202260C(&param0[v0], gCoreSys.touchX, gCoreSys.touchY)) {
+                if (sub_0202260C(&hitTable[v0], gCoreSys.touchX, gCoreSys.touchY)) {
                     return v0;
                 }
             }
@@ -84,18 +82,18 @@ int sub_02022684 (const UnkUnion_020225E0 * param0)
     return 0xffffffff;
 }
 
-int sub_020226DC (const UnkUnion_020225E0 * param0)
+int sub_020226DC (const TouchScreenHitTable *hitTable)
 {
     if (gCoreSys.touchPressed) {
         int v0;
 
-        for (v0 = 0; param0[v0].val2.unk_00 != 0xff; v0++) {
-            if (param0[v0].val2.unk_00 == 0xfe) {
-                if (sub_020225E0(&param0[v0], gCoreSys.touchX, gCoreSys.touchY)) {
+        for (v0 = 0; hitTable[v0].circle.code != 0xff; v0++) {
+            if (hitTable[v0].circle.code == TOUCHSCREEN_USE_CIRCLE) {
+                if (sub_020225E0(&hitTable[v0], gCoreSys.touchX, gCoreSys.touchY)) {
                     return v0;
                 }
             } else {
-                if (sub_0202260C(&param0[v0], gCoreSys.touchX, gCoreSys.touchY)) {
+                if (sub_0202260C(&hitTable[v0], gCoreSys.touchX, gCoreSys.touchY)) {
                     return v0;
                 }
             }
@@ -105,33 +103,33 @@ int sub_020226DC (const UnkUnion_020225E0 * param0)
     return 0xffffffff;
 }
 
-BOOL sub_02022734 (const UnkUnion_020225E0 * param0)
+BOOL TouchScreen_LocationHeld(const TouchScreenHitTable *hitTable)
 {
     if (gCoreSys.touchHeld) {
-        if (param0->val2.unk_00 == 0xfe) {
-            return sub_020225E0(param0, gCoreSys.touchX, gCoreSys.touchY);
+        if (hitTable->circle.code == TOUCHSCREEN_USE_CIRCLE) {
+            return sub_020225E0(hitTable, gCoreSys.touchX, gCoreSys.touchY);
         } else {
-            return sub_0202260C(param0, gCoreSys.touchX, gCoreSys.touchY);
+            return sub_0202260C(hitTable, gCoreSys.touchX, gCoreSys.touchY);
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL sub_02022760 (const UnkUnion_020225E0 * param0)
+BOOL TouchScreen_LocationPressed(const TouchScreenHitTable *hitTable)
 {
     if (gCoreSys.touchPressed) {
-        if (param0->val2.unk_00 == 0xfe) {
-            return sub_020225E0(param0, gCoreSys.touchX, gCoreSys.touchY);
+        if (hitTable->circle.code == TOUCHSCREEN_USE_CIRCLE) {
+            return sub_020225E0(hitTable, gCoreSys.touchX, gCoreSys.touchY);
         } else {
-            return sub_0202260C(param0, gCoreSys.touchX, gCoreSys.touchY);
+            return sub_0202260C(hitTable, gCoreSys.touchX, gCoreSys.touchY);
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL sub_0202278C (void)
+BOOL TouchScreen_Touched(void)
 {
     return gCoreSys.touchHeld;
 }
@@ -163,17 +161,17 @@ BOOL sub_020227C0 (u32 * param0, u32 * param1)
     return 0;
 }
 
-int sub_020227DC (const UnkUnion_020225E0 * param0, u32 param1, u32 param2)
+int sub_020227DC (const TouchScreenHitTable *hitTable, u32 param1, u32 param2)
 {
     int v0;
 
-    for (v0 = 0; param0[v0].val2.unk_00 != 0xff; v0++) {
-        if (param0[v0].val2.unk_00 == 0xfe) {
-            if (sub_020225E0(&param0[v0], param1, param2)) {
+    for (v0 = 0; hitTable[v0].circle.code != 0xff; v0++) {
+        if (hitTable[v0].circle.code == TOUCHSCREEN_USE_CIRCLE) {
+            if (sub_020225E0(&hitTable[v0], param1, param2)) {
                 return v0;
             }
         } else {
-            if (sub_0202260C(&param0[v0], param1, param2)) {
+            if (sub_0202260C(&hitTable[v0], param1, param2)) {
                 return v0;
             }
         }
@@ -182,12 +180,12 @@ int sub_020227DC (const UnkUnion_020225E0 * param0, u32 param1, u32 param2)
     return 0xffffffff;
 }
 
-BOOL sub_02022830 (const UnkUnion_020225E0 * param0, u32 param1, u32 param2)
+BOOL sub_02022830 (const TouchScreenHitTable *hitTable, u32 param1, u32 param2)
 {
-    if (param0->val2.unk_00 == 0xfe) {
-        return sub_020225E0(param0, param1, param2);
+    if (hitTable->circle.code == TOUCHSCREEN_USE_CIRCLE) {
+        return sub_020225E0(hitTable, param1, param2);
     } else {
-        return sub_0202260C(param0, param1, param2);
+        return sub_0202260C(hitTable, param1, param2);
     }
 
     return 0;

@@ -3,12 +3,11 @@
 
 #include "core_sys.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "unk_02022594.h"
 #include "struct_defs/pokemon_summary_app.h"
 
 #include "unk_02005474.h"
 #include "unk_02018340.h"
-#include "unk_02022594.h"
 #include "unk_0208EA44.h"
 #include "unk_020920C0.h"
 
@@ -55,7 +54,7 @@ static const UnkStruct_020F5164 * Unk_02100D84[] = {
     Unk_020F5128
 };
 
-static const UnkUnion_02022594 Unk_020F5188[] = {
+static const TouchScreenRect Unk_020F5188[] = {
     {0x20, 0x47, 0x8, 0x2F},
     {0x50, 0x77, 0x10, 0x37},
     {0x78, 0x9F, 0x28, 0x4F},
@@ -67,7 +66,7 @@ static const UnkUnion_02022594 Unk_020F5188[] = {
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-static const UnkUnion_02022594 Unk_020F5134[] = {
+static const TouchScreenRect Unk_020F5134[] = {
     {0x48, 0x6F, 0xC, 0x33},
     {0x78, 0x9F, 0x2C, 0x53},
     {0x90, 0xB7, 0x6C, 0x93},
@@ -76,13 +75,13 @@ static const UnkUnion_02022594 Unk_020F5134[] = {
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-static const UnkUnion_02022594 Unk_020F511C[] = {
+static const TouchScreenRect Unk_020F511C[] = {
     {0x90, 0xB7, 0x50, 0x77},
     {0x90, 0xB7, 0x88, 0xAF},
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-static const UnkUnion_02022594 * Unk_02100D78[] = {
+static const TouchScreenRect * Unk_02100D78[] = {
     Unk_020F5188,
     Unk_020F5134,
     Unk_020F511C

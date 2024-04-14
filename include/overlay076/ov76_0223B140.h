@@ -2,11 +2,11 @@
 #define POKEPLATINUM_OV76_0223B140_H
 
 #include "struct_decls/cell_actor_data.h"
-#include "struct_defs/union_02022594_020225E0.h"
+#include "unk_02022594.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "overlay076/struct_ov76_0223DE00.h"
 
-void ov76_0223B184(UnkUnion_02022594 * param0, CellActorData * param1, BOOL param2);
+void ov76_0223B184(TouchScreenRect *rect, CellActorData * param1, BOOL param2);
 void ov76_0223B1E0(UnkStruct_ov76_0223DE00 * param0);
 void ov76_0223B208(UnkStruct_ov76_0223DE00 * param0);
 int ov76_0223B278(UnkStruct_ov76_0223DE00 * param0, u8 param1);

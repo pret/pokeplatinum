@@ -496,7 +496,7 @@ asm void sub_02089C20 (UnkStruct_02089688 * param0)
               ldr r0, [r0, #0x48]
     cmp r0, #0
     beq _02089C80
-    bl sub_0202278C
+    bl TouchScreen_Touched
     cmp r0, #0
     beq _02089C82
  _02089C80:
@@ -983,10 +983,10 @@ void sub_0208A0B8 (UnkStruct_02089688 * param0)
         };
 
         for ( ; v0 < 0x1c; v0++) {
-            param0->unk_2C0.unk_18[v0].val1.unk_00 = v1[v0 - 16][1] - v1[v0 - 16][3];
-            param0->unk_2C0.unk_18[v0].val1.unk_02 = v1[v0 - 16][0] - v1[v0 - 16][2];
-            param0->unk_2C0.unk_18[v0].val1.unk_01 = v1[v0 - 16][1] + v1[v0 - 16][3];
-            param0->unk_2C0.unk_18[v0].val1.unk_03 = v1[v0 - 16][0] + v1[v0 - 16][2];
+            param0->unk_2C0.unk_18[v0].rect.top = v1[v0 - 16][1] - v1[v0 - 16][3];
+            param0->unk_2C0.unk_18[v0].rect.left = v1[v0 - 16][0] - v1[v0 - 16][2];
+            param0->unk_2C0.unk_18[v0].rect.bottom = v1[v0 - 16][1] + v1[v0 - 16][3];
+            param0->unk_2C0.unk_18[v0].rect.right = v1[v0 - 16][0] + v1[v0 - 16][2];
         }
     }
 

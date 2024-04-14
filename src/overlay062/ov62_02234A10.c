@@ -133,7 +133,7 @@ static BOOL ov62_02234AB4 (UnkStruct_0208C06C * param0)
         }
         break;
     case 6:
-        if (sub_0202278C() == 1) {
+        if (TouchScreen_Touched() == 1) {
             ov62_02234A90(param0);
             sub_0208B9E0(param0->unk_6F0, 0);
             sub_0208BA54(param0->unk_6F4);

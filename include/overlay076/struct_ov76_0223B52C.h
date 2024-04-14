@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV76_0223B52C_H
 
 #include "struct_decls/cell_actor_data.h"
-#include "struct_defs/union_02022594_020225E0.h"
+#include "unk_02022594.h"
 
 typedef struct {
     BOOL unk_00;
@@ -11,7 +11,7 @@ typedef struct {
     u8 unk_06;
     u8 padding_07;
     CellActorData * unk_08;
-    UnkUnion_02022594 * unk_0C;
+    TouchScreenRect * unk_0C;
 } UnkStruct_ov76_0223B52C;
 
 #endif // POKEPLATINUM_STRUCT_OV76_0223B52C_H

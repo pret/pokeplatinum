@@ -13,7 +13,7 @@
 #include "overlay111/struct_ov111_021D33F4_decl.h"
 
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/union_02022594_020225E0.h"
+#include "unk_02022594.h"
 #include "struct_defs/options.h"
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -48,7 +48,6 @@
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02022594.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
@@ -272,7 +271,7 @@ static const u16 Unk_ov111_021D37E4[] = {
     0xC8
 };
 
-static const UnkUnion_02022594 Unk_ov111_021D364C[5] = {
+static const TouchScreenRect Unk_ov111_021D364C[5] = {
     {0x2A, 0x9A, 0x0, 0x50},
     {0x2A, 0x9A, 0x58, 0x8A},
     {0x2A, 0x9A, 0x90, 0xC3},
@@ -280,17 +279,17 @@ static const UnkUnion_02022594 Unk_ov111_021D364C[5] = {
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-static const UnkUnion_02022594 Unk_ov111_021D3618[] = {
+static const TouchScreenRect Unk_ov111_021D3618[] = {
     {0xA4, 0xBF, 0x4C, 0xB4},
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-static const UnkUnion_02022594 Unk_ov111_021D3610[] = {
+static const TouchScreenRect Unk_ov111_021D3610[] = {
     {0xA4, 0xBF, 0x5E, 0xA4},
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-static const UnkUnion_02022594 Unk_ov111_021D3794[] = {
+static const TouchScreenRect Unk_ov111_021D3794[] = {
     {0x15, 0x36, 0x20, 0x59},
     {0x15, 0x36, 0x66, 0x9D},
     {0x15, 0x36, 0xAA, 0xE3},
@@ -527,7 +526,7 @@ static BOOL ov111_021D10B8 (UnkStruct_ov111_021D0F7C * param0)
             param0->unk_0F--;
         }
 
-        v3 = sub_02022644((const UnkUnion_02022594 *)Unk_ov111_021D364C);
+        v3 = sub_02022644((const TouchScreenRect *)Unk_ov111_021D364C);
 
         if (v3 != 0xffffffff) {
             GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG2), 0);
@@ -754,7 +753,7 @@ static BOOL ov111_021D1508 (UnkStruct_ov111_021D0F7C * param0)
         break;
     case 3:
         sub_0201E564(&param0->unk_424, 4, 2);
-        v1 = sub_02022644((const UnkUnion_02022594 *)Unk_ov111_021D3794);
+        v1 = sub_02022644((const TouchScreenRect *)Unk_ov111_021D3794);
 
         if (v1 != 0xffffffff) {
             if (ov111_021D2918(param0) < 3) {
@@ -811,7 +810,7 @@ static BOOL ov111_021D1508 (UnkStruct_ov111_021D0F7C * param0)
         }
 
         if (param0->unk_0E == (3 - 1)) {
-            v1 = sub_02022664((const UnkUnion_02022594 *)Unk_ov111_021D3610);
+            v1 = sub_02022664((const TouchScreenRect *)Unk_ov111_021D3610);
 
             if (v1 != 0xffffffff) {
                 ov111_021D350C(param0->unk_3A0, 1);
@@ -826,7 +825,7 @@ static BOOL ov111_021D1508 (UnkStruct_ov111_021D0F7C * param0)
                 break;
             }
         } else {
-            v1 = sub_02022664((const UnkUnion_02022594 *)Unk_ov111_021D3618);
+            v1 = sub_02022664((const TouchScreenRect *)Unk_ov111_021D3618);
 
             if (v1 != 0xffffffff) {
                 ov111_021D350C(param0->unk_3A0, 1);
@@ -930,7 +929,7 @@ static BOOL ov111_021D1508 (UnkStruct_ov111_021D0F7C * param0)
         }
         break;
     case 11:
-        if (sub_0202278C() == 0) {
+        if (TouchScreen_Touched() == 0) {
             param0->unk_08 = 3;
         }
         break;

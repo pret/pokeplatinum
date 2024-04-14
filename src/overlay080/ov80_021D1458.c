@@ -8,7 +8,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_02039EBC_decl.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "unk_02022594.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay007/struct_ov7_0224F358.h"
 #include "overlay080/struct_ov80_021D1478_sub1.h"
@@ -29,7 +29,6 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "unk_02022594.h"
 #include "strbuf.h"
 #include "unk_02039C80.h"
 #include "unk_02071CFC.h"
@@ -382,7 +381,7 @@ static int ov80_021D1848 (UnkStruct_ov80_021D2A08 * param0, int param1)
 {
     int v0;
     u16 v1;
-    static const UnkUnion_02022594 v2[] = {
+    static const TouchScreenRect v2[] = {
         {0, 191, 0, 255},
         {10 * 8, (10 + 7) * 8, 13 * 8, (13 + 6) * 8},
         {0xff, 0, 0, 0}
@@ -411,7 +410,7 @@ static BOOL ov80_021D18A0 (UnkStruct_ov80_021D2A08 * param0)
         return 0;
     }
 
-    if (sub_0202278C()) {
+    if (TouchScreen_Touched()) {
         if ((v0->unk_14 == 0) && (ov80_021D1848(param0, v0->unk_10) != 0xffffffff)) {
             ov80_021D273C(param0, v0->unk_10);
             v0->unk_14 = 3;

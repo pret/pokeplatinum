@@ -16,7 +16,7 @@
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/union_02022594_020225E0.h"
+#include "unk_02022594.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0202CA64.h"
 #include "struct_defs/struct_02099F80.h"
@@ -46,7 +46,6 @@
 #include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
-#include "unk_02022594.h"
 #include "unk_02023FCC.h"
 #include "unk_0202C9F4.h"
 #include "unk_0202CD50.h"
@@ -676,7 +675,7 @@ void ov76_0223DCB8 (UnkStruct_ov76_0223DE00 * param0, BOOL param1)
     param0->unk_D4.unk_04 = param1;
 }
 
-static const UnkUnion_02022594 Unk_ov76_0223EE44[] = {
+static const TouchScreenRect Unk_ov76_0223EE44[] = {
     {16, 32, 8, 24},
     {16, 32, 64, 80},
     {40, 56, 8, 24},
@@ -695,7 +694,7 @@ static const UnkUnion_02022594 Unk_ov76_0223EE44[] = {
 void ov76_0223DCC0 (UnkStruct_ov76_0223DE00 * param0)
 {
     int v0;
-    const UnkUnion_02022594 v1 = {0, 0, 0, 0};
+    const TouchScreenRect v1 = {0, 0, 0, 0};
 
     for (v0 = 0; v0 < 13; v0++) {
         param0->unk_D4.unk_FC[v0] = Unk_ov76_0223EE44[v0];

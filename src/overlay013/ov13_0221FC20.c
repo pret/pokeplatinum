@@ -8,7 +8,7 @@
 #include "struct_decls/sys_task.h"
 #include "struct_decls/battle_system.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "unk_02022594.h"
 #include "overlay013/struct_ov13_0221FC20.h"
 #include "overlay013/struct_ov13_022213F0.h"
 #include "overlay013/struct_ov13_02221ED0.h"
@@ -32,7 +32,6 @@
 #include "unk_0201CCF0.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_02022594.h"
 #include "strbuf.h"
 #include "pokemon.h"
 #include "move_table.h"
@@ -89,7 +88,7 @@ static u8 ov13_022212C4(UnkStruct_ov13_022213F0 * param0);
 static u8 ov13_0222130C(UnkStruct_ov13_022213F0 * param0);
 static u8 ov13_0222139C(UnkStruct_ov13_022213F0 * param0);
 static u8 ov13_02221354(UnkStruct_ov13_022213F0 * param0);
-static int ov13_022213E4(UnkStruct_ov13_022213F0 * param0, const UnkUnion_02022594 * param1);
+static int ov13_022213E4(UnkStruct_ov13_022213F0 * param0, const TouchScreenRect *rect);
 static void ov13_022216C0(UnkStruct_ov13_022213F0 * param0, u8 param1);
 static void ov13_02221738(UnkStruct_ov13_022213F0 * param0, u8 param1);
 static u8 ov13_022217A4(UnkStruct_ov13_022213F0 * param0);
@@ -103,7 +102,7 @@ static void ov13_02221A3C(UnkStruct_ov13_022213F0 * param0);
 static u8 ov13_0222194C(UnkStruct_ov13_022213F0 * param0);
 static void ov13_02221A54(BattleSystem * param0, u16 param1, u16 param2, u32 param3);
 
-static const UnkUnion_02022594 Unk_ov13_02228DEC[] = {
+static const TouchScreenRect Unk_ov13_02228DEC[] = {
     {0x0, 0x2F, 0x0, 0x7F},
     {0x8, 0x37, 0x80, 0xFF},
     {0x30, 0x5F, 0x0, 0x7F},
@@ -114,7 +113,7 @@ static const UnkUnion_02022594 Unk_ov13_02228DEC[] = {
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-static const UnkUnion_02022594 Unk_ov13_02228D24[] = {
+static const TouchScreenRect Unk_ov13_02228D24[] = {
     {0x8, 0x8F, 0x8, 0xF7},
     {0x98, 0xBF, 0x0, 0x67},
     {0x98, 0xBF, 0x68, 0xCF},
@@ -122,7 +121,7 @@ static const UnkUnion_02022594 Unk_ov13_02228D24[] = {
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-static const UnkUnion_02022594 Unk_ov13_02228D38[] = {
+static const TouchScreenRect Unk_ov13_02228D38[] = {
     {0x98, 0xBF, 0x0, 0x27},
     {0x98, 0xBF, 0x28, 0x4F},
     {0x98, 0xBF, 0x60, 0xC7},
@@ -130,7 +129,7 @@ static const UnkUnion_02022594 Unk_ov13_02228D38[] = {
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-static const UnkUnion_02022594 Unk_ov13_02228E2C[] = {
+static const TouchScreenRect Unk_ov13_02228E2C[] = {
     {0x30, 0x5F, 0x0, 0x7F},
     {0x30, 0x5F, 0x80, 0xFF},
     {0x60, 0x8F, 0x0, 0x7F},
@@ -142,7 +141,7 @@ static const UnkUnion_02022594 Unk_ov13_02228E2C[] = {
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-static const UnkUnion_02022594 Unk_ov13_02228D4C[] = {
+static const TouchScreenRect Unk_ov13_02228D4C[] = {
     {0x98, 0xA7, 0x58, 0x7F},
     {0x98, 0xA7, 0x80, 0xA7},
     {0xA8, 0xB7, 0x58, 0x7F},
@@ -151,7 +150,7 @@ static const UnkUnion_02022594 Unk_ov13_02228D4C[] = {
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-static const UnkUnion_02022594 Unk_ov13_02228E0C[] = {
+static const TouchScreenRect Unk_ov13_02228E0C[] = {
     {0x30, 0x5F, 0x0, 0x7F},
     {0x30, 0x5F, 0x80, 0xFF},
     {0x60, 0x8F, 0x0, 0x7F},
@@ -162,14 +161,14 @@ static const UnkUnion_02022594 Unk_ov13_02228E0C[] = {
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-static const UnkUnion_02022594 Unk_ov13_02228D14[] = {
+static const TouchScreenRect Unk_ov13_02228D14[] = {
     {0x98, 0xBF, 0x0, 0xCF},
     {0x0, 0x27, 0xB8, 0xFF},
     {0x98, 0xBF, 0xD8, 0xFF},
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-static const UnkUnion_02022594 Unk_ov13_02228D64[] = {
+static const TouchScreenRect Unk_ov13_02228D64[] = {
     {0x30, 0x5F, 0x0, 0x7F},
     {0x30, 0x5F, 0x80, 0xFF},
     {0x60, 0x8F, 0x0, 0x7F},
@@ -1376,9 +1375,9 @@ static u8 ov13_0222139C (UnkStruct_ov13_022213F0 * param0)
     return (u8)v0;
 }
 
-static int ov13_022213E4 (UnkStruct_ov13_022213F0 * param0, const UnkUnion_02022594 * param1)
+static int ov13_022213E4 (UnkStruct_ov13_022213F0 * param0, const TouchScreenRect *rect)
 {
-    int v0 = sub_02022664(param1);
+    int v0 = sub_02022664(rect);
     return v0;
 }
 

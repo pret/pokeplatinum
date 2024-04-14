@@ -8,7 +8,7 @@
 #include "overlay025/poketch_button.h"
 #include "overlay030/struct_ov30_022563EC_decl.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "unk_02022594.h"
 #include "overlay030/struct_ov30_022563EC_1.h"
 
 #include "unk_0200D9E8.h"
@@ -45,7 +45,7 @@ static BOOL ov30_02256324(UnkStruct_ov30_0225621C * param0);
 static BOOL ov30_02256364(UnkStruct_ov30_0225621C * param0);
 static BOOL ov30_022563B8(UnkStruct_ov30_0225621C * param0);
 
-static const UnkUnion_020225E0 Unk_ov30_02256678[] = {
+static const TouchScreenHitTable Unk_ov30_02256678[] = {
     {0x10, 0xAF, 0x10, 0xCF}
 };
 
@@ -93,7 +93,7 @@ static BOOL ov30_0225621C (UnkStruct_ov30_0225621C * param0, PoketchSystem * par
         }
 
         param0->unk_05 = param0->unk_14.unk_00.minute;
-        param0->unk_10 = ov25_02255ACC(Unk_ov30_02256678, NELEMS(Unk_ov30_02256678), ov30_022562F4, param0, 8);
+        param0->unk_10 = PoketchButtonManager_Create(Unk_ov30_02256678, NELEMS(Unk_ov30_02256678), ov30_022562F4, param0, 8);
 
         if (param0->unk_10 == NULL) {
             return 0;
@@ -109,7 +109,7 @@ static BOOL ov30_0225621C (UnkStruct_ov30_0225621C * param0, PoketchSystem * par
 static void ov30_02256298 (UnkStruct_ov30_0225621C * param0)
 {
     ov30_02256444(param0->unk_24);
-    ov25_02255B34(param0->unk_10);
+    PoketchButtonManager_Destroy(param0->unk_10);
     Heap_FreeToHeap(param0);
 }
 

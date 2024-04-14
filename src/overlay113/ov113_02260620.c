@@ -7,7 +7,7 @@
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
 #include "overlay066/struct_ov66_0222E71C_decl.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "unk_02022594.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay113/struct_ov113_02260818.h"
 #include "overlay113/struct_ov113_02260D90.h"
@@ -18,7 +18,6 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02022594.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "overlay066/ov66_0222DDF0.h"
@@ -535,7 +534,7 @@ static const UnkStruct_ov113_02260D90 Unk_ov113_02260D90[NATIONAL_DEX_COUNT + 1]
 	{ 0x1, 0x0 }
 };
 
-static const UnkUnion_02022594 Unk_ov113_02260D4C[] = {
+static const TouchScreenRect Unk_ov113_02260D4C[] = {
     {0xA0, 0xC0, 0x0, 0x20},
     {0xA0, 0xC0, 0x20, 0x40},
     {0xA0, 0xC0, 0x40, 0x60},

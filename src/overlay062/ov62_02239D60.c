@@ -14,7 +14,7 @@
 
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/union_02022594_020225E0.h"
+#include "unk_02022594.h"
 #include "struct_defs/struct_02030A80.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208C06C.h"
@@ -39,7 +39,6 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_02022594.h"
 #include "strbuf.h"
 #include "unk_02023FCC.h"
 #include "savedata/save_table.h"
@@ -217,14 +216,14 @@ static void ov62_02239DBC (UnkStruct_ov62_02239DBC * param0)
     }
 }
 
-static const UnkUnion_02022594 Unk_ov62_02248DB4[] = {
+static const TouchScreenRect Unk_ov62_02248DB4[] = {
     {0x20, 0x40, 0x18, 0x48},
     {0x20, 0x40, 0xB8, 0xE0},
     {0x98, 0xB8, 0x20, 0x80},
     {0x98, 0xB8, 0x80, 0xE0}
 };
 
-static const UnkUnion_02022594 Unk_ov62_02248DDC[] = {
+static const TouchScreenRect Unk_ov62_02248DDC[] = {
     {0x18, 0x28, 0x18, 0x68},
     {0x18, 0x28, 0x90, 0xD0},
     {0x40, 0x50, 0x18, 0x68},
@@ -234,13 +233,13 @@ static const UnkUnion_02022594 Unk_ov62_02248DDC[] = {
     {0x98, 0xB8, 0x50, 0xB0}
 };
 
-static const UnkUnion_02022594 Unk_ov62_02248D6C[] = {
+static const TouchScreenRect Unk_ov62_02248D6C[] = {
     {0x10, 0x30, 0x58, 0xA8},
     {0x40, 0x70, 0x58, 0xA8},
     {0x98, 0xB8, 0x50, 0xB0}
 };
 
-static const UnkUnion_02022594 Unk_ov62_02248D54[] = {
+static const TouchScreenRect Unk_ov62_02248D54[] = {
     {0x20, 0x60, 0x48, 0xB8},
     {0x98, 0xB8, 0x50, 0xB0}
 };

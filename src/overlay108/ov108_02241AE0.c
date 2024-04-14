@@ -21,7 +21,7 @@
 #include "overlay108/struct_ov108_02243594_decl.h"
 
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/union_02022594_020225E0.h"
+#include "unk_02022594.h"
 #include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02081CF4.h"
@@ -50,7 +50,6 @@
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02022594.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_02030494.h"
@@ -282,7 +281,7 @@ static u16 ov108_02242B1C(UnkStruct_ov108_02241DB0 * param0);
 static u8 Unk_ov108_022437A0;
 static u8 Unk_ov108_022437A1;
 
-static const UnkUnion_020225E0 Unk_ov108_02243687[] = {
+static const TouchScreenHitTable Unk_ov108_02243687[] = {
     {0xfe, 0x80, 0x60, 0x20},
     {0xff, 0x0, 0x0, 0x0}
 };

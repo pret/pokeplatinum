@@ -7,7 +7,7 @@
 #include "pokemon.h"
 
 #include "struct_defs/archived_sprite.h"
-#include "struct_defs/union_02022594_020225E0.h"
+#include "unk_02022594.h"
 #include "struct_defs/struct_020298D8.h"
 #include "overlay022/struct_ov22_022596B0.h"
 #include "overlay022/struct_ov22_0225A0E4.h"
@@ -15,13 +15,12 @@
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "heap.h"
-#include "unk_02022594.h"
 #include "pokemon.h"
 #include "overlay022/ov22_02255094.h"
 #include "overlay022/ov22_02259098.h"
 
 static int ov22_0225936C(char * param0, int param1);
-static void ov22_02259448(UnkUnion_02022594 * param0, int param1, int param2, int param3, int param4);
+static void ov22_02259448(TouchScreenRect *rect, int param1, int param2, int param3, int param4);
 static void ov22_022593B8(char * param0, int param1, int param2, UnkStruct_ov22_022596B0 * param3);
 
 void ov22_02259098 (UnkStruct_ov22_0225A0E4 * param0, ArchivedSprite * param1)
@@ -55,10 +54,10 @@ void ov22_022590D4 (UnkStruct_020298D8 * param0, UnkStruct_02007768 * param1, Po
         v1 /= 2;
         v2 /= 2;
 
-        param0->unk_04.val1.unk_00 = 56 - v2;
-        param0->unk_04.val1.unk_01 = 56 + v2;
-        param0->unk_04.val1.unk_02 = 192 - v1;
-        param0->unk_04.val1.unk_03 = 192 + v1;
+        param0->unk_04.rect.top = 56 - v2;
+        param0->unk_04.rect.bottom = 56 + v2;
+        param0->unk_04.rect.left = 192 - v1;
+        param0->unk_04.rect.right = 192 + v1;
 
         ov22_02259448(&param0->unk_04, 192, 56, v1, v2);
     }
@@ -120,7 +119,7 @@ void ov22_022591EC (UnkStruct_020298D8 * param0, int param1, int param2)
 
 BOOL ov22_02259238 (UnkStruct_020298D8 * param0)
 {
-    return sub_02022734(&param0->unk_04);
+    return TouchScreen_LocationHeld(&param0->unk_04);
 }
 
 BOOL ov22_02259244 (UnkStruct_020298D8 * param0, int param1, int param2)
@@ -266,29 +265,29 @@ static void ov22_022593B8 (char * param0, int param1, int param2, UnkStruct_ov22
     }
 }
 
-static void ov22_02259448 (UnkUnion_02022594 * param0, int param1, int param2, int param3, int param4)
+static void ov22_02259448 (TouchScreenRect *rect, int param1, int param2, int param3, int param4)
 {
     if ((param2 - param4) >= 0) {
-        param0->val1.unk_00 = param2 - param4;
+        rect->rect.top = param2 - param4;
     } else {
-        param0->val1.unk_00 = 0;
+        rect->rect.top = 0;
     }
 
     if ((param2 + param4) <= 191) {
-        param0->val1.unk_01 = param2 + param4;
+        rect->rect.bottom = param2 + param4;
     } else {
-        param0->val1.unk_01 = 191;
+        rect->rect.bottom = 191;
     }
 
     if ((param1 - param3) >= 0) {
-        param0->val1.unk_02 = param1 - param3;
+        rect->rect.left = param1 - param3;
     } else {
-        param0->val1.unk_02 = 0;
+        rect->rect.left = 0;
     }
 
     if ((param1 + param3) <= 255) {
-        param0->val1.unk_03 = param1 + param3;
+        rect->rect.right = param1 + param3;
     } else {
-        param0->val1.unk_03 = 255;
+        rect->rect.right = 255;
     }
 }
