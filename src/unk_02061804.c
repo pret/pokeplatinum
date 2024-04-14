@@ -46,7 +46,7 @@ typedef struct UnkStruct_02061830_t {
     UnkStruct_02061830_sub1 * unk_120;
     LocalMapObject * unk_124;
     FieldSystem * unk_128;
-} UnkStruct_02061830;
+} MapObjectManager;
 
 typedef struct UnkStruct_02061AB4_t {
     u32 unk_00;
@@ -87,7 +87,7 @@ typedef struct UnkStruct_02061AB4_t {
     u16 unk_AC;
     u16 unk_AE;
     SysTask * unk_B0;
-    const UnkStruct_02061830 * unk_B4;
+    const MapObjectManager * unk_B4;
     UnkFuncPtr_020EDF0C unk_B8;
     UnkFuncPtr_020EDF0C_1 unk_BC;
     UnkFuncPtr_020EDF0C_2 unk_C0;
@@ -106,28 +106,28 @@ typedef struct {
     int unk_00;
     int unk_04;
     int unk_08;
-    const UnkStruct_02061830 * unk_0C;
+    const MapObjectManager * unk_0C;
     UnkStruct_020619DC * unk_10;
 } UnkStruct_020620C4;
 
-static UnkStruct_02061830 * sub_020618C8(int param0);
+static MapObjectManager * sub_020618C8(int param0);
 static void sub_02061D3C(FieldSystem * param0, LocalMapObject * param1, UnkStruct_02061D3C * param2);
 static void sub_02061E80(LocalMapObject * param0, UnkStruct_02061D3C * param1);
-static void sub_02061FA8(const UnkStruct_02061830 * param0, LocalMapObject * param1);
+static void sub_02061FA8(const MapObjectManager * param0, LocalMapObject * param1);
 static void sub_02061FF0(LocalMapObject * param0);
 static void sub_02062010(LocalMapObject * param0);
 static void sub_020620C4(UnkStruct_020620C4 * param0);
-static LocalMapObject * sub_02062120(const UnkStruct_02061830 * param0);
-static LocalMapObject * sub_02062154(const UnkStruct_02061830 * param0, int param1, int param2);
-static void sub_020621AC(const UnkStruct_02061830 * param0, LocalMapObject * param1);
+static LocalMapObject * sub_02062120(const MapObjectManager * param0);
+static LocalMapObject * sub_02062154(const MapObjectManager * param0, int param1, int param2);
+static void sub_020621AC(const MapObjectManager * param0, LocalMapObject * param1);
 static void sub_020621E8(LocalMapObject * param0, const UnkStruct_020619DC * param1, FieldSystem * param2);
 static void sub_020622B8(LocalMapObject * param0, const UnkStruct_020619DC * param1);
-static void sub_0206234C(LocalMapObject * param0, const UnkStruct_02061830 * param1);
+static void sub_0206234C(LocalMapObject * param0, const MapObjectManager * param1);
 static void sub_0206239C(LocalMapObject * param0);
 static void sub_020623D4(LocalMapObject * param0);
 static void sub_0206243C(LocalMapObject * param0);
 static int sub_0206244C(const LocalMapObject * param0, int param1, int param2, const UnkStruct_020619DC * param3);
-static LocalMapObject * sub_020624CC(const UnkStruct_02061830 * param0, int param1, int param2);
+static LocalMapObject * sub_020624CC(const MapObjectManager * param0, int param1, int param2);
 static void sub_02062604(LocalMapObject * param0);
 static void sub_02062618(LocalMapObject * param0);
 static void sub_02062628(LocalMapObject * param0);
@@ -139,11 +139,11 @@ static void sub_020626D0(LocalMapObject * param0, const UnkStruct_020619DC * par
 static void sub_02062714(LocalMapObject * param0, int param1, const UnkStruct_020619DC * param2);
 static void sub_020627E8(SysTask * param0, void * param1);
 static void sub_02062804(LocalMapObject * param0);
-static UnkStruct_02061830 * sub_0206281C(const UnkStruct_02061830 * param0);
-static void sub_02062828(UnkStruct_02061830 * param0);
-static void sub_02062830(UnkStruct_02061830 * param0);
-static LocalMapObject * sub_02062870(const UnkStruct_02061830 * param0);
-static UnkStruct_02061830 * sub_02062A48(const LocalMapObject * param0);
+static MapObjectManager * sub_0206281C(const MapObjectManager * param0);
+static void sub_02062828(MapObjectManager * param0);
+static void sub_02062830(MapObjectManager * param0);
+static LocalMapObject * sub_02062870(const MapObjectManager * param0);
+static MapObjectManager * sub_02062A48(const LocalMapObject * param0);
 static const UnkStruct_020619DC * sub_020631A4(int param0, int param1, const UnkStruct_020619DC * param2);
 static int sub_020631D8(const UnkStruct_020619DC * param0);
 static int sub_020631F4(const UnkStruct_020619DC * param0);
@@ -160,9 +160,9 @@ static UnkFuncPtr_ov5_021FB0F0_1 sub_02063234(const UnkStruct_ov5_021FB0F0 * par
 static UnkFuncPtr_ov5_021FB0F0_2 sub_02063238(const UnkStruct_ov5_021FB0F0 * param0);
 static const UnkStruct_ov5_021FB0F0 * sub_02063244(u32 param0);
 
-UnkStruct_02061830 * sub_02061804 (FieldSystem * param0, int param1, int param2)
+MapObjectManager * sub_02061804 (FieldSystem * param0, int param1, int param2)
 {
-    UnkStruct_02061830 * v0;
+    MapObjectManager * v0;
 
     v0 = sub_020618C8(param1);
     sub_0206288C(v0, param0);
@@ -172,13 +172,13 @@ UnkStruct_02061830 * sub_02061804 (FieldSystem * param0, int param1, int param2)
     return v0;
 }
 
-void sub_02061830 (UnkStruct_02061830 * param0)
+void sub_02061830 (MapObjectManager * param0)
 {
     Heap_FreeToHeapExplicit(11, sub_02062878(param0));
     Heap_FreeToHeapExplicit(11, param0);
 }
 
-void sub_0206184C (UnkStruct_02061830 * param0, int param1, int param2, int param3, const UnkStruct_020619DC * param4)
+void sub_0206184C (MapObjectManager * param0, int param1, int param2, int param3, const UnkStruct_020619DC * param4)
 {
     int v0, v1 = sub_02062824(param0);
     LocalMapObject * v2 = sub_02062878(param0);
@@ -210,16 +210,16 @@ void sub_0206184C (UnkStruct_02061830 * param0, int param1, int param2, int para
     ov5_021EDA38(param0, sub_0206285C(param0));
 }
 
-static UnkStruct_02061830 * sub_020618C8 (int param0)
+static MapObjectManager * sub_020618C8 (int param0)
 {
     int v0;
     LocalMapObject * v1;
-    UnkStruct_02061830 * v2;
+    MapObjectManager * v2;
 
-    v2 = Heap_AllocFromHeap(11, (sizeof(UnkStruct_02061830)));
+    v2 = Heap_AllocFromHeap(11, (sizeof(MapObjectManager)));
 
     GF_ASSERT(v2 != NULL);
-    memset(v2, 0, (sizeof(UnkStruct_02061830)));
+    memset(v2, 0, (sizeof(MapObjectManager)));
 
     v0 = (sizeof(LocalMapObject)) * param0;
     v1 = Heap_AllocFromHeap(11, v0);
@@ -232,7 +232,7 @@ static UnkStruct_02061830 * sub_020618C8 (int param0)
     return v2;
 }
 
-LocalMapObject * sub_02061918 (const UnkStruct_02061830 * param0, const UnkStruct_020619DC * param1, int param2)
+LocalMapObject * sub_02061918 (const MapObjectManager * param0, const UnkStruct_020619DC * param1, int param2)
 {
     LocalMapObject * v0;
     UnkStruct_020619DC v1 = *param1;
@@ -277,7 +277,7 @@ LocalMapObject * sub_02061918 (const UnkStruct_02061830 * param0, const UnkStruc
     return v0;
 }
 
-LocalMapObject * sub_020619DC (const UnkStruct_02061830 * param0, int param1, int param2, int param3, int param4, int param5, int param6)
+LocalMapObject * sub_020619DC (const MapObjectManager * param0, int param1, int param2, int param3, int param4, int param5, int param6)
 {
     UnkStruct_020619DC v0;
     LocalMapObject * v1;
@@ -303,7 +303,7 @@ LocalMapObject * sub_020619DC (const UnkStruct_02061830 * param0, int param1, in
     return v1;
 }
 
-LocalMapObject * sub_02061A74 (const UnkStruct_02061830 * param0, int param1, int param2, int param3, const UnkStruct_020619DC * param4)
+LocalMapObject * sub_02061A74 (const MapObjectManager * param0, int param1, int param2, int param3, const UnkStruct_020619DC * param4)
 {
     LocalMapObject * v0 = NULL;
     const UnkStruct_020619DC * v1 = sub_020631A4(param1, param2, param4);
@@ -339,7 +339,7 @@ void sub_02061AD4 (LocalMapObject * param0, int param1)
 
 void sub_02061AF4 (LocalMapObject * param0)
 {
-    const UnkStruct_02061830 * v0;
+    const MapObjectManager * v0;
 
     v0 = sub_02062A40(param0);
 
@@ -364,7 +364,7 @@ void sub_02061B28 (LocalMapObject * param0)
 
 void sub_02061B48 (LocalMapObject * param0)
 {
-    const UnkStruct_02061830 * v0;
+    const MapObjectManager * v0;
 
     v0 = sub_02062A40(param0);
 
@@ -384,7 +384,7 @@ void sub_02061B48 (LocalMapObject * param0)
     sub_02062B9C(param0, sub_020633FC);
 }
 
-void sub_02061BBC (UnkStruct_02061830 * param0)
+void sub_02061BBC (MapObjectManager * param0)
 {
     int v0, v1;
     LocalMapObject * v2;
@@ -403,7 +403,7 @@ void sub_02061BBC (UnkStruct_02061830 * param0)
     } while (v0 < v1);
 }
 
-void sub_02061BF0 (UnkStruct_02061830 * param0)
+void sub_02061BF0 (MapObjectManager * param0)
 {
     GF_ASSERT(sub_02062CA8(param0) == 1);
 
@@ -429,7 +429,7 @@ void sub_02061BF0 (UnkStruct_02061830 * param0)
     }
 }
 
-void sub_02061C48 (UnkStruct_02061830 * param0)
+void sub_02061C48 (MapObjectManager * param0)
 {
     GF_ASSERT(sub_02062CA8(param0) == 1);
 
@@ -456,7 +456,7 @@ void sub_02061C48 (UnkStruct_02061830 * param0)
     }
 }
 
-void sub_02061CA8 (FieldSystem * param0, const UnkStruct_02061830 * param1, UnkStruct_02061D3C * param2, int param3)
+void sub_02061CA8 (FieldSystem * param0, const MapObjectManager * param1, UnkStruct_02061D3C * param2, int param3)
 {
     int v0 = 0;
     LocalMapObject * v1;
@@ -472,7 +472,7 @@ void sub_02061CA8 (FieldSystem * param0, const UnkStruct_02061830 * param1, UnkS
     }
 }
 
-void sub_02061D04 (const UnkStruct_02061830 * param0, UnkStruct_02061D3C * param1, int param2)
+void sub_02061D04 (const MapObjectManager * param0, UnkStruct_02061D3C * param1, int param2)
 {
     int v0 = 0;
     LocalMapObject * v1;
@@ -579,7 +579,7 @@ static void sub_02061E80 (LocalMapObject * param0, UnkStruct_02061D3C * param1)
     memcpy(sub_02062AA0(param0), param1->unk_40, 16);
 }
 
-static void sub_02061FA8 (const UnkStruct_02061830 * param0, LocalMapObject * param1)
+static void sub_02061FA8 (const MapObjectManager * param0, LocalMapObject * param1)
 {
     sub_02061FF0(param1);
     sub_02062010(param1);
@@ -620,7 +620,7 @@ static void sub_02062010 (LocalMapObject * param0)
     sub_02063060(param0, &v1);
 }
 
-void sub_02062068 (const UnkStruct_02061830 * param0, int param1, int param2, const UnkStruct_020619DC * param3)
+void sub_02062068 (const MapObjectManager * param0, int param1, int param2, const UnkStruct_020619DC * param3)
 {
     int v0;
     UnkStruct_020619DC * v1;
@@ -669,7 +669,7 @@ static void sub_020620C4 (UnkStruct_020620C4 * param0)
     Heap_FreeToHeapExplicit(11, param0);
 }
 
-static LocalMapObject * sub_02062120 (const UnkStruct_02061830 * param0)
+static LocalMapObject * sub_02062120 (const MapObjectManager * param0)
 {
     int v0, v1;
     LocalMapObject * v2;
@@ -690,7 +690,7 @@ static LocalMapObject * sub_02062120 (const UnkStruct_02061830 * param0)
     return NULL;
 }
 
-static LocalMapObject * sub_02062154 (const UnkStruct_02061830 * param0, int param1, int param2)
+static LocalMapObject * sub_02062154 (const MapObjectManager * param0, int param1, int param2)
 {
     int v0 = 0;
     LocalMapObject * v1;
@@ -708,7 +708,7 @@ static LocalMapObject * sub_02062154 (const UnkStruct_02061830 * param0, int par
     return NULL;
 }
 
-static void sub_020621AC (const UnkStruct_02061830 * param0, LocalMapObject * param1)
+static void sub_020621AC (const MapObjectManager * param0, LocalMapObject * param1)
 {
     int v0, v1;
     SysTask * v2;
@@ -772,7 +772,7 @@ static void sub_020622B8 (LocalMapObject * param0, const UnkStruct_020619DC * pa
     sub_02063060(param0, &v1);
 }
 
-static void sub_0206234C (LocalMapObject * param0, const UnkStruct_02061830 * param1)
+static void sub_0206234C (LocalMapObject * param0, const MapObjectManager * param1)
 {
     sub_020628BC(param0, (1 << 0) | (1 << 12) | (1 << 11));
 
@@ -855,7 +855,7 @@ static int sub_0206244C (const LocalMapObject * param0, int param1, int param2, 
     return 0;
 }
 
-static LocalMapObject * sub_020624CC (const UnkStruct_02061830 * param0, int param1, int param2)
+static LocalMapObject * sub_020624CC (const MapObjectManager * param0, int param1, int param2)
 {
     int v0 = 0;
     LocalMapObject * v1;
@@ -869,7 +869,7 @@ static LocalMapObject * sub_020624CC (const UnkStruct_02061830 * param0, int par
     return NULL;
 }
 
-LocalMapObject * sub_0206251C (const UnkStruct_02061830 * param0, int param1)
+LocalMapObject * sub_0206251C (const MapObjectManager * param0, int param1)
 {
     int v0;
     LocalMapObject * v1;
@@ -895,7 +895,7 @@ LocalMapObject * sub_0206251C (const UnkStruct_02061830 * param0, int param1)
     return NULL;
 }
 
-LocalMapObject * sub_02062570 (const UnkStruct_02061830 * param0, int param1)
+LocalMapObject * sub_02062570 (const MapObjectManager * param0, int param1)
 {
     int v0;
     LocalMapObject * v1;
@@ -917,7 +917,7 @@ LocalMapObject * sub_02062570 (const UnkStruct_02061830 * param0, int param1)
     return NULL;
 }
 
-int sub_020625B0 (const UnkStruct_02061830 * param0, LocalMapObject ** param1, int * param2, u32 param3)
+int sub_020625B0 (const MapObjectManager * param0, LocalMapObject ** param1, int * param2, u32 param3)
 {
     int v0;
     LocalMapObject * v1;
@@ -986,7 +986,7 @@ static void sub_02062660 (LocalMapObject * param0)
 
 static void sub_02062670 (LocalMapObject * param0)
 {
-    const UnkStruct_02061830 * v0 = sub_02062A40(param0);
+    const MapObjectManager * v0 = sub_02062A40(param0);
 
     if (sub_02062CA8(v0) == 0) {
         return;
@@ -1099,84 +1099,84 @@ static void sub_020627E8 (SysTask * param0, void * param1)
 
 static void sub_02062804 (LocalMapObject * param0)
 {
-    const UnkStruct_02061830 * v0 = sub_02062A40(param0);
+    const MapObjectManager * v0 = sub_02062A40(param0);
 
     if (sub_02062CA8(v0) == 1) {
         ov5_021ECCC8(param0);
     }
 }
 
-static UnkStruct_02061830 * sub_0206281C (const UnkStruct_02061830 * param0)
+static MapObjectManager * sub_0206281C (const MapObjectManager * param0)
 {
-    return (UnkStruct_02061830 * )param0;
+    return (MapObjectManager * )param0;
 }
 
-void sub_02062820 (UnkStruct_02061830 * param0, int param1)
+void sub_02062820 (MapObjectManager * param0, int param1)
 {
     param0->unk_04 = param1;
 }
 
-int sub_02062824 (const UnkStruct_02061830 * param0)
+int sub_02062824 (const MapObjectManager * param0)
 {
     return param0->unk_04;
 }
 
-static void sub_02062828 (UnkStruct_02061830 * param0)
+static void sub_02062828 (MapObjectManager * param0)
 {
     param0->unk_08++;
 }
 
-static void sub_02062830 (UnkStruct_02061830 * param0)
+static void sub_02062830 (MapObjectManager * param0)
 {
     param0->unk_08--;
 }
 
-void sub_02062838 (UnkStruct_02061830 * param0, u32 param1)
+void sub_02062838 (MapObjectManager * param0, u32 param1)
 {
     param0->unk_00 |= param1;
 }
 
-void sub_02062840 (UnkStruct_02061830 * param0, u32 param1)
+void sub_02062840 (MapObjectManager * param0, u32 param1)
 {
     param0->unk_00 &= ~param1;
 }
 
-u32 sub_0206284C (const UnkStruct_02061830 * param0, u32 param1)
+u32 sub_0206284C (const MapObjectManager * param0, u32 param1)
 {
     return(param0->unk_00 & param1);
 }
 
-void sub_02062854 (UnkStruct_02061830 * param0, int param1)
+void sub_02062854 (MapObjectManager * param0, int param1)
 {
     param0->unk_0C = param1;
 }
 
-int sub_02062858 (const UnkStruct_02061830 * param0)
+int sub_02062858 (const MapObjectManager * param0)
 {
     return param0->unk_0C;
 }
 
-UnkStruct_ov5_021ED0A4 * sub_0206285C (const UnkStruct_02061830 * param0)
+UnkStruct_ov5_021ED0A4 * sub_0206285C (const MapObjectManager * param0)
 {
-    return &(((UnkStruct_02061830 *)param0)->unk_18);
+    return &(((MapObjectManager *)param0)->unk_18);
 }
 
-void sub_02062860 (UnkStruct_02061830 * param0, LocalMapObject * param1)
+void sub_02062860 (MapObjectManager * param0, LocalMapObject * param1)
 {
     param0->unk_124 = param1;
 }
 
-const LocalMapObject * sub_02062868 (const UnkStruct_02061830 * param0)
+const LocalMapObject * sub_02062868 (const MapObjectManager * param0)
 {
     return param0->unk_124;
 }
 
-static LocalMapObject * sub_02062870 (const UnkStruct_02061830 * param0)
+static LocalMapObject * sub_02062870 (const MapObjectManager * param0)
 {
     return param0->unk_124;
 }
 
-LocalMapObject * sub_02062878 (const UnkStruct_02061830 * param0)
+LocalMapObject * sub_02062878 (const MapObjectManager * param0)
 {
     return param0->unk_124;
 }
@@ -1186,25 +1186,25 @@ void sub_02062880 (const LocalMapObject ** param0)
     (*param0)++;
 }
 
-void sub_0206288C (UnkStruct_02061830 * param0, FieldSystem * param1)
+void sub_0206288C (MapObjectManager * param0, FieldSystem * param1)
 {
     param0->unk_128 = param1;
 }
 
-FieldSystem * sub_02062894 (const UnkStruct_02061830 * param0)
+FieldSystem * sub_02062894 (const MapObjectManager * param0)
 {
     return param0->unk_128;
 }
 
-void sub_0206289C (UnkStruct_02061830 * param0, NARC * param1)
+void sub_0206289C (MapObjectManager * param0, NARC * param1)
 {
     param0->unk_14 = param1;
 }
 
-NARC * sub_020628A0 (const UnkStruct_02061830 * param0)
+NARC * sub_020628A0 (const MapObjectManager * param0)
 {
     GF_ASSERT(param0->unk_14 != NULL);
-    return ((UnkStruct_02061830 *)param0)->unk_14;
+    return ((MapObjectManager *)param0)->unk_14;
 }
 
 void sub_020628B4 (LocalMapObject * param0, u32 param1)
@@ -1475,17 +1475,17 @@ void sub_02062A2C (const LocalMapObject * param0)
     SysTask_Done(sub_02062A24(param0));
 }
 
-void sub_02062A38 (LocalMapObject * param0, const UnkStruct_02061830 * param1)
+void sub_02062A38 (LocalMapObject * param0, const MapObjectManager * param1)
 {
     param0->unk_B4 = param1;
 }
 
-const UnkStruct_02061830 * sub_02062A40 (const LocalMapObject * param0)
+const MapObjectManager * sub_02062A40 (const LocalMapObject * param0)
 {
     return param0->unk_B4;
 }
 
-static UnkStruct_02061830 * sub_02062A48 (const LocalMapObject * param0)
+static MapObjectManager * sub_02062A48 (const LocalMapObject * param0)
 {
     return sub_0206281C(param0->unk_B4);
 }
@@ -1691,7 +1691,7 @@ u32 sub_02062BF8 (const LocalMapObject * param0)
 
 FieldSystem * sub_02062C00 (const LocalMapObject * param0)
 {
-    UnkStruct_02061830 * v0;
+    MapObjectManager * v0;
 
     v0 = sub_02062A48(param0);
     return sub_02062894(v0);
@@ -1708,17 +1708,17 @@ int sub_02062C18 (const LocalMapObject * param0)
     return sub_02062958(param0);
 }
 
-void sub_02062C30 (UnkStruct_02061830 * param0)
+void sub_02062C30 (MapObjectManager * param0)
 {
     sub_02062838(param0, (1 << 1) | (1 << 2));
 }
 
-void sub_02062C3C (UnkStruct_02061830 * param0)
+void sub_02062C3C (MapObjectManager * param0)
 {
     sub_02062840(param0, (1 << 1) | (1 << 2));
 }
 
-void sub_02062C48 (UnkStruct_02061830 * param0)
+void MapObjectMan_PauseAllMovement (MapObjectManager * param0)
 {
     int v0 = sub_02062824(param0);
     LocalMapObject * v1 = sub_02062878(param0);
@@ -1733,7 +1733,7 @@ void sub_02062C48 (UnkStruct_02061830 * param0)
     } while (v0);
 }
 
-void sub_02062C78 (UnkStruct_02061830 * param0)
+void MapObjectMan_UnpauseAllMovement (MapObjectManager * param0)
 {
     int v0 = sub_02062824(param0);
     LocalMapObject * v1 = sub_02062878(param0);
@@ -1748,7 +1748,7 @@ void sub_02062C78 (UnkStruct_02061830 * param0)
     } while (v0);
 }
 
-int sub_02062CA8 (const UnkStruct_02061830 * param0)
+int sub_02062CA8 (const MapObjectManager * param0)
 {
     if (sub_0206284C(param0, (1 << 0))) {
         return 1;
@@ -1759,12 +1759,12 @@ int sub_02062CA8 (const UnkStruct_02061830 * param0)
 
 u32 sub_02062CBC (const LocalMapObject * param0, u32 param1)
 {
-    const UnkStruct_02061830 * v0 = sub_02062A40(param0);
+    const MapObjectManager * v0 = sub_02062A40(param0);
 
     return sub_0206284C(v0, param1);
 }
 
-void sub_02062CCC (UnkStruct_02061830 * param0, int param1)
+void sub_02062CCC (MapObjectManager * param0, int param1)
 {
     if (param1 == 0) {
         sub_02062838(param0, (1 << 3));
@@ -1773,7 +1773,7 @@ void sub_02062CCC (UnkStruct_02061830 * param0, int param1)
     }
 }
 
-int sub_02062CE4 (const UnkStruct_02061830 * param0)
+int sub_02062CE4 (const MapObjectManager * param0)
 {
     if (sub_0206284C(param0, (1 << 3))) {
         return 0;
@@ -1884,7 +1884,7 @@ int sub_02062DE8 (const LocalMapObject * param0)
 
 int sub_02062DFC (const LocalMapObject * param0)
 {
-    const UnkStruct_02061830 * v0;
+    const MapObjectManager * v0;
 
     v0 = sub_02062A40(param0);
 
@@ -2476,7 +2476,7 @@ static const UnkStruct_ov5_021FB0F0 * sub_02063244 (u32 param0)
     return NULL;
 }
 
-LocalMapObject * sub_0206326C (const UnkStruct_02061830 * param0, int param1, int param2, int param3)
+LocalMapObject * sub_0206326C (const MapObjectManager * param0, int param1, int param2, int param3)
 {
     int v0;
     LocalMapObject * v1;

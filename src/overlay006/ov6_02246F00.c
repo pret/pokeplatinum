@@ -22,7 +22,7 @@ typedef struct {
     u8 unk_03;
 } UnkStruct_ov6_02246F00;
 
-static BOOL ov6_02246F40(UnkStruct_020508D4 * param0);
+static BOOL ov6_02246F40(TaskManager * param0);
 
 void ov6_02246F00 (FieldSystem * param0, const u8 param1, const u8 param2)
 {
@@ -43,10 +43,10 @@ void ov6_02246F00 (FieldSystem * param0, const u8 param1, const u8 param2)
     }
 }
 
-static BOOL ov6_02246F40 (UnkStruct_020508D4 * param0)
+static BOOL ov6_02246F40 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_ov6_02246F00 * v1 = (UnkStruct_ov6_02246F00 *)sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_ov6_02246F00 * v1 = (UnkStruct_ov6_02246F00 *)TaskManager_Environment(param0);
 
     switch (v1->unk_02) {
     case 0:

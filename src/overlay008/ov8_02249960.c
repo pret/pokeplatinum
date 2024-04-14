@@ -305,16 +305,16 @@ void include_ov8_02249960(void);
 
 static u8 ov8_02249960(const u8 param0, const int param1);
 static void ov8_0224996C(const u8 param0, int * param1);
-static BOOL ov8_02249A94(UnkStruct_020508D4 * param0);
-static BOOL ov8_02249B74(UnkStruct_020508D4 * param0);
-static BOOL ov8_02249CD8(UnkStruct_020508D4 * param0);
+static BOOL ov8_02249A94(TaskManager * param0);
+static BOOL ov8_02249B74(TaskManager * param0);
+static BOOL ov8_02249CD8(TaskManager * param0);
 static void ov8_02249F14(const u8 param0, UnkStruct_ov5_021D3CAC * param1);
-static BOOL ov8_0224A018(UnkStruct_020508D4 * param0);
-static BOOL ov8_0224A0E8(UnkStruct_020508D4 * param0);
-static BOOL ov8_0224A4FC(UnkStruct_020508D4 * param0);
-static BOOL ov8_0224A620(UnkStruct_020508D4 * param0);
-static BOOL ov8_0224A770(UnkStruct_020508D4 * param0);
-static BOOL ov8_0224ADE8(UnkStruct_020508D4 * param0);
+static BOOL ov8_0224A018(TaskManager * param0);
+static BOOL ov8_0224A0E8(TaskManager * param0);
+static BOOL ov8_0224A4FC(TaskManager * param0);
+static BOOL ov8_0224A620(TaskManager * param0);
+static BOOL ov8_0224A770(TaskManager * param0);
+static BOOL ov8_0224ADE8(TaskManager * param0);
 static void ov8_0224B8D0(UnkStruct_ov8_0224B8D0 * param0);
 static void ov8_0224B958(UnkStruct_ov8_0224B8D0 * param0);
 static void ov8_0224BFCC(FieldSystem * param0, UnkStruct_ov8_0224C098 * param1, UnkStruct_ov8_0224B80C * param2, int param3);
@@ -411,11 +411,11 @@ BOOL ov8_02249A40 (FieldSystem * param0, const int param1, const int param2, con
     return 0;
 }
 
-static BOOL ov8_02249A94 (UnkStruct_020508D4 * param0)
+static BOOL ov8_02249A94 (TaskManager * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
-    FieldSystem * v1 = sub_02050A60(param0);
-    UnkStruct_ov8_0224997C * v2 = sub_02050A64(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
+    UnkStruct_ov8_0224997C * v2 = TaskManager_Environment(param0);
 
     switch (v2->unk_00) {
     case 0:
@@ -465,11 +465,11 @@ static BOOL ov8_02249A94 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL ov8_02249B74 (UnkStruct_020508D4 * param0)
+static BOOL ov8_02249B74 (TaskManager * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
-    FieldSystem * v1 = sub_02050A60(param0);
-    UnkStruct_ov8_0224997C * v2 = sub_02050A64(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
+    UnkStruct_ov8_0224997C * v2 = TaskManager_Environment(param0);
 
     switch (v2->unk_00) {
     case 0:
@@ -554,11 +554,11 @@ static BOOL ov8_02249B74 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL ov8_02249CD8 (UnkStruct_020508D4 * param0)
+static BOOL ov8_02249CD8 (TaskManager * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
-    FieldSystem * v1 = sub_02050A60(param0);
-    UnkStruct_ov8_0224997C * v2 = sub_02050A64(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
+    UnkStruct_ov8_0224997C * v2 = TaskManager_Environment(param0);
 
     switch (v2->unk_00) {
     case 0:
@@ -780,11 +780,11 @@ void ov8_02249FB8 (FieldSystem * param0)
     }
 }
 
-static BOOL ov8_0224A018 (UnkStruct_020508D4 * param0)
+static BOOL ov8_0224A018 (TaskManager * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
-    FieldSystem * v1 = sub_02050A60(param0);
-    UnkStruct_ov8_0224997C * v2 = sub_02050A64(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
+    UnkStruct_ov8_0224997C * v2 = TaskManager_Environment(param0);
 
     switch (v2->unk_00) {
     case 0:
@@ -828,11 +828,11 @@ static BOOL ov8_0224A018 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL ov8_0224A0E8 (UnkStruct_020508D4 * param0)
+static BOOL ov8_0224A0E8 (TaskManager * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
-    FieldSystem * v1 = sub_02050A60(param0);
-    UnkStruct_ov8_0224997C * v2 = sub_02050A64(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
+    UnkStruct_ov8_0224997C * v2 = TaskManager_Environment(param0);
 
     switch (v2->unk_00) {
     case 0:
@@ -1342,11 +1342,11 @@ static void ov8_0224A434 (UnkStruct_ov8_0224A1E4 * param0, const fx32 param1)
     }
 }
 
-static BOOL ov8_0224A4FC (UnkStruct_020508D4 * param0)
+static BOOL ov8_0224A4FC (TaskManager * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
-    FieldSystem * v1 = sub_02050A60(param0);
-    UnkStruct_ov8_0224997C * v2 = sub_02050A64(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
+    UnkStruct_ov8_0224997C * v2 = TaskManager_Environment(param0);
     UnkStruct_ov8_0224A1E4 * v3;
 
     v3 = (UnkStruct_ov8_0224A1E4 *)v1->unk_04->unk_24;
@@ -1410,12 +1410,12 @@ static BOOL ov8_0224A4FC (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL ov8_0224A620 (UnkStruct_020508D4 * param0)
+static BOOL ov8_0224A620 (TaskManager * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
     LocalMapObject * v1;
-    FieldSystem * v2 = sub_02050A60(param0);
-    UnkStruct_ov8_0224997C * v3 = sub_02050A64(param0);
+    FieldSystem * v2 = TaskManager_FieldSystem(param0);
+    UnkStruct_ov8_0224997C * v3 = TaskManager_Environment(param0);
     UnkStruct_ov8_0224A1E4 * v4;
 
     v4 = (UnkStruct_ov8_0224A1E4 *)v2->unk_04->unk_24;
@@ -1494,12 +1494,12 @@ static BOOL ov8_0224A620 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL ov8_0224A770 (UnkStruct_020508D4 * param0)
+static BOOL ov8_0224A770 (TaskManager * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
     LocalMapObject * v1;
-    FieldSystem * v2 = sub_02050A60(param0);
-    UnkStruct_ov8_0224997C * v3 = sub_02050A64(param0);
+    FieldSystem * v2 = TaskManager_FieldSystem(param0);
+    UnkStruct_ov8_0224997C * v3 = TaskManager_Environment(param0);
     UnkStruct_ov8_0224A1E4 * v4;
 
     v4 = (UnkStruct_ov8_0224A1E4 *)v2->unk_04->unk_24;
@@ -2230,11 +2230,11 @@ void ov8_0224AD34 (FieldSystem * param0, const u8 param1)
     }
 }
 
-static BOOL ov8_0224ADE8 (UnkStruct_020508D4 * param0)
+static BOOL ov8_0224ADE8 (TaskManager * param0)
 {
     UnkStruct_ov5_021E1890 * v0;
-    FieldSystem * v1 = sub_02050A60(param0);
-    UnkStruct_ov8_0224997C * v2 = sub_02050A64(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
+    UnkStruct_ov8_0224997C * v2 = TaskManager_Environment(param0);
     UnkStruct_ov8_0224ABD4 * v3;
 
     v3 = (UnkStruct_ov8_0224ABD4 *)v1->unk_04->unk_24;
@@ -2451,13 +2451,13 @@ static __attribute__((aligned(4))) const u8 Unk_ov8_0224CA5C[5][21] = {
 
 static void ov8_0224AEDC (FieldSystem * param0, u16 param1)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->saveData);
     sub_0206B46C(v0, param1);
 }
 
 static u32 ov8_0224AEF0 (FieldSystem * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->saveData);
     return sub_0206B47C(v0);
 }
 
@@ -2807,11 +2807,11 @@ static BOOL ov8_0224B370 (UnkStruct_ov8_0224AF00 * param0, const fx32 param1, co
     return v0;
 }
 
-static BOOL ov8_0224B3D4 (UnkStruct_020508D4 * param0)
+static BOOL ov8_0224B3D4 (TaskManager * param0)
 {
     BOOL v0;
-    FieldSystem * v1 = sub_02050A60(param0);
-    UnkStruct_ov8_0224B67C * v2 = sub_02050A64(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
+    UnkStruct_ov8_0224B67C * v2 = TaskManager_Environment(param0);
     UnkStruct_02071BD0 * v3 = v2->unk_14;
     UnkStruct_ov8_0224AF00 * v4 = v2->unk_18;
 
@@ -2941,9 +2941,9 @@ static BOOL ov8_0224B3D4 (UnkStruct_020508D4 * param0)
             MessageLoader_GetStrbuf(v2->unk_48, 12, v2->unk_4C);
             sub_0205D8F4(v1->unk_08, v2->unk_44, 3);
             sub_0200E084(v2->unk_44, 0);
-            sub_0205D944(v2->unk_44, sub_02025E44(v1->unk_0C));
+            sub_0205D944(v2->unk_44, sub_02025E44(v1->saveData));
 
-            v2->unk_40 = sub_0205D994(v2->unk_44, v2->unk_4C, sub_02025E44(v1->unk_0C), 1);
+            v2->unk_40 = sub_0205D994(v2->unk_44, v2->unk_4C, sub_02025E44(v1->saveData), 1);
         }
         break;
     case 11:
@@ -3239,7 +3239,7 @@ static void ov8_0224B958 (UnkStruct_ov8_0224B8D0 * param0)
     int v0 = 0, v1 = 0;
     LocalMapObject * v2;
     FieldSystem * v3 = param0->unk_00;
-    UnkStruct_02061830 * v4 = v3->unk_38;
+    MapObjectManager * v4 = v3->unk_38;
     UnkStruct_ov8_0224B8A0 * v5 = param0->unk_04;
     UnkStruct_ov8_0224BCA8 * v6 = param0->unk_10C;
 
@@ -3339,11 +3339,11 @@ static u32 ov8_0224BAA0 (UnkStruct_ov8_0224B8D0 * param0, int param1, int param2
     return v0;
 }
 
-static BOOL ov8_0224BAF4 (UnkStruct_020508D4 * param0)
+static BOOL ov8_0224BAF4 (TaskManager * param0)
 {
     LocalMapObject * v0;
-    FieldSystem * v1 = sub_02050A60(param0);
-    UnkStruct_ov8_0224C098 * v2 = sub_02050A64(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
+    UnkStruct_ov8_0224C098 * v2 = TaskManager_Environment(param0);
     UnkStruct_ov8_0224B8D0 * v3 = v2->unk_3C;
 
     v0 = Player_LocalMapObject(v1->playerAvatar);
@@ -3368,12 +3368,12 @@ static BOOL ov8_0224BAF4 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL ov8_0224BB78 (UnkStruct_020508D4 * param0)
+static BOOL ov8_0224BB78 (TaskManager * param0)
 {
     int v0;
     UnkStruct_ov8_0224C098 * v1;
 
-    v1 = sub_02050A64(param0);
+    v1 = TaskManager_Environment(param0);
 
     do {
         v0 = Unk_ov8_0224C818[v1->unk_00](v1);
@@ -4001,7 +4001,7 @@ static void ov8_0224C3B4 (UnkStruct_ov8_0224C444 * param0)
 
     {
         char v2 = 109;
-        BOOL v3 = TrainerInfo_HasBadge(SaveData_GetTrainerInfo(param0->unk_00->unk_0C), 4);
+        BOOL v3 = TrainerInfo_HasBadge(SaveData_GetTrainerInfo(param0->unk_00->saveData), 4);
 
         if (v3 == 1) {
             v2 = 91;
@@ -4022,7 +4022,7 @@ static void ov8_0224C444 (UnkStruct_ov8_0224C444 * param0)
     int v0, v1, v2, v3, v4;
     LocalMapObject * v5;
     UnkStruct_ov8_0224C4F8 * v6 = param0->unk_04;
-    const UnkStruct_02061830 * v7 = param0->unk_00->unk_38;
+    const MapObjectManager * v7 = param0->unk_00->unk_38;
 
     v0 = 0;
     v1 = 0;
@@ -4076,7 +4076,7 @@ BOOL ov8_0224C51C (FieldSystem * param0)
     int v0, v1, v2, v3;
     UnkStruct_02027860 * v4;
     PlayerAvatar * v5;
-    UnkStruct_02061830 * v6;
+    MapObjectManager * v6;
     LocalMapObject * v7;
     LocalMapObject * v8;
 

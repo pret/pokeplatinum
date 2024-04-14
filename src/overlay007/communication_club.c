@@ -166,8 +166,8 @@ static void CommClubMan_PrintMessage (int msgId, BOOL format)
         sub_0205D8F4(sCommClubMan->fieldSystem->unk_08, &sCommClubMan->msgWindow, 3);
     }
 
-    sub_0205D944(&sCommClubMan->msgWindow, sub_02025E44(sCommClubMan->fieldSystem->unk_0C));
-    sCommClubMan->printMsgIndex = sub_0205D994(&sCommClubMan->msgWindow, sCommClubMan->unk_00[5], sub_02025E44(sCommClubMan->fieldSystem->unk_0C), 1);
+    sub_0205D944(&sCommClubMan->msgWindow, sub_02025E44(sCommClubMan->fieldSystem->saveData));
+    sCommClubMan->printMsgIndex = sub_0205D994(&sCommClubMan->msgWindow, sCommClubMan->unk_00[5], sub_02025E44(sCommClubMan->fieldSystem->saveData), 1);
 }
 
 static void CommClubMan_CreateList (UnkStruct_ov84_02240FA8 param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 param5)

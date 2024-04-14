@@ -73,19 +73,19 @@ BOOL sub_02049538 (UnkStruct_0203E724 * param0)
     switch (v0) {
     case 1:
         if (v1 == 0) {
-            *v3 = sub_02049EC4(v6->unk_0E, param0->unk_34->unk_0C, 1);
+            *v3 = sub_02049EC4(v6->unk_0E, param0->unk_34->saveData, 1);
         } else {
-            *v3 = sub_02049EC4(v1, param0->unk_34->unk_0C, 1);
+            *v3 = sub_02049EC4(v1, param0->unk_34->saveData, 1);
         }
         break;
     case 2:
         sub_02049F8C();
         break;
     case 3:
-        sub_02049F98(sub_0202D740(param0->unk_34->unk_0C));
+        sub_02049F98(sub_0202D740(param0->unk_34->saveData));
         break;
     case 4:
-        *v3 = sub_02049FA0(sub_0202D740(param0->unk_34->unk_0C));
+        *v3 = sub_02049FA0(sub_0202D740(param0->unk_34->saveData));
         break;
     case 5:
         sub_02049FA8(param0->unk_34);
@@ -94,25 +94,25 @@ BOOL sub_02049538 (UnkStruct_0203E724 * param0)
         sub_02049FE8(param0->unk_34);
         break;
     case 8:
-        *v3 = sub_02049FF8(param0->unk_34->unk_0C, v1);
+        *v3 = sub_02049FF8(param0->unk_34->saveData, v1);
         break;
     case 9:
-        *v3 = sub_0204AABC(NULL, param0->unk_34->unk_0C, 2);
+        *v3 = sub_0204AABC(NULL, param0->unk_34->saveData, 2);
         break;
     case 10:
-        *v3 = sub_0204AABC(NULL, param0->unk_34->unk_0C, 0);
+        *v3 = sub_0204AABC(NULL, param0->unk_34->saveData, 0);
         break;
     case 11:
-        sub_0204A030(param0->unk_34->unk_0C, v1);
+        sub_0204A030(param0->unk_34->saveData, v1);
         break;
     case 12:
-        *v3 = sub_0204A050(param0->unk_34->unk_0C);
+        *v3 = sub_0204A050(param0->unk_34->saveData);
         break;
     case 14:
-        *v3 = sub_0204A064(param0->unk_34->unk_0C);
+        *v3 = sub_0204A064(param0->unk_34->saveData);
         break;
     case 15:
-        *v3 = sub_0204A100(param0->unk_34->unk_0C);
+        *v3 = sub_0204A100(param0->unk_34->saveData);
         break;
     case 16:
         sub_0206BCE4(param0->unk_28, v1, v2, *v3);
@@ -123,19 +123,19 @@ BOOL sub_02049538 (UnkStruct_0203E724 * param0)
         return 1;
     case (30 + 1):
         v5 = sub_0203F098(param0->unk_34, 19);
-        *v3 = sub_0204A378(v6, v5, param0->unk_34->unk_0C);
+        *v3 = sub_0204A378(v6, v5, param0->unk_34->saveData);
         break;
     case (30 + 2):
-        *v3 = sub_0204A410(v6, param0->unk_34->unk_0C);
+        *v3 = sub_0204A410(v6, param0->unk_34->saveData);
         break;
     case (30 + 5):
         *v3 = sub_0204A57C(v6);
         break;
     case (30 + 7):
-        sub_0204A660(v6, param0->unk_34->unk_0C);
+        sub_0204A660(v6, param0->unk_34->saveData);
         break;
     case (30 + 8):
-        sub_0204A7A4(v6, param0->unk_34->unk_0C, param0->unk_34->unk_9C);
+        sub_0204A7A4(v6, param0->unk_34->saveData, param0->unk_34->unk_9C);
         break;
     case (30 + 9):
         sub_0204A8C8(v6);
@@ -153,13 +153,13 @@ BOOL sub_02049538 (UnkStruct_0203E724 * param0)
         *v3 = sub_0204A9FC(v6);
         break;
     case (30 + 17):
-        sub_0204AA7C(v6, param0->unk_34->unk_0C);
+        sub_0204AA7C(v6, param0->unk_34->saveData);
         break;
     case (30 + 18):
-        *v3 = sub_0204AB68(v6, param0->unk_34->unk_0C);
+        *v3 = sub_0204AB68(v6, param0->unk_34->saveData);
         break;
     case (30 + 19):
-        *v3 = sub_0204ABA0(v6, param0->unk_34->unk_0C);
+        *v3 = sub_0204ABA0(v6, param0->unk_34->saveData);
         break;
     case (30 + 20):
         v6->unk_10_5 = v1;
@@ -168,19 +168,19 @@ BOOL sub_02049538 (UnkStruct_0203E724 * param0)
         *v3 = v6->unk_10_5;
         break;
     case (30 + 22):
-        sub_0204A4C8(v6, param0->unk_34->unk_0C);
+        sub_0204A4C8(v6, param0->unk_34->saveData);
         break;
     case (30 + 23):
         *v3 = v6->unk_2A[v1];
         break;
     case (30 + 24):
-        *v3 = sub_0204AABC(v6, param0->unk_34->unk_0C, 1);
+        *v3 = sub_0204AABC(v6, param0->unk_34->saveData, 1);
         break;
     case (30 + 25):
         *v3 = sub_02049AE0(v6, v1);
         break;
     case (30 + 27):
-        *v3 = sub_0204ABF4(v6, param0->unk_34->unk_0C);
+        *v3 = sub_0204ABF4(v6, param0->unk_34->saveData);
         break;
     case 100:
         if (v6 == NULL) {
@@ -225,7 +225,7 @@ BOOL sub_02049880 (UnkStruct_0203E724 * param0)
 
     v0 = sub_0203E838(param0);
     v3 = sub_0203F118(param0->unk_34, v0);
-    *v3 = sub_0206BDBC(param0->unk_34->unk_0C);
+    *v3 = sub_0206BDBC(param0->unk_34->saveData);
 
     return 0;
 }
@@ -237,7 +237,7 @@ BOOL sub_020498A8 (UnkStruct_0203E724 * param0)
 
     v0 = sub_0203E838(param0);
     v3 = sub_0203F118(param0->unk_34, v0);
-    *v3 = sub_0206BF04(param0->unk_34->unk_0C);
+    *v3 = sub_0206BF04(param0->unk_34->saveData);
 
     return 0;
 }
@@ -256,7 +256,7 @@ BOOL sub_020498D0 (UnkStruct_0203E724 * param0)
     switch (v3) {
     case 0:
         v0 = 62;
-        sub_0204B060(param0->unk_34->unk_AC, param0->unk_34->unk_0C);
+        sub_0204B060(param0->unk_34->unk_AC, param0->unk_34->saveData);
         break;
     case 1:
         v0 = 63;
@@ -268,7 +268,7 @@ BOOL sub_020498D0 (UnkStruct_0203E724 * param0)
         break;
     }
 
-    if (sub_0205E6D8(param0->unk_34->unk_0C) == 1) {
+    if (sub_0205E6D8(param0->unk_34->saveData) == 1) {
         if (sub_02036614(CommSys_CurNetId(), v6->unk_83E) == 1) {
             *v5 = 1;
         } else {
@@ -298,7 +298,7 @@ BOOL sub_020499BC (UnkStruct_0203E724 * param0)
     v1 = inline_02049538(param0);
     v0 = sub_0203E838(param0);
 
-    if (sub_0205E6D8(param0->unk_34->unk_0C) == 1) {
+    if (sub_0205E6D8(param0->unk_34->saveData) == 1) {
         sub_0206BD88(param0->unk_34->unk_10, v1, v0);
     } else {
         v2->unk_8DA = v0;
@@ -338,7 +338,7 @@ BOOL sub_02049A68 (UnkStruct_0203E724 * param0)
     u16 * v1 = sub_0203F118(param0->unk_34, sub_0203E838(param0));
     u16 * v2 = sub_0203F118(param0->unk_34, sub_0203E838(param0));
 
-    sub_0202D708(sub_0202D764(param0->unk_34->unk_0C), &v0);
+    sub_0202D708(sub_0202D764(param0->unk_34->saveData), &v0);
 
     *v1 = v0.unk_00;
     *v2 = v0.unk_04;
@@ -350,7 +350,7 @@ BOOL sub_02049AB4 (UnkStruct_0203E724 * param0)
 {
     u16 * v0 = sub_0203F118(param0->unk_34, sub_0203E838(param0));
 
-    *v0 = sub_0202D5F0(sub_0202D764(param0->unk_34->unk_0C));
+    *v0 = sub_0202D5F0(sub_0202D764(param0->unk_34->saveData));
     return 0;
 }
 
@@ -421,7 +421,7 @@ BOOL sub_02049B6C (UnkStruct_0203E724 * param0)
 BOOL sub_02049B8C (UnkStruct_0203E724 * param0)
 {
     FieldSystem * v0 = param0->unk_34;
-    SaveData * v1 = v0->unk_0C;
+    SaveData * v1 = v0->saveData;
     u16 * v2 = inline_0204FCAC(param0);
 
     *v2 = sub_0202D230(sub_0202D750(v1), 0, 0);
@@ -431,10 +431,10 @@ BOOL sub_02049B8C (UnkStruct_0203E724 * param0)
 BOOL sub_02049BBC (UnkStruct_0203E724 * param0)
 {
     FieldSystem * v0 = param0->unk_34;
-    SaveData * v1 = v0->unk_0C;
+    SaveData * v1 = v0->saveData;
     u16 v2 = inline_02049538(param0);
 
-    sub_0202CF70(sub_0202CD88(param0->unk_34->unk_0C), (1 + 67), v2);
+    sub_0202CF70(sub_0202CD88(param0->unk_34->saveData), (1 + 67), v2);
     sub_0202D230(sub_0202D750(v1), v2, 5);
 
     return 0;
@@ -443,10 +443,10 @@ BOOL sub_02049BBC (UnkStruct_0203E724 * param0)
 BOOL sub_02049C00 (UnkStruct_0203E724 * param0)
 {
     FieldSystem * v0 = param0->unk_34;
-    SaveData * v1 = v0->unk_0C;
+    SaveData * v1 = v0->saveData;
     u16 v2 = inline_02049538(param0);
 
-    sub_0202CF70(sub_0202CD88(param0->unk_34->unk_0C), (1 + 68), v2);
+    sub_0202CF70(sub_0202CD88(param0->unk_34->saveData), (1 + 68), v2);
     sub_0202D230(sub_0202D750(v1), v2, 6);
 
     return 0;
@@ -456,7 +456,7 @@ BOOL sub_02049C44 (UnkStruct_0203E724 * param0)
 {
     u16 v0;
     FieldSystem * v1 = param0->unk_34;
-    SaveData * v2 = v1->unk_0C;
+    SaveData * v2 = v1->saveData;
     u16 v3 = inline_02049538(param0);
     u16 * v4 = inline_0204FCAC(param0);
 

@@ -20,7 +20,7 @@ BOOL sub_0204CFC4(UnkStruct_0203E724 * param0);
 
 BOOL sub_0204CDDC (UnkStruct_0203E724 * param0)
 {
-    sub_0206B218(SaveData_Events(param0->unk_34->unk_0C));
+    sub_0206B218(SaveData_Events(param0->unk_34->saveData));
     return 0;
 }
 
@@ -28,7 +28,7 @@ BOOL sub_0204CDF0 (UnkStruct_0203E724 * param0)
 {
     u16 * v0 = inline_0204FCAC(param0);
 
-    *v0 = sub_0206B228(SaveData_Events(param0->unk_34->unk_0C));
+    *v0 = sub_0206B228(SaveData_Events(param0->unk_34->saveData));
     return 0;
 }
 

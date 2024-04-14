@@ -34,7 +34,7 @@ void ov6_02246034 (FieldSystem * param0, BattleParams * param1)
 
     v5 = param1->parties[1];
     v6 = Party_GetPokemonBySlotIndex(v5, 0);
-    v3 = sub_0202D834(param0->unk_0C);
+    v3 = sub_0202D834(param0->saveData);
     v2 = Pokemon_GetValue(v6, MON_DATA_SPECIES, NULL);
     v4 = ov6_02246148(v3, v2);
 
@@ -44,10 +44,10 @@ void ov6_02246034 (FieldSystem * param0, BattleParams * param1)
 
         if (((param1->unk_14 == 0x1) && (v0 == 0))) {
             sub_0202D914(&v4);
-            sub_0206B688(SaveData_Events(param0->unk_0C), v2, 2);
+            sub_0206B688(SaveData_Events(param0->saveData), v2, 2);
         } else if (param1->unk_14 == 0x4) {
             sub_0202D914(&v4);
-            sub_0206B688(SaveData_Events(param0->unk_0C), v2, 1);
+            sub_0206B688(SaveData_Events(param0->saveData), v2, 1);
         } else {
             sub_0202D980(v4, 5, v0);
             sub_0202D980(v4, 7, v1);

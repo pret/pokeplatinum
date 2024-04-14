@@ -23,10 +23,10 @@ typedef struct {
     int unk_00;
 } UnkStruct_ov5_021DDBC8;
 
-static BOOL ov5_021DDAE4 (UnkStruct_020508D4 * param0)
+static BOOL ov5_021DDAE4 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_ov5_021DDBC8 * v1 = sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_ov5_021DDBC8 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_00) {
     case 0:
@@ -41,12 +41,12 @@ static BOOL ov5_021DDAE4 (UnkStruct_020508D4 * param0)
         break;
     case 2:
         if (ov24_02253DB4(v0->unk_08)) {
-            PoketchData * v2 = SaveData_PoketchData(v0->unk_0C);
+            PoketchData * v2 = SaveData_PoketchData(v0->saveData);
 
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay24));
             Overlay_LoadByID(FS_OVERLAY_ID(overlay25), 2);
             PoketchData_Enable(v2);
-            PoketchSystem_Create(v0, &v0->unk_04->unk_14, v0->unk_0C, v0->unk_08, sub_0200A914(1));
+            PoketchSystem_Create(v0, &v0->unk_04->unk_14, v0->saveData, v0->unk_08, sub_0200A914(1));
             v1->unk_00++;
         }
         break;
@@ -65,7 +65,7 @@ static BOOL ov5_021DDAE4 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void ov5_021DDBC8 (UnkStruct_020508D4 * param0)
+void ov5_021DDBC8 (TaskManager * param0)
 {
     UnkStruct_ov5_021DDBC8 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov5_021DDBC8));
 

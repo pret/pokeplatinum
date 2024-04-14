@@ -52,15 +52,15 @@ typedef struct {
 BOOL sub_0205003C(UnkStruct_0203E724 * param0);
 BOOL sub_0205013C(UnkStruct_0203E724 * param0);
 static void sub_02050174(SaveData * param0, UnkStruct_020305B8 * param1, u8 param2);
-void sub_020502E0(UnkStruct_020508D4 * param0, void ** param1, u8 param2);
-static BOOL sub_02050314(UnkStruct_020508D4 * param0);
+void sub_020502E0(TaskManager * param0, void ** param1, u8 param2);
+static BOOL sub_02050314(TaskManager * param0);
 static int sub_0205037C(UnkStruct_0205037C * param0, FieldSystem * param1, int param2);
 static int sub_02050448(UnkStruct_0205037C * param0, FieldSystem * param1);
 static int sub_02050498(UnkStruct_0205037C * param0, FieldSystem * param1, int param2);
 static int sub_02050520(UnkStruct_0205037C * param0, FieldSystem * param1);
 BOOL sub_020501D8(UnkStruct_0203E724 * param0);
-void sub_02050224(UnkStruct_020508D4 * param0, u16 param1, u16 param2, u16 * param3);
-static BOOL sub_02050264(UnkStruct_020508D4 * param0);
+void sub_02050224(TaskManager * param0, u16 param1, u16 param2, u16 * param3);
+static BOOL sub_02050264(TaskManager * param0);
 
 BOOL sub_0205003C (UnkStruct_0203E724 * param0)
 {
@@ -78,23 +78,23 @@ BOOL sub_0205003C (UnkStruct_0203E724 * param0)
     v4 = inline_02049538(param0);
     v5 = sub_0203E838(param0);
     v6 = sub_0203F118(param0->unk_34, v5);
-    v10 = sub_020304A0(param0->unk_34->unk_0C);
-    v11 = sub_020305B8(param0->unk_34->unk_0C);
+    v10 = sub_020304A0(param0->unk_34->saveData);
+    v11 = sub_020305B8(param0->unk_34->saveData);
     v8 = sub_0203F098(param0->unk_34, 19);
 
     switch (v3) {
     case 0:
-        *v6 = sub_02049EC4(v4, param0->unk_34->unk_0C, 0);
+        *v6 = sub_02049EC4(v4, param0->unk_34->saveData, 0);
         break;
     case 1:
         if (v4 == 3) {
-            *v6 = sub_02030698(sub_0203068C(param0->unk_34->unk_0C), 110, sub_0205E6A8(110));
+            *v6 = sub_02030698(sub_0203068C(param0->unk_34->saveData), 110, sub_0205E6A8(110));
         } else {
             *v6 = (u16)sub_02030600(v11, 8, v4, 0, NULL);
         }
         break;
     case 3:
-        sub_02050174(param0->unk_34->unk_0C, v11, v4);
+        sub_02050174(param0->unk_34->saveData, v11, v4);
         break;
     case 4:
         if (v4 == 0) {
@@ -123,8 +123,8 @@ BOOL sub_0205013C (UnkStruct_0203E724 * param0)
     UnkStruct_020305B8 * v0;
     u16 v1 = inline_02049538(param0);
 
-    v0 = sub_020305B8(param0->unk_34->unk_0C);
-    sub_02050174(param0->unk_34->unk_0C, v0, v1);
+    v0 = sub_020305B8(param0->unk_34->saveData);
+    sub_02050174(param0->unk_34->saveData, v0, v1);
 
     return 0;
 }
@@ -156,7 +156,7 @@ BOOL sub_020501D8 (UnkStruct_0203E724 * param0)
     return 1;
 }
 
-void sub_02050224 (UnkStruct_020508D4 * param0, u16 param1, u16 param2, u16 * param3)
+void sub_02050224 (TaskManager * param0, u16 param1, u16 param2, u16 * param3)
 {
     UnkStruct_02050224 * v0;
 
@@ -173,9 +173,9 @@ void sub_02050224 (UnkStruct_020508D4 * param0, u16 param1, u16 param2, u16 * pa
     return;
 }
 
-static BOOL sub_02050264 (UnkStruct_020508D4 * param0)
+static BOOL sub_02050264 (TaskManager * param0)
 {
-    UnkStruct_02050224 * v0 = sub_02050A64(param0);
+    UnkStruct_02050224 * v0 = TaskManager_Environment(param0);
 
     switch (v0->unk_00) {
     case 0:
@@ -206,9 +206,9 @@ static BOOL sub_02050264 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_020502E0 (UnkStruct_020508D4 * param0, void ** param1, u8 param2)
+void sub_020502E0 (TaskManager * param0, void ** param1, u8 param2)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_0205037C * v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0205037C));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0205037C));
@@ -220,10 +220,10 @@ void sub_020502E0 (UnkStruct_020508D4 * param0, void ** param1, u8 param2)
     return;
 }
 
-static BOOL sub_02050314 (UnkStruct_020508D4 * param0)
+static BOOL sub_02050314 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_0205037C * v1 = sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_0205037C * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_00) {
     case 0:
@@ -253,10 +253,10 @@ static int sub_0205037C (UnkStruct_0205037C * param0, FieldSystem * param1, int 
 
     MI_CpuClearFast(v1, sizeof(PartyManagementData));
 
-    v1->unk_00 = Party_GetFromSavedata(param1->unk_0C);
-    v1->unk_04 = sub_0207D990(param1->unk_0C);
-    v1->unk_08 = sub_02028430(param1->unk_0C);
-    v1->unk_0C = sub_02025E44(param1->unk_0C);
+    v1->unk_00 = Party_GetFromSavedata(param1->saveData);
+    v1->unk_04 = sub_0207D990(param1->saveData);
+    v1->unk_08 = sub_02028430(param1->saveData);
+    v1->unk_0C = sub_02025E44(param1->saveData);
     v1->unk_21 = 0;
     v1->unk_20 = 23;
     v1->unk_1C = param1;
@@ -317,7 +317,7 @@ static int sub_02050498 (UnkStruct_0205037C * param0, FieldSystem * param1, int 
         0, 1, 2, 4, 3, 5, 6, 7, 8
     };
 
-    v1 = param1->unk_0C;
+    v1 = param1->saveData;
     v0 = Heap_AllocFromHeapAtEnd(param2, sizeof(PokemonSummary));
 
     MI_CpuClear8(v0, sizeof(PokemonSummary));

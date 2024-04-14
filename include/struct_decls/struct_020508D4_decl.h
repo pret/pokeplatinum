@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_020508D4_DECL_H
 #define POKEPLATINUM_STRUCT_020508D4_DECL_H
 
-typedef struct UnkStruct_020508D4_t UnkStruct_020508D4;
+typedef struct UnkStruct_020508D4_t TaskManager;
 
 #endif // POKEPLATINUM_STRUCT_020508D4_DECL_H

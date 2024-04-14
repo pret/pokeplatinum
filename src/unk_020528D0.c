@@ -53,8 +53,8 @@ typedef struct {
     StringTemplate * unk_20;
 } UnkStruct_02052AA4;
 
-static void sub_02052914(FieldSystem * param0, UnkStruct_020508D4 * param1);
-static BOOL sub_020529C4(UnkStruct_020508D4 * param0);
+static void sub_02052914(FieldSystem * param0, TaskManager * param1);
+static BOOL sub_020529C4(TaskManager * param0);
 static void sub_02052AA4(UnkStruct_02052AA4 * param0, u16 param1, u8 param2, u8 param3);
 
 static const UnkStruct_ov61_0222C884 Unk_020EC2F0 = {
@@ -109,7 +109,7 @@ static void sub_020528D0 (BGL * param0)
     sub_02006E84(14, 6, 0, 13 * 0x20, 0x20, 11);
 }
 
-static void sub_02052914 (FieldSystem * param0, UnkStruct_020508D4 * param1)
+static void sub_02052914 (FieldSystem * param0, TaskManager * param1)
 {
     UnkStruct_02052AA4 * v0;
 
@@ -145,9 +145,9 @@ static void sub_02052914 (FieldSystem * param0, UnkStruct_020508D4 * param1)
     return;
 }
 
-static BOOL sub_020529C4 (UnkStruct_020508D4 * param0)
+static BOOL sub_020529C4 (TaskManager * param0)
 {
-    UnkStruct_02052AA4 * v0 = sub_02050A64(param0);
+    UnkStruct_02052AA4 * v0 = TaskManager_Environment(param0);
 
     switch (v0->unk_00) {
     case 0:
@@ -207,25 +207,25 @@ static void sub_02052AA4 (UnkStruct_02052AA4 * param0, u16 param1, u8 param2, u8
     return;
 }
 
-BOOL sub_02052B2C (UnkStruct_020508D4 * param0)
+BOOL sub_02052B2C (TaskManager * param0)
 {
     FieldSystem * v0;
     int * v1;
 
-    v0 = sub_02050A60(param0);
+    v0 = TaskManager_FieldSystem(param0);
     v1 = sub_02050A68(param0);
 
     switch (*v1) {
     case 0:
     {
-        if ((v0 != NULL) && (v0->unk_0C != NULL)) {
-            Party_SetGiratinaForm(Party_GetFromSavedata(v0->unk_0C), 0);
+        if ((v0 != NULL) && (v0->saveData != NULL)) {
+            Party_SetGiratinaForm(Party_GetFromSavedata(v0->saveData), 0);
         }
     }
 
         {
             UnkStruct_02049FA8 v2;
-            UnkStruct_0203A790 * v3 = sub_0203A790(v0->unk_0C);
+            UnkStruct_0203A790 * v3 = sub_0203A790(v0->saveData);
             u16 v4 = sub_0203A75C(v3);
 
             sub_0203A824(v4, &v2);
@@ -259,7 +259,7 @@ BOOL sub_02052B2C (UnkStruct_020508D4 * param0)
         sub_0200AB4C(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
 
         if (sub_0203A7EC()
-            == sub_0203A75C(sub_0203A790(v0->unk_0C))) {
+            == sub_0203A75C(sub_0203A790(v0->saveData))) {
             sub_0203E8E0(param0, 2020, NULL, NULL);
         } else {
             sub_0203E8E0(param0, 2021, NULL, NULL);
@@ -274,7 +274,7 @@ BOOL sub_02052B2C (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_02052C5C (UnkStruct_020508D4 * param0)
+void sub_02052C5C (TaskManager * param0)
 {
     sub_02050944(param0, sub_02052B2C, NULL);
 }

@@ -1195,7 +1195,7 @@ void sub_02027540 (PokedexData * param0)
     param0->pokedexObtained = 1;
 }
 
-PokedexData * sub_02027560 (SaveData * param0)
+PokedexData * SaveData_Pokedex (SaveData * param0)
 {
     PokedexData * v0;
 

@@ -27,7 +27,7 @@ void GetRadarMon(RadarChain *chain, int *species, int *level);
 const BOOL sub_02069798(const RadarChain *chain);
 void sub_0206979C(FieldSystem *param0);
 BOOL GetRadarChainActive(const RadarChain *chain);
-BOOL RefreshRadarChain(UnkStruct_020508D4 *param0);
+BOOL RefreshRadarChain(TaskManager *param0);
 void sub_02069B74(FieldSystem *param0);
 int GetChainCount(FieldSystem *param0);
 void RadarChargeStep(FieldSystem *param0);

@@ -129,7 +129,7 @@ typedef struct {
     UnkStruct_ov19_021DA864 unk_238;
     GraphicElementData * unk_25C[32];
     GraphicElementData * unk_2DC[4];
-    UnkStruct_020508D4 * unk_2EC;
+    TaskManager * unk_2EC;
     SysTask * unk_2F0;
     SysTask * unk_2F4;
     SysTask * unk_2F8;
@@ -1103,7 +1103,7 @@ int ov23_02243C3C (int param0, int param1, MATHRandContext16 * param2, int param
     int v2, v3;
     UnkStruct_ov23_02243DA8 * v4;
     UnkStruct_ov23_02243DA8 * v5;
-    UndergroundData * v6 = sub_020298B0(Unk_ov23_02257764->unk_40->unk_0C);
+    UndergroundData * v6 = sub_020298B0(Unk_ov23_02257764->unk_40->saveData);
 
     if (param3 >= (16 * 4)) {
         return 0;
@@ -1136,7 +1136,7 @@ int ov23_02243C3C (int param0, int param1, MATHRandContext16 * param2, int param
 void ov23_02243CE8 (void)
 {
     int v0;
-    UndergroundData * v1 = sub_020298B0(Unk_ov23_02257764->unk_40->unk_0C);
+    UndergroundData * v1 = sub_020298B0(Unk_ov23_02257764->unk_40->saveData);
 
     for (v0 = 0; v0 < (16 * 4); v0++) {
         int v2 = sub_02028F40(v1, v0);
@@ -1473,7 +1473,7 @@ static BOOL ov23_022442F0 (int param0)
 {
     UnkStruct_ov23_02244140 v0;
     UnkStruct_ov23_02243DA8 * v1;
-    UndergroundData * v2 = sub_020298B0(Unk_ov23_02257764->unk_40->unk_0C);
+    UndergroundData * v2 = sub_020298B0(Unk_ov23_02257764->unk_40->saveData);
 
     if (ov23_0224162C(param0)) {
         return 0;
@@ -1597,7 +1597,7 @@ void ov23_0224448C (int param0, int param1, void * param2, void * param3)
         }
 
         {
-            UnkStruct_020507E4 * v2 = SaveData_Events(Unk_ov23_02257764->unk_40->unk_0C);
+            UnkStruct_020507E4 * v2 = SaveData_Events(Unk_ov23_02257764->unk_40->saveData);
             sub_0206B43C(v2, sub_0206B42C(v2) + 1);
         }
 
@@ -2560,7 +2560,7 @@ void ov23_022455B4 (int param0, int param1, void * param2, void * param3)
 
     if (v0->unk_00 == CommSys_CurNetId()) {
         sub_02029744(v1);
-        sub_0202CFEC(sub_0202CD88(Unk_ov23_02257764->unk_40->unk_0C), 34);
+        sub_0202CFEC(sub_0202CD88(Unk_ov23_02257764->unk_40->saveData), 34);
         sub_020594FC();
 
         ov23_02254068(ov23_0224219C(), CommInfo_TrainerInfo(v0->unk_01));

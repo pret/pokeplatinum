@@ -87,8 +87,8 @@ void sub_02093AD4(UnkStruct_02095C48 * param0);
 void sub_02094630(UnkStruct_02095C48 * param0, int param1, StringTemplate * param2, u32 param3);
 void sub_02094648(UnkStruct_02095C48 * param0, int param1, StringTemplate * param2, u32 param3);
 void sub_02094680(UnkStruct_02095C48 * param0, int param1, StringTemplate * param2, u32 param3);
-static BOOL sub_02093448(UnkStruct_020508D4 * param0);
-static BOOL sub_020935EC(UnkStruct_020508D4 * param0);
+static BOOL sub_02093448(TaskManager * param0);
+static BOOL sub_020935EC(TaskManager * param0);
 void sub_02093BBC(UnkStruct_02095C48 * param0);
 void sub_02093C54(UnkStruct_02095C48 * param0);
 static void sub_020944E8(UnkStruct_02095C48 * param0);
@@ -154,7 +154,7 @@ __attribute__((aligned(4))) static const u8 Unk_020F55D0[][6] = {
     {0xF, 0xF, 0x8, 0x8, 0x14, 0xFF}
 };
 
-void sub_020933F8 (UnkStruct_020508D4 * param0, UnkStruct_02095C48 * param1)
+void sub_020933F8 (TaskManager * param0, UnkStruct_02095C48 * param1)
 {
     UnkStruct_020933F8 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_020933F8));
 
@@ -173,10 +173,10 @@ void sub_020933F8 (UnkStruct_020508D4 * param0, UnkStruct_02095C48 * param1)
     }
 }
 
-static BOOL sub_02093448 (UnkStruct_020508D4 * param0)
+static BOOL sub_02093448 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_020933F8 * v1 = sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_020933F8 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_04) {
     case 0:
@@ -263,10 +263,10 @@ static BOOL sub_02093448 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static BOOL sub_020935EC (UnkStruct_020508D4 * param0)
+static BOOL sub_020935EC (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_020933F8 * v1 = sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_020933F8 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_04) {
     case 0:
@@ -1650,7 +1650,7 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, U
             int v6;
             PokedexData * v7;
 
-            v7 = sub_02027560(param0->unk_1970);
+            v7 = SaveData_Pokedex(param0->unk_1970);
 
             for (v6 = param0->unk_00.unk_117; v6 < 4; v6++) {
                 sub_020272A4(v7, param0->unk_00.unk_00[v6]);

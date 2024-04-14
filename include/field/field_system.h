@@ -48,8 +48,8 @@ typedef struct FieldSystem_t {
     FieldSystem_sub1 * unk_00;
     FieldSystem_sub2 * unk_04;
     BGL * unk_08;
-    SaveData * unk_0C;
-    UnkStruct_020508D4 * unk_10;
+    SaveData * saveData;
+    TaskManager * unk_10;
     UnkStruct_0203A3E8 * unk_14;
     int unk_18;
     UnkStruct_02049FA8 * unk_1C;
@@ -59,7 +59,7 @@ typedef struct FieldSystem_t {
     UnkStruct_02039E30 * unk_2C;
     UnkStruct_ov5_021EF76C * unk_30;
     UnkStruct_ov5_021D1A68 * unk_34;
-    UnkStruct_02061830 * unk_38;
+    MapObjectManager * unk_38;
     PlayerAvatar * playerAvatar;
     UnkStruct_ov5_021DF47C * unk_40;
     UnkStruct_ov5_021D5894 * unk_44;

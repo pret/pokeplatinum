@@ -14,15 +14,15 @@
 #include "overlay007/ov7_0224CD28.h"
 
 static u8 sub_0209AC50(FieldSystem * param0, UnkStruct_ov7_0224D008 * param1);
-static void sub_0209AC80(UnkStruct_020508D4 * param0);
+static void sub_0209AC80(TaskManager * param0);
 
-BOOL sub_0209AC14 (UnkStruct_020508D4 * param0)
+BOOL sub_0209AC14 (TaskManager * param0)
 {
     FieldSystem * v0;
     UnkStruct_ov7_0224D008 * v1;
 
-    v0 = sub_02050A60(param0);
-    v1 = sub_02050A64(param0);
+    v0 = TaskManager_FieldSystem(param0);
+    v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_297) {
     case 16:
@@ -50,13 +50,13 @@ static u8 sub_0209AC50 (FieldSystem * param0, UnkStruct_ov7_0224D008 * param1)
     return 17;
 }
 
-static void sub_0209AC80 (UnkStruct_020508D4 * param0)
+static void sub_0209AC80 (TaskManager * param0)
 {
     FieldSystem * v0;
     UnkStruct_ov7_0224D008 * v1;
 
-    v0 = sub_02050A60(param0);
-    v1 = sub_02050A64(param0);
+    v0 = TaskManager_FieldSystem(param0);
+    v1 = TaskManager_Environment(param0);
 
     if (sub_020509DC(v0)) {
         ov5_021D1744(1);

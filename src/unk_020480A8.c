@@ -23,7 +23,7 @@ static u8 sub_02048268(u16 param0, u16 param1);
 
 BOOL sub_020480A8 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_34->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_34->saveData);
     u16 * v1 = inline_0204FCAC(param0);
     u32 v2;
 
@@ -38,7 +38,7 @@ BOOL sub_020480D8 (UnkStruct_0203E724 * param0)
     FieldSystem * v0 = param0->unk_34;
     Pokemon * v1;
     BoxPokemon * v2;
-    PCBoxes * v3 = SaveData_PCBoxes(v0->unk_0C);
+    PCBoxes * v3 = SaveData_PCBoxes(v0->saveData);
     u16 * v4 = inline_0204FCAC(param0);
     u16 * v5 = inline_0204FCAC(param0);
     u16 * v6 = inline_0204FCAC(param0);
@@ -50,10 +50,10 @@ BOOL sub_020480D8 (UnkStruct_0203E724 * param0)
     u8 v16;
     u32 v17, v18, v19;
 
-    v8 = Party_GetCurrentCount(Party_GetFromSavedata(v0->unk_0C));
+    v8 = Party_GetCurrentCount(Party_GetFromSavedata(v0->saveData));
 
     for (v11 = 0, v12 = 0, v9 = 0; v9 < v8; v9++) {
-        v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v0->unk_0C), v9);
+        v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v0->saveData), v9);
 
         if (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) == 0) {
             v15 = (Pokemon_GetValue(v1, MON_DATA_OT_ID, NULL) & 0xffff);
@@ -108,7 +108,7 @@ BOOL sub_020480D8 (UnkStruct_0203E724 * param0)
 
 BOOL sub_02048254 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_34->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_34->saveData);
 
     sub_0206B2C8(v0);
     return 0;

@@ -103,15 +103,15 @@ u32 ov6_0224622C (const UnkStruct_ov6_02246204 * param0)
 
 void ov6_02246234 (FieldSystem * param0, UnkStruct_ov6_02246204 * param1, int param2)
 {
-    Party * v0 = Party_GetFromSavedata(param0->unk_0C);
+    Party * v0 = Party_GetFromSavedata(param0->saveData);
 
     sub_0207A128(v0, param2, param1->unk_04);
-    sub_0202F180(param0->unk_0C, param1->unk_04);
+    sub_0202F180(param0->saveData, param1->unk_04);
 }
 
 void ov6_02246254 (FieldSystem * param0, UnkStruct_ov6_02246204 * param1, int param2, UnkStruct_ov6_02246254 * param3, Pokemon * param4, Pokemon * param5)
 {
-    Party * v0 = Party_GetFromSavedata(param0->unk_0C);
+    Party * v0 = Party_GetFromSavedata(param0->saveData);
     Pokemon * v1;
     Strbuf* v2;
     u32 v3;
@@ -129,7 +129,7 @@ void ov6_02246254 (FieldSystem * param0, UnkStruct_ov6_02246204 * param1, int pa
     param3->unk_04 = Pokemon_GetBoxPokemon(param5);
     param3->unk_08 = param1->unk_08;
     param3->unk_10 = 1;
-    param3->unk_14 = sub_02025E44(param0->unk_0C);
+    param3->unk_14 = sub_02025E44(param0->saveData);
 
     v4 = sub_02055BA8(param0);
 

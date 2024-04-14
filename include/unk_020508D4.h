@@ -6,18 +6,18 @@
 #include "functypes/funcptr_02050904.h"
 #include "overlay_manager.h"
 
-UnkStruct_020508D4 * sub_02050904(FieldSystem * param0, UnkFuncPtr_02050904 param1, void * param2);
-void sub_02050924(UnkStruct_020508D4 * param0, UnkFuncPtr_02050904 param1, void * param2);
-UnkStruct_020508D4 * sub_02050944(UnkStruct_020508D4 * param0, UnkFuncPtr_02050904 param1, void * param2);
+TaskManager * sub_02050904(FieldSystem * param0, UnkFuncPtr_02050904 param1, void * param2);
+void sub_02050924(TaskManager * param0, UnkFuncPtr_02050904 param1, void * param2);
+TaskManager * sub_02050944(TaskManager * param0, UnkFuncPtr_02050904 param1, void * param2);
 BOOL sub_02050958(FieldSystem * param0);
 BOOL sub_020509A4(FieldSystem * param0);
 BOOL sub_020509B4(FieldSystem * param0);
 void sub_020509D4(FieldSystem * param0);
 BOOL sub_020509DC(FieldSystem * param0);
-void sub_02050A38(UnkStruct_020508D4 * param0, const OverlayManagerTemplate * param1, void * param2);
-FieldSystem * sub_02050A60(UnkStruct_020508D4 * param0);
-void * sub_02050A64(UnkStruct_020508D4 * param0);
-int * sub_02050A68(UnkStruct_020508D4 * param0);
-u32 sub_02050A6C(UnkStruct_020508D4 * param0);
+void sub_02050A38(TaskManager * param0, const OverlayManagerTemplate * param1, void * param2);
+FieldSystem * TaskManager_FieldSystem(TaskManager * param0);
+void * TaskManager_Environment(TaskManager * param0);
+int * sub_02050A68(TaskManager * param0);
+u32 sub_02050A6C(TaskManager * param0);
 
 #endif // POKEPLATINUM_UNK_020508D4_H

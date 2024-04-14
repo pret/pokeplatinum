@@ -445,7 +445,7 @@ static void sub_0206CD58 (SaveData * param0, int param1, int param2, const void 
 
 static void sub_0206CD70 (FieldSystem * param0, int param1, int param2, const void * param3)
 {
-    sub_0206CD7C(param0->unk_0C, param1, param2, param3);
+    sub_0206CD7C(param0->saveData, param1, param2, param3);
 }
 
 static void sub_0206CD7C (SaveData * param0, int param1, int param2, const void * param3)
@@ -775,7 +775,7 @@ static int sub_0206D2E0 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
 static BOOL sub_0206D320 (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    PokedexData * v0 = sub_02027560(param0->unk_0C);
+    PokedexData * v0 = SaveData_Pokedex(param0->saveData);
     UnkStruct_0206D140 * v1 = ov6_02246498(param1);
 
     return sub_02026FE8(v0, v1->unk_06);
@@ -819,14 +819,14 @@ static BOOL sub_0206D3C0 (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
         return 1;
     }
 
-    return sub_02026FE8(sub_02027560(param0->unk_0C), v0->unk_00);
+    return sub_02026FE8(SaveData_Pokedex(param0->saveData), v0->unk_00);
 }
 
 static void sub_0206D3E4 (FieldSystem * param0, int param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206D43C * v1 = &v0.val4;
-    UnkStruct_0202B4A0 * v2 = sub_0202B4A0(param0->unk_0C);
+    UnkStruct_0202B4A0 * v2 = sub_0202B4A0(param0->saveData);
 
     GF_ASSERT(sizeof(UnkUnion_0206D1B8) == 40);
     MI_CpuClearFast(&v0, 40);
@@ -940,7 +940,7 @@ static int sub_0206D5B0 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 static BOOL sub_0206D5F0 (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
 {
     UnkStruct_0206D5B0 * v0 = (UnkStruct_0206D5B0 *)ov6_02246498(param1);
-    return sub_02026FE8(sub_02027560(param0->unk_0C), v0->unk_00);
+    return sub_02026FE8(SaveData_Pokedex(param0->saveData), v0->unk_00);
 }
 
 void sub_0206D60C (FieldSystem * param0, Pokemon * param1)
@@ -966,7 +966,7 @@ static int sub_0206D644 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
 static BOOL sub_0206D6A8 (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    PokedexData * v0 = sub_02027560(param0->unk_0C);
+    PokedexData * v0 = SaveData_Pokedex(param0->saveData);
     UnkStruct_0206D644 * v1 = (UnkStruct_0206D644 *)ov6_02246498(param1);
 
     return sub_02026FE8(v0, v1->unk_00);
@@ -998,7 +998,7 @@ void sub_0206D720 (FieldSystem * param0)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206D75C * v1 = &v0.val10;
-    TVBroadcast * v2 = SaveData_TVBroadcast(param0->unk_0C);
+    TVBroadcast * v2 = SaveData_TVBroadcast(param0->saveData);
     UnkStruct_0202E808 * v3 = sub_0202E808(v2);
 
     if (v3->unk_07 == 0) {
@@ -1027,7 +1027,7 @@ static int sub_0206D75C (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
 static BOOL sub_0206D7A4 (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    PokedexData * v0 = sub_02027560(param0->unk_0C);
+    PokedexData * v0 = SaveData_Pokedex(param0->saveData);
     UnkStruct_0206D75C * v1 = (UnkStruct_0206D75C *)ov6_02246498(param1);
 
     return sub_02026FE8(v0, v1->unk_00);
@@ -1045,7 +1045,7 @@ void sub_0206D7C4 (FieldSystem * param0)
     v0 = 0;
     v1 = 0;
     v2 = 0;
-    v8 = Party_GetFromSavedata(param0->unk_0C);
+    v8 = Party_GetFromSavedata(param0->saveData);
     v4 = Party_GetCurrentCount(v8);
 
     for (v5 = 0; v5 < v4; v5++) {
@@ -1066,11 +1066,11 @@ void sub_0206D7C4 (FieldSystem * param0)
 
     if (v2 == 0) {
         if ((v0 == 1) && (v1 == 0)) {
-            v6 = sub_02054A74(Party_GetFromSavedata(param0->unk_0C));
+            v6 = sub_02054A74(Party_GetFromSavedata(param0->saveData));
             sub_0206CE38(v6, &v9->unk_00, &v9->unk_02, &v9->unk_03, &v9->unk_04);
             sub_0206CD70(param0, 2, 16, v9);
         } else if ((v0 == 0) && (v1 == 1)) {
-            v6 = sub_02054A74(Party_GetFromSavedata(param0->unk_0C));
+            v6 = sub_02054A74(Party_GetFromSavedata(param0->saveData));
             sub_0206CE38(v6, &v9->unk_00, &v9->unk_02, &v9->unk_03, &v9->unk_04);
             sub_0206CD70(param0, 2, 16, v9);
         }
@@ -1097,7 +1097,7 @@ static BOOL sub_0206D8F0 (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
 {
     UnkStruct_0206D8B0 * v0 = (UnkStruct_0206D8B0 *)ov6_02246498(param1);
 
-    return sub_02026FE8(sub_02027560(param0->unk_0C), v0->unk_00);
+    return sub_02026FE8(SaveData_Pokedex(param0->saveData), v0->unk_00);
 }
 
 void sub_0206D90C (TVBroadcast * param0, Pokemon * param1, u16 param2)
@@ -1176,7 +1176,7 @@ static BOOL sub_0206DA50 (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
 {
     UnkStruct_0206D9F4 * v0 = (UnkStruct_0206D9F4 *)ov6_02246498(param1);
 
-    return sub_02026FE8(sub_02027560(param0->unk_0C), v0->unk_00);
+    return sub_02026FE8(SaveData_Pokedex(param0->saveData), v0->unk_00);
 }
 
 static void sub_0206DA6C (UnkStruct_0206DA6C * param0, const TrainerInfo * param1)
@@ -1228,7 +1228,7 @@ static int sub_0206DAFC (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
 static BOOL sub_0206DB08 (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    return sub_0207D688(sub_0207D990(param0->unk_0C), 428, 1, 32);
+    return sub_0207D688(sub_0207D990(param0->saveData), 428, 1, 32);
 }
 
 void sub_0206DB20 (FieldSystem * param0)
@@ -1249,7 +1249,7 @@ static int sub_0206DB38 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
 static BOOL sub_0206DB48 (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(SaveData_Events(param0->unk_0C), 6);
+    return inline_0208BE68(SaveData_Events(param0->saveData), 6);
 }
 
 void sub_0206DB5C (FieldSystem * param0, u8 param1)
@@ -1274,7 +1274,7 @@ static int sub_0206DB74 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
 static BOOL sub_0206DB9C (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(SaveData_Events(param0->unk_0C), 6);
+    return inline_0208BE68(SaveData_Events(param0->saveData), 6);
 }
 
 void sub_0206DBB0 (SaveData * param0, u32 param1, Pokemon * param2, BOOL param3)
@@ -1309,11 +1309,11 @@ static BOOL sub_0206DC3C (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
 {
     UnkStruct_0206DBE8 * v0 = (UnkStruct_0206DBE8 *)ov6_02246498(param1);
 
-    if (sub_02026FE8(sub_02027560(param0->unk_0C), v0->unk_02) == 0) {
+    if (sub_02026FE8(SaveData_Pokedex(param0->saveData), v0->unk_02) == 0) {
         return 0;
     }
 
-    return inline_0208BE68(SaveData_Events(param0->unk_0C), 17);
+    return inline_0208BE68(SaveData_Events(param0->saveData), 17);
 }
 
 void sub_0206DC6C (FieldSystem * param0, u32 param1, Pokemon * param2)
@@ -1346,7 +1346,7 @@ static int sub_0206DC9C (FieldSystem * param0, StringTemplate * param1, UnkStruc
 static BOOL sub_0206DD1C (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
 {
     UnkStruct_0206DC9C * v0 = (UnkStruct_0206DC9C *)ov6_02246498(param1);
-    return sub_02026FE8(sub_02027560(param0->unk_0C), v0->unk_00);
+    return sub_02026FE8(SaveData_Pokedex(param0->saveData), v0->unk_00);
 }
 
 void sub_0206DD38 (FieldSystem * param0, u32 param1, u32 param2, u32 param3)
@@ -1552,7 +1552,7 @@ static int sub_0206DF88 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
 static BOOL sub_0206DFC8 (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    return sub_0207D688(sub_0207D990(param0->unk_0C), 428, 1, 32);
+    return sub_0207D688(sub_0207D990(param0->saveData), 428, 1, 32);
 }
 
 void sub_0206DFE0 (SaveData * param0)
@@ -1582,7 +1582,7 @@ static int sub_0206E018 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
 static BOOL sub_0206E04C (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(SaveData_Events(param0->unk_0C), 17);
+    return inline_0208BE68(SaveData_Events(param0->saveData), 17);
 }
 
 void sub_0206E060 (SaveData * param0)
@@ -1612,14 +1612,14 @@ static int sub_0206E098 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
 static BOOL sub_0206E0CC (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(SaveData_Events(param0->unk_0C), 9);
+    return inline_0208BE68(SaveData_Events(param0->saveData), 9);
 }
 
 void sub_0206E0E0 (FieldSystem * param0, u16 param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E118 * v1 = &v0.val26;
-    UnkStruct_0202E7FC * v2 = sub_0202E7FC(SaveData_TVBroadcast(param0->unk_0C));
+    UnkStruct_0202E7FC * v2 = sub_0202E7FC(SaveData_TVBroadcast(param0->saveData));
 
     v1->unk_00 = *v2;
     v2->unk_00 = 0;
@@ -1646,7 +1646,7 @@ static int sub_0206E118 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
 static BOOL sub_0206E160 (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(SaveData_Events(param0->unk_0C), 17);
+    return inline_0208BE68(SaveData_Events(param0->saveData), 17);
 }
 
 void sub_0206E174 (FieldSystem * param0, u16 param1)
@@ -1655,7 +1655,7 @@ void sub_0206E174 (FieldSystem * param0, u16 param1)
     UnkStruct_0206E1C0 * v1 = &v0.val27;
     Pokemon * v2;
 
-    v2 = sub_02054A74(Party_GetFromSavedata(param0->unk_0C));
+    v2 = sub_02054A74(Party_GetFromSavedata(param0->saveData));
 
     sub_0206CE38(v2, &v1->unk_00, &v1->unk_02, &v1->unk_03, &v1->unk_04);
     sub_0206CED0(32, v2, &v1->unk_05, v1->unk_06);
@@ -1687,7 +1687,7 @@ static BOOL sub_0206E248 (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
 {
     UnkStruct_0206E1C0 * v0 = ov6_02246498(param1);
 
-    return sub_02026FE8(sub_02027560(param0->unk_0C), v0->unk_00);
+    return sub_02026FE8(SaveData_Pokedex(param0->saveData), v0->unk_00);
 }
 
 void sub_0206E264 (FieldSystem * param0, u16 param1)
@@ -1716,7 +1716,7 @@ void sub_0206E2BC (FieldSystem * param0, u16 param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E300 * v1 = &v0.val29;
-    UnkStruct_0202E7D8 * v2 = sub_0202E7D8(SaveData_TVBroadcast(param0->unk_0C));
+    UnkStruct_0202E7D8 * v2 = sub_0202E7D8(SaveData_TVBroadcast(param0->saveData));
 
     v1->unk_00 = *v2;
     v2->unk_00 = 0;
@@ -1747,7 +1747,7 @@ static int sub_0206E300 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 static BOOL sub_0206E37C (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
 {
     UnkStruct_0206E300 * v0 = ov6_02246498(param1);
-    return sub_02026FE8(sub_02027560(param0->unk_0C), v0->unk_00.unk_02);
+    return sub_02026FE8(SaveData_Pokedex(param0->saveData), v0->unk_00.unk_02);
 }
 
 void sub_0206E398 (FieldSystem * param0, u16 param1)
@@ -1758,7 +1758,7 @@ void sub_0206E398 (FieldSystem * param0, u16 param1)
     v1->unk_02 = param1;
 
     {
-        UnkStruct_0202A750 * v2 = sub_0202A750(param0->unk_0C);
+        UnkStruct_0202A750 * v2 = sub_0202A750(param0->saveData);
         UnkStruct_02029C68 * v3 = sub_02029CA8(v2, 0);
 
         v1->unk_00 = sub_0202A184(v3);
@@ -1781,7 +1781,7 @@ static int sub_0206E3C8 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 static BOOL sub_0206E3F8 (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
 {
     UnkStruct_0206E3C8 * v0 = ov6_02246498(param1);
-    return sub_02026FE8(sub_02027560(param0->unk_0C), v0->unk_00);
+    return sub_02026FE8(SaveData_Pokedex(param0->saveData), v0->unk_00);
 }
 
 void sub_0206E414 (FieldSystem * param0, u16 param1)
@@ -1805,7 +1805,7 @@ void sub_0206E448 (FieldSystem * param0, u16 param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E480 * v1 = &v0.val32;
-    UnkStruct_0202E7F0 * v2 = sub_0202E7F0(SaveData_TVBroadcast(param0->unk_0C));
+    UnkStruct_0202E7F0 * v2 = sub_0202E7F0(SaveData_TVBroadcast(param0->saveData));
 
     v1->unk_00 = *v2;
     v1->unk_02 = param1;
@@ -1842,7 +1842,7 @@ void sub_0206E4DC (FieldSystem * param0, u16 param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E520 * v1 = &v0.val33;
-    UnkStruct_0202E7E4 * v2 = sub_0202E7E4(SaveData_TVBroadcast(param0->unk_0C));
+    UnkStruct_0202E7E4 * v2 = sub_0202E7E4(SaveData_TVBroadcast(param0->saveData));
 
     v1->unk_00 = *v2;
     v1->unk_24 = param1;
@@ -1879,7 +1879,7 @@ void sub_0206E5A0 (FieldSystem * param0, u16 param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E5E4 * v1 = &v0.val34;
-    UnkStruct_0202E810 * v2 = sub_0202E810(SaveData_TVBroadcast(param0->unk_0C));
+    UnkStruct_0202E810 * v2 = sub_0202E810(SaveData_TVBroadcast(param0->saveData));
 
     v1->unk_00 = *v2;
     v1->unk_1E = param1;
@@ -1908,7 +1908,7 @@ static int sub_0206E5E4 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
 static BOOL sub_0206E654 (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(SaveData_Events(param0->unk_0C), 17);
+    return inline_0208BE68(SaveData_Events(param0->saveData), 17);
 }
 
 void sub_0206E668 (FieldSystem * param0, u16 param1)
@@ -1991,7 +1991,7 @@ void sub_0206E768 (FieldSystem * param0, u16 param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E768 * v1 = &v0.val39;
-    UnkStruct_0202E81C * v2 = sub_0202E81C(SaveData_TVBroadcast(param0->unk_0C));
+    UnkStruct_0202E81C * v2 = sub_0202E81C(SaveData_TVBroadcast(param0->saveData));
 
     v1->unk_00 = *v2;
     v1->unk_16 = param1;
@@ -2037,7 +2037,7 @@ static int sub_0206E7AC (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
 static BOOL sub_0206E834 (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(SaveData_Events(param0->unk_0C), 17);
+    return inline_0208BE68(SaveData_Events(param0->saveData), 17);
 }
 
 static const u8 Unk_020EFD34[] = {
@@ -2065,7 +2065,7 @@ static int sub_0206E870 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 {
     int v0, v1, v2;
     int v3;
-    UnkStruct_0202B4A0 * v4 = sub_0202B4A0(param0->unk_0C);
+    UnkStruct_0202B4A0 * v4 = sub_0202B4A0(param0->saveData);
 
     v1 = sub_0206E848(v4);
     GF_ASSERT(v1 > 0);
@@ -2095,8 +2095,8 @@ static int sub_0206E870 (FieldSystem * param0, StringTemplate * param1, UnkStruc
         v3++;
     }
 
-    StringTemplate_SetUnionGroupName(param1, param0->unk_0C, v2, 0, 1);
-    StringTemplate_SetUnionGroupName(param1, param0->unk_0C, v2, 1, 0);
+    StringTemplate_SetUnionGroupName(param1, param0->saveData, v2, 0, 1);
+    StringTemplate_SetUnionGroupName(param1, param0->saveData, v2, 1, 0);
     StringTemplate_SetPokemonTypeName(param1, 2, v3);
 
     return 0;
@@ -2104,7 +2104,7 @@ static int sub_0206E870 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
 static BOOL sub_0206E928 (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    UnkStruct_0202B4A0 * v0 = sub_0202B4A0(param0->unk_0C);
+    UnkStruct_0202B4A0 * v0 = sub_0202B4A0(param0->saveData);
 
     if (sub_0206E848(v0) != 0) {
         return 1;
@@ -2176,12 +2176,12 @@ static int sub_0206EA10 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
     if ((v1 == 411) || ((v1 >= 412) && (v1 <= 417))) {
         StringTemplate_SetPlayerName(param1, 0, v0);
-        StringTemplate_SetRivalName(param1, 1, param0->unk_0C);
+        StringTemplate_SetRivalName(param1, 1, param0->saveData);
         return 13;
     }
 
     if ((v1 == 418) || ((v1 >= 422) && (v1 <= 425))) {
-        StringTemplate_SetCounterpartName(param1, 1, param0->unk_0C);
+        StringTemplate_SetCounterpartName(param1, 1, param0->saveData);
         return 14;
     }
 
@@ -2234,7 +2234,7 @@ static int sub_0206EA10 (FieldSystem * param0, StringTemplate * param1, UnkStruc
     }
 
     StringTemplate_SetPlayerName(param1, 0, v0);
-    StringTemplate_SetRivalName(param1, 1, param0->unk_0C);
+    StringTemplate_SetRivalName(param1, 1, param0->saveData);
 
     return 27;
 }
@@ -2242,7 +2242,7 @@ static int sub_0206EA10 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 static int sub_0206EB94 (FieldSystem * param0, StringTemplate * param1, UnkStruct_ov6_022465F4 * param2)
 {
     u16 v0, v1;
-    UnkStruct_0202D7B0 * v2 = sub_0202D834(param0->unk_0C);
+    UnkStruct_0202D7B0 * v2 = sub_0202D834(param0->saveData);
 
     ov6_0224322C(sub_0202D814(v2, 2), &v0, &v1);
     StringTemplate_SetLocationName(param1, 0, MapHeader_GetMapLabelTextID(v0));
@@ -2253,7 +2253,7 @@ static int sub_0206EB94 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
 static BOOL sub_0206EBD4 (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    UnkStruct_0202D7B0 * v0 = sub_0202D834(param0->unk_0C);
+    UnkStruct_0202D7B0 * v0 = sub_0202D834(param0->saveData);
     return sub_0202D898(v0);
 }
 
@@ -2527,7 +2527,7 @@ static int sub_0206EBE8 (FieldSystem * param0)
     u8 v0[NELEMS(Unk_020EFD3C)];
     u8 v1[NELEMS(Unk_020F0074) / 2];
     int v2, v3;
-    UnkStruct_020507E4 * v4 = SaveData_Events(param0->unk_0C);
+    UnkStruct_020507E4 * v4 = SaveData_Events(param0->saveData);
 
     for (v2 = 0; v2 < NELEMS(Unk_020EFD3C); v2++) {
         v0[v2] = inline_0208BE68(v4, Unk_020EFD3C[v2]);
@@ -2545,7 +2545,7 @@ static int sub_0206EBE8 (FieldSystem * param0)
 
 static int sub_0206EC90 (FieldSystem * param0, StringTemplate * param1, UnkStruct_ov6_022465F4 * param2)
 {
-    UnkStruct_02027854 * v0 = sub_02027854(param0->unk_0C);
+    UnkStruct_02027854 * v0 = sub_02027854(param0->saveData);
     int v1, v2;
 
     v1 = sub_0206EBE8(param0);
@@ -2570,7 +2570,7 @@ static int sub_0206EC90 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
 static BOOL sub_0206ECFC (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->saveData);
     return inline_0208BE68(v0, 9);
 }
 
@@ -2630,7 +2630,7 @@ static int sub_0206EDAC (FieldSystem * param0, StringTemplate * param1, UnkStruc
     Strbuf* v6 = Strbuf_Init(22, 4);
     TrainerInfo * v7 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0));
 
-    v1 = sub_0202D834(param0->unk_0C);
+    v1 = sub_0202D834(param0->saveData);
     v2 = (LCRNG_Next() % 29);
 
     sub_02071D10(sub_0206C3C8(v2), 4, v6);
@@ -2657,7 +2657,7 @@ static BOOL sub_0206EE74 (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
     int v0;
     UnkStruct_0202D7B0 * v1;
 
-    v1 = sub_0202D834(param0->unk_0C);
+    v1 = sub_0202D834(param0->saveData);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0202D8F8(v1, v0)) {
@@ -2685,7 +2685,7 @@ static int sub_0206EEBC (FieldSystem * param0, StringTemplate * param1, UnkStruc
 {
     UnkStruct_02029C68 * v0;
     int v1, v2, v3, v4;
-    UnkStruct_0202A750 * v5 = sub_0202A750(param0->unk_0C);
+    UnkStruct_0202A750 * v5 = sub_0202A750(param0->saveData);
 
     v2 = sub_0206EE9C(v5);
 
@@ -2727,7 +2727,7 @@ static int sub_0206EEBC (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
 static BOOL sub_0206EF64 (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    UnkStruct_0202A750 * v0 = sub_0202A750(param0->unk_0C);
+    UnkStruct_0202A750 * v0 = sub_0202A750(param0->saveData);
 
     if (sub_0206EE9C(v0) != 0) {
         return 1;
@@ -2742,13 +2742,13 @@ static int sub_0206EF7C (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
     v0 = 0;
 
-    if (sub_0206A954(SaveData_Events(param0->unk_0C)) == 1) {
+    if (sub_0206A954(SaveData_Events(param0->saveData)) == 1) {
         v0 = (LCRNG_Next() % 8);
-    } else if (inline_0208BE68(SaveData_Events(param0->unk_0C), 11) == 1) {
+    } else if (inline_0208BE68(SaveData_Events(param0->saveData), 11) == 1) {
         v0 = (LCRNG_Next() % 5);
-    } else if (inline_0208BE68(SaveData_Events(param0->unk_0C), 10) == 1) {
+    } else if (inline_0208BE68(SaveData_Events(param0->saveData), 10) == 1) {
         v0 = (LCRNG_Next() % 4);
-    } else if (inline_0208BE68(SaveData_Events(param0->unk_0C), 18) == 1) {
+    } else if (inline_0208BE68(SaveData_Events(param0->saveData), 18) == 1) {
         v0 = (LCRNG_Next() % 2);
     }
 
@@ -2759,7 +2759,7 @@ static int sub_0206F01C (FieldSystem * param0, StringTemplate * param1, UnkStruc
 {
     Strbuf* v0;
     u16 v1, v2, v3;
-    const PokedexData * v4 = sub_02027560(param0->unk_0C);
+    const PokedexData * v4 = SaveData_Pokedex(param0->saveData);
 
     v1 = (LCRNG_Next() % (NATIONAL_DEX_COUNT - 1)) + 1;
 
@@ -2808,7 +2808,7 @@ static Strbuf* sub_0206F0D8 (u16 param0, u32 param1)
 
 static BOOL sub_0206F100 (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    const PokedexData * v0 = sub_02027560(param0->unk_0C);
+    const PokedexData * v0 = SaveData_Pokedex(param0->saveData);
 
     if (sub_02027520(v0) == 1) {
         return 1;
@@ -2853,11 +2853,11 @@ static int sub_0206F160 (FieldSystem * param0, StringTemplate * param1, UnkStruc
     u16 v1, v2;
     Pokemon * v3;
     Party * v4;
-    TrainerInfo * v5 = SaveData_GetTrainerInfo(param0->unk_0C);
-    PokedexData * v6 = sub_02027560(param0->unk_0C);
+    TrainerInfo * v5 = SaveData_GetTrainerInfo(param0->saveData);
+    PokedexData * v6 = SaveData_Pokedex(param0->saveData);
 
-    v4 = Party_GetFromSavedata(param0->unk_0C);
-    v3 = Party_GetPokemonBySlotIndex(v4, sub_0205E1B4(param0->unk_0C));
+    v4 = Party_GetFromSavedata(param0->saveData);
+    v3 = Party_GetPokemonBySlotIndex(v4, sub_0205E1B4(param0->saveData));
 
     sub_0206CE74(param1, 0, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), Pokemon_GetValue(v3, MON_DATA_GENDER, NULL), TrainerInfo_RegionCode(v5), TrainerInfo_GameCode(v5));
     StringTemplate_SetContestAccessoryName(param1, 1, (LCRNG_Next() % 100));
@@ -2886,7 +2886,7 @@ static int sub_0206F160 (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
 static BOOL sub_0206F260 (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    const PokedexData * v0 = sub_02027560(param0->unk_0C);
+    const PokedexData * v0 = SaveData_Pokedex(param0->saveData);
 
     if (sub_02027520(v0) == 1) {
         return 1;
@@ -2907,7 +2907,7 @@ static int sub_0206F27C (FieldSystem * param0, StringTemplate * param1, UnkStruc
 
 static BOOL sub_0206F280 (FieldSystem * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    if (TrainerInfo_HasBadge(SaveData_GetTrainerInfo(param0->unk_0C), 0) == 1) {
+    if (TrainerInfo_HasBadge(SaveData_GetTrainerInfo(param0->saveData), 0) == 1) {
         return 1;
     } else {
         return 0;

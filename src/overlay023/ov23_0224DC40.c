@@ -644,7 +644,7 @@ static void ov23_0224E2D8 (SysTask * param0, void * param1)
     case 10:
         break;
     case 11:
-        sub_0202CFEC(sub_0202CD88(v0->unk_08->unk_0C), 32);
+        sub_0202CFEC(sub_0202CD88(v0->unk_08->saveData), 32);
         ov23_022539E8();
         ov23_0224DC68(v0, 9);
         v0->unk_37 = 12;
@@ -686,7 +686,7 @@ static void ov23_0224E2D8 (SysTask * param0, void * param1)
         } else if (sub_02032FC0(v0->unk_30)) {
             ov23_0224DC68(v0, 87);
             v0->unk_37 = 15;
-        } else if (!sub_02028810(v0->unk_08->unk_0C)) {
+        } else if (!sub_02028810(v0->unk_08->saveData)) {
             ov23_0224DC68(v0, 87);
             v0->unk_37 = 15;
         } else if (sub_0205748C(Unk_ov23_022577B4->unk_28.unk_02)) {
@@ -736,11 +736,11 @@ static void ov23_0224E2D8 (SysTask * param0, void * param1)
     case 22:
         ov23_0224E124(v0);
         {
-            UnkStruct_020507E4 * v2 = SaveData_Events(v0->unk_08->unk_0C);
+            UnkStruct_020507E4 * v2 = SaveData_Events(v0->unk_08->saveData);
             sub_0206B3FC(v2, sub_0206B3EC(v2) + 1);
         }
 
-        sub_0202CFEC(sub_0202CD88(v0->unk_08->unk_0C), 31);
+        sub_0202CFEC(sub_0202CD88(v0->unk_08->saveData), 31);
         v0->unk_37 = 25;
         break;
     case 25:
@@ -808,7 +808,7 @@ static void ov23_0224E2D8 (SysTask * param0, void * param1)
         break;
     case 36:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            sub_0202CFEC(sub_0202CD88(v0->unk_08->unk_0C), 33);
+            sub_0202CFEC(sub_0202CD88(v0->unk_08->saveData), 33);
             ov23_0224DC68(v0, 142);
             v0->unk_37 = 37;
         }

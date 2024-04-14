@@ -9,13 +9,13 @@
 void ov5_021DFB54(PlayerAvatar * param0, u32 param1);
 void ov5_021DFB5C(PlayerAvatar * param0);
 int ov5_021DFDE0(FieldSystem * param0, PlayerAvatar * param1, int param2, int param3);
-void ov5_021E00EC(UnkStruct_020508D4 * param0, int param1, int param2);
+void ov5_021E00EC(TaskManager * param0, int param1, int param2);
 int ov5_021E0118(PlayerAvatar * param0, u32 param1, u32 param2);
-void ov5_021E0734(UnkStruct_020508D4 * param0, int param1, int param2);
+void ov5_021E0734(TaskManager * param0, int param1, int param2);
 int ov5_021E0760(u32 param0, int param1);
 void ov5_021E097C(FieldSystem * param0, int param1);
-void ov5_021E0998(UnkStruct_020508D4 * param0, int param1, int param2);
-void ov5_021E0DD4(UnkStruct_020508D4 * param0);
+void ov5_021E0998(TaskManager * param0, int param1, int param2);
+void ov5_021E0DD4(TaskManager * param0);
 void ov5_021E0E94(PlayerAvatar * param0);
 void ov5_021E0EEC(PlayerAvatar * param0);
 SysTask * ov5_021E1000(FieldSystem * param0);

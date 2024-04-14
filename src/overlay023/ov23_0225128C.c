@@ -312,7 +312,7 @@ static BOOL ov23_022514D8 (SysTask * param0, void * param1)
         break;
     case 0:
     {
-        UndergroundData * v4 = sub_020298B0(v0->unk_0C->unk_0C);
+        UndergroundData * v4 = sub_020298B0(v0->unk_0C->saveData);
 
         if (0 == sub_020289A0(v4)) {
             ov23_02253F40(ov23_022421BC(), 60, 0, NULL);
@@ -355,7 +355,7 @@ static void ov23_022515D8 (UnkStruct_ov23_02250CD4 * param0, int param1, int par
     int v1 = param2 + 1;
     BOOL v2 = 1;
 
-    if (3 > sub_0202958C(SaveData_SecretBaseRecord(param0->unk_0C->unk_0C))) {
+    if (3 > sub_0202958C(SaveData_SecretBaseRecord(param0->unk_0C->saveData))) {
         v2 = 0;
         v1 -= 1;
     }
@@ -613,10 +613,10 @@ static void ov23_02251A84 (BOOL param0, FieldSystem * param1)
     sub_02020990(&v0, param1->unk_24);
 }
 
-static BOOL ov23_02251ACC (UnkStruct_020508D4 * param0)
+static BOOL ov23_02251ACC (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_ov23_02251ACC * v1 = sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_ov23_02251ACC * v1 = TaskManager_Environment(param0);
     UnkStruct_02049FA8 v2;
     u32 v3;
     BOOL v4 = 0;
@@ -652,7 +652,7 @@ static BOOL ov23_02251ACC (UnkStruct_020508D4 * param0)
     case 5:
         if (ScreenWipe_Done()) {
             ov23_0224B2C8(v0);
-            sub_0206AA30(SaveData_Events(v0->unk_0C));
+            sub_0206AA30(SaveData_Events(v0->saveData));
             ov23_02251F94(v0);
             Heap_FreeToHeap(v1);
             return 1;

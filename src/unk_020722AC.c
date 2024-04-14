@@ -131,7 +131,7 @@ typedef struct {
     int unk_04;
 } UnkStruct_020736D8;
 
-void sub_020736D8(UnkStruct_020508D4 * param0);
+void sub_020736D8(TaskManager * param0);
 void sub_020722AC(void * param0, int * param1);
 static void sub_02072334(UnkStruct_02072334 * param0);
 static void sub_02072364(SysTask * param0, void * param1);
@@ -1227,7 +1227,7 @@ static int sub_02073524 (UnkStruct_02072334 * param0, int param1)
         v0->unk_00 = Party_GetFromSavedata(FieldSystem_SaveData(param0->unk_16C));
         v0->unk_04 = sub_0207D990(FieldSystem_SaveData(param0->unk_16C));
         v0->unk_0C = sub_02025E44(FieldSystem_SaveData(param0->unk_16C));
-        v0->unk_08 = sub_02028430(param0->unk_16C->unk_0C);
+        v0->unk_08 = sub_02028430(param0->unk_16C->saveData);
         v0->unk_21 = 0;
         v0->unk_20 = param1;
         v0->unk_24 = param0->unk_1C[param0->unk_18].unk_06;
@@ -1288,10 +1288,10 @@ static int sub_020735E8 (UnkStruct_02072334 * param0)
     return 0;
 }
 
-static BOOL sub_02073694 (UnkStruct_020508D4 * param0)
+static BOOL sub_02073694 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
-    UnkStruct_020736D8 * v1 = sub_02050A64(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_020736D8 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_04) {
     case 0:
@@ -1310,9 +1310,9 @@ static BOOL sub_02073694 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_020736D8 (UnkStruct_020508D4 * param0)
+void sub_020736D8 (TaskManager * param0)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_020736D8 * v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_020736D8));
 
     v1->unk_00 = 0;

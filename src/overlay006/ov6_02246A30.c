@@ -97,43 +97,43 @@ static BOOL ov6_02246A34 (FieldSystem * param0)
 
 static BOOL ov6_02246A38 (FieldSystem * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->saveData);
     return inline_0208BE68(v0, 7);
 }
 
 static BOOL ov6_02246A4C (FieldSystem * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->saveData);
     return inline_0208BE68(v0, 2);
 }
 
 static BOOL ov6_02246A60 (FieldSystem * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->saveData);
     return inline_0208BE68(v0, 9);
 }
 
 static BOOL ov6_02246A74 (FieldSystem * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->saveData);
     return inline_0208BE68(v0, 10);
 }
 
 static BOOL ov6_02246A88 (FieldSystem * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->saveData);
     return inline_0208BE68(v0, 11);
 }
 
 static BOOL ov6_02246A9C (FieldSystem * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->saveData);
     return inline_0208BE68(v0, 17);
 }
 
 static BOOL ov6_02246AB0 (FieldSystem * param0)
 {
-    TrainerInfo * v0 = SaveData_GetTrainerInfo(param0->unk_0C);
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(param0->saveData);
 
     if (TrainerInfo_BadgeCount(v0) >= 5) {
         return 1;
@@ -144,19 +144,19 @@ static BOOL ov6_02246AB0 (FieldSystem * param0)
 
 static BOOL ov6_02246AC8 (FieldSystem * param0)
 {
-    PokedexData * v0 = sub_02027560(param0->unk_0C);
+    PokedexData * v0 = SaveData_Pokedex(param0->saveData);
     return sub_02026F0C(v0);
 }
 
 static BOOL ov6_02246AD8 (FieldSystem * param0)
 {
-    PokedexData * v0 = sub_02027560(param0->unk_0C);
+    PokedexData * v0 = SaveData_Pokedex(param0->saveData);
     return sub_02027520(v0);
 }
 
 static BOOL ov6_02246AE8 (FieldSystem * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->saveData);
     return sub_0206A954(v0);
 }
 

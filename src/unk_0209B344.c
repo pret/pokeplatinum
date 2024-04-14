@@ -30,17 +30,17 @@ typedef struct {
 } UnkStruct_0209B3AC;
 
 static void sub_0209B3AC(UnkStruct_0209B3AC * param0);
-static BOOL sub_0209B3C4(UnkStruct_020508D4 * param0);
+static BOOL sub_0209B3C4(TaskManager * param0);
 
-void sub_0209B344 (UnkStruct_020508D4 * param0, u16 * param1)
+void sub_0209B344 (TaskManager * param0, u16 * param1)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_0209B3AC * v1 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0209B3AC));
 
     v1->unk_00 = v0;
     v1->unk_04 = StringTemplate_Default(32);
-    v1->unk_10 = sub_0209747C(2, 0, v1->unk_00->unk_0C, 32);
-    v1->unk_14 = SaveData_MiscSaveBlock(v0->unk_0C);
+    v1->unk_10 = sub_0209747C(2, 0, v1->unk_00->saveData, 32);
+    v1->unk_14 = SaveData_MiscSaveBlock(v0->saveData);
     v1->unk_20 = param1;
 
     sub_02014A9C(&v1->unk_08, 4);
@@ -60,9 +60,9 @@ static void sub_0209B3AC (UnkStruct_0209B3AC * param0)
     Heap_FreeToHeap(param0);
 }
 
-static BOOL sub_0209B3C4 (UnkStruct_020508D4 * param0)
+static BOOL sub_0209B3C4 (TaskManager * param0)
 {
-    UnkStruct_0209B3AC * v0 = sub_02050A64(param0);
+    UnkStruct_0209B3AC * v0 = TaskManager_Environment(param0);
 
     switch (v0->unk_18) {
     case 0:

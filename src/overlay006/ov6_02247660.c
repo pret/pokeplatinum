@@ -35,7 +35,7 @@ BOOL ov6_02247660 (FieldSystem * param0)
         return 0;
     }
 
-    v13 = sub_0202B428(sub_0202B4A0(param0->unk_0C));
+    v13 = sub_0202B428(sub_0202B4A0(param0->saveData));
 
     sub_020615AC(param0->playerAvatar, &v15, &v16);
 

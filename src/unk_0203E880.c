@@ -88,8 +88,8 @@ struct UnkStruct_0203EF60_t {
 #include "data/field/hidden_items.h"
 
 void sub_0203E880(FieldSystem * param0, u16 param1, LocalMapObject * param2);
-void sub_0203E8E0(UnkStruct_020508D4 * param0, u16 param1, LocalMapObject * param2, void * param3);
-static BOOL sub_0203E950(UnkStruct_020508D4 * param0);
+void sub_0203E8E0(TaskManager * param0, u16 param1, LocalMapObject * param2, void * param3);
+static BOOL sub_0203E950(TaskManager * param0);
 static UnkStruct_0203EF60 * sub_0203EA28();
 static void sub_0203EA50(UnkStruct_0203E724 * param0);
 static void sub_0203EA68(FieldSystem * param0, UnkStruct_0203EF60 * param1, u16 param2, LocalMapObject * param3, void * param4);
@@ -142,7 +142,7 @@ void sub_0203E880 (FieldSystem * param0, u16 param1, LocalMapObject * param2)
 
 void sub_0203E8B0 (FieldSystem * param0, LocalMapObject * param1, int param2, int param3, int param4, int param5, int param6, int param7)
 {
-    UnkStruct_0203EF60 * v0 = sub_02050A64(param0->unk_10);
+    UnkStruct_0203EF60 * v0 = TaskManager_Environment(param0->unk_10);
     UnkStruct_0203E8B0 * v1 = &v0->unk_50[param7];
 
     v1->unk_00 = param2;
@@ -153,9 +153,9 @@ void sub_0203E8B0 (FieldSystem * param0, LocalMapObject * param1, int param2, in
     v1->unk_14 = param1;
 }
 
-void sub_0203E8E0 (UnkStruct_020508D4 * param0, u16 param1, LocalMapObject * param2, void * param3)
+void sub_0203E8E0 (TaskManager * param0, u16 param1, LocalMapObject * param2, void * param3)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_0203EF60 * v1 = sub_0203EA28();
 
     sub_0203EA68(v0, v1, param1, param2, param3);
@@ -164,9 +164,9 @@ void sub_0203E8E0 (UnkStruct_020508D4 * param0, u16 param1, LocalMapObject * par
     return;
 }
 
-void sub_0203E918 (UnkStruct_020508D4 * param0, u16 param1, LocalMapObject * param2)
+void sub_0203E918 (TaskManager * param0, u16 param1, LocalMapObject * param2)
 {
-    FieldSystem * v0 = sub_02050A60(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_0203EF60 * v1 = sub_0203EA28();
 
     sub_0203EA68(v0, v1, param1, param2, NULL);
@@ -175,13 +175,13 @@ void sub_0203E918 (UnkStruct_020508D4 * param0, u16 param1, LocalMapObject * par
     return;
 }
 
-static BOOL sub_0203E950 (UnkStruct_020508D4 * param0)
+static BOOL sub_0203E950 (TaskManager * param0)
 {
     int v0;
     UnkFuncPtr_0203E950 v1;
     UnkStruct_0203E724 * v2 = NULL;
-    UnkStruct_0203EF60 * v3 = sub_02050A64(param0);
-    FieldSystem * v4 = sub_02050A60(param0);
+    UnkStruct_0203EF60 * v3 = TaskManager_Environment(param0);
+    FieldSystem * v4 = TaskManager_FieldSystem(param0);
 
     switch (v3->unk_04) {
     case 0:
@@ -556,7 +556,7 @@ void * sub_0203EF60 (UnkStruct_0203EF60 * param0, u32 param1)
 
 void * sub_0203F098 (FieldSystem * param0, u32 param1)
 {
-    UnkStruct_0203EF60 * v0 = sub_02050A64(param0->unk_10);
+    UnkStruct_0203EF60 * v0 = TaskManager_Environment(param0->unk_10);
 
     if (v0->unk_00 != 0x3643f) {
         GF_ASSERT(FALSE);
@@ -567,7 +567,7 @@ void * sub_0203F098 (FieldSystem * param0, u32 param1)
 
 void sub_0203F0C0 (FieldSystem * param0)
 {
-    UnkStruct_0203EF60 * v0 = sub_02050A64(param0->unk_10);
+    UnkStruct_0203EF60 * v0 = TaskManager_Environment(param0->unk_10);
 
     if (sub_0203A9C8(param0) == 1) {
         v0->unk_A4 = sub_0203AB00;
@@ -598,7 +598,7 @@ u16 * sub_0203F118 (FieldSystem * param0, u16 param1)
 {
     UnkStruct_020507E4 * v0;
 
-    v0 = SaveData_Events(param0->unk_0C);
+    v0 = SaveData_Events(param0->saveData);
 
     if (param1 < 0x4000) {
         return NULL;
@@ -630,18 +630,18 @@ u16 sub_0203F164 (FieldSystem * param0, u16 param1)
 
 BOOL sub_0203F188 (FieldSystem * param0, u16 param1)
 {
-    return sub_020507F0(SaveData_Events(param0->unk_0C), param1);
+    return sub_020507F0(SaveData_Events(param0->saveData), param1);
 }
 
 void sub_0203F19C (FieldSystem * param0, u16 param1)
 {
-    sub_0205081C(SaveData_Events(param0->unk_0C), param1);
+    sub_0205081C(SaveData_Events(param0->saveData), param1);
     return;
 }
 
 void sub_0203F1B0 (FieldSystem * param0, u16 param1)
 {
-    sub_02050844(SaveData_Events(param0->unk_0C), param1);
+    sub_02050844(SaveData_Events(param0->saveData), param1);
     return;
 }
 
@@ -650,7 +650,7 @@ void sub_0203F1C4 (FieldSystem * param0)
     int v0;
     UnkStruct_020507E4 * v1;
 
-    v1 = SaveData_Events(param0->unk_0C);
+    v1 = SaveData_Events(param0->saveData);
 
     memset(sub_02050870(v1, 1), 0, (64 / 8));
     memset(sub_020508B8(v1, (0 + 0x4000)), 0, 2 * 32);
@@ -662,7 +662,7 @@ void sub_0203F1FC (FieldSystem * param0)
 {
     UnkStruct_020507E4 * v0;
 
-    v0 = SaveData_Events(param0->unk_0C);
+    v0 = SaveData_Events(param0->saveData);
     memset(sub_02050870(v0, 2400 + 320), 0, 192 / 8);
 
     return;
@@ -705,18 +705,18 @@ BOOL sub_0203F28C (u16 param0)
 
 BOOL sub_0203F2A0 (FieldSystem * param0, u16 param1)
 {
-    return sub_020507F0(SaveData_Events(param0->unk_0C), 1360 + param1);
+    return sub_020507F0(SaveData_Events(param0->saveData), 1360 + param1);
 }
 
 void sub_0203F2BC (FieldSystem * param0, u16 param1)
 {
-    sub_0205081C(SaveData_Events(param0->unk_0C), 1360 + param1);
+    sub_0205081C(SaveData_Events(param0->saveData), 1360 + param1);
     return;
 }
 
 void sub_0203F2D8 (FieldSystem * param0, u16 param1)
 {
-    sub_02050844(SaveData_Events(param0->unk_0C), 1360 + param1);
+    sub_02050844(SaveData_Events(param0->saveData), 1360 + param1);
     return;
 }
 

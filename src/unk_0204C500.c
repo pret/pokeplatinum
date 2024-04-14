@@ -28,7 +28,7 @@
 
 BOOL sub_0204C500 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_34->unk_0C);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_34->saveData);
     u16 v1 = inline_02049538(param0);
 
     if (v1 == 0) {
@@ -46,7 +46,7 @@ BOOL sub_0204C500 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204C554 (UnkStruct_0203E724 * param0)
 {
-    PalParkTransfer * v0 = SaveData_PalParkTransfer(param0->unk_34->unk_0C);
+    PalParkTransfer * v0 = SaveData_PalParkTransfer(param0->unk_34->saveData);
     Pokemon * v1 = Pokemon_New(32);
     u16 * v2 = inline_0204FCAC(param0);
 
@@ -62,11 +62,11 @@ BOOL sub_0204C554 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204C59C (UnkStruct_0203E724 * param0)
 {
-    PalParkTransfer * v0 = SaveData_PalParkTransfer(param0->unk_34->unk_0C);
-    PCBoxes * v1 = SaveData_PCBoxes(param0->unk_34->unk_0C);
+    PalParkTransfer * v0 = SaveData_PalParkTransfer(param0->unk_34->saveData);
+    PCBoxes * v1 = SaveData_PCBoxes(param0->unk_34->saveData);
     Pokemon * v2 = Pokemon_New(32);
-    TrainerInfo * v3 = SaveData_GetTrainerInfo(param0->unk_34->unk_0C);
-    PokedexData * v4 = sub_02027560(param0->unk_34->unk_0C);
+    TrainerInfo * v3 = SaveData_GetTrainerInfo(param0->unk_34->saveData);
+    PokedexData * v4 = SaveData_Pokedex(param0->unk_34->saveData);
     BOOL v5;
     int v6;
 
@@ -75,7 +75,7 @@ BOOL sub_0204C59C (UnkStruct_0203E724 * param0)
         sub_0209304C(v2, v3, 2, 0, 32);
         v5 = sub_02079868(v1, Pokemon_GetBoxPokemon(v2));
         GF_ASSERT(v5);
-        sub_0202F180(param0->unk_34->unk_0C, v2);
+        sub_0202F180(param0->unk_34->saveData, v2);
     }
 
     Heap_FreeToHeap(v2);

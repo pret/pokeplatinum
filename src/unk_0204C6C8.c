@@ -54,7 +54,7 @@ BOOL sub_0204C730 (UnkStruct_0203E724 * param0)
 BOOL sub_0204C750 (UnkStruct_0203E724 * param0)
 {
     FieldSystem * v0 = param0->unk_34;
-    SaveData * v1 = v0->unk_0C;
+    SaveData * v1 = v0->saveData;
     u16 * v2 = sub_02025E50(v1);
     u16 * v3;
 
@@ -67,7 +67,7 @@ BOOL sub_0204C750 (UnkStruct_0203E724 * param0)
 BOOL sub_0204C780 (UnkStruct_0203E724 * param0)
 {
     FieldSystem * v0 = param0->unk_34;
-    SaveData * v1 = v0->unk_0C;
+    SaveData * v1 = v0->saveData;
     u16 * v2 = sub_02025E50(v1);
     u16 v3;
 
@@ -80,7 +80,7 @@ BOOL sub_0204C780 (UnkStruct_0203E724 * param0)
 BOOL sub_0204C7AC (UnkStruct_0203E724 * param0)
 {
     FieldSystem * v0 = param0->unk_34;
-    SaveData * v1 = v0->unk_0C;
+    SaveData * v1 = v0->saveData;
     u16 * v2 = sub_02025E50(v1);
     u16 v3;
 
@@ -93,7 +93,7 @@ BOOL sub_0204C7AC (UnkStruct_0203E724 * param0)
 BOOL sub_0204C7D8 (UnkStruct_0203E724 * param0)
 {
     FieldSystem * v0 = param0->unk_34;
-    SaveData * v1 = v0->unk_0C;
+    SaveData * v1 = v0->saveData;
     u16 * v2 = sub_02025E50(v1);
     u16 * v3 = inline_0204FCAC(param0);
     u16 v4;
@@ -109,7 +109,7 @@ BOOL sub_0204C808 (UnkStruct_0203E724 * param0)
 {
     FieldSystem * v0 = param0->unk_34;
     TrainerInfo * v1 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->unk_34));
-    SaveData * v2 = v0->unk_0C;
+    SaveData * v2 = v0->saveData;
     u16 * v3 = sub_02025E50(v2);
     u32 v4, v5;
     u16 * v6 = inline_0204FCAC(param0);
@@ -130,7 +130,7 @@ BOOL sub_0204C854 (UnkStruct_0203E724 * param0)
 {
     FieldSystem * v0 = param0->unk_34;
     TrainerInfo * v1 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->unk_34));
-    SaveData * v2 = v0->unk_0C;
+    SaveData * v2 = v0->saveData;
     u16 * v3 = sub_02025E50(v2);
     u16 * v4 = inline_0204FCAC(param0);
     u16 * v5 = inline_0204FCAC(param0);
@@ -151,7 +151,7 @@ BOOL sub_0204C854 (UnkStruct_0203E724 * param0)
 BOOL sub_0204C8AC (UnkStruct_0203E724 * param0)
 {
     FieldSystem * v0 = param0->unk_34;
-    SaveData * v1 = v0->unk_0C;
+    SaveData * v1 = v0->saveData;
     u16 * v2 = sub_02025E50(v1);
     u16 * v3 = inline_0204FCAC(param0);
     u16 v4 = inline_02049538(param0);

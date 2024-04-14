@@ -223,7 +223,7 @@ BOOL sub_020484F8 (UnkStruct_0203E724 * param0)
 {
     u16 * v0 = inline_0204FCAC(param0);
 
-    if (IsChatotCryStructReadyForProcessing(GetChatotCryDataFromSave(param0->unk_34->unk_0C)) == 1) {
+    if (IsChatotCryStructReadyForProcessing(GetChatotCryDataFromSave(param0->unk_34->saveData)) == 1) {
         *v0 = 1;
         return 0;
     }
@@ -253,7 +253,7 @@ BOOL sub_0204855C (UnkStruct_0203E724 * param0)
 
 BOOL sub_02048568 (UnkStruct_0203E724 * param0)
 {
-    StoreMicDataInChatotCryStruct(GetChatotCryDataFromSave(param0->unk_34->unk_0C));
+    StoreMicDataInChatotCryStruct(GetChatotCryDataFromSave(param0->unk_34->saveData));
     return 1;
 }
 

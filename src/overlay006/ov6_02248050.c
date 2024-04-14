@@ -68,7 +68,7 @@ typedef struct {
     u32 unk_D0C;
 } UnkStruct_ov6_022487F8;
 
-static void ov6_02248050 (UnkStruct_02061830 * param0, u32 param1, UnkStruct_02017294 * param2)
+static void ov6_02248050 (MapObjectManager * param0, u32 param1, UnkStruct_02017294 * param2)
 {
     int v0;
     int v1, v2;

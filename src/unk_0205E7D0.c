@@ -36,14 +36,14 @@ typedef struct UnkStruct_0205E884_t {
 
 static PlayerAvatar * sub_0205E8FC(void);
 static void sub_0205E91C(PlayerAvatar * param0, int param1, int param2, UnkStruct_0205EC34 * param3);
-static void sub_0205E988(PlayerAvatar * param0, const UnkStruct_02061830 * param1, int param2, int param3, int param4, int param5);
-static LocalMapObject * sub_0205EA64(const UnkStruct_02061830 * param0);
+static void sub_0205E988(PlayerAvatar * param0, const MapObjectManager * param1, int param2, int param3, int param4, int param5);
+static LocalMapObject * sub_0205EA64(const MapObjectManager * param0);
 static void sub_0205EB9C(PlayerAvatar * param0, u32 param1);
 static void sub_0205EBA4(PlayerAvatar * param0, u32 param1);
 static u32 sub_0205EBB0(PlayerAvatar * param0, u32 param1);
 static void sub_0205EC08(PlayerAvatar * param0, UnkStruct_0205EC34 * param1);
 
-PlayerAvatar * sub_0205E7D0 (const UnkStruct_02061830 * param0, int param1, int param2, int param3, int param4, int param5, int param6, UnkStruct_0205EC34 * param7)
+PlayerAvatar * sub_0205E7D0 (const MapObjectManager * param0, int param1, int param2, int param3, int param4, int param5, int param6, UnkStruct_0205EC34 * param7)
 {
     PlayerAvatar * v0;
 
@@ -69,7 +69,7 @@ PlayerAvatar * sub_0205E7D0 (const UnkStruct_02061830 * param0, int param1, int 
     return v0;
 }
 
-PlayerAvatar * sub_0205E820 (const UnkStruct_02061830 * param0, UnkStruct_0205EC34 * param1, int param2)
+PlayerAvatar * sub_0205E820 (const MapObjectManager * param0, UnkStruct_0205EC34 * param1, int param2)
 {
     int v0;
     PlayerAvatar * v1;
@@ -94,7 +94,7 @@ void sub_0205E884 (PlayerAvatar * param0, int param1)
 {
     int v0, v1;
     LocalMapObject * v2;
-    const UnkStruct_02061830 * v3;
+    const MapObjectManager * v3;
 
     v2 = Player_LocalMapObject(param0);
     GF_ASSERT(v2 != NULL);
@@ -156,7 +156,7 @@ static void sub_0205E91C (PlayerAvatar * param0, int param1, int param2, UnkStru
     sub_0205EFF0(param0, 1);
 }
 
-static void sub_0205E988 (PlayerAvatar * param0, const UnkStruct_02061830 * param1, int param2, int param3, int param4, int param5)
+static void sub_0205E988 (PlayerAvatar * param0, const MapObjectManager * param1, int param2, int param3, int param4, int param5)
 {
     LocalMapObject * v0;
 
@@ -179,7 +179,7 @@ static void sub_0205E988 (PlayerAvatar * param0, const UnkStruct_02061830 * para
     sub_0205EB38(param0, v0);
 }
 
-LocalMapObject * sub_0205EA24 (const UnkStruct_02061830 * param0)
+LocalMapObject * sub_0205EA24 (const MapObjectManager * param0)
 {
     int v0 = 0;
     LocalMapObject * v1 = NULL;
@@ -193,7 +193,7 @@ LocalMapObject * sub_0205EA24 (const UnkStruct_02061830 * param0)
     return v1;
 }
 
-static LocalMapObject * sub_0205EA64 (const UnkStruct_02061830 * param0)
+static LocalMapObject * sub_0205EA64 (const MapObjectManager * param0)
 {
     LocalMapObject * v0 = sub_0205EA24(param0);
 

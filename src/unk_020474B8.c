@@ -67,7 +67,7 @@ BOOL sub_02047528 (UnkStruct_0203E724 * param0)
     StringTemplate ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
 
-    StringTemplate_SetRivalName(*v1, v2, v0->unk_0C);
+    StringTemplate_SetRivalName(*v1, v2, v0->saveData);
     return 0;
 }
 
@@ -77,7 +77,7 @@ BOOL sub_0204754C (UnkStruct_0203E724 * param0)
     StringTemplate ** v1 = sub_0203F098(v0, 15);
     u8 v2 = (*((param0)->unk_08++));
 
-    StringTemplate_SetCounterpartName(*v1, v2, v0->unk_0C);
+    StringTemplate_SetCounterpartName(*v1, v2, v0->saveData);
     return 0;
 }
 
@@ -89,7 +89,7 @@ BOOL sub_02047570 (UnkStruct_0203E724 * param0)
     u8 v3 = (*((param0)->unk_08++));
     u16 v4 = inline_02049538(param0);
 
-    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v1->unk_0C), v4);
+    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v1->saveData), v4);
     StringTemplate_SetSpeciesName(*v2, v3, (BoxPokemon *)v0);
 
     return 0;
@@ -207,7 +207,7 @@ BOOL sub_020477D0 (UnkStruct_0203E724 * param0)
     u8 v3 = (*((param0)->unk_08++));
     u16 v4 = inline_02049538(param0);
 
-    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v1->unk_0C), v4);
+    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v1->saveData), v4);
     StringTemplate_SetNickname(*v2, v3, (BoxPokemon *)v0);
 
     return 0;
@@ -217,7 +217,7 @@ BOOL sub_02047818 (UnkStruct_0203E724 * param0)
 {
     BoxPokemon * v0;
     FieldSystem * v1 = param0->unk_34;
-    PCBoxes * v2 = SaveData_PCBoxes(v1->unk_0C);
+    PCBoxes * v2 = SaveData_PCBoxes(v1->saveData);
     StringTemplate ** v3 = sub_0203F098(v1, 15);
     u8 v4 = (*((param0)->unk_08++));
     u16 v5 = inline_02049538(param0);
@@ -300,7 +300,7 @@ BOOL sub_020479C0 (UnkStruct_0203E724 * param0)
 {
     StringTemplate ** v0 = sub_0203F098(param0->unk_34, 15);
     u8 v1 = (*((param0)->unk_08++));
-    u16 v2 = sub_0206B054(SaveData_Events(param0->unk_34->unk_0C));
+    u16 v2 = sub_0206B054(SaveData_Events(param0->unk_34->saveData));
     Strbuf* v3 = sub_02047998(v2, 4);
 
     StringTemplate_SetStrbuf(*v0, v1, v3, 0, 1, GAME_LANGUAGE);
@@ -313,7 +313,7 @@ BOOL sub_02047A10 (UnkStruct_0203E724 * param0)
 {
     StringTemplate ** v0 = sub_0203F098(param0->unk_34, 15);
     u8 v1 = (*((param0)->unk_08++));
-    u16 v2 = sub_0206B064(SaveData_Events(param0->unk_34->unk_0C));
+    u16 v2 = sub_0206B064(SaveData_Events(param0->unk_34->saveData));
     Strbuf* v3 = sub_02047998(v2, 4);
 
     StringTemplate_SetStrbuf(*v0, v1, v3, 0, 1, GAME_LANGUAGE);
@@ -326,7 +326,7 @@ BOOL sub_02047A60 (UnkStruct_0203E724 * param0)
 {
     StringTemplate ** v0 = sub_0203F098(param0->unk_34, 15);
     u8 v1 = (*((param0)->unk_08++));
-    u16 v2 = sub_0206B08C(SaveData_Events(param0->unk_34->unk_0C));
+    u16 v2 = sub_0206B08C(SaveData_Events(param0->unk_34->saveData));
     Strbuf* v3 = sub_02047998(v2, 4);
 
     StringTemplate_SetStrbuf(*v0, v1, v3, 0, 1, GAME_LANGUAGE);
@@ -426,7 +426,7 @@ BOOL sub_02047CA0 (UnkStruct_0203E724 * param0)
 
     v0 = Strbuf_Init(10 + 1, 11);
 
-    Strbuf_CopyChars(v0, MiscSaveBlock_TabletName(SaveData_MiscSaveBlock(param0->unk_34->unk_0C)));
+    Strbuf_CopyChars(v0, MiscSaveBlock_TabletName(SaveData_MiscSaveBlock(param0->unk_34->saveData)));
     StringTemplate_SetStrbuf(*v2, v3, v0, 0, 0, Unk_020E4C44);
     Strbuf_Free(v0);
 
@@ -443,7 +443,7 @@ BOOL sub_02047D00 (UnkStruct_0203E724 * param0)
     u16 v5 = inline_02049538(param0);
     u16 v6;
 
-    v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v0->unk_0C), v4);
+    v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v0->saveData), v4);
     v6 = Pokemon_GetValue(v1, MON_DATA_MOVE1 + v5, NULL);
 
     StringTemplate_SetMoveName(*v2, v3, v6);
@@ -560,7 +560,7 @@ BOOL sub_02047F80 (UnkStruct_0203E724 * param0)
 {
     StringTemplate ** v0 = sub_0203F098(param0->unk_34, 15);
     u8 v1 = (*((param0)->unk_08++));
-    u16 v2 = sub_0206B08C(SaveData_Events(param0->unk_34->unk_0C));
+    u16 v2 = sub_0206B08C(SaveData_Events(param0->unk_34->saveData));
 
     StringTemplate_SetSpeciesNameWithArticleByID(*v0, v1, v2);
     return 0;

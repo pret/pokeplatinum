@@ -380,10 +380,10 @@ static BOOL ov5_021EAD38 (UnkStruct_ov5_021EAE78 * param0)
     return 0;
 }
 
-static BOOL ov5_021EADB4 (UnkStruct_020508D4 * param0)
+static BOOL ov5_021EADB4 (TaskManager * param0)
 {
-    UnkStruct_ov5_021EAE78 * v0 = sub_02050A64(param0);
-    FieldSystem * v1 = sub_02050A60(param0);
+    UnkStruct_ov5_021EAE78 * v0 = TaskManager_Environment(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(param0);
 
     switch (v0->unk_48) {
     case 0:
@@ -445,9 +445,9 @@ static void ov5_021EAE78 (UnkStruct_ov5_021EAE78 * param0, int param1)
     MessageLoader_GetStrbuf(param0->unk_3C, param1, param0->unk_08);
     StringTemplate_Format(param0->unk_38, param0->unk_0C, param0->unk_08);
     sub_0205D8F4(param0->unk_30->unk_08, &param0->unk_10, 3);
-    sub_0205D944(&param0->unk_10, sub_02025E44(param0->unk_30->unk_0C));
+    sub_0205D944(&param0->unk_10, sub_02025E44(param0->unk_30->saveData));
 
-    param0->unk_40 = sub_0205D994(&param0->unk_10, param0->unk_0C, sub_02025E44(param0->unk_30->unk_0C), 1);
+    param0->unk_40 = sub_0205D994(&param0->unk_10, param0->unk_0C, sub_02025E44(param0->unk_30->saveData), 1);
 }
 
 static void ov5_021EAEE0 (UnkStruct_ov5_021EAE78 * param0)
@@ -475,13 +475,13 @@ static void ov5_021EAF1C (UnkStruct_ov5_021EAE78 * param0)
 void ov5_021EAF50 (FieldSystem * param0)
 {
     UnkStruct_ov5_021EAE78 * v0;
-    UnkStruct_020508D4 * v1 = param0->unk_10;
+    TaskManager * v1 = param0->unk_10;
 
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov5_021EAE78));
     ov5_021EAEE0(v0);
 
     v0->unk_30 = param0;
-    v0->unk_34 = param0->unk_0C;
+    v0->unk_34 = param0->saveData;
     v0->unk_48 = 0;
 
     if (v1 == NULL) {

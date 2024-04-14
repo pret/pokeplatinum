@@ -2372,7 +2372,7 @@ static void sub_020615C8 (PlayerAvatar * param0)
 {
     LocalMapObject * v0 = Player_LocalMapObject(param0);
     FieldSystem * v1 = sub_02062C00(v0);
-    UnkStruct_0202CD88 * v2 = sub_0202CD88(v1->unk_0C);
+    UnkStruct_0202CD88 * v2 = sub_0202CD88(v1->saveData);
 
     sub_0202CF28(v2, (0 + 0));
 }

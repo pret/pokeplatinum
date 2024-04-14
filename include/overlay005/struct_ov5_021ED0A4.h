@@ -31,7 +31,7 @@ typedef struct UnkStruct_ov5_021ED0A4_t {
     UnkStruct_ov5_021F06D8 * unk_F8;
     UnkStruct_ov5_021F06D8 * unk_FC;
     UnkStruct_ov5_021EDF3C * unk_100;
-    const UnkStruct_02061830 * unk_104;
+    const MapObjectManager * unk_104;
 } UnkStruct_ov5_021ED0A4;
 
 #endif // POKEPLATINUM_STRUCT_OV5_021ED0A4_H
