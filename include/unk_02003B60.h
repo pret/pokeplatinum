@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_02003B60_H
 
 #include "struct_decls/struct_02003D54_decl.h"
-#include "struct_defs/options.h"
+#include "game_options.h"
 #include "struct_defs/chatot_cry.h"
 
 #include <nnsys.h>

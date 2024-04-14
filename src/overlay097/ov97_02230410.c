@@ -20,7 +20,6 @@
 
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/options.h"
 #include "struct_defs/struct_0202DBAC.h"
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -54,7 +53,7 @@
 #include "savedata.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202DAB4.h"
 #include "communication_information.h"
 #include "unk_02033200.h"
@@ -1045,7 +1044,7 @@ static int ov97_0223161C (OverlayManager * param0, int * param1)
         v4->unk_2C04 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
         v4->unk_2C00 = SaveData_MysteryGift(v4->unk_2C04);
         v4->unk_2C08 = sub_02025E44(v4->unk_2C04);
-        v4->unk_2C0C = sub_02027B50(v4->unk_2C08);
+        v4->unk_2C0C = Options_Frame(v4->unk_2C08);
 
         v4->unk_2C14[0] = sub_0202DB00(v4->unk_2C00, 0);
         v4->unk_2C14[1] = sub_0202DB00(v4->unk_2C00, 1);

@@ -11,7 +11,7 @@
 
 #include "constdata/const_020F1E88.h"
 
-#include "struct_defs/options.h"
+#include "game_options.h"
 #include "functypes/funcptr_0203BC5C.h"
 #include "field/field_system.h"
 #include "struct_defs/struct_0203D9B8.h"

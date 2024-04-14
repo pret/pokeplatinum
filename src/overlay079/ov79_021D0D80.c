@@ -35,7 +35,7 @@
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
 #include "strbuf.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0208C098.h"
 #include "unk_02098FFC.h"
 #include "overlay079/ov79_021D0D80.h"
@@ -660,7 +660,7 @@ static void ov79_021D14A4 (UnkStruct_ov79_021D0E1C * param0)
     };
 
     sub_0200DAA4(param0->unk_24, 1, 1 + 18 + 12, 15, 0, param0->unk_00);
-    sub_0200DD0C(param0->unk_24, 1, 1, 14, sub_02027B50(param0->unk_20->unk_18), param0->unk_00);
+    sub_0200DD0C(param0->unk_24, 1, 1, 14, Options_Frame(param0->unk_20->unk_18), param0->unk_00);
     sub_02002E7C(0, 13 * 32, param0->unk_00);
     sub_02002E98(0, 12 * 32, param0->unk_00);
     sub_02002E7C(4, 13 * 32, param0->unk_00);
@@ -710,7 +710,7 @@ static void ov79_021D1568 (UnkStruct_ov79_021D0E1C * param0)
         param0->unk_30.unk_38[v0] = MessageLoader_GetNewStrbuf(param0->unk_2C, 17 + v0);
     }
 
-    param0->unk_30.unk_4C = sub_02027AC0(param0->unk_20->unk_18);
+    param0->unk_30.unk_4C = Options_TextFrameDelay(param0->unk_20->unk_18);
 }
 
 static void ov79_021D1618 (UnkStruct_ov79_021D0E1C * param0)

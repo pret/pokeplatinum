@@ -3,7 +3,7 @@
 
 #include "struct_decls/sys_task.h"
 #include "trainer_info.h"
-#include "struct_defs/options.h"
+#include "game_options.h"
 #include "struct_decls/struct_0202A750_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"

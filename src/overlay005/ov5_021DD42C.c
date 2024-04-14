@@ -18,7 +18,7 @@
 #include "unk_0201D670.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0203E880.h"
 #include "unk_0205D8CC.h"
 #include "overlay005/ov5_021DD42C.h"
@@ -110,7 +110,7 @@ void ov5_021DD530 (UnkStruct_0203E724 * param0, StringTemplate * param1, u8 para
 
 static u8 ov5_021DD574 (UnkStruct_0203E724 * param0)
 {
-    return sub_02027AC0(sub_02025E44(param0->unk_34->saveData));
+    return Options_TextFrameDelay(sub_02025E44(param0->unk_34->saveData));
 }
 
 static void ov5_021DD588 (FieldSystem * param0, UnkStruct_ov5_021DD648 * param1)

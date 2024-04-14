@@ -38,7 +38,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_020393C8.h"
 #include "pokemon.h"
 #include "overlay095/ov95_02246C20.h"
@@ -724,7 +724,7 @@ u16 ov95_02247668 (UnkStruct_ov95_02247628 * param0)
 
 int ov95_02247674 (UnkStruct_ov95_02247628 * param0)
 {
-    return sub_02027B50(param0->unk_00->unk_14);
+    return Options_Frame(param0->unk_00->unk_14);
 }
 
 int ov95_02247680 (UnkStruct_ov95_02247628 * param0)

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_020425E0_H
 #define POKEPLATINUM_STRUCT_020425E0_H
 
-#include "struct_defs/options.h"
+#include "game_options.h"
 
 typedef struct {
     int unk_00;

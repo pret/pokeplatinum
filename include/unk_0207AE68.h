@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_0207AE68_H
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_defs/options.h"
+#include "game_options.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "poketch_data.h"
 #include "pokemon.h"

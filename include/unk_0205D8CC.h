@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
-#include "struct_defs/options.h"
+#include "game_options.h"
 #include "struct_defs/struct_0205AA50.h"
 
 void sub_0205D8CC(u32 param0, u32 param1);

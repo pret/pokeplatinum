@@ -58,7 +58,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "unk_0207E0B8.h"
@@ -158,7 +158,7 @@ void ov104_02231F74 (UnkStruct_ov104_022320B4 * param0, const MessageLoader * pa
 
         v4 = sub_0209B970(v3->unk_08);
 
-        v0 = sub_02027AC0(v4->unk_04);
+        v0 = Options_TextFrameDelay(v4->unk_04);
         v1 = 0;
         v2 = 1;
     } else {
@@ -1095,7 +1095,7 @@ void ov104_0223310C (UnkStruct_ov104_0222E930 * param0, u16 * param1, u32 param2
         ov104_02231F74(param0->unk_00, v1, param1[1], 1, NULL);
         MessageLoader_Free(v1);
     } else {
-        v0 = sub_02027AC0(sub_02025E44(v2->unk_08));
+        v0 = Options_TextFrameDelay(sub_02025E44(v2->unk_08));
         ov104_022320B4(param0->unk_00, v0, param1[0], param1[1], param1[2], param1[3], 1);
     }
 

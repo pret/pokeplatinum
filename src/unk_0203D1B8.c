@@ -29,7 +29,6 @@
 #include "overlay084/const_ov84_02241130.h"
 #include "constdata/const_020F2DAC.h"
 
-#include "struct_defs/options.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "field/field_system.h"
 #include "struct_defs/struct_0203D8AC.h"
@@ -77,7 +76,7 @@
 #include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "savedata_misc.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_02028124.h"
 #include "unk_020298BC.h"
 #include "unk_0202ACE0.h"
@@ -1623,7 +1622,7 @@ void sub_0203E414 (TaskManager * param0, int param1)
     v2->unk_04 = GetTimestamp();
     v2->unk_0C.unk_08 = sub_0202CD88(v0->saveData);
     v2->unk_0C.unk_0C = 0;
-    v2->unk_0C.unk_10 = sub_02027B50(v1);
+    v2->unk_0C.unk_10 = Options_Frame(v1);
     v2->unk_0C.unk_04 = sub_0203E484(v0->saveData, param1);
 
     sub_0202CFEC(sub_0202CD88(v0->saveData), 5);
