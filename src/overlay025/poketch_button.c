@@ -134,7 +134,7 @@ void PoketchButtonManager_ResetButtonState(PoketchButtonManager *buttonManager, 
 
 static void PoketchButton_Init(PoketchButton *button)
 {
-    button->state = 0;
+    button->state = BUTTON_STATE_IDLE;
     button->screenTouched = FALSE;
     button->prevScreenTouched = FALSE;
     button->timer = 0;
@@ -147,14 +147,14 @@ static void PoketchButton_Init(PoketchButton *button)
     button->repeatTime = 0;
 }
 
-/** Use enum ButtonManagerState for state input. */
+/** Use enum ButtonEventState for state input. */
 static void PoketchButton_ChangeState(PoketchButton *button, u32 state)
 {
     button->state = state;
     button->timer = 0;
 }
 
-/** Use enum ButtonManagerState for state input. */
+/** Use enum ButtonEventState for state input. */
 static void PoketchButton_ChangeState_NoReset(PoketchButton *button, u32 state)
 {
     button->state = state;
