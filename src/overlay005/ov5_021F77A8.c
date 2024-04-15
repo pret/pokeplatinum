@@ -138,10 +138,10 @@ BOOL ScrCmd_2EA (ScriptContext * param0)
 
     for (v0 = 0; v0 < (NELEMS(sTeachableMoves)); v0++) {
         if (v6 == sTeachableMoves[v0].moveID) {
-            v1 = sTeachableMoves[v0].unk_02;
-            v2 = sTeachableMoves[v0].unk_03;
-            v3 = sTeachableMoves[v0].unk_04;
-            v4 = sTeachableMoves[v0].unk_05;
+            v1 = sTeachableMoves[v0].redCost;
+            v2 = sTeachableMoves[v0].blueCost;
+            v3 = sTeachableMoves[v0].yellowCost;
+            v4 = sTeachableMoves[v0].greenCost;
             break;
         }
     }
@@ -192,10 +192,10 @@ BOOL ScrCmd_2EB (ScriptContext * param0)
 
     for (v0 = 0; v0 < (NELEMS(sTeachableMoves)); v0++) {
         if (v6 == sTeachableMoves[v0].moveID) {
-            v1 = sTeachableMoves[v0].unk_02;
-            v2 = sTeachableMoves[v0].unk_03;
-            v3 = sTeachableMoves[v0].unk_04;
-            v4 = sTeachableMoves[v0].unk_05;
+            v1 = sTeachableMoves[v0].redCost;
+            v2 = sTeachableMoves[v0].blueCost;
+            v3 = sTeachableMoves[v0].yellowCost;
+            v4 = sTeachableMoves[v0].greenCost;
             break;
         }
     }
@@ -301,7 +301,7 @@ static u16 ov5_021F7B60 (Pokemon * param0, u16 param1)
         for (v1 = 0; v1 < 8; v1++) {
             v4 = ((v3 >> v1) & 0x1);
 
-            if ((v4 == 1) && (param1 == sTeachableMoves[v0 * 8 + v1].shardColor)) {
+            if ((v4 == 1) && (param1 == sTeachableMoves[v0 * 8 + v1].location)) {
                 for (v2 = 0; v2 < 4; v2++) {
                     if (v6[v2] == sTeachableMoves[v0 * 8 + v1].moveID) {
                         break;
@@ -360,7 +360,7 @@ BOOL ScrCmd_2E6 (ScriptContext * param0)
             for (v4 = 0; v4 < 8; v4++) {
                 v1 = ((v0 >> v4) & 0x1);
 
-                if ((v1 == 1) && (v15 == sTeachableMoves[v2 * 8 + v4].shardColor)) {
+                if ((v1 == 1) && (v15 == sTeachableMoves[v2 * 8 + v4].location)) {
                     for (v5 = 0; v5 < 4; v5++) {
                         if (v11[v5] == sTeachableMoves[v2 * 8 + v4].moveID) {
                             break;
@@ -376,7 +376,7 @@ BOOL ScrCmd_2E6 (ScriptContext * param0)
         }
     } else {
         for (v2 = 0; v2 < (NELEMS(sTeachableMoves)); v2++) {
-            if (v15 == sTeachableMoves[v2].shardColor) {
+            if (v15 == sTeachableMoves[v2].location) {
                 v12[v3] = ov5_021F7A3C(v2);
                 v3++;
             }
@@ -635,7 +635,7 @@ BOOL ScrCmd_2EC (ScriptContext * param0)
     u16 * v6 = ScriptContext_GetVarPointer(param0);
 
     v5 = ov5_021F7A4C(v5);
-    *v2 = ov5_021DD250(v0, v3, v4, v6, *v1, sTeachableMoves[v5].unk_02, sTeachableMoves[v5].unk_03, sTeachableMoves[v5].unk_04, sTeachableMoves[v5].unk_05);
+    *v2 = ov5_021DD250(v0, v3, v4, v6, *v1, sTeachableMoves[v5].redCost, sTeachableMoves[v5].blueCost, sTeachableMoves[v5].yellowCost, sTeachableMoves[v5].greenCost);
 
     return 0;
 }
