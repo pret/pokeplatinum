@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/generated/c/pokemon.h"
 #include "message.h"
 #include "strbuf.h"
 #include "trainer_info.h"
@@ -152,12 +153,12 @@ int ov113_02260748 (UnkStruct_ov113_02260818 * param0, int param1)
 // Seems to be from a cut feature where you could have pokemon out walking around while being in a wifi room. Amity square?
 BOOL PokemonHasOverworldFootprint (int species, int form, BOOL canShowArceus)
 {
-    if ((species == SPECIES_GIRATINA) && (form > 0)) {
-        return 0;
+    if (species == SPECIES_GIRATINA && form > 0) {
+        return FALSE;
     }
 
-    if ((species == SPECIES_ARCEUS) && (canShowArceus == 0)) {
-        return 0;
+    if (species == SPECIES_ARCEUS && canShowArceus == FALSE) {
+        return FALSE;
     }
 
     return sSpeciesFootprintData[species].hasFootprint;
@@ -165,9 +166,10 @@ BOOL PokemonHasOverworldFootprint (int species, int form, BOOL canShowArceus)
 
 int PokemonOverworldFootprintSize (int species, int form)
 {
-    if ((species == SPECIES_GIRATINA) && (form > 0)) {
-        return 2;
+    if (species == SPECIES_GIRATINA && form > 0) {
+        return FOOTPRINT_LARGE;
     }
 
     return sSpeciesFootprintData[species].footprintSize;
 }
+
