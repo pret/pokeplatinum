@@ -3,40 +3,41 @@
 
 #include "message.h"
 #include "field/field_system_decl.h"
+#include "struct_decls/struct_020508D4_decl.h"
 
-typedef struct UnkStruct_0203E724 UnkStruct_0203E724;
+typedef struct ScriptContext ScriptContext;
 
-typedef BOOL (* UnkFuncPtr_0203E724)(UnkStruct_0203E724 *);
+typedef BOOL (* ShouldResumeScriptFunc)(ScriptContext *);
+typedef BOOL (* ScrCmdFunc)(ScriptContext *);
 
-struct UnkStruct_0203E724 {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    u8 padding_03;
-    UnkFuncPtr_0203E724 unk_04;
-    const u8 * unk_08;
-    const u8 * unk_0C[20];
-    const UnkFuncPtr_0203E724 * unk_10;
-    u32 unk_14;
-    u32 unk_18[4];
-    void * unk_28;
-    MessageLoader * unk_2C;
-    u8 * unk_30;
-    FieldSystem * unk_34;
+struct ScriptContext {
+    u8 stackPointer;
+    u8 state;
+    u8 comparisonResult;
+    ShouldResumeScriptFunc shouldResume;
+    const u8 * scriptPtr;
+    const u8 * stack[20];
+    const ScrCmdFunc * cmdTable;
+    u32 cmdTableSize;
+    u32 data[4];
+    TaskManager * taskManager;
+    MessageLoader * loader;
+    const u8 * scripts;
+    FieldSystem * fieldSys;
 };
 
-void sub_0203E724(UnkStruct_0203E724 * param0, const UnkFuncPtr_0203E724 * param1, u32 param2);
-u8 sub_0203E758(UnkStruct_0203E724 * param0, const u8 * param1);
-void sub_0203E764(UnkStruct_0203E724 * param0, UnkFuncPtr_0203E724 param1);
-void sub_0203E76C(UnkStruct_0203E724 * param0);
-void sub_0203E774(UnkStruct_0203E724 * param0, void * param1);
-u8 sub_0203E778(UnkStruct_0203E724 * param0);
-u8 sub_0203E7E4(UnkStruct_0203E724 * param0, const u8 * param1);
-const u8 * sub_0203E800(UnkStruct_0203E724 * param0);
-void sub_0203E818(UnkStruct_0203E724 * param0, u8 * param1);
-void sub_0203E81C(UnkStruct_0203E724 * param0, u8 * param1);
-void sub_0203E82C(UnkStruct_0203E724 * param0);
-u16 sub_0203E838(UnkStruct_0203E724 * param0);
-u32 sub_0203E850(UnkStruct_0203E724 * param0);
+#define ScriptContext_ReadByte(ctx)    (*(ctx->scriptPtr++))
+
+void ScriptContext_Init(ScriptContext * ctx, const ScrCmdFunc * cmdTable, u32 cmdTableSize);
+BOOL ScriptContext_Start(ScriptContext * ctx, const u8 * ptr);
+void ScriptContext_Pause(ScriptContext * ctx, ShouldResumeScriptFunc shouldResume);
+void ScriptContext_Stop(ScriptContext * ctx);
+void ScriptContext_SetTaskManager(ScriptContext * ctx, TaskManager * taskManager);
+BOOL ScriptContext_Run(ScriptContext * ctx);
+void ScriptContext_Jump(ScriptContext * ctx, const u8 * ptr);
+void ScriptContext_Call(ScriptContext * ctx, const u8 * ptr);
+void ScriptContext_Return(ScriptContext * ctx);
+u16 ScriptContext_ReadHalfWord(ScriptContext * ctx);
+u32 ScriptContext_ReadWord(ScriptContext * ctx);
 
 #endif // POKEPLATINUM_UNK_0203E724_H

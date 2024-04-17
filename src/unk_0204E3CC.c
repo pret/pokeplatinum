@@ -21,74 +21,74 @@
 
 #include <nitro/code16.h>
 
-BOOL sub_0204E3CC (UnkStruct_0203E724 * param0)
+BOOL sub_0204E3CC (ScriptContext * param0)
 {
-    const PokedexData * v0 = SaveData_Pokedex(param0->unk_34->saveData);
-    u16 * v1 = inline_0204FCAC(param0);
+    const PokedexData * v0 = SaveData_Pokedex(param0->fieldSys->saveData);
+    u16 * v1 = ScriptContext_GetVarPointer(param0);
 
     *v1 = sub_02027520(v0);
     return 0;
 }
 
-BOOL sub_0204E3FC (UnkStruct_0203E724 * param0)
+BOOL sub_0204E3FC (ScriptContext * param0)
 {
-    PokedexData * v0 = SaveData_Pokedex(param0->unk_34->saveData);
+    PokedexData * v0 = SaveData_Pokedex(param0->fieldSys->saveData);
 
     sub_02027540(v0);
     return 0;
 }
 
-BOOL sub_0204E410 (UnkStruct_0203E724 * param0)
+BOOL sub_0204E410 (ScriptContext * param0)
 {
     UnkStruct_0203A790 * v0;
     UnkStruct_0205EC34 * v1;
-    u16 * v2 = inline_0204FCAC(param0);
+    u16 * v2 = ScriptContext_GetVarPointer(param0);
 
-    v0 = sub_0203A790(param0->unk_34->saveData);
+    v0 = sub_0203A790(param0->fieldSys->saveData);
     v1 = sub_0203A780(v0);
     *v2 = sub_0205EC40(v1);
 
     return 0;
 }
 
-BOOL sub_0204E440 (UnkStruct_0203E724 * param0)
+BOOL sub_0204E440 (ScriptContext * param0)
 {
     UnkStruct_0203A790 * v0;
     UnkStruct_0205EC34 * v1;
 
-    v0 = sub_0203A790(param0->unk_34->saveData);
+    v0 = sub_0203A790(param0->fieldSys->saveData);
     v1 = sub_0203A780(v0);
 
     sub_0205EC54(v1, 1);
     return 0;
 }
 
-BOOL sub_0204E45C (UnkStruct_0203E724 * param0)
+BOOL sub_0204E45C (ScriptContext * param0)
 {
-    u16 v0 = inline_02049538(param0);
-    u16 * v1 = inline_0204FCAC(param0);
+    u16 v0 = ScriptContext_GetVar(param0);
+    u16 * v1 = ScriptContext_GetVarPointer(param0);
 
     GF_ASSERT(v0 < 8);
-    * v1 = TrainerInfo_HasBadge(SaveData_GetTrainerInfo(param0->unk_34->saveData), v0);
+    * v1 = TrainerInfo_HasBadge(SaveData_GetTrainerInfo(param0->fieldSys->saveData), v0);
 
     return 0;
 }
 
-BOOL sub_0204E4A4 (UnkStruct_0203E724 * param0)
+BOOL sub_0204E4A4 (ScriptContext * param0)
 {
-    u16 v0 = inline_02049538(param0);
+    u16 v0 = ScriptContext_GetVar(param0);
 
     GF_ASSERT(v0 < 8);
-    TrainerInfo_SetBadge(SaveData_GetTrainerInfo(param0->unk_34->saveData), v0);
+    TrainerInfo_SetBadge(SaveData_GetTrainerInfo(param0->fieldSys->saveData), v0);
 
     return 0;
 }
 
-BOOL sub_0204E4D8 (UnkStruct_0203E724 * param0)
+BOOL sub_0204E4D8 (ScriptContext * param0)
 {
-    u16 * v0 = inline_0204FCAC(param0);
+    u16 * v0 = ScriptContext_GetVarPointer(param0);
 
-    *v0 = sub_0206A938(SaveData_Events(param0->unk_34->saveData));
+    *v0 = sub_0206A938(SaveData_Events(param0->fieldSys->saveData));
     return 0;
 }
 
@@ -103,13 +103,13 @@ const u8 Unk_020EC064[8] = {
     0x7
 };
 
-BOOL sub_0204E504 (UnkStruct_0203E724 * param0)
+BOOL sub_0204E504 (ScriptContext * param0)
 {
     u16 v0, v1;
-    u16 * v2 = inline_0204FCAC(param0);
+    u16 * v2 = ScriptContext_GetVarPointer(param0);
 
     for (v0 = 0, v1 = 0; v0 < 8; v0++) {
-        if (TrainerInfo_HasBadge(SaveData_GetTrainerInfo(param0->unk_34->saveData), Unk_020EC064[v0]) == 1) {
+        if (TrainerInfo_HasBadge(SaveData_GetTrainerInfo(param0->fieldSys->saveData), Unk_020EC064[v0]) == 1) {
             v1++;
         }
     }
@@ -118,73 +118,73 @@ BOOL sub_0204E504 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL sub_0204E554 (UnkStruct_0203E724 * param0)
+BOOL sub_0204E554 (ScriptContext * param0)
 {
-    sub_0206A92C(SaveData_Events(param0->unk_34->saveData));
+    sub_0206A92C(SaveData_Events(param0->fieldSys->saveData));
     return 0;
 }
 
-BOOL sub_0204E568 (UnkStruct_0203E724 * param0)
+BOOL sub_0204E568 (ScriptContext * param0)
 {
-    u16 * v0 = inline_0204FCAC(param0);
+    u16 * v0 = ScriptContext_GetVarPointer(param0);
 
-    *v0 = sub_0206A984(SaveData_Events(param0->unk_34->saveData));
+    *v0 = sub_0206A984(SaveData_Events(param0->fieldSys->saveData));
     return 0;
 }
 
-BOOL sub_0204E594 (UnkStruct_0203E724 * param0)
+BOOL sub_0204E594 (ScriptContext * param0)
 {
-    sub_0206A964(SaveData_Events(param0->unk_34->saveData));
+    sub_0206A964(SaveData_Events(param0->fieldSys->saveData));
     return 0;
 }
 
-BOOL sub_0204E5A8 (UnkStruct_0203E724 * param0)
+BOOL sub_0204E5A8 (ScriptContext * param0)
 {
-    sub_0206A974(SaveData_Events(param0->unk_34->saveData));
+    sub_0206A974(SaveData_Events(param0->fieldSys->saveData));
     return 0;
 }
 
-BOOL sub_0204E5BC (UnkStruct_0203E724 * param0)
+BOOL sub_0204E5BC (ScriptContext * param0)
 {
-    u16 * v0 = inline_0204FCAC(param0);
+    u16 * v0 = ScriptContext_GetVarPointer(param0);
 
-    *v0 = sub_0206A9B4(SaveData_Events(param0->unk_34->saveData));
+    *v0 = sub_0206A9B4(SaveData_Events(param0->fieldSys->saveData));
     return 0;
 }
 
-BOOL sub_0204E5E8 (UnkStruct_0203E724 * param0)
+BOOL sub_0204E5E8 (ScriptContext * param0)
 {
-    sub_0206A994(SaveData_Events(param0->unk_34->saveData));
+    sub_0206A994(SaveData_Events(param0->fieldSys->saveData));
     return 0;
 }
 
-BOOL sub_0204E5FC (UnkStruct_0203E724 * param0)
+BOOL sub_0204E5FC (ScriptContext * param0)
 {
-    sub_0206A9A4(SaveData_Events(param0->unk_34->saveData));
+    sub_0206A9A4(SaveData_Events(param0->fieldSys->saveData));
     return 0;
 }
 
-BOOL sub_0204E610 (UnkStruct_0203E724 * param0)
+BOOL sub_0204E610 (ScriptContext * param0)
 {
-    u16 * v0 = inline_0204FCAC(param0);
+    u16 * v0 = ScriptContext_GetVarPointer(param0);
 
-    *v0 = sub_0206A954(SaveData_Events(param0->unk_34->saveData));
+    *v0 = sub_0206A954(SaveData_Events(param0->fieldSys->saveData));
     return 0;
 }
 
-BOOL sub_0204E63C (UnkStruct_0203E724 * param0)
+BOOL sub_0204E63C (ScriptContext * param0)
 {
-    sub_0206A944(SaveData_Events(param0->unk_34->saveData));
+    sub_0206A944(SaveData_Events(param0->fieldSys->saveData));
     return 0;
 }
 
-BOOL sub_0204E650 (UnkStruct_0203E724 * param0)
+BOOL sub_0204E650 (ScriptContext * param0)
 {
     u8 v0;
     u16 * v1;
-    UnkStruct_020507E4 * v2 = SaveData_Events(param0->unk_34->saveData);
+    UnkStruct_020507E4 * v2 = SaveData_Events(param0->fieldSys->saveData);
 
-    v0 = (*((param0)->unk_08++));
+    v0 = ScriptContext_ReadByte(param0);
 
     switch (v0) {
     case 1:
@@ -194,7 +194,7 @@ BOOL sub_0204E650 (UnkStruct_0203E724 * param0)
         inline_0204E650_1(v2);
         break;
     case 2:
-        v1 = inline_0204FCAC(param0);
+        v1 = ScriptContext_GetVarPointer(param0);
         *v1 = inline_0204E650_2(v2);
         break;
     default:
@@ -204,13 +204,13 @@ BOOL sub_0204E650 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL sub_0204E6AC (UnkStruct_0203E724 * param0)
+BOOL sub_0204E6AC (ScriptContext * param0)
 {
     u8 v0;
     u16 * v1;
-    UnkStruct_020507E4 * v2 = SaveData_Events(param0->unk_34->saveData);
+    UnkStruct_020507E4 * v2 = SaveData_Events(param0->fieldSys->saveData);
 
-    v0 = (*((param0)->unk_08++));
+    v0 = ScriptContext_ReadByte(param0);
 
     switch (v0) {
     case 1:
@@ -220,7 +220,7 @@ BOOL sub_0204E6AC (UnkStruct_0203E724 * param0)
         sub_0206AECC(v2);
         break;
     case 2:
-        v1 = inline_0204FCAC(param0);
+        v1 = ScriptContext_GetVarPointer(param0);
         *v1 = sub_0206AEDC(v2);
         break;
     default:
@@ -230,13 +230,13 @@ BOOL sub_0204E6AC (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL sub_0204E704 (UnkStruct_0203E724 * param0)
+BOOL sub_0204E704 (ScriptContext * param0)
 {
     u8 v0;
     u16 * v1;
-    UnkStruct_020507E4 * v2 = SaveData_Events(param0->unk_34->saveData);
+    UnkStruct_020507E4 * v2 = SaveData_Events(param0->fieldSys->saveData);
 
-    v0 = (*((param0)->unk_08++));
+    v0 = ScriptContext_ReadByte(param0);
 
     switch (v0) {
     case 1:
@@ -246,7 +246,7 @@ BOOL sub_0204E704 (UnkStruct_0203E724 * param0)
         sub_0206AEFC(v2);
         break;
     case 2:
-        v1 = inline_0204FCAC(param0);
+        v1 = ScriptContext_GetVarPointer(param0);
         *v1 = sub_0206AF0C(v2);
         break;
     default:

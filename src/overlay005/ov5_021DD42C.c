@@ -31,7 +31,7 @@ typedef struct {
     u8 * unk_14;
 } UnkStruct_ov5_021DD648;
 
-static u8 ov5_021DD574(UnkStruct_0203E724 * param0);
+static u8 ov5_021DD574(ScriptContext * param0);
 static void ov5_021DD588(FieldSystem * param0, UnkStruct_ov5_021DD648 * param1);
 static void ov5_021DD5D0(FieldSystem * param0, StringTemplate * param1, UnkStruct_ov5_021DD648 * param2);
 static void ov5_021DD610(FieldSystem * param0, UnkStruct_ov5_021DD648 * param1);
@@ -40,22 +40,22 @@ static void ov5_021DD664(UnkStruct_ov5_021DD648 * param0, u16 param1, u16 param2
 static void ov5_021DD6B4(UnkStruct_ov5_021DD648 * param0, int param1, int param2, int param3, int param4);
 static void ov5_021DD6DC(UnkStruct_ov5_021DD648 * param0, int param1);
 
-void ov5_021DD42C (UnkStruct_ov5_021DD42C * param0, UnkStruct_0203E724 * param1)
+void ov5_021DD42C (UnkStruct_ov5_021DD42C * param0, ScriptContext * param1)
 {
     param0->unk_00 = ov5_021DD574(param1);
     param0->unk_01 = 0;
     param0->unk_02 = 1;
 }
 
-void ov5_021DD444 (UnkStruct_0203E724 * param0, const MessageLoader * param1, u16 param2, u8 param3, UnkStruct_ov5_021DD42C * param4)
+void ov5_021DD444 (ScriptContext * param0, const MessageLoader * param1, u16 param2, u8 param3, UnkStruct_ov5_021DD42C * param4)
 {
     UnkStruct_ov5_021DD648 v0;
     u8 v1;
     u8 v2;
     u8 v3;
 
-    ov5_021DD588(param0->unk_34, &v0);
-    ov5_021DD610(param0->unk_34, &v0);
+    ov5_021DD588(param0->fieldSys, &v0);
+    ov5_021DD610(param0->fieldSys, &v0);
     ov5_021DD648(&v0, param1, param2);
 
     if (param4 == NULL) {
@@ -71,23 +71,23 @@ void ov5_021DD444 (UnkStruct_0203E724 * param0, const MessageLoader * param1, u1
     ov5_021DD6B4(&v0, v3, v1, param3, v2);
 }
 
-void ov5_021DD498 (UnkStruct_0203E724 * param0, const MessageLoader * param1, int param2)
+void ov5_021DD498 (ScriptContext * param0, const MessageLoader * param1, int param2)
 {
     UnkStruct_ov5_021DD648 v0;
 
-    ov5_021DD588(param0->unk_34, &v0);
-    ov5_021DD610(param0->unk_34, &v0);
+    ov5_021DD588(param0->fieldSys, &v0);
+    ov5_021DD610(param0->fieldSys, &v0);
     ov5_021DD648(&v0, param1, param2);
     ov5_021DD6DC(&v0, 1);
 }
 
-void ov5_021DD4CC (UnkStruct_0203E724 * param0, u16 param1, u16 param2, u16 param3, s16 param4, u8 param5)
+void ov5_021DD4CC (ScriptContext * param0, u16 param1, u16 param2, u16 param3, s16 param4, u8 param5)
 {
     UnkStruct_ov5_021DD648 v0;
     Sentence v1;
 
-    ov5_021DD588(param0->unk_34, &v0);
-    ov5_021DD610(param0->unk_34, &v0);
+    ov5_021DD588(param0->fieldSys, &v0);
+    ov5_021DD610(param0->fieldSys, &v0);
     ov5_021DD664(&v0, param1, param2, param3, param4);
 
     if (param5 != 0xFF) {
@@ -97,19 +97,19 @@ void ov5_021DD4CC (UnkStruct_0203E724 * param0, u16 param1, u16 param2, u16 para
     }
 }
 
-void ov5_021DD530 (UnkStruct_0203E724 * param0, StringTemplate * param1, u8 param2, u8 param3)
+void ov5_021DD530 (ScriptContext * param0, StringTemplate * param1, u8 param2, u8 param3)
 {
     UnkStruct_ov5_021DD648 v0;
 
-    ov5_021DD5D0(param0->unk_34, param1, &v0);
-    ov5_021DD610(param0->unk_34, &v0);
-    ov5_021DD648(&v0, param0->unk_2C, param2);
+    ov5_021DD5D0(param0->fieldSys, param1, &v0);
+    ov5_021DD610(param0->fieldSys, &v0);
+    ov5_021DD648(&v0, param0->loader, param2);
     ov5_021DD6B4(&v0, 1, ov5_021DD574(param0), param3, 0);
 }
 
-static u8 ov5_021DD574 (UnkStruct_0203E724 * param0)
+static u8 ov5_021DD574 (ScriptContext * param0)
 {
-    return Options_TextFrameDelay(sub_02025E44(param0->unk_34->saveData));
+    return Options_TextFrameDelay(sub_02025E44(param0->fieldSys->saveData));
 }
 
 static void ov5_021DD588 (FieldSystem * param0, UnkStruct_ov5_021DD648 * param1)

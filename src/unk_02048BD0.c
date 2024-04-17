@@ -20,20 +20,20 @@
 #include "unk_02048BD0.h"
 #include "unk_0206CCB0.h"
 
-BOOL sub_02048BD0 (UnkStruct_0203E724 * param0)
+BOOL sub_02048BD0 (ScriptContext * param0)
 {
-    StringTemplate ** v0 = sub_0203F098(param0->unk_34, 15);
-    UnkStruct_0202B4A0 * v1 = sub_0202B4A0(param0->unk_34->saveData);
-    SaveData * v2 = param0->unk_34->saveData;
+    StringTemplate ** v0 = sub_0203F098(param0->fieldSys, 15);
+    UnkStruct_0202B4A0 * v1 = sub_0202B4A0(param0->fieldSys->saveData);
+    SaveData * v2 = param0->fieldSys->saveData;
 
-    switch (sub_0203E838(param0)) {
+    switch (ScriptContext_ReadHalfWord(param0)) {
     case 0:
     {
         u16 v3;
         u16 * v4;
 
-        v3 = inline_02049538(param0);
-        v4 = inline_0204FCAC(param0);
+        v3 = ScriptContext_GetVar(param0);
+        v4 = ScriptContext_GetVarPointer(param0);
         *v4 = sub_0202B4AC(v1, v3);
 
         return 0;
@@ -44,8 +44,8 @@ BOOL sub_02048BD0 (UnkStruct_0203E724 * param0)
         u16 v5;
         u16 * v6;
 
-        v5 = inline_02049538(param0);
-        v6 = inline_0204FCAC(param0);
+        v5 = ScriptContext_GetVar(param0);
+        v6 = ScriptContext_GetVarPointer(param0);
         *v6 = sub_0202B4C4(v1, v5);
 
         return 0;
@@ -55,8 +55,8 @@ BOOL sub_02048BD0 (UnkStruct_0203E724 * param0)
     {
         u16 v7, v8;
 
-        v7 = inline_02049538(param0);
-        v8 = inline_02049538(param0);
+        v7 = ScriptContext_GetVar(param0);
+        v8 = ScriptContext_GetVar(param0);
 
         StringTemplate_SetUnionGroupName(*v0, v2, v7, v8, 0);
     }
@@ -65,8 +65,8 @@ BOOL sub_02048BD0 (UnkStruct_0203E724 * param0)
     {
         u16 v9, v10;
 
-        v9 = inline_02049538(param0);
-        v10 = inline_02049538(param0);
+        v9 = ScriptContext_GetVar(param0);
+        v10 = ScriptContext_GetVar(param0);
 
         StringTemplate_SetUnionGroupName(*v0, v2, v9, v10, 1);
     }
@@ -76,25 +76,25 @@ BOOL sub_02048BD0 (UnkStruct_0203E724 * param0)
         const u16 * v11;
 
         v11 = sub_0202B42C(v1, 0, 0);
-        sub_0203DFE8(param0->unk_28, 5, 0, 7, 0, v11, inline_0204FCAC(param0));
+        sub_0203DFE8(param0->taskManager, 5, 0, 7, 0, v11, ScriptContext_GetVarPointer(param0));
     }
         return 1;
     case 5:
     {
-        u16 v12 = inline_02049538(param0);
+        u16 v12 = ScriptContext_GetVar(param0);
         BOOL v13 = sub_0202B4AC(v1, 1);
 
         sub_0202B384(v1, v12, 1);
 
         if (v13) {
-            sub_0206D430(param0->unk_34);
+            sub_0206D430(param0->fieldSys);
         }
     }
         return 0;
     case 6:
     {
         Strbuf* v14 = Strbuf_Init(64, 32);
-        TrainerInfo * v15 = SaveData_GetTrainerInfo(param0->unk_34->saveData);
+        TrainerInfo * v15 = SaveData_GetTrainerInfo(param0->fieldSys->saveData);
 
         TrainerInfo_NameStrbuf(v15, v14);
         sub_0202B444(v1, 0, 1, v14);
@@ -103,7 +103,7 @@ BOOL sub_02048BD0 (UnkStruct_0203E724 * param0)
         sub_0202B40C(v1, 0, MTRNG_Next());
         Strbuf_Free(v14);
         sub_0202B384(v1, 0, 1);
-        sub_0206D424(param0->unk_34);
+        sub_0206D424(param0->fieldSys);
     }
     break;
     }

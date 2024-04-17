@@ -3,6 +3,6 @@
 
 #include "unk_0203E724.h"
 
-BOOL sub_02048BD0(UnkStruct_0203E724 * param0);
+BOOL sub_02048BD0(ScriptContext * param0);
 
 #endif // POKEPLATINUM_UNK_02048BD0_H

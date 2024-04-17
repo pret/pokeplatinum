@@ -66,7 +66,7 @@ struct UnkStruct_0203EF60_t {
     LocalMapObject * unk_2C;
     LocalMapObject * unk_30;
     u16 * unk_34;
-    UnkStruct_0203E724 * unk_38[2];
+    ScriptContext * unk_38[2];
     StringTemplate * unk_40;
     Strbuf* unk_44;
     Strbuf* unk_48;
@@ -89,17 +89,17 @@ void sub_0203E880(FieldSystem * param0, u16 param1, LocalMapObject * param2);
 void sub_0203E8E0(TaskManager * param0, u16 param1, LocalMapObject * param2, void * param3);
 static BOOL sub_0203E950(TaskManager * param0);
 static UnkStruct_0203EF60 * sub_0203EA28();
-static void sub_0203EA50(UnkStruct_0203E724 * param0);
+static void sub_0203EA50(ScriptContext * param0);
 static void sub_0203EA68(FieldSystem * param0, UnkStruct_0203EF60 * param1, u16 param2, LocalMapObject * param3, void * param4);
-UnkStruct_0203E724 * sub_0203EAB8(FieldSystem * param0, u16 param1);
-static void sub_0203EAF4(FieldSystem * param0, UnkStruct_0203E724 * param1, u16 param2, u8 param3);
-static u16 sub_0203EB20(FieldSystem * param0, UnkStruct_0203E724 * param1, u16 param2);
-static void sub_0203EF14(FieldSystem * param0, UnkStruct_0203E724 * param1, int param2, u32 param3);
-static void sub_0203EF38(FieldSystem * param0, UnkStruct_0203E724 * param1);
+ScriptContext * sub_0203EAB8(FieldSystem * param0, u16 param1);
+static void sub_0203EAF4(FieldSystem * param0, ScriptContext * param1, u16 param2, u8 param3);
+static u16 sub_0203EB20(FieldSystem * param0, ScriptContext * param1, u16 param2);
+static void sub_0203EF14(FieldSystem * param0, ScriptContext * param1, int param2, u32 param3);
+static void sub_0203EF38(FieldSystem * param0, ScriptContext * param1);
 void * sub_0203EF60(UnkStruct_0203EF60 * param0, u32 param1);
 void * sub_0203F098(FieldSystem * param0, u32 param1);
 void sub_0203F0C0(FieldSystem * param0);
-static void sub_0203F0E4(UnkStruct_0203E724 * param0, u16 param1);
+static void sub_0203F0E4(ScriptContext * param0, u16 param1);
 static void * sub_0203F0FC(int param0);
 static u32 sub_0203F110(int param0);
 u16 * sub_0203F118(FieldSystem * param0, u16 param1);
@@ -177,7 +177,7 @@ static BOOL sub_0203E950 (TaskManager * param0)
 {
     int v0;
     UnkFuncPtr_0203E950 v1;
-    UnkStruct_0203E724 * v2 = NULL;
+    ScriptContext * v2 = NULL;
     UnkStruct_0203EF60 * v3 = TaskManager_Environment(param0);
     FieldSystem * v4 = TaskManager_FieldSystem(param0);
 
@@ -194,7 +194,7 @@ static BOOL sub_0203E950 (TaskManager * param0)
             v2 = v3->unk_38[v0];
 
             if (v2 != NULL) {
-                if (sub_0203E778(v2) == 0) {
+                if (ScriptContext_Run(v2) == 0) {
                     sub_0203EA50(v2);
 
                     if (v3->unk_09 == 0) {
@@ -245,10 +245,10 @@ static UnkStruct_0203EF60 * sub_0203EA28 ()
     return v0;
 }
 
-static void sub_0203EA50 (UnkStruct_0203E724 * param0)
+static void sub_0203EA50 (ScriptContext * param0)
 {
-    MessageLoader_Free(param0->unk_2C);
-    Heap_FreeToHeap(param0->unk_30);
+    MessageLoader_Free(param0->loader);
+    Heap_FreeToHeap(param0->scripts);
     Heap_FreeToHeap(param0);
 
     return;
@@ -274,37 +274,37 @@ static void sub_0203EA68 (FieldSystem * param0, UnkStruct_0203EF60 * param1, u16
     return;
 }
 
-UnkStruct_0203E724 * sub_0203EAB8 (FieldSystem * param0, u16 param1)
+ScriptContext * sub_0203EAB8 (FieldSystem * param0, u16 param1)
 {
-    UnkStruct_0203E724 * v0 = NULL;
+    ScriptContext * v0 = NULL;
 
-    v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0203E724));
+    v0 = Heap_AllocFromHeap(11, sizeof(ScriptContext));
 
     if (v0 == NULL) {
         GF_ASSERT(FALSE);
     }
 
-    sub_0203E724(v0, Unk_020EAC58, Unk_020EAB80);
+    ScriptContext_Init(v0, Unk_020EAC58, Unk_020EAB80);
     sub_0203EAF4(param0, v0, param1, 0);
 
     return v0;
 }
 
-static void sub_0203EAF4 (FieldSystem * param0, UnkStruct_0203E724 * param1, u16 param2, u8 param3)
+static void sub_0203EAF4 (FieldSystem * param0, ScriptContext * param1, u16 param2, u8 param3)
 {
     u16 v0;
 
-    param1->unk_34 = param0;
+    param1->fieldSys = param0;
     v0 = sub_0203EB20(param0, param1, param2);
 
-    sub_0203E758(param1, param1->unk_30);
+    ScriptContext_Start(param1, param1->scripts);
     sub_0203F0E4(param1, v0);
-    sub_0203E774(param1, (void *)param0->unk_10);
+    ScriptContext_SetTaskManager(param1, param0->unk_10);
 
     return;
 }
 
-static u16 sub_0203EB20 (FieldSystem * param0, UnkStruct_0203E724 * param1, u16 param2)
+static u16 sub_0203EB20 (FieldSystem * param0, ScriptContext * param1, u16 param2)
 {
     u16 v0 = param2;
 
@@ -409,22 +409,22 @@ static u16 sub_0203EB20 (FieldSystem * param0, UnkStruct_0203E724 * param1, u16 
     return v0;
 }
 
-static void sub_0203EF14 (FieldSystem * param0, UnkStruct_0203E724 * param1, int param2, u32 param3)
+static void sub_0203EF14 (FieldSystem * param0, ScriptContext * param1, int param2, u32 param3)
 {
     u8 * v0 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, param2, 11);
 
-    param1->unk_30 = (u8 *)v0;
-    param1->unk_2C = MessageLoader_Init(1, 26, param3, 11);
+    param1->scripts = (u8 *)v0;
+    param1->loader = MessageLoader_Init(1, 26, param3, 11);
 
     return;
 }
 
-static void sub_0203EF38 (FieldSystem * param0, UnkStruct_0203E724 * param1)
+static void sub_0203EF38 (FieldSystem * param0, ScriptContext * param1)
 {
     u8 * v0 = sub_0203F0FC(param0->unk_1C->unk_00);
 
-    param1->unk_30 = (u8 *)v0;
-    param1->unk_2C = MessageLoader_Init(1, 26, sub_0203F110(param0->unk_1C->unk_00), 11);
+    param1->scripts = (u8 *)v0;
+    param1->loader = MessageLoader_Init(1, 26, sub_0203F110(param0->unk_1C->unk_00), 11);
 
     return;
 }
@@ -574,10 +574,10 @@ void sub_0203F0C0 (FieldSystem * param0)
     return;
 }
 
-static void sub_0203F0E4 (UnkStruct_0203E724 * param0, u16 param1)
+static void sub_0203F0E4 (ScriptContext * param0, u16 param1)
 {
-    param0->unk_08 += (param1 * 4);
-    param0->unk_08 += sub_0203E850(param0);
+    param0->scriptPtr += (param1 * 4);
+    param0->scriptPtr += ScriptContext_ReadWord(param0);
 
     return;
 }
@@ -895,9 +895,9 @@ void sub_0203F598 (FieldSystem * param0)
 
 void sub_0203F5A4 (FieldSystem * param0, u16 param1)
 {
-    UnkStruct_0203E724 * v0 = sub_0203EAB8(param0, param1);
+    ScriptContext * v0 = sub_0203EAB8(param0, param1);
 
-    while (sub_0203E778(v0) == 1) {
+    while (ScriptContext_Run(v0) == 1) {
         (void)0;
     }
 

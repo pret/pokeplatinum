@@ -64,11 +64,11 @@ enum {
     UnkEnum_0204F13C_5,
 };
 
-BOOL sub_0204F13C(UnkStruct_0203E724 * param0);
+BOOL sub_0204F13C(ScriptContext * param0);
 static BOOL sub_0204F268(u16 param0, SaveData * param1);
-BOOL sub_0204F360(UnkStruct_0203E724 * param0);
+BOOL sub_0204F360(ScriptContext * param0);
 
-BOOL sub_0204F398(UnkStruct_0203E724 * param0);
+BOOL sub_0204F398(ScriptContext * param0);
 void sub_0204F3D0(TaskManager * param0, u16 param1, u16 * param2);
 static BOOL sub_0204F414(TaskManager * param0);
 
@@ -79,7 +79,7 @@ static int sub_0204F5D8(UnkStruct_0204F470 * param0, FieldSystem * param1);
 static int sub_0204F628(UnkStruct_0204F470 * param0, FieldSystem * param1, int param2);
 static int sub_0204F6B0(UnkStruct_0204F470 * param0, FieldSystem * param1);
 
-BOOL sub_0204F13C (UnkStruct_0203E724 * param0)
+BOOL sub_0204F13C (ScriptContext * param0)
 {
     u8 v0;
     u8 v1[4];
@@ -91,24 +91,24 @@ BOOL sub_0204F13C (UnkStruct_0203E724 * param0)
     UnkStruct_02030114 * v10;
     UnkStruct_0203026C * v11;
 
-    v3 = sub_0203E838(param0);
-    v4 = inline_02049538(param0);
-    v5 = sub_0203E838(param0);
-    v6 = sub_0203F118(param0->unk_34, v5);
+    v3 = ScriptContext_ReadHalfWord(param0);
+    v4 = ScriptContext_GetVar(param0);
+    v5 = ScriptContext_ReadHalfWord(param0);
+    v6 = sub_0203F118(param0->fieldSys, v5);
 
-    v10 = sub_02030114(param0->unk_34->saveData);
-    v11 = sub_0203026C(param0->unk_34->saveData);
-    v8 = sub_0203F098(param0->unk_34, 19);
+    v10 = sub_02030114(param0->fieldSys->saveData);
+    v11 = sub_0203026C(param0->fieldSys->saveData);
+    v8 = sub_0203F098(param0->fieldSys, 19);
 
     switch (v3) {
     case 0:
-        *v6 = sub_0204F268(v4, param0->unk_34->saveData);
+        *v6 = sub_0204F268(v4, param0->fieldSys->saveData);
         break;
 
     case 1:
 
         if (v4 == 3) {
-            *v6 = sub_02030698(sub_0203068C(param0->unk_34->saveData),
+            *v6 = sub_02030698(sub_0203068C(param0->fieldSys->saveData),
                                106,
                                sub_0205E6A8(106));
         } else {
@@ -118,13 +118,13 @@ BOOL sub_0204F13C (UnkStruct_0203E724 * param0)
         break;
 
     case 2:
-        *v6 = sub_02030698(sub_0203068C(param0->unk_34->saveData),
+        *v6 = sub_02030698(sub_0203068C(param0->fieldSys->saveData),
                            sub_0205E55C(v4),
                            sub_0205E6A8(sub_0205E55C(v4)));
         break;
 
     case 3:
-        sub_0204FA50(param0->unk_34->saveData, v11, v4);
+        sub_0204FA50(param0->fieldSys->saveData, v11, v4);
         break;
 
     case 4:
@@ -140,7 +140,7 @@ BOOL sub_0204F13C (UnkStruct_0203E724 * param0)
         }
 
         ;
-        sub_0204F470(param0->unk_28, v8, v0);
+        sub_0204F470(param0->taskManager, v8, v0);
         return 1;
 
     default:
@@ -216,26 +216,26 @@ static BOOL sub_0204F268 (u16 param0, SaveData * param1)
     return 1;
 }
 
-BOOL sub_0204F360 (UnkStruct_0203E724 * param0)
+BOOL sub_0204F360 (ScriptContext * param0)
 {
     UnkStruct_0203026C * v0;
-    u16 v1 = inline_02049538(param0);
+    u16 v1 = ScriptContext_GetVar(param0);
 
-    v0 = sub_0203026C(param0->unk_34->saveData);
+    v0 = sub_0203026C(param0->fieldSys->saveData);
 
-    sub_0204FA50(param0->unk_34->saveData, v0, v1);
+    sub_0204FA50(param0->fieldSys->saveData, v0, v1);
     return 0;
 }
 
-BOOL sub_0204F398 (UnkStruct_0203E724 * param0)
+BOOL sub_0204F398 (ScriptContext * param0)
 {
-    u16 v0 = inline_02049538(param0);
-    u16 * v1 = inline_0204FCAC(param0);
+    u16 v0 = ScriptContext_GetVar(param0);
+    u16 * v1 = ScriptContext_GetVarPointer(param0);
 
     ;
     ;
 
-    sub_0204F3D0(param0->unk_28, v0, v1);
+    sub_0204F3D0(param0->taskManager, v0, v1);
     return 1;
 }
 
@@ -464,7 +464,7 @@ static int sub_0204F6B0 (UnkStruct_0204F470 * param0, FieldSystem * param1)
     return UnkEnum_0204F13C_1;
 }
 
-BOOL sub_0204F6D8(UnkStruct_0203E724 * param0);
+BOOL sub_0204F6D8(ScriptContext * param0);
 
 typedef struct {
     u32 unk_00;
@@ -521,7 +521,7 @@ static const UnkStruct_020EC078 Unk_020EC078[] = {
     {100000, 1000},
 };
 
-BOOL sub_0204F6D8 (UnkStruct_0203E724 * param0)
+BOOL sub_0204F6D8 (ScriptContext * param0)
 {
     int v0;
     int v1;
@@ -529,14 +529,14 @@ BOOL sub_0204F6D8 (UnkStruct_0203E724 * param0)
     UnkStruct_0203068C * v3;
     u32 v4, v5, v6;
     u16 v7, v8;
-    FieldSystem * v9 = param0->unk_34;
+    FieldSystem * v9 = param0->fieldSys;
     StringTemplate ** v10 = sub_0203F098(v9, 15);
-    u8 v11 = (*((param0)->unk_08++));
-    u8 v12 = (*((param0)->unk_08++));
-    u8 v13 = (*((param0)->unk_08++));
-    u8 v14 = (*((param0)->unk_08++));
-    u16 * v15 = inline_0204FCAC(param0);
-    u16 * v16 = inline_0204FCAC(param0);
+    u8 v11 = ScriptContext_ReadByte(param0);
+    u8 v12 = ScriptContext_ReadByte(param0);
+    u8 v13 = ScriptContext_ReadByte(param0);
+    u8 v14 = ScriptContext_ReadByte(param0);
+    u16 * v15 = ScriptContext_GetVarPointer(param0);
+    u16 * v16 = ScriptContext_GetVarPointer(param0);
 
     v4 = 0;
     v0 = 1;
@@ -580,11 +580,11 @@ BOOL sub_0204F6D8 (UnkStruct_0203E724 * param0)
         }
     }
 
-    sub_0202CF70(sub_0202CD88(param0->unk_34->saveData), (1 + 67), v7);
+    sub_0202CF70(sub_0202CD88(param0->fieldSys->saveData), (1 + 67), v7);
 
     if (v7 != 0) {
         sub_0202D230(
-            sub_0202D750(param0->unk_34->saveData), v7, 5);
+            sub_0202D750(param0->fieldSys->saveData), v7, 5);
     }
 
     if (v4 == 0) {
@@ -616,14 +616,14 @@ BOOL sub_0204F6D8 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL sub_0204F8A8(UnkStruct_0203E724 * param0);
-BOOL sub_0204F8A8 (UnkStruct_0203E724 * param0)
+BOOL sub_0204F8A8(ScriptContext * param0);
+BOOL sub_0204F8A8 (ScriptContext * param0)
 {
     int v0;
     BattleFrontierStage * v1;
     u32 v2, v3, v4;
-    FieldSystem * v5 = param0->unk_34;
-    u16 * v6 = inline_0204FCAC(param0);
+    FieldSystem * v5 = param0->fieldSys;
+    u16 * v6 = ScriptContext_GetVarPointer(param0);
 
     v4 = 0;
     v0 = 1;
@@ -665,16 +665,16 @@ BOOL sub_0204F8A8 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL sub_0204F950(UnkStruct_0203E724 * param0);
-BOOL sub_0204F950 (UnkStruct_0203E724 * param0)
+BOOL sub_0204F950(ScriptContext * param0);
+BOOL sub_0204F950 (ScriptContext * param0)
 {
     int v0;
     int v1;
     BattleFrontierStage * v2;
     UnkStruct_0203068C * v3;
     u32 v4, v5;
-    FieldSystem * v6 = param0->unk_34;
-    u16 * v7 = inline_0204FCAC(param0);
+    FieldSystem * v6 = param0->fieldSys;
+    u16 * v7 = ScriptContext_GetVarPointer(param0);
 
     v4 = 0;
     v0 = 1;
@@ -710,18 +710,18 @@ BOOL sub_0204F950 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL sub_0204F9D4(UnkStruct_0203E724 * param0);
-BOOL sub_0204F9D4 (UnkStruct_0203E724 * param0)
+BOOL sub_0204F9D4(ScriptContext * param0);
+BOOL sub_0204F9D4 (ScriptContext * param0)
 {
     u16 v0, v1;
 
-    u16 * v2 = inline_0204FCAC(param0);
+    u16 * v2 = ScriptContext_GetVarPointer(param0);
 
-    v0 = sub_02030698(sub_0203068C(param0->unk_34->saveData),
+    v0 = sub_02030698(sub_0203068C(param0->fieldSys->saveData),
                       sub_0205E55C(0),
                       0xff);
 
-    v1 = sub_02030698(sub_0203068C(param0->unk_34->saveData),
+    v1 = sub_02030698(sub_0203068C(param0->fieldSys->saveData),
                       sub_0205E50C(0),
                       0xff);
 

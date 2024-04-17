@@ -47,8 +47,8 @@ typedef struct {
     void ** unk_0C;
 } UnkStruct_0205037C;
 
-BOOL sub_0205003C(UnkStruct_0203E724 * param0);
-BOOL sub_0205013C(UnkStruct_0203E724 * param0);
+BOOL sub_0205003C(ScriptContext * param0);
+BOOL sub_0205013C(ScriptContext * param0);
 static void sub_02050174(SaveData * param0, UnkStruct_020305B8 * param1, u8 param2);
 void sub_020502E0(TaskManager * param0, void ** param1, u8 param2);
 static BOOL sub_02050314(TaskManager * param0);
@@ -56,11 +56,11 @@ static int sub_0205037C(UnkStruct_0205037C * param0, FieldSystem * param1, int p
 static int sub_02050448(UnkStruct_0205037C * param0, FieldSystem * param1);
 static int sub_02050498(UnkStruct_0205037C * param0, FieldSystem * param1, int param2);
 static int sub_02050520(UnkStruct_0205037C * param0, FieldSystem * param1);
-BOOL sub_020501D8(UnkStruct_0203E724 * param0);
+BOOL sub_020501D8(ScriptContext * param0);
 void sub_02050224(TaskManager * param0, u16 param1, u16 param2, u16 * param3);
 static BOOL sub_02050264(TaskManager * param0);
 
-BOOL sub_0205003C (UnkStruct_0203E724 * param0)
+BOOL sub_0205003C (ScriptContext * param0)
 {
     u8 v0;
     u8 v1[4];
@@ -72,27 +72,27 @@ BOOL sub_0205003C (UnkStruct_0203E724 * param0)
     UnkStruct_020304A0 * v10;
     UnkStruct_020305B8 * v11;
 
-    v3 = sub_0203E838(param0);
-    v4 = inline_02049538(param0);
-    v5 = sub_0203E838(param0);
-    v6 = sub_0203F118(param0->unk_34, v5);
-    v10 = sub_020304A0(param0->unk_34->saveData);
-    v11 = sub_020305B8(param0->unk_34->saveData);
-    v8 = sub_0203F098(param0->unk_34, 19);
+    v3 = ScriptContext_ReadHalfWord(param0);
+    v4 = ScriptContext_GetVar(param0);
+    v5 = ScriptContext_ReadHalfWord(param0);
+    v6 = sub_0203F118(param0->fieldSys, v5);
+    v10 = sub_020304A0(param0->fieldSys->saveData);
+    v11 = sub_020305B8(param0->fieldSys->saveData);
+    v8 = sub_0203F098(param0->fieldSys, 19);
 
     switch (v3) {
     case 0:
-        *v6 = sub_02049EC4(v4, param0->unk_34->saveData, 0);
+        *v6 = sub_02049EC4(v4, param0->fieldSys->saveData, 0);
         break;
     case 1:
         if (v4 == 3) {
-            *v6 = sub_02030698(sub_0203068C(param0->unk_34->saveData), 110, sub_0205E6A8(110));
+            *v6 = sub_02030698(sub_0203068C(param0->fieldSys->saveData), 110, sub_0205E6A8(110));
         } else {
             *v6 = (u16)sub_02030600(v11, 8, v4, 0, NULL);
         }
         break;
     case 3:
-        sub_02050174(param0->unk_34->saveData, v11, v4);
+        sub_02050174(param0->fieldSys->saveData, v11, v4);
         break;
     case 4:
         if (v4 == 0) {
@@ -105,7 +105,7 @@ BOOL sub_0205003C (UnkStruct_0203E724 * param0)
             v0 = 2;
         }
 
-        sub_020502E0(param0->unk_28, v8, v0);
+        sub_020502E0(param0->taskManager, v8, v0);
         return 1;
     default:
         GF_ASSERT(FALSE);
@@ -116,13 +116,13 @@ BOOL sub_0205003C (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL sub_0205013C (UnkStruct_0203E724 * param0)
+BOOL sub_0205013C (ScriptContext * param0)
 {
     UnkStruct_020305B8 * v0;
-    u16 v1 = inline_02049538(param0);
+    u16 v1 = ScriptContext_GetVar(param0);
 
-    v0 = sub_020305B8(param0->unk_34->saveData);
-    sub_02050174(param0->unk_34->saveData, v0, v1);
+    v0 = sub_020305B8(param0->fieldSys->saveData);
+    sub_02050174(param0->fieldSys->saveData, v0, v1);
 
     return 0;
 }
@@ -144,13 +144,13 @@ static void sub_02050174 (SaveData * param0, UnkStruct_020305B8 * param1, u8 par
     return;
 }
 
-BOOL sub_020501D8 (UnkStruct_0203E724 * param0)
+BOOL sub_020501D8 (ScriptContext * param0)
 {
-    u16 v0 = inline_02049538(param0);
-    u16 v1 = inline_02049538(param0);
-    u16 * v2 = inline_0204FCAC(param0);
+    u16 v0 = ScriptContext_GetVar(param0);
+    u16 v1 = ScriptContext_GetVar(param0);
+    u16 * v2 = ScriptContext_GetVarPointer(param0);
 
-    sub_02050224(param0->unk_28, v0, v1, v2);
+    sub_02050224(param0->taskManager, v0, v1, v2);
     return 1;
 }
 

@@ -3,10 +3,10 @@
 
 #include "unk_0203E724.h"
 
-BOOL sub_0204E240(UnkStruct_0203E724 * param0);
-BOOL sub_0204E28C(UnkStruct_0203E724 * param0);
-BOOL sub_0204E2E0(UnkStruct_0203E724 * param0);
-BOOL sub_0204E370(UnkStruct_0203E724 * param0);
-BOOL sub_0204E374(UnkStruct_0203E724 * param0);
+BOOL sub_0204E240(ScriptContext * param0);
+BOOL sub_0204E28C(ScriptContext * param0);
+BOOL sub_0204E2E0(ScriptContext * param0);
+BOOL sub_0204E370(ScriptContext * param0);
+BOOL sub_0204E374(ScriptContext * param0);
 
 #endif // POKEPLATINUM_UNK_0204E240_H

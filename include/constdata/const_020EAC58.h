@@ -3,6 +3,6 @@
 
 #include "unk_0203E724.h"
 
-extern const UnkFuncPtr_0203E724 Unk_020EAC58[];
+extern const ScrCmdFunc Unk_020EAC58[];
 
 #endif // POKEPLATINUM_CONST_020EAC58_H

@@ -20,9 +20,9 @@
 #include "party.h"
 #include "overlay005/ov5_021E622C.h"
 
-BOOL sub_0204CA84 (UnkStruct_0203E724 * param0)
+BOOL sub_0204CA84 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->fieldSys;
     SaveData * v1 = v0->saveData;
     StringTemplate ** v2 = sub_0203F098(v0, 15);
 
@@ -31,23 +31,23 @@ BOOL sub_0204CA84 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL sub_0204CAA4 (UnkStruct_0203E724 * param0)
+BOOL sub_0204CAA4 (ScriptContext * param0)
 {
     u16 * v0;
-    FieldSystem * v1 = param0->unk_34;
+    FieldSystem * v1 = param0->fieldSys;
     SaveData * v2 = v1->saveData;
     UnkStruct_02026310 * v3;
 
-    v0 = inline_0204FCAC(param0);
+    v0 = ScriptContext_GetVarPointer(param0);
     v3 = (UnkStruct_02026310 *)(SaveData_SaveTable(v2, 8));
     *v0 = ov5_021E73C8(v3);
 
     return 0;
 }
 
-BOOL sub_0204CAD4 (UnkStruct_0203E724 * param0)
+BOOL sub_0204CAD4 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->fieldSys;
     SaveData * v1 = v0->saveData;
     UnkStruct_02026310 * v2;
 
@@ -57,27 +57,27 @@ BOOL sub_0204CAD4 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL sub_0204CAEC (UnkStruct_0203E724 * param0)
+BOOL sub_0204CAEC (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->fieldSys;
     SaveData * v1 = v0->saveData;
     UnkStruct_02026310 * v2 = (UnkStruct_02026310 *)(SaveData_SaveTable(v1, 8));
     Party * v3 = Party_GetFromSavedata(v0->saveData);
-    TrainerInfo * v4 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->unk_34));
+    TrainerInfo * v4 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSys));
 
     ov5_021E6EA8(v2, v3, v4);
     return 0;
 }
 
-BOOL sub_0204CB20 (UnkStruct_0203E724 * param0)
+BOOL sub_0204CB20 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->fieldSys;
     UnkStruct_02026310 * v1;
     Party * v2;
     StringTemplate ** v3 = sub_0203F098(v0, 15);
     SaveData * v4 = v0->saveData;
-    u16 * v5 = inline_0204FCAC(param0);
-    u8 v6 = inline_02049538(param0);
+    u16 * v5 = ScriptContext_GetVarPointer(param0);
+    u8 v6 = ScriptContext_GetVar(param0);
 
     v1 = (UnkStruct_02026310 *)(SaveData_SaveTable(v4, 8));
     v2 = Party_GetFromSavedata(v0->saveData);
@@ -86,14 +86,14 @@ BOOL sub_0204CB20 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL sub_0204CB80 (UnkStruct_0203E724 * param0)
+BOOL sub_0204CB80 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->fieldSys;
     UnkStruct_02026310 * v1;
     StringTemplate ** v2 = sub_0203F098(v0, 15);
     SaveData * v3 = v0->saveData;
-    u16 * v4 = inline_0204FCAC(param0);
-    u8 v5 = inline_02049538(param0);
+    u16 * v4 = ScriptContext_GetVarPointer(param0);
+    u8 v5 = ScriptContext_GetVar(param0);
 
     v1 = (UnkStruct_02026310 *)(SaveData_SaveTable(v3, 8));
     *v4 = ov5_021E6630(v1, v5, *v2);
@@ -101,14 +101,14 @@ BOOL sub_0204CB80 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL sub_0204CBD4 (UnkStruct_0203E724 * param0)
+BOOL sub_0204CBD4 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->fieldSys;
     SaveData * v1 = v0->saveData;
     UnkStruct_02026310 * v2;
-    StringTemplate ** v3 = sub_0203F098(param0->unk_34, 15);
-    u16 * v4 = inline_0204FCAC(param0);
-    u16 v5 = inline_02049538(param0);
+    StringTemplate ** v3 = sub_0203F098(param0->fieldSys, 15);
+    u16 * v4 = ScriptContext_GetVarPointer(param0);
+    u16 v5 = ScriptContext_GetVar(param0);
 
     v2 = (UnkStruct_02026310 *)(SaveData_SaveTable(v1, 8));
     *v4 = ov5_021E6640(v2, v5, *v3);
@@ -116,14 +116,14 @@ BOOL sub_0204CBD4 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL sub_0204CC24 (UnkStruct_0203E724 * param0)
+BOOL sub_0204CC24 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->fieldSys;
     Party * v1;
-    StringTemplate ** v2 = sub_0203F098(param0->unk_34, 15);
-    u16 v3 = sub_0203E838(param0);
-    u16 v4 = inline_02049538(param0);
-    u16 * v5 = inline_0204FCAC(param0);
+    StringTemplate ** v2 = sub_0203F098(param0->fieldSys, 15);
+    u16 v3 = ScriptContext_ReadHalfWord(param0);
+    u16 v4 = ScriptContext_GetVar(param0);
+    u16 * v5 = ScriptContext_GetVarPointer(param0);
 
     v1 = Party_GetFromSavedata(v0->saveData);
     *v5 = ov5_021E73A0(v1, v4, *v2);
@@ -131,13 +131,13 @@ BOOL sub_0204CC24 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL sub_0204CC78 (UnkStruct_0203E724 * param0)
+BOOL sub_0204CC78 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->fieldSys;
     SaveData * v1 = v0->saveData;
     UnkStruct_02026310 * v2;
     Party * v3;
-    u8 v4 = inline_02049538(param0);
+    u8 v4 = ScriptContext_GetVar(param0);
 
     v3 = Party_GetFromSavedata(v0->saveData);
     v2 = (UnkStruct_02026310 *)(SaveData_SaveTable(v1, 8));
@@ -147,26 +147,26 @@ BOOL sub_0204CC78 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL sub_0204CCB8 (UnkStruct_0203E724 * param0)
+BOOL sub_0204CCB8 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->fieldSys;
     SaveData * v1 = v0->saveData;
-    StringTemplate ** v2 = sub_0203F098(param0->unk_34, 15);
-    u8 v3 = inline_02049538(param0);
-    u8 v4 = inline_02049538(param0);
-    u8 v5 = inline_02049538(param0);
-    u8 v6 = inline_02049538(param0);
+    StringTemplate ** v2 = sub_0203F098(param0->fieldSys, 15);
+    u8 v3 = ScriptContext_GetVar(param0);
+    u8 v4 = ScriptContext_GetVar(param0);
+    u8 v5 = ScriptContext_GetVar(param0);
+    u8 v6 = ScriptContext_GetVar(param0);
 
     ov5_021E7308(sub_02026310(v1), v3, v4, v5, v6, *v2);
     return 0;
 }
 
-BOOL sub_0204CD44 (UnkStruct_0203E724 * param0)
+BOOL sub_0204CD44 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->fieldSys;
     SaveData * v1 = v0->saveData;
     UnkStruct_02026310 * v2;
-    u16 * v3 = inline_0204FCAC(param0);
+    u16 * v3 = ScriptContext_GetVarPointer(param0);
 
     v2 = (UnkStruct_02026310 *)(SaveData_SaveTable(v1, 8));
     *v3 = ov5_021E7420(v2);
@@ -174,12 +174,12 @@ BOOL sub_0204CD44 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL sub_0204CD74 (UnkStruct_0203E724 * param0)
+BOOL sub_0204CD74 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->fieldSys;
     SaveData * v1 = v0->saveData;
     UnkStruct_02026310 * v2;
-    u16 * v3 = inline_0204FCAC(param0);
+    u16 * v3 = ScriptContext_GetVarPointer(param0);
 
     v2 = (UnkStruct_02026310 *)(SaveData_SaveTable(v1, 8));
     *v3 = sub_02026234(v2);
@@ -187,30 +187,30 @@ BOOL sub_0204CD74 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL sub_0204CDA4 (UnkStruct_0203E724 * param0)
+BOOL sub_0204CDA4 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->unk_34;
-    u16 * v1 = inline_0204FCAC(param0);
+    FieldSystem * v0 = param0->fieldSys;
+    u16 * v1 = ScriptContext_GetVarPointer(param0);
 
     return 0;
 }
 
-BOOL sub_0204CDBC (UnkStruct_0203E724 * param0)
+BOOL sub_0204CDBC (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->fieldSys;
     return 0;
 }
 
-BOOL sub_0204CDC0 (UnkStruct_0203E724 * param0)
+BOOL sub_0204CDC0 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->fieldSys;
     return 0;
 }
 
-BOOL sub_0204CDC4 (UnkStruct_0203E724 * param0)
+BOOL sub_0204CDC4 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->unk_34;
-    u16 * v1 = inline_0204FCAC(param0);
+    FieldSystem * v0 = param0->fieldSys;
+    u16 * v1 = ScriptContext_GetVarPointer(param0);
 
     return 0;
 }

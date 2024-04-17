@@ -96,14 +96,14 @@ struct UnkStruct_ov5_021F6704_t {
 };
 
 static u16 * ov5_021F65FC(int param0, int param1, int * param2);
-BOOL ov5_021F6454(UnkStruct_0203E724 * param0);
-static BOOL ov5_021F65D4(UnkStruct_0203E724 * param0);
+BOOL ov5_021F6454(ScriptContext * param0);
+static BOOL ov5_021F65D4(ScriptContext * param0);
 static void ov5_021F70CC(Pokemon * param0, int * param1, int * param2);
-BOOL ov5_021F71B8(UnkStruct_0203E724 * param0);
-BOOL ov5_021F7208(UnkStruct_0203E724 * param0);
-BOOL ov5_021F72B8(UnkStruct_0203E724 * param0);
-BOOL ov5_021F6B3C(UnkStruct_0203E724 * param0);
-BOOL ov5_021F6E50(UnkStruct_0203E724 * param0);
+BOOL ov5_021F71B8(ScriptContext * param0);
+BOOL ov5_021F7208(ScriptContext * param0);
+BOOL ov5_021F72B8(ScriptContext * param0);
+BOOL ov5_021F6B3C(ScriptContext * param0);
+BOOL ov5_021F6E50(ScriptContext * param0);
 static void ov5_021F661C(UnkStruct_ov5_021F6704 * param0, MessageLoader * param1);
 static void ov5_021F6624(FieldSystem * param0, UnkStruct_ov5_021F6704 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, StringTemplate * param7, Window * param8, MessageLoader * param9, u16 * param10, u16 * param11);
 UnkStruct_ov5_021F6704 * ov5_021F6704(FieldSystem * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringTemplate * param6, Window * param7, MessageLoader * param8, u16 * param9, u16 * param10);
@@ -128,7 +128,7 @@ static u16 Unk_ov5_0220210C[] = {
     0x1A
 };
 
-BOOL ov5_021F6454 (UnkStruct_0203E724 * param0)
+BOOL ov5_021F6454 (ScriptContext * param0)
 {
     int v0;
     BattleFrontierStage * v1;
@@ -137,19 +137,19 @@ BOOL ov5_021F6454 (UnkStruct_0203E724 * param0)
     int v4, v5;
     MessageLoader * v6;
     MessageLoader * v7;
-    FieldSystem * v8 = param0->unk_34;
+    FieldSystem * v8 = param0->fieldSys;
     UnkStruct_ov5_021F6704 * v9;
     StringTemplate ** v10 = sub_0203F098(v8, 15);
-    u16 v11 = inline_02049538(param0);
-    u16 v12 = inline_02049538(param0);
-    u16 v13 = sub_0203E838(param0);
-    u16 v14 = sub_0203E838(param0);
-    u16 v15 = sub_0203E838(param0);
+    u16 v11 = ScriptContext_GetVar(param0);
+    u16 v12 = ScriptContext_GetVar(param0);
+    u16 v13 = ScriptContext_ReadHalfWord(param0);
+    u16 v14 = ScriptContext_ReadHalfWord(param0);
+    u16 v15 = ScriptContext_ReadHalfWord(param0);
 
-    param0->unk_18[0] = v13;
+    param0->data[0] = v13;
 
     v6 = MessageLoader_Init(0, 26, 412, 32);
-    v9 = ov5_021F6704(v8, 20, 1, 0, 1, sub_0203F118(v8, v13), *v10, sub_0203F098(param0->unk_34, 1), v6, sub_0203F118(v8, v14), sub_0203F118(v8, v15));
+    v9 = ov5_021F6704(v8, 20, 1, 0, 1, sub_0203F118(v8, v13), *v10, sub_0203F098(param0->fieldSys, 1), v6, sub_0203F118(v8, v14), sub_0203F118(v8, v15));
     v1 = sub_020308A0(v8->saveData, 11, &v0);
 
     if (v0 == 1) {
@@ -180,16 +180,16 @@ BOOL ov5_021F6454 (UnkStruct_0203E724 * param0)
     ov5_021F661C(v9, v6);
     ov5_021F6768(v9);
 
-    sub_0203E764(param0, ov5_021F65D4);
+    ScriptContext_Pause(param0, ov5_021F65D4);
     MessageLoader_Free(v6);
 
     return 1;
 }
 
-static BOOL ov5_021F65D4 (UnkStruct_0203E724 * param0)
+static BOOL ov5_021F65D4 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->unk_34;
-    u16 * v1 = sub_0203F118(v0, param0->unk_18[0]);
+    FieldSystem * v0 = param0->fieldSys;
+    u16 * v1 = sub_0203F118(v0, param0->data[0]);
 
     if (*v1 == 0xeeee) {
         return 0;
@@ -448,16 +448,16 @@ static const u16 Unk_ov5_02200C84[] = {
     0x7E
 };
 
-BOOL ov5_021F6B3C (UnkStruct_0203E724 * param0)
+BOOL ov5_021F6B3C (ScriptContext * param0)
 {
     u8 v0;
     u32 v1[6];
     Pokemon * v2;
-    FieldSystem * v3 = param0->unk_34;
-    u16 v4 = inline_02049538(param0);
-    u16 * v5 = inline_0204FCAC(param0);
-    u16 * v6 = inline_0204FCAC(param0);
-    u16 * v7 = inline_0204FCAC(param0);
+    FieldSystem * v3 = param0->fieldSys;
+    u16 v4 = ScriptContext_GetVar(param0);
+    u16 * v5 = ScriptContext_GetVarPointer(param0);
+    u16 * v6 = ScriptContext_GetVarPointer(param0);
+    u16 * v7 = ScriptContext_GetVarPointer(param0);
 
     v2 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v3->saveData), v4);
 
@@ -493,7 +493,7 @@ BOOL ov5_021F6B3C (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL ov5_021F6C60 (UnkStruct_0203E724 * param0)
+BOOL ov5_021F6C60 (ScriptContext * param0)
 {
     Pokemon * v0;
     Party * v1;
@@ -502,8 +502,8 @@ BOOL ov5_021F6C60 (UnkStruct_0203E724 * param0)
     u32 v7;
     int v8[6];
     int v9 = 0;
-    FieldSystem * v10 = param0->unk_34;
-    u16 * v11 = inline_0204FCAC(param0);
+    FieldSystem * v10 = param0->fieldSys;
+    u16 * v11 = ScriptContext_GetVarPointer(param0);
 
     v1 = Party_GetFromSavedata(v10->saveData);
     v2 = Party_GetCurrentCount(v1);
@@ -560,7 +560,7 @@ BOOL ov5_021F6C60 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL ov5_021F6D80 (UnkStruct_0203E724 * param0)
+BOOL ov5_021F6D80 (ScriptContext * param0)
 {
     Pokemon * v0;
     Party * v1;
@@ -568,9 +568,9 @@ BOOL ov5_021F6D80 (UnkStruct_0203E724 * param0)
     u32 v4;
     int v5;
     int v6;
-    FieldSystem * v7 = param0->unk_34;
-    u16 v8 = inline_02049538(param0);
-    u16 * v9 = inline_0204FCAC(param0);
+    FieldSystem * v7 = param0->fieldSys;
+    u16 v8 = ScriptContext_GetVar(param0);
+    u16 * v9 = ScriptContext_GetVarPointer(param0);
 
     v1 = Party_GetFromSavedata(v7->saveData);
     v0 = Party_GetPokemonBySlotIndex(v1, v8);
@@ -616,12 +616,12 @@ BOOL ov5_021F6D80 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL ov5_021F6E50 (UnkStruct_0203E724 * param0)
+BOOL ov5_021F6E50 (ScriptContext * param0)
 {
     Pokemon * v0;
-    FieldSystem * v1 = param0->unk_34;
-    u16 v2 = inline_02049538(param0);
-    u16 v3 = inline_02049538(param0);
+    FieldSystem * v1 = param0->fieldSys;
+    u16 v2 = ScriptContext_GetVar(param0);
+    u16 v3 = ScriptContext_GetVar(param0);
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v1->saveData), v2);
     Pokemon_SetValue(v0, 112, &v3);
@@ -629,15 +629,15 @@ BOOL ov5_021F6E50 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL ov5_021F6E9C (UnkStruct_0203E724 * param0)
+BOOL ov5_021F6E9C (ScriptContext * param0)
 {
     u32 v0, v1, v2;
     int v3, v4, v5;
     Pokemon * v6;
     Party * v7;
-    FieldSystem * v8 = param0->unk_34;
-    u16 * v9 = inline_0204FCAC(param0);
-    u16 * v10 = inline_0204FCAC(param0);
+    FieldSystem * v8 = param0->fieldSys;
+    u16 * v9 = ScriptContext_GetVarPointer(param0);
+    u16 * v10 = ScriptContext_GetVarPointer(param0);
 
     v5 = 0;
     *v10 = 0xff;
@@ -663,17 +663,17 @@ BOOL ov5_021F6E9C (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL ov5_021F6F44 (UnkStruct_0203E724 * param0)
+BOOL ov5_021F6F44 (ScriptContext * param0)
 {
     u32 v0, v1;
     u16 v2, v3;
     Pokemon * v4;
     Party * v5;
-    FieldSystem * v6 = param0->unk_34;
-    u16 v7 = inline_02049538(param0);
-    u16 v8 = inline_02049538(param0);
-    u16 v9 = inline_02049538(param0);
-    u16 v10 = inline_02049538(param0);
+    FieldSystem * v6 = param0->fieldSys;
+    u16 v7 = ScriptContext_GetVar(param0);
+    u16 v8 = ScriptContext_GetVar(param0);
+    u16 v9 = ScriptContext_GetVar(param0);
+    u16 v10 = ScriptContext_GetVar(param0);
 
     v5 = Party_GetFromSavedata(v6->saveData);
     v4 = Party_GetPokemonBySlotIndex(v5, v7);
@@ -684,14 +684,14 @@ BOOL ov5_021F6F44 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL ov5_021F6FC0 (UnkStruct_0203E724 * param0)
+BOOL ov5_021F6FC0 (ScriptContext * param0)
 {
     u16 v0;
     int v1, v2;
     Pokemon * v3;
-    FieldSystem * v4 = param0->unk_34;
-    u16 v5 = inline_02049538(param0);
-    u16 * v6 = inline_0204FCAC(param0);
+    FieldSystem * v4 = param0->fieldSys;
+    u16 v5 = ScriptContext_GetVar(param0);
+    u16 * v6 = ScriptContext_GetVarPointer(param0);
 
     v3 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v4->saveData), v5);
     v0 = Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL);
@@ -756,11 +756,11 @@ static void ov5_021F70CC (Pokemon * param0, int * param1, int * param2)
     }
 }
 
-BOOL ov5_021F71B8 (UnkStruct_0203E724 * param0)
+BOOL ov5_021F71B8 (ScriptContext * param0)
 {
     MiscSaveBlock * v0;
     Pokemon * v1;
-    FieldSystem * v2 = param0->unk_34;
+    FieldSystem * v2 = param0->fieldSys;
 
     v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v2->saveData), 0);
     v0 = SaveData_MiscSaveBlock(v2->saveData);
@@ -769,15 +769,15 @@ BOOL ov5_021F71B8 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL ov5_021F7208 (UnkStruct_0203E724 * param0)
+BOOL ov5_021F7208 (ScriptContext * param0)
 {
     int v0, v1, v2;
     MiscSaveBlock * v3;
     Pokemon * v4;
-    FieldSystem * v5 = param0->unk_34;
-    u16 * v6 = inline_0204FCAC(param0);
-    u16 * v7 = inline_0204FCAC(param0);
-    u16 * v8 = inline_0204FCAC(param0);
+    FieldSystem * v5 = param0->fieldSys;
+    u16 * v6 = ScriptContext_GetVarPointer(param0);
+    u16 * v7 = ScriptContext_GetVarPointer(param0);
+    u16 * v8 = ScriptContext_GetVarPointer(param0);
 
     v3 = SaveData_MiscSaveBlock(v5->saveData);
     MiscSaveBlock_FavoriteMon(v3, &v0, &v1, &v2);
@@ -789,13 +789,13 @@ BOOL ov5_021F7208 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL ov5_021F7270 (UnkStruct_0203E724 * param0)
+BOOL ov5_021F7270 (ScriptContext * param0)
 {
     Pokemon * v0;
     Party * v1;
-    FieldSystem * v2 = param0->unk_34;
-    u16 v3 = inline_02049538(param0);
-    u16 * v4 = inline_0204FCAC(param0);
+    FieldSystem * v2 = param0->fieldSys;
+    u16 v3 = ScriptContext_GetVar(param0);
+    u16 * v4 = ScriptContext_GetVarPointer(param0);
 
     v1 = Party_GetFromSavedata(v2->saveData);
     v0 = Party_GetPokemonBySlotIndex(v1, v3);
@@ -804,13 +804,13 @@ BOOL ov5_021F7270 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL ov5_021F72B8 (UnkStruct_0203E724 * param0)
+BOOL ov5_021F72B8 (ScriptContext * param0)
 {
     UnkStruct_020507E4 * v0;
     UnkStruct_0202CD88 * v1;
-    FieldSystem * v2 = param0->unk_34;
-    u16 v3 = inline_02049538(param0);
-    u16 * v4 = inline_0204FCAC(param0);
+    FieldSystem * v2 = param0->fieldSys;
+    u16 v3 = ScriptContext_GetVar(param0);
+    u16 * v4 = ScriptContext_GetVarPointer(param0);
 
     v0 = SaveData_Events(v2->saveData);
     v1 = sub_0202CD88(v2->saveData);
@@ -891,7 +891,7 @@ BOOL ov5_021F72B8 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL ov5_021F7414 (UnkStruct_0203E724 * param0)
+BOOL ov5_021F7414 (ScriptContext * param0)
 {
     return 1;
 }
@@ -926,13 +926,13 @@ static const UnkStruct_ov5_02200C90 Unk_ov5_02200CC8[] = {
     {0x9, 0x9}
 };
 
-BOOL ov5_021F7418 (UnkStruct_0203E724 * param0)
+BOOL ov5_021F7418 (ScriptContext * param0)
 {
     int v0, v1;
-    u16 * v2 = inline_0204FCAC(param0);
-    u16 v3 = inline_02049538(param0);
-    u16 v4 = inline_02049538(param0);
-    u16 v5 = inline_02049538(param0);
+    u16 * v2 = ScriptContext_GetVarPointer(param0);
+    u16 v3 = ScriptContext_GetVar(param0);
+    u16 v4 = ScriptContext_GetVar(param0);
+    u16 v5 = ScriptContext_GetVar(param0);
 
     switch (v3) {
     case 588:
@@ -977,13 +977,13 @@ BOOL ov5_021F7418 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL ov5_021F7538 (UnkStruct_0203E724 * param0)
+BOOL ov5_021F7538 (ScriptContext * param0)
 {
     fx32 v0;
     VecFx32 v1;
     UnkStruct_020216E0 * v2;
     int v3 = 0;
-    FieldSystem * v4 = param0->unk_34;
+    FieldSystem * v4 = param0->fieldSys;
     MapObjectManager * v5 = v4->unk_38;
     LocalMapObject * v6 = Player_LocalMapObject(v4->playerAvatar);
     LocalMapObject * v7;
@@ -1021,10 +1021,10 @@ BOOL ov5_021F7538 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL ov5_021F7604 (UnkStruct_0203E724 * param0)
+BOOL ov5_021F7604 (ScriptContext * param0)
 {
     int v0 = 0;
-    FieldSystem * v1 = param0->unk_34;
+    FieldSystem * v1 = param0->fieldSys;
     MapObjectManager * v2 = v1->unk_38;
     LocalMapObject * v3 = Player_LocalMapObject(v1->playerAvatar);
     LocalMapObject * v4;
@@ -1059,10 +1059,10 @@ static void ov5_021F7654 (LocalMapObject * param0, int param1)
     }
 }
 
-BOOL ov5_021F76A0 (UnkStruct_0203E724 * param0)
+BOOL ov5_021F76A0 (ScriptContext * param0)
 {
     LocalMapObject * v0;
-    FieldSystem * v1 = param0->unk_34;
+    FieldSystem * v1 = param0->fieldSys;
     MapObjectManager * v2 = v1->unk_38;
 
     v0 = sub_0206251C(v2, 32);
@@ -1080,10 +1080,10 @@ BOOL ov5_021F76A0 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL ov5_021F76D0 (UnkStruct_0203E724 * param0)
+BOOL ov5_021F76D0 (ScriptContext * param0)
 {
     LocalMapObject * v0;
-    MapObjectManager * v1 = param0->unk_34->unk_38;
+    MapObjectManager * v1 = param0->fieldSys->unk_38;
 
     v0 = sub_0206251C(v1, 32);
 
@@ -1100,10 +1100,10 @@ BOOL ov5_021F76D0 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL ov5_021F7704 (UnkStruct_0203E724 * param0)
+BOOL ov5_021F7704 (ScriptContext * param0)
 {    
     int v0;
-    LocalMapObject * v1 = sub_0206251C(param0->unk_34->unk_38, 15);
+    LocalMapObject * v1 = sub_0206251C(param0->fieldSys->unk_38, 15);
     if (v1 != NULL)
     {
         switch (sub_02063020(v1))
@@ -1129,25 +1129,25 @@ BOOL ov5_021F7704 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL ov5_021F7754 (UnkStruct_0203E724 * param0)
+BOOL ov5_021F7754 (ScriptContext * param0)
 {
-    LocalMapObject * v0 = sub_0206251C(param0->unk_34->unk_38, 15);
+    LocalMapObject * v0 = sub_0206251C(param0->fieldSys->unk_38, 15);
     if (v0 != NULL)
         sub_020628C4(v0, 8192);
     return 0;
 }
 
-BOOL ov5_021F7774 (UnkStruct_0203E724 * param0)
+BOOL ov5_021F7774 (ScriptContext * param0)
 {
-    UnkStruct_0202C878 * v0 = sub_0202C878(param0->unk_34->saveData);
+    UnkStruct_0202C878 * v0 = sub_0202C878(param0->fieldSys->saveData);
 
     sub_02038F8C(v0);
     return 1;
 }
 
-BOOL ov5_021F7788 (UnkStruct_0203E724 * param0)
+BOOL ov5_021F7788 (ScriptContext * param0)
 {
-    u16 v0 = inline_02049538(param0);
+    u16 v0 = ScriptContext_GetVar(param0);
 
     sub_0200544C(1, v0);
     return 0;
