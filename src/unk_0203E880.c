@@ -4,7 +4,6 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
-#include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_0203EF60_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
@@ -18,7 +17,6 @@
 
 #include "struct_defs/struct_0203A594.h"
 #include "field/field_system.h"
-#include "struct_defs/struct_0203E724_t.h"
 #include "struct_defs/struct_0203F478.h"
 #include "struct_defs/struct_0205AA50.h"
 

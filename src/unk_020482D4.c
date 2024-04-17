@@ -4,10 +4,7 @@
 #include "inlines.h"
 #include "core_sys.h"
 
-#include "struct_decls/struct_0203E724_decl.h"
-
 #include "field/field_system.h"
-#include "struct_defs/struct_0203E724_t.h"
 
 #include "unk_020041CC.h"
 #include "unk_02005474.h"

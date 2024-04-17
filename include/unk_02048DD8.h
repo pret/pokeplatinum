@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02048DD8_H
 #define POKEPLATINUM_UNK_02048DD8_H
 
-#include "struct_decls/struct_0203E724_decl.h"
+#include "unk_0203E724.h"
 
 BOOL sub_02048DD8(UnkStruct_0203E724 * param0);
 BOOL sub_02048F74(UnkStruct_0203E724 * param0);

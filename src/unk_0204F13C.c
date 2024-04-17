@@ -7,7 +7,6 @@
 #include "struct_decls/struct_0203026C_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
-#include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -17,7 +16,6 @@
 #include "constdata/const_020F410C.h"
 
 #include "field/field_system.h"
-#include "struct_defs/struct_0203E724_t.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0204F3D0.h"
 #include "struct_defs/struct_02098C44.h"

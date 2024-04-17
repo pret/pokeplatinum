@@ -12,7 +12,6 @@
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
-#include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -22,7 +21,6 @@
 
 #include "struct_defs/struct_02013A04_t.h"
 #include "field/field_system.h"
-#include "struct_defs/struct_0203E724_t.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 

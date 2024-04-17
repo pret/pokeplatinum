@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_020302DC_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
-#include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "savedata.h"
 
@@ -13,7 +12,6 @@
 #include "constdata/const_020F410C.h"
 
 #include "field/field_system.h"
-#include "struct_defs/struct_0203E724_t.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0204FCF8.h"
 #include "struct_defs/struct_02098C44.h"

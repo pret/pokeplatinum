@@ -6,12 +6,10 @@
 #include "message.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_0203E724_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 
 #include "field/field_system.h"
-#include "struct_defs/struct_0203E724_t.h"
 
 #include "message.h"
 #include "string_template.h"

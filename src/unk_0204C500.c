@@ -5,11 +5,10 @@
 
 #include "struct_decls/struct_02024440_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 
-#include "struct_defs/struct_0203E724_t.h"
+#include "unk_0203E724.h"
 
 #include "heap.h"
 #include "savedata/save_table.h"

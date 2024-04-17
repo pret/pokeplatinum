@@ -3,9 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_0203E724_decl.h"
-
-#include "struct_defs/struct_0203E724_t.h"
+#include "unk_0203E724.h"
 
 #include "unk_0204E378.h"
 

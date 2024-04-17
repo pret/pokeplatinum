@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0204CDDC_H
 #define POKEPLATINUM_UNK_0204CDDC_H
 
-#include "struct_decls/struct_0203E724_decl.h"
+#include "unk_0203E724.h"
 
 BOOL sub_0204CDDC(UnkStruct_0203E724 * param0);
 BOOL sub_0204CDF0(UnkStruct_0203E724 * param0);

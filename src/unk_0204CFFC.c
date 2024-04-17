@@ -4,13 +4,12 @@
 #include "inlines.h"
 
 #include "trainer_info.h"
-#include "struct_decls/struct_0203E724_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "field/field_system.h"
-#include "struct_defs/struct_0203E724_t.h"
+#include "unk_0203E724.h"
 
 #include "unk_02017038.h"
 #include "heap.h"

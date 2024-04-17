@@ -4,10 +4,7 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_0202CD88_decl.h"
-#include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-
-#include "struct_defs/struct_0203E724_t.h"
 
 #include "unk_0202CD50.h"
 #include "unk_0203E724.h"

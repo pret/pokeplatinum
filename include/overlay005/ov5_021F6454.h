@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV5_021F6454_H
 #define POKEPLATINUM_OV5_021F6454_H
 
-#include "struct_decls/struct_0203E724_decl.h"
+#include "unk_0203E724.h"
 
 BOOL ov5_021F6454(UnkStruct_0203E724 * param0);
 BOOL ov5_021F6B3C(UnkStruct_0203E724 * param0);

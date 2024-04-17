@@ -5,10 +5,9 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
-#include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 
-#include "struct_defs/struct_0203E724_t.h"
+#include "unk_0203E724.h"
 #include "struct_defs/struct_0205EC34.h"
 
 #include "unk_02025E08.h"

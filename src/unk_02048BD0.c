@@ -6,10 +6,7 @@
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0202B4A0_decl.h"
-#include "struct_decls/struct_0203E724_decl.h"
 #include "savedata.h"
-
-#include "struct_defs/struct_0203E724_t.h"
 
 #include "string_template.h"
 #include "unk_0201D15C.h"

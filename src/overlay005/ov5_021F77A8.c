@@ -8,7 +8,6 @@
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
-#include "struct_decls/struct_0203E724_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
 #include "overlay005/struct_ov5_021DC1A4_decl.h"
@@ -16,7 +15,6 @@
 
 #include "struct_defs/struct_02013A04_t.h"
 #include "field/field_system.h"
-#include "struct_defs/struct_0203E724_t.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 

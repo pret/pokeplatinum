@@ -3,10 +3,8 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_0203E724_decl.h"
 #include "pokemon.h"
 
-#include "struct_defs/struct_0203E724_t.h"
 #include "struct_defs/struct_020997B8.h"
 
 #include "heap.h"

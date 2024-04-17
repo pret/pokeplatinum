@@ -7,10 +7,8 @@
 #include "struct_decls/sys_task.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
-#include "struct_decls/struct_0203E724_decl.h"
 
 #include "field/field_system.h"
-#include "struct_defs/struct_0203E724_t.h"
 #include "struct_defs/struct_02049FA8.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
 

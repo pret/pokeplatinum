@@ -3,13 +3,12 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 
 #include "field/field_system.h"
-#include "struct_defs/struct_0203E724_t.h"
+#include "unk_0203E724.h"
 
 #include "savedata/save_table.h"
 #include "unk_020480A8.h"

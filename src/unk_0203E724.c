@@ -1,11 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0203E724_decl.h"
-
-#include "functypes/funcptr_0203E724.h"
-#include "struct_defs/struct_0203E724_t.h"
-
 #include "unk_0203E724.h"
 
 void sub_0203E724 (UnkStruct_0203E724 * param0, const UnkFuncPtr_0203E724 * param1, u32 param2)
