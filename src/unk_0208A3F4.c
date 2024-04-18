@@ -33,7 +33,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
 #include "strbuf.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0208A3F4.h"
 
 void sub_0208A3F4 (UnkStruct_02089688 * param0)
@@ -104,7 +104,7 @@ void sub_0208A490 (UnkStruct_02089688 * param0)
     SpriteRenderer_LoadAnimResObjFromOpenNarc(v2, v3, v0, 11, 0, 1002);
 
     {
-        int v5 = sub_02027B50(param0->unk_38C.unk_20);
+        int v5 = Options_Frame(param0->unk_38C.unk_20);
 
         sub_0200DD0C(v1, 4, 1, 10, v5, 101);
         PaletteSys_LoadPalette(v4, 38, sub_0200DD08(v5), 101, 1, 0x20, 11 * 16);
@@ -390,15 +390,15 @@ void sub_0208A9BC (UnkStruct_02089688 * param0)
     {
         s16 v4, v5;
 
-        v4 = (param0->unk_2C0.unk_18[26].val1.unk_02 + param0->unk_2C0.unk_18[26].val1.unk_03) / 2;
-        v5 = (param0->unk_2C0.unk_18[26].val1.unk_00 + param0->unk_2C0.unk_18[26].val1.unk_01) / 2;
+        v4 = (param0->unk_2C0.unk_18[26].rect.left + param0->unk_2C0.unk_18[26].rect.right) / 2;
+        v5 = (param0->unk_2C0.unk_18[26].rect.top + param0->unk_2C0.unk_18[26].rect.bottom) / 2;
 
         SpriteActor_SetSpritePositionXY(param0->unk_240[0].unk_0C, v4, v5);
         sub_0200D364(param0->unk_240[0].unk_0C, 0);
         sub_0200D330(param0->unk_240[0].unk_0C);
 
-        v4 = (param0->unk_2C0.unk_18[27].val1.unk_02 + param0->unk_2C0.unk_18[27].val1.unk_03) / 2;
-        v5 = (param0->unk_2C0.unk_18[27].val1.unk_00 + param0->unk_2C0.unk_18[27].val1.unk_01) / 2;
+        v4 = (param0->unk_2C0.unk_18[27].rect.left + param0->unk_2C0.unk_18[27].rect.right) / 2;
+        v5 = (param0->unk_2C0.unk_18[27].rect.top + param0->unk_2C0.unk_18[27].rect.bottom) / 2;
 
         SpriteActor_SetSpritePositionXY(param0->unk_240[1].unk_0C, v4, v5);
         sub_0200D364(param0->unk_240[1].unk_0C, 0);
@@ -435,8 +435,8 @@ void sub_0208AB2C (UnkStruct_02089688 * param0, int param1)
 {
     s16 v0, v1;
 
-    v0 = (param0->unk_2C0.unk_18[param1 + 16].val1.unk_02 + param0->unk_2C0.unk_18[param1 + 16].val1.unk_03) / 2;
-    v1 = (param0->unk_2C0.unk_18[param1 + 16].val1.unk_00 + param0->unk_2C0.unk_18[param1 + 16].val1.unk_01) / 2;
+    v0 = (param0->unk_2C0.unk_18[param1 + 16].rect.left + param0->unk_2C0.unk_18[param1 + 16].rect.right) / 2;
+    v1 = (param0->unk_2C0.unk_18[param1 + 16].rect.top + param0->unk_2C0.unk_18[param1 + 16].rect.bottom) / 2;
 
     SpriteActor_SetSpritePositionXY(param0->unk_1F0[1].unk_0C, v0, v1);
 }
@@ -445,8 +445,8 @@ void sub_0208AB6C (UnkStruct_02089688 * param0, int param1, int param2)
 {
     s16 v0, v1;
 
-    v0 = (param0->unk_2C0.unk_18[param1 + 16].val1.unk_02 + param0->unk_2C0.unk_18[param1 + 16].val1.unk_03) / 2;
-    v1 = (param0->unk_2C0.unk_18[param1 + 16].val1.unk_00 + param0->unk_2C0.unk_18[param1 + 16].val1.unk_01) / 2;
+    v0 = (param0->unk_2C0.unk_18[param1 + 16].rect.left + param0->unk_2C0.unk_18[param1 + 16].rect.right) / 2;
+    v1 = (param0->unk_2C0.unk_18[param1 + 16].rect.top + param0->unk_2C0.unk_18[param1 + 16].rect.bottom) / 2;
 
     SpriteActor_SetSpritePositionXY(param0->unk_1F0[param2].unk_0C, v0, v1);
 }
@@ -516,9 +516,9 @@ void sub_0208AC8C (UnkStruct_02089688 * param0)
     s16 v1, v2;
 
     for (v0 = 0; v0 < 2; v0++) {
-        v1 = (param0->unk_2C0.unk_18[v0 + 26].val1.unk_02 + param0->unk_2C0.unk_18[v0 + 26].val1.unk_03) / 2;
+        v1 = (param0->unk_2C0.unk_18[v0 + 26].rect.left + param0->unk_2C0.unk_18[v0 + 26].rect.right) / 2;
         v1 -= 40;
-        v2 = (param0->unk_2C0.unk_18[v0 + 26].val1.unk_00 + param0->unk_2C0.unk_18[v0 + 26].val1.unk_01) / 2;
+        v2 = (param0->unk_2C0.unk_18[v0 + 26].rect.top + param0->unk_2C0.unk_18[v0 + 26].rect.bottom) / 2;
         v2 -= 7;
 
         switch (param0->unk_240[v0].unk_00) {
@@ -646,10 +646,10 @@ static inline void inline_0208AF44 (UnkStruct_02089688 * param0, int param1, s16
 
     SpriteActor_GetSpritePositionXY(v2->unk_0C, &v0, &v1);
 
-    v2->unk_10->val1.unk_00 = v1 - param3;
-    v2->unk_10->val1.unk_02 = v0 - param2;
-    v2->unk_10->val1.unk_01 = v1 + param3;
-    v2->unk_10->val1.unk_03 = v0 + param2;
+    v2->unk_10->rect.top = v1 - param3;
+    v2->unk_10->rect.left = v0 - param2;
+    v2->unk_10->rect.bottom = v1 + param3;
+    v2->unk_10->rect.right = v0 + param2;
 }
 
 void sub_0208AF44 (UnkStruct_02089688 * param0)
@@ -723,9 +723,9 @@ void sub_0208B090 (UnkStruct_02089688 * param0, int param1, int param2, int para
 
     sub_0201ED94(v5, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &param0->unk_2C0.unk_98[param1]);
 
-    v0 = (param0->unk_2C0.unk_18[param1 + 26].val1.unk_02 + param0->unk_2C0.unk_18[param1 + 26].val1.unk_03) / 2;
+    v0 = (param0->unk_2C0.unk_18[param1 + 26].rect.left + param0->unk_2C0.unk_18[param1 + 26].rect.right) / 2;
     v0 -= 40;
-    v1 = (param0->unk_2C0.unk_18[param1 + 26].val1.unk_00 + param0->unk_2C0.unk_18[param1 + 26].val1.unk_01) / 2;
+    v1 = (param0->unk_2C0.unk_18[param1 + 26].rect.top + param0->unk_2C0.unk_18[param1 + 26].rect.bottom) / 2;
     v1 -= 7;
 
     v2.unk_00 = param0->unk_2C0.unk_8C;

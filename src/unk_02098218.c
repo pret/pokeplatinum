@@ -28,7 +28,7 @@
 #include "gx_layers.h"
 #include "unk_02024220.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202CD50.h"
 #include "unk_0202F180.h"
 #include "map_header.h"
@@ -72,8 +72,8 @@ static int sub_02098218 (OverlayManager * param0, int * param1)
     v0 = OverlayManager_Args(param0);
 
     v1->unk_00 = v0;
-    v1->unk_04.unk_0C = sub_02027AC0(v1->unk_00->unk_0C.unk_04);
-    v1->unk_04.unk_10 = sub_02027B50(v1->unk_00->unk_0C.unk_04);
+    v1->unk_04.unk_0C = Options_TextFrameDelay(v1->unk_00->unk_0C.unk_04);
+    v1->unk_04.unk_10 = Options_Frame(v1->unk_00->unk_0C.unk_04);
     v1->unk_04.unk_34 = ov119_021D0DD4();
     v1->unk_04.unk_38 = sub_0200762C(71);
     v1->unk_04.unk_3C = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 71);

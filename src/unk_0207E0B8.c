@@ -10,7 +10,7 @@
 
 #include "constdata/const_020F1E88.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
@@ -45,11 +45,10 @@
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02022594.h"
 #include "strbuf.h"
 #include "unk_02024220.h"
 #include "unk_0202602C.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202B604.h"
 #include "unk_020393C8.h"
 #include "unk_0206B9D8.h"
@@ -938,7 +937,7 @@ static void sub_0207EB6C (GameWindowLayout * param0, NARC * param1)
 
     sub_02002E98(0, 13 * 32, 12);
     sub_0200DAA4(param0->unk_00, 0, 1, 14, 0, 12);
-    sub_0200DD0C(param0->unk_00, 0, (1 + 9), 15, sub_02027B50(param0->unk_5A4->unk_0C), 12);
+    sub_0200DD0C(param0->unk_00, 0, (1 + 9), 15, Options_Frame(param0->unk_5A4->unk_0C), 12);
     sub_020070E8(param1, 3, param0->unk_00, 4, 0, 0, 0, 12);
     sub_02007130(param1, 4, 4, 0x20, 0x20, 12);
     sub_020070E8(param1, 12, param0->unk_00, 5, 0, 0, 0, 12);
@@ -2270,7 +2269,7 @@ static const u8 Unk_020F1BB8[6][2] = {
     {0x1A, 0x11}
 };
 
-static const UnkUnion_02022594 Unk_020F1C94[] = {
+static const TouchScreenRect Unk_020F1C94[] = {
     {0x18, 0x3F, 0x8, 0x2F},
     {0x18, 0x3F, 0xD0, 0xF7},
     {0x50, 0x77, 0x8, 0x2F},

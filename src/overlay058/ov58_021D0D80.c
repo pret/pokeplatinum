@@ -11,7 +11,7 @@
 #include "struct_decls/struct_02095EAC_decl.h"
 
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0203DDFC.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02095EAC_t.h"
@@ -51,10 +51,9 @@
 #include "unk_0201F834.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02022594.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202B604.h"
 #include "unk_02030EE0.h"
 #include "communication_information.h"
@@ -604,7 +603,7 @@ static void ov58_021D142C (UnkStruct_02095EAC * param0, NARC * param1)
     sub_0200710C(param1, 4, v0, 2, 0, 32 * 24 * 2, 1, 39);
     sub_020070E8(param1, 3, v0, 5, 0, 32 * 8 * 0x20, 1, 39);
     sub_0200710C(param1, 5, v0, 5, 0, 32 * 24 * 2, 1, 39);
-    sub_0200DD0C(v0, 0, 1, 10, sub_02027B50(param0->unk_08->unk_08), 39);
+    sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_08->unk_08), 39);
     sub_0200DAA4(v0, 0, 1 + (18 + 12), 11, 0, 39);
 }
 
@@ -785,7 +784,7 @@ static void ov58_021D1A10 (GraphicElementData * param0, int param1, int param2)
     sub_02021C50(param0, &v0);
 }
 
-static const UnkUnion_02022594 Unk_ov58_021D2EB8[] = {
+static const TouchScreenRect Unk_ov58_021D2EB8[] = {
     {0x96, 0xBD, 0x0, 0x17},
     {0x96, 0xBD, 0x18, 0x2F},
     {0x96, 0xBD, 0x30, 0x47},
@@ -801,12 +800,12 @@ static const UnkUnion_02022594 Unk_ov58_021D2EB8[] = {
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-static const UnkUnion_02022594 Unk_ov58_021D2DD4[] = {
+static const TouchScreenRect Unk_ov58_021D2DD4[] = {
     {0x30, 0x70, 0xC8, 0xF8},
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-static const UnkUnion_02022594 Unk_ov58_021D2DDC[] = {
+static const TouchScreenRect Unk_ov58_021D2DDC[] = {
     {0x10, 0x88, 0x8, 0xF8},
     {0xFF, 0x0, 0x0, 0x0}
 };

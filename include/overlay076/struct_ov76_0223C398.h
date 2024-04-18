@@ -14,7 +14,7 @@
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/sprite_manager_allocation.h"
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
@@ -37,7 +37,7 @@ typedef struct {
     int unk_D8;
     UnkStruct_ov22_02258A48 unk_DC;
     UnkStruct_02023FCC * unk_F8;
-    UnkUnion_02022594 unk_FC[21];
+    TouchScreenRect unk_FC[21];
     UnkStruct_02015920 * unk_150;
     UnkStruct_ov12_02235FE0 * unk_154;
     BallRotation * unk_158;

@@ -5,7 +5,7 @@
 
 #include "struct_decls/sys_task.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "overlay116/struct_ov116_02260490.h"
 #include "overlay116/struct_ov116_02262A8C.h"
 #include "overlay116/struct_ov116_02262CB8.h"
@@ -21,7 +21,6 @@
 #include "unk_020170BC.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "unk_02022594.h"
 #include "communication_system.h"
 #include "overlay116/ov116_02261870.h"
 #include "overlay116/ov116_02262A8C.h"
@@ -993,12 +992,12 @@ void ov116_02263B30 (UnkStruct_ov116_02262A8C * param0)
     }
 }
 
-static const UnkUnion_020225E0 Unk_ov116_02267B38[] = {
+static const TouchScreenHitTable Unk_ov116_02267B38[] = {
     {0xFE, 0x80, 0x80, 0x30},
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-static const UnkUnion_020225E0 Unk_ov116_02267B40[] = {
+static const TouchScreenHitTable Unk_ov116_02267B40[] = {
     {0xFE, 0x80, 0x80, 0x40},
     {0xFF, 0x0, 0x0, 0x0}
 };
@@ -1010,7 +1009,7 @@ void ov116_02263BA0 (UnkStruct_ov116_02262A8C * param0)
         s16 v2, v3;
         BOOL v4;
         BOOL v5 = sub_020227A4(&v0, &v1);
-        UnkUnion_020225E0 * v6;
+        TouchScreenHitTable * v6;
         int v7;
 
         param0->unk_279C.unk_A4 = 0;

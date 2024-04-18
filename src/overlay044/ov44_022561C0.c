@@ -7,10 +7,10 @@
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "overlay025/poketch_system.h"
-#include "overlay025/struct_ov25_02255B34_decl.h"
+#include "overlay025/poketch_button.h"
 #include "overlay044/struct_ov44_022565BC_decl.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "overlay044/struct_ov44_022565BC_1.h"
 
 #include "unk_0200D9E8.h"
@@ -19,7 +19,6 @@
 #include "pokemon_icon.h"
 #include "party.h"
 #include "overlay005/ov5_021E622C.h"
-#include "overlay025/ov25_02255ACC.h"
 #include "overlay044/ov44_022565BC.h"
 
 typedef struct {
@@ -29,7 +28,7 @@ typedef struct {
     UnkStruct_ov44_022565BC_1 unk_04;
     UnkStruct_ov44_022565BC * unk_38;
     PoketchSystem * unk_3C;
-    UnkStruct_ov25_02255B34 * unk_40;
+    PoketchButtonManager * unk_40;
     u16 unk_44;
     u16 unk_46;
     BoxPokemon * unk_48[6];
@@ -102,7 +101,7 @@ static BOOL ov44_0225621C (UnkStruct_ov44_0225621C * param0, PoketchSystem * par
     param0->unk_04.unk_33 = (param0->unk_04.unk_30 > 1) ? 1 : 0;
 
     if (ov44_022565BC(&(param0->unk_38), &(param0->unk_04), param2)) {
-        static const UnkUnion_020225E0 v4[] = {
+        static const TouchScreenHitTable v4[] = {
             {128, 168, 92, 132},
             {130, 164, 24, 72},
             {130, 164, 152, 200}
@@ -111,7 +110,7 @@ static BOOL ov44_0225621C (UnkStruct_ov44_0225621C * param0, PoketchSystem * par
         param0->unk_00 = 0;
         param0->unk_01 = 0;
         param0->unk_02 = 0;
-        param0->unk_40 = ov25_02255ACC(v4, NELEMS(v4), ov44_0225632C, param0, 8);
+        param0->unk_40 = PoketchButtonManager_New(v4, NELEMS(v4), ov44_0225632C, param0, 8);
         param0->unk_46 = 0;
         param0->unk_3C = param1;
 
@@ -123,7 +122,7 @@ static BOOL ov44_0225621C (UnkStruct_ov44_0225621C * param0, PoketchSystem * par
 
 static void ov44_02256314 (UnkStruct_ov44_0225621C * param0)
 {
-    ov25_02255B34(param0->unk_40);
+    PoketchButtonManager_Free(param0->unk_40);
     ov44_022565F8(param0->unk_38);
     Heap_FreeToHeap(param0);
 }

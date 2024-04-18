@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_0202F298_H
 #define POKEPLATINUM_STRUCT_0202F298_H
 
-#include "struct_defs/options.h"
+#include "game_options.h"
 #include "struct_defs/struct_0202F298_sub1.h"
 #include "struct_defs/struct_0202FAA8.h"
 #include "struct_defs/struct_0202FAA8_sub1.h"

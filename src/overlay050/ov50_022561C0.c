@@ -5,17 +5,16 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
 #include "overlay025/poketch_system.h"
-#include "overlay025/struct_ov25_02255B34_decl.h"
+#include "overlay025/poketch_button.h"
 #include "overlay050/struct_ov50_02256510_decl.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "overlay050/struct_ov50_02256510_1.h"
 
 #include "unk_0200D9E8.h"
 #include "rtc.h"
 #include "heap.h"
 #include "poketch_data.h"
-#include "overlay025/ov25_02255ACC.h"
 #include "overlay050/ov50_02256510.h"
 
 typedef struct {
@@ -26,7 +25,7 @@ typedef struct {
     UnkStruct_ov50_02256510 * unk_90;
     PoketchSystem * unk_94;
     PoketchData * unk_98;
-    UnkStruct_ov25_02255B34 * unk_9C;
+    PoketchButtonManager * unk_9C;
     u32 unk_A0;
     u32 unk_A4;
     u32 unk_A8;
@@ -72,7 +71,7 @@ static BOOL ov50_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2,
 
 static BOOL ov50_0225621C (UnkStruct_ov50_022561D4 * param0, PoketchSystem * param1, BGL * param2, u32 param3)
 {
-    static const UnkUnion_020225E0 v0[] = {
+    static const TouchScreenHitTable v0[] = {
         {((5 + 3 * 0) * 8), ((5 + 3 * 0 + 2) * 8), ((4 + 3 * 0) * 8), ((4 + 3 * 0 + 2) * 8)},
         {((5 + 3 * 0) * 8), ((5 + 3 * 0 + 2) * 8), ((4 + 3 * 1) * 8), ((4 + 3 * 1 + 2) * 8)},
         {((5 + 3 * 0) * 8), ((5 + 3 * 0 + 2) * 8), ((4 + 3 * 2) * 8), ((4 + 3 * 2 + 2) * 8)},
@@ -124,7 +123,7 @@ static BOOL ov50_0225621C (UnkStruct_ov50_022561D4 * param0, PoketchSystem * par
         param0->unk_00 = 0;
         param0->unk_01 = 0;
         param0->unk_02 = 0;
-        param0->unk_9C = ov25_02255ACC(v0, NELEMS(v0), ov50_02256360, param0, 8);
+        param0->unk_9C = PoketchButtonManager_New(v0, NELEMS(v0), ov50_02256360, param0, 8);
         param0->unk_A0 = 0;
         param0->unk_94 = param1;
 
@@ -166,7 +165,7 @@ static void ov50_022562AC (UnkStruct_ov50_02256510_1 * param0, UnkStruct_ov50_02
 
 static void ov50_02256340 (UnkStruct_ov50_022561D4 * param0)
 {
-    ov25_02255B34(param0->unk_9C);
+    PoketchButtonManager_Free(param0->unk_9C);
     ov50_0225654C(param0->unk_90);
 
     Heap_FreeToHeap(param0);

@@ -7,10 +7,8 @@
 #include "struct_decls/sys_task.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
-#include "struct_decls/struct_0203E724_decl.h"
 
 #include "field/field_system.h"
-#include "struct_defs/struct_0203E724_t.h"
 #include "struct_defs/struct_02049FA8.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
 
@@ -22,7 +20,7 @@
 #include "unk_0201D15C.h"
 #include "map_header.h"
 #include "unk_0203A6DC.h"
-#include "unk_0203E724.h"
+#include "field_script_context.h"
 #include "unk_0203E880.h"
 #include "unk_0206A8DC.h"
 
@@ -161,14 +159,14 @@ static inline void inline_02049FA8 (UnkStruct_02049FA8 * param0, int param1, int
     param0->unk_10 = param5;
 }
 
-static inline u16 * inline_0204FCAC (UnkStruct_0203E724 * param0)
+static inline u16 * ScriptContext_GetVarPointer (ScriptContext * ctx)
 {
-    return sub_0203F118(param0->unk_34, sub_0203E838(param0));
+    return sub_0203F118(ctx->fieldSys, ScriptContext_ReadHalfWord(ctx));
 }
 
-static inline u16 inline_02049538 (UnkStruct_0203E724 * param0)
+static inline u16 ScriptContext_GetVar (ScriptContext * ctx)
 {
-    return sub_0203F150(param0->unk_34, sub_0203E838(param0));
+    return sub_0203F150(ctx->fieldSys, ScriptContext_ReadHalfWord(ctx));
 }
 
 static inline void inline_0204E650 (UnkStruct_020507E4 * param0)

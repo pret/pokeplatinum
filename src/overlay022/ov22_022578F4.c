@@ -4,7 +4,7 @@
 #include "pokemon.h"
 
 #include "struct_defs/archived_sprite.h"
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_020298D8.h"
 #include "overlay022/struct_ov22_0225500C.h"
 #include "overlay022/struct_ov22_02255040.h"
@@ -15,7 +15,6 @@
 
 #include "unk_0200762C.h"
 #include "unk_02015064.h"
-#include "unk_02022594.h"
 #include "overlay022/ov22_02254DE0.h"
 #include "overlay022/ov22_02255D44.h"
 #include "overlay022/ov22_022578F4.h"
@@ -248,24 +247,24 @@ void ov22_02257B74 (UnkStruct_ov22_02257964 * param0, int param1)
 
 BOOL ov22_02257BE8 (UnkStruct_ov22_02257964 * param0)
 {
-    UnkUnion_020225E0 v0;
+    TouchScreenHitTable v0;
 
-    v0.val1.unk_00 = (16 + 2);
-    v0.val1.unk_01 = (16 + 2) + (129 - (2 * 2));
-    v0.val1.unk_02 = (136 + 2);
-    v0.val1.unk_03 = (136 + 2) + (112 - (2 * 2));
+    v0.rect.top = (16 + 2);
+    v0.rect.bottom = (16 + 2) + (129 - (2 * 2));
+    v0.rect.left = (136 + 2);
+    v0.rect.right = (136 + 2) + (112 - (2 * 2));
 
-    return sub_02022734(&v0);
+    return TouchScreen_LocationHeld(&v0);
 }
 
 BOOL ov22_02257C04 (UnkStruct_ov22_02257964 * param0, int param1, int param2)
 {
-    UnkUnion_020225E0 v0;
+    TouchScreenHitTable v0;
 
-    v0.val1.unk_00 = (16 + 2);
-    v0.val1.unk_01 = (16 + 2) + (129 - (2 * 2));
-    v0.val1.unk_02 = (136 + 2);
-    v0.val1.unk_03 = (136 + 2) + (112 - (2 * 2));
+    v0.rect.top = (16 + 2);
+    v0.rect.bottom = (16 + 2) + (129 - (2 * 2));
+    v0.rect.left = (136 + 2);
+    v0.rect.right = (136 + 2) + (112 - (2 * 2));
 
     return sub_02022830(&v0, param1, param2);
 }

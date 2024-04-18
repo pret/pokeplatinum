@@ -11,7 +11,7 @@
 #include "overlay021/struct_ov21_021D4C0C_decl.h"
 #include "overlay021/struct_ov21_021D4EE4_decl.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay021/struct_ov21_021D13FC.h"
@@ -66,9 +66,9 @@ typedef struct {
 
 typedef struct {
     UnkStruct_02023FCC * unk_00;
-    UnkUnion_020225E0 * unk_04;
+    TouchScreenHitTable * unk_04;
     UnkStruct_02023FCC * unk_08;
-    UnkUnion_020225E0 * unk_0C;
+    TouchScreenHitTable * unk_0C;
     UnkStruct_ov21_021D9D18 unk_10;
     UnkStruct_ov21_021D4EE4 * unk_18;
     UnkStruct_ov21_021D4FE4 * unk_1C;
@@ -696,7 +696,7 @@ static void ov21_021D9BB0 (UnkStruct_ov21_021D9B24 * param0, UnkStruct_ov21_021D
 
 static void ov21_021D9BEC (UnkStruct_ov21_021D9B24 * param0, UnkStruct_ov21_021D95B8 * param1, int param2)
 {
-    param0->unk_04 = Heap_AllocFromHeap(param2, sizeof(UnkUnion_020225E0) * 6);
+    param0->unk_04 = Heap_AllocFromHeap(param2, sizeof(TouchScreenHitTable) * 6);
 
     ov21_021D154C(&param0->unk_04[1], 48 - (32 / 2), 48 + (32 / 2), 224 - (64 / 2), 224 + (64 / 2));
     ov21_021D154C(&param0->unk_04[0], 16 - (32 / 2), 16 + (32 / 2), 212 - (48 / 2), 212 + (48 / 2));
@@ -803,7 +803,7 @@ static void ov21_021D9D78 (UnkStruct_ov21_021D9B24 * param0, UnkStruct_ov21_021D
     int v0, v1;
     int v2, v3;
 
-    param0->unk_0C = Heap_AllocFromHeap(param2, sizeof(UnkUnion_020225E0) * 6);
+    param0->unk_0C = Heap_AllocFromHeap(param2, sizeof(TouchScreenHitTable) * 6);
 
     for (v0 = 0; v0 < 3; v0++) {
         v3 = 48 + (v0 * (48 - 16));
@@ -886,7 +886,7 @@ static void ov21_021D9EB4 (UnkStruct_ov21_021D9B24 * param0, UnkStruct_ov21_021D
     int v0, v1;
     int v2, v3;
 
-    param0->unk_0C = Heap_AllocFromHeap(param2, sizeof(UnkUnion_020225E0) * 10);
+    param0->unk_0C = Heap_AllocFromHeap(param2, sizeof(TouchScreenHitTable) * 10);
 
     for (v0 = 0; v0 < 5; v0++) {
         v3 = 16 + (v0 * (48 - 16));
@@ -986,7 +986,7 @@ static void ov21_021DA018 (UnkStruct_ov21_021D9B24 * param0, UnkStruct_ov21_021D
     int v0, v1;
     int v2, v3;
 
-    param0->unk_0C = Heap_AllocFromHeap(param2, sizeof(UnkUnion_020225E0) * 11);
+    param0->unk_0C = Heap_AllocFromHeap(param2, sizeof(TouchScreenHitTable) * 11);
 
     for (v0 = 0; v0 < 5; v0++) {
         v3 = 16 + (v0 * (48 - 16));
@@ -1100,7 +1100,7 @@ static void ov21_021DA1C8 (UnkStruct_ov21_021D9B24 * param0, UnkStruct_ov21_021D
     int v0, v1;
     int v2, v3;
 
-    param0->unk_0C = Heap_AllocFromHeap(param2, sizeof(UnkUnion_020225E0) * 10);
+    param0->unk_0C = Heap_AllocFromHeap(param2, sizeof(TouchScreenHitTable) * 10);
 
     for (v0 = 0; v0 < 4; v0++) {
         v3 = 16 + (v0 * (48 - 16));
@@ -1219,7 +1219,7 @@ static void ov21_021DA38C (UnkStruct_ov21_021D9B24 * param0, UnkStruct_ov21_021D
     int v0, v1;
     int v2, v3;
 
-    param0->unk_0C = Heap_AllocFromHeap(param2, sizeof(UnkUnion_020225E0) * 15);
+    param0->unk_0C = Heap_AllocFromHeap(param2, sizeof(TouchScreenHitTable) * 15);
 
     for (v0 = 0; v0 < 5; v0++) {
         v3 = 16 + (v0 * (48 - 16));

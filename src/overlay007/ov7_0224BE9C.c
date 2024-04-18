@@ -21,7 +21,6 @@
 
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay061/struct_ov61_0222C884.h"
@@ -45,7 +44,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_020298BC.h"
 #include "unk_0205D8CC.h"
 #include "unk_0207D3B8.h"
@@ -373,8 +372,8 @@ static void ov7_0224C338 (UnkStruct_ov7_0224BEFC * param0)
 {
     Options * v0 = sub_02025E44(param0->unk_08);
 
-    param0->unk_1B0 = sub_02027B50(v0);
-    param0->unk_1B4 = sub_02027AC0(v0);
+    param0->unk_1B0 = Options_Frame(v0);
+    param0->unk_1B4 = Options_TextFrameDelay(v0);
 }
 
 static void ov7_0224C35C (UnkStruct_ov7_0224BEFC * param0)

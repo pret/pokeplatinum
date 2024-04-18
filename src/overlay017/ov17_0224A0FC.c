@@ -54,7 +54,7 @@
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "pokemon.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
@@ -1936,7 +1936,7 @@ static void ov17_0224C244 (UnkStruct_ov17_0224DF54 * param0, MessageLoader * par
     int v1;
 
     if (param0->unk_00->unk_155 == 0) {
-        v1 = sub_02027AC0(param0->unk_00->unk_196C);
+        v1 = Options_TextFrameDelay(param0->unk_00->unk_196C);
     } else {
         v1 = 1;
     }

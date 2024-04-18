@@ -5,7 +5,7 @@
 
 #include "strbuf.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_02030A80.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208C06C.h"
@@ -18,7 +18,6 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_02022594.h"
 #include "strbuf.h"
 #include "unk_02030A80.h"
 #include "overlay062/ov62_0222F2C0.h"
@@ -194,7 +193,7 @@ static BOOL ov62_02247FFC (UnkStruct_0208C06C * param0)
     return 0;
 }
 
-static const UnkUnion_02022594 Unk_ov62_02249788[] = {
+static const TouchScreenRect Unk_ov62_02249788[] = {
     {0x28, 0x48, 0x20, 0x78},
     {0x28, 0x48, 0x90, 0xE8}
 };
@@ -227,11 +226,11 @@ static BOOL ov62_02248114 (UnkStruct_0208C06C * param0)
         sub_02003A2C(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
         break;
     case 2:
-        if (sub_02022760(&Unk_ov62_02249788[0])) {
+        if (TouchScreen_LocationPressed(&Unk_ov62_02249788[0])) {
             ov62_02234520(param0);
             ov62_02247DD8(param0, 283, 0);
             param0->unk_08++;
-        } else if (sub_02022760(&Unk_ov62_02249788[1])) {
+        } else if (TouchScreen_LocationPressed(&Unk_ov62_02249788[1])) {
             ov62_02234520(param0);
             v0->unk_0C = 1;
             ov62_02247DB4(param0);
@@ -240,12 +239,12 @@ static BOOL ov62_02248114 (UnkStruct_0208C06C * param0)
 
         break;
     case 3:
-        if (sub_02022760(&Unk_ov62_02249788[0])) {
+        if (TouchScreen_LocationPressed(&Unk_ov62_02249788[0])) {
             ov62_02234520(param0);
             ov62_022342BC(param0);
             v0->unk_0C = 0;
             param0->unk_08++;
-        } else if (sub_02022760(&Unk_ov62_02249788[1])) {
+        } else if (TouchScreen_LocationPressed(&Unk_ov62_02249788[1])) {
             ov62_02234520(param0);
             ov62_02247DB4(param0);
             v0->unk_0C = 1;

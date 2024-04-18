@@ -13,7 +13,7 @@
 
 #include "unk_0200D9E8.h"
 #include "heap.h"
-#include "unk_02022594.h"
+#include "touch_screen.h"
 #include "savedata.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"

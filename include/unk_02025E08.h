@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02025E0C_decl.h"
 #include "struct_decls/struct_02025E5C_decl.h"
 #include "trainer_info.h"
-#include "struct_defs/options.h"
+#include "game_options.h"
 #include "savedata.h"
 
 int Player_SaveSize(void);

@@ -7,17 +7,16 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
 #include "overlay025/poketch_system.h"
-#include "overlay025/struct_ov25_02255B34_decl.h"
+#include "overlay025/poketch_button.h"
 #include "overlay046/struct_ov46_02256BCC_decl.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "overlay046/struct_ov46_02256BCC_1.h"
 
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_02022844.h"
 #include "unk_02099D44.h"
-#include "overlay025/ov25_02255ACC.h"
 #include "overlay046/ov46_02256BCC.h"
 
 typedef struct {
@@ -39,7 +38,7 @@ typedef struct {
     u32 unk_04;
     UnkStruct_ov46_02256BCC * unk_08;
     PoketchSystem * unk_0C;
-    UnkStruct_ov25_02255B34 * unk_10;
+    PoketchButtonManager * unk_10;
     u32 unk_14;
     u32 unk_18;
     u64 unk_1C;
@@ -176,7 +175,7 @@ static void ov46_022562D4 (UnkStruct_ov46_0225621C * param0)
 
 static BOOL ov46_02256310 (UnkStruct_ov46_0225621C * param0, PoketchSystem * param1, BGL * param2, u32 param3)
 {
-    static const UnkUnion_020225E0 v0[] = {
+    static const TouchScreenHitTable v0[] = {
         {144, 176, 16, 80},
         {144, 176, 80, 144},
         {144, 176, 144, 208},
@@ -197,17 +196,17 @@ static BOOL ov46_02256310 (UnkStruct_ov46_0225621C * param0, PoketchSystem * par
         param0->unk_00 = 0;
         param0->unk_01 = 0;
         param0->unk_03 = 0;
-        param0->unk_10 = ov25_02255ACC(v0, NELEMS(v0), ov46_022563D8, param0, 8);
+        param0->unk_10 = PoketchButtonManager_New(v0, NELEMS(v0), ov46_022563D8, param0, 8);
         param0->unk_18 = 0;
 
-        ov25_02255C5C(param0->unk_10, 3, 4);
-        ov25_02255C5C(param0->unk_10, 5, 4);
-        ov25_02255C5C(param0->unk_10, 4, 4);
-        ov25_02255C5C(param0->unk_10, 6, 4);
-        ov25_02255C5C(param0->unk_10, 7, 4);
-        ov25_02255C5C(param0->unk_10, 9, 4);
-        ov25_02255C5C(param0->unk_10, 8, 4);
-        ov25_02255C5C(param0->unk_10, 10, 4);
+        PoketchButtonManager_SetRepeatTime(param0->unk_10, 3, 4);
+        PoketchButtonManager_SetRepeatTime(param0->unk_10, 5, 4);
+        PoketchButtonManager_SetRepeatTime(param0->unk_10, 4, 4);
+        PoketchButtonManager_SetRepeatTime(param0->unk_10, 6, 4);
+        PoketchButtonManager_SetRepeatTime(param0->unk_10, 7, 4);
+        PoketchButtonManager_SetRepeatTime(param0->unk_10, 9, 4);
+        PoketchButtonManager_SetRepeatTime(param0->unk_10, 8, 4);
+        PoketchButtonManager_SetRepeatTime(param0->unk_10, 10, 4);
 
         param0->unk_0C = param1;
         return 1;
@@ -219,7 +218,7 @@ static BOOL ov46_02256310 (UnkStruct_ov46_0225621C * param0, PoketchSystem * par
 static void ov46_022563B8 (UnkStruct_ov46_0225621C * param0)
 {
     ov46_02256270(param0, &param0->unk_48);
-    ov25_02255B34(param0->unk_10);
+    PoketchButtonManager_Free(param0->unk_10);
     ov46_02256C0C(param0->unk_08);
 
     Heap_FreeToHeap(param0);

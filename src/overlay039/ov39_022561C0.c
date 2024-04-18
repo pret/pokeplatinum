@@ -5,15 +5,14 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
 #include "overlay025/poketch_system.h"
-#include "overlay025/struct_ov25_02255B34_decl.h"
+#include "overlay025/poketch_button.h"
 #include "overlay039/struct_ov39_022563DC_decl.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "overlay039/struct_ov39_022563DC_1.h"
 
 #include "unk_0200D9E8.h"
 #include "heap.h"
-#include "overlay025/ov25_02255ACC.h"
 #include "overlay039/ov39_022563DC.h"
 
 typedef struct {
@@ -23,7 +22,7 @@ typedef struct {
     UnkStruct_ov39_022563DC_1 unk_04;
     UnkStruct_ov39_022563DC * unk_24;
     PoketchSystem * unk_28;
-    UnkStruct_ov25_02255B34 * unk_2C;
+    PoketchButtonManager * unk_2C;
     u32 unk_30;
     u32 unk_34;
 } UnkStruct_ov39_0225621C;
@@ -67,7 +66,7 @@ static BOOL ov39_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2,
 static BOOL ov39_0225621C (UnkStruct_ov39_0225621C * param0, PoketchSystem * param1, BGL * param2, u32 param3)
 {
     if (ov39_022563DC(&(param0->unk_24), &(param0->unk_04), param2)) {
-        static const UnkUnion_020225E0 v0[] = {
+        static const TouchScreenHitTable v0[] = {
             {16, 64, 16, 64},
             {16, 64, 160, 208},
             {72, 120, 16, 64},
@@ -81,7 +80,7 @@ static BOOL ov39_0225621C (UnkStruct_ov39_0225621C * param0, PoketchSystem * par
         param0->unk_01 = 0;
         param0->unk_02 = 0;
         param0->unk_28 = param1;
-        param0->unk_2C = ov25_02255ACC(v0, NELEMS(v0), ov39_02256284, param0, 8);
+        param0->unk_2C = PoketchButtonManager_New(v0, NELEMS(v0), ov39_02256284, param0, 8);
         param0->unk_30 = 0;
 
         for (v1 = 0; v1 < 6; v1++) {
@@ -97,7 +96,7 @@ static BOOL ov39_0225621C (UnkStruct_ov39_0225621C * param0, PoketchSystem * par
 static void ov39_02256268 (UnkStruct_ov39_0225621C * param0)
 {
     if (param0->unk_2C) {
-        ov25_02255B34(param0->unk_2C);
+        PoketchButtonManager_Free(param0->unk_2C);
     }
 
     ov39_0225640C(param0->unk_24);

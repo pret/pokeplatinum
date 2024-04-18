@@ -19,7 +19,7 @@
 #include "struct_defs/struct_020127E8.h"
 #include "functypes/sys_task_func.h"
 #include "struct_defs/sprite_manager_allocation.h"
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02095C48.h"
 #include "overlay017/struct_ov17_0223F88C.h"
@@ -41,7 +41,6 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
-#include "unk_02022594.h"
 #include "strbuf.h"
 #include "pokemon.h"
 #include "move_table.h"
@@ -173,7 +172,7 @@ typedef struct {
         };
         u16 unk_0C_val2[4];
     };
-    const UnkUnion_02022594 * unk_14;
+    const TouchScreenRect * unk_14;
     const int * unk_18;
     const u8 * unk_1C;
     int (* unk_20)(UnkStruct_ov17_0223F7E4 * param0, int param1);
@@ -364,7 +363,7 @@ static const UnkStruct_ov97_0222DB78 Unk_ov17_02253448[] = {
     {0x0, 0x0, 0x800, 0x0, 0x1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0x7800, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01, 0x0, 0x0, 0x0, 0x0}
 };
 
-static const UnkUnion_02022594 Unk_ov17_022532D0[] = {
+static const TouchScreenRect Unk_ov17_022532D0[] = {
     {0x8, 0x60, 0x8, 0x78},
     {0x8, 0x60, 0x88, 0xF8},
     {0x68, 0xC0, 0x8, 0x78},
@@ -391,7 +390,7 @@ __attribute__((aligned(4))) static const u8 Unk_ov17_0225323C[2][2] = {
     {0x2, 0x3}
 };
 
-static const UnkUnion_02022594 Unk_ov17_022532A8[] = {
+static const TouchScreenRect Unk_ov17_022532A8[] = {
     {0x8, 0x80, 0x0, 0x50},
     {0x8, 0x80, 0x58, 0xA8},
     {0x8, 0x80, 0xB0, 0xFF},
@@ -1588,7 +1587,7 @@ static int ov17_02240D04 (UnkStruct_ov17_0223F7E4 * param0, int param1)
             v3 = Unk_ov17_0225323C[v0->unk_01][v0->unk_02];
         }
 
-        ov17_02252C78(param0->unk_2FC, v2->unk_14[v3].val1.unk_02 + 8, v2->unk_14[v3].val1.unk_03 - 8, v2->unk_14[v3].val1.unk_00 + 8, v2->unk_14[v3].val1.unk_01 - 8, (((192 + 80) << FX32_SHIFT)));
+        ov17_02252C78(param0->unk_2FC, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, (((192 + 80) << FX32_SHIFT)));
         return 0xffffffff;
     }
 
@@ -1602,7 +1601,7 @@ static int ov17_02240D04 (UnkStruct_ov17_0223F7E4 * param0, int param1)
     case PAD_KEY_LEFT:
     case PAD_KEY_RIGHT:
         v3 = Unk_ov17_0225323C[v0->unk_01][v0->unk_02];
-        ov17_02252C78(param0->unk_2FC, v2->unk_14[v3].val1.unk_02 + 8, v2->unk_14[v3].val1.unk_03 - 8, v2->unk_14[v3].val1.unk_00 + 8, v2->unk_14[v3].val1.unk_01 - 8, (((192 + 80) << FX32_SHIFT)));
+        ov17_02252C78(param0->unk_2FC, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, (((192 + 80) << FX32_SHIFT)));
         break;
     case PAD_BUTTON_A:
         return Unk_ov17_0225323C[v0->unk_01][v0->unk_02];
@@ -1648,7 +1647,7 @@ static int ov17_02240EA4 (UnkStruct_ov17_0223F7E4 * param0, int param1)
         v0->unk_02 = v6->unk_02;
         v0->unk_01 = v6->unk_03;
         v3 = Unk_ov17_02253240[v0->unk_01][v0->unk_02];
-        ov17_02252C78(param0->unk_2FC, v2->unk_14[v3].val1.unk_02 + 8, v2->unk_14[v3].val1.unk_03 - 8, v2->unk_14[v3].val1.unk_00 + 8, v2->unk_14[v3].val1.unk_01 - 8, (((192 + 80) << FX32_SHIFT)));
+        ov17_02252C78(param0->unk_2FC, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, (((192 + 80) << FX32_SHIFT)));
         return 0xffffffff;
     }
 
@@ -1661,7 +1660,7 @@ static int ov17_02240EA4 (UnkStruct_ov17_0223F7E4 * param0, int param1)
     case PAD_KEY_LEFT:
     case PAD_KEY_RIGHT:
         v3 = Unk_ov17_02253240[v0->unk_01][v0->unk_02];
-        ov17_02252C78(param0->unk_2FC, v2->unk_14[v3].val1.unk_02 + 8, v2->unk_14[v3].val1.unk_03 - 8, v2->unk_14[v3].val1.unk_00 + 8, v2->unk_14[v3].val1.unk_01 - 8, (((192 + 80) << FX32_SHIFT)));
+        ov17_02252C78(param0->unk_2FC, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, (((192 + 80) << FX32_SHIFT)));
         break;
     case PAD_BUTTON_A:
         return Unk_ov17_02253240[v0->unk_01][v0->unk_02];

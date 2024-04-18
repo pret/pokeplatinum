@@ -7,7 +7,6 @@
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
-#include "struct_decls/struct_0203E724_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
@@ -20,7 +19,6 @@
 #include "struct_defs/struct_0202E81C.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
-#include "struct_defs/struct_0203E724_t.h"
 
 #include "message.h"
 #include "string_template.h"
@@ -29,7 +27,7 @@
 #include "unk_020298BC.h"
 #include "unk_0202CD50.h"
 #include "unk_0202E2CC.h"
-#include "unk_0203E724.h"
+#include "field_script_context.h"
 #include "unk_0203E880.h"
 #include "unk_02048DD8.h"
 #include "unk_02054884.h"
@@ -55,64 +53,64 @@ typedef struct {
 static int sub_020491D0(int param0, FieldSystem * param1, StringTemplate * param2);
 static void sub_020491B8(FieldSystem * param0, int param1, u16 param2, u16 param3);
 static BOOL sub_020491F4(FieldSystem * param0, int param1);
-BOOL sub_020493C8(UnkStruct_0203E724 * param0);
-BOOL sub_020493F4(UnkStruct_0203E724 * param0);
+BOOL sub_020493C8(ScriptContext * param0);
+BOOL sub_020493F4(ScriptContext * param0);
 
-BOOL sub_02048DD8 (UnkStruct_0203E724 * param0)
+BOOL sub_02048DD8 (ScriptContext * param0)
 {
-    switch (sub_0203E838(param0)) {
+    switch (ScriptContext_ReadHalfWord(param0)) {
     case 0:
     {
-        u16 * v0 = inline_0204FCAC(param0);
+        u16 * v0 = ScriptContext_GetVarPointer(param0);
 
-        *v0 = ov6_0224660C(param0->unk_34);
+        *v0 = ov6_0224660C(param0->fieldSys);
     }
     break;
     case 1:
     {
-        u16 v1 = sub_0203E838(param0);
-        u16 * v2 = inline_0204FCAC(param0);
-        u16 * v3 = inline_0204FCAC(param0);
+        u16 v1 = ScriptContext_ReadHalfWord(param0);
+        u16 * v2 = ScriptContext_GetVarPointer(param0);
+        u16 * v3 = ScriptContext_GetVarPointer(param0);
 
         *v2 = 622;
-        *v3 = ov6_02246978(param0->unk_34, v1);
+        *v3 = ov6_02246978(param0->fieldSys, v1);
     }
     break;
     case 3:
     {
-        StringTemplate ** v4 = sub_0203F098(param0->unk_34, 15);
-        u16 v5 = inline_02049538(param0);
-        u16 * v6 = inline_0204FCAC(param0);
-        u16 * v7 = inline_0204FCAC(param0);
+        StringTemplate ** v4 = sub_0203F098(param0->fieldSys, 15);
+        u16 v5 = ScriptContext_GetVar(param0);
+        u16 * v6 = ScriptContext_GetVarPointer(param0);
+        u16 * v7 = ScriptContext_GetVarPointer(param0);
 
-        ov6_022469E0(param0->unk_34, *v4, v5, v6, v7);
+        ov6_022469E0(param0->fieldSys, *v4, v5, v6, v7);
     }
     break;
     case 2:
-        ov6_022465FC(param0->unk_34);
+        ov6_022465FC(param0->fieldSys);
         break;
     case 4:
     {
-        u16 * v8 = inline_0204FCAC(param0);
-        u16 * v9 = inline_0204FCAC(param0);
+        u16 * v8 = ScriptContext_GetVarPointer(param0);
+        u16 * v9 = ScriptContext_GetVarPointer(param0);
 
         *v8 = 623;
-        *v9 = ov6_02246B40(param0->unk_34);
+        *v9 = ov6_02246B40(param0->fieldSys);
     }
     break;
     case 5:
     {
-        u16 v10 = inline_02049538(param0);
-        u16 v11 = inline_02049538(param0);
-        u16 * v12 = inline_0204FCAC(param0);
+        u16 v10 = ScriptContext_GetVar(param0);
+        u16 v11 = ScriptContext_GetVar(param0);
+        u16 * v12 = ScriptContext_GetVarPointer(param0);
 
-        *v12 = ov6_022468B0(param0->unk_34, v10, v11);
+        *v12 = ov6_022468B0(param0->fieldSys, v10, v11);
     }
     break;
     case 6:
     {
-        u16 * v13 = inline_0204FCAC(param0);
-        *v13 = ov6_02246920(param0->unk_34);
+        u16 * v13 = ScriptContext_GetVarPointer(param0);
+        *v13 = ov6_02246920(param0->fieldSys);
     }
     break;
     }
@@ -120,74 +118,74 @@ BOOL sub_02048DD8 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL sub_02048F74 (UnkStruct_0203E724 * param0)
+BOOL sub_02048F74 (ScriptContext * param0)
 {
-    sub_0206D4AC(param0->unk_34, inline_02049538(param0));
+    sub_0206D4AC(param0->fieldSys, ScriptContext_GetVar(param0));
     return 0;
 }
 
-BOOL sub_02048F98 (UnkStruct_0203E724 * param0)
+BOOL sub_02048F98 (ScriptContext * param0)
 {
-    Party * v0 = Party_GetFromSavedata(param0->unk_34->saveData);
-    Pokemon * v1 = Party_GetPokemonBySlotIndex(v0, inline_02049538(param0));
+    Party * v0 = Party_GetFromSavedata(param0->fieldSys->saveData);
+    Pokemon * v1 = Party_GetPokemonBySlotIndex(v0, ScriptContext_GetVar(param0));
 
-    sub_0206D60C(param0->unk_34, v1);
+    sub_0206D60C(param0->fieldSys, v1);
     return 0;
 }
 
-BOOL sub_02048FD0 (UnkStruct_0203E724 * param0)
+BOOL sub_02048FD0 (ScriptContext * param0)
 {
-    sub_0206D7C4(param0->unk_34);
+    sub_0206D7C4(param0->fieldSys);
     return 0;
 }
 
-BOOL sub_02048FE0 (UnkStruct_0203E724 * param0)
+BOOL sub_02048FE0 (ScriptContext * param0)
 {
-    sub_0206DB20(param0->unk_34);
+    sub_0206DB20(param0->fieldSys);
     return 0;
 }
 
-BOOL sub_02048FF0 (UnkStruct_0203E724 * param0)
+BOOL sub_02048FF0 (ScriptContext * param0)
 {
-    u16 v0 = inline_02049538(param0);
+    u16 v0 = ScriptContext_GetVar(param0);
 
-    sub_0206DB5C(param0->unk_34, v0);
+    sub_0206DB5C(param0->fieldSys, v0);
     return 0;
 }
 
 static const UnkStruct_020EBB48 Unk_020EBB48[19];
 
-BOOL sub_02049018 (UnkStruct_0203E724 * param0)
+BOOL sub_02049018 (ScriptContext * param0)
 {
     StringTemplate ** v0;
 
-    v0 = sub_0203F098(param0->unk_34, 15);
+    v0 = sub_0203F098(param0->fieldSys, 15);
 
-    switch (sub_0203E838(param0)) {
+    switch (ScriptContext_ReadHalfWord(param0)) {
     case 0:
     {
         int v1;
         u16 * v2;
         u16 * v3;
 
-        v1 = inline_02049538(param0);
-        v2 = inline_0204FCAC(param0);
-        v3 = inline_0204FCAC(param0);
+        v1 = ScriptContext_GetVar(param0);
+        v2 = ScriptContext_GetVarPointer(param0);
+        v3 = ScriptContext_GetVarPointer(param0);
         *v2 = 621;
-        *v3 = sub_020491D0(v1, param0->unk_34, *v0);
+        *v3 = sub_020491D0(v1, param0->fieldSys, *v0);
     }
     break;
     case 1:
     {
         u16 v4;
         u16 v5, v6;
-        UnkStruct_0202CD88 * v7 = sub_0202CD88(param0->unk_34->saveData);
+        UnkStruct_0202CD88 * v7 = sub_0202CD88(param0->fieldSys->saveData);
 
-        v4 = inline_02049538(param0);
-        v5 = inline_02049538(param0);
-        v6 = inline_02049538(param0);
+        v4 = ScriptContext_GetVar(param0);
+        v5 = ScriptContext_GetVar(param0);
+        v6 = ScriptContext_GetVar(param0);
 
-        sub_020491B8(param0->unk_34, v4, v5, v6);
+        sub_020491B8(param0->fieldSys, v4, v5, v6);
         sub_0202CFEC(v7, 3);
     }
     break;
@@ -196,36 +194,36 @@ BOOL sub_02049018 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL sub_020490F0 (UnkStruct_0203E724 * param0)
+BOOL sub_020490F0 (ScriptContext * param0)
 {
     u16 v0;
     u16 * v1;
 
-    v0 = inline_02049538(param0);
-    v1 = inline_0204FCAC(param0);
-    *v1 = sub_020491F4(param0->unk_34, v0);
+    v0 = ScriptContext_GetVar(param0);
+    v1 = ScriptContext_GetVarPointer(param0);
+    *v1 = sub_020491F4(param0->fieldSys, v0);
 
     return 0;
 }
 
-BOOL sub_0204912C (UnkStruct_0203E724 * param0)
+BOOL sub_0204912C (ScriptContext * param0)
 {
-    TVBroadcast * v0 = SaveData_TVBroadcast(param0->unk_34->saveData);
+    TVBroadcast * v0 = SaveData_TVBroadcast(param0->fieldSys->saveData);
 
-    switch (sub_0203E838(param0)) {
+    switch (ScriptContext_ReadHalfWord(param0)) {
     case 0:
     {
-        Party * v1 = Party_GetFromSavedata(param0->unk_34->saveData);
-        Pokemon * v2 = Party_GetPokemonBySlotIndex(v1, inline_02049538(param0));
+        Party * v1 = Party_GetFromSavedata(param0->fieldSys->saveData);
+        Pokemon * v2 = Party_GetPokemonBySlotIndex(v1, ScriptContext_GetVar(param0));
 
         sub_0206CF48(v0, v2, 4);
     }
     break;
     case 1:
-        sub_0206CFB4(v0, inline_02049538(param0));
+        sub_0206CFB4(v0, ScriptContext_GetVar(param0));
         break;
     case 2:
-        sub_0206CF9C(v0, inline_02049538(param0));
+        sub_0206CF9C(v0, ScriptContext_GetVar(param0));
         break;
     }
 
@@ -402,29 +400,29 @@ static const UnkStruct_020EBB48 Unk_020EBB48[19] = {
     {sub_0206E768, sub_02049308, sub_020493B8, 0x15}
 };
 
-BOOL sub_020493C8 (UnkStruct_0203E724 * param0)
+BOOL sub_020493C8 (ScriptContext * param0)
 {
     TVBroadcast * v0;
     UnkStruct_0202E808 * v1;
-    u16 * v2 = inline_0204FCAC(param0);
+    u16 * v2 = ScriptContext_GetVarPointer(param0);
 
-    v0 = SaveData_TVBroadcast(param0->unk_34->saveData);
+    v0 = SaveData_TVBroadcast(param0->fieldSys->saveData);
     v1 = sub_0202E808(v0);
     *v2 = v1->unk_07;
 
     return 0;
 }
 
-BOOL sub_020493F4 (UnkStruct_0203E724 * param0)
+BOOL sub_020493F4 (ScriptContext * param0)
 {
     TVBroadcast * v0;
     UnkStruct_0202E81C * v1;
-    u16 * v2 = inline_0204FCAC(param0);
-    u16 * v3 = inline_0204FCAC(param0);
-    u16 * v4 = inline_0204FCAC(param0);
-    u16 * v5 = inline_0204FCAC(param0);
+    u16 * v2 = ScriptContext_GetVarPointer(param0);
+    u16 * v3 = ScriptContext_GetVarPointer(param0);
+    u16 * v4 = ScriptContext_GetVarPointer(param0);
+    u16 * v5 = ScriptContext_GetVarPointer(param0);
 
-    v0 = SaveData_TVBroadcast(param0->unk_34->saveData);
+    v0 = SaveData_TVBroadcast(param0->fieldSys->saveData);
     v1 = sub_0202E81C(v0);
 
     switch (v1->unk_01) {

@@ -3,7 +3,7 @@
     .data
 
     .byte 2
-    MoveAction_007 0
+    .short 7, 0
     .byte 0
 
     .balign 4, 0

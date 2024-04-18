@@ -9,6 +9,7 @@
 #include "constants/battle.h"
 #include "constants/heap.h"
 #include "constants/items.h"
+#include "constants/game_options.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
@@ -36,7 +37,6 @@
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0201D738.h"
-#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "pokemon.h"
 #include "struct_defs/trainer_data.h"
@@ -62,7 +62,7 @@
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202CD50.h"
 #include "unk_0202F1D4.h"
 #include "poketch_data.h"
@@ -1028,12 +1028,12 @@ BOOL BattleSystem_AnimationsOn(BattleSystem *battleSys)
         return TRUE;
     }
 
-    return GameConfig_BattleAnimations(battleSys->unk_1B0) == 0;
+    return Options_BattleScene(battleSys->unk_1B0) == OPTIONS_BATTLE_SCENE_ON;
 }
 
 int ov16_0223EDE0 (BattleSystem * param0)
 {
-    return sub_02027B50(param0->unk_1B0);
+    return Options_Frame(param0->unk_1B0);
 }
 
 u8 BattleSystem_TextSpeed (BattleSystem * param0)
@@ -1042,12 +1042,12 @@ u8 BattleSystem_TextSpeed (BattleSystem * param0)
         return 1;
     }
 
-    return sub_02027AC0(param0->unk_1B0);
+    return Options_TextFrameDelay(param0->unk_1B0);
 }
 
 int BattleSystem_Ruleset (BattleSystem * param0)
 {
-    return sub_02027B14(param0->unk_1B0);
+    return Options_BattleStyle(param0->unk_1B0);
 }
 
 PokemonAnimationSys * ov16_0223EE28 (BattleSystem * param0)

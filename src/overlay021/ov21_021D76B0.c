@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay021/struct_ov21_021D13FC.h"
@@ -59,7 +59,7 @@ typedef struct {
 typedef struct {
     UnkStruct_02023FCC * unk_00;
     void * unk_04;
-    UnkUnion_020225E0 * unk_08;
+    TouchScreenHitTable * unk_08;
     int unk_0C;
     int unk_10;
     int unk_14;
@@ -392,7 +392,7 @@ static void ov21_021D7A64 (UnkStruct_ov21_021D7A64 * param0, UnkStruct_ov21_021D
 {
     UnkStruct_ov21_021D7B8C * v0;
 
-    param0->unk_08 = Heap_AllocFromHeap(param2, sizeof(UnkUnion_020225E0) * 7);
+    param0->unk_08 = Heap_AllocFromHeap(param2, sizeof(TouchScreenHitTable) * 7);
 
     ov21_021D154C(&param0->unk_08[0], 40 - (48 / 2), 40 + (48 / 2), 48 - (96 / 2), 48 + (96 / 2));
     ov21_021D154C(&param0->unk_08[1], 88 - (48 / 2), 88 + (48 / 2), 48 - (96 / 2), 48 + (96 / 2));
@@ -400,10 +400,10 @@ static void ov21_021D7A64 (UnkStruct_ov21_021D7A64 * param0, UnkStruct_ov21_021D
     ov21_021D154C(&param0->unk_08[3], 64 - (16 / 2), 64 + (16 / 2), 124 - (16 / 2), 124 + (16 / 2));
     ov21_021D154C(&param0->unk_08[4], 146 - (16 / 2), 146 + (16 / 2), 124 - (16 / 2), 124 + (16 / 2));
 
-    param0->unk_08[5].val2.unk_00 = 0xfe;
-    param0->unk_08[5].val2.unk_01 = (128 + 120);
-    param0->unk_08[5].val2.unk_02 = (104 + -0);
-    param0->unk_08[5].val2.unk_03 = 104;
+    param0->unk_08[5].circle.code = TOUCHSCREEN_USE_CIRCLE;
+    param0->unk_08[5].circle.x = (128 + 120);
+    param0->unk_08[5].circle.y = (104 + -0);
+    param0->unk_08[5].circle.r = 104;
 
     ov21_021D154C(&param0->unk_08[6], (8 - 8), (8 - 8) + 16, (124 - 8), (124 - 8) + 64);
 

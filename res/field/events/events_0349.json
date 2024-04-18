@@ -29,7 +29,7 @@
                 4
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 534,
             "z": 522,
             "y": 0
@@ -45,7 +45,7 @@
                 2
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 547,
             "z": 534,
             "y": 0
@@ -61,7 +61,7 @@
                 1
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 564,
             "z": 531,
             "y": 0
@@ -77,7 +77,7 @@
                 1
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 525,
             "z": 534,
             "y": 0
@@ -93,7 +93,7 @@
                 1
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 499,
             "z": 521,
             "y": 0
@@ -109,7 +109,7 @@
                 3
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 560,
             "z": 522,
             "y": 0
@@ -125,7 +125,7 @@
                 2
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 511,
             "z": 533,
             "y": 0
@@ -139,7 +139,7 @@
             "initial_dir": 1,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 537,
             "z": 528,
             "y": 8
@@ -155,7 +155,7 @@
                 2
             ],
             "movement_range_x": 3,
-            "movement_range_y": 1,
+            "movement_range_z": 1,
             "x": 537,
             "z": 529,
             "y": 8
@@ -171,7 +171,7 @@
                 3
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 494,
             "z": 528,
             "y": 0
@@ -188,7 +188,7 @@
                 2
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 518,
             "z": 540,
             "y": 0
@@ -204,7 +204,7 @@
                 2
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 488,
             "z": 529,
             "y": 0
@@ -218,7 +218,7 @@
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 562,
             "z": 516,
             "y": 0
@@ -232,7 +232,7 @@
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 497,
             "z": 540,
             "y": 0
@@ -246,7 +246,7 @@
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 559,
             "z": 531,
             "y": 0
@@ -260,7 +260,7 @@
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 527,
             "z": 535,
             "y": 0
@@ -274,7 +274,7 @@
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 497,
             "z": 533,
             "y": 0
@@ -288,7 +288,7 @@
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 493,
             "z": 540,
             "y": 0
@@ -304,7 +304,7 @@
                 42
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 492,
             "z": 520,
             "y": 0
@@ -320,7 +320,7 @@
                 43
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 493,
             "z": 520,
             "y": 0
@@ -336,7 +336,7 @@
                 44
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 494,
             "z": 520,
             "y": 0
@@ -352,7 +352,7 @@
                 45
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 495,
             "z": 520,
             "y": 0
@@ -366,7 +366,7 @@
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 498,
             "z": 541,
             "y": 0
@@ -380,7 +380,7 @@
             "initial_dir": 2,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 570,
             "z": 535,
             "y": 0
@@ -394,7 +394,7 @@
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 562,
             "z": 526,
             "y": 0
@@ -408,7 +408,7 @@
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 551,
             "z": 536,
             "y": 0

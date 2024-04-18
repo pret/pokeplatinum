@@ -41,7 +41,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_020393C8.h"
 #include "unk_020507CC.h"
 #include "unk_0206A8DC.h"
@@ -934,7 +934,7 @@ static int sub_0208CF78 (PokemonSummaryApp * param0)
         }
 
         sub_02002E98(0, 14 * 32, 19);
-        sub_0200DD0C(param0->bgl, 1, (1024 - (18 + 12)), 13, sub_02027B50(param0->data->options), 19);
+        sub_0200DD0C(param0->bgl, 1, (1024 - (18 + 12)), 13, Options_Frame(param0->data->options), 19);
 
         if (param0->subscreen == 0) {
             sub_02091610(param0, 0xfe);
@@ -2174,7 +2174,7 @@ static int sub_0208E958 (PokemonSummaryApp * param0)
 {
     if (param0->monData.sheen == 255) {
         sub_02002E98(0, 14 * 32, 19);
-        sub_0200DD0C(param0->bgl, 1, (1024 - (18 + 12)), 13, sub_02027B50(param0->data->options), 19);
+        sub_0200DD0C(param0->bgl, 1, (1024 - (18 + 12)), 13, Options_Frame(param0->data->options), 19);
         sub_02091610(param0, 0xff);
         param0->data->returnMode = 1;
 

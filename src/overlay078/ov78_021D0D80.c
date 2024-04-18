@@ -69,7 +69,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "pokemon.h"
 #include "overlay078/ov78_021D0D80.h"
 
@@ -293,8 +293,8 @@ int ov78_021D0D80 (OverlayManager * param0, int * param1)
     Heap_FndInitAllocatorForExpHeap(&v0->unk_2B4, 47, 32);
 
     v1 = OverlayManager_Args(param0);
-    v0->unk_700 = sub_02027B50(v1->unk_04);
-    v0->unk_704 = sub_02027AC0(v1->unk_04);
+    v0->unk_700 = Options_Frame(v1->unk_04);
+    v0->unk_704 = Options_TextFrameDelay(v1->unk_04);
 
     sub_0201DBEC(8, 47);
     SetMainCallback(ov78_021D1058, v0);

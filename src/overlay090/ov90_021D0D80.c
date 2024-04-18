@@ -16,7 +16,7 @@
 #include "struct_decls/struct_0203068C_decl.h"
 
 #include "struct_defs/sentence.h"
-#include "struct_defs/options.h"
+#include "game_options.h"
 #include "struct_defs/struct_02049A68.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"

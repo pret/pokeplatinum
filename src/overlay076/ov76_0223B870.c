@@ -15,7 +15,7 @@
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
@@ -100,16 +100,16 @@ void ov76_0223D16C(UnkStruct_ov76_0223DE00 * param0);
 void ov76_0223D318(UnkStruct_ov76_0223DE00 * param0);
 void ov76_0223D31C(UnkStruct_ov76_0223DE00 * param0);
 
-static void ov76_0223B870 (UnkUnion_02022594 * param0, CellActorData * param1, int param2, int param3)
+static void ov76_0223B870 (TouchScreenRect *rect, CellActorData * param1, int param2, int param3)
 {
     s16 v0, v1;
 
     SpriteActor_GetSpritePositionXY(param1, &v0, &v1);
 
-    param0->val1.unk_00 = v1 - param3;
-    param0->val1.unk_01 = v1 + param3;
-    param0->val1.unk_02 = v0 - param2;
-    param0->val1.unk_03 = v0 + param2;
+    rect->rect.top = v1 - param3;
+    rect->rect.bottom = v1 + param3;
+    rect->rect.left = v0 - param2;
+    rect->rect.right = v0 + param2;
 }
 
 void ov76_0223B8A8 (UnkStruct_ov76_0223DE00 * param0)

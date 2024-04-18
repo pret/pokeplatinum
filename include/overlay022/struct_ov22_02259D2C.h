@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV22_02259D2C_H
 
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "overlay022/struct_ov22_02259C58.h"
 #include "overlay022/struct_ov22_0225A154.h"
@@ -13,7 +13,7 @@ typedef struct {
     BOOL unk_60;
     UnkStruct_02012744 * unk_64;
     UnkStruct_02023FCC * unk_68;
-    UnkUnion_020225E0 unk_6C[5];
+    TouchScreenHitTable unk_6C[5];
 } UnkStruct_ov22_02259D2C;
 
 #endif // POKEPLATINUM_STRUCT_OV22_02259D2C_H

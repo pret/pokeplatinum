@@ -42,7 +42,7 @@
 #include "strbuf.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202854C.h"
 #include "unk_0202B604.h"
 #include "unk_0202C9F4.h"
@@ -503,7 +503,7 @@ static void ov7_0224D474 (UnkStruct_ov7_0224D008 * param0)
     }
 
     sub_0200DAA4(param0->unk_00, 3, (1 + (18 + 12)), 11, 0, 11);
-    sub_0200DD0C(param0->unk_00, 3, 1, 10, sub_02027B50(param0->unk_278), 11);
+    sub_0200DD0C(param0->unk_00, 3, 1, 10, Options_Frame(param0->unk_278), 11);
     NARC_dtor(v0);
 }
 

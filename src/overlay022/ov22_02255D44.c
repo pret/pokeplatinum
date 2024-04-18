@@ -14,7 +14,6 @@
 
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/options.h"
 #include "struct_defs/struct_0203DA00.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02093BBC.h"
@@ -62,7 +61,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_020298BC.h"
 #include "unk_0202CD50.h"
 #include "unk_020363E8.h"
@@ -1342,7 +1341,7 @@ static void ov22_022572A0 (UnkStruct_ov22_02255D44 * param0, u32 param1, u8 para
 {
     MessageLoader * v0;
     Strbuf* v1;
-    int v2 = sub_02027B50(param0->unk_738);
+    int v2 = Options_Frame(param0->unk_738);
 
     sub_02002E98(0, 7 * 32, 14);
     BGL_AddWindow(param0->unk_00.unk_40, param0->unk_718, 3, param2, param3, param4, param5, 7, (0 + (29 * 4) + (18 + 12)));
@@ -1397,7 +1396,7 @@ static u32 ov22_022573EC (UnkStruct_ov22_02255D44 * param0, u32 param1)
     StringTemplate_Format(param0->unk_744, param0->unk_740, v3);
 
     if (param0->unk_734->unk_16 == 0) {
-        v2 = sub_02027AC0(param0->unk_738);
+        v2 = Options_TextFrameDelay(param0->unk_738);
     } else {
         v2 = 1;
     }

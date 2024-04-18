@@ -23,7 +23,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "pokemon.h"
 #include "party.h"
 #include "unk_0207E0B8.h"
@@ -620,7 +620,7 @@ void sub_0208274C (GameWindowLayout * param0)
     sub_02002AC8(1);
     sub_02002AE4(0);
     param0->unk_B10 = PrintStringSimple(
-        &param0->unk_04[34], 1, param0->unk_6A4, 0, 0, sub_02027AC0(param0->unk_5A4->unk_0C), sub_0208279C);
+        &param0->unk_04[34], 1, param0->unk_6A4, 0, 0, Options_TextFrameDelay(param0->unk_5A4->unk_0C), sub_0208279C);
 }
 
 static BOOL sub_0208279C (UnkStruct_0201D738 * param0, u16 param1)

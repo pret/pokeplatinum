@@ -15,8 +15,7 @@
 #include "overlay072/struct_ov72_0223DB98_decl.h"
 
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/union_02022594_020225E0.h"
-#include "struct_defs/options.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay022/struct_ov22_022559F8.h"
@@ -56,10 +55,9 @@
 #include "unk_0201F834.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02022594.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202C7FC.h"
 #include "unk_0202CD50.h"
 #include "overlay072/ov72_0223D7A0.h"
@@ -460,7 +458,7 @@ static void ov72_0223DCA8 (UnkStruct_ov72_0223DB98 * param0, NARC * param1)
     sub_0200710C(param1, 5, v0, 2, 0, 32 * 24 * 2, 1, 39);
     sub_020070E8(param1, 4, v0, 5, 0, 32 * 8 * 0x20, 1, 39);
     sub_0200710C(param1, 6, v0, 5, 0, 32 * 24 * 2, 1, 39);
-    sub_0200DD0C(v0, 0, 1, 10, sub_02027B50(param0->unk_0C), 39);
+    sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_0C), 39);
     sub_0200DAA4(v0, 0, 1 + (18 + 12), 11, 0, 39);
 }
 
@@ -642,14 +640,14 @@ static void inline_ov72_0223E2A4 (UnkStruct_ov72_0223DB98 * param0, int param1)
     VecFx32 v0;
 }
 
-static const UnkUnion_02022594 Unk_ov72_0223EB4A[] = {
+static const TouchScreenRect Unk_ov72_0223EB4A[] = {
     {0x96, 0xBD, 0xC0, 0xFF},
     {0xFF, 0x0, 0x0, 0x0},
     {0x96, 0xBD, 0x0, 0x5F},
     {0x96, 0xBD, 0x60, 0xBF}
 };
 
-static const UnkUnion_02022594 Unk_ov72_0223EB42[] = {
+static const TouchScreenRect Unk_ov72_0223EB42[] = {
     {0x48, 0x88, 0x20, 0xE0},
     {0xFF, 0x0, 0x0, 0x0}
 };
@@ -1108,7 +1106,7 @@ static void ov72_0223E930 (UnkStruct_ov72_0223DB98 * param0, int param1)
     BGL_FillWindow(&param0->unk_338, 0xf0f);
     sub_0200E060(&param0->unk_338, 0, 1, 10);
 
-    param0->unk_38 = PrintStringSimple(&param0->unk_338, 1, param0->unk_34, 0, 0, sub_02027AC0(param0->unk_0C), NULL);
+    param0->unk_38 = PrintStringSimple(&param0->unk_338, 1, param0->unk_34, 0, 0, Options_TextFrameDelay(param0->unk_0C), NULL);
 }
 
 static int ov72_0223E99C (int param0)

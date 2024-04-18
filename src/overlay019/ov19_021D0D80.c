@@ -24,8 +24,8 @@
 #include "overlay084/const_ov84_02241130.h"
 #include "constdata/const_020F2DAC.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
-#include "struct_defs/options.h"
+
+#include "touch_screen.h"
 #include "struct_defs/struct_02042434.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/pokemon_summary.h"
@@ -53,7 +53,7 @@
 #include "savedata/save_table.h"
 #include "savedata.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202CC64.h"
 #include "unk_0202D778.h"
 #include "pokemon.h"
@@ -72,20 +72,20 @@
 
 FS_EXTERN_OVERLAY(overlay84);
 
-static const UnkUnion_020225E0 Unk_ov19_021DFDF6[] = {
+static const TouchScreenHitTable Unk_ov19_021DFDF6[] = {
     {0xFE, 0x0, 0xB8, 0x28},
     {0xFE, 0xFF, 0xB8, 0x28},
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-static const UnkUnion_020225E0 Unk_ov19_021DFE02[] = {
+static const TouchScreenHitTable Unk_ov19_021DFE02[] = {
     {0xFE, 0x0, 0xB8, 0x28},
     {0xFE, 0xFF, 0xB8, 0x28},
     {0xFE, 0x80, 0xB2, 0xC},
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-static const UnkUnion_020225E0 Unk_ov19_021DFE12[] = {
+static const TouchScreenHitTable Unk_ov19_021DFE12[] = {
     {0xFE, 0x98, 0xA8, 0x10},
     {0xFE, 0xA3, 0x86, 0x10},
     {0xFE, 0xB8, 0x68, 0x10},
@@ -4430,7 +4430,7 @@ const StringTemplate * ov19_021D5DF0 (const UnkStruct_ov19_021D5DF8 * param0)
 
 int ov19_021D5DF8 (const UnkStruct_ov19_021D5DF8 * param0)
 {
-    return sub_02027B50(param0->unk_1A4);
+    return Options_Frame(param0->unk_1A4);
 }
 
 u32 ov19_021D5E08 (const UnkStruct_ov19_021D4DF0 * param0)

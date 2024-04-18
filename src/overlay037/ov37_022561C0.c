@@ -5,15 +5,14 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
 #include "overlay025/poketch_system.h"
-#include "overlay025/struct_ov25_02255B34_decl.h"
+#include "overlay025/poketch_button.h"
 #include "overlay037/struct_ov37_022563D4_decl.h"
 
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "overlay037/struct_ov37_022563D4_1.h"
 
 #include "unk_0200D9E8.h"
 #include "heap.h"
-#include "overlay025/ov25_02255ACC.h"
 #include "overlay037/ov37_022563D4.h"
 
 typedef struct {
@@ -23,7 +22,7 @@ typedef struct {
     UnkStruct_ov37_022563D4_1 unk_04;
     UnkStruct_ov37_022563D4 * unk_08;
     PoketchSystem * unk_0C;
-    UnkStruct_ov25_02255B34 * unk_10;
+    PoketchButtonManager * unk_10;
     u32 unk_14;
     u32 unk_18;
 } UnkStruct_ov37_0225621C;
@@ -66,7 +65,7 @@ static BOOL ov37_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2,
 
 static BOOL ov37_0225621C (UnkStruct_ov37_0225621C * param0, PoketchSystem * param1, BGL * param2, u32 param3)
 {
-    static const UnkUnion_020225E0 v0[] = {
+    static const TouchScreenHitTable v0[] = {
         {72, 104, 92, 132},
         {104, 136, 92, 132},
     };
@@ -79,7 +78,7 @@ static BOOL ov37_0225621C (UnkStruct_ov37_0225621C * param0, PoketchSystem * par
         param0->unk_00 = 0;
         param0->unk_01 = 0;
         param0->unk_02 = 0;
-        param0->unk_10 = ov25_02255ACC(v0, NELEMS(v0), ov37_02256298, param0, 8);
+        param0->unk_10 = PoketchButtonManager_New(v0, NELEMS(v0), ov37_02256298, param0, 8);
         param0->unk_14 = 0;
         param0->unk_0C = param1;
 
@@ -91,7 +90,7 @@ static BOOL ov37_0225621C (UnkStruct_ov37_0225621C * param0, PoketchSystem * par
 
 static void ov37_02256280 (UnkStruct_ov37_0225621C * param0)
 {
-    ov25_02255B34(param0->unk_10);
+    PoketchButtonManager_Free(param0->unk_10);
     ov37_02256410(param0->unk_08);
     Heap_FreeToHeap(param0);
 }

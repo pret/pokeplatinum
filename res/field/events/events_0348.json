@@ -53,7 +53,7 @@
                 1
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 562,
             "z": 570,
             "y": 0
@@ -69,7 +69,7 @@
                 1
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 550,
             "z": 571,
             "y": 0
@@ -85,7 +85,7 @@
                 3
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 558,
             "z": 609,
             "y": 0
@@ -101,7 +101,7 @@
                 3
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 557,
             "z": 609,
             "y": 0
@@ -117,7 +117,7 @@
                 1
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 572,
             "z": 562,
             "y": 0
@@ -133,7 +133,7 @@
                 2
             ],
             "movement_range_x": 7,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 571,
             "z": 624,
             "y": 0
@@ -149,7 +149,7 @@
                 2
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 554,
             "z": 604,
             "y": 0
@@ -165,7 +165,7 @@
                 3
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 563,
             "z": 601,
             "y": 0
@@ -181,7 +181,7 @@
                 1
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 563,
             "z": 616,
             "y": 0
@@ -197,7 +197,7 @@
                 1
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 563,
             "z": 615,
             "y": 0
@@ -213,7 +213,7 @@
                 4
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 563,
             "z": 631,
             "y": 0
@@ -227,7 +227,7 @@
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 546,
             "z": 578,
             "y": 0
@@ -241,7 +241,7 @@
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 554,
             "z": 598,
             "y": 0
@@ -255,7 +255,7 @@
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 564,
             "z": 596,
             "y": 0
@@ -269,7 +269,7 @@
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 575,
             "z": 546,
             "y": 0
@@ -285,7 +285,7 @@
                 38
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 570,
             "z": 627,
             "y": 0
@@ -301,7 +301,7 @@
                 39
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 571,
             "z": 627,
             "y": 0
@@ -317,7 +317,7 @@
                 40
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 572,
             "z": 627,
             "y": 0
@@ -333,7 +333,7 @@
                 41
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 573,
             "z": 627,
             "y": 0
@@ -349,7 +349,7 @@
                 3
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 561,
             "z": 587,
             "y": 0
@@ -365,7 +365,7 @@
                 3
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 561,
             "z": 580,
             "y": 0
@@ -379,7 +379,7 @@
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 566,
             "z": 612,
             "y": 0
@@ -393,7 +393,7 @@
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 562,
             "z": 565,
             "y": 0
@@ -408,7 +408,7 @@
             "initial_dir": 0,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 556,
             "z": 645,
             "y": 0
@@ -424,7 +424,7 @@
                 3
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 555,
             "z": 627,
             "y": 0
@@ -441,7 +441,7 @@
                 6
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 580,
             "z": 596,
             "y": 0
@@ -457,7 +457,7 @@
                 3
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 560,
             "z": 587,
             "y": 0
@@ -473,7 +473,7 @@
                 3
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 561,
             "z": 585,
             "y": 0
@@ -489,7 +489,7 @@
                 3
             ],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 560,
             "z": 586,
             "y": 0
@@ -504,7 +504,7 @@
             "initial_dir": 2,
             "data": [],
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 570,
             "z": 535,
             "y": 0
@@ -520,7 +520,7 @@
                 2
             ],
             "movement_range_x": 7,
-            "movement_range_y": 0,
+            "movement_range_z": 0,
             "x": 571,
             "z": 624,
             "y": 0

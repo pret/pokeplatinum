@@ -19,7 +19,7 @@
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/sentence.h"
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 #include "struct_defs/struct_02030A80.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208B878.h"
@@ -53,7 +53,6 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_02022594.h"
 #include "strbuf.h"
 #include "savedata_misc.h"
 #include "unk_0202CD50.h"
@@ -2029,7 +2028,7 @@ int ov62_02232F68 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param1
 
     if (param0->unk_28->unk_28 != NULL) {
         for (v0 = 0; v0 < param0->unk_10; v0++) {
-            if (sub_02022760(&param0->unk_28->unk_28[v0])) {
+            if (TouchScreen_LocationPressed(&param0->unk_28->unk_28[v0])) {
                 ov62_02234520(param1);
                 v1 = param0->unk_28->unk_00[param0->unk_08 + v0].unk_04;
             }
@@ -2434,7 +2433,7 @@ void ov62_02233608 (UnkStruct_ov62_0223359C * param0, u32 param1)
     }
 }
 
-static const UnkUnion_020225E0 Unk_ov62_022488F0[] = {
+static const TouchScreenHitTable Unk_ov62_022488F0[] = {
     {0x8, 0x80, 0x8, 0x20},
     {0x8, 0x80, 0xE0, 0xF8}
 };
@@ -2479,8 +2478,8 @@ void ov62_02233664 (UnkStruct_ov62_0223359C * param0)
         return;
     }
 
-    if (sub_02022734(&Unk_ov62_022488F0[0])
-        || sub_02022734(&Unk_ov62_022488F0[1])) {
+    if (TouchScreen_LocationHeld(&Unk_ov62_022488F0[0])
+        || TouchScreen_LocationHeld(&Unk_ov62_022488F0[1])) {
         v4 = 1;
     }
 

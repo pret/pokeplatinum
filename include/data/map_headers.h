@@ -1,5 +1,7 @@
+#include "consts/generated/c/map.h"
+
 static const MapHeader sMapHeaders[] = {
-	{
+    [MAP_HEADER_EVERYWHERE] = {
           .unk_00 = 0x0,
           .unk_01 = 0x0,
           .mapMatrixID = 0x0,
@@ -20,8 +22,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_NOTHING] = {
           .unk_00 = 0x0,
           .unk_01 = 0x0,
           .mapMatrixID = 0x0,
@@ -42,8 +44,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNDERGROUND] = {
           .unk_00 = 0x2,
           .unk_01 = 0x2,
           .mapMatrixID = 0x2,
@@ -64,8 +66,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_JUBILIFE_CITY] = {
           .unk_00 = 0x6,
           .unk_01 = 0x0,
           .mapMatrixID = 0x0,
@@ -86,8 +88,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_JUBILIFE_CITY_MART] = {
           .unk_00 = 0x16,
           .unk_01 = 0xF,
           .mapMatrixID = 122,
@@ -108,8 +110,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_JUBILIFE_CITY_UNKNOWN_HOUSE_1] = {
           .unk_00 = 0x14,
           .unk_01 = 0x14,
           .mapMatrixID = 0x7B,
@@ -130,8 +132,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x74,
@@ -152,8 +154,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_JUBILIFE_CITY_POKECENTER_2F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x75,
@@ -174,8 +176,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_POKETCH_CO_1F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 0x8D,
@@ -196,8 +198,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_POKETCH_CO_2F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 0x8E,
@@ -218,8 +220,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_POKETCH_CO_3F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 143,
@@ -240,8 +242,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_JUBILIFE_TV_1F] = {
           .unk_00 = 34,
           .unk_01 = 0xF,
           .mapMatrixID = 148,
@@ -262,8 +264,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_JUBILIFE_TV_2F] = {
           .unk_00 = 34,
           .unk_01 = 0xF,
           .mapMatrixID = 149,
@@ -284,8 +286,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_JUBILIFE_TV_3F] = {
           .unk_00 = 34,
           .unk_01 = 0xF,
           .mapMatrixID = 150,
@@ -306,8 +308,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_JUBILIFE_TV_4F] = {
           .unk_00 = 34,
           .unk_01 = 0xF,
           .mapMatrixID = 151,
@@ -328,8 +330,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_JUBILIFE_TV_2F_GALLERY] = {
           .unk_00 = 34,
           .unk_01 = 0xF,
           .mapMatrixID = 152,
@@ -350,8 +352,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_JUBILIFE_TV_3F_GLOBAL_RANKING_ROOM] = {
           .unk_00 = 34,
           .unk_01 = 0xF,
           .mapMatrixID = 153,
@@ -372,8 +374,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_JUBILIFE_TV_3F_GROUP_RANKING_ROOM] = {
           .unk_00 = 34,
           .unk_01 = 0xF,
           .mapMatrixID = 154,
@@ -394,8 +396,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_JUBILIFE_TV_ELEVATOR] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 207,
@@ -416,8 +418,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_JUBILIFE_CITY_SOUTH_HOUSE_1F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 132,
@@ -438,8 +440,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_JUBILIFE_CITY_SOUTH_HOUSE_2F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 208,
@@ -460,8 +462,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_JUBILIFE_CITY_SOUTH_HOUSE_3F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 208,
@@ -482,8 +484,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_JUBILIFE_CITY_SOUTH_HOUSE_4F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 208,
@@ -504,8 +506,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_JUBILIFE_CITY_UNKNOWN_HOUSE_2] = {
           .unk_00 = 0x14,
           .unk_01 = 0x14,
           .mapMatrixID = 125,
@@ -526,8 +528,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_JUBILIFE_CITY_CONDOMINIUMS_1F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 132,
@@ -548,8 +550,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_JUBILIFE_CITY_CONDOMINIUMS_2F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 208,
@@ -570,8 +572,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_JUBILIFE_CITY_CONDOMINIUMS_3F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 208,
@@ -592,8 +594,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_JUBILIFE_CITY_CONDOMINIUMS_4F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 208,
@@ -614,8 +616,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_GLOBAL_TERMINAL_1F] = {
           .unk_00 = 40,
           .unk_01 = 0xF,
           .mapMatrixID = 205,
@@ -636,8 +638,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TRAINERS_SCHOOL] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 140,
@@ -658,8 +660,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_JUBILIFE_CITY_SOUTHWEST_HOUSE_1F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 132,
@@ -680,8 +682,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_JUBILIFE_CITY_UNKNOWN_HOUSE_3] = {
           .unk_00 = 0x14,
           .unk_01 = 0x14,
           .mapMatrixID = 125,
@@ -702,8 +704,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_JUBILIFE_CITY_UNKNOWN_HOUSE_4] = {
           .unk_00 = 0x14,
           .unk_01 = 0x14,
           .mapMatrixID = 125,
@@ -724,8 +726,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_CANALAVE_CITY] = {
           .unk_00 = 0xF,
           .unk_01 = 0x9,
           .mapMatrixID = 0x0,
@@ -746,8 +748,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_CANALAVE_CITY_MART] = {
           .unk_00 = 0x16,
           .unk_01 = 0xF,
           .mapMatrixID = 122,
@@ -768,8 +770,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_CANALAVE_CITY_GYM] = {
           .unk_00 = 0x18,
           .unk_01 = 0xF,
           .mapMatrixID = 112,
@@ -790,8 +792,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_CANALAVE_CITY_POKECENTER_1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x74,
@@ -812,8 +814,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_CANALAVE_CITY_POKECENTER_2F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x75,
@@ -834,8 +836,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_CANALAVE_LIBRARY_1F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 217,
@@ -856,8 +858,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_CANALAVE_LIBRARY_2F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 218,
@@ -878,8 +880,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_CANALAVE_LIBRARY_3F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 219,
@@ -900,8 +902,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_CANALAVE_CITY_SOUTHEAST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -922,8 +924,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_CANALAVE_CITY_EAST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -944,8 +946,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_CANALAVE_CITY_HARBOR_INN] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 243,
@@ -966,8 +968,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 243,
@@ -988,8 +990,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OREBURGH_CITY] = {
           .unk_00 = 0x7,
           .unk_01 = 0x1,
           .mapMatrixID = 0x0,
@@ -1010,8 +1012,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_OREBURGH_CITY_MART] = {
           .unk_00 = 0x16,
           .unk_01 = 0xF,
           .mapMatrixID = 122,
@@ -1032,8 +1034,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OREBURGH_CITY_GYM] = {
           .unk_00 = 0x19,
           .unk_01 = 0xF,
           .mapMatrixID = 113,
@@ -1054,8 +1056,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OREBURGH_CITY_POKECENTER_1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x74,
@@ -1076,8 +1078,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OREBURGH_CITY_POKECENTER_2F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x75,
@@ -1098,8 +1100,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OREBURGH_CITY_NORTHWEST_HOUSE_1F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 132,
@@ -1120,8 +1122,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OREBURGH_CITY_NORTHWEST_HOUSE_2F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 208,
@@ -1142,8 +1144,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OREBURGH_CITY_NORTHWEST_HOUSE_3F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 136,
@@ -1164,8 +1166,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OREBURGH_CITY_NORTHWEST_HOUSE_4F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 208,
@@ -1186,8 +1188,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OREBURGH_CITY_NORTH_HOUSE_1F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 132,
@@ -1208,8 +1210,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OREBURGH_CITY_NORTH_HOUSE_2F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 208,
@@ -1230,8 +1232,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OREBURGH_CITY_NORTH_HOUSE_3F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 136,
@@ -1252,8 +1254,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OREBURGH_CITY_NORTH_HOUSE_4F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 208,
@@ -1274,8 +1276,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OREBURGH_CITY_MIDDLE_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -1296,8 +1298,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_MINING_MUSEUM] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 155,
@@ -1318,8 +1320,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OREBURGH_CITY_WEST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -1340,8 +1342,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OREBURGH_CITY_EAST_HOUSE_1F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 132,
@@ -1362,8 +1364,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OREBURGH_CITY_EAST_HOUSE_2F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 208,
@@ -1384,8 +1386,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OREBURGH_CITY_EAST_HOUSE_3F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 208,
@@ -1406,8 +1408,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OREBURGH_CITY_SOUTH_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -1428,8 +1430,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ETERNA_CITY] = {
           .unk_00 = 0x8,
           .unk_01 = 0x2,
           .mapMatrixID = 0x0,
@@ -1450,8 +1452,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ETERNA_CITY_MART] = {
           .unk_00 = 0x16,
           .unk_01 = 0xF,
           .mapMatrixID = 122,
@@ -1472,8 +1474,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ETERNA_CITY_GYM] = {
           .unk_00 = 0x1A,
           .unk_01 = 0xF,
           .mapMatrixID = 220,
@@ -1494,8 +1496,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ETERNA_CITY_DP_GYM] = {
           .unk_00 = 0x1A,
           .unk_01 = 0xF,
           .mapMatrixID = 221,
@@ -1516,8 +1518,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ETERNA_CITY_POKECENTER_1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x74,
@@ -1538,8 +1540,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ETERNA_CITY_POKECENTER_2F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x75,
@@ -1560,8 +1562,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_CYCLE_SHOP] = {
           .unk_00 = 0x16,
           .unk_01 = 0xF,
           .mapMatrixID = 138,
@@ -1582,8 +1584,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_1F] = {
           .unk_00 = 58,
           .unk_01 = 0xF,
           .mapMatrixID = 266,
@@ -1604,8 +1606,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_2F] = {
           .unk_00 = 58,
           .unk_01 = 0xF,
           .mapMatrixID = 162,
@@ -1626,8 +1628,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_3F] = {
           .unk_00 = 58,
           .unk_01 = 0xF,
           .mapMatrixID = 163,
@@ -1648,8 +1650,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_4F] = {
           .unk_00 = 58,
           .unk_01 = 0xF,
           .mapMatrixID = 164,
@@ -1670,8 +1672,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ETERNA_CITY_CONDOMINIUMS_1F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 132,
@@ -1692,8 +1694,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ETERNA_CITY_CONDOMINIUMS_2F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 135,
@@ -1714,8 +1716,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ETERNA_CITY_CONDOMINIUMS_3F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 208,
@@ -1736,8 +1738,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ETERNA_CITY_CONDOMINIUMS_4F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 208,
@@ -1758,8 +1760,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_206_CYCLING_ROAD_NORTH_GATE] = {
           .unk_00 = 50,
           .unk_01 = 0xF,
           .mapMatrixID = 259,
@@ -1780,8 +1782,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ETERNA_CITY_NORTH_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 170,
@@ -1802,8 +1804,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ETERNA_CITY_SOUTH_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 124,
@@ -1824,8 +1826,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ETERNA_CITY_EAST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 124,
@@ -1846,8 +1848,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ETERNA_CITY_UNDERGROUND_MAN_HOUSE] = {
           .unk_00 = 43,
           .unk_01 = 0xF,
           .mapMatrixID = 248,
@@ -1868,8 +1870,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ETERNA_CITY_UNKNOWN_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0x14,
           .mapMatrixID = 0x7B,
@@ -1890,8 +1892,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY] = {
           .unk_00 = 0x9,
           .unk_01 = 0x3,
           .mapMatrixID = 0x0,
@@ -1912,8 +1914,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY_MART] = {
           .unk_00 = 0x16,
           .unk_01 = 0xF,
           .mapMatrixID = 122,
@@ -1934,8 +1936,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY_GYM_ENTRANCE_ROOM] = {
           .unk_00 = 0x1B,
           .unk_01 = 0xF,
           .mapMatrixID = 222,
@@ -1956,8 +1958,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_1] = {
           .unk_00 = 0x1B,
           .unk_01 = 0xF,
           .mapMatrixID = 223,
@@ -1978,8 +1980,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_2] = {
           .unk_00 = 0x1B,
           .unk_01 = 0xF,
           .mapMatrixID = 224,
@@ -2000,8 +2002,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM] = {
           .unk_00 = 0x1B,
           .unk_01 = 0xF,
           .mapMatrixID = 225,
@@ -2022,8 +2024,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_1] = {
           .unk_00 = 0x1B,
           .unk_01 = 0xF,
           .mapMatrixID = 223,
@@ -2044,8 +2046,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY_DP_GYM_ELEVATOR_ROOM_1] = {
           .unk_00 = 0x1B,
           .unk_01 = 0xF,
           .mapMatrixID = 224,
@@ -2066,8 +2068,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_2] = {
           .unk_00 = 0x1B,
           .unk_01 = 0xF,
           .mapMatrixID = 223,
@@ -2088,8 +2090,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY_DP_GYM_ELEVATOR_ROOM_2] = {
           .unk_00 = 0x1B,
           .unk_01 = 0xF,
           .mapMatrixID = 224,
@@ -2110,8 +2112,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_3] = {
           .unk_00 = 0x1B,
           .unk_01 = 0xF,
           .mapMatrixID = 223,
@@ -2132,8 +2134,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_4] = {
           .unk_00 = 0x1B,
           .unk_01 = 0xF,
           .mapMatrixID = 223,
@@ -2154,8 +2156,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_5] = {
           .unk_00 = 0x1B,
           .unk_01 = 0xF,
           .mapMatrixID = 223,
@@ -2176,8 +2178,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_6] = {
           .unk_00 = 0x1B,
           .unk_01 = 0xF,
           .mapMatrixID = 223,
@@ -2198,8 +2200,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY_DP_GYM_LEADER_ROOM] = {
           .unk_00 = 0x1B,
           .unk_01 = 0xF,
           .mapMatrixID = 225,
@@ -2220,8 +2222,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x74,
@@ -2242,8 +2244,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY_POKECENTER_2F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x75,
@@ -2264,8 +2266,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_1F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 209,
@@ -2286,8 +2288,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_2F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 210,
@@ -2308,8 +2310,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_ELEVATOR] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 207,
@@ -2330,8 +2332,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY_POKEMON_FAN_CLUB] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 156,
@@ -2352,8 +2354,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY_WEST_GATE_TO_AMITY_SQUARE] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 157,
@@ -2374,8 +2376,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY_EAST_GATE_TO_AMITY_SQUARE] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 157,
@@ -2396,8 +2398,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_208_GATE_TO_HEARTHOME_CITY] = {
           .unk_00 = 50,
           .unk_01 = 0xF,
           .mapMatrixID = 258,
@@ -2418,8 +2420,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_209_GATE_TO_HEARTHOME_CITY] = {
           .unk_00 = 50,
           .unk_01 = 0xF,
           .mapMatrixID = 258,
@@ -2440,8 +2442,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_212_GATE_TO_HEARTHOME_CITY] = {
           .unk_00 = 50,
           .unk_01 = 0xF,
           .mapMatrixID = 257,
@@ -2462,8 +2464,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY_NORTHEAST_HOUSE_1F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 209,
@@ -2484,8 +2486,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY_NORTHEAST_HOUSE_2F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 210,
@@ -2506,8 +2508,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY_NORTHEAST_HOUSE_ELEVATOR] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 207,
@@ -2528,8 +2530,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY_NORTHWEST_HOUSE] = {
           .unk_00 = 43,
           .unk_01 = 0xF,
           .mapMatrixID = 245,
@@ -2550,8 +2552,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_POFFIN_HOUSE] = {
           .unk_00 = 37,
           .unk_01 = 0xF,
           .mapMatrixID = 0xED,
@@ -2572,8 +2574,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_CONTEST_HALL_LOBBY] = {
           .unk_00 = 32,
           .unk_01 = 0xF,
           .mapMatrixID = 165,
@@ -2594,8 +2596,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_CONTEST_HALL_STAGE_ONGOING_CONTEST] = {
           .unk_00 = 32,
           .unk_01 = 0xF,
           .mapMatrixID = 166,
@@ -2616,8 +2618,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_FOREIGN_BUILDING] = {
           .unk_00 = 35,
           .unk_01 = 0xF,
           .mapMatrixID = 167,
@@ -2638,8 +2640,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_PASTORIA_CITY] = {
           .unk_00 = 0xC,
           .unk_01 = 0x6,
           .mapMatrixID = 0x0,
@@ -2660,8 +2662,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_PASTORIA_CITY_MART] = {
           .unk_00 = 0x16,
           .unk_01 = 0xF,
           .mapMatrixID = 206,
@@ -2682,8 +2684,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_PASTORIA_CITY_GYM] = {
           .unk_00 = 0x17,
           .unk_01 = 0xF,
           .mapMatrixID = 111,
@@ -2704,8 +2706,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_PASTORIA_CITY_POKECENTER_1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x74,
@@ -2726,8 +2728,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_PASTORIA_CITY_POKECENTER_2F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x75,
@@ -2748,8 +2750,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F] = {
           .unk_00 = 39,
           .unk_01 = 0xF,
           .mapMatrixID = 181,
@@ -2770,8 +2772,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_2F] = {
           .unk_00 = 39,
           .unk_01 = 0xF,
           .mapMatrixID = 182,
@@ -2792,8 +2794,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_PASTORIA_CITY_SOUTHWEST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -2814,8 +2816,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_PASTORIA_CITY_MIDDLE_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -2836,8 +2838,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_PASTORIA_CITY_EAST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 125,
@@ -2858,8 +2860,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_PASTORIA_CITY_NORTH_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -2880,8 +2882,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_PASTORIA_CITY_NORTHEAST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -2902,8 +2904,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VEILSTONE_CITY] = {
           .unk_00 = 11,
           .unk_01 = 0x5,
           .mapMatrixID = 0x0,
@@ -2924,8 +2926,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_VEILSTONE_CITY_GYM] = {
           .unk_00 = 29,
           .unk_01 = 0xF,
           .mapMatrixID = 115,
@@ -2946,8 +2948,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x74,
@@ -2968,8 +2970,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VEILSTONE_CITY_POKECENTER_2F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x75,
@@ -2990,8 +2992,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_GAME_CORNER] = {
           .unk_00 = 0x16,
           .unk_01 = 0xF,
           .mapMatrixID = 139,
@@ -3012,8 +3014,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VEILSTONE_STORE_1F] = {
           .unk_00 = 0x16,
           .unk_01 = 0xF,
           .mapMatrixID = 172,
@@ -3034,8 +3036,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VEILSTONE_STORE_2F] = {
           .unk_00 = 0x16,
           .unk_01 = 0xF,
           .mapMatrixID = 173,
@@ -3056,8 +3058,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VEILSTONE_STORE_3F] = {
           .unk_00 = 0x16,
           .unk_01 = 0xF,
           .mapMatrixID = 174,
@@ -3078,8 +3080,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VEILSTONE_STORE_4F] = {
           .unk_00 = 0x16,
           .unk_01 = 0xF,
           .mapMatrixID = 175,
@@ -3100,8 +3102,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VEILSTONE_STORE_5F] = {
           .unk_00 = 0x16,
           .unk_01 = 0xF,
           .mapMatrixID = 176,
@@ -3122,8 +3124,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VEILSTONE_STORE_ELEVATOR] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 207,
@@ -3144,8 +3146,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VEILSTONE_CITY_GALACTIC_WAREHOUSE] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 177,
@@ -3166,8 +3168,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE] = {
           .unk_00 = 0x16,
           .unk_01 = 0xF,
           .mapMatrixID = 204,
@@ -3188,8 +3190,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VEILSTONE_CITY_SOUTHEAST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 125,
@@ -3210,8 +3212,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VEILSTONE_CITY_NORTHWEST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 125,
@@ -3232,8 +3234,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VEILSTONE_CITY_NORTHEAST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -3254,8 +3256,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VEILSTONE_CITY_SOUTHWEST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -3276,8 +3278,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_215_GATE_TO_VEILSTONE_CITY] = {
           .unk_00 = 50,
           .unk_01 = 0xF,
           .mapMatrixID = 258,
@@ -3298,8 +3300,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SUNYSHORE_CITY] = {
           .unk_00 = 0xD,
           .unk_01 = 0x7,
           .mapMatrixID = 0x0,
@@ -3320,8 +3322,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x74,
@@ -3342,8 +3344,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SUNYSHORE_CITY_POKECENTER_2F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x75,
@@ -3364,8 +3366,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SUNYSHORE_CITY_MART] = {
           .unk_00 = 0x16,
           .unk_01 = 0xF,
           .mapMatrixID = 122,
@@ -3386,8 +3388,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_1] = {
           .unk_00 = 30,
           .unk_01 = 0xF,
           .mapMatrixID = 226,
@@ -3408,8 +3410,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_2] = {
           .unk_00 = 30,
           .unk_01 = 0xF,
           .mapMatrixID = 227,
@@ -3430,8 +3432,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_3] = {
           .unk_00 = 30,
           .unk_01 = 0xF,
           .mapMatrixID = 228,
@@ -3452,8 +3454,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SUNYSHORE_MARKET] = {
           .unk_00 = 38,
           .unk_01 = 0xF,
           .mapMatrixID = 203,
@@ -3474,8 +3476,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SUNYSHORE_CITY_NORTHEAST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 243,
@@ -3496,8 +3498,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SUNYSHORE_CITY_WEST_HOUSE] = {
           .unk_00 = 43,
           .unk_01 = 0xF,
           .mapMatrixID = 248,
@@ -3518,8 +3520,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SUNYSHORE_CITY_NORTHWEST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 243,
@@ -3540,8 +3542,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SUNYSHORE_CITY_UNKNOWN_HOUSE_1] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 243,
@@ -3562,8 +3564,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SUNYSHORE_CITY_UNKNOWN_HOUSE_2] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 243,
@@ -3584,8 +3586,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SUNYSHORE_CITY_EAST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 125,
@@ -3606,8 +3608,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VISTA_LIGHTHOUSE] = {
           .unk_00 = 39,
           .unk_01 = 0xF,
           .mapMatrixID = 230,
@@ -3628,8 +3630,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SNOWPOINT_CITY] = {
           .unk_00 = 0xE,
           .unk_01 = 0x8,
           .mapMatrixID = 0x0,
@@ -3650,8 +3652,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_SNOWPOINT_CITY_MART] = {
           .unk_00 = 0x16,
           .unk_01 = 0xF,
           .mapMatrixID = 122,
@@ -3672,8 +3674,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SNOWPOINT_CITY_GYM] = {
           .unk_00 = 0x1C,
           .unk_01 = 0xF,
           .mapMatrixID = 114,
@@ -3694,8 +3696,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x74,
@@ -3716,8 +3718,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SNOWPOINT_CITY_POKECENTER_2F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x75,
@@ -3738,8 +3740,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SNOWPOINT_CITY_WEST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -3760,8 +3762,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SNOWPOINT_CITY_EAST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 244,
@@ -3782,8 +3784,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_POKEMON_LEAGUE] = {
           .unk_00 = 0xD,
           .unk_01 = 0xA,
           .mapMatrixID = 0x0,
@@ -3804,8 +3806,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x74,
@@ -3826,8 +3828,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_2F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x75,
@@ -3848,8 +3850,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 144,
@@ -3870,8 +3872,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_AARON_ROOM] = {
           .unk_00 = 36,
           .unk_01 = 0xF,
           .mapMatrixID = 187,
@@ -3892,8 +3894,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_POKEMON_LEAGUE_AARON_ROOM] = {
           .unk_00 = 36,
           .unk_01 = 0xF,
           .mapMatrixID = 183,
@@ -3914,8 +3916,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_BERTHA_ROOM] = {
           .unk_00 = 36,
           .unk_01 = 0xF,
           .mapMatrixID = 188,
@@ -3936,8 +3938,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_POKEMON_LEAGUE_BERTHA_ROOM] = {
           .unk_00 = 36,
           .unk_01 = 0xF,
           .mapMatrixID = 184,
@@ -3958,8 +3960,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_FLINT_ROOM] = {
           .unk_00 = 36,
           .unk_01 = 0xF,
           .mapMatrixID = 188,
@@ -3980,8 +3982,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_POKEMON_LEAGUE_FLINT_ROOM] = {
           .unk_00 = 36,
           .unk_01 = 0xF,
           .mapMatrixID = 185,
@@ -4002,8 +4004,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_LUCIAN_ROOM] = {
           .unk_00 = 36,
           .unk_01 = 0xF,
           .mapMatrixID = 188,
@@ -4024,8 +4026,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_POKEMON_LEAGUE_LUCIAN_ROOM] = {
           .unk_00 = 36,
           .unk_01 = 0xF,
           .mapMatrixID = 186,
@@ -4046,8 +4048,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_CHAMPION_ROOM] = {
           .unk_00 = 36,
           .unk_01 = 0xF,
           .mapMatrixID = 189,
@@ -4068,8 +4070,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_POKEMON_LEAGUE_CHAMPION_ROOM] = {
           .unk_00 = 36,
           .unk_01 = 0xF,
           .mapMatrixID = 190,
@@ -4090,8 +4092,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_HALL_OF_FAME] = {
           .unk_00 = 36,
           .unk_01 = 0xF,
           .mapMatrixID = 192,
@@ -4112,8 +4114,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_POKEMON_LEAGUE_HALL_OF_FAME] = {
           .unk_00 = 36,
           .unk_01 = 0xF,
           .mapMatrixID = 191,
@@ -4134,8 +4136,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_FIGHT_AREA] = {
           .unk_00 = 0x13,
           .unk_01 = 0xD,
           .mapMatrixID = 0x0,
@@ -4156,8 +4158,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_FIGHT_AREA_POKECENTER_1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x74,
@@ -4178,8 +4180,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_FIGHT_AREA_POKECENTER_2F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x75,
@@ -4200,8 +4202,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_FIGHT_AREA_MART] = {
           .unk_00 = 0x16,
           .unk_01 = 0xF,
           .mapMatrixID = 122,
@@ -4222,8 +4224,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_BATTLE_PARK_GATE_TO_FIGHT_AREA] = {
           .unk_00 = 44,
           .unk_01 = 0xF,
           .mapMatrixID = 250,
@@ -4244,8 +4246,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_225_GATE_TO_FIGHT_AREA] = {
           .unk_00 = 50,
           .unk_01 = 0xF,
           .mapMatrixID = 257,
@@ -4266,8 +4268,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_FIGHT_AREA_MIDDLE_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -4288,8 +4290,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_FIGHT_AREA_SOUTH_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -4310,8 +4312,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_FIGHT_AREA_UNKNOWN_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -4332,8 +4334,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_197] = {
           .unk_00 = 55,
           .unk_01 = 55,
           .mapMatrixID = 0x5,
@@ -4354,8 +4356,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OREBURGH_MINE_B1F] = {
           .unk_00 = 55,
           .unk_01 = 0xF,
           .mapMatrixID = 0x5,
@@ -4376,8 +4378,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OREBURGH_MINE_B2F] = {
           .unk_00 = 55,
           .unk_01 = 0xF,
           .mapMatrixID = 0x6,
@@ -4398,8 +4400,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VALLEY_WINDWORKS_OUTSIDE] = {
           .unk_00 = 0x8,
           .unk_01 = 0x2,
           .mapMatrixID = 0x0,
@@ -4420,8 +4422,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_VALLEY_WINDWORKS_BUILDING] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 234,
@@ -4442,8 +4444,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ETERNA_FOREST_OUTSIDE] = {
           .unk_00 = 0x8,
           .unk_01 = 0x2,
           .mapMatrixID = 0x0,
@@ -4464,8 +4466,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ETERNA_FOREST] = {
           .unk_00 = 54,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7,
@@ -4486,8 +4488,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_FUEGO_IRONWORKS_OUTSIDE] = {
           .unk_00 = 0x8,
           .unk_01 = 0x2,
           .mapMatrixID = 0x0,
@@ -4508,8 +4510,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_FUEGO_IRONWORKS_BUILDING] = {
           .unk_00 = 67,
           .unk_01 = 0xF,
           .mapMatrixID = 0x8,
@@ -4530,8 +4532,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_206] = {
           .unk_00 = 0x6,
           .unk_01 = 0x0,
           .mapMatrixID = 0x0,
@@ -4552,8 +4554,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_MT_CORONET_1F_SOUTH] = {
           .unk_00 = 0x45,
           .unk_01 = 0xF,
           .mapMatrixID = 0x9,
@@ -4574,8 +4576,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_MT_CORONET_2F] = {
           .unk_00 = 0x45,
           .unk_01 = 0xF,
           .mapMatrixID = 0xA,
@@ -4596,8 +4598,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_MT_CORONET_3F] = {
           .unk_00 = 0x45,
           .unk_01 = 0xF,
           .mapMatrixID = 11,
@@ -4618,8 +4620,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_MT_CORONET_OUTSIDE_NORTH] = {
           .unk_00 = 0xE,
           .unk_01 = 0x8,
           .mapMatrixID = 0xC,
@@ -4640,8 +4642,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_MT_CORONET_OUTSIDE_SOUTH] = {
           .unk_00 = 0xE,
           .unk_01 = 0x8,
           .mapMatrixID = 0xD,
@@ -4662,8 +4664,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_MT_CORONET_4F_ROOMS_1_AND_2] = {
           .unk_00 = 70,
           .unk_01 = 0xF,
           .mapMatrixID = 0xE,
@@ -4684,8 +4686,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_MT_CORONET_4F_ROOM_3] = {
           .unk_00 = 70,
           .unk_01 = 0xF,
           .mapMatrixID = 0xF,
@@ -4706,8 +4708,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_MT_CORONET_5F] = {
           .unk_00 = 70,
           .unk_01 = 0xF,
           .mapMatrixID = 0x10,
@@ -4728,8 +4730,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_MT_CORONET_6F] = {
           .unk_00 = 70,
           .unk_01 = 0xF,
           .mapMatrixID = 0x11,
@@ -4750,8 +4752,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_MT_CORONET_1F_TUNNEL_ROOM] = {
           .unk_00 = 0x45,
           .unk_01 = 0xF,
           .mapMatrixID = 0x12,
@@ -4772,8 +4774,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_2] = {
           .unk_00 = 0x45,
           .unk_01 = 0xF,
           .mapMatrixID = 0x13,
@@ -4794,8 +4796,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_1] = {
           .unk_00 = 0x45,
           .unk_01 = 0xF,
           .mapMatrixID = 0x14,
@@ -4816,8 +4818,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_MT_CORONET_B1F] = {
           .unk_00 = 0x45,
           .unk_01 = 0xF,
           .mapMatrixID = 0x15,
@@ -4838,8 +4840,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SPEAR_PILLAR] = {
           .unk_00 = 0x3C,
           .unk_01 = 0xF,
           .mapMatrixID = 0x16,
@@ -4860,8 +4862,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SPEAR_PILLAR_DISTORTED] = {
           .unk_00 = 0x3C,
           .unk_01 = 0xF,
           .mapMatrixID = 0x17,
@@ -4882,8 +4884,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_222] = {
           .unk_00 = 0xC,
           .unk_01 = 0x6,
           .mapMatrixID = 0x0,
@@ -4904,8 +4906,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_PASTORIA_CITY_DP_GREAT_MARSH] = {
           .unk_00 = 63,
           .unk_01 = 0xF,
           .mapMatrixID = 0x18,
@@ -4926,8 +4928,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_224] = {
           .unk_00 = 0xA,
           .unk_01 = 0x4,
           .mapMatrixID = 0x0,
@@ -4948,8 +4950,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_RUINS_MANIAC_TUNNEL_ROOM] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 0x19,
@@ -4970,8 +4972,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_RUINS_ROOM_1] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 0x1A,
@@ -4992,8 +4994,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_RUINS_ROOM_2_NORTHEAST_DEAD_END] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 40,
@@ -5014,8 +5016,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_RUINS_ROOM_1_NORTHWEST_DEAD_END] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 35,
@@ -5036,8 +5038,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_RUINS_ROOM_2] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 39,
@@ -5058,8 +5060,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_RUINS_ROOM_1_SOUTHEAST_DEAD_END] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 0x1F,
@@ -5080,8 +5082,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_RUINS_ROOM_3] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 34,
@@ -5102,8 +5104,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_RUINS_ROOM_2_SOUTHEAST_DEAD_END] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 0x1F,
@@ -5124,8 +5126,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_RUINS_ROOM_6_SOUTHEAST_DEAD_END] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 40,
@@ -5146,8 +5148,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHWEST_DEAD_END] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 42,
@@ -5168,8 +5170,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_RUINS_ROOM_3_NORTHWEST_DEAD_END] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 35,
@@ -5190,8 +5192,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_RUINS_ROOM_3_SOUTHWEST_DEAD_END] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 35,
@@ -5212,8 +5214,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_RUINS_ROOM_4] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 36,
@@ -5234,8 +5236,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_RUINS_ROOM_6] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 34,
@@ -5256,8 +5258,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_RUINS_ROOM_5] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 30,
@@ -5278,8 +5280,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_RUINS_ROOM_7] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 41,
@@ -5300,8 +5302,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_RUINS_ROOM_4_SOUTHEAST_DEAD_END] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 0x1F,
@@ -5322,8 +5324,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_RUINS_ROOM_6_NORTHWEST_DEAD_END] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 35,
@@ -5344,8 +5346,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_243] = {
           .unk_00 = 0xE,
           .unk_01 = 0x8,
           .mapMatrixID = 0x0,
@@ -5366,8 +5368,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VICTORY_ROAD_1F] = {
           .unk_00 = 71,
           .unk_01 = 0xF,
           .mapMatrixID = 43,
@@ -5388,8 +5390,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VICTORY_ROAD_2F] = {
           .unk_00 = 71,
           .unk_01 = 0xF,
           .mapMatrixID = 44,
@@ -5410,8 +5412,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VICTORY_ROAD_B1F] = {
           .unk_00 = 71,
           .unk_01 = 0xF,
           .mapMatrixID = 45,
@@ -5432,8 +5434,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VICTORY_ROAD_1F_ROOM_2] = {
           .unk_00 = 71,
           .unk_01 = 0xF,
           .mapMatrixID = 46,
@@ -5454,8 +5456,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VICTORY_ROAD_1F_ROOM_1] = {
           .unk_00 = 71,
           .unk_01 = 0xF,
           .mapMatrixID = 47,
@@ -5476,8 +5478,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VICTORY_ROAD_1F_ROOM_3] = {
           .unk_00 = 71,
           .unk_01 = 0xF,
           .mapMatrixID = 48,
@@ -5498,8 +5500,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_250] = {
           .unk_00 = 0x4,
           .unk_01 = 0x4,
           .mapMatrixID = 49,
@@ -5520,8 +5522,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_PAL_PARK] = {
           .unk_00 = 61,
           .unk_01 = 0xF,
           .mapMatrixID = 49,
@@ -5542,8 +5544,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_252] = {
           .unk_00 = 0x9,
           .unk_01 = 0x3,
           .mapMatrixID = 0x0,
@@ -5564,8 +5566,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_AMITY_SQUARE] = {
           .unk_00 = 59,
           .unk_01 = 0xF,
           .mapMatrixID = 50,
@@ -5586,8 +5588,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_RAVAGED_PATH] = {
           .unk_00 = 53,
           .unk_01 = 0xF,
           .mapMatrixID = 51,
@@ -5608,8 +5610,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_255] = {
           .unk_00 = 54,
           .unk_01 = 54,
           .mapMatrixID = 52,
@@ -5630,8 +5632,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_FLOAROMA_MEADOW] = {
           .unk_00 = 0x8,
           .unk_01 = 0x2,
           .mapMatrixID = 52,
@@ -5652,8 +5654,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_FLOAROMA_MEADOW_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -5674,8 +5676,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OREBURGH_GATE_1F] = {
           .unk_00 = 53,
           .unk_01 = 0xF,
           .mapMatrixID = 0x3,
@@ -5696,8 +5698,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OREBURGH_GATE_B1F] = {
           .unk_00 = 53,
           .unk_01 = 0xF,
           .mapMatrixID = 0x4,
@@ -5718,8 +5720,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_FULLMOON_ISLAND] = {
           .unk_00 = 0xF,
           .unk_01 = 0xF,
           .mapMatrixID = 0x0,
@@ -5740,8 +5742,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_FULLMOON_ISLAND_FOREST] = {
           .unk_00 = 54,
           .unk_01 = 0xF,
           .mapMatrixID = 53,
@@ -5762,8 +5764,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_STARK_MOUNTAIN_OUTSIDE] = {
           .unk_00 = 0x11,
           .unk_01 = 0xF,
           .mapMatrixID = 0x0,
@@ -5784,8 +5786,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_STARK_MOUNTAIN_ROOM_1] = {
           .unk_00 = 0x39,
           .unk_01 = 0xF,
           .mapMatrixID = 0x39,
@@ -5806,8 +5808,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_STARK_MOUNTAIN_ROOM_2] = {
           .unk_00 = 0x39,
           .unk_01 = 0xF,
           .mapMatrixID = 58,
@@ -5828,8 +5830,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_STARK_MOUNTAIN_ROOM_3] = {
           .unk_00 = 0x39,
           .unk_01 = 0xF,
           .mapMatrixID = 59,
@@ -5850,8 +5852,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_266] = {
           .unk_00 = 0x12,
           .unk_01 = 0xC,
           .mapMatrixID = 0x0,
@@ -5872,8 +5874,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SENDOFF_SPRING] = {
           .unk_00 = 62,
           .unk_01 = 0xF,
           .mapMatrixID = 0x3C,
@@ -5894,8 +5896,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_TURNBACK_CAVE_ENTRANCE] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 61,
@@ -5916,8 +5918,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TURNBACK_CAVE_PILLAR_ROOM] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 62,
@@ -5938,8 +5940,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TURNBACK_CAVE_GIRATINA_ROOM] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 63,
@@ -5960,8 +5962,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_1] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 64,
@@ -5982,8 +5984,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_2] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 64,
@@ -6004,8 +6006,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_3] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 65,
@@ -6026,8 +6028,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_FLOWER_PARADISE] = {
           .unk_00 = 0xD,
           .unk_01 = 0xA,
           .mapMatrixID = 0x0,
@@ -6048,8 +6050,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_275] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -6070,8 +6072,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_276] = {
           .unk_00 = 11,
           .unk_01 = 0x5,
           .mapMatrixID = 0x0,
@@ -6092,8 +6094,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_277] = {
           .unk_00 = 11,
           .unk_01 = 0x5,
           .mapMatrixID = 0x0,
@@ -6114,8 +6116,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SNOWPOINT_TEMPLE_1F] = {
           .unk_00 = 65,
           .unk_01 = 0xF,
           .mapMatrixID = 68,
@@ -6136,8 +6138,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SNOWPOINT_TEMPLE_B1F] = {
           .unk_00 = 65,
           .unk_01 = 0xF,
           .mapMatrixID = 0x45,
@@ -6158,8 +6160,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SNOWPOINT_TEMPLE_B2F] = {
           .unk_00 = 65,
           .unk_01 = 0xF,
           .mapMatrixID = 70,
@@ -6180,8 +6182,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SNOWPOINT_TEMPLE_B3F] = {
           .unk_00 = 65,
           .unk_01 = 0xF,
           .mapMatrixID = 71,
@@ -6202,8 +6204,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SNOWPOINT_TEMPLE_B4F] = {
           .unk_00 = 65,
           .unk_01 = 0xF,
           .mapMatrixID = 0x48,
@@ -6224,8 +6226,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SNOWPOINT_TEMPLE_B5F] = {
           .unk_00 = 65,
           .unk_01 = 0xF,
           .mapMatrixID = 73,
@@ -6246,8 +6248,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_WAYWARD_CAVE_1F] = {
           .unk_00 = 53,
           .unk_01 = 0xF,
           .mapMatrixID = 0x4A,
@@ -6268,8 +6270,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_WAYWARD_CAVE_B1F] = {
           .unk_00 = 53,
           .unk_01 = 0xF,
           .mapMatrixID = 75,
@@ -6290,8 +6292,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_RUIN_MANIAC_CAVE_SHORT] = {
           .unk_00 = 53,
           .unk_01 = 0xF,
           .mapMatrixID = 76,
@@ -6312,8 +6314,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TROPHY_GARDEN] = {
           .unk_00 = 0xC,
           .unk_01 = 0xF,
           .mapMatrixID = 79,
@@ -6334,8 +6336,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_IRON_ISLAND] = {
           .unk_00 = 0xF,
           .unk_01 = 0xF,
           .mapMatrixID = 0x0,
@@ -6356,8 +6358,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_IRON_ISLAND_1F] = {
           .unk_00 = 0x48,
           .unk_01 = 0xF,
           .mapMatrixID = 80,
@@ -6378,8 +6380,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_IRON_ISLAND_B1F_LEFT_ROOM] = {
           .unk_00 = 0x48,
           .unk_01 = 0xF,
           .mapMatrixID = 81,
@@ -6400,8 +6402,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_IRON_ISLAND_B1F_RIGHT_ROOM] = {
           .unk_00 = 0x48,
           .unk_01 = 0xF,
           .mapMatrixID = 82,
@@ -6422,8 +6424,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_IRON_ISLAND_B2F_RIGHT_ROOM] = {
           .unk_00 = 0x48,
           .unk_01 = 0xF,
           .mapMatrixID = 83,
@@ -6444,8 +6446,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_IRON_ISLAND_B2F_LEFT_ROOM] = {
           .unk_00 = 0x48,
           .unk_01 = 0xF,
           .mapMatrixID = 84,
@@ -6466,8 +6468,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_IRON_ISLAND_B3F] = {
           .unk_00 = 0x48,
           .unk_01 = 0xF,
           .mapMatrixID = 85,
@@ -6488,8 +6490,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OLD_CHATEAU] = {
           .unk_00 = 66,
           .unk_01 = 0xF,
           .mapMatrixID = 86,
@@ -6510,8 +6512,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OLD_CHATEAU_DINING_AREA] = {
           .unk_00 = 66,
           .unk_01 = 0xF,
           .mapMatrixID = 87,
@@ -6532,8 +6534,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OLD_CHATEAU_SIDE_ROOMS] = {
           .unk_00 = 66,
           .unk_01 = 0xF,
           .mapMatrixID = 88,
@@ -6554,8 +6556,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OLD_CHATEAU_CORRIDOR] = {
           .unk_00 = 66,
           .unk_01 = 0xF,
           .mapMatrixID = 89,
@@ -6576,8 +6578,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OLD_CHATEAU_BACK_WEST_ROOM] = {
           .unk_00 = 66,
           .unk_01 = 0xF,
           .mapMatrixID = 90,
@@ -6598,8 +6600,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_WEST_ROOM] = {
           .unk_00 = 66,
           .unk_01 = 0xF,
           .mapMatrixID = 91,
@@ -6620,8 +6622,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_ROOM] = {
           .unk_00 = 66,
           .unk_01 = 0xF,
           .mapMatrixID = 92,
@@ -6642,8 +6644,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM] = {
           .unk_00 = 66,
           .unk_01 = 0xF,
           .mapMatrixID = 93,
@@ -6664,8 +6666,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OLD_CHATEAU_BACK_EAST_ROOM] = {
           .unk_00 = 66,
           .unk_01 = 0xF,
           .mapMatrixID = 94,
@@ -6686,8 +6688,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_304] = {
           .unk_00 = 0x1F,
           .unk_01 = 0x1F,
           .mapMatrixID = 157,
@@ -6708,8 +6710,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_GALACTIC_HQ_1F] = {
           .unk_00 = 58,
           .unk_01 = 0xF,
           .mapMatrixID = 95,
@@ -6730,8 +6732,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_GALACTIC_HQ_2F] = {
           .unk_00 = 58,
           .unk_01 = 0xF,
           .mapMatrixID = 96,
@@ -6752,8 +6754,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_GALACTIC_HQ_3F] = {
           .unk_00 = 58,
           .unk_01 = 0xF,
           .mapMatrixID = 97,
@@ -6774,8 +6776,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_GALACTIC_HQ_4F] = {
           .unk_00 = 58,
           .unk_01 = 0xF,
           .mapMatrixID = 98,
@@ -6796,8 +6798,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_GALACTIC_HQ_B1F] = {
           .unk_00 = 58,
           .unk_01 = 0xF,
           .mapMatrixID = 100,
@@ -6818,8 +6820,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_GALACTIC_HQ_B2F] = {
           .unk_00 = 58,
           .unk_01 = 0xF,
           .mapMatrixID = 99,
@@ -6840,8 +6842,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_LAKE_VERITY_LOW_WATER] = {
           .unk_00 = 62,
           .unk_01 = 0xF,
           .mapMatrixID = 101,
@@ -6862,8 +6864,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_LAKE_VERITY] = {
           .unk_00 = 62,
           .unk_01 = 0xF,
           .mapMatrixID = 102,
@@ -6884,8 +6886,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_VERITY_CAVERN] = {
           .unk_00 = 53,
           .unk_01 = 0xF,
           .mapMatrixID = 103,
@@ -6906,8 +6908,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_LAKE_VALOR_DRAINED] = {
           .unk_00 = 62,
           .unk_01 = 0xF,
           .mapMatrixID = 104,
@@ -6928,8 +6930,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_LAKE_VALOR] = {
           .unk_00 = 62,
           .unk_01 = 0xF,
           .mapMatrixID = 105,
@@ -6950,8 +6952,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_VALOR_CAVERN] = {
           .unk_00 = 53,
           .unk_01 = 0xF,
           .mapMatrixID = 106,
@@ -6972,8 +6974,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_LAKE_ACUITY_LOW_WATER] = {
           .unk_00 = 0xE,
           .unk_01 = 0xF,
           .mapMatrixID = 107,
@@ -6994,8 +6996,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_LAKE_ACUITY] = {
           .unk_00 = 0xE,
           .unk_01 = 0xF,
           .mapMatrixID = 108,
@@ -7016,8 +7018,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ACUITY_CAVERN] = {
           .unk_00 = 53,
           .unk_01 = 0xF,
           .mapMatrixID = 109,
@@ -7038,8 +7040,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_NEWMOON_ISLAND] = {
           .unk_00 = 0xF,
           .unk_01 = 0x9,
           .mapMatrixID = 0x0,
@@ -7060,8 +7062,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_NEWMOON_ISLAND_FOREST] = {
           .unk_00 = 54,
           .unk_01 = 0xF,
           .mapMatrixID = 110,
@@ -7082,8 +7084,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_BATTLE_PARK] = {
           .unk_00 = 64,
           .unk_01 = 0xF,
           .mapMatrixID = 229,
@@ -7104,8 +7106,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_BATTLE_PARK_EXCHANGE_SERVICE_CORNER] = {
           .unk_00 = 41,
           .unk_01 = 0xF,
           .mapMatrixID = 231,
@@ -7126,8 +7128,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_324] = {
           .unk_00 = 33,
           .unk_01 = 0xF,
           .mapMatrixID = 232,
@@ -7148,8 +7150,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_325] = {
           .unk_00 = 33,
           .unk_01 = 0xF,
           .mapMatrixID = 233,
@@ -7170,8 +7172,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_BATTLE_TOWER] = {
           .unk_00 = 33,
           .unk_01 = 0xF,
           .mapMatrixID = 193,
@@ -7192,8 +7194,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_BATTLE_TOWER_ELEVATOR] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 207,
@@ -7214,8 +7216,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_BATTLE_TOWER_CORRIDOR] = {
           .unk_00 = 33,
           .unk_01 = 0xF,
           .mapMatrixID = 194,
@@ -7236,8 +7238,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_BATTLE_TOWER_CORRIDOR_MULTI] = {
           .unk_00 = 33,
           .unk_01 = 0xF,
           .mapMatrixID = 195,
@@ -7258,8 +7260,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_BATTLE_TOWER_BATTLE_ROOM] = {
           .unk_00 = 33,
           .unk_01 = 0xF,
           .mapMatrixID = 197,
@@ -7280,8 +7282,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_BATTLE_TOWER_MULTI_BATTLE_ROOM] = {
           .unk_00 = 33,
           .unk_01 = 0xF,
           .mapMatrixID = 198,
@@ -7302,8 +7304,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_COMMUNICATION_CLUB_COLOSSEUM_2P] = {
           .unk_00 = 0x5,
           .unk_01 = 0xE,
           .mapMatrixID = 118,
@@ -7324,8 +7326,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_COMMUNICATION_CLUB_COLOSSEUM_4P] = {
           .unk_00 = 0x5,
           .unk_01 = 0xE,
           .mapMatrixID = 121,
@@ -7346,8 +7348,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VERITY_LAKEFRONT] = {
           .unk_00 = 0x6,
           .unk_01 = 0x0,
           .mapMatrixID = 0x0,
@@ -7368,8 +7370,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_VERITY_LAKEFRONT_UNKNOWN_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0x14,
           .mapMatrixID = 0x7B,
@@ -7390,8 +7392,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VALOR_LAKEFRONT] = {
           .unk_00 = 0x12,
           .unk_01 = 0xC,
           .mapMatrixID = 0x0,
@@ -7412,8 +7414,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_RESTAURANT] = {
           .unk_00 = 35,
           .unk_01 = 0xF,
           .mapMatrixID = 147,
@@ -7434,8 +7436,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_GRAND_LAKE_VALOR_LAKEFRONT_EAST_HOUSE] = {
           .unk_00 = 35,
           .unk_01 = 0xF,
           .mapMatrixID = 146,
@@ -7456,8 +7458,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_GRAND_LAKE_VALOR_LAKEFRONT_WEST_HOUSE] = {
           .unk_00 = 35,
           .unk_01 = 0xF,
           .mapMatrixID = 146,
@@ -7478,8 +7480,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ACUITY_LAKEFRONT] = {
           .unk_00 = 0xE,
           .unk_01 = 0x8,
           .mapMatrixID = 0x0,
@@ -7500,8 +7502,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_SPRING_PATH] = {
           .unk_00 = 0x12,
           .unk_01 = 0xC,
           .mapMatrixID = 0x0,
@@ -7522,8 +7524,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_201] = {
           .unk_00 = 0x6,
           .unk_01 = 0x0,
           .mapMatrixID = 0x0,
@@ -7544,8 +7546,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_202] = {
           .unk_00 = 0x6,
           .unk_01 = 0x0,
           .mapMatrixID = 0x0,
@@ -7566,8 +7568,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_203] = {
           .unk_00 = 0x6,
           .unk_01 = 0x0,
           .mapMatrixID = 0x0,
@@ -7588,8 +7590,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_204_SOUTH] = {
           .unk_00 = 0x6,
           .unk_01 = 0x0,
           .mapMatrixID = 0x0,
@@ -7610,8 +7612,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_204_NORTH] = {
           .unk_00 = 0x8,
           .unk_01 = 0x2,
           .mapMatrixID = 0x0,
@@ -7632,8 +7634,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_205_SOUTH] = {
           .unk_00 = 0x8,
           .unk_01 = 0x2,
           .mapMatrixID = 0x0,
@@ -7654,8 +7656,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_205_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 243,
@@ -7676,8 +7678,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_205_NORTH] = {
           .unk_00 = 0x8,
           .unk_01 = 0x2,
           .mapMatrixID = 0x0,
@@ -7698,8 +7700,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_206] = {
           .unk_00 = 0x7,
           .unk_01 = 0x1,
           .mapMatrixID = 0x0,
@@ -7720,8 +7722,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE] = {
           .unk_00 = 50,
           .unk_01 = 0xF,
           .mapMatrixID = 260,
@@ -7742,8 +7744,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_GATE_BETWEEN_ETERNA_CITY_ROUTE_206] = {
           .unk_00 = 0x1F,
           .unk_01 = 0x1F,
           .mapMatrixID = 157,
@@ -7764,8 +7766,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_207] = {
           .unk_00 = 0x7,
           .unk_01 = 0x1,
           .mapMatrixID = 0x0,
@@ -7786,8 +7788,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_208] = {
           .unk_00 = 0x9,
           .unk_01 = 0x3,
           .mapMatrixID = 0x0,
@@ -7808,8 +7810,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_208_HOUSE] = {
           .unk_00 = 43,
           .unk_01 = 0xF,
           .mapMatrixID = 249,
@@ -7830,8 +7832,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_209] = {
           .unk_00 = 0xA,
           .unk_01 = 0x4,
           .mapMatrixID = 0x0,
@@ -7852,8 +7854,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_209_LOST_TOWER_1F] = {
           .unk_00 = 42,
           .unk_01 = 0xF,
           .mapMatrixID = 212,
@@ -7874,8 +7876,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_209_LOST_TOWER_2F] = {
           .unk_00 = 42,
           .unk_01 = 0xF,
           .mapMatrixID = 213,
@@ -7896,8 +7898,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_209_LOST_TOWER_3F] = {
           .unk_00 = 42,
           .unk_01 = 0xF,
           .mapMatrixID = 214,
@@ -7918,8 +7920,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_209_LOST_TOWER_4F] = {
           .unk_00 = 42,
           .unk_01 = 0xF,
           .mapMatrixID = 215,
@@ -7940,8 +7942,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_209_LOST_TOWER_5F] = {
           .unk_00 = 42,
           .unk_01 = 0xF,
           .mapMatrixID = 216,
@@ -7962,8 +7964,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_210_SOUTH] = {
           .unk_00 = 0xA,
           .unk_01 = 0x4,
           .mapMatrixID = 0x0,
@@ -7984,8 +7986,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_210_NORTH] = {
           .unk_00 = 0xA,
           .unk_01 = 0x4,
           .mapMatrixID = 0x0,
@@ -8006,8 +8008,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_210_GRANDMA_WILMA_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -8028,8 +8030,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_211_WEST] = {
           .unk_00 = 0x8,
           .unk_01 = 0x2,
           .mapMatrixID = 0x0,
@@ -8050,8 +8052,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_211_EAST] = {
           .unk_00 = 0xA,
           .unk_01 = 0x4,
           .mapMatrixID = 0x0,
@@ -8072,8 +8074,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_212_NORTH] = {
           .unk_00 = 0xC,
           .unk_01 = 0x6,
           .mapMatrixID = 0x0,
@@ -8094,8 +8096,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_POKEMON_MANSION] = {
           .unk_00 = 35,
           .unk_01 = 0xF,
           .mapMatrixID = 178,
@@ -8116,8 +8118,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_POKEMON_MANSION_MAIDS_ROOM] = {
           .unk_00 = 35,
           .unk_01 = 0xF,
           .mapMatrixID = 179,
@@ -8138,8 +8140,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_POKEMON_MANSION_OFFICE] = {
           .unk_00 = 35,
           .unk_01 = 0xF,
           .mapMatrixID = 180,
@@ -8160,8 +8162,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_212_SOUTH] = {
           .unk_00 = 0xC,
           .unk_01 = 0x6,
           .mapMatrixID = 0x0,
@@ -8182,8 +8184,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_212_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 244,
@@ -8204,8 +8206,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_213] = {
           .unk_00 = 0x12,
           .unk_01 = 0xC,
           .mapMatrixID = 0x0,
@@ -8226,8 +8228,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_213_GATE_TO_PASTORIA_CITY] = {
           .unk_00 = 50,
           .unk_01 = 0xF,
           .mapMatrixID = 258,
@@ -8248,8 +8250,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_FOOTSTEP_HOUSE] = {
           .unk_00 = 43,
           .unk_01 = 0xF,
           .mapMatrixID = 247,
@@ -8270,8 +8272,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_GRAND_LAKE_ROUTE_213_LOBBY] = {
           .unk_00 = 35,
           .unk_01 = 0xF,
           .mapMatrixID = 145,
@@ -8292,8 +8294,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_GRAND_LAKE_ROUTE_213_EAST_HOUSE] = {
           .unk_00 = 35,
           .unk_01 = 0xF,
           .mapMatrixID = 146,
@@ -8314,8 +8316,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_GRAND_LAKE_ROUTE_213_NORTHWEST_HOUSE] = {
           .unk_00 = 35,
           .unk_01 = 0xF,
           .mapMatrixID = 146,
@@ -8336,8 +8338,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_GRAND_LAKE_ROUTE_213_NORTHEAST_HOUSE] = {
           .unk_00 = 35,
           .unk_01 = 0xF,
           .mapMatrixID = 146,
@@ -8358,8 +8360,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_214] = {
           .unk_00 = 0x12,
           .unk_01 = 0xC,
           .mapMatrixID = 0x0,
@@ -8380,8 +8382,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_214_GATE_TO_VEILSTONE_CITY] = {
           .unk_00 = 50,
           .unk_01 = 0xF,
           .mapMatrixID = 257,
@@ -8402,8 +8404,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_215] = {
           .unk_00 = 0xA,
           .unk_01 = 0x4,
           .mapMatrixID = 0x0,
@@ -8424,8 +8426,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_216] = {
           .unk_00 = 0xE,
           .unk_01 = 0x8,
           .mapMatrixID = 0x0,
@@ -8446,8 +8448,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_216_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 243,
@@ -8468,8 +8470,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_217] = {
           .unk_00 = 0xE,
           .unk_01 = 0x8,
           .mapMatrixID = 0x0,
@@ -8490,8 +8492,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_217_WEST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 124,
@@ -8512,8 +8514,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_217_NORTHEAST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 124,
@@ -8534,8 +8536,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_218] = {
           .unk_00 = 0xF,
           .unk_01 = 0x9,
           .mapMatrixID = 0x0,
@@ -8556,8 +8558,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_218_GATE_TO_JUBILIFE_CITY] = {
           .unk_00 = 50,
           .unk_01 = 0xF,
           .mapMatrixID = 258,
@@ -8578,8 +8580,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_218_GATE_TO_CANALAVE_CITY] = {
           .unk_00 = 50,
           .unk_01 = 0xF,
           .mapMatrixID = 258,
@@ -8600,8 +8602,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_219] = {
           .unk_00 = 0x6,
           .unk_01 = 0x0,
           .mapMatrixID = 0x0,
@@ -8622,8 +8624,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_221] = {
           .unk_00 = 0x6,
           .unk_01 = 0x0,
           .mapMatrixID = 0x0,
@@ -8644,8 +8646,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_PAL_PARK_LOBBY] = {
           .unk_00 = 39,
           .unk_01 = 0xF,
           .mapMatrixID = 201,
@@ -8666,8 +8668,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_221_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 244,
@@ -8688,8 +8690,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_222] = {
           .unk_00 = 0x12,
           .unk_01 = 0xC,
           .mapMatrixID = 0x0,
@@ -8710,8 +8712,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_222_WEST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -8732,8 +8734,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_222_EAST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -8754,8 +8756,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_222_GATE_TO_SUNYSHORE_CITY] = {
           .unk_00 = 50,
           .unk_01 = 0xF,
           .mapMatrixID = 258,
@@ -8776,8 +8778,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_224] = {
           .unk_00 = 0xD,
           .unk_01 = 0xA,
           .mapMatrixID = 0x0,
@@ -8798,8 +8800,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_225] = {
           .unk_00 = 0x11,
           .unk_01 = 11,
           .mapMatrixID = 0x0,
@@ -8820,8 +8822,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_401] = {
           .unk_00 = 0x11,
           .unk_01 = 11,
           .mapMatrixID = 0x0,
@@ -8842,8 +8844,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_402] = {
           .unk_00 = 0x11,
           .unk_01 = 11,
           .mapMatrixID = 0x0,
@@ -8864,8 +8866,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_227] = {
           .unk_00 = 0x11,
           .unk_01 = 11,
           .mapMatrixID = 0x0,
@@ -8886,8 +8888,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_404] = {
           .unk_00 = 0x11,
           .unk_01 = 11,
           .mapMatrixID = 0x0,
@@ -8908,8 +8910,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_405] = {
           .unk_00 = 0x11,
           .unk_01 = 11,
           .mapMatrixID = 0x0,
@@ -8930,8 +8932,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_228] = {
           .unk_00 = 0x13,
           .unk_01 = 0xD,
           .mapMatrixID = 0x0,
@@ -8952,8 +8954,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_229] = {
           .unk_00 = 0x13,
           .unk_01 = 0xD,
           .mapMatrixID = 0x0,
@@ -8974,8 +8976,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_408] = {
           .unk_00 = 0x13,
           .unk_01 = 0xD,
           .mapMatrixID = 0x0,
@@ -8996,8 +8998,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_409] = {
           .unk_00 = 0x13,
           .unk_01 = 0xD,
           .mapMatrixID = 0x0,
@@ -9018,8 +9020,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_RECORD_MIXING_ROOM] = {
           .unk_00 = 0x5,
           .unk_01 = 0xE,
           .mapMatrixID = 119,
@@ -9040,8 +9042,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TWINLEAF_TOWN] = {
           .unk_00 = 0x6,
           .unk_01 = 0x0,
           .mapMatrixID = 0x0,
@@ -9062,8 +9064,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_TWINLEAF_TOWN_RIVAL_HOUSE_1F] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 126,
@@ -9084,8 +9086,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TWINLEAF_TOWN_RIVAL_HOUSE_2F] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 127,
@@ -9106,8 +9108,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_1F] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 128,
@@ -9128,8 +9130,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_2F] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 129,
@@ -9150,8 +9152,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TWINLEAF_TOWN_NORTHEAST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -9172,8 +9174,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TWINLEAF_TOWN_SOUTHWEST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -9194,8 +9196,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SANDGEM_TOWN] = {
           .unk_00 = 0x6,
           .unk_01 = 0x0,
           .mapMatrixID = 0x0,
@@ -9216,8 +9218,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_SANDGEM_TOWN_MART] = {
           .unk_00 = 0x16,
           .unk_01 = 0xF,
           .mapMatrixID = 122,
@@ -9238,8 +9240,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SANDGEM_TOWN_POKECENTER_1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x74,
@@ -9260,8 +9262,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SANDGEM_TOWN_POKECENTER_2F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x75,
@@ -9282,8 +9284,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SANDGEM_TOWN_POKEMON_RESEARCH_LAB] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 160,
@@ -9304,8 +9306,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SANDGEM_TOWN_COUNTERPART_HOUSE_1F] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 130,
@@ -9326,8 +9328,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SANDGEM_TOWN_COUNTERPART_HOUSE_2F] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 131,
@@ -9348,8 +9350,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SANDGEM_TOWN_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -9370,8 +9372,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_FLOAROMA_TOWN] = {
           .unk_00 = 0x8,
           .unk_01 = 0x2,
           .mapMatrixID = 0x0,
@@ -9392,8 +9394,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_FLOAROMA_TOWN_MART] = {
           .unk_00 = 0x16,
           .unk_01 = 0xF,
           .mapMatrixID = 122,
@@ -9414,8 +9416,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x74,
@@ -9436,8 +9438,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_FLOAROMA_TOWN_POKECENTER_2F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x75,
@@ -9458,8 +9460,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_FLOWER_SHOP] = {
           .unk_00 = 0x16,
           .unk_01 = 0xF,
           .mapMatrixID = 236,
@@ -9480,8 +9482,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_FLOAROMA_TOWN_SOUTHEAST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -9502,8 +9504,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_FLOAROMA_TOWN_MIDDLE_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -9524,8 +9526,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_TOWN] = {
           .unk_00 = 0xA,
           .unk_01 = 0x4,
           .mapMatrixID = 0x0,
@@ -9546,8 +9548,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_TOWN_MART] = {
           .unk_00 = 0x16,
           .unk_01 = 0xF,
           .mapMatrixID = 122,
@@ -9568,8 +9570,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_TOWN_POKECENTER_1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x74,
@@ -9590,8 +9592,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_TOWN_POKECENTER_2F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x75,
@@ -9612,8 +9614,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_POKEMON_DAY_CARE] = {
           .unk_00 = 0x16,
           .unk_01 = 0xF,
           .mapMatrixID = 137,
@@ -9634,8 +9636,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_TOWN_NORTHEAST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -9656,8 +9658,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_TOWN_POKEMON_NEWS_PRESS] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 244,
@@ -9678,8 +9680,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_TOWN_NORTH_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -9700,8 +9702,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_TOWN_EAST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -9722,8 +9724,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_CELESTIC_TOWN] = {
           .unk_00 = 0xA,
           .unk_01 = 0x4,
           .mapMatrixID = 0x0,
@@ -9744,8 +9746,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_CELESTIC_TOWN_POKECENTER_1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x74,
@@ -9766,8 +9768,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_CELESTIC_TOWN_POKECENTER_2F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x75,
@@ -9788,8 +9790,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_CELESTIC_TOWN_NORTH_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 168,
@@ -9810,8 +9812,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_CELESTIC_TOWN_NORTHWEST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 170,
@@ -9832,8 +9834,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_CELESTIC_TOWN_NORTHEAST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 124,
@@ -9854,8 +9856,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_CELESTIC_TOWN_SOUTHWEST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 124,
@@ -9876,8 +9878,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_CELESTIC_TOWN_CAVE] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 169,
@@ -9898,8 +9900,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SURVIVAL_AREA] = {
           .unk_00 = 0x11,
           .unk_01 = 11,
           .mapMatrixID = 0x0,
@@ -9920,8 +9922,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_SURVIVAL_AREA_MART] = {
           .unk_00 = 0x16,
           .unk_01 = 0xF,
           .mapMatrixID = 122,
@@ -9942,8 +9944,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SURVIVAL_AREA_POKECENTER_1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x74,
@@ -9964,8 +9966,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SURVIVAL_AREA_POKECENTER_2F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x75,
@@ -9986,8 +9988,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_BATTLEGROUND] = {
           .unk_00 = 52,
           .unk_01 = 0xF,
           .mapMatrixID = 265,
@@ -10008,8 +10010,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SURVIVAL_AREA_SOUTH_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 125,
@@ -10030,8 +10032,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SURVIVAL_AREA_NORTH_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 244,
@@ -10052,8 +10054,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_RESORT_AREA] = {
           .unk_00 = 0x13,
           .unk_01 = 0xD,
           .mapMatrixID = 0x0,
@@ -10074,8 +10076,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_RESORT_AREA_MART] = {
           .unk_00 = 0x16,
           .unk_01 = 0xF,
           .mapMatrixID = 122,
@@ -10096,8 +10098,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_RESORT_AREA_POKECENTER_1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x74,
@@ -10118,8 +10120,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_RESORT_AREA_POKECENTER_2F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x75,
@@ -10140,8 +10142,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_RESORT_AREA_RIBBON_SYNDICATE_1F] = {
           .unk_00 = 38,
           .unk_01 = 0xF,
           .mapMatrixID = 199,
@@ -10162,8 +10164,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_RESORT_AREA_RIBBON_SYNDICATE_2F] = {
           .unk_00 = 38,
           .unk_01 = 0xF,
           .mapMatrixID = 200,
@@ -10184,8 +10186,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_RESORT_AREA_RIBBON_SYNDICATE_ELEVATOR] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 207,
@@ -10206,8 +10208,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VILLA] = {
           .unk_00 = 51,
           .unk_01 = 0xF,
           .mapMatrixID = 264,
@@ -10228,8 +10230,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_RESORT_AREA_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -10250,8 +10252,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNION_ROOM] = {
           .unk_00 = 0x5,
           .unk_01 = 0xE,
           .mapMatrixID = 120,
@@ -10272,8 +10274,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_220] = {
           .unk_00 = 0x6,
           .unk_01 = 0x0,
           .mapMatrixID = 0x0,
@@ -10294,8 +10296,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_223] = {
           .unk_00 = 0xD,
           .unk_01 = 0x7,
           .mapMatrixID = 0x0,
@@ -10316,8 +10318,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_226] = {
           .unk_00 = 0x11,
           .unk_01 = 11,
           .mapMatrixID = 0x0,
@@ -10338,8 +10340,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_470] = {
           .unk_00 = 0x13,
           .unk_01 = 0xD,
           .mapMatrixID = 0x0,
@@ -10360,8 +10362,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_230] = {
           .unk_00 = 0x13,
           .unk_01 = 0xD,
           .mapMatrixID = 0x0,
@@ -10382,8 +10384,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_SEABREAK_PATH] = {
           .unk_00 = 0xD,
           .unk_01 = 0xD,
           .mapMatrixID = 0x0,
@@ -10404,8 +10406,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_473] = {
           .unk_00 = 0x13,
           .unk_01 = 0xD,
           .mapMatrixID = 0x0,
@@ -10426,8 +10428,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_JUBILIFE_CITY_POKECENTER_B1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 235,
@@ -10448,8 +10450,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_CANALAVE_CITY_POKECENTER_B1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 235,
@@ -10470,8 +10472,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_OREBURGH_CITY_POKECENTER_B1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 235,
@@ -10492,8 +10494,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ETERNA_CITY_POKECENTER_B1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 235,
@@ -10514,8 +10516,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HEARTHOME_CITY_POKECENTER_B1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 235,
@@ -10536,8 +10538,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_PASTORIA_CITY_POKECENTER_B1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 235,
@@ -10558,8 +10560,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VEILSTONE_CITY_POKECENTER_B1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 235,
@@ -10580,8 +10582,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SUNYSHORE_CITY_POKECENTER_B1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 235,
@@ -10602,8 +10604,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SNOWPOINT_CITY_POKECENTER_B1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 235,
@@ -10624,8 +10626,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_B1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 235,
@@ -10646,8 +10648,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_FIGHT_AREA_POKECENTER_B1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 235,
@@ -10668,8 +10670,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SANDGEM_TOWN_POKECENTER_B1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 235,
@@ -10690,8 +10692,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_FLOAROMA_TOWN_POKECENTER_B1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 235,
@@ -10712,8 +10714,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_TOWN_POKECENTER_B1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 235,
@@ -10734,8 +10736,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_CELESTIC_TOWN_POKECENTER_B1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 235,
@@ -10756,8 +10758,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SURVIVAL_AREA_POKECENTER_B1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 235,
@@ -10778,8 +10780,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_RESORT_AREA_POKECENTER_B1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 235,
@@ -10800,8 +10802,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_CANALAVE_CITY_WEST_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 124,
@@ -10822,8 +10824,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_CAFE] = {
           .unk_00 = 35,
           .unk_01 = 0xF,
           .mapMatrixID = 171,
@@ -10844,8 +10846,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_BATTLE_TOWER_BATTLE_SALON] = {
           .unk_00 = 33,
           .unk_01 = 0xF,
           .mapMatrixID = 196,
@@ -10866,8 +10868,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_GALACTIC_HQ_CONTROL_ROOM] = {
           .unk_00 = 68,
           .unk_01 = 0xF,
           .mapMatrixID = 0xEE,
@@ -10888,8 +10890,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_2F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x75,
@@ -10910,8 +10912,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_B1F] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 235,
@@ -10932,8 +10934,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_GALACTIC_HQ_LABORATORY] = {
           .unk_00 = 68,
           .unk_01 = 0xF,
           .mapMatrixID = 0xEF,
@@ -10954,8 +10956,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_225_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 0x7B,
@@ -10976,8 +10978,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_226_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 244,
@@ -10998,8 +11000,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_227_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 243,
@@ -11020,8 +11022,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_228_GATE_TO_ROUTE_226] = {
           .unk_00 = 50,
           .unk_01 = 0xF,
           .mapMatrixID = 258,
@@ -11042,8 +11044,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_228_NORTH_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 244,
@@ -11064,8 +11066,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_228_SOUTH_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 125,
@@ -11086,8 +11088,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_GREAT_MARSH_1] = {
           .unk_00 = 63,
           .unk_01 = 0xF,
           .mapMatrixID = 0xF0,
@@ -11108,8 +11110,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_GREAT_MARSH_2] = {
           .unk_00 = 63,
           .unk_01 = 0xF,
           .mapMatrixID = 0xF0,
@@ -11130,8 +11132,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_GREAT_MARSH_3] = {
           .unk_00 = 63,
           .unk_01 = 0xF,
           .mapMatrixID = 0xF0,
@@ -11152,8 +11154,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_GREAT_MARSH_4] = {
           .unk_00 = 63,
           .unk_01 = 0xF,
           .mapMatrixID = 0xF0,
@@ -11174,8 +11176,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_GREAT_MARSH_5] = {
           .unk_00 = 63,
           .unk_01 = 0xF,
           .mapMatrixID = 0xF0,
@@ -11196,8 +11198,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_GREAT_MARSH_6] = {
           .unk_00 = 63,
           .unk_01 = 0xF,
           .mapMatrixID = 0xF0,
@@ -11218,8 +11220,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_HALL_OF_ORIGIN] = {
           .unk_00 = 0x3C,
           .unk_01 = 0xF,
           .mapMatrixID = 241,
@@ -11240,8 +11242,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_511] = {
           .unk_00 = 0x3C,
           .unk_01 = 0xF,
           .mapMatrixID = 242,
@@ -11262,8 +11264,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_RUIN_MANIAC_CAVE_LONG] = {
           .unk_00 = 53,
           .unk_01 = 0xF,
           .mapMatrixID = 77,
@@ -11284,8 +11286,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_MANIAC_TUNNEL] = {
           .unk_00 = 53,
           .unk_01 = 0xF,
           .mapMatrixID = 78,
@@ -11306,8 +11308,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_IRON_ISLAND_HOUSE] = {
           .unk_00 = 0x14,
           .unk_01 = 0xF,
           .mapMatrixID = 243,
@@ -11328,8 +11330,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHEAST_DEADEND] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 0x1F,
@@ -11350,8 +11352,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VISTA_LIGHTHOUSE_ELEVATOR] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 207,
@@ -11372,8 +11374,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_JUBILIFE_CITY_SOUTHWEST_HOUSE_2F] = {
           .unk_00 = 0x1F,
           .unk_01 = 0xF,
           .mapMatrixID = 208,
@@ -11394,8 +11396,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_4] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 65,
@@ -11416,8 +11418,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_5] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 66,
@@ -11438,8 +11440,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_6] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 66,
@@ -11460,8 +11462,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_1] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 64,
@@ -11482,8 +11484,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_2] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 64,
@@ -11504,8 +11506,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_3] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 65,
@@ -11526,8 +11528,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_4] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 65,
@@ -11548,8 +11550,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_5] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 66,
@@ -11570,8 +11572,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_6] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 66,
@@ -11592,8 +11594,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_1] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 64,
@@ -11614,8 +11616,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_2] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 64,
@@ -11636,8 +11638,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_3] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 65,
@@ -11658,8 +11660,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_4] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 65,
@@ -11680,8 +11682,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_5] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 66,
@@ -11702,8 +11704,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_6] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 66,
@@ -11724,8 +11726,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_533] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 64,
@@ -11746,8 +11748,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_534] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 64,
@@ -11768,8 +11770,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_535] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 65,
@@ -11790,8 +11792,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_536] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 65,
@@ -11812,8 +11814,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_537] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 66,
@@ -11834,8 +11836,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_538] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 66,
@@ -11856,8 +11858,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_539] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 64,
@@ -11878,8 +11880,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_540] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 64,
@@ -11900,8 +11902,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_541] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 65,
@@ -11922,8 +11924,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_542] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 65,
@@ -11944,8 +11946,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_543] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 66,
@@ -11966,8 +11968,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_544] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 66,
@@ -11988,8 +11990,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_545] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 64,
@@ -12010,8 +12012,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_546] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 64,
@@ -12032,8 +12034,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_547] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 65,
@@ -12054,8 +12056,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_548] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 65,
@@ -12076,8 +12078,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_549] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 66,
@@ -12098,8 +12100,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_550] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 66,
@@ -12120,8 +12122,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_551] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 64,
@@ -12142,8 +12144,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_552] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 64,
@@ -12164,8 +12166,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_553] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 65,
@@ -12186,8 +12188,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_554] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 65,
@@ -12208,8 +12210,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_555] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 66,
@@ -12230,8 +12232,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_556] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 66,
@@ -12252,8 +12254,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_557] = {
           .unk_00 = 56,
           .unk_01 = 0xF,
           .mapMatrixID = 66,
@@ -12274,8 +12276,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_CONTEST_HALL_STAGE_NO_CONTEST] = {
           .unk_00 = 32,
           .unk_01 = 0xF,
           .mapMatrixID = 166,
@@ -12296,8 +12298,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_BATTLE_FRONTIER] = {
           .unk_00 = 73,
           .unk_01 = 0xF,
           .mapMatrixID = 256,
@@ -12318,8 +12320,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x1,
-	},
-	{
+    },
+    [MAP_HEADER_BATTLE_FRONTIER_GATE_TO_FIGHT_AREA] = {
           .unk_00 = 44,
           .unk_01 = 0xF,
           .mapMatrixID = 250,
@@ -12340,8 +12342,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_561] = {
           .unk_00 = 45,
           .unk_01 = 0xF,
           .mapMatrixID = 251,
@@ -12362,8 +12364,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_BATTLE_FACTORY] = {
           .unk_00 = 46,
           .unk_01 = 0xF,
           .mapMatrixID = 252,
@@ -12384,8 +12386,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_BATTLE_HALL] = {
           .unk_00 = 47,
           .unk_01 = 0xF,
           .mapMatrixID = 253,
@@ -12406,8 +12408,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_BATTLE_CASTLE] = {
           .unk_00 = 48,
           .unk_01 = 0xF,
           .mapMatrixID = 254,
@@ -12428,8 +12430,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_BATTLE_ARCADE] = {
           .unk_00 = 49,
           .unk_01 = 0xF,
           .mapMatrixID = 255,
@@ -12450,8 +12452,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_VEILSTONE_STORE_B1F] = {
           .unk_00 = 0x16,
           .unk_01 = 0xF,
           .mapMatrixID = 246,
@@ -12472,8 +12474,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_GLOBAL_TERMINAL_2F] = {
           .unk_00 = 40,
           .unk_01 = 0xF,
           .mapMatrixID = 262,
@@ -12494,8 +12496,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_GLOBAL_TERMINAL_3F] = {
           .unk_00 = 40,
           .unk_01 = 0xF,
           .mapMatrixID = 263,
@@ -12516,8 +12518,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_GALACTIC_HQ_HALL] = {
           .unk_00 = 58,
           .unk_01 = 0xF,
           .mapMatrixID = 261,
@@ -12538,8 +12540,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_570] = {
           .unk_00 = 0x4A,
           .unk_01 = 0xF,
           .mapMatrixID = 268,
@@ -12560,8 +12562,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROTOMS_ROOM] = {
           .unk_00 = 58,
           .unk_01 = 0xF,
           .mapMatrixID = 267,
@@ -12582,8 +12584,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_572] = {
           .unk_00 = 58,
           .unk_01 = 0xF,
           .mapMatrixID = 266,
@@ -12604,8 +12606,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_DISTORTION_WORLD_1F] = {
           .unk_00 = 0x4A,
           .unk_01 = 0xF,
           .mapMatrixID = 269,
@@ -12626,8 +12628,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_DISTORTION_WORLD_B1F] = {
           .unk_00 = 0x4A,
           .unk_01 = 0xF,
           .mapMatrixID = 270,
@@ -12648,8 +12650,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_DISTORTION_WORLD_B2F] = {
           .unk_00 = 0x4A,
           .unk_01 = 0xF,
           .mapMatrixID = 271,
@@ -12670,8 +12672,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_DISTORTION_WORLD_B3F] = {
           .unk_00 = 0x4A,
           .unk_01 = 0xF,
           .mapMatrixID = 272,
@@ -12692,8 +12694,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_DISTORTION_WORLD_B4F] = {
           .unk_00 = 0x4A,
           .unk_01 = 0xF,
           .mapMatrixID = 273,
@@ -12714,8 +12716,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_UNKNOWN_578] = {
           .unk_00 = 0x4A,
           .unk_01 = 0xF,
           .mapMatrixID = 274,
@@ -12736,8 +12738,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_DISTORTION_WORLD_B5F] = {
           .unk_00 = 0x4A,
           .unk_01 = 0xF,
           .mapMatrixID = 275,
@@ -12758,8 +12760,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_DISTORTION_WORLD_B6F] = {
           .unk_00 = 0x4A,
           .unk_01 = 0xF,
           .mapMatrixID = 0x114,
@@ -12780,8 +12782,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_DISTORTION_WORLD_B7F] = {
           .unk_00 = 0x4A,
           .unk_01 = 0xF,
           .mapMatrixID = 0x115,
@@ -12802,8 +12804,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM] = {
           .unk_00 = 0x4A,
           .unk_01 = 0xF,
           .mapMatrixID = 0x116,
@@ -12824,8 +12826,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM] = {
           .unk_00 = 0x4A,
           .unk_01 = 0xF,
           .mapMatrixID = 0x117,
@@ -12846,8 +12848,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SPEAR_PILLAR_DIALGA] = {
           .unk_00 = 0x3C,
           .unk_01 = 0xF,
           .mapMatrixID = 0x118,
@@ -12868,8 +12870,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_SPEAR_PILLAR_PALKIA] = {
           .unk_00 = 0x3C,
           .unk_01 = 0xF,
           .mapMatrixID = 0x119,
@@ -12890,8 +12892,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_WIFI_PLAZA_ENTRANCE] = {
           .unk_00 = 0x15,
           .unk_01 = 0xF,
           .mapMatrixID = 0x11A,
@@ -12912,8 +12914,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x0,
           .isEscapeRopeAllowed = 0x0,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_IRON_ISLAND_IRON_RUINS] = {
           .unk_00 = 0x48,
           .unk_01 = 0xF,
           .mapMatrixID = 0x11B,
@@ -12934,8 +12936,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_IRON_RUINS] = {
           .unk_00 = 0x48,
           .unk_01 = 0xF,
           .mapMatrixID = 0x11C,
@@ -12956,8 +12958,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_MT_CORONET_ICEBERG_RUINS] = {
           .unk_00 = 0x45,
           .unk_01 = 0xF,
           .mapMatrixID = 0x11D,
@@ -12978,8 +12980,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ICEBERG_RUINS] = {
           .unk_00 = 0x45,
           .unk_01 = 0xF,
           .mapMatrixID = 0x11E,
@@ -13000,8 +13002,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROUTE_228_ROCK_PEAK_RUINS] = {
           .unk_00 = 0x39,
           .unk_01 = 0xF,
           .mapMatrixID = 0x11F,
@@ -13022,8 +13024,8 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
-	{
+    },
+    [MAP_HEADER_ROCK_PEAK_RUINS] = {
           .unk_00 = 0x39,
           .unk_01 = 0xF,
           .mapMatrixID = 288,
@@ -13044,5 +13046,5 @@ static const MapHeader sMapHeaders[] = {
           .isRunningAllowed = 0x1,
           .isEscapeRopeAllowed = 0x1,
           .isFlyAllowed = 0x0,
-	},
+    },
 };

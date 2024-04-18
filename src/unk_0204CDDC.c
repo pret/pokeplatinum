@@ -3,9 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_0203E724_decl.h"
-
-#include "struct_defs/struct_0203E724_t.h"
+#include "field_script_context.h"
 
 #include "unk_0201D15C.h"
 #include "unk_0204CDDC.h"
@@ -14,21 +12,21 @@
 
 #include "constants/species.h"
 
-BOOL sub_0204CF68(UnkStruct_0203E724 * param0);
-BOOL sub_0204CF8C(UnkStruct_0203E724 * param0);
-BOOL sub_0204CFC4(UnkStruct_0203E724 * param0);
+BOOL sub_0204CF68(ScriptContext * param0);
+BOOL sub_0204CF8C(ScriptContext * param0);
+BOOL sub_0204CFC4(ScriptContext * param0);
 
-BOOL sub_0204CDDC (UnkStruct_0203E724 * param0)
+BOOL sub_0204CDDC (ScriptContext * param0)
 {
-    sub_0206B218(SaveData_Events(param0->unk_34->saveData));
+    sub_0206B218(SaveData_Events(param0->fieldSys->saveData));
     return 0;
 }
 
-BOOL sub_0204CDF0 (UnkStruct_0203E724 * param0)
+BOOL sub_0204CDF0 (ScriptContext * param0)
 {
-    u16 * v0 = inline_0204FCAC(param0);
+    u16 * v0 = ScriptContext_GetVarPointer(param0);
 
-    *v0 = sub_0206B228(SaveData_Events(param0->unk_34->saveData));
+    *v0 = sub_0206B228(SaveData_Events(param0->fieldSys->saveData));
     return 0;
 }
 
@@ -41,12 +39,12 @@ static const u16 Unk_020EBF84[6][10] = {
     {0xC, 0x1E, 0x2, 0x14, 0x1D, 0x4, 0x9, 0x1B, 0xE, 0xA} // Jigglypuff, Torchic, Skitty, Shroomish
 };
 
-BOOL sub_0204CE1C (UnkStruct_0203E724 * ctx)
+BOOL sub_0204CE1C (ScriptContext * ctx)
 {
     u8 i, j;
     u16 rand;
-    u16 *result = inline_0204FCAC(ctx);
-    u16 species = inline_02049538(ctx);
+    u16 *result = ScriptContext_GetVarPointer(ctx);
+    u16 species = ScriptContext_GetVar(ctx);
 
     rand = LCRNG_Next() % 100;
 
@@ -134,18 +132,18 @@ static const u16 Unk_020EBF64[] = {
     0x21
 };
 
-BOOL sub_0204CF68 (UnkStruct_0203E724 * param0)
+BOOL sub_0204CF68 (ScriptContext * param0)
 {
-    u16 * v0 = inline_0204FCAC(param0);
+    u16 * v0 = ScriptContext_GetVarPointer(param0);
 
     *v0 = (LCRNG_Next() % (NELEMS(Unk_020EBF64)));
     return 0;
 }
 
-BOOL sub_0204CF8C (UnkStruct_0203E724 * param0)
+BOOL sub_0204CF8C (ScriptContext * param0)
 {
-    u16 v0 = inline_02049538(param0);
-    u16 * v1 = inline_0204FCAC(param0);
+    u16 v0 = ScriptContext_GetVar(param0);
+    u16 * v1 = ScriptContext_GetVarPointer(param0);
 
     if (v0 < 9) {
         *v1 = 0;
@@ -156,10 +154,10 @@ BOOL sub_0204CF8C (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL sub_0204CFC4 (UnkStruct_0203E724 * param0)
+BOOL sub_0204CFC4 (ScriptContext * param0)
 {
-    u16 v0 = inline_02049538(param0);
-    u16 * v1 = inline_0204FCAC(param0);
+    u16 v0 = ScriptContext_GetVar(param0);
+    u16 * v1 = ScriptContext_GetVarPointer(param0);
 
     *v1 = Unk_020EBF64[v0];
     return 0;

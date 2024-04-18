@@ -5,13 +5,13 @@
 #include "struct_decls/struct_02012B20_decl.h"
 #include "struct_decls/font_oam.h"
 #include "struct_defs/sprite_manager_allocation.h"
-#include "struct_defs/union_02022594_020225E0.h"
+#include "touch_screen.h"
 
 typedef struct {
     CellActorData * unk_00;
     u8 padding_04[8];
     BOOL unk_0C;
-    UnkUnion_02022594 * unk_10;
+    TouchScreenRect * unk_10;
     FontOAM * unk_14;
     UnkStruct_02012B20 * unk_18;
     SpriteManagerAllocation unk_1C;

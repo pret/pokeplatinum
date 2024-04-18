@@ -6,7 +6,7 @@
 #include "struct_defs/chatot_cry.h"
 
 #include "struct_defs/struct_020052C8.h"
-#include "struct_defs/options.h"
+#include "game_options.h"
 
 #include "unk_02003B60.h"
 #include "unk_020041CC.h"
@@ -93,7 +93,7 @@ void sub_02003B60 (ChatotCry * param0, Options * param1)
     Unk_02101DF4 = NNS_SND_CAPTURE_OUTPUT_EFFECT_NORMAL;
     v0->unk_BCD98 = param0;
 
-    sub_02004FB8(param1->soundMethod);
+    sub_02004FB8(param1->soundMode);
 
     return;
 }
