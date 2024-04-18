@@ -45,7 +45,7 @@ int sub_020321F4 (CommRing * ring, u8 * param1, int param2)
     return v0;
 }
 
-u8 sub_02032210 (CommRing * ring)
+u8 CommRing_ReadByte (CommRing * ring)
 {
     u8 v0;
 

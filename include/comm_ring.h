@@ -12,7 +12,7 @@ typedef struct {
 void sub_02032188(CommRing * ring, u8 * param1, int param2);
 void sub_02032198(CommRing * ring, u8 * param1, int param2, int param3);
 int sub_020321F4(CommRing * ring, u8 * param1, int param2);
-u8 sub_02032210(CommRing * ring);
+u8 CommRing_ReadByte(CommRing * ring);
 int sub_02032220(CommRing * ring, u8 * param1, int param2);
 int CommRing_DataSize(CommRing * ring);
 int sub_0203228C(CommRing * ring);
