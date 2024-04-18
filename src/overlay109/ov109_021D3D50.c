@@ -1203,7 +1203,7 @@ static int ov109_021D4F28 (UnkStruct_ov109_021D5140 * param0, int param1)
 
 static int ov109_021D4F4C (UnkStruct_ov109_021D5140 * param0, int param1)
 {
-    sub_020364F0(202);
+    CommTiming_StartSync(202);
     param0->unk_3B8 = 16;
 
     ov109_021D48D0(param0);
@@ -1212,7 +1212,7 @@ static int ov109_021D4F4C (UnkStruct_ov109_021D5140 * param0, int param1)
 
 static int ov109_021D4F6C (UnkStruct_ov109_021D5140 * param0, int param1)
 {
-    if (sub_02036540(202)) {
+    if (CommTiming_IsSyncState(202)) {
         CommMan_SetErrorHandling(0, 0);
         sub_0200F174(0, 16, 16, 0x0, 16, 1, 95);
         param1 = 3;

@@ -5336,7 +5336,7 @@ static BOOL sub_02043648 (UnkStruct_0203E724 * param0)
 
     param0->unk_18[0] = v0;
 
-    sub_020364F0(v0);
+    CommTiming_StartSync(v0);
     sub_0203E764(param0, sub_02043678);
 
     return 1;
@@ -5349,7 +5349,7 @@ static BOOL sub_02043678 (UnkStruct_0203E724 * param0)
     if (CommSys_ConnectedCount() < 2) {
         v0 = 1;
     } else {
-        v0 = sub_02036540(param0->unk_18[0]);
+        v0 = CommTiming_IsSyncState(param0->unk_18[0]);
     }
 
     return v0;

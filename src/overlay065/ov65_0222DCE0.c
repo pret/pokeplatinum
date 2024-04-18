@@ -1631,7 +1631,7 @@ static int ov65_0222F010 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         } else {
             ov65_02232B58(param0, 77, 0);
             CommMan_SetErrorHandling(1, 1);
-            sub_020364F0(16);
+            CommTiming_StartSync(16);
             param0->unk_3A8 = 61;
         }
     } else {
@@ -4242,9 +4242,9 @@ static int ov65_022321F4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         (void)0;
     } else {
         if (param0->unk_3BC == 0) {
-            if (sub_02036540(13)) {
+            if (CommTiming_IsSyncState(13)) {
                 sub_020365F4();
-                sub_020364F0(14);
+                CommTiming_StartSync(14);
 
                 param0->unk_3E4 = 0;
                 param0->unk_3A8 = 50;
@@ -4253,7 +4253,7 @@ static int ov65_022321F4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
             param0->unk_3BC--;
 
             if (param0->unk_3BC == 0) {
-                sub_020364F0(13);
+                CommTiming_StartSync(13);
             }
         }
     }
@@ -4265,7 +4265,7 @@ static int ov65_0223229C (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     if (ov65_022321A8(param0)) {
         (void)0;
-    } else if (sub_02036540(14)) {
+    } else if (CommTiming_IsSyncState(14)) {
         u16 v0 = ov65_0222DD20(param0, &param0->unk_04->unk_00);
         BOOL v1;
 
@@ -4299,7 +4299,7 @@ static int ov65_022322DC (UnkStruct_ov65_0222EBE0 * param0, int param1)
         u16 v3 = ov65_0222DED4(v2);
 
         if ((v0[0] == v3) || (v0[0] == v2)) {
-            sub_020364F0(15);
+            CommTiming_StartSync(15);
             param0->unk_3A8 = 52;
         } else {
             ov65_02232DC0(param0, ov4_021D2388());
@@ -4317,10 +4317,10 @@ static int ov65_02232358 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
     if (ov65_022321A8(param0)) {
         (void)0;
-    } else if (sub_02036540(15)) {
+    } else if (CommTiming_IsSyncState(15)) {
         CommInfo_SendBattleRegulation();
         CommMan_SetErrorHandling(1, 1);
-        sub_020364F0(18);
+        CommTiming_StartSync(18);
 
         param0->unk_3A8 = 53;
     }
@@ -4349,7 +4349,7 @@ static int ov65_022323C0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
     if (ov65_022321A8(param0)) {
         (void)0;
-    } else if (sub_02036540(18) && (ov65_02232390(param0) == 1)) {
+    } else if (CommTiming_IsSyncState(18) && (ov65_02232390(param0) == 1)) {
         sub_020391DC(param0->unk_160, v1, 54);
         ov65_02232DFC(param0);
 
@@ -4536,7 +4536,7 @@ static int ov65_022326F0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
 static int ov65_02232734 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
-    if (sub_02036540(16) == 0) {
+    if (CommTiming_IsSyncState(16) == 0) {
         return param1;
     }
 
@@ -6916,7 +6916,7 @@ static u8 ov65_02234FC4 (int param0)
 
 static BOOL ov65_02234FCC (UnkStruct_ov65_0222EBE0 * param0, int param1, int param2)
 {
-    sub_020363E8(15);
+    CommTool_Init(15);
     ov4_021D2584(param0->unk_04->unk_00.unk_21);
 
     if (ov65_0222DD64(param2) == 1) {

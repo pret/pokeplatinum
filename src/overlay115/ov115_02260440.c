@@ -190,12 +190,12 @@ int ov115_0226048C (OverlayManager * param0, int * param1)
             ov115_022612BC(v0->unk_34, &v4);
         }
 
-        sub_020364F0(1);
+        CommTiming_StartSync(1);
 
         (*param1)++;
         break;
     case 3:
-        if (!sub_02036540(1)) {
+        if (!CommTiming_IsSyncState(1)) {
             break;
         }
 
@@ -311,12 +311,12 @@ int ov115_0226048C (OverlayManager * param0, int * param1)
         ov115_02260F70(v0->unk_34, 1);
 
         if (ScreenWipe_Done()) {
-            sub_020364F0(3);
+            CommTiming_StartSync(3);
             (*param1)++;
         }
         break;
     case 13:
-        if (!sub_02036540(3)) {
+        if (!CommTiming_IsSyncState(3)) {
             return 0;
         }
 
@@ -389,11 +389,11 @@ int ov115_022608E4 (OverlayManager * param0, int * param1)
             return 1;
         }
 
-        sub_020364F0(4);
+        CommTiming_StartSync(4);
         (*param1)++;
         break;
     case 1:
-        if (sub_02036540(4) || (CommSys_ConnectedCount() < CommInfo_CountReceived())) {
+        if (CommTiming_IsSyncState(4) || (CommSys_ConnectedCount() < CommInfo_CountReceived())) {
             return 1;
         }
         break;

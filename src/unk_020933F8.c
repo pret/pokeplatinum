@@ -190,14 +190,14 @@ static BOOL sub_02093448 (TaskManager * param0)
         break;
     case 2:
         if (v1->unk_00->unk_155 == 1) {
-            sub_020364F0(0);
+            CommTiming_StartSync(0);
         }
 
         v1->unk_04++;
         break;
     case 3:
         if (v1->unk_00->unk_155 == 1) {
-            if (sub_02036540(0) == 1) {
+            if (CommTiming_IsSyncState(0) == 1) {
                 v1->unk_04++;
             }
         } else {
@@ -622,12 +622,12 @@ static void sub_02093C6C (SysTask * param0, void * param1)
 
     switch (v0->unk_15A) {
     case 0:
-        sub_020364F0(5);
+        CommTiming_StartSync(5);
         v0->unk_568 = 0;
         v0->unk_15A++;
         break;
     case 1:
-        if (sub_02036540(5) == 1) {
+        if (CommTiming_IsSyncState(5) == 1) {
             v0->unk_15A++;
         }
         break;
@@ -643,12 +643,12 @@ static void sub_02093C6C (SysTask * param0, void * param1)
         }
         break;
     case 4:
-        sub_020364F0(6);
+        CommTiming_StartSync(6);
         v0->unk_568 = 0;
         v0->unk_15A++;
         break;
     case 5:
-        if (sub_02036540(6) == 1) {
+        if (CommTiming_IsSyncState(6) == 1) {
             v0->unk_15A++;
         }
         break;
@@ -664,12 +664,12 @@ static void sub_02093C6C (SysTask * param0, void * param1)
         }
         break;
     case 8:
-        sub_020364F0(7);
+        CommTiming_StartSync(7);
         v0->unk_568 = 0;
         v0->unk_15A++;
         break;
     case 9:
-        if (sub_02036540(7) == 1) {
+        if (CommTiming_IsSyncState(7) == 1) {
             v0->unk_15A++;
         }
         break;
@@ -689,12 +689,12 @@ static void sub_02093C6C (SysTask * param0, void * param1)
         }
         break;
     case 12:
-        sub_020364F0(8);
+        CommTiming_StartSync(8);
         v0->unk_568 = 0;
         v0->unk_15A++;
         break;
     case 13:
-        if (sub_02036540(8) == 1) {
+        if (CommTiming_IsSyncState(8) == 1) {
             v0->unk_15A++;
         }
         break;
@@ -710,12 +710,12 @@ static void sub_02093C6C (SysTask * param0, void * param1)
         }
         break;
     case 16:
-        sub_020364F0(9);
+        CommTiming_StartSync(9);
         v0->unk_568 = 0;
         v0->unk_15A++;
         break;
     case 17:
-        if (sub_02036540(9) == 1) {
+        if (CommTiming_IsSyncState(9) == 1) {
             v0->unk_15A++;
         }
         break;
@@ -742,12 +742,12 @@ static void sub_02093C6C (SysTask * param0, void * param1)
         }
         break;
     case 20:
-        sub_020364F0(10);
+        CommTiming_StartSync(10);
         v0->unk_568 = 0;
         v0->unk_15A++;
         break;
     case 21:
-        if (sub_02036540(10) == 1) {
+        if (CommTiming_IsSyncState(10) == 1) {
             v0->unk_15A++;
         }
         break;
@@ -774,12 +774,12 @@ static void sub_02093C6C (SysTask * param0, void * param1)
         }
         break;
     case 24:
-        sub_020364F0(11);
+        CommTiming_StartSync(11);
         v0->unk_568 = 0;
         v0->unk_15A++;
         break;
     case 25:
-        if (sub_02036540(11) == 1) {
+        if (CommTiming_IsSyncState(11) == 1) {
             v0->unk_15A++;
         }
         break;
@@ -807,13 +807,13 @@ static void sub_02093C6C (SysTask * param0, void * param1)
         break;
     case 28:
         MI_CpuCopy8(v0->unk_14C[0], v0->unk_569, ChatotCry_SaveSize());
-        sub_020364F0(12);
+        CommTiming_StartSync(12);
 
         v0->unk_568 = 0;
         v0->unk_15A++;
         break;
     case 29:
-        if (sub_02036540(12) == 1) {
+        if (CommTiming_IsSyncState(12) == 1) {
             v0->unk_15A++;
         }
         break;
@@ -829,12 +829,12 @@ static void sub_02093C6C (SysTask * param0, void * param1)
         }
         break;
     case 32:
-        sub_020364F0(13);
+        CommTiming_StartSync(13);
         v0->unk_568 = 0;
         v0->unk_15A++;
         break;
     case 33:
-        if (sub_02036540(13) == 1) {
+        if (CommTiming_IsSyncState(13) == 1) {
             v0->unk_15A++;
         }
         break;
@@ -861,12 +861,12 @@ static void sub_02093C6C (SysTask * param0, void * param1)
         }
         break;
     case 36:
-        sub_020364F0(14);
+        CommTiming_StartSync(14);
         v0->unk_568 = 0;
         v0->unk_15A++;
         break;
     case 37:
-        if (sub_02036540(14) == 1) {
+        if (CommTiming_IsSyncState(14) == 1) {
             v0->unk_15A++;
         }
         break;
@@ -888,12 +888,12 @@ static void sub_02093C6C (SysTask * param0, void * param1)
         }
         break;
     case 40:
-        sub_020364F0(15);
+        CommTiming_StartSync(15);
         v0->unk_568 = 0;
         v0->unk_15A++;
         break;
     case 41:
-        if (sub_02036540(15) == 1) {
+        if (CommTiming_IsSyncState(15) == 1) {
             v0->unk_15A++;
         }
         break;
@@ -924,12 +924,12 @@ static void sub_02093C6C (SysTask * param0, void * param1)
         }
         break;
     case 44:
-        sub_020364F0(16);
+        CommTiming_StartSync(16);
         v0->unk_568 = 0;
         v0->unk_15A++;
         break;
     case 45:
-        if (sub_02036540(16) == 1) {
+        if (CommTiming_IsSyncState(16) == 1) {
             v0->unk_15A++;
         }
         break;
@@ -1074,12 +1074,12 @@ static void sub_0209451C (SysTask * param0, void * param1)
 
     switch (v0->unk_15A) {
     case 0:
-        sub_020364F0(17);
+        CommTiming_StartSync(17);
         v0->unk_568 = 0;
         v0->unk_15A++;
         break;
     case 1:
-        if (sub_02036540(17) == 1) {
+        if (CommTiming_IsSyncState(17) == 1) {
             v0->unk_15A++;
         }
         break;
@@ -1095,12 +1095,12 @@ static void sub_0209451C (SysTask * param0, void * param1)
         }
         break;
     case 4:
-        sub_020364F0(18);
+        CommTiming_StartSync(18);
         v0->unk_568 = 0;
         v0->unk_15A++;
         break;
     case 5:
-        if (sub_02036540(18) == 1) {
+        if (CommTiming_IsSyncState(18) == 1) {
             v0->unk_15A++;
         }
         break;
@@ -1212,7 +1212,7 @@ void sub_02094754 (UnkStruct_02095C48 * param0, u8 param1)
         return;
     }
 
-    sub_020364F0(param1);
+    CommTiming_StartSync(param1);
 }
 
 BOOL sub_0209476C (UnkStruct_02095C48 * param0, u8 param1)
@@ -1221,7 +1221,7 @@ BOOL sub_0209476C (UnkStruct_02095C48 * param0, u8 param1)
         return 1;
     }
 
-    if (sub_02036540(param1) == 1) {
+    if (CommTiming_IsSyncState(param1) == 1) {
         return 1;
     }
 

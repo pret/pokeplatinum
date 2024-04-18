@@ -1946,7 +1946,7 @@ static BOOL ov104_02230FA4 (UnkStruct_ov104_0222E930 * param0)
 
     param0->unk_78[0] = v0;
 
-    sub_020364F0(v0);
+    CommTiming_StartSync(v0);
     ov104_0222E974(param0, ov104_02230FCC);
 
     return 1;
@@ -1959,7 +1959,7 @@ static BOOL ov104_02230FCC (UnkStruct_ov104_0222E930 * param0)
     if (CommSys_ConnectedCount() < 2) {
         v0 = 1;
     } else {
-        v0 = sub_02036540(param0->unk_78[0]);
+        v0 = CommTiming_IsSyncState(param0->unk_78[0]);
     }
 
     return v0;

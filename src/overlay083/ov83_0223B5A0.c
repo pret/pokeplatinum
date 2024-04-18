@@ -181,11 +181,11 @@ int ov83_0223B65C (OverlayManager * param0, int * param1)
         *param1 = 1;
         break;
     case 1:
-        sub_020364F0(v3->unk_08);
+        CommTiming_StartSync(v3->unk_08);
         *param1 = 2;
         break;
     case 2:
-        if (!sub_02036540(v3->unk_08)) {
+        if (!CommTiming_IsSyncState(v3->unk_08)) {
             break;
         }
 

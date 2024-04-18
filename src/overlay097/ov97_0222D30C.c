@@ -356,7 +356,7 @@ static int ov97_0222D4D8 (OverlayManager * param0)
     }
 
     if (v0->unk_1638 == 1) {
-        sub_020364F0(0xAB);
+        CommTiming_StartSync(0xAB);
         return 9;
     } else {
         return 21;
@@ -2189,7 +2189,7 @@ static int ov97_0222F75C (OverlayManager * param0, int * param1)
         v1 = CommSys_CurNetId();
 
         if ((v1 != 0) && CommSys_IsPlayerConnected(v1)) {
-            if (sub_02036540(0xAB) == 1) {
+            if (CommTiming_IsSyncState(0xAB) == 1) {
                 ov97_0222D30C(v3, 0);
                 CommMan_SetErrorHandling(1, 1);
                 ov97_0222DE78(param0, &v3->unk_18, 7);
@@ -2251,7 +2251,7 @@ static int ov97_0222F75C (OverlayManager * param0, int * param1)
         }
 
         if (ov97_02238528() == 4) {
-            sub_020364F0(0x93);
+            CommTiming_StartSync(0x93);
             *param1 = 13;
             v3->unk_43C = 120;
         } else if (ov97_02238528() == 3) {
@@ -2262,7 +2262,7 @@ static int ov97_0222F75C (OverlayManager * param0, int * param1)
         }
         break;
     case 13:
-        if (sub_02036540(0x93) == 1) {
+        if (CommTiming_IsSyncState(0x93) == 1) {
             ov97_022384F4();
             v3->unk_43C = 10;
             *param1 = 15;

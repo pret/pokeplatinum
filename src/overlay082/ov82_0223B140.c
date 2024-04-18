@@ -113,11 +113,11 @@ int ov82_0223B24C (OverlayManager * param0, int * param1)
         }
 
         CommMan_SetErrorHandling(0, 1);
-        sub_020364F0(4);
+        CommTiming_StartSync(4);
         (*param1)++;
         break;
     case 1:
-        if ((sub_02036540(4)) || (CommSys_ConnectedCount() < CommInfo_CountReceived())) {
+        if ((CommTiming_IsSyncState(4)) || (CommSys_ConnectedCount() < CommInfo_CountReceived())) {
             return 1;
         }
         break;

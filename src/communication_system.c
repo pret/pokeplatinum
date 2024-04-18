@@ -147,7 +147,7 @@ static BOOL sub_02034198 (BOOL param0, int maxPacketSize)
             return 1;
         }
 
-        sub_020363E8(HEAP_ID_COMMUNICATION);
+        CommTool_Init(HEAP_ID_COMMUNICATION);
 
         Unk_021C07C8 = (u32)Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(CommunicationSystem) + 32);
         sCommunicationSystem = (CommunicationSystem *)(32 - (Unk_021C07C8 % 32) + Unk_021C07C8);

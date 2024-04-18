@@ -1017,7 +1017,7 @@ static void ov97_022314FC (UnkStruct_ov97_02230868 * param0, int param1, int * p
 
     if (v0 == 1) {
         Sound_PlayEffect(1500);
-        sub_020364F0(0xAB);
+        CommTiming_StartSync(0xAB);
 
         param0->unk_2C94 = 1;
         *param2 = 21;
@@ -1225,12 +1225,12 @@ static int ov97_0223161C (OverlayManager * param0, int * param1)
         break;
     case 23:
         if (ov97_02238528() == 4) {
-            sub_020364F0(0x93);
+            CommTiming_StartSync(0x93);
             *param1 = 24;
         }
         break;
     case 24:
-        if ((ov97_02231C84(v4) == 0) || (sub_02036540(0x93) == 1)) {
+        if ((ov97_02231C84(v4) == 0) || (CommTiming_IsSyncState(0x93) == 1)) {
             ov97_022384F4();
             ov97_02230E04(v4, &v4->unk_2C30, 17 + 1, 640);
             DeleteWaitDial(v4->unk_3E14);

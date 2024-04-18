@@ -1232,7 +1232,7 @@ static int ov59_021D2020 (UnkStruct_020961E8 * param0, int param1)
 
 static int ov59_021D2044 (UnkStruct_020961E8 * param0, int param1)
 {
-    sub_020364F0(201);
+    CommTiming_StartSync(201);
     param0->unk_3A8 = 16;
     ov59_021D1994(param0);
 
@@ -1241,7 +1241,7 @@ static int ov59_021D2044 (UnkStruct_020961E8 * param0, int param1)
 
 static int ov59_021D2064 (UnkStruct_020961E8 * param0, int param1)
 {
-    if (sub_02036540(201)) {
+    if (CommTiming_IsSyncState(201)) {
         CommMan_SetErrorHandling(0, 0);
         sub_0200F174(0, 16, 16, 0x0, 16, 1, 51);
 

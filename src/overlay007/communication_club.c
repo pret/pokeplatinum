@@ -1251,7 +1251,7 @@ static void ov7_0224ACA4 (SysTask * task, void * param1)
             }
         }
 
-        sub_020364F0(10);
+        CommTiming_StartSync(10);
         CommClubMan_SetTask(ov7_0224AF2C);
     } else if (v1 != 0xffffffff) {
         sub_02036994(1);
@@ -1423,7 +1423,7 @@ static void ov7_0224AF2C (SysTask * task, void * param1)
         ov7_0224A64C(commClubMan);
         sub_02001288(commClubMan->unk_5C);
 
-        if (sub_02036540(10) && sub_02036450()) {
+        if (CommTiming_IsSyncState(10) && sub_02036450()) {
             CommClubMan_DestroyList(task, commClubMan);
             ov7_0224B3A8(commClubMan);          
         }
@@ -1497,7 +1497,7 @@ static void ov7_0224B0E8 (SysTask * task, void * param1)
     } else if (ov7_0224B4E4() || CommSys_CheckError()) {
         CommClubMan_SetTask(ov7_0224B274);
     } else if (sub_0205DA04(sCommClubMan->printMsgIndex)) {
-        sub_020364F0(10);
+        CommTiming_StartSync(10);
         CommClubMan_SetTask(ov7_0224B14C);
     }
 }
@@ -1517,7 +1517,7 @@ static void ov7_0224B14C (SysTask * task, void * param1)
     } else if (sub_020365A8(0, 5) != -1) {
         CommClubMan_SetTask(ov7_0224B274);
         return;
-    } else if (sub_02036540(10)) {
+    } else if (CommTiming_IsSyncState(10)) {
         if (sub_02036450()) {
             if (!sub_0205DA04(sCommClubMan->printMsgIndex)) {
                 sub_0201D730(sCommClubMan->printMsgIndex);

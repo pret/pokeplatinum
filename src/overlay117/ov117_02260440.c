@@ -106,11 +106,11 @@ int ov117_02260474 (OverlayManager * param0, int * param1)
         break;
     case 6:
         CommMan_SetErrorHandling(0, 1);
-        sub_020364F0(222);
+        CommTiming_StartSync(222);
         (*param1)++;
         break;
     case 7:
-        if ((sub_02036540(222) == 1) || (CommSys_ConnectedCount() < CommInfo_CountReceived())) {
+        if ((CommTiming_IsSyncState(222) == 1) || (CommSys_ConnectedCount() < CommInfo_CountReceived())) {
             (*param1)++;
         }
 

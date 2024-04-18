@@ -538,13 +538,13 @@ int ov22_022562EC (OverlayManager * param0, int * param1)
         break;
     case 8:
         if (v0->unk_734->unk_16) {
-            sub_020364F0(2);
+            CommTiming_StartSync(2);
         }
         (*param1)++;
         break;
     case 9:
         if (v0->unk_734->unk_16) {
-            if (sub_02036540(2)) {
+            if (CommTiming_IsSyncState(2)) {
                 (*param1)++;
             }
         } else {

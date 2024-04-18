@@ -6,6 +6,24 @@
 #include "struct_defs/struct_0205964C.h"
 #include "savedata.h"
 
+typedef struct FieldCommunicationManager {
+    TrainerCard * trainerCard[4];
+    u8 unk_10[4];
+    u8 padding_14[4];
+    FieldSystem * fieldSys;
+    MATHRandContext32 unk_1C;
+    FieldCommTask task;
+    SysTask * sysTask;
+    u16 timer;
+    u8 unk_3E;
+    u8 padding_3F;
+    u8 unk_40;
+    u8 unk_41;
+    u8 isReturningFromBattle;
+    u8 unk_43;
+    Party * party;
+} FieldCommunicationManager;
+
 FieldCommunicationManager * FieldCommMan_Get(void);
 void FieldCommMan_Init(FieldSystem * param0);
 void FieldCommMan_Delete(void);

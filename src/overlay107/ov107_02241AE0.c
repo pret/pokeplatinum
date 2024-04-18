@@ -616,14 +616,14 @@ static BOOL ov107_02241D6C (UnkStruct_ov107_02241D6C * param0)
     case 0:
         if (ov104_0223BA14(param0->unk_09) == 1) {
             sub_020365F4();
-            sub_020364F0(215);
+            CommTiming_StartSync(215);
         }
 
         param0->unk_08++;
         break;
     case 1:
         if (ov104_0223BA14(param0->unk_09) == 1) {
-            if (sub_02036540(215) == 1) {
+            if (CommTiming_IsSyncState(215) == 1) {
                 sub_020365F4();
                 param0->unk_08++;
             }
@@ -1299,15 +1299,15 @@ static BOOL ov107_02242C64 (UnkStruct_ov107_02241D6C * param0)
 
         if (param0->unk_0B == 0) {
             sub_020365F4();
-            sub_020364F0(130);
+            CommTiming_StartSync(130);
             param0->unk_08++;
             break;
         }
         break;
     case 4:
-        if (sub_02036540(130) == 1) {
+        if (CommTiming_IsSyncState(130) == 1) {
             sub_020365F4();
-            sub_020363E8(100);
+            CommTool_Init(100);
 
             param0->unk_12 = 0xff;
 
@@ -1344,12 +1344,12 @@ static BOOL ov107_02242D60 (UnkStruct_ov107_02241D6C * param0)
 
         if (param0->unk_0B == 0) {
             sub_020365F4();
-            sub_020364F0(131);
+            CommTiming_StartSync(131);
             param0->unk_08++;
         }
         break;
     case 2:
-        if (sub_02036540(131) == 1) {
+        if (CommTiming_IsSyncState(131) == 1) {
             sub_020365F4();
             ov107_02245288(&param0->unk_50[6]);
             return 1;

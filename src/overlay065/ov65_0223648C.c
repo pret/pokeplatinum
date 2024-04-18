@@ -565,7 +565,7 @@ void ov65_02236744 (UnkStruct_ov65_02236744 * param0)
     if (param0->unk_00.unk_2C == 0) {
         param0->unk_00.unk_2C = 1;
 
-        sub_020364F0(13);
+        CommTiming_StartSync(13);
     }
 }
 
@@ -1609,7 +1609,7 @@ static void ov65_02237970 (UnkStruct_ov65_022367A8 * param0)
 
 static BOOL ov65_02237A10 (UnkStruct_ov65_022367A8 * param0)
 {
-    if (sub_02036540(13)) {
+    if (CommTiming_IsSyncState(13)) {
         return 1;
     }
 
@@ -1940,10 +1940,10 @@ static BOOL ov65_02237DD0 (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 
 
 static BOOL ov65_02237DF8 (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 * param1, u32 param2)
 {
-    if (sub_02036540(13)) {
+    if (CommTiming_IsSyncState(13)) {
         ov65_02237498(param0, param1);
         sub_020365F4();
-        sub_020364F0(14);
+        CommTiming_StartSync(14);
 
         param0->unk_00.unk_05 = 15;
     }
@@ -1953,7 +1953,7 @@ static BOOL ov65_02237DF8 (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 
 
 static BOOL ov65_02237E24 (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 * param1, u32 param2)
 {
-    if (sub_02036540(14)) {
+    if (CommTiming_IsSyncState(14)) {
         u16 v0 = param0->unk_00.unk_00->unk_00.unk_1B;
         BOOL v1;
 
@@ -2005,7 +2005,7 @@ static BOOL ov65_02237E54 (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 
 static BOOL ov65_02237EA4 (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 * param1, u32 param2)
 {
     CommMan_SetErrorHandling(1, 1);
-    sub_020364F0(18);
+    CommTiming_StartSync(18);
 
     param0->unk_00.unk_05 = 18;
 
@@ -2014,7 +2014,7 @@ static BOOL ov65_02237EA4 (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 
 
 static BOOL ov65_02237EC0 (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 * param1, u32 param2)
 {
-    if (sub_02036540(18)) {
+    if (CommTiming_IsSyncState(18)) {
         param0->unk_00.unk_07 = 1;
 
         ov65_02237A24(param1, param2);
@@ -2431,7 +2431,7 @@ static BOOL ov65_022383D0 (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 
 
     if (ov65_02237A10(param0) == 1) {
         sub_020365F4();
-        sub_020364F0(14);
+        CommTiming_StartSync(14);
 
         ov65_022378C4(param0, param1, param2);
         ov65_02236E44(&param0->unk_30, param1, 102, param2);
@@ -2454,7 +2454,7 @@ static BOOL ov65_0223846C (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 
 {
     int v0;
 
-    if (sub_02036540(14)) {
+    if (CommTiming_IsSyncState(14)) {
         u16 v1 = param0->unk_00.unk_00->unk_00.unk_1B;
         BOOL v2;
 
@@ -2518,7 +2518,7 @@ static BOOL ov65_022384BC (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 
 static BOOL ov65_0223850C (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 * param1, u32 param2)
 {
     CommMan_SetErrorHandling(1, 1);
-    sub_020364F0(18);
+    CommTiming_StartSync(18);
 
     param0->unk_00.unk_05 = 14;
 
@@ -2527,7 +2527,7 @@ static BOOL ov65_0223850C (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 
 
 static BOOL ov65_02238528 (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 * param1, u32 param2)
 {
-    if (sub_02036540(18)) {
+    if (CommTiming_IsSyncState(18)) {
         ov65_022378C4(param0, param1, param2);
         param0->unk_00.unk_07 = 1;
         ov65_02237A24(param1, param2);

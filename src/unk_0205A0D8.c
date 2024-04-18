@@ -278,23 +278,23 @@ static BOOL sub_0205A324 (TaskManager * param0)
         break;
     case 2:
         if (sub_0205DA04(v0->unk_30)) {
-            sub_020364F0(93);
+            CommTiming_StartSync(93);
             v0->unk_34 = 3;
         }
         break;
     case 3:
-        if (sub_02036540(93)) {
+        if (CommTiming_IsSyncState(93)) {
             v0->unk_34 = 7;
             sub_02062C30(v0->unk_24->unk_38);
             v0->unk_08(1, v0->unk_50);
         } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
             v0->unk_34 = 4;
-            sub_020364F0(92);
+            CommTiming_StartSync(92);
             v0->unk_43 = 5;
         }
         break;
     case 4:
-        if (sub_02036540(93)) {
+        if (CommTiming_IsSyncState(93)) {
             v0->unk_34 = 7;
             sub_02062C30(v0->unk_24->unk_38);
             v0->unk_08(1, v0->unk_50);
@@ -316,7 +316,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
         sub_02059514();
         return 1;
     case 8:
-        if (sub_02036540(93)) {
+        if (CommTiming_IsSyncState(93)) {
             v0->unk_34 = 5;
             v0->unk_08(1, v0->unk_50);
         } else {
@@ -447,7 +447,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
             } else {
                 v0->unk_82 = (v0->unk_38 != 0);
                 sub_0205AC80(v0, v0->unk_82);
-                sub_020364F0(0);
+                CommTiming_StartSync(0);
                 StringTemplate_SetPlayerName(v0->unk_28, 0, v0->unk_74);
                 MessageLoader_GetStrbuf(v0->unk_2C, 14, v0->unk_0C);
                 StringTemplate_Format(v0->unk_28, v0->unk_10, v0->unk_0C);
@@ -460,7 +460,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
         if (sub_0205DA04(v0->unk_30)) {
             if (sub_0205A2FC()) {
                 v0->unk_34 = 5;
-            } else if (sub_02036540(0)) {
+            } else if (CommTiming_IsSyncState(0)) {
                 sub_0205ACC8(v0);
                 v0->unk_34 = 28;
             }
@@ -468,12 +468,12 @@ static BOOL sub_0205A324 (TaskManager * param0)
         break;
     case 28:
         if (sub_0205AD10(v0)) {
-            sub_020364F0(1);
+            CommTiming_StartSync(1);
             v0->unk_34 = 29;
         }
         break;
     case 29:
-        if (sub_02036540(1)) {
+        if (CommTiming_IsSyncState(1)) {
             v0->unk_83 = sub_0205AD20(v0);
 
             if (v0->unk_82 && v0->unk_83) {
@@ -513,7 +513,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
             v0->unk_84 = 255;
             MessageLoader_GetStrbuf(v0->unk_2C, 15, v0->unk_0C);
             v0->unk_30 = sub_0205AA50(v0, v0->unk_0C);
-            sub_020364F0(2);
+            CommTiming_StartSync(2);
             v0->unk_34 = 39;
             break;
         }
@@ -545,7 +545,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
                 MessageLoader_GetStrbuf(v0->unk_2C, 14, v0->unk_0C);
                 StringTemplate_Format(v0->unk_28, v0->unk_10, v0->unk_0C);
                 v0->unk_30 = sub_0205AA50(v0, v0->unk_10);
-                sub_020364F0(2);
+                CommTiming_StartSync(2);
                 v0->unk_34 = 39;
             } else {
                 ov5_021D1744(0);
@@ -574,7 +574,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
         break;
     case 39:
         if (sub_0205DA04(v0->unk_30)) {
-            if (sub_02036540(2)) {
+            if (CommTiming_IsSyncState(2)) {
                 sub_0205AD34(v0);
                 v0->unk_34 = 41;
             }
@@ -583,13 +583,13 @@ static BOOL sub_0205A324 (TaskManager * param0)
     case 41:
         if (sub_0205AD70(v0)) {
             if (v0->unk_84 == 255) {
-                sub_020364F0(4);
+                CommTiming_StartSync(4);
                 v0->unk_34 = 44;
             } else if (v0->unk_85 == 255) {
                 v0->unk_34 = 42;
             } else {
                 sub_0205ADAC(v0);
-                sub_020364F0(93);
+                CommTiming_StartSync(93);
                 v0->unk_34 = 2;
             }
         }
@@ -603,13 +603,13 @@ static BOOL sub_0205A324 (TaskManager * param0)
     case 43:
         if (sub_0205DA04(v0->unk_30)) {
             if (++(v0->unk_43) > 60) {
-                sub_020364F0(4);
+                CommTiming_StartSync(4);
                 v0->unk_34 = 44;
             }
         }
         break;
     case 44:
-        if (sub_02036540(4)) {
+        if (CommTiming_IsSyncState(4)) {
             sub_0200E084(&(v0->unk_14), 0);
             v0->unk_08(0, NULL);
             v0->unk_34 = 5;

@@ -1245,7 +1245,7 @@ static int ov58_021D2270 (UnkStruct_02095EAC * param0, int param1)
 {
     if (ov58_021D2B0C(param0->unk_30)) {
         ov58_021D2CB0(param0, 17);
-        sub_020364F0(200);
+        CommTiming_StartSync(200);
     }
 
     ov58_021D1D40(param0);
@@ -1254,7 +1254,7 @@ static int ov58_021D2270 (UnkStruct_02095EAC * param0, int param1)
 
 static int ov58_021D2298 (UnkStruct_02095EAC * param0, int param1)
 {
-    if (sub_02036540(200) || (CommSys_ConnectedCount() == 1)) {
+    if (CommTiming_IsSyncState(200) || (CommSys_ConnectedCount() == 1)) {
         sub_0200F174(0, 16, 16, 0x0, 16, 1, 39);
         param1 = 3;
     }

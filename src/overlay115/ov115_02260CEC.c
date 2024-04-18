@@ -799,11 +799,11 @@ BOOL ov115_02260DAC (UnkStruct_ov115_02260D78 * param0, u32 param1)
 
         if (v0 == 1) {
             param0->unk_1AB4.unk_4E8.unk_00++;
-            sub_020364F0(2);
+            CommTiming_StartSync(2);
         }
         break;
     case 2:
-        if (!sub_02036540(2)) {
+        if (!CommTiming_IsSyncState(2)) {
             break;
         }
 
