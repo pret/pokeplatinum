@@ -3,17 +3,15 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_0203E724_decl.h"
-
-#include "struct_defs/struct_0203E724_t.h"
+#include "field_script_context.h"
 
 #include "unk_0204E378.h"
 
-BOOL sub_0204E378 (UnkStruct_0203E724 * param0)
+BOOL sub_0204E378 (ScriptContext * param0)
 {
-    u16 v0 = inline_02049538(param0);
-    u16 * v1 = inline_0204FCAC(param0);
-    u16 * v2 = inline_0204FCAC(param0);
+    u16 v0 = ScriptContext_GetVar(param0);
+    u16 * v1 = ScriptContext_GetVarPointer(param0);
+    u16 * v2 = ScriptContext_GetVarPointer(param0);
     static const u16 v3[][2] = {
         {0xFB, 0x3E8},
         {0x109, 0x3E8},

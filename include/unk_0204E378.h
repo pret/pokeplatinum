@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_UNK_0204E378_H
 #define POKEPLATINUM_UNK_0204E378_H
 
-#include "struct_decls/struct_0203E724_decl.h"
+#include "field_script_context.h"
 
-BOOL sub_0204E378(UnkStruct_0203E724 * param0);
+BOOL sub_0204E378(ScriptContext * param0);
 
 #endif // POKEPLATINUM_UNK_0204E378_H

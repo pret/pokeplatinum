@@ -3,10 +3,8 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_0203E724_decl.h"
-
 #include "field/field_system.h"
-#include "struct_defs/struct_0203E724_t.h"
+#include "field_script_context.h"
 
 #include "unk_0204E240.h"
 #include "unk_0207D3B8.h"
@@ -21,12 +19,12 @@ const u16 Unk_020EBFFC[7][2] = {
     {0x69, 0x198}
 };
 
-BOOL sub_0204E240 (UnkStruct_0203E724 * param0)
+BOOL sub_0204E240 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->fieldSys;
     u8 v1;
     u16 v2, v3;
-    u16 * v4 = inline_0204FCAC(param0);
+    u16 * v4 = ScriptContext_GetVarPointer(param0);
 
     for (v1 = 0, v3 = 0; v1 < 7; v1++) {
         v3 += sub_0207D730(sub_0207D990(v0->saveData), Unk_020EBFFC[v1][0], 4);
@@ -37,11 +35,11 @@ BOOL sub_0204E240 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL sub_0204E28C (UnkStruct_0203E724 * param0)
+BOOL sub_0204E28C (ScriptContext * param0)
 {
     u16 v0;
-    u16 * v1 = inline_0204FCAC(param0);
-    u16 v2 = inline_02049538(param0);
+    u16 * v1 = ScriptContext_GetVarPointer(param0);
+    u16 v2 = ScriptContext_GetVar(param0);
 
     *v1 = 0;
 
@@ -55,14 +53,14 @@ BOOL sub_0204E28C (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL sub_0204E2E0 (UnkStruct_0203E724 * param0)
+BOOL sub_0204E2E0 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->fieldSys;
     u8 v1;
     u16 v2, v3;
-    u16 * v4 = inline_0204FCAC(param0);
-    u16 * v5 = inline_0204FCAC(param0);
-    u16 v6 = inline_02049538(param0);
+    u16 * v4 = ScriptContext_GetVarPointer(param0);
+    u16 * v5 = ScriptContext_GetVarPointer(param0);
+    u16 v6 = ScriptContext_GetVar(param0);
 
     *v4 = 0;
     *v5 = 0;
@@ -80,12 +78,12 @@ BOOL sub_0204E2E0 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL sub_0204E370 (UnkStruct_0203E724 * param0)
+BOOL sub_0204E370 (ScriptContext * param0)
 {
     return 0;
 }
 
-BOOL sub_0204E374 (UnkStruct_0203E724 * param0)
+BOOL sub_0204E374 (ScriptContext * param0)
 {
     return 0;
 }

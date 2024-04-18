@@ -3,13 +3,12 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 
 #include "field/field_system.h"
-#include "struct_defs/struct_0203E724_t.h"
+#include "field_script_context.h"
 
 #include "savedata/save_table.h"
 #include "unk_020480A8.h"
@@ -21,10 +20,10 @@
 
 static u8 sub_02048268(u16 param0, u16 param1);
 
-BOOL sub_020480A8 (UnkStruct_0203E724 * param0)
+BOOL sub_020480A8 (ScriptContext * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_34->saveData);
-    u16 * v1 = inline_0204FCAC(param0);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->fieldSys->saveData);
+    u16 * v1 = ScriptContext_GetVarPointer(param0);
     u32 v2;
 
     v2 = sub_0206B2A4(v0);
@@ -33,16 +32,16 @@ BOOL sub_020480A8 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL sub_020480D8 (UnkStruct_0203E724 * param0)
+BOOL sub_020480D8 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->unk_34;
+    FieldSystem * v0 = param0->fieldSys;
     Pokemon * v1;
     BoxPokemon * v2;
     PCBoxes * v3 = SaveData_PCBoxes(v0->saveData);
-    u16 * v4 = inline_0204FCAC(param0);
-    u16 * v5 = inline_0204FCAC(param0);
-    u16 * v6 = inline_0204FCAC(param0);
-    u16 v7 = inline_02049538(param0);
+    u16 * v4 = ScriptContext_GetVarPointer(param0);
+    u16 * v5 = ScriptContext_GetVarPointer(param0);
+    u16 * v6 = ScriptContext_GetVarPointer(param0);
+    u16 v7 = ScriptContext_GetVar(param0);
     u16 v8, v9, v10;
     u16 v11, v12;
     u16 v13, v14;
@@ -106,9 +105,9 @@ BOOL sub_020480D8 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-BOOL sub_02048254 (UnkStruct_0203E724 * param0)
+BOOL sub_02048254 (ScriptContext * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_34->saveData);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->fieldSys->saveData);
 
     sub_0206B2C8(v0);
     return 0;
