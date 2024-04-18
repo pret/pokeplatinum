@@ -104,7 +104,7 @@ xcode-select --install
 
 You will also need the following packages:
 
-* meson (>= 1.2.0)
+* meson (>= 1.3.0)
 * wine (to run the mwcc executables)
 
 These can be installed using Homebrew; if you do not have Homebrew installed, refer to the instructions [here](https://brew.sh/). Once Homebrew is installed, run:
@@ -120,7 +120,7 @@ brew install --cask wine-stable
 Building the ROM requires the following packages. If you cannot find one or more of these using your package distribution, it may be under a different name.
 
 * git
-* meson (>= 1.2.0)
+* meson (>= 1.3.0)
 * build-essentials (build-essential on Ubuntu)
 * binutils-arm-none-eabi (arm-none-eabi-binutils on Arch Linux)
 * wine (to run the mwcc executables)
