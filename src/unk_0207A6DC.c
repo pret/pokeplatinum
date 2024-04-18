@@ -109,7 +109,7 @@ void sub_0207A6DC (void * param0)
     v2 = (UnkStruct_0207ACB4 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_0207ACB4));
     v3 = (UnkStruct_0207AD40 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_0207AD40));
 
-    sub_02032798(Unk_020F099C, v0, param0);
+    CommCmd_Init(Unk_020F099C, v0, param0);
 
     v2->unk_00 = v1;
     v2->unk_04 = 0;
@@ -126,7 +126,7 @@ void sub_0207A6DC (void * param0)
 void sub_0207A744 (void * param0)
 {
     int v0 = sizeof(Unk_020F099C) / sizeof(UnkStruct_02039A58);
-    sub_02032798(Unk_020F099C, v0, param0);
+    CommCmd_Init(Unk_020F099C, v0, param0);
 }
 
 static int sub_0207A758 (void)

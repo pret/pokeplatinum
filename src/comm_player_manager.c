@@ -271,15 +271,15 @@ void CommPlayer_CopyPersonal (int param0)
     sCommPlayerManager->unk_14A[param0].unk_20 = 0xff;
 }
 
-void CommPlayer_SendXZPos (BOOL param0, int param1, int param2)
+void CommPlayer_SendXZPos (BOOL param0, int x, int z)
 {
     u8 data[5 + 1];
     int dir = Player_Dir(sCommPlayerManager->fieldSys->playerAvatar);
 
-    data[0] = param1;
-    data[1] = param1 >> 8;
-    data[2] = param2;
-    data[3] = param2 >> 8;
+    data[0] = x;
+    data[1] = x >> 8;
+    data[2] = z;
+    data[3] = z >> 8;
     data[4] = dir;
 
     if (param0) {
@@ -376,11 +376,11 @@ u32 CommPlayer_Size (void)
     return sizeof(CommPlayerManager);
 }
 
-static void CommPlayer_Add (u8 param0)
+static void CommPlayer_Add (u8 netId)
 {
     PlayerAvatar * playerAvatar;
 
-    if (sCommPlayerManager->playerAvatar[param0] != NULL) {
+    if (sCommPlayerManager->playerAvatar[netId] != NULL) {
         return;
     }
 
@@ -389,12 +389,12 @@ static void CommPlayer_Add (u8 param0)
     }
 
     {
-        TrainerInfo * trainerInfo = CommInfo_TrainerInfo(param0);
+        TrainerInfo * trainerInfo = CommInfo_TrainerInfo(netId);
 
         if (trainerInfo) {
             if (!sCommPlayerManager->isUnderground) {
-                if (param0 != CommSys_CurNetId()) {
-                    LocalMapObject * obj = sub_0206251C(sCommPlayerManager->fieldSys->unk_38, 0xff + param0 + 1);
+                if (netId != CommSys_CurNetId()) {
+                    LocalMapObject * obj = sub_0206251C(sCommPlayerManager->fieldSys->unk_38, 0xff + netId + 1);
 
                     if (obj != 0) {
                         sub_02061AF4(obj);
@@ -409,26 +409,26 @@ static void CommPlayer_Add (u8 param0)
                     version = 1;
                 }
 
-                playerAvatar = sub_0205E7D0(sCommPlayerManager->fieldSys->unk_38, sCommPlayerManager->playerLocation[param0].x, sCommPlayerManager->playerLocation[param0].z, sCommPlayerManager->playerLocation[param0].dir, 0x0, TrainerInfo_Gender(trainerInfo), version, NULL);
+                playerAvatar = PlayerAvatar_Init(sCommPlayerManager->fieldSys->unk_38, sCommPlayerManager->playerLocation[netId].x, sCommPlayerManager->playerLocation[netId].z, sCommPlayerManager->playerLocation[netId].dir, 0x0, TrainerInfo_Gender(trainerInfo), version, NULL);
             }
 
             GF_ASSERT(playerAvatar != NULL);
-            sCommPlayerManager->playerAvatar[param0] = playerAvatar;
+            sCommPlayerManager->playerAvatar[netId] = playerAvatar;
 
-            sub_0206290C(Player_LocalMapObject(playerAvatar), 0xff + param0 + 1);
+            sub_0206290C(Player_LocalMapObject(playerAvatar), 0xff + netId + 1);
 
             if (sCommPlayerManager->isUnderground) {
-                ov23_02243038(param0);
+                ov23_02243038(netId);
             }
 
-            if (sCommPlayerManager->isUnderground && !sCommPlayerManager->isActive[param0]) {
+            if (sCommPlayerManager->isUnderground && !sCommPlayerManager->isActive[netId]) {
                 if (!sCommPlayerManager->isResetting) {
-                    ov5_021F5634(sCommPlayerManager->fieldSys, sCommPlayerManager->playerLocation[param0].x, 0, sCommPlayerManager->playerLocation[param0].z);
+                    ov5_021F5634(sCommPlayerManager->fieldSys, sCommPlayerManager->playerLocation[netId].x, 0, sCommPlayerManager->playerLocation[netId].z);
                 }
 
-                sCommPlayerManager->isActive[param0] = 1;
+                sCommPlayerManager->isActive[netId] = 1;
             } else if (!sCommPlayerManager->isUnderground) {
-                sCommPlayerManager->isActive[param0] = 1;
+                sCommPlayerManager->isActive[netId] = 1;
             }
         }
     }
@@ -897,7 +897,7 @@ int sub_020585A4 (void)
     return 5;
 }
 
-void sub_020585A8 (int param0, int param1, void * src, void * param3)
+void CommPlayer_RecvLocationAndInit (int netId, int size, void * src, void * unused)
 {
     u8 * buffer = (u8 *)src;
     CommPlayerLocation * playerLocation;
@@ -909,7 +909,7 @@ void sub_020585A8 (int param0, int param1, void * src, void * param3)
         return;
     }
 
-    if ((param0 == CommSys_CurNetId()) && sCommPlayerManager->unk_2C3) {
+    if ((netId == CommSys_CurNetId()) && sCommPlayerManager->unk_2C3) {
         return;
     }
 

@@ -40,7 +40,7 @@ void CommTool_Init (int netId)
     sCommTool->sendTiming = 0;
 }
 
-void sub_02036438 (void)
+void CommTool_Delete (void)
 {
     Heap_FreeToHeap(sCommTool);
     sCommTool = NULL;

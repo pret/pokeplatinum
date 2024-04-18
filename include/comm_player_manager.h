@@ -80,7 +80,7 @@ BOOL CommPlayer_CheckNPCCollision(int param0, int param1);
 void CommPlayer_RecvLocation(int param0, int param1, void * param2, void * param3);
 void CommPlayer_RecvDelete(int param0, int param1, void * param2, void * param3);
 int sub_020585A4(void);
-void sub_020585A8(int param0, int param1, void * param2, void * param3);
+void CommPlayer_RecvLocationAndInit(int param0, int param1, void * param2, void * param3);
 void sub_02058B0C(int param0, int param1, BOOL param2);
 void sub_02058B7C(int param0);
 void sub_02058B94(int param0);

@@ -5,15 +5,15 @@
 
 #define MAX_CONNECTED_PLAYERS      8
 
-BOOL sub_02034778(BOOL param0, BOOL param1, int param2, BOOL param3);
-BOOL sub_020347B4(BOOL param0, BOOL param1, int param2);
-void sub_02034878(void);
-void sub_02034884(void);
-BOOL sub_020348B0(void);
-void sub_020348C4(void);
+BOOL CommSys_InitServer(BOOL param0, BOOL param1, int param2, BOOL param3);
+BOOL CommSys_InitClient(BOOL param0, BOOL param1, int param2);
+void CommSys_SwitchTransitionTypeToParallel(void);
+void CommSys_SwitchTransitionTypeToServerClient(void);
+BOOL CommSys_TransitionTypeIsParallel(void);
+void CommSys_Delete(void);
 BOOL sub_02034984(u16 param0);
-BOOL sub_020349EC(void);
-void sub_02034AE4(void);
+BOOL CommSys_Update(void);
+void CommSys_Reset(void);
 void sub_02034B04(void);
 void sub_02034B2C(void);
 void sub_0203509C(u16 param0, u16 * param1, u16 param2);

@@ -47,7 +47,7 @@ UnkStruct_ov83_0223D4CC * ov83_0223D4CC (const UnkStruct_02039A58 * param0, int 
     v0->unk_04 = NULL;
 
     if (param3 == 1) {
-        sub_02032798(param0, param1, param2);
+        CommCmd_Init(param0, param1, param2);
     } else {
         v0->unk_04 = ov83_0223D584(param0, param1, param2, param4);
     }

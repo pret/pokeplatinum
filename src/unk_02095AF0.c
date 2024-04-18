@@ -48,7 +48,7 @@ static const UnkStruct_02039A58 Unk_020F58FC[] = {
 void sub_02095AF0 (void * param0)
 {
     int v0 = sizeof(Unk_020F58FC) / sizeof(UnkStruct_02039A58);
-    sub_02032798(Unk_020F58FC, v0, param0);
+    CommCmd_Init(Unk_020F58FC, v0, param0);
 }
 
 static u8 * sub_02095B04 (int param0, void * param1, int param2)

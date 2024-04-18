@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_020363E8_H
 
 void CommTool_Init(int param0);
-void sub_02036438(void);
+void CommTool_Delete(void);
 BOOL sub_02036450(void);
 void sub_02036464(int param0, int param1, void * param2, void * param3);
 void sub_020364C8(int param0, int param1, void * param2, void * param3);

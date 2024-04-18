@@ -43,7 +43,7 @@ static void sub_0205EBA4(PlayerAvatar * param0, u32 param1);
 static u32 sub_0205EBB0(PlayerAvatar * param0, u32 param1);
 static void sub_0205EC08(PlayerAvatar * param0, UnkStruct_0205EC34 * param1);
 
-PlayerAvatar * sub_0205E7D0 (const MapObjectManager * param0, int param1, int param2, int param3, int param4, int param5, int param6, UnkStruct_0205EC34 * param7)
+PlayerAvatar * PlayerAvatar_Init (const MapObjectManager * param0, int param1, int param2, int param3, int param4, int param5, int param6, UnkStruct_0205EC34 * param7)
 {
     PlayerAvatar * v0;
 

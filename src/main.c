@@ -130,7 +130,7 @@ void NitroMain (void)
             }
         }
 
-        if (sub_020349EC()) {
+        if (CommSys_Update()) {
             CheckHeapCanary();
             sub_02000E54();
             sub_0201CDD4(gCoreSys.unk_18);
@@ -213,7 +213,7 @@ void sub_02000EC4 (FSOverlayID param0, const OverlayManagerTemplate * param1)
 
 static void WaitFrame (void)
 {
-    sub_020349EC();
+    CommSys_Update();
 
     OS_WaitIrq(1, OS_IE_V_BLANK);
 

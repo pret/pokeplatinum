@@ -10,7 +10,7 @@
 
 #include <nitro/fx/fx.h>
 
-PlayerAvatar * sub_0205E7D0(const MapObjectManager * param0, int param1, int param2, int param3, int param4, int param5, int param6, UnkStruct_0205EC34 * param7);
+PlayerAvatar * PlayerAvatar_Init(const MapObjectManager * param0, int param1, int param2, int param3, int param4, int param5, int param6, UnkStruct_0205EC34 * param7);
 PlayerAvatar * sub_0205E820(const MapObjectManager * param0, UnkStruct_0205EC34 * param1, int param2);
 void sub_0205E884(PlayerAvatar * param0, int param1);
 void sub_0205E8E0(PlayerAvatar * param0);

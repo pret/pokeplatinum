@@ -145,7 +145,7 @@ void sub_020961E8 (void * param0)
     int v1;
     int v2 = sizeof(Unk_020F5F68) / sizeof(UnkStruct_02039A58);
 
-    sub_02032798(Unk_020F5F68, v2, param0);
+    CommCmd_Init(Unk_020F5F68, v2, param0);
 
     for (v1 = 0; v1 < 5; v1++) {
         (void)0;

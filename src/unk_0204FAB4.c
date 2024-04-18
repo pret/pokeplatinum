@@ -173,7 +173,7 @@ static void sub_0204FCF8 (TaskManager * param0, u16 param1, u16 param2, u16 * pa
     v0->unk_04[1] = param2;
     v0->unk_0C = param3;
 
-    sub_02099514(v0);
+    CommFieldCmd_Init(v0);
     sub_02050944(param0, sub_0204FD38, v0);
 
     return;

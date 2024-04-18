@@ -19,7 +19,7 @@ typedef struct {
     void * unk_08;
     u8 unk_0C[8];
     u8 unk_14;
-} UnkStruct_021C07B0;
+} CommCmdTable;
 
 static void sub_02032958(int param0, int param1, void * param2, void * param3);
 static void sub_0203299C(int param0, int param1, void * param2, void * param3);
@@ -51,14 +51,14 @@ static const UnkStruct_02039A58 Unk_020E5D64[] = {
     {sub_02038240, sub_0203294C, NULL}
 };
 
-static UnkStruct_021C07B0 * Unk_021C07B0 = NULL;
+static CommCmdTable * Unk_021C07B0 = NULL;
 
-void sub_02032798 (const UnkStruct_02039A58 * param0, int param1, void * param2)
+void CommCmd_Init (const UnkStruct_02039A58 * param0, int param1, void * param2)
 {
     int v0;
 
     if (!Unk_021C07B0) {
-        Unk_021C07B0 = Heap_AllocFromHeap(15, sizeof(UnkStruct_021C07B0));
+        Unk_021C07B0 = Heap_AllocFromHeap(15, sizeof(CommCmdTable));
     }
 
     Unk_021C07B0->unk_00 = param0;
@@ -80,7 +80,7 @@ void sub_020327E0 (void)
     }
 }
 
-void sub_020327FC (int param0, int param1, int param2, void * param3)
+void CommCmd_Callback (int param0, int param1, int param2, void * param3)
 {
     UnkFuncPtr_020F8E60 v0;
 

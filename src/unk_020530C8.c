@@ -352,7 +352,7 @@ static void sub_02053320 (FieldSystem * param0)
     v2 = sub_0203A790(param0->saveData);
     v3 = sub_0203A780(v2);
 
-    param0->playerAvatar = sub_0205E7D0(param0->unk_38, param0->unk_1C->unk_08, param0->unk_1C->unk_0C, param0->unk_1C->unk_10, v3->unk_04, v0, 0, v3);
+    param0->playerAvatar = PlayerAvatar_Init(param0->unk_38, param0->unk_1C->unk_08, param0->unk_1C->unk_0C, param0->unk_1C->unk_10, v3->unk_04, v0, 0, v3);
 
     sub_0203A418(param0);
     sub_02062C30(param0->unk_38);

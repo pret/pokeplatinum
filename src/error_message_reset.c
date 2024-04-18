@@ -168,7 +168,7 @@ void ErrorMessageReset_PrintErrorAndReset (void)
 
     while (TRUE) {
         HandleConsoleFold();
-        sub_020349EC();
+        CommSys_Update();
 
         if (sub_02038AB8()) {
             break;

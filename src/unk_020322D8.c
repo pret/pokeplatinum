@@ -288,7 +288,7 @@ void sub_020325EC (UnkStruct_020322F8 * param0, int param1, UnkStruct_02032188 *
     param0->unk_14 = param2;
 }
 
-void sub_02032618 (UnkStruct_020322F8 * param0)
+void CommQueueMan_Reset (UnkStruct_020322F8 * param0)
 {
     MI_CpuFill8(param0->unk_18, 0, sizeof(UnkStruct_020322D8) * param0->unk_1C);
 

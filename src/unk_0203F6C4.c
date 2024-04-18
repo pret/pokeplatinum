@@ -5416,7 +5416,7 @@ static BOOL sub_02043748 (ScriptContext * param0)
 
 static BOOL sub_020437B4 (ScriptContext * param0)
 {
-    sub_02099514(param0->fieldSys);
+    CommFieldCmd_Init(param0->fieldSys);
     return 0;
 }
 

@@ -57,7 +57,7 @@ void sub_0209BE38 (UnkStruct_0209BDF8 * param0)
 
 void sub_0209BE50 (UnkStruct_0209BDF8 * param0)
 {
-    sub_02032798(Unk_020F8EA8, 135, param0);
+    CommCmd_Init(Unk_020F8EA8, 135, param0);
 }
 
 void sub_0209BE64 (UnkStruct_0209BDF8 * param0)

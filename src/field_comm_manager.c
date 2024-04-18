@@ -79,7 +79,7 @@ void FieldCommMan_Init (FieldSystem * fieldSys)
         return;
     }
 
-    sub_02099514((void *)fieldSys);
+    CommFieldCmd_Init((void *)fieldSys);
 
     sFieldCommMan = (FieldCommunicationManager *)Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(FieldCommunicationManager));
     MI_CpuFill8(sFieldCommMan, 0, sizeof(FieldCommunicationManager));
@@ -546,7 +546,7 @@ static void sub_02059D58 (void)
 
 static void sub_02059DC8 (void)
 {
-    if (sub_020348B0()) {
+    if (CommSys_TransitionTypeIsParallel()) {
         if (sFieldCommMan->timer != 0) {
             sFieldCommMan->timer--;
         }
@@ -568,7 +568,7 @@ static void sub_02059E0C (void)
         return;
     }
 
-    sub_02034878();
+    CommSys_SwitchTransitionTypeToParallel();
     FieldCommMan_SetTask(sub_02059DC8, 120);
 }
 
@@ -647,7 +647,7 @@ static void FieldCommTask_CopyTrainerCard (void)
 
 static void sub_02059F4C (void)
 {
-    if (!sub_020348B0()) {
+    if (!CommSys_TransitionTypeIsParallel()) {
         if (sFieldCommMan->timer != 0) {
             sFieldCommMan->timer--;
         }
@@ -669,7 +669,7 @@ static void sub_02059F90 (void)
         return;
     }
 
-    sub_02034884();
+    CommSys_SwitchTransitionTypeToServerClient();
     FieldCommMan_SetTask(sub_02059F4C, 120);
 }
 

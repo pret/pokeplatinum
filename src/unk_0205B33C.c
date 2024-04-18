@@ -125,7 +125,7 @@ UnkStruct_0205B43C * sub_0205B33C (FieldSystem * param0)
         v0 = param0->unk_7C;
     }
 
-    sub_02099514((void *)param0);
+    CommFieldCmd_Init((void *)param0);
     sub_02037B58(2);
     sub_0205B5B4(v0, sub_0205B408, 40);
 
@@ -216,7 +216,7 @@ static void sub_0205B43C (UnkStruct_0205B43C * param0)
 static void sub_0205B4B0 (UnkStruct_0205B43C * param0)
 {
     if (sub_02036B44() == 1) {
-        sub_02099514((void *)param0->unk_00);
+        CommFieldCmd_Init((void *)param0->unk_00);
         sub_0205B5B4(param0, sub_0205B43C, 2);
     }
 }

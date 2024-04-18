@@ -165,7 +165,7 @@ void sub_02050224 (TaskManager * param0, u16 param1, u16 param2, u16 * param3)
     v0->unk_04[1] = param2;
     v0->unk_0C = param3;
 
-    sub_02099514(v0);
+    CommFieldCmd_Init(v0);
     sub_02050944(param0, sub_02050264, v0);
 
     return;

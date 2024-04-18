@@ -27,7 +27,7 @@ void ov117_022665FC (void * param0)
 {
     int v0 = sizeof(Unk_ov117_02266FE4) / sizeof(UnkStruct_02039A58);
 
-    sub_02032798(Unk_ov117_02266FE4, v0, param0);
+    CommCmd_Init(Unk_ov117_02266FE4, v0, param0);
     GF_ASSERT(sizeof(UnkStruct_ov117_022621D4) < 256);
 }
 

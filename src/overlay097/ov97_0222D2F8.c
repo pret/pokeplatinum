@@ -15,5 +15,5 @@ static const UnkStruct_02039A58 Unk_ov97_0223D704[] = {
 void ov97_0222D2F8 (void * param0)
 {
     int v0 = sizeof(Unk_ov97_0223D704) / sizeof(UnkStruct_02039A58);
-    sub_02032798(Unk_ov97_0223D704, v0, param0);
+    CommCmd_Init(Unk_ov97_0223D704, v0, param0);
 }
