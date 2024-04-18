@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV5_021F6454_H
 #define POKEPLATINUM_OV5_021F6454_H
 
-#include "unk_0203E724.h"
+#include "field_script_context.h"
 
 BOOL ov5_021F6454(ScriptContext * param0);
 BOOL ov5_021F6B3C(ScriptContext * param0);

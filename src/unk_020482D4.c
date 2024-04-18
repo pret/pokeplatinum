@@ -10,7 +10,7 @@
 #include "unk_02005474.h"
 #include "unk_02006224.h"
 #include "unk_0202CC64.h"
-#include "unk_0203E724.h"
+#include "field_script_context.h"
 #include "unk_020553DC.h"
 
 static BOOL sub_02048378(ScriptContext * param0);

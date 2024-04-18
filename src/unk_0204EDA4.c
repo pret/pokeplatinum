@@ -11,7 +11,7 @@
 #include "unk_02025E08.h"
 #include "unk_0203CC84.h"
 #include "unk_0203D1B8.h"
-#include "unk_0203E724.h"
+#include "field_script_context.h"
 #include "unk_0203E880.h"
 #include "unk_0203F6C4.h"
 #include "unk_0204EDA4.h"

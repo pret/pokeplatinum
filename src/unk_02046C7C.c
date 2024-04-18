@@ -19,7 +19,7 @@
 #include "unk_0202CC64.h"
 #include "map_header.h"
 #include "unk_0203CC84.h"
-#include "unk_0203E724.h"
+#include "field_script_context.h"
 #include "unk_0203E880.h"
 #include "unk_020507CC.h"
 #include "unk_0206A8DC.h"

@@ -44,7 +44,7 @@
 #include "unk_0202CD50.h"
 #include "unk_02030880.h"
 #include "unk_02038F8C.h"
-#include "unk_0203E724.h"
+#include "field_script_context.h"
 #include "unk_0203E880.h"
 #include "unk_020507CC.h"
 #include "unk_0205DFC4.h"

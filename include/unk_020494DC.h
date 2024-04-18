@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_020494DC_H
 #define POKEPLATINUM_UNK_020494DC_H
 
-#include "unk_0203E724.h"
+#include "field_script_context.h"
 
 BOOL sub_020494DC(ScriptContext * param0);
 BOOL sub_0204950C(ScriptContext * param0);

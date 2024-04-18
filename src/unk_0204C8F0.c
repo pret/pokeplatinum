@@ -11,7 +11,7 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_0203CC84.h"
-#include "unk_0203E724.h"
+#include "field_script_context.h"
 #include "unk_0203E880.h"
 #include "unk_0204C8F0.h"
 #include "overlay005/ov5_021DC018.h"

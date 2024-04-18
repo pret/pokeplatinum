@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0203E724_H
-#define POKEPLATINUM_UNK_0203E724_H
+#ifndef POKEPLATINUM_FIELD_SCRIPT_CONTEXT_H
+#define POKEPLATINUM_FIELD_SCRIPT_CONTEXT_H
 
 #include "message.h"
 #include "field/field_system_decl.h"
@@ -40,4 +40,4 @@ void ScriptContext_Return(ScriptContext * ctx);
 u16 ScriptContext_ReadHalfWord(ScriptContext * ctx);
 u32 ScriptContext_ReadWord(ScriptContext * ctx);
 
-#endif // POKEPLATINUM_UNK_0203E724_H
+#endif // POKEPLATINUM_FIELD_SCRIPT_CONTEXT_H

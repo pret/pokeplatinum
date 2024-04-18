@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "unk_0203E724.h"
+#include "field_script_context.h"
 
 #include "unk_02025E08.h"
 #include "trainer_info.h"

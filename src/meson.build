@@ -168,7 +168,7 @@ pokeplatinum_c = files(
     'unk_0203CC84.c',
     'unk_0203D178.c',
     'unk_0203D1B8.c',
-    'unk_0203E724.c',
+    'field_script_context.c',
     'unk_0203E880.c',
     'unk_0203F6C4.c',
     'unk_02046AD4.c',

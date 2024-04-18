@@ -29,7 +29,7 @@
 #include "unk_02018340.h"
 #include "strbuf.h"
 #include "unk_0202631C.h"
-#include "unk_0203E724.h"
+#include "field_script_context.h"
 #include "unk_0203E880.h"
 #include "unk_02054884.h"
 #include "constants/species.h"

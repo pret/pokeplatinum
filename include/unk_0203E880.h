@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_0203E880_H
 
 #include "field/field_system_decl.h"
-#include "unk_0203E724.h"
+#include "field_script_context.h"
 #include "struct_decls/struct_0203EF60_decl.h"
 #include "struct_defs/struct_0203F478.h"
 #include "struct_decls/struct_020508D4_decl.h"

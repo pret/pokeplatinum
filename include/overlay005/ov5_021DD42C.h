@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV5_021DD42C_H
 
 #include "message.h"
-#include "unk_0203E724.h"
+#include "field_script_context.h"
 #include "overlay005/struct_ov5_021DD42C.h"
 
 void ov5_021DD42C(UnkStruct_ov5_021DD42C * param0, ScriptContext * param1);

@@ -12,7 +12,7 @@
 #include "unk_02025E08.h"
 #include "coins.h"
 #include "unk_0203CC84.h"
-#include "unk_0203E724.h"
+#include "field_script_context.h"
 #include "unk_0203E880.h"
 #include "unk_0204C6C8.h"
 #include "overlay005/ov5_021DC018.h"

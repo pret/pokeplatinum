@@ -25,7 +25,7 @@
 #include "unk_0203061C.h"
 #include "communication_system.h"
 #include "unk_0203CC84.h"
-#include "unk_0203E724.h"
+#include "field_script_context.h"
 #include "unk_0203E880.h"
 #include "unk_02049D08.h"
 #include "unk_0204FAB4.h"

@@ -9,7 +9,7 @@
 #include "struct_decls/struct_party_decl.h"
 
 #include "field/field_system.h"
-#include "unk_0203E724.h"
+#include "field_script_context.h"
 
 #include "unk_02017038.h"
 #include "heap.h"

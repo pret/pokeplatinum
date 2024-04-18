@@ -34,7 +34,7 @@
 #include "unk_02030880.h"
 #include "communication_system.h"
 #include "unk_0203CC84.h"
-#include "unk_0203E724.h"
+#include "field_script_context.h"
 #include "unk_0203E880.h"
 #include "unk_0204F13C.h"
 #include "unk_0204FA34.h"

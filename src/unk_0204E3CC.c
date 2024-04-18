@@ -7,7 +7,7 @@
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 
-#include "unk_0203E724.h"
+#include "field_script_context.h"
 #include "struct_defs/struct_0205EC34.h"
 
 #include "unk_02025E08.h"

@@ -19,7 +19,7 @@
 #include "trainer_info.h"
 #include "savedata_misc.h"
 #include "unk_0203CC84.h"
-#include "unk_0203E724.h"
+#include "field_script_context.h"
 #include "unk_0203E880.h"
 #include "unk_020474B8.h"
 #include "unk_020507CC.h"

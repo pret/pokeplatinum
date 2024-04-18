@@ -8,7 +8,7 @@
 #include "struct_decls/struct_020797DC_decl.h"
 
 #include "field/field_system.h"
-#include "unk_0203E724.h"
+#include "field_script_context.h"
 
 #include "savedata/save_table.h"
 #include "unk_020480A8.h"

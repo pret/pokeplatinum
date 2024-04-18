@@ -29,7 +29,7 @@
 #include "map_header.h"
 #include "unk_0203A378.h"
 #include "field_menu.h"
-#include "unk_0203E724.h"
+#include "field_script_context.h"
 #include "unk_0203E880.h"
 #include "unk_020507CC.h"
 #include "unk_020508D4.h"
