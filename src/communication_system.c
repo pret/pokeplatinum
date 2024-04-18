@@ -6,7 +6,6 @@
 
 #include "struct_decls/sys_task.h"
 
-#include "struct_defs/struct_02032188.h"
 #include "struct_defs/struct_020322D8.h"
 #include "struct_defs/struct_020322F8.h"
 #include "struct_defs/struct_0203233C.h"
@@ -16,7 +15,7 @@
 #include "heap.h"
 #include "constants/heap.h"
 #include "unk_02030EE0.h"
-#include "unk_02032188.h"
+#include "comm_ring.h"
 #include "unk_020322D8.h"
 #include "unk_0203266C.h"
 #include "unk_02032798.h"
@@ -61,11 +60,11 @@ typedef struct {
     u8 * unk_48C;
     u8 * unk_490;
     u8 * unk_494;
-    UnkStruct_02032188 unk_498;
-    UnkStruct_02032188 unk_4A4;
-    UnkStruct_02032188 unk_4B0[8];
-    UnkStruct_02032188 unk_510;
-    UnkStruct_02032188 unk_51C[8];
+    CommRing unk_498;
+    CommRing unk_4A4;
+    CommRing unk_4B0[8];
+    CommRing unk_510;
+    CommRing unk_51C[8];
     SysTask * unk_57C;
     UnkStruct_020322F8 unk_580;
     UnkStruct_020322F8 unk_5A0;
@@ -216,7 +215,7 @@ static void sub_02034378 (void)
     sCommunicationSystem->unk_659 = 0;
 
     MI_CpuClear8(sCommunicationSystem->unk_48C, sCommunicationSystem->allocSize);
-    MI_CpuClear8(sCommunicationSystem->unk_51C, sizeof(UnkStruct_02032188) * (7 + 1));
+    MI_CpuClear8(sCommunicationSystem->unk_51C, sizeof(CommRing) * (7 + 1));
 
     v1 = sCommunicationSystem->allocSize / v2;
 
@@ -225,7 +224,7 @@ static void sub_02034378 (void)
     }
 
     MI_CpuClear8(sCommunicationSystem->unk_488, sCommunicationSystem->allocSize);
-    MI_CpuClear8(sCommunicationSystem->unk_4B0, sizeof(UnkStruct_02032188) * (7 + 1));
+    MI_CpuClear8(sCommunicationSystem->unk_4B0, sizeof(CommRing) * (7 + 1));
 
     for (v0 = 0; v0 < v2; v0++) {
         sub_02032188(&sCommunicationSystem->unk_4B0[v0], &sCommunicationSystem->unk_488[v0 * v1], v1);
@@ -1445,50 +1444,50 @@ static void CommSys_EndCallback (int netId, int command, int param2, void * para
     param4->unk_00 = 0;
 }
 
-static void CommSys_RecvDataSingle (UnkStruct_02032188 * param0, int netId, u8 * param2, CommRecvPackage * param3)
+static void CommSys_RecvDataSingle (CommRing * ring, int netId, u8 * param2, CommRecvPackage * param3)
 {
-    int v0;
+    int size;
     u8 cmd;
     int v2;
     int v3;
 
-    while (sub_0203226C(param0) != 0) {
-        v2 = param0->unk_04;
+    while (CommRing_DataSize(ring) != 0) {
+        v2 = ring->startIndex;
 
         if (param3->unk_0A != 0xee) {
             cmd = param3->unk_0A;
         } else {
-            cmd = sub_02032210(param0);
+            cmd = CommRing_ReadByte(ring);
 
             if (cmd == 0xee) {
                 continue;
             }
         }
 
-        v2 = param0->unk_04;
+        v2 = ring->startIndex;
         param3->unk_0A = cmd;
 
         if (param3->unk_08 != 0xffff) {
-            v0 = param3->unk_08;
+            size = param3->unk_08;
         } else {
-            v0 = sub_02032868(cmd);
+            size = sub_02032868(cmd);
 
             if (sCommunicationSystem->unk_6B1) {
                 return;
             }
 
-            if (0xffff == v0) {
-                if (sub_0203226C(param0) < 1) {
-                    param0->unk_04 = v2;
+            if (0xffff == size) {
+                if (CommRing_DataSize(ring) < 1) {
+                    ring->startIndex = v2;
                     break;
                 }
 
-                v0 = sub_02032210(param0) * 0x100;
-                v0 += sub_02032210(param0);
-                v2 = param0->unk_04;
+                size = CommRing_ReadByte(ring) * 0x100;
+                size += CommRing_ReadByte(ring);
+                v2 = ring->startIndex;
             }
 
-            param3->unk_08 = v0;
+            param3->unk_08 = size;
         }
 
         if (sub_020328D0(cmd)) {
@@ -1496,7 +1495,7 @@ static void CommSys_RecvDataSingle (UnkStruct_02032188 * param0, int netId, u8 *
                 param3->unk_04 = sub_0203290C(cmd, netId, param3->unk_08);
             }
 
-            v3 = sub_020321F4(param0, param2, v0 - param3->unk_00);
+            v3 = sub_020321F4(ring, param2, size - param3->unk_00);
 
             if (param3->unk_04) {
                 MI_CpuCopy8(param2, &param3->unk_04[param3->unk_00], v3);
@@ -1504,23 +1503,23 @@ static void CommSys_RecvDataSingle (UnkStruct_02032188 * param0, int netId, u8 *
 
             param3->unk_00 += v3;
 
-            if (param3->unk_00 >= v0) {
-                CommSys_EndCallback(netId, cmd, v0, param3->unk_04, param3);
+            if (param3->unk_00 >= size) {
+                CommSys_EndCallback(netId, cmd, size, param3->unk_04, param3);
 
                 if (cmd == 17) {
                     break;
                 }
             }
         } else {
-            if (sub_0203226C(param0) >= v0) {
-                sub_020321F4(param0, param2, v0);
-                CommSys_EndCallback(netId, cmd, v0, (void *)param2, param3);
+            if (CommRing_DataSize(ring) >= size) {
+                sub_020321F4(ring, param2, size);
+                CommSys_EndCallback(netId, cmd, size, (void *)param2, param3);
 
                 if (cmd == 17) {
                     break;
                 }
             } else {
-                param0->unk_04 = v2;
+                ring->startIndex = v2;
                 break;
             }
         }
@@ -1544,7 +1543,7 @@ static void CommSys_RecvData (void)
 
     sub_020322D0(&sCommunicationSystem->unk_4A4);
 
-    if (sub_0203226C(&sCommunicationSystem->unk_4A4) > 0) {
+    if (CommRing_DataSize(&sCommunicationSystem->unk_4A4) > 0) {
         CommSys_RecvDataSingle(&sCommunicationSystem->unk_4A4, v0, sCommunicationSystem->unk_494, &sCommunicationSystem->unk_618);
     }
 }
@@ -1569,7 +1568,7 @@ static void CommSys_RecvDataServer (void)
     for (v0 = 0; v0 < v3; v0++) {
         sub_020322D0(&sCommunicationSystem->unk_51C[v0]);
 
-        if (sub_0203226C(&sCommunicationSystem->unk_51C[v0]) > 0) {
+        if (CommRing_DataSize(&sCommunicationSystem->unk_51C[v0]) > 0) {
             CommSys_RecvDataSingle(&sCommunicationSystem->unk_51C[v0], v0, sCommunicationSystem->unk_494, &sCommunicationSystem->unk_5C0[v0]);
         }
     }
